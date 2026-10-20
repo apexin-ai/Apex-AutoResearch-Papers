@@ -1,0 +1,3498 @@
+{
+  "schema_version": "1.0",
+  "id": "254a3290e9f6c9b4c2b6",
+  "project": "struct_self_consist_ie",
+  "kind": "conversation",
+  "title": "cpu alpha crit v3 micro f1",
+  "task_key": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/worker_cpu_alpha_crit_v3_micro_f1_20260521T094702.jsonl",
+    "occurrence": 1,
+    "bytes": 132791,
+    "sha256": "a14aa4dba20cfe1d5a58fd1d9f37649b226fcfd467188af1a97b48b91ad3d399"
+  },
+  "statistics": {
+    "messages": 173,
+    "user_turns": 0,
+    "tool_calls": 86,
+    "roles": {
+      "tool_call": 86,
+      "tool_result": 86,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-21T10:00:13.470358+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__read_project_file",
+              "max_results": "5"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-21T10:00:13.470679+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-21T10:00:13.470882+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "ls -d /root/autodl-tmp/struct_self_consist_ie/output/*mf4v2* /root/autodl-tmp/struct_self_consist_ie/output/*MF4v2* /root/autodl-tmp/struct_self_consist_ie/output/*mf4_v2* 2>/dev/null",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-21T10:00:13.471033+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-21T10:00:13.471199+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090-b",
+              "command": "ls -d /root/autodl-tmp/struct_self_consist_ie/output/*mf4v2* /root/autodl-tmp/struct_self_consist_ie/output/*MF4v2* /root/autodl-tmp/struct_self_consist_ie/output/*mf4_v2* 2>/dev/null",
+              "account": "root"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-21T10:00:13.471355+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-21T10:00:13.471484+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090-c",
+              "command": "ls -d /root/autodl-tmp/struct_self_consist_ie/output/*mf4v2* /root/autodl-tmp/struct_self_consist_ie/output/*MF4v2* /root/autodl-tmp/struct_self_consist_ie/output/*mf4_v2* 2>/dev/null",
+              "account": "root"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-21T10:00:13.471613+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-21T10:00:13.471764+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "find /root/autodl-tmp/struct_self_consist_ie/output -maxdepth 1 -type d -name \"*mf4*\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-21T10:00:13.471900+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090-b",
+              "command": "find /root/autodl-tmp/struct_self_consist_ie/output -maxdepth 1 -type d -name \"*mf4*\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-21T10:00:13.472045+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/conll_mf4_seed123\\\\n/root/autodl-tmp/struct_self_consist_ie/output/conll_mf4_seed456\\\\n/root/autodl-tmp/struct_self_consist_ie/output/fewnerd_mf4_seed42\\\\n/root/autodl-tmp/struct_self_consist_ie/output/fewnerd_mf4_seed123\\\\n/root/autodl-tmp/struct_self_consist_ie/output/fewnerd_mf4_seed456\\\\n/root/autodl-tmp/struct_self_consist_ie/output/fewnerd_mf4v2_seed456\\\\n/root/autodl-tmp/struct_self_consist_ie/output/fewnerd_mf4v2_seed123\\\\n/root/autodl-tmp/struct_self_consist_ie/output/fewnerd_mf4v2_seed42\\\\n/root/autodl-tmp/struct_self_consist_ie/output/scierc_mf4v2_seed42\\\\n/root/autodl-tmp/struct_self_consist_ie/output/scierc_mf4v2_seed123\\\\n/root/autodl-tmp/struct_self_consist_ie/output/scierc_mf4v2_seed456\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.15}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-21T10:00:13.472196+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Error executing tool ssh_read_only: Unknown server 'autodl-5090-b'. Available: ['autodl-5090', 'autodl-5090-c', 'bjb1-21071', 'bjb2-11496', 'westb-25965']"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-21T10:00:13.472325+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090-c",
+              "command": "find /root/autodl-tmp/struct_self_consist_ie/output -maxdepth 1 -type d -name \"*mf4*\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-21T10:00:13.472451+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.72}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-21T10:00:13.472604+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "find /root/autodl-tmp/struct_self_consist_ie/output -maxdepth 1 -type d -name \"conll*\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-21T10:00:13.472736+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/conll_n16_s123\\\\n/root/autodl-tmp/struct_self_consist_ie/output/conll_n16_s456\\\\n/root/autodl-tmp/struct_self_consist_ie/output/conll_n16_seed123_v2\\\\n/root/autodl-tmp/struct_self_consist_ie/output/conll_n16_seed456_v2\\\\n/root/autodl-tmp/struct_self_consist_ie/output/conll_mf4_seed123\\\\n/root/autodl-tmp/struct_self_consist_ie/output/conll_mf4_seed456\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-21T10:00:13.472860+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-21071",
+              "command": "find /root/autodl-tmp/struct_self_consist_ie/output -maxdepth 1 -type d -name \"*mf4*\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-21T10:00:13.472988+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-11496",
+              "command": "find /root/autodl-tmp/struct_self_consist_ie/output -maxdepth 1 -type d -name \"*mf4*\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-21T10:00:13.473122+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/conll_mf4_seed123\\\\n/root/autodl-tmp/struct_self_consist_ie/output/conll_mf4_seed456\\\\n/root/autodl-tmp/struct_self_consist_ie/output/fewnerd_mf4_seed42\\\\n/root/autodl-tmp/struct_self_consist_ie/output/fewnerd_mf4_seed123\\\\n/root/autodl-tmp/struct_self_consist_ie/output/fewnerd_mf4_seed456\\\\n/root/autodl-tmp/struct_self_consist_ie/output/fewnerd_mf4v2_seed456\\\\n/root/autodl-tmp/struct_self_consist_ie/output/fewnerd_mf4v2_seed123\\\\n/root/autodl-tmp/struct_self_consist_ie/output/fewnerd_mf4v2_seed42\\\\n/root/autodl-tmp/struct_self_consist_ie/output/scierc_mf4v2_seed42\\\\n/root/autodl-tmp/struct_self_consist_ie/output/scierc_mf4v2_seed123\\\\n/root/autodl-tmp/struct_self_consist_ie/output/scierc_mf4v2_seed456\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.39}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-21T10:00:13.473279+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/fewnerd_mf4v2_seed42\\\\n/root/autodl-tmp/struct_self_consist_ie/output/fewnerd_mf4v2_seed123\\\\n/root/autodl-tmp/struct_self_consist_ie/output/conll_mf4v2_seed123\\\\n/root/autodl-tmp/struct_self_consist_ie/output/conll_mf4v2_seed456\\\\n/root/autodl-tmp/struct_self_consist_ie/output/fewnerd_mf4v2_seed456\\\\n/root/autodl-tmp/struct_self_consist_ie/output/scierc_mf4v2_seed42\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.71}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-21T10:00:13.473439+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "python3 -c \"\nimport json, os, glob\nbase = '/root/autodl-tmp/struct_self_consist_ie/output'\nfor d in sorted(glob.glob(base + '/*mf4v2*')):\n    rp = os.path.join(d, 'report.json')\n    if os.path.exists(rp):\n        with open(rp) as f:\n            data = json.load(f)\n        print(f'=== {os.path.basename(d)} ===')\n        for k in sorted(data.keys()):\n            kl = k.lower()\n            if any(kw in kl for kw in ['f1','mv','greedy','oracle','agreement','degeneracy','rho','structural','verdict','micro','macro']):\n                print(f'  {k} = {data[k]}')\n        print()\n    else:\n        print(f'NO_REPORT: {os.path.basename(d)}')\n\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-21T10:00:13.473572+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: python expression contains disallowed call 'open('. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-21T10:00:13.473697+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-11496",
+              "command": "python3 -c \"\nimport json, os, glob\nbase = '/root/autodl-tmp/struct_self_consist_ie/output'\nfor d in sorted(glob.glob(base + '/*mf4v2*')):\n    rp = os.path.join(d, 'report.json')\n    if os.path.exists(rp):\n        with open(rp) as f:\n            data = json.load(f)\n        print(f'=== {os.path.basename(d)} ===')\n        for k in sorted(data.keys()):\n            kl = k.lower()\n            if any(kw in kl for kw in ['f1','mv','greedy','oracle','agreement','degeneracy','rho','structural','verdict','micro','macro']):\n                print(f'  {k} = {data[k]}')\n        print()\n    else:\n        print(f'NO_REPORT: {os.path.basename(d)}')\n\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-21T10:00:13.473832+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: python expression contains disallowed call 'open('. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-21T10:00:13.473955+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090-c",
+              "command": "find /root/autodl-tmp/struct_self_consist_ie/output -maxdepth 1 -type d -name \"conll_mf4v2*\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-21T10:00:13.474093+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-25965",
+              "command": "find /root/autodl-tmp/struct_self_consist_ie/output -maxdepth 1 -type d -name \"conll_mf4v2*\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-21T10:00:13.474239+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.74}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-21T10:00:13.474363+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 4.09}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-21T10:00:13.474513+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/fewnerd_mf4v2_seed42/report.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-21T10:00:13.474641+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"cat: /root/autodl-tmp/struct_self_consist_ie/output/fewnerd_mf4v2_seed42/report.json: No such file or directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-21T10:00:13.474762+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/fewnerd_mf4v2_seed123/report.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-21T10:00:13.474891+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"cat: /root/autodl-tmp/struct_self_consist_ie/output/fewnerd_mf4v2_seed123/report.json: No such file or directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-21T10:00:13.475012+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/fewnerd_mf4v2_seed456/report.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-21T10:00:13.475195+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"dataset\\\\\\\": \\\\\\\"fewnerd\\\\\\\",\\\\n  \\\\\\\"subtask\\\\\\\": \\\\\\\"ner\\\\\\\",\\\\n  \\\\\\\"n_samples\\\\\\\": 8,\\\\n  \\\\\\\"temperature\\\\\\\": 1.0,\\\\n  \\\\\\\"num_instances\\\\\\\": 37648,\\\\n  \\\\\\\"use_train_format\\\\\\\": true,\\\\n  \\\\\\\"greedy_f1\\\\\\\": 0.7888970728365621,\\\\n  \\\\\\\"oracle_f1\\\\\\\": 0.8809715429538372,\\\\n  \\\\\\\"oracle_headroom\\\\\\\": 0.0920744701172751,\\\\n  \\\\\\\"fleiss_kappa_mean\\\\\\\": 0.3557137700473044,\\\\n  \\\\\\\"soft_jaccard_mean\\\\\\\": 0.6848113505510054,\\\\n  \\\\\\\"correlation_fleiss_vs_f1_full\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.1646552164681241,\\\\n    \\\\\\\"p_value\\\\\\\": 1.1982688972355146e-196,\\\\n    \\\\\\\"n\\\\\\\": 32565\\\\n  },\\\\n  \\\\\\\"correlation_softjaccard_vs_f1_full\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.3133155084647015,\\\\n    \\\\\\\"p_value\\\\\\\": 0.0,\\\\n    \\\\\\\"n\\\\\\\": 32565\\\\n  },\\\\n  \\\\\\\"correlation_fleiss_vs_f1_conditional\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.015181956268569231,\\\\n    \\\\\\\"p_value\\\\\\\": 0.010092321330700786,\\\\n    \\\\\\\"n\\\\\\\": 28714\\\\n  },\\\\n  \\\\\\\"correlation_softjaccard_vs_f1_conditional\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.25732623152478556,\\\\n    \\\\\\\"p_value\\\\\\\": 0.0,\\\\n    \\\\\\\"n\\\\\\\": 28714\\\\n  },\\\\n  \\\\\\\"n_gold_empty_filtered\\\\\\\": 5083,\\\\n  \\\\\\\"n_greedy_f1_zero_filtered\\\\\\\": 3851,\\\\n  \\\\\\\"structural_beats_surface\\\\\\\": true,\\\\n  \\\\\\\"rho_advantage\\\\\\\": 0.14866029199657743,\\\\n  \\\\\\\"sample_f1_mean\\\\\\\": 0.6435392010789137,\\\\n  \\\\\\\"sample_f1_std\\\\\\\": 0.37679111462615084,\\\\n  \\\\\\\"sample_f1_pct_zero\\\\\\\": 19.304851834791954,\\\\n  \\\\\\\"logprob_baseline\\\\\\\": {\\\\n    \\\\\\\"full\\\\\\\": {\\\\n      \\\\\\\"rho\\\\\\\": 0.24500224425638795,\\\\n      \\\\\\\"p_rho\\\\\\\": 0.0,\\\\n      \\\\\\\"tau\\\\\\\": 0.1820250730198582,\\\\n      \\\\\\\"p_tau\\\\\\\": 0.0,\\\\n      \\\\\\\"auroc\\\\\\\": 0.6287085032681137,\\\\n      \\\\\\\"n\\\\\\\": 32565\\\\n    },\\\\n    \\\\\\\"conditional\\\\\\\": {\\\\n      \\\\\\\"rho\\\\\\\": 0.23748013451187075,\\\\n      \\\\\\\"p_rho\\\\\\\": 0.0,\\\\n      \\\\\\\"tau\\\\\\\": 0.1780472227595623,\\\\n      \\\\\\\"p_tau\\\\\\\": 0.0,\\\\n      \\\\\\\"auroc\\\\\\\": 0.6222295654774398,\\\\n      \\\\\\\"n\\\\\\\": 28714\\\\n    }\\\\n  },\\\\n  \\\\\\\"verdict\\\\\\\": \\\\\\\"MAR\n…[truncated 248 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-21T10:00:13.475351+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/scierc_mf4v2_seed42/report.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-21T10:00:13.475489+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"cat: /root/autodl-tmp/struct_self_consist_ie/output/scierc_mf4v2_seed42/report.json: No such file or directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-21T10:00:13.475613+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/scierc_mf4v2_seed123/report.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-21T10:00:13.475781+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"dataset\\\\\\\": \\\\\\\"scierc\\\\\\\",\\\\n  \\\\\\\"subtask\\\\\\\": \\\\\\\"ner\\\\\\\",\\\\n  \\\\\\\"n_samples\\\\\\\": 8,\\\\n  \\\\\\\"temperature\\\\\\\": 1.0,\\\\n  \\\\\\\"num_instances\\\\\\\": 551,\\\\n  \\\\\\\"use_train_format\\\\\\\": true,\\\\n  \\\\\\\"greedy_f1\\\\\\\": 0.6632956573468173,\\\\n  \\\\\\\"oracle_f1\\\\\\\": 0.7777115613825984,\\\\n  \\\\\\\"oracle_headroom\\\\\\\": 0.11441590403578117,\\\\n  \\\\\\\"fleiss_kappa_mean\\\\\\\": 0.3753747200952214,\\\\n  \\\\\\\"soft_jaccard_mean\\\\\\\": 0.6976732886097523,\\\\n  \\\\\\\"correlation_fleiss_vs_f1_full\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.2457141083105047,\\\\n    \\\\\\\"p_value\\\\\\\": 1.0278289279178066e-08,\\\\n    \\\\\\\"n\\\\\\\": 529\\\\n  },\\\\n  \\\\\\\"correlation_softjaccard_vs_f1_full\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.36812591470996975,\\\\n    \\\\\\\"p_value\\\\\\\": 2.0188846044757044e-18,\\\\n    \\\\\\\"n\\\\\\\": 529\\\\n  },\\\\n  \\\\\\\"correlation_fleiss_vs_f1_conditional\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.15335587983854876,\\\\n    \\\\\\\"p_value\\\\\\\": 0.0007584520000965863,\\\\n    \\\\\\\"n\\\\\\\": 479\\\\n  },\\\\n  \\\\\\\"correlation_softjaccard_vs_f1_conditional\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.3048917044704288,\\\\n    \\\\\\\"p_value\\\\\\\": 9.202282566888972e-12,\\\\n    \\\\\\\"n\\\\\\\": 479\\\\n  },\\\\n  \\\\\\\"n_gold_empty_filtered\\\\\\\": 22,\\\\n  \\\\\\\"n_greedy_f1_zero_filtered\\\\\\\": 50,\\\\n  \\\\\\\"structural_beats_surface\\\\\\\": true,\\\\n  \\\\\\\"rho_advantage\\\\\\\": 0.12241180639946506,\\\\n  \\\\\\\"sample_f1_mean\\\\\\\": 0.6079077840671097,\\\\n  \\\\\\\"sample_f1_std\\\\\\\": 0.3169681620959682,\\\\n  \\\\\\\"sample_f1_pct_zero\\\\\\\": 12.5,\\\\n  \\\\\\\"logprob_baseline\\\\\\\": {\\\\n    \\\\\\\"full\\\\\\\": {\\\\n      \\\\\\\"rho\\\\\\\": 0.22088663649894605,\\\\n      \\\\\\\"p_rho\\\\\\\": 2.868361122825225e-07,\\\\n      \\\\\\\"tau\\\\\\\": 0.1598584076975524,\\\\n      \\\\\\\"p_tau\\\\\\\": 1.559100221506215e-07,\\\\n      \\\\\\\"auroc\\\\\\\": 0.5819590643274853,\\\\n      \\\\\\\"n\\\\\\\": 529\\\\n    },\\\\n    \\\\\\\"conditional\\\\\\\": {\\\\n      \\\\\\\"rho\\\\\\\": 0.15077389773787025,\\\\n      \\\\\\\"p_rho\\\\\\\": 0.0009323994846488161,\\\\n      \\\\\\\"tau\\\\\\\": 0.1087938966703531,\\\\n      \\\\\\\"p_tau\\\\\\\": 0.000722257257489457,\\\\n      \\\\\\\"auroc\\\\\\\": 0.5468421052\n…[truncated 322 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-21T10:00:13.475932+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/scierc_mf4v2_seed456/report.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-21T10:00:13.476113+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"dataset\\\\\\\": \\\\\\\"scierc\\\\\\\",\\\\n  \\\\\\\"subtask\\\\\\\": \\\\\\\"ner\\\\\\\",\\\\n  \\\\\\\"n_samples\\\\\\\": 8,\\\\n  \\\\\\\"temperature\\\\\\\": 1.0,\\\\n  \\\\\\\"num_instances\\\\\\\": 551,\\\\n  \\\\\\\"use_train_format\\\\\\\": true,\\\\n  \\\\\\\"greedy_f1\\\\\\\": 0.6630984240261671,\\\\n  \\\\\\\"oracle_f1\\\\\\\": 0.7732142857142857,\\\\n  \\\\\\\"oracle_headroom\\\\\\\": 0.1101158616881186,\\\\n  \\\\\\\"fleiss_kappa_mean\\\\\\\": 0.3885307952134665,\\\\n  \\\\\\\"soft_jaccard_mean\\\\\\\": 0.6945053607212641,\\\\n  \\\\\\\"correlation_fleiss_vs_f1_full\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.2832042688417946,\\\\n    \\\\\\\"p_value\\\\\\\": 3.253926400481254e-11,\\\\n    \\\\\\\"n\\\\\\\": 529\\\\n  },\\\\n  \\\\\\\"correlation_softjaccard_vs_f1_full\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.3755666652097744,\\\\n    \\\\\\\"p_value\\\\\\\": 3.645631818942636e-19,\\\\n    \\\\\\\"n\\\\\\\": 529\\\\n  },\\\\n  \\\\\\\"correlation_fleiss_vs_f1_conditional\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.19258485378571713,\\\\n    \\\\\\\"p_value\\\\\\\": 2.242704258609393e-05,\\\\n    \\\\\\\"n\\\\\\\": 478\\\\n  },\\\\n  \\\\\\\"correlation_softjaccard_vs_f1_conditional\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.3354840140708899,\\\\n    \\\\\\\"p_value\\\\\\\": 4.882558916153692e-14,\\\\n    \\\\\\\"n\\\\\\\": 478\\\\n  },\\\\n  \\\\\\\"n_gold_empty_filtered\\\\\\\": 22,\\\\n  \\\\\\\"n_greedy_f1_zero_filtered\\\\\\\": 51,\\\\n  \\\\\\\"structural_beats_surface\\\\\\\": true,\\\\n  \\\\\\\"rho_advantage\\\\\\\": 0.09236239636797977,\\\\n  \\\\\\\"sample_f1_mean\\\\\\\": 0.6060749761490283,\\\\n  \\\\\\\"sample_f1_std\\\\\\\": 0.32085243617649195,\\\\n  \\\\\\\"sample_f1_pct_zero\\\\\\\": 12.901701323251418,\\\\n  \\\\\\\"logprob_baseline\\\\\\\": {\\\\n    \\\\\\\"full\\\\\\\": {\\\\n      \\\\\\\"rho\\\\\\\": 0.2183972604549418,\\\\n      \\\\\\\"p_rho\\\\\\\": 3.923845757100808e-07,\\\\n      \\\\\\\"tau\\\\\\\": 0.15660018190752412,\\\\n      \\\\\\\"p_tau\\\\\\\": 2.782644031515382e-07,\\\\n      \\\\\\\"auroc\\\\\\\": 0.5751819505094614,\\\\n      \\\\\\\"n\\\\\\\": 529\\\\n    },\\\\n    \\\\\\\"conditional\\\\\\\": {\\\\n      \\\\\\\"rho\\\\\\\": 0.16277791614178166,\\\\n      \\\\\\\"p_rho\\\\\\\": 0.0003523885264784647,\\\\n      \\\\\\\"tau\\\\\\\": 0.11553146642496089,\\\\n      \\\\\\\"p_tau\\\\\\\": 0.00033600593189805444,\\\\n      \\\\\\\"auroc\\\\\\\"\n…[truncated 336 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-21T10:00:13.476292+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-11496",
+              "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/conll_mf4v2_seed123/report.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-21T10:00:13.476465+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"dataset\\\\\\\": \\\\\\\"conll2003\\\\\\\",\\\\n  \\\\\\\"subtask\\\\\\\": \\\\\\\"ner\\\\\\\",\\\\n  \\\\\\\"n_samples\\\\\\\": 8,\\\\n  \\\\\\\"temperature\\\\\\\": 1.0,\\\\n  \\\\\\\"num_instances\\\\\\\": 3453,\\\\n  \\\\\\\"use_train_format\\\\\\\": true,\\\\n  \\\\\\\"greedy_f1\\\\\\\": 0.9082601054481546,\\\\n  \\\\\\\"oracle_f1\\\\\\\": 0.9526663728514763,\\\\n  \\\\\\\"oracle_headroom\\\\\\\": 0.04440626740332165,\\\\n  \\\\\\\"fleiss_kappa_mean\\\\\\\": 0.7618005357977887,\\\\n  \\\\\\\"soft_jaccard_mean\\\\\\\": 0.8857727643966306,\\\\n  \\\\\\\"correlation_fleiss_vs_f1_full\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.44569229069884087,\\\\n    \\\\\\\"p_value\\\\\\\": 1.263954888275255e-134,\\\\n    \\\\\\\"n\\\\\\\": 2756\\\\n  },\\\\n  \\\\\\\"correlation_softjaccard_vs_f1_full\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.4628407061786785,\\\\n    \\\\\\\"p_value\\\\\\\": 2.208978522843714e-146,\\\\n    \\\\\\\"n\\\\\\\": 2756\\\\n  },\\\\n  \\\\\\\"correlation_fleiss_vs_f1_conditional\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.38868654349178555,\\\\n    \\\\\\\"p_value\\\\\\\": 4.667475675140117e-95,\\\\n    \\\\\\\"n\\\\\\\": 2615\\\\n  },\\\\n  \\\\\\\"correlation_softjaccard_vs_f1_conditional\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.413992387773742,\\\\n    \\\\\\\"p_value\\\\\\\": 7.947709738489281e-109,\\\\n    \\\\\\\"n\\\\\\\": 2615\\\\n  },\\\\n  \\\\\\\"n_gold_empty_filtered\\\\\\\": 697,\\\\n  \\\\\\\"n_greedy_f1_zero_filtered\\\\\\\": 141,\\\\n  \\\\\\\"structural_beats_surface\\\\\\\": true,\\\\n  \\\\\\\"rho_advantage\\\\\\\": 0.017148415479837642,\\\\n  \\\\\\\"sample_f1_mean\\\\\\\": 0.8743623067625442,\\\\n  \\\\\\\"sample_f1_std\\\\\\\": 0.2795029359638161,\\\\n  \\\\\\\"sample_f1_pct_zero\\\\\\\": 7.048258345428157,\\\\n  \\\\\\\"logprob_baseline\\\\\\\": {\\\\n    \\\\\\\"full\\\\\\\": {\\\\n      \\\\\\\"rho\\\\\\\": 0.32807462963601525,\\\\n      \\\\\\\"p_rho\\\\\\\": 3.6565871717237434e-70,\\\\n      \\\\\\\"tau\\\\\\\": 0.25591460334903937,\\\\n      \\\\\\\"p_tau\\\\\\\": 3.2364450144642385e-65,\\\\n      \\\\\\\"auroc\\\\\\\": 0.7621047103051747,\\\\n      \\\\\\\"n\\\\\\\": 2756\\\\n    },\\\\n    \\\\\\\"conditional\\\\\\\": {\\\\n      \\\\\\\"rho\\\\\\\": 0.3669794716991948,\\\\n      \\\\\\\"p_rho\\\\\\\": 3.572874521043039e-84,\\\\n      \\\\\\\"tau\\\\\\\": 0.29057711242147716,\\\\n      \\\\\\\"p_tau\\\\\\\": 5.426543396248012e-78,\\\\n    \n…[truncated 347 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-21T10:00:13.476621+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-11496",
+              "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/conll_mf4v2_seed456/report.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-21T10:00:13.476796+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"dataset\\\\\\\": \\\\\\\"conll2003\\\\\\\",\\\\n  \\\\\\\"subtask\\\\\\\": \\\\\\\"ner\\\\\\\",\\\\n  \\\\\\\"n_samples\\\\\\\": 8,\\\\n  \\\\\\\"temperature\\\\\\\": 1.0,\\\\n  \\\\\\\"num_instances\\\\\\\": 3453,\\\\n  \\\\\\\"use_train_format\\\\\\\": true,\\\\n  \\\\\\\"greedy_f1\\\\\\\": 0.9069828722002636,\\\\n  \\\\\\\"oracle_f1\\\\\\\": 0.9426473159643294,\\\\n  \\\\\\\"oracle_headroom\\\\\\\": 0.035664443764065745,\\\\n  \\\\\\\"fleiss_kappa_mean\\\\\\\": 0.7682424730381135,\\\\n  \\\\\\\"soft_jaccard_mean\\\\\\\": 0.891713649354908,\\\\n  \\\\\\\"correlation_fleiss_vs_f1_full\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.46375965089976323,\\\\n    \\\\\\\"p_value\\\\\\\": 4.9538671075510226e-147,\\\\n    \\\\\\\"n\\\\\\\": 2756\\\\n  },\\\\n  \\\\\\\"correlation_softjaccard_vs_f1_full\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.48032001566129273,\\\\n    \\\\\\\"p_value\\\\\\\": 4.446306072710233e-159,\\\\n    \\\\\\\"n\\\\\\\": 2756\\\\n  },\\\\n  \\\\\\\"correlation_fleiss_vs_f1_conditional\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.4250089172038926,\\\\n    \\\\\\\"p_value\\\\\\\": 3.6934703242666007e-115,\\\\n    \\\\\\\"n\\\\\\\": 2614\\\\n  },\\\\n  \\\\\\\"correlation_softjaccard_vs_f1_conditional\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.4512550551620077,\\\\n    \\\\\\\"p_value\\\\\\\": 2.475081617873287e-131,\\\\n    \\\\\\\"n\\\\\\\": 2614\\\\n  },\\\\n  \\\\\\\"n_gold_empty_filtered\\\\\\\": 697,\\\\n  \\\\\\\"n_greedy_f1_zero_filtered\\\\\\\": 142,\\\\n  \\\\\\\"structural_beats_surface\\\\\\\": true,\\\\n  \\\\\\\"rho_advantage\\\\\\\": 0.0165603647615295,\\\\n  \\\\\\\"sample_f1_mean\\\\\\\": 0.8736647662503174,\\\\n  \\\\\\\"sample_f1_std\\\\\\\": 0.27980202398724235,\\\\n  \\\\\\\"sample_f1_pct_zero\\\\\\\": 7.080007256894049,\\\\n  \\\\\\\"logprob_baseline\\\\\\\": {\\\\n    \\\\\\\"full\\\\\\\": {\\\\n      \\\\\\\"rho\\\\\\\": 0.3212751220695826,\\\\n      \\\\\\\"p_rho\\\\\\\": 3.339779479838243e-67,\\\\n      \\\\\\\"tau\\\\\\\": 0.250150996569652,\\\\n      \\\\\\\"p_tau\\\\\\\": 1.860276384524586e-62,\\\\n      \\\\\\\"auroc\\\\\\\": 0.7568800475882883,\\\\n      \\\\\\\"n\\\\\\\": 2756\\\\n    },\\\\n    \\\\\\\"conditional\\\\\\\": {\\\\n      \\\\\\\"rho\\\\\\\": 0.3723378416138057,\\\\n      \\\\\\\"p_rho\\\\\\\": 9.454766568972242e-87,\\\\n      \\\\\\\"tau\\\\\\\": 0.294668960560644,\\\\n      \\\\\\\"p_tau\\\\\\\": 3.401004422875939e-80,\\\\n      \\\\\n…[truncated 344 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-21T10:00:13.476997+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "ls /root/autodl-tmp/struct_self_consist_ie/output/fewnerd_mf4v2_seed456/",
+              "account": "root"
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-21T10:00:13.477154+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"report.json\\\\nsamples.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-21T10:00:13.477289+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "grep -r \"mv_f1\" /root/autodl-tmp/struct_self_consist_ie/output/fewnerd_mf4v2_seed456/",
+              "account": "root"
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-21T10:00:13.477418+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "find /root/autodl-tmp/struct_self_consist_ie/output/fewnerd_mf4v2_seed456/ -name \"*.json\" -type f",
+              "account": "root"
+            }
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-21T10:00:13.477546+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.2}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-21T10:00:13.477667+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "grep -rl \"mv_f1\" /root/autodl-tmp/struct_self_consist_ie/src/",
+              "account": "root"
+            }
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-21T10:00:13.477793+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/fewnerd_mf4v2_seed456/report.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.48}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-21T10:00:13.477918+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"grep: /root/autodl-tmp/struct_self_consist_ie/src/: No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.75}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-21T10:00:13.478092+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "head -1 /root/autodl-tmp/struct_self_consist_ie/output/fewnerd_mf4v2_seed456/samples.jsonl",
+              "account": "root"
+            }
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-21T10:00:13.478504+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"id\\\\\\\": \\\\\\\"fewnerd_test_00000\\\\\\\", \\\\\\\"text\\\\\\\": \\\\\\\"In the early 1930s the band moved to the Grill Room of the Taft Hotel in New York ; the band was renamed `` George Hall and His Hotel Taft Orchestra `` .\\\\\\\", \\\\\\\"gold\\\\\\\": {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"Grill Room\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"building\\\\\\\", \\\\\\\"start\\\\\\\": 41, \\\\\\\"end\\\\\\\": 51}, {\\\\\\\"text\\\\\\\": \\\\\\\"Taft Hotel\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"building\\\\\\\", \\\\\\\"start\\\\\\\": 59, \\\\\\\"end\\\\\\\": 69}, {\\\\\\\"text\\\\\\\": \\\\\\\"New York\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"location\\\\\\\", \\\\\\\"start\\\\\\\": 73, \\\\\\\"end\\\\\\\": 81}, {\\\\\\\"text\\\\\\\": \\\\\\\"George Hall and His Hotel Taft Orchestra\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"organization\\\\\\\", \\\\\\\"start\\\\\\\": 108, \\\\\\\"end\\\\\\\": 148}], \\\\\\\"relations\\\\\\\": [], \\\\\\\"events\\\\\\\": []}, \\\\\\\"samples\\\\\\\": [{\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"Grill Room of the Taft Hotel\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"building\\\\\\\", \\\\\\\"start\\\\\\\": 41, \\\\\\\"end\\\\\\\": 69}, {\\\\\\\"text\\\\\\\": \\\\\\\"New York\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"location\\\\\\\", \\\\\\\"start\\\\\\\": 73, \\\\\\\"end\\\\\\\": 81}, {\\\\\\\"text\\\\\\\": \\\\\\\"band\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"organization\\\\\\\", \\\\\\\"start\\\\\\\": 88, \\\\\\\"end\\\\\\\": 92}, {\\\\\\\"text\\\\\\\": \\\\\\\"George Hall and His Hotel Taft Orchestra\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"organization\\\\\\\", \\\\\\\"start\\\\\\\": 108, \\\\\\\"end\\\\\\\": 148}], \\\\\\\"relations\\\\\\\": [], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -9.299617317263937, \\\\\\\"n_tokens\\\\\\\": 134, \\\\\\\"mean_logprob\\\\\\\": -0.06940012923331297, \\\\\\\"token_logprobs\\\\\\\": [0.0, 0.0, 0.0, -0.006717124953866005, 0.0, 0.0, -4.470248313737102e-05, -0.1377207338809967, -1.1920928244535389e-07, -0.00018416139937471598, -0.5231459140777588, -0.00021979777375236154, -6.90197994117625e-05, 0.0, -0.0003357561945449561, -0.003180447733029723, 0.0, 0.0, 0.0, -4.768370445162873e-07, -0.04408528655767441, -2.3841855067985307e-07, 0.0, 0.0, 0.0, 0.0, -1.1920928244535389e-07, -0.0017027654685080051, 0.0, 0.0, 0.0, 0.0, 0.0, -5.8410845667822286e-05, -5.149708886165172e-05, -1.4781842764932\n…[truncated 9771 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-21T10:00:13.478672+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "find /root/autodl-tmp/struct_self_consist_ie -maxdepth 2 -name \"*.py\" -type f",
+              "account": "root"
+            }
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-21T10:00:13.478887+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/n16_3seed_analysis.py\\\\n/root/autodl-tmp/struct_self_consist_ie/output/lp_rank_comparison.py\\\\n/root/autodl-tmp/struct_self_consist_ie/output/task1_within_rho.py\\\\n/root/autodl-tmp/struct_self_consist_ie/output/task2_dals_cross_model.py\\\\n/root/autodl-tmp/struct_self_consist_ie/output/task3_llama_n16_check.py\\\\n/root/autodl-tmp/struct_self_consist_ie/output/paper_f1_audit_script.py\\\\n/root/autodl-tmp/struct_self_consist_ie/output/b5_cross_model_construction.py\\\\n/root/autodl-tmp/struct_self_consist_ie/output/recompute_alpha_crit.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/data_utils.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/convert_to_llamafactory.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/evaluation.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/consistency.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/sampling.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/run_mvp_pilot.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/gate0_eval.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/gate0_diagnose.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/gate0_realign_eval.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/mvp_pilot.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_component_wise_re.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/convert_wnut17.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/convert_conll2003.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/extract_logprobs.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_logprob_baseline.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exact_match_voting.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_entity_voting.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp015_unified.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp004_re_diagnostic.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/exp001_postprocess.py\\\\n\n…[truncated 6434 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-21T10:00:13.479082+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/recompute_alpha_crit.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": "2026-05-21T10:00:13.479240+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "head -80 /root/autodl-tmp/struct_self_consist_ie/code/analyze_entity_voting.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-21T10:00:13.479369+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "find /root/autodl-tmp/struct_self_consist_ie/output -maxdepth 1 -type d -name \"*t10*\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000059"
+        },
+        {
+          "source_line": 60,
+          "timestamp": "2026-05-21T10:00:13.479597+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Recompute alpha_crit table with micro-F1 (not macro-F1).\\\\nSeeds: 42, 123, 456 (MF4v2 standard).\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport json\\\\nimport sys\\\\nfrom collections import Counter\\\\n\\\\ndef entity_key(e):\\\\n    return (e[\\\\\\\"text\\\\\\\"], e[\\\\\\\"type\\\\\\\"], e[\\\\\\\"start\\\\\\\"], e[\\\\\\\"end\\\\\\\"])\\\\n\\\\ndef micro_f1_from_counts(tp, fp, fn):\\\\n    if tp == 0:\\\\n        return 0.0\\\\n    p = tp / (tp + fp)\\\\n    r = tp / (tp + fn)\\\\n    return 2 * p * r / (p + r)\\\\n\\\\ndef compute_entity_f1(pred_entities, gold_entities):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Returns (tp, fp, fn) for entity-level exact match.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    pred_set = set(entity_key(e) for e in pred_entities)\\\\n    gold_set = set(entity_key(e) for e in gold_entities)\\\\n    tp = len(pred_set & gold_set)\\\\n    fp = len(pred_set - gold_set)\\\\n    fn = len(gold_set - pred_set)\\\\n    return tp, fp, fn\\\\n\\\\ndef instance_f1(pred_entities, gold_entities):\\\\n    tp, fp, fn = compute_entity_f1(pred_entities, gold_entities)\\\\n    return micro_f1_from_counts(tp, fp, fn)\\\\n\\\\ndef majority_vote_entities(samples, threshold=0.5):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Entity-level MV: include entity if it appears in >= threshold*N samples.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    n = len(samples)\\\\n    entity_counts = Counter()\\\\n    for s in samples:\\\\n        for e in s[\\\\\\\"entities\\\\\\\"]:\\\\n            entity_counts[entity_key(e)] += 1\\\\n    mv_entities = []\\\\n    for ek, count in entity_counts.items():\\\\n        if count >= n * threshold:\\\\n            mv_entities.append({\\\\\\\"text\\\\\\\": ek[0], \\\\\\\"type\\\\\\\": ek[1], \\\\\\\"start\\\\\\\": ek[2], \\\\\\\"end\\\\\\\": ek[3]})\\\\n    return mv_entities\\\\n\\\\ndef analyze_file(path, subtask=\\\\\\\"ner\\\\\\\"):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Compute all alpha_crit metrics from a samples.jsonl file using micro-F1.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    total_greedy_tp = total_greedy_fp = total_greedy_fn = 0\\\\n    total_mv_tp = total_mv_fp = total_mv_fn = 0\\\\n    total_oracle_tp = total_oracle_fp = total_oracle_fn = 0\\\\n    \\\\n    n_instances = 0\\\\\n…[truncated 5546 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000060"
+        },
+        {
+          "source_line": 61,
+          "timestamp": "2026-05-21T10:00:13.479850+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"exp-014: Entity/relation majority voting as selection strategy + confidence signal.\\\\n\\\\nFor each instance's N=8 samples:\\\\n1. Count (text, type) frequency for NER, (head, tail, type) for RE\\\\n2. Majority voting: keep items appearing > N/2 times\\\\n3. Compute consensus F1 vs gold\\\\n4. Compare against greedy, oracle, SJ-selected strategies\\\\n5. Compute voting_confidence = mean(voting_rate of consensus items)\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport json\\\\nimport sys\\\\nfrom collections import Counter\\\\n\\\\nimport numpy as np\\\\nfrom scipy.stats import spearmanr, kendalltau\\\\n\\\\nsys.path.insert(0, '/root/autodl-tmp/struct_self_consist_ie/code')\\\\nfrom consistency import compute_all_consistency_scores\\\\nfrom evaluation import per_instance_f1, entity_strict_match, relation_strict_match\\\\n\\\\nDATA_PATH = \\\\\\\"/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_004/samples.jsonl\\\\\\\"\\\\n\\\\n\\\\ndef load_data(path):\\\\n    instances = []\\\\n    with open(path) as f:\\\\n        for line in f:\\\\n            if line.strip():\\\\n                instances.append(json.loads(line))\\\\n    return instances\\\\n\\\\n\\\\ndef auroc_simple(scores, labels):\\\\n    scores = np.array(scores, dtype=float)\\\\n    labels = np.array(labels, dtype=int)\\\\n    if len(set(labels)) < 2:\\\\n        return float('nan')\\\\n    pos = scores[labels == 1]\\\\n    neg = scores[labels == 0]\\\\n    n_pos, n_neg = len(pos), len(neg)\\\\n    if n_pos == 0 or n_neg == 0:\\\\n        return float('nan')\\\\n    count = 0.0\\\\n    for p in pos:\\\\n        count += np.sum(p > neg) + 0.5 * np.sum(p == neg)\\\\n    return count / (n_pos * n_neg)\\\\n\\\\n\\\\ndef majority_vote_entities(samples, threshold_frac=0.5):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Build consensus entity set via majority voting.\\\\n    \\\\n    Returns:\\\\n        consensus_entities: list of entity dicts (with best representative span)\\\\n        voting_rates: dict mapping (text, type) -> fraction of samples containing it\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    N = \n…[truncated 1013 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000061"
+        },
+        {
+          "source_line": 62,
+          "timestamp": "2026-05-21T10:00:13.480021+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/exp001_seed456_t10_full\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_seed123_t10_full\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp008_re_n16_t10_full\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_026_t10_seed42\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_026_t10_seed123\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_026_t10_seed456\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.47}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000062"
+        },
+        {
+          "source_line": 63,
+          "timestamp": "2026-05-21T10:00:13.480229+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "find /root/autodl-tmp/struct_self_consist_ie/output -path \"*mf4v2*\" -name \"samples.jsonl\" -type f",
+              "account": "root"
+            }
+          },
+          "id": "event-000063"
+        },
+        {
+          "source_line": 64,
+          "timestamp": "2026-05-21T10:00:13.480392+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/fewnerd_mf4v2_seed456/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/scierc_mf4v2_seed123/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/scierc_mf4v2_seed456/samples.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000064"
+        },
+        {
+          "source_line": 65,
+          "timestamp": "2026-05-21T10:00:13.480529+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-11496",
+              "command": "find /root/autodl-tmp/struct_self_consist_ie/output -path \"*mf4v2*\" -name \"samples.jsonl\" -type f",
+              "account": "root"
+            }
+          },
+          "id": "event-000065"
+        },
+        {
+          "source_line": 66,
+          "timestamp": "2026-05-21T10:00:13.480664+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/fewnerd_mf4v2_seed42/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/fewnerd_mf4v2_seed123/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/conll_mf4v2_seed123/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/conll_mf4v2_seed456/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/scierc_mf4v2_seed42/samples.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000066"
+        },
+        {
+          "source_line": 67,
+          "timestamp": "2026-05-21T10:00:13.480839+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "cd /root/autodl-tmp/struct_self_consist_ie && python3 -c \"\nimport json\nfrom collections import Counter\n\ndef entity_key(e):\n    return (e['text'], e['type'], e['start'], e['end'])\n\ndef micro_f1(tp, fp, fn):\n    if tp == 0: return 0.0\n    p = tp / (tp + fp)\n    r = tp / (tp + fn)\n    return 2 * p * r / (p + r)\n\ndef analyze(path):\n    gtp=gfp=gfn=mtp=mfp=mfn=otp=ofp=ofn=0\n    ni=nd=0\n    with open(path) as f:\n        for line in f:\n            inst = json.loads(line)\n            gold = inst['gold']['entities']\n            if not gold: continue\n            ni += 1\n            greedy = inst['greedy']['entities']\n            samples = inst['samples']\n            n = len(samples)\n            # greedy\n            ps = set(entity_key(e) for e in greedy)\n            gs = set(entity_key(e) for e in gold)\n            gtp += len(ps & gs); gfp += len(ps - gs); gfn += len(gs - ps)\n            # MV\n            ec = Counter()\n            for s in samples:\n                for e in s['entities']:\n                    ec[entity_key(e)] += 1\n            mv = set(k for k,c in ec.items() if c >= n*0.5)\n            mtp += len(mv & gs); mfp += len(mv - gs); mfn += len(gs - mv)\n            # oracle\n            bf1=-1; bt=bf=bn=0\n            for s in samples:\n                ps2 = set(entity_key(e) for e in s['entities'])\n                t=len(ps2&gs); f=len(ps2-gs); n2=len(gs-ps2)\n                f1=micro_f1(t,f,n2)\n                if f1>bf1: bf1=f1; bt,bf,bn=t,f,n2\n            otp+=bt; ofp+=bf; ofn+=bn\n            # degen\n            ess = [frozenset(entity_key(e) for e in s['entities']) for s in samples]\n            if len(set(ess))==1: nd+=1\n    gf=micro_f1(gtp,gfp,gfn); mf=micro_f1(mtp,mfp,mfn); of=micro_f1(otp,ofp,ofn)\n    d=nd/ni if ni>0 else 0\n    ac=mf/(2-mf) if mf<2 else 1\n    return {'n':ni,'greedy_f1':round(gf,6),'mv_f1':round(mf,6),'oracle_f1':round(of,6),'degen':round(d,6),'alpha_crit':round(ac,6),'delta_sc_pp':round((mf-gf)*100,4)}\n\nfiles = {\n    'fewnerd_s456': 'output/fewnerd_mf4v2_seed456/samples.jsonl',\n    'scierc_s123': 'output/scierc_mf4v2_seed123/samples.jsonl',\n    'scierc_s456': 'output/scierc_mf4v2_seed456/samples.jsonl',\n}\nfor name, path in files.items():\n    r = analyze(path)\n    print(f'{name}: {json.dumps(r)}')\n\"\n",
+              "account": "root"
+            }
+          },
+          "id": "event-000067"
+        },
+        {
+          "source_line": 68,
+          "timestamp": "2026-05-21T10:00:13.481035+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'cd /root/autodl-tmp/struct_self_consist_ie && python3 -c \\\\\\\"\\\\\\\\nimport json\\\\\\\\nfrom collections import Counter\\\\\\\\n\\\\\\\\ndef entity_key(e):\\\\\\\\n    return (e[\\\\\\\\'text\\\\\\\\'], e[\\\\\\\\'type\\\\\\\\'], e[\\\\\\\\'start\\\\\\\\'], e[\\\\\\\\'end\\\\\\\\'])\\\\\\\\n\\\\\\\\ndef micro_f1(tp, fp, fn):\\\\\\\\n    if tp == 0: return 0.0\\\\\\\\n    p = tp / (tp + fp)\\\\\\\\n    r = tp / (tp + fn)\\\\\\\\n    return 2 * p * r / (p + r)\\\\\\\\n\\\\\\\\ndef analyze(path):\\\\\\\\n    gtp=gfp=gfn=mtp=mfp=mfn=otp=ofp=ofn=0\\\\\\\\n    ni=nd=0\\\\\\\\n    with open(path) as f:\\\\\\\\n        for line in f:\\\\\\\\n            inst = json.loads(line)\\\\\\\\n            gold = inst[\\\\\\\\'gold\\\\\\\\'][\\\\\\\\'entities\\\\\\\\']\\\\\\\\n            if not gold: continue\\\\\\\\n            ni += 1\\\\\\\\n            greedy = inst[\\\\\\\\'greedy\\\\\\\\'][\\\\\\\\'entities\\\\\\\\']\\\\\\\\n            samples = inst[\\\\\\\\'samples\\\\\\\\']\\\\\\\\n            n = len(samples)\\\\\\\\n            # greedy\\\\\\\\n            ps = set(entity_key(e) for e in greedy)\\\\\\\\n            gs = set(entity_key(e) for e in gold)\\\\\\\\n            gtp += len(ps & gs); gfp += len(ps - gs); gfn += len(gs - ps)\\\\\\\\n            # MV\\\\\\\\n            ec = Counter()\\\\\\\\n            for s in samples:\\\\\\\\n                for e in s[\\\\\\\\'entities\\\\\\\\']:\\\\\\\\n                    ec[entity_key(e)] += 1\\\\\\\\n            mv = set(k for k,c in ec.items() if c >= n*0.5)\\\\\\\\n            mtp += len(mv & gs); mfp += len(mv - gs); mfn += len(gs - mv)\\\\\\\\n            # oracle\\\\\\\\n            bf1=-1; bt=bf=bn=0\\\\\\\\n            for s in samples:\\\\\\\\n                ps2 = set(entity_key(e) for e in s[\\\\\\\\'entities\\\\\\\\'])\\\\\\\\n                t=len(ps2&gs); f=len(ps2-gs); n2=len(gs-ps2)\\\\\\\\n                f1=micro_f1(t,f,n2)\\\\\\\\n                if f1>bf1: bf1=f1; bt,bf,bn=t,f,n2\\\\\\\\n            otp+=bt; ofp+=bf; ofn+=bn\\\\\\\\n            # degen\\\\\\\\n            ess = [frozenset(entity_key(e) for e in s[\\\\\\\\'entities\\\\\\\\']) for s in samples]\\\\\\\\\n…[truncated 977 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000068"
+        },
+        {
+          "source_line": 69,
+          "timestamp": "2026-05-21T10:00:13.481229+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "bjb2-11496",
+              "command": "cd /root/autodl-tmp/struct_self_consist_ie && python3 -c \"\nimport json\nfrom collections import Counter\n\ndef entity_key(e):\n    return (e['text'], e['type'], e['start'], e['end'])\n\ndef micro_f1(tp, fp, fn):\n    if tp == 0: return 0.0\n    p = tp / (tp + fp)\n    r = tp / (tp + fn)\n    return 2 * p * r / (p + r)\n\ndef analyze(path):\n    gtp=gfp=gfn=mtp=mfp=mfn=otp=ofp=ofn=0\n    ni=nd=0\n    with open(path) as f:\n        for line in f:\n            inst = json.loads(line)\n            gold = inst['gold']['entities']\n            if not gold: continue\n            ni += 1\n            greedy = inst['greedy']['entities']\n            samples = inst['samples']\n            n = len(samples)\n            ps = set(entity_key(e) for e in greedy)\n            gs = set(entity_key(e) for e in gold)\n            gtp += len(ps & gs); gfp += len(ps - gs); gfn += len(gs - ps)\n            ec = Counter()\n            for s in samples:\n                for e in s['entities']:\n                    ec[entity_key(e)] += 1\n            mv = set(k for k,c in ec.items() if c >= n*0.5)\n            mtp += len(mv & gs); mfp += len(mv - gs); mfn += len(gs - mv)\n            bf1=-1; bt=bf=bn=0\n            for s in samples:\n                ps2 = set(entity_key(e) for e in s['entities'])\n                t=len(ps2&gs); f=len(ps2-gs); n2=len(gs-ps2)\n                f1=micro_f1(t,f,n2)\n                if f1>bf1: bf1=f1; bt,bf,bn=t,f,n2\n            otp+=bt; ofp+=bf; ofn+=bn\n            ess = [frozenset(entity_key(e) for e in s['entities']) for s in samples]\n            if len(set(ess))==1: nd+=1\n    gf=micro_f1(gtp,gfp,gfn); mf=micro_f1(mtp,mfp,mfn); of=micro_f1(otp,ofp,ofn)\n    d=nd/ni if ni>0 else 0\n    ac=mf/(2-mf) if mf<2 else 1\n    return {'n':ni,'greedy_f1':round(gf,6),'mv_f1':round(mf,6),'oracle_f1':round(of,6),'degen':round(d,6),'alpha_crit':round(ac,6),'delta_sc_pp':round((mf-gf)*100,4)}\n\nfiles = {\n    'fewnerd_s42': 'output/fewnerd_mf4v2_seed42/samples.jsonl',\n    'fewnerd_s123': 'output/fewnerd_mf4v2_seed123/samples.jsonl',\n    'conll_s123': 'output/conll_mf4v2_seed123/samples.jsonl',\n    'conll_s456': 'output/conll_mf4v2_seed456/samples.jsonl',\n    'scierc_s42': 'output/scierc_mf4v2_seed42/samples.jsonl',\n}\nfor name, path in files.items():\n    r = analyze(path)\n    print(f'{name}: {json.dumps(r)}')\n\"\n",
+              "account": "root"
+            }
+          },
+          "id": "event-000069"
+        },
+        {
+          "source_line": 70,
+          "timestamp": "2026-05-21T10:00:13.481426+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'cd /root/autodl-tmp/struct_self_consist_ie && python3 -c \\\\\\\"\\\\\\\\nimport json\\\\\\\\nfrom collections import Counter\\\\\\\\n\\\\\\\\ndef entity_key(e):\\\\\\\\n    return (e[\\\\\\\\'text\\\\\\\\'], e[\\\\\\\\'type\\\\\\\\'], e[\\\\\\\\'start\\\\\\\\'], e[\\\\\\\\'end\\\\\\\\'])\\\\\\\\n\\\\\\\\ndef micro_f1(tp, fp, fn):\\\\\\\\n    if tp == 0: return 0.0\\\\\\\\n    p = tp / (tp + fp)\\\\\\\\n    r = tp / (tp + fn)\\\\\\\\n    return 2 * p * r / (p + r)\\\\\\\\n\\\\\\\\ndef analyze(path):\\\\\\\\n    gtp=gfp=gfn=mtp=mfp=mfn=otp=ofp=ofn=0\\\\\\\\n    ni=nd=0\\\\\\\\n    with open(path) as f:\\\\\\\\n        for line in f:\\\\\\\\n            inst = json.loads(line)\\\\\\\\n            gold = inst[\\\\\\\\'gold\\\\\\\\'][\\\\\\\\'entities\\\\\\\\']\\\\\\\\n            if not gold: continue\\\\\\\\n            ni += 1\\\\\\\\n            greedy = inst[\\\\\\\\'greedy\\\\\\\\'][\\\\\\\\'entities\\\\\\\\']\\\\\\\\n            samples = inst[\\\\\\\\'samples\\\\\\\\']\\\\\\\\n            n = len(samples)\\\\\\\\n            ps = set(entity_key(e) for e in greedy)\\\\\\\\n            gs = set(entity_key(e) for e in gold)\\\\\\\\n            gtp += len(ps & gs); gfp += len(ps - gs); gfn += len(gs - ps)\\\\\\\\n            ec = Counter()\\\\\\\\n            for s in samples:\\\\\\\\n                for e in s[\\\\\\\\'entities\\\\\\\\']:\\\\\\\\n                    ec[entity_key(e)] += 1\\\\\\\\n            mv = set(k for k,c in ec.items() if c >= n*0.5)\\\\\\\\n            mtp += len(mv & gs); mfp += len(mv - gs); mfn += len(gs - mv)\\\\\\\\n            bf1=-1; bt=bf=bn=0\\\\\\\\n            for s in samples:\\\\\\\\n                ps2 = set(entity_key(e) for e in s[\\\\\\\\'entities\\\\\\\\'])\\\\\\\\n                t=len(ps2&gs); f=len(ps2-gs); n2=len(gs-ps2)\\\\\\\\n                f1=micro_f1(t,f,n2)\\\\\\\\n                if f1>bf1: bf1=f1; bt,bf,bn=t,f,n2\\\\\\\\n            otp+=bt; ofp+=bf; ofn+=bn\\\\\\\\n            ess = [frozenset(entity_key(e) for e in s[\\\\\\\\'entities\\\\\\\\']) for s in samples]\\\\\\\\n            if len(set(ess))==1: nd+=1\\\\\\\\n    gf=micro_f1(gtp,gfp,gfn); mf=micro_f1(mtp,mfp,m\n…[truncated 1044 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000070"
+        },
+        {
+          "source_line": 71,
+          "timestamp": "2026-05-21T10:00:13.481625+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "cat > /tmp/alpha_crit_v3.py << 'PYEOF'\nimport json\nfrom collections import Counter\n\ndef entity_key(e):\n    return (e['text'], e['type'], e['start'], e['end'])\n\ndef micro_f1(tp, fp, fn):\n    if tp == 0: return 0.0\n    p = tp / (tp + fp)\n    r = tp / (tp + fn)\n    return 2 * p * r / (p + r)\n\ndef analyze(path):\n    gtp=gfp=gfn=mtp=mfp=mfn=otp=ofp=ofn=0\n    ni=nd=0\n    with open(path) as f:\n        for line in f:\n            inst = json.loads(line)\n            gold = inst['gold']['entities']\n            if not gold: continue\n            ni += 1\n            greedy = inst['greedy']['entities']\n            samples = inst['samples']\n            n = len(samples)\n            ps = set(entity_key(e) for e in greedy)\n            gs = set(entity_key(e) for e in gold)\n            gtp += len(ps & gs); gfp += len(ps - gs); gfn += len(gs - ps)\n            ec = Counter()\n            for s in samples:\n                for e in s['entities']:\n                    ec[entity_key(e)] += 1\n            mv = set(k for k,c in ec.items() if c >= n*0.5)\n            mtp += len(mv & gs); mfp += len(mv - gs); mfn += len(gs - mv)\n            bf1=-1; bt=bf=bn=0\n            for s in samples:\n                ps2 = set(entity_key(e) for e in s['entities'])\n                t=len(ps2&gs); f_=len(ps2-gs); n2=len(gs-ps2)\n                f1=micro_f1(t,f_,n2)\n                if f1>bf1: bf1=f1; bt,bf,bn=t,f_,n2\n            otp+=bt; ofp+=bf; ofn+=bn\n            ess = [frozenset(entity_key(e) for e in s['entities']) for s in samples]\n            if len(set(ess))==1: nd+=1\n    gf=micro_f1(gtp,gfp,gfn); mf=micro_f1(mtp,mfp,mfn); of=micro_f1(otp,ofp,ofn)\n    d=nd/ni if ni>0 else 0\n    ac=mf/(2-mf) if mf<2 else 1\n    return {'n':ni,'greedy_f1':round(gf,6),'mv_f1':round(mf,6),'oracle_f1':round(of,6),'degen':round(d,6),'alpha_crit':round(ac,6),'delta_sc_pp':round((mf-gf)*100,4)}\n\nimport sys\nfiles = {}\nfor arg in sys.argv[1:]:\n    name, path = arg.split('=', 1)\n    files[name] = path\n\nfor name, path in sorted(files.items()):\n    try:\n        r = analyze(path)\n        print(f'{name}: {json.dumps(r)}')\n    except Exception as e:\n        print(f'{name}: ERROR {e}')\nPYEOF\necho \"DONE\"\n",
+              "account": "root"
+            }
+          },
+          "id": "event-000071"
+        },
+        {
+          "source_line": 72,
+          "timestamp": "2026-05-21T10:00:13.481782+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"DONE\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.96}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000072"
+        },
+        {
+          "source_line": 73,
+          "timestamp": "2026-05-21T10:00:13.481918+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "bjb2-11496",
+              "command": "cat > /tmp/alpha_crit_v3.py << 'PYEOF'\nimport json\nfrom collections import Counter\n\ndef entity_key(e):\n    return (e['text'], e['type'], e['start'], e['end'])\n\ndef micro_f1(tp, fp, fn):\n    if tp == 0: return 0.0\n    p = tp / (tp + fp)\n    r = tp / (tp + fn)\n    return 2 * p * r / (p + r)\n\ndef analyze(path):\n    gtp=gfp=gfn=mtp=mfp=mfn=otp=ofp=ofn=0\n    ni=nd=0\n    with open(path) as f:\n        for line in f:\n            inst = json.loads(line)\n            gold = inst['gold']['entities']\n            if not gold: continue\n            ni += 1\n            greedy = inst['greedy']['entities']\n            samples = inst['samples']\n            n = len(samples)\n            ps = set(entity_key(e) for e in greedy)\n            gs = set(entity_key(e) for e in gold)\n            gtp += len(ps & gs); gfp += len(ps - gs); gfn += len(gs - ps)\n            ec = Counter()\n            for s in samples:\n                for e in s['entities']:\n                    ec[entity_key(e)] += 1\n            mv = set(k for k,c in ec.items() if c >= n*0.5)\n            mtp += len(mv & gs); mfp += len(mv - gs); mfn += len(gs - mv)\n            bf1=-1; bt=bf=bn=0\n            for s in samples:\n                ps2 = set(entity_key(e) for e in s['entities'])\n                t=len(ps2&gs); f_=len(ps2-gs); n2=len(gs-ps2)\n                f1=micro_f1(t,f_,n2)\n                if f1>bf1: bf1=f1; bt,bf,bn=t,f_,n2\n            otp+=bt; ofp+=bf; ofn+=bn\n            ess = [frozenset(entity_key(e) for e in s['entities']) for s in samples]\n            if len(set(ess))==1: nd+=1\n    gf=micro_f1(gtp,gfp,gfn); mf=micro_f1(mtp,mfp,mfn); of=micro_f1(otp,ofp,ofn)\n    d=nd/ni if ni>0 else 0\n    ac=mf/(2-mf) if mf<2 else 1\n    return {'n':ni,'greedy_f1':round(gf,6),'mv_f1':round(mf,6),'oracle_f1':round(of,6),'degen':round(d,6),'alpha_crit':round(ac,6),'delta_sc_pp':round((mf-gf)*100,4)}\n\nimport sys\nfiles = {}\nfor arg in sys.argv[1:]:\n    name, path = arg.split('=', 1)\n    files[name] = path\n\nfor name, path in sorted(files.items()):\n    try:\n        r = analyze(path)\n        print(f'{name}: {json.dumps(r)}')\n    except Exception as e:\n        print(f'{name}: ERROR {e}')\nPYEOF\necho \"DONE\"\n",
+              "account": "root"
+            }
+          },
+          "id": "event-000073"
+        },
+        {
+          "source_line": 74,
+          "timestamp": "2026-05-21T10:00:13.482087+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"DONE\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.7}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000074"
+        },
+        {
+          "source_line": 75,
+          "timestamp": "2026-05-21T10:00:13.482240+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python /tmp/alpha_crit_v3.py \\\n  fewnerd_s456=/root/autodl-tmp/struct_self_consist_ie/output/fewnerd_mf4v2_seed456/samples.jsonl \\\n  scierc_s123=/root/autodl-tmp/struct_self_consist_ie/output/scierc_mf4v2_seed123/samples.jsonl \\\n  scierc_s456=/root/autodl-tmp/struct_self_consist_ie/output/scierc_mf4v2_seed456/samples.jsonl",
+              "account": "root"
+            }
+          },
+          "id": "event-000075"
+        },
+        {
+          "source_line": 76,
+          "timestamp": "2026-05-21T10:00:13.482375+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "bjb2-11496",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python /tmp/alpha_crit_v3.py \\\n  fewnerd_s42=/root/autodl-tmp/struct_self_consist_ie/output/fewnerd_mf4v2_seed42/samples.jsonl \\\n  fewnerd_s123=/root/autodl-tmp/struct_self_consist_ie/output/fewnerd_mf4v2_seed123/samples.jsonl \\\n  conll_s123=/root/autodl-tmp/struct_self_consist_ie/output/conll_mf4v2_seed123/samples.jsonl \\\n  conll_s456=/root/autodl-tmp/struct_self_consist_ie/output/conll_mf4v2_seed456/samples.jsonl \\\n  scierc_s42=/root/autodl-tmp/struct_self_consist_ie/output/scierc_mf4v2_seed42/samples.jsonl",
+              "account": "root"
+            }
+          },
+          "id": "event-000076"
+        },
+        {
+          "source_line": 77,
+          "timestamp": "2026-05-21T10:00:13.482524+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"fewnerd_s456: {\\\\\\\"n\\\\\\\": 32565, \\\\\\\"greedy_f1\\\\\\\": 0.791538, \\\\\\\"mv_f1\\\\\\\": 0.785717, \\\\\\\"oracle_f1\\\\\\\": 0.885471, \\\\\\\"degen\\\\\\\": 0.081099, \\\\\\\"alpha_crit\\\\\\\": 0.647062, \\\\\\\"delta_sc_pp\\\\\\\": -0.5821}\\\\nscierc_s123: {\\\\\\\"n\\\\\\\": 529, \\\\\\\"greedy_f1\\\\\\\": 0.666268, \\\\\\\"mv_f1\\\\\\\": 0.668892, \\\\\\\"oracle_f1\\\\\\\": 0.778872, \\\\\\\"degen\\\\\\\": 0.109641, \\\\\\\"alpha_crit\\\\\\\": 0.502508, \\\\\\\"delta_sc_pp\\\\\\\": 0.2624}\\\\nscierc_s456: {\\\\\\\"n\\\\\\\": 529, \\\\\\\"greedy_f1\\\\\\\": 0.666268, \\\\\\\"mv_f1\\\\\\\": 0.668684, \\\\\\\"oracle_f1\\\\\\\": 0.779478, \\\\\\\"degen\\\\\\\": 0.120983, \\\\\\\"alpha_crit\\\\\\\": 0.502273, \\\\\\\"delta_sc_pp\\\\\\\": 0.2416}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 9.98}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000077"
+        },
+        {
+          "source_line": 78,
+          "timestamp": "2026-05-21T10:00:13.482664+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Command did not complete within 30 seconds!\\\\n\\\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python /tmp/alpha_crit_v3.py \\\\\\\\\\\\\\\\\\\\\\\\n  fewnerd_s42=/root/autodl-tmp/struct_self_consist_ie/output/fewnerd_mf4v2_seed42/samples.jsonl \\\\\\\\\\\\\\\\\\\\\\\\n  fewnerd_s123=/root/autodl-tmp/struct_self_consist_ie/output/fewnerd_mf4v2_seed123/samples.jsonl \\\\\\\\\\\\\\\\\\\\\\\\n  conll_s123=/root/autodl-tmp/struct_self_consist_ie/output/conll_mf4v2_seed123/samples.jsonl \\\\\\\\\\\\\\\\\\\\\\\\n  conll_s456=/root/autodl-tmp/struct_self_consist_ie/output/conll_mf4v2_seed456/samples.jsonl \\\\\\\\\\\\\\\\\\\\\\\\n  scierc_s42=/root/autodl-tmp/struct_self_consist_ie/output/scierc_mf4v2_seed42/samples.jsonl'\\\\n\\\\nStdout:\\\\n\\\\n\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 30.32}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000078"
+        },
+        {
+          "source_line": 79,
+          "timestamp": "2026-05-21T10:00:13.482828+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "bjb2-11496",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python /tmp/alpha_crit_v3.py conll_s123=/root/autodl-tmp/struct_self_consist_ie/output/conll_mf4v2_seed123/samples.jsonl conll_s456=/root/autodl-tmp/struct_self_consist_ie/output/conll_mf4v2_seed456/samples.jsonl scierc_s42=/root/autodl-tmp/struct_self_consist_ie/output/scierc_mf4v2_seed42/samples.jsonl",
+              "account": "root"
+            }
+          },
+          "id": "event-000079"
+        },
+        {
+          "source_line": 80,
+          "timestamp": "2026-05-21T10:00:13.482974+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"conll_s123: {\\\\\\\"n\\\\\\\": 2756, \\\\\\\"greedy_f1\\\\\\\": 0.912898, \\\\\\\"mv_f1\\\\\\\": 0.915671, \\\\\\\"oracle_f1\\\\\\\": 0.954265, \\\\\\\"degen\\\\\\\": 0.604136, \\\\\\\"alpha_crit\\\\\\\": 0.844459, \\\\\\\"delta_sc_pp\\\\\\\": 0.2774}\\\\nconll_s456: {\\\\\\\"n\\\\\\\": 2756, \\\\\\\"greedy_f1\\\\\\\": 0.911788, \\\\\\\"mv_f1\\\\\\\": 0.912215, \\\\\\\"oracle_f1\\\\\\\": 0.95004, \\\\\\\"degen\\\\\\\": 0.601959, \\\\\\\"alpha_crit\\\\\\\": 0.838599, \\\\\\\"delta_sc_pp\\\\\\\": 0.0427}\\\\nscierc_s42: {\\\\\\\"n\\\\\\\": 529, \\\\\\\"greedy_f1\\\\\\\": 0.666267, \\\\\\\"mv_f1\\\\\\\": 0.665659, \\\\\\\"oracle_f1\\\\\\\": 0.783914, \\\\\\\"degen\\\\\\\": 0.134216, \\\\\\\"alpha_crit\\\\\\\": 0.498867, \\\\\\\"delta_sc_pp\\\\\\\": -0.0608}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 17.2}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000080"
+        },
+        {
+          "source_line": 81,
+          "timestamp": "2026-05-21T10:00:13.483140+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "bjb2-11496",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python /tmp/alpha_crit_v3.py fewnerd_s42=/root/autodl-tmp/struct_self_consist_ie/output/fewnerd_mf4v2_seed42/samples.jsonl",
+              "account": "root"
+            }
+          },
+          "id": "event-000081"
+        },
+        {
+          "source_line": 82,
+          "timestamp": "2026-05-21T10:00:13.483285+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Command did not complete within 30 seconds!\\\\n\\\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python /tmp/alpha_crit_v3.py fewnerd_s42=/root/autodl-tmp/struct_self_consist_ie/output/fewnerd_mf4v2_seed42/samples.jsonl'\\\\n\\\\nStdout:\\\\n\\\\n\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 30.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000082"
+        },
+        {
+          "source_line": 83,
+          "timestamp": "2026-05-21T10:00:13.483443+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "bjb2-11496",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && nohup python /tmp/alpha_crit_v3.py fewnerd_s42=/root/autodl-tmp/struct_self_consist_ie/output/fewnerd_mf4v2_seed42/samples.jsonl fewnerd_s123=/root/autodl-tmp/struct_self_consist_ie/output/fewnerd_mf4v2_seed123/samples.jsonl > /tmp/alpha_fewnerd.log 2>&1 &\necho \"PID=$!\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000083"
+        },
+        {
+          "source_line": 84,
+          "timestamp": "2026-05-21T10:00:13.483581+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Command did not complete within 30 seconds!\\\\n\\\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && nohup python /tmp/alpha_crit_v3.py fewnerd_s42=/root/autodl-tmp/struct_self_consist_ie/output/fewnerd_mf4v2_seed42/samples.jsonl fewnerd_s123=/root/autodl-tmp/struct_self_consist_ie/output/fewnerd_mf4v2_seed123/samples.jsonl > /tmp/alpha_fewnerd.log 2>&1 &\\\\\\\\necho \\\\\\\"PID=$!\\\\\\\"'\\\\n\\\\nStdout:\\\\n\\\\nPID=2116\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 30.98}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000084"
+        },
+        {
+          "source_line": 85,
+          "timestamp": "2026-05-21T10:00:13.483736+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-11496",
+              "command": "cat /tmp/alpha_fewnerd.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000085"
+        },
+        {
+          "source_line": 86,
+          "timestamp": "2026-05-21T10:00:13.483870+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.77}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000086"
+        },
+        {
+          "source_line": 87,
+          "timestamp": "2026-05-21T10:00:13.484005+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-11496",
+              "command": "ps -p 2116 -o pid,stat,etime",
+              "account": "root"
+            }
+          },
+          "id": "event-000087"
+        },
+        {
+          "source_line": 88,
+          "timestamp": "2026-05-21T10:00:13.484155+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"   PID STAT     ELAPSED\\\\n  2116 S          00:42\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000088"
+        },
+        {
+          "source_line": 89,
+          "timestamp": "2026-05-21T10:00:13.484319+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "-9\\.21|-1\\.37|-3\\.03|universally.fail|SC.*fail|0\\.488|0\\.808|0\\.443",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-000089"
+        },
+        {
+          "source_line": 90,
+          "timestamp": "2026-05-21T10:00:13.484452+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "alpha_crit|α_crit|\\\\\\\\alpha.*crit",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-000090"
+        },
+        {
+          "source_line": 91,
+          "timestamp": "2026-05-21T10:00:13.484777+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<persisted-output>\nOutput too large (53.7KB). Full output saved to: /home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie/ec9f0aca-b22c-411f-90bb-b3a5d66921e8/tool-results/toolu_017CR1GypN9ZNeW7YtF66o4U.txt\n\nPreview (first 2KB):\ndecisions.yaml:3971:    可行且有实质价值：α_crit(π_MV, r_MV) 预测实体选择改进的 AUROC 门槛。经验验证完美匹配——CoNLL α_crit≈0.97（预测不可能，实际负）、SciERC\ndecisions.yaml:3972:    α_crit≈0.89（预测勉强可能，trained verifier +1.28pp 唯一正收益）。与 Yun et al. 互补：Yun 在样本级（换聚合方法没用），本文在实体级（更好信号做选择也不够）。称\ndecisions.yaml:4025:  summary: α_crit 叙事修正：从 \"SC universally fails\" 改为 \"MV ≈ greedy，SC 效率极低，几乎未捕获 oracle\ndecisions.yaml:4027:  rationale: 'Reviewer #47 确认 α_crit 表全部基于 MF4 bug 数据（macro_f1）。修正为 micro_f1 后：FewNERD\ndecisions.yaml:4029:    fail 而是效率极低。α_crit bound 反而对全部 3 个数据集预测正确（比旧版更好）。核心 claim \"correlation ≠ selection\"\nROADMAP.md:25:| L2 Proposition | α_crit Entity Selection Bound (D220) | Agent 推导中 |\nROADMAP.md:64:- [ ] D220 α_crit 推导 + 写入论文\nROADMAP.md:86:| D223 | 2026-05-21 | α_crit 叙事修正：从 \"SC universally fails\" 改为 \"MV ≈ gree | D220, exp_fewnerd_mf4_v2_s42, exp_conll_mf4_v2_s123, exp_scierc_mf4_v2_s42 |\nmistakes.yaml:780:  summary: α_crit 表全部基于 MF4 bug 数据（macro_f1），导致 \"SC universally fails\" 叙事错误\nmistakes.yaml:781:  root_cause: D220 α_crit 修正时只修正了 Δ 定义（θ2n→MV），但未检查底层数据是否受 MF4 bug（greedy_macro_f1\nmistakes.yaml:787:  fix: 用 micro-F1 MF4v2 数据重算全部 α_crit 表，修改论文叙事为 \"SC captures negligible fraction of\nartifacts/manifest.yaml:5959:  name: alpha_crit_table\nartifacts/manifest.yaml:5961:  description: 'α_crit entity selection bound analysis: derivation, 3-dataset table,\nartifacts/manifest.yaml:5963:  path: projects/struct_self_consist_ie/artifacts/_project/report/alpha_crit_table.md\nartifacts/manifest.yaml:5970:  - alpha_crit\nartifacts/manifest.yaml:5991:  name: alpha_crit_table_d220_corrected\nartifacts/manifest.yaml:5993:  description: D220 corrected α_crit entity selection bound table — fixed SC Δ from\nartifacts/manifest.yaml:5995:  path: pro\n…[truncated 206 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000091"
+        },
+        {
+          "source_line": 92,
+          "timestamp": "2026-05-21T10:00:13.485012+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<persisted-output>\nOutput too large (30.3KB). Full output saved to: /home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie/ec9f0aca-b22c-411f-90bb-b3a5d66921e8/tool-results/toolu_01Fhu7f2FTFpq1PcYv4E2n8N.txt\n\nPreview (first 2KB):\npaper_framing.md:16:- **Structural signals (SJ/FK/EM/VC)**: universally fail regardless — instance-level aggregates cannot rank candidates by construction.\nexperiment_plan.yaml:496:  description: 'Cross-task universality: SC failure modes generalize from NER to code\ndecisions.yaml:4025:  summary: α_crit 叙事修正：从 \"SC universally fails\" 改为 \"MV ≈ greedy，SC 效率极低，几乎未捕获 oracle\ndecisions.yaml:4034:    result: 旧叙事 SC universally fails 被推翻\ncode/run_spider_sc.py:2:\"\"\"Spider SQL Self-Consistency Pilot: SC failure modes on text-to-SQL.\nROADMAP.md:86:| D223 | 2026-05-21 | α_crit 叙事修正：从 \"SC universally fails\" 改为 \"MV ≈ gree | D220, exp_fewnerd_mf4_v2_s42, exp_conll_mf4_v2_s123, exp_scierc_mf4_v2_s42 |\nartifacts/exp_012_rerun_1024/samples_with_logprobs.jsonl:20:[Omitted long matching line]\nartifacts/exp_012_rerun_1024/samples_with_logprobs.jsonl:74:[Omitted long matching line]\nartifacts/exp_012_rerun_1024/samples_with_logprobs.jsonl:118:[Omitted long matching line]\nartifacts/exp_012_rerun_1024/samples_with_logprobs.jsonl:315:[Omitted long matching line]\nartifacts/exp_012_rerun_1024/samples_with_logprobs.jsonl:316:[Omitted long matching line]\nartifacts/exp_012_rerun_1024/samples_with_logprobs.jsonl:512:[Omitted long matching line]\nartifacts/exp_012_rerun_1024/samples_with_logprobs.jsonl:519:[Omitted long matching line]\nartifacts/n_inverse_scaling/f1_by_n.json:466:            \"P\": 0.8081141998497371,\nartifacts/n_inverse_scaling/f1_by_n.json:2115:            \"R\": 0.8088949009727184,\nartifacts/n_inverse_scaling/f1_by_n.json:2239:            \"R\": 0.8088949009727184,\nartifacts/analysis_unified_rho.json:38:      \"old_registry_rho_fk\": 0.8085,\nartifacts/manifest.yaml:5994:    θ2n-greedy to MV-greedy. A\n…[truncated 72 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000092"
+        },
+        {
+          "source_line": 93,
+          "timestamp": "2026-05-21T10:00:13.485229+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "alpha.*crit|\\\\\\\\alpha_\\\\{?crit|SC.*fail|universally|MV.*fail|-9\\.21|-1\\.37|-3\\.03",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs",
+              "output_mode": "content",
+              "-n": "True",
+              "-i": "True"
+            }
+          },
+          "id": "event-000093"
+        },
+        {
+          "source_line": 94,
+          "timestamp": "2026-05-21T10:00:13.485373+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000094"
+        },
+        {
+          "source_line": 95,
+          "timestamp": "2026-05-21T10:00:13.485500+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/docs/paper/sections/*.tex",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie"
+            }
+          },
+          "id": "event-000095"
+        },
+        {
+          "source_line": 96,
+          "timestamp": "2026-05-21T10:00:13.485630+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "docs/paper/sections/checklist.tex\ndocs/paper/sections/method.tex\ndocs/paper/sections/theoretical.tex\ndocs/paper/sections/diagnostic.tex\ndocs/paper/sections/experiments.tex\ndocs/paper/sections/related_work.tex\ndocs/paper/sections/abstract.tex\ndocs/paper/sections/conclusion.tex\ndocs/paper/sections/single_signal.tex\ndocs/paper/sections/mechanistic.tex\ndocs/paper/sections/background.tex\ndocs/paper/sections/discussion.tex\ndocs/paper/sections/experiments_main.tex\ndocs/paper/sections/adaptive.tex\ndocs/paper/sections/theory.tex\ndocs/paper/sections/appendix.tex\ndocs/paper/sections/introduction.tex\ndocs/paper/sections/limitations.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000096"
+        },
+        {
+          "source_line": 97,
+          "timestamp": "2026-05-21T10:00:13.485759+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "alpha|crit|MV|majority|greedy|oracle|selection.*bound",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections",
+              "output_mode": "content",
+              "-n": "True",
+              "-i": "True",
+              "glob": "*.tex",
+              "head_limit": "50"
+            }
+          },
+          "id": "event-000097"
+        },
+        {
+          "source_line": 98,
+          "timestamp": "2026-05-21T10:00:13.485957+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "docs/paper/sections/theoretical.tex:5:where $D$ is the degeneracy rate and $G_{\\textup{nd}}$ the oracle gap on non-degenerate instances.\ndocs/paper/sections/theoretical.tex:6:For signal-based methods with alignment $\\alpha \\in [0,1]$, this tightens to $(1{-}D) \\cdot G_{\\textup{nd}} \\cdot \\alpha$ (proof in Appendix~\\ref{app:bound_proof}).\ndocs/paper/sections/theoretical.tex:9:\\noindent With $G_{\\textup{nd}}{\\approx}14.8$\\,pp and $\\alpha{\\approx}0.068$, the critical threshold is $\\theta_{\\textup{crit}}{=}0.70$: when $D{>}70$\\%, SC gain falls below $0.3$\\,pp.\ndocs/paper/sections/theoretical.tex:10:Across 16 configurations, all gains respect the bound (ratio 3--12\\%; Figure~\\ref{fig:bound}); the bound is loose because $\\alpha$---not $D$---is the bottleneck.\ndocs/paper/sections/experiments.tex:11:\\textbf{CoNLL-2003} \\cite{tjongkimsang2003conll} (3{,}453 test sentences, 4 entity types, ${\\approx}$91\\% F1) serves as a ceiling-effect control where limited oracle headroom constrains selection gains.\ndocs/paper/sections/experiments.tex:63:\\caption{Best-of-$N$ NER selection (macro F1) on SciERC ($N{=}8$, $T{=}1.0$, 2-seed mean${\\pm}\\sigma$). LP is per-sample; others use consensus-proximity. Best non-oracle in \\textbf{bold}. Non-tied subset in \\S\\ref{sec:discussion}; RE in Appendix~\\ref{app:re_extension}. $^\\dagger$Instance-level signals assign one score per input; per-sample ranking $p$-values are undefined.}\ndocs/paper/sections/experiments.tex:69:Oracle & $0.775 \\pm 0.001$ & --- \\\\\ndocs/paper/sections/experiments.tex:70:Greedy ($T{=}0$) & $0.645 \\pm 0.001$ & --- \\\\\ndocs/paper/sections/experiments.tex:89:\\caption{The correlation-selection gap on SciERC ($N{=}8$, $T{=}1.0$). Bars: quality estimation $\\rho$ (seed 42); line with error bars: $\\Delta$F1 vs.\\ greedy (3-seed mean, seeds 42/123/456). Despite $\\rho$ up to 0.38, no signal significantly outperforms greedy (all $p{>}0.05$; Table~\\ref{tab:selection}). Dashed green: oracle upper bound ($+13.0$~pp); dotted gray: random basel\n…[truncated 10055 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000098"
+        },
+        {
+          "source_line": 99,
+          "timestamp": "2026-05-21T10:00:13.486170+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-11496",
+              "command": "cat /tmp/alpha_fewnerd.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000099"
+        },
+        {
+          "source_line": 100,
+          "timestamp": "2026-05-21T10:00:13.486314+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.33}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000100"
+        },
+        {
+          "source_line": 101,
+          "timestamp": "2026-05-21T10:00:13.486454+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-11496",
+              "command": "ps -p 2116 -o pid,stat,etime",
+              "account": "root"
+            }
+          },
+          "id": "event-000101"
+        },
+        {
+          "source_line": 102,
+          "timestamp": "2026-05-21T10:00:13.486583+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"   PID STAT     ELAPSED\\\\n  2116 S          01:18\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.32}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000102"
+        },
+        {
+          "source_line": 103,
+          "timestamp": "2026-05-21T10:00:13.486744+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/artifacts/**/*alpha_crit*",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie"
+            }
+          },
+          "id": "event-000103"
+        },
+        {
+          "source_line": 104,
+          "timestamp": "2026-05-21T10:00:13.486872+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "artifacts/_project/report/alpha_crit_table.md\nartifacts/_project/report/alpha_crit_table_65652e.md\nartifacts/_project/data/alpha_crit_table.md\nartifacts/alpha_crit_table.md"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000104"
+        },
+        {
+          "source_line": 105,
+          "timestamp": "2026-05-21T10:00:13.486994+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/alpha_crit_table.md"
+            }
+          },
+          "id": "event-000105"
+        },
+        {
+          "source_line": 106,
+          "timestamp": "2026-05-21T10:00:13.487170+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t## α_crit Entity Selection Bound\n2\t\n3\t### Main Table (T=1.0, 3-seed micro-F1 averages, seeds 42/123/456)\n4\t\n5\t| Dataset | π_MV | α_crit | α_obs | Gap (α − α_crit) | Δ_SC (pp) | Degeneracy | Bound Predicts | Empirical |\n6\t|---------|------|--------|-------|-------------------|-----------|------------|----------------|-----------|\n7\t| FewNERD | 0.7849 | 0.6459 | 0.6405 | −0.0054 | **−0.63** | 9.2% | No | **No** ✓ |\n8\t| CoNLL   | 0.9136 | 0.8409 | 0.8716 | +0.0306 | **+0.17** | 59.1% | Yes | **Yes** ✓ |\n9\t| SciERC  | 0.6695 | 0.5033 | 0.6087 | +0.1055 | **+0.37** | 8.2% | Yes | **Yes** ✓ |\n10\t\n11\t- **π_MV**: Entity-level majority voting micro-F1 (threshold ≥ N/2 samples)\n12\t- **α_obs**: Mean individual sample F1 (`sample_f1_mean`, macro-averaged over instances)\n13\t- **Δ_SC**: MV micro-F1 − greedy micro-F1 (positive = SC aggregation wins)\n14\t- **Degeneracy**: Fraction of instances with identical entity sets across all n=8 samples\n15\t- **All metrics use micro-F1** (aggregate TP/FP/FN then compute F1), correcting the greedy_macro_f1 bug in prior version\n16\t\n17\t### Detailed Baselines (micro-F1)\n18\t\n19\t| Dataset | Greedy | MV | Oracle | Headroom |\n20\t|---------|--------|----|--------|----------|\n21\t| FewNERD | 0.7912 | 0.7849 | 0.8869 | 9.57 pp |\n22\t| CoNLL   | 0.9119 | 0.9136 | 0.9532 | 4.13 pp |\n23\t| SciERC  | 0.6659 | 0.6695 | 0.8064 | 14.05 pp |\n24\t\n25\t### Derivation\n26\t\n27\t```\n28\tα_crit = π_MV / (2 − π_MV)\n29\t```\n30\t\n31\t- When α > α_crit: SC aggregation should improve over individual samples\n32\t- When α < α_crit: SC aggregation hurts (information loss exceeds agreement gain)\n33\t\n34\t### Key Finding: α_crit Bound Correctly Predicts MV Direction\n35\t\n36\tWith micro-F1 evaluation, the α_crit bound correctly predicts the direction of entity-level MV for all three datasets:\n37\t\n38\t1. **FewNERD** (α_obs < α_crit by 0.005): Bound predicts MV should not help → confirmed, MV loses 0.63pp. The margin is razor-thin, consistent with MV's near-parity with greedy.\n39\t\n40\t2. **CoNLL**\n…[truncated 3141 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000106"
+        },
+        {
+          "source_line": 107,
+          "timestamp": "2026-05-21T10:00:13.487378+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-11496",
+              "command": "cat /tmp/alpha_fewnerd.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000107"
+        },
+        {
+          "source_line": 108,
+          "timestamp": "2026-05-21T10:00:13.487516+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000108"
+        },
+        {
+          "source_line": 109,
+          "timestamp": "2026-05-21T10:00:13.487650+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-11496",
+              "command": "ps -p 2116 -o pid,stat,etime",
+              "account": "root"
+            }
+          },
+          "id": "event-000109"
+        },
+        {
+          "source_line": 110,
+          "timestamp": "2026-05-21T10:00:13.487780+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"   PID STAT     ELAPSED\\\\n  2116 S          02:00\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000110"
+        },
+        {
+          "source_line": 111,
+          "timestamp": "2026-05-21T10:00:13.487936+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "bjb2-11496",
+              "command": "kill 2116; /root/miniconda3/bin/python /tmp/alpha_crit_v3.py fewnerd_s42=/root/autodl-tmp/struct_self_consist_ie/output/fewnerd_mf4v2_seed42/samples.jsonl",
+              "account": "root",
+              "warn": "True"
+            }
+          },
+          "id": "event-000111"
+        },
+        {
+          "source_line": 112,
+          "timestamp": "2026-05-21T10:00:13.488074+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Command did not complete within 30 seconds!\\\\n\\\\nCommand: 'kill 2116; /root/miniconda3/bin/python /tmp/alpha_crit_v3.py fewnerd_s42=/root/autodl-tmp/struct_self_consist_ie/output/fewnerd_mf4v2_seed42/samples.jsonl'\\\\n\\\\nStdout:\\\\n\\\\n\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 30.32}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000112"
+        },
+        {
+          "source_line": 113,
+          "timestamp": "2026-05-21T10:00:13.488236+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "bjb2-11496",
+              "command": "nohup /root/miniconda3/bin/python -u /tmp/alpha_crit_v3.py fewnerd_s42=/root/autodl-tmp/struct_self_consist_ie/output/fewnerd_mf4v2_seed42/samples.jsonl fewnerd_s123=/root/autodl-tmp/struct_self_consist_ie/output/fewnerd_mf4v2_seed123/samples.jsonl > /tmp/alpha_fewnerd2.log 2>&1 &\necho \"PID=$!\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000113"
+        },
+        {
+          "source_line": 114,
+          "timestamp": "2026-05-21T10:00:13.488371+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"PID=2179\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.72}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000114"
+        },
+        {
+          "source_line": 115,
+          "timestamp": "2026-05-21T10:00:13.488508+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-11496",
+              "command": "wc -l /root/autodl-tmp/struct_self_consist_ie/output/fewnerd_mf4v2_seed42/samples.jsonl",
+              "account": "root"
+            }
+          },
+          "id": "event-000115"
+        },
+        {
+          "source_line": 116,
+          "timestamp": "2026-05-21T10:00:13.488635+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"37648 /root/autodl-tmp/struct_self_consist_ie/output/fewnerd_mf4v2_seed42/samples.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.84}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000116"
+        },
+        {
+          "source_line": 117,
+          "timestamp": "2026-05-21T10:00:13.488818+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-11496",
+              "command": "ps -p 2179 -o pid,stat,etime",
+              "account": "root"
+            }
+          },
+          "id": "event-000117"
+        },
+        {
+          "source_line": 118,
+          "timestamp": "2026-05-21T10:00:13.488969+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"   PID STAT     ELAPSED\\\\n  2179 R          00:12\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000118"
+        },
+        {
+          "source_line": 119,
+          "timestamp": "2026-05-21T10:00:13.489110+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-11496",
+              "command": "cat /tmp/alpha_fewnerd2.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000119"
+        },
+        {
+          "source_line": 120,
+          "timestamp": "2026-05-21T10:00:13.489283+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000120"
+        },
+        {
+          "source_line": 121,
+          "timestamp": "2026-05-21T10:00:13.489412+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-11496",
+              "command": "ps -p 2179 -o pid,stat,etime",
+              "account": "root"
+            }
+          },
+          "id": "event-000121"
+        },
+        {
+          "source_line": 122,
+          "timestamp": "2026-05-21T10:00:13.489539+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"   PID STAT     ELAPSED\\\\n  2179 R          00:25\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000122"
+        },
+        {
+          "source_line": 123,
+          "timestamp": "2026-05-21T10:00:13.489690+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-11496",
+              "command": "cat /tmp/alpha_fewnerd2.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000123"
+        },
+        {
+          "source_line": 124,
+          "timestamp": "2026-05-21T10:00:13.489818+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000124"
+        },
+        {
+          "source_line": 125,
+          "timestamp": "2026-05-21T10:00:13.489939+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-11496",
+              "command": "ps -p 2179 -o pid,stat,etime,rss",
+              "account": "root"
+            }
+          },
+          "id": "event-000125"
+        },
+        {
+          "source_line": 126,
+          "timestamp": "2026-05-21T10:00:13.490190+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"   PID STAT     ELAPSED   RSS\\\\n  2179 R          00:47 12072\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000126"
+        },
+        {
+          "source_line": 127,
+          "timestamp": "2026-05-21T10:00:13.490369+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "ls /root/autodl-tmp/struct_self_consist_ie/output/fewnerd_mf4v2_seed42/",
+              "account": "root"
+            }
+          },
+          "id": "event-000127"
+        },
+        {
+          "source_line": 128,
+          "timestamp": "2026-05-21T10:00:13.490498+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "ls /root/autodl-tmp/struct_self_consist_ie/output/fewnerd_mf4v2_seed123/",
+              "account": "root"
+            }
+          },
+          "id": "event-000128"
+        },
+        {
+          "source_line": 129,
+          "timestamp": "2026-05-21T10:00:13.490632+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000129"
+        },
+        {
+          "source_line": 130,
+          "timestamp": "2026-05-21T10:00:13.490757+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000130"
+        },
+        {
+          "source_line": 131,
+          "timestamp": "2026-05-21T10:00:13.490894+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-11496",
+              "command": "cat /tmp/alpha_fewnerd2.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000131"
+        },
+        {
+          "source_line": 132,
+          "timestamp": "2026-05-21T10:00:13.491019+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.34}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000132"
+        },
+        {
+          "source_line": 133,
+          "timestamp": "2026-05-21T10:00:13.491169+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-11496",
+              "command": "ps -p 2179 -o pid,stat,etime,rss",
+              "account": "root"
+            }
+          },
+          "id": "event-000133"
+        },
+        {
+          "source_line": 134,
+          "timestamp": "2026-05-21T10:00:13.491320+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"   PID STAT     ELAPSED   RSS\\\\n  2179 R          01:11 12276\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000134"
+        },
+        {
+          "source_line": 135,
+          "timestamp": "2026-05-21T10:00:13.491480+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/artifacts/**/*d220*",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie"
+            }
+          },
+          "id": "event-000135"
+        },
+        {
+          "source_line": 136,
+          "timestamp": "2026-05-21T10:00:13.491605+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "artifacts/_project/report/d220_correction_notes.md\nartifacts/d220_correction_notes.md"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000136"
+        },
+        {
+          "source_line": 137,
+          "timestamp": "2026-05-21T10:00:13.491725+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "conll_mf4v2_seed42",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+              "output_mode": "content"
+            }
+          },
+          "id": "event-000137"
+        },
+        {
+          "source_line": 138,
+          "timestamp": "2026-05-21T10:00:13.491845+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "logs/workers/worker_cpu_alpha_crit_v3_micro_f1_20260521T094702.log:32:[Omitted long matching line]\nlogs/workers/worker_cpu_alpha_crit_v3_micro_f1_20260521T094702.log:195:[Omitted long matching line]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000138"
+        },
+        {
+          "source_line": 139,
+          "timestamp": "2026-05-21T10:00:13.491962+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/d220_correction_notes.md"
+            }
+          },
+          "id": "event-000139"
+        },
+        {
+          "source_line": 140,
+          "timestamp": "2026-05-21T10:00:13.492110+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t# D220 α_crit Proposition Correction Notes\n2\t\n3\t## Correction 1: SC Δ Definition Error (Reviewer #38)\n4\t\n5\t**Problem**: Δ_SC was defined as `θ2n_select_f1 − greedy_f1` (consensus-based sample selection minus greedy). This measures a *selection method* gain, not the actual self-consistency aggregation gain.\n6\t\n7\t**Fix**: Δ_SC = `mv_f1 − greedy_f1` (entity-level majority voting F1 minus greedy F1). This is the correct metric because the α_crit proposition is about SC aggregation (majority voting), not sample selection.\n8\t\n9\t### Before/After Comparison\n10\t\n11\t| Dataset | Δ_SC (old: θ2n−greedy) | Δ_SC (new: MV−greedy) | Empirical (old) | Empirical (new) |\n12\t|---------|-------------------------|------------------------|-----------------|-----------------|\n13\t| FewNERD | **+0.89 pp** | **−9.21 pp** | Yes | **No** |\n14\t| CoNLL   | **−1.09 pp** | **−1.37 pp** | No | No |\n15\t| SciERC  | **+0.76 pp** | **−3.03 pp** | Yes | **No** |\n16\t\n17\t### Unchanged Values\n18\t\n19\tα_crit formula, π_MV, α_obs, α_crit, Gap, Degeneracy — all unchanged. The Detailed Baselines table is also unchanged (MV and greedy values were already correct; only the Δ_SC column in the Main Table was computed from the wrong pair).\n20\t\n21\t## Impact on Paper Conclusions\n22\t\n23\t**Strengthens the narrative.** The old table showed a mixed picture (2/3 confirm bound, 1/3 violates). The corrected table shows **universal failure**: the bound predicts SC should work for all three datasets, but it never does.\n24\t\n25\tThis has two implications:\n26\t\n27\t1. **Degeneracy-adjusted bound**: Still correctly explains CoNLL (δ=63% → α_crit_eff=2.184 > 1). But now FewNERD and SciERC also fail despite having low degeneracy (12.3%, 20.3%) — degeneracy alone is insufficient as an explanation.\n28\t\n29\t2. **Structural mismatch**: Entity-level MV is fundamentally different from classification-level SC. When span boundaries differ across samples, MV introduces aggregation errors absent from any individual sample. This is a novel mechani\n…[truncated 746 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000140"
+        },
+        {
+          "source_line": 141,
+          "timestamp": "2026-05-21T10:00:13.492341+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-11496",
+              "command": "cat /tmp/alpha_fewnerd2.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000141"
+        },
+        {
+          "source_line": 142,
+          "timestamp": "2026-05-21T10:00:13.492484+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"fewnerd_s123: {\\\\\\\"n\\\\\\\": 32565, \\\\\\\"greedy_f1\\\\\\\": 0.790872, \\\\\\\"mv_f1\\\\\\\": 0.78444, \\\\\\\"oracle_f1\\\\\\\": 0.889655, \\\\\\\"degen\\\\\\\": 0.091724, \\\\\\\"alpha_crit\\\\\\\": 0.645332, \\\\\\\"delta_sc_pp\\\\\\\": -0.6432}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000142"
+        },
+        {
+          "source_line": 143,
+          "timestamp": "2026-05-21T10:00:13.492624+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-11496",
+              "command": "ps -p 2179 -o pid,stat,etime",
+              "account": "root"
+            }
+          },
+          "id": "event-000143"
+        },
+        {
+          "source_line": 144,
+          "timestamp": "2026-05-21T10:00:13.492754+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"   PID STAT     ELAPSED\\\\n  2179 R          01:44\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000144"
+        },
+        {
+          "source_line": 145,
+          "timestamp": "2026-05-21T10:00:13.492929+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-11496",
+              "command": "cat /tmp/alpha_fewnerd2.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000145"
+        },
+        {
+          "source_line": 146,
+          "timestamp": "2026-05-21T10:00:13.493067+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"fewnerd_s123: {\\\\\\\"n\\\\\\\": 32565, \\\\\\\"greedy_f1\\\\\\\": 0.790872, \\\\\\\"mv_f1\\\\\\\": 0.78444, \\\\\\\"oracle_f1\\\\\\\": 0.889655, \\\\\\\"degen\\\\\\\": 0.091724, \\\\\\\"alpha_crit\\\\\\\": 0.645332, \\\\\\\"delta_sc_pp\\\\\\\": -0.6432}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000146"
+        },
+        {
+          "source_line": 147,
+          "timestamp": "2026-05-21T10:00:13.493237+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-11496",
+              "command": "ps -p 2179 -o pid,stat,etime",
+              "account": "root"
+            }
+          },
+          "id": "event-000147"
+        },
+        {
+          "source_line": 148,
+          "timestamp": "2026-05-21T10:00:13.493378+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"   PID STAT     ELAPSED\\\\n  2179 R          02:13\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.32}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000148"
+        },
+        {
+          "source_line": 149,
+          "timestamp": "2026-05-21T10:00:13.493519+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-11496",
+              "command": "cat /tmp/alpha_fewnerd2.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000149"
+        },
+        {
+          "source_line": 150,
+          "timestamp": "2026-05-21T10:00:13.493652+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"fewnerd_s123: {\\\\\\\"n\\\\\\\": 32565, \\\\\\\"greedy_f1\\\\\\\": 0.790872, \\\\\\\"mv_f1\\\\\\\": 0.78444, \\\\\\\"oracle_f1\\\\\\\": 0.889655, \\\\\\\"degen\\\\\\\": 0.091724, \\\\\\\"alpha_crit\\\\\\\": 0.645332, \\\\\\\"delta_sc_pp\\\\\\\": -0.6432}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.33}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000150"
+        },
+        {
+          "source_line": 151,
+          "timestamp": "2026-05-21T10:00:13.493775+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-11496",
+              "command": "ps -p 2179 -o pid,stat,etime",
+              "account": "root"
+            }
+          },
+          "id": "event-000151"
+        },
+        {
+          "source_line": 152,
+          "timestamp": "2026-05-21T10:00:13.493901+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"   PID STAT     ELAPSED\\\\n  2179 R          02:20\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000152"
+        },
+        {
+          "source_line": 153,
+          "timestamp": "2026-05-21T10:00:13.494047+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-11496",
+              "command": "cat /tmp/alpha_fewnerd2.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000153"
+        },
+        {
+          "source_line": 154,
+          "timestamp": "2026-05-21T10:00:13.494197+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"fewnerd_s123: {\\\\\\\"n\\\\\\\": 32565, \\\\\\\"greedy_f1\\\\\\\": 0.790872, \\\\\\\"mv_f1\\\\\\\": 0.78444, \\\\\\\"oracle_f1\\\\\\\": 0.889655, \\\\\\\"degen\\\\\\\": 0.091724, \\\\\\\"alpha_crit\\\\\\\": 0.645332, \\\\\\\"delta_sc_pp\\\\\\\": -0.6432}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.33}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000154"
+        },
+        {
+          "source_line": 155,
+          "timestamp": "2026-05-21T10:00:13.494330+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-11496",
+              "command": "ps -p 2179 -o pid,stat,etime",
+              "account": "root"
+            }
+          },
+          "id": "event-000155"
+        },
+        {
+          "source_line": 156,
+          "timestamp": "2026-05-21T10:00:13.494455+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"   PID STAT     ELAPSED\\\\n  2179 R          02:29\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.33}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000156"
+        },
+        {
+          "source_line": 157,
+          "timestamp": "2026-05-21T10:00:13.494589+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-11496",
+              "command": "cat /tmp/alpha_fewnerd2.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000157"
+        },
+        {
+          "source_line": 158,
+          "timestamp": "2026-05-21T10:00:13.494716+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"fewnerd_s123: {\\\\\\\"n\\\\\\\": 32565, \\\\\\\"greedy_f1\\\\\\\": 0.790872, \\\\\\\"mv_f1\\\\\\\": 0.78444, \\\\\\\"oracle_f1\\\\\\\": 0.889655, \\\\\\\"degen\\\\\\\": 0.091724, \\\\\\\"alpha_crit\\\\\\\": 0.645332, \\\\\\\"delta_sc_pp\\\\\\\": -0.6432}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.33}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000158"
+        },
+        {
+          "source_line": 159,
+          "timestamp": "2026-05-21T10:00:13.494837+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-11496",
+              "command": "cat /tmp/alpha_fewnerd2.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000159"
+        },
+        {
+          "source_line": 160,
+          "timestamp": "2026-05-21T10:00:13.494963+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"fewnerd_s123: {\\\\\\\"n\\\\\\\": 32565, \\\\\\\"greedy_f1\\\\\\\": 0.790872, \\\\\\\"mv_f1\\\\\\\": 0.78444, \\\\\\\"oracle_f1\\\\\\\": 0.889655, \\\\\\\"degen\\\\\\\": 0.091724, \\\\\\\"alpha_crit\\\\\\\": 0.645332, \\\\\\\"delta_sc_pp\\\\\\\": -0.6432}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000160"
+        },
+        {
+          "source_line": 161,
+          "timestamp": "2026-05-21T10:00:13.495083+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-11496",
+              "command": "ps -p 2179 -o pid,stat,etime",
+              "account": "root"
+            }
+          },
+          "id": "event-000161"
+        },
+        {
+          "source_line": 162,
+          "timestamp": "2026-05-21T10:00:13.495228+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"   PID STAT     ELAPSED\\\\n  2179 R          02:40\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.32}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000162"
+        },
+        {
+          "source_line": 163,
+          "timestamp": "2026-05-21T10:00:13.495368+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-11496",
+              "command": "cat /tmp/alpha_fewnerd2.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000163"
+        },
+        {
+          "source_line": 164,
+          "timestamp": "2026-05-21T10:00:13.495501+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"fewnerd_s123: {\\\\\\\"n\\\\\\\": 32565, \\\\\\\"greedy_f1\\\\\\\": 0.790872, \\\\\\\"mv_f1\\\\\\\": 0.78444, \\\\\\\"oracle_f1\\\\\\\": 0.889655, \\\\\\\"degen\\\\\\\": 0.091724, \\\\\\\"alpha_crit\\\\\\\": 0.645332, \\\\\\\"delta_sc_pp\\\\\\\": -0.6432}\\\\nfewnerd_s42: {\\\\\\\"n\\\\\\\": 32565, \\\\\\\"greedy_f1\\\\\\\": 0.790905, \\\\\\\"mv_f1\\\\\\\": 0.778139, \\\\\\\"oracle_f1\\\\\\\": 0.880164, \\\\\\\"degen\\\\\\\": 0.090649, \\\\\\\"alpha_crit\\\\\\\": 0.636847, \\\\\\\"delta_sc_pp\\\\\\\": -1.2766}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000164"
+        },
+        {
+          "source_line": 165,
+          "timestamp": "2026-05-21T10:00:13.495700+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/alpha_crit_table.md",
+              "content": "## α_crit Entity Selection Bound (v3 — MF4v2 micro_f1)\n\n> ⚠️ v1/v2 基于 macro_f1 数据，已作废。本版使用 MF4v2 pipeline 的 micro_f1（aggregate TP/FP/FN）。\n\n### Main Table (T=1.0, MF4v2 micro-F1, multi-seed mean±σ)\n\n| Dataset | Seeds | greedy_f1 | mv_f1 | oracle_f1 | Δ_SC (pp) | π_MV | α_crit | δ (degen) | α_crit_eff | Bound Predicts | Empirical |\n|---------|-------|-----------|-------|-----------|-----------|------|--------|-----------|------------|----------------|-----------|\n| FewNERD | 3 (42/123/456) | 0.7911 | 0.7828 | 0.8851 | **−0.83±0.38** | 0.7828 | 0.6430 | 8.8% | 0.7049 | — | **No** |\n| CoNLL   | 2 (123/456) | 0.9124 | 0.9140 | 0.9522 | **+0.16±0.17** | 0.9140 | 0.8416 | 60.3% | 2.121 | — | **Marginal** |\n| SciERC  | 3 (42/123/456) | 0.6663 | 0.6678 | 0.7808 | **+0.15±0.18** | 0.6678 | 0.5013 | 12.2% | 0.5707 | — | **Marginal** |\n\n- **Δ_SC** = mv_f1 − greedy_f1 (positive = MV wins). All |Δ| < 1pp.\n- **α_crit** = π_MV / (2 − π_MV)\n- **α_crit_eff** = α_crit / (1 − δ). CoNLL α_crit_eff > 1.0 means MV gain is structurally impossible given degeneracy.\n- **δ**: fraction of instances where all N=8 samples produce identical entity sets.\n\n### Per-Seed Detail\n\n#### FewNERD (n=32,565 gold-non-empty instances per seed)\n\n| Seed | greedy_f1 | mv_f1 | oracle_f1 | degen | α_crit | Δ_SC (pp) |\n|------|-----------|-------|-----------|-------|--------|-----------|\n| 42   | 0.7909 | 0.7781 | 0.8802 | 9.1% | 0.6368 | −1.28 |\n| 123  | 0.7909 | 0.7844 | 0.8897 | 9.2% | 0.6453 | −0.64 |\n| 456  | 0.7916 | 0.7857 | 0.8855 | 8.1% | 0.6471 | −0.58 |\n\n#### CoNLL (n=2,756 gold-non-empty instances per seed)\n\n| Seed | greedy_f1 | mv_f1 | oracle_f1 | degen | α_crit | Δ_SC (pp) |\n|------|-----------|-------|-----------|-------|--------|-----------|\n| 123  | 0.9129 | 0.9157 | 0.9543 | 60.4% | 0.8445 | +0.28 |\n| 456  | 0.9118 | 0.9122 | 0.9500 | 60.2% | 0.8386 | +0.04 |\n\n> CoNLL seed 42 MF4v2 未执行（仅 2-seed）。\n\n#### SciERC (n=529 gold-non-empty instances per seed)\n\n| Seed | greedy_f1 | mv_f1 | oracle_f1 | degen | α_crit | Δ_SC (pp) |\n|------|-----------|-------|-----------|-------|--------|-----------|\n| 42   | 0.6663 | 0.6657 | 0.7839 | 13.4% | 0.4989 | −0.06 |\n| 123  | 0.6663 | 0.6689 | 0.7789 | 11.0% | 0.5025 | +0.26 |\n| 456  | 0.6663 | 0.6687 | 0.7795 | 12.1% | 0.5023 | +0.24 |\n\n### Key Finding\n\n**MV ≈ greedy (|Δ| < 1pp)**. SC captures negligible fraction of oracle headroom (4–11pp available).\n\n- FewNERD: MV loses 0.83pp on average. Despite ~9% degeneracy and ~9pp oracle headroom, MV slightly *hurts*.\n- CoNLL: MV gains 0.16pp on average. High degeneracy (60%) means most instances are trivially correct; MV barely moves the needle.\n- SciERC: MV gains 0.15pp on average. Despite ~11pp oracle headroom, MV improvement is negligible.\n\nAgreement signals predict quality (soft_jaccard ρ=0.31–0.46) but MV fails to translate correlation into selection improvement. The bottleneck is structural: entity-level MV aggregates across misaligned span boundaries, introducing errors absent from any individual sample.\n\n### Old vs New Comparison (version history)\n\n| Version | Δ Definition | Metric | FewNERD Δ | CoNLL Δ | SciERC Δ | Status |\n|---------|-------------|--------|-----------|---------|----------|--------|\n| v1 | θ2n − greedy | macro_f1 | +0.89 | −1.09 | +0.76 | ❌ Wrong Δ |\n| v2 | MV − greedy | macro_f1 | −9.21 | −1.37 | −3.03 | ❌ Macro bug |\n| **v3** | **MV − greedy** | **micro_f1** | **−0.83** | **+0.16** | **+0.15** | **✓ Correct** |\n\nv2 → v3 correction: macro-F1 dramatically over-weights instances with few entities where MV tends to produce empty outputs. micro-F1 (aggregate TP/FP/FN) shows MV is approximately neutral, not catastrophically bad.\n\n### Data Sources\n\n- FewNERD: MF4v2 pipeline, Qwen3-8B-FT, N=8, T=1.0\n  - seed 42: `fewnerd_mf4v2_seed42/samples.jsonl` (bjb2-11496)\n  - seed 123: `fewnerd_mf4v2_seed123/samples.jsonl` (bjb2-11496)\n  - seed 456: `fewnerd_mf4v2_seed456/samples.jsonl` (autodl-5090)\n- CoNLL: MF4v2 pipeline, Qwen3-8B-FT, N=8, T=1.0\n  - seed 123: `conll_mf4v2_seed123/samples.jsonl` (bjb2-11496)\n  - seed 456: `conll_mf4v2_seed456/samples.jsonl` (bjb2-11496)\n- SciERC: MF4v2 pipeline, Qwen3-8B-FT, N=8, T=1.0\n  - seed 42: `scierc_mf4v2_seed42/samples.jsonl` (bjb2-11496)\n  - seed 123: `scierc_mf4v2_seed123/samples.jsonl` (autodl-5090)\n  - seed 456: `scierc_mf4v2_seed456/samples.jsonl` (autodl-5090)\n- Computed 2026-05-21 via entity-level exact match (text, type, start, end) with micro-F1 (aggregate TP/FP/FN)\n- MV threshold: entity included if it appears in ≥ N/2 = 4 of 8 samples\n- Oracle: per-instance best-sample by instance F1\n"
+            }
+          },
+          "id": "event-000165"
+        },
+        {
+          "source_line": 166,
+          "timestamp": "2026-05-21T10:00:13.495955+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/alpha_crit_table.md has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000166"
+        },
+        {
+          "source_line": 167,
+          "timestamp": "2026-05-21T10:00:13.496115+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/d220_correction_notes.md",
+              "content": "# D220 α_crit Proposition Correction Notes\n\n## Correction History\n\n### v1 → v2: SC Δ Definition Error (Reviewer #38)\n\n**Problem**: Δ_SC was defined as `θ2n_select_f1 − greedy_f1` (consensus-based sample selection minus greedy). This measures a *selection method* gain, not SC aggregation gain.\n\n**Fix**: Δ_SC = `mv_f1 − greedy_f1` (entity-level majority voting F1 minus greedy F1).\n\n| Dataset | Δ_SC v1 (θ2n−greedy) | Δ_SC v2 (MV−greedy, macro) | Empirical v1 | Empirical v2 |\n|---------|----------------------|---------------------------|--------------|--------------|\n| FewNERD | +0.89 pp | −9.21 pp | Yes | No |\n| CoNLL   | −1.09 pp | −1.37 pp | No | No |\n| SciERC  | +0.76 pp | −3.03 pp | Yes | No |\n\nv2 conclusion: \"SC universally fails\" (3/3 negative Δ).\n\n### v2 → v3: macro_f1 → micro_f1 (Reviewer #47)\n\n**Problem**: v2 used macro-F1 data from MF4 pipeline (which had a greedy_macro_f1 bug). Macro-F1 averages per-instance F1, dramatically over-weighting instances with few entities where MV produces empty outputs → inflated negative Δ.\n\n**Fix**: Recomputed all metrics using MF4v2 pipeline data with micro-F1 (aggregate TP/FP/FN then compute F1).\n\n| Dataset | Δ_SC v2 (macro) | Δ_SC v3 (micro) | Direction Change |\n|---------|-----------------|-----------------|------------------|\n| FewNERD | −9.21 pp | −0.83±0.38 pp | Same sign, 11× smaller |\n| CoNLL   | −1.37 pp | +0.16±0.17 pp | **Sign flip** (neg → pos) |\n| SciERC  | −3.03 pp | +0.15±0.18 pp | **Sign flip** (neg → pos) |\n\nv3 conclusion: MV ≈ greedy (|Δ| < 1pp). SC is not \"universally failing\" — it's approximately neutral. The real limitation is that MV captures negligible fraction of oracle headroom (4–11pp), not that it catastrophically degrades.\n\n## Impact on Paper Narrative\n\n| Claim | v2 (macro, wrong) | v3 (micro, correct) |\n|-------|-------------------|---------------------|\n| SC aggregation effect | \"universally fails\" | \"approximately neutral\" |\n| MV vs greedy | −1.4 to −9.2pp | ±0.8pp |\n| α_crit bound validity | \"predicts success, observes failure\" | \"consistent — marginal signals, marginal gains\" |\n| Core insight | SC destroys quality | SC neither helps nor hurts; bottleneck is alignment, not aggregation |\n\nThe corrected narrative is actually **stronger** for the paper's main claim: \"correlation ≠ selection.\" Under micro-F1, MV is at parity with greedy despite moderate agreement correlations (ρ=0.31–0.46), which means the signals *detect* quality variation but cannot *translate* it into improvement via aggregation. This is a more nuanced and defensible claim than \"SC universally fails.\"\n"
+            }
+          },
+          "id": "event-000167"
+        },
+        {
+          "source_line": 168,
+          "timestamp": "2026-05-21T10:00:13.496346+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/d220_correction_notes.md has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000168"
+        },
+        {
+          "source_line": 169,
+          "timestamp": "2026-05-21T10:00:13.496508+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_artifact"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "tool_args": {
+              "name": "alpha_crit_table_v3",
+              "type": "report",
+              "description": "α_crit entity selection bound v3 — MF4v2 micro_f1 data. MV ≈ greedy (|Δ|<1pp), correcting v1/v2 macro_f1 artifacts. 3-dataset, multi-seed.",
+              "project": "struct_self_consist_ie",
+              "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/alpha_crit_table.md",
+              "tags": "['alpha_crit', 'micro_f1', 'mf4v2', 'd220', 'v3']"
+            }
+          },
+          "id": "event-000169"
+        },
+        {
+          "source_line": 170,
+          "timestamp": "2026-05-21T10:00:13.496672+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260521_1d6921\\\", \\\"name\\\": \\\"alpha_crit_table_v3\\\", \\\"type\\\": \\\"report\\\", \\\"description\\\": \\\"α_crit entity selection bound v3 — MF4v2 micro_f1 data. MV ≈ greedy (|Δ|<1pp), correcting v1/v2 macro_f1 artifacts. 3-dataset, multi-seed.\\\", \\\"path\\\": \\\"projects/struct_self_consist_ie/artifacts/_project/report/alpha_crit_table_1d6921.md\\\", \\\"url\\\": null, \\\"project\\\": \\\"struct_self_consist_ie\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-21T09:59:51.178204+00:00\\\", \\\"tags\\\": [\\\"alpha_crit\\\", \\\"micro_f1\\\", \\\"mf4v2\\\", \\\"d220\\\", \\\"v3\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "elapsed_ms": 0
+          },
+          "id": "event-000170"
+        },
+        {
+          "source_line": 171,
+          "timestamp": "2026-05-21T10:00:13.496817+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_artifact"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "tool_args": {
+              "name": "d220_correction_notes_v3",
+              "type": "report",
+              "description": "D220 α_crit correction history: v1 (wrong Δ) → v2 (macro_f1, \"SC fails\") → v3 (micro_f1, MV ≈ greedy). Documents all three corrections and narrative impact.",
+              "project": "struct_self_consist_ie",
+              "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/d220_correction_notes.md",
+              "tags": "['alpha_crit', 'd220', 'correction', 'v3']"
+            }
+          },
+          "id": "event-000171"
+        },
+        {
+          "source_line": 172,
+          "timestamp": "2026-05-21T10:00:13.496982+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260521_4e5dea\\\", \\\"name\\\": \\\"d220_correction_notes_v3\\\", \\\"type\\\": \\\"report\\\", \\\"description\\\": \\\"D220 α_crit correction history: v1 (wrong Δ) → v2 (macro_f1, \\\\\\\"SC fails\\\\\\\") → v3 (micro_f1, MV ≈ greedy). Documents all three corrections and narrative impact.\\\", \\\"path\\\": \\\"projects/struct_self_consist_ie/artifacts/_project/report/d220_correction_notes_4e5dea.md\\\", \\\"url\\\": null, \\\"project\\\": \\\"struct_self_consist_ie\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-21T09:59:53.597582+00:00\\\", \\\"tags\\\": [\\\"alpha_crit\\\", \\\"d220\\\", \\\"correction\\\", \\\"v3\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "elapsed_ms": 0
+          },
+          "id": "event-000172"
+        },
+        {
+          "source_line": 173,
+          "timestamp": "2026-05-21T10:00:13.497186+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。汇总输出：\n\n---\n\n## 1. MF4v2 micro_f1 原始数据\n\n| 实验 | n | greedy_f1 | mv_f1 | oracle_f1 | degen | Δ_SC (pp) |\n|------|---|-----------|-------|-----------|-------|-----------|\n| fewnerd_s42 | 32565 | 0.7909 | 0.7781 | 0.8802 | 9.1% | −1.28 |\n| fewnerd_s123 | 32565 | 0.7909 | 0.7844 | 0.8897 | 9.2% | −0.64 |\n| fewnerd_s456 | 32565 | 0.7916 | 0.7857 | 0.8855 | 8.1% | −0.58 |\n| conll_s123 | 2756 | 0.9129 | 0.9157 | 0.9543 | 60.4% | +0.28 |\n| conll_s456 | 2756 | 0.9118 | 0.9122 | 0.9500 | 60.2% | +0.04 |\n| scierc_s42 | 529 | 0.6663 | 0.6657 | 0.7839 | 13.4% | −0.06 |\n| scierc_s123 | 529 | 0.6663 | 0.6689 | 0.7789 | 11.0% | +0.26 |\n| scierc_s456 | 529 | 0.6663 | 0.6687 | 0.7795 | 12.1% | +0.24 |\n\n> CoNLL seed42 MF4v2 未执行，仅 2-seed。\n\n## 2. 重算后 α_crit 表（multi-seed mean±σ）\n\n| Dataset | greedy | mv | oracle | Δ_SC (pp) | α_crit | δ | α_crit_eff |\n|---------|--------|------|--------|-----------|--------|------|------------|\n| FewNERD | 0.7911 | 0.7828 | 0.8851 | **−0.83±0.38** | 0.643 | 8.8% | 0.705 |\n| CoNLL | 0.9124 | 0.9140 | 0.9522 | **+0.16±0.17** | 0.842 | 60.3% | 2.121 |\n| SciERC | 0.6663 | 0.6678 | 0.7808 | **+0.15±0.18** | 0.501 | 12.2% | 0.571 |\n\n## 3. 论文中受影响位置\n\ntex 文件中**无直接引用旧的 -9.21/-1.37/-3.03 数值**。这些数值仅存在于：\n- `artifacts/d220_correction_notes.md`（已更新为 v3）\n- `artifacts/alpha_crit_table.md`（已更新为 v3）\n- `artifacts/manifest.yaml` 中旧版描述（历史记录，无需修改）\n- `decisions.yaml`, `mistakes.yaml`, `ROADMAP.md` — 决策/错误日志（历史记录）\n\n论文 tex 中 `theory.tex:19` 有 `−3.09pp at N=8` 和 `−0.87pp` 等数值，但这些是 θ=2/N sweep 数据（不同实验），不是 α_crit 表数据。\n\n## 4. 新旧数值对比\n\n| Dataset | v2 Δ (macro, 错误) | v3 Δ (micro, 正确) | 变化 |\n|---------|-------|-------|------|\n| FewNERD | −9.21pp | −0.83pp | 11× smaller, same sign |\n| CoNLL | −1.37pp | +0.16pp | **Sign flip** |\n| SciERC | −3.03pp | +0.15pp | **Sign flip** |\n\n核心结论修正：~~\"SC universally fails\"~~ → **\"MV ≈ greedy (|Δ| < 1pp)\"**。SC 既不显著改善也不显著恶化，bottleneck 是 alignment 不足，非 aggregation 本身。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702"
+          },
+          "id": "event-000173"
+        }
+      ],
+      "message_count": 173
+    }
+  ],
+  "readable_path": "readable/conversations/cpu-alpha-crit-v3-micro-f1.md"
+}

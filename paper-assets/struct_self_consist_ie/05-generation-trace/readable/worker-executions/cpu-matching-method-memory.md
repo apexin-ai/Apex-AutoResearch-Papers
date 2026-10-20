@@ -1,0 +1,706 @@
+# cpu matching method memory
+
+**When Self-Consistency Fails for NER: Degeneracy, Signal Collapse, and the Correlation-Selection Gap** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 14
+- **Recorded user turns:** 0
+- **Tool calls:** 3
+- **Original source:** `logs/workers/worker_cpu_matching_method_memory_20260521T101142.log`
+- **Structured JSON:** [`adb71ed17d3cefe2a1ba.json`](../../sessions/ad/adb71ed17d3cefe2a1ba.json)
+
+## Before a recorded user message
+
+14 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "session_id": "45e24a7b-2c04-4402-aa5f-522bd305c57a",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__append_idea",
+    "mcp__agent-ml-research__read_project_file",
+    "mcp__agent-ml-research__save_project_file"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "1a02a848-57a7-4352-be18-4b1a19e3580c",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed_warning",
+    "resetsAt": 1779580800,
+    "rateLimitType": "seven_day",
+    "utilization": 0.81,
+    "isUsingOverage": false,
+    "surpassedThreshold": 0.75
+  },
+  "uuid": "06061c22-03a5-44bf-85e9-092a526151a4",
+  "session_id": "45e24a7b-2c04-4402-aa5f-522bd305c57a"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to read the current memory.md file and then add the entity matching difference documentation to it. Let me first load the MCP tools needed.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "45e24a7b-2c04-4402-aa5f-522bd305c57a",
+  "uuid": "c793bcad-4b66-4786-9fd5-667f24980f4a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SFfGq5hDQFkNSXfW8vBLRQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11882,
+      "cache_read_input_tokens": 11701,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11882
+      },
+      "output_tokens": 27,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01Nur97YpdZQswxPmfQKYEVV`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__save_project_file",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "45e24a7b-2c04-4402-aa5f-522bd305c57a",
+  "uuid": "38e17110-2f54-45f9-8f6d-2c395fb20f04",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SFfGq5hDQFkNSXfW8vBLRQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11882,
+      "cache_read_input_tokens": 11701,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11882
+      },
+      "output_tokens": 27,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-21T10:11:59.895Z_
+
+<details><summary>↩ Tool result · `toolu_01Nur97YpdZQswxPmfQKYEVV`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_project_file"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__save_project_file"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "45e24a7b-2c04-4402-aa5f-522bd305c57a",
+  "uuid": "43bedc04-28c6-4ec4-b499-c9051d5e0686",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__save_project_file"
+    ],
+    "query": "select:mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__save_project_file",
+    "total_deferred_tools": 22
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_012ackuSrr8JRiPJe8uYVQUi`</summary>
+
+```json
+{
+  "project": "struct_self_consist_ie",
+  "file": "memory.md",
+  "max_chars": 0
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "45e24a7b-2c04-4402-aa5f-522bd305c57a",
+  "uuid": "8cef0223-ea9e-4466-9d5d-ca478366341d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SaRj75FRAjVB7bBx2JgaSR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 747,
+      "cache_read_input_tokens": 23583,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 747
+      },
+      "output_tokens": 49,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-21T10:12:02.429Z_
+
+<details><summary>↩ Tool result · `toolu_012ackuSrr8JRiPJe8uYVQUi`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/memory.md\", \"content\": \"# Memory\\n\\n## CoNLL N=16 s123/s456 实验失败诊断（2026-05-21）\\n\\n**根因：checkpoint 文件传输未完成，实验提前启动。**\\n\\n两个实验（exp_conll_n16_s123, exp_conll_n16_s456）于 12:51 启动，但 `qwen3-8b-conll2003-merged` checkpoint 正通过 rsync 从另一台 AutoDL 实例传输中（PID 995204），当时仅传输 ~4.1GB / ~16GB。\\n\\n**具体错误**：tokenizer 缺少 `vocab.json` → `TypeError: expected str, bytes or os.PathLike object, not NoneType`（tokenization_qwen2.py:172）\\n\\n**当前状态**（截至 12:55 CST）：\\n- rsync 仍在运行（PID 995203 fewnerd, 995204 conll2003）\\n- `/tmp/auto_launch_conll.sh`（PID 995478）正确等待 rsync 完成后会自动重启实验（cuda:2 s123, cuda:3 s456）\\n- 另有 scp 进程（PID 994963, 994964）同时在跑，导致 checkpoint 目录内有嵌套子目录（rsync 的 trailing slash 应能正确覆盖）\\n\\n**结论**：无需代码修复。等 rsync 完成后 launcher 脚本会自动重跑。若 launcher 的 size check (<15GB) 失败，需手动检查嵌套目录问题并清理。\\n\\n## exp_qwen25_72b_fewshot 完整结果（2026-05-20）\\n\\n实验于 2026-05-20 08:47 完成。模型：Qwen2.5-72B-Instruct-AWQ, 3-shot, N=8 samples, seed=42。\\n\\n### ZS vs FS 完整对比表\\n\\n| Dataset  | Regime | N inst | Degen% | LP ρ   | SJ ρ  | FK ρ  | VC ρ  | EM ρ  | Greedy F1 | Oracle F1 | LP-wt F1 | LP Δ (pp) | p-value |\\n|----------|--------|--------|--------|--------|-------|-------|-------|-------|-----------|-----------|----------|-----------|---------|\\n| SciERC   | ZS     | 529    | 21.0%  | 0.081  | 0.217 | 0.227 | 0.277 | 0.181 | 0.399     | 0.549     | 0.415    | +1.53     | 0.008** |\\n| SciERC   | FS     | 529    | 16.6%  | 0.060  | 0.293 | 0.301 | 0.258 | 0.205 | 0.461     | 0.604     | 0.461    | -0.08     | 0.544   |\\n| CoNLL    | ZS     | 2756   | 67.7%  | -0.002 | 0.304 | 0.302 | 0.297 | 0.281 | 0.712     | 0.765     | 0.708    | -0.37     | n/a     |\\n| CoNLL    | FS     | 2756   | 70.0%  | 0.106  | 0.442 | 0.451 | 0.426 | 0.403 | 0.745     | 0.796     | 0.745    | +0.03     | 0.417   |\\n| FewNERD  | ZS     | 32565  | 46.2%  | 0.119  | 0.345 | 0.321 | 0.416 | 0.303 | 0.628     | 0.707     | 0.626    | -0.20     | n/a     |\\n| FewNERD  | FS     | 32565  | 45.2%  | 0.161  | 0.345 | 0.327 | 0.410 | 0.302 | 0.619     | 0.702     | 0.619    | +0.02     | 0.401   |\\n\\n### Dual-gating hypothesis 评估\\n\\nDual-gating 在 FT+ZS regime 内成立（6/6 条件一致）。FS regime 引入独立失效因素（LP 退化），不构成对 dual-gating 的挑战。\\n\\n### Error Correlation 分析\\n\\n\\\"Demonstration-induced error correlation\\\" 假说缺乏实证支持（FS Jaccard ≈ ZS，CoNLL FS entropy 反而更高）。替代解释：LP signal 在 FS 下区分力退化是 construction 失效的直接原因。\\n\\n## F1 Scaling Law 写作约束（Director 2026-05-20）\\n\\n1. 不报 c 均值 — 分数据集：SciERC c≈0.35, FewNERD c≈0.61\\n2. CoNLL 只报 a 和 b，不报 c（c_se 太大）\\n3. 这是 oracle ceiling scaling，不是 achievable\\n4. LLaMA/FewNERD 仅 4 点拟合 → appendix 注明过拟合风险\\n5. N=1 低于 greedy 需解释（T=1 采样噪声 vs T=0 确定性）\\n\\n## CPU 分析实验汇总（2026-05-20）\\n\\n### E2 Mixture-of-Signals Ensemble\\n- Selection: 5-signal ensemble +0.72pp (p=0.000 ✓); Construction: 无效\\n- LP 占主导 (0.8), VC 为互补信号\\n\\n### E2v2 Per-Regime Ensemble Weights\\n- FT (all): LP=0.9, VC=0.1 → +0.30pp; Qwen3-8B: LP=0.8, VC=0.2 (+0.64pp)\\n- LOO 完全稳定 (10次权重不变)\\n\\n### I Diversity Predictor\\n- Cross-model JSD 强预测 ΔF1（CoNLL ρ=-0.615, R²=0.74）\\n- Within-model diversity 不显著\\n\\n### J Calibration + Conformal\\n- ECE: SciERC 0.098 (overconfident), CoNLL/FewNERD well-calibrated\\n- Conformal 仅 CoNLL 达标 (coverage=0.925)，失败因 recall ceiling\\n\\n## B2 Entity Verifier — D189 OOF 最终结论（2026-05-20）\\n\\n**原始 +3.62pp 中 91% 是 train-on-test 泄露。**\\n\\n| Method | F1 | vs Greedy |\\n|--------|-----|-----------|\\n| Greedy | 0.8216 | — |\\n| Majority Vote | 0.8048 | -1.68pp |\\n| OOF Path A | 0.8246 | **+0.30pp** (not significant) |\\n| OOF Path B | 0.8059 | -1.57pp |\\n\\nPer-dataset: SciERC +1.28pp, CoNLL +0.55pp, FewNERD +0.02pp (≈0)。\\n**B2 verifier 不适合论文 §5 main text。** Registry conclusion: negative.\\n\\n### B2-v2 Multi-Domain Joint Training（2026-05-20）\\n- Joint training (CoNLL+SciERC→FewNERD): AUC 0.8335→0.8477 (+0.014)\\n- **但 F1 delta 仍为负** (-0.008)，AUC 未转化为下游收益\\n- 核心问题：cross-domain ECE=0.136 (IID 仅 0.007)，概率 miscalibrated\\n- 最具判别力 features (vc, sj) 跨域稳定性最差 (std=0.12-0.14)\\n\\n## N Inverse Scaling — 数据验证完成（2026-05-20）\\n\\n- 58 inverse scaling transitions, 40 显著 (paired bootstrap)\\n- 核心机制: θ=2/N 随 N 增大变过于宽松 → precision 崩塌\\n- majority_vote (θ=0.5) 几乎完全免疫\\n- **n=4351 验证通过**: exp_027_fewnerd_n16 是 5000 instance subset (4 shards × 1250)，gold_filter 后 4351。subset F1=0.7926 vs full F1=0.7913 (+0.13pp)，具有代表性。论文引用时注明 subset (n=4351/32565)。\\n\\n## K Robustness Reviewer 反馈（2026-05-20, sprint 后处理）\\n\\n1. 注册实验到 registry\\n2. seed 789 路径命名不一致 — 确认来源\\n3. dropout 非单调性补充 ceil 函数交互解释\\n4. \\\"most robust = uniform\\\" 改 Pareto 分析\\n5. 论文限定为 single config（Qwen 7B FT FewNERD）\\n\\n## [M046] SCD Metric Artifact — 关键教训（2026-05-20）\\n\\n**SCD +3.84pp 提升完全虚假。** Worker 独立验证确认：\\n\\n| 模型 | Micro-F1 | Instance-avg F1 | Δ micro vs Pre-SCD |\\n|------|----------|----------------|-------------------|\\n| Pre-SCD baseline | 0.7886 | 0.7719 | — |\\n| Post-SCD standard | 0.7813 | 0.7703 | **-0.73pp** |\\n| Post-SCD fallback | 0.7866 | 0.7809 | **-0.20pp** |\\n\\n**根因**：`eval_scd.py` 的 `load_pre_metrics()` 从 `full_signal_report.json` 读 baseline `baselines.greedy.mean = 0.7482`，这是 **instance-average F1（gold-filtered, n=32565）**。而 post-SCD 数字是 **micro-F1（full, n=37648）**。双重不可比（metric 类型 + eval 集大小）。\\n\\n**教训**：\\n1. 所有 F1 对比必须统一口径（micro vs macro 明确标注）\\n2. Eval 集大小必须一致（gold-filtered vs full）\\n3. 从旧 report 读 baseline 时，必须确认 metric 计算方式\\n4. SCD 不构成论文贡献\\n\\n## 14B 推理诊断教训（2026-05-21, 第5次误判后更新）\\n\\n### 硬约束诊断规则（Director 2026-05-21 强制）\\n\\n**推理实验存活判定必须同时检查两个信号，缺一不可：**\\n1. `ps -p PID` 确认进程存活\\n2. `nvidia-smi` 确认 GPU 活跃（util > 0% 或 memory > 0）\\n3. **两者都否定** 才能标 failed\\n4. **\\\"无输出文件\\\"单独不能判定失败** — vLLM 在 model loading + CUDA graph compilation 阶段（15-20 min）不产生输出，这是正常行为\\n\\n### 历史误判记录（5次）\\n- M021, M037, M038: 早期 PID 变更导致误判\\n- M047: 诊断 Worker 找不到预期路径就判 failed，实际 14b_final_inference/ 目录完好\\n- M048 (2026-05-21): PID 252310 仍在运行（cuda:0 98% util, elapsed 16min），被 cron+Worker 误标 DONE/failed。Director 第二次手动恢复。\\n\\n### PID 监控误报根因\\n注册的 PID 可能是中间进程（已退出），实际推理在新 PID 下继续。**教训：注册 spec.pid 时用主 python 进程 PID 或 bash wrapper PID。Worker 诊断时要搜索整个进程树。**\\n\\n### 14B 模型单卡 5090 KV cache 极度不足\\n- 模型占 27.57 GiB / 32 GiB GPU，KV cache 仅 1.09 GiB（5920 tokens）\\n- **建议：14B 推理用 tensor_parallel=2（2 卡），释放约 14 GiB 给 KV cache**\\n\\n### enforce_eager 修复 EngineDeadError\\n14B 单卡推理必须 enforce_eager。\\n\\n## [失败模式] LLaMA-Factory 训练无 W&B → cron 误判 failed（2026-05-20）\\n\\n根因：LLaMA-Factory 训练未配置 W&B report_to，cron 监控依赖 W&B sentinel。**教训：LLaMA-Factory 训练配置中加 `report_to: wandb`。** 遇到 \\\"process dead + no W&B\\\" 失败时，优先检查日志尾部是否有正常完成的 train/eval metrics。\\n\\n## OpenRouter API 限制（2026-05-20）\\n\\n- TUM 代理 Base URL: `http://47.94.22.126/v1` — 2026-05-20 余额耗尽 (402)\\n- TUM key (`tum_XXB3...`) 不是 OpenRouter 直连 key（`sk-or-` 格式），不能用于 `https://openrouter.ai/api/v1`\\n- GPT-5.5 只支持 temperature=1.0，设 0.0 返回 HTTP 400\\n- HumanEval greedy baseline 只能用 single-sample T=1.0，非真正 T=0 greedy\\n- **受影响实验**：Frontier SC、Spider SQL (75/200 remaining)、HumanEval (140/164 remaining)\\n\\n## Frontier SC entity_set() Bug 教训（2026-05-20）\\n\\nrun_frontier_sc.py 中 `compute_instance_metrics()` 将 `parse_response()` 返回的完整 dict 传给 `entity_set()`，后者期望 `list[dict]`。3 处调用全错。**教训：parse_response 返回 `{\\\"entities\\\": [...]}` dict，不是 entity list。调用 entity_set 时必须 `.get(\\\"entities\\\", [])`。** 已修复。\\n\\n## Spider SQL SC 跨任务分析（2026-05-20）\\n\\nexp_spider_sc_pilot: GPT-5.5 on Spider-dev, N=8, T=1.0, 196/200 instances。\\n\\n**核心发现：SQL 与 NER 呈完全不同的失效模式分布。**\\n\\n| 指标 | Spider SQL | NER (FewNERD/SciERC) | NER (CoNLL) |\\n|------|-----------|---------------------|-------------|\\n| Degen% | **87.2%** | 10-27% | 85-89% |\\n| Dominant FM | F1 (degeneracy) | F2 (low agreement) | F1 (degeneracy) |\\n| MV gain | +0.51pp | varies | ~0 |\\n| ρ (full) | 0.55* | 0.30-0.42 | 0.43-0.47 |\\n| ρ (non-degen) | 0.13 | — | — |\\n\\n*ρ=0.55 是 ceiling artifact（87% instances at agreement=1.0）。\\n\\n**机制**：SQL 执行结果等价性将语法差异折叠为语义一致 → degeneracy 极高 → MV 无法利用多样性。与 CoNLL（高 baseline + 低 headroom）形成高 degeneracy 的两种不同来源。\\n\\n**论文定位**：Spider SQL 是 cross-task universality 的对比案例——同一 diagnostic cascade 正确诊断了不同任务上的不同瓶颈。\\n\\n## 32B QLoRA 训练完成（2026-05-21）\\n\\n- 41180 steps, best eval_loss=0.0334 @ step 32000, epoch 4-5 过拟合\\n- LoRA merge: checkpoint-32000 → qwen25-32b-fewnerd-merged (14 shards, ~61GB bf16)\\n- 32B inference 启动: PID 978386, 4×TP on 5090, 37648 instances, N=8 T=1.0 seed=42\\n- 磁盘剩余 22GB (250G 盘 92% 已用) — 需监控\\n\\n## CoNLL T-ablation seed=123 完成（2026-05-21）\\n\\n| T | greedy_f1 | oracle_f1 | κ_mean | ρ(κ,F1) | ρ(SJ,F1) | Δ_struct | Verdict |\\n|---|-----------|-----------|--------|---------|----------|----------|---------|\\n| 0.5 | 0.9073 | 0.9351 | 0.894 | 0.453 | 0.460 | +0.007 | PASS |\\n| 0.8 | 0.9068 | 0.9466 | 0.825 | 0.472 | 0.485 | +0.013 | PASS |\\n| 1.2 | 0.9072 | 0.9550 | 0.668 | 0.409 | 0.435 | +0.027 | PASS |\\n\\nT=0.8 sweet-spot (highest ρ) replicated across seed=42 and seed=123. T=1.2 highest structural advantage but lowest absolute correlation.\\n\\n## FewNERD T-ablation seed=42 完成（2026-05-21）\\n\\n| Metric | T=0.5 | T=0.8 | T=1.2 |\\n|--------|-------|-------|-------|\\n| greedy_f1 | 0.788 | 0.788 | 0.789 |\\n| oracle_f1 | 0.857 | 0.875 | 0.875 |\\n| degeneracy_rate | 14.6% | 19.0% | 28.2% |\\n| ρ(SJ,F1) full | **0.267** | 0.206 | 0.136 |\\n| ρ(SJ,F1) cond | **0.299** | 0.225 | 0.213 |\\n| LP_baseline ρ | 0.356 | 0.232 | 0.103 |\\n\\nFewNERD sweet-spot 在 T=0.5（最高 ρ），与 CoNLL 的 T=0.8 sweet-spot 不同。T↑ → degen↑, ρ↓ 趋势一致。\\n\\n## P0-1 Hidden State Probe — D215 GroupKFold 修正后最终结果（2026-05-21）\\n\\n**⚠️ 原始 StratifiedKFold AUROC (0.98-0.99) 存在严重 instance 信息泄露。GroupKFold 修正后结果：**\\n\\n| Dataset | Instances | Entities | GroupKFold AUROC | StratifiedKFold (leaky) | Leakage Δ | vs MV (0.87) |\\n|---------|-----------|----------|-----------------|------------------------|-----------|-------------|\\n| **CoNLL** | 850 | 14,777 | **0.8824 ± 0.0001** | 0.9786 | +0.096 | **> MV ✅** |\\n| **FewNERD** | 1,698 | 41,096 | **0.6361 ± 0.0001** | 0.9802 | +0.344 | < MV ❌ |\\n| **SciERC** | 539 | 13,188 | **0.6304 ± 0.0002** | 0.9763 | +0.346 | < MV ❌ |\\n\\nBaselines: MV Agreement AUROC = 0.87, ESJ = 0.51, Random = 0.50\\n\\n### 泄露原因\\nEntity-level StratifiedKFold 将同一 instance 的不同 entity 分到 train/test → instance 级别信息泄露。GroupKFold(groups=instance_idx) 保证同一 instance 的所有 entity 在同一 fold。\\n\\n### 论文 Contribution #3 叙事影响\\n- **原叙事** \\\"Probe >> MV → info exists but prompt fails\\\" **只对 CoNLL 成立**\\n- CoNLL (0.882 > MV 0.87): 简单 NER 的 hidden states 编码了足够的实体质量信号\\n- FewNERD/SciERC (0.63): 高于 random/ESJ 但远低于 MV → SC 的 multi-sample voting 创造了单次推理 representation 中不存在的额外信号\\n- **泄露量化本身有方法论价值**：StratifiedKFold vs GroupKFold 差 0.34，揭示 entity-level probe 评估中 instance leakage 的严重性\\n\\n### 决策依据\\n- 500-inst 子集与 full-data 高度一致（Δ < 0.02），确认子集结论稳健\\n- LODO 近随机 (0.56-0.67) 与 GroupKFold 较低 AUROC 一致：跨 instance 泛化能力弱\\n\", \"total_chars\": 10284, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "45e24a7b-2c04-4402-aa5f-522bd305c57a",
+  "uuid": "a1ab4641-866e-4cc0-98f0-23d498513738",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/memory.md\\\", \\\"content\\\": \\\"# Memory\\\\n\\\\n## CoNLL N=16 s123/s456 实验失败诊断（2026-05-21）\\\\n\\\\n**根因：checkpoint 文件传输未完成，实验提前启动。**\\\\n\\\\n两个实验（exp_conll_n16_s123, exp_conll_n16_s456）于 12:51 启动，但 `qwen3-8b-conll2003-merged` checkpoint 正通过 rsync 从另一台 AutoDL 实例传输中（PID 995204），当时仅传输 ~4.1GB / ~16GB。\\\\n\\\\n**具体错误**：tokenizer 缺少 `vocab.json` → `TypeError: expected str, bytes or os.PathLike object, not NoneType`（tokenization_qwen2.py:172）\\\\n\\\\n**当前状态**（截至 12:55 CST）：\\\\n- rsync 仍在运行（PID 995203 fewnerd, 995204 conll2003）\\\\n- `/tmp/auto_launch_conll.sh`（PID 995478）正确等待 rsync 完成后会自动重启实验（cuda:2 s123, cuda:3 s456）\\\\n- 另有 scp 进程（PID 994963, 994964）同时在跑，导致 checkpoint 目录内有嵌套子目录（rsync 的 trailing slash 应能正确覆盖）\\\\n\\\\n**结论**：无需代码修复。等 rsync 完成后 launcher 脚本会自动重跑。若 launcher 的 size check (<15GB) 失败，需手动检查嵌套目录问题并清理。\\\\n\\\\n## exp_qwen25_72b_fewshot 完整结果（2026-05-20）\\\\n\\\\n实验于 2026-05-20 08:47 完成。模型：Qwen2.5-72B-Instruct-AWQ, 3-shot, N=8 samples, seed=42。\\\\n\\\\n### ZS vs FS 完整对比表\\\\n\\\\n| Dataset  | Regime | N inst | Degen% | LP ρ   | SJ ρ  | FK ρ  | VC ρ  | EM ρ  | Greedy F1 | Oracle F1 | LP-wt F1 | LP Δ (pp) | p-value |\\\\n|----------|--------|--------|--------|--------|-------|-------|-------|-------|-----------|-----------|----------|-----------|---------|\\\\n| SciERC   | ZS     | 529    | 21.0%  | 0.081  | 0.217 | 0.227 | 0.277 | 0.181 | 0.399     | 0.549     | 0.415    | +1.53     | 0.008** |\\\\n| SciERC   | FS     | 529    | 16.6%  | 0.060  | 0.293 | 0.301 | 0.258 | 0.205 | 0.461     | 0.604     | 0.461    | -0.08     | 0.544   |\\\\n| CoNLL    | ZS     | 2756   | 67.7%  | -0.002 | 0.304 | 0.302 | 0.297 | 0.281 | 0.712     | 0.765     | 0.708    | -0.37     | n/a     |\\\\n| CoNLL    | FS     | 2756   | 70.0%  | 0.106  | 0.442 | 0.451 | 0.426 | 0.403 | 0.745     | 0.796     | 0.745    | +0.03     | 0.417   |\\\\n| FewNERD  | ZS     | 32565  | 46.2%  | 0.119  | 0.345 | 0.321 | 0.416 | 0.303 | 0.628     | 0.707     | 0.626    | -0.20     | n/a     |\\\\n| FewNERD  | FS     | 32565  | 45.2%  | 0.161  | 0.345 | 0.327 | 0.410 | 0.302 | 0.619     | 0.702     | 0.619    | +0.02     | 0.401   |\\\\n\\\\n### Dual-gating hypothesis 评估\\\\n\\\\nDual-gating 在 FT+ZS regime 内成立（6/6 条件一致）。FS regime 引入独立失效因素（LP 退化），不构成对 dual-gating 的挑战。\\\\n\\\\n### Error Correlation 分析\\\\n\\\\n\\\\\\\"Demonstration-induced error correlation\\\\\\\" 假说缺乏实证支持（FS Jaccard ≈ ZS，CoNLL FS entropy 反而更高）。替代解释：LP signal 在 FS 下区分力退化是 construction 失效的直接原因。\\\\n\\\\n## F1 Scaling Law 写作约束（Director 2026-05-20）\\\\n\\\\n1. 不报 c 均值 — 分数据集：SciERC c≈0.35, FewNERD c≈0.61\\\\n2. CoNLL 只报 a 和 b，不报 c（c_se 太大）\\\\n3. 这是 oracle ceiling scaling，不是 achievable\\\\n4. LLaMA/FewNERD 仅 4 点拟合 → appendix 注明过拟合风险\\\\n5. N=1 低于 greedy 需解释（T=1 采样噪声 vs T=0 确定性）\\\\n\\\\n## CPU 分析实验汇总（2026-05-20）\\\\n\\\\n### E2 Mixture-of-Signals Ensemble\\\\n- Selection: 5-signal ensemble +0.72pp (p=0.000 ✓); Construction: 无效\\\\n- LP 占主导 (0.8), VC 为互补信号\\\\n\\\\n### E2v2 Per-Regime Ensemble Weights\\\\n- FT (all): LP=0.9, VC=0.1 → +0.30pp; Qwen3-8B: LP=0.8, VC=0.2 (+0.64pp)\\\\n- LOO 完全稳定 (10次权重不变)\\\\n\\\\n### I Diversity Predictor\\\\n- Cross-model JSD 强预测 ΔF1（CoNLL ρ=-0.615, R²=0.74）\\\\n- Within-model diversity 不显著\\\\n\\\\n### J Calibration + Conformal\\\\n- ECE: SciERC 0.098 (overconfident), CoNLL/FewNERD well-calibrated\\\\n- Conformal 仅 CoNLL 达标 (coverage=0.925)，失败因 recall ceiling\\\\n\\\\n## B2 Entity Verifier — D189 OOF 最终结论（2026-05-20）\\\\n\\\\n**原始 +3.62pp 中 91% 是 train-on-test 泄露。**\\\\n\\\\n| Method | F1 | vs Greedy |\\\\n|--------|-----|-----------|\\\\n| Greedy | 0.8216 | — |\\\\n| Majority Vote | 0.8048 | -1.68pp |\\\\n| OOF Path A | 0.8246 | **+0.30pp** (not significant) |\\\\n| OOF Path B | 0.8059 | -1.57pp |\\\\n\\\\nPer-dataset: SciERC +1.28pp, CoNLL +0.55pp, FewNERD +0.02pp (≈0)。\\\\n**B2 verifier 不适合论文 §5 main text。** Registry conclusion: negative.\\\\n\\\\n### B2-v2 Multi-Domain Joint Training（2026-05-20）\\\\n- Joint training (CoNLL+SciERC→FewNERD): AUC 0.8335→0.8477 (+0.014)\\\\n- **但 F1 delta 仍为负** (-0.008)，AUC 未转化为下游收益\\\\n- 核心问题：cross-domain ECE=0.136 (IID 仅 0.007)，概率 miscalibrated\\\\n- 最具判别力 features (vc, sj) 跨域稳定性最差 (std=0.12-0.14)\\\\n\\\\n## N Inverse Scaling — 数据验证完成（2026-05-20）\\\\n\\\\n- 58 inverse scaling transitions, 40 显著 (paired bootstrap)\\\\n- 核心机制: θ=2/N 随 N 增大变过于宽松 → precision 崩塌\\\\n- majority_vote (θ=0.5) 几乎完全免疫\\\\n- **n=4351 验证通过**: exp_027_fewnerd_n16 是 5000 instance subset (4 shards × 1250)，gold_filter 后 4351。subset F1=0.7926 vs full F1=0.7913 (+0.13pp)，具有代表性。论文引用时注明 subset (n=4351/32565)。\\\\n\\\\n## K Robustness Reviewer 反馈（2026-05-20, sprint 后处理）\\\\n\\\\n1. 注册实验到 registry\\\\n2. seed 789 路径命名不一致 — 确认来源\\\\n3. dropout 非单调性补充 ceil 函数交互解释\\\\n4. \\\\\\\"most robust = uniform\\\\\\\" 改 Pareto 分析\\\\n5. 论文限定为 single config（Qwen 7B FT FewNERD）\\\\n\\\\n## [M046] SCD Metric Artifact — 关键教训（2026-05-20）\\\\n\\\\n**SCD +3.84pp 提升完全虚假。** Worker 独立验证确认：\\\\n\\\\n| 模型 | Micro-F1 | Instance-avg F1 | Δ micro vs Pre-SCD |\\\\n|------|----------|----------------|-------------------|\\\\n| Pre-SCD baseline | 0.7886 | 0.7719 | — |\\\\n| Post-SCD standard | 0.7813 | 0.7703 | **-0.73pp** |\\\\n| Post-SCD fallback | 0.7866 | 0.7809 | **-0.20pp** |\\\\n\\\\n**根因**：`eval_scd.py` 的 `load_pre_metrics()` 从 `full_signal_report.json` 读 baseline `baselines.greedy.mean = 0.7482`，这是 **instance-average F1（gold-filtered, n=32565）**。而 post-SCD 数字是 **micro-F1（full, n=37648）**。双重不可比（metric 类型 + eval 集大小）。\\\\n\\\\n**教训**：\\\\n1. 所有 F1 对比必须统一口径（micro vs macro 明确标注）\\\\n2. Eval 集大小必须一致（gold-filtered vs full）\\\\n3. 从旧 report 读 baseline 时，必须确认 metric 计算方式\\\\n4. SCD 不构成论文贡献\\\\n\\\\n## 14B 推理诊断教训（2026-05-21, 第5次误判后更新）\\\\n\\\\n### 硬约束诊断规则（Director 2026-05-21 强制）\\\\n\\\\n**推理实验存活判定必须同时检查两个信号，缺一不可：**\\\\n1. `ps -p PID` 确认进程存活\\\\n2. `nvidia-smi` 确认 GPU 活跃（util > 0% 或 memory > 0）\\\\n3. **两者都否定** 才能标 failed\\\\n4. **\\\\\\\"无输出文件\\\\\\\"单独不能判定失败** — vLLM 在 model loading + CUDA graph compilation 阶段（15-20 min）不产生输出，这是正常行为\\\\n\\\\n### 历史误判记录（5次）\\\\n- M021, M037, M038: 早期 PID 变更导致误判\\\\n- M047: 诊断 Worker 找不到预期路径就判 failed，实际 14b_final_inference/ 目录完好\\\\n- M048 (2026-05-21): PID 252310 仍在运行（cuda:0 98% util, elapsed 16min），被 cron+Worker 误标 DONE/failed。Director 第二次手动恢复。\\\\n\\\\n### PID 监控误报根因\\\\n注册的 PID 可能是中间进程（已退出），实际推理在新 PID 下继续。**教训：注册 spec.pid 时用主 python 进程 PID 或 bash wrapper PID。Worker 诊断时要搜索整个进程树。**\\\\n\\\\n### 14B 模型单卡 5090 KV cache 极度不足\\\\n- 模型占 27.57 GiB / 32 GiB GPU，KV cache 仅 1.09 GiB（5920 tokens）\\\\n- **建议：14B 推理用 tensor_parallel=2（2 卡），释放约 14 GiB 给 KV cache**\\\\n\\\\n### enforce_eager 修复 EngineDeadError\\\\n14B 单卡推理必须 enforce_eager。\\\\n\\\\n## [失败模式] LLaMA-Factory 训练无 W&B → cron 误判 failed（2026-05-20）\\\\n\\\\n根因：LLaMA-Factory 训练未配置 W&B report_to，cron 监控依赖 W&B sentinel。**教训：LLaMA-Factory 训练配置中加 `report_to: wandb`。** 遇到 \\\\\\\"process dead + no W&B\\\\\\\" 失败时，优先检查日志尾部是否有正常完成的 train/eval metrics。\\\\n\\\\n## OpenRouter API 限制（2026-05-20）\\\\n\\\\n- TUM 代理 Base URL: `http://47.94.22.126/v1` — 2026-05-20 余额耗尽 (402)\\\\n- TUM key (`tum_XXB3...`) 不是 OpenRouter 直连 key（`sk-or-` 格式），不能用于 `https://openrouter.ai/api/v1`\\\\n- GPT-5.5 只支持 temperature=1.0，设 0.0 返回 HTTP 400\\\\n- HumanEval greedy baseline 只能用 single-sample T=1.0，非真正 T=0 greedy\\\\n- **受影响实验**：Frontier SC、Spider SQL (75/200 remaining)、HumanEval (140/164 remaining)\\\\n\\\\n## Frontier SC entity_set() Bug 教训（2026-05-20）\\\\n\\\\nrun_frontier_sc.py 中 `compute_instance_metrics()` 将 `parse_response()` 返回的完整 dict 传给 `entity_set()`，后者期望 `list[dict]`。3 处调用全错。**教训：parse_response 返回 `{\\\\\\\"entities\\\\\\\": [...]}` dict，不是 entity list。调用 entity_set 时必须 `.get(\\\\\\\"entities\\\\\\\", [])`。** 已修复。\\\\n\\\\n## Spider SQL SC 跨任务分析（2026-05-20）\\\\n\\\\nexp_spider_sc_pilot: GPT-5.5 on Spider-dev, N=8, T=1.0, 196/200 instances。\\\\n\\\\n**核心发现：SQL 与 NER 呈完全不同的失效模式分布。**\\\\n\\\\n| 指标 | Spider SQL | NER (FewNERD/SciERC) | NER (CoNLL) |\\\\n|------|-----------|---------------------|-------------|\\\\n| Degen% | **87.2%** | 10-27% | 85-89% |\\\\n| Dominant FM | F1 (degeneracy) | F2 (low agreement) | F1 (degeneracy) |\\\\n| MV gain | +0.51pp | varies | ~0 |\\\\n| ρ (full) | 0.55* | 0.30-0.42 | 0.43-0.47 |\\\\n| ρ (non-degen) | 0.13 | — | — |\\\\n\\\\n*ρ=0.55 是 ceiling artifact（87% instances at agreement=1.0）。\\\\n\\\\n**机制**：SQL 执行结果等价性将语法差异折叠为语义一致 → degeneracy 极高 → MV 无法利用多样性。与 CoNLL（高 baseline + 低 headroom）形成高 degeneracy 的两种不同来源。\\\\n\\\\n**论文定位**：Spider SQL 是 cross-task universality 的对比案例——同一 diagnostic cascade 正确诊断了不同任务上的不同瓶颈。\\\\n\\\\n## 32B QLoRA 训练完成（2026-05-21）\\\\n\\\\n- 41180 steps, best eval_loss=0.0334 @ step 32000, epoch 4-5 过拟合\\\\n- LoRA merge: checkpoint-32000 → qwen25-32b-fewnerd-merged (14 shards, ~61GB bf16)\\\\n- 32B inference 启动: PID 978386, 4×TP on 5090, 37648 instances, N=8 T=1.0 seed=42\\\\n- 磁盘剩余 22GB (250G 盘 92% 已用) — 需监控\\\\n\\\\n## CoNLL T-ablation seed=123 完成（2026-05-21）\\\\n\\\\n| T | greedy_f1 | oracle_f1 | κ_mean | ρ(κ,F1) | ρ(SJ,F1) | Δ_struct | Verdict |\\\\n|---|-----------|-----------|--------|---------|----------|----------|---------|\\\\n| 0.5 | 0.9073 | 0.9351 | 0.894 | 0.453 | 0.460 | +0.007 | PASS |\\\\n| 0.8 | 0.9068 | 0.9466 | 0.825 | 0.472 | 0.485 | +0.013 | PASS |\\\\n| 1.2 | 0.9072 | 0.9550 | 0.668 | 0.409 | 0.435 | +0.027 | PASS |\\\\n\\\\nT=0.8 sweet-spot (highest ρ) replicated across seed=42 and seed=123. T=1.2 highest structural advantage but lowest absolute correlation.\\\\n\\\\n## FewNERD T-ablation seed=42 完成（2026-05-21）\\\\n\\\\n| Metric | T=0.5 | T=0.8 | T=1.2 |\\\\n|--------|-------|-------|-------|\\\\n| greedy_f1 | 0.788 | 0.788 | 0.789 |\\\\n| oracle_f1 | 0.857 | 0.875 | 0.875 |\\\\n| degeneracy_rate | 14.6% | 19.0% | 28.2% |\\\\n| ρ(SJ,F1) full | **0.267** | 0.206 | 0.136 |\\\\n| ρ(SJ,F1) cond | **0.299** | 0.225 | 0.213 |\\\\n| LP_baseline ρ | 0.356 | 0.232 | 0.103 |\\\\n\\\\nFewNERD sweet-spot 在 T=0.5（最高 ρ），与 CoNLL 的 T=0.8 sweet-spot 不同。T↑ → degen↑, ρ↓ 趋势一致。\\\\n\\\\n## P0-1 Hidden State Probe — D215 GroupKFold 修正后最终结果（2026-05-21）\\\\n\\\\n**⚠️ 原始 StratifiedKFold AUROC (0.98-0.99) 存在严重 instance 信息泄露。GroupKFold 修正后结果：**\\\\n\\\\n| Dataset | Instances | Entities | GroupKFold AUROC | StratifiedKFold (leaky) | Leakage Δ | vs MV (0.87) |\\\\n|---------|-----------|----------|-----------------|------------------------|-----------|-------------|\\\\n| **CoNLL** | 850 | 14,777 | **0.8824 ± 0.0001** | 0.9786 | +0.096 | **> MV ✅** |\\\\n| **FewNERD** | 1,698 | 41,096 | **0.6361 ± 0.0001** | 0.9802 | +0.344 | < MV ❌ |\\\\n| **SciERC** | 539 | 13,188 | **0.6304 ± 0.0002** | 0.9763 | +0.346 | < MV ❌ |\\\\n\\\\nBaselines: MV Agreement AUROC = 0.87, ESJ = 0.51, Random = 0.50\\\\n\\\\n### 泄露原因\\\\nEntity-level StratifiedKFold 将同一 instance 的不同 entity 分到 train/test → instance 级别信息泄露。GroupKFold(groups=instance_idx) 保证同一 instance 的所有 entity 在同一 fold。\\\\n\\\\n### 论文 Contribution #3 叙事影响\\\\n- **原叙事** \\\\\\\"Probe >> MV → info exists but prompt fails\\\\\\\" **只对 CoNLL 成立**\\\\n- CoNLL (0.882 > MV 0.87): 简单 NER 的 hidden states 编码了足够的实体质量信号\\\\n- FewNERD/SciERC (0.63): 高于 random/ESJ 但远低于 MV → SC 的 multi-sample voting 创造了单次推理 representation 中不存在的额外信号\\\\n- **泄露量化本身有方法论价值**：StratifiedKFold vs GroupKFold 差 0.34，揭示 entity-level probe 评估中 instance leakage 的严重性\\\\n\\\\n### 决策依据\\\\n- 500-inst 子集与 full-data 高度一致（Δ < 0.02），确认子集结论稳健\\\\n- LODO 近随机 (0.56-0.67) 与 GroupKFold 较低 AUROC 一致：跨 instance 泛化能力弱\\\\n\\\", \\\"total_chars\\\": 10284, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/memory.md\", \"content\": \"# Memory\\n\\n## CoNLL N=16 s123/s456 实验失败诊断（2026-05-21）\\n\\n**根因：checkpoint 文件传输未完成，实验提前启动。**\\n\\n两个实验（exp_conll_n16_s123, exp_conll_n16_s456）于 12:51 启动，但 `qwen3-8b-conll2003-merged` checkpoint 正通过 rsync 从另一台 AutoDL 实例传输中（PID 995204），当时仅传输 ~4.1GB / ~16GB。\\n\\n**具体错误**：tokenizer 缺少 `vocab.json` → `TypeError: expected str, bytes or os.PathLike object, not NoneType`（tokenization_qwen2.py:172）\\n\\n**当前状态**（截至 12:55 CST）：\\n- rsync 仍在运行（PID 995203 fewnerd, 995204 conll2003）\\n- `/tmp/auto_launch_conll.sh`（PID 995478）正确等待 rsync 完成后会自动重启实验（cuda:2 s123, cuda:3 s456）\\n- 另有 scp 进程（PID 994963, 994964）同时在跑，导致 checkpoint 目录内有嵌套子目录（rsync 的 trailing slash 应能正确覆盖）\\n\\n**结论**：无需代码修复。等 rsync 完成后 launcher 脚本会自动重跑。若 launcher 的 size check (<15GB) 失败，需手动检查嵌套目录问题并清理。\\n\\n## exp_qwen25_72b_fewshot 完整结果（2026-05-20）\\n\\n实验于 2026-05-20 08:47 完成。模型：Qwen2.5-72B-Instruct-AWQ, 3-shot, N=8 samples, seed=42。\\n\\n### ZS vs FS 完整对比表\\n\\n| Dataset  | Regime | N inst | Degen% | LP ρ   | SJ ρ  | FK ρ  | VC ρ  | EM ρ  | Greedy F1 | Oracle F1 | LP-wt F1 | LP Δ (pp) | p-value |\\n|----------|--------|--------|--------|--------|-------|-------|-------|-------|-----------|-----------|----------|-----------|---------|\\n| SciERC   | ZS     | 529    | 21.0%  | 0.081  | 0.217 | 0.227 | 0.277 | 0.181 | 0.399     | 0.549     | 0.415    | +1.53     | 0.008** |\\n| SciERC   | FS     | 529    | 16.6%  | 0.060  | 0.293 | 0.301 | 0.258 | 0.205 | 0.461     | 0.604     | 0.461    | -0.08     | 0.544   |\\n| CoNLL    | ZS     | 2756   | 67.7%  | -0.002 | 0.304 | 0.302 | 0.297 | 0.281 | 0.712     | 0.765     | 0.708    | -0.37     | n/a     |\\n| CoNLL    | FS     | 2756   | 70.0%  | 0.106  | 0.442 | 0.451 | 0.426 | 0.403 | 0.745     | 0.796     | 0.745    | +0.03     | 0.417   |\\n| FewNERD  | ZS     | 32565  | 46.2%  | 0.119  | 0.345 | 0.321 | 0.416 | 0.303 | 0.628     | 0.707     | 0.626    | -0.20     | n/a     |\\n| FewNERD  | FS     | 32565  | 45.2%  | 0.161  | 0.345 | 0.327 | 0.410 | 0.302 | 0.619     | 0.702     | 0.619    | +0.02     | 0.401   |\\n\\n### Dual-gating hypothesis 评估\\n\\nDual-gating 在 FT+ZS regime 内成立（6/6 条件一致）。FS regime 引入独立失效因素（LP 退化），不构成对 dual-gating 的挑战。\\n\\n### Error Correlation 分析\\n\\n\\\"Demonstration-induced error correlation\\\" 假说缺乏实证支持（FS Jaccard ≈ ZS，CoNLL FS entropy 反而更高）。替代解释：LP signal 在 FS 下区分力退化是 construction 失效的直接原因。\\n\\n## F1 Scaling Law 写作约束（Director 2026-05-20）\\n\\n1. 不报 c 均值 — 分数据集：SciERC c≈0.35, FewNERD c≈0.61\\n2. CoNLL 只报 a 和 b，不报 c（c_se 太大）\\n3. 这是 oracle ceiling scaling，不是 achievable\\n4. LLaMA/FewNERD 仅 4 点拟合 → appendix 注明过拟合风险\\n5. N=1 低于 greedy 需解释（T=1 采样噪声 vs T=0 确定性）\\n\\n## CPU 分析实验汇总（2026-05-20）\\n\\n### E2 Mixture-of-Signals Ensemble\\n- Selection: 5-signal ensemble +0.72pp (p=0.000 ✓); Construction: 无效\\n- LP 占主导 (0.8), VC 为互补信号\\n\\n### E2v2 Per-Regime Ensemble Weights\\n- FT (all): LP=0.9, VC=0.1 → +0.30pp; Qwen3-8B: LP=0.8, VC=0.2 (+0.64pp)\\n- LOO 完全稳定 (10次权重不变)\\n\\n### I Diversity Predictor\\n- Cross-model JSD 强预测 ΔF1（CoNLL ρ=-0.615, R²=0.74）\\n- Within-model diversity 不显著\\n\\n### J Calibration + Conformal\\n- ECE: SciERC 0.098 (overconfident), CoNLL/FewNERD well-calibrated\\n- Conformal 仅 CoNLL 达标 (coverage=0.925)，失败因 recall ceiling\\n\\n## B2 Entity Verifier — D189 OOF 最终结论（2026-05-20）\\n\\n**原始 +3.62pp 中 91% 是 train-on-test 泄露。**\\n\\n| Method | F1 | vs Greedy |\\n|--------|-----|-----------|\\n| Greedy | 0.8216 | — |\\n| Majority Vote | 0.8048 | -1.68pp |\\n| OOF Path A | 0.8246 | **+0.30pp** (not significant) |\\n| OOF Path B | 0.8059 | -1.57pp |\\n\\nPer-dataset: SciERC +1.28pp, CoNLL +0.55pp, FewNERD +0.02pp (≈0)。\\n**B2 verifier 不适合论文 §5 main text。** Registry conclusion: negative.\\n\\n### B2-v2 Multi-Domain Joint Training（2026-05-20）\\n- Joint training (CoNLL+SciERC→FewNERD): AUC 0.8335→0.8477 (+0.014)\\n- **但 F1 delta 仍为负** (-0.008)，AUC 未转化为下游收益\\n- 核心问题：cross-domain ECE=0.136 (IID 仅 0.007)，概率 miscalibrated\\n- 最具判别力 features (vc, sj) 跨域稳定性最差 (std=0.12-0.14)\\n\\n## N Inverse Scaling — 数据验证完成（2026-05-20）\\n\\n- 58 inverse scaling transitions, 40 显著 (paired bootstrap)\\n- 核心机制: θ=2/N 随 N 增大变过于宽松 → precision 崩塌\\n- majority_vote (θ=0.5) 几乎完全免疫\\n- **n=4351 验证通过**: exp_027_fewnerd_n16 是 5000 instance subset (4 shards × 1250)，gold_filter 后 4351。subset F1=0.7926 vs full F1=0.7913 (+0.13pp)，具有代表性。论文引用时注明 subset (n=4351/32565)。\\n\\n## K Robustness Reviewer 反馈（2026-05-20, sprint 后处理）\\n\\n1. 注册实验到 registry\\n2. seed 789 路径命名不一致 — 确认来源\\n3. dropout 非单调性补充 ceil 函数交互解释\\n4. \\\"most robust = uniform\\\" 改 Pareto 分析\\n5. 论文限定为 single config（Qwen 7B FT FewNERD）\\n\\n## [M046] SCD Metric Artifact — 关键教训（2026-05-20）\\n\\n**SCD +3.84pp 提升完全虚假。** Worker 独立验证确认：\\n\\n| 模型 | Micro-F1 | Instance-avg F1 | Δ micro vs Pre-SCD |\\n|------|----------|----------------|-------------------|\\n| Pre-SCD baseline | 0.7886 | 0.7719 | — |\\n| Post-SCD standard | 0.7813 | 0.7703 | **-0.73pp** |\\n| Post-SCD fallback | 0.7866 | 0.7809 | **-0.20pp** |\\n\\n**根因**：`eval_scd.py` 的 `load_pre_metrics()` 从 `full_signal_report.json` 读 baseline `baselines.greedy.mean = 0.7482`，这是 **instance-average F1（gold-filtered, n=32565）**。而 post-SCD 数字是 **micro-F1（full, n=37648）**。双重不可比（metric 类型 + eval 集大小）。\\n\\n**教训**：\\n1. 所有 F1 对比必须统一口径（micro vs macro 明确标注）\\n2. Eval 集大小必须一致（gold-filtered vs full）\\n3. 从旧 report 读 baseline 时，必须确认 metric 计算方式\\n4. SCD 不构成论文贡献\\n\\n## 14B 推理诊断教训（2026-05-21, 第5次误判后更新）\\n\\n### 硬约束诊断规则（Director 2026-05-21 强制）\\n\\n**推理实验存活判定必须同时检查两个信号，缺一不可：**\\n1. `ps -p PID` 确认进程存活\\n2. `nvidia-smi` 确认 GPU 活跃（util > 0% 或 memory > 0）\\n3. **两者都否定** 才能标 failed\\n4. **\\\"无输出文件\\\"单独不能判定失败** — vLLM 在 model loading + CUDA graph compilation 阶段（15-20 min）不产生输出，这是正常行为\\n\\n### 历史误判记录（5次）\\n- M021, M037, M038: 早期 PID 变更导致误判\\n- M047: 诊断 Worker 找不到预期路径就判 failed，实际 14b_final_inference/ 目录完好\\n- M048 (2026-05-21): PID 252310 仍在运行（cuda:0 98% util, elapsed 16min），被 cron+Worker 误标 DONE/failed。Director 第二次手动恢复。\\n\\n### PID 监控误报根因\\n注册的 PID 可能是中间进程（已退出），实际推理在新 PID 下继续。**教训：注册 spec.pid 时用主 python 进程 PID 或 bash wrapper PID。Worker 诊断时要搜索整个进程树。**\\n\\n### 14B 模型单卡 5090 KV cache 极度不足\\n- 模型占 27.57 GiB / 32 GiB GPU，KV cache 仅 1.09 GiB（5920 tokens）\\n- **建议：14B 推理用 tensor_parallel=2（2 卡），释放约 14 GiB 给 KV cache**\\n\\n### enforce_eager 修复 EngineDeadError\\n14B 单卡推理必须 enforce_eager。\\n\\n## [失败模式] LLaMA-Factory 训练无 W&B → cron 误判 failed（2026-05-20）\\n\\n根因：LLaMA-Factory 训练未配置 W&B report_to，cron 监控依赖 W&B sentinel。**教训：LLaMA-Factory 训练配置中加 `report_to: wandb`。** 遇到 \\\"process dead + no W&B\\\" 失败时，优先检查日志尾部是否有正常完成的 train/eval metrics。\\n\\n## OpenRouter API 限制（2026-05-20）\\n\\n- TUM 代理 Base URL: `http://47.94.22.126/v1` — 2026-05-20 余额耗尽 (402)\\n- TUM key (`tum_XXB3...`) 不是 OpenRouter 直连 key（`sk-or-` 格式），不能用于 `https://openrouter.ai/api/v1`\\n- GPT-5.5 只支持 temperature=1.0，设 0.0 返回 HTTP 400\\n- HumanEval greedy baseline 只能用 single-sample T=1.0，非真正 T=0 greedy\\n- **受影响实验**：Frontier SC、Spider SQL (75/200 remaining)、HumanEval (140/164 remaining)\\n\\n## Frontier SC entity_set() Bug 教训（2026-05-20）\\n\\nrun_frontier_sc.py 中 `compute_instance_metrics()` 将 `parse_response()` 返回的完整 dict 传给 `entity_set()`，后者期望 `list[dict]`。3 处调用全错。**教训：parse_response 返回 `{\\\"entities\\\": [...]}` dict，不是 entity list。调用 entity_set 时必须 `.get(\\\"entities\\\", [])`。** 已修复。\\n\\n## Spider SQL SC 跨任务分析（2026-05-20）\\n\\nexp_spider_sc_pilot: GPT-5.5 on Spider-dev, N=8, T=1.0, 196/200 instances。\\n\\n**核心发现：SQL 与 NER 呈完全不同的失效模式分布。**\\n\\n| 指标 | Spider SQL | NER (FewNERD/SciERC) | NER (CoNLL) |\\n|------|-----------|---------------------|-------------|\\n| Degen% | **87.2%** | 10-27% | 85-89% |\\n| Dominant FM | F1 (degeneracy) | F2 (low agreement) | F1 (degeneracy) |\\n| MV gain | +0.51pp | varies | ~0 |\\n| ρ (full) | 0.55* | 0.30-0.42 | 0.43-0.47 |\\n| ρ (non-degen) | 0.13 | — | — |\\n\\n*ρ=0.55 是 ceiling artifact（87% instances at agreement=1.0）。\\n\\n**机制**：SQL 执行结果等价性将语法差异折叠为语义一致 → degeneracy 极高 → MV 无法利用多样性。与 CoNLL（高 baseline + 低 headroom）形成高 degeneracy 的两种不同来源。\\n\\n**论文定位**：Spider SQL 是 cross-task universality 的对比案例——同一 diagnostic cascade 正确诊断了不同任务上的不同瓶颈。\\n\\n## 32B QLoRA 训练完成（2026-05-21）\\n\\n- 41180 steps, best eval_loss=0.0334 @ step 32000, epoch 4-5 过拟合\\n- LoRA merge: checkpoint-32000 → qwen25-32b-fewnerd-merged (14 shards, ~61GB bf16)\\n- 32B inference 启动: PID 978386, 4×TP on 5090, 37648 instances, N=8 T=1.0 seed=42\\n- 磁盘剩余 22GB (250G 盘 92% 已用) — 需监控\\n\\n## CoNLL T-ablation seed=123 完成（2026-05-21）\\n\\n| T | greedy_f1 | oracle_f1 | κ_mean | ρ(κ,F1) | ρ(SJ,F1) | Δ_struct | Verdict |\\n|---|-----------|-----------|--------|---------|----------|----------|---------|\\n| 0.5 | 0.9073 | 0.9351 | 0.894 | 0.453 | 0.460 | +0.007 | PASS |\\n| 0.8 | 0.9068 | 0.9466 | 0.825 | 0.472 | 0.485 | +0.013 | PASS |\\n| 1.2 | 0.9072 | 0.9550 | 0.668 | 0.409 | 0.435 | +0.027 | PASS |\\n\\nT=0.8 sweet-spot (highest ρ) replicated across seed=42 and seed=123. T=1.2 highest structural advantage but lowest absolute correlation.\\n\\n## FewNERD T-ablation seed=42 完成（2026-05-21）\\n\\n| Metric | T=0.5 | T=0.8 | T=1.2 |\\n|--------|-------|-------|-------|\\n| greedy_f1 | 0.788 | 0.788 | 0.789 |\\n| oracle_f1 | 0.857 | 0.875 | 0.875 |\\n| degeneracy_rate | 14.6% | 19.0% | 28.2% |\\n| ρ(SJ,F1) full | **0.267** | 0.206 | 0.136 |\\n| ρ(SJ,F1) cond | **0.299** | 0.225 | 0.213 |\\n| LP_baseline ρ | 0.356 | 0.232 | 0.103 |\\n\\nFewNERD sweet-spot 在 T=0.5（最高 ρ），与 CoNLL 的 T=0.8 sweet-spot 不同。T↑ → degen↑, ρ↓ 趋势一致。\\n\\n## P0-1 Hidden State Probe — D215 GroupKFold 修正后最终结果（2026-05-21）\\n\\n**⚠️ 原始 StratifiedKFold AUROC (0.98-0.99) 存在严重 instance 信息泄露。GroupKFold 修正后结果：**\\n\\n| Dataset | Instances | Entities | GroupKFold AUROC | StratifiedKFold (leaky) | Leakage Δ | vs MV (0.87) |\\n|---------|-----------|----------|-----------------|------------------------|-----------|-------------|\\n| **CoNLL** | 850 | 14,777 | **0.8824 ± 0.0001** | 0.9786 | +0.096 | **> MV ✅** |\\n| **FewNERD** | 1,698 | 41,096 | **0.6361 ± 0.0001** | 0.9802 | +0.344 | < MV ❌ |\\n| **SciERC** | 539 | 13,188 | **0.6304 ± 0.0002** | 0.9763 | +0.346 | < MV ❌ |\\n\\nBaselines: MV Agreement AUROC = 0.87, ESJ = 0.51, Random = 0.50\\n\\n### 泄露原因\\nEntity-level StratifiedKFold 将同一 instance 的不同 entity 分到 train/test → instance 级别信息泄露。GroupKFold(groups=instance_idx) 保证同一 instance 的所有 entity 在同一 fold。\\n\\n### 论文 Contribution #3 叙事影响\\n- **原叙事** \\\"Probe >> MV → info exists but prompt fails\\\" **只对 CoNLL 成立**\\n- CoNLL (0.882 > MV 0.87): 简单 NER 的 hidden states 编码了足够的实体质量信号\\n- FewNERD/SciERC (0.63): 高于 random/ESJ 但远低于 MV → SC 的 multi-sample voting 创造了单次推理 representation 中不存在的额外信号\\n- **泄露量化本身有方法论价值**：StratifiedKFold vs GroupKFold 差 0.34，揭示 entity-level probe 评估中 instance leakage 的严重性\\n\\n### 决策依据\\n- 500-inst 子集与 full-data 高度一致（Δ < 0.02），确认子集结论稳健\\n- LODO 近随机 (0.56-0.67) 与 GroupKFold 较低 AUROC 一致：跨 instance 泛化能力弱\\n\", \"total_chars\": 10284, \"truncated\": false}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I need to add the entity matching method difference section to memory.md. I'll find a suitable place to insert it. Looking at the content, I'll add it after the existing content or in a logical position. Given it's about experiment design differences related to reviewer feedback, I'll add it in a suitable spot. Let me add it near the top since it's a recent and important note, or I could add it in a thematically appropriate place.
+
+Looking at the structure, the entries are roughly chronological with the most recent at the top. I'll add the new section near the top, after the first section about "CoNLL N=16 s123/s456 实验失败诊断" since it's a current note.
+
+
+The user wants this added to the "实验设计备忘" section specifically, so I'll insert it as a new entry right after the first one since it's a recent observation.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "45e24a7b-2c04-4402-aa5f-522bd305c57a",
+  "uuid": "7b510126-a915-4c65-896c-7175256fd46d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01F4rpYmwDDWS7n3q97qS7yT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6426,
+      "cache_read_input_tokens": 24330,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6426
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 10_
+
+读取完成，现在添加新段落并保存。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "45e24a7b-2c04-4402-aa5f-522bd305c57a",
+  "uuid": "3fad743f-e29c-48a7-9956-13ad0529ce79",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01F4rpYmwDDWS7n3q97qS7yT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6426,
+      "cache_read_input_tokens": 24330,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6426
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__save_project_file · `toolu_011wsAgbvn53Qr3R56hjyN6U`</summary>
+
+```json
+{
+  "project": "struct_self_consist_ie",
+  "file": "memory.md",
+  "content": "# Memory\n\n## 实验设计备忘\n\n### Entity Matching 方法差异（Reviewer #45 Action 2）\n\n- **Local 实验**（run_mvp_pilot.py, Qwen3-8B-FT/14B 等）：使用 **offset matching** `(start, end, type)` —— 基于字符位置精确匹配，要求 span 边界完全一致\n- **Frontier SC 实验**（run_frontier_sc.py, GPT-5.5/Claude/Gemini/DeepSeek）：使用 **text matching** `(text.lower(), type)` —— 基于实体文本内容匹配（大小写不敏感），因为 API 模型的输出格式不包含 offset 信息\n- **影响**：text matching 更宽松（\"New York\" vs \"new york\" 会匹配），但也可能误匹配同名不同位置的实体。这个差异本身支持 span mismatch 机制的解释——即使用更宽松的匹配，Frontier 模型的 MV 仍 ≈ greedy\n- **论文写作注意**：Method section 或 Appendix 需说明两种 matching 方式及其理由\n\n## CoNLL N=16 s123/s456 实验失败诊断（2026-05-21）\n\n**根因：checkpoint 文件传输未完成，实验提前启动。**\n\n两个实验（exp_conll_n16_s123, exp_conll_n16_s456）于 12:51 启动，但 `qwen3-8b-conll2003-merged` checkpoint 正通过 rsync 从另一台 AutoDL 实例传输中（PID 995204），当时仅传输 ~4.1GB / ~16GB。\n\n**具体错误**：tokenizer 缺少 `vocab.json` → `TypeError: expected str, bytes or os.PathLike object, not NoneType`（tokenization_qwen2.py:172）\n\n**当前状态**（截至 12:55 CST）：\n- rsync 仍在运行（PID 995203 fewnerd, 995204 conll2003）\n- `/tmp/auto_launch_conll.sh`（PID 995478）正确等待 rsync 完成后会自动重启实验（cuda:2 s123, cuda:3 s456）\n- 另有 scp 进程（PID 994963, 994964）同时在跑，导致 checkpoint 目录内有嵌套子目录（rsync 的 trailing slash 应能正确覆盖）\n\n**结论**：无需代码修复。等 rsync 完成后 launcher 脚本会自动重跑。若 launcher 的 size check (<15GB) 失败，需手动检查嵌套目录问题并清理。\n\n## exp_qwen25_72b_fewshot 完整结果（2026-05-20）\n\n实验于 2026-05-20 08:47 完成。模型：Qwen2.5-72B-Instruct-AWQ, 3-shot, N=8 samples, seed=42。\n\n### ZS vs FS 完整对比表\n\n| Dataset  | Regime | N inst | Degen% | LP ρ   | SJ ρ  | FK ρ  | VC ρ  | EM ρ  | Greedy F1 | Oracle F1 | LP-wt F1 | LP Δ (pp) | p-value |\n|----------|--------|--------|--------|--------|-------|-------|-------|-------|-----------|-----------|----------|-----------|---------|\n| SciERC   | ZS     | 529    | 21.0%  | 0.081  | 0.217 | 0.227 | 0.277 | 0.181 | 0.399     | 0.549     | 0.415    | +1.53     | 0.008** |\n| SciERC   | FS     | 529    | 16.6%  | 0.060  | 0.293 | 0.301 | 0.258 | 0.205 | 0.461     | 0.604     | 0.461    | -0.08     | 0.544   |\n| CoNLL    | ZS     | 2756   | 67.7%  | -0.002 | 0.304 | 0.302 | 0.297 | 0.281 | 0.712     | 0.765     | 0.708    | -0.37     | n/a     |\n| CoNLL    | FS     | 2756   | 70.0%  | 0.106  | 0.442 | 0.451 | 0.426 | 0.403 | 0.745     | 0.796     | 0.745    | +0.03     | 0.417   |\n| FewNERD  | ZS     | 32565  | 46.2%  | 0.119  | 0.345 | 0.321 | 0.416 | 0.303 | 0.628     | 0.707     | 0.626    | -0.20     | n/a     |\n| FewNERD  | FS     | 32565  | 45.2%  | 0.161  | 0.345 | 0.327 | 0.410 | 0.302 | 0.619     | 0.702     | 0.619    | +0.02     | 0.401   |\n\n### Dual-gating hypothesis 评估\n\nDual-gating 在 FT+ZS regime 内成立（6/6 条件一致）。FS regime 引入独立失效因素（LP 退化），不构成对 dual-gating 的挑战。\n\n### Error Correlation 分析\n\n\"Demonstration-induced error correlation\" 假说缺乏实证支持（FS Jaccard ≈ ZS，CoNLL FS entropy 反而更高）。替代解释：LP signal 在 FS 下区分力退化是 construction 失效的直接原因。\n\n## F1 Scaling Law 写作约束（Director 2026-05-20）\n\n1. 不报 c 均值 — 分数据集：SciERC c≈0.35, FewNERD c≈0.61\n2. CoNLL 只报 a 和 b，不报 c（c_se 太大）\n3. 这是 oracle ceiling scaling，不是 achievable\n4. LLaMA/FewNERD 仅 4 点拟合 → appendix 注明过拟合风险\n5. N=1 低于 greedy 需解释（T=1 采样噪声 vs T=0 确定性）\n\n## CPU 分析实验汇总（2026-05-20）\n\n### E2 Mixture-of-Signals Ensemble\n- Selection: 5-signal ensemble +0.72pp (p=0.000 ✓); Construction: 无效\n- LP 占主导 (0.8), VC 为互补信号\n\n### E2v2 Per-Regime Ensemble Weights\n- FT (all): LP=0.9, VC=0.1 → +0.30pp; Qwen3-8B: LP=0.8, VC=0.2 (+0.64pp)\n- LOO 完全稳定 (10次权重不变)\n\n### I Diversity Predictor\n- Cross-model JSD 强预测 ΔF1（CoNLL ρ=-0.615, R²=0.74）\n- Within-model diversity 不显著\n\n### J Calibration + Conformal\n- ECE: SciERC 0.098 (overconfident), CoNLL/FewNERD well-calibrated\n- Conformal 仅 CoNLL 达标 (coverage=0.925)，失败因 recall ceiling\n\n## B2 Entity Verifier — D189 OOF 最终结论（2026-05-20）\n\n**原始 +3.62pp 中 91% 是 train-on-test 泄露。**\n\n| Method | F1 | vs Greedy |\n|--------|-----|-----------|\n| Greedy | 0.8216 | — |\n| Majority Vote | 0.8048 | -1.68pp |\n| OOF Path A | 0.8246 | **+0.30pp** (not significant) |\n| OOF Path B | 0.8059 | -1.57pp |\n\nPer-dataset: SciERC +1.28pp, CoNLL +0.55pp, FewNERD +0.02pp (≈0)。\n**B2 verifier 不适合论文 §5 main text。** Registry conclusion: negative.\n\n### B2-v2 Multi-Domain Joint Training（2026-05-20）\n- Joint training (CoNLL+SciERC→FewNERD): AUC 0.8335→0.8477 (+0.014)\n- **但 F1 delta 仍为负** (-0.008)，AUC 未转化为下游收益\n- 核心问题：cross-domain ECE=0.136 (IID 仅 0.007)，概率 miscalibrated\n- 最具判别力 features (vc, sj) 跨域稳定性最差 (std=0.12-0.14)\n\n## N Inverse Scaling — 数据验证完成（2026-05-20）\n\n- 58 inverse scaling transitions, 40 显著 (paired bootstrap)\n- 核心机制: θ=2/N 随 N 增大变过于宽松 → precision 崩塌\n- majority_vote (θ=0.5) 几乎完全免疫\n- **n=4351 验证通过**: exp_027_fewnerd_n16 是 5000 instance subset (4 shards × 1250)，gold_filter 后 4351。subset F1=0.7926 vs full F1=0.7913 (+0.13pp)，具有代表性。论文引用时注明 subset (n=4351/32565)。\n\n## K Robustness Reviewer 反馈（2026-05-20, sprint 后处理）\n\n1. 注册实验到 registry\n2. seed 789 路径命名不一致 — 确认来源\n3. dropout 非单调性补充 ceil 函数交互解释\n4. \"most robust = uniform\" 改 Pareto 分析\n5. 论文限定为 single config（Qwen 7B FT FewNERD）\n\n## [M046] SCD Metric Artifact — 关键教训（2026-05-20）\n\n**SCD +3.84pp 提升完全虚假。** Worker 独立验证确认：\n\n| 模型 | Micro-F1 | Instance-avg F1 | Δ micro vs Pre-SCD |\n|------|----------|----------------|-------------------|\n| Pre-SCD baseline | 0.7886 | 0.7719 | — |\n| Post-SCD standard | 0.7813 | 0.7703 | **-0.73pp** |\n| Post-SCD fallback | 0.7866 | 0.7809 | **-0.20pp** |\n\n**根因**：`eval_scd.py` 的 `load_pre_metrics()` 从 `full_signal_report.json` 读 baseline `baselines.greedy.mean = 0.7482`，这是 **instance-average F1（gold-filtered, n=32565）**。而 post-SCD 数字是 **micro-F1（full, n=37648）**。双重不可比（metric 类型 + eval 集大小）。\n\n**教训**：\n1. 所有 F1 对比必须统一口径（micro vs macro 明确标注）\n2. Eval 集大小必须一致（gold-filtered vs full）\n3. 从旧 report 读 baseline 时，必须确认 metric 计算方式\n4. SCD 不构成论文贡献\n\n## 14B 推理诊断教训（2026-05-21, 第5次误判后更新）\n\n### 硬约束诊断规则（Director 2026-05-21 强制）\n\n**推理实验存活判定必须同时检查两个信号，缺一不可：**\n1. `ps -p PID` 确认进程存活\n2. `nvidia-smi` 确认 GPU 活跃（util > 0% 或 memory > 0）\n3. **两者都否定** 才能标 failed\n4. **\"无输出文件\"单独不能判定失败** — vLLM 在 model loading + CUDA graph compilation 阶段（15-20 min）不产生输出，这是正常行为\n\n### 历史误判记录（5次）\n- M021, M037, M038: 早期 PID 变更导致误判\n- M047: 诊断 Worker 找不到预期路径就判 failed，实际 14b_final_inference/ 目录完好\n- M048 (2026-05-21): PID 252310 仍在运行（cuda:0 98% util, elapsed 16min），被 cron+Worker 误标 DONE/failed。Director 第二次手动恢复。\n\n### PID 监控误报根因\n注册的 PID 可能是中间进程（已退出），实际推理在新 PID 下继续。**教训：注册 spec.pid 时用主 python 进程 PID 或 bash wrapper PID。Worker 诊断时要搜索整个进程树。**\n\n### 14B 模型单卡 5090 KV cache 极度不足\n- 模型占 27.57 GiB / 32 GiB GPU，KV cache 仅 1.09 GiB（5920 tokens）\n- **建议：14B 推理用 tensor_parallel=2（2 卡），释放约 14 GiB 给 KV cache**\n\n### enforce_eager 修复 EngineDeadError\n14B 单卡推理必须 enforce_eager。\n\n## [失败模式] LLaMA-Factory 训练无 W&B → cron 误判 failed（2026-05-20）\n\n根因：LLaMA-Factory 训练未配置 W&B report_to，cron 监控依赖 W&B sentinel。**教训：LLaMA-Factory 训练配置中加 `report_to: wandb`。** 遇到 \"process dead + no W&B\" 失败时，优先检查日志尾部是否有正常完成的 train/eval metrics。\n\n## OpenRouter API 限制（2026-05-20）\n\n- TUM 代理 Base URL: `http://47.94.22.126/v1` — 2026-05-20 余额耗尽 (402)\n- TUM key (`tum_XXB3...`) 不是 OpenRouter 直连 key（`sk-or-` 格式），不能用于 `https://openrouter.ai/api/v1`\n- GPT-5.5 只支持 temperature=1.0，设 0.0 返回 HTTP 400\n- HumanEval greedy baseline 只能用 single-sample T=1.0，非真正 T=0 greedy\n- **受影响实验**：Frontier SC、Spider SQL (75/200 remaining)、HumanEval (140/164 remaining)\n\n## Frontier SC entity_set() Bug 教训（2026-05-20）\n\nrun_frontier_sc.py 中 `compute_instance_metrics()` 将 `parse_response()` 返回的完整 dict 传给 `entity_set()`，后者期望 `list[dict]`。3 处调用全错。**教训：parse_response 返回 `{\"entities\": [...]}` dict，不是 entity list。调用 entity_set 时必须 `.get(\"entities\", [])`。** 已修复。\n\n## Spider SQL SC 跨任务分析（2026-05-20）\n\nexp_spider_sc_pilot: GPT-5.5 on Spider-dev, N=8, T=1.0, 196/200 instances。\n\n**核心发现：SQL 与 NER 呈完全不同的失效模式分布。**\n\n| 指标 | Spider SQL | NER (FewNERD/SciERC) | NER (CoNLL) |\n|------|-----------|---------------------|-------------|\n| Degen% | **87.2%** | 10-27% | 85-89% |\n| Dominant FM | F1 (degeneracy) | F2 (low agreement) | F1 (degeneracy) |\n| MV gain | +0.51pp | varies | ~0 |\n| ρ (full) | 0.55* | 0.30-0.42 | 0.43-0.47 |\n| ρ (non-degen) | 0.13 | — | — |\n\n*ρ=0.55 是 ceiling artifact（87% instances at agreement=1.0）。\n\n**机制**：SQL 执行结果等价性将语法差异折叠为语义一致 → degeneracy 极高 → MV 无法利用多样性。与 CoNLL（高 baseline + 低 headroom）形成高 degeneracy 的两种不同来源。\n\n**论文定位**：Spider SQL 是 cross-task universality 的对比案例——同一 diagnostic cascade 正确诊断了不同任务上的不同瓶颈。\n\n## 32B QLoRA 训练完成（2026-05-21）\n\n- 41180 steps, best eval_loss=0.0334 @ step 32000, epoch 4-5 过拟合\n- LoRA merge: checkpoint-32000 → qwen25-32b-fewnerd-merged (14 shards, ~61GB bf16)\n- 32B inference 启动: PID 978386, 4×TP on 5090, 37648 instances, N=8 T=1.0 seed=42\n- 磁盘剩余 22GB (250G 盘 92% 已用) — 需监控\n\n## CoNLL T-ablation seed=123 完成（2026-05-21）\n\n| T | greedy_f1 | oracle_f1 | κ_mean | ρ(κ,F1) | ρ(SJ,F1) | Δ_struct | Verdict |\n|---|-----------|-----------|--------|---------|----------|----------|---------|\n| 0.5 | 0.9073 | 0.9351 | 0.894 | 0.453 | 0.460 | +0.007 | PASS |\n| 0.8 | 0.9068 | 0.9466 | 0.825 | 0.472 | 0.485 | +0.013 | PASS |\n| 1.2 | 0.9072 | 0.9550 | 0.668 | 0.409 | 0.435 | +0.027 | PASS |\n\nT=0.8 sweet-spot (highest ρ) replicated across seed=42 and seed=123. T=1.2 highest structural advantage but lowest absolute correlation.\n\n## FewNERD T-ablation seed=42 完成（2026-05-21）\n\n| Metric | T=0.5 | T=0.8 | T=1.2 |\n|--------|-------|-------|-------|\n| greedy_f1 | 0.788 | 0.788 | 0.789 |\n| oracle_f1 | 0.857 | 0.875 | 0.875 |\n| degeneracy_rate | 14.6% | 19.0% | 28.2% |\n| ρ(SJ,F1) full | **0.267** | 0.206 | 0.136 |\n| ρ(SJ,F1) cond | **0.299** | 0.225 | 0.213 |\n| LP_baseline ρ | 0.356 | 0.232 | 0.103 |\n\nFewNERD sweet-spot 在 T=0.5（最高 ρ），与 CoNLL 的 T=0.8 sweet-spot 不同。T↑ → degen↑, ρ↓ 趋势一致。\n\n## P0-1 Hidden State Probe — D215 GroupKFold 修正后最终结果（2026-05-21）\n\n**⚠️ 原始 StratifiedKFold AUROC (0.98-0.99) 存在严重 instance 信息泄露。GroupKFold 修正后结果：**\n\n| Dataset | Instances | Entities | GroupKFold AUROC | StratifiedKFold (leaky) | Leakage Δ | vs MV (0.87) |\n|---------|-----------|----------|-----------------|------------------------|-----------|-------------|\n| **CoNLL** | 850 | 14,777 | **0.8824 ± 0.0001** | 0.9786 | +0.096 | **> MV ✅** |\n| **FewNERD** | 1,698 | 41,096 | **0.6361 ± 0.0001** | 0.9802 | +0.344 | < MV ❌ |\n| **SciERC** | 539 | 13,188 | **0.6304 ± 0.0002** | 0.9763 | +0.346 | < MV ❌ |\n\nBaselines: MV Agreement AUROC = 0.87, ESJ = 0.51, Random = 0.50\n\n### 泄露原因\nEntity-level StratifiedKFold 将同一 instance 的不同 entity 分到 train/test → instance 级别信息泄露。GroupKFold(groups=instance_idx) 保证同一 instance 的所有 entity 在同一 fold。\n\n### 论文 Contribution #3 叙事影响\n- **原叙事** \"Probe >> MV → info exists but prompt fails\" **只对 CoNLL 成立**\n- CoNLL (0.882 > MV 0.87): 简单 NER 的 hidden states 编码了足够的实体质量信号\n- FewNERD/SciERC (0.63): 高于 random/ESJ 但远低于 MV → SC 的 multi-sample voting 创造了单次推理 representation 中不存在的额外信号\n- **泄露量化本身有方法论价值**：StratifiedKFold vs GroupKFold 差 0.34，揭示 entity-level probe 评估中 instance leakage 的严重性\n\n### 决策依据\n- 500-inst 子集与 full-data 高度一致（Δ < 0.02），确认子集结论稳健\n- LODO 近随机 (0.56-0.67) 与 GroupKFold 较低 AUROC 一致：跨 instance 泛化能力弱\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "45e24a7b-2c04-4402-aa5f-522bd305c57a",
+  "uuid": "74d822e2-f9e9-41ff-a534-426254f7e583",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01F4rpYmwDDWS7n3q97qS7yT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6426,
+      "cache_read_input_tokens": 24330,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6426
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-21T10:14:43.842Z_
+
+<details><summary>↩ Tool result · `toolu_011wsAgbvn53Qr3R56hjyN6U`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/memory.md\", \"saved\": true}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "45e24a7b-2c04-4402-aa5f-522bd305c57a",
+  "uuid": "b05022a8-d69c-4f33-9445-0af0040505b4",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/memory.md\\\", \\\"saved\\\": true}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/memory.md\", \"saved\": true}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 13_
+
+已写入。在 memory.md 顶部新建了「实验设计备忘」段落，包含 Entity Matching 方法差异（Reviewer #45 Action 2）的完整记录，其余内容不变。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "45e24a7b-2c04-4402-aa5f-522bd305c57a",
+  "uuid": "39b4612e-0712-487a-98fb-09396fff7ede",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NKv9aNGnodcpZaACoVaWck",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6654,
+      "cache_read_input_tokens": 30756,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6654
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 14_
+
+已写入。在 memory.md 顶部新建了「实验设计备忘」段落，包含 Entity Matching 方法差异（Reviewer #45 Action 2）的完整记录，其余内容不变。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 188568,
+  "duration_api_ms": 189924,
+  "num_turns": 4,
+  "stop_reason": "end_turn",
+  "session_id": "45e24a7b-2c04-4402-aa5f-522bd305c57a",
+  "total_cost_usd": 0.37958125,
+  "usage": {
+    "input_tokens": 8,
+    "cache_creation_input_tokens": 25709,
+    "cache_read_input_tokens": 90370,
+    "output_tokens": 6895,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 25709,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 65,
+        "cache_read_input_tokens": 30756,
+        "cache_creation_input_tokens": 6654,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 6654
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1225,
+      "outputTokens": 15,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.0013,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 8,
+      "outputTokens": 6895,
+      "cacheReadInputTokens": 90370,
+      "cacheCreationInputTokens": 25709,
+      "webSearchRequests": 0,
+      "costUSD": 0.37828125,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "0900c784-6572-4575-aa9e-cae5c980d497"
+}
+```
+
+</details>
+
+---

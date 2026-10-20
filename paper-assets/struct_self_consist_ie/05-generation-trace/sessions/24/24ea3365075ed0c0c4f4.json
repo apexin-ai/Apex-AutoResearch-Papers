@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "24ea3365075ed0c0c4f4",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis scierc n8 s123 s456",
+  "task_key": "worker_analysis_scierc_n8_s123_s456_20260522T113642",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_scierc_n8_s123_s456_20260522T113642_result.json",
+    "occurrence": 1,
+    "bytes": 2811,
+    "sha256": "dc27038e1fe0b3af70ca149cb11b6aa1af60eb4fdef068eed389556cdbb8c6d9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部数据就绪。以下是完整结果。\n\n---\n\n## 实验 1: exp_scierc_n8_s123\n\n**状态**: 正常完成，EXIT_CODE=0，无 error/traceback\n\n**产出文件**:\n- `output/scierc_n8_seed123/report.json` (1,729 bytes)\n- `output/scierc_n8_seed123/samples.jsonl` (20,054,496 bytes)\n\n**指标**:\n| Metric | Value |\n|--------|-------|\n| greedy_f1 | 0.6613 |\n| mv_f1 | 0.6648 |\n| mv_delta | **+0.34pp** |\n| lp_f1 | 0.6698 |\n| lp_delta | +0.85pp |\n| degeneracy_rate | 11.6% |\n| agreement_rate | 0.6646 |\n| oracle_f1 | 0.7794 |\n| fleiss_kappa | 0.3847 |\n| soft_jaccard | 0.6979 |\n\n**注意**: s123 是唯一一个 MV delta 为正的 seed。\n\n---\n\n## 实验 2: exp_scierc_n8_s456\n\n**状态**: 正常完成，EXIT_CODE=0，无 error/traceback\n\n**产出文件**:\n- `output/scierc_n8_seed456/report.json` (1,730 bytes)\n- `output/scierc_n8_seed456/samples.jsonl` (19,984,016 bytes)\n\n**指标**:\n| Metric | Value |\n|--------|-------|\n| greedy_f1 | 0.6657 |\n| mv_f1 | 0.6573 |\n| mv_delta | **-0.84pp** |\n| lp_f1 | 0.6626 |\n| lp_delta | -0.31pp |\n| degeneracy_rate | 12.0% |\n| agreement_rate | 0.6597 |\n| oracle_f1 | 0.7733 |\n| fleiss_kappa | 0.3864 |\n| soft_jaccard | 0.6939 |\n\n---\n\n## Seed=42 参考值 (scierc_mf4v2_seed42)\n\n| Metric | Value |\n|--------|-------|\n| greedy_f1 | 0.6651 |\n| mv_f1 | 0.6550 |\n| mv_delta | **-1.01pp** |\n| lp_f1 | 0.6604 |\n| lp_delta | -0.47pp |\n| degeneracy_rate | 14.2% |\n| agreement_rate | 0.6767 |\n\n> ⚠️ s42 的 MV Δ 为 -1.01pp（此处用 micro-F1 重新计算），与先前 hypothesis 中的 -0.74pp 有差异，可能因之前使用了不同的 F1 计算方式。\n\n---\n\n## 3-Seed 汇总 (SciERC N=8 Finetuned, T=1.0)\n\n| Metric | s42 | s123 | s456 | **Mean** | **Std** |\n|--------|-----|------|------|----------|---------|\n| greedy_f1 | 0.6651 | 0.6613 | 0.6657 | **0.6640** | 0.0024 |\n| mv_f1 | 0.6550 | 0.6648 | 0.6573 | **0.6590** | 0.0051 |\n| mv_delta (pp) | -1.01 | +0.34 | -0.84 | **-0.50** | 0.74 |\n| lp_f1 | 0.6604 | 0.6698 | 0.6626 | **0.6643** | 0.0049 |\n| lp_delta (pp) | -0.47 | +0.85 | -0.31 | **+0.02** | 0.72 |\n| degeneracy_rate | 14.2% | 11.6% | 12.0% | **12.6%** | 1.4% |\n| agreement_rate | 0.6767 | 0.6646 | 0.6597 | **0.6670** | 0.0088 |\n\n### 关键发现\n\n1. **MV Δ = -0.50 ± 0.74pp** — 均值为负但跨 0（s123 为正），说明 SciERC finetuned 模型上 MV 不稳定地 hurt greedy。方差大（std=0.74 > |mean|=0.50），统计上不显著。\n2. **LP Δ = +0.02 ± 0.72pp** — LP selection 基本持平 greedy，同样方差大。\n3. **Degeneracy ≈ 12.6%** — 远低于 CoNLL（~60%），接近 FewNERD 水平。\n4. **Greedy F1 在三 seed 间非常稳定**（0.6640 ± 0.0024），说明模型本身稳定，不稳定性来自 MV 聚合。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-scierc-n8-s123-s456.md"
+}

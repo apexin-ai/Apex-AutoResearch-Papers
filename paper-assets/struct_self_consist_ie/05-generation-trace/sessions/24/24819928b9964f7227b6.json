@@ -1,0 +1,69 @@
+{
+  "schema_version": "1.0",
+  "id": "24819928b9964f7227b6",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "analysis mlp verifier v2",
+  "task_key": "worker_analysis_mlp_verifier_v2_20260518T154244",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_mlp_verifier_v2_20260518T154244.log",
+    "occurrence": 1,
+    "bytes": 964822,
+    "sha256": "0a90105f62aa56c763f5e1e9867d1babba331f9f2d06f49f453ec05a7b7e515d"
+  },
+  "statistics": {
+    "messages": 686,
+    "user_turns": 1,
+    "tool_calls": 310,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 58,
+      "tool_call": 310,
+      "tool_result": 310,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 672,
+      "chunks": [
+        {
+          "path": "24819928b9964f7227b6-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "24819928b9964f7227b6-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "24819928b9964f7227b6-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "24819928b9964f7227b6-part-0004.json",
+          "message_count": 132
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 14,
+      "chunks": [
+        {
+          "path": "24819928b9964f7227b6-part-0004.json",
+          "message_count": 14
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-mlp-verifier-v2.md"
+}

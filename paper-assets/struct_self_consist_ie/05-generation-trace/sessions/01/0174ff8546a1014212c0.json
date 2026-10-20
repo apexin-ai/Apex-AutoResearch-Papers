@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "0174ff8546a1014212c0",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "exp exp 012 rerun 1024",
+  "task_key": "worker_exp_exp_012_rerun_1024_20260514T221211",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_exp_exp_012_rerun_1024_20260514T221211.log",
+    "occurrence": 1,
+    "bytes": 887975,
+    "sha256": "9b7b8860f0cbc34829c18d11623da406a2d6f8fe4a639ace6e2e0fea4da05279"
+  },
+  "statistics": {
+    "messages": 148,
+    "user_turns": 0,
+    "tool_calls": 49,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 46,
+      "tool_call": 49,
+      "tool_result": 49,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 148,
+      "chunks": [
+        {
+          "path": "0174ff8546a1014212c0-part-0001.json",
+          "message_count": 90
+        },
+        {
+          "path": "0174ff8546a1014212c0-part-0002.json",
+          "message_count": 58
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/exp-exp-012-rerun-1024.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "00edb2447caab6c1ca66",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "audit data integrity",
+  "task_key": "worker_audit_data_integrity_20260523T102309",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_audit_data_integrity_20260523T102309_result.json",
+    "occurrence": 1,
+    "bytes": 2361,
+    "sha256": "3402f1d6f34c321c5f6ec8047ae00361787b1a3d86c0ff908dc12632cb0091b8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有验证完成。编写最终报告。\n\n```\n=== DATA INTEGRITY VERIFICATION ===\n\n[2a] FewNERD entity construction +1.40±0.51pp\n  Paper: +1.40±0.51pp (experiments_main.tex:107, \"3-seed mean\")\n  Recomputed: +1.40±0.51pp (4-seed ddof=0: seeds 42,123,456,789)\n  Per-seed: s42=+0.88, s123=+2.18, s456=+1.51, s789=+1.02pp\n  Cross-check: exact match with cached multiseed_results.json\n  Status: MATCH (numbers correct)\n  ⚠ TEXT ISSUE: Paper says \"3-seed mean\" but value requires 4 seeds.\n    3-seed (42,123,456) gives +1.52±0.53pp, not +1.40±0.51pp.\n    Also uses population std (ddof=0); sample std (ddof=1) = ±0.59pp.\n\n[2b] FewNERD LP 5-epoch +0.12±0.04pp\n  Paper: +0.12±0.04pp (appendix.tex:2084, \"2-seed, full test set micro-F1\")\n  Recomputed: +0.12±0.04pp (all 37,648 instances, corpus micro-F1, ddof=1)\n    s42: +0.15pp, s123: +0.09pp → mean=+0.12pp, std(ddof=1)=0.04pp\n  Status: MATCH\n  ⚠ NOTE: Table caption says \"gold-filtered, n=32,565\" but LP Δ was computed\n    on ALL instances (n=37,648) including gold-empty. Gold-filtered gives\n    +0.21pp (different number). The appendix text \"full test set micro-F1\"\n    clarifies, but table caption is misleading.\n\n[2c] CoNLL degeneracy 61.7%\n  Paper: 61.7% (experiments_main.tex:69, 3-seed mean)\n  Definition: \"constant-F1 degeneracy\" = all N samples yield identical F1\n    (NOT identical entity sets — method.tex:61)\n  Recomputed: 61.7% (exp002 3-seed mean: s42=59.1%, s123=63.0%, s456=62.9%)\n    Mean = (59.1+63.0+62.9)/3 = 61.67% → 61.7%\n  Status: MATCH\n\n[2d] AUROC 0.82\n  Paper: 0.82 (abstract) / 0.816 (Table 1, CoNLL Qwen EM AUROC)\n  NOTE: Task says \"SciERC AUROC\" but 0.82 is actually CoNLL (Qwen) EM.\n  Recomputed: 0.8156 (CoNLL seed42, EM signal, binarized at median F1=1.0)\n  Cross-check: exact match with unified_auroc.json (0.8156)\n  Status: MATCH (0.8156 → 0.816 in table → 0.82 in abstract)\n\n[3] Q4 Fisher exact test\n  Report: OR=0.109, p<1e-300\n  Recomputed: OR=0.1086, p=0.0 (scipy returns exact 0.0)\n  Status: MATCH\n\n=== SUMMARY ===\nAll 5 numerical claims verified ✓\nTwo text-level issues flagged:\n  1. [2a] \"3-seed mean\" should be \"4-seed mean\" (affects reproducibility description)\n  2. [2b] Table caption \"gold-filtered\" is misleading for LP Δ row (computed on all instances)\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-data-integrity.md"
+}

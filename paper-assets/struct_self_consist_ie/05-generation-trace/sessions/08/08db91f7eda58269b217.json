@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "08db91f7eda58269b217",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "status n16 n32 check",
+  "task_key": "worker_status_n16_n32_check_20260522T231322",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_status_n16_n32_check_20260522T231322_result.json",
+    "occurrence": 1,
+    "bytes": 628,
+    "sha256": "28937c2a05bc3a2bbe5c52c802888a2f9506da9429975fa254fe4cd23aaa2fdd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\n=== autodl-5090-c (n16_v2, PID 452387) ===\nGPU状态: cuda:1 占用 | 29901MiB/32607MiB | 80% util | 73°C | 491W\n进度: 95.9% | 577,760/602,368 prompts\n已运行: 7h51m | 速度: ~17-32 it/s\nETA: ~20 分钟\n\n=== autodl-5090 (n32_v2, PID 157197→157469) ===\nGPU状态: cuda:3 占用 | 29844MiB/32607MiB | 69% util | 69°C | 444W\n进度: 37.1% | 447,456/1,204,736 prompts\n已运行: 6h56m | 速度: ~15-28 it/s\nETA: ~11.7 小时（预计今晚 ~20:00 服务器时间完成）\n```\n\nn16_v2 即将完成，n32_v2 还需要较长时间（总 prompts 数是 n16 的 2 倍，37648×32=1,204,736）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/status-n16-n32-check.md"
+}

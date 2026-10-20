@@ -1,0 +1,3659 @@
+{
+  "schema_version": "1.0",
+  "session_id": "244498a69e2f6d713847",
+  "rounds": [
+    {
+      "number": 518,
+      "messages": [
+        {
+          "source_line": 10261,
+          "timestamp": "2026-05-17T13:24:53.817848+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/introduction.tex",
+              "offset": "27",
+              "limit": "17"
+            }
+          },
+          "id": "event-010261"
+        },
+        {
+          "source_line": 10262,
+          "timestamp": "2026-05-17T13:24:53.818294+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "27\tOur contributions:\n28\t\\begin{enumerate}\n29\t    \\item \\textbf{Quality estimation framework.}\n30\t    We systematically evaluate five confidence signals from three families (structural, surface, model-internal) for LLM-based NER across four benchmarks spanning a difficulty gradient, two model families, and a 4B scale ablation.\n31\t    Structural signals reliably predict output quality (VC $\\rho{=}0.38$ on the primary test bed; EM AUROC${=}0.82$ on CoNLL), with difficulty-dependent but model-stable rankings that support selective prediction and error flagging.\n32\t\n33\t    \\item \\textbf{Diagnosis of the correlation-selection gap.}\n34\t    We identify a three-layer failure:\n35\t    (a)~four instance-level signals cannot rank candidates within an instance \\textit{by construction};\n36\t    (b)~MBR selection with well-aligned utility (within-instance $\\rho{=}0.52$) fails because instance degeneracy (14\\textendash 47\\% of instances yield identical outputs) collapses the candidate pool;\n37\t    (c)~LP, the sole per-sample signal, requires two jointly necessary conditions: low degeneracy and adequate LP-quality alignment ($\\rho(\\text{LP}, \\text{F1}) \\gtrsim 0.3$).\n38\t    A diagnostic chain (LoRA-rank ablation, free-form decoding, entity-token LP, supervised signal combination) confirms the bottleneck lies in the signal space accessible to unsupervised aggregation, not signal combination methods.\n39\t\n40\t    \\item \\textbf{Two necessary conditions for LP selection.}\n41\t    LP selection requires both low degeneracy and adequate LP-quality alignment: the cross-dataset gradient (47\\% $\\to$ fail, 18\\% $\\to$ $+0.42$~pp, 14\\% $\\to$ $+1.36$~pp at $p{<}0.001$) identifies degeneracy as one condition; a LoRA-rank ablation isolates alignment as the other (degeneracy 7.2\\%, LP still fails because $\\rho{\\approx}0.24$).\n42\t    Entity-type-level analysis provides statistical grounding ($\\rho{=}{-}0.881$, $p{=}0.004$, $n{=}8$); in the low-degeneracy regime, LP selection scales with $N$ ($+0.52$~pp f\n…[truncated 64 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-010262"
+        },
+        {
+          "source_line": 10263,
+          "timestamp": "2026-05-17T13:25:02.904061+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/abstract.tex",
+              "old_string": "; and LP requires two jointly necessary conditions, low degeneracy and adequate LP-quality alignment ($\\rho \\gtrsim 0.3$).\nLP selection succeeds when both conditions are met ($+1.36$~pp at 14\\% degeneracy, $p{<}0.001$) but fails when either is violated.",
+              "new_string": "; and LP requires two jointly necessary conditions: low instance degeneracy, and adequate LP-quality alignment ($\\rho \\gtrsim 0.3$).\nWhen both conditions are met, LP achieves significant gains ($+1.36$~pp at 14\\% degeneracy, $p{<}0.001$); when either is violated, selection fails."
+            }
+          },
+          "id": "event-010263"
+        },
+        {
+          "source_line": 10264,
+          "timestamp": "2026-05-17T13:25:02.954771+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/abstract.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-010264"
+        },
+        {
+          "source_line": 10265,
+          "timestamp": "2026-05-17T13:25:11.775649+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/introduction.tex",
+              "old_string": "    \\item \\textbf{Two necessary conditions for LP selection.}\n    LP selection requires both low degeneracy and adequate LP-quality alignment: the cross-dataset gradient (47\\% $\\to$ fail, 18\\% $\\to$ $+0.42$~pp, 14\\% $\\to$ $+1.36$~pp at $p{<}0.001$) identifies degeneracy as one condition; a LoRA-rank ablation isolates alignment as the other (degeneracy 7.2\\%, LP still fails because $\\rho{\\approx}0.24$).\n    Entity-type-level analysis provides statistical grounding ($\\rho{=}{-}0.881$, $p{=}0.004$, $n{=}8$); in the low-degeneracy regime, LP selection scales with $N$ ($+0.52$~pp from $N{=}8$ to $N{=}16$, paired $p{=}0.003$).",
+              "new_string": "    \\item \\textbf{Two necessary conditions for LP selection.}\n    We identify two jointly necessary conditions: (1)~low instance degeneracy and (2)~adequate LP-quality alignment ($\\rho(\\text{LP}, \\text{F1}) \\gtrsim 0.3$), verified through two independent control paths.\n    The cross-dataset gradient (47\\% $\\to$ fail, 18\\% $\\to$ $+0.42$~pp, 14\\% $\\to$ $+1.36$~pp at $p{<}0.001$) establishes degeneracy as one condition; LoRA-rank reduction (degeneracy 7.2\\%, LP fails because $\\rho{\\approx}0.24$) and temperature increase ($T{=}1.2$, degeneracy 12.5\\%, $\\rho{=}0.225$) independently confirm that alignment is the other.\n    Entity-type-level analysis provides statistical grounding ($\\rho{=}{-}0.881$, $p{=}0.004$, $n{=}8$); in the low-degeneracy regime, LP selection scales with $N$ ($+0.52$~pp from $N{=}8$ to $N{=}16$, paired $p{=}0.003$)."
+            }
+          },
+          "id": "event-010265"
+        },
+        {
+          "source_line": 10266,
+          "timestamp": "2026-05-17T13:25:11.776087+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/introduction.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-010266"
+        },
+        {
+          "source_line": 10267,
+          "timestamp": "2026-05-17T13:25:14.937731+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/abstract.tex"
+            }
+          },
+          "id": "event-010267"
+        },
+        {
+          "source_line": 10268,
+          "timestamp": "2026-05-17T13:25:14.988272+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\begin{abstract}\n2\tSelf-consistency yields large gains on discrete-answer tasks, but named entity recognition (NER) produces \\textit{sets} of entities with partial overlap, where no majority vote analog exists.\n3\tWe evaluate five confidence signals (four instance-level, one per-sample log-probability [LP]) for quality estimation and sample selection on four NER benchmarks using 4B\\textendash 8B models.\n4\tAll signals achieve strong quality estimation ($\\rho$ up to 0.38), supporting selective prediction.\n5\tQuality estimation does not translate to selection, however: despite ${\\sim}$13~pp oracle headroom, no signal consistently outperforms greedy decoding.\n6\tThe gap has a three-layer structure: four instance-level signals cannot rank candidates by construction; MBR selection fails because instance degeneracy (14\\textendash 47\\% identical outputs) eliminates headroom; and LP requires two jointly necessary conditions: low instance degeneracy, and adequate LP-quality alignment ($\\rho \\gtrsim 0.3$).\n7\tWhen both conditions are met, LP achieves significant gains ($+1.36$~pp at 14\\% degeneracy, $p{<}0.001$); when either is violated, selection fails.\n8\tIn the low-degeneracy regime, LP scales with sample budget ($+0.52$~pp from $N{=}8$ to 16, paired $p{=}0.003$).\n9\tClosing the gap for structural signals likely requires learned per-sample scoring.\n10\t\\end{abstract}\n11\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-010268"
+        },
+        {
+          "source_line": 10269,
+          "timestamp": "2026-05-17T13:25:17.896750+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/introduction.tex",
+              "offset": "39",
+              "limit": "7"
+            }
+          },
+          "id": "event-010269"
+        },
+        {
+          "source_line": 10270,
+          "timestamp": "2026-05-17T13:25:17.947294+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "39\t\n40\t    \\item \\textbf{Two necessary conditions for LP selection.}\n41\t    We identify two jointly necessary conditions: (1)~low instance degeneracy and (2)~adequate LP-quality alignment ($\\rho(\\text{LP}, \\text{F1}) \\gtrsim 0.3$), verified through two independent control paths.\n42\t    The cross-dataset gradient (47\\% $\\to$ fail, 18\\% $\\to$ $+0.42$~pp, 14\\% $\\to$ $+1.36$~pp at $p{<}0.001$) establishes degeneracy as one condition; LoRA-rank reduction (degeneracy 7.2\\%, LP fails because $\\rho{\\approx}0.24$) and temperature increase ($T{=}1.2$, degeneracy 12.5\\%, $\\rho{=}0.225$) independently confirm that alignment is the other.\n43\t    Entity-type-level analysis provides statistical grounding ($\\rho{=}{-}0.881$, $p{=}0.004$, $n{=}8$); in the low-degeneracy regime, LP selection scales with $N$ ($+0.52$~pp from $N{=}8$ to $N{=}16$, paired $p{=}0.003$).\n44\t\\end{enumerate}\n45\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-010270"
+        },
+        {
+          "source_line": 10271,
+          "timestamp": "2026-05-17T13:25:23.567612+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__paper_compile_and_check",
+              "max_results": "1"
+            }
+          },
+          "id": "event-010271"
+        },
+        {
+          "source_line": 10272,
+          "timestamp": "2026-05-17T13:25:23.618214+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-010272"
+        },
+        {
+          "source_line": 10273,
+          "timestamp": "2026-05-17T13:25:26.327421+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__paper_compile_and_check"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "mcp__agent-ml-research__paper_compile_and_check",
+            "tool_args": {
+              "project": "struct_self_consist_ie"
+            }
+          },
+          "id": "event-010273"
+        },
+        {
+          "source_line": 10274,
+          "timestamp": "2026-05-17T13:25:33.078099+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"passed\\\": true, \\\"compiled\\\": {\\\"success\\\": true, \\\"pdf_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/main.pdf\\\", \\\"paper_dir\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper\\\", \\\"main_tex\\\": \\\"main.tex\\\", \\\"log_tail\\\": \\\" []\\\\n\\\\n\\\\nUnderfull \\\\\\\\hbox (badness 7081) in paragraph at lines 1041--1043\\\\n\\\\\\\\T1/ptm/m/n/10.95 (+20) asym-me-try is driven by schema cov-er-age:\\\\n []\\\\n\\\\n\\\\nUnderfull \\\\\\\\hbox (badness 2600) in paragraph at lines 1052--1052\\\\n[]\\\\\\\\T1/ptm/m/n/10 (+20) Table 34: |Ver-bal-ized con-fi-dence (Ver-b-Conf) vs.\\\\n []\\\\n\\\\n\\\\nOverfull \\\\\\\\hbox (22.54317pt too wide) in paragraph at lines 1054--1069\\\\n [][] \\\\n []\\\\n\\\\n[30]\\\\nOverfull \\\\\\\\hbox (27.94685pt too wide) in paragraph at lines 1120--1133\\\\n [][] \\\\n []\\\\n\\\\n[31]\\\\nOverfull \\\\\\\\hbox (109.03418pt too wide) in paragraph at lines 1152--1166\\\\n [][] \\\\n []\\\\n\\\\n\\\\nLaTeX Warning: `h' float specifier changed to `ht'.\\\\n\\\\n) [32] (./main.aux)\\\\n ***********\\\\nLaTeX2e <2025-11-01>\\\\nL3 programming layer <2026-01-19>\\\\n ***********\\\\nPackage rerunfilecheck Info: File `main.out' has not changed.\\\\n(rerunfilecheck)             Checksum: C21D275052EE0F85C7CC6D4C6EF86E64;6621.\\\\n ) \\\\nHere is how much of TeX's memory you used:\\\\n 17104 strings out of 469438\\\\n 269720 string characters out of 5468411\\\\n 761895 words of memory out of 5000000\\\\n 44613 multiletter control sequences out of 15000+600000\\\\n 725981 words of font info for 510 fonts, out of 8000000 for 9000\\\\n 59 hyphenation exceptions out of 8191\\\\n 84i,14n,93p,1001b,690s stack positions out of 10000i,1000n,20000p,200000b,200000s\\\\n\\\\npdfTeX warning (dest): name{Hfootnote.10} has been referenced but does not exis\\\\nt, replaced by a fixed one\\\\n\\\\n</usr/share/texlive/texmf-dist/fonts/type1/public/inconsolata/Inconsolata-zi4r.\\\\npfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb></u\\\\nsr/sh\n…[truncated 9275 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "mcp__agent-ml-research__paper_compile_and_check",
+            "elapsed_ms": 6750
+          },
+          "id": "event-010274"
+        },
+        {
+          "source_line": 10275,
+          "timestamp": "2026-05-17T13:25:52.136599+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__paper_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "mcp__agent-ml-research__paper_agent_post_to_director",
+            "tool_args": {
+              "text": "[写作进展] Patch: Two-condition framework 突出度提升 — 完成\n\n## 修改内容\n\n### Abstract (sentences 6-7)\n- **结构变化**：将 two conditions 从逗号附加语改为冒号定义（\"requires two jointly necessary conditions: low instance degeneracy, and adequate LP-quality alignment\"），使其成为三层结构的收束重点\n- **句式变化**：第 7 句改为平行结构 \"When both conditions are met, LP achieves significant gains...; when either is violated, selection fails.\" — 强调联合必要性\n\n### Introduction Contribution #3\n- **开头重写**：从 \"LP selection requires both...\" 改为 \"We identify two jointly necessary conditions: (1) low instance degeneracy and (2) adequate LP-quality alignment, verified through two independent control paths.\"\n- **新增温度证据**：添加 \"temperature increase ($T{=}1.2$, degeneracy 12.5\\%, $\\rho{=}0.225$)\" 作为第二条独立控制路径，与 LoRA-rank 并列\n- 保持 \"establishes\" / \"independently confirm\" 主动语态（避免 editorial pass 中标记的 -ing 分词模式）\n\n### 未修改\n- Contribution #2 (Diagnosis) 中 (c) 子项已有 \"requires two jointly necessary conditions\" — 与 #3 形成 preview → elaboration 关系，无需修改\n- 未升级 capability-degeneracy tradeoff 表述强度\n- 无级联更新需要（experiments/discussion/conclusion 已有完整的 two-condition 表述）\n\n## 验证\n- 编译通过，32 页，无 critical warnings\n- Abstract 约 168 词（≤170 目标）",
+              "project": "struct_self_consist_ie"
+            }
+          },
+          "id": "event-010275"
+        },
+        {
+          "source_line": 10276,
+          "timestamp": "2026-05-17T13:25:55.805277+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "mcp__agent-ml-research__paper_agent_post_to_director",
+            "elapsed_ms": 3668
+          },
+          "id": "event-010276"
+        },
+        {
+          "source_line": 10277,
+          "timestamp": "2026-05-17T13:26:00.207354+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Patch 完成。\n\n**Abstract**: 两条件从逗号附加语升级为冒号定义 + 平行句式 \"When both... when either...\"。\n**Introduction Contribution #3**: 开头改为 \"We identify two jointly necessary conditions: (1)... (2)..., verified through two independent control paths.\" 并新增温度作为第二条控制路径。\n编译通过，168 词，无 critical warnings。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent"
+          },
+          "id": "event-010277"
+        }
+      ]
+    },
+    {
+      "number": 519,
+      "messages": [
+        {
+          "source_line": 10278,
+          "timestamp": "2026-05-17T13:26:00.734321+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统提醒] 你刚才完成了 [Director 指令] 但没有调用 main_agent_post_to_director 汇报结果。Director 看不到你的文字回复。请立即调用 main_agent_post_to_director 将结果发给 Director。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "source": "system"
+          },
+          "id": "event-010278"
+        },
+        {
+          "source_line": 10279,
+          "timestamp": "2026-05-17T13:26:06.043139+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "已通过 `paper_agent_post_to_director` 汇报。系统提醒为误报。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent"
+          },
+          "id": "event-010279"
+        }
+      ]
+    },
+    {
+      "number": 520,
+      "messages": [
+        {
+          "source_line": 10280,
+          "timestamp": "2026-05-17T13:26:06.548761+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Director 指令] [Patch] Editorial pass 修复 — 3 个 CRITICAL 项\n\n决策：\n\n**1. -ing 分词短语：全文修复（正文 + 附录，全部 ~56 处）**\n审稿人也会翻附录，AI 痕迹在哪里都不行。替换策略：\n- 优先拆成独立句（\". This confirms...\"）\n- 次选分号（\"; this indicates...\"）\n- 部分读者可自行推断的直接删除\n- 不要机械替换——每处根据上下文选最自然的改法\n\n**2. references.bib 统一为全称格式**\nEMNLP 投稿用 \"Proceedings of the Xth ...\" 全称。把所有简写（\"ICLR 2023\"、\"NeurIPS 2025\"、\"CoNLL 2003\" 等）改为完整格式。Findings 统一为 \"Findings of the Association for Computational Linguistics: {venue} {year}\"。\n\n**3. xie2024selfevaluation bib key 修正**\n首作者是 Ren 不是 Xie，年份是 2023 不是 2024。把 bib key 改为 ren2023selfevaluation，同时全文 \\cite{xie2024selfevaluation} 替换为 \\cite{ren2023selfevaluation}。\n\n**4. conclusion.tex L8 分词短语**\n改为主动句。\n\n**暂不处理**：17.8% vs 17.6% 差异，等 Agent 数据溯源结果再统一。\n\n**tab:scale_ablation**：保留，信息密度可接受。\n\n这次不用验证引用。完成后汇报修改统计。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "source": "director"
+          },
+          "id": "event-010280"
+        },
+        {
+          "source_line": 10281,
+          "timestamp": "2026-05-17T13:27:53.986899+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "xie2024selfevaluation",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-010281"
+        },
+        {
+          "source_line": 10282,
+          "timestamp": "2026-05-17T13:27:54.088677+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/main.bbl:313:  Lakshminarayanan}]{xie2024selfevaluation}\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/related_work.tex:28:\\citet{xie2024selfevaluation} show self-evaluation improves selective generation for discrete tasks; our results suggest this does not transfer to structured extraction without learned scoring.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/references.bib:423:@inproceedings{xie2024selfevaluation,\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/main.aux:235:\\citation{xie2024selfevaluation}\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/main.aux:1299:\\bibcite{xie2024selfevaluation}{{39}{2023}{{Ren et~al.}}{{Ren, Zhao, Vu, Liu, and Lakshminarayanan}}}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Grep",
+            "elapsed_ms": 101
+          },
+          "id": "event-010282"
+        },
+        {
+          "source_line": 10283,
+          "timestamp": "2026-05-17T13:27:58.554008+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/references.bib",
+              "old_string": "@inproceedings{xie2024selfevaluation,",
+              "new_string": "@inproceedings{ren2023selfevaluation,"
+            }
+          },
+          "id": "event-010283"
+        },
+        {
+          "source_line": 10284,
+          "timestamp": "2026-05-17T13:27:58.554475+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<tool_use_error>File has not been read yet. Read it first before writing to it.</tool_use_error>"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-010284"
+        },
+        {
+          "source_line": 10285,
+          "timestamp": "2026-05-17T13:28:00.915822+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/references.bib"
+            }
+          },
+          "id": "event-010285"
+        },
+        {
+          "source_line": 10286,
+          "timestamp": "2026-05-17T13:28:00.966812+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t% Auto-generated from literature_map.yaml — do not edit manually\n2\t\n3\t@article{brown2024monkeys,\n4\t  title = {Large Language Monkeys: Scaling Inference Compute with Repeated Sampling},\n5\t  author = {Brown, Bradley and Juravsky, Jordan and Ehrlich, Ryan and Clark, Ronald and Le, Quoc V. and Ré, Christopher and Mirhoseini, Azalia},\n6\t  journal = {arXiv preprint arXiv:2407.21787},\n7\t  year = {2024},\n8\t  url = {https://arxiv.org/abs/2407.21787}\n9\t}\n10\t\n11\t@inproceedings{chen2024usc,\n12\t  title = {Universal Self-Consistency for Large Language Model Generation},\n13\t  author = {Chen, Xinyun and Aksitov, Renat and Alon, Uri and Ren, Jie and Xiao, Kefan and Yin, Pengcheng and Prakash, Sushant and Sutton, Charles and Wang, Xuezhi and Zhou, Denny},\n14\t  booktitle = {ICML 2024 Workshop on In-Context Learning},\n15\t  year = {2024},\n16\t  url = {https://arxiv.org/abs/2311.17311}\n17\t}\n18\t\n19\t@article{cobbe2021verifiers,\n20\t  title = {Training Verifiers to Solve Math Word Problems},\n21\t  author = {Cobbe, Karl and Kosaraju, Vineet and Bavarian, Mohammad and Chen, Mark and Jun, Heewoo and Kaiser, Lukasz and Plappert, Matthias and Tworek, Jerry and Hilton, Jacob and Nakano, Reiichiro and Hesse, Christopher and Schulman, John},\n22\t  journal = {arXiv preprint arXiv:2110.14168},\n23\t  year = {2021},\n24\t  url = {https://arxiv.org/abs/2110.14168}\n25\t}\n26\t\n27\t@inproceedings{culotta2004confidence,\n28\t  title = {Confidence Estimation for Information Extraction},\n29\t  author = {Culotta, Aron and McCallum, Andrew},\n30\t  booktitle = {HLT-NAACL 2004},\n31\t  year = {2004},\n32\t  url = {https://aclanthology.org/N04-4028/}\n33\t}\n34\t\n35\t@inproceedings{derczynski2017wnut,\n36\t  title = {Results of the WNUT2017 Shared Task on Novel and Emerging Entity Recognition},\n37\t  author = {Derczynski, Leon and Nichols, Eric and Erp, Marieke van and Limsopatham, Nut},\n38\t  booktitle = {W-NUT Workshop at EMNLP 2017},\n39\t  year = {2017},\n40\t  url = {https://aclanthology.org/W17-4418/}\n41\t}\n42\t\n43\t@inproceedings{ding2021\n…[truncated 22710 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-010286"
+        },
+        {
+          "source_line": 10287,
+          "timestamp": "2026-05-17T13:28:08.153482+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/references.bib",
+              "old_string": "  booktitle = {HLT-NAACL 2004},",
+              "new_string": "  booktitle = {Proceedings of the Human Language Technology Conference of the North American Chapter of the Association for Computational Linguistics (HLT-NAACL 2004)},"
+            }
+          },
+          "id": "event-010287"
+        },
+        {
+          "source_line": 10288,
+          "timestamp": "2026-05-17T13:28:08.304616+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/references.bib has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 151
+          },
+          "id": "event-010288"
+        },
+        {
+          "source_line": 10289,
+          "timestamp": "2026-05-17T13:28:11.916211+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/references.bib",
+              "old_string": "  booktitle = {W-NUT Workshop at EMNLP 2017},",
+              "new_string": "  booktitle = {Proceedings of the 3rd Workshop on Noisy User-generated Text (W-NUT 2017)},"
+            }
+          },
+          "id": "event-010289"
+        },
+        {
+          "source_line": 10290,
+          "timestamp": "2026-05-17T13:28:11.966978+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/references.bib has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-010290"
+        },
+        {
+          "source_line": 10291,
+          "timestamp": "2026-05-17T13:28:18.338086+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/references.bib",
+              "old_string": "@inproceedings{kang2025selfcertainty,\n  title = {Scalable Best-of-N Selection for Large Language Models via Self-Certainty},\n  author = {Kang, Zhewei and Zhao, Xuandong and Song, Dawn},\n  booktitle = {NeurIPS 2025},",
+              "new_string": "@inproceedings{kang2025selfcertainty,\n  title = {Scalable Best-of-N Selection for Large Language Models via Self-Certainty},\n  author = {Kang, Zhewei and Zhao, Xuandong and Song, Dawn},\n  booktitle = {Advances in Neural Information Processing Systems 38 (NeurIPS)},"
+            }
+          },
+          "id": "event-010291"
+        },
+        {
+          "source_line": 10292,
+          "timestamp": "2026-05-17T13:28:18.388905+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/references.bib has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-010292"
+        },
+        {
+          "source_line": 10293,
+          "timestamp": "2026-05-17T13:28:21.649597+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/references.bib",
+              "old_string": "  booktitle = {ACL 2026},",
+              "new_string": "  booktitle = {Proceedings of the 64th Annual Meeting of the Association for Computational Linguistics (ACL 2026)},"
+            }
+          },
+          "id": "event-010293"
+        },
+        {
+          "source_line": 10294,
+          "timestamp": "2026-05-17T13:28:21.701494+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/references.bib has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 51
+          },
+          "id": "event-010294"
+        },
+        {
+          "source_line": 10295,
+          "timestamp": "2026-05-17T13:28:27.119348+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/references.bib",
+              "old_string": "@inproceedings{kuhn2023semantic,\n  title = {Semantic Uncertainty: Linguistic Invariances for Uncertainty Estimation in Natural Language Generation},\n  author = {Kuhn, Lorenz and Gal, Yarin and Farquhar, Sebastian},\n  booktitle = {ICLR 2023},",
+              "new_string": "@inproceedings{kuhn2023semantic,\n  title = {Semantic Uncertainty: Linguistic Invariances for Uncertainty Estimation in Natural Language Generation},\n  author = {Kuhn, Lorenz and Gal, Yarin and Farquhar, Sebastian},\n  booktitle = {Proceedings of the Eleventh International Conference on Learning Representations (ICLR 2023)},"
+            }
+          },
+          "id": "event-010295"
+        },
+        {
+          "source_line": 10296,
+          "timestamp": "2026-05-17T13:28:27.170123+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/references.bib has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-010296"
+        },
+        {
+          "source_line": 10297,
+          "timestamp": "2026-05-17T13:28:30.932314+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/references.bib",
+              "old_string": "  booktitle = {International Conference on Learning Representations},\n  year = {2021},",
+              "new_string": "  booktitle = {Proceedings of the Ninth International Conference on Learning Representations (ICLR 2021)},\n  year = {2021},"
+            }
+          },
+          "id": "event-010297"
+        },
+        {
+          "source_line": 10298,
+          "timestamp": "2026-05-17T13:28:30.983104+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/references.bib has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-010298"
+        },
+        {
+          "source_line": 10299,
+          "timestamp": "2026-05-17T13:28:37.325947+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/references.bib",
+              "old_string": "@inproceedings{lightman2024verify,\n  title = {Let's Verify Step by Step},\n  author = {Lightman, Hunter and Kosaraju, Vineet and Burda, Yura and Edwards, Harri and Baker, Bowen and Lee, Teddy and Leike, Jan and Schulman, John and Sutskever, Ilya and Cobbe, Karl},\n  booktitle = {ICLR 2024},",
+              "new_string": "@inproceedings{lightman2024verify,\n  title = {Let's Verify Step by Step},\n  author = {Lightman, Hunter and Kosaraju, Vineet and Burda, Yura and Edwards, Harri and Baker, Bowen and Lee, Teddy and Leike, Jan and Schulman, John and Sutskever, Ilya and Cobbe, Karl},\n  booktitle = {Proceedings of the Twelfth International Conference on Learning Representations (ICLR 2024)},"
+            }
+          },
+          "id": "event-010299"
+        },
+        {
+          "source_line": 10300,
+          "timestamp": "2026-05-17T13:28:37.326643+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/references.bib has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-010300"
+        },
+        {
+          "source_line": 10301,
+          "timestamp": "2026-05-17T13:28:43.517999+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/references.bib",
+              "old_string": "@inproceedings{sainz2024gollie,\n  title = {{GoLLIE}: Annotation Guidelines improve Zero-Shot Information-Extraction},\n  author = {Sainz, Oscar and García-Ferrero, Iker and Agerri, Rodrigo and Lacalle, Oier Lopez de and Rigau, German and Agirre, Eneko},\n  booktitle = {ICLR 2024},",
+              "new_string": "@inproceedings{sainz2024gollie,\n  title = {{GoLLIE}: Annotation Guidelines improve Zero-Shot Information-Extraction},\n  author = {Sainz, Oscar and García-Ferrero, Iker and Agerri, Rodrigo and Lacalle, Oier Lopez de and Rigau, German and Agirre, Eneko},\n  booktitle = {Proceedings of the Twelfth International Conference on Learning Representations (ICLR 2024)},"
+            }
+          },
+          "id": "event-010301"
+        },
+        {
+          "source_line": 10302,
+          "timestamp": "2026-05-17T13:28:43.518749+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/references.bib has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-010302"
+        },
+        {
+          "source_line": 10303,
+          "timestamp": "2026-05-17T13:28:46.983305+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/references.bib",
+              "old_string": "  booktitle = {CoNLL 2003},",
+              "new_string": "  booktitle = {Proceedings of the Seventh Conference on Computational Natural Language Learning (CoNLL 2003)},"
+            }
+          },
+          "id": "event-010303"
+        },
+        {
+          "source_line": 10304,
+          "timestamp": "2026-05-17T13:28:47.034036+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/references.bib has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-010304"
+        },
+        {
+          "source_line": 10305,
+          "timestamp": "2026-05-17T13:28:54.056821+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/references.bib",
+              "old_string": "@inproceedings{vashurin2025cocoa,\n  title = {Uncertainty Quantification for {LLMs} through Minimum Bayes Risk: Bridging Confidence and Consistency},\n  author = {Vashurin, Roman and Goloburda, Maiya and Ilina, Albina and Rubashevskii, Aleksandr and Nakov, Preslav and Shelmanov, Artem and Panov, Maxim},\n  booktitle = {NeurIPS 2025},",
+              "new_string": "@inproceedings{vashurin2025cocoa,\n  title = {Uncertainty Quantification for {LLMs} through Minimum Bayes Risk: Bridging Confidence and Consistency},\n  author = {Vashurin, Roman and Goloburda, Maiya and Ilina, Albina and Rubashevskii, Aleksandr and Nakov, Preslav and Shelmanov, Artem and Panov, Maxim},\n  booktitle = {Advances in Neural Information Processing Systems 38 (NeurIPS)},"
+            }
+          },
+          "id": "event-010305"
+        },
+        {
+          "source_line": 10306,
+          "timestamp": "2026-05-17T13:28:54.057366+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/references.bib has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-010306"
+        },
+        {
+          "source_line": 10307,
+          "timestamp": "2026-05-17T13:29:00.679534+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/references.bib",
+              "old_string": "@inproceedings{wang2023selfconsistency,\n  title = {Self-Consistency Improves Chain of Thought Reasoning in Language Models},\n  author = {Wang, Xuezhi and Wei, Jason and Schuurmans, Dale and Le, Quoc and Chi, Ed and Narang, Sharan and Chowdhery, Aakanksha and Zhou, Denny},\n  booktitle = {ICLR 2023},",
+              "new_string": "@inproceedings{wang2023selfconsistency,\n  title = {Self-Consistency Improves Chain of Thought Reasoning in Language Models},\n  author = {Wang, Xuezhi and Wei, Jason and Schuurmans, Dale and Le, Quoc and Chi, Ed and Narang, Sharan and Chowdhery, Aakanksha and Zhou, Denny},\n  booktitle = {Proceedings of the Eleventh International Conference on Learning Representations (ICLR 2023)},"
+            }
+          },
+          "id": "event-010307"
+        },
+        {
+          "source_line": 10308,
+          "timestamp": "2026-05-17T13:29:00.730487+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/references.bib has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-010308"
+        },
+        {
+          "source_line": 10309,
+          "timestamp": "2026-05-17T13:29:04.315851+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "True",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/references.bib",
+              "old_string": "  booktitle = {ACL Findings 2025},",
+              "new_string": "  booktitle = {Findings of the Association for Computational Linguistics: ACL 2025},"
+            }
+          },
+          "id": "event-010309"
+        },
+        {
+          "source_line": 10310,
+          "timestamp": "2026-05-17T13:29:04.366716+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/references.bib has been updated. All occurrences were successfully replaced."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-010310"
+        },
+        {
+          "source_line": 10311,
+          "timestamp": "2026-05-17T13:29:08.809323+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/references.bib",
+              "old_string": "@inproceedings{xie2024selfevaluation,",
+              "new_string": "@inproceedings{ren2023selfevaluation,"
+            }
+          },
+          "id": "event-010311"
+        },
+        {
+          "source_line": 10312,
+          "timestamp": "2026-05-17T13:29:08.861627+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/references.bib has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 52
+          },
+          "id": "event-010312"
+        },
+        {
+          "source_line": 10313,
+          "timestamp": "2026-05-17T13:29:12.379698+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/related_work.tex",
+              "old_string": "\\citet{xie2024selfevaluation}",
+              "new_string": "\\citet{ren2023selfevaluation}"
+            }
+          },
+          "id": "event-010313"
+        },
+        {
+          "source_line": 10314,
+          "timestamp": "2026-05-17T13:29:12.430289+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/related_work.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-010314"
+        },
+        {
+          "source_line": 10315,
+          "timestamp": "2026-05-17T13:29:16.343781+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/conclusion.tex"
+            }
+          },
+          "id": "event-010315"
+        },
+        {
+          "source_line": 10316,
+          "timestamp": "2026-05-17T13:29:16.395333+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Conclusion}\\label{sec:conclusion}\n2\t\n3\tWe evaluate five confidence signals for quality estimation and sample selection in LLM-based NER across four benchmarks spanning a difficulty gradient.\n4\tAll signals achieve reliable quality estimation ($\\rho$ up to 0.38 on the primary test bed, 0.42 on Few-NERD; AUROC up to 0.82), supporting selective prediction and error flagging.\n5\tHowever, quality estimation does not translate to sample selection, and the gap has a three-layer structure: four instance-level signals cannot rank candidates by construction; MBR selection with well-aligned utility ($\\rho{=}0.52$) fails because instance degeneracy (14\\textendash 47\\%) collapses the candidate pool; and LP, the sole per-sample signal, requires two jointly necessary conditions: low degeneracy and adequate LP-quality alignment ($\\rho \\gtrsim 0.3$).\n6\tLP selection succeeds when both conditions are met: at 13.8\\% degeneracy with strong alignment ($\\rho{\\approx}0.5$; Few-NERD), LP achieves $+1.36$~pp ($p{<}0.001$); at 17.8\\% with weak alignment ($\\rho{\\approx}0.24$; SciERC), $+0.42$~pp ($p{=}0.091$); at 47.4\\% (CoNLL), LP fails.\n7\tIn the low-degeneracy regime, LP selection scales with sample budget ($+0.52$~pp from $N{=}8$ to 16, paired $p{=}0.003$).\n8\tStructural signals fail uniformly regardless of degeneracy, and supervised combination of all five signals cannot close the oracle gap, confirming the bottleneck is in the signal space accessible to unsupervised aggregation.\n9\tWhether these patterns persist at 70B+ scales remains open.\n10\tClosing the gap for structural signals requires content-aware verifiers that examine output semantics \\cite{cobbe2021verifiers}; LP provides a lightweight baseline when both degeneracy and alignment conditions are met.\n11\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 51
+          },
+          "id": "event-010316"
+        },
+        {
+          "source_line": 10317,
+          "timestamp": "2026-05-17T13:29:20.661522+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/conclusion.tex",
+              "old_string": "Structural signals fail uniformly regardless of degeneracy, and supervised combination of all five signals cannot close the oracle gap, confirming the bottleneck is in the signal space accessible to unsupervised aggregation.",
+              "new_string": "Structural signals fail uniformly regardless of degeneracy, and supervised combination of all five signals cannot close the oracle gap; the bottleneck lies in the signal space accessible to unsupervised aggregation, not in the combination method."
+            }
+          },
+          "id": "event-010317"
+        },
+        {
+          "source_line": 10318,
+          "timestamp": "2026-05-17T13:29:20.712042+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/conclusion.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-010318"
+        },
+        {
+          "source_line": 10319,
+          "timestamp": "2026-05-17T13:29:25.981320+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex",
+              "offset": "49",
+              "limit": "5"
+            }
+          },
+          "id": "event-010319"
+        },
+        {
+          "source_line": 10320,
+          "timestamp": "2026-05-17T13:29:26.032024+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "49\tOn CoNLL (ceiling-effect control, single-sample F1${\\approx}$0.91), EM leads both $\\rho$ and AUROC ($0.816$); the $\\rho$--AUROC dissociation across datasets reflects use-case alignment.\n50\tAt the signal-collapse boundary (WNUT-17, macro F1${\\approx}$42\\%, 52\\% zero-F1 instances), full-set correlations are dominated by the zero/non-zero boundary: VC achieves $\\rho{=}0.724$ (AUROC${=}0.913$) but conditional $\\rho$ drops to 0.038 (Table~\\ref{tab:wnut}).\n51\tLP shows the reverse pattern (full-set $\\rho{=}{-}0.410$, conditional $\\rho{=}0.350$), confirming that full-set correlations conflate binary success prediction with quality gradation.\n52\tRestricting to non-zero instances reshuffles rankings, with LP achieving the highest conditional $\\rho$ (0.350), followed by EM (0.333; Figure~\\ref{fig:signal_heatmap}).\n53\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-010320"
+        },
+        {
+          "source_line": 10321,
+          "timestamp": "2026-05-17T13:29:29.696690+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex",
+              "old_string": "LP shows the reverse pattern (full-set $\\rho{=}{-}0.410$, conditional $\\rho{=}0.350$), confirming that full-set correlations conflate binary success prediction with quality gradation.",
+              "new_string": "LP shows the reverse pattern (full-set $\\rho{=}{-}0.410$, conditional $\\rho{=}0.350$); full-set correlations conflate binary success prediction with quality gradation."
+            }
+          },
+          "id": "event-010321"
+        },
+        {
+          "source_line": 10322,
+          "timestamp": "2026-05-17T13:29:29.747372+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-010322"
+        },
+        {
+          "source_line": 10323,
+          "timestamp": "2026-05-17T13:29:33.661544+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex",
+              "old_string": "but instance degeneracy collapses the candidate pool, eliminating the headroom MBR would otherwise exploit.",
+              "new_string": "but instance degeneracy collapses the candidate pool and eliminates the headroom MBR would otherwise exploit."
+            }
+          },
+          "id": "event-010323"
+        },
+        {
+          "source_line": 10324,
+          "timestamp": "2026-05-17T13:29:33.712283+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-010324"
+        },
+        {
+          "source_line": 10325,
+          "timestamp": "2026-05-17T13:29:39.578761+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex",
+              "old_string": "With $N{=}16$, LP selection on SciERC yields a paired improvement of $+0.52$~pp (bootstrap $p{=}0.003$), suggesting the signal becomes actionable at larger candidate pools where degeneracy drops and headroom expands.",
+              "new_string": "With $N{=}16$, LP selection on SciERC yields a paired improvement of $+0.52$~pp (bootstrap $p{=}0.003$). The signal appears to become actionable at larger candidate pools where degeneracy drops and headroom expands."
+            }
+          },
+          "id": "event-010325"
+        },
+        {
+          "source_line": 10326,
+          "timestamp": "2026-05-17T13:29:39.629617+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-010326"
+        },
+        {
+          "source_line": 10327,
+          "timestamp": "2026-05-17T13:29:46.731213+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex",
+              "old_string": "Under stringent external TOST anchors ($\\delta_0{=}1.0$~pp), some configurations (e.g., Qwen CoNLL) show statistically significant degradation (0.9--1.5~pp below greedy), indicating that signal-based selection can be actively harmful rather than merely ineffective (Appendix~\\ref{app:tost}).",
+              "new_string": "Under stringent external TOST anchors ($\\delta_0{=}1.0$~pp), some configurations (e.g., Qwen CoNLL) show statistically significant degradation (0.9--1.5~pp below greedy); signal-based selection can be actively harmful rather than merely ineffective (Appendix~\\ref{app:tost})."
+            }
+          },
+          "id": "event-010327"
+        },
+        {
+          "source_line": 10328,
+          "timestamp": "2026-05-17T13:29:46.731658+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-010328"
+        },
+        {
+          "source_line": 10329,
+          "timestamp": "2026-05-17T13:29:52.000525+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex",
+              "old_string": "while LP ranking quality remains stable ($\\rho{\\approx}0.62$), confirming that signal quality is model-intrinsic rather than $N$-dependent.",
+              "new_string": "while LP ranking quality remains stable ($\\rho{\\approx}0.62$). Signal quality is thus model-intrinsic rather than $N$-dependent."
+            }
+          },
+          "id": "event-010329"
+        },
+        {
+          "source_line": 10330,
+          "timestamp": "2026-05-17T13:29:52.051506+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-010330"
+        },
+        {
+          "source_line": 10331,
+          "timestamp": "2026-05-17T13:29:57.422810+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex",
+              "old_string": "Structural signals remain uniformly negative at $N{=}16$ (SJ $-1.36$, FK $-1.47$~pp), reinforcing that the correlation-selection gap for consensus-based methods persists regardless of sample budget.",
+              "new_string": "Structural signals remain uniformly negative at $N{=}16$ (SJ $-1.36$, FK $-1.47$~pp); the correlation-selection gap for consensus-based methods persists regardless of sample budget."
+            }
+          },
+          "id": "event-010331"
+        },
+        {
+          "source_line": 10332,
+          "timestamp": "2026-05-17T13:29:57.423496+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-010332"
+        },
+        {
+          "source_line": 10333,
+          "timestamp": "2026-05-17T13:30:02.692817+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex",
+              "old_string": "Reducing rank lowers degeneracy from 17.8\\% to 7.2\\% and increases oracle headroom from 13.3~pp to 16.0~pp, confirming that fine-tuning capacity drives output convergence.",
+              "new_string": "Reducing rank lowers degeneracy from 17.8\\% to 7.2\\% and increases oracle headroom from 13.3~pp to 16.0~pp; fine-tuning capacity drives output convergence."
+            }
+          },
+          "id": "event-010333"
+        },
+        {
+          "source_line": 10334,
+          "timestamp": "2026-05-17T13:30:02.743637+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-010334"
+        },
+        {
+          "source_line": 10335,
+          "timestamp": "2026-05-17T13:30:10.964545+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex",
+              "old_string": "within-instance $\\rho(\\text{LP}, \\text{F1}){\\approx}0.24$ remains too weak for effective ranking, confirming that both low degeneracy and adequate LP-quality alignment are independently necessary.",
+              "new_string": "within-instance $\\rho(\\text{LP}, \\text{F1}){\\approx}0.24$ remains too weak for effective ranking. Both low degeneracy and adequate LP-quality alignment are independently necessary."
+            }
+          },
+          "id": "event-010335"
+        },
+        {
+          "source_line": 10336,
+          "timestamp": "2026-05-17T13:30:11.115653+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 151
+          },
+          "id": "event-010336"
+        },
+        {
+          "source_line": 10337,
+          "timestamp": "2026-05-17T13:30:17.738820+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/discussion.tex",
+              "old_string": "indicating that for a substantial minority, higher structural consistency is actively associated with lower quality; this heterogeneity further explains why pooled positive correlation does not translate to reliable MBR selection.",
+              "new_string": "for a substantial minority, higher structural consistency is actively associated with lower quality. This heterogeneity further explains why pooled positive correlation does not translate to reliable MBR selection."
+            }
+          },
+          "id": "event-010337"
+        },
+        {
+          "source_line": 10338,
+          "timestamp": "2026-05-17T13:30:17.790596+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/discussion.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 51
+          },
+          "id": "event-010338"
+        },
+        {
+          "source_line": 10339,
+          "timestamp": "2026-05-17T13:30:22.405401+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/discussion.tex",
+              "old_string": "LP achieves significant gains ($+1.36$~pp, $p{<}0.001$; Table~\\ref{tab:fewnerd}), confirming that both low degeneracy and adequate alignment are required.",
+              "new_string": "LP achieves significant gains ($+1.36$~pp, $p{<}0.001$; Table~\\ref{tab:fewnerd}). Both low degeneracy and adequate alignment are required."
+            }
+          },
+          "id": "event-010339"
+        },
+        {
+          "source_line": 10340,
+          "timestamp": "2026-05-17T13:30:22.456413+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/discussion.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 51
+          },
+          "id": "event-010340"
+        },
+        {
+          "source_line": 10341,
+          "timestamp": "2026-05-17T13:30:26.771400+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/discussion.tex",
+              "old_string": "but selection gains remain negligible, isolating the bottleneck at the within-instance ranking mechanism.",
+              "new_string": "but selection gains remain negligible; the bottleneck lies at the within-instance ranking mechanism."
+            }
+          },
+          "id": "event-010341"
+        },
+        {
+          "source_line": 10342,
+          "timestamp": "2026-05-17T13:30:26.822447+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/discussion.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 51
+          },
+          "id": "event-010342"
+        },
+        {
+          "source_line": 10343,
+          "timestamp": "2026-05-17T13:30:30.535831+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/discussion.tex",
+              "old_string": "exhibiting the same top-biased pattern regardless of output format",
+              "new_string": "with the same top-biased pattern regardless of output format"
+            }
+          },
+          "id": "event-010343"
+        },
+        {
+          "source_line": 10344,
+          "timestamp": "2026-05-17T13:30:30.586495+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/discussion.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-010344"
+        },
+        {
+          "source_line": 10345,
+          "timestamp": "2026-05-17T13:30:35.270593+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/discussion.tex",
+              "old_string": "an oracle tiebreaker within VC-equivalent groups recovers $+7.9$~pp, confirming that per-sample signal exists but current signals cannot extract it.",
+              "new_string": "an oracle tiebreaker within VC-equivalent groups recovers $+7.9$~pp. Per-sample signal exists, but current signals cannot extract it."
+            }
+          },
+          "id": "event-010345"
+        },
+        {
+          "source_line": 10346,
+          "timestamp": "2026-05-17T13:30:35.321316+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/discussion.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-010346"
+        },
+        {
+          "source_line": 10347,
+          "timestamp": "2026-05-17T13:30:39.441582+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/discussion.tex",
+              "old_string": "suggesting the model-learned mechanisms (a) and (d) are the primary drivers for NER.",
+              "new_string": "the model-learned mechanisms (a) and (d) are likely the primary drivers for NER."
+            }
+          },
+          "id": "event-010347"
+        },
+        {
+          "source_line": 10348,
+          "timestamp": "2026-05-17T13:30:39.492263+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/discussion.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-010348"
+        },
+        {
+          "source_line": 10349,
+          "timestamp": "2026-05-17T13:30:44.337960+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/discussion.tex",
+              "old_string": "LP selection failures show cross-seed stability (Jaccard${=}0.42$; Appendix~\\ref{app:lp_failure_stability}), indicating a systematic rather than stochastic failure mode.",
+              "new_string": "LP selection failures show cross-seed stability (Jaccard${=}0.42$; Appendix~\\ref{app:lp_failure_stability}), consistent with a systematic rather than stochastic failure mode."
+            }
+          },
+          "id": "event-010349"
+        },
+        {
+          "source_line": 10350,
+          "timestamp": "2026-05-17T13:30:44.438930+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/discussion.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 100
+          },
+          "id": "event-010350"
+        },
+        {
+          "source_line": 10351,
+          "timestamp": "2026-05-17T13:30:49.004862+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/discussion.tex",
+              "old_string": "entity-token LP exhibits $4{\\times}$ higher within-instance variance than full-sequence LP, confirming that format tokens do compress the signal.",
+              "new_string": "entity-token LP exhibits $4{\\times}$ higher within-instance variance than full-sequence LP; format tokens do compress the signal."
+            }
+          },
+          "id": "event-010351"
+        },
+        {
+          "source_line": 10352,
+          "timestamp": "2026-05-17T13:30:49.005468+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/discussion.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-010352"
+        },
+        {
+          "source_line": 10353,
+          "timestamp": "2026-05-17T13:30:53.169445+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/discussion.tex",
+              "old_string": "79.4\\% of sample pairs share identical entity-token LP, confirming that compression operates at the representation level rather than being diluted by non-entity tokens.",
+              "new_string": "79.4\\% of sample pairs share identical entity-token LP. Compression operates at the representation level rather than being diluted by non-entity tokens."
+            }
+          },
+          "id": "event-010353"
+        },
+        {
+          "source_line": 10354,
+          "timestamp": "2026-05-17T13:30:53.170049+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/discussion.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-010354"
+        },
+        {
+          "source_line": 10355,
+          "timestamp": "2026-05-17T13:31:00.346009+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/discussion.tex",
+              "old_string": "Both approach Few-NERD's degeneracy level (13.8\\%) without approaching its alignment ($\\rho{\\approx}0.5$), establishing that the two necessary conditions vary independently and that degeneracy reduction alone cannot unlock LP selection on datasets with weak alignment.",
+              "new_string": "Both approach Few-NERD's degeneracy level (13.8\\%) without approaching its alignment ($\\rho{\\approx}0.5$). The two necessary conditions vary independently, and degeneracy reduction alone cannot unlock LP selection on datasets with weak alignment."
+            }
+          },
+          "id": "event-010355"
+        },
+        {
+          "source_line": 10356,
+          "timestamp": "2026-05-17T13:31:00.346700+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/discussion.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-010356"
+        },
+        {
+          "source_line": 10357,
+          "timestamp": "2026-05-17T13:31:05.150937+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/discussion.tex",
+              "old_string": "fails to close the oracle gap (\\S\\ref{sec:robustness_main}), confirming the information bottleneck is in the signal space accessible to unsupervised aggregation",
+              "new_string": "fails to close the oracle gap (\\S\\ref{sec:robustness_main}); the information bottleneck is in the signal space accessible to unsupervised aggregation"
+            }
+          },
+          "id": "event-010357"
+        },
+        {
+          "source_line": 10358,
+          "timestamp": "2026-05-17T13:31:05.151584+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/discussion.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-010358"
+        },
+        {
+          "source_line": 10359,
+          "timestamp": "2026-05-17T13:31:10.390222+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/discussion.tex",
+              "old_string": "though within-instance $\\rho(\\text{LP}, \\text{F1})$ remains at 0.225 even at $T{=}1.2$, confirming that alignment is dataset-intrinsic and not temperature-controllable.",
+              "new_string": "though within-instance $\\rho(\\text{LP}, \\text{F1})$ remains at 0.225 even at $T{=}1.2$; alignment is dataset-intrinsic and not temperature-controllable."
+            }
+          },
+          "id": "event-010359"
+        },
+        {
+          "source_line": 10360,
+          "timestamp": "2026-05-17T13:31:10.440894+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/discussion.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-010360"
+        },
+        {
+          "source_line": 10361,
+          "timestamp": "2026-05-17T13:31:14.858555+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/discussion.tex",
+              "old_string": "$N{=}8$ suffices (Appendix~\\ref{app:n_scaling}), making the cost acceptable for selective prediction in high-stakes IE.",
+              "new_string": "$N{=}8$ suffices (Appendix~\\ref{app:n_scaling}), a cost acceptable for selective prediction in high-stakes IE."
+            }
+          },
+          "id": "event-010361"
+        },
+        {
+          "source_line": 10362,
+          "timestamp": "2026-05-17T13:31:14.960365+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/discussion.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 101
+          },
+          "id": "event-010362"
+        },
+        {
+          "source_line": 10363,
+          "timestamp": "2026-05-17T13:31:19.874992+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/related_work.tex",
+              "old_string": "establishing the paradigm we extend from sequence-level to set-valued structured outputs.",
+              "new_string": "and establish the paradigm we extend from sequence-level to set-valued structured outputs."
+            }
+          },
+          "id": "event-010363"
+        },
+        {
+          "source_line": 10364,
+          "timestamp": "2026-05-17T13:31:19.925740+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/related_work.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-010364"
+        },
+        {
+          "source_line": 10365,
+          "timestamp": "2026-05-17T13:31:24.792978+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/related_work.tex",
+              "old_string": "showing that BoN performance scales log-linearly with $N$ but eventually degrades due to reward overoptimization.",
+              "new_string": "BoN performance scales log-linearly with $N$ but eventually degrades due to reward overoptimization."
+            }
+          },
+          "id": "event-010365"
+        },
+        {
+          "source_line": 10366,
+          "timestamp": "2026-05-17T13:31:24.844374+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/related_work.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 51
+          },
+          "id": "event-010366"
+        },
+        {
+          "source_line": 10367,
+          "timestamp": "2026-05-17T13:31:29.711890+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/related_work.tex",
+              "old_string": "or rank them too weakly (LP compression), making the overoptimization regime irrelevant.",
+              "new_string": "or rank them too weakly (LP compression); the overoptimization regime is irrelevant."
+            }
+          },
+          "id": "event-010367"
+        },
+        {
+          "source_line": 10368,
+          "timestamp": "2026-05-17T13:31:29.763981+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/related_work.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 52
+          },
+          "id": "event-010368"
+        },
+        {
+          "source_line": 10369,
+          "timestamp": "2026-05-17T13:31:33.026676+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/introduction.tex",
+              "offset": "13",
+              "limit": "3"
+            }
+          },
+          "id": "event-010369"
+        },
+        {
+          "source_line": 10370,
+          "timestamp": "2026-05-17T13:31:33.077239+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "13\tYet quality estimation does not translate to structural selection, a disparity we term the \\textbf{correlation-selection gap} (the disparity between a signal's ability to rank instances reliably and its failure to select the best output within a single instance): structural best-of-$N$ selection matches or degrades greedy decoding ($T{=}0$) despite 12\\textendash 14~pp oracle headroom.\n14\tThe gap has two empirical causes: (a)~\\textit{instance degeneracy}, where fine-tuned models produce identical outputs for 14\\textendash 47\\% of instances, eliminating selection headroom despite positive within-instance utility\\textendash F1 correlation (median $\\rho{=}0.52$); and (b)~\\textit{weak LP-quality alignment}, where within-instance $\\rho(\\text{LP}, \\text{F1})$ is too low to exploit the remaining headroom (\\S\\ref{sec:discussion}).\n15\tLP selection requires both low degeneracy and adequate alignment: significant at 13.8\\% degeneracy with $\\rho{\\approx}0.5$ ($+1.36$~pp, $p{<}0.001$), sub-significant at 17.8\\% with $\\rho{\\approx}0.24$ ($+0.42$~pp), and absent at 47.4\\%."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-010370"
+        },
+        {
+          "source_line": 10371,
+          "timestamp": "2026-05-17T13:31:36.503063+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/introduction.tex",
+              "old_string": "eliminating selection headroom despite positive within-instance utility\\textendash F1 correlation",
+              "new_string": "which eliminates selection headroom despite positive within-instance utility\\textendash F1 correlation"
+            }
+          },
+          "id": "event-010371"
+        },
+        {
+          "source_line": 10372,
+          "timestamp": "2026-05-17T13:31:36.605409+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/introduction.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 102
+          },
+          "id": "event-010372"
+        },
+        {
+          "source_line": 10373,
+          "timestamp": "2026-05-17T13:31:40.705369+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+              "offset": "80",
+              "limit": "60"
+            }
+          },
+          "id": "event-010373"
+        },
+        {
+          "source_line": 10374,
+          "timestamp": "2026-05-17T13:31:40.761178+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "80\t\\paragraph{Sample size scaling.}\n81\tIncreasing from $N{=}8$ to $N{=}16$ improves SJ on Qwen SciERC NER: $\\rho$ rises from 0.360 to $0.411{\\pm}0.010$ (three seeds: 0.398, 0.423, 0.410), a gain of $+0.047$.\n82\tThe magnitude of $N$-scaling gains is setting-dependent (LLaMA SciERC NER yields $+0.016$ and Qwen CoNLL NER $+0.014$), though the direction is consistently positive.\n83\tLLaMA CoNLL exhibits the most uniform scaling: all four consistency signals gain $\\Delta\\rho{\\approx}{+}0.042$ (range: $+0.039$ to $+0.044$) while LP gains only $+0.004$ (Table~\\ref{tab:quality_estimation}).\n84\tFK $N$-scaling is seed-dependent: Qwen SciERC gains range from $+0.005$ to $+0.023$ across seeds (mean $+0.016$), while LLaMA CoNLL yields $+0.039$ (3-seed mean); individual seed FK shifts vary substantially under the unified pipeline, so this should not be interpreted as a robust trend.\n85\tVC $N$-scaling is consistently positive ($+0.005$ on Qwen CoNLL, $+0.018$ on LLaMA SciERC, $+0.030$ on Qwen SciERC), while LP is approximately $N$-invariant ($\\Delta{\\leq}0.034$).\n86\tSJ, EM, and VC scale consistently across all tested settings; only FK shows seed-dependent variation that does not constitute a reliable trend, suggesting that structural and binary-agreement signals are the most robust to $N$.\n87\tAt $N{=}16$, SJ converges to comparable NER performance with VC ($\\Delta{=}0.002$) while exhibiting lower cross-seed variance ($\\sigma{=}0.010$ vs.\\ $0.026$), making it a more stable alternative at higher sample sizes.\n88\t\n89\t\\paragraph{Transfer across model families.}\n90\tLLaMA-3.1-8B-Instruct shows a similar SJ--FK ordering on SciERC NER (SJ $\\rho{=}0.325{\\pm}0.021$, FK $\\rho{=}0.256{\\pm}0.024$, $\\Delta\\rho{=}0.069$; permutation $p{=}0.06$, borderline).\n91\tOn CoNLL, the gap across model families is minimal (Table~\\ref{tab:quality_estimation}): SJ achieves $\\rho{=}0.431$ (LLaMA) vs.\\ 0.436 (Qwen), $\\Delta{=}0.005$.\n92\tAt $N{=}16$, the structural-over-LP advantage holds across all four tested N\n…[truncated 4012 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 55
+          },
+          "id": "event-010374"
+        },
+        {
+          "source_line": 10375,
+          "timestamp": "2026-05-17T13:31:46.667280+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+              "old_string": "suggesting that structural and binary-agreement signals are the most robust to $N$.",
+              "new_string": "structural and binary-agreement signals are the most robust to $N$."
+            }
+          },
+          "id": "event-010375"
+        },
+        {
+          "source_line": 10376,
+          "timestamp": "2026-05-17T13:31:46.668328+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 1
+          },
+          "id": "event-010376"
+        },
+        {
+          "source_line": 10377,
+          "timestamp": "2026-05-17T13:31:51.082993+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+              "old_string": "making it a more stable alternative at higher sample sizes.",
+              "new_string": "a more stable alternative at higher sample sizes."
+            }
+          },
+          "id": "event-010377"
+        },
+        {
+          "source_line": 10378,
+          "timestamp": "2026-05-17T13:31:51.387430+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 304
+          },
+          "id": "event-010378"
+        },
+        {
+          "source_line": 10379,
+          "timestamp": "2026-05-17T13:31:55.202222+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+              "old_string": "confirming that FK captures genuine inter-sample agreement rather than chance label co-occurrence.",
+              "new_string": "FK captures genuine inter-sample agreement rather than chance label co-occurrence."
+            }
+          },
+          "id": "event-010379"
+        },
+        {
+          "source_line": 10380,
+          "timestamp": "2026-05-17T13:31:55.203257+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 1
+          },
+          "id": "event-010380"
+        },
+        {
+          "source_line": 10381,
+          "timestamp": "2026-05-17T13:31:58.828528+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+              "old_string": "indicating moderate stability: FK estimates",
+              "new_string": "moderate stability: FK estimates"
+            }
+          },
+          "id": "event-010381"
+        },
+        {
+          "source_line": 10382,
+          "timestamp": "2026-05-17T13:31:58.879949+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 51
+          },
+          "id": "event-010382"
+        },
+        {
+          "source_line": 10383,
+          "timestamp": "2026-05-17T13:32:02.962762+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+              "old_string": "reflecting the difficulty of calibrating confidence for compound extraction tasks.}\n\\label{fig:reliability}",
+              "new_string": "RE calibration remains challenging for compound extraction tasks.}\n\\label{fig:reliability}"
+            }
+          },
+          "id": "event-010383"
+        },
+        {
+          "source_line": 10384,
+          "timestamp": "2026-05-17T13:32:03.015030+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 52
+          },
+          "id": "event-010384"
+        },
+        {
+          "source_line": 10385,
+          "timestamp": "2026-05-17T13:32:07.088876+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+              "old_string": "indicating that translating consistency scores into calibrated confidence estimates is feasible for NER but remains challenging for compound extraction tasks.",
+              "new_string": "translating consistency scores into calibrated confidence estimates is feasible for NER but remains challenging for compound extraction tasks."
+            }
+          },
+          "id": "event-010385"
+        },
+        {
+          "source_line": 10386,
+          "timestamp": "2026-05-17T13:32:07.140094+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 51
+          },
+          "id": "event-010386"
+        },
+        {
+          "source_line": 10387,
+          "timestamp": "2026-05-17T13:32:12.062626+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+              "offset": "140",
+              "limit": "80"
+            }
+          },
+          "id": "event-010387"
+        },
+        {
+          "source_line": 10388,
+          "timestamp": "2026-05-17T13:32:12.113373+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "140\t\n141\t\\paragraph{Per-relation diagnostic.}\n142\tRE signal degradation is relation-specific.\n143\t\\textsc{Feature-Of} has near-zero correlation ($\\rho{=}0.004$), while \\textsc{Hyponym-Of} achieves $\\rho{=}0.646$.\n144\tThe primary bottleneck is entity span errors, which account for 55.5\\% of RE false negatives. This is a prerequisite failure that consistency signals cannot detect, as they measure agreement among equally incorrect extractions.\n145\tWe note that RE analysis relies on a single dataset (SciERC); generalization to other RE benchmarks remains to be validated.\n146\t\n147\t\\paragraph{Capability stratification.}\n148\tFor NER, SJ effectiveness scales with structural complexity: on SciERC instances with 6+ entities, $\\rho{=}0.547$, compared to $\\rho{=}0.415$ for 1--2 entities.\n149\tThe SJ advantage over LP remains stable across sentence-length quartiles ($\\Delta\\rho{\\approx}0.08$--$0.20$).\n150\tFor RE, SJ $\\rho$ increases monotonically with sentence length (Q1: 0.110 $\\to$ Q4: 0.473; Fisher $z$-test $p{=}0.004$), indicating that longer, more relation-dense sentences provide richer structure for consistency-based estimation.\n151\tBoth proxies are weakly correlated with F1 ($|r|{<}0.15$), confirming they capture input complexity rather than directly predicting output quality; however, entity count and sentence length are themselves moderately correlated ($\\rho{=}0.650$), so they reflect overlapping rather than independent complexity dimensions.\n152\tFor RE, entity count and relation count are strongly correlated ($\\rho{=}0.769$) and thus reflect a single structural complexity dimension rather than independent axes.\n153\tOn the high-complexity RE subset ($n{=}81$, high relation count), signals improve substantially: VC reaches $\\rho{=}0.630$, LP $\\rho{=}0.554$, and SJ $\\rho{=}0.502$, all far above the full-set levels.\n154\tRicher relational structure provides more signal for consistency-based estimation, complementing the task-level boundary established by WNUT-17: structural\n…[truncated 6238 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-010388"
+        },
+        {
+          "source_line": 10389,
+          "timestamp": "2026-05-17T13:32:19.137752+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+              "old_string": "For RE, SJ $\\rho$ increases monotonically with sentence length (Q1: 0.110 $\\to$ Q4: 0.473; Fisher $z$-test $p{=}0.004$), indicating that longer, more relation-dense sentences provide richer structure for consistency-based estimation.",
+              "new_string": "For RE, SJ $\\rho$ increases monotonically with sentence length (Q1: 0.110 $\\to$ Q4: 0.473; Fisher $z$-test $p{=}0.004$): longer, more relation-dense sentences provide richer structure for consistency-based estimation."
+            }
+          },
+          "id": "event-010389"
+        },
+        {
+          "source_line": 10390,
+          "timestamp": "2026-05-17T13:32:19.188910+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 51
+          },
+          "id": "event-010390"
+        },
+        {
+          "source_line": 10391,
+          "timestamp": "2026-05-17T13:32:23.052644+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+              "old_string": "confirming they capture input complexity rather than directly predicting output quality;",
+              "new_string": "they capture input complexity rather than directly predicting output quality;"
+            }
+          },
+          "id": "event-010391"
+        },
+        {
+          "source_line": 10392,
+          "timestamp": "2026-05-17T13:32:23.103879+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 51
+          },
+          "id": "event-010392"
+        },
+        {
+          "source_line": 10393,
+          "timestamp": "2026-05-17T13:32:27.218559+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+              "old_string": "confirming that the choice between max and union normalization does not affect conclusions.",
+              "new_string": "the choice between max and union normalization does not affect conclusions."
+            }
+          },
+          "id": "event-010393"
+        },
+        {
+          "source_line": 10394,
+          "timestamp": "2026-05-17T13:32:27.269967+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 51
+          },
+          "id": "event-010394"
+        },
+        {
+          "source_line": 10395,
+          "timestamp": "2026-05-17T13:32:32.091017+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+              "old_string": "confirming that full-set correlations on high-failure-rate datasets conflate binary success prediction with quality gradation.",
+              "new_string": "full-set correlations on high-failure-rate datasets conflate binary success prediction with quality gradation."
+            }
+          },
+          "id": "event-010395"
+        },
+        {
+          "source_line": 10396,
+          "timestamp": "2026-05-17T13:32:32.142353+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 51
+          },
+          "id": "event-010396"
+        },
+        {
+          "source_line": 10397,
+          "timestamp": "2026-05-17T13:32:37.465255+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+              "old_string": "$\\arg\\max_{y_i} \\sum_{j \\neq i} \\text{SJ}(y_i, y_j)$, making the two selection rules equivalent.",
+              "new_string": "$\\arg\\max_{y_i} \\sum_{j \\neq i} \\text{SJ}(y_i, y_j)$; the two selection rules are equivalent."
+            }
+          },
+          "id": "event-010397"
+        },
+        {
+          "source_line": 10398,
+          "timestamp": "2026-05-17T13:32:37.515866+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<tool_use_error>String to replace not found in file.\nString: $\\arg\\max_{y_i} \\sum_{j \\neq i} \\text{SJ}(y_i, y_j)$, making the two selection rules equivalent.</tool_use_error>"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-010398"
+        },
+        {
+          "source_line": 10399,
+          "timestamp": "2026-05-17T13:32:40.635591+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+              "offset": "168",
+              "limit": "3"
+            }
+          },
+          "id": "event-010399"
+        },
+        {
+          "source_line": 10400,
+          "timestamp": "2026-05-17T13:32:40.686314+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "168\tLeave-one-out SJ (LOO-SJ) for sample $y_i$ is $\\text{LOO-SJ}_i = \\frac{1}{N-1}\\sum_{j \\neq i} \\text{SJ}(y_i, y_j)$.\n169\tSince the $\\frac{1}{N-1}$ constant is shared across all candidates within an instance, $\\arg\\max_{y_i} \\text{LOO-SJ}_i = \\arg\\max_{y_i} \\sum_{j \\neq i} \\text{SJ}(y_i, y_j)$, making the two selection rules equivalent.\n170\tStandard (non-LOO) SJ adds the self-comparison term $\\text{SJ}(y_i, y_i) = 1$ to each candidate, which is constant and thus does not affect ranking."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-010400"
+        },
+        {
+          "source_line": 10401,
+          "timestamp": "2026-05-17T13:32:44.174274+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+              "old_string": "\\text{SJ}(y_i, y_j)$, making the two selection rules equivalent.",
+              "new_string": "\\text{SJ}(y_i, y_j)$; the two selection rules are equivalent."
+            }
+          },
+          "id": "event-010401"
+        },
+        {
+          "source_line": 10402,
+          "timestamp": "2026-05-17T13:32:44.225364+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 51
+          },
+          "id": "event-010402"
+        },
+        {
+          "source_line": 10403,
+          "timestamp": "2026-05-17T13:32:47.686988+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+              "offset": "228",
+              "limit": "30"
+            }
+          },
+          "id": "event-010403"
+        },
+        {
+          "source_line": 10404,
+          "timestamp": "2026-05-17T13:32:47.687569+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "228\t\\bottomrule\n229\t\\end{tabular}\n230\t\\end{table*}\n231\t\n232\t\\paragraph{Diminishing returns of $N$-scaling.}\n233\tOur $N{=}8$ and $N{=}16$ comparisons (Table~\\ref{tab:robustness}) characterize the marginal value of additional samples for test-time scaling \\cite{brown2024monkeys, snell2025scaling}.\n234\tFor quality estimation, structural signals benefit consistently but sublinearly: SJ $\\rho$ improves by $+0.047$ (Qwen SciERC, 3-seed mean) and $+0.032$ (LLaMA CoNLL, 3-seed mean) when doubling from $N{=}8$ to $N{=}16$, while log-probability is approximately $N$-invariant ($\\Delta\\rho{\\leq}0.021$).\n235\tStructural signals use $\\binom{N}{2}$ pairwise comparisons (28 pairs at $N{=}8$, 120 at $N{=}16$), but the $\\rho$ improvement is far less than proportional, indicating diminishing information per additional comparison.\n236\tThis asymmetry gives structural signals a relative advantage in the compute-constrained regime: at $N{=}8$, SJ already achieves $\\rho{=}0.431$ on LLaMA CoNLL (vs.\\ LP $\\rho{=}0.307$, $\\Delta{=}{+}0.124$), and the gap \\textit{widens} at $N{=}16$ ($\\Delta{=}{+}0.163$) because structural signals continue to benefit from additional pairwise evidence while LP does not.\n237\tFor sample selection, additional samples increase the oracle upper bound (more draws raise the probability of a high-quality candidate), but signal-based selection remains flat because the selector's inability to identify the best candidate is a granularity limitation, not a sample size limitation.\n238\tThe practical implication is that $N{=}8$ captures most of the achievable quality estimation benefit; further scaling widens rather than closes the correlation-selection gap absent stronger per-sample selectors.\n239\t\n240\t\\paragraph{$N{=}16$ CoNLL selection: small but significant.}\n241\tWhile quality estimation benefits sublinearly from $N$-scaling, selection behavior at $N{=}16$ reveals a nuanced exception on LLaMA CoNLL.\n242\tVC achieves the largest gain over single-sample ($+0.28$~pp, $p{=}0.0\n…[truncated 1565 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-010404"
+        },
+        {
+          "source_line": 10405,
+          "timestamp": "2026-05-17T13:33:10.777300+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+              "old_string": "indicating diminishing information per additional comparison.",
+              "new_string": "each additional comparison yields diminishing information."
+            }
+          },
+          "id": "event-010405"
+        },
+        {
+          "source_line": 10406,
+          "timestamp": "2026-05-17T13:33:11.078812+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<tool_use_error>File has been modified since read, either by the user or by a linter. Read it again before attempting to write it.</tool_use_error>"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 301
+          },
+          "id": "event-010406"
+        },
+        {
+          "source_line": 10407,
+          "timestamp": "2026-05-17T13:33:14.139168+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+              "offset": "233",
+              "limit": "20"
+            }
+          },
+          "id": "event-010407"
+        },
+        {
+          "source_line": 10408,
+          "timestamp": "2026-05-17T13:33:14.189751+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "233\tOur $N{=}8$ and $N{=}16$ comparisons (Table~\\ref{tab:robustness}) characterize the marginal value of additional samples for test-time scaling \\cite{brown2024monkeys, snell2025scaling}.\n234\tFor quality estimation, structural signals benefit consistently but sublinearly: SJ $\\rho$ improves by $+0.047$ (Qwen SciERC, 3-seed mean) and $+0.032$ (LLaMA CoNLL, 3-seed mean) when doubling from $N{=}8$ to $N{=}16$, while log-probability is approximately $N$-invariant ($\\Delta\\rho{\\leq}0.021$).\n235\tStructural signals use $\\binom{N}{2}$ pairwise comparisons (28 pairs at $N{=}8$, 120 at $N{=}16$), but the $\\rho$ improvement is far less than proportional, indicating diminishing information per additional comparison.\n236\tThis asymmetry gives structural signals a relative advantage in the compute-constrained regime: at $N{=}8$, SJ already achieves $\\rho{=}0.431$ on LLaMA CoNLL (vs.\\ LP $\\rho{=}0.307$, $\\Delta{=}{+}0.124$), and the gap \\textit{widens} at $N{=}16$ ($\\Delta{=}{+}0.163$) because structural signals continue to benefit from additional pairwise evidence while LP does not.\n237\tFor sample selection, additional samples increase the oracle upper bound (more draws raise the probability of a high-quality candidate), but signal-based selection remains flat because the selector's inability to identify the best candidate is a granularity limitation, not a sample size limitation.\n238\tThe practical implication is that $N{=}8$ captures most of the achievable quality estimation benefit; further scaling widens rather than closes the correlation-selection gap absent stronger per-sample selectors.\n239\t\n240\t\\paragraph{$N{=}16$ CoNLL selection: small but significant.}\n241\tWhile quality estimation benefits sublinearly from $N$-scaling, selection behavior at $N{=}16$ reveals a nuanced exception on LLaMA CoNLL.\n242\tVC achieves the largest gain over single-sample ($+0.28$~pp, $p{=}0.003$--$0.027$ across 3 seeds, all significant), with SJ, FK, and EM at $+0.22$--$0.23$~pp and LP at $+0.12$~p\n…[truncated 1148 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-010408"
+        },
+        {
+          "source_line": 10409,
+          "timestamp": "2026-05-17T13:33:19.004502+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+              "old_string": "indicating diminishing information per additional comparison.",
+              "new_string": "each additional comparison yields diminishing information."
+            }
+          },
+          "id": "event-010409"
+        },
+        {
+          "source_line": 10410,
+          "timestamp": "2026-05-17T13:33:19.105717+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 101
+          },
+          "id": "event-010410"
+        },
+        {
+          "source_line": 10411,
+          "timestamp": "2026-05-17T13:33:22.768534+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+              "old_string": "confirming the structural advantage reported in \\S\\ref{sec:qe_results}.",
+              "new_string": "the structural advantage reported in \\S\\ref{sec:qe_results} is robust."
+            }
+          },
+          "id": "event-010411"
+        },
+        {
+          "source_line": 10412,
+          "timestamp": "2026-05-17T13:33:23.070606+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 302
+          },
+          "id": "event-010412"
+        },
+        {
+          "source_line": 10413,
+          "timestamp": "2026-05-17T13:33:26.534080+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+              "old_string": "is not significant, indicating that these two structural signals perform comparably.",
+              "new_string": "is not significant; these two structural signals perform comparably."
+            }
+          },
+          "id": "event-010413"
+        },
+        {
+          "source_line": 10414,
+          "timestamp": "2026-05-17T13:33:26.585162+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 51
+          },
+          "id": "event-010414"
+        },
+        {
+          "source_line": 10415,
+          "timestamp": "2026-05-17T13:33:31.653197+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": ", (confirming|indicating|suggesting|establishing|reinforcing|reflecting|eliminating|isolating|exhibiting|making|paralleling|diluting) ",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-010415"
+        },
+        {
+          "source_line": 10416,
+          "timestamp": "2026-05-17T13:33:31.703965+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "213:On CoNLL, 57--88\\% of instances produce identical outputs across all $N$ samples, reflecting a ceiling effect (single-sample F1 ${\\approx}$0.91--0.92) rather than signal failure; selection analysis on these configurations is uninformative because there is little per-sample variance for any signal to exploit.\n303:On CoNLL, diversity collapses: 57\\% (Qwen) to 88\\% (LLaMA) of instances produce identical outputs across all $N$ samples, reflecting a ceiling effect where single-sample F1 already exceeds 0.90.\n326:On CoNLL, only 4--9\\% of instances are improvable, confirming the ceiling effect.\n368:(2) $\\delta_{\\mathrm{practical}}{=}0.5$~pp, reflecting the threshold below which NER differences are considered negligible \\cite{ratinov2009design};\n488:The CDF rises smoothly with no cliff or discontinuity (Figure~\\ref{fig:lp_range_cdf}), confirming that compression is a pervasive regime rather than a bimodal split.\n490:Seed~456 uses a different subtask flag (joint vs.\\ ner for seeds 42 and 123); the LP distributions are statistically indistinguishable (median LP: 8.37 vs.\\ 8.20 nats; Mann--Whitney $p{=}0.55$), confirming that the subtask change does not affect compression.\n605:On $^\\dagger$RE, the pattern differs: Q4 LP achieves $+4.01$~pp, suggesting LP can recover selection ability when high consistency coincides with structured output diversity. This is a single-dataset observation and should be interpreted cautiously.\n629:RE LP selection consistently reverses direction under free-form decoding ($+1.8{\\pm}0.1$~pp across 4 seeds vs.\\ $-0.9$~pp under constrained decoding at 8B; \\S\\ref{app:freeform_ablation}), suggesting constrained decoding's fixed template obscures LP signal in RE (\\S\\ref{app:mbr_discussion}).\n704:The non-tied subset ($n{=}210$) is partially reshuffled under free-form decoding: Jaccard similarity between the constrained and free-form non-tied sets is 0.472, indicating that 87 instances newly gain LP discrimination while others lose it, yielding a $3{\\tim\n…[truncated 3566 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Grep",
+            "elapsed_ms": 50
+          },
+          "id": "event-010416"
+        },
+        {
+          "source_line": 10417,
+          "timestamp": "2026-05-17T13:35:53.111910+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+              "offset": "200",
+              "limit": "120"
+            }
+          },
+          "id": "event-010417"
+        },
+        {
+          "source_line": 10418,
+          "timestamp": "2026-05-17T13:35:55.370303+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "200\tEM ranks first across all four tested conditional configurations: SciERC NER ($\\rho{=}0.360$), CoNLL Qwen $N{=}16$ ($\\rho{=}0.466$), CoNLL LLaMA 3-seed ($\\rho{=}0.462$), and SciERC RE ($\\rho{=}0.417$). This holds despite full-set rankings ranging from \\#1 (CoNLL Qwen) to \\#5 (SciERC RE).\n201\tOn the full set, EM is diluted by trivial agreement: instances where all $N$ samples produce identical (possibly incorrect) outputs receive EM${=}1$ regardless of quality, compressing the signal's dynamic range.\n202\tOn the conditional set, where the model demonstrably produces varied outputs, exact agreement becomes the strongest quality signal.\n203\tThe margin over SJ is largest on RE ($\\Delta\\rho{=}{+}0.171$), where compound extraction decisions amplify output variability, and smallest on CoNLL LLaMA ($\\Delta\\rho{=}{+}0.002$), where all signals converge near $\\rho{\\approx}0.46$.\n204\t\n205\t\\paragraph{WNUT-17 full signal analysis.}\n206\tTable~\\ref{tab:wnut} (\\S\\ref{sec:qe_results}) reports all five signals on WNUT-17 with full-set and conditional $\\rho$.\n207\tThe full-set $p$-values are: VC ${<}$1e-112, FK $p{=}0.001$, SJ $p{=}0.020$, EM $p{=}0.194$, LP ${<}$1e-28.\n208\tVC's high full-set $\\rho{=}0.724$ is entirely driven by the zero/non-zero boundary (conditional $\\rho{=}0.038$, $p{=}0.49$), while LP's conditional $\\rho{=}0.350$ is the highest among all signals on the non-zero subset, full-set correlations on high-failure-rate datasets conflate binary success prediction with quality gradation.\n209\t\n210\t\\paragraph{Cross-configuration selection analysis.}\n211\tTable~\\ref{tab:cross_selection} extends the selection analysis to four additional configurations.\n212\tOn LLaMA SciERC, where output diversity remains substantial (18\\% identical outputs, 39\\% unique), LP achieves the highest selection F1 (0.652) at $N{=}8$ but still falls within bootstrap noise of single-sample (0.646), replicating the gap observed on Qwen SciERC (Table~\\ref{tab:selection}).\n213\tOn CoNLL, 57--88\\% of instance\n…[truncated 8090 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 2258
+          },
+          "id": "event-010418"
+        },
+        {
+          "source_line": 10419,
+          "timestamp": "2026-05-17T13:35:55.821924+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": ", (confirming|indicating|suggesting|reflecting|establishing|reinforcing|making|demonstrating|showing|highlighting|exhibiting|isolating|eliminating|representing|producing|yielding|enabling|supporting|providing|requiring|revealing|maintaining|achieving|recovering|approaching|exceeding|matching|preserving|operating|creating|reducing|collapsing|driving|verifying|validating) ",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-010419"
+        },
+        {
+          "source_line": 10420,
+          "timestamp": "2026-05-17T13:35:55.872816+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "213:On CoNLL, 57--88\\% of instances produce identical outputs across all $N$ samples, reflecting a ceiling effect (single-sample F1 ${\\approx}$0.91--0.92) rather than signal failure; selection analysis on these configurations is uninformative because there is little per-sample variance for any signal to exploit.\n303:On CoNLL, diversity collapses: 57\\% (Qwen) to 88\\% (LLaMA) of instances produce identical outputs across all $N$ samples, reflecting a ceiling effect where single-sample F1 already exceeds 0.90.\n326:On CoNLL, only 4--9\\% of instances are improvable, confirming the ceiling effect.\n367:(1) $\\delta_{\\mathrm{SEM}}$: the bootstrapped standard error of single-sample F1 (0.43--1.33~pp depending on configuration), representing measurement noise;\n368:(2) $\\delta_{\\mathrm{practical}}{=}0.5$~pp, reflecting the threshold below which NER differences are considered negligible \\cite{ratinov2009design};\n373:On Qwen CoNLL ($n{=}2{,}756$), no signal passes at any external $\\delta$: selection F1 degrades by 0.9--1.5~pp relative to single-sample, exceeding even $\\delta_{\\mathrm{literature}}$.\n488:The CDF rises smoothly with no cliff or discontinuity (Figure~\\ref{fig:lp_range_cdf}), confirming that compression is a pervasive regime rather than a bimodal split.\n490:Seed~456 uses a different subtask flag (joint vs.\\ ner for seeds 42 and 123); the LP distributions are statistically indistinguishable (median LP: 8.37 vs.\\ 8.20 nats; Mann--Whitney $p{=}0.55$), confirming that the subtask change does not affect compression.\n602:\\item \\textbf{Q1--Q2 noise.} Low-consistency instances retain large headroom (14--17~pp) but LP rankings are unreliable, yielding inconsistent $\\Delta$ signs across quartiles.\n605:On $^\\dagger$RE, the pattern differs: Q4 LP achieves $+4.01$~pp, suggesting LP can recover selection ability when high consistency coincides with structured output diversity. This is a single-dataset observation and should be interpreted cautiously.\n607:On CoNLL NER, Q3--Q4 instan\n…[truncated 4258 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Grep",
+            "elapsed_ms": 50
+          },
+          "id": "event-010420"
+        },
+        {
+          "source_line": 10421,
+          "timestamp": "2026-05-17T13:36:08.727777+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+              "offset": "320",
+              "limit": "60"
+            }
+          },
+          "id": "event-010421"
+        },
+        {
+          "source_line": 10422,
+          "timestamp": "2026-05-17T13:36:09.179866+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "320\t\\bottomrule\n321\t\\end{tabular}\n322\t\\end{table}\n323\t\n324\t\\paragraph{Oracle-improvable fraction.}\n325\tAcross SciERC configurations, 39--42\\% of instances contain at least one sample with F1 exceeding single-sample\\footnote{Oracle-improvable and diversity-stratified analyses use $n{=}529$ (excluding instances with empty gold annotations; see \\S\\ref{sec:evaluation}); the diversity quantification in Table~\\ref{tab:diversity} uses the full test set.}: Qwen NER 42.0\\% (222/529, mean headroom $+$31.9~pp among improvable instances), Qwen RE 41.3\\% (164/397, $+$45.3~pp), LLaMA NER 39.3\\% (208/529, $+$33.7~pp).\n326\tOn CoNLL, only 4--9\\% of instances are improvable, confirming the ceiling effect.\n327\t\n328\t\\paragraph{Diversity-stratified selection gap.}\n329\tOn the 44\\% of Qwen SciERC instances with high diversity (${\\geq}4$ unique outputs among 8 samples, $n{=}232$), oracle headroom reaches $+$16.3~pp, yet all consistency-based signals (SJ, FK, EM, VC) select at or below single-sample, and LP, the only per-sample signal, achieves merely $+$0.8~pp.\n330\tLLaMA replicates this pattern: on its high-diversity subset ($n{=}186$), oracle headroom reaches $+$20.1~pp while consistency signals remain at or below single-sample and LP captures only $+$2.0~pp.\n331\tThis rules out insufficient diversity as an explanation for the correlation-selection gap.\n332\t\n333\t\\paragraph{TOST equivalence testing.}\\label{app:tost}\n334\tThe primary evidence against selection gains comes from effect sizes and confidence intervals: Cohen's $d{=}0.038$ for the best signal (NER LP) and bootstrap 95\\% CI [$-$3.0, $+$4.2]~pp spanning zero.\n335\tTable~\\ref{tab:tost} supplements this with two one-sided tests (TOST), testing whether each signal's selection F1 is equivalent to single-sample within a bound $\\delta$.\n336\tThe $\\delta$ values are contextualized against oracle headroom (12--18~pp): $\\delta{=}5$~pp corresponds to forgoing 28--38\\% of the available headroom, $\\delta{=}3$~pp forgoing 17--23\\%, and $\\delta{=}2\n…[truncated 4328 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 452
+          },
+          "id": "event-010422"
+        },
+        {
+          "source_line": 10423,
+          "timestamp": "2026-05-17T13:36:09.631989+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+              "offset": "480",
+              "limit": "30"
+            }
+          },
+          "id": "event-010423"
+        },
+        {
+          "source_line": 10424,
+          "timestamp": "2026-05-17T13:36:10.134304+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "480\tIf thinking tokens caused LP compression on SciERC, CoNLL should exhibit lower tied fractions.\n481\tInstead, CoNLL shows \\textit{higher} tied fractions at both temperatures (86.8\\% at $T{=}1.0$, 95.8\\% at $T{=}0.7$) than SciERC (60.3\\% at $T{=}1.0$), directly contradicting the thinking-token hypothesis.\n482\t\n483\t\\section{Log-Probability Score Compression}\\label{app:logprob_ties}\n484\t\n485\tUnder constrained decoding, log-probability scores are severely compressed within instances, limiting per-sample discrimination (Table~\\ref{tab:logprob_ties}, Figure~\\ref{fig:lp_range_cdf}).\n486\tThe median within-instance LP range is only 0.041 nats; we use $\\varepsilon{=}0.05$ as an illustrative threshold to characterize this compression.\n487\tAt this cutpoint, 60.3\\% of instances ($n{=}529$, excluding empty gold annotations) have a within-sample range below $\\varepsilon$, and 75\\% of pairwise comparisons are effective ties ($|\\Delta|{<}0.026$).\n488\tThe CDF rises smoothly with no cliff or discontinuity (Figure~\\ref{fig:lp_range_cdf}), confirming that compression is a pervasive regime rather than a bimodal split.\n489\tThis compression is stable across seeds: seed${=}456$ yields median LP range${=}0.040$ nats and tied fraction${=}62.2\\%$ (vs.\\ seed${=}42$: $0.041$ nats, $60.3\\%$).\n490\tSeed~456 uses a different subtask flag (joint vs.\\ ner for seeds 42 and 123); the LP distributions are statistically indistinguishable (median LP: 8.37 vs.\\ 8.20 nats; Mann--Whitney $p{=}0.55$), confirming that the subtask change does not affect compression.\n491\tFor comparison, SJ has only 12.5\\% tied instances at the same threshold; SJ's advantage over LP for selection is one of score resolution, not information content.\n492\t\n493\t\\begin{figure}[t]\n494\t\\centering\n495\t\\includegraphics[width=\\columnwidth]{fig_lp_range_cdf}\n496\t\\caption{CDF of within-instance LP range on SciERC NER ($N{=}8$, $n{=}529$). The median LP range is 0.041 nats (dashed line), below $\\varepsilon{=}0.05$. The smooth CDF confirms co\n…[truncated 453 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 502
+          },
+          "id": "event-010424"
+        },
+        {
+          "source_line": 10425,
+          "timestamp": "2026-05-17T13:36:10.636498+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+              "offset": "595",
+              "limit": "40"
+            }
+          },
+          "id": "event-010425"
+        },
+        {
+          "source_line": 10426,
+          "timestamp": "2026-05-17T13:36:11.038364+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "595\t\\bottomrule\n596\t\\end{tabular}\n597\t\\end{table}\n598\t\n599\tThe NER pattern reveals two complementary failure modes rather than a monotonic relationship between consistency and selection gain:\n600\t\\begin{itemize}\n601\t\\item \\textbf{Q4 ceiling effect.} High-consistency instances (mean VC${=}0.92$) have oracle headroom of only 4.78~pp. Samples have already converged, leaving little room for any signal to improve selection.\n602\t\\item \\textbf{Q1--Q2 noise.} Low-consistency instances retain large headroom (14--17~pp) but LP rankings are unreliable, yielding inconsistent $\\Delta$ signs across quartiles.\n603\t\\end{itemize}\n604\t\n605\tOn $^\\dagger$RE, the pattern differs: Q4 LP achieves $+4.01$~pp, suggesting LP can recover selection ability when high consistency coincides with structured output diversity. This is a single-dataset observation and should be interpreted cautiously.\n606\t\n607\tOn CoNLL NER, Q3--Q4 instances have VC${=}1.0$ (all samples identical), yielding $\\Delta{=}0$ universally, a ceiling effect even more extreme than SciERC Q4.\n608\t\n609\t\\section{Exploratory Extension to Relation Extraction}\\label{app:re_extension}\n610\t\n611\tWe extend the NER evaluation to relation extraction (RE) on SciERC as an exploratory single-benchmark analysis.\n612\tRE produces sets of (head, relation, tail) triples with partial overlap; 40\\% of RE instances receive zero F1, and entity span errors account for 55.5\\% of RE false negatives, a prerequisite failure that consistency signals cannot detect (\\S\\ref{app:additional}).\n613\tAll RE results use Qwen3-8B unless noted; single-seed ($\\text{seed}{=}42$) for $N{=}8$ analyses, 3-seed for $N{=}16$.\n614\t\n615\t\\paragraph{Quality estimation.}\n616\tRE quality estimation is reported in Table~\\ref{tab:multiseed} (3-seed means).\n617\tThe signal ranking differs from NER: VC leads ($\\rho{=}0.309{\\pm}0.024$), but LP rises to \\#2 ($\\rho{=}0.297{\\pm}0.022$), above FK, SJ, and EM, a reversal reflecting RE's higher sensitivity to per-sample scoring.\n618\tRE miscal\n…[truncated 1522 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 401
+          },
+          "id": "event-010426"
+        },
+        {
+          "source_line": 10427,
+          "timestamp": "2026-05-17T13:36:11.590650+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+              "offset": "695",
+              "limit": "15"
+            }
+          },
+          "id": "event-010427"
+        },
+        {
+          "source_line": 10428,
+          "timestamp": "2026-05-17T13:36:12.042598+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "695\tDespite MBR's success in machine translation \\cite{freitag2022high} and its extension to summarization, code generation, and captioning \\cite{jinnai2024mbr}, all variants fail here: despite positive within-instance utility--F1 correlation, selection gains are limited by instance degeneracy, the core of the correlation-selection gap.\n696\t\\citet{eikema2025structured} study structure-conditional MBR decoding and find that standard utility functions degrade on structured outputs, consistent with our finding that consensus-proximity selection fails in IE despite its success in machine translation.\n697\t\n698\t\\paragraph{Task-specific decoding interactions.}\n699\tThe free-form ablation reveals divergent behavior across tasks.\n700\tOn RE, LP selection flips from $-0.68$~pp (constrained) to $+1.69$~pp (free-form; preliminary, single RE benchmark), a reversal that spans all 7 relation types and is driven by selective variance reallocation ($p{<}0.0001$).\n701\tThe win/loss ratio shifts from 36:59 (constrained) to 45:45 (free-form), with the gains concentrated on relation-dense instances (mean 3.3 gold relations).\n702\tThis interaction does not generalize to NER, where selection remains negligible under both regimes.\n703\tThis ablation uses a single seed (seed${=}42$); whether the RE reversal replicates across seeds and generalizes to other RE benchmarks warrants further investigation.\n704\tThe non-tied subset ($n{=}210$) is partially reshuffled under free-form decoding: Jaccard similarity between the constrained and free-form non-tied sets is 0.472, indicating that 87 instances newly gain LP discrimination while others lose it, yielding a $3{\\times}$ increase in within-instance LP range for the newly non-tied subset.\n705\tDespite this reshuffling, aggregate NER selection gains remain negligible. Score compression is not a fixed property of specific instances but rather a pervasive regime that shifts across instances without producing net selection improvement.\n706\tFree-form decodin\n…[truncated 209 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 451
+          },
+          "id": "event-010428"
+        },
+        {
+          "source_line": 10429,
+          "timestamp": "2026-05-17T13:36:12.042947+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+              "offset": "795",
+              "limit": "20"
+            }
+          },
+          "id": "event-010429"
+        },
+        {
+          "source_line": 10430,
+          "timestamp": "2026-05-17T13:36:12.143530+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "795\tFree-form decoding reduces the tied fraction modestly, yet selection remains below single-sample: LP-selected F1${=}0.896$ vs.\\ single-sample $0.904$ ($\\Delta{=}{-}0.77$~pp).\n796\tQuality estimation under free-form decoding yields SJ $\\rho{=}0.461$, EM $\\rho{=}0.471$, LP $\\rho{=}0.326$, comparable to constrained results (Table~\\ref{tab:quality_estimation}).\n797\tThe failure to improve selection despite reduced compression is consistent with CoNLL's low oracle headroom (4.25~pp at $N{=}8$), which limits the selection space regardless of score distribution quality.\n798\t\n799\t\\section{LP Selection Failure Stability}\\label{app:lp_failure_stability}\n800\t\n801\tWe analyze RE LP selection failures across three random seeds (constrained decoding, $N{=}8$, $T{=}1.0$, Qwen3-8B) to assess whether failures are systematic or stochastic.\n802\t\n803\t\\paragraph{Pairwise overlap.}\n804\tLP selection failures (instances where LP-selected F1 $<$ single-sample F1) show moderate cross-seed stability: the average pairwise Jaccard similarity is 0.42 (range: 0.38--0.46), indicating that failures are partially systematic (driven by instance complexity) but not fully deterministic.\n805\tThe 3-way intersection contains 34 instances (27.9\\% of any-seed failures), confirming a stable failure core.\n806\t\n807\t\\paragraph{Instance complexity drives failure.}\n808\tTable~\\ref{tab:stable_failures} stratifies instances by failure stability.\n809\tStable failures (all 3 seeds) involve more gold relations (2.12 vs.\\ 1.62 for never-fail instances) and higher single-sample F1 (0.688 vs.\\ 0.429), indicating that LP mis-selects on instances where the model already performs well, precisely the instances where selection would be most valuable.\n810\tFailure rate increases monotonically with gold relation count: 4.3\\% at 1 relation, 20.7\\% at 3 relations, 26.2\\% at 6 relations.\n811\t\n812\t\\begin{table}[t]\n813\t\\centering\n814\t\\small"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 100
+          },
+          "id": "event-010430"
+        },
+        {
+          "source_line": 10431,
+          "timestamp": "2026-05-17T13:36:16.007532+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+              "offset": "893",
+              "limit": "45"
+            }
+          },
+          "id": "event-010431"
+        },
+        {
+          "source_line": 10432,
+          "timestamp": "2026-05-17T13:36:16.509743+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "893\t\\midrule\n894\tMean & 0.0145 & 0.0098 & 0.0151 & 0.0114 \\\\\n895\t\\bottomrule\n896\t\\end{tabular}\n897\t\\end{table}\n898\t\n899\tSignal rankings are consistent across our 3 seeds (Kendall's $W{=}1.000$ for NER at $N{=}8$, both models), dropping to $W{=}0.956$ at $N{=}16$ where SJ and VC converge (Table~\\ref{tab:ranking-stability}); however, with only $n{=}3$ seeds statistical power is insufficient to confirm stability, and additional seeds may reveal ranking changes.\n900\tDoubling $N$ reduces cross-seed $\\sigma$ by 32\\% on NER and 24\\% on RE (Table~\\ref{tab:sigma-comparison}), with the largest reductions for SJ ($-43\\%$ NER) and EM ($-59\\%$ NER), confirming that additional samples stabilize structural signals more than LP.\n901\t\n902\t\\paragraph{$N$-scaling: selection headroom vs.\\ selection gain.}\n903\tTable~\\ref{tab:n_scaling_selection} traces the effect of sample count on degeneracy, oracle headroom, and per-signal selection gain.\n904\tOracle headroom grows roughly linearly with $N$ ($+4.4$~pp at $N{=}2$ to $+19.2$~pp at $N{=}32$).\n905\tLP selection improves monotonically with $N$ ($+0.42$~pp at $N{=}8$ to $+0.91$~pp at $N{=}32$), but even at $N{=}32$, where degeneracy falls to 4\\% and oracle headroom reaches ${\\sim}19$~pp, the best signal captures less than 5\\% of the available improvement.\n906\tDegeneracy drops monotonically (44\\% at $N{=}2$ to 4\\% at $N{=}32$), yet reduced degeneracy does not unlock selection, consistent with the LoRA-rank ablation finding (\\S\\ref{sec:robustness_main}).\n907\tVC selection degrades with increasing $N$ ($-2.27$~pp at $N{=}2$ to $-4.18$~pp at $N{=}32$), consistent with mode-seeking bias in voting-based selection as the candidate pool grows.\n908\t\n909\t\\begin{table}[t]\n910\t\\centering\n911\t\\small\n912\t\\caption{Effect of sample count on selection (SciERC NER, Qwen3-8B, $T{=}1.0$, seed${=}42$).\\protect\\footnotemark\\ ``Best $\\Delta$'': highest selection gain across all 5 signals. Per-signal $\\Delta$ in pp vs.~greedy.}\n913\t\\label{tab:n_scaling_selection}\n914\n…[truncated 2061 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 502
+          },
+          "id": "event-010432"
+        },
+        {
+          "source_line": 10433,
+          "timestamp": "2026-05-17T13:36:17.011910+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+              "offset": "970",
+              "limit": "20"
+            }
+          },
+          "id": "event-010433"
+        },
+        {
+          "source_line": 10434,
+          "timestamp": "2026-05-17T13:36:17.463950+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "970\t1.2 & $+$13.0 & 0.377 & 0.196 & 0.356 & 0.594 \\\\\n971\t\\bottomrule\n972\t\\end{tabular}\n973\t\\end{table}\n974\t\n975\tOracle headroom increases monotonically with temperature ($+7.8$~pp at $T{=}0.5$ to $+13.3$~pp at $T{=}1.0$), plateauing at $T{=}1.2$ ($+13.0$~pp); the plateau suggests $T{=}1.0$ already approaches the diversity ceiling for constrained structured decoding.\n976\tStructural QE signals improve with temperature: SJ $\\rho$ rises from $0.297$ ($T{=}0.5$) to $0.377$ ($T{=}1.2$), consistent with more diverse outputs providing richer pairwise evidence.\n977\tLP $\\rho$ peaks at $T{=}0.8$ ($0.253$) then degrades to $0.196$ at $T{=}1.2$.\n978\tThis divergence confirms that LP compression is model-intrinsic: higher temperature increases between-instance LP variance (benefiting structural signals) but does not resolve within-instance compression, degrading LP's discriminative power.\n979\tInter-sample agreement ($\\kappa$) decreases monotonically ($0.577$ to $0.356$), confirming that higher temperature generates more diverse outputs; mean sample F1 also decreases ($0.636$ to $0.594$), reflecting the quality--diversity trade-off.\n980\tThe $T{=}0.7$ and $T{=}1.0$ comparison in Table~\\ref{tab:robustness} is consistent with the trends reported here.\n981\t\n982\t\\paragraph{Temperature controls degeneracy and LP spread.}\n983\tTable~\\ref{tab:t_degeneracy} reports instance degeneracy (constant F1, gold-filtered) and median within-instance LP range across four temperatures on SciERC.\n984\tBoth quantities are strictly monotonic in $T$: degeneracy falls from 40.3\\% ($T{=}0.5$) to 12.5\\% ($T{=}1.2$), while LP range increases from 0.015 to 0.058 nats.\n985\tTemperature thus provides a direct lever for practitioners to shift the degeneracy regime.\n986\tHowever, even at $T{=}1.2$ where degeneracy (12.5\\%) approaches Few-NERD levels (13.8\\%), within-instance $\\rho(\\text{LP}, \\text{F1})$ remains at 0.225, far below Few-NERD's ${\\sim}$0.5.\n987\tThis confirms that temperature controls degeneracy (the first\n…[truncated 208 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 452
+          },
+          "id": "event-010434"
+        },
+        {
+          "source_line": 10435,
+          "timestamp": "2026-05-17T13:36:17.966297+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+              "offset": "1065",
+              "limit": "20"
+            }
+          },
+          "id": "event-010435"
+        },
+        {
+          "source_line": 10436,
+          "timestamp": "2026-05-17T13:36:18.418436+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1065\tMean score & 8.58\\,/\\,10 & --- & 9.24\\,/\\,10 & --- \\\\\n1066\tParse fail rate & 0.26\\% & --- & 0\\% & --- \\\\\n1067\t\\bottomrule\n1068\t\\end{tabular}\n1069\t\\end{table}\n1070\t\n1071\t\\paragraph{Severe overconfidence.}\n1072\tVerbConf exhibits extreme score compression: mean confidence is 8.58/10 on SciERC (single-sample F1${=}0.645$) and 9.24/10 on CoNLL (single-sample F1${=}0.904$), with most scores concentrated in the 8--10 range.\n1073\tThis compression is more severe than LP (which spans a 0.041-nat median range), confirming that score compression is a general property of model self-assessment, not an artifact of log-probability computation.\n1074\t\n1075\t\\paragraph{QE--selection decoupling.}\n1076\tVerbConf achieves higher $\\rho$ than LP on both datasets (SciERC: 0.297 vs.\\ 0.205; CoNLL: 0.337 vs.\\ 0.316) and competitive AUROC (SciERC: 0.681 vs.\\ 0.578; CoNLL: 0.747 vs.\\ 0.753), yet yields the worst selection among all signals ($\\Delta{=}{-}2.45$~pp on SciERC, $-1.93$~pp on CoNLL).\n1077\tThis dissociation further demonstrates the correlation-selection gap: a signal can rank instances by expected quality without being able to discriminate candidates within an instance.\n1078\tThe AUROC--$\\rho$ decoupling on CoNLL (LP leads AUROC at 0.753 while VerbConf leads $\\rho$ at 0.337) reflects differing sensitivity to binary vs.\\ ordinal discrimination.\n1079\t\n1080\t\\section{LLaMA-3.2-3B Scale Ablation}\\label{app:llama3b}\n1081\t\n1082\tTo extend scale coverage below 4B, we fine-tune LLaMA-3.2-3B-Instruct on SciERC NER under identical training conditions (LoRA rank${=}32$, $\\alpha{=}64$, 5 epochs) and evaluate quality estimation and selection (Table~\\ref{tab:llama3b}).\n1083\t\n1084\t\\begin{table}[t]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 452
+          },
+          "id": "event-010436"
+        },
+        {
+          "source_line": 10437,
+          "timestamp": "2026-05-17T13:36:18.870404+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+              "offset": "1095",
+              "limit": "55"
+            }
+          },
+          "id": "event-010437"
+        },
+        {
+          "source_line": 10438,
+          "timestamp": "2026-05-17T13:36:19.322453+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1095\tEM & .334 & \\textbf{.776} & --- & --- \\\\\n1096\tFK & .268 & .671 & 0.630 & $+$0.28\\,pp \\\\\n1097\tLP & .266 & .633 & 0.628 & $+$0.12\\,pp \\\\\n1098\t\\midrule\n1099\tGreedy & --- & --- & 0.627 & --- \\\\\n1100\tOracle & --- & --- & 0.763 & --- \\\\\n1101\t\\bottomrule\n1102\t\\end{tabular}\n1103\t\\end{table}\n1104\t\n1105\tThe $\\rho$ ranking at 3B (VC $>$ SJ $>$ EM $>$ FK $\\approx$ LP) preserves the structural-over-LP ordering from 8B (Table~\\ref{tab:quality_estimation}), confirming ranking stability across two model families spanning 3B--8B.\n1106\tAUROC rankings differ (EM $>$ VC $>$ SJ $>$ FK $>$ LP), reflecting the $\\rho$--AUROC dissociation noted in the main text.\n1107\tDespite 13.63~pp of oracle headroom, no signal achieves significant selection improvement (best: SJ, $+0.61$~pp, $p{=}0.175$); VC, the strongest QE signal, yields the worst selection ($-1.54$~pp), consistent with the correlation-selection gap observed at larger scales.\n1108\t\n1109\t\\section{Few-NERD Full Results}\\label{app:fewnerd}\n1110\t\n1111\tTable~\\ref{tab:fewnerd_full} reports the complete Few-NERD INTRA coarse evaluation (Qwen3-8B, LoRA rank${=}32$, 3 epochs, $N{=}8$, $T{=}1.0$).\n1112\tAfter gold-filtering (removing instances with no gold entities), the evaluation set contains $n{=}32{,}565$ instances across 8 coarse entity types; 11.9\\% receive zero F1 under greedy decoding.\n1113\tInstance degeneracy is 13.8\\% (vs.\\ 17.8\\% on SciERC, 47.4\\% on CoNLL).\n1114\t\n1115\t\\begin{table}[t]\n1116\t\\centering\n1117\t\\small\n1118\t\\caption{Few-NERD INTRA coarse: complete quality estimation and selection results (Qwen3-8B, $N{=}8$, $T{=}1.0$, gold-filtered $n{=}32{,}565$). $\\rho$: Spearman correlation with instance F1. Sample AUROC: per-sample LP discrimination. Sel.\\ $\\Delta$: selection F1 minus greedy (0.748). CI: bootstrap 95\\% confidence interval.}\n1119\t\\label{tab:fewnerd_full}\n1120\t\\begin{tabular}{lcccc}\n1121\t\\toprule\n1122\tSignal & $\\rho$ & Sample AUROC & Sel.\\ $\\Delta$ & 95\\% CI \\\\\n1123\t\\midrule\n1124\tLP & .421 & .578 & $\\mathbf{+1.36}$\\,\n…[truncated 2120 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 452
+          },
+          "id": "event-010438"
+        },
+        {
+          "source_line": 10439,
+          "timestamp": "2026-05-17T13:36:19.423291+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+              "offset": "1180",
+              "limit": "30"
+            }
+          },
+          "id": "event-010439"
+        },
+        {
+          "source_line": 10440,
+          "timestamp": "2026-05-17T13:36:19.475343+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1180\tORG & 54.3 & $-$0.55 \\\\\n1181\t\\bottomrule\n1182\t\\end{tabular}\n1183\t\\end{table}\n1184\t\n1185\t\\begin{table}[h]\n1186\t\\centering\n1187\t\\small\n1188\t\\caption{SciERC per-type LP selection (Qwen3-8B, $N{=}8$, $T{=}1.0$). Within-dataset, degeneracy alone does not predict LP effectiveness (Spearman $\\rho{=}0.14$, $p{=}0.79$), suggesting additional type-specific factors modulate selection at this granularity.}\n1189\t\\label{tab:per_type_lp_scierc}\n1190\t\\begin{tabular}{lrrr}\n1191\t\\toprule\n1192\tEntity Type & Degen.\\% & LP $\\Delta$ (pp) \\\\\n1193\t\\midrule\n1194\tTask & 10.1 & $+$2.58 \\\\\n1195\tGeneric & 10.0 & $+$2.07 \\\\\n1196\tMaterial & 20.0 & $+$0.91 \\\\\n1197\tMetric & 12.5 & $-$0.06 \\\\\n1198\tMethod & 16.3 & $-$0.03 \\\\\n1199\tOtherScientificTerm & 6.2 & $-$0.57 \\\\\n1200\t\\bottomrule\n1201\t\\end{tabular}\n1202\t\\end{table}\n1203\t\n1204\tThe cross-dataset degeneracy gradient (47.4\\% $\\to$ 17.8\\% $\\to$ 13.8\\%) is inversely associated with LP selection effectiveness at the macro level ($n{=}3$ datasets; exploratory).\\footnote{Partial Spearman correlation controlling for entity-type frequency yields $\\rho{=}{-}0.47$ (vs.\\ raw $\\rho{=}{-}0.38$), confirming that type frequency does not confound the degeneracy--LP relationship.}\n1205\tAt finer per-type granularity, selection depends on the interaction of degeneracy, oracle headroom, and type-specific LP-quality alignment.\n1206\tLow degeneracy is necessary but not sufficient: CoNLL MISC (23\\%, headroom 12.6~pp) and SciERC OtherScientificTerm (6.2\\%, headroom 12.5~pp) both show negative LP selection despite available headroom, indicating that LP correlation strength with the type-specific quality function is an additional prerequisite.\n1207\t\n1208\t\\section{Few-NERD Epoch Confound Analysis}\\label{app:epoch_confound}\n1209\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 52
+          },
+          "id": "event-010440"
+        }
+      ]
+    }
+  ]
+}

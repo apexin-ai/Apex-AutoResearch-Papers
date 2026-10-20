@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2994686a5e3c5b39a5ed",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "gpu scierc n16 s42 launch",
+  "task_key": "worker_gpu_scierc_n16_s42_launch_20260521T113725",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_gpu_scierc_n16_s42_launch_20260521T113725_result.json",
+    "occurrence": 1,
+    "bytes": 651,
+    "sha256": "0a458133d91460d7484cfcf5373062057d645b77e2a3e884323cccb875d251d7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。汇报：\n\n1. **cuda:1 安全检查**：通过。cuda:1 空闲（0MiB / 0% util），GPU 0/2/3 被其他 VLLM 进程占用，无冲突。\n2. **模型/数据状态**：模型 `qwen3-8b-scierc-merged-v2`（~16GB，4 分片）和数据 `scierc/processed_data/`（train/dev/test.json，551 test instances）均存在。\n3. **实验已成功启动**：vLLM 正在加载模型，已读取 551 条测试数据，架构识别为 Qwen3ForCausalLM，chunked prefill 启用。\n4. **PID**: 314465，tmux session: `exp_scierc_n16_s42`，日志: `~/runs/struct_self_consist_ie/exp_scierc_n16_s42.log`\n\nRegistry 已更新为 RUNNING。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/gpu-scierc-n16-s42-launch.md"
+}

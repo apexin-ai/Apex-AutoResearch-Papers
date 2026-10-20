@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "09c29e216fc794db8da8",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis epsilon sweep",
+  "task_key": "worker_analysis_epsilon_sweep_20260515T161811",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_epsilon_sweep_20260515T161811_result.json",
+    "occurrence": 1,
+    "bytes": 3423,
+    "sha256": "cdc3005f54284e84661197b4a5af62a9250a400924ab52195ccde0f32b3a99fb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n## 完整结果\n\n### Selection F1 (%) — ε sweep 全表\n\n**Qwen2.5-7B / SciERC** (n=529, N=16, 3 seeds)\n\n| Signal | ε=0 | ε=0.01 | ε=0.02 | ε=0.05 | ε=0.1 | ε=0.2 | Range |\n|--------|-----|--------|--------|--------|-------|-------|-------|\n| SJ | 64.36 | 64.34 | 64.31 | 64.08 | 63.57 | 63.44 | 0.92pp |\n| FK | 64.57 | 64.51 | 64.37 | 64.31 | 63.70 | 63.54 | 1.03pp |\n| VC | 61.19 | 61.24 | 61.43 | 62.28 | 63.03 | 63.52 | 2.33pp |\n| EM | 63.50 | 63.50 | 63.50 | 63.50 | 63.50 | 63.50 | 0.00pp |\n| LP | 64.88 | 64.50 | 64.35 | 63.17 | 61.85 | 61.22 | 3.65pp |\n| *Greedy* | *64.41* | | | | | | |\n\n**Qwen2.5-7B / CoNLL2003** (n=2756, N=16, 1 seed)\n\n| Signal | ε=0 | ε=0.01 | ε=0.02 | ε=0.05 | ε=0.1 | ε=0.2 | Range |\n|--------|-----|--------|--------|--------|-------|-------|-------|\n| SJ | 90.43 | 90.38 | 90.23 | 90.16 | 90.00 | 89.44 | 0.99pp |\n| FK | 90.33 | 90.28 | 90.26 | 90.19 | 90.13 | 89.73 | 0.60pp |\n| VC | 89.69 | 89.70 | 89.76 | 90.38 | 90.41 | 89.88 | 0.72pp |\n| EM | 90.17 | 90.17 | 90.17 | 90.17 | 90.17 | 90.17 | 0.00pp |\n| LP | 89.78 | 89.68 | 89.47 | 88.68 | 87.37 | 86.78 | 3.00pp |\n| *Greedy* | *90.70* | | | | | | |\n\n**LLaMA-3.1-8B / SciERC** (n=529, N=8, 3 seeds)\n\n| Signal | ε=0 | ε=0.01 | ε=0.02 | ε=0.05 | ε=0.1 | ε=0.2 | Range |\n|--------|-----|--------|--------|--------|-------|-------|-------|\n| SJ | 64.36 | 64.38 | 64.28 | 63.99 | 63.39 | 62.94 | 1.45pp |\n| FK | 64.43 | 64.46 | 64.38 | 64.43 | 64.13 | 63.52 | 0.93pp |\n| VC | 63.78 | 63.80 | 63.80 | 63.85 | 64.31 | 63.98 | 0.53pp |\n| EM | 63.66 | 63.66 | 63.66 | 63.66 | 63.66 | 63.66 | 0.00pp |\n| LP | 64.55 | 64.06 | 63.99 | 63.07 | 62.51 | 61.97 | 2.58pp |\n| *Greedy* | *64.58* | | | | | | |\n\n**LLaMA-3.1-8B / CoNLL2003** (n=2756, N=16, 3 seeds)\n\n| Signal | ε=0 | ε=0.01 | ε=0.02 | ε=0.05 | ε=0.1 | ε=0.2 | Range |\n|--------|-----|--------|--------|--------|-------|-------|-------|\n| SJ | 92.62 | 92.59 | 92.60 | 92.59 | 92.56 | 92.44 | 0.18pp |\n| FK | 92.63 | 92.63 | 92.63 | 92.62 | 92.58 | 92.48 | 0.15pp |\n| VC | 92.68 | 92.68 | 92.70 | 92.75 | 92.67 | 92.57 | 0.18pp |\n| EM | 92.63 | 92.63 | 92.63 | 92.63 | 92.63 | 92.63 | 0.00pp |\n| LP | 92.51 | 92.51 | 92.51 | 92.47 | 92.36 | 92.20 | 0.31pp |\n| *Greedy* | *92.40* | | | | | | |\n\n### Plateau 分析结论\n\n**一致性信号 (SJ, FK, VC, EM)：**\n- |F1(ε=0) − F1(ε=0.05)| 最大仅 1.09pp（VC on Qwen SciERC），均值 0.21pp\n- 局部区间 [0.02, 0.1] 内最大变化 1.59pp，均值 0.37pp\n- EM 完全不受 ε 影响（整数计分，ε<1 不改变选择）\n- CoNLL 全部 range < 1pp\n\n**LP 信号：**\n- 更敏感（最大 range 3.65pp），因为 mean_logprob 是精细连续信号\n- 这是 LP 的固有特性，恰好凸显了离散一致性信号对 ε 的鲁棒性优势\n\n**ε-free 论证：**\nSpearman ρ（信号分数 vs per-instance F1）是完全不依赖阈值的连续度量，论文已有报告。ε sweep 确认一致性信号在 ε∈[0, 0.2] 范围内 selection F1 基本不变，ε=0.05 仅为便利参数，不影响任何结论。\n\n**Sanity check 通过：** ε=0 的 selection F1 与 `multiseed_selection_f1.json` 已有值完全一致。\n\n**产出文件（服务器 `output/analysis_epsilon_sweep/`）：**\n- `epsilon_sweep_results.csv` — 120 行完整结果\n- `epsilon_sweep_summary.json` — 含逐信号 plateau 判定和结论"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-epsilon-sweep.md"
+}

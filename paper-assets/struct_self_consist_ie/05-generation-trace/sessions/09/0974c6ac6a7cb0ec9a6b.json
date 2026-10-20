@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0974c6ac6a7cb0ec9a6b",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "paper freeform integration",
+  "task_key": "worker_paper_freeform_integration_20260523T060422",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_paper_freeform_integration_20260523T060422_result.json",
+    "occurrence": 1,
+    "bytes": 694,
+    "sha256": "5a8986957947e9529029b2175830d26c285876bd0725204595fe29d447230384"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All edits applied. Summary of changes:\n\n1. **appendix.tex (lines 1362–1377)**: Added cross-dataset summary table (`tab:freeform_summary`) with LP std ratio, degeneracy, MV delta, and greedy F1 for all three datasets.\n\n2. **appendix.tex (lines 1385–1388)**: Added FewNERD free-form results paragraph describing near-identical LP distributions (ratio 1.00×), unchanged degeneracy (9.1%), and unchanged greedy F1 (.789).\n\n3. **discussion.tex (line 6)**: Updated LP std ratio from single-dataset `$0.97{\\times}$` to cross-dataset range `$0.86$--$1.00{\\times}$ across three datasets`.\n\n4. **limitations.tex**: Already references all three datasets — no change needed."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-freeform-integration.md"
+}

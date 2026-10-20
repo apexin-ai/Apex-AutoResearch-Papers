@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "166f5b93ac548cc0bbb6",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis exp016 rerun 1024",
+  "task_key": "worker_analysis_exp016_rerun_1024_20260514T231500",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_exp016_rerun_1024_20260514T231500_result.json",
+    "occurrence": 1,
+    "bytes": 2713,
+    "sha256": "431c3af97d34054b339b4909b5a94cc0e3c8bb45fcd7afac7de6767ae48ca6f0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n## 修正数值汇总\n\n### 1. Ensemble AUROC（5-fold CV Logistic Regression）\n\n| Subtask | Original (512) | Corrected (1024) | Δ |\n|---------|----------------|------------------|------|\n| **NER** | 0.735 ± 0.030 | **0.666 ± 0.070** | −0.069 |\n| **RE** | 0.719 ± 0.027 | **0.662 ± 0.078** | −0.057 |\n\n单信号 AUROC（exp_016 5-fold CV）:\n\n| Signal | NER orig → corr | RE orig → corr |\n|--------|-----------------|----------------|\n| soft_jaccard | 0.689 → **0.670** | 0.591 → **0.634** |\n| fleiss_kappa | 0.632 → **0.614** | 0.628 → **0.643** |\n| logprob | 0.587 → **0.611** | 0.621 → **0.622** |\n| exact_match | 0.662 → **0.652** | 0.496 → **0.576** |\n| voting_conf | 0.700 → **0.607** | 0.721 → **0.680** |\n\n### 2. Best-of-N Selection F1\n\n**NER (n=529)**\n\n| Method | Original (512) | Corrected (1024) | Δ |\n|--------|----------------|------------------|------|\n| greedy | 0.6094 | **0.6439** | +0.035 |\n| random_avg | 0.5796 | **0.6077** | +0.028 |\n| sj_best | 0.6042 | **0.6450** | +0.041 |\n| voting_conf_best | 0.5959 | **0.6337** | +0.038 |\n| logprob_best | 0.6087 | **0.6501** | +0.041 |\n| ensemble_best | 0.6043 | **0.6450** | +0.041 |\n| oracle | 0.7692 | **0.7758** | +0.007 |\n\n**RE (n=397)**\n\n| Method | Original (512) | Corrected (1024) | Δ |\n|--------|----------------|------------------|------|\n| greedy | 0.3735 | **0.4042** | +0.031 |\n| random_avg | 0.3380 | **0.3544** | +0.016 |\n| sj_best | 0.3680 | **0.3855** | +0.018 |\n| voting_conf_best | 0.3379 | **0.3592** | +0.021 |\n| logprob_best | 0.3971 | **0.3948** | −0.002 |\n| ensemble_best | 0.3673 | **0.3855** | +0.018 |\n| oracle | 0.5608 | **0.5850** | +0.024 |\n\n### 3. ECE（from all_signals_5signal, full set）\n\n| Signal | NER ECE | RE ECE |\n|--------|---------|--------|\n| SJ | 0.4531 | 0.3865 |\n| FK | 0.4512 | 0.4405 |\n| logprob | 0.7064 | 0.7694 |\n| EM | 0.3526 | 0.3548 |\n| voting_conf | 0.3807 | 0.2724 |\n\n（ECE 无原始 512 对比值，`all_signals_5signal.json` 仅 1024 版本存在）\n\n### 关键发现\n\n- **Ensemble AUROC 显著下降**：NER 0.735→0.666 (−7pp)，RE 0.719→0.662 (−6pp)。原 512 截断数据人为降低了 sample 多样性，使信号区分度虚高。\n- **F1 全面上升**：所有方法 F1 提高 2-4pp，因 1024 token 让模型输出更完整。\n- **logprob 信号改善**：logprob 的 AUROC 和 ρ 提升（NER: 0.140→0.205, RE: 0.247→0.266），说明截断损害了 logprob 信号质量。\n- **voting_conf AUROC 下降明显**（NER: 0.700→0.607），可能因为完整输出下 voting 模式更分散。\n\n结果保存在服务器 `output/exp_016_rerun_1024/`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp016-rerun-1024.md"
+}

@@ -1,0 +1,3634 @@
+{
+  "schema_version": "1.0",
+  "session_id": "244498a69e2f6d713847",
+  "rounds": [
+    {
+      "number": 542,
+      "messages": [
+        {
+          "source_line": 11161,
+          "timestamp": "2026-05-18T03:30:20.698092+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Grep",
+            "elapsed_ms": 50
+          },
+          "id": "event-011161"
+        },
+        {
+          "source_line": 11162,
+          "timestamp": "2026-05-18T03:30:23.709605+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex"
+            }
+          },
+          "id": "event-011162"
+        },
+        {
+          "source_line": 11163,
+          "timestamp": "2026-05-18T03:30:23.760411+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Experiments}\n2\t\\label{sec:experiments}\n3\t\n4\t\\subsection{Experimental Setup}\n5\t\\label{sec:setup}\n6\t\n7\t\\paragraph{Datasets.}\n8\tWe evaluate on four English NER benchmarks spanning a difficulty gradient, each serving a distinct role.\n9\t\\textbf{SciERC} \\cite{luan2018scierc} (551 test instances, 6 entity types) is the primary medium-difficulty test bed where models achieve ${\\approx}$65\\% F1.\n10\t\\textbf{Few-NERD} \\cite{ding2021fewnerd} (INTRA coarse; 37{,}648 instances, 8 entity types, ${\\approx}$75\\% F1) provides a low-degeneracy contrast where LP selection succeeds (\\S\\ref{sec:fewnerd}).\n11\t\\textbf{CoNLL-2003} \\cite{tjongkimsang2003conll} (3{,}453 test sentences, 4 entity types, ${\\approx}$91\\% F1) serves as a ceiling-effect control where limited oracle headroom constrains selection gains.\n12\t\\textbf{WNUT-17} \\cite{derczynski2017wnut} (1{,}287 social media instances, 52\\% zero F1) probes the signal-collapse boundary where model capability is insufficient.\n13\t\n14\t\\paragraph{Models and sampling.}\n15\tBoth \\textbf{Qwen3-8B} and \\textbf{LLaMA-3.1-8B-Instruct} are fine-tuned with LoRA (rank$=$32, $\\alpha{=}64$) for 5 epochs using LLaMA Factory \\cite{zheng2024llamafactory} under identical training procedures, except Few-NERD models which use 3 epochs (early stopping at the best validation checkpoint; a 5-epoch control confirms LP selection remains positive though gains are halved; Appendix~\\ref{app:epoch_confound}).\n16\tQwen3-8B's SciERC checkpoint has a minor train--test mismatch (empty thinking tokens); a quantitative analysis rules out this confound (Appendix~\\ref{app:thinking_token}).\n17\tWe draw $N{=}8$ samples at $T{=}1.0$ (primary), with $N{=}16$ for scaling experiments.\\footnote{$N{=}16$ with 3 seeds verifies scaling and ranking stability ($\\sigma{\\leq}0.026$; Table~\\ref{tab:multiseed}); gains beyond $N{=}8$ are sublinear (Appendix~\\ref{app:n_scaling}).}\n18\tInference uses vLLM with constrained decoding \\cite{willard2023guided}.\\footnote{Quality estimation uses\n…[truncated 12477 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-011163"
+        },
+        {
+          "source_line": 11164,
+          "timestamp": "2026-05-18T03:37:38.031557+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+              "offset": "1324",
+              "limit": "30"
+            }
+          },
+          "id": "event-011164"
+        },
+        {
+          "source_line": 11165,
+          "timestamp": "2026-05-18T03:37:38.132443+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1324\t\n1325\t\\paragraph{SciERC epoch curve.}\n1326\tTable~\\ref{tab:epoch_scierc} extends the analysis to SciERC with a 3-point curve (3, 5, 10 epochs; Qwen3-8B, $N{=}8$, $T{=}1.0$).\n1327\tDegeneracy increases monotonically (6.4\\% $\\to$ 17.8\\% $\\to$ 47.8\\%), but critically, within-instance LP-quality correlation also degrades: median $\\rho$ drops from 0.317 at 3 epochs to 0.120 at 10 epochs, indicating that overtraining erodes both necessary conditions simultaneously.\n1328\tAt 10 epochs, the model retains competitive greedy F1 (0.649 vs.\\ 0.650 at 3 epochs) with 8.4~pp of oracle headroom, yet LP selection yields only $+0.75$~pp, consistent with weak within-instance alignment ($\\rho{=}0.120$) rather than effective signal exploitation.\n1329\tThis pattern validates the two-condition framework (\\S\\ref{sec:discussion}): at 10 epochs, condition~1 is violated (47.8\\% degenerate) and condition~2 is compromised ($\\rho{=}0.120$).\n1330\tThe gradient confirms that degeneracy is convergence-driven rather than a fixed dataset property: extended training compresses output distributions, degrading both diversity and within-instance alignment. However, even at 3 epochs (lowest degeneracy, 6.4\\%), SciERC's within-instance alignment ($\\rho{=}0.317$) remains below the threshold observed on Few-NERD ($\\rho{\\sim}0.5$), reinforcing that controlling degeneracy alone is insufficient when the alignment condition is not met.\n1331\t\n1332\t\\begin{table}[t]\n1333\t\\centering\n1334\t\\small\n1335\t\\caption{SciERC NER epoch curve (Qwen3-8B, $N{=}8$, $T{=}1.0$). Training duration modulates both instance degeneracy and within-instance LP-quality alignment. ``Degen.'': constant-F1 instance degeneracy (gold-filtered). ``$\\rho$ med'': median within-instance LP-quality correlation.}\n1336\t\\label{tab:epoch_scierc}\n1337\t\\begin{tabular}{lccc}\n1338\t\\toprule\n1339\tMetric & 3-epoch & 5-epoch & 10-epoch \\\\\n1340\t\\midrule\n1341\tGreedy F1 & 0.650 & 0.609 & 0.649 \\\\\n1342\tInstance degen.\\ (\\%) & 6.4 & 17.8 & 47.8 \\\\\n1343\tWithin-inst.\\ \n…[truncated 779 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 100
+          },
+          "id": "event-011165"
+        },
+        {
+          "source_line": 11166,
+          "timestamp": "2026-05-18T03:39:38.809857+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+              "old_string": "\\caption{SciERC NER epoch curve (Qwen3-8B, $N{=}8$, $T{=}1.0$). Training duration modulates both instance degeneracy and within-instance LP-quality alignment. ``Degen.'': constant-F1 instance degeneracy (gold-filtered). ``$\\rho$ med'': median within-instance LP-quality correlation.}\n\\label{tab:epoch_scierc}\n\\begin{tabular}{lccc}\n\\toprule\nMetric & 3-epoch & 5-epoch & 10-epoch \\\\\n\\midrule\nGreedy F1 & 0.650 & 0.609 & 0.649 \\\\\nInstance degen.\\ (\\%) & 6.4 & 17.8 & 47.8 \\\\\nWithin-inst.\\ $\\rho$ (median) & 0.317 & ${\\approx}$0.32 & 0.120 \\\\\n\\bottomrule\n\\end{tabular}",
+              "new_string": "\\caption{SciERC NER epoch curve (Qwen3-8B, $N{=}8$, $T{=}1.0$). Training duration modulates both instance degeneracy and within-instance LP-quality alignment. ``Degen.'': constant-F1 instance degeneracy (gold-filtered). ``LP $\\Delta$'': LP selection gain over greedy (gold-filtered; none reaches the ${\\approx}$1.5~pp MDE). ``$\\rho$ med'': median within-instance LP-quality correlation.}\n\\label{tab:epoch_scierc}\n\\begin{tabular}{lccc}\n\\toprule\nMetric & 3-epoch & 5-epoch & 10-epoch \\\\\n\\midrule\nGreedy F1 & 0.650 & 0.644 & 0.649 \\\\\nInstance degen.\\ (\\%) & 6.4 & 17.8 & 47.8 \\\\\nLP $\\Delta$ (pp) & $-$1.18 & $+$0.62 & $+$0.75 \\\\\nWithin-inst.\\ $\\rho$ (median) & 0.317 & 0.282 & 0.120 \\\\\n\\bottomrule\n\\end{tabular}"
+            }
+          },
+          "id": "event-011166"
+        },
+        {
+          "source_line": 11167,
+          "timestamp": "2026-05-18T03:39:38.862390+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 52
+          },
+          "id": "event-011167"
+        },
+        {
+          "source_line": 11168,
+          "timestamp": "2026-05-18T03:39:49.683829+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+              "old_string": "Degeneracy increases monotonically (6.4\\% $\\to$ 17.8\\% $\\to$ 47.8\\%), but critically, within-instance LP-quality correlation also degrades: median $\\rho$ drops from 0.317 at 3 epochs to 0.120 at 10 epochs, indicating that overtraining erodes both necessary conditions simultaneously.\nAt 10 epochs, the model retains competitive greedy F1 (0.649 vs.\\ 0.650 at 3 epochs) with 8.4~pp of oracle headroom, yet LP selection yields only $+0.75$~pp, consistent with weak within-instance alignment ($\\rho{=}0.120$) rather than effective signal exploitation.\nThis pattern validates the two-condition framework (\\S\\ref{sec:discussion}): at 10 epochs, condition~1 is violated (47.8\\% degenerate) and condition~2 is compromised ($\\rho{=}0.120$).",
+              "new_string": "Degeneracy increases monotonically (6.4\\% $\\to$ 17.8\\% $\\to$ 47.8\\%), and within-instance LP-quality correlation degrades in tandem (median $\\rho$: 0.317 $\\to$ 0.282 $\\to$ 0.120), confirming that overtraining erodes both necessary conditions simultaneously.\nLP selection does not yield significant gains at any training duration ($-1.18$, $+0.62$, $+0.75$~pp; all below the ${\\approx}$1.5~pp MDE), despite oracle headroom ranging from 8.4 to 15.0~pp.\nAt 10 epochs, the model retains competitive greedy F1 (0.649 vs.\\ 0.650 at 3 epochs) yet both conditions are violated: 47.8\\% degenerate instances and $\\rho{=}0.120$."
+            }
+          },
+          "id": "event-011168"
+        },
+        {
+          "source_line": 11169,
+          "timestamp": "2026-05-18T03:39:49.684979+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 1
+          },
+          "id": "event-011169"
+        },
+        {
+          "source_line": 11170,
+          "timestamp": "2026-05-18T03:39:53.197694+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/discussion.tex",
+              "offset": "35",
+              "limit": "3"
+            }
+          },
+          "id": "event-011170"
+        },
+        {
+          "source_line": 11171,
+          "timestamp": "2026-05-18T03:39:53.248770+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "35\tThe decision rule is: if degeneracy ${<}$15\\% and within-instance $\\rho(\\text{LP}, \\text{F1}) \\gtrsim 0.3$, use LP selection (Few-NERD: $+1.36$~pp, $p{<}0.001$; gains scale with $N$); otherwise, prefer greedy decoding ($T{=}0$), using structural signals for quality estimation only ($\\rho{=}0.43$--$0.47$ even in the high-degeneracy regime; Table~\\ref{tab:degeneracy}).\n36\tTemperature provides a controllable lever for degeneracy (40.3\\% at $T{=}0.5$ to 12.5\\% at $T{=}1.2$; Table~\\ref{tab:t_degeneracy}) but cannot address alignment; training convergence offers a second lever: on Few-NERD, degeneracy rises from 11\\% to 31\\% between 3 and 5 epochs, halving LP gains (Table~\\ref{tab:epoch_confound}); a SciERC 3-point curve (3, 5, 10 epochs) shows both conditions degrading in tandem, with degeneracy rising from 6.4\\% to 47.8\\% while within-instance alignment collapses ($\\rho$ 0.317 $\\to$ 0.120), confirming that degeneracy is convergence-driven rather than a fixed dataset property (Table~\\ref{tab:epoch_scierc}); even at 3 epochs (degeneracy 6.4\\%), SciERC alignment remains insufficient ($\\rho{=}0.317$ vs.\\ Few-NERD ${\\sim}$0.5), reinforcing that low degeneracy alone does not guarantee selection gains.\n37\tStandard calibration methods preserve within-instance argmax and cannot change selection; even multi-feature variants yield no improvement ($p{=}0.31$--$0.83$; Appendix~\\ref{app:calibration_baseline}), confirming the bottleneck is alignment rather than miscalibration."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 51
+          },
+          "id": "event-011171"
+        },
+        {
+          "source_line": 11172,
+          "timestamp": "2026-05-18T03:39:57.514487+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/discussion.tex",
+              "old_string": "while within-instance alignment collapses ($\\rho$ 0.317 $\\to$ 0.120), confirming that degeneracy is convergence-driven rather than a fixed dataset property (Table~\\ref{tab:epoch_scierc})",
+              "new_string": "while within-instance alignment collapses ($\\rho$: 0.317 $\\to$ 0.282 $\\to$ 0.120) and LP selection remains below detectable thresholds at all three checkpoints, confirming that degeneracy is convergence-driven rather than a fixed dataset property (Table~\\ref{tab:epoch_scierc})"
+            }
+          },
+          "id": "event-011172"
+        },
+        {
+          "source_line": 11173,
+          "timestamp": "2026-05-18T03:39:57.565181+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/discussion.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-011173"
+        },
+        {
+          "source_line": 11174,
+          "timestamp": "2026-05-18T03:40:00.892995+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+              "offset": "1325",
+              "limit": "25"
+            }
+          },
+          "id": "event-011174"
+        },
+        {
+          "source_line": 11175,
+          "timestamp": "2026-05-18T03:40:01.596834+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1325\t\\paragraph{SciERC epoch curve.}\n1326\tTable~\\ref{tab:epoch_scierc} extends the analysis to SciERC with a 3-point curve (3, 5, 10 epochs; Qwen3-8B, $N{=}8$, $T{=}1.0$).\n1327\tDegeneracy increases monotonically (6.4\\% $\\to$ 17.8\\% $\\to$ 47.8\\%), and within-instance LP-quality correlation degrades in tandem (median $\\rho$: 0.317 $\\to$ 0.282 $\\to$ 0.120), confirming that overtraining erodes both necessary conditions simultaneously.\n1328\tLP selection does not yield significant gains at any training duration ($-1.18$, $+0.62$, $+0.75$~pp; all below the ${\\approx}$1.5~pp MDE), despite oracle headroom ranging from 8.4 to 15.0~pp.\n1329\tAt 10 epochs, the model retains competitive greedy F1 (0.649 vs.\\ 0.650 at 3 epochs) yet both conditions are violated: 47.8\\% degenerate instances and $\\rho{=}0.120$.\n1330\tThe gradient confirms that degeneracy is convergence-driven rather than a fixed dataset property: extended training compresses output distributions, degrading both diversity and within-instance alignment. However, even at 3 epochs (lowest degeneracy, 6.4\\%), SciERC's within-instance alignment ($\\rho{=}0.317$) remains below the threshold observed on Few-NERD ($\\rho{\\sim}0.5$), reinforcing that controlling degeneracy alone is insufficient when the alignment condition is not met.\n1331\t\n1332\t\\begin{table}[t]\n1333\t\\centering\n1334\t\\small\n1335\t\\caption{SciERC NER epoch curve (Qwen3-8B, $N{=}8$, $T{=}1.0$). Training duration modulates both instance degeneracy and within-instance LP-quality alignment. ``Degen.'': constant-F1 instance degeneracy (gold-filtered). ``LP $\\Delta$'': LP selection gain over greedy (gold-filtered; none reaches the ${\\approx}$1.5~pp MDE). ``$\\rho$ med'': median within-instance LP-quality correlation.}\n1336\t\\label{tab:epoch_scierc}\n1337\t\\begin{tabular}{lccc}\n1338\t\\toprule\n1339\tMetric & 3-epoch & 5-epoch & 10-epoch \\\\\n1340\t\\midrule\n1341\tGreedy F1 & 0.650 & 0.644 & 0.649 \\\\\n1342\tInstance degen.\\ (\\%) & 6.4 & 17.8 & 47.8 \\\\\n1343\tLP $\\Delta$ (pp) & $-$1.18 & $+\n…[truncated 169 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 703
+          },
+          "id": "event-011175"
+        },
+        {
+          "source_line": 11176,
+          "timestamp": "2026-05-18T03:40:01.748719+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/discussion.tex",
+              "offset": "35",
+              "limit": "3"
+            }
+          },
+          "id": "event-011176"
+        },
+        {
+          "source_line": 11177,
+          "timestamp": "2026-05-18T03:40:01.749243+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "35\tThe decision rule is: if degeneracy ${<}$15\\% and within-instance $\\rho(\\text{LP}, \\text{F1}) \\gtrsim 0.3$, use LP selection (Few-NERD: $+1.36$~pp, $p{<}0.001$; gains scale with $N$); otherwise, prefer greedy decoding ($T{=}0$), using structural signals for quality estimation only ($\\rho{=}0.43$--$0.47$ even in the high-degeneracy regime; Table~\\ref{tab:degeneracy}).\n36\tTemperature provides a controllable lever for degeneracy (40.3\\% at $T{=}0.5$ to 12.5\\% at $T{=}1.2$; Table~\\ref{tab:t_degeneracy}) but cannot address alignment; training convergence offers a second lever: on Few-NERD, degeneracy rises from 11\\% to 31\\% between 3 and 5 epochs, halving LP gains (Table~\\ref{tab:epoch_confound}); a SciERC 3-point curve (3, 5, 10 epochs) shows both conditions degrading in tandem, with degeneracy rising from 6.4\\% to 47.8\\% while within-instance alignment collapses ($\\rho$: 0.317 $\\to$ 0.282 $\\to$ 0.120) and LP selection remains below detectable thresholds at all three checkpoints, confirming that degeneracy is convergence-driven rather than a fixed dataset property (Table~\\ref{tab:epoch_scierc}); even at 3 epochs (degeneracy 6.4\\%), SciERC alignment remains insufficient ($\\rho{=}0.317$ vs.\\ Few-NERD ${\\sim}$0.5), reinforcing that low degeneracy alone does not guarantee selection gains.\n37\tStandard calibration methods preserve within-instance argmax and cannot change selection; even multi-feature variants yield no improvement ($p{=}0.31$--$0.83$; Appendix~\\ref{app:calibration_baseline}), confirming the bottleneck is alignment rather than miscalibration."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-011177"
+        },
+        {
+          "source_line": 11178,
+          "timestamp": "2026-05-18T03:40:40.225838+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "0\\.609|0\\.32[^0-9]",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper",
+              "glob": "*.tex",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-011178"
+        },
+        {
+          "source_line": 11179,
+          "timestamp": "2026-05-18T03:40:40.276483+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Grep",
+            "elapsed_ms": 50
+          },
+          "id": "event-011179"
+        },
+        {
+          "source_line": 11180,
+          "timestamp": "2026-05-18T03:41:21.098299+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__paper_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "mcp__agent-ml-research__paper_agent_post_to_director",
+            "tool_args": {
+              "text": "[写作进展] Patch — Table 3 + Epoch Curve 数据修正完成\n\n## 修改清单\n\n### 1. appendix.tex: tab:epoch_scierc（完整替换）\n- **5-epoch Greedy F1**: 0.609 → 0.644（bug 修正）\n- **5-epoch ρ (median)**: ≈0.32 → 0.282（精确值）\n- **新增 LP Δ 行**: -1.18 (3ep), +0.62 (5ep), +0.75 (10ep)\n- **Caption**: 添加 \"LP Δ\" 定义 + \"none reaches the ≈1.5pp MDE\"\n\n### 2. appendix.tex: SciERC epoch curve 文本\n- ρ 退化链: \"0.317 at 3 epochs to 0.120 at 10 epochs\" → \"0.317 → 0.282 → 0.120\"（三点完整）\n- 新增关键句: \"LP selection does not yield significant gains at any training duration (−1.18, +0.62, +0.75 pp; all below the ≈1.5 pp MDE), despite oracle headroom ranging from 8.4 to 15.0 pp.\"\n- \"At 10 epochs\" 句简化: 移除重复 LP Δ 信息，聚焦 two-condition violation\n\n### 3. discussion.tex: Practical guidelines 段\n- ρ 链: \"0.317 → 0.120\" → \"0.317 → 0.282 → 0.120\"\n- 新增: \"LP selection remains below detectable thresholds at all three checkpoints\"\n\n## 级联检查\n- 旧值 0.609 / ≈0.32 全文无其他残留 ✓\n- Abstract/Introduction/Conclusion/Experiments 主文无变化需要（epoch 数据只在 appendix + discussion 引用）\n\n## 需要确认的一致性问题\ntab:selection（主文 gold-filtered 2-seed mean）显示 SciERC LP Δ ≈ +0.2pp (LP=0.647, Greedy=0.645, p=0.29)。epoch 表现在显示 5-epoch LP Δ = +0.62pp。两者评估协议不同（2-seed mean vs 单次评估），但审稿人可能注意到差异。请确认：\n1. tab:selection 是否也需要更新为新的 baseline 数据？\n2. 如需更新，请提供 2-seed mean 的 Greedy F1、LP F1、σ、p-value\n3. tab:fewnerd 中 SciERC 行（full-set LP Δ = +0.42pp）是否也需更新？\n\n如果这两个表不受影响（独立评估管线），当前状态已经完整——两个 LP Δ 都在 MDE 以下，叙事一致。",
+              "project": "struct_self_consist_ie"
+            }
+          },
+          "id": "event-011180"
+        },
+        {
+          "source_line": 11181,
+          "timestamp": "2026-05-18T03:41:24.962652+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "mcp__agent-ml-research__paper_agent_post_to_director",
+            "elapsed_ms": 3864
+          },
+          "id": "event-011181"
+        },
+        {
+          "source_line": 11182,
+          "timestamp": "2026-05-18T03:41:30.882019+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "修改完成：\n- **epoch 表**: 5-epoch Greedy 0.609→0.644, ρ ≈0.32→0.282, 新增 LP Δ 行（-1.18/+0.62/+0.75pp, 均低于 MDE）\n- **epoch 文本**: 添加三点 ρ 链 + LP selection 在所有 epoch 均无显著增益\n- **discussion**: 同步更新 ρ 链 + \"below detectable thresholds at all three checkpoints\"\n\n已向 Director 确认 tab:selection 和 tab:fewnerd 是否也需同步更新（当前 +0.2pp 和 +0.42pp 来自不同评估管线）。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent"
+          },
+          "id": "event-011182"
+        }
+      ]
+    },
+    {
+      "number": 543,
+      "messages": [
+        {
+          "source_line": 11183,
+          "timestamp": "2026-05-18T03:41:31.445901+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统提醒] 你刚才完成了 [Director 指令] 但没有调用 main_agent_post_to_director 汇报结果。Director 看不到你的文字回复。请立即调用 main_agent_post_to_director 将结果发给 Director。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "source": "system"
+          },
+          "id": "event-011183"
+        },
+        {
+          "source_line": 11184,
+          "timestamp": "2026-05-18T03:41:41.296419+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "已通过 `paper_agent_post_to_director` 汇报完成。Paper Agent 使用的是 `paper_agent_post_to_director`（非 `main_agent_post_to_director`），上一条调用已成功投递（返回 success=true）。无需额外操作。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent"
+          },
+          "id": "event-011184"
+        }
+      ]
+    },
+    {
+      "number": 544,
+      "messages": [
+        {
+          "source_line": 11185,
+          "timestamp": "2026-05-18T03:41:41.815801+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Director 指令] D130 做得很好。但**先不提交审查**——你的队列中还有两条未处理的消息：\n\n1. **Epoch ablation framing 修正**（撤回 \"适度训练 regime 最有效\" 的说法）\n2. **D131 数据修正**（Table 3 SciERC LP Δ 从 -0.07pp → +0.62pp，epoch curve 全部指标更新）\n\n这两条消息直接影响你刚完成的 D130 内容（Table 3 数据、epoch ablation appendix 表格、相关叙事）。处理完这两条后再报告，我审核后提交 Round 19。\n\n注：你的待处理项 #1（5-epoch F1 非单调性）已由 D131 数据修正覆盖——根因是 baseline max_tokens 不一致，已修复。待处理项 #2（exp_029a/029b registry）Agent 已完成。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "source": "director"
+          },
+          "id": "event-011185"
+        },
+        {
+          "source_line": 11186,
+          "timestamp": "2026-05-18T03:42:12.823068+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__paper_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "mcp__agent-ml-research__paper_agent_post_to_director",
+            "tool_args": {
+              "text": "[写作进展] 确认：Epoch ablation framing + D131 数据修正 均已完成\n\n两条消息在收到时已逐条处理并汇报（可能与本条指令交叉）。以下是合并确认：\n\n---\n\n## ✅ 1. Epoch ablation framing 修正（已完成）\n\n**修改 2 处，全文扫描 0 残留：**\n\n**discussion.tex L36**: \"confirming that signals are most effective in the moderate training regime\" → \"confirming that degeneracy is convergence-driven rather than a fixed dataset property; even at 3 epochs (degeneracy 6.4%), SciERC alignment remains insufficient (ρ=0.317 vs. Few-NERD ~0.5), reinforcing that low degeneracy alone does not guarantee selection gains\"\n\n**appendix.tex L1330**: \"The gradient confirms that consistency-based signals are most effective at moderate training convergence\" → \"The gradient confirms that degeneracy is convergence-driven rather than a fixed dataset property... even at 3 epochs (lowest degeneracy, 6.4%), SciERC's within-instance alignment remains below the threshold observed on Few-NERD, reinforcing that controlling degeneracy alone is insufficient\"\n\n---\n\n## ✅ 2. D131 数据修正（已完成）\n\n**tab:epoch_scierc 完整替换：**\n| Metric | 3-epoch | 5-epoch | 10-epoch |\n|---|---|---|---|\n| Greedy F1 | 0.650 | **0.644** (was 0.609) | 0.649 |\n| Degen % | 6.4 | 17.8 | 47.8 |\n| **LP Δ (pp)** | **-1.18** | **+0.62** | **+0.75** |\n| ρ (median) | 0.317 | **0.282** (was ≈0.32) | 0.120 |\n\n**Epoch 文本更新：**\n- ρ 链补全: \"0.317 → 0.282 → 0.120\"\n- 新增: \"LP selection does not yield significant gains at any training duration (−1.18, +0.62, +0.75 pp; all below ≈1.5 pp MDE)\"\n\n**discussion.tex 同步：**\n- ρ 链: \"0.317 → 0.120\" → \"0.317 → 0.282 → 0.120\"\n- 新增: \"LP selection remains below detectable thresholds at all three checkpoints\"\n\n---\n\n## 待处理项状态\n- ✅ 5-epoch F1 非单调性：已由 D131 覆盖（max_tokens 修正）\n- ✅ exp_029a/029b registry：Agent 已完成\n- ❓ tab:selection (LP=0.647, Greedy=0.645, Δ≈+0.2pp) 和 tab:fewnerd (LP Δ=+0.42pp) 是否也需更新为 D131 修正后数据？如独立管线则不需要\n\n## 当前状态\nD130 Systemic Reframe + Epoch framing 修正 + D131 数据修正 **全部完成**。等待您审核后提交 Round 19。",
+              "project": "struct_self_consist_ie"
+            }
+          },
+          "id": "event-011186"
+        },
+        {
+          "source_line": 11187,
+          "timestamp": "2026-05-18T03:42:16.790366+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "mcp__agent-ml-research__paper_agent_post_to_director",
+            "elapsed_ms": 3967
+          },
+          "id": "event-011187"
+        },
+        {
+          "source_line": 11188,
+          "timestamp": "2026-05-18T03:42:20.441347+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "D130 + Epoch framing + D131 三项修改均已完成，合并确认报告已发 Director。等待审核指令。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent"
+          },
+          "id": "event-011188"
+        }
+      ]
+    },
+    {
+      "number": 545,
+      "messages": [
+        {
+          "source_line": 11189,
+          "timestamp": "2026-05-18T03:42:21.000792+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统提醒] 你刚才完成了 [Director 指令] 但没有调用 main_agent_post_to_director 汇报结果。Director 看不到你的文字回复。请立即调用 main_agent_post_to_director 将结果发给 Director。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "source": "system"
+          },
+          "id": "event-011189"
+        },
+        {
+          "source_line": 11190,
+          "timestamp": "2026-05-18T03:42:31.602252+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "已通过 `paper_agent_post_to_director` 汇报完毕（Paper Agent 的通信通道）。当前无待处理任务，等待 Director 下一步指令。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent"
+          },
+          "id": "event-011190"
+        }
+      ]
+    },
+    {
+      "number": 546,
+      "messages": [
+        {
+          "source_line": 11191,
+          "timestamp": "2026-05-18T03:42:32.154159+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统提醒] 你刚才完成了 [Director 指令] 但没有调用 main_agent_post_to_director 汇报结果。Director 看不到你的文字回复。请立即调用 main_agent_post_to_director 将结果发给 Director。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "source": "system"
+          },
+          "id": "event-011191"
+        },
+        {
+          "source_line": 11192,
+          "timestamp": "2026-05-18T03:42:42.523107+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "已在上一轮通过 `paper_agent_post_to_director` 发送了合并确认报告（D130 + Epoch framing + D131 三项均已完成）。当前无待处理指令，等待 Director 回复。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent"
+          },
+          "id": "event-011192"
+        }
+      ]
+    },
+    {
+      "number": 547,
+      "messages": [
+        {
+          "source_line": 11193,
+          "timestamp": "2026-05-18T03:42:43.188171+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统提醒] 你刚才完成了 [Director 指令] 但没有调用 main_agent_post_to_director 汇报结果。Director 看不到你的文字回复。请立即调用 main_agent_post_to_director 将结果发给 Director。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "source": "system"
+          },
+          "id": "event-011193"
+        },
+        {
+          "source_line": 11194,
+          "timestamp": "2026-05-18T03:42:55.902358+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "已通过 `paper_agent_post_to_director` 发送过 3 次汇报（D130 完成报告、Epoch framing 修正报告、合并确认报告）。当前无新的未汇报工作，等待 Director 回复。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent"
+          },
+          "id": "event-011194"
+        }
+      ]
+    },
+    {
+      "number": 548,
+      "messages": [
+        {
+          "source_line": 11195,
+          "timestamp": "2026-05-18T03:42:56.464643+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Director 指令] [等待核查] tab:selection 和 tab:fewnerd 数据源\n\n已派 Agent 核查这两个表是否受 max_tokens bug 影响。初步判断 tab:selection 大概率不受影响（其 Greedy=0.645 与修正后 0.6439 一致，而非旧值 0.609），但需要实际确认数据源文件。\n\n等 Agent 核查结果后再决定：\n- 如果不受影响 → 当前状态即为最终版，LP Δ 差异来自评估协议不同（2-seed mean vs 单次），两个值都 < MDE，叙事一致\n- 如果受影响 → 需要用正确数据重算并 patch\n\n请先处理完队列中的其他指令，表格数据修正等核查结果后再定。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "source": "director"
+          },
+          "id": "event-011195"
+        },
+        {
+          "source_line": 11196,
+          "timestamp": "2026-05-18T03:43:06.008289+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__paper_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "mcp__agent-ml-research__paper_agent_post_to_director",
+            "tool_args": {
+              "text": "[写作进展] 收到，等待 Agent 核查 tab:selection / tab:fewnerd 数据源\n\n当前队列无其他未处理指令。D130 + epoch framing + D131 全部完成。tab:selection 和 tab:fewnerd 暂不动，等核查结果后按您的决定执行。",
+              "project": "struct_self_consist_ie"
+            }
+          },
+          "id": "event-011196"
+        },
+        {
+          "source_line": 11197,
+          "timestamp": "2026-05-18T03:43:10.566994+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "mcp__agent-ml-research__paper_agent_post_to_director",
+            "elapsed_ms": 4558
+          },
+          "id": "event-011197"
+        }
+      ]
+    },
+    {
+      "number": 549,
+      "messages": [
+        {
+          "source_line": 11198,
+          "timestamp": "2026-05-18T03:57:12.224110+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Director 指令] Agent 核查确认：tab:selection 和 tab:fewnerd 均使用 max_tokens=1024 正确数据，不受 baseline bug 影响。LP Δ 差异（+0.2pp vs +0.62pp）来自评估协议不同（2-seed mean vs 单次），两者都 < MDE，叙事一致。\n\n**不需要额外修改。** D130 + D131 + epoch framing 全部完成。准备提交 Round 19。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "source": "director"
+          },
+          "id": "event-011198"
+        },
+        {
+          "source_line": 11199,
+          "timestamp": "2026-05-18T03:57:21.769414+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__paper_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "mcp__agent-ml-research__paper_agent_post_to_director",
+            "tool_args": {
+              "text": "[写作进展] 确认：D130 + D131 + epoch framing 全部完成，tab:selection / tab:fewnerd 无需修改\n\n所有修改总结：\n- D130 Systemic Reframe: 8 项统计 softening + 4 项贡献重构 + 3 新引用 + 4 orphan bib 清理\n- Epoch framing: 2 处 \"moderate regime 最优\" 错误 framing 修正为 \"convergence-driven\"\n- D131: tab:epoch_scierc 完整替换（5ep Greedy 0.644, LP Δ 行 -1.18/+0.62/+0.75, ρ 0.282）+ 文本同步\n- tab:selection / tab:fewnerd: 独立管线，数据正确，无需改动\n\n建议提交 Round 19 审查。",
+              "project": "struct_self_consist_ie"
+            }
+          },
+          "id": "event-011199"
+        },
+        {
+          "source_line": 11200,
+          "timestamp": "2026-05-18T03:57:25.581395+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "mcp__agent-ml-research__paper_agent_post_to_director",
+            "elapsed_ms": 3811
+          },
+          "id": "event-011200"
+        }
+      ]
+    },
+    {
+      "number": 550,
+      "messages": [
+        {
+          "source_line": 11201,
+          "timestamp": "2026-05-18T04:49:21.524319+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Director 指令] [Patch — tab:fewnerd 全表修正 + CoNLL degeneracy 传播] D132 final\n\ntab:fewnerd 全部三行数据已用统一协议重算（gold-filtered + max_LP），Reviewer 独立验证 PASS。\n\n## 修正后 definitive 值\n\n| Dataset | n | greedy | oracle | headroom | degen% | LP ρ | LP Δ |\n|---------|---|--------|--------|----------|--------|------|------|\n| SciERC | 529 | .644 | .776 | 13.2pp | 17.8% | .215 | +0.61pp |\n| Few-NERD | 32565 | .748 | .872 | 12.4pp | 13.8% | .421 | +1.36pp |\n| CoNLL | 2756 | .908 | .948 | 4.0pp | 59.1% | .302 | -1.05pp |\n\n**统一协议**：gold-filtered + max_LP（每个 sample 取 token-level logprob 最大值与 F1 的 instance-level 相关）。\n\n## 需要修改的位置\n\n### 1. tab:fewnerd 表（主修改）\n- SciERC 行全部替换（greedy .614→.644, oracle .752→.776, headroom 13.8→13.2, LP ρ .205→.215, LP Δ +0.42→+0.61）\n- CoNLL 行更新（degen 47.4→59.1, LP Δ 从 \"n.s.\" 改为 -1.05pp, LP ρ .316→.302）\n- Few-NERD 行不变\n\n### 2. CoNLL degeneracy 47.4% → 59.1% 全文传播\n**搜索全文 \"47.4\" 和 \"47%\" 找到所有引用位置**，替换为 59.1%。这个差异 +11.7pp 很大，正文和 Figure 3 中引用必须一致。定性结论不变（CoNLL 仍是高 degeneracy regime）且更强。\n\n### 3. CoNLL LP Δ 更新\n如果正文/discussion 中提到 CoNLL LP selection 结果为 \"not significant\"，更新为 \"-1.05pp\"（明确负向）。这强化了 two-condition framework：高 degeneracy 下 LP 选择不仅无效，反而有害。\n\n### 4. SciERC LP ρ 更新\n正文中如引用 SciERC LP ρ=0.205，更新为 0.215（差异很小，但保持一致）。\n\n### 5. 表注\ntab:fewnerd caption 中注明 \"gold-filtered evaluation; LP ρ computed as Spearman correlation between max token-level log-probability and instance F1\"。\n\n引用不需要验证。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "source": "director"
+          },
+          "id": "event-011201"
+        },
+        {
+          "source_line": 11202,
+          "timestamp": "2026-05-18T04:49:30.808023+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "47\\.4|47\\%|47\\\\%",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper",
+              "glob": "*.tex",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-011202"
+        },
+        {
+          "source_line": 11203,
+          "timestamp": "2026-05-18T04:49:31.259953+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex:107:CoNLL & 2{,}756 & .908 & 4.0\\,pp & 47.4\\% & .316 & n.s. \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex:120:The cross-dataset gradient is consistent with an inverse relationship (47.4\\% $\\to$ n.s., 17.8\\% $\\to$ $+0.42$~pp, 13.8\\% $\\to$ $+1.36$~pp; $n{=}3$ datasets, exploratory given 5+ confounds; Figure~\\ref{fig:degeneracy_scatter}), with supporting evidence from per-entity-type analysis within Few-NERD ($n{=}8$, $\\rho{=}{-}0.881$, $p{=}0.004$; entity types share model, tokenizer, and temperature, so effective degrees of freedom may be lower than 6).\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/abstract.tex:7:Two mechanisms explain this gap: \\textit{instance degeneracy} (14\\textendash 47\\% of instances yield identical F1 scores across all samples) eliminates headroom; \\textit{weak LP-quality alignment} prevents exploiting the remainder.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/conclusion.tex:6:When either condition is violated, LP gains fall below detectable thresholds despite 12\\textendash 14~pp oracle headroom: on SciERC (17.8\\% degeneracy, $\\rho{\\approx}0.24$), LP yields $+0.42$~pp ($p{=}0.091$, below the ${\\approx}$1.5~pp MDE at 80\\% power); on CoNLL (47.4\\% degeneracy), LP shows no improvement.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/conclusion.tex:7:Two mechanisms explain this gap: instance degeneracy (14\\textendash 47\\% of instances yield identical F1 scores) eliminates headroom, and weak LP-quality alignment prevents exploiting the remainder.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/discussion.tex:10:Within non-degenerate instances, MBR utili\n…[truncated 3295 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Grep",
+            "elapsed_ms": 451
+          },
+          "id": "event-011203"
+        },
+        {
+          "source_line": 11204,
+          "timestamp": "2026-05-18T04:49:32.314326+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "0\\.205|LP.*rho.*0\\.2|\\\\\\.205",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper",
+              "glob": "*.tex",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-011204"
+        },
+        {
+          "source_line": 11205,
+          "timestamp": "2026-05-18T04:49:32.967427+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex:48:On SciERC (medium difficulty), structural signals lead (VC $\\rho{=}0.379$, SJ $0.360$) over LP ($0.205$); bootstrap CIs confirm the gap ($\\Delta\\rho{=}{+}0.155$; Appendix~\\ref{app:bootstrap_signal}).\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex:121:Low degeneracy alone is not sufficient: the LoRA-rank ablation (\\S\\ref{sec:robustness_main}) reduces degeneracy to 7.2\\% yet LP does not improve selection because $\\rho(\\text{LP}, \\text{F1}){\\approx}0.24$.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/conclusion.tex:6:When either condition is violated, LP gains fall below detectable thresholds despite 12\\textendash 14~pp oracle headroom: on SciERC (17.8\\% degeneracy, $\\rho{\\approx}0.24$), LP yields $+0.42$~pp ($p{=}0.091$, below the ${\\approx}$1.5~pp MDE at 80\\% power); on CoNLL (47.4\\% degeneracy), LP shows no improvement.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/discussion.tex:12:LP is severely compressed (median range 0.041 nats; Table~\\ref{tab:logprob_ties}), with pooled within-instance $\\rho(\\text{LP}, \\text{F1}){=}0.248$.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/discussion.tex:29:Even at degeneracy approaching Few-NERD levels (12.5\\% vs.\\ 13.8\\%), LP does not improve selection because alignment remains weak ($\\rho{=}0.225$ vs.\\ Few-NERD ${\\sim}$0.5).\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/discussion.tex:36:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex:49:\\quad LP & $T{=}1.0$ & 0.205 & 0.266 \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_\n…[truncated 4542 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Grep",
+            "elapsed_ms": 653
+          },
+          "id": "event-011205"
+        },
+        {
+          "source_line": 11206,
+          "timestamp": "2026-05-18T04:49:33.670224+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "CoNLL.*n\\.s\\.|CoNLL.*not sig|47.*89",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper",
+              "glob": "*.tex",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-011206"
+        },
+        {
+          "source_line": 11207,
+          "timestamp": "2026-05-18T04:49:33.721013+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex:107:CoNLL & 2{,}756 & .908 & 4.0\\,pp & 47.4\\% & .316 & n.s. \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/discussion.tex:26:At the low-resource boundary (WNUT-17), QE signals collapse (VC conditional $\\rho{=}0.038$; Table~\\ref{tab:wnut}); at the ceiling boundary (CoNLL, degeneracy 47--89\\%), LP does not improve selection.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex:1120:Selection F1 & 0.620 & 0.647 & 0.889 & 0.904 \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex:1197:(4)~Low degeneracy (13.8\\%) combined with strong LP-quality alignment ($\\rho{\\approx}0.5$) enables LP selection: candidates differ in F1 more often, and LP can rank them effectively. This contrasts with SciERC (17.8\\% degeneracy but weak alignment $\\rho{\\approx}0.24$, LP $+0.42$~pp non-significant) and CoNLL (47.4\\%, LP n.s.).\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex:1351:CoNLL epoch variation remains unverified; high-degeneracy datasets (CoNLL at 47--89\\%) may exhibit a ceiling effect where additional training has limited marginal impact."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Grep",
+            "elapsed_ms": 50
+          },
+          "id": "event-011207"
+        },
+        {
+          "source_line": 11208,
+          "timestamp": "2026-05-18T04:52:22.282031+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+              "offset": "355",
+              "limit": "20"
+            }
+          },
+          "id": "event-011208"
+        },
+        {
+          "source_line": 11209,
+          "timestamp": "2026-05-18T04:52:22.583383+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "355\t\\centering\n356\t\\small\n357\t\\caption{Instance degeneracy statistics ($T{=}1.0$). ``Constant F1'': all $N$ samples receive identical instance-level F1. ``Constant utility'': MBR (SJ) utility identical across candidates. 4B data confirms degeneracy scales with model capability.}\n358\t\\label{tab:degeneracy}\n359\t\\begin{tabular}{lccc}\n360\t\\toprule\n361\t& \\shortstack{SciERC 8B\\\\($N{=}8$)} & \\shortstack{SciERC 4B\\\\($N{=}8$)} & \\shortstack{CoNLL 8B\\\\($N{=}16$)} \\\\\n362\t\\midrule\n363\tConstant F1 & 17.8\\% & 10.4\\% & 47.4\\% \\\\\n364\tConstant utility & 13\\% & 7.0\\% & 49\\% \\\\\n365\tOracle gap closed (non-deg.) & 23\\% & 25.2\\% & 41\\% \\\\\n366\tWithin-inst.\\ SJ $\\rho$ (median) & 0.524 & 0.550 & 0.994 \\\\\n367\t\\bottomrule\n368\t\\end{tabular}\n369\t\\end{table}\n370\t\n371\t\\paragraph{TOST equivalence testing.}\\label{app:tost}\n372\tThe primary evidence against selection gains comes from effect sizes and confidence intervals: Cohen's $d{=}0.038$ for the best signal (NER LP) and bootstrap 95\\% CI [$-$3.0, $+$4.2]~pp spanning zero.\n373\tTable~\\ref{tab:tost} supplements this with two one-sided tests (TOST), testing whether each signal's selection F1 is equivalent to single-sample within a bound $\\delta$.\n374\tThe $\\delta$ values are contextualized against oracle headroom (12--18~pp): $\\delta{=}5$~pp corresponds to forgoing 28--38\\% of the available headroom, $\\delta{=}3$~pp forgoing 17--23\\%, and $\\delta{=}2$~pp less than 15\\%."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 301
+          },
+          "id": "event-011209"
+        },
+        {
+          "source_line": 11210,
+          "timestamp": "2026-05-18T04:52:23.085036+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+              "offset": "1255",
+              "limit": "15"
+            }
+          },
+          "id": "event-011210"
+        },
+        {
+          "source_line": 11211,
+          "timestamp": "2026-05-18T04:52:23.487342+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1255\tMetric & 12.5 & $-$0.06 \\\\\n1256\tMethod & 16.3 & $-$0.03 \\\\\n1257\tOtherScientificTerm & 6.2 & $-$0.57 \\\\\n1258\t\\bottomrule\n1259\t\\end{tabular}\n1260\t\\end{table}\n1261\t\n1262\tThe cross-dataset degeneracy gradient (47.4\\% $\\to$ 17.8\\% $\\to$ 13.8\\%) is inversely associated with LP selection effectiveness at the macro level ($n{=}3$ datasets; exploratory).\\footnote{Partial Spearman correlation controlling for entity-type frequency yields $\\rho{=}{-}0.47$ (vs.\\ raw $\\rho{=}{-}0.38$); type frequency does not confound the degeneracy--LP relationship.}\n1263\tAt finer per-type granularity, selection depends on the interaction of degeneracy, oracle headroom, and type-specific LP-quality alignment.\n1264\tLow degeneracy is necessary but not sufficient: CoNLL MISC (23\\%, headroom 12.6~pp) and SciERC OtherScientificTerm (6.2\\%, headroom 12.5~pp) both show negative LP selection despite available headroom; LP correlation strength with the type-specific quality function is an additional prerequisite.\n1265\t\n1266\t\\section{Calibration Baseline}\\label{app:calibration_baseline}\n1267\t\n1268\tStandard calibration methods are monotonic transforms of log-probability and therefore preserve within-instance sample rankings: Platt scaling \\cite{platt1999probabilistic} fits a logistic regression $\\sigma(a \\cdot \\text{LP} + b)$, and temperature scaling \\cite{guo2017calibration} divides logits by a scalar $\\tau$.\n1269\tSince both preserve the argmax, selection F1 is identical to raw LP on all three datasets (Table~\\ref{tab:calibration})."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 402
+          },
+          "id": "event-011211"
+        },
+        {
+          "source_line": 11212,
+          "timestamp": "2026-05-18T04:52:23.788508+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+              "offset": "1190",
+              "limit": "15"
+            }
+          },
+          "id": "event-011212"
+        },
+        {
+          "source_line": 11213,
+          "timestamp": "2026-05-18T04:52:23.839082+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1190\t\\end{tabular}\n1191\t\\end{table}\n1192\t\n1193\t\\paragraph{Key observations.}\n1194\t(1)~All five signals achieve positive QE ($\\rho$ 0.29--0.42); quality estimation works on Few-NERD. LP leads ($\\rho{=}0.42$), followed by VC ($0.39$); the ranking differs from SciERC where VC leads, consistent with dataset-specific signal informativeness.\n1195\t(2)~LP is the only signal achieving significant positive selection ($+1.36$~pp, $p{<}0.001$, CI excludes zero). The sample-level AUROC of 0.578 confirms LP provides per-sample discriminability beyond instance-level quality prediction.\n1196\t(3)~Despite positive $\\rho$, all structural signals degrade selection ($-1.79$ to $-3.85$~pp), further confirming that the correlation-selection gap is not an artifact of weak QE.\n1197\t(4)~Low degeneracy (13.8\\%) combined with strong LP-quality alignment ($\\rho{\\approx}0.5$) enables LP selection: candidates differ in F1 more often, and LP can rank them effectively. This contrasts with SciERC (17.8\\% degeneracy but weak alignment $\\rho{\\approx}0.24$, LP $+0.42$~pp non-significant) and CoNLL (47.4\\%, LP n.s.).\n1198\t\n1199\t\\section{Per-Entity-Type LP Selection Analysis}\\label{app:per_type_lp}\n1200\t\n1201\tTable~\\ref{tab:per_type_lp} stratifies LP selection by entity type on Few-NERD, sorted by degeneracy rate.\n1202\tThe degeneracy-gating mechanism holds at entity-type granularity: 7 of 8 types show positive LP selection gains, and the sole negative type (Art, $-0.17$~pp) has the highest degeneracy (19.8\\%).\n1203\tThe correlation between per-type degeneracy and oracle headroom is strong and significant (Spearman $\\rho{=}{-}0.881$, $p{=}0.004$); degeneracy directly constrains the headroom available for selection.\n1204\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-011213"
+        },
+        {
+          "source_line": 11214,
+          "timestamp": "2026-05-18T04:52:42.114054+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/abstract.tex"
+            }
+          },
+          "id": "event-011214"
+        },
+        {
+          "source_line": 11215,
+          "timestamp": "2026-05-18T04:52:42.114588+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/conclusion.tex"
+            }
+          },
+          "id": "event-011215"
+        },
+        {
+          "source_line": 11216,
+          "timestamp": "2026-05-18T04:52:42.114787+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Conclusion}\\label{sec:conclusion}\n2\t\n3\tWe evaluate five confidence signals for quality estimation and sample selection in LLM-based NER across four benchmarks spanning a difficulty gradient.\n4\tAll signals achieve reliable quality estimation ($\\rho$ up to 0.42, AUROC up to 0.82), supporting selective prediction.\n5\tFor selection, LP achieves $+1.36$~pp on Few-NERD ($p{<}0.001$) when two conditions are jointly met: low instance degeneracy (${<}$15\\%) and adequate LP-quality alignment ($\\rho \\gtrsim 0.3$); gains scale with sample budget ($+0.52$~pp, $N{=}8{\\to}16$, $p{=}0.003$).\n6\tWhen either condition is violated, LP gains fall below detectable thresholds despite 12\\textendash 14~pp oracle headroom: on SciERC (17.8\\% degeneracy, $\\rho{\\approx}0.24$), LP yields $+0.42$~pp ($p{=}0.091$, below the ${\\approx}$1.5~pp MDE at 80\\% power); on CoNLL (47.4\\% degeneracy), LP shows no improvement.\n7\tTwo mechanisms explain this gap: instance degeneracy (14\\textendash 47\\% of instances yield identical F1 scores) eliminates headroom, and weak LP-quality alignment prevents exploiting the remainder.\n8\tStructural signals do not improve selection regardless of degeneracy, and supervised combination of these five unsupervised signals does not close the oracle gap; whether richer representations (e.g., hidden states, entity embeddings) could change this conclusion remains open.\n9\tWhether these patterns persist at 70B+ scales remains open.\n10\tClosing the gap for structural signals likely requires content-aware verifiers \\cite{cobbe2021verifiers}; LP provides a practical baseline when both conditions are met, with degeneracy controllable via temperature and training convergence.\n11\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-011216"
+        },
+        {
+          "source_line": 11217,
+          "timestamp": "2026-05-18T04:52:42.115009+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\begin{abstract}\n2\tSelf-consistency yields large gains on discrete-answer tasks, but named entity recognition (NER) produces \\textit{sets} of entities with partial overlap, where no majority vote analog exists.\n3\tWe evaluate five confidence signals (four instance-level, one per-sample log-probability [LP]) for quality estimation and sample selection on four NER benchmarks using 4B\\textendash 8B models.\n4\tAll signals achieve reliable quality estimation ($\\rho$ up to 0.42, AUROC up to 0.82), supporting selective prediction.\n5\tFor selection, LP achieves $+1.36$~pp on Few-NERD ($p{<}0.001$) under two jointly necessary conditions: low instance degeneracy and adequate LP-quality alignment ($\\rho \\gtrsim 0.3$).\n6\tWhen either condition is violated, LP gains fall below detectable thresholds despite ${\\sim}$13~pp oracle headroom, a disparity we term the \\textbf{correlation-selection gap}.\n7\tTwo mechanisms explain this gap: \\textit{instance degeneracy} (14\\textendash 47\\% of instances yield identical F1 scores across all samples) eliminates headroom; \\textit{weak LP-quality alignment} prevents exploiting the remainder.\n8\tA methodological premise underlies both: four of five signals are instance-level aggregates that by definition cannot rank candidates.\n9\tDegeneracy is controllable via temperature and training convergence; closing the gap for structural signals likely requires learned per-sample scoring.\n10\t\\end{abstract}\n11\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-011217"
+        },
+        {
+          "source_line": 11218,
+          "timestamp": "2026-05-18T04:53:01.920705+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex",
+              "old_string": "CoNLL & 2{,}756 & .908 & 4.0\\,pp & 47.4\\% & .316 & n.s. \\\\\nSciERC & 551 & .614 & 13.8\\,pp & 17.8\\% & .205 & $+$0.42\\,pp \\\\",
+              "new_string": "CoNLL & 2{,}756 & .908 & 4.0\\,pp & 59.1\\% & .302 & $-$1.05\\,pp \\\\\nSciERC & 529 & .644 & 13.2\\,pp & 17.8\\% & .215 & $+$0.61\\,pp \\\\"
+            }
+          },
+          "id": "event-011218"
+        },
+        {
+          "source_line": 11219,
+          "timestamp": "2026-05-18T04:53:02.389768+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 469
+          },
+          "id": "event-011219"
+        },
+        {
+          "source_line": 11220,
+          "timestamp": "2026-05-18T04:53:02.892294+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/abstract.tex",
+              "old_string": "14\\textendash 47\\%",
+              "new_string": "14\\textendash 59\\%"
+            }
+          },
+          "id": "event-011220"
+        },
+        {
+          "source_line": 11221,
+          "timestamp": "2026-05-18T04:53:03.344735+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/abstract.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 452
+          },
+          "id": "event-011221"
+        },
+        {
+          "source_line": 11222,
+          "timestamp": "2026-05-18T04:53:04.248301+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "True",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/introduction.tex",
+              "old_string": "14\\textendash 47\\%",
+              "new_string": "14\\textendash 59\\%"
+            }
+          },
+          "id": "event-011222"
+        },
+        {
+          "source_line": 11223,
+          "timestamp": "2026-05-18T04:53:04.750717+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/introduction.tex has been updated. All occurrences were successfully replaced."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 502
+          },
+          "id": "event-011223"
+        },
+        {
+          "source_line": 11224,
+          "timestamp": "2026-05-18T04:53:07.261658+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/conclusion.tex",
+              "old_string": "on SciERC (17.8\\% degeneracy, $\\rho{\\approx}0.24$), LP yields $+0.42$~pp ($p{=}0.091$, below the ${\\approx}$1.5~pp MDE at 80\\% power); on CoNLL (47.4\\% degeneracy), LP shows no improvement.\nTwo mechanisms explain this gap: instance degeneracy (14\\textendash 47\\% of instances yield identical F1 scores)",
+              "new_string": "on SciERC (17.8\\% degeneracy, $\\rho{\\approx}0.24$), LP yields $+0.61$~pp (below the ${\\approx}$1.5~pp MDE at 80\\% power); on CoNLL (59.1\\% degeneracy), LP degrades selection ($-1.05$~pp).\nTwo mechanisms explain this gap: instance degeneracy (14\\textendash 59\\% of instances yield identical F1 scores)"
+            }
+          },
+          "id": "event-011224"
+        },
+        {
+          "source_line": 11225,
+          "timestamp": "2026-05-18T04:53:07.563178+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/conclusion.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 301
+          },
+          "id": "event-011225"
+        },
+        {
+          "source_line": 11226,
+          "timestamp": "2026-05-18T04:53:08.516966+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/discussion.tex",
+              "old_string": "17.8\\% (SciERC) to 47.4\\% (CoNLL)",
+              "new_string": "17.8\\% (SciERC) to 59.1\\% (CoNLL)"
+            }
+          },
+          "id": "event-011226"
+        },
+        {
+          "source_line": 11227,
+          "timestamp": "2026-05-18T04:53:09.019258+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/discussion.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 502
+          },
+          "id": "event-011227"
+        },
+        {
+          "source_line": 11228,
+          "timestamp": "2026-05-18T04:53:09.521328+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+              "old_string": "Constant F1 & 17.8\\% & 10.4\\% & 47.4\\% \\\\",
+              "new_string": "Constant F1 & 17.8\\% & 10.4\\% & 59.1\\% \\\\"
+            }
+          },
+          "id": "event-011228"
+        },
+        {
+          "source_line": 11229,
+          "timestamp": "2026-05-18T04:53:09.572752+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 51
+          },
+          "id": "event-011229"
+        },
+        {
+          "source_line": 11230,
+          "timestamp": "2026-05-18T04:53:19.380815+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex",
+              "old_string": "\\caption{Cross-dataset comparison of LP selection effectiveness (Qwen3-8B, $N{=}8$, $T{=}1.0$). LP selection gains are inversely associated with instance degeneracy across three datasets (full-set evaluation; see Table~\\ref{tab:selection} footnote for gold-filtered protocol difference).\\protect\\footnotemark\\protect\\footnotemark}",
+              "new_string": "\\caption{Cross-dataset comparison of LP selection effectiveness (Qwen3-8B, $N{=}8$, $T{=}1.0$, gold-filtered). LP $\\rho$: Spearman correlation between max token-level log-probability and instance F1. LP selection gains are inversely associated with instance degeneracy.\\protect\\footnotemark\\protect\\footnotemark}"
+            }
+          },
+          "id": "event-011230"
+        },
+        {
+          "source_line": 11231,
+          "timestamp": "2026-05-18T04:53:19.732786+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 351
+          },
+          "id": "event-011231"
+        },
+        {
+          "source_line": 11232,
+          "timestamp": "2026-05-18T04:53:23.595948+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex",
+              "old_string": "\\footnotetext{SciERC greedy (0.614) and headroom (13.8~pp) differ from Table~\\ref{tab:selection} (gold-filtered $n{=}529$, greedy${=}0.645$) due to full-set evaluation; the ranking and significance are unchanged.}",
+              "new_string": "\\footnotetext{SciERC values (greedy${=}0.644$, headroom${=}13.2$~pp) differ slightly from Table~\\ref{tab:selection} (greedy${=}0.645$, headroom${=}13.3$~pp) due to max-LP aggregation and single-seed evaluation; the ranking is unchanged.}"
+            }
+          },
+          "id": "event-011232"
+        },
+        {
+          "source_line": 11233,
+          "timestamp": "2026-05-18T04:53:23.947655+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 351
+          },
+          "id": "event-011233"
+        },
+        {
+          "source_line": 11234,
+          "timestamp": "2026-05-18T04:53:26.306322+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex",
+              "old_string": "The cross-dataset gradient is consistent with an inverse relationship (47.4\\% $\\to$ n.s., 17.8\\% $\\to$ $+0.42$~pp, 13.8\\% $\\to$ $+1.36$~pp",
+              "new_string": "The cross-dataset gradient is consistent with an inverse relationship (59.1\\% $\\to$ $-1.05$~pp, 17.8\\% $\\to$ $+0.61$~pp, 13.8\\% $\\to$ $+1.36$~pp"
+            }
+          },
+          "id": "event-011234"
+        },
+        {
+          "source_line": 11235,
+          "timestamp": "2026-05-18T04:53:26.808659+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 502
+          },
+          "id": "event-011235"
+        },
+        {
+          "source_line": 11236,
+          "timestamp": "2026-05-18T04:53:27.210335+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/discussion.tex",
+              "old_string": "Qwen 47.4\\% on CoNLL",
+              "new_string": "Qwen 59.1\\% on CoNLL"
+            }
+          },
+          "id": "event-011236"
+        },
+        {
+          "source_line": 11237,
+          "timestamp": "2026-05-18T04:53:27.712872+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/discussion.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 502
+          },
+          "id": "event-011237"
+        },
+        {
+          "source_line": 11238,
+          "timestamp": "2026-05-18T04:53:29.168461+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/discussion.tex",
+              "old_string": "CoNLL, degeneracy 47--89\\%), LP does not improve selection.",
+              "new_string": "CoNLL, degeneracy 59--89\\%), LP degrades selection ($-1.05$~pp)."
+            }
+          },
+          "id": "event-011238"
+        },
+        {
+          "source_line": 11239,
+          "timestamp": "2026-05-18T04:53:29.621228+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/discussion.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 452
+          },
+          "id": "event-011239"
+        },
+        {
+          "source_line": 11240,
+          "timestamp": "2026-05-18T04:53:30.678330+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/discussion.tex",
+              "old_string": "47\\% $\\to$ n.s., 18\\% $\\to$ $+0.42$~pp, 14\\% $\\to$ $+1.36$~pp",
+              "new_string": "59\\% $\\to$ $-1.05$~pp, 18\\% $\\to$ $+0.61$~pp, 14\\% $\\to$ $+1.36$~pp"
+            }
+          },
+          "id": "event-011240"
+        },
+        {
+          "source_line": 11241,
+          "timestamp": "2026-05-18T04:53:30.729562+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/discussion.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 51
+          },
+          "id": "event-011241"
+        },
+        {
+          "source_line": 11242,
+          "timestamp": "2026-05-18T04:53:34.995468+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+              "old_string": "47.4\\% on CoNLL).",
+              "new_string": "59.1\\% on CoNLL)."
+            }
+          },
+          "id": "event-011242"
+        },
+        {
+          "source_line": 11243,
+          "timestamp": "2026-05-18T04:53:35.498297+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 502
+          },
+          "id": "event-011243"
+        },
+        {
+          "source_line": 11244,
+          "timestamp": "2026-05-18T04:53:37.405245+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+              "old_string": "SciERC (17.8\\% degeneracy but weak alignment $\\rho{\\approx}0.24$, LP $+0.42$~pp non-significant) and CoNLL (47.4\\%, LP n.s.).",
+              "new_string": "SciERC (17.8\\% degeneracy but weak alignment $\\rho{\\approx}0.24$, LP $+0.61$~pp) and CoNLL (59.1\\%, LP $-1.05$~pp)."
+            }
+          },
+          "id": "event-011244"
+        },
+        {
+          "source_line": 11245,
+          "timestamp": "2026-05-18T04:53:37.857407+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 452
+          },
+          "id": "event-011245"
+        },
+        {
+          "source_line": 11246,
+          "timestamp": "2026-05-18T04:53:39.261543+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+              "old_string": "The cross-dataset degeneracy gradient (47.4\\% $\\to$ 17.8\\% $\\to$ 13.8\\%)",
+              "new_string": "The cross-dataset degeneracy gradient (59.1\\% $\\to$ 17.8\\% $\\to$ 13.8\\%)"
+            }
+          },
+          "id": "event-011246"
+        },
+        {
+          "source_line": 11247,
+          "timestamp": "2026-05-18T04:53:39.713828+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 452
+          },
+          "id": "event-011247"
+        },
+        {
+          "source_line": 11248,
+          "timestamp": "2026-05-18T04:53:40.215651+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+              "old_string": "CoNLL at 47--89\\%",
+              "new_string": "CoNLL at 59--89\\%"
+            }
+          },
+          "id": "event-011248"
+        },
+        {
+          "source_line": 11249,
+          "timestamp": "2026-05-18T04:53:40.266662+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 51
+          },
+          "id": "event-011249"
+        },
+        {
+          "source_line": 11250,
+          "timestamp": "2026-05-18T04:53:44.480747+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "47\\.4",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper",
+              "glob": "*.tex",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-011250"
+        },
+        {
+          "source_line": 11251,
+          "timestamp": "2026-05-18T04:53:45.484727+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Grep",
+            "elapsed_ms": 1003
+          },
+          "id": "event-011251"
+        },
+        {
+          "source_line": 11252,
+          "timestamp": "2026-05-18T04:53:46.438767+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "\\\\+0\\\\.42|\\\\$\\\\+\\\\$0\\\\.42|0\\.42.*pp",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper",
+              "glob": "*.tex",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-011252"
+        },
+        {
+          "source_line": 11253,
+          "timestamp": "2026-05-18T04:53:46.941123+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/conclusion.tex:4:All signals achieve reliable quality estimation ($\\rho$ up to 0.42, AUROC up to 0.82), supporting selective prediction.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/abstract.tex:4:All signals achieve reliable quality estimation ($\\rho$ up to 0.42, AUROC up to 0.82), supporting selective prediction.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/discussion.tex:23:LP failures show cross-seed stability (Jaccard${=}0.42$; Appendix~\\ref{app:lp_failure_stability}), consistent with a systematic failure mode.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/introduction.tex:12:All signals achieve reliable quality estimation ($\\rho$ up to 0.42, AUROC up to 0.82; Figure~\\ref{fig:overview}), supporting selective prediction.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/introduction.tex:20:\\caption{The correlation-selection gap. \\textbf{Left}: consistency signals reliably predict instance-level quality ($\\rho$ up to 0.45 on CoNLL, 0.38 on the primary test bed, 0.42 on Few-NERD; AUROC up to 0.82). \\textbf{Right}: quality estimation does not translate to selection; all methods approximately match greedy decoding ($T{=}0$) despite 13~pp oracle headroom (\\S\\ref{sec:discussion}).}\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex:963:LP selection improves monotonically with $N$ ($+0.42$~pp at $N{=}8$ to $+0.91$~pp at $N{=}32$), but even at $N{=}32$, where degeneracy falls to 4\\% and oracle headroom reaches ${\\sim}19$~pp, the best signal captures less than 5\\% of the available improvement."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Grep",
+            "elapsed_ms": 502
+          },
+          "id": "event-011253"
+        },
+        {
+          "source_line": 11254,
+          "timestamp": "2026-05-18T04:53:47.593436+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "47\\\\\\\\%|47--",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper",
+              "glob": "*.tex",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-011254"
+        },
+        {
+          "source_line": 11255,
+          "timestamp": "2026-05-18T04:53:47.643975+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Grep",
+            "elapsed_ms": 50
+          },
+          "id": "event-011255"
+        },
+        {
+          "source_line": 11256,
+          "timestamp": "2026-05-18T04:54:11.670951+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "CoNLL.*n\\.s|LP n\\.s",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper",
+              "glob": "*.tex",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-011256"
+        },
+        {
+          "source_line": 11257,
+          "timestamp": "2026-05-18T04:54:12.072986+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Grep",
+            "elapsed_ms": 402
+          },
+          "id": "event-011257"
+        },
+        {
+          "source_line": 11258,
+          "timestamp": "2026-05-18T04:54:12.374589+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+              "offset": "958",
+              "limit": "12"
+            }
+          },
+          "id": "event-011258"
+        },
+        {
+          "source_line": 11259,
+          "timestamp": "2026-05-18T04:54:12.425363+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "958\tDoubling $N$ reduces cross-seed $\\sigma$ by 32\\% on NER and 24\\% on RE (Table~\\ref{tab:sigma-comparison}), with the largest reductions for SJ ($-43\\%$ NER) and EM ($-59\\%$ NER); additional samples stabilize structural signals more than LP.\n959\t\n960\t\\paragraph{$N$-scaling: selection headroom vs.\\ selection gain.}\n961\tTable~\\ref{tab:n_scaling_selection} traces the effect of sample count on degeneracy, oracle headroom, and per-signal selection gain.\n962\tOracle headroom grows roughly linearly with $N$ ($+4.4$~pp at $N{=}2$ to $+19.2$~pp at $N{=}32$).\n963\tLP selection improves monotonically with $N$ ($+0.42$~pp at $N{=}8$ to $+0.91$~pp at $N{=}32$), but even at $N{=}32$, where degeneracy falls to 4\\% and oracle headroom reaches ${\\sim}19$~pp, the best signal captures less than 5\\% of the available improvement.\n964\tDegeneracy drops monotonically (44\\% at $N{=}2$ to 4\\% at $N{=}32$), yet reduced degeneracy does not unlock selection, consistent with the LoRA-rank ablation finding (\\S\\ref{sec:robustness_main}).\n965\tVC selection degrades with increasing $N$ ($-2.27$~pp at $N{=}2$ to $-4.18$~pp at $N{=}32$), consistent with mode-seeking bias in voting-based selection as the candidate pool grows.\n966\t\n967\t\\begin{table}[t]\n968\t\\centering\n969\t\\small"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-011259"
+        },
+        {
+          "source_line": 11260,
+          "timestamp": "2026-05-18T04:54:23.620893+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex",
+              "offset": "100",
+              "limit": "25"
+            }
+          },
+          "id": "event-011260"
+        },
+        {
+          "source_line": 11261,
+          "timestamp": "2026-05-18T04:54:24.072613+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "100\t\\small\n101\t\\caption{Cross-dataset comparison of LP selection effectiveness (Qwen3-8B, $N{=}8$, $T{=}1.0$, gold-filtered). LP $\\rho$: Spearman correlation between max token-level log-probability and instance F1. LP selection gains are inversely associated with instance degeneracy.\\protect\\footnotemark\\protect\\footnotemark}\n102\t\\label{tab:fewnerd}\n103\t\\begin{tabular}{lcccccc}\n104\t\\toprule\n105\tDataset & $n$ & Greedy & Headroom & Degen\\% & LP $\\rho$ & LP $\\Delta$ \\\\\n106\t\\midrule\n107\tCoNLL & 2{,}756 & .908 & 4.0\\,pp & 59.1\\% & .302 & $-$1.05\\,pp \\\\\n108\tSciERC & 529 & .644 & 13.2\\,pp & 17.8\\% & .215 & $+$0.61\\,pp \\\\\n109\tFew-NERD & 32{,}565 & .748 & 12.4\\,pp & 13.8\\% & .421 & $\\mathbf{+1.36}$\\,pp \\\\\n110\t\\bottomrule\n111\t\\end{tabular}\n112\t\\end{table}\n113\t\\footnotetext{SciERC values (greedy${=}0.644$, headroom${=}13.2$~pp) differ slightly from Table~\\ref{tab:selection} (greedy${=}0.645$, headroom${=}13.3$~pp) due to max-LP aggregation and single-seed evaluation; the ranking is unchanged.}\n114\t\\footnotetext{Instance degeneracy: fraction of gold-filtered instances where all $N$ samples produce identical instance-level F1.}\n115\t\n116\tFew-NERD (Table~\\ref{tab:fewnerd}) confirms that LP selection effectiveness is inversely associated with degeneracy.\n117\tUnder standard early stopping, Few-NERD degeneracy is 13.8\\% (training convergence modulates this rate, Appendix~\\ref{app:epoch_confound}), and LP achieves $+1.36$~pp (95\\% CI $[+1.18, +1.53]$, $p{<}0.001$), while all structural signals degrade selection (VC $-1.79$, SJ $-2.14$~pp).\n118\t\n119\t\\paragraph{Two necessary conditions for LP selection.}\n120\tThe cross-dataset gradient is consistent with an inverse relationship (59.1\\% $\\to$ $-1.05$~pp, 17.8\\% $\\to$ $+0.61$~pp, 13.8\\% $\\to$ $+1.36$~pp; $n{=}3$ datasets, exploratory given 5+ confounds; Figure~\\ref{fig:degeneracy_scatter}), with supporting evidence from per-entity-type analysis within Few-NERD ($n{=}8$, $\\rho{=}{-}0.881$, $p{=}0.004$; entity types share model, tokenizer, a\n…[truncated 658 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 451
+          },
+          "id": "event-011261"
+        },
+        {
+          "source_line": 11262,
+          "timestamp": "2026-05-18T04:54:24.123180+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/conclusion.tex"
+            }
+          },
+          "id": "event-011262"
+        },
+        {
+          "source_line": 11263,
+          "timestamp": "2026-05-18T04:54:24.173882+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Conclusion}\\label{sec:conclusion}\n2\t\n3\tWe evaluate five confidence signals for quality estimation and sample selection in LLM-based NER across four benchmarks spanning a difficulty gradient.\n4\tAll signals achieve reliable quality estimation ($\\rho$ up to 0.42, AUROC up to 0.82), supporting selective prediction.\n5\tFor selection, LP achieves $+1.36$~pp on Few-NERD ($p{<}0.001$) when two conditions are jointly met: low instance degeneracy (${<}$15\\%) and adequate LP-quality alignment ($\\rho \\gtrsim 0.3$); gains scale with sample budget ($+0.52$~pp, $N{=}8{\\to}16$, $p{=}0.003$).\n6\tWhen either condition is violated, LP gains fall below detectable thresholds despite 12\\textendash 14~pp oracle headroom: on SciERC (17.8\\% degeneracy, $\\rho{\\approx}0.24$), LP yields $+0.61$~pp (below the ${\\approx}$1.5~pp MDE at 80\\% power); on CoNLL (59.1\\% degeneracy), LP degrades selection ($-1.05$~pp).\n7\tTwo mechanisms explain this gap: instance degeneracy (14\\textendash 59\\% of instances yield identical F1 scores) eliminates headroom, and weak LP-quality alignment prevents exploiting the remainder.\n8\tStructural signals do not improve selection regardless of degeneracy, and supervised combination of these five unsupervised signals does not close the oracle gap; whether richer representations (e.g., hidden states, entity embeddings) could change this conclusion remains open.\n9\tWhether these patterns persist at 70B+ scales remains open.\n10\tClosing the gap for structural signals likely requires content-aware verifiers \\cite{cobbe2021verifiers}; LP provides a practical baseline when both conditions are met, with degeneracy controllable via temperature and training convergence.\n11\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-011263"
+        },
+        {
+          "source_line": 11264,
+          "timestamp": "2026-05-18T04:54:31.000160+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/discussion.tex",
+              "offset": "9",
+              "limit": "4"
+            }
+          },
+          "id": "event-011264"
+        },
+        {
+          "source_line": 11265,
+          "timestamp": "2026-05-18T04:54:31.000486+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "9\tTwo mechanisms block selection: \\textit{instance degeneracy} (consensus-proximity) and \\textit{weak LP-quality alignment} (per-sample).\n10\tWithin non-degenerate instances, MBR utility \\cite{eikema2022sampling} correlates positively with F1 (SJ median $\\rho{=}0.524$) and closes 23--41\\% of the oracle gap, but 17.8\\% (SciERC) to 59.1\\% (CoNLL) of instances produce identical F1 across all samples, eliminating headroom entirely (Table~\\ref{tab:degeneracy}).\n11\tDegeneracy is determined by the interplay of task structure, model architecture, and training convergence (Appendix~\\ref{app:epoch_confound}); cross-model evidence (LLaMA 89.2\\% vs.\\ Qwen 59.1\\% on CoNLL; Table~\\ref{tab:cross_selection}) reinforces the pattern.\n12\tLP is severely compressed (median range 0.041 nats; Table~\\ref{tab:logprob_ties}), with pooled within-instance $\\rho(\\text{LP}, \\text{F1}){=}0.248$."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-011265"
+        },
+        {
+          "source_line": 11266,
+          "timestamp": "2026-05-18T04:54:31.251238+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/discussion.tex",
+              "offset": "25",
+              "limit": "7"
+            }
+          },
+          "id": "event-011266"
+        },
+        {
+          "source_line": 11267,
+          "timestamp": "2026-05-18T04:54:31.351909+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "25\t\\paragraph{Regime boundaries.}\n26\tAt the low-resource boundary (WNUT-17), QE signals collapse (VC conditional $\\rho{=}0.038$; Table~\\ref{tab:wnut}); at the ceiling boundary (CoNLL, degeneracy 59--89\\%), LP degrades selection ($-1.05$~pp).\n27\tIn the moderate regime, two conditions jointly determine effectiveness.\n28\tTemperature manipulation provides the primary evidence ($T{=}1.2$: degeneracy 12.5\\%, $\\rho{=}0.225$; Table~\\ref{tab:t_degeneracy}): it alters output diversity without changing model capacity, isolating the degeneracy lever from alignment.\n29\tEven at degeneracy approaching Few-NERD levels (12.5\\% vs.\\ 13.8\\%), LP does not improve selection because alignment remains weak ($\\rho{=}0.225$ vs.\\ Few-NERD ${\\sim}$0.5).\n30\tLoRA rank${=}8$ (degeneracy 7.2\\%, $\\rho{=}0.24$) corroborates the pattern, though this ablation conflates diversity with capacity (secondary evidence).\n31\tThe cross-dataset gradient (59\\% $\\to$ $-1.05$~pp, 18\\% $\\to$ $+0.61$~pp, 14\\% $\\to$ $+1.36$~pp; $n{=}3$ datasets, exploratory) is consistent with an inverse relationship; per-entity-type analysis within Few-NERD ($\\rho{=}{-}0.881$, $p{=}0.004$, $n{=}8$; entity types share model and tokenizer, effective $\\mathit{df}$ may be lower; Appendix~\\ref{app:per_type_lp}) provides supporting evidence."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 100
+          },
+          "id": "event-011267"
+        },
+        {
+          "source_line": 11268,
+          "timestamp": "2026-05-18T04:55:40.224626+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__paper_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "mcp__agent-ml-research__paper_agent_post_to_director",
+            "tool_args": {
+              "text": "[写作进展] D132 Patch 完成 — tab:fewnerd 全表修正 + CoNLL degeneracy 传播\n\n## 修改清单\n\n### 1. tab:fewnerd（experiments.tex）\n| 列 | SciERC 旧→新 | CoNLL 旧→新 |\n|---|---|---|\n| n | 551→529 | — |\n| Greedy | .614→.644 | — |\n| Headroom | 13.8→13.2pp | — |\n| Degen% | — | 47.4→59.1 |\n| LP ρ | .205→.215 | .316→.302 |\n| LP Δ | +0.42→+0.61 | n.s.→-1.05pp |\n\n- Caption: \"full-set evaluation\" → \"gold-filtered; LP ρ: Spearman correlation between max token-level log-probability and instance F1\"\n- Footnote: 旧 full-set 差异解释 → 新 max-LP aggregation 差异解释\n\n### 2. CoNLL degeneracy 47.4% → 59.1% 全文传播（15 处）\n| 文件 | 位置 | 修改 |\n|---|---|---|\n| experiments.tex | L107 tab:fewnerd | 47.4→59.1 |\n| experiments.tex | L120 gradient | 47.4→59.1 + n.s.→-1.05pp |\n| abstract.tex | L7 | 14–47→14–59 |\n| introduction.tex | L15, L34 | 14–47→14–59 (replace_all) |\n| conclusion.tex | L6 | 47.4→59.1 + LP→-1.05pp |\n| conclusion.tex | L7 | 14–47→14–59 |\n| discussion.tex | L10 | 47.4→59.1 |\n| discussion.tex | L11 | Qwen 47.4→59.1 |\n| discussion.tex | L26 | 47–89→59–89 + \"does not improve\"→\"degrades ($-1.05$pp)\" |\n| discussion.tex | L31 | 47→59 + n.s.→-1.05pp |\n| appendix.tex | L363 tab:degeneracy | 47.4→59.1 |\n| appendix.tex | L1171 | 47.4→59.1 |\n| appendix.tex | L1197 | 47.4→59.1 + n.s.→-1.05pp + 0.42→0.61 |\n| appendix.tex | L1262 | 47.4→59.1 |\n| appendix.tex | L1351 | 47–89→59–89 |\n\n### 3. SciERC LP Δ +0.42 → +0.61 传播\nexperiments.tex L120, conclusion.tex L6, discussion.tex L31, appendix.tex L1197\n\n### 4. CoNLL LP 描述更新\n\"n.s.\" / \"does not improve\" / \"shows no improvement\" → \"-1.05pp\" / \"degrades selection\"\n\n## 验证\n- `grep \"47\\.4\"` / `grep \"47--\"` / `grep \"47%\"` 全文零匹配 ✓\n- `grep \"CoNLL.*n\\.s\"` / `grep \"LP n\\.s\"` 零匹配 ✓\n\n## 需要确认的级联问题\n\n1. **Figure 2 (fig_degeneracy_scatter) 需要重新生成**：CoNLL 数据点 (47.4%, ~0) → (59.1%, -1.05pp)，SciERC 数据点 (17.8%, +0.42) → (17.8%, +0.61)。当前 PDF 仍是旧图。\n\n2. **appendix.tex L363 tab:degeneracy**: 此表使用 N=16 for CoNLL，而 D132 数据来自 N=8。已按指令替换为 59.1%，但如果 N=16 degeneracy 与 N=8 不同，此值可能需要校正。\n\n3. **appendix.tex L963 N-scaling**: \"+0.42 pp at N=8\" 是 SciERC N-scaling 分析中的 LP Δ。如果该分析现在也用 gold-filtered + max_LP 协议，应更新为 +0.61pp。\n\n4. **conclusion.tex L6 p-value**: 旧 \"p=0.091\" 已移除（对应 +0.42pp full-set），新 +0.61pp 的 p-value 未知，当前仅保留 MDE framing。如有新 p-value 请提供。\n\n5. **discussion.tex L11 LLaMA 89.2%**: Qwen CoNLL degeneracy 已从 47.4% 更新为 59.1%，但 LLaMA 的 89.2% 是否也受协议变更影响？",
+              "project": "struct_self_consist_ie"
+            }
+          },
+          "id": "event-011268"
+        },
+        {
+          "source_line": 11269,
+          "timestamp": "2026-05-18T04:55:43.840617+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "mcp__agent-ml-research__paper_agent_post_to_director",
+            "elapsed_ms": 3615
+          },
+          "id": "event-011269"
+        },
+        {
+          "source_line": 11270,
+          "timestamp": "2026-05-18T04:55:48.122704+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有 19 处编辑完成并验证。Phase E — 汇报 Director。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent"
+          },
+          "id": "event-011270"
+        }
+      ]
+    },
+    {
+      "number": 551,
+      "messages": [
+        {
+          "source_line": 11271,
+          "timestamp": "2026-05-18T04:55:48.643820+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统提醒] 你刚才完成了 [Director 指令] 但没有调用 main_agent_post_to_director 汇报结果。Director 看不到你的文字回复。请立即调用 main_agent_post_to_director 将结果发给 Director。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "source": "system"
+          },
+          "id": "event-011271"
+        },
+        {
+          "source_line": 11272,
+          "timestamp": "2026-05-18T04:55:53.370580+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "No response requested."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent"
+          },
+          "id": "event-011272"
+        }
+      ]
+    },
+    {
+      "number": 552,
+      "messages": [
+        {
+          "source_line": 11273,
+          "timestamp": "2026-05-18T04:56:39.870648+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Director 指令] [级联问题回复]\n\n关于你提出的 5 个级联问题：\n\n1. **Figure 2**: 已指示 Agent 用修正数据重新生成。等图片更新后你替换。\n2. **tab:degeneracy N=16**: Agent 在核查 N=16 数据。如果值不同会给你正确数值。\n3. **N-scaling +0.42**: Agent 在核查是否需要更新。\n4. **p-value**: D130 决定用 MDE framing，不需要 p-value。当前表述（\"below ~1.5pp MDE\"）就是最终形态，不用补 p 值。\n5. **LLaMA 89.2%**: Agent 在核查。\n\n等 Agent 汇报后我会把需要你改的具体数值发过来。当前已完成的修改不要动。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "source": "director"
+          },
+          "id": "event-011273"
+        },
+        {
+          "source_line": 11274,
+          "timestamp": "2026-05-18T04:56:46.869092+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__paper_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "mcp__agent-ml-research__paper_agent_post_to_director",
+            "tool_args": {
+              "text": "[写作进展] 收到，等待 Agent 核查结果（tab:degeneracy N=16、N-scaling +0.42、LLaMA 89.2%）+ Figure 2 更新。当前修改冻结，不动。",
+              "project": "struct_self_consist_ie"
+            }
+          },
+          "id": "event-011274"
+        },
+        {
+          "source_line": 11275,
+          "timestamp": "2026-05-18T04:56:50.490321+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "mcp__agent-ml-research__paper_agent_post_to_director",
+            "elapsed_ms": 3621
+          },
+          "id": "event-011275"
+        }
+      ]
+    },
+    {
+      "number": 553,
+      "messages": [
+        {
+          "source_line": 11276,
+          "timestamp": "2026-05-18T05:32:39.161829+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Director 指令] [Patch — D132 级联修正 3 项]\n\nAgent 核查了 D132 后续级联问题，以下需要你修改：\n\n## 1. appendix tab:degeneracy CoNLL 行\n**59.1% → 48.3%**\n原因：tab:degeneracy 使用 N=16 数据，59.1% 是 N=8 的值（我之前传播时未注意 N 差异）。48.3% 是 N=16 F1-based gold-filtered 的正确值。\n\n## 2. discussion LLaMA CoNLL degeneracy\n**89.2% → 86.4%**\n原因：89.2% 来源不明，86.4% 是 F1-based gold-filtered 的正确值（与 Qwen 的统一定义一致）。\n\n## 3. N-scaling 分析 (appendix)\n目前只需修正文本中引用的 \"+0.42 pp at N=8\" → **\"+0.61 pp at N=8\"**。\nAgent 正在用 gold-filtered 协议重算完整 N-scaling 表（N=2,4,8,16），完成后我会发完整数据给你更新 N-scaling 表格。\n\n## 注意\n- Figure 2 已更新（Reviewer PASS），不用动\n- +0.61pp 的 p=0.386（不显著），论文保持 MDE framing 不引用 p-value\n\n引用不需要验证。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "source": "director"
+          },
+          "id": "event-011276"
+        },
+        {
+          "source_line": 11277,
+          "timestamp": "2026-05-18T05:32:50.057441+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+              "old_string": "Constant F1 & 17.8\\% & 10.4\\% & 59.1\\% \\\\",
+              "new_string": "Constant F1 & 17.8\\% & 10.4\\% & 48.3\\% \\\\"
+            }
+          },
+          "id": "event-011277"
+        },
+        {
+          "source_line": 11278,
+          "timestamp": "2026-05-18T05:32:50.510328+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 452
+          },
+          "id": "event-011278"
+        },
+        {
+          "source_line": 11279,
+          "timestamp": "2026-05-18T05:32:51.464399+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/discussion.tex",
+              "old_string": "LLaMA 89.2\\% vs.\\ Qwen 59.1\\% on CoNLL",
+              "new_string": "LLaMA 86.4\\% vs.\\ Qwen 59.1\\% on CoNLL"
+            }
+          },
+          "id": "event-011279"
+        },
+        {
+          "source_line": 11280,
+          "timestamp": "2026-05-18T05:32:51.915975+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/discussion.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 451
+          },
+          "id": "event-011280"
+        },
+        {
+          "source_line": 11281,
+          "timestamp": "2026-05-18T05:32:53.823042+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+              "old_string": "LP selection improves monotonically with $N$ ($+0.42$~pp at $N{=}8$ to $+0.91$~pp at $N{=}32$)",
+              "new_string": "LP selection improves monotonically with $N$ ($+0.61$~pp at $N{=}8$ to $+0.91$~pp at $N{=}32$)"
+            }
+          },
+          "id": "event-011281"
+        },
+        {
+          "source_line": 11282,
+          "timestamp": "2026-05-18T05:32:53.875367+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 52
+          },
+          "id": "event-011282"
+        },
+        {
+          "source_line": 11283,
+          "timestamp": "2026-05-18T05:32:59.498513+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "89\\%|89\\\\%|--89|89\\.2",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper",
+              "glob": "*.tex",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-011283"
+        },
+        {
+          "source_line": 11284,
+          "timestamp": "2026-05-18T05:32:59.550273+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/discussion.tex:26:At the low-resource boundary (WNUT-17), QE signals collapse (VC conditional $\\rho{=}0.038$; Table~\\ref{tab:wnut}); at the ceiling boundary (CoNLL, degeneracy 59--89\\%), LP degrades selection ($-1.05$~pp).\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex:1351:CoNLL epoch variation remains unverified; high-degeneracy datasets (CoNLL at 59--89\\%) may exhibit a ceiling effect where additional training has limited marginal impact."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Grep",
+            "elapsed_ms": 51
+          },
+          "id": "event-011284"
+        },
+        {
+          "source_line": 11285,
+          "timestamp": "2026-05-18T05:33:06.432257+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/discussion.tex",
+              "old_string": "degeneracy 59--89\\%",
+              "new_string": "degeneracy 59--86\\%"
+            }
+          },
+          "id": "event-011285"
+        },
+        {
+          "source_line": 11286,
+          "timestamp": "2026-05-18T05:33:06.884379+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/discussion.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 452
+          },
+          "id": "event-011286"
+        },
+        {
+          "source_line": 11287,
+          "timestamp": "2026-05-18T05:33:07.336458+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+              "old_string": "CoNLL at 59--89\\%",
+              "new_string": "CoNLL at 59--86\\%"
+            }
+          },
+          "id": "event-011287"
+        },
+        {
+          "source_line": 11288,
+          "timestamp": "2026-05-18T05:33:07.387762+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 51
+          },
+          "id": "event-011288"
+        },
+        {
+          "source_line": 11289,
+          "timestamp": "2026-05-18T05:33:13.135224+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__paper_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "mcp__agent-ml-research__paper_agent_post_to_director",
+            "tool_args": {
+              "text": "[写作进展] D132 级联修正 3 项完成\n\n1. **tab:degeneracy CoNLL**: 59.1% → 48.3%（N=16 正确值）✓\n2. **LLaMA CoNLL degeneracy**: 89.2% → 86.4% ✓\n   - 级联：discussion L26 + appendix L1351 \"59--89%\" → \"59--86%\"（2 处）\n3. **N-scaling text**: \"+0.42 pp at N=8\" → \"+0.61 pp at N=8\" ✓\n   - N-scaling 完整表格等 Agent 重算后更新\n\n等待 N-scaling 完整表格数据。",
+              "project": "struct_self_consist_ie"
+            }
+          },
+          "id": "event-011289"
+        },
+        {
+          "source_line": 11290,
+          "timestamp": "2026-05-18T05:33:16.906339+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "mcp__agent-ml-research__paper_agent_post_to_director",
+            "elapsed_ms": 3771
+          },
+          "id": "event-011290"
+        },
+        {
+          "source_line": 11291,
+          "timestamp": "2026-05-18T05:33:21.429495+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "LLaMA 89.2→86.4 也影响 \"59--89%\" 范围引用。搜索并更新。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent"
+          },
+          "id": "event-011291"
+        }
+      ]
+    },
+    {
+      "number": 554,
+      "messages": [
+        {
+          "source_line": 11292,
+          "timestamp": "2026-05-18T05:33:21.969604+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统提醒] 你刚才完成了 [Director 指令] 但没有调用 main_agent_post_to_director 汇报结果。Director 看不到你的文字回复。请立即调用 main_agent_post_to_director 将结果发给 Director。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "source": "system"
+          },
+          "id": "event-011292"
+        },
+        {
+          "source_line": 11293,
+          "timestamp": "2026-05-18T05:33:27.659604+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "No response requested."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent"
+          },
+          "id": "event-011293"
+        }
+      ]
+    },
+    {
+      "number": 555,
+      "messages": [
+        {
+          "source_line": 11294,
+          "timestamp": "2026-05-18T05:39:01.238679+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Director 指令] [Patch — N-scaling 表全表替换 + 文本修正]\n\n**重要**：之前让你改的 \"+0.42 → +0.61\" 是错的。N-scaling 表用的是 exp_025_n32（不同实验），正确值是 **+0.39pp**。请把刚改的 +0.61 改回 **+0.39**。\n\n## N-scaling 表完整数据（gold-filtered n=529, max_LP）\n\n| N | greedy | oracle | headroom | degen% | LP Δ | SJ Δ | FK Δ | EM Δ | VC Δ |\n|---|--------|--------|----------|--------|------|------|------|------|------|\n| 2 | .640 | .683 | 4.4pp | 42.7% | −0.89 | −2.72 | −2.72 | −2.72 | −2.66 |\n| 4 | .640 | .742 | 10.2pp | 21.0% | +0.03 | −0.31 | −0.40 | −0.74 | −2.16 |\n| 8 | .640 | .785 | 14.5pp | 11.0% | +0.39 | +0.20 | +0.15 | −0.77 | −2.87 |\n| 16 | .640 | .817 | 17.7pp | 7.4% | +0.78 | +0.24 | −0.02 | −0.06 | −3.95 |\n| 32 | .640 | .840 | 20.0pp | 4.0% | +0.95 | +0.35 | +0.65 | +0.22 | −4.35 |\n\n## 修改清单\n1. **tab:n_scaling_selection 全表替换**为上述数据\n2. **正文引用**：\"+0.61 pp at N=8\"（你刚改的）→ **\"+0.39 pp at N=8\"**（如果还有其他引用 N-scaling LP Δ 的地方，用 +0.39）\n3. **脚注**：\"full 551-instance test set\" → \"gold-filtered 529-instance test set\"\n4. **greedy 基准**：如果脚注提到 greedy=0.614，改为 0.640\n\n注意：+0.39pp (N-scaling from exp_025) 和 +0.61pp (tab:fewnerd from exp_012) 是不同实验，两个值都对，不矛盾。表注中可注明实验来源以避免读者混淆。\n\n引用不需要验证。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "source": "director"
+          },
+          "id": "event-011294"
+        },
+        {
+          "source_line": 11295,
+          "timestamp": "2026-05-18T05:39:14.550316+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+              "offset": "958",
+              "limit": "50"
+            }
+          },
+          "id": "event-011295"
+        },
+        {
+          "source_line": 11296,
+          "timestamp": "2026-05-18T05:39:14.601096+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "958\tDoubling $N$ reduces cross-seed $\\sigma$ by 32\\% on NER and 24\\% on RE (Table~\\ref{tab:sigma-comparison}), with the largest reductions for SJ ($-43\\%$ NER) and EM ($-59\\%$ NER); additional samples stabilize structural signals more than LP.\n959\t\n960\t\\paragraph{$N$-scaling: selection headroom vs.\\ selection gain.}\n961\tTable~\\ref{tab:n_scaling_selection} traces the effect of sample count on degeneracy, oracle headroom, and per-signal selection gain.\n962\tOracle headroom grows roughly linearly with $N$ ($+4.4$~pp at $N{=}2$ to $+19.2$~pp at $N{=}32$).\n963\tLP selection improves monotonically with $N$ ($+0.61$~pp at $N{=}8$ to $+0.91$~pp at $N{=}32$), but even at $N{=}32$, where degeneracy falls to 4\\% and oracle headroom reaches ${\\sim}19$~pp, the best signal captures less than 5\\% of the available improvement.\n964\tDegeneracy drops monotonically (44\\% at $N{=}2$ to 4\\% at $N{=}32$), yet reduced degeneracy does not unlock selection, consistent with the LoRA-rank ablation finding (\\S\\ref{sec:robustness_main}).\n965\tVC selection degrades with increasing $N$ ($-2.27$~pp at $N{=}2$ to $-4.18$~pp at $N{=}32$), consistent with mode-seeking bias in voting-based selection as the candidate pool grows.\n966\t\n967\t\\begin{table}[t]\n968\t\\centering\n969\t\\small\n970\t\\caption{Effect of sample count on selection (SciERC NER, Qwen3-8B, $T{=}1.0$, seed${=}42$).\\protect\\footnotemark\\ ``Best $\\Delta$'': highest selection gain across all 5 signals. Per-signal $\\Delta$ in pp vs.~greedy.}\n971\t\\label{tab:n_scaling_selection}\n972\t\\begin{tabular}{ccccccccc}\n973\t\\toprule\n974\t$N$ & Degen.\\% & Oracle (pp) & LP & SJ & FK & EM & VC & Best $\\Delta$ \\\\\n975\t\\midrule\n976\t2 & 44.1\\% & $+$4.4 & $-$0.75 & $-$2.54 & $-$2.54 & $-$2.54 & $-$2.27 & $-$0.75 \\\\\n977\t4 & 22.4\\% & $+$9.8 & $-$0.01 & $-$0.61 & $-$0.50 & $-$1.27 & $-$1.30 & $-$0.01 \\\\\n978\t8 & 12.4\\% & $+$13.8 & $+$0.42 & $+$0.03 & $+$0.11 & $-$0.33 & $-$1.82 & $+$0.42 \\\\\n979\t16 & 6.8\\% & $+$16.7 & $+$0.63 & $+$0.26 & $+$0.43 & $-$0.15 & $-$2.91 & $+$0.63 \\\n…[truncated 2124 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-011296"
+        },
+        {
+          "source_line": 11297,
+          "timestamp": "2026-05-18T05:40:04.615496+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+              "old_string": "2 & 44.1\\% & $+$4.4 & $-$0.75 & $-$2.54 & $-$2.54 & $-$2.54 & $-$2.27 & $-$0.75 \\\\\n4 & 22.4\\% & $+$9.8 & $-$0.01 & $-$0.61 & $-$0.50 & $-$1.27 & $-$1.30 & $-$0.01 \\\\\n8 & 12.4\\% & $+$13.8 & $+$0.42 & $+$0.03 & $+$0.11 & $-$0.33 & $-$1.82 & $+$0.42 \\\\\n16 & 6.8\\% & $+$16.7 & $+$0.63 & $+$0.26 & $+$0.43 & $-$0.15 & $-$2.91 & $+$0.63 \\\\\n32 & 4.0\\% & $+$19.2 & $+$0.91 & $+$0.33 & $+$0.62 & $+$0.21 & $-$4.18 & $+$0.91 \\\\",
+              "new_string": "2 & 42.7\\% & $+$4.4 & $-$0.89 & $-$2.72 & $-$2.72 & $-$2.72 & $-$2.66 & $-$0.89 \\\\\n4 & 21.0\\% & $+$10.2 & $+$0.03 & $-$0.31 & $-$0.40 & $-$0.74 & $-$2.16 & $+$0.03 \\\\\n8 & 11.0\\% & $+$14.5 & $+$0.39 & $+$0.20 & $+$0.15 & $-$0.77 & $-$2.87 & $+$0.39 \\\\\n16 & 7.4\\% & $+$17.7 & $+$0.78 & $+$0.24 & $-$0.02 & $-$0.06 & $-$3.95 & $+$0.78 \\\\\n32 & 4.0\\% & $+$20.0 & $+$0.95 & $+$0.35 & $+$0.65 & $+$0.22 & $-$4.35 & $+$0.95 \\\\"
+            }
+          },
+          "id": "event-011297"
+        },
+        {
+          "source_line": 11298,
+          "timestamp": "2026-05-18T05:40:04.968224+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 352
+          },
+          "id": "event-011298"
+        },
+        {
+          "source_line": 11299,
+          "timestamp": "2026-05-18T05:40:06.874830+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+              "old_string": "LP selection improves monotonically with $N$ ($+0.61$~pp at $N{=}8$ to $+0.91$~pp at $N{=}32$), but even at $N{=}32$, where degeneracy falls to 4\\% and oracle headroom reaches ${\\sim}19$~pp, the best signal captures less than 5\\% of the available improvement.",
+              "new_string": "LP selection improves monotonically with $N$ ($+0.39$~pp at $N{=}8$ to $+0.95$~pp at $N{=}32$), but even at $N{=}32$, where degeneracy falls to 4\\% and oracle headroom reaches ${\\sim}20$~pp, the best signal captures less than 5\\% of the available improvement."
+            }
+          },
+          "id": "event-011299"
+        },
+        {
+          "source_line": 11300,
+          "timestamp": "2026-05-18T05:40:07.327632+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 452
+          },
+          "id": "event-011300"
+        },
+        {
+          "source_line": 11301,
+          "timestamp": "2026-05-18T05:40:08.735449+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+              "old_string": "Oracle headroom grows roughly linearly with $N$ ($+4.4$~pp at $N{=}2$ to $+19.2$~pp at $N{=}32$).",
+              "new_string": "Oracle headroom grows roughly linearly with $N$ ($+4.4$~pp at $N{=}2$ to $+20.0$~pp at $N{=}32$)."
+            }
+          },
+          "id": "event-011301"
+        },
+        {
+          "source_line": 11302,
+          "timestamp": "2026-05-18T05:40:09.187539+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 452
+          },
+          "id": "event-011302"
+        },
+        {
+          "source_line": 11303,
+          "timestamp": "2026-05-18T05:40:10.140679+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+              "old_string": "Degeneracy drops monotonically (44\\% at $N{=}2$ to 4\\% at $N{=}32$)",
+              "new_string": "Degeneracy drops monotonically (43\\% at $N{=}2$ to 4\\% at $N{=}32$)"
+            }
+          },
+          "id": "event-011303"
+        },
+        {
+          "source_line": 11304,
+          "timestamp": "2026-05-18T05:40:10.594507+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 453
+          },
+          "id": "event-011304"
+        },
+        {
+          "source_line": 11305,
+          "timestamp": "2026-05-18T05:40:11.698061+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+              "old_string": "VC selection degrades with increasing $N$ ($-2.27$~pp at $N{=}2$ to $-4.18$~pp at $N{=}32$)",
+              "new_string": "VC selection degrades with increasing $N$ ($-2.66$~pp at $N{=}2$ to $-4.35$~pp at $N{=}32$)"
+            }
+          },
+          "id": "event-011305"
+        },
+        {
+          "source_line": 11306,
+          "timestamp": "2026-05-18T05:40:11.749229+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 51
+          },
+          "id": "event-011306"
+        },
+        {
+          "source_line": 11307,
+          "timestamp": "2026-05-18T05:40:16.846737+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+              "old_string": "\\caption{Effect of sample count on selection (SciERC NER, Qwen3-8B, $T{=}1.0$, seed${=}42$).\\protect\\footnotemark\\ ``Best $\\Delta$'': highest selection gain across all 5 signals. Per-signal $\\Delta$ in pp vs.~greedy.}",
+              "new_string": "\\caption{Effect of sample count on selection (SciERC NER, Qwen3-8B, $T{=}1.0$, gold-filtered, seed${=}42$; exp\\_025).\\protect\\footnotemark\\ ``Best $\\Delta$'': highest selection gain across all 5 signals. Per-signal $\\Delta$ in pp vs.~greedy.}"
+            }
+          },
+          "id": "event-011307"
+        },
+        {
+          "source_line": 11308,
+          "timestamp": "2026-05-18T05:40:17.248820+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 402
+          },
+          "id": "event-011308"
+        },
+        {
+          "source_line": 11309,
+          "timestamp": "2026-05-18T05:40:19.155807+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+              "old_string": "\\footnotetext{$N$-scaling analysis uses subsampled evaluation on the full 551-instance test set. Absolute greedy F1 (0.614) differs from Table~\\ref{tab:selection} (0.645) due to the subsampling procedure and instance weighting; relative trends are consistent.}",
+              "new_string": "\\footnotetext{$N$-scaling analysis uses gold-filtered evaluation ($n{=}529$, greedy F1${=}0.640$). Values differ slightly from Table~\\ref{tab:selection} (0.645) and Table~\\ref{tab:fewnerd} (0.644) due to seed and aggregation differences; relative trends are consistent.}"
+            }
+          },
+          "id": "event-011309"
+        },
+        {
+          "source_line": 11310,
+          "timestamp": "2026-05-18T05:40:19.208123+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 52
+          },
+          "id": "event-011310"
+        },
+        {
+          "source_line": 11311,
+          "timestamp": "2026-05-18T05:40:23.322774+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+              "offset": "960",
+              "limit": "28"
+            }
+          },
+          "id": "event-011311"
+        },
+        {
+          "source_line": 11312,
+          "timestamp": "2026-05-18T05:40:23.375377+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "960\t\\paragraph{$N$-scaling: selection headroom vs.\\ selection gain.}\n961\tTable~\\ref{tab:n_scaling_selection} traces the effect of sample count on degeneracy, oracle headroom, and per-signal selection gain.\n962\tOracle headroom grows roughly linearly with $N$ ($+4.4$~pp at $N{=}2$ to $+20.0$~pp at $N{=}32$).\n963\tLP selection improves monotonically with $N$ ($+0.39$~pp at $N{=}8$ to $+0.95$~pp at $N{=}32$), but even at $N{=}32$, where degeneracy falls to 4\\% and oracle headroom reaches ${\\sim}20$~pp, the best signal captures less than 5\\% of the available improvement.\n964\tDegeneracy drops monotonically (43\\% at $N{=}2$ to 4\\% at $N{=}32$), yet reduced degeneracy does not unlock selection, consistent with the LoRA-rank ablation finding (\\S\\ref{sec:robustness_main}).\n965\tVC selection degrades with increasing $N$ ($-2.66$~pp at $N{=}2$ to $-4.35$~pp at $N{=}32$), consistent with mode-seeking bias in voting-based selection as the candidate pool grows.\n966\t\n967\t\\begin{table}[t]\n968\t\\centering\n969\t\\small\n970\t\\caption{Effect of sample count on selection (SciERC NER, Qwen3-8B, $T{=}1.0$, gold-filtered, seed${=}42$; exp\\_025).\\protect\\footnotemark\\ ``Best $\\Delta$'': highest selection gain across all 5 signals. Per-signal $\\Delta$ in pp vs.~greedy.}\n971\t\\label{tab:n_scaling_selection}\n972\t\\begin{tabular}{ccccccccc}\n973\t\\toprule\n974\t$N$ & Degen.\\% & Oracle (pp) & LP & SJ & FK & EM & VC & Best $\\Delta$ \\\\\n975\t\\midrule\n976\t2 & 42.7\\% & $+$4.4 & $-$0.89 & $-$2.72 & $-$2.72 & $-$2.72 & $-$2.66 & $-$0.89 \\\\\n977\t4 & 21.0\\% & $+$10.2 & $+$0.03 & $-$0.31 & $-$0.40 & $-$0.74 & $-$2.16 & $+$0.03 \\\\\n978\t8 & 11.0\\% & $+$14.5 & $+$0.39 & $+$0.20 & $+$0.15 & $-$0.77 & $-$2.87 & $+$0.39 \\\\\n979\t16 & 7.4\\% & $+$17.7 & $+$0.78 & $+$0.24 & $-$0.02 & $-$0.06 & $-$3.95 & $+$0.78 \\\\\n980\t32 & 4.0\\% & $+$20.0 & $+$0.95 & $+$0.35 & $+$0.65 & $+$0.22 & $-$4.35 & $+$0.95 \\\\\n981\t\\bottomrule\n982\t\\end{tabular}\n983\t\\end{table}\n984\t\\footnotetext{$N$-scaling analysis uses gold-filtered evaluation ($n{=}529$, gr\n…[truncated 391 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 52
+          },
+          "id": "event-011312"
+        },
+        {
+          "source_line": 11313,
+          "timestamp": "2026-05-18T05:40:30.440635+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "19\\.2|0\\.91",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper",
+              "glob": "*.tex",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-011313"
+        },
+        {
+          "source_line": 11314,
+          "timestamp": "2026-05-18T05:40:30.491294+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex:49:On CoNLL (single-sample F1${\\approx}$0.91), EM leads both $\\rho$ and AUROC ($0.816$).\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex:109:CoNLL (LLaMA) & 2{,}756 & 0.927 & [0.919, 0.935] & 225.9 & 0.578 \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex:231:On CoNLL, 57--88\\% of instances produce identical outputs across all $N$ samples; this reflects a ceiling effect (single-sample F1 ${\\approx}$0.91--0.92) rather than signal failure, and selection analysis on these configurations is uninformative because there is little per-sample variance for any signal to exploit.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex:1254:Material & 20.0 & $+$0.91 \\\\"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Grep",
+            "elapsed_ms": 50
+          },
+          "id": "event-011314"
+        },
+        {
+          "source_line": 11315,
+          "timestamp": "2026-05-18T05:40:46.303373+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__paper_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "mcp__agent-ml-research__paper_agent_post_to_director",
+            "tool_args": {
+              "text": "[写作进展] N-scaling 表全表替换 + 文本修正完成\n\n## 修改清单\n\n### 1. tab:n_scaling_selection 全表替换\n5 行数据全部替换为 Director 提供的 gold-filtered 数据。\"Best Δ\" 列从数据导出（LP 在所有 N 下均为最优信号）。\n\n### 2. 文本修正（5 处）\n- LP at N=8: +0.61→**+0.39**（撤回错误修改），N=32: +0.91→+0.95\n- Oracle headroom: +19.2→+20.0\n- Degeneracy: 44%→43%\n- VC: -2.27/-4.18 → -2.66/-4.35\n\n### 3. Caption + Footnote\n- Caption: 添加 \"gold-filtered\" + \"exp\\_025\" 来源标注\n- Footnote: \"full 551-instance test set, greedy 0.614\" → \"gold-filtered n=529, greedy 0.640\"，注明与 tab:selection (0.645) 和 tab:fewnerd (0.644) 的差异来自 seed/aggregation\n\n### 验证\n- \"less than 5%\" claim: 0.95/20.0 = 4.75% ✓\n- 旧值 \"19.2\" / \"+0.91\" 无残留 ✓\n- Bootstrap 表 (tab:bootstrap_n32) 未动（Director 未要求，值与新数据基本一致）\n\n等待 Director 审核后提交 Round 19。",
+              "project": "struct_self_consist_ie"
+            }
+          },
+          "id": "event-011315"
+        },
+        {
+          "source_line": 11316,
+          "timestamp": "2026-05-18T05:40:50.118819+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "mcp__agent-ml-research__paper_agent_post_to_director",
+            "elapsed_ms": 3815
+          },
+          "id": "event-011316"
+        },
+        {
+          "source_line": 11317,
+          "timestamp": "2026-05-18T05:40:53.130229+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "旧值无残留。汇报 Director。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent"
+          },
+          "id": "event-011317"
+        }
+      ]
+    },
+    {
+      "number": 556,
+      "messages": [
+        {
+          "source_line": 11318,
+          "timestamp": "2026-05-18T05:40:53.685817+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统提醒] 你刚才完成了 [Director 指令] 但没有调用 main_agent_post_to_director 汇报结果。Director 看不到你的文字回复。请立即调用 main_agent_post_to_director 将结果发给 Director。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "source": "system"
+          },
+          "id": "event-011318"
+        },
+        {
+          "source_line": 11319,
+          "timestamp": "2026-05-18T05:40:58.370522+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "No response requested."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent"
+          },
+          "id": "event-011319"
+        }
+      ]
+    },
+    {
+      "number": 557,
+      "messages": [
+        {
+          "source_line": 11320,
+          "timestamp": "2026-05-18T05:53:34.868835+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Director 指令] [Patch] Claim audit 发现 1 处确认需修改：\n\n**\"ρ up to 0.42\" → \"ρ up to 0.45\"**\n- 位置: abstract.tex, introduction.tex, conclusion.tex（搜索 \"0.42\" 在 ρ 上下文中的出现）\n- 原因: tab:quality_estimation 中 CoNLL Qwen EM ρ=0.451，Figure caption 已正确写 \"ρ up to 0.45\"，但 abstract/intro/conclusion 仍写 0.42\n- 修改: 所有 \"ρ up to 0.42\" 改为 \"ρ up to 0.45\"\n\n暂不动 discussion:21 的 \"+2.35pp\"（正在核查数据源）。这次不用验证引用。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "source": "director"
+          },
+          "id": "event-011320"
+        },
+        {
+          "source_line": 11321,
+          "timestamp": "2026-05-18T05:53:42.242822+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "rho.*up to 0\\.42|\\\\rho.*up to 0\\.42|0\\.42.*AUROC",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper",
+              "glob": "*.tex",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-011321"
+        },
+        {
+          "source_line": 11322,
+          "timestamp": "2026-05-18T05:53:42.343563+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/conclusion.tex:4:All signals achieve reliable quality estimation ($\\rho$ up to 0.42, AUROC up to 0.82), supporting selective prediction.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/discussion.tex:4:All signals achieve positive quality estimation across non-collapsed datasets (LP $\\rho{=}0.42$ on Few-NERD, VC $\\rho{=}0.38$ on SciERC, EM AUROC${=}0.82$ on CoNLL), with rankings stable across model families and a 4B ablation (Table~\\ref{tab:scale_ablation}).\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/abstract.tex:4:All signals achieve reliable quality estimation ($\\rho$ up to 0.42, AUROC up to 0.82), supporting selective prediction.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/introduction.tex:12:All signals achieve reliable quality estimation ($\\rho$ up to 0.42, AUROC up to 0.82; Figure~\\ref{fig:overview}), supporting selective prediction.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/introduction.tex:20:\\caption{The correlation-selection gap. \\textbf{Left}: consistency signals reliably predict instance-level quality ($\\rho$ up to 0.45 on CoNLL, 0.38 on the primary test bed, 0.42 on Few-NERD; AUROC up to 0.82). \\textbf{Right}: quality estimation does not translate to selection; all methods approximately match greedy decoding ($T{=}0$) despite 13~pp oracle headroom (\\S\\ref{sec:discussion}).}\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/introduction.tex:30:    Five signals from three families evaluated on four NER benchmarks, two model families, and a 4B ablation, achieving reliable quality estimation ($\\rho$ up to 0.42; AUROC up to 0.82)."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Grep",
+            "elapsed_ms": 100
+          },
+          "id": "event-011322"
+        },
+        {
+          "source_line": 11323,
+          "timestamp": "2026-05-18T05:53:52.639278+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/abstract.tex",
+              "old_string": "$\\rho$ up to 0.42, AUROC up to 0.82",
+              "new_string": "$\\rho$ up to 0.45, AUROC up to 0.82"
+            }
+          },
+          "id": "event-011323"
+        },
+        {
+          "source_line": 11324,
+          "timestamp": "2026-05-18T05:53:52.689942+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/abstract.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-011324"
+        },
+        {
+          "source_line": 11325,
+          "timestamp": "2026-05-18T05:53:52.690313+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "True",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/introduction.tex",
+              "old_string": "$\\rho$ up to 0.42",
+              "new_string": "$\\rho$ up to 0.45"
+            }
+          },
+          "id": "event-011325"
+        },
+        {
+          "source_line": 11326,
+          "timestamp": "2026-05-18T05:53:52.740781+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/introduction.tex has been updated. All occurrences were successfully replaced."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-011326"
+        },
+        {
+          "source_line": 11327,
+          "timestamp": "2026-05-18T05:53:52.992077+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/conclusion.tex",
+              "old_string": "$\\rho$ up to 0.42, AUROC up to 0.82",
+              "new_string": "$\\rho$ up to 0.45, AUROC up to 0.82"
+            }
+          },
+          "id": "event-011327"
+        },
+        {
+          "source_line": 11328,
+          "timestamp": "2026-05-18T05:53:53.042725+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/conclusion.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-011328"
+        },
+        {
+          "source_line": 11329,
+          "timestamp": "2026-05-18T05:53:58.461294+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__paper_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "mcp__agent-ml-research__paper_agent_post_to_director",
+            "tool_args": {
+              "text": "[写作进展] \"ρ up to 0.42\" → \"ρ up to 0.45\" 完成\n\n修改 4 处：abstract L4, introduction L12, introduction L30 (C1), conclusion L4。\n未动：discussion L4 \"LP ρ=0.42 on Few-NERD\"（特指 Few-NERD LP 的具体值，非全局 max）；introduction L20 Figure caption 已是 0.45。\n\n等待 discussion:21 \"+2.35pp\" 核查结果。",
+              "project": "struct_self_consist_ie"
+            }
+          },
+          "id": "event-011329"
+        },
+        {
+          "source_line": 11330,
+          "timestamp": "2026-05-18T05:54:02.312751+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "mcp__agent-ml-research__paper_agent_post_to_director",
+            "elapsed_ms": 3851
+          },
+          "id": "event-011330"
+        }
+      ]
+    },
+    {
+      "number": 558,
+      "messages": [
+        {
+          "source_line": 11331,
+          "timestamp": "2026-05-18T06:01:54.394319+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Director 指令] [Patch] discussion.tex:21 RE free-form LP gain 数值修正。\n\n当前文本引用 \"+2.35 pp, p=0.025\"，但这是单 seed + gold-non-empty 子集的值，appendix 报告的是 4-seed mean +1.84±0.12pp (all instances)。评估协议不一致，审稿人 cross-check 会发现矛盾。\n\n修正 discussion.tex:21 中的相关文本，大致改为：\n```\nbut restores LP selection for RE (+1.8±0.1 pp across 4 seeds; Appendix~\\ref{app:re_extension}).\n```\n\n去掉 p=0.025（那是单 seed bootstrap，不代表 4-seed 结果）。如果需要保留显著性说明，可以用 appendix 中已有的统计量。\n\n这次不用验证引用。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "source": "director"
+          },
+          "id": "event-011331"
+        },
+        {
+          "source_line": 11332,
+          "timestamp": "2026-05-18T06:02:07.478905+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/discussion.tex",
+              "offset": "19",
+              "limit": "5"
+            }
+          },
+          "id": "event-011332"
+        },
+        {
+          "source_line": 11333,
+          "timestamp": "2026-05-18T06:02:07.579776+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "19\t\\paragraph{LP compression mechanisms.}\n20\tFour non-mutually-exclusive mechanisms contribute: token-level averaging, schema-dominated tokens, vocabulary restriction under constrained decoding, and format-token dilution.\n21\tFree-form decoding rules out constraint-imposed mechanisms for NER (std ratio 0.97; Appendix~\\ref{app:freeform_ablation}) but restores LP selection for RE ($+2.35$~pp, $p{=}0.025$; Appendix~\\ref{app:re_extension}).\n22\tEntity-token LP exhibits $4{\\times}$ higher variance yet performs worse ($-2.0$~pp SciERC, $-3.3$~pp CoNLL): fine-tuned models assign near-deterministic probabilities at the representation level, and compression cannot be broken by disaggregating to entity tokens.\n23\tLP failures show cross-seed stability (Jaccard${=}0.42$; Appendix~\\ref{app:lp_failure_stability}), consistent with a systematic failure mode."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 100
+          },
+          "id": "event-011333"
+        },
+        {
+          "source_line": 11334,
+          "timestamp": "2026-05-18T06:02:11.792268+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/discussion.tex",
+              "old_string": "but restores LP selection for RE ($+2.35$~pp, $p{=}0.025$; Appendix~\\ref{app:re_extension}).",
+              "new_string": "but restores LP selection for RE ($+1.8{\\pm}0.1$~pp across 4 seeds; Appendix~\\ref{app:re_extension})."
+            }
+          },
+          "id": "event-011334"
+        },
+        {
+          "source_line": 11335,
+          "timestamp": "2026-05-18T06:02:11.893357+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/discussion.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 101
+          },
+          "id": "event-011335"
+        },
+        {
+          "source_line": 11336,
+          "timestamp": "2026-05-18T06:02:22.457222+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__paper_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "mcp__agent-ml-research__paper_agent_post_to_director",
+            "tool_args": {
+              "text": "[写作进展] discussion:21 RE free-form LP gain 修正完成\n\n\"+2.35 pp, p=0.025\" → \"+1.8±0.1 pp across 4 seeds\"（去掉单 seed p-value，改用 appendix 报告的 4-seed mean±σ）。",
+              "project": "struct_self_consist_ie"
+            }
+          },
+          "id": "event-011336"
+        },
+        {
+          "source_line": 11337,
+          "timestamp": "2026-05-18T06:02:26.574663+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "mcp__agent-ml-research__paper_agent_post_to_director",
+            "elapsed_ms": 4117
+          },
+          "id": "event-011337"
+        }
+      ]
+    },
+    {
+      "number": 559,
+      "messages": [
+        {
+          "source_line": 11338,
+          "timestamp": "2026-05-18T06:06:19.661942+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Director 指令] [Patch] experiments.tex:173 MLP verifier 数值更新为 v2 结果（5-fold CV, 3 seeds）：\n\n当前: \"LR: −0.3 pp; MLP: −0.6 pp; RF: −2.9 pp\" (3-fold CV)\n修正为: \"LR: −0.4 pp; MLP: −1.6 pp; RF: −3.1 pp\" (5-fold CV, 3-seed mean)\n\n同时更新 CV fold 数描述（如有提及 \"3-fold\" 改为 \"5-fold\"）。结论方向不变，仍是 feature bottleneck。这次不用验证引用。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "source": "director"
+          },
+          "id": "event-011338"
+        },
+        {
+          "source_line": 11339,
+          "timestamp": "2026-05-18T06:06:26.854580+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex",
+              "offset": "171",
+              "limit": "6"
+            }
+          },
+          "id": "event-011339"
+        },
+        {
+          "source_line": 11340,
+          "timestamp": "2026-05-18T06:06:26.855170+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "171\t\n172\t\\paragraph{Supervised verifier baseline.}\n173\tSupervised verifiers (logistic regression, MLP, random forest) trained on all five signals (3-fold CV, SciERC, $N{=}16$, $+17.9$~pp headroom) all perform at or below greedy\\footnote{Greedy F1 is 0.644 (3-seed mean), consistent with Table~\\ref{tab:selection}.} (LR: $-0.3$~pp; MLP: $-0.6$~pp; RF: $-2.9$~pp).\n174\tAdding pairwise interaction features does not help (AUROC 0.632 vs.\\ 0.639).\n175\tWithin these five unsupervised signals, the bottleneck is in what they encode, not how they are combined; whether richer representations (e.g., hidden states, entity embeddings) could close the gap remains untested.\n176\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-011340"
+        }
+      ]
+    }
+  ]
+}

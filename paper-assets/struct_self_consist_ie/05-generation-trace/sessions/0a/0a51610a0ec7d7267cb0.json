@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0a51610a0ec7d7267cb0",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis exp 026 T ablation complete",
+  "task_key": "worker_analysis_exp_026_T_ablation_complete_20260517T095526",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_exp_026_T_ablation_complete_20260517T095526_result.json",
+    "occurrence": 1,
+    "bytes": 1902,
+    "sha256": "8e3213495bf1f75dd49ad5be8592f10cec53a446f43d5cd84afc1b4f507d1744"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果已保存到服务器 (`exp_026_T_ablation_summary.json`) 和本地 artifacts。\n\n## Temperature Ablation Summary (SciERC NER, N=8, ft_002_v2 rank=32)\n\n| Metric | T=0.5 | T=0.8 | T=1.0 | T=1.2 |\n|--------|-------|-------|-------|-------|\n| **Degeneracy rate** | 0.328 | 0.196 | 0.127 | 0.080 |\n| **LP range (mean)** | 0.022 | 0.043 | 0.060 | 0.075 |\n| LP range (std) | 0.021 | 0.042 | 0.053 | 0.059 |\n| Greedy F1 | 0.617 | 0.616 | 0.585* | 0.620 |\n| Oracle F1 | 0.710 | 0.737 | 0.739 | 0.758 |\n| Random F1 | 0.612 | 0.589 | 0.565 | 0.571 |\n| **SJ sel F1** | 0.622 | 0.619 | 0.581 | 0.597 |\n| **EM sel F1** | 0.619 | 0.611 | 0.571 | 0.596 |\n| **VC sel F1** | 0.610 | 0.603 | 0.585 | 0.582 |\n| **LP sel F1** | 0.622 | **0.627** | 0.584 | **0.621** |\n| SJ rho | 0.333 | 0.378 | 0.370 | 0.384 |\n| FK rho | 0.341 | 0.340 | 0.396 | 0.386 |\n| EM rho | 0.257 | 0.267 | 0.231 | 0.273 |\n| VC rho | 0.353 | 0.352 | 0.475 | 0.342 |\n| LP rho | 0.208 | 0.212 | 0.134 | 0.182 |\n| SJ AUROC | 0.644 | 0.662 | 0.679 | 0.683 |\n| FK AUROC | 0.633 | 0.623 | 0.679 | 0.673 |\n| EM AUROC | 0.600 | 0.610 | 0.615 | 0.637 |\n| VC AUROC | 0.661 | 0.630 | 0.712 | 0.645 |\n| LP AUROC | 0.577 | 0.571 | 0.558 | 0.566 |\n\n**关键发现：**\n1. **Degeneracy 单调下降**：T=0.5 (33%) → T=1.2 (8%)，低温严重退化\n2. **LP range 单调上升**：0.022 → 0.075，高温扩大 LP 区分度\n3. **LP selection 是唯一在 T=1.2 仍能 match greedy 的信号**（0.621 vs 0.620），SJ/EM/VC 在高温全部低于 greedy\n4. **T=0.8 是 LP selection 的 sweet spot**：LP sel F1=0.627 > greedy 0.616 (+0.011)\n5. **AUROC 趋势**：SJ/FK/EM 的 AUROC 随温度升高，VC 在 T=1.0 峰值后下降\n\n*注：T=1.0 greedy F1 (0.585) 低于其他三组 (~0.618)，exp_012_logprob 可能使用不同 checkpoint，跨温度对比 selection delta (sel - greedy) 更可靠。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-026-t-ablation-complete.md"
+}

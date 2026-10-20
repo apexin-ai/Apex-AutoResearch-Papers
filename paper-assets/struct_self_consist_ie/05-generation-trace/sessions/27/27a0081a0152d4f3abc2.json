@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "27a0081a0152d4f3abc2",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analyze exp fewnerd n16 s42 v2",
+  "task_key": "worker_analyze_exp_fewnerd_n16_s42_v2_20260521T151706",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analyze_exp_fewnerd_n16_s42_v2_20260521T151706_result.json",
+    "occurrence": 1,
+    "bytes": 496,
+    "sha256": "243e6788366d6b440d4b93f73ac9306f00b7643f21b9a8d9a0e0d9388d44ce13"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验 **正常完成**。\n\n**关键结果**：\n- greedy_f1 = 0.7885，oracle_f1 = 0.9059，headroom = 0.1173\n- 37648 instances 全部处理完毕，report.json + samples.jsonl (1.2GB) 均已生成\n- soft_jaccard conditional rho (0.2126) > logprob conditional rho (0.1755)，结构化信号优于 logprob baseline\n- verdict = FAIL（单 subtask MVP 阈值未达标，需 NER/RE/EAE 中至少一个通过）\n\n报告已写入 `artifacts/exp_fewnerd_n16_s42_v2_analysis.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-exp-fewnerd-n16-s42-v2.md"
+}

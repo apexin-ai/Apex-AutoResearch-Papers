@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1233b49bb6208c77f470",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "submit a3 scierc re",
+  "task_key": "worker_submit_a3_scierc_re_20260520T201743",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_submit_a3_scierc_re_20260520T201743_result.json",
+    "occurrence": 1,
+    "bytes": 529,
+    "sha256": "aa4c94ddea9ca4cc570c2c7543a6260e0e83d3d8ded4ef58b5b543fcfa7aebca"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验已提交并运行中：\n\n- **exp_id**: exp_a3_ace05_re\n- **Server**: autodl-5090-c, CUDA_VISIBLE_DEVICES=1\n- **PID**: 233618 (nohup)\n- **数据**: 397 SciERC RE instances, 974 gold relations, 7 relation types\n- **采样**: 3176 prompts (397 × 8), vLLM 正在推理中，~11 it/s\n- **日志**: `/root/autodl-tmp/struct_self_consist_ie/logs/re_sc.log`\n- **输出**: `output/re_sc/re_sc_results.json`\n- **Registry**: 已更新为 RUNNING，spec 含 command/server/data_path/data_count/model_name/seed"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-a3-scierc-re.md"
+}

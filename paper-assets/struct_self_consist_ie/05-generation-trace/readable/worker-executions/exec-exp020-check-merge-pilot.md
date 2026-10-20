@@ -1,0 +1,754 @@
+# exec exp020 check merge pilot
+
+**When Self-Consistency Fails for NER: Degeneracy, Signal Collapse, and the Correlation-Selection Gap** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 15
+- **Recorded user turns:** 0
+- **Tool calls:** 4
+- **Original source:** `logs/workers/worker_exec_exp020_check_merge_pilot_20260516T152152.log`
+- **Structured JSON:** [`5e9bdc26b9280c03aa22.json`](../../sessions/5e/5e9bdc26b9280c03aa22.json)
+
+## Before a recorded user message
+
+15 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "session_id": "12fd5f8d-1d31-442e-90d1-10a16cf1347f",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "99d82f3d-e7a8-4593-b1bb-bfe9f0d3035e",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1778960400,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "ce3d1998-f99b-483c-9a5f-a3bb4de95c3e",
+  "session_id": "12fd5f8d-1d31-442e-90d1-10a16cf1347f"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by checking the training status of exp-020 on the autodl-5090 server.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "12fd5f8d-1d31-442e-90d1-10a16cf1347f",
+  "uuid": "e794ec6b-730a-48b6-8124-1a0f5d9013c0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011yWv2qA52cVsTEaKFhKZ8D",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12407,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12407
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01S1GxAkgL6Pd7ne7PjnuXyN`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "12fd5f8d-1d31-442e-90d1-10a16cf1347f",
+  "uuid": "34e33d2e-6d2b-475e-b333-8c477b894e17",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011yWv2qA52cVsTEaKFhKZ8D",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12407,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12407
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-16T15:22:05.587Z_
+
+<details><summary>↩ Tool result · `toolu_01S1GxAkgL6Pd7ne7PjnuXyN`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "12fd5f8d-1d31-442e-90d1-10a16cf1347f",
+  "uuid": "2b308f4b-9eab-49f8-a006-ed7df6f17f78",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me check the training status on the server.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "12fd5f8d-1d31-442e-90d1-10a16cf1347f",
+  "uuid": "daaddc75-d37c-4482-bf55-280881bd5aac",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017HYN7MxRXtX389vqUZ1a96",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 464,
+      "cache_read_input_tokens": 24248,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 464
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_018GHf8u1xkyzkv4ZpWQD2Vr`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "ps -p 288683 -o pid,etime,cmd 2>/dev/null || echo \"PROCESS_GONE\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "12fd5f8d-1d31-442e-90d1-10a16cf1347f",
+  "uuid": "7a7e015a-16c6-4cdc-8331-5237888ddedf",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017HYN7MxRXtX389vqUZ1a96",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 464,
+      "cache_read_input_tokens": 24248,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 464
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-16T15:22:10.092Z_
+
+<details><summary>↩ Tool result · `toolu_018GHf8u1xkyzkv4ZpWQD2Vr`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '||' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "12fd5f8d-1d31-442e-90d1-10a16cf1347f",
+  "uuid": "1664eedb-33ff-4e42-98e3-876827d659f7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '||' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '||' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01UiqE1rYYeTrRVMBEhrK8YV`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "tail -30 /root/autodl-tmp/struct_self_consist_ie/checkpoints/fewnerd_train.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "12fd5f8d-1d31-442e-90d1-10a16cf1347f",
+  "uuid": "a712f65b-bc56-4eec-b020-622ffc0b6ed6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017HYN7MxRXtX389vqUZ1a96",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 464,
+      "cache_read_input_tokens": 24248,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 464
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01NkbzAMVGZuALx5BMdXWhmE`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "ls -lt /root/autodl-tmp/struct_self_consist_ie/checkpoints/ft_fewnerd_smoke/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "12fd5f8d-1d31-442e-90d1-10a16cf1347f",
+  "uuid": "2ec12ecb-646d-4050-9615-d1f8f5ff2633",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017HYN7MxRXtX389vqUZ1a96",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 464,
+      "cache_read_input_tokens": 24248,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 464
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-16T15:22:12.103Z_
+
+<details><summary>↩ Tool result · `toolu_01UiqE1rYYeTrRVMBEhrK8YV`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"    \\\"full_attention\\\",\\n    \\\"full_attention\\\",\\n    \\\"full_attention\\\",\\n    \\\"full_attention\\\",\\n    \\\"full_attention\\\",\\n    \\\"full_attention\\\",\\n    \\\"full_attention\\\"\\n  ],\\n  \\\"max_position_embeddings\\\": 40960,\\n  \\\"max_window_layers\\\": 36,\\n  \\\"model_type\\\": \\\"qwen3\\\",\\n  \\\"num_attention_heads\\\": 32,\\n  \\\"num_hidden_layers\\\": 36,\\n  \\\"num_key_value_heads\\\": 8,\\n  \\\"rms_norm_eps\\\": 1e-06,\\n  \\\"rope_scaling\\\": null,\\n  \\\"rope_theta\\\": 1000000,\\n  \\\"sliding_window\\\": null,\\n  \\\"tie_word_embeddings\\\": false,\\n  \\\"transformers_version\\\": \\\"4.57.1\\\",\\n  \\\"use_cache\\\": true,\\n  \\\"use_sliding_window\\\": false,\\n  \\\"vocab_size\\\": 151936\\n}\\n\\n[INFO|tokenization_utils_base.py:2421] 2026-05-16 22:49:32,097 >> chat template saved in /root/autodl-tmp/struct_self_consist_ie/checkpoints/ft_fewnerd_smoke/checkpoint-6000/chat_template.jinja\\n[INFO|tokenization_utils_base.py:2590] 2026-05-16 22:49:32,097 >> tokenizer config file saved in /root/autodl-tmp/struct_self_consist_ie/checkpoints/ft_fewnerd_smoke/checkpoint-6000/tokenizer_config.json\\n[INFO|tokenization_utils_base.py:2599] 2026-05-16 22:49:32,098 >> Special tokens file saved in /root/autodl-tmp/struct_self_consist_ie/checkpoints/ft_fewnerd_smoke/checkpoint-6000/special_tokens_map.json\\n[INFO|trainer.py:4418] 2026-05-16 22:49:32,491 >> Deleting older checkpoint [/root/autodl-tmp/struct_self_consist_ie/checkpoints/ft_fewnerd_smoke/checkpoint-3000] due to args.save_total_limit\\n\\r 73%|███████▎  | 6001/8236 [4:19:13<116:04:51, 186.98s/it]\\r 73%|███████▎  | 6002/8236 [4:19:15<81:35:11, 131.47s/it] \\r 73%|███████▎  | 6003/8236 [4:19:17<57:29:34, 92.69s/it] \\r 73%|███████▎  | 6004/8236 [4:19:19<40:35:55, 65.48s/it]\\r 73%|███████▎  | 6005/8236 [4:19:21<28:46:18, 46.43s/it]\\r 73%|███████▎  | 6006/8236 [4:19:23<20:29:42, 33.09s/it]\\r 73%|███████▎  | 6007/8236 [4:19:25<14:42:36, 23.76s/it]\\r 73%|███████▎  | 6008/8236 [4:19:27<10:39:07, 17.21s/it]\\r 73%|███████▎  | 6009/8236 [4:19:30<7:52:09, 12.72s/it] \\r 73%|███████▎  | 6010/8236 [4:19:32<5:52:21,  9.50s/it]\\r 73%|███████▎  | 6011/8236 [4:19:34<4:29:03,  7.26s/it]\\r 73%|███████▎  | 6012/8236 [4:19:35<3:29:14,  5.64s/it]\\r 73%|███████▎  | 6013/8236 [4:19:37<2:48:58,  4.56s/it]\\r 73%|███████▎  | 6014/8236 [4:19:39<2:20:26,  3.79s/it]\\r 73%|███████▎  | 6015/8236 [4:19:42<2:01:09,  3.27s/it]\\r 73%|███████▎  | 6016/8236 [4:19:44<1:46:49,  2.89s/it]\\r 73%|███████▎  | 6017/8236 [4:19:45<1:36:00,  2.60s/it]\\r 73%|███████▎  | 6018/8236 [4:19:47<1:28:41,  2.40s/it]\\r 73%|███████▎  | 6019/8236 [4:19:49<1:24:44,  2.29s/it]\\r 73%|███████▎  | 6020/8236 [4:19:51<1:20:16,  2.17s/it]\\r 73%|███████▎  | 6021/8236 [4:19:53<1:17:50,  2.11s/it]\\r 73%|███████▎  | 6022/8236 [4:19:55<1:15:37,  2.05s/it]\\r 73%|███████▎  | 6023/8236 [4:19:57<1:14:58,  2.03s/it]\\r 73%|███████▎  | 6024/8236 [4:19:59<1:17:27,  2.10s/it]\\r 73%|███████▎  | 6025/8236 [4:20:01<1:16:07,  2.07s/it]\\r 73%|███████▎  | 6026/8236 [4:20:04<1:16:59,  2.09s/it]\\r 73%|███████▎  | 6027/8236 [4:20:05<1:14:43,  2.03s/it]\\r 73%|███████▎  | 6028/8236 [4:20:07<1:13:56,  2.01s/it]\\r 73%|███████▎  | 6029/8236 [4:20:10<1:15:24,  2.05s/it]\\r 73%|███████▎  | 6030/8236 [4:20:11<1:14:17,  2.02s/it]\\r 73%|███████▎  | 6031/8236 [4:20:13<1:13:05,  1.99s/it]\\r 73%|███████▎  | 6032/8236 [4:20:15<1:13:46,  2.01s/it]\\r 73%|███████▎  | 6033/8236 [4:20:18<1:15:29,  2.06s/it]\\r 73%|███████▎  | 6034/8236 [4:20:20<1:14:29,  2.03s/it]\\r 73%|███████▎  | 6035/8236 [4:20:22<1:14:08,  2.02s/it]\\r 73%|███████▎  | 6036/8236 [4:20:24<1:14:10,  2.02s/it]\\r 73%|███████▎  | 6037/8236 [4:20:26<1:12:41,  1.98s/it]\\r 73%|███████▎  | 6038/8236 [4:20:28<1:12:39,  1.98s/it]\\r 73%|███████▎  | 6039/8236 [4:20:29<1:11:32,  1.95s/it]\\r 73%|███████▎  | 6040/8236 [4:20:31<1:12:11,  1.97s/it]\\r 73%|███████▎  | 6041/8236 [4:20:33<1:12:43,  1.99s/it]\\r 73%|███████▎  | 6042/8236 [4:20:35<1:12:33,  1.98s/it]\\r 73%|███████▎  | 6043/8236 [4:20:37<1:12:42,  1.99s/it]\\r 73%|███████▎  | 6044/8236 [4:20:39<1:12:56,  2.00s/it]\\r 73%|███████▎  | 6045/8236 [4:20:41<1:11:38,  1.96s/it]\\r 73%|███████▎  | 6046/8236 [4:20:43<1:10:22,  1.93s/it]\\r 73%|███████▎  | 6047/8236 [4:20:45<1:1\\n\\n... [截断: 输出过长，省略 49218 字符] ...\\n\\n84%|████████▍ | 6907/8236 [4:49:30<44:04,  1.99s/it]\\r 84%|████████▍ | 6908/8236 [4:49:32<43:39,  1.97s/it]\\r 84%|████████▍ | 6909/8236 [4:49:34<43:38,  1.97s/it]\\r 84%|████████▍ | 6910/8236 [4:49:36<44:14,  2.00s/it]\\r 84%|████████▍ | 6911/8236 [4:49:38<44:14,  2.00s/it]\\r 84%|████████▍ | 6912/8236 [4:49:40<43:57,  1.99s/it]\\r 84%|████████▍ | 6913/8236 [4:49:42<43:16,  1.96s/it]\\r 84%|████████▍ | 6914/8236 [4:49:44<43:05,  1.96s/it]\\r 84%|████████▍ | 6915/8236 [4:49:46<42:36,  1.94s/it]\\r 84%|████████▍ | 6916/8236 [4:49:48<43:57,  2.00s/it]\\r 84%|████████▍ | 6917/8236 [4:49:50<45:41,  2.08s/it]\\r 84%|████████▍ | 6918/8236 [4:49:52<44:37,  2.03s/it]\\r 84%|████████▍ | 6919/8236 [4:49:54<43:37,  1.99s/it]\\r 84%|████████▍ | 6920/8236 [4:49:56<43:32,  1.99s/it]\\r 84%|████████▍ | 6921/8236 [4:49:58<43:07,  1.97s/it]\\r 84%|████████▍ | 6922/8236 [4:50:00<44:23,  2.03s/it]\\r 84%|████████▍ | 6923/8236 [4:50:02<43:20,  1.98s/it]\\r 84%|████████▍ | 6924/8236 [4:50:04<42:38,  1.95s/it]\\r 84%|████████▍ | 6925/8236 [4:50:06<42:39,  1.95s/it]\\r 84%|████████▍ | 6926/8236 [4:50:08<42:19,  1.94s/it]\\r 84%|████████▍ | 6927/8236 [4:50:10<43:03,  1.97s/it]\\r 84%|████████▍ | 6928/8236 [4:50:12<43:01,  1.97s/it]\\r 84%|████████▍ | 6929/8236 [4:50:13<42:36,  1.96s/it]\\r 84%|████████▍ | 6930/8236 [4:50:15<42:14,  1.94s/it]\\r 84%|████████▍ | 6931/8236 [4:50:18<43:25,  2.00s/it]\\r 84%|████████▍ | 6932/8236 [4:50:20<43:20,  1.99s/it]\\r 84%|████████▍ | 6933/8236 [4:50:21<42:33,  1.96s/it]\\r 84%|████████▍ | 6934/8236 [4:50:23<42:42,  1.97s/it]\\r 84%|████████▍ | 6935/8236 [4:50:25<42:05,  1.94s/it]\\r 84%|████████▍ | 6936/8236 [4:50:27<42:27,  1.96s/it]\\r 84%|████████▍ | 6937/8236 [4:50:29<42:01,  1.94s/it]\\r 84%|████████▍ | 6938/8236 [4:50:31<42:34,  1.97s/it]\\r 84%|████████▍ | 6939/8236 [4:50:33<42:07,  1.95s/it]\\r 84%|████████▍ | 6940/8236 [4:50:35<42:19,  1.96s/it]\\r 84%|████████▍ | 6941/8236 [4:50:37<42:11,  1.95s/it]\\r 84%|████████▍ | 6942/8236 [4:50:39<43:03,  2.00s/it]\\r 84%|████████▍ | 6943/8236 [4:50:41<42:26,  1.97s/it]\\r 84%|████████▍ | 6944/8236 [4:50:43<42:30,  1.97s/it]\\r 84%|████████▍ | 6945/8236 [4:50:45<42:07,  1.96s/it]\\r 84%|████████▍ | 6946/8236 [4:50:47<41:30,  1.93s/it]\\r 84%|████████▍ | 6947/8236 [4:50:49<41:38,  1.94s/it]\\r 84%|████████▍ | 6948/8236 [4:50:51<41:42,  1.94s/it]\\r 84%|████████▍ | 6949/8236 [4:50:53<41:12,  1.92s/it]\\r 84%|█████���██▍ | 6950/8236 [4:50:54<40:48,  1.90s/it]\\r                                                     \\r\\r 84%|████████▍ | 6950/8236 [4:50:54<40:48,  1.90s/it]\\r 84%|████████▍ | 6951/8236 [4:50:56<41:03,  1.92s/it]\\r 84%|████████▍ | 6952/8236 [4:50:58<41:29,  1.94s/it]\\r 84%|████████▍ | 6953/8236 [4:51:00<41:56,  1.96s/it]\\r 84%|████████▍ | 6954/8236 [4:51:03<42:59,  2.01s/it]\\r 84%|████████▍ | 6955/8236 [4:51:05<42:58,  2.01s/it]\\r 84%|████████▍ | 6956/8236 [4:51:06<42:14,  1.98s/it]\\r 84%|████████▍ | 6957/8236 [4:51:08<41:35,  1.95s/it]\\r 84%|████████▍ | 6958/8236 [4:51:10<41:37,  1.95s/it]\\r 84%|████████▍ | 6959/8236 [4:51:12<40:54,  1.92s/it]\\r 85%|████████▍ | 6960/8236 [4:51:14<40:50,  1.92s/it]\\r 85%|████████▍ | 6961/8236 [4:51:16<42:25,  2.00s/it]\\r 85%|████████��� | 6962/8236 [4:51:18<42:04,  1.98s/it]\\r 85%|████████▍ | 6963/8236 [4:51:20<41:46,  1.97s/it]\\r 85%|████████▍ | 6964/8236 [4:51:22<41:35,  1.96s/it]\\r 85%|████████▍ | 6965/8236 [4:51:24<41:15,  1.95s/it]\\r 85%|████████▍ | 6966/8236 [4:51:26<40:48,  1.93s/it]\\r 85%|████████▍ | 6967/8236 [4:51:28<40:40,  1.92s/it]\\r 85%|████████▍ | 6968/8236 [4:51:30<41:43,  1.97s/it]\\r 85%|████████▍ | 6969/8236 [4:51:32<41:35,  1.97s/it]\\r 85%|████████▍ | 6970/8236 [4:51:34<41:32,  1.97s/it]\\r 85%|████████▍ | 6971/8236 [4:51:36<43:04,  2.04s/it]\\r 85%|████████▍ | 6972/8236 [4:51:38<43:51,  2.08s/it]\\r 85%|████████▍ | 6973/8236 [4:51:40<43:58,  2.09s/it]\\r 85%|████████▍ | 6974/8236 [4:51:42<42:41,  2.03s/it]\\r 85%|████████▍ | 6975/8236 [4:51:44<41:40,  1.98s/it]\\r 85%|█████��██▍ | 6976/8236 [4:51:46<41:19,  1.97s/it]\\r 85%|████████▍ | 6977/8236 [4:51:48<41:01,  1.95s/it]\\r 85%|████████▍ | 6978/8236 [4:51:50<42:09,  2.01s/it]\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.19}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "12fd5f8d-1d31-442e-90d1-10a16cf1347f",
+  "uuid": "3049fca3-acf4-44ff-809e-8fa0487d424e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"    \\\\\\\"full_attention\\\\\\\",\\\\n    \\\\\\\"full_attention\\\\\\\",\\\\n    \\\\\\\"full_attention\\\\\\\",\\\\n    \\\\\\\"full_attention\\\\\\\",\\\\n    \\\\\\\"full_attention\\\\\\\",\\\\n    \\\\\\\"full_attention\\\\\\\",\\\\n    \\\\\\\"full_attention\\\\\\\"\\\\n  ],\\\\n  \\\\\\\"max_position_embeddings\\\\\\\": 40960,\\\\n  \\\\\\\"max_window_layers\\\\\\\": 36,\\\\n  \\\\\\\"model_type\\\\\\\": \\\\\\\"qwen3\\\\\\\",\\\\n  \\\\\\\"num_attention_heads\\\\\\\": 32,\\\\n  \\\\\\\"num_hidden_layers\\\\\\\": 36,\\\\n  \\\\\\\"num_key_value_heads\\\\\\\": 8,\\\\n  \\\\\\\"rms_norm_eps\\\\\\\": 1e-06,\\\\n  \\\\\\\"rope_scaling\\\\\\\": null,\\\\n  \\\\\\\"rope_theta\\\\\\\": 1000000,\\\\n  \\\\\\\"sliding_window\\\\\\\": null,\\\\n  \\\\\\\"tie_word_embeddings\\\\\\\": false,\\\\n  \\\\\\\"transformers_version\\\\\\\": \\\\\\\"4.57.1\\\\\\\",\\\\n  \\\\\\\"use_cache\\\\\\\": true,\\\\n  \\\\\\\"use_sliding_window\\\\\\\": false,\\\\n  \\\\\\\"vocab_size\\\\\\\": 151936\\\\n}\\\\n\\\\n[INFO|tokenization_utils_base.py:2421] 2026-05-16 22:49:32,097 >> chat template saved in /root/autodl-tmp/struct_self_consist_ie/checkpoints/ft_fewnerd_smoke/checkpoint-6000/chat_template.jinja\\\\n[INFO|tokenization_utils_base.py:2590] 2026-05-16 22:49:32,097 >> tokenizer config file saved in /root/autodl-tmp/struct_self_consist_ie/checkpoints/ft_fewnerd_smoke/checkpoint-6000/tokenizer_config.json\\\\n[INFO|tokenization_utils_base.py:2599] 2026-05-16 22:49:32,098 >> Special tokens file saved in /root/autodl-tmp/struct_self_consist_ie/checkpoints/ft_fewnerd_smoke/checkpoint-6000/special_tokens_map.json\\\\n[INFO|trainer.py:4418] 2026-05-16 22:49:32,491 >> Deleting older checkpoint [/root/autodl-tmp/struct_self_consist_ie/checkpoints/ft_fewnerd_smoke/checkpoint-3000] due to args.save_total_limit\\\\n\\\\r 73%|███████▎  | 6001/8236 [4:19:13<116:04:51, 186.98s/it]\\\\r 73%|███████▎  | 6002/8236 [4:19:15<81:35:11, 131.47s/it] \\\\r 73%|███████▎  | 6003/8236 [4:19:17<57:29:34, 92.69s/it] \\\\r 73%|███████▎  | 6004/8236 [4:19:19<40:35:55, 65.48s/it]\\\\r 73%|███████▎  | 6005/8236 [4:19:21<28:46:18, 46.43s/it]\\\\r 73%|███████▎  | 6006/8236 [4:19:23<20:29:42, 33.09s/it]\\\\r 73%|███████▎  | 6007/8236 [4:19:25<14:42:36, 23.76s/it]\\\\r 73%|███████▎  | 6008/8236 [4:19:27<10:39:07, 17.21s/it]\\\\r 73%|███████▎  | 6009/8236 [4:19:30<7:52:09, 12.72s/it] \\\\r 73%|███████▎  | 6010/8236 [4:19:32<5:52:21,  9.50s/it]\\\\r 73%|███████▎  | 6011/8236 [4:19:34<4:29:03,  7.26s/it]\\\\r 73%|███████▎  | 6012/8236 [4:19:35<3:29:14,  5.64s/it]\\\\r 73%|███████▎  | 6013/8236 [4:19:37<2:48:58,  4.56s/it]\\\\r 73%|███████▎  | 6014/8236 [4:19:39<2:20:26,  3.79s/it]\\\\r 73%|███████▎  | 6015/8236 [4:19:42<2:01:09,  3.27s/it]\\\\r 73%|███████▎  | 6016/8236 [4:19:44<1:46:49,  2.89s/it]\\\\r 73%|███████▎  | 6017/8236 [4:19:45<1:36:00,  2.60s/it]\\\\r 73%|███████▎  | 6018/8236 [4:19:47<1:28:41,  2.40s/it]\\\\r 73%|███████▎  | 6019/8236 [4:19:49<1:24:44,  2.29s/it]\\\\r 73%|███████▎  | 6020/8236 [4:19:51<1:20:16,  2.17s/it]\\\\r 73%|███████▎  | 6021/8236 [4:19:53<1:17:50,  2.11s/it]\\\\r 73%|███████▎  | 6022/8236 [4:19:55<1:15:37,  2.05s/it]\\\\r 73%|███████▎  | 6023/8236 [4:19:57<1:14:58,  2.03s/it]\\\\r 73%|███████▎  | 6024/8236 [4:19:59<1:17:27,  2.10s/it]\\\\r 73%|███████▎  | 6025/8236 [4:20:01<1:16:07,  2.07s/it]\\\\r 73%|███████▎  | 6026/8236 [4:20:04<1:16:59,  2.09s/it]\\\\r 73%|███████▎  | 6027/8236 [4:20:05<1:14:43,  2.03s/it]\\\\r 73%|███████▎  | 6028/8236 [4:20:07<1:13:56,  2.01s/it]\\\\r 73%|███████▎  | 6029/8236 [4:20:10<1:15:24,  2.05s/it]\\\\r 73%|███████▎  | 6030/8236 [4:20:11<1:14:17,  2.02s/it]\\\\r 73%|███████▎  | 6031/8236 [4:20:13<1:13:05,  1.99s/it]\\\\r 73%|███████▎  | 6032/8236 [4:20:15<1:13:46,  2.01s/it]\\\\r 73%|███████▎  | 6033/8236 [4:20:18<1:15:29,  2.06s/it]\\\\r 73%|███████▎  | 6034/8236 [4:20:20<1:14:29,  2.03s/it]\\\\r 73%|███████▎  | 6035/8236 [4:20:22<1:14:08,  2.02s/it]\\\\r 73%|███████▎  | 6036/8236 [4:20:24<1:14:10,  2.02s/it]\\\\r 73%|███████▎  | 6037/8236 [4:20:26<1:12:41,  1.98s/it]\\\\r 73%|███████▎  | 6038/8236 [4:20:28<1:12:39,  1.98s/it]\\\\r 73%|███████▎  | 6039/8236 [4:20:29<1:11:32,  1.95s/it]\\\\r 73%|███████▎  | 6040/8236 [4:20:31<1:12:11,  1.97s/it]\\\\r 73%|███████▎  | 6041/8236 [4:20:33<1:12:43,  1.99s/it]\\\\r 73%|███████▎  | 6042/8236 [4:20:35<1:12:33,  1.98s/it]\\\\r 73%|███████▎  | 6043/8236 [4:20:37<1:12:42,  1.99s/it]\\\\r 73%|███████▎  | 6044/8236 [4:20:39<1:12:56,  2.00s/it]\\\\r 73%|███████▎  | 6045/8236 [4:20:41<1:11:38,  1.96s/it]\\\\r 73%|███████▎  | 6046/8236 [4:20:43<1:10:22,  1.93s/it]\\\\r 73%|███████▎  | 6047/8236 [4:20:45<1:1\\\\n\\\\n... [截断: 输出过长，省略 49218 字符] ...\\\\n\\\\n84%|████████▍ | 6907/8236 [4:49:30<44:04,  1.99s/it]\\\\r 84%|████████▍ | 6908/8236 [4:49:32<43:39,  1.97s/it]\\\\r 84%|████████▍ | 6909/8236 [4:49:34<43:38,  1.97s/it]\\\\r 84%|████████▍ | 6910/8236 [4:49:36<44:14,  2.00s/it]\\\\r 84%|████████▍ | 6911/8236 [4:49:38<44:14,  2.00s/it]\\\\r 84%|████████▍ | 6912/8236 [4:49:40<43:57,  1.99s/it]\\\\r 84%|████████▍ | 6913/8236 [4:49:42<43:16,  1.96s/it]\\\\r 84%|████████▍ | 6914/8236 [4:49:44<43:05,  1.96s/it]\\\\r 84%|████████▍ | 6915/8236 [4:49:46<42:36,  1.94s/it]\\\\r 84%|████████▍ | 6916/8236 [4:49:48<43:57,  2.00s/it]\\\\r 84%|████████▍ | 6917/8236 [4:49:50<45:41,  2.08s/it]\\\\r 84%|████████▍ | 6918/8236 [4:49:52<44:37,  2.03s/it]\\\\r 84%|████████▍ | 6919/8236 [4:49:54<43:37,  1.99s/it]\\\\r 84%|████████▍ | 6920/8236 [4:49:56<43:32,  1.99s/it]\\\\r 84%|████████▍ | 6921/8236 [4:49:58<43:07,  1.97s/it]\\\\r 84%|████████▍ | 6922/8236 [4:50:00<44:23,  2.03s/it]\\\\r 84%|████████▍ | 6923/8236 [4:50:02<43:20,  1.98s/it]\\\\r 84%|████████▍ | 6924/8236 [4:50:04<42:38,  1.95s/it]\\\\r 84%|████████▍ | 6925/8236 [4:50:06<42:39,  1.95s/it]\\\\r 84%|████████▍ | 6926/8236 [4:50:08<42:19,  1.94s/it]\\\\r 84%|████████▍ | 6927/8236 [4:50:10<43:03,  1.97s/it]\\\\r 84%|████████▍ | 6928/8236 [4:50:12<43:01,  1.97s/it]\\\\r 84%|████████▍ | 6929/8236 [4:50:13<42:36,  1.96s/it]\\\\r 84%|████████▍ | 6930/8236 [4:50:15<42:14,  1.94s/it]\\\\r 84%|████████▍ | 6931/8236 [4:50:18<43:25,  2.00s/it]\\\\r 84%|████████▍ | 6932/8236 [4:50:20<43:20,  1.99s/it]\\\\r 84%|████████▍ | 6933/8236 [4:50:21<42:33,  1.96s/it]\\\\r 84%|████████▍ | 6934/8236 [4:50:23<42:42,  1.97s/it]\\\\r 84%|████████▍ | 6935/8236 [4:50:25<42:05,  1.94s/it]\\\\r 84%|████████▍ | 6936/8236 [4:50:27<42:27,  1.96s/it]\\\\r 84%|████████▍ | 6937/8236 [4:50:29<42:01,  1.94s/it]\\\\r 84%|████████▍ | 6938/8236 [4:50:31<42:34,  1.97s/it]\\\\r 84%|████████▍ | 6939/8236 [4:50:33<42:07,  1.95s/it]\\\\r 84%|████████▍ | 6940/8236 [4:50:35<42:19,  1.96s/it]\\\\r 84%|████████▍ | 6941/8236 [4:50:37<42:11,  1.95s/it]\\\\r 84%|████████▍ | 6942/8236 [4:50:39<43:03,  2.00s/it]\\\\r 84%|████████▍ | 6943/8236 [4:50:41<42:26,  1.97s/it]\\\\r 84%|████████▍ | 6944/8236 [4:50:43<42:30,  1.97s/it]\\\\r 84%|████████▍ | 6945/8236 [4:50:45<42:07,  1.96s/it]\\\\r 84%|████████▍ | 6946/8236 [4:50:47<41:30,  1.93s/it]\\\\r 84%|████████▍ | 6947/8236 [4:50:49<41:38,  1.94s/it]\\\\r 84%|████████▍ | 6948/8236 [4:50:51<41:42,  1.94s/it]\\\\r 84%|████████▍ | 6949/8236 [4:50:53<41:12,  1.92s/it]\\\\r 84%|█████���██▍ | 6950/8236 [4:50:54<40:48,  1.90s/it]\\\\r                                                     \\\\r\\\\r 84%|████████▍ | 6950/8236 [4:50:54<40:48,  1.90s/it]\\\\r 84%|████████▍ | 6951/8236 [4:50:56<41:03,  1.92s/it]\\\\r 84%|████████▍ | 6952/8236 [4:50:58<41:29,  1.94s/it]\\\\r 84%|████████▍ | 6953/8236 [4:51:00<41:56,  1.96s/it]\\\\r 84%|████████▍ | 6954/8236 [4:51:03<42:59,  2.01s/it]\\\\r 84%|████████▍ | 6955/8236 [4:51:05<42:58,  2.01s/it]\\\\r 84%|████████▍ | 6956/8236 [4:51:06<42:14,  1.98s/it]\\\\r 84%|████████▍ | 6957/8236 [4:51:08<41:35,  1.95s/it]\\\\r 84%|████████▍ | 6958/8236 [4:51:10<41:37,  1.95s/it]\\\\r 84%|████████▍ | 6959/8236 [4:51:12<40:54,  1.92s/it]\\\\r 85%|████████▍ | 6960/8236 [4:51:14<40:50,  1.92s/it]\\\\r 85%|████████▍ | 6961/8236 [4:51:16<42:25,  2.00s/it]\\\\r 85%|████████��� | 6962/8236 [4:51:18<42:04,  1.98s/it]\\\\r 85%|████████▍ | 6963/8236 [4:51:20<41:46,  1.97s/it]\\\\r 85%|████████▍ | 6964/8236 [4:51:22<41:35,  1.96s/it]\\\\r 85%|████████▍ | 6965/8236 [4:51:24<41:15,  1.95s/it]\\\\r 85%|████████▍ | 6966/8236 [4:51:26<40:48,  1.93s/it]\\\\r 85%|████████▍ | 6967/8236 [4:51:28<40:40,  1.92s/it]\\\\r 85%|████████▍ | 6968/8236 [4:51:30<41:43,  1.97s/it]\\\\r 85%|████████▍ | 6969/8236 [4:51:32<41:35,  1.97s/it]\\\\r 85%|████████▍ | 6970/8236 [4:51:34<41:32,  1.97s/it]\\\\r 85%|████████▍ | 6971/8236 [4:51:36<43:04,  2.04s/it]\\\\r 85%|████████▍ | 6972/8236 [4:51:38<43:51,  2.08s/it]\\\\r 85%|████████▍ | 6973/8236 [4:51:40<43:58,  2.09s/it]\\\\r 85%|████████▍ | 6974/8236 [4:51:42<42:41,  2.03s/it]\\\\r 85%|████████▍ | 6975/8236 [4:51:44<41:40,  1.98s/it]\\\\r 85%|█████��██▍ | 6976/8236 [4:51:46<41:19,  1.97s/it]\\\\r 85%|████████▍ | 6977/8236 [4:51:48<41:01,  1.95s/it]\\\\r 85%|████████▍ | 6978/8236 [4:51:50<42:09,  2.01s/it]\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.19}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"    \\\"full_attention\\\",\\n    \\\"full_attention\\\",\\n    \\\"full_attention\\\",\\n    \\\"full_attention\\\",\\n    \\\"full_attention\\\",\\n    \\\"full_attention\\\",\\n    \\\"full_attention\\\"\\n  ],\\n  \\\"max_position_embeddings\\\": 40960,\\n  \\\"max_window_layers\\\": 36,\\n  \\\"model_type\\\": \\\"qwen3\\\",\\n  \\\"num_attention_heads\\\": 32,\\n  \\\"num_hidden_layers\\\": 36,\\n  \\\"num_key_value_heads\\\": 8,\\n  \\\"rms_norm_eps\\\": 1e-06,\\n  \\\"rope_scaling\\\": null,\\n  \\\"rope_theta\\\": 1000000,\\n  \\\"sliding_window\\\": null,\\n  \\\"tie_word_embeddings\\\": false,\\n  \\\"transformers_version\\\": \\\"4.57.1\\\",\\n  \\\"use_cache\\\": true,\\n  \\\"use_sliding_window\\\": false,\\n  \\\"vocab_size\\\": 151936\\n}\\n\\n[INFO|tokenization_utils_base.py:2421] 2026-05-16 22:49:32,097 >> chat template saved in /root/autodl-tmp/struct_self_consist_ie/checkpoints/ft_fewnerd_smoke/checkpoint-6000/chat_template.jinja\\n[INFO|tokenization_utils_base.py:2590] 2026-05-16 22:49:32,097 >> tokenizer config file saved in /root/autodl-tmp/struct_self_consist_ie/checkpoints/ft_fewnerd_smoke/checkpoint-6000/tokenizer_config.json\\n[INFO|tokenization_utils_base.py:2599] 2026-05-16 22:49:32,098 >> Special tokens file saved in /root/autodl-tmp/struct_self_consist_ie/checkpoints/ft_fewnerd_smoke/checkpoint-6000/special_tokens_map.json\\n[INFO|trainer.py:4418] 2026-05-16 22:49:32,491 >> Deleting older checkpoint [/root/autodl-tmp/struct_self_consist_ie/checkpoints/ft_fewnerd_smoke/checkpoint-3000] due to args.save_total_limit\\n\\r 73%|███████▎  | 6001/8236 [4:19:13<116:04:51, 186.98s/it]\\r 73%|███████▎  | 6002/8236 [4:19:15<81:35:11, 131.47s/it] \\r 73%|███████▎  | 6003/8236 [4:19:17<57:29:34, 92.69s/it] \\r 73%|███████▎  | 6004/8236 [4:19:19<40:35:55, 65.48s/it]\\r 73%|███████▎  | 6005/8236 [4:19:21<28:46:18, 46.43s/it]\\r 73%|███████▎  | 6006/8236 [4:19:23<20:29:42, 33.09s/it]\\r 73%|███████▎  | 6007/8236 [4:19:25<14:42:36, 23.76s/it]\\r 73%|███████▎  | 6008/8236 [4:19:27<10:39:07, 17.21s/it]\\r 73%|███████▎  | 6009/8236 [4:19:30<7:52:09, 12.72s/it] \\r 73%|███████▎  | 6010/8236 [4:19:32<5:52:21,  9.50s/it]\\r 73%|███████▎  | 6011/8236 [4:19:34<4:29:03,  7.26s/it]\\r 73%|███████▎  | 6012/8236 [4:19:35<3:29:14,  5.64s/it]\\r 73%|███████▎  | 6013/8236 [4:19:37<2:48:58,  4.56s/it]\\r 73%|███████▎  | 6014/8236 [4:19:39<2:20:26,  3.79s/it]\\r 73%|███████▎  | 6015/8236 [4:19:42<2:01:09,  3.27s/it]\\r 73%|███████▎  | 6016/8236 [4:19:44<1:46:49,  2.89s/it]\\r 73%|███████▎  | 6017/8236 [4:19:45<1:36:00,  2.60s/it]\\r 73%|███████▎  | 6018/8236 [4:19:47<1:28:41,  2.40s/it]\\r 73%|███████▎  | 6019/8236 [4:19:49<1:24:44,  2.29s/it]\\r 73%|███████▎  | 6020/8236 [4:19:51<1:20:16,  2.17s/it]\\r 73%|███████▎  | 6021/8236 [4:19:53<1:17:50,  2.11s/it]\\r 73%|███████▎  | 6022/8236 [4:19:55<1:15:37,  2.05s/it]\\r 73%|███████▎  | 6023/8236 [4:19:57<1:14:58,  2.03s/it]\\r 73%|███████▎  | 6024/8236 [4:19:59<1:17:27,  2.10s/it]\\r 73%|███████▎  | 6025/8236 [4:20:01<1:16:07,  2.07s/it]\\r 73%|███████▎  | 6026/8236 [4:20:04<1:16:59,  2.09s/it]\\r 73%|███████▎  | 6027/8236 [4:20:05<1:14:43,  2.03s/it]\\r 73%|███████▎  | 6028/8236 [4:20:07<1:13:56,  2.01s/it]\\r 73%|███████▎  | 6029/8236 [4:20:10<1:15:24,  2.05s/it]\\r 73%|███████▎  | 6030/8236 [4:20:11<1:14:17,  2.02s/it]\\r 73%|███████▎  | 6031/8236 [4:20:13<1:13:05,  1.99s/it]\\r 73%|███████▎  | 6032/8236 [4:20:15<1:13:46,  2.01s/it]\\r 73%|███████▎  | 6033/8236 [4:20:18<1:15:29,  2.06s/it]\\r 73%|███████▎  | 6034/8236 [4:20:20<1:14:29,  2.03s/it]\\r 73%|███████▎  | 6035/8236 [4:20:22<1:14:08,  2.02s/it]\\r 73%|███████▎  | 6036/8236 [4:20:24<1:14:10,  2.02s/it]\\r 73%|███████▎  | 6037/8236 [4:20:26<1:12:41,  1.98s/it]\\r 73%|███████▎  | 6038/8236 [4:20:28<1:12:39,  1.98s/it]\\r 73%|███████▎  | 6039/8236 [4:20:29<1:11:32,  1.95s/it]\\r 73%|███████▎  | 6040/8236 [4:20:31<1:12:11,  1.97s/it]\\r 73%|███████▎  | 6041/8236 [4:20:33<1:12:43,  1.99s/it]\\r 73%|███████▎  | 6042/8236 [4:20:35<1:12:33,  1.98s/it]\\r 73%|███████▎  | 6043/8236 [4:20:37<1:12:42,  1.99s/it]\\r 73%|███████▎  | 6044/8236 [4:20:39<1:12:56,  2.00s/it]\\r 73%|███████▎  | 6045/8236 [4:20:41<1:11:38,  1.96s/it]\\r 73%|███████▎  | 6046/8236 [4:20:43<1:10:22,  1.93s/it]\\r 73%|███████▎  | 6047/8236 [4:20:45<1:1\\n\\n... [截断: 输出过长，省略 49218 字符] ...\\n\\n84%|████████▍ | 6907/8236 [4:49:30<44:04,  1.99s/it]\\r 84%|████████▍ | 6908/8236 [4:49:32<43:39,  1.97s/it]\\r 84%|████████▍ | 6909/8236 [4:49:34<43:38,  1.97s/it]\\r 84%|████████▍ | 6910/8236 [4:49:36<44:14,  2.00s/it]\\r 84%|████████▍ | 6911/8236 [4:49:38<44:14,  2.00s/it]\\r 84%|████████▍ | 6912/8236 [4:49:40<43:57,  1.99s/it]\\r 84%|████████▍ | 6913/8236 [4:49:42<43:16,  1.96s/it]\\r 84%|████████▍ | 6914/8236 [4:49:44<43:05,  1.96s/it]\\r 84%|████████▍ | 6915/8236 [4:49:46<42:36,  1.94s/it]\\r 84%|████████▍ | 6916/8236 [4:49:48<43:57,  2.00s/it]\\r 84%|████████▍ | 6917/8236 [4:49:50<45:41,  2.08s/it]\\r 84%|████████▍ | 6918/8236 [4:49:52<44:37,  2.03s/it]\\r 84%|████████▍ | 6919/8236 [4:49:54<43:37,  1.99s/it]\\r 84%|████████▍ | 6920/8236 [4:49:56<43:32,  1.99s/it]\\r 84%|████████▍ | 6921/8236 [4:49:58<43:07,  1.97s/it]\\r 84%|████████▍ | 6922/8236 [4:50:00<44:23,  2.03s/it]\\r 84%|████████▍ | 6923/8236 [4:50:02<43:20,  1.98s/it]\\r 84%|████████▍ | 6924/8236 [4:50:04<42:38,  1.95s/it]\\r 84%|████████▍ | 6925/8236 [4:50:06<42:39,  1.95s/it]\\r 84%|████████▍ | 6926/8236 [4:50:08<42:19,  1.94s/it]\\r 84%|████████▍ | 6927/8236 [4:50:10<43:03,  1.97s/it]\\r 84%|████████▍ | 6928/8236 [4:50:12<43:01,  1.97s/it]\\r 84%|████████▍ | 6929/8236 [4:50:13<42:36,  1.96s/it]\\r 84%|████████▍ | 6930/8236 [4:50:15<42:14,  1.94s/it]\\r 84%|████████▍ | 6931/8236 [4:50:18<43:25,  2.00s/it]\\r 84%|████████▍ | 6932/8236 [4:50:20<43:20,  1.99s/it]\\r 84%|████████▍ | 6933/8236 [4:50:21<42:33,  1.96s/it]\\r 84%|████████▍ | 6934/8236 [4:50:23<42:42,  1.97s/it]\\r 84%|████████▍ | 6935/8236 [4:50:25<42:05,  1.94s/it]\\r 84%|████████▍ | 6936/8236 [4:50:27<42:27,  1.96s/it]\\r 84%|████████▍ | 6937/8236 [4:50:29<42:01,  1.94s/it]\\r 84%|████████▍ | 6938/8236 [4:50:31<42:34,  1.97s/it]\\r 84%|████████▍ | 6939/8236 [4:50:33<42:07,  1.95s/it]\\r 84%|████████▍ | 6940/8236 [4:50:35<42:19,  1.96s/it]\\r 84%|████████▍ | 6941/8236 [4:50:37<42:11,  1.95s/it]\\r 84%|████████▍ | 6942/8236 [4:50:39<43:03,  2.00s/it]\\r 84%|████████▍ | 6943/8236 [4:50:41<42:26,  1.97s/it]\\r 84%|████████▍ | 6944/8236 [4:50:43<42:30,  1.97s/it]\\r 84%|████████▍ | 6945/8236 [4:50:45<42:07,  1.96s/it]\\r 84%|████████▍ | 6946/8236 [4:50:47<41:30,  1.93s/it]\\r 84%|████████▍ | 6947/8236 [4:50:49<41:38,  1.94s/it]\\r 84%|████████▍ | 6948/8236 [4:50:51<41:42,  1.94s/it]\\r 84%|████████▍ | 6949/8236 [4:50:53<41:12,  1.92s/it]\\r 84%|█████���██▍ | 6950/8236 [4:50:54<40:48,  1.90s/it]\\r                                                     \\r\\r 84%|████████▍ | 6950/8236 [4:50:54<40:48,  1.90s/it]\\r 84%|████████▍ | 6951/8236 [4:50:56<41:03,  1.92s/it]\\r 84%|████████▍ | 6952/8236 [4:50:58<41:29,  1.94s/it]\\r 84%|████████▍ | 6953/8236 [4:51:00<41:56,  1.96s/it]\\r 84%|████████▍ | 6954/8236 [4:51:03<42:59,  2.01s/it]\\r 84%|████████▍ | 6955/8236 [4:51:05<42:58,  2.01s/it]\\r 84%|████████▍ | 6956/8236 [4:51:06<42:14,  1.98s/it]\\r 84%|████████▍ | 6957/8236 [4:51:08<41:35,  1.95s/it]\\r 84%|████████▍ | 6958/8236 [4:51:10<41:37,  1.95s/it]\\r 84%|████████▍ | 6959/8236 [4:51:12<40:54,  1.92s/it]\\r 85%|████████▍ | 6960/8236 [4:51:14<40:50,  1.92s/it]\\r 85%|████████▍ | 6961/8236 [4:51:16<42:25,  2.00s/it]\\r 85%|████████��� | 6962/8236 [4:51:18<42:04,  1.98s/it]\\r 85%|████████▍ | 6963/8236 [4:51:20<41:46,  1.97s/it]\\r 85%|████████▍ | 6964/8236 [4:51:22<41:35,  1.96s/it]\\r 85%|████████▍ | 6965/8236 [4:51:24<41:15,  1.95s/it]\\r 85%|████████▍ | 6966/8236 [4:51:26<40:48,  1.93s/it]\\r 85%|████████▍ | 6967/8236 [4:51:28<40:40,  1.92s/it]\\r 85%|████████▍ | 6968/8236 [4:51:30<41:43,  1.97s/it]\\r 85%|████████▍ | 6969/8236 [4:51:32<41:35,  1.97s/it]\\r 85%|████████▍ | 6970/8236 [4:51:34<41:32,  1.97s/it]\\r 85%|████████▍ | 6971/8236 [4:51:36<43:04,  2.04s/it]\\r 85%|████████▍ | 6972/8236 [4:51:38<43:51,  2.08s/it]\\r 85%|████████▍ | 6973/8236 [4:51:40<43:58,  2.09s/it]\\r 85%|████████▍ | 6974/8236 [4:51:42<42:41,  2.03s/it]\\r 85%|████████▍ | 6975/8236 [4:51:44<41:40,  1.98s/it]\\r 85%|█████��██▍ | 6976/8236 [4:51:46<41:19,  1.97s/it]\\r 85%|████████▍ | 6977/8236 [4:51:48<41:01,  1.95s/it]\\r 85%|████████▍ | 6978/8236 [4:51:50<42:09,  2.01s/it]\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.19}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-16T15:22:12.543Z_
+
+<details><summary>↩ Tool result · `toolu_01NkbzAMVGZuALx5BMdXWhmE`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 40\\n-rw-r--r-- 1 root root 28391 May 16 23:21 trainer_log.jsonl\\ndrwxr-xr-x 2 root root  4096 May 16 22:49 checkpoint-6000\\ndrwxr-xr-x 2 root root  4096 May 16 22:05 checkpoint-5000\\ndrwxr-xr-x 2 root root  4096 May 16 21:22 checkpoint-4000\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "12fd5f8d-1d31-442e-90d1-10a16cf1347f",
+  "uuid": "c08a72b5-4b86-443d-8a9e-c490aa32259e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 40\\\\n-rw-r--r-- 1 root root 28391 May 16 23:21 trainer_log.jsonl\\\\ndrwxr-xr-x 2 root root  4096 May 16 22:49 checkpoint-6000\\\\ndrwxr-xr-x 2 root root  4096 May 16 22:05 checkpoint-5000\\\\ndrwxr-xr-x 2 root root  4096 May 16 21:22 checkpoint-4000\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 40\\n-rw-r--r-- 1 root root 28391 May 16 23:21 trainer_log.jsonl\\ndrwxr-xr-x 2 root root  4096 May 16 22:49 checkpoint-6000\\ndrwxr-xr-x 2 root root  4096 May 16 22:05 checkpoint-5000\\ndrwxr-xr-x 2 root root  4096 May 16 21:22 checkpoint-4000\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 14_
+
+训练仍在进行中。当前状态：
+
+- **进度**: 6978/8236 steps (84.7%)
+- **已运行**: ~4h51m
+- **剩余**: ~1258 steps × ~2.0s/it ≈ **42 分钟**
+- **最新 checkpoint**: checkpoint-6000 (保存于 22:49)
+- **ETA**: 约 2026-05-16 23:33 完成
+
+训练未完成，停止后续步骤。等训练跑完（约 40 分钟后）再执行 Merge → Pilot Inference 流水线。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "12fd5f8d-1d31-442e-90d1-10a16cf1347f",
+  "uuid": "2097463a-8607-49ab-9a6d-5b2051ed7440",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Y7kGxNN8cbV2ux4jxcmhsV",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6190,
+      "cache_read_input_tokens": 24712,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6190
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 15_
+
+训练仍在进行中。当前状态：
+
+- **进度**: 6978/8236 steps (84.7%)
+- **已运行**: ~4h51m
+- **剩余**: ~1258 steps × ~2.0s/it ≈ **42 分钟**
+- **最新 checkpoint**: checkpoint-6000 (保存于 22:49)
+- **ETA**: 约 2026-05-16 23:33 完成
+
+训练未完成，停止后续步骤。等训练跑完（约 40 分钟后）再执行 Merge → Pilot Inference 流水线。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 18309,
+  "duration_api_ms": 18568,
+  "num_turns": 5,
+  "stop_reason": "end_turn",
+  "session_id": "12fd5f8d-1d31-442e-90d1-10a16cf1347f",
+  "total_cost_usd": 0.16891275,
+  "usage": {
+    "input_tokens": 7,
+    "cache_creation_input_tokens": 19061,
+    "cache_read_input_tokens": 60801,
+    "output_tokens": 680,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 19061,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 170,
+        "cache_read_input_tokens": 24712,
+        "cache_creation_input_tokens": 6190,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 6190
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 2251,
+      "outputTokens": 19,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.002346,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 7,
+      "outputTokens": 680,
+      "cacheReadInputTokens": 60801,
+      "cacheCreationInputTokens": 19061,
+      "webSearchRequests": 0,
+      "costUSD": 0.16656674999999999,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "c634b266-7832-4c02-9109-4a514193ce1e"
+}
+```
+
+</details>
+
+---

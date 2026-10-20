@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "24917039eadf34cdb669",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "cpu mv unified recompute",
+  "task_key": "worker_cpu_mv_unified_recompute_20260521T125213",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_cpu_mv_unified_recompute_20260521T125213_result.json",
+    "occurrence": 1,
+    "bytes": 1001,
+    "sha256": "bd9e454fdd2c27fb8221e6ba61a30478e2c7713696aa74c389f56bab6fabb7ca"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果摘要：\n\n### v4 Main Table（strict MV > N/2）\n\n| Dataset | greedy | mv | oracle | Δ_SC | δ | α_crit |\n|---------|--------|-----|--------|------|---|--------|\n| FewNERD (3 seeds) | 0.7912 | 0.7638 | 0.8852 | **−2.74pp** | 8.8% | 0.6179 |\n| CoNLL (s42 only) | 0.9123 | 0.9101 | 0.9538 | **−0.22pp** | 60.1% | 0.8351 |\n| SciERC (3 seeds) | 0.6670 | 0.6596 | 0.7808 | **−0.74pp** | 12.2% | 0.4920 |\n\n### 关键发现\n\n1. **严格阈值 (>4) 使 MV 全面劣于 greedy**：所有 7 个 (dataset, seed) 组合 Δ_SC < 0。v3 的 inclusive (≥4) 下 CoNLL/SciERC 有微弱正增益，strict 后全部消失。\n2. **FewNERD 受影响最大**：mv_f1 从 ~0.78 降到 ~0.76（约 −2pp），因为 4/8 票的 entities 在 inclusive 下净正贡献，strict 下被删除。\n3. **CoNLL s123/s456 数据缺失**，标记 pending。CoNLL s42 数据疑似被 regenerate（greedy/δ 与 v3 有偏移）。\n\nArtifact 已注册：`alpha_crit_table_v4.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/cpu-mv-unified-recompute.md"
+}

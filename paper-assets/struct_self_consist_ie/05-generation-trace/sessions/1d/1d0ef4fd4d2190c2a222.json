@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1d0ef4fd4d2190c2a222",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "review appendix cross ref",
+  "task_key": "worker_review_appendix-cross-ref_20260524T023114",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_review_appendix-cross-ref_20260524T023114_result.json",
+    "occurrence": 1,
+    "bytes": 630,
+    "sha256": "0eb2394b7895a72464ba44e07a85e70018470edbacc40016ecfd2b2dacb4a3de"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审查完成。\n\n**结果：所有 33 个唯一 appendix label 均存在，64 处主文引用全部有对应内容，无缺失或内容不足。**\n\n3 个需注意的潜在问题：\n1. `sec:mechanistic` 用了 `sec:` 前缀但实际位于 appendix 中，且 mechanistic.tex 主文文件与 appendix 内容重复——需确认编译时无 duplicate label\n2. diagnostic.tex 与 method.tex 内容重叠（均定义 `sec:method`），需确认只编译其中一个\n3. theoretical.tex 与 theory.tex 均定义 `thm:degeneracy_bound`，同理\n\n报告已写入 `artifacts/appendix_crossref_review.md` 并注册。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/review-appendix-cross-ref.md"
+}

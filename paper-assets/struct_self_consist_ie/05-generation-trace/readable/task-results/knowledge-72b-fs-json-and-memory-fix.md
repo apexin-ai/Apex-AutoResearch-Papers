@@ -1,0 +1,29 @@
+# knowledge 72b fs json and memory fix
+
+**When Self-Consistency Fails for NER: Degeneracy, Signal Collapse, and the Correlation-Selection Gap** · Task result records
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 1
+- **Recorded user turns:** 0
+- **Tool calls:** 0
+- **Original source:** `logs/workers/worker_knowledge_72b-fs-json-and-memory-fix_20260520T010208_result.json`
+- **Structured JSON:** [`ce90b256da2945524928.json`](../../sessions/ce/ce90b256da2945524928.json)
+
+## Before a recorded user message
+
+1 recorded events
+
+### Task result
+
+_source line 1_
+
+两项改动完成：
+
+1. **72b_fewshot_signal_summary.json** — FewNERD FS 从 `"status": "pending"` 替换为完整数据（greedy_f1=0.619, oracle_f1=0.702, degen=0.452, construction_delta=0.02, p=0.401, 五个 signal ρ 值）。额外补充了 n_instances=32565 和 FK/EM ρ（从 memory.md 对比表获取），与其他两个 dataset 的字段结构保持一致。
+
+2. **memory.md dual-gating 结论** — 从"necessary-but-not-sufficient"修正为"FT+ZS regime 内 6/6 成立"。核心修正：FewNERD FS degen=45.2% 远超 ~22% 阈值，不构成反例；SciERC FS 因 LP ρ 退化失效属 FS 独立机制；FS 三个失效案例均不挑战 dual-gating。
+
+---

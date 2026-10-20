@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "03c7f4724c5ed80cc360",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "paper e5 hyperparam tables",
+  "task_key": "worker_paper_e5_hyperparam_tables_20260521T111617",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_paper_e5_hyperparam_tables_20260521T111617_result.json",
+    "occurrence": 1,
+    "bytes": 807,
+    "sha256": "da1cc4a1772e8e4115a7bb5833567022dc1500ee57e6aa68ca825e9cad8f4744"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。产出文件已写入 `artifacts/e5_hyperparam_tables.tex` 并注册为 `art_20260521_ec1da6`。\n\n三张表内容：\n\n- **Table A** — 19 行，覆盖所有 fine-tuning 实验：主模型（Qwen3-8B / LLaMA-3.1-8B × 3 数据集）、scale 消融（4B/7B/14B/32B）、LoRA rank 消融（r=8/16/32）、epoch 消融（3/5/10）、SCD。部分训练时长 registry 未记录，标 N/A。\n- **Table B** — 推理配置汇总：默认 N=8/T=1.0、温度消融（0.5/0.8/1.0/1.2）、N 消融（1/2/4/8/16/32）、free-form/prompted diversity/multi-round 变体。\n- **Table C** — 4 个 frontier 模型（GPT-5.5 / Claude Sonnet 4 / Gemini-2.5-Pro / DeepSeek-Chat）的 API 配置。\n\nN/A 标注的字段（主要是部分实验的训练时长）在表注中说明了原因。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-e5-hyperparam-tables.md"
+}

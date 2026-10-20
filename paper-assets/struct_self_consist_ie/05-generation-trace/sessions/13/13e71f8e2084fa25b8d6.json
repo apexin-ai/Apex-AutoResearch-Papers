@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "13e71f8e2084fa25b8d6",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "paper d113 table2 fix",
+  "task_key": "worker_paper_d113_table2_fix_20260516T100507",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_paper_d113_table2_fix_20260516T100507_result.json",
+    "occurrence": 1,
+    "bytes": 966,
+    "sha256": "c7a4c4871ab80be987ae498abfbfe02de5254f7a843f22bb460df5b35d134b6a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有修改已完成。验证结果：\n\n- `0.663` — 0 matches（全部替换为 0.645）\n- `surpass` — 0 matches（全部改为 \"approximately matches\"）\n- `Single` in main sections — 0 matches（仅保留 appendix 和 method.tex 的合法定义）\n- `outperform` — 仅剩正确用法（\"neither significantly outperforms the other\"、conclusion \"without significantly outperforming it\"、非 tied 子集 p=0.004 的合法 claim）\n\n核心变更：\n1. Table 2: Greedy 0.663→0.645±0.001，删除 Single 行，Random 注释为 \"= expected F1 of single T=1.0 draw\"\n2. 全文 framing：\"greedy surpasses all selection\" → \"selection approximately matches greedy (Δ=+0.2pp, p=0.29, not significant)\"\n3. C3 贡献：改为 \"selection recovers T=1.0 sampling degradation but fails to close the 13.3pp oracle gap\"\n4. Limitations: +0.4pp → +0.1pp over greedy\n\nChangelog 已保存并注册为 `art_20260516_606f7e`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-d113-table2-fix.md"
+}

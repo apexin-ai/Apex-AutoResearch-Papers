@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "23cd79c5dd67b4b064a5",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ssh verify n16 sample count",
+  "task_key": "worker_ssh_verify_n16_sample_count_20260521T194954",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_verify_n16_sample_count_20260521T194954_result.json",
+    "occurrence": 1,
+    "bytes": 1266,
+    "sha256": "0493ebaf65e379d3963c29a995d5d838d75ee5ae38210c37f42e1ba67e89fc7f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结论\n\n**数据正确，脚本计算也正确，只有显示字符串有误。**\n\n### 实际 samples/instance 数量\n\n| Seed | Samples/Instance |\n|------|-----------------|\n| s42  | **16** ✓ |\n| s456 | **16** ✓ |\n| s123 | **16** ✓ |\n\n### 脚本 threshold 逻辑分析\n\n`recompute_alpha_crit_unified.py` 的 threshold 是**动态计算**的（第 68、77 行）：\n\n```python\nn_samples = len(samples)       # 从数据自动获取 → N=16 时为 16\nthreshold = n_samples / 2      # N=16 时为 8.0\nmv_strict: c > threshold       # 即 c > 8 → 需要 >=9/16 ✓\nmv_incl:   c >= threshold      # 即 c >= 8 → 需要 >=8/16 ✓\n```\n\n**计算逻辑没有 bug**，对 N=16 数据正确使用了 9/16（strict）和 8/16（inclusive）threshold。\n\n### 唯一问题：print 字符串硬编码\n\n第 136-137 行的显示文本写死了 `need>=5/8` 和 `need>=4/8`：\n```python\nprint(f\"  mv_strict_f1:    {r['mv_strict_f1']:.4f}  (>N/2, need>=5/8)\")\nprint(f\"  mv_incl_f1:      {r['mv_incl_f1']:.4f}  (>=N/2, need>=4/8)\")\n```\n\n这是 cosmetic bug——输出的数字（F1 值）本身是正确的，只是注释误导性地显示了 N=8 时的 threshold。**当前 MV 结果没有问题，不需要重算。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-verify-n16-sample-count.md"
+}

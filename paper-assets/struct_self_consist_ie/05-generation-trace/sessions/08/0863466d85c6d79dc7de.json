@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0863466d85c6d79dc7de",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ssh n16 fewnerd 3seed mv recompute",
+  "task_key": "worker_ssh_n16_fewnerd_3seed_mv_recompute_20260521T194140",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_n16_fewnerd_3seed_mv_recompute_20260521T194140_result.json",
+    "occurrence": 1,
+    "bytes": 1054,
+    "sha256": "10305c8cc26d1a4ee11db8751f3bfba25c11ebbf1915d02c0a1d35cc3694f0ce"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三个 seed 全部完成。汇总结果：\n\n**注意**：脚本输出显示 `need>=5/8`，说明每个 instance 实际有 8 个 samples（而非 16），请确认是否符合预期。\n\n### 各 seed 结果\n\n| Metric | s42 | s123 | s456 |\n|--------|-----|------|------|\n| n_instances | 32565 | 32565 | 32565 |\n| greedy_f1 | 0.7911 | 0.7916 | 0.7910 |\n| mv_strict_f1 | 0.7677 | 0.7798 | 0.7767 |\n| oracle_f1 | 0.9077 | 0.9150 | 0.9105 |\n| degeneracy_rate | 2.4% | 4.8% | 4.8% |\n| alpha_crit_eff_strict | 0.4053 | 0.6715 | 0.4154 |\n| capture_rate | -0.201 | -0.095 | -0.120 |\n\n### Mean ± Std (3 seeds)\n\n| Metric | Mean ± Std |\n|--------|-----------|\n| greedy_f1 | 0.7912 ± 0.0003 |\n| mv_strict_f1 | 0.7747 ± 0.0063 |\n| oracle_f1 | 0.9111 ± 0.0037 |\n| degeneracy_rate | 4.0% ± 1.4% |\n| alpha_crit_eff_strict | 0.4974 ± 0.1509 |\n| capture_rate | -0.139 ± 0.055 |\n\ncapture_rate 全部为负，说明 MV strict 在 FewNERD N=16 上低于 greedy baseline（Δ_SC strict 分别为 -2.34pp、-1.18pp、-1.43pp）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-n16-fewnerd-3seed-mv-recompute.md"
+}

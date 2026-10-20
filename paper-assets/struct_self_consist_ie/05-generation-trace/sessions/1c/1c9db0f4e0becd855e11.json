@@ -1,0 +1,76 @@
+{
+  "schema_version": "1.0",
+  "id": "1c9db0f4e0becd855e11",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "fix hidden probe f1 bug",
+  "task_key": "worker_fix_hidden_probe_f1_bug_20260518T111410",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_fix_hidden_probe_f1_bug_20260518T111410.log",
+    "occurrence": 1,
+    "bytes": 876111,
+    "sha256": "4c3b76e8339c220c6ca01a48399c6e0e8df0f48f4ff19c1854430a7dabb36d0b"
+  },
+  "statistics": {
+    "messages": 405,
+    "user_turns": 2,
+    "tool_calls": 133,
+    "roles": {
+      "log": 1,
+      "system": 63,
+      "record": 1,
+      "assistant": 71,
+      "tool_call": 133,
+      "tool_result": 133,
+      "user": 2,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 196,
+      "chunks": [
+        {
+          "path": "1c9db0f4e0becd855e11-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "1c9db0f4e0becd855e11-part-0002.json",
+          "message_count": 16
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 94,
+      "chunks": [
+        {
+          "path": "1c9db0f4e0becd855e11-part-0002.json",
+          "message_count": 94
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 115,
+      "chunks": [
+        {
+          "path": "1c9db0f4e0becd855e11-part-0002.json",
+          "message_count": 70
+        },
+        {
+          "path": "1c9db0f4e0becd855e11-part-0003.json",
+          "message_count": 45
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/fix-hidden-probe-f1-bug.md"
+}

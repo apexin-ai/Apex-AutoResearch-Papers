@@ -1,0 +1,3733 @@
+# diag full gpu status check
+
+**When Self-Consistency Fails for NER: Degeneracy, Signal Collapse, and the Correlation-Selection Gap** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 78
+- **Recorded user turns:** 0
+- **Tool calls:** 30
+- **Original source:** `logs/workers/worker_diag_full_gpu_status_check_20260518T114435.log`
+- **Structured JSON:** [`c9274b634afe1af08512.json`](../../sessions/c9/c9274b634afe1af08512.json)
+
+## Before a recorded user message
+
+78 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "session_id": "675d26ca-a3e3-4ca1-9203-4d726b6afe37",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "714e4e81-3d21-47aa-a9a5-51ee274576c2",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779115200,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "29a7ccdb-c655-4c9b-8e64-508e797e5dd9",
+  "session_id": "675d26ca-a3e3-4ca1-9203-4d726b6afe37"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants a comprehensive status check on a remote server. I need to use SSH to execute commands on the server. Let me first load the SSH tools, then execute all the checks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "675d26ca-a3e3-4ca1-9203-4d726b6afe37",
+  "uuid": "281dd697-673b-4a0e-b05d-c9f2232437e9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WKmKz44aDTmbZz83iFe2Uv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 14113,
+      "cache_read_input_tokens": 11701,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 14113
+      },
+      "output_tokens": 21,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 5_
+
+开始全面状态检查。先加载 SSH 工具。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "675d26ca-a3e3-4ca1-9203-4d726b6afe37",
+  "uuid": "5c17006a-064f-411b-9b50-d479f22fc6ec",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WKmKz44aDTmbZz83iFe2Uv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 14113,
+      "cache_read_input_tokens": 11701,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 14113
+      },
+      "output_tokens": 21,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01LLDuNp6Zweu2xWTDF4T72f`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "675d26ca-a3e3-4ca1-9203-4d726b6afe37",
+  "uuid": "d396e1a9-57ad-4366-b565-355bcaa3dc64",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WKmKz44aDTmbZz83iFe2Uv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 14113,
+      "cache_read_input_tokens": 11701,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 14113
+      },
+      "output_tokens": 21,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-18T11:44:49.687Z_
+
+<details><summary>↩ Tool result · `toolu_01LLDuNp6Zweu2xWTDF4T72f`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "675d26ca-a3e3-4ca1-9203-4d726b6afe37",
+  "uuid": "560912dd-1897-4403-9bc9-75e5719125f8",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__ssh_read_only"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 8_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I'll execute all the checks in parallel. The server name in the task says "a100" but the project context says "autodl-5090". Let me use "autodl-5090" as that's the configured server name, but the task says "a100". I'll use "autodl-5090" since that's what's in the project config. Actually, looking more carefully, the task says SSH 服务器: `a100`. Let me use that. But wait, the project context says server name is "autodl-5090". The task might be using a different alias. Let me just use what the task specifies: "a100". 
+
+The task explicitly specifies "a100" as the SSH server, so I'll go with that over the project context. Now I'll run the commands in parallel groups since they're independent operations.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "675d26ca-a3e3-4ca1-9203-4d726b6afe37",
+  "uuid": "a1b7cf80-4363-452d-9af6-30dc297431bb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MYW1NevXsTQ2EdbN6MKLL7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 742,
+      "cache_read_input_tokens": 25814,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 742
+      },
+      "output_tokens": 23,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9_
+
+并行执行所有检查。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "675d26ca-a3e3-4ca1-9203-4d726b6afe37",
+  "uuid": "d48ebb41-95d3-4c43-ac93-5d8124ec5503",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MYW1NevXsTQ2EdbN6MKLL7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 742,
+      "cache_read_input_tokens": 25814,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 742
+      },
+      "output_tokens": 23,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01SmLU2HrfpFbWcYgQsmc9w2`</summary>
+
+```json
+{
+  "server": "a100",
+  "command": "cd /root/autodl-tmp/struct_self_consist_ie && nvidia-smi",
+  "account": "root",
+  "warn": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "675d26ca-a3e3-4ca1-9203-4d726b6afe37",
+  "uuid": "1f2471e2-6768-47cf-a611-ab7dc2990e08",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MYW1NevXsTQ2EdbN6MKLL7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 742,
+      "cache_read_input_tokens": 25814,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 742
+      },
+      "output_tokens": 23,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-18T11:44:58.669Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01SmLU2HrfpFbWcYgQsmc9w2`</summary>
+
+```text
+Error executing tool ssh_execute: Unknown server 'a100'. Available: ['autodl-5090', 'bjb1-21071']
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "675d26ca-a3e3-4ca1-9203-4d726b6afe37",
+  "uuid": "1df01c2c-fd6b-44fc-894f-d8fb3d979639",
+  "tool_use_result": "Error: Error executing tool ssh_execute: Unknown server 'a100'. Available: ['autodl-5090', 'bjb1-21071']"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_013UxYxNFSyAR14kW1dMeMfP`</summary>
+
+```json
+{
+  "server": "a100",
+  "command": "tmux ls 2>/dev/null || echo \"no tmux sessions\"",
+  "account": "root",
+  "warn": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "675d26ca-a3e3-4ca1-9203-4d726b6afe37",
+  "uuid": "68df407c-dad2-4c39-b959-c4380a227daa",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MYW1NevXsTQ2EdbN6MKLL7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 742,
+      "cache_read_input_tokens": 25814,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 742
+      },
+      "output_tokens": 23,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-18T11:44:59.645Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_013UxYxNFSyAR14kW1dMeMfP`</summary>
+
+```text
+Error executing tool ssh_execute: Unknown server 'a100'. Available: ['autodl-5090', 'bjb1-21071']
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "675d26ca-a3e3-4ca1-9203-4d726b6afe37",
+  "uuid": "cf9b27d9-67a2-4da9-99de-e9fc9f2aeb2c",
+  "tool_use_result": "Error: Error executing tool ssh_execute: Unknown server 'a100'. Available: ['autodl-5090', 'bjb1-21071']"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01AiGyVKSPq3NdPEndoTBdtT`</summary>
+
+```json
+{
+  "server": "a100",
+  "command": "cd /root/autodl-tmp/struct_self_consist_ie && ps aux | grep -E \"llama.*fewnerd|train.*fewnerd\" | grep -v grep; echo \"---LOG---\"; tail -20 logs/llama_fewnerd_train.log 2>/dev/null || echo \"no log\"; echo \"---CKPT---\"; ls -la checkpoints/llama3.1-8b-fewnerd-lora/ 2>/dev/null || echo \"no ckpt dir\"; echo \"---CKPT_LIST---\"; ls checkpoints/llama3.1-8b-fewnerd-lora/checkpoint-*/ 2>/dev/null | head -10; echo \"---TRAINER_STATE---\"; cat checkpoints/llama3.1-8b-fewnerd-lora/trainer_state.json 2>/dev/null | python3 -c \"import json,sys; d=json.load(sys.stdin); print('global_step:', d.get('global_step'), 'epoch:', d.get('epoch'), 'best_metric:', d.get('best_metric'))\" 2>/dev/null || echo \"no trainer_state.json\"",
+  "account": "root",
+  "warn": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "675d26ca-a3e3-4ca1-9203-4d726b6afe37",
+  "uuid": "02b18689-94c7-4bbf-af0b-c858c504da0d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MYW1NevXsTQ2EdbN6MKLL7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 742,
+      "cache_read_input_tokens": 25814,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 742
+      },
+      "output_tokens": 23,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-18T11:45:02.975Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01AiGyVKSPq3NdPEndoTBdtT`</summary>
+
+```text
+Error executing tool ssh_execute: Unknown server 'a100'. Available: ['autodl-5090', 'bjb1-21071']
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "675d26ca-a3e3-4ca1-9203-4d726b6afe37",
+  "uuid": "bbde0435-b4d6-44e1-88f3-cdba01d860e3",
+  "tool_use_result": "Error: Error executing tool ssh_execute: Unknown server 'a100'. Available: ['autodl-5090', 'bjb1-21071']"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01LSsko1JEXDCQ2QwtZsW7nS`</summary>
+
+```json
+{
+  "server": "a100",
+  "command": "cd /root/autodl-tmp/struct_self_consist_ie && echo \"---SEED123---\"; wc -l output/exp_021_fewnerd_n8_seed123/samples.jsonl 2>/dev/null || echo \"no samples.jsonl\"; ls output/exp_021_fewnerd_n8_seed123/full_signal_analysis.json 2>/dev/null && echo \"analysis exists\" || echo \"no analysis\"; python3 -c \"\nimport json\ntry:\n    with open('output/exp_021_fewnerd_n8_seed123/full_signal_analysis.json') as f:\n        d = json.load(f)\n    print('greedy_f1:', d.get('greedy_f1'))\n    print('degen:', d.get('degeneracy_cf1_gold_filtered'))\n    print('lp_rho:', d.get('lp_spearman_rho', d.get('logprob_spearman')))\nexcept Exception as e:\n    print('Error:', e)\n\" 2>/dev/null; tail -10 output/exp_021_fewnerd_n8_seed123_run.log 2>/dev/null || echo \"no run log\"",
+  "account": "root",
+  "warn": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "675d26ca-a3e3-4ca1-9203-4d726b6afe37",
+  "uuid": "2d9c77ba-207b-4611-adc6-9cab85144ddb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MYW1NevXsTQ2EdbN6MKLL7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 742,
+      "cache_read_input_tokens": 25814,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 742
+      },
+      "output_tokens": 23,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-18T11:45:05.825Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01LSsko1JEXDCQ2QwtZsW7nS`</summary>
+
+```text
+Error executing tool ssh_execute: Unknown server 'a100'. Available: ['autodl-5090', 'bjb1-21071']
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "675d26ca-a3e3-4ca1-9203-4d726b6afe37",
+  "uuid": "87bc4c68-29f6-4d1e-a311-d4f7011d1ef8",
+  "tool_use_result": "Error: Error executing tool ssh_execute: Unknown server 'a100'. Available: ['autodl-5090', 'bjb1-21071']"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01WGdEn1xUfnfCSYEbc92xkc`</summary>
+
+```json
+{
+  "server": "a100",
+  "command": "cd /root/autodl-tmp/struct_self_consist_ie && echo \"---SEED456---\"; wc -l output/exp_021_fewnerd_n8_seed456/samples.jsonl 2>/dev/null || echo \"no samples.jsonl\"; ls output/exp_021_fewnerd_n8_seed456/full_signal_analysis.json 2>/dev/null && echo \"analysis exists\" || echo \"no analysis\"; python3 -c \"\nimport json\ntry:\n    with open('output/exp_021_fewnerd_n8_seed456/full_signal_analysis.json') as f:\n        d = json.load(f)\n    print('greedy_f1:', d.get('greedy_f1'))\n    print('degen:', d.get('degeneracy_cf1_gold_filtered'))\n    print('lp_rho:', d.get('lp_spearman_rho', d.get('logprob_spearman')))\nexcept Exception as e:\n    print('Error:', e)\n\" 2>/dev/null; tail -10 output/exp_021_fewnerd_n8_seed456_run.log 2>/dev/null || echo \"no run log\"",
+  "account": "root",
+  "warn": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "675d26ca-a3e3-4ca1-9203-4d726b6afe37",
+  "uuid": "53e948cd-6efe-4204-bb87-30441eb45ea2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MYW1NevXsTQ2EdbN6MKLL7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 742,
+      "cache_read_input_tokens": 25814,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 742
+      },
+      "output_tokens": 23,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-18T11:45:08.674Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01WGdEn1xUfnfCSYEbc92xkc`</summary>
+
+```text
+Error executing tool ssh_execute: Unknown server 'a100'. Available: ['autodl-5090', 'bjb1-21071']
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "675d26ca-a3e3-4ca1-9203-4d726b6afe37",
+  "uuid": "6af7e975-b84d-4671-b9f6-27f685410a64",
+  "tool_use_result": "Error: Error executing tool ssh_execute: Unknown server 'a100'. Available: ['autodl-5090', 'bjb1-21071']"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01WoN1DZmwsJewwdeiuZ5XDY`</summary>
+
+```json
+{
+  "server": "a100",
+  "command": "cd /root/autodl-tmp/struct_self_consist_ie && echo \"---SCIERC PROBE---\"; ls output/hidden_state_probe/results_textbased_goldfiltered.json 2>/dev/null && echo \"SciERC probe done\" || echo \"SciERC probe missing\"; echo \"---FEWNERD PROBE---\"; ls output/hidden_state_probe_fewnerd/ 2>/dev/null || echo \"no fewnerd probe dir\"; cat output/hidden_state_probe_fewnerd/results*.json 2>/dev/null | python3 -c \"import json,sys; d=json.load(sys.stdin); print(json.dumps(d, indent=2))\" 2>/dev/null | head -30; echo \"---EXP016 PROBE---\"; ls output/hidden_state_probe_exp016/ 2>/dev/null || echo \"no exp016 probe dir\"; cat output/hidden_state_probe_exp016/results*.json 2>/dev/null | python3 -c \"import json,sys; d=json.load(sys.stdin); print(json.dumps(d, indent=2))\" 2>/dev/null | head -30",
+  "account": "root",
+  "warn": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "675d26ca-a3e3-4ca1-9203-4d726b6afe37",
+  "uuid": "9ad6e70b-16cd-4b25-9b34-5837b71fb735",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MYW1NevXsTQ2EdbN6MKLL7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 742,
+      "cache_read_input_tokens": 25814,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 742
+      },
+      "output_tokens": 23,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-18T11:45:11.967Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01WoN1DZmwsJewwdeiuZ5XDY`</summary>
+
+```text
+Error executing tool ssh_execute: Unknown server 'a100'. Available: ['autodl-5090', 'bjb1-21071']
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "675d26ca-a3e3-4ca1-9203-4d726b6afe37",
+  "uuid": "d4c30670-638e-463f-a975-875cc3d87207",
+  "tool_use_result": "Error: Error executing tool ssh_execute: Unknown server 'a100'. Available: ['autodl-5090', 'bjb1-21071']"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01PfgypjRS1TbQmBK4oRuVMo`</summary>
+
+```json
+{
+  "server": "a100",
+  "command": "cd /root/autodl-tmp/struct_self_consist_ie && echo \"---TOKEN LP---\"; ls output/token_lp_aggregator/ 2>/dev/null || echo \"no token_lp dir\"; cat output/token_lp_aggregator/results*.json 2>/dev/null | python3 -c \"import json,sys; d=json.load(sys.stdin); print(json.dumps(d, indent=2))\" 2>/dev/null | head -40",
+  "account": "root",
+  "warn": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "675d26ca-a3e3-4ca1-9203-4d726b6afe37",
+  "uuid": "9893d10d-3b63-4cbb-b7af-b80bf08a32b1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MYW1NevXsTQ2EdbN6MKLL7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 742,
+      "cache_read_input_tokens": 25814,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 742
+      },
+      "output_tokens": 23,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-18T11:45:13.388Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01PfgypjRS1TbQmBK4oRuVMo`</summary>
+
+```text
+Error executing tool ssh_execute: Unknown server 'a100'. Available: ['autodl-5090', 'bjb1-21071']
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "675d26ca-a3e3-4ca1-9203-4d726b6afe37",
+  "uuid": "6e248938-a851-44ff-884b-c96ef6c238bd",
+  "tool_use_result": "Error: Error executing tool ssh_execute: Unknown server 'a100'. Available: ['autodl-5090', 'bjb1-21071']"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01YauecJueRJ4A3VR45T5hdR`</summary>
+
+```json
+{
+  "server": "a100",
+  "command": "cd /root/autodl-tmp/struct_self_consist_ie && echo \"---CONLL SEED123---\"; wc -l output/exp_002_conll_n8_seed123/samples.jsonl 2>/dev/null || echo \"no seed123\"; ls output/exp_002_conll_n8_seed123/full_signal_analysis.json 2>/dev/null && echo \"analysis exists\" || echo \"no analysis\"; echo \"---CONLL SEED456---\"; wc -l output/exp_002_conll_n8_seed456/samples.jsonl 2>/dev/null || echo \"no seed456\"; ls output/exp_002_conll_n8_seed456/full_signal_analysis.json 2>/dev/null && echo \"analysis exists\" || echo \"no analysis\"",
+  "account": "root",
+  "warn": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "675d26ca-a3e3-4ca1-9203-4d726b6afe37",
+  "uuid": "f1d83433-961b-4a50-8168-1f5d68911799",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MYW1NevXsTQ2EdbN6MKLL7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 742,
+      "cache_read_input_tokens": 25814,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 742
+      },
+      "output_tokens": 23,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-18T11:45:15.806Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01YauecJueRJ4A3VR45T5hdR`</summary>
+
+```text
+Error executing tool ssh_execute: Unknown server 'a100'. Available: ['autodl-5090', 'bjb1-21071']
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "675d26ca-a3e3-4ca1-9203-4d726b6afe37",
+  "uuid": "43825ce1-abb2-43cc-9382-d1811efd56ee",
+  "tool_use_result": "Error: Error executing tool ssh_execute: Unknown server 'a100'. Available: ['autodl-5090', 'bjb1-21071']"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01NMVQWBLhSYSW46SSYVrnxk`</summary>
+
+```json
+{
+  "server": "a100",
+  "command": "ps aux | grep -E \"python|vllm|train\" | grep -v grep | grep -v sshd | grep -v bash",
+  "account": "root",
+  "warn": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "675d26ca-a3e3-4ca1-9203-4d726b6afe37",
+  "uuid": "28c33971-df2d-4251-9692-11ab4e4d26fb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MYW1NevXsTQ2EdbN6MKLL7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 742,
+      "cache_read_input_tokens": 25814,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 742
+      },
+      "output_tokens": 23,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-18T11:45:16.330Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01NMVQWBLhSYSW46SSYVrnxk`</summary>
+
+```text
+Error executing tool ssh_execute: Unknown server 'a100'. Available: ['autodl-5090', 'bjb1-21071']
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "675d26ca-a3e3-4ca1-9203-4d726b6afe37",
+  "uuid": "a953a531-6555-4c1a-80aa-2c7eed2fa82f",
+  "tool_use_result": "Error: Error executing tool ssh_execute: Unknown server 'a100'. Available: ['autodl-5090', 'bjb1-21071']"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 28_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The server name "a100" doesn't exist. Available servers are "autodl-5090" and "bjb1-21071". The project config says the server is "autodl-5090". Let me retry with "autodl-5090".
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "675d26ca-a3e3-4ca1-9203-4d726b6afe37",
+  "uuid": "5e27af53-2f52-457a-93d8-e2bfba3e1ef4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WPnPC2RhmLcADWskk1HbWY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3403,
+      "cache_read_input_tokens": 26556,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3403
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 29_
+
+服务器名应为 `autodl-5090`，重新执行全部检查。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "675d26ca-a3e3-4ca1-9203-4d726b6afe37",
+  "uuid": "3f48ef9d-f568-486b-ae67-095ef1171798",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WPnPC2RhmLcADWskk1HbWY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3403,
+      "cache_read_input_tokens": 26556,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3403
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01WY2Qt79Hh74ATEpuCbt5Hr`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cd /root/autodl-tmp/struct_self_consist_ie && nvidia-smi",
+  "account": "root",
+  "warn": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "675d26ca-a3e3-4ca1-9203-4d726b6afe37",
+  "uuid": "1c5878ee-17d9-4c8d-ac32-b46f6b4b4ace",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WPnPC2RhmLcADWskk1HbWY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3403,
+      "cache_read_input_tokens": 26556,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3403
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01RBG4FoKJdycY2VWUynngpM`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "tmux ls 2>/dev/null || echo \"no tmux sessions\"",
+  "account": "root",
+  "warn": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "675d26ca-a3e3-4ca1-9203-4d726b6afe37",
+  "uuid": "701dca0b-4bdc-41d4-ba55-5ca41672091f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WPnPC2RhmLcADWskk1HbWY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3403,
+      "cache_read_input_tokens": 26556,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3403
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-18T11:45:23.360Z_
+
+<details><summary>↩ Tool result · `toolu_01WY2Qt79Hh74ATEpuCbt5Hr`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Mon May 18 19:45:23 2026       \\n+-----------------------------------------------------------------------------------------+\\n| NVIDIA-SMI 595.58.03              Driver Version: 595.58.03      CUDA Version: 13.2     |\\n+-----------------------------------------+------------------------+----------------------+\\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\\n|                                         |                        |               MIG M. |\\n|=========================================+========================+======================|\\n|   0  NVIDIA GeForce RTX 5090        On  |   00000000:38:00.0 Off |                  N/A |\\n| 42%   35C    P8             12W /  575W |       4MiB /  32607MiB |      0%      Default |\\n|                                         |                        |                  N/A |\\n+-----------------------------------------+------------------------+----------------------+\\n|   1  NVIDIA GeForce RTX 5090        On  |   00000000:49:00.0 Off |                  N/A |\\n| 62%   64C    P1            270W /  575W |   30888MiB /  32607MiB |     43%      Default |\\n|                                         |                        |                  N/A |\\n+-----------------------------------------+------------------------+----------------------+\\n|   2  NVIDIA GeForce RTX 5090        On  |   00000000:5A:00.0 Off |                  N/A |\\n| 65%   71C    P1            460W /  575W |   30934MiB /  32607MiB |     94%      Default |\\n|                                         |                        |                  N/A |\\n+-----------------------------------------+------------------------+----------------------+\\n|   3  NVIDIA GeForce RTX 5090        On  |   00000000:98:00.0 Off |                  N/A |\\n| 39%   28C    P8              3W /  575W |       2MiB /  32607MiB |      0%      Default |\\n|                                         |                        |                  N/A |\\n+-----------------------------------------+------------------------+----------------------+\\n\\n+-----------------------------------------------------------------------------------------+\\n| Processes:                                                                              |\\n|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |\\n|        ID   ID                                                               Usage      |\\n|=========================================================================================|\\n|    1   N/A  N/A          137865      C   /root/miniconda3/bin/python           30878MiB |\\n|    2   N/A  N/A          138471      C   VLLM::EngineCore                      30924MiB |\\n+-----------------------------------------------------------------------------------------+\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.3}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "675d26ca-a3e3-4ca1-9203-4d726b6afe37",
+  "uuid": "8c9e3b06-6ffa-40b5-b45d-185e22775188",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Mon May 18 19:45:23 2026       \\\\n+-----------------------------------------------------------------------------------------+\\\\n| NVIDIA-SMI 595.58.03              Driver Version: 595.58.03      CUDA Version: 13.2     |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\\\\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\\\\n|                                         |                        |               MIG M. |\\\\n|=========================================+========================+======================|\\\\n|   0  NVIDIA GeForce RTX 5090        On  |   00000000:38:00.0 Off |                  N/A |\\\\n| 42%   35C    P8             12W /  575W |       4MiB /  32607MiB |      0%      Default |\\\\n|                                         |                        |                  N/A |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n|   1  NVIDIA GeForce RTX 5090        On  |   00000000:49:00.0 Off |                  N/A |\\\\n| 62%   64C    P1            270W /  575W |   30888MiB /  32607MiB |     43%      Default |\\\\n|                                         |                        |                  N/A |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n|   2  NVIDIA GeForce RTX 5090        On  |   00000000:5A:00.0 Off |                  N/A |\\\\n| 65%   71C    P1            460W /  575W |   30934MiB /  32607MiB |     94%      Default |\\\\n|                                         |                        |                  N/A |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n|   3  NVIDIA GeForce RTX 5090        On  |   00000000:98:00.0 Off |                  N/A |\\\\n| 39%   28C    P8              3W /  575W |       2MiB /  32607MiB |      0%      Default |\\\\n|                                         |                        |                  N/A |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n\\\\n+-----------------------------------------------------------------------------------------+\\\\n| Processes:                                                                              |\\\\n|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |\\\\n|        ID   ID                                                               Usage      |\\\\n|=========================================================================================|\\\\n|    1   N/A  N/A          137865      C   /root/miniconda3/bin/python           30878MiB |\\\\n|    2   N/A  N/A          138471      C   VLLM::EngineCore                      30924MiB |\\\\n+-----------------------------------------------------------------------------------------+\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.3}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Mon May 18 19:45:23 2026       \\n+-----------------------------------------------------------------------------------------+\\n| NVIDIA-SMI 595.58.03              Driver Version: 595.58.03      CUDA Version: 13.2     |\\n+-----------------------------------------+------------------------+----------------------+\\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\\n|                                         |                        |               MIG M. |\\n|=========================================+========================+======================|\\n|   0  NVIDIA GeForce RTX 5090        On  |   00000000:38:00.0 Off |                  N/A |\\n| 42%   35C    P8             12W /  575W |       4MiB /  32607MiB |      0%      Default |\\n|                                         |                        |                  N/A |\\n+-----------------------------------------+------------------------+----------------------+\\n|   1  NVIDIA GeForce RTX 5090        On  |   00000000:49:00.0 Off |                  N/A |\\n| 62%   64C    P1            270W /  575W |   30888MiB /  32607MiB |     43%      Default |\\n|                                         |                        |                  N/A |\\n+-----------------------------------------+------------------------+----------------------+\\n|   2  NVIDIA GeForce RTX 5090        On  |   00000000:5A:00.0 Off |                  N/A |\\n| 65%   71C    P1            460W /  575W |   30934MiB /  32607MiB |     94%      Default |\\n|                                         |                        |                  N/A |\\n+-----------------------------------------+------------------------+----------------------+\\n|   3  NVIDIA GeForce RTX 5090        On  |   00000000:98:00.0 Off |                  N/A |\\n| 39%   28C    P8              3W /  575W |       2MiB /  32607MiB |      0%      Default |\\n|                                         |                        |                  N/A |\\n+-----------------------------------------+------------------------+----------------------+\\n\\n+-----------------------------------------------------------------------------------------+\\n| Processes:                                                                              |\\n|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |\\n|        ID   ID                                                               Usage      |\\n|=========================================================================================|\\n|    1   N/A  N/A          137865      C   /root/miniconda3/bin/python           30878MiB |\\n|    2   N/A  N/A          138471      C   VLLM::EngineCore                      30924MiB |\\n+-----------------------------------------------------------------------------------------+\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.3}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-18T11:45:23.792Z_
+
+<details><summary>↩ Tool result · `toolu_01RBG4FoKJdycY2VWUynngpM`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"exp_011_ood_conll_to_scierc: 1 windows (created Fri May 15 19:48:36 2026)\\nexp_017_llama_conll_n16_r1024: 1 windows (created Fri May 15 18:38:42 2026)\\nexp_017_llama_conll_n16_s456_r1024: 1 windows (created Fri May 15 18:38:44 2026)\\nfewnerd_s456: 1 windows (created Mon May 18 17:31:50 2026)\\nllama_fewnerd: 1 windows (created Mon May 18 17:31:45 2026)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "675d26ca-a3e3-4ca1-9203-4d726b6afe37",
+  "uuid": "8746a0ba-162a-4f34-8f07-1f693bdb4e10",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"exp_011_ood_conll_to_scierc: 1 windows (created Fri May 15 19:48:36 2026)\\\\nexp_017_llama_conll_n16_r1024: 1 windows (created Fri May 15 18:38:42 2026)\\\\nexp_017_llama_conll_n16_s456_r1024: 1 windows (created Fri May 15 18:38:44 2026)\\\\nfewnerd_s456: 1 windows (created Mon May 18 17:31:50 2026)\\\\nllama_fewnerd: 1 windows (created Mon May 18 17:31:45 2026)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"exp_011_ood_conll_to_scierc: 1 windows (created Fri May 15 19:48:36 2026)\\nexp_017_llama_conll_n16_r1024: 1 windows (created Fri May 15 18:38:42 2026)\\nexp_017_llama_conll_n16_s456_r1024: 1 windows (created Fri May 15 18:38:44 2026)\\nfewnerd_s456: 1 windows (created Mon May 18 17:31:50 2026)\\nllama_fewnerd: 1 windows (created Mon May 18 17:31:45 2026)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_0199iknArsQ8AmueMYS76zsf`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cd /root/autodl-tmp/struct_self_consist_ie && ps aux | grep -E \"llama.*fewnerd|train.*fewnerd\" | grep -v grep; echo \"---LOG---\"; tail -20 logs/llama_fewnerd_train.log 2>/dev/null || echo \"no log\"; echo \"---CKPT---\"; ls -la checkpoints/llama3.1-8b-fewnerd-lora/ 2>/dev/null || echo \"no ckpt dir\"; echo \"---CKPT_LIST---\"; ls checkpoints/llama3.1-8b-fewnerd-lora/checkpoint-*/ 2>/dev/null | head -10; echo \"---TRAINER_STATE---\"; cat checkpoints/llama3.1-8b-fewnerd-lora/trainer_state.json 2>/dev/null | python3 -c \"import json,sys; d=json.load(sys.stdin); print('global_step:', d.get('global_step'), 'epoch:', d.get('epoch'), 'best_metric:', d.get('best_metric'))\" 2>/dev/null || echo \"no trainer_state.json\"",
+  "account": "root",
+  "warn": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "675d26ca-a3e3-4ca1-9203-4d726b6afe37",
+  "uuid": "892ac642-d309-4e60-84bc-28c8de111436",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WPnPC2RhmLcADWskk1HbWY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3403,
+      "cache_read_input_tokens": 26556,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3403
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-18T11:45:25.782Z_
+
+<details><summary>↩ Tool result · `toolu_0199iknArsQ8AmueMYS76zsf`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"root     137791  0.0  0.0   4364  3256 pts/3    Ss+  17:31   0:00 bash -c source /root/miniconda3/bin/activate && bash /root/autodl-tmp/struct_self_consist_ie/code/run_llama_fewnerd_train_single_gpu.sh 2>&1 | tee /root/autodl-tmp/struct_self_consist_ie/logs/llama_fewnerd_train.log\\nroot     137860  0.0  0.0   4364  3216 pts/3    S+   17:31   0:00 bash /root/autodl-tmp/struct_self_consist_ie/code/run_llama_fewnerd_train_single_gpu.sh\\nroot     137861  0.0  0.0   2796  1044 pts/3    S+   17:31   0:01 tee /root/autodl-tmp/struct_self_consist_ie/logs/llama_fewnerd_train.log\\nroot     137865 97.5  0.3 60492460 2703248 pts/3 Sl+ 17:31 130:23 /root/miniconda3/bin/python /root/miniconda3/bin/llamafactory-cli train train_config_llama_fewnerd.yaml\\n---LOG---\\n  \\\"pretraining_tp\\\": 1,\\n  \\\"rms_norm_eps\\\": 1e-05,\\n  \\\"rope_scaling\\\": {\\n    \\\"factor\\\": 8.0,\\n    \\\"high_freq_factor\\\": 4.0,\\n    \\\"low_freq_factor\\\": 1.0,\\n    \\\"original_max_position_embeddings\\\": 8192,\\n    \\\"rope_type\\\": \\\"llama3\\\"\\n  },\\n  \\\"rope_theta\\\": 500000.0,\\n  \\\"tie_word_embeddings\\\": false,\\n  \\\"transformers_version\\\": \\\"4.57.1\\\",\\n  \\\"use_cache\\\": true,\\n  \\\"vocab_size\\\": 128256\\n}\\n\\n[INFO|tokenization_utils_base.py:2421] 2026-05-18 19:30:37,783 >> chat template saved in /root/autodl-tmp/struct_self_consist_ie/checkpoints/llama3.1-8b-fewnerd-lora/checkpoint-3000/chat_template.jinja\\n[INFO|tokenization_utils_base.py:2590] 2026-05-18 19:30:37,785 >> tokenizer config file saved in /root/autodl-tmp/struct_self_consist_ie/checkpoints/llama3.1-8b-fewnerd-lora/checkpoint-3000/tokenizer_config.json\\n[INFO|tokenization_utils_base.py:2599] 2026-05-18 19:30:37,785 >> Special tokens file saved in /root/autodl-tmp/struct_self_consist_ie/checkpoints/llama3.1-8b-fewnerd-lora/checkpoint-3000/special_tokens_map.json\\n\\r 12%|█▏        | 3001/24708 [1:58:39<1267:50:35, 210.27s/it]\\r 12%|█▏        | 3002/24708 [1:58:41<890:31:16, 147.70s/it] \\r 12%|█▏        | 3003/24708 [1:58:42<626:19:06, 103.88s/it]\\r 12%|█▏        | 3004/24708 [1:58:44<441:48:05, 73.28s/it] \\r 12%|█▏        | 3005/24708 [1:58:46<312:29:21, 51.83s/it]\\r 12%|█▏        | 3006/24708 [1:58:48<221:54:39, 36.81s/it]\\r 12%|█▏        | 3007/24708 [1:58:49<158:18:33, 26.26s/it]\\r 12%|█▏        | 3008/24708 [1:58:51<113:54:24, 18.90s/it]\\r 12%|█▏        | 3009/24708 [1:58:53<83:02:09, 13.78s/it] \\r 12%|█▏        | 3010/24708 [1:58:55<61:09:26, 10.15s/it]\\r 12%|█▏        | 3011/24708 [1:58:56<45:44:23,  7.59s/it]\\r 12%|█▏        | 3012/24708 [1:58:58<34:59:25,  5.81s/it]\\r 12%|█▏        | 3013/24708 [1:59:00<27:29:30,  4.56s/it]\\r 12%|█▏        | 3014/24708 [1:59:01<22:05:10,  3.67s/it]\\r 12%|█▏        | 3015/24708 [1:59:03<18:46:01,  3.11s/it]\\r 12%|█▏        | 3016/24708 [1:59:05<16:09:40,  2.68s/it]\\r 12%|█▏        | 3017/24708 [1:59:06<14:12:43,  2.36s/it]\\r 12%|█▏        | 3018/24708 [1:59:08<12:55:21,  2.14s/it]\\r 12%|█▏        | 3019/24708 [1:59:10<12:02:57,  2.00s/it]\\r 12%|█▏        | 3020/24708 [1:59:11<11:40:15,  1.94s/it]\\r 12%|█▏        | 3021/24708 [1:59:13<11:00:09,  1.83s/it]\\r 12%|█▏        | 3022/24708 [1:59:15<11:01:29,  1.83s/it]\\r 12%|█▏        | 3023/24708 [1:59:17<10:49:59,  1.80s/it]\\r 12%|█▏        | 3024/24708 [1:59:18<10:50:13,  1.80s/it]\\r 12%|█▏        | 3025/24708 [1:59:20<10:45:54,  1.79s/it]\\r 12%|█▏        | 3026/24708 [1:59:22<10:53:57,  1.81s/it]\\r 12%|█▏        | 3027/24708 [1:59:24<10:30:22,  1.74s/it]\\r 12%|█▏        | 3028/24708 [1:59:25<10:13:49,  1.70s/it]\\r 12%|█▏        | 3029/24708 [1:59:27<10:06:39,  1.68s/it]\\r 12%|█▏        | 3030/24708 [1:59:28<10:07:22,  1.68s/it]\\r 12%|█▏        | 3031/24708 [1:59:30<10:07:04,  1.68s/it]\\r 12%|█▏        | 3032/24708 [1:59:32<10:07:30,  1.68s/it]\\r 12%|█▏        | 3033/24708 [1:59:34<10:20:51,  1.72s/it]\\r 12%|█▏        | 3034/24708 [1:59:35<10:15:47,  1.70s/it]\\r 12%|█▏        | 3035/24708 [1:59:37<10:35:11,  1.76s/it]\\r 12%|█▏        | 3036/24708 [1:59:39<11:14:49,  1.87s/it]\\r 12%|█▏        | 3037/24708 [1:59:41<10:50:23,  1.80s/it]\\r 12%|█▏        | 3038/24708 [1:59:43<10:51:35,  1.80s/it]\\r 12%|█▏        | 3039/24708 [1:59:44<\\n\\n... [截断: 输出过长，省略 24185 字符] ...\\n\\n43/24708 [2:11:03<9:18:01,  1.57s/it]\\r 14%|█▍        | 3444/24708 [2:11:05<9:32:22,  1.62s/it]\\r 14%|█▍        | 3445/24708 [2:11:06<9:45:58,  1.65s/it]\\r 14%|█▍        | 3446/24708 [2:11:08<10:02:19,  1.70s/it]\\r 14%|█▍        | 3447/24708 [2:11:10<10:13:03,  1.73s/it]\\r 14%|█▍        | 3448/24708 [2:11:12<9:56:10,  1.68s/it] \\r 14%|█▍        | 3449/24708 [2:11:13<10:09:08,  1.72s/it]\\r 14%|█▍        | 3450/24708 [2:11:15<10:04:02,  1.70s/it]\\r                                                         \\r\\r 14%|█▍        | 3450/24708 [2:11:15<10:04:02,  1.70s/it]\\r 14%|█▍        | 3451/24708 [2:11:17<9:58:21,  1.69s/it] \\r 14%|█▍        | 3452/24708 [2:11:18<9:40:21,  1.64s/it]\\r 14%|█▍        | 3453/24708 [2:11:20<9:30:00,  1.61s/it]\\r 14%|█▍        | 3454/24708 [2:11:22<9:43:11,  1.65s/it]\\r 14%|█▍        | 3455/24708 [2:11:23<9:39:11,  1.64s/it]\\r 14%|█▍        | 3456/24708 [2:11:25<9:44:16,  1.65s/it]\\r 14%|█▍        | 3457/24708 [2:11:26<9:39:07,  1.64s/it]\\r 14%|█▍        | 3458/24708 [2:11:28<9:44:08,  1.65s/it]\\r 14%|█▍        | 3459/24708 [2:11:30<9:33:34,  1.62s/it]\\r 14%|█▍        | 3460/24708 [2:11:31<9:43:23,  1.65s/it]\\r 14%|█▍        | 3461/24708 [2:11:33<9:37:49,  1.63s/it]\\r 14%|█▍        | 3462/24708 [2:11:35<9:32:25,  1.62s/it]\\r 14%|█▍        | 3463/24708 [2:11:36<9:41:53,  1.64s/it]\\r 14%|█▍        | 3464/24708 [2:11:38<9:50:00,  1.67s/it]\\r 14%|█▍        | 3465/24708 [2:11:40<9:51:28,  1.67s/it]\\r 14%|█▍        | 3466/24708 [2:11:41<9:38:00,  1.63s/it]\\r 14%|█▍        | 3467/24708 [2:11:43<9:49:44,  1.67s/it]\\r 14%|█▍        | 3468/24708 [2:11:45<10:07:29,  1.72s/it]\\r 14%|█▍        | 3469/24708 [2:11:46<9:51:01,  1.67s/it] \\r 14%|█▍        | 3470/24708 [2:11:48<10:11:14,  1.73s/it]\\r 14%|█▍        | 3471/24708 [2:11:50<9:55:53,  1.68s/it] \\r 14%|█▍        | 3472/24708 [2:11:51<9:46:10,  1.66s/it]\\r 14%|█▍        | 3473/24708 [2:11:54<10:40:15,  1.81s/it]\\r 14%|█▍        | 3474/24708 [2:11:55<10:19:09,  1.75s/it]\\r 14%|█▍        | 3475/24708 [2:11:58<12:13:41,  2.07s/it]\\r 14%|█▍        | 3476/24708 [2:12:02<15:01:08,  2.55s/it]\\r 14%|█▍        | 3477/24708 [2:12:05<16:52:28,  2.86s/it]\\r 14%|█▍        | 3478/24708 [2:12:09<17:53:19,  3.03s/it]\\r 14%|█▍        | 3479/24708 [2:12:12<18:48:04,  3.19s/it]\\r 14%|█▍        | 3480/24708 [2:12:16<19:17:34,  3.27s/it]\\r 14%|█▍        | 3481/24708 [2:12:19<19:49:01,  3.36s/it]\\r 14%|█▍        | 3482/24708 [2:12:23<20:03:04,  3.40s/it]\\r 14%|█▍        | 3483/24708 [2:12:26<20:32:12,  3.48s/it]\\r 14%|█▍        | 3484/24708 [2:12:30<20:39:35,  3.50s/it]\\r 14%|█▍        | 3485/24708 [2:12:34<20:43:58,  3.52s/it]\\r 14%|█▍        | 3486/24708 [2:12:37<20:24:10,  3.46s/it]\\r 14%|█▍        | 3487/24708 [2:12:40<20:08:52,  3.42s/it]\\r 14%|█▍        | 3488/24708 [2:12:44<20:15:58,  3.44s/it]\\r 14%|█▍        | 3489/24708 [2:12:47<19:48:57,  3.36s/it]\\r 14%|█▍        | 3490/24708 [2:12:50<20:08:36,  3.42s/it]\\r 14%|█▍        | 3491/24708 [2:12:54<19:53:01,  3.37s/it]\\r 14%|█▍        | 3492/24708 [2:12:58<20:40:01,  3.51s/it]\\r 14%|█▍        | 3493/24708 [2:13:01<19:43:48,  3.35s/it]\\r 14%|█▍        | 3494/24708 [2:13:04<20:36:19,  3.50s/it]\\r 14%|█▍        | 3495/24708 [2:13:08<20:08:18,  3.42s/it]\\r 14%|█▍        | 3496/24708 [2:13:11<20:30:39,  3.48s/it]\\r 14%|█▍        | 3497/24708 [2:13:15<20:29:02,  3.48s/it]\\r 14%|█▍        | 3498/24708 [2:13:18<20:57:30,  3.56s/it]\\r 14%|█▍        | 3499/24708 [2:13:22<20:14:19,  3.44s/it]---CKPT---\\ntotal 32\\ndrwxr-xr-x  5 root root   120 May 18 19:30 .\\ndrwxr-xr-x 20 root root  4096 May 18 18:23 ..\\ndrwxr-xr-x  2 root root  4096 May 18 18:09 checkpoint-1000\\ndrwxr-xr-x  2 root root  4096 May 18 18:47 checkpoint-2000\\ndrwxr-xr-x  2 root root  4096 May 18 19:30 checkpoint-3000\\n-rw-r--r--  1 root root 14224 May 18 19:43 trainer_log.jsonl\\n---CKPT_LIST---\\ncheckpoints/llama3.1-8b-fewnerd-lora/checkpoint-1000/:\\nREADME.md\\nadapter_config.json\\nadapter_model.safetensors\\nchat_template.jinja\\noptimizer.pt\\nrng_state.pth\\nscheduler.pt\\nspecial_tokens_map.json\\ntokenizer.json\\n---TRAINER_STATE---\\nno trainer_state.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "675d26ca-a3e3-4ca1-9203-4d726b6afe37",
+  "uuid": "3eeed4c0-42fb-4c6b-85bc-8602d7d9cc28",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"root     137791  0.0  0.0   4364  3256 pts/3    Ss+  17:31   0:00 bash -c source /root/miniconda3/bin/activate && bash /root/autodl-tmp/struct_self_consist_ie/code/run_llama_fewnerd_train_single_gpu.sh 2>&1 | tee /root/autodl-tmp/struct_self_consist_ie/logs/llama_fewnerd_train.log\\\\nroot     137860  0.0  0.0   4364  3216 pts/3    S+   17:31   0:00 bash /root/autodl-tmp/struct_self_consist_ie/code/run_llama_fewnerd_train_single_gpu.sh\\\\nroot     137861  0.0  0.0   2796  1044 pts/3    S+   17:31   0:01 tee /root/autodl-tmp/struct_self_consist_ie/logs/llama_fewnerd_train.log\\\\nroot     137865 97.5  0.3 60492460 2703248 pts/3 Sl+ 17:31 130:23 /root/miniconda3/bin/python /root/miniconda3/bin/llamafactory-cli train train_config_llama_fewnerd.yaml\\\\n---LOG---\\\\n  \\\\\\\"pretraining_tp\\\\\\\": 1,\\\\n  \\\\\\\"rms_norm_eps\\\\\\\": 1e-05,\\\\n  \\\\\\\"rope_scaling\\\\\\\": {\\\\n    \\\\\\\"factor\\\\\\\": 8.0,\\\\n    \\\\\\\"high_freq_factor\\\\\\\": 4.0,\\\\n    \\\\\\\"low_freq_factor\\\\\\\": 1.0,\\\\n    \\\\\\\"original_max_position_embeddings\\\\\\\": 8192,\\\\n    \\\\\\\"rope_type\\\\\\\": \\\\\\\"llama3\\\\\\\"\\\\n  },\\\\n  \\\\\\\"rope_theta\\\\\\\": 500000.0,\\\\n  \\\\\\\"tie_word_embeddings\\\\\\\": false,\\\\n  \\\\\\\"transformers_version\\\\\\\": \\\\\\\"4.57.1\\\\\\\",\\\\n  \\\\\\\"use_cache\\\\\\\": true,\\\\n  \\\\\\\"vocab_size\\\\\\\": 128256\\\\n}\\\\n\\\\n[INFO|tokenization_utils_base.py:2421] 2026-05-18 19:30:37,783 >> chat template saved in /root/autodl-tmp/struct_self_consist_ie/checkpoints/llama3.1-8b-fewnerd-lora/checkpoint-3000/chat_template.jinja\\\\n[INFO|tokenization_utils_base.py:2590] 2026-05-18 19:30:37,785 >> tokenizer config file saved in /root/autodl-tmp/struct_self_consist_ie/checkpoints/llama3.1-8b-fewnerd-lora/checkpoint-3000/tokenizer_config.json\\\\n[INFO|tokenization_utils_base.py:2599] 2026-05-18 19:30:37,785 >> Special tokens file saved in /root/autodl-tmp/struct_self_consist_ie/checkpoints/llama3.1-8b-fewnerd-lora/checkpoint-3000/special_tokens_map.json\\\\n\\\\r 12%|█▏        | 3001/24708 [1:58:39<1267:50:35, 210.27s/it]\\\\r 12%|█▏        | 3002/24708 [1:58:41<890:31:16, 147.70s/it] \\\\r 12%|█▏        | 3003/24708 [1:58:42<626:19:06, 103.88s/it]\\\\r 12%|█▏        | 3004/24708 [1:58:44<441:48:05, 73.28s/it] \\\\r 12%|█▏        | 3005/24708 [1:58:46<312:29:21, 51.83s/it]\\\\r 12%|█▏        | 3006/24708 [1:58:48<221:54:39, 36.81s/it]\\\\r 12%|█▏        | 3007/24708 [1:58:49<158:18:33, 26.26s/it]\\\\r 12%|█▏        | 3008/24708 [1:58:51<113:54:24, 18.90s/it]\\\\r 12%|█▏        | 3009/24708 [1:58:53<83:02:09, 13.78s/it] \\\\r 12%|█▏        | 3010/24708 [1:58:55<61:09:26, 10.15s/it]\\\\r 12%|█▏        | 3011/24708 [1:58:56<45:44:23,  7.59s/it]\\\\r 12%|█▏        | 3012/24708 [1:58:58<34:59:25,  5.81s/it]\\\\r 12%|█▏        | 3013/24708 [1:59:00<27:29:30,  4.56s/it]\\\\r 12%|█▏        | 3014/24708 [1:59:01<22:05:10,  3.67s/it]\\\\r 12%|█▏        | 3015/24708 [1:59:03<18:46:01,  3.11s/it]\\\\r 12%|█▏        | 3016/24708 [1:59:05<16:09:40,  2.68s/it]\\\\r 12%|█▏        | 3017/24708 [1:59:06<14:12:43,  2.36s/it]\\\\r 12%|█▏        | 3018/24708 [1:59:08<12:55:21,  2.14s/it]\\\\r 12%|█▏        | 3019/24708 [1:59:10<12:02:57,  2.00s/it]\\\\r 12%|█▏        | 3020/24708 [1:59:11<11:40:15,  1.94s/it]\\\\r 12%|█▏        | 3021/24708 [1:59:13<11:00:09,  1.83s/it]\\\\r 12%|█▏        | 3022/24708 [1:59:15<11:01:29,  1.83s/it]\\\\r 12%|█▏        | 3023/24708 [1:59:17<10:49:59,  1.80s/it]\\\\r 12%|█▏        | 3024/24708 [1:59:18<10:50:13,  1.80s/it]\\\\r 12%|█▏        | 3025/24708 [1:59:20<10:45:54,  1.79s/it]\\\\r 12%|█▏        | 3026/24708 [1:59:22<10:53:57,  1.81s/it]\\\\r 12%|█▏        | 3027/24708 [1:59:24<10:30:22,  1.74s/it]\\\\r 12%|█▏        | 3028/24708 [1:59:25<10:13:49,  1.70s/it]\\\\r 12%|█▏        | 3029/24708 [1:59:27<10:06:39,  1.68s/it]\\\\r 12%|█▏        | 3030/24708 [1:59:28<10:07:22,  1.68s/it]\\\\r 12%|█▏        | 3031/24708 [1:59:30<10:07:04,  1.68s/it]\\\\r 12%|█▏        | 3032/24708 [1:59:32<10:07:30,  1.68s/it]\\\\r 12%|█▏        | 3033/24708 [1:59:34<10:20:51,  1.72s/it]\\\\r 12%|█▏        | 3034/24708 [1:59:35<10:15:47,  1.70s/it]\\\\r 12%|█▏        | 3035/24708 [1:59:37<10:35:11,  1.76s/it]\\\\r 12%|█▏        | 3036/24708 [1:59:39<11:14:49,  1.87s/it]\\\\r 12%|█▏        | 3037/24708 [1:59:41<10:50:23,  1.80s/it]\\\\r 12%|█▏        | 3038/24708 [1:59:43<10:51:35,  1.80s/it]\\\\r 12%|█▏        | 3039/24708 [1:59:44<\\\\n\\\\n... [截断: 输出过长，省略 24185 字符] ...\\\\n\\\\n43/24708 [2:11:03<9:18:01,  1.57s/it]\\\\r 14%|█▍        | 3444/24708 [2:11:05<9:32:22,  1.62s/it]\\\\r 14%|█▍        | 3445/24708 [2:11:06<9:45:58,  1.65s/it]\\\\r 14%|█▍        | 3446/24708 [2:11:08<10:02:19,  1.70s/it]\\\\r 14%|█▍        | 3447/24708 [2:11:10<10:13:03,  1.73s/it]\\\\r 14%|█▍        | 3448/24708 [2:11:12<9:56:10,  1.68s/it] \\\\r 14%|█▍        | 3449/24708 [2:11:13<10:09:08,  1.72s/it]\\\\r 14%|█▍        | 3450/24708 [2:11:15<10:04:02,  1.70s/it]\\\\r                                                         \\\\r\\\\r 14%|█▍        | 3450/24708 [2:11:15<10:04:02,  1.70s/it]\\\\r 14%|█▍        | 3451/24708 [2:11:17<9:58:21,  1.69s/it] \\\\r 14%|█▍        | 3452/24708 [2:11:18<9:40:21,  1.64s/it]\\\\r 14%|█▍        | 3453/24708 [2:11:20<9:30:00,  1.61s/it]\\\\r 14%|█▍        | 3454/24708 [2:11:22<9:43:11,  1.65s/it]\\\\r 14%|█▍        | 3455/24708 [2:11:23<9:39:11,  1.64s/it]\\\\r 14%|█▍        | 3456/24708 [2:11:25<9:44:16,  1.65s/it]\\\\r 14%|█▍        | 3457/24708 [2:11:26<9:39:07,  1.64s/it]\\\\r 14%|█▍        | 3458/24708 [2:11:28<9:44:08,  1.65s/it]\\\\r 14%|█▍        | 3459/24708 [2:11:30<9:33:34,  1.62s/it]\\\\r 14%|█▍        | 3460/24708 [2:11:31<9:43:23,  1.65s/it]\\\\r 14%|█▍        | 3461/24708 [2:11:33<9:37:49,  1.63s/it]\\\\r 14%|█▍        | 3462/24708 [2:11:35<9:32:25,  1.62s/it]\\\\r 14%|█▍        | 3463/24708 [2:11:36<9:41:53,  1.64s/it]\\\\r 14%|█▍        | 3464/24708 [2:11:38<9:50:00,  1.67s/it]\\\\r 14%|█▍        | 3465/24708 [2:11:40<9:51:28,  1.67s/it]\\\\r 14%|█▍        | 3466/24708 [2:11:41<9:38:00,  1.63s/it]\\\\r 14%|█▍        | 3467/24708 [2:11:43<9:49:44,  1.67s/it]\\\\r 14%|█▍        | 3468/24708 [2:11:45<10:07:29,  1.72s/it]\\\\r 14%|█▍        | 3469/24708 [2:11:46<9:51:01,  1.67s/it] \\\\r 14%|█▍        | 3470/24708 [2:11:48<10:11:14,  1.73s/it]\\\\r 14%|█▍        | 3471/24708 [2:11:50<9:55:53,  1.68s/it] \\\\r 14%|█▍        | 3472/24708 [2:11:51<9:46:10,  1.66s/it]\\\\r 14%|█▍        | 3473/24708 [2:11:54<10:40:15,  1.81s/it]\\\\r 14%|█▍        | 3474/24708 [2:11:55<10:19:09,  1.75s/it]\\\\r 14%|█▍        | 3475/24708 [2:11:58<12:13:41,  2.07s/it]\\\\r 14%|█▍        | 3476/24708 [2:12:02<15:01:08,  2.55s/it]\\\\r 14%|█▍        | 3477/24708 [2:12:05<16:52:28,  2.86s/it]\\\\r 14%|█▍        | 3478/24708 [2:12:09<17:53:19,  3.03s/it]\\\\r 14%|█▍        | 3479/24708 [2:12:12<18:48:04,  3.19s/it]\\\\r 14%|█▍        | 3480/24708 [2:12:16<19:17:34,  3.27s/it]\\\\r 14%|█▍        | 3481/24708 [2:12:19<19:49:01,  3.36s/it]\\\\r 14%|█▍        | 3482/24708 [2:12:23<20:03:04,  3.40s/it]\\\\r 14%|█▍        | 3483/24708 [2:12:26<20:32:12,  3.48s/it]\\\\r 14%|█▍        | 3484/24708 [2:12:30<20:39:35,  3.50s/it]\\\\r 14%|█▍        | 3485/24708 [2:12:34<20:43:58,  3.52s/it]\\\\r 14%|█▍        | 3486/24708 [2:12:37<20:24:10,  3.46s/it]\\\\r 14%|█▍        | 3487/24708 [2:12:40<20:08:52,  3.42s/it]\\\\r 14%|█▍        | 3488/24708 [2:12:44<20:15:58,  3.44s/it]\\\\r 14%|█▍        | 3489/24708 [2:12:47<19:48:57,  3.36s/it]\\\\r 14%|█▍        | 3490/24708 [2:12:50<20:08:36,  3.42s/it]\\\\r 14%|█▍        | 3491/24708 [2:12:54<19:53:01,  3.37s/it]\\\\r 14%|█▍        | 3492/24708 [2:12:58<20:40:01,  3.51s/it]\\\\r 14%|█▍        | 3493/24708 [2:13:01<19:43:48,  3.35s/it]\\\\r 14%|█▍        | 3494/24708 [2:13:04<20:36:19,  3.50s/it]\\\\r 14%|█▍        | 3495/24708 [2:13:08<20:08:18,  3.42s/it]\\\\r 14%|█▍        | 3496/24708 [2:13:11<20:30:39,  3.48s/it]\\\\r 14%|█▍        | 3497/24708 [2:13:15<20:29:02,  3.48s/it]\\\\r 14%|█▍        | 3498/24708 [2:13:18<20:57:30,  3.56s/it]\\\\r 14%|█▍        | 3499/24708 [2:13:22<20:14:19,  3.44s/it]---CKPT---\\\\ntotal 32\\\\ndrwxr-xr-x  5 root root   120 May 18 19:30 .\\\\ndrwxr-xr-x 20 root root  4096 May 18 18:23 ..\\\\ndrwxr-xr-x  2 root root  4096 May 18 18:09 checkpoint-1000\\\\ndrwxr-xr-x  2 root root  4096 May 18 18:47 checkpoint-2000\\\\ndrwxr-xr-x  2 root root  4096 May 18 19:30 checkpoint-3000\\\\n-rw-r--r--  1 root root 14224 May 18 19:43 trainer_log.jsonl\\\\n---CKPT_LIST---\\\\ncheckpoints/llama3.1-8b-fewnerd-lora/checkpoint-1000/:\\\\nREADME.md\\\\nadapter_config.json\\\\nadapter_model.safetensors\\\\nchat_template.jinja\\\\noptimizer.pt\\\\nrng_state.pth\\\\nscheduler.pt\\\\nspecial_tokens_map.json\\\\ntokenizer.json\\\\n---TRAINER_STATE---\\\\nno trainer_state.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"root     137791  0.0  0.0   4364  3256 pts/3    Ss+  17:31   0:00 bash -c source /root/miniconda3/bin/activate && bash /root/autodl-tmp/struct_self_consist_ie/code/run_llama_fewnerd_train_single_gpu.sh 2>&1 | tee /root/autodl-tmp/struct_self_consist_ie/logs/llama_fewnerd_train.log\\nroot     137860  0.0  0.0   4364  3216 pts/3    S+   17:31   0:00 bash /root/autodl-tmp/struct_self_consist_ie/code/run_llama_fewnerd_train_single_gpu.sh\\nroot     137861  0.0  0.0   2796  1044 pts/3    S+   17:31   0:01 tee /root/autodl-tmp/struct_self_consist_ie/logs/llama_fewnerd_train.log\\nroot     137865 97.5  0.3 60492460 2703248 pts/3 Sl+ 17:31 130:23 /root/miniconda3/bin/python /root/miniconda3/bin/llamafactory-cli train train_config_llama_fewnerd.yaml\\n---LOG---\\n  \\\"pretraining_tp\\\": 1,\\n  \\\"rms_norm_eps\\\": 1e-05,\\n  \\\"rope_scaling\\\": {\\n    \\\"factor\\\": 8.0,\\n    \\\"high_freq_factor\\\": 4.0,\\n    \\\"low_freq_factor\\\": 1.0,\\n    \\\"original_max_position_embeddings\\\": 8192,\\n    \\\"rope_type\\\": \\\"llama3\\\"\\n  },\\n  \\\"rope_theta\\\": 500000.0,\\n  \\\"tie_word_embeddings\\\": false,\\n  \\\"transformers_version\\\": \\\"4.57.1\\\",\\n  \\\"use_cache\\\": true,\\n  \\\"vocab_size\\\": 128256\\n}\\n\\n[INFO|tokenization_utils_base.py:2421] 2026-05-18 19:30:37,783 >> chat template saved in /root/autodl-tmp/struct_self_consist_ie/checkpoints/llama3.1-8b-fewnerd-lora/checkpoint-3000/chat_template.jinja\\n[INFO|tokenization_utils_base.py:2590] 2026-05-18 19:30:37,785 >> tokenizer config file saved in /root/autodl-tmp/struct_self_consist_ie/checkpoints/llama3.1-8b-fewnerd-lora/checkpoint-3000/tokenizer_config.json\\n[INFO|tokenization_utils_base.py:2599] 2026-05-18 19:30:37,785 >> Special tokens file saved in /root/autodl-tmp/struct_self_consist_ie/checkpoints/llama3.1-8b-fewnerd-lora/checkpoint-3000/special_tokens_map.json\\n\\r 12%|█▏        | 3001/24708 [1:58:39<1267:50:35, 210.27s/it]\\r 12%|█▏        | 3002/24708 [1:58:41<890:31:16, 147.70s/it] \\r 12%|█▏        | 3003/24708 [1:58:42<626:19:06, 103.88s/it]\\r 12%|█▏        | 3004/24708 [1:58:44<441:48:05, 73.28s/it] \\r 12%|█▏        | 3005/24708 [1:58:46<312:29:21, 51.83s/it]\\r 12%|█▏        | 3006/24708 [1:58:48<221:54:39, 36.81s/it]\\r 12%|█▏        | 3007/24708 [1:58:49<158:18:33, 26.26s/it]\\r 12%|█▏        | 3008/24708 [1:58:51<113:54:24, 18.90s/it]\\r 12%|█▏        | 3009/24708 [1:58:53<83:02:09, 13.78s/it] \\r 12%|█▏        | 3010/24708 [1:58:55<61:09:26, 10.15s/it]\\r 12%|█▏        | 3011/24708 [1:58:56<45:44:23,  7.59s/it]\\r 12%|█▏        | 3012/24708 [1:58:58<34:59:25,  5.81s/it]\\r 12%|█▏        | 3013/24708 [1:59:00<27:29:30,  4.56s/it]\\r 12%|█▏        | 3014/24708 [1:59:01<22:05:10,  3.67s/it]\\r 12%|█▏        | 3015/24708 [1:59:03<18:46:01,  3.11s/it]\\r 12%|█▏        | 3016/24708 [1:59:05<16:09:40,  2.68s/it]\\r 12%|█▏        | 3017/24708 [1:59:06<14:12:43,  2.36s/it]\\r 12%|█▏        | 3018/24708 [1:59:08<12:55:21,  2.14s/it]\\r 12%|█▏        | 3019/24708 [1:59:10<12:02:57,  2.00s/it]\\r 12%|█▏        | 3020/24708 [1:59:11<11:40:15,  1.94s/it]\\r 12%|█▏        | 3021/24708 [1:59:13<11:00:09,  1.83s/it]\\r 12%|█▏        | 3022/24708 [1:59:15<11:01:29,  1.83s/it]\\r 12%|█▏        | 3023/24708 [1:59:17<10:49:59,  1.80s/it]\\r 12%|█▏        | 3024/24708 [1:59:18<10:50:13,  1.80s/it]\\r 12%|█▏        | 3025/24708 [1:59:20<10:45:54,  1.79s/it]\\r 12%|█▏        | 3026/24708 [1:59:22<10:53:57,  1.81s/it]\\r 12%|█▏        | 3027/24708 [1:59:24<10:30:22,  1.74s/it]\\r 12%|█▏        | 3028/24708 [1:59:25<10:13:49,  1.70s/it]\\r 12%|█▏        | 3029/24708 [1:59:27<10:06:39,  1.68s/it]\\r 12%|█▏        | 3030/24708 [1:59:28<10:07:22,  1.68s/it]\\r 12%|█▏        | 3031/24708 [1:59:30<10:07:04,  1.68s/it]\\r 12%|█▏        | 3032/24708 [1:59:32<10:07:30,  1.68s/it]\\r 12%|█▏        | 3033/24708 [1:59:34<10:20:51,  1.72s/it]\\r 12%|█▏        | 3034/24708 [1:59:35<10:15:47,  1.70s/it]\\r 12%|█▏        | 3035/24708 [1:59:37<10:35:11,  1.76s/it]\\r 12%|█▏        | 3036/24708 [1:59:39<11:14:49,  1.87s/it]\\r 12%|█▏        | 3037/24708 [1:59:41<10:50:23,  1.80s/it]\\r 12%|█▏        | 3038/24708 [1:59:43<10:51:35,  1.80s/it]\\r 12%|█▏        | 3039/24708 [1:59:44<\\n\\n... [截断: 输出过长，省略 24185 字符] ...\\n\\n43/24708 [2:11:03<9:18:01,  1.57s/it]\\r 14%|█▍        | 3444/24708 [2:11:05<9:32:22,  1.62s/it]\\r 14%|█▍        | 3445/24708 [2:11:06<9:45:58,  1.65s/it]\\r 14%|█▍        | 3446/24708 [2:11:08<10:02:19,  1.70s/it]\\r 14%|█▍        | 3447/24708 [2:11:10<10:13:03,  1.73s/it]\\r 14%|█▍        | 3448/24708 [2:11:12<9:56:10,  1.68s/it] \\r 14%|█▍        | 3449/24708 [2:11:13<10:09:08,  1.72s/it]\\r 14%|█▍        | 3450/24708 [2:11:15<10:04:02,  1.70s/it]\\r                                                         \\r\\r 14%|█▍        | 3450/24708 [2:11:15<10:04:02,  1.70s/it]\\r 14%|█▍        | 3451/24708 [2:11:17<9:58:21,  1.69s/it] \\r 14%|█▍        | 3452/24708 [2:11:18<9:40:21,  1.64s/it]\\r 14%|█▍        | 3453/24708 [2:11:20<9:30:00,  1.61s/it]\\r 14%|█▍        | 3454/24708 [2:11:22<9:43:11,  1.65s/it]\\r 14%|█▍        | 3455/24708 [2:11:23<9:39:11,  1.64s/it]\\r 14%|█▍        | 3456/24708 [2:11:25<9:44:16,  1.65s/it]\\r 14%|█▍        | 3457/24708 [2:11:26<9:39:07,  1.64s/it]\\r 14%|█▍        | 3458/24708 [2:11:28<9:44:08,  1.65s/it]\\r 14%|█▍        | 3459/24708 [2:11:30<9:33:34,  1.62s/it]\\r 14%|█▍        | 3460/24708 [2:11:31<9:43:23,  1.65s/it]\\r 14%|█▍        | 3461/24708 [2:11:33<9:37:49,  1.63s/it]\\r 14%|█▍        | 3462/24708 [2:11:35<9:32:25,  1.62s/it]\\r 14%|█▍        | 3463/24708 [2:11:36<9:41:53,  1.64s/it]\\r 14%|█▍        | 3464/24708 [2:11:38<9:50:00,  1.67s/it]\\r 14%|█▍        | 3465/24708 [2:11:40<9:51:28,  1.67s/it]\\r 14%|█▍        | 3466/24708 [2:11:41<9:38:00,  1.63s/it]\\r 14%|█▍        | 3467/24708 [2:11:43<9:49:44,  1.67s/it]\\r 14%|█▍        | 3468/24708 [2:11:45<10:07:29,  1.72s/it]\\r 14%|█▍        | 3469/24708 [2:11:46<9:51:01,  1.67s/it] \\r 14%|█▍        | 3470/24708 [2:11:48<10:11:14,  1.73s/it]\\r 14%|█▍        | 3471/24708 [2:11:50<9:55:53,  1.68s/it] \\r 14%|█▍        | 3472/24708 [2:11:51<9:46:10,  1.66s/it]\\r 14%|█▍        | 3473/24708 [2:11:54<10:40:15,  1.81s/it]\\r 14%|█▍        | 3474/24708 [2:11:55<10:19:09,  1.75s/it]\\r 14%|█▍        | 3475/24708 [2:11:58<12:13:41,  2.07s/it]\\r 14%|█▍        | 3476/24708 [2:12:02<15:01:08,  2.55s/it]\\r 14%|█▍        | 3477/24708 [2:12:05<16:52:28,  2.86s/it]\\r 14%|█▍        | 3478/24708 [2:12:09<17:53:19,  3.03s/it]\\r 14%|█▍        | 3479/24708 [2:12:12<18:48:04,  3.19s/it]\\r 14%|█▍        | 3480/24708 [2:12:16<19:17:34,  3.27s/it]\\r 14%|█▍        | 3481/24708 [2:12:19<19:49:01,  3.36s/it]\\r 14%|█▍        | 3482/24708 [2:12:23<20:03:04,  3.40s/it]\\r 14%|█▍        | 3483/24708 [2:12:26<20:32:12,  3.48s/it]\\r 14%|█▍        | 3484/24708 [2:12:30<20:39:35,  3.50s/it]\\r 14%|█▍        | 3485/24708 [2:12:34<20:43:58,  3.52s/it]\\r 14%|█▍        | 3486/24708 [2:12:37<20:24:10,  3.46s/it]\\r 14%|█▍        | 3487/24708 [2:12:40<20:08:52,  3.42s/it]\\r 14%|█▍        | 3488/24708 [2:12:44<20:15:58,  3.44s/it]\\r 14%|█▍        | 3489/24708 [2:12:47<19:48:57,  3.36s/it]\\r 14%|█▍        | 3490/24708 [2:12:50<20:08:36,  3.42s/it]\\r 14%|█▍        | 3491/24708 [2:12:54<19:53:01,  3.37s/it]\\r 14%|█▍        | 3492/24708 [2:12:58<20:40:01,  3.51s/it]\\r 14%|█▍        | 3493/24708 [2:13:01<19:43:48,  3.35s/it]\\r 14%|█▍        | 3494/24708 [2:13:04<20:36:19,  3.50s/it]\\r 14%|█▍        | 3495/24708 [2:13:08<20:08:18,  3.42s/it]\\r 14%|█▍        | 3496/24708 [2:13:11<20:30:39,  3.48s/it]\\r 14%|█▍        | 3497/24708 [2:13:15<20:29:02,  3.48s/it]\\r 14%|█▍        | 3498/24708 [2:13:18<20:57:30,  3.56s/it]\\r 14%|█▍        | 3499/24708 [2:13:22<20:14:19,  3.44s/it]---CKPT---\\ntotal 32\\ndrwxr-xr-x  5 root root   120 May 18 19:30 .\\ndrwxr-xr-x 20 root root  4096 May 18 18:23 ..\\ndrwxr-xr-x  2 root root  4096 May 18 18:09 checkpoint-1000\\ndrwxr-xr-x  2 root root  4096 May 18 18:47 checkpoint-2000\\ndrwxr-xr-x  2 root root  4096 May 18 19:30 checkpoint-3000\\n-rw-r--r--  1 root root 14224 May 18 19:43 trainer_log.jsonl\\n---CKPT_LIST---\\ncheckpoints/llama3.1-8b-fewnerd-lora/checkpoint-1000/:\\nREADME.md\\nadapter_config.json\\nadapter_model.safetensors\\nchat_template.jinja\\noptimizer.pt\\nrng_state.pth\\nscheduler.pt\\nspecial_tokens_map.json\\ntokenizer.json\\n---TRAINER_STATE---\\nno trainer_state.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01GVXWBCKbajfQFaWmWaLuzR`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cd /root/autodl-tmp/struct_self_consist_ie && echo \"---SEED123---\"; wc -l output/exp_021_fewnerd_n8_seed123/samples.jsonl 2>/dev/null || echo \"no samples.jsonl\"; ls output/exp_021_fewnerd_n8_seed123/full_signal_analysis.json 2>/dev/null && echo \"analysis exists\" || echo \"no analysis\"; python3 -c \"\nimport json\ntry:\n    with open('output/exp_021_fewnerd_n8_seed123/full_signal_analysis.json') as f:\n        d = json.load(f)\n    print('greedy_f1:', d.get('greedy_f1'))\n    print('degen:', d.get('degeneracy_cf1_gold_filtered'))\n    print('lp_rho:', d.get('lp_spearman_rho', d.get('logprob_spearman')))\nexcept Exception as e:\n    print('Error:', e)\n\" 2>/dev/null; tail -10 output/exp_021_fewnerd_n8_seed123_run.log 2>/dev/null || echo \"no run log\"",
+  "account": "root",
+  "warn": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "675d26ca-a3e3-4ca1-9203-4d726b6afe37",
+  "uuid": "8f71720c-2929-430f-a84a-58dfe98e1f35",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WPnPC2RhmLcADWskk1HbWY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3403,
+      "cache_read_input_tokens": 26556,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3403
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-18T11:45:29.168Z_
+
+<details><summary>↩ Tool result · `toolu_01GVXWBCKbajfQFaWmWaLuzR`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"---SEED123---\\n37648 output/exp_021_fewnerd_n8_seed123/samples.jsonl\\nno analysis\\n  person               | 12211 | 0.8173 | 0.9070 | 0.8250 | +0.77pp |  4.7%\\n  organization         | 11603 | 0.7514 | 0.8699 | 0.7591 | +0.78pp |  8.3%\\n  other                |  4839 | 0.6735 | 0.8489 | 0.7075 | +3.40pp | 17.2%\\n  building             |  3496 | 0.7493 | 0.8682 | 0.7501 | +0.08pp |  7.8%\\n  product              |  3271 | 0.6810 | 0.8353 | 0.6963 | +1.54pp | 15.7%\\n  event                |  3191 | 0.7128 | 0.8420 | 0.7161 | +0.33pp |  8.6%\\n  art                  |  2743 | 0.7982 | 0.8802 | 0.7964 | -0.17pp |  5.5%\\n\\nResults saved to /root/autodl-tmp/struct_self_consist_ie/output/exp_021_fewnerd_n8_seed123/results.json\\n=== Mon May 18 18:50:58 CST 2026 === All done ===\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "675d26ca-a3e3-4ca1-9203-4d726b6afe37",
+  "uuid": "58837243-2cff-46c6-a20e-5e79d2da41eb",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"---SEED123---\\\\n37648 output/exp_021_fewnerd_n8_seed123/samples.jsonl\\\\nno analysis\\\\n  person               | 12211 | 0.8173 | 0.9070 | 0.8250 | +0.77pp |  4.7%\\\\n  organization         | 11603 | 0.7514 | 0.8699 | 0.7591 | +0.78pp |  8.3%\\\\n  other                |  4839 | 0.6735 | 0.8489 | 0.7075 | +3.40pp | 17.2%\\\\n  building             |  3496 | 0.7493 | 0.8682 | 0.7501 | +0.08pp |  7.8%\\\\n  product              |  3271 | 0.6810 | 0.8353 | 0.6963 | +1.54pp | 15.7%\\\\n  event                |  3191 | 0.7128 | 0.8420 | 0.7161 | +0.33pp |  8.6%\\\\n  art                  |  2743 | 0.7982 | 0.8802 | 0.7964 | -0.17pp |  5.5%\\\\n\\\\nResults saved to /root/autodl-tmp/struct_self_consist_ie/output/exp_021_fewnerd_n8_seed123/results.json\\\\n=== Mon May 18 18:50:58 CST 2026 === All done ===\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"---SEED123---\\n37648 output/exp_021_fewnerd_n8_seed123/samples.jsonl\\nno analysis\\n  person               | 12211 | 0.8173 | 0.9070 | 0.8250 | +0.77pp |  4.7%\\n  organization         | 11603 | 0.7514 | 0.8699 | 0.7591 | +0.78pp |  8.3%\\n  other                |  4839 | 0.6735 | 0.8489 | 0.7075 | +3.40pp | 17.2%\\n  building             |  3496 | 0.7493 | 0.8682 | 0.7501 | +0.08pp |  7.8%\\n  product              |  3271 | 0.6810 | 0.8353 | 0.6963 | +1.54pp | 15.7%\\n  event                |  3191 | 0.7128 | 0.8420 | 0.7161 | +0.33pp |  8.6%\\n  art                  |  2743 | 0.7982 | 0.8802 | 0.7964 | -0.17pp |  5.5%\\n\\nResults saved to /root/autodl-tmp/struct_self_consist_ie/output/exp_021_fewnerd_n8_seed123/results.json\\n=== Mon May 18 18:50:58 CST 2026 === All done ===\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01SJgHczRAvVDTnfxn8d2kd4`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cd /root/autodl-tmp/struct_self_consist_ie && echo \"---SEED456---\"; wc -l output/exp_021_fewnerd_n8_seed456/samples.jsonl 2>/dev/null || echo \"no samples.jsonl\"; ls output/exp_021_fewnerd_n8_seed456/full_signal_analysis.json 2>/dev/null && echo \"analysis exists\" || echo \"no analysis\"; python3 -c \"\nimport json\ntry:\n    with open('output/exp_021_fewnerd_n8_seed456/full_signal_analysis.json') as f:\n        d = json.load(f)\n    print('greedy_f1:', d.get('greedy_f1'))\n    print('degen:', d.get('degeneracy_cf1_gold_filtered'))\n    print('lp_rho:', d.get('lp_spearman_rho', d.get('logprob_spearman')))\nexcept Exception as e:\n    print('Error:', e)\n\" 2>/dev/null; tail -10 output/exp_021_fewnerd_n8_seed456_run.log 2>/dev/null || echo \"no run log\"",
+  "account": "root",
+  "warn": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "675d26ca-a3e3-4ca1-9203-4d726b6afe37",
+  "uuid": "12ed555d-414f-492a-93c0-37363f7321c7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WPnPC2RhmLcADWskk1HbWY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3403,
+      "cache_read_input_tokens": 26556,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3403
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01Fbk8tNKCXDdnT2y9iByCi7`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cd /root/autodl-tmp/struct_self_consist_ie && echo \"---SCIERC PROBE---\"; ls output/hidden_state_probe/results_textbased_goldfiltered.json 2>/dev/null && echo \"SciERC probe done\" || echo \"SciERC probe missing\"; echo \"---FEWNERD PROBE---\"; ls output/hidden_state_probe_fewnerd/ 2>/dev/null || echo \"no fewnerd probe dir\"; cat output/hidden_state_probe_fewnerd/results*.json 2>/dev/null | python3 -c \"import json,sys; d=json.load(sys.stdin); print(json.dumps(d, indent=2))\" 2>/dev/null | head -30; echo \"---EXP016 PROBE---\"; ls output/hidden_state_probe_exp016/ 2>/dev/null || echo \"no exp016 probe dir\"; cat output/hidden_state_probe_exp016/results*.json 2>/dev/null | python3 -c \"import json,sys; d=json.load(sys.stdin); print(json.dumps(d, indent=2))\" 2>/dev/null | head -30",
+  "account": "root",
+  "warn": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "675d26ca-a3e3-4ca1-9203-4d726b6afe37",
+  "uuid": "c0e2df6a-ae53-4c6e-b61c-81ca2a48e8c2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WPnPC2RhmLcADWskk1HbWY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3403,
+      "cache_read_input_tokens": 26556,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3403
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01DdoBjKkr9M33aDLqUVDrjM`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cd /root/autodl-tmp/struct_self_consist_ie && echo \"---TOKEN LP---\"; ls output/token_lp_aggregator/ 2>/dev/null || echo \"no token_lp dir\"; cat output/token_lp_aggregator/results*.json 2>/dev/null | python3 -c \"import json,sys; d=json.load(sys.stdin); print(json.dumps(d, indent=2))\" 2>/dev/null | head -40",
+  "account": "root",
+  "warn": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "675d26ca-a3e3-4ca1-9203-4d726b6afe37",
+  "uuid": "d31f4a03-e69d-40c1-8ae5-9223c73dd10e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WPnPC2RhmLcADWskk1HbWY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3403,
+      "cache_read_input_tokens": 26556,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3403
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01B6FZ45HrH3MWsKL7EEFpsK`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cd /root/autodl-tmp/struct_self_consist_ie && echo \"---CONLL SEED123---\"; wc -l output/exp_002_conll_n8_seed123/samples.jsonl 2>/dev/null || echo \"no seed123\"; ls output/exp_002_conll_n8_seed123/full_signal_analysis.json 2>/dev/null && echo \"analysis exists\" || echo \"no analysis\"; echo \"---CONLL SEED456---\"; wc -l output/exp_002_conll_n8_seed456/samples.jsonl 2>/dev/null || echo \"no seed456\"; ls output/exp_002_conll_n8_seed456/full_signal_analysis.json 2>/dev/null && echo \"analysis exists\" || echo \"no analysis\"",
+  "account": "root",
+  "warn": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "675d26ca-a3e3-4ca1-9203-4d726b6afe37",
+  "uuid": "cdb5a27d-7488-406a-92f6-34978b89dba5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WPnPC2RhmLcADWskk1HbWY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3403,
+      "cache_read_input_tokens": 26556,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3403
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_017RFeKZC9Ko4tGKqnEWgXC9`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "ps aux | grep -E \"python|vllm|train\" | grep -v grep | grep -v sshd | grep -v bash",
+  "account": "root",
+  "warn": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "675d26ca-a3e3-4ca1-9203-4d726b6afe37",
+  "uuid": "35cafcb8-13de-473a-ba4a-78c77418f59d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WPnPC2RhmLcADWskk1HbWY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3403,
+      "cache_read_input_tokens": 26556,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3403
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-18T11:45:39.184Z_
+
+<details><summary>↩ Tool result · `toolu_01SJgHczRAvVDTnfxn8d2kd4`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"---SEED456---\\nno samples.jsonl\\nno analysis\\n(EngineCore pid=138471) \\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):   0%|          | 0/51 [00:00<?, ?it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):   4%|▍         | 2/51 [00:00<00:02, 16.77it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):   8%|▊         | 4/51 [00:00<00:02, 16.76it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  12%|█▏        | 6/51 [00:00<00:02, 16.68it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  16%|█▌        | 8/51 [00:00<00:02, 16.69it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  20%|█▉        | 10/51 [00:00<00:02, 16.97it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  24%|██▎       | 12/51 [00:00<00:02, 17.19it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  27%|██▋       | 14/51 [00:00<00:02, 17.71it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  31%|███▏      | 16/51 [00:00<00:01, 18.03it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  35%|███▌      | 18/51 [00:01<00:01, 18.38it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  41%|████      | 21/51 [00:01<00:01, 19.41it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  47%|████▋     | 24/51 [00:01<00:01, 20.25it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  53%|█████▎    | 27/51 [00:01<00:01, 21.39it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  59%|█████▉    | 30/51 [00:01<00:01, 20.62it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  65%|██████▍   | 33/51 [00:01<00:00, 21.63it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  71%|███████   | 36/51 [00:01<00:00, 22.79it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  76%|███████▋  | 39/51 [00:01<00:00, 23.34it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  82%|███��████▏ | 42/51 [00:02<00:00, 24.46it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  88%|████████▊ | 45/51 [00:02<00:00, 25.68it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  96%|█████████▌| 49/51 [00:02<00:00, 27.49it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE): 100%|██████████| 51/51 [00:02<00:00, 21.46it/s]\\n(EngineCore pid=138471) \\rCapturing CUDA graphs (decode, FULL):   0%|          | 0/35 [00:00<?, ?it/s]\\rCapturing CUDA graphs (decode, FULL):   9%|▊         | 3/35 [00:00<00:01, 23.55it/s]\\rCapturing CUDA graphs (decode, FULL):  17%|█▋        | 6/35 [00:00<00:01, 24.45it/s]\\rCapturing CUDA graphs (decode, FULL):  26%|██▌       | 9/35 [00:00<00:01, 25.68it/s]\\rCapturing CUDA graphs (decode, FULL):  34%|███▍      | 12/35 [00:00<00:00, 26.51it/s]\\rCapturing CUDA graphs (decode, FULL):  43%|████▎     | 15/35 [00:00<00:00, 27.19it/s]\\rCapturing CUDA graphs (decode, FULL):  54%|█████▍    | 19/35 [00:00<00:00, 28.50it/s]\\rCapturing CUDA graphs (decode, FULL):  66%|██████▌   | 23/35 [00:00<00:00, 29.87it/s]\\rCapturing CUDA graphs (decode, FULL):  77%|███████▋  | 27/35 [00:00<00:00, 31.58it/s]\\rCapturing CUDA graphs (decode, FULL):  91%|█████████▏| 32/35 [00:01<00:00, 34.58it/s]\\rCapturing CUDA graphs (decode, FULL): 100%|██████████| 35/35 [00:01<00:00, 31.16it/s]\\n(EngineCore pid=138471) INFO 05-18 17:32:23 [gpu_model_runner.py:5746] Graph capturing finished in 5 secs, took 0.39 GiB\\n(EngineCore pid=138471) INFO 05-18 17:32:23 [gpu_worker.py:617] CUDA graph pool memory: 0.39 GiB (actual), 0.55 GiB (estimated), difference: 0.16 GiB (42.4%).\\n(EngineCore pid=138471) INFO 05-18 17:32:23 [core.py:281] init engine (profile, create kv cache, warmup model) took 14.54 seconds\\nINFO 05-18 17:32:24 [llm.py:391] Supported tasks: ['generate']\\n\\rRendering prompts:   0%|          | 0/37648 [00:00<?, ?it/s]\\rRendering prompts:   0%|          | 22/37648 [00:00<02:51, 219.34it/s]\\rRendering prompts:   0%|          | 75/37648 [00:00<01:34, 397.93it/s]\\rRendering prompts:   0%|          | 126/37648 [00:00<01:23, 448.60it/s]\\rRendering prompts:   0%|       \\n\\n... [截断: 输出过长，省略 3822428 字符] ...\\n\\n, 31.90it/s, est. speed input: 6126.12 toks/s, output: 3280.95 toks/s]\\rProcessed prompts:  88%|████████▊ | 33089/37648 [14:47<02:11, 34.65it/s, est. speed input: 6126.30 toks/s, output: 3281.34 toks/s]\\rProcessed prompts:  88%|████████▊ | 33093/37648 [14:47<02:51, 26.49it/s, est. speed input: 6125.17 toks/s, output: 3280.87 toks/s]\\rProcessed prompts:  88%|████████▊ | 33099/37648 [14:48<02:24, 31.40it/s, est. speed input: 6125.50 toks/s, output: 3280.99 toks/s]\\rProcessed prompts:  88%|████████▊ | 33104/37648 [14:48<02:14, 33.68it/s, est. speed input: 6125.64 toks/s, output: 3281.09 toks/s]\\rProcessed prompts:  88%|████████▊ | 33109/37648 [14:48<02:05, 36.22it/s, est. speed input: 6125.77 toks/s, output: 3281.05 toks/s]\\rProcessed prompts:  88%|████████▊ | 33113/37648 [14:48<02:17, 33.06it/s, est. speed input: 6125.45 toks/s, output: 3280.87 toks/s]\\rProcessed prompts:  88%|████████▊ | 33117/37648 [14:48<02:28, 30.49it/s, est. speed input: 6125.10 toks/s, output: 3280.64 toks/s]\\rProcessed prompts:  88%|████████▊ | 33121/37648 [14:48<03:00, 25.08it/s, est. speed input: 6124.17 toks/s, output: 3280.01 toks/s]\\rProcessed prompts:  88%|████████▊ | 33125/37648 [14:49<03:01, 24.96it/s, est. speed input: 6123.77 toks/s, output: 3279.82 toks/s]\\rProcessed prompts:  88%|████████▊ | 33130/37648 [14:49<02:48, 26.86it/s, est. speed input: 6123.60 toks/s, output: 3279.83 toks/s]\\rProcessed prompts:  88%|████████▊ | 33135/37648 [14:49<02:26, 30.78it/s, est. speed input: 6123.67 toks/s, output: 3279.80 toks/s]\\rProcessed prompts:  88%|████████▊ | 33140/37648 [14:49<02:28, 30.29it/s, est. speed input: 6123.43 toks/s, output: 3279.74 toks/s]\\rProcessed prompts:  88%|████████▊ | 33148/37648 [14:49<02:14, 33.52it/s, est. speed input: 6123.48 toks/s, output: 3279.80 toks/s]\\rProcessed prompts:  88%|████████▊ | 33155/37648 [14:49<01:59, 37.49it/s, est. speed input: 6123.87 toks/s, output: 3280.27 toks/s]\\rProcessed prompts:  88%|████████▊ | 33159/37648 [14:49<01:59, 37.68it/s, est. speed input: 6123.94 toks/s, output: 3280.57 toks/s]\\rProcessed prompts:  88%|████████▊ | 33167/37648 [14:50<01:55, 38.70it/s, est. speed input: 6124.01 toks/s, output: 3280.68 toks/s]\\rProcessed prompts:  88%|████████▊ | 33173/37648 [14:50<02:04, 35.94it/s, est. speed input: 6123.80 toks/s, output: 3280.87 toks/s]\\rProcessed prompts:  88%|████████▊ | 33177/37648 [14:50<02:25, 30.66it/s, est. speed input: 6123.23 toks/s, output: 3280.55 toks/s]\\rProcessed prompts:  88%|████████▊ | 33183/37648 [14:50<02:24, 30.84it/s, est. speed input: 6123.03 toks/s, output: 3280.32 toks/s]\\rProcessed prompts:  88%|████████▊ | 33187/37648 [14:50<02:32, 29.26it/s, est. speed input: 6122.70 toks/s, output: 3280.22 toks/s]\\rProcessed prompts:  88%|████████▊ | 33192/37648 [14:51<02:18, 32.07it/s, est. speed input: 6122.79 toks/s, output: 3280.21 toks/s]\\rProcessed prompts:  88%|████████▊ | 33197/37648 [14:51<02:22, 31.21it/s, est. speed input: 6122.61 toks/s, output: 3280.22 toks/s]\\rProcessed prompts:  88%|████████▊ | 33204/37648 [14:51<02:13, 33.17it/s, est. speed input: 6122.62 toks/s, output: 3280.20 toks/s]\\rProcessed prompts:  88%|████████▊ | 33210/37648 [14:51<02:14, 32.99it/s, est. speed input: 6122.53 toks/s, output: 3280.41 toks/s]\\rProcessed prompts:  88%|████████▊ | 33218/37648 [14:51<02:05, 35.30it/s, est. speed input: 6122.62 toks/s, output: 3280.44 toks/s]\\rProcessed prompts:  88%|████████▊ | 33223/37648 [14:51<02:11, 33.75it/s, est. speed input: 6122.48 toks/s, output: 3280.51 toks/s]\\rProcessed prompts:  88%|████████▊ | 33227/37648 [14:52<02:20, 31.56it/s, est. speed input: 6122.14 toks/s, output: 3280.30 toks/s]\\rProcessed prompts:  88%|████████▊ | 33231/37648 [14:52<02:27, 29.85it/s, est. speed input: 6121.85 toks/s, output: 3280.23 toks/s]\\rProcessed prompts:  88%|████████▊ | 33235/37648 [14:52<02:23, 30.82it/s, est. speed input: 6121.81 toks/s, output: 3280.11 toks/s]\\rProcessed prompts:  88%|████████▊ | 33240/37648 [14:52<02:26, 30.06it/s, est. speed input: 6121.57 toks/s, output: 3279.92 toks/s]\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 7.7}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "675d26ca-a3e3-4ca1-9203-4d726b6afe37",
+  "uuid": "bf1674c9-cf30-4e5d-aedf-1d8f984d08e0",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"---SEED456---\\\\nno samples.jsonl\\\\nno analysis\\\\n(EngineCore pid=138471) \\\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):   0%|          | 0/51 [00:00<?, ?it/s]\\\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):   4%|▍         | 2/51 [00:00<00:02, 16.77it/s]\\\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):   8%|▊         | 4/51 [00:00<00:02, 16.76it/s]\\\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  12%|█▏        | 6/51 [00:00<00:02, 16.68it/s]\\\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  16%|█▌        | 8/51 [00:00<00:02, 16.69it/s]\\\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  20%|█▉        | 10/51 [00:00<00:02, 16.97it/s]\\\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  24%|██▎       | 12/51 [00:00<00:02, 17.19it/s]\\\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  27%|██▋       | 14/51 [00:00<00:02, 17.71it/s]\\\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  31%|███▏      | 16/51 [00:00<00:01, 18.03it/s]\\\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  35%|███▌      | 18/51 [00:01<00:01, 18.38it/s]\\\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  41%|████      | 21/51 [00:01<00:01, 19.41it/s]\\\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  47%|████▋     | 24/51 [00:01<00:01, 20.25it/s]\\\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  53%|█████▎    | 27/51 [00:01<00:01, 21.39it/s]\\\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  59%|█████▉    | 30/51 [00:01<00:01, 20.62it/s]\\\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  65%|██████▍   | 33/51 [00:01<00:00, 21.63it/s]\\\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  71%|███████   | 36/51 [00:01<00:00, 22.79it/s]\\\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  76%|███████▋  | 39/51 [00:01<00:00, 23.34it/s]\\\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  82%|███��████▏ | 42/51 [00:02<00:00, 24.46it/s]\\\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  88%|████████▊ | 45/51 [00:02<00:00, 25.68it/s]\\\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  96%|█████████▌| 49/51 [00:02<00:00, 27.49it/s]\\\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE): 100%|██████████| 51/51 [00:02<00:00, 21.46it/s]\\\\n(EngineCore pid=138471) \\\\rCapturing CUDA graphs (decode, FULL):   0%|          | 0/35 [00:00<?, ?it/s]\\\\rCapturing CUDA graphs (decode, FULL):   9%|▊         | 3/35 [00:00<00:01, 23.55it/s]\\\\rCapturing CUDA graphs (decode, FULL):  17%|█▋        | 6/35 [00:00<00:01, 24.45it/s]\\\\rCapturing CUDA graphs (decode, FULL):  26%|██▌       | 9/35 [00:00<00:01, 25.68it/s]\\\\rCapturing CUDA graphs (decode, FULL):  34%|███▍      | 12/35 [00:00<00:00, 26.51it/s]\\\\rCapturing CUDA graphs (decode, FULL):  43%|████▎     | 15/35 [00:00<00:00, 27.19it/s]\\\\rCapturing CUDA graphs (decode, FULL):  54%|█████▍    | 19/35 [00:00<00:00, 28.50it/s]\\\\rCapturing CUDA graphs (decode, FULL):  66%|██████▌   | 23/35 [00:00<00:00, 29.87it/s]\\\\rCapturing CUDA graphs (decode, FULL):  77%|███████▋  | 27/35 [00:00<00:00, 31.58it/s]\\\\rCapturing CUDA graphs (decode, FULL):  91%|█████████▏| 32/35 [00:01<00:00, 34.58it/s]\\\\rCapturing CUDA graphs (decode, FULL): 100%|██████████| 35/35 [00:01<00:00, 31.16it/s]\\\\n(EngineCore pid=138471) INFO 05-18 17:32:23 [gpu_model_runner.py:5746] Graph capturing finished in 5 secs, took 0.39 GiB\\\\n(EngineCore pid=138471) INFO 05-18 17:32:23 [gpu_worker.py:617] CUDA graph pool memory: 0.39 GiB (actual), 0.55 GiB (estimated), difference: 0.16 GiB (42.4%).\\\\n(EngineCore pid=138471) INFO 05-18 17:32:23 [core.py:281] init engine (profile, create kv cache, warmup model) took 14.54 seconds\\\\nINFO 05-18 17:32:24 [llm.py:391] Supported tasks: ['generate']\\\\n\\\\rRendering prompts:   0%|          | 0/37648 [00:00<?, ?it/s]\\\\rRendering prompts:   0%|          | 22/37648 [00:00<02:51, 219.34it/s]\\\\rRendering prompts:   0%|          | 75/37648 [00:00<01:34, 397.93it/s]\\\\rRendering prompts:   0%|          | 126/37648 [00:00<01:23, 448.60it/s]\\\\rRendering prompts:   0%|       \\\\n\\\\n... [截断: 输出过长，省略 3822428 字符] ...\\\\n\\\\n, 31.90it/s, est. speed input: 6126.12 toks/s, output: 3280.95 toks/s]\\\\rProcessed prompts:  88%|████████▊ | 33089/37648 [14:47<02:11, 34.65it/s, est. speed input: 6126.30 toks/s, output: 3281.34 toks/s]\\\\rProcessed prompts:  88%|████████▊ | 33093/37648 [14:47<02:51, 26.49it/s, est. speed input: 6125.17 toks/s, output: 3280.87 toks/s]\\\\rProcessed prompts:  88%|████████▊ | 33099/37648 [14:48<02:24, 31.40it/s, est. speed input: 6125.50 toks/s, output: 3280.99 toks/s]\\\\rProcessed prompts:  88%|████████▊ | 33104/37648 [14:48<02:14, 33.68it/s, est. speed input: 6125.64 toks/s, output: 3281.09 toks/s]\\\\rProcessed prompts:  88%|████████▊ | 33109/37648 [14:48<02:05, 36.22it/s, est. speed input: 6125.77 toks/s, output: 3281.05 toks/s]\\\\rProcessed prompts:  88%|████████▊ | 33113/37648 [14:48<02:17, 33.06it/s, est. speed input: 6125.45 toks/s, output: 3280.87 toks/s]\\\\rProcessed prompts:  88%|████████▊ | 33117/37648 [14:48<02:28, 30.49it/s, est. speed input: 6125.10 toks/s, output: 3280.64 toks/s]\\\\rProcessed prompts:  88%|████████▊ | 33121/37648 [14:48<03:00, 25.08it/s, est. speed input: 6124.17 toks/s, output: 3280.01 toks/s]\\\\rProcessed prompts:  88%|████████▊ | 33125/37648 [14:49<03:01, 24.96it/s, est. speed input: 6123.77 toks/s, output: 3279.82 toks/s]\\\\rProcessed prompts:  88%|████████▊ | 33130/37648 [14:49<02:48, 26.86it/s, est. speed input: 6123.60 toks/s, output: 3279.83 toks/s]\\\\rProcessed prompts:  88%|████████▊ | 33135/37648 [14:49<02:26, 30.78it/s, est. speed input: 6123.67 toks/s, output: 3279.80 toks/s]\\\\rProcessed prompts:  88%|████████▊ | 33140/37648 [14:49<02:28, 30.29it/s, est. speed input: 6123.43 toks/s, output: 3279.74 toks/s]\\\\rProcessed prompts:  88%|████████▊ | 33148/37648 [14:49<02:14, 33.52it/s, est. speed input: 6123.48 toks/s, output: 3279.80 toks/s]\\\\rProcessed prompts:  88%|████████▊ | 33155/37648 [14:49<01:59, 37.49it/s, est. speed input: 6123.87 toks/s, output: 3280.27 toks/s]\\\\rProcessed prompts:  88%|████████▊ | 33159/37648 [14:49<01:59, 37.68it/s, est. speed input: 6123.94 toks/s, output: 3280.57 toks/s]\\\\rProcessed prompts:  88%|████████▊ | 33167/37648 [14:50<01:55, 38.70it/s, est. speed input: 6124.01 toks/s, output: 3280.68 toks/s]\\\\rProcessed prompts:  88%|████████▊ | 33173/37648 [14:50<02:04, 35.94it/s, est. speed input: 6123.80 toks/s, output: 3280.87 toks/s]\\\\rProcessed prompts:  88%|████████▊ | 33177/37648 [14:50<02:25, 30.66it/s, est. speed input: 6123.23 toks/s, output: 3280.55 toks/s]\\\\rProcessed prompts:  88%|████████▊ | 33183/37648 [14:50<02:24, 30.84it/s, est. speed input: 6123.03 toks/s, output: 3280.32 toks/s]\\\\rProcessed prompts:  88%|████████▊ | 33187/37648 [14:50<02:32, 29.26it/s, est. speed input: 6122.70 toks/s, output: 3280.22 toks/s]\\\\rProcessed prompts:  88%|████████▊ | 33192/37648 [14:51<02:18, 32.07it/s, est. speed input: 6122.79 toks/s, output: 3280.21 toks/s]\\\\rProcessed prompts:  88%|████████▊ | 33197/37648 [14:51<02:22, 31.21it/s, est. speed input: 6122.61 toks/s, output: 3280.22 toks/s]\\\\rProcessed prompts:  88%|████████▊ | 33204/37648 [14:51<02:13, 33.17it/s, est. speed input: 6122.62 toks/s, output: 3280.20 toks/s]\\\\rProcessed prompts:  88%|████████▊ | 33210/37648 [14:51<02:14, 32.99it/s, est. speed input: 6122.53 toks/s, output: 3280.41 toks/s]\\\\rProcessed prompts:  88%|████████▊ | 33218/37648 [14:51<02:05, 35.30it/s, est. speed input: 6122.62 toks/s, output: 3280.44 toks/s]\\\\rProcessed prompts:  88%|████████▊ | 33223/37648 [14:51<02:11, 33.75it/s, est. speed input: 6122.48 toks/s, output: 3280.51 toks/s]\\\\rProcessed prompts:  88%|████████▊ | 33227/37648 [14:52<02:20, 31.56it/s, est. speed input: 6122.14 toks/s, output: 3280.30 toks/s]\\\\rProcessed prompts:  88%|████████▊ | 33231/37648 [14:52<02:27, 29.85it/s, est. speed input: 6121.85 toks/s, output: 3280.23 toks/s]\\\\rProcessed prompts:  88%|████████▊ | 33235/37648 [14:52<02:23, 30.82it/s, est. speed input: 6121.81 toks/s, output: 3280.11 toks/s]\\\\rProcessed prompts:  88%|████████▊ | 33240/37648 [14:52<02:26, 30.06it/s, est. speed input: 6121.57 toks/s, output: 3279.92 toks/s]\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 7.7}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"---SEED456---\\nno samples.jsonl\\nno analysis\\n(EngineCore pid=138471) \\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):   0%|          | 0/51 [00:00<?, ?it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):   4%|▍         | 2/51 [00:00<00:02, 16.77it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):   8%|▊         | 4/51 [00:00<00:02, 16.76it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  12%|█▏        | 6/51 [00:00<00:02, 16.68it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  16%|█▌        | 8/51 [00:00<00:02, 16.69it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  20%|█▉        | 10/51 [00:00<00:02, 16.97it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  24%|██▎       | 12/51 [00:00<00:02, 17.19it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  27%|██▋       | 14/51 [00:00<00:02, 17.71it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  31%|███▏      | 16/51 [00:00<00:01, 18.03it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  35%|███▌      | 18/51 [00:01<00:01, 18.38it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  41%|████      | 21/51 [00:01<00:01, 19.41it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  47%|████▋     | 24/51 [00:01<00:01, 20.25it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  53%|█████▎    | 27/51 [00:01<00:01, 21.39it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  59%|█████▉    | 30/51 [00:01<00:01, 20.62it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  65%|██████▍   | 33/51 [00:01<00:00, 21.63it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  71%|███████   | 36/51 [00:01<00:00, 22.79it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  76%|███████▋  | 39/51 [00:01<00:00, 23.34it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  82%|███��████▏ | 42/51 [00:02<00:00, 24.46it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  88%|████████▊ | 45/51 [00:02<00:00, 25.68it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  96%|█████████▌| 49/51 [00:02<00:00, 27.49it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE): 100%|██████████| 51/51 [00:02<00:00, 21.46it/s]\\n(EngineCore pid=138471) \\rCapturing CUDA graphs (decode, FULL):   0%|          | 0/35 [00:00<?, ?it/s]\\rCapturing CUDA graphs (decode, FULL):   9%|▊         | 3/35 [00:00<00:01, 23.55it/s]\\rCapturing CUDA graphs (decode, FULL):  17%|█▋        | 6/35 [00:00<00:01, 24.45it/s]\\rCapturing CUDA graphs (decode, FULL):  26%|██▌       | 9/35 [00:00<00:01, 25.68it/s]\\rCapturing CUDA graphs (decode, FULL):  34%|███▍      | 12/35 [00:00<00:00, 26.51it/s]\\rCapturing CUDA graphs (decode, FULL):  43%|████▎     | 15/35 [00:00<00:00, 27.19it/s]\\rCapturing CUDA graphs (decode, FULL):  54%|█████▍    | 19/35 [00:00<00:00, 28.50it/s]\\rCapturing CUDA graphs (decode, FULL):  66%|██████▌   | 23/35 [00:00<00:00, 29.87it/s]\\rCapturing CUDA graphs (decode, FULL):  77%|███████▋  | 27/35 [00:00<00:00, 31.58it/s]\\rCapturing CUDA graphs (decode, FULL):  91%|█████████▏| 32/35 [00:01<00:00, 34.58it/s]\\rCapturing CUDA graphs (decode, FULL): 100%|██████████| 35/35 [00:01<00:00, 31.16it/s]\\n(EngineCore pid=138471) INFO 05-18 17:32:23 [gpu_model_runner.py:5746] Graph capturing finished in 5 secs, took 0.39 GiB\\n(EngineCore pid=138471) INFO 05-18 17:32:23 [gpu_worker.py:617] CUDA graph pool memory: 0.39 GiB (actual), 0.55 GiB (estimated), difference: 0.16 GiB (42.4%).\\n(EngineCore pid=138471) INFO 05-18 17:32:23 [core.py:281] init engine (profile, create kv cache, warmup model) took 14.54 seconds\\nINFO 05-18 17:32:24 [llm.py:391] Supported tasks: ['generate']\\n\\rRendering prompts:   0%|          | 0/37648 [00:00<?, ?it/s]\\rRendering prompts:   0%|          | 22/37648 [00:00<02:51, 219.34it/s]\\rRendering prompts:   0%|          | 75/37648 [00:00<01:34, 397.93it/s]\\rRendering prompts:   0%|          | 126/37648 [00:00<01:23, 448.60it/s]\\rRendering prompts:   0%|       \\n\\n... [截断: 输出过长，省略 3822428 字符] ...\\n\\n, 31.90it/s, est. speed input: 6126.12 toks/s, output: 3280.95 toks/s]\\rProcessed prompts:  88%|████████▊ | 33089/37648 [14:47<02:11, 34.65it/s, est. speed input: 6126.30 toks/s, output: 3281.34 toks/s]\\rProcessed prompts:  88%|████████▊ | 33093/37648 [14:47<02:51, 26.49it/s, est. speed input: 6125.17 toks/s, output: 3280.87 toks/s]\\rProcessed prompts:  88%|████████▊ | 33099/37648 [14:48<02:24, 31.40it/s, est. speed input: 6125.50 toks/s, output: 3280.99 toks/s]\\rProcessed prompts:  88%|████████▊ | 33104/37648 [14:48<02:14, 33.68it/s, est. speed input: 6125.64 toks/s, output: 3281.09 toks/s]\\rProcessed prompts:  88%|████████▊ | 33109/37648 [14:48<02:05, 36.22it/s, est. speed input: 6125.77 toks/s, output: 3281.05 toks/s]\\rProcessed prompts:  88%|████████▊ | 33113/37648 [14:48<02:17, 33.06it/s, est. speed input: 6125.45 toks/s, output: 3280.87 toks/s]\\rProcessed prompts:  88%|████████▊ | 33117/37648 [14:48<02:28, 30.49it/s, est. speed input: 6125.10 toks/s, output: 3280.64 toks/s]\\rProcessed prompts:  88%|████████▊ | 33121/37648 [14:48<03:00, 25.08it/s, est. speed input: 6124.17 toks/s, output: 3280.01 toks/s]\\rProcessed prompts:  88%|████████▊ | 33125/37648 [14:49<03:01, 24.96it/s, est. speed input: 6123.77 toks/s, output: 3279.82 toks/s]\\rProcessed prompts:  88%|████████▊ | 33130/37648 [14:49<02:48, 26.86it/s, est. speed input: 6123.60 toks/s, output: 3279.83 toks/s]\\rProcessed prompts:  88%|████████▊ | 33135/37648 [14:49<02:26, 30.78it/s, est. speed input: 6123.67 toks/s, output: 3279.80 toks/s]\\rProcessed prompts:  88%|████████▊ | 33140/37648 [14:49<02:28, 30.29it/s, est. speed input: 6123.43 toks/s, output: 3279.74 toks/s]\\rProcessed prompts:  88%|████████▊ | 33148/37648 [14:49<02:14, 33.52it/s, est. speed input: 6123.48 toks/s, output: 3279.80 toks/s]\\rProcessed prompts:  88%|████████▊ | 33155/37648 [14:49<01:59, 37.49it/s, est. speed input: 6123.87 toks/s, output: 3280.27 toks/s]\\rProcessed prompts:  88%|████████▊ | 33159/37648 [14:49<01:59, 37.68it/s, est. speed input: 6123.94 toks/s, output: 3280.57 toks/s]\\rProcessed prompts:  88%|████████▊ | 33167/37648 [14:50<01:55, 38.70it/s, est. speed input: 6124.01 toks/s, output: 3280.68 toks/s]\\rProcessed prompts:  88%|████████▊ | 33173/37648 [14:50<02:04, 35.94it/s, est. speed input: 6123.80 toks/s, output: 3280.87 toks/s]\\rProcessed prompts:  88%|████████▊ | 33177/37648 [14:50<02:25, 30.66it/s, est. speed input: 6123.23 toks/s, output: 3280.55 toks/s]\\rProcessed prompts:  88%|████████▊ | 33183/37648 [14:50<02:24, 30.84it/s, est. speed input: 6123.03 toks/s, output: 3280.32 toks/s]\\rProcessed prompts:  88%|████████▊ | 33187/37648 [14:50<02:32, 29.26it/s, est. speed input: 6122.70 toks/s, output: 3280.22 toks/s]\\rProcessed prompts:  88%|████████▊ | 33192/37648 [14:51<02:18, 32.07it/s, est. speed input: 6122.79 toks/s, output: 3280.21 toks/s]\\rProcessed prompts:  88%|████████▊ | 33197/37648 [14:51<02:22, 31.21it/s, est. speed input: 6122.61 toks/s, output: 3280.22 toks/s]\\rProcessed prompts:  88%|████████▊ | 33204/37648 [14:51<02:13, 33.17it/s, est. speed input: 6122.62 toks/s, output: 3280.20 toks/s]\\rProcessed prompts:  88%|████████▊ | 33210/37648 [14:51<02:14, 32.99it/s, est. speed input: 6122.53 toks/s, output: 3280.41 toks/s]\\rProcessed prompts:  88%|████████▊ | 33218/37648 [14:51<02:05, 35.30it/s, est. speed input: 6122.62 toks/s, output: 3280.44 toks/s]\\rProcessed prompts:  88%|████████▊ | 33223/37648 [14:51<02:11, 33.75it/s, est. speed input: 6122.48 toks/s, output: 3280.51 toks/s]\\rProcessed prompts:  88%|████████▊ | 33227/37648 [14:52<02:20, 31.56it/s, est. speed input: 6122.14 toks/s, output: 3280.30 toks/s]\\rProcessed prompts:  88%|████████▊ | 33231/37648 [14:52<02:27, 29.85it/s, est. speed input: 6121.85 toks/s, output: 3280.23 toks/s]\\rProcessed prompts:  88%|████████▊ | 33235/37648 [14:52<02:23, 30.82it/s, est. speed input: 6121.81 toks/s, output: 3280.11 toks/s]\\rProcessed prompts:  88%|████████▊ | 33240/37648 [14:52<02:26, 30.06it/s, est. speed input: 6121.57 toks/s, output: 3279.92 toks/s]\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 7.7}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-18T11:45:39.551Z_
+
+<details><summary>↩ Tool result · `toolu_01Fbk8tNKCXDdnT2y9iByCi7`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"---SCIERC PROBE---\\noutput/hidden_state_probe/results_textbased_goldfiltered.json\\nSciERC probe done\\n---FEWNERD PROBE---\\nextract.log\\nhidden_states.pt\\nlabels.pt\\nlogprobs.pt\\nmetadata.json\\nprobe.log\\nresults_goldfiltered.json\\nsubsampled_instances.jsonl\\n---EXP016 PROBE---\\nhidden_states.pt\\nlabels.pt\\nlogprobs.pt\\nmetadata.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "675d26ca-a3e3-4ca1-9203-4d726b6afe37",
+  "uuid": "6b86067b-e649-47de-bf5c-c0613eaf32d9",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"---SCIERC PROBE---\\\\noutput/hidden_state_probe/results_textbased_goldfiltered.json\\\\nSciERC probe done\\\\n---FEWNERD PROBE---\\\\nextract.log\\\\nhidden_states.pt\\\\nlabels.pt\\\\nlogprobs.pt\\\\nmetadata.json\\\\nprobe.log\\\\nresults_goldfiltered.json\\\\nsubsampled_instances.jsonl\\\\n---EXP016 PROBE---\\\\nhidden_states.pt\\\\nlabels.pt\\\\nlogprobs.pt\\\\nmetadata.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"---SCIERC PROBE---\\noutput/hidden_state_probe/results_textbased_goldfiltered.json\\nSciERC probe done\\n---FEWNERD PROBE---\\nextract.log\\nhidden_states.pt\\nlabels.pt\\nlogprobs.pt\\nmetadata.json\\nprobe.log\\nresults_goldfiltered.json\\nsubsampled_instances.jsonl\\n---EXP016 PROBE---\\nhidden_states.pt\\nlabels.pt\\nlogprobs.pt\\nmetadata.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-18T11:45:39.974Z_
+
+<details><summary>↩ Tool result · `toolu_01DdoBjKkr9M33aDLqUVDrjM`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"---TOKEN LP---\\nresults_fewnerd.json\\nresults_scierc_10epoch.json\\nresults_scierc_3epoch.json\\ntraining_log_fewnerd.txt\\ntraining_log_scierc_10epoch.txt\\ntraining_log_scierc_3epoch.txt\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "675d26ca-a3e3-4ca1-9203-4d726b6afe37",
+  "uuid": "5bd599b8-6bc0-4b52-977f-1148db05a6c6",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"---TOKEN LP---\\\\nresults_fewnerd.json\\\\nresults_scierc_10epoch.json\\\\nresults_scierc_3epoch.json\\\\ntraining_log_fewnerd.txt\\\\ntraining_log_scierc_10epoch.txt\\\\ntraining_log_scierc_3epoch.txt\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"---TOKEN LP---\\nresults_fewnerd.json\\nresults_scierc_10epoch.json\\nresults_scierc_3epoch.json\\ntraining_log_fewnerd.txt\\ntraining_log_scierc_10epoch.txt\\ntraining_log_scierc_3epoch.txt\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-18T11:45:40.424Z_
+
+<details><summary>↩ Tool result · `toolu_01B6FZ45HrH3MWsKL7EEFpsK`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"---CONLL SEED123---\\n3453 output/exp_002_conll_n8_seed123/samples.jsonl\\noutput/exp_002_conll_n8_seed123/full_signal_analysis.json\\nanalysis exists\\n---CONLL SEED456---\\n3453 output/exp_002_conll_n8_seed456/samples.jsonl\\noutput/exp_002_conll_n8_seed456/full_signal_analysis.json\\nanalysis exists\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "675d26ca-a3e3-4ca1-9203-4d726b6afe37",
+  "uuid": "1a01c903-1bf1-46b9-9de5-70b1ede7bbd3",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"---CONLL SEED123---\\\\n3453 output/exp_002_conll_n8_seed123/samples.jsonl\\\\noutput/exp_002_conll_n8_seed123/full_signal_analysis.json\\\\nanalysis exists\\\\n---CONLL SEED456---\\\\n3453 output/exp_002_conll_n8_seed456/samples.jsonl\\\\noutput/exp_002_conll_n8_seed456/full_signal_analysis.json\\\\nanalysis exists\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"---CONLL SEED123---\\n3453 output/exp_002_conll_n8_seed123/samples.jsonl\\noutput/exp_002_conll_n8_seed123/full_signal_analysis.json\\nanalysis exists\\n---CONLL SEED456---\\n3453 output/exp_002_conll_n8_seed456/samples.jsonl\\noutput/exp_002_conll_n8_seed456/full_signal_analysis.json\\nanalysis exists\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-18T11:45:40.860Z_
+
+<details><summary>↩ Tool result · `toolu_017RFeKZC9Ko4tGKqnEWgXC9`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"root        935  0.0  0.0 4147828 71852 ?       Sl   May14   2:09 /root/miniconda3/bin/python /root/miniconda3/bin/tensorboard --host 0.0.0.0 --port 6007 --logdir /root/tf-logs\\nroot        939  0.0  0.0 191560 96316 ?        S    May14   0:01 /root/miniconda3/bin/python /root/miniconda3/bin/jupyter-lab --allow-root --config=/init/jupyter/jupyter_config.py\\nroot       1050  0.0  0.0 28341068 10600 ?      Sl   May14   5:19 /root/miniconda3/lib/python3.12/site-packages/tensorboard_data_server/bin/server --logdir=/root/tf-logs --reload=5 --samples-per-plugin= --port=0 --port-file=/tmp/tensorboard_data_server_n2g13yqg/port --die-after-stdin --error-file=/tmp/tensorboard_data_server_n2g13yqg/startup_error\\nroot     137861  0.0  0.0   2796  1044 pts/3    S+   17:31   0:01 tee /root/autodl-tmp/struct_self_consist_ie/logs/llama_fewnerd_train.log\\nroot     137865 97.5  0.3 60492460 2703248 pts/3 Sl+ 17:31 130:38 /root/miniconda3/bin/python /root/miniconda3/bin/llamafactory-cli train train_config_llama_fewnerd.yaml\\nroot     138025 34.8  1.7 47873052 14155956 pts/4 Rl+ 17:31  46:37 python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-fewnerd-exp021-merged --data_dir data/fewnerd --dataset fewnerd --subtask ner --n_samples 8 --temperature 1.0 --seed 456 --collect_logprobs --output_dir output/exp_021_fewnerd_n8_seed456\\nroot     174588  0.0  0.0  11360  7868 ?        Ss   May15   0:14 tmux new-session -d -s exp_001_n16_seed456 source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-scierc-merged-v2 --data_dir data/scierc/processed_data --dataset scierc --subtask joint --n_samples 16 --temperature 1.0 --seed 456 --output_dir output/exp001_n16_seed456 --collect_logprobs 2>&1 | tee output/exp001_n16_seed456_run.log\\nroot     969983 7151  0.1 31607536 1312924 ?    Rl   19:43 138:15 python3 code/probe/hidden_state_probe_exp016.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "675d26ca-a3e3-4ca1-9203-4d726b6afe37",
+  "uuid": "4fd510ef-d408-4a44-954c-7dff016276d1",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"root        935  0.0  0.0 4147828 71852 ?       Sl   May14   2:09 /root/miniconda3/bin/python /root/miniconda3/bin/tensorboard --host 0.0.0.0 --port 6007 --logdir /root/tf-logs\\\\nroot        939  0.0  0.0 191560 96316 ?        S    May14   0:01 /root/miniconda3/bin/python /root/miniconda3/bin/jupyter-lab --allow-root --config=/init/jupyter/jupyter_config.py\\\\nroot       1050  0.0  0.0 28341068 10600 ?      Sl   May14   5:19 /root/miniconda3/lib/python3.12/site-packages/tensorboard_data_server/bin/server --logdir=/root/tf-logs --reload=5 --samples-per-plugin= --port=0 --port-file=/tmp/tensorboard_data_server_n2g13yqg/port --die-after-stdin --error-file=/tmp/tensorboard_data_server_n2g13yqg/startup_error\\\\nroot     137861  0.0  0.0   2796  1044 pts/3    S+   17:31   0:01 tee /root/autodl-tmp/struct_self_consist_ie/logs/llama_fewnerd_train.log\\\\nroot     137865 97.5  0.3 60492460 2703248 pts/3 Sl+ 17:31 130:38 /root/miniconda3/bin/python /root/miniconda3/bin/llamafactory-cli train train_config_llama_fewnerd.yaml\\\\nroot     138025 34.8  1.7 47873052 14155956 pts/4 Rl+ 17:31  46:37 python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-fewnerd-exp021-merged --data_dir data/fewnerd --dataset fewnerd --subtask ner --n_samples 8 --temperature 1.0 --seed 456 --collect_logprobs --output_dir output/exp_021_fewnerd_n8_seed456\\\\nroot     174588  0.0  0.0  11360  7868 ?        Ss   May15   0:14 tmux new-session -d -s exp_001_n16_seed456 source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-scierc-merged-v2 --data_dir data/scierc/processed_data --dataset scierc --subtask joint --n_samples 16 --temperature 1.0 --seed 456 --output_dir output/exp001_n16_seed456 --collect_logprobs 2>&1 | tee output/exp001_n16_seed456_run.log\\\\nroot     969983 7151  0.1 31607536 1312924 ?    Rl   19:43 138:15 python3 code/probe/hidden_state_probe_exp016.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"root        935  0.0  0.0 4147828 71852 ?       Sl   May14   2:09 /root/miniconda3/bin/python /root/miniconda3/bin/tensorboard --host 0.0.0.0 --port 6007 --logdir /root/tf-logs\\nroot        939  0.0  0.0 191560 96316 ?        S    May14   0:01 /root/miniconda3/bin/python /root/miniconda3/bin/jupyter-lab --allow-root --config=/init/jupyter/jupyter_config.py\\nroot       1050  0.0  0.0 28341068 10600 ?      Sl   May14   5:19 /root/miniconda3/lib/python3.12/site-packages/tensorboard_data_server/bin/server --logdir=/root/tf-logs --reload=5 --samples-per-plugin= --port=0 --port-file=/tmp/tensorboard_data_server_n2g13yqg/port --die-after-stdin --error-file=/tmp/tensorboard_data_server_n2g13yqg/startup_error\\nroot     137861  0.0  0.0   2796  1044 pts/3    S+   17:31   0:01 tee /root/autodl-tmp/struct_self_consist_ie/logs/llama_fewnerd_train.log\\nroot     137865 97.5  0.3 60492460 2703248 pts/3 Sl+ 17:31 130:38 /root/miniconda3/bin/python /root/miniconda3/bin/llamafactory-cli train train_config_llama_fewnerd.yaml\\nroot     138025 34.8  1.7 47873052 14155956 pts/4 Rl+ 17:31  46:37 python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-fewnerd-exp021-merged --data_dir data/fewnerd --dataset fewnerd --subtask ner --n_samples 8 --temperature 1.0 --seed 456 --collect_logprobs --output_dir output/exp_021_fewnerd_n8_seed456\\nroot     174588  0.0  0.0  11360  7868 ?        Ss   May15   0:14 tmux new-session -d -s exp_001_n16_seed456 source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-scierc-merged-v2 --data_dir data/scierc/processed_data --dataset scierc --subtask joint --n_samples 16 --temperature 1.0 --seed 456 --output_dir output/exp001_n16_seed456 --collect_logprobs 2>&1 | tee output/exp001_n16_seed456_run.log\\nroot     969983 7151  0.1 31607536 1312924 ?    Rl   19:43 138:15 python3 code/probe/hidden_state_probe_exp016.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 48_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me get the remaining details - the probe results and token LP results.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "675d26ca-a3e3-4ca1-9203-4d726b6afe37",
+  "uuid": "a8700fe4-e62e-4684-ae8d-b7314dcd042b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016yK9sgdVLcmUDnWJe87rTA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 15088,
+      "cache_read_input_tokens": 29959,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 15088
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 49_
+
+补充读取 probe 和 token LP 的结果文件。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "675d26ca-a3e3-4ca1-9203-4d726b6afe37",
+  "uuid": "81db0139-9601-43f6-993b-12ab9275ad15",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016yK9sgdVLcmUDnWJe87rTA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 15088,
+      "cache_read_input_tokens": 29959,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 15088
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 50_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01F5mD3HNzS4yL6U9mdu8bVw`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cd /root/autodl-tmp/struct_self_consist_ie && cat output/hidden_state_probe_fewnerd/results_goldfiltered.json | python3 -c \"import json,sys; d=json.load(sys.stdin); print(json.dumps(d, indent=2))\" 2>/dev/null | head -40",
+  "account": "root",
+  "warn": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "675d26ca-a3e3-4ca1-9203-4d726b6afe37",
+  "uuid": "2d9ab582-7634-4ccb-b8ee-35ed828c79e6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016yK9sgdVLcmUDnWJe87rTA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 15088,
+      "cache_read_input_tokens": 29959,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 15088
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-18T11:45:47.717Z_
+
+<details><summary>↩ Tool result · `toolu_01F5mD3HNzS4yL6U9mdu8bVw`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "675d26ca-a3e3-4ca1-9203-4d726b6afe37",
+  "uuid": "b7781dec-ec2b-4e0a-9366-c858998cd48d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 52_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_016VbHNZvw2bNo2ihWD57wUz`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cd /root/autodl-tmp/struct_self_consist_ie && cat output/token_lp_aggregator/results_fewnerd.json | python3 -c \"import json,sys; d=json.load(sys.stdin); print(json.dumps(d, indent=2))\" 2>/dev/null | head -40",
+  "account": "root",
+  "warn": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "675d26ca-a3e3-4ca1-9203-4d726b6afe37",
+  "uuid": "5327e8f2-45ad-48ef-b241-c4ce1cea096a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016yK9sgdVLcmUDnWJe87rTA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 15088,
+      "cache_read_input_tokens": 29959,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 15088
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 53 · 2026-05-18T11:45:49.137Z_
+
+<details><summary>↩ Tool result · `toolu_016VbHNZvw2bNo2ihWD57wUz`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "675d26ca-a3e3-4ca1-9203-4d726b6afe37",
+  "uuid": "f7b561ed-1047-4d15-a8c7-519eadf68691",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 54_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01LPt36jtnP2AcacXz44MCFZ`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cd /root/autodl-tmp/struct_self_consist_ie && cat output/token_lp_aggregator/results_scierc_10epoch.json | python3 -c \"import json,sys; d=json.load(sys.stdin); print(json.dumps(d, indent=2))\" 2>/dev/null | head -40",
+  "account": "root",
+  "warn": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "675d26ca-a3e3-4ca1-9203-4d726b6afe37",
+  "uuid": "2c9ea18f-3565-4db1-a461-ac345985e6b4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016yK9sgdVLcmUDnWJe87rTA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 15088,
+      "cache_read_input_tokens": 29959,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 15088
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 55 · 2026-05-18T11:45:50.554Z_
+
+<details><summary>↩ Tool result · `toolu_01LPt36jtnP2AcacXz44MCFZ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "675d26ca-a3e3-4ca1-9203-4d726b6afe37",
+  "uuid": "000ce512-4d25-4c1e-bbeb-05053c5e94f3",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 56_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01SbZd1ALgGyoXUA7Bws6sZa`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cd /root/autodl-tmp/struct_self_consist_ie && cat output/exp_021_fewnerd_n8_seed123/results.json | python3 -c \"import json,sys; d=json.load(sys.stdin); print(json.dumps({k:v for k,v in d.items() if 'f1' in k.lower() or 'spearman' in k.lower() or 'rho' in k.lower() or 'degen' in k.lower() or 'greedy' in k.lower()}, indent=2))\" 2>/dev/null",
+  "account": "root",
+  "warn": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "675d26ca-a3e3-4ca1-9203-4d726b6afe37",
+  "uuid": "b4c441cc-36c3-40f9-b53f-4d55827cdaef",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016yK9sgdVLcmUDnWJe87rTA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 15088,
+      "cache_read_input_tokens": 29959,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 15088
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 57 · 2026-05-18T11:45:52.409Z_
+
+<details><summary>↩ Tool result · `toolu_01SbZd1ALgGyoXUA7Bws6sZa`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 127}, \"error\": \"exit code 127\", \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "675d26ca-a3e3-4ca1-9203-4d726b6afe37",
+  "uuid": "038ed74f-afb1-4f20-8a5b-c63764044814",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 127}, \\\"error\\\": \\\"exit code 127\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 127}, \"error\": \"exit code 127\", \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 58_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The pipe commands are failing - probably because `ssh_execute` doesn't support pipes well. Let me use python3 -c directly to read the files.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "675d26ca-a3e3-4ca1-9203-4d726b6afe37",
+  "uuid": "a49eab6b-a1f0-49bb-a5bc-faac36103d2b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PAUfU8f9Lh6tEmRnGUbsX5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1251,
+      "cache_read_input_tokens": 45047,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1251
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 59_
+
+管道命令不被支持，改用 python3 直接读取。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "675d26ca-a3e3-4ca1-9203-4d726b6afe37",
+  "uuid": "0a63d2a3-b4c1-43b9-a74b-ea24fa02b8ab",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PAUfU8f9Lh6tEmRnGUbsX5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1251,
+      "cache_read_input_tokens": 45047,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1251
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 60_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01RXRsFZw6bGb2N67fXKyiDM`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cd /root/autodl-tmp/struct_self_consist_ie && python3 -c \"\nimport json\nf = open('output/hidden_state_probe_fewnerd/results_goldfiltered.json')\nd = json.load(f)\nprint(json.dumps(d, indent=2))\n\"",
+  "account": "root",
+  "warn": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "675d26ca-a3e3-4ca1-9203-4d726b6afe37",
+  "uuid": "c8d458b3-69bf-4067-b583-5c190999c42d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PAUfU8f9Lh6tEmRnGUbsX5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1251,
+      "cache_read_input_tokens": 45047,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1251
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 61 · 2026-05-18T11:45:58.255Z_
+
+<details><summary>↩ Tool result · `toolu_01RXRsFZw6bGb2N67fXKyiDM`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"bash: line 1: python3: command not found\\n\", \"return_code\": 127}, \"error\": \"exit code 127\", \"metadata\": {\"elapsed_seconds\": 0.34}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "675d26ca-a3e3-4ca1-9203-4d726b6afe37",
+  "uuid": "7ab80f4f-1941-4418-b8c4-ad42fe61114d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"bash: line 1: python3: command not found\\\\n\\\", \\\"return_code\\\": 127}, \\\"error\\\": \\\"exit code 127\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.34}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"bash: line 1: python3: command not found\\n\", \"return_code\": 127}, \"error\": \"exit code 127\", \"metadata\": {\"elapsed_seconds\": 0.34}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 62_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01BXaQBjG9rFVgR1yruSjkAj`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cd /root/autodl-tmp/struct_self_consist_ie && python3 -c \"\nimport json\nfor name in ['results_fewnerd.json', 'results_scierc_10epoch.json', 'results_scierc_3epoch.json']:\n    try:\n        d = json.load(open('output/token_lp_aggregator/' + name))\n        print(f'=== {name} ===')\n        print(json.dumps(d, indent=2)[:800])\n    except Exception as e:\n        print(f'{name}: Error {e}')\n\"",
+  "account": "root",
+  "warn": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "675d26ca-a3e3-4ca1-9203-4d726b6afe37",
+  "uuid": "55f4efc3-64f2-496e-821e-ad55d16ae8f5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PAUfU8f9Lh6tEmRnGUbsX5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1251,
+      "cache_read_input_tokens": 45047,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1251
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 63 · 2026-05-18T11:46:00.957Z_
+
+<details><summary>↩ Tool result · `toolu_01BXaQBjG9rFVgR1yruSjkAj`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"bash: line 1: python3: command not found\\n\", \"return_code\": 127}, \"error\": \"exit code 127\", \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "675d26ca-a3e3-4ca1-9203-4d726b6afe37",
+  "uuid": "989ae1ff-3b4c-45a6-ba29-afc8dcdaa7c4",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"bash: line 1: python3: command not found\\\\n\\\", \\\"return_code\\\": 127}, \\\"error\\\": \\\"exit code 127\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"bash: line 1: python3: command not found\\n\", \"return_code\": 127}, \"error\": \"exit code 127\", \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 64_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01Ev5YmKTtTb5PvJXpq5awXB`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cd /root/autodl-tmp/struct_self_consist_ie && python3 -c \"\nimport json\nd = json.load(open('output/exp_021_fewnerd_n8_seed123/results.json'))\nkeys = [k for k in d if any(x in k.lower() for x in ['f1','spearman','rho','degen','greedy','overall'])]\nprint(json.dumps({k: d[k] for k in keys}, indent=2))\n\"",
+  "account": "root",
+  "warn": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "675d26ca-a3e3-4ca1-9203-4d726b6afe37",
+  "uuid": "26b5646f-32ef-4cde-a510-eaae816d5c4c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PAUfU8f9Lh6tEmRnGUbsX5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1251,
+      "cache_read_input_tokens": 45047,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1251
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 65 · 2026-05-18T11:46:02.526Z_
+
+<details><summary>↩ Tool result · `toolu_01Ev5YmKTtTb5PvJXpq5awXB`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"bash: line 1: python3: command not found\\n\", \"return_code\": 127}, \"error\": \"exit code 127\", \"metadata\": {\"elapsed_seconds\": 0.34}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "675d26ca-a3e3-4ca1-9203-4d726b6afe37",
+  "uuid": "129c0ad9-f673-4e30-aa8e-864f4e0e0ab0",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"bash: line 1: python3: command not found\\\\n\\\", \\\"return_code\\\": 127}, \\\"error\\\": \\\"exit code 127\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.34}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"bash: line 1: python3: command not found\\n\", \"return_code\": 127}, \"error\": \"exit code 127\", \"metadata\": {\"elapsed_seconds\": 0.34}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 66_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01P6kmWanhLMfwH7bDnGmx9L`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cd /root/autodl-tmp/struct_self_consist_ie && python3 -c \"\nimport json\nd = json.load(open('output/hidden_state_probe_exp016/metadata.json'))\nprint(json.dumps(d, indent=2)[:500])\n\" 2>/dev/null; ls -la output/hidden_state_probe_exp016/results*.json 2>/dev/null || echo \"no results json in exp016 probe\"",
+  "account": "root",
+  "warn": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "675d26ca-a3e3-4ca1-9203-4d726b6afe37",
+  "uuid": "920cdc4d-b78f-4a08-a6bb-07c78e2186fb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PAUfU8f9Lh6tEmRnGUbsX5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1251,
+      "cache_read_input_tokens": 45047,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1251
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 67 · 2026-05-18T11:46:04.287Z_
+
+<details><summary>↩ Tool result · `toolu_01P6kmWanhLMfwH7bDnGmx9L`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"no results json in exp016 probe\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "675d26ca-a3e3-4ca1-9203-4d726b6afe37",
+  "uuid": "8f5cc2fa-e290-40fc-b695-534de9a9ae70",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"no results json in exp016 probe\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"no results json in exp016 probe\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 68_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+python3 is not found when running without `cd` initialization of conda. Let me use the full path or source conda first.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "675d26ca-a3e3-4ca1-9203-4d726b6afe37",
+  "uuid": "765df593-205b-4518-8f02-82278983a4fd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UKkQenRYBL77ezZs867onZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1495,
+      "cache_read_input_tokens": 46298,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1495
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 69_
+
+需要激活 conda 环境才能用 python3。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "675d26ca-a3e3-4ca1-9203-4d726b6afe37",
+  "uuid": "5321f7fb-39bb-4b34-9561-d274a8066171",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UKkQenRYBL77ezZs867onZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1495,
+      "cache_read_input_tokens": 46298,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1495
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 70_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01VWEUXFhUeRVDp92XVbR6sc`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "source /root/miniconda3/bin/activate && cd /root/autodl-tmp/struct_self_consist_ie && python3 -c \"\nimport json\nd = json.load(open('output/hidden_state_probe_fewnerd/results_goldfiltered.json'))\nprint(json.dumps(d, indent=2))\n\"",
+  "account": "root",
+  "warn": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "675d26ca-a3e3-4ca1-9203-4d726b6afe37",
+  "uuid": "97669db0-1698-4755-a388-266d5b2b1231",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UKkQenRYBL77ezZs867onZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1495,
+      "cache_read_input_tokens": 46298,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1495
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 71 · 2026-05-18T11:46:09.730Z_
+
+<details><summary>↩ Tool result · `toolu_01VWEUXFhUeRVDp92XVbR6sc`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"dataset\\\": \\\"Few-NERD\\\",\\n  \\\"n_instances\\\": 2000,\\n  \\\"n_samples\\\": 8,\\n  \\\"hidden_dim\\\": 4096,\\n  \\\"cv_folds\\\": 5,\\n  \\\"seeds\\\": [\\n    42,\\n    123,\\n    456\\n  ],\\n  \\\"gold_filtered\\\": true,\\n  \\\"probes\\\": {\\n    \\\"linear\\\": {\\n      \\\"rho_mean\\\": 0.26835628131959166,\\n      \\\"rho_std\\\": 0.016543366428110676,\\n      \\\"rho_per_seed\\\": [\\n        0.28740753332199853,\\n        0.2600432231021971,\\n        0.25761808753457943\\n      ],\\n      \\\"sel_f1_mean\\\": 0.6758165287461537,\\n      \\\"sel_f1_std\\\": 0.0023019664913282905,\\n      \\\"sel_f1_per_seed\\\": [\\n        0.6777910363436768,\\n        0.6732881586189825,\\n        0.6763703912758021\\n      ],\\n      \\\"greedy_f1_mean\\\": 0.7481256065620738,\\n      \\\"oracle_f1_mean\\\": 0.8730770300939913,\\n      \\\"gap_closure\\\": -57.86975111768099\\n    },\\n    \\\"mlp\\\": {\\n      \\\"rho_mean\\\": 0.628514167087423,\\n      \\\"rho_std\\\": 0.007416303127143198,\\n      \\\"rho_per_seed\\\": [\\n        0.6370774850160604,\\n        0.6242936768527164,\\n        0.6241713393934923\\n      ],\\n      \\\"sel_f1_mean\\\": 0.7627593288616265,\\n      \\\"sel_f1_std\\\": 0.0016932862623683762,\\n      \\\"sel_f1_per_seed\\\": [\\n        0.76129633364957,\\n        0.7623674600432631,\\n        0.7646141928920462\\n      ],\\n      \\\"greedy_f1_mean\\\": 0.7481256065620738,\\n      \\\"oracle_f1_mean\\\": 0.8730770300939913,\\n      \\\"gap_closure\\\": 11.711529077389502\\n    }\\n  },\\n  \\\"baselines\\\": {\\n    \\\"lp\\\": {\\n      \\\"rho\\\": 0.6062090280775968,\\n      \\\"sel_f1\\\": 0.7635417067078882,\\n      \\\"greedy_f1\\\": 0.7481256065620738,\\n      \\\"oracle_f1\\\": 0.8730770300939914,\\n      \\\"random_f1\\\": 0.6425844115583691,\\n      \\\"gap_closure\\\": 12.33767468193471\\n    }\\n  }\\n}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "675d26ca-a3e3-4ca1-9203-4d726b6afe37",
+  "uuid": "7b6e1035-52c1-4b77-9f09-1bc76d480202",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"dataset\\\\\\\": \\\\\\\"Few-NERD\\\\\\\",\\\\n  \\\\\\\"n_instances\\\\\\\": 2000,\\\\n  \\\\\\\"n_samples\\\\\\\": 8,\\\\n  \\\\\\\"hidden_dim\\\\\\\": 4096,\\\\n  \\\\\\\"cv_folds\\\\\\\": 5,\\\\n  \\\\\\\"seeds\\\\\\\": [\\\\n    42,\\\\n    123,\\\\n    456\\\\n  ],\\\\n  \\\\\\\"gold_filtered\\\\\\\": true,\\\\n  \\\\\\\"probes\\\\\\\": {\\\\n    \\\\\\\"linear\\\\\\\": {\\\\n      \\\\\\\"rho_mean\\\\\\\": 0.26835628131959166,\\\\n      \\\\\\\"rho_std\\\\\\\": 0.016543366428110676,\\\\n      \\\\\\\"rho_per_seed\\\\\\\": [\\\\n        0.28740753332199853,\\\\n        0.2600432231021971,\\\\n        0.25761808753457943\\\\n      ],\\\\n      \\\\\\\"sel_f1_mean\\\\\\\": 0.6758165287461537,\\\\n      \\\\\\\"sel_f1_std\\\\\\\": 0.0023019664913282905,\\\\n      \\\\\\\"sel_f1_per_seed\\\\\\\": [\\\\n        0.6777910363436768,\\\\n        0.6732881586189825,\\\\n        0.6763703912758021\\\\n      ],\\\\n      \\\\\\\"greedy_f1_mean\\\\\\\": 0.7481256065620738,\\\\n      \\\\\\\"oracle_f1_mean\\\\\\\": 0.8730770300939913,\\\\n      \\\\\\\"gap_closure\\\\\\\": -57.86975111768099\\\\n    },\\\\n    \\\\\\\"mlp\\\\\\\": {\\\\n      \\\\\\\"rho_mean\\\\\\\": 0.628514167087423,\\\\n      \\\\\\\"rho_std\\\\\\\": 0.007416303127143198,\\\\n      \\\\\\\"rho_per_seed\\\\\\\": [\\\\n        0.6370774850160604,\\\\n        0.6242936768527164,\\\\n        0.6241713393934923\\\\n      ],\\\\n      \\\\\\\"sel_f1_mean\\\\\\\": 0.7627593288616265,\\\\n      \\\\\\\"sel_f1_std\\\\\\\": 0.0016932862623683762,\\\\n      \\\\\\\"sel_f1_per_seed\\\\\\\": [\\\\n        0.76129633364957,\\\\n        0.7623674600432631,\\\\n        0.7646141928920462\\\\n      ],\\\\n      \\\\\\\"greedy_f1_mean\\\\\\\": 0.7481256065620738,\\\\n      \\\\\\\"oracle_f1_mean\\\\\\\": 0.8730770300939913,\\\\n      \\\\\\\"gap_closure\\\\\\\": 11.711529077389502\\\\n    }\\\\n  },\\\\n  \\\\\\\"baselines\\\\\\\": {\\\\n    \\\\\\\"lp\\\\\\\": {\\\\n      \\\\\\\"rho\\\\\\\": 0.6062090280775968,\\\\n      \\\\\\\"sel_f1\\\\\\\": 0.7635417067078882,\\\\n      \\\\\\\"greedy_f1\\\\\\\": 0.7481256065620738,\\\\n      \\\\\\\"oracle_f1\\\\\\\": 0.8730770300939914,\\\\n      \\\\\\\"random_f1\\\\\\\": 0.6425844115583691,\\\\n      \\\\\\\"gap_closure\\\\\\\": 12.33767468193471\\\\n    }\\\\n  }\\\\n}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"dataset\\\": \\\"Few-NERD\\\",\\n  \\\"n_instances\\\": 2000,\\n  \\\"n_samples\\\": 8,\\n  \\\"hidden_dim\\\": 4096,\\n  \\\"cv_folds\\\": 5,\\n  \\\"seeds\\\": [\\n    42,\\n    123,\\n    456\\n  ],\\n  \\\"gold_filtered\\\": true,\\n  \\\"probes\\\": {\\n    \\\"linear\\\": {\\n      \\\"rho_mean\\\": 0.26835628131959166,\\n      \\\"rho_std\\\": 0.016543366428110676,\\n      \\\"rho_per_seed\\\": [\\n        0.28740753332199853,\\n        0.2600432231021971,\\n        0.25761808753457943\\n      ],\\n      \\\"sel_f1_mean\\\": 0.6758165287461537,\\n      \\\"sel_f1_std\\\": 0.0023019664913282905,\\n      \\\"sel_f1_per_seed\\\": [\\n        0.6777910363436768,\\n        0.6732881586189825,\\n        0.6763703912758021\\n      ],\\n      \\\"greedy_f1_mean\\\": 0.7481256065620738,\\n      \\\"oracle_f1_mean\\\": 0.8730770300939913,\\n      \\\"gap_closure\\\": -57.86975111768099\\n    },\\n    \\\"mlp\\\": {\\n      \\\"rho_mean\\\": 0.628514167087423,\\n      \\\"rho_std\\\": 0.007416303127143198,\\n      \\\"rho_per_seed\\\": [\\n        0.6370774850160604,\\n        0.6242936768527164,\\n        0.6241713393934923\\n      ],\\n      \\\"sel_f1_mean\\\": 0.7627593288616265,\\n      \\\"sel_f1_std\\\": 0.0016932862623683762,\\n      \\\"sel_f1_per_seed\\\": [\\n        0.76129633364957,\\n        0.7623674600432631,\\n        0.7646141928920462\\n      ],\\n      \\\"greedy_f1_mean\\\": 0.7481256065620738,\\n      \\\"oracle_f1_mean\\\": 0.8730770300939913,\\n      \\\"gap_closure\\\": 11.711529077389502\\n    }\\n  },\\n  \\\"baselines\\\": {\\n    \\\"lp\\\": {\\n      \\\"rho\\\": 0.6062090280775968,\\n      \\\"sel_f1\\\": 0.7635417067078882,\\n      \\\"greedy_f1\\\": 0.7481256065620738,\\n      \\\"oracle_f1\\\": 0.8730770300939914,\\n      \\\"random_f1\\\": 0.6425844115583691,\\n      \\\"gap_closure\\\": 12.33767468193471\\n    }\\n  }\\n}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 72_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01Bjo3zxYYAG1GgQgtrFS89H`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "source /root/miniconda3/bin/activate && cd /root/autodl-tmp/struct_self_consist_ie && python3 -c \"\nimport json\nfor name in ['results_fewnerd.json', 'results_scierc_10epoch.json', 'results_scierc_3epoch.json']:\n    try:\n        d = json.load(open('output/token_lp_aggregator/' + name))\n        print(f'=== {name} ===')\n        print(json.dumps(d, indent=2)[:1000])\n        print()\n    except Exception as e:\n        print(f'{name}: Error {e}')\n\"",
+  "account": "root",
+  "warn": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "675d26ca-a3e3-4ca1-9203-4d726b6afe37",
+  "uuid": "459d7fe2-4773-4f6a-9010-d68060d877fe",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UKkQenRYBL77ezZs867onZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1495,
+      "cache_read_input_tokens": 46298,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1495
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 73 · 2026-05-18T11:46:12.103Z_
+
+<details><summary>↩ Tool result · `toolu_01Bjo3zxYYAG1GgQgtrFS89H`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"=== results_fewnerd.json ===\\n{\\n  \\\"dataset\\\": \\\"fewnerd\\\",\\n  \\\"data_path\\\": \\\"output/exp_021_inference/samples.jsonl\\\",\\n  \\\"n_instances\\\": 2000,\\n  \\\"n_samples\\\": 16000,\\n  \\\"n_folds\\\": 5,\\n  \\\"seeds\\\": [\\n    42,\\n    123,\\n    456\\n  ],\\n  \\\"epochs\\\": 50,\\n  \\\"max_seq_len\\\": 256,\\n  \\\"results\\\": {\\n    \\\"random\\\": {\\n      \\\"selection_f1\\\": 0.6356510519981384,\\n      \\\"selection_f1_std\\\": 0.010440324433147907,\\n      \\\"gap_closure\\\": 0.0\\n    },\\n    \\\"mean_lp\\\": {\\n      \\\"spearman_rho\\\": 0.6037887330957384,\\n      \\\"spearman_rho_std\\\": 0.019180644731986267,\\n      \\\"selection_f1\\\": 0.763300895690918,\\n      \\\"selection_f1_std\\\": 0.010675162076950073,\\n      \\\"gap_closure\\\": 55.765839660865126\\n    },\\n    \\\"attention\\\": {\\n      \\\"spearman_rho\\\": 0.3872574459039929,\\n      \\\"spearman_rho_std\\\": 0.3159971905289272,\\n      \\\"selection_f1\\\": 0.7133861780166626,\\n      \\\"selection_f1_std\\\": 0.06799501180648804,\\n      \\\"gap_closure\\\": 33.95981105937985\\n    },\\n    \\\"cnn\\\": {\\n      \\\"spearman_rho\\\": 0.6420621598516019,\\n      \\\"spearman_rho_std\\\": 0.013913019354340122,\\n      \\\"selection_f1\\\": 0.7647289037\\n\\n=== results_scierc_10epoch.json ===\\n{\\n  \\\"dataset\\\": \\\"scierc_10epoch\\\",\\n  \\\"data_path\\\": \\\"output/exp_029b_scierc_10epoch/samples.jsonl\\\",\\n  \\\"n_instances\\\": 529,\\n  \\\"n_samples\\\": 4232,\\n  \\\"n_folds\\\": 5,\\n  \\\"seeds\\\": [\\n    42,\\n    123,\\n    456\\n  ],\\n  \\\"epochs\\\": 50,\\n  \\\"max_seq_len\\\": 256,\\n  \\\"results\\\": {\\n    \\\"random\\\": {\\n      \\\"selection_f1\\\": 0.6475895643234253,\\n      \\\"selection_f1_std\\\": 0.015404732897877693,\\n      \\\"gap_closure\\\": 0.0\\n    },\\n    \\\"mean_lp\\\": {\\n      \\\"spearman_rho\\\": 0.15759024378063516,\\n      \\\"spearman_rho_std\\\": 0.06395980056291861,\\n      \\\"selection_f1\\\": 0.6566487550735474,\\n      \\\"selection_f1_std\\\": 0.01796700805425644,\\n      \\\"gap_closure\\\": 10.595182575683111\\n    },\\n    \\\"attention\\\": {\\n      \\\"spearman_rho\\\": -0.04878068289718492,\\n      \\\"spearman_rho_std\\\": 0.16712299109182255,\\n      \\\"selection_f1\\\": 0.6366367936134338,\\n      \\\"selection_f1_std\\\": 0.019617749378085136,\\n      \\\"gap_closure\\\": -12.809820278968088\\n    },\\n    \\\"cnn\\\": {\\n      \\\"spearman_rho\\\": 0.17295420242237763,\\n      \\\"spearman_rho_std\\\": 0.0873183280753172,\\n      \\\"selection_f\\n\\n=== results_scierc_3epoch.json ===\\n{\\n  \\\"dataset\\\": \\\"scierc_3epoch\\\",\\n  \\\"data_path\\\": \\\"output/exp_029a_scierc_3epoch/samples.jsonl\\\",\\n  \\\"n_instances\\\": 529,\\n  \\\"n_samples\\\": 4232,\\n  \\\"n_folds\\\": 5,\\n  \\\"seeds\\\": [\\n    42,\\n    123,\\n    456\\n  ],\\n  \\\"epochs\\\": 50,\\n  \\\"max_seq_len\\\": 256,\\n  \\\"results\\\": {\\n    \\\"random\\\": {\\n      \\\"selection_f1\\\": 0.5458515882492065,\\n      \\\"selection_f1_std\\\": 0.014471401460468769,\\n      \\\"gap_closure\\\": 0.0\\n    },\\n    \\\"mean_lp\\\": {\\n      \\\"spearman_rho\\\": 0.354395780247689,\\n      \\\"spearman_rho_std\\\": 0.022145825869385048,\\n      \\\"selection_f1\\\": 0.6382817625999451,\\n      \\\"selection_f1_std\\\": 0.017208397388458252,\\n      \\\"gap_closure\\\": 36.39686052870612\\n    },\\n    \\\"attention\\\": {\\n      \\\"spearman_rho\\\": -0.039397684550768204,\\n      \\\"spearman_rho_std\\\": 0.25090178599914104,\\n      \\\"selection_f1\\\": 0.5136436820030212,\\n      \\\"selection_f1_std\\\": 0.04443741217255592,\\n      \\\"gap_closure\\\": -12.682727040151716\\n    },\\n    \\\"cnn\\\": {\\n      \\\"spearman_rho\\\": 0.3872984016528888,\\n      \\\"spearman_rho_std\\\": 0.021148709315689365,\\n      \\\"selection_f1\\\"\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.49}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "675d26ca-a3e3-4ca1-9203-4d726b6afe37",
+  "uuid": "e8fa2db8-4718-473d-858f-86c551bc9aab",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"=== results_fewnerd.json ===\\\\n{\\\\n  \\\\\\\"dataset\\\\\\\": \\\\\\\"fewnerd\\\\\\\",\\\\n  \\\\\\\"data_path\\\\\\\": \\\\\\\"output/exp_021_inference/samples.jsonl\\\\\\\",\\\\n  \\\\\\\"n_instances\\\\\\\": 2000,\\\\n  \\\\\\\"n_samples\\\\\\\": 16000,\\\\n  \\\\\\\"n_folds\\\\\\\": 5,\\\\n  \\\\\\\"seeds\\\\\\\": [\\\\n    42,\\\\n    123,\\\\n    456\\\\n  ],\\\\n  \\\\\\\"epochs\\\\\\\": 50,\\\\n  \\\\\\\"max_seq_len\\\\\\\": 256,\\\\n  \\\\\\\"results\\\\\\\": {\\\\n    \\\\\\\"random\\\\\\\": {\\\\n      \\\\\\\"selection_f1\\\\\\\": 0.6356510519981384,\\\\n      \\\\\\\"selection_f1_std\\\\\\\": 0.010440324433147907,\\\\n      \\\\\\\"gap_closure\\\\\\\": 0.0\\\\n    },\\\\n    \\\\\\\"mean_lp\\\\\\\": {\\\\n      \\\\\\\"spearman_rho\\\\\\\": 0.6037887330957384,\\\\n      \\\\\\\"spearman_rho_std\\\\\\\": 0.019180644731986267,\\\\n      \\\\\\\"selection_f1\\\\\\\": 0.763300895690918,\\\\n      \\\\\\\"selection_f1_std\\\\\\\": 0.010675162076950073,\\\\n      \\\\\\\"gap_closure\\\\\\\": 55.765839660865126\\\\n    },\\\\n    \\\\\\\"attention\\\\\\\": {\\\\n      \\\\\\\"spearman_rho\\\\\\\": 0.3872574459039929,\\\\n      \\\\\\\"spearman_rho_std\\\\\\\": 0.3159971905289272,\\\\n      \\\\\\\"selection_f1\\\\\\\": 0.7133861780166626,\\\\n      \\\\\\\"selection_f1_std\\\\\\\": 0.06799501180648804,\\\\n      \\\\\\\"gap_closure\\\\\\\": 33.95981105937985\\\\n    },\\\\n    \\\\\\\"cnn\\\\\\\": {\\\\n      \\\\\\\"spearman_rho\\\\\\\": 0.6420621598516019,\\\\n      \\\\\\\"spearman_rho_std\\\\\\\": 0.013913019354340122,\\\\n      \\\\\\\"selection_f1\\\\\\\": 0.7647289037\\\\n\\\\n=== results_scierc_10epoch.json ===\\\\n{\\\\n  \\\\\\\"dataset\\\\\\\": \\\\\\\"scierc_10epoch\\\\\\\",\\\\n  \\\\\\\"data_path\\\\\\\": \\\\\\\"output/exp_029b_scierc_10epoch/samples.jsonl\\\\\\\",\\\\n  \\\\\\\"n_instances\\\\\\\": 529,\\\\n  \\\\\\\"n_samples\\\\\\\": 4232,\\\\n  \\\\\\\"n_folds\\\\\\\": 5,\\\\n  \\\\\\\"seeds\\\\\\\": [\\\\n    42,\\\\n    123,\\\\n    456\\\\n  ],\\\\n  \\\\\\\"epochs\\\\\\\": 50,\\\\n  \\\\\\\"max_seq_len\\\\\\\": 256,\\\\n  \\\\\\\"results\\\\\\\": {\\\\n    \\\\\\\"random\\\\\\\": {\\\\n      \\\\\\\"selection_f1\\\\\\\": 0.6475895643234253,\\\\n      \\\\\\\"selection_f1_std\\\\\\\": 0.015404732897877693,\\\\n      \\\\\\\"gap_closure\\\\\\\": 0.0\\\\n    },\\\\n    \\\\\\\"mean_lp\\\\\\\": {\\\\n      \\\\\\\"spearman_rho\\\\\\\": 0.15759024378063516,\\\\n      \\\\\\\"spearman_rho_std\\\\\\\": 0.06395980056291861,\\\\n      \\\\\\\"selection_f1\\\\\\\": 0.6566487550735474,\\\\n      \\\\\\\"selection_f1_std\\\\\\\": 0.01796700805425644,\\\\n      \\\\\\\"gap_closure\\\\\\\": 10.595182575683111\\\\n    },\\\\n    \\\\\\\"attention\\\\\\\": {\\\\n      \\\\\\\"spearman_rho\\\\\\\": -0.04878068289718492,\\\\n      \\\\\\\"spearman_rho_std\\\\\\\": 0.16712299109182255,\\\\n      \\\\\\\"selection_f1\\\\\\\": 0.6366367936134338,\\\\n      \\\\\\\"selection_f1_std\\\\\\\": 0.019617749378085136,\\\\n      \\\\\\\"gap_closure\\\\\\\": -12.809820278968088\\\\n    },\\\\n    \\\\\\\"cnn\\\\\\\": {\\\\n      \\\\\\\"spearman_rho\\\\\\\": 0.17295420242237763,\\\\n      \\\\\\\"spearman_rho_std\\\\\\\": 0.0873183280753172,\\\\n      \\\\\\\"selection_f\\\\n\\\\n=== results_scierc_3epoch.json ===\\\\n{\\\\n  \\\\\\\"dataset\\\\\\\": \\\\\\\"scierc_3epoch\\\\\\\",\\\\n  \\\\\\\"data_path\\\\\\\": \\\\\\\"output/exp_029a_scierc_3epoch/samples.jsonl\\\\\\\",\\\\n  \\\\\\\"n_instances\\\\\\\": 529,\\\\n  \\\\\\\"n_samples\\\\\\\": 4232,\\\\n  \\\\\\\"n_folds\\\\\\\": 5,\\\\n  \\\\\\\"seeds\\\\\\\": [\\\\n    42,\\\\n    123,\\\\n    456\\\\n  ],\\\\n  \\\\\\\"epochs\\\\\\\": 50,\\\\n  \\\\\\\"max_seq_len\\\\\\\": 256,\\\\n  \\\\\\\"results\\\\\\\": {\\\\n    \\\\\\\"random\\\\\\\": {\\\\n      \\\\\\\"selection_f1\\\\\\\": 0.5458515882492065,\\\\n      \\\\\\\"selection_f1_std\\\\\\\": 0.014471401460468769,\\\\n      \\\\\\\"gap_closure\\\\\\\": 0.0\\\\n    },\\\\n    \\\\\\\"mean_lp\\\\\\\": {\\\\n      \\\\\\\"spearman_rho\\\\\\\": 0.354395780247689,\\\\n      \\\\\\\"spearman_rho_std\\\\\\\": 0.022145825869385048,\\\\n      \\\\\\\"selection_f1\\\\\\\": 0.6382817625999451,\\\\n      \\\\\\\"selection_f1_std\\\\\\\": 0.017208397388458252,\\\\n      \\\\\\\"gap_closure\\\\\\\": 36.39686052870612\\\\n    },\\\\n    \\\\\\\"attention\\\\\\\": {\\\\n      \\\\\\\"spearman_rho\\\\\\\": -0.039397684550768204,\\\\n      \\\\\\\"spearman_rho_std\\\\\\\": 0.25090178599914104,\\\\n      \\\\\\\"selection_f1\\\\\\\": 0.5136436820030212,\\\\n      \\\\\\\"selection_f1_std\\\\\\\": 0.04443741217255592,\\\\n      \\\\\\\"gap_closure\\\\\\\": -12.682727040151716\\\\n    },\\\\n    \\\\\\\"cnn\\\\\\\": {\\\\n      \\\\\\\"spearman_rho\\\\\\\": 0.3872984016528888,\\\\n      \\\\\\\"spearman_rho_std\\\\\\\": 0.021148709315689365,\\\\n      \\\\\\\"selection_f1\\\\\\\"\\\\n\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.49}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"=== results_fewnerd.json ===\\n{\\n  \\\"dataset\\\": \\\"fewnerd\\\",\\n  \\\"data_path\\\": \\\"output/exp_021_inference/samples.jsonl\\\",\\n  \\\"n_instances\\\": 2000,\\n  \\\"n_samples\\\": 16000,\\n  \\\"n_folds\\\": 5,\\n  \\\"seeds\\\": [\\n    42,\\n    123,\\n    456\\n  ],\\n  \\\"epochs\\\": 50,\\n  \\\"max_seq_len\\\": 256,\\n  \\\"results\\\": {\\n    \\\"random\\\": {\\n      \\\"selection_f1\\\": 0.6356510519981384,\\n      \\\"selection_f1_std\\\": 0.010440324433147907,\\n      \\\"gap_closure\\\": 0.0\\n    },\\n    \\\"mean_lp\\\": {\\n      \\\"spearman_rho\\\": 0.6037887330957384,\\n      \\\"spearman_rho_std\\\": 0.019180644731986267,\\n      \\\"selection_f1\\\": 0.763300895690918,\\n      \\\"selection_f1_std\\\": 0.010675162076950073,\\n      \\\"gap_closure\\\": 55.765839660865126\\n    },\\n    \\\"attention\\\": {\\n      \\\"spearman_rho\\\": 0.3872574459039929,\\n      \\\"spearman_rho_std\\\": 0.3159971905289272,\\n      \\\"selection_f1\\\": 0.7133861780166626,\\n      \\\"selection_f1_std\\\": 0.06799501180648804,\\n      \\\"gap_closure\\\": 33.95981105937985\\n    },\\n    \\\"cnn\\\": {\\n      \\\"spearman_rho\\\": 0.6420621598516019,\\n      \\\"spearman_rho_std\\\": 0.013913019354340122,\\n      \\\"selection_f1\\\": 0.7647289037\\n\\n=== results_scierc_10epoch.json ===\\n{\\n  \\\"dataset\\\": \\\"scierc_10epoch\\\",\\n  \\\"data_path\\\": \\\"output/exp_029b_scierc_10epoch/samples.jsonl\\\",\\n  \\\"n_instances\\\": 529,\\n  \\\"n_samples\\\": 4232,\\n  \\\"n_folds\\\": 5,\\n  \\\"seeds\\\": [\\n    42,\\n    123,\\n    456\\n  ],\\n  \\\"epochs\\\": 50,\\n  \\\"max_seq_len\\\": 256,\\n  \\\"results\\\": {\\n    \\\"random\\\": {\\n      \\\"selection_f1\\\": 0.6475895643234253,\\n      \\\"selection_f1_std\\\": 0.015404732897877693,\\n      \\\"gap_closure\\\": 0.0\\n    },\\n    \\\"mean_lp\\\": {\\n      \\\"spearman_rho\\\": 0.15759024378063516,\\n      \\\"spearman_rho_std\\\": 0.06395980056291861,\\n      \\\"selection_f1\\\": 0.6566487550735474,\\n      \\\"selection_f1_std\\\": 0.01796700805425644,\\n      \\\"gap_closure\\\": 10.595182575683111\\n    },\\n    \\\"attention\\\": {\\n      \\\"spearman_rho\\\": -0.04878068289718492,\\n      \\\"spearman_rho_std\\\": 0.16712299109182255,\\n      \\\"selection_f1\\\": 0.6366367936134338,\\n      \\\"selection_f1_std\\\": 0.019617749378085136,\\n      \\\"gap_closure\\\": -12.809820278968088\\n    },\\n    \\\"cnn\\\": {\\n      \\\"spearman_rho\\\": 0.17295420242237763,\\n      \\\"spearman_rho_std\\\": 0.0873183280753172,\\n      \\\"selection_f\\n\\n=== results_scierc_3epoch.json ===\\n{\\n  \\\"dataset\\\": \\\"scierc_3epoch\\\",\\n  \\\"data_path\\\": \\\"output/exp_029a_scierc_3epoch/samples.jsonl\\\",\\n  \\\"n_instances\\\": 529,\\n  \\\"n_samples\\\": 4232,\\n  \\\"n_folds\\\": 5,\\n  \\\"seeds\\\": [\\n    42,\\n    123,\\n    456\\n  ],\\n  \\\"epochs\\\": 50,\\n  \\\"max_seq_len\\\": 256,\\n  \\\"results\\\": {\\n    \\\"random\\\": {\\n      \\\"selection_f1\\\": 0.5458515882492065,\\n      \\\"selection_f1_std\\\": 0.014471401460468769,\\n      \\\"gap_closure\\\": 0.0\\n    },\\n    \\\"mean_lp\\\": {\\n      \\\"spearman_rho\\\": 0.354395780247689,\\n      \\\"spearman_rho_std\\\": 0.022145825869385048,\\n      \\\"selection_f1\\\": 0.6382817625999451,\\n      \\\"selection_f1_std\\\": 0.017208397388458252,\\n      \\\"gap_closure\\\": 36.39686052870612\\n    },\\n    \\\"attention\\\": {\\n      \\\"spearman_rho\\\": -0.039397684550768204,\\n      \\\"spearman_rho_std\\\": 0.25090178599914104,\\n      \\\"selection_f1\\\": 0.5136436820030212,\\n      \\\"selection_f1_std\\\": 0.04443741217255592,\\n      \\\"gap_closure\\\": -12.682727040151716\\n    },\\n    \\\"cnn\\\": {\\n      \\\"spearman_rho\\\": 0.3872984016528888,\\n      \\\"spearman_rho_std\\\": 0.021148709315689365,\\n      \\\"selection_f1\\\"\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.49}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 74_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_0168SA4bmcH5qUDv6FkaDvx5`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "source /root/miniconda3/bin/activate && cd /root/autodl-tmp/struct_self_consist_ie && python3 -c \"\nimport json\nd = json.load(open('output/exp_021_fewnerd_n8_seed123/results.json'))\nkeys = [k for k in d if any(x in k.lower() for x in ['f1','spearman','rho','degen','greedy','overall','macro'])]\nprint(json.dumps({k: d[k] for k in keys}, indent=2))\n\"",
+  "account": "root",
+  "warn": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "675d26ca-a3e3-4ca1-9203-4d726b6afe37",
+  "uuid": "922b6862-ed36-4d63-81c8-2d97f9847441",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UKkQenRYBL77ezZs867onZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1495,
+      "cache_read_input_tokens": 46298,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1495
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 75 · 2026-05-18T11:46:13.448Z_
+
+<details><summary>↩ Tool result · `toolu_0168SA4bmcH5qUDv6FkaDvx5`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.49}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "675d26ca-a3e3-4ca1-9203-4d726b6afe37",
+  "uuid": "01f2b37f-d0ef-47af-a5fb-e181876c6a49",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.49}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.49}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 76_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The results.json for exp_021_fewnerd_n8_seed123 is empty `{}`. Let me check the run log to get the key metrics. Also let me check the seed456 progress more precisely.
+
+Let me compile the report now.
+
+From the data I have:
+
+### GPU Status
+- cuda:0: **IDLE** — 4MiB, 0% util
+- cuda:1: **BUSY** — 30888MiB, 43% util, PID 137865 (llamafactory-cli train — LLaMA Few-NERD)
+- cuda:2: **BUSY** — 30934MiB, 94% util, PID 138471 (VLLM::EngineCore — Qwen Few-NERD seed=456 inference)
+
+
+- cuda:3: **IDLE** — 2MiB, 0% util
+
+### Tmux Sessions
+- exp_011_ood_conll_to_scierc
+- exp_017_llama_conll_n16_r1024
+- exp_017_llama_conll_n16_s456_r1024
+- fewnerd_s456 (created May 18 17:31)
+- llama_fewnerd (created May 18 17:31)
+
+### LLaMA Few-NERD Training v2 (cuda:1)
+- Status: RUNNING
+- Progress: 14% (3499 steps completed)
+- Checkpoints saved at 1000, 2000, and 3000 steps
+- Speed varies between 1.7-3.5 seconds per iteration, with an estimated 10.6 hours remaining at current pace
+
+### Qwen Few-NERD seed=123 (completed, was cuda:0)
+- Status: COMPLETED
+- Generated 37648 samples with per-type F1 scores visible in the run log (person 0.8173, org 0.7514, etc.), though the full signal analysis wasn't generated and results.json is empty
+
+### Qwen Few-NERD seed=456 (cuda:2)
+- Status: RUNNING at 88% completion (33240/37648 samples)
+- Using VLLM on cuda:2 at ~30 prompts/s, should finish in about 2.5 minutes
+
+### Hidden State Probe — SciERC
+- Status: COMPLETED with results saved
+
+### Hidden State Probe — Few-NERD
+- Status: COMPLETED with MLP probe showing rho=0.629 and sel_f1=0.763 (11.7% gap closure), while linear probe shows weaker performance at rho=0.268 and sel_f1=0.676 (-57.9% gap closure), and the baseline achieves rho=0.606 with sel_f1=0.764 (12.3% gap closure)
+
+### Hidden State Probe — exp016
+- Status: RUNNING with probe training still in progress, has the necessary data files but no results yet
+
+### Token-level LP Aggregator
+- Status: COMPLETED across all variants, showing Few-NERD with mean_lp rho=0.604 and CNN rho=0.642, while SciERC results vary by epoch with 10-epoch showing lower performance (mean_lp rho=0.158, CNN rho=0.173) compared to 3-epoch (mean_lp rho=0.354, CNN rho=0.387)
+
+### CoNLL 3-seed
+- Both seed=123 and seed=456 have completed with 3453 lines each and existing analyses
+
+### Residual Processes
+- Several processes are still running: tensorboard, jupyter-lab, LLaMA training on cuda:1, Qwen inference on cuda:2 with VLLM, the hidden state probe on CPU, and a stale tmux session. Now I'm compiling the full report.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "675d26ca-a3e3-4ca1-9203-4d726b6afe37",
+  "uuid": "778ee690-d3b5-4900-86de-d756d602ea5b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XV3GMjf2iCXrnUdVkoc5Gp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3823,
+      "cache_read_input_tokens": 47793,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3823
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 77_
+
+所有数据已收集。汇总如下：
+
+---
+
+## LLaMA Few-NERD 训练 v2
+- **状态**: RUNNING
+- **GPU**: cuda:1 (30888MiB, 43% util)
+- **进度**: 14% (3499/24708 steps), 已运行 ~2h13m
+- **Checkpoints**: checkpoint-1000, checkpoint-2000, checkpoint-3000
+- **速度**: ~1.7-3.5 s/it
+- **预计剩余**: ~21200 steps × ~1.8s ≈ **~10.6 小时**
+- **输出**: `checkpoints/llama3.1-8b-fewnerd-lora/`, 无 trainer_state.json（训练中）
+
+## Qwen Few-NERD seed=123 推理
+- **状态**: COMPLETED (May 18 18:50:58)
+- **GPU**: 已释放 (cuda:0 空闲)
+- **关键结果**: 按类型 F1 — person 0.817, org 0.751, other 0.674, building 0.749, product 0.681, event 0.713, art 0.798
+- **输出文件**: `output/exp_021_fewnerd_n8_seed123/samples.jsonl` — 37648 行
+- **注意**: `results.json` 为空 `{}`，`full_signal_analysis.json` 未生成 — **分析脚本未运行**
+
+## Qwen Few-NERD seed=456 推理
+- **状态**: RUNNING (88% — 33240/37648)
+- **GPU**: cuda:2 (30934MiB, 94% util, VLLM EngineCore)
+- **速度**: ~30 prompts/s
+- **预计剩余**: ~4400 prompts ÷ 30/s ≈ **~2.5 分钟**
+- **输出**: 尚无 samples.jsonl（推理完成后才写入）
+
+## Hidden State Probe — SciERC (exp_012)
+- **状态**: COMPLETED
+- **输出**: `output/hidden_state_probe/results_textbased_goldfiltered.json`
+
+## Hidden State Probe — Few-NERD
+- **状态**: COMPLETED
+- **关键结果**:
+  - MLP probe: rho=0.629, sel_f1=0.763, gap_closure=11.7%
+  - Linear probe: rho=0.268, sel_f1=0.676, gap_closure=-57.9%
+  - LP baseline: rho=0.606, sel_f1=0.764, gap_closure=12.3%
+- **输出**: `output/hidden_state_probe_fewnerd/results_goldfiltered.json`
+
+## Hidden State Probe — exp016
+- **状态**: RUNNING (PID 969983, `hidden_state_probe_exp016.py`)
+- **GPU**: 无 GPU 占用（CPU 运行中, 7151% CPU = 多核）
+- **已有**: hidden_states.pt, labels.pt, logprobs.pt, metadata.json
+- **缺失**: 无 results*.json — probe 训练仍在进行
+
+## Token-level LP Aggregator
+- **状态**: COMPLETED (3 个变体)
+- **关键结果**:
+  - Few-NERD: mean_lp rho=0.604, CNN rho=0.642, sel_f1=0.765
+  - SciERC 10epoch: mean_lp rho=0.158, CNN rho=0.173
+  - SciERC 3epoch: mean_lp rho=0.354, CNN rho=0.387
+- **输出**: `output/token_lp_aggregator/`
+
+## CoNLL 3-seed 数据
+- **seed=123**: COMPLETED — 3453 行, full_signal_analysis.json 存在
+- **seed=456**: COMPLETED — 3453 行, full_signal_analysis.json 存在
+
+---
+
+## GPU 状态总结
+
+| GPU | 状态 | 内存 | Util | 进程 |
+|-----|------|------|------|------|
+| cuda:0 | **空闲** | 4MiB/32607MiB | 0% | — |
+| cuda:1 | **占用** | 30888MiB/32607MiB | 43% | LLaMA Few-NERD 训练 (14%, ~10.6h 剩余) |
+| cuda:2 | **占用** | 30934MiB/32607MiB | 94% | Qwen seed=456 推理 (88%, ~2.5min 剩余) |
+| cuda:3 | **空闲** | 2MiB/32607MiB | 0% | — |
+
+**空闲 GPU: 2 张** (cuda:0, cuda:3)
+
+**需要注意**:
+1. seed=123 推理已完成但 **分析未运行** (results.json 为空, 无 full_signal_analysis.json)
+2. seed=456 即将完成（~2.5min），完成后 cuda:2 也将释放 → **3 张空闲**
+3. exp016 probe 在 CPU 上运行，不占 GPU
+4. 有残留 tmux session `exp_001_n16_seed456` (May 15) 和 `exp_011`/`exp_017` 系列可能已过时
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "675d26ca-a3e3-4ca1-9203-4d726b6afe37",
+  "uuid": "2c893e7c-2e2f-4bdf-b77e-ad2d7c9685af",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XV3GMjf2iCXrnUdVkoc5Gp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3823,
+      "cache_read_input_tokens": 47793,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3823
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 78_
+
+所有数据已收集。汇总如下：
+
+---
+
+## LLaMA Few-NERD 训练 v2
+- **状态**: RUNNING
+- **GPU**: cuda:1 (30888MiB, 43% util)
+- **进度**: 14% (3499/24708 steps), 已运行 ~2h13m
+- **Checkpoints**: checkpoint-1000, checkpoint-2000, checkpoint-3000
+- **速度**: ~1.7-3.5 s/it
+- **预计剩余**: ~21200 steps × ~1.8s ≈ **~10.6 小时**
+- **输出**: `checkpoints/llama3.1-8b-fewnerd-lora/`, 无 trainer_state.json（训练中）
+
+## Qwen Few-NERD seed=123 推理
+- **状态**: COMPLETED (May 18 18:50:58)
+- **GPU**: 已释放 (cuda:0 空闲)
+- **关键结果**: 按类型 F1 — person 0.817, org 0.751, other 0.674, building 0.749, product 0.681, event 0.713, art 0.798
+- **输出文件**: `output/exp_021_fewnerd_n8_seed123/samples.jsonl` — 37648 行
+- **注意**: `results.json` 为空 `{}`，`full_signal_analysis.json` 未生成 — **分析脚本未运行**
+
+## Qwen Few-NERD seed=456 推理
+- **状态**: RUNNING (88% — 33240/37648)
+- **GPU**: cuda:2 (30934MiB, 94% util, VLLM EngineCore)
+- **速度**: ~30 prompts/s
+- **预计剩余**: ~4400 prompts ÷ 30/s ≈ **~2.5 分钟**
+- **输出**: 尚无 samples.jsonl（推理完成后才写入）
+
+## Hidden State Probe — SciERC (exp_012)
+- **状态**: COMPLETED
+- **输出**: `output/hidden_state_probe/results_textbased_goldfiltered.json`
+
+## Hidden State Probe — Few-NERD
+- **状态**: COMPLETED
+- **关键结果**:
+  - MLP probe: rho=0.629, sel_f1=0.763, gap_closure=11.7%
+  - Linear probe: rho=0.268, sel_f1=0.676, gap_closure=-57.9%
+  - LP baseline: rho=0.606, sel_f1=0.764, gap_closure=12.3%
+- **输出**: `output/hidden_state_probe_fewnerd/results_goldfiltered.json`
+
+## Hidden State Probe — exp016
+- **状态**: RUNNING (PID 969983, `hidden_state_probe_exp016.py`)
+- **GPU**: 无 GPU 占用（CPU 运行中, 7151% CPU = 多核）
+- **已有**: hidden_states.pt, labels.pt, logprobs.pt, metadata.json
+- **缺失**: 无 results*.json — probe 训练仍在进行
+
+## Token-level LP Aggregator
+- **状态**: COMPLETED (3 个变体)
+- **关键结果**:
+  - Few-NERD: mean_lp rho=0.604, CNN rho=0.642, sel_f1=0.765
+  - SciERC 10epoch: mean_lp rho=0.158, CNN rho=0.173
+  - SciERC 3epoch: mean_lp rho=0.354, CNN rho=0.387
+- **输出**: `output/token_lp_aggregator/`
+
+## CoNLL 3-seed 数据
+- **seed=123**: COMPLETED — 3453 行, full_signal_analysis.json 存在
+- **seed=456**: COMPLETED — 3453 行, full_signal_analysis.json 存在
+
+---
+
+## GPU 状态总结
+
+| GPU | 状态 | 内存 | Util | 进程 |
+|-----|------|------|------|------|
+| cuda:0 | **空闲** | 4MiB/32607MiB | 0% | — |
+| cuda:1 | **占用** | 30888MiB/32607MiB | 43% | LLaMA Few-NERD 训练 (14%, ~10.6h 剩余) |
+| cuda:2 | **占用** | 30934MiB/32607MiB | 94% | Qwen seed=456 推理 (88%, ~2.5min 剩余) |
+| cuda:3 | **空闲** | 2MiB/32607MiB | 0% | — |
+
+**空闲 GPU: 2 张** (cuda:0, cuda:3)
+
+**需要注意**:
+1. seed=123 推理已完成但 **分析未运行** (results.json 为空, 无 full_signal_analysis.json)
+2. seed=456 即将完成（~2.5min），完成后 cuda:2 也将释放 → **3 张空闲**
+3. exp016 probe 在 CPU 上运行，不占 GPU
+4. 有残留 tmux session `exp_001_n16_seed456` (May 15) 和 `exp_011`/`exp_017` 系列可能已过时
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 136846,
+  "duration_api_ms": 135272,
+  "num_turns": 31,
+  "stop_reason": "end_turn",
+  "session_id": "675d26ca-a3e3-4ca1-9203-4d726b6afe37",
+  "total_cost_usd": 0.63310875,
+  "usage": {
+    "input_tokens": 10,
+    "cache_creation_input_tokens": 39915,
+    "cache_read_input_tokens": 233168,
+    "output_tokens": 10569,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 39915,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 2613,
+        "cache_read_input_tokens": 47793,
+        "cache_creation_input_tokens": 3823,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 3823
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 2711,
+      "outputTokens": 14,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.002781,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 10,
+      "outputTokens": 10569,
+      "cacheReadInputTokens": 233168,
+      "cacheCreationInputTokens": 39915,
+      "webSearchRequests": 0,
+      "costUSD": 0.63032775,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "91c638fb-6076-4336-a201-8d25011dc263"
+}
+```
+
+</details>
+
+---

@@ -1,0 +1,4119 @@
+# analysis d140 oracle gated selection
+
+**When Self-Consistency Fails for NER: Degeneracy, Signal Collapse, and the Correlation-Selection Gap** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 86
+- **Recorded user turns:** 0
+- **Tool calls:** 29
+- **Original source:** `logs/workers/worker_analysis_d140_oracle_gated_selection_20260518T130246.log`
+- **Structured JSON:** [`fee2e694bfe8429fdc77.json`](../../sessions/fe/fee2e694bfe8429fdc77.json)
+
+## Before a recorded user message
+
+86 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "session_id": "8a680ff0-698a-43a6-9fb6-b209c674d969",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "988f32c8-edd0-4322-8764-211e25919302",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779110400,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "d6c7be5d-8dbf-487f-98a1-08171a1a15ba",
+  "session_id": "8a680ff0-698a-43a6-9fb6-b209c674d969"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by understanding the task and then execute it step by step.
+
+The task is to analyze "Oracle Degeneracy-Gated LP Selection" for three datasets (Few-NERD, SciERC, CoNLL). I need to:
+
+1. SSH to the server and find the data files
+2. Write an analysis script
+3. Run it and save results
+
+Let me start by exploring the server to find the data files.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8a680ff0-698a-43a6-9fb6-b209c674d969",
+  "uuid": "dc2427aa-56f6-4711-8c39-5a76dad7db38",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RCVvwC7PY6trSqWo8KekCL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13218,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13218
+      },
+      "output_tokens": 38,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 5_
+
+先 SSH 确认数据文件位置。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8a680ff0-698a-43a6-9fb6-b209c674d969",
+  "uuid": "6d901b90-b5df-4188-9ca4-2da26c40b44f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RCVvwC7PY6trSqWo8KekCL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13218,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13218
+      },
+      "output_tokens": 38,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01V7c71fxjVfgpJVNhuXTbYY`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8a680ff0-698a-43a6-9fb6-b209c674d969",
+  "uuid": "b0149dcb-cb87-4867-afbc-a692e0ed31f8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RCVvwC7PY6trSqWo8KekCL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13218,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13218
+      },
+      "output_tokens": 38,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-18T13:02:58.696Z_
+
+<details><summary>↩ Tool result · `toolu_01V7c71fxjVfgpJVNhuXTbYY`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8a680ff0-698a-43a6-9fb6-b209c674d969",
+  "uuid": "6b06f9eb-dc43-45cf-94bd-9db37ef7ec87",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__ssh_read_only"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only",
+    "total_deferred_tools": 24
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_012ZUNSiyyBsncwHWyaGAmDX`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "ls /root/autodl-tmp/struct_self_consist_ie/output/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8a680ff0-698a-43a6-9fb6-b209c674d969",
+  "uuid": "422c6e50-8130-4f33-a096-f4ac6ef5f0a4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018WzR115EfaGJHPnSM74yCq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 798,
+      "cache_read_input_tokens": 25059,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 798
+      },
+      "output_tokens": 65,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-18T13:03:02.834Z_
+
+<details><summary>↩ Tool result · `toolu_012ZUNSiyyBsncwHWyaGAmDX`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"adalp_analysis_results.json\\nanalysis_epsilon_sweep\\nanalysis_fk_bootstrap_ci.json\\nanalysis_fk_bootstrap_per_instance.json\\nanalysis_lp_range_cdf.json\\nanalysis_lp_range_cdf_n16_3seed.json\\nanalysis_multiseed_selection_f1.json\\nanalysis_round8\\nanalysis_scierc_n16_3seed_selection_f1.json\\nanalysis_scierc_n16_3seed_selection_f1_merged.json\\nanalysis_scierc_re_n16_3seed_selection_f1.json\\nanalysis_unified_rho_full.json\\nbootstrap_ci_nscaling\\nbootstrap_ci_summary.json\\nbootstrap_ci_tables.tex\\ncalibration_baseline_results.json\\nconditional_filter_diagnosis.json\\nd108_greedy_f1\\nd108_lp_vc_combination\\nd108_mbr_within_rho\\nd108_q4q5\\nd110_4b_degeneracy\\nd112_disk_cleanup\\nd112_hybrid_strategy\\nd112_mf3_random_single\\nd112_table2_fix\\nd114_auroc_investigation\\ndals_analysis.json\\ndals_cross_model.json\\ndals_hardening_results.json\\ndeberta_verifier\\ndeberta_verifier_5fold\\nexp001_n16_seed123\\nexp001_n16_seed123_200only\\nexp001_n16_seed123_200only_backup\\nexp001_n16_seed123_full\\nexp001_n16_seed123_run.log\\nexp001_n16_seed42\\nexp001_n16_seed42_200only_backup\\nexp001_n16_seed42_run.log\\nexp001_n16_seed456\\nexp001_n16_seed456_200only\\nexp001_n16_seed456_run.log\\nexp001_seed123_t10_full\\nexp001_seed123_t10_full.log\\nexp001_seed456_t10_full\\nexp001_seed456_t10_full.log\\nexp002_conll2003\\nexp003_wnut17_dryrun\\nexp003_wnut17_eval\\nexp003_wnut17_eval.log\\nexp003_wnut17_pilot\\nexp003_wnut17_pilot.log\\nexp004_re_diagnostic\\nexp004v2_re_diagnostic\\nexp007_llama_dryrun\\nexp007_llama_inference\\nexp008_re_n16\\nexp008_re_n16_200only\\nexp008_re_n16_t10_full\\nexp008_re_n16_t10_full.log\\nexp009_stratification_results.json\\nexp010_selection_curves\\nexp016_signal_ensemble\\nexp018_3seed_5signal_results.json\\nexp_001_seed123_v2\\nexp_001_seed123_v2_r1024\\nexp_001_seed42_v2\\nexp_001_seed42_v2_r1024\\nexp_001_seed456_v2\\nexp_001_seed456_v2_ner\\nexp_001_seed456_v2_ner.log\\nexp_001_seed456_v2_ner_r1024\\nexp_002_conll_n16\\nexp_002_conll_n16.log\\nexp_002_conll_n16_r1024\\nexp_002_conll_n8_seed123\\nexp_002_conll_n8_seed123_run.log\\nexp_002_conll_n8_seed456\\nexp_002_conll_n8_seed456.log\\nexp_003_wnut17_v2_infer\\nexp_005_v2_temperature\\nexp_006_v2\\nexp_006_v2_run.log\\nexp_007_llama_n16\\nexp_007_llama_n16.log\\nexp_007_llama_n16_r1024\\nexp_007_llama_seed123\\nexp_007_llama_seed456\\nexp_008_re_n16_v2\\nexp_008_re_seed123\\nexp_009_v2\\nexp_009_v2_re_rerun\\nexp_009_v2_run.log\\nexp_011_ood_analysis\\nexp_011_ood_conll_to_scierc\\nexp_011_ood_scierc_to_conll\\nexp_011_ood_scierc_to_conll_run.log\\nexp_012_logprob\\nexp_012_rerun_1024\\nexp_015_unified\\nexp_015_v2\\nexp_016_rerun_1024\\nexp_016_v2\\nexp_017_llama_conll_infer\\nexp_017_llama_conll_infer.log\\nexp_017_llama_conll_n16\\nexp_017_llama_conll_n16_r1024\\nexp_017_llama_conll_n16_r1024_run.log\\nexp_017_llama_conll_n16_s123\\nexp_017_llama_conll_n16_s123.log\\nexp_017_llama_conll_n16_s123_r1024\\nexp_017_llama_conll_n16_s456\\nexp_017_llama_conll_n16_s456.log\\nexp_017_llama_conll_n16_s456_r1024\\nexp_017_llama_conll_n16_s456_r1024_run.log\\nexp_017_llama_conll_n8_t07\\nexp_018_llama_scierc_seed123\\nexp_018_llama_scierc_seed123.log\\nexp_018_llama_scierc_seed42_r1024\\nexp_018_llama_scierc_seed456\\nexp_018_llama_scierc_seed456_r1024\\nexp_018_qwen_scierc_seed123\\nexp_018_qwen_scierc_seed123.log\\nexp_018_qwen_scierc_seed456\\nexp_019_trained_verifier\\nexp_020_pilot\\nexp_021_fewnerd_full\\nexp_021_fewnerd_n8_seed123\\nexp_021_fewnerd_n8_seed123_run.log\\nexp_021_fewnerd_n8_seed456\\nexp_021_fewnerd_n8_seed456_run.log\\nexp_021_inference\\nexp_022_3seed_analysis\\nexp_022_seed789\\nexp_023_rank8_inference\\nexp_025_n32\\nexp_025_n32.log\\nexp_025_n_ablation\\nexp_026_T05\\nexp_026_T05_run.log\\nexp_026_T08\\nexp_026_T08_run.log\\nexp_026_T12\\nexp_026_T12_run.log\\nexp_026_T_ablation_summary.json\\nexp_026_t05\\nexp_026_t05.log\\nexp_026_t08\\nexp_026_t08.log\\nexp_026_t12\\nexp_026_t12.log\\nexp_027_fewnerd_n16\\nexp_027_mlp_verifier\\nexp_027v2_mlp_verifier\\nexp_028_fewnerd_5epoch\\nexp_029a_scierc_3epoch\\nexp_029b_scierc_10epoch\\nexp_entity_token_lp\\nexp_entity_token_lp_conll_run.log\\nexp_entity_token_lp_pilot\\nexp_entity_token_lp_pilot_run.log\\nexp_entity_token_lp_scierc_run.log\\nexp_entity_token_lp_smoke\\nexp_lp_scierc_t07\\nexp_qwen3_4b_conll_merge_inference_v2\\nexp_qwen3_4b_conll_scs_inference\\nexp_qwen3_4b_conll_scs_inference_v2\\nexp_qwen3_4b_scierc_scs_inference\\nexp_re_scierc_seed123\\nexp_re_scierc_seed456\\nexp_scale_qwen3_4b_conll\\nfewnerd_dals_multiseed_results.json\\nfigures\\ngate0_all_predictions.jsonl\\ngate0_ft002v2\\ngate0_ft002v2_ckpt400\\ngate0_realigned_predictions.jsonl\\ngate0_realigned_results.json\\ngate0_results.json\\ngate0_samples.json\\nhidden_state_probe\\nhidden_state_probe_exp016\\nhidden_state_probe_exp016_run.log\\nhidden_state_probe_fewnerd\\nllama_conll_n16_3seed_5signal_summary.json\\nlogprob_diagnosis\\nloo_sj_cross_dataset\\nlp_rank_comparison.py\\nlp_rank_comparison_results.json\\nmultiseed_selection_f1.json\\nmvp_pilot_001\\nmvp_pilot_001.log\\nmvp_pilot_003\\nmvp_pilot_004\\nmvp_pilot_005\\nn16_3seed_5signal_results.json\\nn16_3seed_analysis.py\\nn16_5signal_results.json\\nn8_5signal_results.json\\nn_scaling_gf_maxlp.json\\nr17_analyses\\nrecompute_tab_fewnerd_results.json\\nreview_round2\\nreview_round4\\nreview_round8\\nreview_round9_experiments\\nrho_audit_results.json\\nselection_f1_4b_results.json\\nstatistical_hardening\\ntask1_within_rho.py\\ntask2_dals_cross_model.py\\ntask3_llama_n16_check.py\\ntoken_lp_aggregator\\ntoken_lp_aggregator_fewnerd.log\\ntoken_lp_aggregator_scierc.log\\ntoken_lp_aggregator_scierc_3ep.log\\ntoken_lp_aggregator_scierc_v2.log\\nunified_tab_fewnerd_maxlp.json\\nvc_quartile_analysis.json\\nwithin_instance_rho_table.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.92}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8a680ff0-698a-43a6-9fb6-b209c674d969",
+  "uuid": "9088eb30-80dc-409b-8240-9d4ae0b324f5",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"adalp_analysis_results.json\\\\nanalysis_epsilon_sweep\\\\nanalysis_fk_bootstrap_ci.json\\\\nanalysis_fk_bootstrap_per_instance.json\\\\nanalysis_lp_range_cdf.json\\\\nanalysis_lp_range_cdf_n16_3seed.json\\\\nanalysis_multiseed_selection_f1.json\\\\nanalysis_round8\\\\nanalysis_scierc_n16_3seed_selection_f1.json\\\\nanalysis_scierc_n16_3seed_selection_f1_merged.json\\\\nanalysis_scierc_re_n16_3seed_selection_f1.json\\\\nanalysis_unified_rho_full.json\\\\nbootstrap_ci_nscaling\\\\nbootstrap_ci_summary.json\\\\nbootstrap_ci_tables.tex\\\\ncalibration_baseline_results.json\\\\nconditional_filter_diagnosis.json\\\\nd108_greedy_f1\\\\nd108_lp_vc_combination\\\\nd108_mbr_within_rho\\\\nd108_q4q5\\\\nd110_4b_degeneracy\\\\nd112_disk_cleanup\\\\nd112_hybrid_strategy\\\\nd112_mf3_random_single\\\\nd112_table2_fix\\\\nd114_auroc_investigation\\\\ndals_analysis.json\\\\ndals_cross_model.json\\\\ndals_hardening_results.json\\\\ndeberta_verifier\\\\ndeberta_verifier_5fold\\\\nexp001_n16_seed123\\\\nexp001_n16_seed123_200only\\\\nexp001_n16_seed123_200only_backup\\\\nexp001_n16_seed123_full\\\\nexp001_n16_seed123_run.log\\\\nexp001_n16_seed42\\\\nexp001_n16_seed42_200only_backup\\\\nexp001_n16_seed42_run.log\\\\nexp001_n16_seed456\\\\nexp001_n16_seed456_200only\\\\nexp001_n16_seed456_run.log\\\\nexp001_seed123_t10_full\\\\nexp001_seed123_t10_full.log\\\\nexp001_seed456_t10_full\\\\nexp001_seed456_t10_full.log\\\\nexp002_conll2003\\\\nexp003_wnut17_dryrun\\\\nexp003_wnut17_eval\\\\nexp003_wnut17_eval.log\\\\nexp003_wnut17_pilot\\\\nexp003_wnut17_pilot.log\\\\nexp004_re_diagnostic\\\\nexp004v2_re_diagnostic\\\\nexp007_llama_dryrun\\\\nexp007_llama_inference\\\\nexp008_re_n16\\\\nexp008_re_n16_200only\\\\nexp008_re_n16_t10_full\\\\nexp008_re_n16_t10_full.log\\\\nexp009_stratification_results.json\\\\nexp010_selection_curves\\\\nexp016_signal_ensemble\\\\nexp018_3seed_5signal_results.json\\\\nexp_001_seed123_v2\\\\nexp_001_seed123_v2_r1024\\\\nexp_001_seed42_v2\\\\nexp_001_seed42_v2_r1024\\\\nexp_001_seed456_v2\\\\nexp_001_seed456_v2_ner\\\\nexp_001_seed456_v2_ner.log\\\\nexp_001_seed456_v2_ner_r1024\\\\nexp_002_conll_n16\\\\nexp_002_conll_n16.log\\\\nexp_002_conll_n16_r1024\\\\nexp_002_conll_n8_seed123\\\\nexp_002_conll_n8_seed123_run.log\\\\nexp_002_conll_n8_seed456\\\\nexp_002_conll_n8_seed456.log\\\\nexp_003_wnut17_v2_infer\\\\nexp_005_v2_temperature\\\\nexp_006_v2\\\\nexp_006_v2_run.log\\\\nexp_007_llama_n16\\\\nexp_007_llama_n16.log\\\\nexp_007_llama_n16_r1024\\\\nexp_007_llama_seed123\\\\nexp_007_llama_seed456\\\\nexp_008_re_n16_v2\\\\nexp_008_re_seed123\\\\nexp_009_v2\\\\nexp_009_v2_re_rerun\\\\nexp_009_v2_run.log\\\\nexp_011_ood_analysis\\\\nexp_011_ood_conll_to_scierc\\\\nexp_011_ood_scierc_to_conll\\\\nexp_011_ood_scierc_to_conll_run.log\\\\nexp_012_logprob\\\\nexp_012_rerun_1024\\\\nexp_015_unified\\\\nexp_015_v2\\\\nexp_016_rerun_1024\\\\nexp_016_v2\\\\nexp_017_llama_conll_infer\\\\nexp_017_llama_conll_infer.log\\\\nexp_017_llama_conll_n16\\\\nexp_017_llama_conll_n16_r1024\\\\nexp_017_llama_conll_n16_r1024_run.log\\\\nexp_017_llama_conll_n16_s123\\\\nexp_017_llama_conll_n16_s123.log\\\\nexp_017_llama_conll_n16_s123_r1024\\\\nexp_017_llama_conll_n16_s456\\\\nexp_017_llama_conll_n16_s456.log\\\\nexp_017_llama_conll_n16_s456_r1024\\\\nexp_017_llama_conll_n16_s456_r1024_run.log\\\\nexp_017_llama_conll_n8_t07\\\\nexp_018_llama_scierc_seed123\\\\nexp_018_llama_scierc_seed123.log\\\\nexp_018_llama_scierc_seed42_r1024\\\\nexp_018_llama_scierc_seed456\\\\nexp_018_llama_scierc_seed456_r1024\\\\nexp_018_qwen_scierc_seed123\\\\nexp_018_qwen_scierc_seed123.log\\\\nexp_018_qwen_scierc_seed456\\\\nexp_019_trained_verifier\\\\nexp_020_pilot\\\\nexp_021_fewnerd_full\\\\nexp_021_fewnerd_n8_seed123\\\\nexp_021_fewnerd_n8_seed123_run.log\\\\nexp_021_fewnerd_n8_seed456\\\\nexp_021_fewnerd_n8_seed456_run.log\\\\nexp_021_inference\\\\nexp_022_3seed_analysis\\\\nexp_022_seed789\\\\nexp_023_rank8_inference\\\\nexp_025_n32\\\\nexp_025_n32.log\\\\nexp_025_n_ablation\\\\nexp_026_T05\\\\nexp_026_T05_run.log\\\\nexp_026_T08\\\\nexp_026_T08_run.log\\\\nexp_026_T12\\\\nexp_026_T12_run.log\\\\nexp_026_T_ablation_summary.json\\\\nexp_026_t05\\\\nexp_026_t05.log\\\\nexp_026_t08\\\\nexp_026_t08.log\\\\nexp_026_t12\\\\nexp_026_t12.log\\\\nexp_027_fewnerd_n16\\\\nexp_027_mlp_verifier\\\\nexp_027v2_mlp_verifier\\\\nexp_028_fewnerd_5epoch\\\\nexp_029a_scierc_3epoch\\\\nexp_029b_scierc_10epoch\\\\nexp_entity_token_lp\\\\nexp_entity_token_lp_conll_run.log\\\\nexp_entity_token_lp_pilot\\\\nexp_entity_token_lp_pilot_run.log\\\\nexp_entity_token_lp_scierc_run.log\\\\nexp_entity_token_lp_smoke\\\\nexp_lp_scierc_t07\\\\nexp_qwen3_4b_conll_merge_inference_v2\\\\nexp_qwen3_4b_conll_scs_inference\\\\nexp_qwen3_4b_conll_scs_inference_v2\\\\nexp_qwen3_4b_scierc_scs_inference\\\\nexp_re_scierc_seed123\\\\nexp_re_scierc_seed456\\\\nexp_scale_qwen3_4b_conll\\\\nfewnerd_dals_multiseed_results.json\\\\nfigures\\\\ngate0_all_predictions.jsonl\\\\ngate0_ft002v2\\\\ngate0_ft002v2_ckpt400\\\\ngate0_realigned_predictions.jsonl\\\\ngate0_realigned_results.json\\\\ngate0_results.json\\\\ngate0_samples.json\\\\nhidden_state_probe\\\\nhidden_state_probe_exp016\\\\nhidden_state_probe_exp016_run.log\\\\nhidden_state_probe_fewnerd\\\\nllama_conll_n16_3seed_5signal_summary.json\\\\nlogprob_diagnosis\\\\nloo_sj_cross_dataset\\\\nlp_rank_comparison.py\\\\nlp_rank_comparison_results.json\\\\nmultiseed_selection_f1.json\\\\nmvp_pilot_001\\\\nmvp_pilot_001.log\\\\nmvp_pilot_003\\\\nmvp_pilot_004\\\\nmvp_pilot_005\\\\nn16_3seed_5signal_results.json\\\\nn16_3seed_analysis.py\\\\nn16_5signal_results.json\\\\nn8_5signal_results.json\\\\nn_scaling_gf_maxlp.json\\\\nr17_analyses\\\\nrecompute_tab_fewnerd_results.json\\\\nreview_round2\\\\nreview_round4\\\\nreview_round8\\\\nreview_round9_experiments\\\\nrho_audit_results.json\\\\nselection_f1_4b_results.json\\\\nstatistical_hardening\\\\ntask1_within_rho.py\\\\ntask2_dals_cross_model.py\\\\ntask3_llama_n16_check.py\\\\ntoken_lp_aggregator\\\\ntoken_lp_aggregator_fewnerd.log\\\\ntoken_lp_aggregator_scierc.log\\\\ntoken_lp_aggregator_scierc_3ep.log\\\\ntoken_lp_aggregator_scierc_v2.log\\\\nunified_tab_fewnerd_maxlp.json\\\\nvc_quartile_analysis.json\\\\nwithin_instance_rho_table.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.92}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"adalp_analysis_results.json\\nanalysis_epsilon_sweep\\nanalysis_fk_bootstrap_ci.json\\nanalysis_fk_bootstrap_per_instance.json\\nanalysis_lp_range_cdf.json\\nanalysis_lp_range_cdf_n16_3seed.json\\nanalysis_multiseed_selection_f1.json\\nanalysis_round8\\nanalysis_scierc_n16_3seed_selection_f1.json\\nanalysis_scierc_n16_3seed_selection_f1_merged.json\\nanalysis_scierc_re_n16_3seed_selection_f1.json\\nanalysis_unified_rho_full.json\\nbootstrap_ci_nscaling\\nbootstrap_ci_summary.json\\nbootstrap_ci_tables.tex\\ncalibration_baseline_results.json\\nconditional_filter_diagnosis.json\\nd108_greedy_f1\\nd108_lp_vc_combination\\nd108_mbr_within_rho\\nd108_q4q5\\nd110_4b_degeneracy\\nd112_disk_cleanup\\nd112_hybrid_strategy\\nd112_mf3_random_single\\nd112_table2_fix\\nd114_auroc_investigation\\ndals_analysis.json\\ndals_cross_model.json\\ndals_hardening_results.json\\ndeberta_verifier\\ndeberta_verifier_5fold\\nexp001_n16_seed123\\nexp001_n16_seed123_200only\\nexp001_n16_seed123_200only_backup\\nexp001_n16_seed123_full\\nexp001_n16_seed123_run.log\\nexp001_n16_seed42\\nexp001_n16_seed42_200only_backup\\nexp001_n16_seed42_run.log\\nexp001_n16_seed456\\nexp001_n16_seed456_200only\\nexp001_n16_seed456_run.log\\nexp001_seed123_t10_full\\nexp001_seed123_t10_full.log\\nexp001_seed456_t10_full\\nexp001_seed456_t10_full.log\\nexp002_conll2003\\nexp003_wnut17_dryrun\\nexp003_wnut17_eval\\nexp003_wnut17_eval.log\\nexp003_wnut17_pilot\\nexp003_wnut17_pilot.log\\nexp004_re_diagnostic\\nexp004v2_re_diagnostic\\nexp007_llama_dryrun\\nexp007_llama_inference\\nexp008_re_n16\\nexp008_re_n16_200only\\nexp008_re_n16_t10_full\\nexp008_re_n16_t10_full.log\\nexp009_stratification_results.json\\nexp010_selection_curves\\nexp016_signal_ensemble\\nexp018_3seed_5signal_results.json\\nexp_001_seed123_v2\\nexp_001_seed123_v2_r1024\\nexp_001_seed42_v2\\nexp_001_seed42_v2_r1024\\nexp_001_seed456_v2\\nexp_001_seed456_v2_ner\\nexp_001_seed456_v2_ner.log\\nexp_001_seed456_v2_ner_r1024\\nexp_002_conll_n16\\nexp_002_conll_n16.log\\nexp_002_conll_n16_r1024\\nexp_002_conll_n8_seed123\\nexp_002_conll_n8_seed123_run.log\\nexp_002_conll_n8_seed456\\nexp_002_conll_n8_seed456.log\\nexp_003_wnut17_v2_infer\\nexp_005_v2_temperature\\nexp_006_v2\\nexp_006_v2_run.log\\nexp_007_llama_n16\\nexp_007_llama_n16.log\\nexp_007_llama_n16_r1024\\nexp_007_llama_seed123\\nexp_007_llama_seed456\\nexp_008_re_n16_v2\\nexp_008_re_seed123\\nexp_009_v2\\nexp_009_v2_re_rerun\\nexp_009_v2_run.log\\nexp_011_ood_analysis\\nexp_011_ood_conll_to_scierc\\nexp_011_ood_scierc_to_conll\\nexp_011_ood_scierc_to_conll_run.log\\nexp_012_logprob\\nexp_012_rerun_1024\\nexp_015_unified\\nexp_015_v2\\nexp_016_rerun_1024\\nexp_016_v2\\nexp_017_llama_conll_infer\\nexp_017_llama_conll_infer.log\\nexp_017_llama_conll_n16\\nexp_017_llama_conll_n16_r1024\\nexp_017_llama_conll_n16_r1024_run.log\\nexp_017_llama_conll_n16_s123\\nexp_017_llama_conll_n16_s123.log\\nexp_017_llama_conll_n16_s123_r1024\\nexp_017_llama_conll_n16_s456\\nexp_017_llama_conll_n16_s456.log\\nexp_017_llama_conll_n16_s456_r1024\\nexp_017_llama_conll_n16_s456_r1024_run.log\\nexp_017_llama_conll_n8_t07\\nexp_018_llama_scierc_seed123\\nexp_018_llama_scierc_seed123.log\\nexp_018_llama_scierc_seed42_r1024\\nexp_018_llama_scierc_seed456\\nexp_018_llama_scierc_seed456_r1024\\nexp_018_qwen_scierc_seed123\\nexp_018_qwen_scierc_seed123.log\\nexp_018_qwen_scierc_seed456\\nexp_019_trained_verifier\\nexp_020_pilot\\nexp_021_fewnerd_full\\nexp_021_fewnerd_n8_seed123\\nexp_021_fewnerd_n8_seed123_run.log\\nexp_021_fewnerd_n8_seed456\\nexp_021_fewnerd_n8_seed456_run.log\\nexp_021_inference\\nexp_022_3seed_analysis\\nexp_022_seed789\\nexp_023_rank8_inference\\nexp_025_n32\\nexp_025_n32.log\\nexp_025_n_ablation\\nexp_026_T05\\nexp_026_T05_run.log\\nexp_026_T08\\nexp_026_T08_run.log\\nexp_026_T12\\nexp_026_T12_run.log\\nexp_026_T_ablation_summary.json\\nexp_026_t05\\nexp_026_t05.log\\nexp_026_t08\\nexp_026_t08.log\\nexp_026_t12\\nexp_026_t12.log\\nexp_027_fewnerd_n16\\nexp_027_mlp_verifier\\nexp_027v2_mlp_verifier\\nexp_028_fewnerd_5epoch\\nexp_029a_scierc_3epoch\\nexp_029b_scierc_10epoch\\nexp_entity_token_lp\\nexp_entity_token_lp_conll_run.log\\nexp_entity_token_lp_pilot\\nexp_entity_token_lp_pilot_run.log\\nexp_entity_token_lp_scierc_run.log\\nexp_entity_token_lp_smoke\\nexp_lp_scierc_t07\\nexp_qwen3_4b_conll_merge_inference_v2\\nexp_qwen3_4b_conll_scs_inference\\nexp_qwen3_4b_conll_scs_inference_v2\\nexp_qwen3_4b_scierc_scs_inference\\nexp_re_scierc_seed123\\nexp_re_scierc_seed456\\nexp_scale_qwen3_4b_conll\\nfewnerd_dals_multiseed_results.json\\nfigures\\ngate0_all_predictions.jsonl\\ngate0_ft002v2\\ngate0_ft002v2_ckpt400\\ngate0_realigned_predictions.jsonl\\ngate0_realigned_results.json\\ngate0_results.json\\ngate0_samples.json\\nhidden_state_probe\\nhidden_state_probe_exp016\\nhidden_state_probe_exp016_run.log\\nhidden_state_probe_fewnerd\\nllama_conll_n16_3seed_5signal_summary.json\\nlogprob_diagnosis\\nloo_sj_cross_dataset\\nlp_rank_comparison.py\\nlp_rank_comparison_results.json\\nmultiseed_selection_f1.json\\nmvp_pilot_001\\nmvp_pilot_001.log\\nmvp_pilot_003\\nmvp_pilot_004\\nmvp_pilot_005\\nn16_3seed_5signal_results.json\\nn16_3seed_analysis.py\\nn16_5signal_results.json\\nn8_5signal_results.json\\nn_scaling_gf_maxlp.json\\nr17_analyses\\nrecompute_tab_fewnerd_results.json\\nreview_round2\\nreview_round4\\nreview_round8\\nreview_round9_experiments\\nrho_audit_results.json\\nselection_f1_4b_results.json\\nstatistical_hardening\\ntask1_within_rho.py\\ntask2_dals_cross_model.py\\ntask3_llama_n16_check.py\\ntoken_lp_aggregator\\ntoken_lp_aggregator_fewnerd.log\\ntoken_lp_aggregator_scierc.log\\ntoken_lp_aggregator_scierc_3ep.log\\ntoken_lp_aggregator_scierc_v2.log\\nunified_tab_fewnerd_maxlp.json\\nvc_quartile_analysis.json\\nwithin_instance_rho_table.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.92}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 10_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me find the specific data files for each dataset. I need to look for:
+- Few-NERD: exp_021 related samples.jsonl (N=8, seed=42, gold-filtered n≈32565)
+- SciERC: exp_012_rerun_1024/samples.jsonl (N=8, gold-filtered n=529)
+- CoNLL: exp_002 related samples.jsonl (N=8, gold-filtered n=2756)
+
+Let me check for samples.jsonl files in these directories.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8a680ff0-698a-43a6-9fb6-b209c674d969",
+  "uuid": "70b2a5fd-163e-4a47-9735-268a6929659d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FsawnUwmV2abqudebKMMzy",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2927,
+      "cache_read_input_tokens": 25857,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2927
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 11_
+
+查找三个数据集的 samples.jsonl 文件。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8a680ff0-698a-43a6-9fb6-b209c674d969",
+  "uuid": "ad2acfc2-da0b-45b0-b4d7-42a1e1913d83",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FsawnUwmV2abqudebKMMzy",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2927,
+      "cache_read_input_tokens": 25857,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2927
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01ACH4u1heLUauhLe1QDGFPM`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "find /root/autodl-tmp/struct_self_consist_ie/output/exp_021_fewnerd_full -name \"samples.jsonl\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8a680ff0-698a-43a6-9fb6-b209c674d969",
+  "uuid": "ebd69f0a-b7f9-4e10-84bc-43bd9e4b14e6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FsawnUwmV2abqudebKMMzy",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2927,
+      "cache_read_input_tokens": 25857,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2927
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-18T13:03:11.460Z_
+
+<details><summary>↩ Tool result · `toolu_01ACH4u1heLUauhLe1QDGFPM`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8a680ff0-698a-43a6-9fb6-b209c674d969",
+  "uuid": "094c9bfd-652b-4d0c-ad82-2880619170bb",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01QaBnQZ1i6nQUeFVG1MTYpK`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "find /root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024 -name \"samples.jsonl\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8a680ff0-698a-43a6-9fb6-b209c674d969",
+  "uuid": "d62ff8b3-e5d7-4775-abda-7c69d35d90fc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FsawnUwmV2abqudebKMMzy",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2927,
+      "cache_read_input_tokens": 25857,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2927
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-18T13:03:12.321Z_
+
+<details><summary>↩ Tool result · `toolu_01QaBnQZ1i6nQUeFVG1MTYpK`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/samples.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8a680ff0-698a-43a6-9fb6-b209c674d969",
+  "uuid": "952869d1-6103-4cdf-a622-c2b035f69674",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/samples.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/samples.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_016i5RVnFG9Wge3uJEjbw5vV`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "find /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll2003 -name \"samples.jsonl\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8a680ff0-698a-43a6-9fb6-b209c674d969",
+  "uuid": "155739b2-eced-4d8e-974b-028b79ad55f6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FsawnUwmV2abqudebKMMzy",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2927,
+      "cache_read_input_tokens": 25857,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2927
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-18T13:03:12.824Z_
+
+<details><summary>↩ Tool result · `toolu_016i5RVnFG9Wge3uJEjbw5vV`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"find: '/root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll2003': No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8a680ff0-698a-43a6-9fb6-b209c674d969",
+  "uuid": "e2cdc721-be7c-4130-be58-f3151dc284b4",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"find: '/root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll2003': No such file or directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"find: '/root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll2003': No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 18_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+SciERC found. Few-NERD and CoNLL need more searching. Let me look more broadly.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8a680ff0-698a-43a6-9fb6-b209c674d969",
+  "uuid": "925e29d8-4c61-4d27-92c4-290d288502ca",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MAPda3MkaSjqLbUXKUeyQS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 926,
+      "cache_read_input_tokens": 28784,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 926
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 19_
+
+SciERC 找到了。继续找 Few-NERD 和 CoNLL 的 samples.jsonl。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8a680ff0-698a-43a6-9fb6-b209c674d969",
+  "uuid": "3d1bc5ec-1bfc-42d3-94dc-988ef649d86a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MAPda3MkaSjqLbUXKUeyQS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 926,
+      "cache_read_input_tokens": 28784,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 926
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01ASqHjPBdNNSWhgSf68mHVD`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "find /root/autodl-tmp/struct_self_consist_ie/output -name \"samples.jsonl\" -path \"*021*\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8a680ff0-698a-43a6-9fb6-b209c674d969",
+  "uuid": "b0dddefb-3f37-4479-a1cf-0f4583db9575",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MAPda3MkaSjqLbUXKUeyQS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 926,
+      "cache_read_input_tokens": 28784,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 926
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-18T13:03:17.423Z_
+
+<details><summary>↩ Tool result · `toolu_01ASqHjPBdNNSWhgSf68mHVD`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/output/exp_021_inference/shard_0/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_021_inference/shard_2/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_021_inference/shard_1/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_021_inference/shard_3/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_021_inference/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_021_fewnerd_n8_seed123/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_021_fewnerd_n8_seed456/samples.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8a680ff0-698a-43a6-9fb6-b209c674d969",
+  "uuid": "8a6f2be1-db5c-4b2f-bbd0-0ce58bd1043c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/exp_021_inference/shard_0/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_021_inference/shard_2/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_021_inference/shard_1/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_021_inference/shard_3/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_021_inference/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_021_fewnerd_n8_seed123/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_021_fewnerd_n8_seed456/samples.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/output/exp_021_inference/shard_0/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_021_inference/shard_2/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_021_inference/shard_1/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_021_inference/shard_3/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_021_inference/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_021_fewnerd_n8_seed123/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_021_fewnerd_n8_seed456/samples.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01SQ7qvHF8S4Db443df5VLdV`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "find /root/autodl-tmp/struct_self_consist_ie/output -name \"samples.jsonl\" -path \"*conll*\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8a680ff0-698a-43a6-9fb6-b209c674d969",
+  "uuid": "0f57402e-4da0-4e84-8023-fafdd3247316",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MAPda3MkaSjqLbUXKUeyQS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 926,
+      "cache_read_input_tokens": 28784,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 926
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-18T13:03:18.326Z_
+
+<details><summary>↩ Tool result · `toolu_01SQ7qvHF8S4Db443df5VLdV`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/output/exp002_conll2003/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_infer/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n16/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16_s123/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16_s456/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n16_r1024/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16_s123_r1024/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16_s456_r1024/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16_r1024/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_011_ood_scierc_to_conll/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_011_ood_conll_to_scierc/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n8_t07/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_qwen3_4b_conll_scs_inference/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_scale_qwen3_4b_conll/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_qwen3_4b_conll_scs_inference_v2/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round9_experiments/freeform_conll/seed_42/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round9_experiments/freeform_conll/seed_123/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round9_experiments/freeform_conll/seed_456/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round9_experiments/freeform_conll/seed_789/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_entity_token_lp/conll/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed456/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed123/samples.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8a680ff0-698a-43a6-9fb6-b209c674d969",
+  "uuid": "77c299f1-f7b2-4c28-b8fb-9a94692f9681",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/exp002_conll2003/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_infer/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n16/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16_s123/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16_s456/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n16_r1024/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16_s123_r1024/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16_s456_r1024/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16_r1024/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_011_ood_scierc_to_conll/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_011_ood_conll_to_scierc/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n8_t07/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_qwen3_4b_conll_scs_inference/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_scale_qwen3_4b_conll/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_qwen3_4b_conll_scs_inference_v2/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round9_experiments/freeform_conll/seed_42/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round9_experiments/freeform_conll/seed_123/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round9_experiments/freeform_conll/seed_456/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round9_experiments/freeform_conll/seed_789/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_entity_token_lp/conll/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed456/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed123/samples.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/output/exp002_conll2003/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_infer/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n16/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16_s123/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16_s456/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n16_r1024/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16_s123_r1024/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16_s456_r1024/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16_r1024/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_011_ood_scierc_to_conll/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_011_ood_conll_to_scierc/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n8_t07/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_qwen3_4b_conll_scs_inference/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_scale_qwen3_4b_conll/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_qwen3_4b_conll_scs_inference_v2/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round9_experiments/freeform_conll/seed_42/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round9_experiments/freeform_conll/seed_123/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round9_experiments/freeform_conll/seed_456/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round9_experiments/freeform_conll/seed_789/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_entity_token_lp/conll/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed456/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed123/samples.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 24_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I need to identify the right files:
+- Few-NERD: The task says exp_021, N=8, seed=42. The merged file at `exp_021_inference/samples.jsonl` might be the seed=42 one, or `exp_021_fewnerd_full`. Let me check the sizes to figure out which one has N=8 and ~32565 instances.
+- CoNLL: The task says exp_002, N=8, n=2756. Let me check `exp002_conll2003/samples.jsonl` or `exp_002_conll_n8_seed123/samples.jsonl` etc.
+
+
+I'll examine the record counts and sample records from each candidate file to determine which ones match the expected parameters.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8a680ff0-698a-43a6-9fb6-b209c674d969",
+  "uuid": "7ac9d95d-e176-4018-84e0-68a4f340abc7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016dfa9sUXNMQPnGXCGdr89c",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1793,
+      "cache_read_input_tokens": 29710,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1793
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 25_
+
+确认候选文件的记录数和结构。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8a680ff0-698a-43a6-9fb6-b209c674d969",
+  "uuid": "b86a7fcc-4c6d-4b19-a7dd-973beaa30871",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016dfa9sUXNMQPnGXCGdr89c",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1793,
+      "cache_read_input_tokens": 29710,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1793
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01GFY1B9zkVvtVSkibTBpeHj`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "wc -l /root/autodl-tmp/struct_self_consist_ie/output/exp_021_inference/samples.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8a680ff0-698a-43a6-9fb6-b209c674d969",
+  "uuid": "e12ff5b2-a1fe-4b61-8018-78631e9e8022",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016dfa9sUXNMQPnGXCGdr89c",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1793,
+      "cache_read_input_tokens": 29710,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1793
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-18T13:03:26.237Z_
+
+<details><summary>↩ Tool result · `toolu_01GFY1B9zkVvtVSkibTBpeHj`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"37648 /root/autodl-tmp/struct_self_consist_ie/output/exp_021_inference/samples.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.48}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8a680ff0-698a-43a6-9fb6-b209c674d969",
+  "uuid": "0f088bfb-8bd1-4b5a-9643-09beed717d1d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"37648 /root/autodl-tmp/struct_self_consist_ie/output/exp_021_inference/samples.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.48}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"37648 /root/autodl-tmp/struct_self_consist_ie/output/exp_021_inference/samples.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.48}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0112GNLs9CGbv35BDrcDxLo2`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "wc -l /root/autodl-tmp/struct_self_consist_ie/output/exp002_conll2003/samples.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8a680ff0-698a-43a6-9fb6-b209c674d969",
+  "uuid": "bc11f004-8bb0-43c3-86a2-6695ccb19ed3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016dfa9sUXNMQPnGXCGdr89c",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1793,
+      "cache_read_input_tokens": 29710,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1793
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-18T13:03:27.010Z_
+
+<details><summary>↩ Tool result · `toolu_0112GNLs9CGbv35BDrcDxLo2`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"3453 /root/autodl-tmp/struct_self_consist_ie/output/exp002_conll2003/samples.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8a680ff0-698a-43a6-9fb6-b209c674d969",
+  "uuid": "4afed465-ffbb-425d-bf0a-2dade7ff0290",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"3453 /root/autodl-tmp/struct_self_consist_ie/output/exp002_conll2003/samples.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"3453 /root/autodl-tmp/struct_self_consist_ie/output/exp002_conll2003/samples.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01VitnPAm72w8waUdqKokTVj`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "wc -l /root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/samples.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8a680ff0-698a-43a6-9fb6-b209c674d969",
+  "uuid": "52d1b69c-08f7-4b43-b008-215a9f8c4833",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016dfa9sUXNMQPnGXCGdr89c",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1793,
+      "cache_read_input_tokens": 29710,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1793
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-18T13:03:28.002Z_
+
+<details><summary>↩ Tool result · `toolu_01VitnPAm72w8waUdqKokTVj`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"551 /root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/samples.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.34}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8a680ff0-698a-43a6-9fb6-b209c674d969",
+  "uuid": "eca4bdd4-1482-40b5-9152-0732a54e694b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"551 /root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/samples.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.34}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"551 /root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/samples.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.34}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01A6iFn2qpiQCngZg2PJj83f`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "head -1 /root/autodl-tmp/struct_self_consist_ie/output/exp_021_inference/samples.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8a680ff0-698a-43a6-9fb6-b209c674d969",
+  "uuid": "75990366-5dad-47c2-9adf-8580e469c4fb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016dfa9sUXNMQPnGXCGdr89c",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1793,
+      "cache_read_input_tokens": 29710,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1793
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-18T13:03:28.571Z_
+
+<details><summary>↩ Tool result · `toolu_01A6iFn2qpiQCngZg2PJj83f`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"id\\\": \\\"fewnerd_test_00000\\\", \\\"text\\\": \\\"In the early 1930s the band moved to the Grill Room of the Taft Hotel in New York ; the band was renamed `` George Hall and His Hotel Taft Orchestra `` .\\\", \\\"gold\\\": {\\\"entities\\\": [{\\\"text\\\": \\\"Grill Room\\\", \\\"type\\\": \\\"building\\\", \\\"start\\\": 41, \\\"end\\\": 51}, {\\\"text\\\": \\\"Taft Hotel\\\", \\\"type\\\": \\\"building\\\", \\\"start\\\": 59, \\\"end\\\": 69}, {\\\"text\\\": \\\"New York\\\", \\\"type\\\": \\\"location\\\", \\\"start\\\": 73, \\\"end\\\": 81}, {\\\"text\\\": \\\"George Hall and His Hotel Taft Orchestra\\\", \\\"type\\\": \\\"organization\\\", \\\"start\\\": 108, \\\"end\\\": 148}], \\\"relations\\\": [], \\\"events\\\": []}, \\\"samples\\\": [{\\\"entities\\\": [{\\\"text\\\": \\\"Grill Room\\\", \\\"type\\\": \\\"building\\\", \\\"start\\\": 41, \\\"end\\\": 51}, {\\\"text\\\": \\\"Taft Hotel\\\", \\\"type\\\": \\\"building\\\", \\\"start\\\": 59, \\\"end\\\": 69}, {\\\"text\\\": \\\"New York\\\", \\\"type\\\": \\\"location\\\", \\\"start\\\": 73, \\\"end\\\": 81}, {\\\"text\\\": \\\"George Hall and His Hotel Taft Orchestra\\\", \\\"type\\\": \\\"organization\\\", \\\"start\\\": 108, \\\"end\\\": 148}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -1.4693292819552966, \\\"n_tokens\\\": 131, \\\"mean_logprob\\\": -0.011216254060727454, \\\"token_logprobs\\\": [0.0, 0.0, 0.0, -0.007608246058225632, 0.0, 0.0, -4.076874756719917e-05, -0.15451087057590485, -2.3841855067985307e-07, -0.00018416139937471598, -0.8981459736824036, 0.0, 0.0, 0.0, -1.4305104514278355e-06, -0.062231000512838364, -8.344646857949556e-07, 0.0, 0.0, 0.0, 0.0, -4.768370445162873e-07, -0.008614758029580116, 0.0, 0.0, 0.0, 0.0, 0.0, -7.152555099310121e-07, -1.1920928244535389e-07, -0.0002618685248307884, 0.0, 0.0, 0.0, -3.2186455882765586e-06, -0.00869606714695692, 0.0, -0.0005545270396396518, -0.0019342063460499048, 0.0, 0.0, 0.0, 0.0, -0.023391373455524445, -2.3841855067985307e-07, 0.0, 0.0, 0.0, 0.0, -1.1801649634435307e-05, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -4.768370445162873e-07, 0.0, -2.753696753643453e-05, 0.0, 0.0, 0.0, -8.940656698541716e-06, -0.01609792932868004, -3.099393507000059e-05, -0.00020847532141488045, 0.0, 0.0, 0.0, 0.0, -0.00154518848285079, 0.0, 0.0, 0.0, 0.0, 0.0, -1.1920928244535389e-07, -7.152555099310121e-07, 0.0, 0.0, 0.0, 0.0, 0.0, -2.3841855067985307e-07, -3.3378546504536644e-06, -0.0013291343348100781, -2.3841855067985307e-07, 0.0, 0.0, -1.7881233361549675e-05, -0.0018748340662568808, -0.0007151191821321845, -0.1002829298377037, -3.3378546504536644e-06, -3.1470757676288486e-05, -0.0007215518853627145, 0.0, -0.000569300667848438, -1.0847986231965479e-05, 0.0, 0.0, 0.0, 0.0, -0.01606813259422779, -4.768370445162873e-07, 0.0, 0.0, 0.0, 0.0, 0.0, -1.3708974620385561e-05, -0.14268191158771515, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -5.829164365422912e-05, -0.020831836387515068, -1.4305104514278355e-06, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], \\\"token_texts\\\": [\\\"{\\\\\\\"\\\", \\\"entities\\\", \\\"\\\\\\\":\\\", \\\" [{\\\\\\\"\\\", \\\"text\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"Gr\\\", \\\"ill\\\", \\\" Room\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"type\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"building\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"start\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"4\\\", \\\"1\\\", \\\",\\\", \\\" \\\\\\\"\\\", \\\"end\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"5\\\", \\\"1\\\", \\\"},\\\", \\\" {\\\\\\\"\\\", \\\"text\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"Ta\\\", \\\"ft\\\", \\\" Hotel\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"type\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"building\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"start\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"5\\\", \\\"9\\\", \\\",\\\", \\\" \\\\\\\"\\\", \\\"end\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"6\\\", \\\"9\\\", \\\"},\\\", \\\" {\\\\\\\"\\\", \\\"text\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"New\\\", \\\" York\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"type\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"location\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"start\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"7\\\", \\\"3\\\", \\\",\\\", \\\" \\\\\\\"\\\", \\\"end\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"8\\\", \\\"1\\\", \\\"},\\\", \\\" {\\\\\\\"\\\", \\\"text\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"George\\\", \\\" Hall\\\", \\\" and\\\", \\\" His\\\", \\\" Hotel\\\", \\\" Ta\\\", \\\"ft\\\", \\\" Orchestra\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"type\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"organization\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"start\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"1\\\", \\\"0\\\", \\\"8\\\", \\\",\\\", \\\" \\\\\\\"\\\", \\\"end\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"1\\\", \\\"4\\\", \\\"8\\\", \\\"}],\\\", \\\" \\\\\\\"\\\", \\\"relations\\\", \\\"\\\\\\\":\\\", \\\" [],\\\", \\\" \\\\\\\"\\\", \\\"events\\\", \\\"\\\\\\\":\\\", \\\" []\\\", \\\"}\\\", \\\"<|im_end|>\\\"]}, {\\\"entities\\\": [{\\\"text\\\": \\\"Taft Hotel\\\", \\\"type\\\": \\\"building\\\", \\\"start\\\": 59, \\\"end\\\": 69}, {\\\"text\\\": \\\"New York\\\", \\\"type\\\": \\\"location\\\", \\\"start\\\": 73, \\\"end\\\": 81}, {\\\"text\\\": \\\"George Hall and His Hotel Taft Orchestra\\\", \\\"type\\\": \\\"organization\\\", \\\"start\\\": 108, \\\"end\\\": 148}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -2.9679379913652397, \\\"n_tokens\\\": 103, \\\"mean_logprob\\\": -0.028814931955002326, \\\"token_logprobs\\\": [0.0,\\n\\n... [截断: 输出过长，省略 17336 字符] ...\\n\\n-0.00026651646476238966, 0.0, -0.00026770823751576245, -3.814689989667386e-06, 0.0, 0.0, 0.0, 0.0, -0.01752791740000248, -4.768370445162873e-07, 0.0, 0.0, 0.0, 0.0, 0.0, -1.3470558769768104e-05, -0.07890032231807709, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -5.829164365422912e-05, -0.007337644230574369, -1.4305104514278355e-06, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], \\\"token_texts\\\": [\\\"{\\\\\\\"\\\", \\\"entities\\\", \\\"\\\\\\\":\\\", \\\" [{\\\\\\\"\\\", \\\"text\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"Gr\\\", \\\"ill\\\", \\\" Room\\\", \\\" of\\\", \\\" the\\\", \\\" Ta\\\", \\\"ft\\\", \\\" Hotel\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"type\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"building\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"start\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"4\\\", \\\"1\\\", \\\",\\\", \\\" \\\\\\\"\\\", \\\"end\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"6\\\", \\\"9\\\", \\\"},\\\", \\\" {\\\\\\\"\\\", \\\"text\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"New\\\", \\\" York\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"type\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"location\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"start\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"7\\\", \\\"3\\\", \\\",\\\", \\\" \\\\\\\"\\\", \\\"end\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"8\\\", \\\"1\\\", \\\"},\\\", \\\" {\\\\\\\"\\\", \\\"text\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"George\\\", \\\" Hall\\\", \\\" and\\\", \\\" His\\\", \\\" Hotel\\\", \\\" Ta\\\", \\\"ft\\\", \\\" Orchestra\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"type\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"organization\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"start\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"1\\\", \\\"0\\\", \\\"8\\\", \\\",\\\", \\\" \\\\\\\"\\\", \\\"end\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"1\\\", \\\"4\\\", \\\"8\\\", \\\"}],\\\", \\\" \\\\\\\"\\\", \\\"relations\\\", \\\"\\\\\\\":\\\", \\\" [],\\\", \\\" \\\\\\\"\\\", \\\"events\\\", \\\"\\\\\\\":\\\", \\\" []\\\", \\\"}\\\", \\\"<|im_end|>\\\"]}], \\\"greedy\\\": {\\\"entities\\\": [{\\\"text\\\": \\\"Grill Room of the Taft Hotel\\\", \\\"type\\\": \\\"building\\\", \\\"start\\\": 41, \\\"end\\\": 69}, {\\\"text\\\": \\\"New York\\\", \\\"type\\\": \\\"location\\\", \\\"start\\\": 73, \\\"end\\\": 81}, {\\\"text\\\": \\\"George Hall and His Hotel Taft Orchestra\\\", \\\"type\\\": \\\"organization\\\", \\\"start\\\": 108, \\\"end\\\": 148}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -1.0000617156421967, \\\"n_tokens\\\": 108, \\\"mean_logprob\\\": -0.00925983070039071, \\\"token_logprobs\\\": [0.0, 0.0, 0.0, -0.008616648614406586, 0.0, 0.0, -4.2199197196168825e-05, -0.15417608618736267, -2.3841855067985307e-07, -0.00018416139937471598, -0.523145318031311, -0.00021979777375236154, -6.90197994117625e-05, 0.0, -0.00043108707177452743, -0.002807487268000841, 0.0, 0.0, 0.0, -4.768370445162873e-07, -0.040677521377801895, -2.3841855067985307e-07, 0.0, 0.0, 0.0, 0.0, -2.3841855067985307e-07, -0.0019292091019451618, 0.0, 0.0, 0.0, 0.0, 0.0, -2.1576648578047752e-05, -9.60780744208023e-05, -1.4781842764932662e-05, 0.0, 0.0, 0.0, -1.3589766240329482e-05, -0.02067817933857441, -2.4437606043647975e-05, -0.0002337421028641984, 0.0, 0.0, 0.0, 0.0, -0.001725257490761578, 0.0, 0.0, 0.0, 0.0, 0.0, -2.3841855067985307e-07, -4.768370445162873e-07, 0.0, 0.0, 0.0, 0.0, 0.0, -2.3841855067985307e-07, -1.0728830375228426e-06, -0.0019318267004564404, -1.1920928244535389e-07, 0.0, 0.0, -1.7762025890988298e-05, -0.0021295505575835705, -0.0002623452164698392, -0.03367689251899719, -1.9073468138230965e-06, -9.059865078597795e-06, -0.00020787939138244838, 0.0, -0.00020919041708111763, -4.0531076592742465e-06, 0.0, 0.0, 0.0, 0.0, -0.01649446040391922, -4.768370445162873e-07, 0.0, 0.0, 0.0, 0.0, 0.0, -2.2053474822314456e-05, -0.17974983155727386, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -5.149708886165172e-05, -0.010182339698076248, -1.0728830375228426e-06, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], \\\"token_texts\\\": [\\\"{\\\\\\\"\\\", \\\"entities\\\", \\\"\\\\\\\":\\\", \\\" [{\\\\\\\"\\\", \\\"text\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"Gr\\\", \\\"ill\\\", \\\" Room\\\", \\\" of\\\", \\\" the\\\", \\\" Ta\\\", \\\"ft\\\", \\\" Hotel\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"type\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"building\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"start\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"4\\\", \\\"1\\\", \\\",\\\", \\\" \\\\\\\"\\\", \\\"end\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"6\\\", \\\"9\\\", \\\"},\\\", \\\" {\\\\\\\"\\\", \\\"text\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"New\\\", \\\" York\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"type\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"location\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"start\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"7\\\", \\\"3\\\", \\\",\\\", \\\" \\\\\\\"\\\", \\\"end\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"8\\\", \\\"1\\\", \\\"},\\\", \\\" {\\\\\\\"\\\", \\\"text\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"George\\\", \\\" Hall\\\", \\\" and\\\", \\\" His\\\", \\\" Hotel\\\", \\\" Ta\\\", \\\"ft\\\", \\\" Orchestra\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"type\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"organization\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"start\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"1\\\", \\\"0\\\", \\\"8\\\", \\\",\\\", \\\" \\\\\\\"\\\", \\\"end\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"1\\\", \\\"4\\\", \\\"8\\\", \\\"}],\\\", \\\" \\\\\\\"\\\", \\\"relations\\\", \\\"\\\\\\\":\\\", \\\" [],\\\", \\\" \\\\\\\"\\\", \\\"events\\\", \\\"\\\\\\\":\\\", \\\" []\\\", \\\"}\\\", \\\"<|im_end|>\\\"]}, \\\"logprobs\\\": [-0.011216254060727454, -0.028814931955002326, -0.04367063126887199, -0.027898975731791755, -0.061787237620492104, -0.028814931955002326, -0.008315708663696767, -0.008315708663696767]}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8a680ff0-698a-43a6-9fb6-b209c674d969",
+  "uuid": "5972928d-e3dc-4097-bc36-3038e27f63d1",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"id\\\\\\\": \\\\\\\"fewnerd_test_00000\\\\\\\", \\\\\\\"text\\\\\\\": \\\\\\\"In the early 1930s the band moved to the Grill Room of the Taft Hotel in New York ; the band was renamed `` George Hall and His Hotel Taft Orchestra `` .\\\\\\\", \\\\\\\"gold\\\\\\\": {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"Grill Room\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"building\\\\\\\", \\\\\\\"start\\\\\\\": 41, \\\\\\\"end\\\\\\\": 51}, {\\\\\\\"text\\\\\\\": \\\\\\\"Taft Hotel\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"building\\\\\\\", \\\\\\\"start\\\\\\\": 59, \\\\\\\"end\\\\\\\": 69}, {\\\\\\\"text\\\\\\\": \\\\\\\"New York\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"location\\\\\\\", \\\\\\\"start\\\\\\\": 73, \\\\\\\"end\\\\\\\": 81}, {\\\\\\\"text\\\\\\\": \\\\\\\"George Hall and His Hotel Taft Orchestra\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"organization\\\\\\\", \\\\\\\"start\\\\\\\": 108, \\\\\\\"end\\\\\\\": 148}], \\\\\\\"relations\\\\\\\": [], \\\\\\\"events\\\\\\\": []}, \\\\\\\"samples\\\\\\\": [{\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"Grill Room\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"building\\\\\\\", \\\\\\\"start\\\\\\\": 41, \\\\\\\"end\\\\\\\": 51}, {\\\\\\\"text\\\\\\\": \\\\\\\"Taft Hotel\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"building\\\\\\\", \\\\\\\"start\\\\\\\": 59, \\\\\\\"end\\\\\\\": 69}, {\\\\\\\"text\\\\\\\": \\\\\\\"New York\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"location\\\\\\\", \\\\\\\"start\\\\\\\": 73, \\\\\\\"end\\\\\\\": 81}, {\\\\\\\"text\\\\\\\": \\\\\\\"George Hall and His Hotel Taft Orchestra\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"organization\\\\\\\", \\\\\\\"start\\\\\\\": 108, \\\\\\\"end\\\\\\\": 148}], \\\\\\\"relations\\\\\\\": [], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -1.4693292819552966, \\\\\\\"n_tokens\\\\\\\": 131, \\\\\\\"mean_logprob\\\\\\\": -0.011216254060727454, \\\\\\\"token_logprobs\\\\\\\": [0.0, 0.0, 0.0, -0.007608246058225632, 0.0, 0.0, -4.076874756719917e-05, -0.15451087057590485, -2.3841855067985307e-07, -0.00018416139937471598, -0.8981459736824036, 0.0, 0.0, 0.0, -1.4305104514278355e-06, -0.062231000512838364, -8.344646857949556e-07, 0.0, 0.0, 0.0, 0.0, -4.768370445162873e-07, -0.008614758029580116, 0.0, 0.0, 0.0, 0.0, 0.0, -7.152555099310121e-07, -1.1920928244535389e-07, -0.0002618685248307884, 0.0, 0.0, 0.0, -3.2186455882765586e-06, -0.00869606714695692, 0.0, -0.0005545270396396518, -0.0019342063460499048, 0.0, 0.0, 0.0, 0.0, -0.023391373455524445, -2.3841855067985307e-07, 0.0, 0.0, 0.0, 0.0, -1.1801649634435307e-05, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -4.768370445162873e-07, 0.0, -2.753696753643453e-05, 0.0, 0.0, 0.0, -8.940656698541716e-06, -0.01609792932868004, -3.099393507000059e-05, -0.00020847532141488045, 0.0, 0.0, 0.0, 0.0, -0.00154518848285079, 0.0, 0.0, 0.0, 0.0, 0.0, -1.1920928244535389e-07, -7.152555099310121e-07, 0.0, 0.0, 0.0, 0.0, 0.0, -2.3841855067985307e-07, -3.3378546504536644e-06, -0.0013291343348100781, -2.3841855067985307e-07, 0.0, 0.0, -1.7881233361549675e-05, -0.0018748340662568808, -0.0007151191821321845, -0.1002829298377037, -3.3378546504536644e-06, -3.1470757676288486e-05, -0.0007215518853627145, 0.0, -0.000569300667848438, -1.0847986231965479e-05, 0.0, 0.0, 0.0, 0.0, -0.01606813259422779, -4.768370445162873e-07, 0.0, 0.0, 0.0, 0.0, 0.0, -1.3708974620385561e-05, -0.14268191158771515, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -5.829164365422912e-05, -0.020831836387515068, -1.4305104514278355e-06, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], \\\\\\\"token_texts\\\\\\\": [\\\\\\\"{\\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"entities\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" [{\\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"text\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"Gr\\\\\\\", \\\\\\\"ill\\\\\\\", \\\\\\\" Room\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"type\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"building\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"start\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\", \\\\\\\"4\\\\\\\", \\\\\\\"1\\\\\\\", \\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"end\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\", \\\\\\\"5\\\\\\\", \\\\\\\"1\\\\\\\", \\\\\\\"},\\\\\\\", \\\\\\\" {\\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"text\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"Ta\\\\\\\", \\\\\\\"ft\\\\\\\", \\\\\\\" Hotel\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"type\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"building\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"start\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\", \\\\\\\"5\\\\\\\", \\\\\\\"9\\\\\\\", \\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"end\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\", \\\\\\\"6\\\\\\\", \\\\\\\"9\\\\\\\", \\\\\\\"},\\\\\\\", \\\\\\\" {\\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"text\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"New\\\\\\\", \\\\\\\" York\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"type\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"location\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"start\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\", \\\\\\\"7\\\\\\\", \\\\\\\"3\\\\\\\", \\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"end\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\", \\\\\\\"8\\\\\\\", \\\\\\\"1\\\\\\\", \\\\\\\"},\\\\\\\", \\\\\\\" {\\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"text\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"George\\\\\\\", \\\\\\\" Hall\\\\\\\", \\\\\\\" and\\\\\\\", \\\\\\\" His\\\\\\\", \\\\\\\" Hotel\\\\\\\", \\\\\\\" Ta\\\\\\\", \\\\\\\"ft\\\\\\\", \\\\\\\" Orchestra\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"type\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"organization\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"start\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\", \\\\\\\"1\\\\\\\", \\\\\\\"0\\\\\\\", \\\\\\\"8\\\\\\\", \\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"end\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\", \\\\\\\"1\\\\\\\", \\\\\\\"4\\\\\\\", \\\\\\\"8\\\\\\\", \\\\\\\"}],\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"relations\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" [],\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"events\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" []\\\\\\\", \\\\\\\"}\\\\\\\", \\\\\\\"<|im_end|>\\\\\\\"]}, {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"Taft Hotel\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"building\\\\\\\", \\\\\\\"start\\\\\\\": 59, \\\\\\\"end\\\\\\\": 69}, {\\\\\\\"text\\\\\\\": \\\\\\\"New York\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"location\\\\\\\", \\\\\\\"start\\\\\\\": 73, \\\\\\\"end\\\\\\\": 81}, {\\\\\\\"text\\\\\\\": \\\\\\\"George Hall and His Hotel Taft Orchestra\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"organization\\\\\\\", \\\\\\\"start\\\\\\\": 108, \\\\\\\"end\\\\\\\": 148}], \\\\\\\"relations\\\\\\\": [], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -2.9679379913652397, \\\\\\\"n_tokens\\\\\\\": 103, \\\\\\\"mean_logprob\\\\\\\": -0.028814931955002326, \\\\\\\"token_logprobs\\\\\\\": [0.0,\\\\n\\\\n... [截断: 输出过长，省略 17336 字符] ...\\\\n\\\\n-0.00026651646476238966, 0.0, -0.00026770823751576245, -3.814689989667386e-06, 0.0, 0.0, 0.0, 0.0, -0.01752791740000248, -4.768370445162873e-07, 0.0, 0.0, 0.0, 0.0, 0.0, -1.3470558769768104e-05, -0.07890032231807709, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -5.829164365422912e-05, -0.007337644230574369, -1.4305104514278355e-06, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], \\\\\\\"token_texts\\\\\\\": [\\\\\\\"{\\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"entities\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" [{\\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"text\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"Gr\\\\\\\", \\\\\\\"ill\\\\\\\", \\\\\\\" Room\\\\\\\", \\\\\\\" of\\\\\\\", \\\\\\\" the\\\\\\\", \\\\\\\" Ta\\\\\\\", \\\\\\\"ft\\\\\\\", \\\\\\\" Hotel\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"type\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"building\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"start\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\", \\\\\\\"4\\\\\\\", \\\\\\\"1\\\\\\\", \\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"end\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\", \\\\\\\"6\\\\\\\", \\\\\\\"9\\\\\\\", \\\\\\\"},\\\\\\\", \\\\\\\" {\\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"text\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"New\\\\\\\", \\\\\\\" York\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"type\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"location\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"start\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\", \\\\\\\"7\\\\\\\", \\\\\\\"3\\\\\\\", \\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"end\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\", \\\\\\\"8\\\\\\\", \\\\\\\"1\\\\\\\", \\\\\\\"},\\\\\\\", \\\\\\\" {\\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"text\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"George\\\\\\\", \\\\\\\" Hall\\\\\\\", \\\\\\\" and\\\\\\\", \\\\\\\" His\\\\\\\", \\\\\\\" Hotel\\\\\\\", \\\\\\\" Ta\\\\\\\", \\\\\\\"ft\\\\\\\", \\\\\\\" Orchestra\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"type\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"organization\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"start\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\", \\\\\\\"1\\\\\\\", \\\\\\\"0\\\\\\\", \\\\\\\"8\\\\\\\", \\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"end\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\", \\\\\\\"1\\\\\\\", \\\\\\\"4\\\\\\\", \\\\\\\"8\\\\\\\", \\\\\\\"}],\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"relations\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" [],\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"events\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" []\\\\\\\", \\\\\\\"}\\\\\\\", \\\\\\\"<|im_end|>\\\\\\\"]}], \\\\\\\"greedy\\\\\\\": {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"Grill Room of the Taft Hotel\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"building\\\\\\\", \\\\\\\"start\\\\\\\": 41, \\\\\\\"end\\\\\\\": 69}, {\\\\\\\"text\\\\\\\": \\\\\\\"New York\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"location\\\\\\\", \\\\\\\"start\\\\\\\": 73, \\\\\\\"end\\\\\\\": 81}, {\\\\\\\"text\\\\\\\": \\\\\\\"George Hall and His Hotel Taft Orchestra\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"organization\\\\\\\", \\\\\\\"start\\\\\\\": 108, \\\\\\\"end\\\\\\\": 148}], \\\\\\\"relations\\\\\\\": [], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -1.0000617156421967, \\\\\\\"n_tokens\\\\\\\": 108, \\\\\\\"mean_logprob\\\\\\\": -0.00925983070039071, \\\\\\\"token_logprobs\\\\\\\": [0.0, 0.0, 0.0, -0.008616648614406586, 0.0, 0.0, -4.2199197196168825e-05, -0.15417608618736267, -2.3841855067985307e-07, -0.00018416139937471598, -0.523145318031311, -0.00021979777375236154, -6.90197994117625e-05, 0.0, -0.00043108707177452743, -0.002807487268000841, 0.0, 0.0, 0.0, -4.768370445162873e-07, -0.040677521377801895, -2.3841855067985307e-07, 0.0, 0.0, 0.0, 0.0, -2.3841855067985307e-07, -0.0019292091019451618, 0.0, 0.0, 0.0, 0.0, 0.0, -2.1576648578047752e-05, -9.60780744208023e-05, -1.4781842764932662e-05, 0.0, 0.0, 0.0, -1.3589766240329482e-05, -0.02067817933857441, -2.4437606043647975e-05, -0.0002337421028641984, 0.0, 0.0, 0.0, 0.0, -0.001725257490761578, 0.0, 0.0, 0.0, 0.0, 0.0, -2.3841855067985307e-07, -4.768370445162873e-07, 0.0, 0.0, 0.0, 0.0, 0.0, -2.3841855067985307e-07, -1.0728830375228426e-06, -0.0019318267004564404, -1.1920928244535389e-07, 0.0, 0.0, -1.7762025890988298e-05, -0.0021295505575835705, -0.0002623452164698392, -0.03367689251899719, -1.9073468138230965e-06, -9.059865078597795e-06, -0.00020787939138244838, 0.0, -0.00020919041708111763, -4.0531076592742465e-06, 0.0, 0.0, 0.0, 0.0, -0.01649446040391922, -4.768370445162873e-07, 0.0, 0.0, 0.0, 0.0, 0.0, -2.2053474822314456e-05, -0.17974983155727386, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -5.149708886165172e-05, -0.010182339698076248, -1.0728830375228426e-06, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], \\\\\\\"token_texts\\\\\\\": [\\\\\\\"{\\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"entities\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" [{\\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"text\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"Gr\\\\\\\", \\\\\\\"ill\\\\\\\", \\\\\\\" Room\\\\\\\", \\\\\\\" of\\\\\\\", \\\\\\\" the\\\\\\\", \\\\\\\" Ta\\\\\\\", \\\\\\\"ft\\\\\\\", \\\\\\\" Hotel\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"type\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"building\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"start\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\", \\\\\\\"4\\\\\\\", \\\\\\\"1\\\\\\\", \\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"end\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\", \\\\\\\"6\\\\\\\", \\\\\\\"9\\\\\\\", \\\\\\\"},\\\\\\\", \\\\\\\" {\\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"text\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"New\\\\\\\", \\\\\\\" York\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"type\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"location\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"start\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\", \\\\\\\"7\\\\\\\", \\\\\\\"3\\\\\\\", \\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"end\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\", \\\\\\\"8\\\\\\\", \\\\\\\"1\\\\\\\", \\\\\\\"},\\\\\\\", \\\\\\\" {\\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"text\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"George\\\\\\\", \\\\\\\" Hall\\\\\\\", \\\\\\\" and\\\\\\\", \\\\\\\" His\\\\\\\", \\\\\\\" Hotel\\\\\\\", \\\\\\\" Ta\\\\\\\", \\\\\\\"ft\\\\\\\", \\\\\\\" Orchestra\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"type\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"organization\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"start\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\", \\\\\\\"1\\\\\\\", \\\\\\\"0\\\\\\\", \\\\\\\"8\\\\\\\", \\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"end\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\", \\\\\\\"1\\\\\\\", \\\\\\\"4\\\\\\\", \\\\\\\"8\\\\\\\", \\\\\\\"}],\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"relations\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" [],\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"events\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" []\\\\\\\", \\\\\\\"}\\\\\\\", \\\\\\\"<|im_end|>\\\\\\\"]}, \\\\\\\"logprobs\\\\\\\": [-0.011216254060727454, -0.028814931955002326, -0.04367063126887199, -0.027898975731791755, -0.061787237620492104, -0.028814931955002326, -0.008315708663696767, -0.008315708663696767]}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\\"id\\\": \\\"fewnerd_test_00000\\\", \\\"text\\\": \\\"In the early 1930s the band moved to the Grill Room of the Taft Hotel in New York ; the band was renamed `` George Hall and His Hotel Taft Orchestra `` .\\\", \\\"gold\\\": {\\\"entities\\\": [{\\\"text\\\": \\\"Grill Room\\\", \\\"type\\\": \\\"building\\\", \\\"start\\\": 41, \\\"end\\\": 51}, {\\\"text\\\": \\\"Taft Hotel\\\", \\\"type\\\": \\\"building\\\", \\\"start\\\": 59, \\\"end\\\": 69}, {\\\"text\\\": \\\"New York\\\", \\\"type\\\": \\\"location\\\", \\\"start\\\": 73, \\\"end\\\": 81}, {\\\"text\\\": \\\"George Hall and His Hotel Taft Orchestra\\\", \\\"type\\\": \\\"organization\\\", \\\"start\\\": 108, \\\"end\\\": 148}], \\\"relations\\\": [], \\\"events\\\": []}, \\\"samples\\\": [{\\\"entities\\\": [{\\\"text\\\": \\\"Grill Room\\\", \\\"type\\\": \\\"building\\\", \\\"start\\\": 41, \\\"end\\\": 51}, {\\\"text\\\": \\\"Taft Hotel\\\", \\\"type\\\": \\\"building\\\", \\\"start\\\": 59, \\\"end\\\": 69}, {\\\"text\\\": \\\"New York\\\", \\\"type\\\": \\\"location\\\", \\\"start\\\": 73, \\\"end\\\": 81}, {\\\"text\\\": \\\"George Hall and His Hotel Taft Orchestra\\\", \\\"type\\\": \\\"organization\\\", \\\"start\\\": 108, \\\"end\\\": 148}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -1.4693292819552966, \\\"n_tokens\\\": 131, \\\"mean_logprob\\\": -0.011216254060727454, \\\"token_logprobs\\\": [0.0, 0.0, 0.0, -0.007608246058225632, 0.0, 0.0, -4.076874756719917e-05, -0.15451087057590485, -2.3841855067985307e-07, -0.00018416139937471598, -0.8981459736824036, 0.0, 0.0, 0.0, -1.4305104514278355e-06, -0.062231000512838364, -8.344646857949556e-07, 0.0, 0.0, 0.0, 0.0, -4.768370445162873e-07, -0.008614758029580116, 0.0, 0.0, 0.0, 0.0, 0.0, -7.152555099310121e-07, -1.1920928244535389e-07, -0.0002618685248307884, 0.0, 0.0, 0.0, -3.2186455882765586e-06, -0.00869606714695692, 0.0, -0.0005545270396396518, -0.0019342063460499048, 0.0, 0.0, 0.0, 0.0, -0.023391373455524445, -2.3841855067985307e-07, 0.0, 0.0, 0.0, 0.0, -1.1801649634435307e-05, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -4.768370445162873e-07, 0.0, -2.753696753643453e-05, 0.0, 0.0, 0.0, -8.940656698541716e-06, -0.01609792932868004, -3.099393507000059e-05, -0.00020847532141488045, 0.0, 0.0, 0.0, 0.0, -0.00154518848285079, 0.0, 0.0, 0.0, 0.0, 0.0, -1.1920928244535389e-07, -7.152555099310121e-07, 0.0, 0.0, 0.0, 0.0, 0.0, -2.3841855067985307e-07, -3.3378546504536644e-06, -0.0013291343348100781, -2.3841855067985307e-07, 0.0, 0.0, -1.7881233361549675e-05, -0.0018748340662568808, -0.0007151191821321845, -0.1002829298377037, -3.3378546504536644e-06, -3.1470757676288486e-05, -0.0007215518853627145, 0.0, -0.000569300667848438, -1.0847986231965479e-05, 0.0, 0.0, 0.0, 0.0, -0.01606813259422779, -4.768370445162873e-07, 0.0, 0.0, 0.0, 0.0, 0.0, -1.3708974620385561e-05, -0.14268191158771515, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -5.829164365422912e-05, -0.020831836387515068, -1.4305104514278355e-06, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], \\\"token_texts\\\": [\\\"{\\\\\\\"\\\", \\\"entities\\\", \\\"\\\\\\\":\\\", \\\" [{\\\\\\\"\\\", \\\"text\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"Gr\\\", \\\"ill\\\", \\\" Room\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"type\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"building\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"start\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"4\\\", \\\"1\\\", \\\",\\\", \\\" \\\\\\\"\\\", \\\"end\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"5\\\", \\\"1\\\", \\\"},\\\", \\\" {\\\\\\\"\\\", \\\"text\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"Ta\\\", \\\"ft\\\", \\\" Hotel\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"type\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"building\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"start\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"5\\\", \\\"9\\\", \\\",\\\", \\\" \\\\\\\"\\\", \\\"end\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"6\\\", \\\"9\\\", \\\"},\\\", \\\" {\\\\\\\"\\\", \\\"text\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"New\\\", \\\" York\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"type\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"location\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"start\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"7\\\", \\\"3\\\", \\\",\\\", \\\" \\\\\\\"\\\", \\\"end\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"8\\\", \\\"1\\\", \\\"},\\\", \\\" {\\\\\\\"\\\", \\\"text\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"George\\\", \\\" Hall\\\", \\\" and\\\", \\\" His\\\", \\\" Hotel\\\", \\\" Ta\\\", \\\"ft\\\", \\\" Orchestra\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"type\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"organization\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"start\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"1\\\", \\\"0\\\", \\\"8\\\", \\\",\\\", \\\" \\\\\\\"\\\", \\\"end\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"1\\\", \\\"4\\\", \\\"8\\\", \\\"}],\\\", \\\" \\\\\\\"\\\", \\\"relations\\\", \\\"\\\\\\\":\\\", \\\" [],\\\", \\\" \\\\\\\"\\\", \\\"events\\\", \\\"\\\\\\\":\\\", \\\" []\\\", \\\"}\\\", \\\"<|im_end|>\\\"]}, {\\\"entities\\\": [{\\\"text\\\": \\\"Taft Hotel\\\", \\\"type\\\": \\\"building\\\", \\\"start\\\": 59, \\\"end\\\": 69}, {\\\"text\\\": \\\"New York\\\", \\\"type\\\": \\\"location\\\", \\\"start\\\": 73, \\\"end\\\": 81}, {\\\"text\\\": \\\"George Hall and His Hotel Taft Orchestra\\\", \\\"type\\\": \\\"organization\\\", \\\"start\\\": 108, \\\"end\\\": 148}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -2.9679379913652397, \\\"n_tokens\\\": 103, \\\"mean_logprob\\\": -0.028814931955002326, \\\"token_logprobs\\\": [0.0,\\n\\n... [截断: 输出过长，省略 17336 字符] ...\\n\\n-0.00026651646476238966, 0.0, -0.00026770823751576245, -3.814689989667386e-06, 0.0, 0.0, 0.0, 0.0, -0.01752791740000248, -4.768370445162873e-07, 0.0, 0.0, 0.0, 0.0, 0.0, -1.3470558769768104e-05, -0.07890032231807709, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -5.829164365422912e-05, -0.007337644230574369, -1.4305104514278355e-06, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], \\\"token_texts\\\": [\\\"{\\\\\\\"\\\", \\\"entities\\\", \\\"\\\\\\\":\\\", \\\" [{\\\\\\\"\\\", \\\"text\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"Gr\\\", \\\"ill\\\", \\\" Room\\\", \\\" of\\\", \\\" the\\\", \\\" Ta\\\", \\\"ft\\\", \\\" Hotel\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"type\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"building\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"start\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"4\\\", \\\"1\\\", \\\",\\\", \\\" \\\\\\\"\\\", \\\"end\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"6\\\", \\\"9\\\", \\\"},\\\", \\\" {\\\\\\\"\\\", \\\"text\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"New\\\", \\\" York\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"type\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"location\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"start\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"7\\\", \\\"3\\\", \\\",\\\", \\\" \\\\\\\"\\\", \\\"end\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"8\\\", \\\"1\\\", \\\"},\\\", \\\" {\\\\\\\"\\\", \\\"text\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"George\\\", \\\" Hall\\\", \\\" and\\\", \\\" His\\\", \\\" Hotel\\\", \\\" Ta\\\", \\\"ft\\\", \\\" Orchestra\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"type\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"organization\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"start\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"1\\\", \\\"0\\\", \\\"8\\\", \\\",\\\", \\\" \\\\\\\"\\\", \\\"end\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"1\\\", \\\"4\\\", \\\"8\\\", \\\"}],\\\", \\\" \\\\\\\"\\\", \\\"relations\\\", \\\"\\\\\\\":\\\", \\\" [],\\\", \\\" \\\\\\\"\\\", \\\"events\\\", \\\"\\\\\\\":\\\", \\\" []\\\", \\\"}\\\", \\\"<|im_end|>\\\"]}], \\\"greedy\\\": {\\\"entities\\\": [{\\\"text\\\": \\\"Grill Room of the Taft Hotel\\\", \\\"type\\\": \\\"building\\\", \\\"start\\\": 41, \\\"end\\\": 69}, {\\\"text\\\": \\\"New York\\\", \\\"type\\\": \\\"location\\\", \\\"start\\\": 73, \\\"end\\\": 81}, {\\\"text\\\": \\\"George Hall and His Hotel Taft Orchestra\\\", \\\"type\\\": \\\"organization\\\", \\\"start\\\": 108, \\\"end\\\": 148}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -1.0000617156421967, \\\"n_tokens\\\": 108, \\\"mean_logprob\\\": -0.00925983070039071, \\\"token_logprobs\\\": [0.0, 0.0, 0.0, -0.008616648614406586, 0.0, 0.0, -4.2199197196168825e-05, -0.15417608618736267, -2.3841855067985307e-07, -0.00018416139937471598, -0.523145318031311, -0.00021979777375236154, -6.90197994117625e-05, 0.0, -0.00043108707177452743, -0.002807487268000841, 0.0, 0.0, 0.0, -4.768370445162873e-07, -0.040677521377801895, -2.3841855067985307e-07, 0.0, 0.0, 0.0, 0.0, -2.3841855067985307e-07, -0.0019292091019451618, 0.0, 0.0, 0.0, 0.0, 0.0, -2.1576648578047752e-05, -9.60780744208023e-05, -1.4781842764932662e-05, 0.0, 0.0, 0.0, -1.3589766240329482e-05, -0.02067817933857441, -2.4437606043647975e-05, -0.0002337421028641984, 0.0, 0.0, 0.0, 0.0, -0.001725257490761578, 0.0, 0.0, 0.0, 0.0, 0.0, -2.3841855067985307e-07, -4.768370445162873e-07, 0.0, 0.0, 0.0, 0.0, 0.0, -2.3841855067985307e-07, -1.0728830375228426e-06, -0.0019318267004564404, -1.1920928244535389e-07, 0.0, 0.0, -1.7762025890988298e-05, -0.0021295505575835705, -0.0002623452164698392, -0.03367689251899719, -1.9073468138230965e-06, -9.059865078597795e-06, -0.00020787939138244838, 0.0, -0.00020919041708111763, -4.0531076592742465e-06, 0.0, 0.0, 0.0, 0.0, -0.01649446040391922, -4.768370445162873e-07, 0.0, 0.0, 0.0, 0.0, 0.0, -2.2053474822314456e-05, -0.17974983155727386, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -5.149708886165172e-05, -0.010182339698076248, -1.0728830375228426e-06, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], \\\"token_texts\\\": [\\\"{\\\\\\\"\\\", \\\"entities\\\", \\\"\\\\\\\":\\\", \\\" [{\\\\\\\"\\\", \\\"text\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"Gr\\\", \\\"ill\\\", \\\" Room\\\", \\\" of\\\", \\\" the\\\", \\\" Ta\\\", \\\"ft\\\", \\\" Hotel\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"type\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"building\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"start\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"4\\\", \\\"1\\\", \\\",\\\", \\\" \\\\\\\"\\\", \\\"end\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"6\\\", \\\"9\\\", \\\"},\\\", \\\" {\\\\\\\"\\\", \\\"text\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"New\\\", \\\" York\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"type\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"location\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"start\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"7\\\", \\\"3\\\", \\\",\\\", \\\" \\\\\\\"\\\", \\\"end\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"8\\\", \\\"1\\\", \\\"},\\\", \\\" {\\\\\\\"\\\", \\\"text\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"George\\\", \\\" Hall\\\", \\\" and\\\", \\\" His\\\", \\\" Hotel\\\", \\\" Ta\\\", \\\"ft\\\", \\\" Orchestra\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"type\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"organization\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"start\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"1\\\", \\\"0\\\", \\\"8\\\", \\\",\\\", \\\" \\\\\\\"\\\", \\\"end\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"1\\\", \\\"4\\\", \\\"8\\\", \\\"}],\\\", \\\" \\\\\\\"\\\", \\\"relations\\\", \\\"\\\\\\\":\\\", \\\" [],\\\", \\\" \\\\\\\"\\\", \\\"events\\\", \\\"\\\\\\\":\\\", \\\" []\\\", \\\"}\\\", \\\"<|im_end|>\\\"]}, \\\"logprobs\\\": [-0.011216254060727454, -0.028814931955002326, -0.04367063126887199, -0.027898975731791755, -0.061787237620492104, -0.028814931955002326, -0.008315708663696767, -0.008315708663696767]}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 34_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I can see the data structure. Each line in samples.jsonl represents one instance with:
+- `id`: instance ID
+- `text`: input text
+- `gold`: gold standard annotations
+- `samples`: list of N=8 samples, each with entities, cumulative_logprob, mean_logprob, etc.
+- `greedy`: greedy decoding output
+- `logprobs`: list of mean_logprobs for each sample (summary)
+
+I need to understand how F1 is computed. It seems like the F1 per sample would need to be computed by comparing each sample's entities against the gold entities. Let me also check if there's pre-computed F1 data.
+
+
+Looking more closely at the structure, I see the `logprobs` array corresponds to the mean_logprobs for each of the 8 samples. To compute F1 scores, I'll need to compare each sample's predicted entities directly against the gold standard. Let me also verify the dataset sizes—the CoNLL file has 3453 instances, which is higher than the expected ~2756, so it might not be gold-filtered. I should check how many samples are actually in the data.
+
+Now I'm setting up a script to load the samples.jsonl files and compute F1 scores for each sample and the greedy prediction, then identify which samples perform best.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8a680ff0-698a-43a6-9fb6-b209c674d969",
+  "uuid": "c04c46aa-26f4-4e72-bc13-a2b6bac60169",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DYaQsW6EWyEWau4WNJNczG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7368,
+      "cache_read_input_tokens": 31503,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7368
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 35_
+
+数据结构清晰。每个 instance 有 `samples` (8个) + `greedy` + `gold`。需要计算 entity-level F1。
+
+先检查 CoNLL 文件内 sample 数量和是否有现成的 F1 计算代码。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8a680ff0-698a-43a6-9fb6-b209c674d969",
+  "uuid": "0c72473f-8923-41f9-a8c0-1529e1f25c8e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DYaQsW6EWyEWau4WNJNczG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7368,
+      "cache_read_input_tokens": 31503,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7368
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01TPpdjLhSaZYXtV8NYjqz54`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "python3 -c \"import json; d=json.loads(open('/root/autodl-tmp/struct_self_consist_ie/output/exp002_conll2003/samples.jsonl').readline()); print('n_samples:', len(d['samples'])); print('keys:', list(d.keys())); print('has greedy:', 'greedy' in d)\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8a680ff0-698a-43a6-9fb6-b209c674d969",
+  "uuid": "bd77b0c9-6214-4af3-9a2a-1c2ef6b2b0cb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DYaQsW6EWyEWau4WNJNczG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7368,
+      "cache_read_input_tokens": 31503,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7368
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-18T13:03:49.744Z_
+
+<details><summary>↩ Tool result · `toolu_01TPpdjLhSaZYXtV8NYjqz54`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8a680ff0-698a-43a6-9fb6-b209c674d969",
+  "uuid": "2dd25c28-5914-4044-a8db-6478a624e2c0",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01AvArnPJcn44x1W3RD5tyKZ`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "find /root/autodl-tmp/struct_self_consist_ie/code -name \"*.py\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8a680ff0-698a-43a6-9fb6-b209c674d969",
+  "uuid": "c7fed3fe-8510-49b9-b1d5-e5dfffd664cb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DYaQsW6EWyEWau4WNJNczG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7368,
+      "cache_read_input_tokens": 31503,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7368
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-18T13:03:50.771Z_
+
+<details><summary>↩ Tool result · `toolu_01AvArnPJcn44x1W3RD5tyKZ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/code/data_utils.py\\n/root/autodl-tmp/struct_self_consist_ie/code/convert_to_llamafactory.py\\n/root/autodl-tmp/struct_self_consist_ie/code/evaluation.py\\n/root/autodl-tmp/struct_self_consist_ie/code/consistency.py\\n/root/autodl-tmp/struct_self_consist_ie/code/sampling.py\\n/root/autodl-tmp/struct_self_consist_ie/code/run_mvp_pilot.py\\n/root/autodl-tmp/struct_self_consist_ie/code/gate0_eval.py\\n/root/autodl-tmp/struct_self_consist_ie/code/gate0_diagnose.py\\n/root/autodl-tmp/struct_self_consist_ie/code/gate0_realign_eval.py\\n/root/autodl-tmp/struct_self_consist_ie/code/mvp_pilot.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_component_wise_re.py\\n/root/autodl-tmp/struct_self_consist_ie/code/convert_wnut17.py\\n/root/autodl-tmp/struct_self_consist_ie/code/convert_conll2003.py\\n/root/autodl-tmp/struct_self_consist_ie/code/extract_logprobs.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_logprob_baseline.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exact_match_voting.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_entity_voting.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp015_unified.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp004_re_diagnostic.py\\n/root/autodl-tmp/struct_self_consist_ie/code/exp001_postprocess.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp016_ensemble.py\\n/root/autodl-tmp/struct_self_consist_ie/code/diagnose_logprob_rho.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp002_conll2003.py\\n/root/autodl-tmp/struct_self_consist_ie/code/_backup_cond_fix/run_mvp_pilot.py\\n/root/autodl-tmp/struct_self_consist_ie/code/_backup_cond_fix/analyze_exp015_unified.py\\n/root/autodl-tmp/struct_self_consist_ie/code/_backup_cond_fix/analyze_exp004_re_diagnostic.py\\n/root/autodl-tmp/struct_self_consist_ie/code/_backup_cond_fix/analyze_component_wise_re.py\\n/root/autodl-tmp/struct_self_consist_ie/code/_backup_cond_fix/analyze_logprob_baseline.py\\n/root/autodl-tmp/struct_self_consist_ie/code/_backup_cond_fix/analyze_exp002_conll2003.py\\n/root/autodl-tmp/struct_self_consist_ie/code/exp009_stratification_analysis.py\\n/root/autodl-tmp/struct_self_consist_ie/code/exp010_selection_curves.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp005_v2_temperature.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp004_v2_re_diagnostic.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp015_v2_metrics.py\\n/root/autodl-tmp/struct_self_consist_ie/code/exp_006_v2_selection.py\\n/root/autodl-tmp/struct_self_consist_ie/code/exp_009_v2_stratification.py\\n/root/autodl-tmp/struct_self_consist_ie/code/exp_016_v2_ensemble.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp017_5signal.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_3seed_5signal.py\\n/root/autodl-tmp/struct_self_consist_ie/code/exp_009_v2_re_rerun.py\\n/root/autodl-tmp/struct_self_consist_ie/code/eval_n16_5signal.py\\n/root/autodl-tmp/struct_self_consist_ie/code/eval_n8_5signal.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp017_llama_conll_n16.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp017_llama_conll_n16_s123.py\\n/root/autodl-tmp/struct_self_consist_ie/code/eval_s456_5signal.py\\n/root/autodl-tmp/struct_self_consist_ie/code/exp001_3seed_all_signals.py\\n/root/autodl-tmp/struct_self_consist_ie/code/compute_re_conditional.py\\n/root/autodl-tmp/struct_self_consist_ie/code/eval_exp012_rerun_auroc.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp012_rerun_5signal.py\\n/root/autodl-tmp/struct_self_consist_ie/code/gen_reliability_1024.py\\n/root/autodl-tmp/struct_self_consist_ie/code/plot_selection_gap_1024.py\\n/root/autodl-tmp/struct_self_consist_ie/code/plot_reliability_1024.py\\n/root/autodl-tmp/struct_self_consist_ie/code/wnut17_full_signal_analysis.py\\n/root/autodl-tmp/struct_self_consist_ie/code/n8_bootstrap_ci.py\\n/root/autodl-tmp/struct_self_consist_ie/code/re_selection_recompute.py\\n/root/autodl-tmp/struct_self_consist_ie/code/diversity_analys\\n\\n... [截断: 输出过长，省略 961 字符] ...\\n\\ne/analyze_lp_range_cdf.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analysis_multiseed_selection_f1.py\\n/root/autodl-tmp/struct_self_consist_ie/code/fk_bootstrap_ci.py\\n/root/autodl-tmp/struct_self_consist_ie/code/compute_selection_f1.py\\n/root/autodl-tmp/struct_self_consist_ie/code/fk_bootstrap_per_instance.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analysis_scierc_n16_selection.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analysis_scierc_re_n16_selection.py\\n/root/autodl-tmp/struct_self_consist_ie/code/plot_selection_gap_3seed.py\\n/root/autodl-tmp/struct_self_consist_ie/code/plot_selection_gap_n8.py\\n/root/autodl-tmp/struct_self_consist_ie/code/table2_selection_f1.py\\n/root/autodl-tmp/struct_self_consist_ie/code/fk_bootstrap_test.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp017_t07.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_thinking_token_lp_dilution.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_scale_ablation_4b.py\\n/root/autodl-tmp/struct_self_consist_ie/code/selection_f1_4b.py\\n/root/autodl-tmp/struct_self_consist_ie/code/r8w3_sj_normalizer_comparison.py\\n/root/autodl-tmp/struct_self_consist_ie/code/r8w3_sj_union_v2.py\\n/root/autodl-tmp/struct_self_consist_ie/code/run_verbalized_confidence.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_llama3b_vs_8b.py\\n/root/autodl-tmp/struct_self_consist_ie/code/selection_f1_3b.py\\n/root/autodl-tmp/struct_self_consist_ie/code/cascade_selection_analysis.py\\n/root/autodl-tmp/struct_self_consist_ie/code/vc_quartile_analysis.py\\n/root/autodl-tmp/struct_self_consist_ie/code/entity_token_analysis.py\\n/root/autodl-tmp/struct_self_consist_ie/code/convert_fewnerd.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp023_rank8.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp023_rank8_full.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_fewnerd_results.py\\n/root/autodl-tmp/struct_self_consist_ie/code/exp021_fewnerd_full_analysis.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_per_type_lp.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_per_type_lp_scierc.py\\n/root/autodl-tmp/struct_self_consist_ie/code/exp026_temp_ablation_metrics.py\\n/root/autodl-tmp/struct_self_consist_ie/code/exp026_degeneracy_rho.py\\n/root/autodl-tmp/struct_self_consist_ie/code/exp017_full_signal_analysis.py\\n/root/autodl-tmp/struct_self_consist_ie/code/recompute_table_fewnerd.py\\n/root/autodl-tmp/struct_self_consist_ie/code/recompute_lp_variants.py\\n/root/autodl-tmp/struct_self_consist_ie/code/recompute_table_metrics.py\\n/root/autodl-tmp/struct_self_consist_ie/code/unified_tab_fewnerd_metrics.py\\n/root/autodl-tmp/struct_self_consist_ie/code/dals_analysis.py\\n/root/autodl-tmp/struct_self_consist_ie/code/compute_within_lp_f1_llama.py\\n/root/autodl-tmp/struct_self_consist_ie/code/deberta_verifier.py\\n/root/autodl-tmp/struct_self_consist_ie/code/dals_fixed_tau_evaluation.py\\n/root/autodl-tmp/struct_self_consist_ie/code/statistical_hardening.py\\n/root/autodl-tmp/struct_self_consist_ie/code/fewnerd_dals_multiseed.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_llama_fewnerd.py\\n/root/autodl-tmp/struct_self_consist_ie/code/conll_seed456_analysis.py\\n/root/autodl-tmp/struct_self_consist_ie/code/conll_seed123_analysis.py\\n/root/autodl-tmp/struct_self_consist_ie/code/token_lp_aggregator.py\\n/root/autodl-tmp/struct_self_consist_ie/code/probe/extract_hidden_states.py\\n/root/autodl-tmp/struct_self_consist_ie/code/probe/hidden_state_probe.py\\n/root/autodl-tmp/struct_self_consist_ie/code/probe/hidden_state_probe_v2.py\\n/root/autodl-tmp/struct_self_consist_ie/code/probe/extract_hidden_states_fewnerd.py\\n/root/autodl-tmp/struct_self_consist_ie/code/probe/hidden_state_probe_fewnerd.py\\n/root/autodl-tmp/struct_self_consist_ie/code/probe/fix_and_run.py\\n/root/autodl-tmp/struct_self_consist_ie/code/probe/extract_hidden_states_exp016.py\\n/root/autodl-tmp/struct_self_consist_ie/code/probe/hidden_state_probe_exp016.py\\n/root/autodl-tmp/struct_self_consist_ie/code/conll_seed42_analysis.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8a680ff0-698a-43a6-9fb6-b209c674d969",
+  "uuid": "160ef459-182f-481d-875e-2edb339efcc5",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/code/data_utils.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/convert_to_llamafactory.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/evaluation.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/consistency.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/sampling.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/run_mvp_pilot.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/gate0_eval.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/gate0_diagnose.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/gate0_realign_eval.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/mvp_pilot.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_component_wise_re.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/convert_wnut17.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/convert_conll2003.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/extract_logprobs.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_logprob_baseline.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exact_match_voting.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_entity_voting.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp015_unified.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp004_re_diagnostic.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/exp001_postprocess.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp016_ensemble.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/diagnose_logprob_rho.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp002_conll2003.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/_backup_cond_fix/run_mvp_pilot.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/_backup_cond_fix/analyze_exp015_unified.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/_backup_cond_fix/analyze_exp004_re_diagnostic.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/_backup_cond_fix/analyze_component_wise_re.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/_backup_cond_fix/analyze_logprob_baseline.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/_backup_cond_fix/analyze_exp002_conll2003.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/exp009_stratification_analysis.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/exp010_selection_curves.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp005_v2_temperature.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp004_v2_re_diagnostic.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp015_v2_metrics.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/exp_006_v2_selection.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/exp_009_v2_stratification.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/exp_016_v2_ensemble.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp017_5signal.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_3seed_5signal.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/exp_009_v2_re_rerun.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/eval_n16_5signal.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/eval_n8_5signal.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp017_llama_conll_n16.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp017_llama_conll_n16_s123.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/eval_s456_5signal.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/exp001_3seed_all_signals.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/compute_re_conditional.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/eval_exp012_rerun_auroc.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp012_rerun_5signal.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/gen_reliability_1024.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/plot_selection_gap_1024.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/plot_reliability_1024.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/wnut17_full_signal_analysis.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/n8_bootstrap_ci.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/re_selection_recompute.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/diversity_analys\\\\n\\\\n... [截断: 输出过长，省略 961 字符] ...\\\\n\\\\ne/analyze_lp_range_cdf.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analysis_multiseed_selection_f1.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/fk_bootstrap_ci.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/compute_selection_f1.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/fk_bootstrap_per_instance.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analysis_scierc_n16_selection.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analysis_scierc_re_n16_selection.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/plot_selection_gap_3seed.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/plot_selection_gap_n8.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/table2_selection_f1.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/fk_bootstrap_test.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp017_t07.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_thinking_token_lp_dilution.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_scale_ablation_4b.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/selection_f1_4b.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/r8w3_sj_normalizer_comparison.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/r8w3_sj_union_v2.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/run_verbalized_confidence.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_llama3b_vs_8b.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/selection_f1_3b.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/cascade_selection_analysis.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/vc_quartile_analysis.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/entity_token_analysis.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/convert_fewnerd.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp023_rank8.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp023_rank8_full.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_fewnerd_results.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/exp021_fewnerd_full_analysis.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_per_type_lp.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_per_type_lp_scierc.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/exp026_temp_ablation_metrics.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/exp026_degeneracy_rho.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/exp017_full_signal_analysis.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/recompute_table_fewnerd.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/recompute_lp_variants.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/recompute_table_metrics.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/unified_tab_fewnerd_metrics.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/dals_analysis.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/compute_within_lp_f1_llama.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/deberta_verifier.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/dals_fixed_tau_evaluation.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/statistical_hardening.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/fewnerd_dals_multiseed.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_llama_fewnerd.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/conll_seed456_analysis.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/conll_seed123_analysis.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/token_lp_aggregator.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/probe/extract_hidden_states.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/probe/hidden_state_probe.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/probe/hidden_state_probe_v2.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/probe/extract_hidden_states_fewnerd.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/probe/hidden_state_probe_fewnerd.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/probe/fix_and_run.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/probe/extract_hidden_states_exp016.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/probe/hidden_state_probe_exp016.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/conll_seed42_analysis.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/code/data_utils.py\\n/root/autodl-tmp/struct_self_consist_ie/code/convert_to_llamafactory.py\\n/root/autodl-tmp/struct_self_consist_ie/code/evaluation.py\\n/root/autodl-tmp/struct_self_consist_ie/code/consistency.py\\n/root/autodl-tmp/struct_self_consist_ie/code/sampling.py\\n/root/autodl-tmp/struct_self_consist_ie/code/run_mvp_pilot.py\\n/root/autodl-tmp/struct_self_consist_ie/code/gate0_eval.py\\n/root/autodl-tmp/struct_self_consist_ie/code/gate0_diagnose.py\\n/root/autodl-tmp/struct_self_consist_ie/code/gate0_realign_eval.py\\n/root/autodl-tmp/struct_self_consist_ie/code/mvp_pilot.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_component_wise_re.py\\n/root/autodl-tmp/struct_self_consist_ie/code/convert_wnut17.py\\n/root/autodl-tmp/struct_self_consist_ie/code/convert_conll2003.py\\n/root/autodl-tmp/struct_self_consist_ie/code/extract_logprobs.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_logprob_baseline.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exact_match_voting.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_entity_voting.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp015_unified.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp004_re_diagnostic.py\\n/root/autodl-tmp/struct_self_consist_ie/code/exp001_postprocess.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp016_ensemble.py\\n/root/autodl-tmp/struct_self_consist_ie/code/diagnose_logprob_rho.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp002_conll2003.py\\n/root/autodl-tmp/struct_self_consist_ie/code/_backup_cond_fix/run_mvp_pilot.py\\n/root/autodl-tmp/struct_self_consist_ie/code/_backup_cond_fix/analyze_exp015_unified.py\\n/root/autodl-tmp/struct_self_consist_ie/code/_backup_cond_fix/analyze_exp004_re_diagnostic.py\\n/root/autodl-tmp/struct_self_consist_ie/code/_backup_cond_fix/analyze_component_wise_re.py\\n/root/autodl-tmp/struct_self_consist_ie/code/_backup_cond_fix/analyze_logprob_baseline.py\\n/root/autodl-tmp/struct_self_consist_ie/code/_backup_cond_fix/analyze_exp002_conll2003.py\\n/root/autodl-tmp/struct_self_consist_ie/code/exp009_stratification_analysis.py\\n/root/autodl-tmp/struct_self_consist_ie/code/exp010_selection_curves.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp005_v2_temperature.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp004_v2_re_diagnostic.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp015_v2_metrics.py\\n/root/autodl-tmp/struct_self_consist_ie/code/exp_006_v2_selection.py\\n/root/autodl-tmp/struct_self_consist_ie/code/exp_009_v2_stratification.py\\n/root/autodl-tmp/struct_self_consist_ie/code/exp_016_v2_ensemble.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp017_5signal.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_3seed_5signal.py\\n/root/autodl-tmp/struct_self_consist_ie/code/exp_009_v2_re_rerun.py\\n/root/autodl-tmp/struct_self_consist_ie/code/eval_n16_5signal.py\\n/root/autodl-tmp/struct_self_consist_ie/code/eval_n8_5signal.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp017_llama_conll_n16.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp017_llama_conll_n16_s123.py\\n/root/autodl-tmp/struct_self_consist_ie/code/eval_s456_5signal.py\\n/root/autodl-tmp/struct_self_consist_ie/code/exp001_3seed_all_signals.py\\n/root/autodl-tmp/struct_self_consist_ie/code/compute_re_conditional.py\\n/root/autodl-tmp/struct_self_consist_ie/code/eval_exp012_rerun_auroc.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp012_rerun_5signal.py\\n/root/autodl-tmp/struct_self_consist_ie/code/gen_reliability_1024.py\\n/root/autodl-tmp/struct_self_consist_ie/code/plot_selection_gap_1024.py\\n/root/autodl-tmp/struct_self_consist_ie/code/plot_reliability_1024.py\\n/root/autodl-tmp/struct_self_consist_ie/code/wnut17_full_signal_analysis.py\\n/root/autodl-tmp/struct_self_consist_ie/code/n8_bootstrap_ci.py\\n/root/autodl-tmp/struct_self_consist_ie/code/re_selection_recompute.py\\n/root/autodl-tmp/struct_self_consist_ie/code/diversity_analys\\n\\n... [截断: 输出过长，省略 961 字符] ...\\n\\ne/analyze_lp_range_cdf.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analysis_multiseed_selection_f1.py\\n/root/autodl-tmp/struct_self_consist_ie/code/fk_bootstrap_ci.py\\n/root/autodl-tmp/struct_self_consist_ie/code/compute_selection_f1.py\\n/root/autodl-tmp/struct_self_consist_ie/code/fk_bootstrap_per_instance.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analysis_scierc_n16_selection.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analysis_scierc_re_n16_selection.py\\n/root/autodl-tmp/struct_self_consist_ie/code/plot_selection_gap_3seed.py\\n/root/autodl-tmp/struct_self_consist_ie/code/plot_selection_gap_n8.py\\n/root/autodl-tmp/struct_self_consist_ie/code/table2_selection_f1.py\\n/root/autodl-tmp/struct_self_consist_ie/code/fk_bootstrap_test.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp017_t07.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_thinking_token_lp_dilution.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_scale_ablation_4b.py\\n/root/autodl-tmp/struct_self_consist_ie/code/selection_f1_4b.py\\n/root/autodl-tmp/struct_self_consist_ie/code/r8w3_sj_normalizer_comparison.py\\n/root/autodl-tmp/struct_self_consist_ie/code/r8w3_sj_union_v2.py\\n/root/autodl-tmp/struct_self_consist_ie/code/run_verbalized_confidence.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_llama3b_vs_8b.py\\n/root/autodl-tmp/struct_self_consist_ie/code/selection_f1_3b.py\\n/root/autodl-tmp/struct_self_consist_ie/code/cascade_selection_analysis.py\\n/root/autodl-tmp/struct_self_consist_ie/code/vc_quartile_analysis.py\\n/root/autodl-tmp/struct_self_consist_ie/code/entity_token_analysis.py\\n/root/autodl-tmp/struct_self_consist_ie/code/convert_fewnerd.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp023_rank8.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp023_rank8_full.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_fewnerd_results.py\\n/root/autodl-tmp/struct_self_consist_ie/code/exp021_fewnerd_full_analysis.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_per_type_lp.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_per_type_lp_scierc.py\\n/root/autodl-tmp/struct_self_consist_ie/code/exp026_temp_ablation_metrics.py\\n/root/autodl-tmp/struct_self_consist_ie/code/exp026_degeneracy_rho.py\\n/root/autodl-tmp/struct_self_consist_ie/code/exp017_full_signal_analysis.py\\n/root/autodl-tmp/struct_self_consist_ie/code/recompute_table_fewnerd.py\\n/root/autodl-tmp/struct_self_consist_ie/code/recompute_lp_variants.py\\n/root/autodl-tmp/struct_self_consist_ie/code/recompute_table_metrics.py\\n/root/autodl-tmp/struct_self_consist_ie/code/unified_tab_fewnerd_metrics.py\\n/root/autodl-tmp/struct_self_consist_ie/code/dals_analysis.py\\n/root/autodl-tmp/struct_self_consist_ie/code/compute_within_lp_f1_llama.py\\n/root/autodl-tmp/struct_self_consist_ie/code/deberta_verifier.py\\n/root/autodl-tmp/struct_self_consist_ie/code/dals_fixed_tau_evaluation.py\\n/root/autodl-tmp/struct_self_consist_ie/code/statistical_hardening.py\\n/root/autodl-tmp/struct_self_consist_ie/code/fewnerd_dals_multiseed.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_llama_fewnerd.py\\n/root/autodl-tmp/struct_self_consist_ie/code/conll_seed456_analysis.py\\n/root/autodl-tmp/struct_self_consist_ie/code/conll_seed123_analysis.py\\n/root/autodl-tmp/struct_self_consist_ie/code/token_lp_aggregator.py\\n/root/autodl-tmp/struct_self_consist_ie/code/probe/extract_hidden_states.py\\n/root/autodl-tmp/struct_self_consist_ie/code/probe/hidden_state_probe.py\\n/root/autodl-tmp/struct_self_consist_ie/code/probe/hidden_state_probe_v2.py\\n/root/autodl-tmp/struct_self_consist_ie/code/probe/extract_hidden_states_fewnerd.py\\n/root/autodl-tmp/struct_self_consist_ie/code/probe/hidden_state_probe_fewnerd.py\\n/root/autodl-tmp/struct_self_consist_ie/code/probe/fix_and_run.py\\n/root/autodl-tmp/struct_self_consist_ie/code/probe/extract_hidden_states_exp016.py\\n/root/autodl-tmp/struct_self_consist_ie/code/probe/hidden_state_probe_exp016.py\\n/root/autodl-tmp/struct_self_consist_ie/code/conll_seed42_analysis.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 40_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me look at the existing evaluation.py for how F1 is computed, and also check compute_selection_f1.py which likely has the selection F1 computation logic I need.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8a680ff0-698a-43a6-9fb6-b209c674d969",
+  "uuid": "9e0aad43-7cb2-4c9a-a36b-e123a9359971",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CURsapJ934Y3D2KQjByzkD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 43465,
+      "cache_read_input_tokens": 0,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 43465
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 41_
+
+查看现有 F1 计算和 selection 逻辑。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8a680ff0-698a-43a6-9fb6-b209c674d969",
+  "uuid": "d53f0975-03ad-4cc9-a4fa-e52b3239ef51",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CURsapJ934Y3D2KQjByzkD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 43465,
+      "cache_read_input_tokens": 0,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 43465
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_013ULp613NtnMci9uUUTBzo4`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "head -80 /root/autodl-tmp/struct_self_consist_ie/code/evaluation.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8a680ff0-698a-43a6-9fb6-b209c674d969",
+  "uuid": "fdc7cae6-d004-41b1-8dc6-5caebf6614d1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CURsapJ934Y3D2KQjByzkD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 43465,
+      "cache_read_input_tokens": 0,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 43465
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-18T13:03:56.214Z_
+
+<details><summary>↩ Tool result · `toolu_013ULp613NtnMci9uUUTBzo4`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Evaluation module for structured self-consistency IE experiments.\\n\\nProvides strict-match NER/EAE evaluation, per-instance F1 computation,\\ncorrelation analysis, and summary report generation.\\n\\\"\\\"\\\"\\n\\nfrom __future__ import annotations\\n\\nimport statistics\\nfrom typing import Any\\n\\nfrom scipy.stats import kendalltau, spearmanr\\n\\n\\n# ---------------------------------------------------------------------------\\n# NER evaluation (strict match)\\n# ---------------------------------------------------------------------------\\n\\ndef entity_strict_match(\\n    pred_entities: list[dict],\\n    gold_entities: list[dict],\\n) -> tuple[int, int, int]:\\n    \\\"\\\"\\\"Compute strict entity match counts.\\n\\n    Strict match requires exact span (start, end) AND exact type.\\n\\n    Args:\\n        pred_entities: Predicted entity dicts with keys text, type, start, end.\\n        gold_entities: Gold entity dicts with the same schema.\\n\\n    Returns:\\n        (tp, fp, fn) counts.\\n    \\\"\\\"\\\"\\n    pred_set = {(e[\\\"start\\\"], e[\\\"end\\\"], e[\\\"type\\\"]) for e in pred_entities}\\n    gold_set = {(e[\\\"start\\\"], e[\\\"end\\\"], e[\\\"type\\\"]) for e in gold_entities}\\n    tp = len(pred_set & gold_set)\\n    fp = len(pred_set - gold_set)\\n    fn = len(gold_set - pred_set)\\n    return tp, fp, fn\\n\\n\\ndef compute_ner_f1(\\n    predictions: list[dict],\\n    golds: list[dict],\\n) -> dict[str, float]:\\n    \\\"\\\"\\\"Compute micro-averaged NER precision, recall, and F1.\\n\\n    Args:\\n        predictions: List of Extraction dicts (one per instance).\\n        golds: List of Extraction dicts (one per instance), aligned with predictions.\\n\\n    Returns:\\n        Dict with keys \\\"precision\\\", \\\"recall\\\", \\\"f1\\\".\\n    \\\"\\\"\\\"\\n    total_tp = total_fp = total_fn = 0\\n    for pred, gold in zip(predictions, golds):\\n        tp, fp, fn = entity_strict_match(\\n            pred.get(\\\"entities\\\", []),\\n            gold.get(\\\"entities\\\", []),\\n        )\\n        total_tp += tp\\n        total_fp += fp\\n        total_fn += fn\\n    return _prf(total_tp, total_fp, total_fn)\\n\\n\\n# ---------------------------------------------------------------------------\\n# EAE evaluation (argument match)\\n# ---------------------------------------------------------------------------\\n\\ndef _event_argument_tuples(events: list[dict]) -> set[tuple]:\\n    \\\"\\\"\\\"Extract (trigger_start, trigger_end, trigger_type, role, arg_start, arg_end) tuples.\\\"\\\"\\\"\\n    tuples: set[tuple] = set()\\n    for event in events:\\n        trigger = event.get(\\\"trigger\\\", {})\\n        t_start = trigger.get(\\\"start\\\")\\n        t_end = trigger.get(\\\"end\\\")\\n        t_type = trigger.get(\\\"type\\\")\\n        for arg in event.get(\\\"arguments\\\", []):\\n            tuples.add((t_start, t_end, t_type, arg[\\\"role\\\"], arg[\\\"start\\\"], arg[\\\"end\\\"]))\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8a680ff0-698a-43a6-9fb6-b209c674d969",
+  "uuid": "671117d5-1ec0-49ef-8133-02384800ca8f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Evaluation module for structured self-consistency IE experiments.\\\\n\\\\nProvides strict-match NER/EAE evaluation, per-instance F1 computation,\\\\ncorrelation analysis, and summary report generation.\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nfrom __future__ import annotations\\\\n\\\\nimport statistics\\\\nfrom typing import Any\\\\n\\\\nfrom scipy.stats import kendalltau, spearmanr\\\\n\\\\n\\\\n# ---------------------------------------------------------------------------\\\\n# NER evaluation (strict match)\\\\n# ---------------------------------------------------------------------------\\\\n\\\\ndef entity_strict_match(\\\\n    pred_entities: list[dict],\\\\n    gold_entities: list[dict],\\\\n) -> tuple[int, int, int]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Compute strict entity match counts.\\\\n\\\\n    Strict match requires exact span (start, end) AND exact type.\\\\n\\\\n    Args:\\\\n        pred_entities: Predicted entity dicts with keys text, type, start, end.\\\\n        gold_entities: Gold entity dicts with the same schema.\\\\n\\\\n    Returns:\\\\n        (tp, fp, fn) counts.\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    pred_set = {(e[\\\\\\\"start\\\\\\\"], e[\\\\\\\"end\\\\\\\"], e[\\\\\\\"type\\\\\\\"]) for e in pred_entities}\\\\n    gold_set = {(e[\\\\\\\"start\\\\\\\"], e[\\\\\\\"end\\\\\\\"], e[\\\\\\\"type\\\\\\\"]) for e in gold_entities}\\\\n    tp = len(pred_set & gold_set)\\\\n    fp = len(pred_set - gold_set)\\\\n    fn = len(gold_set - pred_set)\\\\n    return tp, fp, fn\\\\n\\\\n\\\\ndef compute_ner_f1(\\\\n    predictions: list[dict],\\\\n    golds: list[dict],\\\\n) -> dict[str, float]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Compute micro-averaged NER precision, recall, and F1.\\\\n\\\\n    Args:\\\\n        predictions: List of Extraction dicts (one per instance).\\\\n        golds: List of Extraction dicts (one per instance), aligned with predictions.\\\\n\\\\n    Returns:\\\\n        Dict with keys \\\\\\\"precision\\\\\\\", \\\\\\\"recall\\\\\\\", \\\\\\\"f1\\\\\\\".\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    total_tp = total_fp = total_fn = 0\\\\n    for pred, gold in zip(predictions, golds):\\\\n        tp, fp, fn = entity_strict_match(\\\\n            pred.get(\\\\\\\"entities\\\\\\\", []),\\\\n            gold.get(\\\\\\\"entities\\\\\\\", []),\\\\n        )\\\\n        total_tp += tp\\\\n        total_fp += fp\\\\n        total_fn += fn\\\\n    return _prf(total_tp, total_fp, total_fn)\\\\n\\\\n\\\\n# ---------------------------------------------------------------------------\\\\n# EAE evaluation (argument match)\\\\n# ---------------------------------------------------------------------------\\\\n\\\\ndef _event_argument_tuples(events: list[dict]) -> set[tuple]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Extract (trigger_start, trigger_end, trigger_type, role, arg_start, arg_end) tuples.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    tuples: set[tuple] = set()\\\\n    for event in events:\\\\n        trigger = event.get(\\\\\\\"trigger\\\\\\\", {})\\\\n        t_start = trigger.get(\\\\\\\"start\\\\\\\")\\\\n        t_end = trigger.get(\\\\\\\"end\\\\\\\")\\\\n        t_type = trigger.get(\\\\\\\"type\\\\\\\")\\\\n        for arg in event.get(\\\\\\\"arguments\\\\\\\", []):\\\\n            tuples.add((t_start, t_end, t_type, arg[\\\\\\\"role\\\\\\\"], arg[\\\\\\\"start\\\\\\\"], arg[\\\\\\\"end\\\\\\\"]))\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Evaluation module for structured self-consistency IE experiments.\\n\\nProvides strict-match NER/EAE evaluation, per-instance F1 computation,\\ncorrelation analysis, and summary report generation.\\n\\\"\\\"\\\"\\n\\nfrom __future__ import annotations\\n\\nimport statistics\\nfrom typing import Any\\n\\nfrom scipy.stats import kendalltau, spearmanr\\n\\n\\n# ---------------------------------------------------------------------------\\n# NER evaluation (strict match)\\n# ---------------------------------------------------------------------------\\n\\ndef entity_strict_match(\\n    pred_entities: list[dict],\\n    gold_entities: list[dict],\\n) -> tuple[int, int, int]:\\n    \\\"\\\"\\\"Compute strict entity match counts.\\n\\n    Strict match requires exact span (start, end) AND exact type.\\n\\n    Args:\\n        pred_entities: Predicted entity dicts with keys text, type, start, end.\\n        gold_entities: Gold entity dicts with the same schema.\\n\\n    Returns:\\n        (tp, fp, fn) counts.\\n    \\\"\\\"\\\"\\n    pred_set = {(e[\\\"start\\\"], e[\\\"end\\\"], e[\\\"type\\\"]) for e in pred_entities}\\n    gold_set = {(e[\\\"start\\\"], e[\\\"end\\\"], e[\\\"type\\\"]) for e in gold_entities}\\n    tp = len(pred_set & gold_set)\\n    fp = len(pred_set - gold_set)\\n    fn = len(gold_set - pred_set)\\n    return tp, fp, fn\\n\\n\\ndef compute_ner_f1(\\n    predictions: list[dict],\\n    golds: list[dict],\\n) -> dict[str, float]:\\n    \\\"\\\"\\\"Compute micro-averaged NER precision, recall, and F1.\\n\\n    Args:\\n        predictions: List of Extraction dicts (one per instance).\\n        golds: List of Extraction dicts (one per instance), aligned with predictions.\\n\\n    Returns:\\n        Dict with keys \\\"precision\\\", \\\"recall\\\", \\\"f1\\\".\\n    \\\"\\\"\\\"\\n    total_tp = total_fp = total_fn = 0\\n    for pred, gold in zip(predictions, golds):\\n        tp, fp, fn = entity_strict_match(\\n            pred.get(\\\"entities\\\", []),\\n            gold.get(\\\"entities\\\", []),\\n        )\\n        total_tp += tp\\n        total_fp += fp\\n        total_fn += fn\\n    return _prf(total_tp, total_fp, total_fn)\\n\\n\\n# ---------------------------------------------------------------------------\\n# EAE evaluation (argument match)\\n# ---------------------------------------------------------------------------\\n\\ndef _event_argument_tuples(events: list[dict]) -> set[tuple]:\\n    \\\"\\\"\\\"Extract (trigger_start, trigger_end, trigger_type, role, arg_start, arg_end) tuples.\\\"\\\"\\\"\\n    tuples: set[tuple] = set()\\n    for event in events:\\n        trigger = event.get(\\\"trigger\\\", {})\\n        t_start = trigger.get(\\\"start\\\")\\n        t_end = trigger.get(\\\"end\\\")\\n        t_type = trigger.get(\\\"type\\\")\\n        for arg in event.get(\\\"arguments\\\", []):\\n            tuples.add((t_start, t_end, t_type, arg[\\\"role\\\"], arg[\\\"start\\\"], arg[\\\"end\\\"]))\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01TanPGDjNRvMwwDF58cER6X`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "head -100 /root/autodl-tmp/struct_self_consist_ie/code/compute_selection_f1.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8a680ff0-698a-43a6-9fb6-b209c674d969",
+  "uuid": "36cedf24-e5a4-41d1-8b6e-417320eb175f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CURsapJ934Y3D2KQjByzkD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 43465,
+      "cache_read_input_tokens": 0,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 43465
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-18T13:03:56.975Z_
+
+<details><summary>↩ Tool result · `toolu_01TanPGDjNRvMwwDF58cER6X`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Multi-seed Selection F1 for Table 3 (C2 critical).\\n\\nFor each instance's N samples, score with 5 signals (SJ/FK/VC/EM/LP),\\nselect the top-scoring sample, compute its F1 vs gold.\\nReports 3-seed mean±σ, per-seed bootstrap p-value vs greedy, and\\na combined bootstrap p-value across seeds.\\n\\nInput: samples.jsonl files from inference experiments.\\nOutput: JSON results + markdown report.\\nDepends: consistency.py, evaluation.py (same directory).\\n\\\"\\\"\\\"\\n\\nimport json\\nimport os\\nimport sys\\nimport time\\nfrom collections import Counter\\n\\nimport numpy as np\\n\\nsys.path.insert(0, '/root/autodl-tmp/struct_self_consist_ie/code')\\nfrom consistency import (\\n    _ner_soft_jaccard_pair,\\n    _re_soft_jaccard_pair,\\n    _extract_surface_keys,\\n)\\nfrom evaluation import per_instance_f1\\n\\nBASE = \\\"/root/autodl-tmp/struct_self_consist_ie\\\"\\n\\nEXPERIMENT_GROUPS = {\\n    # --- Qwen SciERC N=16 (v2 pipeline) ---\\n    \\\"qwen_scierc_ner_n16\\\": {\\n        \\\"subtask\\\": \\\"ner\\\",\\n        \\\"seeds\\\": {\\n            42: f\\\"{BASE}/output/exp_001_seed42_v2/samples.jsonl\\\",\\n            123: f\\\"{BASE}/output/exp_001_seed123_v2/samples.jsonl\\\",\\n            456: f\\\"{BASE}/output/exp_001_seed456_v2/samples.jsonl\\\",\\n        },\\n    },\\n    \\\"qwen_scierc_re_n16\\\": {\\n        \\\"subtask\\\": \\\"re\\\",\\n        \\\"seeds\\\": {\\n            42: f\\\"{BASE}/output/exp_001_seed42_v2/samples.jsonl\\\",\\n            123: f\\\"{BASE}/output/exp_001_seed123_v2/samples.jsonl\\\",\\n            456: f\\\"{BASE}/output/exp_001_seed456_v2/samples.jsonl\\\",\\n        },\\n    },\\n    # --- Qwen SciERC N=8 (r1024 logprobs) ---\\n    \\\"qwen_scierc_ner_n8\\\": {\\n        \\\"subtask\\\": \\\"ner\\\",\\n        \\\"seeds\\\": {\\n            42: f\\\"{BASE}/output/exp_012_rerun_1024/samples.jsonl\\\",\\n            123: f\\\"{BASE}/output/exp_018_qwen_scierc_seed123/samples.jsonl\\\",\\n            456: f\\\"{BASE}/output/exp_018_qwen_scierc_seed456/samples.jsonl\\\",\\n        },\\n    },\\n    # --- LLaMA SciERC N=8 ---\\n    \\\"llama_scierc_ner_n8\\\": {\\n        \\\"subtask\\\": \\\"ner\\\",\\n        \\\"seeds\\\": {\\n            42: f\\\"{BASE}/output/exp_018_llama_scierc_seed42_r1024/samples.jsonl\\\",\\n            123: f\\\"{BASE}/output/exp_018_llama_scierc_seed123/samples.jsonl\\\",\\n            456: f\\\"{BASE}/output/exp_018_llama_scierc_seed456_r1024/samples.jsonl\\\",\\n        },\\n    },\\n    # --- LLaMA CoNLL N=16 ---\\n    \\\"llama_conll_ner_n16\\\": {\\n        \\\"subtask\\\": \\\"ner\\\",\\n        \\\"seeds\\\": {\\n            42: f\\\"{BASE}/output/exp_017_llama_conll_n16_r1024/samples.jsonl\\\",\\n            123: f\\\"{BASE}/output/exp_017_llama_conll_n16_s123_r1024/samples.jsonl\\\",\\n            456: f\\\"{BASE}/output/exp_017_llama_conll_n16_s456_r1024/samples.jsonl\\\",\\n        },\\n    },\\n}\\n\\nN_BOOTSTRAP = 10000\\nBOOTSTRAP_SEED = 42\\nN_RANDOM_REPEATS = 50\\nSIGNALS = [\\\"VC\\\", \\\"SJ\\\", \\\"FK\\\", \\\"EM\\\", \\\"LP\\\"]\\n\\n\\ndef load_data(path):\\n    with open(path) as f:\\n        return [json.loads(line) for line in f if line.strip()]\\n\\n\\ndef compute_sample_sj_scores(instance, subtask):\\n    \\\"\\\"\\\"Pairwise soft Jaccard: mean similarity of each sample to all others.\\\"\\\"\\\"\\n    samples = instance[\\\"samples\\\"]\\n    N = len(samples)\\n    field = \\\"entities\\\" if subtask == \\\"ner\\\" else \\\"relations\\\"\\n    pair_fn = _ner_soft_jaccard_pair if subtask == \\\"ner\\\" else _re_soft_jaccard_pair\\n    matrix = np.zeros((N, N))\\n    for i in range(N):\\n        for j in range(i + 1, N):\\n            s = pair_fn(samples[i].get(field, []), samples[j].get(field, []))\\n            matrix[i][j] = s\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8a680ff0-698a-43a6-9fb6-b209c674d969",
+  "uuid": "c20f2249-66fe-47b1-b942-ac5810b423e2",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"Multi-seed Selection F1 for Table 3 (C2 critical).\\\\n\\\\nFor each instance's N samples, score with 5 signals (SJ/FK/VC/EM/LP),\\\\nselect the top-scoring sample, compute its F1 vs gold.\\\\nReports 3-seed mean±σ, per-seed bootstrap p-value vs greedy, and\\\\na combined bootstrap p-value across seeds.\\\\n\\\\nInput: samples.jsonl files from inference experiments.\\\\nOutput: JSON results + markdown report.\\\\nDepends: consistency.py, evaluation.py (same directory).\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport json\\\\nimport os\\\\nimport sys\\\\nimport time\\\\nfrom collections import Counter\\\\n\\\\nimport numpy as np\\\\n\\\\nsys.path.insert(0, '/root/autodl-tmp/struct_self_consist_ie/code')\\\\nfrom consistency import (\\\\n    _ner_soft_jaccard_pair,\\\\n    _re_soft_jaccard_pair,\\\\n    _extract_surface_keys,\\\\n)\\\\nfrom evaluation import per_instance_f1\\\\n\\\\nBASE = \\\\\\\"/root/autodl-tmp/struct_self_consist_ie\\\\\\\"\\\\n\\\\nEXPERIMENT_GROUPS = {\\\\n    # --- Qwen SciERC N=16 (v2 pipeline) ---\\\\n    \\\\\\\"qwen_scierc_ner_n16\\\\\\\": {\\\\n        \\\\\\\"subtask\\\\\\\": \\\\\\\"ner\\\\\\\",\\\\n        \\\\\\\"seeds\\\\\\\": {\\\\n            42: f\\\\\\\"{BASE}/output/exp_001_seed42_v2/samples.jsonl\\\\\\\",\\\\n            123: f\\\\\\\"{BASE}/output/exp_001_seed123_v2/samples.jsonl\\\\\\\",\\\\n            456: f\\\\\\\"{BASE}/output/exp_001_seed456_v2/samples.jsonl\\\\\\\",\\\\n        },\\\\n    },\\\\n    \\\\\\\"qwen_scierc_re_n16\\\\\\\": {\\\\n        \\\\\\\"subtask\\\\\\\": \\\\\\\"re\\\\\\\",\\\\n        \\\\\\\"seeds\\\\\\\": {\\\\n            42: f\\\\\\\"{BASE}/output/exp_001_seed42_v2/samples.jsonl\\\\\\\",\\\\n            123: f\\\\\\\"{BASE}/output/exp_001_seed123_v2/samples.jsonl\\\\\\\",\\\\n            456: f\\\\\\\"{BASE}/output/exp_001_seed456_v2/samples.jsonl\\\\\\\",\\\\n        },\\\\n    },\\\\n    # --- Qwen SciERC N=8 (r1024 logprobs) ---\\\\n    \\\\\\\"qwen_scierc_ner_n8\\\\\\\": {\\\\n        \\\\\\\"subtask\\\\\\\": \\\\\\\"ner\\\\\\\",\\\\n        \\\\\\\"seeds\\\\\\\": {\\\\n            42: f\\\\\\\"{BASE}/output/exp_012_rerun_1024/samples.jsonl\\\\\\\",\\\\n            123: f\\\\\\\"{BASE}/output/exp_018_qwen_scierc_seed123/samples.jsonl\\\\\\\",\\\\n            456: f\\\\\\\"{BASE}/output/exp_018_qwen_scierc_seed456/samples.jsonl\\\\\\\",\\\\n        },\\\\n    },\\\\n    # --- LLaMA SciERC N=8 ---\\\\n    \\\\\\\"llama_scierc_ner_n8\\\\\\\": {\\\\n        \\\\\\\"subtask\\\\\\\": \\\\\\\"ner\\\\\\\",\\\\n        \\\\\\\"seeds\\\\\\\": {\\\\n            42: f\\\\\\\"{BASE}/output/exp_018_llama_scierc_seed42_r1024/samples.jsonl\\\\\\\",\\\\n            123: f\\\\\\\"{BASE}/output/exp_018_llama_scierc_seed123/samples.jsonl\\\\\\\",\\\\n            456: f\\\\\\\"{BASE}/output/exp_018_llama_scierc_seed456_r1024/samples.jsonl\\\\\\\",\\\\n        },\\\\n    },\\\\n    # --- LLaMA CoNLL N=16 ---\\\\n    \\\\\\\"llama_conll_ner_n16\\\\\\\": {\\\\n        \\\\\\\"subtask\\\\\\\": \\\\\\\"ner\\\\\\\",\\\\n        \\\\\\\"seeds\\\\\\\": {\\\\n            42: f\\\\\\\"{BASE}/output/exp_017_llama_conll_n16_r1024/samples.jsonl\\\\\\\",\\\\n            123: f\\\\\\\"{BASE}/output/exp_017_llama_conll_n16_s123_r1024/samples.jsonl\\\\\\\",\\\\n            456: f\\\\\\\"{BASE}/output/exp_017_llama_conll_n16_s456_r1024/samples.jsonl\\\\\\\",\\\\n        },\\\\n    },\\\\n}\\\\n\\\\nN_BOOTSTRAP = 10000\\\\nBOOTSTRAP_SEED = 42\\\\nN_RANDOM_REPEATS = 50\\\\nSIGNALS = [\\\\\\\"VC\\\\\\\", \\\\\\\"SJ\\\\\\\", \\\\\\\"FK\\\\\\\", \\\\\\\"EM\\\\\\\", \\\\\\\"LP\\\\\\\"]\\\\n\\\\n\\\\ndef load_data(path):\\\\n    with open(path) as f:\\\\n        return [json.loads(line) for line in f if line.strip()]\\\\n\\\\n\\\\ndef compute_sample_sj_scores(instance, subtask):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Pairwise soft Jaccard: mean similarity of each sample to all others.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    samples = instance[\\\\\\\"samples\\\\\\\"]\\\\n    N = len(samples)\\\\n    field = \\\\\\\"entities\\\\\\\" if subtask == \\\\\\\"ner\\\\\\\" else \\\\\\\"relations\\\\\\\"\\\\n    pair_fn = _ner_soft_jaccard_pair if subtask == \\\\\\\"ner\\\\\\\" else _re_soft_jaccard_pair\\\\n    matrix = np.zeros((N, N))\\\\n    for i in range(N):\\\\n        for j in range(i + 1, N):\\\\n            s = pair_fn(samples[i].get(field, []), samples[j].get(field, []))\\\\n            matrix[i][j] = s\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Multi-seed Selection F1 for Table 3 (C2 critical).\\n\\nFor each instance's N samples, score with 5 signals (SJ/FK/VC/EM/LP),\\nselect the top-scoring sample, compute its F1 vs gold.\\nReports 3-seed mean±σ, per-seed bootstrap p-value vs greedy, and\\na combined bootstrap p-value across seeds.\\n\\nInput: samples.jsonl files from inference experiments.\\nOutput: JSON results + markdown report.\\nDepends: consistency.py, evaluation.py (same directory).\\n\\\"\\\"\\\"\\n\\nimport json\\nimport os\\nimport sys\\nimport time\\nfrom collections import Counter\\n\\nimport numpy as np\\n\\nsys.path.insert(0, '/root/autodl-tmp/struct_self_consist_ie/code')\\nfrom consistency import (\\n    _ner_soft_jaccard_pair,\\n    _re_soft_jaccard_pair,\\n    _extract_surface_keys,\\n)\\nfrom evaluation import per_instance_f1\\n\\nBASE = \\\"/root/autodl-tmp/struct_self_consist_ie\\\"\\n\\nEXPERIMENT_GROUPS = {\\n    # --- Qwen SciERC N=16 (v2 pipeline) ---\\n    \\\"qwen_scierc_ner_n16\\\": {\\n        \\\"subtask\\\": \\\"ner\\\",\\n        \\\"seeds\\\": {\\n            42: f\\\"{BASE}/output/exp_001_seed42_v2/samples.jsonl\\\",\\n            123: f\\\"{BASE}/output/exp_001_seed123_v2/samples.jsonl\\\",\\n            456: f\\\"{BASE}/output/exp_001_seed456_v2/samples.jsonl\\\",\\n        },\\n    },\\n    \\\"qwen_scierc_re_n16\\\": {\\n        \\\"subtask\\\": \\\"re\\\",\\n        \\\"seeds\\\": {\\n            42: f\\\"{BASE}/output/exp_001_seed42_v2/samples.jsonl\\\",\\n            123: f\\\"{BASE}/output/exp_001_seed123_v2/samples.jsonl\\\",\\n            456: f\\\"{BASE}/output/exp_001_seed456_v2/samples.jsonl\\\",\\n        },\\n    },\\n    # --- Qwen SciERC N=8 (r1024 logprobs) ---\\n    \\\"qwen_scierc_ner_n8\\\": {\\n        \\\"subtask\\\": \\\"ner\\\",\\n        \\\"seeds\\\": {\\n            42: f\\\"{BASE}/output/exp_012_rerun_1024/samples.jsonl\\\",\\n            123: f\\\"{BASE}/output/exp_018_qwen_scierc_seed123/samples.jsonl\\\",\\n            456: f\\\"{BASE}/output/exp_018_qwen_scierc_seed456/samples.jsonl\\\",\\n        },\\n    },\\n    # --- LLaMA SciERC N=8 ---\\n    \\\"llama_scierc_ner_n8\\\": {\\n        \\\"subtask\\\": \\\"ner\\\",\\n        \\\"seeds\\\": {\\n            42: f\\\"{BASE}/output/exp_018_llama_scierc_seed42_r1024/samples.jsonl\\\",\\n            123: f\\\"{BASE}/output/exp_018_llama_scierc_seed123/samples.jsonl\\\",\\n            456: f\\\"{BASE}/output/exp_018_llama_scierc_seed456_r1024/samples.jsonl\\\",\\n        },\\n    },\\n    # --- LLaMA CoNLL N=16 ---\\n    \\\"llama_conll_ner_n16\\\": {\\n        \\\"subtask\\\": \\\"ner\\\",\\n        \\\"seeds\\\": {\\n            42: f\\\"{BASE}/output/exp_017_llama_conll_n16_r1024/samples.jsonl\\\",\\n            123: f\\\"{BASE}/output/exp_017_llama_conll_n16_s123_r1024/samples.jsonl\\\",\\n            456: f\\\"{BASE}/output/exp_017_llama_conll_n16_s456_r1024/samples.jsonl\\\",\\n        },\\n    },\\n}\\n\\nN_BOOTSTRAP = 10000\\nBOOTSTRAP_SEED = 42\\nN_RANDOM_REPEATS = 50\\nSIGNALS = [\\\"VC\\\", \\\"SJ\\\", \\\"FK\\\", \\\"EM\\\", \\\"LP\\\"]\\n\\n\\ndef load_data(path):\\n    with open(path) as f:\\n        return [json.loads(line) for line in f if line.strip()]\\n\\n\\ndef compute_sample_sj_scores(instance, subtask):\\n    \\\"\\\"\\\"Pairwise soft Jaccard: mean similarity of each sample to all others.\\\"\\\"\\\"\\n    samples = instance[\\\"samples\\\"]\\n    N = len(samples)\\n    field = \\\"entities\\\" if subtask == \\\"ner\\\" else \\\"relations\\\"\\n    pair_fn = _ner_soft_jaccard_pair if subtask == \\\"ner\\\" else _re_soft_jaccard_pair\\n    matrix = np.zeros((N, N))\\n    for i in range(N):\\n        for j in range(i + 1, N):\\n            s = pair_fn(samples[i].get(field, []), samples[j].get(field, []))\\n            matrix[i][j] = s\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 46_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me check the `per_instance_f1` function in evaluation.py and understand how F1 is computed per instance.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8a680ff0-698a-43a6-9fb6-b209c674d969",
+  "uuid": "3e357b64-28b3-4cf1-9266-9d2465ba68e0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011ECDudzAueosCnVZZQwiw5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7737,
+      "cache_read_input_tokens": 38871,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7737
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 47_
+
+查看 `per_instance_f1` 实现和 CoNLL 数据的 sample count。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8a680ff0-698a-43a6-9fb6-b209c674d969",
+  "uuid": "c9bff23c-edb7-488b-b705-74f7f5ef62bc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011ECDudzAueosCnVZZQwiw5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7737,
+      "cache_read_input_tokens": 38871,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7737
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_018zgRvDmNL6ynN55H2qCrLS`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "grep -n \"per_instance_f1\" /root/autodl-tmp/struct_self_consist_ie/code/evaluation.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8a680ff0-698a-43a6-9fb6-b209c674d969",
+  "uuid": "b740043d-a406-4a42-ba57-f62f3afd24b6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011ECDudzAueosCnVZZQwiw5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7737,
+      "cache_read_input_tokens": 38871,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7737
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-18T13:04:01.786Z_
+
+<details><summary>↩ Tool result · `toolu_018zgRvDmNL6ynN55H2qCrLS`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"167:def per_instance_f1(\\n234:        f1s = [per_instance_f1(sample, gold, subtask) for sample in samples]\\n380:            instance_greedy_f1s.append(per_instance_f1(greedy, gold, subtask))\\n387:            best_sample = max(samples, key=lambda s: per_instance_f1(s, gold, subtask))\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.34}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8a680ff0-698a-43a6-9fb6-b209c674d969",
+  "uuid": "e174716b-eb07-4c50-af72-d5478110ef32",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"167:def per_instance_f1(\\\\n234:        f1s = [per_instance_f1(sample, gold, subtask) for sample in samples]\\\\n380:            instance_greedy_f1s.append(per_instance_f1(greedy, gold, subtask))\\\\n387:            best_sample = max(samples, key=lambda s: per_instance_f1(s, gold, subtask))\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.34}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"167:def per_instance_f1(\\n234:        f1s = [per_instance_f1(sample, gold, subtask) for sample in samples]\\n380:            instance_greedy_f1s.append(per_instance_f1(greedy, gold, subtask))\\n387:            best_sample = max(samples, key=lambda s: per_instance_f1(s, gold, subtask))\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.34}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 50_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01S4bBZSWcqsZmzmRPepnqvu`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "tail -n +167 /root/autodl-tmp/struct_self_consist_ie/code/evaluation.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8a680ff0-698a-43a6-9fb6-b209c674d969",
+  "uuid": "4834629a-7d7f-4a64-b809-91536c1fa6a0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Sg7JsVd9DThAKPmzrbpYHe",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 382,
+      "cache_read_input_tokens": 46608,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 382
+      },
+      "output_tokens": 65,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-18T13:04:06.195Z_
+
+<details><summary>↩ Tool result · `toolu_01S4bBZSWcqsZmzmRPepnqvu`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"def per_instance_f1(\\n    pred: dict,\\n    gold: dict,\\n    subtask: str = \\\"ner\\\",\\n) -> float:\\n    \\\"\\\"\\\"Compute F1 for a single instance.\\n\\n    Args:\\n        pred: Predicted Extraction dict.\\n        gold: Gold Extraction dict.\\n        subtask: \\\"ner\\\" for entity matching, \\\"eae\\\" for argument matching.\\n\\n    Returns:\\n        F1 score (float in [0, 1]).\\n    \\\"\\\"\\\"\\n    if subtask == \\\"ner\\\":\\n        tp, fp, fn = entity_strict_match(\\n            pred.get(\\\"entities\\\", []),\\n            gold.get(\\\"entities\\\", []),\\n        )\\n    elif subtask == \\\"re\\\":\\n        tp, fp, fn = relation_strict_match(\\n            pred.get(\\\"relations\\\", []),\\n            gold.get(\\\"relations\\\", []),\\n        )\\n    elif subtask == \\\"eae\\\":\\n        tp, fp, fn = argument_match(\\n            pred.get(\\\"events\\\", []),\\n            gold.get(\\\"events\\\", []),\\n        )\\n    else:\\n        raise ValueError(f\\\"subtask must be 'ner', 're', or 'eae', got '{subtask}'\\\")\\n    return _prf(tp, fp, fn)[\\\"f1\\\"]\\n\\n\\n# ---------------------------------------------------------------------------\\n# Per-sample F1 distribution\\n# ---------------------------------------------------------------------------\\n\\ndef compute_sample_f1_distribution(\\n    sampled_instances: list[dict],\\n    subtask: str = \\\"ner\\\",\\n) -> dict:\\n    \\\"\\\"\\\"Compute per-sample F1 distribution statistics.\\n\\n    For each instance, compute F1 of each of its N samples against gold.\\n    Aggregate into distribution statistics.\\n\\n    Args:\\n        sampled_instances: List of SampledInstance dicts, each containing\\n            \\\"gold\\\" (Extraction) and \\\"samples\\\" (list of Extraction).\\n        subtask: \\\"ner\\\" or \\\"eae\\\".\\n\\n    Returns:\\n        Dict with keys:\\n            - \\\"all_sample_f1s\\\": flat list of all per-sample F1 values\\n            - \\\"mean\\\": mean F1 across all samples\\n            - \\\"std\\\": std of F1\\n            - \\\"pct_f1_zero\\\": percentage of samples with F1=0.0\\n            - \\\"per_instance\\\": list of dicts, each with {\\\"mean\\\", \\\"std\\\", \\\"pct_f1_zero\\\", \\\"f1s\\\"}\\n    \\\"\\\"\\\"\\n    all_sample_f1s: list[float] = []\\n    per_instance: list[dict] = []\\n\\n    for inst in sampled_instances:\\n        gold = inst[\\\"gold\\\"]\\n        samples = inst.get(\\\"samples\\\", [])\\n        f1s = [per_instance_f1(sample, gold, subtask) for sample in samples]\\n        all_sample_f1s.extend(f1s)\\n\\n        if f1s:\\n            n_zero = sum(1 for f in f1s if f == 0.0)\\n            per_instance.append({\\n                \\\"mean\\\": statistics.mean(f1s),\\n                \\\"std\\\": statistics.pstdev(f1s),\\n                \\\"pct_f1_zero\\\": 100.0 * n_zero / len(f1s),\\n                \\\"f1s\\\": f1s,\\n            })\\n        else:\\n            per_instance.append({\\\"mean\\\": 0.0, \\\"std\\\": 0.0, \\\"pct_f1_zero\\\": 100.0, \\\"f1s\\\": []})\\n\\n    if all_sample_f1s:\\n        n_zero_total = sum(1 for f in all_sample_f1s if f == 0.0)\\n        mean = statistics.mean(all_sample_f1s)\\n        std = statistics.pstdev(all_sample_f1s)\\n        pct_f1_zero = 100.0 * n_zero_total / len(all_sample_f1s)\\n    else:\\n        mean = 0.0\\n        std = 0.0\\n        pct_f1_zero = 100.0\\n\\n    return {\\n        \\\"all_sample_f1s\\\": all_sample_f1s,\\n        \\\"mean\\\": mean,\\n        \\\"std\\\": std,\\n        \\\"pct_f1_zero\\\": pct_f1_zero,\\n        \\\"per_instance\\\": per_instance,\\n    }\\n\\n\\n# ---------------------------------------------------------------------------\\n# Correlation\\n# ---------------------------------------------------------------------------\\n\\ndef spearman_correlation(\\n    scores_a: list[float],\\n    scores_b: list[float],\\n) -> tuple[float, float]:\\n    \\\"\\\"\\\"Compute Spearman rank correlation between two score lists.\\n\\n    Args:\\n        scores_a: First list of scores.\\n        scores_b: Second list of scores (same length as scores_a).\\n\\n    Returns:\\n        (rho, p_value).\\n    \\\"\\\"\\\"\\n    if len(scores_a) != len(scores_b):\\n        raise ValueError(\\n            f\\\"Score lists must have equal length, got {len(scores_a)} vs {len(scores_b)}\\\"\\n        )\\n    if len(scores_a) < 3:\\n        return (0.0, 1.0)\\n    result = spearmanr(scores_a, scores_b)\\n    return (float(result.statistic), float(result.pvalue))\\n\\n\\ndef kendall_correlation(\\n    sco\\n\\n... [截断: 输出过长，省略 1246 字符] ...\\n\\nrn 0.5\\n    concordant = sum(1 for p in pos for n in neg if p > n)\\n    tied = sum(1 for p in pos for n in neg if p == n)\\n    return (concordant + 0.5 * tied) / (len(pos) * len(neg))\\n\\n\\n# ---------------------------------------------------------------------------\\n# Summary report\\n# ---------------------------------------------------------------------------\\n\\ndef generate_evaluation_report(\\n    sampled_instances: list[dict],\\n    consistency_scores: dict[str, list[float]],\\n    subtask: str = \\\"ner\\\",\\n) -> dict[str, Any]:\\n    \\\"\\\"\\\"Generate a structured evaluation report.\\n\\n    Computes greedy F1, oracle best-of-N F1, and consistency-F1 correlation\\n    for each consistency scoring method.\\n\\n    Args:\\n        sampled_instances: List of SampledInstance dicts, each containing\\n            \\\"id\\\", \\\"text\\\", \\\"gold\\\" (Extraction), \\\"samples\\\" (list of Extraction),\\n            and optionally \\\"greedy\\\" (Extraction).\\n        consistency_scores: Dict mapping method name to a list of per-instance\\n            consistency scores (aligned with sampled_instances).\\n        subtask: \\\"ner\\\" or \\\"eae\\\".\\n\\n    Returns:\\n        Dict with keys:\\n            - \\\"greedy_f1\\\": float, micro-averaged F1 of greedy outputs.\\n            - \\\"oracle_best_of_n_f1\\\": float, micro-averaged F1 using the\\n              best sample per instance.\\n            - \\\"per_instance_greedy_f1\\\": list of per-instance greedy F1 values.\\n            - \\\"correlations\\\": dict mapping method name to {\\\"rho\\\": float, \\\"p_value\\\": float}.\\n            - \\\"num_instances\\\": int.\\n            - \\\"num_samples_per_instance\\\": float, average number of samples.\\n    \\\"\\\"\\\"\\n    greedy_preds = []\\n    greedy_golds = []\\n    oracle_preds = []\\n    oracle_golds = []\\n    instance_greedy_f1s: list[float] = []\\n\\n    for inst in sampled_instances:\\n        gold = inst[\\\"gold\\\"]\\n\\n        # Greedy F1\\n        greedy = inst.get(\\\"greedy\\\")\\n        if greedy is not None:\\n            greedy_preds.append(greedy)\\n            greedy_golds.append(gold)\\n            instance_greedy_f1s.append(per_instance_f1(greedy, gold, subtask))\\n        else:\\n            instance_greedy_f1s.append(0.0)\\n\\n        # Oracle best-of-N: pick the sample with highest per-instance F1\\n        samples = inst.get(\\\"samples\\\", [])\\n        if samples:\\n            best_sample = max(samples, key=lambda s: per_instance_f1(s, gold, subtask))\\n            oracle_preds.append(best_sample)\\n            oracle_golds.append(gold)\\n\\n    # Micro-averaged scores\\n    f1_fn = {\\\"ner\\\": compute_ner_f1, \\\"re\\\": compute_re_f1, \\\"eae\\\": compute_eae_f1}[subtask]\\n    greedy_metrics = f1_fn(greedy_preds, greedy_golds) if greedy_preds else _prf(0, 0, 0)\\n    oracle_metrics = f1_fn(oracle_preds, oracle_golds) if oracle_preds else _prf(0, 0, 0)\\n\\n    # Correlation between consistency scores and per-instance greedy F1\\n    correlations: dict[str, dict[str, float]] = {}\\n    for method_name, scores in consistency_scores.items():\\n        rho, p_value = spearman_correlation(scores, instance_greedy_f1s)\\n        correlations[method_name] = {\\\"rho\\\": rho, \\\"p_value\\\": p_value}\\n\\n    total_samples = sum(len(inst.get(\\\"samples\\\", [])) for inst in sampled_instances)\\n    n = len(sampled_instances)\\n\\n    return {\\n        \\\"greedy_f1\\\": greedy_metrics[\\\"f1\\\"],\\n        \\\"oracle_best_of_n_f1\\\": oracle_metrics[\\\"f1\\\"],\\n        \\\"per_instance_greedy_f1\\\": instance_greedy_f1s,\\n        \\\"correlations\\\": correlations,\\n        \\\"num_instances\\\": n,\\n        \\\"num_samples_per_instance\\\": total_samples / n if n > 0 else 0.0,\\n    }\\n\\n\\n# ---------------------------------------------------------------------------\\n# Internal helpers\\n# ---------------------------------------------------------------------------\\n\\ndef _prf(tp: int, fp: int, fn: int) -> dict[str, float]:\\n    \\\"\\\"\\\"Compute precision, recall, F1 from raw counts.\\\"\\\"\\\"\\n    precision = tp / (tp + fp) if (tp + fp) > 0 else 0.0\\n    recall = tp / (tp + fn) if (tp + fn) > 0 else 0.0\\n    f1 = 2 * precision * recall / (precision + recall) if (precision + recall) > 0 else 0.0\\n    return {\\\"precision\\\": precision, \\\"recall\\\": recall, \\\"f1\\\": f1}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.34}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8a680ff0-698a-43a6-9fb6-b209c674d969",
+  "uuid": "2e512cb9-f202-4616-a3df-ec0dfae5aa64",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"def per_instance_f1(\\\\n    pred: dict,\\\\n    gold: dict,\\\\n    subtask: str = \\\\\\\"ner\\\\\\\",\\\\n) -> float:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Compute F1 for a single instance.\\\\n\\\\n    Args:\\\\n        pred: Predicted Extraction dict.\\\\n        gold: Gold Extraction dict.\\\\n        subtask: \\\\\\\"ner\\\\\\\" for entity matching, \\\\\\\"eae\\\\\\\" for argument matching.\\\\n\\\\n    Returns:\\\\n        F1 score (float in [0, 1]).\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    if subtask == \\\\\\\"ner\\\\\\\":\\\\n        tp, fp, fn = entity_strict_match(\\\\n            pred.get(\\\\\\\"entities\\\\\\\", []),\\\\n            gold.get(\\\\\\\"entities\\\\\\\", []),\\\\n        )\\\\n    elif subtask == \\\\\\\"re\\\\\\\":\\\\n        tp, fp, fn = relation_strict_match(\\\\n            pred.get(\\\\\\\"relations\\\\\\\", []),\\\\n            gold.get(\\\\\\\"relations\\\\\\\", []),\\\\n        )\\\\n    elif subtask == \\\\\\\"eae\\\\\\\":\\\\n        tp, fp, fn = argument_match(\\\\n            pred.get(\\\\\\\"events\\\\\\\", []),\\\\n            gold.get(\\\\\\\"events\\\\\\\", []),\\\\n        )\\\\n    else:\\\\n        raise ValueError(f\\\\\\\"subtask must be 'ner', 're', or 'eae', got '{subtask}'\\\\\\\")\\\\n    return _prf(tp, fp, fn)[\\\\\\\"f1\\\\\\\"]\\\\n\\\\n\\\\n# ---------------------------------------------------------------------------\\\\n# Per-sample F1 distribution\\\\n# ---------------------------------------------------------------------------\\\\n\\\\ndef compute_sample_f1_distribution(\\\\n    sampled_instances: list[dict],\\\\n    subtask: str = \\\\\\\"ner\\\\\\\",\\\\n) -> dict:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Compute per-sample F1 distribution statistics.\\\\n\\\\n    For each instance, compute F1 of each of its N samples against gold.\\\\n    Aggregate into distribution statistics.\\\\n\\\\n    Args:\\\\n        sampled_instances: List of SampledInstance dicts, each containing\\\\n            \\\\\\\"gold\\\\\\\" (Extraction) and \\\\\\\"samples\\\\\\\" (list of Extraction).\\\\n        subtask: \\\\\\\"ner\\\\\\\" or \\\\\\\"eae\\\\\\\".\\\\n\\\\n    Returns:\\\\n        Dict with keys:\\\\n            - \\\\\\\"all_sample_f1s\\\\\\\": flat list of all per-sample F1 values\\\\n            - \\\\\\\"mean\\\\\\\": mean F1 across all samples\\\\n            - \\\\\\\"std\\\\\\\": std of F1\\\\n            - \\\\\\\"pct_f1_zero\\\\\\\": percentage of samples with F1=0.0\\\\n            - \\\\\\\"per_instance\\\\\\\": list of dicts, each with {\\\\\\\"mean\\\\\\\", \\\\\\\"std\\\\\\\", \\\\\\\"pct_f1_zero\\\\\\\", \\\\\\\"f1s\\\\\\\"}\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    all_sample_f1s: list[float] = []\\\\n    per_instance: list[dict] = []\\\\n\\\\n    for inst in sampled_instances:\\\\n        gold = inst[\\\\\\\"gold\\\\\\\"]\\\\n        samples = inst.get(\\\\\\\"samples\\\\\\\", [])\\\\n        f1s = [per_instance_f1(sample, gold, subtask) for sample in samples]\\\\n        all_sample_f1s.extend(f1s)\\\\n\\\\n        if f1s:\\\\n            n_zero = sum(1 for f in f1s if f == 0.0)\\\\n            per_instance.append({\\\\n                \\\\\\\"mean\\\\\\\": statistics.mean(f1s),\\\\n                \\\\\\\"std\\\\\\\": statistics.pstdev(f1s),\\\\n                \\\\\\\"pct_f1_zero\\\\\\\": 100.0 * n_zero / len(f1s),\\\\n                \\\\\\\"f1s\\\\\\\": f1s,\\\\n            })\\\\n        else:\\\\n            per_instance.append({\\\\\\\"mean\\\\\\\": 0.0, \\\\\\\"std\\\\\\\": 0.0, \\\\\\\"pct_f1_zero\\\\\\\": 100.0, \\\\\\\"f1s\\\\\\\": []})\\\\n\\\\n    if all_sample_f1s:\\\\n        n_zero_total = sum(1 for f in all_sample_f1s if f == 0.0)\\\\n        mean = statistics.mean(all_sample_f1s)\\\\n        std = statistics.pstdev(all_sample_f1s)\\\\n        pct_f1_zero = 100.0 * n_zero_total / len(all_sample_f1s)\\\\n    else:\\\\n        mean = 0.0\\\\n        std = 0.0\\\\n        pct_f1_zero = 100.0\\\\n\\\\n    return {\\\\n        \\\\\\\"all_sample_f1s\\\\\\\": all_sample_f1s,\\\\n        \\\\\\\"mean\\\\\\\": mean,\\\\n        \\\\\\\"std\\\\\\\": std,\\\\n        \\\\\\\"pct_f1_zero\\\\\\\": pct_f1_zero,\\\\n        \\\\\\\"per_instance\\\\\\\": per_instance,\\\\n    }\\\\n\\\\n\\\\n# ---------------------------------------------------------------------------\\\\n# Correlation\\\\n# ---------------------------------------------------------------------------\\\\n\\\\ndef spearman_correlation(\\\\n    scores_a: list[float],\\\\n    scores_b: list[float],\\\\n) -> tuple[float, float]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Compute Spearman rank correlation between two score lists.\\\\n\\\\n    Args:\\\\n        scores_a: First list of scores.\\\\n        scores_b: Second list of scores (same length as scores_a).\\\\n\\\\n    Returns:\\\\n        (rho, p_value).\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    if len(scores_a) != len(scores_b):\\\\n        raise ValueError(\\\\n            f\\\\\\\"Score lists must have equal length, got {len(scores_a)} vs {len(scores_b)}\\\\\\\"\\\\n        )\\\\n    if len(scores_a) < 3:\\\\n        return (0.0, 1.0)\\\\n    result = spearmanr(scores_a, scores_b)\\\\n    return (float(result.statistic), float(result.pvalue))\\\\n\\\\n\\\\ndef kendall_correlation(\\\\n    sco\\\\n\\\\n... [截断: 输出过长，省略 1246 字符] ...\\\\n\\\\nrn 0.5\\\\n    concordant = sum(1 for p in pos for n in neg if p > n)\\\\n    tied = sum(1 for p in pos for n in neg if p == n)\\\\n    return (concordant + 0.5 * tied) / (len(pos) * len(neg))\\\\n\\\\n\\\\n# ---------------------------------------------------------------------------\\\\n# Summary report\\\\n# ---------------------------------------------------------------------------\\\\n\\\\ndef generate_evaluation_report(\\\\n    sampled_instances: list[dict],\\\\n    consistency_scores: dict[str, list[float]],\\\\n    subtask: str = \\\\\\\"ner\\\\\\\",\\\\n) -> dict[str, Any]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Generate a structured evaluation report.\\\\n\\\\n    Computes greedy F1, oracle best-of-N F1, and consistency-F1 correlation\\\\n    for each consistency scoring method.\\\\n\\\\n    Args:\\\\n        sampled_instances: List of SampledInstance dicts, each containing\\\\n            \\\\\\\"id\\\\\\\", \\\\\\\"text\\\\\\\", \\\\\\\"gold\\\\\\\" (Extraction), \\\\\\\"samples\\\\\\\" (list of Extraction),\\\\n            and optionally \\\\\\\"greedy\\\\\\\" (Extraction).\\\\n        consistency_scores: Dict mapping method name to a list of per-instance\\\\n            consistency scores (aligned with sampled_instances).\\\\n        subtask: \\\\\\\"ner\\\\\\\" or \\\\\\\"eae\\\\\\\".\\\\n\\\\n    Returns:\\\\n        Dict with keys:\\\\n            - \\\\\\\"greedy_f1\\\\\\\": float, micro-averaged F1 of greedy outputs.\\\\n            - \\\\\\\"oracle_best_of_n_f1\\\\\\\": float, micro-averaged F1 using the\\\\n              best sample per instance.\\\\n            - \\\\\\\"per_instance_greedy_f1\\\\\\\": list of per-instance greedy F1 values.\\\\n            - \\\\\\\"correlations\\\\\\\": dict mapping method name to {\\\\\\\"rho\\\\\\\": float, \\\\\\\"p_value\\\\\\\": float}.\\\\n            - \\\\\\\"num_instances\\\\\\\": int.\\\\n            - \\\\\\\"num_samples_per_instance\\\\\\\": float, average number of samples.\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    greedy_preds = []\\\\n    greedy_golds = []\\\\n    oracle_preds = []\\\\n    oracle_golds = []\\\\n    instance_greedy_f1s: list[float] = []\\\\n\\\\n    for inst in sampled_instances:\\\\n        gold = inst[\\\\\\\"gold\\\\\\\"]\\\\n\\\\n        # Greedy F1\\\\n        greedy = inst.get(\\\\\\\"greedy\\\\\\\")\\\\n        if greedy is not None:\\\\n            greedy_preds.append(greedy)\\\\n            greedy_golds.append(gold)\\\\n            instance_greedy_f1s.append(per_instance_f1(greedy, gold, subtask))\\\\n        else:\\\\n            instance_greedy_f1s.append(0.0)\\\\n\\\\n        # Oracle best-of-N: pick the sample with highest per-instance F1\\\\n        samples = inst.get(\\\\\\\"samples\\\\\\\", [])\\\\n        if samples:\\\\n            best_sample = max(samples, key=lambda s: per_instance_f1(s, gold, subtask))\\\\n            oracle_preds.append(best_sample)\\\\n            oracle_golds.append(gold)\\\\n\\\\n    # Micro-averaged scores\\\\n    f1_fn = {\\\\\\\"ner\\\\\\\": compute_ner_f1, \\\\\\\"re\\\\\\\": compute_re_f1, \\\\\\\"eae\\\\\\\": compute_eae_f1}[subtask]\\\\n    greedy_metrics = f1_fn(greedy_preds, greedy_golds) if greedy_preds else _prf(0, 0, 0)\\\\n    oracle_metrics = f1_fn(oracle_preds, oracle_golds) if oracle_preds else _prf(0, 0, 0)\\\\n\\\\n    # Correlation between consistency scores and per-instance greedy F1\\\\n    correlations: dict[str, dict[str, float]] = {}\\\\n    for method_name, scores in consistency_scores.items():\\\\n        rho, p_value = spearman_correlation(scores, instance_greedy_f1s)\\\\n        correlations[method_name] = {\\\\\\\"rho\\\\\\\": rho, \\\\\\\"p_value\\\\\\\": p_value}\\\\n\\\\n    total_samples = sum(len(inst.get(\\\\\\\"samples\\\\\\\", [])) for inst in sampled_instances)\\\\n    n = len(sampled_instances)\\\\n\\\\n    return {\\\\n        \\\\\\\"greedy_f1\\\\\\\": greedy_metrics[\\\\\\\"f1\\\\\\\"],\\\\n        \\\\\\\"oracle_best_of_n_f1\\\\\\\": oracle_metrics[\\\\\\\"f1\\\\\\\"],\\\\n        \\\\\\\"per_instance_greedy_f1\\\\\\\": instance_greedy_f1s,\\\\n        \\\\\\\"correlations\\\\\\\": correlations,\\\\n        \\\\\\\"num_instances\\\\\\\": n,\\\\n        \\\\\\\"num_samples_per_instance\\\\\\\": total_samples / n if n > 0 else 0.0,\\\\n    }\\\\n\\\\n\\\\n# ---------------------------------------------------------------------------\\\\n# Internal helpers\\\\n# ---------------------------------------------------------------------------\\\\n\\\\ndef _prf(tp: int, fp: int, fn: int) -> dict[str, float]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Compute precision, recall, F1 from raw counts.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    precision = tp / (tp + fp) if (tp + fp) > 0 else 0.0\\\\n    recall = tp / (tp + fn) if (tp + fn) > 0 else 0.0\\\\n    f1 = 2 * precision * recall / (precision + recall) if (precision + recall) > 0 else 0.0\\\\n    return {\\\\\\\"precision\\\\\\\": precision, \\\\\\\"recall\\\\\\\": recall, \\\\\\\"f1\\\\\\\": f1}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.34}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"def per_instance_f1(\\n    pred: dict,\\n    gold: dict,\\n    subtask: str = \\\"ner\\\",\\n) -> float:\\n    \\\"\\\"\\\"Compute F1 for a single instance.\\n\\n    Args:\\n        pred: Predicted Extraction dict.\\n        gold: Gold Extraction dict.\\n        subtask: \\\"ner\\\" for entity matching, \\\"eae\\\" for argument matching.\\n\\n    Returns:\\n        F1 score (float in [0, 1]).\\n    \\\"\\\"\\\"\\n    if subtask == \\\"ner\\\":\\n        tp, fp, fn = entity_strict_match(\\n            pred.get(\\\"entities\\\", []),\\n            gold.get(\\\"entities\\\", []),\\n        )\\n    elif subtask == \\\"re\\\":\\n        tp, fp, fn = relation_strict_match(\\n            pred.get(\\\"relations\\\", []),\\n            gold.get(\\\"relations\\\", []),\\n        )\\n    elif subtask == \\\"eae\\\":\\n        tp, fp, fn = argument_match(\\n            pred.get(\\\"events\\\", []),\\n            gold.get(\\\"events\\\", []),\\n        )\\n    else:\\n        raise ValueError(f\\\"subtask must be 'ner', 're', or 'eae', got '{subtask}'\\\")\\n    return _prf(tp, fp, fn)[\\\"f1\\\"]\\n\\n\\n# ---------------------------------------------------------------------------\\n# Per-sample F1 distribution\\n# ---------------------------------------------------------------------------\\n\\ndef compute_sample_f1_distribution(\\n    sampled_instances: list[dict],\\n    subtask: str = \\\"ner\\\",\\n) -> dict:\\n    \\\"\\\"\\\"Compute per-sample F1 distribution statistics.\\n\\n    For each instance, compute F1 of each of its N samples against gold.\\n    Aggregate into distribution statistics.\\n\\n    Args:\\n        sampled_instances: List of SampledInstance dicts, each containing\\n            \\\"gold\\\" (Extraction) and \\\"samples\\\" (list of Extraction).\\n        subtask: \\\"ner\\\" or \\\"eae\\\".\\n\\n    Returns:\\n        Dict with keys:\\n            - \\\"all_sample_f1s\\\": flat list of all per-sample F1 values\\n            - \\\"mean\\\": mean F1 across all samples\\n            - \\\"std\\\": std of F1\\n            - \\\"pct_f1_zero\\\": percentage of samples with F1=0.0\\n            - \\\"per_instance\\\": list of dicts, each with {\\\"mean\\\", \\\"std\\\", \\\"pct_f1_zero\\\", \\\"f1s\\\"}\\n    \\\"\\\"\\\"\\n    all_sample_f1s: list[float] = []\\n    per_instance: list[dict] = []\\n\\n    for inst in sampled_instances:\\n        gold = inst[\\\"gold\\\"]\\n        samples = inst.get(\\\"samples\\\", [])\\n        f1s = [per_instance_f1(sample, gold, subtask) for sample in samples]\\n        all_sample_f1s.extend(f1s)\\n\\n        if f1s:\\n            n_zero = sum(1 for f in f1s if f == 0.0)\\n            per_instance.append({\\n                \\\"mean\\\": statistics.mean(f1s),\\n                \\\"std\\\": statistics.pstdev(f1s),\\n                \\\"pct_f1_zero\\\": 100.0 * n_zero / len(f1s),\\n                \\\"f1s\\\": f1s,\\n            })\\n        else:\\n            per_instance.append({\\\"mean\\\": 0.0, \\\"std\\\": 0.0, \\\"pct_f1_zero\\\": 100.0, \\\"f1s\\\": []})\\n\\n    if all_sample_f1s:\\n        n_zero_total = sum(1 for f in all_sample_f1s if f == 0.0)\\n        mean = statistics.mean(all_sample_f1s)\\n        std = statistics.pstdev(all_sample_f1s)\\n        pct_f1_zero = 100.0 * n_zero_total / len(all_sample_f1s)\\n    else:\\n        mean = 0.0\\n        std = 0.0\\n        pct_f1_zero = 100.0\\n\\n    return {\\n        \\\"all_sample_f1s\\\": all_sample_f1s,\\n        \\\"mean\\\": mean,\\n        \\\"std\\\": std,\\n        \\\"pct_f1_zero\\\": pct_f1_zero,\\n        \\\"per_instance\\\": per_instance,\\n    }\\n\\n\\n# ---------------------------------------------------------------------------\\n# Correlation\\n# ---------------------------------------------------------------------------\\n\\ndef spearman_correlation(\\n    scores_a: list[float],\\n    scores_b: list[float],\\n) -> tuple[float, float]:\\n    \\\"\\\"\\\"Compute Spearman rank correlation between two score lists.\\n\\n    Args:\\n        scores_a: First list of scores.\\n        scores_b: Second list of scores (same length as scores_a).\\n\\n    Returns:\\n        (rho, p_value).\\n    \\\"\\\"\\\"\\n    if len(scores_a) != len(scores_b):\\n        raise ValueError(\\n            f\\\"Score lists must have equal length, got {len(scores_a)} vs {len(scores_b)}\\\"\\n        )\\n    if len(scores_a) < 3:\\n        return (0.0, 1.0)\\n    result = spearmanr(scores_a, scores_b)\\n    return (float(result.statistic), float(result.pvalue))\\n\\n\\ndef kendall_correlation(\\n    sco\\n\\n... [截断: 输出过长，省略 1246 字符] ...\\n\\nrn 0.5\\n    concordant = sum(1 for p in pos for n in neg if p > n)\\n    tied = sum(1 for p in pos for n in neg if p == n)\\n    return (concordant + 0.5 * tied) / (len(pos) * len(neg))\\n\\n\\n# ---------------------------------------------------------------------------\\n# Summary report\\n# ---------------------------------------------------------------------------\\n\\ndef generate_evaluation_report(\\n    sampled_instances: list[dict],\\n    consistency_scores: dict[str, list[float]],\\n    subtask: str = \\\"ner\\\",\\n) -> dict[str, Any]:\\n    \\\"\\\"\\\"Generate a structured evaluation report.\\n\\n    Computes greedy F1, oracle best-of-N F1, and consistency-F1 correlation\\n    for each consistency scoring method.\\n\\n    Args:\\n        sampled_instances: List of SampledInstance dicts, each containing\\n            \\\"id\\\", \\\"text\\\", \\\"gold\\\" (Extraction), \\\"samples\\\" (list of Extraction),\\n            and optionally \\\"greedy\\\" (Extraction).\\n        consistency_scores: Dict mapping method name to a list of per-instance\\n            consistency scores (aligned with sampled_instances).\\n        subtask: \\\"ner\\\" or \\\"eae\\\".\\n\\n    Returns:\\n        Dict with keys:\\n            - \\\"greedy_f1\\\": float, micro-averaged F1 of greedy outputs.\\n            - \\\"oracle_best_of_n_f1\\\": float, micro-averaged F1 using the\\n              best sample per instance.\\n            - \\\"per_instance_greedy_f1\\\": list of per-instance greedy F1 values.\\n            - \\\"correlations\\\": dict mapping method name to {\\\"rho\\\": float, \\\"p_value\\\": float}.\\n            - \\\"num_instances\\\": int.\\n            - \\\"num_samples_per_instance\\\": float, average number of samples.\\n    \\\"\\\"\\\"\\n    greedy_preds = []\\n    greedy_golds = []\\n    oracle_preds = []\\n    oracle_golds = []\\n    instance_greedy_f1s: list[float] = []\\n\\n    for inst in sampled_instances:\\n        gold = inst[\\\"gold\\\"]\\n\\n        # Greedy F1\\n        greedy = inst.get(\\\"greedy\\\")\\n        if greedy is not None:\\n            greedy_preds.append(greedy)\\n            greedy_golds.append(gold)\\n            instance_greedy_f1s.append(per_instance_f1(greedy, gold, subtask))\\n        else:\\n            instance_greedy_f1s.append(0.0)\\n\\n        # Oracle best-of-N: pick the sample with highest per-instance F1\\n        samples = inst.get(\\\"samples\\\", [])\\n        if samples:\\n            best_sample = max(samples, key=lambda s: per_instance_f1(s, gold, subtask))\\n            oracle_preds.append(best_sample)\\n            oracle_golds.append(gold)\\n\\n    # Micro-averaged scores\\n    f1_fn = {\\\"ner\\\": compute_ner_f1, \\\"re\\\": compute_re_f1, \\\"eae\\\": compute_eae_f1}[subtask]\\n    greedy_metrics = f1_fn(greedy_preds, greedy_golds) if greedy_preds else _prf(0, 0, 0)\\n    oracle_metrics = f1_fn(oracle_preds, oracle_golds) if oracle_preds else _prf(0, 0, 0)\\n\\n    # Correlation between consistency scores and per-instance greedy F1\\n    correlations: dict[str, dict[str, float]] = {}\\n    for method_name, scores in consistency_scores.items():\\n        rho, p_value = spearman_correlation(scores, instance_greedy_f1s)\\n        correlations[method_name] = {\\\"rho\\\": rho, \\\"p_value\\\": p_value}\\n\\n    total_samples = sum(len(inst.get(\\\"samples\\\", [])) for inst in sampled_instances)\\n    n = len(sampled_instances)\\n\\n    return {\\n        \\\"greedy_f1\\\": greedy_metrics[\\\"f1\\\"],\\n        \\\"oracle_best_of_n_f1\\\": oracle_metrics[\\\"f1\\\"],\\n        \\\"per_instance_greedy_f1\\\": instance_greedy_f1s,\\n        \\\"correlations\\\": correlations,\\n        \\\"num_instances\\\": n,\\n        \\\"num_samples_per_instance\\\": total_samples / n if n > 0 else 0.0,\\n    }\\n\\n\\n# ---------------------------------------------------------------------------\\n# Internal helpers\\n# ---------------------------------------------------------------------------\\n\\ndef _prf(tp: int, fp: int, fn: int) -> dict[str, float]:\\n    \\\"\\\"\\\"Compute precision, recall, F1 from raw counts.\\\"\\\"\\\"\\n    precision = tp / (tp + fp) if (tp + fp) > 0 else 0.0\\n    recall = tp / (tp + fn) if (tp + fn) > 0 else 0.0\\n    f1 = 2 * precision * recall / (precision + recall) if (precision + recall) > 0 else 0.0\\n    return {\\\"precision\\\": precision, \\\"recall\\\": recall, \\\"f1\\\": f1}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.34}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 52_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have all the information I need. Let me understand the data:
+
+1. The evaluation uses `per_instance_f1` which does strict entity matching (start, end, type tuples)
+2. Each samples.jsonl has instances with `samples` (list of N samples), `gold`, and `greedy`
+3. Each sample has `mean_logprob` which is the LP score
+
+For the task:
+- Gold-filtering = filtering instances where gold has at least one entity
+- Degeneracy = all N=8 sample F1s are the same
+- LP selection = pick the sample with highest mean_logprob
+
+
+- Gated selection = for degenerate instances use greedy, for non-degenerate use LP selection
+
+I've identified the right files for each dataset: Few-NERD at around 37k lines, SciERC at 551 lines, and CoNLL at 3453 lines. Now I'm writing a script to load each samples.jsonl, apply gold filtering, compute F1 scores for each sample, and then evaluate the different selection strategies.
+
+I need to identify degenerate instances where all 8 sample F1 scores are identical, then separately compute greedy F1, oracle F1, LP selection F1, and the gated approach that uses greedy for degenerate cases and LP selection for non-degenerate ones. The key is accumulating true positives, false positives, and false negatives across all instances to get micro-averaged F1 scores. not from averaging per-instance F1s. The evaluation.py uses `compute_ner_f1` for micro-averaged. But the task says "LP selection F1 and delta (vs greedy)". I think they want micro-averaged F1, since that's the standard.
+
+Actually, for computing "gated overall F1" with the formula `(non-degen LP selection F1 × n_nondegen + degen greedy F1 × n_degen) / n_total`, this uses a weighted average of per-instance F1s. But that's macro-averaged F1, not micro-averaged.
+
+Hmm, but the task explicitly states this formula. Let me think about this more carefully.
+
+Actually, if we use micro-averaged F1, the gated approach would be:
+- For non-degenerate instances: use LP-selected sample → accumulate TP/FP/FN
+- For degenerate instances: use greedy → accumulate TP/FP/FN
+- Combine all TP/FP/FN for overall micro F1
+
+The formula in the task uses weighted average of F1s, which implies macro-averaging. I'll implement both approaches—using micro-averaged as the primary metric since that's standard for NER, but also computing the formula-based version to match what the task describes. Let me write a script that handles both calculations.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8a680ff0-698a-43a6-9fb6-b209c674d969",
+  "uuid": "cf3e3a25-798b-443d-9154-4fa948d53e77",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011Qjxq1B7xf7U4jcphm4MWU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3350,
+      "cache_read_input_tokens": 46990,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3350
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 53_
+
+数据结构和现有工具都清楚了。现在写分析脚本并部署到服务器。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8a680ff0-698a-43a6-9fb6-b209c674d969",
+  "uuid": "a81c7e88-4e56-4416-8554-3f373f5007af",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011Qjxq1B7xf7U4jcphm4MWU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3350,
+      "cache_read_input_tokens": 46990,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3350
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 54_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_011sgSypUwXRHVgjvmsHrNgx`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__register_artifact",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8a680ff0-698a-43a6-9fb6-b209c674d969",
+  "uuid": "705abfd6-818c-4bb9-b8c3-ec25d28b19ef",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011Qjxq1B7xf7U4jcphm4MWU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3350,
+      "cache_read_input_tokens": 46990,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3350
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 55 · 2026-05-18T13:04:36.215Z_
+
+<details><summary>↩ Tool result · `toolu_011sgSypUwXRHVgjvmsHrNgx`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__register_artifact"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8a680ff0-698a-43a6-9fb6-b209c674d969",
+  "uuid": "2f62f693-9af1-4f54-8f57-953c7d897e6e",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__register_artifact"
+    ],
+    "query": "select:mcp__agent-ml-research__register_artifact",
+    "total_deferred_tools": 24
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 56_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me write the analysis script. I'll create it locally first, then deploy it to the server.
+
+The script needs to:
+1. Load each dataset's samples.jsonl
+2. Gold-filter (instances with at least one gold entity)
+3. For each instance, compute per-sample F1 and greedy F1
+4. Identify degenerate instances (all sample F1s identical)
+5. Compute all the metrics
+
+Let me write a clean, comprehensive script.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8a680ff0-698a-43a6-9fb6-b209c674d969",
+  "uuid": "fabeb374-fcd2-419d-ba69-4529a22668e8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MAyMjo6P3fhKhSP9xSzKB8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1973,
+      "cache_read_input_tokens": 50340,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1973
+      },
+      "output_tokens": 23,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 57_
+
+写分析脚本。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8a680ff0-698a-43a6-9fb6-b209c674d969",
+  "uuid": "049d67ca-6643-4e89-a310-9b02b2ae27e5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MAyMjo6P3fhKhSP9xSzKB8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1973,
+      "cache_read_input_tokens": 50340,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1973
+      },
+      "output_tokens": 23,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 58_
+
+<details open><summary>🔧 Tool call — Write · `toolu_019Ayyy1T7Tm9nduHgkPg9cY`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/d140_oracle_gated_analysis.py",
+  "content": "#!/usr/bin/env python3\n\"\"\"D140 Task A: Oracle Degeneracy-Gated LP Selection Analysis.\n\nFor each dataset, computes:\n- Degeneracy rate (F1-based: all N samples have identical F1)\n- Ungated LP selection F1 (all instances)\n- Gated LP selection F1 (LP on non-degenerate, greedy on degenerate)\n- Delta comparisons vs greedy baseline\n\"\"\"\n\nimport json\nimport os\nimport sys\n\nsys.path.insert(0, \"/root/autodl-tmp/struct_self_consist_ie/code\")\nfrom evaluation import entity_strict_match, _prf, per_instance_f1\n\nBASE = \"/root/autodl-tmp/struct_self_consist_ie\"\n\nDATASETS = {\n    \"Few-NERD\": f\"{BASE}/output/exp_021_inference/samples.jsonl\",\n    \"SciERC\": f\"{BASE}/output/exp_012_rerun_1024/samples.jsonl\",\n    \"CoNLL\": f\"{BASE}/output/exp002_conll2003/samples.jsonl\",\n}\n\n\ndef load_gold_filtered(path):\n    data = []\n    with open(path) as f:\n        for line in f:\n            if not line.strip():\n                continue\n            inst = json.loads(line)\n            if len(inst[\"gold\"].get(\"entities\", [])) > 0:\n                data.append(inst)\n    return data\n\n\ndef get_tp_fp_fn(pred, gold):\n    return entity_strict_match(\n        pred.get(\"entities\", []), gold.get(\"entities\", [])\n    )\n\n\ndef micro_f1_from_counts(tp, fp, fn):\n    return _prf(tp, fp, fn)[\"f1\"]\n\n\ndef analyze_dataset(name, path):\n    if not os.path.exists(path):\n        print(f\"SKIP {name}: {path} not found\")\n        return None\n\n    data = load_gold_filtered(path)\n    n_total = len(data)\n    print(f\"\\n{'='*60}\")\n    print(f\"{name}: {n_total} gold-filtered instances\")\n\n    # Per-instance computations\n    greedy_counts = {\"tp\": 0, \"fp\": 0, \"fn\": 0}\n    oracle_counts = {\"tp\": 0, \"fp\": 0, \"fn\": 0}\n    lp_all_counts = {\"tp\": 0, \"fp\": 0, \"fn\": 0}\n    lp_nondeg_counts = {\"tp\": 0, \"fp\": 0, \"fn\": 0}\n    greedy_deg_counts = {\"tp\": 0, \"fp\": 0, \"fn\": 0}\n    greedy_nondeg_counts = {\"tp\": 0, \"fp\": 0, \"fn\": 0}\n    gated_counts = {\"tp\": 0, \"fp\": 0, \"fn\": 0}\n\n    n_degenerate = 0\n    per_inst_greedy_f1 = []\n    per_inst_lp_f1 = []\n    per_inst_gated_f1 = []\n\n    for inst in data:\n        gold = inst[\"gold\"]\n        samples = inst[\"samples\"]\n        greedy = inst[\"greedy\"]\n\n        # Greedy\n        g_tp, g_fp, g_fn = get_tp_fp_fn(greedy, gold)\n        greedy_counts[\"tp\"] += g_tp\n        greedy_counts[\"fp\"] += g_fp\n        greedy_counts[\"fn\"] += g_fn\n        greedy_f1_i = _prf(g_tp, g_fp, g_fn)[\"f1\"]\n        per_inst_greedy_f1.append(greedy_f1_i)\n\n        # Per-sample F1\n        sample_f1s = []\n        sample_lps = []\n        sample_tpfpfn = []\n        for s in samples:\n            tp, fp, fn = get_tp_fp_fn(s, gold)\n            f1_i = _prf(tp, fp, fn)[\"f1\"]\n            sample_f1s.append(f1_i)\n            sample_lps.append(s.get(\"mean_logprob\", s.get(\"cumulative_logprob\", 0)))\n            sample_tpfpfn.append((tp, fp, fn))\n\n        # Oracle (best F1 sample)\n        best_idx = max(range(len(sample_f1s)), key=lambda i: sample_f1s[i])\n        oracle_counts[\"tp\"] += sample_tpfpfn[best_idx][0]\n        oracle_counts[\"fp\"] += sample_tpfpfn[best_idx][1]\n        oracle_counts[\"fn\"] += sample_tpfpfn[best_idx][2]\n\n        # LP selection (highest mean_logprob)\n        lp_idx = max(range(len(sample_lps)), key=lambda i: sample_lps[i])\n        lp_tp, lp_fp, lp_fn = sample_tpfpfn[lp_idx]\n        lp_all_counts[\"tp\"] += lp_tp\n        lp_all_counts[\"fp\"] += lp_fp\n        lp_all_counts[\"fn\"] += lp_fn\n        lp_f1_i = _prf(lp_tp, lp_fp, lp_fn)[\"f1\"]\n        per_inst_lp_f1.append(lp_f1_i)\n\n        # Degeneracy check\n        is_degenerate = len(set(round(f, 10) for f in sample_f1s)) == 1\n        if is_degenerate:\n            n_degenerate += 1\n            greedy_deg_counts[\"tp\"] += g_tp\n            greedy_deg_counts[\"fp\"] += g_fp\n            greedy_deg_counts[\"fn\"] += g_fn\n            # Gated: use greedy for degenerate\n            gated_counts[\"tp\"] += g_tp\n            gated_counts[\"fp\"] += g_fp\n            gated_counts[\"fn\"] += g_fn\n            per_inst_gated_f1.append(greedy_f1_i)\n        else:\n            lp_nondeg_counts[\"tp\"] += lp_tp\n            lp_nondeg_counts[\"fp\"] += lp_fp\n            lp_nondeg_counts[\"fn\"] += lp_fn\n            greedy_nondeg_counts[\"tp\"] += g_tp\n            greedy_nondeg_counts[\"fp\"] += g_fp\n            greedy_nondeg_counts[\"fn\"] += g_fn\n            # Gated: use LP selection for non-degenerate\n            gated_counts[\"tp\"] += lp_tp\n            gated_counts[\"fp\"] += lp_fp\n            gated_counts[\"fn\"] += lp_fn\n            per_inst_gated_f1.append(lp_f1_i)\n\n    n_nondeg = n_total - n_degenerate\n\n    # Micro F1s\n    greedy_f1 = micro_f1_from_counts(**greedy_counts)\n    oracle_f1 = micro_f1_from_counts(**oracle_counts)\n    ungated_lp_f1 = micro_f1_from_counts(**lp_all_counts)\n    gated_f1 = micro_f1_from_counts(**gated_counts)\n\n    nondeg_lp_f1 = micro_f1_from_counts(**lp_nondeg_counts) if n_nondeg > 0 else 0.0\n    nondeg_greedy_f1 = micro_f1_from_counts(**greedy_nondeg_counts) if n_nondeg > 0 else 0.0\n    deg_greedy_f1 = micro_f1_from_counts(**greedy_deg_counts) if n_degenerate > 0 else 0.0\n\n    ungated_delta = ungated_lp_f1 - greedy_f1\n    nondeg_delta = nondeg_lp_f1 - nondeg_greedy_f1\n    gated_delta = gated_f1 - greedy_f1\n    improvement = gated_delta - ungated_delta\n\n    # Macro F1s (for reference)\n    macro_greedy = sum(per_inst_greedy_f1) / n_total\n    macro_lp = sum(per_inst_lp_f1) / n_total\n    macro_gated = sum(per_inst_gated_f1) / n_total\n\n    result = {\n        \"dataset\": name,\n        \"total_instances\": n_total,\n        \"degenerate_count\": n_degenerate,\n        \"non_degenerate_count\": n_nondeg,\n        \"degeneracy_rate\": f\"{n_degenerate}/{n_total} ({100*n_degenerate/n_total:.1f}%)\",\n        \"greedy_f1\": round(greedy_f1 * 100, 2),\n        \"oracle_f1\": round(oracle_f1 * 100, 2),\n        \"ungated_lp_selection_f1\": round(ungated_lp_f1 * 100, 2),\n        \"ungated_lp_delta\": round(ungated_delta * 100, 2),\n        \"nondegen_greedy_f1\": round(nondeg_greedy_f1 * 100, 2),\n        \"nondegen_lp_selection_f1\": round(nondeg_lp_f1 * 100, 2),\n        \"nondegen_lp_delta\": round(nondeg_delta * 100, 2),\n        \"degen_greedy_f1\": round(deg_greedy_f1 * 100, 2),\n        \"gated_overall_f1\": round(gated_f1 * 100, 2),\n        \"gated_delta\": round(gated_delta * 100, 2),\n        \"gated_vs_ungated_improvement\": round(improvement * 100, 2),\n        \"macro_avg\": {\n            \"greedy_f1\": round(macro_greedy * 100, 2),\n            \"lp_f1\": round(macro_lp * 100, 2),\n            \"gated_f1\": round(macro_gated * 100, 2),\n            \"lp_delta\": round((macro_lp - macro_greedy) * 100, 2),\n            \"gated_delta\": round((macro_gated - macro_greedy) * 100, 2),\n        },\n    }\n\n    # Print summary\n    print(f\"  Degeneracy: {n_degenerate}/{n_total} ({100*n_degenerate/n_total:.1f}%)\")\n    print(f\"  Greedy F1 (micro):         {greedy_f1*100:.2f}\")\n    print(f\"  Oracle F1 (micro):         {oracle_f1*100:.2f}\")\n    print(f\"  Ungated LP F1 (micro):     {ungated_lp_f1*100:.2f}  (delta: {ungated_delta*100:+.2f})\")\n    print(f\"  NonDegen LP F1 (micro):    {nondeg_lp_f1*100:.2f}  (delta vs nondeg greedy: {nondeg_delta*100:+.2f})\")\n    print(f\"  Degen Greedy F1 (micro):   {deg_greedy_f1*100:.2f}\")\n    print(f\"  Gated F1 (micro):          {gated_f1*100:.2f}  (delta: {gated_delta*100:+.2f})\")\n    print(f\"  Gated vs Ungated improve:  {improvement*100:+.2f}\")\n    print(f\"  ---\")\n    print(f\"  Macro Greedy F1:           {macro_greedy*100:.2f}\")\n    print(f\"  Macro LP F1:               {macro_lp*100:.2f}  (delta: {(macro_lp-macro_greedy)*100:+.2f})\")\n    print(f\"  Macro Gated F1:            {macro_gated*100:.2f}  (delta: {(macro_gated-macro_greedy)*100:+.2f})\")\n\n    return result\n\n\ndef main():\n    out_dir = f\"{BASE}/output/d140_oracle_gated\"\n    os.makedirs(out_dir, exist_ok=True)\n\n    all_results = []\n    for name, path in DATASETS.items():\n        r = analyze_dataset(name, path)\n        if r:\n            all_results.append(r)\n\n    out_path = f\"{out_dir}/results.json\"\n    with open(out_path, \"w\") as f:\n        json.dump(all_results, f, indent=2, ensure_ascii=False)\n    print(f\"\\nResults saved to {out_path}\")\n\n\nif __name__ == \"__main__\":\n    main()\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8a680ff0-698a-43a6-9fb6-b209c674d969",
+  "uuid": "abb48ab0-cef2-411d-bf4a-abdd0c4cbf03",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MAyMjo6P3fhKhSP9xSzKB8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1973,
+      "cache_read_input_tokens": 50340,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1973
+      },
+      "output_tokens": 23,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 59 · 2026-05-18T13:05:19.143Z_
+
+<details><summary>↩ Tool result · `toolu_019Ayyy1T7Tm9nduHgkPg9cY`</summary>
+
+```text
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/d140_oracle_gated_analysis.py
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8a680ff0-698a-43a6-9fb6-b209c674d969",
+  "uuid": "b95eb64d-b1f6-4a6c-82b2-2265c27238ad",
+  "tool_use_result": {
+    "type": "create",
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/d140_oracle_gated_analysis.py",
+    "content": "#!/usr/bin/env python3\n\"\"\"D140 Task A: Oracle Degeneracy-Gated LP Selection Analysis.\n\nFor each dataset, computes:\n- Degeneracy rate (F1-based: all N samples have identical F1)\n- Ungated LP selection F1 (all instances)\n- Gated LP selection F1 (LP on non-degenerate, greedy on degenerate)\n- Delta comparisons vs greedy baseline\n\"\"\"\n\nimport json\nimport os\nimport sys\n\nsys.path.insert(0, \"/root/autodl-tmp/struct_self_consist_ie/code\")\nfrom evaluation import entity_strict_match, _prf, per_instance_f1\n\nBASE = \"/root/autodl-tmp/struct_self_consist_ie\"\n\nDATASETS = {\n    \"Few-NERD\": f\"{BASE}/output/exp_021_inference/samples.jsonl\",\n    \"SciERC\": f\"{BASE}/output/exp_012_rerun_1024/samples.jsonl\",\n    \"CoNLL\": f\"{BASE}/output/exp002_conll2003/samples.jsonl\",\n}\n\n\ndef load_gold_filtered(path):\n    data = []\n    with open(path) as f:\n        for line in f:\n            if not line.strip():\n                continue\n            inst = json.loads(line)\n            if len(inst[\"gold\"].get(\"entities\", [])) > 0:\n                data.append(inst)\n    return data\n\n\ndef get_tp_fp_fn(pred, gold):\n    return entity_strict_match(\n        pred.get(\"entities\", []), gold.get(\"entities\", [])\n    )\n\n\ndef micro_f1_from_counts(tp, fp, fn):\n    return _prf(tp, fp, fn)[\"f1\"]\n\n\ndef analyze_dataset(name, path):\n    if not os.path.exists(path):\n        print(f\"SKIP {name}: {path} not found\")\n        return None\n\n    data = load_gold_filtered(path)\n    n_total = len(data)\n    print(f\"\\n{'='*60}\")\n    print(f\"{name}: {n_total} gold-filtered instances\")\n\n    # Per-instance computations\n    greedy_counts = {\"tp\": 0, \"fp\": 0, \"fn\": 0}\n    oracle_counts = {\"tp\": 0, \"fp\": 0, \"fn\": 0}\n    lp_all_counts = {\"tp\": 0, \"fp\": 0, \"fn\": 0}\n    lp_nondeg_counts = {\"tp\": 0, \"fp\": 0, \"fn\": 0}\n    greedy_deg_counts = {\"tp\": 0, \"fp\": 0, \"fn\": 0}\n    greedy_nondeg_counts = {\"tp\": 0, \"fp\": 0, \"fn\": 0}\n    gated_counts = {\"tp\": 0, \"fp\": 0, \"fn\": 0}\n\n    n_degenerate = 0\n    per_inst_greedy_f1 = []\n    per_inst_lp_f1 = []\n    per_inst_gated_f1 = []\n\n    for inst in data:\n        gold = inst[\"gold\"]\n        samples = inst[\"samples\"]\n        greedy = inst[\"greedy\"]\n\n        # Greedy\n        g_tp, g_fp, g_fn = get_tp_fp_fn(greedy, gold)\n        greedy_counts[\"tp\"] += g_tp\n        greedy_counts[\"fp\"] += g_fp\n        greedy_counts[\"fn\"] += g_fn\n        greedy_f1_i = _prf(g_tp, g_fp, g_fn)[\"f1\"]\n        per_inst_greedy_f1.append(greedy_f1_i)\n\n        # Per-sample F1\n        sample_f1s = []\n        sample_lps = []\n        sample_tpfpfn = []\n        for s in samples:\n            tp, fp, fn = get_tp_fp_fn(s, gold)\n            f1_i = _prf(tp, fp, fn)[\"f1\"]\n            sample_f1s.append(f1_i)\n            sample_lps.append(s.get(\"mean_logprob\", s.get(\"cumulative_logprob\", 0)))\n            sample_tpfpfn.append((tp, fp, fn))\n\n        # Oracle (best F1 sample)\n        best_idx = max(range(len(sample_f1s)), key=lambda i: sample_f1s[i])\n        oracle_counts[\"tp\"] += sample_tpfpfn[best_idx][0]\n        oracle_counts[\"fp\"] += sample_tpfpfn[best_idx][1]\n        oracle_counts[\"fn\"] += sample_tpfpfn[best_idx][2]\n\n        # LP selection (highest mean_logprob)\n        lp_idx = max(range(len(sample_lps)), key=lambda i: sample_lps[i])\n        lp_tp, lp_fp, lp_fn = sample_tpfpfn[lp_idx]\n        lp_all_counts[\"tp\"] += lp_tp\n        lp_all_counts[\"fp\"] += lp_fp\n        lp_all_counts[\"fn\"] += lp_fn\n        lp_f1_i = _prf(lp_tp, lp_fp, lp_fn)[\"f1\"]\n        per_inst_lp_f1.append(lp_f1_i)\n\n        # Degeneracy check\n        is_degenerate = len(set(round(f, 10) for f in sample_f1s)) == 1\n        if is_degenerate:\n            n_degenerate += 1\n            greedy_deg_counts[\"tp\"] += g_tp\n            greedy_deg_counts[\"fp\"] += g_fp\n            greedy_deg_counts[\"fn\"] += g_fn\n            # Gated: use greedy for degenerate\n            gated_counts[\"tp\"] += g_tp\n            gated_counts[\"fp\"] += g_fp\n            gated_counts[\"fn\"] += g_fn\n            per_inst_gated_f1.append(greedy_f1_i)\n        else:\n            lp_nondeg_counts[\"tp\"] += lp_tp\n            lp_nondeg_counts[\"fp\"] += lp_fp\n            lp_nondeg_counts[\"fn\"] += lp_fn\n            greedy_nondeg_counts[\"tp\"] += g_tp\n            greedy_nondeg_counts[\"fp\"] += g_fp\n            greedy_nondeg_counts[\"fn\"] += g_fn\n            # Gated: use LP selection for non-degenerate\n            gated_counts[\"tp\"] += lp_tp\n            gated_counts[\"fp\"] += lp_fp\n            gated_counts[\"fn\"] += lp_fn\n            per_inst_gated_f1.append(lp_f1_i)\n\n    n_nondeg = n_total - n_degenerate\n\n    # Micro F1s\n    greedy_f1 = micro_f1_from_counts(**greedy_counts)\n    oracle_f1 = micro_f1_from_counts(**oracle_counts)\n    ungated_lp_f1 = micro_f1_from_counts(**lp_all_counts)\n    gated_f1 = micro_f1_from_counts(**gated_counts)\n\n    nondeg_lp_f1 = micro_f1_from_counts(**lp_nondeg_counts) if n_nondeg > 0 else 0.0\n    nondeg_greedy_f1 = micro_f1_from_counts(**greedy_nondeg_counts) if n_nondeg > 0 else 0.0\n    deg_greedy_f1 = micro_f1_from_counts(**greedy_deg_counts) if n_degenerate > 0 else 0.0\n\n    ungated_delta = ungated_lp_f1 - greedy_f1\n    nondeg_delta = nondeg_lp_f1 - nondeg_greedy_f1\n    gated_delta = gated_f1 - greedy_f1\n    improvement = gated_delta - ungated_delta\n\n    # Macro F1s (for reference)\n    macro_greedy = sum(per_inst_greedy_f1) / n_total\n    macro_lp = sum(per_inst_lp_f1) / n_total\n    macro_gated = sum(per_inst_gated_f1) / n_total\n\n    result = {\n        \"dataset\": name,\n        \"total_instances\": n_total,\n        \"degenerate_count\": n_degenerate,\n        \"non_degenerate_count\": n_nondeg,\n        \"degeneracy_rate\": f\"{n_degenerate}/{n_total} ({100*n_degenerate/n_total:.1f}%)\",\n        \"greedy_f1\": round(greedy_f1 * 100, 2),\n        \"oracle_f1\": round(oracle_f1 * 100, 2),\n        \"ungated_lp_selection_f1\": round(ungated_lp_f1 * 100, 2),\n        \"ungated_lp_delta\": round(ungated_delta * 100, 2),\n        \"nondegen_greedy_f1\": round(nondeg_greedy_f1 * 100, 2),\n        \"nondegen_lp_selection_f1\": round(nondeg_lp_f1 * 100, 2),\n        \"nondegen_lp_delta\": round(nondeg_delta * 100, 2),\n        \"degen_greedy_f1\": round(deg_greedy_f1 * 100, 2),\n        \"gated_overall_f1\": round(gated_f1 * 100, 2),\n        \"gated_delta\": round(gated_delta * 100, 2),\n        \"gated_vs_ungated_improvement\": round(improvement * 100, 2),\n        \"macro_avg\": {\n            \"greedy_f1\": round(macro_greedy * 100, 2),\n            \"lp_f1\": round(macro_lp * 100, 2),\n            \"gated_f1\": round(macro_gated * 100, 2),\n            \"lp_delta\": round((macro_lp - macro_greedy) * 100, 2),\n            \"gated_delta\": round((macro_gated - macro_greedy) * 100, 2),\n        },\n    }\n\n    # Print summary\n    print(f\"  Degeneracy: {n_degenerate}/{n_total} ({100*n_degenerate/n_total:.1f}%)\")\n    print(f\"  Greedy F1 (micro):         {greedy_f1*100:.2f}\")\n    print(f\"  Oracle F1 (micro):         {oracle_f1*100:.2f}\")\n    print(f\"  Ungated LP F1 (micro):     {ungated_lp_f1*100:.2f}  (delta: {ungated_delta*100:+.2f})\")\n    print(f\"  NonDegen LP F1 (micro):    {nondeg_lp_f1*100:.2f}  (delta vs nondeg greedy: {nondeg_delta*100:+.2f})\")\n    print(f\"  Degen Greedy F1 (micro):   {deg_greedy_f1*100:.2f}\")\n    print(f\"  Gated F1 (micro):          {gated_f1*100:.2f}  (delta: {gated_delta*100:+.2f})\")\n    print(f\"  Gated vs Ungated improve:  {improvement*100:+.2f}\")\n    print(f\"  ---\")\n    print(f\"  Macro Greedy F1:           {macro_greedy*100:.2f}\")\n    print(f\"  Macro LP F1:               {macro_lp*100:.2f}  (delta: {(macro_lp-macro_greedy)*100:+.2f})\")\n    print(f\"  Macro Gated F1:            {macro_gated*100:.2f}  (delta: {(macro_gated-macro_greedy)*100:+.2f})\")\n\n    return result\n\n\ndef main():\n    out_dir = f\"{BASE}/output/d140_oracle_gated\"\n    os.makedirs(out_dir, exist_ok=True)\n\n    all_results = []\n    for name, path in DATASETS.items():\n        r = analyze_dataset(name, path)\n        if r:\n            all_results.append(r)\n\n    out_path = f\"{out_dir}/results.json\"\n    with open(out_path, \"w\") as f:\n        json.dump(all_results, f, indent=2, ensure_ascii=False)\n    print(f\"\\nResults saved to {out_path}\")\n\n\nif __name__ == \"__main__\":\n    main()\n",
+    "structuredPatch": [],
+    "originalFile": null,
+    "userModified": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 60_
+
+部署脚本到服务器并运行。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8a680ff0-698a-43a6-9fb6-b209c674d969",
+  "uuid": "e96c2e0d-a52e-43d7-b3d6-d524a7f45ba6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GU2aasXuvmABXtpjFtknKe",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3613,
+      "cache_read_input_tokens": 52313,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3613
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_017dsxZWhpzXNNnhEErViAdQ`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat > /root/autodl-tmp/struct_self_consist_ie/code/d140_oracle_gated_analysis.py << 'SCRIPT_EOF'\n#!/usr/bin/env python3\n\"\"\"D140 Task A: Oracle Degeneracy-Gated LP Selection Analysis.\n\nFor each dataset, computes:\n- Degeneracy rate (F1-based: all N samples have identical F1)\n- Ungated LP selection F1 (all instances)\n- Gated LP selection F1 (LP on non-degenerate, greedy on degenerate)\n- Delta comparisons vs greedy baseline\n\"\"\"\n\nimport json\nimport os\nimport sys\n\nsys.path.insert(0, \"/root/autodl-tmp/struct_self_consist_ie/code\")\nfrom evaluation import entity_strict_match, _prf, per_instance_f1\n\nBASE = \"/root/autodl-tmp/struct_self_consist_ie\"\n\nDATASETS = {\n    \"Few-NERD\": f\"{BASE}/output/exp_021_inference/samples.jsonl\",\n    \"SciERC\": f\"{BASE}/output/exp_012_rerun_1024/samples.jsonl\",\n    \"CoNLL\": f\"{BASE}/output/exp002_conll2003/samples.jsonl\",\n}\n\n\ndef load_gold_filtered(path):\n    data = []\n    with open(path) as f:\n        for line in f:\n            if not line.strip():\n                continue\n            inst = json.loads(line)\n            if len(inst[\"gold\"].get(\"entities\", [])) > 0:\n                data.append(inst)\n    return data\n\n\ndef get_tp_fp_fn(pred, gold):\n    return entity_strict_match(\n        pred.get(\"entities\", []), gold.get(\"entities\", [])\n    )\n\n\ndef micro_f1_from_counts(tp, fp, fn):\n    return _prf(tp, fp, fn)[\"f1\"]\n\n\ndef analyze_dataset(name, path):\n    if not os.path.exists(path):\n        print(f\"SKIP {name}: {path} not found\")\n        return None\n\n    data = load_gold_filtered(path)\n    n_total = len(data)\n    print(f\"\\n{'='*60}\")\n    print(f\"{name}: {n_total} gold-filtered instances\")\n\n    greedy_counts = {\"tp\": 0, \"fp\": 0, \"fn\": 0}\n    oracle_counts = {\"tp\": 0, \"fp\": 0, \"fn\": 0}\n    lp_all_counts = {\"tp\": 0, \"fp\": 0, \"fn\": 0}\n    lp_nondeg_counts = {\"tp\": 0, \"fp\": 0, \"fn\": 0}\n    greedy_deg_counts = {\"tp\": 0, \"fp\": 0, \"fn\": 0}\n    greedy_nondeg_counts = {\"tp\": 0, \"fp\": 0, \"fn\": 0}\n    gated_counts = {\"tp\": 0, \"fp\": 0, \"fn\": 0}\n\n    n_degenerate = 0\n    per_inst_greedy_f1 = []\n    per_inst_lp_f1 = []\n    per_inst_gated_f1 = []\n\n    for inst in data:\n        gold = inst[\"gold\"]\n        samples = inst[\"samples\"]\n        greedy = inst[\"greedy\"]\n\n        g_tp, g_fp, g_fn = get_tp_fp_fn(greedy, gold)\n        greedy_counts[\"tp\"] += g_tp\n        greedy_counts[\"fp\"] += g_fp\n        greedy_counts[\"fn\"] += g_fn\n        greedy_f1_i = _prf(g_tp, g_fp, g_fn)[\"f1\"]\n        per_inst_greedy_f1.append(greedy_f1_i)\n\n        sample_f1s = []\n        sample_lps = []\n        sample_tpfpfn = []\n        for s in samples:\n            tp, fp, fn = get_tp_fp_fn(s, gold)\n            f1_i = _prf(tp, fp, fn)[\"f1\"]\n            sample_f1s.append(f1_i)\n            sample_lps.append(s.get(\"mean_logprob\", s.get(\"cumulative_logprob\", 0)))\n            sample_tpfpfn.append((tp, fp, fn))\n\n        best_idx = max(range(len(sample_f1s)), key=lambda i: sample_f1s[i])\n        oracle_counts[\"tp\"] += sample_tpfpfn[best_idx][0]\n        oracle_counts[\"fp\"] += sample_tpfpfn[best_idx][1]\n        oracle_counts[\"fn\"] += sample_tpfpfn[best_idx][2]\n\n        lp_idx = max(range(len(sample_lps)), key=lambda i: sample_lps[i])\n        lp_tp, lp_fp, lp_fn = sample_tpfpfn[lp_idx]\n        lp_all_counts[\"tp\"] += lp_tp\n        lp_all_counts[\"fp\"] += lp_fp\n        lp_all_counts[\"fn\"] += lp_fn\n        lp_f1_i = _prf(lp_tp, lp_fp, lp_fn)[\"f1\"]\n        per_inst_lp_f1.append(lp_f1_i)\n\n        is_degenerate = len(set(round(f, 10) for f in sample_f1s)) == 1\n        if is_degenerate:\n            n_degenerate += 1\n            greedy_deg_counts[\"tp\"] += g_tp\n            greedy_deg_counts[\"fp\"] += g_fp\n            greedy_deg_counts[\"fn\"] += g_fn\n            gated_counts[\"tp\"] += g_tp\n            gated_counts[\"fp\"] += g_fp\n            gated_counts[\"fn\"] += g_fn\n            per_inst_gated_f1.append(greedy_f1_i)\n        else:\n            lp_nondeg_counts[\"tp\"] += lp_tp\n            lp_nondeg_counts[\"fp\"] += lp_fp\n            lp_nondeg_counts[\"fn\"] += lp_fn\n            greedy_nondeg_counts[\"tp\"] += g_tp\n            greedy_nondeg_counts[\"fp\"] += g_fp\n            greedy_nondeg_counts[\"fn\"] += g_fn\n            gated_counts[\"tp\"] += lp_tp\n            gated_counts[\"fp\"] += lp_fp\n            gated_counts[\"fn\"] += lp_fn\n            per_inst_gated_f1.append(lp_f1_i)\n\n    n_nondeg = n_total - n_degenerate\n\n    greedy_f1 = micro_f1_from_counts(**greedy_counts)\n    oracle_f1 = micro_f1_from_counts(**oracle_counts)\n    ungated_lp_f1 = micro_f1_from_counts(**lp_all_counts)\n    gated_f1 = micro_f1_from_counts(**gated_counts)\n\n    nondeg_lp_f1 = micro_f1_from_counts(**lp_nondeg_counts) if n_nondeg > 0 else 0.0\n    nondeg_greedy_f1 = micro_f1_from_counts(**greedy_nondeg_counts) if n_nondeg > 0 else 0.0\n    deg_greedy_f1 = micro_f1_from_counts(**greedy_deg_counts) if n_degenerate > 0 else 0.0\n\n    ungated_delta = ungated_lp_f1 - greedy_f1\n    nondeg_delta = nondeg_lp_f1 - nondeg_greedy_f1\n    gated_delta = gated_f1 - greedy_f1\n    improvement = gated_delta - ungated_delta\n\n    macro_greedy = sum(per_inst_greedy_f1) / n_total\n    macro_lp = sum(per_inst_lp_f1) / n_total\n    macro_gated = sum(per_inst_gated_f1) / n_total\n\n    result = {\n        \"dataset\": name,\n        \"total_instances\": n_total,\n        \"degenerate_count\": n_degenerate,\n        \"non_degenerate_count\": n_nondeg,\n        \"degeneracy_rate\": f\"{n_degenerate}/{n_total} ({100*n_degenerate/n_total:.1f}%)\",\n        \"greedy_f1\": round(greedy_f1 * 100, 2),\n        \"oracle_f1\": round(oracle_f1 * 100, 2),\n        \"ungated_lp_selection_f1\": round(ungated_lp_f1 * 100, 2),\n        \"ungated_lp_delta\": round(ungated_delta * 100, 2),\n        \"nondegen_greedy_f1\": round(nondeg_greedy_f1 * 100, 2),\n        \"nondegen_lp_selection_f1\": round(nondeg_lp_f1 * 100, 2),\n        \"nondegen_lp_delta\": round(nondeg_delta * 100, 2),\n        \"degen_greedy_f1\": round(deg_greedy_f1 * 100, 2),\n        \"gated_overall_f1\": round(gated_f1 * 100, 2),\n        \"gated_delta\": round(gated_delta * 100, 2),\n        \"gated_vs_ungated_improvement\": round(improvement * 100, 2),\n        \"macro_avg\": {\n            \"greedy_f1\": round(macro_greedy * 100, 2),\n            \"lp_f1\": round(macro_lp * 100, 2),\n            \"gated_f1\": round(macro_gated * 100, 2),\n            \"lp_delta\": round((macro_lp - macro_greedy) * 100, 2),\n            \"gated_delta\": round((macro_gated - macro_greedy) * 100, 2),\n        },\n    }\n\n    print(f\"  Degeneracy: {n_degenerate}/{n_total} ({100*n_degenerate/n_total:.1f}%)\")\n    print(f\"  Greedy F1 (micro):         {greedy_f1*100:.2f}\")\n    print(f\"  Oracle F1 (micro):         {oracle_f1*100:.2f}\")\n    print(f\"  Ungated LP F1 (micro):     {ungated_lp_f1*100:.2f}  (delta: {ungated_delta*100:+.2f})\")\n    print(f\"  NonDegen LP F1 (micro):    {nondeg_lp_f1*100:.2f}  (delta vs nondeg greedy: {nondeg_delta*100:+.2f})\")\n    print(f\"  Degen Greedy F1 (micro):   {deg_greedy_f1*100:.2f}\")\n    print(f\"  Gated F1 (micro):          {gated_f1*100:.2f}  (delta: {gated_delta*100:+.2f})\")\n    print(f\"  Gated vs Ungated improve:  {improvement*100:+.2f}\")\n    print(f\"  ---\")\n    print(f\"  Macro Greedy F1:           {macro_greedy*100:.2f}\")\n    print(f\"  Macro LP F1:               {macro_lp*100:.2f}  (delta: {(macro_lp-macro_greedy)*100:+.2f})\")\n    print(f\"  Macro Gated F1:            {macro_gated*100:.2f}  (delta: {(macro_gated-macro_greedy)*100:+.2f})\")\n\n    return result\n\n\ndef main():\n    out_dir = f\"{BASE}/output/d140_oracle_gated\"\n    os.makedirs(out_dir, exist_ok=True)\n\n    all_results = []\n    for name, path in DATASETS.items():\n        r = analyze_dataset(name, path)\n        if r:\n            all_results.append(r)\n\n    out_path = f\"{out_dir}/results.json\"\n    with open(out_path, \"w\") as f:\n        json.dump(all_results, f, indent=2, ensure_ascii=False)\n    print(f\"\\nResults saved to {out_path}\")\n\n\nif __name__ == \"__main__\":\n    main()\nSCRIPT_EOF\necho \"Script deployed.\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8a680ff0-698a-43a6-9fb6-b209c674d969",
+  "uuid": "04d5c427-b549-4f68-a545-bc9b793fd233",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GU2aasXuvmABXtpjFtknKe",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3613,
+      "cache_read_input_tokens": 52313,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3613
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-18T13:05:47.661Z_
+
+<details><summary>↩ Tool result · `toolu_017dsxZWhpzXNNnhEErViAdQ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Script deployed.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8a680ff0-698a-43a6-9fb6-b209c674d969",
+  "uuid": "51fafa84-7663-401a-8fc4-30405a3e42e7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Script deployed.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Script deployed.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_011qajANVjiGujANxWbE4Xtx`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cd /root/autodl-tmp/struct_self_consist_ie && python3 code/d140_oracle_gated_analysis.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8a680ff0-698a-43a6-9fb6-b209c674d969",
+  "uuid": "f9797bec-9b95-48ed-a5d9-b9fb7c779984",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JgF1VW59sgfrHstcUDsBUk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3441,
+      "cache_read_input_tokens": 55926,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3441
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-18T13:05:51.419Z_
+
+<details><summary>↩ Tool result · `toolu_011qajANVjiGujANxWbE4Xtx`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'cd /root/autodl-tmp/struct_self_consist_ie && python3 code/d140_oracle_gated_analysis.py'\\n\\nExit code: 127\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\nbash: line 1: python3: command not found\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8a680ff0-698a-43a6-9fb6-b209c674d969",
+  "uuid": "9c7ad573-136b-46fc-91af-e4f5b27569cd",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'cd /root/autodl-tmp/struct_self_consist_ie && python3 code/d140_oracle_gated_analysis.py'\\\\n\\\\nExit code: 127\\\\n\\\\nStdout:\\\\n\\\\n\\\\n\\\\nStderr:\\\\n\\\\nbash: line 1: python3: command not found\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'cd /root/autodl-tmp/struct_self_consist_ie && python3 code/d140_oracle_gated_analysis.py'\\n\\nExit code: 127\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\nbash: line 1: python3: command not found\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_013ak6A26WdHMTZzVFsSiqEu`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "ls /usr/bin/python*",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8a680ff0-698a-43a6-9fb6-b209c674d969",
+  "uuid": "99742ae6-3a5d-4ce3-af42-d378b983d2a7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HHQdvcBHWiVgrVSexA3df4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 384,
+      "cache_read_input_tokens": 59367,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 384
+      },
+      "output_tokens": 52,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-18T13:05:55.819Z_
+
+<details><summary>↩ Tool result · `toolu_013ak6A26WdHMTZzVFsSiqEu`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/usr/bin/python*': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.91}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8a680ff0-698a-43a6-9fb6-b209c674d969",
+  "uuid": "39cb2877-9b93-4e75-af37-939cb4f8d585",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"ls: cannot access '/usr/bin/python*': No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.91}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/usr/bin/python*': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.91}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01Tge9QgEwcpLavy47QQNkMY`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "which python || find /root -name \"python*\" -type f 2>/dev/null | head -5 || conda info --envs 2>/dev/null | head -10",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8a680ff0-698a-43a6-9fb6-b209c674d969",
+  "uuid": "4e013b11-d9a1-4e99-a433-2a303a96398e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01R5LXDSZ1GbCupHnJLdBczv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 206,
+      "cache_read_input_tokens": 59751,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 206
+      },
+      "output_tokens": 64,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 68 · 2026-05-18T13:05:59.560Z_
+
+<details><summary>↩ Tool result · `toolu_01Tge9QgEwcpLavy47QQNkMY`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/miniconda3/bin/python3.12\\n/root/miniconda3/bin/python3.12-config\\n/root/miniconda3/conda-meta/python-3.12.3-h996f2a0_1.json\\n/root/miniconda3/include/python3.12/cpython/pythonrun.h\\n/root/miniconda3/include/python3.12/pythonrun.h\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8a680ff0-698a-43a6-9fb6-b209c674d969",
+  "uuid": "fae587ab-2c78-4862-9ecd-d27bdb12ee6e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/miniconda3/bin/python3.12\\\\n/root/miniconda3/bin/python3.12-config\\\\n/root/miniconda3/conda-meta/python-3.12.3-h996f2a0_1.json\\\\n/root/miniconda3/include/python3.12/cpython/pythonrun.h\\\\n/root/miniconda3/include/python3.12/pythonrun.h\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/miniconda3/bin/python3.12\\n/root/miniconda3/bin/python3.12-config\\n/root/miniconda3/conda-meta/python-3.12.3-h996f2a0_1.json\\n/root/miniconda3/include/python3.12/cpython/pythonrun.h\\n/root/miniconda3/include/python3.12/pythonrun.h\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 69_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01C1gC3Me4GxK5DyGERLPN5B`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cd /root/autodl-tmp/struct_self_consist_ie && /root/miniconda3/bin/python code/d140_oracle_gated_analysis.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8a680ff0-698a-43a6-9fb6-b209c674d969",
+  "uuid": "a4ea133c-b1a9-437b-b2bf-cd3eceebfa8f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018zp76qr5SSpnYCmfrZwAnT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 327,
+      "cache_read_input_tokens": 59957,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 327
+      },
+      "output_tokens": 65,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-18T13:06:20.343Z_
+
+<details><summary>↩ Tool result · `toolu_01C1gC3Me4GxK5DyGERLPN5B`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\n============================================================\\nFew-NERD: 32565 gold-filtered instances\\n  Degeneracy: 4479/32565 (13.8%)\\n  Greedy F1 (micro):         79.11\\n  Oracle F1 (micro):         88.55\\n  Ungated LP F1 (micro):     79.18  (delta: +0.07)\\n  NonDegen LP F1 (micro):    79.58  (delta vs nondeg greedy: +0.15)\\n  Degen Greedy F1 (micro):   76.07\\n  Gated F1 (micro):          79.24  (delta: +0.13)\\n  Gated vs Ungated improve:  +0.06\\n  ---\\n  Macro Greedy F1:           74.78\\n  Macro LP F1:               76.14  (delta: +1.36)\\n  Macro Gated F1:            76.18  (delta: +1.39)\\n\\n============================================================\\nSciERC: 529 gold-filtered instances\\n  Degeneracy: 94/529 (17.8%)\\n  Greedy F1 (micro):         66.63\\n  Oracle F1 (micro):         78.08\\n  Ungated LP F1 (micro):     66.31  (delta: -0.31)\\n  NonDegen LP F1 (micro):    66.24  (delta vs nondeg greedy: -0.29)\\n  Degen Greedy F1 (micro):   67.29\\n  Gated F1 (micro):          66.37  (delta: -0.26)\\n  Gated vs Ungated improve:  +0.06\\n  ---\\n  Macro Greedy F1:           64.39\\n  Macro LP F1:               65.01  (delta: +0.61)\\n  Macro Gated F1:            65.13  (delta: +0.74)\\n\\n============================================================\\nCoNLL: 2756 gold-filtered instances\\n  Degeneracy: 1630/2756 (59.1%)\\n  Greedy F1 (micro):         91.23\\n  Oracle F1 (micro):         95.43\\n  Ungated LP F1 (micro):     89.61  (delta: -1.62)\\n  NonDegen LP F1 (micro):    84.35  (delta vs nondeg greedy: -3.05)\\n  Degen Greedy F1 (micro):   95.31\\n  Gated F1 (micro):          89.64  (delta: -1.59)\\n  Gated vs Ungated improve:  +0.03\\n  ---\\n  Macro Greedy F1:           90.79\\n  Macro LP F1:               89.74  (delta: -1.05)\\n  Macro Gated F1:            89.74  (delta: -1.05)\\n\\nResults saved to /root/autodl-tmp/struct_self_consist_ie/output/d140_oracle_gated/results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 17.2}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8a680ff0-698a-43a6-9fb6-b209c674d969",
+  "uuid": "eeab80bd-f12c-4725-b6e0-ac58186f101b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\n============================================================\\\\nFew-NERD: 32565 gold-filtered instances\\\\n  Degeneracy: 4479/32565 (13.8%)\\\\n  Greedy F1 (micro):         79.11\\\\n  Oracle F1 (micro):         88.55\\\\n  Ungated LP F1 (micro):     79.18  (delta: +0.07)\\\\n  NonDegen LP F1 (micro):    79.58  (delta vs nondeg greedy: +0.15)\\\\n  Degen Greedy F1 (micro):   76.07\\\\n  Gated F1 (micro):          79.24  (delta: +0.13)\\\\n  Gated vs Ungated improve:  +0.06\\\\n  ---\\\\n  Macro Greedy F1:           74.78\\\\n  Macro LP F1:               76.14  (delta: +1.36)\\\\n  Macro Gated F1:            76.18  (delta: +1.39)\\\\n\\\\n============================================================\\\\nSciERC: 529 gold-filtered instances\\\\n  Degeneracy: 94/529 (17.8%)\\\\n  Greedy F1 (micro):         66.63\\\\n  Oracle F1 (micro):         78.08\\\\n  Ungated LP F1 (micro):     66.31  (delta: -0.31)\\\\n  NonDegen LP F1 (micro):    66.24  (delta vs nondeg greedy: -0.29)\\\\n  Degen Greedy F1 (micro):   67.29\\\\n  Gated F1 (micro):          66.37  (delta: -0.26)\\\\n  Gated vs Ungated improve:  +0.06\\\\n  ---\\\\n  Macro Greedy F1:           64.39\\\\n  Macro LP F1:               65.01  (delta: +0.61)\\\\n  Macro Gated F1:            65.13  (delta: +0.74)\\\\n\\\\n============================================================\\\\nCoNLL: 2756 gold-filtered instances\\\\n  Degeneracy: 1630/2756 (59.1%)\\\\n  Greedy F1 (micro):         91.23\\\\n  Oracle F1 (micro):         95.43\\\\n  Ungated LP F1 (micro):     89.61  (delta: -1.62)\\\\n  NonDegen LP F1 (micro):    84.35  (delta vs nondeg greedy: -3.05)\\\\n  Degen Greedy F1 (micro):   95.31\\\\n  Gated F1 (micro):          89.64  (delta: -1.59)\\\\n  Gated vs Ungated improve:  +0.03\\\\n  ---\\\\n  Macro Greedy F1:           90.79\\\\n  Macro LP F1:               89.74  (delta: -1.05)\\\\n  Macro Gated F1:            89.74  (delta: -1.05)\\\\n\\\\nResults saved to /root/autodl-tmp/struct_self_consist_ie/output/d140_oracle_gated/results.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 17.2}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\n============================================================\\nFew-NERD: 32565 gold-filtered instances\\n  Degeneracy: 4479/32565 (13.8%)\\n  Greedy F1 (micro):         79.11\\n  Oracle F1 (micro):         88.55\\n  Ungated LP F1 (micro):     79.18  (delta: +0.07)\\n  NonDegen LP F1 (micro):    79.58  (delta vs nondeg greedy: +0.15)\\n  Degen Greedy F1 (micro):   76.07\\n  Gated F1 (micro):          79.24  (delta: +0.13)\\n  Gated vs Ungated improve:  +0.06\\n  ---\\n  Macro Greedy F1:           74.78\\n  Macro LP F1:               76.14  (delta: +1.36)\\n  Macro Gated F1:            76.18  (delta: +1.39)\\n\\n============================================================\\nSciERC: 529 gold-filtered instances\\n  Degeneracy: 94/529 (17.8%)\\n  Greedy F1 (micro):         66.63\\n  Oracle F1 (micro):         78.08\\n  Ungated LP F1 (micro):     66.31  (delta: -0.31)\\n  NonDegen LP F1 (micro):    66.24  (delta vs nondeg greedy: -0.29)\\n  Degen Greedy F1 (micro):   67.29\\n  Gated F1 (micro):          66.37  (delta: -0.26)\\n  Gated vs Ungated improve:  +0.06\\n  ---\\n  Macro Greedy F1:           64.39\\n  Macro LP F1:               65.01  (delta: +0.61)\\n  Macro Gated F1:            65.13  (delta: +0.74)\\n\\n============================================================\\nCoNLL: 2756 gold-filtered instances\\n  Degeneracy: 1630/2756 (59.1%)\\n  Greedy F1 (micro):         91.23\\n  Oracle F1 (micro):         95.43\\n  Ungated LP F1 (micro):     89.61  (delta: -1.62)\\n  NonDegen LP F1 (micro):    84.35  (delta vs nondeg greedy: -3.05)\\n  Degen Greedy F1 (micro):   95.31\\n  Gated F1 (micro):          89.64  (delta: -1.59)\\n  Gated vs Ungated improve:  +0.03\\n  ---\\n  Macro Greedy F1:           90.79\\n  Macro LP F1:               89.74  (delta: -1.05)\\n  Macro Gated F1:            89.74  (delta: -1.05)\\n\\nResults saved to /root/autodl-tmp/struct_self_consist_ie/output/d140_oracle_gated/results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 17.2}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 71_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The results are interesting. Let me analyze them:
+
+**Few-NERD** (32565 instances):
+- Degeneracy rate: 13.8% (4479/32565)
+- Ungated LP delta: +0.07 (barely positive)
+- Gated delta: +0.13 (better than ungated)
+- Gated vs Ungated improvement: +0.06
+
+**SciERC** (529 instances):
+- Degeneracy rate: 17.8% (94/529)
+- Ungated LP delta: -0.31 (LP hurts)
+
+
+- Gated delta: -0.26 (still hurts but less)
+- Gated vs Ungated improvement: +0.06
+
+**CoNLL** (2756 instances):
+- Degeneracy rate: 59.1% (1630/2756) - very high!
+- Ungated LP delta: -1.62 (LP really hurts)
+- Gated delta: -1.59 (barely better)
+- Gated vs Ungated improvement: +0.03
+
+So oracle gating consistently helps across all three datasets, though the gains are pretty modest. The pattern suggests that gating mitigates the damage from label propagation, but it's not a silver bullet—especially on CoNLL where the degeneracy is so severe that even gating can't salvage much.
+
+Looking deeper, the issue becomes clearer: on non-degenerate instances, LP selection still hurts significantly. CoNLL's non-degenerate LP delta is -3.05, which is actually worse than the overall ungated delta. This tells me that degeneracy alone isn't the problem—LP alignment with actual quality is the real bottleneck. Even with perfect knowledge of which instances are degenerate, gating can only do so much if the underlying LP selection mechanism is fundamentally misaligned on the remaining instances.
+
+Now I'm saving the results and verifying the output was written correctly.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8a680ff0-698a-43a6-9fb6-b209c674d969",
+  "uuid": "40928020-a15a-4441-af5f-1fa0b33a64cb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019TT81MND75awgEiyrPzCms",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1012,
+      "cache_read_input_tokens": 60284,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1012
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 72_
+
+结果出来了。确认保存的 JSON 文件。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8a680ff0-698a-43a6-9fb6-b209c674d969",
+  "uuid": "a601acca-1afa-41e1-9a3c-6bb043f0f1f3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019TT81MND75awgEiyrPzCms",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1012,
+      "cache_read_input_tokens": 60284,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1012
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 73_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Nri9mJ12L3gUJmoSm2m3BJ`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/d140_oracle_gated/results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8a680ff0-698a-43a6-9fb6-b209c674d969",
+  "uuid": "0807f3c0-4bef-4894-a9f7-19c14a215436",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019TT81MND75awgEiyrPzCms",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1012,
+      "cache_read_input_tokens": 60284,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1012
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 74 · 2026-05-18T13:06:34.146Z_
+
+<details><summary>↩ Tool result · `toolu_01Nri9mJ12L3gUJmoSm2m3BJ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[\\n  {\\n    \\\"dataset\\\": \\\"Few-NERD\\\",\\n    \\\"total_instances\\\": 32565,\\n    \\\"degenerate_count\\\": 4479,\\n    \\\"non_degenerate_count\\\": 28086,\\n    \\\"degeneracy_rate\\\": \\\"4479/32565 (13.8%)\\\",\\n    \\\"greedy_f1\\\": 79.11,\\n    \\\"oracle_f1\\\": 88.55,\\n    \\\"ungated_lp_selection_f1\\\": 79.18,\\n    \\\"ungated_lp_delta\\\": 0.07,\\n    \\\"nondegen_greedy_f1\\\": 79.44,\\n    \\\"nondegen_lp_selection_f1\\\": 79.58,\\n    \\\"nondegen_lp_delta\\\": 0.15,\\n    \\\"degen_greedy_f1\\\": 76.07,\\n    \\\"gated_overall_f1\\\": 79.24,\\n    \\\"gated_delta\\\": 0.13,\\n    \\\"gated_vs_ungated_improvement\\\": 0.06,\\n    \\\"macro_avg\\\": {\\n      \\\"greedy_f1\\\": 74.78,\\n      \\\"lp_f1\\\": 76.14,\\n      \\\"gated_f1\\\": 76.18,\\n      \\\"lp_delta\\\": 1.36,\\n      \\\"gated_delta\\\": 1.39\\n    }\\n  },\\n  {\\n    \\\"dataset\\\": \\\"SciERC\\\",\\n    \\\"total_instances\\\": 529,\\n    \\\"degenerate_count\\\": 94,\\n    \\\"non_degenerate_count\\\": 435,\\n    \\\"degeneracy_rate\\\": \\\"94/529 (17.8%)\\\",\\n    \\\"greedy_f1\\\": 66.63,\\n    \\\"oracle_f1\\\": 78.08,\\n    \\\"ungated_lp_selection_f1\\\": 66.31,\\n    \\\"ungated_lp_delta\\\": -0.31,\\n    \\\"nondegen_greedy_f1\\\": 66.53,\\n    \\\"nondegen_lp_selection_f1\\\": 66.24,\\n    \\\"nondegen_lp_delta\\\": -0.29,\\n    \\\"degen_greedy_f1\\\": 67.29,\\n    \\\"gated_overall_f1\\\": 66.37,\\n    \\\"gated_delta\\\": -0.26,\\n    \\\"gated_vs_ungated_improvement\\\": 0.06,\\n    \\\"macro_avg\\\": {\\n      \\\"greedy_f1\\\": 64.39,\\n      \\\"lp_f1\\\": 65.01,\\n      \\\"gated_f1\\\": 65.13,\\n      \\\"lp_delta\\\": 0.61,\\n      \\\"gated_delta\\\": 0.74\\n    }\\n  },\\n  {\\n    \\\"dataset\\\": \\\"CoNLL\\\",\\n    \\\"total_instances\\\": 2756,\\n    \\\"degenerate_count\\\": 1630,\\n    \\\"non_degenerate_count\\\": 1126,\\n    \\\"degeneracy_rate\\\": \\\"1630/2756 (59.1%)\\\",\\n    \\\"greedy_f1\\\": 91.23,\\n    \\\"oracle_f1\\\": 95.43,\\n    \\\"ungated_lp_selection_f1\\\": 89.61,\\n    \\\"ungated_lp_delta\\\": -1.62,\\n    \\\"nondegen_greedy_f1\\\": 87.4,\\n    \\\"nondegen_lp_selection_f1\\\": 84.35,\\n    \\\"nondegen_lp_delta\\\": -3.05,\\n    \\\"degen_greedy_f1\\\": 95.31,\\n    \\\"gated_overall_f1\\\": 89.64,\\n    \\\"gated_delta\\\": -1.59,\\n    \\\"gated_vs_ungated_improvement\\\": 0.03,\\n    \\\"macro_avg\\\": {\\n      \\\"greedy_f1\\\": 90.79,\\n      \\\"lp_f1\\\": 89.74,\\n      \\\"gated_f1\\\": 89.74,\\n      \\\"lp_delta\\\": -1.05,\\n      \\\"gated_delta\\\": -1.05\\n    }\\n  }\\n]\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8a680ff0-698a-43a6-9fb6-b209c674d969",
+  "uuid": "9e7fcf68-6ce0-49ea-9d23-bb4d0a08ef55",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[\\\\n  {\\\\n    \\\\\\\"dataset\\\\\\\": \\\\\\\"Few-NERD\\\\\\\",\\\\n    \\\\\\\"total_instances\\\\\\\": 32565,\\\\n    \\\\\\\"degenerate_count\\\\\\\": 4479,\\\\n    \\\\\\\"non_degenerate_count\\\\\\\": 28086,\\\\n    \\\\\\\"degeneracy_rate\\\\\\\": \\\\\\\"4479/32565 (13.8%)\\\\\\\",\\\\n    \\\\\\\"greedy_f1\\\\\\\": 79.11,\\\\n    \\\\\\\"oracle_f1\\\\\\\": 88.55,\\\\n    \\\\\\\"ungated_lp_selection_f1\\\\\\\": 79.18,\\\\n    \\\\\\\"ungated_lp_delta\\\\\\\": 0.07,\\\\n    \\\\\\\"nondegen_greedy_f1\\\\\\\": 79.44,\\\\n    \\\\\\\"nondegen_lp_selection_f1\\\\\\\": 79.58,\\\\n    \\\\\\\"nondegen_lp_delta\\\\\\\": 0.15,\\\\n    \\\\\\\"degen_greedy_f1\\\\\\\": 76.07,\\\\n    \\\\\\\"gated_overall_f1\\\\\\\": 79.24,\\\\n    \\\\\\\"gated_delta\\\\\\\": 0.13,\\\\n    \\\\\\\"gated_vs_ungated_improvement\\\\\\\": 0.06,\\\\n    \\\\\\\"macro_avg\\\\\\\": {\\\\n      \\\\\\\"greedy_f1\\\\\\\": 74.78,\\\\n      \\\\\\\"lp_f1\\\\\\\": 76.14,\\\\n      \\\\\\\"gated_f1\\\\\\\": 76.18,\\\\n      \\\\\\\"lp_delta\\\\\\\": 1.36,\\\\n      \\\\\\\"gated_delta\\\\\\\": 1.39\\\\n    }\\\\n  },\\\\n  {\\\\n    \\\\\\\"dataset\\\\\\\": \\\\\\\"SciERC\\\\\\\",\\\\n    \\\\\\\"total_instances\\\\\\\": 529,\\\\n    \\\\\\\"degenerate_count\\\\\\\": 94,\\\\n    \\\\\\\"non_degenerate_count\\\\\\\": 435,\\\\n    \\\\\\\"degeneracy_rate\\\\\\\": \\\\\\\"94/529 (17.8%)\\\\\\\",\\\\n    \\\\\\\"greedy_f1\\\\\\\": 66.63,\\\\n    \\\\\\\"oracle_f1\\\\\\\": 78.08,\\\\n    \\\\\\\"ungated_lp_selection_f1\\\\\\\": 66.31,\\\\n    \\\\\\\"ungated_lp_delta\\\\\\\": -0.31,\\\\n    \\\\\\\"nondegen_greedy_f1\\\\\\\": 66.53,\\\\n    \\\\\\\"nondegen_lp_selection_f1\\\\\\\": 66.24,\\\\n    \\\\\\\"nondegen_lp_delta\\\\\\\": -0.29,\\\\n    \\\\\\\"degen_greedy_f1\\\\\\\": 67.29,\\\\n    \\\\\\\"gated_overall_f1\\\\\\\": 66.37,\\\\n    \\\\\\\"gated_delta\\\\\\\": -0.26,\\\\n    \\\\\\\"gated_vs_ungated_improvement\\\\\\\": 0.06,\\\\n    \\\\\\\"macro_avg\\\\\\\": {\\\\n      \\\\\\\"greedy_f1\\\\\\\": 64.39,\\\\n      \\\\\\\"lp_f1\\\\\\\": 65.01,\\\\n      \\\\\\\"gated_f1\\\\\\\": 65.13,\\\\n      \\\\\\\"lp_delta\\\\\\\": 0.61,\\\\n      \\\\\\\"gated_delta\\\\\\\": 0.74\\\\n    }\\\\n  },\\\\n  {\\\\n    \\\\\\\"dataset\\\\\\\": \\\\\\\"CoNLL\\\\\\\",\\\\n    \\\\\\\"total_instances\\\\\\\": 2756,\\\\n    \\\\\\\"degenerate_count\\\\\\\": 1630,\\\\n    \\\\\\\"non_degenerate_count\\\\\\\": 1126,\\\\n    \\\\\\\"degeneracy_rate\\\\\\\": \\\\\\\"1630/2756 (59.1%)\\\\\\\",\\\\n    \\\\\\\"greedy_f1\\\\\\\": 91.23,\\\\n    \\\\\\\"oracle_f1\\\\\\\": 95.43,\\\\n    \\\\\\\"ungated_lp_selection_f1\\\\\\\": 89.61,\\\\n    \\\\\\\"ungated_lp_delta\\\\\\\": -1.62,\\\\n    \\\\\\\"nondegen_greedy_f1\\\\\\\": 87.4,\\\\n    \\\\\\\"nondegen_lp_selection_f1\\\\\\\": 84.35,\\\\n    \\\\\\\"nondegen_lp_delta\\\\\\\": -3.05,\\\\n    \\\\\\\"degen_greedy_f1\\\\\\\": 95.31,\\\\n    \\\\\\\"gated_overall_f1\\\\\\\": 89.64,\\\\n    \\\\\\\"gated_delta\\\\\\\": -1.59,\\\\n    \\\\\\\"gated_vs_ungated_improvement\\\\\\\": 0.03,\\\\n    \\\\\\\"macro_avg\\\\\\\": {\\\\n      \\\\\\\"greedy_f1\\\\\\\": 90.79,\\\\n      \\\\\\\"lp_f1\\\\\\\": 89.74,\\\\n      \\\\\\\"gated_f1\\\\\\\": 89.74,\\\\n      \\\\\\\"lp_delta\\\\\\\": -1.05,\\\\n      \\\\\\\"gated_delta\\\\\\\": -1.05\\\\n    }\\\\n  }\\\\n]\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"[\\n  {\\n    \\\"dataset\\\": \\\"Few-NERD\\\",\\n    \\\"total_instances\\\": 32565,\\n    \\\"degenerate_count\\\": 4479,\\n    \\\"non_degenerate_count\\\": 28086,\\n    \\\"degeneracy_rate\\\": \\\"4479/32565 (13.8%)\\\",\\n    \\\"greedy_f1\\\": 79.11,\\n    \\\"oracle_f1\\\": 88.55,\\n    \\\"ungated_lp_selection_f1\\\": 79.18,\\n    \\\"ungated_lp_delta\\\": 0.07,\\n    \\\"nondegen_greedy_f1\\\": 79.44,\\n    \\\"nondegen_lp_selection_f1\\\": 79.58,\\n    \\\"nondegen_lp_delta\\\": 0.15,\\n    \\\"degen_greedy_f1\\\": 76.07,\\n    \\\"gated_overall_f1\\\": 79.24,\\n    \\\"gated_delta\\\": 0.13,\\n    \\\"gated_vs_ungated_improvement\\\": 0.06,\\n    \\\"macro_avg\\\": {\\n      \\\"greedy_f1\\\": 74.78,\\n      \\\"lp_f1\\\": 76.14,\\n      \\\"gated_f1\\\": 76.18,\\n      \\\"lp_delta\\\": 1.36,\\n      \\\"gated_delta\\\": 1.39\\n    }\\n  },\\n  {\\n    \\\"dataset\\\": \\\"SciERC\\\",\\n    \\\"total_instances\\\": 529,\\n    \\\"degenerate_count\\\": 94,\\n    \\\"non_degenerate_count\\\": 435,\\n    \\\"degeneracy_rate\\\": \\\"94/529 (17.8%)\\\",\\n    \\\"greedy_f1\\\": 66.63,\\n    \\\"oracle_f1\\\": 78.08,\\n    \\\"ungated_lp_selection_f1\\\": 66.31,\\n    \\\"ungated_lp_delta\\\": -0.31,\\n    \\\"nondegen_greedy_f1\\\": 66.53,\\n    \\\"nondegen_lp_selection_f1\\\": 66.24,\\n    \\\"nondegen_lp_delta\\\": -0.29,\\n    \\\"degen_greedy_f1\\\": 67.29,\\n    \\\"gated_overall_f1\\\": 66.37,\\n    \\\"gated_delta\\\": -0.26,\\n    \\\"gated_vs_ungated_improvement\\\": 0.06,\\n    \\\"macro_avg\\\": {\\n      \\\"greedy_f1\\\": 64.39,\\n      \\\"lp_f1\\\": 65.01,\\n      \\\"gated_f1\\\": 65.13,\\n      \\\"lp_delta\\\": 0.61,\\n      \\\"gated_delta\\\": 0.74\\n    }\\n  },\\n  {\\n    \\\"dataset\\\": \\\"CoNLL\\\",\\n    \\\"total_instances\\\": 2756,\\n    \\\"degenerate_count\\\": 1630,\\n    \\\"non_degenerate_count\\\": 1126,\\n    \\\"degeneracy_rate\\\": \\\"1630/2756 (59.1%)\\\",\\n    \\\"greedy_f1\\\": 91.23,\\n    \\\"oracle_f1\\\": 95.43,\\n    \\\"ungated_lp_selection_f1\\\": 89.61,\\n    \\\"ungated_lp_delta\\\": -1.62,\\n    \\\"nondegen_greedy_f1\\\": 87.4,\\n    \\\"nondegen_lp_selection_f1\\\": 84.35,\\n    \\\"nondegen_lp_delta\\\": -3.05,\\n    \\\"degen_greedy_f1\\\": 95.31,\\n    \\\"gated_overall_f1\\\": 89.64,\\n    \\\"gated_delta\\\": -1.59,\\n    \\\"gated_vs_ungated_improvement\\\": 0.03,\\n    \\\"macro_avg\\\": {\\n      \\\"greedy_f1\\\": 90.79,\\n      \\\"lp_f1\\\": 89.74,\\n      \\\"gated_f1\\\": 89.74,\\n      \\\"lp_delta\\\": -1.05,\\n      \\\"gated_delta\\\": -1.05\\n    }\\n  }\\n]\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 75_
+
+注册 artifact。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8a680ff0-698a-43a6-9fb6-b209c674d969",
+  "uuid": "93f8968e-3538-48c1-a6d8-4ee07d1fddc7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011B5nTY7YgPzbBbvTfLAbzd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2194,
+      "cache_read_input_tokens": 61296,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2194
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 76_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact · `toolu_01T5WFzRQuom29adeAGCfpYN`</summary>
+
+```json
+{
+  "name": "D140 Oracle Degeneracy-Gated LP Selection Results",
+  "type": "data",
+  "description": "Oracle degeneracy-gated LP selection analysis for Few-NERD, SciERC, CoNLL. Computes degeneracy rates, ungated/gated LP selection F1, and delta improvements.",
+  "project": "struct_self_consist_ie",
+  "exp_id": "d140",
+  "source_path": "/root/autodl-tmp/struct_self_consist_ie/output/d140_oracle_gated/results.json",
+  "tags": [
+    "d140",
+    "degeneracy",
+    "gated-selection",
+    "lp-selection"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8a680ff0-698a-43a6-9fb6-b209c674d969",
+  "uuid": "3b5ebec2-235b-4c64-9804-abd9802b04bf",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011B5nTY7YgPzbBbvTfLAbzd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2194,
+      "cache_read_input_tokens": 61296,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2194
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 77 · 2026-05-18T13:06:40.333Z_
+
+<details><summary>↩ Tool result · `toolu_01T5WFzRQuom29adeAGCfpYN`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"source_path not found: /root/autodl-tmp/struct_self_consist_ie/output/d140_oracle_gated/results.json\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8a680ff0-698a-43a6-9fb6-b209c674d969",
+  "uuid": "559d8760-35c9-46da-a973-ffffe8237e81",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"source_path not found: /root/autodl-tmp/struct_self_consist_ie/output/d140_oracle_gated/results.json\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"source_path not found: /root/autodl-tmp/struct_self_consist_ie/output/d140_oracle_gated/results.json\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 78_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The register_artifact tool looks for local files, not remote ones. Let me register it with content instead.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8a680ff0-698a-43a6-9fb6-b209c674d969",
+  "uuid": "bdfa62e5-2f8f-470f-bc66-9e2a90382961",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012mbEya2aBgVZCddrRQqtiX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 365,
+      "cache_read_input_tokens": 63490,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 365
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 79_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact · `toolu_01WvCWdrDNjNuC9xnjSRCmBX`</summary>
+
+```json
+{
+  "name": "D140 Oracle Degeneracy-Gated LP Selection Results",
+  "type": "data",
+  "description": "Oracle degeneracy-gated LP selection analysis for Few-NERD, SciERC, CoNLL. Computes degeneracy rates, ungated/gated LP selection F1, and delta improvements.",
+  "project": "struct_self_consist_ie",
+  "exp_id": "d140",
+  "content": "[\n  {\n    \"dataset\": \"Few-NERD\",\n    \"total_instances\": 32565,\n    \"degenerate_count\": 4479,\n    \"non_degenerate_count\": 28086,\n    \"degeneracy_rate\": \"4479/32565 (13.8%)\",\n    \"greedy_f1\": 79.11,\n    \"oracle_f1\": 88.55,\n    \"ungated_lp_selection_f1\": 79.18,\n    \"ungated_lp_delta\": 0.07,\n    \"nondegen_greedy_f1\": 79.44,\n    \"nondegen_lp_selection_f1\": 79.58,\n    \"nondegen_lp_delta\": 0.15,\n    \"degen_greedy_f1\": 76.07,\n    \"gated_overall_f1\": 79.24,\n    \"gated_delta\": 0.13,\n    \"gated_vs_ungated_improvement\": 0.06,\n    \"macro_avg\": {\n      \"greedy_f1\": 74.78,\n      \"lp_f1\": 76.14,\n      \"gated_f1\": 76.18,\n      \"lp_delta\": 1.36,\n      \"gated_delta\": 1.39\n    }\n  },\n  {\n    \"dataset\": \"SciERC\",\n    \"total_instances\": 529,\n    \"degenerate_count\": 94,\n    \"non_degenerate_count\": 435,\n    \"degeneracy_rate\": \"94/529 (17.8%)\",\n    \"greedy_f1\": 66.63,\n    \"oracle_f1\": 78.08,\n    \"ungated_lp_selection_f1\": 66.31,\n    \"ungated_lp_delta\": -0.31,\n    \"nondegen_greedy_f1\": 66.53,\n    \"nondegen_lp_selection_f1\": 66.24,\n    \"nondegen_lp_delta\": -0.29,\n    \"degen_greedy_f1\": 67.29,\n    \"gated_overall_f1\": 66.37,\n    \"gated_delta\": -0.26,\n    \"gated_vs_ungated_improvement\": 0.06,\n    \"macro_avg\": {\n      \"greedy_f1\": 64.39,\n      \"lp_f1\": 65.01,\n      \"gated_f1\": 65.13,\n      \"lp_delta\": 0.61,\n      \"gated_delta\": 0.74\n    }\n  },\n  {\n    \"dataset\": \"CoNLL\",\n    \"total_instances\": 2756,\n    \"degenerate_count\": 1630,\n    \"non_degenerate_count\": 1126,\n    \"degeneracy_rate\": \"1630/2756 (59.1%)\",\n    \"greedy_f1\": 91.23,\n    \"oracle_f1\": 95.43,\n    \"ungated_lp_selection_f1\": 89.61,\n    \"ungated_lp_delta\": -1.62,\n    \"nondegen_greedy_f1\": 87.4,\n    \"nondegen_lp_selection_f1\": 84.35,\n    \"nondegen_lp_delta\": -3.05,\n    \"degen_greedy_f1\": 95.31,\n    \"gated_overall_f1\": 89.64,\n    \"gated_delta\": -1.59,\n    \"gated_vs_ungated_improvement\": 0.03,\n    \"macro_avg\": {\n      \"greedy_f1\": 90.79,\n      \"lp_f1\": 89.74,\n      \"gated_f1\": 89.74,\n      \"lp_delta\": -1.05,\n      \"gated_delta\": -1.05\n    }\n  }\n]",
+  "content_filename": "d140_oracle_gated_results.json",
+  "tags": [
+    "d140",
+    "degeneracy",
+    "gated-selection",
+    "lp-selection"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8a680ff0-698a-43a6-9fb6-b209c674d969",
+  "uuid": "748b54f3-b577-4f9a-8635-84addd8d87ae",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012mbEya2aBgVZCddrRQqtiX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 365,
+      "cache_read_input_tokens": 63490,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 365
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 80 · 2026-05-18T13:06:52.992Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01WvCWdrDNjNuC9xnjSRCmBX`</summary>
+
+```text
+Error executing tool register_artifact: 1 validation error for register_artifactArguments
+content
+  Input should be a valid string [type=string_type, input_value=[{'dataset': 'Few-NERD', ... 'gated_delta': -1.05}}], input_type=list]
+    For further information visit https://errors.pydantic.dev/2.12/v/string_type
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8a680ff0-698a-43a6-9fb6-b209c674d969",
+  "uuid": "ad2bfddc-dfc9-4960-9e95-b908bc5e6490",
+  "tool_use_result": "Error: Error executing tool register_artifact: 1 validation error for register_artifactArguments\ncontent\n  Input should be a valid string [type=string_type, input_value=[{'dataset': 'Few-NERD', ... 'gated_delta': -1.05}}], input_type=list]\n    For further information visit https://errors.pydantic.dev/2.12/v/string_type"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 81_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact · `toolu_011Pw1rsoXHf5dReqm8cQTH8`</summary>
+
+```json
+{
+  "name": "D140 Oracle Degeneracy-Gated LP Selection Results",
+  "type": "data",
+  "description": "Oracle degeneracy-gated LP selection analysis for Few-NERD, SciERC, CoNLL. Computes degeneracy rates, ungated/gated LP selection F1, and delta improvements.",
+  "project": "struct_self_consist_ie",
+  "exp_id": "d140",
+  "content": "{\"results\": [{\"dataset\": \"Few-NERD\", \"total_instances\": 32565, \"degenerate_count\": 4479, \"degeneracy_rate\": \"13.8%\", \"greedy_f1\": 79.11, \"oracle_f1\": 88.55, \"ungated_lp_delta\": 0.07, \"gated_delta\": 0.13, \"gated_vs_ungated_improvement\": 0.06}, {\"dataset\": \"SciERC\", \"total_instances\": 529, \"degenerate_count\": 94, \"degeneracy_rate\": \"17.8%\", \"greedy_f1\": 66.63, \"oracle_f1\": 78.08, \"ungated_lp_delta\": -0.31, \"gated_delta\": -0.26, \"gated_vs_ungated_improvement\": 0.06}, {\"dataset\": \"CoNLL\", \"total_instances\": 2756, \"degenerate_count\": 1630, \"degeneracy_rate\": \"59.1%\", \"greedy_f1\": 91.23, \"oracle_f1\": 95.43, \"ungated_lp_delta\": -1.62, \"gated_delta\": -1.59, \"gated_vs_ungated_improvement\": 0.03}]}",
+  "content_filename": "d140_oracle_gated_results.json",
+  "tags": [
+    "d140",
+    "degeneracy",
+    "gated-selection",
+    "lp-selection"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8a680ff0-698a-43a6-9fb6-b209c674d969",
+  "uuid": "3c9ab85e-35c9-44a4-bdce-9fb7c689d465",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015tCp3od4nFdGKcBXzzvwhA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1443,
+      "cache_read_input_tokens": 63855,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1443
+      },
+      "output_tokens": 71,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 82 · 2026-05-18T13:07:00.116Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_011Pw1rsoXHf5dReqm8cQTH8`</summary>
+
+```text
+Error executing tool register_artifact: 1 validation error for register_artifactArguments
+content
+  Input should be a valid string [type=string_type, input_value={'results': [{'dataset': ...ed_improvement': 0.03}]}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/string_type
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8a680ff0-698a-43a6-9fb6-b209c674d969",
+  "uuid": "5c0b0424-1917-4c11-bd4b-aff1181321f7",
+  "tool_use_result": "Error: Error executing tool register_artifact: 1 validation error for register_artifactArguments\ncontent\n  Input should be a valid string [type=string_type, input_value={'results': [{'dataset': ...ed_improvement': 0.03}]}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.12/v/string_type"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 83_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact · `toolu_011daWJtrf9JZNf4Jx5ZmZQ6`</summary>
+
+```json
+{
+  "name": "D140 Oracle Degeneracy-Gated LP Selection Results",
+  "type": "data",
+  "description": "Oracle degeneracy-gated LP selection analysis for Few-NERD, SciERC, CoNLL. Computes degeneracy rates, ungated/gated LP selection F1, and delta improvements.",
+  "project": "struct_self_consist_ie",
+  "exp_id": "d140",
+  "content": "See server: /root/autodl-tmp/struct_self_consist_ie/output/d140_oracle_gated/results.json\\nScript: /root/autodl-tmp/struct_self_consist_ie/code/d140_oracle_gated_analysis.py",
+  "content_filename": "d140_oracle_gated_results.txt",
+  "tags": [
+    "d140",
+    "degeneracy",
+    "gated-selection",
+    "lp-selection"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8a680ff0-698a-43a6-9fb6-b209c674d969",
+  "uuid": "a83ce301-8bea-4cce-b077-23ccc90cf856",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Qpp6u5dfW9whKMojtK15fF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 711,
+      "cache_read_input_tokens": 65298,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 711
+      },
+      "output_tokens": 71,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 84 · 2026-05-18T13:07:05.575Z_
+
+<details><summary>↩ Tool result · `toolu_011daWJtrf9JZNf4Jx5ZmZQ6`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260518_fbada3\", \"name\": \"D140 Oracle Degeneracy-Gated LP Selection Results\", \"type\": \"data\", \"description\": \"Oracle degeneracy-gated LP selection analysis for Few-NERD, SciERC, CoNLL. Computes degeneracy rates, ungated/gated LP selection F1, and delta improvements.\", \"path\": \"projects/struct_self_consist_ie/artifacts/d140/data/d140_oracle_gated_results.txt\", \"url\": null, \"project\": \"struct_self_consist_ie\", \"exp_id\": \"d140\", \"skill\": \"\", \"created_at\": \"2026-05-18T13:07:05.261267+00:00\", \"tags\": [\"d140\", \"degeneracy\", \"gated-selection\", \"lp-selection\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8a680ff0-698a-43a6-9fb6-b209c674d969",
+  "uuid": "a44e125a-0f80-4c74-9399-655e2bbdd7a0",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260518_fbada3\\\", \\\"name\\\": \\\"D140 Oracle Degeneracy-Gated LP Selection Results\\\", \\\"type\\\": \\\"data\\\", \\\"description\\\": \\\"Oracle degeneracy-gated LP selection analysis for Few-NERD, SciERC, CoNLL. Computes degeneracy rates, ungated/gated LP selection F1, and delta improvements.\\\", \\\"path\\\": \\\"projects/struct_self_consist_ie/artifacts/d140/data/d140_oracle_gated_results.txt\\\", \\\"url\\\": null, \\\"project\\\": \\\"struct_self_consist_ie\\\", \\\"exp_id\\\": \\\"d140\\\", \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-18T13:07:05.261267+00:00\\\", \\\"tags\\\": [\\\"d140\\\", \\\"degeneracy\\\", \\\"gated-selection\\\", \\\"lp-selection\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260518_fbada3\", \"name\": \"D140 Oracle Degeneracy-Gated LP Selection Results\", \"type\": \"data\", \"description\": \"Oracle degeneracy-gated LP selection analysis for Few-NERD, SciERC, CoNLL. Computes degeneracy rates, ungated/gated LP selection F1, and delta improvements.\", \"path\": \"projects/struct_self_consist_ie/artifacts/d140/data/d140_oracle_gated_results.txt\", \"url\": null, \"project\": \"struct_self_consist_ie\", \"exp_id\": \"d140\", \"skill\": \"\", \"created_at\": \"2026-05-18T13:07:05.261267+00:00\", \"tags\": [\"d140\", \"degeneracy\", \"gated-selection\", \"lp-selection\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 85_
+
+分析完成。结果汇总：
+
+## D140 Oracle Degeneracy-Gated LP Selection 结果
+
+| | Few-NERD | SciERC | CoNLL |
+|---|---|---|---|
+| **Instances** | 32,565 | 529 | 2,756 |
+| **Degeneracy rate** | 13.8% | 17.8% | **59.1%** |
+| **Greedy F1** | 79.11 | 66.63 | 91.23 |
+| **Oracle F1** | 88.55 | 78.08 | 95.43 |
+| **Ungated LP delta** | +0.07 | -0.31 | -1.62 |
+| **Gated delta** | +0.13 | -0.26 | -1.59 |
+| **Gated vs Ungated improvement** | +0.06 | +0.06 | +0.03 |
+| **NonDegen LP delta** (vs nondeg greedy) | +0.15 | -0.29 | **-3.05** |
+
+### 关键发现
+
+1. **Oracle gating 在所有数据集上都有正向改善**（+0.03 ~ +0.06），验证了 degeneracy 确实引入噪声。
+
+2. **但改善幅度很小**，因为 degeneracy 只是两个必要条件之一。即使 oracle 移除了所有 degenerate instances，LP selection 在 non-degenerate subset 上仍然可能不 work：
+   - CoNLL non-degenerate LP delta = **-3.05**（LP 在非退化 instance 上反而更差）
+   - SciERC non-degenerate LP delta = **-0.29**
+
+3. **CoNLL degeneracy 极高（59.1%）**，因为模型在 CoNLL 上准确度高，大多数 sample 输出完全一致。
+
+4. 这直接支持论文核心 claim：LP selection 需要 **low degeneracy + LP alignment** 两个条件同时满足。Oracle gating 只解决了 degeneracy 条件，alignment 问题仍在。
+
+**产出文件**：
+- 脚本：`code/d140_oracle_gated_analysis.py`
+- 结果：`output/d140_oracle_gated/results.json`
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8a680ff0-698a-43a6-9fb6-b209c674d969",
+  "uuid": "db8f54f9-83df-4c67-8fb5-9fe57f536bd3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KrEutsgup6PFrwKzTieSpt",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 768,
+      "cache_read_input_tokens": 66009,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 768
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 86_
+
+分析完成。结果汇总：
+
+## D140 Oracle Degeneracy-Gated LP Selection 结果
+
+| | Few-NERD | SciERC | CoNLL |
+|---|---|---|---|
+| **Instances** | 32,565 | 529 | 2,756 |
+| **Degeneracy rate** | 13.8% | 17.8% | **59.1%** |
+| **Greedy F1** | 79.11 | 66.63 | 91.23 |
+| **Oracle F1** | 88.55 | 78.08 | 95.43 |
+| **Ungated LP delta** | +0.07 | -0.31 | -1.62 |
+| **Gated delta** | +0.13 | -0.26 | -1.59 |
+| **Gated vs Ungated improvement** | +0.06 | +0.06 | +0.03 |
+| **NonDegen LP delta** (vs nondeg greedy) | +0.15 | -0.29 | **-3.05** |
+
+### 关键发现
+
+1. **Oracle gating 在所有数据集上都有正向改善**（+0.03 ~ +0.06），验证了 degeneracy 确实引入噪声。
+
+2. **但改善幅度很小**，因为 degeneracy 只是两个必要条件之一。即使 oracle 移除了所有 degenerate instances，LP selection 在 non-degenerate subset 上仍然可能不 work：
+   - CoNLL non-degenerate LP delta = **-3.05**（LP 在非退化 instance 上反而更差）
+   - SciERC non-degenerate LP delta = **-0.29**
+
+3. **CoNLL degeneracy 极高（59.1%）**，因为模型在 CoNLL 上准确度高，大多数 sample 输出完全一致。
+
+4. 这直接支持论文核心 claim：LP selection 需要 **low degeneracy + LP alignment** 两个条件同时满足。Oracle gating 只解决了 degeneracy 条件，alignment 问题仍在。
+
+**产出文件**：
+- 脚本：`code/d140_oracle_gated_analysis.py`
+- 结果：`output/d140_oracle_gated/results.json`
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 265907,
+  "duration_api_ms": 244190,
+  "num_turns": 30,
+  "stop_reason": "end_turn",
+  "session_id": "8a680ff0-698a-43a6-9fb6-b209c674d969",
+  "total_cost_usd": 1.5260967500000002,
+  "usage": {
+    "input_tokens": 28,
+    "cache_creation_input_tokens": 98401,
+    "cache_read_input_tokens": 1003109,
+    "output_tokens": 16300,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 98401,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 636,
+        "cache_read_input_tokens": 66009,
+        "cache_creation_input_tokens": 768,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 768
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1801,
+      "outputTokens": 19,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.0018960000000000001,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 28,
+      "outputTokens": 16300,
+      "cacheReadInputTokens": 1003109,
+      "cacheCreationInputTokens": 98401,
+      "webSearchRequests": 0,
+      "costUSD": 1.52420075,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "e52017d7-e9cc-41cd-b921-261a005b1b93"
+}
+```
+
+</details>
+
+---

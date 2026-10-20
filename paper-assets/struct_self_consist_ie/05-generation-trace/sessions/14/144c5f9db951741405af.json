@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "144c5f9db951741405af",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "code f1 inconsistency audit",
+  "task_key": "worker_code_f1_inconsistency_audit_20260518T175553",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_f1_inconsistency_audit_20260518T175553_result.json",
+    "occurrence": 1,
+    "bytes": 953,
+    "sha256": "b7dc6dd95a0d4f2019e441cf2fde2bb12293bc31b7b4c9e6c080d091db03e3b4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 排查完成\n\n### 根因\n`analysis_dgs_gold_filter.py` 第 114 行的 SciERC 数据路径指向旧实验 `exp001_n16_seed42/samples.jsonl`，而 `entity_consensus.py` 和 `ccs_selection.py` 使用当前实验 `exp_012_rerun_1024/samples.jsonl`。F1 计算逻辑和 gold_filter 实现在三个脚本中等价，唯一差异就是数据源。\n\n### 修复\n- 将 `analysis_dgs_gold_filter.py` 的 SciERC 路径从 `exp001_n16_seed42` 改为 `exp_012_rerun_1024`\n- CoNLL 和 FewNERD 路径本来就一致，无需修改\n\n### 验证结果（三个脚本完全一致）\n| Dataset | Greedy F1 | N |\n|---------|-----------|---|\n| SciERC | 0.6439 | 529 |\n| CoNLL | 0.9070 | 2756 |\n| FewNERD | 0.7478 | 4351 |\n\n### 附注\n`entity_consensus.py` 未对 samples 截断到 N=8（CoNLL/FewNERD 用全部 16 个 samples），影响 LP/MV/Oracle 指标但不影响 Greedy F1。\n\n审计结果已写入 `output/f1_audit_results.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-f1-inconsistency-audit.md"
+}

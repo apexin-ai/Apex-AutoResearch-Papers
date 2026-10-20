@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0648b3ee2e8d8ac4ea55",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis conll per type lp",
+  "task_key": "worker_analysis_conll_per_type_lp_20260517T044124",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_conll_per_type_lp_20260517T044124_result.json",
+    "occurrence": 1,
+    "bytes": 1324,
+    "sha256": "620e7ca2a3c7018456149a7b02c48071f6b2b58f1d78e8280e7509eec76dbd03"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果总结\n\n数据来源: `exp_002_conll_n16_r1024/samples.jsonl` (3453 instances, N=16 samples, 2756 有 gold entities)\n\n| Type | N | Degen% | Greedy F1 | LP Sel F1 | Δ(pp) | LP ρ | Headroom |\n|------|--:|-------:|----------:|----------:|------:|-----:|---------:|\n| MISC | 341 | 23.2% | 0.7879 | 0.7659 | **-2.19** | 0.270 | 12.57pp |\n| PER | 791 | 42.6% | 0.9375 | 0.9267 | -1.08 | 0.334 | 4.11pp |\n| LOC | 661 | 47.5% | 0.9061 | 0.8999 | -0.62 | 0.319 | 3.97pp |\n| ORG | 963 | 54.3% | 0.9247 | 0.9192 | -0.55 | 0.368 | 3.80pp |\n\n**关键发现：**\n\n1. **LP selection 在所有 4 个 type 上全面失败**，全部 Δ 为负。\n2. **MISC 是最有趣的反例**：degeneracy 最低 (23.2%)，headroom 最大 (12.57pp)，即有充足的多样性和改进空间，但 LP selection 反而最差 (-2.19pp)。说明即使去掉 degeneracy 的影响，LP 仍然是 anti-signal。\n3. **因果分析呈现反直觉的 ρ=1.000**：degeneracy 越低 → LP delta 越差。这意味着不是 degeneracy 压制了 LP，而是 LP 本身在 non-degenerate instances 上选得更差（MISC 的 LP ρ=0.270 最低，弱正相关不足以做出正确选择）。\n\n输出文件：\n- CSV: `exp_002_conll_n16_r1024/per_type_lp_analysis.csv`\n- LaTeX: `exp_002_conll_n16_r1024/per_type_lp_table.tex`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-conll-per-type-lp.md"
+}

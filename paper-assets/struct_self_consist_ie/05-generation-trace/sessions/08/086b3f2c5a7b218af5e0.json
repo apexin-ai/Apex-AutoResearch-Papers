@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "086b3f2c5a7b218af5e0",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ops autodl5090 full audit",
+  "task_key": "worker_ops_autodl5090-full-audit_20260514T174157",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_autodl5090-full-audit_20260514T174157_result.json",
+    "occurrence": 1,
+    "bytes": 705,
+    "sha256": "d4851d0166bc19848cf529fea477067d204b402fb172165c2a3b144b0e3a9284"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计完成。报告已写入 `artifacts/audit_autodl5090_loop3.md`。\n\n**汇总**：autodl-5090 上 4 个实验全部已完成，4 GPU 完全空闲（0% 利用率）。\n\n| 实验 | Registry 状态 | 实际 | Verdict |\n|------|-------------|------|---------|\n| exp_017_llama_conll_infer | RUNNING | **DONE** | MARGINAL (structural>surface +0.004) |\n| exp_001_seed456_v2_ner | RUNNING | **DONE** | MARGINAL (structural>surface +0.16) |\n| exp_003_wnut17_v2_infer | ANALYZING | **DONE** | FAIL (54% F1=0, structural<surface) |\n| exp_002_merge_conll2003 | PREPARING | **DONE** | exit 0 |\n\n4 个都需要在 Registry 标记为 DONE。wnut17 因 54% 样本 F1=0 建议 T=0.7 重跑。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-autodl5090-full-audit.md"
+}

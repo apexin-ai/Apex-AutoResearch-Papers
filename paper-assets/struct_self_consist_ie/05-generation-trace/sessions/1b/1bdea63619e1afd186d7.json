@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1bdea63619e1afd186d7",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ssh bh fdr calculation",
+  "task_key": "worker_ssh_bh_fdr_calculation_20260522T092949",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_bh_fdr_calculation_20260522T092949_result.json",
+    "occurrence": 1,
+    "bytes": 2918,
+    "sha256": "5aac6105c7ecebfa016a66af9e6c10e8f1b28d121c0b45c2036d1da6c0e65a0a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完整结果已获取。以下是 BH FDR vs Holm-Bonferroni 对比总结：\n\n---\n\n## 全局对比 (α=0.05, k=57)\n\n| 方法 | 拒绝数 |\n|------|--------|\n| 未校正 | 23/57 |\n| **BH FDR** | **19/57** |\n| **Holm-Bonferroni** | **10/57** |\n\nBH 比 Holm 多拒绝 9 个检验。所有 Holm 显著的检验在 BH 下也显著（BH 严格更宽松）。\n\n## BH 显著但 Holm 不显著的 9 个检验\n\n| # | 描述 | Raw p | BH-adj | Holm-adj |\n|---|------|-------|--------|----------|\n| 18 | SciERC LP sel, non-tied (eps=0.05) | 0.004 | 0.0143 | 0.180 |\n| 20 | SciERC LP favorable subset (+2.47pp) | 0.015 | 0.0450 | 0.585 |\n| 22 | SciERC LP-wt construction (Qwen, 3-seed) | 0.004 | 0.0143 | 0.180 |\n| 25 | Few-NERD uniform construction (Qwen) | 0.003 | 0.0143 | 0.138 |\n| 27 | SciERC ZS construction (72B) | 0.008 | 0.0253 | 0.320 |\n| 43 | RE SJ ρ Q1 vs Q4 sent len (Fisher z) | 0.004 | 0.0143 | 0.180 |\n| 45 | Per-type deg-headroom (Few-NERD, Spearman) | 0.004 | 0.0143 | 0.180 |\n| 46 | Per-type deg-headroom (exact perm) | 0.005 | 0.0168 | 0.205 |\n| 57 | WNUT-17 conditional ρ FK | 0.002 | 0.0104 | 0.094 |\n\n## Selection 家族 (21 tests)\n\n| 校正范围 | 显著数 (α=0.05) |\n|----------|-----------------|\n| Global BH (k=57) | 5/21 (#6, #18, #19, #20, #21) |\n| Selection-family BH (k=21) | 4/21 (#6, #18, #19, #21) |\n| Primary-selection BH (k=18, 排除 post-hoc) | 2/18 (#6, #19 — 均为 Few-NERD) |\n\n## 按家族 BH 校正结果 (α=0.05)\n\n| 家族 | 显著/总数 |\n|------|-----------|\n| Selection | 4/21 |\n| Construction | 6/10 |\n| Signal Δρ | 4/9 |\n| Calibration | 0/3 |\n| Correlation | 2/6 |\n| FS error | 1/4 |\n| Other | 2/4 |\n\n## 核心 NER claims 状态\n\n| Claim | Holm | BH | 判定 |\n|-------|------|----|------|\n| **\"No signal reliably beats greedy\" (selection)** | 15/21 不显著 → 成立 | 同，核心 null 不变 | **两种方法下均成立** |\n| Few-NERD LP selection (#6, #19) | 显著 | 显著 | 一致 |\n| Construction gains (#22, #24, #25, #27, #31) | Holm 仅 #24, #31 显著 | BH 额外 #22, #25, #27 显著 | **BH 下 construction 证据更强** |\n| Per-type deg-headroom (#45, #46) | 不显著 | 显著 | **BH 下新增显著** |\n\n## 结论\n\nBH FDR 不削弱任何论文 claim。核心 null finding（selection 不优于 greedy）依赖于大量 p > 0.05 的检验，在任何校正下都不显著。BH 比 Holm 宽松，只会保留或增加显著结果——construction 和 correlation 方向的证据在 BH 下反而更强。\n\n## Rebuttal 速查表\n\n| FDR α | 拒绝数 | Selection 显著 | 结论 |\n|-------|--------|----------------|------|\n| 0.01 | 10 | #6, #19, #21 | 核心 null 不变 |\n| 0.05 | 19 | #6, #18, #19, #20, #21 | 核心 null 不变 |\n| 0.10 | 21 | 同上 | 核心 null 不变 |\n| 0.20 | 26 | +#8, #13 | 核心 null 不变 |\n| Holm | 10 | (none) | 论文当前方法 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-bh-fdr-calculation.md"
+}

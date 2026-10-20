@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "178b4ebb684b8435611d",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "code exp 009 v2",
+  "task_key": "worker_code_exp_009_v2_20260514T152658",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_exp_009_v2_20260514T152658_result.json",
+    "occurrence": 1,
+    "bytes": 1736,
+    "sha256": "1654ad26ed93ed24cd226d8ca96df0ae19383fccaf9f2fe1432cee7bed8a2265"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "exp-009 v2 完成。核心结果：\n\n### NER (n=551, seed42/123 高度一致, max |Δρ|=0.037)\n\n| 信号 | 全局 ρ | 备注 |\n|------|--------|------|\n| voting_conf | 0.475 | 最强 |\n| SJ | 0.431 | |\n| FK | 0.325 | |\n| EM | 0.292 | |\n| logprob | 0.203 | 最弱 |\n\n**独立代理分层结果**：\n- **Sentence length**: ρ 在三个 tertile 间相对稳定（SJ: 0.48→0.39→0.40），Fisher z 均不显著。**无 inverted-U**。\n- **Entity count**: 只能分两层（合并后 0-2 vs 3+）。FK 在低计数层显著更高 (p=0.011)，logprob 在高计数层显著更高 (p=0.001)。\n- **Type diversity**: 变量太离散（T2=0），仅能做二分比较。logprob 在高多样性层显著更高 (p=0.024)。\n\n### RE (n=551)\n\n| 信号 | 全局 ρ | 备注 |\n|------|--------|------|\n| logprob | 0.400 | RE 中最强（NER 中最弱） |\n| FK | 0.226 | |\n| voting_conf | 0.220 | |\n| SJ | 0.063 | 不显著 |\n| EM | -0.132 | 负相关 |\n\n**独立代理分层**：RE 呈**单调递增**而非 inverted-U — 句子越长/关系越多/类型越丰富，信号 ρ 越高。Type diversity Low→High: SJ (p=0.002*), voting_conf (p=0.034*), EM (p=0.005*)。\n\n### 关键结论\n1. 用独立代理变量分层后，**inverted-U 模式不成立** — NER 信号 ρ 在各层间稳定，RE 呈单调增。这与 v1 用 greedy F1 分层看到的 inverted-U 不同，**验证了 Dream 审稿人关于 circularity 的担忧**。\n2. f1 与 sent_len 几乎不相关 (ρ=0.015)，是最独立的代理变量。ent_count 和 type_diversity 高度相关 (ρ=0.763)。\n3. NER 两个 seed 的全局 ρ 高度一致。\n\n输出位于 `output/exp_009_v2/`（results.json, summary.txt, 3 个 PDF 图）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-009-v2.md"
+}

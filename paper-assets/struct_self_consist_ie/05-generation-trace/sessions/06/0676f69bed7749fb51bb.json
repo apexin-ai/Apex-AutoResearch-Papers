@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0676f69bed7749fb51bb",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "paper writing method",
+  "task_key": "worker_paper_writing_method_20260514T194021",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_paper_writing_method_20260514T194021_result.json",
+    "occurrence": 1,
+    "bytes": 748,
+    "sha256": "24222b50bbb0fba37603e71188629c9cd2f61d013abc97639e1dd7992d211240"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Method 章节已写入 `docs/paper/sections/method.tex`。\n\n要点：\n- 三个小节：Problem Formulation (`sec:formulation`)、Confidence Signals (`sec:signals`)、Evaluation Framework (`sec:evaluation`)，label 与 experiments.tex 中的引用一致\n- 信号分类与 experiments.tex 保持一致：Structural (Voting, SJ)、Surface (FK, EM)、Model-internal (logprob)\n- 包含记号表（Table 1）\n- 所有公式有 label，使用 equation 环境\n- 仅引用 references.bib 中已有的 key：`wang2023selfconsistency`、`fleiss1971agreement`、`jaccard1901distribution`、`willard2023guided`\n- 末尾自然过渡到 `\\S\\ref{sec:selection_gap}` 的实验分析\n- 约 1000 词，无具体实验数字，无禁忌用语"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-method.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "109b62d9ae1bfafb90ce",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis epsilon sweep r8",
+  "task_key": "worker_analysis_epsilon_sweep_r8_20260515T153432",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_epsilon_sweep_r8_20260515T153432_result.json",
+    "occurrence": 1,
+    "bytes": 358,
+    "sha256": "0152eef3c046533802963ba29f20c890e93c37fbe731b831b0d8a56bc7d2faec"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**结果摘要**：ε sweep 确认论文默认 ε=0.05 选择 robust。在 non-tied subset 上，LP selection 一致优于 greedy（Δ 从 +0.58pp@ε=0.01 单调递增到 +4.59pp@ε=0.20），ε∈[0.05, 0.10] 区间统计显著 (p<0.05)。更大 ε 效应更强但 power 不足。CSV 已存 `analysis_round8/epsilon_sweep.csv`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-epsilon-sweep-r8.md"
+}

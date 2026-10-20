@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2bdb6f96cda97a2e5c0d",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "diag exp 14b inference scierc",
+  "task_key": "worker_diag_exp_14b_inference_scierc_20260520T145131",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diag_exp_14b_inference_scierc_20260520T145131_result.json",
+    "occurrence": 1,
+    "bytes": 1805,
+    "sha256": "42c12267aaaddcd72dd3a743c490a18831cc2fae1c858b52b23b692fc78f1694"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结论\n\n**三个 inference 都没有失败，实际情况是 registry 状态不同步。**\n\n### 各实验实际状态\n\n| 实验 | GPU | 实际状态 | Registry 状态 | 详情 |\n|------|-----|---------|--------------|------|\n| **scierc** | GPU 3 (空闲) | ✅ **已完成全部 5 个 N** | DONE(failed) ❌ | 22:38 完成，日志 \"ALL SciERC DONE\" |\n| **conll** | GPU 1 (98%) | 🔄 **运行中，n4 进度 77%** (10629/13812) | PREPARING ❌ | n1、n2 已完成，正在跑 n4 |\n| **fewnerd** | GPU 0 (99%) | 🔄 **运行中，n1 进度 35%** (13029/37648) | PREPARING ❌ | PID 201001，已跑 ~26 分钟 |\n\n### 根本原因\n\n**没有任何实际失败。** 问题出在实验 registry 没有正确记录 spec（command/server/pid），导致 cron reconcile 误判：\n- scierc 正常完成后进程退出 → cron 找不到进程 → 标记为 failed\n- conll/fewnerd 进程一直在跑 → 但 registry 无 spec 信息 → 保持 PREPARING\n\n### 关键数据点\n\n- **磁盘空间**: 127G 可用，充足\n- **Checkpoint**: `qwen25-14b-fewnerd-merged-final` 存在且正在使用\n- **SciERC 结果质量极差**: greedy_f1=0.004, 99% samples F1=0, verdict=FAIL（模型只在 FewNERD 上微调，不能泛化到 SciERC 的 schema）\n- **预计完成时间**: CoNLL n4 快完了（~2min），之后还有 n8、n16；FewNERD n1 还需 ~45 分钟，之后 n2-n16 会更久\n\n### 需要做的\n\n1. **修正 registry 状态** — scierc 标记为 DONE(success)，conll/fewnerd 标记为 RUNNING 并填入正确的 PID/server\n2. **不需要重跑** — 三个实验都在正常工作\n3. **SciERC 质量问题需要后续关注** — 14B 模型在非训练域数据集上 F1 接近 0，可能需要 domain-specific 微调或检查 prompt/schema 是否正确"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-exp-14b-inference-scierc.md"
+}

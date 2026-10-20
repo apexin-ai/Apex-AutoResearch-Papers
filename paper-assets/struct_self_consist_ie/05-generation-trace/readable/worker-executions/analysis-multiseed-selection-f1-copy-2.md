@@ -1,0 +1,4687 @@
+# analysis multiseed selection f1
+
+**When Self-Consistency Fails for NER: Degeneracy, Signal Collapse, and the Correlation-Selection Gap** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 97
+- **Recorded user turns:** 0
+- **Tool calls:** 35
+- **Original source:** `logs/workers/worker_analysis_multiseed_selection_f1_20260515T124243.log`
+- **Structured JSON:** [`8347797f0ae3792231b7.json`](../../sessions/83/8347797f0ae3792231b7.json)
+
+## Before a recorded user message
+
+97 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "session_id": "b8b11d62-6ca3-4151-bc4f-ed1130aa9fbf",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__read_registry",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only",
+    "mcp__agent-ml-research__update_registry"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "3db441c2-d8a2-4363-ac17-04a2f8241bab",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1778850600,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "0b91ca9d-e136-4a8b-8ccd-d8f02be6939e",
+  "session_id": "b8b11d62-6ca3-4151-bc4f-ed1130aa9fbf"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by connecting to the server and exploring the data structure to understand what's available.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b8b11d62-6ca3-4151-bc4f-ed1130aa9fbf",
+  "uuid": "9e03c4ae-3ffc-4d36-aed8-8dc86fc88af9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011LFsarJz6SatGhKKmsxJ2A",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11866,
+      "cache_read_input_tokens": 11701,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11866
+      },
+      "output_tokens": 27,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 5_
+
+先连接服务器探索 output/ 目录结构和数据格式。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b8b11d62-6ca3-4151-bc4f-ed1130aa9fbf",
+  "uuid": "998241a9-38b8-4dc6-983d-34cdf0d0241c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011LFsarJz6SatGhKKmsxJ2A",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11866,
+      "cache_read_input_tokens": 11701,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11866
+      },
+      "output_tokens": 27,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01Jx8XHoufaJjsSkcLhRKB42`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__register_artifact",
+  "max_results": 4
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b8b11d62-6ca3-4151-bc4f-ed1130aa9fbf",
+  "uuid": "a30b3ad6-53b9-4720-8925-f833d52f3eec",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011LFsarJz6SatGhKKmsxJ2A",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11866,
+      "cache_read_input_tokens": 11701,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11866
+      },
+      "output_tokens": 27,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-15T12:42:57.837Z_
+
+<details><summary>↩ Tool result · `toolu_01Jx8XHoufaJjsSkcLhRKB42`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__detect_image"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__register_artifact"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b8b11d62-6ca3-4151-bc4f-ed1130aa9fbf",
+  "uuid": "90b65eda-78eb-4839-98aa-4b8d5e16861b",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__detect_image",
+      "mcp__agent-ml-research__register_artifact"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__register_artifact",
+    "total_deferred_tools": 26
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 8_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by exploring the output directory structure on the server to find all relevant seed data files.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b8b11d62-6ca3-4151-bc4f-ed1130aa9fbf",
+  "uuid": "1dc8955e-265f-4299-90df-28a7fe821e12",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CCzhMxD66Lx4Tj4U6kZmCN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1542,
+      "cache_read_input_tokens": 23567,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1542
+      },
+      "output_tokens": 25,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01B5nKLg1ssFGgPo7XrnGVNG`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "ls /root/autodl-tmp/struct_self_consist_ie/output/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b8b11d62-6ca3-4151-bc4f-ed1130aa9fbf",
+  "uuid": "38cd1743-cabb-4446-af35-2fc73ead45a1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CCzhMxD66Lx4Tj4U6kZmCN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1542,
+      "cache_read_input_tokens": 23567,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1542
+      },
+      "output_tokens": 25,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-15T12:43:02.734Z_
+
+<details><summary>↩ Tool result · `toolu_01B5nKLg1ssFGgPo7XrnGVNG`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"bootstrap_ci_nscaling\\nbootstrap_ci_summary.json\\nbootstrap_ci_tables.tex\\nconditional_filter_diagnosis.json\\nexp001_n16_seed123\\nexp001_n16_seed123_200only\\nexp001_n16_seed123_200only_backup\\nexp001_n16_seed123_full\\nexp001_n16_seed123_run.log\\nexp001_n16_seed42\\nexp001_n16_seed42_200only_backup\\nexp001_n16_seed42_run.log\\nexp001_n16_seed456\\nexp001_n16_seed456_200only\\nexp001_n16_seed456_run.log\\nexp001_seed123_t10_full\\nexp001_seed123_t10_full.log\\nexp001_seed456_t10_full\\nexp001_seed456_t10_full.log\\nexp002_conll2003\\nexp003_wnut17_dryrun\\nexp003_wnut17_eval\\nexp003_wnut17_eval.log\\nexp003_wnut17_pilot\\nexp003_wnut17_pilot.log\\nexp004_re_diagnostic\\nexp004v2_re_diagnostic\\nexp007_llama_dryrun\\nexp007_llama_inference\\nexp008_re_n16\\nexp008_re_n16_200only\\nexp008_re_n16_t10_full\\nexp008_re_n16_t10_full.log\\nexp009_stratification_results.json\\nexp010_selection_curves\\nexp016_signal_ensemble\\nexp018_3seed_5signal_results.json\\nexp_001_seed123_v2\\nexp_001_seed123_v2_r1024\\nexp_001_seed42_v2\\nexp_001_seed42_v2_r1024\\nexp_001_seed456_v2\\nexp_001_seed456_v2_ner\\nexp_001_seed456_v2_ner.log\\nexp_001_seed456_v2_ner_r1024\\nexp_002_conll_n16\\nexp_002_conll_n16.log\\nexp_002_conll_n16_r1024\\nexp_003_wnut17_v2_infer\\nexp_005_v2_temperature\\nexp_006_v2\\nexp_006_v2_run.log\\nexp_007_llama_n16\\nexp_007_llama_n16.log\\nexp_007_llama_n16_r1024\\nexp_007_llama_seed123\\nexp_007_llama_seed456\\nexp_008_re_n16_v2\\nexp_008_re_seed123\\nexp_009_v2\\nexp_009_v2_re_rerun\\nexp_009_v2_run.log\\nexp_011_ood_analysis\\nexp_011_ood_conll_to_scierc\\nexp_011_ood_scierc_to_conll\\nexp_011_ood_scierc_to_conll_run.log\\nexp_012_logprob\\nexp_012_rerun_1024\\nexp_015_unified\\nexp_015_v2\\nexp_016_rerun_1024\\nexp_016_v2\\nexp_017_llama_conll_infer\\nexp_017_llama_conll_infer.log\\nexp_017_llama_conll_n16\\nexp_017_llama_conll_n16_r1024\\nexp_017_llama_conll_n16_r1024_run.log\\nexp_017_llama_conll_n16_s123\\nexp_017_llama_conll_n16_s123.log\\nexp_017_llama_conll_n16_s123_r1024\\nexp_017_llama_conll_n16_s456\\nexp_017_llama_conll_n16_s456.log\\nexp_017_llama_conll_n16_s456_r1024\\nexp_017_llama_conll_n16_s456_r1024_run.log\\nexp_018_llama_scierc_seed123\\nexp_018_llama_scierc_seed123.log\\nexp_018_llama_scierc_seed42_r1024\\nexp_018_llama_scierc_seed456\\nexp_018_llama_scierc_seed456_r1024\\nexp_018_qwen_scierc_seed123\\nexp_018_qwen_scierc_seed123.log\\nexp_018_qwen_scierc_seed456\\ngate0_all_predictions.jsonl\\ngate0_ft002v2\\ngate0_ft002v2_ckpt400\\ngate0_realigned_predictions.jsonl\\ngate0_realigned_results.json\\ngate0_results.json\\ngate0_samples.json\\nllama_conll_n16_3seed_5signal_summary.json\\nlogprob_diagnosis\\nloo_sj_cross_dataset\\nmvp_pilot_001\\nmvp_pilot_001.log\\nmvp_pilot_003\\nmvp_pilot_004\\nmvp_pilot_005\\nn16_3seed_5signal_results.json\\nn16_3seed_analysis.py\\nn16_5signal_results.json\\nn8_5signal_results.json\\nreview_round2\\nreview_round4\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.99}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b8b11d62-6ca3-4151-bc4f-ed1130aa9fbf",
+  "uuid": "408c337e-bf04-4df9-b143-b2d680dee292",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"bootstrap_ci_nscaling\\\\nbootstrap_ci_summary.json\\\\nbootstrap_ci_tables.tex\\\\nconditional_filter_diagnosis.json\\\\nexp001_n16_seed123\\\\nexp001_n16_seed123_200only\\\\nexp001_n16_seed123_200only_backup\\\\nexp001_n16_seed123_full\\\\nexp001_n16_seed123_run.log\\\\nexp001_n16_seed42\\\\nexp001_n16_seed42_200only_backup\\\\nexp001_n16_seed42_run.log\\\\nexp001_n16_seed456\\\\nexp001_n16_seed456_200only\\\\nexp001_n16_seed456_run.log\\\\nexp001_seed123_t10_full\\\\nexp001_seed123_t10_full.log\\\\nexp001_seed456_t10_full\\\\nexp001_seed456_t10_full.log\\\\nexp002_conll2003\\\\nexp003_wnut17_dryrun\\\\nexp003_wnut17_eval\\\\nexp003_wnut17_eval.log\\\\nexp003_wnut17_pilot\\\\nexp003_wnut17_pilot.log\\\\nexp004_re_diagnostic\\\\nexp004v2_re_diagnostic\\\\nexp007_llama_dryrun\\\\nexp007_llama_inference\\\\nexp008_re_n16\\\\nexp008_re_n16_200only\\\\nexp008_re_n16_t10_full\\\\nexp008_re_n16_t10_full.log\\\\nexp009_stratification_results.json\\\\nexp010_selection_curves\\\\nexp016_signal_ensemble\\\\nexp018_3seed_5signal_results.json\\\\nexp_001_seed123_v2\\\\nexp_001_seed123_v2_r1024\\\\nexp_001_seed42_v2\\\\nexp_001_seed42_v2_r1024\\\\nexp_001_seed456_v2\\\\nexp_001_seed456_v2_ner\\\\nexp_001_seed456_v2_ner.log\\\\nexp_001_seed456_v2_ner_r1024\\\\nexp_002_conll_n16\\\\nexp_002_conll_n16.log\\\\nexp_002_conll_n16_r1024\\\\nexp_003_wnut17_v2_infer\\\\nexp_005_v2_temperature\\\\nexp_006_v2\\\\nexp_006_v2_run.log\\\\nexp_007_llama_n16\\\\nexp_007_llama_n16.log\\\\nexp_007_llama_n16_r1024\\\\nexp_007_llama_seed123\\\\nexp_007_llama_seed456\\\\nexp_008_re_n16_v2\\\\nexp_008_re_seed123\\\\nexp_009_v2\\\\nexp_009_v2_re_rerun\\\\nexp_009_v2_run.log\\\\nexp_011_ood_analysis\\\\nexp_011_ood_conll_to_scierc\\\\nexp_011_ood_scierc_to_conll\\\\nexp_011_ood_scierc_to_conll_run.log\\\\nexp_012_logprob\\\\nexp_012_rerun_1024\\\\nexp_015_unified\\\\nexp_015_v2\\\\nexp_016_rerun_1024\\\\nexp_016_v2\\\\nexp_017_llama_conll_infer\\\\nexp_017_llama_conll_infer.log\\\\nexp_017_llama_conll_n16\\\\nexp_017_llama_conll_n16_r1024\\\\nexp_017_llama_conll_n16_r1024_run.log\\\\nexp_017_llama_conll_n16_s123\\\\nexp_017_llama_conll_n16_s123.log\\\\nexp_017_llama_conll_n16_s123_r1024\\\\nexp_017_llama_conll_n16_s456\\\\nexp_017_llama_conll_n16_s456.log\\\\nexp_017_llama_conll_n16_s456_r1024\\\\nexp_017_llama_conll_n16_s456_r1024_run.log\\\\nexp_018_llama_scierc_seed123\\\\nexp_018_llama_scierc_seed123.log\\\\nexp_018_llama_scierc_seed42_r1024\\\\nexp_018_llama_scierc_seed456\\\\nexp_018_llama_scierc_seed456_r1024\\\\nexp_018_qwen_scierc_seed123\\\\nexp_018_qwen_scierc_seed123.log\\\\nexp_018_qwen_scierc_seed456\\\\ngate0_all_predictions.jsonl\\\\ngate0_ft002v2\\\\ngate0_ft002v2_ckpt400\\\\ngate0_realigned_predictions.jsonl\\\\ngate0_realigned_results.json\\\\ngate0_results.json\\\\ngate0_samples.json\\\\nllama_conll_n16_3seed_5signal_summary.json\\\\nlogprob_diagnosis\\\\nloo_sj_cross_dataset\\\\nmvp_pilot_001\\\\nmvp_pilot_001.log\\\\nmvp_pilot_003\\\\nmvp_pilot_004\\\\nmvp_pilot_005\\\\nn16_3seed_5signal_results.json\\\\nn16_3seed_analysis.py\\\\nn16_5signal_results.json\\\\nn8_5signal_results.json\\\\nreview_round2\\\\nreview_round4\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.99}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"bootstrap_ci_nscaling\\nbootstrap_ci_summary.json\\nbootstrap_ci_tables.tex\\nconditional_filter_diagnosis.json\\nexp001_n16_seed123\\nexp001_n16_seed123_200only\\nexp001_n16_seed123_200only_backup\\nexp001_n16_seed123_full\\nexp001_n16_seed123_run.log\\nexp001_n16_seed42\\nexp001_n16_seed42_200only_backup\\nexp001_n16_seed42_run.log\\nexp001_n16_seed456\\nexp001_n16_seed456_200only\\nexp001_n16_seed456_run.log\\nexp001_seed123_t10_full\\nexp001_seed123_t10_full.log\\nexp001_seed456_t10_full\\nexp001_seed456_t10_full.log\\nexp002_conll2003\\nexp003_wnut17_dryrun\\nexp003_wnut17_eval\\nexp003_wnut17_eval.log\\nexp003_wnut17_pilot\\nexp003_wnut17_pilot.log\\nexp004_re_diagnostic\\nexp004v2_re_diagnostic\\nexp007_llama_dryrun\\nexp007_llama_inference\\nexp008_re_n16\\nexp008_re_n16_200only\\nexp008_re_n16_t10_full\\nexp008_re_n16_t10_full.log\\nexp009_stratification_results.json\\nexp010_selection_curves\\nexp016_signal_ensemble\\nexp018_3seed_5signal_results.json\\nexp_001_seed123_v2\\nexp_001_seed123_v2_r1024\\nexp_001_seed42_v2\\nexp_001_seed42_v2_r1024\\nexp_001_seed456_v2\\nexp_001_seed456_v2_ner\\nexp_001_seed456_v2_ner.log\\nexp_001_seed456_v2_ner_r1024\\nexp_002_conll_n16\\nexp_002_conll_n16.log\\nexp_002_conll_n16_r1024\\nexp_003_wnut17_v2_infer\\nexp_005_v2_temperature\\nexp_006_v2\\nexp_006_v2_run.log\\nexp_007_llama_n16\\nexp_007_llama_n16.log\\nexp_007_llama_n16_r1024\\nexp_007_llama_seed123\\nexp_007_llama_seed456\\nexp_008_re_n16_v2\\nexp_008_re_seed123\\nexp_009_v2\\nexp_009_v2_re_rerun\\nexp_009_v2_run.log\\nexp_011_ood_analysis\\nexp_011_ood_conll_to_scierc\\nexp_011_ood_scierc_to_conll\\nexp_011_ood_scierc_to_conll_run.log\\nexp_012_logprob\\nexp_012_rerun_1024\\nexp_015_unified\\nexp_015_v2\\nexp_016_rerun_1024\\nexp_016_v2\\nexp_017_llama_conll_infer\\nexp_017_llama_conll_infer.log\\nexp_017_llama_conll_n16\\nexp_017_llama_conll_n16_r1024\\nexp_017_llama_conll_n16_r1024_run.log\\nexp_017_llama_conll_n16_s123\\nexp_017_llama_conll_n16_s123.log\\nexp_017_llama_conll_n16_s123_r1024\\nexp_017_llama_conll_n16_s456\\nexp_017_llama_conll_n16_s456.log\\nexp_017_llama_conll_n16_s456_r1024\\nexp_017_llama_conll_n16_s456_r1024_run.log\\nexp_018_llama_scierc_seed123\\nexp_018_llama_scierc_seed123.log\\nexp_018_llama_scierc_seed42_r1024\\nexp_018_llama_scierc_seed456\\nexp_018_llama_scierc_seed456_r1024\\nexp_018_qwen_scierc_seed123\\nexp_018_qwen_scierc_seed123.log\\nexp_018_qwen_scierc_seed456\\ngate0_all_predictions.jsonl\\ngate0_ft002v2\\ngate0_ft002v2_ckpt400\\ngate0_realigned_predictions.jsonl\\ngate0_realigned_results.json\\ngate0_results.json\\ngate0_samples.json\\nllama_conll_n16_3seed_5signal_summary.json\\nlogprob_diagnosis\\nloo_sj_cross_dataset\\nmvp_pilot_001\\nmvp_pilot_001.log\\nmvp_pilot_003\\nmvp_pilot_004\\nmvp_pilot_005\\nn16_3seed_5signal_results.json\\nn16_3seed_analysis.py\\nn16_5signal_results.json\\nn8_5signal_results.json\\nreview_round2\\nreview_round4\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.99}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 11_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I see many directories. Let me identify the relevant ones for 3-seed SciERC NER data with N=8 Qwen3-8B. The task says:
+- seed 42: output/exp_012_rerun_1024/samples_with_logprobs.jsonl
+- seed 123 and 456: search for them
+
+I also see exp_018_qwen_scierc_seed123, exp_018_qwen_scierc_seed456 which might be the Qwen SciERC seeds.
+
+
+For LLaMA, I'm looking at exp_017_llama_conll_n16* and exp_018_llama_scierc_* directories. I notice there are already some analysis files like n16_3seed_5signal_results.json and exp018_3seed_5signal_results.json that might contain precomputed results, so I should check those first along with the raw data format.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b8b11d62-6ca3-4151-bc4f-ed1130aa9fbf",
+  "uuid": "8db056e1-00dc-4dc2-931b-349d46389a0f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NQFw7DQbSsv78SxwBLEkQp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1652,
+      "cache_read_input_tokens": 25109,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1652
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01PZ9a57ie3Lj5RATQTnju5z`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "ls /root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b8b11d62-6ca3-4151-bc4f-ed1130aa9fbf",
+  "uuid": "d42a15de-efdc-49e7-8eba-2f20afcdf46b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NQFw7DQbSsv78SxwBLEkQp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1652,
+      "cache_read_input_tokens": 25109,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1652
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01UPVupVb8ZKvP7BkPgQsQZF`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "ls /root/autodl-tmp/struct_self_consist_ie/output/exp_018_qwen_scierc_seed123/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b8b11d62-6ca3-4151-bc4f-ed1130aa9fbf",
+  "uuid": "b2b22424-3247-4bc4-85d4-c7db11e364db",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NQFw7DQbSsv78SxwBLEkQp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1652,
+      "cache_read_input_tokens": 25109,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1652
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-15T12:43:13.293Z_
+
+<details><summary>↩ Tool result · `toolu_01PZ9a57ie3Lj5RATQTnju5z`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"all_signals_5signal.json\\nauroc_5signal.json\\ncomparison.json\\nreliability_data_1024.json\\nreport.json\\nrun.log\\nsamples.jsonl\\nsamples_with_logprobs.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b8b11d62-6ca3-4151-bc4f-ed1130aa9fbf",
+  "uuid": "6c26ebd0-8e0b-4cd2-b044-2982d1a7d07c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"all_signals_5signal.json\\\\nauroc_5signal.json\\\\ncomparison.json\\\\nreliability_data_1024.json\\\\nreport.json\\\\nrun.log\\\\nsamples.jsonl\\\\nsamples_with_logprobs.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"all_signals_5signal.json\\nauroc_5signal.json\\ncomparison.json\\nreliability_data_1024.json\\nreport.json\\nrun.log\\nsamples.jsonl\\nsamples_with_logprobs.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01A2qUWA6AWzgp1cG73D2DHF`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "ls /root/autodl-tmp/struct_self_consist_ie/output/exp_018_qwen_scierc_seed456/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b8b11d62-6ca3-4151-bc4f-ed1130aa9fbf",
+  "uuid": "f48eef7b-e5c0-410e-9406-64bfe05942f9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NQFw7DQbSsv78SxwBLEkQp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1652,
+      "cache_read_input_tokens": 25109,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1652
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-15T12:43:13.733Z_
+
+<details><summary>↩ Tool result · `toolu_01UPVupVb8ZKvP7BkPgQsQZF`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"report.json\\nsamples.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b8b11d62-6ca3-4151-bc4f-ed1130aa9fbf",
+  "uuid": "a62c781f-1d6d-476a-95b8-943925e5ff52",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"report.json\\\\nsamples.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"report.json\\nsamples.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-15T12:43:14.142Z_
+
+<details><summary>↩ Tool result · `toolu_01A2qUWA6AWzgp1cG73D2DHF`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"report.json\\nrun.log\\nsamples.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b8b11d62-6ca3-4151-bc4f-ed1130aa9fbf",
+  "uuid": "c5aa59ff-0211-422f-8a3d-2358460e48b8",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"report.json\\\\nrun.log\\\\nsamples.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"report.json\\nrun.log\\nsamples.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_013vXjCZfah744rU2MjFjTPS`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "head -5 /root/autodl-tmp/struct_self_consist_ie/output/exp018_3seed_5signal_results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b8b11d62-6ca3-4151-bc4f-ed1130aa9fbf",
+  "uuid": "75679d28-2468-43fc-bfd0-b147ba50ca6e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NQFw7DQbSsv78SxwBLEkQp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1652,
+      "cache_read_input_tokens": 25109,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1652
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-15T12:43:14.771Z_
+
+<details><summary>↩ Tool result · `toolu_013vXjCZfah744rU2MjFjTPS`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"qwen_seed42\\\": {\\n    \\\"n_total\\\": 551,\\n    \\\"n_valid\\\": 529,\\n    \\\"n_conditional\\\": 477,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b8b11d62-6ca3-4151-bc4f-ed1130aa9fbf",
+  "uuid": "8a8868ba-193d-4011-87ad-7fd529e25a0e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"qwen_seed42\\\\\\\": {\\\\n    \\\\\\\"n_total\\\\\\\": 551,\\\\n    \\\\\\\"n_valid\\\\\\\": 529,\\\\n    \\\\\\\"n_conditional\\\\\\\": 477,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"qwen_seed42\\\": {\\n    \\\"n_total\\\": 551,\\n    \\\"n_valid\\\": 529,\\n    \\\"n_conditional\\\": 477,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 20_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me check the existing results file and the data format more thoroughly.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b8b11d62-6ca3-4151-bc4f-ed1130aa9fbf",
+  "uuid": "51f3123e-93ad-4bc9-9c2d-550f064f3b1f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DPEpbMozGZ2F1eer3t1BGq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1305,
+      "cache_read_input_tokens": 26761,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1305
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 21_
+
+Let me check the existing results and data format in detail.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b8b11d62-6ca3-4151-bc4f-ed1130aa9fbf",
+  "uuid": "b5148738-6113-465b-a570-5b35e378fd6b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DPEpbMozGZ2F1eer3t1BGq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1305,
+      "cache_read_input_tokens": 26761,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1305
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Fi1nyKJc4oKM36xuGp2NVF`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "head -1 /root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/samples_with_logprobs.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b8b11d62-6ca3-4151-bc4f-ed1130aa9fbf",
+  "uuid": "fb5ac499-e4bd-4dd2-bb0a-140c5e3a97e6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DPEpbMozGZ2F1eer3t1BGq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1305,
+      "cache_read_input_tokens": 26761,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1305
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-15T12:43:19.904Z_
+
+<details><summary>↩ Tool result · `toolu_01Fi1nyKJc4oKM36xuGp2NVF`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"id\\\": \\\"X96-1059_sent000\\\", \\\"text\\\": \\\"Recognition of proper nouns in Japanese text has been studied as a part of the more general problem of morphological analysis in Japanese text processing -LRB- -LSB- 1 -RSB- -LSB- 2 -RSB- -RRB- .\\\", \\\"gold\\\": {\\\"entities\\\": [{\\\"text\\\": \\\"Recognition of proper nouns\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 0, \\\"end\\\": 27}, {\\\"text\\\": \\\"proper nouns\\\", \\\"type\\\": \\\"OtherScientificTerm\\\", \\\"start\\\": 15, \\\"end\\\": 27}, {\\\"text\\\": \\\"Japanese text\\\", \\\"type\\\": \\\"Material\\\", \\\"start\\\": 31, \\\"end\\\": 44}, {\\\"text\\\": \\\"morphological analysis\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 103, \\\"end\\\": 125}, {\\\"text\\\": \\\"Japanese text processing\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 129, \\\"end\\\": 153}], \\\"relations\\\": [{\\\"head\\\": \\\"Recognition of proper nouns\\\", \\\"tail\\\": \\\"morphological analysis\\\", \\\"type\\\": \\\"PART-OF\\\", \\\"head_start\\\": 0, \\\"head_end\\\": 27, \\\"tail_start\\\": 103, \\\"tail_end\\\": 125}, {\\\"head\\\": \\\"proper nouns\\\", \\\"tail\\\": \\\"Japanese text\\\", \\\"type\\\": \\\"PART-OF\\\", \\\"head_start\\\": 15, \\\"head_end\\\": 27, \\\"tail_start\\\": 31, \\\"tail_end\\\": 44}, {\\\"head\\\": \\\"morphological analysis\\\", \\\"tail\\\": \\\"Japanese text processing\\\", \\\"type\\\": \\\"USED-FOR\\\", \\\"head_start\\\": 103, \\\"head_end\\\": 125, \\\"tail_start\\\": 129, \\\"tail_end\\\": 153}], \\\"events\\\": []}, \\\"samples\\\": [{\\\"entities\\\": [{\\\"text\\\": \\\"Recognition of proper nouns\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 0, \\\"end\\\": 27}, {\\\"text\\\": \\\"Japanese text\\\", \\\"type\\\": \\\"Material\\\", \\\"start\\\": 31, \\\"end\\\": 44}, {\\\"text\\\": \\\"morphological analysis\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 103, \\\"end\\\": 125}, {\\\"text\\\": \\\"Japanese text processing\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 129, \\\"end\\\": 153}], \\\"relations\\\": [{\\\"head\\\": \\\"Recognition of proper nouns\\\", \\\"tail\\\": \\\"morphological analysis\\\", \\\"type\\\": \\\"PART-OF\\\", \\\"head_start\\\": 0, \\\"head_end\\\": 27, \\\"tail_start\\\": 103, \\\"tail_end\\\": 125}, {\\\"head\\\": \\\"morphological analysis\\\", \\\"tail\\\": \\\"Japanese text processing\\\", \\\"type\\\": \\\"PART-OF\\\", \\\"head_start\\\": 103, \\\"head_end\\\": 125, \\\"tail_start\\\": 129, \\\"tail_end\\\": 153}], \\\"events\\\": [], \\\"cumulative_logprob\\\": -5.878218486708363, \\\"n_tokens\\\": 245, \\\"mean_logprob\\\": -0.02399272851717699}, {\\\"entities\\\": [{\\\"text\\\": \\\"Recognition of proper nouns\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 0, \\\"end\\\": 27}, {\\\"text\\\": \\\"Japanese text\\\", \\\"type\\\": \\\"Material\\\", \\\"start\\\": 31, \\\"end\\\": 44}, {\\\"text\\\": \\\"morphological analysis in Japanese text processing\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 103, \\\"end\\\": 153}], \\\"relations\\\": [{\\\"head\\\": \\\"Recognition of proper nouns\\\", \\\"tail\\\": \\\"morphological analysis in Japanese text processing\\\", \\\"type\\\": \\\"HYPONYM-OF\\\", \\\"head_start\\\": 0, \\\"head_end\\\": 27, \\\"tail_start\\\": 103, \\\"tail_end\\\": 153}], \\\"events\\\": [], \\\"cumulative_logprob\\\": -12.800377187189454, \\\"n_tokens\\\": 166, \\\"mean_logprob\\\": -0.07711070594692443}, {\\\"entities\\\": [{\\\"text\\\": \\\"Recognition of proper nouns in Japanese text\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 0, \\\"end\\\": 44}, {\\\"text\\\": \\\"Japanese text\\\", \\\"type\\\": \\\"Material\\\", \\\"start\\\": 31, \\\"end\\\": 44}, {\\\"text\\\": \\\"morphological analysis in Japanese text processing\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 103, \\\"end\\\": 153}, {\\\"text\\\": \\\"Japanese text processing\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 129, \\\"end\\\": 153}], \\\"relations\\\": [{\\\"head\\\": \\\"Recognition of proper nouns in Japanese text\\\", \\\"tail\\\": \\\"morphological analysis in Japanese text processing\\\", \\\"type\\\": \\\"PART-OF\\\", \\\"head_start\\\": 0, \\\"head_end\\\": 44, \\\"tail_start\\\": 103, \\\"tail_end\\\": 153}, {\\\"head\\\": \\\"Japanese text\\\", \\\"tail\\\": \\\"Recognition of proper nouns in Japanese text\\\", \\\"type\\\": \\\"USED-FOR\\\", \\\"head_start\\\": 31, \\\"head_end\\\": 44, \\\"tail_start\\\": 0, \\\"tail_end\\\": 44}, {\\\"head\\\": \\\"Japanese text processing\\\", \\\"tail\\\": \\\"morphological analysis in Japanese text processing\\\", \\\"type\\\": \\\"USED-FOR\\\", \\\"head_start\\\": 129, \\\"head_end\\\": 153, \\\"tail_start\\\": 103, \\\"tail_end\\\": 153}], \\\"events\\\": [], \\\"cumulative_logprob\\\": -16.07227141605891, \\\"n_tokens\\\": 321, \\\"mean_logprob\\\": -0.050069381358438976}, {\\\"entities\\\": [{\\\"text\\\": \\\"Recognition of proper nouns\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 0, \\\"end\\\": 27}, {\\\"text\\\": \\\"Japanese text\\\", \\\"type\\\": \\\"Material\\\", \\\"start\\\": 31, \\\"end\\\": 44}, {\\\"text\\\": \\\"morphological analysis\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 103, \\\"end\\\": 125}, {\\\"text\\\": \\\"Japanese text processing\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 129, \\\"end\\\": 153}], \\\"relations\\\": [{\\\"head\\\": \\\"Recognition of proper nouns\\\", \\\"tail\\\": \\\"morphological analysis\\\", \\\"type\\\": \\\"PART-OF\\\", \\\"head_start\\\": 0, \\\"head_end\\\": 27, \\\"tail_start\\\": 103, \\\"tail_end\\\": 125}, {\\\"head\\\": \\\"morphological analysis\\\", \\\"tail\\\": \\\"Japanese text processing\\\", \\\"type\\\": \\\"PART-OF\\\", \\\"head_start\\\": 103, \\\"head_end\\\": 125, \\\"tail_start\\\": 129, \\\"tail_end\\\": 153}], \\\"events\\\": [], \\\"cumulative_logprob\\\": -5.96883521745351, \\\"n_tokens\\\": 245, \\\"mean_logprob\\\": -0.02436259272430004}, {\\\"entities\\\": [{\\\"text\\\": \\\"Recognition of proper nouns in Japanese text\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 0, \\\"end\\\": 44}, {\\\"text\\\": \\\"morphological analysis in Japanese text processing\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 103, \\\"end\\\": 153}], \\\"relations\\\": [{\\\"head\\\": \\\"Recognition of proper nouns in Japanese text\\\", \\\"tail\\\": \\\"morphological analysis in Japanese text processing\\\", \\\"type\\\": \\\"PART-OF\\\", \\\"head_start\\\": 0, \\\"head_end\\\": 44, \\\"tail_start\\\": 103, \\\"tail_end\\\": 153}], \\\"events\\\": [], \\\"cumulative_logprob\\\": -10.113391927922542, \\\"n_tokens\\\": 142, \\\"mean_logprob\\\": -0.07122106991494748}, {\\\"entities\\\": [{\\\"text\\\": \\\"Recognition of proper nouns in Japanese text\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 0, \\\"end\\\": 44}, {\\\"text\\\": \\\"Japanese text\\\", \\\"type\\\": \\\"Material\\\", \\\"start\\\": 31, \\\"end\\\": 44}, {\\\"text\\\": \\\"morphological analysis in Japanese text processing\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 103, \\\"end\\\": 153}, {\\\"text\\\": \\\"Japanese text processing\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 129, \\\"end\\\": 153}], \\\"relations\\\": [{\\\"head\\\": \\\"Recognition of proper nouns in Japanese text\\\", \\\"tail\\\": \\\"morphological analysis in Japanese text processing\\\", \\\"type\\\": \\\"PART-OF\\\", \\\"head_start\\\": 0, \\\"head_end\\\": 44, \\\"tail_start\\\": 103, \\\"tail_end\\\": 153}], \\\"events\\\": [], \\\"cumulative_logprob\\\": -16.09900613418663, \\\"n_tokens\\\": 199, \\\"mean_logprob\\\": -0.08089952831249564}, {\\\"entities\\\": [{\\\"text\\\": \\\"Recognition of proper nouns\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 0, \\\"end\\\": 27}, {\\\"text\\\": \\\"Japanese text\\\", \\\"type\\\": \\\"Material\\\", \\\"start\\\": 31, \\\"end\\\": 44}, {\\\"text\\\": \\\"morphological analysis in Japanese text processing\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 103, \\\"end\\\": 153}], \\\"relations\\\": [{\\\"head\\\": \\\"Recognition of proper nouns\\\", \\\"tail\\\": \\\"morphological analysis in Japanese text processing\\\", \\\"type\\\": \\\"PART-OF\\\", \\\"head_start\\\": 0, \\\"head_end\\\": 27, \\\"tail_start\\\": 103, \\\"tail_end\\\": 153}], \\\"events\\\": [], \\\"cumulative_logprob\\\": -6.964997925420548, \\\"n_tokens\\\": 163, \\\"mean_logprob\\\": -0.04273004862221195}, {\\\"entities\\\": [{\\\"text\\\": \\\"Recognition of proper nouns\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 0, \\\"end\\\": 27}, {\\\"text\\\": \\\"Japanese text\\\", \\\"type\\\": \\\"Material\\\", \\\"start\\\": 31, \\\"end\\\": 44}, {\\\"text\\\": \\\"morphological analysis in Japanese text processing\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 103, \\\"end\\\": 153}], \\\"relations\\\": [{\\\"head\\\": \\\"Recognition of proper nouns\\\", \\\"tail\\\": \\\"morphological analysis in Japanese text processing\\\", \\\"type\\\": \\\"HYPONYM-OF\\\", \\\"head_start\\\": 0, \\\"head_end\\\": 27, \\\"tail_start\\\": 103, \\\"tail_end\\\": 153}], \\\"events\\\": [], \\\"cumulative_logprob\\\": -9.771506645457862, \\\"n_tokens\\\": 166, \\\"mean_logprob\\\": -0.05886449786420399}], \\\"greedy\\\": {\\\"entities\\\": [{\\\"text\\\": \\\"Recognition of proper nouns\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 0, \\\"end\\\": 27}, {\\\"text\\\": \\\"Japanese text\\\", \\\"type\\\": \\\"Material\\\", \\\"start\\\": 31, \\\"end\\\": 44}, {\\\"text\\\": \\\"morphological analysis\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 103, \\\"end\\\": 125}, {\\\"text\\\": \\\"Japanese text processing\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 129, \\\"end\\\": 153}], \\\"relations\\\": [{\\\"head\\\": \\\"Recognition of proper nouns\\\", \\\"tail\\\": \\\"morphological analysis\\\", \\\"type\\\": \\\"PART-OF\\\", \\\"head_start\\\": 0, \\\"head_end\\\": 27, \\\"tail_start\\\": 103, \\\"tail_end\\\": 125}, {\\\"head\\\": \\\"morphological analysis\\\", \\\"tail\\\": \\\"Japanese text processing\\\", \\\"type\\\": \\\"PART-OF\\\", \\\"head_start\\\": 103, \\\"head_end\\\": 125, \\\"tail_start\\\": 129, \\\"tail_end\\\": 153}], \\\"events\\\": [], \\\"cumulative_logprob\\\": -5.047854914725477, \\\"n_tokens\\\": 245, \\\"mean_logprob\\\": -0.02060348944785909}, \\\"logprobs\\\": [-0.02399272851717699, -0.07711070594692443, -0.050069381358438976, -0.02436259272430004, -0.07122106991494748, -0.08089952831249564, -0.04273004862221195, -0.05886449786420399]}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b8b11d62-6ca3-4151-bc4f-ed1130aa9fbf",
+  "uuid": "bf99e8fb-aac2-4047-b515-e2463a553187",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"id\\\\\\\": \\\\\\\"X96-1059_sent000\\\\\\\", \\\\\\\"text\\\\\\\": \\\\\\\"Recognition of proper nouns in Japanese text has been studied as a part of the more general problem of morphological analysis in Japanese text processing -LRB- -LSB- 1 -RSB- -LSB- 2 -RSB- -RRB- .\\\\\\\", \\\\\\\"gold\\\\\\\": {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"Recognition of proper nouns\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 0, \\\\\\\"end\\\\\\\": 27}, {\\\\\\\"text\\\\\\\": \\\\\\\"proper nouns\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"OtherScientificTerm\\\\\\\", \\\\\\\"start\\\\\\\": 15, \\\\\\\"end\\\\\\\": 27}, {\\\\\\\"text\\\\\\\": \\\\\\\"Japanese text\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Material\\\\\\\", \\\\\\\"start\\\\\\\": 31, \\\\\\\"end\\\\\\\": 44}, {\\\\\\\"text\\\\\\\": \\\\\\\"morphological analysis\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 103, \\\\\\\"end\\\\\\\": 125}, {\\\\\\\"text\\\\\\\": \\\\\\\"Japanese text processing\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 129, \\\\\\\"end\\\\\\\": 153}], \\\\\\\"relations\\\\\\\": [{\\\\\\\"head\\\\\\\": \\\\\\\"Recognition of proper nouns\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"morphological analysis\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"PART-OF\\\\\\\", \\\\\\\"head_start\\\\\\\": 0, \\\\\\\"head_end\\\\\\\": 27, \\\\\\\"tail_start\\\\\\\": 103, \\\\\\\"tail_end\\\\\\\": 125}, {\\\\\\\"head\\\\\\\": \\\\\\\"proper nouns\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"Japanese text\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"PART-OF\\\\\\\", \\\\\\\"head_start\\\\\\\": 15, \\\\\\\"head_end\\\\\\\": 27, \\\\\\\"tail_start\\\\\\\": 31, \\\\\\\"tail_end\\\\\\\": 44}, {\\\\\\\"head\\\\\\\": \\\\\\\"morphological analysis\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"Japanese text processing\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"USED-FOR\\\\\\\", \\\\\\\"head_start\\\\\\\": 103, \\\\\\\"head_end\\\\\\\": 125, \\\\\\\"tail_start\\\\\\\": 129, \\\\\\\"tail_end\\\\\\\": 153}], \\\\\\\"events\\\\\\\": []}, \\\\\\\"samples\\\\\\\": [{\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"Recognition of proper nouns\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 0, \\\\\\\"end\\\\\\\": 27}, {\\\\\\\"text\\\\\\\": \\\\\\\"Japanese text\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Material\\\\\\\", \\\\\\\"start\\\\\\\": 31, \\\\\\\"end\\\\\\\": 44}, {\\\\\\\"text\\\\\\\": \\\\\\\"morphological analysis\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 103, \\\\\\\"end\\\\\\\": 125}, {\\\\\\\"text\\\\\\\": \\\\\\\"Japanese text processing\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 129, \\\\\\\"end\\\\\\\": 153}], \\\\\\\"relations\\\\\\\": [{\\\\\\\"head\\\\\\\": \\\\\\\"Recognition of proper nouns\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"morphological analysis\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"PART-OF\\\\\\\", \\\\\\\"head_start\\\\\\\": 0, \\\\\\\"head_end\\\\\\\": 27, \\\\\\\"tail_start\\\\\\\": 103, \\\\\\\"tail_end\\\\\\\": 125}, {\\\\\\\"head\\\\\\\": \\\\\\\"morphological analysis\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"Japanese text processing\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"PART-OF\\\\\\\", \\\\\\\"head_start\\\\\\\": 103, \\\\\\\"head_end\\\\\\\": 125, \\\\\\\"tail_start\\\\\\\": 129, \\\\\\\"tail_end\\\\\\\": 153}], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -5.878218486708363, \\\\\\\"n_tokens\\\\\\\": 245, \\\\\\\"mean_logprob\\\\\\\": -0.02399272851717699}, {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"Recognition of proper nouns\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 0, \\\\\\\"end\\\\\\\": 27}, {\\\\\\\"text\\\\\\\": \\\\\\\"Japanese text\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Material\\\\\\\", \\\\\\\"start\\\\\\\": 31, \\\\\\\"end\\\\\\\": 44}, {\\\\\\\"text\\\\\\\": \\\\\\\"morphological analysis in Japanese text processing\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 103, \\\\\\\"end\\\\\\\": 153}], \\\\\\\"relations\\\\\\\": [{\\\\\\\"head\\\\\\\": \\\\\\\"Recognition of proper nouns\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"morphological analysis in Japanese text processing\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"HYPONYM-OF\\\\\\\", \\\\\\\"head_start\\\\\\\": 0, \\\\\\\"head_end\\\\\\\": 27, \\\\\\\"tail_start\\\\\\\": 103, \\\\\\\"tail_end\\\\\\\": 153}], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -12.800377187189454, \\\\\\\"n_tokens\\\\\\\": 166, \\\\\\\"mean_logprob\\\\\\\": -0.07711070594692443}, {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"Recognition of proper nouns in Japanese text\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 0, \\\\\\\"end\\\\\\\": 44}, {\\\\\\\"text\\\\\\\": \\\\\\\"Japanese text\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Material\\\\\\\", \\\\\\\"start\\\\\\\": 31, \\\\\\\"end\\\\\\\": 44}, {\\\\\\\"text\\\\\\\": \\\\\\\"morphological analysis in Japanese text processing\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 103, \\\\\\\"end\\\\\\\": 153}, {\\\\\\\"text\\\\\\\": \\\\\\\"Japanese text processing\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 129, \\\\\\\"end\\\\\\\": 153}], \\\\\\\"relations\\\\\\\": [{\\\\\\\"head\\\\\\\": \\\\\\\"Recognition of proper nouns in Japanese text\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"morphological analysis in Japanese text processing\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"PART-OF\\\\\\\", \\\\\\\"head_start\\\\\\\": 0, \\\\\\\"head_end\\\\\\\": 44, \\\\\\\"tail_start\\\\\\\": 103, \\\\\\\"tail_end\\\\\\\": 153}, {\\\\\\\"head\\\\\\\": \\\\\\\"Japanese text\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"Recognition of proper nouns in Japanese text\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"USED-FOR\\\\\\\", \\\\\\\"head_start\\\\\\\": 31, \\\\\\\"head_end\\\\\\\": 44, \\\\\\\"tail_start\\\\\\\": 0, \\\\\\\"tail_end\\\\\\\": 44}, {\\\\\\\"head\\\\\\\": \\\\\\\"Japanese text processing\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"morphological analysis in Japanese text processing\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"USED-FOR\\\\\\\", \\\\\\\"head_start\\\\\\\": 129, \\\\\\\"head_end\\\\\\\": 153, \\\\\\\"tail_start\\\\\\\": 103, \\\\\\\"tail_end\\\\\\\": 153}], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -16.07227141605891, \\\\\\\"n_tokens\\\\\\\": 321, \\\\\\\"mean_logprob\\\\\\\": -0.050069381358438976}, {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"Recognition of proper nouns\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 0, \\\\\\\"end\\\\\\\": 27}, {\\\\\\\"text\\\\\\\": \\\\\\\"Japanese text\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Material\\\\\\\", \\\\\\\"start\\\\\\\": 31, \\\\\\\"end\\\\\\\": 44}, {\\\\\\\"text\\\\\\\": \\\\\\\"morphological analysis\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 103, \\\\\\\"end\\\\\\\": 125}, {\\\\\\\"text\\\\\\\": \\\\\\\"Japanese text processing\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 129, \\\\\\\"end\\\\\\\": 153}], \\\\\\\"relations\\\\\\\": [{\\\\\\\"head\\\\\\\": \\\\\\\"Recognition of proper nouns\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"morphological analysis\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"PART-OF\\\\\\\", \\\\\\\"head_start\\\\\\\": 0, \\\\\\\"head_end\\\\\\\": 27, \\\\\\\"tail_start\\\\\\\": 103, \\\\\\\"tail_end\\\\\\\": 125}, {\\\\\\\"head\\\\\\\": \\\\\\\"morphological analysis\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"Japanese text processing\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"PART-OF\\\\\\\", \\\\\\\"head_start\\\\\\\": 103, \\\\\\\"head_end\\\\\\\": 125, \\\\\\\"tail_start\\\\\\\": 129, \\\\\\\"tail_end\\\\\\\": 153}], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -5.96883521745351, \\\\\\\"n_tokens\\\\\\\": 245, \\\\\\\"mean_logprob\\\\\\\": -0.02436259272430004}, {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"Recognition of proper nouns in Japanese text\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 0, \\\\\\\"end\\\\\\\": 44}, {\\\\\\\"text\\\\\\\": \\\\\\\"morphological analysis in Japanese text processing\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 103, \\\\\\\"end\\\\\\\": 153}], \\\\\\\"relations\\\\\\\": [{\\\\\\\"head\\\\\\\": \\\\\\\"Recognition of proper nouns in Japanese text\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"morphological analysis in Japanese text processing\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"PART-OF\\\\\\\", \\\\\\\"head_start\\\\\\\": 0, \\\\\\\"head_end\\\\\\\": 44, \\\\\\\"tail_start\\\\\\\": 103, \\\\\\\"tail_end\\\\\\\": 153}], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -10.113391927922542, \\\\\\\"n_tokens\\\\\\\": 142, \\\\\\\"mean_logprob\\\\\\\": -0.07122106991494748}, {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"Recognition of proper nouns in Japanese text\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 0, \\\\\\\"end\\\\\\\": 44}, {\\\\\\\"text\\\\\\\": \\\\\\\"Japanese text\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Material\\\\\\\", \\\\\\\"start\\\\\\\": 31, \\\\\\\"end\\\\\\\": 44}, {\\\\\\\"text\\\\\\\": \\\\\\\"morphological analysis in Japanese text processing\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 103, \\\\\\\"end\\\\\\\": 153}, {\\\\\\\"text\\\\\\\": \\\\\\\"Japanese text processing\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 129, \\\\\\\"end\\\\\\\": 153}], \\\\\\\"relations\\\\\\\": [{\\\\\\\"head\\\\\\\": \\\\\\\"Recognition of proper nouns in Japanese text\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"morphological analysis in Japanese text processing\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"PART-OF\\\\\\\", \\\\\\\"head_start\\\\\\\": 0, \\\\\\\"head_end\\\\\\\": 44, \\\\\\\"tail_start\\\\\\\": 103, \\\\\\\"tail_end\\\\\\\": 153}], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -16.09900613418663, \\\\\\\"n_tokens\\\\\\\": 199, \\\\\\\"mean_logprob\\\\\\\": -0.08089952831249564}, {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"Recognition of proper nouns\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 0, \\\\\\\"end\\\\\\\": 27}, {\\\\\\\"text\\\\\\\": \\\\\\\"Japanese text\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Material\\\\\\\", \\\\\\\"start\\\\\\\": 31, \\\\\\\"end\\\\\\\": 44}, {\\\\\\\"text\\\\\\\": \\\\\\\"morphological analysis in Japanese text processing\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 103, \\\\\\\"end\\\\\\\": 153}], \\\\\\\"relations\\\\\\\": [{\\\\\\\"head\\\\\\\": \\\\\\\"Recognition of proper nouns\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"morphological analysis in Japanese text processing\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"PART-OF\\\\\\\", \\\\\\\"head_start\\\\\\\": 0, \\\\\\\"head_end\\\\\\\": 27, \\\\\\\"tail_start\\\\\\\": 103, \\\\\\\"tail_end\\\\\\\": 153}], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -6.964997925420548, \\\\\\\"n_tokens\\\\\\\": 163, \\\\\\\"mean_logprob\\\\\\\": -0.04273004862221195}, {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"Recognition of proper nouns\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 0, \\\\\\\"end\\\\\\\": 27}, {\\\\\\\"text\\\\\\\": \\\\\\\"Japanese text\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Material\\\\\\\", \\\\\\\"start\\\\\\\": 31, \\\\\\\"end\\\\\\\": 44}, {\\\\\\\"text\\\\\\\": \\\\\\\"morphological analysis in Japanese text processing\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 103, \\\\\\\"end\\\\\\\": 153}], \\\\\\\"relations\\\\\\\": [{\\\\\\\"head\\\\\\\": \\\\\\\"Recognition of proper nouns\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"morphological analysis in Japanese text processing\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"HYPONYM-OF\\\\\\\", \\\\\\\"head_start\\\\\\\": 0, \\\\\\\"head_end\\\\\\\": 27, \\\\\\\"tail_start\\\\\\\": 103, \\\\\\\"tail_end\\\\\\\": 153}], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -9.771506645457862, \\\\\\\"n_tokens\\\\\\\": 166, \\\\\\\"mean_logprob\\\\\\\": -0.05886449786420399}], \\\\\\\"greedy\\\\\\\": {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"Recognition of proper nouns\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 0, \\\\\\\"end\\\\\\\": 27}, {\\\\\\\"text\\\\\\\": \\\\\\\"Japanese text\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Material\\\\\\\", \\\\\\\"start\\\\\\\": 31, \\\\\\\"end\\\\\\\": 44}, {\\\\\\\"text\\\\\\\": \\\\\\\"morphological analysis\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 103, \\\\\\\"end\\\\\\\": 125}, {\\\\\\\"text\\\\\\\": \\\\\\\"Japanese text processing\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 129, \\\\\\\"end\\\\\\\": 153}], \\\\\\\"relations\\\\\\\": [{\\\\\\\"head\\\\\\\": \\\\\\\"Recognition of proper nouns\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"morphological analysis\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"PART-OF\\\\\\\", \\\\\\\"head_start\\\\\\\": 0, \\\\\\\"head_end\\\\\\\": 27, \\\\\\\"tail_start\\\\\\\": 103, \\\\\\\"tail_end\\\\\\\": 125}, {\\\\\\\"head\\\\\\\": \\\\\\\"morphological analysis\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"Japanese text processing\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"PART-OF\\\\\\\", \\\\\\\"head_start\\\\\\\": 103, \\\\\\\"head_end\\\\\\\": 125, \\\\\\\"tail_start\\\\\\\": 129, \\\\\\\"tail_end\\\\\\\": 153}], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -5.047854914725477, \\\\\\\"n_tokens\\\\\\\": 245, \\\\\\\"mean_logprob\\\\\\\": -0.02060348944785909}, \\\\\\\"logprobs\\\\\\\": [-0.02399272851717699, -0.07711070594692443, -0.050069381358438976, -0.02436259272430004, -0.07122106991494748, -0.08089952831249564, -0.04273004862221195, -0.05886449786420399]}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\\"id\\\": \\\"X96-1059_sent000\\\", \\\"text\\\": \\\"Recognition of proper nouns in Japanese text has been studied as a part of the more general problem of morphological analysis in Japanese text processing -LRB- -LSB- 1 -RSB- -LSB- 2 -RSB- -RRB- .\\\", \\\"gold\\\": {\\\"entities\\\": [{\\\"text\\\": \\\"Recognition of proper nouns\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 0, \\\"end\\\": 27}, {\\\"text\\\": \\\"proper nouns\\\", \\\"type\\\": \\\"OtherScientificTerm\\\", \\\"start\\\": 15, \\\"end\\\": 27}, {\\\"text\\\": \\\"Japanese text\\\", \\\"type\\\": \\\"Material\\\", \\\"start\\\": 31, \\\"end\\\": 44}, {\\\"text\\\": \\\"morphological analysis\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 103, \\\"end\\\": 125}, {\\\"text\\\": \\\"Japanese text processing\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 129, \\\"end\\\": 153}], \\\"relations\\\": [{\\\"head\\\": \\\"Recognition of proper nouns\\\", \\\"tail\\\": \\\"morphological analysis\\\", \\\"type\\\": \\\"PART-OF\\\", \\\"head_start\\\": 0, \\\"head_end\\\": 27, \\\"tail_start\\\": 103, \\\"tail_end\\\": 125}, {\\\"head\\\": \\\"proper nouns\\\", \\\"tail\\\": \\\"Japanese text\\\", \\\"type\\\": \\\"PART-OF\\\", \\\"head_start\\\": 15, \\\"head_end\\\": 27, \\\"tail_start\\\": 31, \\\"tail_end\\\": 44}, {\\\"head\\\": \\\"morphological analysis\\\", \\\"tail\\\": \\\"Japanese text processing\\\", \\\"type\\\": \\\"USED-FOR\\\", \\\"head_start\\\": 103, \\\"head_end\\\": 125, \\\"tail_start\\\": 129, \\\"tail_end\\\": 153}], \\\"events\\\": []}, \\\"samples\\\": [{\\\"entities\\\": [{\\\"text\\\": \\\"Recognition of proper nouns\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 0, \\\"end\\\": 27}, {\\\"text\\\": \\\"Japanese text\\\", \\\"type\\\": \\\"Material\\\", \\\"start\\\": 31, \\\"end\\\": 44}, {\\\"text\\\": \\\"morphological analysis\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 103, \\\"end\\\": 125}, {\\\"text\\\": \\\"Japanese text processing\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 129, \\\"end\\\": 153}], \\\"relations\\\": [{\\\"head\\\": \\\"Recognition of proper nouns\\\", \\\"tail\\\": \\\"morphological analysis\\\", \\\"type\\\": \\\"PART-OF\\\", \\\"head_start\\\": 0, \\\"head_end\\\": 27, \\\"tail_start\\\": 103, \\\"tail_end\\\": 125}, {\\\"head\\\": \\\"morphological analysis\\\", \\\"tail\\\": \\\"Japanese text processing\\\", \\\"type\\\": \\\"PART-OF\\\", \\\"head_start\\\": 103, \\\"head_end\\\": 125, \\\"tail_start\\\": 129, \\\"tail_end\\\": 153}], \\\"events\\\": [], \\\"cumulative_logprob\\\": -5.878218486708363, \\\"n_tokens\\\": 245, \\\"mean_logprob\\\": -0.02399272851717699}, {\\\"entities\\\": [{\\\"text\\\": \\\"Recognition of proper nouns\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 0, \\\"end\\\": 27}, {\\\"text\\\": \\\"Japanese text\\\", \\\"type\\\": \\\"Material\\\", \\\"start\\\": 31, \\\"end\\\": 44}, {\\\"text\\\": \\\"morphological analysis in Japanese text processing\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 103, \\\"end\\\": 153}], \\\"relations\\\": [{\\\"head\\\": \\\"Recognition of proper nouns\\\", \\\"tail\\\": \\\"morphological analysis in Japanese text processing\\\", \\\"type\\\": \\\"HYPONYM-OF\\\", \\\"head_start\\\": 0, \\\"head_end\\\": 27, \\\"tail_start\\\": 103, \\\"tail_end\\\": 153}], \\\"events\\\": [], \\\"cumulative_logprob\\\": -12.800377187189454, \\\"n_tokens\\\": 166, \\\"mean_logprob\\\": -0.07711070594692443}, {\\\"entities\\\": [{\\\"text\\\": \\\"Recognition of proper nouns in Japanese text\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 0, \\\"end\\\": 44}, {\\\"text\\\": \\\"Japanese text\\\", \\\"type\\\": \\\"Material\\\", \\\"start\\\": 31, \\\"end\\\": 44}, {\\\"text\\\": \\\"morphological analysis in Japanese text processing\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 103, \\\"end\\\": 153}, {\\\"text\\\": \\\"Japanese text processing\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 129, \\\"end\\\": 153}], \\\"relations\\\": [{\\\"head\\\": \\\"Recognition of proper nouns in Japanese text\\\", \\\"tail\\\": \\\"morphological analysis in Japanese text processing\\\", \\\"type\\\": \\\"PART-OF\\\", \\\"head_start\\\": 0, \\\"head_end\\\": 44, \\\"tail_start\\\": 103, \\\"tail_end\\\": 153}, {\\\"head\\\": \\\"Japanese text\\\", \\\"tail\\\": \\\"Recognition of proper nouns in Japanese text\\\", \\\"type\\\": \\\"USED-FOR\\\", \\\"head_start\\\": 31, \\\"head_end\\\": 44, \\\"tail_start\\\": 0, \\\"tail_end\\\": 44}, {\\\"head\\\": \\\"Japanese text processing\\\", \\\"tail\\\": \\\"morphological analysis in Japanese text processing\\\", \\\"type\\\": \\\"USED-FOR\\\", \\\"head_start\\\": 129, \\\"head_end\\\": 153, \\\"tail_start\\\": 103, \\\"tail_end\\\": 153}], \\\"events\\\": [], \\\"cumulative_logprob\\\": -16.07227141605891, \\\"n_tokens\\\": 321, \\\"mean_logprob\\\": -0.050069381358438976}, {\\\"entities\\\": [{\\\"text\\\": \\\"Recognition of proper nouns\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 0, \\\"end\\\": 27}, {\\\"text\\\": \\\"Japanese text\\\", \\\"type\\\": \\\"Material\\\", \\\"start\\\": 31, \\\"end\\\": 44}, {\\\"text\\\": \\\"morphological analysis\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 103, \\\"end\\\": 125}, {\\\"text\\\": \\\"Japanese text processing\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 129, \\\"end\\\": 153}], \\\"relations\\\": [{\\\"head\\\": \\\"Recognition of proper nouns\\\", \\\"tail\\\": \\\"morphological analysis\\\", \\\"type\\\": \\\"PART-OF\\\", \\\"head_start\\\": 0, \\\"head_end\\\": 27, \\\"tail_start\\\": 103, \\\"tail_end\\\": 125}, {\\\"head\\\": \\\"morphological analysis\\\", \\\"tail\\\": \\\"Japanese text processing\\\", \\\"type\\\": \\\"PART-OF\\\", \\\"head_start\\\": 103, \\\"head_end\\\": 125, \\\"tail_start\\\": 129, \\\"tail_end\\\": 153}], \\\"events\\\": [], \\\"cumulative_logprob\\\": -5.96883521745351, \\\"n_tokens\\\": 245, \\\"mean_logprob\\\": -0.02436259272430004}, {\\\"entities\\\": [{\\\"text\\\": \\\"Recognition of proper nouns in Japanese text\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 0, \\\"end\\\": 44}, {\\\"text\\\": \\\"morphological analysis in Japanese text processing\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 103, \\\"end\\\": 153}], \\\"relations\\\": [{\\\"head\\\": \\\"Recognition of proper nouns in Japanese text\\\", \\\"tail\\\": \\\"morphological analysis in Japanese text processing\\\", \\\"type\\\": \\\"PART-OF\\\", \\\"head_start\\\": 0, \\\"head_end\\\": 44, \\\"tail_start\\\": 103, \\\"tail_end\\\": 153}], \\\"events\\\": [], \\\"cumulative_logprob\\\": -10.113391927922542, \\\"n_tokens\\\": 142, \\\"mean_logprob\\\": -0.07122106991494748}, {\\\"entities\\\": [{\\\"text\\\": \\\"Recognition of proper nouns in Japanese text\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 0, \\\"end\\\": 44}, {\\\"text\\\": \\\"Japanese text\\\", \\\"type\\\": \\\"Material\\\", \\\"start\\\": 31, \\\"end\\\": 44}, {\\\"text\\\": \\\"morphological analysis in Japanese text processing\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 103, \\\"end\\\": 153}, {\\\"text\\\": \\\"Japanese text processing\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 129, \\\"end\\\": 153}], \\\"relations\\\": [{\\\"head\\\": \\\"Recognition of proper nouns in Japanese text\\\", \\\"tail\\\": \\\"morphological analysis in Japanese text processing\\\", \\\"type\\\": \\\"PART-OF\\\", \\\"head_start\\\": 0, \\\"head_end\\\": 44, \\\"tail_start\\\": 103, \\\"tail_end\\\": 153}], \\\"events\\\": [], \\\"cumulative_logprob\\\": -16.09900613418663, \\\"n_tokens\\\": 199, \\\"mean_logprob\\\": -0.08089952831249564}, {\\\"entities\\\": [{\\\"text\\\": \\\"Recognition of proper nouns\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 0, \\\"end\\\": 27}, {\\\"text\\\": \\\"Japanese text\\\", \\\"type\\\": \\\"Material\\\", \\\"start\\\": 31, \\\"end\\\": 44}, {\\\"text\\\": \\\"morphological analysis in Japanese text processing\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 103, \\\"end\\\": 153}], \\\"relations\\\": [{\\\"head\\\": \\\"Recognition of proper nouns\\\", \\\"tail\\\": \\\"morphological analysis in Japanese text processing\\\", \\\"type\\\": \\\"PART-OF\\\", \\\"head_start\\\": 0, \\\"head_end\\\": 27, \\\"tail_start\\\": 103, \\\"tail_end\\\": 153}], \\\"events\\\": [], \\\"cumulative_logprob\\\": -6.964997925420548, \\\"n_tokens\\\": 163, \\\"mean_logprob\\\": -0.04273004862221195}, {\\\"entities\\\": [{\\\"text\\\": \\\"Recognition of proper nouns\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 0, \\\"end\\\": 27}, {\\\"text\\\": \\\"Japanese text\\\", \\\"type\\\": \\\"Material\\\", \\\"start\\\": 31, \\\"end\\\": 44}, {\\\"text\\\": \\\"morphological analysis in Japanese text processing\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 103, \\\"end\\\": 153}], \\\"relations\\\": [{\\\"head\\\": \\\"Recognition of proper nouns\\\", \\\"tail\\\": \\\"morphological analysis in Japanese text processing\\\", \\\"type\\\": \\\"HYPONYM-OF\\\", \\\"head_start\\\": 0, \\\"head_end\\\": 27, \\\"tail_start\\\": 103, \\\"tail_end\\\": 153}], \\\"events\\\": [], \\\"cumulative_logprob\\\": -9.771506645457862, \\\"n_tokens\\\": 166, \\\"mean_logprob\\\": -0.05886449786420399}], \\\"greedy\\\": {\\\"entities\\\": [{\\\"text\\\": \\\"Recognition of proper nouns\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 0, \\\"end\\\": 27}, {\\\"text\\\": \\\"Japanese text\\\", \\\"type\\\": \\\"Material\\\", \\\"start\\\": 31, \\\"end\\\": 44}, {\\\"text\\\": \\\"morphological analysis\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 103, \\\"end\\\": 125}, {\\\"text\\\": \\\"Japanese text processing\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 129, \\\"end\\\": 153}], \\\"relations\\\": [{\\\"head\\\": \\\"Recognition of proper nouns\\\", \\\"tail\\\": \\\"morphological analysis\\\", \\\"type\\\": \\\"PART-OF\\\", \\\"head_start\\\": 0, \\\"head_end\\\": 27, \\\"tail_start\\\": 103, \\\"tail_end\\\": 125}, {\\\"head\\\": \\\"morphological analysis\\\", \\\"tail\\\": \\\"Japanese text processing\\\", \\\"type\\\": \\\"PART-OF\\\", \\\"head_start\\\": 103, \\\"head_end\\\": 125, \\\"tail_start\\\": 129, \\\"tail_end\\\": 153}], \\\"events\\\": [], \\\"cumulative_logprob\\\": -5.047854914725477, \\\"n_tokens\\\": 245, \\\"mean_logprob\\\": -0.02060348944785909}, \\\"logprobs\\\": [-0.02399272851717699, -0.07711070594692443, -0.050069381358438976, -0.02436259272430004, -0.07122106991494748, -0.08089952831249564, -0.04273004862221195, -0.05886449786420399]}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_018Kxf5qZXLCSoFnrSjysTjG`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "head -1 /root/autodl-tmp/struct_self_consist_ie/output/exp_018_qwen_scierc_seed123/samples.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b8b11d62-6ca3-4151-bc4f-ed1130aa9fbf",
+  "uuid": "0710c364-e41e-402b-bd06-456f636bcc83",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DPEpbMozGZ2F1eer3t1BGq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1305,
+      "cache_read_input_tokens": 26761,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1305
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-15T12:43:20.836Z_
+
+<details><summary>↩ Tool result · `toolu_018Kxf5qZXLCSoFnrSjysTjG`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"id\\\": \\\"X96-1059_sent000\\\", \\\"text\\\": \\\"Recognition of proper nouns in Japanese text has been studied as a part of the more general problem of morphological analysis in Japanese text processing -LRB- -LSB- 1 -RSB- -LSB- 2 -RSB- -RRB- .\\\", \\\"gold\\\": {\\\"entities\\\": [{\\\"text\\\": \\\"Recognition of proper nouns\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 0, \\\"end\\\": 27}, {\\\"text\\\": \\\"proper nouns\\\", \\\"type\\\": \\\"OtherScientificTerm\\\", \\\"start\\\": 15, \\\"end\\\": 27}, {\\\"text\\\": \\\"Japanese text\\\", \\\"type\\\": \\\"Material\\\", \\\"start\\\": 31, \\\"end\\\": 44}, {\\\"text\\\": \\\"morphological analysis\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 103, \\\"end\\\": 125}, {\\\"text\\\": \\\"Japanese text processing\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 129, \\\"end\\\": 153}], \\\"relations\\\": [{\\\"head\\\": \\\"Recognition of proper nouns\\\", \\\"tail\\\": \\\"morphological analysis\\\", \\\"type\\\": \\\"PART-OF\\\", \\\"head_start\\\": 0, \\\"head_end\\\": 27, \\\"tail_start\\\": 103, \\\"tail_end\\\": 125}, {\\\"head\\\": \\\"proper nouns\\\", \\\"tail\\\": \\\"Japanese text\\\", \\\"type\\\": \\\"PART-OF\\\", \\\"head_start\\\": 15, \\\"head_end\\\": 27, \\\"tail_start\\\": 31, \\\"tail_end\\\": 44}, {\\\"head\\\": \\\"morphological analysis\\\", \\\"tail\\\": \\\"Japanese text processing\\\", \\\"type\\\": \\\"USED-FOR\\\", \\\"head_start\\\": 103, \\\"head_end\\\": 125, \\\"tail_start\\\": 129, \\\"tail_end\\\": 153}], \\\"events\\\": []}, \\\"samples\\\": [{\\\"entities\\\": [{\\\"text\\\": \\\"Recognition of proper nouns\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 0, \\\"end\\\": 27}, {\\\"text\\\": \\\"Japanese text\\\", \\\"type\\\": \\\"Material\\\", \\\"start\\\": 31, \\\"end\\\": 44}, {\\\"text\\\": \\\"morphological analysis in Japanese text processing\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 103, \\\"end\\\": 153}], \\\"relations\\\": [{\\\"head\\\": \\\"Recognition of proper nouns\\\", \\\"tail\\\": \\\"morphological analysis in Japanese text processing\\\", \\\"type\\\": \\\"PART-OF\\\", \\\"head_start\\\": 0, \\\"head_end\\\": 27, \\\"tail_start\\\": 103, \\\"tail_end\\\": 153}], \\\"events\\\": [], \\\"cumulative_logprob\\\": -7.407351334259438, \\\"n_tokens\\\": 163, \\\"mean_logprob\\\": -0.04544387321631557}, {\\\"entities\\\": [{\\\"text\\\": \\\"Recognition of proper nouns\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 0, \\\"end\\\": 27}, {\\\"text\\\": \\\"Japanese text\\\", \\\"type\\\": \\\"Material\\\", \\\"start\\\": 31, \\\"end\\\": 44}, {\\\"text\\\": \\\"morphological analysis in Japanese text processing\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 103, \\\"end\\\": 153}], \\\"relations\\\": [{\\\"head\\\": \\\"Recognition of proper nouns\\\", \\\"tail\\\": \\\"morphological analysis in Japanese text processing\\\", \\\"type\\\": \\\"PART-OF\\\", \\\"head_start\\\": 0, \\\"head_end\\\": 27, \\\"tail_start\\\": 103, \\\"tail_end\\\": 153}], \\\"events\\\": [], \\\"cumulative_logprob\\\": -6.2396563883231835, \\\"n_tokens\\\": 163, \\\"mean_logprob\\\": -0.03828010054186002}, {\\\"entities\\\": [{\\\"text\\\": \\\"Recognition of proper nouns in Japanese text\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 0, \\\"end\\\": 44}, {\\\"text\\\": \\\"morphological analysis\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 103, \\\"end\\\": 125}, {\\\"text\\\": \\\"Japanese text processing\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 129, \\\"end\\\": 153}], \\\"relations\\\": [{\\\"head\\\": \\\"Recognition of proper nouns in Japanese text\\\", \\\"tail\\\": \\\"morphological analysis\\\", \\\"type\\\": \\\"PART-OF\\\", \\\"head_start\\\": 0, \\\"head_end\\\": 44, \\\"tail_start\\\": 103, \\\"tail_end\\\": 125}, {\\\"head\\\": \\\"morphological analysis\\\", \\\"tail\\\": \\\"Japanese text processing\\\", \\\"type\\\": \\\"PART-OF\\\", \\\"head_start\\\": 103, \\\"head_end\\\": 125, \\\"tail_start\\\": 129, \\\"tail_end\\\": 153}], \\\"events\\\": [], \\\"cumulative_logprob\\\": -9.79407091816313, \\\"n_tokens\\\": 224, \\\"mean_logprob\\\": -0.043723530884656824}, {\\\"entities\\\": [{\\\"text\\\": \\\"Recognition of proper nouns in Japanese text\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 0, \\\"end\\\": 44}, {\\\"text\\\": \\\"Japanese text\\\", \\\"type\\\": \\\"Material\\\", \\\"start\\\": 31, \\\"end\\\": 44}, {\\\"text\\\": \\\"morphological analysis in Japanese text processing\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 103, \\\"end\\\": 153}, {\\\"text\\\": \\\"Japanese text processing\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 129, \\\"end\\\": 153}], \\\"relations\\\": [{\\\"head\\\": \\\"Recognition of proper nouns in Japanese text\\\", \\\"tail\\\": \\\"morphological analysis in Japanese text processing\\\", \\\"type\\\": \\\"PART-OF\\\", \\\"head_start\\\": 0, \\\"head_end\\\": 44, \\\"tail_start\\\": 103, \\\"tail_end\\\": 153}], \\\"events\\\": [], \\\"cumulative_logprob\\\": -11.864176778340145, \\\"n_tokens\\\": 199, \\\"mean_logprob\\\": -0.05961897878562887}, {\\\"entities\\\": [{\\\"text\\\": \\\"Recognition of proper nouns\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 0, \\\"end\\\": 27}, {\\\"text\\\": \\\"Japanese text\\\", \\\"type\\\": \\\"Material\\\", \\\"start\\\": 31, \\\"end\\\": 44}, {\\\"text\\\": \\\"morphological analysis\\\", \\\"type\\\": \\\"Method\\\", \\\"start\\\": 103, \\\"end\\\": 125}, {\\\"text\\\": \\\"Japanese text processing\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 129, \\\"end\\\": 153}], \\\"relations\\\": [{\\\"head\\\": \\\"Recognition of proper nouns\\\", \\\"tail\\\": \\\"morphological analysis\\\", \\\"type\\\": \\\"PART-OF\\\", \\\"head_start\\\": 0, \\\"head_end\\\": 27, \\\"tail_start\\\": 103, \\\"tail_end\\\": 125}, {\\\"head\\\": \\\"morphological analysis\\\", \\\"tail\\\": \\\"Japanese text processing\\\", \\\"type\\\": \\\"PART-OF\\\", \\\"head_start\\\": 103, \\\"head_end\\\": 125, \\\"tail_start\\\": 129, \\\"tail_end\\\": 153}], \\\"events\\\": [], \\\"cumulative_logprob\\\": -8.776053038109595, \\\"n_tokens\\\": 245, \\\"mean_logprob\\\": -0.035820624645345286}, {\\\"entities\\\": [{\\\"text\\\": \\\"Japanese text\\\", \\\"type\\\": \\\"Material\\\", \\\"start\\\": 31, \\\"end\\\": 44}, {\\\"text\\\": \\\"morphological analysis\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 103, \\\"end\\\": 125}, {\\\"text\\\": \\\"Japanese text processing\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 129, \\\"end\\\": 153}], \\\"relations\\\": [{\\\"head\\\": \\\"morphological analysis\\\", \\\"tail\\\": \\\"Japanese text processing\\\", \\\"type\\\": \\\"FEATURE-OF\\\", \\\"head_start\\\": 103, \\\"head_end\\\": 125, \\\"tail_start\\\": 129, \\\"tail_end\\\": 153}], \\\"events\\\": [], \\\"cumulative_logprob\\\": -16.288309001469877, \\\"n_tokens\\\": 159, \\\"mean_logprob\\\": -0.10244219497779797}, {\\\"entities\\\": [{\\\"text\\\": \\\"Recognition of proper nouns in Japanese text\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 0, \\\"end\\\": 44}, {\\\"text\\\": \\\"Japanese text\\\", \\\"type\\\": \\\"Material\\\", \\\"start\\\": 31, \\\"end\\\": 44}, {\\\"text\\\": \\\"morphological analysis in Japanese text processing\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 103, \\\"end\\\": 153}], \\\"relations\\\": [{\\\"head\\\": \\\"Recognition of proper nouns in Japanese text\\\", \\\"tail\\\": \\\"morphological analysis in Japanese text processing\\\", \\\"type\\\": \\\"PART-OF\\\", \\\"head_start\\\": 0, \\\"head_end\\\": 44, \\\"tail_start\\\": 103, \\\"tail_end\\\": 153}], \\\"events\\\": [], \\\"cumulative_logprob\\\": -9.660384226475315, \\\"n_tokens\\\": 169, \\\"mean_logprob\\\": -0.057162036843049206}, {\\\"entities\\\": [{\\\"text\\\": \\\"Recognition of proper nouns\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 0, \\\"end\\\": 27}, {\\\"text\\\": \\\"Japanese text\\\", \\\"type\\\": \\\"Material\\\", \\\"start\\\": 31, \\\"end\\\": 44}, {\\\"text\\\": \\\"morphological analysis in Japanese text processing\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 103, \\\"end\\\": 153}], \\\"relations\\\": [{\\\"head\\\": \\\"Recognition of proper nouns\\\", \\\"tail\\\": \\\"morphological analysis in Japanese text processing\\\", \\\"type\\\": \\\"PART-OF\\\", \\\"head_start\\\": 0, \\\"head_end\\\": 27, \\\"tail_start\\\": 103, \\\"tail_end\\\": 153}], \\\"events\\\": [], \\\"cumulative_logprob\\\": -5.5974623067598515, \\\"n_tokens\\\": 163, \\\"mean_logprob\\\": -0.034340259550673935}], \\\"greedy\\\": {\\\"entities\\\": [{\\\"text\\\": \\\"Recognition of proper nouns\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 0, \\\"end\\\": 27}, {\\\"text\\\": \\\"Japanese text\\\", \\\"type\\\": \\\"Material\\\", \\\"start\\\": 31, \\\"end\\\": 44}, {\\\"text\\\": \\\"morphological analysis in Japanese text processing\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 103, \\\"end\\\": 153}], \\\"relations\\\": [{\\\"head\\\": \\\"Recognition of proper nouns\\\", \\\"tail\\\": \\\"morphological analysis in Japanese text processing\\\", \\\"type\\\": \\\"PART-OF\\\", \\\"head_start\\\": 0, \\\"head_end\\\": 27, \\\"tail_start\\\": 103, \\\"tail_end\\\": 153}], \\\"events\\\": [], \\\"cumulative_logprob\\\": -5.615672141611739, \\\"n_tokens\\\": 163, \\\"mean_logprob\\\": -0.03445197632890638}, \\\"logprobs\\\": [-0.04544387321631557, -0.03828010054186002, -0.043723530884656824, -0.05961897878562887, -0.035820624645345286, -0.10244219497779797, -0.057162036843049206, -0.034340259550673935]}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b8b11d62-6ca3-4151-bc4f-ed1130aa9fbf",
+  "uuid": "d1e45560-365e-49e8-a8cc-be05e7cf24b6",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"id\\\\\\\": \\\\\\\"X96-1059_sent000\\\\\\\", \\\\\\\"text\\\\\\\": \\\\\\\"Recognition of proper nouns in Japanese text has been studied as a part of the more general problem of morphological analysis in Japanese text processing -LRB- -LSB- 1 -RSB- -LSB- 2 -RSB- -RRB- .\\\\\\\", \\\\\\\"gold\\\\\\\": {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"Recognition of proper nouns\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 0, \\\\\\\"end\\\\\\\": 27}, {\\\\\\\"text\\\\\\\": \\\\\\\"proper nouns\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"OtherScientificTerm\\\\\\\", \\\\\\\"start\\\\\\\": 15, \\\\\\\"end\\\\\\\": 27}, {\\\\\\\"text\\\\\\\": \\\\\\\"Japanese text\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Material\\\\\\\", \\\\\\\"start\\\\\\\": 31, \\\\\\\"end\\\\\\\": 44}, {\\\\\\\"text\\\\\\\": \\\\\\\"morphological analysis\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 103, \\\\\\\"end\\\\\\\": 125}, {\\\\\\\"text\\\\\\\": \\\\\\\"Japanese text processing\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 129, \\\\\\\"end\\\\\\\": 153}], \\\\\\\"relations\\\\\\\": [{\\\\\\\"head\\\\\\\": \\\\\\\"Recognition of proper nouns\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"morphological analysis\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"PART-OF\\\\\\\", \\\\\\\"head_start\\\\\\\": 0, \\\\\\\"head_end\\\\\\\": 27, \\\\\\\"tail_start\\\\\\\": 103, \\\\\\\"tail_end\\\\\\\": 125}, {\\\\\\\"head\\\\\\\": \\\\\\\"proper nouns\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"Japanese text\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"PART-OF\\\\\\\", \\\\\\\"head_start\\\\\\\": 15, \\\\\\\"head_end\\\\\\\": 27, \\\\\\\"tail_start\\\\\\\": 31, \\\\\\\"tail_end\\\\\\\": 44}, {\\\\\\\"head\\\\\\\": \\\\\\\"morphological analysis\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"Japanese text processing\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"USED-FOR\\\\\\\", \\\\\\\"head_start\\\\\\\": 103, \\\\\\\"head_end\\\\\\\": 125, \\\\\\\"tail_start\\\\\\\": 129, \\\\\\\"tail_end\\\\\\\": 153}], \\\\\\\"events\\\\\\\": []}, \\\\\\\"samples\\\\\\\": [{\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"Recognition of proper nouns\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 0, \\\\\\\"end\\\\\\\": 27}, {\\\\\\\"text\\\\\\\": \\\\\\\"Japanese text\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Material\\\\\\\", \\\\\\\"start\\\\\\\": 31, \\\\\\\"end\\\\\\\": 44}, {\\\\\\\"text\\\\\\\": \\\\\\\"morphological analysis in Japanese text processing\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 103, \\\\\\\"end\\\\\\\": 153}], \\\\\\\"relations\\\\\\\": [{\\\\\\\"head\\\\\\\": \\\\\\\"Recognition of proper nouns\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"morphological analysis in Japanese text processing\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"PART-OF\\\\\\\", \\\\\\\"head_start\\\\\\\": 0, \\\\\\\"head_end\\\\\\\": 27, \\\\\\\"tail_start\\\\\\\": 103, \\\\\\\"tail_end\\\\\\\": 153}], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -7.407351334259438, \\\\\\\"n_tokens\\\\\\\": 163, \\\\\\\"mean_logprob\\\\\\\": -0.04544387321631557}, {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"Recognition of proper nouns\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 0, \\\\\\\"end\\\\\\\": 27}, {\\\\\\\"text\\\\\\\": \\\\\\\"Japanese text\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Material\\\\\\\", \\\\\\\"start\\\\\\\": 31, \\\\\\\"end\\\\\\\": 44}, {\\\\\\\"text\\\\\\\": \\\\\\\"morphological analysis in Japanese text processing\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 103, \\\\\\\"end\\\\\\\": 153}], \\\\\\\"relations\\\\\\\": [{\\\\\\\"head\\\\\\\": \\\\\\\"Recognition of proper nouns\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"morphological analysis in Japanese text processing\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"PART-OF\\\\\\\", \\\\\\\"head_start\\\\\\\": 0, \\\\\\\"head_end\\\\\\\": 27, \\\\\\\"tail_start\\\\\\\": 103, \\\\\\\"tail_end\\\\\\\": 153}], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -6.2396563883231835, \\\\\\\"n_tokens\\\\\\\": 163, \\\\\\\"mean_logprob\\\\\\\": -0.03828010054186002}, {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"Recognition of proper nouns in Japanese text\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 0, \\\\\\\"end\\\\\\\": 44}, {\\\\\\\"text\\\\\\\": \\\\\\\"morphological analysis\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 103, \\\\\\\"end\\\\\\\": 125}, {\\\\\\\"text\\\\\\\": \\\\\\\"Japanese text processing\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 129, \\\\\\\"end\\\\\\\": 153}], \\\\\\\"relations\\\\\\\": [{\\\\\\\"head\\\\\\\": \\\\\\\"Recognition of proper nouns in Japanese text\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"morphological analysis\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"PART-OF\\\\\\\", \\\\\\\"head_start\\\\\\\": 0, \\\\\\\"head_end\\\\\\\": 44, \\\\\\\"tail_start\\\\\\\": 103, \\\\\\\"tail_end\\\\\\\": 125}, {\\\\\\\"head\\\\\\\": \\\\\\\"morphological analysis\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"Japanese text processing\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"PART-OF\\\\\\\", \\\\\\\"head_start\\\\\\\": 103, \\\\\\\"head_end\\\\\\\": 125, \\\\\\\"tail_start\\\\\\\": 129, \\\\\\\"tail_end\\\\\\\": 153}], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -9.79407091816313, \\\\\\\"n_tokens\\\\\\\": 224, \\\\\\\"mean_logprob\\\\\\\": -0.043723530884656824}, {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"Recognition of proper nouns in Japanese text\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 0, \\\\\\\"end\\\\\\\": 44}, {\\\\\\\"text\\\\\\\": \\\\\\\"Japanese text\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Material\\\\\\\", \\\\\\\"start\\\\\\\": 31, \\\\\\\"end\\\\\\\": 44}, {\\\\\\\"text\\\\\\\": \\\\\\\"morphological analysis in Japanese text processing\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 103, \\\\\\\"end\\\\\\\": 153}, {\\\\\\\"text\\\\\\\": \\\\\\\"Japanese text processing\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 129, \\\\\\\"end\\\\\\\": 153}], \\\\\\\"relations\\\\\\\": [{\\\\\\\"head\\\\\\\": \\\\\\\"Recognition of proper nouns in Japanese text\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"morphological analysis in Japanese text processing\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"PART-OF\\\\\\\", \\\\\\\"head_start\\\\\\\": 0, \\\\\\\"head_end\\\\\\\": 44, \\\\\\\"tail_start\\\\\\\": 103, \\\\\\\"tail_end\\\\\\\": 153}], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -11.864176778340145, \\\\\\\"n_tokens\\\\\\\": 199, \\\\\\\"mean_logprob\\\\\\\": -0.05961897878562887}, {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"Recognition of proper nouns\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 0, \\\\\\\"end\\\\\\\": 27}, {\\\\\\\"text\\\\\\\": \\\\\\\"Japanese text\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Material\\\\\\\", \\\\\\\"start\\\\\\\": 31, \\\\\\\"end\\\\\\\": 44}, {\\\\\\\"text\\\\\\\": \\\\\\\"morphological analysis\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Method\\\\\\\", \\\\\\\"start\\\\\\\": 103, \\\\\\\"end\\\\\\\": 125}, {\\\\\\\"text\\\\\\\": \\\\\\\"Japanese text processing\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 129, \\\\\\\"end\\\\\\\": 153}], \\\\\\\"relations\\\\\\\": [{\\\\\\\"head\\\\\\\": \\\\\\\"Recognition of proper nouns\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"morphological analysis\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"PART-OF\\\\\\\", \\\\\\\"head_start\\\\\\\": 0, \\\\\\\"head_end\\\\\\\": 27, \\\\\\\"tail_start\\\\\\\": 103, \\\\\\\"tail_end\\\\\\\": 125}, {\\\\\\\"head\\\\\\\": \\\\\\\"morphological analysis\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"Japanese text processing\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"PART-OF\\\\\\\", \\\\\\\"head_start\\\\\\\": 103, \\\\\\\"head_end\\\\\\\": 125, \\\\\\\"tail_start\\\\\\\": 129, \\\\\\\"tail_end\\\\\\\": 153}], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -8.776053038109595, \\\\\\\"n_tokens\\\\\\\": 245, \\\\\\\"mean_logprob\\\\\\\": -0.035820624645345286}, {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"Japanese text\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Material\\\\\\\", \\\\\\\"start\\\\\\\": 31, \\\\\\\"end\\\\\\\": 44}, {\\\\\\\"text\\\\\\\": \\\\\\\"morphological analysis\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 103, \\\\\\\"end\\\\\\\": 125}, {\\\\\\\"text\\\\\\\": \\\\\\\"Japanese text processing\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 129, \\\\\\\"end\\\\\\\": 153}], \\\\\\\"relations\\\\\\\": [{\\\\\\\"head\\\\\\\": \\\\\\\"morphological analysis\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"Japanese text processing\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"FEATURE-OF\\\\\\\", \\\\\\\"head_start\\\\\\\": 103, \\\\\\\"head_end\\\\\\\": 125, \\\\\\\"tail_start\\\\\\\": 129, \\\\\\\"tail_end\\\\\\\": 153}], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -16.288309001469877, \\\\\\\"n_tokens\\\\\\\": 159, \\\\\\\"mean_logprob\\\\\\\": -0.10244219497779797}, {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"Recognition of proper nouns in Japanese text\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 0, \\\\\\\"end\\\\\\\": 44}, {\\\\\\\"text\\\\\\\": \\\\\\\"Japanese text\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Material\\\\\\\", \\\\\\\"start\\\\\\\": 31, \\\\\\\"end\\\\\\\": 44}, {\\\\\\\"text\\\\\\\": \\\\\\\"morphological analysis in Japanese text processing\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 103, \\\\\\\"end\\\\\\\": 153}], \\\\\\\"relations\\\\\\\": [{\\\\\\\"head\\\\\\\": \\\\\\\"Recognition of proper nouns in Japanese text\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"morphological analysis in Japanese text processing\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"PART-OF\\\\\\\", \\\\\\\"head_start\\\\\\\": 0, \\\\\\\"head_end\\\\\\\": 44, \\\\\\\"tail_start\\\\\\\": 103, \\\\\\\"tail_end\\\\\\\": 153}], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -9.660384226475315, \\\\\\\"n_tokens\\\\\\\": 169, \\\\\\\"mean_logprob\\\\\\\": -0.057162036843049206}, {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"Recognition of proper nouns\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 0, \\\\\\\"end\\\\\\\": 27}, {\\\\\\\"text\\\\\\\": \\\\\\\"Japanese text\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Material\\\\\\\", \\\\\\\"start\\\\\\\": 31, \\\\\\\"end\\\\\\\": 44}, {\\\\\\\"text\\\\\\\": \\\\\\\"morphological analysis in Japanese text processing\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 103, \\\\\\\"end\\\\\\\": 153}], \\\\\\\"relations\\\\\\\": [{\\\\\\\"head\\\\\\\": \\\\\\\"Recognition of proper nouns\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"morphological analysis in Japanese text processing\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"PART-OF\\\\\\\", \\\\\\\"head_start\\\\\\\": 0, \\\\\\\"head_end\\\\\\\": 27, \\\\\\\"tail_start\\\\\\\": 103, \\\\\\\"tail_end\\\\\\\": 153}], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -5.5974623067598515, \\\\\\\"n_tokens\\\\\\\": 163, \\\\\\\"mean_logprob\\\\\\\": -0.034340259550673935}], \\\\\\\"greedy\\\\\\\": {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"Recognition of proper nouns\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 0, \\\\\\\"end\\\\\\\": 27}, {\\\\\\\"text\\\\\\\": \\\\\\\"Japanese text\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Material\\\\\\\", \\\\\\\"start\\\\\\\": 31, \\\\\\\"end\\\\\\\": 44}, {\\\\\\\"text\\\\\\\": \\\\\\\"morphological analysis in Japanese text processing\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 103, \\\\\\\"end\\\\\\\": 153}], \\\\\\\"relations\\\\\\\": [{\\\\\\\"head\\\\\\\": \\\\\\\"Recognition of proper nouns\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"morphological analysis in Japanese text processing\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"PART-OF\\\\\\\", \\\\\\\"head_start\\\\\\\": 0, \\\\\\\"head_end\\\\\\\": 27, \\\\\\\"tail_start\\\\\\\": 103, \\\\\\\"tail_end\\\\\\\": 153}], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -5.615672141611739, \\\\\\\"n_tokens\\\\\\\": 163, \\\\\\\"mean_logprob\\\\\\\": -0.03445197632890638}, \\\\\\\"logprobs\\\\\\\": [-0.04544387321631557, -0.03828010054186002, -0.043723530884656824, -0.05961897878562887, -0.035820624645345286, -0.10244219497779797, -0.057162036843049206, -0.034340259550673935]}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\\"id\\\": \\\"X96-1059_sent000\\\", \\\"text\\\": \\\"Recognition of proper nouns in Japanese text has been studied as a part of the more general problem of morphological analysis in Japanese text processing -LRB- -LSB- 1 -RSB- -LSB- 2 -RSB- -RRB- .\\\", \\\"gold\\\": {\\\"entities\\\": [{\\\"text\\\": \\\"Recognition of proper nouns\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 0, \\\"end\\\": 27}, {\\\"text\\\": \\\"proper nouns\\\", \\\"type\\\": \\\"OtherScientificTerm\\\", \\\"start\\\": 15, \\\"end\\\": 27}, {\\\"text\\\": \\\"Japanese text\\\", \\\"type\\\": \\\"Material\\\", \\\"start\\\": 31, \\\"end\\\": 44}, {\\\"text\\\": \\\"morphological analysis\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 103, \\\"end\\\": 125}, {\\\"text\\\": \\\"Japanese text processing\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 129, \\\"end\\\": 153}], \\\"relations\\\": [{\\\"head\\\": \\\"Recognition of proper nouns\\\", \\\"tail\\\": \\\"morphological analysis\\\", \\\"type\\\": \\\"PART-OF\\\", \\\"head_start\\\": 0, \\\"head_end\\\": 27, \\\"tail_start\\\": 103, \\\"tail_end\\\": 125}, {\\\"head\\\": \\\"proper nouns\\\", \\\"tail\\\": \\\"Japanese text\\\", \\\"type\\\": \\\"PART-OF\\\", \\\"head_start\\\": 15, \\\"head_end\\\": 27, \\\"tail_start\\\": 31, \\\"tail_end\\\": 44}, {\\\"head\\\": \\\"morphological analysis\\\", \\\"tail\\\": \\\"Japanese text processing\\\", \\\"type\\\": \\\"USED-FOR\\\", \\\"head_start\\\": 103, \\\"head_end\\\": 125, \\\"tail_start\\\": 129, \\\"tail_end\\\": 153}], \\\"events\\\": []}, \\\"samples\\\": [{\\\"entities\\\": [{\\\"text\\\": \\\"Recognition of proper nouns\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 0, \\\"end\\\": 27}, {\\\"text\\\": \\\"Japanese text\\\", \\\"type\\\": \\\"Material\\\", \\\"start\\\": 31, \\\"end\\\": 44}, {\\\"text\\\": \\\"morphological analysis in Japanese text processing\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 103, \\\"end\\\": 153}], \\\"relations\\\": [{\\\"head\\\": \\\"Recognition of proper nouns\\\", \\\"tail\\\": \\\"morphological analysis in Japanese text processing\\\", \\\"type\\\": \\\"PART-OF\\\", \\\"head_start\\\": 0, \\\"head_end\\\": 27, \\\"tail_start\\\": 103, \\\"tail_end\\\": 153}], \\\"events\\\": [], \\\"cumulative_logprob\\\": -7.407351334259438, \\\"n_tokens\\\": 163, \\\"mean_logprob\\\": -0.04544387321631557}, {\\\"entities\\\": [{\\\"text\\\": \\\"Recognition of proper nouns\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 0, \\\"end\\\": 27}, {\\\"text\\\": \\\"Japanese text\\\", \\\"type\\\": \\\"Material\\\", \\\"start\\\": 31, \\\"end\\\": 44}, {\\\"text\\\": \\\"morphological analysis in Japanese text processing\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 103, \\\"end\\\": 153}], \\\"relations\\\": [{\\\"head\\\": \\\"Recognition of proper nouns\\\", \\\"tail\\\": \\\"morphological analysis in Japanese text processing\\\", \\\"type\\\": \\\"PART-OF\\\", \\\"head_start\\\": 0, \\\"head_end\\\": 27, \\\"tail_start\\\": 103, \\\"tail_end\\\": 153}], \\\"events\\\": [], \\\"cumulative_logprob\\\": -6.2396563883231835, \\\"n_tokens\\\": 163, \\\"mean_logprob\\\": -0.03828010054186002}, {\\\"entities\\\": [{\\\"text\\\": \\\"Recognition of proper nouns in Japanese text\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 0, \\\"end\\\": 44}, {\\\"text\\\": \\\"morphological analysis\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 103, \\\"end\\\": 125}, {\\\"text\\\": \\\"Japanese text processing\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 129, \\\"end\\\": 153}], \\\"relations\\\": [{\\\"head\\\": \\\"Recognition of proper nouns in Japanese text\\\", \\\"tail\\\": \\\"morphological analysis\\\", \\\"type\\\": \\\"PART-OF\\\", \\\"head_start\\\": 0, \\\"head_end\\\": 44, \\\"tail_start\\\": 103, \\\"tail_end\\\": 125}, {\\\"head\\\": \\\"morphological analysis\\\", \\\"tail\\\": \\\"Japanese text processing\\\", \\\"type\\\": \\\"PART-OF\\\", \\\"head_start\\\": 103, \\\"head_end\\\": 125, \\\"tail_start\\\": 129, \\\"tail_end\\\": 153}], \\\"events\\\": [], \\\"cumulative_logprob\\\": -9.79407091816313, \\\"n_tokens\\\": 224, \\\"mean_logprob\\\": -0.043723530884656824}, {\\\"entities\\\": [{\\\"text\\\": \\\"Recognition of proper nouns in Japanese text\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 0, \\\"end\\\": 44}, {\\\"text\\\": \\\"Japanese text\\\", \\\"type\\\": \\\"Material\\\", \\\"start\\\": 31, \\\"end\\\": 44}, {\\\"text\\\": \\\"morphological analysis in Japanese text processing\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 103, \\\"end\\\": 153}, {\\\"text\\\": \\\"Japanese text processing\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 129, \\\"end\\\": 153}], \\\"relations\\\": [{\\\"head\\\": \\\"Recognition of proper nouns in Japanese text\\\", \\\"tail\\\": \\\"morphological analysis in Japanese text processing\\\", \\\"type\\\": \\\"PART-OF\\\", \\\"head_start\\\": 0, \\\"head_end\\\": 44, \\\"tail_start\\\": 103, \\\"tail_end\\\": 153}], \\\"events\\\": [], \\\"cumulative_logprob\\\": -11.864176778340145, \\\"n_tokens\\\": 199, \\\"mean_logprob\\\": -0.05961897878562887}, {\\\"entities\\\": [{\\\"text\\\": \\\"Recognition of proper nouns\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 0, \\\"end\\\": 27}, {\\\"text\\\": \\\"Japanese text\\\", \\\"type\\\": \\\"Material\\\", \\\"start\\\": 31, \\\"end\\\": 44}, {\\\"text\\\": \\\"morphological analysis\\\", \\\"type\\\": \\\"Method\\\", \\\"start\\\": 103, \\\"end\\\": 125}, {\\\"text\\\": \\\"Japanese text processing\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 129, \\\"end\\\": 153}], \\\"relations\\\": [{\\\"head\\\": \\\"Recognition of proper nouns\\\", \\\"tail\\\": \\\"morphological analysis\\\", \\\"type\\\": \\\"PART-OF\\\", \\\"head_start\\\": 0, \\\"head_end\\\": 27, \\\"tail_start\\\": 103, \\\"tail_end\\\": 125}, {\\\"head\\\": \\\"morphological analysis\\\", \\\"tail\\\": \\\"Japanese text processing\\\", \\\"type\\\": \\\"PART-OF\\\", \\\"head_start\\\": 103, \\\"head_end\\\": 125, \\\"tail_start\\\": 129, \\\"tail_end\\\": 153}], \\\"events\\\": [], \\\"cumulative_logprob\\\": -8.776053038109595, \\\"n_tokens\\\": 245, \\\"mean_logprob\\\": -0.035820624645345286}, {\\\"entities\\\": [{\\\"text\\\": \\\"Japanese text\\\", \\\"type\\\": \\\"Material\\\", \\\"start\\\": 31, \\\"end\\\": 44}, {\\\"text\\\": \\\"morphological analysis\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 103, \\\"end\\\": 125}, {\\\"text\\\": \\\"Japanese text processing\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 129, \\\"end\\\": 153}], \\\"relations\\\": [{\\\"head\\\": \\\"morphological analysis\\\", \\\"tail\\\": \\\"Japanese text processing\\\", \\\"type\\\": \\\"FEATURE-OF\\\", \\\"head_start\\\": 103, \\\"head_end\\\": 125, \\\"tail_start\\\": 129, \\\"tail_end\\\": 153}], \\\"events\\\": [], \\\"cumulative_logprob\\\": -16.288309001469877, \\\"n_tokens\\\": 159, \\\"mean_logprob\\\": -0.10244219497779797}, {\\\"entities\\\": [{\\\"text\\\": \\\"Recognition of proper nouns in Japanese text\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 0, \\\"end\\\": 44}, {\\\"text\\\": \\\"Japanese text\\\", \\\"type\\\": \\\"Material\\\", \\\"start\\\": 31, \\\"end\\\": 44}, {\\\"text\\\": \\\"morphological analysis in Japanese text processing\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 103, \\\"end\\\": 153}], \\\"relations\\\": [{\\\"head\\\": \\\"Recognition of proper nouns in Japanese text\\\", \\\"tail\\\": \\\"morphological analysis in Japanese text processing\\\", \\\"type\\\": \\\"PART-OF\\\", \\\"head_start\\\": 0, \\\"head_end\\\": 44, \\\"tail_start\\\": 103, \\\"tail_end\\\": 153}], \\\"events\\\": [], \\\"cumulative_logprob\\\": -9.660384226475315, \\\"n_tokens\\\": 169, \\\"mean_logprob\\\": -0.057162036843049206}, {\\\"entities\\\": [{\\\"text\\\": \\\"Recognition of proper nouns\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 0, \\\"end\\\": 27}, {\\\"text\\\": \\\"Japanese text\\\", \\\"type\\\": \\\"Material\\\", \\\"start\\\": 31, \\\"end\\\": 44}, {\\\"text\\\": \\\"morphological analysis in Japanese text processing\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 103, \\\"end\\\": 153}], \\\"relations\\\": [{\\\"head\\\": \\\"Recognition of proper nouns\\\", \\\"tail\\\": \\\"morphological analysis in Japanese text processing\\\", \\\"type\\\": \\\"PART-OF\\\", \\\"head_start\\\": 0, \\\"head_end\\\": 27, \\\"tail_start\\\": 103, \\\"tail_end\\\": 153}], \\\"events\\\": [], \\\"cumulative_logprob\\\": -5.5974623067598515, \\\"n_tokens\\\": 163, \\\"mean_logprob\\\": -0.034340259550673935}], \\\"greedy\\\": {\\\"entities\\\": [{\\\"text\\\": \\\"Recognition of proper nouns\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 0, \\\"end\\\": 27}, {\\\"text\\\": \\\"Japanese text\\\", \\\"type\\\": \\\"Material\\\", \\\"start\\\": 31, \\\"end\\\": 44}, {\\\"text\\\": \\\"morphological analysis in Japanese text processing\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 103, \\\"end\\\": 153}], \\\"relations\\\": [{\\\"head\\\": \\\"Recognition of proper nouns\\\", \\\"tail\\\": \\\"morphological analysis in Japanese text processing\\\", \\\"type\\\": \\\"PART-OF\\\", \\\"head_start\\\": 0, \\\"head_end\\\": 27, \\\"tail_start\\\": 103, \\\"tail_end\\\": 153}], \\\"events\\\": [], \\\"cumulative_logprob\\\": -5.615672141611739, \\\"n_tokens\\\": 163, \\\"mean_logprob\\\": -0.03445197632890638}, \\\"logprobs\\\": [-0.04544387321631557, -0.03828010054186002, -0.043723530884656824, -0.05961897878562887, -0.035820624645345286, -0.10244219497779797, -0.057162036843049206, -0.034340259550673935]}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01U8P59dd2RGvrikqithzLqN`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "wc -l /root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/samples_with_logprobs.jsonl /root/autodl-tmp/struct_self_consist_ie/output/exp_018_qwen_scierc_seed123/samples.jsonl /root/autodl-tmp/struct_self_consist_ie/output/exp_018_qwen_scierc_seed456/samples.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b8b11d62-6ca3-4151-bc4f-ed1130aa9fbf",
+  "uuid": "339da8bc-c16b-4943-ad43-d7bad4231529",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DPEpbMozGZ2F1eer3t1BGq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1305,
+      "cache_read_input_tokens": 26761,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1305
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-15T12:43:22.334Z_
+
+<details><summary>↩ Tool result · `toolu_01U8P59dd2RGvrikqithzLqN`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"     551 /root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/samples_with_logprobs.jsonl\\n     551 /root/autodl-tmp/struct_self_consist_ie/output/exp_018_qwen_scierc_seed123/samples.jsonl\\n     551 /root/autodl-tmp/struct_self_consist_ie/output/exp_018_qwen_scierc_seed456/samples.jsonl\\n    1653 total\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b8b11d62-6ca3-4151-bc4f-ed1130aa9fbf",
+  "uuid": "b14e2316-eb14-4313-8a54-934dac591f26",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"     551 /root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/samples_with_logprobs.jsonl\\\\n     551 /root/autodl-tmp/struct_self_consist_ie/output/exp_018_qwen_scierc_seed123/samples.jsonl\\\\n     551 /root/autodl-tmp/struct_self_consist_ie/output/exp_018_qwen_scierc_seed456/samples.jsonl\\\\n    1653 total\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"     551 /root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/samples_with_logprobs.jsonl\\n     551 /root/autodl-tmp/struct_self_consist_ie/output/exp_018_qwen_scierc_seed123/samples.jsonl\\n     551 /root/autodl-tmp/struct_self_consist_ie/output/exp_018_qwen_scierc_seed456/samples.jsonl\\n    1653 total\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01A5tCtUc12nPQvWosGfJHCk`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/exp018_3seed_5signal_results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b8b11d62-6ca3-4151-bc4f-ed1130aa9fbf",
+  "uuid": "d52249e9-e8d4-4a82-841b-f0792d44419e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DPEpbMozGZ2F1eer3t1BGq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1305,
+      "cache_read_input_tokens": 26761,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1305
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-15T12:43:22.934Z_
+
+<details><summary>↩ Tool result · `toolu_01A5tCtUc12nPQvWosGfJHCk`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"qwen_seed42\\\": {\\n    \\\"n_total\\\": 551,\\n    \\\"n_valid\\\": 529,\\n    \\\"n_conditional\\\": 477,\\n    \\\"full\\\": {\\n      \\\"n\\\": 529,\\n      \\\"pct_perfect\\\": 0.2495274102079395,\\n      \\\"SJ\\\": {\\n        \\\"rho\\\": 0.3599,\\n        \\\"auroc\\\": 0.6917\\n      },\\n      \\\"FK\\\": {\\n        \\\"rho\\\": 0.2665,\\n        \\\"auroc\\\": 0.629\\n      },\\n      \\\"logprob\\\": {\\n        \\\"rho\\\": 0.2052,\\n        \\\"auroc\\\": 0.5783\\n      },\\n      \\\"EM\\\": {\\n        \\\"rho\\\": 0.2945,\\n        \\\"auroc\\\": 0.7493\\n      },\\n      \\\"voting_conf\\\": {\\n        \\\"rho\\\": 0.3792,\\n        \\\"auroc\\\": 0.6841\\n      },\\n      \\\"greedy_f1_mean\\\": 0.6439\\n    },\\n    \\\"conditional\\\": {\\n      \\\"n\\\": 477,\\n      \\\"pct_perfect\\\": 0.27672955974842767,\\n      \\\"SJ\\\": {\\n        \\\"rho\\\": 0.3113,\\n        \\\"auroc\\\": 0.6772\\n      },\\n      \\\"FK\\\": {\\n        \\\"rho\\\": 0.1761,\\n        \\\"auroc\\\": 0.6078\\n      },\\n      \\\"logprob\\\": {\\n        \\\"rho\\\": 0.1538,\\n        \\\"auroc\\\": 0.5633\\n      },\\n      \\\"EM\\\": {\\n        \\\"rho\\\": 0.3596,\\n        \\\"auroc\\\": 0.7556\\n      },\\n      \\\"voting_conf\\\": {\\n        \\\"rho\\\": 0.3,\\n        \\\"auroc\\\": 0.6618\\n      },\\n      \\\"greedy_f1_mean\\\": 0.7141\\n    }\\n  },\\n  \\\"qwen_seed123\\\": {\\n    \\\"n_total\\\": 551,\\n    \\\"n_valid\\\": 529,\\n    \\\"n_conditional\\\": 477,\\n    \\\"full\\\": {\\n      \\\"n\\\": 529,\\n      \\\"pct_perfect\\\": 0.2533081285444234,\\n      \\\"SJ\\\": {\\n        \\\"rho\\\": 0.3878,\\n        \\\"auroc\\\": 0.7236\\n      },\\n      \\\"FK\\\": {\\n        \\\"rho\\\": 0.2628,\\n        \\\"auroc\\\": 0.6308\\n      },\\n      \\\"logprob\\\": {\\n        \\\"rho\\\": 0.2341,\\n        \\\"auroc\\\": 0.6124\\n      },\\n      \\\"EM\\\": {\\n        \\\"rho\\\": 0.3135,\\n        \\\"auroc\\\": 0.7605\\n      },\\n      \\\"voting_conf\\\": {\\n        \\\"rho\\\": 0.4133,\\n        \\\"auroc\\\": 0.7182\\n      },\\n      \\\"greedy_f1_mean\\\": 0.6457\\n    },\\n    \\\"conditional\\\": {\\n      \\\"n\\\": 477,\\n      \\\"pct_perfect\\\": 0.2809224318658281,\\n      \\\"SJ\\\": {\\n        \\\"rho\\\": 0.335,\\n        \\\"auroc\\\": 0.7086\\n      },\\n      \\\"FK\\\": {\\n        \\\"rho\\\": 0.1832,\\n        \\\"auroc\\\": 0.6127\\n      },\\n      \\\"logprob\\\": {\\n        \\\"rho\\\": 0.1673,\\n        \\\"auroc\\\": 0.5938\\n      },\\n      \\\"EM\\\": {\\n        \\\"rho\\\": 0.3581,\\n        \\\"auroc\\\": 0.7645\\n      },\\n      \\\"voting_conf\\\": {\\n        \\\"rho\\\": 0.3366,\\n        \\\"auroc\\\": 0.6991\\n      },\\n      \\\"greedy_f1_mean\\\": 0.7161\\n    }\\n  },\\n  \\\"qwen_seed456\\\": {\\n    \\\"n_total\\\": 551,\\n    \\\"n_valid\\\": 529,\\n    \\\"n_conditional\\\": 479,\\n    \\\"full\\\": {\\n      \\\"n\\\": 529,\\n      \\\"pct_perfect\\\": 0.2551984877126654,\\n      \\\"SJ\\\": {\\n        \\\"rho\\\": 0.3445,\\n        \\\"auroc\\\": 0.6996\\n      },\\n      \\\"FK\\\": {\\n        \\\"rho\\\": 0.2314,\\n        \\\"auroc\\\": 0.6213\\n      },\\n      \\\"logprob\\\": {\\n        \\\"rho\\\": 0.2107,\\n        \\\"auroc\\\": 0.603\\n      },\\n      \\\"EM\\\": {\\n        \\\"rho\\\": 0.3205,\\n        \\\"auroc\\\": 0.7668\\n      },\\n      \\\"voting_conf\\\": {\\n        \\\"rho\\\": 0.3909,\\n        \\\"auroc\\\": 0.6971\\n      },\\n      \\\"greedy_f1_mean\\\": 0.6478\\n    },\\n    \\\"conditional\\\": {\\n      \\\"n\\\": 479,\\n      \\\"pct_perfect\\\": 0.2818371607515658,\\n      \\\"SJ\\\": {\\n        \\\"rho\\\": 0.3062,\\n        \\\"auroc\\\": 0.6872\\n      },\\n      \\\"FK\\\": {\\n        \\\"rho\\\": 0.1381,\\n        \\\"auroc\\\": 0.6015\\n      },\\n      \\\"logprob\\\": {\\n        \\\"rho\\\": 0.1573,\\n        \\\"auroc\\\": 0.5884\\n      },\\n      \\\"EM\\\": {\\n        \\\"rho\\\": 0.3977,\\n        \\\"auroc\\\": 0.7762\\n      },\\n      \\\"voting_conf\\\": {\\n        \\\"rho\\\": 0.3113,\\n        \\\"auroc\\\": 0.6757\\n      },\\n      \\\"greedy_f1_mean\\\": 0.7154\\n    }\\n  },\\n  \\\"llama_seed42\\\": {\\n    \\\"n_total\\\": 551,\\n    \\\"n_valid\\\": 529,\\n    \\\"n_conditional\\\": 478,\\n    \\\"full\\\": {\\n      \\\"n\\\": 529,\\n      \\\"pct_perfect\\\": 0.24763705103969755,\\n      \\\"SJ\\\": {\\n        \\\"rho\\\": 0.363,\\n        \\\"auroc\\\": 0.7099\\n      },\\n      \\\"FK\\\": {\\n        \\\"rho\\\": 0.3266,\\n        \\\"auroc\\\": 0.6648\\n      },\\n      \\\"logprob\\\": {\\n        \\\"rho\\\": 0.1827,\\n        \\\"auroc\\\": 0.5569\\n      },\\n      \\\"EM\\\": {\\n        \\\"rho\\\": 0.3152,\\n        \\\"auroc\\\": 0.7658\\n      },\\n      \\\"voting_conf\\\": {\\n        \\\"rho\\\": 0.4331,\\n        \\\"auroc\\\": 0.7283\\n      },\\n      \\\"greedy_f1_mean\\\": 0.646\\n    },\\n    \\\"conditional\\\": {\\n      \\\"n\\\": 478,\\n      \\\"pct_perfect\\\": 0.27405857740585776,\\n      \\\"SJ\\\": {\\n        \\\"rho\\\": 0.3114,\\n        \\\"auroc\\\": 0.6954\\n      },\\n      \\\"FK\\\": {\\n        \\\"rho\\\": 0.2259,\\n        \\\"auroc\\\": 0.6424\\n      },\\n      \\\"logprob\\\": {\\n        \\\"rho\\\": 0.1089,\\n        \\\"auroc\\\": 0.5365\\n      },\\n      \\\"EM\\\": {\\n        \\\"rho\\\": 0.3437,\\n        \\\"auroc\\\": 0.7655\\n      },\\n      \\\"voting_conf\\\": {\\n        \\\"rho\\\": 0.3473,\\n        \\\"auroc\\\": 0.7059\\n      },\\n      \\\"greedy_f1_mean\\\": 0.7149\\n    }\\n  },\\n  \\\"llama_seed123\\\": {\\n    \\\"n_total\\\": 551,\\n    \\\"n_valid\\\": 529,\\n    \\\"n_conditional\\\": 479,\\n    \\\"full\\\": {\\n      \\\"n\\\": 529,\\n      \\\"pct_perfect\\\": 0.24574669187145556,\\n      \\\"SJ\\\": {\\n        \\\"rho\\\": 0.3552,\\n        \\\"auroc\\\": 0.7092\\n      },\\n      \\\"FK\\\": {\\n        \\\"rho\\\": 0.2897,\\n        \\\"auroc\\\": 0.6678\\n      },\\n      \\\"logprob\\\": {\\n        \\\"rho\\\": 0.197,\\n        \\\"auroc\\\": 0.5839\\n      },\\n      \\\"EM\\\": {\\n        \\\"rho\\\": 0.2844,\\n        \\\"auroc\\\": 0.7468\\n      },\\n      \\\"voting_conf\\\": {\\n        \\\"rho\\\": 0.4193,\\n        \\\"auroc\\\": 0.7159\\n      },\\n      \\\"greedy_f1_mean\\\": 0.6454\\n    },\\n    \\\"conditional\\\": {\\n      \\\"n\\\": 479,\\n      \\\"pct_perfect\\\": 0.27139874739039666,\\n      \\\"SJ\\\": {\\n        \\\"rho\\\": 0.2882,\\n        \\\"auroc\\\": 0.6918\\n      },\\n      \\\"FK\\\": {\\n        \\\"rho\\\": 0.1764,\\n        \\\"auroc\\\": 0.6444\\n      },\\n      \\\"logprob\\\": {\\n        \\\"rho\\\": 0.1175,\\n        \\\"auroc\\\": 0.5636\\n      },\\n      \\\"EM\\\": {\\n        \\\"rho\\\": 0.3116,\\n        \\\"auroc\\\": 0.7467\\n      },\\n      \\\"voting_conf\\\": {\\n        \\\"rho\\\": 0.32,\\n        \\\"auroc\\\": 0.6911\\n      },\\n      \\\"greedy_f1_mean\\\": 0.7127\\n    }\\n  },\\n  \\\"llama_seed456\\\": {\\n    \\\"n_total\\\": 551,\\n    \\\"n_valid\\\": 529,\\n    \\\"n_conditional\\\": 478,\\n    \\\"full\\\": {\\n      \\\"n\\\": 529,\\n      \\\"pct_perfect\\\": 0.24763705103969755,\\n      \\\"SJ\\\": {\\n        \\\"rho\\\": 0.3663,\\n        \\\"auroc\\\": 0.7061\\n      },\\n      \\\"FK\\\": {\\n        \\\"rho\\\": 0.3115,\\n        \\\"auroc\\\": 0.6723\\n      },\\n      \\\"logprob\\\": {\\n        \\\"rho\\\": 0.1911,\\n        \\\"auroc\\\": 0.5636\\n      },\\n      \\\"EM\\\": {\\n        \\\"rho\\\": 0.3088,\\n        \\\"auroc\\\": 0.7538\\n      },\\n      \\\"voting_conf\\\": {\\n        \\\"rho\\\": 0.4135,\\n        \\\"auroc\\\": 0.7113\\n      },\\n      \\\"greedy_f1_mean\\\": 0.6457\\n    },\\n    \\\"conditional\\\": {\\n      \\\"n\\\": 478,\\n      \\\"pct_perfect\\\": 0.27405857740585776,\\n      \\\"SJ\\\": {\\n        \\\"rho\\\": 0.319,\\n        \\\"auroc\\\": 0.6917\\n      },\\n      \\\"FK\\\": {\\n        \\\"rho\\\": 0.221,\\n        \\\"auroc\\\": 0.6536\\n      },\\n      \\\"logprob\\\": {\\n        \\\"rho\\\": 0.1129,\\n        \\\"auroc\\\": 0.5431\\n      },\\n      \\\"EM\\\": {\\n        \\\"rho\\\": 0.3625,\\n        \\\"auroc\\\": 0.7576\\n      },\\n      \\\"voting_conf\\\": {\\n        \\\"rho\\\": 0.3379,\\n        \\\"auroc\\\": 0.6903\\n      },\\n      \\\"greedy_f1_mean\\\": 0.7146\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b8b11d62-6ca3-4151-bc4f-ed1130aa9fbf",
+  "uuid": "3b94190a-c2b5-4cd7-82db-f98d7ba48ebd",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"qwen_seed42\\\\\\\": {\\\\n    \\\\\\\"n_total\\\\\\\": 551,\\\\n    \\\\\\\"n_valid\\\\\\\": 529,\\\\n    \\\\\\\"n_conditional\\\\\\\": 477,\\\\n    \\\\\\\"full\\\\\\\": {\\\\n      \\\\\\\"n\\\\\\\": 529,\\\\n      \\\\\\\"pct_perfect\\\\\\\": 0.2495274102079395,\\\\n      \\\\\\\"SJ\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.3599,\\\\n        \\\\\\\"auroc\\\\\\\": 0.6917\\\\n      },\\\\n      \\\\\\\"FK\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.2665,\\\\n        \\\\\\\"auroc\\\\\\\": 0.629\\\\n      },\\\\n      \\\\\\\"logprob\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.2052,\\\\n        \\\\\\\"auroc\\\\\\\": 0.5783\\\\n      },\\\\n      \\\\\\\"EM\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.2945,\\\\n        \\\\\\\"auroc\\\\\\\": 0.7493\\\\n      },\\\\n      \\\\\\\"voting_conf\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.3792,\\\\n        \\\\\\\"auroc\\\\\\\": 0.6841\\\\n      },\\\\n      \\\\\\\"greedy_f1_mean\\\\\\\": 0.6439\\\\n    },\\\\n    \\\\\\\"conditional\\\\\\\": {\\\\n      \\\\\\\"n\\\\\\\": 477,\\\\n      \\\\\\\"pct_perfect\\\\\\\": 0.27672955974842767,\\\\n      \\\\\\\"SJ\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.3113,\\\\n        \\\\\\\"auroc\\\\\\\": 0.6772\\\\n      },\\\\n      \\\\\\\"FK\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.1761,\\\\n        \\\\\\\"auroc\\\\\\\": 0.6078\\\\n      },\\\\n      \\\\\\\"logprob\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.1538,\\\\n        \\\\\\\"auroc\\\\\\\": 0.5633\\\\n      },\\\\n      \\\\\\\"EM\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.3596,\\\\n        \\\\\\\"auroc\\\\\\\": 0.7556\\\\n      },\\\\n      \\\\\\\"voting_conf\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.3,\\\\n        \\\\\\\"auroc\\\\\\\": 0.6618\\\\n      },\\\\n      \\\\\\\"greedy_f1_mean\\\\\\\": 0.7141\\\\n    }\\\\n  },\\\\n  \\\\\\\"qwen_seed123\\\\\\\": {\\\\n    \\\\\\\"n_total\\\\\\\": 551,\\\\n    \\\\\\\"n_valid\\\\\\\": 529,\\\\n    \\\\\\\"n_conditional\\\\\\\": 477,\\\\n    \\\\\\\"full\\\\\\\": {\\\\n      \\\\\\\"n\\\\\\\": 529,\\\\n      \\\\\\\"pct_perfect\\\\\\\": 0.2533081285444234,\\\\n      \\\\\\\"SJ\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.3878,\\\\n        \\\\\\\"auroc\\\\\\\": 0.7236\\\\n      },\\\\n      \\\\\\\"FK\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.2628,\\\\n        \\\\\\\"auroc\\\\\\\": 0.6308\\\\n      },\\\\n      \\\\\\\"logprob\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.2341,\\\\n        \\\\\\\"auroc\\\\\\\": 0.6124\\\\n      },\\\\n      \\\\\\\"EM\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.3135,\\\\n        \\\\\\\"auroc\\\\\\\": 0.7605\\\\n      },\\\\n      \\\\\\\"voting_conf\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.4133,\\\\n        \\\\\\\"auroc\\\\\\\": 0.7182\\\\n      },\\\\n      \\\\\\\"greedy_f1_mean\\\\\\\": 0.6457\\\\n    },\\\\n    \\\\\\\"conditional\\\\\\\": {\\\\n      \\\\\\\"n\\\\\\\": 477,\\\\n      \\\\\\\"pct_perfect\\\\\\\": 0.2809224318658281,\\\\n      \\\\\\\"SJ\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.335,\\\\n        \\\\\\\"auroc\\\\\\\": 0.7086\\\\n      },\\\\n      \\\\\\\"FK\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.1832,\\\\n        \\\\\\\"auroc\\\\\\\": 0.6127\\\\n      },\\\\n      \\\\\\\"logprob\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.1673,\\\\n        \\\\\\\"auroc\\\\\\\": 0.5938\\\\n      },\\\\n      \\\\\\\"EM\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.3581,\\\\n        \\\\\\\"auroc\\\\\\\": 0.7645\\\\n      },\\\\n      \\\\\\\"voting_conf\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.3366,\\\\n        \\\\\\\"auroc\\\\\\\": 0.6991\\\\n      },\\\\n      \\\\\\\"greedy_f1_mean\\\\\\\": 0.7161\\\\n    }\\\\n  },\\\\n  \\\\\\\"qwen_seed456\\\\\\\": {\\\\n    \\\\\\\"n_total\\\\\\\": 551,\\\\n    \\\\\\\"n_valid\\\\\\\": 529,\\\\n    \\\\\\\"n_conditional\\\\\\\": 479,\\\\n    \\\\\\\"full\\\\\\\": {\\\\n      \\\\\\\"n\\\\\\\": 529,\\\\n      \\\\\\\"pct_perfect\\\\\\\": 0.2551984877126654,\\\\n      \\\\\\\"SJ\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.3445,\\\\n        \\\\\\\"auroc\\\\\\\": 0.6996\\\\n      },\\\\n      \\\\\\\"FK\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.2314,\\\\n        \\\\\\\"auroc\\\\\\\": 0.6213\\\\n      },\\\\n      \\\\\\\"logprob\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.2107,\\\\n        \\\\\\\"auroc\\\\\\\": 0.603\\\\n      },\\\\n      \\\\\\\"EM\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.3205,\\\\n        \\\\\\\"auroc\\\\\\\": 0.7668\\\\n      },\\\\n      \\\\\\\"voting_conf\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.3909,\\\\n        \\\\\\\"auroc\\\\\\\": 0.6971\\\\n      },\\\\n      \\\\\\\"greedy_f1_mean\\\\\\\": 0.6478\\\\n    },\\\\n    \\\\\\\"conditional\\\\\\\": {\\\\n      \\\\\\\"n\\\\\\\": 479,\\\\n      \\\\\\\"pct_perfect\\\\\\\": 0.2818371607515658,\\\\n      \\\\\\\"SJ\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.3062,\\\\n        \\\\\\\"auroc\\\\\\\": 0.6872\\\\n      },\\\\n      \\\\\\\"FK\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.1381,\\\\n        \\\\\\\"auroc\\\\\\\": 0.6015\\\\n      },\\\\n      \\\\\\\"logprob\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.1573,\\\\n        \\\\\\\"auroc\\\\\\\": 0.5884\\\\n      },\\\\n      \\\\\\\"EM\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.3977,\\\\n        \\\\\\\"auroc\\\\\\\": 0.7762\\\\n      },\\\\n      \\\\\\\"voting_conf\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.3113,\\\\n        \\\\\\\"auroc\\\\\\\": 0.6757\\\\n      },\\\\n      \\\\\\\"greedy_f1_mean\\\\\\\": 0.7154\\\\n    }\\\\n  },\\\\n  \\\\\\\"llama_seed42\\\\\\\": {\\\\n    \\\\\\\"n_total\\\\\\\": 551,\\\\n    \\\\\\\"n_valid\\\\\\\": 529,\\\\n    \\\\\\\"n_conditional\\\\\\\": 478,\\\\n    \\\\\\\"full\\\\\\\": {\\\\n      \\\\\\\"n\\\\\\\": 529,\\\\n      \\\\\\\"pct_perfect\\\\\\\": 0.24763705103969755,\\\\n      \\\\\\\"SJ\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.363,\\\\n        \\\\\\\"auroc\\\\\\\": 0.7099\\\\n      },\\\\n      \\\\\\\"FK\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.3266,\\\\n        \\\\\\\"auroc\\\\\\\": 0.6648\\\\n      },\\\\n      \\\\\\\"logprob\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.1827,\\\\n        \\\\\\\"auroc\\\\\\\": 0.5569\\\\n      },\\\\n      \\\\\\\"EM\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.3152,\\\\n        \\\\\\\"auroc\\\\\\\": 0.7658\\\\n      },\\\\n      \\\\\\\"voting_conf\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.4331,\\\\n        \\\\\\\"auroc\\\\\\\": 0.7283\\\\n      },\\\\n      \\\\\\\"greedy_f1_mean\\\\\\\": 0.646\\\\n    },\\\\n    \\\\\\\"conditional\\\\\\\": {\\\\n      \\\\\\\"n\\\\\\\": 478,\\\\n      \\\\\\\"pct_perfect\\\\\\\": 0.27405857740585776,\\\\n      \\\\\\\"SJ\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.3114,\\\\n        \\\\\\\"auroc\\\\\\\": 0.6954\\\\n      },\\\\n      \\\\\\\"FK\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.2259,\\\\n        \\\\\\\"auroc\\\\\\\": 0.6424\\\\n      },\\\\n      \\\\\\\"logprob\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.1089,\\\\n        \\\\\\\"auroc\\\\\\\": 0.5365\\\\n      },\\\\n      \\\\\\\"EM\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.3437,\\\\n        \\\\\\\"auroc\\\\\\\": 0.7655\\\\n      },\\\\n      \\\\\\\"voting_conf\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.3473,\\\\n        \\\\\\\"auroc\\\\\\\": 0.7059\\\\n      },\\\\n      \\\\\\\"greedy_f1_mean\\\\\\\": 0.7149\\\\n    }\\\\n  },\\\\n  \\\\\\\"llama_seed123\\\\\\\": {\\\\n    \\\\\\\"n_total\\\\\\\": 551,\\\\n    \\\\\\\"n_valid\\\\\\\": 529,\\\\n    \\\\\\\"n_conditional\\\\\\\": 479,\\\\n    \\\\\\\"full\\\\\\\": {\\\\n      \\\\\\\"n\\\\\\\": 529,\\\\n      \\\\\\\"pct_perfect\\\\\\\": 0.24574669187145556,\\\\n      \\\\\\\"SJ\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.3552,\\\\n        \\\\\\\"auroc\\\\\\\": 0.7092\\\\n      },\\\\n      \\\\\\\"FK\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.2897,\\\\n        \\\\\\\"auroc\\\\\\\": 0.6678\\\\n      },\\\\n      \\\\\\\"logprob\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.197,\\\\n        \\\\\\\"auroc\\\\\\\": 0.5839\\\\n      },\\\\n      \\\\\\\"EM\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.2844,\\\\n        \\\\\\\"auroc\\\\\\\": 0.7468\\\\n      },\\\\n      \\\\\\\"voting_conf\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.4193,\\\\n        \\\\\\\"auroc\\\\\\\": 0.7159\\\\n      },\\\\n      \\\\\\\"greedy_f1_mean\\\\\\\": 0.6454\\\\n    },\\\\n    \\\\\\\"conditional\\\\\\\": {\\\\n      \\\\\\\"n\\\\\\\": 479,\\\\n      \\\\\\\"pct_perfect\\\\\\\": 0.27139874739039666,\\\\n      \\\\\\\"SJ\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.2882,\\\\n        \\\\\\\"auroc\\\\\\\": 0.6918\\\\n      },\\\\n      \\\\\\\"FK\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.1764,\\\\n        \\\\\\\"auroc\\\\\\\": 0.6444\\\\n      },\\\\n      \\\\\\\"logprob\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.1175,\\\\n        \\\\\\\"auroc\\\\\\\": 0.5636\\\\n      },\\\\n      \\\\\\\"EM\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.3116,\\\\n        \\\\\\\"auroc\\\\\\\": 0.7467\\\\n      },\\\\n      \\\\\\\"voting_conf\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.32,\\\\n        \\\\\\\"auroc\\\\\\\": 0.6911\\\\n      },\\\\n      \\\\\\\"greedy_f1_mean\\\\\\\": 0.7127\\\\n    }\\\\n  },\\\\n  \\\\\\\"llama_seed456\\\\\\\": {\\\\n    \\\\\\\"n_total\\\\\\\": 551,\\\\n    \\\\\\\"n_valid\\\\\\\": 529,\\\\n    \\\\\\\"n_conditional\\\\\\\": 478,\\\\n    \\\\\\\"full\\\\\\\": {\\\\n      \\\\\\\"n\\\\\\\": 529,\\\\n      \\\\\\\"pct_perfect\\\\\\\": 0.24763705103969755,\\\\n      \\\\\\\"SJ\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.3663,\\\\n        \\\\\\\"auroc\\\\\\\": 0.7061\\\\n      },\\\\n      \\\\\\\"FK\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.3115,\\\\n        \\\\\\\"auroc\\\\\\\": 0.6723\\\\n      },\\\\n      \\\\\\\"logprob\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.1911,\\\\n        \\\\\\\"auroc\\\\\\\": 0.5636\\\\n      },\\\\n      \\\\\\\"EM\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.3088,\\\\n        \\\\\\\"auroc\\\\\\\": 0.7538\\\\n      },\\\\n      \\\\\\\"voting_conf\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.4135,\\\\n        \\\\\\\"auroc\\\\\\\": 0.7113\\\\n      },\\\\n      \\\\\\\"greedy_f1_mean\\\\\\\": 0.6457\\\\n    },\\\\n    \\\\\\\"conditional\\\\\\\": {\\\\n      \\\\\\\"n\\\\\\\": 478,\\\\n      \\\\\\\"pct_perfect\\\\\\\": 0.27405857740585776,\\\\n      \\\\\\\"SJ\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.319,\\\\n        \\\\\\\"auroc\\\\\\\": 0.6917\\\\n      },\\\\n      \\\\\\\"FK\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.221,\\\\n        \\\\\\\"auroc\\\\\\\": 0.6536\\\\n      },\\\\n      \\\\\\\"logprob\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.1129,\\\\n        \\\\\\\"auroc\\\\\\\": 0.5431\\\\n      },\\\\n      \\\\\\\"EM\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.3625,\\\\n        \\\\\\\"auroc\\\\\\\": 0.7576\\\\n      },\\\\n      \\\\\\\"voting_conf\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.3379,\\\\n        \\\\\\\"auroc\\\\\\\": 0.6903\\\\n      },\\\\n      \\\\\\\"greedy_f1_mean\\\\\\\": 0.7146\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"qwen_seed42\\\": {\\n    \\\"n_total\\\": 551,\\n    \\\"n_valid\\\": 529,\\n    \\\"n_conditional\\\": 477,\\n    \\\"full\\\": {\\n      \\\"n\\\": 529,\\n      \\\"pct_perfect\\\": 0.2495274102079395,\\n      \\\"SJ\\\": {\\n        \\\"rho\\\": 0.3599,\\n        \\\"auroc\\\": 0.6917\\n      },\\n      \\\"FK\\\": {\\n        \\\"rho\\\": 0.2665,\\n        \\\"auroc\\\": 0.629\\n      },\\n      \\\"logprob\\\": {\\n        \\\"rho\\\": 0.2052,\\n        \\\"auroc\\\": 0.5783\\n      },\\n      \\\"EM\\\": {\\n        \\\"rho\\\": 0.2945,\\n        \\\"auroc\\\": 0.7493\\n      },\\n      \\\"voting_conf\\\": {\\n        \\\"rho\\\": 0.3792,\\n        \\\"auroc\\\": 0.6841\\n      },\\n      \\\"greedy_f1_mean\\\": 0.6439\\n    },\\n    \\\"conditional\\\": {\\n      \\\"n\\\": 477,\\n      \\\"pct_perfect\\\": 0.27672955974842767,\\n      \\\"SJ\\\": {\\n        \\\"rho\\\": 0.3113,\\n        \\\"auroc\\\": 0.6772\\n      },\\n      \\\"FK\\\": {\\n        \\\"rho\\\": 0.1761,\\n        \\\"auroc\\\": 0.6078\\n      },\\n      \\\"logprob\\\": {\\n        \\\"rho\\\": 0.1538,\\n        \\\"auroc\\\": 0.5633\\n      },\\n      \\\"EM\\\": {\\n        \\\"rho\\\": 0.3596,\\n        \\\"auroc\\\": 0.7556\\n      },\\n      \\\"voting_conf\\\": {\\n        \\\"rho\\\": 0.3,\\n        \\\"auroc\\\": 0.6618\\n      },\\n      \\\"greedy_f1_mean\\\": 0.7141\\n    }\\n  },\\n  \\\"qwen_seed123\\\": {\\n    \\\"n_total\\\": 551,\\n    \\\"n_valid\\\": 529,\\n    \\\"n_conditional\\\": 477,\\n    \\\"full\\\": {\\n      \\\"n\\\": 529,\\n      \\\"pct_perfect\\\": 0.2533081285444234,\\n      \\\"SJ\\\": {\\n        \\\"rho\\\": 0.3878,\\n        \\\"auroc\\\": 0.7236\\n      },\\n      \\\"FK\\\": {\\n        \\\"rho\\\": 0.2628,\\n        \\\"auroc\\\": 0.6308\\n      },\\n      \\\"logprob\\\": {\\n        \\\"rho\\\": 0.2341,\\n        \\\"auroc\\\": 0.6124\\n      },\\n      \\\"EM\\\": {\\n        \\\"rho\\\": 0.3135,\\n        \\\"auroc\\\": 0.7605\\n      },\\n      \\\"voting_conf\\\": {\\n        \\\"rho\\\": 0.4133,\\n        \\\"auroc\\\": 0.7182\\n      },\\n      \\\"greedy_f1_mean\\\": 0.6457\\n    },\\n    \\\"conditional\\\": {\\n      \\\"n\\\": 477,\\n      \\\"pct_perfect\\\": 0.2809224318658281,\\n      \\\"SJ\\\": {\\n        \\\"rho\\\": 0.335,\\n        \\\"auroc\\\": 0.7086\\n      },\\n      \\\"FK\\\": {\\n        \\\"rho\\\": 0.1832,\\n        \\\"auroc\\\": 0.6127\\n      },\\n      \\\"logprob\\\": {\\n        \\\"rho\\\": 0.1673,\\n        \\\"auroc\\\": 0.5938\\n      },\\n      \\\"EM\\\": {\\n        \\\"rho\\\": 0.3581,\\n        \\\"auroc\\\": 0.7645\\n      },\\n      \\\"voting_conf\\\": {\\n        \\\"rho\\\": 0.3366,\\n        \\\"auroc\\\": 0.6991\\n      },\\n      \\\"greedy_f1_mean\\\": 0.7161\\n    }\\n  },\\n  \\\"qwen_seed456\\\": {\\n    \\\"n_total\\\": 551,\\n    \\\"n_valid\\\": 529,\\n    \\\"n_conditional\\\": 479,\\n    \\\"full\\\": {\\n      \\\"n\\\": 529,\\n      \\\"pct_perfect\\\": 0.2551984877126654,\\n      \\\"SJ\\\": {\\n        \\\"rho\\\": 0.3445,\\n        \\\"auroc\\\": 0.6996\\n      },\\n      \\\"FK\\\": {\\n        \\\"rho\\\": 0.2314,\\n        \\\"auroc\\\": 0.6213\\n      },\\n      \\\"logprob\\\": {\\n        \\\"rho\\\": 0.2107,\\n        \\\"auroc\\\": 0.603\\n      },\\n      \\\"EM\\\": {\\n        \\\"rho\\\": 0.3205,\\n        \\\"auroc\\\": 0.7668\\n      },\\n      \\\"voting_conf\\\": {\\n        \\\"rho\\\": 0.3909,\\n        \\\"auroc\\\": 0.6971\\n      },\\n      \\\"greedy_f1_mean\\\": 0.6478\\n    },\\n    \\\"conditional\\\": {\\n      \\\"n\\\": 479,\\n      \\\"pct_perfect\\\": 0.2818371607515658,\\n      \\\"SJ\\\": {\\n        \\\"rho\\\": 0.3062,\\n        \\\"auroc\\\": 0.6872\\n      },\\n      \\\"FK\\\": {\\n        \\\"rho\\\": 0.1381,\\n        \\\"auroc\\\": 0.6015\\n      },\\n      \\\"logprob\\\": {\\n        \\\"rho\\\": 0.1573,\\n        \\\"auroc\\\": 0.5884\\n      },\\n      \\\"EM\\\": {\\n        \\\"rho\\\": 0.3977,\\n        \\\"auroc\\\": 0.7762\\n      },\\n      \\\"voting_conf\\\": {\\n        \\\"rho\\\": 0.3113,\\n        \\\"auroc\\\": 0.6757\\n      },\\n      \\\"greedy_f1_mean\\\": 0.7154\\n    }\\n  },\\n  \\\"llama_seed42\\\": {\\n    \\\"n_total\\\": 551,\\n    \\\"n_valid\\\": 529,\\n    \\\"n_conditional\\\": 478,\\n    \\\"full\\\": {\\n      \\\"n\\\": 529,\\n      \\\"pct_perfect\\\": 0.24763705103969755,\\n      \\\"SJ\\\": {\\n        \\\"rho\\\": 0.363,\\n        \\\"auroc\\\": 0.7099\\n      },\\n      \\\"FK\\\": {\\n        \\\"rho\\\": 0.3266,\\n        \\\"auroc\\\": 0.6648\\n      },\\n      \\\"logprob\\\": {\\n        \\\"rho\\\": 0.1827,\\n        \\\"auroc\\\": 0.5569\\n      },\\n      \\\"EM\\\": {\\n        \\\"rho\\\": 0.3152,\\n        \\\"auroc\\\": 0.7658\\n      },\\n      \\\"voting_conf\\\": {\\n        \\\"rho\\\": 0.4331,\\n        \\\"auroc\\\": 0.7283\\n      },\\n      \\\"greedy_f1_mean\\\": 0.646\\n    },\\n    \\\"conditional\\\": {\\n      \\\"n\\\": 478,\\n      \\\"pct_perfect\\\": 0.27405857740585776,\\n      \\\"SJ\\\": {\\n        \\\"rho\\\": 0.3114,\\n        \\\"auroc\\\": 0.6954\\n      },\\n      \\\"FK\\\": {\\n        \\\"rho\\\": 0.2259,\\n        \\\"auroc\\\": 0.6424\\n      },\\n      \\\"logprob\\\": {\\n        \\\"rho\\\": 0.1089,\\n        \\\"auroc\\\": 0.5365\\n      },\\n      \\\"EM\\\": {\\n        \\\"rho\\\": 0.3437,\\n        \\\"auroc\\\": 0.7655\\n      },\\n      \\\"voting_conf\\\": {\\n        \\\"rho\\\": 0.3473,\\n        \\\"auroc\\\": 0.7059\\n      },\\n      \\\"greedy_f1_mean\\\": 0.7149\\n    }\\n  },\\n  \\\"llama_seed123\\\": {\\n    \\\"n_total\\\": 551,\\n    \\\"n_valid\\\": 529,\\n    \\\"n_conditional\\\": 479,\\n    \\\"full\\\": {\\n      \\\"n\\\": 529,\\n      \\\"pct_perfect\\\": 0.24574669187145556,\\n      \\\"SJ\\\": {\\n        \\\"rho\\\": 0.3552,\\n        \\\"auroc\\\": 0.7092\\n      },\\n      \\\"FK\\\": {\\n        \\\"rho\\\": 0.2897,\\n        \\\"auroc\\\": 0.6678\\n      },\\n      \\\"logprob\\\": {\\n        \\\"rho\\\": 0.197,\\n        \\\"auroc\\\": 0.5839\\n      },\\n      \\\"EM\\\": {\\n        \\\"rho\\\": 0.2844,\\n        \\\"auroc\\\": 0.7468\\n      },\\n      \\\"voting_conf\\\": {\\n        \\\"rho\\\": 0.4193,\\n        \\\"auroc\\\": 0.7159\\n      },\\n      \\\"greedy_f1_mean\\\": 0.6454\\n    },\\n    \\\"conditional\\\": {\\n      \\\"n\\\": 479,\\n      \\\"pct_perfect\\\": 0.27139874739039666,\\n      \\\"SJ\\\": {\\n        \\\"rho\\\": 0.2882,\\n        \\\"auroc\\\": 0.6918\\n      },\\n      \\\"FK\\\": {\\n        \\\"rho\\\": 0.1764,\\n        \\\"auroc\\\": 0.6444\\n      },\\n      \\\"logprob\\\": {\\n        \\\"rho\\\": 0.1175,\\n        \\\"auroc\\\": 0.5636\\n      },\\n      \\\"EM\\\": {\\n        \\\"rho\\\": 0.3116,\\n        \\\"auroc\\\": 0.7467\\n      },\\n      \\\"voting_conf\\\": {\\n        \\\"rho\\\": 0.32,\\n        \\\"auroc\\\": 0.6911\\n      },\\n      \\\"greedy_f1_mean\\\": 0.7127\\n    }\\n  },\\n  \\\"llama_seed456\\\": {\\n    \\\"n_total\\\": 551,\\n    \\\"n_valid\\\": 529,\\n    \\\"n_conditional\\\": 478,\\n    \\\"full\\\": {\\n      \\\"n\\\": 529,\\n      \\\"pct_perfect\\\": 0.24763705103969755,\\n      \\\"SJ\\\": {\\n        \\\"rho\\\": 0.3663,\\n        \\\"auroc\\\": 0.7061\\n      },\\n      \\\"FK\\\": {\\n        \\\"rho\\\": 0.3115,\\n        \\\"auroc\\\": 0.6723\\n      },\\n      \\\"logprob\\\": {\\n        \\\"rho\\\": 0.1911,\\n        \\\"auroc\\\": 0.5636\\n      },\\n      \\\"EM\\\": {\\n        \\\"rho\\\": 0.3088,\\n        \\\"auroc\\\": 0.7538\\n      },\\n      \\\"voting_conf\\\": {\\n        \\\"rho\\\": 0.4135,\\n        \\\"auroc\\\": 0.7113\\n      },\\n      \\\"greedy_f1_mean\\\": 0.6457\\n    },\\n    \\\"conditional\\\": {\\n      \\\"n\\\": 478,\\n      \\\"pct_perfect\\\": 0.27405857740585776,\\n      \\\"SJ\\\": {\\n        \\\"rho\\\": 0.319,\\n        \\\"auroc\\\": 0.6917\\n      },\\n      \\\"FK\\\": {\\n        \\\"rho\\\": 0.221,\\n        \\\"auroc\\\": 0.6536\\n      },\\n      \\\"logprob\\\": {\\n        \\\"rho\\\": 0.1129,\\n        \\\"auroc\\\": 0.5431\\n      },\\n      \\\"EM\\\": {\\n        \\\"rho\\\": 0.3625,\\n        \\\"auroc\\\": 0.7576\\n      },\\n      \\\"voting_conf\\\": {\\n        \\\"rho\\\": 0.3379,\\n        \\\"auroc\\\": 0.6903\\n      },\\n      \\\"greedy_f1_mean\\\": 0.7146\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 30_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a good understanding of the data:
+
+1. **Data files found:**
+   - Seed 42: `/root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/samples_with_logprobs.jsonl` (551 lines)
+   - Seed 123: `/root/autodl-tmp/struct_self_consist_ie/output/exp_018_qwen_scierc_seed123/samples.jsonl` (551 lines)
+   - Seed 456: `/root/autodl-tmp/struct_self_consist_ie/output/exp_018_qwen_scierc_seed456/samples.jsonl` (551 lines)
+
+2. **Data format:** Each line is a JSON with:
+   - `id`: instance ID
+   - `text`: input text
+   - `gold`: ground truth with entities/relations
+   - `samples`: list of 8 sampled outputs, each with entities/relations + `cumulative_logprob`, `n_tokens`, `mean_logprob`
+   - `greedy`: greedy decoding output
+   - `logprobs`: list of mean logprobs per sample
+
+3. **Existing**
+
+The current analysis results have Spearman correlation and AUROC metrics, but I'm missing selection F1 scores, so I'll need to compute those from the raw data. I also need to figure out how the various signals—Voting Confidence, Structural Jaccard, and the others—are actually calculated, which means checking the existing analysis code. On top of that, I should locate the LLaMA SciERC and CoNLL data files for the three seeds since those results are already available.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b8b11d62-6ca3-4151-bc4f-ed1130aa9fbf",
+  "uuid": "2ed05e87-874e-4d24-91a8-5dad9039ea22",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YDgsjym43Pg479yMETESsm",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 14042,
+      "cache_read_input_tokens": 28066,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 14042
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 31_
+
+Now let me check for LLaMA data and the existing signal computation code.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b8b11d62-6ca3-4151-bc4f-ed1130aa9fbf",
+  "uuid": "f125e291-c260-482a-b16d-55832fbfe831",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YDgsjym43Pg479yMETESsm",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 14042,
+      "cache_read_input_tokens": 28066,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 14042
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01YZaSjqxkL5vVNbZ2jVjXqC`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "find /root/autodl-tmp/struct_self_consist_ie/output -name \"*.jsonl\" -path \"*llama*scierc*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b8b11d62-6ca3-4151-bc4f-ed1130aa9fbf",
+  "uuid": "ee994ae8-8957-4769-95ab-744b7dcd58d2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YDgsjym43Pg479yMETESsm",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 14042,
+      "cache_read_input_tokens": 28066,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 14042
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-15T12:43:38.325Z_
+
+<details><summary>↩ Tool result · `toolu_01YZaSjqxkL5vVNbZ2jVjXqC`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/output/exp_018_llama_scierc_seed456/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_018_llama_scierc_seed123/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_018_llama_scierc_seed42_r1024/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_018_llama_scierc_seed456_r1024/samples.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b8b11d62-6ca3-4151-bc4f-ed1130aa9fbf",
+  "uuid": "dbf26987-007d-4559-9469-f90e58cebb57",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/exp_018_llama_scierc_seed456/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_018_llama_scierc_seed123/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_018_llama_scierc_seed42_r1024/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_018_llama_scierc_seed456_r1024/samples.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/output/exp_018_llama_scierc_seed456/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_018_llama_scierc_seed123/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_018_llama_scierc_seed42_r1024/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_018_llama_scierc_seed456_r1024/samples.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Ld3iZgn96sbnhRW1ybWhFQ`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "find /root/autodl-tmp/struct_self_consist_ie/output -name \"*.jsonl\" -path \"*llama*conll*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b8b11d62-6ca3-4151-bc4f-ed1130aa9fbf",
+  "uuid": "f9e2f33f-5147-4575-b998-fcdd45dd0600",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YDgsjym43Pg479yMETESsm",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 14042,
+      "cache_read_input_tokens": 28066,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 14042
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-15T12:43:39.239Z_
+
+<details><summary>↩ Tool result · `toolu_01Ld3iZgn96sbnhRW1ybWhFQ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_infer/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16_s123/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16_s456/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16_s123_r1024/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16_s456_r1024/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16_r1024/samples.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b8b11d62-6ca3-4151-bc4f-ed1130aa9fbf",
+  "uuid": "a3130d18-a402-493e-a772-4a671143ba17",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_infer/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16_s123/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16_s456/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16_s123_r1024/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16_s456_r1024/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16_r1024/samples.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_infer/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16_s123/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16_s456/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16_s123_r1024/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16_s456_r1024/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16_r1024/samples.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01HBQretH3uD6hVbesZZzL9f`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "ls /root/autodl-tmp/struct_self_consist_ie/code/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b8b11d62-6ca3-4151-bc4f-ed1130aa9fbf",
+  "uuid": "494b0247-7a42-4c3a-bdd7-2cc3803cb108",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YDgsjym43Pg479yMETESsm",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 14042,
+      "cache_read_input_tokens": 28066,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 14042
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-15T12:43:39.831Z_
+
+<details><summary>↩ Tool result · `toolu_01HBQretH3uD6hVbesZZzL9f`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"__pycache__\\n_backup_cond_fix\\nanalyze_3seed_5signal.py\\nanalyze_component_wise_re.py\\nanalyze_entity_voting.py\\nanalyze_exact_match_voting.py\\nanalyze_exp002_conll2003.py\\nanalyze_exp004_re_diagnostic.py\\nanalyze_exp004_v2_re_diagnostic.py\\nanalyze_exp005_v2_temperature.py\\nanalyze_exp012_rerun_5signal.py\\nanalyze_exp015_unified.py\\nanalyze_exp015_v2_metrics.py\\nanalyze_exp016_ensemble.py\\nanalyze_exp017_5signal.py\\nanalyze_exp017_llama_conll_n16.py\\nanalyze_exp017_llama_conll_n16_s123.py\\nanalyze_logprob_baseline.py\\nanalyze_ood_signals.py\\ncompute_em_selection_f1.py\\ncompute_metrics.py\\ncompute_re_conditional.py\\nconsistency.py\\nconvert_conll2003.py\\nconvert_to_llamafactory.py\\nconvert_wnut17.py\\ndata_utils.py\\ndiagnose_logprob_rho.py\\ndiversity_analysis.py\\ndiversity_stratified_selection.py\\nem_exact_match_freq.py\\neval_exp012_rerun_auroc.py\\neval_n16_5signal.py\\neval_n8_5signal.py\\neval_s456_5signal.py\\neval_seed42_r1024_5signal.py\\nevaluation.py\\nexp001_3seed_all_signals.py\\nexp001_postprocess.py\\nexp009_stratification_analysis.py\\nexp010_selection_curves.py\\nexp018_5signal_analysis.py\\nexp_006_v2_selection.py\\nexp_009_v2_re_rerun.py\\nexp_009_v2_stratification.py\\nexp_016_v2_ensemble.py\\nextract_logprobs.py\\nfk_independence_test.py\\ngate0_diagnose.py\\ngate0_eval.py\\ngate0_realign_eval.py\\ngen_reliability_1024.py\\nmvp_pilot.py\\nn8_bootstrap_ci.py\\noracle_improvable.py\\noracle_improvable_tost.py\\nplot_reliability_1024.py\\nplot_selection_gap_1024.py\\nre_conditional_analysis.py\\nre_nonzero_selection.py\\nre_selection_recompute.py\\nrun_mvp_pilot.py\\nsampling.py\\nvc_impl_diff_verify.py\\nwnut17_full_signal_analysis.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b8b11d62-6ca3-4151-bc4f-ed1130aa9fbf",
+  "uuid": "45bcb5b6-dcdd-4d98-955e-b389ce52d7d3",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"__pycache__\\\\n_backup_cond_fix\\\\nanalyze_3seed_5signal.py\\\\nanalyze_component_wise_re.py\\\\nanalyze_entity_voting.py\\\\nanalyze_exact_match_voting.py\\\\nanalyze_exp002_conll2003.py\\\\nanalyze_exp004_re_diagnostic.py\\\\nanalyze_exp004_v2_re_diagnostic.py\\\\nanalyze_exp005_v2_temperature.py\\\\nanalyze_exp012_rerun_5signal.py\\\\nanalyze_exp015_unified.py\\\\nanalyze_exp015_v2_metrics.py\\\\nanalyze_exp016_ensemble.py\\\\nanalyze_exp017_5signal.py\\\\nanalyze_exp017_llama_conll_n16.py\\\\nanalyze_exp017_llama_conll_n16_s123.py\\\\nanalyze_logprob_baseline.py\\\\nanalyze_ood_signals.py\\\\ncompute_em_selection_f1.py\\\\ncompute_metrics.py\\\\ncompute_re_conditional.py\\\\nconsistency.py\\\\nconvert_conll2003.py\\\\nconvert_to_llamafactory.py\\\\nconvert_wnut17.py\\\\ndata_utils.py\\\\ndiagnose_logprob_rho.py\\\\ndiversity_analysis.py\\\\ndiversity_stratified_selection.py\\\\nem_exact_match_freq.py\\\\neval_exp012_rerun_auroc.py\\\\neval_n16_5signal.py\\\\neval_n8_5signal.py\\\\neval_s456_5signal.py\\\\neval_seed42_r1024_5signal.py\\\\nevaluation.py\\\\nexp001_3seed_all_signals.py\\\\nexp001_postprocess.py\\\\nexp009_stratification_analysis.py\\\\nexp010_selection_curves.py\\\\nexp018_5signal_analysis.py\\\\nexp_006_v2_selection.py\\\\nexp_009_v2_re_rerun.py\\\\nexp_009_v2_stratification.py\\\\nexp_016_v2_ensemble.py\\\\nextract_logprobs.py\\\\nfk_independence_test.py\\\\ngate0_diagnose.py\\\\ngate0_eval.py\\\\ngate0_realign_eval.py\\\\ngen_reliability_1024.py\\\\nmvp_pilot.py\\\\nn8_bootstrap_ci.py\\\\noracle_improvable.py\\\\noracle_improvable_tost.py\\\\nplot_reliability_1024.py\\\\nplot_selection_gap_1024.py\\\\nre_conditional_analysis.py\\\\nre_nonzero_selection.py\\\\nre_selection_recompute.py\\\\nrun_mvp_pilot.py\\\\nsampling.py\\\\nvc_impl_diff_verify.py\\\\nwnut17_full_signal_analysis.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"__pycache__\\n_backup_cond_fix\\nanalyze_3seed_5signal.py\\nanalyze_component_wise_re.py\\nanalyze_entity_voting.py\\nanalyze_exact_match_voting.py\\nanalyze_exp002_conll2003.py\\nanalyze_exp004_re_diagnostic.py\\nanalyze_exp004_v2_re_diagnostic.py\\nanalyze_exp005_v2_temperature.py\\nanalyze_exp012_rerun_5signal.py\\nanalyze_exp015_unified.py\\nanalyze_exp015_v2_metrics.py\\nanalyze_exp016_ensemble.py\\nanalyze_exp017_5signal.py\\nanalyze_exp017_llama_conll_n16.py\\nanalyze_exp017_llama_conll_n16_s123.py\\nanalyze_logprob_baseline.py\\nanalyze_ood_signals.py\\ncompute_em_selection_f1.py\\ncompute_metrics.py\\ncompute_re_conditional.py\\nconsistency.py\\nconvert_conll2003.py\\nconvert_to_llamafactory.py\\nconvert_wnut17.py\\ndata_utils.py\\ndiagnose_logprob_rho.py\\ndiversity_analysis.py\\ndiversity_stratified_selection.py\\nem_exact_match_freq.py\\neval_exp012_rerun_auroc.py\\neval_n16_5signal.py\\neval_n8_5signal.py\\neval_s456_5signal.py\\neval_seed42_r1024_5signal.py\\nevaluation.py\\nexp001_3seed_all_signals.py\\nexp001_postprocess.py\\nexp009_stratification_analysis.py\\nexp010_selection_curves.py\\nexp018_5signal_analysis.py\\nexp_006_v2_selection.py\\nexp_009_v2_re_rerun.py\\nexp_009_v2_stratification.py\\nexp_016_v2_ensemble.py\\nextract_logprobs.py\\nfk_independence_test.py\\ngate0_diagnose.py\\ngate0_eval.py\\ngate0_realign_eval.py\\ngen_reliability_1024.py\\nmvp_pilot.py\\nn8_bootstrap_ci.py\\noracle_improvable.py\\noracle_improvable_tost.py\\nplot_reliability_1024.py\\nplot_selection_gap_1024.py\\nre_conditional_analysis.py\\nre_nonzero_selection.py\\nre_selection_recompute.py\\nrun_mvp_pilot.py\\nsampling.py\\nvc_impl_diff_verify.py\\nwnut17_full_signal_analysis.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 38_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I see `compute_em_selection_f1.py`, `exp018_5signal_analysis.py`, `analyze_3seed_5signal.py` etc. Let me look at the existing signal computation and selection F1 code to understand how signals are computed.
+
+Let me also check what the `_r1024` suffix means - seems like some directories have it and some don't. The task mentions N=8 samples, so let me verify the number of samples in each file.
+
+Let me look at:
+1. `analyze_3seed_5signal.py` or `exp018_5signal_analysis.py` to understand the signal computation
+
+
+2. `compute_em_selection_f1.py` to see how the selection F1 is calculated
+3. Confirm whether seed 42 Qwen SciERC corresponds to `exp_012_rerun_1024` or a different experiment directory
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b8b11d62-6ca3-4151-bc4f-ed1130aa9fbf",
+  "uuid": "f4f95514-9b02-4c21-932a-d89df6f8e37b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WRn9utPX7SW5wWkmSeVrrY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2360,
+      "cache_read_input_tokens": 42108,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2360
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01B7vmp9P6Jhx4HrTMkrtDYE`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "head -200 /root/autodl-tmp/struct_self_consist_ie/code/exp018_5signal_analysis.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b8b11d62-6ca3-4151-bc4f-ed1130aa9fbf",
+  "uuid": "a4213858-6a25-4e86-8ccc-5042b5fa7f69",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WRn9utPX7SW5wWkmSeVrrY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2360,
+      "cache_read_input_tokens": 42108,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2360
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01EnQkdGrppeaFUeuLNXUJLd`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/code/compute_em_selection_f1.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b8b11d62-6ca3-4151-bc4f-ed1130aa9fbf",
+  "uuid": "e027e030-a262-4c26-b6d2-bb797512b648",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WRn9utPX7SW5wWkmSeVrrY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2360,
+      "cache_read_input_tokens": 42108,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2360
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-15T12:43:48.098Z_
+
+<details><summary>↩ Tool result · `toolu_01B7vmp9P6Jhx4HrTMkrtDYE`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"5-signal analysis for exp_018 3-seed aggregation.\\\"\\\"\\\"\\nimport json, sys\\nimport numpy as np\\nfrom scipy.stats import spearmanr, rankdata\\nfrom collections import Counter\\n\\nsys.path.insert(0, '/root/autodl-tmp/struct_self_consist_ie/code')\\nfrom consistency import compute_all_consistency_scores\\nfrom evaluation import per_instance_f1\\n\\nEXPERIMENTS = {\\n    \\\"qwen_seed42\\\": {\\n        \\\"path\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/samples.jsonl\\\",\\n        \\\"subtask\\\": \\\"ner\\\", \\\"dataset\\\": \\\"scierc\\\",\\n    },\\n    \\\"qwen_seed123\\\": {\\n        \\\"path\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/exp_018_qwen_scierc_seed123/samples.jsonl\\\",\\n        \\\"subtask\\\": \\\"ner\\\", \\\"dataset\\\": \\\"scierc\\\",\\n    },\\n    \\\"qwen_seed456\\\": {\\n        \\\"path\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/exp_018_qwen_scierc_seed456/samples.jsonl\\\",\\n        \\\"subtask\\\": \\\"ner\\\", \\\"dataset\\\": \\\"scierc\\\",\\n    },\\n    \\\"llama_seed42\\\": {\\n        \\\"path\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/exp007_llama_inference/samples.jsonl\\\",\\n        \\\"subtask\\\": \\\"ner\\\", \\\"dataset\\\": \\\"scierc\\\",\\n    },\\n    \\\"llama_seed123\\\": {\\n        \\\"path\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/exp_018_llama_scierc_seed123/samples.jsonl\\\",\\n        \\\"subtask\\\": \\\"ner\\\", \\\"dataset\\\": \\\"scierc\\\",\\n    },\\n    \\\"llama_seed456\\\": {\\n        \\\"path\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/exp_018_llama_scierc_seed456/samples.jsonl\\\",\\n        \\\"subtask\\\": \\\"ner\\\", \\\"dataset\\\": \\\"scierc\\\",\\n    },\\n}\\n\\ndef load_data(path):\\n    with open(path) as f:\\n        return [json.loads(line) for line in f if line.strip()]\\n\\ndef compute_exact_match_rate(samples, subtask):\\n    if subtask == \\\"ner\\\":\\n        keys = [frozenset((e[\\\"text\\\"], e[\\\"type\\\"]) for e in s.get(\\\"entities\\\", [])) for s in samples]\\n    else:\\n        keys = [frozenset((r[\\\"head\\\"], r[\\\"tail\\\"], r[\\\"type\\\"]) for r in s.get(\\\"relations\\\", [])) for s in samples]\\n    if not keys: return 0.0\\n    c = Counter(keys)\\n    return c.most_common(1)[0][1] / len(samples)\\n\\ndef compute_voting_confidence(samples, subtask):\\n    N = len(samples)\\n    if N == 0: return 0.0\\n    counter = Counter()\\n    if subtask == \\\"ner\\\":\\n        for s in samples:\\n            for e in s.get(\\\"entities\\\", []):\\n                counter[(e[\\\"text\\\"], e[\\\"type\\\"])] += 1\\n    else:\\n        for s in samples:\\n            for r in s.get(\\\"relations\\\", []):\\n                counter[(r[\\\"head\\\"], r[\\\"tail\\\"], r[\\\"type\\\"])] += 1\\n    if not counter: return 0.0\\n    return float(np.mean([v / N for v in counter.values()]))\\n\\ndef compute_mean_logprob(samples):\\n    lps = [s.get(\\\"mean_logprob\\\") for s in samples if s.get(\\\"mean_logprob\\\") is not None]\\n    lps = [lp for lp in lps if np.isfinite(lp)]\\n    return float(np.mean(lps)) if lps else float(\\\"nan\\\")\\n\\ndef safe_spearman(x, y):\\n    x, y = np.asarray(x, float), np.asarray(y, float)\\n    m = np.isfinite(x) & np.isfinite(y)\\n    x, y = x[m], y[m]\\n    if len(x) < 3: return float(\\\"nan\\\"), float(\\\"nan\\\")\\n    r = spearmanr(x, y)\\n    return float(r.statistic), float(r.pvalue)\\n\\ndef safe_auroc(scores, labels):\\n    scores, labels = np.asarray(scores, float), np.asarray(labels, int)\\n    if len(np.unique(labels)) < 2: return float(\\\"nan\\\")\\n    n_pos, n_neg = (labels==1).sum(), (labels==0).sum()\\n    if n_pos == 0 or n_neg == 0: return float(\\\"nan\\\")\\n    ranks = rankdata(scores)\\n    u = ranks[labels==1].sum() - n_pos*(n_pos+1)/2\\n    return float(u / (n_pos * n_neg))\\n\\ndef analyze(path, subtask):\\n    instances = load_data(path)\\n    entity_key = \\\"entities\\\" if subtask == \\\"ner\\\" else \\\"relations\\\"\\n    valid = [inst for inst in instances if len(inst[\\\"gold\\\"].get(entity_key, [])) > 0]\\n\\n    greedy_f1s = []\\n    for inst in valid:\\n        greedy = inst.get(\\\"greedy\\\", inst[\\\"samples\\\"][0])\\n        greedy_f1s.append(per_instance_f1(greedy, inst[\\\"gold\\\"], subtask=subtask))\\n    conditional = [inst for inst, f1 in zip(valid, greedy_f1s) if f1 > 0]\\n\\n    results = {\\\"n_total\\\": len(instances), \\\"n_valid\\\": len(valid), \\\"n_conditional\\\": len(conditional)}\\n    \\n    for split_name, split_insts in [(\\\"full\\\", valid), (\\\"conditional\\\", conditional)]:\\n        cons = compute_all_consistency_scores(split_insts, subtask=subtask)\\n        sj = cons[\\\"soft_jaccard\\\"]\\n        fk = cons[\\\"fleiss_kappa\\\"]\\n        \\n        lp, em, vc, f1s = [], [], [], []\\n        for inst in split_insts:\\n            samples = inst[\\\"samples\\\"]\\n            greedy = inst.get(\\\"greedy\\\", samples[0])\\n            lp.append(compute_mean_logprob(samples))\\n            em.append(compute_exact_match_rate(samples, subtask))\\n            vc.append(compute_voting_confidence(samples, subtask))\\n            f1s.append(per_instance_f1(greedy, inst[\\\"gold\\\"], subtask=subtask))\\n        \\n        signals = {\\\"SJ\\\": np.array(sj), \\\"FK\\\": np.array(fk), \\\"logprob\\\": np.array(lp),\\n                    \\\"EM\\\": np.array(em), \\\"voting_conf\\\": np.array(vc)}\\n        f1_arr = np.array(f1s)\\n        binary = (f1_arr >= 1.0).astype(int)\\n        \\n        split_res = {\\\"n\\\": len(split_insts), \\\"pct_perfect\\\": float((binary==1).mean())}\\n        for name, vals in signals.items():\\n            rho, p_rho = safe_spearman(vals, f1_arr)\\n            auroc = safe_auroc(vals, binary)\\n            split_res[name] = {\\\"rho\\\": round(rho, 4), \\\"auroc\\\": round(auroc, 4)}\\n        \\n        split_res[\\\"greedy_f1_mean\\\"] = round(float(np.mean(f1s)), 4)\\n        results[split_name] = split_res\\n    return results\\n\\nall_results = {}\\nfor exp_id, cfg in EXPERIMENTS.items():\\n    print(f\\\"Processing {exp_id}...\\\")\\n    all_results[exp_id] = analyze(cfg[\\\"path\\\"], cfg[\\\"subtask\\\"])\\n\\nout_path = \\\"/root/autodl-tmp/struct_self_consist_ie/output/exp018_3seed_5signal_results.json\\\"\\nwith open(out_path, \\\"w\\\") as f:\\n    json.dump(all_results, f, indent=2, default=lambda o: float(o) if isinstance(o, (np.floating,)) else str(o))\\nprint(f\\\"\\\\nSaved to {out_path}\\\")\\nprint(json.dumps(all_results, indent=2, default=lambda o: float(o) if isinstance(o, (np.floating,)) else str(o)))\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b8b11d62-6ca3-4151-bc4f-ed1130aa9fbf",
+  "uuid": "282e7d0b-403a-4044-964e-743f67f39816",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"5-signal analysis for exp_018 3-seed aggregation.\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport json, sys\\\\nimport numpy as np\\\\nfrom scipy.stats import spearmanr, rankdata\\\\nfrom collections import Counter\\\\n\\\\nsys.path.insert(0, '/root/autodl-tmp/struct_self_consist_ie/code')\\\\nfrom consistency import compute_all_consistency_scores\\\\nfrom evaluation import per_instance_f1\\\\n\\\\nEXPERIMENTS = {\\\\n    \\\\\\\"qwen_seed42\\\\\\\": {\\\\n        \\\\\\\"path\\\\\\\": \\\\\\\"/root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/samples.jsonl\\\\\\\",\\\\n        \\\\\\\"subtask\\\\\\\": \\\\\\\"ner\\\\\\\", \\\\\\\"dataset\\\\\\\": \\\\\\\"scierc\\\\\\\",\\\\n    },\\\\n    \\\\\\\"qwen_seed123\\\\\\\": {\\\\n        \\\\\\\"path\\\\\\\": \\\\\\\"/root/autodl-tmp/struct_self_consist_ie/output/exp_018_qwen_scierc_seed123/samples.jsonl\\\\\\\",\\\\n        \\\\\\\"subtask\\\\\\\": \\\\\\\"ner\\\\\\\", \\\\\\\"dataset\\\\\\\": \\\\\\\"scierc\\\\\\\",\\\\n    },\\\\n    \\\\\\\"qwen_seed456\\\\\\\": {\\\\n        \\\\\\\"path\\\\\\\": \\\\\\\"/root/autodl-tmp/struct_self_consist_ie/output/exp_018_qwen_scierc_seed456/samples.jsonl\\\\\\\",\\\\n        \\\\\\\"subtask\\\\\\\": \\\\\\\"ner\\\\\\\", \\\\\\\"dataset\\\\\\\": \\\\\\\"scierc\\\\\\\",\\\\n    },\\\\n    \\\\\\\"llama_seed42\\\\\\\": {\\\\n        \\\\\\\"path\\\\\\\": \\\\\\\"/root/autodl-tmp/struct_self_consist_ie/output/exp007_llama_inference/samples.jsonl\\\\\\\",\\\\n        \\\\\\\"subtask\\\\\\\": \\\\\\\"ner\\\\\\\", \\\\\\\"dataset\\\\\\\": \\\\\\\"scierc\\\\\\\",\\\\n    },\\\\n    \\\\\\\"llama_seed123\\\\\\\": {\\\\n        \\\\\\\"path\\\\\\\": \\\\\\\"/root/autodl-tmp/struct_self_consist_ie/output/exp_018_llama_scierc_seed123/samples.jsonl\\\\\\\",\\\\n        \\\\\\\"subtask\\\\\\\": \\\\\\\"ner\\\\\\\", \\\\\\\"dataset\\\\\\\": \\\\\\\"scierc\\\\\\\",\\\\n    },\\\\n    \\\\\\\"llama_seed456\\\\\\\": {\\\\n        \\\\\\\"path\\\\\\\": \\\\\\\"/root/autodl-tmp/struct_self_consist_ie/output/exp_018_llama_scierc_seed456/samples.jsonl\\\\\\\",\\\\n        \\\\\\\"subtask\\\\\\\": \\\\\\\"ner\\\\\\\", \\\\\\\"dataset\\\\\\\": \\\\\\\"scierc\\\\\\\",\\\\n    },\\\\n}\\\\n\\\\ndef load_data(path):\\\\n    with open(path) as f:\\\\n        return [json.loads(line) for line in f if line.strip()]\\\\n\\\\ndef compute_exact_match_rate(samples, subtask):\\\\n    if subtask == \\\\\\\"ner\\\\\\\":\\\\n        keys = [frozenset((e[\\\\\\\"text\\\\\\\"], e[\\\\\\\"type\\\\\\\"]) for e in s.get(\\\\\\\"entities\\\\\\\", [])) for s in samples]\\\\n    else:\\\\n        keys = [frozenset((r[\\\\\\\"head\\\\\\\"], r[\\\\\\\"tail\\\\\\\"], r[\\\\\\\"type\\\\\\\"]) for r in s.get(\\\\\\\"relations\\\\\\\", [])) for s in samples]\\\\n    if not keys: return 0.0\\\\n    c = Counter(keys)\\\\n    return c.most_common(1)[0][1] / len(samples)\\\\n\\\\ndef compute_voting_confidence(samples, subtask):\\\\n    N = len(samples)\\\\n    if N == 0: return 0.0\\\\n    counter = Counter()\\\\n    if subtask == \\\\\\\"ner\\\\\\\":\\\\n        for s in samples:\\\\n            for e in s.get(\\\\\\\"entities\\\\\\\", []):\\\\n                counter[(e[\\\\\\\"text\\\\\\\"], e[\\\\\\\"type\\\\\\\"])] += 1\\\\n    else:\\\\n        for s in samples:\\\\n            for r in s.get(\\\\\\\"relations\\\\\\\", []):\\\\n                counter[(r[\\\\\\\"head\\\\\\\"], r[\\\\\\\"tail\\\\\\\"], r[\\\\\\\"type\\\\\\\"])] += 1\\\\n    if not counter: return 0.0\\\\n    return float(np.mean([v / N for v in counter.values()]))\\\\n\\\\ndef compute_mean_logprob(samples):\\\\n    lps = [s.get(\\\\\\\"mean_logprob\\\\\\\") for s in samples if s.get(\\\\\\\"mean_logprob\\\\\\\") is not None]\\\\n    lps = [lp for lp in lps if np.isfinite(lp)]\\\\n    return float(np.mean(lps)) if lps else float(\\\\\\\"nan\\\\\\\")\\\\n\\\\ndef safe_spearman(x, y):\\\\n    x, y = np.asarray(x, float), np.asarray(y, float)\\\\n    m = np.isfinite(x) & np.isfinite(y)\\\\n    x, y = x[m], y[m]\\\\n    if len(x) < 3: return float(\\\\\\\"nan\\\\\\\"), float(\\\\\\\"nan\\\\\\\")\\\\n    r = spearmanr(x, y)\\\\n    return float(r.statistic), float(r.pvalue)\\\\n\\\\ndef safe_auroc(scores, labels):\\\\n    scores, labels = np.asarray(scores, float), np.asarray(labels, int)\\\\n    if len(np.unique(labels)) < 2: return float(\\\\\\\"nan\\\\\\\")\\\\n    n_pos, n_neg = (labels==1).sum(), (labels==0).sum()\\\\n    if n_pos == 0 or n_neg == 0: return float(\\\\\\\"nan\\\\\\\")\\\\n    ranks = rankdata(scores)\\\\n    u = ranks[labels==1].sum() - n_pos*(n_pos+1)/2\\\\n    return float(u / (n_pos * n_neg))\\\\n\\\\ndef analyze(path, subtask):\\\\n    instances = load_data(path)\\\\n    entity_key = \\\\\\\"entities\\\\\\\" if subtask == \\\\\\\"ner\\\\\\\" else \\\\\\\"relations\\\\\\\"\\\\n    valid = [inst for inst in instances if len(inst[\\\\\\\"gold\\\\\\\"].get(entity_key, [])) > 0]\\\\n\\\\n    greedy_f1s = []\\\\n    for inst in valid:\\\\n        greedy = inst.get(\\\\\\\"greedy\\\\\\\", inst[\\\\\\\"samples\\\\\\\"][0])\\\\n        greedy_f1s.append(per_instance_f1(greedy, inst[\\\\\\\"gold\\\\\\\"], subtask=subtask))\\\\n    conditional = [inst for inst, f1 in zip(valid, greedy_f1s) if f1 > 0]\\\\n\\\\n    results = {\\\\\\\"n_total\\\\\\\": len(instances), \\\\\\\"n_valid\\\\\\\": len(valid), \\\\\\\"n_conditional\\\\\\\": len(conditional)}\\\\n    \\\\n    for split_name, split_insts in [(\\\\\\\"full\\\\\\\", valid), (\\\\\\\"conditional\\\\\\\", conditional)]:\\\\n        cons = compute_all_consistency_scores(split_insts, subtask=subtask)\\\\n        sj = cons[\\\\\\\"soft_jaccard\\\\\\\"]\\\\n        fk = cons[\\\\\\\"fleiss_kappa\\\\\\\"]\\\\n        \\\\n        lp, em, vc, f1s = [], [], [], []\\\\n        for inst in split_insts:\\\\n            samples = inst[\\\\\\\"samples\\\\\\\"]\\\\n            greedy = inst.get(\\\\\\\"greedy\\\\\\\", samples[0])\\\\n            lp.append(compute_mean_logprob(samples))\\\\n            em.append(compute_exact_match_rate(samples, subtask))\\\\n            vc.append(compute_voting_confidence(samples, subtask))\\\\n            f1s.append(per_instance_f1(greedy, inst[\\\\\\\"gold\\\\\\\"], subtask=subtask))\\\\n        \\\\n        signals = {\\\\\\\"SJ\\\\\\\": np.array(sj), \\\\\\\"FK\\\\\\\": np.array(fk), \\\\\\\"logprob\\\\\\\": np.array(lp),\\\\n                    \\\\\\\"EM\\\\\\\": np.array(em), \\\\\\\"voting_conf\\\\\\\": np.array(vc)}\\\\n        f1_arr = np.array(f1s)\\\\n        binary = (f1_arr >= 1.0).astype(int)\\\\n        \\\\n        split_res = {\\\\\\\"n\\\\\\\": len(split_insts), \\\\\\\"pct_perfect\\\\\\\": float((binary==1).mean())}\\\\n        for name, vals in signals.items():\\\\n            rho, p_rho = safe_spearman(vals, f1_arr)\\\\n            auroc = safe_auroc(vals, binary)\\\\n            split_res[name] = {\\\\\\\"rho\\\\\\\": round(rho, 4), \\\\\\\"auroc\\\\\\\": round(auroc, 4)}\\\\n        \\\\n        split_res[\\\\\\\"greedy_f1_mean\\\\\\\"] = round(float(np.mean(f1s)), 4)\\\\n        results[split_name] = split_res\\\\n    return results\\\\n\\\\nall_results = {}\\\\nfor exp_id, cfg in EXPERIMENTS.items():\\\\n    print(f\\\\\\\"Processing {exp_id}...\\\\\\\")\\\\n    all_results[exp_id] = analyze(cfg[\\\\\\\"path\\\\\\\"], cfg[\\\\\\\"subtask\\\\\\\"])\\\\n\\\\nout_path = \\\\\\\"/root/autodl-tmp/struct_self_consist_ie/output/exp018_3seed_5signal_results.json\\\\\\\"\\\\nwith open(out_path, \\\\\\\"w\\\\\\\") as f:\\\\n    json.dump(all_results, f, indent=2, default=lambda o: float(o) if isinstance(o, (np.floating,)) else str(o))\\\\nprint(f\\\\\\\"\\\\\\\\nSaved to {out_path}\\\\\\\")\\\\nprint(json.dumps(all_results, indent=2, default=lambda o: float(o) if isinstance(o, (np.floating,)) else str(o)))\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"5-signal analysis for exp_018 3-seed aggregation.\\\"\\\"\\\"\\nimport json, sys\\nimport numpy as np\\nfrom scipy.stats import spearmanr, rankdata\\nfrom collections import Counter\\n\\nsys.path.insert(0, '/root/autodl-tmp/struct_self_consist_ie/code')\\nfrom consistency import compute_all_consistency_scores\\nfrom evaluation import per_instance_f1\\n\\nEXPERIMENTS = {\\n    \\\"qwen_seed42\\\": {\\n        \\\"path\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/samples.jsonl\\\",\\n        \\\"subtask\\\": \\\"ner\\\", \\\"dataset\\\": \\\"scierc\\\",\\n    },\\n    \\\"qwen_seed123\\\": {\\n        \\\"path\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/exp_018_qwen_scierc_seed123/samples.jsonl\\\",\\n        \\\"subtask\\\": \\\"ner\\\", \\\"dataset\\\": \\\"scierc\\\",\\n    },\\n    \\\"qwen_seed456\\\": {\\n        \\\"path\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/exp_018_qwen_scierc_seed456/samples.jsonl\\\",\\n        \\\"subtask\\\": \\\"ner\\\", \\\"dataset\\\": \\\"scierc\\\",\\n    },\\n    \\\"llama_seed42\\\": {\\n        \\\"path\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/exp007_llama_inference/samples.jsonl\\\",\\n        \\\"subtask\\\": \\\"ner\\\", \\\"dataset\\\": \\\"scierc\\\",\\n    },\\n    \\\"llama_seed123\\\": {\\n        \\\"path\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/exp_018_llama_scierc_seed123/samples.jsonl\\\",\\n        \\\"subtask\\\": \\\"ner\\\", \\\"dataset\\\": \\\"scierc\\\",\\n    },\\n    \\\"llama_seed456\\\": {\\n        \\\"path\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/exp_018_llama_scierc_seed456/samples.jsonl\\\",\\n        \\\"subtask\\\": \\\"ner\\\", \\\"dataset\\\": \\\"scierc\\\",\\n    },\\n}\\n\\ndef load_data(path):\\n    with open(path) as f:\\n        return [json.loads(line) for line in f if line.strip()]\\n\\ndef compute_exact_match_rate(samples, subtask):\\n    if subtask == \\\"ner\\\":\\n        keys = [frozenset((e[\\\"text\\\"], e[\\\"type\\\"]) for e in s.get(\\\"entities\\\", [])) for s in samples]\\n    else:\\n        keys = [frozenset((r[\\\"head\\\"], r[\\\"tail\\\"], r[\\\"type\\\"]) for r in s.get(\\\"relations\\\", [])) for s in samples]\\n    if not keys: return 0.0\\n    c = Counter(keys)\\n    return c.most_common(1)[0][1] / len(samples)\\n\\ndef compute_voting_confidence(samples, subtask):\\n    N = len(samples)\\n    if N == 0: return 0.0\\n    counter = Counter()\\n    if subtask == \\\"ner\\\":\\n        for s in samples:\\n            for e in s.get(\\\"entities\\\", []):\\n                counter[(e[\\\"text\\\"], e[\\\"type\\\"])] += 1\\n    else:\\n        for s in samples:\\n            for r in s.get(\\\"relations\\\", []):\\n                counter[(r[\\\"head\\\"], r[\\\"tail\\\"], r[\\\"type\\\"])] += 1\\n    if not counter: return 0.0\\n    return float(np.mean([v / N for v in counter.values()]))\\n\\ndef compute_mean_logprob(samples):\\n    lps = [s.get(\\\"mean_logprob\\\") for s in samples if s.get(\\\"mean_logprob\\\") is not None]\\n    lps = [lp for lp in lps if np.isfinite(lp)]\\n    return float(np.mean(lps)) if lps else float(\\\"nan\\\")\\n\\ndef safe_spearman(x, y):\\n    x, y = np.asarray(x, float), np.asarray(y, float)\\n    m = np.isfinite(x) & np.isfinite(y)\\n    x, y = x[m], y[m]\\n    if len(x) < 3: return float(\\\"nan\\\"), float(\\\"nan\\\")\\n    r = spearmanr(x, y)\\n    return float(r.statistic), float(r.pvalue)\\n\\ndef safe_auroc(scores, labels):\\n    scores, labels = np.asarray(scores, float), np.asarray(labels, int)\\n    if len(np.unique(labels)) < 2: return float(\\\"nan\\\")\\n    n_pos, n_neg = (labels==1).sum(), (labels==0).sum()\\n    if n_pos == 0 or n_neg == 0: return float(\\\"nan\\\")\\n    ranks = rankdata(scores)\\n    u = ranks[labels==1].sum() - n_pos*(n_pos+1)/2\\n    return float(u / (n_pos * n_neg))\\n\\ndef analyze(path, subtask):\\n    instances = load_data(path)\\n    entity_key = \\\"entities\\\" if subtask == \\\"ner\\\" else \\\"relations\\\"\\n    valid = [inst for inst in instances if len(inst[\\\"gold\\\"].get(entity_key, [])) > 0]\\n\\n    greedy_f1s = []\\n    for inst in valid:\\n        greedy = inst.get(\\\"greedy\\\", inst[\\\"samples\\\"][0])\\n        greedy_f1s.append(per_instance_f1(greedy, inst[\\\"gold\\\"], subtask=subtask))\\n    conditional = [inst for inst, f1 in zip(valid, greedy_f1s) if f1 > 0]\\n\\n    results = {\\\"n_total\\\": len(instances), \\\"n_valid\\\": len(valid), \\\"n_conditional\\\": len(conditional)}\\n    \\n    for split_name, split_insts in [(\\\"full\\\", valid), (\\\"conditional\\\", conditional)]:\\n        cons = compute_all_consistency_scores(split_insts, subtask=subtask)\\n        sj = cons[\\\"soft_jaccard\\\"]\\n        fk = cons[\\\"fleiss_kappa\\\"]\\n        \\n        lp, em, vc, f1s = [], [], [], []\\n        for inst in split_insts:\\n            samples = inst[\\\"samples\\\"]\\n            greedy = inst.get(\\\"greedy\\\", samples[0])\\n            lp.append(compute_mean_logprob(samples))\\n            em.append(compute_exact_match_rate(samples, subtask))\\n            vc.append(compute_voting_confidence(samples, subtask))\\n            f1s.append(per_instance_f1(greedy, inst[\\\"gold\\\"], subtask=subtask))\\n        \\n        signals = {\\\"SJ\\\": np.array(sj), \\\"FK\\\": np.array(fk), \\\"logprob\\\": np.array(lp),\\n                    \\\"EM\\\": np.array(em), \\\"voting_conf\\\": np.array(vc)}\\n        f1_arr = np.array(f1s)\\n        binary = (f1_arr >= 1.0).astype(int)\\n        \\n        split_res = {\\\"n\\\": len(split_insts), \\\"pct_perfect\\\": float((binary==1).mean())}\\n        for name, vals in signals.items():\\n            rho, p_rho = safe_spearman(vals, f1_arr)\\n            auroc = safe_auroc(vals, binary)\\n            split_res[name] = {\\\"rho\\\": round(rho, 4), \\\"auroc\\\": round(auroc, 4)}\\n        \\n        split_res[\\\"greedy_f1_mean\\\"] = round(float(np.mean(f1s)), 4)\\n        results[split_name] = split_res\\n    return results\\n\\nall_results = {}\\nfor exp_id, cfg in EXPERIMENTS.items():\\n    print(f\\\"Processing {exp_id}...\\\")\\n    all_results[exp_id] = analyze(cfg[\\\"path\\\"], cfg[\\\"subtask\\\"])\\n\\nout_path = \\\"/root/autodl-tmp/struct_self_consist_ie/output/exp018_3seed_5signal_results.json\\\"\\nwith open(out_path, \\\"w\\\") as f:\\n    json.dump(all_results, f, indent=2, default=lambda o: float(o) if isinstance(o, (np.floating,)) else str(o))\\nprint(f\\\"\\\\nSaved to {out_path}\\\")\\nprint(json.dumps(all_results, indent=2, default=lambda o: float(o) if isinstance(o, (np.floating,)) else str(o)))\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-15T12:43:48.527Z_
+
+<details><summary>↩ Tool result · `toolu_01EnQkdGrppeaFUeuLNXUJLd`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Compute EM (Exact Match) selection F1 for Qwen SciERC N=8.\\\"\\\"\\\"\\n\\nimport json\\nimport sys\\nfrom collections import Counter\\n\\nsys.path.insert(0, '/root/autodl-tmp/struct_self_consist_ie/code')\\nfrom evaluation import per_instance_f1\\n\\nDATA_PATH = \\\"/root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/samples.jsonl\\\"\\nCOMPARISON_PATH = \\\"/root/autodl-tmp/struct_self_consist_ie/output/exp_016_rerun_1024/selection_f1_comparison.json\\\"\\nFULL_PATH = \\\"/root/autodl-tmp/struct_self_consist_ie/output/exp_016_rerun_1024/selection_f1_full.json\\\"\\n\\n\\ndef load_data(path):\\n    instances = []\\n    with open(path) as f:\\n        for line in f:\\n            if line.strip():\\n                instances.append(json.loads(line))\\n    return instances\\n\\n\\ndef entity_set_key(sample):\\n    return frozenset((e[\\\"text\\\"], e[\\\"type\\\"]) for e in sample.get(\\\"entities\\\", []))\\n\\n\\ndef relation_set_key(sample):\\n    return frozenset((r[\\\"head\\\"], r[\\\"tail\\\"], r[\\\"type\\\"]) for r in sample.get(\\\"relations\\\", []))\\n\\n\\ndef em_select(samples, key_fn):\\n    \\\"\\\"\\\"Select sample by exact-match plurality vote. Tie-break: first occurrence.\\\"\\\"\\\"\\n    if not samples:\\n        return None\\n    keys = [key_fn(s) for s in samples]\\n    counter = Counter(keys)\\n    max_count = counter.most_common(1)[0][1]\\n    for i, k in enumerate(keys):\\n        if counter[k] == max_count:\\n            return samples[i]\\n    return samples[0]\\n\\n\\ndef compute_em_selection_f1(instances, subtask):\\n    key_fn = entity_set_key if subtask == \\\"ner\\\" else relation_set_key\\n    \\n    em_f1s = []\\n    greedy_f1s = []\\n    oracle_f1s = []\\n    \\n    for inst in instances:\\n        gold = inst[\\\"gold\\\"]\\n        samples = inst.get(\\\"samples\\\", [])\\n        greedy = inst.get(\\\"greedy\\\")\\n        \\n        selected = em_select(samples, key_fn)\\n        if selected is not None:\\n            em_f1 = per_instance_f1(selected, gold, subtask)\\n        else:\\n            em_f1 = 0.0\\n        em_f1s.append(em_f1)\\n        \\n        if greedy is not None:\\n            greedy_f1s.append(per_instance_f1(greedy, gold, subtask))\\n        else:\\n            greedy_f1s.append(0.0)\\n        \\n        if samples:\\n            best_f1 = max(per_instance_f1(s, gold, subtask) for s in samples)\\n            oracle_f1s.append(best_f1)\\n        else:\\n            oracle_f1s.append(0.0)\\n    \\n    return em_f1s, greedy_f1s, oracle_f1s\\n\\n\\ndef sign_test(a_f1s, b_f1s):\\n    wins = losses = ties = 0\\n    for a, b in zip(a_f1s, b_f1s):\\n        if abs(a - b) < 1e-9:\\n            ties += 1\\n        elif a > b:\\n            wins += 1\\n        else:\\n            losses += 1\\n    return wins, losses, ties\\n\\n\\ndef main():\\n    instances = load_data(DATA_PATH)\\n    \\n    # Filter: gold-nonempty (same as exp_016)\\n    ner_instances = [inst for inst in instances if len(inst[\\\"gold\\\"].get(\\\"entities\\\", [])) > 0]\\n    re_instances = [inst for inst in instances if len(inst[\\\"gold\\\"].get(\\\"relations\\\", [])) > 0]\\n    \\n    with open(COMPARISON_PATH) as f:\\n        comparison = json.load(f)\\n    with open(FULL_PATH) as f:\\n        full_data = json.load(f)\\n    \\n    print(\\\"=\\\" * 70)\\n    print(\\\"Qwen SciERC N=8 — EM Selection F1 (gold-nonempty filter)\\\")\\n    print(\\\"=\\\" * 70)\\n    \\n    for subtask, insts in [(\\\"ner\\\", ner_instances), (\\\"re\\\", re_instances)]:\\n        em_f1s, greedy_f1s, oracle_f1s = compute_em_selection_f1(insts, subtask)\\n        n = len(insts)\\n        em_mean = sum(em_f1s) / n\\n        \\n        comp = comparison[subtask][\\\"summary\\\"]\\n        comp_n = comparison[subtask][\\\"n\\\"]\\n        \\n        print(f\\\"\\\\n{'─' * 50}\\\")\\n        print(f\\\"{subtask.upper()} (n={n}, expected={comp_n})\\\")\\n        print(f\\\"{'─' * 50}\\\")\\n        print(f\\\"{'Method':<20} {'Selection F1':>12}\\\")\\n        print(f\\\"{'─' * 32}\\\")\\n        print(f\\\"{'Greedy':<20} {comp['greedy']:>12.4f}\\\")\\n        print(f\\\"{'Oracle':<20} {comp['oracle']:>12.4f}\\\")\\n        print(f\\\"{'SJ-Best':<20} {comp['sj_best']:>12.4f}\\\")\\n        print(f\\\"{'EM-Best':<20} {em_mean:>12.4f}  ← NEW\\\")\\n        print(f\\\"{'LP-Best':<20} {comp['logprob_best']:>12.4f}\\\")\\n        print(f\\\"{'Voting-Best':<20} {comp['voting_conf_best']:>12.4f}\\\")\\n        print(f\\\"{'Ensemble-Best':<20} {comp['ensemble_best']:>12.4f}\\\")\\n        print(f\\\"{'Random-Avg':<20} {comp['random_avg']:>12.4f}\\\")\\n        \\n        # Sign test vs greedy\\n        wins, losses, ties = sign_test(em_f1s, greedy_f1s)\\n        print(f\\\"\\\\nSign test (EM vs Greedy):\\\")\\n        print(f\\\"  Wins={wins}, Losses={losses}, Ties={ties}\\\")\\n        if (wins + losses) > 0:\\n            print(f\\\"  Win rate (excl. ties): {wins/(wins+losses)*100:.1f}%\\\")\\n        \\n        # Sign test vs other methods\\n        for method_name, method_key in [(\\\"SJ-Best\\\", \\\"sj_best\\\"), (\\\"LP-Best\\\", \\\"logprob_best\\\"), (\\\"Voting-Best\\\", \\\"voting_conf_best\\\")]:\\n            if method_key in full_data[subtask][\\\"methods\\\"]:\\n                other_f1s = full_data[subtask][\\\"methods\\\"][method_key][\\\"per_instance\\\"]\\n                w, l, t = sign_test(em_f1s, other_f1s)\\n                print(f\\\"\\\\nSign test (EM vs {method_name}):\\\")\\n                print(f\\\"  Wins={w}, Losses={l}, Ties={t}\\\")\\n        \\n        delta = em_mean - comp['greedy']\\n        print(f\\\"\\\\nΔ(EM - Greedy) = {delta:+.4f}\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b8b11d62-6ca3-4151-bc4f-ed1130aa9fbf",
+  "uuid": "b4179608-f198-473b-b900-6e6a20f652eb",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Compute EM (Exact Match) selection F1 for Qwen SciERC N=8.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport json\\\\nimport sys\\\\nfrom collections import Counter\\\\n\\\\nsys.path.insert(0, '/root/autodl-tmp/struct_self_consist_ie/code')\\\\nfrom evaluation import per_instance_f1\\\\n\\\\nDATA_PATH = \\\\\\\"/root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/samples.jsonl\\\\\\\"\\\\nCOMPARISON_PATH = \\\\\\\"/root/autodl-tmp/struct_self_consist_ie/output/exp_016_rerun_1024/selection_f1_comparison.json\\\\\\\"\\\\nFULL_PATH = \\\\\\\"/root/autodl-tmp/struct_self_consist_ie/output/exp_016_rerun_1024/selection_f1_full.json\\\\\\\"\\\\n\\\\n\\\\ndef load_data(path):\\\\n    instances = []\\\\n    with open(path) as f:\\\\n        for line in f:\\\\n            if line.strip():\\\\n                instances.append(json.loads(line))\\\\n    return instances\\\\n\\\\n\\\\ndef entity_set_key(sample):\\\\n    return frozenset((e[\\\\\\\"text\\\\\\\"], e[\\\\\\\"type\\\\\\\"]) for e in sample.get(\\\\\\\"entities\\\\\\\", []))\\\\n\\\\n\\\\ndef relation_set_key(sample):\\\\n    return frozenset((r[\\\\\\\"head\\\\\\\"], r[\\\\\\\"tail\\\\\\\"], r[\\\\\\\"type\\\\\\\"]) for r in sample.get(\\\\\\\"relations\\\\\\\", []))\\\\n\\\\n\\\\ndef em_select(samples, key_fn):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Select sample by exact-match plurality vote. Tie-break: first occurrence.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    if not samples:\\\\n        return None\\\\n    keys = [key_fn(s) for s in samples]\\\\n    counter = Counter(keys)\\\\n    max_count = counter.most_common(1)[0][1]\\\\n    for i, k in enumerate(keys):\\\\n        if counter[k] == max_count:\\\\n            return samples[i]\\\\n    return samples[0]\\\\n\\\\n\\\\ndef compute_em_selection_f1(instances, subtask):\\\\n    key_fn = entity_set_key if subtask == \\\\\\\"ner\\\\\\\" else relation_set_key\\\\n    \\\\n    em_f1s = []\\\\n    greedy_f1s = []\\\\n    oracle_f1s = []\\\\n    \\\\n    for inst in instances:\\\\n        gold = inst[\\\\\\\"gold\\\\\\\"]\\\\n        samples = inst.get(\\\\\\\"samples\\\\\\\", [])\\\\n        greedy = inst.get(\\\\\\\"greedy\\\\\\\")\\\\n        \\\\n        selected = em_select(samples, key_fn)\\\\n        if selected is not None:\\\\n            em_f1 = per_instance_f1(selected, gold, subtask)\\\\n        else:\\\\n            em_f1 = 0.0\\\\n        em_f1s.append(em_f1)\\\\n        \\\\n        if greedy is not None:\\\\n            greedy_f1s.append(per_instance_f1(greedy, gold, subtask))\\\\n        else:\\\\n            greedy_f1s.append(0.0)\\\\n        \\\\n        if samples:\\\\n            best_f1 = max(per_instance_f1(s, gold, subtask) for s in samples)\\\\n            oracle_f1s.append(best_f1)\\\\n        else:\\\\n            oracle_f1s.append(0.0)\\\\n    \\\\n    return em_f1s, greedy_f1s, oracle_f1s\\\\n\\\\n\\\\ndef sign_test(a_f1s, b_f1s):\\\\n    wins = losses = ties = 0\\\\n    for a, b in zip(a_f1s, b_f1s):\\\\n        if abs(a - b) < 1e-9:\\\\n            ties += 1\\\\n        elif a > b:\\\\n            wins += 1\\\\n        else:\\\\n            losses += 1\\\\n    return wins, losses, ties\\\\n\\\\n\\\\ndef main():\\\\n    instances = load_data(DATA_PATH)\\\\n    \\\\n    # Filter: gold-nonempty (same as exp_016)\\\\n    ner_instances = [inst for inst in instances if len(inst[\\\\\\\"gold\\\\\\\"].get(\\\\\\\"entities\\\\\\\", [])) > 0]\\\\n    re_instances = [inst for inst in instances if len(inst[\\\\\\\"gold\\\\\\\"].get(\\\\\\\"relations\\\\\\\", [])) > 0]\\\\n    \\\\n    with open(COMPARISON_PATH) as f:\\\\n        comparison = json.load(f)\\\\n    with open(FULL_PATH) as f:\\\\n        full_data = json.load(f)\\\\n    \\\\n    print(\\\\\\\"=\\\\\\\" * 70)\\\\n    print(\\\\\\\"Qwen SciERC N=8 — EM Selection F1 (gold-nonempty filter)\\\\\\\")\\\\n    print(\\\\\\\"=\\\\\\\" * 70)\\\\n    \\\\n    for subtask, insts in [(\\\\\\\"ner\\\\\\\", ner_instances), (\\\\\\\"re\\\\\\\", re_instances)]:\\\\n        em_f1s, greedy_f1s, oracle_f1s = compute_em_selection_f1(insts, subtask)\\\\n        n = len(insts)\\\\n        em_mean = sum(em_f1s) / n\\\\n        \\\\n        comp = comparison[subtask][\\\\\\\"summary\\\\\\\"]\\\\n        comp_n = comparison[subtask][\\\\\\\"n\\\\\\\"]\\\\n        \\\\n        print(f\\\\\\\"\\\\\\\\n{'─' * 50}\\\\\\\")\\\\n        print(f\\\\\\\"{subtask.upper()} (n={n}, expected={comp_n})\\\\\\\")\\\\n        print(f\\\\\\\"{'─' * 50}\\\\\\\")\\\\n        print(f\\\\\\\"{'Method':<20} {'Selection F1':>12}\\\\\\\")\\\\n        print(f\\\\\\\"{'─' * 32}\\\\\\\")\\\\n        print(f\\\\\\\"{'Greedy':<20} {comp['greedy']:>12.4f}\\\\\\\")\\\\n        print(f\\\\\\\"{'Oracle':<20} {comp['oracle']:>12.4f}\\\\\\\")\\\\n        print(f\\\\\\\"{'SJ-Best':<20} {comp['sj_best']:>12.4f}\\\\\\\")\\\\n        print(f\\\\\\\"{'EM-Best':<20} {em_mean:>12.4f}  ← NEW\\\\\\\")\\\\n        print(f\\\\\\\"{'LP-Best':<20} {comp['logprob_best']:>12.4f}\\\\\\\")\\\\n        print(f\\\\\\\"{'Voting-Best':<20} {comp['voting_conf_best']:>12.4f}\\\\\\\")\\\\n        print(f\\\\\\\"{'Ensemble-Best':<20} {comp['ensemble_best']:>12.4f}\\\\\\\")\\\\n        print(f\\\\\\\"{'Random-Avg':<20} {comp['random_avg']:>12.4f}\\\\\\\")\\\\n        \\\\n        # Sign test vs greedy\\\\n        wins, losses, ties = sign_test(em_f1s, greedy_f1s)\\\\n        print(f\\\\\\\"\\\\\\\\nSign test (EM vs Greedy):\\\\\\\")\\\\n        print(f\\\\\\\"  Wins={wins}, Losses={losses}, Ties={ties}\\\\\\\")\\\\n        if (wins + losses) > 0:\\\\n            print(f\\\\\\\"  Win rate (excl. ties): {wins/(wins+losses)*100:.1f}%\\\\\\\")\\\\n        \\\\n        # Sign test vs other methods\\\\n        for method_name, method_key in [(\\\\\\\"SJ-Best\\\\\\\", \\\\\\\"sj_best\\\\\\\"), (\\\\\\\"LP-Best\\\\\\\", \\\\\\\"logprob_best\\\\\\\"), (\\\\\\\"Voting-Best\\\\\\\", \\\\\\\"voting_conf_best\\\\\\\")]:\\\\n            if method_key in full_data[subtask][\\\\\\\"methods\\\\\\\"]:\\\\n                other_f1s = full_data[subtask][\\\\\\\"methods\\\\\\\"][method_key][\\\\\\\"per_instance\\\\\\\"]\\\\n                w, l, t = sign_test(em_f1s, other_f1s)\\\\n                print(f\\\\\\\"\\\\\\\\nSign test (EM vs {method_name}):\\\\\\\")\\\\n                print(f\\\\\\\"  Wins={w}, Losses={l}, Ties={t}\\\\\\\")\\\\n        \\\\n        delta = em_mean - comp['greedy']\\\\n        print(f\\\\\\\"\\\\\\\\nΔ(EM - Greedy) = {delta:+.4f}\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Compute EM (Exact Match) selection F1 for Qwen SciERC N=8.\\\"\\\"\\\"\\n\\nimport json\\nimport sys\\nfrom collections import Counter\\n\\nsys.path.insert(0, '/root/autodl-tmp/struct_self_consist_ie/code')\\nfrom evaluation import per_instance_f1\\n\\nDATA_PATH = \\\"/root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/samples.jsonl\\\"\\nCOMPARISON_PATH = \\\"/root/autodl-tmp/struct_self_consist_ie/output/exp_016_rerun_1024/selection_f1_comparison.json\\\"\\nFULL_PATH = \\\"/root/autodl-tmp/struct_self_consist_ie/output/exp_016_rerun_1024/selection_f1_full.json\\\"\\n\\n\\ndef load_data(path):\\n    instances = []\\n    with open(path) as f:\\n        for line in f:\\n            if line.strip():\\n                instances.append(json.loads(line))\\n    return instances\\n\\n\\ndef entity_set_key(sample):\\n    return frozenset((e[\\\"text\\\"], e[\\\"type\\\"]) for e in sample.get(\\\"entities\\\", []))\\n\\n\\ndef relation_set_key(sample):\\n    return frozenset((r[\\\"head\\\"], r[\\\"tail\\\"], r[\\\"type\\\"]) for r in sample.get(\\\"relations\\\", []))\\n\\n\\ndef em_select(samples, key_fn):\\n    \\\"\\\"\\\"Select sample by exact-match plurality vote. Tie-break: first occurrence.\\\"\\\"\\\"\\n    if not samples:\\n        return None\\n    keys = [key_fn(s) for s in samples]\\n    counter = Counter(keys)\\n    max_count = counter.most_common(1)[0][1]\\n    for i, k in enumerate(keys):\\n        if counter[k] == max_count:\\n            return samples[i]\\n    return samples[0]\\n\\n\\ndef compute_em_selection_f1(instances, subtask):\\n    key_fn = entity_set_key if subtask == \\\"ner\\\" else relation_set_key\\n    \\n    em_f1s = []\\n    greedy_f1s = []\\n    oracle_f1s = []\\n    \\n    for inst in instances:\\n        gold = inst[\\\"gold\\\"]\\n        samples = inst.get(\\\"samples\\\", [])\\n        greedy = inst.get(\\\"greedy\\\")\\n        \\n        selected = em_select(samples, key_fn)\\n        if selected is not None:\\n            em_f1 = per_instance_f1(selected, gold, subtask)\\n        else:\\n            em_f1 = 0.0\\n        em_f1s.append(em_f1)\\n        \\n        if greedy is not None:\\n            greedy_f1s.append(per_instance_f1(greedy, gold, subtask))\\n        else:\\n            greedy_f1s.append(0.0)\\n        \\n        if samples:\\n            best_f1 = max(per_instance_f1(s, gold, subtask) for s in samples)\\n            oracle_f1s.append(best_f1)\\n        else:\\n            oracle_f1s.append(0.0)\\n    \\n    return em_f1s, greedy_f1s, oracle_f1s\\n\\n\\ndef sign_test(a_f1s, b_f1s):\\n    wins = losses = ties = 0\\n    for a, b in zip(a_f1s, b_f1s):\\n        if abs(a - b) < 1e-9:\\n            ties += 1\\n        elif a > b:\\n            wins += 1\\n        else:\\n            losses += 1\\n    return wins, losses, ties\\n\\n\\ndef main():\\n    instances = load_data(DATA_PATH)\\n    \\n    # Filter: gold-nonempty (same as exp_016)\\n    ner_instances = [inst for inst in instances if len(inst[\\\"gold\\\"].get(\\\"entities\\\", [])) > 0]\\n    re_instances = [inst for inst in instances if len(inst[\\\"gold\\\"].get(\\\"relations\\\", [])) > 0]\\n    \\n    with open(COMPARISON_PATH) as f:\\n        comparison = json.load(f)\\n    with open(FULL_PATH) as f:\\n        full_data = json.load(f)\\n    \\n    print(\\\"=\\\" * 70)\\n    print(\\\"Qwen SciERC N=8 — EM Selection F1 (gold-nonempty filter)\\\")\\n    print(\\\"=\\\" * 70)\\n    \\n    for subtask, insts in [(\\\"ner\\\", ner_instances), (\\\"re\\\", re_instances)]:\\n        em_f1s, greedy_f1s, oracle_f1s = compute_em_selection_f1(insts, subtask)\\n        n = len(insts)\\n        em_mean = sum(em_f1s) / n\\n        \\n        comp = comparison[subtask][\\\"summary\\\"]\\n        comp_n = comparison[subtask][\\\"n\\\"]\\n        \\n        print(f\\\"\\\\n{'─' * 50}\\\")\\n        print(f\\\"{subtask.upper()} (n={n}, expected={comp_n})\\\")\\n        print(f\\\"{'─' * 50}\\\")\\n        print(f\\\"{'Method':<20} {'Selection F1':>12}\\\")\\n        print(f\\\"{'─' * 32}\\\")\\n        print(f\\\"{'Greedy':<20} {comp['greedy']:>12.4f}\\\")\\n        print(f\\\"{'Oracle':<20} {comp['oracle']:>12.4f}\\\")\\n        print(f\\\"{'SJ-Best':<20} {comp['sj_best']:>12.4f}\\\")\\n        print(f\\\"{'EM-Best':<20} {em_mean:>12.4f}  ← NEW\\\")\\n        print(f\\\"{'LP-Best':<20} {comp['logprob_best']:>12.4f}\\\")\\n        print(f\\\"{'Voting-Best':<20} {comp['voting_conf_best']:>12.4f}\\\")\\n        print(f\\\"{'Ensemble-Best':<20} {comp['ensemble_best']:>12.4f}\\\")\\n        print(f\\\"{'Random-Avg':<20} {comp['random_avg']:>12.4f}\\\")\\n        \\n        # Sign test vs greedy\\n        wins, losses, ties = sign_test(em_f1s, greedy_f1s)\\n        print(f\\\"\\\\nSign test (EM vs Greedy):\\\")\\n        print(f\\\"  Wins={wins}, Losses={losses}, Ties={ties}\\\")\\n        if (wins + losses) > 0:\\n            print(f\\\"  Win rate (excl. ties): {wins/(wins+losses)*100:.1f}%\\\")\\n        \\n        # Sign test vs other methods\\n        for method_name, method_key in [(\\\"SJ-Best\\\", \\\"sj_best\\\"), (\\\"LP-Best\\\", \\\"logprob_best\\\"), (\\\"Voting-Best\\\", \\\"voting_conf_best\\\")]:\\n            if method_key in full_data[subtask][\\\"methods\\\"]:\\n                other_f1s = full_data[subtask][\\\"methods\\\"][method_key][\\\"per_instance\\\"]\\n                w, l, t = sign_test(em_f1s, other_f1s)\\n                print(f\\\"\\\\nSign test (EM vs {method_name}):\\\")\\n                print(f\\\"  Wins={w}, Losses={l}, Ties={t}\\\")\\n        \\n        delta = em_mean - comp['greedy']\\n        print(f\\\"\\\\nΔ(EM - Greedy) = {delta:+.4f}\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 43_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me understand the signal computation and the `consistency.py` and `evaluation.py` files. I need to see:
+1. How `compute_all_consistency_scores` works (for SJ and FK)
+2. How `per_instance_f1` works
+3. How the 5 signals (VC, SJ, FK, EM, LP) are computed per sample
+
+The key thing I need is: for selection F1, I need per-sample signal scores, not per-instance scores. Let me re-read the task:
+
+"对每个 instance，用某 signal（VC/SJ/FK/EM/LP）选出得分最高的 sample，用该 sample 的 F1 作为该 instance 的 selected F1"
+
+
+So for each instance and signal, I score all N samples, pick the one with the highest signal value, and use that sample's F1 as the instance's selected F1. I need to figure out how to compute each signal per-sample: VC measures how many of a sample's predictions are confirmed by others, SJ is the soft Jaccard similarity between a sample and the rest, FK might need to be adapted for per-sample scoring, and EM/LP are likely simpler metrics based on exact matches or likelihood.
+
+Let me check the consistency.py implementation to see how SJ and FK are actually calculated per-sample, and look for existing selection F1 logic in exp010 or exp016.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b8b11d62-6ca3-4151-bc4f-ed1130aa9fbf",
+  "uuid": "45708c32-777b-48ce-ae93-1fb536f141ad",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013aghHqNrt4ih4gHRHxqWeP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5566,
+      "cache_read_input_tokens": 44468,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5566
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01KK33PQa75Rwoh8WKBM3jM8`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/code/consistency.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b8b11d62-6ca3-4151-bc4f-ed1130aa9fbf",
+  "uuid": "1669d570-e72a-4f3f-a1cc-d70f1d6698a6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013aghHqNrt4ih4gHRHxqWeP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5566,
+      "cache_read_input_tokens": 44468,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5566
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01JatQaZj9xmfp63ag96tQo5`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/code/evaluation.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b8b11d62-6ca3-4151-bc4f-ed1130aa9fbf",
+  "uuid": "8ff26549-d700-4bb1-b401-3c31bd14d154",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013aghHqNrt4ih4gHRHxqWeP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5566,
+      "cache_read_input_tokens": 44468,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5566
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-15T12:44:01.472Z_
+
+<details><summary>↩ Tool result · `toolu_01KK33PQa75Rwoh8WKBM3jM8`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Consistency metrics for structured information extraction with self-consistency.\\n\\nImplements three complementary consistency measures over N sampled extractions:\\n1. Fleiss' Kappa (surface matching) — treats N samples as N raters on entity presence\\n2. Structural soft Jaccard — span-level soft overlap with Hungarian matching\\n3. Oracle best-of-N — upper-bound F1 by selecting the best sample per instance\\n\\nKey dependencies: numpy, scipy (linear_sum_assignment).\\n\\\"\\\"\\\"\\n\\nfrom __future__ import annotations\\n\\nfrom itertools import combinations\\nfrom typing import TYPE_CHECKING\\n\\nimport numpy as np\\nfrom scipy.optimize import linear_sum_assignment\\n\\nif TYPE_CHECKING:\\n    pass\\n\\n# ---------------------------------------------------------------------------\\n# Type aliases (mirrors shared data format)\\n# ---------------------------------------------------------------------------\\nEntity = dict       # {\\\"text\\\", \\\"type\\\", \\\"start\\\", \\\"end\\\"}\\nRelation = dict     # {\\\"head\\\", \\\"tail\\\", \\\"type\\\", ...}\\nEvent = dict        # {\\\"trigger\\\": {...}, \\\"arguments\\\": [...]}\\nExtraction = dict   # {\\\"entities\\\", \\\"relations\\\", \\\"events\\\"}\\n\\n\\n# ===================================================================\\n# 1. Fleiss' Kappa — surface-level entity agreement\\n# ===================================================================\\n\\ndef _extract_surface_keys(sample: Extraction, subtask: str) -> set[tuple]:\\n    \\\"\\\"\\\"Extract surface-level keys from a sample for Fleiss' Kappa computation.\\\"\\\"\\\"\\n    if subtask == \\\"ner\\\":\\n        return {(e[\\\"text\\\"], e[\\\"type\\\"]) for e in sample.get(\\\"entities\\\", [])}\\n    elif subtask == \\\"re\\\":\\n        return {(r[\\\"head\\\"], r[\\\"tail\\\"], r[\\\"type\\\"]) for r in sample.get(\\\"relations\\\", [])}\\n    elif subtask == \\\"eae\\\":\\n        keys: set[tuple] = set()\\n        for ev in sample.get(\\\"events\\\", []):\\n            t = ev.get(\\\"trigger\\\", {})\\n            for arg in ev.get(\\\"arguments\\\", []):\\n                keys.add((t.get(\\\"text\\\", \\\"\\\"), t.get(\\\"type\\\", \\\"\\\"), arg[\\\"role\\\"], arg[\\\"text\\\"]))\\n        return keys\\n    else:\\n        raise ValueError(f\\\"Unknown subtask: {subtask}\\\")\\n\\n\\ndef fleiss_kappa_surface(samples: list[Extraction], subtask: str = \\\"ner\\\") -> float:\\n    \\\"\\\"\\\"Compute Fleiss' kappa treating N LLM samples as N raters on item presence.\\n\\n    Items are subtask-dependent surface keys:\\n    - ner: (entity_text, entity_type)\\n    - re: (head_text, tail_text, relation_type)\\n    - eae: (trigger_text, trigger_type, role, argument_text)\\n\\n    Args:\\n        samples: List of N extraction dicts.\\n        subtask: \\\"ner\\\", \\\"re\\\", or \\\"eae\\\".\\n\\n    Returns:\\n        Fleiss' kappa in [-1, 1].  Returns 1.0 for degenerate cases (<=1 unique\\n        item, perfect agreement, or undefined P_e).\\n    \\\"\\\"\\\"\\n    n_raters = len(samples)\\n    if n_raters <= 1:\\n        return 1.0\\n\\n    # Collect unique keys and per-sample presence sets\\n    entity_sets: list[set[tuple]] = []\\n    all_keys: set[tuple] = set()\\n    for sample in samples:\\n        keys = _extract_surface_keys(sample, subtask)\\n        entity_sets.append(keys)\\n        all_keys |= keys\\n\\n    n_subjects = len(all_keys)\\n    if n_subjects <= 0:\\n        # All samples extracted nothing — perfect agreement on empty set\\n        return 1.0\\n\\n    key_list = sorted(all_keys)\\n\\n    # Build rating matrix: n_subjects x 2 (categories: absent=0, present=1)\\n    # n_ij = number of raters assigning subject i to category j\\n    rating = np.zeros((n_subjects, 2), dtype=np.int64)\\n    for es in entity_sets:\\n        for idx, key in enumerate(key_list):\\n            if key in es:\\n                rating[idx, 1] += 1\\n            else:\\n                rating[idx, 0] += 1\\n\\n    n = n_raters\\n    k = 2  # number of categories\\n\\n    # Check perfect agreement: every subject has all votes in one category\\n    if np.all(np.max(rating, axis=1) == n):\\n        return 1.0\\n\\n    # P_i for each subject\\n    P_i = (np.sum(rating ** 2, axis=1) - n) / (n * (n - 1))\\n    P_bar = np.mean(P_i)\\n\\n    # P_e — expected agreement by chance\\n    p_j = np.sum(rating, axis=0) / (n_subjects * n)\\n    P_e = np.sum(p_j ** 2)\\n\\n    if abs(1.0 - P_e) < 1e-12:\\n\\n... [截断: 输出过长，省略 5252 字符] ...\\n\\nn enumerate(ga):\\n            for j, ab in enumerate(gb):\\n                cost[i, j] = _span_soft_jaccard(aa[\\\"start\\\"], aa[\\\"end\\\"],\\n                                                 ab[\\\"start\\\"], ab[\\\"end\\\"])\\n\\n        row_ind, col_ind = linear_sum_assignment(-cost)\\n        matched_sim = cost[row_ind, col_ind].sum()\\n        total_score += matched_sim\\n\\n    if total_weight == 0:\\n        return 1.0\\n    return total_score / total_weight\\n\\n\\ndef structural_consistency_soft_jaccard(\\n    samples: list[Extraction],\\n    subtask: str = \\\"ner\\\",\\n) -> float:\\n    \\\"\\\"\\\"Span-level soft Jaccard consistency averaged over all sample pairs.\\n\\n    For each pair (i, j) with i < j, computes a type-aware soft Jaccard using\\n    Hungarian matching on span overlaps, then returns the mean.\\n\\n    Args:\\n        samples: N extraction dicts.\\n        subtask: \\\"ner\\\" for entity consistency, \\\"eae\\\" for event-argument consistency.\\n\\n    Returns:\\n        Mean pairwise soft Jaccard in [0, 1].\\n    \\\"\\\"\\\"\\n    n = len(samples)\\n    if n <= 1:\\n        return 1.0\\n\\n    if subtask == \\\"ner\\\":\\n        pair_fn = _ner_soft_jaccard_pair\\n    elif subtask == \\\"re\\\":\\n        pair_fn = _re_soft_jaccard_pair\\n    else:\\n        pair_fn = _eae_soft_jaccard_pair\\n\\n    field = {\\\"ner\\\": \\\"entities\\\", \\\"re\\\": \\\"relations\\\", \\\"eae\\\": \\\"events\\\"}[subtask]\\n\\n    scores: list[float] = []\\n    for i, j in combinations(range(n), 2):\\n        score = pair_fn(\\n            samples[i].get(field, []),\\n            samples[j].get(field, []),\\n        )\\n        scores.append(score)\\n\\n    return float(np.mean(scores))\\n\\n\\n# ===================================================================\\n# 3. Oracle best-of-N\\n# ===================================================================\\n\\ndef oracle_best_of_n(\\n    samples: list[Extraction],\\n    gold: Extraction,\\n    subtask: str = \\\"ner\\\",\\n) -> tuple[int, float]:\\n    \\\"\\\"\\\"Select the sample with the highest F1 against the gold extraction.\\n\\n    Args:\\n        samples: N extraction dicts.\\n        gold: Gold-standard extraction.\\n        subtask: Passed through to per_instance_f1.\\n\\n    Returns:\\n        (best_index, best_f1). Returns (-1, 0.0) if samples is empty.\\n    \\\"\\\"\\\"\\n    if not samples:\\n        return (-1, 0.0)\\n\\n    # Lazy import to avoid circular dependency with evaluation.py\\n    from evaluation import per_instance_f1\\n\\n    best_idx = -1\\n    best_f1 = -1.0\\n\\n    for idx, sample in enumerate(samples):\\n        f1 = per_instance_f1(sample, gold, subtask=subtask)\\n        if f1 > best_f1:\\n            best_f1 = f1\\n            best_idx = idx\\n\\n    return (best_idx, best_f1)\\n\\n\\n# ===================================================================\\n# Aggregate helper\\n# ===================================================================\\n\\ndef compute_all_consistency_scores(\\n    sampled_instances: list[dict],\\n    subtask: str = \\\"ner\\\",\\n) -> dict:\\n    \\\"\\\"\\\"Compute all consistency metrics for a list of sampled instances.\\n\\n    Args:\\n        sampled_instances: List of SampledInstance dicts, each with keys\\n            \\\"id\\\", \\\"text\\\", \\\"gold\\\" (Extraction), \\\"samples\\\" (list[Extraction]).\\n        subtask: \\\"ner\\\", \\\"re\\\", or \\\"eae\\\".\\n\\n    Returns:\\n        Dict with per-instance score lists::\\n\\n            {\\n                \\\"fleiss_kappa\\\": [float, ...],\\n                \\\"soft_jaccard\\\": [float, ...],\\n                \\\"oracle_f1\\\":    [float, ...],\\n                \\\"oracle_indices\\\": [int, ...],\\n            }\\n    \\\"\\\"\\\"\\n    result: dict[str, list] = {\\n        \\\"fleiss_kappa\\\": [],\\n        \\\"soft_jaccard\\\": [],\\n        \\\"oracle_f1\\\": [],\\n        \\\"oracle_indices\\\": [],\\n    }\\n\\n    for inst in sampled_instances:\\n        samples = inst[\\\"samples\\\"]\\n        gold = inst[\\\"gold\\\"]\\n\\n        result[\\\"fleiss_kappa\\\"].append(fleiss_kappa_surface(samples, subtask=subtask))\\n        result[\\\"soft_jaccard\\\"].append(\\n            structural_consistency_soft_jaccard(samples, subtask=subtask)\\n        )\\n\\n        best_idx, best_f1 = oracle_best_of_n(samples, gold, subtask=subtask)\\n        result[\\\"oracle_f1\\\"].append(best_f1)\\n        result[\\\"oracle_indices\\\"].append(best_idx)\\n\\n    return result\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b8b11d62-6ca3-4151-bc4f-ed1130aa9fbf",
+  "uuid": "b0f4f3eb-7c05-41e0-b80f-546d69e688f9",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Consistency metrics for structured information extraction with self-consistency.\\\\n\\\\nImplements three complementary consistency measures over N sampled extractions:\\\\n1. Fleiss' Kappa (surface matching) — treats N samples as N raters on entity presence\\\\n2. Structural soft Jaccard — span-level soft overlap with Hungarian matching\\\\n3. Oracle best-of-N — upper-bound F1 by selecting the best sample per instance\\\\n\\\\nKey dependencies: numpy, scipy (linear_sum_assignment).\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nfrom __future__ import annotations\\\\n\\\\nfrom itertools import combinations\\\\nfrom typing import TYPE_CHECKING\\\\n\\\\nimport numpy as np\\\\nfrom scipy.optimize import linear_sum_assignment\\\\n\\\\nif TYPE_CHECKING:\\\\n    pass\\\\n\\\\n# ---------------------------------------------------------------------------\\\\n# Type aliases (mirrors shared data format)\\\\n# ---------------------------------------------------------------------------\\\\nEntity = dict       # {\\\\\\\"text\\\\\\\", \\\\\\\"type\\\\\\\", \\\\\\\"start\\\\\\\", \\\\\\\"end\\\\\\\"}\\\\nRelation = dict     # {\\\\\\\"head\\\\\\\", \\\\\\\"tail\\\\\\\", \\\\\\\"type\\\\\\\", ...}\\\\nEvent = dict        # {\\\\\\\"trigger\\\\\\\": {...}, \\\\\\\"arguments\\\\\\\": [...]}\\\\nExtraction = dict   # {\\\\\\\"entities\\\\\\\", \\\\\\\"relations\\\\\\\", \\\\\\\"events\\\\\\\"}\\\\n\\\\n\\\\n# ===================================================================\\\\n# 1. Fleiss' Kappa — surface-level entity agreement\\\\n# ===================================================================\\\\n\\\\ndef _extract_surface_keys(sample: Extraction, subtask: str) -> set[tuple]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Extract surface-level keys from a sample for Fleiss' Kappa computation.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    if subtask == \\\\\\\"ner\\\\\\\":\\\\n        return {(e[\\\\\\\"text\\\\\\\"], e[\\\\\\\"type\\\\\\\"]) for e in sample.get(\\\\\\\"entities\\\\\\\", [])}\\\\n    elif subtask == \\\\\\\"re\\\\\\\":\\\\n        return {(r[\\\\\\\"head\\\\\\\"], r[\\\\\\\"tail\\\\\\\"], r[\\\\\\\"type\\\\\\\"]) for r in sample.get(\\\\\\\"relations\\\\\\\", [])}\\\\n    elif subtask == \\\\\\\"eae\\\\\\\":\\\\n        keys: set[tuple] = set()\\\\n        for ev in sample.get(\\\\\\\"events\\\\\\\", []):\\\\n            t = ev.get(\\\\\\\"trigger\\\\\\\", {})\\\\n            for arg in ev.get(\\\\\\\"arguments\\\\\\\", []):\\\\n                keys.add((t.get(\\\\\\\"text\\\\\\\", \\\\\\\"\\\\\\\"), t.get(\\\\\\\"type\\\\\\\", \\\\\\\"\\\\\\\"), arg[\\\\\\\"role\\\\\\\"], arg[\\\\\\\"text\\\\\\\"]))\\\\n        return keys\\\\n    else:\\\\n        raise ValueError(f\\\\\\\"Unknown subtask: {subtask}\\\\\\\")\\\\n\\\\n\\\\ndef fleiss_kappa_surface(samples: list[Extraction], subtask: str = \\\\\\\"ner\\\\\\\") -> float:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Compute Fleiss' kappa treating N LLM samples as N raters on item presence.\\\\n\\\\n    Items are subtask-dependent surface keys:\\\\n    - ner: (entity_text, entity_type)\\\\n    - re: (head_text, tail_text, relation_type)\\\\n    - eae: (trigger_text, trigger_type, role, argument_text)\\\\n\\\\n    Args:\\\\n        samples: List of N extraction dicts.\\\\n        subtask: \\\\\\\"ner\\\\\\\", \\\\\\\"re\\\\\\\", or \\\\\\\"eae\\\\\\\".\\\\n\\\\n    Returns:\\\\n        Fleiss' kappa in [-1, 1].  Returns 1.0 for degenerate cases (<=1 unique\\\\n        item, perfect agreement, or undefined P_e).\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    n_raters = len(samples)\\\\n    if n_raters <= 1:\\\\n        return 1.0\\\\n\\\\n    # Collect unique keys and per-sample presence sets\\\\n    entity_sets: list[set[tuple]] = []\\\\n    all_keys: set[tuple] = set()\\\\n    for sample in samples:\\\\n        keys = _extract_surface_keys(sample, subtask)\\\\n        entity_sets.append(keys)\\\\n        all_keys |= keys\\\\n\\\\n    n_subjects = len(all_keys)\\\\n    if n_subjects <= 0:\\\\n        # All samples extracted nothing — perfect agreement on empty set\\\\n        return 1.0\\\\n\\\\n    key_list = sorted(all_keys)\\\\n\\\\n    # Build rating matrix: n_subjects x 2 (categories: absent=0, present=1)\\\\n    # n_ij = number of raters assigning subject i to category j\\\\n    rating = np.zeros((n_subjects, 2), dtype=np.int64)\\\\n    for es in entity_sets:\\\\n        for idx, key in enumerate(key_list):\\\\n            if key in es:\\\\n                rating[idx, 1] += 1\\\\n            else:\\\\n                rating[idx, 0] += 1\\\\n\\\\n    n = n_raters\\\\n    k = 2  # number of categories\\\\n\\\\n    # Check perfect agreement: every subject has all votes in one category\\\\n    if np.all(np.max(rating, axis=1) == n):\\\\n        return 1.0\\\\n\\\\n    # P_i for each subject\\\\n    P_i = (np.sum(rating ** 2, axis=1) - n) / (n * (n - 1))\\\\n    P_bar = np.mean(P_i)\\\\n\\\\n    # P_e — expected agreement by chance\\\\n    p_j = np.sum(rating, axis=0) / (n_subjects * n)\\\\n    P_e = np.sum(p_j ** 2)\\\\n\\\\n    if abs(1.0 - P_e) < 1e-12:\\\\n\\\\n... [截断: 输出过长，省略 5252 字符] ...\\\\n\\\\nn enumerate(ga):\\\\n            for j, ab in enumerate(gb):\\\\n                cost[i, j] = _span_soft_jaccard(aa[\\\\\\\"start\\\\\\\"], aa[\\\\\\\"end\\\\\\\"],\\\\n                                                 ab[\\\\\\\"start\\\\\\\"], ab[\\\\\\\"end\\\\\\\"])\\\\n\\\\n        row_ind, col_ind = linear_sum_assignment(-cost)\\\\n        matched_sim = cost[row_ind, col_ind].sum()\\\\n        total_score += matched_sim\\\\n\\\\n    if total_weight == 0:\\\\n        return 1.0\\\\n    return total_score / total_weight\\\\n\\\\n\\\\ndef structural_consistency_soft_jaccard(\\\\n    samples: list[Extraction],\\\\n    subtask: str = \\\\\\\"ner\\\\\\\",\\\\n) -> float:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Span-level soft Jaccard consistency averaged over all sample pairs.\\\\n\\\\n    For each pair (i, j) with i < j, computes a type-aware soft Jaccard using\\\\n    Hungarian matching on span overlaps, then returns the mean.\\\\n\\\\n    Args:\\\\n        samples: N extraction dicts.\\\\n        subtask: \\\\\\\"ner\\\\\\\" for entity consistency, \\\\\\\"eae\\\\\\\" for event-argument consistency.\\\\n\\\\n    Returns:\\\\n        Mean pairwise soft Jaccard in [0, 1].\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    n = len(samples)\\\\n    if n <= 1:\\\\n        return 1.0\\\\n\\\\n    if subtask == \\\\\\\"ner\\\\\\\":\\\\n        pair_fn = _ner_soft_jaccard_pair\\\\n    elif subtask == \\\\\\\"re\\\\\\\":\\\\n        pair_fn = _re_soft_jaccard_pair\\\\n    else:\\\\n        pair_fn = _eae_soft_jaccard_pair\\\\n\\\\n    field = {\\\\\\\"ner\\\\\\\": \\\\\\\"entities\\\\\\\", \\\\\\\"re\\\\\\\": \\\\\\\"relations\\\\\\\", \\\\\\\"eae\\\\\\\": \\\\\\\"events\\\\\\\"}[subtask]\\\\n\\\\n    scores: list[float] = []\\\\n    for i, j in combinations(range(n), 2):\\\\n        score = pair_fn(\\\\n            samples[i].get(field, []),\\\\n            samples[j].get(field, []),\\\\n        )\\\\n        scores.append(score)\\\\n\\\\n    return float(np.mean(scores))\\\\n\\\\n\\\\n# ===================================================================\\\\n# 3. Oracle best-of-N\\\\n# ===================================================================\\\\n\\\\ndef oracle_best_of_n(\\\\n    samples: list[Extraction],\\\\n    gold: Extraction,\\\\n    subtask: str = \\\\\\\"ner\\\\\\\",\\\\n) -> tuple[int, float]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Select the sample with the highest F1 against the gold extraction.\\\\n\\\\n    Args:\\\\n        samples: N extraction dicts.\\\\n        gold: Gold-standard extraction.\\\\n        subtask: Passed through to per_instance_f1.\\\\n\\\\n    Returns:\\\\n        (best_index, best_f1). Returns (-1, 0.0) if samples is empty.\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    if not samples:\\\\n        return (-1, 0.0)\\\\n\\\\n    # Lazy import to avoid circular dependency with evaluation.py\\\\n    from evaluation import per_instance_f1\\\\n\\\\n    best_idx = -1\\\\n    best_f1 = -1.0\\\\n\\\\n    for idx, sample in enumerate(samples):\\\\n        f1 = per_instance_f1(sample, gold, subtask=subtask)\\\\n        if f1 > best_f1:\\\\n            best_f1 = f1\\\\n            best_idx = idx\\\\n\\\\n    return (best_idx, best_f1)\\\\n\\\\n\\\\n# ===================================================================\\\\n# Aggregate helper\\\\n# ===================================================================\\\\n\\\\ndef compute_all_consistency_scores(\\\\n    sampled_instances: list[dict],\\\\n    subtask: str = \\\\\\\"ner\\\\\\\",\\\\n) -> dict:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Compute all consistency metrics for a list of sampled instances.\\\\n\\\\n    Args:\\\\n        sampled_instances: List of SampledInstance dicts, each with keys\\\\n            \\\\\\\"id\\\\\\\", \\\\\\\"text\\\\\\\", \\\\\\\"gold\\\\\\\" (Extraction), \\\\\\\"samples\\\\\\\" (list[Extraction]).\\\\n        subtask: \\\\\\\"ner\\\\\\\", \\\\\\\"re\\\\\\\", or \\\\\\\"eae\\\\\\\".\\\\n\\\\n    Returns:\\\\n        Dict with per-instance score lists::\\\\n\\\\n            {\\\\n                \\\\\\\"fleiss_kappa\\\\\\\": [float, ...],\\\\n                \\\\\\\"soft_jaccard\\\\\\\": [float, ...],\\\\n                \\\\\\\"oracle_f1\\\\\\\":    [float, ...],\\\\n                \\\\\\\"oracle_indices\\\\\\\": [int, ...],\\\\n            }\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    result: dict[str, list] = {\\\\n        \\\\\\\"fleiss_kappa\\\\\\\": [],\\\\n        \\\\\\\"soft_jaccard\\\\\\\": [],\\\\n        \\\\\\\"oracle_f1\\\\\\\": [],\\\\n        \\\\\\\"oracle_indices\\\\\\\": [],\\\\n    }\\\\n\\\\n    for inst in sampled_instances:\\\\n        samples = inst[\\\\\\\"samples\\\\\\\"]\\\\n        gold = inst[\\\\\\\"gold\\\\\\\"]\\\\n\\\\n        result[\\\\\\\"fleiss_kappa\\\\\\\"].append(fleiss_kappa_surface(samples, subtask=subtask))\\\\n        result[\\\\\\\"soft_jaccard\\\\\\\"].append(\\\\n            structural_consistency_soft_jaccard(samples, subtask=subtask)\\\\n        )\\\\n\\\\n        best_idx, best_f1 = oracle_best_of_n(samples, gold, subtask=subtask)\\\\n        result[\\\\\\\"oracle_f1\\\\\\\"].append(best_f1)\\\\n        result[\\\\\\\"oracle_indices\\\\\\\"].append(best_idx)\\\\n\\\\n    return result\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Consistency metrics for structured information extraction with self-consistency.\\n\\nImplements three complementary consistency measures over N sampled extractions:\\n1. Fleiss' Kappa (surface matching) — treats N samples as N raters on entity presence\\n2. Structural soft Jaccard — span-level soft overlap with Hungarian matching\\n3. Oracle best-of-N — upper-bound F1 by selecting the best sample per instance\\n\\nKey dependencies: numpy, scipy (linear_sum_assignment).\\n\\\"\\\"\\\"\\n\\nfrom __future__ import annotations\\n\\nfrom itertools import combinations\\nfrom typing import TYPE_CHECKING\\n\\nimport numpy as np\\nfrom scipy.optimize import linear_sum_assignment\\n\\nif TYPE_CHECKING:\\n    pass\\n\\n# ---------------------------------------------------------------------------\\n# Type aliases (mirrors shared data format)\\n# ---------------------------------------------------------------------------\\nEntity = dict       # {\\\"text\\\", \\\"type\\\", \\\"start\\\", \\\"end\\\"}\\nRelation = dict     # {\\\"head\\\", \\\"tail\\\", \\\"type\\\", ...}\\nEvent = dict        # {\\\"trigger\\\": {...}, \\\"arguments\\\": [...]}\\nExtraction = dict   # {\\\"entities\\\", \\\"relations\\\", \\\"events\\\"}\\n\\n\\n# ===================================================================\\n# 1. Fleiss' Kappa — surface-level entity agreement\\n# ===================================================================\\n\\ndef _extract_surface_keys(sample: Extraction, subtask: str) -> set[tuple]:\\n    \\\"\\\"\\\"Extract surface-level keys from a sample for Fleiss' Kappa computation.\\\"\\\"\\\"\\n    if subtask == \\\"ner\\\":\\n        return {(e[\\\"text\\\"], e[\\\"type\\\"]) for e in sample.get(\\\"entities\\\", [])}\\n    elif subtask == \\\"re\\\":\\n        return {(r[\\\"head\\\"], r[\\\"tail\\\"], r[\\\"type\\\"]) for r in sample.get(\\\"relations\\\", [])}\\n    elif subtask == \\\"eae\\\":\\n        keys: set[tuple] = set()\\n        for ev in sample.get(\\\"events\\\", []):\\n            t = ev.get(\\\"trigger\\\", {})\\n            for arg in ev.get(\\\"arguments\\\", []):\\n                keys.add((t.get(\\\"text\\\", \\\"\\\"), t.get(\\\"type\\\", \\\"\\\"), arg[\\\"role\\\"], arg[\\\"text\\\"]))\\n        return keys\\n    else:\\n        raise ValueError(f\\\"Unknown subtask: {subtask}\\\")\\n\\n\\ndef fleiss_kappa_surface(samples: list[Extraction], subtask: str = \\\"ner\\\") -> float:\\n    \\\"\\\"\\\"Compute Fleiss' kappa treating N LLM samples as N raters on item presence.\\n\\n    Items are subtask-dependent surface keys:\\n    - ner: (entity_text, entity_type)\\n    - re: (head_text, tail_text, relation_type)\\n    - eae: (trigger_text, trigger_type, role, argument_text)\\n\\n    Args:\\n        samples: List of N extraction dicts.\\n        subtask: \\\"ner\\\", \\\"re\\\", or \\\"eae\\\".\\n\\n    Returns:\\n        Fleiss' kappa in [-1, 1].  Returns 1.0 for degenerate cases (<=1 unique\\n        item, perfect agreement, or undefined P_e).\\n    \\\"\\\"\\\"\\n    n_raters = len(samples)\\n    if n_raters <= 1:\\n        return 1.0\\n\\n    # Collect unique keys and per-sample presence sets\\n    entity_sets: list[set[tuple]] = []\\n    all_keys: set[tuple] = set()\\n    for sample in samples:\\n        keys = _extract_surface_keys(sample, subtask)\\n        entity_sets.append(keys)\\n        all_keys |= keys\\n\\n    n_subjects = len(all_keys)\\n    if n_subjects <= 0:\\n        # All samples extracted nothing — perfect agreement on empty set\\n        return 1.0\\n\\n    key_list = sorted(all_keys)\\n\\n    # Build rating matrix: n_subjects x 2 (categories: absent=0, present=1)\\n    # n_ij = number of raters assigning subject i to category j\\n    rating = np.zeros((n_subjects, 2), dtype=np.int64)\\n    for es in entity_sets:\\n        for idx, key in enumerate(key_list):\\n            if key in es:\\n                rating[idx, 1] += 1\\n            else:\\n                rating[idx, 0] += 1\\n\\n    n = n_raters\\n    k = 2  # number of categories\\n\\n    # Check perfect agreement: every subject has all votes in one category\\n    if np.all(np.max(rating, axis=1) == n):\\n        return 1.0\\n\\n    # P_i for each subject\\n    P_i = (np.sum(rating ** 2, axis=1) - n) / (n * (n - 1))\\n    P_bar = np.mean(P_i)\\n\\n    # P_e — expected agreement by chance\\n    p_j = np.sum(rating, axis=0) / (n_subjects * n)\\n    P_e = np.sum(p_j ** 2)\\n\\n    if abs(1.0 - P_e) < 1e-12:\\n\\n... [截断: 输出过长，省略 5252 字符] ...\\n\\nn enumerate(ga):\\n            for j, ab in enumerate(gb):\\n                cost[i, j] = _span_soft_jaccard(aa[\\\"start\\\"], aa[\\\"end\\\"],\\n                                                 ab[\\\"start\\\"], ab[\\\"end\\\"])\\n\\n        row_ind, col_ind = linear_sum_assignment(-cost)\\n        matched_sim = cost[row_ind, col_ind].sum()\\n        total_score += matched_sim\\n\\n    if total_weight == 0:\\n        return 1.0\\n    return total_score / total_weight\\n\\n\\ndef structural_consistency_soft_jaccard(\\n    samples: list[Extraction],\\n    subtask: str = \\\"ner\\\",\\n) -> float:\\n    \\\"\\\"\\\"Span-level soft Jaccard consistency averaged over all sample pairs.\\n\\n    For each pair (i, j) with i < j, computes a type-aware soft Jaccard using\\n    Hungarian matching on span overlaps, then returns the mean.\\n\\n    Args:\\n        samples: N extraction dicts.\\n        subtask: \\\"ner\\\" for entity consistency, \\\"eae\\\" for event-argument consistency.\\n\\n    Returns:\\n        Mean pairwise soft Jaccard in [0, 1].\\n    \\\"\\\"\\\"\\n    n = len(samples)\\n    if n <= 1:\\n        return 1.0\\n\\n    if subtask == \\\"ner\\\":\\n        pair_fn = _ner_soft_jaccard_pair\\n    elif subtask == \\\"re\\\":\\n        pair_fn = _re_soft_jaccard_pair\\n    else:\\n        pair_fn = _eae_soft_jaccard_pair\\n\\n    field = {\\\"ner\\\": \\\"entities\\\", \\\"re\\\": \\\"relations\\\", \\\"eae\\\": \\\"events\\\"}[subtask]\\n\\n    scores: list[float] = []\\n    for i, j in combinations(range(n), 2):\\n        score = pair_fn(\\n            samples[i].get(field, []),\\n            samples[j].get(field, []),\\n        )\\n        scores.append(score)\\n\\n    return float(np.mean(scores))\\n\\n\\n# ===================================================================\\n# 3. Oracle best-of-N\\n# ===================================================================\\n\\ndef oracle_best_of_n(\\n    samples: list[Extraction],\\n    gold: Extraction,\\n    subtask: str = \\\"ner\\\",\\n) -> tuple[int, float]:\\n    \\\"\\\"\\\"Select the sample with the highest F1 against the gold extraction.\\n\\n    Args:\\n        samples: N extraction dicts.\\n        gold: Gold-standard extraction.\\n        subtask: Passed through to per_instance_f1.\\n\\n    Returns:\\n        (best_index, best_f1). Returns (-1, 0.0) if samples is empty.\\n    \\\"\\\"\\\"\\n    if not samples:\\n        return (-1, 0.0)\\n\\n    # Lazy import to avoid circular dependency with evaluation.py\\n    from evaluation import per_instance_f1\\n\\n    best_idx = -1\\n    best_f1 = -1.0\\n\\n    for idx, sample in enumerate(samples):\\n        f1 = per_instance_f1(sample, gold, subtask=subtask)\\n        if f1 > best_f1:\\n            best_f1 = f1\\n            best_idx = idx\\n\\n    return (best_idx, best_f1)\\n\\n\\n# ===================================================================\\n# Aggregate helper\\n# ===================================================================\\n\\ndef compute_all_consistency_scores(\\n    sampled_instances: list[dict],\\n    subtask: str = \\\"ner\\\",\\n) -> dict:\\n    \\\"\\\"\\\"Compute all consistency metrics for a list of sampled instances.\\n\\n    Args:\\n        sampled_instances: List of SampledInstance dicts, each with keys\\n            \\\"id\\\", \\\"text\\\", \\\"gold\\\" (Extraction), \\\"samples\\\" (list[Extraction]).\\n        subtask: \\\"ner\\\", \\\"re\\\", or \\\"eae\\\".\\n\\n    Returns:\\n        Dict with per-instance score lists::\\n\\n            {\\n                \\\"fleiss_kappa\\\": [float, ...],\\n                \\\"soft_jaccard\\\": [float, ...],\\n                \\\"oracle_f1\\\":    [float, ...],\\n                \\\"oracle_indices\\\": [int, ...],\\n            }\\n    \\\"\\\"\\\"\\n    result: dict[str, list] = {\\n        \\\"fleiss_kappa\\\": [],\\n        \\\"soft_jaccard\\\": [],\\n        \\\"oracle_f1\\\": [],\\n        \\\"oracle_indices\\\": [],\\n    }\\n\\n    for inst in sampled_instances:\\n        samples = inst[\\\"samples\\\"]\\n        gold = inst[\\\"gold\\\"]\\n\\n        result[\\\"fleiss_kappa\\\"].append(fleiss_kappa_surface(samples, subtask=subtask))\\n        result[\\\"soft_jaccard\\\"].append(\\n            structural_consistency_soft_jaccard(samples, subtask=subtask)\\n        )\\n\\n        best_idx, best_f1 = oracle_best_of_n(samples, gold, subtask=subtask)\\n        result[\\\"oracle_f1\\\"].append(best_f1)\\n        result[\\\"oracle_indices\\\"].append(best_idx)\\n\\n    return result\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-15T12:44:01.894Z_
+
+<details><summary>↩ Tool result · `toolu_01JatQaZj9xmfp63ag96tQo5`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Evaluation module for structured self-consistency IE experiments.\\n\\nProvides strict-match NER/EAE evaluation, per-instance F1 computation,\\ncorrelation analysis, and summary report generation.\\n\\\"\\\"\\\"\\n\\nfrom __future__ import annotations\\n\\nimport statistics\\nfrom typing import Any\\n\\nfrom scipy.stats import kendalltau, spearmanr\\n\\n\\n# ---------------------------------------------------------------------------\\n# NER evaluation (strict match)\\n# ---------------------------------------------------------------------------\\n\\ndef entity_strict_match(\\n    pred_entities: list[dict],\\n    gold_entities: list[dict],\\n) -> tuple[int, int, int]:\\n    \\\"\\\"\\\"Compute strict entity match counts.\\n\\n    Strict match requires exact span (start, end) AND exact type.\\n\\n    Args:\\n        pred_entities: Predicted entity dicts with keys text, type, start, end.\\n        gold_entities: Gold entity dicts with the same schema.\\n\\n    Returns:\\n        (tp, fp, fn) counts.\\n    \\\"\\\"\\\"\\n    pred_set = {(e[\\\"start\\\"], e[\\\"end\\\"], e[\\\"type\\\"]) for e in pred_entities}\\n    gold_set = {(e[\\\"start\\\"], e[\\\"end\\\"], e[\\\"type\\\"]) for e in gold_entities}\\n    tp = len(pred_set & gold_set)\\n    fp = len(pred_set - gold_set)\\n    fn = len(gold_set - pred_set)\\n    return tp, fp, fn\\n\\n\\ndef compute_ner_f1(\\n    predictions: list[dict],\\n    golds: list[dict],\\n) -> dict[str, float]:\\n    \\\"\\\"\\\"Compute micro-averaged NER precision, recall, and F1.\\n\\n    Args:\\n        predictions: List of Extraction dicts (one per instance).\\n        golds: List of Extraction dicts (one per instance), aligned with predictions.\\n\\n    Returns:\\n        Dict with keys \\\"precision\\\", \\\"recall\\\", \\\"f1\\\".\\n    \\\"\\\"\\\"\\n    total_tp = total_fp = total_fn = 0\\n    for pred, gold in zip(predictions, golds):\\n        tp, fp, fn = entity_strict_match(\\n            pred.get(\\\"entities\\\", []),\\n            gold.get(\\\"entities\\\", []),\\n        )\\n        total_tp += tp\\n        total_fp += fp\\n        total_fn += fn\\n    return _prf(total_tp, total_fp, total_fn)\\n\\n\\n# ---------------------------------------------------------------------------\\n# EAE evaluation (argument match)\\n# ---------------------------------------------------------------------------\\n\\ndef _event_argument_tuples(events: list[dict]) -> set[tuple]:\\n    \\\"\\\"\\\"Extract (trigger_start, trigger_end, trigger_type, role, arg_start, arg_end) tuples.\\\"\\\"\\\"\\n    tuples: set[tuple] = set()\\n    for event in events:\\n        trigger = event.get(\\\"trigger\\\", {})\\n        t_start = trigger.get(\\\"start\\\")\\n        t_end = trigger.get(\\\"end\\\")\\n        t_type = trigger.get(\\\"type\\\")\\n        for arg in event.get(\\\"arguments\\\", []):\\n            tuples.add((t_start, t_end, t_type, arg[\\\"role\\\"], arg[\\\"start\\\"], arg[\\\"end\\\"]))\\n    return tuples\\n\\n\\ndef relation_strict_match(\\n    pred_relations: list[dict],\\n    gold_relations: list[dict],\\n) -> tuple[int, int, int]:\\n    \\\"\\\"\\\"Strict relation match: (head_start, head_end, tail_start, tail_end, type) must all match.\\\"\\\"\\\"\\n    pred_set = {(r[\\\"head_start\\\"], r[\\\"head_end\\\"], r[\\\"tail_start\\\"], r[\\\"tail_end\\\"], r[\\\"type\\\"]) for r in pred_relations}\\n    gold_set = {(r[\\\"head_start\\\"], r[\\\"head_end\\\"], r[\\\"tail_start\\\"], r[\\\"tail_end\\\"], r[\\\"type\\\"]) for r in gold_relations}\\n    tp = len(pred_set & gold_set)\\n    fp = len(pred_set - gold_set)\\n    fn = len(gold_set - pred_set)\\n    return tp, fp, fn\\n\\n\\ndef compute_re_f1(\\n    predictions: list[dict],\\n    golds: list[dict],\\n) -> dict[str, float]:\\n    \\\"\\\"\\\"Compute micro-averaged RE precision, recall, and F1.\\\"\\\"\\\"\\n    total_tp = total_fp = total_fn = 0\\n    for pred, gold in zip(predictions, golds):\\n        tp, fp, fn = relation_strict_match(\\n            pred.get(\\\"relations\\\", []),\\n            gold.get(\\\"relations\\\", []),\\n        )\\n        total_tp += tp\\n        total_fp += fp\\n        total_fn += fn\\n    return _prf(total_tp, total_fp, total_fn)\\n\\n\\ndef argument_match(\\n    pred_events: list[dict],\\n    gold_events: list[dict],\\n) -> tuple[int, int, int]:\\n    \\\"\\\"\\\"Compute event argument match counts.\\n\\n    A correct argument requires trigger span match + trigger type match +\\n    argument role match + argument span match.\\n\\n    \\n\\n... [截断: 输出过长，省略 6581 字符] ...\\n\\nrn 0.5\\n    concordant = sum(1 for p in pos for n in neg if p > n)\\n    tied = sum(1 for p in pos for n in neg if p == n)\\n    return (concordant + 0.5 * tied) / (len(pos) * len(neg))\\n\\n\\n# ---------------------------------------------------------------------------\\n# Summary report\\n# ---------------------------------------------------------------------------\\n\\ndef generate_evaluation_report(\\n    sampled_instances: list[dict],\\n    consistency_scores: dict[str, list[float]],\\n    subtask: str = \\\"ner\\\",\\n) -> dict[str, Any]:\\n    \\\"\\\"\\\"Generate a structured evaluation report.\\n\\n    Computes greedy F1, oracle best-of-N F1, and consistency-F1 correlation\\n    for each consistency scoring method.\\n\\n    Args:\\n        sampled_instances: List of SampledInstance dicts, each containing\\n            \\\"id\\\", \\\"text\\\", \\\"gold\\\" (Extraction), \\\"samples\\\" (list of Extraction),\\n            and optionally \\\"greedy\\\" (Extraction).\\n        consistency_scores: Dict mapping method name to a list of per-instance\\n            consistency scores (aligned with sampled_instances).\\n        subtask: \\\"ner\\\" or \\\"eae\\\".\\n\\n    Returns:\\n        Dict with keys:\\n            - \\\"greedy_f1\\\": float, micro-averaged F1 of greedy outputs.\\n            - \\\"oracle_best_of_n_f1\\\": float, micro-averaged F1 using the\\n              best sample per instance.\\n            - \\\"per_instance_greedy_f1\\\": list of per-instance greedy F1 values.\\n            - \\\"correlations\\\": dict mapping method name to {\\\"rho\\\": float, \\\"p_value\\\": float}.\\n            - \\\"num_instances\\\": int.\\n            - \\\"num_samples_per_instance\\\": float, average number of samples.\\n    \\\"\\\"\\\"\\n    greedy_preds = []\\n    greedy_golds = []\\n    oracle_preds = []\\n    oracle_golds = []\\n    instance_greedy_f1s: list[float] = []\\n\\n    for inst in sampled_instances:\\n        gold = inst[\\\"gold\\\"]\\n\\n        # Greedy F1\\n        greedy = inst.get(\\\"greedy\\\")\\n        if greedy is not None:\\n            greedy_preds.append(greedy)\\n            greedy_golds.append(gold)\\n            instance_greedy_f1s.append(per_instance_f1(greedy, gold, subtask))\\n        else:\\n            instance_greedy_f1s.append(0.0)\\n\\n        # Oracle best-of-N: pick the sample with highest per-instance F1\\n        samples = inst.get(\\\"samples\\\", [])\\n        if samples:\\n            best_sample = max(samples, key=lambda s: per_instance_f1(s, gold, subtask))\\n            oracle_preds.append(best_sample)\\n            oracle_golds.append(gold)\\n\\n    # Micro-averaged scores\\n    f1_fn = {\\\"ner\\\": compute_ner_f1, \\\"re\\\": compute_re_f1, \\\"eae\\\": compute_eae_f1}[subtask]\\n    greedy_metrics = f1_fn(greedy_preds, greedy_golds) if greedy_preds else _prf(0, 0, 0)\\n    oracle_metrics = f1_fn(oracle_preds, oracle_golds) if oracle_preds else _prf(0, 0, 0)\\n\\n    # Correlation between consistency scores and per-instance greedy F1\\n    correlations: dict[str, dict[str, float]] = {}\\n    for method_name, scores in consistency_scores.items():\\n        rho, p_value = spearman_correlation(scores, instance_greedy_f1s)\\n        correlations[method_name] = {\\\"rho\\\": rho, \\\"p_value\\\": p_value}\\n\\n    total_samples = sum(len(inst.get(\\\"samples\\\", [])) for inst in sampled_instances)\\n    n = len(sampled_instances)\\n\\n    return {\\n        \\\"greedy_f1\\\": greedy_metrics[\\\"f1\\\"],\\n        \\\"oracle_best_of_n_f1\\\": oracle_metrics[\\\"f1\\\"],\\n        \\\"per_instance_greedy_f1\\\": instance_greedy_f1s,\\n        \\\"correlations\\\": correlations,\\n        \\\"num_instances\\\": n,\\n        \\\"num_samples_per_instance\\\": total_samples / n if n > 0 else 0.0,\\n    }\\n\\n\\n# ---------------------------------------------------------------------------\\n# Internal helpers\\n# ---------------------------------------------------------------------------\\n\\ndef _prf(tp: int, fp: int, fn: int) -> dict[str, float]:\\n    \\\"\\\"\\\"Compute precision, recall, F1 from raw counts.\\\"\\\"\\\"\\n    precision = tp / (tp + fp) if (tp + fp) > 0 else 0.0\\n    recall = tp / (tp + fn) if (tp + fn) > 0 else 0.0\\n    f1 = 2 * precision * recall / (precision + recall) if (precision + recall) > 0 else 0.0\\n    return {\\\"precision\\\": precision, \\\"recall\\\": recall, \\\"f1\\\": f1}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b8b11d62-6ca3-4151-bc4f-ed1130aa9fbf",
+  "uuid": "cd0b4077-7bf0-4c32-b74a-6b03480f4e68",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Evaluation module for structured self-consistency IE experiments.\\\\n\\\\nProvides strict-match NER/EAE evaluation, per-instance F1 computation,\\\\ncorrelation analysis, and summary report generation.\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nfrom __future__ import annotations\\\\n\\\\nimport statistics\\\\nfrom typing import Any\\\\n\\\\nfrom scipy.stats import kendalltau, spearmanr\\\\n\\\\n\\\\n# ---------------------------------------------------------------------------\\\\n# NER evaluation (strict match)\\\\n# ---------------------------------------------------------------------------\\\\n\\\\ndef entity_strict_match(\\\\n    pred_entities: list[dict],\\\\n    gold_entities: list[dict],\\\\n) -> tuple[int, int, int]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Compute strict entity match counts.\\\\n\\\\n    Strict match requires exact span (start, end) AND exact type.\\\\n\\\\n    Args:\\\\n        pred_entities: Predicted entity dicts with keys text, type, start, end.\\\\n        gold_entities: Gold entity dicts with the same schema.\\\\n\\\\n    Returns:\\\\n        (tp, fp, fn) counts.\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    pred_set = {(e[\\\\\\\"start\\\\\\\"], e[\\\\\\\"end\\\\\\\"], e[\\\\\\\"type\\\\\\\"]) for e in pred_entities}\\\\n    gold_set = {(e[\\\\\\\"start\\\\\\\"], e[\\\\\\\"end\\\\\\\"], e[\\\\\\\"type\\\\\\\"]) for e in gold_entities}\\\\n    tp = len(pred_set & gold_set)\\\\n    fp = len(pred_set - gold_set)\\\\n    fn = len(gold_set - pred_set)\\\\n    return tp, fp, fn\\\\n\\\\n\\\\ndef compute_ner_f1(\\\\n    predictions: list[dict],\\\\n    golds: list[dict],\\\\n) -> dict[str, float]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Compute micro-averaged NER precision, recall, and F1.\\\\n\\\\n    Args:\\\\n        predictions: List of Extraction dicts (one per instance).\\\\n        golds: List of Extraction dicts (one per instance), aligned with predictions.\\\\n\\\\n    Returns:\\\\n        Dict with keys \\\\\\\"precision\\\\\\\", \\\\\\\"recall\\\\\\\", \\\\\\\"f1\\\\\\\".\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    total_tp = total_fp = total_fn = 0\\\\n    for pred, gold in zip(predictions, golds):\\\\n        tp, fp, fn = entity_strict_match(\\\\n            pred.get(\\\\\\\"entities\\\\\\\", []),\\\\n            gold.get(\\\\\\\"entities\\\\\\\", []),\\\\n        )\\\\n        total_tp += tp\\\\n        total_fp += fp\\\\n        total_fn += fn\\\\n    return _prf(total_tp, total_fp, total_fn)\\\\n\\\\n\\\\n# ---------------------------------------------------------------------------\\\\n# EAE evaluation (argument match)\\\\n# ---------------------------------------------------------------------------\\\\n\\\\ndef _event_argument_tuples(events: list[dict]) -> set[tuple]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Extract (trigger_start, trigger_end, trigger_type, role, arg_start, arg_end) tuples.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    tuples: set[tuple] = set()\\\\n    for event in events:\\\\n        trigger = event.get(\\\\\\\"trigger\\\\\\\", {})\\\\n        t_start = trigger.get(\\\\\\\"start\\\\\\\")\\\\n        t_end = trigger.get(\\\\\\\"end\\\\\\\")\\\\n        t_type = trigger.get(\\\\\\\"type\\\\\\\")\\\\n        for arg in event.get(\\\\\\\"arguments\\\\\\\", []):\\\\n            tuples.add((t_start, t_end, t_type, arg[\\\\\\\"role\\\\\\\"], arg[\\\\\\\"start\\\\\\\"], arg[\\\\\\\"end\\\\\\\"]))\\\\n    return tuples\\\\n\\\\n\\\\ndef relation_strict_match(\\\\n    pred_relations: list[dict],\\\\n    gold_relations: list[dict],\\\\n) -> tuple[int, int, int]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Strict relation match: (head_start, head_end, tail_start, tail_end, type) must all match.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    pred_set = {(r[\\\\\\\"head_start\\\\\\\"], r[\\\\\\\"head_end\\\\\\\"], r[\\\\\\\"tail_start\\\\\\\"], r[\\\\\\\"tail_end\\\\\\\"], r[\\\\\\\"type\\\\\\\"]) for r in pred_relations}\\\\n    gold_set = {(r[\\\\\\\"head_start\\\\\\\"], r[\\\\\\\"head_end\\\\\\\"], r[\\\\\\\"tail_start\\\\\\\"], r[\\\\\\\"tail_end\\\\\\\"], r[\\\\\\\"type\\\\\\\"]) for r in gold_relations}\\\\n    tp = len(pred_set & gold_set)\\\\n    fp = len(pred_set - gold_set)\\\\n    fn = len(gold_set - pred_set)\\\\n    return tp, fp, fn\\\\n\\\\n\\\\ndef compute_re_f1(\\\\n    predictions: list[dict],\\\\n    golds: list[dict],\\\\n) -> dict[str, float]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Compute micro-averaged RE precision, recall, and F1.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    total_tp = total_fp = total_fn = 0\\\\n    for pred, gold in zip(predictions, golds):\\\\n        tp, fp, fn = relation_strict_match(\\\\n            pred.get(\\\\\\\"relations\\\\\\\", []),\\\\n            gold.get(\\\\\\\"relations\\\\\\\", []),\\\\n        )\\\\n        total_tp += tp\\\\n        total_fp += fp\\\\n        total_fn += fn\\\\n    return _prf(total_tp, total_fp, total_fn)\\\\n\\\\n\\\\ndef argument_match(\\\\n    pred_events: list[dict],\\\\n    gold_events: list[dict],\\\\n) -> tuple[int, int, int]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Compute event argument match counts.\\\\n\\\\n    A correct argument requires trigger span match + trigger type match +\\\\n    argument role match + argument span match.\\\\n\\\\n    \\\\n\\\\n... [截断: 输出过长，省略 6581 字符] ...\\\\n\\\\nrn 0.5\\\\n    concordant = sum(1 for p in pos for n in neg if p > n)\\\\n    tied = sum(1 for p in pos for n in neg if p == n)\\\\n    return (concordant + 0.5 * tied) / (len(pos) * len(neg))\\\\n\\\\n\\\\n# ---------------------------------------------------------------------------\\\\n# Summary report\\\\n# ---------------------------------------------------------------------------\\\\n\\\\ndef generate_evaluation_report(\\\\n    sampled_instances: list[dict],\\\\n    consistency_scores: dict[str, list[float]],\\\\n    subtask: str = \\\\\\\"ner\\\\\\\",\\\\n) -> dict[str, Any]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Generate a structured evaluation report.\\\\n\\\\n    Computes greedy F1, oracle best-of-N F1, and consistency-F1 correlation\\\\n    for each consistency scoring method.\\\\n\\\\n    Args:\\\\n        sampled_instances: List of SampledInstance dicts, each containing\\\\n            \\\\\\\"id\\\\\\\", \\\\\\\"text\\\\\\\", \\\\\\\"gold\\\\\\\" (Extraction), \\\\\\\"samples\\\\\\\" (list of Extraction),\\\\n            and optionally \\\\\\\"greedy\\\\\\\" (Extraction).\\\\n        consistency_scores: Dict mapping method name to a list of per-instance\\\\n            consistency scores (aligned with sampled_instances).\\\\n        subtask: \\\\\\\"ner\\\\\\\" or \\\\\\\"eae\\\\\\\".\\\\n\\\\n    Returns:\\\\n        Dict with keys:\\\\n            - \\\\\\\"greedy_f1\\\\\\\": float, micro-averaged F1 of greedy outputs.\\\\n            - \\\\\\\"oracle_best_of_n_f1\\\\\\\": float, micro-averaged F1 using the\\\\n              best sample per instance.\\\\n            - \\\\\\\"per_instance_greedy_f1\\\\\\\": list of per-instance greedy F1 values.\\\\n            - \\\\\\\"correlations\\\\\\\": dict mapping method name to {\\\\\\\"rho\\\\\\\": float, \\\\\\\"p_value\\\\\\\": float}.\\\\n            - \\\\\\\"num_instances\\\\\\\": int.\\\\n            - \\\\\\\"num_samples_per_instance\\\\\\\": float, average number of samples.\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    greedy_preds = []\\\\n    greedy_golds = []\\\\n    oracle_preds = []\\\\n    oracle_golds = []\\\\n    instance_greedy_f1s: list[float] = []\\\\n\\\\n    for inst in sampled_instances:\\\\n        gold = inst[\\\\\\\"gold\\\\\\\"]\\\\n\\\\n        # Greedy F1\\\\n        greedy = inst.get(\\\\\\\"greedy\\\\\\\")\\\\n        if greedy is not None:\\\\n            greedy_preds.append(greedy)\\\\n            greedy_golds.append(gold)\\\\n            instance_greedy_f1s.append(per_instance_f1(greedy, gold, subtask))\\\\n        else:\\\\n            instance_greedy_f1s.append(0.0)\\\\n\\\\n        # Oracle best-of-N: pick the sample with highest per-instance F1\\\\n        samples = inst.get(\\\\\\\"samples\\\\\\\", [])\\\\n        if samples:\\\\n            best_sample = max(samples, key=lambda s: per_instance_f1(s, gold, subtask))\\\\n            oracle_preds.append(best_sample)\\\\n            oracle_golds.append(gold)\\\\n\\\\n    # Micro-averaged scores\\\\n    f1_fn = {\\\\\\\"ner\\\\\\\": compute_ner_f1, \\\\\\\"re\\\\\\\": compute_re_f1, \\\\\\\"eae\\\\\\\": compute_eae_f1}[subtask]\\\\n    greedy_metrics = f1_fn(greedy_preds, greedy_golds) if greedy_preds else _prf(0, 0, 0)\\\\n    oracle_metrics = f1_fn(oracle_preds, oracle_golds) if oracle_preds else _prf(0, 0, 0)\\\\n\\\\n    # Correlation between consistency scores and per-instance greedy F1\\\\n    correlations: dict[str, dict[str, float]] = {}\\\\n    for method_name, scores in consistency_scores.items():\\\\n        rho, p_value = spearman_correlation(scores, instance_greedy_f1s)\\\\n        correlations[method_name] = {\\\\\\\"rho\\\\\\\": rho, \\\\\\\"p_value\\\\\\\": p_value}\\\\n\\\\n    total_samples = sum(len(inst.get(\\\\\\\"samples\\\\\\\", [])) for inst in sampled_instances)\\\\n    n = len(sampled_instances)\\\\n\\\\n    return {\\\\n        \\\\\\\"greedy_f1\\\\\\\": greedy_metrics[\\\\\\\"f1\\\\\\\"],\\\\n        \\\\\\\"oracle_best_of_n_f1\\\\\\\": oracle_metrics[\\\\\\\"f1\\\\\\\"],\\\\n        \\\\\\\"per_instance_greedy_f1\\\\\\\": instance_greedy_f1s,\\\\n        \\\\\\\"correlations\\\\\\\": correlations,\\\\n        \\\\\\\"num_instances\\\\\\\": n,\\\\n        \\\\\\\"num_samples_per_instance\\\\\\\": total_samples / n if n > 0 else 0.0,\\\\n    }\\\\n\\\\n\\\\n# ---------------------------------------------------------------------------\\\\n# Internal helpers\\\\n# ---------------------------------------------------------------------------\\\\n\\\\ndef _prf(tp: int, fp: int, fn: int) -> dict[str, float]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Compute precision, recall, F1 from raw counts.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    precision = tp / (tp + fp) if (tp + fp) > 0 else 0.0\\\\n    recall = tp / (tp + fn) if (tp + fn) > 0 else 0.0\\\\n    f1 = 2 * precision * recall / (precision + recall) if (precision + recall) > 0 else 0.0\\\\n    return {\\\\\\\"precision\\\\\\\": precision, \\\\\\\"recall\\\\\\\": recall, \\\\\\\"f1\\\\\\\": f1}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Evaluation module for structured self-consistency IE experiments.\\n\\nProvides strict-match NER/EAE evaluation, per-instance F1 computation,\\ncorrelation analysis, and summary report generation.\\n\\\"\\\"\\\"\\n\\nfrom __future__ import annotations\\n\\nimport statistics\\nfrom typing import Any\\n\\nfrom scipy.stats import kendalltau, spearmanr\\n\\n\\n# ---------------------------------------------------------------------------\\n# NER evaluation (strict match)\\n# ---------------------------------------------------------------------------\\n\\ndef entity_strict_match(\\n    pred_entities: list[dict],\\n    gold_entities: list[dict],\\n) -> tuple[int, int, int]:\\n    \\\"\\\"\\\"Compute strict entity match counts.\\n\\n    Strict match requires exact span (start, end) AND exact type.\\n\\n    Args:\\n        pred_entities: Predicted entity dicts with keys text, type, start, end.\\n        gold_entities: Gold entity dicts with the same schema.\\n\\n    Returns:\\n        (tp, fp, fn) counts.\\n    \\\"\\\"\\\"\\n    pred_set = {(e[\\\"start\\\"], e[\\\"end\\\"], e[\\\"type\\\"]) for e in pred_entities}\\n    gold_set = {(e[\\\"start\\\"], e[\\\"end\\\"], e[\\\"type\\\"]) for e in gold_entities}\\n    tp = len(pred_set & gold_set)\\n    fp = len(pred_set - gold_set)\\n    fn = len(gold_set - pred_set)\\n    return tp, fp, fn\\n\\n\\ndef compute_ner_f1(\\n    predictions: list[dict],\\n    golds: list[dict],\\n) -> dict[str, float]:\\n    \\\"\\\"\\\"Compute micro-averaged NER precision, recall, and F1.\\n\\n    Args:\\n        predictions: List of Extraction dicts (one per instance).\\n        golds: List of Extraction dicts (one per instance), aligned with predictions.\\n\\n    Returns:\\n        Dict with keys \\\"precision\\\", \\\"recall\\\", \\\"f1\\\".\\n    \\\"\\\"\\\"\\n    total_tp = total_fp = total_fn = 0\\n    for pred, gold in zip(predictions, golds):\\n        tp, fp, fn = entity_strict_match(\\n            pred.get(\\\"entities\\\", []),\\n            gold.get(\\\"entities\\\", []),\\n        )\\n        total_tp += tp\\n        total_fp += fp\\n        total_fn += fn\\n    return _prf(total_tp, total_fp, total_fn)\\n\\n\\n# ---------------------------------------------------------------------------\\n# EAE evaluation (argument match)\\n# ---------------------------------------------------------------------------\\n\\ndef _event_argument_tuples(events: list[dict]) -> set[tuple]:\\n    \\\"\\\"\\\"Extract (trigger_start, trigger_end, trigger_type, role, arg_start, arg_end) tuples.\\\"\\\"\\\"\\n    tuples: set[tuple] = set()\\n    for event in events:\\n        trigger = event.get(\\\"trigger\\\", {})\\n        t_start = trigger.get(\\\"start\\\")\\n        t_end = trigger.get(\\\"end\\\")\\n        t_type = trigger.get(\\\"type\\\")\\n        for arg in event.get(\\\"arguments\\\", []):\\n            tuples.add((t_start, t_end, t_type, arg[\\\"role\\\"], arg[\\\"start\\\"], arg[\\\"end\\\"]))\\n    return tuples\\n\\n\\ndef relation_strict_match(\\n    pred_relations: list[dict],\\n    gold_relations: list[dict],\\n) -> tuple[int, int, int]:\\n    \\\"\\\"\\\"Strict relation match: (head_start, head_end, tail_start, tail_end, type) must all match.\\\"\\\"\\\"\\n    pred_set = {(r[\\\"head_start\\\"], r[\\\"head_end\\\"], r[\\\"tail_start\\\"], r[\\\"tail_end\\\"], r[\\\"type\\\"]) for r in pred_relations}\\n    gold_set = {(r[\\\"head_start\\\"], r[\\\"head_end\\\"], r[\\\"tail_start\\\"], r[\\\"tail_end\\\"], r[\\\"type\\\"]) for r in gold_relations}\\n    tp = len(pred_set & gold_set)\\n    fp = len(pred_set - gold_set)\\n    fn = len(gold_set - pred_set)\\n    return tp, fp, fn\\n\\n\\ndef compute_re_f1(\\n    predictions: list[dict],\\n    golds: list[dict],\\n) -> dict[str, float]:\\n    \\\"\\\"\\\"Compute micro-averaged RE precision, recall, and F1.\\\"\\\"\\\"\\n    total_tp = total_fp = total_fn = 0\\n    for pred, gold in zip(predictions, golds):\\n        tp, fp, fn = relation_strict_match(\\n            pred.get(\\\"relations\\\", []),\\n            gold.get(\\\"relations\\\", []),\\n        )\\n        total_tp += tp\\n        total_fp += fp\\n        total_fn += fn\\n    return _prf(total_tp, total_fp, total_fn)\\n\\n\\ndef argument_match(\\n    pred_events: list[dict],\\n    gold_events: list[dict],\\n) -> tuple[int, int, int]:\\n    \\\"\\\"\\\"Compute event argument match counts.\\n\\n    A correct argument requires trigger span match + trigger type match +\\n    argument role match + argument span match.\\n\\n    \\n\\n... [截断: 输出过长，省略 6581 字符] ...\\n\\nrn 0.5\\n    concordant = sum(1 for p in pos for n in neg if p > n)\\n    tied = sum(1 for p in pos for n in neg if p == n)\\n    return (concordant + 0.5 * tied) / (len(pos) * len(neg))\\n\\n\\n# ---------------------------------------------------------------------------\\n# Summary report\\n# ---------------------------------------------------------------------------\\n\\ndef generate_evaluation_report(\\n    sampled_instances: list[dict],\\n    consistency_scores: dict[str, list[float]],\\n    subtask: str = \\\"ner\\\",\\n) -> dict[str, Any]:\\n    \\\"\\\"\\\"Generate a structured evaluation report.\\n\\n    Computes greedy F1, oracle best-of-N F1, and consistency-F1 correlation\\n    for each consistency scoring method.\\n\\n    Args:\\n        sampled_instances: List of SampledInstance dicts, each containing\\n            \\\"id\\\", \\\"text\\\", \\\"gold\\\" (Extraction), \\\"samples\\\" (list of Extraction),\\n            and optionally \\\"greedy\\\" (Extraction).\\n        consistency_scores: Dict mapping method name to a list of per-instance\\n            consistency scores (aligned with sampled_instances).\\n        subtask: \\\"ner\\\" or \\\"eae\\\".\\n\\n    Returns:\\n        Dict with keys:\\n            - \\\"greedy_f1\\\": float, micro-averaged F1 of greedy outputs.\\n            - \\\"oracle_best_of_n_f1\\\": float, micro-averaged F1 using the\\n              best sample per instance.\\n            - \\\"per_instance_greedy_f1\\\": list of per-instance greedy F1 values.\\n            - \\\"correlations\\\": dict mapping method name to {\\\"rho\\\": float, \\\"p_value\\\": float}.\\n            - \\\"num_instances\\\": int.\\n            - \\\"num_samples_per_instance\\\": float, average number of samples.\\n    \\\"\\\"\\\"\\n    greedy_preds = []\\n    greedy_golds = []\\n    oracle_preds = []\\n    oracle_golds = []\\n    instance_greedy_f1s: list[float] = []\\n\\n    for inst in sampled_instances:\\n        gold = inst[\\\"gold\\\"]\\n\\n        # Greedy F1\\n        greedy = inst.get(\\\"greedy\\\")\\n        if greedy is not None:\\n            greedy_preds.append(greedy)\\n            greedy_golds.append(gold)\\n            instance_greedy_f1s.append(per_instance_f1(greedy, gold, subtask))\\n        else:\\n            instance_greedy_f1s.append(0.0)\\n\\n        # Oracle best-of-N: pick the sample with highest per-instance F1\\n        samples = inst.get(\\\"samples\\\", [])\\n        if samples:\\n            best_sample = max(samples, key=lambda s: per_instance_f1(s, gold, subtask))\\n            oracle_preds.append(best_sample)\\n            oracle_golds.append(gold)\\n\\n    # Micro-averaged scores\\n    f1_fn = {\\\"ner\\\": compute_ner_f1, \\\"re\\\": compute_re_f1, \\\"eae\\\": compute_eae_f1}[subtask]\\n    greedy_metrics = f1_fn(greedy_preds, greedy_golds) if greedy_preds else _prf(0, 0, 0)\\n    oracle_metrics = f1_fn(oracle_preds, oracle_golds) if oracle_preds else _prf(0, 0, 0)\\n\\n    # Correlation between consistency scores and per-instance greedy F1\\n    correlations: dict[str, dict[str, float]] = {}\\n    for method_name, scores in consistency_scores.items():\\n        rho, p_value = spearman_correlation(scores, instance_greedy_f1s)\\n        correlations[method_name] = {\\\"rho\\\": rho, \\\"p_value\\\": p_value}\\n\\n    total_samples = sum(len(inst.get(\\\"samples\\\", [])) for inst in sampled_instances)\\n    n = len(sampled_instances)\\n\\n    return {\\n        \\\"greedy_f1\\\": greedy_metrics[\\\"f1\\\"],\\n        \\\"oracle_best_of_n_f1\\\": oracle_metrics[\\\"f1\\\"],\\n        \\\"per_instance_greedy_f1\\\": instance_greedy_f1s,\\n        \\\"correlations\\\": correlations,\\n        \\\"num_instances\\\": n,\\n        \\\"num_samples_per_instance\\\": total_samples / n if n > 0 else 0.0,\\n    }\\n\\n\\n# ---------------------------------------------------------------------------\\n# Internal helpers\\n# ---------------------------------------------------------------------------\\n\\ndef _prf(tp: int, fp: int, fn: int) -> dict[str, float]:\\n    \\\"\\\"\\\"Compute precision, recall, F1 from raw counts.\\\"\\\"\\\"\\n    precision = tp / (tp + fp) if (tp + fp) > 0 else 0.0\\n    recall = tp / (tp + fn) if (tp + fn) > 0 else 0.0\\n    f1 = 2 * precision * recall / (precision + recall) if (precision + recall) > 0 else 0.0\\n    return {\\\"precision\\\": precision, \\\"recall\\\": recall, \\\"f1\\\": f1}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 48_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I understand the data format and signal computation. Let me also check if there's existing per-sample signal computation code, specifically for selection F1. Let me look at `exp010_selection_curves.py` or `exp_006_v2_selection.py`.
+
+Key observations:
+1. The signals in the existing code are computed **per-instance** (averaged over all samples for that instance), but for **selection F1**, I need to compute signals **per-sample** and then select the best sample.
+
+For selection F1, the per-sample signal scores would be:
+- **VC (Voting Confidence)**: For sample k, the average vote frequency of its predicted entities across all N samples. Higher = more consistent with the ensemble.
+
+
+- **SJ (Structural Jaccard)**: For sample k, the average soft Jaccard with all other samples. Higher = more similar to others.
+- **FK (Fleiss Kappa)**: This is instance-level, not per-sample, so for selection I'd need a leave-one-out variant or per-sample agreement score, though the existing code computes it at the instance level.
+
+Let me re-examine the task definition to clarify which signals actually apply to per-sample selection.
+
+The signals are VC (Voting Confidence), SJ (Structural Jaccard), FK (Fleiss Kappa), EM (Exact Match frequency), and LP (Log Probability) — all supposedly per-sample metrics. I should check the selection curves code to see how they're actually computing per-sample scores.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b8b11d62-6ca3-4151-bc4f-ed1130aa9fbf",
+  "uuid": "439f0529-c6e9-4f72-9a54-236a97a624d7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012b1LWrDGEpmEsGws9DXxNM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6958,
+      "cache_read_input_tokens": 50034,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6958
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01SYMhSjBVSr6HKCYjomaBWe`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "head -150 /root/autodl-tmp/struct_self_consist_ie/code/exp010_selection_curves.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b8b11d62-6ca3-4151-bc4f-ed1130aa9fbf",
+  "uuid": "b722764e-074c-4946-a829-2c1f4589a987",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012b1LWrDGEpmEsGws9DXxNM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6958,
+      "cache_read_input_tokens": 50034,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6958
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-15T12:44:16.580Z_
+
+<details><summary>↩ Tool result · `toolu_01SYMhSjBVSr6HKCYjomaBWe`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"exp-010: Selection Curves — Best-of-N comparison across signals.\\n\\nGenerates paper-quality figure showing macro F1 vs N for each selection signal.\\nSubplots: (a) NER SciERC, (b) RE SciERC, (c) NER CoNLL-2003.\\n\\\"\\\"\\\"\\n\\nfrom __future__ import annotations\\n\\nimport json\\nimport os\\nimport sys\\nimport time\\nfrom collections import Counter\\n\\nimport numpy as np\\n\\nsys.path.insert(0, os.path.join(os.path.dirname(__file__), \\\"../../code\\\"))\\nfrom consistency import (\\n    _ner_soft_jaccard_pair,\\n    _re_soft_jaccard_pair,\\n    _extract_surface_keys,\\n)\\nfrom evaluation import per_instance_f1\\n\\n# ── Configuration ──────────────────────────────────────────────────\\n\\nBASE = \\\"/root/autodl-tmp/struct_self_consist_ie\\\"\\n\\nDATASETS = {\\n    \\\"scierc_ner\\\": {\\n        \\\"path\\\": f\\\"{BASE}/output/exp_001_seed42_v2/samples.jsonl\\\",\\n        \\\"subtask\\\": \\\"ner\\\",\\n        \\\"max_n\\\": 16,\\n        \\\"title\\\": \\\"(a) NER — SciERC\\\",\\n        \\\"filter_fn\\\": None,\\n    },\\n    \\\"scierc_re\\\": {\\n        \\\"path\\\": f\\\"{BASE}/output/exp_008_re_n16_v2/samples.jsonl\\\",\\n        \\\"subtask\\\": \\\"re\\\",\\n        \\\"max_n\\\": 16,\\n        \\\"title\\\": \\\"(b) RE — SciERC\\\",\\n        \\\"filter_fn\\\": lambda inst: len(inst[\\\"gold\\\"].get(\\\"relations\\\", [])) > 0,\\n    },\\n    \\\"conll_ner\\\": {\\n        \\\"path\\\": f\\\"{BASE}/output/exp002_conll2003/samples.jsonl\\\",\\n        \\\"subtask\\\": \\\"ner\\\",\\n        \\\"max_n\\\": 8,\\n        \\\"title\\\": \\\"(c) NER — CoNLL-2003\\\",\\n        \\\"filter_fn\\\": None,\\n    },\\n}\\n\\nN_REPEATS = 10\\nSEED = 42\\n\\nSELECTION_SIGNALS = [\\\"SJ\\\", \\\"FK\\\", \\\"logprob\\\", \\\"voting_conf\\\", \\\"EM\\\", \\\"random\\\", \\\"oracle\\\"]\\n\\nOUTPUT_DIR = f\\\"{BASE}/output/exp010_selection_curves\\\"\\nFIG_DIR = os.path.join(OUTPUT_DIR, \\\"figures\\\")\\n\\n# ── Data loading ───────────────────────────────────────────────────\\n\\ndef load_data(path: str) -> list[dict]:\\n    instances = []\\n    with open(path) as f:\\n        for line in f:\\n            if line.strip():\\n                instances.append(json.loads(line))\\n    return instances\\n\\n\\n# ── Precomputation ─────────────────────────────────────────────────\\n\\ndef precompute_pairwise_sj(instance: dict, subtask: str) -> np.ndarray:\\n    samples = instance[\\\"samples\\\"]\\n    N = len(samples)\\n    field = \\\"entities\\\" if subtask == \\\"ner\\\" else \\\"relations\\\"\\n    pair_fn = _ner_soft_jaccard_pair if subtask == \\\"ner\\\" else _re_soft_jaccard_pair\\n    matrix = np.zeros((N, N))\\n    for i in range(N):\\n        for j in range(i + 1, N):\\n            score = pair_fn(samples[i].get(field, []), samples[j].get(field, []))\\n            matrix[i][j] = score\\n            matrix[j][i] = score\\n    np.fill_diagonal(matrix, 1.0)\\n    return matrix\\n\\n\\ndef precompute_pairwise_surface(instance: dict, subtask: str) -> np.ndarray:\\n    samples = instance[\\\"samples\\\"]\\n    N = len(samples)\\n    key_sets = [_extract_surface_keys(s, subtask) for s in samples]\\n    matrix = np.zeros((N, N))\\n    for i in range(N):\\n        for j in range(i + 1, N):\\n            union = len(key_sets[i] | key_sets[j])\\n            inter = len(key_sets[i] & key_sets[j])\\n            score = inter / union if union > 0 else 1.0\\n            matrix[i][j] = score\\n            matrix[j][i] = score\\n    np.fill_diagonal(matrix, 1.0)\\n    return matrix\\n\\n\\ndef precompute_per_sample_f1(instance: dict, subtask: str) -> list[float]:\\n    gold = instance[\\\"gold\\\"]\\n    return [per_instance_f1(s, gold, subtask=subtask) for s in instance[\\\"samples\\\"]]\\n\\n\\n# ── Per-sample signal selection ────────────────────────────────────\\n\\ndef select_best_sample(\\n    signal: str,\\n    indices: list[int],\\n    sj_matrix: np.ndarray,\\n    surface_matrix: np.ndarray,\\n    logprobs: list[float],\\n    surface_keys: list[frozenset],\\n    per_sample_f1s: list[float],\\n    rng: np.random.Generator,\\n) -> int:\\n    n_sub = len(indices)\\n    if n_sub == 1:\\n        return indices[0]\\n\\n    if signal == \\\"oracle\\\":\\n        f1s = [per_sample_f1s[i] for i in indices]\\n        return indices[int(np.argmax(f1s))]\\n\\n    if signal == \\\"random\\\":\\n        return int(rng.choice(indices))\\n\\n    if signal == \\\"logprob\\\":\\n        lps = [logprobs[i] for i in indices]\\n        return indices[int(np.argmax(lps))]\\n\\n    if signal == \\\"SJ\\\":\\n        scores = []\\n        for k in indices:\\n            others = [j for j in indices if j != k]\\n            scores.append(float(np.mean([sj_matrix[k][j] for j in others])))\\n        return indices[int(np.argmax(scores))]\\n\\n    if signal == \\\"FK\\\":\\n        scores = []\\n        for k in indices:\\n            others = [j for j in indices if j != k]\\n            scores.append(float(np.mean([surface_matrix[k][j] for j in others])))\\n        return indices[int(np.argmax(scores))]\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b8b11d62-6ca3-4151-bc4f-ed1130aa9fbf",
+  "uuid": "d6aa697e-7280-4062-bb4a-58f508ceb16a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"exp-010: Selection Curves — Best-of-N comparison across signals.\\\\n\\\\nGenerates paper-quality figure showing macro F1 vs N for each selection signal.\\\\nSubplots: (a) NER SciERC, (b) RE SciERC, (c) NER CoNLL-2003.\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nfrom __future__ import annotations\\\\n\\\\nimport json\\\\nimport os\\\\nimport sys\\\\nimport time\\\\nfrom collections import Counter\\\\n\\\\nimport numpy as np\\\\n\\\\nsys.path.insert(0, os.path.join(os.path.dirname(__file__), \\\\\\\"../../code\\\\\\\"))\\\\nfrom consistency import (\\\\n    _ner_soft_jaccard_pair,\\\\n    _re_soft_jaccard_pair,\\\\n    _extract_surface_keys,\\\\n)\\\\nfrom evaluation import per_instance_f1\\\\n\\\\n# ── Configuration ──────────────────────────────────────────────────\\\\n\\\\nBASE = \\\\\\\"/root/autodl-tmp/struct_self_consist_ie\\\\\\\"\\\\n\\\\nDATASETS = {\\\\n    \\\\\\\"scierc_ner\\\\\\\": {\\\\n        \\\\\\\"path\\\\\\\": f\\\\\\\"{BASE}/output/exp_001_seed42_v2/samples.jsonl\\\\\\\",\\\\n        \\\\\\\"subtask\\\\\\\": \\\\\\\"ner\\\\\\\",\\\\n        \\\\\\\"max_n\\\\\\\": 16,\\\\n        \\\\\\\"title\\\\\\\": \\\\\\\"(a) NER — SciERC\\\\\\\",\\\\n        \\\\\\\"filter_fn\\\\\\\": None,\\\\n    },\\\\n    \\\\\\\"scierc_re\\\\\\\": {\\\\n        \\\\\\\"path\\\\\\\": f\\\\\\\"{BASE}/output/exp_008_re_n16_v2/samples.jsonl\\\\\\\",\\\\n        \\\\\\\"subtask\\\\\\\": \\\\\\\"re\\\\\\\",\\\\n        \\\\\\\"max_n\\\\\\\": 16,\\\\n        \\\\\\\"title\\\\\\\": \\\\\\\"(b) RE — SciERC\\\\\\\",\\\\n        \\\\\\\"filter_fn\\\\\\\": lambda inst: len(inst[\\\\\\\"gold\\\\\\\"].get(\\\\\\\"relations\\\\\\\", [])) > 0,\\\\n    },\\\\n    \\\\\\\"conll_ner\\\\\\\": {\\\\n        \\\\\\\"path\\\\\\\": f\\\\\\\"{BASE}/output/exp002_conll2003/samples.jsonl\\\\\\\",\\\\n        \\\\\\\"subtask\\\\\\\": \\\\\\\"ner\\\\\\\",\\\\n        \\\\\\\"max_n\\\\\\\": 8,\\\\n        \\\\\\\"title\\\\\\\": \\\\\\\"(c) NER — CoNLL-2003\\\\\\\",\\\\n        \\\\\\\"filter_fn\\\\\\\": None,\\\\n    },\\\\n}\\\\n\\\\nN_REPEATS = 10\\\\nSEED = 42\\\\n\\\\nSELECTION_SIGNALS = [\\\\\\\"SJ\\\\\\\", \\\\\\\"FK\\\\\\\", \\\\\\\"logprob\\\\\\\", \\\\\\\"voting_conf\\\\\\\", \\\\\\\"EM\\\\\\\", \\\\\\\"random\\\\\\\", \\\\\\\"oracle\\\\\\\"]\\\\n\\\\nOUTPUT_DIR = f\\\\\\\"{BASE}/output/exp010_selection_curves\\\\\\\"\\\\nFIG_DIR = os.path.join(OUTPUT_DIR, \\\\\\\"figures\\\\\\\")\\\\n\\\\n# ── Data loading ───────────────────────────────────────────────────\\\\n\\\\ndef load_data(path: str) -> list[dict]:\\\\n    instances = []\\\\n    with open(path) as f:\\\\n        for line in f:\\\\n            if line.strip():\\\\n                instances.append(json.loads(line))\\\\n    return instances\\\\n\\\\n\\\\n# ── Precomputation ─────────────────────────────────────────────────\\\\n\\\\ndef precompute_pairwise_sj(instance: dict, subtask: str) -> np.ndarray:\\\\n    samples = instance[\\\\\\\"samples\\\\\\\"]\\\\n    N = len(samples)\\\\n    field = \\\\\\\"entities\\\\\\\" if subtask == \\\\\\\"ner\\\\\\\" else \\\\\\\"relations\\\\\\\"\\\\n    pair_fn = _ner_soft_jaccard_pair if subtask == \\\\\\\"ner\\\\\\\" else _re_soft_jaccard_pair\\\\n    matrix = np.zeros((N, N))\\\\n    for i in range(N):\\\\n        for j in range(i + 1, N):\\\\n            score = pair_fn(samples[i].get(field, []), samples[j].get(field, []))\\\\n            matrix[i][j] = score\\\\n            matrix[j][i] = score\\\\n    np.fill_diagonal(matrix, 1.0)\\\\n    return matrix\\\\n\\\\n\\\\ndef precompute_pairwise_surface(instance: dict, subtask: str) -> np.ndarray:\\\\n    samples = instance[\\\\\\\"samples\\\\\\\"]\\\\n    N = len(samples)\\\\n    key_sets = [_extract_surface_keys(s, subtask) for s in samples]\\\\n    matrix = np.zeros((N, N))\\\\n    for i in range(N):\\\\n        for j in range(i + 1, N):\\\\n            union = len(key_sets[i] | key_sets[j])\\\\n            inter = len(key_sets[i] & key_sets[j])\\\\n            score = inter / union if union > 0 else 1.0\\\\n            matrix[i][j] = score\\\\n            matrix[j][i] = score\\\\n    np.fill_diagonal(matrix, 1.0)\\\\n    return matrix\\\\n\\\\n\\\\ndef precompute_per_sample_f1(instance: dict, subtask: str) -> list[float]:\\\\n    gold = instance[\\\\\\\"gold\\\\\\\"]\\\\n    return [per_instance_f1(s, gold, subtask=subtask) for s in instance[\\\\\\\"samples\\\\\\\"]]\\\\n\\\\n\\\\n# ── Per-sample signal selection ────────────────────────────────────\\\\n\\\\ndef select_best_sample(\\\\n    signal: str,\\\\n    indices: list[int],\\\\n    sj_matrix: np.ndarray,\\\\n    surface_matrix: np.ndarray,\\\\n    logprobs: list[float],\\\\n    surface_keys: list[frozenset],\\\\n    per_sample_f1s: list[float],\\\\n    rng: np.random.Generator,\\\\n) -> int:\\\\n    n_sub = len(indices)\\\\n    if n_sub == 1:\\\\n        return indices[0]\\\\n\\\\n    if signal == \\\\\\\"oracle\\\\\\\":\\\\n        f1s = [per_sample_f1s[i] for i in indices]\\\\n        return indices[int(np.argmax(f1s))]\\\\n\\\\n    if signal == \\\\\\\"random\\\\\\\":\\\\n        return int(rng.choice(indices))\\\\n\\\\n    if signal == \\\\\\\"logprob\\\\\\\":\\\\n        lps = [logprobs[i] for i in indices]\\\\n        return indices[int(np.argmax(lps))]\\\\n\\\\n    if signal == \\\\\\\"SJ\\\\\\\":\\\\n        scores = []\\\\n        for k in indices:\\\\n            others = [j for j in indices if j != k]\\\\n            scores.append(float(np.mean([sj_matrix[k][j] for j in others])))\\\\n        return indices[int(np.argmax(scores))]\\\\n\\\\n    if signal == \\\\\\\"FK\\\\\\\":\\\\n        scores = []\\\\n        for k in indices:\\\\n            others = [j for j in indices if j != k]\\\\n            scores.append(float(np.mean([surface_matrix[k][j] for j in others])))\\\\n        return indices[int(np.argmax(scores))]\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"exp-010: Selection Curves — Best-of-N comparison across signals.\\n\\nGenerates paper-quality figure showing macro F1 vs N for each selection signal.\\nSubplots: (a) NER SciERC, (b) RE SciERC, (c) NER CoNLL-2003.\\n\\\"\\\"\\\"\\n\\nfrom __future__ import annotations\\n\\nimport json\\nimport os\\nimport sys\\nimport time\\nfrom collections import Counter\\n\\nimport numpy as np\\n\\nsys.path.insert(0, os.path.join(os.path.dirname(__file__), \\\"../../code\\\"))\\nfrom consistency import (\\n    _ner_soft_jaccard_pair,\\n    _re_soft_jaccard_pair,\\n    _extract_surface_keys,\\n)\\nfrom evaluation import per_instance_f1\\n\\n# ── Configuration ──────────────────────────────────────────────────\\n\\nBASE = \\\"/root/autodl-tmp/struct_self_consist_ie\\\"\\n\\nDATASETS = {\\n    \\\"scierc_ner\\\": {\\n        \\\"path\\\": f\\\"{BASE}/output/exp_001_seed42_v2/samples.jsonl\\\",\\n        \\\"subtask\\\": \\\"ner\\\",\\n        \\\"max_n\\\": 16,\\n        \\\"title\\\": \\\"(a) NER — SciERC\\\",\\n        \\\"filter_fn\\\": None,\\n    },\\n    \\\"scierc_re\\\": {\\n        \\\"path\\\": f\\\"{BASE}/output/exp_008_re_n16_v2/samples.jsonl\\\",\\n        \\\"subtask\\\": \\\"re\\\",\\n        \\\"max_n\\\": 16,\\n        \\\"title\\\": \\\"(b) RE — SciERC\\\",\\n        \\\"filter_fn\\\": lambda inst: len(inst[\\\"gold\\\"].get(\\\"relations\\\", [])) > 0,\\n    },\\n    \\\"conll_ner\\\": {\\n        \\\"path\\\": f\\\"{BASE}/output/exp002_conll2003/samples.jsonl\\\",\\n        \\\"subtask\\\": \\\"ner\\\",\\n        \\\"max_n\\\": 8,\\n        \\\"title\\\": \\\"(c) NER — CoNLL-2003\\\",\\n        \\\"filter_fn\\\": None,\\n    },\\n}\\n\\nN_REPEATS = 10\\nSEED = 42\\n\\nSELECTION_SIGNALS = [\\\"SJ\\\", \\\"FK\\\", \\\"logprob\\\", \\\"voting_conf\\\", \\\"EM\\\", \\\"random\\\", \\\"oracle\\\"]\\n\\nOUTPUT_DIR = f\\\"{BASE}/output/exp010_selection_curves\\\"\\nFIG_DIR = os.path.join(OUTPUT_DIR, \\\"figures\\\")\\n\\n# ── Data loading ───────────────────────────────────────────────────\\n\\ndef load_data(path: str) -> list[dict]:\\n    instances = []\\n    with open(path) as f:\\n        for line in f:\\n            if line.strip():\\n                instances.append(json.loads(line))\\n    return instances\\n\\n\\n# ── Precomputation ─────────────────────────────────────────────────\\n\\ndef precompute_pairwise_sj(instance: dict, subtask: str) -> np.ndarray:\\n    samples = instance[\\\"samples\\\"]\\n    N = len(samples)\\n    field = \\\"entities\\\" if subtask == \\\"ner\\\" else \\\"relations\\\"\\n    pair_fn = _ner_soft_jaccard_pair if subtask == \\\"ner\\\" else _re_soft_jaccard_pair\\n    matrix = np.zeros((N, N))\\n    for i in range(N):\\n        for j in range(i + 1, N):\\n            score = pair_fn(samples[i].get(field, []), samples[j].get(field, []))\\n            matrix[i][j] = score\\n            matrix[j][i] = score\\n    np.fill_diagonal(matrix, 1.0)\\n    return matrix\\n\\n\\ndef precompute_pairwise_surface(instance: dict, subtask: str) -> np.ndarray:\\n    samples = instance[\\\"samples\\\"]\\n    N = len(samples)\\n    key_sets = [_extract_surface_keys(s, subtask) for s in samples]\\n    matrix = np.zeros((N, N))\\n    for i in range(N):\\n        for j in range(i + 1, N):\\n            union = len(key_sets[i] | key_sets[j])\\n            inter = len(key_sets[i] & key_sets[j])\\n            score = inter / union if union > 0 else 1.0\\n            matrix[i][j] = score\\n            matrix[j][i] = score\\n    np.fill_diagonal(matrix, 1.0)\\n    return matrix\\n\\n\\ndef precompute_per_sample_f1(instance: dict, subtask: str) -> list[float]:\\n    gold = instance[\\\"gold\\\"]\\n    return [per_instance_f1(s, gold, subtask=subtask) for s in instance[\\\"samples\\\"]]\\n\\n\\n# ── Per-sample signal selection ────────────────────────────────────\\n\\ndef select_best_sample(\\n    signal: str,\\n    indices: list[int],\\n    sj_matrix: np.ndarray,\\n    surface_matrix: np.ndarray,\\n    logprobs: list[float],\\n    surface_keys: list[frozenset],\\n    per_sample_f1s: list[float],\\n    rng: np.random.Generator,\\n) -> int:\\n    n_sub = len(indices)\\n    if n_sub == 1:\\n        return indices[0]\\n\\n    if signal == \\\"oracle\\\":\\n        f1s = [per_sample_f1s[i] for i in indices]\\n        return indices[int(np.argmax(f1s))]\\n\\n    if signal == \\\"random\\\":\\n        return int(rng.choice(indices))\\n\\n    if signal == \\\"logprob\\\":\\n        lps = [logprobs[i] for i in indices]\\n        return indices[int(np.argmax(lps))]\\n\\n    if signal == \\\"SJ\\\":\\n        scores = []\\n        for k in indices:\\n            others = [j for j in indices if j != k]\\n            scores.append(float(np.mean([sj_matrix[k][j] for j in others])))\\n        return indices[int(np.argmax(scores))]\\n\\n    if signal == \\\"FK\\\":\\n        scores = []\\n        for k in indices:\\n            others = [j for j in indices if j != k]\\n            scores.append(float(np.mean([surface_matrix[k][j] for j in others])))\\n        return indices[int(np.argmax(scores))]\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01FGkepSBwKpZyx2o8WZJjav`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "head -150 /root/autodl-tmp/struct_self_consist_ie/code/exp_006_v2_selection.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b8b11d62-6ca3-4151-bc4f-ed1130aa9fbf",
+  "uuid": "1b8d31d4-c8e0-4c38-9cad-8a1a23c2d2a1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012b1LWrDGEpmEsGws9DXxNM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6958,
+      "cache_read_input_tokens": 50034,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6958
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-15T12:44:17.126Z_
+
+<details><summary>↩ Tool result · `toolu_01FGkepSBwKpZyx2o8WZJjav`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"exp-006 v2: Best-of-N Selection Analysis on v2 unified inference data.\\n\\nFor each instance, selects top-1 sample using different signals and reports\\nselection F1 (macro-averaged per-instance F1) with paired bootstrap CI.\\n\\\"\\\"\\\"\\n\\nfrom __future__ import annotations\\n\\nimport json\\nimport os\\nimport sys\\nimport time\\nfrom collections import Counter\\n\\nimport numpy as np\\n\\nsys.path.insert(0, os.path.dirname(__file__))\\nfrom consistency import (\\n    _ner_soft_jaccard_pair,\\n    _re_soft_jaccard_pair,\\n    _extract_surface_keys,\\n)\\nfrom evaluation import per_instance_f1\\n\\n# ── Configuration ──────────────────────────────────────────────────\\n\\nBASE = \\\"/root/autodl-tmp/struct_self_consist_ie\\\"\\n\\nDATASETS = {\\n    \\\"scierc_ner_s42\\\": {\\n        \\\"path\\\": f\\\"{BASE}/output/exp_001_seed42_v2/samples.jsonl\\\",\\n        \\\"subtask\\\": \\\"ner\\\",\\n        \\\"label\\\": \\\"NER SciERC (seed42)\\\",\\n    },\\n    \\\"scierc_ner_s123\\\": {\\n        \\\"path\\\": f\\\"{BASE}/output/exp_001_seed123_v2/samples.jsonl\\\",\\n        \\\"subtask\\\": \\\"ner\\\",\\n        \\\"label\\\": \\\"NER SciERC (seed123)\\\",\\n    },\\n    \\\"conll_ner\\\": {\\n        \\\"path\\\": f\\\"{BASE}/output/exp002_conll2003/samples.jsonl\\\",\\n        \\\"subtask\\\": \\\"ner\\\",\\n        \\\"label\\\": \\\"NER CoNLL-2003\\\",\\n    },\\n    \\\"scierc_re\\\": {\\n        \\\"path\\\": f\\\"{BASE}/output/exp_008_re_n16_v2/samples.jsonl\\\",\\n        \\\"subtask\\\": \\\"re\\\",\\n        \\\"label\\\": \\\"RE SciERC\\\",\\n        \\\"filter_fn\\\": \\\"has_gold_relations\\\",\\n    },\\n}\\n\\nSIGNALS = [\\\"SJ\\\", \\\"logprob\\\", \\\"FK\\\", \\\"EM\\\", \\\"voting_conf\\\", \\\"random\\\", \\\"greedy\\\", \\\"oracle\\\"]\\nN_BOOTSTRAP = 1000\\nBOOTSTRAP_SEED = 42\\nN_RANDOM_REPEATS = 50\\n\\nOUTPUT_DIR = f\\\"{BASE}/output/exp_006_v2\\\"\\n\\n\\n# ── Data loading ──────────────────────────────────────────────────\\n\\ndef load_data(path: str) -> list[dict]:\\n    instances = []\\n    with open(path) as f:\\n        for line in f:\\n            if line.strip():\\n                instances.append(json.loads(line))\\n    return instances\\n\\n\\n# ── Signal computation (per-sample scores) ────────────────────────\\n\\ndef compute_sample_sj_scores(instance: dict, subtask: str) -> list[float]:\\n    samples = instance[\\\"samples\\\"]\\n    N = len(samples)\\n    field = \\\"entities\\\" if subtask == \\\"ner\\\" else \\\"relations\\\"\\n    pair_fn = _ner_soft_jaccard_pair if subtask == \\\"ner\\\" else _re_soft_jaccard_pair\\n\\n    matrix = np.zeros((N, N))\\n    for i in range(N):\\n        for j in range(i + 1, N):\\n            s = pair_fn(samples[i].get(field, []), samples[j].get(field, []))\\n            matrix[i][j] = s\\n            matrix[j][i] = s\\n    np.fill_diagonal(matrix, 1.0)\\n\\n    return [float(np.mean([matrix[k][j] for j in range(N) if j != k])) for k in range(N)]\\n\\n\\ndef compute_sample_surface_scores(instance: dict, subtask: str) -> tuple[list[float], list[frozenset]]:\\n    samples = instance[\\\"samples\\\"]\\n    N = len(samples)\\n    key_sets = [frozenset(_extract_surface_keys(s, subtask)) for s in samples]\\n\\n    matrix = np.zeros((N, N))\\n    for i in range(N):\\n        for j in range(i + 1, N):\\n            union = len(key_sets[i] | key_sets[j])\\n            inter = len(key_sets[i] & key_sets[j])\\n            s = inter / union if union > 0 else 1.0\\n            matrix[i][j] = s\\n            matrix[j][i] = s\\n    np.fill_diagonal(matrix, 1.0)\\n\\n    fk_scores = [float(np.mean([matrix[k][j] for j in range(N) if j != k])) for k in range(N)]\\n    return fk_scores, key_sets\\n\\n\\ndef compute_sample_voting_conf(key_sets: list[frozenset], N: int) -> list[float]:\\n    all_keys_count: Counter = Counter()\\n    for ks in key_sets:\\n        for key in ks:\\n            all_keys_count[key] += 1\\n    scores = []\\n    for ks in key_sets:\\n        if not ks:\\n            scores.append(0.0)\\n        else:\\n            fracs = [all_keys_count[key] / N for key in ks]\\n            scores.append(float(np.mean(fracs)))\\n    return scores\\n\\n\\ndef compute_sample_em_scores(key_sets: list[frozenset]) -> list[float]:\\n    N = len(key_sets)\\n    scores = []\\n    for k in range(N):\\n        count = sum(1 for j in range(N) if j != k and key_sets[k] == key_sets[j])\\n        scores.append(float(count))\\n    return scores\\n\\n\\ndef compute_sample_logprobs(instance: dict) -> list[float]:\\n    lps = []\\n    for s in instance[\\\"samples\\\"]:\\n        lp = s.get(\\\"mean_logprob\\\")\\n        if lp is None:\\n            lp = s.get(\\\"cumulative_logprob\\\", -999) / max(s.get(\\\"n_tokens\\\", 1), 1)\\n        lps.append(lp)\\n    return lps\\n\\n\\n# ── Selection ─────────────────────────────────────────────────────\\n\\ndef select_top1(signal_scores: list[float]) -> int:\\n    return int(np.argmax(signal_scores))\\n\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b8b11d62-6ca3-4151-bc4f-ed1130aa9fbf",
+  "uuid": "4253c1c4-eddd-406f-9017-53b894b77714",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"exp-006 v2: Best-of-N Selection Analysis on v2 unified inference data.\\\\n\\\\nFor each instance, selects top-1 sample using different signals and reports\\\\nselection F1 (macro-averaged per-instance F1) with paired bootstrap CI.\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nfrom __future__ import annotations\\\\n\\\\nimport json\\\\nimport os\\\\nimport sys\\\\nimport time\\\\nfrom collections import Counter\\\\n\\\\nimport numpy as np\\\\n\\\\nsys.path.insert(0, os.path.dirname(__file__))\\\\nfrom consistency import (\\\\n    _ner_soft_jaccard_pair,\\\\n    _re_soft_jaccard_pair,\\\\n    _extract_surface_keys,\\\\n)\\\\nfrom evaluation import per_instance_f1\\\\n\\\\n# ── Configuration ──────────────────────────────────────────────────\\\\n\\\\nBASE = \\\\\\\"/root/autodl-tmp/struct_self_consist_ie\\\\\\\"\\\\n\\\\nDATASETS = {\\\\n    \\\\\\\"scierc_ner_s42\\\\\\\": {\\\\n        \\\\\\\"path\\\\\\\": f\\\\\\\"{BASE}/output/exp_001_seed42_v2/samples.jsonl\\\\\\\",\\\\n        \\\\\\\"subtask\\\\\\\": \\\\\\\"ner\\\\\\\",\\\\n        \\\\\\\"label\\\\\\\": \\\\\\\"NER SciERC (seed42)\\\\\\\",\\\\n    },\\\\n    \\\\\\\"scierc_ner_s123\\\\\\\": {\\\\n        \\\\\\\"path\\\\\\\": f\\\\\\\"{BASE}/output/exp_001_seed123_v2/samples.jsonl\\\\\\\",\\\\n        \\\\\\\"subtask\\\\\\\": \\\\\\\"ner\\\\\\\",\\\\n        \\\\\\\"label\\\\\\\": \\\\\\\"NER SciERC (seed123)\\\\\\\",\\\\n    },\\\\n    \\\\\\\"conll_ner\\\\\\\": {\\\\n        \\\\\\\"path\\\\\\\": f\\\\\\\"{BASE}/output/exp002_conll2003/samples.jsonl\\\\\\\",\\\\n        \\\\\\\"subtask\\\\\\\": \\\\\\\"ner\\\\\\\",\\\\n        \\\\\\\"label\\\\\\\": \\\\\\\"NER CoNLL-2003\\\\\\\",\\\\n    },\\\\n    \\\\\\\"scierc_re\\\\\\\": {\\\\n        \\\\\\\"path\\\\\\\": f\\\\\\\"{BASE}/output/exp_008_re_n16_v2/samples.jsonl\\\\\\\",\\\\n        \\\\\\\"subtask\\\\\\\": \\\\\\\"re\\\\\\\",\\\\n        \\\\\\\"label\\\\\\\": \\\\\\\"RE SciERC\\\\\\\",\\\\n        \\\\\\\"filter_fn\\\\\\\": \\\\\\\"has_gold_relations\\\\\\\",\\\\n    },\\\\n}\\\\n\\\\nSIGNALS = [\\\\\\\"SJ\\\\\\\", \\\\\\\"logprob\\\\\\\", \\\\\\\"FK\\\\\\\", \\\\\\\"EM\\\\\\\", \\\\\\\"voting_conf\\\\\\\", \\\\\\\"random\\\\\\\", \\\\\\\"greedy\\\\\\\", \\\\\\\"oracle\\\\\\\"]\\\\nN_BOOTSTRAP = 1000\\\\nBOOTSTRAP_SEED = 42\\\\nN_RANDOM_REPEATS = 50\\\\n\\\\nOUTPUT_DIR = f\\\\\\\"{BASE}/output/exp_006_v2\\\\\\\"\\\\n\\\\n\\\\n# ── Data loading ──────────────────────────────────────────────────\\\\n\\\\ndef load_data(path: str) -> list[dict]:\\\\n    instances = []\\\\n    with open(path) as f:\\\\n        for line in f:\\\\n            if line.strip():\\\\n                instances.append(json.loads(line))\\\\n    return instances\\\\n\\\\n\\\\n# ── Signal computation (per-sample scores) ────────────────────────\\\\n\\\\ndef compute_sample_sj_scores(instance: dict, subtask: str) -> list[float]:\\\\n    samples = instance[\\\\\\\"samples\\\\\\\"]\\\\n    N = len(samples)\\\\n    field = \\\\\\\"entities\\\\\\\" if subtask == \\\\\\\"ner\\\\\\\" else \\\\\\\"relations\\\\\\\"\\\\n    pair_fn = _ner_soft_jaccard_pair if subtask == \\\\\\\"ner\\\\\\\" else _re_soft_jaccard_pair\\\\n\\\\n    matrix = np.zeros((N, N))\\\\n    for i in range(N):\\\\n        for j in range(i + 1, N):\\\\n            s = pair_fn(samples[i].get(field, []), samples[j].get(field, []))\\\\n            matrix[i][j] = s\\\\n            matrix[j][i] = s\\\\n    np.fill_diagonal(matrix, 1.0)\\\\n\\\\n    return [float(np.mean([matrix[k][j] for j in range(N) if j != k])) for k in range(N)]\\\\n\\\\n\\\\ndef compute_sample_surface_scores(instance: dict, subtask: str) -> tuple[list[float], list[frozenset]]:\\\\n    samples = instance[\\\\\\\"samples\\\\\\\"]\\\\n    N = len(samples)\\\\n    key_sets = [frozenset(_extract_surface_keys(s, subtask)) for s in samples]\\\\n\\\\n    matrix = np.zeros((N, N))\\\\n    for i in range(N):\\\\n        for j in range(i + 1, N):\\\\n            union = len(key_sets[i] | key_sets[j])\\\\n            inter = len(key_sets[i] & key_sets[j])\\\\n            s = inter / union if union > 0 else 1.0\\\\n            matrix[i][j] = s\\\\n            matrix[j][i] = s\\\\n    np.fill_diagonal(matrix, 1.0)\\\\n\\\\n    fk_scores = [float(np.mean([matrix[k][j] for j in range(N) if j != k])) for k in range(N)]\\\\n    return fk_scores, key_sets\\\\n\\\\n\\\\ndef compute_sample_voting_conf(key_sets: list[frozenset], N: int) -> list[float]:\\\\n    all_keys_count: Counter = Counter()\\\\n    for ks in key_sets:\\\\n        for key in ks:\\\\n            all_keys_count[key] += 1\\\\n    scores = []\\\\n    for ks in key_sets:\\\\n        if not ks:\\\\n            scores.append(0.0)\\\\n        else:\\\\n            fracs = [all_keys_count[key] / N for key in ks]\\\\n            scores.append(float(np.mean(fracs)))\\\\n    return scores\\\\n\\\\n\\\\ndef compute_sample_em_scores(key_sets: list[frozenset]) -> list[float]:\\\\n    N = len(key_sets)\\\\n    scores = []\\\\n    for k in range(N):\\\\n        count = sum(1 for j in range(N) if j != k and key_sets[k] == key_sets[j])\\\\n        scores.append(float(count))\\\\n    return scores\\\\n\\\\n\\\\ndef compute_sample_logprobs(instance: dict) -> list[float]:\\\\n    lps = []\\\\n    for s in instance[\\\\\\\"samples\\\\\\\"]:\\\\n        lp = s.get(\\\\\\\"mean_logprob\\\\\\\")\\\\n        if lp is None:\\\\n            lp = s.get(\\\\\\\"cumulative_logprob\\\\\\\", -999) / max(s.get(\\\\\\\"n_tokens\\\\\\\", 1), 1)\\\\n        lps.append(lp)\\\\n    return lps\\\\n\\\\n\\\\n# ── Selection ─────────────────────────────────────────────────────\\\\n\\\\ndef select_top1(signal_scores: list[float]) -> int:\\\\n    return int(np.argmax(signal_scores))\\\\n\\\\n\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"exp-006 v2: Best-of-N Selection Analysis on v2 unified inference data.\\n\\nFor each instance, selects top-1 sample using different signals and reports\\nselection F1 (macro-averaged per-instance F1) with paired bootstrap CI.\\n\\\"\\\"\\\"\\n\\nfrom __future__ import annotations\\n\\nimport json\\nimport os\\nimport sys\\nimport time\\nfrom collections import Counter\\n\\nimport numpy as np\\n\\nsys.path.insert(0, os.path.dirname(__file__))\\nfrom consistency import (\\n    _ner_soft_jaccard_pair,\\n    _re_soft_jaccard_pair,\\n    _extract_surface_keys,\\n)\\nfrom evaluation import per_instance_f1\\n\\n# ── Configuration ──────────────────────────────────────────────────\\n\\nBASE = \\\"/root/autodl-tmp/struct_self_consist_ie\\\"\\n\\nDATASETS = {\\n    \\\"scierc_ner_s42\\\": {\\n        \\\"path\\\": f\\\"{BASE}/output/exp_001_seed42_v2/samples.jsonl\\\",\\n        \\\"subtask\\\": \\\"ner\\\",\\n        \\\"label\\\": \\\"NER SciERC (seed42)\\\",\\n    },\\n    \\\"scierc_ner_s123\\\": {\\n        \\\"path\\\": f\\\"{BASE}/output/exp_001_seed123_v2/samples.jsonl\\\",\\n        \\\"subtask\\\": \\\"ner\\\",\\n        \\\"label\\\": \\\"NER SciERC (seed123)\\\",\\n    },\\n    \\\"conll_ner\\\": {\\n        \\\"path\\\": f\\\"{BASE}/output/exp002_conll2003/samples.jsonl\\\",\\n        \\\"subtask\\\": \\\"ner\\\",\\n        \\\"label\\\": \\\"NER CoNLL-2003\\\",\\n    },\\n    \\\"scierc_re\\\": {\\n        \\\"path\\\": f\\\"{BASE}/output/exp_008_re_n16_v2/samples.jsonl\\\",\\n        \\\"subtask\\\": \\\"re\\\",\\n        \\\"label\\\": \\\"RE SciERC\\\",\\n        \\\"filter_fn\\\": \\\"has_gold_relations\\\",\\n    },\\n}\\n\\nSIGNALS = [\\\"SJ\\\", \\\"logprob\\\", \\\"FK\\\", \\\"EM\\\", \\\"voting_conf\\\", \\\"random\\\", \\\"greedy\\\", \\\"oracle\\\"]\\nN_BOOTSTRAP = 1000\\nBOOTSTRAP_SEED = 42\\nN_RANDOM_REPEATS = 50\\n\\nOUTPUT_DIR = f\\\"{BASE}/output/exp_006_v2\\\"\\n\\n\\n# ── Data loading ──────────────────────────────────────────────────\\n\\ndef load_data(path: str) -> list[dict]:\\n    instances = []\\n    with open(path) as f:\\n        for line in f:\\n            if line.strip():\\n                instances.append(json.loads(line))\\n    return instances\\n\\n\\n# ── Signal computation (per-sample scores) ────────────────────────\\n\\ndef compute_sample_sj_scores(instance: dict, subtask: str) -> list[float]:\\n    samples = instance[\\\"samples\\\"]\\n    N = len(samples)\\n    field = \\\"entities\\\" if subtask == \\\"ner\\\" else \\\"relations\\\"\\n    pair_fn = _ner_soft_jaccard_pair if subtask == \\\"ner\\\" else _re_soft_jaccard_pair\\n\\n    matrix = np.zeros((N, N))\\n    for i in range(N):\\n        for j in range(i + 1, N):\\n            s = pair_fn(samples[i].get(field, []), samples[j].get(field, []))\\n            matrix[i][j] = s\\n            matrix[j][i] = s\\n    np.fill_diagonal(matrix, 1.0)\\n\\n    return [float(np.mean([matrix[k][j] for j in range(N) if j != k])) for k in range(N)]\\n\\n\\ndef compute_sample_surface_scores(instance: dict, subtask: str) -> tuple[list[float], list[frozenset]]:\\n    samples = instance[\\\"samples\\\"]\\n    N = len(samples)\\n    key_sets = [frozenset(_extract_surface_keys(s, subtask)) for s in samples]\\n\\n    matrix = np.zeros((N, N))\\n    for i in range(N):\\n        for j in range(i + 1, N):\\n            union = len(key_sets[i] | key_sets[j])\\n            inter = len(key_sets[i] & key_sets[j])\\n            s = inter / union if union > 0 else 1.0\\n            matrix[i][j] = s\\n            matrix[j][i] = s\\n    np.fill_diagonal(matrix, 1.0)\\n\\n    fk_scores = [float(np.mean([matrix[k][j] for j in range(N) if j != k])) for k in range(N)]\\n    return fk_scores, key_sets\\n\\n\\ndef compute_sample_voting_conf(key_sets: list[frozenset], N: int) -> list[float]:\\n    all_keys_count: Counter = Counter()\\n    for ks in key_sets:\\n        for key in ks:\\n            all_keys_count[key] += 1\\n    scores = []\\n    for ks in key_sets:\\n        if not ks:\\n            scores.append(0.0)\\n        else:\\n            fracs = [all_keys_count[key] / N for key in ks]\\n            scores.append(float(np.mean(fracs)))\\n    return scores\\n\\n\\ndef compute_sample_em_scores(key_sets: list[frozenset]) -> list[float]:\\n    N = len(key_sets)\\n    scores = []\\n    for k in range(N):\\n        count = sum(1 for j in range(N) if j != k and key_sets[k] == key_sets[j])\\n        scores.append(float(count))\\n    return scores\\n\\n\\ndef compute_sample_logprobs(instance: dict) -> list[float]:\\n    lps = []\\n    for s in instance[\\\"samples\\\"]:\\n        lp = s.get(\\\"mean_logprob\\\")\\n        if lp is None:\\n            lp = s.get(\\\"cumulative_logprob\\\", -999) / max(s.get(\\\"n_tokens\\\", 1), 1)\\n        lps.append(lp)\\n    return lps\\n\\n\\n# ── Selection ─────────────────────────────────────────────────────\\n\\ndef select_top1(signal_scores: list[float]) -> int:\\n    return int(np.argmax(signal_scores))\\n\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 53_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a very clear picture. Let me also look at the rest of `exp_006_v2_selection.py` to see the bootstrap and full analysis flow.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b8b11d62-6ca3-4151-bc4f-ed1130aa9fbf",
+  "uuid": "0abafa80-4d28-40af-8f9c-cd8374fab6ee",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LATVcFNggdLCVq4nhGnrBK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4916,
+      "cache_read_input_tokens": 56992,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4916
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 54_
+
+Let me see the rest of the selection analysis code and check for LLaMA CoNLL data.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b8b11d62-6ca3-4151-bc4f-ed1130aa9fbf",
+  "uuid": "8736d3da-2f0a-4552-8492-3a70c2193e07",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LATVcFNggdLCVq4nhGnrBK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4916,
+      "cache_read_input_tokens": 56992,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4916
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01LksHiUp5QTahFzFtLw7cHf`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "tail -200 /root/autodl-tmp/struct_self_consist_ie/code/exp_006_v2_selection.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b8b11d62-6ca3-4151-bc4f-ed1130aa9fbf",
+  "uuid": "6285461f-b576-479b-8571-cb25da83a920",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LATVcFNggdLCVq4nhGnrBK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4916,
+      "cache_read_input_tokens": 56992,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4916
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-15T12:44:26.852Z_
+
+<details><summary>↩ Tool result · `toolu_01LksHiUp5QTahFzFtLw7cHf`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\ndef compute_sample_logprobs(instance: dict) -> list[float]:\\n    lps = []\\n    for s in instance[\\\"samples\\\"]:\\n        lp = s.get(\\\"mean_logprob\\\")\\n        if lp is None:\\n            lp = s.get(\\\"cumulative_logprob\\\", -999) / max(s.get(\\\"n_tokens\\\", 1), 1)\\n        lps.append(lp)\\n    return lps\\n\\n\\n# ── Selection ─────────────────────────────────────────────────────\\n\\ndef select_top1(signal_scores: list[float]) -> int:\\n    return int(np.argmax(signal_scores))\\n\\n\\n# ── Bootstrap CI ──────────────────────────────────────────────────\\n\\ndef paired_bootstrap_ci(\\n    f1s_a: np.ndarray,\\n    f1s_b: np.ndarray,\\n    n_boot: int = 1000,\\n    seed: int = 42,\\n    alpha: float = 0.05,\\n) -> dict:\\n    rng = np.random.default_rng(seed)\\n    n = len(f1s_a)\\n    deltas = np.empty(n_boot)\\n    for b in range(n_boot):\\n        idx = rng.integers(0, n, size=n)\\n        deltas[b] = f1s_a[idx].mean() - f1s_b[idx].mean()\\n    lo = float(np.percentile(deltas, 100 * alpha / 2))\\n    hi = float(np.percentile(deltas, 100 * (1 - alpha / 2)))\\n    mean_delta = float(np.mean(deltas))\\n    p_value = float(np.mean(deltas <= 0)) if mean_delta > 0 else float(np.mean(deltas >= 0))\\n    return {\\\"mean_delta\\\": mean_delta, \\\"ci_lo\\\": lo, \\\"ci_hi\\\": hi, \\\"p_value\\\": p_value}\\n\\n\\n# ── Main analysis ─────────────────────────────────────────────────\\n\\ndef analyze_dataset(instances: list[dict], subtask: str, label: str) -> dict:\\n    n_inst = len(instances)\\n    rng = np.random.default_rng(BOOTSTRAP_SEED)\\n\\n    # Per-instance: compute all signal scores, select top-1, get F1\\n    signal_f1s = {sig: [] for sig in SIGNALS}\\n    all_per_sample_f1s = []\\n\\n    t0 = time.time()\\n    for idx, inst in enumerate(instances):\\n        if (idx + 1) % 200 == 0:\\n            print(f\\\"    {idx+1}/{n_inst} ({time.time()-t0:.0f}s)\\\")\\n\\n        samples = inst[\\\"samples\\\"]\\n        gold = inst[\\\"gold\\\"]\\n        N = len(samples)\\n\\n        # Per-sample F1s\\n        sample_f1s = [per_instance_f1(s, gold, subtask=subtask) for s in samples]\\n        all_per_sample_f1s.append(sample_f1s)\\n\\n        # Greedy F1\\n        greedy_f1 = per_instance_f1(inst[\\\"greedy\\\"], gold, subtask=subtask)\\n        signal_f1s[\\\"greedy\\\"].append(greedy_f1)\\n\\n        # Oracle\\n        signal_f1s[\\\"oracle\\\"].append(max(sample_f1s))\\n\\n        # Logprob\\n        lps = compute_sample_logprobs(inst)\\n        signal_f1s[\\\"logprob\\\"].append(sample_f1s[select_top1(lps)])\\n\\n        # SJ\\n        sj_scores = compute_sample_sj_scores(inst, subtask)\\n        signal_f1s[\\\"SJ\\\"].append(sample_f1s[select_top1(sj_scores)])\\n\\n        # FK + surface keys (reused for voting_conf and EM)\\n        fk_scores, key_sets = compute_sample_surface_scores(inst, subtask)\\n        signal_f1s[\\\"FK\\\"].append(sample_f1s[select_top1(fk_scores)])\\n\\n        # Voting confidence\\n        vc_scores = compute_sample_voting_conf(key_sets, N)\\n        signal_f1s[\\\"voting_conf\\\"].append(sample_f1s[select_top1(vc_scores)])\\n\\n        # Exact match\\n        em_scores = compute_sample_em_scores(key_sets)\\n        signal_f1s[\\\"EM\\\"].append(sample_f1s[select_top1(em_scores)])\\n\\n        # Random (average over repeats)\\n        random_f1s = []\\n        for _ in range(N_RANDOM_REPEATS):\\n            ri = int(rng.integers(0, N))\\n            random_f1s.append(sample_f1s[ri])\\n        signal_f1s[\\\"random\\\"].append(float(np.mean(random_f1s)))\\n\\n    elapsed = time.time() - t0\\n    print(f\\\"    Done in {elapsed:.1f}s\\\")\\n\\n    # Convert to arrays\\n    for sig in SIGNALS:\\n        signal_f1s[sig] = np.array(signal_f1s[sig])\\n\\n    # Macro F1 and bootstrap CI vs greedy\\n    results = {}\\n    greedy_arr = signal_f1s[\\\"greedy\\\"]\\n    for sig in SIGNALS:\\n        arr = signal_f1s[sig]\\n        mean_f1 = float(arr.mean())\\n        std_f1 = float(arr.std())\\n\\n        if sig != \\\"greedy\\\":\\n            boot = paired_bootstrap_ci(arr, greedy_arr, N_BOOTSTRAP, BOOTSTRAP_SEED)\\n        else:\\n            boot = {\\\"mean_delta\\\": 0.0, \\\"ci_lo\\\": 0.0, \\\"ci_hi\\\": 0.0, \\\"p_value\\\": 1.0}\\n\\n        results[sig] = {\\n            \\\"mean_f1\\\": round(mean_f1, 5),\\n            \\\"std_f1\\\": round(std_f1, 5),\\n            \\\"delta_vs_greedy\\\": round(float(arr.mean() - greedy_arr.mean()), 5),\\n            \\\"bootstrap_ci_lo\\\": round(boot[\\\"ci_lo\\\"], 5),\\n            \\\"bootstrap_ci_hi\\\": round(boot[\\\"ci_hi\\\"], 5),\\n            \\\"bootstrap_p\\\": round(boot[\\\"p_value\\\"], 5),\\n        }\\n\\n    # Oracle gap analysis\\n    oracle_arr = signal_f1s[\\\"oracle\\\"]\\n    oracle_gap = float(oracle_arr.mean() - greedy_arr.mean())\\n\\n    return {\\n        \\\"label\\\": label,\\n        \\\"subtask\\\": subtask,\\n        \\\"n_instances\\\": n_inst,\\n        \\\"n_samples\\\": len(instances[0][\\\"samples\\\"]),\\n        \\\"greedy_macro_f1\\\": results[\\\"greedy\\\"][\\\"mean_f1\\\"],\\n        \\\"oracle_macro_f1\\\": results[\\\"oracle\\\"][\\\"mean_f1\\\"],\\n        \\\"oracle_gap\\\": round(oracle_gap, 5),\\n        \\\"signals\\\": results,\\n    }\\n\\n\\ndef main():\\n    os.makedirs(OUTPUT_DIR, exist_ok=True)\\n\\n    all_results = {}\\n\\n    for ds_key, ds_cfg in DATASETS.items():\\n        print(f\\\"\\\\n{'='*60}\\\")\\n        print(f\\\"  {ds_cfg['label']} ({ds_key})\\\")\\n        print(f\\\"{'='*60}\\\")\\n\\n        if not os.path.exists(ds_cfg[\\\"path\\\"]):\\n            print(f\\\"  SKIP: {ds_cfg['path']} not found\\\")\\n            continue\\n\\n        instances = load_data(ds_cfg[\\\"path\\\"])\\n        print(f\\\"  Loaded {len(instances)} instances\\\")\\n\\n        if ds_cfg.get(\\\"filter_fn\\\") == \\\"has_gold_relations\\\":\\n            before = len(instances)\\n            instances = [inst for inst in instances if len(inst[\\\"gold\\\"].get(\\\"relations\\\", [])) > 0]\\n            print(f\\\"  Filtered: {before} -> {len(instances)} (with gold relations)\\\")\\n\\n        result = analyze_dataset(instances, ds_cfg[\\\"subtask\\\"], ds_cfg[\\\"label\\\"])\\n        all_results[ds_key] = result\\n\\n        # Print table\\n        print(f\\\"\\\\n  {'Signal':>15s}  {'Mean F1':>8s}  {'Δ greedy':>9s}  {'95% CI':>18s}  {'p':>6s}\\\")\\n        print(f\\\"  {'-'*15}  {'-'*8}  {'-'*9}  {'-'*18}  {'-'*6}\\\")\\n        for sig in SIGNALS:\\n            r = result[\\\"signals\\\"][sig]\\n            ci_str = f\\\"[{r['bootstrap_ci_lo']:+.4f}, {r['bootstrap_ci_hi']:+.4f}]\\\"\\n            print(f\\\"  {sig:>15s}  {r['mean_f1']:.4f}  {r['delta_vs_greedy']:+.4f}  {ci_str:>18s}  {r['bootstrap_p']:.3f}\\\")\\n        print(f\\\"\\\\n  Oracle gap: {result['oracle_gap']:.4f}\\\")\\n\\n    # Save JSON\\n    out_path = os.path.join(OUTPUT_DIR, \\\"exp_006_v2_results.json\\\")\\n    with open(out_path, \\\"w\\\") as f:\\n        json.dump(all_results, f, indent=2)\\n    print(f\\\"\\\\nSaved: {out_path}\\\")\\n\\n    # Summary: which signals beat greedy?\\n    print(f\\\"\\\\n{'='*60}\\\")\\n    print(\\\"  SUMMARY: Signals that beat greedy (p < 0.05)\\\")\\n    print(f\\\"{'='*60}\\\")\\n    for ds_key, result in all_results.items():\\n        print(f\\\"\\\\n  {result['label']}:\\\")\\n        beats = []\\n        for sig in [\\\"SJ\\\", \\\"logprob\\\", \\\"FK\\\", \\\"EM\\\", \\\"voting_conf\\\"]:\\n            r = result[\\\"signals\\\"][sig]\\n            if r[\\\"delta_vs_greedy\\\"] > 0 and r[\\\"bootstrap_ci_lo\\\"] > 0:\\n                beats.append(f\\\"{sig} (+{r['delta_vs_greedy']:.4f})\\\")\\n        if beats:\\n            print(f\\\"    {', '.join(beats)}\\\")\\n        else:\\n            print(f\\\"    None\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b8b11d62-6ca3-4151-bc4f-ed1130aa9fbf",
+  "uuid": "6ebf07df-43d4-40db-832f-0f7beb9af4bf",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\ndef compute_sample_logprobs(instance: dict) -> list[float]:\\\\n    lps = []\\\\n    for s in instance[\\\\\\\"samples\\\\\\\"]:\\\\n        lp = s.get(\\\\\\\"mean_logprob\\\\\\\")\\\\n        if lp is None:\\\\n            lp = s.get(\\\\\\\"cumulative_logprob\\\\\\\", -999) / max(s.get(\\\\\\\"n_tokens\\\\\\\", 1), 1)\\\\n        lps.append(lp)\\\\n    return lps\\\\n\\\\n\\\\n# ── Selection ─────────────────────────────────────────────────────\\\\n\\\\ndef select_top1(signal_scores: list[float]) -> int:\\\\n    return int(np.argmax(signal_scores))\\\\n\\\\n\\\\n# ── Bootstrap CI ──────────────────────────────────────────────────\\\\n\\\\ndef paired_bootstrap_ci(\\\\n    f1s_a: np.ndarray,\\\\n    f1s_b: np.ndarray,\\\\n    n_boot: int = 1000,\\\\n    seed: int = 42,\\\\n    alpha: float = 0.05,\\\\n) -> dict:\\\\n    rng = np.random.default_rng(seed)\\\\n    n = len(f1s_a)\\\\n    deltas = np.empty(n_boot)\\\\n    for b in range(n_boot):\\\\n        idx = rng.integers(0, n, size=n)\\\\n        deltas[b] = f1s_a[idx].mean() - f1s_b[idx].mean()\\\\n    lo = float(np.percentile(deltas, 100 * alpha / 2))\\\\n    hi = float(np.percentile(deltas, 100 * (1 - alpha / 2)))\\\\n    mean_delta = float(np.mean(deltas))\\\\n    p_value = float(np.mean(deltas <= 0)) if mean_delta > 0 else float(np.mean(deltas >= 0))\\\\n    return {\\\\\\\"mean_delta\\\\\\\": mean_delta, \\\\\\\"ci_lo\\\\\\\": lo, \\\\\\\"ci_hi\\\\\\\": hi, \\\\\\\"p_value\\\\\\\": p_value}\\\\n\\\\n\\\\n# ── Main analysis ─────────────────────────────────────────────────\\\\n\\\\ndef analyze_dataset(instances: list[dict], subtask: str, label: str) -> dict:\\\\n    n_inst = len(instances)\\\\n    rng = np.random.default_rng(BOOTSTRAP_SEED)\\\\n\\\\n    # Per-instance: compute all signal scores, select top-1, get F1\\\\n    signal_f1s = {sig: [] for sig in SIGNALS}\\\\n    all_per_sample_f1s = []\\\\n\\\\n    t0 = time.time()\\\\n    for idx, inst in enumerate(instances):\\\\n        if (idx + 1) % 200 == 0:\\\\n            print(f\\\\\\\"    {idx+1}/{n_inst} ({time.time()-t0:.0f}s)\\\\\\\")\\\\n\\\\n        samples = inst[\\\\\\\"samples\\\\\\\"]\\\\n        gold = inst[\\\\\\\"gold\\\\\\\"]\\\\n        N = len(samples)\\\\n\\\\n        # Per-sample F1s\\\\n        sample_f1s = [per_instance_f1(s, gold, subtask=subtask) for s in samples]\\\\n        all_per_sample_f1s.append(sample_f1s)\\\\n\\\\n        # Greedy F1\\\\n        greedy_f1 = per_instance_f1(inst[\\\\\\\"greedy\\\\\\\"], gold, subtask=subtask)\\\\n        signal_f1s[\\\\\\\"greedy\\\\\\\"].append(greedy_f1)\\\\n\\\\n        # Oracle\\\\n        signal_f1s[\\\\\\\"oracle\\\\\\\"].append(max(sample_f1s))\\\\n\\\\n        # Logprob\\\\n        lps = compute_sample_logprobs(inst)\\\\n        signal_f1s[\\\\\\\"logprob\\\\\\\"].append(sample_f1s[select_top1(lps)])\\\\n\\\\n        # SJ\\\\n        sj_scores = compute_sample_sj_scores(inst, subtask)\\\\n        signal_f1s[\\\\\\\"SJ\\\\\\\"].append(sample_f1s[select_top1(sj_scores)])\\\\n\\\\n        # FK + surface keys (reused for voting_conf and EM)\\\\n        fk_scores, key_sets = compute_sample_surface_scores(inst, subtask)\\\\n        signal_f1s[\\\\\\\"FK\\\\\\\"].append(sample_f1s[select_top1(fk_scores)])\\\\n\\\\n        # Voting confidence\\\\n        vc_scores = compute_sample_voting_conf(key_sets, N)\\\\n        signal_f1s[\\\\\\\"voting_conf\\\\\\\"].append(sample_f1s[select_top1(vc_scores)])\\\\n\\\\n        # Exact match\\\\n        em_scores = compute_sample_em_scores(key_sets)\\\\n        signal_f1s[\\\\\\\"EM\\\\\\\"].append(sample_f1s[select_top1(em_scores)])\\\\n\\\\n        # Random (average over repeats)\\\\n        random_f1s = []\\\\n        for _ in range(N_RANDOM_REPEATS):\\\\n            ri = int(rng.integers(0, N))\\\\n            random_f1s.append(sample_f1s[ri])\\\\n        signal_f1s[\\\\\\\"random\\\\\\\"].append(float(np.mean(random_f1s)))\\\\n\\\\n    elapsed = time.time() - t0\\\\n    print(f\\\\\\\"    Done in {elapsed:.1f}s\\\\\\\")\\\\n\\\\n    # Convert to arrays\\\\n    for sig in SIGNALS:\\\\n        signal_f1s[sig] = np.array(signal_f1s[sig])\\\\n\\\\n    # Macro F1 and bootstrap CI vs greedy\\\\n    results = {}\\\\n    greedy_arr = signal_f1s[\\\\\\\"greedy\\\\\\\"]\\\\n    for sig in SIGNALS:\\\\n        arr = signal_f1s[sig]\\\\n        mean_f1 = float(arr.mean())\\\\n        std_f1 = float(arr.std())\\\\n\\\\n        if sig != \\\\\\\"greedy\\\\\\\":\\\\n            boot = paired_bootstrap_ci(arr, greedy_arr, N_BOOTSTRAP, BOOTSTRAP_SEED)\\\\n        else:\\\\n            boot = {\\\\\\\"mean_delta\\\\\\\": 0.0, \\\\\\\"ci_lo\\\\\\\": 0.0, \\\\\\\"ci_hi\\\\\\\": 0.0, \\\\\\\"p_value\\\\\\\": 1.0}\\\\n\\\\n        results[sig] = {\\\\n            \\\\\\\"mean_f1\\\\\\\": round(mean_f1, 5),\\\\n            \\\\\\\"std_f1\\\\\\\": round(std_f1, 5),\\\\n            \\\\\\\"delta_vs_greedy\\\\\\\": round(float(arr.mean() - greedy_arr.mean()), 5),\\\\n            \\\\\\\"bootstrap_ci_lo\\\\\\\": round(boot[\\\\\\\"ci_lo\\\\\\\"], 5),\\\\n            \\\\\\\"bootstrap_ci_hi\\\\\\\": round(boot[\\\\\\\"ci_hi\\\\\\\"], 5),\\\\n            \\\\\\\"bootstrap_p\\\\\\\": round(boot[\\\\\\\"p_value\\\\\\\"], 5),\\\\n        }\\\\n\\\\n    # Oracle gap analysis\\\\n    oracle_arr = signal_f1s[\\\\\\\"oracle\\\\\\\"]\\\\n    oracle_gap = float(oracle_arr.mean() - greedy_arr.mean())\\\\n\\\\n    return {\\\\n        \\\\\\\"label\\\\\\\": label,\\\\n        \\\\\\\"subtask\\\\\\\": subtask,\\\\n        \\\\\\\"n_instances\\\\\\\": n_inst,\\\\n        \\\\\\\"n_samples\\\\\\\": len(instances[0][\\\\\\\"samples\\\\\\\"]),\\\\n        \\\\\\\"greedy_macro_f1\\\\\\\": results[\\\\\\\"greedy\\\\\\\"][\\\\\\\"mean_f1\\\\\\\"],\\\\n        \\\\\\\"oracle_macro_f1\\\\\\\": results[\\\\\\\"oracle\\\\\\\"][\\\\\\\"mean_f1\\\\\\\"],\\\\n        \\\\\\\"oracle_gap\\\\\\\": round(oracle_gap, 5),\\\\n        \\\\\\\"signals\\\\\\\": results,\\\\n    }\\\\n\\\\n\\\\ndef main():\\\\n    os.makedirs(OUTPUT_DIR, exist_ok=True)\\\\n\\\\n    all_results = {}\\\\n\\\\n    for ds_key, ds_cfg in DATASETS.items():\\\\n        print(f\\\\\\\"\\\\\\\\n{'='*60}\\\\\\\")\\\\n        print(f\\\\\\\"  {ds_cfg['label']} ({ds_key})\\\\\\\")\\\\n        print(f\\\\\\\"{'='*60}\\\\\\\")\\\\n\\\\n        if not os.path.exists(ds_cfg[\\\\\\\"path\\\\\\\"]):\\\\n            print(f\\\\\\\"  SKIP: {ds_cfg['path']} not found\\\\\\\")\\\\n            continue\\\\n\\\\n        instances = load_data(ds_cfg[\\\\\\\"path\\\\\\\"])\\\\n        print(f\\\\\\\"  Loaded {len(instances)} instances\\\\\\\")\\\\n\\\\n        if ds_cfg.get(\\\\\\\"filter_fn\\\\\\\") == \\\\\\\"has_gold_relations\\\\\\\":\\\\n            before = len(instances)\\\\n            instances = [inst for inst in instances if len(inst[\\\\\\\"gold\\\\\\\"].get(\\\\\\\"relations\\\\\\\", [])) > 0]\\\\n            print(f\\\\\\\"  Filtered: {before} -> {len(instances)} (with gold relations)\\\\\\\")\\\\n\\\\n        result = analyze_dataset(instances, ds_cfg[\\\\\\\"subtask\\\\\\\"], ds_cfg[\\\\\\\"label\\\\\\\"])\\\\n        all_results[ds_key] = result\\\\n\\\\n        # Print table\\\\n        print(f\\\\\\\"\\\\\\\\n  {'Signal':>15s}  {'Mean F1':>8s}  {'Δ greedy':>9s}  {'95% CI':>18s}  {'p':>6s}\\\\\\\")\\\\n        print(f\\\\\\\"  {'-'*15}  {'-'*8}  {'-'*9}  {'-'*18}  {'-'*6}\\\\\\\")\\\\n        for sig in SIGNALS:\\\\n            r = result[\\\\\\\"signals\\\\\\\"][sig]\\\\n            ci_str = f\\\\\\\"[{r['bootstrap_ci_lo']:+.4f}, {r['bootstrap_ci_hi']:+.4f}]\\\\\\\"\\\\n            print(f\\\\\\\"  {sig:>15s}  {r['mean_f1']:.4f}  {r['delta_vs_greedy']:+.4f}  {ci_str:>18s}  {r['bootstrap_p']:.3f}\\\\\\\")\\\\n        print(f\\\\\\\"\\\\\\\\n  Oracle gap: {result['oracle_gap']:.4f}\\\\\\\")\\\\n\\\\n    # Save JSON\\\\n    out_path = os.path.join(OUTPUT_DIR, \\\\\\\"exp_006_v2_results.json\\\\\\\")\\\\n    with open(out_path, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(all_results, f, indent=2)\\\\n    print(f\\\\\\\"\\\\\\\\nSaved: {out_path}\\\\\\\")\\\\n\\\\n    # Summary: which signals beat greedy?\\\\n    print(f\\\\\\\"\\\\\\\\n{'='*60}\\\\\\\")\\\\n    print(\\\\\\\"  SUMMARY: Signals that beat greedy (p < 0.05)\\\\\\\")\\\\n    print(f\\\\\\\"{'='*60}\\\\\\\")\\\\n    for ds_key, result in all_results.items():\\\\n        print(f\\\\\\\"\\\\\\\\n  {result['label']}:\\\\\\\")\\\\n        beats = []\\\\n        for sig in [\\\\\\\"SJ\\\\\\\", \\\\\\\"logprob\\\\\\\", \\\\\\\"FK\\\\\\\", \\\\\\\"EM\\\\\\\", \\\\\\\"voting_conf\\\\\\\"]:\\\\n            r = result[\\\\\\\"signals\\\\\\\"][sig]\\\\n            if r[\\\\\\\"delta_vs_greedy\\\\\\\"] > 0 and r[\\\\\\\"bootstrap_ci_lo\\\\\\\"] > 0:\\\\n                beats.append(f\\\\\\\"{sig} (+{r['delta_vs_greedy']:.4f})\\\\\\\")\\\\n        if beats:\\\\n            print(f\\\\\\\"    {', '.join(beats)}\\\\\\\")\\\\n        else:\\\\n            print(f\\\\\\\"    None\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\ndef compute_sample_logprobs(instance: dict) -> list[float]:\\n    lps = []\\n    for s in instance[\\\"samples\\\"]:\\n        lp = s.get(\\\"mean_logprob\\\")\\n        if lp is None:\\n            lp = s.get(\\\"cumulative_logprob\\\", -999) / max(s.get(\\\"n_tokens\\\", 1), 1)\\n        lps.append(lp)\\n    return lps\\n\\n\\n# ── Selection ─────────────────────────────────────────────────────\\n\\ndef select_top1(signal_scores: list[float]) -> int:\\n    return int(np.argmax(signal_scores))\\n\\n\\n# ── Bootstrap CI ──────────────────────────────────────────────────\\n\\ndef paired_bootstrap_ci(\\n    f1s_a: np.ndarray,\\n    f1s_b: np.ndarray,\\n    n_boot: int = 1000,\\n    seed: int = 42,\\n    alpha: float = 0.05,\\n) -> dict:\\n    rng = np.random.default_rng(seed)\\n    n = len(f1s_a)\\n    deltas = np.empty(n_boot)\\n    for b in range(n_boot):\\n        idx = rng.integers(0, n, size=n)\\n        deltas[b] = f1s_a[idx].mean() - f1s_b[idx].mean()\\n    lo = float(np.percentile(deltas, 100 * alpha / 2))\\n    hi = float(np.percentile(deltas, 100 * (1 - alpha / 2)))\\n    mean_delta = float(np.mean(deltas))\\n    p_value = float(np.mean(deltas <= 0)) if mean_delta > 0 else float(np.mean(deltas >= 0))\\n    return {\\\"mean_delta\\\": mean_delta, \\\"ci_lo\\\": lo, \\\"ci_hi\\\": hi, \\\"p_value\\\": p_value}\\n\\n\\n# ── Main analysis ─────────────────────────────────────────────────\\n\\ndef analyze_dataset(instances: list[dict], subtask: str, label: str) -> dict:\\n    n_inst = len(instances)\\n    rng = np.random.default_rng(BOOTSTRAP_SEED)\\n\\n    # Per-instance: compute all signal scores, select top-1, get F1\\n    signal_f1s = {sig: [] for sig in SIGNALS}\\n    all_per_sample_f1s = []\\n\\n    t0 = time.time()\\n    for idx, inst in enumerate(instances):\\n        if (idx + 1) % 200 == 0:\\n            print(f\\\"    {idx+1}/{n_inst} ({time.time()-t0:.0f}s)\\\")\\n\\n        samples = inst[\\\"samples\\\"]\\n        gold = inst[\\\"gold\\\"]\\n        N = len(samples)\\n\\n        # Per-sample F1s\\n        sample_f1s = [per_instance_f1(s, gold, subtask=subtask) for s in samples]\\n        all_per_sample_f1s.append(sample_f1s)\\n\\n        # Greedy F1\\n        greedy_f1 = per_instance_f1(inst[\\\"greedy\\\"], gold, subtask=subtask)\\n        signal_f1s[\\\"greedy\\\"].append(greedy_f1)\\n\\n        # Oracle\\n        signal_f1s[\\\"oracle\\\"].append(max(sample_f1s))\\n\\n        # Logprob\\n        lps = compute_sample_logprobs(inst)\\n        signal_f1s[\\\"logprob\\\"].append(sample_f1s[select_top1(lps)])\\n\\n        # SJ\\n        sj_scores = compute_sample_sj_scores(inst, subtask)\\n        signal_f1s[\\\"SJ\\\"].append(sample_f1s[select_top1(sj_scores)])\\n\\n        # FK + surface keys (reused for voting_conf and EM)\\n        fk_scores, key_sets = compute_sample_surface_scores(inst, subtask)\\n        signal_f1s[\\\"FK\\\"].append(sample_f1s[select_top1(fk_scores)])\\n\\n        # Voting confidence\\n        vc_scores = compute_sample_voting_conf(key_sets, N)\\n        signal_f1s[\\\"voting_conf\\\"].append(sample_f1s[select_top1(vc_scores)])\\n\\n        # Exact match\\n        em_scores = compute_sample_em_scores(key_sets)\\n        signal_f1s[\\\"EM\\\"].append(sample_f1s[select_top1(em_scores)])\\n\\n        # Random (average over repeats)\\n        random_f1s = []\\n        for _ in range(N_RANDOM_REPEATS):\\n            ri = int(rng.integers(0, N))\\n            random_f1s.append(sample_f1s[ri])\\n        signal_f1s[\\\"random\\\"].append(float(np.mean(random_f1s)))\\n\\n    elapsed = time.time() - t0\\n    print(f\\\"    Done in {elapsed:.1f}s\\\")\\n\\n    # Convert to arrays\\n    for sig in SIGNALS:\\n        signal_f1s[sig] = np.array(signal_f1s[sig])\\n\\n    # Macro F1 and bootstrap CI vs greedy\\n    results = {}\\n    greedy_arr = signal_f1s[\\\"greedy\\\"]\\n    for sig in SIGNALS:\\n        arr = signal_f1s[sig]\\n        mean_f1 = float(arr.mean())\\n        std_f1 = float(arr.std())\\n\\n        if sig != \\\"greedy\\\":\\n            boot = paired_bootstrap_ci(arr, greedy_arr, N_BOOTSTRAP, BOOTSTRAP_SEED)\\n        else:\\n            boot = {\\\"mean_delta\\\": 0.0, \\\"ci_lo\\\": 0.0, \\\"ci_hi\\\": 0.0, \\\"p_value\\\": 1.0}\\n\\n        results[sig] = {\\n            \\\"mean_f1\\\": round(mean_f1, 5),\\n            \\\"std_f1\\\": round(std_f1, 5),\\n            \\\"delta_vs_greedy\\\": round(float(arr.mean() - greedy_arr.mean()), 5),\\n            \\\"bootstrap_ci_lo\\\": round(boot[\\\"ci_lo\\\"], 5),\\n            \\\"bootstrap_ci_hi\\\": round(boot[\\\"ci_hi\\\"], 5),\\n            \\\"bootstrap_p\\\": round(boot[\\\"p_value\\\"], 5),\\n        }\\n\\n    # Oracle gap analysis\\n    oracle_arr = signal_f1s[\\\"oracle\\\"]\\n    oracle_gap = float(oracle_arr.mean() - greedy_arr.mean())\\n\\n    return {\\n        \\\"label\\\": label,\\n        \\\"subtask\\\": subtask,\\n        \\\"n_instances\\\": n_inst,\\n        \\\"n_samples\\\": len(instances[0][\\\"samples\\\"]),\\n        \\\"greedy_macro_f1\\\": results[\\\"greedy\\\"][\\\"mean_f1\\\"],\\n        \\\"oracle_macro_f1\\\": results[\\\"oracle\\\"][\\\"mean_f1\\\"],\\n        \\\"oracle_gap\\\": round(oracle_gap, 5),\\n        \\\"signals\\\": results,\\n    }\\n\\n\\ndef main():\\n    os.makedirs(OUTPUT_DIR, exist_ok=True)\\n\\n    all_results = {}\\n\\n    for ds_key, ds_cfg in DATASETS.items():\\n        print(f\\\"\\\\n{'='*60}\\\")\\n        print(f\\\"  {ds_cfg['label']} ({ds_key})\\\")\\n        print(f\\\"{'='*60}\\\")\\n\\n        if not os.path.exists(ds_cfg[\\\"path\\\"]):\\n            print(f\\\"  SKIP: {ds_cfg['path']} not found\\\")\\n            continue\\n\\n        instances = load_data(ds_cfg[\\\"path\\\"])\\n        print(f\\\"  Loaded {len(instances)} instances\\\")\\n\\n        if ds_cfg.get(\\\"filter_fn\\\") == \\\"has_gold_relations\\\":\\n            before = len(instances)\\n            instances = [inst for inst in instances if len(inst[\\\"gold\\\"].get(\\\"relations\\\", [])) > 0]\\n            print(f\\\"  Filtered: {before} -> {len(instances)} (with gold relations)\\\")\\n\\n        result = analyze_dataset(instances, ds_cfg[\\\"subtask\\\"], ds_cfg[\\\"label\\\"])\\n        all_results[ds_key] = result\\n\\n        # Print table\\n        print(f\\\"\\\\n  {'Signal':>15s}  {'Mean F1':>8s}  {'Δ greedy':>9s}  {'95% CI':>18s}  {'p':>6s}\\\")\\n        print(f\\\"  {'-'*15}  {'-'*8}  {'-'*9}  {'-'*18}  {'-'*6}\\\")\\n        for sig in SIGNALS:\\n            r = result[\\\"signals\\\"][sig]\\n            ci_str = f\\\"[{r['bootstrap_ci_lo']:+.4f}, {r['bootstrap_ci_hi']:+.4f}]\\\"\\n            print(f\\\"  {sig:>15s}  {r['mean_f1']:.4f}  {r['delta_vs_greedy']:+.4f}  {ci_str:>18s}  {r['bootstrap_p']:.3f}\\\")\\n        print(f\\\"\\\\n  Oracle gap: {result['oracle_gap']:.4f}\\\")\\n\\n    # Save JSON\\n    out_path = os.path.join(OUTPUT_DIR, \\\"exp_006_v2_results.json\\\")\\n    with open(out_path, \\\"w\\\") as f:\\n        json.dump(all_results, f, indent=2)\\n    print(f\\\"\\\\nSaved: {out_path}\\\")\\n\\n    # Summary: which signals beat greedy?\\n    print(f\\\"\\\\n{'='*60}\\\")\\n    print(\\\"  SUMMARY: Signals that beat greedy (p < 0.05)\\\")\\n    print(f\\\"{'='*60}\\\")\\n    for ds_key, result in all_results.items():\\n        print(f\\\"\\\\n  {result['label']}:\\\")\\n        beats = []\\n        for sig in [\\\"SJ\\\", \\\"logprob\\\", \\\"FK\\\", \\\"EM\\\", \\\"voting_conf\\\"]:\\n            r = result[\\\"signals\\\"][sig]\\n            if r[\\\"delta_vs_greedy\\\"] > 0 and r[\\\"bootstrap_ci_lo\\\"] > 0:\\n                beats.append(f\\\"{sig} (+{r['delta_vs_greedy']:.4f})\\\")\\n        if beats:\\n            print(f\\\"    {', '.join(beats)}\\\")\\n        else:\\n            print(f\\\"    None\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01YEskrZNhrPPjEwSJpueYk7`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "wc -l /root/autodl-tmp/struct_self_consist_ie/output/exp_018_llama_scierc_seed42_r1024/samples.jsonl /root/autodl-tmp/struct_self_consist_ie/output/exp_018_llama_scierc_seed123/samples.jsonl /root/autodl-tmp/struct_self_consist_ie/output/exp_018_llama_scierc_seed456/samples.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b8b11d62-6ca3-4151-bc4f-ed1130aa9fbf",
+  "uuid": "f19bcd5b-9e9a-4a0b-9ea5-aab6311488fc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LATVcFNggdLCVq4nhGnrBK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4916,
+      "cache_read_input_tokens": 56992,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4916
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-15T12:44:28.834Z_
+
+<details><summary>↩ Tool result · `toolu_01YEskrZNhrPPjEwSJpueYk7`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"     551 /root/autodl-tmp/struct_self_consist_ie/output/exp_018_llama_scierc_seed42_r1024/samples.jsonl\\n     551 /root/autodl-tmp/struct_self_consist_ie/output/exp_018_llama_scierc_seed123/samples.jsonl\\n     551 /root/autodl-tmp/struct_self_consist_ie/output/exp_018_llama_scierc_seed456/samples.jsonl\\n    1653 total\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b8b11d62-6ca3-4151-bc4f-ed1130aa9fbf",
+  "uuid": "4f315606-3b10-4b24-86bd-6c4681a32c2b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"     551 /root/autodl-tmp/struct_self_consist_ie/output/exp_018_llama_scierc_seed42_r1024/samples.jsonl\\\\n     551 /root/autodl-tmp/struct_self_consist_ie/output/exp_018_llama_scierc_seed123/samples.jsonl\\\\n     551 /root/autodl-tmp/struct_self_consist_ie/output/exp_018_llama_scierc_seed456/samples.jsonl\\\\n    1653 total\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"     551 /root/autodl-tmp/struct_self_consist_ie/output/exp_018_llama_scierc_seed42_r1024/samples.jsonl\\n     551 /root/autodl-tmp/struct_self_consist_ie/output/exp_018_llama_scierc_seed123/samples.jsonl\\n     551 /root/autodl-tmp/struct_self_consist_ie/output/exp_018_llama_scierc_seed456/samples.jsonl\\n    1653 total\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01CBTQLQWNkjmKBi1aS4taau`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "wc -l /root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16_r1024/samples.jsonl /root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16_s123_r1024/samples.jsonl /root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16_s456_r1024/samples.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b8b11d62-6ca3-4151-bc4f-ed1130aa9fbf",
+  "uuid": "1eddd2c4-b41f-40db-9af0-ad6f29a7bc5e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LATVcFNggdLCVq4nhGnrBK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4916,
+      "cache_read_input_tokens": 56992,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4916
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-15T12:44:32.465Z_
+
+<details><summary>↩ Tool result · `toolu_01CBTQLQWNkjmKBi1aS4taau`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"    3453 /root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16_r1024/samples.jsonl\\n    3453 /root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16_s123_r1024/samples.jsonl\\n    3453 /root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16_s456_r1024/samples.jsonl\\n   10359 total\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b8b11d62-6ca3-4151-bc4f-ed1130aa9fbf",
+  "uuid": "a448c810-f544-43cd-98c8-5baf7ac98a7c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"    3453 /root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16_r1024/samples.jsonl\\\\n    3453 /root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16_s123_r1024/samples.jsonl\\\\n    3453 /root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16_s456_r1024/samples.jsonl\\\\n   10359 total\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"    3453 /root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16_r1024/samples.jsonl\\n    3453 /root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16_s123_r1024/samples.jsonl\\n    3453 /root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16_s456_r1024/samples.jsonl\\n   10359 total\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 61_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have everything I need. Let me also check if there's Qwen CoNLL 3-seed data:
+
+Looking at the data files:
+- **Qwen SciERC NER (3 seeds)**:
+  - seed42: `exp_012_rerun_1024/samples_with_logprobs.jsonl` (551 lines, N=8)
+  - seed123: `exp_018_qwen_scierc_seed123/samples.jsonl` (551 lines, N=8)
+  - seed456: `exp_018_qwen_scierc_seed456/samples.jsonl` (551 lines, N=8)
+
+- **LLaMA SciERC NER (3 seeds)**:
+  - seed42: `exp_018_llama_scierc_seed42_r1024/samples.jsonl` (551 lines)
+  - seed123: `exp_018_llama_scierc_seed123/samples.jsonl` (551 lines)
+  - seed456: `exp_018_llama_scierc_seed456/samples.jsonl` (551 lines)
+
+- **LLaMA CoNLL NER (3 seeds)**:
+  - seed42: `exp_017_llama_conll_n16_r1024/samples.jsonl` (3453 lines)
+  - seed123: `exp_017_llama_conll_n16_s123_r1024/samples.jsonl` (3453 lines)
+  - seed456: `exp_017_llama_conll_n16_s456_r1024/samples.jsonl` (3453 lines)
+
+Now I'm checking the CoNLL data—the directory names indicate N=16 samples, and I should verify whether there are N=8 versions available as well, though the task parameters suggest I'm working with the N=16 setup.
+
+Let me also look for Qwen CoNLL data across the three seeds.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b8b11d62-6ca3-4151-bc4f-ed1130aa9fbf",
+  "uuid": "894e54de-d166-407c-8a34-970b21f870b4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QTX73xJZSEzAq6SZG8qxFB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4348,
+      "cache_read_input_tokens": 61908,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4348
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 62_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01LB3dV6gnYXrKijJCpKBAQy`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "find /root/autodl-tmp/struct_self_consist_ie/output -name \"*.jsonl\" -path \"*conll*\" -not -path \"*llama*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b8b11d62-6ca3-4151-bc4f-ed1130aa9fbf",
+  "uuid": "8134f7d9-e205-4e69-b744-dcb6ff50305d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QTX73xJZSEzAq6SZG8qxFB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4348,
+      "cache_read_input_tokens": 61908,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4348
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 63 · 2026-05-15T12:44:44.509Z_
+
+<details><summary>↩ Tool result · `toolu_01LB3dV6gnYXrKijJCpKBAQy`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/output/exp002_conll2003/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n16/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n16_r1024/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_011_ood_scierc_to_conll/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_011_ood_conll_to_scierc/samples.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b8b11d62-6ca3-4151-bc4f-ed1130aa9fbf",
+  "uuid": "baefed4a-a850-4d01-86f8-2940824145bc",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/exp002_conll2003/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n16/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n16_r1024/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_011_ood_scierc_to_conll/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_011_ood_conll_to_scierc/samples.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/output/exp002_conll2003/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n16/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n16_r1024/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_011_ood_scierc_to_conll/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_011_ood_conll_to_scierc/samples.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 64_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01XmXi1suh4jhmjBn35Gd6eK`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "head -1 /root/autodl-tmp/struct_self_consist_ie/output/exp_018_llama_scierc_seed42_r1024/samples.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b8b11d62-6ca3-4151-bc4f-ed1130aa9fbf",
+  "uuid": "1dc71656-7c10-4ad7-980d-3821e8403f71",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QTX73xJZSEzAq6SZG8qxFB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4348,
+      "cache_read_input_tokens": 61908,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4348
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 65 · 2026-05-15T12:44:45.078Z_
+
+<details><summary>↩ Tool result · `toolu_01XmXi1suh4jhmjBn35Gd6eK`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"id\\\": \\\"X96-1059_sent000\\\", \\\"text\\\": \\\"Recognition of proper nouns in Japanese text has been studied as a part of the more general problem of morphological analysis in Japanese text processing -LRB- -LSB- 1 -RSB- -LSB- 2 -RSB- -RRB- .\\\", \\\"gold\\\": {\\\"entities\\\": [{\\\"text\\\": \\\"Recognition of proper nouns\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 0, \\\"end\\\": 27}, {\\\"text\\\": \\\"proper nouns\\\", \\\"type\\\": \\\"OtherScientificTerm\\\", \\\"start\\\": 15, \\\"end\\\": 27}, {\\\"text\\\": \\\"Japanese text\\\", \\\"type\\\": \\\"Material\\\", \\\"start\\\": 31, \\\"end\\\": 44}, {\\\"text\\\": \\\"morphological analysis\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 103, \\\"end\\\": 125}, {\\\"text\\\": \\\"Japanese text processing\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 129, \\\"end\\\": 153}], \\\"relations\\\": [{\\\"head\\\": \\\"Recognition of proper nouns\\\", \\\"tail\\\": \\\"morphological analysis\\\", \\\"type\\\": \\\"PART-OF\\\", \\\"head_start\\\": 0, \\\"head_end\\\": 27, \\\"tail_start\\\": 103, \\\"tail_end\\\": 125}, {\\\"head\\\": \\\"proper nouns\\\", \\\"tail\\\": \\\"Japanese text\\\", \\\"type\\\": \\\"PART-OF\\\", \\\"head_start\\\": 15, \\\"head_end\\\": 27, \\\"tail_start\\\": 31, \\\"tail_end\\\": 44}, {\\\"head\\\": \\\"morphological analysis\\\", \\\"tail\\\": \\\"Japanese text processing\\\", \\\"type\\\": \\\"USED-FOR\\\", \\\"head_start\\\": 103, \\\"head_end\\\": 125, \\\"tail_start\\\": 129, \\\"tail_end\\\": 153}], \\\"events\\\": []}, \\\"samples\\\": [{\\\"entities\\\": [{\\\"text\\\": \\\"Recognition of proper nouns in Japanese text\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 0, \\\"end\\\": 44}, {\\\"text\\\": \\\"morphological analysis\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 103, \\\"end\\\": 125}, {\\\"text\\\": \\\"Japanese text processing\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 129, \\\"end\\\": 153}], \\\"relations\\\": [{\\\"head\\\": \\\"Recognition of proper nouns in Japanese text\\\", \\\"tail\\\": \\\"morphological analysis\\\", \\\"type\\\": \\\"PART-OF\\\", \\\"head_start\\\": 0, \\\"head_end\\\": 44, \\\"tail_start\\\": 103, \\\"tail_end\\\": 125}, {\\\"head\\\": \\\"Japanese text processing\\\", \\\"tail\\\": \\\"Recognition of proper nouns in Japanese text\\\", \\\"type\\\": \\\"USED-FOR\\\", \\\"head_start\\\": 129, \\\"head_end\\\": 153, \\\"tail_start\\\": 0, \\\"tail_end\\\": 44}, {\\\"head\\\": \\\"Japanese text processing\\\", \\\"tail\\\": \\\"morphological analysis\\\", \\\"type\\\": \\\"USED-FOR\\\", \\\"head_start\\\": 129, \\\"head_end\\\": 153, \\\"tail_start\\\": 103, \\\"tail_end\\\": 125}], \\\"events\\\": [], \\\"cumulative_logprob\\\": -13.502395547721271, \\\"n_tokens\\\": 258, \\\"mean_logprob\\\": -0.052334866464035935}, {\\\"entities\\\": [{\\\"text\\\": \\\"Recognition of proper nouns in Japanese text\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 0, \\\"end\\\": 44}, {\\\"text\\\": \\\"morphological analysis\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 103, \\\"end\\\": 125}, {\\\"text\\\": \\\"Japanese text processing\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 129, \\\"end\\\": 153}], \\\"relations\\\": [{\\\"head\\\": \\\"Recognition of proper nouns in Japanese text\\\", \\\"tail\\\": \\\"morphological analysis\\\", \\\"type\\\": \\\"PART-OF\\\", \\\"head_start\\\": 0, \\\"head_end\\\": 44, \\\"tail_start\\\": 103, \\\"tail_end\\\": 125}, {\\\"head\\\": \\\"Recognition of proper nouns in Japanese text\\\", \\\"tail\\\": \\\"Japanese text processing\\\", \\\"type\\\": \\\"PART-OF\\\", \\\"head_start\\\": 0, \\\"head_end\\\": 44, \\\"tail_start\\\": 129, \\\"tail_end\\\": 153}, {\\\"head\\\": \\\"morphological analysis\\\", \\\"tail\\\": \\\"Japanese text processing\\\", \\\"type\\\": \\\"PART-OF\\\", \\\"head_start\\\": 103, \\\"head_end\\\": 125, \\\"tail_start\\\": 129, \\\"tail_end\\\": 153}], \\\"events\\\": [], \\\"cumulative_logprob\\\": -8.13619057965321, \\\"n_tokens\\\": 258, \\\"mean_logprob\\\": -0.03153562240175663}, {\\\"entities\\\": [{\\\"text\\\": \\\"Recognition of proper nouns in Japanese text\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 0, \\\"end\\\": 44}, {\\\"text\\\": \\\"morphological analysis\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 103, \\\"end\\\": 125}, {\\\"text\\\": \\\"Japanese text processing\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 129, \\\"end\\\": 153}], \\\"relations\\\": [{\\\"head\\\": \\\"Recognition of proper nouns in Japanese text\\\", \\\"tail\\\": \\\"morphological analysis\\\", \\\"type\\\": \\\"PART-OF\\\", \\\"head_start\\\": 0, \\\"head_end\\\": 44, \\\"tail_start\\\": 103, \\\"tail_end\\\": 125}, {\\\"head\\\": \\\"Recognition of proper nouns in Japanese text\\\", \\\"tail\\\": \\\"Japanese text processing\\\", \\\"type\\\": \\\"PART-OF\\\", \\\"head_start\\\": 0, \\\"head_end\\\": 44, \\\"tail_start\\\": 129, \\\"tail_end\\\": 153}], \\\"events\\\": [], \\\"cumulative_logprob\\\": -8.033637029935996, \\\"n_tokens\\\": 206, \\\"mean_logprob\\\": -0.038998238009398035}, {\\\"entities\\\": [{\\\"text\\\": \\\"Recognition of proper nouns in Japanese text\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 0, \\\"end\\\": 44}, {\\\"text\\\": \\\"morphological analysis in Japanese text processing\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 103, \\\"end\\\": 153}], \\\"relations\\\": [{\\\"head\\\": \\\"Recognition of proper nouns in Japanese text\\\", \\\"tail\\\": \\\"morphological analysis in Japanese text processing\\\", \\\"type\\\": \\\"PART-OF\\\", \\\"head_start\\\": 0, \\\"head_end\\\": 44, \\\"tail_start\\\": 103, \\\"tail_end\\\": 153}], \\\"events\\\": [], \\\"cumulative_logprob\\\": -4.882895054641942, \\\"n_tokens\\\": 132, \\\"mean_logprob\\\": -0.036991629201832896}, {\\\"entities\\\": [{\\\"text\\\": \\\"Recognition of proper nouns in Japanese text\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 0, \\\"end\\\": 44}, {\\\"text\\\": \\\"morphological analysis\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 103, \\\"end\\\": 125}, {\\\"text\\\": \\\"Japanese text processing\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 129, \\\"end\\\": 153}], \\\"relations\\\": [{\\\"head\\\": \\\"Recognition of proper nouns in Japanese text\\\", \\\"tail\\\": \\\"morphological analysis\\\", \\\"type\\\": \\\"PART-OF\\\", \\\"head_start\\\": 0, \\\"head_end\\\": 44, \\\"tail_start\\\": 103, \\\"tail_end\\\": 125}, {\\\"head\\\": \\\"morphological analysis\\\", \\\"tail\\\": \\\"Japanese text processing\\\", \\\"type\\\": \\\"PART-OF\\\", \\\"head_start\\\": 103, \\\"head_end\\\": 125, \\\"tail_start\\\": 129, \\\"tail_end\\\": 153}], \\\"events\\\": [], \\\"cumulative_logprob\\\": -5.723754473438554, \\\"n_tokens\\\": 202, \\\"mean_logprob\\\": -0.028335418185339373}, {\\\"entities\\\": [{\\\"text\\\": \\\"Recognition of proper nouns in Japanese text\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 0, \\\"end\\\": 44}, {\\\"text\\\": \\\"morphological analysis\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 103, \\\"end\\\": 125}, {\\\"text\\\": \\\"Japanese text processing\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 129, \\\"end\\\": 153}], \\\"relations\\\": [{\\\"head\\\": \\\"Recognition of proper nouns in Japanese text\\\", \\\"tail\\\": \\\"morphological analysis\\\", \\\"type\\\": \\\"PART-OF\\\", \\\"head_start\\\": 0, \\\"head_end\\\": 44, \\\"tail_start\\\": 103, \\\"tail_end\\\": 125}, {\\\"head\\\": \\\"Recognition of proper nouns in Japanese text\\\", \\\"tail\\\": \\\"Japanese text processing\\\", \\\"type\\\": \\\"PART-OF\\\", \\\"head_start\\\": 0, \\\"head_end\\\": 44, \\\"tail_start\\\": 129, \\\"tail_end\\\": 153}, {\\\"head\\\": \\\"morphological analysis\\\", \\\"tail\\\": \\\"Japanese text processing\\\", \\\"type\\\": \\\"PART-OF\\\", \\\"head_start\\\": 103, \\\"head_end\\\": 125, \\\"tail_start\\\": 129, \\\"tail_end\\\": 153}], \\\"events\\\": [], \\\"cumulative_logprob\\\": -11.16925023388471, \\\"n_tokens\\\": 258, \\\"mean_logprob\\\": -0.04329166757319655}, {\\\"entities\\\": [{\\\"text\\\": \\\"Recognition of proper nouns in Japanese text\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 0, \\\"end\\\": 44}, {\\\"text\\\": \\\"morphological analysis in Japanese text processing\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 103, \\\"end\\\": 153}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -12.202915403021521, \\\"n_tokens\\\": 73, \\\"mean_logprob\\\": -0.16716322469892494}, {\\\"entities\\\": [{\\\"text\\\": \\\"Recognition of proper nouns in Japanese text\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 0, \\\"end\\\": 44}, {\\\"text\\\": \\\"morphological analysis in Japanese text processing\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 103, \\\"end\\\": 153}], \\\"relations\\\": [{\\\"head\\\": \\\"Recognition of proper nouns in Japanese text\\\", \\\"tail\\\": \\\"morphological analysis in Japanese text processing\\\", \\\"type\\\": \\\"PART-OF\\\", \\\"head_start\\\": 0, \\\"head_end\\\": 44, \\\"tail_start\\\": 103, \\\"tail_end\\\": 153}], \\\"events\\\": [], \\\"cumulative_logprob\\\": -5.631178762248162, \\\"n_tokens\\\": 132, \\\"mean_logprob\\\": -0.04266044516854668}], \\\"greedy\\\": {\\\"entities\\\": [{\\\"text\\\": \\\"Recognition of proper nouns in Japanese text\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 0, \\\"end\\\": 44}, {\\\"text\\\": \\\"morphological analysis in Japanese text processing\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 103, \\\"end\\\": 153}], \\\"relations\\\": [{\\\"head\\\": \\\"Recognition of proper nouns in Japanese text\\\", \\\"tail\\\": \\\"morphological analysis in Japanese text processing\\\", \\\"type\\\": \\\"PART-OF\\\", \\\"head_start\\\": 0, \\\"head_end\\\": 44, \\\"tail_start\\\": 103, \\\"tail_end\\\": 153}], \\\"events\\\": [], \\\"cumulative_logprob\\\": -4.577435505110309, \\\"n_tokens\\\": 132, \\\"mean_logprob\\\": -0.03467754170538113}, \\\"logprobs\\\": [-0.052334866464035935, -0.03153562240175663, -0.038998238009398035, -0.036991629201832896, -0.028335418185339373, -0.04329166757319655, -0.16716322469892494, -0.04266044516854668]}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b8b11d62-6ca3-4151-bc4f-ed1130aa9fbf",
+  "uuid": "2c094fb6-3ff0-4703-ad94-ac98c2c56758",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"id\\\\\\\": \\\\\\\"X96-1059_sent000\\\\\\\", \\\\\\\"text\\\\\\\": \\\\\\\"Recognition of proper nouns in Japanese text has been studied as a part of the more general problem of morphological analysis in Japanese text processing -LRB- -LSB- 1 -RSB- -LSB- 2 -RSB- -RRB- .\\\\\\\", \\\\\\\"gold\\\\\\\": {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"Recognition of proper nouns\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 0, \\\\\\\"end\\\\\\\": 27}, {\\\\\\\"text\\\\\\\": \\\\\\\"proper nouns\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"OtherScientificTerm\\\\\\\", \\\\\\\"start\\\\\\\": 15, \\\\\\\"end\\\\\\\": 27}, {\\\\\\\"text\\\\\\\": \\\\\\\"Japanese text\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Material\\\\\\\", \\\\\\\"start\\\\\\\": 31, \\\\\\\"end\\\\\\\": 44}, {\\\\\\\"text\\\\\\\": \\\\\\\"morphological analysis\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 103, \\\\\\\"end\\\\\\\": 125}, {\\\\\\\"text\\\\\\\": \\\\\\\"Japanese text processing\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 129, \\\\\\\"end\\\\\\\": 153}], \\\\\\\"relations\\\\\\\": [{\\\\\\\"head\\\\\\\": \\\\\\\"Recognition of proper nouns\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"morphological analysis\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"PART-OF\\\\\\\", \\\\\\\"head_start\\\\\\\": 0, \\\\\\\"head_end\\\\\\\": 27, \\\\\\\"tail_start\\\\\\\": 103, \\\\\\\"tail_end\\\\\\\": 125}, {\\\\\\\"head\\\\\\\": \\\\\\\"proper nouns\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"Japanese text\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"PART-OF\\\\\\\", \\\\\\\"head_start\\\\\\\": 15, \\\\\\\"head_end\\\\\\\": 27, \\\\\\\"tail_start\\\\\\\": 31, \\\\\\\"tail_end\\\\\\\": 44}, {\\\\\\\"head\\\\\\\": \\\\\\\"morphological analysis\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"Japanese text processing\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"USED-FOR\\\\\\\", \\\\\\\"head_start\\\\\\\": 103, \\\\\\\"head_end\\\\\\\": 125, \\\\\\\"tail_start\\\\\\\": 129, \\\\\\\"tail_end\\\\\\\": 153}], \\\\\\\"events\\\\\\\": []}, \\\\\\\"samples\\\\\\\": [{\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"Recognition of proper nouns in Japanese text\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 0, \\\\\\\"end\\\\\\\": 44}, {\\\\\\\"text\\\\\\\": \\\\\\\"morphological analysis\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 103, \\\\\\\"end\\\\\\\": 125}, {\\\\\\\"text\\\\\\\": \\\\\\\"Japanese text processing\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 129, \\\\\\\"end\\\\\\\": 153}], \\\\\\\"relations\\\\\\\": [{\\\\\\\"head\\\\\\\": \\\\\\\"Recognition of proper nouns in Japanese text\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"morphological analysis\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"PART-OF\\\\\\\", \\\\\\\"head_start\\\\\\\": 0, \\\\\\\"head_end\\\\\\\": 44, \\\\\\\"tail_start\\\\\\\": 103, \\\\\\\"tail_end\\\\\\\": 125}, {\\\\\\\"head\\\\\\\": \\\\\\\"Japanese text processing\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"Recognition of proper nouns in Japanese text\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"USED-FOR\\\\\\\", \\\\\\\"head_start\\\\\\\": 129, \\\\\\\"head_end\\\\\\\": 153, \\\\\\\"tail_start\\\\\\\": 0, \\\\\\\"tail_end\\\\\\\": 44}, {\\\\\\\"head\\\\\\\": \\\\\\\"Japanese text processing\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"morphological analysis\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"USED-FOR\\\\\\\", \\\\\\\"head_start\\\\\\\": 129, \\\\\\\"head_end\\\\\\\": 153, \\\\\\\"tail_start\\\\\\\": 103, \\\\\\\"tail_end\\\\\\\": 125}], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -13.502395547721271, \\\\\\\"n_tokens\\\\\\\": 258, \\\\\\\"mean_logprob\\\\\\\": -0.052334866464035935}, {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"Recognition of proper nouns in Japanese text\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 0, \\\\\\\"end\\\\\\\": 44}, {\\\\\\\"text\\\\\\\": \\\\\\\"morphological analysis\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 103, \\\\\\\"end\\\\\\\": 125}, {\\\\\\\"text\\\\\\\": \\\\\\\"Japanese text processing\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 129, \\\\\\\"end\\\\\\\": 153}], \\\\\\\"relations\\\\\\\": [{\\\\\\\"head\\\\\\\": \\\\\\\"Recognition of proper nouns in Japanese text\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"morphological analysis\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"PART-OF\\\\\\\", \\\\\\\"head_start\\\\\\\": 0, \\\\\\\"head_end\\\\\\\": 44, \\\\\\\"tail_start\\\\\\\": 103, \\\\\\\"tail_end\\\\\\\": 125}, {\\\\\\\"head\\\\\\\": \\\\\\\"Recognition of proper nouns in Japanese text\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"Japanese text processing\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"PART-OF\\\\\\\", \\\\\\\"head_start\\\\\\\": 0, \\\\\\\"head_end\\\\\\\": 44, \\\\\\\"tail_start\\\\\\\": 129, \\\\\\\"tail_end\\\\\\\": 153}, {\\\\\\\"head\\\\\\\": \\\\\\\"morphological analysis\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"Japanese text processing\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"PART-OF\\\\\\\", \\\\\\\"head_start\\\\\\\": 103, \\\\\\\"head_end\\\\\\\": 125, \\\\\\\"tail_start\\\\\\\": 129, \\\\\\\"tail_end\\\\\\\": 153}], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -8.13619057965321, \\\\\\\"n_tokens\\\\\\\": 258, \\\\\\\"mean_logprob\\\\\\\": -0.03153562240175663}, {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"Recognition of proper nouns in Japanese text\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 0, \\\\\\\"end\\\\\\\": 44}, {\\\\\\\"text\\\\\\\": \\\\\\\"morphological analysis\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 103, \\\\\\\"end\\\\\\\": 125}, {\\\\\\\"text\\\\\\\": \\\\\\\"Japanese text processing\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 129, \\\\\\\"end\\\\\\\": 153}], \\\\\\\"relations\\\\\\\": [{\\\\\\\"head\\\\\\\": \\\\\\\"Recognition of proper nouns in Japanese text\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"morphological analysis\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"PART-OF\\\\\\\", \\\\\\\"head_start\\\\\\\": 0, \\\\\\\"head_end\\\\\\\": 44, \\\\\\\"tail_start\\\\\\\": 103, \\\\\\\"tail_end\\\\\\\": 125}, {\\\\\\\"head\\\\\\\": \\\\\\\"Recognition of proper nouns in Japanese text\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"Japanese text processing\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"PART-OF\\\\\\\", \\\\\\\"head_start\\\\\\\": 0, \\\\\\\"head_end\\\\\\\": 44, \\\\\\\"tail_start\\\\\\\": 129, \\\\\\\"tail_end\\\\\\\": 153}], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -8.033637029935996, \\\\\\\"n_tokens\\\\\\\": 206, \\\\\\\"mean_logprob\\\\\\\": -0.038998238009398035}, {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"Recognition of proper nouns in Japanese text\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 0, \\\\\\\"end\\\\\\\": 44}, {\\\\\\\"text\\\\\\\": \\\\\\\"morphological analysis in Japanese text processing\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 103, \\\\\\\"end\\\\\\\": 153}], \\\\\\\"relations\\\\\\\": [{\\\\\\\"head\\\\\\\": \\\\\\\"Recognition of proper nouns in Japanese text\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"morphological analysis in Japanese text processing\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"PART-OF\\\\\\\", \\\\\\\"head_start\\\\\\\": 0, \\\\\\\"head_end\\\\\\\": 44, \\\\\\\"tail_start\\\\\\\": 103, \\\\\\\"tail_end\\\\\\\": 153}], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -4.882895054641942, \\\\\\\"n_tokens\\\\\\\": 132, \\\\\\\"mean_logprob\\\\\\\": -0.036991629201832896}, {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"Recognition of proper nouns in Japanese text\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 0, \\\\\\\"end\\\\\\\": 44}, {\\\\\\\"text\\\\\\\": \\\\\\\"morphological analysis\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 103, \\\\\\\"end\\\\\\\": 125}, {\\\\\\\"text\\\\\\\": \\\\\\\"Japanese text processing\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 129, \\\\\\\"end\\\\\\\": 153}], \\\\\\\"relations\\\\\\\": [{\\\\\\\"head\\\\\\\": \\\\\\\"Recognition of proper nouns in Japanese text\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"morphological analysis\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"PART-OF\\\\\\\", \\\\\\\"head_start\\\\\\\": 0, \\\\\\\"head_end\\\\\\\": 44, \\\\\\\"tail_start\\\\\\\": 103, \\\\\\\"tail_end\\\\\\\": 125}, {\\\\\\\"head\\\\\\\": \\\\\\\"morphological analysis\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"Japanese text processing\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"PART-OF\\\\\\\", \\\\\\\"head_start\\\\\\\": 103, \\\\\\\"head_end\\\\\\\": 125, \\\\\\\"tail_start\\\\\\\": 129, \\\\\\\"tail_end\\\\\\\": 153}], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -5.723754473438554, \\\\\\\"n_tokens\\\\\\\": 202, \\\\\\\"mean_logprob\\\\\\\": -0.028335418185339373}, {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"Recognition of proper nouns in Japanese text\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 0, \\\\\\\"end\\\\\\\": 44}, {\\\\\\\"text\\\\\\\": \\\\\\\"morphological analysis\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 103, \\\\\\\"end\\\\\\\": 125}, {\\\\\\\"text\\\\\\\": \\\\\\\"Japanese text processing\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 129, \\\\\\\"end\\\\\\\": 153}], \\\\\\\"relations\\\\\\\": [{\\\\\\\"head\\\\\\\": \\\\\\\"Recognition of proper nouns in Japanese text\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"morphological analysis\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"PART-OF\\\\\\\", \\\\\\\"head_start\\\\\\\": 0, \\\\\\\"head_end\\\\\\\": 44, \\\\\\\"tail_start\\\\\\\": 103, \\\\\\\"tail_end\\\\\\\": 125}, {\\\\\\\"head\\\\\\\": \\\\\\\"Recognition of proper nouns in Japanese text\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"Japanese text processing\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"PART-OF\\\\\\\", \\\\\\\"head_start\\\\\\\": 0, \\\\\\\"head_end\\\\\\\": 44, \\\\\\\"tail_start\\\\\\\": 129, \\\\\\\"tail_end\\\\\\\": 153}, {\\\\\\\"head\\\\\\\": \\\\\\\"morphological analysis\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"Japanese text processing\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"PART-OF\\\\\\\", \\\\\\\"head_start\\\\\\\": 103, \\\\\\\"head_end\\\\\\\": 125, \\\\\\\"tail_start\\\\\\\": 129, \\\\\\\"tail_end\\\\\\\": 153}], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -11.16925023388471, \\\\\\\"n_tokens\\\\\\\": 258, \\\\\\\"mean_logprob\\\\\\\": -0.04329166757319655}, {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"Recognition of proper nouns in Japanese text\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 0, \\\\\\\"end\\\\\\\": 44}, {\\\\\\\"text\\\\\\\": \\\\\\\"morphological analysis in Japanese text processing\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 103, \\\\\\\"end\\\\\\\": 153}], \\\\\\\"relations\\\\\\\": [], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -12.202915403021521, \\\\\\\"n_tokens\\\\\\\": 73, \\\\\\\"mean_logprob\\\\\\\": -0.16716322469892494}, {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"Recognition of proper nouns in Japanese text\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 0, \\\\\\\"end\\\\\\\": 44}, {\\\\\\\"text\\\\\\\": \\\\\\\"morphological analysis in Japanese text processing\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 103, \\\\\\\"end\\\\\\\": 153}], \\\\\\\"relations\\\\\\\": [{\\\\\\\"head\\\\\\\": \\\\\\\"Recognition of proper nouns in Japanese text\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"morphological analysis in Japanese text processing\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"PART-OF\\\\\\\", \\\\\\\"head_start\\\\\\\": 0, \\\\\\\"head_end\\\\\\\": 44, \\\\\\\"tail_start\\\\\\\": 103, \\\\\\\"tail_end\\\\\\\": 153}], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -5.631178762248162, \\\\\\\"n_tokens\\\\\\\": 132, \\\\\\\"mean_logprob\\\\\\\": -0.04266044516854668}], \\\\\\\"greedy\\\\\\\": {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"Recognition of proper nouns in Japanese text\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 0, \\\\\\\"end\\\\\\\": 44}, {\\\\\\\"text\\\\\\\": \\\\\\\"morphological analysis in Japanese text processing\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 103, \\\\\\\"end\\\\\\\": 153}], \\\\\\\"relations\\\\\\\": [{\\\\\\\"head\\\\\\\": \\\\\\\"Recognition of proper nouns in Japanese text\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"morphological analysis in Japanese text processing\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"PART-OF\\\\\\\", \\\\\\\"head_start\\\\\\\": 0, \\\\\\\"head_end\\\\\\\": 44, \\\\\\\"tail_start\\\\\\\": 103, \\\\\\\"tail_end\\\\\\\": 153}], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -4.577435505110309, \\\\\\\"n_tokens\\\\\\\": 132, \\\\\\\"mean_logprob\\\\\\\": -0.03467754170538113}, \\\\\\\"logprobs\\\\\\\": [-0.052334866464035935, -0.03153562240175663, -0.038998238009398035, -0.036991629201832896, -0.028335418185339373, -0.04329166757319655, -0.16716322469892494, -0.04266044516854668]}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\\"id\\\": \\\"X96-1059_sent000\\\", \\\"text\\\": \\\"Recognition of proper nouns in Japanese text has been studied as a part of the more general problem of morphological analysis in Japanese text processing -LRB- -LSB- 1 -RSB- -LSB- 2 -RSB- -RRB- .\\\", \\\"gold\\\": {\\\"entities\\\": [{\\\"text\\\": \\\"Recognition of proper nouns\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 0, \\\"end\\\": 27}, {\\\"text\\\": \\\"proper nouns\\\", \\\"type\\\": \\\"OtherScientificTerm\\\", \\\"start\\\": 15, \\\"end\\\": 27}, {\\\"text\\\": \\\"Japanese text\\\", \\\"type\\\": \\\"Material\\\", \\\"start\\\": 31, \\\"end\\\": 44}, {\\\"text\\\": \\\"morphological analysis\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 103, \\\"end\\\": 125}, {\\\"text\\\": \\\"Japanese text processing\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 129, \\\"end\\\": 153}], \\\"relations\\\": [{\\\"head\\\": \\\"Recognition of proper nouns\\\", \\\"tail\\\": \\\"morphological analysis\\\", \\\"type\\\": \\\"PART-OF\\\", \\\"head_start\\\": 0, \\\"head_end\\\": 27, \\\"tail_start\\\": 103, \\\"tail_end\\\": 125}, {\\\"head\\\": \\\"proper nouns\\\", \\\"tail\\\": \\\"Japanese text\\\", \\\"type\\\": \\\"PART-OF\\\", \\\"head_start\\\": 15, \\\"head_end\\\": 27, \\\"tail_start\\\": 31, \\\"tail_end\\\": 44}, {\\\"head\\\": \\\"morphological analysis\\\", \\\"tail\\\": \\\"Japanese text processing\\\", \\\"type\\\": \\\"USED-FOR\\\", \\\"head_start\\\": 103, \\\"head_end\\\": 125, \\\"tail_start\\\": 129, \\\"tail_end\\\": 153}], \\\"events\\\": []}, \\\"samples\\\": [{\\\"entities\\\": [{\\\"text\\\": \\\"Recognition of proper nouns in Japanese text\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 0, \\\"end\\\": 44}, {\\\"text\\\": \\\"morphological analysis\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 103, \\\"end\\\": 125}, {\\\"text\\\": \\\"Japanese text processing\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 129, \\\"end\\\": 153}], \\\"relations\\\": [{\\\"head\\\": \\\"Recognition of proper nouns in Japanese text\\\", \\\"tail\\\": \\\"morphological analysis\\\", \\\"type\\\": \\\"PART-OF\\\", \\\"head_start\\\": 0, \\\"head_end\\\": 44, \\\"tail_start\\\": 103, \\\"tail_end\\\": 125}, {\\\"head\\\": \\\"Japanese text processing\\\", \\\"tail\\\": \\\"Recognition of proper nouns in Japanese text\\\", \\\"type\\\": \\\"USED-FOR\\\", \\\"head_start\\\": 129, \\\"head_end\\\": 153, \\\"tail_start\\\": 0, \\\"tail_end\\\": 44}, {\\\"head\\\": \\\"Japanese text processing\\\", \\\"tail\\\": \\\"morphological analysis\\\", \\\"type\\\": \\\"USED-FOR\\\", \\\"head_start\\\": 129, \\\"head_end\\\": 153, \\\"tail_start\\\": 103, \\\"tail_end\\\": 125}], \\\"events\\\": [], \\\"cumulative_logprob\\\": -13.502395547721271, \\\"n_tokens\\\": 258, \\\"mean_logprob\\\": -0.052334866464035935}, {\\\"entities\\\": [{\\\"text\\\": \\\"Recognition of proper nouns in Japanese text\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 0, \\\"end\\\": 44}, {\\\"text\\\": \\\"morphological analysis\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 103, \\\"end\\\": 125}, {\\\"text\\\": \\\"Japanese text processing\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 129, \\\"end\\\": 153}], \\\"relations\\\": [{\\\"head\\\": \\\"Recognition of proper nouns in Japanese text\\\", \\\"tail\\\": \\\"morphological analysis\\\", \\\"type\\\": \\\"PART-OF\\\", \\\"head_start\\\": 0, \\\"head_end\\\": 44, \\\"tail_start\\\": 103, \\\"tail_end\\\": 125}, {\\\"head\\\": \\\"Recognition of proper nouns in Japanese text\\\", \\\"tail\\\": \\\"Japanese text processing\\\", \\\"type\\\": \\\"PART-OF\\\", \\\"head_start\\\": 0, \\\"head_end\\\": 44, \\\"tail_start\\\": 129, \\\"tail_end\\\": 153}, {\\\"head\\\": \\\"morphological analysis\\\", \\\"tail\\\": \\\"Japanese text processing\\\", \\\"type\\\": \\\"PART-OF\\\", \\\"head_start\\\": 103, \\\"head_end\\\": 125, \\\"tail_start\\\": 129, \\\"tail_end\\\": 153}], \\\"events\\\": [], \\\"cumulative_logprob\\\": -8.13619057965321, \\\"n_tokens\\\": 258, \\\"mean_logprob\\\": -0.03153562240175663}, {\\\"entities\\\": [{\\\"text\\\": \\\"Recognition of proper nouns in Japanese text\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 0, \\\"end\\\": 44}, {\\\"text\\\": \\\"morphological analysis\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 103, \\\"end\\\": 125}, {\\\"text\\\": \\\"Japanese text processing\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 129, \\\"end\\\": 153}], \\\"relations\\\": [{\\\"head\\\": \\\"Recognition of proper nouns in Japanese text\\\", \\\"tail\\\": \\\"morphological analysis\\\", \\\"type\\\": \\\"PART-OF\\\", \\\"head_start\\\": 0, \\\"head_end\\\": 44, \\\"tail_start\\\": 103, \\\"tail_end\\\": 125}, {\\\"head\\\": \\\"Recognition of proper nouns in Japanese text\\\", \\\"tail\\\": \\\"Japanese text processing\\\", \\\"type\\\": \\\"PART-OF\\\", \\\"head_start\\\": 0, \\\"head_end\\\": 44, \\\"tail_start\\\": 129, \\\"tail_end\\\": 153}], \\\"events\\\": [], \\\"cumulative_logprob\\\": -8.033637029935996, \\\"n_tokens\\\": 206, \\\"mean_logprob\\\": -0.038998238009398035}, {\\\"entities\\\": [{\\\"text\\\": \\\"Recognition of proper nouns in Japanese text\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 0, \\\"end\\\": 44}, {\\\"text\\\": \\\"morphological analysis in Japanese text processing\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 103, \\\"end\\\": 153}], \\\"relations\\\": [{\\\"head\\\": \\\"Recognition of proper nouns in Japanese text\\\", \\\"tail\\\": \\\"morphological analysis in Japanese text processing\\\", \\\"type\\\": \\\"PART-OF\\\", \\\"head_start\\\": 0, \\\"head_end\\\": 44, \\\"tail_start\\\": 103, \\\"tail_end\\\": 153}], \\\"events\\\": [], \\\"cumulative_logprob\\\": -4.882895054641942, \\\"n_tokens\\\": 132, \\\"mean_logprob\\\": -0.036991629201832896}, {\\\"entities\\\": [{\\\"text\\\": \\\"Recognition of proper nouns in Japanese text\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 0, \\\"end\\\": 44}, {\\\"text\\\": \\\"morphological analysis\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 103, \\\"end\\\": 125}, {\\\"text\\\": \\\"Japanese text processing\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 129, \\\"end\\\": 153}], \\\"relations\\\": [{\\\"head\\\": \\\"Recognition of proper nouns in Japanese text\\\", \\\"tail\\\": \\\"morphological analysis\\\", \\\"type\\\": \\\"PART-OF\\\", \\\"head_start\\\": 0, \\\"head_end\\\": 44, \\\"tail_start\\\": 103, \\\"tail_end\\\": 125}, {\\\"head\\\": \\\"morphological analysis\\\", \\\"tail\\\": \\\"Japanese text processing\\\", \\\"type\\\": \\\"PART-OF\\\", \\\"head_start\\\": 103, \\\"head_end\\\": 125, \\\"tail_start\\\": 129, \\\"tail_end\\\": 153}], \\\"events\\\": [], \\\"cumulative_logprob\\\": -5.723754473438554, \\\"n_tokens\\\": 202, \\\"mean_logprob\\\": -0.028335418185339373}, {\\\"entities\\\": [{\\\"text\\\": \\\"Recognition of proper nouns in Japanese text\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 0, \\\"end\\\": 44}, {\\\"text\\\": \\\"morphological analysis\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 103, \\\"end\\\": 125}, {\\\"text\\\": \\\"Japanese text processing\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 129, \\\"end\\\": 153}], \\\"relations\\\": [{\\\"head\\\": \\\"Recognition of proper nouns in Japanese text\\\", \\\"tail\\\": \\\"morphological analysis\\\", \\\"type\\\": \\\"PART-OF\\\", \\\"head_start\\\": 0, \\\"head_end\\\": 44, \\\"tail_start\\\": 103, \\\"tail_end\\\": 125}, {\\\"head\\\": \\\"Recognition of proper nouns in Japanese text\\\", \\\"tail\\\": \\\"Japanese text processing\\\", \\\"type\\\": \\\"PART-OF\\\", \\\"head_start\\\": 0, \\\"head_end\\\": 44, \\\"tail_start\\\": 129, \\\"tail_end\\\": 153}, {\\\"head\\\": \\\"morphological analysis\\\", \\\"tail\\\": \\\"Japanese text processing\\\", \\\"type\\\": \\\"PART-OF\\\", \\\"head_start\\\": 103, \\\"head_end\\\": 125, \\\"tail_start\\\": 129, \\\"tail_end\\\": 153}], \\\"events\\\": [], \\\"cumulative_logprob\\\": -11.16925023388471, \\\"n_tokens\\\": 258, \\\"mean_logprob\\\": -0.04329166757319655}, {\\\"entities\\\": [{\\\"text\\\": \\\"Recognition of proper nouns in Japanese text\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 0, \\\"end\\\": 44}, {\\\"text\\\": \\\"morphological analysis in Japanese text processing\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 103, \\\"end\\\": 153}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -12.202915403021521, \\\"n_tokens\\\": 73, \\\"mean_logprob\\\": -0.16716322469892494}, {\\\"entities\\\": [{\\\"text\\\": \\\"Recognition of proper nouns in Japanese text\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 0, \\\"end\\\": 44}, {\\\"text\\\": \\\"morphological analysis in Japanese text processing\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 103, \\\"end\\\": 153}], \\\"relations\\\": [{\\\"head\\\": \\\"Recognition of proper nouns in Japanese text\\\", \\\"tail\\\": \\\"morphological analysis in Japanese text processing\\\", \\\"type\\\": \\\"PART-OF\\\", \\\"head_start\\\": 0, \\\"head_end\\\": 44, \\\"tail_start\\\": 103, \\\"tail_end\\\": 153}], \\\"events\\\": [], \\\"cumulative_logprob\\\": -5.631178762248162, \\\"n_tokens\\\": 132, \\\"mean_logprob\\\": -0.04266044516854668}], \\\"greedy\\\": {\\\"entities\\\": [{\\\"text\\\": \\\"Recognition of proper nouns in Japanese text\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 0, \\\"end\\\": 44}, {\\\"text\\\": \\\"morphological analysis in Japanese text processing\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 103, \\\"end\\\": 153}], \\\"relations\\\": [{\\\"head\\\": \\\"Recognition of proper nouns in Japanese text\\\", \\\"tail\\\": \\\"morphological analysis in Japanese text processing\\\", \\\"type\\\": \\\"PART-OF\\\", \\\"head_start\\\": 0, \\\"head_end\\\": 44, \\\"tail_start\\\": 103, \\\"tail_end\\\": 153}], \\\"events\\\": [], \\\"cumulative_logprob\\\": -4.577435505110309, \\\"n_tokens\\\": 132, \\\"mean_logprob\\\": -0.03467754170538113}, \\\"logprobs\\\": [-0.052334866464035935, -0.03153562240175663, -0.038998238009398035, -0.036991629201832896, -0.028335418185339373, -0.04329166757319655, -0.16716322469892494, -0.04266044516854668]}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 66_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a complete picture. Let me now write the comprehensive analysis script. The data files are:
+
+**Qwen SciERC NER** (N=8):
+- seed42: `exp_012_rerun_1024/samples_with_logprobs.jsonl` (actually the exp018 code uses `exp_012_rerun_1024/samples.jsonl`, but we see there's also `samples_with_logprobs.jsonl` with logprobs embedded in samples)
+- seed123: `exp_018_qwen_scierc_seed123/samples.jsonl`
+
+
+- seed456: `exp_018_qwen_scierc_seed456/samples.jsonl`
+
+**LLaMA SciERC NER** (N=8):
+- seed42: `exp_018_llama_scierc_seed42_r1024/samples.jsonl`
+- seed123: `exp_018_llama_scierc_seed123/samples.jsonl`
+- seed456: `exp_018_llama_scierc_seed456/samples.jsonl`
+
+**LLaMA CoNLL NER** (N=16 based on directory names, but need to check):
+- seed42: `exp_017_llama_conll_n16_r1024/samples.jsonl`
+- seed123: `exp_018_llama_conll_seed123/samples.jsonl` (need to verify the exact path)
+- seed456: `exp_017_llama_conll_n16_s456_r1024/samples.jsonl`
+
+Now I'm looking at the different selection signals used in the per-sample computation. There's structural Jaccard which averages soft overlap with other samples, surface similarity using Fleiss Kappa, log probability scores, voting confidence based on entity/relation prediction frequency, and exact match counting to see how many samples produce identical predictions.
+
+I need to build an analysis script that aggregates results across three seeds with mean and standard deviation, runs a bootstrap paired test comparing my selection method against greedy with 10,000 iterations, and extends this to both LLaMA SciERC and LLaMA CoNLL datasets. Let me check if the seed42 Qwen data has both the standard samples file and the version with log probabilities included, since I see both exist in the directory listing.
+
+Looking at the actual file contents, both versions contain the cumulative and mean log probability fields in each sample, though the `_with_logprobs` variant has an additional top-level field. Since the existing analysis script uses the standard `samples.jsonl` file, I'll follow that pattern while keeping the other version as a backup option.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b8b11d62-6ca3-4151-bc4f-ed1130aa9fbf",
+  "uuid": "f8d4eeb5-3da5-4b69-a37b-3937abc933be",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SNyBvcyD6YxUtzuqRVUTbJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5508,
+      "cache_read_input_tokens": 66256,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5508
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 67_
+
+Now I have complete understanding of the codebase. Let me write the analysis script and run it on the server.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b8b11d62-6ca3-4151-bc4f-ed1130aa9fbf",
+  "uuid": "9dda4d35-c6e9-480f-b5f9-9fbc10967dcc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SNyBvcyD6YxUtzuqRVUTbJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5508,
+      "cache_read_input_tokens": 66256,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5508
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 68_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01CCxoSw3ny57AawbeGPktbq`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "python3 -c \"import json; d=json.loads(open('/root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/samples.jsonl').readline()); s=d['samples'][0]; print('mean_logprob' in s, 'cumulative_logprob' in s, len(d['samples']))\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b8b11d62-6ca3-4151-bc4f-ed1130aa9fbf",
+  "uuid": "130ae8c1-283c-47cf-9f07-bbd06f6bad7d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SNyBvcyD6YxUtzuqRVUTbJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5508,
+      "cache_read_input_tokens": 66256,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5508
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 69 · 2026-05-15T12:45:11.337Z_
+
+<details><summary>↩ Tool result · `toolu_01CCxoSw3ny57AawbeGPktbq`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b8b11d62-6ca3-4151-bc4f-ed1130aa9fbf",
+  "uuid": "bdad1196-8e84-46ce-9707-f332ff2e9f22",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 70_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_018d1pkE52vb34jc8nZHuRZg`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "python3 -c \"import json; d=json.loads(open('/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16_r1024/samples.jsonl').readline()); print(len(d['samples']), 'has_greedy' in d or 'greedy' in d, 'mean_logprob' in d['samples'][0])\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b8b11d62-6ca3-4151-bc4f-ed1130aa9fbf",
+  "uuid": "f12e75eb-2a19-476f-af33-c9e490c2a8d4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SNyBvcyD6YxUtzuqRVUTbJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5508,
+      "cache_read_input_tokens": 66256,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5508
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 71 · 2026-05-15T12:45:12.929Z_
+
+<details><summary>↩ Tool result · `toolu_018d1pkE52vb34jc8nZHuRZg`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b8b11d62-6ca3-4151-bc4f-ed1130aa9fbf",
+  "uuid": "0bf20b81-d63b-4510-b103-b8a2bd679443",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 72_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01VQgnHXH2uUYtmgZUEsL4Er`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json\nd=json.loads(open('/root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/samples.jsonl').readline())\ns=d['samples'][0]\nprint('n_samples:', len(d['samples']))\nprint('has_mean_logprob:', 'mean_logprob' in s)\nprint('has_cumul_logprob:', 'cumulative_logprob' in s)\nprint('has_greedy:', 'greedy' in d)\n\nd2=json.loads(open('/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16_r1024/samples.jsonl').readline())\nprint('conll_n_samples:', len(d2['samples']))\nprint('conll_has_greedy:', 'greedy' in d2)\nprint('conll_has_mlp:', 'mean_logprob' in d2['samples'][0])\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b8b11d62-6ca3-4151-bc4f-ed1130aa9fbf",
+  "uuid": "3d7ec0e5-6313-4ffd-9215-6f505286a67f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012PzUvfQ65mnJpdYpjiYczb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1693,
+      "cache_read_input_tokens": 71764,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1693
+      },
+      "output_tokens": 61,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 73 · 2026-05-15T12:45:18.911Z_
+
+<details><summary>↩ Tool result · `toolu_01VQgnHXH2uUYtmgZUEsL4Er`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"n_samples: 8\\nhas_mean_logprob: True\\nhas_cumul_logprob: True\\nhas_greedy: True\\nconll_n_samples: 16\\nconll_has_greedy: True\\nconll_has_mlp: True\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b8b11d62-6ca3-4151-bc4f-ed1130aa9fbf",
+  "uuid": "78cc35a3-23cd-4235-ac06-57e3c9e0baf2",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"n_samples: 8\\\\nhas_mean_logprob: True\\\\nhas_cumul_logprob: True\\\\nhas_greedy: True\\\\nconll_n_samples: 16\\\\nconll_has_greedy: True\\\\nconll_has_mlp: True\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"n_samples: 8\\nhas_mean_logprob: True\\nhas_cumul_logprob: True\\nhas_greedy: True\\nconll_n_samples: 16\\nconll_has_greedy: True\\nconll_has_mlp: True\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 74_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have all the information I need. Let me write the script. The data:
+
+- Qwen SciERC: N=8 samples, all 3 seeds, 551 instances
+- LLaMA SciERC: N=8 samples, all 3 seeds, 551 instances
+- LLaMA CoNLL: N=16 samples, all 3 seeds, 3453 instances
+
+The script will:
+1. For each dataset group × seed, compute per-sample signal scores and select top-1
+
+
+2. Calculate selection F1 as the mean across instances
+3. Average the results over the 3 seeds with standard deviation
+4. Run a bootstrap paired test against greedy with 10,000 iterations
+
+I'll build this following the existing `exp_006_v2_selection.py` pattern.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b8b11d62-6ca3-4151-bc4f-ed1130aa9fbf",
+  "uuid": "88b8832b-d82d-4339-8495-dc6627a8ffb4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JQDN6X4NAoefsbwtcVU9go",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 624,
+      "cache_read_input_tokens": 73457,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 624
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 75_
+
+All data verified. Now writing the analysis script.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b8b11d62-6ca3-4151-bc4f-ed1130aa9fbf",
+  "uuid": "43c4dc0b-0075-4d2d-bb22-59f39a617142",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JQDN6X4NAoefsbwtcVU9go",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 624,
+      "cache_read_input_tokens": 73457,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 624
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 76_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_012MsQo2WvHK5yp24gRr5Qd6`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat > /root/autodl-tmp/struct_self_consist_ie/code/analysis_multiseed_selection_f1.py << 'SCRIPT_EOF'\n#!/usr/bin/env python3\n\"\"\"Multi-seed Selection F1 analysis for reviewer C2 response.\n\nFor each instance, score each sample with 5 signals (VC/SJ/FK/EM/LP),\nselect the top-scoring sample, compute its F1 vs gold.\nReport mean±std over 3 seeds with bootstrap p-value vs greedy.\n\"\"\"\n\nimport json\nimport os\nimport sys\nimport time\nfrom collections import Counter\n\nimport numpy as np\n\nsys.path.insert(0, '/root/autodl-tmp/struct_self_consist_ie/code')\nfrom consistency import (\n    _ner_soft_jaccard_pair,\n    _re_soft_jaccard_pair,\n    _extract_surface_keys,\n)\nfrom evaluation import per_instance_f1\n\nBASE = \"/root/autodl-tmp/struct_self_consist_ie\"\n\nEXPERIMENT_GROUPS = {\n    \"qwen_scierc_ner_n8\": {\n        \"subtask\": \"ner\",\n        \"seeds\": {\n            42: f\"{BASE}/output/exp_012_rerun_1024/samples.jsonl\",\n            123: f\"{BASE}/output/exp_018_qwen_scierc_seed123/samples.jsonl\",\n            456: f\"{BASE}/output/exp_018_qwen_scierc_seed456/samples.jsonl\",\n        },\n    },\n    \"llama_scierc_ner_n8\": {\n        \"subtask\": \"ner\",\n        \"seeds\": {\n            42: f\"{BASE}/output/exp_018_llama_scierc_seed42_r1024/samples.jsonl\",\n            123: f\"{BASE}/output/exp_018_llama_scierc_seed123/samples.jsonl\",\n            456: f\"{BASE}/output/exp_018_llama_scierc_seed456/samples.jsonl\",\n        },\n    },\n    \"llama_conll_ner_n16\": {\n        \"subtask\": \"ner\",\n        \"seeds\": {\n            42: f\"{BASE}/output/exp_017_llama_conll_n16_r1024/samples.jsonl\",\n            123: f\"{BASE}/output/exp_017_llama_conll_n16_s123_r1024/samples.jsonl\",\n            456: f\"{BASE}/output/exp_017_llama_conll_n16_s456_r1024/samples.jsonl\",\n        },\n    },\n}\n\nN_BOOTSTRAP = 10000\nBOOTSTRAP_SEED = 42\nN_RANDOM_REPEATS = 50\nSIGNALS = [\"VC\", \"SJ\", \"FK\", \"EM\", \"LP\"]\n\n\ndef load_data(path):\n    with open(path) as f:\n        return [json.loads(line) for line in f if line.strip()]\n\n\ndef compute_sample_sj_scores(instance, subtask):\n    samples = instance[\"samples\"]\n    N = len(samples)\n    field = \"entities\" if subtask == \"ner\" else \"relations\"\n    pair_fn = _ner_soft_jaccard_pair if subtask == \"ner\" else _re_soft_jaccard_pair\n    matrix = np.zeros((N, N))\n    for i in range(N):\n        for j in range(i + 1, N):\n            s = pair_fn(samples[i].get(field, []), samples[j].get(field, []))\n            matrix[i][j] = s\n            matrix[j][i] = s\n    np.fill_diagonal(matrix, 1.0)\n    return [float(np.mean([matrix[k][j] for j in range(N) if j != k])) for k in range(N)]\n\n\ndef compute_sample_surface_scores(instance, subtask):\n    samples = instance[\"samples\"]\n    N = len(samples)\n    key_sets = [frozenset(_extract_surface_keys(s, subtask)) for s in samples]\n    matrix = np.zeros((N, N))\n    for i in range(N):\n        for j in range(i + 1, N):\n            union = len(key_sets[i] | key_sets[j])\n            inter = len(key_sets[i] & key_sets[j])\n            s = inter / union if union > 0 else 1.0\n            matrix[i][j] = s\n            matrix[j][i] = s\n    np.fill_diagonal(matrix, 1.0)\n    fk_scores = [float(np.mean([matrix[k][j] for j in range(N) if j != k])) for k in range(N)]\n    return fk_scores, key_sets\n\n\ndef compute_sample_voting_conf(key_sets, N):\n    all_keys_count = Counter()\n    for ks in key_sets:\n        for key in ks:\n            all_keys_count[key] += 1\n    scores = []\n    for ks in key_sets:\n        if not ks:\n            scores.append(0.0)\n        else:\n            fracs = [all_keys_count[key] / N for key in ks]\n            scores.append(float(np.mean(fracs)))\n    return scores\n\n\ndef compute_sample_em_scores(key_sets):\n    N = len(key_sets)\n    return [float(sum(1 for j in range(N) if j != k and key_sets[k] == key_sets[j])) for k in range(N)]\n\n\ndef compute_sample_logprobs(instance):\n    lps = []\n    for s in instance[\"samples\"]:\n        lp = s.get(\"mean_logprob\")\n        if lp is None:\n            lp = s.get(\"cumulative_logprob\", -999) / max(s.get(\"n_tokens\", 1), 1)\n        lps.append(lp)\n    return lps\n\n\ndef select_top1(scores):\n    return int(np.argmax(scores))\n\n\ndef paired_bootstrap(f1s_signal, f1s_greedy, n_boot=10000, seed=42):\n    rng = np.random.default_rng(seed)\n    n = len(f1s_signal)\n    deltas = np.empty(n_boot)\n    for b in range(n_boot):\n        idx = rng.integers(0, n, size=n)\n        deltas[b] = f1s_signal[idx].mean() - f1s_greedy[idx].mean()\n    lo = float(np.percentile(deltas, 2.5))\n    hi = float(np.percentile(deltas, 97.5))\n    mean_delta = float(np.mean(deltas))\n    p_value = float(np.mean(deltas <= 0)) if mean_delta > 0 else float(np.mean(deltas >= 0))\n    return {\"mean_delta\": mean_delta, \"ci95\": [lo, hi], \"p_value\": p_value}\n\n\ndef analyze_single_seed(path, subtask):\n    instances = load_data(path)\n    entity_key = \"entities\" if subtask == \"ner\" else \"relations\"\n    valid = [inst for inst in instances if len(inst[\"gold\"].get(entity_key, [])) > 0]\n\n    n_inst = len(valid)\n    rng = np.random.default_rng(BOOTSTRAP_SEED)\n\n    signal_f1s = {sig: [] for sig in SIGNALS}\n    greedy_f1s = []\n    random_f1s = []\n    oracle_f1s = []\n\n    t0 = time.time()\n    for idx, inst in enumerate(valid):\n        if (idx + 1) % 500 == 0:\n            print(f\"      {idx+1}/{n_inst} ({time.time()-t0:.0f}s)\")\n\n        samples = inst[\"samples\"]\n        gold = inst[\"gold\"]\n        N = len(samples)\n\n        sample_f1s = [per_instance_f1(s, gold, subtask=subtask) for s in samples]\n        greedy_f1 = per_instance_f1(inst[\"greedy\"], gold, subtask=subtask)\n        greedy_f1s.append(greedy_f1)\n        oracle_f1s.append(max(sample_f1s))\n\n        # Random baseline\n        rand_vals = []\n        for _ in range(N_RANDOM_REPEATS):\n            ri = int(rng.integers(0, N))\n            rand_vals.append(sample_f1s[ri])\n        random_f1s.append(float(np.mean(rand_vals)))\n\n        # LP\n        lps = compute_sample_logprobs(inst)\n        signal_f1s[\"LP\"].append(sample_f1s[select_top1(lps)])\n\n        # SJ\n        sj_scores = compute_sample_sj_scores(inst, subtask)\n        signal_f1s[\"SJ\"].append(sample_f1s[select_top1(sj_scores)])\n\n        # FK + surface keys\n        fk_scores, key_sets = compute_sample_surface_scores(inst, subtask)\n        signal_f1s[\"FK\"].append(sample_f1s[select_top1(fk_scores)])\n\n        # VC\n        vc_scores = compute_sample_voting_conf(key_sets, N)\n        signal_f1s[\"VC\"].append(sample_f1s[select_top1(vc_scores)])\n\n        # EM\n        em_scores = compute_sample_em_scores(key_sets)\n        signal_f1s[\"EM\"].append(sample_f1s[select_top1(em_scores)])\n\n    elapsed = time.time() - t0\n    print(f\"      Done in {elapsed:.1f}s ({n_inst} instances)\")\n\n    greedy_arr = np.array(greedy_f1s)\n    random_arr = np.array(random_f1s)\n    oracle_arr = np.array(oracle_f1s)\n\n    result = {\n        \"n_instances\": n_inst,\n        \"greedy_f1\": float(greedy_arr.mean()),\n        \"random_f1\": float(random_arr.mean()),\n        \"oracle_f1\": float(oracle_arr.mean()),\n    }\n\n    for sig in SIGNALS:\n        arr = np.array(signal_f1s[sig])\n        boot = paired_bootstrap(arr, greedy_arr, N_BOOTSTRAP, BOOTSTRAP_SEED)\n        result[sig] = {\n            \"selection_f1\": float(arr.mean()),\n            \"delta_vs_greedy\": float(arr.mean() - greedy_arr.mean()),\n            \"bootstrap\": boot,\n        }\n\n    return result\n\n\ndef aggregate_seeds(seed_results, seeds):\n    agg = {}\n    n_inst = seed_results[seeds[0]][\"n_instances\"]\n    agg[\"seeds\"] = seeds\n    agg[\"n_instances\"] = n_inst\n\n    for key in [\"greedy_f1\", \"random_f1\", \"oracle_f1\"]:\n        vals = [seed_results[s][key] for s in seeds]\n        agg[key] = {\n            \"mean\": round(float(np.mean(vals)), 5),\n            \"std\": round(float(np.std(vals, ddof=1)), 5),\n            \"per_seed\": [round(v, 5) for v in vals],\n        }\n\n    agg[\"signal_selection_f1\"] = {}\n    for sig in SIGNALS:\n        vals = [seed_results[s][sig][\"selection_f1\"] for s in seeds]\n        deltas = [seed_results[s][sig][\"delta_vs_greedy\"] for s in seeds]\n        p_values = [seed_results[s][sig][\"bootstrap\"][\"p_value\"] for s in seeds]\n        ci_los = [seed_results[s][sig][\"bootstrap\"][\"ci95\"][0] for s in seeds]\n        ci_his = [seed_results[s][sig][\"bootstrap\"][\"ci95\"][1] for s in seeds]\n\n        agg[\"signal_selection_f1\"][sig] = {\n            \"mean\": round(float(np.mean(vals)), 5),\n            \"std\": round(float(np.std(vals, ddof=1)), 5),\n            \"per_seed\": [round(v, 5) for v in vals],\n            \"delta_vs_greedy_mean\": round(float(np.mean(deltas)), 5),\n            \"delta_vs_greedy_std\": round(float(np.std(deltas, ddof=1)), 5),\n            \"vs_greedy_p_per_seed\": [round(p, 5) for p in p_values],\n            \"vs_greedy_ci95_per_seed\": [[round(lo, 5), round(hi, 5)] for lo, hi in zip(ci_los, ci_his)],\n        }\n\n    return agg\n\n\ndef main():\n    all_results = {}\n\n    for group_name, group_cfg in EXPERIMENT_GROUPS.items():\n        subtask = group_cfg[\"subtask\"]\n        seeds_cfg = group_cfg[\"seeds\"]\n        seeds = sorted(seeds_cfg.keys())\n\n        print(f\"\\n{'='*60}\")\n        print(f\"  {group_name}\")\n        print(f\"{'='*60}\")\n\n        seed_results = {}\n        for seed in seeds:\n            path = seeds_cfg[seed]\n            if not os.path.exists(path):\n                print(f\"  SKIP seed {seed}: {path} not found\")\n                continue\n            print(f\"  seed {seed}:\")\n            seed_results[seed] = analyze_single_seed(path, subtask)\n\n        if len(seed_results) < 3:\n            print(f\"  WARNING: only {len(seed_results)} seeds found, need 3\")\n            if len(seed_results) == 0:\n                continue\n\n        agg = aggregate_seeds(seed_results, list(seed_results.keys()))\n        all_results[group_name] = agg\n\n        # Print summary table\n        print(f\"\\n  {'Method':<10s}  {'Mean F1':>9s}  {'±σ':>7s}  {'Δ greedy':>9s}\")\n        print(f\"  {'-'*10}  {'-'*9}  {'-'*7}  {'-'*9}\")\n        print(f\"  {'Greedy':<10s}  {agg['greedy_f1']['mean']:.5f}  {agg['greedy_f1']['std']:.5f}\")\n        print(f\"  {'Random':<10s}  {agg['random_f1']['mean']:.5f}  {agg['random_f1']['std']:.5f}\")\n        for sig in SIGNALS:\n            sr = agg[\"signal_selection_f1\"][sig]\n            print(f\"  {sig:<10s}  {sr['mean']:.5f}  {sr['std']:.5f}  {sr['delta_vs_greedy_mean']:+.5f}\")\n        print(f\"  {'Oracle':<10s}  {agg['oracle_f1']['mean']:.5f}  {agg['oracle_f1']['std']:.5f}\")\n\n    out_path = f\"{BASE}/output/analysis_multiseed_selection_f1.json\"\n    with open(out_path, \"w\") as f:\n        json.dump(all_results, f, indent=2)\n    print(f\"\\nSaved: {out_path}\")\n\n\nif __name__ == \"__main__\":\n    main()\nSCRIPT_EOF\necho \"Script written OK\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b8b11d62-6ca3-4151-bc4f-ed1130aa9fbf",
+  "uuid": "f7daae51-4619-4430-abb4-3aadb1ded66f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JQDN6X4NAoefsbwtcVU9go",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 624,
+      "cache_read_input_tokens": 73457,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 624
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 77 · 2026-05-15T12:46:13.088Z_
+
+<details><summary>↩ Tool result · `toolu_012MsQo2WvHK5yp24gRr5Qd6`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Script written OK\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b8b11d62-6ca3-4151-bc4f-ed1130aa9fbf",
+  "uuid": "9c14da2f-26e0-48fb-a5ee-903cef24b763",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Script written OK\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Script written OK\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 78_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01LGxQ4ymrsXo48pXsmHWqfr`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python3 code/analysis_multiseed_selection_f1.py 2>&1",
+  "account": "root",
+  "warn": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b8b11d62-6ca3-4151-bc4f-ed1130aa9fbf",
+  "uuid": "f4d0744c-7f1f-4f97-8e43-29af30da1d6c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WjAo6cBiyVo6PsubWZQR5G",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4336,
+      "cache_read_input_tokens": 74081,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4336
+      },
+      "output_tokens": 50,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 79 · 2026-05-15T12:46:40.992Z_
+
+<details><summary>↩ Tool result · `toolu_01LGxQ4ymrsXo48pXsmHWqfr`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\n============================================================\\n  qwen_scierc_ner_n8\\n============================================================\\n  seed 42:\\n      500/529 (0s)\\n      Done in 0.3s (529 instances)\\n  seed 123:\\n      500/529 (0s)\\n      Done in 0.3s (529 instances)\\n  seed 456:\\n      500/529 (0s)\\n      Done in 0.3s (529 instances)\\n\\n  Method        Mean F1       ±σ   Δ greedy\\n  ----------  ---------  -------  ---------\\n  Greedy      0.64583  0.00195\\n  Random      0.60688  0.00597\\n  VC          0.61937  0.00683  -0.02646\\n  SJ          0.64132  0.00862  -0.00451\\n  FK          0.64126  0.00799  -0.00457\\n  EM          0.63390  0.00569  -0.01193\\n  LP          0.64623  0.00340  +0.00040\\n  Oracle      0.77637  0.00387\\n\\n============================================================\\n  llama_scierc_ner_n8\\n============================================================\\n  seed 42:\\n      500/529 (0s)\\n      Done in 0.3s (529 instances)\\n  seed 123:\\n      500/529 (0s)\\n      Done in 0.3s (529 instances)\\n  seed 456:\\n      500/529 (0s)\\n      Done in 0.3s (529 instances)\\n\\n  Method        Mean F1       ±σ   Δ greedy\\n  ----------  ---------  -------  ---------\\n  Greedy      0.64572  0.00033\\n  Random      0.62005  0.00135\\n  VC          0.64135  0.00133  -0.00437\\n  SJ          0.64383  0.00563  -0.00189\\n  FK          0.64396  0.00384  -0.00176\\n  EM          0.63793  0.00867  -0.00779\\n  LP          0.64511  0.00320  -0.00061\\n  Oracle      0.76599  0.00868\\n\\n============================================================\\n  llama_conll_ner_n16\\n============================================================\\n  seed 42:\\n      500/2756 (1s)\\n      1000/2756 (2s)\\n      1500/2756 (2s)\\n      2000/2756 (3s)\\n      2500/2756 (4s)\\n      Done in 4.2s (2756 instances)\\n  seed 123:\\n      500/2756 (1s)\\n      1000/2756 (2s)\\n      1500/2756 (2s)\\n      2000/2756 (3s)\\n      2500/2756 (4s)\\n      Done in 4.2s (2756 instances)\\n  seed 456:\\n      500/2756 (1s)\\n      1000/2756 (2s)\\n      1500/2756 (2s)\\n      2000/2756 (3s)\\n      2500/2756 (4s)\\n      Done in 4.2s (2756 instances)\\n\\n  Method        Mean F1       ±σ   Δ greedy\\n  ----------  ---------  -------  ---------\\n  Greedy      0.92397  0.00017\\n  Random      0.92155  0.00021\\n  VC          0.92680  0.00016  +0.00283\\n  SJ          0.92622  0.00027  +0.00225\\n  FK          0.92630  0.00008  +0.00233\\n  EM          0.92628  0.00012  +0.00231\\n  LP          0.92515  0.00027  +0.00118\\n  Oracle      0.94882  0.00058\\n\\nSaved: /root/autodl-tmp/struct_self_consist_ie/output/analysis_multiseed_selection_f1.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 23.7}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b8b11d62-6ca3-4151-bc4f-ed1130aa9fbf",
+  "uuid": "6c1c8aaf-af33-4638-a521-6761addb57a5",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\n============================================================\\\\n  qwen_scierc_ner_n8\\\\n============================================================\\\\n  seed 42:\\\\n      500/529 (0s)\\\\n      Done in 0.3s (529 instances)\\\\n  seed 123:\\\\n      500/529 (0s)\\\\n      Done in 0.3s (529 instances)\\\\n  seed 456:\\\\n      500/529 (0s)\\\\n      Done in 0.3s (529 instances)\\\\n\\\\n  Method        Mean F1       ±σ   Δ greedy\\\\n  ----------  ---------  -------  ---------\\\\n  Greedy      0.64583  0.00195\\\\n  Random      0.60688  0.00597\\\\n  VC          0.61937  0.00683  -0.02646\\\\n  SJ          0.64132  0.00862  -0.00451\\\\n  FK          0.64126  0.00799  -0.00457\\\\n  EM          0.63390  0.00569  -0.01193\\\\n  LP          0.64623  0.00340  +0.00040\\\\n  Oracle      0.77637  0.00387\\\\n\\\\n============================================================\\\\n  llama_scierc_ner_n8\\\\n============================================================\\\\n  seed 42:\\\\n      500/529 (0s)\\\\n      Done in 0.3s (529 instances)\\\\n  seed 123:\\\\n      500/529 (0s)\\\\n      Done in 0.3s (529 instances)\\\\n  seed 456:\\\\n      500/529 (0s)\\\\n      Done in 0.3s (529 instances)\\\\n\\\\n  Method        Mean F1       ±σ   Δ greedy\\\\n  ----------  ---------  -------  ---------\\\\n  Greedy      0.64572  0.00033\\\\n  Random      0.62005  0.00135\\\\n  VC          0.64135  0.00133  -0.00437\\\\n  SJ          0.64383  0.00563  -0.00189\\\\n  FK          0.64396  0.00384  -0.00176\\\\n  EM          0.63793  0.00867  -0.00779\\\\n  LP          0.64511  0.00320  -0.00061\\\\n  Oracle      0.76599  0.00868\\\\n\\\\n============================================================\\\\n  llama_conll_ner_n16\\\\n============================================================\\\\n  seed 42:\\\\n      500/2756 (1s)\\\\n      1000/2756 (2s)\\\\n      1500/2756 (2s)\\\\n      2000/2756 (3s)\\\\n      2500/2756 (4s)\\\\n      Done in 4.2s (2756 instances)\\\\n  seed 123:\\\\n      500/2756 (1s)\\\\n      1000/2756 (2s)\\\\n      1500/2756 (2s)\\\\n      2000/2756 (3s)\\\\n      2500/2756 (4s)\\\\n      Done in 4.2s (2756 instances)\\\\n  seed 456:\\\\n      500/2756 (1s)\\\\n      1000/2756 (2s)\\\\n      1500/2756 (2s)\\\\n      2000/2756 (3s)\\\\n      2500/2756 (4s)\\\\n      Done in 4.2s (2756 instances)\\\\n\\\\n  Method        Mean F1       ±σ   Δ greedy\\\\n  ----------  ---------  -------  ---------\\\\n  Greedy      0.92397  0.00017\\\\n  Random      0.92155  0.00021\\\\n  VC          0.92680  0.00016  +0.00283\\\\n  SJ          0.92622  0.00027  +0.00225\\\\n  FK          0.92630  0.00008  +0.00233\\\\n  EM          0.92628  0.00012  +0.00231\\\\n  LP          0.92515  0.00027  +0.00118\\\\n  Oracle      0.94882  0.00058\\\\n\\\\nSaved: /root/autodl-tmp/struct_self_consist_ie/output/analysis_multiseed_selection_f1.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 23.7}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\n============================================================\\n  qwen_scierc_ner_n8\\n============================================================\\n  seed 42:\\n      500/529 (0s)\\n      Done in 0.3s (529 instances)\\n  seed 123:\\n      500/529 (0s)\\n      Done in 0.3s (529 instances)\\n  seed 456:\\n      500/529 (0s)\\n      Done in 0.3s (529 instances)\\n\\n  Method        Mean F1       ±σ   Δ greedy\\n  ----------  ---------  -------  ---------\\n  Greedy      0.64583  0.00195\\n  Random      0.60688  0.00597\\n  VC          0.61937  0.00683  -0.02646\\n  SJ          0.64132  0.00862  -0.00451\\n  FK          0.64126  0.00799  -0.00457\\n  EM          0.63390  0.00569  -0.01193\\n  LP          0.64623  0.00340  +0.00040\\n  Oracle      0.77637  0.00387\\n\\n============================================================\\n  llama_scierc_ner_n8\\n============================================================\\n  seed 42:\\n      500/529 (0s)\\n      Done in 0.3s (529 instances)\\n  seed 123:\\n      500/529 (0s)\\n      Done in 0.3s (529 instances)\\n  seed 456:\\n      500/529 (0s)\\n      Done in 0.3s (529 instances)\\n\\n  Method        Mean F1       ±σ   Δ greedy\\n  ----------  ---------  -------  ---------\\n  Greedy      0.64572  0.00033\\n  Random      0.62005  0.00135\\n  VC          0.64135  0.00133  -0.00437\\n  SJ          0.64383  0.00563  -0.00189\\n  FK          0.64396  0.00384  -0.00176\\n  EM          0.63793  0.00867  -0.00779\\n  LP          0.64511  0.00320  -0.00061\\n  Oracle      0.76599  0.00868\\n\\n============================================================\\n  llama_conll_ner_n16\\n============================================================\\n  seed 42:\\n      500/2756 (1s)\\n      1000/2756 (2s)\\n      1500/2756 (2s)\\n      2000/2756 (3s)\\n      2500/2756 (4s)\\n      Done in 4.2s (2756 instances)\\n  seed 123:\\n      500/2756 (1s)\\n      1000/2756 (2s)\\n      1500/2756 (2s)\\n      2000/2756 (3s)\\n      2500/2756 (4s)\\n      Done in 4.2s (2756 instances)\\n  seed 456:\\n      500/2756 (1s)\\n      1000/2756 (2s)\\n      1500/2756 (2s)\\n      2000/2756 (3s)\\n      2500/2756 (4s)\\n      Done in 4.2s (2756 instances)\\n\\n  Method        Mean F1       ±σ   Δ greedy\\n  ----------  ---------  -------  ---------\\n  Greedy      0.92397  0.00017\\n  Random      0.92155  0.00021\\n  VC          0.92680  0.00016  +0.00283\\n  SJ          0.92622  0.00027  +0.00225\\n  FK          0.92630  0.00008  +0.00233\\n  EM          0.92628  0.00012  +0.00231\\n  LP          0.92515  0.00027  +0.00118\\n  Oracle      0.94882  0.00058\\n\\nSaved: /root/autodl-tmp/struct_self_consist_ie/output/analysis_multiseed_selection_f1.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 23.7}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 80_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The script ran successfully. Let me check the full output JSON to report the results.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b8b11d62-6ca3-4151-bc4f-ed1130aa9fbf",
+  "uuid": "3c4829f6-85cd-4ae9-af05-7cff31729a45",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Rq3Vsu9Zmjhuy5cPH2ssqS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1354,
+      "cache_read_input_tokens": 78417,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1354
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 81_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01N8pAWwi4NWcQwFjzRjay4z`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/analysis_multiseed_selection_f1.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b8b11d62-6ca3-4151-bc4f-ed1130aa9fbf",
+  "uuid": "e8147a64-41af-4df8-b8d3-82dd41e2d7fa",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Rq3Vsu9Zmjhuy5cPH2ssqS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1354,
+      "cache_read_input_tokens": 78417,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1354
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 82 · 2026-05-15T12:46:44.612Z_
+
+<details><summary>↩ Tool result · `toolu_01N8pAWwi4NWcQwFjzRjay4z`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"qwen_scierc_ner_n8\\\": {\\n    \\\"seeds\\\": [\\n      42,\\n      123,\\n      456\\n    ],\\n    \\\"n_instances\\\": 529,\\n    \\\"greedy_f1\\\": {\\n      \\\"mean\\\": 0.64583,\\n      \\\"std\\\": 0.00195,\\n      \\\"per_seed\\\": [\\n        0.64392,\\n        0.64575,\\n        0.64783\\n      ]\\n    },\\n    \\\"random_f1\\\": {\\n      \\\"mean\\\": 0.60688,\\n      \\\"std\\\": 0.00597,\\n      \\\"per_seed\\\": [\\n        0.60807,\\n        0.61215,\\n        0.6004\\n      ]\\n    },\\n    \\\"oracle_f1\\\": {\\n      \\\"mean\\\": 0.77637,\\n      \\\"std\\\": 0.00387,\\n      \\\"per_seed\\\": [\\n        0.7758,\\n        0.7805,\\n        0.77282\\n      ]\\n    },\\n    \\\"signal_selection_f1\\\": {\\n      \\\"VC\\\": {\\n        \\\"mean\\\": 0.61937,\\n        \\\"std\\\": 0.00683,\\n        \\\"per_seed\\\": [\\n          0.62561,\\n          0.62044,\\n          0.61208\\n        ],\\n        \\\"delta_vs_greedy_mean\\\": -0.02646,\\n        \\\"delta_vs_greedy_std\\\": 0.00877,\\n        \\\"vs_greedy_p_per_seed\\\": [\\n          0.0278,\\n          0.0039,\\n          0.0002\\n        ],\\n        \\\"vs_greedy_ci95_per_seed\\\": [\\n          [\\n            -0.03673,\\n            0.00049\\n          ],\\n          [\\n            -0.0436,\\n            -0.00646\\n          ],\\n          [\\n            -0.0544,\\n            -0.01695\\n          ]\\n        ]\\n      },\\n      \\\"SJ\\\": {\\n        \\\"mean\\\": 0.64132,\\n        \\\"std\\\": 0.00862,\\n        \\\"per_seed\\\": [\\n          0.64501,\\n          0.64748,\\n          0.63147\\n        ],\\n        \\\"delta_vs_greedy_mean\\\": -0.00451,\\n        \\\"delta_vs_greedy_std\\\": 0.01026,\\n        \\\"vs_greedy_p_per_seed\\\": [\\n          0.4433,\\n          0.4046,\\n          0.0051\\n        ],\\n        \\\"vs_greedy_ci95_per_seed\\\": [\\n          [\\n            -0.01277,\\n            0.01508\\n          ],\\n          [\\n            -0.01283,\\n            0.0164\\n          ],\\n          [\\n            -0.02956,\\n            -0.00391\\n          ]\\n        ]\\n      },\\n      \\\"FK\\\": {\\n        \\\"mean\\\": 0.64126,\\n        \\\"std\\\": 0.00799,\\n        \\\"per_seed\\\": [\\n          0.64483,\\n          0.64685,\\n          0.63211\\n        ],\\n        \\\"delta_vs_greedy_mean\\\": -0.00457,\\n        \\\"delta_vs_greedy_std\\\": 0.00966,\\n        \\\"vs_greedy_p_per_seed\\\": [\\n          0.4513,\\n          0.4387,\\n          0.0065\\n        ],\\n        \\\"vs_greedy_ci95_per_seed\\\": [\\n          [\\n            -0.01309,\\n            0.01496\\n          ],\\n          [\\n            -0.0135,\\n            0.01601\\n          ],\\n          [\\n            -0.0287,\\n            -0.00336\\n          ]\\n        ]\\n      },\\n      \\\"EM\\\": {\\n        \\\"mean\\\": 0.6339,\\n        \\\"std\\\": 0.00569,\\n        \\\"per_seed\\\": [\\n          0.63623,\\n          0.63806,\\n          0.62742\\n        ],\\n        \\\"delta_vs_greedy_mean\\\": -0.01193,\\n        \\\"delta_vs_greedy_std\\\": 0.00734,\\n        \\\"vs_greedy_p_per_seed\\\": [\\n          0.1624,\\n          0.1597,\\n          0.0018\\n        ],\\n        \\\"vs_greedy_ci95_per_seed\\\": [\\n          [\\n            -0.02312,\\n            0.00723\\n          ],\\n          [\\n            -0.02306,\\n            0.00745\\n          ],\\n          [\\n            -0.03521,\\n            -0.00619\\n          ]\\n        ]\\n      },\\n      \\\"LP\\\": {\\n        \\\"mean\\\": 0.64623,\\n        \\\"std\\\": 0.0034,\\n        \\\"per_seed\\\": [\\n          0.65007,\\n          0.64362,\\n          0.64499\\n        ],\\n        \\\"delta_vs_greedy_mean\\\": 0.0004,\\n        \\\"delta_vs_greedy_std\\\": 0.005,\\n        \\\"vs_greedy_p_per_seed\\\": [\\n          0.1971,\\n          0.3765,\\n          0.3181\\n        ],\\n        \\\"vs_greedy_ci95_per_seed\\\": [\\n          [\\n            -0.00797,\\n            0.02002\\n          ],\\n          [\\n            -0.01555,\\n            0.0112\\n          ],\\n          [\\n            -0.015,\\n            0.009\\n          ]\\n        ]\\n      }\\n    }\\n  },\\n  \\\"llama_scierc_ner_n8\\\": {\\n    \\\"seeds\\\": [\\n      42,\\n      123,\\n      456\\n    ],\\n    \\\"n_instances\\\": 529,\\n    \\\"greedy_f1\\\": {\\n      \\\"mean\\\": 0.64572,\\n      \\\"std\\\": 0.00033,\\n      \\\"per_seed\\\": [\\n        0.64603,\\n        0.64538,\\n        0.64575\\n      ]\\n    },\\n    \\\"random_f1\\\": {\\n      \\\"mean\\\": 0.62005,\\n      \\\"std\\\": 0.00135,\\n      \\\"per_seed\\\": [\\n        0.61943,\\n        0.6216,\\n        0.61912\\n      ]\\n    },\\n    \\\"oracle_f1\\\": {\\n      \\\"mean\\\": 0.76599,\\n      \\\"std\\\": 0.00868,\\n      \\\"per_seed\\\": \\n\\n... [截断: 输出过长，省略 2542 字符] ...\\n\\n.64792,\\n          0.64162,\\n          0.64579\\n        ],\\n        \\\"delta_vs_greedy_mean\\\": -0.00061,\\n        \\\"delta_vs_greedy_std\\\": 0.00288,\\n        \\\"vs_greedy_p_per_seed\\\": [\\n          0.3775,\\n          0.2747,\\n          0.4964\\n        ],\\n        \\\"vs_greedy_ci95_per_seed\\\": [\\n          [\\n            -0.00902,\\n            0.01316\\n          ],\\n          [\\n            -0.01608,\\n            0.00855\\n          ],\\n          [\\n            -0.01108,\\n            0.01121\\n          ]\\n        ]\\n      }\\n    }\\n  },\\n  \\\"llama_conll_ner_n16\\\": {\\n    \\\"seeds\\\": [\\n      42,\\n      123,\\n      456\\n    ],\\n    \\\"n_instances\\\": 2756,\\n    \\\"greedy_f1\\\": {\\n      \\\"mean\\\": 0.92397,\\n      \\\"std\\\": 0.00017,\\n      \\\"per_seed\\\": [\\n        0.92392,\\n        0.92383,\\n        0.92417\\n      ]\\n    },\\n    \\\"random_f1\\\": {\\n      \\\"mean\\\": 0.92155,\\n      \\\"std\\\": 0.00021,\\n      \\\"per_seed\\\": [\\n        0.92174,\\n        0.92132,\\n        0.92158\\n      ]\\n    },\\n    \\\"oracle_f1\\\": {\\n      \\\"mean\\\": 0.94882,\\n      \\\"std\\\": 0.00058,\\n      \\\"per_seed\\\": [\\n        0.94824,\\n        0.94939,\\n        0.94882\\n      ]\\n    },\\n    \\\"signal_selection_f1\\\": {\\n      \\\"VC\\\": {\\n        \\\"mean\\\": 0.9268,\\n        \\\"std\\\": 0.00016,\\n        \\\"per_seed\\\": [\\n          0.92666,\\n          0.92698,\\n          0.92676\\n        ],\\n        \\\"delta_vs_greedy_mean\\\": 0.00283,\\n        \\\"delta_vs_greedy_std\\\": 0.00029,\\n        \\\"vs_greedy_p_per_seed\\\": [\\n          0.0096,\\n          0.0033,\\n          0.0269\\n        ],\\n        \\\"vs_greedy_ci95_per_seed\\\": [\\n          [\\n            0.00041,\\n            0.00524\\n          ],\\n          [\\n            0.00082,\\n            0.0057\\n          ],\\n          [\\n            -4e-05,\\n            0.0054\\n          ]\\n        ]\\n      },\\n      \\\"SJ\\\": {\\n        \\\"mean\\\": 0.92622,\\n        \\\"std\\\": 0.00027,\\n        \\\"per_seed\\\": [\\n          0.9263,\\n          0.92592,\\n          0.92643\\n        ],\\n        \\\"delta_vs_greedy_mean\\\": 0.00225,\\n        \\\"delta_vs_greedy_std\\\": 0.00014,\\n        \\\"vs_greedy_p_per_seed\\\": [\\n          0.0004,\\n          0.0032,\\n          0.0122\\n        ],\\n        \\\"vs_greedy_ci95_per_seed\\\": [\\n          [\\n            0.00089,\\n            0.00414\\n          ],\\n          [\\n            0.00054,\\n            0.00391\\n          ],\\n          [\\n            0.00028,\\n            0.00441\\n          ]\\n        ]\\n      },\\n      \\\"FK\\\": {\\n        \\\"mean\\\": 0.9263,\\n        \\\"std\\\": 8e-05,\\n        \\\"per_seed\\\": [\\n          0.92631,\\n          0.92623,\\n          0.92638\\n        ],\\n        \\\"delta_vs_greedy_mean\\\": 0.00233,\\n        \\\"delta_vs_greedy_std\\\": 0.0001,\\n        \\\"vs_greedy_p_per_seed\\\": [\\n          0.0001,\\n          0.0001,\\n          0.0151\\n        ],\\n        \\\"vs_greedy_ci95_per_seed\\\": [\\n          [\\n            0.0009,\\n            0.00418\\n          ],\\n          [\\n            0.00085,\\n            0.00422\\n          ],\\n          [\\n            0.0002,\\n            0.00435\\n          ]\\n        ]\\n      },\\n      \\\"EM\\\": {\\n        \\\"mean\\\": 0.92628,\\n        \\\"std\\\": 0.00012,\\n        \\\"per_seed\\\": [\\n          0.92615,\\n          0.9263,\\n          0.92639\\n        ],\\n        \\\"delta_vs_greedy_mean\\\": 0.00231,\\n        \\\"delta_vs_greedy_std\\\": 0.00014,\\n        \\\"vs_greedy_p_per_seed\\\": [\\n          0.0003,\\n          0.0012,\\n          0.0148\\n        ],\\n        \\\"vs_greedy_ci95_per_seed\\\": [\\n          [\\n            0.00074,\\n            0.00393\\n          ],\\n          [\\n            0.0008,\\n            0.00434\\n          ],\\n          [\\n            0.00022,\\n            0.00435\\n          ]\\n        ]\\n      },\\n      \\\"LP\\\": {\\n        \\\"mean\\\": 0.92515,\\n        \\\"std\\\": 0.00027,\\n        \\\"per_seed\\\": [\\n          0.92537,\\n          0.92523,\\n          0.92485\\n        ],\\n        \\\"delta_vs_greedy_mean\\\": 0.00118,\\n        \\\"delta_vs_greedy_std\\\": 0.00043,\\n        \\\"vs_greedy_p_per_seed\\\": [\\n          0.0021,\\n          0.0023,\\n          0.1803\\n        ],\\n        \\\"vs_greedy_ci95_per_seed\\\": [\\n          [\\n            0.00038,\\n            0.00279\\n          ],\\n          [\\n            0.0003,\\n            0.00277\\n          ],\\n          [\\n            -0.00076,\\n            0.00221\\n          ]\\n        ]\\n      }\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b8b11d62-6ca3-4151-bc4f-ed1130aa9fbf",
+  "uuid": "fa350d0c-dfc8-4d4f-8556-ff2033045e2c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"qwen_scierc_ner_n8\\\\\\\": {\\\\n    \\\\\\\"seeds\\\\\\\": [\\\\n      42,\\\\n      123,\\\\n      456\\\\n    ],\\\\n    \\\\\\\"n_instances\\\\\\\": 529,\\\\n    \\\\\\\"greedy_f1\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.64583,\\\\n      \\\\\\\"std\\\\\\\": 0.00195,\\\\n      \\\\\\\"per_seed\\\\\\\": [\\\\n        0.64392,\\\\n        0.64575,\\\\n        0.64783\\\\n      ]\\\\n    },\\\\n    \\\\\\\"random_f1\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.60688,\\\\n      \\\\\\\"std\\\\\\\": 0.00597,\\\\n      \\\\\\\"per_seed\\\\\\\": [\\\\n        0.60807,\\\\n        0.61215,\\\\n        0.6004\\\\n      ]\\\\n    },\\\\n    \\\\\\\"oracle_f1\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.77637,\\\\n      \\\\\\\"std\\\\\\\": 0.00387,\\\\n      \\\\\\\"per_seed\\\\\\\": [\\\\n        0.7758,\\\\n        0.7805,\\\\n        0.77282\\\\n      ]\\\\n    },\\\\n    \\\\\\\"signal_selection_f1\\\\\\\": {\\\\n      \\\\\\\"VC\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.61937,\\\\n        \\\\\\\"std\\\\\\\": 0.00683,\\\\n        \\\\\\\"per_seed\\\\\\\": [\\\\n          0.62561,\\\\n          0.62044,\\\\n          0.61208\\\\n        ],\\\\n        \\\\\\\"delta_vs_greedy_mean\\\\\\\": -0.02646,\\\\n        \\\\\\\"delta_vs_greedy_std\\\\\\\": 0.00877,\\\\n        \\\\\\\"vs_greedy_p_per_seed\\\\\\\": [\\\\n          0.0278,\\\\n          0.0039,\\\\n          0.0002\\\\n        ],\\\\n        \\\\\\\"vs_greedy_ci95_per_seed\\\\\\\": [\\\\n          [\\\\n            -0.03673,\\\\n            0.00049\\\\n          ],\\\\n          [\\\\n            -0.0436,\\\\n            -0.00646\\\\n          ],\\\\n          [\\\\n            -0.0544,\\\\n            -0.01695\\\\n          ]\\\\n        ]\\\\n      },\\\\n      \\\\\\\"SJ\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.64132,\\\\n        \\\\\\\"std\\\\\\\": 0.00862,\\\\n        \\\\\\\"per_seed\\\\\\\": [\\\\n          0.64501,\\\\n          0.64748,\\\\n          0.63147\\\\n        ],\\\\n        \\\\\\\"delta_vs_greedy_mean\\\\\\\": -0.00451,\\\\n        \\\\\\\"delta_vs_greedy_std\\\\\\\": 0.01026,\\\\n        \\\\\\\"vs_greedy_p_per_seed\\\\\\\": [\\\\n          0.4433,\\\\n          0.4046,\\\\n          0.0051\\\\n        ],\\\\n        \\\\\\\"vs_greedy_ci95_per_seed\\\\\\\": [\\\\n          [\\\\n            -0.01277,\\\\n            0.01508\\\\n          ],\\\\n          [\\\\n            -0.01283,\\\\n            0.0164\\\\n          ],\\\\n          [\\\\n            -0.02956,\\\\n            -0.00391\\\\n          ]\\\\n        ]\\\\n      },\\\\n      \\\\\\\"FK\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.64126,\\\\n        \\\\\\\"std\\\\\\\": 0.00799,\\\\n        \\\\\\\"per_seed\\\\\\\": [\\\\n          0.64483,\\\\n          0.64685,\\\\n          0.63211\\\\n        ],\\\\n        \\\\\\\"delta_vs_greedy_mean\\\\\\\": -0.00457,\\\\n        \\\\\\\"delta_vs_greedy_std\\\\\\\": 0.00966,\\\\n        \\\\\\\"vs_greedy_p_per_seed\\\\\\\": [\\\\n          0.4513,\\\\n          0.4387,\\\\n          0.0065\\\\n        ],\\\\n        \\\\\\\"vs_greedy_ci95_per_seed\\\\\\\": [\\\\n          [\\\\n            -0.01309,\\\\n            0.01496\\\\n          ],\\\\n          [\\\\n            -0.0135,\\\\n            0.01601\\\\n          ],\\\\n          [\\\\n            -0.0287,\\\\n            -0.00336\\\\n          ]\\\\n        ]\\\\n      },\\\\n      \\\\\\\"EM\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.6339,\\\\n        \\\\\\\"std\\\\\\\": 0.00569,\\\\n        \\\\\\\"per_seed\\\\\\\": [\\\\n          0.63623,\\\\n          0.63806,\\\\n          0.62742\\\\n        ],\\\\n        \\\\\\\"delta_vs_greedy_mean\\\\\\\": -0.01193,\\\\n        \\\\\\\"delta_vs_greedy_std\\\\\\\": 0.00734,\\\\n        \\\\\\\"vs_greedy_p_per_seed\\\\\\\": [\\\\n          0.1624,\\\\n          0.1597,\\\\n          0.0018\\\\n        ],\\\\n        \\\\\\\"vs_greedy_ci95_per_seed\\\\\\\": [\\\\n          [\\\\n            -0.02312,\\\\n            0.00723\\\\n          ],\\\\n          [\\\\n            -0.02306,\\\\n            0.00745\\\\n          ],\\\\n          [\\\\n            -0.03521,\\\\n            -0.00619\\\\n          ]\\\\n        ]\\\\n      },\\\\n      \\\\\\\"LP\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.64623,\\\\n        \\\\\\\"std\\\\\\\": 0.0034,\\\\n        \\\\\\\"per_seed\\\\\\\": [\\\\n          0.65007,\\\\n          0.64362,\\\\n          0.64499\\\\n        ],\\\\n        \\\\\\\"delta_vs_greedy_mean\\\\\\\": 0.0004,\\\\n        \\\\\\\"delta_vs_greedy_std\\\\\\\": 0.005,\\\\n        \\\\\\\"vs_greedy_p_per_seed\\\\\\\": [\\\\n          0.1971,\\\\n          0.3765,\\\\n          0.3181\\\\n        ],\\\\n        \\\\\\\"vs_greedy_ci95_per_seed\\\\\\\": [\\\\n          [\\\\n            -0.00797,\\\\n            0.02002\\\\n          ],\\\\n          [\\\\n            -0.01555,\\\\n            0.0112\\\\n          ],\\\\n          [\\\\n            -0.015,\\\\n            0.009\\\\n          ]\\\\n        ]\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"llama_scierc_ner_n8\\\\\\\": {\\\\n    \\\\\\\"seeds\\\\\\\": [\\\\n      42,\\\\n      123,\\\\n      456\\\\n    ],\\\\n    \\\\\\\"n_instances\\\\\\\": 529,\\\\n    \\\\\\\"greedy_f1\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.64572,\\\\n      \\\\\\\"std\\\\\\\": 0.00033,\\\\n      \\\\\\\"per_seed\\\\\\\": [\\\\n        0.64603,\\\\n        0.64538,\\\\n        0.64575\\\\n      ]\\\\n    },\\\\n    \\\\\\\"random_f1\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.62005,\\\\n      \\\\\\\"std\\\\\\\": 0.00135,\\\\n      \\\\\\\"per_seed\\\\\\\": [\\\\n        0.61943,\\\\n        0.6216,\\\\n        0.61912\\\\n      ]\\\\n    },\\\\n    \\\\\\\"oracle_f1\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.76599,\\\\n      \\\\\\\"std\\\\\\\": 0.00868,\\\\n      \\\\\\\"per_seed\\\\\\\": \\\\n\\\\n... [截断: 输出过长，省略 2542 字符] ...\\\\n\\\\n.64792,\\\\n          0.64162,\\\\n          0.64579\\\\n        ],\\\\n        \\\\\\\"delta_vs_greedy_mean\\\\\\\": -0.00061,\\\\n        \\\\\\\"delta_vs_greedy_std\\\\\\\": 0.00288,\\\\n        \\\\\\\"vs_greedy_p_per_seed\\\\\\\": [\\\\n          0.3775,\\\\n          0.2747,\\\\n          0.4964\\\\n        ],\\\\n        \\\\\\\"vs_greedy_ci95_per_seed\\\\\\\": [\\\\n          [\\\\n            -0.00902,\\\\n            0.01316\\\\n          ],\\\\n          [\\\\n            -0.01608,\\\\n            0.00855\\\\n          ],\\\\n          [\\\\n            -0.01108,\\\\n            0.01121\\\\n          ]\\\\n        ]\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"llama_conll_ner_n16\\\\\\\": {\\\\n    \\\\\\\"seeds\\\\\\\": [\\\\n      42,\\\\n      123,\\\\n      456\\\\n    ],\\\\n    \\\\\\\"n_instances\\\\\\\": 2756,\\\\n    \\\\\\\"greedy_f1\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.92397,\\\\n      \\\\\\\"std\\\\\\\": 0.00017,\\\\n      \\\\\\\"per_seed\\\\\\\": [\\\\n        0.92392,\\\\n        0.92383,\\\\n        0.92417\\\\n      ]\\\\n    },\\\\n    \\\\\\\"random_f1\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.92155,\\\\n      \\\\\\\"std\\\\\\\": 0.00021,\\\\n      \\\\\\\"per_seed\\\\\\\": [\\\\n        0.92174,\\\\n        0.92132,\\\\n        0.92158\\\\n      ]\\\\n    },\\\\n    \\\\\\\"oracle_f1\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.94882,\\\\n      \\\\\\\"std\\\\\\\": 0.00058,\\\\n      \\\\\\\"per_seed\\\\\\\": [\\\\n        0.94824,\\\\n        0.94939,\\\\n        0.94882\\\\n      ]\\\\n    },\\\\n    \\\\\\\"signal_selection_f1\\\\\\\": {\\\\n      \\\\\\\"VC\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.9268,\\\\n        \\\\\\\"std\\\\\\\": 0.00016,\\\\n        \\\\\\\"per_seed\\\\\\\": [\\\\n          0.92666,\\\\n          0.92698,\\\\n          0.92676\\\\n        ],\\\\n        \\\\\\\"delta_vs_greedy_mean\\\\\\\": 0.00283,\\\\n        \\\\\\\"delta_vs_greedy_std\\\\\\\": 0.00029,\\\\n        \\\\\\\"vs_greedy_p_per_seed\\\\\\\": [\\\\n          0.0096,\\\\n          0.0033,\\\\n          0.0269\\\\n        ],\\\\n        \\\\\\\"vs_greedy_ci95_per_seed\\\\\\\": [\\\\n          [\\\\n            0.00041,\\\\n            0.00524\\\\n          ],\\\\n          [\\\\n            0.00082,\\\\n            0.0057\\\\n          ],\\\\n          [\\\\n            -4e-05,\\\\n            0.0054\\\\n          ]\\\\n        ]\\\\n      },\\\\n      \\\\\\\"SJ\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.92622,\\\\n        \\\\\\\"std\\\\\\\": 0.00027,\\\\n        \\\\\\\"per_seed\\\\\\\": [\\\\n          0.9263,\\\\n          0.92592,\\\\n          0.92643\\\\n        ],\\\\n        \\\\\\\"delta_vs_greedy_mean\\\\\\\": 0.00225,\\\\n        \\\\\\\"delta_vs_greedy_std\\\\\\\": 0.00014,\\\\n        \\\\\\\"vs_greedy_p_per_seed\\\\\\\": [\\\\n          0.0004,\\\\n          0.0032,\\\\n          0.0122\\\\n        ],\\\\n        \\\\\\\"vs_greedy_ci95_per_seed\\\\\\\": [\\\\n          [\\\\n            0.00089,\\\\n            0.00414\\\\n          ],\\\\n          [\\\\n            0.00054,\\\\n            0.00391\\\\n          ],\\\\n          [\\\\n            0.00028,\\\\n            0.00441\\\\n          ]\\\\n        ]\\\\n      },\\\\n      \\\\\\\"FK\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.9263,\\\\n        \\\\\\\"std\\\\\\\": 8e-05,\\\\n        \\\\\\\"per_seed\\\\\\\": [\\\\n          0.92631,\\\\n          0.92623,\\\\n          0.92638\\\\n        ],\\\\n        \\\\\\\"delta_vs_greedy_mean\\\\\\\": 0.00233,\\\\n        \\\\\\\"delta_vs_greedy_std\\\\\\\": 0.0001,\\\\n        \\\\\\\"vs_greedy_p_per_seed\\\\\\\": [\\\\n          0.0001,\\\\n          0.0001,\\\\n          0.0151\\\\n        ],\\\\n        \\\\\\\"vs_greedy_ci95_per_seed\\\\\\\": [\\\\n          [\\\\n            0.0009,\\\\n            0.00418\\\\n          ],\\\\n          [\\\\n            0.00085,\\\\n            0.00422\\\\n          ],\\\\n          [\\\\n            0.0002,\\\\n            0.00435\\\\n          ]\\\\n        ]\\\\n      },\\\\n      \\\\\\\"EM\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.92628,\\\\n        \\\\\\\"std\\\\\\\": 0.00012,\\\\n        \\\\\\\"per_seed\\\\\\\": [\\\\n          0.92615,\\\\n          0.9263,\\\\n          0.92639\\\\n        ],\\\\n        \\\\\\\"delta_vs_greedy_mean\\\\\\\": 0.00231,\\\\n        \\\\\\\"delta_vs_greedy_std\\\\\\\": 0.00014,\\\\n        \\\\\\\"vs_greedy_p_per_seed\\\\\\\": [\\\\n          0.0003,\\\\n          0.0012,\\\\n          0.0148\\\\n        ],\\\\n        \\\\\\\"vs_greedy_ci95_per_seed\\\\\\\": [\\\\n          [\\\\n            0.00074,\\\\n            0.00393\\\\n          ],\\\\n          [\\\\n            0.0008,\\\\n            0.00434\\\\n          ],\\\\n          [\\\\n            0.00022,\\\\n            0.00435\\\\n          ]\\\\n        ]\\\\n      },\\\\n      \\\\\\\"LP\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.92515,\\\\n        \\\\\\\"std\\\\\\\": 0.00027,\\\\n        \\\\\\\"per_seed\\\\\\\": [\\\\n          0.92537,\\\\n          0.92523,\\\\n          0.92485\\\\n        ],\\\\n        \\\\\\\"delta_vs_greedy_mean\\\\\\\": 0.00118,\\\\n        \\\\\\\"delta_vs_greedy_std\\\\\\\": 0.00043,\\\\n        \\\\\\\"vs_greedy_p_per_seed\\\\\\\": [\\\\n          0.0021,\\\\n          0.0023,\\\\n          0.1803\\\\n        ],\\\\n        \\\\\\\"vs_greedy_ci95_per_seed\\\\\\\": [\\\\n          [\\\\n            0.00038,\\\\n            0.00279\\\\n          ],\\\\n          [\\\\n            0.0003,\\\\n            0.00277\\\\n          ],\\\\n          [\\\\n            -0.00076,\\\\n            0.00221\\\\n          ]\\\\n        ]\\\\n      }\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"qwen_scierc_ner_n8\\\": {\\n    \\\"seeds\\\": [\\n      42,\\n      123,\\n      456\\n    ],\\n    \\\"n_instances\\\": 529,\\n    \\\"greedy_f1\\\": {\\n      \\\"mean\\\": 0.64583,\\n      \\\"std\\\": 0.00195,\\n      \\\"per_seed\\\": [\\n        0.64392,\\n        0.64575,\\n        0.64783\\n      ]\\n    },\\n    \\\"random_f1\\\": {\\n      \\\"mean\\\": 0.60688,\\n      \\\"std\\\": 0.00597,\\n      \\\"per_seed\\\": [\\n        0.60807,\\n        0.61215,\\n        0.6004\\n      ]\\n    },\\n    \\\"oracle_f1\\\": {\\n      \\\"mean\\\": 0.77637,\\n      \\\"std\\\": 0.00387,\\n      \\\"per_seed\\\": [\\n        0.7758,\\n        0.7805,\\n        0.77282\\n      ]\\n    },\\n    \\\"signal_selection_f1\\\": {\\n      \\\"VC\\\": {\\n        \\\"mean\\\": 0.61937,\\n        \\\"std\\\": 0.00683,\\n        \\\"per_seed\\\": [\\n          0.62561,\\n          0.62044,\\n          0.61208\\n        ],\\n        \\\"delta_vs_greedy_mean\\\": -0.02646,\\n        \\\"delta_vs_greedy_std\\\": 0.00877,\\n        \\\"vs_greedy_p_per_seed\\\": [\\n          0.0278,\\n          0.0039,\\n          0.0002\\n        ],\\n        \\\"vs_greedy_ci95_per_seed\\\": [\\n          [\\n            -0.03673,\\n            0.00049\\n          ],\\n          [\\n            -0.0436,\\n            -0.00646\\n          ],\\n          [\\n            -0.0544,\\n            -0.01695\\n          ]\\n        ]\\n      },\\n      \\\"SJ\\\": {\\n        \\\"mean\\\": 0.64132,\\n        \\\"std\\\": 0.00862,\\n        \\\"per_seed\\\": [\\n          0.64501,\\n          0.64748,\\n          0.63147\\n        ],\\n        \\\"delta_vs_greedy_mean\\\": -0.00451,\\n        \\\"delta_vs_greedy_std\\\": 0.01026,\\n        \\\"vs_greedy_p_per_seed\\\": [\\n          0.4433,\\n          0.4046,\\n          0.0051\\n        ],\\n        \\\"vs_greedy_ci95_per_seed\\\": [\\n          [\\n            -0.01277,\\n            0.01508\\n          ],\\n          [\\n            -0.01283,\\n            0.0164\\n          ],\\n          [\\n            -0.02956,\\n            -0.00391\\n          ]\\n        ]\\n      },\\n      \\\"FK\\\": {\\n        \\\"mean\\\": 0.64126,\\n        \\\"std\\\": 0.00799,\\n        \\\"per_seed\\\": [\\n          0.64483,\\n          0.64685,\\n          0.63211\\n        ],\\n        \\\"delta_vs_greedy_mean\\\": -0.00457,\\n        \\\"delta_vs_greedy_std\\\": 0.00966,\\n        \\\"vs_greedy_p_per_seed\\\": [\\n          0.4513,\\n          0.4387,\\n          0.0065\\n        ],\\n        \\\"vs_greedy_ci95_per_seed\\\": [\\n          [\\n            -0.01309,\\n            0.01496\\n          ],\\n          [\\n            -0.0135,\\n            0.01601\\n          ],\\n          [\\n            -0.0287,\\n            -0.00336\\n          ]\\n        ]\\n      },\\n      \\\"EM\\\": {\\n        \\\"mean\\\": 0.6339,\\n        \\\"std\\\": 0.00569,\\n        \\\"per_seed\\\": [\\n          0.63623,\\n          0.63806,\\n          0.62742\\n        ],\\n        \\\"delta_vs_greedy_mean\\\": -0.01193,\\n        \\\"delta_vs_greedy_std\\\": 0.00734,\\n        \\\"vs_greedy_p_per_seed\\\": [\\n          0.1624,\\n          0.1597,\\n          0.0018\\n        ],\\n        \\\"vs_greedy_ci95_per_seed\\\": [\\n          [\\n            -0.02312,\\n            0.00723\\n          ],\\n          [\\n            -0.02306,\\n            0.00745\\n          ],\\n          [\\n            -0.03521,\\n            -0.00619\\n          ]\\n        ]\\n      },\\n      \\\"LP\\\": {\\n        \\\"mean\\\": 0.64623,\\n        \\\"std\\\": 0.0034,\\n        \\\"per_seed\\\": [\\n          0.65007,\\n          0.64362,\\n          0.64499\\n        ],\\n        \\\"delta_vs_greedy_mean\\\": 0.0004,\\n        \\\"delta_vs_greedy_std\\\": 0.005,\\n        \\\"vs_greedy_p_per_seed\\\": [\\n          0.1971,\\n          0.3765,\\n          0.3181\\n        ],\\n        \\\"vs_greedy_ci95_per_seed\\\": [\\n          [\\n            -0.00797,\\n            0.02002\\n          ],\\n          [\\n            -0.01555,\\n            0.0112\\n          ],\\n          [\\n            -0.015,\\n            0.009\\n          ]\\n        ]\\n      }\\n    }\\n  },\\n  \\\"llama_scierc_ner_n8\\\": {\\n    \\\"seeds\\\": [\\n      42,\\n      123,\\n      456\\n    ],\\n    \\\"n_instances\\\": 529,\\n    \\\"greedy_f1\\\": {\\n      \\\"mean\\\": 0.64572,\\n      \\\"std\\\": 0.00033,\\n      \\\"per_seed\\\": [\\n        0.64603,\\n        0.64538,\\n        0.64575\\n      ]\\n    },\\n    \\\"random_f1\\\": {\\n      \\\"mean\\\": 0.62005,\\n      \\\"std\\\": 0.00135,\\n      \\\"per_seed\\\": [\\n        0.61943,\\n        0.6216,\\n        0.61912\\n      ]\\n    },\\n    \\\"oracle_f1\\\": {\\n      \\\"mean\\\": 0.76599,\\n      \\\"std\\\": 0.00868,\\n      \\\"per_seed\\\": \\n\\n... [截断: 输出过长，省略 2542 字符] ...\\n\\n.64792,\\n          0.64162,\\n          0.64579\\n        ],\\n        \\\"delta_vs_greedy_mean\\\": -0.00061,\\n        \\\"delta_vs_greedy_std\\\": 0.00288,\\n        \\\"vs_greedy_p_per_seed\\\": [\\n          0.3775,\\n          0.2747,\\n          0.4964\\n        ],\\n        \\\"vs_greedy_ci95_per_seed\\\": [\\n          [\\n            -0.00902,\\n            0.01316\\n          ],\\n          [\\n            -0.01608,\\n            0.00855\\n          ],\\n          [\\n            -0.01108,\\n            0.01121\\n          ]\\n        ]\\n      }\\n    }\\n  },\\n  \\\"llama_conll_ner_n16\\\": {\\n    \\\"seeds\\\": [\\n      42,\\n      123,\\n      456\\n    ],\\n    \\\"n_instances\\\": 2756,\\n    \\\"greedy_f1\\\": {\\n      \\\"mean\\\": 0.92397,\\n      \\\"std\\\": 0.00017,\\n      \\\"per_seed\\\": [\\n        0.92392,\\n        0.92383,\\n        0.92417\\n      ]\\n    },\\n    \\\"random_f1\\\": {\\n      \\\"mean\\\": 0.92155,\\n      \\\"std\\\": 0.00021,\\n      \\\"per_seed\\\": [\\n        0.92174,\\n        0.92132,\\n        0.92158\\n      ]\\n    },\\n    \\\"oracle_f1\\\": {\\n      \\\"mean\\\": 0.94882,\\n      \\\"std\\\": 0.00058,\\n      \\\"per_seed\\\": [\\n        0.94824,\\n        0.94939,\\n        0.94882\\n      ]\\n    },\\n    \\\"signal_selection_f1\\\": {\\n      \\\"VC\\\": {\\n        \\\"mean\\\": 0.9268,\\n        \\\"std\\\": 0.00016,\\n        \\\"per_seed\\\": [\\n          0.92666,\\n          0.92698,\\n          0.92676\\n        ],\\n        \\\"delta_vs_greedy_mean\\\": 0.00283,\\n        \\\"delta_vs_greedy_std\\\": 0.00029,\\n        \\\"vs_greedy_p_per_seed\\\": [\\n          0.0096,\\n          0.0033,\\n          0.0269\\n        ],\\n        \\\"vs_greedy_ci95_per_seed\\\": [\\n          [\\n            0.00041,\\n            0.00524\\n          ],\\n          [\\n            0.00082,\\n            0.0057\\n          ],\\n          [\\n            -4e-05,\\n            0.0054\\n          ]\\n        ]\\n      },\\n      \\\"SJ\\\": {\\n        \\\"mean\\\": 0.92622,\\n        \\\"std\\\": 0.00027,\\n        \\\"per_seed\\\": [\\n          0.9263,\\n          0.92592,\\n          0.92643\\n        ],\\n        \\\"delta_vs_greedy_mean\\\": 0.00225,\\n        \\\"delta_vs_greedy_std\\\": 0.00014,\\n        \\\"vs_greedy_p_per_seed\\\": [\\n          0.0004,\\n          0.0032,\\n          0.0122\\n        ],\\n        \\\"vs_greedy_ci95_per_seed\\\": [\\n          [\\n            0.00089,\\n            0.00414\\n          ],\\n          [\\n            0.00054,\\n            0.00391\\n          ],\\n          [\\n            0.00028,\\n            0.00441\\n          ]\\n        ]\\n      },\\n      \\\"FK\\\": {\\n        \\\"mean\\\": 0.9263,\\n        \\\"std\\\": 8e-05,\\n        \\\"per_seed\\\": [\\n          0.92631,\\n          0.92623,\\n          0.92638\\n        ],\\n        \\\"delta_vs_greedy_mean\\\": 0.00233,\\n        \\\"delta_vs_greedy_std\\\": 0.0001,\\n        \\\"vs_greedy_p_per_seed\\\": [\\n          0.0001,\\n          0.0001,\\n          0.0151\\n        ],\\n        \\\"vs_greedy_ci95_per_seed\\\": [\\n          [\\n            0.0009,\\n            0.00418\\n          ],\\n          [\\n            0.00085,\\n            0.00422\\n          ],\\n          [\\n            0.0002,\\n            0.00435\\n          ]\\n        ]\\n      },\\n      \\\"EM\\\": {\\n        \\\"mean\\\": 0.92628,\\n        \\\"std\\\": 0.00012,\\n        \\\"per_seed\\\": [\\n          0.92615,\\n          0.9263,\\n          0.92639\\n        ],\\n        \\\"delta_vs_greedy_mean\\\": 0.00231,\\n        \\\"delta_vs_greedy_std\\\": 0.00014,\\n        \\\"vs_greedy_p_per_seed\\\": [\\n          0.0003,\\n          0.0012,\\n          0.0148\\n        ],\\n        \\\"vs_greedy_ci95_per_seed\\\": [\\n          [\\n            0.00074,\\n            0.00393\\n          ],\\n          [\\n            0.0008,\\n            0.00434\\n          ],\\n          [\\n            0.00022,\\n            0.00435\\n          ]\\n        ]\\n      },\\n      \\\"LP\\\": {\\n        \\\"mean\\\": 0.92515,\\n        \\\"std\\\": 0.00027,\\n        \\\"per_seed\\\": [\\n          0.92537,\\n          0.92523,\\n          0.92485\\n        ],\\n        \\\"delta_vs_greedy_mean\\\": 0.00118,\\n        \\\"delta_vs_greedy_std\\\": 0.00043,\\n        \\\"vs_greedy_p_per_seed\\\": [\\n          0.0021,\\n          0.0023,\\n          0.1803\\n        ],\\n        \\\"vs_greedy_ci95_per_seed\\\": [\\n          [\\n            0.00038,\\n            0.00279\\n          ],\\n          [\\n            0.0003,\\n            0.00277\\n          ],\\n          [\\n            -0.00076,\\n            0.00221\\n          ]\\n        ]\\n      }\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 83_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The output was truncated for llama_scierc. Let me get the full JSON. Actually, the important results are in the summary tables already printed, plus the full JSON. Let me retrieve the truncated llama_scierc section.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b8b11d62-6ca3-4151-bc4f-ed1130aa9fbf",
+  "uuid": "65d2b432-6afa-43d2-b640-aabbaa2493ef",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WN6AgX3o6qgSndXhtDzDt6",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4287,
+      "cache_read_input_tokens": 79771,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4287
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 84_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01XrrG9jbZBnLivDd8MgfNL4`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json\nwith open('/root/autodl-tmp/struct_self_consist_ie/output/analysis_multiseed_selection_f1.json') as f:\n    data = json.load(f)\n# Print llama_scierc section only\nprint(json.dumps(data['llama_scierc_ner_n8'], indent=2))\n\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b8b11d62-6ca3-4151-bc4f-ed1130aa9fbf",
+  "uuid": "ab72c0ec-d76e-4129-a02f-e874b34f0f9b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WN6AgX3o6qgSndXhtDzDt6",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4287,
+      "cache_read_input_tokens": 79771,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4287
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 85 · 2026-05-15T12:46:51.716Z_
+
+<details><summary>↩ Tool result · `toolu_01XrrG9jbZBnLivDd8MgfNL4`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"seeds\\\": [\\n    42,\\n    123,\\n    456\\n  ],\\n  \\\"n_instances\\\": 529,\\n  \\\"greedy_f1\\\": {\\n    \\\"mean\\\": 0.64572,\\n    \\\"std\\\": 0.00033,\\n    \\\"per_seed\\\": [\\n      0.64603,\\n      0.64538,\\n      0.64575\\n    ]\\n  },\\n  \\\"random_f1\\\": {\\n    \\\"mean\\\": 0.62005,\\n    \\\"std\\\": 0.00135,\\n    \\\"per_seed\\\": [\\n      0.61943,\\n      0.6216,\\n      0.61912\\n    ]\\n  },\\n  \\\"oracle_f1\\\": {\\n    \\\"mean\\\": 0.76599,\\n    \\\"std\\\": 0.00868,\\n    \\\"per_seed\\\": [\\n      0.77479,\\n      0.76574,\\n      0.75745\\n    ]\\n  },\\n  \\\"signal_selection_f1\\\": {\\n    \\\"VC\\\": {\\n      \\\"mean\\\": 0.64135,\\n      \\\"std\\\": 0.00133,\\n      \\\"per_seed\\\": [\\n        0.63984,\\n        0.64184,\\n        0.64236\\n      ],\\n      \\\"delta_vs_greedy_mean\\\": -0.00437,\\n      \\\"delta_vs_greedy_std\\\": 0.00158,\\n      \\\"vs_greedy_p_per_seed\\\": [\\n        0.2317,\\n        0.3215,\\n        0.3415\\n      ],\\n      \\\"vs_greedy_ci95_per_seed\\\": [\\n        [\\n          -0.02304,\\n          0.01068\\n        ],\\n        [\\n          -0.01832,\\n          0.0125\\n        ],\\n        [\\n          -0.01889,\\n          0.01304\\n        ]\\n      ]\\n    },\\n    \\\"SJ\\\": {\\n      \\\"mean\\\": 0.64383,\\n      \\\"std\\\": 0.00563,\\n      \\\"per_seed\\\": [\\n        0.63779,\\n        0.64478,\\n        0.64891\\n      ],\\n      \\\"delta_vs_greedy_mean\\\": -0.00189,\\n      \\\"delta_vs_greedy_std\\\": 0.00581,\\n      \\\"vs_greedy_p_per_seed\\\": [\\n        0.0942,\\n        0.4598,\\n        0.2836\\n      ],\\n      \\\"vs_greedy_ci95_per_seed\\\": [\\n        [\\n          -0.02026,\\n          0.00421\\n        ],\\n        [\\n          -0.01161,\\n          0.01056\\n        ],\\n        [\\n          -0.00738,\\n          0.01441\\n        ]\\n      ]\\n    },\\n    \\\"FK\\\": {\\n      \\\"mean\\\": 0.64396,\\n      \\\"std\\\": 0.00384,\\n      \\\"per_seed\\\": [\\n        0.63962,\\n        0.64539,\\n        0.64688\\n      ],\\n      \\\"delta_vs_greedy_mean\\\": -0.00176,\\n      \\\"delta_vs_greedy_std\\\": 0.00408,\\n      \\\"vs_greedy_p_per_seed\\\": [\\n        0.1524,\\n        0.4949,\\n        0.4188\\n      ],\\n      \\\"vs_greedy_ci95_per_seed\\\": [\\n        [\\n          -0.01861,\\n          0.00582\\n        ],\\n        [\\n          -0.01069,\\n          0.01075\\n        ],\\n        [\\n          -0.00898,\\n          0.01194\\n        ]\\n      ]\\n    },\\n    \\\"EM\\\": {\\n      \\\"mean\\\": 0.63793,\\n      \\\"std\\\": 0.00867,\\n      \\\"per_seed\\\": [\\n        0.62913,\\n        0.63819,\\n        0.64647\\n      ],\\n      \\\"delta_vs_greedy_mean\\\": -0.00779,\\n      \\\"delta_vs_greedy_std\\\": 0.00883,\\n      \\\"vs_greedy_p_per_seed\\\": [\\n        0.0046,\\n        0.1103,\\n        0.4514\\n      ],\\n      \\\"vs_greedy_ci95_per_seed\\\": [\\n        [\\n          -0.0296,\\n          -0.00416\\n        ],\\n        [\\n          -0.01915,\\n          0.00426\\n        ],\\n        [\\n          -0.01099,\\n          0.01284\\n        ]\\n      ]\\n    },\\n    \\\"LP\\\": {\\n      \\\"mean\\\": 0.64511,\\n      \\\"std\\\": 0.0032,\\n      \\\"per_seed\\\": [\\n        0.64792,\\n        0.64162,\\n        0.64579\\n      ],\\n      \\\"delta_vs_greedy_mean\\\": -0.00061,\\n      \\\"delta_vs_greedy_std\\\": 0.00288,\\n      \\\"vs_greedy_p_per_seed\\\": [\\n        0.3775,\\n        0.2747,\\n        0.4964\\n      ],\\n      \\\"vs_greedy_ci95_per_seed\\\": [\\n        [\\n          -0.00902,\\n          0.01316\\n        ],\\n        [\\n          -0.01608,\\n          0.00855\\n        ],\\n        [\\n          -0.01108,\\n          0.01121\\n        ]\\n      ]\\n    }\\n  }\\n}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b8b11d62-6ca3-4151-bc4f-ed1130aa9fbf",
+  "uuid": "8f2efe98-8ee6-4de2-8fae-c482a792b563",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"seeds\\\\\\\": [\\\\n    42,\\\\n    123,\\\\n    456\\\\n  ],\\\\n  \\\\\\\"n_instances\\\\\\\": 529,\\\\n  \\\\\\\"greedy_f1\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.64572,\\\\n    \\\\\\\"std\\\\\\\": 0.00033,\\\\n    \\\\\\\"per_seed\\\\\\\": [\\\\n      0.64603,\\\\n      0.64538,\\\\n      0.64575\\\\n    ]\\\\n  },\\\\n  \\\\\\\"random_f1\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.62005,\\\\n    \\\\\\\"std\\\\\\\": 0.00135,\\\\n    \\\\\\\"per_seed\\\\\\\": [\\\\n      0.61943,\\\\n      0.6216,\\\\n      0.61912\\\\n    ]\\\\n  },\\\\n  \\\\\\\"oracle_f1\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.76599,\\\\n    \\\\\\\"std\\\\\\\": 0.00868,\\\\n    \\\\\\\"per_seed\\\\\\\": [\\\\n      0.77479,\\\\n      0.76574,\\\\n      0.75745\\\\n    ]\\\\n  },\\\\n  \\\\\\\"signal_selection_f1\\\\\\\": {\\\\n    \\\\\\\"VC\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.64135,\\\\n      \\\\\\\"std\\\\\\\": 0.00133,\\\\n      \\\\\\\"per_seed\\\\\\\": [\\\\n        0.63984,\\\\n        0.64184,\\\\n        0.64236\\\\n      ],\\\\n      \\\\\\\"delta_vs_greedy_mean\\\\\\\": -0.00437,\\\\n      \\\\\\\"delta_vs_greedy_std\\\\\\\": 0.00158,\\\\n      \\\\\\\"vs_greedy_p_per_seed\\\\\\\": [\\\\n        0.2317,\\\\n        0.3215,\\\\n        0.3415\\\\n      ],\\\\n      \\\\\\\"vs_greedy_ci95_per_seed\\\\\\\": [\\\\n        [\\\\n          -0.02304,\\\\n          0.01068\\\\n        ],\\\\n        [\\\\n          -0.01832,\\\\n          0.0125\\\\n        ],\\\\n        [\\\\n          -0.01889,\\\\n          0.01304\\\\n        ]\\\\n      ]\\\\n    },\\\\n    \\\\\\\"SJ\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.64383,\\\\n      \\\\\\\"std\\\\\\\": 0.00563,\\\\n      \\\\\\\"per_seed\\\\\\\": [\\\\n        0.63779,\\\\n        0.64478,\\\\n        0.64891\\\\n      ],\\\\n      \\\\\\\"delta_vs_greedy_mean\\\\\\\": -0.00189,\\\\n      \\\\\\\"delta_vs_greedy_std\\\\\\\": 0.00581,\\\\n      \\\\\\\"vs_greedy_p_per_seed\\\\\\\": [\\\\n        0.0942,\\\\n        0.4598,\\\\n        0.2836\\\\n      ],\\\\n      \\\\\\\"vs_greedy_ci95_per_seed\\\\\\\": [\\\\n        [\\\\n          -0.02026,\\\\n          0.00421\\\\n        ],\\\\n        [\\\\n          -0.01161,\\\\n          0.01056\\\\n        ],\\\\n        [\\\\n          -0.00738,\\\\n          0.01441\\\\n        ]\\\\n      ]\\\\n    },\\\\n    \\\\\\\"FK\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.64396,\\\\n      \\\\\\\"std\\\\\\\": 0.00384,\\\\n      \\\\\\\"per_seed\\\\\\\": [\\\\n        0.63962,\\\\n        0.64539,\\\\n        0.64688\\\\n      ],\\\\n      \\\\\\\"delta_vs_greedy_mean\\\\\\\": -0.00176,\\\\n      \\\\\\\"delta_vs_greedy_std\\\\\\\": 0.00408,\\\\n      \\\\\\\"vs_greedy_p_per_seed\\\\\\\": [\\\\n        0.1524,\\\\n        0.4949,\\\\n        0.4188\\\\n      ],\\\\n      \\\\\\\"vs_greedy_ci95_per_seed\\\\\\\": [\\\\n        [\\\\n          -0.01861,\\\\n          0.00582\\\\n        ],\\\\n        [\\\\n          -0.01069,\\\\n          0.01075\\\\n        ],\\\\n        [\\\\n          -0.00898,\\\\n          0.01194\\\\n        ]\\\\n      ]\\\\n    },\\\\n    \\\\\\\"EM\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.63793,\\\\n      \\\\\\\"std\\\\\\\": 0.00867,\\\\n      \\\\\\\"per_seed\\\\\\\": [\\\\n        0.62913,\\\\n        0.63819,\\\\n        0.64647\\\\n      ],\\\\n      \\\\\\\"delta_vs_greedy_mean\\\\\\\": -0.00779,\\\\n      \\\\\\\"delta_vs_greedy_std\\\\\\\": 0.00883,\\\\n      \\\\\\\"vs_greedy_p_per_seed\\\\\\\": [\\\\n        0.0046,\\\\n        0.1103,\\\\n        0.4514\\\\n      ],\\\\n      \\\\\\\"vs_greedy_ci95_per_seed\\\\\\\": [\\\\n        [\\\\n          -0.0296,\\\\n          -0.00416\\\\n        ],\\\\n        [\\\\n          -0.01915,\\\\n          0.00426\\\\n        ],\\\\n        [\\\\n          -0.01099,\\\\n          0.01284\\\\n        ]\\\\n      ]\\\\n    },\\\\n    \\\\\\\"LP\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.64511,\\\\n      \\\\\\\"std\\\\\\\": 0.0032,\\\\n      \\\\\\\"per_seed\\\\\\\": [\\\\n        0.64792,\\\\n        0.64162,\\\\n        0.64579\\\\n      ],\\\\n      \\\\\\\"delta_vs_greedy_mean\\\\\\\": -0.00061,\\\\n      \\\\\\\"delta_vs_greedy_std\\\\\\\": 0.00288,\\\\n      \\\\\\\"vs_greedy_p_per_seed\\\\\\\": [\\\\n        0.3775,\\\\n        0.2747,\\\\n        0.4964\\\\n      ],\\\\n      \\\\\\\"vs_greedy_ci95_per_seed\\\\\\\": [\\\\n        [\\\\n          -0.00902,\\\\n          0.01316\\\\n        ],\\\\n        [\\\\n          -0.01608,\\\\n          0.00855\\\\n        ],\\\\n        [\\\\n          -0.01108,\\\\n          0.01121\\\\n        ]\\\\n      ]\\\\n    }\\\\n  }\\\\n}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"seeds\\\": [\\n    42,\\n    123,\\n    456\\n  ],\\n  \\\"n_instances\\\": 529,\\n  \\\"greedy_f1\\\": {\\n    \\\"mean\\\": 0.64572,\\n    \\\"std\\\": 0.00033,\\n    \\\"per_seed\\\": [\\n      0.64603,\\n      0.64538,\\n      0.64575\\n    ]\\n  },\\n  \\\"random_f1\\\": {\\n    \\\"mean\\\": 0.62005,\\n    \\\"std\\\": 0.00135,\\n    \\\"per_seed\\\": [\\n      0.61943,\\n      0.6216,\\n      0.61912\\n    ]\\n  },\\n  \\\"oracle_f1\\\": {\\n    \\\"mean\\\": 0.76599,\\n    \\\"std\\\": 0.00868,\\n    \\\"per_seed\\\": [\\n      0.77479,\\n      0.76574,\\n      0.75745\\n    ]\\n  },\\n  \\\"signal_selection_f1\\\": {\\n    \\\"VC\\\": {\\n      \\\"mean\\\": 0.64135,\\n      \\\"std\\\": 0.00133,\\n      \\\"per_seed\\\": [\\n        0.63984,\\n        0.64184,\\n        0.64236\\n      ],\\n      \\\"delta_vs_greedy_mean\\\": -0.00437,\\n      \\\"delta_vs_greedy_std\\\": 0.00158,\\n      \\\"vs_greedy_p_per_seed\\\": [\\n        0.2317,\\n        0.3215,\\n        0.3415\\n      ],\\n      \\\"vs_greedy_ci95_per_seed\\\": [\\n        [\\n          -0.02304,\\n          0.01068\\n        ],\\n        [\\n          -0.01832,\\n          0.0125\\n        ],\\n        [\\n          -0.01889,\\n          0.01304\\n        ]\\n      ]\\n    },\\n    \\\"SJ\\\": {\\n      \\\"mean\\\": 0.64383,\\n      \\\"std\\\": 0.00563,\\n      \\\"per_seed\\\": [\\n        0.63779,\\n        0.64478,\\n        0.64891\\n      ],\\n      \\\"delta_vs_greedy_mean\\\": -0.00189,\\n      \\\"delta_vs_greedy_std\\\": 0.00581,\\n      \\\"vs_greedy_p_per_seed\\\": [\\n        0.0942,\\n        0.4598,\\n        0.2836\\n      ],\\n      \\\"vs_greedy_ci95_per_seed\\\": [\\n        [\\n          -0.02026,\\n          0.00421\\n        ],\\n        [\\n          -0.01161,\\n          0.01056\\n        ],\\n        [\\n          -0.00738,\\n          0.01441\\n        ]\\n      ]\\n    },\\n    \\\"FK\\\": {\\n      \\\"mean\\\": 0.64396,\\n      \\\"std\\\": 0.00384,\\n      \\\"per_seed\\\": [\\n        0.63962,\\n        0.64539,\\n        0.64688\\n      ],\\n      \\\"delta_vs_greedy_mean\\\": -0.00176,\\n      \\\"delta_vs_greedy_std\\\": 0.00408,\\n      \\\"vs_greedy_p_per_seed\\\": [\\n        0.1524,\\n        0.4949,\\n        0.4188\\n      ],\\n      \\\"vs_greedy_ci95_per_seed\\\": [\\n        [\\n          -0.01861,\\n          0.00582\\n        ],\\n        [\\n          -0.01069,\\n          0.01075\\n        ],\\n        [\\n          -0.00898,\\n          0.01194\\n        ]\\n      ]\\n    },\\n    \\\"EM\\\": {\\n      \\\"mean\\\": 0.63793,\\n      \\\"std\\\": 0.00867,\\n      \\\"per_seed\\\": [\\n        0.62913,\\n        0.63819,\\n        0.64647\\n      ],\\n      \\\"delta_vs_greedy_mean\\\": -0.00779,\\n      \\\"delta_vs_greedy_std\\\": 0.00883,\\n      \\\"vs_greedy_p_per_seed\\\": [\\n        0.0046,\\n        0.1103,\\n        0.4514\\n      ],\\n      \\\"vs_greedy_ci95_per_seed\\\": [\\n        [\\n          -0.0296,\\n          -0.00416\\n        ],\\n        [\\n          -0.01915,\\n          0.00426\\n        ],\\n        [\\n          -0.01099,\\n          0.01284\\n        ]\\n      ]\\n    },\\n    \\\"LP\\\": {\\n      \\\"mean\\\": 0.64511,\\n      \\\"std\\\": 0.0032,\\n      \\\"per_seed\\\": [\\n        0.64792,\\n        0.64162,\\n        0.64579\\n      ],\\n      \\\"delta_vs_greedy_mean\\\": -0.00061,\\n      \\\"delta_vs_greedy_std\\\": 0.00288,\\n      \\\"vs_greedy_p_per_seed\\\": [\\n        0.3775,\\n        0.2747,\\n        0.4964\\n      ],\\n      \\\"vs_greedy_ci95_per_seed\\\": [\\n        [\\n          -0.00902,\\n          0.01316\\n        ],\\n        [\\n          -0.01608,\\n          0.00855\\n        ],\\n        [\\n          -0.01108,\\n          0.01121\\n        ]\\n      ]\\n    }\\n  }\\n}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 86_
+
+注册 artifact。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b8b11d62-6ca3-4151-bc4f-ed1130aa9fbf",
+  "uuid": "1dedc737-a5db-4278-a676-e7a71b3491e1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01M2nhrf52C4a779hBLVgXYk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2087,
+      "cache_read_input_tokens": 84058,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2087
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 87_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact · `toolu_013BQdvk17VaaPXun4if2kfH`</summary>
+
+```json
+{
+  "name": "multiseed_selection_f1_analysis",
+  "type": "data",
+  "description": "3-seed selection F1 with bootstrap p-values for Qwen/LLaMA SciERC NER and LLaMA CoNLL NER (reviewer C2 response)",
+  "project": "struct_self_consist_ie",
+  "source_path": "/root/autodl-tmp/struct_self_consist_ie/output/analysis_multiseed_selection_f1.json",
+  "tags": [
+    "selection_f1",
+    "multiseed",
+    "bootstrap",
+    "reviewer_response"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b8b11d62-6ca3-4151-bc4f-ed1130aa9fbf",
+  "uuid": "84442399-6a69-4c60-9cbf-05e37b966cba",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01M2nhrf52C4a779hBLVgXYk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2087,
+      "cache_read_input_tokens": 84058,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2087
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 88 · 2026-05-15T12:46:57.404Z_
+
+<details><summary>↩ Tool result · `toolu_013BQdvk17VaaPXun4if2kfH`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"source_path not found: /root/autodl-tmp/struct_self_consist_ie/output/analysis_multiseed_selection_f1.json\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b8b11d62-6ca3-4151-bc4f-ed1130aa9fbf",
+  "uuid": "8083a534-5774-4996-a3aa-8e21cc2d8ae7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"source_path not found: /root/autodl-tmp/struct_self_consist_ie/output/analysis_multiseed_selection_f1.json\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"source_path not found: /root/autodl-tmp/struct_self_consist_ie/output/analysis_multiseed_selection_f1.json\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 89_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact · `toolu_01Pr8Xwbw7RCTCHWiwKTwTz1`</summary>
+
+```json
+{
+  "name": "multiseed_selection_f1_analysis",
+  "type": "data",
+  "description": "3-seed selection F1 with bootstrap p-values for Qwen/LLaMA SciERC NER and LLaMA CoNLL NER (reviewer C2 response)",
+  "project": "struct_self_consist_ie",
+  "content_filename": "analysis_multiseed_selection_f1.json",
+  "tags": [
+    "selection_f1",
+    "multiseed",
+    "bootstrap",
+    "reviewer_response"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b8b11d62-6ca3-4151-bc4f-ed1130aa9fbf",
+  "uuid": "8e946265-686e-4df7-9917-6e56f25fe2b4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RDTuqGi8XBiCC36zHftPSA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 336,
+      "cache_read_input_tokens": 86145,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 336
+      },
+      "output_tokens": 66,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 90 · 2026-05-15T12:47:01.539Z_
+
+<details><summary>↩ Tool result · `toolu_01Pr8Xwbw7RCTCHWiwKTwTz1`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"One of source_path, content, or url must be provided.\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b8b11d62-6ca3-4151-bc4f-ed1130aa9fbf",
+  "uuid": "7d5163f3-ad11-4c05-a31a-88e159b7e324",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"One of source_path, content, or url must be provided.\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"One of source_path, content, or url must be provided.\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 91_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01YHoGkF5CFXbMTN25QvQPfN`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/analysis_multiseed_selection_f1.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b8b11d62-6ca3-4151-bc4f-ed1130aa9fbf",
+  "uuid": "cad6ff6c-e9a1-4e07-a3dc-9862e021031e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Nsh9dzkQgRXKqomftabmWx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 289,
+      "cache_read_input_tokens": 86481,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 289
+      },
+      "output_tokens": 52,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 92 · 2026-05-15T12:47:06.388Z_
+
+<details><summary>↩ Tool result · `toolu_01YHoGkF5CFXbMTN25QvQPfN`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"qwen_scierc_ner_n8\\\": {\\n    \\\"seeds\\\": [\\n      42,\\n      123,\\n      456\\n    ],\\n    \\\"n_instances\\\": 529,\\n    \\\"greedy_f1\\\": {\\n      \\\"mean\\\": 0.64583,\\n      \\\"std\\\": 0.00195,\\n      \\\"per_seed\\\": [\\n        0.64392,\\n        0.64575,\\n        0.64783\\n      ]\\n    },\\n    \\\"random_f1\\\": {\\n      \\\"mean\\\": 0.60688,\\n      \\\"std\\\": 0.00597,\\n      \\\"per_seed\\\": [\\n        0.60807,\\n        0.61215,\\n        0.6004\\n      ]\\n    },\\n    \\\"oracle_f1\\\": {\\n      \\\"mean\\\": 0.77637,\\n      \\\"std\\\": 0.00387,\\n      \\\"per_seed\\\": [\\n        0.7758,\\n        0.7805,\\n        0.77282\\n      ]\\n    },\\n    \\\"signal_selection_f1\\\": {\\n      \\\"VC\\\": {\\n        \\\"mean\\\": 0.61937,\\n        \\\"std\\\": 0.00683,\\n        \\\"per_seed\\\": [\\n          0.62561,\\n          0.62044,\\n          0.61208\\n        ],\\n        \\\"delta_vs_greedy_mean\\\": -0.02646,\\n        \\\"delta_vs_greedy_std\\\": 0.00877,\\n        \\\"vs_greedy_p_per_seed\\\": [\\n          0.0278,\\n          0.0039,\\n          0.0002\\n        ],\\n        \\\"vs_greedy_ci95_per_seed\\\": [\\n          [\\n            -0.03673,\\n            0.00049\\n          ],\\n          [\\n            -0.0436,\\n            -0.00646\\n          ],\\n          [\\n            -0.0544,\\n            -0.01695\\n          ]\\n        ]\\n      },\\n      \\\"SJ\\\": {\\n        \\\"mean\\\": 0.64132,\\n        \\\"std\\\": 0.00862,\\n        \\\"per_seed\\\": [\\n          0.64501,\\n          0.64748,\\n          0.63147\\n        ],\\n        \\\"delta_vs_greedy_mean\\\": -0.00451,\\n        \\\"delta_vs_greedy_std\\\": 0.01026,\\n        \\\"vs_greedy_p_per_seed\\\": [\\n          0.4433,\\n          0.4046,\\n          0.0051\\n        ],\\n        \\\"vs_greedy_ci95_per_seed\\\": [\\n          [\\n            -0.01277,\\n            0.01508\\n          ],\\n          [\\n            -0.01283,\\n            0.0164\\n          ],\\n          [\\n            -0.02956,\\n            -0.00391\\n          ]\\n        ]\\n      },\\n      \\\"FK\\\": {\\n        \\\"mean\\\": 0.64126,\\n        \\\"std\\\": 0.00799,\\n        \\\"per_seed\\\": [\\n          0.64483,\\n          0.64685,\\n          0.63211\\n        ],\\n        \\\"delta_vs_greedy_mean\\\": -0.00457,\\n        \\\"delta_vs_greedy_std\\\": 0.00966,\\n        \\\"vs_greedy_p_per_seed\\\": [\\n          0.4513,\\n          0.4387,\\n          0.0065\\n        ],\\n        \\\"vs_greedy_ci95_per_seed\\\": [\\n          [\\n            -0.01309,\\n            0.01496\\n          ],\\n          [\\n            -0.0135,\\n            0.01601\\n          ],\\n          [\\n            -0.0287,\\n            -0.00336\\n          ]\\n        ]\\n      },\\n      \\\"EM\\\": {\\n        \\\"mean\\\": 0.6339,\\n        \\\"std\\\": 0.00569,\\n        \\\"per_seed\\\": [\\n          0.63623,\\n          0.63806,\\n          0.62742\\n        ],\\n        \\\"delta_vs_greedy_mean\\\": -0.01193,\\n        \\\"delta_vs_greedy_std\\\": 0.00734,\\n        \\\"vs_greedy_p_per_seed\\\": [\\n          0.1624,\\n          0.1597,\\n          0.0018\\n        ],\\n        \\\"vs_greedy_ci95_per_seed\\\": [\\n          [\\n            -0.02312,\\n            0.00723\\n          ],\\n          [\\n            -0.02306,\\n            0.00745\\n          ],\\n          [\\n            -0.03521,\\n            -0.00619\\n          ]\\n        ]\\n      },\\n      \\\"LP\\\": {\\n        \\\"mean\\\": 0.64623,\\n        \\\"std\\\": 0.0034,\\n        \\\"per_seed\\\": [\\n          0.65007,\\n          0.64362,\\n          0.64499\\n        ],\\n        \\\"delta_vs_greedy_mean\\\": 0.0004,\\n        \\\"delta_vs_greedy_std\\\": 0.005,\\n        \\\"vs_greedy_p_per_seed\\\": [\\n          0.1971,\\n          0.3765,\\n          0.3181\\n        ],\\n        \\\"vs_greedy_ci95_per_seed\\\": [\\n          [\\n            -0.00797,\\n            0.02002\\n          ],\\n          [\\n            -0.01555,\\n            0.0112\\n          ],\\n          [\\n            -0.015,\\n            0.009\\n          ]\\n        ]\\n      }\\n    }\\n  },\\n  \\\"llama_scierc_ner_n8\\\": {\\n    \\\"seeds\\\": [\\n      42,\\n      123,\\n      456\\n    ],\\n    \\\"n_instances\\\": 529,\\n    \\\"greedy_f1\\\": {\\n      \\\"mean\\\": 0.64572,\\n      \\\"std\\\": 0.00033,\\n      \\\"per_seed\\\": [\\n        0.64603,\\n        0.64538,\\n        0.64575\\n      ]\\n    },\\n    \\\"random_f1\\\": {\\n      \\\"mean\\\": 0.62005,\\n      \\\"std\\\": 0.00135,\\n      \\\"per_seed\\\": [\\n        0.61943,\\n        0.6216,\\n        0.61912\\n      ]\\n    },\\n    \\\"oracle_f1\\\": {\\n      \\\"mean\\\": 0.76599,\\n      \\\"std\\\": 0.00868,\\n      \\\"per_seed\\\": \\n\\n... [截断: 输出过长，省略 2542 字符] ...\\n\\n.64792,\\n          0.64162,\\n          0.64579\\n        ],\\n        \\\"delta_vs_greedy_mean\\\": -0.00061,\\n        \\\"delta_vs_greedy_std\\\": 0.00288,\\n        \\\"vs_greedy_p_per_seed\\\": [\\n          0.3775,\\n          0.2747,\\n          0.4964\\n        ],\\n        \\\"vs_greedy_ci95_per_seed\\\": [\\n          [\\n            -0.00902,\\n            0.01316\\n          ],\\n          [\\n            -0.01608,\\n            0.00855\\n          ],\\n          [\\n            -0.01108,\\n            0.01121\\n          ]\\n        ]\\n      }\\n    }\\n  },\\n  \\\"llama_conll_ner_n16\\\": {\\n    \\\"seeds\\\": [\\n      42,\\n      123,\\n      456\\n    ],\\n    \\\"n_instances\\\": 2756,\\n    \\\"greedy_f1\\\": {\\n      \\\"mean\\\": 0.92397,\\n      \\\"std\\\": 0.00017,\\n      \\\"per_seed\\\": [\\n        0.92392,\\n        0.92383,\\n        0.92417\\n      ]\\n    },\\n    \\\"random_f1\\\": {\\n      \\\"mean\\\": 0.92155,\\n      \\\"std\\\": 0.00021,\\n      \\\"per_seed\\\": [\\n        0.92174,\\n        0.92132,\\n        0.92158\\n      ]\\n    },\\n    \\\"oracle_f1\\\": {\\n      \\\"mean\\\": 0.94882,\\n      \\\"std\\\": 0.00058,\\n      \\\"per_seed\\\": [\\n        0.94824,\\n        0.94939,\\n        0.94882\\n      ]\\n    },\\n    \\\"signal_selection_f1\\\": {\\n      \\\"VC\\\": {\\n        \\\"mean\\\": 0.9268,\\n        \\\"std\\\": 0.00016,\\n        \\\"per_seed\\\": [\\n          0.92666,\\n          0.92698,\\n          0.92676\\n        ],\\n        \\\"delta_vs_greedy_mean\\\": 0.00283,\\n        \\\"delta_vs_greedy_std\\\": 0.00029,\\n        \\\"vs_greedy_p_per_seed\\\": [\\n          0.0096,\\n          0.0033,\\n          0.0269\\n        ],\\n        \\\"vs_greedy_ci95_per_seed\\\": [\\n          [\\n            0.00041,\\n            0.00524\\n          ],\\n          [\\n            0.00082,\\n            0.0057\\n          ],\\n          [\\n            -4e-05,\\n            0.0054\\n          ]\\n        ]\\n      },\\n      \\\"SJ\\\": {\\n        \\\"mean\\\": 0.92622,\\n        \\\"std\\\": 0.00027,\\n        \\\"per_seed\\\": [\\n          0.9263,\\n          0.92592,\\n          0.92643\\n        ],\\n        \\\"delta_vs_greedy_mean\\\": 0.00225,\\n        \\\"delta_vs_greedy_std\\\": 0.00014,\\n        \\\"vs_greedy_p_per_seed\\\": [\\n          0.0004,\\n          0.0032,\\n          0.0122\\n        ],\\n        \\\"vs_greedy_ci95_per_seed\\\": [\\n          [\\n            0.00089,\\n            0.00414\\n          ],\\n          [\\n            0.00054,\\n            0.00391\\n          ],\\n          [\\n            0.00028,\\n            0.00441\\n          ]\\n        ]\\n      },\\n      \\\"FK\\\": {\\n        \\\"mean\\\": 0.9263,\\n        \\\"std\\\": 8e-05,\\n        \\\"per_seed\\\": [\\n          0.92631,\\n          0.92623,\\n          0.92638\\n        ],\\n        \\\"delta_vs_greedy_mean\\\": 0.00233,\\n        \\\"delta_vs_greedy_std\\\": 0.0001,\\n        \\\"vs_greedy_p_per_seed\\\": [\\n          0.0001,\\n          0.0001,\\n          0.0151\\n        ],\\n        \\\"vs_greedy_ci95_per_seed\\\": [\\n          [\\n            0.0009,\\n            0.00418\\n          ],\\n          [\\n            0.00085,\\n            0.00422\\n          ],\\n          [\\n            0.0002,\\n            0.00435\\n          ]\\n        ]\\n      },\\n      \\\"EM\\\": {\\n        \\\"mean\\\": 0.92628,\\n        \\\"std\\\": 0.00012,\\n        \\\"per_seed\\\": [\\n          0.92615,\\n          0.9263,\\n          0.92639\\n        ],\\n        \\\"delta_vs_greedy_mean\\\": 0.00231,\\n        \\\"delta_vs_greedy_std\\\": 0.00014,\\n        \\\"vs_greedy_p_per_seed\\\": [\\n          0.0003,\\n          0.0012,\\n          0.0148\\n        ],\\n        \\\"vs_greedy_ci95_per_seed\\\": [\\n          [\\n            0.00074,\\n            0.00393\\n          ],\\n          [\\n            0.0008,\\n            0.00434\\n          ],\\n          [\\n            0.00022,\\n            0.00435\\n          ]\\n        ]\\n      },\\n      \\\"LP\\\": {\\n        \\\"mean\\\": 0.92515,\\n        \\\"std\\\": 0.00027,\\n        \\\"per_seed\\\": [\\n          0.92537,\\n          0.92523,\\n          0.92485\\n        ],\\n        \\\"delta_vs_greedy_mean\\\": 0.00118,\\n        \\\"delta_vs_greedy_std\\\": 0.00043,\\n        \\\"vs_greedy_p_per_seed\\\": [\\n          0.0021,\\n          0.0023,\\n          0.1803\\n        ],\\n        \\\"vs_greedy_ci95_per_seed\\\": [\\n          [\\n            0.00038,\\n            0.00279\\n          ],\\n          [\\n            0.0003,\\n            0.00277\\n          ],\\n          [\\n            -0.00076,\\n            0.00221\\n          ]\\n        ]\\n      }\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b8b11d62-6ca3-4151-bc4f-ed1130aa9fbf",
+  "uuid": "fdd1c284-7adf-40bc-bd01-ae61cae61d44",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"qwen_scierc_ner_n8\\\\\\\": {\\\\n    \\\\\\\"seeds\\\\\\\": [\\\\n      42,\\\\n      123,\\\\n      456\\\\n    ],\\\\n    \\\\\\\"n_instances\\\\\\\": 529,\\\\n    \\\\\\\"greedy_f1\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.64583,\\\\n      \\\\\\\"std\\\\\\\": 0.00195,\\\\n      \\\\\\\"per_seed\\\\\\\": [\\\\n        0.64392,\\\\n        0.64575,\\\\n        0.64783\\\\n      ]\\\\n    },\\\\n    \\\\\\\"random_f1\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.60688,\\\\n      \\\\\\\"std\\\\\\\": 0.00597,\\\\n      \\\\\\\"per_seed\\\\\\\": [\\\\n        0.60807,\\\\n        0.61215,\\\\n        0.6004\\\\n      ]\\\\n    },\\\\n    \\\\\\\"oracle_f1\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.77637,\\\\n      \\\\\\\"std\\\\\\\": 0.00387,\\\\n      \\\\\\\"per_seed\\\\\\\": [\\\\n        0.7758,\\\\n        0.7805,\\\\n        0.77282\\\\n      ]\\\\n    },\\\\n    \\\\\\\"signal_selection_f1\\\\\\\": {\\\\n      \\\\\\\"VC\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.61937,\\\\n        \\\\\\\"std\\\\\\\": 0.00683,\\\\n        \\\\\\\"per_seed\\\\\\\": [\\\\n          0.62561,\\\\n          0.62044,\\\\n          0.61208\\\\n        ],\\\\n        \\\\\\\"delta_vs_greedy_mean\\\\\\\": -0.02646,\\\\n        \\\\\\\"delta_vs_greedy_std\\\\\\\": 0.00877,\\\\n        \\\\\\\"vs_greedy_p_per_seed\\\\\\\": [\\\\n          0.0278,\\\\n          0.0039,\\\\n          0.0002\\\\n        ],\\\\n        \\\\\\\"vs_greedy_ci95_per_seed\\\\\\\": [\\\\n          [\\\\n            -0.03673,\\\\n            0.00049\\\\n          ],\\\\n          [\\\\n            -0.0436,\\\\n            -0.00646\\\\n          ],\\\\n          [\\\\n            -0.0544,\\\\n            -0.01695\\\\n          ]\\\\n        ]\\\\n      },\\\\n      \\\\\\\"SJ\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.64132,\\\\n        \\\\\\\"std\\\\\\\": 0.00862,\\\\n        \\\\\\\"per_seed\\\\\\\": [\\\\n          0.64501,\\\\n          0.64748,\\\\n          0.63147\\\\n        ],\\\\n        \\\\\\\"delta_vs_greedy_mean\\\\\\\": -0.00451,\\\\n        \\\\\\\"delta_vs_greedy_std\\\\\\\": 0.01026,\\\\n        \\\\\\\"vs_greedy_p_per_seed\\\\\\\": [\\\\n          0.4433,\\\\n          0.4046,\\\\n          0.0051\\\\n        ],\\\\n        \\\\\\\"vs_greedy_ci95_per_seed\\\\\\\": [\\\\n          [\\\\n            -0.01277,\\\\n            0.01508\\\\n          ],\\\\n          [\\\\n            -0.01283,\\\\n            0.0164\\\\n          ],\\\\n          [\\\\n            -0.02956,\\\\n            -0.00391\\\\n          ]\\\\n        ]\\\\n      },\\\\n      \\\\\\\"FK\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.64126,\\\\n        \\\\\\\"std\\\\\\\": 0.00799,\\\\n        \\\\\\\"per_seed\\\\\\\": [\\\\n          0.64483,\\\\n          0.64685,\\\\n          0.63211\\\\n        ],\\\\n        \\\\\\\"delta_vs_greedy_mean\\\\\\\": -0.00457,\\\\n        \\\\\\\"delta_vs_greedy_std\\\\\\\": 0.00966,\\\\n        \\\\\\\"vs_greedy_p_per_seed\\\\\\\": [\\\\n          0.4513,\\\\n          0.4387,\\\\n          0.0065\\\\n        ],\\\\n        \\\\\\\"vs_greedy_ci95_per_seed\\\\\\\": [\\\\n          [\\\\n            -0.01309,\\\\n            0.01496\\\\n          ],\\\\n          [\\\\n            -0.0135,\\\\n            0.01601\\\\n          ],\\\\n          [\\\\n            -0.0287,\\\\n            -0.00336\\\\n          ]\\\\n        ]\\\\n      },\\\\n      \\\\\\\"EM\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.6339,\\\\n        \\\\\\\"std\\\\\\\": 0.00569,\\\\n        \\\\\\\"per_seed\\\\\\\": [\\\\n          0.63623,\\\\n          0.63806,\\\\n          0.62742\\\\n        ],\\\\n        \\\\\\\"delta_vs_greedy_mean\\\\\\\": -0.01193,\\\\n        \\\\\\\"delta_vs_greedy_std\\\\\\\": 0.00734,\\\\n        \\\\\\\"vs_greedy_p_per_seed\\\\\\\": [\\\\n          0.1624,\\\\n          0.1597,\\\\n          0.0018\\\\n        ],\\\\n        \\\\\\\"vs_greedy_ci95_per_seed\\\\\\\": [\\\\n          [\\\\n            -0.02312,\\\\n            0.00723\\\\n          ],\\\\n          [\\\\n            -0.02306,\\\\n            0.00745\\\\n          ],\\\\n          [\\\\n            -0.03521,\\\\n            -0.00619\\\\n          ]\\\\n        ]\\\\n      },\\\\n      \\\\\\\"LP\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.64623,\\\\n        \\\\\\\"std\\\\\\\": 0.0034,\\\\n        \\\\\\\"per_seed\\\\\\\": [\\\\n          0.65007,\\\\n          0.64362,\\\\n          0.64499\\\\n        ],\\\\n        \\\\\\\"delta_vs_greedy_mean\\\\\\\": 0.0004,\\\\n        \\\\\\\"delta_vs_greedy_std\\\\\\\": 0.005,\\\\n        \\\\\\\"vs_greedy_p_per_seed\\\\\\\": [\\\\n          0.1971,\\\\n          0.3765,\\\\n          0.3181\\\\n        ],\\\\n        \\\\\\\"vs_greedy_ci95_per_seed\\\\\\\": [\\\\n          [\\\\n            -0.00797,\\\\n            0.02002\\\\n          ],\\\\n          [\\\\n            -0.01555,\\\\n            0.0112\\\\n          ],\\\\n          [\\\\n            -0.015,\\\\n            0.009\\\\n          ]\\\\n        ]\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"llama_scierc_ner_n8\\\\\\\": {\\\\n    \\\\\\\"seeds\\\\\\\": [\\\\n      42,\\\\n      123,\\\\n      456\\\\n    ],\\\\n    \\\\\\\"n_instances\\\\\\\": 529,\\\\n    \\\\\\\"greedy_f1\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.64572,\\\\n      \\\\\\\"std\\\\\\\": 0.00033,\\\\n      \\\\\\\"per_seed\\\\\\\": [\\\\n        0.64603,\\\\n        0.64538,\\\\n        0.64575\\\\n      ]\\\\n    },\\\\n    \\\\\\\"random_f1\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.62005,\\\\n      \\\\\\\"std\\\\\\\": 0.00135,\\\\n      \\\\\\\"per_seed\\\\\\\": [\\\\n        0.61943,\\\\n        0.6216,\\\\n        0.61912\\\\n      ]\\\\n    },\\\\n    \\\\\\\"oracle_f1\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.76599,\\\\n      \\\\\\\"std\\\\\\\": 0.00868,\\\\n      \\\\\\\"per_seed\\\\\\\": \\\\n\\\\n... [截断: 输出过长，省略 2542 字符] ...\\\\n\\\\n.64792,\\\\n          0.64162,\\\\n          0.64579\\\\n        ],\\\\n        \\\\\\\"delta_vs_greedy_mean\\\\\\\": -0.00061,\\\\n        \\\\\\\"delta_vs_greedy_std\\\\\\\": 0.00288,\\\\n        \\\\\\\"vs_greedy_p_per_seed\\\\\\\": [\\\\n          0.3775,\\\\n          0.2747,\\\\n          0.4964\\\\n        ],\\\\n        \\\\\\\"vs_greedy_ci95_per_seed\\\\\\\": [\\\\n          [\\\\n            -0.00902,\\\\n            0.01316\\\\n          ],\\\\n          [\\\\n            -0.01608,\\\\n            0.00855\\\\n          ],\\\\n          [\\\\n            -0.01108,\\\\n            0.01121\\\\n          ]\\\\n        ]\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"llama_conll_ner_n16\\\\\\\": {\\\\n    \\\\\\\"seeds\\\\\\\": [\\\\n      42,\\\\n      123,\\\\n      456\\\\n    ],\\\\n    \\\\\\\"n_instances\\\\\\\": 2756,\\\\n    \\\\\\\"greedy_f1\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.92397,\\\\n      \\\\\\\"std\\\\\\\": 0.00017,\\\\n      \\\\\\\"per_seed\\\\\\\": [\\\\n        0.92392,\\\\n        0.92383,\\\\n        0.92417\\\\n      ]\\\\n    },\\\\n    \\\\\\\"random_f1\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.92155,\\\\n      \\\\\\\"std\\\\\\\": 0.00021,\\\\n      \\\\\\\"per_seed\\\\\\\": [\\\\n        0.92174,\\\\n        0.92132,\\\\n        0.92158\\\\n      ]\\\\n    },\\\\n    \\\\\\\"oracle_f1\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.94882,\\\\n      \\\\\\\"std\\\\\\\": 0.00058,\\\\n      \\\\\\\"per_seed\\\\\\\": [\\\\n        0.94824,\\\\n        0.94939,\\\\n        0.94882\\\\n      ]\\\\n    },\\\\n    \\\\\\\"signal_selection_f1\\\\\\\": {\\\\n      \\\\\\\"VC\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.9268,\\\\n        \\\\\\\"std\\\\\\\": 0.00016,\\\\n        \\\\\\\"per_seed\\\\\\\": [\\\\n          0.92666,\\\\n          0.92698,\\\\n          0.92676\\\\n        ],\\\\n        \\\\\\\"delta_vs_greedy_mean\\\\\\\": 0.00283,\\\\n        \\\\\\\"delta_vs_greedy_std\\\\\\\": 0.00029,\\\\n        \\\\\\\"vs_greedy_p_per_seed\\\\\\\": [\\\\n          0.0096,\\\\n          0.0033,\\\\n          0.0269\\\\n        ],\\\\n        \\\\\\\"vs_greedy_ci95_per_seed\\\\\\\": [\\\\n          [\\\\n            0.00041,\\\\n            0.00524\\\\n          ],\\\\n          [\\\\n            0.00082,\\\\n            0.0057\\\\n          ],\\\\n          [\\\\n            -4e-05,\\\\n            0.0054\\\\n          ]\\\\n        ]\\\\n      },\\\\n      \\\\\\\"SJ\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.92622,\\\\n        \\\\\\\"std\\\\\\\": 0.00027,\\\\n        \\\\\\\"per_seed\\\\\\\": [\\\\n          0.9263,\\\\n          0.92592,\\\\n          0.92643\\\\n        ],\\\\n        \\\\\\\"delta_vs_greedy_mean\\\\\\\": 0.00225,\\\\n        \\\\\\\"delta_vs_greedy_std\\\\\\\": 0.00014,\\\\n        \\\\\\\"vs_greedy_p_per_seed\\\\\\\": [\\\\n          0.0004,\\\\n          0.0032,\\\\n          0.0122\\\\n        ],\\\\n        \\\\\\\"vs_greedy_ci95_per_seed\\\\\\\": [\\\\n          [\\\\n            0.00089,\\\\n            0.00414\\\\n          ],\\\\n          [\\\\n            0.00054,\\\\n            0.00391\\\\n          ],\\\\n          [\\\\n            0.00028,\\\\n            0.00441\\\\n          ]\\\\n        ]\\\\n      },\\\\n      \\\\\\\"FK\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.9263,\\\\n        \\\\\\\"std\\\\\\\": 8e-05,\\\\n        \\\\\\\"per_seed\\\\\\\": [\\\\n          0.92631,\\\\n          0.92623,\\\\n          0.92638\\\\n        ],\\\\n        \\\\\\\"delta_vs_greedy_mean\\\\\\\": 0.00233,\\\\n        \\\\\\\"delta_vs_greedy_std\\\\\\\": 0.0001,\\\\n        \\\\\\\"vs_greedy_p_per_seed\\\\\\\": [\\\\n          0.0001,\\\\n          0.0001,\\\\n          0.0151\\\\n        ],\\\\n        \\\\\\\"vs_greedy_ci95_per_seed\\\\\\\": [\\\\n          [\\\\n            0.0009,\\\\n            0.00418\\\\n          ],\\\\n          [\\\\n            0.00085,\\\\n            0.00422\\\\n          ],\\\\n          [\\\\n            0.0002,\\\\n            0.00435\\\\n          ]\\\\n        ]\\\\n      },\\\\n      \\\\\\\"EM\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.92628,\\\\n        \\\\\\\"std\\\\\\\": 0.00012,\\\\n        \\\\\\\"per_seed\\\\\\\": [\\\\n          0.92615,\\\\n          0.9263,\\\\n          0.92639\\\\n        ],\\\\n        \\\\\\\"delta_vs_greedy_mean\\\\\\\": 0.00231,\\\\n        \\\\\\\"delta_vs_greedy_std\\\\\\\": 0.00014,\\\\n        \\\\\\\"vs_greedy_p_per_seed\\\\\\\": [\\\\n          0.0003,\\\\n          0.0012,\\\\n          0.0148\\\\n        ],\\\\n        \\\\\\\"vs_greedy_ci95_per_seed\\\\\\\": [\\\\n          [\\\\n            0.00074,\\\\n            0.00393\\\\n          ],\\\\n          [\\\\n            0.0008,\\\\n            0.00434\\\\n          ],\\\\n          [\\\\n            0.00022,\\\\n            0.00435\\\\n          ]\\\\n        ]\\\\n      },\\\\n      \\\\\\\"LP\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.92515,\\\\n        \\\\\\\"std\\\\\\\": 0.00027,\\\\n        \\\\\\\"per_seed\\\\\\\": [\\\\n          0.92537,\\\\n          0.92523,\\\\n          0.92485\\\\n        ],\\\\n        \\\\\\\"delta_vs_greedy_mean\\\\\\\": 0.00118,\\\\n        \\\\\\\"delta_vs_greedy_std\\\\\\\": 0.00043,\\\\n        \\\\\\\"vs_greedy_p_per_seed\\\\\\\": [\\\\n          0.0021,\\\\n          0.0023,\\\\n          0.1803\\\\n        ],\\\\n        \\\\\\\"vs_greedy_ci95_per_seed\\\\\\\": [\\\\n          [\\\\n            0.00038,\\\\n            0.00279\\\\n          ],\\\\n          [\\\\n            0.0003,\\\\n            0.00277\\\\n          ],\\\\n          [\\\\n            -0.00076,\\\\n            0.00221\\\\n          ]\\\\n        ]\\\\n      }\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"qwen_scierc_ner_n8\\\": {\\n    \\\"seeds\\\": [\\n      42,\\n      123,\\n      456\\n    ],\\n    \\\"n_instances\\\": 529,\\n    \\\"greedy_f1\\\": {\\n      \\\"mean\\\": 0.64583,\\n      \\\"std\\\": 0.00195,\\n      \\\"per_seed\\\": [\\n        0.64392,\\n        0.64575,\\n        0.64783\\n      ]\\n    },\\n    \\\"random_f1\\\": {\\n      \\\"mean\\\": 0.60688,\\n      \\\"std\\\": 0.00597,\\n      \\\"per_seed\\\": [\\n        0.60807,\\n        0.61215,\\n        0.6004\\n      ]\\n    },\\n    \\\"oracle_f1\\\": {\\n      \\\"mean\\\": 0.77637,\\n      \\\"std\\\": 0.00387,\\n      \\\"per_seed\\\": [\\n        0.7758,\\n        0.7805,\\n        0.77282\\n      ]\\n    },\\n    \\\"signal_selection_f1\\\": {\\n      \\\"VC\\\": {\\n        \\\"mean\\\": 0.61937,\\n        \\\"std\\\": 0.00683,\\n        \\\"per_seed\\\": [\\n          0.62561,\\n          0.62044,\\n          0.61208\\n        ],\\n        \\\"delta_vs_greedy_mean\\\": -0.02646,\\n        \\\"delta_vs_greedy_std\\\": 0.00877,\\n        \\\"vs_greedy_p_per_seed\\\": [\\n          0.0278,\\n          0.0039,\\n          0.0002\\n        ],\\n        \\\"vs_greedy_ci95_per_seed\\\": [\\n          [\\n            -0.03673,\\n            0.00049\\n          ],\\n          [\\n            -0.0436,\\n            -0.00646\\n          ],\\n          [\\n            -0.0544,\\n            -0.01695\\n          ]\\n        ]\\n      },\\n      \\\"SJ\\\": {\\n        \\\"mean\\\": 0.64132,\\n        \\\"std\\\": 0.00862,\\n        \\\"per_seed\\\": [\\n          0.64501,\\n          0.64748,\\n          0.63147\\n        ],\\n        \\\"delta_vs_greedy_mean\\\": -0.00451,\\n        \\\"delta_vs_greedy_std\\\": 0.01026,\\n        \\\"vs_greedy_p_per_seed\\\": [\\n          0.4433,\\n          0.4046,\\n          0.0051\\n        ],\\n        \\\"vs_greedy_ci95_per_seed\\\": [\\n          [\\n            -0.01277,\\n            0.01508\\n          ],\\n          [\\n            -0.01283,\\n            0.0164\\n          ],\\n          [\\n            -0.02956,\\n            -0.00391\\n          ]\\n        ]\\n      },\\n      \\\"FK\\\": {\\n        \\\"mean\\\": 0.64126,\\n        \\\"std\\\": 0.00799,\\n        \\\"per_seed\\\": [\\n          0.64483,\\n          0.64685,\\n          0.63211\\n        ],\\n        \\\"delta_vs_greedy_mean\\\": -0.00457,\\n        \\\"delta_vs_greedy_std\\\": 0.00966,\\n        \\\"vs_greedy_p_per_seed\\\": [\\n          0.4513,\\n          0.4387,\\n          0.0065\\n        ],\\n        \\\"vs_greedy_ci95_per_seed\\\": [\\n          [\\n            -0.01309,\\n            0.01496\\n          ],\\n          [\\n            -0.0135,\\n            0.01601\\n          ],\\n          [\\n            -0.0287,\\n            -0.00336\\n          ]\\n        ]\\n      },\\n      \\\"EM\\\": {\\n        \\\"mean\\\": 0.6339,\\n        \\\"std\\\": 0.00569,\\n        \\\"per_seed\\\": [\\n          0.63623,\\n          0.63806,\\n          0.62742\\n        ],\\n        \\\"delta_vs_greedy_mean\\\": -0.01193,\\n        \\\"delta_vs_greedy_std\\\": 0.00734,\\n        \\\"vs_greedy_p_per_seed\\\": [\\n          0.1624,\\n          0.1597,\\n          0.0018\\n        ],\\n        \\\"vs_greedy_ci95_per_seed\\\": [\\n          [\\n            -0.02312,\\n            0.00723\\n          ],\\n          [\\n            -0.02306,\\n            0.00745\\n          ],\\n          [\\n            -0.03521,\\n            -0.00619\\n          ]\\n        ]\\n      },\\n      \\\"LP\\\": {\\n        \\\"mean\\\": 0.64623,\\n        \\\"std\\\": 0.0034,\\n        \\\"per_seed\\\": [\\n          0.65007,\\n          0.64362,\\n          0.64499\\n        ],\\n        \\\"delta_vs_greedy_mean\\\": 0.0004,\\n        \\\"delta_vs_greedy_std\\\": 0.005,\\n        \\\"vs_greedy_p_per_seed\\\": [\\n          0.1971,\\n          0.3765,\\n          0.3181\\n        ],\\n        \\\"vs_greedy_ci95_per_seed\\\": [\\n          [\\n            -0.00797,\\n            0.02002\\n          ],\\n          [\\n            -0.01555,\\n            0.0112\\n          ],\\n          [\\n            -0.015,\\n            0.009\\n          ]\\n        ]\\n      }\\n    }\\n  },\\n  \\\"llama_scierc_ner_n8\\\": {\\n    \\\"seeds\\\": [\\n      42,\\n      123,\\n      456\\n    ],\\n    \\\"n_instances\\\": 529,\\n    \\\"greedy_f1\\\": {\\n      \\\"mean\\\": 0.64572,\\n      \\\"std\\\": 0.00033,\\n      \\\"per_seed\\\": [\\n        0.64603,\\n        0.64538,\\n        0.64575\\n      ]\\n    },\\n    \\\"random_f1\\\": {\\n      \\\"mean\\\": 0.62005,\\n      \\\"std\\\": 0.00135,\\n      \\\"per_seed\\\": [\\n        0.61943,\\n        0.6216,\\n        0.61912\\n      ]\\n    },\\n    \\\"oracle_f1\\\": {\\n      \\\"mean\\\": 0.76599,\\n      \\\"std\\\": 0.00868,\\n      \\\"per_seed\\\": \\n\\n... [截断: 输出过长，省略 2542 字符] ...\\n\\n.64792,\\n          0.64162,\\n          0.64579\\n        ],\\n        \\\"delta_vs_greedy_mean\\\": -0.00061,\\n        \\\"delta_vs_greedy_std\\\": 0.00288,\\n        \\\"vs_greedy_p_per_seed\\\": [\\n          0.3775,\\n          0.2747,\\n          0.4964\\n        ],\\n        \\\"vs_greedy_ci95_per_seed\\\": [\\n          [\\n            -0.00902,\\n            0.01316\\n          ],\\n          [\\n            -0.01608,\\n            0.00855\\n          ],\\n          [\\n            -0.01108,\\n            0.01121\\n          ]\\n        ]\\n      }\\n    }\\n  },\\n  \\\"llama_conll_ner_n16\\\": {\\n    \\\"seeds\\\": [\\n      42,\\n      123,\\n      456\\n    ],\\n    \\\"n_instances\\\": 2756,\\n    \\\"greedy_f1\\\": {\\n      \\\"mean\\\": 0.92397,\\n      \\\"std\\\": 0.00017,\\n      \\\"per_seed\\\": [\\n        0.92392,\\n        0.92383,\\n        0.92417\\n      ]\\n    },\\n    \\\"random_f1\\\": {\\n      \\\"mean\\\": 0.92155,\\n      \\\"std\\\": 0.00021,\\n      \\\"per_seed\\\": [\\n        0.92174,\\n        0.92132,\\n        0.92158\\n      ]\\n    },\\n    \\\"oracle_f1\\\": {\\n      \\\"mean\\\": 0.94882,\\n      \\\"std\\\": 0.00058,\\n      \\\"per_seed\\\": [\\n        0.94824,\\n        0.94939,\\n        0.94882\\n      ]\\n    },\\n    \\\"signal_selection_f1\\\": {\\n      \\\"VC\\\": {\\n        \\\"mean\\\": 0.9268,\\n        \\\"std\\\": 0.00016,\\n        \\\"per_seed\\\": [\\n          0.92666,\\n          0.92698,\\n          0.92676\\n        ],\\n        \\\"delta_vs_greedy_mean\\\": 0.00283,\\n        \\\"delta_vs_greedy_std\\\": 0.00029,\\n        \\\"vs_greedy_p_per_seed\\\": [\\n          0.0096,\\n          0.0033,\\n          0.0269\\n        ],\\n        \\\"vs_greedy_ci95_per_seed\\\": [\\n          [\\n            0.00041,\\n            0.00524\\n          ],\\n          [\\n            0.00082,\\n            0.0057\\n          ],\\n          [\\n            -4e-05,\\n            0.0054\\n          ]\\n        ]\\n      },\\n      \\\"SJ\\\": {\\n        \\\"mean\\\": 0.92622,\\n        \\\"std\\\": 0.00027,\\n        \\\"per_seed\\\": [\\n          0.9263,\\n          0.92592,\\n          0.92643\\n        ],\\n        \\\"delta_vs_greedy_mean\\\": 0.00225,\\n        \\\"delta_vs_greedy_std\\\": 0.00014,\\n        \\\"vs_greedy_p_per_seed\\\": [\\n          0.0004,\\n          0.0032,\\n          0.0122\\n        ],\\n        \\\"vs_greedy_ci95_per_seed\\\": [\\n          [\\n            0.00089,\\n            0.00414\\n          ],\\n          [\\n            0.00054,\\n            0.00391\\n          ],\\n          [\\n            0.00028,\\n            0.00441\\n          ]\\n        ]\\n      },\\n      \\\"FK\\\": {\\n        \\\"mean\\\": 0.9263,\\n        \\\"std\\\": 8e-05,\\n        \\\"per_seed\\\": [\\n          0.92631,\\n          0.92623,\\n          0.92638\\n        ],\\n        \\\"delta_vs_greedy_mean\\\": 0.00233,\\n        \\\"delta_vs_greedy_std\\\": 0.0001,\\n        \\\"vs_greedy_p_per_seed\\\": [\\n          0.0001,\\n          0.0001,\\n          0.0151\\n        ],\\n        \\\"vs_greedy_ci95_per_seed\\\": [\\n          [\\n            0.0009,\\n            0.00418\\n          ],\\n          [\\n            0.00085,\\n            0.00422\\n          ],\\n          [\\n            0.0002,\\n            0.00435\\n          ]\\n        ]\\n      },\\n      \\\"EM\\\": {\\n        \\\"mean\\\": 0.92628,\\n        \\\"std\\\": 0.00012,\\n        \\\"per_seed\\\": [\\n          0.92615,\\n          0.9263,\\n          0.92639\\n        ],\\n        \\\"delta_vs_greedy_mean\\\": 0.00231,\\n        \\\"delta_vs_greedy_std\\\": 0.00014,\\n        \\\"vs_greedy_p_per_seed\\\": [\\n          0.0003,\\n          0.0012,\\n          0.0148\\n        ],\\n        \\\"vs_greedy_ci95_per_seed\\\": [\\n          [\\n            0.00074,\\n            0.00393\\n          ],\\n          [\\n            0.0008,\\n            0.00434\\n          ],\\n          [\\n            0.00022,\\n            0.00435\\n          ]\\n        ]\\n      },\\n      \\\"LP\\\": {\\n        \\\"mean\\\": 0.92515,\\n        \\\"std\\\": 0.00027,\\n        \\\"per_seed\\\": [\\n          0.92537,\\n          0.92523,\\n          0.92485\\n        ],\\n        \\\"delta_vs_greedy_mean\\\": 0.00118,\\n        \\\"delta_vs_greedy_std\\\": 0.00043,\\n        \\\"vs_greedy_p_per_seed\\\": [\\n          0.0021,\\n          0.0023,\\n          0.1803\\n        ],\\n        \\\"vs_greedy_ci95_per_seed\\\": [\\n          [\\n            0.00038,\\n            0.00279\\n          ],\\n          [\\n            0.0003,\\n            0.00277\\n          ],\\n          [\\n            -0.00076,\\n            0.00221\\n          ]\\n        ]\\n      }\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 93_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me register the artifact with content instead.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b8b11d62-6ca3-4151-bc4f-ed1130aa9fbf",
+  "uuid": "27fe45a9-10b0-4a1b-b0b9-e67fede8e26a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01E9VLeYYGmywVyxrhPAFchQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4255,
+      "cache_read_input_tokens": 86770,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4255
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 94_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact · `toolu_01GDCo2EnUfbwEEHorrYWdHe`</summary>
+
+```json
+{
+  "name": "multiseed_selection_f1_analysis",
+  "type": "data",
+  "description": "3-seed selection F1 with bootstrap p-values for Qwen/LLaMA SciERC NER and LLaMA CoNLL NER (reviewer C2 response)",
+  "project": "struct_self_consist_ie",
+  "content": "See server file: /root/autodl-tmp/struct_self_consist_ie/output/analysis_multiseed_selection_f1.json",
+  "content_filename": "analysis_multiseed_selection_f1_pointer.txt",
+  "tags": [
+    "selection_f1",
+    "multiseed",
+    "bootstrap",
+    "reviewer_response"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b8b11d62-6ca3-4151-bc4f-ed1130aa9fbf",
+  "uuid": "863cea2c-a3e8-488e-a646-2564cbb08c4a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01E9VLeYYGmywVyxrhPAFchQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4255,
+      "cache_read_input_tokens": 86770,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4255
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 95 · 2026-05-15T12:47:14.367Z_
+
+<details><summary>↩ Tool result · `toolu_01GDCo2EnUfbwEEHorrYWdHe`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260515_48470d\", \"name\": \"multiseed_selection_f1_analysis\", \"type\": \"data\", \"description\": \"3-seed selection F1 with bootstrap p-values for Qwen/LLaMA SciERC NER and LLaMA CoNLL NER (reviewer C2 response)\", \"path\": \"projects/struct_self_consist_ie/artifacts/_project/data/analysis_multiseed_selection_f1_pointer.txt\", \"url\": null, \"project\": \"struct_self_consist_ie\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-15T12:47:13.730598+00:00\", \"tags\": [\"selection_f1\", \"multiseed\", \"bootstrap\", \"reviewer_response\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b8b11d62-6ca3-4151-bc4f-ed1130aa9fbf",
+  "uuid": "4ee03d88-4851-4421-8c48-b242e7540d3a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260515_48470d\\\", \\\"name\\\": \\\"multiseed_selection_f1_analysis\\\", \\\"type\\\": \\\"data\\\", \\\"description\\\": \\\"3-seed selection F1 with bootstrap p-values for Qwen/LLaMA SciERC NER and LLaMA CoNLL NER (reviewer C2 response)\\\", \\\"path\\\": \\\"projects/struct_self_consist_ie/artifacts/_project/data/analysis_multiseed_selection_f1_pointer.txt\\\", \\\"url\\\": null, \\\"project\\\": \\\"struct_self_consist_ie\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-15T12:47:13.730598+00:00\\\", \\\"tags\\\": [\\\"selection_f1\\\", \\\"multiseed\\\", \\\"bootstrap\\\", \\\"reviewer_response\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260515_48470d\", \"name\": \"multiseed_selection_f1_analysis\", \"type\": \"data\", \"description\": \"3-seed selection F1 with bootstrap p-values for Qwen/LLaMA SciERC NER and LLaMA CoNLL NER (reviewer C2 response)\", \"path\": \"projects/struct_self_consist_ie/artifacts/_project/data/analysis_multiseed_selection_f1_pointer.txt\", \"url\": null, \"project\": \"struct_self_consist_ie\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-15T12:47:13.730598+00:00\", \"tags\": [\"selection_f1\", \"multiseed\", \"bootstrap\", \"reviewer_response\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 96_
+
+结果已保存到 `output/analysis_multiseed_selection_f1.json`，汇总如下：
+
+---
+
+## Qwen SciERC NER (N=8, 529 instances, 3 seeds)
+
+| Method | Mean F1 | ±σ | Δ vs Greedy |
+|--------|--------:|-----:|------------:|
+| **Greedy** | 0.6458 | 0.0020 | — |
+| Random | 0.6069 | 0.0060 | -0.0389 |
+| **LP** | **0.6462** | 0.0034 | **+0.0004** |
+| SJ | 0.6413 | 0.0086 | -0.0045 |
+| FK | 0.6413 | 0.0080 | -0.0046 |
+| EM | 0.6339 | 0.0057 | -0.0119 |
+| VC | 0.6194 | 0.0068 | -0.0265 |
+| Oracle | 0.7764 | 0.0039 | +0.1306 |
+
+LP 是唯一略超 greedy 的 signal，但 p > 0.19（所有 seed），不显著。其余 signal 均 ≤ greedy。
+
+## LLaMA SciERC NER (N=8, 529 instances, 3 seeds)
+
+| Method | Mean F1 | ±σ | Δ vs Greedy |
+|--------|--------:|-----:|------------:|
+| **Greedy** | 0.6457 | 0.0003 | — |
+| Random | 0.6201 | 0.0014 | -0.0257 |
+| **LP** | **0.6451** | 0.0032 | -0.0006 |
+| FK | 0.6440 | 0.0038 | -0.0018 |
+| SJ | 0.6438 | 0.0056 | -0.0019 |
+| VC | 0.6414 | 0.0013 | -0.0044 |
+| EM | 0.6379 | 0.0087 | -0.0078 |
+| Oracle | 0.7660 | 0.0087 | +0.1203 |
+
+所有 signal 均 ≤ greedy（p 全部 > 0.09，不显著）。
+
+## LLaMA CoNLL NER (N=16, 2756 instances, 3 seeds)
+
+| Method | Mean F1 | ±σ | Δ vs Greedy | p-value range |
+|--------|--------:|-----:|------------:|--------------:|
+| **Greedy** | 0.9240 | 0.0002 | — | — |
+| Random | 0.9216 | 0.0002 | -0.0024 | — |
+| **VC** | **0.9268** | 0.0002 | **+0.0028** | 0.003–0.027 |
+| **FK** | **0.9263** | 0.0001 | **+0.0023** | 0.0001–0.015 |
+| **EM** | **0.9263** | 0.0001 | **+0.0023** | 0.0003–0.015 |
+| **SJ** | **0.9262** | 0.0003 | **+0.0023** | 0.0004–0.012 |
+| **LP** | **0.9252** | 0.0003 | **+0.0012** | 0.002–0.180 |
+| Oracle | 0.9488 | 0.0006 | +0.0249 | — |
+
+CoNLL 上所有 5 个 signal 均显著 beat greedy（VC/SJ/FK/EM 的 bootstrap p < 0.03 across all seeds）。SciERC 上 greedy 已接近最优，selection 无显著提升——oracle gap（~13 pt）表明 room 在，但当前 signal 对 SciERC 这种 fine-grained 任务的 selection 能力不足。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b8b11d62-6ca3-4151-bc4f-ed1130aa9fbf",
+  "uuid": "f6c06e53-3bd3-4f83-9901-f56c4c49d7fd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Sqzh8Xdnwc7SUJXeqAdvpw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 721,
+      "cache_read_input_tokens": 91025,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 721
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 97_
+
+结果已保存到 `output/analysis_multiseed_selection_f1.json`，汇总如下：
+
+---
+
+## Qwen SciERC NER (N=8, 529 instances, 3 seeds)
+
+| Method | Mean F1 | ±σ | Δ vs Greedy |
+|--------|--------:|-----:|------------:|
+| **Greedy** | 0.6458 | 0.0020 | — |
+| Random | 0.6069 | 0.0060 | -0.0389 |
+| **LP** | **0.6462** | 0.0034 | **+0.0004** |
+| SJ | 0.6413 | 0.0086 | -0.0045 |
+| FK | 0.6413 | 0.0080 | -0.0046 |
+| EM | 0.6339 | 0.0057 | -0.0119 |
+| VC | 0.6194 | 0.0068 | -0.0265 |
+| Oracle | 0.7764 | 0.0039 | +0.1306 |
+
+LP 是唯一略超 greedy 的 signal，但 p > 0.19（所有 seed），不显著。其余 signal 均 ≤ greedy。
+
+## LLaMA SciERC NER (N=8, 529 instances, 3 seeds)
+
+| Method | Mean F1 | ±σ | Δ vs Greedy |
+|--------|--------:|-----:|------------:|
+| **Greedy** | 0.6457 | 0.0003 | — |
+| Random | 0.6201 | 0.0014 | -0.0257 |
+| **LP** | **0.6451** | 0.0032 | -0.0006 |
+| FK | 0.6440 | 0.0038 | -0.0018 |
+| SJ | 0.6438 | 0.0056 | -0.0019 |
+| VC | 0.6414 | 0.0013 | -0.0044 |
+| EM | 0.6379 | 0.0087 | -0.0078 |
+| Oracle | 0.7660 | 0.0087 | +0.1203 |
+
+所有 signal 均 ≤ greedy（p 全部 > 0.09，不显著）。
+
+## LLaMA CoNLL NER (N=16, 2756 instances, 3 seeds)
+
+| Method | Mean F1 | ±σ | Δ vs Greedy | p-value range |
+|--------|--------:|-----:|------------:|--------------:|
+| **Greedy** | 0.9240 | 0.0002 | — | — |
+| Random | 0.9216 | 0.0002 | -0.0024 | — |
+| **VC** | **0.9268** | 0.0002 | **+0.0028** | 0.003–0.027 |
+| **FK** | **0.9263** | 0.0001 | **+0.0023** | 0.0001–0.015 |
+| **EM** | **0.9263** | 0.0001 | **+0.0023** | 0.0003–0.015 |
+| **SJ** | **0.9262** | 0.0003 | **+0.0023** | 0.0004–0.012 |
+| **LP** | **0.9252** | 0.0003 | **+0.0012** | 0.002–0.180 |
+| Oracle | 0.9488 | 0.0006 | +0.0249 | — |
+
+CoNLL 上所有 5 个 signal 均显著 beat greedy（VC/SJ/FK/EM 的 bootstrap p < 0.03 across all seeds）。SciERC 上 greedy 已接近最优，selection 无显著提升——oracle gap（~13 pt）表明 room 在，但当前 signal 对 SciERC 这种 fine-grained 任务的 selection 能力不足。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 280093,
+  "duration_api_ms": 252528,
+  "num_turns": 36,
+  "stop_reason": "end_turn",
+  "session_id": "b8b11d62-6ca3-4151-bc4f-ed1130aa9fbf",
+  "total_cost_usd": 1.4906707500000003,
+  "usage": {
+    "input_tokens": 25,
+    "cache_creation_input_tokens": 80045,
+    "cache_read_input_tokens": 1248939,
+    "output_tokens": 14560,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 80045,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 1104,
+        "cache_read_input_tokens": 91025,
+        "cache_creation_input_tokens": 721,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 721
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1680,
+      "outputTokens": 23,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.0017950000000000002,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 25,
+      "outputTokens": 14560,
+      "cacheReadInputTokens": 1248939,
+      "cacheCreationInputTokens": 80045,
+      "webSearchRequests": 0,
+      "costUSD": 1.4888757500000003,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "9ded07d5-75f6-473e-8fa2-6ad4dffc71f3"
+}
+```
+
+</details>
+
+---

@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "0ee279c67346d1e67996",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "code span realignment and gate0",
+  "task_key": "worker_code_span_realignment_and_gate0_20260514T070233",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_span_realignment_and_gate0_20260514T070233.log",
+    "occurrence": 1,
+    "bytes": 738587,
+    "sha256": "9085250dd9422d1d2812eb5e509307288f71d338df2f33381a1cf6c1b52129a9"
+  },
+  "statistics": {
+    "messages": 142,
+    "user_turns": 1,
+    "tool_calls": 47,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 40,
+      "tool_call": 47,
+      "tool_result": 47,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 75,
+      "chunks": [
+        {
+          "path": "0ee279c67346d1e67996-part-0001.json",
+          "message_count": 75
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 67,
+      "chunks": [
+        {
+          "path": "0ee279c67346d1e67996-part-0001.json",
+          "message_count": 24
+        },
+        {
+          "path": "0ee279c67346d1e67996-part-0002.json",
+          "message_count": 43
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-span-realignment-and-gate0.md"
+}

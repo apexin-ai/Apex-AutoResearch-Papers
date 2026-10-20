@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0a91cb131e22ac7b90a0",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "exp verbalized confidence",
+  "task_key": "worker_exp_verbalized_confidence_20260516T030400",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_exp_verbalized_confidence_20260516T030400_result.json",
+    "occurrence": 1,
+    "bytes": 1548,
+    "sha256": "61e1e8ea4d332761b313052c0503749774d2efa742d07f48454f90b7430b4be2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验完成。核心结果汇总：\n\n## Verbalized Confidence 实验结果\n\n**结论：negative — VerbConf 是所有信号中表现最差的，强化 \"score compression is general\" 论点。**\n\n### Score Compression 严重\n- SciERC: VerbConf 均值 **8.58/10**, std=1.15（88% 的分数集中在 8-10）\n- CoNLL: VerbConf 均值 **9.24/10**, std=1.32（几乎全部给高分）\n- Parse failure rate 极低（SciERC 0.26%, CoNLL 0%）\n\n### Spearman ρ（信号 vs greedy F1）\n\n| Signal | SciERC | CoNLL |\n|--------|--------|-------|\n| **VC** | **0.379** | 0.424 |\n| SJ | 0.360 | 0.436 |\n| **EM** | 0.295 | **0.451** |\n| **VerbConf** | **0.297** | **0.337** |\n| FK | 0.267 | 0.400 |\n| LP | 0.205 | 0.316 |\n\nVerbConf ρ 低于 SJ/VC/EM，仅略好于 LP。\n\n### Selection F1（信号选最优 sample）\n\n| Signal | SciERC (Δ vs greedy) | CoNLL (Δ vs greedy) |\n|--------|---------------------|---------------------|\n| LP | +0.0061 | -0.0105 |\n| SJ | +0.0011 | -0.0089 |\n| FK | +0.0009 | -0.0091 |\n| EM | -0.0077 | -0.0107 |\n| VC | -0.0183 | -0.0129 |\n| **VerbConf** | **-0.0245** | **-0.0193** |\n\n**VerbConf 在两个数据集上 selection F1 都是最差的**，Δ 为 -2.45% (SciERC) 和 -1.93% (CoNLL)。\n\n### 解读\n模型对自己的 NER 输出过度自信（均值 8.6-9.2/10），几乎不区分好坏抽取。这与已有信号的 score compression 现象一致，且 verbalized confidence 的 compression 更为严重——连对比性最强的 sample-level 差异也无法捕捉。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-verbalized-confidence.md"
+}

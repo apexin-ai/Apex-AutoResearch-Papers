@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2c741118b31fea95ffb2",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "code data format fix",
+  "task_key": "worker_code_data_format_fix_20260514T113420",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_data_format_fix_20260514T113420_result.json",
+    "occurrence": 1,
+    "bytes": 529,
+    "sha256": "01b4950e2fc64b3ba7a39fc30fff8b4a33632569411c6f1076db1e8a81489f51"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部验证通过。总结：\n\n| 任务 | 结果 |\n|------|------|\n| WNUT-17 → JSONL | train=3394, dev=1009, test=1287 已转换 |\n| dataset_info.json | 添加 `conll2003_uie_train` 和 `wnut17_uie_train` |\n| data_utils.py | 添加 `load_conll2003()` 和 `load_wnut17()` |\n| sampling.py | 添加 `CONLL2003_SCHEMA_HINT` 和 `WNUT17_SCHEMA_HINT` |\n\n数据格式统一为 JSONL，字段结构与 SciERC 一致：`id, text, entities, relations, events`。CoNLL-2003 共 20744 条，WNUT-17 共 5690 条。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-data-format-fix.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "17e41a518caed88bf04a",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "exp 017 llama conll",
+  "task_key": "worker_exp_017_llama_conll_20260518T060018",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_exp_017_llama_conll_20260518T060018_result.json",
+    "occurrence": 1,
+    "bytes": 1596,
+    "sha256": "571019fa10e66a0b6fa24ecca098ec20448290ae9f99e70d7fe00c8894244695"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## LLaMA CoNLL Results (exp-017)\n\n所有数据已存在，无需重新训练或推理。\n\n### Training\n- Model: Meta-Llama-3.1-8B-Instruct, LoRA, 5 epochs, final loss: 0.0392\n\n### QE Analysis (gold-filtered, n=2756)\n\n| Signal | ρ | AUROC | Sel F1 | Δ vs Greedy |\n|--------|-------|-------|--------|-------------|\n| LP     | .307  | .761  | .9244  | +0.03pp     |\n| SJ     | .431  | .704  | .9237  | -0.04pp     |\n| FK     | .428  | .703  | .9245  | +0.03pp     |\n| EM     | .431  | .705  | .9244  | +0.02pp     |\n| VC     | .426  | .709  | .9233  | -0.09pp     |\n| Greedy | —     | —     | .9242  | —           |\n| Oracle | —     | —     | .9426  | +1.84pp     |\n\nDegeneracy: 89.2% | LP range median: 0.0002 | Within-instance ρ(LP,F1): median=0.512\n\n### Cross-model Comparison\n\n| Metric | Qwen (exp_002) | LLaMA (exp_017) |\n|--------|---------------|-----------------|\n| Greedy F1 | .908 | .927 |\n| Oracle F1 | .947 | .944 |\n| Degeneracy | 59.1% | 89.2% |\n| LP ρ | .316 | .307 |\n| SJ ρ | .436 | .431 |\n| Best signal | EM (.451) | SJ/EM (.431) |\n| LP Sel Δ | -1.05pp | +0.03pp |\n\n### 结论\n- **Signal ranking 跨模型一致**: structural > LP 在两个 backbone 上均成立，ρ 差异 <0.01\n- **Degeneracy 差异巨大**: LLaMA 89.2% vs Qwen 59.1%，因 LLaMA greedy 更强，headroom 仅 1.77pp\n- **Selection F1 差异由 degeneracy 驱动**: Qwen 所有 signal 低于 greedy（-0.89 to -1.53pp），LLaMA 基本持平（±0.09pp）\n- **ρ-AUROC dissociation 跨模型复现**: LP AUROC > structural AUROC，但 LP ρ 最低"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-017-llama-conll.md"
+}

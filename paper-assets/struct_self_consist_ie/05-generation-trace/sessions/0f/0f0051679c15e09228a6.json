@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0f0051679c15e09228a6",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis output mbr selection",
+  "task_key": "worker_analysis_output_mbr_selection_20260518T162549",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_output_mbr_selection_20260518T162549_result.json",
+    "occurrence": 1,
+    "bytes": 1157,
+    "sha256": "6dcf4c264eb6867b52816b3ead77cc038a87ecf98bb2679aa49538f4cd3c31a3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。核心结论：\n\n**MBR selection（entity-set Jaccard over (text,type)）对 NER 无效。**\n\n| Dataset | Greedy | LP Sel | **MBR Sel** | Oracle | MBR-Grd | MBR-LP |\n|---------|--------|--------|-------------|--------|---------|--------|\n| SciERC  | 0.6439 | 0.6501 | **0.6444**  | 0.7758 | +0.0005 | -0.0057 |\n| CoNLL   | 0.9087 | 0.8985 | **0.9043**  | 0.9520 | -0.0043 | +0.0059 |\n| FewNERD | 0.7478 | 0.7610 | **0.7208**  | 0.8686 | -0.0269 | -0.0402 |\n\n- MBR 在 2/3 数据集上低于 Greedy，2/3 数据集上低于 LP\n- FewNERD 上 MBR 显著差于两个 baseline（-2.7% vs Greedy，-4.0% vs LP）\n- Degeneracy 分析：MBR 仅在 SciERC 高多样性 instances 上有微弱优势（+1.8%），其余全部为负\n\n失败原因：MBR 倾向选出只包含\"easy\"共识实体的 sample，遗漏少数 samples 正确检测到的难实体。LP selection 仍是更强的 single-sample selection baseline。\n\n产出：\n- 脚本：`code/analysis_mbr_selection.py`（服务器 + 本地）\n- 结果 JSON：服务器 `output/analysis_mbr_selection.json`\n- 报告：`artifacts/mbr_selection/mbr_selection_results.md`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-output-mbr-selection.md"
+}

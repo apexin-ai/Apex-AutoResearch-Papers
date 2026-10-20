@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1bba0a4c2fbf10dc00c0",
+  "project": "struct_self_consist_ie",
+  "kind": "history",
+  "title": "agent / loop_17_1779399623.md",
+  "task_key": "loop_17_1779399623",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/agent/loop_17_1779399623.md",
+    "occurrence": 1,
+    "bytes": 4283,
+    "sha256": "0e822e3fc2744dcac0c243a14ce56f7f7c4efc711699c4c6cd9bc71444e610ba"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 17\nreason: idle_timeout\nupdated: '2026-05-21T20:56:10+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：autodl-5090 cuda:0-3, autodl-5090-b cuda:0-3, autodl-5090-c cuda:0-3（共12张）。白名单外的 GPU 即使 Director 指令也必须 push back\n- autodl-5090 使用 conda 环境（`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`），不是 venv\n- 模型/数据/输出全在 `/root/autodl-tmp/struct_self_consist_ie/`，根分区只有 ~30GB 严禁存大文件\n- API 余额已耗尽，Frontier SC 实验（GPT-5.5）处于阻塞状态，不要尝试调用外部 LLM API\n- DDL 2026-05-25（~4天），4.5 Mandate Sprint 中，全力推进\n\n### 2. 🖥️ 基础设施快照\n- **autodl-5090**: 工作目录 `/root/autodl-tmp/struct_self_consist_ie/`，Python `/root/miniconda3/bin/python`，磁盘 813G/879G 可用\n- **autodl-5090-b**: 同上路径结构，磁盘 424G/879G 可用（50%已用，注意）\n- **autodl-5090-c**: 同上路径结构，磁盘 813G/879G 可用\n- 模型路径：`checkpoints/qwen3-8b-{dataset}-merged`（conll2003/fewnerd/scierc）\n- 数据路径：`data/{conll2003,fewnerd,scierc}/`\n- 核心脚本：`code/run_mvp_pilot.py`\n- 活跃进程：exp_14b_inference_fewnerd (PID 252310, autodl-5090-c:cuda:0)，exp_fewnerd_7b_n16_s42 (PID 264869, autodl-5090-c:cuda:2)，exp_fewnerd_t05_s456 (PID 305832, autodl-5090-b:cuda:0)，exp_fewnerd_t12_s456 (PID 305834, autodl-5090-b:cuda:1)\n\n### 3. 📊 当前状态\n刚收到 cron 回调：**exp_conll_n16_s456 和 exp_conll_n16_s123 双双失败**（EXIT_CODE=1，运行仅 36-40 秒）。已派诊断 Worker（worker_diagnose_exp_conll_n16_failed_20260521T045315）SSH 到 autodl-5090 读 log，**尚未回调**。已向 Director 汇报失败并告知诊断中。\n\nRUNNING 实验：\n- exp_14b_inference_conll — 14B 模型 CoNLL 推理（autodl-5090-c，pid 未确认）\n- exp_14b_inference_fewnerd — 14B 模型 FewNERD 推理（autodl-5090-c:cuda:0, PID 252310）\n- exp_fewnerd_7b_n16_s42 — FewNERD N=16 seed=42（autodl-5090-c:cuda:2）\n- exp_fewnerd_t05_s456 / exp_fewnerd_t12_s456 — FewNERD T-ablation（autodl-5090-b:cuda:0/1）\n- exp_fewnerd_n16_s456 / s42 / s123 — 状态 RUNNING 但 pid=\"?\"，可能是 stale 需要 reconcile\n\n另有 Worker worker_run_frontier_sc_gpt55 在跑（API 大概率会因余额耗尽而失败）。\n\n### 4. 📋 待办\n- 诊断 Worker 回调 → 读根因 → 修复 → 在 autodl-5090 cuda:0/1 重跑 exp_conll_n16_s123 和 s456（CoNLL N=16 三 seed 缺两个，blocking scaling law 拟合）\n- exp_fewnerd_n16_s456/s42/s123 pid=\"?\" → 需要 SSH 确认是否真的在跑还是 stale，如果 stale 需要重新提交\n- 14B inference 完成 → 分析 scale curve 数据点（D217 决策：larger models still exhibit ceiling）\n- FewNERD T-ablation (T=0.5/1.2 s456) 完成 → 补齐 T-ablation matrix 最后一组 seed\n- frontier SC Worker 大概率失败（API 余额） → 确认失败后更新 registry，等 Director 解决 API key\n- autodl-5090 有 4 张空闲 GPU → 诊断修复后立即利用（CoNLL N=16 重跑只需 2 张，剩余 2 张可铺 PREPARING 队列中的实验如 exp_b1_scd 或 exp_a1_spider_sql_sc）\n- Paper Agent 叙事 B patch 应在进行中（11 处 probe 数字更新）→ 关注是否完成\n\n### 5. 🎯 战略上下文\n- 核心方向 D208：Capability Ceiling of Self-Consistency for Structured Generation\n- 三条线：P0-1 Probe（✅完成，D216 GroupKFold 全量数据）、P0-2 Paper（叙事 B patch 中）、P0-3 Correlation（✅完成，cross-family r≈0.67）\n- Probe 最终结论（D216）：ESJ(0.51) << Probe(0.63-0.88) ≤ MV(0.87)，complexity-dependent introspection boundary\n- CoNLL N=16 失败是 scaling law 拟合的阻塞项——F1(N)=a-b*N^(-c) 需要 N=16 数据点，三 seed 目前只有 s42 成功\n- 易踩坑：exp_conll_n16_s42 在其他服务器成功但 s123/s456 在 autodl-5090 失败，可能是环境差异（模型文件/依赖版本/磁盘）而非代码 bug，诊断时先看环境\n- 易踩坑：report.md 中多个 RUNNING 实验 pid=\"?\"，不要假设它们真的在跑，reconcile_crons 只检测到 1 个活跃 cron\n- 249 个实验，成功率 139/226=61.5%，negative 48 个——项目历史较长，很多早期实验已 killed/过时\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-17-1779399623.md"
+}

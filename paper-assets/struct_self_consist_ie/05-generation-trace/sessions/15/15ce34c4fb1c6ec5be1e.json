@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "15ce34c4fb1c6ec5be1e",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "investigate exp 018 provenance",
+  "task_key": "worker_investigate_exp_018_provenance_20260515T060431",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_investigate_exp_018_provenance_20260515T060431_result.json",
+    "occurrence": 1,
+    "bytes": 985,
+    "sha256": "fb7f0760cf7f50b7f36a1d77430467c5e30ded947e622a7fb2fb07e80c9d18a3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已完成并注册。核心发现：\n\n**溯源结论**：\n- **exp_018_qwen_scierc_seed456** — 新推理（今天 13:08，有 run.log 确认）\n- **exp_018_qwen_scierc_seed123** — 新推理（无先前 Qwen seed123 数据，缺 run.log）\n- **exp_018_llama_scierc_seed456** — **复制自 exp_007_llama_seed456**（MD5 完全一致，run.log 显示输出路径为 exp_007）\n- **exp_018_llama_scierc_seed123** — 新推理（MD5 与 exp_007_llama_seed123 不同，指标也不同，缺 run.log）\n\n**3-seed ρ 排序**（mean）：\n- Qwen: voting_conf (0.394) > SJ (0.364) > EM (0.310) > FK (0.254) > logprob (0.217)\n- LLaMA: voting_conf (0.422) > SJ (0.362) > FK (0.309) > EM (0.303) > logprob (0.190)\n\n**3-seed AUROC 排序**（mean）：\n- 两个模型一致：EM (0.76) > voting_conf/SJ (0.70–0.72) > FK (0.63–0.67) > logprob (0.57–0.60)\n\nLLaMA 跨 seed 方差普遍小于 Qwen，信号稳定性更好。完整数据表在报告中。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/investigate-exp-018-provenance.md"
+}

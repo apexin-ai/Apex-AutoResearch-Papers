@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "067dd7fe734c27b1aef6",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "run 8gpu fill priority",
+  "task_key": "worker_run_8gpu_fill_priority_20260521T042232",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_run_8gpu_fill_priority_20260521T042232_result.json",
+    "occurrence": 1,
+    "bytes": 1329,
+    "sha256": "5fda766a6ca48d75ef45effbe90170b9acdf1fbb0708acf0865e8c5924ca6f02"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 当前状态总结\n\n**已完成（2/8）：**\n- SciERC N=16 s123 → 5090-b cuda:2 → **DONE**（8 分钟完成）\n- SciERC N=16 s456 → 5090-b cuda:3 → **DONE**（8 分钟完成）\n\n**正在运行（4/8）：**\n\n| 实验 | 服务器 | GPU | PID | 状态 |\n|------|--------|-----|-----|------|\n| 14B CoNLL (base model) | 5090-c | cuda:1 | 278137 | N=1 86%，正在推理 |\n| FewNERD N=16 s456 | 5090-c | cuda:3 | 277403 | 3%，预计 ~3h |\n| FewNERD N=16 s42 | 5090-b | cuda:2 | 315349 | 刚开始加载 |\n| FewNERD N=16 s123 | 5090-b | cuda:3 | 315796 | 刚开始加载 |\n\n**等待自动启动（2/8）：**\n- CoNLL N=16 s123 → 5090 cuda:2 → rsync 传输中（2.1/16GB），自动启动脚本部署\n- CoNLL N=16 s456 → 5090 cuda:3 → 同上\n\n**关键调整：**\n1. 5090 没有 8B 模型 → 搭建了 5090→5090-b 的 SSH 通道，rsync 传输中\n2. SciERC 实验完成后立即在 5090-b 上重复利用 GPU 启动 FewNERD 实验\n3. 14B CoNLL 改用 base model（Qwen2.5-14B-Instruct），而非之前被 kill 的 cross-domain fine-tuned 版本\n4. 5090 上部署了自动启动脚本，rsync 完成后自动启动 CoNLL 实验（预计 ~30 分钟）\n\n**待办：** rsync 完成后需要更新 CoNLL 实验的 registry 为 RUNNING，并清理 5090-b 上的临时 SSH key。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/run-8gpu-fill-priority.md"
+}

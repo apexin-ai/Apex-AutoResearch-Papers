@@ -1,0 +1,1171 @@
+{
+  "schema_version": "1.0",
+  "id": "129d736a8afd8c31ec85",
+  "project": "struct_self_consist_ie",
+  "kind": "conversation",
+  "title": "investigation auroc pipeline p01",
+  "task_key": "worker_investigation_auroc_pipeline_p01_20260519T140333",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/worker_investigation_auroc_pipeline_p01_20260519T140333.jsonl",
+    "occurrence": 1,
+    "bytes": 56042,
+    "sha256": "a30645ad7aec0f21138ac30a6bd07a50f60685ed355cda4428f813008a23dbb3"
+  },
+  "statistics": {
+    "messages": 57,
+    "user_turns": 0,
+    "tool_calls": 28,
+    "roles": {
+      "tool_call": 28,
+      "tool_result": 28,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-19T14:06:52.329609+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_investigation_auroc_pipeline_p01_20260519T140333",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__read_project_file",
+              "max_results": "5"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-19T14:06:52.329926+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_investigation_auroc_pipeline_p01_20260519T140333",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-19T14:06:52.330118+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_investigation_auroc_pipeline_p01_20260519T140333",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "cat /root/autodl-tmp/struct_self_consist_ie/code/unified_metrics.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-19T14:06:52.330400+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Unified F1 / degeneracy / data-loading module.\\\\n\\\\nThis is the single source of truth for entity F1, degeneracy detection,\\\\nand data loading across all analysis scripts. All analysis scripts must\\\\nimport from this module instead of defining their own implementations.\\\\n\\\\nConventions:\\\\n  - Entity = (start, end, type) tuple, exact match\\\\n  - F1 = micro per-instance: 2*P*R/(P+R)\\\\n  - Degeneracy = constant-F1 gold-filtered (all N sample F1s identical)\\\\n  - gold_filter = skip instances where gold entities list is empty\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport json\\\\nimport numpy as np\\\\n\\\\n\\\\ndef compute_entity_f1(pred_entities, gold_entities):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Span-based entity F1 for a single instance.\\\\n\\\\n    Args:\\\\n        pred_entities: list of dicts with keys start, end, type.\\\\n        gold_entities: list of dicts with keys start, end, type.\\\\n\\\\n    Returns:\\\\n        float F1 in [0, 1].\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    pred_set = {(e[\\\\\\\"start\\\\\\\"], e[\\\\\\\"end\\\\\\\"], e[\\\\\\\"type\\\\\\\"]) for e in pred_entities}\\\\n    gold_set = {(e[\\\\\\\"start\\\\\\\"], e[\\\\\\\"end\\\\\\\"], e[\\\\\\\"type\\\\\\\"]) for e in gold_entities}\\\\n    if not gold_set and not pred_set:\\\\n        return 1.0\\\\n    if not gold_set or not pred_set:\\\\n        return 0.0\\\\n    tp = len(pred_set & gold_set)\\\\n    if tp == 0:\\\\n        return 0.0\\\\n    p = tp / len(pred_set)\\\\n    r = tp / len(gold_set)\\\\n    return 2 * p * r / (p + r)\\\\n\\\\n\\\\ndef compute_degeneracy(sample_f1_list):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Check if an instance is degenerate (constant-F1 gold-filtered).\\\\n\\\\n    All N sample F1 values are identical (after rounding to 10 decimals\\\\n    to avoid float noise) -> degenerate.\\\\n\\\\n    Args:\\\\n        sample_f1_list: list of float F1 values, one per sample.\\\\n\\\\n    Returns:\\\\n        bool, True if degenerate.\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    return len(set(round(f, 10) for f in sample_f1_list)) <= 1\\\\n\\\\n\\\\ndef load_and_filter(path, gold_filter=True):\\\\n    \\\\\\\"\\\\\\\"\n…[truncated 3572 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_investigation_auroc_pipeline_p01_20260519T140333",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-19T14:06:52.330586+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_investigation_auroc_pipeline_p01_20260519T140333",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "cat /root/autodl-tmp/struct_self_consist_ie/code/evaluation.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-19T14:06:52.330867+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Evaluation module for structured self-consistency IE experiments.\\\\n\\\\nProvides strict-match NER/EAE evaluation, per-instance F1 computation,\\\\ncorrelation analysis, and summary report generation.\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nfrom __future__ import annotations\\\\n\\\\nimport statistics\\\\nfrom typing import Any\\\\n\\\\nfrom scipy.stats import kendalltau, spearmanr\\\\n\\\\n\\\\n# ---------------------------------------------------------------------------\\\\n# NER evaluation (strict match)\\\\n# ---------------------------------------------------------------------------\\\\n\\\\ndef entity_strict_match(\\\\n    pred_entities: list[dict],\\\\n    gold_entities: list[dict],\\\\n) -> tuple[int, int, int]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Compute strict entity match counts.\\\\n\\\\n    Strict match requires exact span (start, end) AND exact type.\\\\n\\\\n    Args:\\\\n        pred_entities: Predicted entity dicts with keys text, type, start, end.\\\\n        gold_entities: Gold entity dicts with the same schema.\\\\n\\\\n    Returns:\\\\n        (tp, fp, fn) counts.\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    pred_set = {(e[\\\\\\\"start\\\\\\\"], e[\\\\\\\"end\\\\\\\"], e[\\\\\\\"type\\\\\\\"]) for e in pred_entities}\\\\n    gold_set = {(e[\\\\\\\"start\\\\\\\"], e[\\\\\\\"end\\\\\\\"], e[\\\\\\\"type\\\\\\\"]) for e in gold_entities}\\\\n    tp = len(pred_set & gold_set)\\\\n    fp = len(pred_set - gold_set)\\\\n    fn = len(gold_set - pred_set)\\\\n    return tp, fp, fn\\\\n\\\\n\\\\ndef compute_ner_f1(\\\\n    predictions: list[dict],\\\\n    golds: list[dict],\\\\n) -> dict[str, float]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Compute micro-averaged NER precision, recall, and F1.\\\\n\\\\n    Args:\\\\n        predictions: List of Extraction dicts (one per instance).\\\\n        golds: List of Extraction dicts (one per instance), aligned with predictions.\\\\n\\\\n    Returns:\\\\n        Dict with keys \\\\\\\"precision\\\\\\\", \\\\\\\"recall\\\\\\\", \\\\\\\"f1\\\\\\\".\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    total_tp = total_fp = total_fn = 0\\\\n    for pred, gold in zip(predictions, golds):\\\\n        tp, fp, fn = entity_\n…[truncated 7193 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_investigation_auroc_pipeline_p01_20260519T140333",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-19T14:06:52.331086+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_investigation_auroc_pipeline_p01_20260519T140333",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "grep -rl -i \"auroc\" /root/autodl-tmp/struct_self_consist_ie/code/ --include=\"*.py\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-19T14:06:52.331293+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/code/evaluation.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/run_mvp_pilot.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_logprob_baseline.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exact_match_voting.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_entity_voting.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp015_unified.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/exp001_postprocess.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp016_ensemble.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp002_conll2003.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/_backup_cond_fix/run_mvp_pilot.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/_backup_cond_fix/analyze_exp015_unified.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/_backup_cond_fix/analyze_logprob_baseline.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/_backup_cond_fix/analyze_exp002_conll2003.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/exp009_stratification_analysis.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp005_v2_temperature.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp004_v2_re_diagnostic.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp015_v2_metrics.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/exp_016_v2_ensemble.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp017_5signal.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_3seed_5signal.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/eval_n16_5signal.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/eval_n8_5signal.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp017_llama_conll_n16.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp017_llama_conll_n16_s123.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/eval_s456_5signal.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/ex\n…[truncated 2157 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_investigation_auroc_pipeline_p01_20260519T140333",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-19T14:06:52.331448+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_investigation_auroc_pipeline_p01_20260519T140333",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "ls /root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/",
+              "account": "root"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-19T14:06:52.331580+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"all_signals_5signal.json\\\\nauroc_5signal.json\\\\ncomparison.json\\\\nper_type_lp_analysis.csv\\\\nper_type_lp_table.tex\\\\nreliability_data_1024.json\\\\nreport.json\\\\nrun.log\\\\nsamples.jsonl\\\\nsamples_with_logprobs.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_investigation_auroc_pipeline_p01_20260519T140333",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-19T14:06:52.331739+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_investigation_auroc_pipeline_p01_20260519T140333",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "grep -n \"compute_auroc\\|def.*auroc\\|AUROC\\|auroc\" /root/autodl-tmp/struct_self_consist_ie/code/evaluation.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-19T14:06:52.331867+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_investigation_auroc_pipeline_p01_20260519T140333",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-19T14:06:52.331992+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_investigation_auroc_pipeline_p01_20260519T140333",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "cat /root/autodl-tmp/struct_self_consist_ie/code/eval_exp012_rerun_auroc.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-19T14:06:52.332194+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"Compute 5-signal AUROC for exp_012_rerun_1024 (joint NER+RE).\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport json, sys\\\\nimport numpy as np\\\\nfrom scipy.stats import spearmanr, rankdata\\\\nfrom collections import Counter\\\\n\\\\nsys.path.insert(0, '/root/autodl-tmp/struct_self_consist_ie/code')\\\\nfrom consistency import compute_all_consistency_scores\\\\nfrom evaluation import per_instance_f1\\\\n\\\\nDATA_PATH = \\\\\\\"/root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/samples.jsonl\\\\\\\"\\\\n\\\\ndef load_data(path):\\\\n    with open(path) as f:\\\\n        return [json.loads(line) for line in f if line.strip()]\\\\n\\\\ndef compute_exact_match_rate(samples, subtask):\\\\n    if subtask == \\\\\\\"ner\\\\\\\":\\\\n        keys = [frozenset((e[\\\\\\\"text\\\\\\\"], e[\\\\\\\"type\\\\\\\"]) for e in s.get(\\\\\\\"entities\\\\\\\", [])) for s in samples]\\\\n    else:\\\\n        keys = [frozenset((r[\\\\\\\"head\\\\\\\"], r[\\\\\\\"tail\\\\\\\"], r[\\\\\\\"type\\\\\\\"]) for r in s.get(\\\\\\\"relations\\\\\\\", [])) for s in samples]\\\\n    if not keys: return 0.0\\\\n    c = Counter(keys)\\\\n    return c.most_common(1)[0][1] / len(samples)\\\\n\\\\ndef compute_voting_confidence(samples, subtask):\\\\n    N = len(samples)\\\\n    if N == 0: return 0.0\\\\n    counter = Counter()\\\\n    if subtask == \\\\\\\"ner\\\\\\\":\\\\n        for s in samples:\\\\n            for e in s.get(\\\\\\\"entities\\\\\\\", []):\\\\n                counter[(e[\\\\\\\"text\\\\\\\"], e[\\\\\\\"type\\\\\\\"])] += 1\\\\n    else:\\\\n        for s in samples:\\\\n            for r in s.get(\\\\\\\"relations\\\\\\\", []):\\\\n                counter[(r[\\\\\\\"head\\\\\\\"], r[\\\\\\\"tail\\\\\\\"], r[\\\\\\\"type\\\\\\\"])] += 1\\\\n    if not counter: return 0.0\\\\n    return float(np.mean([v / N for v in counter.values()]))\\\\n\\\\ndef compute_mean_logprob(samples):\\\\n    lps = [s.get(\\\\\\\"mean_logprob\\\\\\\") for s in samples if s.get(\\\\\\\"mean_logprob\\\\\\\") is not None]\\\\n    lps = [lp for lp in lps if np.isfinite(lp)]\\\\n    return float(np.mean(lps)) if lps else float(\\\\\\\"nan\\\\\\\")\\\\n\\\\ndef safe_auroc\n…[truncated 3584 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_investigation_auroc_pipeline_p01_20260519T140333",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-19T14:06:52.332359+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_investigation_auroc_pipeline_p01_20260519T140333",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/auroc_5signal.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-19T14:06:52.332515+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"ner\\\\\\\": {\\\\n    \\\\\\\"n_total\\\\\\\": 551,\\\\n    \\\\\\\"n_valid\\\\\\\": 529,\\\\n    \\\\\\\"n_conditional\\\\\\\": 477,\\\\n    \\\\\\\"full\\\\\\\": {\\\\n      \\\\\\\"n\\\\\\\": 529,\\\\n      \\\\\\\"n_pos\\\\\\\": 132,\\\\n      \\\\\\\"n_neg\\\\\\\": 397,\\\\n      \\\\\\\"auroc_sj\\\\\\\": 0.691741,\\\\n      \\\\\\\"auroc_fk\\\\\\\": 0.628998,\\\\n      \\\\\\\"auroc_logprob\\\\\\\": 0.578334,\\\\n      \\\\\\\"auroc_em\\\\\\\": 0.749265,\\\\n      \\\\\\\"auroc_voting_conf\\\\\\\": 0.684099\\\\n    },\\\\n    \\\\\\\"cond\\\\\\\": {\\\\n      \\\\\\\"n\\\\\\\": 477,\\\\n      \\\\\\\"n_pos\\\\\\\": 132,\\\\n      \\\\\\\"n_neg\\\\\\\": 345,\\\\n      \\\\\\\"auroc_sj\\\\\\\": 0.677163,\\\\n      \\\\\\\"auroc_fk\\\\\\\": 0.607839,\\\\n      \\\\\\\"auroc_logprob\\\\\\\": 0.563329,\\\\n      \\\\\\\"auroc_em\\\\\\\": 0.755578,\\\\n      \\\\\\\"auroc_voting_conf\\\\\\\": 0.661814\\\\n    }\\\\n  },\\\\n  \\\\\\\"re\\\\\\\": {\\\\n    \\\\\\\"n_total\\\\\\\": 551,\\\\n    \\\\\\\"n_valid\\\\\\\": 397,\\\\n    \\\\\\\"n_conditional\\\\\\\": 238,\\\\n    \\\\\\\"full\\\\\\\": {\\\\n      \\\\\\\"n\\\\\\\": 397,\\\\n      \\\\\\\"n_pos\\\\\\\": 76,\\\\n      \\\\\\\"n_neg\\\\\\\": 321,\\\\n      \\\\\\\"auroc_sj\\\\\\\": 0.670233,\\\\n      \\\\\\\"auroc_fk\\\\\\\": 0.608932,\\\\n      \\\\\\\"auroc_logprob\\\\\\\": 0.600467,\\\\n      \\\\\\\"auroc_em\\\\\\\": 0.705853,\\\\n      \\\\\\\"auroc_voting_conf\\\\\\\": 0.693474\\\\n    },\\\\n    \\\\\\\"cond\\\\\\\": {\\\\n      \\\\\\\"n\\\\\\\": 238,\\\\n      \\\\\\\"n_pos\\\\\\\": 76,\\\\n      \\\\\\\"n_neg\\\\\\\": 162,\\\\n      \\\\\\\"auroc_sj\\\\\\\": 0.64628,\\\\n      \\\\\\\"auroc_fk\\\\\\\": 0.551048,\\\\n      \\\\\\\"auroc_logprob\\\\\\\": 0.5186,\\\\n      \\\\\\\"auroc_em\\\\\\\": 0.751462,\\\\n      \\\\\\\"auroc_voting_conf\\\\\\\": 0.641975\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_investigation_auroc_pipeline_p01_20260519T140333",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-19T14:06:52.332656+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_investigation_auroc_pipeline_p01_20260519T140333",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/report.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-19T14:06:52.332883+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"dataset\\\\\\\": \\\\\\\"scierc\\\\\\\",\\\\n  \\\\\\\"subtask\\\\\\\": \\\\\\\"joint\\\\\\\",\\\\n  \\\\\\\"n_samples\\\\\\\": 8,\\\\n  \\\\\\\"temperature\\\\\\\": 1.0,\\\\n  \\\\\\\"num_instances\\\\\\\": 551,\\\\n  \\\\\\\"use_train_format\\\\\\\": true,\\\\n  \\\\\\\"ner_greedy_f1\\\\\\\": 0.6632805497460412,\\\\n  \\\\\\\"ner_oracle_f1\\\\\\\": 0.7775133848899465,\\\\n  \\\\\\\"ner_oracle_headroom\\\\\\\": 0.11423283514390525,\\\\n  \\\\\\\"ner_fleiss_kappa_mean\\\\\\\": 0.3932668065534345,\\\\n  \\\\\\\"ner_soft_jaccard_mean\\\\\\\": 0.6963097751953397,\\\\n  \\\\\\\"ner_correlation_fleiss_vs_f1_full\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.2665109373463269,\\\\n    \\\\\\\"p_value\\\\\\\": 4.716829112137585e-10,\\\\n    \\\\\\\"n\\\\\\\": 529\\\\n  },\\\\n  \\\\\\\"ner_correlation_softjaccard_vs_f1_full\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.3598905669976535,\\\\n    \\\\\\\"p_value\\\\\\\": 1.2752281196882738e-17,\\\\n    \\\\\\\"n\\\\\\\": 529\\\\n  },\\\\n  \\\\\\\"ner_correlation_fleiss_vs_f1_conditional\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.17607370722783125,\\\\n    \\\\\\\"p_value\\\\\\\": 0.00011078924939793821,\\\\n    \\\\\\\"n\\\\\\\": 477\\\\n  },\\\\n  \\\\\\\"ner_correlation_softjaccard_vs_f1_conditional\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.3113352549686453,\\\\n    \\\\\\\"p_value\\\\\\\": 3.5148620246813462e-12,\\\\n    \\\\\\\"n\\\\\\\": 477\\\\n  },\\\\n  \\\\\\\"ner_n_gold_empty_filtered\\\\\\\": 22,\\\\n  \\\\\\\"ner_n_greedy_f1_zero_filtered\\\\\\\": 52,\\\\n  \\\\\\\"ner_structural_beats_surface\\\\\\\": true,\\\\n  \\\\\\\"ner_rho_advantage\\\\\\\": 0.09337962965132657,\\\\n  \\\\\\\"ner_sample_f1_mean\\\\\\\": 0.6077394535406134,\\\\n  \\\\\\\"ner_sample_f1_std\\\\\\\": 0.3177849195309394,\\\\n  \\\\\\\"ner_sample_f1_pct_zero\\\\\\\": 12.594517958412098,\\\\n  \\\\\\\"ner_logprob_baseline\\\\\\\": {\\\\n    \\\\\\\"full\\\\\\\": {\\\\n      \\\\\\\"rho\\\\\\\": 0.20517413101613924,\\\\n      \\\\\\\"p_rho\\\\\\\": 1.9498006196855416e-06,\\\\n      \\\\\\\"tau\\\\\\\": 0.14782758668777154,\\\\n      \\\\\\\"p_tau\\\\\\\": 1.2434769103035355e-06,\\\\n      \\\\\\\"auroc\\\\\\\": 0.6115722797477874,\\\\n      \\\\\\\"n\\\\\\\": 529\\\\n    },\\\\n    \\\\\\\"conditional\\\\\\\": {\\\\n      \\\\\\\"rho\\\\\\\": 0.1537825418721844,\\\\n      \\\\\\\"p_rho\\\\\\\": 0.0007519115126420073,\\\\n      \\\\\\\"tau\\\\\\\": 0.111054535706\n…[truncated 2345 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_investigation_auroc_pipeline_p01_20260519T140333",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-19T14:06:52.333095+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_investigation_auroc_pipeline_p01_20260519T140333",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "grep -n \"compute_auroc\\|def.*auroc\\|median\\|binar\" /root/autodl-tmp/struct_self_consist_ie/code/evaluation.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-19T14:06:52.333258+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_investigation_auroc_pipeline_p01_20260519T140333",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-19T14:06:52.333388+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_investigation_auroc_pipeline_p01_20260519T140333",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/all_signals_5signal.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-19T14:06:52.333684+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"ner\\\\\\\": {\\\\n    \\\\\\\"full\\\\\\\": {\\\\n      \\\\\\\"n\\\\\\\": 529,\\\\n      \\\\\\\"pct_perfect\\\\\\\": 0.2495274102079395,\\\\n      \\\\\\\"metrics\\\\\\\": {\\\\n        \\\\\\\"SJ\\\\\\\": {\\\\n          \\\\\\\"rho\\\\\\\": {\\\\n            \\\\\\\"value\\\\\\\": 0.3598905669976535,\\\\n            \\\\\\\"ci_95\\\\\\\": [\\\\n              0.2732249154962052,\\\\n              0.4389387695378309\\\\n            ]\\\\n          },\\\\n          \\\\\\\"tau\\\\\\\": {\\\\n            \\\\\\\"value\\\\\\\": 0.26461187931901686\\\\n          },\\\\n          \\\\\\\"AUROC\\\\\\\": {\\\\n            \\\\\\\"value\\\\\\\": 0.6917410884665293,\\\\n            \\\\\\\"ci_95\\\\\\\": [\\\\n              0.6303734201016633,\\\\n              0.74057642792587\\\\n            ]\\\\n          },\\\\n          \\\\\\\"ECE\\\\\\\": {\\\\n            \\\\\\\"value\\\\\\\": 0.4530916055268938\\\\n          }\\\\n        },\\\\n        \\\\\\\"FK\\\\\\\": {\\\\n          \\\\\\\"rho\\\\\\\": {\\\\n            \\\\\\\"value\\\\\\\": 0.2665109373463269,\\\\n            \\\\\\\"ci_95\\\\\\\": [\\\\n              0.1742613109914005,\\\\n              0.3486237484303476\\\\n            ]\\\\n          },\\\\n          \\\\\\\"tau\\\\\\\": {\\\\n            \\\\\\\"value\\\\\\\": 0.19742423874169443\\\\n          },\\\\n          \\\\\\\"AUROC\\\\\\\": {\\\\n            \\\\\\\"value\\\\\\\": 0.6289977864285169,\\\\n            \\\\\\\"ci_95\\\\\\\": [\\\\n              0.5612201516175135,\\\\n              0.6882363040668321\\\\n            ]\\\\n          },\\\\n          \\\\\\\"ECE\\\\\\\": {\\\\n            \\\\\\\"value\\\\\\\": 0.4512460702104627\\\\n          }\\\\n        },\\\\n        \\\\\\\"logprob\\\\\\\": {\\\\n          \\\\\\\"rho\\\\\\\": {\\\\n            \\\\\\\"value\\\\\\\": 0.20517413101613924,\\\\n            \\\\\\\"ci_95\\\\\\\": [\\\\n              0.11711193891033023,\\\\n              0.29041687549583595\\\\n            ]\\\\n          },\\\\n          \\\\\\\"tau\\\\\\\": {\\\\n            \\\\\\\"value\\\\\\\": 0.14782758668777154\\\\n          },\\\\n          \\\\\\\"AUROC\\\\\\\": {\\\\n            \\\\\\\"value\\\\\\\": 0.578333714983589,\\\\n            \\\\\\\"ci_95\\\\\\\": [\\\\n              0.5179122379711025,\\\\n              0.6387157727851094\\\\n            ]\\\\n\n…[truncated 7909 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_investigation_auroc_pipeline_p01_20260519T140333",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-19T14:06:52.333842+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_investigation_auroc_pipeline_p01_20260519T140333",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "grep -rn \"\\.663\\|\\.650\\|\\.614\" /root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/",
+              "account": "root"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-19T14:06:52.333971+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_investigation_auroc_pipeline_p01_20260519T140333",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-19T14:06:52.334099+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_investigation_auroc_pipeline_p01_20260519T140333",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "find /root/autodl-tmp/struct_self_consist_ie/output/ -name \"*.json\" -path \"*auroc*\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-19T14:06:52.334250+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/auroc_5signal.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/d114_auroc_investigation/unified_auroc.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_investigation_auroc_pipeline_p01_20260519T140333",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-19T14:06:52.334404+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_investigation_auroc_pipeline_p01_20260519T140333",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "ls /root/autodl-tmp/struct_self_consist_ie/output/d114_auroc_investigation/",
+              "account": "root"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-19T14:06:52.334531+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"investigation.md\\\\ntable1_update.md\\\\nunified_auroc.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_investigation_auroc_pipeline_p01_20260519T140333",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-19T14:06:52.334650+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_investigation_auroc_pipeline_p01_20260519T140333",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/d114_auroc_investigation/unified_auroc.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-19T14:06:52.334897+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"scierc_ner_seed42\\\\\\\": {\\\\n    \\\\\\\"n\\\\\\\": 529,\\\\n    \\\\\\\"median_f1\\\\\\\": 0.6667,\\\\n    \\\\\\\"auroc\\\\\\\": {\\\\n      \\\\\\\"VC\\\\\\\": 0.6627,\\\\n      \\\\\\\"SJ\\\\\\\": 0.65,\\\\n      \\\\\\\"FK\\\\\\\": 0.6019,\\\\n      \\\\\\\"EM\\\\\\\": 0.6138,\\\\n      \\\\\\\"LP\\\\\\\": 0.5778\\\\n    },\\\\n    \\\\\\\"rho\\\\\\\": {\\\\n      \\\\\\\"VC\\\\\\\": 0.3792,\\\\n      \\\\\\\"SJ\\\\\\\": 0.3599,\\\\n      \\\\\\\"FK\\\\\\\": 0.2665,\\\\n      \\\\\\\"EM\\\\\\\": 0.2945,\\\\n      \\\\\\\"LP\\\\\\\": 0.2052\\\\n    }\\\\n  },\\\\n  \\\\\\\"scierc_ner_seed123\\\\\\\": {\\\\n    \\\\\\\"n\\\\\\\": 529,\\\\n    \\\\\\\"median_f1\\\\\\\": 0.6667,\\\\n    \\\\\\\"auroc\\\\\\\": {\\\\n      \\\\\\\"VC\\\\\\\": 0.6898,\\\\n      \\\\\\\"SJ\\\\\\\": 0.6813,\\\\n      \\\\\\\"FK\\\\\\\": 0.6183,\\\\n      \\\\\\\"EM\\\\\\\": 0.6439,\\\\n      \\\\\\\"LP\\\\\\\": 0.5898\\\\n    },\\\\n    \\\\\\\"rho\\\\\\\": {\\\\n      \\\\\\\"VC\\\\\\\": 0.4133,\\\\n      \\\\\\\"SJ\\\\\\\": 0.3878,\\\\n      \\\\\\\"FK\\\\\\\": 0.2628,\\\\n      \\\\\\\"EM\\\\\\\": 0.3135,\\\\n      \\\\\\\"LP\\\\\\\": 0.2341\\\\n    }\\\\n  },\\\\n  \\\\\\\"scierc_ner_seed789\\\\\\\": {\\\\n    \\\\\\\"n\\\\\\\": 529,\\\\n    \\\\\\\"median_f1\\\\\\\": 0.6667,\\\\n    \\\\\\\"auroc\\\\\\\": {\\\\n      \\\\\\\"VC\\\\\\\": 0.6938,\\\\n      \\\\\\\"SJ\\\\\\\": 0.6599,\\\\n      \\\\\\\"FK\\\\\\\": 0.5869,\\\\n      \\\\\\\"EM\\\\\\\": 0.627,\\\\n      \\\\\\\"LP\\\\\\\": 0.5701\\\\n    },\\\\n    \\\\\\\"rho\\\\\\\": {\\\\n      \\\\\\\"VC\\\\\\\": 0.4506,\\\\n      \\\\\\\"SJ\\\\\\\": 0.3838,\\\\n      \\\\\\\"FK\\\\\\\": 0.2342,\\\\n      \\\\\\\"EM\\\\\\\": 0.3036,\\\\n      \\\\\\\"LP\\\\\\\": 0.2073\\\\n    }\\\\n  },\\\\n  \\\\\\\"scierc_re_seed42\\\\\\\": {\\\\n    \\\\\\\"n\\\\\\\": 397,\\\\n    \\\\\\\"median_f1\\\\\\\": 0.4,\\\\n    \\\\\\\"auroc\\\\\\\": {\\\\n      \\\\\\\"VC\\\\\\\": 0.6726,\\\\n      \\\\\\\"SJ\\\\\\\": 0.6175,\\\\n      \\\\\\\"FK\\\\\\\": 0.6402,\\\\n      \\\\\\\"EM\\\\\\\": 0.5501,\\\\n      \\\\\\\"LP\\\\\\\": 0.6306\\\\n    },\\\\n    \\\\\\\"rho\\\\\\\": {\\\\n      \\\\\\\"VC\\\\\\\": 0.3498,\\\\n      \\\\\\\"SJ\\\\\\\": 0.2503,\\\\n      \\\\\\\"FK\\\\\\\": 0.2752,\\\\n      \\\\\\\"EM\\\\\\\": 0.1344,\\\\n      \\\\\\\"LP\\\\\\\": 0.2662\\\\n    }\\\\n  },\\\\n  \\\\\\\"conll_ner_qwen_n8\\\\\\\": {\\\\n    \\\\\\\"n\\\\\\\": 2756,\\\\n    \\\\\\\"median_f1\\\\\\\": 1.0,\\\\n    \\\\\\\"auroc\\\\\\\": {\\\\n      \\\\\\\"VC\\\\\\\": 0.7889,\\\\n      \\\\\\\"SJ\\\\\\\": 0.8008,\\\\n      \\\\\\\"FK\\\\\\\": 0.7741,\\\\n      \\\\\\\"EM\\\\\\\"\n…[truncated 6182 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_investigation_auroc_pipeline_p01_20260519T140333",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-19T14:06:52.335052+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_investigation_auroc_pipeline_p01_20260519T140333",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "cat /root/autodl-tmp/struct_self_consist_ie/code/analyze_exp012_rerun_5signal.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-19T14:06:52.335336+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"exp_012_rerun_1024: Full 5-signal metrics for NER + RE.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport json\\\\nimport sys\\\\nfrom collections import Counter\\\\n\\\\nimport numpy as np\\\\nfrom scipy.stats import spearmanr, kendalltau, rankdata\\\\n\\\\nsys.path.insert(0, '/root/autodl-tmp/struct_self_consist_ie/code')\\\\nfrom consistency import compute_all_consistency_scores\\\\nfrom evaluation import per_instance_f1\\\\n\\\\nDATA_PATH = \\\\\\\"/root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/samples.jsonl\\\\\\\"\\\\nOUTPUT_PATH = \\\\\\\"/root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/all_signals_5signal.json\\\\\\\"\\\\nSUBTASKS = [\\\\\\\"ner\\\\\\\", \\\\\\\"re\\\\\\\"]\\\\n\\\\n\\\\ndef load_data(path):\\\\n    records = []\\\\n    with open(path) as f:\\\\n        for line in f:\\\\n            if line.strip():\\\\n                records.append(json.loads(line))\\\\n    return records\\\\n\\\\n\\\\ndef compute_exact_match_rate(samples, subtask):\\\\n    if subtask == \\\\\\\"ner\\\\\\\":\\\\n        keys = [frozenset((e[\\\\\\\"text\\\\\\\"], e[\\\\\\\"type\\\\\\\"]) for e in s.get(\\\\\\\"entities\\\\\\\", [])) for s in samples]\\\\n    else:\\\\n        keys = [frozenset((r[\\\\\\\"head\\\\\\\"], r[\\\\\\\"tail\\\\\\\"], r[\\\\\\\"type\\\\\\\"]) for r in s.get(\\\\\\\"relations\\\\\\\", [])) for s in samples]\\\\n    if not keys:\\\\n        return 0.0\\\\n    counter = Counter(keys)\\\\n    return counter.most_common(1)[0][1] / len(samples)\\\\n\\\\n\\\\ndef compute_voting_confidence(samples, subtask):\\\\n    N = len(samples)\\\\n    if N == 0:\\\\n        return 0.0\\\\n    counter = Counter()\\\\n    if subtask == \\\\\\\"ner\\\\\\\":\\\\n        for s in samples:\\\\n            for e in s.get(\\\\\\\"entities\\\\\\\", []):\\\\n                counter[(e[\\\\\\\"text\\\\\\\"], e[\\\\\\\"type\\\\\\\"])] += 1\\\\n    else:\\\\n        for s in samples:\\\\n            for r in s.get(\\\\\\\"relations\\\\\\\", []):\\\\n                counter[(r[\\\\\\\"head\\\\\\\"], r[\\\\\\\"tail\\\\\\\"], r[\\\\\\\"type\\\\\\\"])] += 1\\\\n    if not counter:\\\\n        return 0.0\\\\n    rates = [v / N for v in co\n…[truncated 7141 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_investigation_auroc_pipeline_p01_20260519T140333",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-19T14:06:52.335503+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_investigation_auroc_pipeline_p01_20260519T140333",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "grep -n \"compute_auroc\" /root/autodl-tmp/struct_self_consist_ie/code/evaluation.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-19T14:06:52.335635+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"309:def compute_auroc(\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_investigation_auroc_pipeline_p01_20260519T140333",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-19T14:06:52.335800+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_investigation_auroc_pipeline_p01_20260519T140333",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "tail -n +305 /root/autodl-tmp/struct_self_consist_ie/code/evaluation.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-19T14:06:52.335986+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"    result = kendalltau(scores_a, scores_b)\\\\n    return (float(result.statistic), float(result.pvalue))\\\\n\\\\n\\\\ndef compute_auroc(\\\\n    scores: list[float],\\\\n    labels_continuous: list[float],\\\\n) -> float:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Compute AUROC by binarizing labels at median.\\\\n\\\\n    Uses >= median vs < median as primary split (positive = at or above\\\\n    median). Falls back to > vs <= when all values equal the median.\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    if len(scores) < 3:\\\\n        return 0.5\\\\n    med = statistics.median(labels_continuous)\\\\n    pos = [s for s, l in zip(scores, labels_continuous) if l >= med]\\\\n    neg = [s for s, l in zip(scores, labels_continuous) if l < med]\\\\n    # Fallback: when all values equal median, split is impossible\\\\n    if not pos or not neg:\\\\n        pos = [s for s, l in zip(scores, labels_continuous) if l > med]\\\\n        neg = [s for s, l in zip(scores, labels_continuous) if l <= med]\\\\n    if not pos or not neg:\\\\n        return 0.5\\\\n    concordant = sum(1 for p in pos for n in neg if p > n)\\\\n    tied = sum(1 for p in pos for n in neg if p == n)\\\\n    return (concordant + 0.5 * tied) / (len(pos) * len(neg))\\\\n\\\\n\\\\n# ---------------------------------------------------------------------------\\\\n# Summary report\\\\n# ---------------------------------------------------------------------------\\\\n\\\\ndef generate_evaluation_report(\\\\n    sampled_instances: list[dict],\\\\n    consistency_scores: dict[str, list[float]],\\\\n    subtask: str = \\\\\\\"ner\\\\\\\",\\\\n) -> dict[str, Any]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Generate a structured evaluation report.\\\\n\\\\n    Computes greedy F1, oracle best-of-N F1, and consistency-F1 correlation\\\\n    for each consistency scoring method.\\\\n\\\\n    Args:\\\\n        sampled_instances: List of SampledInstance dicts, each containing\\\\n            \\\\\\\"id\\\\\\\", \\\\\\\"text\\\\\\\", \\\\\\\"gold\\\\\\\" (Extraction), \\\\\\\"samples\\\\\\\" (list of Extraction),\\\\n            and optionally \\\\\\\"greedy\\\\\\\" \n…[truncated 3574 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_investigation_auroc_pipeline_p01_20260519T140333",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-19T14:06:52.336148+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_investigation_auroc_pipeline_p01_20260519T140333",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/d114_auroc_investigation/investigation.md",
+              "account": "root"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-19T14:06:52.336288+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_investigation_auroc_pipeline_p01_20260519T140333",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/d114_auroc_investigation/table1_update.md",
+              "account": "root"
+            }
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-19T14:06:52.336463+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"# D114: AUROC Calculation Inconsistency — Root Cause Analysis\\\\n\\\\n## Summary\\\\n\\\\nThe 3-seed analysis script (`evaluation.py:compute_auroc`) reported AUROC values systematically **higher** by 0.013–0.034 compared to Paper Table 1, despite using identical underlying data. Root cause: a `>` vs `>=` discrepancy at the median boundary.\\\\n\\\\n## Root Cause\\\\n\\\\nThree different AUROC implementations coexisted in the codebase:\\\\n\\\\n| Script | Threshold | Code Location |\\\\n|--------|-----------|---------------|\\\\n| `analyze_exp015_unified.py` (Table 1 source) | `F1 >= median` | line 124 |\\\\n| `evaluation.py:compute_auroc` (3-seed source) | `F1 > median` | line 320 (old) |\\\\n| `analyze_exp012_rerun_5signal.py` | `F1 >= 1.0` (perfect) | line 186 |\\\\n\\\\n### Why `>=` vs `>` matters\\\\n\\\\nOn SciERC NER (seed=42), median F1 = 0.6667 (= 2/3). **65 instances** have F1 exactly equal to this median value. These instances are classified differently:\\\\n\\\\n- `F1 >= median`: positive class = 301 instances (56.9%)\\\\n- `F1 > median`: positive class = 236 instances (44.6%)\\\\n\\\\nSince all 65 boundary instances carry signal scores, reassigning them changes the Mann-Whitney U concordance statistics, producing a systematic shift.\\\\n\\\\n### Direction of bias\\\\n\\\\nThe old `> median` method assigns boundary instances to the NEGATIVE class, making the positive class \\\\\\\"purer\\\\\\\" (all strictly above median). This inflates AUROC because a stricter positive class is easier to discriminate.\\\\n\\\\nMean bias (old − new) across 5 signals × 3 seeds:\\\\n- VC: +0.024\\\\n- SJ: +0.021\\\\n- FK: +0.013\\\\n- EM: +0.023\\\\n- LP: +0.033\\\\n\\\\nRange: +0.011 to +0.042, matching the reviewer-reported 0.013–0.034.\\\\n\\\\n### Why ρ was unaffected\\\\n\\\\nSpearman ρ operates on continuous F1 values — no binarization step → identical across methods.\\\\n\\\\n## Correct Definition\\\\n\\\\nThe paper's method section (§3) states: \\\\\\\"AUROC classifying instances as **above/below** median F1\n…[truncated 3000 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_investigation_auroc_pipeline_p01_20260519T140333",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-19T14:06:52.336638+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"# Table 1 Update Assessment\\\\n\\\\n## Conclusion: Table 1 does NOT need updating.\\\\n\\\\nPaper Table 1 was generated by `analyze_exp015_unified.py` which uses `labels = (y >= median_f1).astype(int)`. This is the correct definition and matches the method section description.\\\\n\\\\nAll 15 values (5 signals × 3 datasets) verified to within rounding error (<0.0005):\\\\n\\\\n| Signal | SciERC (paper/verified) | CoNLL Qwen (paper/verified) | CoNLL LLaMA (paper/verified) |\\\\n|--------|------------------------|----------------------------|------------------------------|\\\\n| VC | .663 / .6627 ✓ | .789 / .7889 ✓ | .709 / .7088 ✓ |\\\\n| SJ | .650 / .6500 ✓ | .801 / .8008 ✓ | .704 / .7039 ✓ |\\\\n| FK | .602 / .6019 ✓ | .774 / .7741 ✓ | .703 / .7026 ✓ |\\\\n| EM | .614 / .6138 ✓ | .816 / .8156 ✓ | .705 / .7046 ✓ |\\\\n| LP | .578 / .5778 ✓ | .753 / .7532 ✓ | .761 / .7610 ✓ |\\\\n\\\\n## What needs updating\\\\n\\\\n1. **`evaluation.py:compute_auroc`** — FIXED (changed `>` to `>=`)\\\\n2. **Multi-seed appendix table** (`\\\\\\\\ref{tab:multiseed}`, seeds 42/123/456) — needs regeneration with corrected `compute_auroc`. The corrected values will be ~0.013–0.033 **lower** than currently reported.\\\\n3. **`analyze_exp012_rerun_5signal.py`** — uses `F1 >= 1.0` threshold which is a *different* metric entirely (predicting perfect extraction, not quality estimation). This script's AUROC is not used in the paper. No action needed unless this script is reused elsewhere.\\\\n\\\\n## Note on exp012 script\\\\n\\\\nThe `analyze_exp012_rerun_5signal.py` script uses `binary_correct = (f1_arr >= 1.0)` which measures \\\\\\\"can the signal predict **perfect** extraction?\\\\\\\" This is semantically distinct from the paper's \\\\\\\"above/below median\\\\\\\" definition. For CoNLL (median F1 = 1.0), the two definitions coincide; for SciERC (median F1 = 0.667), they diverge substantially (EM: .614 vs .749). This script's values should not be cited as \\\\\\\"AUROC\\\\\\\" without qualification.\\\\n\\\", \\\n…[truncated 99 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_investigation_auroc_pipeline_p01_20260519T140333",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-19T14:06:52.336829+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_investigation_auroc_pipeline_p01_20260519T140333",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "grep -n \"median\\|auroc\\|AUROC\\|binar\\|>= med\" /root/autodl-tmp/struct_self_consist_ie/code/analyze_exp015_unified.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-19T14:06:52.336963+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_investigation_auroc_pipeline_p01_20260519T140333",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-19T14:06:52.337103+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_investigation_auroc_pipeline_p01_20260519T140333",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "grep -n \"median\" /root/autodl-tmp/struct_self_consist_ie/code/analyze_exp015_unified.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-19T14:06:52.337261+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"113:def compute_metrics(signal_values, f1_values, median_f1):\\\\n124:    labels = (y >= median_f1).astype(int)\\\\n295:        median_full = float(np.median(f1_scores))\\\\n297:        median_cond = float(np.median(cond_f1))\\\\n303:            \\\\\\\"median_f1_full\\\\\\\": median_full,\\\\n304:            \\\\\\\"median_f1_cond\\\\\\\": median_cond,\\\\n309:            full_m = compute_metrics(svals, f1_scores, median_full)\\\\n311:            cond_m = compute_metrics(cond_svals, cond_f1, median_cond)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_investigation_auroc_pipeline_p01_20260519T140333",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-19T14:06:52.337388+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_investigation_auroc_pipeline_p01_20260519T140333",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "grep -n \"auroc\" /root/autodl-tmp/struct_self_consist_ie/code/analyze_exp015_unified.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-19T14:06:52.337519+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"36:def auroc_simple(scores, labels):\\\\n121:                \\\\\\\"auroc\\\\\\\": float(\\\\\\\"nan\\\\\\\"), \\\\\\\"n\\\\\\\": int(len(x))}\\\\n125:    auroc = auroc_simple(x, labels)\\\\n129:        \\\\\\\"auroc\\\\\\\": float(auroc), \\\\\\\"n\\\\\\\": int(len(x)),\\\\n237:                lines.append(f\\\\\\\"| {signal_labels[sig]} | {m['rho']:.4f} | {m['tau']:.4f} | {m['auroc']:.4f} | {m['p_rho']:.2e} |\\\\\\\")\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_investigation_auroc_pipeline_p01_20260519T140333",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-19T14:06:52.337680+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_investigation_auroc_pipeline_p01_20260519T140333",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "head -45 /root/autodl-tmp/struct_self_consist_ie/code/analyze_exp015_unified.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-19T14:06:52.337824+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"exp-015: Unified cross-signal comparison with bootstrap CI, LOO-SJ, and calibration.\\\\n\\\\nComputes all 5 confidence signals on the same dataset (pilot_005, T=0.7 with logprobs),\\\\nproduces a unified 5-signal x 4-metric x 2-task comparison table, bootstrap CI,\\\\nleave-one-out SJ analysis, and calibration bins.\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport json\\\\nimport os\\\\nimport sys\\\\nfrom collections import Counter\\\\n\\\\nimport numpy as np\\\\nfrom scipy.stats import spearmanr, kendalltau\\\\n\\\\nsys.path.insert(0, '/root/autodl-tmp/struct_self_consist_ie/code')\\\\nfrom consistency import (\\\\n    compute_all_consistency_scores,\\\\n    structural_consistency_soft_jaccard,\\\\n)\\\\nfrom evaluation import per_instance_f1\\\\n\\\\nDATA_PATH = \\\\\\\"/root/autodl-tmp/struct_self_consist_ie/output/exp_012_logprob/samples_with_logprobs.jsonl\\\\\\\"\\\\nOUTPUT_DIR = \\\\\\\"/root/autodl-tmp/struct_self_consist_ie/output/exp_015_unified\\\\\\\"\\\\n\\\\n\\\\ndef load_data(path):\\\\n    instances = []\\\\n    with open(path) as f:\\\\n        for line in f:\\\\n            if line.strip():\\\\n                instances.append(json.loads(line))\\\\n    return instances\\\\n\\\\n\\\\ndef auroc_simple(scores, labels):\\\\n    scores = np.array(scores, dtype=float)\\\\n    labels = np.array(labels, dtype=int)\\\\n    if len(set(labels)) < 2:\\\\n        return float('nan')\\\\n    pos = scores[labels == 1]\\\\n    neg = scores[labels == 0]\\\\n    n_pos, n_neg = len(pos), len(neg)\\\\n    if n_pos == 0 or n_neg == 0:\\\\n        return float('nan')\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_investigation_auroc_pipeline_p01_20260519T140333",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-19T14:06:52.337995+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_investigation_auroc_pipeline_p01_20260519T140333",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "wc -l /root/autodl-tmp/struct_self_consist_ie/output/exp_012_logprob/samples_with_logprobs.jsonl",
+              "account": "root"
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-19T14:06:52.338123+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"551 /root/autodl-tmp/struct_self_consist_ie/output/exp_012_logprob/samples_with_logprobs.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_investigation_auroc_pipeline_p01_20260519T140333",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-19T14:06:52.338276+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_investigation_auroc_pipeline_p01_20260519T140333",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "wc -l /root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/samples.jsonl",
+              "account": "root"
+            }
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-19T14:06:52.338404+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"551 /root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/samples.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_investigation_auroc_pipeline_p01_20260519T140333",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-19T14:06:52.338523+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_investigation_auroc_pipeline_p01_20260519T140333",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "ls /root/autodl-tmp/struct_self_consist_ie/output/exp_012_logprob/",
+              "account": "root"
+            }
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-19T14:06:52.338643+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"analysis_report.json\\\\nsamples_with_logprobs.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_investigation_auroc_pipeline_p01_20260519T140333",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-19T14:06:52.338811+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_investigation_auroc_pipeline_p01_20260519T140333",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/p01_auroc_investigation_report.md",
+              "content": "# P0-1 SciERC AUROC 计算管道差异追溯报告\n\n## 1. 两套 AUROC 值的具体计算代码路径\n\n### Paper Table 1（正确值）\n- **脚本**: `code/analyze_exp015_unified.py`\n- **数据**: `output/exp_012_logprob/samples_with_logprobs.jsonl` (551 instances, 529 NER valid)\n- **AUROC 函数**: `auroc_simple()` (line 36) + `compute_metrics()` (line 113)\n- **Binarization**: `labels = (y >= median_f1).astype(int)` (line 124) — **F1 ≥ median**\n- **Median F1**: 0.6667 (= 2/3)\n- **正/负类划分**: 301 positive / 228 negative\n\n### Registry (`all_signals_5signal.json`)\n- **脚本**: `code/analyze_exp012_rerun_5signal.py`\n- **数据**: `output/exp_012_rerun_1024/samples.jsonl` (551 instances, 529 NER valid)\n- **AUROC 函数**: `safe_auroc()` (line 78) — Mann-Whitney U via `scipy.stats.rankdata`\n- **Binarization**: `binary_correct = (f1_arr >= 1.0).astype(int)` (line 186) — **F1 = 1.0 (perfect extraction)**\n- **正/负类划分**: 132 positive / 397 negative\n\n### 第三套（已修复 bug，曾影响 appendix multi-seed table）\n- **函数**: `code/evaluation.py:compute_auroc()` (line 309)\n- **旧代码**: `F1 > median`（正类 236 instances）\n- **新代码**: `F1 >= median`（已修复，与 Paper Table 1 一致）\n\n## 2. 差异根因\n\n**根因是 binarization 阈值完全不同**，不是 bug，而是两个脚本用了不同的 AUROC 定义：\n\n| 属性 | Paper Table 1 | Registry |\n|------|--------------|----------|\n| 阈值 | F1 ≥ median (0.6667) | F1 = 1.0 (perfect) |\n| 正类数 | 301 (56.9%) | 132 (24.9%) |\n| 负类数 | 228 (43.1%) | 397 (75.1%) |\n| 语义 | \"信号能否区分高于/低于中位数的 instance?\" | \"信号能否预测完美抽取?\" |\n\n### 为什么 EM 偏差最大 (13.5pp)\n\nEM (Exact Match Rate) 衡量多个 sample 中最常见输出出现的频率。当多个 sample 完全一致时 EM=1.0，这与 F1=1.0（完美抽取）强相关——但与 F1 是否高于 0.667 的关系弱得多。因此 EM 在 \"predict perfect\" 任务上 AUROC=0.749 远高于 \"above median\" 任务上的 0.614。\n\n### 为什么 LP 恰好匹配\n\nLP (Log Probability) 对 SciERC 的 discriminative power 在两种 binarization 下恰好相近（0.578 vs 0.578），这是巧合而非系统性原因。\n\n### 为什么 ρ 不受影响\n\nSpearman ρ 直接在连续 F1 值上计算，不涉及 binarization，所以两个脚本的 ρ 完全一致。\n\n## 3. 正确值是哪套\n\n**Paper Table 1 的 median binarization 是正确的。**\n\n理由：\n1. **论文方法论一致性**: §3 明确定义 AUROC 为 \"classifying instances as above/below median F1\"\n2. **统计惯例**: median split 的标准做法是 ≥ median 归上组\n3. **15 个值全部验证通过**（5 signals × 3 datasets，误差 < 0.0005）\n4. **\"Predict perfect\" 语义不合理**: SciERC 上只有 24.9% instance 达到 F1=1.0，这使得 AUROC 测量的是极端情况而非一般质量估计能力\n\nRegistry 的 `F1 >= 1.0` 定义在 CoNLL 上恰好与 median 一致（因为 CoNLL median F1 = 1.0），但在 SciERC 上两者大幅偏离。\n\n## 4. 信号排序结论\n\n### Paper Table 1 排序（正确，median binarization）\n| Rank | Signal | AUROC |\n|------|--------|-------|\n| 1 | VC | .663 |\n| 2 | SJ | .650 |\n| 3 | EM | .614 |\n| 4 | FK | .602 |\n| 5 | LP | .578 |\n\n### Registry 排序（不适用于 paper，perfect binarization）\n| Rank | Signal | AUROC |\n|------|--------|-------|\n| 1 | EM | .749 |\n| 2 | SJ | .692 |\n| 3 | VC | .684 |\n| 4 | FK | .629 |\n| 5 | LP | .578 |\n\n**EM 不是 SciERC AUROC 最高信号**（在 paper 定义下）。VC 和 SJ 仍然排名前两位。EM 仅在 \"predict perfect extraction\" 的不同语义下表现最佳。\n\n## 5. 已存在的修复记录\n\n`output/d114_auroc_investigation/` 目录下已有完整调查：\n- `investigation.md` — 根因分析（`>` vs `>=` 的 evaluation.py bug + registry 用不同阈值）\n- `table1_update.md` — Table 1 无需更新的确认\n- `unified_auroc.json` — 修正后的全量 AUROC 数据\n\n`evaluation.py:compute_auroc` 已从 `> median` 修复为 `>= median`。\n\n## 6. 待办\n\n- [ ] Appendix multi-seed table（`\\ref{tab:multiseed}`）需要用修正后的 `compute_auroc` 重新生成，AUROC 值将下降约 0.013–0.033\n- [ ] Registry 中 `exp_012_rerun_1024` 的 AUROC 值应标注为 \"perfect-F1 threshold\"，避免与 paper 的 median threshold 混淆\n"
+            }
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-19T14:06:52.338988+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/p01_auroc_investigation_report.md"
+            }
+          ],
+          "metadata": {
+            "session": "worker_investigation_auroc_pipeline_p01_20260519T140333",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-19T14:06:52.339163+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `artifacts/p01_auroc_investigation_report.md`。\n\n**根因**：Registry (`all_signals_5signal.json`) 和 Paper Table 1 使用了完全不同的 AUROC 定义：\n- **Paper Table 1**: `F1 >= median (0.667)` binarization — 正类 301/529\n- **Registry**: `F1 >= 1.0` (perfect extraction) binarization — 正类 132/529\n\n**Paper Table 1 是正确的**，与论文 §3 方法描述一致。EM 的 13.5pp 偏差最大是因为 exact match 天然与\"完美抽取\"强相关，但与\"高于中位数\"的关系弱得多。LP 巧合匹配是因为其在两种 threshold 下的 discriminative power 恰好相近。\n\n**EM 不是 SciERC AUROC 最高信号**——在论文定义下 VC (.663) 和 SJ (.650) 排前两位，EM (.614) 排第三。\n\n此外，`d114_auroc_investigation/` 目录下已有之前的完整调查记录（包括 `evaluation.py` 的 `>` vs `>=` bug 修复）。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_investigation_auroc_pipeline_p01_20260519T140333"
+          },
+          "id": "event-000057"
+        }
+      ],
+      "message_count": 57
+    }
+  ],
+  "readable_path": "readable/conversations/investigation-auroc-pipeline-p01.md"
+}

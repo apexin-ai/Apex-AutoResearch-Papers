@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0fea168f24d662921908",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "code exp 004 v2",
+  "task_key": "worker_code_exp_004_v2_20260514T152021",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_exp_004_v2_20260514T152021_result.json",
+    "occurrence": 1,
+    "bytes": 1114,
+    "sha256": "8b1b89ca495043836d954d7eb4555961198c09784ab96c81aee3fe1b35424111"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。Registry 更新为 DONE，artifact 已注册。\n\n## 结果摘要\n\n**数据**: 551 实例，397 有 gold RE 关系。7 种关系类型分层分析。\n\n**核心发现**:\n\n| 信号 | 最佳 rho 范围 | 说明 |\n|------|-------------|------|\n| **Voting Confidence** | **0.42–0.64** | 所有类型最强信号 |\n| Fleiss Kappa | 0.15–0.37 | 第二梯队 |\n| Mean Logprob | 0.08–0.32 | 中等 |\n| Soft Jaccard | 0.06–0.22 | 仅 USED-FOR 显著 |\n| Exact Match | -0.22–0.12 | 多数类型为负/无效 |\n\n**Bootstrap CI**: SJ 仅对 USED-FOR 显著 (ρ=0.22, CI=[0.11, 0.33])，其余 6 种类型 CI 均含 0。\n\n**Type-filtered voting**: PART-OF 关系的 type-specific voting confidence 达到 ρ=0.69 (CI=[0.50, 0.82])，说明分关系类型设阈值有价值。\n\n**Threshold sensitivity**: VC ≥ 0.7 时覆盖率 17%，但 F1 从 0.373 提升到 0.616，正确率 76%。\n\n**Cross-type comparisons**: 21 对 pairwise SJ ρ 差异均不显著。\n\n产出位于 `/root/autodl-tmp/struct_self_consist_ie/output/exp004v2_re_diagnostic/`（4 个 JSON 文件）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-004-v2.md"
+}

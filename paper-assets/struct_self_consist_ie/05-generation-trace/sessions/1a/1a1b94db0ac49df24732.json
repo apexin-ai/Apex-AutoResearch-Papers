@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1a1b94db0ac49df24732",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis exp 017 llama conll",
+  "task_key": "worker_analysis_exp_017_llama_conll_20260517T113825",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_exp_017_llama_conll_20260517T113825_result.json",
+    "occurrence": 1,
+    "bytes": 1359,
+    "sha256": "0c2bd957d3a7a613f4cd68fd3dae5cfc0c40d80667415063496dcc0807ddabf6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 更新完成。结果汇总：\n\n## exp_017 LLaMA CoNLL N=8 完整信号分析\n\n| 指标 | LLaMA | Qwen3 |\n|------|------:|------:|\n| Greedy F1 | 0.9242 | 0.7250 |\n| Oracle F1 | 0.9426 | 0.7570 |\n| Headroom | 1.84pp | 3.20pp |\n| **Degeneracy (CF1 gold-filtered)** | **89.2%** | **47.4%** |\n\n### Selection F1 (全部在 greedy 附近，headroom 太窄无法区分)\n| Signal | F1 | Δ vs Greedy |\n|--------|---:|------------:|\n| SJ | 0.9237 | -0.04pp |\n| FK | 0.9240 | -0.02pp |\n| VC | 0.9250 | +0.08pp |\n| EM | 0.9244 | +0.02pp |\n| LP | 0.9244 | +0.02pp |\n| Random | 0.9207 | — |\n\n### QE Diagnostic (ρ / AUROC)\n| Signal | Spearman ρ | AUROC |\n|--------|----------:|------:|\n| SJ | 0.431 | 0.704 |\n| FK | 0.428 | 0.703 |\n| EM | 0.431 | 0.705 |\n| VC | 0.426 | 0.709 |\n| LP | 0.307 | 0.761 |\n\n### LP Range\nmean=0.0198, std=0.0315, median=0.0002 (极度压缩)\n\n### Conclusion: **success** (cross-model validation 通过)\n\nLLaMA on CoNLL 显示与 Qwen3 **一致且更极端**的模式：\n1. 极高 degeneracy (89.2% vs 47.4%) → selection 对所有信号均无效\n2. 结构信号仍保持 ρ≈0.43 的诊断能力，显著优于 LP (ρ=0.31)\n3. ρ-AUROC 分离现象存在（LP AUROC 0.761 > structural ~0.704，但 ρ 最低）\n4. LP range 极窄（median=0.0002），与 high degeneracy 一致"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-017-llama-conll.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "281bb5677d2a96994923",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "code exp 017 llama conll n16",
+  "task_key": "worker_code_exp_017_llama_conll_n16_20260514T191957",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_exp_017_llama_conll_n16_20260514T191957_result.json",
+    "occurrence": 1,
+    "bytes": 228,
+    "sha256": "2c44a6f897b3f73bfb0ad7ddd681eb74e54c59d5dc6e1006c32f50609da4c266"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "推理已提交并运行中（PID 106997，18% at ~70 prompts/s）。Registry 已更新为 RUNNING。分析脚本 `code/analyze_exp017_llama_conll_n16.py` 已写入服务器。270 秒后回来检查完成状态。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-017-llama-conll-n16.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "00c76104c38fd9bf20a7",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ssh dgec sj construction",
+  "task_key": "worker_ssh_dgec-sj-construction_20260520T083925",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_dgec-sj-construction_20260520T083925_result.json",
+    "occurrence": 1,
+    "bytes": 2107,
+    "sha256": "9099843e7926c6dd681ca588fca2121abeca75f30120bacda7c315e2be9c22eb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果汇总\n\n17 个 config 全部完成，M030 验证全部通过。\n\n| Config | Dataset | Model | Regime | Greedy F1 | SJ F1 | Δpp | p-value | Sig |\n|---|---|---|---|---|---|---|---|---|\n| scierc/72b/zs | SciERC | 72B | ZS | 0.399 | 0.419 | **+2.0** | 0.001 | **+** |\n| scierc/72b/fs | SciERC | 72B | FS | 0.462 | 0.463 | +0.2 | 0.369 | n.s. |\n| conll/72b/zs | CoNLL | 72B | ZS | 0.712 | 0.706 | −0.6 | 0.999 | **−** |\n| conll/72b/fs | CoNLL | 72B | FS | 0.745 | 0.743 | −0.2 | 0.873 | n.s. |\n| fewnerd/72b/zs | FewNERD | 72B | ZS | 0.628 | 0.625 | −0.3 | 1.000 | **−** |\n| fewnerd/72b/fs | FewNERD | 72B | FS | 0.619 | 0.619 | +0.0 | 0.415 | n.s. |\n| fewnerd/7b/ft/s42 | FewNERD | 7B | FT | 0.785 | 0.776 | −0.9 | 1.000 | **−** |\n| fewnerd/7b/ft/s123 | FewNERD | 7B | FT | 0.785 | 0.781 | −0.4 | 1.000 | **−** |\n| fewnerd/7b/ft/s456 | FewNERD | 7B | FT | 0.783 | 0.779 | −0.3 | 1.000 | **−** |\n| conll/7b/ft/s123 | CoNLL | 7B | FT | 0.907 | 0.906 | −0.1 | 0.750 | n.s. |\n| conll/7b/ft/s456 | CoNLL | 7B | FT | 0.908 | 0.903 | −0.4 | 0.989 | **−** |\n| conll/7b/ft/s789* | CoNLL | 7B | FT | 0.907 | 0.906 | −0.1 | 0.650 | n.s. |\n| scierc/7b/ft/s456 | SciERC | 7B | FT | 0.645 | 0.639 | −0.6 | 0.805 | n.s. |\n| scierc/7b/ft/s789 | SciERC | 7B | FT | 0.643 | 0.634 | −0.9 | 0.882 | n.s. |\n| wnut17/7b/ft/s42 | WNUT17 | 7B | FT | 0.452 | 0.441 | −1.2 | 0.978 | **−** |\n| wnut17/7b/ft/s123 | WNUT17 | 7B | FT | 0.452 | 0.455 | +0.3 | 0.217 | n.s. |\n| wnut17/7b/ft/s456 | WNUT17 | 7B | FT | 0.453 | 0.457 | +0.4 | 0.172 | n.s. |\n\n*s789 uses N=16 samples\n\n**Summary**: 1 significant positive / 7 significant negative / 9 not significant\n\nSJ 作为 construction 权重**整体不如 greedy baseline**——仅 SciERC 72B ZS（最低精度、最低退化率的 config）获得显著正向提升。FewNERD 7B FT 的 3 个 seed 一致显著下降（−0.3 到 −0.9pp），说明 SJ 信号作为 construction 权重时反而引入噪声。这与 VC 实验对照可以明确回答：**并非任何\"更强 QE 信号\"都有效**。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-dgec-sj-construction.md"
+}

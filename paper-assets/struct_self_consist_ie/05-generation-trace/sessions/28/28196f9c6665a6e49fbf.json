@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "28196f9c6665a6e49fbf",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ssh verify 5090c gpu state",
+  "task_key": "worker_ssh_verify-5090c-gpu-state_20260520T070020",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_verify-5090c-gpu-state_20260520T070020_result.json",
+    "occurrence": 1,
+    "bytes": 1096,
+    "sha256": "606a992f9e3a0d5eae00d06e6856260ca315f095817f8e736fea7281692ab5a7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 验证结果\n\n### Hostname\n`autodl-container-jb1uyxxe0t-1a1cc6c5` — 已确认连接到 autodl-5090-c。\n\n### GPU 状态\n\n| GPU | 显存占用 | GPU-Util | 进程 |\n|-----|---------|----------|------|\n| 0 | 25885/32607 MiB | **96%** | PID 56978 — 14B 训练 |\n| 1 | 25827/32607 MiB | **96%** | PID 56979 — 14B 训练 |\n| 2 | **29869/32607 MiB** | **0%** | PID 155544 — **VLLM::EngineCore** |\n| 3 | 0/32607 MiB | 0% | 空闲 |\n\n### 关键发现\n\n1. **GPU 0,1** — 正在跑 14B 训练，config 为 `train_config_qwen25_14b_fewnerd_s42.yaml`，`nproc_per_node=2`，符合预期。\n2. **GPU 2 — vLLM PID 155544 并未退出！** 仍然占用 ~29.8GB 显存（GPU-Util 0% 说明没有在处理请求，但进程未释放）。之前报告说该 PID 已退出是错误的。\n3. **GPU 3** — 空闲。\n4. **没有 32B 训练进程在此服务器上** — 之前 Worker 报告\"全部 4 GPU 被 32B 训练占用\"完全不符合实际。\n\n### 结论\n\n需要手动 kill PID 155544 释放 GPU 2 的 ~30GB 显存。之后 GPU 2,3 均可用于新任务。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-verify-5090c-gpu-state.md"
+}

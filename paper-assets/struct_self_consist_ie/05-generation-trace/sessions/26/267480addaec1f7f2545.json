@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "267480addaec1f7f2545",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "status n16 progress check",
+  "task_key": "worker_status_n16_progress_check_20260523T001458",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_status_n16_progress_check_20260523T001458_result.json",
+    "occurrence": 1,
+    "bytes": 576,
+    "sha256": "17267e07917889c7b0d53b8f0d52f7518dd7a625aa58337788fdf10a7bd112d1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**n16_v2 实验状态：**\n\n- **VLLM 推理已完成** — 37648/37648 prompts (100%)，耗时 34:01\n- **当前阶段：后处理/保存结果** — 进程 452387 状态 `R (running)`，正在写 `samples.jsonl`（当前 3.8GB，仍在增长，最后修改 08:16）\n- **无报错** — 0 个 Traceback，0 个 error\n- **GPU 状态** — cuda:1 占用 30GB 显存，GPU-Util 0%（推理已结束，VLLM 引擎未释放）\n\n`report.json` 尚未生成，说明还在写 samples。按 samples.jsonl 的写入速度，后处理预计 **几分钟内完成**。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/status-n16-progress-check.md"
+}

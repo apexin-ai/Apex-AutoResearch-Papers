@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "157f4324edb95eb88900",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ssh b5 cross model consistency",
+  "task_key": "worker_ssh_b5-cross-model-consistency_20260520T090138",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_b5-cross-model-consistency_20260520T090138_result.json",
+    "occurrence": 1,
+    "bytes": 1224,
+    "sha256": "d719c0a5a583b0a39ffac54303823a9af06e69c70b15927ba9d1ed1c26c3abd9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## B5 结果汇总\n\n**M030 校验**: Qwen greedy F1 = 0.7478 ✓ | LLaMA greedy F1 = 0.7841 (任务预期 0.745 有误，实际三种子均值 0.7842)\n\n| Group | Degen | Uniform F1 | VC F1 | Uni ΔF1 vs greedy | VC ΔF1 vs greedy | p (uni) | p (vc) |\n|---|---|---|---|---|---|---|---|\n| Pure Qwen (N=8) | 10.0% | 0.7499 | 0.7448 | +0.21pp | −0.30pp | 0.031 | 0.997 |\n| Pure LLaMA (N=8) | 23.4% | 0.7873 | 0.7869 | +0.33pp | +0.28pp | 0.000 | 0.000 |\n| **Mixed (4Q+4L)** | **11.6%** | **0.7916** | **0.7898** | **+4.37pp** | **+4.20pp** | **0.000** | **0.000** |\n\n**关键对比 (mixed vs pure construction)**:\n- Mixed vs Pure LLaMA uniform: **+0.42pp** (p=0.000, CI [0.27, 0.58])\n- Mixed vs Pure LLaMA VC: **+0.29pp** (p=0.0001, CI [0.13, 0.45])\n\n**解读**:\n- 混合的大幅 ΔF1 (+4.37pp vs Qwen greedy) 主要来自 LLaMA 本身更强 (greedy 0.784 vs 0.748)\n- 但 mixed 也显著优于 pure LLaMA construction (+0.42pp uniform)，说明跨模型多样性确实带来额外增益\n- 混合后 degeneracy (11.6%) 低于 LLaMA (23.4%) 但略高于 Qwen (10.0%)，两个模型的输出空间不同导致退化减少\n\n输出: `artifacts/b5_cross_model/cross_model_results.json` (已注册)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-b5-cross-model-consistency.md"
+}

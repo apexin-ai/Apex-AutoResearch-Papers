@@ -1,0 +1,4007 @@
+# ssh e1 adaptive signal routing
+
+**When Self-Consistency Fails for NER: Degeneracy, Signal Collapse, and the Correlation-Selection Gap** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 135
+- **Recorded user turns:** 0
+- **Tool calls:** 67
+- **Original source:** `logs/chats/worker_ssh_e1-adaptive-signal-routing_20260520T093508.jsonl`
+- **Structured JSON:** [`162e3b38f47e6fc1a8e4.json`](../../sessions/16/162e3b38f47e6fc1a8e4.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+135 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-20T09:48:33.342110+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__register_artifact",
+  "max_results": "4"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_e1-adaptive-signal-routing_20260520T093508",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__register_artifact",
+    "max_results": "4"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-20T09:48:33.342549+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_e1-adaptive-signal-routing_20260520T093508",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-20T09:48:33.342898+00:00_
+
+called mcp__agent-ml-research__detect_image
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__detect_image</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_e1-adaptive-signal-routing_20260520T093508",
+  "tool": "mcp__agent-ml-research__detect_image",
+  "tool_args": {
+    "server": "autodl-5090-b",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-20T09:48:33.343096+00:00_
+
+{"result":"{\n  \"detected\": false,\n  \"status\": \"ssh_error\",\n  \"skip_base_setup\": false,\n  \"message\": \"SSH error: exit code 1\"\n}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_e1-adaptive-signal-routing_20260520T093508",
+  "tool": "mcp__agent-ml-research__detect_image",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-20T09:48:33.343295+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "command": "find /root/autodl-tmp/struct_self_consist_ie/output -name \"*construction*\" -o -name \"*bootstrap*\" -o -name \"*signal*\" 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_e1-adaptive-signal-routing_20260520T093508",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090-b",
+    "command": "find /root/autodl-tmp/struct_self_consist_ie/output -name \"*construction*\" -o -name \"*bootstrap*\" -o -name \"*signal*\" 2>/dev/null",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-20T09:48:33.343471+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_e1-adaptive-signal-routing_20260520T093508",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-20T09:48:33.343640+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "command": "find /root/autodl-tmp/struct_self_consist_ie/artifacts -type d",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_e1-adaptive-signal-routing_20260520T093508",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090-b",
+    "command": "find /root/autodl-tmp/struct_self_consist_ie/artifacts -type d",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-20T09:48:33.343810+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/artifacts\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.32}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_e1-adaptive-signal-routing_20260520T093508",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-20T09:48:33.344006+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "command": "find /root/autodl-tmp/struct_self_consist_ie/output -name \"*construction*\" -o -name \"*bootstrap*\" -o -name \"*signal*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_e1-adaptive-signal-routing_20260520T093508",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090-b",
+    "command": "find /root/autodl-tmp/struct_self_consist_ie/output -name \"*construction*\" -o -name \"*bootstrap*\" -o -name \"*signal*\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-20T09:48:33.344203+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "command": "ls /root/autodl-tmp/struct_self_consist_ie/artifacts/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_e1-adaptive-signal-routing_20260520T093508",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090-b",
+    "command": "ls /root/autodl-tmp/struct_self_consist_ie/artifacts/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-20T09:48:33.344409+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/output/exp_scierc_seed456/full_signal_analysis.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_conll_seed123/full_signal_analysis.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_conll_seed456/full_signal_analysis.json\\n/root/autodl-tmp/struct_self_consist_ie/output/72b_zeroshot/scierc/paired_bootstrap_result.json\\n/root/autodl-tmp/struct_self_consist_ie/output/72b_zeroshot/full_signal_report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/72b_fewshot_signals\\n/root/autodl-tmp/struct_self_consist_ie/output/72b_fewshot_signals/scierc/full_signal_report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/72b_fewshot_signals/scierc/scierc_paired_bootstrap_result.json\\n/root/autodl-tmp/struct_self_consist_ie/output/72b_fewshot_signals/conll2003/full_signal_report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/72b_fewshot_signals/conll2003/conll2003_paired_bootstrap_result.json\\n/root/autodl-tmp/struct_self_consist_ie/output/72b_fewshot_signals/fewnerd/full_signal_report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/72b_fewshot_signals/fewnerd/fewnerd_paired_bootstrap_result.json\\n/root/autodl-tmp/struct_self_consist_ie/output/fewnerd_7b/qwen25_7b_n8_seed123/full_signal_report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/fewnerd_7b/qwen25_7b_n8_seed123/fewnerd_paired_bootstrap_result.json\\n/root/autodl-tmp/struct_self_consist_ie/output/fewnerd_7b/qwen25_7b_n8_seed456/full_signal_report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/fewnerd_7b/qwen25_7b_n8_seed456/fewnerd_paired_bootstrap_result.json\\n/root/autodl-tmp/struct_self_consist_ie/output/fewnerd_7b/qwen25_7b_n8_seed42/full_signal_report.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.32}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_e1-adaptive-signal-routing_20260520T093508",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-20T09:48:33.344608+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "command": "ls /root/autodl-tmp/struct_self_consist_ie/output/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_e1-adaptive-signal-routing_20260520T093508",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090-b",
+    "command": "ls /root/autodl-tmp/struct_self_consist_ie/output/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-20T09:48:33.344782+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"aggregate_seeds.py\\nbootstrap_construction.py\\ncompute_signals.py\\nformat_for_scaling.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_e1-adaptive-signal-routing_20260520T093508",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-20T09:48:33.344955+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"72b_fewshot\\n72b_fewshot_signals\\n72b_zeroshot\\n72b_zeroshot_pilot\\nexp_021_fewnerd_full\\nexp_conll_seed123\\nexp_conll_seed456\\nexp_fewnerd_seed123\\nexp_fewnerd_seed456\\nexp_fewnerd_seed789\\nexp_scierc_seed456\\nexp_scierc_seed789\\nfewnerd_7b\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_e1-adaptive-signal-routing_20260520T093508",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-20T09:48:33.345182+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "command": "find /root/autodl-tmp/struct_self_consist_ie/output -name \"full_signal_report.json\" -o -name \"full_signal_analysis.json\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_e1-adaptive-signal-routing_20260520T093508",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090-b",
+    "command": "find /root/autodl-tmp/struct_self_consist_ie/output -name \"full_signal_report.json\" -o -name \"full_signal_analysis.json\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-20T09:48:33.345381+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/output/exp_scierc_seed456/full_signal_analysis.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_conll_seed123/full_signal_analysis.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_conll_seed456/full_signal_analysis.json\\n/root/autodl-tmp/struct_self_consist_ie/output/72b_zeroshot/full_signal_report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/72b_fewshot_signals/scierc/full_signal_report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/72b_fewshot_signals/conll2003/full_signal_report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/72b_fewshot_signals/fewnerd/full_signal_report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/fewnerd_7b/qwen25_7b_n8_seed123/full_signal_report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/fewnerd_7b/qwen25_7b_n8_seed456/full_signal_report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/fewnerd_7b/qwen25_7b_n8_seed42/full_signal_report.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_e1-adaptive-signal-routing_20260520T093508",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-20T09:48:33.345567+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "command": "find /root/autodl-tmp/struct_self_consist_ie -name \"*.json\" -path \"*/exp_*\" -name \"*signal*\" -o -name \"*.json\" -path \"*/exp_*\" -name \"*construction*\" -o -name \"*.json\" -path \"*/exp_*\" -name \"*bootstrap*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_e1-adaptive-signal-routing_20260520T093508",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090-b",
+    "command": "find /root/autodl-tmp/struct_self_consist_ie -name \"*.json\" -path \"*/exp_*\" -name \"*signal*\" -o -name \"*.json\" -path \"*/exp_*\" -name \"*construction*\" -o -name \"*.json\" -path \"*/exp_*\" -name \"*bootstrap*\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-20T09:48:33.345745+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/output/exp_scierc_seed456/full_signal_analysis.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_conll_seed123/full_signal_analysis.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_conll_seed456/full_signal_analysis.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_e1-adaptive-signal-routing_20260520T093508",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-20T09:48:33.345910+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "command": "ls /root/autodl-tmp/struct_self_consist_ie/output/exp_021_fewnerd_full/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_e1-adaptive-signal-routing_20260520T093508",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090-b",
+    "command": "ls /root/autodl-tmp/struct_self_consist_ie/output/exp_021_fewnerd_full/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-20T09:48:33.346079+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"adapter_config.json\\nadapter_model.safetensors\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.32}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_e1-adaptive-signal-routing_20260520T093508",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-20T09:48:33.346306+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/exp_conll_seed123/full_signal_analysis.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_e1-adaptive-signal-routing_20260520T093508",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090-b",
+    "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/exp_conll_seed123/full_signal_analysis.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-20T09:48:33.346522+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"dataset\\\": \\\"conll\\\",\\n  \\\"seed\\\": 123,\\n  \\\"N\\\": 8,\\n  \\\"n_instances\\\": 2756,\\n  \\\"n_degen\\\": 1735,\\n  \\\"degeneracy\\\": 0.6295,\\n  \\\"greedy_f1\\\": 0.9074,\\n  \\\"oracle_f1\\\": 0.9477,\\n  \\\"headroom_pp\\\": 4.03,\\n  \\\"dgs_f1\\\": 0.9014,\\n  \\\"dgs_delta_pp\\\": -0.6,\\n  \\\"signal_rho\\\": {\\n    \\\"SJ\\\": 0.4644,\\n    \\\"FK\\\": 0.4629,\\n    \\\"VC\\\": 0.4694,\\n    \\\"EM\\\": 0.4743,\\n    \\\"LP\\\": 0.3294\\n  },\\n  \\\"selection_f1\\\": {\\n    \\\"SJ\\\": {\\n      \\\"f1\\\": 0.9039,\\n      \\\"delta_pp\\\": -0.35\\n    },\\n    \\\"FK\\\": {\\n      \\\"f1\\\": 0.9045,\\n      \\\"delta_pp\\\": -0.29\\n    },\\n    \\\"VC\\\": {\\n      \\\"f1\\\": 0.9041,\\n      \\\"delta_pp\\\": -0.33\\n    },\\n    \\\"EM\\\": {\\n      \\\"f1\\\": 0.9034,\\n      \\\"delta_pp\\\": -0.4\\n    },\\n    \\\"LP\\\": {\\n      \\\"f1\\\": 0.9014,\\n      \\\"delta_pp\\\": -0.6\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.32}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_e1-adaptive-signal-routing_20260520T093508",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-20T09:48:33.346711+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/72b_fewshot_signals/scierc/full_signal_report.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_e1-adaptive-signal-routing_20260520T093508",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090-b",
+    "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/72b_fewshot_signals/scierc/full_signal_report.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-20T09:48:33.346879+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/fewnerd_7b/qwen25_7b_n8_seed42/full_signal_report.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_e1-adaptive-signal-routing_20260520T093508",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090-b",
+    "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/fewnerd_7b/qwen25_7b_n8_seed42/full_signal_report.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-20T09:48:33.347145+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"scierc\\\": {\\n    \\\"name\\\": \\\"scierc\\\",\\n    \\\"n_instances\\\": 529,\\n    \\\"n_samples\\\": 8,\\n    \\\"signals\\\": {\\n      \\\"SJ\\\": {\\n        \\\"rho\\\": 0.29329163662663027\\n      },\\n      \\\"FK\\\": {\\n        \\\"rho\\\": 0.3010684888544646\\n      },\\n      \\\"LP\\\": {\\n        \\\"rho\\\": 0.06027582188572302\\n      },\\n      \\\"EM\\\": {\\n        \\\"rho\\\": 0.2054891113947109\\n      },\\n      \\\"VC\\\": {\\n        \\\"rho\\\": 0.2578493806429398\\n      }\\n    },\\n    \\\"baselines\\\": {\\n      \\\"greedy\\\": {\\n        \\\"mean\\\": 0.46146453840215657,\\n        \\\"ci_lo\\\": 0.4347084232717503,\\n        \\\"ci_hi\\\": 0.4871786793336888\\n      },\\n      \\\"lp_selection\\\": {\\n        \\\"mean\\\": 0.44788919289617896,\\n        \\\"ci_lo\\\": 0.42297656659660443,\\n        \\\"ci_hi\\\": 0.47239215265433726\\n      },\\n      \\\"majority_vote\\\": {\\n        \\\"mean\\\": 0.4552882110538065,\\n        \\\"ci_lo\\\": 0.42999127526537734,\\n        \\\"ci_hi\\\": 0.4808550407794264\\n      },\\n      \\\"oracle\\\": {\\n        \\\"mean\\\": 0.6044266482994188,\\n        \\\"ci_lo\\\": 0.5814665852945625,\\n        \\\"ci_hi\\\": 0.62740604281247\\n      },\\n      \\\"consensus_theta2n\\\": {\\n        \\\"mean\\\": 0.44749545211659014,\\n        \\\"ci_lo\\\": 0.42497915338179987,\\n        \\\"ci_hi\\\": 0.46995082738672783\\n      },\\n      \\\"consensus_lp_weighted\\\": {\\n        \\\"mean\\\": 0.4606649546630643,\\n        \\\"ci_lo\\\": 0.4358086410543877,\\n        \\\"ci_hi\\\": 0.48635787128225694\\n      }\\n    },\\n    \\\"consensus_variants\\\": {\\n      \\\"high=0.5_medium=0.1\\\": {\\n        \\\"mean\\\": 0.4398718841606867,\\n        \\\"ci_lo\\\": 0.4163787210369317,\\n        \\\"ci_hi\\\": 0.4641643319910324\\n      },\\n      \\\"high=0.6_medium=0.2\\\": {\\n        \\\"mean\\\": 0.45555589406084235,\\n        
+…[truncated 649 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_e1-adaptive-signal-routing_20260520T093508",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-20T09:48:33.347428+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"qwen25_7b_n8_seed42\\\": {\\n    \\\"name\\\": \\\"qwen25_7b_n8_seed42\\\",\\n    \\\"n_instances\\\": 32565,\\n    \\\"n_samples\\\": 8,\\n    \\\"signals\\\": {\\n      \\\"SJ\\\": {\\\"rho\\\": 0.3554380348737486},\\n      \\\"FK\\\": {\\\"rho\\\": 0.2821663798602262},\\n      \\\"LP\\\": {\\\"rho\\\": 0.3220753285955253},\\n      \\\"EM\\\": {\\\"rho\\\": 0.39285886551678817},\\n      \\\"VC\\\": {\\\"rho\\\": 0.39298888183757175}\\n    },\\n    \\\"baselines\\\": {\\n      \\\"greedy\\\": {\\\"mean\\\": 0.7850607259090472, \\\"ci_lo\\\": 0.7817149860296593, \\\"ci_hi\\\": 0.7884459543689549},\\n      \\\"lp_selection\\\": {\\\"mean\\\": 0.7889591249390976, \\\"ci_lo\\\": 0.7856505342554798, \\\"ci_hi\\\": 0.7922434030438454},\\n      \\\"majority_vote\\\": {\\\"mean\\\": 0.7583913412006779, \\\"ci_lo\\\": 0.7548326440976043, \\\"ci_hi\\\": 0.7619457825117556},\\n      \\\"oracle\\\": {\\\"mean\\\": 0.8717742257546802, \\\"ci_lo\\\": 0.8693899734035836, \\\"ci_hi\\\": 0.8744771188567799},\\n      \\\"consensus_theta2n\\\": {\\\"mean\\\": 0.784453222572283, \\\"ci_lo\\\": 0.7814075740611837, \\\"ci_hi\\\": 0.7875983812405557},\\n      \\\"consensus_lp_weighted\\\": {\\\"mean\\\": 0.7811025454159035, \\\"ci_lo\\\": 0.7776865950963158, \\\"ci_hi\\\": 0.7845262533429972}\\n    },\\n    \\\"degeneracy_rate\\\": 0.3108859204667588,\\n    \\\"degeneracy_count\\\": 10124,\\n    \\\"degeneracy_set_count\\\": 8707,\\n    \\\"lp_selection_delta\\\": 0.0038983990300504034,\\n    \\\"model_size\\\": \\\"7\\\",\\n    \\\"regime\\\": \\\"ft\\\"\\n  }\\n}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_e1-adaptive-signal-routing_20260520T093508",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-20T09:48:33.347668+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "command": "find /root/autodl-tmp/struct_self_consist_ie -name \"*construction*\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_e1-adaptive-signal-routing_20260520T093508",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090-b",
+    "command": "find /root/autodl-tmp/struct_self_consist_ie -name \"*construction*\" -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-20T09:48:33.347969+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/code/paired_bootstrap_construction.py\\n/root/autodl-tmp/struct_self_consist_ie/code/pipeline/sj_weighted_construction.py\\n/root/autodl-tmp/struct_self_consist_ie/code/pipeline/vc_weighted_construction.py\\n/root/autodl-tmp/struct_self_consist_ie/artifacts/bootstrap_construction.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.32}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_e1-adaptive-signal-routing_20260520T093508",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-20T09:48:33.348175+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "command": "find /root/autodl-tmp/struct_self_consist_ie -name \"*dgec*\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_e1-adaptive-signal-routing_20260520T093508",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090-b",
+    "command": "find /root/autodl-tmp/struct_self_consist_ie -name \"*dgec*\" -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-20T09:48:33.348358+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_e1-adaptive-signal-routing_20260520T093508",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-20T09:48:33.348525+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "command": "find /root/autodl-tmp/struct_self_consist_ie -name \"*bootstrap*\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_e1-adaptive-signal-routing_20260520T093508",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090-b",
+    "command": "find /root/autodl-tmp/struct_self_consist_ie -name \"*bootstrap*\" -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-20T09:48:33.348713+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/code/n8_bootstrap_ci.py\\n/root/autodl-tmp/struct_self_consist_ie/code/fk_bootstrap_ci.py\\n/root/autodl-tmp/struct_self_consist_ie/code/fk_bootstrap_per_instance.py\\n/root/autodl-tmp/struct_self_consist_ie/code/fk_bootstrap_test.py\\n/root/autodl-tmp/struct_self_consist_ie/code/paired_bootstrap_construction.py\\n/root/autodl-tmp/struct_self_consist_ie/output/72b_zeroshot/scierc/paired_bootstrap_result.json\\n/root/autodl-tmp/struct_self_consist_ie/output/72b_fewshot_signals/scierc/scierc_paired_bootstrap_result.json\\n/root/autodl-tmp/struct_self_consist_ie/output/72b_fewshot_signals/conll2003/conll2003_paired_bootstrap_result.json\\n/root/autodl-tmp/struct_self_consist_ie/output/72b_fewshot_signals/fewnerd/fewnerd_paired_bootstrap_result.json\\n/root/autodl-tmp/struct_self_consist_ie/output/fewnerd_7b/qwen25_7b_n8_seed123/fewnerd_paired_bootstrap_result.json\\n/root/autodl-tmp/struct_self_consist_ie/output/fewnerd_7b/qwen25_7b_n8_seed456/fewnerd_paired_bootstrap_result.json\\n/root/autodl-tmp/struct_self_consist_ie/artifacts/bootstrap_construction.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.32}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_e1-adaptive-signal-routing_20260520T093508",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-20T09:48:33.348917+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/72b_fewshot_signals/scierc/scierc_paired_bootstrap_result.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_e1-adaptive-signal-routing_20260520T093508",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090-b",
+    "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/72b_fewshot_signals/scierc/scierc_paired_bootstrap_result.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-20T09:48:33.349154+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"test\\\": \\\"paired_bootstrap\\\",\\n  \\\"label\\\": \\\"scierc\\\",\\n  \\\"n_instances\\\": 529,\\n  \\\"B\\\": 10000,\\n  \\\"greedy_f1\\\": 0.46146453840215657,\\n  \\\"construction_f1\\\": 0.4606649546630643,\\n  \\\"observed_diff\\\": -0.0007995837390922457,\\n  \\\"ci_95\\\": [\\n    -0.012014623687591553,\\n    0.01076065291566237\\n  ],\\n  \\\"p_value\\\": 0.5435,\\n  \\\"cohens_d\\\": -0.005916294917846262,\\n  \\\"instance_positive\\\": 82,\\n  \\\"instance_negative\\\": 84,\\n  \\\"instance_tied\\\": 363,\\n  \\\"n_degenerate\\\": 32,\\n  \\\"n_nondegenerate\\\": 497,\\n  \\\"nondegen_greedy_f1\\\": 0.44708660443066883,\\n  \\\"nondegen_construction_f1\\\": 0.44623553843875774,\\n  \\\"nondegen_diff\\\": -0.000851065991911093,\\n  \\\"nondegen_ci_95\\\": [\\n    -0.012848625776191171,\\n    0.011662755978651348\\n  ],\\n  \\\"nondegen_p_value\\\": 0.5431\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.32}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_e1-adaptive-signal-routing_20260520T093508",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-20T09:48:33.349465+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/72b_zeroshot/scierc/paired_bootstrap_result.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_e1-adaptive-signal-routing_20260520T093508",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090-b",
+    "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/72b_zeroshot/scierc/paired_bootstrap_result.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-20T09:48:33.349699+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"test\\\": \\\"paired_bootstrap\\\",\\n  \\\"dataset\\\": \\\"scierc_72b_zs\\\",\\n  \\\"n_instances\\\": 529,\\n  \\\"n_samples\\\": 8,\\n  \\\"B\\\": 10000,\\n  \\\"greedy_f1\\\": 0.3993396070428207,\\n  \\\"construction_f1\\\": 0.41463973897533335,\\n  \\\"observed_diff\\\": 0.015300131932512673,\\n  \\\"ci_95\\\": [\\n    0.002528572469081756,\\n    0.028233994960893658\\n  ],\\n  \\\"p_value\\\": 0.0082,\\n  \\\"cohens_d\\\": 0.10265036835468083,\\n  \\\"instance_positive\\\": 119,\\n  \\\"instance_negative\\\": 72,\\n  \\\"instance_tied\\\": 338,\\n  \\\"n_degenerate\\\": 38,\\n  \\\"n_nondegenerate\\\": 491,\\n  \\\"nondegen_greedy_f1\\\": 0.3933967311258554,\\n  \\\"nondegen_construction_f1\\\": 0.40988098732198414,\\n  \\\"nondegen_diff\\\": 0.016484256196128755,\\n  \\\"nondegen_ci_95\\\": [\\n    0.0031366171865752526,\\n    0.030598604169947162\\n  ],\\n  \\\"nondegen_p_value\\\": 0.0069\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.32}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_e1-adaptive-signal-routing_20260520T093508",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-20T09:48:33.349882+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/fewnerd_7b/qwen25_7b_n8_seed123/fewnerd_paired_bootstrap_result.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_e1-adaptive-signal-routing_20260520T093508",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090-b",
+    "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/fewnerd_7b/qwen25_7b_n8_seed123/fewnerd_paired_bootstrap_result.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-20T09:48:33.350085+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"test\\\": \\\"paired_bootstrap\\\",\\n  \\\"label\\\": \\\"fewnerd\\\",\\n  \\\"n_instances\\\": 32565,\\n  \\\"B\\\": 10000,\\n  \\\"greedy_f1\\\": 0.7849782190943645,\\n  \\\"construction_f1\\\": 0.7847142728931678,\\n  \\\"observed_diff\\\": -0.0002639462011966233,\\n  \\\"ci_95\\\": [\\n    -0.0016327676422066206,\\n    0.0010904295281194219\\n  ],\\n  \\\"p_value\\\": 0.651,\\n  \\\"cohens_d\\\": -0.0021328652633743504,\\n  \\\"instance_positive\\\": 2008,\\n  \\\"instance_negative\\\": 1906,\\n  \\\"instance_tied\\\": 28651,\\n  \\\"n_degenerate\\\": 9239,\\n  \\\"n_nondegenerate\\\": 23326,\\n  \\\"nondegen_greedy_f1\\\": 0.7344450925881059,\\n  \\\"nondegen_construction_f1\\\": 0.7340165832833828,\\n  \\\"nondegen_diff\\\": -0.00042850930472304594,\\n  \\\"nondegen_ci_95\\\": [\\n    -0.0022981341552489394,\\n    0.001444049915139164\\n  ],\\n  \\\"nondegen_p_value\\\": 0.6725\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.32}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_e1-adaptive-signal-routing_20260520T093508",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-20T09:48:33.350373+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "command": "ls /root/autodl-tmp/struct_self_consist_ie/output/exp_scierc_seed456/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_e1-adaptive-signal-routing_20260520T093508",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090-b",
+    "command": "ls /root/autodl-tmp/struct_self_consist_ie/output/exp_scierc_seed456/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-20T09:48:33.350557+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"full_signal_analysis.json\\nreport.json\\nsamples.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.32}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_e1-adaptive-signal-routing_20260520T093508",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-20T09:48:33.350725+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "command": "ls /root/autodl-tmp/struct_self_consist_ie/output/exp_scierc_seed789/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_e1-adaptive-signal-routing_20260520T093508",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090-b",
+    "command": "ls /root/autodl-tmp/struct_self_consist_ie/output/exp_scierc_seed789/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-20T09:48:33.350894+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"report.json\\nsamples.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.33}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_e1-adaptive-signal-routing_20260520T093508",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-20T09:48:33.351056+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "command": "ls /root/autodl-tmp/struct_self_consist_ie/output/exp_fewnerd_seed123/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_e1-adaptive-signal-routing_20260520T093508",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090-b",
+    "command": "ls /root/autodl-tmp/struct_self_consist_ie/output/exp_fewnerd_seed123/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-20T09:48:33.351246+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"report.json\\nsamples.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.33}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_e1-adaptive-signal-routing_20260520T093508",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-20T09:48:33.351409+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "command": "ls /root/autodl-tmp/struct_self_consist_ie/output/exp_fewnerd_seed456/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_e1-adaptive-signal-routing_20260520T093508",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090-b",
+    "command": "ls /root/autodl-tmp/struct_self_consist_ie/output/exp_fewnerd_seed456/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-20T09:48:33.351575+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"report.json\\nsamples.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.33}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_e1-adaptive-signal-routing_20260520T093508",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-20T09:48:33.351742+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "command": "ls /root/autodl-tmp/struct_self_consist_ie/output/72b_zeroshot/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_e1-adaptive-signal-routing_20260520T093508",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090-b",
+    "command": "ls /root/autodl-tmp/struct_self_consist_ie/output/72b_zeroshot/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-20T09:48:33.351911+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"conll2003\\nfewnerd\\nfull_signal_report.json\\nscierc\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_e1-adaptive-signal-routing_20260520T093508",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-20T09:48:33.352096+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/72b_zeroshot/full_signal_report.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_e1-adaptive-signal-routing_20260520T093508",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090-b",
+    "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/72b_zeroshot/full_signal_report.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-20T09:48:33.352488+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"scierc\\\": {\\n    \\\"name\\\": \\\"scierc\\\",\\n    \\\"n_instances\\\": 529,\\n    \\\"n_samples\\\": 8,\\n    \\\"signals\\\": {\\n      \\\"SJ\\\": {\\n        \\\"rho\\\": 0.21675186319295206\\n      },\\n      \\\"FK\\\": {\\n        \\\"rho\\\": 0.2268643208878706\\n      },\\n      \\\"LP\\\": {\\n        \\\"rho\\\": 0.08105629653698664\\n      },\\n      \\\"EM\\\": {\\n        \\\"rho\\\": 0.18119551565265815\\n      },\\n      \\\"VC\\\": {\\n        \\\"rho\\\": 0.2774474257594968\\n      }\\n    },\\n    \\\"baselines\\\": {\\n      \\\"greedy\\\": {\\n        \\\"mean\\\": 0.3993396070428207,\\n        \\\"ci_lo\\\": 0.37502776576500585,\\n        \\\"ci_hi\\\": 0.42486000661804063\\n      },\\n      \\\"lp_selection\\\": {\\n        \\\"mean\\\": 0.39836297485580263,\\n        \\\"ci_lo\\\": 0.3737535525620703,\\n        \\\"ci_hi\\\": 0.4225968895628631\\n      },\\n      \\\"majority_vote\\\": {\\n        \\\"mean\\\": 0.4132481984238029,\\n        \\\"ci_lo\\\": 0.38694121463497644,\\n        \\\"ci_hi\\\": 0.43869730298443865\\n      },\\n      \\\"oracle\\\": {\\n        \\\"mean\\\": 0.5488904605161693,\\n        \\\"ci_lo\\\": 0.5240391828293529,\\n        \\\"ci_hi\\\": 0.5739669278421642\\n      },\\n      \\\"consensus_theta2n\\\": {\\n        \\\"mean\\\": 0.3941296496146429,\\n        \\\"ci_lo\\\": 0.37087546121195103,\\n        \\\"ci_hi\\\": 0.4162955855512563\\n      },\\n      \\\"consensus_lp_weighted\\\": {\\n        \\\"mean\\\": 0.41463973897533335,\\n        \\\"ci_lo\\\": 0.389058094011947,\\n        \\\"ci_hi\\\": 0.4393016036683333\\n      }\\n    },\\n    \\\"consensus_variants\\\": {\\n      \\\"high=0.5_medium=0.1\\\": {\\n        \\\"mean\\\": 0.39422476137663975,\\n        \\\"ci_lo\\\": 0.3699544254853355,\\n        \\\"ci_hi\\\": 0.4168598469711323\\n      },\\n      \\\"high=0.6_medium=0.2\\\": {\\n        \\\"mean\\\": 0.40482014598440896,\\n       
+…[truncated 5282 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_e1-adaptive-signal-routing_20260520T093508",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-20T09:48:33.352704+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/exp_scierc_seed456/full_signal_analysis.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_e1-adaptive-signal-routing_20260520T093508",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090-b",
+    "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/exp_scierc_seed456/full_signal_analysis.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-20T09:48:33.352928+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"dataset\\\": \\\"scierc\\\",\\n  \\\"seed\\\": 456,\\n  \\\"N\\\": 8,\\n  \\\"n_instances\\\": 529,\\n  \\\"n_degen\\\": 102,\\n  \\\"degeneracy\\\": 0.1928,\\n  \\\"greedy_f1\\\": 0.6453,\\n  \\\"oracle_f1\\\": 0.7726,\\n  \\\"headroom_pp\\\": 12.72,\\n  \\\"dgs_f1\\\": 0.6423,\\n  \\\"dgs_delta_pp\\\": -0.3,\\n  \\\"signal_rho\\\": {\\n    \\\"SJ\\\": 0.3941,\\n    \\\"FK\\\": 0.4023,\\n    \\\"VC\\\": 0.4137,\\n    \\\"EM\\\": 0.3378,\\n    \\\"LP\\\": 0.228\\n  },\\n  \\\"selection_f1\\\": {\\n    \\\"SJ\\\": {\\n      \\\"f1\\\": 0.6442,\\n      \\\"delta_pp\\\": -0.11\\n    },\\n    \\\"FK\\\": {\\n      \\\"f1\\\": 0.6423,\\n      \\\"delta_pp\\\": -0.31\\n    },\\n    \\\"VC\\\": {\\n      \\\"f1\\\": 0.6141,\\n      \\\"delta_pp\\\": -3.12\\n    },\\n    \\\"EM\\\": {\\n      \\\"f1\\\": 0.6377,\\n      \\\"delta_pp\\\": -0.76\\n    },\\n    \\\"LP\\\": {\\n      \\\"f1\\\": 0.6423,\\n      \\\"delta_pp\\\": -0.3\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_e1-adaptive-signal-routing_20260520T093508",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-20T09:48:33.353157+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "command": "head -50 /root/autodl-tmp/struct_self_consist_ie/output/exp_scierc_seed789/report.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_e1-adaptive-signal-routing_20260520T093508",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090-b",
+    "command": "head -50 /root/autodl-tmp/struct_self_consist_ie/output/exp_scierc_seed789/report.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-20T09:48:33.353401+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"dataset\\\": \\\"scierc\\\",\\n  \\\"subtask\\\": \\\"ner\\\",\\n  \\\"n_samples\\\": 8,\\n  \\\"temperature\\\": 1.0,\\n  \\\"num_instances\\\": 551,\\n  \\\"use_train_format\\\": true,\\n  \\\"greedy_f1\\\": 0.6616945107398567,\\n  \\\"oracle_f1\\\": 0.7784753363228699,\\n  \\\"oracle_headroom\\\": 0.11678082558301317,\\n  \\\"fleiss_kappa_mean\\\": 0.3990492204916827,\\n  \\\"soft_jaccard_mean\\\": 0.6994250730704441,\\n  \\\"correlation_fleiss_vs_f1_full\\\": {\\n    \\\"rho\\\": 0.33251161641932814,\\n    \\\"p_value\\\": 4.021409316438425e-15,\\n    \\\"n\\\": 529\\n  },\\n  \\\"correlation_softjaccard_vs_f1_full\\\": {\\n    \\\"rho\\\": 0.39960657109845354,\\n    \\\"p_value\\\": 1.0602773316517805e-21,\\n    \\\"n\\\": 529\\n  },\\n  \\\"correlation_fleiss_vs_f1_conditional\\\": {\\n    \\\"rho\\\": 0.23727245666330668,\\n    \\\"p_value\\\": 1.5749366945617064e-07,\\n    \\\"n\\\": 477\\n  },\\n  \\\"correlation_softjaccard_vs_f1_conditional\\\": {\\n    \\\"rho\\\": 0.3472701668908486,\\n    \\\"p_value\\\": 5.767403687727823e-15,\\n    \\\"n\\\": 477\\n  },\\n  \\\"n_gold_empty_filtered\\\": 22,\\n  \\\"n_greedy_f1_zero_filtered\\\": 52,\\n  \\\"structural_beats_surface\\\": true,\\n  \\\"rho_advantage\\\": 0.06709495467912541,\\n  \\\"sample_f1_mean\\\": 0.6079007243019531,\\n  \\\"sample_f1_std\\\": 0.31898484957060685,\\n  \\\"sample_f1_pct_zero\\\": 12.641776937618147,\\n  \\\"logprob_baseline\\\": {\\n    \\\"full\\\": {\\n      \\\"rho\\\": 0.2528010925027052,\\n      \\\"p_rho\\\": 3.7080401015147484e-09,\\n      \\\"tau\\\": 0.18014701724743581,\\n      \\\"p_tau\\\": 3.388552665719541e-09,\\n      \\\"auroc\\\": 0.5869761613335664,\\n      \\\"n\\\": 529\\n    },\\n    \\\"conditional\\\": {\\n      \\\"rho\\\": 0.1971097762986373,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.32}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_e1-adaptive-signal-routing_20260520T093508",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-20T09:48:33.353661+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/exp_conll_seed456/full_signal_analysis.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_e1-adaptive-signal-routing_20260520T093508",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090-b",
+    "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/exp_conll_seed456/full_signal_analysis.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-20T09:48:33.353881+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"dataset\\\": \\\"conll\\\",\\n  \\\"seed\\\": 456,\\n  \\\"N\\\": 8,\\n  \\\"n_instances\\\": 2756,\\n  \\\"n_degen\\\": 1737,\\n  \\\"degeneracy\\\": 0.6303,\\n  \\\"greedy_f1\\\": 0.9076,\\n  \\\"oracle_f1\\\": 0.9443,\\n  \\\"headroom_pp\\\": 3.67,\\n  \\\"dgs_f1\\\": 0.9005,\\n  \\\"dgs_delta_pp\\\": -0.71,\\n  \\\"signal_rho\\\": {\\n    \\\"SJ\\\": 0.4747,\\n    \\\"FK\\\": 0.4727,\\n    \\\"VC\\\": 0.4848,\\n    \\\"EM\\\": 0.4842,\\n    \\\"LP\\\": 0.3168\\n  },\\n  \\\"selection_f1\\\": {\\n    \\\"SJ\\\": {\\n      \\\"f1\\\": 0.9028,\\n      \\\"delta_pp\\\": -0.48\\n    },\\n    \\\"FK\\\": {\\n      \\\"f1\\\": 0.903,\\n      \\\"delta_pp\\\": -0.46\\n    },\\n    \\\"VC\\\": {\\n      \\\"f1\\\": 0.9003,\\n      \\\"delta_pp\\\": -0.73\\n    },\\n    \\\"EM\\\": {\\n      \\\"f1\\\": 0.9001,\\n      \\\"delta_pp\\\": -0.76\\n    },\\n    \\\"LP\\\": {\\n      \\\"f1\\\": 0.8999,\\n      \\\"delta_pp\\\": -0.77\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.32}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_e1-adaptive-signal-routing_20260520T093508",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-20T09:48:33.354062+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/72b_fewshot_signals/conll2003/full_signal_report.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_e1-adaptive-signal-routing_20260520T093508",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090-b",
+    "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/72b_fewshot_signals/conll2003/full_signal_report.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-20T09:48:33.354335+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"conll\\\": {\\n    \\\"name\\\": \\\"conll\\\",\\n    \\\"n_instances\\\": 2756,\\n    \\\"n_samples\\\": 8,\\n    \\\"signals\\\": {\\n      \\\"SJ\\\": {\\n        \\\"rho\\\": 0.441758432978281\\n      },\\n      \\\"FK\\\": {\\n        \\\"rho\\\": 0.4508204940873203\\n      },\\n      \\\"LP\\\": {\\n        \\\"rho\\\": 0.10603090944237105\\n      },\\n      \\\"EM\\\": {\\n        \\\"rho\\\": 0.4027710183091927\\n      },\\n      \\\"VC\\\": {\\n        \\\"rho\\\": 0.4255488206935679\\n      }\\n    },\\n    \\\"baselines\\\": {\\n      \\\"greedy\\\": {\\n        \\\"mean\\\": 0.7449576104910294,\\n        \\\"ci_lo\\\": 0.7306649761838441,\\n        \\\"ci_hi\\\": 0.7593339765060662\\n      },\\n      \\\"lp_selection\\\": {\\n        \\\"mean\\\": 0.7473685538022954,\\n        \\\"ci_lo\\\": 0.7336554557623948,\\n        \\\"ci_hi\\\": 0.7614729069776447\\n      },\\n      \\\"majority_vote\\\": {\\n        \\\"mean\\\": 0.7427829302898389,\\n        \\\"ci_lo\\\": 0.7288397197306327,\\n        \\\"ci_hi\\\": 0.7564712109191478\\n      },\\n      \\\"oracle\\\": {\\n        \\\"mean\\\": 0.7958385663420529,\\n        \\\"ci_lo\\\": 0.7827460599531022,\\n        \\\"ci_hi\\\": 0.8090547404135938\\n      },\\n      \\\"consensus_theta2n\\\": {\\n        \\\"mean\\\": 0.7399691673796225,\\n        \\\"ci_lo\\\": 0.7262815080184964,\\n        \\\"ci_hi\\\": 0.7539540858139382\\n      },\\n      \\\"consensus_lp_weighted\\\": {\\n        \\\"mean\\\": 0.7452931349059022,\\n        \\\"ci_lo\\\": 0.7315013707961716,\\n        \\\"ci_hi\\\": 0.7590211930618345\\n      }\\n    },\\n    \\\"consensus_variants\\\": {\\n      \\\"high=0.5_medium=0.1\\\": {\\n        \\\"mean\\\": 0.7434944522264676,\\n        \\\"ci_lo\\\": 0.7295606977961946,\\n        \\\"ci_hi\\\": 0.757217690509546\\n      },\\n      \\\"high=0.6_medium=0.2\\\": {\\n        \\\"mean\\\": 0.7445556225392173,\\n        \\\"ci_lo\\\
+…[truncated 640 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_e1-adaptive-signal-routing_20260520T093508",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-20T09:48:33.354552+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/72b_fewshot_signals/fewnerd/full_signal_report.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_e1-adaptive-signal-routing_20260520T093508",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090-b",
+    "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/72b_fewshot_signals/fewnerd/full_signal_report.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-20T09:48:33.354808+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"fewnerd\\\": {\\n    \\\"name\\\": \\\"fewnerd\\\",\\n    \\\"n_instances\\\": 32565,\\n    \\\"n_samples\\\": 8,\\n    \\\"signals\\\": {\\n      \\\"SJ\\\": {\\n        \\\"rho\\\": 0.3451092769673854\\n      },\\n      \\\"FK\\\": {\\n        \\\"rho\\\": 0.3271947629842062\\n      },\\n      \\\"LP\\\": {\\n        \\\"rho\\\": 0.16136921647005784\\n      },\\n      \\\"EM\\\": {\\n        \\\"rho\\\": 0.30229933641791606\\n      },\\n      \\\"VC\\\": {\\n        \\\"rho\\\": 0.40986865494620944\\n      }\\n    },\\n    \\\"baselines\\\": {\\n      \\\"greedy\\\": {\\n        \\\"mean\\\": 0.6189441226866342,\\n        \\\"ci_lo\\\": 0.6151169949987665,\\n        \\\"ci_hi\\\": 0.6227964477839321\\n      },\\n      \\\"lp_selection\\\": {\\n        \\\"mean\\\": 0.6175547900813741,\\n        \\\"ci_lo\\\": 0.6137432571506182,\\n        \\\"ci_hi\\\": 0.6214547084899013\\n      },\\n      \\\"majority_vote\\\": {\\n        \\\"mean\\\": 0.6195343471083695,\\n        \\\"ci_lo\\\": 0.615595064455849,\\n        \\\"ci_hi\\\": 0.6234043749451192\\n      },\\n      \\\"oracle\\\": {\\n        \\\"mean\\\": 0.7016824848704548,\\n        \\\"ci_lo\\\": 0.698134708727528,\\n        \\\"ci_hi\\\": 0.7052974280410977\\n      },\\n      \\\"consensus_theta2n\\\": {\\n        \\\"mean\\\": 0.6047837129259926,\\n        \\\"ci_lo\\\": 0.601152035412434,\\n        \\\"ci_hi\\\": 0.6084062323843024\\n      },\\n      \\\"consensus_lp_weighted\\\": {\\n        \\\"mean\\\": 0.619098022361867,\\n        \\\"ci_lo\\\": 0.6152362893366947,\\n        \\\"ci_hi\\\": 0.6228771210839811\\n      }\\n    },\\n    \\\"consensus_variants\\\": {\\n      \\\"high=0.5_medium=0.1\\\": {\\n        \\\"mean\\\": 0.6068922147885816,\\n        \\\"ci_lo\\\": 0.6032214695605966,\\n        \\\"ci_hi\\\": 0.6106739052957241\\n      },\\n      \\\"high=0.6_medium=0.2\\\": {\\n        \\\"mean\\\": 0.6161219637020433,\\n        \\\"ci_
+…[truncated 649 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_e1-adaptive-signal-routing_20260520T093508",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61 · 2026-05-20T09:48:33.355044+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/fewnerd_7b/qwen25_7b_n8_seed123/full_signal_report.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_e1-adaptive-signal-routing_20260520T093508",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090-b",
+    "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/fewnerd_7b/qwen25_7b_n8_seed123/full_signal_report.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-20T09:48:33.355322+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"qwen25_7b_n8_seed123\\\": {\\n    \\\"name\\\": \\\"qwen25_7b_n8_seed123\\\",\\n    \\\"n_instances\\\": 32565,\\n    \\\"n_samples\\\": 8,\\n    \\\"signals\\\": {\\n      \\\"SJ\\\": {\\n        \\\"rho\\\": 0.3979064558528843\\n      },\\n      \\\"FK\\\": {\\n        \\\"rho\\\": 0.3319161374483941\\n      },\\n      \\\"LP\\\": {\\n        \\\"rho\\\": 0.35376354886526384\\n      },\\n      \\\"EM\\\": {\\n        \\\"rho\\\": 0.4255729437037745\\n      },\\n      \\\"VC\\\": {\\n        \\\"rho\\\": 0.4067234323845322\\n      }\\n    },\\n    \\\"baselines\\\": {\\n      \\\"greedy\\\": {\\n        \\\"mean\\\": 0.7849782190943645,\\n        \\\"ci_lo\\\": 0.7816908197121046,\\n        \\\"ci_hi\\\": 0.7884536241411374\\n      },\\n      \\\"lp_selection\\\": {\\n        \\\"mean\\\": 0.7887419152268093,\\n        \\\"ci_lo\\\": 0.7853886797562304,\\n        \\\"ci_hi\\\": 0.7921487694122759\\n      },\\n      \\\"majority_vote\\\": {\\n        \\\"mean\\\": 0.763655614456667,\\n        \\\"ci_lo\\\": 0.7602908677205369,\\n        \\\"ci_hi\\\": 0.7673158787831125\\n      },\\n      \\\"oracle\\\": {\\n        \\\"mean\\\": 0.877710793367668,\\n        \\\"ci_lo\\\": 0.8751538480863399,\\n        \\\"ci_hi\\\": 0.8803268037101737\\n      },\\n      \\\"consensus_theta2n\\\": {\\n        \\\"mean\\\": 0.7878444099907664,\\n        \\\"ci_lo\\\": 0.7848414505408492,\\n        \\\"ci_hi\\\": 0.7910745795102102\\n      },\\n      \\\"consensus_lp_weighted\\\": {\\n        \\\"mean\\\": 0.7847142728931678,\\n        \\\"ci_lo\\\": 0.7813806549748099,\\n        \\\"ci_hi\\\": 0.7880850812671008\\n      }\\n    },\\n    \\\"consensus_variants\\\": {\\n      \\\"high=0.5_medium=0.1\\\": {\\n        \\\"mean\\\": 0.7839865296441815,\\n        \\\"ci_lo\\\": 0.7807632912013066,\\n        \\\"ci_hi\\\": 0.7873514925676591\\n      },\\n      \\\"high=0.6_medium=0.2\\\": {\\n        \\\"mean\\\": 0.786009433
+…[truncated 670 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_e1-adaptive-signal-routing_20260520T093508",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63 · 2026-05-20T09:48:33.355539+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/fewnerd_7b/qwen25_7b_n8_seed456/full_signal_report.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_e1-adaptive-signal-routing_20260520T093508",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090-b",
+    "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/fewnerd_7b/qwen25_7b_n8_seed456/full_signal_report.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-20T09:48:33.355791+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"qwen25_7b_n8_seed456\\\": {\\n    \\\"name\\\": \\\"qwen25_7b_n8_seed456\\\",\\n    \\\"n_instances\\\": 19208,\\n    \\\"n_samples\\\": 8,\\n    \\\"signals\\\": {\\n      \\\"SJ\\\": {\\n        \\\"rho\\\": 0.4105248969865435\\n      },\\n      \\\"FK\\\": {\\n        \\\"rho\\\": 0.33065260625070747\\n      },\\n      \\\"LP\\\": {\\n        \\\"rho\\\": 0.3629122298026665\\n      },\\n      \\\"EM\\\": {\\n        \\\"rho\\\": 0.424957317010923\\n      },\\n      \\\"VC\\\": {\\n        \\\"rho\\\": 0.41178490625125064\\n      }\\n    },\\n    \\\"baselines\\\": {\\n      \\\"greedy\\\": {\\n        \\\"mean\\\": 0.7824707657182973,\\n        \\\"ci_lo\\\": 0.7782362733519463,\\n        \\\"ci_hi\\\": 0.786602982712208\\n      },\\n      \\\"lp_selection\\\": {\\n        \\\"mean\\\": 0.7877157594037772,\\n        \\\"ci_lo\\\": 0.7833443721291067,\\n        \\\"ci_hi\\\": 0.7918450501602382\\n      },\\n      \\\"majority_vote\\\": {\\n        \\\"mean\\\": 0.7647926799021951,\\n        \\\"ci_lo\\\": 0.7602653555889105,\\n        \\\"ci_hi\\\": 0.7690886277450089\\n      },\\n      \\\"oracle\\\": {\\n        \\\"mean\\\": 0.877102372838839,\\n        \\\"ci_lo\\\": 0.8739223741137635,\\n        \\\"ci_hi\\\": 0.8804135969618259\\n      },\\n      \\\"consensus_theta2n\\\": {\\n        \\\"mean\\\": 0.7838996306366699,\\n        \\\"ci_lo\\\": 0.7799090056248532,\\n        \\\"ci_hi\\\": 0.7878199668259215\\n      },\\n      \\\"consensus_lp_weighted\\\": {\\n        \\\"mean\\\": 0.7833316771300924,\\n        \\\"ci_lo\\\": 0.77908943618793,\\n        \\\"ci_hi\\\": 0.7874859724780829\\n      }\\n    },\\n    \\\"consensus_variants\\\": {\\n      \\\"high=0.5_medium=0.1\\\": {\\n        \\\"mean\\\": 0.7822109315790622,\\n        \\\"ci_lo\\\": 0.7780750887469273,\\n        \\\"ci_hi\\\": 0.7862636130843406\\n      },\\n      \\\"high=0.6_medium=0.2\\\": {\\n        \\\"mean\\\": 0.78469106195
+…[truncated 667 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_e1-adaptive-signal-routing_20260520T093508",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65 · 2026-05-20T09:48:33.356118+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "command": "find /root/autodl-tmp/struct_self_consist_ie -name \"report.json\" -path \"*/exp_*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_e1-adaptive-signal-routing_20260520T093508",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090-b",
+    "command": "find /root/autodl-tmp/struct_self_consist_ie -name \"report.json\" -path \"*/exp_*\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-20T09:48:33.356333+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/output/exp_scierc_seed456/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_conll_seed123/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_conll_seed456/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_fewnerd_seed123/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_fewnerd_seed456/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_fewnerd_seed789/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_scierc_seed789/report.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_e1-adaptive-signal-routing_20260520T093508",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67 · 2026-05-20T09:48:33.356540+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "command": "head -30 /root/autodl-tmp/struct_self_consist_ie/output/exp_fewnerd_seed123/report.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_e1-adaptive-signal-routing_20260520T093508",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090-b",
+    "command": "head -30 /root/autodl-tmp/struct_self_consist_ie/output/exp_fewnerd_seed123/report.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 68 · 2026-05-20T09:48:33.356751+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"dataset\\\": \\\"fewnerd\\\",\\n  \\\"subtask\\\": \\\"ner\\\",\\n  \\\"n_samples\\\": 8,\\n  \\\"temperature\\\": 1.0,\\n  \\\"num_instances\\\": 37648,\\n  \\\"use_train_format\\\": true,\\n  \\\"greedy_f1\\\": 0.7886269299302702,\\n  \\\"oracle_f1\\\": 0.889288498518788,\\n  \\\"oracle_headroom\\\": 0.10066156858851782,\\n  \\\"fleiss_kappa_mean\\\": 0.3483791526133341,\\n  \\\"soft_jaccard_mean\\\": 0.6689743470260483,\\n  \\\"correlation_fleiss_vs_f1_full\\\": {\\n    \\\"rho\\\": 0.15546820288148178,\\n    \\\"p_value\\\": 2.7941406912462327e-175,\\n    \\\"n\\\": 32565\\n  },\\n  \\\"correlation_softjaccard_vs_f1_full\\\": {\\n    \\\"rho\\\": 0.30624291270909665,\\n    \\\"p_value\\\": 0.0,\\n    \\\"n\\\": 32565\\n  },\\n  \\\"correlation_fleiss_vs_f1_conditional\\\": {\\n    \\\"rho\\\": 0.0004974436960931685,\\n    \\\"p_value\\\": 0.9328416771393064,\\n    \\\"n\\\": 28701\\n  },\\n  \\\"correlation_softjaccard_vs_f1_conditional\\\": {\\n    \\\"rho\\\": 0.1969657017800197,\\n    \\\"p_value\\\": 6.216892024756439e-249,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_e1-adaptive-signal-routing_20260520T093508",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 69 · 2026-05-20T09:48:33.356935+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "command": "find /root/autodl-tmp/struct_self_consist_ie -type d -name \"*wnut*\" -o -type d -name \"*llama*\" -o -type d -name \"*WNUT*\" -o -type d -name \"*LLaMA*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_e1-adaptive-signal-routing_20260520T093508",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090-b",
+    "command": "find /root/autodl-tmp/struct_self_consist_ie -type d -name \"*wnut*\" -o -type d -name \"*llama*\" -o -type d -name \"*WNUT*\" -o -type d -name \"*LLaMA*\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-20T09:48:33.357122+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/data/wnut17\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_e1-adaptive-signal-routing_20260520T093508",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 71 · 2026-05-20T09:48:33.357311+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "command": "ls /root/autodl-tmp/struct_self_consist_ie/output/72b_fewshot/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_e1-adaptive-signal-routing_20260520T093508",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090-b",
+    "command": "ls /root/autodl-tmp/struct_self_consist_ie/output/72b_fewshot/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 72 · 2026-05-20T09:48:33.357488+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"conll2003\\nfewnerd\\nscierc\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.33}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_e1-adaptive-signal-routing_20260520T093508",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 73 · 2026-05-20T09:48:33.357749+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "command": "head -80 /root/autodl-tmp/struct_self_consist_ie/artifacts/compute_signals.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_e1-adaptive-signal-routing_20260520T093508",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090-b",
+    "command": "head -80 /root/autodl-tmp/struct_self_consist_ie/artifacts/compute_signals.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 74 · 2026-05-20T09:48:33.357924+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "command": "head -80 /root/autodl-tmp/struct_self_consist_ie/artifacts/bootstrap_construction.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_e1-adaptive-signal-routing_20260520T093508",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090-b",
+    "command": "head -80 /root/autodl-tmp/struct_self_consist_ie/artifacts/bootstrap_construction.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 75 · 2026-05-20T09:48:33.358085+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "command": "ls /root/autodl-tmp/struct_self_consist_ie/output/72b_fewshot/scierc/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_e1-adaptive-signal-routing_20260520T093508",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090-b",
+    "command": "ls /root/autodl-tmp/struct_self_consist_ie/output/72b_fewshot/scierc/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 76 · 2026-05-20T09:48:33.358351+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Compute 5 confidence signals + entity construction pipeline for NER.\\n\\nSignals: LP (Log Probability), SJ (Soft Jaccard), FK (Fleiss Kappa),\\n         VC (Vote Count), EM (Exact Match Rate)\\nConstruction: greedy, LP selection, majority vote, consensus θ=2/N,\\n              LP-weighted construction (high=0.5, medium=2/N), oracle\\n\\nUsage:\\n    # Process all datasets under a model output directory\\n    python compute_signals.py --input-dir /path/to/output/72b_zeroshot\\n\\n    # Process specific dataset with model metadata\\n    python compute_signals.py --input-dir /path/to/output/7b_ft \\\\\\n        --dataset scierc --model-size 7 --regime ft\\n\\n    # Custom output directory\\n    python compute_signals.py --input-dir /path/to/output/72b_zeroshot \\\\\\n        --output-dir /path/to/results\\n\\nExpected input: &lt;input-dir>/&lt;dataset>/samples.jsonl  (or &lt;input-dir>/samples.jsonl)\\nOutput: full_signal_report.json + &lt;dataset>_per_instance.json per dataset\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport math\\nimport os\\nimport statistics\\nimport sys\\nfrom collections import Counter, defaultdict\\n\\nimport numpy as np\\nfrom scipy.stats import spearmanr\\n\\nCODE_DIR = os.environ.get(\\n    \\\"STRUCT_CODE_DIR\\\",\\n    \\\"/root/autodl-tmp/struct_self_consist_ie/code\\\",\\n)\\nif os.path.isdir(CODE_DIR):\\n    sys.path.insert(0, CODE_DIR)\\n\\ntry:\\n    from consistency import fleiss_kappa_surface, structural_consistency_soft_jaccard\\n    HAS_CONSISTENCY = True\\nexcept ImportError:\\n    HAS_CONSISTENCY = False\\n    print(\\\"WARNING: consistency module not found; SJ/FK signals will be skipped\\\")\\n\\n\\n# ---------------------------------------------------------------------------\\n# Core metrics\\n# ---------------------------------------------------------------------------\\n\\ndef compute_entity_f1(pred_entities, gold_entities):\\n    pred
+…[truncated 1060 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_e1-adaptive-signal-routing_20260520T093508",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 77 · 2026-05-20T09:48:33.358633+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Paired bootstrap test: greedy F1 vs LP-weighted construction F1.\\n\\nReplicates the methodology from the 72B ZS SciERC bootstrap analysis:\\n- B=10000 bootstrap iterations\\n- 95% CI on the paired difference\\n- One-sided p-value (H0: construction <= greedy)\\n- Cohen's d effect size\\n- Degeneracy-stratified breakdown\\n\\nUsage:\\n    # Single dataset\\n    python bootstrap_construction.py \\\\\\n        --input-dir /path/to/output/72b_zeroshot --dataset scierc\\n\\n    # All datasets under a model directory\\n    python bootstrap_construction.py \\\\\\n        --input-dir /path/to/output/72b_zeroshot\\n\\n    # Use pre-computed per-instance data (from compute_signals.py)\\n    python bootstrap_construction.py \\\\\\n        --per-instance /path/to/scierc_per_instance.json --dataset scierc\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport os\\nimport statistics\\nimport sys\\nfrom collections import Counter, defaultdict\\n\\nimport numpy as np\\n\\nB = 10000\\nSEED = 42\\n\\n\\n# ---------------------------------------------------------------------------\\n# Core metrics (self-contained, no external imports needed)\\n# ---------------------------------------------------------------------------\\n\\ndef compute_entity_f1(pred_entities, gold_entities):\\n    pred = {(e[\\\"start\\\"], e[\\\"end\\\"], e[\\\"type\\\"]) for e in pred_entities}\\n    gold = {(e[\\\"start\\\"], e[\\\"end\\\"], e[\\\"type\\\"]) for e in gold_entities}\\n    if not gold and not pred:\\n        return 1.0\\n    if not gold or not pred:\\n        return 0.0\\n    tp = len(pred & gold)\\n    if tp == 0:\\n        return 0.0\\n    p = tp / len(pred)\\n    r = tp / len(gold)\\n    return 2 * p * r / (p + r)\\n\\n\\ndef consensus_construct(inst, high_thresh=0.5, medium_thresh=0.25):\\n    \\\"\\\"\\\"LP-weighted entity construction (same as compute_signals.py).\\\"\\\"\\\"\\n    samples = inst[
+…[truncated 959 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_e1-adaptive-signal-routing_20260520T093508",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 78 · 2026-05-20T09:48:33.359151+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"samples.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_e1-adaptive-signal-routing_20260520T093508",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 79 · 2026-05-20T09:48:33.359445+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "command": "python3 -c \"import sklearn; print(sklearn.__version__)\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_e1-adaptive-signal-routing_20260520T093508",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090-b",
+    "command": "python3 -c \"import sklearn; print(sklearn.__version__)\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 80 · 2026-05-20T09:48:33.359630+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_e1-adaptive-signal-routing_20260520T093508",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 81 · 2026-05-20T09:48:33.359799+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "command": "ls /root/autodl-tmp/struct_self_consist_ie/output/exp_scierc_seed789/samples.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_e1-adaptive-signal-routing_20260520T093508",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090-b",
+    "command": "ls /root/autodl-tmp/struct_self_consist_ie/output/exp_scierc_seed789/samples.jsonl",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 82 · 2026-05-20T09:48:33.359986+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/output/exp_scierc_seed789/samples.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_e1-adaptive-signal-routing_20260520T093508",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 83 · 2026-05-20T09:48:33.360179+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "command": "wc -l /root/autodl-tmp/struct_self_consist_ie/output/exp_scierc_seed789/samples.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_e1-adaptive-signal-routing_20260520T093508",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090-b",
+    "command": "wc -l /root/autodl-tmp/struct_self_consist_ie/output/exp_scierc_seed789/samples.jsonl",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 84 · 2026-05-20T09:48:33.360354+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"551 /root/autodl-tmp/struct_self_consist_ie/output/exp_scierc_seed789/samples.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_e1-adaptive-signal-routing_20260520T093508",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 85 · 2026-05-20T09:48:33.360540+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"import sklearn; print(sklearn.__version__)\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_e1-adaptive-signal-routing_20260520T093508",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090-b",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"import sklearn; print(sklearn.__version__)\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 86 · 2026-05-20T09:48:33.360729+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"1.8.0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.5}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_e1-adaptive-signal-routing_20260520T093508",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 87 · 2026-05-20T09:48:33.360958+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python artifacts/compute_signals.py --input-dir output/exp_scierc_seed456 --dataset scierc --model-size 8 --regime ft 2>&1 | tail -10",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_e1-adaptive-signal-routing_20260520T093508",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090-b",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python artifacts/compute_signals.py --input-dir output/exp_scierc_seed456 --dataset scierc --model-size 8 --regime ft 2>&1 | tail -10",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 88 · 2026-05-20T09:48:33.361200+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"    Majority Vote             0.6249  [0.5967, 0.6529]\\n    Consensus theta=2/N       0.6493  [0.6247, 0.6726]\\n    Consensus LP-wt           0.6418  [0.6145, 0.6683]\\n    Oracle                    0.7726  [0.7500, 0.7934]\\n\\n  Degeneracy (constant-F1): 102/529 (19.3%)\\n  Degeneracy (entity-set):  65/529 (12.3%)\\n\\nReport saved to output/exp_scierc_seed456/full_signal_report.json\\nPer-instance data: output/exp_scierc_seed456/scierc_per_instance.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.7}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_e1-adaptive-signal-routing_20260520T093508",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 89 · 2026-05-20T09:48:33.361425+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python artifacts/compute_signals.py --input-dir output/exp_scierc_seed789 --dataset scierc --model-size 8 --regime ft 2>&1 | tail -5 && python artifacts/compute_signals.py --input-dir output/exp_conll_seed123 --dataset conll --model-size 8 --regime ft 2>&1 | tail -5 && python artifacts/compute_signals.py --input-dir output/exp_conll_seed456 --dataset conll --model-size 8 --regime ft 2>&1 | tail -5",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_e1-adaptive-signal-routing_20260520T093508",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090-b",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python artifacts/compute_signals.py --input-dir output/exp_scierc_seed789 --dataset scierc --model-size 8 --regime ft 2>&1 | tail -5 && python artifacts/compute_signals.py --input-dir output/exp_conll_seed123 --dataset conll --model-size 8 --regime ft 2>&1 | tail -5 && python artifacts/compute_signals.py --input-dir output/exp_conll_seed456 --dataset conll --model-size 8 --regime ft 2>&1 | tail -5",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 90 · 2026-05-20T09:48:33.361631+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  Degeneracy (constant-F1): 113/529 (21.4%)\\n  Degeneracy (entity-set):  74/529 (14.0%)\\n\\nReport saved to output/exp_scierc_seed789/full_signal_report.json\\nPer-instance data: output/exp_scierc_seed789/scierc_per_instance.json\\n  Degeneracy (constant-F1): 1735/2756 (63.0%)\\n  Degeneracy (entity-set):  1663/2756 (60.3%)\\n\\nReport saved to output/exp_conll_seed123/full_signal_report.json\\nPer-instance data: output/exp_conll_seed123/conll_per_instance.json\\n  Degeneracy (constant-F1): 1737/2756 (63.0%)\\n  Degeneracy (entity-set):  1661/2756 (60.3%)\\n\\nReport saved to output/exp_conll_seed456/full_signal_report.json\\nPer-instance data: output/exp_conll_seed456/conll_per_instance.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 7.4}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_e1-adaptive-signal-routing_20260520T093508",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 91 · 2026-05-20T09:48:33.361827+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python artifacts/compute_signals.py --input-dir output/exp_fewnerd_seed123 --dataset fewnerd --model-size 8 --regime ft 2>&1 | tail -5 && python artifacts/compute_signals.py --input-dir output/exp_fewnerd_seed456 --dataset fewnerd --model-size 8 --regime ft 2>&1 | tail -5 && python artifacts/compute_signals.py --input-dir output/exp_fewnerd_seed789 --dataset fewnerd --model-size 8 --regime ft 2>&1 | tail -5",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_e1-adaptive-signal-routing_20260520T093508",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090-b",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python artifacts/compute_signals.py --input-dir output/exp_fewnerd_seed123 --dataset fewnerd --model-size 8 --regime ft 2>&1 | tail -5 && python artifacts/compute_signals.py --input-dir output/exp_fewnerd_seed456 --dataset fewnerd --model-size 8 --regime ft 2>&1 | tail -5 && python artifacts/compute_signals.py --input-dir output/exp_fewnerd_seed789 --dataset fewnerd --model-size 8 --regime ft 2>&1 | tail -5",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 92 · 2026-05-20T09:48:33.362010+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python artifacts/compute_signals.py --input-dir output/exp_fewnerd_seed123 --dataset fewnerd --model-size 8 --regime ft 2>&1 | tail -5 && python artifacts/compute_signals.py --input-dir output/exp_fewnerd_seed456 --dataset fewnerd --model-size 8 --regime ft 2>&1 | tail -5 && python artifacts/compute_signals.py --input-dir output/exp_fewnerd_seed789 --dataset fewnerd --model-size 8 --regime ft 2>&1 | tail -5'\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.31}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_e1-adaptive-signal-routing_20260520T093508",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 93 · 2026-05-20T09:48:33.362250+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && nohup bash -c 'python artifacts/compute_signals.py --input-dir output/exp_fewnerd_seed123 --dataset fewnerd --model-size 8 --regime ft && python artifacts/compute_signals.py --input-dir output/exp_fewnerd_seed456 --dataset fewnerd --model-size 8 --regime ft && python artifacts/compute_signals.py --input-dir output/exp_fewnerd_seed789 --dataset fewnerd --model-size 8 --regime ft && echo \"ALL_DONE\"' > /tmp/compute_fewnerd.log 2>&1 &\necho $!",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_e1-adaptive-signal-routing_20260520T093508",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090-b",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && nohup bash -c 'python artifacts/compute_signals.py --input-dir output/exp_fewnerd_seed123 --dataset fewnerd --model-size 8 --regime ft && python artifacts/compute_signals.py --input-dir output/exp_fewnerd_seed456 --dataset fewnerd --model-size 8 --regime ft && python artifacts/compute_signals.py --input-dir output/exp_fewnerd_seed789 --dataset fewnerd --model-size 8 --regime ft && echo \"ALL_DONE\"' > /tmp/compute_fewnerd.log 2>&1 &\necho $!",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 94 · 2026-05-20T09:48:33.362454+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && nohup bash -c \\\\'python artifacts/compute_signals.py --input-dir output/exp_fewnerd_seed123 --dataset fewnerd --model-size 8 --regime ft && python artifacts/compute_signals.py --input-dir output/exp_fewnerd_seed456 --dataset fewnerd --model-size 8 --regime ft && python artifacts/compute_signals.py --input-dir output/exp_fewnerd_seed789 --dataset fewnerd --model-size 8 --regime ft && echo \\\"ALL_DONE\\\"\\\\' > /tmp/compute_fewnerd.log 2>&1 &\\\\necho $!'\\n\\nStdout:\\n\\n188344\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.75}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_e1-adaptive-signal-routing_20260520T093508",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 95 · 2026-05-20T09:48:33.362672+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/exp_scierc_seed456/full_signal_report.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_e1-adaptive-signal-routing_20260520T093508",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090-b",
+    "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/exp_scierc_seed456/full_signal_report.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 96 · 2026-05-20T09:48:33.362923+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"scierc\\\": {\\n    \\\"name\\\": \\\"scierc\\\",\\n    \\\"n_instances\\\": 529,\\n    \\\"n_samples\\\": 8,\\n    \\\"signals\\\": {\\n      \\\"SJ\\\": {\\n        \\\"rho\\\": 0.3940671901667953\\n      },\\n      \\\"FK\\\": {\\n        \\\"rho\\\": 0.27944758016762505\\n      },\\n      \\\"LP\\\": {\\n        \\\"rho\\\": 0.2280013327560191\\n      },\\n      \\\"EM\\\": {\\n        \\\"rho\\\": 0.3322079056799823\\n      },\\n      \\\"VC\\\": {\\n        \\\"rho\\\": 0.4303853224251903\\n      }\\n    },\\n    \\\"baselines\\\": {\\n      \\\"greedy\\\": {\\n        \\\"mean\\\": 0.6453386711142742,\\n        \\\"ci_lo\\\": 0.6184973544808973,\\n        \\\"ci_hi\\\": 0.6701564580692791\\n      },\\n      \\\"lp_selection\\\": {\\n        \\\"mean\\\": 0.6423289138428692,\\n        \\\"ci_lo\\\": 0.6150305428660816,\\n        \\\"ci_hi\\\": 0.6670837249287155\\n      },\\n      \\\"majority_vote\\\": {\\n        \\\"mean\\\": 0.6249312753226616,\\n        \\\"ci_lo\\\": 0.5967060802649302,\\n        \\\"ci_hi\\\": 0.6529409891663868\\n      },\\n      \\\"oracle\\\": {\\n        \\\"mean\\\": 0.7725596709528657,\\n        \\\"ci_lo\\\": 0.7499739076298623,\\n        \\\"ci_hi\\\": 0.7934339867232116\\n      },\\n      \\\"consensus_theta2n\\\": {\\n        \\\"mean\\\": 0.6493190475009667,\\n        \\\"ci_lo\\\": 0.6246594322069692,\\n        \\\"ci_hi\\\": 0.672575091097831\\n      },\\n      \\\"consensus_lp_weighted\\\": {\\n        \\\"mean\\\": 0.641811110297711,\\n        \\\"ci_lo\\\": 0.6145276798395891,\\n        \\\"ci_hi\\\": 0.6682661908559828\\n      }\\n    },\\n    \\\"consensus_variants\\\": {\\n      \\\"high=0.5_medium=0.1\\\": {\\n        \\\"mean\\\": 0.6350145790349282,\\n        \\\"ci_lo\\\": 0.608451048521103,\\n        \\\"ci_hi\\\": 0.6596938152926143\\n      },\\n      \\\"high=0.6_medium=0.2\\\": {\\n        \\\"mean\\\": 0.6454723668435782,\\n        \\\"ci_lo\\\
+…[truncated 638 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_e1-adaptive-signal-routing_20260520T093508",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 97 · 2026-05-20T09:48:33.363211+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/exp_conll_seed123/full_signal_report.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_e1-adaptive-signal-routing_20260520T093508",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090-b",
+    "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/exp_conll_seed123/full_signal_report.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 98 · 2026-05-20T09:48:33.363493+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"conll\\\": {\\n    \\\"name\\\": \\\"conll\\\",\\n    \\\"n_instances\\\": 2756,\\n    \\\"n_samples\\\": 8,\\n    \\\"signals\\\": {\\n      \\\"SJ\\\": {\\n        \\\"rho\\\": 0.46453116741551187\\n      },\\n      \\\"FK\\\": {\\n        \\\"rho\\\": 0.44624887371983624\\n      },\\n      \\\"LP\\\": {\\n        \\\"rho\\\": 0.329449244724287\\n      },\\n      \\\"EM\\\": {\\n        \\\"rho\\\": 0.4744348115895625\\n      },\\n      \\\"VC\\\": {\\n        \\\"rho\\\": 0.4415663301797079\\n      }\\n    },\\n    \\\"baselines\\\": {\\n      \\\"greedy\\\": {\\n        \\\"mean\\\": 0.9074033811697091,\\n        \\\"ci_lo\\\": 0.8979569052137991,\\n        \\\"ci_hi\\\": 0.9162750126828502\\n      },\\n      \\\"lp_selection\\\": {\\n        \\\"mean\\\": 0.9013792891514227,\\n        \\\"ci_lo\\\": 0.8919463035754763,\\n        \\\"ci_hi\\\": 0.9107590240754245\\n      },\\n      \\\"majority_vote\\\": {\\n        \\\"mean\\\": 0.8944803416863721,\\n        \\\"ci_lo\\\": 0.88455438499351,\\n        \\\"ci_hi\\\": 0.9038443446823349\\n      },\\n      \\\"oracle\\\": {\\n        \\\"mean\\\": 0.9476776875287078,\\n        \\\"ci_lo\\\": 0.9403267873877453,\\n        \\\"ci_hi\\\": 0.954508107504778\\n      },\\n      \\\"consensus_theta2n\\\": {\\n        \\\"mean\\\": 0.8972921199725232,\\n        \\\"ci_lo\\\": 0.888304944266543,\\n        \\\"ci_hi\\\": 0.9061597669851744\\n      },\\n      \\\"consensus_lp_weighted\\\": {\\n        \\\"mean\\\": 0.9032202976720864,\\n        \\\"ci_lo\\\": 0.8939864417869257,\\n        \\\"ci_hi\\\": 0.9124333158164388\\n      }\\n    },\\n    \\\"consensus_variants\\\": {\\n      \\\"high=0.5_medium=0.1\\\": {\\n        \\\"mean\\\": 0.8936734824189457,\\n        \\\"ci_lo\\\": 0.8844520807969142,\\n        \\\"ci_hi\\\": 0.9029615578605868\\n      },\\n      \\\"high=0.6_medium=0.2\\\": {\\n        \\\"mean\\\": 0.9011494464140075,\\n        \\\"ci_lo\\\":
+…[truncated 638 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_e1-adaptive-signal-routing_20260520T093508",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 99 · 2026-05-20T09:48:33.363704+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/exp_scierc_seed789/full_signal_report.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_e1-adaptive-signal-routing_20260520T093508",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090-b",
+    "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/exp_scierc_seed789/full_signal_report.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 100 · 2026-05-20T09:48:33.363978+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"scierc\\\": {\\n    \\\"name\\\": \\\"scierc\\\",\\n    \\\"n_instances\\\": 529,\\n    \\\"n_samples\\\": 8,\\n    \\\"signals\\\": {\\n      \\\"SJ\\\": {\\n        \\\"rho\\\": 0.39960657109845354\\n      },\\n      \\\"FK\\\": {\\n        \\\"rho\\\": 0.33251161641932814\\n      },\\n      \\\"LP\\\": {\\n        \\\"rho\\\": 0.2528010925027052\\n      },\\n      \\\"EM\\\": {\\n        \\\"rho\\\": 0.32342251571619796\\n      },\\n      \\\"VC\\\": {\\n        \\\"rho\\\": 0.4315249678140099\\n      }\\n    },\\n    \\\"baselines\\\": {\\n      \\\"greedy\\\": {\\n        \\\"mean\\\": 0.6428026080199993,\\n        \\\"ci_lo\\\": 0.6162636565283067,\\n        \\\"ci_hi\\\": 0.6677169501366099\\n      },\\n      \\\"lp_selection\\\": {\\n        \\\"mean\\\": 0.6513827270743761,\\n        \\\"ci_lo\\\": 0.6260992613277724,\\n        \\\"ci_hi\\\": 0.6760730573774052\\n      },\\n      \\\"majority_vote\\\": {\\n        \\\"mean\\\": 0.6027354845930112,\\n        \\\"ci_lo\\\": 0.574721007996304,\\n        \\\"ci_hi\\\": 0.6308284867831181\\n      },\\n      \\\"oracle\\\": {\\n        \\\"mean\\\": 0.7767184086654787,\\n        \\\"ci_lo\\\": 0.7540457442158766,\\n        \\\"ci_hi\\\": 0.7982680835232819\\n      },\\n      \\\"consensus_theta2n\\\": {\\n        \\\"mean\\\": 0.6539618965979668,\\n        \\\"ci_lo\\\": 0.6300875744833467,\\n        \\\"ci_hi\\\": 0.6763973152636558\\n      },\\n      \\\"consensus_lp_weighted\\\": {\\n        \\\"mean\\\": 0.6467755640334312,\\n        \\\"ci_lo\\\": 0.6211921386001227,\\n        \\\"ci_hi\\\": 0.6718483926590231\\n      }\\n    },\\n    \\\"consensus_variants\\\": {\\n      \\\"high=0.5_medium=0.1\\\": {\\n        \\\"mean\\\": 0.6380300022327154,\\n        \\\"ci_lo\\\": 0.6126581262492526,\\n        \\\"ci_hi\\\": 0.6618061152310012\\n      },\\n      \\\"high=0.6_medium=0.2\\\": {\\n        \\\"mean\\\": 0.6493017474636512,\\n        \\\"ci_l
+…[truncated 640 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_e1-adaptive-signal-routing_20260520T093508",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 101 · 2026-05-20T09:48:33.364249+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "command": "head -30 /root/autodl-tmp/struct_self_consist_ie/output/exp_scierc_seed456/scierc_per_instance.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_e1-adaptive-signal-routing_20260520T093508",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090-b",
+    "command": "head -30 /root/autodl-tmp/struct_self_consist_ie/output/exp_scierc_seed456/scierc_per_instance.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 102 · 2026-05-20T09:48:33.364528+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"greedy_f1\\\": [0.888888888888889, 1.0, 1.0, 0.888888888888889, 0.5, 1.0, 0.3333333333333333, 0.6666666666666666, 0.0, 0.8571428571428571, 1.0, 0.5454545454545454, 1.0, 0.75, 0.75, 0.5, 0.5714285714285715, 0.6666666666666666, 0.6153846153846153, 0.5, 1.0, 0.5, 0.8, 0.5, 0.0, 1.0, 0.0, 0.0, 0.3333333333333333, 1.0, 0.6666666666666666, 1.0, 0.3333333333333333, 1.0, 0.6666666666666665, 0.6666666666666666, 0.9090909090909091, 1.0, 1.0, 0.6666666666666666, 0.8571428571428571, 0.923076923076923, 0.9090909090909091, 1.0, 0.3636363636363636, 0.6666666666666666, 0.6153846153846153, 1.0, 0.4444444444444445, 0.6666666666666666, 0.5714285714285714, 0.75, 0.6666666666666666, 0.75, 0.6666666666666666, 0.6666666666666666, 0.75, 0.0, 0.3333333333333333, 0.8333333333333334, 0.8, 1.0, 1.0, 0.4, 0.5454545454545454, 1.0, 0.8, 1.0, 1.0, 0.8, 0.4, 0.3333333333333333, 0.6666666666666666, 0.5, 0.75, 0.6666666666666666, 1.0, 0.8571428571428571, 0.6666666666666666, 0.3636363636363636, 1.0, 0.75, 1.0, 0.5714285714285715, 1.0, 0.6666666666666666, 0.3333333333333333, 0.4444444444444445, 0.8000000000000002, 0.6666666666666666, 0.5, 1.0, 1.0, 1.0, 0.8571428571428571, 0.8571428571428571, 0.0, 1.0, 1.0, 0.5, 0.0, 0.4, 0.5714285714285715, 0.0, 1.0, 0.5, 0.6666666666666666, 0.5, 0.5714285714285715, 1.0, 0.7499999999999999, 0.8, 0.8, 0.8, 0.75, 0.4, 0.4, 0.6666666666666665, 1.0, 0.4, 0.8, 1.0, 0.0, 0.4, 0.36363636363636365, 0.0, 0.7272727272727272, 0.0, 0.0, 0.75, 0.75, 0.8, 0.3333333333333333, 0.8000000000000002, 0.8, 0.5, 0.75, 0.5714285714285715, 0.5714285714285715, 0.6666666666666665, 0.5, 0.6666666666666666, 0.75, 0.6666666666666666, 0.8, 0.4000000000000001, 0.4444444444444445, 0.5, 1.0, 0.0, 0.0, 0.5, 0.5454545454545454, 1.0, 0.8, 1.0, 0.5714285714285715, 0.5714285714285715, 1.0, 0.6, 0.7692307692307692, 1.0, 0.5714285714285715, 0.888888888888889, 0.5, 0.8571428571428571, 0.5, 0.3333333333333333, 0.6666666666666666, 0.4, 0.8, 0.6666666
+…[truncated 6214 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_e1-adaptive-signal-routing_20260520T093508",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 103 · 2026-05-20T09:48:33.364763+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/exp_conll_seed456/full_signal_report.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_e1-adaptive-signal-routing_20260520T093508",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090-b",
+    "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/exp_conll_seed456/full_signal_report.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 104 · 2026-05-20T09:48:33.365019+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"conll\\\": {\\n    \\\"name\\\": \\\"conll\\\",\\n    \\\"n_instances\\\": 2756,\\n    \\\"n_samples\\\": 8,\\n    \\\"signals\\\": {\\n      \\\"SJ\\\": {\\n        \\\"rho\\\": 0.4746801758615392\\n      },\\n      \\\"FK\\\": {\\n        \\\"rho\\\": 0.4572480467198192\\n      },\\n      \\\"LP\\\": {\\n        \\\"rho\\\": 0.3167998071519213\\n      },\\n      \\\"EM\\\": {\\n        \\\"rho\\\": 0.48333962332078395\\n      },\\n      \\\"VC\\\": {\\n        \\\"rho\\\": 0.4585347374220179\\n      }\\n    },\\n    \\\"baselines\\\": {\\n      \\\"greedy\\\": {\\n        \\\"mean\\\": 0.907637528573668,\\n        \\\"ci_lo\\\": 0.8981693882637279,\\n        \\\"ci_hi\\\": 0.9167100376643194\\n      },\\n      \\\"lp_selection\\\": {\\n        \\\"mean\\\": 0.8998884666142689,\\n        \\\"ci_lo\\\": 0.8902453275639053,\\n        \\\"ci_hi\\\": 0.90924526446889\\n      },\\n      \\\"majority_vote\\\": {\\n        \\\"mean\\\": 0.893027336208361,\\n        \\\"ci_lo\\\": 0.8825851173326763,\\n        \\\"ci_hi\\\": 0.9027313702810454\\n      },\\n      \\\"oracle\\\": {\\n        \\\"mean\\\": 0.9443461594042145,\\n        \\\"ci_lo\\\": 0.9372253230562374,\\n        \\\"ci_hi\\\": 0.9517616132456481\\n      },\\n      \\\"consensus_theta2n\\\": {\\n        \\\"mean\\\": 0.8959196968063452,\\n        \\\"ci_lo\\\": 0.8868174511899868,\\n        \\\"ci_hi\\\": 0.9048917622039679\\n      },\\n      \\\"consensus_lp_weighted\\\": {\\n        \\\"mean\\\": 0.9034525338376415,\\n        \\\"ci_lo\\\": 0.894075410275534,\\n        \\\"ci_hi\\\": 0.9125707259197824\\n      }\\n    },\\n    \\\"consensus_variants\\\": {\\n      \\\"high=0.5_medium=0.1\\\": {\\n        \\\"mean\\\": 0.8960699259322928,\\n        \\\"ci_lo\\\": 0.886694911435966,\\n        \\\"ci_hi\\\": 0.905246470026434\\n      },\\n      \\\"high=0.6_medium=0.2\\\": {\\n        \\\"mean\\\": 0.9006539036660071,\\n        \\\"ci_lo\\\": 0.
+…[truncated 635 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_e1-adaptive-signal-routing_20260520T093508",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 105 · 2026-05-20T09:48:33.365494+00:00_
+
+called Write
+
+<details open><summary>🔧 Tool call — Write</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/e1_signal_routing.py",
+  "content": "#!/usr/bin/env python3\n\"\"\"E1 Adaptive Signal Routing: config-level construction method router.\"\"\"\n\nimport json\nimport os\nimport sys\nfrom collections import Counter\n\nimport numpy as np\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.ensemble import RandomForestClassifier\nfrom sklearn.model_selection import LeaveOneOut\nfrom sklearn.preprocessing import StandardScaler, LabelEncoder\nfrom sklearn.metrics import confusion_matrix\n\nBASE = \"/root/autodl-tmp/struct_self_consist_ie\"\nOUT = os.path.join(BASE, \"output\")\n\nCONSTRUCTION_METHODS = [\"lp_selection\", \"majority_vote\", \"consensus_theta2n\", \"consensus_lp_weighted\"]\n\nCONFIG_SPECS = [\n    # (path_to_report, dataset_key, model_family, model_size, regime, seed)\n    # Qwen3-8B FT\n    (f\"{OUT}/exp_scierc_seed456/full_signal_report.json\", \"scierc\", \"Qwen3\", 8, \"ft\", 456),\n    (f\"{OUT}/exp_scierc_seed789/full_signal_report.json\", \"scierc\", \"Qwen3\", 8, \"ft\", 789),\n    (f\"{OUT}/exp_conll_seed123/full_signal_report.json\", \"conll\", \"Qwen3\", 8, \"ft\", 123),\n    (f\"{OUT}/exp_conll_seed456/full_signal_report.json\", \"conll\", \"Qwen3\", 8, \"ft\", 456),\n    (f\"{OUT}/exp_fewnerd_seed123/full_signal_report.json\", \"fewnerd\", \"Qwen3\", 8, \"ft\", 123),\n    (f\"{OUT}/exp_fewnerd_seed456/full_signal_report.json\", \"fewnerd\", \"Qwen3\", 8, \"ft\", 456),\n    (f\"{OUT}/exp_fewnerd_seed789/full_signal_report.json\", \"fewnerd\", \"Qwen3\", 8, \"ft\", 789),\n    # Qwen2.5-72B ZS\n    (f\"{OUT}/72b_zeroshot/full_signal_report.json\", \"scierc\", \"Qwen2.5\", 72, \"zs\", None),\n    (f\"{OUT}/72b_zeroshot/full_signal_report.json\", \"conll2003\", \"Qwen2.5\", 72, \"zs\", None),\n    (f\"{OUT}/72b_zeroshot/full_signal_report.json\", \"fewnerd\", \"Qwen2.5\", 72, \"zs\", None),\n    # Qwen2.5-72B FS\n    (f\"{OUT}/72b_fewshot_signals/scierc/full_signal_report.json\", \"scierc\", \"Qwen2.5\", 72, \"fs\", None),\n    (f\"{OUT}/72b_fewshot_signals/conll2003/full_signal_report.json\", \"conll\", \"Qwen2.5\", 72, \"fs\", None),\n    (f\"{OUT}/72b_fewshot_signals/fewnerd/full_signal_report.json\", \"fewnerd\", \"Qwen2.5\", 72, \"fs\", None),\n    # Qwen2.5-7B FT\n    (f\"{OUT}/fewnerd_7b/qwen25_7b_n8_seed42/full_signal_report.json\", \"qwen25_7b_n8_seed42\", \"Qwen2.5\", 7, \"ft\", 42),\n    (f\"{OUT}/fewnerd_7b/qwen25_7b_n8_seed123/full_signal_report.json\", \"qwen25_7b_n8_seed123\", \"Qwen2.5\", 7, \"ft\", 123),\n    (f\"{OUT}/fewnerd_7b/qwen25_7b_n8_seed456/full_signal_report.json\", \"qwen25_7b_n8_seed456\", \"Qwen2.5\", 7, \"ft\", 456),\n]\n\n\ndef load_config(path, dataset_key, model_family, model_size, regime, seed):\n    if not os.path.exists(path):\n        return None\n    with open(path) as f:\n        data = json.load(f)\n\n    # Handle nested vs flat format\n    if dataset_key in data:\n        d = data[dataset_key]\n    else:\n        keys = list(data.keys())\n        if len(keys) == 1:\n            d = data[keys[0]]\n        else:\n            d = data\n\n    baselines = d.get(\"baselines\", {})\n    greedy_f1 = baselines.get(\"greedy\", {}).get(\"mean\", d.get(\"greedy_f1\"))\n    oracle_f1 = baselines.get(\"oracle\", {}).get(\"mean\", d.get(\"oracle_f1\"))\n\n    if greedy_f1 is None:\n        return None\n\n    # Normalize dataset name\n    ds_name = d.get(\"name\", dataset_key)\n    if \"conll\" in ds_name.lower():\n        ds_name = \"conll\"\n    elif \"scierc\" in ds_name.lower():\n        ds_name = \"scierc\"\n    elif \"fewnerd\" in ds_name.lower() or \"few\" in ds_name.lower():\n        ds_name = \"fewnerd\"\n\n    signals = d.get(\"signals\", {})\n    construction_f1 = {}\n    for method in CONSTRUCTION_METHODS:\n        if method in baselines:\n            construction_f1[method] = baselines[method][\"mean\"]\n\n    config = {\n        \"config_id\": f\"{model_family}_{model_size}B_{regime}_{ds_name}_s{seed}\",\n        \"model_family\": model_family,\n        \"model_size\": model_size,\n        \"dataset\": ds_name,\n        \"regime\": regime,\n        \"seed\": seed,\n        \"greedy_f1\": greedy_f1,\n        \"oracle_f1\": oracle_f1,\n        \"oracle_headroom\": oracle_f1 - greedy_f1 if oracle_f1 else None,\n        \"degeneracy_rate\": d.get(\"degeneracy_rate\", 0),\n        \"n_instances\": d.get(\"n_instances\"),\n        \"rho_SJ\": signals.get(\"SJ\", {}).get(\"rho\", 0),\n        \"rho_FK\": signals.get(\"FK\", {}).get(\"rho\", 0),\n        \"rho_LP\": signals.get(\"LP\", {}).get(\"rho\", 0),\n        \"rho_EM\": signals.get(\"EM\", {}).get(\"rho\", 0),\n        \"rho_VC\": signals.get(\"VC\", {}).get(\"rho\", 0),\n        \"construction_f1\": construction_f1,\n    }\n    return config\n\n\ndef compute_delta_f1(config):\n    greedy = config[\"greedy_f1\"]\n    deltas = {}\n    for method, f1 in config[\"construction_f1\"].items():\n        deltas[method] = f1 - greedy\n    return deltas\n\n\ndef get_label(config):\n    deltas = compute_delta_f1(config)\n    if not deltas:\n        return \"none\", 0.0\n    best_method = max(deltas, key=deltas.get)\n    best_delta = deltas[best_method]\n    if best_delta <= 0:\n        return \"none\", best_delta\n    return best_method, best_delta\n\n\ndef build_features(config):\n    ds_map = {\"scierc\": 0, \"conll\": 1, \"fewnerd\": 2}\n    regime_map = {\"ft\": 0, \"zs\": 1, \"fs\": 2}\n    family_map = {\"Qwen3\": 0, \"Qwen2.5\": 1, \"LLaMA\": 2}\n\n    return [\n        config[\"model_size\"],\n        family_map.get(config[\"model_family\"], 0),\n        ds_map.get(config[\"dataset\"], 0),\n        regime_map.get(config[\"regime\"], 0),\n        config[\"greedy_f1\"],\n        config[\"degeneracy_rate\"],\n        config[\"oracle_headroom\"] or 0,\n        config[\"rho_SJ\"],\n        config[\"rho_FK\"],\n        config[\"rho_LP\"],\n        config[\"rho_EM\"],\n        config[\"rho_VC\"],\n    ]\n\n\nFEATURE_NAMES = [\n    \"model_size\", \"model_family\", \"dataset\", \"regime\",\n    \"base_f1\", \"degeneracy_rate\", \"oracle_headroom\",\n    \"rho_SJ\", \"rho_FK\", \"rho_LP\", \"rho_EM\", \"rho_VC\"\n]\n\n\ndef run_routing():\n    configs = []\n    missing = []\n    for spec in CONFIG_SPECS:\n        c = load_config(*spec)\n        if c is None:\n            missing.append(spec[0])\n        else:\n            configs.append(c)\n\n    print(f\"Loaded {len(configs)} configs, {len(missing)} missing\")\n    if missing:\n        print(f\"Missing: {missing}\")\n\n    # Labels and features\n    labels = []\n    feature_matrix = []\n    per_config_results = []\n\n    for c in configs:\n        label, best_delta = get_label(c)\n        labels.append(label)\n        feature_matrix.append(build_features(c))\n\n        deltas = compute_delta_f1(c)\n        lp_delta = deltas.get(\"lp_selection\", 0)\n\n        per_config_results.append({\n            \"config_id\": c[\"config_id\"],\n            \"model_family\": c[\"model_family\"],\n            \"model_size\": c[\"model_size\"],\n            \"dataset\": c[\"dataset\"],\n            \"regime\": c[\"regime\"],\n            \"greedy_f1\": round(c[\"greedy_f1\"], 4),\n            \"oracle_f1\": round(c[\"oracle_f1\"], 4),\n            \"degeneracy_rate\": round(c[\"degeneracy_rate\"], 4),\n            \"construction_deltas_pp\": {k: round(v * 100, 2) for k, v in deltas.items()},\n            \"best_method\": label,\n            \"best_delta_pp\": round(best_delta * 100, 2),\n            \"lp_delta_pp\": round(lp_delta * 100, 2),\n        })\n\n    X = np.array(feature_matrix)\n    label_counts = Counter(labels)\n    print(f\"\\nLabel distribution: {dict(label_counts)}\")\n    print(f\"Configs: {len(configs)}\")\n\n    for pcr in per_config_results:\n        print(f\"  {pcr['config_id']:40s} → {pcr['best_method']:25s} (Δ={pcr['best_delta_pp']:+.2f}pp, LP Δ={pcr['lp_delta_pp']:+.2f}pp)\")\n\n    # Encode labels\n    le = LabelEncoder()\n    y = le.fit_transform(labels)\n    class_names = list(le.classes_)\n    print(f\"\\nClasses: {class_names}\")\n\n    # LOO-CV\n    loo = LeaveOneOut()\n    scaler = StandardScaler()\n\n    results = {}\n    for model_name, model_cls, model_kwargs in [\n        (\"LogisticRegression\", LogisticRegression, {\"C\": 1.0, \"max_iter\": 1000, \"multi_class\": \"multinomial\"}),\n        (\"RandomForest\", RandomForestClassifier, {\"n_estimators\": 100, \"max_depth\": 5, \"random_state\": 42}),\n    ]:\n        preds = []\n        pred_labels = []\n\n        for train_idx, test_idx in loo.split(X):\n            X_train, X_test = X[train_idx], X[test_idx]\n            y_train, y_test = y[train_idx], y[test_idx]\n\n            X_train_s = scaler.fit_transform(X_train)\n            X_test_s = scaler.transform(X_test)\n\n            model = model_cls(**model_kwargs)\n            model.fit(X_train_s, y_train)\n            pred = model.predict(X_test_s)[0]\n            preds.append(pred)\n            pred_labels.append(le.inverse_transform([pred])[0])\n\n        accuracy = np.mean(np.array(preds) == y)\n\n        # Compute router ΔF1\n        router_delta_sum = 0\n        oracle_delta_sum = 0\n        lp_delta_sum = 0\n        n_valid = 0\n\n        for i, c in enumerate(configs):\n            deltas = compute_delta_f1(c)\n            predicted_method = pred_labels[i]\n\n            if predicted_method == \"none\":\n                router_delta = 0\n            else:\n                router_delta = deltas.get(predicted_method, 0)\n\n            oracle_delta = max(max(deltas.values()), 0) if deltas else 0\n            lp_delta = deltas.get(\"lp_selection\", 0)\n\n            router_delta_sum += router_delta\n            oracle_delta_sum += oracle_delta\n            lp_delta_sum += lp_delta\n            n_valid += 1\n\n        router_avg_delta = router_delta_sum / n_valid if n_valid else 0\n        oracle_avg_delta = oracle_delta_sum / n_valid if n_valid else 0\n        lp_avg_delta = lp_delta_sum / n_valid if n_valid else 0\n\n        cm = confusion_matrix(y, preds, labels=range(len(class_names)))\n\n        # Feature importance (train on all data)\n        X_all_s = scaler.fit_transform(X)\n        full_model = model_cls(**model_kwargs)\n        full_model.fit(X_all_s, y)\n\n        if hasattr(full_model, \"feature_importances_\"):\n            importances = full_model.feature_importances_\n        elif hasattr(full_model, \"coef_\"):\n            importances = np.abs(full_model.coef_).mean(axis=0) if full_model.coef_.ndim > 1 else np.abs(full_model.coef_)\n        else:\n            importances = np.zeros(X.shape[1])\n\n        feature_imp = {FEATURE_NAMES[i]: round(float(importances[i]), 4) for i in range(len(FEATURE_NAMES))}\n        sorted_features = sorted(feature_imp.items(), key=lambda x: -x[1])\n\n        print(f\"\\n{'='*60}\")\n        print(f\"Model: {model_name}\")\n        print(f\"  LOO Accuracy:     {accuracy:.1%} ({int(accuracy * len(configs))}/{len(configs)})\")\n        print(f\"  Router avg ΔF1:   {router_avg_delta*100:+.2f} pp\")\n        print(f\"  Always-LP ΔF1:    {lp_avg_delta*100:+.2f} pp\")\n        print(f\"  Oracle ΔF1:       {oracle_avg_delta*100:+.2f} pp\")\n        print(f\"  Feature importance: {sorted_features[:5]}\")\n        print(f\"  Confusion matrix (rows=true, cols=pred):\")\n        print(f\"    Classes: {class_names}\")\n        for row_idx, row in enumerate(cm):\n            print(f\"    {class_names[row_idx]:25s}: {list(row)}\")\n\n        per_config_preds = []\n        for i, c in enumerate(configs):\n            deltas = compute_delta_f1(c)\n            predicted = pred_labels[i]\n            actual = labels[i]\n            pred_delta = deltas.get(predicted, 0) if predicted != \"none\" else 0\n            per_config_preds.append({\n                \"config_id\": c[\"config_id\"],\n                \"actual\": actual,\n                \"predicted\": predicted,\n                \"correct\": actual == predicted,\n                \"predicted_delta_pp\": round(pred_delta * 100, 2),\n            })\n\n        results[model_name] = {\n            \"accuracy\": round(accuracy, 4),\n            \"n_correct\": int(accuracy * len(configs)),\n            \"n_total\": len(configs),\n            \"router_avg_delta_pp\": round(router_avg_delta * 100, 2),\n            \"always_lp_avg_delta_pp\": round(lp_avg_delta * 100, 2),\n            \"oracle_avg_delta_pp\": round(oracle_avg_delta * 100, 2),\n            \"feature_importance\": dict(sorted_features),\n            \"confusion_matrix\": {\n                \"classes\": class_names,\n                \"matrix\": cm.tolist(),\n            },\n            \"per_config_predictions\": per_config_preds,\n        }\n\n    # Save results\n    output = {\n        \"experiment\": \"E1_adaptive_signal_routing\",\n        \"n_configs\": len(configs),\n        \"missing_configs\": missing,\n        \"construction_methods\": CONSTRUCTION_METHODS,\n        \"label_distribution\": dict(label_counts),\n        \"feature_names\": FEATURE_NAMES,\n        \"per_config_data\": per_config_results,\n        \"models\": results,\n        \"summary\": {\n            \"best_model\": max(results, key=lambda m: results[m][\"accuracy\"]),\n            \"best_accuracy\": max(r[\"accuracy\"] for r in results.values()),\n            \"router_beats_lp\": any(\n                r[\"router_avg_delta_pp\"] > r[\"always_lp_avg_delta_pp\"]\n                for r in results.values()\n            ),\n        },\n    }\n\n    out_dir = os.path.join(BASE, \"artifacts\", \"e1_signal_routing\")\n    os.makedirs(out_dir, exist_ok=True)\n    out_path = os.path.join(out_dir, \"routing_results.json\")\n    with open(out_path, \"w\") as f:\n        json.dump(output, f, indent=2)\n    print(f\"\\nResults saved to {out_path}\")\n\n    return output\n\n\nif __name__ == \"__main__\":\n    run_routing()\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_e1-adaptive-signal-routing_20260520T093508",
+  "tool": "Write",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/e1_signal_routing.py",
+    "content": "#!/usr/bin/env python3\n\"\"\"E1 Adaptive Signal Routing: config-level construction method router.\"\"\"\n\nimport json\nimport os\nimport sys\nfrom collections import Counter\n\nimport numpy as np\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.ensemble import RandomForestClassifier\nfrom sklearn.model_selection import LeaveOneOut\nfrom sklearn.preprocessing import StandardScaler, LabelEncoder\nfrom sklearn.metrics import confusion_matrix\n\nBASE = \"/root/autodl-tmp/struct_self_consist_ie\"\nOUT = os.path.join(BASE, \"output\")\n\nCONSTRUCTION_METHODS = [\"lp_selection\", \"majority_vote\", \"consensus_theta2n\", \"consensus_lp_weighted\"]\n\nCONFIG_SPECS = [\n    # (path_to_report, dataset_key, model_family, model_size, regime, seed)\n    # Qwen3-8B FT\n    (f\"{OUT}/exp_scierc_seed456/full_signal_report.json\", \"scierc\", \"Qwen3\", 8, \"ft\", 456),\n    (f\"{OUT}/exp_scierc_seed789/full_signal_report.json\", \"scierc\", \"Qwen3\", 8, \"ft\", 789),\n    (f\"{OUT}/exp_conll_seed123/full_signal_report.json\", \"conll\", \"Qwen3\", 8, \"ft\", 123),\n    (f\"{OUT}/exp_conll_seed456/full_signal_report.json\", \"conll\", \"Qwen3\", 8, \"ft\", 456),\n    (f\"{OUT}/exp_fewnerd_seed123/full_signal_report.json\", \"fewnerd\", \"Qwen3\", 8, \"ft\", 123),\n    (f\"{OUT}/exp_fewnerd_seed456/full_signal_report.json\", \"fewnerd\", \"Qwen3\", 8, \"ft\", 456),\n    (f\"{OUT}/exp_fewnerd_seed789/full_signal_report.json\", \"fewnerd\", \"Qwen3\", 8, \"ft\", 789),\n    # Qwen2.5-72B ZS\n    (f\"{OUT}/72b_zeroshot/full_signal_report.json\", \"scierc\", \"Qwen2.5\", 72, \"zs\", None),\n    (f\"{OUT}/72b_zeroshot/full_signal_report.json\", \"conll2003\", \"Qwen2.5\", 72, \"zs\", None),\n    (f\"{OUT}/72b_zeroshot/full_signal_report.json\", \"fewnerd\", \"Qwen2.5\", 72, \"zs\", None),\n    # Qwen2.5-72B FS\n    (f\"{OUT}/72b_fewshot_signals/scierc/full_signal_report.json\", \"scierc\", \"Qwen2.5\", 72, \"fs\", None),\n    (f\"{OUT}/72b_fewshot_signals/conll2003/full_signal_report.json\", \"conll\", \"Qwen2.5\", 72, \"fs\", None),\n    (f\"{OUT}/72b_fewshot_signals/fewnerd/full_signal_report.json\", \"fewnerd\", \"Qwen2.5\", 72, \"fs\", None),\n    # Qwen2.5-7B FT\n    (f\"{OUT}/fewnerd_7b/qwen25_7b_n8_seed42/full_signal_report.json\", \"qwen25_7b_n8_seed42\", \"Qwen2.5\", 7, \"ft\", 42),\n    (f\"{OUT}/fewnerd_7b/qwen25_7b_n8_seed123/full_signal_report.json\", \"qwen25_7b_n8_seed123\", \"Qwen2.5\", 7, \"ft\", 123),\n    (f\"{OUT}/fewnerd_7b/qwen25_7b_n8_seed456/full_signal_report.json\", \"qwen25_7b_n8_seed456\", \"Qwen2.5\", 7, \"ft\", 456),\n]\n\n\ndef load_config(path, dataset_key, model_family, model_size, regime, seed):\n    if not os.path.exists(path):\n        return None\n    with open(path) as f:\n        data = json.load(f)\n\n    # Handle nested vs flat format\n    if dataset_key in data:\n        d = data[dataset_key]\n    else:\n        keys = list(data.keys())\n        if len(keys) == 1:\n            d = data[keys[0]]\n        else:\n            d = data\n\n    baselines = d.get(\"baselines\", {})\n    greedy_f1 = baselines.get(\"greedy\", {}).get(\"mean\", d.get(\"greedy_f1\"))\n    oracle_f1 = baselines.get(\"oracle\", {}).get(\"mean\", d.get(\"oracle_f1\"))\n\n    if greedy_f1 is None:\n        return None\n\n    # Normalize dataset name\n    ds_name = d.get(\"name\", dataset_key)\n    if \"conll\" in ds_name.lower():\n        ds_name = \"conll\"\n    elif \"scierc\" in ds_name.lower():\n        ds_name = \"scierc\"\n    elif \"fewnerd\" in ds_name.lower() or \"few\" in ds_name.lower():\n        ds_name = \"fewnerd\"\n\n    signals = d.get(\"signals\", {})\n    construction_f1 = {}\n    for method in CONSTRUCTION_METHODS:\n        if method in baselines:\n            construction_f1[method] = baselines[method][\"mean\"]\n\n    config = {\n        \"config_id\": f\"{model_family}_{model_size}B_{regime}_{ds_name}_s{seed}\",\n        \"model_family\": model_family,\n        \"model_size\": model_size,\n        \"dataset\": ds_name,\n        \"regime\": regime,\n        \"seed\": seed,\n        \"greedy_f1\": greedy_f1,\n        \"oracle_f1\": oracle_f1,\n        \"oracle_headroom\": oracle_f1 - greedy_f1 if oracle_f1 else None,\n        \"degeneracy_rate\": d.get(\"degeneracy_rate\", 0),\n        \"n_instances\": d.get(\"n_instances\"),\n        \"rho_SJ\": signals.get(\"SJ\", {}).get(\"rho\", 0),\n        \"rho_FK\": signals.get(\"FK\", {}).get(\"rho\", 0),\n        \"rho_LP\": signals.get(\"LP\", {}).get(\"rho\", 0),\n        \"rho_EM\": signals.get(\"EM\", {}).get(\"rho\", 0),\n        \"rho_VC\": signals.get(\"VC\", {}).get(\"rho\", 0),\n        \"construction_f1\": construction_f1,\n    }\n    return config\n\n\ndef compute_delta_f1(config):\n    greedy = config[\"greedy_f1\"]\n    deltas = {}\n    for method, f1 in config[\"construction_f1\"].items():\n        deltas[method] = f1 - greedy\n    return deltas\n\n\ndef get_label(config):\n    deltas = compute_delta_f1(config)\n    if not deltas:\n        return \"none\", 0.0\n    best_method = max(deltas, key=deltas.get)\n    best_delta = deltas[best_method]\n    if best_delta <= 0:\n        return \"none\", best_delta\n    return best_method, best_delta\n\n\ndef build_features(config):\n    ds_map = {\"scierc\": 0, \"conll\": 1, \"fewnerd\": 2}\n    regime_map = {\"ft\": 0, \"zs\": 1, \"fs\": 2}\n    family_map = {\"Qwen3\": 0, \"Qwen2.5\": 1, \"LLaMA\": 2}\n\n    return [\n        config[\"model_size\"],\n        family_map.get(config[\"model_family\"], 0),\n        ds_map.get(config[\"dataset\"], 0),\n        regime_map.get(config[\"regime\"], 0),\n        config[\"greedy_f1\"],\n        config[\"degeneracy_rate\"],\n        config[\"oracle_headroom\"] or 0,\n        config[\"rho_SJ\"],\n        config[\"rho_FK\"],\n        config[\"rho_LP\"],\n        config[\"rho_EM\"],\n        config[\"rho_VC\"],\n    ]\n\n\nFEATURE_NAMES = [\n    \"model_size\", \"model_family\", \"dataset\", \"regime\",\n    \"base_f1\", \"degeneracy_rate\", \"oracle_headroom\",\n    \"rho_SJ\", \"rho_FK\", \"rho_LP\", \"rho_EM\", \"rho_VC\"\n]\n\n\ndef run_routing():\n    configs = []\n    missing = []\n    for spec in CONFIG_SPECS:\n        c = load_config(*spec)\n        if c is None:\n            missing.append(spec[0])\n        else:\n            configs.append(c)\n\n    print(f\"Loaded {len(configs)} configs, {len(missing)} missing\")\n    if missing:\n        print(f\"Missing: {missing}\")\n\n    # Labels and features\n    labels = []\n    feature_matrix = []\n    per_config_results = []\n\n    for c in configs:\n        label, best_delta = get_label(c)\n        labels.append(label)\n        feature_matrix.append(build_features(c))\n\n        deltas = compute_delta_f1(c)\n        lp_delta = deltas.get(\"lp_selection\", 0)\n\n        per_config_results.append({\n            \"config_id\": c[\"config_id\"],\n            \"model_family\": c[\"model_family\"],\n            \"model_size\": c[\"model_size\"],\n            \"dataset\": c[\"dataset\"],\n            \"regime\": c[\"regime\"],\n            \"greedy_f1\": round(c[\"greedy_f1\"], 4),\n            \"oracle_f1\": round(c[\"oracle_f1\"], 4),\n            \"degeneracy_rate\": round(c[\"degeneracy_rate\"], 4),\n            \"construction_deltas_pp\": {k: round(v * 100, 2) for k, v in deltas.items()},\n            \"best_method\": label,\n            \"best_delta_pp\": round(best_delta * 100, 2),\n            \"lp_delta_pp\": round(lp_delta * 100, 2),\n        })\n\n    X = np.array(feature_matrix)\n    label_counts = Counter(labels)\n    print(f\"\\nLabel distribution: {dict(label_counts)}\")\n    print(f\"Configs: {len(configs)}\")\n\n    for pcr in per_config_results:\n        print(f\"  {pcr['config_id']:40s} → {pcr['best_method']:25s} (Δ={pcr['best_delta_pp']:+.2f}pp, LP Δ={pcr['lp_delta_pp']:+.2f}pp)\")\n\n    # Encode labels\n    le = LabelEncoder()\n    y = le.fit_transform(labels)\n    class_names = list(le.classes_)\n    print(f\"\\nClasses: {class_names}\")\n\n    # LOO-CV\n    loo = LeaveOneOut()\n    scaler = StandardScaler()\n\n    results = {}\n    for model_name, model_cls, model_kwargs in [\n        (\"LogisticRegression\", LogisticRegression, {\"C\": 1.0, \"max_iter\": 1000, \"multi_class\": \"multinomial\"}),\n        (\"RandomForest\", RandomForestClassifier, {\"n_estimators\": 100, \"max_depth\": 5, \"random_state\": 42}),\n    ]:\n        preds = []\n        pred_labels = []\n\n        for train_idx, test_idx in loo.split(X):\n            X_train, X_test = X[train_idx], X[test_idx]\n            y_train, y_test = y[train_idx], y[test_idx]\n\n            X_train_s = scaler.fit_transform(X_train)\n            X_test_s = scaler.transform(X_test)\n\n            model = model_cls(**model_kwargs)\n            model.fit(X_train_s, y_train)\n            pred = model.predict(X_test_s)[0]\n            preds.append(pred)\n            pred_labels.append(le.inverse_transform([pred])[0])\n\n        accuracy = np.mean(np.array(preds) == y)\n\n        # Compute router ΔF1\n        router_delta_sum = 0\n        oracle_delta_sum = 0\n        lp_delta_sum = 0\n        n_valid = 0\n\n        for i, c in enumerate(configs):\n            deltas = compute_delta_f1(c)\n            predicted_method = pred_labels[i]\n\n            if predicted_method == \"none\":\n                router_delta = 0\n            else:\n                router_delta = deltas.get(predicted_method, 0)\n\n            oracle_delta = max(max(deltas.values()), 0) if deltas else 0\n            lp_delta = deltas.get(\"lp_selection\", 0)\n\n            router_delta_sum += router_delta\n            oracle_delta_sum += oracle_delta\n            lp_delta_sum += lp_delta\n            n_valid += 1\n\n        router_avg_delta = router_delta_sum / n_valid if n_valid else 0\n        oracle_avg_delta = oracle_delta_sum / n_valid if n_valid else 0\n        lp_avg_delta = lp_delta_sum / n_valid if n_valid else 0\n\n        cm = confusion_matrix(y, preds, labels=range(len(class_names)))\n\n        # Feature importance (train on all data)\n        X_all_s = scaler.fit_transform(X)\n        full_model = model_cls(**model_kwargs)\n        full_model.fit(X_all_s, y)\n\n        if hasattr(full_model, \"feature_importances_\"):\n            importances = full_model.feature_importances_\n        elif hasattr(full_model, \"coef_\"):\n            importances = np.abs(full_model.coef_).mean(axis=0) if full_model.coef_.ndim > 1 else np.abs(full_model.coef_)\n        else:\n            importances = np.zeros(X.shape[1])\n\n        feature_imp = {FEATURE_NAMES[i]: round(float(importances[i]), 4) for i in range(len(FEATURE_NAMES))}\n        sorted_features = sorted(feature_imp.items(), key=lambda x: -x[1])\n\n        print(f\"\\n{'='*60}\")\n        print(f\"Model: {model_name}\")\n        print(f\"  LOO Accuracy:     {accuracy:.1%} ({int(accuracy * len(configs))}/{len(configs)})\")\n        print(f\"  Router avg ΔF1:   {router_avg_delta*100:+.2f} pp\")\n        print(f\"  Always-LP ΔF1:    {lp_avg_delta*100:+.2f} pp\")\n        print(f\"  Oracle ΔF1:       {oracle_avg_delta*100:+.2f} pp\")\n        print(f\"  Feature importance: {sorted_features[:5]}\")\n        print(f\"  Confusion matrix (rows=true, cols=pred):\")\n        print(f\"    Classes: {class_names}\")\n        for row_idx, row in enumerate(cm):\n            print(f\"    {class_names[row_idx]:25s}: {list(row)}\")\n\n        per_config_preds = []\n        for i, c in enumerate(configs):\n            deltas = compute_delta_f1(c)\n            predicted = pred_labels[i]\n            actual = labels[i]\n            pred_delta = deltas.get(predicted, 0) if predicted != \"none\" else 0\n            per_config_preds.append({\n                \"config_id\": c[\"config_id\"],\n                \"actual\": actual,\n                \"predicted\": predicted,\n                \"correct\": actual == predicted,\n                \"predicted_delta_pp\": round(pred_delta * 100, 2),\n            })\n\n        results[model_name] = {\n            \"accuracy\": round(accuracy, 4),\n            \"n_correct\": int(accuracy * len(configs)),\n            \"n_total\": len(configs),\n            \"router_avg_delta_pp\": round(router_avg_delta * 100, 2),\n            \"always_lp_avg_delta_pp\": round(lp_avg_delta * 100, 2),\n            \"oracle_avg_delta_pp\": round(oracle_avg_delta * 100, 2),\n            \"feature_importance\": dict(sorted_features),\n            \"confusion_matrix\": {\n                \"classes\": class_names,\n                \"matrix\": cm.tolist(),\n            },\n            \"per_config_predictions\": per_config_preds,\n        }\n\n    # Save results\n    output = {\n        \"experiment\": \"E1_adaptive_signal_routing\",\n        \"n_configs\": len(configs),\n        \"missing_configs\": missing,\n        \"construction_methods\": CONSTRUCTION_METHODS,\n        \"label_distribution\": dict(label_counts),\n        \"feature_names\": FEATURE_NAMES,\n        \"per_config_data\": per_config_results,\n        \"models\": results,\n        \"summary\": {\n            \"best_model\": max(results, key=lambda m: results[m][\"accuracy\"]),\n            \"best_accuracy\": max(r[\"accuracy\"] for r in results.values()),\n            \"router_beats_lp\": any(\n                r[\"router_avg_delta_pp\"] > r[\"always_lp_avg_delta_pp\"]\n                for r in results.values()\n            ),\n        },\n    }\n\n    out_dir = os.path.join(BASE, \"artifacts\", \"e1_signal_routing\")\n    os.makedirs(out_dir, exist_ok=True)\n    out_path = os.path.join(out_dir, \"routing_results.json\")\n    with open(out_path, \"w\") as f:\n        json.dump(output, f, indent=2)\n    print(f\"\\nResults saved to {out_path}\")\n\n    return output\n\n\nif __name__ == \"__main__\":\n    run_routing()\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 106 · 2026-05-20T09:48:33.366033+00:00_
+
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/e1_signal_routing.py
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_e1-adaptive-signal-routing_20260520T093508",
+  "tool": "Write",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 107 · 2026-05-20T09:48:33.366265+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "command": "tail -5 /tmp/compute_fewnerd.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_e1-adaptive-signal-routing_20260520T093508",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090-b",
+    "command": "tail -5 /tmp/compute_fewnerd.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 108 · 2026-05-20T09:48:33.366460+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  Degeneracy (entity-set):  2549/32565 (7.8%)\\n\\nReport saved to output/exp_fewnerd_seed789/full_signal_report.json\\nPer-instance data: output/exp_fewnerd_seed789/fewnerd_per_instance.json\\nALL_DONE\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_e1-adaptive-signal-routing_20260520T093508",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 109 · 2026-05-20T09:48:33.366761+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cat > /root/autodl-tmp/struct_self_consist_ie/e1_signal_routing.py << 'PYEOF'\n#!/usr/bin/env python3\n\"\"\"E1 Adaptive Signal Routing: config-level construction method router.\"\"\"\n\nimport json\nimport os\nimport sys\nfrom collections import Counter\n\nimport numpy as np\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.ensemble import RandomForestClassifier\nfrom sklearn.model_selection import LeaveOneOut\nfrom sklearn.preprocessing import StandardScaler, LabelEncoder\nfrom sklearn.metrics import confusion_matrix\n\nBASE = \"/root/autodl-tmp/struct_self_consist_ie\"\nOUT = os.path.join(BASE, \"output\")\n\nCONSTRUCTION_METHODS = [\"lp_selection\", \"majority_vote\", \"consensus_theta2n\", \"consensus_lp_weighted\"]\n\nCONFIG_SPECS = [\n    (f\"{OUT}/exp_scierc_seed456/full_signal_report.json\", \"scierc\", \"Qwen3\", 8, \"ft\", 456),\n    (f\"{OUT}/exp_scierc_seed789/full_signal_report.json\", \"scierc\", \"Qwen3\", 8, \"ft\", 789),\n    (f\"{OUT}/exp_conll_seed123/full_signal_report.json\", \"conll\", \"Qwen3\", 8, \"ft\", 123),\n    (f\"{OUT}/exp_conll_seed456/full_signal_report.json\", \"conll\", \"Qwen3\", 8, \"ft\", 456),\n    (f\"{OUT}/exp_fewnerd_seed123/full_signal_report.json\", \"fewnerd\", \"Qwen3\", 8, \"ft\", 123),\n    (f\"{OUT}/exp_fewnerd_seed456/full_signal_report.json\", \"fewnerd\", \"Qwen3\", 8, \"ft\", 456),\n    (f\"{OUT}/exp_fewnerd_seed789/full_signal_report.json\", \"fewnerd\", \"Qwen3\", 8, \"ft\", 789),\n    (f\"{OUT}/72b_zeroshot/full_signal_report.json\", \"scierc\", \"Qwen2.5\", 72, \"zs\", None),\n    (f\"{OUT}/72b_zeroshot/full_signal_report.json\", \"conll2003\", \"Qwen2.5\", 72, \"zs\", None),\n    (f\"{OUT}/72b_zeroshot/full_signal_report.json\", \"fewnerd\", \"Qwen2.5\", 72, \"zs\", None),\n    (f\"{OUT}/72b_fewshot_signals/scierc/full_signal_report.json\", \"scierc\", \"Qwen2.5\", 72, \"fs\", None),\n    (f\"{OUT}/72b_fewshot_signals/conll2003/full_signal_report.json\", \"conll\", \"Qwen2.5\", 72, \"fs\", None),\n    (f\"{OUT}/72b_fewshot_signals/fewnerd/full_signal_report.json\", \"fewnerd\", \"Qwen2.5\", 72, \"fs\", None),\n    (f\"{OUT}/fewnerd_7b/qwen25_7b_n8_seed42/full_signal_report.json\", \"qwen25_7b_n8_seed42\", \"Qwen2.5\", 7, \"ft\", 42),\n    (f\"{OUT}/fewnerd_7b/qwen25_7b_n8_seed123/full_signal_report.json\", \"qwen25_7b_n8_seed123\", \"Qwen2.5\", 7, \"ft\", 123),\n    (f\"{OUT}/fewnerd_7b/qwen25_7b_n8_seed456/full_signal_report.json\", \"qwen25_7b_n8_seed456\", \"Qwen2.5\", 7, \"ft\", 456),\n]\n\n\ndef load_config(path, dataset_key, model_family, model_size, regime, seed):\n    if not os.path.exists(path):\n        return None\n    with open(path) as f:\n        data = json.load(f)\n    if dataset_key in data:\n        d = data[dataset_key]\n    else:\n        keys = list(data.keys())\n        if len(keys) == 1:\n            d = data[keys[0]]\n        else:\n            d = data\n\n    baselines = d.get(\"baselines\", {})\n    greedy_f1 = baselines.get(\"greedy\", {}).get(\"mean\", d.get(\"greedy_f1\"))\n    oracle_f1 = baselines.get(\"oracle\", {}).get(\"mean\", d.get(\"oracle_f1\"))\n    if greedy_f1 is None:\n        return None\n\n    ds_name = d.get(\"name\", dataset_key)\n    if \"conll\" in ds_name.lower():\n        ds_name = \"conll\"\n    elif \"scierc\" in ds_name.lower():\n        ds_name = \"scierc\"\n    elif \"fewnerd\" in ds_name.lower() or \"few\" in ds_name.lower():\n        ds_name = \"fewnerd\"\n\n    signals = d.get(\"signals\", {})\n    construction_f1 = {}\n    for method in CONSTRUCTION_METHODS:\n        if method in baselines:\n            construction_f1[method] = baselines[method][\"mean\"]\n\n    return {\n        \"config_id\": f\"{model_family}_{model_size}B_{regime}_{ds_name}_s{seed}\",\n        \"model_family\": model_family,\n        \"model_size\": model_size,\n        \"dataset\": ds_name,\n        \"regime\": regime,\n        \"seed\": seed,\n        \"greedy_f1\": greedy_f1,\n        \"oracle_f1\": oracle_f1,\n        \"oracle_headroom\": oracle_f1 - greedy_f1 if oracle_f1 else None,\n        \"degeneracy_rate\": d.get(\"degeneracy_rate\", 0),\n        \"n_instances\": d.get(\"n_instances\"),\n        \"rho_SJ\": signals.get(\"SJ\", {}).get(\"rho\", 0),\n        \"rho_FK\": signals.get(\"FK\", {}).get(\"rho\", 0),\n        \"rho_LP\": signals.get(\"LP\", {}).get(\"rho\", 0),\n        \"rho_EM\": signals.get(\"EM\", {}).get(\"rho\", 0),\n        \"rho_VC\": signals.get(\"VC\", {}).get(\"rho\", 0),\n        \"construction_f1\": construction_f1,\n    }\n\n\ndef compute_delta_f1(config):\n    greedy = config[\"greedy_f1\"]\n    return {m: f1 - greedy for m, f1 in config[\"construction_f1\"].items()}\n\n\ndef get_label(config):\n    deltas = compute_delta_f1(config)\n    if not deltas:\n        return \"none\", 0.0\n    best_method = max(deltas, key=deltas.get)\n    best_delta = deltas[best_method]\n    if best_delta <= 0:\n        return \"none\", best_delta\n    return best_method, best_delta\n\n\ndef build_features(config):\n    ds_map = {\"scierc\": 0, \"conll\": 1, \"fewnerd\": 2}\n    regime_map = {\"ft\": 0, \"zs\": 1, \"fs\": 2}\n    family_map = {\"Qwen3\": 0, \"Qwen2.5\": 1, \"LLaMA\": 2}\n    return [\n        config[\"model_size\"],\n        family_map.get(config[\"model_family\"], 0),\n        ds_map.get(config[\"dataset\"], 0),\n        regime_map.get(config[\"regime\"], 0),\n        config[\"greedy_f1\"],\n        config[\"degeneracy_rate\"],\n        config[\"oracle_headroom\"] or 0,\n        config[\"rho_SJ\"],\n        config[\"rho_FK\"],\n        config[\"rho_LP\"],\n        config[\"rho_EM\"],\n        config[\"rho_VC\"],\n    ]\n\n\nFEATURE_NAMES = [\n    \"model_size\", \"model_family\", \"dataset\", \"regime\",\n    \"base_f1\", \"degeneracy_rate\", \"oracle_headroom\",\n    \"rho_SJ\", \"rho_FK\", \"rho_LP\", \"rho_EM\", \"rho_VC\"\n]\n\n\ndef run_routing():\n    configs = []\n    missing = []\n    for spec in CONFIG_SPECS:\n        c = load_config(*spec)\n        if c is None:\n            missing.append(spec[0])\n        else:\n            configs.append(c)\n\n    print(f\"Loaded {len(configs)} configs, {len(missing)} missing\")\n    if missing:\n        print(f\"Missing: {missing}\")\n\n    labels = []\n    feature_matrix = []\n    per_config_results = []\n\n    for c in configs:\n        label, best_delta = get_label(c)\n        labels.append(label)\n        feature_matrix.append(build_features(c))\n        deltas = compute_delta_f1(c)\n        lp_delta = deltas.get(\"lp_selection\", 0)\n        per_config_results.append({\n            \"config_id\": c[\"config_id\"],\n            \"model_family\": c[\"model_family\"],\n            \"model_size\": c[\"model_size\"],\n            \"dataset\": c[\"dataset\"],\n            \"regime\": c[\"regime\"],\n            \"greedy_f1\": round(c[\"greedy_f1\"], 4),\n            \"oracle_f1\": round(c[\"oracle_f1\"], 4),\n            \"degeneracy_rate\": round(c[\"degeneracy_rate\"], 4),\n            \"construction_deltas_pp\": {k: round(v * 100, 2) for k, v in deltas.items()},\n            \"best_method\": label,\n            \"best_delta_pp\": round(best_delta * 100, 2),\n            \"lp_delta_pp\": round(lp_delta * 100, 2),\n        })\n\n    X = np.array(feature_matrix)\n    label_counts = Counter(labels)\n    print(f\"\\nLabel distribution: {dict(label_counts)}\")\n\n    for pcr in per_config_results:\n        print(f\"  {pcr['config_id']:45s} -> {pcr['best_method']:25s} (D={pcr['best_delta_pp']:+.2f}pp, LP D={pcr['lp_delta_pp']:+.2f}pp)\")\n\n    le = LabelEncoder()\n    y = le.fit_transform(labels)\n    class_names = list(le.classes_)\n    print(f\"\\nClasses: {class_names}\")\n\n    loo = LeaveOneOut()\n    scaler = StandardScaler()\n\n    results = {}\n    for model_name, model_cls, model_kwargs in [\n        (\"LogisticRegression\", LogisticRegression, {\"C\": 1.0, \"max_iter\": 1000, \"multi_class\": \"multinomial\"}),\n        (\"RandomForest\", RandomForestClassifier, {\"n_estimators\": 100, \"max_depth\": 5, \"random_state\": 42}),\n    ]:\n        preds = []\n        pred_labels = []\n        for train_idx, test_idx in loo.split(X):\n            X_train, X_test = X[train_idx], X[test_idx]\n            y_train = y[train_idx]\n            X_train_s = scaler.fit_transform(X_train)\n            X_test_s = scaler.transform(X_test)\n            model = model_cls(**model_kwargs)\n            model.fit(X_train_s, y_train)\n            pred = model.predict(X_test_s)[0]\n            preds.append(pred)\n            pred_labels.append(le.inverse_transform([pred])[0])\n\n        accuracy = np.mean(np.array(preds) == y)\n        router_delta_sum = oracle_delta_sum = lp_delta_sum = 0\n        for i, c in enumerate(configs):\n            deltas = compute_delta_f1(c)\n            predicted = pred_labels[i]\n            router_delta = deltas.get(predicted, 0) if predicted != \"none\" else 0\n            oracle_delta = max(max(deltas.values()), 0) if deltas else 0\n            lp_delta = deltas.get(\"lp_selection\", 0)\n            router_delta_sum += router_delta\n            oracle_delta_sum += oracle_delta\n            lp_delta_sum += lp_delta\n\n        n = len(configs)\n        router_avg = router_delta_sum / n\n        oracle_avg = oracle_delta_sum / n\n        lp_avg = lp_delta_sum / n\n\n        cm = confusion_matrix(y, preds, labels=range(len(class_names)))\n\n        X_all_s = scaler.fit_transform(X)\n        full_model = model_cls(**model_kwargs)\n        full_model.fit(X_all_s, y)\n\n        if hasattr(full_model, \"feature_importances_\"):\n            importances = full_model.feature_importances_\n        elif hasattr(full_model, \"coef_\"):\n            importances = np.abs(full_model.coef_).mean(axis=0) if full_model.coef_.ndim > 1 else np.abs(full_model.coef_)\n        else:\n            importances = np.zeros(X.shape[1])\n\n        feature_imp = {FEATURE_NAMES[i]: round(float(importances[i]), 4) for i in range(len(FEATURE_NAMES))}\n        sorted_features = sorted(feature_imp.items(), key=lambda x: -x[1])\n\n        print(f\"\\n{'='*60}\")\n        print(f\"Model: {model_name}\")\n        print(f\"  LOO Accuracy:     {accuracy:.1%} ({int(accuracy * n)}/{n})\")\n        print(f\"  Router avg dF1:   {router_avg*100:+.2f} pp\")\n        print(f\"  Always-LP dF1:    {lp_avg*100:+.2f} pp\")\n        print(f\"  Oracle dF1:       {oracle_avg*100:+.2f} pp\")\n        print(f\"  Top features: {sorted_features[:5]}\")\n        print(f\"  Confusion matrix (rows=true, cols=pred):\")\n        print(f\"    Classes: {class_names}\")\n        for ri, row in enumerate(cm):\n            print(f\"    {class_names[ri]:25s}: {list(row)}\")\n        print(f\"  Per-config predictions:\")\n        for i in range(n):\n            ok = \"OK\" if pred_labels[i] == labels[i] else \"MISS\"\n            print(f\"    {configs[i]['config_id']:45s} true={labels[i]:25s} pred={pred_labels[i]:25s} [{ok}]\")\n\n        per_config_preds = []\n        for i, c in enumerate(configs):\n            deltas = compute_delta_f1(c)\n            predicted = pred_labels[i]\n            pred_delta = deltas.get(predicted, 0) if predicted != \"none\" else 0\n            per_config_preds.append({\n                \"config_id\": c[\"config_id\"],\n                \"actual\": labels[i],\n                \"predicted\": predicted,\n                \"correct\": labels[i] == predicted,\n                \"predicted_delta_pp\": round(pred_delta * 100, 2),\n            })\n\n        results[model_name] = {\n            \"accuracy\": round(accuracy, 4),\n            \"n_correct\": int(accuracy * n),\n            \"n_total\": n,\n            \"router_avg_delta_pp\": round(router_avg * 100, 2),\n            \"always_lp_avg_delta_pp\": round(lp_avg * 100, 2),\n            \"oracle_avg_delta_pp\": round(oracle_avg * 100, 2),\n            \"feature_importance\": dict(sorted_features),\n            \"confusion_matrix\": {\"classes\": class_names, \"matrix\": cm.tolist()},\n            \"per_config_predictions\": per_config_preds,\n        }\n\n    output = {\n        \"experiment\": \"E1_adaptive_signal_routing\",\n        \"n_configs\": len(configs),\n        \"missing_configs\": missing,\n        \"construction_methods\": CONSTRUCTION_METHODS,\n        \"method_mapping\": {\n            \"lp_selection\": \"LP signal-based sample selection\",\n            \"majority_vote\": \"Token-level majority voting\",\n            \"consensus_theta2n\": \"Entity-level voting (uniform, threshold=2/N)\",\n            \"consensus_lp_weighted\": \"Entity-level voting (LP-weighted)\",\n        },\n        \"label_distribution\": dict(label_counts),\n        \"feature_names\": FEATURE_NAMES,\n        \"per_config_data\": per_config_results,\n        \"models\": results,\n        \"summary\": {\n            \"best_model\": max(results, key=lambda m: results[m][\"accuracy\"]),\n            \"best_accuracy\": max(r[\"accuracy\"] for r in results.values()),\n            \"router_beats_lp\": any(r[\"router_avg_delta_pp\"] > r[\"always_lp_avg_delta_pp\"] for r in results.values()),\n        },\n    }\n\n    out_dir = os.path.join(BASE, \"artifacts\", \"e1_signal_routing\")\n    os.makedirs(out_dir, exist_ok=True)\n    out_path = os.path.join(out_dir, \"routing_results.json\")\n    with open(out_path, \"w\") as f:\n        json.dump(output, f, indent=2)\n    print(f\"\\nResults saved to {out_path}\")\n    return output\n\n\nif __name__ == \"__main__\":\n    run_routing()\nPYEOF\necho \"Script uploaded\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_e1-adaptive-signal-routing_20260520T093508",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090-b",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cat > /root/autodl-tmp/struct_self_consist_ie/e1_signal_routing.py << 'PYEOF'\n#!/usr/bin/env python3\n\"\"\"E1 Adaptive Signal Routing: config-level construction method router.\"\"\"\n\nimport json\nimport os\nimport sys\nfrom collections import Counter\n\nimport numpy as np\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.ensemble import RandomForestClassifier\nfrom sklearn.model_selection import LeaveOneOut\nfrom sklearn.preprocessing import StandardScaler, LabelEncoder\nfrom sklearn.metrics import confusion_matrix\n\nBASE = \"/root/autodl-tmp/struct_self_consist_ie\"\nOUT = os.path.join(BASE, \"output\")\n\nCONSTRUCTION_METHODS = [\"lp_selection\", \"majority_vote\", \"consensus_theta2n\", \"consensus_lp_weighted\"]\n\nCONFIG_SPECS = [\n    (f\"{OUT}/exp_scierc_seed456/full_signal_report.json\", \"scierc\", \"Qwen3\", 8, \"ft\", 456),\n    (f\"{OUT}/exp_scierc_seed789/full_signal_report.json\", \"scierc\", \"Qwen3\", 8, \"ft\", 789),\n    (f\"{OUT}/exp_conll_seed123/full_signal_report.json\", \"conll\", \"Qwen3\", 8, \"ft\", 123),\n    (f\"{OUT}/exp_conll_seed456/full_signal_report.json\", \"conll\", \"Qwen3\", 8, \"ft\", 456),\n    (f\"{OUT}/exp_fewnerd_seed123/full_signal_report.json\", \"fewnerd\", \"Qwen3\", 8, \"ft\", 123),\n    (f\"{OUT}/exp_fewnerd_seed456/full_signal_report.json\", \"fewnerd\", \"Qwen3\", 8, \"ft\", 456),\n    (f\"{OUT}/exp_fewnerd_seed789/full_signal_report.json\", \"fewnerd\", \"Qwen3\", 8, \"ft\", 789),\n    (f\"{OUT}/72b_zeroshot/full_signal_report.json\", \"scierc\", \"Qwen2.5\", 72, \"zs\", None),\n    (f\"{OUT}/72b_zeroshot/full_signal_report.json\", \"conll2003\", \"Qwen2.5\", 72, \"zs\", None),\n    (f\"{OUT}/72b_zeroshot/full_signal_report.json\", \"fewnerd\", \"Qwen2.5\", 72, \"zs\", None),\n    (f\"{OUT}/72b_fewshot_signals/scierc/full_signal_report.json\", \"scierc\", \"Qwen2.5\", 72, \"fs\", None),\n    (f\"{OUT}/72b_fewshot_signals/conll2003/full_signal_report.json\", \"conll\", \"Qwen2.5\", 72, \"fs\", None),\n    (f\"{OUT}/72b_fewshot_signals/fewnerd/full_signal_report.json\", \"fewnerd\", \"Qwen2.5\", 72, \"fs\", None),\n    (f\"{OUT}/fewnerd_7b/qwen25_7b_n8_seed42/full_signal_report.json\", \"qwen25_7b_n8_seed42\", \"Qwen2.5\", 7, \"ft\", 42),\n    (f\"{OUT}/fewnerd_7b/qwen25_7b_n8_seed123/full_signal_report.json\", \"qwen25_7b_n8_seed123\", \"Qwen2.5\", 7, \"ft\", 123),\n    (f\"{OUT}/fewnerd_7b/qwen25_7b_n8_seed456/full_signal_report.json\", \"qwen25_7b_n8_seed456\", \"Qwen2.5\", 7, \"ft\", 456),\n]\n\n\ndef load_config(path, dataset_key, model_family, model_size, regime, seed):\n    if not os.path.exists(path):\n        return None\n    with open(path) as f:\n        data = json.load(f)\n    if dataset_key in data:\n        d = data[dataset_key]\n    else:\n        keys = list(data.keys())\n        if len(keys) == 1:\n            d = data[keys[0]]\n        else:\n            d = data\n\n    baselines = d.get(\"baselines\", {})\n    greedy_f1 = baselines.get(\"greedy\", {}).get(\"mean\", d.get(\"greedy_f1\"))\n    oracle_f1 = baselines.get(\"oracle\", {}).get(\"mean\", d.get(\"oracle_f1\"))\n    if greedy_f1 is None:\n        return None\n\n    ds_name = d.get(\"name\", dataset_key)\n    if \"conll\" in ds_name.lower():\n        ds_name = \"conll\"\n    elif \"scierc\" in ds_name.lower():\n        ds_name = \"scierc\"\n    elif \"fewnerd\" in ds_name.lower() or \"few\" in ds_name.lower():\n        ds_name = \"fewnerd\"\n\n    signals = d.get(\"signals\", {})\n    construction_f1 = {}\n    for method in CONSTRUCTION_METHODS:\n        if method in baselines:\n            construction_f1[method] = baselines[method][\"mean\"]\n\n    return {\n        \"config_id\": f\"{model_family}_{model_size}B_{regime}_{ds_name}_s{seed}\",\n        \"model_family\": model_family,\n        \"model_size\": model_size,\n        \"dataset\": ds_name,\n        \"regime\": regime,\n        \"seed\": seed,\n        \"greedy_f1\": greedy_f1,\n        \"oracle_f1\": oracle_f1,\n        \"oracle_headroom\": oracle_f1 - greedy_f1 if oracle_f1 else None,\n        \"degeneracy_rate\": d.get(\"degeneracy_rate\", 0),\n        \"n_instances\": d.get(\"n_instances\"),\n        \"rho_SJ\": signals.get(\"SJ\", {}).get(\"rho\", 0),\n        \"rho_FK\": signals.get(\"FK\", {}).get(\"rho\", 0),\n        \"rho_LP\": signals.get(\"LP\", {}).get(\"rho\", 0),\n        \"rho_EM\": signals.get(\"EM\", {}).get(\"rho\", 0),\n        \"rho_VC\": signals.get(\"VC\", {}).get(\"rho\", 0),\n        \"construction_f1\": construction_f1,\n    }\n\n\ndef compute_delta_f1(config):\n    greedy = config[\"greedy_f1\"]\n    return {m: f1 - greedy for m, f1 in config[\"construction_f1\"].items()}\n\n\ndef get_label(config):\n    deltas = compute_delta_f1(config)\n    if not deltas:\n        return \"none\", 0.0\n    best_method = max(deltas, key=deltas.get)\n    best_delta = deltas[best_method]\n    if best_delta <= 0:\n        return \"none\", best_delta\n    return best_method, best_delta\n\n\ndef build_features(config):\n    ds_map = {\"scierc\": 0, \"conll\": 1, \"fewnerd\": 2}\n    regime_map = {\"ft\": 0, \"zs\": 1, \"fs\": 2}\n    family_map = {\"Qwen3\": 0, \"Qwen2.5\": 1, \"LLaMA\": 2}\n    return [\n        config[\"model_size\"],\n        family_map.get(config[\"model_family\"], 0),\n        ds_map.get(config[\"dataset\"], 0),\n        regime_map.get(config[\"regime\"], 0),\n        config[\"greedy_f1\"],\n        config[\"degeneracy_rate\"],\n        config[\"oracle_headroom\"] or 0,\n        config[\"rho_SJ\"],\n        config[\"rho_FK\"],\n        config[\"rho_LP\"],\n        config[\"rho_EM\"],\n        config[\"rho_VC\"],\n    ]\n\n\nFEATURE_NAMES = [\n    \"model_size\", \"model_family\", \"dataset\", \"regime\",\n    \"base_f1\", \"degeneracy_rate\", \"oracle_headroom\",\n    \"rho_SJ\", \"rho_FK\", \"rho_LP\", \"rho_EM\", \"rho_VC\"\n]\n\n\ndef run_routing():\n    configs = []\n    missing = []\n    for spec in CONFIG_SPECS:\n        c = load_config(*spec)\n        if c is None:\n            missing.append(spec[0])\n        else:\n            configs.append(c)\n\n    print(f\"Loaded {len(configs)} configs, {len(missing)} missing\")\n    if missing:\n        print(f\"Missing: {missing}\")\n\n    labels = []\n    feature_matrix = []\n    per_config_results = []\n\n    for c in configs:\n        label, best_delta = get_label(c)\n        labels.append(label)\n        feature_matrix.append(build_features(c))\n        deltas = compute_delta_f1(c)\n        lp_delta = deltas.get(\"lp_selection\", 0)\n        per_config_results.append({\n            \"config_id\": c[\"config_id\"],\n            \"model_family\": c[\"model_family\"],\n            \"model_size\": c[\"model_size\"],\n            \"dataset\": c[\"dataset\"],\n            \"regime\": c[\"regime\"],\n            \"greedy_f1\": round(c[\"greedy_f1\"], 4),\n            \"oracle_f1\": round(c[\"oracle_f1\"], 4),\n            \"degeneracy_rate\": round(c[\"degeneracy_rate\"], 4),\n            \"construction_deltas_pp\": {k: round(v * 100, 2) for k, v in deltas.items()},\n            \"best_method\": label,\n            \"best_delta_pp\": round(best_delta * 100, 2),\n            \"lp_delta_pp\": round(lp_delta * 100, 2),\n        })\n\n    X = np.array(feature_matrix)\n    label_counts = Counter(labels)\n    print(f\"\\nLabel distribution: {dict(label_counts)}\")\n\n    for pcr in per_config_results:\n        print(f\"  {pcr['config_id']:45s} -> {pcr['best_method']:25s} (D={pcr['best_delta_pp']:+.2f}pp, LP D={pcr['lp_delta_pp']:+.2f}pp)\")\n\n    le = LabelEncoder()\n    y = le.fit_transform(labels)\n    class_names = list(le.classes_)\n    print(f\"\\nClasses: {class_names}\")\n\n    loo = LeaveOneOut()\n    scaler = StandardScaler()\n\n    results = {}\n    for model_name, model_cls, model_kwargs in [\n        (\"LogisticRegression\", LogisticRegression, {\"C\": 1.0, \"max_iter\": 1000, \"multi_class\": \"multinomial\"}),\n        (\"RandomForest\", RandomForestClassifier, {\"n_estimators\": 100, \"max_depth\": 5, \"random_state\": 42}),\n    ]:\n        preds = []\n        pred_labels = []\n        for train_idx, test_idx in loo.split(X):\n            X_train, X_test = X[train_idx], X[test_idx]\n            y_train = y[train_idx]\n            X_train_s = scaler.fit_transform(X_train)\n            X_test_s = scaler.transform(X_test)\n            model = model_cls(**model_kwargs)\n            model.fit(X_train_s, y_train)\n            pred = model.predict(X_test_s)[0]\n            preds.append(pred)\n            pred_labels.append(le.inverse_transform([pred])[0])\n\n        accuracy = np.mean(np.array(preds) == y)\n        router_delta_sum = oracle_delta_sum = lp_delta_sum = 0\n        for i, c in enumerate(configs):\n            deltas = compute_delta_f1(c)\n            predicted = pred_labels[i]\n            router_delta = deltas.get(predicted, 0) if predicted != \"none\" else 0\n            oracle_delta = max(max(deltas.values()), 0) if deltas else 0\n            lp_delta = deltas.get(\"lp_selection\", 0)\n            router_delta_sum += router_delta\n            oracle_delta_sum += oracle_delta\n            lp_delta_sum += lp_delta\n\n        n = len(configs)\n        router_avg = router_delta_sum / n\n        oracle_avg = oracle_delta_sum / n\n        lp_avg = lp_delta_sum / n\n\n        cm = confusion_matrix(y, preds, labels=range(len(class_names)))\n\n        X_all_s = scaler.fit_transform(X)\n        full_model = model_cls(**model_kwargs)\n        full_model.fit(X_all_s, y)\n\n        if hasattr(full_model, \"feature_importances_\"):\n            importances = full_model.feature_importances_\n        elif hasattr(full_model, \"coef_\"):\n            importances = np.abs(full_model.coef_).mean(axis=0) if full_model.coef_.ndim > 1 else np.abs(full_model.coef_)\n        else:\n            importances = np.zeros(X.shape[1])\n\n        feature_imp = {FEATURE_NAMES[i]: round(float(importances[i]), 4) for i in range(len(FEATURE_NAMES))}\n        sorted_features = sorted(feature_imp.items(), key=lambda x: -x[1])\n\n        print(f\"\\n{'='*60}\")\n        print(f\"Model: {model_name}\")\n        print(f\"  LOO Accuracy:     {accuracy:.1%} ({int(accuracy * n)}/{n})\")\n        print(f\"  Router avg dF1:   {router_avg*100:+.2f} pp\")\n        print(f\"  Always-LP dF1:    {lp_avg*100:+.2f} pp\")\n        print(f\"  Oracle dF1:       {oracle_avg*100:+.2f} pp\")\n        print(f\"  Top features: {sorted_features[:5]}\")\n        print(f\"  Confusion matrix (rows=true, cols=pred):\")\n        print(f\"    Classes: {class_names}\")\n        for ri, row in enumerate(cm):\n            print(f\"    {class_names[ri]:25s}: {list(row)}\")\n        print(f\"  Per-config predictions:\")\n        for i in range(n):\n            ok = \"OK\" if pred_labels[i] == labels[i] else \"MISS\"\n            print(f\"    {configs[i]['config_id']:45s} true={labels[i]:25s} pred={pred_labels[i]:25s} [{ok}]\")\n\n        per_config_preds = []\n        for i, c in enumerate(configs):\n            deltas = compute_delta_f1(c)\n            predicted = pred_labels[i]\n            pred_delta = deltas.get(predicted, 0) if predicted != \"none\" else 0\n            per_config_preds.append({\n                \"config_id\": c[\"config_id\"],\n                \"actual\": labels[i],\n                \"predicted\": predicted,\n                \"correct\": labels[i] == predicted,\n                \"predicted_delta_pp\": round(pred_delta * 100, 2),\n            })\n\n        results[model_name] = {\n            \"accuracy\": round(accuracy, 4),\n            \"n_correct\": int(accuracy * n),\n            \"n_total\": n,\n            \"router_avg_delta_pp\": round(router_avg * 100, 2),\n            \"always_lp_avg_delta_pp\": round(lp_avg * 100, 2),\n            \"oracle_avg_delta_pp\": round(oracle_avg * 100, 2),\n            \"feature_importance\": dict(sorted_features),\n            \"confusion_matrix\": {\"classes\": class_names, \"matrix\": cm.tolist()},\n            \"per_config_predictions\": per_config_preds,\n        }\n\n    output = {\n        \"experiment\": \"E1_adaptive_signal_routing\",\n        \"n_configs\": len(configs),\n        \"missing_configs\": missing,\n        \"construction_methods\": CONSTRUCTION_METHODS,\n        \"method_mapping\": {\n            \"lp_selection\": \"LP signal-based sample selection\",\n            \"majority_vote\": \"Token-level majority voting\",\n            \"consensus_theta2n\": \"Entity-level voting (uniform, threshold=2/N)\",\n            \"consensus_lp_weighted\": \"Entity-level voting (LP-weighted)\",\n        },\n        \"label_distribution\": dict(label_counts),\n        \"feature_names\": FEATURE_NAMES,\n        \"per_config_data\": per_config_results,\n        \"models\": results,\n        \"summary\": {\n            \"best_model\": max(results, key=lambda m: results[m][\"accuracy\"]),\n            \"best_accuracy\": max(r[\"accuracy\"] for r in results.values()),\n            \"router_beats_lp\": any(r[\"router_avg_delta_pp\"] > r[\"always_lp_avg_delta_pp\"] for r in results.values()),\n        },\n    }\n\n    out_dir = os.path.join(BASE, \"artifacts\", \"e1_signal_routing\")\n    os.makedirs(out_dir, exist_ok=True)\n    out_path = os.path.join(out_dir, \"routing_results.json\")\n    with open(out_path, \"w\") as f:\n        json.dump(output, f, indent=2)\n    print(f\"\\nResults saved to {out_path}\")\n    return output\n\n\nif __name__ == \"__main__\":\n    run_routing()\nPYEOF\necho \"Script uploaded\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 110 · 2026-05-20T09:48:33.367166+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Script uploaded\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_e1-adaptive-signal-routing_20260520T093508",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 111 · 2026-05-20T09:48:33.367370+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python e1_signal_routing.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_e1-adaptive-signal-routing_20260520T093508",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090-b",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python e1_signal_routing.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 112 · 2026-05-20T09:48:33.367578+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python e1_signal_routing.py'\\n\\nExit code: 1\\n\\nStdout:\\n\\n  Qwen2.5_72B_zs_conll_sNone                    -> none                      (D=-0.37pp, LP D=-0.39pp)\\n  Qwen2.5_72B_zs_fewnerd_sNone                  -> none                      (D=-0.19pp, LP D=-0.40pp)\\n  Qwen2.5_72B_fs_scierc_sNone                   -> none                      (D=-0.08pp, LP D=-1.36pp)\\n  Qwen2.5_72B_fs_conll_sNone                    -> lp_selection              (D=+0.24pp, LP D=+0.24pp)\\n  Qwen2.5_72B_fs_fewnerd_sNone                  -> majority_vote             (D=+0.06pp, LP D=-0.14pp)\\n  Qwen2.5_7B_ft_qwen25_7b_n8_seed42_s42         -> lp_selection              (D=+0.39pp, LP D=+0.39pp)\\n  Qwen2.5_7B_ft_qwen25_7b_n8_seed123_s123       -> lp_selection              (D=+0.38pp, LP D=+0.38pp)\\n  Qwen2.5_7B_ft_qwen25_7b_n8_seed456_s456       -> lp_selection              (D=+0.52pp, LP D=+0.52pp)\\n\\nClasses: [np.str_('consensus_lp_weighted'), np.str_('consensus_theta2n'), np.str_('lp_selection'), np.str_('majority_vote'), np.str_('none')]\\n\\nStderr:\\n\\nTraceback (most recent call last):\\n  File \\\"/root/autodl-tmp/struct_self_consist_ie/e1_signal_routing.py\\\", line 317, in &lt;module>\\n    run_routing()\\n  File \\\"/root/autodl-tmp/struct_self_consist_ie/e1_signal_routing.py\\\", line 205, in run_routing\\n    model = model_cls(**model_kwargs)\\n            ^^^^^^^^^^^^^^^^^^^^^^^^^\\nTypeError: LogisticRegression.__init__() got an unexpected keyword argument 'multi_class'\\n\\n\", \"metadata\": {\"elapsed_seconds\": 1.34}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_e1-adaptive-signal-routing_20260520T093508",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 113 · 2026-05-20T09:48:33.367814+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && sed -i 's/, \"multi_class\": \"multinomial\"//' e1_signal_routing.py && python e1_signal_routing.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_e1-adaptive-signal-routing_20260520T093508",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090-b",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && sed -i 's/, \"multi_class\": \"multinomial\"//' e1_signal_routing.py && python e1_signal_routing.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 114 · 2026-05-20T09:48:33.368093+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Loaded 16 configs, 0 missing\\n\\nLabel distribution: {'consensus_theta2n': 3, 'none': 5, 'lp_selection': 6, 'consensus_lp_weighted': 1, 'majority_vote': 1}\\n  Qwen3_8B_ft_scierc_s456                       -> consensus_theta2n         (D=+0.40pp, LP D=-0.30pp)\\n  Qwen3_8B_ft_scierc_s789                       -> consensus_theta2n         (D=+1.12pp, LP D=+0.86pp)\\n  Qwen3_8B_ft_conll_s123                        -> none                      (D=-0.42pp, LP D=-0.60pp)\\n  Qwen3_8B_ft_conll_s456                        -> none                      (D=-0.42pp, LP D=-0.77pp)\\n  Qwen3_8B_ft_fewnerd_s123                      -> consensus_theta2n         (D=+1.56pp, LP D=+1.37pp)\\n  Qwen3_8B_ft_fewnerd_s456                      -> lp_selection              (D=+1.37pp, LP D=+1.37pp)\\n  Qwen3_8B_ft_fewnerd_s789                      -> lp_selection              (D=+1.35pp, LP D=+1.35pp)\\n  Qwen2.5_72B_zs_scierc_sNone                   -> consensus_lp_weighted     (D=+1.53pp, LP D=-0.10pp)\\n  Qwen2.5_72B_zs_conll_sNone                    -> none                      (D=-0.37pp, LP D=-0.39pp)\\n  Qwen2.5_72B_zs_fewnerd_sNone                  -> none                      (D=-0.19pp, LP D=-0.40pp)\\n  Qwen2.5_72B_fs_scierc_sNone                   -> none                      (D=-0.08pp, LP D=-1.36pp)\\n  Qwen2.5_72B_fs_conll_sNone                    -> lp_selection              (D=+0.24pp, LP D=+0.24pp)\\n  Qwen2.5_72B_fs_fewnerd_sNone                  -> majority_vote             (D=+0.06pp, LP D=-0.14pp)\\n  Qwen2.5_7B_ft_qwen25_7b_n8_seed42_s42         -> lp_selection              (D=+0.39pp, LP D=+0.39pp)\\n  Qwen2.5_7B_ft_qwen25_7b_n8_seed123_s123       -> lp_selection              (D=+0.38pp, LP D=+0.38pp)\\n  Qwen2.5_7B_ft_qwen25_7b_n8_seed456_s456       -> lp_selection              (D=+0.52pp, LP D=+0.52pp)\\n\\nClasses: [np.str_('consensus_lp_weighted'), np.str_('consensus_theta2n'), np.str_('lp_selection'), np.
+…[truncated 6228 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_e1-adaptive-signal-routing_20260520T093508",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 115 · 2026-05-20T09:48:33.368529+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && cat > e1_signal_routing_v2.py << 'PYEOF'\n#!/usr/bin/env python3\n\"\"\"E1 Adaptive Signal Routing v2: config-level construction method router.\nFixes: dataset normalization for fewnerd_7b, adds simplified 3-class scheme.\"\"\"\n\nimport json\nimport os\nfrom collections import Counter\n\nimport numpy as np\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.ensemble import RandomForestClassifier\nfrom sklearn.model_selection import LeaveOneOut\nfrom sklearn.preprocessing import StandardScaler, LabelEncoder\nfrom sklearn.metrics import confusion_matrix\n\nBASE = \"/root/autodl-tmp/struct_self_consist_ie\"\nOUT = os.path.join(BASE, \"output\")\n\nCONSTRUCTION_METHODS = [\"lp_selection\", \"majority_vote\", \"consensus_theta2n\", \"consensus_lp_weighted\"]\n\nCONFIG_SPECS = [\n    # (path, dataset_key, model_family, model_size, regime, seed, forced_dataset)\n    (f\"{OUT}/exp_scierc_seed456/full_signal_report.json\", \"scierc\", \"Qwen3\", 8, \"ft\", 456, \"scierc\"),\n    (f\"{OUT}/exp_scierc_seed789/full_signal_report.json\", \"scierc\", \"Qwen3\", 8, \"ft\", 789, \"scierc\"),\n    (f\"{OUT}/exp_conll_seed123/full_signal_report.json\", \"conll\", \"Qwen3\", 8, \"ft\", 123, \"conll\"),\n    (f\"{OUT}/exp_conll_seed456/full_signal_report.json\", \"conll\", \"Qwen3\", 8, \"ft\", 456, \"conll\"),\n    (f\"{OUT}/exp_fewnerd_seed123/full_signal_report.json\", \"fewnerd\", \"Qwen3\", 8, \"ft\", 123, \"fewnerd\"),\n    (f\"{OUT}/exp_fewnerd_seed456/full_signal_report.json\", \"fewnerd\", \"Qwen3\", 8, \"ft\", 456, \"fewnerd\"),\n    (f\"{OUT}/exp_fewnerd_seed789/full_signal_report.json\", \"fewnerd\", \"Qwen3\", 8, \"ft\", 789, \"fewnerd\"),\n    (f\"{OUT}/72b_zeroshot/full_signal_report.json\", \"scierc\", \"Qwen2.5\", 72, \"zs\", None, \"scierc\"),\n    (f\"{OUT}/72b_zeroshot/full_signal_report.json\", \"conll2003\", \"Qwen2.5\", 72, \"zs\", None, \"conll\"),\n    (f\"{OUT}/72b_zeroshot/full_signal_report.json\", \"fewnerd\", \"Qwen2.5\", 72, \"zs\", None, \"fewnerd\"),\n    (f\"{OUT}/72b_fewshot_signals/scierc/full_signal_report.json\", \"scierc\", \"Qwen2.5\", 72, \"fs\", None, \"scierc\"),\n    (f\"{OUT}/72b_fewshot_signals/conll2003/full_signal_report.json\", \"conll\", \"Qwen2.5\", 72, \"fs\", None, \"conll\"),\n    (f\"{OUT}/72b_fewshot_signals/fewnerd/full_signal_report.json\", \"fewnerd\", \"Qwen2.5\", 72, \"fs\", None, \"fewnerd\"),\n    (f\"{OUT}/fewnerd_7b/qwen25_7b_n8_seed42/full_signal_report.json\", \"qwen25_7b_n8_seed42\", \"Qwen2.5\", 7, \"ft\", 42, \"fewnerd\"),\n    (f\"{OUT}/fewnerd_7b/qwen25_7b_n8_seed123/full_signal_report.json\", \"qwen25_7b_n8_seed123\", \"Qwen2.5\", 7, \"ft\", 123, \"fewnerd\"),\n    (f\"{OUT}/fewnerd_7b/qwen25_7b_n8_seed456/full_signal_report.json\", \"qwen25_7b_n8_seed456\", \"Qwen2.5\", 7, \"ft\", 456, \"fewnerd\"),\n]\n\n\ndef load_config(path, dataset_key, model_family, model_size, regime, seed, forced_dataset):\n    if not os.path.exists(path):\n        return None\n    with open(path) as f:\n        data = json.load(f)\n    if dataset_key in data:\n        d = data[dataset_key]\n    else:\n        keys = list(data.keys())\n        d = data[keys[0]] if len(keys) == 1 else data\n\n    baselines = d.get(\"baselines\", {})\n    greedy_f1 = baselines.get(\"greedy\", {}).get(\"mean\", d.get(\"greedy_f1\"))\n    oracle_f1 = baselines.get(\"oracle\", {}).get(\"mean\", d.get(\"oracle_f1\"))\n    if greedy_f1 is None:\n        return None\n\n    signals = d.get(\"signals\", {})\n    construction_f1 = {m: baselines[m][\"mean\"] for m in CONSTRUCTION_METHODS if m in baselines}\n\n    return {\n        \"config_id\": f\"{model_family}_{model_size}B_{regime}_{forced_dataset}_s{seed}\",\n        \"model_family\": model_family,\n        \"model_size\": model_size,\n        \"dataset\": forced_dataset,\n        \"regime\": regime,\n        \"seed\": seed,\n        \"greedy_f1\": greedy_f1,\n        \"oracle_f1\": oracle_f1,\n        \"oracle_headroom\": oracle_f1 - greedy_f1 if oracle_f1 else None,\n        \"degeneracy_rate\": d.get(\"degeneracy_rate\", 0),\n        \"n_instances\": d.get(\"n_instances\"),\n        \"rho_SJ\": signals.get(\"SJ\", {}).get(\"rho\", 0),\n        \"rho_FK\": signals.get(\"FK\", {}).get(\"rho\", 0),\n        \"rho_LP\": signals.get(\"LP\", {}).get(\"rho\", 0),\n        \"rho_EM\": signals.get(\"EM\", {}).get(\"rho\", 0),\n        \"rho_VC\": signals.get(\"VC\", {}).get(\"rho\", 0),\n        \"construction_f1\": construction_f1,\n    }\n\n\ndef compute_delta_f1(config):\n    greedy = config[\"greedy_f1\"]\n    return {m: f1 - greedy for m, f1 in config[\"construction_f1\"].items()}\n\n\ndef get_label(config, simplify=False):\n    deltas = compute_delta_f1(config)\n    if not deltas:\n        return \"none\", 0.0\n    best_method = max(deltas, key=deltas.get)\n    best_delta = deltas[best_method]\n    if best_delta <= 0:\n        label = \"none\"\n    else:\n        label = best_method\n    if simplify:\n        if label in (\"consensus_theta2n\", \"consensus_lp_weighted\"):\n            label = \"consensus\"\n    return label, best_delta\n\n\nFEATURE_NAMES = [\n    \"model_size\", \"model_family\", \"dataset\", \"regime\",\n    \"base_f1\", \"degeneracy_rate\", \"oracle_headroom\",\n    \"rho_SJ\", \"rho_FK\", \"rho_LP\", \"rho_EM\", \"rho_VC\"\n]\n\n\ndef build_features(config):\n    ds_map = {\"scierc\": 0, \"conll\": 1, \"fewnerd\": 2}\n    regime_map = {\"ft\": 0, \"zs\": 1, \"fs\": 2}\n    family_map = {\"Qwen3\": 0, \"Qwen2.5\": 1, \"LLaMA\": 2}\n    return [\n        config[\"model_size\"],\n        family_map.get(config[\"model_family\"], 0),\n        ds_map.get(config[\"dataset\"], 0),\n        regime_map.get(config[\"regime\"], 0),\n        config[\"greedy_f1\"],\n        config[\"degeneracy_rate\"],\n        config[\"oracle_headroom\"] or 0,\n        config[\"rho_SJ\"],\n        config[\"rho_FK\"],\n        config[\"rho_LP\"],\n        config[\"rho_EM\"],\n        config[\"rho_VC\"],\n    ]\n\n\ndef run_experiment(configs, simplify_labels, exp_name):\n    print(f\"\\n{'#'*70}\")\n    print(f\"# Experiment: {exp_name}\")\n    print(f\"{'#'*70}\")\n\n    labels = []\n    feature_matrix = []\n    per_config_results = []\n\n    for c in configs:\n        label, best_delta = get_label(c, simplify=simplify_labels)\n        labels.append(label)\n        feature_matrix.append(build_features(c))\n        deltas = compute_delta_f1(c)\n        lp_delta = deltas.get(\"lp_selection\", 0)\n        per_config_results.append({\n            \"config_id\": c[\"config_id\"],\n            \"model_family\": c[\"model_family\"],\n            \"model_size\": c[\"model_size\"],\n            \"dataset\": c[\"dataset\"],\n            \"regime\": c[\"regime\"],\n            \"greedy_f1\": round(c[\"greedy_f1\"], 4),\n            \"oracle_f1\": round(c[\"oracle_f1\"], 4),\n            \"degeneracy_rate\": round(c[\"degeneracy_rate\"], 4),\n            \"construction_deltas_pp\": {k: round(v * 100, 2) for k, v in deltas.items()},\n            \"best_method\": label,\n            \"best_delta_pp\": round(best_delta * 100, 2),\n            \"lp_delta_pp\": round(lp_delta * 100, 2),\n        })\n\n    X = np.array(feature_matrix)\n    label_counts = Counter(labels)\n    print(f\"\\nLabel distribution: {dict(label_counts)}\")\n    print(f\"N configs: {len(configs)}\")\n\n    for pcr in per_config_results:\n        print(f\"  {pcr['config_id']:40s} -> {pcr['best_method']:20s} (D={pcr['best_delta_pp']:+.2f}pp, LP={pcr['lp_delta_pp']:+.2f}pp)\")\n\n    le = LabelEncoder()\n    y = le.fit_transform(labels)\n    class_names = list(le.classes_)\n\n    loo = LeaveOneOut()\n    scaler = StandardScaler()\n\n    results = {}\n    for model_name, model_cls, model_kwargs in [\n        (\"LogisticRegression\", LogisticRegression, {\"C\": 1.0, \"max_iter\": 1000}),\n        (\"RandomForest\", RandomForestClassifier, {\"n_estimators\": 100, \"max_depth\": 3, \"random_state\": 42}),\n    ]:\n        preds = []\n        pred_labels_list = []\n        for train_idx, test_idx in loo.split(X):\n            X_tr, X_te = X[train_idx], X[test_idx]\n            y_tr = y[train_idx]\n            Xs_tr = scaler.fit_transform(X_tr)\n            Xs_te = scaler.transform(X_te)\n            model = model_cls(**model_kwargs)\n            model.fit(Xs_tr, y_tr)\n            pred = model.predict(Xs_te)[0]\n            preds.append(pred)\n            pred_labels_list.append(le.inverse_transform([pred])[0])\n\n        accuracy = np.mean(np.array(preds) == y)\n        router_delta_sum = oracle_delta_sum = lp_delta_sum = 0\n        for i, c in enumerate(configs):\n            deltas = compute_delta_f1(c)\n            predicted = pred_labels_list[i]\n            if predicted == \"none\":\n                router_delta = 0\n            elif predicted == \"consensus\":\n                r1 = deltas.get(\"consensus_theta2n\", -999)\n                r2 = deltas.get(\"consensus_lp_weighted\", -999)\n                router_delta = max(r1, r2)\n            else:\n                router_delta = deltas.get(predicted, 0)\n            oracle_delta = max(max(deltas.values()), 0) if deltas else 0\n            lp_delta = deltas.get(\"lp_selection\", 0)\n            router_delta_sum += router_delta\n            oracle_delta_sum += oracle_delta\n            lp_delta_sum += lp_delta\n\n        n = len(configs)\n        router_avg = router_delta_sum / n\n        oracle_avg = oracle_delta_sum / n\n        lp_avg = lp_delta_sum / n\n\n        cm = confusion_matrix(y, preds, labels=range(len(class_names)))\n\n        Xs_all = scaler.fit_transform(X)\n        full_model = model_cls(**model_kwargs)\n        full_model.fit(Xs_all, y)\n        if hasattr(full_model, \"feature_importances_\"):\n            imp = full_model.feature_importances_\n        elif hasattr(full_model, \"coef_\"):\n            imp = np.abs(full_model.coef_).mean(axis=0) if full_model.coef_.ndim > 1 else np.abs(full_model.coef_)\n        else:\n            imp = np.zeros(X.shape[1])\n        feature_imp = sorted(\n            {FEATURE_NAMES[i]: round(float(imp[i]), 4) for i in range(len(FEATURE_NAMES))}.items(),\n            key=lambda x: -x[1]\n        )\n\n        print(f\"\\n{'='*60}\")\n        print(f\"{model_name} — {exp_name}\")\n        print(f\"  LOO Accuracy:     {accuracy:.1%} ({int(accuracy * n)}/{n})\")\n        print(f\"  Router avg dF1:   {router_avg*100:+.2f} pp\")\n        print(f\"  Always-LP dF1:    {lp_avg*100:+.2f} pp\")\n        print(f\"  Oracle dF1:       {oracle_avg*100:+.2f} pp\")\n        print(f\"  Top features: {feature_imp[:5]}\")\n        print(f\"  CM classes: {class_names}\")\n        for ri, row in enumerate(cm):\n            print(f\"    {class_names[ri]:20s}: {[int(x) for x in row]}\")\n        for i in range(n):\n            ok = \"OK\" if pred_labels_list[i] == labels[i] else \"XX\"\n            print(f\"    {configs[i]['config_id']:40s} true={labels[i]:20s} pred={pred_labels_list[i]:20s} [{ok}]\")\n\n        per_config_preds = []\n        for i, c in enumerate(configs):\n            deltas = compute_delta_f1(c)\n            predicted = pred_labels_list[i]\n            if predicted == \"consensus\":\n                pd_ = max(deltas.get(\"consensus_theta2n\", 0), deltas.get(\"consensus_lp_weighted\", 0))\n            elif predicted == \"none\":\n                pd_ = 0\n            else:\n                pd_ = deltas.get(predicted, 0)\n            per_config_preds.append({\n                \"config_id\": c[\"config_id\"],\n                \"actual\": labels[i],\n                \"predicted\": predicted,\n                \"correct\": labels[i] == predicted,\n                \"predicted_delta_pp\": round(pd_ * 100, 2),\n            })\n\n        results[model_name] = {\n            \"accuracy\": round(accuracy, 4),\n            \"n_correct\": int(accuracy * n),\n            \"n_total\": n,\n            \"router_avg_delta_pp\": round(router_avg * 100, 2),\n            \"always_lp_avg_delta_pp\": round(lp_avg * 100, 2),\n            \"oracle_avg_delta_pp\": round(oracle_avg * 100, 2),\n            \"feature_importance\": dict(feature_imp),\n            \"confusion_matrix\": {\"classes\": class_names, \"matrix\": [[int(x) for x in row] for row in cm]},\n            \"per_config_predictions\": per_config_preds,\n        }\n\n    return per_config_results, label_counts, results\n\n\ndef main():\n    configs = []\n    missing = []\n    for spec in CONFIG_SPECS:\n        c = load_config(*spec)\n        if c is None:\n            missing.append(spec[0])\n        else:\n            configs.append(c)\n\n    print(f\"Loaded {len(configs)} configs, {len(missing)} missing\")\n    if missing:\n        print(f\"Missing: {missing}\")\n\n    # Run both 5-class and simplified 3-class experiments\n    pcr_5, lc_5, res_5 = run_experiment(configs, simplify_labels=False, exp_name=\"5-class (fine-grained)\")\n    pcr_3, lc_3, res_3 = run_experiment(configs, simplify_labels=True, exp_name=\"3-class (simplified: lp/consensus/none)\")\n\n    # Pick the best overall\n    all_accs = [(f\"5-class_{m}\", r[\"accuracy\"], r) for m, r in res_5.items()]\n    all_accs += [(f\"3-class_{m}\", r[\"accuracy\"], r) for m, r in res_3.items()]\n    best_name, best_acc, best_r = max(all_accs, key=lambda x: (x[1], x[2][\"router_avg_delta_pp\"]))\n\n    print(f\"\\n\\n{'#'*70}\")\n    print(f\"# BEST MODEL: {best_name}\")\n    print(f\"#   Accuracy: {best_acc:.1%}\")\n    print(f\"#   Router dF1: {best_r['router_avg_delta_pp']:+.2f} pp\")\n    print(f\"#   Always-LP:  {best_r['always_lp_avg_delta_pp']:+.2f} pp\")\n    print(f\"#   Oracle:     {best_r['oracle_avg_delta_pp']:+.2f} pp\")\n    print(f\"{'#'*70}\")\n\n    output = {\n        \"experiment\": \"E1_adaptive_signal_routing\",\n        \"n_configs\": len(configs),\n        \"missing_configs\": missing,\n        \"construction_methods\": CONSTRUCTION_METHODS,\n        \"method_mapping\": {\n            \"lp_selection\": \"LP signal-based sample selection\",\n            \"majority_vote\": \"Token-level majority voting\",\n            \"consensus_theta2n\": \"Entity-level voting (uniform, threshold=2/N)\",\n            \"consensus_lp_weighted\": \"Entity-level voting (LP-weighted)\",\n        },\n        \"feature_names\": FEATURE_NAMES,\n        \"experiments\": {\n            \"5_class\": {\n                \"label_distribution\": dict(lc_5),\n                \"per_config_data\": pcr_5,\n                \"models\": res_5,\n            },\n            \"3_class_simplified\": {\n                \"description\": \"Merged consensus_theta2n + consensus_lp_weighted -> consensus\",\n                \"label_distribution\": dict(lc_3),\n                \"per_config_data\": pcr_3,\n                \"models\": res_3,\n            },\n        },\n        \"summary\": {\n            \"best_model\": best_name,\n            \"best_accuracy\": best_acc,\n            \"best_router_delta_pp\": best_r[\"router_avg_delta_pp\"],\n            \"always_lp_delta_pp\": best_r[\"always_lp_avg_delta_pp\"],\n            \"oracle_delta_pp\": best_r[\"oracle_avg_delta_pp\"],\n            \"router_beats_lp\": best_r[\"router_avg_delta_pp\"] > best_r[\"always_lp_avg_delta_pp\"],\n            \"accuracy_above_60\": best_acc > 0.6,\n        },\n    }\n\n    out_dir = os.path.join(BASE, \"artifacts\", \"e1_signal_routing\")\n    os.makedirs(out_dir, exist_ok=True)\n    out_path = os.path.join(out_dir, \"routing_results.json\")\n    with open(out_path, \"w\") as f:\n        json.dump(output, f, indent=2)\n    print(f\"\\nResults saved to {out_path}\")\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF\npython e1_signal_routing_v2.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_e1-adaptive-signal-routing_20260520T093508",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090-b",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && cat > e1_signal_routing_v2.py << 'PYEOF'\n#!/usr/bin/env python3\n\"\"\"E1 Adaptive Signal Routing v2: config-level construction method router.\nFixes: dataset normalization for fewnerd_7b, adds simplified 3-class scheme.\"\"\"\n\nimport json\nimport os\nfrom collections import Counter\n\nimport numpy as np\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.ensemble import RandomForestClassifier\nfrom sklearn.model_selection import LeaveOneOut\nfrom sklearn.preprocessing import StandardScaler, LabelEncoder\nfrom sklearn.metrics import confusion_matrix\n\nBASE = \"/root/autodl-tmp/struct_self_consist_ie\"\nOUT = os.path.join(BASE, \"output\")\n\nCONSTRUCTION_METHODS = [\"lp_selection\", \"majority_vote\", \"consensus_theta2n\", \"consensus_lp_weighted\"]\n\nCONFIG_SPECS = [\n    # (path, dataset_key, model_family, model_size, regime, seed, forced_dataset)\n    (f\"{OUT}/exp_scierc_seed456/full_signal_report.json\", \"scierc\", \"Qwen3\", 8, \"ft\", 456, \"scierc\"),\n    (f\"{OUT}/exp_scierc_seed789/full_signal_report.json\", \"scierc\", \"Qwen3\", 8, \"ft\", 789, \"scierc\"),\n    (f\"{OUT}/exp_conll_seed123/full_signal_report.json\", \"conll\", \"Qwen3\", 8, \"ft\", 123, \"conll\"),\n    (f\"{OUT}/exp_conll_seed456/full_signal_report.json\", \"conll\", \"Qwen3\", 8, \"ft\", 456, \"conll\"),\n    (f\"{OUT}/exp_fewnerd_seed123/full_signal_report.json\", \"fewnerd\", \"Qwen3\", 8, \"ft\", 123, \"fewnerd\"),\n    (f\"{OUT}/exp_fewnerd_seed456/full_signal_report.json\", \"fewnerd\", \"Qwen3\", 8, \"ft\", 456, \"fewnerd\"),\n    (f\"{OUT}/exp_fewnerd_seed789/full_signal_report.json\", \"fewnerd\", \"Qwen3\", 8, \"ft\", 789, \"fewnerd\"),\n    (f\"{OUT}/72b_zeroshot/full_signal_report.json\", \"scierc\", \"Qwen2.5\", 72, \"zs\", None, \"scierc\"),\n    (f\"{OUT}/72b_zeroshot/full_signal_report.json\", \"conll2003\", \"Qwen2.5\", 72, \"zs\", None, \"conll\"),\n    (f\"{OUT}/72b_zeroshot/full_signal_report.json\", \"fewnerd\", \"Qwen2.5\", 72, \"zs\", None, \"fewnerd\"),\n    (f\"{OUT}/72b_fewshot_signals/scierc/full_signal_report.json\", \"scierc\", \"Qwen2.5\", 72, \"fs\", None, \"scierc\"),\n    (f\"{OUT}/72b_fewshot_signals/conll2003/full_signal_report.json\", \"conll\", \"Qwen2.5\", 72, \"fs\", None, \"conll\"),\n    (f\"{OUT}/72b_fewshot_signals/fewnerd/full_signal_report.json\", \"fewnerd\", \"Qwen2.5\", 72, \"fs\", None, \"fewnerd\"),\n    (f\"{OUT}/fewnerd_7b/qwen25_7b_n8_seed42/full_signal_report.json\", \"qwen25_7b_n8_seed42\", \"Qwen2.5\", 7, \"ft\", 42, \"fewnerd\"),\n    (f\"{OUT}/fewnerd_7b/qwen25_7b_n8_seed123/full_signal_report.json\", \"qwen25_7b_n8_seed123\", \"Qwen2.5\", 7, \"ft\", 123, \"fewnerd\"),\n    (f\"{OUT}/fewnerd_7b/qwen25_7b_n8_seed456/full_signal_report.json\", \"qwen25_7b_n8_seed456\", \"Qwen2.5\", 7, \"ft\", 456, \"fewnerd\"),\n]\n\n\ndef load_config(path, dataset_key, model_family, model_size, regime, seed, forced_dataset):\n    if not os.path.exists(path):\n        return None\n    with open(path) as f:\n        data = json.load(f)\n    if dataset_key in data:\n        d = data[dataset_key]\n    else:\n        keys = list(data.keys())\n        d = data[keys[0]] if len(keys) == 1 else data\n\n    baselines = d.get(\"baselines\", {})\n    greedy_f1 = baselines.get(\"greedy\", {}).get(\"mean\", d.get(\"greedy_f1\"))\n    oracle_f1 = baselines.get(\"oracle\", {}).get(\"mean\", d.get(\"oracle_f1\"))\n    if greedy_f1 is None:\n        return None\n\n    signals = d.get(\"signals\", {})\n    construction_f1 = {m: baselines[m][\"mean\"] for m in CONSTRUCTION_METHODS if m in baselines}\n\n    return {\n        \"config_id\": f\"{model_family}_{model_size}B_{regime}_{forced_dataset}_s{seed}\",\n        \"model_family\": model_family,\n        \"model_size\": model_size,\n        \"dataset\": forced_dataset,\n        \"regime\": regime,\n        \"seed\": seed,\n        \"greedy_f1\": greedy_f1,\n        \"oracle_f1\": oracle_f1,\n        \"oracle_headroom\": oracle_f1 - greedy_f1 if oracle_f1 else None,\n        \"degeneracy_rate\": d.get(\"degeneracy_rate\", 0),\n        \"n_instances\": d.get(\"n_instances\"),\n        \"rho_SJ\": signals.get(\"SJ\", {}).get(\"rho\", 0),\n        \"rho_FK\": signals.get(\"FK\", {}).get(\"rho\", 0),\n        \"rho_LP\": signals.get(\"LP\", {}).get(\"rho\", 0),\n        \"rho_EM\": signals.get(\"EM\", {}).get(\"rho\", 0),\n        \"rho_VC\": signals.get(\"VC\", {}).get(\"rho\", 0),\n        \"construction_f1\": construction_f1,\n    }\n\n\ndef compute_delta_f1(config):\n    greedy = config[\"greedy_f1\"]\n    return {m: f1 - greedy for m, f1 in config[\"construction_f1\"].items()}\n\n\ndef get_label(config, simplify=False):\n    deltas = compute_delta_f1(config)\n    if not deltas:\n        return \"none\", 0.0\n    best_method = max(deltas, key=deltas.get)\n    best_delta = deltas[best_method]\n    if best_delta <= 0:\n        label = \"none\"\n    else:\n        label = best_method\n    if simplify:\n        if label in (\"consensus_theta2n\", \"consensus_lp_weighted\"):\n            label = \"consensus\"\n    return label, best_delta\n\n\nFEATURE_NAMES = [\n    \"model_size\", \"model_family\", \"dataset\", \"regime\",\n    \"base_f1\", \"degeneracy_rate\", \"oracle_headroom\",\n    \"rho_SJ\", \"rho_FK\", \"rho_LP\", \"rho_EM\", \"rho_VC\"\n]\n\n\ndef build_features(config):\n    ds_map = {\"scierc\": 0, \"conll\": 1, \"fewnerd\": 2}\n    regime_map = {\"ft\": 0, \"zs\": 1, \"fs\": 2}\n    family_map = {\"Qwen3\": 0, \"Qwen2.5\": 1, \"LLaMA\": 2}\n    return [\n        config[\"model_size\"],\n        family_map.get(config[\"model_family\"], 0),\n        ds_map.get(config[\"dataset\"], 0),\n        regime_map.get(config[\"regime\"], 0),\n        config[\"greedy_f1\"],\n        config[\"degeneracy_rate\"],\n        config[\"oracle_headroom\"] or 0,\n        config[\"rho_SJ\"],\n        config[\"rho_FK\"],\n        config[\"rho_LP\"],\n        config[\"rho_EM\"],\n        config[\"rho_VC\"],\n    ]\n\n\ndef run_experiment(configs, simplify_labels, exp_name):\n    print(f\"\\n{'#'*70}\")\n    print(f\"# Experiment: {exp_name}\")\n    print(f\"{'#'*70}\")\n\n    labels = []\n    feature_matrix = []\n    per_config_results = []\n\n    for c in configs:\n        label, best_delta = get_label(c, simplify=simplify_labels)\n        labels.append(label)\n        feature_matrix.append(build_features(c))\n        deltas = compute_delta_f1(c)\n        lp_delta = deltas.get(\"lp_selection\", 0)\n        per_config_results.append({\n            \"config_id\": c[\"config_id\"],\n            \"model_family\": c[\"model_family\"],\n            \"model_size\": c[\"model_size\"],\n            \"dataset\": c[\"dataset\"],\n            \"regime\": c[\"regime\"],\n            \"greedy_f1\": round(c[\"greedy_f1\"], 4),\n            \"oracle_f1\": round(c[\"oracle_f1\"], 4),\n            \"degeneracy_rate\": round(c[\"degeneracy_rate\"], 4),\n            \"construction_deltas_pp\": {k: round(v * 100, 2) for k, v in deltas.items()},\n            \"best_method\": label,\n            \"best_delta_pp\": round(best_delta * 100, 2),\n            \"lp_delta_pp\": round(lp_delta * 100, 2),\n        })\n\n    X = np.array(feature_matrix)\n    label_counts = Counter(labels)\n    print(f\"\\nLabel distribution: {dict(label_counts)}\")\n    print(f\"N configs: {len(configs)}\")\n\n    for pcr in per_config_results:\n        print(f\"  {pcr['config_id']:40s} -> {pcr['best_method']:20s} (D={pcr['best_delta_pp']:+.2f}pp, LP={pcr['lp_delta_pp']:+.2f}pp)\")\n\n    le = LabelEncoder()\n    y = le.fit_transform(labels)\n    class_names = list(le.classes_)\n\n    loo = LeaveOneOut()\n    scaler = StandardScaler()\n\n    results = {}\n    for model_name, model_cls, model_kwargs in [\n        (\"LogisticRegression\", LogisticRegression, {\"C\": 1.0, \"max_iter\": 1000}),\n        (\"RandomForest\", RandomForestClassifier, {\"n_estimators\": 100, \"max_depth\": 3, \"random_state\": 42}),\n    ]:\n        preds = []\n        pred_labels_list = []\n        for train_idx, test_idx in loo.split(X):\n            X_tr, X_te = X[train_idx], X[test_idx]\n            y_tr = y[train_idx]\n            Xs_tr = scaler.fit_transform(X_tr)\n            Xs_te = scaler.transform(X_te)\n            model = model_cls(**model_kwargs)\n            model.fit(Xs_tr, y_tr)\n            pred = model.predict(Xs_te)[0]\n            preds.append(pred)\n            pred_labels_list.append(le.inverse_transform([pred])[0])\n\n        accuracy = np.mean(np.array(preds) == y)\n        router_delta_sum = oracle_delta_sum = lp_delta_sum = 0\n        for i, c in enumerate(configs):\n            deltas = compute_delta_f1(c)\n            predicted = pred_labels_list[i]\n            if predicted == \"none\":\n                router_delta = 0\n            elif predicted == \"consensus\":\n                r1 = deltas.get(\"consensus_theta2n\", -999)\n                r2 = deltas.get(\"consensus_lp_weighted\", -999)\n                router_delta = max(r1, r2)\n            else:\n                router_delta = deltas.get(predicted, 0)\n            oracle_delta = max(max(deltas.values()), 0) if deltas else 0\n            lp_delta = deltas.get(\"lp_selection\", 0)\n            router_delta_sum += router_delta\n            oracle_delta_sum += oracle_delta\n            lp_delta_sum += lp_delta\n\n        n = len(configs)\n        router_avg = router_delta_sum / n\n        oracle_avg = oracle_delta_sum / n\n        lp_avg = lp_delta_sum / n\n\n        cm = confusion_matrix(y, preds, labels=range(len(class_names)))\n\n        Xs_all = scaler.fit_transform(X)\n        full_model = model_cls(**model_kwargs)\n        full_model.fit(Xs_all, y)\n        if hasattr(full_model, \"feature_importances_\"):\n            imp = full_model.feature_importances_\n        elif hasattr(full_model, \"coef_\"):\n            imp = np.abs(full_model.coef_).mean(axis=0) if full_model.coef_.ndim > 1 else np.abs(full_model.coef_)\n        else:\n            imp = np.zeros(X.shape[1])\n        feature_imp = sorted(\n            {FEATURE_NAMES[i]: round(float(imp[i]), 4) for i in range(len(FEATURE_NAMES))}.items(),\n            key=lambda x: -x[1]\n        )\n\n        print(f\"\\n{'='*60}\")\n        print(f\"{model_name} — {exp_name}\")\n        print(f\"  LOO Accuracy:     {accuracy:.1%} ({int(accuracy * n)}/{n})\")\n        print(f\"  Router avg dF1:   {router_avg*100:+.2f} pp\")\n        print(f\"  Always-LP dF1:    {lp_avg*100:+.2f} pp\")\n        print(f\"  Oracle dF1:       {oracle_avg*100:+.2f} pp\")\n        print(f\"  Top features: {feature_imp[:5]}\")\n        print(f\"  CM classes: {class_names}\")\n        for ri, row in enumerate(cm):\n            print(f\"    {class_names[ri]:20s}: {[int(x) for x in row]}\")\n        for i in range(n):\n            ok = \"OK\" if pred_labels_list[i] == labels[i] else \"XX\"\n            print(f\"    {configs[i]['config_id']:40s} true={labels[i]:20s} pred={pred_labels_list[i]:20s} [{ok}]\")\n\n        per_config_preds = []\n        for i, c in enumerate(configs):\n            deltas = compute_delta_f1(c)\n            predicted = pred_labels_list[i]\n            if predicted == \"consensus\":\n                pd_ = max(deltas.get(\"consensus_theta2n\", 0), deltas.get(\"consensus_lp_weighted\", 0))\n            elif predicted == \"none\":\n                pd_ = 0\n            else:\n                pd_ = deltas.get(predicted, 0)\n            per_config_preds.append({\n                \"config_id\": c[\"config_id\"],\n                \"actual\": labels[i],\n                \"predicted\": predicted,\n                \"correct\": labels[i] == predicted,\n                \"predicted_delta_pp\": round(pd_ * 100, 2),\n            })\n\n        results[model_name] = {\n            \"accuracy\": round(accuracy, 4),\n            \"n_correct\": int(accuracy * n),\n            \"n_total\": n,\n            \"router_avg_delta_pp\": round(router_avg * 100, 2),\n            \"always_lp_avg_delta_pp\": round(lp_avg * 100, 2),\n            \"oracle_avg_delta_pp\": round(oracle_avg * 100, 2),\n            \"feature_importance\": dict(feature_imp),\n            \"confusion_matrix\": {\"classes\": class_names, \"matrix\": [[int(x) for x in row] for row in cm]},\n            \"per_config_predictions\": per_config_preds,\n        }\n\n    return per_config_results, label_counts, results\n\n\ndef main():\n    configs = []\n    missing = []\n    for spec in CONFIG_SPECS:\n        c = load_config(*spec)\n        if c is None:\n            missing.append(spec[0])\n        else:\n            configs.append(c)\n\n    print(f\"Loaded {len(configs)} configs, {len(missing)} missing\")\n    if missing:\n        print(f\"Missing: {missing}\")\n\n    # Run both 5-class and simplified 3-class experiments\n    pcr_5, lc_5, res_5 = run_experiment(configs, simplify_labels=False, exp_name=\"5-class (fine-grained)\")\n    pcr_3, lc_3, res_3 = run_experiment(configs, simplify_labels=True, exp_name=\"3-class (simplified: lp/consensus/none)\")\n\n    # Pick the best overall\n    all_accs = [(f\"5-class_{m}\", r[\"accuracy\"], r) for m, r in res_5.items()]\n    all_accs += [(f\"3-class_{m}\", r[\"accuracy\"], r) for m, r in res_3.items()]\n    best_name, best_acc, best_r = max(all_accs, key=lambda x: (x[1], x[2][\"router_avg_delta_pp\"]))\n\n    print(f\"\\n\\n{'#'*70}\")\n    print(f\"# BEST MODEL: {best_name}\")\n    print(f\"#   Accuracy: {best_acc:.1%}\")\n    print(f\"#   Router dF1: {best_r['router_avg_delta_pp']:+.2f} pp\")\n    print(f\"#   Always-LP:  {best_r['always_lp_avg_delta_pp']:+.2f} pp\")\n    print(f\"#   Oracle:     {best_r['oracle_avg_delta_pp']:+.2f} pp\")\n    print(f\"{'#'*70}\")\n\n    output = {\n        \"experiment\": \"E1_adaptive_signal_routing\",\n        \"n_configs\": len(configs),\n        \"missing_configs\": missing,\n        \"construction_methods\": CONSTRUCTION_METHODS,\n        \"method_mapping\": {\n            \"lp_selection\": \"LP signal-based sample selection\",\n            \"majority_vote\": \"Token-level majority voting\",\n            \"consensus_theta2n\": \"Entity-level voting (uniform, threshold=2/N)\",\n            \"consensus_lp_weighted\": \"Entity-level voting (LP-weighted)\",\n        },\n        \"feature_names\": FEATURE_NAMES,\n        \"experiments\": {\n            \"5_class\": {\n                \"label_distribution\": dict(lc_5),\n                \"per_config_data\": pcr_5,\n                \"models\": res_5,\n            },\n            \"3_class_simplified\": {\n                \"description\": \"Merged consensus_theta2n + consensus_lp_weighted -> consensus\",\n                \"label_distribution\": dict(lc_3),\n                \"per_config_data\": pcr_3,\n                \"models\": res_3,\n            },\n        },\n        \"summary\": {\n            \"best_model\": best_name,\n            \"best_accuracy\": best_acc,\n            \"best_router_delta_pp\": best_r[\"router_avg_delta_pp\"],\n            \"always_lp_delta_pp\": best_r[\"always_lp_avg_delta_pp\"],\n            \"oracle_delta_pp\": best_r[\"oracle_avg_delta_pp\"],\n            \"router_beats_lp\": best_r[\"router_avg_delta_pp\"] > best_r[\"always_lp_avg_delta_pp\"],\n            \"accuracy_above_60\": best_acc > 0.6,\n        },\n    }\n\n    out_dir = os.path.join(BASE, \"artifacts\", \"e1_signal_routing\")\n    os.makedirs(out_dir, exist_ok=True)\n    out_path = os.path.join(out_dir, \"routing_results.json\")\n    with open(out_path, \"w\") as f:\n        json.dump(output, f, indent=2)\n    print(f\"\\nResults saved to {out_path}\")\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF\npython e1_signal_routing_v2.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 116 · 2026-05-20T09:48:33.369565+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && cat > e1_signal_routing_v2.py << \\\\'PYEOF\\\\'\\\\n#!/usr/bin/env python3\\\\n\\\"\\\"\\\"E1 Adaptive Signal Routing v2: config-level construction method router.\\\\nFixes: dataset normalization for fewnerd_7b, adds simplified 3-class scheme.\\\"\\\"\\\"\\\\n\\\\nimport json\\\\nimport os\\\\nfrom collections import Counter\\\\n\\\\nimport numpy as np\\\\nfrom sklearn.linear_model import LogisticRegression\\\\nfrom sklearn.ensemble import RandomForestClassifier\\\\nfrom sklearn.model_selection import LeaveOneOut\\\\nfrom sklearn.preprocessing import StandardScaler, LabelEncoder\\\\nfrom sklearn.metrics import confusion_matrix\\\\n\\\\nBASE = \\\"/root/autodl-tmp/struct_self_consist_ie\\\"\\\\nOUT = os.path.join(BASE, \\\"output\\\")\\\\n\\\\nCONSTRUCTION_METHODS = [\\\"lp_selection\\\", \\\"majority_vote\\\", \\\"consensus_theta2n\\\", \\\"consensus_lp_weighted\\\"]\\\\n\\\\nCONFIG_SPECS = [\\\\n    # (path, dataset_key, model_family, model_size, regime, seed, forced_dataset)\\\\n    (f\\\"{OUT}/exp_scierc_seed456/full_signal_report.json\\\", \\\"scierc\\\", \\\"Qwen3\\\", 8, \\\"ft\\\", 456, \\\"scierc\\\"),\\\\n    (f\\\"{OUT}/exp_scierc_seed789/full_signal_report.json\\\", \\\"scierc\\\", \\\"Qwen3\\\", 8, \\\"ft\\\", 789, \\\"scierc\\\"),\\\\n    (f\\\"{OUT}/exp_conll_seed123/full_signal_report.json\\\", \\\"conll\\\", \\\"Qwen3\\\", 8, \\\"ft\\\", 123, \\\"conll\\\"),\\\\n    (f\\\"{OUT}/exp_conll_seed456/full_signal_report.json\\\", \\\"conll\\\", \\\"Qwen3\\\", 8, \\\"ft\\\", 456, \\\"conll\\\"),\\\\n    (f\\\"{OUT}/exp_fewnerd_seed123/full_signal_report.json\\\", \\\"fewnerd\\\", \\\"Qwen3\\\", 8, \\\"ft\\\", 123, \\\"fewnerd\\\"),\\\\n    (f\\\"{OUT}/exp_fewnerd_seed456/full_signal_report.json\\\", \\\"fewnerd\\\", \\\"Qwen3\\\",
+…[truncated 17457 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_e1-adaptive-signal-routing_20260520T093508",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 117 · 2026-05-20T09:48:33.369859+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/e1_signal_routing.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_e1-adaptive-signal-routing_20260520T093508",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/e1_signal_routing.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 118 · 2026-05-20T09:48:33.370323+00:00_
+
+1	#!/usr/bin/env python3
+2	"""E1 Adaptive Signal Routing: config-level construction method router."""
+3	
+4	import json
+5	import os
+6	import sys
+7	from collections import Counter
+8	
+9	import numpy as np
+10	from sklearn.linear_model import LogisticRegression
+11	from sklearn.ensemble import RandomForestClassifier
+12	from sklearn.model_selection import LeaveOneOut
+13	from sklearn.preprocessing import StandardScaler, LabelEncoder
+14	from sklearn.metrics import confusion_matrix
+15	
+16	BASE = "/root/autodl-tmp/struct_self_consist_ie"
+17	OUT = os.path.join(BASE, "output")
+18	
+19	CONSTRUCTION_METHODS = ["lp_selection", "majority_vote", "consensus_theta2n", "consensus_lp_weighted"]
+20	
+21	CONFIG_SPECS = [
+22	    # (path_to_report, dataset_key, model_family, model_size, regime, seed)
+23	    # Qwen3-8B FT
+24	    (f"{OUT}/exp_scierc_seed456/full_signal_report.json", "scierc", "Qwen3", 8, "ft", 456),
+25	    (f"{OUT}/exp_scierc_seed789/full_signal_report.json", "scierc", "Qwen3", 8, "ft", 789),
+26	    (f"{OUT}/exp_conll_seed123/full_signal_report.json", "conll", "Qwen3", 8, "ft", 123),
+27	    (f"{OUT}/exp_conll_seed456/full_signal_report.json", "conll", "Qwen3", 8, "ft", 456),
+28	    (f"{OUT}/exp_fewnerd_seed123/full_signal_report.json", "fewnerd", "Qwen3", 8, "ft", 123),
+29	    (f"{OUT}/exp_fewnerd_seed456/full_signal_report.json", "fewnerd", "Qwen3", 8, "ft", 456),
+30	    (f"{OUT}/exp_fewnerd_seed789/full_signal_report.json", "fewnerd", "Qwen3", 8, "ft", 789),
+31	    # Qwen2.5-72B ZS
+32	    (f"{OUT}/72b_zeroshot/full_signal_report.json", "scierc", "Qwen2.5", 72, "zs", None),
+33	    (f"{OUT}/72b_zeroshot/full_signal_report.json", "conll2003", "Qwen2.5", 72, "zs", None),
+34	    (f"{OUT}/72b_zeroshot/full_signal_report.json", "fewnerd", "Qwen2.5", 72, "zs", None),
+35	    # Qwen2.5-72B FS
+36	    (f"{OUT}/72b_fewshot_signals/scierc/full_signal_report.json", "scierc", "Qwen2.5", 72, "fs", None),
+37	    (f"{OUT}/72b_fewshot_signals/conll2003/full_signal_report.json", "conll", "Qwen2.5"
+…[truncated 12289 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_e1-adaptive-signal-routing_20260520T093508",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 119 · 2026-05-20T09:48:33.370685+00:00_
+
+called Write
+
+<details open><summary>🔧 Tool call — Write</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/e1_signal_routing.py",
+  "content": "#!/usr/bin/env python3\n\"\"\"E1 Adaptive Signal Routing: config-level construction method router.\"\"\"\n\nimport json\nimport os\nfrom collections import Counter\n\nimport numpy as np\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.ensemble import RandomForestClassifier\nfrom sklearn.model_selection import LeaveOneOut\nfrom sklearn.preprocessing import StandardScaler, LabelEncoder\nfrom sklearn.metrics import confusion_matrix\n\nBASE = \"/root/autodl-tmp/struct_self_consist_ie\"\nOUT = os.path.join(BASE, \"output\")\n\nCONSTRUCTION_METHODS = [\n    \"lp_selection\", \"majority_vote\", \"consensus_theta2n\", \"consensus_lp_weighted\"\n]\n\nCONFIG_SPECS = [\n    # (path, dataset_key, model_family, model_size, regime, seed, forced_dataset)\n    (f\"{OUT}/exp_scierc_seed456/full_signal_report.json\", \"scierc\", \"Qwen3\", 8, \"ft\", 456, \"scierc\"),\n    (f\"{OUT}/exp_scierc_seed789/full_signal_report.json\", \"scierc\", \"Qwen3\", 8, \"ft\", 789, \"scierc\"),\n    (f\"{OUT}/exp_conll_seed123/full_signal_report.json\", \"conll\", \"Qwen3\", 8, \"ft\", 123, \"conll\"),\n    (f\"{OUT}/exp_conll_seed456/full_signal_report.json\", \"conll\", \"Qwen3\", 8, \"ft\", 456, \"conll\"),\n    (f\"{OUT}/exp_fewnerd_seed123/full_signal_report.json\", \"fewnerd\", \"Qwen3\", 8, \"ft\", 123, \"fewnerd\"),\n    (f\"{OUT}/exp_fewnerd_seed456/full_signal_report.json\", \"fewnerd\", \"Qwen3\", 8, \"ft\", 456, \"fewnerd\"),\n    (f\"{OUT}/exp_fewnerd_seed789/full_signal_report.json\", \"fewnerd\", \"Qwen3\", 8, \"ft\", 789, \"fewnerd\"),\n    (f\"{OUT}/72b_zeroshot/full_signal_report.json\", \"scierc\", \"Qwen2.5\", 72, \"zs\", None, \"scierc\"),\n    (f\"{OUT}/72b_zeroshot/full_signal_report.json\", \"conll2003\", \"Qwen2.5\", 72, \"zs\", None, \"conll\"),\n    (f\"{OUT}/72b_zeroshot/full_signal_report.json\", \"fewnerd\", \"Qwen2.5\", 72, \"zs\", None, \"fewnerd\"),\n    (f\"{OUT}/72b_fewshot_signals/scierc/full_signal_report.json\", \"scierc\", \"Qwen2.5\", 72, \"fs\", None, \"scierc\"),\n    (f\"{OUT}/72b_fewshot_signals/conll2003/full_signal_report.json\", \"conll\", \"Qwen2.5\", 72, \"fs\", None, \"conll\"),\n    (f\"{OUT}/72b_fewshot_signals/fewnerd/full_signal_report.json\", \"fewnerd\", \"Qwen2.5\", 72, \"fs\", None, \"fewnerd\"),\n    (f\"{OUT}/fewnerd_7b/qwen25_7b_n8_seed42/full_signal_report.json\", \"qwen25_7b_n8_seed42\", \"Qwen2.5\", 7, \"ft\", 42, \"fewnerd\"),\n    (f\"{OUT}/fewnerd_7b/qwen25_7b_n8_seed123/full_signal_report.json\", \"qwen25_7b_n8_seed123\", \"Qwen2.5\", 7, \"ft\", 123, \"fewnerd\"),\n    (f\"{OUT}/fewnerd_7b/qwen25_7b_n8_seed456/full_signal_report.json\", \"qwen25_7b_n8_seed456\", \"Qwen2.5\", 7, \"ft\", 456, \"fewnerd\"),\n]\n\nFEATURE_NAMES = [\n    \"model_size\", \"model_family\", \"dataset\", \"regime\",\n    \"base_f1\", \"degeneracy_rate\", \"oracle_headroom\",\n    \"rho_SJ\", \"rho_FK\", \"rho_LP\", \"rho_EM\", \"rho_VC\"\n]\n\n\nclass NumpyEncoder(json.JSONEncoder):\n    def default(self, obj):\n        if isinstance(obj, (np.integer,)):\n            return int(obj)\n        if isinstance(obj, (np.floating,)):\n            return float(obj)\n        if isinstance(obj, (np.bool_,)):\n            return bool(obj)\n        if isinstance(obj, np.ndarray):\n            return obj.tolist()\n        return super().default(obj)\n\n\ndef load_config(path, dataset_key, model_family, model_size, regime, seed, forced_dataset):\n    if not os.path.exists(path):\n        return None\n    with open(path) as f:\n        data = json.load(f)\n    if dataset_key in data:\n        d = data[dataset_key]\n    else:\n        keys = list(data.keys())\n        d = data[keys[0]] if len(keys) == 1 else data\n\n    baselines = d.get(\"baselines\", {})\n    greedy_f1 = baselines.get(\"greedy\", {}).get(\"mean\", d.get(\"greedy_f1\"))\n    oracle_f1 = baselines.get(\"oracle\", {}).get(\"mean\", d.get(\"oracle_f1\"))\n    if greedy_f1 is None:\n        return None\n\n    signals = d.get(\"signals\", {})\n    construction_f1 = {m: baselines[m][\"mean\"] for m in CONSTRUCTION_METHODS if m in baselines}\n\n    return {\n        \"config_id\": f\"{model_family}_{model_size}B_{regime}_{forced_dataset}_s{seed}\",\n        \"model_family\": model_family,\n        \"model_size\": model_size,\n        \"dataset\": forced_dataset,\n        \"regime\": regime,\n        \"seed\": seed,\n        \"greedy_f1\": greedy_f1,\n        \"oracle_f1\": oracle_f1,\n        \"oracle_headroom\": oracle_f1 - greedy_f1 if oracle_f1 else None,\n        \"degeneracy_rate\": d.get(\"degeneracy_rate\", 0),\n        \"n_instances\": d.get(\"n_instances\"),\n        \"rho_SJ\": signals.get(\"SJ\", {}).get(\"rho\", 0),\n        \"rho_FK\": signals.get(\"FK\", {}).get(\"rho\", 0),\n        \"rho_LP\": signals.get(\"LP\", {}).get(\"rho\", 0),\n        \"rho_EM\": signals.get(\"EM\", {}).get(\"rho\", 0),\n        \"rho_VC\": signals.get(\"VC\", {}).get(\"rho\", 0),\n        \"construction_f1\": construction_f1,\n    }\n\n\ndef compute_delta_f1(config):\n    greedy = config[\"greedy_f1\"]\n    return {m: f1 - greedy for m, f1 in config[\"construction_f1\"].items()}\n\n\ndef get_label(config, simplify=False):\n    deltas = compute_delta_f1(config)\n    if not deltas:\n        return \"none\", 0.0\n    best_method = max(deltas, key=deltas.get)\n    best_delta = deltas[best_method]\n    label = \"none\" if best_delta <= 0 else best_method\n    if simplify and label in (\"consensus_theta2n\", \"consensus_lp_weighted\"):\n        label = \"consensus\"\n    return label, best_delta\n\n\ndef build_features(config):\n    ds_map = {\"scierc\": 0, \"conll\": 1, \"fewnerd\": 2}\n    regime_map = {\"ft\": 0, \"zs\": 1, \"fs\": 2}\n    family_map = {\"Qwen3\": 0, \"Qwen2.5\": 1, \"LLaMA\": 2}\n    return [\n        config[\"model_size\"],\n        family_map.get(config[\"model_family\"], 0),\n        ds_map.get(config[\"dataset\"], 0),\n        regime_map.get(config[\"regime\"], 0),\n        config[\"greedy_f1\"],\n        config[\"degeneracy_rate\"],\n        config[\"oracle_headroom\"] or 0,\n        config[\"rho_SJ\"],\n        config[\"rho_FK\"],\n        config[\"rho_LP\"],\n        config[\"rho_EM\"],\n        config[\"rho_VC\"],\n    ]\n\n\ndef resolve_router_delta(predicted, deltas):\n    if predicted == \"none\":\n        return 0\n    if predicted == \"consensus\":\n        return max(deltas.get(\"consensus_theta2n\", -999), deltas.get(\"consensus_lp_weighted\", -999))\n    return deltas.get(predicted, 0)\n\n\ndef run_experiment(configs, simplify_labels, exp_name):\n    print(f\"\\n{'#'*70}\")\n    print(f\"# {exp_name}\")\n    print(f\"{'#'*70}\")\n\n    labels = []\n    feature_matrix = []\n    per_config_results = []\n\n    for c in configs:\n        label, best_delta = get_label(c, simplify=simplify_labels)\n        labels.append(label)\n        feature_matrix.append(build_features(c))\n        deltas = compute_delta_f1(c)\n        lp_delta = deltas.get(\"lp_selection\", 0)\n        per_config_results.append({\n            \"config_id\": c[\"config_id\"],\n            \"model_family\": c[\"model_family\"],\n            \"model_size\": c[\"model_size\"],\n            \"dataset\": c[\"dataset\"],\n            \"regime\": c[\"regime\"],\n            \"greedy_f1\": round(c[\"greedy_f1\"], 4),\n            \"oracle_f1\": round(c[\"oracle_f1\"], 4),\n            \"degeneracy_rate\": round(c[\"degeneracy_rate\"], 4),\n            \"construction_deltas_pp\": {k: round(v * 100, 2) for k, v in deltas.items()},\n            \"best_method\": label,\n            \"best_delta_pp\": round(best_delta * 100, 2),\n            \"lp_delta_pp\": round(lp_delta * 100, 2),\n        })\n\n    X = np.array(feature_matrix)\n    label_counts = Counter(labels)\n    print(f\"\\nLabel distribution: {dict(label_counts)}\")\n    for pcr in per_config_results:\n        print(f\"  {pcr['config_id']:40s} -> {pcr['best_method']:20s} (D={pcr['best_delta_pp']:+.2f}pp, LP={pcr['lp_delta_pp']:+.2f}pp)\")\n\n    le = LabelEncoder()\n    y = le.fit_transform(labels)\n    class_names = [str(c) for c in le.classes_]\n\n    loo = LeaveOneOut()\n    scaler = StandardScaler()\n\n    results = {}\n    for model_name, model_cls, model_kwargs in [\n        (\"LogisticRegression\", LogisticRegression, {\"C\": 1.0, \"max_iter\": 1000}),\n        (\"RandomForest\", RandomForestClassifier, {\"n_estimators\": 100, \"max_depth\": 3, \"random_state\": 42}),\n    ]:\n        preds = []\n        pred_labels_list = []\n        for train_idx, test_idx in loo.split(X):\n            X_tr, X_te = X[train_idx], X[test_idx]\n            y_tr = y[train_idx]\n            Xs_tr = scaler.fit_transform(X_tr)\n            Xs_te = scaler.transform(X_te)\n            model = model_cls(**model_kwargs)\n            model.fit(Xs_tr, y_tr)\n            pred = model.predict(Xs_te)[0]\n            preds.append(pred)\n            pred_labels_list.append(str(le.inverse_transform([pred])[0]))\n\n        accuracy = float(np.mean(np.array(preds) == y))\n        n = len(configs)\n\n        router_delta_sum = oracle_delta_sum = lp_delta_sum = 0.0\n        for i, c in enumerate(configs):\n            deltas = compute_delta_f1(c)\n            router_delta_sum += resolve_router_delta(pred_labels_list[i], deltas)\n            oracle_delta_sum += max(max(deltas.values()), 0) if deltas else 0\n            lp_delta_sum += deltas.get(\"lp_selection\", 0)\n\n        router_avg = router_delta_sum / n\n        oracle_avg = oracle_delta_sum / n\n        lp_avg = lp_delta_sum / n\n\n        cm = confusion_matrix(y, preds, labels=range(len(class_names)))\n\n        Xs_all = scaler.fit_transform(X)\n        full_model = model_cls(**model_kwargs)\n        full_model.fit(Xs_all, y)\n        if hasattr(full_model, \"feature_importances_\"):\n            imp = full_model.feature_importances_\n        elif hasattr(full_model, \"coef_\"):\n            imp = np.abs(full_model.coef_).mean(axis=0) if full_model.coef_.ndim > 1 else np.abs(full_model.coef_)\n        else:\n            imp = np.zeros(X.shape[1])\n        feature_imp = sorted(\n            {FEATURE_NAMES[i]: round(float(imp[i]), 4) for i in range(len(FEATURE_NAMES))}.items(),\n            key=lambda x: -x[1]\n        )\n\n        print(f\"\\n{'='*60}\")\n        print(f\"{model_name}\")\n        print(f\"  LOO Accuracy:     {accuracy:.1%} ({int(accuracy * n)}/{n})\")\n        print(f\"  Router avg dF1:   {router_avg*100:+.2f} pp\")\n        print(f\"  Always-LP dF1:    {lp_avg*100:+.2f} pp\")\n        print(f\"  Oracle dF1:       {oracle_avg*100:+.2f} pp\")\n        print(f\"  Top features: {feature_imp[:5]}\")\n        print(f\"  CM classes: {class_names}\")\n        for ri, row in enumerate(cm):\n            print(f\"    {class_names[ri]:25s}: {[int(x) for x in row]}\")\n        for i in range(n):\n            ok = \"OK\" if pred_labels_list[i] == labels[i] else \"XX\"\n            print(f\"    {configs[i]['config_id']:40s} true={labels[i]:20s} pred={pred_labels_list[i]:20s} [{ok}]\")\n\n        per_config_preds = []\n        for i, c in enumerate(configs):\n            deltas = compute_delta_f1(c)\n            pd_ = resolve_router_delta(pred_labels_list[i], deltas)\n            per_config_preds.append({\n                \"config_id\": c[\"config_id\"],\n                \"actual\": labels[i],\n                \"predicted\": pred_labels_list[i],\n                \"correct\": bool(labels[i] == pred_labels_list[i]),\n                \"predicted_delta_pp\": round(pd_ * 100, 2),\n            })\n\n        results[model_name] = {\n            \"accuracy\": round(accuracy, 4),\n            \"n_correct\": int(accuracy * n),\n            \"n_total\": n,\n            \"router_avg_delta_pp\": round(router_avg * 100, 2),\n            \"always_lp_avg_delta_pp\": round(lp_avg * 100, 2),\n            \"oracle_avg_delta_pp\": round(oracle_avg * 100, 2),\n            \"feature_importance\": dict(feature_imp),\n            \"confusion_matrix\": {\"classes\": class_names, \"matrix\": [[int(x) for x in row] for row in cm]},\n            \"per_config_predictions\": per_config_preds,\n        }\n\n    return per_config_results, dict(label_counts), results\n\n\ndef main():\n    configs = []\n    missing = []\n    for spec in CONFIG_SPECS:\n        c = load_config(*spec)\n        if c is None:\n            missing.append(spec[0])\n        else:\n            configs.append(c)\n\n    print(f\"Loaded {len(configs)} configs, {len(missing)} missing\")\n    if missing:\n        print(f\"Missing: {missing}\")\n\n    pcr_5, lc_5, res_5 = run_experiment(configs, False, \"5-class (fine-grained)\")\n    pcr_3, lc_3, res_3 = run_experiment(configs, True, \"3-class (lp/consensus/none)\")\n\n    all_accs = [(f\"5class_{m}\", r[\"accuracy\"], r) for m, r in res_5.items()]\n    all_accs += [(f\"3class_{m}\", r[\"accuracy\"], r) for m, r in res_3.items()]\n    best_name, best_acc, best_r = max(all_accs, key=lambda x: (x[1], x[2][\"router_avg_delta_pp\"]))\n\n    print(f\"\\n\\n{'#'*70}\")\n    print(f\"# BEST: {best_name} | Acc={best_acc:.1%} | Router={best_r['router_avg_delta_pp']:+.2f}pp | LP={best_r['always_lp_avg_delta_pp']:+.2f}pp | Oracle={best_r['oracle_avg_delta_pp']:+.2f}pp\")\n    print(f\"{'#'*70}\")\n\n    output = {\n        \"experiment\": \"E1_adaptive_signal_routing\",\n        \"n_configs\": len(configs),\n        \"missing_configs\": missing,\n        \"construction_methods\": CONSTRUCTION_METHODS,\n        \"method_mapping\": {\n            \"lp_selection\": \"LP signal-based sample selection\",\n            \"majority_vote\": \"Token-level majority voting\",\n            \"consensus_theta2n\": \"Entity-level voting (uniform, threshold=2/N)\",\n            \"consensus_lp_weighted\": \"Entity-level voting (LP-weighted)\",\n        },\n        \"feature_names\": FEATURE_NAMES,\n        \"experiments\": {\n            \"5_class\": {\n                \"label_distribution\": lc_5,\n                \"per_config_data\": pcr_5,\n                \"models\": res_5,\n            },\n            \"3_class_simplified\": {\n                \"description\": \"Merged consensus_theta2n + consensus_lp_weighted -> consensus\",\n                \"label_distribution\": lc_3,\n                \"per_config_data\": pcr_3,\n                \"models\": res_3,\n            },\n        },\n        \"summary\": {\n            \"best_model\": best_name,\n            \"best_accuracy\": best_acc,\n            \"best_router_delta_pp\": best_r[\"router_avg_delta_pp\"],\n            \"always_lp_delta_pp\": best_r[\"always_lp_avg_delta_pp\"],\n            \"oracle_delta_pp\": best_r[\"oracle_avg_delta_pp\"],\n            \"router_beats_lp\": best_r[\"router_avg_delta_pp\"] > best_r[\"always_lp_avg_delta_pp\"],\n            \"accuracy_above_60\": best_acc > 0.6,\n        },\n    }\n\n    out_dir = os.path.join(BASE, \"artifacts\", \"e1_signal_routing\")\n    os.makedirs(out_dir, exist_ok=True)\n    out_path = os.path.join(out_dir, \"routing_results.json\")\n    with open(out_path, \"w\") as f:\n        json.dump(output, f, indent=2, cls=NumpyEncoder)\n    print(f\"\\nResults saved to {out_path}\")\n\n\nif __name__ == \"__main__\":\n    main()\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_e1-adaptive-signal-routing_20260520T093508",
+  "tool": "Write",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/e1_signal_routing.py",
+    "content": "#!/usr/bin/env python3\n\"\"\"E1 Adaptive Signal Routing: config-level construction method router.\"\"\"\n\nimport json\nimport os\nfrom collections import Counter\n\nimport numpy as np\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.ensemble import RandomForestClassifier\nfrom sklearn.model_selection import LeaveOneOut\nfrom sklearn.preprocessing import StandardScaler, LabelEncoder\nfrom sklearn.metrics import confusion_matrix\n\nBASE = \"/root/autodl-tmp/struct_self_consist_ie\"\nOUT = os.path.join(BASE, \"output\")\n\nCONSTRUCTION_METHODS = [\n    \"lp_selection\", \"majority_vote\", \"consensus_theta2n\", \"consensus_lp_weighted\"\n]\n\nCONFIG_SPECS = [\n    # (path, dataset_key, model_family, model_size, regime, seed, forced_dataset)\n    (f\"{OUT}/exp_scierc_seed456/full_signal_report.json\", \"scierc\", \"Qwen3\", 8, \"ft\", 456, \"scierc\"),\n    (f\"{OUT}/exp_scierc_seed789/full_signal_report.json\", \"scierc\", \"Qwen3\", 8, \"ft\", 789, \"scierc\"),\n    (f\"{OUT}/exp_conll_seed123/full_signal_report.json\", \"conll\", \"Qwen3\", 8, \"ft\", 123, \"conll\"),\n    (f\"{OUT}/exp_conll_seed456/full_signal_report.json\", \"conll\", \"Qwen3\", 8, \"ft\", 456, \"conll\"),\n    (f\"{OUT}/exp_fewnerd_seed123/full_signal_report.json\", \"fewnerd\", \"Qwen3\", 8, \"ft\", 123, \"fewnerd\"),\n    (f\"{OUT}/exp_fewnerd_seed456/full_signal_report.json\", \"fewnerd\", \"Qwen3\", 8, \"ft\", 456, \"fewnerd\"),\n    (f\"{OUT}/exp_fewnerd_seed789/full_signal_report.json\", \"fewnerd\", \"Qwen3\", 8, \"ft\", 789, \"fewnerd\"),\n    (f\"{OUT}/72b_zeroshot/full_signal_report.json\", \"scierc\", \"Qwen2.5\", 72, \"zs\", None, \"scierc\"),\n    (f\"{OUT}/72b_zeroshot/full_signal_report.json\", \"conll2003\", \"Qwen2.5\", 72, \"zs\", None, \"conll\"),\n    (f\"{OUT}/72b_zeroshot/full_signal_report.json\", \"fewnerd\", \"Qwen2.5\", 72, \"zs\", None, \"fewnerd\"),\n    (f\"{OUT}/72b_fewshot_signals/scierc/full_signal_report.json\", \"scierc\", \"Qwen2.5\", 72, \"fs\", None, \"scierc\"),\n    (f\"{OUT}/72b_fewshot_signals/conll2003/full_signal_report.json\", \"conll\", \"Qwen2.5\", 72, \"fs\", None, \"conll\"),\n    (f\"{OUT}/72b_fewshot_signals/fewnerd/full_signal_report.json\", \"fewnerd\", \"Qwen2.5\", 72, \"fs\", None, \"fewnerd\"),\n    (f\"{OUT}/fewnerd_7b/qwen25_7b_n8_seed42/full_signal_report.json\", \"qwen25_7b_n8_seed42\", \"Qwen2.5\", 7, \"ft\", 42, \"fewnerd\"),\n    (f\"{OUT}/fewnerd_7b/qwen25_7b_n8_seed123/full_signal_report.json\", \"qwen25_7b_n8_seed123\", \"Qwen2.5\", 7, \"ft\", 123, \"fewnerd\"),\n    (f\"{OUT}/fewnerd_7b/qwen25_7b_n8_seed456/full_signal_report.json\", \"qwen25_7b_n8_seed456\", \"Qwen2.5\", 7, \"ft\", 456, \"fewnerd\"),\n]\n\nFEATURE_NAMES = [\n    \"model_size\", \"model_family\", \"dataset\", \"regime\",\n    \"base_f1\", \"degeneracy_rate\", \"oracle_headroom\",\n    \"rho_SJ\", \"rho_FK\", \"rho_LP\", \"rho_EM\", \"rho_VC\"\n]\n\n\nclass NumpyEncoder(json.JSONEncoder):\n    def default(self, obj):\n        if isinstance(obj, (np.integer,)):\n            return int(obj)\n        if isinstance(obj, (np.floating,)):\n            return float(obj)\n        if isinstance(obj, (np.bool_,)):\n            return bool(obj)\n        if isinstance(obj, np.ndarray):\n            return obj.tolist()\n        return super().default(obj)\n\n\ndef load_config(path, dataset_key, model_family, model_size, regime, seed, forced_dataset):\n    if not os.path.exists(path):\n        return None\n    with open(path) as f:\n        data = json.load(f)\n    if dataset_key in data:\n        d = data[dataset_key]\n    else:\n        keys = list(data.keys())\n        d = data[keys[0]] if len(keys) == 1 else data\n\n    baselines = d.get(\"baselines\", {})\n    greedy_f1 = baselines.get(\"greedy\", {}).get(\"mean\", d.get(\"greedy_f1\"))\n    oracle_f1 = baselines.get(\"oracle\", {}).get(\"mean\", d.get(\"oracle_f1\"))\n    if greedy_f1 is None:\n        return None\n\n    signals = d.get(\"signals\", {})\n    construction_f1 = {m: baselines[m][\"mean\"] for m in CONSTRUCTION_METHODS if m in baselines}\n\n    return {\n        \"config_id\": f\"{model_family}_{model_size}B_{regime}_{forced_dataset}_s{seed}\",\n        \"model_family\": model_family,\n        \"model_size\": model_size,\n        \"dataset\": forced_dataset,\n        \"regime\": regime,\n        \"seed\": seed,\n        \"greedy_f1\": greedy_f1,\n        \"oracle_f1\": oracle_f1,\n        \"oracle_headroom\": oracle_f1 - greedy_f1 if oracle_f1 else None,\n        \"degeneracy_rate\": d.get(\"degeneracy_rate\", 0),\n        \"n_instances\": d.get(\"n_instances\"),\n        \"rho_SJ\": signals.get(\"SJ\", {}).get(\"rho\", 0),\n        \"rho_FK\": signals.get(\"FK\", {}).get(\"rho\", 0),\n        \"rho_LP\": signals.get(\"LP\", {}).get(\"rho\", 0),\n        \"rho_EM\": signals.get(\"EM\", {}).get(\"rho\", 0),\n        \"rho_VC\": signals.get(\"VC\", {}).get(\"rho\", 0),\n        \"construction_f1\": construction_f1,\n    }\n\n\ndef compute_delta_f1(config):\n    greedy = config[\"greedy_f1\"]\n    return {m: f1 - greedy for m, f1 in config[\"construction_f1\"].items()}\n\n\ndef get_label(config, simplify=False):\n    deltas = compute_delta_f1(config)\n    if not deltas:\n        return \"none\", 0.0\n    best_method = max(deltas, key=deltas.get)\n    best_delta = deltas[best_method]\n    label = \"none\" if best_delta <= 0 else best_method\n    if simplify and label in (\"consensus_theta2n\", \"consensus_lp_weighted\"):\n        label = \"consensus\"\n    return label, best_delta\n\n\ndef build_features(config):\n    ds_map = {\"scierc\": 0, \"conll\": 1, \"fewnerd\": 2}\n    regime_map = {\"ft\": 0, \"zs\": 1, \"fs\": 2}\n    family_map = {\"Qwen3\": 0, \"Qwen2.5\": 1, \"LLaMA\": 2}\n    return [\n        config[\"model_size\"],\n        family_map.get(config[\"model_family\"], 0),\n        ds_map.get(config[\"dataset\"], 0),\n        regime_map.get(config[\"regime\"], 0),\n        config[\"greedy_f1\"],\n        config[\"degeneracy_rate\"],\n        config[\"oracle_headroom\"] or 0,\n        config[\"rho_SJ\"],\n        config[\"rho_FK\"],\n        config[\"rho_LP\"],\n        config[\"rho_EM\"],\n        config[\"rho_VC\"],\n    ]\n\n\ndef resolve_router_delta(predicted, deltas):\n    if predicted == \"none\":\n        return 0\n    if predicted == \"consensus\":\n        return max(deltas.get(\"consensus_theta2n\", -999), deltas.get(\"consensus_lp_weighted\", -999))\n    return deltas.get(predicted, 0)\n\n\ndef run_experiment(configs, simplify_labels, exp_name):\n    print(f\"\\n{'#'*70}\")\n    print(f\"# {exp_name}\")\n    print(f\"{'#'*70}\")\n\n    labels = []\n    feature_matrix = []\n    per_config_results = []\n\n    for c in configs:\n        label, best_delta = get_label(c, simplify=simplify_labels)\n        labels.append(label)\n        feature_matrix.append(build_features(c))\n        deltas = compute_delta_f1(c)\n        lp_delta = deltas.get(\"lp_selection\", 0)\n        per_config_results.append({\n            \"config_id\": c[\"config_id\"],\n            \"model_family\": c[\"model_family\"],\n            \"model_size\": c[\"model_size\"],\n            \"dataset\": c[\"dataset\"],\n            \"regime\": c[\"regime\"],\n            \"greedy_f1\": round(c[\"greedy_f1\"], 4),\n            \"oracle_f1\": round(c[\"oracle_f1\"], 4),\n            \"degeneracy_rate\": round(c[\"degeneracy_rate\"], 4),\n            \"construction_deltas_pp\": {k: round(v * 100, 2) for k, v in deltas.items()},\n            \"best_method\": label,\n            \"best_delta_pp\": round(best_delta * 100, 2),\n            \"lp_delta_pp\": round(lp_delta * 100, 2),\n        })\n\n    X = np.array(feature_matrix)\n    label_counts = Counter(labels)\n    print(f\"\\nLabel distribution: {dict(label_counts)}\")\n    for pcr in per_config_results:\n        print(f\"  {pcr['config_id']:40s} -> {pcr['best_method']:20s} (D={pcr['best_delta_pp']:+.2f}pp, LP={pcr['lp_delta_pp']:+.2f}pp)\")\n\n    le = LabelEncoder()\n    y = le.fit_transform(labels)\n    class_names = [str(c) for c in le.classes_]\n\n    loo = LeaveOneOut()\n    scaler = StandardScaler()\n\n    results = {}\n    for model_name, model_cls, model_kwargs in [\n        (\"LogisticRegression\", LogisticRegression, {\"C\": 1.0, \"max_iter\": 1000}),\n        (\"RandomForest\", RandomForestClassifier, {\"n_estimators\": 100, \"max_depth\": 3, \"random_state\": 42}),\n    ]:\n        preds = []\n        pred_labels_list = []\n        for train_idx, test_idx in loo.split(X):\n            X_tr, X_te = X[train_idx], X[test_idx]\n            y_tr = y[train_idx]\n            Xs_tr = scaler.fit_transform(X_tr)\n            Xs_te = scaler.transform(X_te)\n            model = model_cls(**model_kwargs)\n            model.fit(Xs_tr, y_tr)\n            pred = model.predict(Xs_te)[0]\n            preds.append(pred)\n            pred_labels_list.append(str(le.inverse_transform([pred])[0]))\n\n        accuracy = float(np.mean(np.array(preds) == y))\n        n = len(configs)\n\n        router_delta_sum = oracle_delta_sum = lp_delta_sum = 0.0\n        for i, c in enumerate(configs):\n            deltas = compute_delta_f1(c)\n            router_delta_sum += resolve_router_delta(pred_labels_list[i], deltas)\n            oracle_delta_sum += max(max(deltas.values()), 0) if deltas else 0\n            lp_delta_sum += deltas.get(\"lp_selection\", 0)\n\n        router_avg = router_delta_sum / n\n        oracle_avg = oracle_delta_sum / n\n        lp_avg = lp_delta_sum / n\n\n        cm = confusion_matrix(y, preds, labels=range(len(class_names)))\n\n        Xs_all = scaler.fit_transform(X)\n        full_model = model_cls(**model_kwargs)\n        full_model.fit(Xs_all, y)\n        if hasattr(full_model, \"feature_importances_\"):\n            imp = full_model.feature_importances_\n        elif hasattr(full_model, \"coef_\"):\n            imp = np.abs(full_model.coef_).mean(axis=0) if full_model.coef_.ndim > 1 else np.abs(full_model.coef_)\n        else:\n            imp = np.zeros(X.shape[1])\n        feature_imp = sorted(\n            {FEATURE_NAMES[i]: round(float(imp[i]), 4) for i in range(len(FEATURE_NAMES))}.items(),\n            key=lambda x: -x[1]\n        )\n\n        print(f\"\\n{'='*60}\")\n        print(f\"{model_name}\")\n        print(f\"  LOO Accuracy:     {accuracy:.1%} ({int(accuracy * n)}/{n})\")\n        print(f\"  Router avg dF1:   {router_avg*100:+.2f} pp\")\n        print(f\"  Always-LP dF1:    {lp_avg*100:+.2f} pp\")\n        print(f\"  Oracle dF1:       {oracle_avg*100:+.2f} pp\")\n        print(f\"  Top features: {feature_imp[:5]}\")\n        print(f\"  CM classes: {class_names}\")\n        for ri, row in enumerate(cm):\n            print(f\"    {class_names[ri]:25s}: {[int(x) for x in row]}\")\n        for i in range(n):\n            ok = \"OK\" if pred_labels_list[i] == labels[i] else \"XX\"\n            print(f\"    {configs[i]['config_id']:40s} true={labels[i]:20s} pred={pred_labels_list[i]:20s} [{ok}]\")\n\n        per_config_preds = []\n        for i, c in enumerate(configs):\n            deltas = compute_delta_f1(c)\n            pd_ = resolve_router_delta(pred_labels_list[i], deltas)\n            per_config_preds.append({\n                \"config_id\": c[\"config_id\"],\n                \"actual\": labels[i],\n                \"predicted\": pred_labels_list[i],\n                \"correct\": bool(labels[i] == pred_labels_list[i]),\n                \"predicted_delta_pp\": round(pd_ * 100, 2),\n            })\n\n        results[model_name] = {\n            \"accuracy\": round(accuracy, 4),\n            \"n_correct\": int(accuracy * n),\n            \"n_total\": n,\n            \"router_avg_delta_pp\": round(router_avg * 100, 2),\n            \"always_lp_avg_delta_pp\": round(lp_avg * 100, 2),\n            \"oracle_avg_delta_pp\": round(oracle_avg * 100, 2),\n            \"feature_importance\": dict(feature_imp),\n            \"confusion_matrix\": {\"classes\": class_names, \"matrix\": [[int(x) for x in row] for row in cm]},\n            \"per_config_predictions\": per_config_preds,\n        }\n\n    return per_config_results, dict(label_counts), results\n\n\ndef main():\n    configs = []\n    missing = []\n    for spec in CONFIG_SPECS:\n        c = load_config(*spec)\n        if c is None:\n            missing.append(spec[0])\n        else:\n            configs.append(c)\n\n    print(f\"Loaded {len(configs)} configs, {len(missing)} missing\")\n    if missing:\n        print(f\"Missing: {missing}\")\n\n    pcr_5, lc_5, res_5 = run_experiment(configs, False, \"5-class (fine-grained)\")\n    pcr_3, lc_3, res_3 = run_experiment(configs, True, \"3-class (lp/consensus/none)\")\n\n    all_accs = [(f\"5class_{m}\", r[\"accuracy\"], r) for m, r in res_5.items()]\n    all_accs += [(f\"3class_{m}\", r[\"accuracy\"], r) for m, r in res_3.items()]\n    best_name, best_acc, best_r = max(all_accs, key=lambda x: (x[1], x[2][\"router_avg_delta_pp\"]))\n\n    print(f\"\\n\\n{'#'*70}\")\n    print(f\"# BEST: {best_name} | Acc={best_acc:.1%} | Router={best_r['router_avg_delta_pp']:+.2f}pp | LP={best_r['always_lp_avg_delta_pp']:+.2f}pp | Oracle={best_r['oracle_avg_delta_pp']:+.2f}pp\")\n    print(f\"{'#'*70}\")\n\n    output = {\n        \"experiment\": \"E1_adaptive_signal_routing\",\n        \"n_configs\": len(configs),\n        \"missing_configs\": missing,\n        \"construction_methods\": CONSTRUCTION_METHODS,\n        \"method_mapping\": {\n            \"lp_selection\": \"LP signal-based sample selection\",\n            \"majority_vote\": \"Token-level majority voting\",\n            \"consensus_theta2n\": \"Entity-level voting (uniform, threshold=2/N)\",\n            \"consensus_lp_weighted\": \"Entity-level voting (LP-weighted)\",\n        },\n        \"feature_names\": FEATURE_NAMES,\n        \"experiments\": {\n            \"5_class\": {\n                \"label_distribution\": lc_5,\n                \"per_config_data\": pcr_5,\n                \"models\": res_5,\n            },\n            \"3_class_simplified\": {\n                \"description\": \"Merged consensus_theta2n + consensus_lp_weighted -> consensus\",\n                \"label_distribution\": lc_3,\n                \"per_config_data\": pcr_3,\n                \"models\": res_3,\n            },\n        },\n        \"summary\": {\n            \"best_model\": best_name,\n            \"best_accuracy\": best_acc,\n            \"best_router_delta_pp\": best_r[\"router_avg_delta_pp\"],\n            \"always_lp_delta_pp\": best_r[\"always_lp_avg_delta_pp\"],\n            \"oracle_delta_pp\": best_r[\"oracle_avg_delta_pp\"],\n            \"router_beats_lp\": best_r[\"router_avg_delta_pp\"] > best_r[\"always_lp_avg_delta_pp\"],\n            \"accuracy_above_60\": best_acc > 0.6,\n        },\n    }\n\n    out_dir = os.path.join(BASE, \"artifacts\", \"e1_signal_routing\")\n    os.makedirs(out_dir, exist_ok=True)\n    out_path = os.path.join(out_dir, \"routing_results.json\")\n    with open(out_path, \"w\") as f:\n        json.dump(output, f, indent=2, cls=NumpyEncoder)\n    print(f\"\\nResults saved to {out_path}\")\n\n\nif __name__ == \"__main__\":\n    main()\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 120 · 2026-05-20T09:48:33.371646+00:00_
+
+The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/e1_signal_routing.py has been updated successfully.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_e1-adaptive-signal-routing_20260520T093508",
+  "tool": "Write",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 121 · 2026-05-20T09:48:33.371885+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "scp /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/e1_signal_routing.py autodl-5090-b:/root/autodl-tmp/struct_self_consist_ie/e1_signal_routing.py",
+  "description": "SCP script to remote server"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_e1-adaptive-signal-routing_20260520T093508",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "scp /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/e1_signal_routing.py autodl-5090-b:/root/autodl-tmp/struct_self_consist_ie/e1_signal_routing.py",
+    "description": "SCP script to remote server"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 122 · 2026-05-20T09:48:33.372064+00:00_
+
+Warning: Permanently added '[connect.bjb2.seetacloud.com]:11496' (ED25519) to the list of known hosts.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_e1-adaptive-signal-routing_20260520T093508",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 123 · 2026-05-20T09:48:33.372255+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python e1_signal_routing.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_e1-adaptive-signal-routing_20260520T093508",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090-b",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python e1_signal_routing.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 124 · 2026-05-20T09:48:33.372568+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Loaded 16 configs, 0 missing\\n\\n######################################################################\\n# 5-class (fine-grained)\\n######################################################################\\n\\nLabel distribution: {'consensus_theta2n': 3, 'none': 5, 'lp_selection': 6, 'consensus_lp_weighted': 1, 'majority_vote': 1}\\n  Qwen3_8B_ft_scierc_s456                  -> consensus_theta2n    (D=+0.40pp, LP=-0.30pp)\\n  Qwen3_8B_ft_scierc_s789                  -> consensus_theta2n    (D=+1.12pp, LP=+0.86pp)\\n  Qwen3_8B_ft_conll_s123                   -> none                 (D=-0.42pp, LP=-0.60pp)\\n  Qwen3_8B_ft_conll_s456                   -> none                 (D=-0.42pp, LP=-0.77pp)\\n  Qwen3_8B_ft_fewnerd_s123                 -> consensus_theta2n    (D=+1.56pp, LP=+1.37pp)\\n  Qwen3_8B_ft_fewnerd_s456                 -> lp_selection         (D=+1.37pp, LP=+1.37pp)\\n  Qwen3_8B_ft_fewnerd_s789                 -> lp_selection         (D=+1.35pp, LP=+1.35pp)\\n  Qwen2.5_72B_zs_scierc_sNone              -> consensus_lp_weighted (D=+1.53pp, LP=-0.10pp)\\n  Qwen2.5_72B_zs_conll_sNone               -> none                 (D=-0.37pp, LP=-0.39pp)\\n  Qwen2.5_72B_zs_fewnerd_sNone             -> none                 (D=-0.19pp, LP=-0.40pp)\\n  Qwen2.5_72B_fs_scierc_sNone              -> none                 (D=-0.08pp, LP=-1.36pp)\\n  Qwen2.5_72B_fs_conll_sNone               -> lp_selection         (D=+0.24pp, LP=+0.24pp)\\n  Qwen2.5_72B_fs_fewnerd_sNone             -> majority_vote        (D=+0.06pp, LP=-0.14pp)\\n  Qwen2.5_7B_ft_fewnerd_s42                -> lp_selection         (D=+0.39pp, LP=+0.39pp)\\n  Qwen2.5_7B_ft_fewnerd_s123               -> lp_selection         (D=+0.38pp, LP=+0.38pp)\\n  Qwen2.5_7B_ft_fewnerd_s456               -> lp_selection         (D=+0.52pp, LP=+0.52pp)\\n\\n============================================================\\nLogisticRegression\\n  LOO Accuracy:     50.0% (8/16)\
+…[truncated 6407 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_e1-adaptive-signal-routing_20260520T093508",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 125 · 2026-05-20T09:48:33.372849+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "command": "head -80 /root/autodl-tmp/struct_self_consist_ie/artifacts/e1_signal_routing/routing_results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_e1-adaptive-signal-routing_20260520T093508",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090-b",
+    "command": "head -80 /root/autodl-tmp/struct_self_consist_ie/artifacts/e1_signal_routing/routing_results.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 126 · 2026-05-20T09:48:33.373151+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"experiment\\\": \\\"E1_adaptive_signal_routing\\\",\\n  \\\"n_configs\\\": 16,\\n  \\\"missing_configs\\\": [],\\n  \\\"construction_methods\\\": [\\n    \\\"lp_selection\\\",\\n    \\\"majority_vote\\\",\\n    \\\"consensus_theta2n\\\",\\n    \\\"consensus_lp_weighted\\\"\\n  ],\\n  \\\"method_mapping\\\": {\\n    \\\"lp_selection\\\": \\\"LP signal-based sample selection\\\",\\n    \\\"majority_vote\\\": \\\"Token-level majority voting\\\",\\n    \\\"consensus_theta2n\\\": \\\"Entity-level voting (uniform, threshold=2/N)\\\",\\n    \\\"consensus_lp_weighted\\\": \\\"Entity-level voting (LP-weighted)\\\"\\n  },\\n  \\\"feature_names\\\": [\\n    \\\"model_size\\\",\\n    \\\"model_family\\\",\\n    \\\"dataset\\\",\\n    \\\"regime\\\",\\n    \\\"base_f1\\\",\\n    \\\"degeneracy_rate\\\",\\n    \\\"oracle_headroom\\\",\\n    \\\"rho_SJ\\\",\\n    \\\"rho_FK\\\",\\n    \\\"rho_LP\\\",\\n    \\\"rho_EM\\\",\\n    \\\"rho_VC\\\"\\n  ],\\n  \\\"experiments\\\": {\\n    \\\"5_class\\\": {\\n      \\\"label_distribution\\\": {\\n        \\\"consensus_theta2n\\\": 3,\\n        \\\"none\\\": 5,\\n        \\\"lp_selection\\\": 6,\\n        \\\"consensus_lp_weighted\\\": 1,\\n        \\\"majority_vote\\\": 1\\n      },\\n      \\\"per_config_data\\\": [\\n        {\\n          \\\"config_id\\\": \\\"Qwen3_8B_ft_scierc_s456\\\",\\n          \\\"model_family\\\": \\\"Qwen3\\\",\\n          \\\"model_size\\\": 8,\\n          \\\"dataset\\\": \\\"scierc\\\",\\n          \\\"regime\\\": \\\"ft\\\",\\n          \\\"greedy_f1\\\": 0.6453,\\n          \\\"oracle_f1\\\": 0.7726,\\n          \\\"degeneracy_rate\\\": 0.1928,\\n          \\\"construction_deltas_pp\\\": {\\n            \\\"lp_selection\\\": -0.3,\\n            \\\"majority_vote\\\": -2.04,\\n            \\\"consensus_theta2n\\\": 0.4,\\n            \\\"consensus_lp_weighted\\\": -0.35\\n          },\\n          \\\"best_method\\\": \\\"consensus_theta2n\\
+…[truncated 1039 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_e1-adaptive-signal-routing_20260520T093508",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 127 · 2026-05-20T09:48:33.373382+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "command": "grep -A 20 '\"summary\"' /root/autodl-tmp/struct_self_consist_ie/artifacts/e1_signal_routing/routing_results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_e1-adaptive-signal-routing_20260520T093508",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090-b",
+    "command": "grep -A 20 '\"summary\"' /root/autodl-tmp/struct_self_consist_ie/artifacts/e1_signal_routing/routing_results.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 128 · 2026-05-20T09:48:33.373574+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  \\\"summary\\\": {\\n    \\\"best_model\\\": \\\"5class_RandomForest\\\",\\n    \\\"best_accuracy\\\": 0.5625,\\n    \\\"best_router_delta_pp\\\": 0.39,\\n    \\\"always_lp_delta_pp\\\": 0.15,\\n    \\\"oracle_delta_pp\\\": 0.56,\\n    \\\"router_beats_lp\\\": true,\\n    \\\"accuracy_above_60\\\": false\\n  }\\n}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.32}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_e1-adaptive-signal-routing_20260520T093508",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 129 · 2026-05-20T09:48:33.373777+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "E1 Signal Routing Results",
+  "type": "data",
+  "description": "Config-level adaptive signal routing analysis. 16 configs, 4 construction methods, LOO-CV with LR and RF. Best: RF 56.2% accuracy, router ΔF1=+0.39pp vs always-LP +0.15pp (2.6x improvement). Top features: oracle_headroom, degeneracy_rate, base_f1.",
+  "project": "struct_self_consist_ie",
+  "exp_id": "e1_signal_routing",
+  "source_path": "/root/autodl-tmp/struct_self_consist_ie/artifacts/e1_signal_routing/routing_results.json",
+  "tags": "['routing', 'signal', 'construction', 'sklearn', 'LOO-CV']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_e1-adaptive-signal-routing_20260520T093508",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "E1 Signal Routing Results",
+    "type": "data",
+    "description": "Config-level adaptive signal routing analysis. 16 configs, 4 construction methods, LOO-CV with LR and RF. Best: RF 56.2% accuracy, router ΔF1=+0.39pp vs always-LP +0.15pp (2.6x improvement). Top features: oracle_headroom, degeneracy_rate, base_f1.",
+    "project": "struct_self_consist_ie",
+    "exp_id": "e1_signal_routing",
+    "source_path": "/root/autodl-tmp/struct_self_consist_ie/artifacts/e1_signal_routing/routing_results.json",
+    "tags": "['routing', 'signal', 'construction', 'sklearn', 'LOO-CV']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 130 · 2026-05-20T09:48:33.373967+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"source_path not found: /root/autodl-tmp/struct_self_consist_ie/artifacts/e1_signal_routing/routing_results.json\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_e1-adaptive-signal-routing_20260520T093508",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 131 · 2026-05-20T09:48:33.374179+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "mkdir -p /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/e1_signal_routing && scp autodl-5090-b:/root/autodl-tmp/struct_self_consist_ie/artifacts/e1_signal_routing/routing_results.json /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/e1_signal_routing/routing_results.json",
+  "description": "Copy routing results to local for artifact registration"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_e1-adaptive-signal-routing_20260520T093508",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "mkdir -p /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/e1_signal_routing && scp autodl-5090-b:/root/autodl-tmp/struct_self_consist_ie/artifacts/e1_signal_routing/routing_results.json /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/e1_signal_routing/routing_results.json",
+    "description": "Copy routing results to local for artifact registration"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 132 · 2026-05-20T09:48:33.374356+00:00_
+
+Warning: Permanently added '[connect.bjb2.seetacloud.com]:11496' (ED25519) to the list of known hosts.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_e1-adaptive-signal-routing_20260520T093508",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 133 · 2026-05-20T09:48:33.374525+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "E1 Signal Routing Results",
+  "type": "data",
+  "description": "Config-level adaptive signal routing analysis. 16 configs, 4 construction methods, LOO-CV with LR and RF. Best: RF 56.2% accuracy, router ΔF1=+0.39pp vs always-LP +0.15pp (2.6x improvement). Top features: oracle_headroom, degeneracy_rate, base_f1.",
+  "project": "struct_self_consist_ie",
+  "exp_id": "e1_signal_routing",
+  "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/e1_signal_routing/routing_results.json",
+  "tags": "['routing', 'signal', 'construction', 'sklearn', 'LOO-CV']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_e1-adaptive-signal-routing_20260520T093508",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "E1 Signal Routing Results",
+    "type": "data",
+    "description": "Config-level adaptive signal routing analysis. 16 configs, 4 construction methods, LOO-CV with LR and RF. Best: RF 56.2% accuracy, router ΔF1=+0.39pp vs always-LP +0.15pp (2.6x improvement). Top features: oracle_headroom, degeneracy_rate, base_f1.",
+    "project": "struct_self_consist_ie",
+    "exp_id": "e1_signal_routing",
+    "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/e1_signal_routing/routing_results.json",
+    "tags": "['routing', 'signal', 'construction', 'sklearn', 'LOO-CV']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 134 · 2026-05-20T09:48:33.374737+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260520_a38284\", \"name\": \"E1 Signal Routing Results\", \"type\": \"data\", \"description\": \"Config-level adaptive signal routing analysis. 16 configs, 4 construction methods, LOO-CV with LR and RF. Best: RF 56.2% accuracy, router ΔF1=+0.39pp vs always-LP +0.15pp (2.6x improvement). Top features: oracle_headroom, degeneracy_rate, base_f1.\", \"path\": \"projects/struct_self_consist_ie/artifacts/e1_signal_routing/data/routing_results.json\", \"url\": null, \"project\": \"struct_self_consist_ie\", \"exp_id\": \"e1_signal_routing\", \"skill\": \"\", \"created_at\": \"2026-05-20T09:48:13.149525+00:00\", \"tags\": [\"routing\", \"signal\", \"construction\", \"sklearn\", \"LOO-CV\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_e1-adaptive-signal-routing_20260520T093508",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 135 · 2026-05-20T09:48:33.374975+00:00_
+
+E1 完成。结果总结：
+
+**数据**: 16 configs (Qwen3-8B FT × 7, Qwen2.5-72B ZS × 3, Qwen2.5-72B FS × 3, Qwen2.5-7B FT × 3)，0 missing。先用 `compute_signals.py` 为缺少 signal report 的 10 个 config 补算了完整建构方法 F1。
+
+**Label 分布** (5-class): lp_selection=6, none=5, consensus_theta2n=3, consensus_lp_weighted=1, majority_vote=1
+
+**最佳模型: RandomForest (5-class)**
+| 指标 | 值 |
+|------|-----|
+| LOO Accuracy | **56.2%** (9/16) — 未达 60% 目标 |
+| Router avg ΔF1 | **+0.39 pp** |
+| Always-LP ΔF1 | +0.15 pp |
+| Oracle ΔF1 | +0.56 pp |
+
+**Router ΔF1 > Always-LP ΔF1** ✓ (2.6× 提升，达标)
+
+**关键发现**:
+- **FT + 低退化 (SciERC)**: consensus_theta2n 最优
+- **FT + 高退化 (CoNLL)**: greedy 已最优 (none)
+- **FT + 中退化 (FewNERD)**: lp_selection 或 consensus 都有效
+- **72B ZS/FS**: 结果分散，是主要误分类来源
+- **Top features**: oracle_headroom, degeneracy_rate, base_f1 — 退化率和 headroom 是最强预测因子
+
+**为什么 accuracy < 60%**: 16 个 config 中 5 个 class，其中 2 个 class 只有 1 个样本 (consensus_lp_weighted, majority_vote)；72B configs 之间差异大但数量少。3-class 简化版 (合并 consensus) 结果相同。
+
+产出已保存至 `/root/autodl-tmp/struct_self_consist_ie/artifacts/e1_signal_routing/routing_results.json`。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_ssh_e1-adaptive-signal-routing_20260520T093508"
+}
+```
+
+</details>
+
+---

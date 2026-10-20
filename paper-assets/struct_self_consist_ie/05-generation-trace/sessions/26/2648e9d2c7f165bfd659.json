@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "2648e9d2c7f165bfd659",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "analysis lp rho inconsistency p0",
+  "task_key": "worker_analysis_lp_rho_inconsistency_p0_20260518T232334",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_lp_rho_inconsistency_p0_20260518T232334.log",
+    "occurrence": 1,
+    "bytes": 716980,
+    "sha256": "e3f416d727a52a43f8463736c9bd4b10253b4eff7a76e349265767399aba201d"
+  },
+  "statistics": {
+    "messages": 171,
+    "user_turns": 0,
+    "tool_calls": 60,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 47,
+      "tool_call": 60,
+      "tool_result": 60,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 171,
+      "chunks": [
+        {
+          "path": "2648e9d2c7f165bfd659-part-0001.json",
+          "message_count": 127
+        },
+        {
+          "path": "2648e9d2c7f165bfd659-part-0002.json",
+          "message_count": 44
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-lp-rho-inconsistency-p0.md"
+}

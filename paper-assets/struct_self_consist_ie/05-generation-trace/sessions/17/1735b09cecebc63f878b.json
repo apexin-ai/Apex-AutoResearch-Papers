@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1735b09cecebc63f878b",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "code n32 analysis prep",
+  "task_key": "worker_code_n32_analysis_prep_20260523T080941",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_n32_analysis_prep_20260523T080941_result.json",
+    "occurrence": 1,
+    "bytes": 1256,
+    "sha256": "aaf6615d7d2b74a28ccc69b83b653d03f79e5eb134d9003b53d56643ba2bd6a9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。总结：\n\n**Step 1 — 数据格式确认**\n- N=32 输出目录 `fewnerd_pretrained_n32_seed42/` 存在但为空（正在跑）\n- N=8 pretrained 数据在 `e2_pretrained_fewnerd/samples.jsonl`（2GB, 37648 instances, 32565 gold-nonempty）\n- 每个 instance 有 `{id, text, gold, greedy, samples[N], logprobs}`，每个 sample 有 `entities, relations, cumulative_logprob, mean_logprob` 等字段\n\n**Step 2 — 分析脚本已部署**\n- 路径: `/root/autodl-tmp/struct_self_consist_ie/code/analyze_n32.py`\n- 使用 `unified_metrics.py` 作为核心依赖\n- Entity voting: `(text, type)` 计数，> N/2 阈值，pick best span\n- 退化率: keyset_surface 定义（与参考值一致）\n- 同时输出 micro-averaged 和 instance-averaged 指标\n\n**Step 3 — N=8 验证通过**\n- Greedy=0.539, MV Δ=+3.2pp, Degen=12.6%, Oracle Δ=+11.3pp — 与参考值基本吻合\n\n**Step 4 — 模板已准备**\n- `artifacts/n32_table_row.md` 已写入，含 LaTeX 行模板和 scenario 判定标准\n\n**N=32 完成后运行命令**:\n```bash\ncd /root/autodl-tmp/struct_self_consist_ie/code\npython analyze_n32.py --input /root/autodl-tmp/struct_self_consist_ie/output/fewnerd_pretrained_n32_seed42/samples.jsonl\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-n32-analysis-prep.md"
+}

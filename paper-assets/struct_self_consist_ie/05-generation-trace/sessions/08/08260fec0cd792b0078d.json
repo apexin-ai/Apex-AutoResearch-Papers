@@ -1,0 +1,967 @@
+{
+  "schema_version": "1.0",
+  "id": "08260fec0cd792b0078d",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "paper create method",
+  "task_key": "worker_paper_create-method_20260516T024514",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_paper_create-method_20260516T024514.log",
+    "occurrence": 1,
+    "bytes": 70053,
+    "sha256": "e2315239f2e596d8ffc0bcba5c82160ad70971c78929ea9c2fb40bda35a9cac7"
+  },
+  "statistics": {
+    "messages": 20,
+    "user_turns": 0,
+    "tool_calls": 5,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 6,
+      "tool_call": 5,
+      "tool_result": 5,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+                "session_id": "a9d6359f-116a-49fe-b2bd-212b662daae8",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__allocate_and_submit",
+                  "mcp__agent-ml-research__append_idea",
+                  "mcp__agent-ml-research__approve_worker",
+                  "mcp__agent-ml-research__auto_build_provenance",
+                  "mcp__agent-ml-research__backup_project_to_s3",
+                  "mcp__agent-ml-research__cancel_worker",
+                  "mcp__agent-ml-research__check_job_status",
+                  "mcp__agent-ml-research__check_paper_consistency",
+                  "mcp__agent-ml-research__check_provenance_completeness",
+                  "mcp__agent-ml-research__cleanup_pdf_images",
+                  "mcp__agent-ml-research__compute_coverage_matrix",
+                  "mcp__agent-ml-research__detect_image",
+                  "mcp__agent-ml-research__edit_paper_section",
+                  "mcp__agent-ml-research__feishu_read_tum_pending_key",
+                  "mcp__agent-ml-research__feishu_send_alert",
+                  "mcp__agent-ml-research__feishu_send_approval_card",
+                  "mcp__agent-ml-research__feishu_send_result_card",
+                  "mcp__agent-ml-research__feishu_send_tum_key_request_card",
+                  "mcp__agent-ml-research__fetch_wandb_metrics",
+                  "mcp__agent-ml-research__get_baseline_metrics",
+                  "mcp__agent-ml-research__get_gpu_health",
+                  "mcp__agent-ml-research__get_image_info",
+                  "mcp__agent-ml-research__get_matrix_value",
+                  "mcp__agent-ml-research__get_project_resource_usage",
+                  "mcp__agent-ml-research__get_tum_config",
+                  "mcp__agent-ml-research__get_worker_status",
+                  "mcp__agent-ml-research__impact_analysis",
+                  "mcp__agent-ml-research__kill_job",
+                  "mcp__agent-ml-research__list_artifacts",
+                  "mcp__agent-ml-research__list_available_gpus",
+                  "mcp__agent-ml-research__list_constraints",
+                  "mcp__agent-ml-research__list_s3_backups",
+                  "mcp__agent-ml-research__list_workers",
+                  "mcp__agent-ml-research__load_project_config",
+                  "mcp__agent-ml-research__main_agent_post_to_director",
+                  "mcp__agent-ml-research__matrix_gap_analysis",
+                  "mcp__agent-ml-research__pdf_to_images",
+                  "mcp__agent-ml-research__poll_cron",
+                  "mcp__agent-ml-research__poll_secret_request",
+                  "mcp__agent-ml-research__read_experiment_plan_with_status",
+                  "mcp__agent-ml-research__read_matrix",
+                  "mcp__agent-ml-research__read_project_file",
+                  "mcp__agent-ml-research__read_registry",
+                  "mcp__agent-ml-research__read_roadmap",
+                  "mcp__agent-ml-research__reconcile_crons",
+                  "mcp__agent-ml-research__register_artifact",
+                  "mcp__agent-ml-research__register_cron",
+                  "mcp__agent-ml-research__request_secret",
+                  "mcp__agent-ml-research__save_project_file",
+                  "mcp__agent-ml-research__send_progress",
+                  "mcp__agent-ml-research__spawn_worker",
+                  "mcp__agent-ml-research__submit_on_allocated",
+                  "mcp__agent-ml-research__submit_training_job",
+                  "mcp__agent-ml-research__sync_matrix_status",
+                  "mcp__agent-ml-research__tail_training_logs",
+                  "mcp__agent-ml-research__update_baseline",
+                  "mcp__agent-ml-research__update_matrix",
+                  "mcp__agent-ml-research__update_registry",
+                  "mcp__agent-ml-research__verify_references",
+                  "mcp__agent-ml-research__write_paper_section"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "e06d56aa-2821-4b1f-8061-a719148370e8",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1778907000,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "58315851-473c-4b31-b884-f6301b4f65de",
+                "session_id": "a9d6359f-116a-49fe-b2bd-212b662daae8"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me first read the experiments.tex file to understand the existing terminology and style."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a9d6359f-116a-49fe-b2bd-212b662daae8",
+            "uuid": "51abcd3e-93e0-4f90-adef-493beb239747",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017feizJ68U3MMRtcofJcv7y",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 13362,
+                "cache_read_input_tokens": 11701,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 13362
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01C6TxqzfXnRopwXR1YPHjhc",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/experiments.tex",
+                "limit": 36
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a9d6359f-116a-49fe-b2bd-212b662daae8",
+            "uuid": "114ea0b6-c081-46fa-9947-1f01efde99ec",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017feizJ68U3MMRtcofJcv7y",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 13362,
+                "cache_read_input_tokens": 11701,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 13362
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-16T02:45:23.858Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01C6TxqzfXnRopwXR1YPHjhc",
+              "type": "tool_result",
+              "content": "1\t\\section{Experiments}\n2\t\\label{sec:experiments}\n3\t\n4\t\\subsection{Experimental Setup}\n5\t\\label{sec:setup}\n6\t\n7\t\\paragraph{Datasets.}\n8\tWe evaluate on three English IE benchmarks spanning a difficulty gradient.\n9\t\\textbf{SciERC} \\cite{luan2018scierc} contains 551 test instances from scientific abstracts annotated for joint NER (6 entity types) and RE (7 relation types), representing a complex schema with overlapping structures.\n10\t\\textbf{CoNLL-2003} \\cite{tjongkimsang2003conll} provides 3{,}453 test sentences from newswire with 4 entity types, serving as a high-accuracy benchmark where models achieve ${>}$91\\% micro F1.\n11\t\\textbf{WNUT-17} \\cite{derczynski2017wnut} consists of 1{,}287 test instances from social media with emerging entities, used to probe method boundaries where model capability is insufficient.\n12\tThis gradient---from near-solved (CoNLL) through challenging (SciERC) to infeasible (WNUT-17)---enables systematic characterization of how signal effectiveness varies with task difficulty (\\S\\ref{sec:complexity_robustness}).\n13\t\n14\t\\paragraph{Models.}\n15\tOur primary model is \\textbf{Qwen3-8B}, fine-tuned with LoRA ($r{=}32$) separately per dataset.\n16\tFor cross-model validation, we evaluate \\textbf{LLaMA-3.1-8B-Instruct} to assess whether structural confidence signals transfer across architectures and training regimes.\n17\t\n18\t\\paragraph{Sampling and Evaluation.}\n19\tFor each test instance, we draw $N$ independent samples at temperature $T{=}1.0$, with $T{=}0.7$ for robustness analysis.\n20\tWe use $N{=}8$ for both SciERC and CoNLL in the primary evaluation, and $N{=}16$ for SciERC scaling experiments.\n21\tQuality estimation is measured along two axes: \\textit{rank correlation} with instance-level F1 via Spearman $\\rho$ and Kendall $\\tau$, and \\textit{binary discrimination} via AUROC (instances above vs.\\ below median F1).\n22\tDownstream utility is assessed through \\textbf{best-of-$N$ selection F1}: the F1 obtained when each signal selects one sample per instance.\n23\tInstance-level F1 uses exact span matching for NER and head-tail-label matching for RE, where a relation is correct only when both argument entities and the relation label match the gold annotation.\n24\tThe greedy decoding baseline ($T{=}0$, $N{=}1$) establishes performance without test-time scaling.\n25\t\n26\t\\paragraph{Confidence Signals.}\n27\tWe compare five signals from three families (detailed in \\S\\ref{sec:signals}).\n28\t\\textit{Structural} signals operate on extracted entity/relation sets: \\textbf{Voting Confidence} aggregates per-extraction frequency across samples, and \\textbf{Soft Jaccard (SJ)} measures pairwise set similarity \\cite{jaccard1901distribution}.\n29\t\\textit{Surface} signals operate on string representations: \\textbf{Fleiss' $\\kappa$ (FK)} quantifies inter-sample agreement treating samples as independent annotators \\cite{fleiss1971agreement}, and \\textbf{Exact Match (EM)} computes the fraction of identical sample pairs.\n30\tThe \\textit{model-internal} signal is \\textbf{log-probability (logprob)}, the mean token-level log-likelihood.\n31\t\n32\t\\paragraph{Implementation.}\n33\tInference uses vLLM with XGrammar constrained decoding \\cite{willard2023guided} to enforce valid JSON output structure.\n34\tA span realignment post-processing step corrects character-level offset mismatches between generated and gold annotation spans.\n35\tAll confidence signals are computed from the $N$ samples without access to gold labels.\n36\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "a9d6359f-116a-49fe-b2bd-212b662daae8",
+            "uuid": "d3c6d77f-8a51-4408-baba-c47f98177efc",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/experiments.tex",
+                "content": "\\section{Experiments}\n\\label{sec:experiments}\n\n\\subsection{Experimental Setup}\n\\label{sec:setup}\n\n\\paragraph{Datasets.}\nWe evaluate on three English IE benchmarks spanning a difficulty gradient.\n\\textbf{SciERC} \\cite{luan2018scierc} contains 551 test instances from scientific abstracts annotated for joint NER (6 entity types) and RE (7 relation types), representing a complex schema with overlapping structures.\n\\textbf{CoNLL-2003} \\cite{tjongkimsang2003conll} provides 3{,}453 test sentences from newswire with 4 entity types, serving as a high-accuracy benchmark where models achieve ${>}$91\\% micro F1.\n\\textbf{WNUT-17} \\cite{derczynski2017wnut} consists of 1{,}287 test instances from social media with emerging entities, used to probe method boundaries where model capability is insufficient.\nThis gradient---from near-solved (CoNLL) through challenging (SciERC) to infeasible (WNUT-17)---enables systematic characterization of how signal effectiveness varies with task difficulty (\\S\\ref{sec:complexity_robustness}).\n\n\\paragraph{Models.}\nOur primary model is \\textbf{Qwen3-8B}, fine-tuned with LoRA ($r{=}32$) separately per dataset.\nFor cross-model validation, we evaluate \\textbf{LLaMA-3.1-8B-Instruct} to assess whether structural confidence signals transfer across architectures and training regimes.\n\n\\paragraph{Sampling and Evaluation.}\nFor each test instance, we draw $N$ independent samples at temperature $T{=}1.0$, with $T{=}0.7$ for robustness analysis.\nWe use $N{=}8$ for both SciERC and CoNLL in the primary evaluation, and $N{=}16$ for SciERC scaling experiments.\nQuality estimation is measured along two axes: \\textit{rank correlation} with instance-level F1 via Spearman $\\rho$ and Kendall $\\tau$, and \\textit{binary discrimination} via AUROC (instances above vs.\\ below median F1).\nDownstream utility is assessed through \\textbf{best-of-$N$ selection F1}: the F1 obtained when each signal selects one sample per instance.\nInstance-level F1 uses exact span matching for NER and head-tail-label matching for RE, where a relation is correct only when both argument entities and the relation label match the gold annotation.\nThe greedy decoding baseline ($T{=}0$, $N{=}1$) establishes performance without test-time scaling.\n\n\\paragraph{Confidence Signals.}\nWe compare five signals from three families (detailed in \\S\\ref{sec:signals}).\n\\textit{Structural} signals operate on extracted entity/relation sets: \\textbf{Voting Confidence} aggregates per-extraction frequency across samples, and \\textbf{Soft Jaccard (SJ)} measures pairwise set similarity \\cite{jaccard1901distribution}.\n\\textit{Surface} signals operate on string representations: \\textbf{Fleiss' $\\kappa$ (FK)} quantifies inter-sample agreement treating samples as independent annotators \\cite{fleiss1971agreement}, and \\textbf{Exact Match (EM)} computes the fraction of identical sample pairs.\nThe \\textit{model-internal} signal is \\textbf{log-probability (logprob)}, the mean token-level log-likelihood.\n\n\\paragraph{Implementation.}\nInference uses vLLM with XGrammar constrained decoding \\cite{willard2023guided} to enforce valid JSON output structure.\nA span realignment post-processing step corrects character-level offset mismatches between generated and gold annotation spans.\nAll confidence signals are computed from the $N$ samples without access to gold labels.\n",
+                "numLines": 36,
+                "startLine": 1,
+                "totalLines": 225
+              }
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01WcHE5Wk7ry2GyL1u1KXmad",
+              "name": "Glob",
+              "input": {
+                "pattern": "*.tex",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a9d6359f-116a-49fe-b2bd-212b662daae8",
+            "uuid": "60857cef-dcbd-4d6d-a791-59be094f1372",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017feizJ68U3MMRtcofJcv7y",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 13362,
+                "cache_read_input_tokens": 11701,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 13362
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-16T02:45:24.235Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01WcHE5Wk7ry2GyL1u1KXmad",
+              "type": "tool_result",
+              "content": "artifacts/_project/paper/introduction.tex\nartifacts/_project/paper/related_work.tex\nartifacts/_project/paper/discussion.tex\nartifacts/_project/paper/abstract.tex\nartifacts/_project/paper/conclusion.tex\nartifacts/_project/paper/limitations.tex\nartifacts/_project/paper/freeform_ablation_appendix_table.tex\nartifacts/_project/paper/n_scaling_appendix_tables.tex\nartifacts/_project/paper/n_scaling_appendix_tables_44b000.tex\nartifacts/_project/paper/experiments.tex"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "a9d6359f-116a-49fe-b2bd-212b662daae8",
+            "uuid": "0c192b0b-f5eb-4299-9e5a-2d278b861325",
+            "tool_use_result": {
+              "filenames": [
+                "artifacts/_project/paper/introduction.tex",
+                "artifacts/_project/paper/related_work.tex",
+                "artifacts/_project/paper/discussion.tex",
+                "artifacts/_project/paper/abstract.tex",
+                "artifacts/_project/paper/conclusion.tex",
+                "artifacts/_project/paper/limitations.tex",
+                "artifacts/_project/paper/freeform_ablation_appendix_table.tex",
+                "artifacts/_project/paper/n_scaling_appendix_tables.tex",
+                "artifacts/_project/paper/n_scaling_appendix_tables_44b000.tex",
+                "artifacts/_project/paper/experiments.tex"
+              ],
+              "durationMs": 12,
+              "numFiles": 10,
+              "truncated": false
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me also check the introduction.tex to see how it references the method section, and the related_work.tex for citation style.",
+              "signature": "ErwCClkIDRgCKkCLKdhpqC4mMVEdHfAmdOd5c58edRGJnRJoJTzzb5fWzb/wn7XkTFE43B4PPAaJqp+mHdPOKrtBg8yLrXMbAP04Mg9jbGF1ZGUtb3B1cy00LTY4ABIMOn4cF6aq9Ie/E/e2Ggx+7yinIsYx3koATdsiMJZJ3E0yAtYBP3kEpm/G3eSXz5Ps/LU6ZlvzdF/xmbsNYsdug+xYLoaSemOXyy67wyqQARk1b9NdOvhEyNVmi9NGG96YqlP6xMenXhms+jX75ST1GD/WtLL32QbNs/TluyQ+syy3a7Ky76I1qpK/ULQ/+dRDgx4nnT6CjzDetUqS0slAXnYOl0vlKVMiMhCaIwymfxvo3ZVHJY4hd0bi++QJyegpTIzwKeO6biP+Fpvi0yZlV40TJypQiHqdu/w07G5zNxgB"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a9d6359f-116a-49fe-b2bd-212b662daae8",
+            "uuid": "61024403-047e-4892-aefb-533dc00b41aa",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011PaLAk9BoBTxffRKRaYLK7",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1426,
+                "cache_read_input_tokens": 25063,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1426
+                },
+                "output_tokens": 10,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me check the introduction for context on how it references the method section."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a9d6359f-116a-49fe-b2bd-212b662daae8",
+            "uuid": "b5f330cd-329e-4236-ba99-903a41dcc457",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011PaLAk9BoBTxffRKRaYLK7",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1426,
+                "cache_read_input_tokens": 25063,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1426
+                },
+                "output_tokens": 10,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01SMi78qdLBH26EK5BPK7s5G",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/introduction.tex",
+                "limit": 60
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a9d6359f-116a-49fe-b2bd-212b662daae8",
+            "uuid": "b689ce81-8490-4e29-ad1d-3d0c7e4aac93",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011PaLAk9BoBTxffRKRaYLK7",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1426,
+                "cache_read_input_tokens": 25063,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1426
+                },
+                "output_tokens": 10,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-16T02:45:27.569Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01SMi78qdLBH26EK5BPK7s5G",
+              "type": "tool_result",
+              "content": "1\t\\section{Introduction}\\label{sec:introduction}\n2\t\n3\tSelf-consistency---sampling multiple outputs and aggregating them---has become a powerful strategy for improving language model reasoning.\n4\tOn discrete-answer tasks such as arithmetic and commonsense QA, majority voting over chain-of-thought samples yields large gains: +18 percentage points on GSM8K \\cite{wang2023selfconsistency}.\n5\tMore broadly, test-time compute scaling through repeated sampling and selection has emerged as a complementary axis to model scaling, offering substantial quality improvements at inference time \\cite{snell2024scaling, brown2024monkeys}.\n6\tThese results rest on a shared assumption: that among $N$ stochastic samples, a selection mechanism can identify better outputs.\n7\tFor tasks with a single correct answer, this assumption holds naturally---the majority vote is the selector.\n8\tBut information extraction (IE) poses a fundamentally different challenge.\n9\tThe output is not a single token or number; it is a \\textit{set} of entities or relations with internal dependencies, where two samples may extract overlapping but non-identical structures.\n10\tThere is no obvious majority to vote on, partial agreement is the norm rather than the exception, and the space of valid outputs is combinatorially large.\n11\tCan self-consistency still provide useful signal in this structured setting?\n12\t\n13\tPrior work on confidence estimation for LLM-based IE has conflated two distinct objectives.\n14\t\\textit{Quality estimation} asks which inputs the model handles reliably---a ranking over instances.\n15\t\\textit{Sample selection} asks which of $N$ candidate outputs is best for a given input---a ranking over samples.\n16\tThese require fundamentally different signal properties: the former benefits from instance-level aggregation across all $N$ samples, while the latter demands per-sample discrimination.\n17\tExisting evaluations rarely separate the two.\n18\tSelf-consistency methods designed for discrete answers \\cite{wang2023selfconsistency, chen2024usc} assume outputs can be grouped by equivalence and counted, an assumption that breaks when outputs are entity sets with partial overlap.\n19\tWeighted variants that incorporate model confidence \\cite{taubenfeld2025cisc, kang2025selfcertainty} have shown promise for best-of-$N$ selection on reasoning tasks, but their applicability to structured prediction remains untested.\n20\tThe most directly relevant study, \\citet{nedellec2026consistency}, examines consistency--accuracy correlations for LLM-based entity and relation extraction but relies on surface-level matching, a limitation the authors themselves acknowledge: their approach ``overlooks semantically consistent outputs'' that differ only in surface form.\n21\tNo existing work systematically compares confidence signals across the structural, surface, and model-internal families for generative IE, nor disentangles quality estimation from sample selection in this setting.\n22\t\n23\tOur central finding is that consistency-based signals are effective instance-level quality estimators but poor sample selectors for structured IE.\n24\tConsistency signals aggregate over $N$ samples to produce a single score per input, making them well-suited to predict input difficulty---instances where the model consistently extracts similar structures are indeed easier.\n25\tEntity voting confidence, our best signal, achieves Spearman $\\rho{=}0.50$ and AUROC${=}0.73$ on SciERC NER, a correlation strong enough to be practically useful for quality-aware routing.\n26\tYet this correlation does not translate into selection gains: on NER best-of-$N$, no signal surpasses greedy decoding despite 16 percentage points of oracle headroom.\n27\tWe term this the \\textbf{correlation-selection gap} (Figure~\\ref{fig:overview}).\n28\tThe gap arises because instance-level signals cannot discriminate among $N$ candidates that share similar consistency profiles---they predict \\textit{which inputs} are hard, not \\textit{which output} is best.\n29\tOnly log-probability, the sole per-sample signal in our comparison, achieves selection gains, and only on relation extraction (+2.3~pp over greedy), where per-sample variance is higher.\n30\tWe systematically evaluate five confidence signals from three families---structural (entity voting, Soft Jaccard), surface (exact match, Fleiss' $\\kappa$), and model-internal (log-probability)---across NER and RE on SciERC \\cite{luan2018scierc}, CoNLL-2003 \\cite{tjongkimsang2003conll}, and WNUT-17 \\cite{derczynski2017wnut}, using Qwen3-8B and LLaMA-3.1-8B.\n31\t\n32\tOur contributions are as follows:\n33\t\\begin{enumerate}\n34\t    \\item \\textbf{First systematic comparison of confidence signals for generative IE.}\n35\t    We evaluate five signals from three families on quality estimation for NER and RE.\n36\t    Entity voting achieves $\\rho{=}0.50$ and AUROC${=}0.73$; structural signals outperform surface and model-internal alternatives on complex schemas (SciERC), while surface signals dominate on simpler tasks (CoNLL).\n37\t\n38\t    \\item \\textbf{Identification of the correlation-selection gap.}\n39\t    We demonstrate a fundamental disconnect between quality estimation and sample selection in structured IE.\n40\t    Despite strong instance-level correlations ($\\rho$ up to 0.50), no consistency signal improves NER best-of-$N$ over greedy decoding; only log-probability helps on RE (+2.3~pp).\n41\t    This gap reflects the instance-level nature of consistency signals, which predict input difficulty rather than discriminating among individual samples.\n42\t\n43\t    \\item \\textbf{Task-complexity boundary conditions.}\n44\t    Signal rankings depend on task difficulty: exact match leads on easy tasks (CoNLL), Soft Jaccard dominates on hard tasks (SciERC), and all signals converge when model capability is insufficient (WNUT-17, where 54\\% of instances receive zero F1).\n45\t    This establishes practical guidance for signal selection based on expected task difficulty.\n46\t\\end{enumerate}\n47\t\n48\tThe remainder of this paper is organized as follows.\n49\t\\S\\ref{sec:method} formalizes the problem and defines the five confidence signals.\n50\t\\S\\ref{sec:experiments} presents quality estimation results, the correlation-selection gap analysis, and robustness evaluations.\n51\t\\S\\ref{sec:related} situates our work in the broader landscape of self-consistency, uncertainty estimation, and LLM-based IE.\n52\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "a9d6359f-116a-49fe-b2bd-212b662daae8",
+            "uuid": "0c5b7e46-c309-4a32-b180-29994135adf9",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/introduction.tex",
+                "content": "\\section{Introduction}\\label{sec:introduction}\n\nSelf-consistency---sampling multiple outputs and aggregating them---has become a powerful strategy for improving language model reasoning.\nOn discrete-answer tasks such as arithmetic and commonsense QA, majority voting over chain-of-thought samples yields large gains: +18 percentage points on GSM8K \\cite{wang2023selfconsistency}.\nMore broadly, test-time compute scaling through repeated sampling and selection has emerged as a complementary axis to model scaling, offering substantial quality improvements at inference time \\cite{snell2024scaling, brown2024monkeys}.\nThese results rest on a shared assumption: that among $N$ stochastic samples, a selection mechanism can identify better outputs.\nFor tasks with a single correct answer, this assumption holds naturally---the majority vote is the selector.\nBut information extraction (IE) poses a fundamentally different challenge.\nThe output is not a single token or number; it is a \\textit{set} of entities or relations with internal dependencies, where two samples may extract overlapping but non-identical structures.\nThere is no obvious majority to vote on, partial agreement is the norm rather than the exception, and the space of valid outputs is combinatorially large.\nCan self-consistency still provide useful signal in this structured setting?\n\nPrior work on confidence estimation for LLM-based IE has conflated two distinct objectives.\n\\textit{Quality estimation} asks which inputs the model handles reliably---a ranking over instances.\n\\textit{Sample selection} asks which of $N$ candidate outputs is best for a given input---a ranking over samples.\nThese require fundamentally different signal properties: the former benefits from instance-level aggregation across all $N$ samples, while the latter demands per-sample discrimination.\nExisting evaluations rarely separate the two.\nSelf-consistency methods designed for discrete answers \\cite{wang2023selfconsistency, chen2024usc} assume outputs can be grouped by equivalence and counted, an assumption that breaks when outputs are entity sets with partial overlap.\nWeighted variants that incorporate model confidence \\cite{taubenfeld2025cisc, kang2025selfcertainty} have shown promise for best-of-$N$ selection on reasoning tasks, but their applicability to structured prediction remains untested.\nThe most directly relevant study, \\citet{nedellec2026consistency}, examines consistency--accuracy correlations for LLM-based entity and relation extraction but relies on surface-level matching, a limitation the authors themselves acknowledge: their approach ``overlooks semantically consistent outputs'' that differ only in surface form.\nNo existing work systematically compares confidence signals across the structural, surface, and model-internal families for generative IE, nor disentangles quality estimation from sample selection in this setting.\n\nOur central finding is that consistency-based signals are effective instance-level quality estimators but poor sample selectors for structured IE.\nConsistency signals aggregate over $N$ samples to produce a single score per input, making them well-suited to predict input difficulty---instances where the model consistently extracts similar structures are indeed easier.\nEntity voting confidence, our best signal, achieves Spearman $\\rho{=}0.50$ and AUROC${=}0.73$ on SciERC NER, a correlation strong enough to be practically useful for quality-aware routing.\nYet this correlation does not translate into selection gains: on NER best-of-$N$, no signal surpasses greedy decoding despite 16 percentage points of oracle headroom.\nWe term this the \\textbf{correlation-selection gap} (Figure~\\ref{fig:overview}).\nThe gap arises because instance-level signals cannot discriminate among $N$ candidates that share similar consistency profiles---they predict \\textit{which inputs} are hard, not \\textit{which output} is best.\nOnly log-probability, the sole per-sample signal in our comparison, achieves selection gains, and only on relation extraction (+2.3~pp over greedy), where per-sample variance is higher.\nWe systematically evaluate five confidence signals from three families---structural (entity voting, Soft Jaccard), surface (exact match, Fleiss' $\\kappa$), and model-internal (log-probability)---across NER and RE on SciERC \\cite{luan2018scierc}, CoNLL-2003 \\cite{tjongkimsang2003conll}, and WNUT-17 \\cite{derczynski2017wnut}, using Qwen3-8B and LLaMA-3.1-8B.\n\nOur contributions are as follows:\n\\begin{enumerate}\n    \\item \\textbf{First systematic comparison of confidence signals for generative IE.}\n    We evaluate five signals from three families on quality estimation for NER and RE.\n    Entity voting achieves $\\rho{=}0.50$ and AUROC${=}0.73$; structural signals outperform surface and model-internal alternatives on complex schemas (SciERC), while surface signals dominate on simpler tasks (CoNLL).\n\n    \\item \\textbf{Identification of the correlation-selection gap.}\n    We demonstrate a fundamental disconnect between quality estimation and sample selection in structured IE.\n    Despite strong instance-level correlations ($\\rho$ up to 0.50), no consistency signal improves NER best-of-$N$ over greedy decoding; only log-probability helps on RE (+2.3~pp).\n    This gap reflects the instance-level nature of consistency signals, which predict input difficulty rather than discriminating among individual samples.\n\n    \\item \\textbf{Task-complexity boundary conditions.}\n    Signal rankings depend on task difficulty: exact match leads on easy tasks (CoNLL), Soft Jaccard dominates on hard tasks (SciERC), and all signals converge when model capability is insufficient (WNUT-17, where 54\\% of instances receive zero F1).\n    This establishes practical guidance for signal selection based on expected task difficulty.\n\\end{enumerate}\n\nThe remainder of this paper is organized as follows.\n\\S\\ref{sec:method} formalizes the problem and defines the five confidence signals.\n\\S\\ref{sec:experiments} presents quality estimation results, the correlation-selection gap analysis, and robustness evaluations.\n\\S\\ref{sec:related} situates our work in the broader landscape of self-consistency, uncertainty estimation, and LLM-based IE.\n",
+                "numLines": 52,
+                "startLine": 1,
+                "totalLines": 52
+              }
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I have a good understanding of the paper structure, terminology, and citation style. Let me create the method.tex file.\n\nKey points from what I've read:\n- The paper uses E_i for extraction set of sample i\n- Citations: \\cite{} style\n- Five signals: VC, SJ, FK, EM, LP\n- Three families: structural, surface, model-internal\n- Notation: N samples, temperature T, instance x, candidate y_i\n- F1 uses exact span matching for NER and head-tail-label matching for RE\n\n\nWriting method.tex...",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a9d6359f-116a-49fe-b2bd-212b662daae8",
+            "uuid": "d2bd229b-fc12-430b-a387-4e8db57cc4a2",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018Pj6PexqP3znwuUwaZ9EKG",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1747,
+                "cache_read_input_tokens": 26489,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1747
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I have sufficient context. Creating method.tex."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a9d6359f-116a-49fe-b2bd-212b662daae8",
+            "uuid": "c5710f98-d2d5-468e-a3ec-f1971f9c38de",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018Pj6PexqP3znwuUwaZ9EKG",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1747,
+                "cache_read_input_tokens": 26489,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1747
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018yho4grUPhrtssUTaCFFzp",
+              "name": "Write",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/method.tex",
+                "content": "\\section{Method}\\label{sec:method}\n\n\\subsection{Problem Formalization}\n\nWe study test-time scaling for structured information extraction.\nGiven an input text $x$, a language model $\\mathcal{M}$ generates $N$ independent candidate outputs $\\{y_1, \\ldots, y_N\\}$ at temperature $T > 0$.\nEach candidate $y_i$ is a structured object: an entity set $E_i = \\{e_1, \\ldots, e_{|E_i|}\\}$ for named entity recognition (NER), or a relation triple set $R_i = \\{(h, t, l)_1, \\ldots\\}$ for relation extraction (RE).\nThe central question is whether the redundancy across $N$ samples can be exploited to improve extraction quality.\n\nWe distinguish two objectives that prior work has conflated:\n\\begin{itemize}\n    \\item \\textbf{Quality estimation (QE):} rank \\emph{instances} by expected extraction quality.\n    Given a set of instances $\\{x^{(1)}, \\ldots, x^{(M)}\\}$, assign each a confidence score $c(x)$ such that $c(x)$ correlates with instance-level F1.\n    This enables downstream applications such as quality-aware routing, selective prediction, and active verification.\n\n    \\item \\textbf{Sample selection:} for a single instance $x$, rank the $N$ \\emph{candidates} to select the best one.\n    Assign each candidate a score $s(y_i \\mid x)$ such that $\\arg\\max_i s(y_i \\mid x)$ approximates the oracle choice $\\arg\\max_i \\mathrm{F1}(y_i, y^*)$.\n\\end{itemize}\n\nThese two objectives impose different requirements on the confidence signal.\nQE benefits from \\textit{instance-level aggregation}: a signal that summarizes agreement patterns across all $N$ samples can distinguish easy instances (high agreement) from hard ones (low agreement), even though it assigns the same score to every candidate within an instance.\nSelection, by contrast, requires \\textit{per-sample discrimination}: the signal must assign \\emph{different} scores to different candidates of the same instance.\nA signal that aggregates across samples to produce a single instance-level score is structurally unable to perform selection, regardless of its correlation with quality.\nThis distinction is the key to understanding the correlation-selection gap we identify empirically (\\S\\ref{sec:experiments}).\n\n\\subsection{Confidence Signals}\\label{sec:signals}\n\nWe evaluate five confidence signals drawn from three families.\nFour signals aggregate across the $N$ samples to produce a single score per instance (instance-level); only log-probability provides per-sample scores.\n\n\\subsubsection{Structural Signals}\n\nStructural signals operate directly on the extracted entity or relation sets, exploiting set-theoretic overlap.\n\n\\paragraph{Voting Confidence (VC).}\nFor each unique extraction $e$ in the union across all samples $U = \\bigcup_{i=1}^{N} E_i$, we compute its frequency $\\mathrm{freq}(e) = \\sum_{i=1}^{N} \\mathbf{1}[e \\in E_i]$.\nThe voting confidence of an instance is the mean normalized frequency:\n\\begin{equation}\n    \\mathrm{VC}(x) = \\frac{1}{|U|} \\sum_{e \\in U} \\frac{\\mathrm{freq}(e)}{N}\n    \\label{eq:vc}\n\\end{equation}\nVC reflects how consistently the model extracts each item: high VC indicates that most extractions appear in most samples.\nFor RE, each extraction $e$ is a $(h, t, l)$ triple, and frequency is computed over exact triple matches.\n\n\\paragraph{Soft Jaccard (SJ).}\nWe measure pairwise set similarity across all sample pairs using the Jaccard index \\cite{jaccard1901distribution}:\n\\begin{equation}\n    \\mathrm{SJ}(x) = \\frac{2}{N(N-1)} \\sum_{i < j} \\frac{|E_i \\cap E_j|}{|E_i \\cup E_j|}\n    \\label{eq:sj}\n\\end{equation}\nwhere intersection and union use exact span matching for NER and exact $(h, t, l)$ matching for RE.\nWhen both $E_i$ and $E_j$ are empty, we define the Jaccard coefficient as 1.\nSJ captures overall structural agreement: a score near 1 means the model produces nearly identical extraction sets across samples.\n\n\\subsubsection{Surface Signals}\n\nSurface signals operate on the string representations of model outputs rather than on parsed structures.\n\n\\paragraph{Fleiss' $\\kappa$ (FK).}\nWe treat the $N$ samples as independent annotators rating categories in a normalized text space.\nFollowing \\citet{fleiss1971agreement}, we compute:\n\\begin{equation}\n    \\mathrm{FK}(x) = \\frac{\\bar{P} - \\bar{P}_e}{1 - \\bar{P}_e}\n    \\label{eq:fk}\n\\end{equation}\nwhere $\\bar{P}$ is the mean observed agreement and $\\bar{P}_e$ is the expected agreement under chance.\nFK accounts for agreement expected by chance, providing a calibrated measure of inter-sample consensus.\n\n\\paragraph{Exact Match (EM).}\nThe fraction of sample pairs that are identical after normalization:\n\\begin{equation}\n    \\mathrm{EM}(x) = \\frac{2}{N(N-1)} \\sum_{i < j} \\mathbf{1}\\big[\\mathrm{norm}(y_i) = \\mathrm{norm}(y_j)\\big]\n    \\label{eq:em}\n\\end{equation}\nwhere $\\mathrm{norm}(\\cdot)$ applies whitespace and casing normalization.\nEM is the coarsest signal: it is strictly binary per pair and collapses all partial agreement into disagreement.\nAs an instance-level aggregation, it is inherently unsuitable for sample selection.\n\n\\subsubsection{Model-Internal Signal}\n\n\\paragraph{Log-Probability (LP).}\nThe mean token-level log-likelihood under the model:\n\\begin{equation}\n    \\mathrm{LP}(y_i) = \\frac{1}{|y_i|} \\sum_{t=1}^{|y_i|} \\log P_{\\mathcal{M}}(y_{i,t} \\mid y_{i,<t},\\, x)\n    \\label{eq:lp}\n\\end{equation}\nwhere $|y_i|$ is the number of tokens in $y_i$.\nLP is the \\textbf{only per-sample signal} in our comparison---it assigns a distinct score to each candidate $y_i$, making it the only signal structurally capable of sample selection.\nHowever, constrained decoding (which forces valid output structure) compresses the token-level probability distribution, reducing score variance across candidates within an instance.\nWe quantify this compression via the \\textit{tied fraction}: the proportion of instances where $\\max_i \\mathrm{LP}(y_i) - \\min_i \\mathrm{LP}(y_i) < \\epsilon$ (with $\\epsilon = 0.05$), indicating that LP cannot meaningfully discriminate among candidates.\n\n\\subsection{Evaluation Protocol}\n\n\\paragraph{Quality Estimation.}\nWe evaluate QE using two complementary metrics.\n\\textit{Spearman} $\\rho$ measures rank correlation between each signal and instance-level F1 across all test instances.\n\\textit{AUROC} measures binary discrimination: whether the signal can distinguish instances above vs.\\ below median F1.\nHigher values indicate better quality estimation on both metrics.\n\n\\paragraph{Sample Selection.}\nSelection quality is measured by \\textbf{best-of-$N$ F1}: for each instance, the signal selects the candidate with the highest score, and we report the macro-averaged F1 of the selected candidates.\nFor the four instance-level signals (VC, SJ, FK, EM), which assign the same score to all $N$ candidates of an instance, selection reduces to random choice; we report the expected value over random selections.\nThe \\textbf{oracle} upper bound selects the candidate with the highest F1, and the \\textbf{greedy} baseline uses a single sample at $T{=}0$.\n\n\\paragraph{Gold-Filtered Evaluation.}\nWe exclude instances with no gold annotations from all evaluations, as these contribute undefined F1 scores and distort correlation estimates.\nThis ensures that our metrics reflect true signal quality rather than artifacts of empty-gold instances.\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a9d6359f-116a-49fe-b2bd-212b662daae8",
+            "uuid": "7e06fbcd-2a95-40ba-946e-8b39c4e64424",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018Pj6PexqP3znwuUwaZ9EKG",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1747,
+                "cache_read_input_tokens": 26489,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1747
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-16T02:46:12.818Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_018yho4grUPhrtssUTaCFFzp",
+              "type": "tool_result",
+              "content": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/method.tex"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "a9d6359f-116a-49fe-b2bd-212b662daae8",
+            "uuid": "1c26ece9-6fe1-4a7a-9941-c6cd09ddab37",
+            "tool_use_result": {
+              "type": "create",
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/method.tex",
+              "content": "\\section{Method}\\label{sec:method}\n\n\\subsection{Problem Formalization}\n\nWe study test-time scaling for structured information extraction.\nGiven an input text $x$, a language model $\\mathcal{M}$ generates $N$ independent candidate outputs $\\{y_1, \\ldots, y_N\\}$ at temperature $T > 0$.\nEach candidate $y_i$ is a structured object: an entity set $E_i = \\{e_1, \\ldots, e_{|E_i|}\\}$ for named entity recognition (NER), or a relation triple set $R_i = \\{(h, t, l)_1, \\ldots\\}$ for relation extraction (RE).\nThe central question is whether the redundancy across $N$ samples can be exploited to improve extraction quality.\n\nWe distinguish two objectives that prior work has conflated:\n\\begin{itemize}\n    \\item \\textbf{Quality estimation (QE):} rank \\emph{instances} by expected extraction quality.\n    Given a set of instances $\\{x^{(1)}, \\ldots, x^{(M)}\\}$, assign each a confidence score $c(x)$ such that $c(x)$ correlates with instance-level F1.\n    This enables downstream applications such as quality-aware routing, selective prediction, and active verification.\n\n    \\item \\textbf{Sample selection:} for a single instance $x$, rank the $N$ \\emph{candidates} to select the best one.\n    Assign each candidate a score $s(y_i \\mid x)$ such that $\\arg\\max_i s(y_i \\mid x)$ approximates the oracle choice $\\arg\\max_i \\mathrm{F1}(y_i, y^*)$.\n\\end{itemize}\n\nThese two objectives impose different requirements on the confidence signal.\nQE benefits from \\textit{instance-level aggregation}: a signal that summarizes agreement patterns across all $N$ samples can distinguish easy instances (high agreement) from hard ones (low agreement), even though it assigns the same score to every candidate within an instance.\nSelection, by contrast, requires \\textit{per-sample discrimination}: the signal must assign \\emph{different} scores to different candidates of the same instance.\nA signal that aggregates across samples to produce a single instance-level score is structurally unable to perform selection, regardless of its correlation with quality.\nThis distinction is the key to understanding the correlation-selection gap we identify empirically (\\S\\ref{sec:experiments}).\n\n\\subsection{Confidence Signals}\\label{sec:signals}\n\nWe evaluate five confidence signals drawn from three families.\nFour signals aggregate across the $N$ samples to produce a single score per instance (instance-level); only log-probability provides per-sample scores.\n\n\\subsubsection{Structural Signals}\n\nStructural signals operate directly on the extracted entity or relation sets, exploiting set-theoretic overlap.\n\n\\paragraph{Voting Confidence (VC).}\nFor each unique extraction $e$ in the union across all samples $U = \\bigcup_{i=1}^{N} E_i$, we compute its frequency $\\mathrm{freq}(e) = \\sum_{i=1}^{N} \\mathbf{1}[e \\in E_i]$.\nThe voting confidence of an instance is the mean normalized frequency:\n\\begin{equation}\n    \\mathrm{VC}(x) = \\frac{1}{|U|} \\sum_{e \\in U} \\frac{\\mathrm{freq}(e)}{N}\n    \\label{eq:vc}\n\\end{equation}\nVC reflects how consistently the model extracts each item: high VC indicates that most extractions appear in most samples.\nFor RE, each extraction $e$ is a $(h, t, l)$ triple, and frequency is computed over exact triple matches.\n\n\\paragraph{Soft Jaccard (SJ).}\nWe measure pairwise set similarity across all sample pairs using the Jaccard index \\cite{jaccard1901distribution}:\n\\begin{equation}\n    \\mathrm{SJ}(x) = \\frac{2}{N(N-1)} \\sum_{i < j} \\frac{|E_i \\cap E_j|}{|E_i \\cup E_j|}\n    \\label{eq:sj}\n\\end{equation}\nwhere intersection and union use exact span matching for NER and exact $(h, t, l)$ matching for RE.\nWhen both $E_i$ and $E_j$ are empty, we define the Jaccard coefficient as 1.\nSJ captures overall structural agreement: a score near 1 means the model produces nearly identical extraction sets across samples.\n\n\\subsubsection{Surface Signals}\n\nSurface signals operate on the string representations of model outputs rather than on parsed structures.\n\n\\paragraph{Fleiss' $\\kappa$ (FK).}\nWe treat the $N$ samples as independent annotators rating categories in a normalized text space.\nFollowing \\citet{fleiss1971agreement}, we compute:\n\\begin{equation}\n    \\mathrm{FK}(x) = \\frac{\\bar{P} - \\bar{P}_e}{1 - \\bar{P}_e}\n    \\label{eq:fk}\n\\end{equation}\nwhere $\\bar{P}$ is the mean observed agreement and $\\bar{P}_e$ is the expected agreement under chance.\nFK accounts for agreement expected by chance, providing a calibrated measure of inter-sample consensus.\n\n\\paragraph{Exact Match (EM).}\nThe fraction of sample pairs that are identical after normalization:\n\\begin{equation}\n    \\mathrm{EM}(x) = \\frac{2}{N(N-1)} \\sum_{i < j} \\mathbf{1}\\big[\\mathrm{norm}(y_i) = \\mathrm{norm}(y_j)\\big]\n    \\label{eq:em}\n\\end{equation}\nwhere $\\mathrm{norm}(\\cdot)$ applies whitespace and casing normalization.\nEM is the coarsest signal: it is strictly binary per pair and collapses all partial agreement into disagreement.\nAs an instance-level aggregation, it is inherently unsuitable for sample selection.\n\n\\subsubsection{Model-Internal Signal}\n\n\\paragraph{Log-Probability (LP).}\nThe mean token-level log-likelihood under the model:\n\\begin{equation}\n    \\mathrm{LP}(y_i) = \\frac{1}{|y_i|} \\sum_{t=1}^{|y_i|} \\log P_{\\mathcal{M}}(y_{i,t} \\mid y_{i,<t},\\, x)\n    \\label{eq:lp}\n\\end{equation}\nwhere $|y_i|$ is the number of tokens in $y_i$.\nLP is the \\textbf{only per-sample signal} in our comparison---it assigns a distinct score to each candidate $y_i$, making it the only signal structurally capable of sample selection.\nHowever, constrained decoding (which forces valid output structure) compresses the token-level probability distribution, reducing score variance across candidates within an instance.\nWe quantify this compression via the \\textit{tied fraction}: the proportion of instances where $\\max_i \\mathrm{LP}(y_i) - \\min_i \\mathrm{LP}(y_i) < \\epsilon$ (with $\\epsilon = 0.05$), indicating that LP cannot meaningfully discriminate among candidates.\n\n\\subsection{Evaluation Protocol}\n\n\\paragraph{Quality Estimation.}\nWe evaluate QE using two complementary metrics.\n\\textit{Spearman} $\\rho$ measures rank correlation between each signal and instance-level F1 across all test instances.\n\\textit{AUROC} measures binary discrimination: whether the signal can distinguish instances above vs.\\ below median F1.\nHigher values indicate better quality estimation on both metrics.\n\n\\paragraph{Sample Selection.}\nSelection quality is measured by \\textbf{best-of-$N$ F1}: for each instance, the signal selects the candidate with the highest score, and we report the macro-averaged F1 of the selected candidates.\nFor the four instance-level signals (VC, SJ, FK, EM), which assign the same score to all $N$ candidates of an instance, selection reduces to random choice; we report the expected value over random selections.\nThe \\textbf{oracle} upper bound selects the candidate with the highest F1, and the \\textbf{greedy} baseline uses a single sample at $T{=}0$.\n\n\\paragraph{Gold-Filtered Evaluation.}\nWe exclude instances with no gold annotations from all evaluations, as these contribute undefined F1 scores and distort correlation estimates.\nThis ensures that our metrics reflect true signal quality rather than artifacts of empty-gold instances.\n",
+              "structuredPatch": [],
+              "originalFile": null,
+              "userModified": false
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01DzBMUmuqqSjqNasaRJcxpv",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/method.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a9d6359f-116a-49fe-b2bd-212b662daae8",
+            "uuid": "9ceff686-fd34-4455-ae07-a19f3debb8d6",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01By7D4bU3scZioZmqTnAscm",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2441,
+                "cache_read_input_tokens": 28236,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2441
+                },
+                "output_tokens": 65,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-16T02:46:15.483Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01DzBMUmuqqSjqNasaRJcxpv",
+              "type": "tool_result",
+              "content": "1\t\\section{Method}\\label{sec:method}\n2\t\n3\t\\subsection{Problem Formalization}\n4\t\n5\tWe study test-time scaling for structured information extraction.\n6\tGiven an input text $x$, a language model $\\mathcal{M}$ generates $N$ independent candidate outputs $\\{y_1, \\ldots, y_N\\}$ at temperature $T > 0$.\n7\tEach candidate $y_i$ is a structured object: an entity set $E_i = \\{e_1, \\ldots, e_{|E_i|}\\}$ for named entity recognition (NER), or a relation triple set $R_i = \\{(h, t, l)_1, \\ldots\\}$ for relation extraction (RE).\n8\tThe central question is whether the redundancy across $N$ samples can be exploited to improve extraction quality.\n9\t\n10\tWe distinguish two objectives that prior work has conflated:\n11\t\\begin{itemize}\n12\t    \\item \\textbf{Quality estimation (QE):} rank \\emph{instances} by expected extraction quality.\n13\t    Given a set of instances $\\{x^{(1)}, \\ldots, x^{(M)}\\}$, assign each a confidence score $c(x)$ such that $c(x)$ correlates with instance-level F1.\n14\t    This enables downstream applications such as quality-aware routing, selective prediction, and active verification.\n15\t\n16\t    \\item \\textbf{Sample selection:} for a single instance $x$, rank the $N$ \\emph{candidates} to select the best one.\n17\t    Assign each candidate a score $s(y_i \\mid x)$ such that $\\arg\\max_i s(y_i \\mid x)$ approximates the oracle choice $\\arg\\max_i \\mathrm{F1}(y_i, y^*)$.\n18\t\\end{itemize}\n19\t\n20\tThese two objectives impose different requirements on the confidence signal.\n21\tQE benefits from \\textit{instance-level aggregation}: a signal that summarizes agreement patterns across all $N$ samples can distinguish easy instances (high agreement) from hard ones (low agreement), even though it assigns the same score to every candidate within an instance.\n22\tSelection, by contrast, requires \\textit{per-sample discrimination}: the signal must assign \\emph{different} scores to different candidates of the same instance.\n23\tA signal that aggregates across samples to produce a single instance-level score is structurally unable to perform selection, regardless of its correlation with quality.\n24\tThis distinction is the key to understanding the correlation-selection gap we identify empirically (\\S\\ref{sec:experiments}).\n25\t\n26\t\\subsection{Confidence Signals}\\label{sec:signals}\n27\t\n28\tWe evaluate five confidence signals drawn from three families.\n29\tFour signals aggregate across the $N$ samples to produce a single score per instance (instance-level); only log-probability provides per-sample scores.\n30\t\n31\t\\subsubsection{Structural Signals}\n32\t\n33\tStructural signals operate directly on the extracted entity or relation sets, exploiting set-theoretic overlap.\n34\t\n35\t\\paragraph{Voting Confidence (VC).}\n36\tFor each unique extraction $e$ in the union across all samples $U = \\bigcup_{i=1}^{N} E_i$, we compute its frequency $\\mathrm{freq}(e) = \\sum_{i=1}^{N} \\mathbf{1}[e \\in E_i]$.\n37\tThe voting confidence of an instance is the mean normalized frequency:\n38\t\\begin{equation}\n39\t    \\mathrm{VC}(x) = \\frac{1}{|U|} \\sum_{e \\in U} \\frac{\\mathrm{freq}(e)}{N}\n40\t    \\label{eq:vc}\n41\t\\end{equation}\n42\tVC reflects how consistently the model extracts each item: high VC indicates that most extractions appear in most samples.\n43\tFor RE, each extraction $e$ is a $(h, t, l)$ triple, and frequency is computed over exact triple matches.\n44\t\n45\t\\paragraph{Soft Jaccard (SJ).}\n46\tWe measure pairwise set similarity across all sample pairs using the Jaccard index \\cite{jaccard1901distribution}:\n47\t\\begin{equation}\n48\t    \\mathrm{SJ}(x) = \\frac{2}{N(N-1)} \\sum_{i < j} \\frac{|E_i \\cap E_j|}{|E_i \\cup E_j|}\n49\t    \\label{eq:sj}\n50\t\\end{equation}\n51\twhere intersection and union use exact span matching for NER and exact $(h, t, l)$ matching for RE.\n52\tWhen both $E_i$ and $E_j$ are empty, we define the Jaccard coefficient as 1.\n53\tSJ captures overall structural agreement: a score near 1 means the model produces nearly identical extraction sets across samples.\n54\t\n55\t\\subsubsection{Surface Signals}\n56\t\n57\tSurface signals operate on the string representations of model outputs rather than on parsed structures.\n58\t\n59\t\\paragraph{Fleiss' $\\kappa$ (FK).}\n60\tWe treat the $N$ samples as independent annotators rating categories in a normalized text space.\n61\tFollowing \\citet{fleiss1971agreement}, we compute:\n62\t\\begin{equation}\n63\t    \\mathrm{FK}(x) = \\frac{\\bar{P} - \\bar{P}_e}{1 - \\bar{P}_e}\n64\t    \\label{eq:fk}\n65\t\\end{equation}\n66\twhere $\\bar{P}$ is the mean observed agreement and $\\bar{P}_e$ is the expected agreement under chance.\n67\tFK accounts for agreement expected by chance, providing a calibrated measure of inter-sample consensus.\n68\t\n69\t\\paragraph{Exact Match (EM).}\n70\tThe fraction of sample pairs that are identical after normalization:\n71\t\\begin{equation}\n72\t    \\mathrm{EM}(x) = \\frac{2}{N(N-1)} \\sum_{i < j} \\mathbf{1}\\big[\\mathrm{norm}(y_i) = \\mathrm{norm}(y_j)\\big]\n73\t    \\label{eq:em}\n74\t\\end{equation}\n75\twhere $\\mathrm{norm}(\\cdot)$ applies whitespace and casing normalization.\n76\tEM is the coarsest signal: it is strictly binary per pair and collapses all partial agreement into disagreement.\n77\tAs an instance-level aggregation, it is inherently unsuitable for sample selection.\n78\t\n79\t\\subsubsection{Model-Internal Signal}\n80\t\n81\t\\paragraph{Log-Probability (LP).}\n82\tThe mean token-level log-likelihood under the model:\n83\t\\begin{equation}\n84\t    \\mathrm{LP}(y_i) = \\frac{1}{|y_i|} \\sum_{t=1}^{|y_i|} \\log P_{\\mathcal{M}}(y_{i,t} \\mid y_{i,<t},\\, x)\n85\t    \\label{eq:lp}\n86\t\\end{equation}\n87\twhere $|y_i|$ is the number of tokens in $y_i$.\n88\tLP is the \\textbf{only per-sample signal} in our comparison---it assigns a distinct score to each candidate $y_i$, making it the only signal structurally capable of sample selection.\n89\tHowever, constrained decoding (which forces valid output structure) compresses the token-level probability distribution, reducing score variance across candidates within an instance.\n90\tWe quantify this compression via the \\textit{tied fraction}: the proportion of instances where $\\max_i \\mathrm{LP}(y_i) - \\min_i \\mathrm{LP}(y_i) < \\epsilon$ (with $\\epsilon = 0.05$), indicating that LP cannot meaningfully discriminate among candidates.\n91\t\n92\t\\subsection{Evaluation Protocol}\n93\t\n94\t\\paragraph{Quality Estimation.}\n95\tWe evaluate QE using two complementary metrics.\n96\t\\textit{Spearman} $\\rho$ measures rank correlation between each signal and instance-level F1 across all test instances.\n97\t\\textit{AUROC} measures binary discrimination: whether the signal can distinguish instances above vs.\\ below median F1.\n98\tHigher values indicate better quality estimation on both metrics.\n99\t\n100\t\\paragraph{Sample Selection.}\n101\tSelection quality is measured by \\textbf{best-of-$N$ F1}: for each instance, the signal selects the candidate with the highest score, and we report the macro-averaged F1 of the selected candidates.\n102\tFor the four instance-level signals (VC, SJ, FK, EM), which assign the same score to all $N$ candidates of an instance, selection reduces to random choice; we report the expected value over random selections.\n103\tThe \\textbf{oracle} upper bound selects the candidate with the highest F1, and the \\textbf{greedy} baseline uses a single sample at $T{=}0$.\n104\t\n105\t\\paragraph{Gold-Filtered Evaluation.}\n106\tWe exclude instances with no gold annotations from all evaluations, as these contribute undefined F1 scores and distort correlation estimates.\n107\tThis ensures that our metrics reflect true signal quality rather than artifacts of empty-gold instances.\n108\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "a9d6359f-116a-49fe-b2bd-212b662daae8",
+            "uuid": "825a3525-cd1b-4e08-ac7f-28a604a57198",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/method.tex",
+                "content": "\\section{Method}\\label{sec:method}\n\n\\subsection{Problem Formalization}\n\nWe study test-time scaling for structured information extraction.\nGiven an input text $x$, a language model $\\mathcal{M}$ generates $N$ independent candidate outputs $\\{y_1, \\ldots, y_N\\}$ at temperature $T > 0$.\nEach candidate $y_i$ is a structured object: an entity set $E_i = \\{e_1, \\ldots, e_{|E_i|}\\}$ for named entity recognition (NER), or a relation triple set $R_i = \\{(h, t, l)_1, \\ldots\\}$ for relation extraction (RE).\nThe central question is whether the redundancy across $N$ samples can be exploited to improve extraction quality.\n\nWe distinguish two objectives that prior work has conflated:\n\\begin{itemize}\n    \\item \\textbf{Quality estimation (QE):} rank \\emph{instances} by expected extraction quality.\n    Given a set of instances $\\{x^{(1)}, \\ldots, x^{(M)}\\}$, assign each a confidence score $c(x)$ such that $c(x)$ correlates with instance-level F1.\n    This enables downstream applications such as quality-aware routing, selective prediction, and active verification.\n\n    \\item \\textbf{Sample selection:} for a single instance $x$, rank the $N$ \\emph{candidates} to select the best one.\n    Assign each candidate a score $s(y_i \\mid x)$ such that $\\arg\\max_i s(y_i \\mid x)$ approximates the oracle choice $\\arg\\max_i \\mathrm{F1}(y_i, y^*)$.\n\\end{itemize}\n\nThese two objectives impose different requirements on the confidence signal.\nQE benefits from \\textit{instance-level aggregation}: a signal that summarizes agreement patterns across all $N$ samples can distinguish easy instances (high agreement) from hard ones (low agreement), even though it assigns the same score to every candidate within an instance.\nSelection, by contrast, requires \\textit{per-sample discrimination}: the signal must assign \\emph{different} scores to different candidates of the same instance.\nA signal that aggregates across samples to produce a single instance-level score is structurally unable to perform selection, regardless of its correlation with quality.\nThis distinction is the key to understanding the correlation-selection gap we identify empirically (\\S\\ref{sec:experiments}).\n\n\\subsection{Confidence Signals}\\label{sec:signals}\n\nWe evaluate five confidence signals drawn from three families.\nFour signals aggregate across the $N$ samples to produce a single score per instance (instance-level); only log-probability provides per-sample scores.\n\n\\subsubsection{Structural Signals}\n\nStructural signals operate directly on the extracted entity or relation sets, exploiting set-theoretic overlap.\n\n\\paragraph{Voting Confidence (VC).}\nFor each unique extraction $e$ in the union across all samples $U = \\bigcup_{i=1}^{N} E_i$, we compute its frequency $\\mathrm{freq}(e) = \\sum_{i=1}^{N} \\mathbf{1}[e \\in E_i]$.\nThe voting confidence of an instance is the mean normalized frequency:\n\\begin{equation}\n    \\mathrm{VC}(x) = \\frac{1}{|U|} \\sum_{e \\in U} \\frac{\\mathrm{freq}(e)}{N}\n    \\label{eq:vc}\n\\end{equation}\nVC reflects how consistently the model extracts each item: high VC indicates that most extractions appear in most samples.\nFor RE, each extraction $e$ is a $(h, t, l)$ triple, and frequency is computed over exact triple matches.\n\n\\paragraph{Soft Jaccard (SJ).}\nWe measure pairwise set similarity across all sample pairs using the Jaccard index \\cite{jaccard1901distribution}:\n\\begin{equation}\n    \\mathrm{SJ}(x) = \\frac{2}{N(N-1)} \\sum_{i < j} \\frac{|E_i \\cap E_j|}{|E_i \\cup E_j|}\n    \\label{eq:sj}\n\\end{equation}\nwhere intersection and union use exact span matching for NER and exact $(h, t, l)$ matching for RE.\nWhen both $E_i$ and $E_j$ are empty, we define the Jaccard coefficient as 1.\nSJ captures overall structural agreement: a score near 1 means the model produces nearly identical extraction sets across samples.\n\n\\subsubsection{Surface Signals}\n\nSurface signals operate on the string representations of model outputs rather than on parsed structures.\n\n\\paragraph{Fleiss' $\\kappa$ (FK).}\nWe treat the $N$ samples as independent annotators rating categories in a normalized text space.\nFollowing \\citet{fleiss1971agreement}, we compute:\n\\begin{equation}\n    \\mathrm{FK}(x) = \\frac{\\bar{P} - \\bar{P}_e}{1 - \\bar{P}_e}\n    \\label{eq:fk}\n\\end{equation}\nwhere $\\bar{P}$ is the mean observed agreement and $\\bar{P}_e$ is the expected agreement under chance.\nFK accounts for agreement expected by chance, providing a calibrated measure of inter-sample consensus.\n\n\\paragraph{Exact Match (EM).}\nThe fraction of sample pairs that are identical after normalization:\n\\begin{equation}\n    \\mathrm{EM}(x) = \\frac{2}{N(N-1)} \\sum_{i < j} \\mathbf{1}\\big[\\mathrm{norm}(y_i) = \\mathrm{norm}(y_j)\\big]\n    \\label{eq:em}\n\\end{equation}\nwhere $\\mathrm{norm}(\\cdot)$ applies whitespace and casing normalization.\nEM is the coarsest signal: it is strictly binary per pair and collapses all partial agreement into disagreement.\nAs an instance-level aggregation, it is inherently unsuitable for sample selection.\n\n\\subsubsection{Model-Internal Signal}\n\n\\paragraph{Log-Probability (LP).}\nThe mean token-level log-likelihood under the model:\n\\begin{equation}\n    \\mathrm{LP}(y_i) = \\frac{1}{|y_i|} \\sum_{t=1}^{|y_i|} \\log P_{\\mathcal{M}}(y_{i,t} \\mid y_{i,<t},\\, x)\n    \\label{eq:lp}\n\\end{equation}\nwhere $|y_i|$ is the number of tokens in $y_i$.\nLP is the \\textbf{only per-sample signal} in our comparison---it assigns a distinct score to each candidate $y_i$, making it the only signal structurally capable of sample selection.\nHowever, constrained decoding (which forces valid output structure) compresses the token-level probability distribution, reducing score variance across candidates within an instance.\nWe quantify this compression via the \\textit{tied fraction}: the proportion of instances where $\\max_i \\mathrm{LP}(y_i) - \\min_i \\mathrm{LP}(y_i) < \\epsilon$ (with $\\epsilon = 0.05$), indicating that LP cannot meaningfully discriminate among candidates.\n\n\\subsection{Evaluation Protocol}\n\n\\paragraph{Quality Estimation.}\nWe evaluate QE using two complementary metrics.\n\\textit{Spearman} $\\rho$ measures rank correlation between each signal and instance-level F1 across all test instances.\n\\textit{AUROC} measures binary discrimination: whether the signal can distinguish instances above vs.\\ below median F1.\nHigher values indicate better quality estimation on both metrics.\n\n\\paragraph{Sample Selection.}\nSelection quality is measured by \\textbf{best-of-$N$ F1}: for each instance, the signal selects the candidate with the highest score, and we report the macro-averaged F1 of the selected candidates.\nFor the four instance-level signals (VC, SJ, FK, EM), which assign the same score to all $N$ candidates of an instance, selection reduces to random choice; we report the expected value over random selections.\nThe \\textbf{oracle} upper bound selects the candidate with the highest F1, and the \\textbf{greedy} baseline uses a single sample at $T{=}0$.\n\n\\paragraph{Gold-Filtered Evaluation.}\nWe exclude instances with no gold annotations from all evaluations, as these contribute undefined F1 scores and distort correlation estimates.\nThis ensures that our metrics reflect true signal quality rather than artifacts of empty-gold instances.\n",
+                "numLines": 108,
+                "startLine": 1,
+                "totalLines": 108
+              }
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证通过：\n1. `\\label{sec:method}` (line 1) 和 `\\label{sec:signals}` (line 26) 都存在\n2. 5 个信号均有数学定义：VC (eq 1), SJ (eq 2), FK (eq 3), EM (eq 4), LP (eq 5)\n3. 未引入 experiments.tex 之外的包，仅使用 amsmath 标准环境\n\n文件已创建在 `artifacts/_project/paper/method.tex`。约 107 行，双栏约 1.2 页。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a9d6359f-116a-49fe-b2bd-212b662daae8",
+            "uuid": "44758ac5-8a18-4ff0-81a2-1c171b7624af",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DD2xYTC9MPATViwox2W3UW",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2456,
+                "cache_read_input_tokens": 30677,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2456
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证通过：\n1. `\\label{sec:method}` (line 1) 和 `\\label{sec:signals}` (line 26) 都存在\n2. 5 个信号均有数学定义：VC (eq 1), SJ (eq 2), FK (eq 3), EM (eq 4), LP (eq 5)\n3. 未引入 experiments.tex 之外的包，仅使用 amsmath 标准环境\n\n文件已创建在 `artifacts/_project/paper/method.tex`。约 107 行，双栏约 1.2 页。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 61177,
+            "duration_api_ms": 62312,
+            "num_turns": 6,
+            "stop_reason": "end_turn",
+            "session_id": "a9d6359f-116a-49fe-b2bd-212b662daae8",
+            "total_cost_usd": 0.27301,
+            "usage": {
+              "input_tokens": 7,
+              "cache_creation_input_tokens": 21432,
+              "cache_read_input_tokens": 122166,
+              "output_tokens": 3020,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 21432,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 162,
+                  "cache_read_input_tokens": 30677,
+                  "cache_creation_input_tokens": 2456,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 2456
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 2362,
+                "outputTokens": 16,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.0024419999999999997,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 7,
+                "outputTokens": 3020,
+                "cacheReadInputTokens": 122166,
+                "cacheCreationInputTokens": 21432,
+                "webSearchRequests": 0,
+                "costUSD": 0.270568,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "8cbb496e-4ed0-450f-b99a-3201a0ea653e"
+          },
+          "id": "event-000020"
+        }
+      ],
+      "message_count": 20
+    }
+  ],
+  "readable_path": "readable/worker-executions/paper-create-method.md"
+}

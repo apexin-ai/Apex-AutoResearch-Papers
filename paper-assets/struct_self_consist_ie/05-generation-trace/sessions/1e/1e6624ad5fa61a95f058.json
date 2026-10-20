@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1e6624ad5fa61a95f058",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis fk independence tost fix",
+  "task_key": "worker_analysis_fk-independence-tost-fix_20260515T215445",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_fk-independence-tost-fix_20260515T215445_result.json",
+    "occurrence": 1,
+    "bytes": 1371,
+    "sha256": "d0fbc43ae468ae76fcc2ef6386b3cf7e2159a3c7373845c74a6b53a679b78b9a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两项分析完成，artifacts 已注册。总结：\n\n---\n\n## Task 1: FK Independence Instance-Level Test (R3-W4)\n\n原问题：n=5 的 t-test 功效太低。改为 **instance-level 分析**（每个 instance 一个 FK 值，n=529–2756）：\n\n| Config | n | FK | 95% CI | t | p |\n|--------|---|-----|--------|------|------|\n| SciERC | 529 | 0.402 | [0.376, 0.428] | 30.8 | 4.0e-120 |\n| CoNLL LLaMA | 2756 | 0.927 | [0.919, 0.935] | 225.9 | <1e-300 |\n| CoNLL Qwen | 2756 | 0.720 | [0.706, 0.734] | 102.1 | <1e-300 |\n\nPermutation test (null FK ≈ −0.14) 全部 p < 0.001。Split-half r = 0.39–0.58。\n\n## Task 2: TOST External Delta (R4-M2)\n\n原问题：δ 基于 oracle headroom，循环论证。改用三个外部基准：\n- **δ_SEM** = bootstrapped SE of greedy F1（0.43–1.33 pp）\n- **δ_practical** = 0.5 pp（部署意义阈值）\n- **δ_literature** = 1.0 pp（文献最小有意义改进）\n\n结果：LLaMA-CoNLL 所有 signal 在所有外部 δ 下通过等价（p<0.001）；SciERC/Qwen-CoNLL 仅 SJ 在 δ_SEM 通过。\n\n## 产出文件\n- 服务器：`analysis_round8/fk_independence_instance_test.json`、`analysis_round8/tost_external_delta.json`、`analysis_round8/analysis_fk_tost_round8.md`\n- Artifacts：`art_20260515_6544c0` (report)、`art_20260515_89fa94` (FK data)、`art_20260515_7a9cb0` (TOST data)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-fk-independence-tost-fix.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0278c0611b3b57eb81e5",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis d108 greedy f1 extraction",
+  "task_key": "worker_analysis_d108_greedy_f1_extraction_20260516T072432",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_d108_greedy_f1_extraction_20260516T072432_result.json",
+    "occurrence": 1,
+    "bytes": 1407,
+    "sha256": "87fef0b394046266c9f26c74d69cd31239b95a9ef6acafdda33fbbd3fe745f58"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "产出已保存到 `autodl-5090:/root/autodl-tmp/struct_self_consist_ie/output/d108_greedy_f1/`，artifact 已注册。\n\n**Canonical Greedy F1 Table (16 rows)**\n\n| Model | Dataset | Task | N | Greedy F1 | Sample F1 (mean) | Oracle F1 |\n|-------|---------|------|---|-----------|------------------|-----------|\n| LLaMA-3.1-8B | CoNLL | NER | 8 | 0.9266 | 0.9207 | 0.9443 |\n| LLaMA-3.1-8B | CoNLL | NER | 16 | 0.9264 | 0.9219 | 0.9494 |\n| LLaMA-3.1-8B | SciERC | NER | 8 | 0.6607 | 0.6191 | 0.7781 |\n| LLaMA-3.1-8B | SciERC | NER | 16 | 0.6575 | 0.6211 | 0.7986 |\n| LLaMA-3.1-8B | SciERC | RE | 8 | 0.4319 | 0.3888 | 0.5775 |\n| LLaMA-3.2-3B | SciERC | NER | 8 | 0.6386 | 0.5922 | 0.7620 |\n| Qwen2.5-7B | CoNLL | NER | 8 | 0.9074 | 0.8665 | 0.9468 |\n| Qwen2.5-7B | CoNLL | NER | 16 | 0.9067 | 0.8669 | 0.9544 |\n| Qwen2.5-7B | SciERC | NER | 8 | **0.6633** | 0.6077 | 0.7775 |\n| Qwen2.5-7B | SciERC | NER | 16 | 0.6589 | 0.6119 | 0.8167 |\n| Qwen2.5-7B | SciERC | RE | 8 | **0.4289** | 0.3544 | 0.5796 |\n| Qwen2.5-7B | SciERC | RE | 16 | 0.4189 | 0.3590 | 0.6252 |\n| Qwen2.5-7B | WNUT-17 | NER | 16 | 0.5232 | 0.4008 | 0.6637 |\n| Qwen3-4B | CoNLL | NER | 8 | 0.9251 | 0.9196 | 0.9408 |\n| Qwen3-4B | SciERC | NER | 8 | 0.6612 | 0.5991 | 0.7839 |\n| Qwen3-4B | SciERC | RE | 8 | 0.4136 | 0.3350 | 0.5846 |\n\n三个参考值全部匹配。完整 96 行数据在 `results.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-d108-greedy-f1-extraction.md"
+}

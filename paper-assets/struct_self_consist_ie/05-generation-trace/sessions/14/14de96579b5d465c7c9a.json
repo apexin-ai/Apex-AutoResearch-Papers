@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "14de96579b5d465c7c9a",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "code exp 003 wnut17 merge infer",
+  "task_key": "worker_code_exp_003_wnut17_merge_infer_20260514T171230",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_exp_003_wnut17_merge_infer_20260514T171230_result.json",
+    "occurrence": 1,
+    "bytes": 455,
+    "sha256": "56825b9d46d8ee3b24899263fed809d65a9b28c80dd040e8c1af195e4e974263"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成：\n\n- **LoRA 合并**：已完成，merged 模型在 `checkpoints/qwen3-8b-wnut17-merged/`（16GB，4 分片）\n- **N=16 推理**：已提交，PID=96440，cuda:1，1287 实例 × 16 samples = 20592 请求正在处理\n- **日志**：`output/exp_003_wnut17_v2_infer/run.log`\n- **Registry**：已更新 exp_003_wnut17_v2 的 spec，记录 merge 路径和推理信息\n\n按当前速度（~2.4 it/s），预计 ~2.5 小时完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-003-wnut17-merge-infer.md"
+}

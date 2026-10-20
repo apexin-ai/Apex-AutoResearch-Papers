@@ -1,0 +1,60 @@
+{
+  "schema_version": "1.0",
+  "id": "2167ea40b679315e2891",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "analysis scierc construction reconcile",
+  "task_key": "worker_analysis_scierc-construction-reconcile_20260523T194742",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_scierc-construction-reconcile_20260523T194742.log",
+    "occurrence": 1,
+    "bytes": 838872,
+    "sha256": "66ce9953c886dd91a65134d5dd453d5573be2cb860e0c0ad8f934ab3313fb446"
+  },
+  "statistics": {
+    "messages": 118,
+    "user_turns": 1,
+    "tool_calls": 40,
+    "roles": {
+      "log": 1,
+      "system": 29,
+      "record": 3,
+      "assistant": 6,
+      "tool_call": 40,
+      "tool_result": 38,
+      "user": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 33,
+      "chunks": [
+        {
+          "path": "2167ea40b679315e2891-part-0001.json",
+          "message_count": 33
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 85,
+      "chunks": [
+        {
+          "path": "2167ea40b679315e2891-part-0001.json",
+          "message_count": 32
+        },
+        {
+          "path": "2167ea40b679315e2891-part-0002.json",
+          "message_count": 53
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-scierc-construction-reconcile.md"
+}

@@ -1,0 +1,48 @@
+# code urgent server check fix
+
+**When Self-Consistency Fails for NER: Degeneracy, Signal Collapse, and the Correlation-Selection Gap** · Task result records
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 1
+- **Recorded user turns:** 0
+- **Tool calls:** 0
+- **Original source:** `logs/workers/worker_code_urgent_server_check_fix_20260519T112101_result.json`
+- **Structured JSON:** [`9ebe1c0ac58beaab4e15.json`](../../sessions/9e/9ebe1c0ac58beaab4e15.json)
+
+## Before a recorded user message
+
+1 recorded events
+
+### Task result
+
+_source line 1_
+
+## 状态汇报
+
+### Server C (autodl-5090-c)
+
+**WNUT-17 7B：已完成。** 全部 5 个阶段已跑完，`PIPELINE_EXIT_CODE=0`。
+
+- Checkpoints 存在：`qwen25-7b-wnut17-qlora-s42`（535 steps）+ `qwen25-7b-wnut17-merged`（~14.3GB）
+- Entity Construction 结果（3 seeds）：
+  | Seed | Greedy | Construction | Δ |
+  |------|--------|-------------|------|
+  | 42 | 0.4524 | 0.4439 | -0.84pp (p=0.95) |
+  | 123 | 0.4518 | 0.4579 | +0.61pp (p=0.08) |
+  | 456 | 0.4526 | 0.4583 | +0.57pp (p=0.12) |
+- Oracle gap 很大（+6.3~9.2pp），但 Construction 提升不显著
+
+**当前 GPU 0,1 在跑 14B FewNERD 训练**（screen `train_14b_s42`，16:05 启动）。GPU 2,3 空闲。
+
+### Server A (autodl-5090)
+
+**32B 训练正常运行。** PID 804438 存活，4 GPU 全部 100% 利用率，17:35 启动至今约 1h46m。
+
+---
+
+需要我更新 registry 中 WNUT-17 7B 实验的状态吗？
+
+---

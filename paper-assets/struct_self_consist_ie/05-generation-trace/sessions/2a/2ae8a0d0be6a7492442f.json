@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2ae8a0d0be6a7492442f",
+  "project": "struct_self_consist_ie",
+  "kind": "history",
+  "title": "agent / loop_13.md",
+  "task_key": "loop_13",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/agent/loop_13.md",
+    "occurrence": 1,
+    "bytes": 4287,
+    "sha256": "e83e80e49d9ac89950cc974f36e17a9703145a1d1ac90eed971004aa1061c454"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 13\nreason: max_wall_time\nupdated: '2026-05-16T14:04:20+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：autodl-5090 cuda:0/1/2/3（4×RTX 5090），不可用其他卡\n- exp-021 Few-NERD full **必须用 rank=32, α=64**（不是 exp-020 smoke test 的 rank=16）\n- Few-NERD 数据必须用 `supervised` config（不是 `intra`，`intra` 的 train/test entity type 零重叠）\n- AUROC 计算已统一为 `>=` median（不是 `>`），evaluation.py 已修复，不要回退\n- Table 2 Greedy F1 = 0.645（macro），不是 0.663（micro），已修复 11 处引用\n\n### 2. 🖥️ 基础设施快照\n- 服务器：autodl-5090，工作目录 `/root/autodl-tmp/struct_self_consist_ie/`\n- Python：`/root/miniconda3/bin/python`（conda base 环境，不是 venv）\n- 模型路径：`checkpoints/qwen3-8b-scierc-merged-v2`（rank=32 主模型）、`checkpoints/qwen3-8b-scierc-rank8-merged`（rank=8 消融）\n- Few-NERD 数据：`data/fewnerd/`（supervised config，8 coarse types，train 131,767 / dev 18,824 / test 37,648）\n- HF cache：`/root/autodl-tmp/.hf_cache`\n- 活跃进程：**全部已终止**（exp_022_seed789、exp_025_n32、exp_020_fewnerd_smoke 的 tmux session 均不存在）\n- Cron：reconcile 返回 0 条活跃\n\n### 3. 📊 当前状态\n**刚做完**：Session-start 初始化 — registry/cron 同步、experiment_plan.yaml registry_id 对齐修复（exp-020/022/023/019/025）、向 Director 汇报 GPU 全空闲。\n\n**Registry RUNNING**（实际进程已死，等 Worker 确认产出）：\n- `exp_022_seed789`：3rd seed SciERC inference (seed=789, N=8)\n- `exp_025_n32`：N=32 SciERC inference\n\n**Registry ANALYZING**（进程已死，等 Worker 确认）：\n- `exp_020_fewnerd_smoke`：Few-NERD LoRA smoke test training\n- `exp_026_t05`、`exp_026_t08`：T-ablation inference（t12 已 conclusion=success）\n\n**等待中的 Worker 回调**：\n- `worker_analysis_batch_completion_check_a`：检查 exp-022/025/020 产出\n- `worker_analysis_batch_completion_check_b`：检查 exp-026 t05/t08 + exp-019 verifier 精确指标\n\n**已完成但未入 registry**：\n- exp-027 MLP verifier：MLP≈LR（AUROC Δ=-0.013），RF 更差，所有 supervised verifier selection F1 < unsupervised LP baseline（0.647）。特征是瓶颈，不是模型容量。结果在 `output/exp_027_mlp_verifier/`\n- exp-019 registry 仍为 killed，Director 要求更新为 success（等 Worker B 带回精确指标）\n\n### 4. 📋 待办\n- Worker A 回调 + exp-020 smoke **通过** → 立即 spawn worker 在 cuda:1+2 启动 exp-021 Few-NERD full（rank=32, α=64, 3-epoch）\n- Worker A 回调 + exp-022 **成功** → update_registry DONE/success + 纳入 3-seed bootstrap 分析\n- Worker A 回调 + exp-025 N=32 **成功** → update_registry + spawn worker 计算 5 signals + 扩展 N-ablation 表到 N=32\n- Worker B 回调 + exp-019 指标 → update_registry conclusion=success with metrics\n- Worker B 回调 + exp-026 t05/t08 确认 → update_registry DONE/success\n- exp-027 MLP verifier → update_registry（新建 entry 或挂到 exp-019 下）+ 结果写入论文\n- 所有上述完成后 → 刷新 report.md + 第三次 Dream 验证\n\n### 5. 🎯 战略上下文\n- **核心论文**：EMNLP 2026 Main，DDL 2026-05-25（9 天）。主题：IE 中 5 种 confidence signals 的 QE-selection gap\n- **Dream #2 得分**：Best 3.0 / Median 3.0 / Worst 2.5，目标 3.5。D117 已完成 28 页论文 10 项修复 + N/T ablation 写入\n- **最大缺口**：Few-NERD（第三 NER 数据集）是 Main Conference 的硬门槛，exp-020 smoke 是 gate\n- **易错点**：\n  - exp-020 smoke 用的是 rank=16（快速验证），exp-021 full 必须切 rank=32, α=64\n  - VC paradox：VC 的 ρ/AUROC 最好但 selection F1 最差，这是论文核心发现之一，不要把 VC selection 差当 bug\n  - LP 压缩是跨数据集普遍现象（SciERC 60% tied, CoNLL 更严重），entity-token LP 已验证无效（strictly worse）\n  - Within-instance ρ 实际是正的（SciERC SJ median=0.47），旧版论文 claim \"within 不相关\" 已被 D109 推翻并 reframe\n  - 决策链关键节点：D108(Round 13 分析) → D109(within-ρ 矛盾) → D112(Main 冲刺策略) → D113(Table 2 bug fix) → D114(AUROC 统一) → D116(Dream verifier) → D117(写作修复)\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-13-copy-2.md"
+}

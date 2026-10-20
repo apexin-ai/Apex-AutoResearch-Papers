@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "085c9b1a0019fd2378ea",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "ssh e1v2 signal routing redesign",
+  "task_key": "worker_ssh_e1v2-signal-routing-redesign_20260520T105527",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_e1v2-signal-routing-redesign_20260520T105527.log",
+    "occurrence": 1,
+    "bytes": 670694,
+    "sha256": "b86b7c3b44b8e4af5a61df4b29ae0cd9593f03e7e3b2038df89b358f16b349dd"
+  },
+  "statistics": {
+    "messages": 274,
+    "user_turns": 1,
+    "tool_calls": 94,
+    "roles": {
+      "log": 1,
+      "system": 43,
+      "record": 1,
+      "assistant": 39,
+      "tool_call": 94,
+      "user": 1,
+      "tool_result": 94,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 6,
+      "chunks": [
+        {
+          "path": "085c9b1a0019fd2378ea-part-0001.json",
+          "message_count": 6
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 268,
+      "chunks": [
+        {
+          "path": "085c9b1a0019fd2378ea-part-0001.json",
+          "message_count": 174
+        },
+        {
+          "path": "085c9b1a0019fd2378ea-part-0002.json",
+          "message_count": 94
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ssh-e1v2-signal-routing-redesign.md"
+}

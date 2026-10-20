@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "1329620e509448e8061f",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "ssh dgec vc construction",
+  "task_key": "worker_ssh_dgec-vc-construction_20260520T083908",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_dgec-vc-construction_20260520T083908.log",
+    "occurrence": 1,
+    "bytes": 937626,
+    "sha256": "4bc09d54de5ff216337227eb7b91c0fceb164fadab8ff458551e263db022e63c"
+  },
+  "statistics": {
+    "messages": 253,
+    "user_turns": 1,
+    "tool_calls": 96,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 53,
+      "tool_call": 96,
+      "tool_result": 96,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 214,
+      "chunks": [
+        {
+          "path": "1329620e509448e8061f-part-0001.json",
+          "message_count": 172
+        },
+        {
+          "path": "1329620e509448e8061f-part-0002.json",
+          "message_count": 42
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 39,
+      "chunks": [
+        {
+          "path": "1329620e509448e8061f-part-0002.json",
+          "message_count": 39
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ssh-dgec-vc-construction.md"
+}

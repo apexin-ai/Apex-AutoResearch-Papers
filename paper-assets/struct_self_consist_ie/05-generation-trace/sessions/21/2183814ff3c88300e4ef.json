@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2183814ff3c88300e4ef",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ssh 7b inference monitor and process",
+  "task_key": "worker_ssh_7b-inference-monitor-and-process_20260520T040321",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_7b-inference-monitor-and-process_20260520T040321_result.json",
+    "occurrence": 1,
+    "bytes": 2643,
+    "sha256": "8547fa547d6be3403095e7822e0872da4703d24a9bb289de89bcf2feed58581c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总如下：\n\n---\n\n## 状态汇报\n\n### 1. 各 seed 状态\n\n| Seed | 服务器 | 状态 | 进度 | 备注 |\n|------|--------|------|------|------|\n| **seed42** | 5090-c (cuda:2) | **已完成** | 37648/37648 (100%) | samples.jsonl 675MB, 完成于 11:58 |\n| **seed123** | 5090-c (cuda:0,1?) | 进行中 | 0% (无输出文件) | PID 155276, 已运行 5h44m, 是 seed42 pipeline 的后续任务 |\n| **seed123** | 5090-b (cuda:0) | 进行中 | 0% (无输出文件) | PID 164579, 已运行 1h14m |\n| **seed456** | 5090-b (cuda:1) | 进行中 | 0% (无输出文件) | PID 165186, 已运行 1h13m |\n\n**注意**: seed123 在 5090-c 和 5090-b **同时运行**，存在重复。5090-c 上的 seed123 是 PID 71837（seed42 pipeline bash 脚本）的子进程，pipeline 完成 seed42 后自动启动了 seed123。5090-b 上的 seed123/456 是另外启动的。两边写到各自本地 filesystem，不会冲突但浪费 GPU。\n\n### 2. seed42 compute_signals 结果\n\n**32565 有效实例**（过滤掉 5083 gold-empty）\n\n**Signal correlations (Spearman ρ vs greedy F1)**:\n- VC (Vote Count): **0.393** ← 最强\n- EM (Exact Match): **0.393**\n- SJ (Soft Jaccard): **0.355**\n- LP (Log Probability): **0.322**\n- FK (Fleiss Kappa): **0.282** ← 最弱\n\n**Entity F1**:\n- Greedy: **0.7851** [0.7817, 0.7884]\n- LP Selection: **0.7890** [0.7857, 0.7922] — 比 greedy +0.39pp\n- Majority Vote: 0.7584 — 比 greedy **低**\n- Consensus θ=2/N: 0.7845\n- Oracle: **0.8718** — headroom 8.7pp\n\n**Degeneracy**: 31.1% constant-F1, 26.7% entity-set\n\n### 3. GPU 利用率\n\n**5090-c**:\n| GPU | Util | VRAM |\n|-----|------|------|\n| 0 | 71% | 25.9/32.6 GB |\n| 1 | 70% | 25.8/32.6 GB |\n| 2 | 84% | 29.9/32.6 GB |\n| **3** | **0%** | **0/32.6 GB (空闲)** |\n\n**5090-b**:\n| GPU | Util | VRAM |\n|-----|------|------|\n| 0 | 87% | 30.1/32.6 GB |\n| 1 | 85% | 30.3/32.6 GB |\n| 2 | 0% | 空闲 |\n| 3 | 0% | 空闲 |\n\n### 4. seed123/456 预估完成时间\n\n两边的推理进程都还没有产出 samples.jsonl（可能是 `run_mvp_pilot.py` 在内存中处理完所有 batch 后才写出）。参考 seed42 用了约 16h+，预估：\n\n- **5090-c seed123**: 已跑 5h44m，预估还需 ~10h（约今晚 22:00 前完成）\n- **5090-b seed123**: 已跑 1h14m，预估还需 ~15h（约明天凌晨完成）\n- **5090-b seed456**: 已跑 1h13m，预估还需 ~15h\n\n**建议**: 考虑 kill 5090-b 上的 seed123（PID 164579）以释放 GPU 0 给其他用途，保留 5090-c 上先启动的那个即可。或者反过来，看哪边更快。5090-c cuda:3 也完全空闲可以利用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-7b-inference-monitor-and-process.md"
+}

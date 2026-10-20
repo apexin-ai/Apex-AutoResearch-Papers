@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "112ab9946eb7711e6397",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "code llama fewnerd merge prep",
+  "task_key": "worker_code_llama_fewnerd_merge_prep_20260518T222902",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_llama_fewnerd_merge_prep_20260518T222902_result.json",
+    "occurrence": 1,
+    "bytes": 1419,
+    "sha256": "8fdef4553f21a4f948593fe00593663011fe6153d714ec65f7ac9a9dba649756"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All scripts pass syntax validation.\n\n---\n\n## 训练进度\n\n| 指标 | 值 |\n|---|---|\n| Step | 20900 / 24708 (84.6%) |\n| Loss | 0.0183 |\n| Epoch | 2.54 / 3.0 |\n| Best ckpt | checkpoint-20000 (eval_loss=0.0363) |\n| ETA | ~2h22m |\n\n## 脚本和路径确认\n\n**3 个脚本：**\n1. `code/merge_llama_fewnerd.py` — LoRA merge，支持 `--base_model` / `--adapter_path` / `--output_path` 参数\n2. `code/run_llama_fewnerd_inference.sh` — 全流程：merge → 3-seed 并行推理 (GPU 0/2/3, seed 42/123/456) → 分析 → 清理 merged model\n3. `code/analyze_llama_fewnerd_3seed.py` — 3-seed 聚合分析：greedy/oracle F1, degeneracy, 5-signal (SJ/FK/VC/EM/LP) selection F1 + global rho, DGS\n\n**路径确认：**\n| 资源 | 路径 |\n|---|---|\n| Base model | `/root/autodl-tmp/.hf_cache/LLM-Research/Meta-Llama-3___1-8B-Instruct` |\n| LoRA adapter | `/root/autodl-tmp/struct_self_consist_ie/checkpoints/llama3.1-8b-fewnerd-lora/` (训练完后 best model 在根目录) |\n| FewNERD test | `/root/autodl-tmp/struct_self_consist_ie/data/fewnerd/test.json` (37648 行) |\n| Merged output | `checkpoints/llama3.1-8b-fewnerd-merged/` |\n| 推理输出 | `output/llama_fewnerd_s{42,123,456}/` |\n| 分析汇总 | `output/llama_fewnerd_3seed_summary/aggregated.json` |\n\n训练完成后一条命令启动：`tmux new -s llama_fewnerd_infer 'bash code/run_llama_fewnerd_inference.sh'`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-llama-fewnerd-merge-prep.md"
+}

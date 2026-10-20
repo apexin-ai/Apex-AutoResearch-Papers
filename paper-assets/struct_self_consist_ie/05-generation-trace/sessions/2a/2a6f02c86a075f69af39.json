@@ -1,0 +1,212 @@
+{
+  "schema_version": "1.0",
+  "id": "2a6f02c86a075f69af39",
+  "project": "struct_self_consist_ie",
+  "kind": "conversation",
+  "title": "ssh check mf4v2 s42 v4 completion",
+  "task_key": "worker_ssh_check_mf4v2_s42_v4_completion_20260521T232236",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/worker_ssh_check_mf4v2_s42_v4_completion_20260521T232236.jsonl",
+    "occurrence": 1,
+    "bytes": 6369,
+    "sha256": "8de54bad4a17adb85f01e004253c4001362d6a0b43cad245a7f69d8e539b9561"
+  },
+  "statistics": {
+    "messages": 9,
+    "user_turns": 0,
+    "tool_calls": 4,
+    "roles": {
+      "tool_call": 4,
+      "tool_result": 4,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-21T23:23:10.614276+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_check_mf4v2_s42_v4_completion_20260521T232236",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-21T23:23:10.614768+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_check_mf4v2_s42_v4_completion_20260521T232236",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-21T23:23:10.615059+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_check_mf4v2_s42_v4_completion_20260521T232236",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090-c",
+              "command": "ps -p 366486 -o pid,etime,cmd",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-21T23:23:10.615442+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_check_mf4v2_s42_v4_completion_20260521T232236",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090-c",
+              "command": "tail -50 ~/runs/struct_self_consist_ie/exp_fewnerd_mf4v2_s42_v4.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-21T23:23:10.615677+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_check_mf4v2_s42_v4_completion_20260521T232236",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090-c",
+              "command": "ls -la /root/autodl-tmp/struct_self_consist_ie/output/fewnerd_mf4v2_seed42_v4/",
+              "account": "root"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-21T23:23:10.615935+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"   PID     ELAPSED CMD\\\\n366486    01:15:45 bash -c rm -f /tmp/agent-ml-exit/exp_fewnerd_mf4v2_s42_v4.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\\\\\"EXIT_CODE=$_EC\\\\\\\" >> ~/runs/struct_self_consist_ie/exp_fewnerd_mf4v2_s42_v4.log; printf \\\\\\\"%s|%s\\\\\\\\n\\\\\\\" \\\\\\\"$_EC\\\\\\\" \\\\\\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\\\\\" > /tmp/agent-ml-exit/exp_fewnerd_mf4v2_s42_v4.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/autodl-tmp/struct_self_consist_ie && export CUDA_VISIBLE_DEVICES=0 && timeout 21600 env bash -c 'bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-fewnerd-exp021-merged --data_dir data/fewnerd/ --dataset fewnerd --subtask ner --n_samples 8 --temperature 1.0 --seed 42 --collect_logprobs --output_dir output/fewnerd_mf4v2_seed42_v4/\\\\\\\"'; } > ~/runs/struct_self_consist_ie/exp_fewnerd_mf4v2_s42_v4.log 2>&1\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.62}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_check_mf4v2_s42_v4_completion_20260521T232236",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-21T23:23:10.616369+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Loaded 37648 test instances from fewnerd [index 0:None]\\\\nINFO 05-22 06:07:17 [utils.py:233] non-default args: {'max_model_len': 4096, 'disable_log_stats': True, 'model': 'checkpoints/qwen3-8b-fewnerd-exp021-merged'}\\\\nINFO 05-22 06:07:17 [model.py:533] Resolved architecture: Qwen3ForCausalLM\\\\nINFO 05-22 06:07:17 [model.py:1582] Using max model len 4096\\\\nINFO 05-22 06:07:17 [scheduler.py:231] Chunked prefill is enabled with max_num_batched_tokens=8192.\\\\nINFO 05-22 06:07:17 [vllm.py:775] Asynchronous scheduling is enabled.\\\\n(EngineCore pid=366763) INFO 05-22 06:07:18 [core.py:103] Initializing a V1 LLM engine (v0.18.1) with config: model='checkpoints/qwen3-8b-fewnerd-exp021-merged', speculative_config=None, tokenizer='checkpoints/qwen3-8b-fewnerd-exp021-merged', skip_tokenizer_init=False, tokenizer_mode=auto, revision=None, tokenizer_revision=None, trust_remote_code=False, dtype=torch.bfloat16, max_seq_len=4096, download_dir=None, load_format=auto, tensor_parallel_size=1, pipeline_parallel_size=1, data_parallel_size=1, decode_context_parallel_size=1, dcp_comm_backend=ag_rs, disable_custom_all_reduce=False, quantization=None, enforce_eager=False, enable_return_routed_experts=False, kv_cache_dtype=auto, device_config=cuda, structured_outputs_config=StructuredOutputsConfig(backend='auto', disable_any_whitespace=False, disable_additional_properties=False, reasoning_parser='', reasoning_parser_plugin='', enable_in_reasoning=False), observability_config=ObservabilityConfig(show_hidden_metrics_for_version=None, otlp_traces_endpoint=None, collect_detailed_traces=None, kv_cache_metrics=False, kv_cache_metrics_sample=0.01, cudagraph_metrics=False, enable_layerwise_nvtx_tracing=False, enable_mfu_metrics=False, enable_mm_processor_stats=False, enable_logging_iteration_details=False), seed=0, served_model_name=checkpoints/qwen3-8b-fewnerd-exp021-merged, enable_prefix_caching=True, enable_chunked_prefill=True, pooler_conf\n…[truncated 6278 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_check_mf4v2_s42_v4_completion_20260521T232236",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-21T23:23:10.616669+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 8\\\\ndrwxr-xr-x  2 root root   10 May 22 06:07 .\\\\ndrwxr-xr-x 77 root root 4096 May 22 06:07 ..\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.82}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_check_mf4v2_s42_v4_completion_20260521T232236",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-21T23:23:10.616982+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 实验状态：仍在运行\n\n| 项目 | 状态 |\n|------|------|\n| **进程** | PID 366486 存活，已运行 1h15m |\n| **进度** | 71% (214,976 / 301,184 prompts)，已耗时 ~1h13m |\n| **推理速度** | input ~8000 toks/s, output ~3943 toks/s, ~50-78 it/s |\n| **output 目录** | 空（samples.jsonl 尚未写入，应在全部完成后生成） |\n| **预计剩余** | ~30 分钟（按当前速率推算） |\n\n进程正常推理中，无报错。等完成后再收集结果。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_check_mf4v2_s42_v4_completion_20260521T232236"
+          },
+          "id": "event-000009"
+        }
+      ],
+      "message_count": 9
+    }
+  ],
+  "readable_path": "readable/conversations/ssh-check-mf4v2-s42-v4-completion.md"
+}

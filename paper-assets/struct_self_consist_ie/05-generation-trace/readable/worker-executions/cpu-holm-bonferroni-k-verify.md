@@ -1,0 +1,5519 @@
+# cpu holm bonferroni k verify
+
+**When Self-Consistency Fails for NER: Degeneracy, Signal Collapse, and the Correlation-Selection Gap** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 86
+- **Recorded user turns:** 0
+- **Tool calls:** 27
+- **Original source:** `logs/workers/worker_cpu_holm_bonferroni_k_verify_20260521T115959.log`
+- **Structured JSON:** [`82fbdb3821cb389a6b7e.json`](../../sessions/82/82fbdb3821cb389a6b7e.json)
+
+## Before a recorded user message
+
+86 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "session_id": "1fbe243d-d8f2-428e-ac17-69dd3bbbfe94",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__append_idea",
+    "mcp__agent-ml-research__read_project_file",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__save_project_file"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "3d1f9a2e-b385-4b05-8212-1bb981538ec7",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779382200,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "69b170fc-8058-4857-9863-f30c80c039bb",
+  "session_id": "1fbe243d-d8f2-428e-ac17-69dd3bbbfe94"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+I'll start by finding the paper source files and Table 13.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1fbe243d-d8f2-428e-ac17-69dd3bbbfe94",
+  "uuid": "7d2ce511-9bf6-4582-a3f3-59be1a1a075f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017gbb42tyEHrVy4i4NmWHL7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12058,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12058
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — Glob · `toolu_01J55j91HNH8AMXk2Qs59QWB`</summary>
+
+```json
+{
+  "pattern": "**/*.tex",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1fbe243d-d8f2-428e-ac17-69dd3bbbfe94",
+  "uuid": "6feb2008-d4d8-4d68-b790-13f1695c520a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017gbb42tyEHrVy4i4NmWHL7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12058,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12058
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-21T12:00:12.959Z_
+
+<details><summary>↩ Tool result · `toolu_01J55j91HNH8AMXk2Qs59QWB`</summary>
+
+```text
+artifacts/dream_reports/dream_20260514T093336/best/paper.tex
+artifacts/dream_reports/dream_20260514T093336/median/paper.tex
+artifacts/dream_reports/dream_20260514T093336/worst/paper.tex
+artifacts/dream_reports/dream_20260514T105303/best/paper.tex
+artifacts/dream_reports/dream_20260514T105303/median/paper.tex
+artifacts/dream_reports/dream_20260514T105303/worst/paper.tex
+artifacts/_project/paper/related_work.tex
+artifacts/dream_reports/dream_20260514T203201/best/paper.tex
+artifacts/dream_reports/dream_20260514T203201/median/paper.tex
+artifacts/dream_reports/dream_20260514T203201/worst/paper.tex
+artifacts/bootstrap_ci_tables.tex
+artifacts/dream_reports/dream_20260515T092545/best/paper.tex
+artifacts/dream_reports/dream_20260515T092545/median/paper.tex
+artifacts/dream_reports/dream_20260515T092545/worst/paper.tex
+artifacts/_project/paper/freeform_ablation_appendix_table.tex
+artifacts/freeform_ablation_appendix_table.tex
+artifacts/_project/paper/n_scaling_appendix_tables_44b000.tex
+artifacts/n_scaling_appendix_tables.tex
+artifacts/_project/paper/method.tex
+artifacts/_project/paper/n_scaling_appendix_tables.tex
+artifacts/_project/paper/introduction.tex
+artifacts/_project/paper/discussion.tex
+artifacts/_project/paper/limitations.tex
+artifacts/_project/paper/conclusion.tex
+artifacts/_project/paper/abstract.tex
+artifacts/_project/paper/experiments.tex
+artifacts/dream_reports/dream_20260516T092241/best/paper.tex
+artifacts/dream_reports/dream_20260516T092241/median/paper.tex
+artifacts/dream_reports/dream_20260516T092241/worst/paper.tex
+artifacts/dream_reports/dream_20260516T113255/best/paper.tex
+artifacts/dream_reports/dream_20260516T113255/median/paper.tex
+artifacts/dream_reports/dream_20260516T113255/worst/paper.tex
+artifacts/per_type_lp_table.tex
+artifacts/exp_021_fewnerd_full/paper/per_type_lp_table.tex
+docs/paper/sections/checklist.tex
+code/scale_table.tex
+paper/sections/zeroshot_scaling_draft.tex
+artifacts/_project/paper/scaling_narrative_A_monotonic.tex
+artifacts/_project/paper/scaling_narrative_B_nonmonotonic.tex
+artifacts/scaling_narrative_B_nonmonotonic.tex
+artifacts/scaling_narrative_A_monotonic.tex
+artifacts/exp_qwen25_72b_fewshot/paper/zs_vs_fs_comparison_draft.tex
+artifacts/zs_vs_fs_comparison_draft.tex
+artifacts/exp_qwen25_72b_fewshot/paper/tab_72b_zs_vs_fs_appendix.tex
+artifacts/tab_72b_zs_vs_fs_appendix.tex
+artifacts/_project/paper/theorem.tex
+artifacts/p_impossibility/theorem.tex
+docs/paper/sections/method.tex
+docs/paper/sections/theoretical.tex
+docs/paper/sections/diagnostic.tex
+docs/paper/sections/experiments.tex
+artifacts/r25_response/power_analysis.tex
+artifacts/r25_response/holm_bonferroni_enumeration.tex
+artifacts/r25_response/entity_independence_paragraph.tex
+docs/paper/sections/related_work.tex
+docs/paper/sections/abstract.tex
+docs/paper/sections/single_signal.tex
+docs/paper/sections/mechanistic.tex
+docs/paper/sections/experiments_main.tex
+docs/paper/sections/adaptive.tex
+docs/paper/sections/introduction.tex
+docs/paper/sections/limitations.tex
+docs/paper/main.tex
+docs/paper/sections/discussion.tex
+docs/paper/sections/background.tex
+docs/paper/sections/conclusion.tex
+artifacts/_project/paper/e5_hyperparam_tables.tex
+artifacts/e5_hyperparam_tables.tex
+docs/paper/sections/theory.tex
+artifacts/_project/paper/theory.tex
+docs/paper/sections/appendix.tex
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1fbe243d-d8f2-428e-ac17-69dd3bbbfe94",
+  "uuid": "c48bb7f4-6602-441d-bcf8-5b21eced6c1e",
+  "tool_use_result": {
+    "filenames": [
+      "artifacts/dream_reports/dream_20260514T093336/best/paper.tex",
+      "artifacts/dream_reports/dream_20260514T093336/median/paper.tex",
+      "artifacts/dream_reports/dream_20260514T093336/worst/paper.tex",
+      "artifacts/dream_reports/dream_20260514T105303/best/paper.tex",
+      "artifacts/dream_reports/dream_20260514T105303/median/paper.tex",
+      "artifacts/dream_reports/dream_20260514T105303/worst/paper.tex",
+      "artifacts/_project/paper/related_work.tex",
+      "artifacts/dream_reports/dream_20260514T203201/best/paper.tex",
+      "artifacts/dream_reports/dream_20260514T203201/median/paper.tex",
+      "artifacts/dream_reports/dream_20260514T203201/worst/paper.tex",
+      "artifacts/bootstrap_ci_tables.tex",
+      "artifacts/dream_reports/dream_20260515T092545/best/paper.tex",
+      "artifacts/dream_reports/dream_20260515T092545/median/paper.tex",
+      "artifacts/dream_reports/dream_20260515T092545/worst/paper.tex",
+      "artifacts/_project/paper/freeform_ablation_appendix_table.tex",
+      "artifacts/freeform_ablation_appendix_table.tex",
+      "artifacts/_project/paper/n_scaling_appendix_tables_44b000.tex",
+      "artifacts/n_scaling_appendix_tables.tex",
+      "artifacts/_project/paper/method.tex",
+      "artifacts/_project/paper/n_scaling_appendix_tables.tex",
+      "artifacts/_project/paper/introduction.tex",
+      "artifacts/_project/paper/discussion.tex",
+      "artifacts/_project/paper/limitations.tex",
+      "artifacts/_project/paper/conclusion.tex",
+      "artifacts/_project/paper/abstract.tex",
+      "artifacts/_project/paper/experiments.tex",
+      "artifacts/dream_reports/dream_20260516T092241/best/paper.tex",
+      "artifacts/dream_reports/dream_20260516T092241/median/paper.tex",
+      "artifacts/dream_reports/dream_20260516T092241/worst/paper.tex",
+      "artifacts/dream_reports/dream_20260516T113255/best/paper.tex",
+      "artifacts/dream_reports/dream_20260516T113255/median/paper.tex",
+      "artifacts/dream_reports/dream_20260516T113255/worst/paper.tex",
+      "artifacts/per_type_lp_table.tex",
+      "artifacts/exp_021_fewnerd_full/paper/per_type_lp_table.tex",
+      "docs/paper/sections/checklist.tex",
+      "code/scale_table.tex",
+      "paper/sections/zeroshot_scaling_draft.tex",
+      "artifacts/_project/paper/scaling_narrative_A_monotonic.tex",
+      "artifacts/_project/paper/scaling_narrative_B_nonmonotonic.tex",
+      "artifacts/scaling_narrative_B_nonmonotonic.tex",
+      "artifacts/scaling_narrative_A_monotonic.tex",
+      "artifacts/exp_qwen25_72b_fewshot/paper/zs_vs_fs_comparison_draft.tex",
+      "artifacts/zs_vs_fs_comparison_draft.tex",
+      "artifacts/exp_qwen25_72b_fewshot/paper/tab_72b_zs_vs_fs_appendix.tex",
+      "artifacts/tab_72b_zs_vs_fs_appendix.tex",
+      "artifacts/_project/paper/theorem.tex",
+      "artifacts/p_impossibility/theorem.tex",
+      "docs/paper/sections/method.tex",
+      "docs/paper/sections/theoretical.tex",
+      "docs/paper/sections/diagnostic.tex",
+      "docs/paper/sections/experiments.tex",
+      "artifacts/r25_response/power_analysis.tex",
+      "artifacts/r25_response/holm_bonferroni_enumeration.tex",
+      "artifacts/r25_response/entity_independence_paragraph.tex",
+      "docs/paper/sections/related_work.tex",
+      "docs/paper/sections/abstract.tex",
+      "docs/paper/sections/single_signal.tex",
+      "docs/paper/sections/mechanistic.tex",
+      "docs/paper/sections/experiments_main.tex",
+      "docs/paper/sections/adaptive.tex",
+      "docs/paper/sections/introduction.tex",
+      "docs/paper/sections/limitations.tex",
+      "docs/paper/main.tex",
+      "docs/paper/sections/discussion.tex",
+      "docs/paper/sections/background.tex",
+      "docs/paper/sections/conclusion.tex",
+      "artifacts/_project/paper/e5_hyperparam_tables.tex",
+      "artifacts/e5_hyperparam_tables.tex",
+      "docs/paper/sections/theory.tex",
+      "artifacts/_project/paper/theory.tex",
+      "docs/paper/sections/appendix.tex"
+    ],
+    "durationMs": 154,
+    "numFiles": 71,
+    "truncated": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7_
+
+<details open><summary>🔧 Tool call — Glob · `toolu_0138osHkgtqAitgs8dWt5Apu`</summary>
+
+```json
+{
+  "pattern": "**/paper/**",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1fbe243d-d8f2-428e-ac17-69dd3bbbfe94",
+  "uuid": "48087c7d-573c-4fcf-a5b1-d869672ebf5f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017gbb42tyEHrVy4i4NmWHL7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12058,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12058
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-21T12:00:13.559Z_
+
+<details><summary>↩ Tool result · `toolu_0138osHkgtqAitgs8dWt5Apu`</summary>
+
+```text
+figures/paper/fig_selection_gap.pdf
+figures/paper/fig_selection_gap.png
+figures/paper/fig_reliability_data.json
+artifacts/exp010_selection_curves/figures/paper/fig_selection_curves.png
+artifacts/exp010_selection_curves/figures/paper/fig_selection_curves.pdf
+figures/paper/fig_signal_heatmap.py
+figures/paper/fig_signal_heatmap.pdf
+figures/paper/fig_signal_heatmap.png
+figures/paper/fig_reliability.py
+figures/paper/fig_reliability.pdf
+figures/paper/fig_reliability.png
+figures/paper/fig_selection_curves.pdf
+figures/paper/fig_selection_curves.png
+docs/paper/acl.sty
+docs/paper/acl_natbib.bst
+docs/paper/figures/fig_reliability.pdf
+artifacts/_project/paper/related_work.tex
+docs/paper/figures/fig_signal_heatmap.pdf
+docs/paper/figures/fig_temperature_robustness.pdf
+docs/paper/figures/fig_length_logprob_scatter.pdf
+artifacts/_project/paper/freeform_ablation_appendix_table.tex
+artifacts/_project/paper/n_scaling_appendix_tables_44b000.tex
+docs/paper/figures/fig_lp_range_cdf.pdf
+artifacts/_project/paper/method.tex
+artifacts/_project/paper/n_scaling_appendix_tables.tex
+artifacts/_project/paper/introduction.tex
+artifacts/_project/paper/discussion.tex
+artifacts/_project/paper/limitations.tex
+artifacts/_project/paper/conclusion.tex
+artifacts/_project/paper/abstract.tex
+artifacts/_project/paper/experiments.tex
+artifacts/_project/paper/d112_clarification.txt
+artifacts/exp_021_fewnerd_full/paper/per_type_lp_table.tex
+docs/paper/figures/fig_degeneracy_lp_scatter.pdf
+figures/paper/fig_overview.pdf
+artifacts/_project/paper/paper_draft.pdf
+docs/paper/sections/checklist.tex
+docs/paper/figures/fig_overview.pdf
+docs/paper/figures/fig_overview.png
+docs/paper/figures/fig_selection_gap.pdf
+docs/paper/figures/fig_selection_gap.png
+paper/sections/zeroshot_scaling_draft.tex
+artifacts/_project/paper/scaling_narrative_A_monotonic.tex
+artifacts/_project/paper/scaling_narrative_B_nonmonotonic.tex
+artifacts/_project/paper/paper_compiled_20260519.pdf
+artifacts/exp_qwen25_72b_fewshot/paper/zs_vs_fs_comparison_draft.tex
+artifacts/exp_qwen25_72b_fewshot/paper/tab_72b_zs_vs_fs_appendix.tex
+artifacts/_project/paper/theorem.tex
+docs/paper/sections/method.tex
+docs/paper/figures/fig_bound.png
+docs/paper/sections/theoretical.tex
+docs/paper/sections/diagnostic.tex
+docs/paper/sections/experiments.tex
+docs/paper/figures/fig_oracle_scaling.pdf
+docs/paper/sections/related_work.tex
+docs/paper/sections/abstract.tex
+docs/paper/sections/single_signal.tex
+docs/paper/references.bib.backup
+docs/paper/references.bib
+docs/paper/sections/mechanistic.tex
+docs/paper/sections/experiments_main.tex
+docs/paper/sections/adaptive.tex
+docs/paper/sections/introduction.tex
+docs/paper/sections/limitations.tex
+docs/paper/main.tex
+docs/paper/sections/discussion.tex
+docs/paper/sections/background.tex
+docs/paper/sections/conclusion.tex
+docs/paper/main.blg
+docs/paper/main.bbl
+docs/paper/main.fls
+docs/paper/main.fdb_latexmk
+artifacts/_project/paper/e5_hyperparam_tables.tex
+docs/paper/sections/theory.tex
+artifacts/_project/paper/theory.tex
+docs/paper/sections/appendix.tex
+docs/paper/main.aux
+docs/paper/main.out
+docs/paper/main.pdf
+docs/paper/main.log
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1fbe243d-d8f2-428e-ac17-69dd3bbbfe94",
+  "uuid": "b52e713b-248b-476a-b8c8-6dc10192f27f",
+  "tool_use_result": {
+    "filenames": [
+      "figures/paper/fig_selection_gap.pdf",
+      "figures/paper/fig_selection_gap.png",
+      "figures/paper/fig_reliability_data.json",
+      "artifacts/exp010_selection_curves/figures/paper/fig_selection_curves.png",
+      "artifacts/exp010_selection_curves/figures/paper/fig_selection_curves.pdf",
+      "figures/paper/fig_signal_heatmap.py",
+      "figures/paper/fig_signal_heatmap.pdf",
+      "figures/paper/fig_signal_heatmap.png",
+      "figures/paper/fig_reliability.py",
+      "figures/paper/fig_reliability.pdf",
+      "figures/paper/fig_reliability.png",
+      "figures/paper/fig_selection_curves.pdf",
+      "figures/paper/fig_selection_curves.png",
+      "docs/paper/acl.sty",
+      "docs/paper/acl_natbib.bst",
+      "docs/paper/figures/fig_reliability.pdf",
+      "artifacts/_project/paper/related_work.tex",
+      "docs/paper/figures/fig_signal_heatmap.pdf",
+      "docs/paper/figures/fig_temperature_robustness.pdf",
+      "docs/paper/figures/fig_length_logprob_scatter.pdf",
+      "artifacts/_project/paper/freeform_ablation_appendix_table.tex",
+      "artifacts/_project/paper/n_scaling_appendix_tables_44b000.tex",
+      "docs/paper/figures/fig_lp_range_cdf.pdf",
+      "artifacts/_project/paper/method.tex",
+      "artifacts/_project/paper/n_scaling_appendix_tables.tex",
+      "artifacts/_project/paper/introduction.tex",
+      "artifacts/_project/paper/discussion.tex",
+      "artifacts/_project/paper/limitations.tex",
+      "artifacts/_project/paper/conclusion.tex",
+      "artifacts/_project/paper/abstract.tex",
+      "artifacts/_project/paper/experiments.tex",
+      "artifacts/_project/paper/d112_clarification.txt",
+      "artifacts/exp_021_fewnerd_full/paper/per_type_lp_table.tex",
+      "docs/paper/figures/fig_degeneracy_lp_scatter.pdf",
+      "figures/paper/fig_overview.pdf",
+      "artifacts/_project/paper/paper_draft.pdf",
+      "docs/paper/sections/checklist.tex",
+      "docs/paper/figures/fig_overview.pdf",
+      "docs/paper/figures/fig_overview.png",
+      "docs/paper/figures/fig_selection_gap.pdf",
+      "docs/paper/figures/fig_selection_gap.png",
+      "paper/sections/zeroshot_scaling_draft.tex",
+      "artifacts/_project/paper/scaling_narrative_A_monotonic.tex",
+      "artifacts/_project/paper/scaling_narrative_B_nonmonotonic.tex",
+      "artifacts/_project/paper/paper_compiled_20260519.pdf",
+      "artifacts/exp_qwen25_72b_fewshot/paper/zs_vs_fs_comparison_draft.tex",
+      "artifacts/exp_qwen25_72b_fewshot/paper/tab_72b_zs_vs_fs_appendix.tex",
+      "artifacts/_project/paper/theorem.tex",
+      "docs/paper/sections/method.tex",
+      "docs/paper/figures/fig_bound.png",
+      "docs/paper/sections/theoretical.tex",
+      "docs/paper/sections/diagnostic.tex",
+      "docs/paper/sections/experiments.tex",
+      "docs/paper/figures/fig_oracle_scaling.pdf",
+      "docs/paper/sections/related_work.tex",
+      "docs/paper/sections/abstract.tex",
+      "docs/paper/sections/single_signal.tex",
+      "docs/paper/references.bib.backup",
+      "docs/paper/references.bib",
+      "docs/paper/sections/mechanistic.tex",
+      "docs/paper/sections/experiments_main.tex",
+      "docs/paper/sections/adaptive.tex",
+      "docs/paper/sections/introduction.tex",
+      "docs/paper/sections/limitations.tex",
+      "docs/paper/main.tex",
+      "docs/paper/sections/discussion.tex",
+      "docs/paper/sections/background.tex",
+      "docs/paper/sections/conclusion.tex",
+      "docs/paper/main.blg",
+      "docs/paper/main.bbl",
+      "docs/paper/main.fls",
+      "docs/paper/main.fdb_latexmk",
+      "artifacts/_project/paper/e5_hyperparam_tables.tex",
+      "docs/paper/sections/theory.tex",
+      "artifacts/_project/paper/theory.tex",
+      "docs/paper/sections/appendix.tex",
+      "docs/paper/main.aux",
+      "docs/paper/main.out",
+      "docs/paper/main.pdf",
+      "docs/paper/main.log"
+    ],
+    "durationMs": 348,
+    "numFiles": 80,
+    "truncated": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I see there's a `artifacts/r25_response/holm_bonferroni_enumeration.tex` file that's likely relevant. Let me also check the appendix and experiments files for Table 13. Let me read multiple files in parallel.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1fbe243d-d8f2-428e-ac17-69dd3bbbfe94",
+  "uuid": "7b5c3fc6-ba68-4c0b-811a-8540bfe844e9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WhAGLZwpasJxyzU5ba7ZgP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2376,
+      "cache_read_input_tokens": 23899,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2376
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 10_
+
+Found relevant files. Let me read the appendix, abstract, and the existing Holm-Bonferroni enumeration file in parallel.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1fbe243d-d8f2-428e-ac17-69dd3bbbfe94",
+  "uuid": "e8c7253f-c2d0-4a92-9c05-913946dae05a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WhAGLZwpasJxyzU5ba7ZgP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2376,
+      "cache_read_input_tokens": 23899,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2376
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01J6EpXpotqvwK5Sm19XLBbd`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1fbe243d-d8f2-428e-ac17-69dd3bbbfe94",
+  "uuid": "861e8872-f7cc-44b3-ba33-fa0e30f9e666",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WhAGLZwpasJxyzU5ba7ZgP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2376,
+      "cache_read_input_tokens": 23899,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2376
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-21T12:00:18.427Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01J6EpXpotqvwK5Sm19XLBbd`</summary>
+
+```text
+File content (61813 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1fbe243d-d8f2-428e-ac17-69dd3bbbfe94",
+  "uuid": "7c995028-13f9-4326-a5c7-2e9346525585",
+  "tool_use_result": "Error: File content (61813 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file."
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13_
+
+<details open><summary>🔧 Tool call — Read · `toolu_011KAGFwS5ZY3jTcNSTZxH8q`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/abstract.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1fbe243d-d8f2-428e-ac17-69dd3bbbfe94",
+  "uuid": "3a7f4ed2-c5b2-4e42-bd9e-773523cda15c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WhAGLZwpasJxyzU5ba7ZgP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2376,
+      "cache_read_input_tokens": 23899,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2376
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-21T12:00:18.561Z_
+
+<details><summary>↩ Tool result · `toolu_011KAGFwS5ZY3jTcNSTZxH8q`</summary>
+
+```text
+1	\begin{abstract}
+2	Test-time compute scaling through repeated sampling yields large gains on discrete-answer reasoning and code generation, yet for structured information extraction (IE), where outputs are entity sets with partial overlap, a persistent gap separates quality estimation from sample selection.
+3	We ask whether entity-level agreement signals can bridge this gap.
+4	Across seven methods spanning self-judgment, self-refinement, latent consistency, heterogeneous verification, adaptive budgeting, distillation, and supervised classification, we find that no entity-level agreement signal reliably improves selection for named entity recognition (NER), relation extraction (RE), or Text-to-SQL.
+5	Quality estimation signals correlate with oracle F1 ($\rho$ up to 0.45, AUROC up to 0.82) yet no signal selects better than greedy decoding.
+6	The failure is systematic: a four-stage diagnostic cascade (quality estimation $\to$ degeneracy $\to$ agreement fidelity $\to$ log-probability compression) localizes where and why selection breaks down, with cross-task validation on SQL parsing (87.2\% output degeneracy).
+7	A hidden-state linear probe achieves entity-level discrimination (area under the ROC curve [AUROC] $0.63$\textendash$0.88$, dataset-dependent) from a single forward pass, consistently exceeding prompt-based self-evaluation (AUROC 0.51) but matching multi-sample agreement ($0.87$) only on the simplest task.
+8	These negative results delineate where self-consistency (SC) does succeed for IE: through paths that bypass entity-level agreement.
+9	Log-probability selection improves F1 by $+1.39$\,pp on Few-NERD (Holm-adjusted $p{=}0.019$, selection family $k{=}19$), entity-level construction via weighted voting gains $+1.02$\textendash$1.40$\,pp, and cross-model ensembles add $+0.42$\,pp on Few-NERD.
+10	Each exploits sequence-level or cross-model signals rather than entity-level self-verification.
+11	A degeneracy decomposition confirms SC gain vanishes once output degeneracy exceeds 70\%.
+12	\end{abstract}
+13	%% REFRAME: scope precision + empirical exhaustion methodology
+14	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1fbe243d-d8f2-428e-ac17-69dd3bbbfe94",
+  "uuid": "b4b7de9c-f7b4-4f2b-b3bc-5e6644fe555d",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/abstract.tex",
+      "content": "\\begin{abstract}\nTest-time compute scaling through repeated sampling yields large gains on discrete-answer reasoning and code generation, yet for structured information extraction (IE), where outputs are entity sets with partial overlap, a persistent gap separates quality estimation from sample selection.\nWe ask whether entity-level agreement signals can bridge this gap.\nAcross seven methods spanning self-judgment, self-refinement, latent consistency, heterogeneous verification, adaptive budgeting, distillation, and supervised classification, we find that no entity-level agreement signal reliably improves selection for named entity recognition (NER), relation extraction (RE), or Text-to-SQL.\nQuality estimation signals correlate with oracle F1 ($\\rho$ up to 0.45, AUROC up to 0.82) yet no signal selects better than greedy decoding.\nThe failure is systematic: a four-stage diagnostic cascade (quality estimation $\\to$ degeneracy $\\to$ agreement fidelity $\\to$ log-probability compression) localizes where and why selection breaks down, with cross-task validation on SQL parsing (87.2\\% output degeneracy).\nA hidden-state linear probe achieves entity-level discrimination (area under the ROC curve [AUROC] $0.63$\\textendash$0.88$, dataset-dependent) from a single forward pass, consistently exceeding prompt-based self-evaluation (AUROC 0.51) but matching multi-sample agreement ($0.87$) only on the simplest task.\nThese negative results delineate where self-consistency (SC) does succeed for IE: through paths that bypass entity-level agreement.\nLog-probability selection improves F1 by $+1.39$\\,pp on Few-NERD (Holm-adjusted $p{=}0.019$, selection family $k{=}19$), entity-level construction via weighted voting gains $+1.02$\\textendash$1.40$\\,pp, and cross-model ensembles add $+0.42$\\,pp on Few-NERD.\nEach exploits sequence-level or cross-model signals rather than entity-level self-verification.\nA degeneracy decomposition confirms SC gain vanishes once output degeneracy exceeds 70\\%.\n\\end{abstract}\n%% REFRAME: scope precision + empirical exhaustion methodology\n",
+      "numLines": 14,
+      "startLine": 1,
+      "totalLines": 14
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01UzQajM9QhP2uu625bPtVDf`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/r25_response/holm_bonferroni_enumeration.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1fbe243d-d8f2-428e-ac17-69dd3bbbfe94",
+  "uuid": "07d05374-733d-4809-b604-4406409d598b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WhAGLZwpasJxyzU5ba7ZgP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2376,
+      "cache_read_input_tokens": 23899,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2376
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-21T12:00:18.979Z_
+
+<details><summary>↩ Tool result · `toolu_01UzQajM9QhP2uu625bPtVDf`</summary>
+
+```text
+1	\begin{table*}[t]
+2	\centering
+3	\small
+4	\caption{Complete enumeration of $k{=}57$ statistical tests subject to Holm--Bonferroni correction. Raw $p$: uncorrected $p$-value as reported. $p_{\text{adj}}$: Holm--Bonferroni adjusted $p$-value. $^\dagger$Survives correction at $\alpha{=}0.05$.}
+5	\label{tab:holm_family}
+6	\begin{tabular}{clllcc}
+7	\toprule
+8	\# & Family & Test Description & Raw $p$ & $p_{\text{adj}}$ & Sig. \\
+9	\midrule
+10	\multicolumn{6}{l}{\textit{Selection}} \\
+11	1 & & SciERC NER LP selection ($N{=}8$, Qwen, Table~3) & $0.290$ & $1.0$ &  \\
+12	2 & & SciERC NER SJ selection ($N{=}8$, Qwen, Table~3) & $0.670$ & $1.0$ &  \\
+13	3 & & SciERC NER FK selection ($N{=}8$, Qwen, Table~3) & $0.790$ & $1.0$ &  \\
+14	4 & & WNUT-17 LP selection ($N{=}8$, Qwen) & $0.720$ & $1.0$ &  \\
+15	5 & & CoNLL LP selection ($N{=}8$, Qwen) & $1.0$ & $1.0$ &  \\
+16	6 & & Few-NERD LP selection ($N{=}8$, Qwen, 3-seed) & ${<}.001$ & $0.055$ &  \\
+17	7 & & SciERC NER SJ selection ($N{=}8$, LLaMA-3B) & $0.175$ & $1.0$ &  \\
+18	8 & & SciERC NER LP selection ($N{=}32$, Qwen) & $0.091$ & $1.0$ &  \\
+19	9 & & SciERC NER FK selection ($N{=}32$, Qwen) & $0.101$ & $1.0$ &  \\
+20	10 & & SciERC NER SJ selection ($N{=}32$, Qwen) & $0.244$ & $1.0$ &  \\
+21	11 & & SciERC NER EM selection ($N{=}32$, Qwen) & $0.355$ & $1.0$ &  \\
+22	12 & & SciERC NER VC selection ($N{=}32$, Qwen) & $1.0$ & $1.0$ &  \\
+23	13 & & SciERC RE LP selection ($N{=}16$, 4B, Fisher) & $0.058$ & $1.0$ &  \\
+24	14 & & SciERC RE VC selection ($N{=}16$, 4B, Fisher) & $0.973$ & $1.0$ &  \\
+25	15 & & SciERC RE FK selection ($N{=}16$, 4B, Fisher) & $0.985$ & $1.0$ &  \\
+26	16 & & SciERC RE SJ selection ($N{=}16$, 4B, Fisher) & $0.993$ & $1.0$ &  \\
+27	17 & & SciERC RE EM selection ($N{=}16$, 4B, Fisher) & $0.999$ & $1.0$ &  \\
+28	18 & & SciERC LP selection, non-tied subset ($\varepsilon{=}0.05$) & $0.004$ & $0.180$ &  \\
+29	19 & & Few-NERD LP selection ($N{=}8$, LLaMA, 3-seed) & ${<}.001$ & $0.055$ &  \\
+30	\addlinespace
+31	\multicolumn{6}{l}{\textit{Construction}} \\
+32	20 & & SciERC LP-weighted construction (Qwen, 3-seed) & $0.004$ & $0.180$ &  \\
+33	21 & & SciERC uniform construction (Qwen, 3-seed) & $0.023$ & $0.874$ &  \\
+34	22 & & Few-NERD LP-weighted construction (Qwen) & ${<}.001$ & $0.055$ &  \\
+35	23 & & Few-NERD uniform construction (Qwen) & $0.003$ & $0.138$ &  \\
+36	24 & & CoNLL uniform construction (Qwen) & $0.500$ & $1.0$ &  \\
+37	25 & & SciERC ZS construction (72B) & $0.008$ & $0.320$ &  \\
+38	26 & & SciERC FS construction (72B) & $0.544$ & $1.0$ &  \\
+39	27 & & CoNLL FS construction (72B) & $0.417$ & $1.0$ &  \\
+40	28 & & Few-NERD FS construction (72B) & $0.401$ & $1.0$ &  \\
+41	29 & & SciERC cross-model LP-weighted construction & ${<}.001$ & $0.055$ &  \\
+42	\addlinespace
+43	\multicolumn{6}{l}{\textit{Calibration}} \\
+44	30 & & SciERC MF-Platt vs Raw LP & $0.720$ & $1.0$ &  \\
+45	31 & & CoNLL MF-Platt vs Raw LP & $0.310$ & $1.0$ &  \\
+46	32 & & Few-NERD MF-Platt vs Raw LP & $0.830$ & $1.0$ &  \\
+47	\addlinespace
+48	\multicolumn{6}{l}{\textit{Signal $\Delta\rho$}} \\
+49	33 & & SciERC $\Delta\rho$ SJ$-$LP ($N{=}8$, seed 42) & ${<}.001$ & $0.055$ &  \\
+50	34 & & SciERC $\Delta\rho$ VC$-$SJ ($N{=}8$, seed 42) & $0.300$ & $1.0$ &  \\
+51	35 & & SciERC $\Delta\rho$ SJ$-$EM ($N{=}8$, seed 42) & $0.045$ & $1.0$ &  \\
+52	36 & & CoNLL $\Delta\rho$ EM$-$FK ($N{=}16$) & ${<}.001$ & $0.055$ &  \\
+53	37 & & CoNLL $\Delta\rho$ SJ$-$FK ($N{=}16$) & ${<}.001$ & $0.055$ &  \\
+54	38 & & CoNLL $\Delta\rho$ VC$-$FK ($N{=}16$) & $0.040$ & $1.0$ &  \\
+55	39 & & SciERC $\Delta\rho$ SJ$-$FK (LLaMA, permutation) & $0.060$ & $1.0$ &  \\
+56	40 & & SciERC RE $\Delta\rho$ SJ$-$FK (full-set) & $0.530$ & $1.0$ &  \\
+57	41 & & RE SJ $\rho$ Q1 vs Q4 sentence length (Fisher $z$) & $0.004$ & $0.180$ &  \\
+58	\addlinespace
+59	\multicolumn{6}{l}{\textit{Correlation}} \\
+60	42 & & Cross-dataset degeneracy--LP gain ($n{=}23$) & $0.810$ & $1.0$ &  \\
+61	43 & & Per-type degeneracy--headroom (Few-NERD, Spearman) & $0.004$ & $0.180$ &  \\
+62	44 & & Per-type degeneracy--headroom (exact permutation) & $0.005$ & $0.205$ &  \\
+63	45 & & Per-type degeneracy--headroom ($\text{df}{=}4$ adjusted) & $0.033$ & $1.0$ &  \\
+64	46 & & SciERC per-type degeneracy--LP ($\rho{=}0.14$) & $0.790$ & $1.0$ &  \\
+65	47 & & Kruskal--Wallis per-type LP heterogeneity (SciERC) & $0.796$ & $1.0$ &  \\
+66	\addlinespace
+67	\multicolumn{6}{l}{\textit{FS error}} \\
+68	48 & & FS vs ZS error overlap (SciERC, permutation) & $0.840$ & $1.0$ &  \\
+69	49 & & FS vs ZS error overlap (CoNLL, permutation) & $0.640$ & $1.0$ &  \\
+70	50 & & FS vs ZS entity entropy (SciERC) & $0.810$ & $1.0$ &  \\
+71	51 & & FS vs ZS entity entropy (CoNLL, Wilcoxon) & ${<}10^{-4}$ & ${<}.001$ & $\dagger$ \\
+72	\addlinespace
+73	\multicolumn{6}{l}{\textit{Other}} \\
+74	52 & & LP distribution seed 42 vs 456 (Mann--Whitney) & $0.550$ & $1.0$ &  \\
+75	53 & & RE LP selection reversal (free-form, 4-seed) & ${<}.001$ & $0.006$ & $\dagger$ \\
+76	54 & & WNUT-17 conditional $\rho$ VC ($p$-value) & $0.487$ & $1.0$ &  \\
+77	55 & & WNUT-17 conditional $\rho$ FK ($p$-value) & $0.002$ & $0.094$ &  \\
+78	56 & & SciERC LP favorable subset ($+$2.47 pp) & $0.015$ & $0.585$ &  \\
+79	57 & & CoNLL LP favorable subset ($-$1.78 pp) & ${<}.001$ & $0.055$ &  \\
+80	\bottomrule
+81	\end{tabular}
+82	\end{table*}
+83	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1fbe243d-d8f2-428e-ac17-69dd3bbbfe94",
+  "uuid": "34600b34-c011-4f71-8510-bb959509c399",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/r25_response/holm_bonferroni_enumeration.tex",
+      "content": "\\begin{table*}[t]\n\\centering\n\\small\n\\caption{Complete enumeration of $k{=}57$ statistical tests subject to Holm--Bonferroni correction. Raw $p$: uncorrected $p$-value as reported. $p_{\\text{adj}}$: Holm--Bonferroni adjusted $p$-value. $^\\dagger$Survives correction at $\\alpha{=}0.05$.}\n\\label{tab:holm_family}\n\\begin{tabular}{clllcc}\n\\toprule\n\\# & Family & Test Description & Raw $p$ & $p_{\\text{adj}}$ & Sig. \\\\\n\\midrule\n\\multicolumn{6}{l}{\\textit{Selection}} \\\\\n1 & & SciERC NER LP selection ($N{=}8$, Qwen, Table~3) & $0.290$ & $1.0$ &  \\\\\n2 & & SciERC NER SJ selection ($N{=}8$, Qwen, Table~3) & $0.670$ & $1.0$ &  \\\\\n3 & & SciERC NER FK selection ($N{=}8$, Qwen, Table~3) & $0.790$ & $1.0$ &  \\\\\n4 & & WNUT-17 LP selection ($N{=}8$, Qwen) & $0.720$ & $1.0$ &  \\\\\n5 & & CoNLL LP selection ($N{=}8$, Qwen) & $1.0$ & $1.0$ &  \\\\\n6 & & Few-NERD LP selection ($N{=}8$, Qwen, 3-seed) & ${<}.001$ & $0.055$ &  \\\\\n7 & & SciERC NER SJ selection ($N{=}8$, LLaMA-3B) & $0.175$ & $1.0$ &  \\\\\n8 & & SciERC NER LP selection ($N{=}32$, Qwen) & $0.091$ & $1.0$ &  \\\\\n9 & & SciERC NER FK selection ($N{=}32$, Qwen) & $0.101$ & $1.0$ &  \\\\\n10 & & SciERC NER SJ selection ($N{=}32$, Qwen) & $0.244$ & $1.0$ &  \\\\\n11 & & SciERC NER EM selection ($N{=}32$, Qwen) & $0.355$ & $1.0$ &  \\\\\n12 & & SciERC NER VC selection ($N{=}32$, Qwen) & $1.0$ & $1.0$ &  \\\\\n13 & & SciERC RE LP selection ($N{=}16$, 4B, Fisher) & $0.058$ & $1.0$ &  \\\\\n14 & & SciERC RE VC selection ($N{=}16$, 4B, Fisher) & $0.973$ & $1.0$ &  \\\\\n15 & & SciERC RE FK selection ($N{=}16$, 4B, Fisher) & $0.985$ & $1.0$ &  \\\\\n16 & & SciERC RE SJ selection ($N{=}16$, 4B, Fisher) & $0.993$ & $1.0$ &  \\\\\n17 & & SciERC RE EM selection ($N{=}16$, 4B, Fisher) & $0.999$ & $1.0$ &  \\\\\n18 & & SciERC LP selection, non-tied subset ($\\varepsilon{=}0.05$) & $0.004$ & $0.180$ &  \\\\\n19 & & Few-NERD LP selection ($N{=}8$, LLaMA, 3-seed) & ${<}.001$ & $0.055$ &  \\\\\n\\addlinespace\n\\multicolumn{6}{l}{\\textit{Construction}} \\\\\n20 & & SciERC LP-weighted construction (Qwen, 3-seed) & $0.004$ & $0.180$ &  \\\\\n21 & & SciERC uniform construction (Qwen, 3-seed) & $0.023$ & $0.874$ &  \\\\\n22 & & Few-NERD LP-weighted construction (Qwen) & ${<}.001$ & $0.055$ &  \\\\\n23 & & Few-NERD uniform construction (Qwen) & $0.003$ & $0.138$ &  \\\\\n24 & & CoNLL uniform construction (Qwen) & $0.500$ & $1.0$ &  \\\\\n25 & & SciERC ZS construction (72B) & $0.008$ & $0.320$ &  \\\\\n26 & & SciERC FS construction (72B) & $0.544$ & $1.0$ &  \\\\\n27 & & CoNLL FS construction (72B) & $0.417$ & $1.0$ &  \\\\\n28 & & Few-NERD FS construction (72B) & $0.401$ & $1.0$ &  \\\\\n29 & & SciERC cross-model LP-weighted construction & ${<}.001$ & $0.055$ &  \\\\\n\\addlinespace\n\\multicolumn{6}{l}{\\textit{Calibration}} \\\\\n30 & & SciERC MF-Platt vs Raw LP & $0.720$ & $1.0$ &  \\\\\n31 & & CoNLL MF-Platt vs Raw LP & $0.310$ & $1.0$ &  \\\\\n32 & & Few-NERD MF-Platt vs Raw LP & $0.830$ & $1.0$ &  \\\\\n\\addlinespace\n\\multicolumn{6}{l}{\\textit{Signal $\\Delta\\rho$}} \\\\\n33 & & SciERC $\\Delta\\rho$ SJ$-$LP ($N{=}8$, seed 42) & ${<}.001$ & $0.055$ &  \\\\\n34 & & SciERC $\\Delta\\rho$ VC$-$SJ ($N{=}8$, seed 42) & $0.300$ & $1.0$ &  \\\\\n35 & & SciERC $\\Delta\\rho$ SJ$-$EM ($N{=}8$, seed 42) & $0.045$ & $1.0$ &  \\\\\n36 & & CoNLL $\\Delta\\rho$ EM$-$FK ($N{=}16$) & ${<}.001$ & $0.055$ &  \\\\\n37 & & CoNLL $\\Delta\\rho$ SJ$-$FK ($N{=}16$) & ${<}.001$ & $0.055$ &  \\\\\n38 & & CoNLL $\\Delta\\rho$ VC$-$FK ($N{=}16$) & $0.040$ & $1.0$ &  \\\\\n39 & & SciERC $\\Delta\\rho$ SJ$-$FK (LLaMA, permutation) & $0.060$ & $1.0$ &  \\\\\n40 & & SciERC RE $\\Delta\\rho$ SJ$-$FK (full-set) & $0.530$ & $1.0$ &  \\\\\n41 & & RE SJ $\\rho$ Q1 vs Q4 sentence length (Fisher $z$) & $0.004$ & $0.180$ &  \\\\\n\\addlinespace\n\\multicolumn{6}{l}{\\textit{Correlation}} \\\\\n42 & & Cross-dataset degeneracy--LP gain ($n{=}23$) & $0.810$ & $1.0$ &  \\\\\n43 & & Per-type degeneracy--headroom (Few-NERD, Spearman) & $0.004$ & $0.180$ &  \\\\\n44 & & Per-type degeneracy--headroom (exact permutation) & $0.005$ & $0.205$ &  \\\\\n45 & & Per-type degeneracy--headroom ($\\text{df}{=}4$ adjusted) & $0.033$ & $1.0$ &  \\\\\n46 & & SciERC per-type degeneracy--LP ($\\rho{=}0.14$) & $0.790$ & $1.0$ &  \\\\\n47 & & Kruskal--Wallis per-type LP heterogeneity (SciERC) & $0.796$ & $1.0$ &  \\\\\n\\addlinespace\n\\multicolumn{6}{l}{\\textit{FS error}} \\\\\n48 & & FS vs ZS error overlap (SciERC, permutation) & $0.840$ & $1.0$ &  \\\\\n49 & & FS vs ZS error overlap (CoNLL, permutation) & $0.640$ & $1.0$ &  \\\\\n50 & & FS vs ZS entity entropy (SciERC) & $0.810$ & $1.0$ &  \\\\\n51 & & FS vs ZS entity entropy (CoNLL, Wilcoxon) & ${<}10^{-4}$ & ${<}.001$ & $\\dagger$ \\\\\n\\addlinespace\n\\multicolumn{6}{l}{\\textit{Other}} \\\\\n52 & & LP distribution seed 42 vs 456 (Mann--Whitney) & $0.550$ & $1.0$ &  \\\\\n53 & & RE LP selection reversal (free-form, 4-seed) & ${<}.001$ & $0.006$ & $\\dagger$ \\\\\n54 & & WNUT-17 conditional $\\rho$ VC ($p$-value) & $0.487$ & $1.0$ &  \\\\\n55 & & WNUT-17 conditional $\\rho$ FK ($p$-value) & $0.002$ & $0.094$ &  \\\\\n56 & & SciERC LP favorable subset ($+$2.47 pp) & $0.015$ & $0.585$ &  \\\\\n57 & & CoNLL LP favorable subset ($-$1.78 pp) & ${<}.001$ & $0.055$ &  \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table*}\n",
+      "numLines": 83,
+      "startLine": 1,
+      "totalLines": 83
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 17_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a clear picture. The full Holm-Bonferroni table (`holm_bonferroni_enumeration.tex`) has k=57 tests total, organized into families:
+- Selection: tests 1-19 (19 tests)
+- Construction: tests 20-29 (10 tests)
+- Calibration: tests 30-32 (3 tests)
+- Signal Δρ: tests 33-41 (9 tests)
+- Correlation: tests 42-47 (6 tests)
+
+
+- FS error: tests 48-51 (4 tests)
+- Other: tests 52-57 (6 tests)
+
+The Abstract specifies "selection family k=19" which aligns perfectly with the Selection family rows 1-19, but the task mentions Table 13 might have 21 rows for the selection family, so I need to figure out what Table 13 actually contains and how it differs from this enumeration file.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1fbe243d-d8f2-428e-ac17-69dd3bbbfe94",
+  "uuid": "441c28e1-f8e8-437e-a9ff-e1d05024b099",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NrZnGd3MeABDMDrv3obohL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3869,
+      "cache_read_input_tokens": 26275,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3869
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 18_
+
+The enumeration table shows k=57 total tests, with the Selection family having exactly 19 tests (rows 1-19). Let me now find where "Table 13" is referenced and search for all k=19 mentions.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1fbe243d-d8f2-428e-ac17-69dd3bbbfe94",
+  "uuid": "7e343ac7-2304-4c2d-a719-527471439809",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NrZnGd3MeABDMDrv3obohL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3869,
+      "cache_read_input_tokens": 26275,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3869
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01ELi4fT2yYW2jfLpxfSc3jN`</summary>
+
+```json
+{
+  "pattern": "Table.{0,3}13|table.{0,3}13",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper",
+  "output_mode": "content",
+  "-n": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1fbe243d-d8f2-428e-ac17-69dd3bbbfe94",
+  "uuid": "3871b52e-f7b2-4720-a963-1d218d419137",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NrZnGd3MeABDMDrv3obohL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3869,
+      "cache_read_input_tokens": 26275,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3869
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-21T12:00:31.030Z_
+
+<details><summary>↩ Tool result · `toolu_01ELi4fT2yYW2jfLpxfSc3jN`</summary>
+
+```text
+No matches found
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1fbe243d-d8f2-428e-ac17-69dd3bbbfe94",
+  "uuid": "2fbcf2e0-ffff-4c2a-aa36-594dadc08ff3",
+  "tool_use_result": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "",
+    "numLines": 0
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01AuV3LGXuBdQXwYwmANCBmd`</summary>
+
+```json
+{
+  "pattern": "k\\s*[={]\\s*19|k=19|k\\{=\\}19",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper",
+  "output_mode": "content",
+  "-n": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1fbe243d-d8f2-428e-ac17-69dd3bbbfe94",
+  "uuid": "fa1d76d7-af64-46fd-8b33-681649b85501",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NrZnGd3MeABDMDrv3obohL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3869,
+      "cache_read_input_tokens": 26275,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3869
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-21T12:00:32.467Z_
+
+<details><summary>↩ Tool result · `toolu_01AuV3LGXuBdQXwYwmANCBmd`</summary>
+
+```text
+docs/paper/sections/single_signal.tex:41:Few-NERD provides the definitive contrast: LP achieves $+1.39$\,pp ($p{<}0.001$; Holm $p_{\text{adj}}{=}0.019$, selection family $k{=}19$) at low degeneracy (13.0\% vs.\ 17.8--67.9\%), while structural signals still degrade (VC $-1.79$, SJ $-2.14$\,pp; \S\ref{sec:fewnerd}).
+docs/paper/sections/abstract.tex:9:Log-probability selection improves F1 by $+1.39$\,pp on Few-NERD (Holm-adjusted $p{=}0.019$, selection family $k{=}19$), entity-level construction via weighted voting gains $+1.02$\textendash$1.40$\,pp, and cross-model ensembles add $+0.42$\,pp on Few-NERD.
+docs/paper/sections/introduction.tex:21:Only log-probability (LP) achieves a positive selection gain, and only on Few-NERD ($+1.39$\,pp; Holm $p_{\text{adj}}{=}0.019$, selection family $k{=}19$).
+docs/paper/sections/experiments_main.tex:119:Gains require both low degeneracy \textit{and} sufficient oracle headroom (Few-NERD: $D{=}13$\%, headroom${=}12.4$\,pp).\footnote{Holm--Bonferroni correction within families: selection $k{=}19$, construction $k{=}10$, signal $k{=}9$. Under global $k{=}57$, no claim survives ($p_{\text{adj}}{=}0.055$ for Few-NERD); see Appendix~\ref{app:holm}.}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1fbe243d-d8f2-428e-ac17-69dd3bbbfe94",
+  "uuid": "6f6d1043-176b-447a-85df-b1db7160c699",
+  "tool_use_result": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "docs/paper/sections/single_signal.tex:41:Few-NERD provides the definitive contrast: LP achieves $+1.39$\\,pp ($p{<}0.001$; Holm $p_{\\text{adj}}{=}0.019$, selection family $k{=}19$) at low degeneracy (13.0\\% vs.\\ 17.8--67.9\\%), while structural signals still degrade (VC $-1.79$, SJ $-2.14$\\,pp; \\S\\ref{sec:fewnerd}).\ndocs/paper/sections/abstract.tex:9:Log-probability selection improves F1 by $+1.39$\\,pp on Few-NERD (Holm-adjusted $p{=}0.019$, selection family $k{=}19$), entity-level construction via weighted voting gains $+1.02$\\textendash$1.40$\\,pp, and cross-model ensembles add $+0.42$\\,pp on Few-NERD.\ndocs/paper/sections/introduction.tex:21:Only log-probability (LP) achieves a positive selection gain, and only on Few-NERD ($+1.39$\\,pp; Holm $p_{\\text{adj}}{=}0.019$, selection family $k{=}19$).\ndocs/paper/sections/experiments_main.tex:119:Gains require both low degeneracy \\textit{and} sufficient oracle headroom (Few-NERD: $D{=}13$\\%, headroom${=}12.4$\\,pp).\\footnote{Holm--Bonferroni correction within families: selection $k{=}19$, construction $k{=}10$, signal $k{=}9$. Under global $k{=}57$, no claim survives ($p_{\\text{adj}}{=}0.055$ for Few-NERD); see Appendix~\\ref{app:holm}.}",
+    "numLines": 4
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_019JmstXEAfhoCSPBEePWge5`</summary>
+
+```json
+{
+  "pattern": "selection family",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper",
+  "output_mode": "content",
+  "-n": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1fbe243d-d8f2-428e-ac17-69dd3bbbfe94",
+  "uuid": "3724fba2-bfe6-475a-8a1c-dc4214087e7d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NrZnGd3MeABDMDrv3obohL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3869,
+      "cache_read_input_tokens": 26275,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3869
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-21T12:00:33.397Z_
+
+<details><summary>↩ Tool result · `toolu_019JmstXEAfhoCSPBEePWge5`</summary>
+
+```text
+docs/paper/sections/single_signal.tex:41:Few-NERD provides the definitive contrast: LP achieves $+1.39$\,pp ($p{<}0.001$; Holm $p_{\text{adj}}{=}0.019$, selection family $k{=}19$) at low degeneracy (13.0\% vs.\ 17.8--67.9\%), while structural signals still degrade (VC $-1.79$, SJ $-2.14$\,pp; \S\ref{sec:fewnerd}).
+docs/paper/sections/abstract.tex:9:Log-probability selection improves F1 by $+1.39$\,pp on Few-NERD (Holm-adjusted $p{=}0.019$, selection family $k{=}19$), entity-level construction via weighted voting gains $+1.02$\textendash$1.40$\,pp, and cross-model ensembles add $+0.42$\,pp on Few-NERD.
+docs/paper/sections/introduction.tex:21:Only log-probability (LP) achieves a positive selection gain, and only on Few-NERD ($+1.39$\,pp; Holm $p_{\text{adj}}{=}0.019$, selection family $k{=}19$).
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1fbe243d-d8f2-428e-ac17-69dd3bbbfe94",
+  "uuid": "df9047e6-971c-4831-a00d-516654a85e93",
+  "tool_use_result": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "docs/paper/sections/single_signal.tex:41:Few-NERD provides the definitive contrast: LP achieves $+1.39$\\,pp ($p{<}0.001$; Holm $p_{\\text{adj}}{=}0.019$, selection family $k{=}19$) at low degeneracy (13.0\\% vs.\\ 17.8--67.9\\%), while structural signals still degrade (VC $-1.79$, SJ $-2.14$\\,pp; \\S\\ref{sec:fewnerd}).\ndocs/paper/sections/abstract.tex:9:Log-probability selection improves F1 by $+1.39$\\,pp on Few-NERD (Holm-adjusted $p{=}0.019$, selection family $k{=}19$), entity-level construction via weighted voting gains $+1.02$\\textendash$1.40$\\,pp, and cross-model ensembles add $+0.42$\\,pp on Few-NERD.\ndocs/paper/sections/introduction.tex:21:Only log-probability (LP) achieves a positive selection gain, and only on Few-NERD ($+1.39$\\,pp; Holm $p_{\\text{adj}}{=}0.019$, selection family $k{=}19$).",
+    "numLines": 3
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 25_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have all the data. Let me verify:
+
+The `holm_bonferroni_enumeration.tex` file (which is the Holm-Bonferroni table, referenced as `tab:holm_family` and likely Appendix Table 13 based on table numbering in the appendix) has:
+
+**Selection family** (tests 1-19): exactly **19 tests**
+
+Let me count them:
+1. SciERC NER LP selection (N=8, Qwen, Table 3)
+
+
+2. SciERC NER SJ selection (N=8, Qwen, Table 3)
+3. SciERC NER FK selection (N=8, Qwen, Table 3)
+4. WNUT-17 LP selection (N=8, Qwen)
+5. CoNLL LP selection (N=8, Qwen)
+6. Few-NERD LP selection (N=8, Qwen, 3-seed)
+7. SciERC NER SJ selection (N=8, LLaMA-3B)
+8. SciERC NER LP selection (N=32, Qwen)
+9. SciERC NER FK selection (continuing the enumeration)
+10. SciERC NER SJ selection (N=32, Qwen)
+11. SciERC NER EM selection (N=32, Qwen)
+12. SciERC NER VC selection (N=32, Qwen)
+13. SciERC RE LP selection (N=16, 4B, Fisher)
+14. SciERC RE VC selection (N=16, 4B, Fisher)
+15. SciERC RE FK selection (N=16, 4B, Fisher)
+16. SciERC RE SJ selection (N=16, 4B, Fisher)
+17. SciERC RE EM selection (N=16, 4B, Fisher)
+18. SciERC LP selection with non-tied subset (ε=0.05)
+19. Few-NERD LP selection (continuing the list)
+
+That gives me exactly 19 entries, and the total k=57 checks out. Now I need to verify what Table 13 actually contains in the appendix, since there seems to be a discrepancy between the expected 21 rows and the actual 19 rows in the selection family.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1fbe243d-d8f2-428e-ac17-69dd3bbbfe94",
+  "uuid": "153ad650-871a-4f5f-942e-10885ba7b77e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01P4tVyfKBnpiTdhT9X2nDBq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1811,
+      "cache_read_input_tokens": 30144,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1811
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 26_
+
+Let me check how tables are numbered in the appendix to confirm which one is "Table 13" and whether there's a separate table with more selection rows.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1fbe243d-d8f2-428e-ac17-69dd3bbbfe94",
+  "uuid": "175a7880-5968-4404-9d40-d2c3639f7f44",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01P4tVyfKBnpiTdhT9X2nDBq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1811,
+      "cache_read_input_tokens": 30144,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1811
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01Cx3YQeDgEbkqZkTbNhwfU9`</summary>
+
+```json
+{
+  "pattern": "\\\\caption\\{|\\\\label\\{tab:",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+  "output_mode": "content",
+  "-n": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1fbe243d-d8f2-428e-ac17-69dd3bbbfe94",
+  "uuid": "252ab858-e041-431b-8707-715a7e89eb65",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01P4tVyfKBnpiTdhT9X2nDBq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1811,
+      "cache_read_input_tokens": 30144,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1811
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-21T12:00:47.896Z_
+
+<details><summary>↩ Tool result · `toolu_01Cx3YQeDgEbkqZkTbNhwfU9`</summary>
+
+```text
+25:\caption{Notation used throughout the paper.}
+26:\label{tab:notation}
+37:\caption{Signal robustness across configurations (Spearman $\rho$). Top: temperature on Qwen SciERC. Middle: sample size on Qwen SciERC. Bottom: transfer across model families (both 8B) (LLaMA CoNLL $N{=}16$, 3-seed mean $\pm\sigma$). $^\dagger$Mean over 3 seeds ($\sigma{=}0.013$; individual: 0.398, 0.423, 0.410). $\sigma$ computed as sample standard deviation.}
+38:\label{tab:robustness}
+70:\caption{Temperature robustness on SciERC ($N{=}8$). Top: NER; bottom: RE. SJ maintains stable $\rho$ across $T{=}0.7$ and $T{=}1.0$, while FK shows mixed sensitivity. LP shows the largest NER temperature effect ($\Delta\rho{=}{+}0.044$); RE $T{=}0.7$ LP data unavailable.}
+102:\caption{Instance-level FK independence test. Permutation tests confirm FK reflects true within-instance agreement (all $p{<}0.001$). Split-half reliability $r$ computed by randomly partitioning $N$ samples into two halves and correlating their FK scores.}
+103:\label{tab:fk_independence}
+127:\caption{Reliability diagrams on SciERC ($N{=}8$, $T{=}1.0$). Top: mean F1 vs.\ binned confidence; bottom: instance counts per bin. Left: NER; right: RE. NER signals are reasonably well-calibrated (calibration ECE 0.069--0.096), while RE shows greater miscalibration (ECE 0.109--0.339), RE calibration remains challenging for compound extraction tasks.}
+139:\caption{Quality estimation heatmap (Spearman $\rho$) across five signals and four configurations. Left: full evaluation set; right: conditional set (non-zero F1 instances). On the full set, structural signals dominate on SciERC NER while all signals converge on CoNLL. On the conditional set, EM emerges as the strongest signal on both NER ($\rho{=}0.360$) and RE ($\rho{=}0.417$), while LP RE collapses to near-zero ($\rho{=}0.011$).}
+164:\caption{Output length vs.\ mean log-probability on SciERC ($N{=}8$, $T{=}1.0$). Positive correlations (NER: $\rho{=}0.386$; RE: $\rho{=}0.326$) rule out length-penalty confounding.}
+183:\caption{SJ normalizer comparison (Spearman $\rho$; $N{=}8$, $T{=}1.0$, seed${=}42$). Max: $\max(|g_i|,|g_j|)$; Union: $|g_i \cup g_j|$.}
+184:\label{tab:sj_normalizer}
+213:\caption{Quality estimation on WNUT-17 (Qwen, $N{=}16$, $T{=}1.0$, $n{=}689$). Cond: non-zero F1 instances ($n{=}334$). Full-set $\rho$ reflects binary success prediction; conditional $\rho$ measures quality gradation. LP's conditional $\rho$ is highest despite negative full-set $\rho$.}
+214:\label{tab:wnut}
+239:\caption{Best-of-$N$ selection F1 (macro, instance-averaged) across configurations ($T{=}1.0$, 3-seed mean). Best non-oracle signal per row in \textbf{bold}. LP is the only signal with positive selection on both FewNERD configurations (Qwen $+1.39$~pp, Table~\ref{tab:fewnerd}; LLaMA $+0.36$~pp). At $N{=}16$ on LLaMA CoNLL, VC achieves small but significant gains ($+0.28$~pp, $p{<}0.03$; see text below). CoNLL shows especially tight clustering where greedy already exceeds 0.90.}
+240:\label{tab:cross_selection}
+280:\caption{Bootstrap 95\% CIs for signal $\rho$ on SciERC NER ($N{=}8$, $n{=}529$, $B{=}10{,}000$, seed${=}42$). Top: individual signals. Bottom: pairwise $\Delta\rho$; ``Sig.'' indicates whether the 95\% CI excludes zero.}
+281:\label{tab:bootstrap_signal_ci}
+323:\caption{Complete enumeration of $k{=}57$ statistical tests subject to Holm--Bonferroni correction. Raw $p$: uncorrected $p$-value as reported. $p_{\text{adj}}$: Holm--Bonferroni adjusted $p$-value. $^\dagger$Survives correction at $\alpha{=}0.05$.}
+324:\label{tab:holm_family}
+417:\caption{Output diversity across configurations ($N{=}8$, $T{=}1.0$). ``Identical'' = fraction of instances with all $N$ outputs identical. ``Unique'' = mean fraction of distinct outputs per instance.}
+418:\label{tab:diversity}
+447:\caption{Instance degeneracy statistics ($T{=}1.0$). ``Constant F1'': all $N$ samples receive identical instance-level F1. ``Constant utility'': MBR (SJ) utility identical across candidates. 4B data confirms degeneracy scales with model capability.}
+448:\label{tab:degeneracy}
+477:\caption{TOST equivalence testing: signals vs.\ single-sample on SciERC ($N{=}8$, $T{=}1.0$). \checkmark: equivalent at $p{<}0.05$; \texttimes: not equivalent. $\Delta$: mean F1 difference (signal $-$ single-sample).}
+478:\label{tab:tost}
+554:\caption{Hidden state probes vs.\ LP for sample selection (5-fold CV ${\times}$ 3 seeds). $\rho$: Spearman correlation with per-sample F1. Sel.\ F1: selection F1. Gap\%: oracle gap closure. SciERC greedy${=}0.644$, oracle${=}0.775$.}
+555:\label{tab:hidden_probe}
+585:\caption{Experimental coverage of entity-level methods. \checkmark = tested; --- = not tested. All methods use $N{=}8$, $T{=}1.0$ unless noted. Section references indicate where results appear.}
+586:\label{tab:method_coverage}
+611:\caption{Entity-level self-verification probes (Qwen2.5-7B, Few-NERD, $N{=}8$). ESJ: entity self-judgment via yes/no prompts. MRSC: multi-round re-prompting on disputed entities. LSC: latent-space centroid selection. MV: majority vote baseline.}
+612:\label{tab:self_verification}
+658:\caption{Multi-seed quality estimation on SciERC ($N{=}8$, $T{=}1.0$, seeds: 42, 123, 456). NER: both models; RE: Qwen only (preliminary). Signal ranking is stable across seeds ($\sigma{\leq}0.025$). $\sigma$ is population standard deviation over 3 seeds.}
+659:\label{tab:multiseed}
+687:\caption{Training configuration. Both Qwen3-8B and LLaMA-3.1-8B-Instruct use identical settings unless noted.}
+688:\label{tab:training}
+765:\caption{CDF of within-instance LP range on SciERC NER ($N{=}8$, $n{=}529$). The median LP range is 0.041 nats (dashed line), below $\varepsilon{=}0.05$. The smooth CDF confirms compression is pervasive, not bimodal.}
+772:\caption{Log-probability score compression on SciERC NER ($N{=}8$, $n{=}529$). ``Tied'' = fraction of instances where within-instance LP range ${<}\varepsilon$.}
+773:\label{tab:logprob_ties}
+799:\caption{$\varepsilon$ sensitivity sweep for LP selection on SciERC NER ($N{=}8$, seed${=}42$, $n{=}529$). ``Tied\%'' = fraction with within-instance LP range ${<}\varepsilon$. $\Delta$: selection F1 gain over single-sample on the non-tied subset. The tied fraction increases smoothly; $\varepsilon{=}0.05$ yields the strongest statistical separation.}
+800:\label{tab:epsilon_sweep}
+825:\caption{Maximum selection F1 variation (pp) across $\varepsilon \in [0, 0.2]$. At $\varepsilon{=}0.05$ (used throughout), consistency signals change by ${\leq}1.09$~pp; EM is invariant (integer scoring). LP is most sensitive as $\varepsilon$ governs its tied/non-tied partition. SciERC: $n{=}529$; CoNLL: $n{=}2{,}756$.}
+826:\label{tab:epsilon_robustness}
+848:\caption{Non-tied subset analysis (SciERC, Qwen3-8B, $N{=}8$, $T{=}1.0$). Instances split at LP range $\varepsilon{=}0.05$. Within-instance $\rho$ and selection gain both concentrate in the non-tied subset. Full $\varepsilon$ sweep in Table~\ref{tab:epsilon_sweep}.}
+849:\label{tab:nontied_main}
+874:\caption{Within-instance LP-quality alignment across datasets ($N{=}8$, $T{=}1.0$). $\rho$: median Spearman correlation between LP and F1 within each instance, over non-degenerate instances ($n_{\text{valid}}$: ${\geq}2$ distinct F1 values). Counts are from the primary seed (seed 42); text references use 3-seed mean degeneracy rates.}
+875:\label{tab:within_rho}
+896:\caption{Selection $\Delta$ (pp over single-sample) stratified by VC quartile on SciERC ($N{=}8$, Qwen3-8B). Oracle headroom collapses at Q4; LP rankings are unreliable at Q1--Q2. Neither quartile supports consistent selection gains.}
+897:\label{tab:vc_quartile}
+958:\caption{RE selection F1 (macro, instance-averaged) on SciERC ($N{=}8$, $T{=}1.0$). Full set ($n{=}397$) and non-zero F1 subset ($n{=}238$). No signal outperforms greedy on either subset.}
+959:\label{tab:re_cond_selection}
+987:\caption{RE best-of-$N$ selection F1 (macro, instance-averaged) on SciERC (Qwen3-4B, $N{=}16$, $T{=}1.0$, 3-seed mean${\pm}\sigma$, $n{=}551$). Fisher combined $p$ vs.\ greedy. LP is the only signal with positive $\Delta$. $\sigma$ is population standard deviation over 3 seeds.}
+988:\label{tab:re_n16_selection}
+1081:\caption{SC gain vs.\ degeneracy across 16 configurations (SciERC-specific $\alpha$). Red: signal-adjusted bound ($\alpha{=}0.068$); vertical dashed: $\theta_{\text{crit}}{=}0.70$; horizontal dotted: $\varepsilon{=}0.3$\,pp. All positive gains fall within the bound (right panel: ratio to weak bound, all ${<}0.13$).}
+1088:\caption{Bound verification across representative configurations ($N{=}8$). $G_{\text{nd}}$: non-degenerate oracle gap. $\alpha$: signal alignment. Bound: $(1{-}D) \cdot G_{\text{nd}} \cdot \alpha$. Ratio: actual$/$weak bound.}
+1089:\label{tab:bound_verification}
+1138:\caption{MV performance under aggregate micro-F1 (MF4v2, Qwen3-8B FT, $N{=}8$, $T{=}1.0$, multi-seed mean${\pm}\sigma$). $\alpha_{\textup{crit}} = F_1^{\textup{gr}}/2$ is the marginal-entity precision threshold (Proposition~\ref{prop:entity_selection_bound}). When $\delta > 1 - \alpha_{\textup{crit}}$, MV gain is structurally negligible.}
+1139:\label{tab:alpha_crit}
+1163:\caption{Comparison of constrained vs.\ free-form decoding on SciERC (Qwen3-8B, $N{=}8$, $T{=}1.0$, seed${=}42$; RE selection gap replicates across 4 seeds: $+1.84{\pm}0.12$~pp).}
+1164:\label{tab:freeform_ablation}
+1259:\caption{RE LP selection failure stability across 3 seeds (SciERC, $N{=}8$). Stable failures concentrate on relation-dense instances with high single-sample F1.}
+1260:\label{tab:stable_failures}
+1285:\caption{Effect of sample pool size on signal quality (Qwen3-8B, SciERC, 3-seed mean Spearman $\rho$).}
+1286:\label{tab:n-scaling}
+1309:\caption{Cross-seed signal ranking stability (Kendall's $W$, 3 seeds).}
+1310:\label{tab:ranking-stability}
+1329:\caption{Cross-seed standard deviation ($\sigma$) of Spearman $\rho$ at $N\!=\!8$ vs.\ $N\!=\!16$ (Qwen3-8B, SciERC, 3 seeds). $\sigma$ is population standard deviation.}
+1330:\label{tab:sigma-comparison}
+1362:\caption{Effect of sample count on selection (SciERC NER, Qwen3-8B, $T{=}1.0$, gold-filtered, seed${=}42$; exp\_025).\protect\footnotemark\ ``Best $\Delta$'': highest selection gain across all 5 signals. Per-signal $\Delta$ in pp vs.~greedy.}
+1363:\label{tab:n_scaling_selection}
+1389:\caption{Bootstrap significance test at $N{=}32$ (SciERC NER, Qwen3-8B, $T{=}1.0$, $B{=}10{,}000$, $n{=}529$ gold-non-empty instances; 22 instances with no gold entities are excluded as they contribute zero selection differential). $\Delta$: selection gain vs.\ greedy. CI: 95\% bootstrap percentile interval. $p_{\text{greedy}}$: one-sided $p$-value vs.\ greedy; $p_{\text{rand}}$: permutation test vs.\ random selection.}
+1390:\label{tab:bootstrap_n32}
+1417:\caption{Oracle $F_1$ as a function of sample count $N$, fitted with $F_1(N) = a - b \cdot N^{-c}$. All fits $R^2 > 0.999$. Horizontal dashed lines: greedy ($T{=}0$) F1. The ceiling grows monotonically with $N$, but the correlation-selection gap (\S\ref{sec:selection_gap}) limits how much is actually recoverable.}
+1426:\caption{Cross-scale and cross-family comparison ($N{=}8$, $T{=}1.0$). Hdr.\ = oracle $-$ greedy (pp). Degen.: instance degeneracy (\%). $^\star$Qwen2.5; unmarked: Qwen3. $^\dagger$Not computed. $^\ddagger$200-instance subset; 10.1\% parse failures excluded.}
+1427:\label{tab:scale_comparison}
+1462:\caption{Scale ablation: Qwen3 8B vs.\ 4B QE $\rho$ ($N{=}8$, $T{=}1.0$, seed 42). RE in Appendix~\ref{app:re_extension}.}
+1463:\label{tab:scale_ablation_app}
+1493:\caption{Cross-family frontier SC on Few-NERD ($N{=}8$, $T{=}1.0$, 200 instances, zero-shot). Parse failures excluded from all metrics; $N_{\textit{eff}}$: mean effective samples after exclusion. Selection gap $= $ oracle $-$ MV. Text-based entity matching (Appendix~\ref{app:frontier_sc}, entity matching paragraph). Qwen3-8B FT shown for reference.}
+1494:\label{tab:frontier_sc_cross}
+1534:\caption{Temperature ablation on SciERC NER (Qwen3-8B, $N{=}8$, seed${=}42$). Oracle gap and QE $\rho$ across four temperatures. $\kappa$: Fleiss' $\kappa$ (inter-sample agreement). $T{=}0.5$ and $T{=}1.0$ use joint (NER+RE) subtask; $T{=}0.8$ and $T{=}1.2$ use NER-only.}
+1535:\label{tab:t_ablation}
+1567:\caption{Temperature sensitivity of degeneracy and LP spread (SciERC NER, Qwen3-8B, $N{=}8$). Degeneracy: constant-F1, gold-filtered. LP range: median within-instance range.}
+1568:\label{tab:t_degeneracy}
+1590:\caption{Cross-dataset OOD quality estimation (Spearman $\rho$, Qwen3-8B, $N{=}8$, $T{=}1.0$, seed${=}42$). SciERC$\to$CoNLL: SciERC-trained model on CoNLL instances ($n{=}2756$). CoNLL$\to$SciERC: CoNLL-trained model on SciERC instances ($n{=}529$, excluded from conclusions due to catastrophic model failure). In-domain $\rho$ from Table~\ref{tab:quality_estimation} (same model, same seed). \textsuperscript{***}$p{<}0.001$, \textsuperscript{*}$p{<}0.05$.}
+1591:\label{tab:ood}
+1631:\caption{Verbalized confidence (VerbConf) vs.\ log-probability selection (Qwen3-8B, $N{=}8$, $T{=}1.0$, seed${=}42$). Parse fail: fraction of samples where the confidence score could not be extracted.}
+1632:\label{tab:verbconf}
+1668:\caption{LLaMA-3.2-3B SciERC NER quality estimation and selection ($N{=}8$, $T{=}1.0$, seed${=}42$). Greedy F1${=}0.627$, Oracle F1${=}0.763$, headroom${=}13.63$~pp.}
+1669:\label{tab:llama3b}
+1699:\caption{Few-NERD INTRA coarse: complete quality estimation and selection results (Qwen3-8B, $N{=}8$, $T{=}1.0$, gold-filtered $n{=}32{,}565$). $\rho$: Spearman correlation with instance F1. Sample AUROC: per-sample LP discrimination. Sel.\ $\Delta$: selection F1 minus greedy (0.748). CI: bootstrap 95\% confidence interval.}
+1700:\label{tab:fewnerd_full}
+1735:\caption{Per-entity-type LP selection on Few-NERD INTRA coarse (Qwen3-8B, $N{=}8$, $T{=}1.0$), sorted by degeneracy. LP $\Delta$: LP selection F1 minus greedy. 7/8 types show positive $\Delta$; Art (highest degeneracy) is the sole exception.}
+1736:\label{tab:per_type_lp}
+1758:\caption{CoNLL-2003 per-type LP selection (Qwen3-8B, $N{=}16$, $T{=}1.0$). All types exceed 20\% degeneracy and show negative LP selection, consistent with the dataset's ceiling-regime performance (F1 $>$ 90\%).}
+1759:\label{tab:per_type_lp_conll}
+1775:\caption{SciERC per-type LP selection (Qwen3-8B, $N{=}8$, $T{=}1.0$). Within-dataset, degeneracy alone does not predict LP effectiveness (Spearman $\rho{=}0.14$, $p{=}0.79$); additional type-specific factors likely modulate selection at this granularity.}
+1776:\label{tab:per_type_lp_scierc}
+1809:[Omitted long matching line]
+1810:\label{tab:calibration}
+1841:[Omitted long matching line]
+1842:\label{tab:epoch_confound}
+1872:[Omitted long matching line]
+1873:\label{tab:epoch_scierc}
+1918:\caption{LP selection on the favorable subset (non-degenerate instances with LP range above the dataset-specific median) per dataset (Qwen3-8B, $N{=}8$, $T{=}1.0$). CI: bootstrap 95\% confidence interval.}
+1919:\label{tab:conditional_decomp}
+1944:\caption{Post-hoc power analysis ($n{=}23$, two-tailed, $\alpha{=}0.05$). At this sample size, only large correlations ($\rho{\geq}0.5$) are detectable with adequate power.}
+1945:\label{tab:power_analysis}
+1971:\caption{Full-sequence vs.\ entity-token LP on SciERC NER (Qwen3-8B, $N{=}8$, $T{=}1.0$). Entity-token LP has higher variance and stronger correlation, yet selection degrades.}
+1972:\label{tab:entity_token_lp}
+1996:\caption{Entity-level majority voting results (Qwen3-8B, $N{=}8$, $T{=}1.0$). ``Greedy'': $T{=}0$ baseline. ``Best merge'': optimal $k$ per dataset from sweep $k \in \{2, \ldots, 8\}$. ``$\Delta$'': merge F1 minus greedy. ``Recovery'': $\Delta$ / (oracle $-$ greedy). Only SciERC shows positive recovery; even with oracle $k$, CoNLL and Few-NERD degrade.}
+1997:\label{tab:entity_merge}
+2019:\caption{Entity construction threshold sensitivity ($N{=}8$, Qwen3-8B, $T{=}1.0$). $\Delta$: F1 difference vs.\ greedy in percentage points. Best $\Delta$ per dataset--weighting pair in \textbf{bold}.}
+2020:\label{tab:theta_sweep}
+2081:\caption{Construction weighting variants (LLaMA-3.1-8B, $N{=}8$, $T{=}1.0$, $\theta{=}2/N$, 3-seed mean). $\Delta$: F1 difference vs.\ greedy in pp. Main-text construction results (Table~\ref{tab:entity_construction}) use Qwen3-8B.}
+2082:\label{tab:weighting_variants}
+2101:\caption{Full zero-shot vs.\ few-shot comparison for Qwen2.5-72B-Instruct-AWQ ($N{=}8$). Only SciERC under zero-shot yields a significant construction gain.}
+2102:\label{tab:72b_zs_vs_fs}
+2154:\caption{Cost-benefit summary of aggregation strategies (Qwen3-8B, $N{=}8$, $T{=}1.0$). Inference cost is relative to greedy ($T{=}0$, single forward pass). $\Delta$F1 reports the primary result (dataset in parentheses).}
+2155:\label{tab:cost_benefit}
+2183:\caption{Differentiation matrix: positioning relative to prior work on self-consistency limitations. ``Methods tested'' counts the number of distinct aggregation/selection categories evaluated (not hyperparameter variants).}
+2184:\label{tab:differentiation}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1fbe243d-d8f2-428e-ac17-69dd3bbbfe94",
+  "uuid": "1c9d9198-36d9-4f12-933c-eb271daad369",
+  "tool_use_result": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "25:\\caption{Notation used throughout the paper.}\n26:\\label{tab:notation}\n37:\\caption{Signal robustness across configurations (Spearman $\\rho$). Top: temperature on Qwen SciERC. Middle: sample size on Qwen SciERC. Bottom: transfer across model families (both 8B) (LLaMA CoNLL $N{=}16$, 3-seed mean $\\pm\\sigma$). $^\\dagger$Mean over 3 seeds ($\\sigma{=}0.013$; individual: 0.398, 0.423, 0.410). $\\sigma$ computed as sample standard deviation.}\n38:\\label{tab:robustness}\n70:\\caption{Temperature robustness on SciERC ($N{=}8$). Top: NER; bottom: RE. SJ maintains stable $\\rho$ across $T{=}0.7$ and $T{=}1.0$, while FK shows mixed sensitivity. LP shows the largest NER temperature effect ($\\Delta\\rho{=}{+}0.044$); RE $T{=}0.7$ LP data unavailable.}\n102:\\caption{Instance-level FK independence test. Permutation tests confirm FK reflects true within-instance agreement (all $p{<}0.001$). Split-half reliability $r$ computed by randomly partitioning $N$ samples into two halves and correlating their FK scores.}\n103:\\label{tab:fk_independence}\n127:\\caption{Reliability diagrams on SciERC ($N{=}8$, $T{=}1.0$). Top: mean F1 vs.\\ binned confidence; bottom: instance counts per bin. Left: NER; right: RE. NER signals are reasonably well-calibrated (calibration ECE 0.069--0.096), while RE shows greater miscalibration (ECE 0.109--0.339), RE calibration remains challenging for compound extraction tasks.}\n139:\\caption{Quality estimation heatmap (Spearman $\\rho$) across five signals and four configurations. Left: full evaluation set; right: conditional set (non-zero F1 instances). On the full set, structural signals dominate on SciERC NER while all signals converge on CoNLL. On the conditional set, EM emerges as the strongest signal on both NER ($\\rho{=}0.360$) and RE ($\\rho{=}0.417$), while LP RE collapses to near-zero ($\\rho{=}0.011$).}\n164:\\caption{Output length vs.\\ mean log-probability on SciERC ($N{=}8$, $T{=}1.0$). Positive correlations (NER: $\\rho{=}0.386$; RE: $\\rho{=}0.326$) rule out length-penalty confounding.}\n183:\\caption{SJ normalizer comparison (Spearman $\\rho$; $N{=}8$, $T{=}1.0$, seed${=}42$). Max: $\\max(|g_i|,|g_j|)$; Union: $|g_i \\cup g_j|$.}\n184:\\label{tab:sj_normalizer}\n213:\\caption{Quality estimation on WNUT-17 (Qwen, $N{=}16$, $T{=}1.0$, $n{=}689$). Cond: non-zero F1 instances ($n{=}334$). Full-set $\\rho$ reflects binary success prediction; conditional $\\rho$ measures quality gradation. LP's conditional $\\rho$ is highest despite negative full-set $\\rho$.}\n214:\\label{tab:wnut}\n239:\\caption{Best-of-$N$ selection F1 (macro, instance-averaged) across configurations ($T{=}1.0$, 3-seed mean). Best non-oracle signal per row in \\textbf{bold}. LP is the only signal with positive selection on both FewNERD configurations (Qwen $+1.39$~pp, Table~\\ref{tab:fewnerd}; LLaMA $+0.36$~pp). At $N{=}16$ on LLaMA CoNLL, VC achieves small but significant gains ($+0.28$~pp, $p{<}0.03$; see text below). CoNLL shows especially tight clustering where greedy already exceeds 0.90.}\n240:\\label{tab:cross_selection}\n280:\\caption{Bootstrap 95\\% CIs for signal $\\rho$ on SciERC NER ($N{=}8$, $n{=}529$, $B{=}10{,}000$, seed${=}42$). Top: individual signals. Bottom: pairwise $\\Delta\\rho$; ``Sig.'' indicates whether the 95\\% CI excludes zero.}\n281:\\label{tab:bootstrap_signal_ci}\n323:\\caption{Complete enumeration of $k{=}57$ statistical tests subject to Holm--Bonferroni correction. Raw $p$: uncorrected $p$-value as reported. $p_{\\text{adj}}$: Holm--Bonferroni adjusted $p$-value. $^\\dagger$Survives correction at $\\alpha{=}0.05$.}\n324:\\label{tab:holm_family}\n417:\\caption{Output diversity across configurations ($N{=}8$, $T{=}1.0$). ``Identical'' = fraction of instances with all $N$ outputs identical. ``Unique'' = mean fraction of distinct outputs per instance.}\n418:\\label{tab:diversity}\n447:\\caption{Instance degeneracy statistics ($T{=}1.0$). ``Constant F1'': all $N$ samples receive identical instance-level F1. ``Constant utility'': MBR (SJ) utility identical across candidates. 4B data confirms degeneracy scales with model capability.}\n448:\\label{tab:degeneracy}\n477:\\caption{TOST equivalence testing: signals vs.\\ single-sample on SciERC ($N{=}8$, $T{=}1.0$). \\checkmark: equivalent at $p{<}0.05$; \\texttimes: not equivalent. $\\Delta$: mean F1 difference (signal $-$ single-sample).}\n478:\\label{tab:tost}\n554:\\caption{Hidden state probes vs.\\ LP for sample selection (5-fold CV ${\\times}$ 3 seeds). $\\rho$: Spearman correlation with per-sample F1. Sel.\\ F1: selection F1. Gap\\%: oracle gap closure. SciERC greedy${=}0.644$, oracle${=}0.775$.}\n555:\\label{tab:hidden_probe}\n585:\\caption{Experimental coverage of entity-level methods. \\checkmark = tested; --- = not tested. All methods use $N{=}8$, $T{=}1.0$ unless noted. Section references indicate where results appear.}\n586:\\label{tab:method_coverage}\n611:\\caption{Entity-level self-verification probes (Qwen2.5-7B, Few-NERD, $N{=}8$). ESJ: entity self-judgment via yes/no prompts. MRSC: multi-round re-prompting on disputed entities. LSC: latent-space centroid selection. MV: majority vote baseline.}\n612:\\label{tab:self_verification}\n658:\\caption{Multi-seed quality estimation on SciERC ($N{=}8$, $T{=}1.0$, seeds: 42, 123, 456). NER: both models; RE: Qwen only (preliminary). Signal ranking is stable across seeds ($\\sigma{\\leq}0.025$). $\\sigma$ is population standard deviation over 3 seeds.}\n659:\\label{tab:multiseed}\n687:\\caption{Training configuration. Both Qwen3-8B and LLaMA-3.1-8B-Instruct use identical settings unless noted.}\n688:\\label{tab:training}\n765:\\caption{CDF of within-instance LP range on SciERC NER ($N{=}8$, $n{=}529$). The median LP range is 0.041 nats (dashed line), below $\\varepsilon{=}0.05$. The smooth CDF confirms compression is pervasive, not bimodal.}\n772:\\caption{Log-probability score compression on SciERC NER ($N{=}8$, $n{=}529$). ``Tied'' = fraction of instances where within-instance LP range ${<}\\varepsilon$.}\n773:\\label{tab:logprob_ties}\n799:\\caption{$\\varepsilon$ sensitivity sweep for LP selection on SciERC NER ($N{=}8$, seed${=}42$, $n{=}529$). ``Tied\\%'' = fraction with within-instance LP range ${<}\\varepsilon$. $\\Delta$: selection F1 gain over single-sample on the non-tied subset. The tied fraction increases smoothly; $\\varepsilon{=}0.05$ yields the strongest statistical separation.}\n800:\\label{tab:epsilon_sweep}\n825:\\caption{Maximum selection F1 variation (pp) across $\\varepsilon \\in [0, 0.2]$. At $\\varepsilon{=}0.05$ (used throughout), consistency signals change by ${\\leq}1.09$~pp; EM is invariant (integer scoring). LP is most sensitive as $\\varepsilon$ governs its tied/non-tied partition. SciERC: $n{=}529$; CoNLL: $n{=}2{,}756$.}\n826:\\label{tab:epsilon_robustness}\n848:\\caption{Non-tied subset analysis (SciERC, Qwen3-8B, $N{=}8$, $T{=}1.0$). Instances split at LP range $\\varepsilon{=}0.05$. Within-instance $\\rho$ and selection gain both concentrate in the non-tied subset. Full $\\varepsilon$ sweep in Table~\\ref{tab:epsilon_sweep}.}\n849:\\label{tab:nontied_main}\n874:\\caption{Within-instance LP-quality alignment across datasets ($N{=}8$, $T{=}1.0$). $\\rho$: median Spearman correlation between LP and F1 within each instance, over non-degenerate instances ($n_{\\text{valid}}$: ${\\geq}2$ distinct F1 values). Counts are from the primary seed (seed 42); text references use 3-seed mean degeneracy rates.}\n875:\\label{tab:within_rho}\n896:\\caption{Selection $\\Delta$ (pp over single-sample) stratified by VC quartile on SciERC ($N{=}8$, Qwen3-8B). Oracle headroom collapses at Q4; LP rankings are unreliable at Q1--Q2. Neither quartile supports consistent selection gains.}\n897:\\label{tab:vc_quartile}\n958:\\caption{RE selection F1 (macro, instance-averaged) on SciERC ($N{=}8$, $T{=}1.0$). Full set ($n{=}397$) and non-zero F1 subset ($n{=}238$). No signal outperforms greedy on either subset.}\n959:\\label{tab:re_cond_selection}\n987:\\caption{RE best-of-$N$ selection F1 (macro, instance-averaged) on SciERC (Qwen3-4B, $N{=}16$, $T{=}1.0$, 3-seed mean${\\pm}\\sigma$, $n{=}551$). Fisher combined $p$ vs.\\ greedy. LP is the only signal with positive $\\Delta$. $\\sigma$ is population standard deviation over 3 seeds.}\n988:\\label{tab:re_n16_selection}\n1081:\\caption{SC gain vs.\\ degeneracy across 16 configurations (SciERC-specific $\\alpha$). Red: signal-adjusted bound ($\\alpha{=}0.068$); vertical dashed: $\\theta_{\\text{crit}}{=}0.70$; horizontal dotted: $\\varepsilon{=}0.3$\\,pp. All positive gains fall within the bound (right panel: ratio to weak bound, all ${<}0.13$).}\n1088:\\caption{Bound verification across representative configurations ($N{=}8$). $G_{\\text{nd}}$: non-degenerate oracle gap. $\\alpha$: signal alignment. Bound: $(1{-}D) \\cdot G_{\\text{nd}} \\cdot \\alpha$. Ratio: actual$/$weak bound.}\n1089:\\label{tab:bound_verification}\n1138:\\caption{MV performance under aggregate micro-F1 (MF4v2, Qwen3-8B FT, $N{=}8$, $T{=}1.0$, multi-seed mean${\\pm}\\sigma$). $\\alpha_{\\textup{crit}} = F_1^{\\textup{gr}}/2$ is the marginal-entity precision threshold (Proposition~\\ref{prop:entity_selection_bound}). When $\\delta > 1 - \\alpha_{\\textup{crit}}$, MV gain is structurally negligible.}\n1139:\\label{tab:alpha_crit}\n1163:\\caption{Comparison of constrained vs.\\ free-form decoding on SciERC (Qwen3-8B, $N{=}8$, $T{=}1.0$, seed${=}42$; RE selection gap replicates across 4 seeds: $+1.84{\\pm}0.12$~pp).}\n1164:\\label{tab:freeform_ablation}\n1259:\\caption{RE LP selection failure stability across 3 seeds (SciERC, $N{=}8$). Stable failures concentrate on relation-dense instances with high single-sample F1.}\n1260:\\label{tab:stable_failures}\n1285:\\caption{Effect of sample pool size on signal quality (Qwen3-8B, SciERC, 3-seed mean Spearman $\\rho$).}\n1286:\\label{tab:n-scaling}\n1309:\\caption{Cross-seed signal ranking stability (Kendall's $W$, 3 seeds).}\n1310:\\label{tab:ranking-stability}\n1329:\\caption{Cross-seed standard deviation ($\\sigma$) of Spearman $\\rho$ at $N\\!=\\!8$ vs.\\ $N\\!=\\!16$ (Qwen3-8B, SciERC, 3 seeds). $\\sigma$ is population standard deviation.}\n1330:\\label{tab:sigma-comparison}\n1362:\\caption{Effect of sample count on selection (SciERC NER, Qwen3-8B, $T{=}1.0$, gold-filtered, seed${=}42$; exp\\_025).\\protect\\footnotemark\\ ``Best $\\Delta$'': highest selection gain across all 5 signals. Per-signal $\\Delta$ in pp vs.~greedy.}\n1363:\\label{tab:n_scaling_selection}\n1389:\\caption{Bootstrap significance test at $N{=}32$ (SciERC NER, Qwen3-8B, $T{=}1.0$, $B{=}10{,}000$, $n{=}529$ gold-non-empty instances; 22 instances with no gold entities are excluded as they contribute zero selection differential). $\\Delta$: selection gain vs.\\ greedy. CI: 95\\% bootstrap percentile interval. $p_{\\text{greedy}}$: one-sided $p$-value vs.\\ greedy; $p_{\\text{rand}}$: permutation test vs.\\ random selection.}\n1390:\\label{tab:bootstrap_n32}\n1417:\\caption{Oracle $F_1$ as a function of sample count $N$, fitted with $F_1(N) = a - b \\cdot N^{-c}$. All fits $R^2 > 0.999$. Horizontal dashed lines: greedy ($T{=}0$) F1. The ceiling grows monotonically with $N$, but the correlation-selection gap (\\S\\ref{sec:selection_gap}) limits how much is actually recoverable.}\n1426:\\caption{Cross-scale and cross-family comparison ($N{=}8$, $T{=}1.0$). Hdr.\\ = oracle $-$ greedy (pp). Degen.: instance degeneracy (\\%). $^\\star$Qwen2.5; unmarked: Qwen3. $^\\dagger$Not computed. $^\\ddagger$200-instance subset; 10.1\\% parse failures excluded.}\n1427:\\label{tab:scale_comparison}\n1462:\\caption{Scale ablation: Qwen3 8B vs.\\ 4B QE $\\rho$ ($N{=}8$, $T{=}1.0$, seed 42). RE in Appendix~\\ref{app:re_extension}.}\n1463:\\label{tab:scale_ablation_app}\n1493:\\caption{Cross-family frontier SC on Few-NERD ($N{=}8$, $T{=}1.0$, 200 instances, zero-shot). Parse failures excluded from all metrics; $N_{\\textit{eff}}$: mean effective samples after exclusion. Selection gap $= $ oracle $-$ MV. Text-based entity matching (Appendix~\\ref{app:frontier_sc}, entity matching paragraph). Qwen3-8B FT shown for reference.}\n1494:\\label{tab:frontier_sc_cross}\n1534:\\caption{Temperature ablation on SciERC NER (Qwen3-8B, $N{=}8$, seed${=}42$). Oracle gap and QE $\\rho$ across four temperatures. $\\kappa$: Fleiss' $\\kappa$ (inter-sample agreement). $T{=}0.5$ and $T{=}1.0$ use joint (NER+RE) subtask; $T{=}0.8$ and $T{=}1.2$ use NER-only.}\n1535:\\label{tab:t_ablation}\n1567:\\caption{Temperature sensitivity of degeneracy and LP spread (SciERC NER, Qwen3-8B, $N{=}8$). Degeneracy: constant-F1, gold-filtered. LP range: median within-instance range.}\n1568:\\label{tab:t_degeneracy}\n1590:\\caption{Cross-dataset OOD quality estimation (Spearman $\\rho$, Qwen3-8B, $N{=}8$, $T{=}1.0$, seed${=}42$). SciERC$\\to$CoNLL: SciERC-trained model on CoNLL instances ($n{=}2756$). CoNLL$\\to$SciERC: CoNLL-trained model on SciERC instances ($n{=}529$, excluded from conclusions due to catastrophic model failure). In-domain $\\rho$ from Table~\\ref{tab:quality_estimation} (same model, same seed). \\textsuperscript{***}$p{<}0.001$, \\textsuperscript{*}$p{<}0.05$.}\n1591:\\label{tab:ood}\n1631:\\caption{Verbalized confidence (VerbConf) vs.\\ log-probability selection (Qwen3-8B, $N{=}8$, $T{=}1.0$, seed${=}42$). Parse fail: fraction of samples where the confidence score could not be extracted.}\n1632:\\label{tab:verbconf}\n1668:\\caption{LLaMA-3.2-3B SciERC NER quality estimation and selection ($N{=}8$, $T{=}1.0$, seed${=}42$). Greedy F1${=}0.627$, Oracle F1${=}0.763$, headroom${=}13.63$~pp.}\n1669:\\label{tab:llama3b}\n1699:\\caption{Few-NERD INTRA coarse: complete quality estimation and selection results (Qwen3-8B, $N{=}8$, $T{=}1.0$, gold-filtered $n{=}32{,}565$). $\\rho$: Spearman correlation with instance F1. Sample AUROC: per-sample LP discrimination. Sel.\\ $\\Delta$: selection F1 minus greedy (0.748). CI: bootstrap 95\\% confidence interval.}\n1700:\\label{tab:fewnerd_full}\n1735:\\caption{Per-entity-type LP selection on Few-NERD INTRA coarse (Qwen3-8B, $N{=}8$, $T{=}1.0$), sorted by degeneracy. LP $\\Delta$: LP selection F1 minus greedy. 7/8 types show positive $\\Delta$; Art (highest degeneracy) is the sole exception.}\n1736:\\label{tab:per_type_lp}\n1758:\\caption{CoNLL-2003 per-type LP selection (Qwen3-8B, $N{=}16$, $T{=}1.0$). All types exceed 20\\% degeneracy and show negative LP selection, consistent with the dataset's ceiling-regime performance (F1 $>$ 90\\%).}\n1759:\\label{tab:per_type_lp_conll}\n1775:\\caption{SciERC per-type LP selection (Qwen3-8B, $N{=}8$, $T{=}1.0$). Within-dataset, degeneracy alone does not predict LP effectiveness (Spearman $\\rho{=}0.14$, $p{=}0.79$); additional type-specific factors likely modulate selection at this granularity.}\n1776:\\label{tab:per_type_lp_scierc}\n1809:[Omitted long matching line]\n1810:\\label{tab:calibration}\n1841:[Omitted long matching line]\n1842:\\label{tab:epoch_confound}\n1872:[Omitted long matching line]\n1873:\\label{tab:epoch_scierc}\n1918:\\caption{LP selection on the favorable subset (non-degenerate instances with LP range above the dataset-specific median) per dataset (Qwen3-8B, $N{=}8$, $T{=}1.0$). CI: bootstrap 95\\% confidence interval.}\n1919:\\label{tab:conditional_decomp}\n1944:\\caption{Post-hoc power analysis ($n{=}23$, two-tailed, $\\alpha{=}0.05$). At this sample size, only large correlations ($\\rho{\\geq}0.5$) are detectable with adequate power.}\n1945:\\label{tab:power_analysis}\n1971:\\caption{Full-sequence vs.\\ entity-token LP on SciERC NER (Qwen3-8B, $N{=}8$, $T{=}1.0$). Entity-token LP has higher variance and stronger correlation, yet selection degrades.}\n1972:\\label{tab:entity_token_lp}\n1996:\\caption{Entity-level majority voting results (Qwen3-8B, $N{=}8$, $T{=}1.0$). ``Greedy'': $T{=}0$ baseline. ``Best merge'': optimal $k$ per dataset from sweep $k \\in \\{2, \\ldots, 8\\}$. ``$\\Delta$'': merge F1 minus greedy. ``Recovery'': $\\Delta$ / (oracle $-$ greedy). Only SciERC shows positive recovery; even with oracle $k$, CoNLL and Few-NERD degrade.}\n1997:\\label{tab:entity_merge}\n2019:\\caption{Entity construction threshold sensitivity ($N{=}8$, Qwen3-8B, $T{=}1.0$). $\\Delta$: F1 difference vs.\\ greedy in percentage points. Best $\\Delta$ per dataset--weighting pair in \\textbf{bold}.}\n2020:\\label{tab:theta_sweep}\n2081:\\caption{Construction weighting variants (LLaMA-3.1-8B, $N{=}8$, $T{=}1.0$, $\\theta{=}2/N$, 3-seed mean). $\\Delta$: F1 difference vs.\\ greedy in pp. Main-text construction results (Table~\\ref{tab:entity_construction}) use Qwen3-8B.}\n2082:\\label{tab:weighting_variants}\n2101:\\caption{Full zero-shot vs.\\ few-shot comparison for Qwen2.5-72B-Instruct-AWQ ($N{=}8$). Only SciERC under zero-shot yields a significant construction gain.}\n2102:\\label{tab:72b_zs_vs_fs}\n2154:\\caption{Cost-benefit summary of aggregation strategies (Qwen3-8B, $N{=}8$, $T{=}1.0$). Inference cost is relative to greedy ($T{=}0$, single forward pass). $\\Delta$F1 reports the primary result (dataset in parentheses).}\n2155:\\label{tab:cost_benefit}\n2183:\\caption{Differentiation matrix: positioning relative to prior work on self-consistency limitations. ``Methods tested'' counts the number of distinct aggregation/selection categories evaluated (not hyperparameter variants).}\n2184:\\label{tab:differentiation}",
+    "numLines": 121
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01MPsqpkoio99RYDZyLFdAMo`</summary>
+
+```json
+{
+  "pattern": "holm|Holm",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+  "output_mode": "content",
+  "-n": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1fbe243d-d8f2-428e-ac17-69dd3bbbfe94",
+  "uuid": "e92a0303-cc6b-4415-bfdb-e4b996e66300",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01P4tVyfKBnpiTdhT9X2nDBq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1811,
+      "cache_read_input_tokens": 30144,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1811
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-21T12:00:48.524Z_
+
+<details><summary>↩ Tool result · `toolu_01MPsqpkoio99RYDZyLFdAMo`</summary>
+
+```text
+314:\section{Holm--Bonferroni Enumeration}\label{app:holm}
+316:Table~\ref{tab:holm_family} enumerates all $k{=}57$ statistical tests reported in this paper under a single global Holm--Bonferroni correction.
+323:\caption{Complete enumeration of $k{=}57$ statistical tests subject to Holm--Bonferroni correction. Raw $p$: uncorrected $p$-value as reported. $p_{\text{adj}}$: Holm--Bonferroni adjusted $p$-value. $^\dagger$Survives correction at $\alpha{=}0.05$.}
+324:\label{tab:holm_family}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1fbe243d-d8f2-428e-ac17-69dd3bbbfe94",
+  "uuid": "15018dac-04e8-487f-95e1-4d270eea36cd",
+  "tool_use_result": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "314:\\section{Holm--Bonferroni Enumeration}\\label{app:holm}\n316:Table~\\ref{tab:holm_family} enumerates all $k{=}57$ statistical tests reported in this paper under a single global Holm--Bonferroni correction.\n323:\\caption{Complete enumeration of $k{=}57$ statistical tests subject to Holm--Bonferroni correction. Raw $p$: uncorrected $p$-value as reported. $p_{\\text{adj}}$: Holm--Bonferroni adjusted $p$-value. $^\\dagger$Survives correction at $\\alpha{=}0.05$.}\n324:\\label{tab:holm_family}",
+    "numLines": 4
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 31_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I need to figure out which table is Table 13 based on the numbering. Looking at the appendix, each `\caption{...}` creates a new table. Let me count them in order to determine which one is Table 13. But actually, the main paper also has tables. The appendix tables continue numbering from the main paper tables.
+
+Let me check the main paper tables to find the table count. Let me look at the experiments sections.
+
+Actually, let me focus on what the task asked: "审稿发现 Abstract 写 'selection family k=19' 但 Table 13 selection family 实际可能有 21 行测试".
+
+
+I found the Holm-Bonferroni enumeration table in the appendix, and it contains exactly 19 rows of tests, which matches the k=19 claim in the abstract. But I should verify whether there might be additional selection tests elsewhere in the paper that could account for the discrepancy the reviewer mentioned.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1fbe243d-d8f2-428e-ac17-69dd3bbbfe94",
+  "uuid": "053577aa-3f59-4aaa-a49a-e29a7fcc6494",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YJ4oEtJrjXQimrFsoigaYL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7550,
+      "cache_read_input_tokens": 31955,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7550
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 32_
+
+Let me read the appendix section around the Holm table and check for any selection tests that might be missing from the enumeration.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1fbe243d-d8f2-428e-ac17-69dd3bbbfe94",
+  "uuid": "0d7c2bd7-b9ac-47cb-8adb-9539f31293e1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YJ4oEtJrjXQimrFsoigaYL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7550,
+      "cache_read_input_tokens": 31955,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7550
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01PYwFnm4Wpu3RBwf6DMv4BZ`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+  "offset": 314,
+  "limit": 120
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1fbe243d-d8f2-428e-ac17-69dd3bbbfe94",
+  "uuid": "3298bf2f-9380-4665-94dc-4a655a3d4b76",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YJ4oEtJrjXQimrFsoigaYL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7550,
+      "cache_read_input_tokens": 31955,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7550
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-21T12:01:02.235Z_
+
+<details><summary>↩ Tool result · `toolu_01PYwFnm4Wpu3RBwf6DMv4BZ`</summary>
+
+```text
+314	\section{Holm--Bonferroni Enumeration}\label{app:holm}
+315	
+316	Table~\ref{tab:holm_family} enumerates all $k{=}57$ statistical tests reported in this paper under a single global Holm--Bonferroni correction.
+317	Under this most conservative family, no core NER claim survives ($p_{\text{adj}}{=}0.055$ for Few-NERD LP selection and construction); only two peripheral tests reach significance (CoNLL few-shot entity entropy, RE LP selection reversal under free-form decoding).
+318	We report per-family corrections in the main text (\S\ref{sec:prescriptive}); the global enumeration is provided here for transparency.
+319	
+320	\begin{table*}[t]
+321	\centering
+322	\small
+323	\caption{Complete enumeration of $k{=}57$ statistical tests subject to Holm--Bonferroni correction. Raw $p$: uncorrected $p$-value as reported. $p_{\text{adj}}$: Holm--Bonferroni adjusted $p$-value. $^\dagger$Survives correction at $\alpha{=}0.05$.}
+324	\label{tab:holm_family}
+325	\begin{tabular}{clllcc}
+326	\toprule
+327	\# & Family & Test Description & Raw $p$ & $p_{\text{adj}}$ & Sig. \\
+328	\midrule
+329	\multicolumn{6}{l}{\textit{Selection}} \\
+330	1 & & SciERC NER LP selection ($N{=}8$, Qwen, Table~3) & $0.290$ & $1.0$ &  \\
+331	2 & & SciERC NER SJ selection ($N{=}8$, Qwen, Table~3) & $0.670$ & $1.0$ &  \\
+332	3 & & SciERC NER FK selection ($N{=}8$, Qwen, Table~3) & $0.790$ & $1.0$ &  \\
+333	4 & & WNUT-17 LP selection ($N{=}8$, Qwen) & $0.720$ & $1.0$ &  \\
+334	5 & & CoNLL LP selection ($N{=}8$, Qwen) & $1.0$ & $1.0$ &  \\
+335	6 & & Few-NERD LP selection ($N{=}8$, Qwen, 3-seed) & ${<}.001$ & $0.055$ &  \\
+336	7 & & SciERC NER SJ selection ($N{=}8$, LLaMA-3B) & $0.175$ & $1.0$ &  \\
+337	8 & & SciERC NER LP selection ($N{=}32$, Qwen) & $0.091$ & $1.0$ &  \\
+338	9 & & SciERC NER FK selection ($N{=}32$, Qwen) & $0.101$ & $1.0$ &  \\
+339	10 & & SciERC NER SJ selection ($N{=}32$, Qwen) & $0.244$ & $1.0$ &  \\
+340	11 & & SciERC NER EM selection ($N{=}32$, Qwen) & $0.355$ & $1.0$ &  \\
+341	12 & & SciERC NER VC selection ($N{=}32$, Qwen) & $1.0$ & $1.0$ &  \\
+342	13 & & SciERC RE LP selection ($N{=}16$, 4B, Fisher) & $0.058$ & $1.0$ &  \\
+343	14 & & SciERC RE VC selection ($N{=}16$, 4B, Fisher) & $0.973$ & $1.0$ &  \\
+344	15 & & SciERC RE FK selection ($N{=}16$, 4B, Fisher) & $0.985$ & $1.0$ &  \\
+345	16 & & SciERC RE SJ selection ($N{=}16$, 4B, Fisher) & $0.993$ & $1.0$ &  \\
+346	17 & & SciERC RE EM selection ($N{=}16$, 4B, Fisher) & $0.999$ & $1.0$ &  \\
+347	18 & & SciERC LP selection, non-tied subset ($\varepsilon{=}0.05$) & $0.004$ & $0.180$ &  \\
+348	19 & & Few-NERD LP selection ($N{=}8$, LLaMA, 3-seed) & ${<}.001$ & $0.055$ &  \\
+349	\addlinespace
+350	\multicolumn{6}{l}{\textit{Construction}} \\
+351	20 & & SciERC LP-weighted construction (Qwen, 3-seed) & $0.004$ & $0.180$ &  \\
+352	21 & & SciERC uniform construction (Qwen, 3-seed) & $0.023$ & $0.874$ &  \\
+353	22 & & Few-NERD LP-weighted construction (Qwen) & ${<}.001$ & $0.055$ &  \\
+354	23 & & Few-NERD uniform construction (Qwen) & $0.003$ & $0.138$ &  \\
+355	24 & & CoNLL uniform construction (Qwen) & $0.500$ & $1.0$ &  \\
+356	25 & & SciERC ZS construction (72B) & $0.008$ & $0.320$ &  \\
+357	26 & & SciERC FS construction (72B) & $0.544$ & $1.0$ &  \\
+358	27 & & CoNLL FS construction (72B) & $0.417$ & $1.0$ &  \\
+359	28 & & Few-NERD FS construction (72B) & $0.401$ & $1.0$ &  \\
+360	29 & & SciERC cross-model LP-weighted construction & ${<}.001$ & $0.055$ &  \\
+361	\addlinespace
+362	\multicolumn{6}{l}{\textit{Calibration}} \\
+363	30 & & SciERC MF-Platt vs Raw LP & $0.720$ & $1.0$ &  \\
+364	31 & & CoNLL MF-Platt vs Raw LP & $0.310$ & $1.0$ &  \\
+365	32 & & Few-NERD MF-Platt vs Raw LP & $0.830$ & $1.0$ &  \\
+366	\addlinespace
+367	\multicolumn{6}{l}{\textit{Signal $\Delta\rho$}} \\
+368	33 & & SciERC $\Delta\rho$ SJ$-$LP ($N{=}8$, seed 42) & ${<}.001$ & $0.055$ &  \\
+369	34 & & SciERC $\Delta\rho$ VC$-$SJ ($N{=}8$, seed 42) & $0.300$ & $1.0$ &  \\
+370	35 & & SciERC $\Delta\rho$ SJ$-$EM ($N{=}8$, seed 42) & $0.045$ & $1.0$ &  \\
+371	36 & & CoNLL $\Delta\rho$ EM$-$FK ($N{=}16$) & ${<}.001$ & $0.055$ &  \\
+372	37 & & CoNLL $\Delta\rho$ SJ$-$FK ($N{=}16$) & ${<}.001$ & $0.055$ &  \\
+373	38 & & CoNLL $\Delta\rho$ VC$-$FK ($N{=}16$) & $0.040$ & $1.0$ &  \\
+374	39 & & SciERC $\Delta\rho$ SJ$-$FK (LLaMA, permutation) & $0.060$ & $1.0$ &  \\
+375	40 & & SciERC RE $\Delta\rho$ SJ$-$FK (full-set) & $0.530$ & $1.0$ &  \\
+376	41 & & RE SJ $\rho$ Q1 vs Q4 sentence length (Fisher $z$) & $0.004$ & $0.180$ &  \\
+377	\addlinespace
+378	\multicolumn{6}{l}{\textit{Correlation}} \\
+379	42 & & Cross-dataset degeneracy--LP gain ($n{=}23$) & $0.810$ & $1.0$ &  \\
+380	43 & & Per-type degeneracy--headroom (Few-NERD, Spearman) & $0.004$ & $0.180$ &  \\
+381	44 & & Per-type degeneracy--headroom (exact permutation) & $0.005$ & $0.205$ &  \\
+382	45 & & Per-type degeneracy--headroom ($\text{df}{=}4$ adjusted) & $0.033$ & $1.0$ &  \\
+383	46 & & SciERC per-type degeneracy--LP ($\rho{=}0.14$) & $0.790$ & $1.0$ &  \\
+384	47 & & Kruskal--Wallis per-type LP heterogeneity (SciERC) & $0.796$ & $1.0$ &  \\
+385	\addlinespace
+386	\multicolumn{6}{l}{\textit{FS error}} \\
+387	48 & & FS vs ZS error overlap (SciERC, permutation) & $0.840$ & $1.0$ &  \\
+388	49 & & FS vs ZS error overlap (CoNLL, permutation) & $0.640$ & $1.0$ &  \\
+389	50 & & FS vs ZS entity entropy (SciERC) & $0.810$ & $1.0$ &  \\
+390	51 & & FS vs ZS entity entropy (CoNLL, Wilcoxon) & ${<}10^{-4}$ & ${<}.001$ & $\dagger$ \\
+391	\addlinespace
+392	\multicolumn{6}{l}{\textit{Other}} \\
+393	52 & & LP distribution seed 42 vs 456 (Mann--Whitney) & $0.550$ & $1.0$ &  \\
+394	53 & & RE LP selection reversal (free-form, 4-seed) & ${<}.001$ & $0.006$ & $\dagger$ \\
+395	54 & & WNUT-17 conditional $\rho$ VC ($p$-value) & $0.487$ & $1.0$ &  \\
+396	55 & & WNUT-17 conditional $\rho$ FK ($p$-value) & $0.002$ & $0.094$ &  \\
+397	56 & & SciERC LP favorable subset ($+$2.47 pp) & $0.015$ & $0.585$ &  \\
+398	57 & & CoNLL LP favorable subset ($-$1.78 pp) & ${<}.001$ & $0.055$ &  \\
+399	\bottomrule
+400	\end{tabular}
+401	\end{table*}
+402	
+403	\section{Diversity and Selection Analysis}\label{app:diversity}
+404	
+405	% fig_selection_gap promoted to main text (\S\ref{sec:selection_gap})
+406	
+407	\paragraph{Output diversity quantification.}
+408	Table~\ref{tab:diversity} summarizes output diversity across configurations.
+409	On SciERC, output diversity is substantial: Qwen produces 43\% unique outputs per instance (mean 3.5 distinct out of $N{=}8$), with per-sample F1 standard deviation of 0.144 and mean pairwise SJ of 0.703.
+410	LLaMA shows similar diversity (39\% unique, F1 std 0.11).
+411	On CoNLL, diversity collapses: 59\% (Qwen) to 89\% (LLaMA) of instances produce identical outputs across all $N$ samples; this reflects a ceiling effect where single-sample F1 already exceeds 0.90.
+412	WNUT-17 shows 55\% identical outputs, driven by the 51\% zero-F1 rate.
+413	
+414	\begin{table}[t]
+415	\centering
+416	\small
+417	\caption{Output diversity across configurations ($N{=}8$, $T{=}1.0$). ``Identical'' = fraction of instances with all $N$ outputs identical. ``Unique'' = mean fraction of distinct outputs per instance.}
+418	\label{tab:diversity}
+419	\begin{tabular}{lcc}
+420	\toprule
+421	Config & Identical & Unique \\
+422	\midrule
+423	Qwen/SciERC & 11\% & 43\% \\
+424	LLaMA/SciERC & 18\% & 39\% \\
+425	Qwen/CoNLL & 57\% & --- \\
+426	LLaMA/CoNLL & 88\% & --- \\
+427	WNUT-17 & 55\% & --- \\
+428	\bottomrule
+429	\end{tabular}
+430	\end{table}
+431	
+432	\paragraph{Oracle-improvable fraction.}
+433	Across SciERC configurations, 39--42\% of instances contain at least one sample with F1 exceeding single-sample\footnote{Oracle-improvable and diversity-stratified analyses use $n{=}529$ (excluding instances with empty gold annotations; see \S\ref{sec:evaluation}); the diversity quantification in Table~\ref{tab:diversity} uses the full test set.}: Qwen NER 42.0\% (222/529, mean headroom $+$31.9~pp among improvable instances), Qwen RE 41.3\% (164/397, $+$45.3~pp), LLaMA NER 39.3\% (208/529, $+$33.7~pp).
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1fbe243d-d8f2-428e-ac17-69dd3bbbfe94",
+  "uuid": "b8d9762b-794a-45c4-81a5-e82ca5b33ec9",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+      "content": "\\section{Holm--Bonferroni Enumeration}\\label{app:holm}\n\nTable~\\ref{tab:holm_family} enumerates all $k{=}57$ statistical tests reported in this paper under a single global Holm--Bonferroni correction.\nUnder this most conservative family, no core NER claim survives ($p_{\\text{adj}}{=}0.055$ for Few-NERD LP selection and construction); only two peripheral tests reach significance (CoNLL few-shot entity entropy, RE LP selection reversal under free-form decoding).\nWe report per-family corrections in the main text (\\S\\ref{sec:prescriptive}); the global enumeration is provided here for transparency.\n\n\\begin{table*}[t]\n\\centering\n\\small\n\\caption{Complete enumeration of $k{=}57$ statistical tests subject to Holm--Bonferroni correction. Raw $p$: uncorrected $p$-value as reported. $p_{\\text{adj}}$: Holm--Bonferroni adjusted $p$-value. $^\\dagger$Survives correction at $\\alpha{=}0.05$.}\n\\label{tab:holm_family}\n\\begin{tabular}{clllcc}\n\\toprule\n\\# & Family & Test Description & Raw $p$ & $p_{\\text{adj}}$ & Sig. \\\\\n\\midrule\n\\multicolumn{6}{l}{\\textit{Selection}} \\\\\n1 & & SciERC NER LP selection ($N{=}8$, Qwen, Table~3) & $0.290$ & $1.0$ &  \\\\\n2 & & SciERC NER SJ selection ($N{=}8$, Qwen, Table~3) & $0.670$ & $1.0$ &  \\\\\n3 & & SciERC NER FK selection ($N{=}8$, Qwen, Table~3) & $0.790$ & $1.0$ &  \\\\\n4 & & WNUT-17 LP selection ($N{=}8$, Qwen) & $0.720$ & $1.0$ &  \\\\\n5 & & CoNLL LP selection ($N{=}8$, Qwen) & $1.0$ & $1.0$ &  \\\\\n6 & & Few-NERD LP selection ($N{=}8$, Qwen, 3-seed) & ${<}.001$ & $0.055$ &  \\\\\n7 & & SciERC NER SJ selection ($N{=}8$, LLaMA-3B) & $0.175$ & $1.0$ &  \\\\\n8 & & SciERC NER LP selection ($N{=}32$, Qwen) & $0.091$ & $1.0$ &  \\\\\n9 & & SciERC NER FK selection ($N{=}32$, Qwen) & $0.101$ & $1.0$ &  \\\\\n10 & & SciERC NER SJ selection ($N{=}32$, Qwen) & $0.244$ & $1.0$ &  \\\\\n11 & & SciERC NER EM selection ($N{=}32$, Qwen) & $0.355$ & $1.0$ &  \\\\\n12 & & SciERC NER VC selection ($N{=}32$, Qwen) & $1.0$ & $1.0$ &  \\\\\n13 & & SciERC RE LP selection ($N{=}16$, 4B, Fisher) & $0.058$ & $1.0$ &  \\\\\n14 & & SciERC RE VC selection ($N{=}16$, 4B, Fisher) & $0.973$ & $1.0$ &  \\\\\n15 & & SciERC RE FK selection ($N{=}16$, 4B, Fisher) & $0.985$ & $1.0$ &  \\\\\n16 & & SciERC RE SJ selection ($N{=}16$, 4B, Fisher) & $0.993$ & $1.0$ &  \\\\\n17 & & SciERC RE EM selection ($N{=}16$, 4B, Fisher) & $0.999$ & $1.0$ &  \\\\\n18 & & SciERC LP selection, non-tied subset ($\\varepsilon{=}0.05$) & $0.004$ & $0.180$ &  \\\\\n19 & & Few-NERD LP selection ($N{=}8$, LLaMA, 3-seed) & ${<}.001$ & $0.055$ &  \\\\\n\\addlinespace\n\\multicolumn{6}{l}{\\textit{Construction}} \\\\\n20 & & SciERC LP-weighted construction (Qwen, 3-seed) & $0.004$ & $0.180$ &  \\\\\n21 & & SciERC uniform construction (Qwen, 3-seed) & $0.023$ & $0.874$ &  \\\\\n22 & & Few-NERD LP-weighted construction (Qwen) & ${<}.001$ & $0.055$ &  \\\\\n23 & & Few-NERD uniform construction (Qwen) & $0.003$ & $0.138$ &  \\\\\n24 & & CoNLL uniform construction (Qwen) & $0.500$ & $1.0$ &  \\\\\n25 & & SciERC ZS construction (72B) & $0.008$ & $0.320$ &  \\\\\n26 & & SciERC FS construction (72B) & $0.544$ & $1.0$ &  \\\\\n27 & & CoNLL FS construction (72B) & $0.417$ & $1.0$ &  \\\\\n28 & & Few-NERD FS construction (72B) & $0.401$ & $1.0$ &  \\\\\n29 & & SciERC cross-model LP-weighted construction & ${<}.001$ & $0.055$ &  \\\\\n\\addlinespace\n\\multicolumn{6}{l}{\\textit{Calibration}} \\\\\n30 & & SciERC MF-Platt vs Raw LP & $0.720$ & $1.0$ &  \\\\\n31 & & CoNLL MF-Platt vs Raw LP & $0.310$ & $1.0$ &  \\\\\n32 & & Few-NERD MF-Platt vs Raw LP & $0.830$ & $1.0$ &  \\\\\n\\addlinespace\n\\multicolumn{6}{l}{\\textit{Signal $\\Delta\\rho$}} \\\\\n33 & & SciERC $\\Delta\\rho$ SJ$-$LP ($N{=}8$, seed 42) & ${<}.001$ & $0.055$ &  \\\\\n34 & & SciERC $\\Delta\\rho$ VC$-$SJ ($N{=}8$, seed 42) & $0.300$ & $1.0$ &  \\\\\n35 & & SciERC $\\Delta\\rho$ SJ$-$EM ($N{=}8$, seed 42) & $0.045$ & $1.0$ &  \\\\\n36 & & CoNLL $\\Delta\\rho$ EM$-$FK ($N{=}16$) & ${<}.001$ & $0.055$ &  \\\\\n37 & & CoNLL $\\Delta\\rho$ SJ$-$FK ($N{=}16$) & ${<}.001$ & $0.055$ &  \\\\\n38 & & CoNLL $\\Delta\\rho$ VC$-$FK ($N{=}16$) & $0.040$ & $1.0$ &  \\\\\n39 & & SciERC $\\Delta\\rho$ SJ$-$FK (LLaMA, permutation) & $0.060$ & $1.0$ &  \\\\\n40 & & SciERC RE $\\Delta\\rho$ SJ$-$FK (full-set) & $0.530$ & $1.0$ &  \\\\\n41 & & RE SJ $\\rho$ Q1 vs Q4 sentence length (Fisher $z$) & $0.004$ & $0.180$ &  \\\\\n\\addlinespace\n\\multicolumn{6}{l}{\\textit{Correlation}} \\\\\n42 & & Cross-dataset degeneracy--LP gain ($n{=}23$) & $0.810$ & $1.0$ &  \\\\\n43 & & Per-type degeneracy--headroom (Few-NERD, Spearman) & $0.004$ & $0.180$ &  \\\\\n44 & & Per-type degeneracy--headroom (exact permutation) & $0.005$ & $0.205$ &  \\\\\n45 & & Per-type degeneracy--headroom ($\\text{df}{=}4$ adjusted) & $0.033$ & $1.0$ &  \\\\\n46 & & SciERC per-type degeneracy--LP ($\\rho{=}0.14$) & $0.790$ & $1.0$ &  \\\\\n47 & & Kruskal--Wallis per-type LP heterogeneity (SciERC) & $0.796$ & $1.0$ &  \\\\\n\\addlinespace\n\\multicolumn{6}{l}{\\textit{FS error}} \\\\\n48 & & FS vs ZS error overlap (SciERC, permutation) & $0.840$ & $1.0$ &  \\\\\n49 & & FS vs ZS error overlap (CoNLL, permutation) & $0.640$ & $1.0$ &  \\\\\n50 & & FS vs ZS entity entropy (SciERC) & $0.810$ & $1.0$ &  \\\\\n51 & & FS vs ZS entity entropy (CoNLL, Wilcoxon) & ${<}10^{-4}$ & ${<}.001$ & $\\dagger$ \\\\\n\\addlinespace\n\\multicolumn{6}{l}{\\textit{Other}} \\\\\n52 & & LP distribution seed 42 vs 456 (Mann--Whitney) & $0.550$ & $1.0$ &  \\\\\n53 & & RE LP selection reversal (free-form, 4-seed) & ${<}.001$ & $0.006$ & $\\dagger$ \\\\\n54 & & WNUT-17 conditional $\\rho$ VC ($p$-value) & $0.487$ & $1.0$ &  \\\\\n55 & & WNUT-17 conditional $\\rho$ FK ($p$-value) & $0.002$ & $0.094$ &  \\\\\n56 & & SciERC LP favorable subset ($+$2.47 pp) & $0.015$ & $0.585$ &  \\\\\n57 & & CoNLL LP favorable subset ($-$1.78 pp) & ${<}.001$ & $0.055$ &  \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table*}\n\n\\section{Diversity and Selection Analysis}\\label{app:diversity}\n\n% fig_selection_gap promoted to main text (\\S\\ref{sec:selection_gap})\n\n\\paragraph{Output diversity quantification.}\nTable~\\ref{tab:diversity} summarizes output diversity across configurations.\nOn SciERC, output diversity is substantial: Qwen produces 43\\% unique outputs per instance (mean 3.5 distinct out of $N{=}8$), with per-sample F1 standard deviation of 0.144 and mean pairwise SJ of 0.703.\nLLaMA shows similar diversity (39\\% unique, F1 std 0.11).\nOn CoNLL, diversity collapses: 59\\% (Qwen) to 89\\% (LLaMA) of instances produce identical outputs across all $N$ samples; this reflects a ceiling effect where single-sample F1 already exceeds 0.90.\nWNUT-17 shows 55\\% identical outputs, driven by the 51\\% zero-F1 rate.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Output diversity across configurations ($N{=}8$, $T{=}1.0$). ``Identical'' = fraction of instances with all $N$ outputs identical. ``Unique'' = mean fraction of distinct outputs per instance.}\n\\label{tab:diversity}\n\\begin{tabular}{lcc}\n\\toprule\nConfig & Identical & Unique \\\\\n\\midrule\nQwen/SciERC & 11\\% & 43\\% \\\\\nLLaMA/SciERC & 18\\% & 39\\% \\\\\nQwen/CoNLL & 57\\% & --- \\\\\nLLaMA/CoNLL & 88\\% & --- \\\\\nWNUT-17 & 55\\% & --- \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\paragraph{Oracle-improvable fraction.}\nAcross SciERC configurations, 39--42\\% of instances contain at least one sample with F1 exceeding single-sample\\footnote{Oracle-improvable and diversity-stratified analyses use $n{=}529$ (excluding instances with empty gold annotations; see \\S\\ref{sec:evaluation}); the diversity quantification in Table~\\ref{tab:diversity} uses the full test set.}: Qwen NER 42.0\\% (222/529, mean headroom $+$31.9~pp among improvable instances), Qwen RE 41.3\\% (164/397, $+$45.3~pp), LLaMA NER 39.3\\% (208/529, $+$33.7~pp).",
+      "numLines": 120,
+      "startLine": 314,
+      "totalLines": 2283
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 35_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I need to check if there are any selection tests mentioned elsewhere in the paper that should have been in the Selection family but aren't. Let me look at some key tables:
+
+1. The cross_selection table (tab:cross_selection) at line 240 - this appears to contain selection results
+2. The fewnerd_full table (tab:fewnerd_full) at line 1700
+3. LLaMA-3B table (tab:llama3b) at line 1669
+4. The frontier_sc_cross table (tab:frontier_sc_cross) at line 1494
+
+
+5. I should also check experiments_main.tex where k=19 is referenced in the footnote
+
+The real question is whether k=19 for the selection family is actually correct. I need to count the main paper tables to figure out which one is Table 13 and verify the claim about 21 rows of tests.
+
+I've now confirmed that the Holm-Bonferroni table explicitly lists 19 tests under Selection (rows 1-19), and this k=19 value is consistent across the abstract, introduction, and experiments_main. But the reviewer's claim about 21 rows suggests I should look for selection-type tests that might be scattered elsewhere—either selection p-values reported in the paper or appendix that aren't in the Holm table, or tests in other families that could arguably be selection tests. Let me examine the cross_selection table and experiments_main section more carefully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1fbe243d-d8f2-428e-ac17-69dd3bbbfe94",
+  "uuid": "4cedf976-58f6-4311-bba5-b9b19c75fb7a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AH2PJbxFFeMi5WArAXRXHZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4259,
+      "cache_read_input_tokens": 39505,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4259
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 36_
+
+Let me check the cross-selection table and other selection results to see if any selection tests are missing from the enumeration.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1fbe243d-d8f2-428e-ac17-69dd3bbbfe94",
+  "uuid": "76eca0f3-f10a-4a7f-9c7f-ded44e2b362b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AH2PJbxFFeMi5WArAXRXHZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4259,
+      "cache_read_input_tokens": 39505,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4259
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01KZ5ASHkqjTfs9BdkaUycSh`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+  "offset": 237,
+  "limit": 80
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1fbe243d-d8f2-428e-ac17-69dd3bbbfe94",
+  "uuid": "08d4b731-e12c-4073-a475-f6524a795fb6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AH2PJbxFFeMi5WArAXRXHZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4259,
+      "cache_read_input_tokens": 39505,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4259
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01DxQgbfAXRC5rhnaWFzTUnW`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments_main.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1fbe243d-d8f2-428e-ac17-69dd3bbbfe94",
+  "uuid": "12c50e80-0b83-4b5e-86d1-18584f515c1b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AH2PJbxFFeMi5WArAXRXHZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4259,
+      "cache_read_input_tokens": 39505,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4259
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-21T12:01:18.844Z_
+
+<details><summary>↩ Tool result · `toolu_01KZ5ASHkqjTfs9BdkaUycSh`</summary>
+
+```text
+237	\centering
+238	\small
+239	\caption{Best-of-$N$ selection F1 (macro, instance-averaged) across configurations ($T{=}1.0$, 3-seed mean). Best non-oracle signal per row in \textbf{bold}. LP is the only signal with positive selection on both FewNERD configurations (Qwen $+1.39$~pp, Table~\ref{tab:fewnerd}; LLaMA $+0.36$~pp). At $N{=}16$ on LLaMA CoNLL, VC achieves small but significant gains ($+0.28$~pp, $p{<}0.03$; see text below). CoNLL shows especially tight clustering where greedy already exceeds 0.90.}
+240	\label{tab:cross_selection}
+241	\begin{tabular}{llccccccc}
+242	\toprule
+243	Config & $n$ & Greedy & Oracle & SJ & FK & EM & LP & VC \\
+244	\midrule
+245	LLaMA/SciERC $N{=}8$ & 529 & .646 & .778 & .643 & .639 & .634 & \textbf{.652} & .633 \\
+246	LLaMA/SciERC $N{=}16$ & 529 & .645 & .806 & \textbf{.649} & \textbf{.649} & .640 & .646 & .640 \\
+247	\addlinespace
+248	LLaMA/FewNERD $N{=}8$ & 32{,}565 & .784 & .884 & .779 & .779 & .774 & \textbf{.788} & .760 \\
+249	\addlinespace
+250	Qwen/CoNLL $N{=}8$ & 2{,}756 & .908 & .948 & \textbf{.899} & .893 & .898 & .897 & .895 \\
+251	LLaMA/CoNLL $N{=}8$ & 2{,}756 & .924 & .943 & .924 & \textbf{.925} & .924 & .924 & .923 \\
+252	\bottomrule
+253	\end{tabular}
+254	\end{table*}
+255	
+256	\paragraph{Diminishing returns of $N$-scaling.}
+257	Our $N{=}8$ and $N{=}16$ comparisons (Table~\ref{tab:robustness}) characterize the marginal value of additional samples for test-time scaling \cite{brown2024monkeys, snell2025scaling}.
+258	For quality estimation, structural signals benefit consistently but sublinearly: SJ $\rho$ improves by $+0.047$ (Qwen SciERC, 3-seed mean) and $+0.032$ (LLaMA CoNLL, 3-seed mean) when doubling from $N{=}8$ to $N{=}16$, while log-probability is approximately $N$-invariant ($\Delta\rho{\leq}0.021$).
+259	Structural signals use $\binom{N}{2}$ pairwise comparisons (28 pairs at $N{=}8$, 120 at $N{=}16$), but the $\rho$ improvement is far less than proportional, each additional comparison yields diminishing information.
+260	This asymmetry gives structural signals a relative advantage in the compute-constrained regime: at $N{=}8$, SJ already achieves $\rho{=}0.431$ on LLaMA CoNLL (vs.\ LP $\rho{=}0.307$, $\Delta{=}{+}0.124$), and the gap \textit{widens} at $N{=}16$ ($\Delta{=}{+}0.163$) because structural signals continue to benefit from additional pairwise evidence while LP does not.
+261	For sample selection, additional samples increase the oracle upper bound (more draws raise the probability of a high-quality candidate), but signal-based selection remains flat because the selector's inability to identify the best candidate is a granularity limitation, not a sample size limitation.
+262	The practical implication is that $N{=}8$ captures most of the achievable quality estimation benefit; further scaling widens rather than closes the correlation-selection gap absent stronger per-sample selectors.
+263	
+264	\paragraph{$N{=}16$ CoNLL selection: small but significant.}
+265	While quality estimation benefits sublinearly from $N$-scaling, selection behavior at $N{=}16$ reveals a nuanced exception on LLaMA CoNLL.
+266	VC achieves the largest gain over single-sample ($+0.28$~pp, $p{=}0.003$--$0.027$ across 3 seeds, all significant), with SJ, FK, and EM at $+0.22$--$0.23$~pp and LP at $+0.12$~pp (2/3 seeds significant).
+267	These gains are statistically significant but practically minimal: oracle headroom at $N{=}16$ is only 2.5~pp, so VC captures approximately 10\% of the available headroom.
+268	This reinforces the primary finding: even under the most favorable conditions (high baseline performance, more candidates, and aggregated multi-seed evidence), signal-based selection recovers only a fraction of the oracle headroom available.
+269	
+270	\section{Bootstrap CI for Signal Comparisons}\label{app:bootstrap_signal}
+271	
+272	Table~\ref{tab:bootstrap_signal_ci} reports bootstrap confidence intervals for individual signal $\rho$ and pairwise $\Delta\rho$ on SciERC NER ($N{=}8$, $n{=}529$, $B{=}10{,}000$, seed${=}42$).
+273	The SJ--LP gap ($\Delta\rho{=}{+}0.155$) is clearly significant, the structural advantage reported in \S\ref{sec:qe_results} is robust.
+274	The VC--SJ gap ($\Delta\rho{=}{+}0.019$) is not significant; these two structural signals perform comparably.
+275	The SJ--EM gap ($\Delta\rho{=}{+}0.065$) is borderline significant, with the CI lower bound at $+0.003$ and upper bound at $+0.130$.
+276	
+277	\begin{table}[t]
+278	\centering
+279	\small
+280	\caption{Bootstrap 95\% CIs for signal $\rho$ on SciERC NER ($N{=}8$, $n{=}529$, $B{=}10{,}000$, seed${=}42$). Top: individual signals. Bottom: pairwise $\Delta\rho$; ``Sig.'' indicates whether the 95\% CI excludes zero.}
+281	\label{tab:bootstrap_signal_ci}
+282	\begin{tabular}{lcc}
+283	\toprule
+284	Signal & $\rho$ & 95\% CI \\
+285	\midrule
+286	VC & +0.379 & [+0.299, +0.456] \\
+287	SJ & +0.360 & [+0.277, +0.437] \\
+288	EM & +0.295 & [+0.212, +0.371] \\
+289	FK & +0.267 & [+0.176, +0.354] \\
+290	LP & +0.205 & [+0.119, +0.291] \\
+291	\bottomrule
+292	\end{tabular}
+293	
+294	\vspace{0.5em}
+295	
+296	\begin{tabular}{lccc}
+297	\toprule
+298	Comparison & $\Delta\rho$ & 95\% CI & Sig. \\
+299	\midrule
+300	SJ $-$ LP & +0.155 & [+0.074, +0.234] & Yes \\
+301	VC $-$ SJ & +0.019 & [$-$0.033, +0.073] & No \\
+302	SJ $-$ EM & +0.065 & [+0.003, +0.130] & Marginal$^\dagger$ \\
+303	\bottomrule
+304	\end{tabular}
+305	
+306	\smallskip
+307	{\footnotesize $^\dagger$Marginally significant without multiple comparison correction; would not survive Bonferroni correction for 10 pairwise comparisons ($\alpha_{\text{adj}}{=}0.005$).}
+308	\end{table}
+309	
+310	At $N{=}16$ ($B{=}10{,}000$, permutation test), the structural advantage extends to FK comparisons.
+311	On SciERC NER ($n{=}529$), SJ--FK ($\Delta\rho{=}0.147$--$0.160$, all $p{\leq}0.002$) and VC--FK ($\Delta\rho{=}0.138$--$0.188$, all $p{\leq}0.003$) are clearly significant across all three seeds; EM--FK is seed-dependent ($\Delta\rho{=}0.054$--$0.093$, $p{=}0.048$--$0.15$).
+312	On CoNLL ($n{=}2{,}756$), all signals significantly outperform FK: EM $\Delta\rho{=}0.071$ ($p{<}0.001$), SJ $\Delta\rho{=}0.056$ ($p{<}0.001$), VC $\Delta\rho{=}0.022$ ($p{=}0.040$).
+313	
+314	\section{Holm--Bonferroni Enumeration}\label{app:holm}
+315	
+316	Table~\ref{tab:holm_family} enumerates all $k{=}57$ statistical tests reported in this paper under a single global Holm--Bonferroni correction.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1fbe243d-d8f2-428e-ac17-69dd3bbbfe94",
+  "uuid": "d2e91d97-09c8-45d8-8401-da36ab5b9f6b",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+      "content": "\\centering\n\\small\n\\caption{Best-of-$N$ selection F1 (macro, instance-averaged) across configurations ($T{=}1.0$, 3-seed mean). Best non-oracle signal per row in \\textbf{bold}. LP is the only signal with positive selection on both FewNERD configurations (Qwen $+1.39$~pp, Table~\\ref{tab:fewnerd}; LLaMA $+0.36$~pp). At $N{=}16$ on LLaMA CoNLL, VC achieves small but significant gains ($+0.28$~pp, $p{<}0.03$; see text below). CoNLL shows especially tight clustering where greedy already exceeds 0.90.}\n\\label{tab:cross_selection}\n\\begin{tabular}{llccccccc}\n\\toprule\nConfig & $n$ & Greedy & Oracle & SJ & FK & EM & LP & VC \\\\\n\\midrule\nLLaMA/SciERC $N{=}8$ & 529 & .646 & .778 & .643 & .639 & .634 & \\textbf{.652} & .633 \\\\\nLLaMA/SciERC $N{=}16$ & 529 & .645 & .806 & \\textbf{.649} & \\textbf{.649} & .640 & .646 & .640 \\\\\n\\addlinespace\nLLaMA/FewNERD $N{=}8$ & 32{,}565 & .784 & .884 & .779 & .779 & .774 & \\textbf{.788} & .760 \\\\\n\\addlinespace\nQwen/CoNLL $N{=}8$ & 2{,}756 & .908 & .948 & \\textbf{.899} & .893 & .898 & .897 & .895 \\\\\nLLaMA/CoNLL $N{=}8$ & 2{,}756 & .924 & .943 & .924 & \\textbf{.925} & .924 & .924 & .923 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table*}\n\n\\paragraph{Diminishing returns of $N$-scaling.}\nOur $N{=}8$ and $N{=}16$ comparisons (Table~\\ref{tab:robustness}) characterize the marginal value of additional samples for test-time scaling \\cite{brown2024monkeys, snell2025scaling}.\nFor quality estimation, structural signals benefit consistently but sublinearly: SJ $\\rho$ improves by $+0.047$ (Qwen SciERC, 3-seed mean) and $+0.032$ (LLaMA CoNLL, 3-seed mean) when doubling from $N{=}8$ to $N{=}16$, while log-probability is approximately $N$-invariant ($\\Delta\\rho{\\leq}0.021$).\nStructural signals use $\\binom{N}{2}$ pairwise comparisons (28 pairs at $N{=}8$, 120 at $N{=}16$), but the $\\rho$ improvement is far less than proportional, each additional comparison yields diminishing information.\nThis asymmetry gives structural signals a relative advantage in the compute-constrained regime: at $N{=}8$, SJ already achieves $\\rho{=}0.431$ on LLaMA CoNLL (vs.\\ LP $\\rho{=}0.307$, $\\Delta{=}{+}0.124$), and the gap \\textit{widens} at $N{=}16$ ($\\Delta{=}{+}0.163$) because structural signals continue to benefit from additional pairwise evidence while LP does not.\nFor sample selection, additional samples increase the oracle upper bound (more draws raise the probability of a high-quality candidate), but signal-based selection remains flat because the selector's inability to identify the best candidate is a granularity limitation, not a sample size limitation.\nThe practical implication is that $N{=}8$ captures most of the achievable quality estimation benefit; further scaling widens rather than closes the correlation-selection gap absent stronger per-sample selectors.\n\n\\paragraph{$N{=}16$ CoNLL selection: small but significant.}\nWhile quality estimation benefits sublinearly from $N$-scaling, selection behavior at $N{=}16$ reveals a nuanced exception on LLaMA CoNLL.\nVC achieves the largest gain over single-sample ($+0.28$~pp, $p{=}0.003$--$0.027$ across 3 seeds, all significant), with SJ, FK, and EM at $+0.22$--$0.23$~pp and LP at $+0.12$~pp (2/3 seeds significant).\nThese gains are statistically significant but practically minimal: oracle headroom at $N{=}16$ is only 2.5~pp, so VC captures approximately 10\\% of the available headroom.\nThis reinforces the primary finding: even under the most favorable conditions (high baseline performance, more candidates, and aggregated multi-seed evidence), signal-based selection recovers only a fraction of the oracle headroom available.\n\n\\section{Bootstrap CI for Signal Comparisons}\\label{app:bootstrap_signal}\n\nTable~\\ref{tab:bootstrap_signal_ci} reports bootstrap confidence intervals for individual signal $\\rho$ and pairwise $\\Delta\\rho$ on SciERC NER ($N{=}8$, $n{=}529$, $B{=}10{,}000$, seed${=}42$).\nThe SJ--LP gap ($\\Delta\\rho{=}{+}0.155$) is clearly significant, the structural advantage reported in \\S\\ref{sec:qe_results} is robust.\nThe VC--SJ gap ($\\Delta\\rho{=}{+}0.019$) is not significant; these two structural signals perform comparably.\nThe SJ--EM gap ($\\Delta\\rho{=}{+}0.065$) is borderline significant, with the CI lower bound at $+0.003$ and upper bound at $+0.130$.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Bootstrap 95\\% CIs for signal $\\rho$ on SciERC NER ($N{=}8$, $n{=}529$, $B{=}10{,}000$, seed${=}42$). Top: individual signals. Bottom: pairwise $\\Delta\\rho$; ``Sig.'' indicates whether the 95\\% CI excludes zero.}\n\\label{tab:bootstrap_signal_ci}\n\\begin{tabular}{lcc}\n\\toprule\nSignal & $\\rho$ & 95\\% CI \\\\\n\\midrule\nVC & +0.379 & [+0.299, +0.456] \\\\\nSJ & +0.360 & [+0.277, +0.437] \\\\\nEM & +0.295 & [+0.212, +0.371] \\\\\nFK & +0.267 & [+0.176, +0.354] \\\\\nLP & +0.205 & [+0.119, +0.291] \\\\\n\\bottomrule\n\\end{tabular}\n\n\\vspace{0.5em}\n\n\\begin{tabular}{lccc}\n\\toprule\nComparison & $\\Delta\\rho$ & 95\\% CI & Sig. \\\\\n\\midrule\nSJ $-$ LP & +0.155 & [+0.074, +0.234] & Yes \\\\\nVC $-$ SJ & +0.019 & [$-$0.033, +0.073] & No \\\\\nSJ $-$ EM & +0.065 & [+0.003, +0.130] & Marginal$^\\dagger$ \\\\\n\\bottomrule\n\\end{tabular}\n\n\\smallskip\n{\\footnotesize $^\\dagger$Marginally significant without multiple comparison correction; would not survive Bonferroni correction for 10 pairwise comparisons ($\\alpha_{\\text{adj}}{=}0.005$).}\n\\end{table}\n\nAt $N{=}16$ ($B{=}10{,}000$, permutation test), the structural advantage extends to FK comparisons.\nOn SciERC NER ($n{=}529$), SJ--FK ($\\Delta\\rho{=}0.147$--$0.160$, all $p{\\leq}0.002$) and VC--FK ($\\Delta\\rho{=}0.138$--$0.188$, all $p{\\leq}0.003$) are clearly significant across all three seeds; EM--FK is seed-dependent ($\\Delta\\rho{=}0.054$--$0.093$, $p{=}0.048$--$0.15$).\nOn CoNLL ($n{=}2{,}756$), all signals significantly outperform FK: EM $\\Delta\\rho{=}0.071$ ($p{<}0.001$), SJ $\\Delta\\rho{=}0.056$ ($p{<}0.001$), VC $\\Delta\\rho{=}0.022$ ($p{=}0.040$).\n\n\\section{Holm--Bonferroni Enumeration}\\label{app:holm}\n\nTable~\\ref{tab:holm_family} enumerates all $k{=}57$ statistical tests reported in this paper under a single global Holm--Bonferroni correction.",
+      "numLines": 80,
+      "startLine": 237,
+      "totalLines": 2283
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-21T12:01:18.846Z_
+
+<details><summary>↩ Tool result · `toolu_01DxQgbfAXRC5rhnaWFzTUnW`</summary>
+
+```text
+1	\section{Experiments}\label{sec:experiments}
+2	
+3	\subsection{Experimental Setup}\label{sec:setup}
+4	
+5	\paragraph{Datasets.}
+6	We evaluate on four English NER benchmarks spanning a difficulty gradient.
+7	\textbf{SciERC} \cite{luan2018scierc} (551 test instances, 6 entity types) is the primary medium-difficulty test bed (${\approx}$65\% F1).
+8	\textbf{Few-NERD} \cite{ding2021fewnerd} (INTRA coarse; 37{,}648 instances, 8 entity types, ${\approx}$75\% F1) provides a low-degeneracy contrast where LP selection succeeds (\S\ref{sec:selection_gap}).
+9	\textbf{CoNLL-2003} \cite{tjongkimsang2003conll} (3{,}453 test sentences, 4 entity types, ${\approx}$91\% F1) serves as a ceiling-effect control.
+10	\textbf{WNUT-17} \cite{derczynski2017wnut} (1{,}287 social media instances, 51\% zero F1) probes the signal-collapse boundary.
+11	
+12	\paragraph{Models and sampling.}
+13	\textbf{Qwen3-8B} and \textbf{LLaMA-3.1-8B-Instruct} are LoRA fine-tuned using LLaMA Factory \cite{zheng2024llamafactory} (Appendix~\ref{app:training}; Few-NERD uses 3 epochs vs.\ 5 for others; Appendix~\ref{app:epoch_confound}).
+14	$N{=}8$ samples at $T{=}1.0$ (primary) with vLLM constrained decoding \cite{willard2023guided}; $N{=}16$ for scaling (Appendix~\ref{app:n_scaling}).
+15	
+16	%% ============================================================
+17	\subsection{Quality Estimation Results}\label{sec:qe_results}
+18	
+19	\begin{table*}[t]
+20	\centering
+21	\small
+22	\caption{NER quality estimation ($\rho$ and AUROC; $N{=}8$, primary seed${=}42$; 3-seed $\sigma{\leq}0.026$ in Table~\ref{tab:multiseed}). AUROC binarizes at per-dataset median F1. Best in \textbf{bold}. RE in Appendix~\ref{app:re_extension}; $N{=}16$ in Table~\ref{tab:robustness}.}
+23	\label{tab:quality_estimation}
+24	\begin{tabular}{ll cc cc cc}
+25	\toprule
+26	& & \multicolumn{2}{c}{\textbf{SciERC}} & \multicolumn{2}{c}{\textbf{CoNLL (Qwen)}} & \multicolumn{2}{c}{\textbf{CoNLL (LLaMA)}} \\
+27	\cmidrule(lr){3-4} \cmidrule(lr){5-6} \cmidrule(lr){7-8}
+28	Signal & Family & $\rho$ & AUC & $\rho$ & AUC & $\rho$ & AUC \\
+29	\midrule
+30	VC & Structural & \textbf{.379} & .684 & .424 & .789 & .426 & .709 \\
+31	SJ  & Structural & .360 & .692 & .436 & .801 & \textbf{.431} & .704 \\
+32	FK & Surface & .267 & .629 & .400 & .774 & .428 & .703 \\
+33	EM  & Surface    & .295 & \textbf{.749} & \textbf{.451} & \textbf{.816} & \textbf{.431} & .705 \\
+34	\midrule
+35	LP     & Model      & .205 & .578 & .316 & .753 & .307 & \textbf{.761} \\
+36	\bottomrule
+37	\end{tabular}
+38	\end{table*}
+39	
+40	Table~\ref{tab:quality_estimation} presents $\rho$ and AUROC for five signals across tasks and models.
+41	
+42	\paragraph{Signal rankings are difficulty-dependent.}
+43	On SciERC, structural signals lead (VC $\rho{=}0.379$, SJ $0.360$) over LP ($0.205$); bootstrap CIs confirm the gap ($\Delta\rho{=}{+}0.155$; Appendix~\ref{app:bootstrap_signal}).
+44	On CoNLL (F1${\approx}$0.91), EM leads both $\rho$ and AUROC ($0.816$).
+45	At the signal-collapse boundary (WNUT-17, F1${\approx}$42\%), full-set correlations are dominated by the zero/non-zero boundary (VC $\rho{=}0.724$ at $N{=}16$, but conditional $\rho{=}0.038$; Table~\ref{tab:wnut}); LP shows the reverse (conditional $\rho{=}0.350$; Figure~\ref{fig:signal_heatmap}).
+46	
+47	%% ============================================================
+48	\subsection{Cross-Dataset Contrast: Few-NERD}\label{sec:fewnerd}
+49	
+50	\begin{table}[t]
+51	\centering
+52	\small
+53	\caption{LP selection across datasets (Qwen3-8B, $N{=}8$, $T{=}1.0$, gold-filtered). Few-NERD/CoNLL: 3-seed means; SciERC: single-seed. $p$: paired bootstrap.}
+54	\label{tab:fewnerd}
+55	\resizebox{\columnwidth}{!}{%
+56	\begin{tabular}{@{}lrccccr@{}}
+57	\toprule
+58	Dataset & $n$ & Greedy & Degen.\% & LP $\rho$ & LP $\Delta$ & $p$ \\
+59	\midrule
+60	WNUT-17 & 1{,}287 & .452 & 67.9\% & $-$.446 & $-$0.45\,pp & .72 \\
+61	CoNLL & 2{,}756 & .908 & 61.7\% & .302 & $-$0.85\,pp & 1.0 \\
+62	SciERC & 529 & .644 & 17.8\% & .205 & $+$0.61\,pp & .193 \\
+63	Few-NERD & 32{,}565 & .748 & 13.0\% & .220 & $\mathbf{+1.39}$\,pp & ${<}.001$ \\
+64	\bottomrule
+65	\end{tabular}}
+66	\end{table}
+67	
+68	Few-NERD (Table~\ref{tab:fewnerd}) confirms LP selection at low degeneracy ($+1.39$~pp, $p{<}0.001$; structural signals degrade: VC $-1.79$, SJ $-2.14$~pp), with LP 50$\times$ more seed-stable ($\sigma{=}0.04$ vs.\ SJ $2.02$~pp), generalizing to LLaMA (Table~\ref{tab:cross_selection}). Training convergence modulates degeneracy (5-epoch: $31$\%, halving LP gains; Appendix~\ref{app:epoch_confound}).
+69	
+70	\paragraph{Degeneracy alone does not predict LP direction.}
+71	Degeneracy does not predict LP gain across 23 configurations ($\rho{=}0.052$, $p{=}0.81$; post-hoc: 80\% power requires $n{\approx}85$; Figure~\ref{fig:degeneracy_scatter}), though it co-varies with LP within fixed settings ($\rho{=}{-}0.881$; Appendix~\ref{app:per_type_lp}).
+72	
+73	\begin{figure}[t]
+74	\centering
+75	\includegraphics[width=\columnwidth]{figures/fig_degeneracy_lp_scatter.pdf}
+76	\caption{Instance degeneracy vs.\ LP selection gain across 23 configurations ($N{=}8$; $\rho{=}0.052$, $p{=}0.81$). Within Few-NERD per-entity-type ($\rho{=}{-}0.881$; Appendix~\ref{app:per_type_lp}), degeneracy predicts LP gain when alignment is held constant.}
+77	\label{fig:degeneracy_scatter}
+78	\end{figure}
+79	
+80	Structural signals remain negative regardless of sample budget; $N$-scaling analyses are in Appendix~\ref{app:n_scaling}.
+81	
+82	%% ============================================================
+83	\subsection{Robustness}\label{sec:robustness_main}
+84	
+85	Signal rankings are robust across temperatures, seeds ($W{=}1.0$), and $N$ (Table~\ref{tab:robustness}); NER calibration is reasonable (ECE 0.069--0.096; Appendix~\ref{app:calibration}).
+86	
+87	\paragraph{Scale and controlled ablations.}
+88	Qwen3-4B QE is comparable to 8B ($|\Delta\rho|{=}0.042$; Table~\ref{tab:scale_ablation_app}), yet selection remains below greedy.
+89	LoRA rank${=}8$ lowers degeneracy to 7.2\% but LP stays below greedy, confirming both conditions are independently necessary; supervised classifiers, DeBERTa verifier, and hidden-state probes also fail (Appendix~\ref{app:supervised_combination}, \ref{app:hidden_probe}).
+90	
+91	%% ============================================================
+92	\subsection{Prescriptive Results}\label{sec:prescriptive}
+93	
+94	\paragraph{Entity-level construction.}
+95	We aggregate entities across samples, retaining those exceeding $\theta{=}2/N$, with LP-weighted or uniform scoring ($\theta$ stable in $[0.15, 0.35]$; Appendix~\ref{app:theta_sweep}). In zero-shot, LP-weighting is necessary (SciERC $+1.5$\,pp; Appendix~\ref{app:cross_scale}).
+96	
+97	\begin{table}[t]
+98	\centering
+99	\small
+100	\caption{Entity construction vs.\ greedy ($\Delta$ macro F1; $N{=}8$, $T{=}1.0$, Qwen3-8B, multi-seed mean${\pm}\sigma$). $\theta{=}2/N$. $p$: paired bootstrap vs.\ greedy. $^\dagger$Survives Holm--Bonferroni within construction family ($k{=}10$; global $k{=}57$ in Appendix~\ref{app:holm}). $^\ddagger$LP-weighted not computed.}
+101	\label{tab:entity_construction}
+102	\resizebox{\columnwidth}{!}{%
+103	\begin{tabular}{@{}llcccc@{}}
+104	\toprule
+105	Dataset & Wt. & Greedy & Constr. & $\Delta$ & $p$ \\
+106	\midrule
+107	SciERC & LP & $.646{\pm}.002$ & $\mathbf{.656{\pm}.003}$ & $+1.02{\pm}0.49$\,pp & .004 \\
+108	       & Unif. & $.646{\pm}.002$ & $.653{\pm}.006$ & $+0.74{\pm}0.71$\,pp & .023 \\
+109	\addlinespace
+110	Few-NERD & LP & $.748$ & $\mathbf{.762{\pm}.005}$ & $+1.40{\pm}0.51$\,pp & ${<}.001^\dagger$ \\
+111	         & Unif. & $.748$ & $.756{\pm}.006$ & $+0.74{\pm}0.58$\,pp & .003 \\
+112	\addlinespace
+113	CoNLL$^\ddagger$ & Unif. & .908 & .904 & $-0.39$\,pp & n.s. \\
+114	\bottomrule
+115	\end{tabular}}
+116	\end{table}
+117	
+118	LP-weighted construction improves on Few-NERD ($+1.40{\pm}0.51$\,pp, $p{<}0.001$; Holm $p_{\text{adj}}{=}0.006$, $k{=}10$) and SciERC ($+1.02{\pm}0.49$\,pp, $p{=}0.004$, $p_{\text{adj}}{=}0.20$), recovering 8--11\% of oracle headroom; CoNLL shows no gain ($-0.39$\,pp), consistent with high degeneracy.
+119	Gains require both low degeneracy \textit{and} sufficient oracle headroom (Few-NERD: $D{=}13$\%, headroom${=}12.4$\,pp).\footnote{Holm--Bonferroni correction within families: selection $k{=}19$, construction $k{=}10$, signal $k{=}9$. Under global $k{=}57$, no claim survives ($p_{\text{adj}}{=}0.055$ for Few-NERD); see Appendix~\ref{app:holm}.}
+120	
+121	\paragraph{Complementary strategies.}
+122	Construction and LP selection are complementary, governed by within-instance LP alignment $\rho_{\text{adj}}$ (Few-NERD $0.516$ favors both; SciERC $0.167$ favors construction only).
+123	QE signals also support selective prediction: at 80\% coverage, filtering yields $+5$--$8$\,pp F1 (AUPRC 0.70--0.92; Table~\ref{tab:cross_selection}).
+124	
+125	\phantomsection\label{sec:selection_results}
+126	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1fbe243d-d8f2-428e-ac17-69dd3bbbfe94",
+  "uuid": "9088ef94-15e1-428f-aecf-5640aaf15fc8",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments_main.tex",
+      "content": "\\section{Experiments}\\label{sec:experiments}\n\n\\subsection{Experimental Setup}\\label{sec:setup}\n\n\\paragraph{Datasets.}\nWe evaluate on four English NER benchmarks spanning a difficulty gradient.\n\\textbf{SciERC} \\cite{luan2018scierc} (551 test instances, 6 entity types) is the primary medium-difficulty test bed (${\\approx}$65\\% F1).\n\\textbf{Few-NERD} \\cite{ding2021fewnerd} (INTRA coarse; 37{,}648 instances, 8 entity types, ${\\approx}$75\\% F1) provides a low-degeneracy contrast where LP selection succeeds (\\S\\ref{sec:selection_gap}).\n\\textbf{CoNLL-2003} \\cite{tjongkimsang2003conll} (3{,}453 test sentences, 4 entity types, ${\\approx}$91\\% F1) serves as a ceiling-effect control.\n\\textbf{WNUT-17} \\cite{derczynski2017wnut} (1{,}287 social media instances, 51\\% zero F1) probes the signal-collapse boundary.\n\n\\paragraph{Models and sampling.}\n\\textbf{Qwen3-8B} and \\textbf{LLaMA-3.1-8B-Instruct} are LoRA fine-tuned using LLaMA Factory \\cite{zheng2024llamafactory} (Appendix~\\ref{app:training}; Few-NERD uses 3 epochs vs.\\ 5 for others; Appendix~\\ref{app:epoch_confound}).\n$N{=}8$ samples at $T{=}1.0$ (primary) with vLLM constrained decoding \\cite{willard2023guided}; $N{=}16$ for scaling (Appendix~\\ref{app:n_scaling}).\n\n%% ============================================================\n\\subsection{Quality Estimation Results}\\label{sec:qe_results}\n\n\\begin{table*}[t]\n\\centering\n\\small\n\\caption{NER quality estimation ($\\rho$ and AUROC; $N{=}8$, primary seed${=}42$; 3-seed $\\sigma{\\leq}0.026$ in Table~\\ref{tab:multiseed}). AUROC binarizes at per-dataset median F1. Best in \\textbf{bold}. RE in Appendix~\\ref{app:re_extension}; $N{=}16$ in Table~\\ref{tab:robustness}.}\n\\label{tab:quality_estimation}\n\\begin{tabular}{ll cc cc cc}\n\\toprule\n& & \\multicolumn{2}{c}{\\textbf{SciERC}} & \\multicolumn{2}{c}{\\textbf{CoNLL (Qwen)}} & \\multicolumn{2}{c}{\\textbf{CoNLL (LLaMA)}} \\\\\n\\cmidrule(lr){3-4} \\cmidrule(lr){5-6} \\cmidrule(lr){7-8}\nSignal & Family & $\\rho$ & AUC & $\\rho$ & AUC & $\\rho$ & AUC \\\\\n\\midrule\nVC & Structural & \\textbf{.379} & .684 & .424 & .789 & .426 & .709 \\\\\nSJ  & Structural & .360 & .692 & .436 & .801 & \\textbf{.431} & .704 \\\\\nFK & Surface & .267 & .629 & .400 & .774 & .428 & .703 \\\\\nEM  & Surface    & .295 & \\textbf{.749} & \\textbf{.451} & \\textbf{.816} & \\textbf{.431} & .705 \\\\\n\\midrule\nLP     & Model      & .205 & .578 & .316 & .753 & .307 & \\textbf{.761} \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table*}\n\nTable~\\ref{tab:quality_estimation} presents $\\rho$ and AUROC for five signals across tasks and models.\n\n\\paragraph{Signal rankings are difficulty-dependent.}\nOn SciERC, structural signals lead (VC $\\rho{=}0.379$, SJ $0.360$) over LP ($0.205$); bootstrap CIs confirm the gap ($\\Delta\\rho{=}{+}0.155$; Appendix~\\ref{app:bootstrap_signal}).\nOn CoNLL (F1${\\approx}$0.91), EM leads both $\\rho$ and AUROC ($0.816$).\nAt the signal-collapse boundary (WNUT-17, F1${\\approx}$42\\%), full-set correlations are dominated by the zero/non-zero boundary (VC $\\rho{=}0.724$ at $N{=}16$, but conditional $\\rho{=}0.038$; Table~\\ref{tab:wnut}); LP shows the reverse (conditional $\\rho{=}0.350$; Figure~\\ref{fig:signal_heatmap}).\n\n%% ============================================================\n\\subsection{Cross-Dataset Contrast: Few-NERD}\\label{sec:fewnerd}\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{LP selection across datasets (Qwen3-8B, $N{=}8$, $T{=}1.0$, gold-filtered). Few-NERD/CoNLL: 3-seed means; SciERC: single-seed. $p$: paired bootstrap.}\n\\label{tab:fewnerd}\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{@{}lrccccr@{}}\n\\toprule\nDataset & $n$ & Greedy & Degen.\\% & LP $\\rho$ & LP $\\Delta$ & $p$ \\\\\n\\midrule\nWNUT-17 & 1{,}287 & .452 & 67.9\\% & $-$.446 & $-$0.45\\,pp & .72 \\\\\nCoNLL & 2{,}756 & .908 & 61.7\\% & .302 & $-$0.85\\,pp & 1.0 \\\\\nSciERC & 529 & .644 & 17.8\\% & .205 & $+$0.61\\,pp & .193 \\\\\nFew-NERD & 32{,}565 & .748 & 13.0\\% & .220 & $\\mathbf{+1.39}$\\,pp & ${<}.001$ \\\\\n\\bottomrule\n\\end{tabular}}\n\\end{table}\n\nFew-NERD (Table~\\ref{tab:fewnerd}) confirms LP selection at low degeneracy ($+1.39$~pp, $p{<}0.001$; structural signals degrade: VC $-1.79$, SJ $-2.14$~pp), with LP 50$\\times$ more seed-stable ($\\sigma{=}0.04$ vs.\\ SJ $2.02$~pp), generalizing to LLaMA (Table~\\ref{tab:cross_selection}). Training convergence modulates degeneracy (5-epoch: $31$\\%, halving LP gains; Appendix~\\ref{app:epoch_confound}).\n\n\\paragraph{Degeneracy alone does not predict LP direction.}\nDegeneracy does not predict LP gain across 23 configurations ($\\rho{=}0.052$, $p{=}0.81$; post-hoc: 80\\% power requires $n{\\approx}85$; Figure~\\ref{fig:degeneracy_scatter}), though it co-varies with LP within fixed settings ($\\rho{=}{-}0.881$; Appendix~\\ref{app:per_type_lp}).\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/fig_degeneracy_lp_scatter.pdf}\n\\caption{Instance degeneracy vs.\\ LP selection gain across 23 configurations ($N{=}8$; $\\rho{=}0.052$, $p{=}0.81$). Within Few-NERD per-entity-type ($\\rho{=}{-}0.881$; Appendix~\\ref{app:per_type_lp}), degeneracy predicts LP gain when alignment is held constant.}\n\\label{fig:degeneracy_scatter}\n\\end{figure}\n\nStructural signals remain negative regardless of sample budget; $N$-scaling analyses are in Appendix~\\ref{app:n_scaling}.\n\n%% ============================================================\n\\subsection{Robustness}\\label{sec:robustness_main}\n\nSignal rankings are robust across temperatures, seeds ($W{=}1.0$), and $N$ (Table~\\ref{tab:robustness}); NER calibration is reasonable (ECE 0.069--0.096; Appendix~\\ref{app:calibration}).\n\n\\paragraph{Scale and controlled ablations.}\nQwen3-4B QE is comparable to 8B ($|\\Delta\\rho|{=}0.042$; Table~\\ref{tab:scale_ablation_app}), yet selection remains below greedy.\nLoRA rank${=}8$ lowers degeneracy to 7.2\\% but LP stays below greedy, confirming both conditions are independently necessary; supervised classifiers, DeBERTa verifier, and hidden-state probes also fail (Appendix~\\ref{app:supervised_combination}, \\ref{app:hidden_probe}).\n\n%% ============================================================\n\\subsection{Prescriptive Results}\\label{sec:prescriptive}\n\n\\paragraph{Entity-level construction.}\nWe aggregate entities across samples, retaining those exceeding $\\theta{=}2/N$, with LP-weighted or uniform scoring ($\\theta$ stable in $[0.15, 0.35]$; Appendix~\\ref{app:theta_sweep}). In zero-shot, LP-weighting is necessary (SciERC $+1.5$\\,pp; Appendix~\\ref{app:cross_scale}).\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Entity construction vs.\\ greedy ($\\Delta$ macro F1; $N{=}8$, $T{=}1.0$, Qwen3-8B, multi-seed mean${\\pm}\\sigma$). $\\theta{=}2/N$. $p$: paired bootstrap vs.\\ greedy. $^\\dagger$Survives Holm--Bonferroni within construction family ($k{=}10$; global $k{=}57$ in Appendix~\\ref{app:holm}). $^\\ddagger$LP-weighted not computed.}\n\\label{tab:entity_construction}\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{@{}llcccc@{}}\n\\toprule\nDataset & Wt. & Greedy & Constr. & $\\Delta$ & $p$ \\\\\n\\midrule\nSciERC & LP & $.646{\\pm}.002$ & $\\mathbf{.656{\\pm}.003}$ & $+1.02{\\pm}0.49$\\,pp & .004 \\\\\n       & Unif. & $.646{\\pm}.002$ & $.653{\\pm}.006$ & $+0.74{\\pm}0.71$\\,pp & .023 \\\\\n\\addlinespace\nFew-NERD & LP & $.748$ & $\\mathbf{.762{\\pm}.005}$ & $+1.40{\\pm}0.51$\\,pp & ${<}.001^\\dagger$ \\\\\n         & Unif. & $.748$ & $.756{\\pm}.006$ & $+0.74{\\pm}0.58$\\,pp & .003 \\\\\n\\addlinespace\nCoNLL$^\\ddagger$ & Unif. & .908 & .904 & $-0.39$\\,pp & n.s. \\\\\n\\bottomrule\n\\end{tabular}}\n\\end{table}\n\nLP-weighted construction improves on Few-NERD ($+1.40{\\pm}0.51$\\,pp, $p{<}0.001$; Holm $p_{\\text{adj}}{=}0.006$, $k{=}10$) and SciERC ($+1.02{\\pm}0.49$\\,pp, $p{=}0.004$, $p_{\\text{adj}}{=}0.20$), recovering 8--11\\% of oracle headroom; CoNLL shows no gain ($-0.39$\\,pp), consistent with high degeneracy.\nGains require both low degeneracy \\textit{and} sufficient oracle headroom (Few-NERD: $D{=}13$\\%, headroom${=}12.4$\\,pp).\\footnote{Holm--Bonferroni correction within families: selection $k{=}19$, construction $k{=}10$, signal $k{=}9$. Under global $k{=}57$, no claim survives ($p_{\\text{adj}}{=}0.055$ for Few-NERD); see Appendix~\\ref{app:holm}.}\n\n\\paragraph{Complementary strategies.}\nConstruction and LP selection are complementary, governed by within-instance LP alignment $\\rho_{\\text{adj}}$ (Few-NERD $0.516$ favors both; SciERC $0.167$ favors construction only).\nQE signals also support selective prediction: at 80\\% coverage, filtering yields $+5$--$8$\\,pp F1 (AUPRC 0.70--0.92; Table~\\ref{tab:cross_selection}).\n\n\\phantomsection\\label{sec:selection_results}\n",
+      "numLines": 126,
+      "startLine": 1,
+      "totalLines": 126
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 41_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I need to check: are there any selection tests reported in the paper that are NOT in the Holm-Bonferroni selection family?
+
+Looking at the cross_selection table (tab:cross_selection), it shows results for:
+- LLaMA/SciERC N=8 (5 signals)
+- LLaMA/SciERC N=16 (5 signals)
+- LLaMA/FewNERD N=8 (5 signals)
+- Qwen/CoNLL N=8 (5 signals)
+
+
+- LLaMA/CoNLL N=8 (5 signals)
+
+The paragraph also mentions VC on LLaMA CoNLL N=16 achieving +0.28pp with p=0.003-0.027 across 3 seeds, and LP at +0.12pp (2/3 seeds significant). These p-values don't appear in the Holm table, so I'm checking which selection tests with reported p-values are missing from the table. So far I can see SciERC NER LP (N=8, Qwen) in the Holm selection family.
+
+Now I'm going through the rest of the selection results from Table 3 to see which ones have p-values reported but aren't in the Holm correction table—there's quite a few entries across different datasets, model sizes, and selection methods that need to be accounted for. Looking at the caption and text more carefully, I can see the LLaMA CoNLL N=16 results are actually described in the paper itself rather than shown in a table. The caption mentions VC achieving +0.28 pp with p<0.03, and the main text breaks down the gains for each selection method across the three seeds, with VC showing the largest improvement followed by SJ, FK, and EM, while LP shows more modest gains.
+
+Now I'm noticing something odd - these reported p-values for the selection methods don't appear in the Holm correction table. Let me systematically check the fewnerd table to see which selection p-values are actually accounted for in the multiple comparisons correction. I'm seeing LP selection p-values listed for WNUT-17, CoNLL, and SciERC, but there's a discrepancy with the SciERC value - the fewnerd table shows p=0.193 while the Holm table has a different p-value for what appears to be the same test. I'm trying to figure out whether test #1 comes from Table 3 in the paper itself. Looking at the cross-dataset section, the fewnerd table shows SciERC LP with p=0.193, but test #1 reports p=0.290 for the same comparison — the difference might be that one uses a single seed while the other averages across multiple seeds or uses a different statistical test.
+
+Now I need to focus on the actual question: is k=19 the correct count for the selection family? Let me systematically go through the paper and identify all the selection-related p-values to see which ones should be included in the family.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1fbe243d-d8f2-428e-ac17-69dd3bbbfe94",
+  "uuid": "77ba57b4-59e2-4932-b63e-756e5ecba4ea",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EoCpXirGQhuAd5bFrXEfHc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7121,
+      "cache_read_input_tokens": 43764,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7121
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 42_
+
+Let me search for any additional selection tests with p-values that might be missing from the Holm enumeration.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1fbe243d-d8f2-428e-ac17-69dd3bbbfe94",
+  "uuid": "738dc5d9-dd96-47dd-a4ba-12819b892bce",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EoCpXirGQhuAd5bFrXEfHc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7121,
+      "cache_read_input_tokens": 43764,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7121
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01X2yYCqLaCroiLG1P6hN9Pg`</summary>
+
+```json
+{
+  "pattern": "selection.*p[={<]|p[={<].*selection",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections",
+  "output_mode": "content",
+  "-n": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1fbe243d-d8f2-428e-ac17-69dd3bbbfe94",
+  "uuid": "b57cbb0b-5932-43f4-942d-dbdb066c057a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EoCpXirGQhuAd5bFrXEfHc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7121,
+      "cache_read_input_tokens": 43764,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7121
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-21T12:01:54.278Z_
+
+<details><summary>↩ Tool result · `toolu_01X2yYCqLaCroiLG1P6hN9Pg`</summary>
+
+```text
+docs/paper/sections/experiments.tex:89:\caption{The correlation-selection gap on SciERC ($N{=}8$, $T{=}1.0$). Bars: quality estimation $\rho$ (seed 42); line with error bars: $\Delta$F1 vs.\ greedy (3-seed mean, seeds 42/123/456). Despite $\rho$ up to 0.38, no signal significantly outperforms greedy (all $p{>}0.05$; Table~\ref{tab:selection}). Dashed green: oracle upper bound ($+13.0$~pp); dotted gray: random baseline.}
+docs/paper/sections/experiments.tex:97:On SciERC ($n{=}529$, 2-seed sign tests\footnote{MDE${\approx}$1.5~pp at 80\% power ($n{=}529$); Few-NERD ($n{=}32{,}565$; MDE${\approx}$0.22~pp) provides the definitive test.}), the oracle (0.775) reveals 13.0~pp of headroom, but LP achieves $+0.2$~pp ($p{=}0.29$), below the MDE (${\approx}$1.5~pp); selection effects below this threshold cannot be reliably detected.
+docs/paper/sections/experiments.tex:99:Few-NERD provides the definitive contrast: LP achieves $+1.39$~pp ($p{<}0.001$) at low degeneracy (\S\ref{sec:fewnerd}), while structural signals still degrade selection.
+docs/paper/sections/experiments.tex:128:Few-NERD (Table~\ref{tab:fewnerd}) confirms LP selection at low degeneracy ($+1.39$~pp, $p{<}0.001$; structural signals degrade: VC $-1.79$, SJ $-2.14$~pp), with LP 50$\times$ more seed-stable ($\sigma{=}0.04$ vs.\ SJ $2.02$~pp), generalizing to LLaMA (Table~\ref{tab:cross_selection}). Training convergence modulates degeneracy (5-epoch: $31$\%, halving LP gains; Appendix~\ref{app:epoch_confound}).
+docs/paper/sections/experiments.tex:136:\caption{Instance degeneracy vs.\ LP selection gain across 23 configurations ($N{=}8$; $\rho{=}0.052$, $p{=}0.81$). Within Few-NERD per-entity-type analysis ($\rho{=}{-}0.881$; Appendix~\ref{app:per_type_lp}), degeneracy predicts LP gain when alignment is held constant.}
+docs/paper/sections/discussion.tex:9:Entity-level construction bypasses both failure mechanisms at zero marginal cost (reusing the $N$ samples already drawn for QE), with gains positive when degeneracy ${<}22$\% and absent when ${>}31$\% ($p{<}0.01$; Appendix~\ref{app:epoch_confound}); alternative strategies (DALS, DGS, supervised mixtures) fail to beat greedy (Appendix~\ref{app:dals}, \ref{app:supervised_combination}, \ref{app:when_selection_works}).
+docs/paper/sections/method.tex:70:Entity-level construction (\S\ref{sec:selection_method}) is a special case of minimum Bayes risk (MBR) decoding \cite{kumar2004minimum, eikema2020map}, extended from candidate selection ($\arg\max_{y \in \{y_1,\ldots,y_N\}}$) to construction over all subsets of $E_\cup{=}\bigcup_i y_i$.
+docs/paper/sections/single_signal.tex:35:\caption{Correlation-selection gap on SciERC ($N{=}8$, $T{=}1.0$). Bars: QE $\rho$; line: $\Delta$F1 vs.\ greedy (3-seed mean). Despite $\rho$ up to 0.38, no signal outperforms greedy ($p{>}0.05$). Dashed green: oracle ($+13.0$\,pp); dotted gray: random.}
+docs/paper/sections/single_signal.tex:39:Despite $\rho$ up to 0.38, no signal outperforms greedy on SciERC (Table~\ref{tab:selection}; Figure~\ref{fig:selection_gap}); the oracle reveals 13.0\,pp headroom, but LP achieves $+0.2$\,pp ($p{=}0.29$), below MDE (${\approx}$1.5\,pp; $n{=}529$).
+docs/paper/sections/single_signal.tex:41:Few-NERD provides the definitive contrast: LP achieves $+1.39$\,pp ($p{<}0.001$; Holm $p_{\text{adj}}{=}0.019$, selection family $k{=}19$) at low degeneracy (13.0\% vs.\ 17.8--67.9\%), while structural signals still degrade (VC $-1.79$, SJ $-2.14$\,pp; \S\ref{sec:fewnerd}).
+docs/paper/sections/abstract.tex:9:Log-probability selection improves F1 by $+1.39$\,pp on Few-NERD (Holm-adjusted $p{=}0.019$, selection family $k{=}19$), entity-level construction via weighted voting gains $+1.02$\textendash$1.40$\,pp, and cross-model ensembles add $+0.42$\,pp on Few-NERD.
+docs/paper/sections/appendix.tex:239:\caption{Best-of-$N$ selection F1 (macro, instance-averaged) across configurations ($T{=}1.0$, 3-seed mean). Best non-oracle signal per row in \textbf{bold}. LP is the only signal with positive selection on both FewNERD configurations (Qwen $+1.39$~pp, Table~\ref{tab:fewnerd}; LLaMA $+0.36$~pp). At $N{=}16$ on LLaMA CoNLL, VC achieves small but significant gains ($+0.28$~pp, $p{<}0.03$; see text below). CoNLL shows especially tight clustering where greedy already exceeds 0.90.}
+docs/paper/sections/appendix.tex:504:On LLaMA CoNLL ($n{=}2{,}756$), all signals pass equivalence at every $\delta$ ($p{<}0.001$), consistent with the near-zero selection deltas ($|\Delta|{\leq}0.1$~pp) and tight CIs at this sample size.
+docs/paper/sections/appendix.tex:511:Since all primary selection results are non-significant ($p{>}0.05$), applying Benjamini-Hochberg correction can only make these results more conservative, strengthening the ``no signal beats greedy'' conclusion.
+docs/paper/sections/appendix.tex:787:Among instances with LP range ${\geq}0.05$ ($n{=}210$, 40\% of total), log-probability selection \textit{significantly} outperforms single-sample ($+2.9$~pp F1, $p{=}0.004$), and within-instance $\rho(\text{LP}, \text{F1})$ rises from 0.08 (tied subset) to 0.39 (non-tied subset).
+docs/paper/sections/appendix.tex:938:At $N{=}16$ (Qwen3-4B, Table~\ref{tab:re_n16_selection}), LP is the sole positive signal ($\Delta{=}{+}0.7$~pp, $p{=}0.058$), consistent with LP being the strongest RE selection signal across scales.
+docs/paper/sections/appendix.tex:1011:Entity-level construction (\S\ref{sec:prescriptive}) is a special case of minimum Bayes risk (MBR) decoding \cite{kumar2004minimum, eikema2020map}, extended from candidate selection ($\arg\max_{y \in \{y_1,\ldots,y_N\}}$) to construction over all subsets of $E_\cup{=}\bigcup_i y_i$.
+docs/paper/sections/appendix.tex:1042:On RE, LP selection flips from $-0.68$~pp (constrained) to $+1.69$~pp (free-form; preliminary, single RE benchmark), a reversal that spans all 7 relation types and is driven by selective variance reallocation ($p{<}0.0001$).
+docs/paper/sections/appendix.tex:1138:\caption{MV performance under aggregate micro-F1 (MF4v2, Qwen3-8B FT, $N{=}8$, $T{=}1.0$, multi-seed mean${\pm}\sigma$). $\alpha_{\textup{crit}} = F_1^{\textup{gr}}/2$ is the marginal-entity precision threshold (Proposition~\ref{prop:entity_selection_bound}). When $\delta > 1 - \alpha_{\textup{crit}}$, MV gain is structurally negligible.}
+docs/paper/sections/appendix.tex:1383:However, all signals except VC significantly outperform random selection ($p{<}0.001$, permutation test); the signals carry meaningful quality information yet fail to translate it into reliable selection gains.
+docs/paper/sections/appendix.tex:1512:Gemini 2.5 Pro achieves the highest oracle F1 (.758) and the highest QE correlation ($\rho_{\textup{SJ}}{=}0.350$, $\rho_{\textup{agr}}{=}0.389$) among frontier models, with balanced degeneracy (28.5\%) preserving a 0.113 selection gap---the largest gap among models with ${\geq}85$\% parse success.
+docs/paper/sections/appendix.tex:1688:Despite 13.63~pp of oracle headroom, no signal achieves significant selection improvement (best: SJ, $+0.61$~pp, $p{=}0.175$); VC, the strongest QE signal, yields the worst selection ($-1.54$~pp), consistent with the correlation-selection gap observed at larger scales.
+docs/paper/sections/appendix.tex:1720:(2)~LP is the only signal achieving significant positive selection ($+1.39$~pp, $p{<}0.001$, CI excludes zero). The sample-level AUROC of 0.578 confirms LP provides per-sample discriminability beyond instance-level quality prediction.
+docs/paper/sections/appendix.tex:1728:The correlation between per-type degeneracy and oracle headroom is strong and significant (Spearman $\rho{=}{-}0.881$, $p{=}0.004$; exact permutation $p{=}0.005$); degeneracy directly constrains the headroom available for selection.
+docs/paper/sections/appendix.tex:1775:\caption{SciERC per-type LP selection (Qwen3-8B, $N{=}8$, $T{=}1.0$). Within-dataset, degeneracy alone does not predict LP effectiveness (Spearman $\rho{=}0.14$, $p{=}0.79$); additional type-specific factors likely modulate selection at this granularity.}
+docs/paper/sections/appendix.tex:1793:A Kruskal-Wallis test finds no significant per-type heterogeneity in LP selection gains on SciERC ($p{=}0.796$), consistent with the small per-type sample sizes ($n{=}54$--$296$).
+docs/paper/sections/appendix.tex:1802:MF-Platt can reorder candidates within an instance, yet yields no significant selection improvement: $\Delta{=}{-}1.1$~pp on SciERC ($p{=}0.72$), $+0.3$~pp on CoNLL ($p{=}0.31$), and $-0.6$~pp on Few-NERD ($p{=}0.83$).
+docs/paper/sections/appendix.tex:1900:On SciERC, DALS yields $+0.71{\pm}0.48$~pp (3-seed mean; individual seeds: $+0.19$ to $+1.14$~pp); on Few-NERD, $+0.30$~pp ($p{<}0.001$; gain remains positive across $\tau \in [0.01, 0.15]$); on CoNLL, where pure LP selection degrades F1 ($-0.85$~pp), DALS shows comparable degradation (Qwen: $-0.87$~pp; LLaMA: neutral).
+docs/paper/sections/appendix.tex:1939:Table~\ref{tab:power_analysis} reports post-hoc power for the $n{=}23$ cross-dataset correlation between degeneracy and LP selection gain ($\rho{=}0.052$, $p{=}0.81$; Figure~\ref{fig:degeneracy_scatter}).
+docs/paper/sections/appendix.tex:2171:SC + LP selection is positive only on Few-NERD ($p{<}0.001$) and neutral to negative elsewhere (SciERC $+0.2$\,pp, $p{=}0.29$; CoNLL $-0.85$\,pp).
+docs/paper/sections/introduction.tex:34:Our prescriptive analysis identifies three escape routes that work precisely because they bypass entity-level self-verification: LP-weighted entity construction ($+1.40$\,pp on Few-NERD, Holm $p_{\text{adj}}{=}0.006$; $+1.02$\,pp on SciERC, $p{=}0.004$, directionally consistent but $p_{\text{adj}}{=}0.20$), cross-model ensemble ($+0.42$\,pp), and LP-based selection restricted to low-degeneracy regimes.
+docs/paper/sections/experiments_main.tex:68:Few-NERD (Table~\ref{tab:fewnerd}) confirms LP selection at low degeneracy ($+1.39$~pp, $p{<}0.001$; structural signals degrade: VC $-1.79$, SJ $-2.14$~pp), with LP 50$\times$ more seed-stable ($\sigma{=}0.04$ vs.\ SJ $2.02$~pp), generalizing to LLaMA (Table~\ref{tab:cross_selection}). Training convergence modulates degeneracy (5-epoch: $31$\%, halving LP gains; Appendix~\ref{app:epoch_confound}).
+docs/paper/sections/experiments_main.tex:76:\caption{Instance degeneracy vs.\ LP selection gain across 23 configurations ($N{=}8$; $\rho{=}0.052$, $p{=}0.81$). Within Few-NERD per-entity-type ($\rho{=}{-}0.881$; Appendix~\ref{app:per_type_lp}), degeneracy predicts LP gain when alignment is held constant.}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1fbe243d-d8f2-428e-ac17-69dd3bbbfe94",
+  "uuid": "4a0bafa9-0f8a-46ab-abc4-c6ffdae536f4",
+  "tool_use_result": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "docs/paper/sections/experiments.tex:89:\\caption{The correlation-selection gap on SciERC ($N{=}8$, $T{=}1.0$). Bars: quality estimation $\\rho$ (seed 42); line with error bars: $\\Delta$F1 vs.\\ greedy (3-seed mean, seeds 42/123/456). Despite $\\rho$ up to 0.38, no signal significantly outperforms greedy (all $p{>}0.05$; Table~\\ref{tab:selection}). Dashed green: oracle upper bound ($+13.0$~pp); dotted gray: random baseline.}\ndocs/paper/sections/experiments.tex:97:On SciERC ($n{=}529$, 2-seed sign tests\\footnote{MDE${\\approx}$1.5~pp at 80\\% power ($n{=}529$); Few-NERD ($n{=}32{,}565$; MDE${\\approx}$0.22~pp) provides the definitive test.}), the oracle (0.775) reveals 13.0~pp of headroom, but LP achieves $+0.2$~pp ($p{=}0.29$), below the MDE (${\\approx}$1.5~pp); selection effects below this threshold cannot be reliably detected.\ndocs/paper/sections/experiments.tex:99:Few-NERD provides the definitive contrast: LP achieves $+1.39$~pp ($p{<}0.001$) at low degeneracy (\\S\\ref{sec:fewnerd}), while structural signals still degrade selection.\ndocs/paper/sections/experiments.tex:128:Few-NERD (Table~\\ref{tab:fewnerd}) confirms LP selection at low degeneracy ($+1.39$~pp, $p{<}0.001$; structural signals degrade: VC $-1.79$, SJ $-2.14$~pp), with LP 50$\\times$ more seed-stable ($\\sigma{=}0.04$ vs.\\ SJ $2.02$~pp), generalizing to LLaMA (Table~\\ref{tab:cross_selection}). Training convergence modulates degeneracy (5-epoch: $31$\\%, halving LP gains; Appendix~\\ref{app:epoch_confound}).\ndocs/paper/sections/experiments.tex:136:\\caption{Instance degeneracy vs.\\ LP selection gain across 23 configurations ($N{=}8$; $\\rho{=}0.052$, $p{=}0.81$). Within Few-NERD per-entity-type analysis ($\\rho{=}{-}0.881$; Appendix~\\ref{app:per_type_lp}), degeneracy predicts LP gain when alignment is held constant.}\ndocs/paper/sections/discussion.tex:9:Entity-level construction bypasses both failure mechanisms at zero marginal cost (reusing the $N$ samples already drawn for QE), with gains positive when degeneracy ${<}22$\\% and absent when ${>}31$\\% ($p{<}0.01$; Appendix~\\ref{app:epoch_confound}); alternative strategies (DALS, DGS, supervised mixtures) fail to beat greedy (Appendix~\\ref{app:dals}, \\ref{app:supervised_combination}, \\ref{app:when_selection_works}).\ndocs/paper/sections/method.tex:70:Entity-level construction (\\S\\ref{sec:selection_method}) is a special case of minimum Bayes risk (MBR) decoding \\cite{kumar2004minimum, eikema2020map}, extended from candidate selection ($\\arg\\max_{y \\in \\{y_1,\\ldots,y_N\\}}$) to construction over all subsets of $E_\\cup{=}\\bigcup_i y_i$.\ndocs/paper/sections/single_signal.tex:35:\\caption{Correlation-selection gap on SciERC ($N{=}8$, $T{=}1.0$). Bars: QE $\\rho$; line: $\\Delta$F1 vs.\\ greedy (3-seed mean). Despite $\\rho$ up to 0.38, no signal outperforms greedy ($p{>}0.05$). Dashed green: oracle ($+13.0$\\,pp); dotted gray: random.}\ndocs/paper/sections/single_signal.tex:39:Despite $\\rho$ up to 0.38, no signal outperforms greedy on SciERC (Table~\\ref{tab:selection}; Figure~\\ref{fig:selection_gap}); the oracle reveals 13.0\\,pp headroom, but LP achieves $+0.2$\\,pp ($p{=}0.29$), below MDE (${\\approx}$1.5\\,pp; $n{=}529$).\ndocs/paper/sections/single_signal.tex:41:Few-NERD provides the definitive contrast: LP achieves $+1.39$\\,pp ($p{<}0.001$; Holm $p_{\\text{adj}}{=}0.019$, selection family $k{=}19$) at low degeneracy (13.0\\% vs.\\ 17.8--67.9\\%), while structural signals still degrade (VC $-1.79$, SJ $-2.14$\\,pp; \\S\\ref{sec:fewnerd}).\ndocs/paper/sections/abstract.tex:9:Log-probability selection improves F1 by $+1.39$\\,pp on Few-NERD (Holm-adjusted $p{=}0.019$, selection family $k{=}19$), entity-level construction via weighted voting gains $+1.02$\\textendash$1.40$\\,pp, and cross-model ensembles add $+0.42$\\,pp on Few-NERD.\ndocs/paper/sections/appendix.tex:239:\\caption{Best-of-$N$ selection F1 (macro, instance-averaged) across configurations ($T{=}1.0$, 3-seed mean). Best non-oracle signal per row in \\textbf{bold}. LP is the only signal with positive selection on both FewNERD configurations (Qwen $+1.39$~pp, Table~\\ref{tab:fewnerd}; LLaMA $+0.36$~pp). At $N{=}16$ on LLaMA CoNLL, VC achieves small but significant gains ($+0.28$~pp, $p{<}0.03$; see text below). CoNLL shows especially tight clustering where greedy already exceeds 0.90.}\ndocs/paper/sections/appendix.tex:504:On LLaMA CoNLL ($n{=}2{,}756$), all signals pass equivalence at every $\\delta$ ($p{<}0.001$), consistent with the near-zero selection deltas ($|\\Delta|{\\leq}0.1$~pp) and tight CIs at this sample size.\ndocs/paper/sections/appendix.tex:511:Since all primary selection results are non-significant ($p{>}0.05$), applying Benjamini-Hochberg correction can only make these results more conservative, strengthening the ``no signal beats greedy'' conclusion.\ndocs/paper/sections/appendix.tex:787:Among instances with LP range ${\\geq}0.05$ ($n{=}210$, 40\\% of total), log-probability selection \\textit{significantly} outperforms single-sample ($+2.9$~pp F1, $p{=}0.004$), and within-instance $\\rho(\\text{LP}, \\text{F1})$ rises from 0.08 (tied subset) to 0.39 (non-tied subset).\ndocs/paper/sections/appendix.tex:938:At $N{=}16$ (Qwen3-4B, Table~\\ref{tab:re_n16_selection}), LP is the sole positive signal ($\\Delta{=}{+}0.7$~pp, $p{=}0.058$), consistent with LP being the strongest RE selection signal across scales.\ndocs/paper/sections/appendix.tex:1011:Entity-level construction (\\S\\ref{sec:prescriptive}) is a special case of minimum Bayes risk (MBR) decoding \\cite{kumar2004minimum, eikema2020map}, extended from candidate selection ($\\arg\\max_{y \\in \\{y_1,\\ldots,y_N\\}}$) to construction over all subsets of $E_\\cup{=}\\bigcup_i y_i$.\ndocs/paper/sections/appendix.tex:1042:On RE, LP selection flips from $-0.68$~pp (constrained) to $+1.69$~pp (free-form; preliminary, single RE benchmark), a reversal that spans all 7 relation types and is driven by selective variance reallocation ($p{<}0.0001$).\ndocs/paper/sections/appendix.tex:1138:\\caption{MV performance under aggregate micro-F1 (MF4v2, Qwen3-8B FT, $N{=}8$, $T{=}1.0$, multi-seed mean${\\pm}\\sigma$). $\\alpha_{\\textup{crit}} = F_1^{\\textup{gr}}/2$ is the marginal-entity precision threshold (Proposition~\\ref{prop:entity_selection_bound}). When $\\delta > 1 - \\alpha_{\\textup{crit}}$, MV gain is structurally negligible.}\ndocs/paper/sections/appendix.tex:1383:However, all signals except VC significantly outperform random selection ($p{<}0.001$, permutation test); the signals carry meaningful quality information yet fail to translate it into reliable selection gains.\ndocs/paper/sections/appendix.tex:1512:Gemini 2.5 Pro achieves the highest oracle F1 (.758) and the highest QE correlation ($\\rho_{\\textup{SJ}}{=}0.350$, $\\rho_{\\textup{agr}}{=}0.389$) among frontier models, with balanced degeneracy (28.5\\%) preserving a 0.113 selection gap---the largest gap among models with ${\\geq}85$\\% parse success.\ndocs/paper/sections/appendix.tex:1688:Despite 13.63~pp of oracle headroom, no signal achieves significant selection improvement (best: SJ, $+0.61$~pp, $p{=}0.175$); VC, the strongest QE signal, yields the worst selection ($-1.54$~pp), consistent with the correlation-selection gap observed at larger scales.\ndocs/paper/sections/appendix.tex:1720:(2)~LP is the only signal achieving significant positive selection ($+1.39$~pp, $p{<}0.001$, CI excludes zero). The sample-level AUROC of 0.578 confirms LP provides per-sample discriminability beyond instance-level quality prediction.\ndocs/paper/sections/appendix.tex:1728:The correlation between per-type degeneracy and oracle headroom is strong and significant (Spearman $\\rho{=}{-}0.881$, $p{=}0.004$; exact permutation $p{=}0.005$); degeneracy directly constrains the headroom available for selection.\ndocs/paper/sections/appendix.tex:1775:\\caption{SciERC per-type LP selection (Qwen3-8B, $N{=}8$, $T{=}1.0$). Within-dataset, degeneracy alone does not predict LP effectiveness (Spearman $\\rho{=}0.14$, $p{=}0.79$); additional type-specific factors likely modulate selection at this granularity.}\ndocs/paper/sections/appendix.tex:1793:A Kruskal-Wallis test finds no significant per-type heterogeneity in LP selection gains on SciERC ($p{=}0.796$), consistent with the small per-type sample sizes ($n{=}54$--$296$).\ndocs/paper/sections/appendix.tex:1802:MF-Platt can reorder candidates within an instance, yet yields no significant selection improvement: $\\Delta{=}{-}1.1$~pp on SciERC ($p{=}0.72$), $+0.3$~pp on CoNLL ($p{=}0.31$), and $-0.6$~pp on Few-NERD ($p{=}0.83$).\ndocs/paper/sections/appendix.tex:1900:On SciERC, DALS yields $+0.71{\\pm}0.48$~pp (3-seed mean; individual seeds: $+0.19$ to $+1.14$~pp); on Few-NERD, $+0.30$~pp ($p{<}0.001$; gain remains positive across $\\tau \\in [0.01, 0.15]$); on CoNLL, where pure LP selection degrades F1 ($-0.85$~pp), DALS shows comparable degradation (Qwen: $-0.87$~pp; LLaMA: neutral).\ndocs/paper/sections/appendix.tex:1939:Table~\\ref{tab:power_analysis} reports post-hoc power for the $n{=}23$ cross-dataset correlation between degeneracy and LP selection gain ($\\rho{=}0.052$, $p{=}0.81$; Figure~\\ref{fig:degeneracy_scatter}).\ndocs/paper/sections/appendix.tex:2171:SC + LP selection is positive only on Few-NERD ($p{<}0.001$) and neutral to negative elsewhere (SciERC $+0.2$\\,pp, $p{=}0.29$; CoNLL $-0.85$\\,pp).\ndocs/paper/sections/introduction.tex:34:Our prescriptive analysis identifies three escape routes that work precisely because they bypass entity-level self-verification: LP-weighted entity construction ($+1.40$\\,pp on Few-NERD, Holm $p_{\\text{adj}}{=}0.006$; $+1.02$\\,pp on SciERC, $p{=}0.004$, directionally consistent but $p_{\\text{adj}}{=}0.20$), cross-model ensemble ($+0.42$\\,pp), and LP-based selection restricted to low-degeneracy regimes.\ndocs/paper/sections/experiments_main.tex:68:Few-NERD (Table~\\ref{tab:fewnerd}) confirms LP selection at low degeneracy ($+1.39$~pp, $p{<}0.001$; structural signals degrade: VC $-1.79$, SJ $-2.14$~pp), with LP 50$\\times$ more seed-stable ($\\sigma{=}0.04$ vs.\\ SJ $2.02$~pp), generalizing to LLaMA (Table~\\ref{tab:cross_selection}). Training convergence modulates degeneracy (5-epoch: $31$\\%, halving LP gains; Appendix~\\ref{app:epoch_confound}).\ndocs/paper/sections/experiments_main.tex:76:\\caption{Instance degeneracy vs.\\ LP selection gain across 23 configurations ($N{=}8$; $\\rho{=}0.052$, $p{=}0.81$). Within Few-NERD per-entity-type ($\\rho{=}{-}0.881$; Appendix~\\ref{app:per_type_lp}), degeneracy predicts LP gain when alignment is held constant.}",
+    "numLines": 33
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01UKzB2HUTczq7nuG8pxtzos`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+  "offset": 1380,
+  "limit": 60
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1fbe243d-d8f2-428e-ac17-69dd3bbbfe94",
+  "uuid": "2830daaa-7c44-44c1-8423-7f7a83c182d3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EoCpXirGQhuAd5bFrXEfHc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7121,
+      "cache_read_input_tokens": 43764,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7121
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-21T12:01:55.127Z_
+
+<details><summary>↩ Tool result · `toolu_01UKzB2HUTczq7nuG8pxtzos`</summary>
+
+```text
+1380	\paragraph{Bootstrap significance at $N{=}32$.}
+1381	Table~\ref{tab:bootstrap_n32} reports bootstrap confidence intervals and $p$-values for selection at $N{=}32$ ($B{=}10{,}000$, $n{=}529$).
+1382	No signal achieves significant improvement over greedy at $\alpha{=}0.05$ (LP: $p{=}0.091$; FK: $p{=}0.101$), while VC is significantly \textit{worse} ($-4.36$~pp, $p{=}1.0$).
+1383	However, all signals except VC significantly outperform random selection ($p{<}0.001$, permutation test); the signals carry meaningful quality information yet fail to translate it into reliable selection gains.
+1384	The oracle gap ($+20.0$~pp, $p{<}0.001$) confirms substantial unrealized headroom.
+1385	
+1386	\begin{table}[t]
+1387	\centering
+1388	\small
+1389	\caption{Bootstrap significance test at $N{=}32$ (SciERC NER, Qwen3-8B, $T{=}1.0$, $B{=}10{,}000$, $n{=}529$ gold-non-empty instances; 22 instances with no gold entities are excluded as they contribute zero selection differential). $\Delta$: selection gain vs.\ greedy. CI: 95\% bootstrap percentile interval. $p_{\text{greedy}}$: one-sided $p$-value vs.\ greedy; $p_{\text{rand}}$: permutation test vs.\ random selection.}
+1390	\label{tab:bootstrap_n32}
+1391	\resizebox{\columnwidth}{!}{
+1392	\begin{tabular}{lcccc}
+1393	\toprule
+1394	Signal & $\Delta$ (pp) & 95\% CI & $p_{\text{greedy}}$ & $p_{\text{rand}}$ \\
+1395	\midrule
+1396	LP & $+$0.95 & [$-$0.41, $+$2.34] & 0.091 & ${<}$0.001 \\
+1397	FK & $+$0.66 & [$-$0.36, $+$1.67] & 0.101 & ${<}$0.001 \\
+1398	SJ & $+$0.36 & [$-$0.66, $+$1.38] & 0.244 & ${<}$0.001 \\
+1399	EM & $+$0.22 & [$-$0.99, $+$1.44] & 0.355 & ${<}$0.001 \\
+1400	VC & $-$4.36 & [$-$6.26, $-$2.37] & 1.000 & 0.741 \\
+1401	\midrule
+1402	Oracle & $+$20.00 & [$+$17.98, $+$22.10] & ${<}$0.001 & --- \\
+1403	\bottomrule
+1404	\end{tabular}
+1405	}
+1406	\end{table}
+1407	
+1408	\paragraph{Oracle ceiling scaling law.}
+1409	Oracle F1 follows $F_1(N) = a - b \cdot N^{-c}$, with $R^2 > 0.999$ across all model--dataset fits (Figure~\ref{fig:oracle_scaling}).
+1410	The exponent $c$ varies with dataset complexity: FewNERD ($c{\approx}0.61$) scales comparably to reasoning-task estimates ($c{\approx}0.5$--$0.7$; \citealp{brown2024monkeys}), while SciERC converges more slowly ($c{\approx}0.35$), consistent with complex IE producing less marginal diversity per additional sample.
+1411	CoNLL's narrow headroom ($b{=}0.04$--$0.10$) makes $c$ unreliable (inter-model variance $2.5{\times}$); we report only $a$ and $b$ for CoNLL.
+1412	A single stochastic sample ($N{=}1$, $T{=}1.0$) underperforms greedy by 1--3\,pp because sampling noise outweighs diversity; $N{\geq}4$ is needed to match greedy.
+1413	
+1414	\begin{figure}[t]
+1415	\centering
+1416	\includegraphics[width=\columnwidth]{figures/fig_oracle_scaling.pdf}
+1417	\caption{Oracle $F_1$ as a function of sample count $N$, fitted with $F_1(N) = a - b \cdot N^{-c}$. All fits $R^2 > 0.999$. Horizontal dashed lines: greedy ($T{=}0$) F1. The ceiling grows monotonically with $N$, but the correlation-selection gap (\S\ref{sec:selection_gap}) limits how much is actually recoverable.}
+1418	\label{fig:oracle_scaling}
+1419	\end{figure}
+1420	
+1421	\section{Cross-Scale and Cross-Family Comparison}\label{app:cross_scale}
+1422	
+1423	\begin{table}[t]
+1424	\centering
+1425	\small
+1426	\caption{Cross-scale and cross-family comparison ($N{=}8$, $T{=}1.0$). Hdr.\ = oracle $-$ greedy (pp). Degen.: instance degeneracy (\%). $^\star$Qwen2.5; unmarked: Qwen3. $^\dagger$Not computed. $^\ddagger$200-instance subset; 10.1\% parse failures excluded.}
+1427	\label{tab:scale_comparison}
+1428	\resizebox{\columnwidth}{!}{%
+1429	\begin{tabular}{@{}llccccccc@{}}
+1430	\toprule
+1431	Dataset & Regime & Greedy & Hdr. & Degen. & VC & SJ & FK & LP \\
+1432	\midrule
+1433	SciERC & 8B FT  & .644 & 13.0 & 17.8 & .379 & .360 & .267 & .205 \\
+1434	       & 72B ZS$^\star$ & .399 & 15.0 & 21.0 & .277 & .217 & .227 & .081 \\
+1435	\midrule
+1436	Few-NERD & 7B FT$^\star$ & .784 & 9.2 & 31.7 & .404 & .388 & .315 & .346 \\
+1437	         & 8B FT & .748 & 12.4 & 13.0 & .386 & .300 & .313 & .220 \\
+1438	         & 14B FT & .798 & 8.1 & ---$^\dagger$ & ---$^\dagger$ & ---$^\dagger$ & ---$^\dagger$ & ---$^\dagger$ \\
+1439	         & 72B ZS$^\star$ & .628 & ---$^\dagger$ & 46.2 & .416 & .345 & ---$^\dagger$ & .119 \\
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1fbe243d-d8f2-428e-ac17-69dd3bbbfe94",
+  "uuid": "eff6c574-c491-4195-b32a-c339f970c961",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+      "content": "\\paragraph{Bootstrap significance at $N{=}32$.}\nTable~\\ref{tab:bootstrap_n32} reports bootstrap confidence intervals and $p$-values for selection at $N{=}32$ ($B{=}10{,}000$, $n{=}529$).\nNo signal achieves significant improvement over greedy at $\\alpha{=}0.05$ (LP: $p{=}0.091$; FK: $p{=}0.101$), while VC is significantly \\textit{worse} ($-4.36$~pp, $p{=}1.0$).\nHowever, all signals except VC significantly outperform random selection ($p{<}0.001$, permutation test); the signals carry meaningful quality information yet fail to translate it into reliable selection gains.\nThe oracle gap ($+20.0$~pp, $p{<}0.001$) confirms substantial unrealized headroom.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Bootstrap significance test at $N{=}32$ (SciERC NER, Qwen3-8B, $T{=}1.0$, $B{=}10{,}000$, $n{=}529$ gold-non-empty instances; 22 instances with no gold entities are excluded as they contribute zero selection differential). $\\Delta$: selection gain vs.\\ greedy. CI: 95\\% bootstrap percentile interval. $p_{\\text{greedy}}$: one-sided $p$-value vs.\\ greedy; $p_{\\text{rand}}$: permutation test vs.\\ random selection.}\n\\label{tab:bootstrap_n32}\n\\resizebox{\\columnwidth}{!}{\n\\begin{tabular}{lcccc}\n\\toprule\nSignal & $\\Delta$ (pp) & 95\\% CI & $p_{\\text{greedy}}$ & $p_{\\text{rand}}$ \\\\\n\\midrule\nLP & $+$0.95 & [$-$0.41, $+$2.34] & 0.091 & ${<}$0.001 \\\\\nFK & $+$0.66 & [$-$0.36, $+$1.67] & 0.101 & ${<}$0.001 \\\\\nSJ & $+$0.36 & [$-$0.66, $+$1.38] & 0.244 & ${<}$0.001 \\\\\nEM & $+$0.22 & [$-$0.99, $+$1.44] & 0.355 & ${<}$0.001 \\\\\nVC & $-$4.36 & [$-$6.26, $-$2.37] & 1.000 & 0.741 \\\\\n\\midrule\nOracle & $+$20.00 & [$+$17.98, $+$22.10] & ${<}$0.001 & --- \\\\\n\\bottomrule\n\\end{tabular}\n}\n\\end{table}\n\n\\paragraph{Oracle ceiling scaling law.}\nOracle F1 follows $F_1(N) = a - b \\cdot N^{-c}$, with $R^2 > 0.999$ across all model--dataset fits (Figure~\\ref{fig:oracle_scaling}).\nThe exponent $c$ varies with dataset complexity: FewNERD ($c{\\approx}0.61$) scales comparably to reasoning-task estimates ($c{\\approx}0.5$--$0.7$; \\citealp{brown2024monkeys}), while SciERC converges more slowly ($c{\\approx}0.35$), consistent with complex IE producing less marginal diversity per additional sample.\nCoNLL's narrow headroom ($b{=}0.04$--$0.10$) makes $c$ unreliable (inter-model variance $2.5{\\times}$); we report only $a$ and $b$ for CoNLL.\nA single stochastic sample ($N{=}1$, $T{=}1.0$) underperforms greedy by 1--3\\,pp because sampling noise outweighs diversity; $N{\\geq}4$ is needed to match greedy.\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/fig_oracle_scaling.pdf}\n\\caption{Oracle $F_1$ as a function of sample count $N$, fitted with $F_1(N) = a - b \\cdot N^{-c}$. All fits $R^2 > 0.999$. Horizontal dashed lines: greedy ($T{=}0$) F1. The ceiling grows monotonically with $N$, but the correlation-selection gap (\\S\\ref{sec:selection_gap}) limits how much is actually recoverable.}\n\\label{fig:oracle_scaling}\n\\end{figure}\n\n\\section{Cross-Scale and Cross-Family Comparison}\\label{app:cross_scale}\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Cross-scale and cross-family comparison ($N{=}8$, $T{=}1.0$). Hdr.\\ = oracle $-$ greedy (pp). Degen.: instance degeneracy (\\%). $^\\star$Qwen2.5; unmarked: Qwen3. $^\\dagger$Not computed. $^\\ddagger$200-instance subset; 10.1\\% parse failures excluded.}\n\\label{tab:scale_comparison}\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{@{}llccccccc@{}}\n\\toprule\nDataset & Regime & Greedy & Hdr. & Degen. & VC & SJ & FK & LP \\\\\n\\midrule\nSciERC & 8B FT  & .644 & 13.0 & 17.8 & .379 & .360 & .267 & .205 \\\\\n       & 72B ZS$^\\star$ & .399 & 15.0 & 21.0 & .277 & .217 & .227 & .081 \\\\\n\\midrule\nFew-NERD & 7B FT$^\\star$ & .784 & 9.2 & 31.7 & .404 & .388 & .315 & .346 \\\\\n         & 8B FT & .748 & 12.4 & 13.0 & .386 & .300 & .313 & .220 \\\\\n         & 14B FT & .798 & 8.1 & ---$^\\dagger$ & ---$^\\dagger$ & ---$^\\dagger$ & ---$^\\dagger$ & ---$^\\dagger$ \\\\\n         & 72B ZS$^\\star$ & .628 & ---$^\\dagger$ & 46.2 & .416 & .345 & ---$^\\dagger$ & .119 \\\\",
+      "numLines": 60,
+      "startLine": 1380,
+      "totalLines": 2283
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01RYUuo9HqVu4Et1wkM7UNA2`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+  "offset": 1340,
+  "limit": 40
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1fbe243d-d8f2-428e-ac17-69dd3bbbfe94",
+  "uuid": "1f0edfe7-8681-49aa-9a70-bddc0add0390",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EoCpXirGQhuAd5bFrXEfHc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7121,
+      "cache_read_input_tokens": 43764,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7121
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-21T12:01:55.684Z_
+
+<details><summary>↩ Tool result · `toolu_01RYUuo9HqVu4Et1wkM7UNA2`</summary>
+
+```text
+1340	VC & 0.0187 & 0.0260 & 0.0244 & 0.0158 \\
+1341	EM & 0.0076 & 0.0031 & 0.0157 & 0.0049 \\
+1342	LP & 0.0125 & 0.0017 & 0.0218 & 0.0152 \\
+1343	\midrule
+1344	Mean & 0.0145 & 0.0098 & 0.0151 & 0.0114 \\
+1345	\bottomrule
+1346	\end{tabular}
+1347	\end{table}
+1348	
+1349	Signal rankings are consistent across our 3 seeds (Kendall's $W{=}1.000$ for NER at $N{=}8$, both models), dropping to $W{=}0.956$ at $N{=}16$ where SJ and VC converge (Table~\ref{tab:ranking-stability}); however, with only $n{=}3$ seeds statistical power is insufficient to confirm stability, and additional seeds may reveal ranking changes.
+1350	Doubling $N$ reduces cross-seed $\sigma$ by 32\% on NER and 24\% on RE (Table~\ref{tab:sigma-comparison}), with the largest reductions for SJ ($-43\%$ NER) and EM ($-59\%$ NER); additional samples stabilize structural signals more than LP.
+1351	
+1352	\paragraph{$N$-scaling: selection headroom vs.\ selection gain.}
+1353	Table~\ref{tab:n_scaling_selection} traces the effect of sample count on degeneracy, oracle headroom, and per-signal selection gain.
+1354	Oracle headroom grows roughly linearly with $N$ ($+4.4$~pp at $N{=}2$ to $+20.0$~pp at $N{=}32$).
+1355	LP selection improves monotonically with $N$ ($+0.39$~pp at $N{=}8$ to $+0.95$~pp at $N{=}32$), but even at $N{=}32$, where degeneracy falls to 4\% and oracle headroom reaches ${\sim}20$~pp, the best signal captures less than 5\% of the available improvement.
+1356	Degeneracy drops monotonically (43\% at $N{=}2$ to 4\% at $N{=}32$), yet reduced degeneracy does not unlock selection, consistent with the LoRA-rank ablation finding (\S\ref{sec:robustness_main}).
+1357	VC selection degrades with increasing $N$ ($-2.66$~pp at $N{=}2$ to $-4.35$~pp at $N{=}32$), consistent with mode-seeking bias in voting-based selection as the candidate pool grows.
+1358	
+1359	\begin{table}[t]
+1360	\centering
+1361	\small
+1362	\caption{Effect of sample count on selection (SciERC NER, Qwen3-8B, $T{=}1.0$, gold-filtered, seed${=}42$; exp\_025).\protect\footnotemark\ ``Best $\Delta$'': highest selection gain across all 5 signals. Per-signal $\Delta$ in pp vs.~greedy.}
+1363	\label{tab:n_scaling_selection}
+1364	\resizebox{\columnwidth}{!}{
+1365	\begin{tabular}{ccccccccc}
+1366	\toprule
+1367	$N$ & Degen.\% & Oracle (pp) & LP & SJ & FK & EM & VC & Best $\Delta$ \\
+1368	\midrule
+1369	2 & 42.7\% & $+$4.4 & $-$0.89 & $-$2.72 & $-$2.72 & $-$2.72 & $-$2.66 & $-$0.89 \\
+1370	4 & 21.0\% & $+$10.2 & $+$0.03 & $-$0.31 & $-$0.40 & $-$0.74 & $-$2.16 & $+$0.03 \\
+1371	8 & 11.0\% & $+$14.5 & $+$0.39 & $+$0.20 & $+$0.15 & $-$0.77 & $-$2.87 & $+$0.39 \\
+1372	16 & 7.4\% & $+$17.7 & $+$0.78 & $+$0.24 & $-$0.02 & $-$0.06 & $-$3.95 & $+$0.78 \\
+1373	32 & 4.0\% & $+$20.0 & $+$0.95 & $+$0.35 & $+$0.65 & $+$0.22 & $-$4.35 & $+$0.95 \\
+1374	\bottomrule
+1375	\end{tabular}
+1376	}
+1377	\end{table}
+1378	\footnotetext{$N$-scaling analysis uses gold-filtered evaluation ($n{=}529$, greedy F1${=}0.640$). Values differ slightly from Table~\ref{tab:selection} (0.645) and Table~\ref{tab:fewnerd} (0.644) due to seed and aggregation differences; relative trends are consistent.}
+1379	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1fbe243d-d8f2-428e-ac17-69dd3bbbfe94",
+  "uuid": "9f73f30f-b8e8-4d2e-a332-61c3fc83e6ce",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+      "content": "VC & 0.0187 & 0.0260 & 0.0244 & 0.0158 \\\\\nEM & 0.0076 & 0.0031 & 0.0157 & 0.0049 \\\\\nLP & 0.0125 & 0.0017 & 0.0218 & 0.0152 \\\\\n\\midrule\nMean & 0.0145 & 0.0098 & 0.0151 & 0.0114 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nSignal rankings are consistent across our 3 seeds (Kendall's $W{=}1.000$ for NER at $N{=}8$, both models), dropping to $W{=}0.956$ at $N{=}16$ where SJ and VC converge (Table~\\ref{tab:ranking-stability}); however, with only $n{=}3$ seeds statistical power is insufficient to confirm stability, and additional seeds may reveal ranking changes.\nDoubling $N$ reduces cross-seed $\\sigma$ by 32\\% on NER and 24\\% on RE (Table~\\ref{tab:sigma-comparison}), with the largest reductions for SJ ($-43\\%$ NER) and EM ($-59\\%$ NER); additional samples stabilize structural signals more than LP.\n\n\\paragraph{$N$-scaling: selection headroom vs.\\ selection gain.}\nTable~\\ref{tab:n_scaling_selection} traces the effect of sample count on degeneracy, oracle headroom, and per-signal selection gain.\nOracle headroom grows roughly linearly with $N$ ($+4.4$~pp at $N{=}2$ to $+20.0$~pp at $N{=}32$).\nLP selection improves monotonically with $N$ ($+0.39$~pp at $N{=}8$ to $+0.95$~pp at $N{=}32$), but even at $N{=}32$, where degeneracy falls to 4\\% and oracle headroom reaches ${\\sim}20$~pp, the best signal captures less than 5\\% of the available improvement.\nDegeneracy drops monotonically (43\\% at $N{=}2$ to 4\\% at $N{=}32$), yet reduced degeneracy does not unlock selection, consistent with the LoRA-rank ablation finding (\\S\\ref{sec:robustness_main}).\nVC selection degrades with increasing $N$ ($-2.66$~pp at $N{=}2$ to $-4.35$~pp at $N{=}32$), consistent with mode-seeking bias in voting-based selection as the candidate pool grows.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Effect of sample count on selection (SciERC NER, Qwen3-8B, $T{=}1.0$, gold-filtered, seed${=}42$; exp\\_025).\\protect\\footnotemark\\ ``Best $\\Delta$'': highest selection gain across all 5 signals. Per-signal $\\Delta$ in pp vs.~greedy.}\n\\label{tab:n_scaling_selection}\n\\resizebox{\\columnwidth}{!}{\n\\begin{tabular}{ccccccccc}\n\\toprule\n$N$ & Degen.\\% & Oracle (pp) & LP & SJ & FK & EM & VC & Best $\\Delta$ \\\\\n\\midrule\n2 & 42.7\\% & $+$4.4 & $-$0.89 & $-$2.72 & $-$2.72 & $-$2.72 & $-$2.66 & $-$0.89 \\\\\n4 & 21.0\\% & $+$10.2 & $+$0.03 & $-$0.31 & $-$0.40 & $-$0.74 & $-$2.16 & $+$0.03 \\\\\n8 & 11.0\\% & $+$14.5 & $+$0.39 & $+$0.20 & $+$0.15 & $-$0.77 & $-$2.87 & $+$0.39 \\\\\n16 & 7.4\\% & $+$17.7 & $+$0.78 & $+$0.24 & $-$0.02 & $-$0.06 & $-$3.95 & $+$0.78 \\\\\n32 & 4.0\\% & $+$20.0 & $+$0.95 & $+$0.35 & $+$0.65 & $+$0.22 & $-$4.35 & $+$0.95 \\\\\n\\bottomrule\n\\end{tabular}\n}\n\\end{table}\n\\footnotetext{$N$-scaling analysis uses gold-filtered evaluation ($n{=}529$, greedy F1${=}0.640$). Values differ slightly from Table~\\ref{tab:selection} (0.645) and Table~\\ref{tab:fewnerd} (0.644) due to seed and aggregation differences; relative trends are consistent.}\n",
+      "numLines": 40,
+      "startLine": 1340,
+      "totalLines": 2283
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 49_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me also look at the N=16 LLaMA CoNLL selection results and the LLaMA-3B selection results, which may report explicit p-values that should be in the Holm table.
+
+The key question is: are there selection tests with explicitly reported p-values that are NOT in the Holm enumeration?
+
+From my search results, I see:
+1. LLaMA CoNLL N=16 VC selection: p=0.003-0.027 across 3 seeds, mentioned in appendix line 266
+2. LLaMA CoNLL N=16 LP selection: 2/3 seeds significant, mentioned in appendix line 266
+
+
+3. Few-NERD LP selection (N=8, LLaMA, 3-seed) is in the Holm table as test #19
+
+But I'm noticing that the LLaMA CoNLL N=16 tests with significant p-values aren't included in the Holm table at all, even though they have explicit results reported. The VC selection shows p<0.03 and the LP selection shows significance in 2 out of 3 seeds, yet neither appears in the enumeration.
+
+Now I'm checking the cross_selection table against the Holm table to see which LLaMA/SciERC results are actually included. I see test #7 covers SciERC NER SJ selection for LLaMA-3B, but the cross_selection table appears to have LLaMA-8B results that don't match up with what's explicitly listed in the Holm table. I'm noticing the text also mentions LLaMA CoNLL N=16 results with explicit p-values (0.003-0.027 for VC selection, and "2/3 seeds significant" for LP selection), which aren't enumerated in the Holm table. The question is whether these are individual seed p-values that should count as separate tests, or if they're reporting a combined statistic like a Fisher p-value. with p-values? Let me re-read:
+
+"VC achieves the largest gain over single-sample ($+0.28$~pp, $p{=}0.003$--$0.027$ across 3 seeds, all significant), with SJ, FK, and EM at $+0.22$--$0.23$~pp and LP at $+0.12$~pp (2/3 seeds significant)."
+
+This reports p-values for individual seeds. But in the Holm table, many multi-seed results use Fisher combined p-values (e.g., test #13-17: SciERC RE with "Fisher"). So if the LLaMA CoNLL N=16 results aren't combined with Fisher, they might not be formal hypothesis tests in the paper.
+
+Hmm, but they DO explicitly state "all significant" for VC and "2/3 seeds significant" for LP, which implies these are formal statistical tests.
+
+Now I'm checking for DALS selection results with p-values—I see Few-NERD shows $+0.30$~pp ($p{<}0.001$), and the non-tied subset for log-probability selection reports $+2.9$~pp F1 with $p{=}0.004$, which corresponds to test #18. I should also look for the primary SciERC selection results table to see what's reported there.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1fbe243d-d8f2-428e-ac17-69dd3bbbfe94",
+  "uuid": "0d971d89-d240-4311-a2a8-fe49099d8e7d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011M8GFH5ZQogsv3KWtZysY9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9457,
+      "cache_read_input_tokens": 50885,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9457
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 50_
+
+Let me check the main selection table and look for additional selection results with explicit p-values.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1fbe243d-d8f2-428e-ac17-69dd3bbbfe94",
+  "uuid": "c5f18882-fa93-4914-9689-6930b1c5f70b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011M8GFH5ZQogsv3KWtZysY9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9457,
+      "cache_read_input_tokens": 50885,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9457
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_017YCfwCsoXvE3AUHnDyopVb`</summary>
+
+```json
+{
+  "pattern": "tab:selection",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper",
+  "output_mode": "content",
+  "-n": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1fbe243d-d8f2-428e-ac17-69dd3bbbfe94",
+  "uuid": "b2d7850c-93c1-4ca4-88f4-ecdabef91687",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011M8GFH5ZQogsv3KWtZysY9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9457,
+      "cache_read_input_tokens": 50885,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9457
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 52_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01UnuFqkREGetxj7GLs8JxZU`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+  "offset": 260,
+  "limit": 15
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1fbe243d-d8f2-428e-ac17-69dd3bbbfe94",
+  "uuid": "6ce624a5-4fcc-4efc-a3d0-6068485c7860",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011M8GFH5ZQogsv3KWtZysY9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9457,
+      "cache_read_input_tokens": 50885,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9457
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 53 · 2026-05-21T12:02:30.787Z_
+
+<details><summary>↩ Tool result · `toolu_017YCfwCsoXvE3AUHnDyopVb`</summary>
+
+```text
+docs/paper/sections/experiments.tex:64:\label{tab:selection}
+docs/paper/sections/experiments.tex:89:\caption{The correlation-selection gap on SciERC ($N{=}8$, $T{=}1.0$). Bars: quality estimation $\rho$ (seed 42); line with error bars: $\Delta$F1 vs.\ greedy (3-seed mean, seeds 42/123/456). Despite $\rho$ up to 0.38, no signal significantly outperforms greedy (all $p{>}0.05$; Table~\ref{tab:selection}). Dashed green: oracle upper bound ($+13.0$~pp); dotted gray: random baseline.}
+docs/paper/sections/experiments.tex:93:Instance-level signals assign identical QE scores to all candidates; MBR conversion does not improve over greedy on the primary test bed (Table~\ref{tab:selection}; Figure~\ref{fig:selection_gap}).
+docs/paper/sections/checklist.tex:54:Yes. We report multi-seed results (3 seeds; $\sigma$ in Table~\ref{tab:multiseed}), bootstrap 95\% confidence intervals (Tables~\ref{tab:selection}, \ref{tab:fewnerd_full}), paired bootstrap $p$-values throughout, and minimum detectable effect sizes (Section~\ref{sec:selection_gap}). Tables clearly indicate whether values are single-seed, multi-seed means, or confidence intervals.
+docs/paper/sections/single_signal.tex:13:\label{tab:selection}
+docs/paper/sections/single_signal.tex:39:Despite $\rho$ up to 0.38, no signal outperforms greedy on SciERC (Table~\ref{tab:selection}; Figure~\ref{fig:selection_gap}); the oracle reveals 13.0\,pp headroom, but LP achieves $+0.2$\,pp ($p{=}0.29$), below MDE (${\approx}$1.5\,pp; $n{=}529$).
+docs/paper/sections/appendix.tex:232:On LLaMA SciERC, where output diversity remains substantial (18\% identical outputs, 39\% unique), LP achieves the highest selection F1 (0.652) at $N{=}8$ but still falls within bootstrap noise of single-sample (0.646), replicating the gap observed on Qwen SciERC (Table~\ref{tab:selection}).
+docs/paper/sections/appendix.tex:1158:The constrained reference ($-0.68$~pp) uses the ablation-matched baseline; the primary experiment (Table~\ref{tab:selection}) yields $-0.9$~pp on the same gold-filtered set.
+docs/paper/sections/appendix.tex:1378:\footnotetext{$N$-scaling analysis uses gold-filtered evaluation ($n{=}529$, greedy F1${=}0.640$). Values differ slightly from Table~\ref{tab:selection} (0.645) and Table~\ref{tab:fewnerd} (0.644) due to seed and aggregation differences; relative trends are consistent.}
+docs/paper/main.aux:340:\newlabel{tab:selection}{{1}{4}{Best-of-$N$ selection (macro F1) on SciERC ($N{=}8$, $T{=}1.0$, 2-seed mean${\pm }\sigma $). LP is per-sample; others use consensus-proximity. $^\dagger $One score per input}{table.caption.13}{}}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1fbe243d-d8f2-428e-ac17-69dd3bbbfe94",
+  "uuid": "1eeb45a6-9542-4576-9732-cfcc5efbbdbe",
+  "tool_use_result": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "docs/paper/sections/experiments.tex:64:\\label{tab:selection}\ndocs/paper/sections/experiments.tex:89:\\caption{The correlation-selection gap on SciERC ($N{=}8$, $T{=}1.0$). Bars: quality estimation $\\rho$ (seed 42); line with error bars: $\\Delta$F1 vs.\\ greedy (3-seed mean, seeds 42/123/456). Despite $\\rho$ up to 0.38, no signal significantly outperforms greedy (all $p{>}0.05$; Table~\\ref{tab:selection}). Dashed green: oracle upper bound ($+13.0$~pp); dotted gray: random baseline.}\ndocs/paper/sections/experiments.tex:93:Instance-level signals assign identical QE scores to all candidates; MBR conversion does not improve over greedy on the primary test bed (Table~\\ref{tab:selection}; Figure~\\ref{fig:selection_gap}).\ndocs/paper/sections/checklist.tex:54:Yes. We report multi-seed results (3 seeds; $\\sigma$ in Table~\\ref{tab:multiseed}), bootstrap 95\\% confidence intervals (Tables~\\ref{tab:selection}, \\ref{tab:fewnerd_full}), paired bootstrap $p$-values throughout, and minimum detectable effect sizes (Section~\\ref{sec:selection_gap}). Tables clearly indicate whether values are single-seed, multi-seed means, or confidence intervals.\ndocs/paper/sections/single_signal.tex:13:\\label{tab:selection}\ndocs/paper/sections/single_signal.tex:39:Despite $\\rho$ up to 0.38, no signal outperforms greedy on SciERC (Table~\\ref{tab:selection}; Figure~\\ref{fig:selection_gap}); the oracle reveals 13.0\\,pp headroom, but LP achieves $+0.2$\\,pp ($p{=}0.29$), below MDE (${\\approx}$1.5\\,pp; $n{=}529$).\ndocs/paper/sections/appendix.tex:232:On LLaMA SciERC, where output diversity remains substantial (18\\% identical outputs, 39\\% unique), LP achieves the highest selection F1 (0.652) at $N{=}8$ but still falls within bootstrap noise of single-sample (0.646), replicating the gap observed on Qwen SciERC (Table~\\ref{tab:selection}).\ndocs/paper/sections/appendix.tex:1158:The constrained reference ($-0.68$~pp) uses the ablation-matched baseline; the primary experiment (Table~\\ref{tab:selection}) yields $-0.9$~pp on the same gold-filtered set.\ndocs/paper/sections/appendix.tex:1378:\\footnotetext{$N$-scaling analysis uses gold-filtered evaluation ($n{=}529$, greedy F1${=}0.640$). Values differ slightly from Table~\\ref{tab:selection} (0.645) and Table~\\ref{tab:fewnerd} (0.644) due to seed and aggregation differences; relative trends are consistent.}\ndocs/paper/main.aux:340:\\newlabel{tab:selection}{{1}{4}{Best-of-$N$ selection (macro F1) on SciERC ($N{=}8$, $T{=}1.0$, 2-seed mean${\\pm }\\sigma $). LP is per-sample; others use consensus-proximity. $^\\dagger $One score per input}{table.caption.13}{}}",
+    "numLines": 10
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-21T12:02:30.784Z_
+
+<details><summary>↩ Tool result · `toolu_01UnuFqkREGetxj7GLs8JxZU`</summary>
+
+```text
+260	This asymmetry gives structural signals a relative advantage in the compute-constrained regime: at $N{=}8$, SJ already achieves $\rho{=}0.431$ on LLaMA CoNLL (vs.\ LP $\rho{=}0.307$, $\Delta{=}{+}0.124$), and the gap \textit{widens} at $N{=}16$ ($\Delta{=}{+}0.163$) because structural signals continue to benefit from additional pairwise evidence while LP does not.
+261	For sample selection, additional samples increase the oracle upper bound (more draws raise the probability of a high-quality candidate), but signal-based selection remains flat because the selector's inability to identify the best candidate is a granularity limitation, not a sample size limitation.
+262	The practical implication is that $N{=}8$ captures most of the achievable quality estimation benefit; further scaling widens rather than closes the correlation-selection gap absent stronger per-sample selectors.
+263	
+264	\paragraph{$N{=}16$ CoNLL selection: small but significant.}
+265	While quality estimation benefits sublinearly from $N$-scaling, selection behavior at $N{=}16$ reveals a nuanced exception on LLaMA CoNLL.
+266	VC achieves the largest gain over single-sample ($+0.28$~pp, $p{=}0.003$--$0.027$ across 3 seeds, all significant), with SJ, FK, and EM at $+0.22$--$0.23$~pp and LP at $+0.12$~pp (2/3 seeds significant).
+267	These gains are statistically significant but practically minimal: oracle headroom at $N{=}16$ is only 2.5~pp, so VC captures approximately 10\% of the available headroom.
+268	This reinforces the primary finding: even under the most favorable conditions (high baseline performance, more candidates, and aggregated multi-seed evidence), signal-based selection recovers only a fraction of the oracle headroom available.
+269	
+270	\section{Bootstrap CI for Signal Comparisons}\label{app:bootstrap_signal}
+271	
+272	Table~\ref{tab:bootstrap_signal_ci} reports bootstrap confidence intervals for individual signal $\rho$ and pairwise $\Delta\rho$ on SciERC NER ($N{=}8$, $n{=}529$, $B{=}10{,}000$, seed${=}42$).
+273	The SJ--LP gap ($\Delta\rho{=}{+}0.155$) is clearly significant, the structural advantage reported in \S\ref{sec:qe_results} is robust.
+274	The VC--SJ gap ($\Delta\rho{=}{+}0.019$) is not significant; these two structural signals perform comparably.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1fbe243d-d8f2-428e-ac17-69dd3bbbfe94",
+  "uuid": "7b4f9a00-1132-4104-a246-a0fc3349210d",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+      "content": "This asymmetry gives structural signals a relative advantage in the compute-constrained regime: at $N{=}8$, SJ already achieves $\\rho{=}0.431$ on LLaMA CoNLL (vs.\\ LP $\\rho{=}0.307$, $\\Delta{=}{+}0.124$), and the gap \\textit{widens} at $N{=}16$ ($\\Delta{=}{+}0.163$) because structural signals continue to benefit from additional pairwise evidence while LP does not.\nFor sample selection, additional samples increase the oracle upper bound (more draws raise the probability of a high-quality candidate), but signal-based selection remains flat because the selector's inability to identify the best candidate is a granularity limitation, not a sample size limitation.\nThe practical implication is that $N{=}8$ captures most of the achievable quality estimation benefit; further scaling widens rather than closes the correlation-selection gap absent stronger per-sample selectors.\n\n\\paragraph{$N{=}16$ CoNLL selection: small but significant.}\nWhile quality estimation benefits sublinearly from $N$-scaling, selection behavior at $N{=}16$ reveals a nuanced exception on LLaMA CoNLL.\nVC achieves the largest gain over single-sample ($+0.28$~pp, $p{=}0.003$--$0.027$ across 3 seeds, all significant), with SJ, FK, and EM at $+0.22$--$0.23$~pp and LP at $+0.12$~pp (2/3 seeds significant).\nThese gains are statistically significant but practically minimal: oracle headroom at $N{=}16$ is only 2.5~pp, so VC captures approximately 10\\% of the available headroom.\nThis reinforces the primary finding: even under the most favorable conditions (high baseline performance, more candidates, and aggregated multi-seed evidence), signal-based selection recovers only a fraction of the oracle headroom available.\n\n\\section{Bootstrap CI for Signal Comparisons}\\label{app:bootstrap_signal}\n\nTable~\\ref{tab:bootstrap_signal_ci} reports bootstrap confidence intervals for individual signal $\\rho$ and pairwise $\\Delta\\rho$ on SciERC NER ($N{=}8$, $n{=}529$, $B{=}10{,}000$, seed${=}42$).\nThe SJ--LP gap ($\\Delta\\rho{=}{+}0.155$) is clearly significant, the structural advantage reported in \\S\\ref{sec:qe_results} is robust.\nThe VC--SJ gap ($\\Delta\\rho{=}{+}0.019$) is not significant; these two structural signals perform comparably.",
+      "numLines": 15,
+      "startLine": 260,
+      "totalLines": 2283
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 55_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me read the main selection table (tab:selection) to see its full content.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1fbe243d-d8f2-428e-ac17-69dd3bbbfe94",
+  "uuid": "738cd767-21ac-4240-aa1e-e33d0a7eb2f1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NPkQc9zh2HEnV8FPcE6qn8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3233,
+      "cache_read_input_tokens": 60342,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3233
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 56_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01NCWjXzrwsDLPWaguk7Mpxy`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/single_signal.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1fbe243d-d8f2-428e-ac17-69dd3bbbfe94",
+  "uuid": "23e65f8f-5485-493b-b179-fbbfb3544002",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NPkQc9zh2HEnV8FPcE6qn8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3233,
+      "cache_read_input_tokens": 60342,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3233
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 57 · 2026-05-21T12:02:33.701Z_
+
+<details><summary>↩ Tool result · `toolu_01NCWjXzrwsDLPWaguk7Mpxy`</summary>
+
+```text
+1	\section{Where Single-Signal Selection Fails}\label{sec:selection_gap}
+2	
+3	\paragraph{Definitional vs.\ empirical.}
+4	We decompose the correlation-selection gap into two layers.
+5	The first is structural: four of five signals are instance-level aggregates that assign identical scores to all $N$ candidates from a given input (\S\ref{sec:formulation}), so they estimate quality across inputs but cannot rank candidates within an instance---selection failure is a design property, not an empirical finding.
+6	The second layer is empirical and constitutes the core diagnostic: LP---the only per-sample signal---suffers compression under constrained decoding, with 60\% of SciERC instances showing within-instance LP range below 0.041 nats (Appendix~\ref{app:logprob_ties}), effectively eliminating the variation needed for sample discrimination. Even where LP varies, selection gains depend on LP-quality alignment rather than degeneracy alone.
+7	Cross-instance $\rho$ (Table~\ref{tab:quality_estimation}) is attenuated by varying instance difficulty; within-instance $\rho$ directly measures whether LP discriminates candidates for a fixed input, making it the relevant predictor of selection success.
+8	
+9	\begin{table}[t]
+10	\centering
+11	\small
+12	\caption{Best-of-$N$ selection (macro F1) on SciERC ($N{=}8$, $T{=}1.0$, 2-seed mean${\pm}\sigma$). LP is per-sample; others use consensus-proximity. $^\dagger$One score per input.}
+13	\label{tab:selection}
+14	\begin{tabular}{lcc}
+15	\toprule
+16	Method & NER F1 & $p$ \\
+17	\midrule
+18	Oracle & $0.775 \pm 0.001$ & --- \\
+19	Greedy ($T{=}0$) & $0.645 \pm 0.001$ & --- \\
+20	\midrule
+21	LP           & $\mathbf{0.647} \pm 0.005$ & .29 \\
+22	SJ           & $0.646 \pm 0.002$ & .67 \\
+23	FK           & $0.646 \pm 0.001$ & .79 \\
+24	EM           & $0.637 \pm 0.001$ & n/a$^\dagger$ \\
+25	VC           & $0.623 \pm 0.004$ & n/a$^\dagger$ \\
+26	\midrule
+27	Random       & $0.610 \pm 0.003$ & --- \\
+28	\bottomrule
+29	\end{tabular}
+30	\end{table}
+31	
+32	\begin{figure}[t]
+33	\centering
+34	\includegraphics[width=\columnwidth]{fig_selection_gap}
+35	\caption{Correlation-selection gap on SciERC ($N{=}8$, $T{=}1.0$). Bars: QE $\rho$; line: $\Delta$F1 vs.\ greedy (3-seed mean). Despite $\rho$ up to 0.38, no signal outperforms greedy ($p{>}0.05$). Dashed green: oracle ($+13.0$\,pp); dotted gray: random.}
+36	\label{fig:selection_gap}
+37	\end{figure}
+38	
+39	Despite $\rho$ up to 0.38, no signal outperforms greedy on SciERC (Table~\ref{tab:selection}; Figure~\ref{fig:selection_gap}); the oracle reveals 13.0\,pp headroom, but LP achieves $+0.2$\,pp ($p{=}0.29$), below MDE (${\approx}$1.5\,pp; $n{=}529$).
+40	The pattern holds across CoNLL and WNUT-17 (Table~\ref{tab:cross_selection}).
+41	Few-NERD provides the definitive contrast: LP achieves $+1.39$\,pp ($p{<}0.001$; Holm $p_{\text{adj}}{=}0.019$, selection family $k{=}19$) at low degeneracy (13.0\% vs.\ 17.8--67.9\%), while structural signals still degrade (VC $-1.79$, SJ $-2.14$\,pp; \S\ref{sec:fewnerd}).
+42	
+43	\paragraph{Diagnostic cascade.}
+44	We identify a cascade rather than independent factors:
+45	(1)~instance degeneracy sets the ceiling on possible improvement (SciERC 17.8\%, CoNLL 61.7\%);
+46	(2)~within non-degenerate instances, oracle headroom determines the opportunity (CoNLL ${\approx}4$\,pp vs.\ SciERC 13.0\,pp);
+47	(3)~LP compression limits exploitation of that opportunity (Few-NERD within-instance $\rho{\approx}0.5$--$0.7$ vs.\ SciERC $\rho{\approx}0.26$).
+48	We did not find evidence that degeneracy alone predicts LP gain across datasets ($\rho{=}0.052$, $n{=}23$, $p{=}0.81$; post-hoc power: 80\% power requires $n{\approx}85$ for $\rho{=}0.3$; Figure~\ref{fig:degeneracy_scatter}), though degeneracy co-varies with LP within fixed settings ($\rho{=}{-}0.881$; Appendix~\ref{app:per_type_lp}).
+49	The cascade stages interact rather than combining into a predictive model ($R^2{<}0$); each is supported by controlled ablations (\S\ref{sec:fewnerd}, \S\ref{sec:discussion}).
+50	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1fbe243d-d8f2-428e-ac17-69dd3bbbfe94",
+  "uuid": "1d720088-4f3b-4633-a8c3-223bc7123e19",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/single_signal.tex",
+      "content": "\\section{Where Single-Signal Selection Fails}\\label{sec:selection_gap}\n\n\\paragraph{Definitional vs.\\ empirical.}\nWe decompose the correlation-selection gap into two layers.\nThe first is structural: four of five signals are instance-level aggregates that assign identical scores to all $N$ candidates from a given input (\\S\\ref{sec:formulation}), so they estimate quality across inputs but cannot rank candidates within an instance---selection failure is a design property, not an empirical finding.\nThe second layer is empirical and constitutes the core diagnostic: LP---the only per-sample signal---suffers compression under constrained decoding, with 60\\% of SciERC instances showing within-instance LP range below 0.041 nats (Appendix~\\ref{app:logprob_ties}), effectively eliminating the variation needed for sample discrimination. Even where LP varies, selection gains depend on LP-quality alignment rather than degeneracy alone.\nCross-instance $\\rho$ (Table~\\ref{tab:quality_estimation}) is attenuated by varying instance difficulty; within-instance $\\rho$ directly measures whether LP discriminates candidates for a fixed input, making it the relevant predictor of selection success.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Best-of-$N$ selection (macro F1) on SciERC ($N{=}8$, $T{=}1.0$, 2-seed mean${\\pm}\\sigma$). LP is per-sample; others use consensus-proximity. $^\\dagger$One score per input.}\n\\label{tab:selection}\n\\begin{tabular}{lcc}\n\\toprule\nMethod & NER F1 & $p$ \\\\\n\\midrule\nOracle & $0.775 \\pm 0.001$ & --- \\\\\nGreedy ($T{=}0$) & $0.645 \\pm 0.001$ & --- \\\\\n\\midrule\nLP           & $\\mathbf{0.647} \\pm 0.005$ & .29 \\\\\nSJ           & $0.646 \\pm 0.002$ & .67 \\\\\nFK           & $0.646 \\pm 0.001$ & .79 \\\\\nEM           & $0.637 \\pm 0.001$ & n/a$^\\dagger$ \\\\\nVC           & $0.623 \\pm 0.004$ & n/a$^\\dagger$ \\\\\n\\midrule\nRandom       & $0.610 \\pm 0.003$ & --- \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{fig_selection_gap}\n\\caption{Correlation-selection gap on SciERC ($N{=}8$, $T{=}1.0$). Bars: QE $\\rho$; line: $\\Delta$F1 vs.\\ greedy (3-seed mean). Despite $\\rho$ up to 0.38, no signal outperforms greedy ($p{>}0.05$). Dashed green: oracle ($+13.0$\\,pp); dotted gray: random.}\n\\label{fig:selection_gap}\n\\end{figure}\n\nDespite $\\rho$ up to 0.38, no signal outperforms greedy on SciERC (Table~\\ref{tab:selection}; Figure~\\ref{fig:selection_gap}); the oracle reveals 13.0\\,pp headroom, but LP achieves $+0.2$\\,pp ($p{=}0.29$), below MDE (${\\approx}$1.5\\,pp; $n{=}529$).\nThe pattern holds across CoNLL and WNUT-17 (Table~\\ref{tab:cross_selection}).\nFew-NERD provides the definitive contrast: LP achieves $+1.39$\\,pp ($p{<}0.001$; Holm $p_{\\text{adj}}{=}0.019$, selection family $k{=}19$) at low degeneracy (13.0\\% vs.\\ 17.8--67.9\\%), while structural signals still degrade (VC $-1.79$, SJ $-2.14$\\,pp; \\S\\ref{sec:fewnerd}).\n\n\\paragraph{Diagnostic cascade.}\nWe identify a cascade rather than independent factors:\n(1)~instance degeneracy sets the ceiling on possible improvement (SciERC 17.8\\%, CoNLL 61.7\\%);\n(2)~within non-degenerate instances, oracle headroom determines the opportunity (CoNLL ${\\approx}4$\\,pp vs.\\ SciERC 13.0\\,pp);\n(3)~LP compression limits exploitation of that opportunity (Few-NERD within-instance $\\rho{\\approx}0.5$--$0.7$ vs.\\ SciERC $\\rho{\\approx}0.26$).\nWe did not find evidence that degeneracy alone predicts LP gain across datasets ($\\rho{=}0.052$, $n{=}23$, $p{=}0.81$; post-hoc power: 80\\% power requires $n{\\approx}85$ for $\\rho{=}0.3$; Figure~\\ref{fig:degeneracy_scatter}), though degeneracy co-varies with LP within fixed settings ($\\rho{=}{-}0.881$; Appendix~\\ref{app:per_type_lp}).\nThe cascade stages interact rather than combining into a predictive model ($R^2{<}0$); each is supported by controlled ablations (\\S\\ref{sec:fewnerd}, \\S\\ref{sec:discussion}).\n",
+      "numLines": 50,
+      "startLine": 1,
+      "totalLines": 50
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 58_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+OK, now I have a clearer picture. Let me look at Table 1 (tab:selection) - it reports p-values for LP (p=0.29), SJ (p=0.67), and FK (p=0.79) on SciERC. Tests #1, #2, #3 in the Holm table match these exactly.
+
+EM and VC are marked as "n/a†" because they are instance-level (one score per input), so they can't do proper selection comparison. These are NOT included in the Holm table as selection tests—correctly so.
+
+Now, the key finding: The LLaMA CoNLL N=16 results (line 265-266) DO report explicit p-values:
+
+
+- VC: p=0.003-0.027 across 3 seeds
+- LP: 2/3 seeds significant (implying p-values reported)
+
+These are selection tests with p-values that aren't enumerated in the Holm table. I'm also checking the DALS section (line 1900) which mentions "Few-NERD, $+0.30$~pp ($p{<}0.001$)" - this looks like a selection-type test, though I need to verify whether DALS actually qualifies as a selection method.
+
+Looking at the LLaMA-3B results, the SJ selection p-value of 0.175 matches test #7 in the Holm table, but I need to track down the p-values for LLaMA-3B LP selection. The cross_selection table shows LP performance for Few-NERD with LLaMA (N=8, LP=.788), and test #19 appears to reference this result with a p-value I should locate.
+
+Stepping back systematically, the reviewer's concern about 21 selection tests instead of 19 suggests 2 missing tests. The most likely candidates are LLaMA CoNLL N=16 VC selection and LP selection—both reported in the appendix with explicit p-values but seemingly absent from the Holm table. The p-values "p=0.003--0.027 across 3 seeds" for these tests are individual seed results that might warrant inclusion. I need to carefully check whether those two LLaMA CoNLL results with per-seed p-values should count as formal tests in the Holm enumeration, and also verify the table references—the aux file confirms tab:selection is Table 1, so I should trace through what "Table 3" actually refers to in the Holm table entries.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1fbe243d-d8f2-428e-ac17-69dd3bbbfe94",
+  "uuid": "fae19600-1b25-46ec-ba40-e47dc2f6a56d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JnC41cvw9gdQ3HYA1JUHaG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1656,
+      "cache_read_input_tokens": 63575,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1656
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 59_
+
+Let me read the LLaMA-3B table and check for the DALS section to see if there are additional selection tests with p-values.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1fbe243d-d8f2-428e-ac17-69dd3bbbfe94",
+  "uuid": "e43759c4-17d6-4a42-8f67-e18909e7395a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JnC41cvw9gdQ3HYA1JUHaG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1656,
+      "cache_read_input_tokens": 63575,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1656
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 60_
+
+<details open><summary>🔧 Tool call — Read · `toolu_013S876nKhYNoYHRRfbfABVN`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+  "offset": 1660,
+  "limit": 50
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1fbe243d-d8f2-428e-ac17-69dd3bbbfe94",
+  "uuid": "34e4e685-430b-45aa-a552-377dec67444e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JnC41cvw9gdQ3HYA1JUHaG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1656,
+      "cache_read_input_tokens": 63575,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1656
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 61 · 2026-05-21T12:03:05.443Z_
+
+<details><summary>↩ Tool result · `toolu_013S876nKhYNoYHRRfbfABVN`</summary>
+
+```text
+1660	
+1661	\section{LLaMA-3.2-3B Scale Ablation}\label{app:llama3b}
+1662	
+1663	To extend scale coverage below 4B, we fine-tune LLaMA-3.2-3B-Instruct on SciERC NER under identical training conditions (LoRA rank${=}32$, $\alpha{=}64$, 5 epochs) and evaluate quality estimation and selection (Table~\ref{tab:llama3b}).
+1664	
+1665	\begin{table}[t]
+1666	\centering
+1667	\small
+1668	\caption{LLaMA-3.2-3B SciERC NER quality estimation and selection ($N{=}8$, $T{=}1.0$, seed${=}42$). Greedy F1${=}0.627$, Oracle F1${=}0.763$, headroom${=}13.63$~pp.}
+1669	\label{tab:llama3b}
+1670	\begin{tabular}{l cc cc}
+1671	\toprule
+1672	Signal & $\rho$ & AUROC & Sel.\ F1 & $\Delta$ vs.\ greedy \\
+1673	\midrule
+1674	VC & \textbf{.460} & .743 & 0.611 & $-$1.54\,pp \\
+1675	SJ & .375 & .738 & \textbf{0.633} & $+$0.61\,pp \\
+1676	EM & .334 & \textbf{.776} & --- & --- \\
+1677	FK & .268 & .671 & 0.630 & $+$0.28\,pp \\
+1678	LP & .266 & .633 & 0.628 & $+$0.12\,pp \\
+1679	\midrule
+1680	Greedy & --- & --- & 0.627 & --- \\
+1681	Oracle & --- & --- & 0.763 & --- \\
+1682	\bottomrule
+1683	\end{tabular}
+1684	\end{table}
+1685	
+1686	The $\rho$ ranking at 3B (VC $>$ SJ $>$ EM $>$ FK $\approx$ LP) preserves the structural-over-LP ordering from 8B (Table~\ref{tab:quality_estimation}); ranking stability holds across two model families spanning 3B--8B.
+1687	AUROC rankings differ (EM $>$ VC $>$ SJ $>$ FK $>$ LP), consistent with the $\rho$--AUROC dissociation noted in the main text.
+1688	Despite 13.63~pp of oracle headroom, no signal achieves significant selection improvement (best: SJ, $+0.61$~pp, $p{=}0.175$); VC, the strongest QE signal, yields the worst selection ($-1.54$~pp), consistent with the correlation-selection gap observed at larger scales.
+1689	
+1690	\section{Few-NERD Full Results}\label{app:fewnerd}
+1691	
+1692	Table~\ref{tab:fewnerd_full} reports the complete Few-NERD INTRA coarse evaluation (Qwen3-8B, LoRA rank${=}32$, 3 epochs, $N{=}8$, $T{=}1.0$).
+1693	After gold-filtering (removing instances with no gold entities), the evaluation set contains $n{=}32{,}565$ instances across 8 coarse entity types; 11.9\% receive zero F1 under greedy decoding.
+1694	Instance degeneracy is 13.0\% (vs.\ 17.8\% on SciERC, 61.7\% on CoNLL).
+1695	
+1696	\begin{table}[t]
+1697	\centering
+1698	\small
+1699	\caption{Few-NERD INTRA coarse: complete quality estimation and selection results (Qwen3-8B, $N{=}8$, $T{=}1.0$, gold-filtered $n{=}32{,}565$). $\rho$: Spearman correlation with instance F1. Sample AUROC: per-sample LP discrimination. Sel.\ $\Delta$: selection F1 minus greedy (0.748). CI: bootstrap 95\% confidence interval.}
+1700	\label{tab:fewnerd_full}
+1701	\resizebox{\columnwidth}{!}{
+1702	\begin{tabular}{lcccc}
+1703	\toprule
+1704	Signal & $\rho$ & Sample AUROC & Sel.\ $\Delta$ & 95\% CI \\
+1705	\midrule
+1706	LP & .220 & .578 & $\mathbf{+1.39}$\,pp & [+1.18, +1.53] \\
+1707	VC & .386 & --- & $-$1.79\,pp & --- \\
+1708	FK & .313 & --- & $-$2.26\,pp & --- \\
+1709	SJ & .300 & --- & $-$2.14\,pp & --- \\
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1fbe243d-d8f2-428e-ac17-69dd3bbbfe94",
+  "uuid": "a282b984-03ce-4887-91e8-0885e765bfac",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+      "content": "\n\\section{LLaMA-3.2-3B Scale Ablation}\\label{app:llama3b}\n\nTo extend scale coverage below 4B, we fine-tune LLaMA-3.2-3B-Instruct on SciERC NER under identical training conditions (LoRA rank${=}32$, $\\alpha{=}64$, 5 epochs) and evaluate quality estimation and selection (Table~\\ref{tab:llama3b}).\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{LLaMA-3.2-3B SciERC NER quality estimation and selection ($N{=}8$, $T{=}1.0$, seed${=}42$). Greedy F1${=}0.627$, Oracle F1${=}0.763$, headroom${=}13.63$~pp.}\n\\label{tab:llama3b}\n\\begin{tabular}{l cc cc}\n\\toprule\nSignal & $\\rho$ & AUROC & Sel.\\ F1 & $\\Delta$ vs.\\ greedy \\\\\n\\midrule\nVC & \\textbf{.460} & .743 & 0.611 & $-$1.54\\,pp \\\\\nSJ & .375 & .738 & \\textbf{0.633} & $+$0.61\\,pp \\\\\nEM & .334 & \\textbf{.776} & --- & --- \\\\\nFK & .268 & .671 & 0.630 & $+$0.28\\,pp \\\\\nLP & .266 & .633 & 0.628 & $+$0.12\\,pp \\\\\n\\midrule\nGreedy & --- & --- & 0.627 & --- \\\\\nOracle & --- & --- & 0.763 & --- \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nThe $\\rho$ ranking at 3B (VC $>$ SJ $>$ EM $>$ FK $\\approx$ LP) preserves the structural-over-LP ordering from 8B (Table~\\ref{tab:quality_estimation}); ranking stability holds across two model families spanning 3B--8B.\nAUROC rankings differ (EM $>$ VC $>$ SJ $>$ FK $>$ LP), consistent with the $\\rho$--AUROC dissociation noted in the main text.\nDespite 13.63~pp of oracle headroom, no signal achieves significant selection improvement (best: SJ, $+0.61$~pp, $p{=}0.175$); VC, the strongest QE signal, yields the worst selection ($-1.54$~pp), consistent with the correlation-selection gap observed at larger scales.\n\n\\section{Few-NERD Full Results}\\label{app:fewnerd}\n\nTable~\\ref{tab:fewnerd_full} reports the complete Few-NERD INTRA coarse evaluation (Qwen3-8B, LoRA rank${=}32$, 3 epochs, $N{=}8$, $T{=}1.0$).\nAfter gold-filtering (removing instances with no gold entities), the evaluation set contains $n{=}32{,}565$ instances across 8 coarse entity types; 11.9\\% receive zero F1 under greedy decoding.\nInstance degeneracy is 13.0\\% (vs.\\ 17.8\\% on SciERC, 61.7\\% on CoNLL).\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Few-NERD INTRA coarse: complete quality estimation and selection results (Qwen3-8B, $N{=}8$, $T{=}1.0$, gold-filtered $n{=}32{,}565$). $\\rho$: Spearman correlation with instance F1. Sample AUROC: per-sample LP discrimination. Sel.\\ $\\Delta$: selection F1 minus greedy (0.748). CI: bootstrap 95\\% confidence interval.}\n\\label{tab:fewnerd_full}\n\\resizebox{\\columnwidth}{!}{\n\\begin{tabular}{lcccc}\n\\toprule\nSignal & $\\rho$ & Sample AUROC & Sel.\\ $\\Delta$ & 95\\% CI \\\\\n\\midrule\nLP & .220 & .578 & $\\mathbf{+1.39}$\\,pp & [+1.18, +1.53] \\\\\nVC & .386 & --- & $-$1.79\\,pp & --- \\\\\nFK & .313 & --- & $-$2.26\\,pp & --- \\\\\nSJ & .300 & --- & $-$2.14\\,pp & --- \\\\",
+      "numLines": 50,
+      "startLine": 1660,
+      "totalLines": 2283
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 62_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01CtzKrowxJgGT3VfN3iB1nE`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+  "offset": 1880,
+  "limit": 40
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1fbe243d-d8f2-428e-ac17-69dd3bbbfe94",
+  "uuid": "3b8514b5-4bc0-4cf2-9c85-3bb2017d7089",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JnC41cvw9gdQ3HYA1JUHaG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1656,
+      "cache_read_input_tokens": 63575,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1656
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 63 · 2026-05-21T12:03:05.942Z_
+
+<details><summary>↩ Tool result · `toolu_01CtzKrowxJgGT3VfN3iB1nE`</summary>
+
+```text
+1880	Instance degen.\ (\%) & 6.4 & 17.8 & 47.8 \\
+1881	LP $\Delta$ (pp) & $-$1.24 & $+$0.64 & $+$1.02 \\
+1882	Within-inst.\ $\rho$ (median) & 0.319 & 0.262 & 0.112 \\
+1883	Within-inst.\ $\rho$ (mean) & 0.273 & 0.179 & 0.066 \\
+1884	\% positive $\rho$ & 76.4 & 64.1 & 54.0 \\
+1885	\bottomrule
+1886	\end{tabular}
+1887	}
+1888	\end{table}
+1889	
+1890	\paragraph{Limitations.}
+1891	The Few-NERD epoch analysis covers 2 points (3 vs.\ 5 epochs); the SciERC curve provides a 3-point gradient showing monotonic degeneracy increase with simultaneous within-instance alignment degradation.
+1892	CoNLL epoch variation remains unverified; high-degeneracy datasets (CoNLL at 59--89\%) may exhibit a ceiling effect where additional training has limited marginal impact.
+1893	All Few-NERD results in the main text use the 3-epoch model (standard early stopping); the 5-epoch comparison is a controlled ablation.
+1894	All SciERC results use the 5-epoch model; the 3- and 10-epoch variants serve as controlled ablations.
+1895	
+1896	\subsection{Degeneracy-Aware LP Selection}\label{app:dals}
+1897	
+1898	The non-tied subset analysis (Table~\ref{tab:nontied_main}) identifies within-instance LP range (max minus min LP across $N$ samples) as a per-instance degeneracy proxy: instances with near-zero LP range carry no discriminative signal.
+1899	Degeneracy-aware LP selection (DALS) operationalizes this: when LP range exceeds $\tau{=}0.05$ (the threshold independently motivated by the non-tied analysis; Appendix~\ref{app:epsilon_robustness}), select the highest-LP sample; otherwise fall back to greedy.
+1900	On SciERC, DALS yields $+0.71{\pm}0.48$~pp (3-seed mean; individual seeds: $+0.19$ to $+1.14$~pp); on Few-NERD, $+0.30$~pp ($p{<}0.001$; gain remains positive across $\tau \in [0.01, 0.15]$); on CoNLL, where pure LP selection degrades F1 ($-0.85$~pp), DALS shows comparable degradation (Qwen: $-0.87$~pp; LLaMA: neutral).
+1901	DALS improves over pure LP selection when degeneracy is moderate, provides partial damage control when LP selection is harmful, and defaults to greedy when LP range signals no information.
+1902	While gains are modest and seed-sensitive, LP range serves as an operationally accessible degeneracy proxy, though the mixed cross-dataset results confirm that degeneracy gating alone cannot ensure positive selection outcomes.
+1903	
+1904	\paragraph{LOO $\tau$ sensitivity.}
+1905	Leave-one-out (LOO) cross-validation across datasets reveals that the optimal $\tau$ spans two orders of magnitude: $\tau^*{=}0.001$ on Few-NERD, $0.05$ on SciERC, and $0.10$ on CoNLL.
+1906	LOO regret (the gap between oracle and LOO-selected $\tau$) ranges from 0.51 to 1.21~pp.
+1907	The best single cross-dataset $\tau$ ($\tau{=}0.05$) matches the independently motivated non-tied threshold, but yields dataset-specific suboptimality: even with oracle $\tau$, CoNLL remains at $-0.31$~pp.
+1908	This sensitivity reinforces the diagnostic framing of DALS: per-dataset $\tau$ tuning is required for positive gains, and even optimally tuned DALS cannot overcome weak LP-quality alignment on high-degeneracy datasets.
+1909	
+1910	\subsection{Conditional Decomposition of LP Selection}\label{app:conditional_decomp}
+1911	
+1912	To test whether LP-quality alignment drives selection gains within datasets, we restrict LP selection to the favorable subset: non-degenerate instances whose within-instance LP range exceeds the dataset-specific median (SciERC: 0.040 nats, CoNLL: 0.062, Few-NERD: 0.067).
+1913	Table~\ref{tab:conditional_decomp} reports results across three datasets.
+1914	
+1915	\begin{table}[h]
+1916	\centering
+1917	\small
+1918	\caption{LP selection on the favorable subset (non-degenerate instances with LP range above the dataset-specific median) per dataset (Qwen3-8B, $N{=}8$, $T{=}1.0$). CI: bootstrap 95\% confidence interval.}
+1919	\label{tab:conditional_decomp}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1fbe243d-d8f2-428e-ac17-69dd3bbbfe94",
+  "uuid": "38a862cb-ca84-4c6a-81ea-4a44e484ebb4",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+      "content": "Instance degen.\\ (\\%) & 6.4 & 17.8 & 47.8 \\\\\nLP $\\Delta$ (pp) & $-$1.24 & $+$0.64 & $+$1.02 \\\\\nWithin-inst.\\ $\\rho$ (median) & 0.319 & 0.262 & 0.112 \\\\\nWithin-inst.\\ $\\rho$ (mean) & 0.273 & 0.179 & 0.066 \\\\\n\\% positive $\\rho$ & 76.4 & 64.1 & 54.0 \\\\\n\\bottomrule\n\\end{tabular}\n}\n\\end{table}\n\n\\paragraph{Limitations.}\nThe Few-NERD epoch analysis covers 2 points (3 vs.\\ 5 epochs); the SciERC curve provides a 3-point gradient showing monotonic degeneracy increase with simultaneous within-instance alignment degradation.\nCoNLL epoch variation remains unverified; high-degeneracy datasets (CoNLL at 59--89\\%) may exhibit a ceiling effect where additional training has limited marginal impact.\nAll Few-NERD results in the main text use the 3-epoch model (standard early stopping); the 5-epoch comparison is a controlled ablation.\nAll SciERC results use the 5-epoch model; the 3- and 10-epoch variants serve as controlled ablations.\n\n\\subsection{Degeneracy-Aware LP Selection}\\label{app:dals}\n\nThe non-tied subset analysis (Table~\\ref{tab:nontied_main}) identifies within-instance LP range (max minus min LP across $N$ samples) as a per-instance degeneracy proxy: instances with near-zero LP range carry no discriminative signal.\nDegeneracy-aware LP selection (DALS) operationalizes this: when LP range exceeds $\\tau{=}0.05$ (the threshold independently motivated by the non-tied analysis; Appendix~\\ref{app:epsilon_robustness}), select the highest-LP sample; otherwise fall back to greedy.\nOn SciERC, DALS yields $+0.71{\\pm}0.48$~pp (3-seed mean; individual seeds: $+0.19$ to $+1.14$~pp); on Few-NERD, $+0.30$~pp ($p{<}0.001$; gain remains positive across $\\tau \\in [0.01, 0.15]$); on CoNLL, where pure LP selection degrades F1 ($-0.85$~pp), DALS shows comparable degradation (Qwen: $-0.87$~pp; LLaMA: neutral).\nDALS improves over pure LP selection when degeneracy is moderate, provides partial damage control when LP selection is harmful, and defaults to greedy when LP range signals no information.\nWhile gains are modest and seed-sensitive, LP range serves as an operationally accessible degeneracy proxy, though the mixed cross-dataset results confirm that degeneracy gating alone cannot ensure positive selection outcomes.\n\n\\paragraph{LOO $\\tau$ sensitivity.}\nLeave-one-out (LOO) cross-validation across datasets reveals that the optimal $\\tau$ spans two orders of magnitude: $\\tau^*{=}0.001$ on Few-NERD, $0.05$ on SciERC, and $0.10$ on CoNLL.\nLOO regret (the gap between oracle and LOO-selected $\\tau$) ranges from 0.51 to 1.21~pp.\nThe best single cross-dataset $\\tau$ ($\\tau{=}0.05$) matches the independently motivated non-tied threshold, but yields dataset-specific suboptimality: even with oracle $\\tau$, CoNLL remains at $-0.31$~pp.\nThis sensitivity reinforces the diagnostic framing of DALS: per-dataset $\\tau$ tuning is required for positive gains, and even optimally tuned DALS cannot overcome weak LP-quality alignment on high-degeneracy datasets.\n\n\\subsection{Conditional Decomposition of LP Selection}\\label{app:conditional_decomp}\n\nTo test whether LP-quality alignment drives selection gains within datasets, we restrict LP selection to the favorable subset: non-degenerate instances whose within-instance LP range exceeds the dataset-specific median (SciERC: 0.040 nats, CoNLL: 0.062, Few-NERD: 0.067).\nTable~\\ref{tab:conditional_decomp} reports results across three datasets.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{LP selection on the favorable subset (non-degenerate instances with LP range above the dataset-specific median) per dataset (Qwen3-8B, $N{=}8$, $T{=}1.0$). CI: bootstrap 95\\% confidence interval.}\n\\label{tab:conditional_decomp}",
+      "numLines": 40,
+      "startLine": 1880,
+      "totalLines": 2283
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 64_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I see the DALS section. The DALS Few-NERD result has p<0.001, but this is not a "selection" test in the traditional sense — it's a modified selection strategy. It's not in the Holm table.
+
+Now let me also check if DALS tests should be in the Holm table. Looking at the appendix, DALS is described as an operational variant of LP selection. If it tests a hypothesis (DALS vs greedy), it should arguably be in the Holm enumeration. But it's not — it's treated as a diagnostic/ablation rather than a primary claim.
+ 
+Now I'm compiling my findings on whether the Holm table's selection family is missing any tests. The LLaMA CoNLL N=16 results report p-values as a range across individual seeds (p=0.003--0.027), which differs from how the table handles combined p-values like the Few-NERD LP selection (p<.001) or the Fisher combined p-values used for SciERC RE tests. This suggests the LLaMA results may not be aggregated the same way.
+
+If these per-seed results should have been combined into a single Fisher p-value and included in the Holm table, that would mean at least 2 additional tests are missing (VC and LP on LLaMA CoNLL N=16), which would change the count from k=19 to k=21. The fact that the paper reports these as "significant" but doesn't include them in the correction table does seem like an inconsistency worth examining.
+
+Now I need to figure out which table is actually Table 13 in the paper. Let me trace through the LaTeX file references to count the tables sequentially and identify where the Holm family table appears.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1fbe243d-d8f2-428e-ac17-69dd3bbbfe94",
+  "uuid": "8af372cb-3d0d-442b-88e1-6c1ff73a1b6e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KMJt5M3ZpnJMSESKeyFcQw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4354,
+      "cache_read_input_tokens": 65231,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4354
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 65_
+
+Let me check the main.tex input order and the aux file for table numbering.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1fbe243d-d8f2-428e-ac17-69dd3bbbfe94",
+  "uuid": "215a1b84-7f82-4a9e-92be-bf12722c6f3d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KMJt5M3ZpnJMSESKeyFcQw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4354,
+      "cache_read_input_tokens": 65231,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4354
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 66_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01YDynEkXfBmgCwzszxSbRKr`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/main.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1fbe243d-d8f2-428e-ac17-69dd3bbbfe94",
+  "uuid": "6f3c8896-5564-4428-b88a-c517868252a6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KMJt5M3ZpnJMSESKeyFcQw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4354,
+      "cache_read_input_tokens": 65231,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4354
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 67 · 2026-05-21T12:03:24.996Z_
+
+<details><summary>↩ Tool result · `toolu_01YDynEkXfBmgCwzszxSbRKr`</summary>
+
+```text
+1	\documentclass[11pt]{article}
+2	
+3	\usepackage[review]{acl}
+4	
+5	\usepackage{times}
+6	\usepackage{latexsym}
+7	\usepackage[T1]{fontenc}
+8	\usepackage[utf8]{inputenc}
+9	\usepackage{microtype}
+10	\usepackage{inconsolata}
+11	\usepackage{graphicx}
+12	\usepackage{booktabs}
+13	\usepackage{amsmath}
+14	\usepackage{amssymb}
+15	\usepackage{amsthm}
+16	\newtheorem{proposition}{Proposition}
+17	\newtheorem{theorem}{Theorem}
+18	\newtheorem{corollary}{Corollary}
+19	\newtheorem{definition}{Definition}
+20	\usepackage{multirow}
+21	\usepackage{xcolor}
+22	\usepackage{subcaption}
+23	\usepackage{alphalph}
+24	\usepackage{enumitem}
+25	
+26	\graphicspath{{figures/}}
+27	
+28	\title{The Capability Ceiling of Self-Consistency:\\ How Entity-Level Self-Verification Fails in Structured Generation}
+29	
+30	\author{Anonymous}
+31	
+32	\begin{document}
+33	\maketitle
+34	
+35	\input{sections/abstract}
+36	\input{sections/introduction}
+37	\input{sections/diagnostic}
+38	\input{sections/mechanistic}
+39	\input{sections/single_signal}
+40	\input{sections/adaptive}
+41	\input{sections/theory}
+42	\input{sections/experiments_main}
+43	\input{sections/background}
+44	\input{sections/discussion}
+45	\input{sections/conclusion}
+46	
+47	\section*{Limitations}
+48	\input{sections/limitations}
+49	
+50	\section*{Ethics Statement}
+51	All experiments use publicly available benchmarks (SciERC, CoNLL-2003, Few-NERD, WNUT-17), open-weight models (Qwen3-8B, Qwen3-14B, Qwen3-4B, LLaMA-3.1-8B), and the GPT-5.5 API.
+52	CoNLL-2003 is derived from the Reuters RCV1 corpus, which is available for research purposes under a NIST agreement; we use the standard research distribution.
+53	No new human data was collected or annotated for this study.
+54	Our findings on signal limitations could inform more reliable deployment of IE systems by guiding practitioners toward appropriate confidence signals for their use case.
+55	Code and data will be released upon acceptance at [anonymized URL].
+56	
+57	\section*{Responsible NLP Research Checklist}
+58	\input{sections/checklist}
+59	
+60	\bibliography{references}
+61	
+62	\appendix
+63	\renewcommand{\thesection}{\alphalph{\value{section}}}
+64	\input{sections/appendix}
+65	
+66	\end{document}
+67	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1fbe243d-d8f2-428e-ac17-69dd3bbbfe94",
+  "uuid": "c9af01b0-2533-4683-beee-2890d1856f1a",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/main.tex",
+      "content": "\\documentclass[11pt]{article}\n\n\\usepackage[review]{acl}\n\n\\usepackage{times}\n\\usepackage{latexsym}\n\\usepackage[T1]{fontenc}\n\\usepackage[utf8]{inputenc}\n\\usepackage{microtype}\n\\usepackage{inconsolata}\n\\usepackage{graphicx}\n\\usepackage{booktabs}\n\\usepackage{amsmath}\n\\usepackage{amssymb}\n\\usepackage{amsthm}\n\\newtheorem{proposition}{Proposition}\n\\newtheorem{theorem}{Theorem}\n\\newtheorem{corollary}{Corollary}\n\\newtheorem{definition}{Definition}\n\\usepackage{multirow}\n\\usepackage{xcolor}\n\\usepackage{subcaption}\n\\usepackage{alphalph}\n\\usepackage{enumitem}\n\n\\graphicspath{{figures/}}\n\n\\title{The Capability Ceiling of Self-Consistency:\\\\ How Entity-Level Self-Verification Fails in Structured Generation}\n\n\\author{Anonymous}\n\n\\begin{document}\n\\maketitle\n\n\\input{sections/abstract}\n\\input{sections/introduction}\n\\input{sections/diagnostic}\n\\input{sections/mechanistic}\n\\input{sections/single_signal}\n\\input{sections/adaptive}\n\\input{sections/theory}\n\\input{sections/experiments_main}\n\\input{sections/background}\n\\input{sections/discussion}\n\\input{sections/conclusion}\n\n\\section*{Limitations}\n\\input{sections/limitations}\n\n\\section*{Ethics Statement}\nAll experiments use publicly available benchmarks (SciERC, CoNLL-2003, Few-NERD, WNUT-17), open-weight models (Qwen3-8B, Qwen3-14B, Qwen3-4B, LLaMA-3.1-8B), and the GPT-5.5 API.\nCoNLL-2003 is derived from the Reuters RCV1 corpus, which is available for research purposes under a NIST agreement; we use the standard research distribution.\nNo new human data was collected or annotated for this study.\nOur findings on signal limitations could inform more reliable deployment of IE systems by guiding practitioners toward appropriate confidence signals for their use case.\nCode and data will be released upon acceptance at [anonymized URL].\n\n\\section*{Responsible NLP Research Checklist}\n\\input{sections/checklist}\n\n\\bibliography{references}\n\n\\appendix\n\\renewcommand{\\thesection}{\\alphalph{\\value{section}}}\n\\input{sections/appendix}\n\n\\end{document}\n",
+      "numLines": 67,
+      "startLine": 1,
+      "totalLines": 67
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 68_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01G2rbDwTaxJ9ZR4A3Ks9dMY`</summary>
+
+```json
+{
+  "pattern": "tab:holm_family",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/main.aux",
+  "output_mode": "content",
+  "-n": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1fbe243d-d8f2-428e-ac17-69dd3bbbfe94",
+  "uuid": "c5550c0b-d220-485b-9b97-cc239a3c6ba1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KMJt5M3ZpnJMSESKeyFcQw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4354,
+      "cache_read_input_tokens": 65231,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4354
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 69 · 2026-05-21T12:03:25.276Z_
+
+<details><summary>↩ Tool result · `toolu_01G2rbDwTaxJ9ZR4A3Ks9dMY`</summary>
+
+```text
+3664:\newlabel{tab:holm_family}{{13}{38}{Complete enumeration of $k{=}57$ statistical tests subject to Holm--Bonferroni correction. Raw $p$: uncorrected $p$-value as reported. $p_{\text {adj}}$: Holm--Bonferroni adjusted $p$-value. $^\dagger $Survives correction at $\alpha {=}0.05$}{table.caption.70}{}}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1fbe243d-d8f2-428e-ac17-69dd3bbbfe94",
+  "uuid": "9de98263-c22c-4fd7-9c8e-02681c6b7563",
+  "tool_use_result": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "3664:\\newlabel{tab:holm_family}{{13}{38}{Complete enumeration of $k{=}57$ statistical tests subject to Holm--Bonferroni correction. Raw $p$: uncorrected $p$-value as reported. $p_{\\text {adj}}$: Holm--Bonferroni adjusted $p$-value. $^\\dagger $Survives correction at $\\alpha {=}0.05$}{table.caption.70}{}}",
+    "numLines": 1
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 70_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Confirmed: `tab:holm_family` is Table 13 (from the aux file: `\newlabel{tab:holm_family}{{13}{38}...}`).
+
+So Table 13 IS the Holm-Bonferroni enumeration table, and its Selection family has exactly 19 rows. The reviewer says it might have 21 rows.
+
+Now I need to figure out: are there 2 tests that should be in the selection family but aren't?
+
+Potential missing tests:
+
+1. **LLaMA CoNLL N=16 VC selection** — explicitly reported as significant (p=0.003-0.027 across 3 seeds) in appendix line 266
+
+
+2. **LLaMA CoNLL N=16 LP selection** — 2 out of 3 seeds showed significance in appendix line 266
+
+I should also check whether DALS on Few-NERD qualifies as a selection test (it shows p<0.001 at line 1900, but it's presented as a separate strategy rather than a traditional selection variant), and verify the LLaMA-3B SciERC results to see if there's another candidate hiding in the data.
+
+The most suspicious gap is the LLaMA CoNLL N=16 VC and LP results—they report explicit p-values and claim significance but don't appear in the Holm correction table, which is likely what the reviewer flagged. I should also recount Table 13's selection family more carefully since the reviewer mentions 21 tests but I'm only finding 19 rows labeled as "Selection."
+
+Looking at tests 20-57, a few could plausibly belong in the Selection family: test #53 on RE LP selection reversal and tests #56-57 on SciERC and CoNLL LP favorable subsets are all selection-related analyses currently categorized as "Other," so moving them would bring the count to 20 or 21. they're testing whether LP selection outperforms greedy selection on specific subsets of instances. If I count #56 and #57 as selection tests, that brings the total to 21, which matches what the reviewer claimed. But I'm noticing test #53 also looks like a selection test, which would make it 22 — so either the reviewer only counted #56 and #57, or there's still some inconsistency in how these conditional selection tests are being classified.
+
+Now looking at the LLaMA CoNLL results on line 266, those report explicit p-values for different methods across seeds, but they're using per-seed ranges rather than Fisher combination, so they're definitely statistical tests that might need to be included in the multiple comparisons correction.
+
+The key insight is that tests #56 and #57 (LP selection on SciERC and CoNLL) are conditional selection tests that arguably belong in the Selection family rather than Other, which would push k to 21 instead of 19—matching what the reviewer might have counted. of test as #56/#57 (LP favorable subset)?
+
+Looking at the descriptions:
+- #18: "SciERC LP selection, non-tied subset (ε=0.05)" — instances with LP range ≥ 0.05
+- #56: "SciERC LP favorable subset (+2.47 pp)" — non-degenerate instances with LP range above dataset median
+- #57: "CoNLL LP favorable subset (-1.78 pp)" — same definition for CoNLL
+
+So #18 and #56 are slightly different: #18 uses ε=0.05 threshold, #56 uses the dataset-specific median. But both are conditional LP selection tests.
+
+The inconsistency is clear: #18 is in Selection, but #56 and #57 are in Other. A reviewer would reasonably argue they should all be in the same family.
+
+Now I'm working through the Holm-Bonferroni adjustment for the selection family. The claim is that Few-NERD LP selection has p_adj = 0.019 with k=19. Since test #6 has a raw p-value below 0.001 and would be the smallest in the family, multiplying by 19 gives approximately 0.019. If I increase k to 21, that multiplier grows larger, pushing the adjusted p-value higher. _adj ≈ 0.001 × 21 = 0.021
+
+This is still < 0.05, so it would still survive Holm-Bonferroni correction within the selection family.
+
+But wait, the abstract says "Holm-adjusted p=0.019". If k=21, the value would be approximately 0.021. So the numerical claim "p=0.019" would be wrong.
+
+Hmm, but we need the exact p-values. Let me think about this more carefully.
+
+Now I'm looking at the complete list of raw p-values from the selection family, ordered from smallest to largest. The first few tests show highly significant results (p<.001 for Few-NERD comparisons, p=0.004 for SciERC), but most of the remaining tests have much larger p-values ranging from 0.058 up to 1.0. With 21 tests total in this family, I need to apply the Holm correction step-by-step to see which ones actually survive the multiple comparison adjustment. I'm recalculating the adjusted p-values with the two new tests included, which shifts the sorted order since test #57 has p<0.001. With k=21 tests total, the first adjusted p-value would be around 0.021 if the smallest raw p-value remains 0.001, but I need to verify the exact ranking of the tests with p<0.001 to determine the precise adjustment. Now I'm working through what happens to test #6's adjusted p-value if we expand the family from k=19 to k=21 by adding tests from "Other." If test #57 has a p-value around 0.001 or smaller, it would rank higher than test #6, shifting test #6's position in the ranking and changing its multiplier under Holm correction. I'm noticing that multiple tests share the same adjusted p-value of 0.055 in the global table—tests #6, #19, #22, #29, #33, #36, #37, and #57 all hit this threshold, which suggests they're constrained by the same bottleneck in the Holm procedure. Rather than untangle this global ranking further, I should shift focus to what's happening within the selection family where k=19.
+
+For that family, two tests fall below 0.001, and if the first test has p=0.001 exactly, then multiplying by 19 gives the adjusted p-value of 0.019 that the abstract reports. But when I expand to k=21 by adding tests #56 and #57, I now have three tests below 0.001, and the adjustment factor changes—so if that same first test still has p=0.001, the new adjusted value would be 0.001 × 21.
+
+The abstract's claim of p=0.019 with k=19 appears correct under this scenario, but adding those two tests would shift both the family size and the adjusted p-value to 0.021. The real issue is whether tests #56 and #57 should even be counted in the selection family at all, since they're conditional decompositions rather than independent experiments—and test #18, which is already included, has the same status, creating an inconsistency in how conditional analyses are being treated.
+
+Let me reconsider the conditional decomposition section to clarify where the boundary should be drawn.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1fbe243d-d8f2-428e-ac17-69dd3bbbfe94",
+  "uuid": "32755e74-27e7-4fb2-9edf-ae21532aa7d7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PsLKcVjnDvGMEWYe74EZuG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2113,
+      "cache_read_input_tokens": 69585,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2113
+      },
+      "output_tokens": 47,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 71_
+
+Let me read the conditional decomposition section and verify the exact p-values for tests #56 and #57.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1fbe243d-d8f2-428e-ac17-69dd3bbbfe94",
+  "uuid": "08c5a1e3-97f1-4bc9-a2f0-6064306abbd5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PsLKcVjnDvGMEWYe74EZuG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2113,
+      "cache_read_input_tokens": 69585,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2113
+      },
+      "output_tokens": 47,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 72_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01FYf5zySXFYHPickvmZWLgN`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+  "offset": 1910,
+  "limit": 50
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1fbe243d-d8f2-428e-ac17-69dd3bbbfe94",
+  "uuid": "b591a52a-355c-4c52-aeab-a46e1fff31c4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PsLKcVjnDvGMEWYe74EZuG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2113,
+      "cache_read_input_tokens": 69585,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2113
+      },
+      "output_tokens": 47,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 73 · 2026-05-21T12:04:48.546Z_
+
+<details><summary>↩ Tool result · `toolu_01FYf5zySXFYHPickvmZWLgN`</summary>
+
+```text
+1910	\subsection{Conditional Decomposition of LP Selection}\label{app:conditional_decomp}
+1911	
+1912	To test whether LP-quality alignment drives selection gains within datasets, we restrict LP selection to the favorable subset: non-degenerate instances whose within-instance LP range exceeds the dataset-specific median (SciERC: 0.040 nats, CoNLL: 0.062, Few-NERD: 0.067).
+1913	Table~\ref{tab:conditional_decomp} reports results across three datasets.
+1914	
+1915	\begin{table}[h]
+1916	\centering
+1917	\small
+1918	\caption{LP selection on the favorable subset (non-degenerate instances with LP range above the dataset-specific median) per dataset (Qwen3-8B, $N{=}8$, $T{=}1.0$). CI: bootstrap 95\% confidence interval.}
+1919	\label{tab:conditional_decomp}
+1920	\resizebox{\columnwidth}{!}{
+1921	\begin{tabular}{lccc}
+1922	\toprule
+1923	Dataset & LP $\Delta$ (pp) & 95\% CI & Interpretation \\
+1924	\midrule
+1925	SciERC & $+$2.47 & [$+$0.30, $+$4.70] & significant positive \\
+1926	Few-NERD & $+$0.63 & [$-$0.02, $+$1.30] & marginal positive \\
+1927	CoNLL & $-$1.78 & [$-$2.83, $-$0.76] & significant negative \\
+1928	\bottomrule
+1929	\end{tabular}
+1930	}
+1931	\end{table}
+1932	
+1933	On SciERC, restricting to the favorable subset recovers a significant LP gain, consistent with LP-quality alignment driving selection within the non-degenerate pool.
+1934	On Few-NERD, the trend is directionally consistent but the confidence interval crosses zero; the full-dataset result ($+1.39$~pp, $p{<}0.001$) reflects the larger sample size rather than a stronger per-instance effect.
+1935	CoNLL remains negative even on the favorable subset, consistent with the ceiling-regime interpretation: at $>$90\% greedy F1, residual errors are idiosyncratic and LP cannot rank corrections.
+1936	
+1937	\subsection{Power Analysis for Cross-Dataset Degeneracy--LP Correlation}\label{app:power_analysis}
+1938	
+1939	Table~\ref{tab:power_analysis} reports post-hoc power for the $n{=}23$ cross-dataset correlation between degeneracy and LP selection gain ($\rho{=}0.052$, $p{=}0.81$; Figure~\ref{fig:degeneracy_scatter}).
+1940	
+1941	\begin{table}[h]
+1942	\centering
+1943	\small
+1944	\caption{Post-hoc power analysis ($n{=}23$, two-tailed, $\alpha{=}0.05$). At this sample size, only large correlations ($\rho{\geq}0.5$) are detectable with adequate power.}
+1945	\label{tab:power_analysis}
+1946	\begin{tabular}{lc}
+1947	\toprule
+1948	True $\rho$ & Power at $n{=}23$ \\
+1949	\midrule
+1950	0.1 & 0.07 \\
+1951	0.2 & 0.13 \\
+1952	0.3 & 0.25 \\
+1953	0.4 & 0.44 \\
+1954	0.5 & 0.65 \\
+1955	0.6 & 0.84 \\
+1956	\bottomrule
+1957	\end{tabular}
+1958	\end{table}
+1959	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1fbe243d-d8f2-428e-ac17-69dd3bbbfe94",
+  "uuid": "ea045287-da37-43b0-994d-7da133441f40",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+      "content": "\\subsection{Conditional Decomposition of LP Selection}\\label{app:conditional_decomp}\n\nTo test whether LP-quality alignment drives selection gains within datasets, we restrict LP selection to the favorable subset: non-degenerate instances whose within-instance LP range exceeds the dataset-specific median (SciERC: 0.040 nats, CoNLL: 0.062, Few-NERD: 0.067).\nTable~\\ref{tab:conditional_decomp} reports results across three datasets.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{LP selection on the favorable subset (non-degenerate instances with LP range above the dataset-specific median) per dataset (Qwen3-8B, $N{=}8$, $T{=}1.0$). CI: bootstrap 95\\% confidence interval.}\n\\label{tab:conditional_decomp}\n\\resizebox{\\columnwidth}{!}{\n\\begin{tabular}{lccc}\n\\toprule\nDataset & LP $\\Delta$ (pp) & 95\\% CI & Interpretation \\\\\n\\midrule\nSciERC & $+$2.47 & [$+$0.30, $+$4.70] & significant positive \\\\\nFew-NERD & $+$0.63 & [$-$0.02, $+$1.30] & marginal positive \\\\\nCoNLL & $-$1.78 & [$-$2.83, $-$0.76] & significant negative \\\\\n\\bottomrule\n\\end{tabular}\n}\n\\end{table}\n\nOn SciERC, restricting to the favorable subset recovers a significant LP gain, consistent with LP-quality alignment driving selection within the non-degenerate pool.\nOn Few-NERD, the trend is directionally consistent but the confidence interval crosses zero; the full-dataset result ($+1.39$~pp, $p{<}0.001$) reflects the larger sample size rather than a stronger per-instance effect.\nCoNLL remains negative even on the favorable subset, consistent with the ceiling-regime interpretation: at $>$90\\% greedy F1, residual errors are idiosyncratic and LP cannot rank corrections.\n\n\\subsection{Power Analysis for Cross-Dataset Degeneracy--LP Correlation}\\label{app:power_analysis}\n\nTable~\\ref{tab:power_analysis} reports post-hoc power for the $n{=}23$ cross-dataset correlation between degeneracy and LP selection gain ($\\rho{=}0.052$, $p{=}0.81$; Figure~\\ref{fig:degeneracy_scatter}).\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Post-hoc power analysis ($n{=}23$, two-tailed, $\\alpha{=}0.05$). At this sample size, only large correlations ($\\rho{\\geq}0.5$) are detectable with adequate power.}\n\\label{tab:power_analysis}\n\\begin{tabular}{lc}\n\\toprule\nTrue $\\rho$ & Power at $n{=}23$ \\\\\n\\midrule\n0.1 & 0.07 \\\\\n0.2 & 0.13 \\\\\n0.3 & 0.25 \\\\\n0.4 & 0.44 \\\\\n0.5 & 0.65 \\\\\n0.6 & 0.84 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n",
+      "numLines": 50,
+      "startLine": 1910,
+      "totalLines": 2283
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 74_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I notice that the conditional decomposition table (tab:conditional_decomp) does NOT report explicit p-values — it reports CIs and interpretations like "significant positive" and "significant negative". But the Holm table tests #56 and #57 have:
+- #56: SciERC LP favorable subset (+2.47 pp), p=0.015
+- #57: CoNLL LP favorable subset (-1.78 pp), p<.001
+
+These p-values are likely derived from the CIs (if CI doesn't include 0, it's significant) or from separate bootstrap tests. But the p-values are listed in the Holm table under "Other", not "Selection".
+
+
+So tests #56 and #57 are in the Holm table under "Other", but the real question is whether they belong in the "Selection" family instead. This matters because the family-wise correction depends on k — the paper reports "Holm-adjusted p=0.019, selection family k=19", but if I move these two tests to Selection, k becomes 21 and the adjusted p-values change. I should also check whether there are any other selection tests in the paper that aren't in the Holm table at all.
+
+Looking through the results, I'm finding additional tests with reported p-values that aren't in the table — the DALS Few-NERD result and the LLaMA CoNLL N=16 results. So there are actually two separate issues: tests #56 and #57 being misclassified within the table, and other selection tests that aren't included in the Holm table at all. The reviewer's comment about Table 13 having 21 rows of selection tests points directly to the first issue — they're seeing that #56 and #57 should be reclassified as Selection.
+
+But wait, I need to think about this differently. Maybe the reviewer is counting all selection-type tests across the entire paper, not just how they're classified in Table 13. If that's the case, then tests like #53 (the RE LP selection reversal test) might also qualify as selection tests. Adding #53, #56, and #57 to the current 19 would give 22, which overshoots 21. So perhaps it's just #56 and #57 that need reclassification, or maybe there's a different test I'm missing. The real problem is that #56 and #57 should probably be grouped with Selection to get k=21, which matches the reviewer's count. Let me verify by tallying up the complete Holm table: Selection has 19 tests, Construction has 10, Calibration has 3, Signal Δρ has 9, Correlation has 6, FS error has 4, and Other has 6, which adds up to exactly 57 total tests.
+
+Since DALS isn't even in the Holm table and the reviewer specifically mentioned the Selection family should have 21 tests, I'm confident that moving #56 and #57 from Other into Selection is the right interpretation. Now I need to recalculate the Holm-Bonferroni corrections for all 21 Selection tests with their raw p-values. Continuing through the remaining comparisons, the p-values keep climbing as we move down the list—most of these later entries are well above the significance threshold, with several approaching near-certainty (0.973, 0.985, and the final entry appears to be cut off).
+
+Now I'm applying the Holm-Bonferroni correction across all 21 comparisons, sorting the p-values from smallest to largest to determine which ones remain significant after adjusting for multiple comparisons. So with k=21, the adjusted p-value for Few-NERD LP would fall somewhere between 0.019 and 0.021 depending on its rank among the tests, which means it stays significant below 0.05 even though the exact reported value would shift slightly. Now I'm testing different scenarios for how the p-values might rank depending on whether CoNLL LP favorable is actually 0.0001 or closer to 0.001, which would shift the adjusted p-values and change the final ordering of these three tests.
+
+I'm also wondering if the reviewer might have identified additional selection tests beyond what's shown in Table 13, like the LLaMA CoNLL results with N=16, which could explain why they arrived at 19 tests in the Selection family.
+
+If I add the two tests from the Other category (#56 and #57) that should arguably be classified as Selection tests, that brings the total to 21 — exactly matching the reviewer's count. Since those LLaMA CoNLL tests don't appear in Table 13, the reviewer wouldn't have counted them there anyway.
+
+There's also test #53 about the RE LP selection reversal, but that's more of a specific ablation about decoding format rather than a straightforward selection test, so it's less likely to be what the reviewer included.
+
+The most plausible explanation is that tests #56 and #57 account for the difference, giving k=21. Now I'll put together the artifact with my findings.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1fbe243d-d8f2-428e-ac17-69dd3bbbfe94",
+  "uuid": "70b877a3-95f9-4449-bac7-73af19d62851",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014T1NwFKaBkzUUweX2rdYPK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5522,
+      "cache_read_input_tokens": 71698,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5522
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 75_
+
+Now I have a complete picture. Let me verify: the Holm table's "Other" family contains tests that are arguably selection tests.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1fbe243d-d8f2-428e-ac17-69dd3bbbfe94",
+  "uuid": "54cb966f-1e6a-43ed-8acd-038a8de02478",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014T1NwFKaBkzUUweX2rdYPK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5522,
+      "cache_read_input_tokens": 71698,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5522
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 76_
+
+<details open><summary>🔧 Tool call — Read · `toolu_0116qcvHtV7VYWzBMiM23H86`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+  "offset": 392,
+  "limit": 12
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1fbe243d-d8f2-428e-ac17-69dd3bbbfe94",
+  "uuid": "65ddffb6-f139-463e-90a8-339fb353c137",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014T1NwFKaBkzUUweX2rdYPK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5522,
+      "cache_read_input_tokens": 71698,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5522
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 77 · 2026-05-21T12:05:46.198Z_
+
+<details><summary>↩ Tool result · `toolu_0116qcvHtV7VYWzBMiM23H86`</summary>
+
+```text
+392	\multicolumn{6}{l}{\textit{Other}} \\
+393	52 & & LP distribution seed 42 vs 456 (Mann--Whitney) & $0.550$ & $1.0$ &  \\
+394	53 & & RE LP selection reversal (free-form, 4-seed) & ${<}.001$ & $0.006$ & $\dagger$ \\
+395	54 & & WNUT-17 conditional $\rho$ VC ($p$-value) & $0.487$ & $1.0$ &  \\
+396	55 & & WNUT-17 conditional $\rho$ FK ($p$-value) & $0.002$ & $0.094$ &  \\
+397	56 & & SciERC LP favorable subset ($+$2.47 pp) & $0.015$ & $0.585$ &  \\
+398	57 & & CoNLL LP favorable subset ($-$1.78 pp) & ${<}.001$ & $0.055$ &  \\
+399	\bottomrule
+400	\end{tabular}
+401	\end{table*}
+402	
+403	\section{Diversity and Selection Analysis}\label{app:diversity}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1fbe243d-d8f2-428e-ac17-69dd3bbbfe94",
+  "uuid": "26418cdf-27e5-46f4-a7f7-c1e95b61c242",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+      "content": "\\multicolumn{6}{l}{\\textit{Other}} \\\\\n52 & & LP distribution seed 42 vs 456 (Mann--Whitney) & $0.550$ & $1.0$ &  \\\\\n53 & & RE LP selection reversal (free-form, 4-seed) & ${<}.001$ & $0.006$ & $\\dagger$ \\\\\n54 & & WNUT-17 conditional $\\rho$ VC ($p$-value) & $0.487$ & $1.0$ &  \\\\\n55 & & WNUT-17 conditional $\\rho$ FK ($p$-value) & $0.002$ & $0.094$ &  \\\\\n56 & & SciERC LP favorable subset ($+$2.47 pp) & $0.015$ & $0.585$ &  \\\\\n57 & & CoNLL LP favorable subset ($-$1.78 pp) & ${<}.001$ & $0.055$ &  \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table*}\n\n\\section{Diversity and Selection Analysis}\\label{app:diversity}",
+      "numLines": 12,
+      "startLine": 392,
+      "totalLines": 2283
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 78_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have all the data I need. Let me compile the findings.
+
+**Summary:**
+
+1. Table 13 (`tab:holm_family`) Selection family has exactly 19 rows (tests #1-19).
+2. The abstract says "selection family k=19" — this is internally consistent with the table.
+3. However, tests #56 and #57 in the "Other" family are **conditional LP selection tests**:
+   - #56: SciERC LP favorable subset (+2.47 pp), p=0.015
+   - #57: CoNLL LP favorable subset (-1.78 pp), p<.001
+4. Test #18 (SciERC LP selection, non-tied subset, ε=0.05) is also a conditional LP selection test and is in the Selection family.
+5. There's an inconsistency: #18 gets classified as Selection, but #56 and #57 are placed in Other despite being conditional selection tests too.
+6. If #56 and #57 belong in Selection, k would become 21 instead of 19.
+
+There may be a third test to consider as well: #53, which involves RE LP selection reversal.
+
+The reviewer's mention of 21 aligns with adding those two tests. Now I'm recalculating the Holm-Bonferroni correction with k=21, sorting all the raw p-values from the selection family tests and computing their adjusted p-values to see which ones remain significant. Now I'm applying the Holm-Bonferroni correction to adjust these p-values for multiple comparisons, calculating the adjusted p-value for each rank by taking the maximum of the cumulative adjustments across all previous ranks. I'm realizing the distinction between the global correction across all k=57 tests versus the family-wise correction for just the k=19 tests in this family—the Holm table shows p_adj = 0.055 for both tests under global correction, but the abstract reports p_adj = 0.019 using the smaller family size, which would explain the discrepancy.
+
+Now I'm working through the Holm adjustment calculations assuming p ≈ 0.001 for both Few-NERD LP tests, and verifying that when I apply the family-wise correction with k=19, the first-ranked test gets adjusted to 0.019, which matches what the abstract claims. I'm clarifying the distinction between family-wise and global adjusted p-values—the family adjustments under k=19 give 0.068 for test #18, while the global k=57 adjustment yields 0.180, and the abstract reports the family-wise values. Now I'm moving to the k=21 case and sorting the tests by their raw p-values, starting with CoNLL LP favorable at p < 0.001 and working down through the Few-NERD and SciERC comparisons.
+
+Applying Holm's sequential correction for k=21, I'm multiplying each ranked p-value by its remaining test count and taking the maximum with the previous adjusted value to ensure monotonicity—this gives me adjusted p-values ranging from 0.0105 for the top test up to 0.928 for the sixth-ranked test.
+
+Now I'm checking which results remain significant under this stricter correction: CoNLL LP favorable crosses the threshold at 0.011, while Few-NERD LP results for both Qwen and LLaMA stay significant at 0.020, but the SciERC tests all fall above 0.05. The key takeaway is that Few-NERD LP maintains its significance even after this adjustment, confirming the robustness of that finding. value changes from 0.019 to 0.020 (or ~0.021 depending on exact raw p).
+
+If the raw p for #57 (CoNLL LP favorable) is also 0.001:
+Rank 1: 0.001 × 21 = 0.021
+Rank 2: max(0.021, 0.001 × 20) = 0.021
+Rank 3: max(0.021, 0.001 × 19) = 0.021
+
+Then Few-NERD LP gets p_adj = 0.021.
+
+In all scenarios, the adjusted p is approximately 0.020-0.021. The abstract currently says 0.019.
+
+Now, crucially, does ANY previously significant result become non-significant, or vice versa?
+
+Under k=19 family:
+- Tests #6 and #19 (Few-NERD LP): p_adj = 0.019 → significant ✓
+
+Under k=21 family:
+- Tests #6 and #19: p_adj ≈ 0.020-0.021 → still significant ✓
+- Test #57 (CoNLL LP favorable): p_adj ≈ 0.011 → significant (new to this family)
+
+So the key takeaway is that moving tests #56 and #57 to the Selection family doesn't flip any significance conclusions—the adjusted p-values shift slightly from 0.019 to around 0.021, but everything that was significant remains significant. I should also double-check what happens to the Other family when those tests are removed, since it currently has k=6 with #53 and #55 both surviving. Now I'm recalculating the Holm-Bonferroni correction for the Other family with k=4 after moving those two tests to Selection, and the adjusted p-values shift slightly but don't change which results remain significant. Let me verify whether the experiments_main.tex footnote specifies k=19 for the selection family. Test #53 seems less like a pure selection test since it's examining how decoding format affects selection rather than testing selection directly, so the reviewer probably wouldn't count it. Tests #56 and #57 are clearer candidates—they directly compare LP selection against greedy on specific subsets. That's likely where the reviewer's count of 21 comes from. Now I'll generate the artifact using the available tools.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1fbe243d-d8f2-428e-ac17-69dd3bbbfe94",
+  "uuid": "0cf45d71-1266-4a8c-a811-d2f86db5f129",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017hCRh7RPY9i7cffbXZe3tP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3791,
+      "cache_read_input_tokens": 77220,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3791
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 79_
+
+I now have a complete analysis. Let me write up the artifact.
+
+**Key finding:** Table 13 (`tab:holm_family`) Selection family has exactly 19 rows (tests #1-19). However, tests #56 ("SciERC LP favorable subset") and #57 ("CoNLL LP favorable subset") in the "Other" family are conditional LP **selection** tests and arguably belong in the Selection family. This is inconsistent because test #18 ("SciERC LP selection, non-tied subset") — also a conditional selection test — IS in the Selection family. Reclassifying #56 + #57 gives k=21, matching the reviewer's count.
+
+Let me now compute the recalculated Holm-Bonferroni p-values and write the artifact.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1fbe243d-d8f2-428e-ac17-69dd3bbbfe94",
+  "uuid": "b81ca0a3-31d6-441b-8c71-779d1d1c33c0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017hCRh7RPY9i7cffbXZe3tP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3791,
+      "cache_read_input_tokens": 77220,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3791
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 80_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01QPkoSDy1cyyRcu4NBcP27b`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__register_artifact",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1fbe243d-d8f2-428e-ac17-69dd3bbbfe94",
+  "uuid": "1099cbc1-8a2e-41dc-81c3-3614bfee6574",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017hCRh7RPY9i7cffbXZe3tP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3791,
+      "cache_read_input_tokens": 77220,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3791
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 81 · 2026-05-21T12:06:46.859Z_
+
+<details><summary>↩ Tool result · `toolu_01QPkoSDy1cyyRcu4NBcP27b`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__save_project_file"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__register_artifact"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1fbe243d-d8f2-428e-ac17-69dd3bbbfe94",
+  "uuid": "4f6786d5-cc02-4176-b6ac-d4bd88711747",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__save_project_file",
+      "mcp__agent-ml-research__register_artifact"
+    ],
+    "query": "select:mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__register_artifact",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 82_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me write the artifact content and register it.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1fbe243d-d8f2-428e-ac17-69dd3bbbfe94",
+  "uuid": "8bf4d987-4278-4c7f-ba83-8eccbfb7ab97",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014LHGFXtvDeD6aGmSGAhx1S",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 5201,
+      "cache_read_input_tokens": 81011,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5201
+      },
+      "output_tokens": 33,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 83_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact · `toolu_01BjfNFuwwWx2mYnup89G9rP`</summary>
+
+```json
+{
+  "name": "k_value_verification",
+  "type": "report",
+  "description": "Holm-Bonferroni k value verification: selection family k=19 vs reviewer claim of k=21",
+  "project": "struct_self_consist_ie",
+  "content_filename": "k_value_verification.md",
+  "tags": [
+    "review",
+    "statistics",
+    "holm-bonferroni",
+    "P0"
+  ],
+  "content": "# Holm-Bonferroni k Value Verification\n\n## 1. Table 13 Selection Family — Complete Row Enumeration\n\nTable 13 (`\\label{tab:holm_family}`, appendix.tex line 324) lists **19 tests** under the *Selection* family:\n\n| # | Test Description | Raw p |\n|---|-----------------|-------|\n| 1 | SciERC NER LP selection (N=8, Qwen, Table 3) | 0.290 |\n| 2 | SciERC NER SJ selection (N=8, Qwen, Table 3) | 0.670 |\n| 3 | SciERC NER FK selection (N=8, Qwen, Table 3) | 0.790 |\n| 4 | WNUT-17 LP selection (N=8, Qwen) | 0.720 |\n| 5 | CoNLL LP selection (N=8, Qwen) | 1.0 |\n| 6 | Few-NERD LP selection (N=8, Qwen, 3-seed) | <.001 |\n| 7 | SciERC NER SJ selection (N=8, LLaMA-3B) | 0.175 |\n| 8 | SciERC NER LP selection (N=32, Qwen) | 0.091 |\n| 9 | SciERC NER FK selection (N=32, Qwen) | 0.101 |\n| 10 | SciERC NER SJ selection (N=32, Qwen) | 0.244 |\n| 11 | SciERC NER EM selection (N=32, Qwen) | 0.355 |\n| 12 | SciERC NER VC selection (N=32, Qwen) | 1.0 |\n| 13 | SciERC RE LP selection (N=16, 4B, Fisher) | 0.058 |\n| 14 | SciERC RE VC selection (N=16, 4B, Fisher) | 0.973 |\n| 15 | SciERC RE FK selection (N=16, 4B, Fisher) | 0.985 |\n| 16 | SciERC RE SJ selection (N=16, 4B, Fisher) | 0.993 |\n| 17 | SciERC RE EM selection (N=16, 4B, Fisher) | 0.999 |\n| 18 | SciERC LP selection, non-tied subset (ε=0.05) | 0.004 |\n| 19 | Few-NERD LP selection (N=8, LLaMA, 3-seed) | <.001 |\n\nCount: **19 rows exactly.** The abstract claim \"selection family k=19\" matches the table as written.\n\n## 2. Source of Discrepancy: 2 Tests Misclassified in \"Other\"\n\nTests #56 and #57, currently in the **Other** family, are **conditional LP selection** tests:\n\n| # | Family (current) | Test Description | Raw p |\n|---|-----------------|-----------------|-------|\n| 56 | Other | SciERC LP favorable subset (+2.47 pp) | 0.015 |\n| 57 | Other | CoNLL LP favorable subset (−1.78 pp) | <.001 |\n\nThese test \"does LP selection beat greedy on a specific subset?\" — the same type of test as **#18** (SciERC LP selection, non-tied subset, ε=0.05), which IS in the Selection family.\n\n**The inconsistency:** #18 (conditional LP selection → Selection) vs #56, #57 (conditional LP selection → Other). A reviewer examining Table 13 would reasonably count all three as selection tests: **19 + 2 = 21**.\n\nSource: `\\subsection{Conditional Decomposition of LP Selection}` (appendix.tex line 1910), Table `tab:conditional_decomp` (line 1919).\n\n## 3. All Locations Citing k=19\n\n| File | Line | Context |\n|------|------|---------|\n| `sections/abstract.tex` | 9 | \"Holm-adjusted $p{=}0.019$, selection family $k{=}19$\" |\n| `sections/single_signal.tex` | 41 | \"Holm $p_{\\text{adj}}{=}0.019$, selection family $k{=}19$\" |\n| `sections/introduction.tex` | 21 | \"Holm $p_{\\text{adj}}{=}0.019$, selection family $k{=}19$\" |\n| `sections/experiments_main.tex` | 119 | footnote: \"selection $k{=}19$, construction $k{=}10$, signal $k{=}9$\" |\n\n## 4. Recalculated Holm-Bonferroni with k=21\n\n### Sorted raw p-values (21 tests)\n\n| Rank | Test | Raw p |\n|------|------|-------|\n| 1 | #57 CoNLL LP favorable subset | <.001 |\n| 2 | #6 Few-NERD LP (Qwen, 3-seed) | <.001 |\n| 3 | #19 Few-NERD LP (LLaMA, 3-seed) | <.001 |\n| 4 | #18 SciERC LP non-tied subset | 0.004 |\n| 5 | #56 SciERC LP favorable subset | 0.015 |\n| 6 | #13 SciERC RE LP (N=16, 4B) | 0.058 |\n| 7 | #8 SciERC NER LP (N=32) | 0.091 |\n| 8–21 | (remaining 14 tests) | 0.101–1.0 |\n\n### Holm-Bonferroni adjusted p-values (k=21)\n\nFormula: p_adj(i) = max_{j=1..i} [ p(j) × (k − j + 1) ]\n\nAssuming p_raw ≈ 0.001 for all three \"<.001\" tests:\n\n| Rank | Test | k=19 p_adj | k=21 p_adj | Significant? |\n|------|------|-----------|-----------|-------------|\n| 1 | CoNLL LP favorable | — (was in Other) | 0.001 × 21 = **0.021** | ✓ (α=0.05) |\n| 2 | Few-NERD LP Qwen | **0.019** | max(0.021, 0.001 × 20) = **0.021** | ✓ |\n| 3 | Few-NERD LP LLaMA | **0.019** | max(0.021, 0.001 × 19) = **0.021** | ✓ |\n| 4 | SciERC LP non-tied | 0.068 | max(0.021, 0.004 × 18) = **0.072** | ✗ |\n| 5 | SciERC LP favorable | — (was in Other) | max(0.072, 0.015 × 17) = **0.255** | ✗ |\n| 6+ | All remaining | ≥ 0.928 | ≥ 0.928 | ✗ |\n\n### Key Result\n\n**No previously significant result becomes non-significant.** The Few-NERD LP selection claim (the paper's main positive selection result) remains significant:\n- Old: p_adj = 0.019 (k=19)\n- New: p_adj ≈ 0.021 (k=21)\n\nThe change is small (+0.002) and stays well under α=0.05.\n\nIf the exact raw p for the three \"<.001\" tests differ (e.g., CoNLL favorable has p=0.0005), the adjustment is even smaller (p_adj for Few-NERD LP ≈ 0.020).\n\n## 5. Correction Recommendations\n\n### Option A: Reclassify #56, #57 into Selection (recommended)\n\n1. Move tests #56, #57 from \"Other\" to \"Selection\" in Table 13\n2. Update all 4 locations from k=19 → k=21 and p_adj=0.019 → p_adj≈0.021\n3. Update experiments_main.tex footnote: \"selection k=21\"\n4. Recompute exact p_adj using precise raw p-values from bootstrap code\n5. Update \"Other\" family count from k=6 to k=4\n\n### Option B: Justify the current classification\n\nArgue that #56/#57 are post-hoc subgroup analyses (not pre-registered selection tests), while #18 is a mechanistically motivated partition (LP compression). This is defensible but requires explicit justification in the text.\n\n### Option C: Move #18 to \"Other\" as well (k stays at 19, but minus #18 = 18)\n\nLess recommended — makes the Selection family less complete.\n\n## 6. Additional Notes\n\n- Test #53 (\"RE LP selection reversal, free-form, 4-seed\") is also arguably selection-type but tests the effect of decoding format, not selection itself. Excluding it from Selection is more defensible.\n- LLaMA CoNLL N=16 VC/LP results (appendix line 266) report explicit p-values (p=0.003–0.027) but are NOT in Table 13 at all. This is a separate omission issue — these tests should arguably be added to the global enumeration (would increase global k beyond 57).\n- DALS Few-NERD (appendix line 1900, p<.001) is also absent from Table 13.\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1fbe243d-d8f2-428e-ac17-69dd3bbbfe94",
+  "uuid": "c885aa4b-94c9-4448-aad9-46be2426ed65",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014LHGFXtvDeD6aGmSGAhx1S",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 5201,
+      "cache_read_input_tokens": 81011,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5201
+      },
+      "output_tokens": 33,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 84 · 2026-05-21T12:07:33.628Z_
+
+<details><summary>↩ Tool result · `toolu_01BjfNFuwwWx2mYnup89G9rP`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260521_303e13\", \"name\": \"k_value_verification\", \"type\": \"report\", \"description\": \"Holm-Bonferroni k value verification: selection family k=19 vs reviewer claim of k=21\", \"path\": \"projects/struct_self_consist_ie/artifacts/_project/report/k_value_verification.md\", \"url\": null, \"project\": \"struct_self_consist_ie\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-21T12:07:33.000283+00:00\", \"tags\": [\"review\", \"statistics\", \"holm-bonferroni\", \"P0\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1fbe243d-d8f2-428e-ac17-69dd3bbbfe94",
+  "uuid": "e83616ba-7972-4885-b4b0-f74104130109",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260521_303e13\\\", \\\"name\\\": \\\"k_value_verification\\\", \\\"type\\\": \\\"report\\\", \\\"description\\\": \\\"Holm-Bonferroni k value verification: selection family k=19 vs reviewer claim of k=21\\\", \\\"path\\\": \\\"projects/struct_self_consist_ie/artifacts/_project/report/k_value_verification.md\\\", \\\"url\\\": null, \\\"project\\\": \\\"struct_self_consist_ie\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-21T12:07:33.000283+00:00\\\", \\\"tags\\\": [\\\"review\\\", \\\"statistics\\\", \\\"holm-bonferroni\\\", \\\"P0\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260521_303e13\", \"name\": \"k_value_verification\", \"type\": \"report\", \"description\": \"Holm-Bonferroni k value verification: selection family k=19 vs reviewer claim of k=21\", \"path\": \"projects/struct_self_consist_ie/artifacts/_project/report/k_value_verification.md\", \"url\": null, \"project\": \"struct_self_consist_ie\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-21T12:07:33.000283+00:00\", \"tags\": [\"review\", \"statistics\", \"holm-bonferroni\", \"P0\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 85_
+
+结论：
+
+**k=19 与 Table 13 一致**，表中 Selection 家族确实只有 19 行。但差异来源是 **tests #56 和 #57**（SciERC/CoNLL LP favorable subset）——它们是条件 LP **选择**测试，却被分类到了 "Other" 而非 "Selection"。同类型的 test #18（non-tied subset LP selection）反而在 Selection 家族里，形成分类不一致。
+
+如果将 #56、#57 移入 Selection 使 k=21：
+- Few-NERD LP 的 Holm-adjusted p 从 **0.019 → ~0.021**，仍显著（< 0.05）
+- **无任何显著性结论翻转**
+- 需更新 4 处引用（abstract、introduction、single_signal、experiments_main footnote）
+
+建议采用 **Option A**：将 #56/#57 重新归入 Selection 家族，更新 k=21 和 p_adj 数值，消除审稿人质疑。具体修改位置和新值均已记录在 artifact `k_value_verification.md` 中。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1fbe243d-d8f2-428e-ac17-69dd3bbbfe94",
+  "uuid": "c4716fbf-4e80-413d-8e2e-41f7756c919e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Y2L1rDpiVxoBbjV1b3ce5K",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2977,
+      "cache_read_input_tokens": 86212,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2977
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 86_
+
+结论：
+
+**k=19 与 Table 13 一致**，表中 Selection 家族确实只有 19 行。但差异来源是 **tests #56 和 #57**（SciERC/CoNLL LP favorable subset）——它们是条件 LP **选择**测试，却被分类到了 "Other" 而非 "Selection"。同类型的 test #18（non-tied subset LP selection）反而在 Selection 家族里，形成分类不一致。
+
+如果将 #56、#57 移入 Selection 使 k=21：
+- Few-NERD LP 的 Holm-adjusted p 从 **0.019 → ~0.021**，仍显著（< 0.05）
+- **无任何显著性结论翻转**
+- 需更新 4 处引用（abstract、introduction、single_signal、experiments_main footnote）
+
+建议采用 **Option A**：将 #56/#57 重新归入 Selection 家族，更新 k=21 和 p_adj 数值，消除审稿人质疑。具体修改位置和新值均已记录在 artifact `k_value_verification.md` 中。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 454267,
+  "duration_api_ms": 454254,
+  "num_turns": 28,
+  "stop_reason": "end_turn",
+  "session_id": "1fbe243d-d8f2-428e-ac17-69dd3bbbfe94",
+  "total_cost_usd": 1.5367060000000003,
+  "usage": {
+    "input_tokens": 20,
+    "cache_creation_input_tokens": 77348,
+    "cache_read_input_tokens": 833142,
+    "output_tokens": 25404,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 77348,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 324,
+        "cache_read_input_tokens": 86212,
+        "cache_creation_input_tokens": 2977,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 2977
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1385,
+      "outputTokens": 25,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.00151,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 20,
+      "outputTokens": 25404,
+      "cacheReadInputTokens": 833142,
+      "cacheCreationInputTokens": 77348,
+      "webSearchRequests": 0,
+      "costUSD": 1.5351960000000002,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "dffa5712-8d4e-4511-a55c-3fb79ea5263d"
+}
+```
+
+</details>
+
+---

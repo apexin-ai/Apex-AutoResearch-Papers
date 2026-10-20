@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0b6672ae804c14735610",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ssh 7b urgent pipeline execution",
+  "task_key": "worker_ssh_7b-urgent-pipeline-execution_20260520T042302",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_7b-urgent-pipeline-execution_20260520T042302_result.json",
+    "occurrence": 1,
+    "bytes": 1825,
+    "sha256": "2f0a6ce348df251b4c4236dd3f2d5dd4b2d63143e14c2cb1bb1ea18a7336c61f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总如下：\n\n---\n\n## Qwen2.5-7B FT FewNERD N=8 — 3-Seed Results\n\n### Per-Seed + Aggregated Metrics\n\n| Metric | seed42 | seed123 | seed456 | **Mean ± Std** |\n|--------|--------|---------|---------|----------------|\n| LP ρ | 0.3221 | 0.3538 | 0.3629 | **0.346 ± 0.021** |\n| SJ ρ | 0.3554 | 0.3979 | 0.4105 | **0.388 ± 0.029** |\n| VC ρ | 0.3930 | 0.4067 | 0.4118 | **0.404 ± 0.010** |\n| Degen% | 31.1% | 32.8% | 31.3% | **31.7% ± 0.9%** |\n| Greedy F1 | 0.7851 | 0.7850 | 0.7825 | **0.784 ± 0.001** |\n| Oracle F1 | 0.8718 | 0.8777 | 0.8771 | **0.876 ± 0.003** |\n| Construction LP Δ (pp) | −0.40 | −0.03 | +0.09 | **−0.11 ± 0.25** |\n\n### DATA dict entry (copy-paste for plot_scaling_curve.py)\n\n```python\nDATA[(7, \"ft\", \"FewNERD\")] = {\n    \"lp_rho\": 0.346,   # mean ± 0.021\n    \"sj_rho\": 0.388,   # mean ± 0.029\n    \"vc_rho\": 0.404,   # mean ± 0.010\n    \"degen\": 31.7,      # mean ± 0.9\n    \"construction_lp_delta\": -0.11,  # mean ± 0.25\n    \"greedy_f1\": 0.784, # mean ± 0.001\n    \"oracle_f1\": 0.876, # mean ± 0.003\n}\n```\n\n### Bootstrap Construction Test\n\n| | seed123 | seed456 |\n|---|---------|---------|\n| Observed diff | −0.03pp | +0.09pp |\n| 95% CI | [−0.16, +0.11] | [−0.09, +0.26] |\n| p-value | 0.651 | 0.168 |\n| Significant? | **NO** | **NO** |\n| Cohen's d | −0.002 | 0.007 |\n\nBoth seeds confirm construction LP-weighted does not significantly improve over greedy for 7B FewNERD. The effect is near zero with inconsistent sign across seeds.\n\nNote: seed42 bootstrap was skipped — no per-instance file available on either server (compute_signals was run in a previous session that didn't persist on 5090-b). Aggregated JSON saved to `output/fewnerd_7b/aggregated_3seed_scaling.json` on 5090-b."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-7b-urgent-pipeline-execution.md"
+}

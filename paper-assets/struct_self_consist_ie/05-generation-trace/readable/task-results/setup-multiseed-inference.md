@@ -1,0 +1,73 @@
+# setup multiseed inference
+
+**When Self-Consistency Fails for NER: Degeneracy, Signal Collapse, and the Correlation-Selection Gap** · Task result records
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 1
+- **Recorded user turns:** 0
+- **Tool calls:** 0
+- **Original source:** `logs/workers/worker_setup_multiseed_inference_20260515T050611_result.json`
+- **Structured JSON:** [`9807e55dbd66871f2229.json`](../../sessions/98/9807e55dbd66871f2229.json)
+
+## Before a recorded user message
+
+1 recorded events
+
+### Task result
+
+_source line 1_
+
+exp_018 目录存在但都是空的，可以复用。数据路径是 `data/scierc/processed_data/`。
+
+全部信息已收集完毕，以下是 4 个推理命令：
+
+---
+
+## 验证结果汇总
+
+| 项目 | 值 |
+|------|-----|
+| 入口脚本 | `code/run_mvp_pilot.py` |
+| Qwen 模型 | `checkpoints/qwen3-8b-scierc-merged-v2` |
+| LLaMA 模型 | `checkpoints/llama3.1-8b-scierc-merged` |
+| 数据目录 | `data/scierc/processed_data` |
+| GPU | 4x RTX 5090 (cuda:0-3) |
+| vLLM | v0.18.1 |
+| `--collect_logprobs` | 支持 (action="store_true") |
+| `--seed` | 支持 (控制 random/numpy seed) |
+| exp_018 输出目录 | 已存在但为空，可复用 |
+
+## 4 个推理命令
+
+**Run 1 (Qwen seed=123, cuda:0):**
+```
+exp_id: exp_018_qwen_scierc_seed123
+command: bash -c "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && CUDA_VISIBLE_DEVICES=0 python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-scierc-merged-v2 --data_dir data/scierc/processed_data --dataset scierc --subtask joint --seed 123 --n_samples 8 --temperature 1.0 --max_tokens 1024 --output_dir output/exp_018_qwen_scierc_seed123 --collect_logprobs"
+```
+
+**Run 2 (Qwen seed=456, cuda:1):**
+```
+exp_id: exp_018_qwen_scierc_seed456
+command: bash -c "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && CUDA_VISIBLE_DEVICES=1 python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-scierc-merged-v2 --data_dir data/scierc/processed_data --dataset scierc --subtask joint --seed 456 --n_samples 8 --temperature 1.0 --max_tokens 1024 --output_dir output/exp_018_qwen_scierc_seed456 --collect_logprobs"
+```
+
+**Run 3 (LLaMA seed=123, cuda:2):**
+```
+exp_id: exp_018_llama_scierc_seed123
+command: bash -c "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && CUDA_VISIBLE_DEVICES=2 python code/run_mvp_pilot.py --model_path checkpoints/llama3.1-8b-scierc-merged --data_dir data/scierc/processed_data --dataset scierc --subtask joint --seed 123 --n_samples 8 --temperature 1.0 --max_tokens 1024 --output_dir output/exp_018_llama_scierc_seed123 --collect_logprobs"
+```
+
+**Run 4 (LLaMA seed=456, cuda:3):**
+```
+exp_id: exp_018_llama_scierc_seed456
+command: bash -c "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && CUDA_VISIBLE_DEVICES=3 python code/run_mvp_pilot.py --model_path checkpoints/llama3.1-8b-scierc-merged --data_dir data/scierc/processed_data --dataset scierc --subtask joint --seed 456 --n_samples 8 --temperature 1.0 --max_tokens 1024 --output_dir output/exp_018_llama_scierc_seed456 --collect_logprobs"
+```
+
+## 注意事项
+
+`--seed` 只控制 `random.seed()` 和 `np.random.seed()`，不会传递给 vLLM 引擎（`VLLMSampler` 初始化时未传 seed，`SamplingParams` 也未设 seed）。vLLM 引擎固定用 seed=0。不同 run 的输出差异来自 GPU 采样的固有随机性（temperature=1.0），而非 `--seed` 值的不同。如果需要严格可复现性，需修改 `sampling.py` 将 seed 传入 `SamplingParams(seed=...)`。对于 multi-seed 方差估计的目的来说，当前行为是可以接受的。
+
+---

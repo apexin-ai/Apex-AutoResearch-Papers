@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "007d403d1be3f007abfa",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ssh poll 5epoch and mf4 completion",
+  "task_key": "worker_ssh_poll_5epoch_and_mf4_completion_20260522T132228",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_poll_5epoch_and_mf4_completion_20260522T132228_result.json",
+    "occurrence": 1,
+    "bytes": 1046,
+    "sha256": "cd7fdfcce53323107c1fb48347379a2c3bb9b32c3f3d5b18b78480bc34324a77"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Here's the status:\n\n**1. 5-epoch LP (PID 137900, cuda:3)** — Still running (elapsed 1h51m). GPU 3 active (PID 138176, 30,610 MiB). Output dir `fewnerd_5epoch_lp_seed42/` is empty — no files written yet. No log file in `~/runs/` (was launched as direct `python -u`, stdout goes to the launching terminal). Can't determine current progress from here.\n\n**2. MF4 s123v2 (PID 136358, cuda:2)** — Still running (elapsed 1h54m). GPU 2 active (PID 136811, 30,914 MiB). Currently in what appears to be a second processing phase: **29% (11,059/37,648)**, ~16 min remaining at ~30 it/s. The first phase (301,184 prompts = 37,648 × 8 samples) has completed. Output dir `fewnerd_mf4_seed123_v2/` also empty — results not written yet.\n\nBoth are further from completion than expected. The 5-epoch LP \"96%\" may have been a phase that completed, with the process now in a subsequent phase (possibly the same 37k rendering step). Neither experiment has written output files yet — they both appear to write results only at the end."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-poll-5epoch-and-mf4-completion.md"
+}

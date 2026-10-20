@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0fc85d65a64bc196cde5",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ssh 5090 cuda0 fewnerd n16 s456",
+  "task_key": "worker_ssh_5090_cuda0_fewnerd_n16_s456_20260521T151948",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_5090_cuda0_fewnerd_n16_s456_20260521T151948_result.json",
+    "occurrence": 1,
+    "bytes": 622,
+    "sha256": "c879e6c30368abc32e442f4dcec949c0511ac5b63722737bddfa96a059ae3cb2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已启动并注册监控。\n\n**实验状态：**\n- **PID**: 54271（主进程），54567（vLLM EngineCore）\n- **GPU 0**: 29832 MiB 占用，模型加载完成\n- **进度**: 正在渲染 37648 条 prompts，随后开始 vLLM 批量推理\n- **参数**: `seed=456, n_samples=16, temperature=1.0, collect_logprobs, dataset=fewnerd`\n- **模型路径**: `checkpoints/qwen3-8b-fewnerd-exp021-merged/qwen3-8b-fewnerd-exp021-merged`（注意嵌套目录，外层缺 tokenizer 文件）\n- **日志**: `output/fewnerd_n16_s456.log`\n- **Cron**: `exp_fewnerd_n16_s456_v2`，300s 轮询\n\n预计运行 4-6h。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-5090-cuda0-fewnerd-n16-s456.md"
+}

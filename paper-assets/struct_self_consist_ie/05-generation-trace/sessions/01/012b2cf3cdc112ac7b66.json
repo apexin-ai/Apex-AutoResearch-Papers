@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "012b2cf3cdc112ac7b66",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "paper writing related work",
+  "task_key": "worker_paper_writing_related_work_20260514T202951",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_paper_writing_related_work_20260514T202951_result.json",
+    "occurrence": 1,
+    "bytes": 1257,
+    "sha256": "08390f40079c990a7698df6da620ce167e104bf1c9a12935cf38bcfa8345538c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Related Work 章节已写入 `/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/related_work.tex`。\n\n结构概要：\n- **§4.1 Self-Consistency and Test-Time Scaling** (~450 words): 从 SC-CoT/USC/SelfCheckGPT 等基础方法到 CISC/Self-Certainty/ReASC 等 TTS 选择方法，明确定位我们是首个将 SC 扩展到 set-valued IE 输出的工作，并与 Kang et al. 2026 形成直接学术对话（reward-free selection 在 reasoning 上成功但在 structured IE 上失败）。\n- **§4.2 Consistency and Confidence for Structured IE** (~350 words): 以 Nédellec & Xia 2026 为最直接 competitor，逐点区分（surface matching vs. SJ、无 BoN 选择、单域单信号）；CoCoA 的 confidence+consistency 融合作为并行参照；generative IE 方法（UniNER/GoLLIE/CodeIE 等）定义 evaluation setting。\n- **§4.3 Uncertainty Estimation and Calibration** (~400 words): 覆盖 surveys、semantic uncertainty、calibration、ensembles/MC-dropout、token/span NER uncertainty、conformal prediction、verifiers、selective prediction，每类 1-2 句定位 + 与我们的区别。\n\n所有 citation keys 均来自指定的 references.bib 列表，无虚构引用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-related-work.md"
+}

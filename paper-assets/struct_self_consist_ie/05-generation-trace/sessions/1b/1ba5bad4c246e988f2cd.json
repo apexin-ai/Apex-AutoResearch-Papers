@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1ba5bad4c246e988f2cd",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis auroc threshold investigation",
+  "task_key": "worker_analysis_auroc_threshold_investigation_20260516T111512",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_auroc_threshold_investigation_20260516T111512_result.json",
+    "occurrence": 1,
+    "bytes": 1030,
+    "sha256": "728e578aad64ab6b5ffaf687dc0b29dc058a6eeb175f40ddb0dce8f277816745"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。总结：\n\n## 调查结果\n\n**根因**: `evaluation.py:compute_auroc` 用 `F1 > median`（strict），Paper Table 1 用 `F1 >= median`（inclusive）。SciERC NER 中 65 个 instance 恰好处于 median (F1=2/3)，被不同地分配到正/负类，导致系统性偏差 0.013–0.034。\n\n## 已完成的修复\n\n| 修改 | 内容 |\n|------|------|\n| `code/evaluation.py` (服务器) | `l > med` → `l >= med` |\n| `artifacts/evaluation.py` (本地) | 同上 |\n| `docs/paper/sections/appendix.tex` | 多 seed AUROC 行用修正值替换 |\n\n## 关键结论\n\n- **Table 1 无需更新** — 已用正确定义 (`>=`)\n- **Appendix multi-seed AUROC 已更新** — 值降低 0.013–0.034\n- **AUROC 信号排名不变** — VC>SJ>EM>FK>LP 在所有 seed×model 组合中一致\n- **σ≤0.026 声明仍有效** — 修正后最大 σ=.016\n\n输出保存在 `/root/autodl-tmp/struct_self_consist_ie/output/d114_auroc_investigation/`（investigation.md, unified_auroc.json, table1_update.md）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-auroc-threshold-investigation.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "169f87ceeb838e8bb25b",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "check exp021 progress",
+  "task_key": "worker_check_exp021_progress_20260516T191110",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_check_exp021_progress_20260516T191110_result.json",
+    "occurrence": 1,
+    "bytes": 411,
+    "sha256": "69d87fa999db0f4c5b885921d1ed1652227f14261e9ca8723209b714eaeef8e1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**exp-021 训练状态：运行中**\n\n| 指标 | 值 |\n|------|-----|\n| 当前 step | 4125 / 6177 |\n| 进度 | 67% |\n| 速度 | ~2.08 s/it |\n| 最新 loss | 0.0302 (epoch 1.99) |\n| 已运行 | 2h38m |\n| ETA | ~1h11m |\n| 最新 checkpoint | checkpoint-4000 |\n\nGPU 状态：4卡全在跑（81-100% utilization，28GB 左右显存占用）。\n\n预计约 **1小时10分钟后完成**。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-exp021-progress.md"
+}

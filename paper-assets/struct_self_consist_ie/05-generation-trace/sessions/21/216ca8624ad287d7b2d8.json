@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "216ca8624ad287d7b2d8",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "code logprob script and truncation check",
+  "task_key": "worker_code_logprob_script_and_truncation_check_20260514T113358",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_logprob_script_and_truncation_check_20260514T113358_result.json",
+    "occurrence": 1,
+    "bytes": 1607,
+    "sha256": "0637057cab522aa8a921de05bda1253014004ca58cb66cbd8c916e2f7c1d033d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部验证通过。\n\n## 总结\n\n### Part A: exp-012 截断问题\n\n| 指标 | 值 |\n|------|-----|\n| exp-012 max_tokens | 512（硬编码于 `extract_logprobs.py` L56, L67） |\n| pilot 的 sampling.py 默认值 | 1024 |\n| 恰好 512 tokens 的输出 | 235/4959 (4.7%) |\n| 至少 1 个 sample 被截断的 instance | **45/551 (8.2%)** |\n| 全部 8 个 sample 都被截断的 instance | 9/551 (1.6%) |\n\n**结论：8.2% > 5% 阈值，exp-012 需要用 max_tokens=1024 重跑。** 被截断的 instance 倾向于实体/关系最多的复杂样本，截断导致 JSON 不完整，系统性压低 F1 和相关性分析。\n\n### Part B: 修改完成\n\n**evaluation.py** — 新增两个函数：\n- `kendall_correlation()` — Kendall τ-b 相关系数\n- `compute_auroc()` — 基于中位数二值化的 AUROC\n\n**sampling.py** — 两处修改：\n- `VLLMSampler.sample()` — 新增 `collect_logprobs=False` 参数；启用时设 `logprobs=1`，提取 `cumulative_logprob` / `n_tokens` / `mean_logprob`\n- `run_sampling_pipeline()` — 新增 `collect_logprobs=False` 参数；启用时在 SampledInstance 中添加 `\"logprobs\": [per_sample_mean_logprob, ...]` 字段，并将 logprob 元数据嵌入每个 sample dict\n\n**run_mvp_pilot.py** — 四处修改：\n- `--max_tokens` 默认值 512 → 1024\n- 新增 `--collect_logprobs` flag\n- 分析部分新增 logprob baseline：Spearman ρ / Kendall τ / AUROC（full + conditional）\n- 报告输出新增 logprob baseline 行\n\n所有修改向后兼容——不加 `--collect_logprobs` 时行为与之前完全一致。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-logprob-script-and-truncation-check.md"
+}

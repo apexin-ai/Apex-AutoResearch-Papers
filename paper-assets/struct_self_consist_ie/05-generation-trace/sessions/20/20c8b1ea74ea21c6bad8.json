@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "20c8b1ea74ea21c6bad8",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "inference qwen scierc seed123",
+  "task_key": "worker_inference_qwen_scierc_seed123_20260515T050621",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_inference_qwen_scierc_seed123_20260515T050621.log",
+    "occurrence": 1,
+    "bytes": 1067501,
+    "sha256": "9895d4e80712c217690a6335fffbe4b31303092fd3bf0c3e5fa46f2efb220d72"
+  },
+  "statistics": {
+    "messages": 184,
+    "user_turns": 1,
+    "tool_calls": 61,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 54,
+      "tool_call": 61,
+      "tool_result": 61,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 166,
+      "chunks": [
+        {
+          "path": "20c8b1ea74ea21c6bad8-part-0001.json",
+          "message_count": 123
+        },
+        {
+          "path": "20c8b1ea74ea21c6bad8-part-0002.json",
+          "message_count": 43
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 18,
+      "chunks": [
+        {
+          "path": "20c8b1ea74ea21c6bad8-part-0002.json",
+          "message_count": 18
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/inference-qwen-scierc-seed123.md"
+}

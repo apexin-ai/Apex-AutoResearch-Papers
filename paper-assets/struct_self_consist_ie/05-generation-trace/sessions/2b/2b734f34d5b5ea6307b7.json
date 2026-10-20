@@ -1,0 +1,76 @@
+{
+  "schema_version": "1.0",
+  "id": "2b734f34d5b5ea6307b7",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "ssh b2 oof and n validation",
+  "task_key": "worker_ssh_b2-oof-and-n-validation_20260520T114212",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_b2-oof-and-n-validation_20260520T114212.log",
+    "occurrence": 1,
+    "bytes": 950902,
+    "sha256": "6ff38f4d503a0643b262aa7fb9dd29a621e8a51fd25ec8ff0d7fe6bf2859bc64"
+  },
+  "statistics": {
+    "messages": 354,
+    "user_turns": 2,
+    "tool_calls": 119,
+    "roles": {
+      "log": 1,
+      "system": 75,
+      "record": 2,
+      "assistant": 35,
+      "tool_call": 119,
+      "user": 2,
+      "tool_result": 119,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 6,
+      "chunks": [
+        {
+          "path": "2b734f34d5b5ea6307b7-part-0001.json",
+          "message_count": 6
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 21,
+      "chunks": [
+        {
+          "path": "2b734f34d5b5ea6307b7-part-0001.json",
+          "message_count": 21
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 327,
+      "chunks": [
+        {
+          "path": "2b734f34d5b5ea6307b7-part-0001.json",
+          "message_count": 153
+        },
+        {
+          "path": "2b734f34d5b5ea6307b7-part-0002.json",
+          "message_count": 158
+        },
+        {
+          "path": "2b734f34d5b5ea6307b7-part-0003.json",
+          "message_count": 16
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ssh-b2-oof-and-n-validation.md"
+}

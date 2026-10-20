@@ -1,0 +1,2329 @@
+# analysis rank8 lp stats
+
+**When Self-Consistency Fails for NER: Degeneracy, Signal Collapse, and the Correlation-Selection Gap** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 49
+- **Recorded user turns:** 0
+- **Tool calls:** 16
+- **Original source:** `logs/workers/worker_analysis_rank8_lp_stats_20260518T005609.log`
+- **Structured JSON:** [`4c66a42e6cc6dc74e828.json`](../../sessions/4c/4c66a42e6cc6dc74e828.json)
+
+## Before a recorded user message
+
+49 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "session_id": "43ab3e2a-8abd-459f-8408-ee9173987ff3",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__append_idea",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__read_project_file",
+    "mcp__agent-ml-research__save_project_file",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "30c5a7b5-6238-4f5d-be94-bb372aa52e34",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779082800,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "ad638dec-e9cf-4070-a85c-16c91bb8f0b3",
+  "session_id": "43ab3e2a-8abd-459f-8408-ee9173987ff3"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+我先找到 exp-023 和 exp-012 的推理输出文件。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "43ab3e2a-8abd-459f-8408-ee9173987ff3",
+  "uuid": "3b8a3553-7d2b-4ad2-8c91-b3f93116aea2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JNyLLCeADzaiFnsfjK8NKn",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13165,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13165
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_016152B3jRgY4gRLb31rSMdr`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__save_project_file",
+  "max_results": 4
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "43ab3e2a-8abd-459f-8408-ee9173987ff3",
+  "uuid": "5394da47-2f9b-4390-8357-485dd994371a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JNyLLCeADzaiFnsfjK8NKn",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13165,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13165
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-18T00:56:27.831Z_
+
+<details><summary>↩ Tool result · `toolu_016152B3jRgY4gRLb31rSMdr`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_project_file"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__save_project_file"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "43ab3e2a-8abd-459f-8408-ee9173987ff3",
+  "uuid": "b7c9309b-0fd3-43f4-a4a0-c4ddfce7b55b",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__save_project_file"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__save_project_file",
+    "total_deferred_tools": 26
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by finding the experiment output files on the server.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "43ab3e2a-8abd-459f-8408-ee9173987ff3",
+  "uuid": "e80fd0b4-1bee-4350-baf9-bd4d0f686636",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JZGuBhwFFE1R8k7hx8ToaJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1294,
+      "cache_read_input_tokens": 25006,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1294
+      },
+      "output_tokens": 37,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_012FSNLKSWjrgi9UWTRVRue4`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "ls /root/autodl-tmp/struct_self_consist_ie/output/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "43ab3e2a-8abd-459f-8408-ee9173987ff3",
+  "uuid": "c9a4ec34-0ebc-4b07-af94-e21c0c8fdc31",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JZGuBhwFFE1R8k7hx8ToaJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1294,
+      "cache_read_input_tokens": 25006,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1294
+      },
+      "output_tokens": 37,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01KSwReL2R9uNA2ocjiwwi2k`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "find /root/autodl-tmp/struct_self_consist_ie/output/ -name \"*023*\" -o -name \"*rank8*\" -o -name \"*rank_8*\" 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "43ab3e2a-8abd-459f-8408-ee9173987ff3",
+  "uuid": "802a1515-eaac-40b2-8b3d-9e138d758142",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JZGuBhwFFE1R8k7hx8ToaJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1294,
+      "cache_read_input_tokens": 25006,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1294
+      },
+      "output_tokens": 37,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-18T00:56:32.681Z_
+
+<details><summary>↩ Tool result · `toolu_012FSNLKSWjrgi9UWTRVRue4`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"adalp_analysis_results.json\\nanalysis_epsilon_sweep\\nanalysis_fk_bootstrap_ci.json\\nanalysis_fk_bootstrap_per_instance.json\\nanalysis_lp_range_cdf.json\\nanalysis_lp_range_cdf_n16_3seed.json\\nanalysis_multiseed_selection_f1.json\\nanalysis_round8\\nanalysis_scierc_n16_3seed_selection_f1.json\\nanalysis_scierc_n16_3seed_selection_f1_merged.json\\nanalysis_scierc_re_n16_3seed_selection_f1.json\\nanalysis_unified_rho_full.json\\nbootstrap_ci_nscaling\\nbootstrap_ci_summary.json\\nbootstrap_ci_tables.tex\\ncalibration_baseline_results.json\\nconditional_filter_diagnosis.json\\nd108_greedy_f1\\nd108_lp_vc_combination\\nd108_mbr_within_rho\\nd108_q4q5\\nd110_4b_degeneracy\\nd112_disk_cleanup\\nd112_hybrid_strategy\\nd112_mf3_random_single\\nd112_table2_fix\\nd114_auroc_investigation\\nexp001_n16_seed123\\nexp001_n16_seed123_200only\\nexp001_n16_seed123_200only_backup\\nexp001_n16_seed123_full\\nexp001_n16_seed123_run.log\\nexp001_n16_seed42\\nexp001_n16_seed42_200only_backup\\nexp001_n16_seed42_run.log\\nexp001_n16_seed456\\nexp001_n16_seed456_200only\\nexp001_n16_seed456_run.log\\nexp001_seed123_t10_full\\nexp001_seed123_t10_full.log\\nexp001_seed456_t10_full\\nexp001_seed456_t10_full.log\\nexp002_conll2003\\nexp003_wnut17_dryrun\\nexp003_wnut17_eval\\nexp003_wnut17_eval.log\\nexp003_wnut17_pilot\\nexp003_wnut17_pilot.log\\nexp004_re_diagnostic\\nexp004v2_re_diagnostic\\nexp007_llama_dryrun\\nexp007_llama_inference\\nexp008_re_n16\\nexp008_re_n16_200only\\nexp008_re_n16_t10_full\\nexp008_re_n16_t10_full.log\\nexp009_stratification_results.json\\nexp010_selection_curves\\nexp016_signal_ensemble\\nexp018_3seed_5signal_results.json\\nexp_001_seed123_v2\\nexp_001_seed123_v2_r1024\\nexp_001_seed42_v2\\nexp_001_seed42_v2_r1024\\nexp_001_seed456_v2\\nexp_001_seed456_v2_ner\\nexp_001_seed456_v2_ner.log\\nexp_001_seed456_v2_ner_r1024\\nexp_002_conll_n16\\nexp_002_conll_n16.log\\nexp_002_conll_n16_r1024\\nexp_003_wnut17_v2_infer\\nexp_005_v2_temperature\\nexp_006_v2\\nexp_006_v2_run.log\\nexp_007_llama_n16\\nexp_007_llama_n16.log\\nexp_007_llama_n16_r1024\\nexp_007_llama_seed123\\nexp_007_llama_seed456\\nexp_008_re_n16_v2\\nexp_008_re_seed123\\nexp_009_v2\\nexp_009_v2_re_rerun\\nexp_009_v2_run.log\\nexp_011_ood_analysis\\nexp_011_ood_conll_to_scierc\\nexp_011_ood_scierc_to_conll\\nexp_011_ood_scierc_to_conll_run.log\\nexp_012_logprob\\nexp_012_rerun_1024\\nexp_015_unified\\nexp_015_v2\\nexp_016_rerun_1024\\nexp_016_v2\\nexp_017_llama_conll_infer\\nexp_017_llama_conll_infer.log\\nexp_017_llama_conll_n16\\nexp_017_llama_conll_n16_r1024\\nexp_017_llama_conll_n16_r1024_run.log\\nexp_017_llama_conll_n16_s123\\nexp_017_llama_conll_n16_s123.log\\nexp_017_llama_conll_n16_s123_r1024\\nexp_017_llama_conll_n16_s456\\nexp_017_llama_conll_n16_s456.log\\nexp_017_llama_conll_n16_s456_r1024\\nexp_017_llama_conll_n16_s456_r1024_run.log\\nexp_017_llama_conll_n8_t07\\nexp_018_llama_scierc_seed123\\nexp_018_llama_scierc_seed123.log\\nexp_018_llama_scierc_seed42_r1024\\nexp_018_llama_scierc_seed456\\nexp_018_llama_scierc_seed456_r1024\\nexp_018_qwen_scierc_seed123\\nexp_018_qwen_scierc_seed123.log\\nexp_018_qwen_scierc_seed456\\nexp_019_trained_verifier\\nexp_020_pilot\\nexp_021_fewnerd_full\\nexp_021_inference\\nexp_022_3seed_analysis\\nexp_022_seed789\\nexp_023_rank8_inference\\nexp_025_n32\\nexp_025_n32.log\\nexp_025_n_ablation\\nexp_026_T05\\nexp_026_T05_run.log\\nexp_026_T08\\nexp_026_T08_run.log\\nexp_026_T12\\nexp_026_T12_run.log\\nexp_026_T_ablation_summary.json\\nexp_026_t05\\nexp_026_t05.log\\nexp_026_t08\\nexp_026_t08.log\\nexp_026_t12\\nexp_026_t12.log\\nexp_027_fewnerd_n16\\nexp_027_mlp_verifier\\nexp_028_fewnerd_5epoch\\nexp_entity_token_lp\\nexp_entity_token_lp_conll_run.log\\nexp_entity_token_lp_pilot\\nexp_entity_token_lp_pilot_run.log\\nexp_entity_token_lp_scierc_run.log\\nexp_entity_token_lp_smoke\\nexp_lp_scierc_t07\\nexp_qwen3_4b_conll_merge_inference_v2\\nexp_qwen3_4b_conll_scs_inference\\nexp_qwen3_4b_conll_scs_inference_v2\\nexp_qwen3_4b_scierc_scs_inference\\nexp_re_scierc_seed123\\nexp_re_scierc_seed456\\nexp_scale_qwen3_4b_conll\\nfigures\\ngate0_all_predictions.jsonl\\ngate0_ft002v2\\ngate0_ft002v2_ckpt400\\ngate0_realigned_predictions.jsonl\\ngate0_realigned_results.json\\ngate0_results.json\\ngate0_samples.json\\nllama_conll_n16_3seed_5signal_summary.json\\nlogprob_diagnosis\\nloo_sj_cross_dataset\\nmultiseed_selection_f1.json\\nmvp_pilot_001\\nmvp_pilot_001.log\\nmvp_pilot_003\\nmvp_pilot_004\\nmvp_pilot_005\\nn16_3seed_5signal_results.json\\nn16_3seed_analysis.py\\nn16_5signal_results.json\\nn8_5signal_results.json\\nr17_analyses\\nreview_round2\\nreview_round4\\nreview_round8\\nreview_round9_experiments\\nrho_audit_results.json\\nselection_f1_4b_results.json\\nvc_quartile_analysis.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.01}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "43ab3e2a-8abd-459f-8408-ee9173987ff3",
+  "uuid": "9b636c2f-191e-4435-9424-24aeb3235f25",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"adalp_analysis_results.json\\\\nanalysis_epsilon_sweep\\\\nanalysis_fk_bootstrap_ci.json\\\\nanalysis_fk_bootstrap_per_instance.json\\\\nanalysis_lp_range_cdf.json\\\\nanalysis_lp_range_cdf_n16_3seed.json\\\\nanalysis_multiseed_selection_f1.json\\\\nanalysis_round8\\\\nanalysis_scierc_n16_3seed_selection_f1.json\\\\nanalysis_scierc_n16_3seed_selection_f1_merged.json\\\\nanalysis_scierc_re_n16_3seed_selection_f1.json\\\\nanalysis_unified_rho_full.json\\\\nbootstrap_ci_nscaling\\\\nbootstrap_ci_summary.json\\\\nbootstrap_ci_tables.tex\\\\ncalibration_baseline_results.json\\\\nconditional_filter_diagnosis.json\\\\nd108_greedy_f1\\\\nd108_lp_vc_combination\\\\nd108_mbr_within_rho\\\\nd108_q4q5\\\\nd110_4b_degeneracy\\\\nd112_disk_cleanup\\\\nd112_hybrid_strategy\\\\nd112_mf3_random_single\\\\nd112_table2_fix\\\\nd114_auroc_investigation\\\\nexp001_n16_seed123\\\\nexp001_n16_seed123_200only\\\\nexp001_n16_seed123_200only_backup\\\\nexp001_n16_seed123_full\\\\nexp001_n16_seed123_run.log\\\\nexp001_n16_seed42\\\\nexp001_n16_seed42_200only_backup\\\\nexp001_n16_seed42_run.log\\\\nexp001_n16_seed456\\\\nexp001_n16_seed456_200only\\\\nexp001_n16_seed456_run.log\\\\nexp001_seed123_t10_full\\\\nexp001_seed123_t10_full.log\\\\nexp001_seed456_t10_full\\\\nexp001_seed456_t10_full.log\\\\nexp002_conll2003\\\\nexp003_wnut17_dryrun\\\\nexp003_wnut17_eval\\\\nexp003_wnut17_eval.log\\\\nexp003_wnut17_pilot\\\\nexp003_wnut17_pilot.log\\\\nexp004_re_diagnostic\\\\nexp004v2_re_diagnostic\\\\nexp007_llama_dryrun\\\\nexp007_llama_inference\\\\nexp008_re_n16\\\\nexp008_re_n16_200only\\\\nexp008_re_n16_t10_full\\\\nexp008_re_n16_t10_full.log\\\\nexp009_stratification_results.json\\\\nexp010_selection_curves\\\\nexp016_signal_ensemble\\\\nexp018_3seed_5signal_results.json\\\\nexp_001_seed123_v2\\\\nexp_001_seed123_v2_r1024\\\\nexp_001_seed42_v2\\\\nexp_001_seed42_v2_r1024\\\\nexp_001_seed456_v2\\\\nexp_001_seed456_v2_ner\\\\nexp_001_seed456_v2_ner.log\\\\nexp_001_seed456_v2_ner_r1024\\\\nexp_002_conll_n16\\\\nexp_002_conll_n16.log\\\\nexp_002_conll_n16_r1024\\\\nexp_003_wnut17_v2_infer\\\\nexp_005_v2_temperature\\\\nexp_006_v2\\\\nexp_006_v2_run.log\\\\nexp_007_llama_n16\\\\nexp_007_llama_n16.log\\\\nexp_007_llama_n16_r1024\\\\nexp_007_llama_seed123\\\\nexp_007_llama_seed456\\\\nexp_008_re_n16_v2\\\\nexp_008_re_seed123\\\\nexp_009_v2\\\\nexp_009_v2_re_rerun\\\\nexp_009_v2_run.log\\\\nexp_011_ood_analysis\\\\nexp_011_ood_conll_to_scierc\\\\nexp_011_ood_scierc_to_conll\\\\nexp_011_ood_scierc_to_conll_run.log\\\\nexp_012_logprob\\\\nexp_012_rerun_1024\\\\nexp_015_unified\\\\nexp_015_v2\\\\nexp_016_rerun_1024\\\\nexp_016_v2\\\\nexp_017_llama_conll_infer\\\\nexp_017_llama_conll_infer.log\\\\nexp_017_llama_conll_n16\\\\nexp_017_llama_conll_n16_r1024\\\\nexp_017_llama_conll_n16_r1024_run.log\\\\nexp_017_llama_conll_n16_s123\\\\nexp_017_llama_conll_n16_s123.log\\\\nexp_017_llama_conll_n16_s123_r1024\\\\nexp_017_llama_conll_n16_s456\\\\nexp_017_llama_conll_n16_s456.log\\\\nexp_017_llama_conll_n16_s456_r1024\\\\nexp_017_llama_conll_n16_s456_r1024_run.log\\\\nexp_017_llama_conll_n8_t07\\\\nexp_018_llama_scierc_seed123\\\\nexp_018_llama_scierc_seed123.log\\\\nexp_018_llama_scierc_seed42_r1024\\\\nexp_018_llama_scierc_seed456\\\\nexp_018_llama_scierc_seed456_r1024\\\\nexp_018_qwen_scierc_seed123\\\\nexp_018_qwen_scierc_seed123.log\\\\nexp_018_qwen_scierc_seed456\\\\nexp_019_trained_verifier\\\\nexp_020_pilot\\\\nexp_021_fewnerd_full\\\\nexp_021_inference\\\\nexp_022_3seed_analysis\\\\nexp_022_seed789\\\\nexp_023_rank8_inference\\\\nexp_025_n32\\\\nexp_025_n32.log\\\\nexp_025_n_ablation\\\\nexp_026_T05\\\\nexp_026_T05_run.log\\\\nexp_026_T08\\\\nexp_026_T08_run.log\\\\nexp_026_T12\\\\nexp_026_T12_run.log\\\\nexp_026_T_ablation_summary.json\\\\nexp_026_t05\\\\nexp_026_t05.log\\\\nexp_026_t08\\\\nexp_026_t08.log\\\\nexp_026_t12\\\\nexp_026_t12.log\\\\nexp_027_fewnerd_n16\\\\nexp_027_mlp_verifier\\\\nexp_028_fewnerd_5epoch\\\\nexp_entity_token_lp\\\\nexp_entity_token_lp_conll_run.log\\\\nexp_entity_token_lp_pilot\\\\nexp_entity_token_lp_pilot_run.log\\\\nexp_entity_token_lp_scierc_run.log\\\\nexp_entity_token_lp_smoke\\\\nexp_lp_scierc_t07\\\\nexp_qwen3_4b_conll_merge_inference_v2\\\\nexp_qwen3_4b_conll_scs_inference\\\\nexp_qwen3_4b_conll_scs_inference_v2\\\\nexp_qwen3_4b_scierc_scs_inference\\\\nexp_re_scierc_seed123\\\\nexp_re_scierc_seed456\\\\nexp_scale_qwen3_4b_conll\\\\nfigures\\\\ngate0_all_predictions.jsonl\\\\ngate0_ft002v2\\\\ngate0_ft002v2_ckpt400\\\\ngate0_realigned_predictions.jsonl\\\\ngate0_realigned_results.json\\\\ngate0_results.json\\\\ngate0_samples.json\\\\nllama_conll_n16_3seed_5signal_summary.json\\\\nlogprob_diagnosis\\\\nloo_sj_cross_dataset\\\\nmultiseed_selection_f1.json\\\\nmvp_pilot_001\\\\nmvp_pilot_001.log\\\\nmvp_pilot_003\\\\nmvp_pilot_004\\\\nmvp_pilot_005\\\\nn16_3seed_5signal_results.json\\\\nn16_3seed_analysis.py\\\\nn16_5signal_results.json\\\\nn8_5signal_results.json\\\\nr17_analyses\\\\nreview_round2\\\\nreview_round4\\\\nreview_round8\\\\nreview_round9_experiments\\\\nrho_audit_results.json\\\\nselection_f1_4b_results.json\\\\nvc_quartile_analysis.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.01}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"adalp_analysis_results.json\\nanalysis_epsilon_sweep\\nanalysis_fk_bootstrap_ci.json\\nanalysis_fk_bootstrap_per_instance.json\\nanalysis_lp_range_cdf.json\\nanalysis_lp_range_cdf_n16_3seed.json\\nanalysis_multiseed_selection_f1.json\\nanalysis_round8\\nanalysis_scierc_n16_3seed_selection_f1.json\\nanalysis_scierc_n16_3seed_selection_f1_merged.json\\nanalysis_scierc_re_n16_3seed_selection_f1.json\\nanalysis_unified_rho_full.json\\nbootstrap_ci_nscaling\\nbootstrap_ci_summary.json\\nbootstrap_ci_tables.tex\\ncalibration_baseline_results.json\\nconditional_filter_diagnosis.json\\nd108_greedy_f1\\nd108_lp_vc_combination\\nd108_mbr_within_rho\\nd108_q4q5\\nd110_4b_degeneracy\\nd112_disk_cleanup\\nd112_hybrid_strategy\\nd112_mf3_random_single\\nd112_table2_fix\\nd114_auroc_investigation\\nexp001_n16_seed123\\nexp001_n16_seed123_200only\\nexp001_n16_seed123_200only_backup\\nexp001_n16_seed123_full\\nexp001_n16_seed123_run.log\\nexp001_n16_seed42\\nexp001_n16_seed42_200only_backup\\nexp001_n16_seed42_run.log\\nexp001_n16_seed456\\nexp001_n16_seed456_200only\\nexp001_n16_seed456_run.log\\nexp001_seed123_t10_full\\nexp001_seed123_t10_full.log\\nexp001_seed456_t10_full\\nexp001_seed456_t10_full.log\\nexp002_conll2003\\nexp003_wnut17_dryrun\\nexp003_wnut17_eval\\nexp003_wnut17_eval.log\\nexp003_wnut17_pilot\\nexp003_wnut17_pilot.log\\nexp004_re_diagnostic\\nexp004v2_re_diagnostic\\nexp007_llama_dryrun\\nexp007_llama_inference\\nexp008_re_n16\\nexp008_re_n16_200only\\nexp008_re_n16_t10_full\\nexp008_re_n16_t10_full.log\\nexp009_stratification_results.json\\nexp010_selection_curves\\nexp016_signal_ensemble\\nexp018_3seed_5signal_results.json\\nexp_001_seed123_v2\\nexp_001_seed123_v2_r1024\\nexp_001_seed42_v2\\nexp_001_seed42_v2_r1024\\nexp_001_seed456_v2\\nexp_001_seed456_v2_ner\\nexp_001_seed456_v2_ner.log\\nexp_001_seed456_v2_ner_r1024\\nexp_002_conll_n16\\nexp_002_conll_n16.log\\nexp_002_conll_n16_r1024\\nexp_003_wnut17_v2_infer\\nexp_005_v2_temperature\\nexp_006_v2\\nexp_006_v2_run.log\\nexp_007_llama_n16\\nexp_007_llama_n16.log\\nexp_007_llama_n16_r1024\\nexp_007_llama_seed123\\nexp_007_llama_seed456\\nexp_008_re_n16_v2\\nexp_008_re_seed123\\nexp_009_v2\\nexp_009_v2_re_rerun\\nexp_009_v2_run.log\\nexp_011_ood_analysis\\nexp_011_ood_conll_to_scierc\\nexp_011_ood_scierc_to_conll\\nexp_011_ood_scierc_to_conll_run.log\\nexp_012_logprob\\nexp_012_rerun_1024\\nexp_015_unified\\nexp_015_v2\\nexp_016_rerun_1024\\nexp_016_v2\\nexp_017_llama_conll_infer\\nexp_017_llama_conll_infer.log\\nexp_017_llama_conll_n16\\nexp_017_llama_conll_n16_r1024\\nexp_017_llama_conll_n16_r1024_run.log\\nexp_017_llama_conll_n16_s123\\nexp_017_llama_conll_n16_s123.log\\nexp_017_llama_conll_n16_s123_r1024\\nexp_017_llama_conll_n16_s456\\nexp_017_llama_conll_n16_s456.log\\nexp_017_llama_conll_n16_s456_r1024\\nexp_017_llama_conll_n16_s456_r1024_run.log\\nexp_017_llama_conll_n8_t07\\nexp_018_llama_scierc_seed123\\nexp_018_llama_scierc_seed123.log\\nexp_018_llama_scierc_seed42_r1024\\nexp_018_llama_scierc_seed456\\nexp_018_llama_scierc_seed456_r1024\\nexp_018_qwen_scierc_seed123\\nexp_018_qwen_scierc_seed123.log\\nexp_018_qwen_scierc_seed456\\nexp_019_trained_verifier\\nexp_020_pilot\\nexp_021_fewnerd_full\\nexp_021_inference\\nexp_022_3seed_analysis\\nexp_022_seed789\\nexp_023_rank8_inference\\nexp_025_n32\\nexp_025_n32.log\\nexp_025_n_ablation\\nexp_026_T05\\nexp_026_T05_run.log\\nexp_026_T08\\nexp_026_T08_run.log\\nexp_026_T12\\nexp_026_T12_run.log\\nexp_026_T_ablation_summary.json\\nexp_026_t05\\nexp_026_t05.log\\nexp_026_t08\\nexp_026_t08.log\\nexp_026_t12\\nexp_026_t12.log\\nexp_027_fewnerd_n16\\nexp_027_mlp_verifier\\nexp_028_fewnerd_5epoch\\nexp_entity_token_lp\\nexp_entity_token_lp_conll_run.log\\nexp_entity_token_lp_pilot\\nexp_entity_token_lp_pilot_run.log\\nexp_entity_token_lp_scierc_run.log\\nexp_entity_token_lp_smoke\\nexp_lp_scierc_t07\\nexp_qwen3_4b_conll_merge_inference_v2\\nexp_qwen3_4b_conll_scs_inference\\nexp_qwen3_4b_conll_scs_inference_v2\\nexp_qwen3_4b_scierc_scs_inference\\nexp_re_scierc_seed123\\nexp_re_scierc_seed456\\nexp_scale_qwen3_4b_conll\\nfigures\\ngate0_all_predictions.jsonl\\ngate0_ft002v2\\ngate0_ft002v2_ckpt400\\ngate0_realigned_predictions.jsonl\\ngate0_realigned_results.json\\ngate0_results.json\\ngate0_samples.json\\nllama_conll_n16_3seed_5signal_summary.json\\nlogprob_diagnosis\\nloo_sj_cross_dataset\\nmultiseed_selection_f1.json\\nmvp_pilot_001\\nmvp_pilot_001.log\\nmvp_pilot_003\\nmvp_pilot_004\\nmvp_pilot_005\\nn16_3seed_5signal_results.json\\nn16_3seed_analysis.py\\nn16_5signal_results.json\\nn8_5signal_results.json\\nr17_analyses\\nreview_round2\\nreview_round4\\nreview_round8\\nreview_round9_experiments\\nrho_audit_results.json\\nselection_f1_4b_results.json\\nvc_quartile_analysis.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.01}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-18T00:56:32.697Z_
+
+<details><summary>↩ Tool result · `toolu_01KSwReL2R9uNA2ocjiwwi2k`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "43ab3e2a-8abd-459f-8408-ee9173987ff3",
+  "uuid": "12211e38-0dfe-4e32-a443-36048e4f4171",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01RmXh9qH5B9xGwkqGQcq8mY`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "find /root/autodl-tmp/struct_self_consist_ie/output/ -name \"*012*\" -o -name \"*rank32*\" -o -name \"*rank_32*\" 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "43ab3e2a-8abd-459f-8408-ee9173987ff3",
+  "uuid": "cbff4fce-5680-47be-b036-d0dc6f6aad07",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JZGuBhwFFE1R8k7hx8ToaJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1294,
+      "cache_read_input_tokens": 25006,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1294
+      },
+      "output_tokens": 37,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-18T00:56:33.289Z_
+
+<details><summary>↩ Tool result · `toolu_01RmXh9qH5B9xGwkqGQcq8mY`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "43ab3e2a-8abd-459f-8408-ee9173987ff3",
+  "uuid": "abb4a830-f046-4ede-aaef-71f84806af8d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 14_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I found `exp_023_rank8_inference` and `exp_012_logprob` directories. Let me explore their contents and also check exp_001 for the rank=32 baseline.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "43ab3e2a-8abd-459f-8408-ee9173987ff3",
+  "uuid": "c8da17a2-7eb4-491e-8f51-67a144d5ba62",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CAYrpid3F2f4k23TfrYoRh",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3024,
+      "cache_read_input_tokens": 26300,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3024
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 15_
+
+找到了 `exp_023_rank8_inference` 和 `exp_012_logprob`。让我查看它们的内容结构。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "43ab3e2a-8abd-459f-8408-ee9173987ff3",
+  "uuid": "638984ef-44dd-46c3-bb16-dac41c6d649c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CAYrpid3F2f4k23TfrYoRh",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3024,
+      "cache_read_input_tokens": 26300,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3024
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01E6cityJWbajFJ3Cvk9DJkb`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "ls -la /root/autodl-tmp/struct_self_consist_ie/output/exp_023_rank8_inference/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "43ab3e2a-8abd-459f-8408-ee9173987ff3",
+  "uuid": "65e42a79-f2a9-4bca-9018-11d40f76e884",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CAYrpid3F2f4k23TfrYoRh",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3024,
+      "cache_read_input_tokens": 26300,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3024
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01R8UDie26E67DLUNT6Drxq6`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "ls -la /root/autodl-tmp/struct_self_consist_ie/output/exp_012_logprob/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "43ab3e2a-8abd-459f-8408-ee9173987ff3",
+  "uuid": "9dadce52-8c91-421a-931b-46d97372a1ce",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CAYrpid3F2f4k23TfrYoRh",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3024,
+      "cache_read_input_tokens": 26300,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3024
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-18T00:56:39.095Z_
+
+<details><summary>↩ Tool result · `toolu_01E6cityJWbajFJ3Cvk9DJkb`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 21956\\ndrwxr-xr-x   2 root root      119 May 16 19:21 .\\ndrwxr-xr-x 124 root root     8192 May 18 04:06 ..\\n-rw-r--r--   1 root root     4163 May 16 19:21 all_signals_5signal.json\\n-rw-r--r--   1 root root     1968 May 16 19:21 comparison.md\\n-rw-r--r--   1 root root     3375 May 16 19:21 report.json\\n-rw-r--r--   1 root root 22453970 May 16 19:21 samples.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "43ab3e2a-8abd-459f-8408-ee9173987ff3",
+  "uuid": "a3e1ce09-9492-4220-aa65-f6d9923ca7e2",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 21956\\\\ndrwxr-xr-x   2 root root      119 May 16 19:21 .\\\\ndrwxr-xr-x 124 root root     8192 May 18 04:06 ..\\\\n-rw-r--r--   1 root root     4163 May 16 19:21 all_signals_5signal.json\\\\n-rw-r--r--   1 root root     1968 May 16 19:21 comparison.md\\\\n-rw-r--r--   1 root root     3375 May 16 19:21 report.json\\\\n-rw-r--r--   1 root root 22453970 May 16 19:21 samples.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 21956\\ndrwxr-xr-x   2 root root      119 May 16 19:21 .\\ndrwxr-xr-x 124 root root     8192 May 18 04:06 ..\\n-rw-r--r--   1 root root     4163 May 16 19:21 all_signals_5signal.json\\n-rw-r--r--   1 root root     1968 May 16 19:21 comparison.md\\n-rw-r--r--   1 root root     3375 May 16 19:21 report.json\\n-rw-r--r--   1 root root 22453970 May 16 19:21 samples.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-18T00:56:39.512Z_
+
+<details><summary>↩ Tool result · `toolu_01R8UDie26E67DLUNT6Drxq6`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 3276\\ndrwxr-xr-x   2 root root      81 May 14 19:06 .\\ndrwxr-xr-x 124 root root    8192 May 18 04:06 ..\\n-rw-r--r--   1 root root    6196 May 14 19:06 analysis_report.json\\n-rw-r--r--   1 root root 3333863 May 14 19:04 samples_with_logprobs.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "43ab3e2a-8abd-459f-8408-ee9173987ff3",
+  "uuid": "8622ebb8-761f-427f-aa4a-133fc05d67e3",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 3276\\\\ndrwxr-xr-x   2 root root      81 May 14 19:06 .\\\\ndrwxr-xr-x 124 root root    8192 May 18 04:06 ..\\\\n-rw-r--r--   1 root root    6196 May 14 19:06 analysis_report.json\\\\n-rw-r--r--   1 root root 3333863 May 14 19:04 samples_with_logprobs.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 3276\\ndrwxr-xr-x   2 root root      81 May 14 19:06 .\\ndrwxr-xr-x 124 root root    8192 May 18 04:06 ..\\n-rw-r--r--   1 root root    6196 May 14 19:06 analysis_report.json\\n-rw-r--r--   1 root root 3333863 May 14 19:04 samples_with_logprobs.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_014MKKmoqo7e7CKmiBX9Qx34`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "head -5 /root/autodl-tmp/struct_self_consist_ie/output/exp_023_rank8_inference/samples.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "43ab3e2a-8abd-459f-8408-ee9173987ff3",
+  "uuid": "97ad9a4b-425b-4826-a4c9-f90370b8562e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VdgxdRPJzKugW1Qd8eVaqD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 873,
+      "cache_read_input_tokens": 29324,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 873
+      },
+      "output_tokens": 63,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01LqeZGHCo93ex4758fUGYYP`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "head -3 /root/autodl-tmp/struct_self_consist_ie/output/exp_012_logprob/samples_with_logprobs.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "43ab3e2a-8abd-459f-8408-ee9173987ff3",
+  "uuid": "3b2fb39b-54ce-450f-a668-3e0107ebc00a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VdgxdRPJzKugW1Qd8eVaqD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 873,
+      "cache_read_input_tokens": 29324,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 873
+      },
+      "output_tokens": 63,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-18T00:56:44.964Z_
+
+<details><summary>↩ Tool result · `toolu_014MKKmoqo7e7CKmiBX9Qx34`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"id\\\": \\\"X96-1059_sent000\\\", \\\"text\\\": \\\"Recognition of proper nouns in Japanese text has been studied as a part of the more general problem of morphological analysis in Japanese text processing -LRB- -LSB- 1 -RSB- -LSB- 2 -RSB- -RRB- .\\\", \\\"gold\\\": {\\\"entities\\\": [{\\\"text\\\": \\\"Recognition of proper nouns\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 0, \\\"end\\\": 27}, {\\\"text\\\": \\\"proper nouns\\\", \\\"type\\\": \\\"OtherScientificTerm\\\", \\\"start\\\": 15, \\\"end\\\": 27}, {\\\"text\\\": \\\"Japanese text\\\", \\\"type\\\": \\\"Material\\\", \\\"start\\\": 31, \\\"end\\\": 44}, {\\\"text\\\": \\\"morphological analysis\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 103, \\\"end\\\": 125}, {\\\"text\\\": \\\"Japanese text processing\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 129, \\\"end\\\": 153}], \\\"relations\\\": [{\\\"head\\\": \\\"Recognition of proper nouns\\\", \\\"tail\\\": \\\"morphological analysis\\\", \\\"type\\\": \\\"PART-OF\\\", \\\"head_start\\\": 0, \\\"head_end\\\": 27, \\\"tail_start\\\": 103, \\\"tail_end\\\": 125}, {\\\"head\\\": \\\"proper nouns\\\", \\\"tail\\\": \\\"Japanese text\\\", \\\"type\\\": \\\"PART-OF\\\", \\\"head_start\\\": 15, \\\"head_end\\\": 27, \\\"tail_start\\\": 31, \\\"tail_end\\\": 44}, {\\\"head\\\": \\\"morphological analysis\\\", \\\"tail\\\": \\\"Japanese text processing\\\", \\\"type\\\": \\\"USED-FOR\\\", \\\"head_start\\\": 103, \\\"head_end\\\": 125, \\\"tail_start\\\": 129, \\\"tail_end\\\": 153}], \\\"events\\\": []}, \\\"samples\\\": [{\\\"entities\\\": [{\\\"text\\\": \\\"Recognition of proper nouns in Japanese text\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 0, \\\"end\\\": 44}, {\\\"text\\\": \\\"Japanese text\\\", \\\"type\\\": \\\"Material\\\", \\\"start\\\": 31, \\\"end\\\": 44}, {\\\"text\\\": \\\"morphological analysis in Japanese text processing\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 103, \\\"end\\\": 153}], \\\"relations\\\": [{\\\"head\\\": \\\"Recognition of proper nouns in Japanese text\\\", \\\"tail\\\": \\\"morphological analysis in Japanese text processing\\\", \\\"type\\\": \\\"PART-OF\\\", \\\"head_start\\\": 0, \\\"head_end\\\": 44, \\\"tail_start\\\": 103, \\\"tail_end\\\": 153}], \\\"events\\\": [], \\\"cumulative_logprob\\\": -11.762582614468847, \\\"n_tokens\\\": 169, \\\"mean_logprob\\\": -0.06960108055898727, \\\"token_logprobs\\\": [-1.1920928244535389e-07, -1.1920928244535389e-07, -3.576278118089249e-07, -0.0015147175872698426, 0.0, 0.0, -7.152555099310121e-07, -0.20657242834568024, -0.018152419477701187, -1.9311717551317997e-05, -2.50339189733495e-06, -0.8259486556053162, -2.1934269170742482e-05, -0.00017998983094003052, -3.671578815556131e-05, 0.0, 0.0, 0.0, -3.58813522325363e-05, -0.005186436232179403, -2.3841855067985307e-07, 0.0, 0.0, 0.0, 0.0, -0.00013648532330989838, 0.0, 0.0, 0.0, 0.0, 0.0, -0.00019834458362311125, -1.3694067001342773, -0.001329015358351171, 0.0, 0.0, 0.0, -2.264974000354414e-06, -0.6264098882675171, -0.0017037175130099058, -0.1002395823597908, 0.0, 0.0, 0.0, -1.1920928244535389e-07, -0.006759397219866514, 0.0, 0.0, 0.0, 0.0, 0.0, -0.137095645070076, -1.6950948238372803, 0.0, 0.0, 0.0, 0.0, 0.0, -4.768370445162873e-07, -0.006715585943311453, -0.0013260389678180218, 0.0, 0.0, 0.0, -9.179073458653875e-06, -0.04204664006829262, 0.0, -2.264974000354414e-06, -0.386924684047699, -1.1920922133867862e-06, -5.149708886165172e-05, -0.0052352952770888805, -0.00023624490131624043, 0.0, 0.0, 0.0, -3.576278118089249e-07, -0.056919753551483154, 0.0, 0.0, 0.0, 0.0, 0.0, -0.1458309143781662, -1.5135462284088135, -1.710825800895691, 0.0, 0.0, 0.0, 0.0, 0.0, -4.768370445162873e-07, -0.01820732094347477, -1.54977285861969, -0.17974953353405, 0.0, -1.1920928244535389e-07, 0.0, -0.05493646860122681, 0.0, 0.0, -1.2636104656849056e-05, -0.8608961701393127, -2.622600959512056e-06, 0.0, -1.1920928244535389e-07, -2.4676019165781327e-05, 0.0, -7.152555099310121e-07, 0.0, 0.0, 0.0, 0.0, -7.390948667307384e-06, -0.000514851592015475, 0.0, 0.0, -1.6689160474925302e-05, 0.0, -2.3841855067985307e-07, -2.3841855067985307e-07, 0.0, 0.0, 0.0, 0.0, 0.0, -0.22853916883468628, -5.006777428206988e-06, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -1.1920928244535389e-07, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -2.3841855067985307e-07, -2.145764938177308e-06, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -9.179073458653875e-06, -3.158996332786046e-05, -1.0728830375228426e-06, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.004130167420953512, 0.0, 0.0, 0.0, -1.1920928244535389e-07, 0.0, 0.0], \\\"token_texts\\\": [\\\"{\\\\\\\"\\\", \\\"entities\\\", \\\"\\\\\\\":\\\", \\\" [{\\\\\\\"\\\", \\\"\\n\\n... [截断: 输出过长，省略 217317 字符] ...\\n\\next\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"an\\\", \\\"alyzer\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"type\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"Generic\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"start\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"4\\\", \\\",\\\", \\\" \\\\\\\"\\\", \\\"end\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"1\\\", \\\"2\\\", \\\"}],\\\", \\\" \\\\\\\"\\\", \\\"relations\\\", \\\"\\\\\\\":\\\", \\\" [],\\\", \\\" \\\\\\\"\\\", \\\"events\\\", \\\"\\\\\\\":\\\", \\\" []\\\", \\\"}\\\", \\\"<|im_end|>\\\"]}, {\\\"entities\\\": [{\\\"text\\\": \\\"analyzer\\\", \\\"type\\\": \\\"Generic\\\", \\\"start\\\": 4, \\\"end\\\": 12}, {\\\"text\\\": \\\"Amorph\\\", \\\"type\\\": \\\"Method\\\", \\\"start\\\": 26, \\\"end\\\": 32}], \\\"relations\\\": [{\\\"head\\\": \\\"Amorph\\\", \\\"tail\\\": \\\"analyzer\\\", \\\"type\\\": \\\"HYPONYM-OF\\\", \\\"head_start\\\": 26, \\\"head_end\\\": 32, \\\"tail_start\\\": 4, \\\"tail_end\\\": 12}], \\\"events\\\": [], \\\"cumulative_logprob\\\": -4.381055487500369, \\\"n_tokens\\\": 121, \\\"mean_logprob\\\": -0.03620707014463115, \\\"token_logprobs\\\": [0.0, -1.1920928244535389e-07, -1.0728830375228426e-06, -0.023266643285751343, 0.0, 0.0, -1.0728830375228426e-06, -0.00017736769223120064, 0.0, -9.536738616588991e-07, 0.0, 0.0, 0.0, -4.887569048150908e-06, -0.27566251158714294, -2.3841855067985307e-07, 0.0, 0.0, 0.0, 0.0, -3.814624506048858e-05, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -6.318072337307967e-06, -1.9102391004562378, -1.1920928244535389e-07, 0.0, 0.0, -0.0001842805795604363, -0.3134218156337738, 0.0, -0.0004968600696884096, 0.0, 0.0, 0.0, -3.2186455882765586e-06, -0.22361256182193756, -5.960462772236497e-07, 0.0, 0.0, 0.0, 0.0, -9.917721035890281e-05, -1.456532597541809, 0.0, 0.0, 0.0, 0.0, 0.0, -2.3841855067985307e-07, -1.0132738680113107e-05, -0.0004318020073696971, 0.0, 0.0, 0.0, -0.12712164223194122, 0.0, 0.0, -7.152531907195225e-06, -0.013463531620800495, -1.1920928244535389e-07, -4.768370445162873e-07, 0.0, 0.0, 0.0, -3.576278118089249e-07, -3.218599158572033e-05, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.03621530160307884, -9.536738616588991e-07, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -2.3841855067985307e-07, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -2.169585604860913e-05, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], \\\"token_texts\\\": [\\\"{\\\\\\\"\\\", \\\"entities\\\", \\\"\\\\\\\":\\\", \\\" [{\\\\\\\"\\\", \\\"text\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"an\\\", \\\"alyzer\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"type\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"Generic\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"start\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"4\\\", \\\",\\\", \\\" \\\\\\\"\\\", \\\"end\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"1\\\", \\\"2\\\", \\\"},\\\", \\\" {\\\\\\\"\\\", \\\"text\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"Am\\\", \\\"orph\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"type\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"Method\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"start\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"2\\\", \\\"5\\\", \\\",\\\", \\\" \\\\\\\"\\\", \\\"end\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"3\\\", \\\"1\\\", \\\"}],\\\", \\\" \\\\\\\"\\\", \\\"relations\\\", \\\"\\\\\\\":\\\", \\\" [{\\\\\\\"\\\", \\\"head\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"Am\\\", \\\"orph\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"tail\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"an\\\", \\\"alyzer\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"type\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"H\\\", \\\"YP\\\", \\\"ONY\\\", \\\"M\\\", \\\"-\\\", \\\"OF\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"head\\\", \\\"_start\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"2\\\", \\\"5\\\", \\\",\\\", \\\" \\\\\\\"\\\", \\\"head\\\", \\\"_end\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"3\\\", \\\"1\\\", \\\",\\\", \\\" \\\\\\\"\\\", \\\"tail\\\", \\\"_start\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"4\\\", \\\",\\\", \\\" \\\\\\\"\\\", \\\"tail\\\", \\\"_end\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"1\\\", \\\"2\\\", \\\"}],\\\", \\\" \\\\\\\"\\\", \\\"events\\\", \\\"\\\\\\\":\\\", \\\" []\\\", \\\"}\\\", \\\"<|im_end|>\\\"]}], \\\"greedy\\\": {\\\"entities\\\": [{\\\"text\\\": \\\"analyzer\\\", \\\"type\\\": \\\"Generic\\\", \\\"start\\\": 4, \\\"end\\\": 12}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -0.4994860029332173, \\\"n_tokens\\\": 39, \\\"mean_logprob\\\": -0.012807333408544034, \\\"token_logprobs\\\": [0.0, -1.1920928244535389e-07, -1.0728830375228426e-06, -0.023264547809958458, 0.0, 0.0, -1.0728830375228426e-06, -0.00015877417172305286, 0.0, -1.1920922133867862e-06, 0.0, 0.0, 0.0, -5.483612312673358e-06, -0.2743902802467346, -2.3841855067985307e-07, 0.0, 0.0, 0.0, 0.0, -3.71926071238704e-05, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -4.887569048150908e-06, -0.2014286369085312, 0.0, -2.3841855067985307e-07, 0.0, -0.00019226610311307013, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], \\\"token_texts\\\": [\\\"{\\\\\\\"\\\", \\\"entities\\\", \\\"\\\\\\\":\\\", \\\" [{\\\\\\\"\\\", \\\"text\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"an\\\", \\\"alyzer\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"type\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"Generic\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"start\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"4\\\", \\\",\\\", \\\" \\\\\\\"\\\", \\\"end\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"1\\\", \\\"2\\\", \\\"}],\\\", \\\" \\\\\\\"\\\", \\\"relations\\\", \\\"\\\\\\\":\\\", \\\" [],\\\", \\\" \\\\\\\"\\\", \\\"events\\\", \\\"\\\\\\\":\\\", \\\" []\\\", \\\"}\\\", \\\"<|im_end|>\\\"]}, \\\"logprobs\\\": [-0.03183362459330661, -0.011783962011395014, -0.011783962011395014, -0.011783962011395014, -0.011783962011395014, -0.2695260640596097, -0.011783962011395014, -0.03620707014463115]}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.61}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "43ab3e2a-8abd-459f-8408-ee9173987ff3",
+  "uuid": "da634014-2075-4a3a-9406-f82516c3835f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"id\\\\\\\": \\\\\\\"X96-1059_sent000\\\\\\\", \\\\\\\"text\\\\\\\": \\\\\\\"Recognition of proper nouns in Japanese text has been studied as a part of the more general problem of morphological analysis in Japanese text processing -LRB- -LSB- 1 -RSB- -LSB- 2 -RSB- -RRB- .\\\\\\\", \\\\\\\"gold\\\\\\\": {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"Recognition of proper nouns\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 0, \\\\\\\"end\\\\\\\": 27}, {\\\\\\\"text\\\\\\\": \\\\\\\"proper nouns\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"OtherScientificTerm\\\\\\\", \\\\\\\"start\\\\\\\": 15, \\\\\\\"end\\\\\\\": 27}, {\\\\\\\"text\\\\\\\": \\\\\\\"Japanese text\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Material\\\\\\\", \\\\\\\"start\\\\\\\": 31, \\\\\\\"end\\\\\\\": 44}, {\\\\\\\"text\\\\\\\": \\\\\\\"morphological analysis\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 103, \\\\\\\"end\\\\\\\": 125}, {\\\\\\\"text\\\\\\\": \\\\\\\"Japanese text processing\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 129, \\\\\\\"end\\\\\\\": 153}], \\\\\\\"relations\\\\\\\": [{\\\\\\\"head\\\\\\\": \\\\\\\"Recognition of proper nouns\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"morphological analysis\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"PART-OF\\\\\\\", \\\\\\\"head_start\\\\\\\": 0, \\\\\\\"head_end\\\\\\\": 27, \\\\\\\"tail_start\\\\\\\": 103, \\\\\\\"tail_end\\\\\\\": 125}, {\\\\\\\"head\\\\\\\": \\\\\\\"proper nouns\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"Japanese text\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"PART-OF\\\\\\\", \\\\\\\"head_start\\\\\\\": 15, \\\\\\\"head_end\\\\\\\": 27, \\\\\\\"tail_start\\\\\\\": 31, \\\\\\\"tail_end\\\\\\\": 44}, {\\\\\\\"head\\\\\\\": \\\\\\\"morphological analysis\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"Japanese text processing\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"USED-FOR\\\\\\\", \\\\\\\"head_start\\\\\\\": 103, \\\\\\\"head_end\\\\\\\": 125, \\\\\\\"tail_start\\\\\\\": 129, \\\\\\\"tail_end\\\\\\\": 153}], \\\\\\\"events\\\\\\\": []}, \\\\\\\"samples\\\\\\\": [{\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"Recognition of proper nouns in Japanese text\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 0, \\\\\\\"end\\\\\\\": 44}, {\\\\\\\"text\\\\\\\": \\\\\\\"Japanese text\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Material\\\\\\\", \\\\\\\"start\\\\\\\": 31, \\\\\\\"end\\\\\\\": 44}, {\\\\\\\"text\\\\\\\": \\\\\\\"morphological analysis in Japanese text processing\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 103, \\\\\\\"end\\\\\\\": 153}], \\\\\\\"relations\\\\\\\": [{\\\\\\\"head\\\\\\\": \\\\\\\"Recognition of proper nouns in Japanese text\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"morphological analysis in Japanese text processing\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"PART-OF\\\\\\\", \\\\\\\"head_start\\\\\\\": 0, \\\\\\\"head_end\\\\\\\": 44, \\\\\\\"tail_start\\\\\\\": 103, \\\\\\\"tail_end\\\\\\\": 153}], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -11.762582614468847, \\\\\\\"n_tokens\\\\\\\": 169, \\\\\\\"mean_logprob\\\\\\\": -0.06960108055898727, \\\\\\\"token_logprobs\\\\\\\": [-1.1920928244535389e-07, -1.1920928244535389e-07, -3.576278118089249e-07, -0.0015147175872698426, 0.0, 0.0, -7.152555099310121e-07, -0.20657242834568024, -0.018152419477701187, -1.9311717551317997e-05, -2.50339189733495e-06, -0.8259486556053162, -2.1934269170742482e-05, -0.00017998983094003052, -3.671578815556131e-05, 0.0, 0.0, 0.0, -3.58813522325363e-05, -0.005186436232179403, -2.3841855067985307e-07, 0.0, 0.0, 0.0, 0.0, -0.00013648532330989838, 0.0, 0.0, 0.0, 0.0, 0.0, -0.00019834458362311125, -1.3694067001342773, -0.001329015358351171, 0.0, 0.0, 0.0, -2.264974000354414e-06, -0.6264098882675171, -0.0017037175130099058, -0.1002395823597908, 0.0, 0.0, 0.0, -1.1920928244535389e-07, -0.006759397219866514, 0.0, 0.0, 0.0, 0.0, 0.0, -0.137095645070076, -1.6950948238372803, 0.0, 0.0, 0.0, 0.0, 0.0, -4.768370445162873e-07, -0.006715585943311453, -0.0013260389678180218, 0.0, 0.0, 0.0, -9.179073458653875e-06, -0.04204664006829262, 0.0, -2.264974000354414e-06, -0.386924684047699, -1.1920922133867862e-06, -5.149708886165172e-05, -0.0052352952770888805, -0.00023624490131624043, 0.0, 0.0, 0.0, -3.576278118089249e-07, -0.056919753551483154, 0.0, 0.0, 0.0, 0.0, 0.0, -0.1458309143781662, -1.5135462284088135, -1.710825800895691, 0.0, 0.0, 0.0, 0.0, 0.0, -4.768370445162873e-07, -0.01820732094347477, -1.54977285861969, -0.17974953353405, 0.0, -1.1920928244535389e-07, 0.0, -0.05493646860122681, 0.0, 0.0, -1.2636104656849056e-05, -0.8608961701393127, -2.622600959512056e-06, 0.0, -1.1920928244535389e-07, -2.4676019165781327e-05, 0.0, -7.152555099310121e-07, 0.0, 0.0, 0.0, 0.0, -7.390948667307384e-06, -0.000514851592015475, 0.0, 0.0, -1.6689160474925302e-05, 0.0, -2.3841855067985307e-07, -2.3841855067985307e-07, 0.0, 0.0, 0.0, 0.0, 0.0, -0.22853916883468628, -5.006777428206988e-06, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -1.1920928244535389e-07, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -2.3841855067985307e-07, -2.145764938177308e-06, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -9.179073458653875e-06, -3.158996332786046e-05, -1.0728830375228426e-06, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.004130167420953512, 0.0, 0.0, 0.0, -1.1920928244535389e-07, 0.0, 0.0], \\\\\\\"token_texts\\\\\\\": [\\\\\\\"{\\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"entities\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" [{\\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"\\\\n\\\\n... [截断: 输出过长，省略 217317 字符] ...\\\\n\\\\next\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"an\\\\\\\", \\\\\\\"alyzer\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"type\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"Generic\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"start\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\", \\\\\\\"4\\\\\\\", \\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"end\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\", \\\\\\\"1\\\\\\\", \\\\\\\"2\\\\\\\", \\\\\\\"}],\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"relations\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" [],\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"events\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" []\\\\\\\", \\\\\\\"}\\\\\\\", \\\\\\\"<|im_end|>\\\\\\\"]}, {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"analyzer\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Generic\\\\\\\", \\\\\\\"start\\\\\\\": 4, \\\\\\\"end\\\\\\\": 12}, {\\\\\\\"text\\\\\\\": \\\\\\\"Amorph\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Method\\\\\\\", \\\\\\\"start\\\\\\\": 26, \\\\\\\"end\\\\\\\": 32}], \\\\\\\"relations\\\\\\\": [{\\\\\\\"head\\\\\\\": \\\\\\\"Amorph\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"analyzer\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"HYPONYM-OF\\\\\\\", \\\\\\\"head_start\\\\\\\": 26, \\\\\\\"head_end\\\\\\\": 32, \\\\\\\"tail_start\\\\\\\": 4, \\\\\\\"tail_end\\\\\\\": 12}], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -4.381055487500369, \\\\\\\"n_tokens\\\\\\\": 121, \\\\\\\"mean_logprob\\\\\\\": -0.03620707014463115, \\\\\\\"token_logprobs\\\\\\\": [0.0, -1.1920928244535389e-07, -1.0728830375228426e-06, -0.023266643285751343, 0.0, 0.0, -1.0728830375228426e-06, -0.00017736769223120064, 0.0, -9.536738616588991e-07, 0.0, 0.0, 0.0, -4.887569048150908e-06, -0.27566251158714294, -2.3841855067985307e-07, 0.0, 0.0, 0.0, 0.0, -3.814624506048858e-05, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -6.318072337307967e-06, -1.9102391004562378, -1.1920928244535389e-07, 0.0, 0.0, -0.0001842805795604363, -0.3134218156337738, 0.0, -0.0004968600696884096, 0.0, 0.0, 0.0, -3.2186455882765586e-06, -0.22361256182193756, -5.960462772236497e-07, 0.0, 0.0, 0.0, 0.0, -9.917721035890281e-05, -1.456532597541809, 0.0, 0.0, 0.0, 0.0, 0.0, -2.3841855067985307e-07, -1.0132738680113107e-05, -0.0004318020073696971, 0.0, 0.0, 0.0, -0.12712164223194122, 0.0, 0.0, -7.152531907195225e-06, -0.013463531620800495, -1.1920928244535389e-07, -4.768370445162873e-07, 0.0, 0.0, 0.0, -3.576278118089249e-07, -3.218599158572033e-05, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.03621530160307884, -9.536738616588991e-07, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -2.3841855067985307e-07, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -2.169585604860913e-05, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], \\\\\\\"token_texts\\\\\\\": [\\\\\\\"{\\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"entities\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" [{\\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"text\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"an\\\\\\\", \\\\\\\"alyzer\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"type\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"Generic\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"start\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\", \\\\\\\"4\\\\\\\", \\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"end\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\", \\\\\\\"1\\\\\\\", \\\\\\\"2\\\\\\\", \\\\\\\"},\\\\\\\", \\\\\\\" {\\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"text\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"Am\\\\\\\", \\\\\\\"orph\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"type\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"Method\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"start\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\", \\\\\\\"2\\\\\\\", \\\\\\\"5\\\\\\\", \\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"end\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\", \\\\\\\"3\\\\\\\", \\\\\\\"1\\\\\\\", \\\\\\\"}],\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"relations\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" [{\\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"head\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"Am\\\\\\\", \\\\\\\"orph\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"tail\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"an\\\\\\\", \\\\\\\"alyzer\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"type\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"H\\\\\\\", \\\\\\\"YP\\\\\\\", \\\\\\\"ONY\\\\\\\", \\\\\\\"M\\\\\\\", \\\\\\\"-\\\\\\\", \\\\\\\"OF\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"head\\\\\\\", \\\\\\\"_start\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\", \\\\\\\"2\\\\\\\", \\\\\\\"5\\\\\\\", \\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"head\\\\\\\", \\\\\\\"_end\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\", \\\\\\\"3\\\\\\\", \\\\\\\"1\\\\\\\", \\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"tail\\\\\\\", \\\\\\\"_start\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\", \\\\\\\"4\\\\\\\", \\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"tail\\\\\\\", \\\\\\\"_end\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\", \\\\\\\"1\\\\\\\", \\\\\\\"2\\\\\\\", \\\\\\\"}],\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"events\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" []\\\\\\\", \\\\\\\"}\\\\\\\", \\\\\\\"<|im_end|>\\\\\\\"]}], \\\\\\\"greedy\\\\\\\": {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"analyzer\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Generic\\\\\\\", \\\\\\\"start\\\\\\\": 4, \\\\\\\"end\\\\\\\": 12}], \\\\\\\"relations\\\\\\\": [], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -0.4994860029332173, \\\\\\\"n_tokens\\\\\\\": 39, \\\\\\\"mean_logprob\\\\\\\": -0.012807333408544034, \\\\\\\"token_logprobs\\\\\\\": [0.0, -1.1920928244535389e-07, -1.0728830375228426e-06, -0.023264547809958458, 0.0, 0.0, -1.0728830375228426e-06, -0.00015877417172305286, 0.0, -1.1920922133867862e-06, 0.0, 0.0, 0.0, -5.483612312673358e-06, -0.2743902802467346, -2.3841855067985307e-07, 0.0, 0.0, 0.0, 0.0, -3.71926071238704e-05, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -4.887569048150908e-06, -0.2014286369085312, 0.0, -2.3841855067985307e-07, 0.0, -0.00019226610311307013, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], \\\\\\\"token_texts\\\\\\\": [\\\\\\\"{\\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"entities\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" [{\\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"text\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"an\\\\\\\", \\\\\\\"alyzer\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"type\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"Generic\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"start\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\", \\\\\\\"4\\\\\\\", \\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"end\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\", \\\\\\\"1\\\\\\\", \\\\\\\"2\\\\\\\", \\\\\\\"}],\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"relations\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" [],\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"events\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" []\\\\\\\", \\\\\\\"}\\\\\\\", \\\\\\\"<|im_end|>\\\\\\\"]}, \\\\\\\"logprobs\\\\\\\": [-0.03183362459330661, -0.011783962011395014, -0.011783962011395014, -0.011783962011395014, -0.011783962011395014, -0.2695260640596097, -0.011783962011395014, -0.03620707014463115]}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.61}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\\"id\\\": \\\"X96-1059_sent000\\\", \\\"text\\\": \\\"Recognition of proper nouns in Japanese text has been studied as a part of the more general problem of morphological analysis in Japanese text processing -LRB- -LSB- 1 -RSB- -LSB- 2 -RSB- -RRB- .\\\", \\\"gold\\\": {\\\"entities\\\": [{\\\"text\\\": \\\"Recognition of proper nouns\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 0, \\\"end\\\": 27}, {\\\"text\\\": \\\"proper nouns\\\", \\\"type\\\": \\\"OtherScientificTerm\\\", \\\"start\\\": 15, \\\"end\\\": 27}, {\\\"text\\\": \\\"Japanese text\\\", \\\"type\\\": \\\"Material\\\", \\\"start\\\": 31, \\\"end\\\": 44}, {\\\"text\\\": \\\"morphological analysis\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 103, \\\"end\\\": 125}, {\\\"text\\\": \\\"Japanese text processing\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 129, \\\"end\\\": 153}], \\\"relations\\\": [{\\\"head\\\": \\\"Recognition of proper nouns\\\", \\\"tail\\\": \\\"morphological analysis\\\", \\\"type\\\": \\\"PART-OF\\\", \\\"head_start\\\": 0, \\\"head_end\\\": 27, \\\"tail_start\\\": 103, \\\"tail_end\\\": 125}, {\\\"head\\\": \\\"proper nouns\\\", \\\"tail\\\": \\\"Japanese text\\\", \\\"type\\\": \\\"PART-OF\\\", \\\"head_start\\\": 15, \\\"head_end\\\": 27, \\\"tail_start\\\": 31, \\\"tail_end\\\": 44}, {\\\"head\\\": \\\"morphological analysis\\\", \\\"tail\\\": \\\"Japanese text processing\\\", \\\"type\\\": \\\"USED-FOR\\\", \\\"head_start\\\": 103, \\\"head_end\\\": 125, \\\"tail_start\\\": 129, \\\"tail_end\\\": 153}], \\\"events\\\": []}, \\\"samples\\\": [{\\\"entities\\\": [{\\\"text\\\": \\\"Recognition of proper nouns in Japanese text\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 0, \\\"end\\\": 44}, {\\\"text\\\": \\\"Japanese text\\\", \\\"type\\\": \\\"Material\\\", \\\"start\\\": 31, \\\"end\\\": 44}, {\\\"text\\\": \\\"morphological analysis in Japanese text processing\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 103, \\\"end\\\": 153}], \\\"relations\\\": [{\\\"head\\\": \\\"Recognition of proper nouns in Japanese text\\\", \\\"tail\\\": \\\"morphological analysis in Japanese text processing\\\", \\\"type\\\": \\\"PART-OF\\\", \\\"head_start\\\": 0, \\\"head_end\\\": 44, \\\"tail_start\\\": 103, \\\"tail_end\\\": 153}], \\\"events\\\": [], \\\"cumulative_logprob\\\": -11.762582614468847, \\\"n_tokens\\\": 169, \\\"mean_logprob\\\": -0.06960108055898727, \\\"token_logprobs\\\": [-1.1920928244535389e-07, -1.1920928244535389e-07, -3.576278118089249e-07, -0.0015147175872698426, 0.0, 0.0, -7.152555099310121e-07, -0.20657242834568024, -0.018152419477701187, -1.9311717551317997e-05, -2.50339189733495e-06, -0.8259486556053162, -2.1934269170742482e-05, -0.00017998983094003052, -3.671578815556131e-05, 0.0, 0.0, 0.0, -3.58813522325363e-05, -0.005186436232179403, -2.3841855067985307e-07, 0.0, 0.0, 0.0, 0.0, -0.00013648532330989838, 0.0, 0.0, 0.0, 0.0, 0.0, -0.00019834458362311125, -1.3694067001342773, -0.001329015358351171, 0.0, 0.0, 0.0, -2.264974000354414e-06, -0.6264098882675171, -0.0017037175130099058, -0.1002395823597908, 0.0, 0.0, 0.0, -1.1920928244535389e-07, -0.006759397219866514, 0.0, 0.0, 0.0, 0.0, 0.0, -0.137095645070076, -1.6950948238372803, 0.0, 0.0, 0.0, 0.0, 0.0, -4.768370445162873e-07, -0.006715585943311453, -0.0013260389678180218, 0.0, 0.0, 0.0, -9.179073458653875e-06, -0.04204664006829262, 0.0, -2.264974000354414e-06, -0.386924684047699, -1.1920922133867862e-06, -5.149708886165172e-05, -0.0052352952770888805, -0.00023624490131624043, 0.0, 0.0, 0.0, -3.576278118089249e-07, -0.056919753551483154, 0.0, 0.0, 0.0, 0.0, 0.0, -0.1458309143781662, -1.5135462284088135, -1.710825800895691, 0.0, 0.0, 0.0, 0.0, 0.0, -4.768370445162873e-07, -0.01820732094347477, -1.54977285861969, -0.17974953353405, 0.0, -1.1920928244535389e-07, 0.0, -0.05493646860122681, 0.0, 0.0, -1.2636104656849056e-05, -0.8608961701393127, -2.622600959512056e-06, 0.0, -1.1920928244535389e-07, -2.4676019165781327e-05, 0.0, -7.152555099310121e-07, 0.0, 0.0, 0.0, 0.0, -7.390948667307384e-06, -0.000514851592015475, 0.0, 0.0, -1.6689160474925302e-05, 0.0, -2.3841855067985307e-07, -2.3841855067985307e-07, 0.0, 0.0, 0.0, 0.0, 0.0, -0.22853916883468628, -5.006777428206988e-06, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -1.1920928244535389e-07, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -2.3841855067985307e-07, -2.145764938177308e-06, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -9.179073458653875e-06, -3.158996332786046e-05, -1.0728830375228426e-06, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.004130167420953512, 0.0, 0.0, 0.0, -1.1920928244535389e-07, 0.0, 0.0], \\\"token_texts\\\": [\\\"{\\\\\\\"\\\", \\\"entities\\\", \\\"\\\\\\\":\\\", \\\" [{\\\\\\\"\\\", \\\"\\n\\n... [截断: 输出过长，省略 217317 字符] ...\\n\\next\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"an\\\", \\\"alyzer\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"type\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"Generic\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"start\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"4\\\", \\\",\\\", \\\" \\\\\\\"\\\", \\\"end\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"1\\\", \\\"2\\\", \\\"}],\\\", \\\" \\\\\\\"\\\", \\\"relations\\\", \\\"\\\\\\\":\\\", \\\" [],\\\", \\\" \\\\\\\"\\\", \\\"events\\\", \\\"\\\\\\\":\\\", \\\" []\\\", \\\"}\\\", \\\"<|im_end|>\\\"]}, {\\\"entities\\\": [{\\\"text\\\": \\\"analyzer\\\", \\\"type\\\": \\\"Generic\\\", \\\"start\\\": 4, \\\"end\\\": 12}, {\\\"text\\\": \\\"Amorph\\\", \\\"type\\\": \\\"Method\\\", \\\"start\\\": 26, \\\"end\\\": 32}], \\\"relations\\\": [{\\\"head\\\": \\\"Amorph\\\", \\\"tail\\\": \\\"analyzer\\\", \\\"type\\\": \\\"HYPONYM-OF\\\", \\\"head_start\\\": 26, \\\"head_end\\\": 32, \\\"tail_start\\\": 4, \\\"tail_end\\\": 12}], \\\"events\\\": [], \\\"cumulative_logprob\\\": -4.381055487500369, \\\"n_tokens\\\": 121, \\\"mean_logprob\\\": -0.03620707014463115, \\\"token_logprobs\\\": [0.0, -1.1920928244535389e-07, -1.0728830375228426e-06, -0.023266643285751343, 0.0, 0.0, -1.0728830375228426e-06, -0.00017736769223120064, 0.0, -9.536738616588991e-07, 0.0, 0.0, 0.0, -4.887569048150908e-06, -0.27566251158714294, -2.3841855067985307e-07, 0.0, 0.0, 0.0, 0.0, -3.814624506048858e-05, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -6.318072337307967e-06, -1.9102391004562378, -1.1920928244535389e-07, 0.0, 0.0, -0.0001842805795604363, -0.3134218156337738, 0.0, -0.0004968600696884096, 0.0, 0.0, 0.0, -3.2186455882765586e-06, -0.22361256182193756, -5.960462772236497e-07, 0.0, 0.0, 0.0, 0.0, -9.917721035890281e-05, -1.456532597541809, 0.0, 0.0, 0.0, 0.0, 0.0, -2.3841855067985307e-07, -1.0132738680113107e-05, -0.0004318020073696971, 0.0, 0.0, 0.0, -0.12712164223194122, 0.0, 0.0, -7.152531907195225e-06, -0.013463531620800495, -1.1920928244535389e-07, -4.768370445162873e-07, 0.0, 0.0, 0.0, -3.576278118089249e-07, -3.218599158572033e-05, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.03621530160307884, -9.536738616588991e-07, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -2.3841855067985307e-07, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -2.169585604860913e-05, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], \\\"token_texts\\\": [\\\"{\\\\\\\"\\\", \\\"entities\\\", \\\"\\\\\\\":\\\", \\\" [{\\\\\\\"\\\", \\\"text\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"an\\\", \\\"alyzer\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"type\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"Generic\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"start\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"4\\\", \\\",\\\", \\\" \\\\\\\"\\\", \\\"end\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"1\\\", \\\"2\\\", \\\"},\\\", \\\" {\\\\\\\"\\\", \\\"text\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"Am\\\", \\\"orph\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"type\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"Method\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"start\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"2\\\", \\\"5\\\", \\\",\\\", \\\" \\\\\\\"\\\", \\\"end\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"3\\\", \\\"1\\\", \\\"}],\\\", \\\" \\\\\\\"\\\", \\\"relations\\\", \\\"\\\\\\\":\\\", \\\" [{\\\\\\\"\\\", \\\"head\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"Am\\\", \\\"orph\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"tail\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"an\\\", \\\"alyzer\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"type\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"H\\\", \\\"YP\\\", \\\"ONY\\\", \\\"M\\\", \\\"-\\\", \\\"OF\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"head\\\", \\\"_start\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"2\\\", \\\"5\\\", \\\",\\\", \\\" \\\\\\\"\\\", \\\"head\\\", \\\"_end\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"3\\\", \\\"1\\\", \\\",\\\", \\\" \\\\\\\"\\\", \\\"tail\\\", \\\"_start\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"4\\\", \\\",\\\", \\\" \\\\\\\"\\\", \\\"tail\\\", \\\"_end\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"1\\\", \\\"2\\\", \\\"}],\\\", \\\" \\\\\\\"\\\", \\\"events\\\", \\\"\\\\\\\":\\\", \\\" []\\\", \\\"}\\\", \\\"<|im_end|>\\\"]}], \\\"greedy\\\": {\\\"entities\\\": [{\\\"text\\\": \\\"analyzer\\\", \\\"type\\\": \\\"Generic\\\", \\\"start\\\": 4, \\\"end\\\": 12}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -0.4994860029332173, \\\"n_tokens\\\": 39, \\\"mean_logprob\\\": -0.012807333408544034, \\\"token_logprobs\\\": [0.0, -1.1920928244535389e-07, -1.0728830375228426e-06, -0.023264547809958458, 0.0, 0.0, -1.0728830375228426e-06, -0.00015877417172305286, 0.0, -1.1920922133867862e-06, 0.0, 0.0, 0.0, -5.483612312673358e-06, -0.2743902802467346, -2.3841855067985307e-07, 0.0, 0.0, 0.0, 0.0, -3.71926071238704e-05, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -4.887569048150908e-06, -0.2014286369085312, 0.0, -2.3841855067985307e-07, 0.0, -0.00019226610311307013, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], \\\"token_texts\\\": [\\\"{\\\\\\\"\\\", \\\"entities\\\", \\\"\\\\\\\":\\\", \\\" [{\\\\\\\"\\\", \\\"text\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"an\\\", \\\"alyzer\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"type\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"Generic\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"start\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"4\\\", \\\",\\\", \\\" \\\\\\\"\\\", \\\"end\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"1\\\", \\\"2\\\", \\\"}],\\\", \\\" \\\\\\\"\\\", \\\"relations\\\", \\\"\\\\\\\":\\\", \\\" [],\\\", \\\" \\\\\\\"\\\", \\\"events\\\", \\\"\\\\\\\":\\\", \\\" []\\\", \\\"}\\\", \\\"<|im_end|>\\\"]}, \\\"logprobs\\\": [-0.03183362459330661, -0.011783962011395014, -0.011783962011395014, -0.011783962011395014, -0.011783962011395014, -0.2695260640596097, -0.011783962011395014, -0.03620707014463115]}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.61}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-18T00:56:45.390Z_
+
+<details><summary>↩ Tool result · `toolu_01LqeZGHCo93ex4758fUGYYP`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"id\\\": \\\"X96-1059_sent000\\\", \\\"text\\\": \\\"Recognition of proper nouns in Japanese text has been studied as a part of the more general problem of morphological analysis in Japanese text processing -LRB- -LSB- 1 -RSB- -LSB- 2 -RSB- -RRB- .\\\", \\\"gold\\\": {\\\"entities\\\": [{\\\"text\\\": \\\"Recognition of proper nouns\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 0, \\\"end\\\": 27}, {\\\"text\\\": \\\"proper nouns\\\", \\\"type\\\": \\\"OtherScientificTerm\\\", \\\"start\\\": 15, \\\"end\\\": 27}, {\\\"text\\\": \\\"Japanese text\\\", \\\"type\\\": \\\"Material\\\", \\\"start\\\": 31, \\\"end\\\": 44}, {\\\"text\\\": \\\"morphological analysis\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 103, \\\"end\\\": 125}, {\\\"text\\\": \\\"Japanese text processing\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 129, \\\"end\\\": 153}], \\\"relations\\\": [{\\\"head\\\": \\\"Recognition of proper nouns\\\", \\\"tail\\\": \\\"morphological analysis\\\", \\\"type\\\": \\\"PART-OF\\\", \\\"head_start\\\": 0, \\\"head_end\\\": 27, \\\"tail_start\\\": 103, \\\"tail_end\\\": 125}, {\\\"head\\\": \\\"proper nouns\\\", \\\"tail\\\": \\\"Japanese text\\\", \\\"type\\\": \\\"PART-OF\\\", \\\"head_start\\\": 15, \\\"head_end\\\": 27, \\\"tail_start\\\": 31, \\\"tail_end\\\": 44}, {\\\"head\\\": \\\"morphological analysis\\\", \\\"tail\\\": \\\"Japanese text processing\\\", \\\"type\\\": \\\"USED-FOR\\\", \\\"head_start\\\": 103, \\\"head_end\\\": 125, \\\"tail_start\\\": 129, \\\"tail_end\\\": 153}], \\\"events\\\": []}, \\\"samples\\\": [{\\\"entities\\\": [{\\\"text\\\": \\\"Recognition of proper nouns in Japanese text\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 0, \\\"end\\\": 44}, {\\\"text\\\": \\\"Japanese text processing\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 129, \\\"end\\\": 153}], \\\"relations\\\": [{\\\"head\\\": \\\"Recognition of proper nouns in Japanese text\\\", \\\"tail\\\": \\\"Japanese text processing\\\", \\\"type\\\": \\\"HYPONYM-OF\\\", \\\"head_start\\\": 0, \\\"head_end\\\": 44, \\\"tail_start\\\": 129, \\\"tail_end\\\": 153}], \\\"events\\\": [], \\\"cumulative_logprob\\\": -13.773208742677951, \\\"n_tokens\\\": 137, \\\"mean_logprob\\\": -0.10053437038451059}, {\\\"entities\\\": [{\\\"text\\\": \\\"Recognition of proper nouns\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 0, \\\"end\\\": 27}, {\\\"text\\\": \\\"Japanese text\\\", \\\"type\\\": \\\"Material\\\", \\\"start\\\": 31, \\\"end\\\": 44}, {\\\"text\\\": \\\"morphological analysis\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 103, \\\"end\\\": 125}, {\\\"text\\\": \\\"Japanese text processing\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 129, \\\"end\\\": 153}], \\\"relations\\\": [{\\\"head\\\": \\\"Recognition of proper nouns\\\", \\\"tail\\\": \\\"morphological analysis\\\", \\\"type\\\": \\\"PART-OF\\\", \\\"head_start\\\": 0, \\\"head_end\\\": 27, \\\"tail_start\\\": 103, \\\"tail_end\\\": 125}, {\\\"head\\\": \\\"morphological analysis\\\", \\\"tail\\\": \\\"Japanese text processing\\\", \\\"type\\\": \\\"PART-OF\\\", \\\"head_start\\\": 103, \\\"head_end\\\": 125, \\\"tail_start\\\": 129, \\\"tail_end\\\": 153}], \\\"events\\\": [], \\\"cumulative_logprob\\\": -7.281521286392078, \\\"n_tokens\\\": 245, \\\"mean_logprob\\\": -0.029720495046498277}, {\\\"entities\\\": [{\\\"text\\\": \\\"Recognition of proper nouns in Japanese text\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 0, \\\"end\\\": 44}, {\\\"text\\\": \\\"proper nouns\\\", \\\"type\\\": \\\"OtherScientificTerm\\\", \\\"start\\\": 15, \\\"end\\\": 27}, {\\\"text\\\": \\\"Japanese text\\\", \\\"type\\\": \\\"Material\\\", \\\"start\\\": 31, \\\"end\\\": 44}, {\\\"text\\\": \\\"morphological analysis in Japanese text processing\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 103, \\\"end\\\": 153}], \\\"relations\\\": [{\\\"head\\\": \\\"Recognition of proper nouns in Japanese text\\\", \\\"tail\\\": \\\"morphological analysis in Japanese text processing\\\", \\\"type\\\": \\\"PART-OF\\\", \\\"head_start\\\": 0, \\\"head_end\\\": 44, \\\"tail_start\\\": 103, \\\"tail_end\\\": 153}], \\\"events\\\": [], \\\"cumulative_logprob\\\": -14.188146649386908, \\\"n_tokens\\\": 199, \\\"mean_logprob\\\": -0.07129721934365281}, {\\\"entities\\\": [{\\\"text\\\": \\\"Recognition of proper nouns in Japanese text\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 0, \\\"end\\\": 44}, {\\\"text\\\": \\\"Japanese text\\\", \\\"type\\\": \\\"Material\\\", \\\"start\\\": 31, \\\"end\\\": 44}, {\\\"text\\\": \\\"morphological analysis in Japanese text processing\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 103, \\\"end\\\": 153}, {\\\"text\\\": \\\"Japanese text processing\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 129, \\\"end\\\": 153}], \\\"relations\\\": [{\\\"head\\\": \\\"Recognition of proper nouns in Japanese text\\\", \\\"tail\\\": \\\"morphological analysis in Japanese text processing\\\", \\\"type\\\": \\\"PART-OF\\\", \\\"head_start\\\": 0, \\\"head_end\\\": 44, \\\"tail_start\\\": 103, \\\"tail_end\\\": 153}], \\\"events\\\": [], \\\"cumulative_logprob\\\": -12.330421473072427, \\\"n_tokens\\\": 199, \\\"mean_logprob\\\": -0.061961916950112696}, {\\\"entities\\\": [{\\\"text\\\": \\\"Recognition of proper nouns\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 0, \\\"end\\\": 27}, {\\\"text\\\": \\\"Japanese text\\\", \\\"type\\\": \\\"Material\\\", \\\"start\\\": 31\\n\\n... [截断: 输出过长，省略 15421 字符] ...\\n\\nk -LRB- MET -RRB-\\\", \\\"tail\\\": \\\"Japanese text\\\", \\\"type\\\": \\\"EVALUATE-FOR\\\", \\\"head_start\\\": 20, \\\"head_end\\\": 65, \\\"tail_start\\\": 70, \\\"tail_end\\\": 83}, {\\\"head\\\": \\\"morphological analysis problem in Japanese\\\", \\\"tail\\\": \\\"task\\\", \\\"type\\\": \\\"USED-FOR\\\", \\\"head_start\\\": 119, \\\"head_end\\\": 161, \\\"tail_start\\\": 109, \\\"tail_end\\\": 113}], \\\"events\\\": [], \\\"cumulative_logprob\\\": -10.015860320437618, \\\"n_tokens\\\": 360, \\\"mean_logprob\\\": -0.027821834223437827}, {\\\"entities\\\": [{\\\"text\\\": \\\"approach\\\", \\\"type\\\": \\\"Generic\\\", \\\"start\\\": 4, \\\"end\\\": 12}, {\\\"text\\\": \\\"Multi-lingual Evaluation Task -LRB- MET -RRB-\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 20, \\\"end\\\": 65}, {\\\"text\\\": \\\"Japanese text\\\", \\\"type\\\": \\\"Material\\\", \\\"start\\\": 70, \\\"end\\\": 83}, {\\\"text\\\": \\\"task\\\", \\\"type\\\": \\\"Generic\\\", \\\"start\\\": 109, \\\"end\\\": 113}, {\\\"text\\\": \\\"morphological analysis problem\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 119, \\\"end\\\": 149}, {\\\"text\\\": \\\"Japanese\\\", \\\"type\\\": \\\"Material\\\", \\\"start\\\": 153, \\\"end\\\": 161}], \\\"relations\\\": [{\\\"head\\\": \\\"approach\\\", \\\"tail\\\": \\\"Multi-lingual Evaluation Task -LRB- MET -RRB-\\\", \\\"type\\\": \\\"USED-FOR\\\", \\\"head_start\\\": 4, \\\"head_end\\\": 12, \\\"tail_start\\\": 20, \\\"tail_end\\\": 65}, {\\\"head\\\": \\\"Japanese text\\\", \\\"tail\\\": \\\"Multi-lingual Evaluation Task -LRB- MET -RRB-\\\", \\\"type\\\": \\\"EVALUATE-FOR\\\", \\\"head_start\\\": 70, \\\"head_end\\\": 83, \\\"tail_start\\\": 20, \\\"tail_end\\\": 65}, {\\\"head\\\": \\\"morphological analysis problem\\\", \\\"tail\\\": \\\"task\\\", \\\"type\\\": \\\"USED-FOR\\\", \\\"head_start\\\": 119, \\\"head_end\\\": 149, \\\"tail_start\\\": 109, \\\"tail_end\\\": 113}], \\\"events\\\": [], \\\"cumulative_logprob\\\": -10.205024266734142, \\\"n_tokens\\\": 384, \\\"mean_logprob\\\": -0.026575584027953496}, {\\\"entities\\\": [{\\\"text\\\": \\\"approach\\\", \\\"type\\\": \\\"Generic\\\", \\\"start\\\": 4, \\\"end\\\": 12}, {\\\"text\\\": \\\"Multi-lingual Evaluation Task -LRB- MET -RRB-\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 20, \\\"end\\\": 65}, {\\\"text\\\": \\\"Japanese text\\\", \\\"type\\\": \\\"Material\\\", \\\"start\\\": 70, \\\"end\\\": 83}, {\\\"text\\\": \\\"task\\\", \\\"type\\\": \\\"Generic\\\", \\\"start\\\": 109, \\\"end\\\": 113}, {\\\"text\\\": \\\"morphological analysis problem\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 119, \\\"end\\\": 149}, {\\\"text\\\": \\\"Japanese\\\", \\\"type\\\": \\\"Material\\\", \\\"start\\\": 153, \\\"end\\\": 161}], \\\"relations\\\": [{\\\"head\\\": \\\"approach\\\", \\\"tail\\\": \\\"Multi-lingual Evaluation Task -LRB- MET -RRB-\\\", \\\"type\\\": \\\"USED-FOR\\\", \\\"head_start\\\": 4, \\\"head_end\\\": 12, \\\"tail_start\\\": 20, \\\"tail_end\\\": 65}, {\\\"head\\\": \\\"Japanese text\\\", \\\"tail\\\": \\\"Multi-lingual Evaluation Task -LRB- MET -RRB-\\\", \\\"type\\\": \\\"USED-FOR\\\", \\\"head_start\\\": 70, \\\"head_end\\\": 83, \\\"tail_start\\\": 20, \\\"tail_end\\\": 65}, {\\\"head\\\": \\\"task\\\", \\\"tail\\\": \\\"morphological analysis problem\\\", \\\"type\\\": \\\"USED-FOR\\\", \\\"head_start\\\": 109, \\\"head_end\\\": 113, \\\"tail_start\\\": 119, \\\"tail_end\\\": 149}, {\\\"head\\\": \\\"Japanese\\\", \\\"tail\\\": \\\"morphological analysis problem\\\", \\\"type\\\": \\\"USED-FOR\\\", \\\"head_start\\\": 153, \\\"head_end\\\": 161, \\\"tail_start\\\": 119, \\\"tail_end\\\": 149}], \\\"events\\\": [], \\\"cumulative_logprob\\\": -12.990487714904674, \\\"n_tokens\\\": 440, \\\"mean_logprob\\\": -0.02952383571569244}], \\\"greedy\\\": {\\\"entities\\\": [{\\\"text\\\": \\\"approach\\\", \\\"type\\\": \\\"Generic\\\", \\\"start\\\": 4, \\\"end\\\": 12}, {\\\"text\\\": \\\"Multi-lingual Evaluation Task -LRB- MET -RRB-\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 20, \\\"end\\\": 65}, {\\\"text\\\": \\\"Japanese text\\\", \\\"type\\\": \\\"Material\\\", \\\"start\\\": 70, \\\"end\\\": 83}, {\\\"text\\\": \\\"task\\\", \\\"type\\\": \\\"Generic\\\", \\\"start\\\": 109, \\\"end\\\": 113}, {\\\"text\\\": \\\"morphological analysis problem\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 119, \\\"end\\\": 149}, {\\\"text\\\": \\\"Japanese\\\", \\\"type\\\": \\\"Material\\\", \\\"start\\\": 153, \\\"end\\\": 161}], \\\"relations\\\": [{\\\"head\\\": \\\"approach\\\", \\\"tail\\\": \\\"Multi-lingual Evaluation Task -LRB- MET -RRB-\\\", \\\"type\\\": \\\"USED-FOR\\\", \\\"head_start\\\": 4, \\\"head_end\\\": 12, \\\"tail_start\\\": 20, \\\"tail_end\\\": 65}, {\\\"head\\\": \\\"Japanese text\\\", \\\"tail\\\": \\\"Multi-lingual Evaluation Task -LRB- MET -RRB-\\\", \\\"type\\\": \\\"EVALUATE-FOR\\\", \\\"head_start\\\": 70, \\\"head_end\\\": 83, \\\"tail_start\\\": 20, \\\"tail_end\\\": 65}, {\\\"head\\\": \\\"morphological analysis problem\\\", \\\"tail\\\": \\\"task\\\", \\\"type\\\": \\\"USED-FOR\\\", \\\"head_start\\\": 119, \\\"head_end\\\": 149, \\\"tail_start\\\": 109, \\\"tail_end\\\": 113}, {\\\"head\\\": \\\"Japanese\\\", \\\"tail\\\": \\\"morphological analysis problem\\\", \\\"type\\\": \\\"USED-FOR\\\", \\\"head_start\\\": 153, \\\"head_end\\\": 161, \\\"tail_start\\\": 119, \\\"tail_end\\\": 149}], \\\"events\\\": [], \\\"cumulative_logprob\\\": -6.45825739773516, \\\"n_tokens\\\": 443, \\\"mean_logprob\\\": -0.014578459137099684}}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "43ab3e2a-8abd-459f-8408-ee9173987ff3",
+  "uuid": "a1d39f16-bad3-4c8f-8615-a5c669d2edf5",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"id\\\\\\\": \\\\\\\"X96-1059_sent000\\\\\\\", \\\\\\\"text\\\\\\\": \\\\\\\"Recognition of proper nouns in Japanese text has been studied as a part of the more general problem of morphological analysis in Japanese text processing -LRB- -LSB- 1 -RSB- -LSB- 2 -RSB- -RRB- .\\\\\\\", \\\\\\\"gold\\\\\\\": {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"Recognition of proper nouns\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 0, \\\\\\\"end\\\\\\\": 27}, {\\\\\\\"text\\\\\\\": \\\\\\\"proper nouns\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"OtherScientificTerm\\\\\\\", \\\\\\\"start\\\\\\\": 15, \\\\\\\"end\\\\\\\": 27}, {\\\\\\\"text\\\\\\\": \\\\\\\"Japanese text\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Material\\\\\\\", \\\\\\\"start\\\\\\\": 31, \\\\\\\"end\\\\\\\": 44}, {\\\\\\\"text\\\\\\\": \\\\\\\"morphological analysis\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 103, \\\\\\\"end\\\\\\\": 125}, {\\\\\\\"text\\\\\\\": \\\\\\\"Japanese text processing\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 129, \\\\\\\"end\\\\\\\": 153}], \\\\\\\"relations\\\\\\\": [{\\\\\\\"head\\\\\\\": \\\\\\\"Recognition of proper nouns\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"morphological analysis\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"PART-OF\\\\\\\", \\\\\\\"head_start\\\\\\\": 0, \\\\\\\"head_end\\\\\\\": 27, \\\\\\\"tail_start\\\\\\\": 103, \\\\\\\"tail_end\\\\\\\": 125}, {\\\\\\\"head\\\\\\\": \\\\\\\"proper nouns\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"Japanese text\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"PART-OF\\\\\\\", \\\\\\\"head_start\\\\\\\": 15, \\\\\\\"head_end\\\\\\\": 27, \\\\\\\"tail_start\\\\\\\": 31, \\\\\\\"tail_end\\\\\\\": 44}, {\\\\\\\"head\\\\\\\": \\\\\\\"morphological analysis\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"Japanese text processing\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"USED-FOR\\\\\\\", \\\\\\\"head_start\\\\\\\": 103, \\\\\\\"head_end\\\\\\\": 125, \\\\\\\"tail_start\\\\\\\": 129, \\\\\\\"tail_end\\\\\\\": 153}], \\\\\\\"events\\\\\\\": []}, \\\\\\\"samples\\\\\\\": [{\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"Recognition of proper nouns in Japanese text\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 0, \\\\\\\"end\\\\\\\": 44}, {\\\\\\\"text\\\\\\\": \\\\\\\"Japanese text processing\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 129, \\\\\\\"end\\\\\\\": 153}], \\\\\\\"relations\\\\\\\": [{\\\\\\\"head\\\\\\\": \\\\\\\"Recognition of proper nouns in Japanese text\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"Japanese text processing\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"HYPONYM-OF\\\\\\\", \\\\\\\"head_start\\\\\\\": 0, \\\\\\\"head_end\\\\\\\": 44, \\\\\\\"tail_start\\\\\\\": 129, \\\\\\\"tail_end\\\\\\\": 153}], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -13.773208742677951, \\\\\\\"n_tokens\\\\\\\": 137, \\\\\\\"mean_logprob\\\\\\\": -0.10053437038451059}, {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"Recognition of proper nouns\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 0, \\\\\\\"end\\\\\\\": 27}, {\\\\\\\"text\\\\\\\": \\\\\\\"Japanese text\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Material\\\\\\\", \\\\\\\"start\\\\\\\": 31, \\\\\\\"end\\\\\\\": 44}, {\\\\\\\"text\\\\\\\": \\\\\\\"morphological analysis\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 103, \\\\\\\"end\\\\\\\": 125}, {\\\\\\\"text\\\\\\\": \\\\\\\"Japanese text processing\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 129, \\\\\\\"end\\\\\\\": 153}], \\\\\\\"relations\\\\\\\": [{\\\\\\\"head\\\\\\\": \\\\\\\"Recognition of proper nouns\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"morphological analysis\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"PART-OF\\\\\\\", \\\\\\\"head_start\\\\\\\": 0, \\\\\\\"head_end\\\\\\\": 27, \\\\\\\"tail_start\\\\\\\": 103, \\\\\\\"tail_end\\\\\\\": 125}, {\\\\\\\"head\\\\\\\": \\\\\\\"morphological analysis\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"Japanese text processing\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"PART-OF\\\\\\\", \\\\\\\"head_start\\\\\\\": 103, \\\\\\\"head_end\\\\\\\": 125, \\\\\\\"tail_start\\\\\\\": 129, \\\\\\\"tail_end\\\\\\\": 153}], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -7.281521286392078, \\\\\\\"n_tokens\\\\\\\": 245, \\\\\\\"mean_logprob\\\\\\\": -0.029720495046498277}, {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"Recognition of proper nouns in Japanese text\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 0, \\\\\\\"end\\\\\\\": 44}, {\\\\\\\"text\\\\\\\": \\\\\\\"proper nouns\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"OtherScientificTerm\\\\\\\", \\\\\\\"start\\\\\\\": 15, \\\\\\\"end\\\\\\\": 27}, {\\\\\\\"text\\\\\\\": \\\\\\\"Japanese text\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Material\\\\\\\", \\\\\\\"start\\\\\\\": 31, \\\\\\\"end\\\\\\\": 44}, {\\\\\\\"text\\\\\\\": \\\\\\\"morphological analysis in Japanese text processing\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 103, \\\\\\\"end\\\\\\\": 153}], \\\\\\\"relations\\\\\\\": [{\\\\\\\"head\\\\\\\": \\\\\\\"Recognition of proper nouns in Japanese text\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"morphological analysis in Japanese text processing\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"PART-OF\\\\\\\", \\\\\\\"head_start\\\\\\\": 0, \\\\\\\"head_end\\\\\\\": 44, \\\\\\\"tail_start\\\\\\\": 103, \\\\\\\"tail_end\\\\\\\": 153}], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -14.188146649386908, \\\\\\\"n_tokens\\\\\\\": 199, \\\\\\\"mean_logprob\\\\\\\": -0.07129721934365281}, {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"Recognition of proper nouns in Japanese text\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 0, \\\\\\\"end\\\\\\\": 44}, {\\\\\\\"text\\\\\\\": \\\\\\\"Japanese text\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Material\\\\\\\", \\\\\\\"start\\\\\\\": 31, \\\\\\\"end\\\\\\\": 44}, {\\\\\\\"text\\\\\\\": \\\\\\\"morphological analysis in Japanese text processing\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 103, \\\\\\\"end\\\\\\\": 153}, {\\\\\\\"text\\\\\\\": \\\\\\\"Japanese text processing\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 129, \\\\\\\"end\\\\\\\": 153}], \\\\\\\"relations\\\\\\\": [{\\\\\\\"head\\\\\\\": \\\\\\\"Recognition of proper nouns in Japanese text\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"morphological analysis in Japanese text processing\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"PART-OF\\\\\\\", \\\\\\\"head_start\\\\\\\": 0, \\\\\\\"head_end\\\\\\\": 44, \\\\\\\"tail_start\\\\\\\": 103, \\\\\\\"tail_end\\\\\\\": 153}], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -12.330421473072427, \\\\\\\"n_tokens\\\\\\\": 199, \\\\\\\"mean_logprob\\\\\\\": -0.061961916950112696}, {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"Recognition of proper nouns\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 0, \\\\\\\"end\\\\\\\": 27}, {\\\\\\\"text\\\\\\\": \\\\\\\"Japanese text\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Material\\\\\\\", \\\\\\\"start\\\\\\\": 31\\\\n\\\\n... [截断: 输出过长，省略 15421 字符] ...\\\\n\\\\nk -LRB- MET -RRB-\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"Japanese text\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"EVALUATE-FOR\\\\\\\", \\\\\\\"head_start\\\\\\\": 20, \\\\\\\"head_end\\\\\\\": 65, \\\\\\\"tail_start\\\\\\\": 70, \\\\\\\"tail_end\\\\\\\": 83}, {\\\\\\\"head\\\\\\\": \\\\\\\"morphological analysis problem in Japanese\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"task\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"USED-FOR\\\\\\\", \\\\\\\"head_start\\\\\\\": 119, \\\\\\\"head_end\\\\\\\": 161, \\\\\\\"tail_start\\\\\\\": 109, \\\\\\\"tail_end\\\\\\\": 113}], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -10.015860320437618, \\\\\\\"n_tokens\\\\\\\": 360, \\\\\\\"mean_logprob\\\\\\\": -0.027821834223437827}, {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"approach\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Generic\\\\\\\", \\\\\\\"start\\\\\\\": 4, \\\\\\\"end\\\\\\\": 12}, {\\\\\\\"text\\\\\\\": \\\\\\\"Multi-lingual Evaluation Task -LRB- MET -RRB-\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 20, \\\\\\\"end\\\\\\\": 65}, {\\\\\\\"text\\\\\\\": \\\\\\\"Japanese text\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Material\\\\\\\", \\\\\\\"start\\\\\\\": 70, \\\\\\\"end\\\\\\\": 83}, {\\\\\\\"text\\\\\\\": \\\\\\\"task\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Generic\\\\\\\", \\\\\\\"start\\\\\\\": 109, \\\\\\\"end\\\\\\\": 113}, {\\\\\\\"text\\\\\\\": \\\\\\\"morphological analysis problem\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 119, \\\\\\\"end\\\\\\\": 149}, {\\\\\\\"text\\\\\\\": \\\\\\\"Japanese\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Material\\\\\\\", \\\\\\\"start\\\\\\\": 153, \\\\\\\"end\\\\\\\": 161}], \\\\\\\"relations\\\\\\\": [{\\\\\\\"head\\\\\\\": \\\\\\\"approach\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"Multi-lingual Evaluation Task -LRB- MET -RRB-\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"USED-FOR\\\\\\\", \\\\\\\"head_start\\\\\\\": 4, \\\\\\\"head_end\\\\\\\": 12, \\\\\\\"tail_start\\\\\\\": 20, \\\\\\\"tail_end\\\\\\\": 65}, {\\\\\\\"head\\\\\\\": \\\\\\\"Japanese text\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"Multi-lingual Evaluation Task -LRB- MET -RRB-\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"EVALUATE-FOR\\\\\\\", \\\\\\\"head_start\\\\\\\": 70, \\\\\\\"head_end\\\\\\\": 83, \\\\\\\"tail_start\\\\\\\": 20, \\\\\\\"tail_end\\\\\\\": 65}, {\\\\\\\"head\\\\\\\": \\\\\\\"morphological analysis problem\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"task\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"USED-FOR\\\\\\\", \\\\\\\"head_start\\\\\\\": 119, \\\\\\\"head_end\\\\\\\": 149, \\\\\\\"tail_start\\\\\\\": 109, \\\\\\\"tail_end\\\\\\\": 113}], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -10.205024266734142, \\\\\\\"n_tokens\\\\\\\": 384, \\\\\\\"mean_logprob\\\\\\\": -0.026575584027953496}, {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"approach\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Generic\\\\\\\", \\\\\\\"start\\\\\\\": 4, \\\\\\\"end\\\\\\\": 12}, {\\\\\\\"text\\\\\\\": \\\\\\\"Multi-lingual Evaluation Task -LRB- MET -RRB-\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 20, \\\\\\\"end\\\\\\\": 65}, {\\\\\\\"text\\\\\\\": \\\\\\\"Japanese text\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Material\\\\\\\", \\\\\\\"start\\\\\\\": 70, \\\\\\\"end\\\\\\\": 83}, {\\\\\\\"text\\\\\\\": \\\\\\\"task\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Generic\\\\\\\", \\\\\\\"start\\\\\\\": 109, \\\\\\\"end\\\\\\\": 113}, {\\\\\\\"text\\\\\\\": \\\\\\\"morphological analysis problem\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 119, \\\\\\\"end\\\\\\\": 149}, {\\\\\\\"text\\\\\\\": \\\\\\\"Japanese\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Material\\\\\\\", \\\\\\\"start\\\\\\\": 153, \\\\\\\"end\\\\\\\": 161}], \\\\\\\"relations\\\\\\\": [{\\\\\\\"head\\\\\\\": \\\\\\\"approach\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"Multi-lingual Evaluation Task -LRB- MET -RRB-\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"USED-FOR\\\\\\\", \\\\\\\"head_start\\\\\\\": 4, \\\\\\\"head_end\\\\\\\": 12, \\\\\\\"tail_start\\\\\\\": 20, \\\\\\\"tail_end\\\\\\\": 65}, {\\\\\\\"head\\\\\\\": \\\\\\\"Japanese text\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"Multi-lingual Evaluation Task -LRB- MET -RRB-\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"USED-FOR\\\\\\\", \\\\\\\"head_start\\\\\\\": 70, \\\\\\\"head_end\\\\\\\": 83, \\\\\\\"tail_start\\\\\\\": 20, \\\\\\\"tail_end\\\\\\\": 65}, {\\\\\\\"head\\\\\\\": \\\\\\\"task\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"morphological analysis problem\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"USED-FOR\\\\\\\", \\\\\\\"head_start\\\\\\\": 109, \\\\\\\"head_end\\\\\\\": 113, \\\\\\\"tail_start\\\\\\\": 119, \\\\\\\"tail_end\\\\\\\": 149}, {\\\\\\\"head\\\\\\\": \\\\\\\"Japanese\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"morphological analysis problem\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"USED-FOR\\\\\\\", \\\\\\\"head_start\\\\\\\": 153, \\\\\\\"head_end\\\\\\\": 161, \\\\\\\"tail_start\\\\\\\": 119, \\\\\\\"tail_end\\\\\\\": 149}], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -12.990487714904674, \\\\\\\"n_tokens\\\\\\\": 440, \\\\\\\"mean_logprob\\\\\\\": -0.02952383571569244}], \\\\\\\"greedy\\\\\\\": {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"approach\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Generic\\\\\\\", \\\\\\\"start\\\\\\\": 4, \\\\\\\"end\\\\\\\": 12}, {\\\\\\\"text\\\\\\\": \\\\\\\"Multi-lingual Evaluation Task -LRB- MET -RRB-\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 20, \\\\\\\"end\\\\\\\": 65}, {\\\\\\\"text\\\\\\\": \\\\\\\"Japanese text\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Material\\\\\\\", \\\\\\\"start\\\\\\\": 70, \\\\\\\"end\\\\\\\": 83}, {\\\\\\\"text\\\\\\\": \\\\\\\"task\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Generic\\\\\\\", \\\\\\\"start\\\\\\\": 109, \\\\\\\"end\\\\\\\": 113}, {\\\\\\\"text\\\\\\\": \\\\\\\"morphological analysis problem\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 119, \\\\\\\"end\\\\\\\": 149}, {\\\\\\\"text\\\\\\\": \\\\\\\"Japanese\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Material\\\\\\\", \\\\\\\"start\\\\\\\": 153, \\\\\\\"end\\\\\\\": 161}], \\\\\\\"relations\\\\\\\": [{\\\\\\\"head\\\\\\\": \\\\\\\"approach\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"Multi-lingual Evaluation Task -LRB- MET -RRB-\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"USED-FOR\\\\\\\", \\\\\\\"head_start\\\\\\\": 4, \\\\\\\"head_end\\\\\\\": 12, \\\\\\\"tail_start\\\\\\\": 20, \\\\\\\"tail_end\\\\\\\": 65}, {\\\\\\\"head\\\\\\\": \\\\\\\"Japanese text\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"Multi-lingual Evaluation Task -LRB- MET -RRB-\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"EVALUATE-FOR\\\\\\\", \\\\\\\"head_start\\\\\\\": 70, \\\\\\\"head_end\\\\\\\": 83, \\\\\\\"tail_start\\\\\\\": 20, \\\\\\\"tail_end\\\\\\\": 65}, {\\\\\\\"head\\\\\\\": \\\\\\\"morphological analysis problem\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"task\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"USED-FOR\\\\\\\", \\\\\\\"head_start\\\\\\\": 119, \\\\\\\"head_end\\\\\\\": 149, \\\\\\\"tail_start\\\\\\\": 109, \\\\\\\"tail_end\\\\\\\": 113}, {\\\\\\\"head\\\\\\\": \\\\\\\"Japanese\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"morphological analysis problem\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"USED-FOR\\\\\\\", \\\\\\\"head_start\\\\\\\": 153, \\\\\\\"head_end\\\\\\\": 161, \\\\\\\"tail_start\\\\\\\": 119, \\\\\\\"tail_end\\\\\\\": 149}], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -6.45825739773516, \\\\\\\"n_tokens\\\\\\\": 443, \\\\\\\"mean_logprob\\\\\\\": -0.014578459137099684}}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\\"id\\\": \\\"X96-1059_sent000\\\", \\\"text\\\": \\\"Recognition of proper nouns in Japanese text has been studied as a part of the more general problem of morphological analysis in Japanese text processing -LRB- -LSB- 1 -RSB- -LSB- 2 -RSB- -RRB- .\\\", \\\"gold\\\": {\\\"entities\\\": [{\\\"text\\\": \\\"Recognition of proper nouns\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 0, \\\"end\\\": 27}, {\\\"text\\\": \\\"proper nouns\\\", \\\"type\\\": \\\"OtherScientificTerm\\\", \\\"start\\\": 15, \\\"end\\\": 27}, {\\\"text\\\": \\\"Japanese text\\\", \\\"type\\\": \\\"Material\\\", \\\"start\\\": 31, \\\"end\\\": 44}, {\\\"text\\\": \\\"morphological analysis\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 103, \\\"end\\\": 125}, {\\\"text\\\": \\\"Japanese text processing\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 129, \\\"end\\\": 153}], \\\"relations\\\": [{\\\"head\\\": \\\"Recognition of proper nouns\\\", \\\"tail\\\": \\\"morphological analysis\\\", \\\"type\\\": \\\"PART-OF\\\", \\\"head_start\\\": 0, \\\"head_end\\\": 27, \\\"tail_start\\\": 103, \\\"tail_end\\\": 125}, {\\\"head\\\": \\\"proper nouns\\\", \\\"tail\\\": \\\"Japanese text\\\", \\\"type\\\": \\\"PART-OF\\\", \\\"head_start\\\": 15, \\\"head_end\\\": 27, \\\"tail_start\\\": 31, \\\"tail_end\\\": 44}, {\\\"head\\\": \\\"morphological analysis\\\", \\\"tail\\\": \\\"Japanese text processing\\\", \\\"type\\\": \\\"USED-FOR\\\", \\\"head_start\\\": 103, \\\"head_end\\\": 125, \\\"tail_start\\\": 129, \\\"tail_end\\\": 153}], \\\"events\\\": []}, \\\"samples\\\": [{\\\"entities\\\": [{\\\"text\\\": \\\"Recognition of proper nouns in Japanese text\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 0, \\\"end\\\": 44}, {\\\"text\\\": \\\"Japanese text processing\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 129, \\\"end\\\": 153}], \\\"relations\\\": [{\\\"head\\\": \\\"Recognition of proper nouns in Japanese text\\\", \\\"tail\\\": \\\"Japanese text processing\\\", \\\"type\\\": \\\"HYPONYM-OF\\\", \\\"head_start\\\": 0, \\\"head_end\\\": 44, \\\"tail_start\\\": 129, \\\"tail_end\\\": 153}], \\\"events\\\": [], \\\"cumulative_logprob\\\": -13.773208742677951, \\\"n_tokens\\\": 137, \\\"mean_logprob\\\": -0.10053437038451059}, {\\\"entities\\\": [{\\\"text\\\": \\\"Recognition of proper nouns\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 0, \\\"end\\\": 27}, {\\\"text\\\": \\\"Japanese text\\\", \\\"type\\\": \\\"Material\\\", \\\"start\\\": 31, \\\"end\\\": 44}, {\\\"text\\\": \\\"morphological analysis\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 103, \\\"end\\\": 125}, {\\\"text\\\": \\\"Japanese text processing\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 129, \\\"end\\\": 153}], \\\"relations\\\": [{\\\"head\\\": \\\"Recognition of proper nouns\\\", \\\"tail\\\": \\\"morphological analysis\\\", \\\"type\\\": \\\"PART-OF\\\", \\\"head_start\\\": 0, \\\"head_end\\\": 27, \\\"tail_start\\\": 103, \\\"tail_end\\\": 125}, {\\\"head\\\": \\\"morphological analysis\\\", \\\"tail\\\": \\\"Japanese text processing\\\", \\\"type\\\": \\\"PART-OF\\\", \\\"head_start\\\": 103, \\\"head_end\\\": 125, \\\"tail_start\\\": 129, \\\"tail_end\\\": 153}], \\\"events\\\": [], \\\"cumulative_logprob\\\": -7.281521286392078, \\\"n_tokens\\\": 245, \\\"mean_logprob\\\": -0.029720495046498277}, {\\\"entities\\\": [{\\\"text\\\": \\\"Recognition of proper nouns in Japanese text\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 0, \\\"end\\\": 44}, {\\\"text\\\": \\\"proper nouns\\\", \\\"type\\\": \\\"OtherScientificTerm\\\", \\\"start\\\": 15, \\\"end\\\": 27}, {\\\"text\\\": \\\"Japanese text\\\", \\\"type\\\": \\\"Material\\\", \\\"start\\\": 31, \\\"end\\\": 44}, {\\\"text\\\": \\\"morphological analysis in Japanese text processing\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 103, \\\"end\\\": 153}], \\\"relations\\\": [{\\\"head\\\": \\\"Recognition of proper nouns in Japanese text\\\", \\\"tail\\\": \\\"morphological analysis in Japanese text processing\\\", \\\"type\\\": \\\"PART-OF\\\", \\\"head_start\\\": 0, \\\"head_end\\\": 44, \\\"tail_start\\\": 103, \\\"tail_end\\\": 153}], \\\"events\\\": [], \\\"cumulative_logprob\\\": -14.188146649386908, \\\"n_tokens\\\": 199, \\\"mean_logprob\\\": -0.07129721934365281}, {\\\"entities\\\": [{\\\"text\\\": \\\"Recognition of proper nouns in Japanese text\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 0, \\\"end\\\": 44}, {\\\"text\\\": \\\"Japanese text\\\", \\\"type\\\": \\\"Material\\\", \\\"start\\\": 31, \\\"end\\\": 44}, {\\\"text\\\": \\\"morphological analysis in Japanese text processing\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 103, \\\"end\\\": 153}, {\\\"text\\\": \\\"Japanese text processing\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 129, \\\"end\\\": 153}], \\\"relations\\\": [{\\\"head\\\": \\\"Recognition of proper nouns in Japanese text\\\", \\\"tail\\\": \\\"morphological analysis in Japanese text processing\\\", \\\"type\\\": \\\"PART-OF\\\", \\\"head_start\\\": 0, \\\"head_end\\\": 44, \\\"tail_start\\\": 103, \\\"tail_end\\\": 153}], \\\"events\\\": [], \\\"cumulative_logprob\\\": -12.330421473072427, \\\"n_tokens\\\": 199, \\\"mean_logprob\\\": -0.061961916950112696}, {\\\"entities\\\": [{\\\"text\\\": \\\"Recognition of proper nouns\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 0, \\\"end\\\": 27}, {\\\"text\\\": \\\"Japanese text\\\", \\\"type\\\": \\\"Material\\\", \\\"start\\\": 31\\n\\n... [截断: 输出过长，省略 15421 字符] ...\\n\\nk -LRB- MET -RRB-\\\", \\\"tail\\\": \\\"Japanese text\\\", \\\"type\\\": \\\"EVALUATE-FOR\\\", \\\"head_start\\\": 20, \\\"head_end\\\": 65, \\\"tail_start\\\": 70, \\\"tail_end\\\": 83}, {\\\"head\\\": \\\"morphological analysis problem in Japanese\\\", \\\"tail\\\": \\\"task\\\", \\\"type\\\": \\\"USED-FOR\\\", \\\"head_start\\\": 119, \\\"head_end\\\": 161, \\\"tail_start\\\": 109, \\\"tail_end\\\": 113}], \\\"events\\\": [], \\\"cumulative_logprob\\\": -10.015860320437618, \\\"n_tokens\\\": 360, \\\"mean_logprob\\\": -0.027821834223437827}, {\\\"entities\\\": [{\\\"text\\\": \\\"approach\\\", \\\"type\\\": \\\"Generic\\\", \\\"start\\\": 4, \\\"end\\\": 12}, {\\\"text\\\": \\\"Multi-lingual Evaluation Task -LRB- MET -RRB-\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 20, \\\"end\\\": 65}, {\\\"text\\\": \\\"Japanese text\\\", \\\"type\\\": \\\"Material\\\", \\\"start\\\": 70, \\\"end\\\": 83}, {\\\"text\\\": \\\"task\\\", \\\"type\\\": \\\"Generic\\\", \\\"start\\\": 109, \\\"end\\\": 113}, {\\\"text\\\": \\\"morphological analysis problem\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 119, \\\"end\\\": 149}, {\\\"text\\\": \\\"Japanese\\\", \\\"type\\\": \\\"Material\\\", \\\"start\\\": 153, \\\"end\\\": 161}], \\\"relations\\\": [{\\\"head\\\": \\\"approach\\\", \\\"tail\\\": \\\"Multi-lingual Evaluation Task -LRB- MET -RRB-\\\", \\\"type\\\": \\\"USED-FOR\\\", \\\"head_start\\\": 4, \\\"head_end\\\": 12, \\\"tail_start\\\": 20, \\\"tail_end\\\": 65}, {\\\"head\\\": \\\"Japanese text\\\", \\\"tail\\\": \\\"Multi-lingual Evaluation Task -LRB- MET -RRB-\\\", \\\"type\\\": \\\"EVALUATE-FOR\\\", \\\"head_start\\\": 70, \\\"head_end\\\": 83, \\\"tail_start\\\": 20, \\\"tail_end\\\": 65}, {\\\"head\\\": \\\"morphological analysis problem\\\", \\\"tail\\\": \\\"task\\\", \\\"type\\\": \\\"USED-FOR\\\", \\\"head_start\\\": 119, \\\"head_end\\\": 149, \\\"tail_start\\\": 109, \\\"tail_end\\\": 113}], \\\"events\\\": [], \\\"cumulative_logprob\\\": -10.205024266734142, \\\"n_tokens\\\": 384, \\\"mean_logprob\\\": -0.026575584027953496}, {\\\"entities\\\": [{\\\"text\\\": \\\"approach\\\", \\\"type\\\": \\\"Generic\\\", \\\"start\\\": 4, \\\"end\\\": 12}, {\\\"text\\\": \\\"Multi-lingual Evaluation Task -LRB- MET -RRB-\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 20, \\\"end\\\": 65}, {\\\"text\\\": \\\"Japanese text\\\", \\\"type\\\": \\\"Material\\\", \\\"start\\\": 70, \\\"end\\\": 83}, {\\\"text\\\": \\\"task\\\", \\\"type\\\": \\\"Generic\\\", \\\"start\\\": 109, \\\"end\\\": 113}, {\\\"text\\\": \\\"morphological analysis problem\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 119, \\\"end\\\": 149}, {\\\"text\\\": \\\"Japanese\\\", \\\"type\\\": \\\"Material\\\", \\\"start\\\": 153, \\\"end\\\": 161}], \\\"relations\\\": [{\\\"head\\\": \\\"approach\\\", \\\"tail\\\": \\\"Multi-lingual Evaluation Task -LRB- MET -RRB-\\\", \\\"type\\\": \\\"USED-FOR\\\", \\\"head_start\\\": 4, \\\"head_end\\\": 12, \\\"tail_start\\\": 20, \\\"tail_end\\\": 65}, {\\\"head\\\": \\\"Japanese text\\\", \\\"tail\\\": \\\"Multi-lingual Evaluation Task -LRB- MET -RRB-\\\", \\\"type\\\": \\\"USED-FOR\\\", \\\"head_start\\\": 70, \\\"head_end\\\": 83, \\\"tail_start\\\": 20, \\\"tail_end\\\": 65}, {\\\"head\\\": \\\"task\\\", \\\"tail\\\": \\\"morphological analysis problem\\\", \\\"type\\\": \\\"USED-FOR\\\", \\\"head_start\\\": 109, \\\"head_end\\\": 113, \\\"tail_start\\\": 119, \\\"tail_end\\\": 149}, {\\\"head\\\": \\\"Japanese\\\", \\\"tail\\\": \\\"morphological analysis problem\\\", \\\"type\\\": \\\"USED-FOR\\\", \\\"head_start\\\": 153, \\\"head_end\\\": 161, \\\"tail_start\\\": 119, \\\"tail_end\\\": 149}], \\\"events\\\": [], \\\"cumulative_logprob\\\": -12.990487714904674, \\\"n_tokens\\\": 440, \\\"mean_logprob\\\": -0.02952383571569244}], \\\"greedy\\\": {\\\"entities\\\": [{\\\"text\\\": \\\"approach\\\", \\\"type\\\": \\\"Generic\\\", \\\"start\\\": 4, \\\"end\\\": 12}, {\\\"text\\\": \\\"Multi-lingual Evaluation Task -LRB- MET -RRB-\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 20, \\\"end\\\": 65}, {\\\"text\\\": \\\"Japanese text\\\", \\\"type\\\": \\\"Material\\\", \\\"start\\\": 70, \\\"end\\\": 83}, {\\\"text\\\": \\\"task\\\", \\\"type\\\": \\\"Generic\\\", \\\"start\\\": 109, \\\"end\\\": 113}, {\\\"text\\\": \\\"morphological analysis problem\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 119, \\\"end\\\": 149}, {\\\"text\\\": \\\"Japanese\\\", \\\"type\\\": \\\"Material\\\", \\\"start\\\": 153, \\\"end\\\": 161}], \\\"relations\\\": [{\\\"head\\\": \\\"approach\\\", \\\"tail\\\": \\\"Multi-lingual Evaluation Task -LRB- MET -RRB-\\\", \\\"type\\\": \\\"USED-FOR\\\", \\\"head_start\\\": 4, \\\"head_end\\\": 12, \\\"tail_start\\\": 20, \\\"tail_end\\\": 65}, {\\\"head\\\": \\\"Japanese text\\\", \\\"tail\\\": \\\"Multi-lingual Evaluation Task -LRB- MET -RRB-\\\", \\\"type\\\": \\\"EVALUATE-FOR\\\", \\\"head_start\\\": 70, \\\"head_end\\\": 83, \\\"tail_start\\\": 20, \\\"tail_end\\\": 65}, {\\\"head\\\": \\\"morphological analysis problem\\\", \\\"tail\\\": \\\"task\\\", \\\"type\\\": \\\"USED-FOR\\\", \\\"head_start\\\": 119, \\\"head_end\\\": 149, \\\"tail_start\\\": 109, \\\"tail_end\\\": 113}, {\\\"head\\\": \\\"Japanese\\\", \\\"tail\\\": \\\"morphological analysis problem\\\", \\\"type\\\": \\\"USED-FOR\\\", \\\"head_start\\\": 153, \\\"head_end\\\": 161, \\\"tail_start\\\": 119, \\\"tail_end\\\": 149}], \\\"events\\\": [], \\\"cumulative_logprob\\\": -6.45825739773516, \\\"n_tokens\\\": 443, \\\"mean_logprob\\\": -0.014578459137099684}}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 24_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I understand the data format. Both files are JSONL where each line is an instance with:
+- `id`: instance identifier
+- `samples`: list of N samples, each with `mean_logprob` (LP) and entity/relation predictions
+- `greedy`: greedy decoding output
+- `logprobs`: list of per-sample logprobs at the end
+
+For exp_023 (rank=8), each sample has `cumulative_logprob`, `n_tokens`, `mean_logprob`, and `token_logprobs`.
+For exp_012 (rank=32), same structure.
+
+
+Now I need to extract the mean logprobs for each sample, compute F1 scores against the gold labels, and calculate the three metrics I'm interested in. Let me first check how many instances and samples we're working with, and understand what the `logprobs` field represents at the end of each instance. I should also look at how F1 is computed for the entity and relation predictions in the existing code.
+
+Running the analysis script on the server...
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "43ab3e2a-8abd-459f-8408-ee9173987ff3",
+  "uuid": "85263378-179c-4520-a38d-44da0e5c986b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015jXRtpJYTKrviN5hzskrKZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 11215,
+      "cache_read_input_tokens": 30197,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11215
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 25_
+
+数据格式清楚了。每个 instance 有 N 个 samples，每个 sample 有 `mean_logprob` 和 entity/relation 预测。需要计算 entity F1 对比 gold。让我检查实例数和每实例样本数，然后写分析脚本。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "43ab3e2a-8abd-459f-8408-ee9173987ff3",
+  "uuid": "2472e0a0-1192-48f3-b9ae-166bcdddf196",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015jXRtpJYTKrviN5hzskrKZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 11215,
+      "cache_read_input_tokens": 30197,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11215
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01WaWnsKHYCCM4QxfsnVgdsi`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "wc -l /root/autodl-tmp/struct_self_consist_ie/output/exp_023_rank8_inference/samples.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "43ab3e2a-8abd-459f-8408-ee9173987ff3",
+  "uuid": "8ee8e658-092d-4619-853e-026a7ca50f42",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015jXRtpJYTKrviN5hzskrKZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 11215,
+      "cache_read_input_tokens": 30197,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11215
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-18T00:56:58.507Z_
+
+<details><summary>↩ Tool result · `toolu_01WaWnsKHYCCM4QxfsnVgdsi`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"551 /root/autodl-tmp/struct_self_consist_ie/output/exp_023_rank8_inference/samples.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "43ab3e2a-8abd-459f-8408-ee9173987ff3",
+  "uuid": "89be566b-d8c8-443f-97b4-b8ea2258fda7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"551 /root/autodl-tmp/struct_self_consist_ie/output/exp_023_rank8_inference/samples.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"551 /root/autodl-tmp/struct_self_consist_ie/output/exp_023_rank8_inference/samples.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01W5UciAueofo2eP7dJTVHWJ`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "wc -l /root/autodl-tmp/struct_self_consist_ie/output/exp_012_logprob/samples_with_logprobs.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "43ab3e2a-8abd-459f-8408-ee9173987ff3",
+  "uuid": "1367d96f-46b6-48ed-b3fd-09f2059c3e70",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015jXRtpJYTKrviN5hzskrKZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 11215,
+      "cache_read_input_tokens": 30197,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11215
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-18T00:56:59.462Z_
+
+<details><summary>↩ Tool result · `toolu_01W5UciAueofo2eP7dJTVHWJ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"551 /root/autodl-tmp/struct_self_consist_ie/output/exp_012_logprob/samples_with_logprobs.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.34}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "43ab3e2a-8abd-459f-8408-ee9173987ff3",
+  "uuid": "53feb947-27c7-49ac-b466-80b5662ed555",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"551 /root/autodl-tmp/struct_self_consist_ie/output/exp_012_logprob/samples_with_logprobs.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.34}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"551 /root/autodl-tmp/struct_self_consist_ie/output/exp_012_logprob/samples_with_logprobs.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.34}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_011YkzcQsxFczu46h41y22vs`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "head -1 /root/autodl-tmp/struct_self_consist_ie/output/exp_023_rank8_inference/samples.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "43ab3e2a-8abd-459f-8408-ee9173987ff3",
+  "uuid": "3e608c39-8ce3-4bb6-8bac-17846b1e97a2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015jXRtpJYTKrviN5hzskrKZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 11215,
+      "cache_read_input_tokens": 30197,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11215
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-18T00:57:00.219Z_
+
+<details><summary>↩ Tool result · `toolu_011YkzcQsxFczu46h41y22vs`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"id\\\": \\\"X96-1059_sent000\\\", \\\"text\\\": \\\"Recognition of proper nouns in Japanese text has been studied as a part of the more general problem of morphological analysis in Japanese text processing -LRB- -LSB- 1 -RSB- -LSB- 2 -RSB- -RRB- .\\\", \\\"gold\\\": {\\\"entities\\\": [{\\\"text\\\": \\\"Recognition of proper nouns\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 0, \\\"end\\\": 27}, {\\\"text\\\": \\\"proper nouns\\\", \\\"type\\\": \\\"OtherScientificTerm\\\", \\\"start\\\": 15, \\\"end\\\": 27}, {\\\"text\\\": \\\"Japanese text\\\", \\\"type\\\": \\\"Material\\\", \\\"start\\\": 31, \\\"end\\\": 44}, {\\\"text\\\": \\\"morphological analysis\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 103, \\\"end\\\": 125}, {\\\"text\\\": \\\"Japanese text processing\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 129, \\\"end\\\": 153}], \\\"relations\\\": [{\\\"head\\\": \\\"Recognition of proper nouns\\\", \\\"tail\\\": \\\"morphological analysis\\\", \\\"type\\\": \\\"PART-OF\\\", \\\"head_start\\\": 0, \\\"head_end\\\": 27, \\\"tail_start\\\": 103, \\\"tail_end\\\": 125}, {\\\"head\\\": \\\"proper nouns\\\", \\\"tail\\\": \\\"Japanese text\\\", \\\"type\\\": \\\"PART-OF\\\", \\\"head_start\\\": 15, \\\"head_end\\\": 27, \\\"tail_start\\\": 31, \\\"tail_end\\\": 44}, {\\\"head\\\": \\\"morphological analysis\\\", \\\"tail\\\": \\\"Japanese text processing\\\", \\\"type\\\": \\\"USED-FOR\\\", \\\"head_start\\\": 103, \\\"head_end\\\": 125, \\\"tail_start\\\": 129, \\\"tail_end\\\": 153}], \\\"events\\\": []}, \\\"samples\\\": [{\\\"entities\\\": [{\\\"text\\\": \\\"Recognition of proper nouns in Japanese text\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 0, \\\"end\\\": 44}, {\\\"text\\\": \\\"Japanese text\\\", \\\"type\\\": \\\"Material\\\", \\\"start\\\": 31, \\\"end\\\": 44}, {\\\"text\\\": \\\"morphological analysis in Japanese text processing\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 103, \\\"end\\\": 153}], \\\"relations\\\": [{\\\"head\\\": \\\"Recognition of proper nouns in Japanese text\\\", \\\"tail\\\": \\\"morphological analysis in Japanese text processing\\\", \\\"type\\\": \\\"PART-OF\\\", \\\"head_start\\\": 0, \\\"head_end\\\": 44, \\\"tail_start\\\": 103, \\\"tail_end\\\": 153}], \\\"events\\\": [], \\\"cumulative_logprob\\\": -11.762582614468847, \\\"n_tokens\\\": 169, \\\"mean_logprob\\\": -0.06960108055898727, \\\"token_logprobs\\\": [-1.1920928244535389e-07, -1.1920928244535389e-07, -3.576278118089249e-07, -0.0015147175872698426, 0.0, 0.0, -7.152555099310121e-07, -0.20657242834568024, -0.018152419477701187, -1.9311717551317997e-05, -2.50339189733495e-06, -0.8259486556053162, -2.1934269170742482e-05, -0.00017998983094003052, -3.671578815556131e-05, 0.0, 0.0, 0.0, -3.58813522325363e-05, -0.005186436232179403, -2.3841855067985307e-07, 0.0, 0.0, 0.0, 0.0, -0.00013648532330989838, 0.0, 0.0, 0.0, 0.0, 0.0, -0.00019834458362311125, -1.3694067001342773, -0.001329015358351171, 0.0, 0.0, 0.0, -2.264974000354414e-06, -0.6264098882675171, -0.0017037175130099058, -0.1002395823597908, 0.0, 0.0, 0.0, -1.1920928244535389e-07, -0.006759397219866514, 0.0, 0.0, 0.0, 0.0, 0.0, -0.137095645070076, -1.6950948238372803, 0.0, 0.0, 0.0, 0.0, 0.0, -4.768370445162873e-07, -0.006715585943311453, -0.0013260389678180218, 0.0, 0.0, 0.0, -9.179073458653875e-06, -0.04204664006829262, 0.0, -2.264974000354414e-06, -0.386924684047699, -1.1920922133867862e-06, -5.149708886165172e-05, -0.0052352952770888805, -0.00023624490131624043, 0.0, 0.0, 0.0, -3.576278118089249e-07, -0.056919753551483154, 0.0, 0.0, 0.0, 0.0, 0.0, -0.1458309143781662, -1.5135462284088135, -1.710825800895691, 0.0, 0.0, 0.0, 0.0, 0.0, -4.768370445162873e-07, -0.01820732094347477, -1.54977285861969, -0.17974953353405, 0.0, -1.1920928244535389e-07, 0.0, -0.05493646860122681, 0.0, 0.0, -1.2636104656849056e-05, -0.8608961701393127, -2.622600959512056e-06, 0.0, -1.1920928244535389e-07, -2.4676019165781327e-05, 0.0, -7.152555099310121e-07, 0.0, 0.0, 0.0, 0.0, -7.390948667307384e-06, -0.000514851592015475, 0.0, 0.0, -1.6689160474925302e-05, 0.0, -2.3841855067985307e-07, -2.3841855067985307e-07, 0.0, 0.0, 0.0, 0.0, 0.0, -0.22853916883468628, -5.006777428206988e-06, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -1.1920928244535389e-07, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -2.3841855067985307e-07, -2.145764938177308e-06, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -9.179073458653875e-06, -3.158996332786046e-05, -1.0728830375228426e-06, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.004130167420953512, 0.0, 0.0, 0.0, -1.1920928244535389e-07, 0.0, 0.0], \\\"token_texts\\\": [\\\"{\\\\\\\"\\\", \\\"entities\\\", \\\"\\\\\\\":\\\", \\\" [{\\\\\\\"\\\", \\\"\\n\\n... [截断: 输出过长，省略 34021 字符] ...\\n\\n44e-06, -0.36681973934173584, -4.768360213347478e-06, 0.0, -5.960462772236497e-07, -7.152555099310121e-07, 0.0, 0.0, 0.0, -2.9802276912960224e-06, -0.18023814260959625, 0.0, 0.0, -4.768370445162873e-07, 0.0, 0.0, 0.0, -1.1920928244535389e-07, -0.4875149130821228, -3.933898824470816e-06, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -1.1920928244535389e-07, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -6.9141146923357155e-06, -1.7881377516459906e-06, -8.344646857949556e-07, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.004079473204910755, 0.0, 0.0, 0.0, -3.576278118089249e-07, -0.7373903393745422, -5.006777428206988e-06, -0.005942534189671278, 0.0, 0.0, 0.0, -2.3841855067985307e-07, -0.04867873713374138, -1.1920928244535389e-07, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.018037104979157448, -3.4570634852570947e-06, 0.0, -1.1920928244535389e-07, 0.0, 0.0, 0.0, 0.0, 0.0, -1.1920928244535389e-07, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -2.3841855067985307e-07, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.03804405406117439, 0.0, 0.0, 0.0, -1.1920928244535389e-07, -0.043202582746744156, 0.0, 0.0, -1.1920922133867862e-06, 0.0, 0.0, 0.0, -1.1920928244535389e-07, -0.0003262225945945829, -1.1920928244535389e-07, -0.00033623288618400693, 0.0, 0.0, 0.0, 0.0, 0.0, -0.00925004668533802, -1.1920928244535389e-07, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -7.152555099310121e-07, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.033662714064121246, 0.0, 0.0, 0.0, -3.576278118089249e-07, 0.0, 0.0], \\\"token_texts\\\": [\\\"{\\\\\\\"\\\", \\\"entities\\\", \\\"\\\\\\\":\\\", \\\" [{\\\\\\\"\\\", \\\"text\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"Recognition\\\", \\\" of\\\", \\\" proper\\\", \\\" nouns\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"type\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"Task\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"start\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"0\\\", \\\",\\\", \\\" \\\\\\\"\\\", \\\"end\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"2\\\", \\\"7\\\", \\\"},\\\", \\\" {\\\\\\\"\\\", \\\"text\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"Japanese\\\", \\\" text\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"type\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"Material\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"start\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"3\\\", \\\"1\\\", \\\",\\\", \\\" \\\\\\\"\\\", \\\"end\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"4\\\", \\\"4\\\", \\\"},\\\", \\\" {\\\\\\\"\\\", \\\"text\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"morph\\\", \\\"ological\\\", \\\" analysis\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"type\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"Task\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"start\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"1\\\", \\\"0\\\", \\\"9\\\", \\\",\\\", \\\" \\\\\\\"\\\", \\\"end\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"1\\\", \\\"3\\\", \\\"1\\\", \\\"},\\\", \\\" {\\\\\\\"\\\", \\\"text\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"Japanese\\\", \\\" text\\\", \\\" processing\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"type\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"Task\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"start\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"1\\\", \\\"3\\\", \\\"5\\\", \\\",\\\", \\\" \\\\\\\"\\\", \\\"end\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"1\\\", \\\"5\\\", \\\"9\\\", \\\"}],\\\", \\\" \\\\\\\"\\\", \\\"relations\\\", \\\"\\\\\\\":\\\", \\\" [{\\\\\\\"\\\", \\\"head\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"Recognition\\\", \\\" of\\\", \\\" proper\\\", \\\" nouns\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"tail\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"morph\\\", \\\"ological\\\", \\\" analysis\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"type\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"PART\\\", \\\"-\\\", \\\"OF\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"head\\\", \\\"_start\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"0\\\", \\\",\\\", \\\" \\\\\\\"\\\", \\\"head\\\", \\\"_end\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"2\\\", \\\"7\\\", \\\",\\\", \\\" \\\\\\\"\\\", \\\"tail\\\", \\\"_start\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"1\\\", \\\"0\\\", \\\"9\\\", \\\",\\\", \\\" \\\\\\\"\\\", \\\"tail\\\", \\\"_end\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"1\\\", \\\"3\\\", \\\"1\\\", \\\"},\\\", \\\" {\\\\\\\"\\\", \\\"head\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"Japanese\\\", \\\" text\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"tail\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"Recognition\\\", \\\" of\\\", \\\" proper\\\", \\\" nouns\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"type\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"USED\\\", \\\"-F\\\", \\\"OR\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"head\\\", \\\"_start\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"3\\\", \\\"1\\\", \\\",\\\", \\\" \\\\\\\"\\\", \\\"head\\\", \\\"_end\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"4\\\", \\\"4\\\", \\\",\\\", \\\" \\\\\\\"\\\", \\\"tail\\\", \\\"_start\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"0\\\", \\\",\\\", \\\" \\\\\\\"\\\", \\\"tail\\\", \\\"_end\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"2\\\", \\\"7\\\", \\\"},\\\", \\\" {\\\\\\\"\\\", \\\"head\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"morph\\\", \\\"ological\\\", \\\" analysis\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"tail\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"Japanese\\\", \\\" text\\\", \\\" processing\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"type\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"PART\\\", \\\"-\\\", \\\"OF\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"head\\\", \\\"_start\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"1\\\", \\\"0\\\", \\\"9\\\", \\\",\\\", \\\" \\\\\\\"\\\", \\\"head\\\", \\\"_end\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"1\\\", \\\"3\\\", \\\"1\\\", \\\",\\\", \\\" \\\\\\\"\\\", \\\"tail\\\", \\\"_start\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"1\\\", \\\"3\\\", \\\"5\\\", \\\",\\\", \\\" \\\\\\\"\\\", \\\"tail\\\", \\\"_end\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"1\\\", \\\"5\\\", \\\"9\\\", \\\"}],\\\", \\\" \\\\\\\"\\\", \\\"events\\\", \\\"\\\\\\\":\\\", \\\" []\\\", \\\"}\\\", \\\"<|im_end|>\\\"]}, \\\"logprobs\\\": [-0.06960108055898727, -0.05755216771089794, -0.07835909183284151, -0.1367601794297413, -0.0416670971941763, -0.06422001702515413, -0.16353439918168214, -0.1130413389077343]}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "43ab3e2a-8abd-459f-8408-ee9173987ff3",
+  "uuid": "95e645be-55e9-4324-94a6-09489c729ac9",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"id\\\\\\\": \\\\\\\"X96-1059_sent000\\\\\\\", \\\\\\\"text\\\\\\\": \\\\\\\"Recognition of proper nouns in Japanese text has been studied as a part of the more general problem of morphological analysis in Japanese text processing -LRB- -LSB- 1 -RSB- -LSB- 2 -RSB- -RRB- .\\\\\\\", \\\\\\\"gold\\\\\\\": {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"Recognition of proper nouns\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 0, \\\\\\\"end\\\\\\\": 27}, {\\\\\\\"text\\\\\\\": \\\\\\\"proper nouns\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"OtherScientificTerm\\\\\\\", \\\\\\\"start\\\\\\\": 15, \\\\\\\"end\\\\\\\": 27}, {\\\\\\\"text\\\\\\\": \\\\\\\"Japanese text\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Material\\\\\\\", \\\\\\\"start\\\\\\\": 31, \\\\\\\"end\\\\\\\": 44}, {\\\\\\\"text\\\\\\\": \\\\\\\"morphological analysis\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 103, \\\\\\\"end\\\\\\\": 125}, {\\\\\\\"text\\\\\\\": \\\\\\\"Japanese text processing\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 129, \\\\\\\"end\\\\\\\": 153}], \\\\\\\"relations\\\\\\\": [{\\\\\\\"head\\\\\\\": \\\\\\\"Recognition of proper nouns\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"morphological analysis\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"PART-OF\\\\\\\", \\\\\\\"head_start\\\\\\\": 0, \\\\\\\"head_end\\\\\\\": 27, \\\\\\\"tail_start\\\\\\\": 103, \\\\\\\"tail_end\\\\\\\": 125}, {\\\\\\\"head\\\\\\\": \\\\\\\"proper nouns\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"Japanese text\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"PART-OF\\\\\\\", \\\\\\\"head_start\\\\\\\": 15, \\\\\\\"head_end\\\\\\\": 27, \\\\\\\"tail_start\\\\\\\": 31, \\\\\\\"tail_end\\\\\\\": 44}, {\\\\\\\"head\\\\\\\": \\\\\\\"morphological analysis\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"Japanese text processing\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"USED-FOR\\\\\\\", \\\\\\\"head_start\\\\\\\": 103, \\\\\\\"head_end\\\\\\\": 125, \\\\\\\"tail_start\\\\\\\": 129, \\\\\\\"tail_end\\\\\\\": 153}], \\\\\\\"events\\\\\\\": []}, \\\\\\\"samples\\\\\\\": [{\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"Recognition of proper nouns in Japanese text\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 0, \\\\\\\"end\\\\\\\": 44}, {\\\\\\\"text\\\\\\\": \\\\\\\"Japanese text\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Material\\\\\\\", \\\\\\\"start\\\\\\\": 31, \\\\\\\"end\\\\\\\": 44}, {\\\\\\\"text\\\\\\\": \\\\\\\"morphological analysis in Japanese text processing\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 103, \\\\\\\"end\\\\\\\": 153}], \\\\\\\"relations\\\\\\\": [{\\\\\\\"head\\\\\\\": \\\\\\\"Recognition of proper nouns in Japanese text\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"morphological analysis in Japanese text processing\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"PART-OF\\\\\\\", \\\\\\\"head_start\\\\\\\": 0, \\\\\\\"head_end\\\\\\\": 44, \\\\\\\"tail_start\\\\\\\": 103, \\\\\\\"tail_end\\\\\\\": 153}], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -11.762582614468847, \\\\\\\"n_tokens\\\\\\\": 169, \\\\\\\"mean_logprob\\\\\\\": -0.06960108055898727, \\\\\\\"token_logprobs\\\\\\\": [-1.1920928244535389e-07, -1.1920928244535389e-07, -3.576278118089249e-07, -0.0015147175872698426, 0.0, 0.0, -7.152555099310121e-07, -0.20657242834568024, -0.018152419477701187, -1.9311717551317997e-05, -2.50339189733495e-06, -0.8259486556053162, -2.1934269170742482e-05, -0.00017998983094003052, -3.671578815556131e-05, 0.0, 0.0, 0.0, -3.58813522325363e-05, -0.005186436232179403, -2.3841855067985307e-07, 0.0, 0.0, 0.0, 0.0, -0.00013648532330989838, 0.0, 0.0, 0.0, 0.0, 0.0, -0.00019834458362311125, -1.3694067001342773, -0.001329015358351171, 0.0, 0.0, 0.0, -2.264974000354414e-06, -0.6264098882675171, -0.0017037175130099058, -0.1002395823597908, 0.0, 0.0, 0.0, -1.1920928244535389e-07, -0.006759397219866514, 0.0, 0.0, 0.0, 0.0, 0.0, -0.137095645070076, -1.6950948238372803, 0.0, 0.0, 0.0, 0.0, 0.0, -4.768370445162873e-07, -0.006715585943311453, -0.0013260389678180218, 0.0, 0.0, 0.0, -9.179073458653875e-06, -0.04204664006829262, 0.0, -2.264974000354414e-06, -0.386924684047699, -1.1920922133867862e-06, -5.149708886165172e-05, -0.0052352952770888805, -0.00023624490131624043, 0.0, 0.0, 0.0, -3.576278118089249e-07, -0.056919753551483154, 0.0, 0.0, 0.0, 0.0, 0.0, -0.1458309143781662, -1.5135462284088135, -1.710825800895691, 0.0, 0.0, 0.0, 0.0, 0.0, -4.768370445162873e-07, -0.01820732094347477, -1.54977285861969, -0.17974953353405, 0.0, -1.1920928244535389e-07, 0.0, -0.05493646860122681, 0.0, 0.0, -1.2636104656849056e-05, -0.8608961701393127, -2.622600959512056e-06, 0.0, -1.1920928244535389e-07, -2.4676019165781327e-05, 0.0, -7.152555099310121e-07, 0.0, 0.0, 0.0, 0.0, -7.390948667307384e-06, -0.000514851592015475, 0.0, 0.0, -1.6689160474925302e-05, 0.0, -2.3841855067985307e-07, -2.3841855067985307e-07, 0.0, 0.0, 0.0, 0.0, 0.0, -0.22853916883468628, -5.006777428206988e-06, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -1.1920928244535389e-07, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -2.3841855067985307e-07, -2.145764938177308e-06, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -9.179073458653875e-06, -3.158996332786046e-05, -1.0728830375228426e-06, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.004130167420953512, 0.0, 0.0, 0.0, -1.1920928244535389e-07, 0.0, 0.0], \\\\\\\"token_texts\\\\\\\": [\\\\\\\"{\\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"entities\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" [{\\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"\\\\n\\\\n... [截断: 输出过长，省略 34021 字符] ...\\\\n\\\\n44e-06, -0.36681973934173584, -4.768360213347478e-06, 0.0, -5.960462772236497e-07, -7.152555099310121e-07, 0.0, 0.0, 0.0, -2.9802276912960224e-06, -0.18023814260959625, 0.0, 0.0, -4.768370445162873e-07, 0.0, 0.0, 0.0, -1.1920928244535389e-07, -0.4875149130821228, -3.933898824470816e-06, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -1.1920928244535389e-07, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -6.9141146923357155e-06, -1.7881377516459906e-06, -8.344646857949556e-07, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.004079473204910755, 0.0, 0.0, 0.0, -3.576278118089249e-07, -0.7373903393745422, -5.006777428206988e-06, -0.005942534189671278, 0.0, 0.0, 0.0, -2.3841855067985307e-07, -0.04867873713374138, -1.1920928244535389e-07, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.018037104979157448, -3.4570634852570947e-06, 0.0, -1.1920928244535389e-07, 0.0, 0.0, 0.0, 0.0, 0.0, -1.1920928244535389e-07, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -2.3841855067985307e-07, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.03804405406117439, 0.0, 0.0, 0.0, -1.1920928244535389e-07, -0.043202582746744156, 0.0, 0.0, -1.1920922133867862e-06, 0.0, 0.0, 0.0, -1.1920928244535389e-07, -0.0003262225945945829, -1.1920928244535389e-07, -0.00033623288618400693, 0.0, 0.0, 0.0, 0.0, 0.0, -0.00925004668533802, -1.1920928244535389e-07, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -7.152555099310121e-07, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.033662714064121246, 0.0, 0.0, 0.0, -3.576278118089249e-07, 0.0, 0.0], \\\\\\\"token_texts\\\\\\\": [\\\\\\\"{\\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"entities\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" [{\\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"text\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"Recognition\\\\\\\", \\\\\\\" of\\\\\\\", \\\\\\\" proper\\\\\\\", \\\\\\\" nouns\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"type\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"Task\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"start\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\", \\\\\\\"0\\\\\\\", \\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"end\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\", \\\\\\\"2\\\\\\\", \\\\\\\"7\\\\\\\", \\\\\\\"},\\\\\\\", \\\\\\\" {\\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"text\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"Japanese\\\\\\\", \\\\\\\" text\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"type\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"Material\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"start\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\", \\\\\\\"3\\\\\\\", \\\\\\\"1\\\\\\\", \\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"end\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\", \\\\\\\"4\\\\\\\", \\\\\\\"4\\\\\\\", \\\\\\\"},\\\\\\\", \\\\\\\" {\\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"text\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"morph\\\\\\\", \\\\\\\"ological\\\\\\\", \\\\\\\" analysis\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"type\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"Task\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"start\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\", \\\\\\\"1\\\\\\\", \\\\\\\"0\\\\\\\", \\\\\\\"9\\\\\\\", \\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"end\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\", \\\\\\\"1\\\\\\\", \\\\\\\"3\\\\\\\", \\\\\\\"1\\\\\\\", \\\\\\\"},\\\\\\\", \\\\\\\" {\\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"text\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"Japanese\\\\\\\", \\\\\\\" text\\\\\\\", \\\\\\\" processing\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"type\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"Task\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"start\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\", \\\\\\\"1\\\\\\\", \\\\\\\"3\\\\\\\", \\\\\\\"5\\\\\\\", \\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"end\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\", \\\\\\\"1\\\\\\\", \\\\\\\"5\\\\\\\", \\\\\\\"9\\\\\\\", \\\\\\\"}],\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"relations\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" [{\\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"head\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"Recognition\\\\\\\", \\\\\\\" of\\\\\\\", \\\\\\\" proper\\\\\\\", \\\\\\\" nouns\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"tail\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"morph\\\\\\\", \\\\\\\"ological\\\\\\\", \\\\\\\" analysis\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"type\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"PART\\\\\\\", \\\\\\\"-\\\\\\\", \\\\\\\"OF\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"head\\\\\\\", \\\\\\\"_start\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\", \\\\\\\"0\\\\\\\", \\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"head\\\\\\\", \\\\\\\"_end\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\", \\\\\\\"2\\\\\\\", \\\\\\\"7\\\\\\\", \\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"tail\\\\\\\", \\\\\\\"_start\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\", \\\\\\\"1\\\\\\\", \\\\\\\"0\\\\\\\", \\\\\\\"9\\\\\\\", \\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"tail\\\\\\\", \\\\\\\"_end\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\", \\\\\\\"1\\\\\\\", \\\\\\\"3\\\\\\\", \\\\\\\"1\\\\\\\", \\\\\\\"},\\\\\\\", \\\\\\\" {\\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"head\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"Japanese\\\\\\\", \\\\\\\" text\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"tail\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"Recognition\\\\\\\", \\\\\\\" of\\\\\\\", \\\\\\\" proper\\\\\\\", \\\\\\\" nouns\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"type\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"USED\\\\\\\", \\\\\\\"-F\\\\\\\", \\\\\\\"OR\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"head\\\\\\\", \\\\\\\"_start\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\", \\\\\\\"3\\\\\\\", \\\\\\\"1\\\\\\\", \\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"head\\\\\\\", \\\\\\\"_end\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\", \\\\\\\"4\\\\\\\", \\\\\\\"4\\\\\\\", \\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"tail\\\\\\\", \\\\\\\"_start\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\", \\\\\\\"0\\\\\\\", \\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"tail\\\\\\\", \\\\\\\"_end\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\", \\\\\\\"2\\\\\\\", \\\\\\\"7\\\\\\\", \\\\\\\"},\\\\\\\", \\\\\\\" {\\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"head\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"morph\\\\\\\", \\\\\\\"ological\\\\\\\", \\\\\\\" analysis\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"tail\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"Japanese\\\\\\\", \\\\\\\" text\\\\\\\", \\\\\\\" processing\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"type\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"PART\\\\\\\", \\\\\\\"-\\\\\\\", \\\\\\\"OF\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"head\\\\\\\", \\\\\\\"_start\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\", \\\\\\\"1\\\\\\\", \\\\\\\"0\\\\\\\", \\\\\\\"9\\\\\\\", \\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"head\\\\\\\", \\\\\\\"_end\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\", \\\\\\\"1\\\\\\\", \\\\\\\"3\\\\\\\", \\\\\\\"1\\\\\\\", \\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"tail\\\\\\\", \\\\\\\"_start\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\", \\\\\\\"1\\\\\\\", \\\\\\\"3\\\\\\\", \\\\\\\"5\\\\\\\", \\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"tail\\\\\\\", \\\\\\\"_end\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\", \\\\\\\"1\\\\\\\", \\\\\\\"5\\\\\\\", \\\\\\\"9\\\\\\\", \\\\\\\"}],\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"events\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" []\\\\\\\", \\\\\\\"}\\\\\\\", \\\\\\\"<|im_end|>\\\\\\\"]}, \\\\\\\"logprobs\\\\\\\": [-0.06960108055898727, -0.05755216771089794, -0.07835909183284151, -0.1367601794297413, -0.0416670971941763, -0.06422001702515413, -0.16353439918168214, -0.1130413389077343]}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\\"id\\\": \\\"X96-1059_sent000\\\", \\\"text\\\": \\\"Recognition of proper nouns in Japanese text has been studied as a part of the more general problem of morphological analysis in Japanese text processing -LRB- -LSB- 1 -RSB- -LSB- 2 -RSB- -RRB- .\\\", \\\"gold\\\": {\\\"entities\\\": [{\\\"text\\\": \\\"Recognition of proper nouns\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 0, \\\"end\\\": 27}, {\\\"text\\\": \\\"proper nouns\\\", \\\"type\\\": \\\"OtherScientificTerm\\\", \\\"start\\\": 15, \\\"end\\\": 27}, {\\\"text\\\": \\\"Japanese text\\\", \\\"type\\\": \\\"Material\\\", \\\"start\\\": 31, \\\"end\\\": 44}, {\\\"text\\\": \\\"morphological analysis\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 103, \\\"end\\\": 125}, {\\\"text\\\": \\\"Japanese text processing\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 129, \\\"end\\\": 153}], \\\"relations\\\": [{\\\"head\\\": \\\"Recognition of proper nouns\\\", \\\"tail\\\": \\\"morphological analysis\\\", \\\"type\\\": \\\"PART-OF\\\", \\\"head_start\\\": 0, \\\"head_end\\\": 27, \\\"tail_start\\\": 103, \\\"tail_end\\\": 125}, {\\\"head\\\": \\\"proper nouns\\\", \\\"tail\\\": \\\"Japanese text\\\", \\\"type\\\": \\\"PART-OF\\\", \\\"head_start\\\": 15, \\\"head_end\\\": 27, \\\"tail_start\\\": 31, \\\"tail_end\\\": 44}, {\\\"head\\\": \\\"morphological analysis\\\", \\\"tail\\\": \\\"Japanese text processing\\\", \\\"type\\\": \\\"USED-FOR\\\", \\\"head_start\\\": 103, \\\"head_end\\\": 125, \\\"tail_start\\\": 129, \\\"tail_end\\\": 153}], \\\"events\\\": []}, \\\"samples\\\": [{\\\"entities\\\": [{\\\"text\\\": \\\"Recognition of proper nouns in Japanese text\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 0, \\\"end\\\": 44}, {\\\"text\\\": \\\"Japanese text\\\", \\\"type\\\": \\\"Material\\\", \\\"start\\\": 31, \\\"end\\\": 44}, {\\\"text\\\": \\\"morphological analysis in Japanese text processing\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 103, \\\"end\\\": 153}], \\\"relations\\\": [{\\\"head\\\": \\\"Recognition of proper nouns in Japanese text\\\", \\\"tail\\\": \\\"morphological analysis in Japanese text processing\\\", \\\"type\\\": \\\"PART-OF\\\", \\\"head_start\\\": 0, \\\"head_end\\\": 44, \\\"tail_start\\\": 103, \\\"tail_end\\\": 153}], \\\"events\\\": [], \\\"cumulative_logprob\\\": -11.762582614468847, \\\"n_tokens\\\": 169, \\\"mean_logprob\\\": -0.06960108055898727, \\\"token_logprobs\\\": [-1.1920928244535389e-07, -1.1920928244535389e-07, -3.576278118089249e-07, -0.0015147175872698426, 0.0, 0.0, -7.152555099310121e-07, -0.20657242834568024, -0.018152419477701187, -1.9311717551317997e-05, -2.50339189733495e-06, -0.8259486556053162, -2.1934269170742482e-05, -0.00017998983094003052, -3.671578815556131e-05, 0.0, 0.0, 0.0, -3.58813522325363e-05, -0.005186436232179403, -2.3841855067985307e-07, 0.0, 0.0, 0.0, 0.0, -0.00013648532330989838, 0.0, 0.0, 0.0, 0.0, 0.0, -0.00019834458362311125, -1.3694067001342773, -0.001329015358351171, 0.0, 0.0, 0.0, -2.264974000354414e-06, -0.6264098882675171, -0.0017037175130099058, -0.1002395823597908, 0.0, 0.0, 0.0, -1.1920928244535389e-07, -0.006759397219866514, 0.0, 0.0, 0.0, 0.0, 0.0, -0.137095645070076, -1.6950948238372803, 0.0, 0.0, 0.0, 0.0, 0.0, -4.768370445162873e-07, -0.006715585943311453, -0.0013260389678180218, 0.0, 0.0, 0.0, -9.179073458653875e-06, -0.04204664006829262, 0.0, -2.264974000354414e-06, -0.386924684047699, -1.1920922133867862e-06, -5.149708886165172e-05, -0.0052352952770888805, -0.00023624490131624043, 0.0, 0.0, 0.0, -3.576278118089249e-07, -0.056919753551483154, 0.0, 0.0, 0.0, 0.0, 0.0, -0.1458309143781662, -1.5135462284088135, -1.710825800895691, 0.0, 0.0, 0.0, 0.0, 0.0, -4.768370445162873e-07, -0.01820732094347477, -1.54977285861969, -0.17974953353405, 0.0, -1.1920928244535389e-07, 0.0, -0.05493646860122681, 0.0, 0.0, -1.2636104656849056e-05, -0.8608961701393127, -2.622600959512056e-06, 0.0, -1.1920928244535389e-07, -2.4676019165781327e-05, 0.0, -7.152555099310121e-07, 0.0, 0.0, 0.0, 0.0, -7.390948667307384e-06, -0.000514851592015475, 0.0, 0.0, -1.6689160474925302e-05, 0.0, -2.3841855067985307e-07, -2.3841855067985307e-07, 0.0, 0.0, 0.0, 0.0, 0.0, -0.22853916883468628, -5.006777428206988e-06, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -1.1920928244535389e-07, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -2.3841855067985307e-07, -2.145764938177308e-06, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -9.179073458653875e-06, -3.158996332786046e-05, -1.0728830375228426e-06, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.004130167420953512, 0.0, 0.0, 0.0, -1.1920928244535389e-07, 0.0, 0.0], \\\"token_texts\\\": [\\\"{\\\\\\\"\\\", \\\"entities\\\", \\\"\\\\\\\":\\\", \\\" [{\\\\\\\"\\\", \\\"\\n\\n... [截断: 输出过长，省略 34021 字符] ...\\n\\n44e-06, -0.36681973934173584, -4.768360213347478e-06, 0.0, -5.960462772236497e-07, -7.152555099310121e-07, 0.0, 0.0, 0.0, -2.9802276912960224e-06, -0.18023814260959625, 0.0, 0.0, -4.768370445162873e-07, 0.0, 0.0, 0.0, -1.1920928244535389e-07, -0.4875149130821228, -3.933898824470816e-06, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -1.1920928244535389e-07, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -6.9141146923357155e-06, -1.7881377516459906e-06, -8.344646857949556e-07, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.004079473204910755, 0.0, 0.0, 0.0, -3.576278118089249e-07, -0.7373903393745422, -5.006777428206988e-06, -0.005942534189671278, 0.0, 0.0, 0.0, -2.3841855067985307e-07, -0.04867873713374138, -1.1920928244535389e-07, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.018037104979157448, -3.4570634852570947e-06, 0.0, -1.1920928244535389e-07, 0.0, 0.0, 0.0, 0.0, 0.0, -1.1920928244535389e-07, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -2.3841855067985307e-07, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.03804405406117439, 0.0, 0.0, 0.0, -1.1920928244535389e-07, -0.043202582746744156, 0.0, 0.0, -1.1920922133867862e-06, 0.0, 0.0, 0.0, -1.1920928244535389e-07, -0.0003262225945945829, -1.1920928244535389e-07, -0.00033623288618400693, 0.0, 0.0, 0.0, 0.0, 0.0, -0.00925004668533802, -1.1920928244535389e-07, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -7.152555099310121e-07, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.033662714064121246, 0.0, 0.0, 0.0, -3.576278118089249e-07, 0.0, 0.0], \\\"token_texts\\\": [\\\"{\\\\\\\"\\\", \\\"entities\\\", \\\"\\\\\\\":\\\", \\\" [{\\\\\\\"\\\", \\\"text\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"Recognition\\\", \\\" of\\\", \\\" proper\\\", \\\" nouns\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"type\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"Task\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"start\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"0\\\", \\\",\\\", \\\" \\\\\\\"\\\", \\\"end\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"2\\\", \\\"7\\\", \\\"},\\\", \\\" {\\\\\\\"\\\", \\\"text\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"Japanese\\\", \\\" text\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"type\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"Material\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"start\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"3\\\", \\\"1\\\", \\\",\\\", \\\" \\\\\\\"\\\", \\\"end\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"4\\\", \\\"4\\\", \\\"},\\\", \\\" {\\\\\\\"\\\", \\\"text\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"morph\\\", \\\"ological\\\", \\\" analysis\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"type\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"Task\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"start\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"1\\\", \\\"0\\\", \\\"9\\\", \\\",\\\", \\\" \\\\\\\"\\\", \\\"end\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"1\\\", \\\"3\\\", \\\"1\\\", \\\"},\\\", \\\" {\\\\\\\"\\\", \\\"text\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"Japanese\\\", \\\" text\\\", \\\" processing\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"type\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"Task\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"start\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"1\\\", \\\"3\\\", \\\"5\\\", \\\",\\\", \\\" \\\\\\\"\\\", \\\"end\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"1\\\", \\\"5\\\", \\\"9\\\", \\\"}],\\\", \\\" \\\\\\\"\\\", \\\"relations\\\", \\\"\\\\\\\":\\\", \\\" [{\\\\\\\"\\\", \\\"head\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"Recognition\\\", \\\" of\\\", \\\" proper\\\", \\\" nouns\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"tail\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"morph\\\", \\\"ological\\\", \\\" analysis\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"type\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"PART\\\", \\\"-\\\", \\\"OF\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"head\\\", \\\"_start\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"0\\\", \\\",\\\", \\\" \\\\\\\"\\\", \\\"head\\\", \\\"_end\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"2\\\", \\\"7\\\", \\\",\\\", \\\" \\\\\\\"\\\", \\\"tail\\\", \\\"_start\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"1\\\", \\\"0\\\", \\\"9\\\", \\\",\\\", \\\" \\\\\\\"\\\", \\\"tail\\\", \\\"_end\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"1\\\", \\\"3\\\", \\\"1\\\", \\\"},\\\", \\\" {\\\\\\\"\\\", \\\"head\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"Japanese\\\", \\\" text\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"tail\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"Recognition\\\", \\\" of\\\", \\\" proper\\\", \\\" nouns\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"type\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"USED\\\", \\\"-F\\\", \\\"OR\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"head\\\", \\\"_start\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"3\\\", \\\"1\\\", \\\",\\\", \\\" \\\\\\\"\\\", \\\"head\\\", \\\"_end\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"4\\\", \\\"4\\\", \\\",\\\", \\\" \\\\\\\"\\\", \\\"tail\\\", \\\"_start\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"0\\\", \\\",\\\", \\\" \\\\\\\"\\\", \\\"tail\\\", \\\"_end\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"2\\\", \\\"7\\\", \\\"},\\\", \\\" {\\\\\\\"\\\", \\\"head\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"morph\\\", \\\"ological\\\", \\\" analysis\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"tail\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"Japanese\\\", \\\" text\\\", \\\" processing\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"type\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"PART\\\", \\\"-\\\", \\\"OF\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"head\\\", \\\"_start\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"1\\\", \\\"0\\\", \\\"9\\\", \\\",\\\", \\\" \\\\\\\"\\\", \\\"head\\\", \\\"_end\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"1\\\", \\\"3\\\", \\\"1\\\", \\\",\\\", \\\" \\\\\\\"\\\", \\\"tail\\\", \\\"_start\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"1\\\", \\\"3\\\", \\\"5\\\", \\\",\\\", \\\" \\\\\\\"\\\", \\\"tail\\\", \\\"_end\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"1\\\", \\\"5\\\", \\\"9\\\", \\\"}],\\\", \\\" \\\\\\\"\\\", \\\"events\\\", \\\"\\\\\\\":\\\", \\\" []\\\", \\\"}\\\", \\\"<|im_end|>\\\"]}, \\\"logprobs\\\": [-0.06960108055898727, -0.05755216771089794, -0.07835909183284151, -0.1367601794297413, -0.0416670971941763, -0.06422001702515413, -0.16353439918168214, -0.1130413389077343]}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 32_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I understand the structure. Each line in the JSONL has:
+- `id`: instance ID
+- `gold`: gold annotations (entities, relations, events)
+- `samples`: list of N samples, each with `entities`, `relations`, `events`, `cumulative_logprob`, `n_tokens`, `mean_logprob`
+- `greedy`: greedy decoding result
+- `logprobs`: list of per-sample `mean_logprob` values (a summary at the end)
+
+I can see the `logprobs` field at the end is a list of `mean_logprob` values for each sample.
+
+
+I'm checking the sample counts across experiments—exp_023 has 8 samples in the first instance. Now I need to write a script that reads the JSONL files, extracts the mean logprob values for each sample, computes entity F1 scores against the gold annotations, and calculates the three LP statistics.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "43ab3e2a-8abd-459f-8408-ee9173987ff3",
+  "uuid": "c5daab81-8f40-49a8-9d3f-90b534bc5a5b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LNnYKo3fFRa5u3cboeuy1k",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7255,
+      "cache_read_input_tokens": 41412,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7255
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 33_
+
+两个文件都有 551 个 instances。每个 instance 有 8 个 samples（从 `logprobs` 数组长度=8 可见）。现在写分析脚本。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "43ab3e2a-8abd-459f-8408-ee9173987ff3",
+  "uuid": "3bf65dbc-dfae-4e63-80f1-95f52045a594",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LNnYKo3fFRa5u3cboeuy1k",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7255,
+      "cache_read_input_tokens": 41412,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7255
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_017UvMKoNRikjusDkSwNQfqJ`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat << 'PYEOF' > /root/autodl-tmp/struct_self_consist_ie/output/lp_rank_comparison.py\nimport json\nimport numpy as np\nfrom scipy import stats\n\ndef compute_entity_f1(pred_entities, gold_entities):\n    \"\"\"Compute entity-level F1 (exact match on text+type+start+end).\"\"\"\n    pred_set = set()\n    for e in pred_entities:\n        pred_set.add((e.get(\"text\",\"\"), e.get(\"type\",\"\"), e.get(\"start\",-1), e.get(\"end\",-1)))\n    gold_set = set()\n    for e in gold_entities:\n        gold_set.add((e.get(\"text\",\"\"), e.get(\"type\",\"\"), e.get(\"start\",-1), e.get(\"end\",-1)))\n    \n    if len(pred_set) == 0 and len(gold_set) == 0:\n        return 1.0\n    if len(pred_set) == 0 or len(gold_set) == 0:\n        return 0.0\n    \n    tp = len(pred_set & gold_set)\n    precision = tp / len(pred_set) if len(pred_set) > 0 else 0.0\n    recall = tp / len(gold_set) if len(gold_set) > 0 else 0.0\n    if precision + recall == 0:\n        return 0.0\n    return 2 * precision * recall / (precision + recall)\n\ndef analyze_file(path, label):\n    lp_ranges = []\n    tied_count = 0\n    total_count = 0\n    within_rhos = []\n    n_samples_list = []\n    \n    with open(path) as f:\n        for line in f:\n            row = json.loads(line)\n            samples = row[\"samples\"]\n            gold = row[\"gold\"]\n            n = len(samples)\n            n_samples_list.append(n)\n            \n            lps = [s[\"mean_logprob\"] for s in samples]\n            f1s = [compute_entity_f1(s.get(\"entities\", []), gold.get(\"entities\", [])) for s in samples]\n            \n            lp_arr = np.array(lps)\n            f1_arr = np.array(f1s)\n            \n            # LP range\n            lp_range = lp_arr.max() - lp_arr.min()\n            lp_ranges.append(lp_range)\n            \n            # Tied?\n            total_count += 1\n            if lp_range == 0:\n                tied_count += 1\n            \n            # Within-instance rho(LP, F1)\n            if len(set(lps)) > 1 and len(set(f1s)) > 1:\n                rho, _ = stats.spearmanr(lp_arr, f1_arr)\n                if not np.isnan(rho):\n                    within_rhos.append(rho)\n    \n    lp_ranges = np.array(lp_ranges)\n    \n    print(f\"\\n{'='*60}\")\n    print(f\"  {label}\")\n    print(f\"{'='*60}\")\n    print(f\"  Instances: {total_count}\")\n    print(f\"  Samples/instance: min={min(n_samples_list)}, max={max(n_samples_list)}, median={np.median(n_samples_list)}\")\n    print(f\"  LP median within-instance range: {np.median(lp_ranges):.6f}\")\n    print(f\"  LP mean within-instance range:   {np.mean(lp_ranges):.6f}\")\n    print(f\"  LP tied fraction:                {tied_count}/{total_count} = {tied_count/total_count:.4f}\")\n    print(f\"  Within-instance rho(LP,F1):\")\n    print(f\"    valid instances: {len(within_rhos)}/{total_count}\")\n    print(f\"    mean:   {np.mean(within_rhos):.4f}\")\n    print(f\"    median: {np.median(within_rhos):.4f}\")\n    print(f\"    std:    {np.std(within_rhos):.4f}\")\n    \n    return {\n        \"label\": label,\n        \"n_instances\": total_count,\n        \"lp_median_range\": float(np.median(lp_ranges)),\n        \"lp_mean_range\": float(np.mean(lp_ranges)),\n        \"lp_tied_fraction\": tied_count / total_count,\n        \"lp_tied_count\": tied_count,\n        \"rho_valid\": len(within_rhos),\n        \"rho_mean\": float(np.mean(within_rhos)) if within_rhos else None,\n        \"rho_median\": float(np.median(within_rhos)) if within_rhos else None,\n        \"rho_std\": float(np.std(within_rhos)) if within_rhos else None,\n    }\n\nrank8 = analyze_file(\n    \"/root/autodl-tmp/struct_self_consist_ie/output/exp_023_rank8_inference/samples.jsonl\",\n    \"Rank=8 (exp-023)\"\n)\nrank32 = analyze_file(\n    \"/root/autodl-tmp/struct_self_consist_ie/output/exp_012_logprob/samples_with_logprobs.jsonl\",\n    \"Rank=32 (exp-012)\"\n)\n\nprint(f\"\\n{'='*60}\")\nprint(f\"  COMPARISON TABLE\")\nprint(f\"{'='*60}\")\nprint(f\"{'Metric':<35} {'Rank=8':>12} {'Rank=32':>12}\")\nprint(f\"{'-'*60}\")\nprint(f\"{'LP median range':<35} {rank8['lp_median_range']:>12.6f} {rank32['lp_median_range']:>12.6f}\")\nprint(f\"{'LP mean range':<35} {rank8['lp_mean_range']:>12.6f} {rank32['lp_mean_range']:>12.6f}\")\nprint(f\"{'LP tied fraction':<35} {rank8['lp_tied_fraction']:>12.4f} {rank32['lp_tied_fraction']:>12.4f}\")\nprint(f\"{'Within-inst rho(LP,F1) mean':<35} {rank8['rho_mean']:>12.4f} {rank32['rho_mean']:>12.4f}\")\nprint(f\"{'Within-inst rho(LP,F1) median':<35} {rank8['rho_median']:>12.4f} {rank32['rho_median']:>12.4f}\")\nprint(f\"{'rho valid instances':<35} {rank8['rho_valid']:>12d} {rank32['rho_valid']:>12d}\")\n\n# Save results\nresults = {\"rank8\": rank8, \"rank32\": rank32}\nwith open(\"/root/autodl-tmp/struct_self_consist_ie/output/lp_rank_comparison_results.json\", \"w\") as f:\n    json.dump(results, f, indent=2)\nprint(\"\\nResults saved to lp_rank_comparison_results.json\")\nPYEOF\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "43ab3e2a-8abd-459f-8408-ee9173987ff3",
+  "uuid": "af27fcc3-75f5-458c-b032-6e9de2d9209d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LNnYKo3fFRa5u3cboeuy1k",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7255,
+      "cache_read_input_tokens": 41412,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7255
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-18T00:57:32.040Z_
+
+<details><summary>↩ Tool result · `toolu_017UvMKoNRikjusDkSwNQfqJ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "43ab3e2a-8abd-459f-8408-ee9173987ff3",
+  "uuid": "85f87848-16d8-4113-b6ed-0497a4565bca",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_0132NnQG3UgQcj9c3dkX979j`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "source /root/miniconda3/bin/activate && cd /root/autodl-tmp/struct_self_consist_ie/output && python lp_rank_comparison.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "43ab3e2a-8abd-459f-8408-ee9173987ff3",
+  "uuid": "0f524df5-7de3-46c4-a8b9-a1621df2df32",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UwX3EixH7jLR28rFyCg9eX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2334,
+      "cache_read_input_tokens": 48667,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2334
+      },
+      "output_tokens": 65,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-18T00:57:37.281Z_
+
+<details><summary>↩ Tool result · `toolu_0132NnQG3UgQcj9c3dkX979j`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\n============================================================\\n  Rank=8 (exp-023)\\n============================================================\\n  Instances: 551\\n  Samples/instance: min=8, max=8, median=8.0\\n  LP median within-instance range: 0.056931\\n  LP mean within-instance range:   0.075814\\n  LP tied fraction:                0/551 = 0.0000\\n  Within-instance rho(LP,F1):\\n    valid instances: 506/551\\n    mean:   0.2395\\n    median: 0.3164\\n    std:    0.4364\\n\\n============================================================\\n  Rank=32 (exp-012)\\n============================================================\\n  Instances: 551\\n  Samples/instance: min=8, max=8, median=8.0\\n  LP median within-instance range: 0.042857\\n  LP mean within-instance range:   0.059754\\n  LP tied fraction:                1/551 = 0.0018\\n  Within-instance rho(LP,F1):\\n    valid instances: 451/551\\n    mean:   0.1532\\n    median: 0.2474\\n    std:    0.5052\\n\\n============================================================\\n  COMPARISON TABLE\\n============================================================\\nMetric                                    Rank=8      Rank=32\\n------------------------------------------------------------\\nLP median range                         0.056931     0.042857\\nLP mean range                           0.075814     0.059754\\nLP tied fraction                          0.0000       0.0018\\nWithin-inst rho(LP,F1) mean               0.2395       0.1532\\nWithin-inst rho(LP,F1) median             0.3164       0.2474\\nrho valid instances                          506          451\\n\\nResults saved to lp_rank_comparison_results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.72}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "43ab3e2a-8abd-459f-8408-ee9173987ff3",
+  "uuid": "79e9186b-8174-4337-ada3-62ae664092b2",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\n============================================================\\\\n  Rank=8 (exp-023)\\\\n============================================================\\\\n  Instances: 551\\\\n  Samples/instance: min=8, max=8, median=8.0\\\\n  LP median within-instance range: 0.056931\\\\n  LP mean within-instance range:   0.075814\\\\n  LP tied fraction:                0/551 = 0.0000\\\\n  Within-instance rho(LP,F1):\\\\n    valid instances: 506/551\\\\n    mean:   0.2395\\\\n    median: 0.3164\\\\n    std:    0.4364\\\\n\\\\n============================================================\\\\n  Rank=32 (exp-012)\\\\n============================================================\\\\n  Instances: 551\\\\n  Samples/instance: min=8, max=8, median=8.0\\\\n  LP median within-instance range: 0.042857\\\\n  LP mean within-instance range:   0.059754\\\\n  LP tied fraction:                1/551 = 0.0018\\\\n  Within-instance rho(LP,F1):\\\\n    valid instances: 451/551\\\\n    mean:   0.1532\\\\n    median: 0.2474\\\\n    std:    0.5052\\\\n\\\\n============================================================\\\\n  COMPARISON TABLE\\\\n============================================================\\\\nMetric                                    Rank=8      Rank=32\\\\n------------------------------------------------------------\\\\nLP median range                         0.056931     0.042857\\\\nLP mean range                           0.075814     0.059754\\\\nLP tied fraction                          0.0000       0.0018\\\\nWithin-inst rho(LP,F1) mean               0.2395       0.1532\\\\nWithin-inst rho(LP,F1) median             0.3164       0.2474\\\\nrho valid instances                          506          451\\\\n\\\\nResults saved to lp_rank_comparison_results.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.72}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\n============================================================\\n  Rank=8 (exp-023)\\n============================================================\\n  Instances: 551\\n  Samples/instance: min=8, max=8, median=8.0\\n  LP median within-instance range: 0.056931\\n  LP mean within-instance range:   0.075814\\n  LP tied fraction:                0/551 = 0.0000\\n  Within-instance rho(LP,F1):\\n    valid instances: 506/551\\n    mean:   0.2395\\n    median: 0.3164\\n    std:    0.4364\\n\\n============================================================\\n  Rank=32 (exp-012)\\n============================================================\\n  Instances: 551\\n  Samples/instance: min=8, max=8, median=8.0\\n  LP median within-instance range: 0.042857\\n  LP mean within-instance range:   0.059754\\n  LP tied fraction:                1/551 = 0.0018\\n  Within-instance rho(LP,F1):\\n    valid instances: 451/551\\n    mean:   0.1532\\n    median: 0.2474\\n    std:    0.5052\\n\\n============================================================\\n  COMPARISON TABLE\\n============================================================\\nMetric                                    Rank=8      Rank=32\\n------------------------------------------------------------\\nLP median range                         0.056931     0.042857\\nLP mean range                           0.075814     0.059754\\nLP tied fraction                          0.0000       0.0018\\nWithin-inst rho(LP,F1) mean               0.2395       0.1532\\nWithin-inst rho(LP,F1) median             0.3164       0.2474\\nrho valid instances                          506          451\\n\\nResults saved to lp_rank_comparison_results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.72}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 38_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The results are ready. Let me now read the existing memory.md and append the comparison table.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "43ab3e2a-8abd-459f-8408-ee9173987ff3",
+  "uuid": "be88d764-7bf4-4fa0-87fc-85b8ee7a9146",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MXui9uudQe7Gj3cneZA99K",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 683,
+      "cache_read_input_tokens": 51001,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 683
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 39_
+
+数据提取完成。现在读取 memory.md 并追加结果。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "43ab3e2a-8abd-459f-8408-ee9173987ff3",
+  "uuid": "f044c3a6-f26e-4b36-9636-61b2e727666b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MXui9uudQe7Gj3cneZA99K",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 683,
+      "cache_read_input_tokens": 51001,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 683
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_01Q1AxoTEAdTVNbb6cka6GDR`</summary>
+
+```json
+{
+  "project": "struct_self_consist_ie",
+  "file": "memory.md",
+  "max_chars": 0
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "43ab3e2a-8abd-459f-8408-ee9173987ff3",
+  "uuid": "6a425af5-b4d2-4a66-9d1d-94694774c433",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MXui9uudQe7Gj3cneZA99K",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 683,
+      "cache_read_input_tokens": 51001,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 683
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-18T00:57:41.481Z_
+
+<details><summary>↩ Tool result · `toolu_01Q1AxoTEAdTVNbb6cka6GDR`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/memory.md\", \"content\": \"# 项目记忆\\n\\n## 易混淆指标辨析（2026-05-17）\\n\\n**ρ=-0.881 (p=0.004)** = KeySet degeneracy vs **oracle headroom**（论文 L171 / appendix:1121）\\n**ρ=-0.381 (p=0.352)** = KeySet degeneracy vs **LP Δ**（selection improvement）\\n\\n这是两个不同的 y 轴变量。论文中的 ρ=-0.881 是正确的，已被 Reviewer 确认。不要再混淆。\\n\\n## SciERC LP Δ 两个版本（2026-05-17）\\n\\n- **+0.42pp** = full-set (n=551)，论文全文统一使用此值\\n- **+0.62pp** = gold-filtered (n=529)\\n\\nFigure 3 和正文保持一致用 full-set +0.42。\\n\\n## Cross-model Degeneracy 规律（2026-05-17）\\n\\nDegeneracy 由 **model capability × task difficulty × training convergence** 共同决定：\\n- Stronger model + easy task → 极端 degen（LLaMA-CoNLL 89.2%）\\n- Weaker model + hard task → low degen（Qwen3-SciERC 17.8%）\\n- CoNLL 是 high-degen regime 不论 backbone（Qwen3 47.4%, LLaMA 89.2%）\\n- Training convergence 调控 degen: Few-NERD 3-epoch 11.1% → 5-epoch 31.3%（+20pp）\\n- **Alignment (within-instance ρ) 是 dataset-intrinsic**: median ρ 不随 epoch 显著变化 (0.6667→0.6151)\\n\\nLLaMA on CoNLL headroom 仅 1.84pp（greedy 0.9242, oracle 0.9426），使得 selection 评估无意义。但 structural signals 的 QE diagnostic ρ≈0.43 仍显著优于 LP ρ=0.31，证明诊断价值是 model-agnostic 的。\\n\\nLP range median=0.0002 at 89% degen — LP 在极端 degen 下完全无法区分 samples。\\n\\n## exp_021 vs exp_028 within-instance ρ(LP, F1) 对比（2026-05-18）\\n\\n### 配对对比（同 5000 实例子集，N=8）\\n\\n| Metric | 3-epoch (exp_027) | 5-epoch (exp_028) | Delta |\\n|--------|-------------------|-------------------|-------|\\n| ρ mean | **0.5241** | 0.4066 | -0.1175 |\\n| ρ median | **0.6667** | 0.6151 | -0.0516 |\\n| ρ std | 0.4673 | 0.5506 | +0.0833 |\\n| Valid instances | 3723/4351 (85.6%) | 2988/4351 (68.7%) | -16.9pp |\\n\\n### 全量 exp_021（37648 实例，N=8）\\n- Mean ρ: 0.5106, Median ρ: 0.6667, Std: 0.4749\\n- Valid: 28086/32565 (86.3%)\\n\\n### 结论\\n1. **Median ρ 几乎不变** (0.6667→0.6151, Δ=-0.05): 非 degenerate 实例上 LP-F1 alignment 不受 training convergence 显著影响 → **alignment IS dataset-intrinsic**\\n2. **Mean ρ 下降较多** (0.5241→0.4066, Δ=-0.12): 主要因为 valid instances 从 85.6%→68.7%——更多实例变 degenerate，拉低 mean\\n3. **两个条件的 driver 不同**: degeneracy 受 training convergence 调控，alignment 则是 dataset-intrinsic（median ρ 稳定）\\n4. **Practitioner lever**: early stopping 控制 degeneracy，从而决定 LP selection 的有效性窗口\\n5. **⚠️ 之前 exp_028 分析报告中 exp_021 ρ=0.6226 是错误值**（可能来自 N=16 分析），正确 N=8 同子集值: mean=0.5241, median=0.6667\\n\\n## exp_028 结果：5-epoch Few-NERD 收敛测试（2026-05-18）\\n\\n### 实验配置\\n- Model: Qwen3-8B + LoRA, Few-NERD, 5 epochs (vs exp-021 3 epochs)\\n- Inference: N=8, T=1.0, logprobs collected\\n- Gold-filtered instances: 4351/5000\\n\\n### 核心结果\\n\\n| Metric | 3-epoch (exp-021) | 5-epoch (exp-028) | Delta |\\n|--------|-------------------|-------------------|-------|\\n| Degeneracy (CF1) % | 11.1% | **31.3%** | +20.2pp |\\n| Greedy F1 | 0.7478 | 0.7773 | +2.95pp |\\n| Oracle F1 | — | 0.8723 | — |\\n| Headroom (pp) | — | 9.50pp | — |\\n| LP sel F1 | 0.7614 | 0.7835 | +2.21pp |\\n| LP sel delta (pp) | +1.37 | **+0.62** | -0.75 |\\n\\n### QE Signals (5-epoch)\\n\\n| Signal | AUROC | ρ (global) | Sel F1 | Delta |\\n|--------|-------|------------|--------|-------|\\n| LP | 0.5234 | **0.4495** | 0.7835 | +0.62pp |\\n| SJ | 0.4988 | 0.3777 | 0.7697 | -0.77pp |\\n| FK | 0.4985 | 0.3892 | 0.7693 | -0.80pp |\\n| EM | 0.4951 | 0.3893 | 0.7663 | -1.10pp |\\n| VC | 0.5006 | 0.3585 | 0.7576 | -1.97pp |\\n\\n### Within-instance LP-F1 correlation\\n- Mean ρ: 0.4066, Median ρ: 0.6151, Std: 0.5506\\n- Valid instances: 2988/4351 (68.7%)\\n\\n### LP Range\\n- Mean: 0.0514, Std: 0.0673, Median: 0.0318\\n\\n### Report.json 补充（inference-level stats）\\n- Greedy F1 (raw, pre-gold-filter): 0.7940\\n- Oracle F1 (raw): 0.8770\\n- FK mean: 0.5284, SJ mean: 0.8070\\n- LP baseline ρ (full): 0.3319, AUROC: 0.6806\\n- SJ vs F1 ρ (full): 0.3716\\n- FK vs F1 ρ (full): 0.2760\\n- Structural > Surface confirmed (ρ advantage = +0.096)\\n- Sample F1 mean: 0.7269, std: 0.3416, pct_zero: 12.3%\\n\\n### 结论：NEGATIVE\\n**5-epoch degeneracy 31.3% 远超 3-epoch 的 11.1%（+20.2pp）。** Few-NERD 的低 degeneracy 可能源于模型 under-convergence 而非数据集/任务本质特性。\\n\\n关键影响：\\n1. LP selection delta 从 +1.37pp 降至 +0.62pp（更多 degenerate instances 压缩了 selection 空间）\\n2. 结构信号（SJ/FK/EM/VC）在 5-epoch 上 selection delta 全为负，仅 LP 正\\n3. 但 LP global ρ=0.4495 仍显著（p≈0），within-instance median ρ=0.6151 说明非 degenerate 实例上 LP 仍有区分力\\n4. **论文叙事需修正**：不能以 Few-NERD low degeneracy 作为\\\"结构化任务天然适合 self-consistency\\\"的证据\\n\\n## 文献调研：一致性 ≠ 正确性（2026-05-16）\\n\\n### 调研背景\\nFew-NERD（8类粗粒度NER）上，结构一致性信号（SJ/FK/EM/VC）的 global ρ 为负或近零，selection delta 全为负。根因：模型存在 systematic bias（类型语义重叠 → 8 samples 一致但全错），暴露 self-consistency 的根本假设缺陷。\\n\\n### 最相关论文（5篇）\\n\\n#### 1. Self-Consistency Falls Short! The Adverse Effects of Positional Bias on Long-Context Problems\\n- **Authors**: Adam Byerly, Daniel Khashabi\\n- **Year/Venue**: 2024, TACL (arXiv: 2411.01101)\\n- **关系**: **最强验证**。正式证明当 errors correlated 时，self-consistency 放大而非纠正错误\\n- **Key insight**: 长上下文任务中，positional bias 导致所有 samples 产生相关错误，违反 self-consistency 的核心假设（error independence）。Self-consistency 不仅无效，反而 actively degrades performance。实验覆盖 GPT-4o、LLaMA-3.3-70B、Qwen-2.5-72B\\n- **与我们的平行关系**: 他们的 \\\"positional bias → correlated errors\\\" 对应我们的 \\\"type semantic overlap → systematic misclassification\\\"。机制不同但失败模式完全相同\\n\\n#### 2. Consistency–Accuracy Correlation in Hard-Prompted LLMs for Entity and Relation Extraction\\n- **Venue**: PMC (PMC12888769), 2025\\n- **关系**: **IE 领域直接验证**\\n- **Key insight**: 在 EPOP 语料（植物健康数据，实体+关系抽取）上测试 GPT/DeepSeek/Qwen/Kimi 四个模型，发现 high consistency does NOT strongly correlate with high accuracy。相关性是 model-dependent 且随 task complexity 变化。在 relational IE 中，consistency alone 不应被用作 prediction quality 的 proxy\\n- **与我们的关系**: 直接在 IE 任务上验证了我们在 NER 上的发现——一致性不等于正确性\\n\\n#### 3. Beyond Majority Voting: SCOPE (Subgroup-specific Confidence-weighted Pseudo-label Estimation)\\n- **Year/Venue**: 2024, arXiv: 2512.15146\\n- **关系**: **提出解决方案**\\n- **Key insight**: Majority voting 的问题：(1) 所有 votes 权重相同，忽略 confidence；(2) binary voting 无法捕获 fine-grained signals；(3) confirmation bias——模型强化自身错误。SCOPE 用 step-wise confidence 加权替代简单 frequency count，并通过 dynamic subgroup partitioning 平衡 quality 与 diversity\\n- **可借鉴**: confidence weighting + subgroup partitioning 思路可用于我们的结构一致性信号设计\\n\\n#### 4. Diversified Sampling Improves Scaling LLM Inference\\n- **Year**: 2025, arXiv: 2502.11027\\n- **关系**: **互补——从 sampling 端解决 correlated errors**\\n- **Key insight**: 同一 prompt 反复 sampling 导致输出 \\\"trapped\\\" 在 local cluster 中。通过 diversified prompts（role perturbation、instruction variation、jabberwocky perturbation）可以打破 error correlation，提升 coverage。在 reasoning/math/code 任务上显著提升\\n- **可借鉴**: 如果我们在 NER 中使用多样化 prompt 策略（不同 instruction 模板、不同 few-shot examples、不同 entity type 描述），可能减少 systematic bias 导致的 correlated errors\\n\\n#### 5. The Hidden Strength of Disagreement: Consensus-Diversity Tradeoff in Adaptive Multi-Agent Systems\\n- **Authors**: Wu & Ito\\n- **Year/Venue**: 2025, EMNLP (arXiv: 2502.16565)\\n- **关系**: **理论框架**\\n- **Key insight**: 显式 consensus（voting/prompting）有 premature homogenization 风险。隐式 consensus（agents 独立决策但共享信息）保留了 diversity，在动态环境中优于显式 voting。形式化了 consensus-diversity tradeoff\\n- **与我们的关系**: 我们的结构一致性信号是显式 consensus measure，当模型有 systematic bias 时导致 premature homogenization（全部 samples 一致地错）\\n\\n### 补充相关工作\\n\\n#### 6. Don't Always Pick the Highest-Performing Model: Information Theoretic View of LLM Ensemble Selection\\n- **Year**: 2026, arXiv: 2602.08003\\n- 用 Gaussian-copula 建模 correlated errors，证明 ensemble 存在 information-theoretic error floor\\n\\n#### 7. Wang et al. 2023 Self-Consistency (ICLR 2023, arXiv: 2203.11171)\\n- 原文假设 diverse reasoning paths → correct answer 更可能被多数路径选中\\n- **未显式讨论** systematic bias 导致所有路径收敛到同一错误答案的 failure mode\\n\\n#### 8. LLM-TOPLA: Efficient LLM Ensemble by Maximising Diversity\\n- **Year/Venue**: 2024, EMNLP Findings\\n- 用 focal diversity metric 选择互补性强的 ensemble 成员，减少 error correlation\\n\\n### 核心结论\\n\\n#### Q1: 有没有人正式分析过 self-consistency 在什么条件下失败？\\n**有。** Byerly & Khashabi (2024, TACL) 是最系统的分析，证明 positional bias 导致 correlated errors 时 self-consistency 失败。但他们聚焦 long-context + positional bias，没有覆盖 structured prediction 中 semantic overlap 导致的 systematic bias。\\n\\n#### Q2: \\\"Correlated failures\\\" 如何破坏 voting-based 方法？\\n多篇论文从不同角度论证：error correlation 违反了 voting 的 independence 假设。当 errors correlated，增加 samples 不能提升 accuracy（有 information-theoretic floor），甚至可能 amplify errors。\\n\\n#### Q3: 有没有人提出过针对 systematic bias 的改进？\\n- **Confidence weighting** (SCOPE): 用 confidence 加权替代 equal voting\\n- **Diversified sampling**: 用不同 prompt 变体打破 local cluster\\n- **Subgroup partitioning**: 将 samples 分组，组间保持 diversity\\n- **Cross-model probing**: 用不同模型交叉验证（但成本高）\\n\\n#### Q4: 结构化预测中 self-consistency 的特殊挑战？\\nConsistency-accuracy correlation 论文（PMC12888769）在 IE 任务上直接验证了一致性≠正确性。但目前 **没有** 专门针对 NER/结构化预测中 self-consistency failure modes 的系统性研究——这是我们的 contribution gap。\\n\\n### 对我们下一步的启示\\n\\n1. **论文 framing**: 我们的发现（结构一致性在 systematic bias 下失败）有文献支撑但 **在 structured IE 领域是新的**。Byerly & Khashabi 做了 long-context，我们做 structured prediction，互补\\n2. **可借鉴技术**：\\n   - Confidence-weighted consistency（替代 raw agreement）\\n   - Diversified prompting（不同 instruction/few-shot 模板减少 correlated errors）\\n   - Adaptive stopping（当 consistency 低时增加 samples，但当 consistency 高且可能是 systematic bias 时需要 different strategy）\\n3. **Discussion 要写的**: 引用 Byerly & Khashabi 说明这是 self-consistency 的 general failure mode，我们在 IE 领域首次系统性展示，并分析了结构化预测特有的原因（type semantic overlap、span boundary ambiguity）\\n\", \"total_chars\": 9053, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "43ab3e2a-8abd-459f-8408-ee9173987ff3",
+  "uuid": "041b3ae4-9aca-4d3f-8315-c6bf11ab6f59",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/memory.md\\\", \\\"content\\\": \\\"# 项目记忆\\\\n\\\\n## 易混淆指标辨析（2026-05-17）\\\\n\\\\n**ρ=-0.881 (p=0.004)** = KeySet degeneracy vs **oracle headroom**（论文 L171 / appendix:1121）\\\\n**ρ=-0.381 (p=0.352)** = KeySet degeneracy vs **LP Δ**（selection improvement）\\\\n\\\\n这是两个不同的 y 轴变量。论文中的 ρ=-0.881 是正确的，已被 Reviewer 确认。不要再混淆。\\\\n\\\\n## SciERC LP Δ 两个版本（2026-05-17）\\\\n\\\\n- **+0.42pp** = full-set (n=551)，论文全文统一使用此值\\\\n- **+0.62pp** = gold-filtered (n=529)\\\\n\\\\nFigure 3 和正文保持一致用 full-set +0.42。\\\\n\\\\n## Cross-model Degeneracy 规律（2026-05-17）\\\\n\\\\nDegeneracy 由 **model capability × task difficulty × training convergence** 共同决定：\\\\n- Stronger model + easy task → 极端 degen（LLaMA-CoNLL 89.2%）\\\\n- Weaker model + hard task → low degen（Qwen3-SciERC 17.8%）\\\\n- CoNLL 是 high-degen regime 不论 backbone（Qwen3 47.4%, LLaMA 89.2%）\\\\n- Training convergence 调控 degen: Few-NERD 3-epoch 11.1% → 5-epoch 31.3%（+20pp）\\\\n- **Alignment (within-instance ρ) 是 dataset-intrinsic**: median ρ 不随 epoch 显著变化 (0.6667→0.6151)\\\\n\\\\nLLaMA on CoNLL headroom 仅 1.84pp（greedy 0.9242, oracle 0.9426），使得 selection 评估无意义。但 structural signals 的 QE diagnostic ρ≈0.43 仍显著优于 LP ρ=0.31，证明诊断价值是 model-agnostic 的。\\\\n\\\\nLP range median=0.0002 at 89% degen — LP 在极端 degen 下完全无法区分 samples。\\\\n\\\\n## exp_021 vs exp_028 within-instance ρ(LP, F1) 对比（2026-05-18）\\\\n\\\\n### 配对对比（同 5000 实例子集，N=8）\\\\n\\\\n| Metric | 3-epoch (exp_027) | 5-epoch (exp_028) | Delta |\\\\n|--------|-------------------|-------------------|-------|\\\\n| ρ mean | **0.5241** | 0.4066 | -0.1175 |\\\\n| ρ median | **0.6667** | 0.6151 | -0.0516 |\\\\n| ρ std | 0.4673 | 0.5506 | +0.0833 |\\\\n| Valid instances | 3723/4351 (85.6%) | 2988/4351 (68.7%) | -16.9pp |\\\\n\\\\n### 全量 exp_021（37648 实例，N=8）\\\\n- Mean ρ: 0.5106, Median ρ: 0.6667, Std: 0.4749\\\\n- Valid: 28086/32565 (86.3%)\\\\n\\\\n### 结论\\\\n1. **Median ρ 几乎不变** (0.6667→0.6151, Δ=-0.05): 非 degenerate 实例上 LP-F1 alignment 不受 training convergence 显著影响 → **alignment IS dataset-intrinsic**\\\\n2. **Mean ρ 下降较多** (0.5241→0.4066, Δ=-0.12): 主要因为 valid instances 从 85.6%→68.7%——更多实例变 degenerate，拉低 mean\\\\n3. **两个条件的 driver 不同**: degeneracy 受 training convergence 调控，alignment 则是 dataset-intrinsic（median ρ 稳定）\\\\n4. **Practitioner lever**: early stopping 控制 degeneracy，从而决定 LP selection 的有效性窗口\\\\n5. **⚠️ 之前 exp_028 分析报告中 exp_021 ρ=0.6226 是错误值**（可能来自 N=16 分析），正确 N=8 同子集值: mean=0.5241, median=0.6667\\\\n\\\\n## exp_028 结果：5-epoch Few-NERD 收敛测试（2026-05-18）\\\\n\\\\n### 实验配置\\\\n- Model: Qwen3-8B + LoRA, Few-NERD, 5 epochs (vs exp-021 3 epochs)\\\\n- Inference: N=8, T=1.0, logprobs collected\\\\n- Gold-filtered instances: 4351/5000\\\\n\\\\n### 核心结果\\\\n\\\\n| Metric | 3-epoch (exp-021) | 5-epoch (exp-028) | Delta |\\\\n|--------|-------------------|-------------------|-------|\\\\n| Degeneracy (CF1) % | 11.1% | **31.3%** | +20.2pp |\\\\n| Greedy F1 | 0.7478 | 0.7773 | +2.95pp |\\\\n| Oracle F1 | — | 0.8723 | — |\\\\n| Headroom (pp) | — | 9.50pp | — |\\\\n| LP sel F1 | 0.7614 | 0.7835 | +2.21pp |\\\\n| LP sel delta (pp) | +1.37 | **+0.62** | -0.75 |\\\\n\\\\n### QE Signals (5-epoch)\\\\n\\\\n| Signal | AUROC | ρ (global) | Sel F1 | Delta |\\\\n|--------|-------|------------|--------|-------|\\\\n| LP | 0.5234 | **0.4495** | 0.7835 | +0.62pp |\\\\n| SJ | 0.4988 | 0.3777 | 0.7697 | -0.77pp |\\\\n| FK | 0.4985 | 0.3892 | 0.7693 | -0.80pp |\\\\n| EM | 0.4951 | 0.3893 | 0.7663 | -1.10pp |\\\\n| VC | 0.5006 | 0.3585 | 0.7576 | -1.97pp |\\\\n\\\\n### Within-instance LP-F1 correlation\\\\n- Mean ρ: 0.4066, Median ρ: 0.6151, Std: 0.5506\\\\n- Valid instances: 2988/4351 (68.7%)\\\\n\\\\n### LP Range\\\\n- Mean: 0.0514, Std: 0.0673, Median: 0.0318\\\\n\\\\n### Report.json 补充（inference-level stats）\\\\n- Greedy F1 (raw, pre-gold-filter): 0.7940\\\\n- Oracle F1 (raw): 0.8770\\\\n- FK mean: 0.5284, SJ mean: 0.8070\\\\n- LP baseline ρ (full): 0.3319, AUROC: 0.6806\\\\n- SJ vs F1 ρ (full): 0.3716\\\\n- FK vs F1 ρ (full): 0.2760\\\\n- Structural > Surface confirmed (ρ advantage = +0.096)\\\\n- Sample F1 mean: 0.7269, std: 0.3416, pct_zero: 12.3%\\\\n\\\\n### 结论：NEGATIVE\\\\n**5-epoch degeneracy 31.3% 远超 3-epoch 的 11.1%（+20.2pp）。** Few-NERD 的低 degeneracy 可能源于模型 under-convergence 而非数据集/任务本质特性。\\\\n\\\\n关键影响：\\\\n1. LP selection delta 从 +1.37pp 降至 +0.62pp（更多 degenerate instances 压缩了 selection 空间）\\\\n2. 结构信号（SJ/FK/EM/VC）在 5-epoch 上 selection delta 全为负，仅 LP 正\\\\n3. 但 LP global ρ=0.4495 仍显著（p≈0），within-instance median ρ=0.6151 说明非 degenerate 实例上 LP 仍有区分力\\\\n4. **论文叙事需修正**：不能以 Few-NERD low degeneracy 作为\\\\\\\"结构化任务天然适合 self-consistency\\\\\\\"的证据\\\\n\\\\n## 文献调研：一致性 ≠ 正确性（2026-05-16）\\\\n\\\\n### 调研背景\\\\nFew-NERD（8类粗粒度NER）上，结构一致性信号（SJ/FK/EM/VC）的 global ρ 为负或近零，selection delta 全为负。根因：模型存在 systematic bias（类型语义重叠 → 8 samples 一致但全错），暴露 self-consistency 的根本假设缺陷。\\\\n\\\\n### 最相关论文（5篇）\\\\n\\\\n#### 1. Self-Consistency Falls Short! The Adverse Effects of Positional Bias on Long-Context Problems\\\\n- **Authors**: Adam Byerly, Daniel Khashabi\\\\n- **Year/Venue**: 2024, TACL (arXiv: 2411.01101)\\\\n- **关系**: **最强验证**。正式证明当 errors correlated 时，self-consistency 放大而非纠正错误\\\\n- **Key insight**: 长上下文任务中，positional bias 导致所有 samples 产生相关错误，违反 self-consistency 的核心假设（error independence）。Self-consistency 不仅无效，反而 actively degrades performance。实验覆盖 GPT-4o、LLaMA-3.3-70B、Qwen-2.5-72B\\\\n- **与我们的平行关系**: 他们的 \\\\\\\"positional bias → correlated errors\\\\\\\" 对应我们的 \\\\\\\"type semantic overlap → systematic misclassification\\\\\\\"。机制不同但失败模式完全相同\\\\n\\\\n#### 2. Consistency–Accuracy Correlation in Hard-Prompted LLMs for Entity and Relation Extraction\\\\n- **Venue**: PMC (PMC12888769), 2025\\\\n- **关系**: **IE 领域直接验证**\\\\n- **Key insight**: 在 EPOP 语料（植物健康数据，实体+关系抽取）上测试 GPT/DeepSeek/Qwen/Kimi 四个模型，发现 high consistency does NOT strongly correlate with high accuracy。相关性是 model-dependent 且随 task complexity 变化。在 relational IE 中，consistency alone 不应被用作 prediction quality 的 proxy\\\\n- **与我们的关系**: 直接在 IE 任务上验证了我们在 NER 上的发现——一致性不等于正确性\\\\n\\\\n#### 3. Beyond Majority Voting: SCOPE (Subgroup-specific Confidence-weighted Pseudo-label Estimation)\\\\n- **Year/Venue**: 2024, arXiv: 2512.15146\\\\n- **关系**: **提出解决方案**\\\\n- **Key insight**: Majority voting 的问题：(1) 所有 votes 权重相同，忽略 confidence；(2) binary voting 无法捕获 fine-grained signals；(3) confirmation bias——模型强化自身错误。SCOPE 用 step-wise confidence 加权替代简单 frequency count，并通过 dynamic subgroup partitioning 平衡 quality 与 diversity\\\\n- **可借鉴**: confidence weighting + subgroup partitioning 思路可用于我们的结构一致性信号设计\\\\n\\\\n#### 4. Diversified Sampling Improves Scaling LLM Inference\\\\n- **Year**: 2025, arXiv: 2502.11027\\\\n- **关系**: **互补——从 sampling 端解决 correlated errors**\\\\n- **Key insight**: 同一 prompt 反复 sampling 导致输出 \\\\\\\"trapped\\\\\\\" 在 local cluster 中。通过 diversified prompts（role perturbation、instruction variation、jabberwocky perturbation）可以打破 error correlation，提升 coverage。在 reasoning/math/code 任务上显著提升\\\\n- **可借鉴**: 如果我们在 NER 中使用多样化 prompt 策略（不同 instruction 模板、不同 few-shot examples、不同 entity type 描述），可能减少 systematic bias 导致的 correlated errors\\\\n\\\\n#### 5. The Hidden Strength of Disagreement: Consensus-Diversity Tradeoff in Adaptive Multi-Agent Systems\\\\n- **Authors**: Wu & Ito\\\\n- **Year/Venue**: 2025, EMNLP (arXiv: 2502.16565)\\\\n- **关系**: **理论框架**\\\\n- **Key insight**: 显式 consensus（voting/prompting）有 premature homogenization 风险。隐式 consensus（agents 独立决策但共享信息）保留了 diversity，在动态环境中优于显式 voting。形式化了 consensus-diversity tradeoff\\\\n- **与我们的关系**: 我们的结构一致性信号是显式 consensus measure，当模型有 systematic bias 时导致 premature homogenization（全部 samples 一致地错）\\\\n\\\\n### 补充相关工作\\\\n\\\\n#### 6. Don't Always Pick the Highest-Performing Model: Information Theoretic View of LLM Ensemble Selection\\\\n- **Year**: 2026, arXiv: 2602.08003\\\\n- 用 Gaussian-copula 建模 correlated errors，证明 ensemble 存在 information-theoretic error floor\\\\n\\\\n#### 7. Wang et al. 2023 Self-Consistency (ICLR 2023, arXiv: 2203.11171)\\\\n- 原文假设 diverse reasoning paths → correct answer 更可能被多数路径选中\\\\n- **未显式讨论** systematic bias 导致所有路径收敛到同一错误答案的 failure mode\\\\n\\\\n#### 8. LLM-TOPLA: Efficient LLM Ensemble by Maximising Diversity\\\\n- **Year/Venue**: 2024, EMNLP Findings\\\\n- 用 focal diversity metric 选择互补性强的 ensemble 成员，减少 error correlation\\\\n\\\\n### 核心结论\\\\n\\\\n#### Q1: 有没有人正式分析过 self-consistency 在什么条件下失败？\\\\n**有。** Byerly & Khashabi (2024, TACL) 是最系统的分析，证明 positional bias 导致 correlated errors 时 self-consistency 失败。但他们聚焦 long-context + positional bias，没有覆盖 structured prediction 中 semantic overlap 导致的 systematic bias。\\\\n\\\\n#### Q2: \\\\\\\"Correlated failures\\\\\\\" 如何破坏 voting-based 方法？\\\\n多篇论文从不同角度论证：error correlation 违反了 voting 的 independence 假设。当 errors correlated，增加 samples 不能提升 accuracy（有 information-theoretic floor），甚至可能 amplify errors。\\\\n\\\\n#### Q3: 有没有人提出过针对 systematic bias 的改进？\\\\n- **Confidence weighting** (SCOPE): 用 confidence 加权替代 equal voting\\\\n- **Diversified sampling**: 用不同 prompt 变体打破 local cluster\\\\n- **Subgroup partitioning**: 将 samples 分组，组间保持 diversity\\\\n- **Cross-model probing**: 用不同模型交叉验证（但成本高）\\\\n\\\\n#### Q4: 结构化预测中 self-consistency 的特殊挑战？\\\\nConsistency-accuracy correlation 论文（PMC12888769）在 IE 任务上直接验证了一致性≠正确性。但目前 **没有** 专门针对 NER/结构化预测中 self-consistency failure modes 的系统性研究——这是我们的 contribution gap。\\\\n\\\\n### 对我们下一步的启示\\\\n\\\\n1. **论文 framing**: 我们的发现（结构一致性在 systematic bias 下失败）有文献支撑但 **在 structured IE 领域是新的**。Byerly & Khashabi 做了 long-context，我们做 structured prediction，互补\\\\n2. **可借鉴技术**：\\\\n   - Confidence-weighted consistency（替代 raw agreement）\\\\n   - Diversified prompting（不同 instruction/few-shot 模板减少 correlated errors）\\\\n   - Adaptive stopping（当 consistency 低时增加 samples，但当 consistency 高且可能是 systematic bias 时需要 different strategy）\\\\n3. **Discussion 要写的**: 引用 Byerly & Khashabi 说明这是 self-consistency 的 general failure mode，我们在 IE 领域首次系统性展示，并分析了结构化预测特有的原因（type semantic overlap、span boundary ambiguity）\\\\n\\\", \\\"total_chars\\\": 9053, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/memory.md\", \"content\": \"# 项目记忆\\n\\n## 易混淆指标辨析（2026-05-17）\\n\\n**ρ=-0.881 (p=0.004)** = KeySet degeneracy vs **oracle headroom**（论文 L171 / appendix:1121）\\n**ρ=-0.381 (p=0.352)** = KeySet degeneracy vs **LP Δ**（selection improvement）\\n\\n这是两个不同的 y 轴变量。论文中的 ρ=-0.881 是正确的，已被 Reviewer 确认。不要再混淆。\\n\\n## SciERC LP Δ 两个版本（2026-05-17）\\n\\n- **+0.42pp** = full-set (n=551)，论文全文统一使用此值\\n- **+0.62pp** = gold-filtered (n=529)\\n\\nFigure 3 和正文保持一致用 full-set +0.42。\\n\\n## Cross-model Degeneracy 规律（2026-05-17）\\n\\nDegeneracy 由 **model capability × task difficulty × training convergence** 共同决定：\\n- Stronger model + easy task → 极端 degen（LLaMA-CoNLL 89.2%）\\n- Weaker model + hard task → low degen（Qwen3-SciERC 17.8%）\\n- CoNLL 是 high-degen regime 不论 backbone（Qwen3 47.4%, LLaMA 89.2%）\\n- Training convergence 调控 degen: Few-NERD 3-epoch 11.1% → 5-epoch 31.3%（+20pp）\\n- **Alignment (within-instance ρ) 是 dataset-intrinsic**: median ρ 不随 epoch 显著变化 (0.6667→0.6151)\\n\\nLLaMA on CoNLL headroom 仅 1.84pp（greedy 0.9242, oracle 0.9426），使得 selection 评估无意义。但 structural signals 的 QE diagnostic ρ≈0.43 仍显著优于 LP ρ=0.31，证明诊断价值是 model-agnostic 的。\\n\\nLP range median=0.0002 at 89% degen — LP 在极端 degen 下完全无法区分 samples。\\n\\n## exp_021 vs exp_028 within-instance ρ(LP, F1) 对比（2026-05-18）\\n\\n### 配对对比（同 5000 实例子集，N=8）\\n\\n| Metric | 3-epoch (exp_027) | 5-epoch (exp_028) | Delta |\\n|--------|-------------------|-------------------|-------|\\n| ρ mean | **0.5241** | 0.4066 | -0.1175 |\\n| ρ median | **0.6667** | 0.6151 | -0.0516 |\\n| ρ std | 0.4673 | 0.5506 | +0.0833 |\\n| Valid instances | 3723/4351 (85.6%) | 2988/4351 (68.7%) | -16.9pp |\\n\\n### 全量 exp_021（37648 实例，N=8）\\n- Mean ρ: 0.5106, Median ρ: 0.6667, Std: 0.4749\\n- Valid: 28086/32565 (86.3%)\\n\\n### 结论\\n1. **Median ρ 几乎不变** (0.6667→0.6151, Δ=-0.05): 非 degenerate 实例上 LP-F1 alignment 不受 training convergence 显著影响 → **alignment IS dataset-intrinsic**\\n2. **Mean ρ 下降较多** (0.5241→0.4066, Δ=-0.12): 主要因为 valid instances 从 85.6%→68.7%——更多实例变 degenerate，拉低 mean\\n3. **两个条件的 driver 不同**: degeneracy 受 training convergence 调控，alignment 则是 dataset-intrinsic（median ρ 稳定）\\n4. **Practitioner lever**: early stopping 控制 degeneracy，从而决定 LP selection 的有效性窗口\\n5. **⚠️ 之前 exp_028 分析报告中 exp_021 ρ=0.6226 是错误值**（可能来自 N=16 分析），正确 N=8 同子集值: mean=0.5241, median=0.6667\\n\\n## exp_028 结果：5-epoch Few-NERD 收敛测试（2026-05-18）\\n\\n### 实验配置\\n- Model: Qwen3-8B + LoRA, Few-NERD, 5 epochs (vs exp-021 3 epochs)\\n- Inference: N=8, T=1.0, logprobs collected\\n- Gold-filtered instances: 4351/5000\\n\\n### 核心结果\\n\\n| Metric | 3-epoch (exp-021) | 5-epoch (exp-028) | Delta |\\n|--------|-------------------|-------------------|-------|\\n| Degeneracy (CF1) % | 11.1% | **31.3%** | +20.2pp |\\n| Greedy F1 | 0.7478 | 0.7773 | +2.95pp |\\n| Oracle F1 | — | 0.8723 | — |\\n| Headroom (pp) | — | 9.50pp | — |\\n| LP sel F1 | 0.7614 | 0.7835 | +2.21pp |\\n| LP sel delta (pp) | +1.37 | **+0.62** | -0.75 |\\n\\n### QE Signals (5-epoch)\\n\\n| Signal | AUROC | ρ (global) | Sel F1 | Delta |\\n|--------|-------|------------|--------|-------|\\n| LP | 0.5234 | **0.4495** | 0.7835 | +0.62pp |\\n| SJ | 0.4988 | 0.3777 | 0.7697 | -0.77pp |\\n| FK | 0.4985 | 0.3892 | 0.7693 | -0.80pp |\\n| EM | 0.4951 | 0.3893 | 0.7663 | -1.10pp |\\n| VC | 0.5006 | 0.3585 | 0.7576 | -1.97pp |\\n\\n### Within-instance LP-F1 correlation\\n- Mean ρ: 0.4066, Median ρ: 0.6151, Std: 0.5506\\n- Valid instances: 2988/4351 (68.7%)\\n\\n### LP Range\\n- Mean: 0.0514, Std: 0.0673, Median: 0.0318\\n\\n### Report.json 补充（inference-level stats）\\n- Greedy F1 (raw, pre-gold-filter): 0.7940\\n- Oracle F1 (raw): 0.8770\\n- FK mean: 0.5284, SJ mean: 0.8070\\n- LP baseline ρ (full): 0.3319, AUROC: 0.6806\\n- SJ vs F1 ρ (full): 0.3716\\n- FK vs F1 ρ (full): 0.2760\\n- Structural > Surface confirmed (ρ advantage = +0.096)\\n- Sample F1 mean: 0.7269, std: 0.3416, pct_zero: 12.3%\\n\\n### 结论：NEGATIVE\\n**5-epoch degeneracy 31.3% 远超 3-epoch 的 11.1%（+20.2pp）。** Few-NERD 的低 degeneracy 可能源于模型 under-convergence 而非数据集/任务本质特性。\\n\\n关键影响：\\n1. LP selection delta 从 +1.37pp 降至 +0.62pp（更多 degenerate instances 压缩了 selection 空间）\\n2. 结构信号（SJ/FK/EM/VC）在 5-epoch 上 selection delta 全为负，仅 LP 正\\n3. 但 LP global ρ=0.4495 仍显著（p≈0），within-instance median ρ=0.6151 说明非 degenerate 实例上 LP 仍有区分力\\n4. **论文叙事需修正**：不能以 Few-NERD low degeneracy 作为\\\"结构化任务天然适合 self-consistency\\\"的证据\\n\\n## 文献调研：一致性 ≠ 正确性（2026-05-16）\\n\\n### 调研背景\\nFew-NERD（8类粗粒度NER）上，结构一致性信号（SJ/FK/EM/VC）的 global ρ 为负或近零，selection delta 全为负。根因：模型存在 systematic bias（类型语义重叠 → 8 samples 一致但全错），暴露 self-consistency 的根本假设缺陷。\\n\\n### 最相关论文（5篇）\\n\\n#### 1. Self-Consistency Falls Short! The Adverse Effects of Positional Bias on Long-Context Problems\\n- **Authors**: Adam Byerly, Daniel Khashabi\\n- **Year/Venue**: 2024, TACL (arXiv: 2411.01101)\\n- **关系**: **最强验证**。正式证明当 errors correlated 时，self-consistency 放大而非纠正错误\\n- **Key insight**: 长上下文任务中，positional bias 导致所有 samples 产生相关错误，违反 self-consistency 的核心假设（error independence）。Self-consistency 不仅无效，反而 actively degrades performance。实验覆盖 GPT-4o、LLaMA-3.3-70B、Qwen-2.5-72B\\n- **与我们的平行关系**: 他们的 \\\"positional bias → correlated errors\\\" 对应我们的 \\\"type semantic overlap → systematic misclassification\\\"。机制不同但失败模式完全相同\\n\\n#### 2. Consistency–Accuracy Correlation in Hard-Prompted LLMs for Entity and Relation Extraction\\n- **Venue**: PMC (PMC12888769), 2025\\n- **关系**: **IE 领域直接验证**\\n- **Key insight**: 在 EPOP 语料（植物健康数据，实体+关系抽取）上测试 GPT/DeepSeek/Qwen/Kimi 四个模型，发现 high consistency does NOT strongly correlate with high accuracy。相关性是 model-dependent 且随 task complexity 变化。在 relational IE 中，consistency alone 不应被用作 prediction quality 的 proxy\\n- **与我们的关系**: 直接在 IE 任务上验证了我们在 NER 上的发现——一致性不等于正确性\\n\\n#### 3. Beyond Majority Voting: SCOPE (Subgroup-specific Confidence-weighted Pseudo-label Estimation)\\n- **Year/Venue**: 2024, arXiv: 2512.15146\\n- **关系**: **提出解决方案**\\n- **Key insight**: Majority voting 的问题：(1) 所有 votes 权重相同，忽略 confidence；(2) binary voting 无法捕获 fine-grained signals；(3) confirmation bias——模型强化自身错误。SCOPE 用 step-wise confidence 加权替代简单 frequency count，并通过 dynamic subgroup partitioning 平衡 quality 与 diversity\\n- **可借鉴**: confidence weighting + subgroup partitioning 思路可用于我们的结构一致性信号设计\\n\\n#### 4. Diversified Sampling Improves Scaling LLM Inference\\n- **Year**: 2025, arXiv: 2502.11027\\n- **关系**: **互补——从 sampling 端解决 correlated errors**\\n- **Key insight**: 同一 prompt 反复 sampling 导致输出 \\\"trapped\\\" 在 local cluster 中。通过 diversified prompts（role perturbation、instruction variation、jabberwocky perturbation）可以打破 error correlation，提升 coverage。在 reasoning/math/code 任务上显著提升\\n- **可借鉴**: 如果我们在 NER 中使用多样化 prompt 策略（不同 instruction 模板、不同 few-shot examples、不同 entity type 描述），可能减少 systematic bias 导致的 correlated errors\\n\\n#### 5. The Hidden Strength of Disagreement: Consensus-Diversity Tradeoff in Adaptive Multi-Agent Systems\\n- **Authors**: Wu & Ito\\n- **Year/Venue**: 2025, EMNLP (arXiv: 2502.16565)\\n- **关系**: **理论框架**\\n- **Key insight**: 显式 consensus（voting/prompting）有 premature homogenization 风险。隐式 consensus（agents 独立决策但共享信息）保留了 diversity，在动态环境中优于显式 voting。形式化了 consensus-diversity tradeoff\\n- **与我们的关系**: 我们的结构一致性信号是显式 consensus measure，当模型有 systematic bias 时导致 premature homogenization（全部 samples 一致地错）\\n\\n### 补充相关工作\\n\\n#### 6. Don't Always Pick the Highest-Performing Model: Information Theoretic View of LLM Ensemble Selection\\n- **Year**: 2026, arXiv: 2602.08003\\n- 用 Gaussian-copula 建模 correlated errors，证明 ensemble 存在 information-theoretic error floor\\n\\n#### 7. Wang et al. 2023 Self-Consistency (ICLR 2023, arXiv: 2203.11171)\\n- 原文假设 diverse reasoning paths → correct answer 更可能被多数路径选中\\n- **未显式讨论** systematic bias 导致所有路径收敛到同一错误答案的 failure mode\\n\\n#### 8. LLM-TOPLA: Efficient LLM Ensemble by Maximising Diversity\\n- **Year/Venue**: 2024, EMNLP Findings\\n- 用 focal diversity metric 选择互补性强的 ensemble 成员，减少 error correlation\\n\\n### 核心结论\\n\\n#### Q1: 有没有人正式分析过 self-consistency 在什么条件下失败？\\n**有。** Byerly & Khashabi (2024, TACL) 是最系统的分析，证明 positional bias 导致 correlated errors 时 self-consistency 失败。但他们聚焦 long-context + positional bias，没有覆盖 structured prediction 中 semantic overlap 导致的 systematic bias。\\n\\n#### Q2: \\\"Correlated failures\\\" 如何破坏 voting-based 方法？\\n多篇论文从不同角度论证：error correlation 违反了 voting 的 independence 假设。当 errors correlated，增加 samples 不能提升 accuracy（有 information-theoretic floor），甚至可能 amplify errors。\\n\\n#### Q3: 有没有人提出过针对 systematic bias 的改进？\\n- **Confidence weighting** (SCOPE): 用 confidence 加权替代 equal voting\\n- **Diversified sampling**: 用不同 prompt 变体打破 local cluster\\n- **Subgroup partitioning**: 将 samples 分组，组间保持 diversity\\n- **Cross-model probing**: 用不同模型交叉验证（但成本高）\\n\\n#### Q4: 结构化预测中 self-consistency 的特殊挑战？\\nConsistency-accuracy correlation 论文（PMC12888769）在 IE 任务上直接验证了一致性≠正确性。但目前 **没有** 专门针对 NER/结构化预测中 self-consistency failure modes 的系统性研究——这是我们的 contribution gap。\\n\\n### 对我们下一步的启示\\n\\n1. **论文 framing**: 我们的发现（结构一致性在 systematic bias 下失败）有文献支撑但 **在 structured IE 领域是新的**。Byerly & Khashabi 做了 long-context，我们做 structured prediction，互补\\n2. **可借鉴技术**：\\n   - Confidence-weighted consistency（替代 raw agreement）\\n   - Diversified prompting（不同 instruction/few-shot 模板减少 correlated errors）\\n   - Adaptive stopping（当 consistency 低时增加 samples，但当 consistency 高且可能是 systematic bias 时需要 different strategy）\\n3. **Discussion 要写的**: 引用 Byerly & Khashabi 说明这是 self-consistency 的 general failure mode，我们在 IE 领域首次系统性展示，并分析了结构化预测特有的原因（type semantic overlap、span boundary ambiguity）\\n\", \"total_chars\": 9053, \"truncated\": false}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 42_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I need to append the comparison table to memory.md. Let me construct the content.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "43ab3e2a-8abd-459f-8408-ee9173987ff3",
+  "uuid": "a3a76f1e-bebb-4976-8a85-e685d01a8211",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018QB63RAhKepUEp6qCzehwV",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5025,
+      "cache_read_input_tokens": 51684,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5025
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 43_
+
+现在追加对比表到 memory.md。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "43ab3e2a-8abd-459f-8408-ee9173987ff3",
+  "uuid": "01aa90b3-023a-44b0-808e-c359a0045f40",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018QB63RAhKepUEp6qCzehwV",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5025,
+      "cache_read_input_tokens": 51684,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5025
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_01Dc5rDFwFKw4C5zQS3zBgJS`</summary>
+
+```json
+{
+  "project": "struct_self_consist_ie",
+  "file": "memory.md",
+  "max_chars": 0
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "43ab3e2a-8abd-459f-8408-ee9173987ff3",
+  "uuid": "c5e172c2-4cf5-45ad-bfc4-05ba8cbbae86",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018QB63RAhKepUEp6qCzehwV",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5025,
+      "cache_read_input_tokens": 51684,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5025
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-18T00:57:45.720Z_
+
+<details><summary>↩ Tool result · `toolu_01Dc5rDFwFKw4C5zQS3zBgJS`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/memory.md\", \"content\": \"# 项目记忆\\n\\n## 易混淆指标辨析（2026-05-17）\\n\\n**ρ=-0.881 (p=0.004)** = KeySet degeneracy vs **oracle headroom**（论文 L171 / appendix:1121）\\n**ρ=-0.381 (p=0.352)** = KeySet degeneracy vs **LP Δ**（selection improvement）\\n\\n这是两个不同的 y 轴变量。论文中的 ρ=-0.881 是正确的，已被 Reviewer 确认。不要再混淆。\\n\\n## SciERC LP Δ 两个版本（2026-05-17）\\n\\n- **+0.42pp** = full-set (n=551)，论文全文统一使用此值\\n- **+0.62pp** = gold-filtered (n=529)\\n\\nFigure 3 和正文保持一致用 full-set +0.42。\\n\\n## Cross-model Degeneracy 规律（2026-05-17）\\n\\nDegeneracy 由 **model capability × task difficulty × training convergence** 共同决定：\\n- Stronger model + easy task → 极端 degen（LLaMA-CoNLL 89.2%）\\n- Weaker model + hard task → low degen（Qwen3-SciERC 17.8%）\\n- CoNLL 是 high-degen regime 不论 backbone（Qwen3 47.4%, LLaMA 89.2%）\\n- Training convergence 调控 degen: Few-NERD 3-epoch 11.1% → 5-epoch 31.3%（+20pp）\\n- **Alignment (within-instance ρ) 是 dataset-intrinsic**: median ρ 不随 epoch 显著变化 (0.6667→0.6151)\\n\\nLLaMA on CoNLL headroom 仅 1.84pp（greedy 0.9242, oracle 0.9426），使得 selection 评估无意义。但 structural signals 的 QE diagnostic ρ≈0.43 仍显著优于 LP ρ=0.31，证明诊断价值是 model-agnostic 的。\\n\\nLP range median=0.0002 at 89% degen — LP 在极端 degen 下完全无法区分 samples。\\n\\n## exp_021 vs exp_028 within-instance ρ(LP, F1) 对比（2026-05-18）\\n\\n### 配对对比（同 5000 实例子集，N=8）\\n\\n| Metric | 3-epoch (exp_027) | 5-epoch (exp_028) | Delta |\\n|--------|-------------------|-------------------|-------|\\n| ρ mean | **0.5241** | 0.4066 | -0.1175 |\\n| ρ median | **0.6667** | 0.6151 | -0.0516 |\\n| ρ std | 0.4673 | 0.5506 | +0.0833 |\\n| Valid instances | 3723/4351 (85.6%) | 2988/4351 (68.7%) | -16.9pp |\\n\\n### 全量 exp_021（37648 实例，N=8）\\n- Mean ρ: 0.5106, Median ρ: 0.6667, Std: 0.4749\\n- Valid: 28086/32565 (86.3%)\\n\\n### 结论\\n1. **Median ρ 几乎不变** (0.6667→0.6151, Δ=-0.05): 非 degenerate 实例上 LP-F1 alignment 不受 training convergence 显著影响 → **alignment IS dataset-intrinsic**\\n2. **Mean ρ 下降较多** (0.5241→0.4066, Δ=-0.12): 主要因为 valid instances 从 85.6%→68.7%——更多实例变 degenerate，拉低 mean\\n3. **两个条件的 driver 不同**: degeneracy 受 training convergence 调控，alignment 则是 dataset-intrinsic（median ρ 稳定）\\n4. **Practitioner lever**: early stopping 控制 degeneracy，从而决定 LP selection 的有效性窗口\\n5. **⚠️ 之前 exp_028 分析报告中 exp_021 ρ=0.6226 是错误值**（可能来自 N=16 分析），正确 N=8 同子集值: mean=0.5241, median=0.6667\\n\\n## exp_028 结果：5-epoch Few-NERD 收敛测试（2026-05-18）\\n\\n### 实验配置\\n- Model: Qwen3-8B + LoRA, Few-NERD, 5 epochs (vs exp-021 3 epochs)\\n- Inference: N=8, T=1.0, logprobs collected\\n- Gold-filtered instances: 4351/5000\\n\\n### 核心结果\\n\\n| Metric | 3-epoch (exp-021) | 5-epoch (exp-028) | Delta |\\n|--------|-------------------|-------------------|-------|\\n| Degeneracy (CF1) % | 11.1% | **31.3%** | +20.2pp |\\n| Greedy F1 | 0.7478 | 0.7773 | +2.95pp |\\n| Oracle F1 | — | 0.8723 | — |\\n| Headroom (pp) | — | 9.50pp | — |\\n| LP sel F1 | 0.7614 | 0.7835 | +2.21pp |\\n| LP sel delta (pp) | +1.37 | **+0.62** | -0.75 |\\n\\n### QE Signals (5-epoch)\\n\\n| Signal | AUROC | ρ (global) | Sel F1 | Delta |\\n|--------|-------|------------|--------|-------|\\n| LP | 0.5234 | **0.4495** | 0.7835 | +0.62pp |\\n| SJ | 0.4988 | 0.3777 | 0.7697 | -0.77pp |\\n| FK | 0.4985 | 0.3892 | 0.7693 | -0.80pp |\\n| EM | 0.4951 | 0.3893 | 0.7663 | -1.10pp |\\n| VC | 0.5006 | 0.3585 | 0.7576 | -1.97pp |\\n\\n### Within-instance LP-F1 correlation\\n- Mean ρ: 0.4066, Median ρ: 0.6151, Std: 0.5506\\n- Valid instances: 2988/4351 (68.7%)\\n\\n### LP Range\\n- Mean: 0.0514, Std: 0.0673, Median: 0.0318\\n\\n### Report.json 补充（inference-level stats）\\n- Greedy F1 (raw, pre-gold-filter): 0.7940\\n- Oracle F1 (raw): 0.8770\\n- FK mean: 0.5284, SJ mean: 0.8070\\n- LP baseline ρ (full): 0.3319, AUROC: 0.6806\\n- SJ vs F1 ρ (full): 0.3716\\n- FK vs F1 ρ (full): 0.2760\\n- Structural > Surface confirmed (ρ advantage = +0.096)\\n- Sample F1 mean: 0.7269, std: 0.3416, pct_zero: 12.3%\\n\\n### 结论：NEGATIVE\\n**5-epoch degeneracy 31.3% 远超 3-epoch 的 11.1%（+20.2pp）。** Few-NERD 的低 degeneracy 可能源于模型 under-convergence 而非数据集/任务本质特性。\\n\\n关键影响：\\n1. LP selection delta 从 +1.37pp 降至 +0.62pp（更多 degenerate instances 压缩了 selection 空间）\\n2. 结构信号（SJ/FK/EM/VC）在 5-epoch 上 selection delta 全为负，仅 LP 正\\n3. 但 LP global ρ=0.4495 仍显著（p≈0），within-instance median ρ=0.6151 说明非 degenerate 实例上 LP 仍有区分力\\n4. **论文叙事需修正**：不能以 Few-NERD low degeneracy 作为\\\"结构化任务天然适合 self-consistency\\\"的证据\\n\\n## 文献调研：一致性 ≠ 正确性（2026-05-16）\\n\\n### 调研背景\\nFew-NERD（8类粗粒度NER）上，结构一致性信号（SJ/FK/EM/VC）的 global ρ 为负或近零，selection delta 全为负。根因：模型存在 systematic bias（类型语义重叠 → 8 samples 一致但全错），暴露 self-consistency 的根本假设缺陷。\\n\\n### 最相关论文（5篇）\\n\\n#### 1. Self-Consistency Falls Short! The Adverse Effects of Positional Bias on Long-Context Problems\\n- **Authors**: Adam Byerly, Daniel Khashabi\\n- **Year/Venue**: 2024, TACL (arXiv: 2411.01101)\\n- **关系**: **最强验证**。正式证明当 errors correlated 时，self-consistency 放大而非纠正错误\\n- **Key insight**: 长上下文任务中，positional bias 导致所有 samples 产生相关错误，违反 self-consistency 的核心假设（error independence）。Self-consistency 不仅无效，反而 actively degrades performance。实验覆盖 GPT-4o、LLaMA-3.3-70B、Qwen-2.5-72B\\n- **与我们的平行关系**: 他们的 \\\"positional bias → correlated errors\\\" 对应我们的 \\\"type semantic overlap → systematic misclassification\\\"。机制不同但失败模式完全相同\\n\\n#### 2. Consistency–Accuracy Correlation in Hard-Prompted LLMs for Entity and Relation Extraction\\n- **Venue**: PMC (PMC12888769), 2025\\n- **关系**: **IE 领域直接验证**\\n- **Key insight**: 在 EPOP 语料（植物健康数据，实体+关系抽取）上测试 GPT/DeepSeek/Qwen/Kimi 四个模型，发现 high consistency does NOT strongly correlate with high accuracy。相关性是 model-dependent 且随 task complexity 变化。在 relational IE 中，consistency alone 不应被用作 prediction quality 的 proxy\\n- **与我们的关系**: 直接在 IE 任务上验证了我们在 NER 上的发现——一致性不等于正确性\\n\\n#### 3. Beyond Majority Voting: SCOPE (Subgroup-specific Confidence-weighted Pseudo-label Estimation)\\n- **Year/Venue**: 2024, arXiv: 2512.15146\\n- **关系**: **提出解决方案**\\n- **Key insight**: Majority voting 的问题：(1) 所有 votes 权重相同，忽略 confidence；(2) binary voting 无法捕获 fine-grained signals；(3) confirmation bias——模型强化自身错误。SCOPE 用 step-wise confidence 加权替代简单 frequency count，并通过 dynamic subgroup partitioning 平衡 quality 与 diversity\\n- **可借鉴**: confidence weighting + subgroup partitioning 思路可用于我们的结构一致性信号设计\\n\\n#### 4. Diversified Sampling Improves Scaling LLM Inference\\n- **Year**: 2025, arXiv: 2502.11027\\n- **关系**: **互补——从 sampling 端解决 correlated errors**\\n- **Key insight**: 同一 prompt 反复 sampling 导致输出 \\\"trapped\\\" 在 local cluster 中。通过 diversified prompts（role perturbation、instruction variation、jabberwocky perturbation）可以打破 error correlation，提升 coverage。在 reasoning/math/code 任务上显著提升\\n- **可借鉴**: 如果我们在 NER 中使用多样化 prompt 策略（不同 instruction 模板、不同 few-shot examples、不同 entity type 描述），可能减少 systematic bias 导致的 correlated errors\\n\\n#### 5. The Hidden Strength of Disagreement: Consensus-Diversity Tradeoff in Adaptive Multi-Agent Systems\\n- **Authors**: Wu & Ito\\n- **Year/Venue**: 2025, EMNLP (arXiv: 2502.16565)\\n- **关系**: **理论框架**\\n- **Key insight**: 显式 consensus（voting/prompting）有 premature homogenization 风险。隐式 consensus（agents 独立决策但共享信息）保留了 diversity，在动态环境中优于显式 voting。形式化了 consensus-diversity tradeoff\\n- **与我们的关系**: 我们的结构一致性信号是显式 consensus measure，当模型有 systematic bias 时导致 premature homogenization（全部 samples 一致地错）\\n\\n### 补充相关工作\\n\\n#### 6. Don't Always Pick the Highest-Performing Model: Information Theoretic View of LLM Ensemble Selection\\n- **Year**: 2026, arXiv: 2602.08003\\n- 用 Gaussian-copula 建模 correlated errors，证明 ensemble 存在 information-theoretic error floor\\n\\n#### 7. Wang et al. 2023 Self-Consistency (ICLR 2023, arXiv: 2203.11171)\\n- 原文假设 diverse reasoning paths → correct answer 更可能被多数路径选中\\n- **未显式讨论** systematic bias 导致所有路径收敛到同一错误答案的 failure mode\\n\\n#### 8. LLM-TOPLA: Efficient LLM Ensemble by Maximising Diversity\\n- **Year/Venue**: 2024, EMNLP Findings\\n- 用 focal diversity metric 选择互补性强的 ensemble 成员，减少 error correlation\\n\\n### 核心结论\\n\\n#### Q1: 有没有人正式分析过 self-consistency 在什么条件下失败？\\n**有。** Byerly & Khashabi (2024, TACL) 是最系统的分析，证明 positional bias 导致 correlated errors 时 self-consistency 失败。但他们聚焦 long-context + positional bias，没有覆盖 structured prediction 中 semantic overlap 导致的 systematic bias。\\n\\n#### Q2: \\\"Correlated failures\\\" 如何破坏 voting-based 方法？\\n多篇论文从不同角度论证：error correlation 违反了 voting 的 independence 假设。当 errors correlated，增加 samples 不能提升 accuracy（有 information-theoretic floor），甚至可能 amplify errors。\\n\\n#### Q3: 有没有人提出过针对 systematic bias 的改进？\\n- **Confidence weighting** (SCOPE): 用 confidence 加权替代 equal voting\\n- **Diversified sampling**: 用不同 prompt 变体打破 local cluster\\n- **Subgroup partitioning**: 将 samples 分组，组间保持 diversity\\n- **Cross-model probing**: 用不同模型交叉验证（但成本高）\\n\\n#### Q4: 结构化预测中 self-consistency 的特殊挑战？\\nConsistency-accuracy correlation 论文（PMC12888769）在 IE 任务上直接验证了一致性≠正确性。但目前 **没有** 专门针对 NER/结构化预测中 self-consistency failure modes 的系统性研究——这是我们的 contribution gap。\\n\\n### 对我们下一步的启示\\n\\n1. **论文 framing**: 我们的发现（结构一致性在 systematic bias 下失败）有文献支撑但 **在 structured IE 领域是新的**。Byerly & Khashabi 做了 long-context，我们做 structured prediction，互补\\n2. **可借鉴技术**：\\n   - Confidence-weighted consistency（替代 raw agreement）\\n   - Diversified prompting（不同 instruction/few-shot 模板减少 correlated errors）\\n   - Adaptive stopping（当 consistency 低时增加 samples，但当 consistency 高且可能是 systematic bias 时需要 different strategy）\\n3. **Discussion 要写的**: 引用 Byerly & Khashabi 说明这是 self-consistency 的 general failure mode，我们在 IE 领域首次系统性展示，并分析了结构化预测特有的原因（type semantic overlap、span boundary ambiguity）\\n\", \"total_chars\": 9053, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "43ab3e2a-8abd-459f-8408-ee9173987ff3",
+  "uuid": "1029fd5e-de3f-4927-870f-8646957956f1",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/memory.md\\\", \\\"content\\\": \\\"# 项目记忆\\\\n\\\\n## 易混淆指标辨析（2026-05-17）\\\\n\\\\n**ρ=-0.881 (p=0.004)** = KeySet degeneracy vs **oracle headroom**（论文 L171 / appendix:1121）\\\\n**ρ=-0.381 (p=0.352)** = KeySet degeneracy vs **LP Δ**（selection improvement）\\\\n\\\\n这是两个不同的 y 轴变量。论文中的 ρ=-0.881 是正确的，已被 Reviewer 确认。不要再混淆。\\\\n\\\\n## SciERC LP Δ 两个版本（2026-05-17）\\\\n\\\\n- **+0.42pp** = full-set (n=551)，论文全文统一使用此值\\\\n- **+0.62pp** = gold-filtered (n=529)\\\\n\\\\nFigure 3 和正文保持一致用 full-set +0.42。\\\\n\\\\n## Cross-model Degeneracy 规律（2026-05-17）\\\\n\\\\nDegeneracy 由 **model capability × task difficulty × training convergence** 共同决定：\\\\n- Stronger model + easy task → 极端 degen（LLaMA-CoNLL 89.2%）\\\\n- Weaker model + hard task → low degen（Qwen3-SciERC 17.8%）\\\\n- CoNLL 是 high-degen regime 不论 backbone（Qwen3 47.4%, LLaMA 89.2%）\\\\n- Training convergence 调控 degen: Few-NERD 3-epoch 11.1% → 5-epoch 31.3%（+20pp）\\\\n- **Alignment (within-instance ρ) 是 dataset-intrinsic**: median ρ 不随 epoch 显著变化 (0.6667→0.6151)\\\\n\\\\nLLaMA on CoNLL headroom 仅 1.84pp（greedy 0.9242, oracle 0.9426），使得 selection 评估无意义。但 structural signals 的 QE diagnostic ρ≈0.43 仍显著优于 LP ρ=0.31，证明诊断价值是 model-agnostic 的。\\\\n\\\\nLP range median=0.0002 at 89% degen — LP 在极端 degen 下完全无法区分 samples。\\\\n\\\\n## exp_021 vs exp_028 within-instance ρ(LP, F1) 对比（2026-05-18）\\\\n\\\\n### 配对对比（同 5000 实例子集，N=8）\\\\n\\\\n| Metric | 3-epoch (exp_027) | 5-epoch (exp_028) | Delta |\\\\n|--------|-------------------|-------------------|-------|\\\\n| ρ mean | **0.5241** | 0.4066 | -0.1175 |\\\\n| ρ median | **0.6667** | 0.6151 | -0.0516 |\\\\n| ρ std | 0.4673 | 0.5506 | +0.0833 |\\\\n| Valid instances | 3723/4351 (85.6%) | 2988/4351 (68.7%) | -16.9pp |\\\\n\\\\n### 全量 exp_021（37648 实例，N=8）\\\\n- Mean ρ: 0.5106, Median ρ: 0.6667, Std: 0.4749\\\\n- Valid: 28086/32565 (86.3%)\\\\n\\\\n### 结论\\\\n1. **Median ρ 几乎不变** (0.6667→0.6151, Δ=-0.05): 非 degenerate 实例上 LP-F1 alignment 不受 training convergence 显著影响 → **alignment IS dataset-intrinsic**\\\\n2. **Mean ρ 下降较多** (0.5241→0.4066, Δ=-0.12): 主要因为 valid instances 从 85.6%→68.7%——更多实例变 degenerate，拉低 mean\\\\n3. **两个条件的 driver 不同**: degeneracy 受 training convergence 调控，alignment 则是 dataset-intrinsic（median ρ 稳定）\\\\n4. **Practitioner lever**: early stopping 控制 degeneracy，从而决定 LP selection 的有效性窗口\\\\n5. **⚠️ 之前 exp_028 分析报告中 exp_021 ρ=0.6226 是错误值**（可能来自 N=16 分析），正确 N=8 同子集值: mean=0.5241, median=0.6667\\\\n\\\\n## exp_028 结果：5-epoch Few-NERD 收敛测试（2026-05-18）\\\\n\\\\n### 实验配置\\\\n- Model: Qwen3-8B + LoRA, Few-NERD, 5 epochs (vs exp-021 3 epochs)\\\\n- Inference: N=8, T=1.0, logprobs collected\\\\n- Gold-filtered instances: 4351/5000\\\\n\\\\n### 核心结果\\\\n\\\\n| Metric | 3-epoch (exp-021) | 5-epoch (exp-028) | Delta |\\\\n|--------|-------------------|-------------------|-------|\\\\n| Degeneracy (CF1) % | 11.1% | **31.3%** | +20.2pp |\\\\n| Greedy F1 | 0.7478 | 0.7773 | +2.95pp |\\\\n| Oracle F1 | — | 0.8723 | — |\\\\n| Headroom (pp) | — | 9.50pp | — |\\\\n| LP sel F1 | 0.7614 | 0.7835 | +2.21pp |\\\\n| LP sel delta (pp) | +1.37 | **+0.62** | -0.75 |\\\\n\\\\n### QE Signals (5-epoch)\\\\n\\\\n| Signal | AUROC | ρ (global) | Sel F1 | Delta |\\\\n|--------|-------|------------|--------|-------|\\\\n| LP | 0.5234 | **0.4495** | 0.7835 | +0.62pp |\\\\n| SJ | 0.4988 | 0.3777 | 0.7697 | -0.77pp |\\\\n| FK | 0.4985 | 0.3892 | 0.7693 | -0.80pp |\\\\n| EM | 0.4951 | 0.3893 | 0.7663 | -1.10pp |\\\\n| VC | 0.5006 | 0.3585 | 0.7576 | -1.97pp |\\\\n\\\\n### Within-instance LP-F1 correlation\\\\n- Mean ρ: 0.4066, Median ρ: 0.6151, Std: 0.5506\\\\n- Valid instances: 2988/4351 (68.7%)\\\\n\\\\n### LP Range\\\\n- Mean: 0.0514, Std: 0.0673, Median: 0.0318\\\\n\\\\n### Report.json 补充（inference-level stats）\\\\n- Greedy F1 (raw, pre-gold-filter): 0.7940\\\\n- Oracle F1 (raw): 0.8770\\\\n- FK mean: 0.5284, SJ mean: 0.8070\\\\n- LP baseline ρ (full): 0.3319, AUROC: 0.6806\\\\n- SJ vs F1 ρ (full): 0.3716\\\\n- FK vs F1 ρ (full): 0.2760\\\\n- Structural > Surface confirmed (ρ advantage = +0.096)\\\\n- Sample F1 mean: 0.7269, std: 0.3416, pct_zero: 12.3%\\\\n\\\\n### 结论：NEGATIVE\\\\n**5-epoch degeneracy 31.3% 远超 3-epoch 的 11.1%（+20.2pp）。** Few-NERD 的低 degeneracy 可能源于模型 under-convergence 而非数据集/任务本质特性。\\\\n\\\\n关键影响：\\\\n1. LP selection delta 从 +1.37pp 降至 +0.62pp（更多 degenerate instances 压缩了 selection 空间）\\\\n2. 结构信号（SJ/FK/EM/VC）在 5-epoch 上 selection delta 全为负，仅 LP 正\\\\n3. 但 LP global ρ=0.4495 仍显著（p≈0），within-instance median ρ=0.6151 说明非 degenerate 实例上 LP 仍有区分力\\\\n4. **论文叙事需修正**：不能以 Few-NERD low degeneracy 作为\\\\\\\"结构化任务天然适合 self-consistency\\\\\\\"的证据\\\\n\\\\n## 文献调研：一致性 ≠ 正确性（2026-05-16）\\\\n\\\\n### 调研背景\\\\nFew-NERD（8类粗粒度NER）上，结构一致性信号（SJ/FK/EM/VC）的 global ρ 为负或近零，selection delta 全为负。根因：模型存在 systematic bias（类型语义重叠 → 8 samples 一致但全错），暴露 self-consistency 的根本假设缺陷。\\\\n\\\\n### 最相关论文（5篇）\\\\n\\\\n#### 1. Self-Consistency Falls Short! The Adverse Effects of Positional Bias on Long-Context Problems\\\\n- **Authors**: Adam Byerly, Daniel Khashabi\\\\n- **Year/Venue**: 2024, TACL (arXiv: 2411.01101)\\\\n- **关系**: **最强验证**。正式证明当 errors correlated 时，self-consistency 放大而非纠正错误\\\\n- **Key insight**: 长上下文任务中，positional bias 导致所有 samples 产生相关错误，违反 self-consistency 的核心假设（error independence）。Self-consistency 不仅无效，反而 actively degrades performance。实验覆盖 GPT-4o、LLaMA-3.3-70B、Qwen-2.5-72B\\\\n- **与我们的平行关系**: 他们的 \\\\\\\"positional bias → correlated errors\\\\\\\" 对应我们的 \\\\\\\"type semantic overlap → systematic misclassification\\\\\\\"。机制不同但失败模式完全相同\\\\n\\\\n#### 2. Consistency–Accuracy Correlation in Hard-Prompted LLMs for Entity and Relation Extraction\\\\n- **Venue**: PMC (PMC12888769), 2025\\\\n- **关系**: **IE 领域直接验证**\\\\n- **Key insight**: 在 EPOP 语料（植物健康数据，实体+关系抽取）上测试 GPT/DeepSeek/Qwen/Kimi 四个模型，发现 high consistency does NOT strongly correlate with high accuracy。相关性是 model-dependent 且随 task complexity 变化。在 relational IE 中，consistency alone 不应被用作 prediction quality 的 proxy\\\\n- **与我们的关系**: 直接在 IE 任务上验证了我们在 NER 上的发现——一致性不等于正确性\\\\n\\\\n#### 3. Beyond Majority Voting: SCOPE (Subgroup-specific Confidence-weighted Pseudo-label Estimation)\\\\n- **Year/Venue**: 2024, arXiv: 2512.15146\\\\n- **关系**: **提出解决方案**\\\\n- **Key insight**: Majority voting 的问题：(1) 所有 votes 权重相同，忽略 confidence；(2) binary voting 无法捕获 fine-grained signals；(3) confirmation bias——模型强化自身错误。SCOPE 用 step-wise confidence 加权替代简单 frequency count，并通过 dynamic subgroup partitioning 平衡 quality 与 diversity\\\\n- **可借鉴**: confidence weighting + subgroup partitioning 思路可用于我们的结构一致性信号设计\\\\n\\\\n#### 4. Diversified Sampling Improves Scaling LLM Inference\\\\n- **Year**: 2025, arXiv: 2502.11027\\\\n- **关系**: **互补——从 sampling 端解决 correlated errors**\\\\n- **Key insight**: 同一 prompt 反复 sampling 导致输出 \\\\\\\"trapped\\\\\\\" 在 local cluster 中。通过 diversified prompts（role perturbation、instruction variation、jabberwocky perturbation）可以打破 error correlation，提升 coverage。在 reasoning/math/code 任务上显著提升\\\\n- **可借鉴**: 如果我们在 NER 中使用多样化 prompt 策略（不同 instruction 模板、不同 few-shot examples、不同 entity type 描述），可能减少 systematic bias 导致的 correlated errors\\\\n\\\\n#### 5. The Hidden Strength of Disagreement: Consensus-Diversity Tradeoff in Adaptive Multi-Agent Systems\\\\n- **Authors**: Wu & Ito\\\\n- **Year/Venue**: 2025, EMNLP (arXiv: 2502.16565)\\\\n- **关系**: **理论框架**\\\\n- **Key insight**: 显式 consensus（voting/prompting）有 premature homogenization 风险。隐式 consensus（agents 独立决策但共享信息）保留了 diversity，在动态环境中优于显式 voting。形式化了 consensus-diversity tradeoff\\\\n- **与我们的关系**: 我们的结构一致性信号是显式 consensus measure，当模型有 systematic bias 时导致 premature homogenization（全部 samples 一致地错）\\\\n\\\\n### 补充相关工作\\\\n\\\\n#### 6. Don't Always Pick the Highest-Performing Model: Information Theoretic View of LLM Ensemble Selection\\\\n- **Year**: 2026, arXiv: 2602.08003\\\\n- 用 Gaussian-copula 建模 correlated errors，证明 ensemble 存在 information-theoretic error floor\\\\n\\\\n#### 7. Wang et al. 2023 Self-Consistency (ICLR 2023, arXiv: 2203.11171)\\\\n- 原文假设 diverse reasoning paths → correct answer 更可能被多数路径选中\\\\n- **未显式讨论** systematic bias 导致所有路径收敛到同一错误答案的 failure mode\\\\n\\\\n#### 8. LLM-TOPLA: Efficient LLM Ensemble by Maximising Diversity\\\\n- **Year/Venue**: 2024, EMNLP Findings\\\\n- 用 focal diversity metric 选择互补性强的 ensemble 成员，减少 error correlation\\\\n\\\\n### 核心结论\\\\n\\\\n#### Q1: 有没有人正式分析过 self-consistency 在什么条件下失败？\\\\n**有。** Byerly & Khashabi (2024, TACL) 是最系统的分析，证明 positional bias 导致 correlated errors 时 self-consistency 失败。但他们聚焦 long-context + positional bias，没有覆盖 structured prediction 中 semantic overlap 导致的 systematic bias。\\\\n\\\\n#### Q2: \\\\\\\"Correlated failures\\\\\\\" 如何破坏 voting-based 方法？\\\\n多篇论文从不同角度论证：error correlation 违反了 voting 的 independence 假设。当 errors correlated，增加 samples 不能提升 accuracy（有 information-theoretic floor），甚至可能 amplify errors。\\\\n\\\\n#### Q3: 有没有人提出过针对 systematic bias 的改进？\\\\n- **Confidence weighting** (SCOPE): 用 confidence 加权替代 equal voting\\\\n- **Diversified sampling**: 用不同 prompt 变体打破 local cluster\\\\n- **Subgroup partitioning**: 将 samples 分组，组间保持 diversity\\\\n- **Cross-model probing**: 用不同模型交叉验证（但成本高）\\\\n\\\\n#### Q4: 结构化预测中 self-consistency 的特殊挑战？\\\\nConsistency-accuracy correlation 论文（PMC12888769）在 IE 任务上直接验证了一致性≠正确性。但目前 **没有** 专门针对 NER/结构化预测中 self-consistency failure modes 的系统性研究——这是我们的 contribution gap。\\\\n\\\\n### 对我们下一步的启示\\\\n\\\\n1. **论文 framing**: 我们的发现（结构一致性在 systematic bias 下失败）有文献支撑但 **在 structured IE 领域是新的**。Byerly & Khashabi 做了 long-context，我们做 structured prediction，互补\\\\n2. **可借鉴技术**：\\\\n   - Confidence-weighted consistency（替代 raw agreement）\\\\n   - Diversified prompting（不同 instruction/few-shot 模板减少 correlated errors）\\\\n   - Adaptive stopping（当 consistency 低时增加 samples，但当 consistency 高且可能是 systematic bias 时需要 different strategy）\\\\n3. **Discussion 要写的**: 引用 Byerly & Khashabi 说明这是 self-consistency 的 general failure mode，我们在 IE 领域首次系统性展示，并分析了结构化预测特有的原因（type semantic overlap、span boundary ambiguity）\\\\n\\\", \\\"total_chars\\\": 9053, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/memory.md\", \"content\": \"# 项目记忆\\n\\n## 易混淆指标辨析（2026-05-17）\\n\\n**ρ=-0.881 (p=0.004)** = KeySet degeneracy vs **oracle headroom**（论文 L171 / appendix:1121）\\n**ρ=-0.381 (p=0.352)** = KeySet degeneracy vs **LP Δ**（selection improvement）\\n\\n这是两个不同的 y 轴变量。论文中的 ρ=-0.881 是正确的，已被 Reviewer 确认。不要再混淆。\\n\\n## SciERC LP Δ 两个版本（2026-05-17）\\n\\n- **+0.42pp** = full-set (n=551)，论文全文统一使用此值\\n- **+0.62pp** = gold-filtered (n=529)\\n\\nFigure 3 和正文保持一致用 full-set +0.42。\\n\\n## Cross-model Degeneracy 规律（2026-05-17）\\n\\nDegeneracy 由 **model capability × task difficulty × training convergence** 共同决定：\\n- Stronger model + easy task → 极端 degen（LLaMA-CoNLL 89.2%）\\n- Weaker model + hard task → low degen（Qwen3-SciERC 17.8%）\\n- CoNLL 是 high-degen regime 不论 backbone（Qwen3 47.4%, LLaMA 89.2%）\\n- Training convergence 调控 degen: Few-NERD 3-epoch 11.1% → 5-epoch 31.3%（+20pp）\\n- **Alignment (within-instance ρ) 是 dataset-intrinsic**: median ρ 不随 epoch 显著变化 (0.6667→0.6151)\\n\\nLLaMA on CoNLL headroom 仅 1.84pp（greedy 0.9242, oracle 0.9426），使得 selection 评估无意义。但 structural signals 的 QE diagnostic ρ≈0.43 仍显著优于 LP ρ=0.31，证明诊断价值是 model-agnostic 的。\\n\\nLP range median=0.0002 at 89% degen — LP 在极端 degen 下完全无法区分 samples。\\n\\n## exp_021 vs exp_028 within-instance ρ(LP, F1) 对比（2026-05-18）\\n\\n### 配对对比（同 5000 实例子集，N=8）\\n\\n| Metric | 3-epoch (exp_027) | 5-epoch (exp_028) | Delta |\\n|--------|-------------------|-------------------|-------|\\n| ρ mean | **0.5241** | 0.4066 | -0.1175 |\\n| ρ median | **0.6667** | 0.6151 | -0.0516 |\\n| ρ std | 0.4673 | 0.5506 | +0.0833 |\\n| Valid instances | 3723/4351 (85.6%) | 2988/4351 (68.7%) | -16.9pp |\\n\\n### 全量 exp_021（37648 实例，N=8）\\n- Mean ρ: 0.5106, Median ρ: 0.6667, Std: 0.4749\\n- Valid: 28086/32565 (86.3%)\\n\\n### 结论\\n1. **Median ρ 几乎不变** (0.6667→0.6151, Δ=-0.05): 非 degenerate 实例上 LP-F1 alignment 不受 training convergence 显著影响 → **alignment IS dataset-intrinsic**\\n2. **Mean ρ 下降较多** (0.5241→0.4066, Δ=-0.12): 主要因为 valid instances 从 85.6%→68.7%——更多实例变 degenerate，拉低 mean\\n3. **两个条件的 driver 不同**: degeneracy 受 training convergence 调控，alignment 则是 dataset-intrinsic（median ρ 稳定）\\n4. **Practitioner lever**: early stopping 控制 degeneracy，从而决定 LP selection 的有效性窗口\\n5. **⚠️ 之前 exp_028 分析报告中 exp_021 ρ=0.6226 是错误值**（可能来自 N=16 分析），正确 N=8 同子集值: mean=0.5241, median=0.6667\\n\\n## exp_028 结果：5-epoch Few-NERD 收敛测试（2026-05-18）\\n\\n### 实验配置\\n- Model: Qwen3-8B + LoRA, Few-NERD, 5 epochs (vs exp-021 3 epochs)\\n- Inference: N=8, T=1.0, logprobs collected\\n- Gold-filtered instances: 4351/5000\\n\\n### 核心结果\\n\\n| Metric | 3-epoch (exp-021) | 5-epoch (exp-028) | Delta |\\n|--------|-------------------|-------------------|-------|\\n| Degeneracy (CF1) % | 11.1% | **31.3%** | +20.2pp |\\n| Greedy F1 | 0.7478 | 0.7773 | +2.95pp |\\n| Oracle F1 | — | 0.8723 | — |\\n| Headroom (pp) | — | 9.50pp | — |\\n| LP sel F1 | 0.7614 | 0.7835 | +2.21pp |\\n| LP sel delta (pp) | +1.37 | **+0.62** | -0.75 |\\n\\n### QE Signals (5-epoch)\\n\\n| Signal | AUROC | ρ (global) | Sel F1 | Delta |\\n|--------|-------|------------|--------|-------|\\n| LP | 0.5234 | **0.4495** | 0.7835 | +0.62pp |\\n| SJ | 0.4988 | 0.3777 | 0.7697 | -0.77pp |\\n| FK | 0.4985 | 0.3892 | 0.7693 | -0.80pp |\\n| EM | 0.4951 | 0.3893 | 0.7663 | -1.10pp |\\n| VC | 0.5006 | 0.3585 | 0.7576 | -1.97pp |\\n\\n### Within-instance LP-F1 correlation\\n- Mean ρ: 0.4066, Median ρ: 0.6151, Std: 0.5506\\n- Valid instances: 2988/4351 (68.7%)\\n\\n### LP Range\\n- Mean: 0.0514, Std: 0.0673, Median: 0.0318\\n\\n### Report.json 补充（inference-level stats）\\n- Greedy F1 (raw, pre-gold-filter): 0.7940\\n- Oracle F1 (raw): 0.8770\\n- FK mean: 0.5284, SJ mean: 0.8070\\n- LP baseline ρ (full): 0.3319, AUROC: 0.6806\\n- SJ vs F1 ρ (full): 0.3716\\n- FK vs F1 ρ (full): 0.2760\\n- Structural > Surface confirmed (ρ advantage = +0.096)\\n- Sample F1 mean: 0.7269, std: 0.3416, pct_zero: 12.3%\\n\\n### 结论：NEGATIVE\\n**5-epoch degeneracy 31.3% 远超 3-epoch 的 11.1%（+20.2pp）。** Few-NERD 的低 degeneracy 可能源于模型 under-convergence 而非数据集/任务本质特性。\\n\\n关键影响：\\n1. LP selection delta 从 +1.37pp 降至 +0.62pp（更多 degenerate instances 压缩了 selection 空间）\\n2. 结构信号（SJ/FK/EM/VC）在 5-epoch 上 selection delta 全为负，仅 LP 正\\n3. 但 LP global ρ=0.4495 仍显著（p≈0），within-instance median ρ=0.6151 说明非 degenerate 实例上 LP 仍有区分力\\n4. **论文叙事需修正**：不能以 Few-NERD low degeneracy 作为\\\"结构化任务天然适合 self-consistency\\\"的证据\\n\\n## 文献调研：一致性 ≠ 正确性（2026-05-16）\\n\\n### 调研背景\\nFew-NERD（8类粗粒度NER）上，结构一致性信号（SJ/FK/EM/VC）的 global ρ 为负或近零，selection delta 全为负。根因：模型存在 systematic bias（类型语义重叠 → 8 samples 一致但全错），暴露 self-consistency 的根本假设缺陷。\\n\\n### 最相关论文（5篇）\\n\\n#### 1. Self-Consistency Falls Short! The Adverse Effects of Positional Bias on Long-Context Problems\\n- **Authors**: Adam Byerly, Daniel Khashabi\\n- **Year/Venue**: 2024, TACL (arXiv: 2411.01101)\\n- **关系**: **最强验证**。正式证明当 errors correlated 时，self-consistency 放大而非纠正错误\\n- **Key insight**: 长上下文任务中，positional bias 导致所有 samples 产生相关错误，违反 self-consistency 的核心假设（error independence）。Self-consistency 不仅无效，反而 actively degrades performance。实验覆盖 GPT-4o、LLaMA-3.3-70B、Qwen-2.5-72B\\n- **与我们的平行关系**: 他们的 \\\"positional bias → correlated errors\\\" 对应我们的 \\\"type semantic overlap → systematic misclassification\\\"。机制不同但失败模式完全相同\\n\\n#### 2. Consistency–Accuracy Correlation in Hard-Prompted LLMs for Entity and Relation Extraction\\n- **Venue**: PMC (PMC12888769), 2025\\n- **关系**: **IE 领域直接验证**\\n- **Key insight**: 在 EPOP 语料（植物健康数据，实体+关系抽取）上测试 GPT/DeepSeek/Qwen/Kimi 四个模型，发现 high consistency does NOT strongly correlate with high accuracy。相关性是 model-dependent 且随 task complexity 变化。在 relational IE 中，consistency alone 不应被用作 prediction quality 的 proxy\\n- **与我们的关系**: 直接在 IE 任务上验证了我们在 NER 上的发现——一致性不等于正确性\\n\\n#### 3. Beyond Majority Voting: SCOPE (Subgroup-specific Confidence-weighted Pseudo-label Estimation)\\n- **Year/Venue**: 2024, arXiv: 2512.15146\\n- **关系**: **提出解决方案**\\n- **Key insight**: Majority voting 的问题：(1) 所有 votes 权重相同，忽略 confidence；(2) binary voting 无法捕获 fine-grained signals；(3) confirmation bias——模型强化自身错误。SCOPE 用 step-wise confidence 加权替代简单 frequency count，并通过 dynamic subgroup partitioning 平衡 quality 与 diversity\\n- **可借鉴**: confidence weighting + subgroup partitioning 思路可用于我们的结构一致性信号设计\\n\\n#### 4. Diversified Sampling Improves Scaling LLM Inference\\n- **Year**: 2025, arXiv: 2502.11027\\n- **关系**: **互补——从 sampling 端解决 correlated errors**\\n- **Key insight**: 同一 prompt 反复 sampling 导致输出 \\\"trapped\\\" 在 local cluster 中。通过 diversified prompts（role perturbation、instruction variation、jabberwocky perturbation）可以打破 error correlation，提升 coverage。在 reasoning/math/code 任务上显著提升\\n- **可借鉴**: 如果我们在 NER 中使用多样化 prompt 策略（不同 instruction 模板、不同 few-shot examples、不同 entity type 描述），可能减少 systematic bias 导致的 correlated errors\\n\\n#### 5. The Hidden Strength of Disagreement: Consensus-Diversity Tradeoff in Adaptive Multi-Agent Systems\\n- **Authors**: Wu & Ito\\n- **Year/Venue**: 2025, EMNLP (arXiv: 2502.16565)\\n- **关系**: **理论框架**\\n- **Key insight**: 显式 consensus（voting/prompting）有 premature homogenization 风险。隐式 consensus（agents 独立决策但共享信息）保留了 diversity，在动态环境中优于显式 voting。形式化了 consensus-diversity tradeoff\\n- **与我们的关系**: 我们的结构一致性信号是显式 consensus measure，当模型有 systematic bias 时导致 premature homogenization（全部 samples 一致地错）\\n\\n### 补充相关工作\\n\\n#### 6. Don't Always Pick the Highest-Performing Model: Information Theoretic View of LLM Ensemble Selection\\n- **Year**: 2026, arXiv: 2602.08003\\n- 用 Gaussian-copula 建模 correlated errors，证明 ensemble 存在 information-theoretic error floor\\n\\n#### 7. Wang et al. 2023 Self-Consistency (ICLR 2023, arXiv: 2203.11171)\\n- 原文假设 diverse reasoning paths → correct answer 更可能被多数路径选中\\n- **未显式讨论** systematic bias 导致所有路径收敛到同一错误答案的 failure mode\\n\\n#### 8. LLM-TOPLA: Efficient LLM Ensemble by Maximising Diversity\\n- **Year/Venue**: 2024, EMNLP Findings\\n- 用 focal diversity metric 选择互补性强的 ensemble 成员，减少 error correlation\\n\\n### 核心结论\\n\\n#### Q1: 有没有人正式分析过 self-consistency 在什么条件下失败？\\n**有。** Byerly & Khashabi (2024, TACL) 是最系统的分析，证明 positional bias 导致 correlated errors 时 self-consistency 失败。但他们聚焦 long-context + positional bias，没有覆盖 structured prediction 中 semantic overlap 导致的 systematic bias。\\n\\n#### Q2: \\\"Correlated failures\\\" 如何破坏 voting-based 方法？\\n多篇论文从不同角度论证：error correlation 违反了 voting 的 independence 假设。当 errors correlated，增加 samples 不能提升 accuracy（有 information-theoretic floor），甚至可能 amplify errors。\\n\\n#### Q3: 有没有人提出过针对 systematic bias 的改进？\\n- **Confidence weighting** (SCOPE): 用 confidence 加权替代 equal voting\\n- **Diversified sampling**: 用不同 prompt 变体打破 local cluster\\n- **Subgroup partitioning**: 将 samples 分组，组间保持 diversity\\n- **Cross-model probing**: 用不同模型交叉验证（但成本高）\\n\\n#### Q4: 结构化预测中 self-consistency 的特殊挑战？\\nConsistency-accuracy correlation 论文（PMC12888769）在 IE 任务上直接验证了一致性≠正确性。但目前 **没有** 专门针对 NER/结构化预测中 self-consistency failure modes 的系统性研究——这是我们的 contribution gap。\\n\\n### 对我们下一步的启示\\n\\n1. **论文 framing**: 我们的发现（结构一致性在 systematic bias 下失败）有文献支撑但 **在 structured IE 领域是新的**。Byerly & Khashabi 做了 long-context，我们做 structured prediction，互补\\n2. **可借鉴技术**：\\n   - Confidence-weighted consistency（替代 raw agreement）\\n   - Diversified prompting（不同 instruction/few-shot 模板减少 correlated errors）\\n   - Adaptive stopping（当 consistency 低时增加 samples，但当 consistency 高且可能是 systematic bias 时需要 different strategy）\\n3. **Discussion 要写的**: 引用 Byerly & Khashabi 说明这是 self-consistency 的 general failure mode，我们在 IE 领域首次系统性展示，并分析了结构化预测特有的原因（type semantic overlap、span boundary ambiguity）\\n\", \"total_chars\": 9053, \"truncated\": false}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__save_project_file · `toolu_01KaGUXWreFu3puPHrhjoVgV`</summary>
+
+```json
+{
+  "project": "struct_self_consist_ie",
+  "file": "memory.md",
+  "content": "# 项目记忆\n\n## 易混淆指标辨析（2026-05-17）\n\n**ρ=-0.881 (p=0.004)** = KeySet degeneracy vs **oracle headroom**（论文 L171 / appendix:1121）\n**ρ=-0.381 (p=0.352)** = KeySet degeneracy vs **LP Δ**（selection improvement）\n\n这是两个不同的 y 轴变量。论文中的 ρ=-0.881 是正确的，已被 Reviewer 确认。不要再混淆。\n\n## SciERC LP Δ 两个版本（2026-05-17）\n\n- **+0.42pp** = full-set (n=551)，论文全文统一使用此值\n- **+0.62pp** = gold-filtered (n=529)\n\nFigure 3 和正文保持一致用 full-set +0.42。\n\n## Cross-model Degeneracy 规律（2026-05-17）\n\nDegeneracy 由 **model capability × task difficulty × training convergence** 共同决定：\n- Stronger model + easy task → 极端 degen（LLaMA-CoNLL 89.2%）\n- Weaker model + hard task → low degen（Qwen3-SciERC 17.8%）\n- CoNLL 是 high-degen regime 不论 backbone（Qwen3 47.4%, LLaMA 89.2%）\n- Training convergence 调控 degen: Few-NERD 3-epoch 11.1% → 5-epoch 31.3%（+20pp）\n- **Alignment (within-instance ρ) 是 dataset-intrinsic**: median ρ 不随 epoch 显著变化 (0.6667→0.6151)\n\nLLaMA on CoNLL headroom 仅 1.84pp（greedy 0.9242, oracle 0.9426），使得 selection 评估无意义。但 structural signals 的 QE diagnostic ρ≈0.43 仍显著优于 LP ρ=0.31，证明诊断价值是 model-agnostic 的。\n\nLP range median=0.0002 at 89% degen — LP 在极端 degen 下完全无法区分 samples。\n\n## exp_021 vs exp_028 within-instance ρ(LP, F1) 对比（2026-05-18）\n\n### 配对对比（同 5000 实例子集，N=8）\n\n| Metric | 3-epoch (exp_027) | 5-epoch (exp_028) | Delta |\n|--------|-------------------|-------------------|-------|\n| ρ mean | **0.5241** | 0.4066 | -0.1175 |\n| ρ median | **0.6667** | 0.6151 | -0.0516 |\n| ρ std | 0.4673 | 0.5506 | +0.0833 |\n| Valid instances | 3723/4351 (85.6%) | 2988/4351 (68.7%) | -16.9pp |\n\n### 全量 exp_021（37648 实例，N=8）\n- Mean ρ: 0.5106, Median ρ: 0.6667, Std: 0.4749\n- Valid: 28086/32565 (86.3%)\n\n### 结论\n1. **Median ρ 几乎不变** (0.6667→0.6151, Δ=-0.05): 非 degenerate 实例上 LP-F1 alignment 不受 training convergence 显著影响 → **alignment IS dataset-intrinsic**\n2. **Mean ρ 下降较多** (0.5241→0.4066, Δ=-0.12): 主要因为 valid instances 从 85.6%→68.7%——更多实例变 degenerate，拉低 mean\n3. **两个条件的 driver 不同**: degeneracy 受 training convergence 调控，alignment 则是 dataset-intrinsic（median ρ 稳定）\n4. **Practitioner lever**: early stopping 控制 degeneracy，从而决定 LP selection 的有效性窗口\n5. **⚠️ 之前 exp_028 分析报告中 exp_021 ρ=0.6226 是错误值**（可能来自 N=16 分析），正确 N=8 同子集值: mean=0.5241, median=0.6667\n\n## exp_028 结果：5-epoch Few-NERD 收敛测试（2026-05-18）\n\n### 实验配置\n- Model: Qwen3-8B + LoRA, Few-NERD, 5 epochs (vs exp-021 3 epochs)\n- Inference: N=8, T=1.0, logprobs collected\n- Gold-filtered instances: 4351/5000\n\n### 核心结果\n\n| Metric | 3-epoch (exp-021) | 5-epoch (exp-028) | Delta |\n|--------|-------------------|-------------------|-------|\n| Degeneracy (CF1) % | 11.1% | **31.3%** | +20.2pp |\n| Greedy F1 | 0.7478 | 0.7773 | +2.95pp |\n| Oracle F1 | — | 0.8723 | — |\n| Headroom (pp) | — | 9.50pp | — |\n| LP sel F1 | 0.7614 | 0.7835 | +2.21pp |\n| LP sel delta (pp) | +1.37 | **+0.62** | -0.75 |\n\n### QE Signals (5-epoch)\n\n| Signal | AUROC | ρ (global) | Sel F1 | Delta |\n|--------|-------|------------|--------|-------|\n| LP | 0.5234 | **0.4495** | 0.7835 | +0.62pp |\n| SJ | 0.4988 | 0.3777 | 0.7697 | -0.77pp |\n| FK | 0.4985 | 0.3892 | 0.7693 | -0.80pp |\n| EM | 0.4951 | 0.3893 | 0.7663 | -1.10pp |\n| VC | 0.5006 | 0.3585 | 0.7576 | -1.97pp |\n\n### Within-instance LP-F1 correlation\n- Mean ρ: 0.4066, Median ρ: 0.6151, Std: 0.5506\n- Valid instances: 2988/4351 (68.7%)\n\n### LP Range\n- Mean: 0.0514, Std: 0.0673, Median: 0.0318\n\n### Report.json 补充（inference-level stats）\n- Greedy F1 (raw, pre-gold-filter): 0.7940\n- Oracle F1 (raw): 0.8770\n- FK mean: 0.5284, SJ mean: 0.8070\n- LP baseline ρ (full): 0.3319, AUROC: 0.6806\n- SJ vs F1 ρ (full): 0.3716\n- FK vs F1 ρ (full): 0.2760\n- Structural > Surface confirmed (ρ advantage = +0.096)\n- Sample F1 mean: 0.7269, std: 0.3416, pct_zero: 12.3%\n\n### 结论：NEGATIVE\n**5-epoch degeneracy 31.3% 远超 3-epoch 的 11.1%（+20.2pp）。** Few-NERD 的低 degeneracy 可能源于模型 under-convergence 而非数据集/任务本质特性。\n\n关键影响：\n1. LP selection delta 从 +1.37pp 降至 +0.62pp（更多 degenerate instances 压缩了 selection 空间）\n2. 结构信号（SJ/FK/EM/VC）在 5-epoch 上 selection delta 全为负，仅 LP 正\n3. 但 LP global ρ=0.4495 仍显著（p≈0），within-instance median ρ=0.6151 说明非 degenerate 实例上 LP 仍有区分力\n4. **论文叙事需修正**：不能以 Few-NERD low degeneracy 作为\"结构化任务天然适合 self-consistency\"的证据\n\n## Rank=8 vs Rank=32 LP 统计对比 (2026-05-18)\n\n数据来源: exp-023 (rank=8) vs exp-012 (rank=32), SciERC, N=8, T=1.0, 551 instances\n\n| Metric | Rank=8 (exp-023) | Rank=32 (exp-012) |\n|--------|------------------|-------------------|\n| LP median within-instance range | 0.056931 | 0.042857 |\n| LP mean within-instance range | 0.075814 | 0.059754 |\n| LP tied fraction | 0/551 (0.00%) | 1/551 (0.18%) |\n| Within-instance ρ(LP,F1) mean | 0.2395 | 0.1532 |\n| Within-instance ρ(LP,F1) median | 0.3164 | 0.2474 |\n| ρ valid instances | 506/551 (91.8%) | 451/551 (81.9%) |\n\n### 关键发现\n1. **Rank=8 的 LP 变异性更大**: median range 0.057 vs 0.043（+33%），说明低 rank adapter 产生更多样化的 log-probability 分布\n2. **Rank=8 的 LP-F1 alignment 更强**: within-instance ρ median 0.32 vs 0.25（+28%），mean 0.24 vs 0.15（+56%）\n3. **两者 tied fraction 都极低**: rank=8 为 0%，rank=32 为 0.18%，LP degeneracy 不是 SciERC 上的问题\n4. **Rank=8 有更多 valid ρ 实例**: 91.8% vs 81.9%，因为更大的 LP range 使得更多实例有足够变异性来计算 correlation\n5. **结论**: 低 rank adapter 反而提升了 LP 作为 QE 信号的质量，可能因为 rank=8 的 under-parameterization 迫使模型在 uncertain instances 上产生更有区分性的 logprob 分布\n\n## 文献调研：一致性 ≠ 正确性（2026-05-16）\n\n### 调研背景\nFew-NERD（8类粗粒度NER）上，结构一致性信号（SJ/FK/EM/VC）的 global ρ 为负或近零，selection delta 全为负。根因：模型存在 systematic bias（类型语义重叠 → 8 samples 一致但全错），暴露 self-consistency 的根本假设缺陷。\n\n### 最相关论文（5篇）\n\n#### 1. Self-Consistency Falls Short! The Adverse Effects of Positional Bias on Long-Context Problems\n- **Authors**: Adam Byerly, Daniel Khashabi\n- **Year/Venue**: 2024, TACL (arXiv: 2411.01101)\n- **关系**: **最强验证**。正式证明当 errors correlated 时，self-consistency 放大而非纠正错误\n- **Key insight**: 长上下文任务中，positional bias 导致所有 samples 产生相关错误，违反 self-consistency 的核心假设（error independence）。Self-consistency 不仅无效，反而 actively degrades performance。实验覆盖 GPT-4o、LLaMA-3.3-70B、Qwen-2.5-72B\n- **与我们的平行关系**: 他们的 \"positional bias → correlated errors\" 对应我们的 \"type semantic overlap → systematic misclassification\"。机制不同但失败模式完全相同\n\n#### 2. Consistency–Accuracy Correlation in Hard-Prompted LLMs for Entity and Relation Extraction\n- **Venue**: PMC (PMC12888769), 2025\n- **关系**: **IE 领域直接验证**\n- **Key insight**: 在 EPOP 语料（植物健康数据，实体+关系抽取）上测试 GPT/DeepSeek/Qwen/Kimi 四个模型，发现 high consistency does NOT strongly correlate with high accuracy。相关性是 model-dependent 且随 task complexity 变化。在 relational IE 中，consistency alone 不应被用作 prediction quality 的 proxy\n- **与我们的关系**: 直接在 IE 任务上验证了我们在 NER 上的发现——一致性不等于正确性\n\n#### 3. Beyond Majority Voting: SCOPE (Subgroup-specific Confidence-weighted Pseudo-label Estimation)\n- **Year/Venue**: 2024, arXiv: 2512.15146\n- **关系**: **提出解决方案**\n- **Key insight**: Majority voting 的问题：(1) 所有 votes 权重相同，忽略 confidence；(2) binary voting 无法捕获 fine-grained signals；(3) confirmation bias——模型强化自身错误。SCOPE 用 step-wise confidence 加权替代简单 frequency count，并通过 dynamic subgroup partitioning 平衡 quality 与 diversity\n- **可借鉴**: confidence weighting + subgroup partitioning 思路可用于我们的结构一致性信号设计\n\n#### 4. Diversified Sampling Improves Scaling LLM Inference\n- **Year**: 2025, arXiv: 2502.11027\n- **关系**: **互补——从 sampling 端解决 correlated errors**\n- **Key insight**: 同一 prompt 反复 sampling 导致输出 \"trapped\" 在 local cluster 中。通过 diversified prompts（role perturbation、instruction variation、jabberwocky perturbation）可以打破 error correlation，提升 coverage。在 reasoning/math/code 任务上显著提升\n- **可借鉴**: 如果我们在 NER 中使用多样化 prompt 策略（不同 instruction 模板、不同 few-shot examples、不同 entity type 描述），可能减少 systematic bias 导致的 correlated errors\n\n#### 5. The Hidden Strength of Disagreement: Consensus-Diversity Tradeoff in Adaptive Multi-Agent Systems\n- **Authors**: Wu & Ito\n- **Year/Venue**: 2025, EMNLP (arXiv: 2502.16565)\n- **关系**: **理论框架**\n- **Key insight**: 显式 consensus（voting/prompting）有 premature homogenization 风险。隐式 consensus（agents 独立决策但共享信息）保留了 diversity，在动态环境中优于显式 voting。形式化了 consensus-diversity tradeoff\n- **与我们的关系**: 我们的结构一致性信号是显式 consensus measure，当模型有 systematic bias 时导致 premature homogenization（全部 samples 一致地错）\n\n### 补充相关工作\n\n#### 6. Don't Always Pick the Highest-Performing Model: Information Theoretic View of LLM Ensemble Selection\n- **Year**: 2026, arXiv: 2602.08003\n- 用 Gaussian-copula 建模 correlated errors，证明 ensemble 存在 information-theoretic error floor\n\n#### 7. Wang et al. 2023 Self-Consistency (ICLR 2023, arXiv: 2203.11171)\n- 原文假设 diverse reasoning paths → correct answer 更可能被多数路径选中\n- **未显式讨论** systematic bias 导致所有路径收敛到同一错误答案的 failure mode\n\n#### 8. LLM-TOPLA: Efficient LLM Ensemble by Maximising Diversity\n- **Year/Venue**: 2024, EMNLP Findings\n- 用 focal diversity metric 选择互补性强的 ensemble 成员，减少 error correlation\n\n### 核心结论\n\n#### Q1: 有没有人正式分析过 self-consistency 在什么条件下失败？\n**有。** Byerly & Khashabi (2024, TACL) 是最系统的分析，证明 positional bias 导致 correlated errors 时 self-consistency 失败。但他们聚焦 long-context + positional bias，没有覆盖 structured prediction 中 semantic overlap 导致的 systematic bias。\n\n#### Q2: \"Correlated failures\" 如何破坏 voting-based 方法？\n多篇论文从不同角度论证：error correlation 违反了 voting 的 independence 假设。当 errors correlated，增加 samples 不能提升 accuracy（有 information-theoretic floor），甚至可能 amplify errors。\n\n#### Q3: 有没有人提出过针对 systematic bias 的改进？\n- **Confidence weighting** (SCOPE): 用 confidence 加权替代 equal voting\n- **Diversified sampling**: 用不同 prompt 变体打破 local cluster\n- **Subgroup partitioning**: 将 samples 分组，组间保持 diversity\n- **Cross-model probing**: 用不同模型交叉验证（但成本高）\n\n#### Q4: 结构化预测中 self-consistency 的特殊挑战？\nConsistency-accuracy correlation 论文（PMC12888769）在 IE 任务上直接验证了一致性≠正确性。但目前 **没有** 专门针对 NER/结构化预测中 self-consistency failure modes 的系统性研究——这是我们的 contribution gap。\n\n### 对我们下一步的启示\n\n1. **论文 framing**: 我们的发现（结构一致性在 systematic bias 下失败）有文献支撑但 **在 structured IE 领域是新的**。Byerly & Khashabi 做了 long-context，我们做 structured prediction，互补\n2. **可借鉴技术**：\n   - Confidence-weighted consistency（替代 raw agreement）\n   - Diversified prompting（不同 instruction/few-shot 模板减少 correlated errors）\n   - Adaptive stopping（当 consistency 低时增加 samples，但当 consistency 高且可能是 systematic bias 时需要 different strategy）\n3. **Discussion 要写的**: 引用 Byerly & Khashabi 说明这是 self-consistency 的 general failure mode，我们在 IE 领域首次系统性展示，并分析了结构化预测特有的原因（type semantic overlap、span boundary ambiguity）\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "43ab3e2a-8abd-459f-8408-ee9173987ff3",
+  "uuid": "93532c38-b9ca-4799-813a-916f05fbd57f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01C52awBonxSVodRW6ovmwSQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5119,
+      "cache_read_input_tokens": 56709,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5119
+      },
+      "output_tokens": 46,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-18T00:58:50.365Z_
+
+<details><summary>↩ Tool result · `toolu_01KaGUXWreFu3puPHrhjoVgV`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/memory.md\", \"saved\": true}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "43ab3e2a-8abd-459f-8408-ee9173987ff3",
+  "uuid": "a328602c-31c9-409b-a5a9-df61156533e2",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/memory.md\\\", \\\"saved\\\": true}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/memory.md\", \"saved\": true}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 48_
+
+完成。结果摘要：
+
+| Metric | Rank=8 (exp-023) | Rank=32 (exp-012) |
+|--------|------------------|-------------------|
+| LP median range | **0.0569** | 0.0429 |
+| LP mean range | **0.0758** | 0.0598 |
+| LP tied fraction | 0/551 (0.00%) | 1/551 (0.18%) |
+| Within-inst ρ(LP,F1) mean | **0.2395** | 0.1532 |
+| Within-inst ρ(LP,F1) median | **0.3164** | 0.2474 |
+| ρ valid instances | 506/551 (91.8%) | 451/551 (81.9%) |
+
+Rank=8 在所有 LP 指标上优于 rank=32：更大的 within-instance range（+33%）、更强的 LP-F1 alignment（median ρ +28%）、更多 valid instances（+10pp）。低 rank adapter 的 under-parameterization 反而产生了更有区分性的 logprob 分布，对 W2 的 "LoRA rank sensitivity" 问题是正面回应。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "43ab3e2a-8abd-459f-8408-ee9173987ff3",
+  "uuid": "cc82d051-7341-4465-b690-ec874ab2f38b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JWd1mqHeCJNQrjDAUEAezk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5280,
+      "cache_read_input_tokens": 61828,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5280
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 49_
+
+完成。结果摘要：
+
+| Metric | Rank=8 (exp-023) | Rank=32 (exp-012) |
+|--------|------------------|-------------------|
+| LP median range | **0.0569** | 0.0429 |
+| LP mean range | **0.0758** | 0.0598 |
+| LP tied fraction | 0/551 (0.00%) | 1/551 (0.18%) |
+| Within-inst ρ(LP,F1) mean | **0.2395** | 0.1532 |
+| Within-inst ρ(LP,F1) median | **0.3164** | 0.2474 |
+| ρ valid instances | 506/551 (91.8%) | 451/551 (81.9%) |
+
+Rank=8 在所有 LP 指标上优于 rank=32：更大的 within-instance range（+33%）、更强的 LP-F1 alignment（median ρ +28%）、更多 valid instances（+10pp）。低 rank adapter 的 under-parameterization 反而产生了更有区分性的 logprob 分布，对 W2 的 "LoRA rank sensitivity" 问题是正面回应。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 155926,
+  "duration_api_ms": 153450,
+  "num_turns": 17,
+  "stop_reason": "end_turn",
+  "session_id": "43ab3e2a-8abd-459f-8408-ee9173987ff3",
+  "total_cost_usd": 0.81925925,
+  "usage": {
+    "input_tokens": 15,
+    "cache_creation_input_tokens": 55267,
+    "cache_read_input_tokens": 433969,
+    "output_tokens": 10199,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 55267,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 327,
+        "cache_read_input_tokens": 61828,
+        "cache_creation_input_tokens": 5280,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 5280
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1706,
+      "outputTokens": 20,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001806,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 15,
+      "outputTokens": 10199,
+      "cacheReadInputTokens": 433969,
+      "cacheCreationInputTokens": 55267,
+      "webSearchRequests": 0,
+      "costUSD": 0.8174532499999999,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "fdc7e1e5-dcef-4b92-b22d-9eb191bb8405"
+}
+```
+
+</details>
+
+---

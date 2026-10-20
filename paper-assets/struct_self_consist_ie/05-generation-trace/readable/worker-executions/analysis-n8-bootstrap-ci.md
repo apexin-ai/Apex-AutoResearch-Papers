@@ -1,0 +1,2483 @@
+# analysis n8 bootstrap ci
+
+**When Self-Consistency Fails for NER: Degeneracy, Signal Collapse, and the Correlation-Selection Gap** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 52
+- **Recorded user turns:** 0
+- **Tool calls:** 17
+- **Original source:** `logs/workers/worker_analysis_n8_bootstrap_ci_20260515T030809.log`
+- **Structured JSON:** [`af0ddab0eace5ff1f856.json`](../../sessions/af/af0ddab0eace5ff1f856.json)
+
+## Before a recorded user message
+
+52 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "session_id": "f3cc20fa-26de-4ab1-a5ab-60647c654156",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "b3d7292f-7172-4312-a731-194e7ce22d64",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1778818800,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "4e8a98ae-8c30-4f82-88a7-21c2249a3a5e",
+  "session_id": "f3cc20fa-26de-4ab1-a5ab-60647c654156"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+I'll write and run a bootstrap CI analysis script on the server. Let me first check the existing code to understand the signal computation functions.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f3cc20fa-26de-4ab1-a5ab-60647c654156",
+  "uuid": "e768a829-554d-45d6-ac93-66eadf6c826e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EvPctkXHUfnebYH7WBP7H9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11926,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11926
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01K3Ec215f7TDZ2WAqZ22XNU`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+  "max_results": 3
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f3cc20fa-26de-4ab1-a5ab-60647c654156",
+  "uuid": "60f60064-9c9b-41aa-867b-8687ff45a015",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EvPctkXHUfnebYH7WBP7H9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11926,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11926
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-15T03:08:22.609Z_
+
+<details><summary>↩ Tool result · `toolu_01K3Ec215f7TDZ2WAqZ22XNU`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__detect_image"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f3cc20fa-26de-4ab1-a5ab-60647c654156",
+  "uuid": "e6753488-8fe5-4672-8031-f8d124401b34",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__detect_image"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me first check the existing code files on the server to understand the signal computation functions, and also verify the data file exists.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f3cc20fa-26de-4ab1-a5ab-60647c654156",
+  "uuid": "ed3e52bc-9e51-4881-aa47-5913cc822ca5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017yFXccKFXm4FNyFRyuhiPL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 901,
+      "cache_read_input_tokens": 23767,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 901
+      },
+      "output_tokens": 27,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_015sTa8KM2xuEkqxnXV1hV9L`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "head -5 /root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/samples.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f3cc20fa-26de-4ab1-a5ab-60647c654156",
+  "uuid": "d6ca0840-b5e5-4dc6-ad26-03f775699c28",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017yFXccKFXm4FNyFRyuhiPL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 901,
+      "cache_read_input_tokens": 23767,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 901
+      },
+      "output_tokens": 27,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01WfZyw4iAt4zuHVuhNzdiRQ`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/code/consistency.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f3cc20fa-26de-4ab1-a5ab-60647c654156",
+  "uuid": "385be5fc-1639-41ca-90d8-842436da88ed",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017yFXccKFXm4FNyFRyuhiPL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 901,
+      "cache_read_input_tokens": 23767,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 901
+      },
+      "output_tokens": 27,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-15T03:08:28.110Z_
+
+<details><summary>↩ Tool result · `toolu_015sTa8KM2xuEkqxnXV1hV9L`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"id\\\": \\\"X96-1059_sent000\\\", \\\"text\\\": \\\"Recognition of proper nouns in Japanese text has been studied as a part of the more general problem of morphological analysis in Japanese text processing -LRB- -LSB- 1 -RSB- -LSB- 2 -RSB- -RRB- .\\\", \\\"gold\\\": {\\\"entities\\\": [{\\\"text\\\": \\\"Recognition of proper nouns\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 0, \\\"end\\\": 27}, {\\\"text\\\": \\\"proper nouns\\\", \\\"type\\\": \\\"OtherScientificTerm\\\", \\\"start\\\": 15, \\\"end\\\": 27}, {\\\"text\\\": \\\"Japanese text\\\", \\\"type\\\": \\\"Material\\\", \\\"start\\\": 31, \\\"end\\\": 44}, {\\\"text\\\": \\\"morphological analysis\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 103, \\\"end\\\": 125}, {\\\"text\\\": \\\"Japanese text processing\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 129, \\\"end\\\": 153}], \\\"relations\\\": [{\\\"head\\\": \\\"Recognition of proper nouns\\\", \\\"tail\\\": \\\"morphological analysis\\\", \\\"type\\\": \\\"PART-OF\\\", \\\"head_start\\\": 0, \\\"head_end\\\": 27, \\\"tail_start\\\": 103, \\\"tail_end\\\": 125}, {\\\"head\\\": \\\"proper nouns\\\", \\\"tail\\\": \\\"Japanese text\\\", \\\"type\\\": \\\"PART-OF\\\", \\\"head_start\\\": 15, \\\"head_end\\\": 27, \\\"tail_start\\\": 31, \\\"tail_end\\\": 44}, {\\\"head\\\": \\\"morphological analysis\\\", \\\"tail\\\": \\\"Japanese text processing\\\", \\\"type\\\": \\\"USED-FOR\\\", \\\"head_start\\\": 103, \\\"head_end\\\": 125, \\\"tail_start\\\": 129, \\\"tail_end\\\": 153}], \\\"events\\\": []}, \\\"samples\\\": [{\\\"entities\\\": [{\\\"text\\\": \\\"Recognition of proper nouns\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 0, \\\"end\\\": 27}, {\\\"text\\\": \\\"Japanese text\\\", \\\"type\\\": \\\"Material\\\", \\\"start\\\": 31, \\\"end\\\": 44}, {\\\"text\\\": \\\"morphological analysis\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 103, \\\"end\\\": 125}, {\\\"text\\\": \\\"Japanese text processing\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 129, \\\"end\\\": 153}], \\\"relations\\\": [{\\\"head\\\": \\\"Recognition of proper nouns\\\", \\\"tail\\\": \\\"morphological analysis\\\", \\\"type\\\": \\\"PART-OF\\\", \\\"head_start\\\": 0, \\\"head_end\\\": 27, \\\"tail_start\\\": 103, \\\"tail_end\\\": 125}, {\\\"head\\\": \\\"morphological analysis\\\", \\\"tail\\\": \\\"Japanese text processing\\\", \\\"type\\\": \\\"PART-OF\\\", \\\"head_start\\\": 103, \\\"head_end\\\": 125, \\\"tail_start\\\": 129, \\\"tail_end\\\": 153}], \\\"events\\\": [], \\\"cumulative_logprob\\\": -5.878218486708363, \\\"n_tokens\\\": 245, \\\"mean_logprob\\\": -0.02399272851717699}, {\\\"entities\\\": [{\\\"text\\\": \\\"Recognition of proper nouns\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 0, \\\"end\\\": 27}, {\\\"text\\\": \\\"Japanese text\\\", \\\"type\\\": \\\"Material\\\", \\\"start\\\": 31, \\\"end\\\": 44}, {\\\"text\\\": \\\"morphological analysis in Japanese text processing\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 103, \\\"end\\\": 153}], \\\"relations\\\": [{\\\"head\\\": \\\"Recognition of proper nouns\\\", \\\"tail\\\": \\\"morphological analysis in Japanese text processing\\\", \\\"type\\\": \\\"HYPONYM-OF\\\", \\\"head_start\\\": 0, \\\"head_end\\\": 27, \\\"tail_start\\\": 103, \\\"tail_end\\\": 153}], \\\"events\\\": [], \\\"cumulative_logprob\\\": -12.800377187189454, \\\"n_tokens\\\": 166, \\\"mean_logprob\\\": -0.07711070594692443}, {\\\"entities\\\": [{\\\"text\\\": \\\"Recognition of proper nouns in Japanese text\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 0, \\\"end\\\": 44}, {\\\"text\\\": \\\"Japanese text\\\", \\\"type\\\": \\\"Material\\\", \\\"start\\\": 31, \\\"end\\\": 44}, {\\\"text\\\": \\\"morphological analysis in Japanese text processing\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 103, \\\"end\\\": 153}, {\\\"text\\\": \\\"Japanese text processing\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 129, \\\"end\\\": 153}], \\\"relations\\\": [{\\\"head\\\": \\\"Recognition of proper nouns in Japanese text\\\", \\\"tail\\\": \\\"morphological analysis in Japanese text processing\\\", \\\"type\\\": \\\"PART-OF\\\", \\\"head_start\\\": 0, \\\"head_end\\\": 44, \\\"tail_start\\\": 103, \\\"tail_end\\\": 153}, {\\\"head\\\": \\\"Japanese text\\\", \\\"tail\\\": \\\"Recognition of proper nouns in Japanese text\\\", \\\"type\\\": \\\"USED-FOR\\\", \\\"head_start\\\": 31, \\\"head_end\\\": 44, \\\"tail_start\\\": 0, \\\"tail_end\\\": 44}, {\\\"head\\\": \\\"Japanese text processing\\\", \\\"tail\\\": \\\"morphological analysis in Japanese text processing\\\", \\\"type\\\": \\\"USED-FOR\\\", \\\"head_start\\\": 129, \\\"head_end\\\": 153, \\\"tail_start\\\": 103, \\\"tail_end\\\": 153}], \\\"events\\\": [], \\\"cumulative_logprob\\\": -16.07227141605891, \\\"n_tokens\\\": 321, \\\"mean_logprob\\\": -0.050069381358438976}, {\\\"entities\\\": [{\\\"text\\\": \\\"Recognition of proper nouns\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 0, \\\"end\\\": 27}, {\\\"text\\\": \\\"Japanese text\\\", \\\"type\\\": \\\"Material\\\", \\\"start\\\": 31, \\\"end\\\": 44}, {\\\"text\\\": \\\"morphological analysis\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 103, \\\"end\\\": 125}, {\\\"text\\\": \\\"Japanese text processing\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 129, \\\"end\\\": 153}], \\\"relations\\\": [{\\\"head\\\": \\\"Recognition of proper nouns\\\", \\\"tail\\\": \\\"morphological analysi\\n\\n... [截断: 输出过长，省略 32532 字符] ...\\n\\named Entity -LRB- NE -RRB- items\\\", \\\"tail\\\": \\\"recognition and classification of proper names , numerical and temporal expressions\\\", \\\"type\\\": \\\"HYPONYM-OF\\\", \\\"head_start\\\": 158, \\\"head_end\\\": 191, \\\"tail_start\\\": 67, \\\"tail_end\\\": 150}, {\\\"head\\\": \\\"Japanese text\\\", \\\"tail\\\": \\\"Named Entity -LRB- NE -RRB- items\\\", \\\"type\\\": \\\"FEATURE-OF\\\", \\\"head_start\\\": 199, \\\"head_end\\\": 212, \\\"tail_start\\\": 158, \\\"tail_end\\\": 191}], \\\"events\\\": [], \\\"cumulative_logprob\\\": -8.038544332256564, \\\"n_tokens\\\": 361, \\\"mean_logprob\\\": -0.022267435823425382}, \\\"logprobs\\\": [-0.024777422581119885, -0.026574600190162126, -0.0552835296648834, -0.028663227137030647, -0.019310986300381295, -0.03527105214744327, -0.048003989564192134, -0.019687420121610816]}\\n{\\\"id\\\": \\\"X96-1059_sent004\\\", \\\"text\\\": \\\"The analyzer is called `` Amorph '' .\\\", \\\"gold\\\": {\\\"entities\\\": [{\\\"text\\\": \\\"analyzer\\\", \\\"type\\\": \\\"Generic\\\", \\\"start\\\": 4, \\\"end\\\": 12}, {\\\"text\\\": \\\"`` Amorph ''\\\", \\\"type\\\": \\\"Method\\\", \\\"start\\\": 23, \\\"end\\\": 35}], \\\"relations\\\": [], \\\"events\\\": []}, \\\"samples\\\": [{\\\"entities\\\": [{\\\"text\\\": \\\"analyzer\\\", \\\"type\\\": \\\"Generic\\\", \\\"start\\\": 4, \\\"end\\\": 12}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -1.383857210267223, \\\"n_tokens\\\": 39, \\\"mean_logprob\\\": -0.03548351821198008}, {\\\"entities\\\": [{\\\"text\\\": \\\"analyzer\\\", \\\"type\\\": \\\"Generic\\\", \\\"start\\\": 4, \\\"end\\\": 12}, {\\\"text\\\": \\\"Amorph\\\", \\\"type\\\": \\\"Method\\\", \\\"start\\\": 26, \\\"end\\\": 32}], \\\"relations\\\": [{\\\"head\\\": \\\"Amorph\\\", \\\"tail\\\": \\\"analyzer\\\", \\\"type\\\": \\\"HYPONYM-OF\\\", \\\"head_start\\\": 26, \\\"head_end\\\": 32, \\\"tail_start\\\": 4, \\\"tail_end\\\": 12}], \\\"events\\\": [], \\\"cumulative_logprob\\\": -4.052261954744168, \\\"n_tokens\\\": 121, \\\"mean_logprob\\\": -0.03348976822102618}, {\\\"entities\\\": [{\\\"text\\\": \\\"analyzer\\\", \\\"type\\\": \\\"Method\\\", \\\"start\\\": 4, \\\"end\\\": 12}, {\\\"text\\\": \\\"Amorph\\\", \\\"type\\\": \\\"Method\\\", \\\"start\\\": 26, \\\"end\\\": 32}], \\\"relations\\\": [{\\\"head\\\": \\\"Amorph\\\", \\\"tail\\\": \\\"analyzer\\\", \\\"type\\\": \\\"HYPONYM-OF\\\", \\\"head_start\\\": 26, \\\"head_end\\\": 32, \\\"tail_start\\\": 4, \\\"tail_end\\\": 12}], \\\"events\\\": [], \\\"cumulative_logprob\\\": -2.833725480343233, \\\"n_tokens\\\": 121, \\\"mean_logprob\\\": -0.023419218845811843}, {\\\"entities\\\": [{\\\"text\\\": \\\"analyzer\\\", \\\"type\\\": \\\"Method\\\", \\\"start\\\": 4, \\\"end\\\": 12}, {\\\"text\\\": \\\"`` Amorph ''\\\", \\\"type\\\": \\\"Method\\\", \\\"start\\\": 23, \\\"end\\\": 35}], \\\"relations\\\": [{\\\"head\\\": \\\"`` Amorph ''\\\", \\\"tail\\\": \\\"analyzer\\\", \\\"type\\\": \\\"HYPONYM-OF\\\", \\\"head_start\\\": 23, \\\"head_end\\\": 35, \\\"tail_start\\\": 4, \\\"tail_end\\\": 12}], \\\"events\\\": [], \\\"cumulative_logprob\\\": -4.03967001857896, \\\"n_tokens\\\": 125, \\\"mean_logprob\\\": -0.03231736014863168}, {\\\"entities\\\": [], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -4.511052846905159, \\\"n_tokens\\\": 14, \\\"mean_logprob\\\": -0.3222180604932256}, {\\\"entities\\\": [{\\\"text\\\": \\\"analyzer\\\", \\\"type\\\": \\\"Generic\\\", \\\"start\\\": 4, \\\"end\\\": 12}, {\\\"text\\\": \\\"Amorph\\\", \\\"type\\\": \\\"Method\\\", \\\"start\\\": 26, \\\"end\\\": 32}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -4.522765335154382, \\\"n_tokens\\\": 66, \\\"mean_logprob\\\": -0.06852674750233913}, {\\\"entities\\\": [{\\\"text\\\": \\\"analyzer\\\", \\\"type\\\": \\\"Generic\\\", \\\"start\\\": 4, \\\"end\\\": 12}, {\\\"text\\\": \\\"Amorph\\\", \\\"type\\\": \\\"Method\\\", \\\"start\\\": 26, \\\"end\\\": 32}], \\\"relations\\\": [{\\\"head\\\": \\\"Amorph\\\", \\\"tail\\\": \\\"analyzer\\\", \\\"type\\\": \\\"HYPONYM-OF\\\", \\\"head_start\\\": 26, \\\"head_end\\\": 32, \\\"tail_start\\\": 4, \\\"tail_end\\\": 12}], \\\"events\\\": [], \\\"cumulative_logprob\\\": -2.0602371407849915, \\\"n_tokens\\\": 121, \\\"mean_logprob\\\": -0.01702675322962803}, {\\\"entities\\\": [{\\\"text\\\": \\\"analyzer\\\", \\\"type\\\": \\\"Method\\\", \\\"start\\\": 4, \\\"end\\\": 12}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -2.2967071373061287, \\\"n_tokens\\\": 39, \\\"mean_logprob\\\": -0.05888992659759305}], \\\"greedy\\\": {\\\"entities\\\": [{\\\"text\\\": \\\"analyzer\\\", \\\"type\\\": \\\"Generic\\\", \\\"start\\\": 4, \\\"end\\\": 12}, {\\\"text\\\": \\\"Amorph\\\", \\\"type\\\": \\\"Method\\\", \\\"start\\\": 26, \\\"end\\\": 32}], \\\"relations\\\": [{\\\"head\\\": \\\"Amorph\\\", \\\"tail\\\": \\\"analyzer\\\", \\\"type\\\": \\\"HYPONYM-OF\\\", \\\"head_start\\\": 26, \\\"head_end\\\": 32, \\\"tail_start\\\": 4, \\\"tail_end\\\": 12}], \\\"events\\\": [], \\\"cumulative_logprob\\\": -2.0194471543091623, \\\"n_tokens\\\": 121, \\\"mean_logprob\\\": -0.016689645903381508}, \\\"logprobs\\\": [-0.03548351821198008, -0.03348976822102618, -0.023419218845811843, -0.03231736014863168, -0.3222180604932256, -0.06852674750233913, -0.01702675322962803, -0.05888992659759305]}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.14}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f3cc20fa-26de-4ab1-a5ab-60647c654156",
+  "uuid": "d6221ac7-01f9-4a1b-9d62-ea3243a08560",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"id\\\\\\\": \\\\\\\"X96-1059_sent000\\\\\\\", \\\\\\\"text\\\\\\\": \\\\\\\"Recognition of proper nouns in Japanese text has been studied as a part of the more general problem of morphological analysis in Japanese text processing -LRB- -LSB- 1 -RSB- -LSB- 2 -RSB- -RRB- .\\\\\\\", \\\\\\\"gold\\\\\\\": {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"Recognition of proper nouns\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 0, \\\\\\\"end\\\\\\\": 27}, {\\\\\\\"text\\\\\\\": \\\\\\\"proper nouns\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"OtherScientificTerm\\\\\\\", \\\\\\\"start\\\\\\\": 15, \\\\\\\"end\\\\\\\": 27}, {\\\\\\\"text\\\\\\\": \\\\\\\"Japanese text\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Material\\\\\\\", \\\\\\\"start\\\\\\\": 31, \\\\\\\"end\\\\\\\": 44}, {\\\\\\\"text\\\\\\\": \\\\\\\"morphological analysis\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 103, \\\\\\\"end\\\\\\\": 125}, {\\\\\\\"text\\\\\\\": \\\\\\\"Japanese text processing\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 129, \\\\\\\"end\\\\\\\": 153}], \\\\\\\"relations\\\\\\\": [{\\\\\\\"head\\\\\\\": \\\\\\\"Recognition of proper nouns\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"morphological analysis\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"PART-OF\\\\\\\", \\\\\\\"head_start\\\\\\\": 0, \\\\\\\"head_end\\\\\\\": 27, \\\\\\\"tail_start\\\\\\\": 103, \\\\\\\"tail_end\\\\\\\": 125}, {\\\\\\\"head\\\\\\\": \\\\\\\"proper nouns\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"Japanese text\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"PART-OF\\\\\\\", \\\\\\\"head_start\\\\\\\": 15, \\\\\\\"head_end\\\\\\\": 27, \\\\\\\"tail_start\\\\\\\": 31, \\\\\\\"tail_end\\\\\\\": 44}, {\\\\\\\"head\\\\\\\": \\\\\\\"morphological analysis\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"Japanese text processing\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"USED-FOR\\\\\\\", \\\\\\\"head_start\\\\\\\": 103, \\\\\\\"head_end\\\\\\\": 125, \\\\\\\"tail_start\\\\\\\": 129, \\\\\\\"tail_end\\\\\\\": 153}], \\\\\\\"events\\\\\\\": []}, \\\\\\\"samples\\\\\\\": [{\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"Recognition of proper nouns\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 0, \\\\\\\"end\\\\\\\": 27}, {\\\\\\\"text\\\\\\\": \\\\\\\"Japanese text\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Material\\\\\\\", \\\\\\\"start\\\\\\\": 31, \\\\\\\"end\\\\\\\": 44}, {\\\\\\\"text\\\\\\\": \\\\\\\"morphological analysis\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 103, \\\\\\\"end\\\\\\\": 125}, {\\\\\\\"text\\\\\\\": \\\\\\\"Japanese text processing\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 129, \\\\\\\"end\\\\\\\": 153}], \\\\\\\"relations\\\\\\\": [{\\\\\\\"head\\\\\\\": \\\\\\\"Recognition of proper nouns\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"morphological analysis\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"PART-OF\\\\\\\", \\\\\\\"head_start\\\\\\\": 0, \\\\\\\"head_end\\\\\\\": 27, \\\\\\\"tail_start\\\\\\\": 103, \\\\\\\"tail_end\\\\\\\": 125}, {\\\\\\\"head\\\\\\\": \\\\\\\"morphological analysis\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"Japanese text processing\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"PART-OF\\\\\\\", \\\\\\\"head_start\\\\\\\": 103, \\\\\\\"head_end\\\\\\\": 125, \\\\\\\"tail_start\\\\\\\": 129, \\\\\\\"tail_end\\\\\\\": 153}], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -5.878218486708363, \\\\\\\"n_tokens\\\\\\\": 245, \\\\\\\"mean_logprob\\\\\\\": -0.02399272851717699}, {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"Recognition of proper nouns\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 0, \\\\\\\"end\\\\\\\": 27}, {\\\\\\\"text\\\\\\\": \\\\\\\"Japanese text\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Material\\\\\\\", \\\\\\\"start\\\\\\\": 31, \\\\\\\"end\\\\\\\": 44}, {\\\\\\\"text\\\\\\\": \\\\\\\"morphological analysis in Japanese text processing\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 103, \\\\\\\"end\\\\\\\": 153}], \\\\\\\"relations\\\\\\\": [{\\\\\\\"head\\\\\\\": \\\\\\\"Recognition of proper nouns\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"morphological analysis in Japanese text processing\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"HYPONYM-OF\\\\\\\", \\\\\\\"head_start\\\\\\\": 0, \\\\\\\"head_end\\\\\\\": 27, \\\\\\\"tail_start\\\\\\\": 103, \\\\\\\"tail_end\\\\\\\": 153}], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -12.800377187189454, \\\\\\\"n_tokens\\\\\\\": 166, \\\\\\\"mean_logprob\\\\\\\": -0.07711070594692443}, {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"Recognition of proper nouns in Japanese text\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 0, \\\\\\\"end\\\\\\\": 44}, {\\\\\\\"text\\\\\\\": \\\\\\\"Japanese text\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Material\\\\\\\", \\\\\\\"start\\\\\\\": 31, \\\\\\\"end\\\\\\\": 44}, {\\\\\\\"text\\\\\\\": \\\\\\\"morphological analysis in Japanese text processing\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 103, \\\\\\\"end\\\\\\\": 153}, {\\\\\\\"text\\\\\\\": \\\\\\\"Japanese text processing\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 129, \\\\\\\"end\\\\\\\": 153}], \\\\\\\"relations\\\\\\\": [{\\\\\\\"head\\\\\\\": \\\\\\\"Recognition of proper nouns in Japanese text\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"morphological analysis in Japanese text processing\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"PART-OF\\\\\\\", \\\\\\\"head_start\\\\\\\": 0, \\\\\\\"head_end\\\\\\\": 44, \\\\\\\"tail_start\\\\\\\": 103, \\\\\\\"tail_end\\\\\\\": 153}, {\\\\\\\"head\\\\\\\": \\\\\\\"Japanese text\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"Recognition of proper nouns in Japanese text\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"USED-FOR\\\\\\\", \\\\\\\"head_start\\\\\\\": 31, \\\\\\\"head_end\\\\\\\": 44, \\\\\\\"tail_start\\\\\\\": 0, \\\\\\\"tail_end\\\\\\\": 44}, {\\\\\\\"head\\\\\\\": \\\\\\\"Japanese text processing\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"morphological analysis in Japanese text processing\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"USED-FOR\\\\\\\", \\\\\\\"head_start\\\\\\\": 129, \\\\\\\"head_end\\\\\\\": 153, \\\\\\\"tail_start\\\\\\\": 103, \\\\\\\"tail_end\\\\\\\": 153}], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -16.07227141605891, \\\\\\\"n_tokens\\\\\\\": 321, \\\\\\\"mean_logprob\\\\\\\": -0.050069381358438976}, {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"Recognition of proper nouns\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 0, \\\\\\\"end\\\\\\\": 27}, {\\\\\\\"text\\\\\\\": \\\\\\\"Japanese text\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Material\\\\\\\", \\\\\\\"start\\\\\\\": 31, \\\\\\\"end\\\\\\\": 44}, {\\\\\\\"text\\\\\\\": \\\\\\\"morphological analysis\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 103, \\\\\\\"end\\\\\\\": 125}, {\\\\\\\"text\\\\\\\": \\\\\\\"Japanese text processing\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 129, \\\\\\\"end\\\\\\\": 153}], \\\\\\\"relations\\\\\\\": [{\\\\\\\"head\\\\\\\": \\\\\\\"Recognition of proper nouns\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"morphological analysi\\\\n\\\\n... [截断: 输出过长，省略 32532 字符] ...\\\\n\\\\named Entity -LRB- NE -RRB- items\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"recognition and classification of proper names , numerical and temporal expressions\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"HYPONYM-OF\\\\\\\", \\\\\\\"head_start\\\\\\\": 158, \\\\\\\"head_end\\\\\\\": 191, \\\\\\\"tail_start\\\\\\\": 67, \\\\\\\"tail_end\\\\\\\": 150}, {\\\\\\\"head\\\\\\\": \\\\\\\"Japanese text\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"Named Entity -LRB- NE -RRB- items\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"FEATURE-OF\\\\\\\", \\\\\\\"head_start\\\\\\\": 199, \\\\\\\"head_end\\\\\\\": 212, \\\\\\\"tail_start\\\\\\\": 158, \\\\\\\"tail_end\\\\\\\": 191}], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -8.038544332256564, \\\\\\\"n_tokens\\\\\\\": 361, \\\\\\\"mean_logprob\\\\\\\": -0.022267435823425382}, \\\\\\\"logprobs\\\\\\\": [-0.024777422581119885, -0.026574600190162126, -0.0552835296648834, -0.028663227137030647, -0.019310986300381295, -0.03527105214744327, -0.048003989564192134, -0.019687420121610816]}\\\\n{\\\\\\\"id\\\\\\\": \\\\\\\"X96-1059_sent004\\\\\\\", \\\\\\\"text\\\\\\\": \\\\\\\"The analyzer is called `` Amorph '' .\\\\\\\", \\\\\\\"gold\\\\\\\": {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"analyzer\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Generic\\\\\\\", \\\\\\\"start\\\\\\\": 4, \\\\\\\"end\\\\\\\": 12}, {\\\\\\\"text\\\\\\\": \\\\\\\"`` Amorph ''\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Method\\\\\\\", \\\\\\\"start\\\\\\\": 23, \\\\\\\"end\\\\\\\": 35}], \\\\\\\"relations\\\\\\\": [], \\\\\\\"events\\\\\\\": []}, \\\\\\\"samples\\\\\\\": [{\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"analyzer\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Generic\\\\\\\", \\\\\\\"start\\\\\\\": 4, \\\\\\\"end\\\\\\\": 12}], \\\\\\\"relations\\\\\\\": [], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -1.383857210267223, \\\\\\\"n_tokens\\\\\\\": 39, \\\\\\\"mean_logprob\\\\\\\": -0.03548351821198008}, {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"analyzer\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Generic\\\\\\\", \\\\\\\"start\\\\\\\": 4, \\\\\\\"end\\\\\\\": 12}, {\\\\\\\"text\\\\\\\": \\\\\\\"Amorph\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Method\\\\\\\", \\\\\\\"start\\\\\\\": 26, \\\\\\\"end\\\\\\\": 32}], \\\\\\\"relations\\\\\\\": [{\\\\\\\"head\\\\\\\": \\\\\\\"Amorph\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"analyzer\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"HYPONYM-OF\\\\\\\", \\\\\\\"head_start\\\\\\\": 26, \\\\\\\"head_end\\\\\\\": 32, \\\\\\\"tail_start\\\\\\\": 4, \\\\\\\"tail_end\\\\\\\": 12}], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -4.052261954744168, \\\\\\\"n_tokens\\\\\\\": 121, \\\\\\\"mean_logprob\\\\\\\": -0.03348976822102618}, {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"analyzer\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Method\\\\\\\", \\\\\\\"start\\\\\\\": 4, \\\\\\\"end\\\\\\\": 12}, {\\\\\\\"text\\\\\\\": \\\\\\\"Amorph\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Method\\\\\\\", \\\\\\\"start\\\\\\\": 26, \\\\\\\"end\\\\\\\": 32}], \\\\\\\"relations\\\\\\\": [{\\\\\\\"head\\\\\\\": \\\\\\\"Amorph\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"analyzer\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"HYPONYM-OF\\\\\\\", \\\\\\\"head_start\\\\\\\": 26, \\\\\\\"head_end\\\\\\\": 32, \\\\\\\"tail_start\\\\\\\": 4, \\\\\\\"tail_end\\\\\\\": 12}], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -2.833725480343233, \\\\\\\"n_tokens\\\\\\\": 121, \\\\\\\"mean_logprob\\\\\\\": -0.023419218845811843}, {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"analyzer\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Method\\\\\\\", \\\\\\\"start\\\\\\\": 4, \\\\\\\"end\\\\\\\": 12}, {\\\\\\\"text\\\\\\\": \\\\\\\"`` Amorph ''\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Method\\\\\\\", \\\\\\\"start\\\\\\\": 23, \\\\\\\"end\\\\\\\": 35}], \\\\\\\"relations\\\\\\\": [{\\\\\\\"head\\\\\\\": \\\\\\\"`` Amorph ''\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"analyzer\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"HYPONYM-OF\\\\\\\", \\\\\\\"head_start\\\\\\\": 23, \\\\\\\"head_end\\\\\\\": 35, \\\\\\\"tail_start\\\\\\\": 4, \\\\\\\"tail_end\\\\\\\": 12}], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -4.03967001857896, \\\\\\\"n_tokens\\\\\\\": 125, \\\\\\\"mean_logprob\\\\\\\": -0.03231736014863168}, {\\\\\\\"entities\\\\\\\": [], \\\\\\\"relations\\\\\\\": [], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -4.511052846905159, \\\\\\\"n_tokens\\\\\\\": 14, \\\\\\\"mean_logprob\\\\\\\": -0.3222180604932256}, {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"analyzer\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Generic\\\\\\\", \\\\\\\"start\\\\\\\": 4, \\\\\\\"end\\\\\\\": 12}, {\\\\\\\"text\\\\\\\": \\\\\\\"Amorph\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Method\\\\\\\", \\\\\\\"start\\\\\\\": 26, \\\\\\\"end\\\\\\\": 32}], \\\\\\\"relations\\\\\\\": [], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -4.522765335154382, \\\\\\\"n_tokens\\\\\\\": 66, \\\\\\\"mean_logprob\\\\\\\": -0.06852674750233913}, {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"analyzer\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Generic\\\\\\\", \\\\\\\"start\\\\\\\": 4, \\\\\\\"end\\\\\\\": 12}, {\\\\\\\"text\\\\\\\": \\\\\\\"Amorph\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Method\\\\\\\", \\\\\\\"start\\\\\\\": 26, \\\\\\\"end\\\\\\\": 32}], \\\\\\\"relations\\\\\\\": [{\\\\\\\"head\\\\\\\": \\\\\\\"Amorph\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"analyzer\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"HYPONYM-OF\\\\\\\", \\\\\\\"head_start\\\\\\\": 26, \\\\\\\"head_end\\\\\\\": 32, \\\\\\\"tail_start\\\\\\\": 4, \\\\\\\"tail_end\\\\\\\": 12}], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -2.0602371407849915, \\\\\\\"n_tokens\\\\\\\": 121, \\\\\\\"mean_logprob\\\\\\\": -0.01702675322962803}, {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"analyzer\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Method\\\\\\\", \\\\\\\"start\\\\\\\": 4, \\\\\\\"end\\\\\\\": 12}], \\\\\\\"relations\\\\\\\": [], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -2.2967071373061287, \\\\\\\"n_tokens\\\\\\\": 39, \\\\\\\"mean_logprob\\\\\\\": -0.05888992659759305}], \\\\\\\"greedy\\\\\\\": {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"analyzer\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Generic\\\\\\\", \\\\\\\"start\\\\\\\": 4, \\\\\\\"end\\\\\\\": 12}, {\\\\\\\"text\\\\\\\": \\\\\\\"Amorph\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Method\\\\\\\", \\\\\\\"start\\\\\\\": 26, \\\\\\\"end\\\\\\\": 32}], \\\\\\\"relations\\\\\\\": [{\\\\\\\"head\\\\\\\": \\\\\\\"Amorph\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"analyzer\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"HYPONYM-OF\\\\\\\", \\\\\\\"head_start\\\\\\\": 26, \\\\\\\"head_end\\\\\\\": 32, \\\\\\\"tail_start\\\\\\\": 4, \\\\\\\"tail_end\\\\\\\": 12}], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -2.0194471543091623, \\\\\\\"n_tokens\\\\\\\": 121, \\\\\\\"mean_logprob\\\\\\\": -0.016689645903381508}, \\\\\\\"logprobs\\\\\\\": [-0.03548351821198008, -0.03348976822102618, -0.023419218845811843, -0.03231736014863168, -0.3222180604932256, -0.06852674750233913, -0.01702675322962803, -0.05888992659759305]}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.14}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\\"id\\\": \\\"X96-1059_sent000\\\", \\\"text\\\": \\\"Recognition of proper nouns in Japanese text has been studied as a part of the more general problem of morphological analysis in Japanese text processing -LRB- -LSB- 1 -RSB- -LSB- 2 -RSB- -RRB- .\\\", \\\"gold\\\": {\\\"entities\\\": [{\\\"text\\\": \\\"Recognition of proper nouns\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 0, \\\"end\\\": 27}, {\\\"text\\\": \\\"proper nouns\\\", \\\"type\\\": \\\"OtherScientificTerm\\\", \\\"start\\\": 15, \\\"end\\\": 27}, {\\\"text\\\": \\\"Japanese text\\\", \\\"type\\\": \\\"Material\\\", \\\"start\\\": 31, \\\"end\\\": 44}, {\\\"text\\\": \\\"morphological analysis\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 103, \\\"end\\\": 125}, {\\\"text\\\": \\\"Japanese text processing\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 129, \\\"end\\\": 153}], \\\"relations\\\": [{\\\"head\\\": \\\"Recognition of proper nouns\\\", \\\"tail\\\": \\\"morphological analysis\\\", \\\"type\\\": \\\"PART-OF\\\", \\\"head_start\\\": 0, \\\"head_end\\\": 27, \\\"tail_start\\\": 103, \\\"tail_end\\\": 125}, {\\\"head\\\": \\\"proper nouns\\\", \\\"tail\\\": \\\"Japanese text\\\", \\\"type\\\": \\\"PART-OF\\\", \\\"head_start\\\": 15, \\\"head_end\\\": 27, \\\"tail_start\\\": 31, \\\"tail_end\\\": 44}, {\\\"head\\\": \\\"morphological analysis\\\", \\\"tail\\\": \\\"Japanese text processing\\\", \\\"type\\\": \\\"USED-FOR\\\", \\\"head_start\\\": 103, \\\"head_end\\\": 125, \\\"tail_start\\\": 129, \\\"tail_end\\\": 153}], \\\"events\\\": []}, \\\"samples\\\": [{\\\"entities\\\": [{\\\"text\\\": \\\"Recognition of proper nouns\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 0, \\\"end\\\": 27}, {\\\"text\\\": \\\"Japanese text\\\", \\\"type\\\": \\\"Material\\\", \\\"start\\\": 31, \\\"end\\\": 44}, {\\\"text\\\": \\\"morphological analysis\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 103, \\\"end\\\": 125}, {\\\"text\\\": \\\"Japanese text processing\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 129, \\\"end\\\": 153}], \\\"relations\\\": [{\\\"head\\\": \\\"Recognition of proper nouns\\\", \\\"tail\\\": \\\"morphological analysis\\\", \\\"type\\\": \\\"PART-OF\\\", \\\"head_start\\\": 0, \\\"head_end\\\": 27, \\\"tail_start\\\": 103, \\\"tail_end\\\": 125}, {\\\"head\\\": \\\"morphological analysis\\\", \\\"tail\\\": \\\"Japanese text processing\\\", \\\"type\\\": \\\"PART-OF\\\", \\\"head_start\\\": 103, \\\"head_end\\\": 125, \\\"tail_start\\\": 129, \\\"tail_end\\\": 153}], \\\"events\\\": [], \\\"cumulative_logprob\\\": -5.878218486708363, \\\"n_tokens\\\": 245, \\\"mean_logprob\\\": -0.02399272851717699}, {\\\"entities\\\": [{\\\"text\\\": \\\"Recognition of proper nouns\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 0, \\\"end\\\": 27}, {\\\"text\\\": \\\"Japanese text\\\", \\\"type\\\": \\\"Material\\\", \\\"start\\\": 31, \\\"end\\\": 44}, {\\\"text\\\": \\\"morphological analysis in Japanese text processing\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 103, \\\"end\\\": 153}], \\\"relations\\\": [{\\\"head\\\": \\\"Recognition of proper nouns\\\", \\\"tail\\\": \\\"morphological analysis in Japanese text processing\\\", \\\"type\\\": \\\"HYPONYM-OF\\\", \\\"head_start\\\": 0, \\\"head_end\\\": 27, \\\"tail_start\\\": 103, \\\"tail_end\\\": 153}], \\\"events\\\": [], \\\"cumulative_logprob\\\": -12.800377187189454, \\\"n_tokens\\\": 166, \\\"mean_logprob\\\": -0.07711070594692443}, {\\\"entities\\\": [{\\\"text\\\": \\\"Recognition of proper nouns in Japanese text\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 0, \\\"end\\\": 44}, {\\\"text\\\": \\\"Japanese text\\\", \\\"type\\\": \\\"Material\\\", \\\"start\\\": 31, \\\"end\\\": 44}, {\\\"text\\\": \\\"morphological analysis in Japanese text processing\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 103, \\\"end\\\": 153}, {\\\"text\\\": \\\"Japanese text processing\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 129, \\\"end\\\": 153}], \\\"relations\\\": [{\\\"head\\\": \\\"Recognition of proper nouns in Japanese text\\\", \\\"tail\\\": \\\"morphological analysis in Japanese text processing\\\", \\\"type\\\": \\\"PART-OF\\\", \\\"head_start\\\": 0, \\\"head_end\\\": 44, \\\"tail_start\\\": 103, \\\"tail_end\\\": 153}, {\\\"head\\\": \\\"Japanese text\\\", \\\"tail\\\": \\\"Recognition of proper nouns in Japanese text\\\", \\\"type\\\": \\\"USED-FOR\\\", \\\"head_start\\\": 31, \\\"head_end\\\": 44, \\\"tail_start\\\": 0, \\\"tail_end\\\": 44}, {\\\"head\\\": \\\"Japanese text processing\\\", \\\"tail\\\": \\\"morphological analysis in Japanese text processing\\\", \\\"type\\\": \\\"USED-FOR\\\", \\\"head_start\\\": 129, \\\"head_end\\\": 153, \\\"tail_start\\\": 103, \\\"tail_end\\\": 153}], \\\"events\\\": [], \\\"cumulative_logprob\\\": -16.07227141605891, \\\"n_tokens\\\": 321, \\\"mean_logprob\\\": -0.050069381358438976}, {\\\"entities\\\": [{\\\"text\\\": \\\"Recognition of proper nouns\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 0, \\\"end\\\": 27}, {\\\"text\\\": \\\"Japanese text\\\", \\\"type\\\": \\\"Material\\\", \\\"start\\\": 31, \\\"end\\\": 44}, {\\\"text\\\": \\\"morphological analysis\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 103, \\\"end\\\": 125}, {\\\"text\\\": \\\"Japanese text processing\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 129, \\\"end\\\": 153}], \\\"relations\\\": [{\\\"head\\\": \\\"Recognition of proper nouns\\\", \\\"tail\\\": \\\"morphological analysi\\n\\n... [截断: 输出过长，省略 32532 字符] ...\\n\\named Entity -LRB- NE -RRB- items\\\", \\\"tail\\\": \\\"recognition and classification of proper names , numerical and temporal expressions\\\", \\\"type\\\": \\\"HYPONYM-OF\\\", \\\"head_start\\\": 158, \\\"head_end\\\": 191, \\\"tail_start\\\": 67, \\\"tail_end\\\": 150}, {\\\"head\\\": \\\"Japanese text\\\", \\\"tail\\\": \\\"Named Entity -LRB- NE -RRB- items\\\", \\\"type\\\": \\\"FEATURE-OF\\\", \\\"head_start\\\": 199, \\\"head_end\\\": 212, \\\"tail_start\\\": 158, \\\"tail_end\\\": 191}], \\\"events\\\": [], \\\"cumulative_logprob\\\": -8.038544332256564, \\\"n_tokens\\\": 361, \\\"mean_logprob\\\": -0.022267435823425382}, \\\"logprobs\\\": [-0.024777422581119885, -0.026574600190162126, -0.0552835296648834, -0.028663227137030647, -0.019310986300381295, -0.03527105214744327, -0.048003989564192134, -0.019687420121610816]}\\n{\\\"id\\\": \\\"X96-1059_sent004\\\", \\\"text\\\": \\\"The analyzer is called `` Amorph '' .\\\", \\\"gold\\\": {\\\"entities\\\": [{\\\"text\\\": \\\"analyzer\\\", \\\"type\\\": \\\"Generic\\\", \\\"start\\\": 4, \\\"end\\\": 12}, {\\\"text\\\": \\\"`` Amorph ''\\\", \\\"type\\\": \\\"Method\\\", \\\"start\\\": 23, \\\"end\\\": 35}], \\\"relations\\\": [], \\\"events\\\": []}, \\\"samples\\\": [{\\\"entities\\\": [{\\\"text\\\": \\\"analyzer\\\", \\\"type\\\": \\\"Generic\\\", \\\"start\\\": 4, \\\"end\\\": 12}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -1.383857210267223, \\\"n_tokens\\\": 39, \\\"mean_logprob\\\": -0.03548351821198008}, {\\\"entities\\\": [{\\\"text\\\": \\\"analyzer\\\", \\\"type\\\": \\\"Generic\\\", \\\"start\\\": 4, \\\"end\\\": 12}, {\\\"text\\\": \\\"Amorph\\\", \\\"type\\\": \\\"Method\\\", \\\"start\\\": 26, \\\"end\\\": 32}], \\\"relations\\\": [{\\\"head\\\": \\\"Amorph\\\", \\\"tail\\\": \\\"analyzer\\\", \\\"type\\\": \\\"HYPONYM-OF\\\", \\\"head_start\\\": 26, \\\"head_end\\\": 32, \\\"tail_start\\\": 4, \\\"tail_end\\\": 12}], \\\"events\\\": [], \\\"cumulative_logprob\\\": -4.052261954744168, \\\"n_tokens\\\": 121, \\\"mean_logprob\\\": -0.03348976822102618}, {\\\"entities\\\": [{\\\"text\\\": \\\"analyzer\\\", \\\"type\\\": \\\"Method\\\", \\\"start\\\": 4, \\\"end\\\": 12}, {\\\"text\\\": \\\"Amorph\\\", \\\"type\\\": \\\"Method\\\", \\\"start\\\": 26, \\\"end\\\": 32}], \\\"relations\\\": [{\\\"head\\\": \\\"Amorph\\\", \\\"tail\\\": \\\"analyzer\\\", \\\"type\\\": \\\"HYPONYM-OF\\\", \\\"head_start\\\": 26, \\\"head_end\\\": 32, \\\"tail_start\\\": 4, \\\"tail_end\\\": 12}], \\\"events\\\": [], \\\"cumulative_logprob\\\": -2.833725480343233, \\\"n_tokens\\\": 121, \\\"mean_logprob\\\": -0.023419218845811843}, {\\\"entities\\\": [{\\\"text\\\": \\\"analyzer\\\", \\\"type\\\": \\\"Method\\\", \\\"start\\\": 4, \\\"end\\\": 12}, {\\\"text\\\": \\\"`` Amorph ''\\\", \\\"type\\\": \\\"Method\\\", \\\"start\\\": 23, \\\"end\\\": 35}], \\\"relations\\\": [{\\\"head\\\": \\\"`` Amorph ''\\\", \\\"tail\\\": \\\"analyzer\\\", \\\"type\\\": \\\"HYPONYM-OF\\\", \\\"head_start\\\": 23, \\\"head_end\\\": 35, \\\"tail_start\\\": 4, \\\"tail_end\\\": 12}], \\\"events\\\": [], \\\"cumulative_logprob\\\": -4.03967001857896, \\\"n_tokens\\\": 125, \\\"mean_logprob\\\": -0.03231736014863168}, {\\\"entities\\\": [], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -4.511052846905159, \\\"n_tokens\\\": 14, \\\"mean_logprob\\\": -0.3222180604932256}, {\\\"entities\\\": [{\\\"text\\\": \\\"analyzer\\\", \\\"type\\\": \\\"Generic\\\", \\\"start\\\": 4, \\\"end\\\": 12}, {\\\"text\\\": \\\"Amorph\\\", \\\"type\\\": \\\"Method\\\", \\\"start\\\": 26, \\\"end\\\": 32}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -4.522765335154382, \\\"n_tokens\\\": 66, \\\"mean_logprob\\\": -0.06852674750233913}, {\\\"entities\\\": [{\\\"text\\\": \\\"analyzer\\\", \\\"type\\\": \\\"Generic\\\", \\\"start\\\": 4, \\\"end\\\": 12}, {\\\"text\\\": \\\"Amorph\\\", \\\"type\\\": \\\"Method\\\", \\\"start\\\": 26, \\\"end\\\": 32}], \\\"relations\\\": [{\\\"head\\\": \\\"Amorph\\\", \\\"tail\\\": \\\"analyzer\\\", \\\"type\\\": \\\"HYPONYM-OF\\\", \\\"head_start\\\": 26, \\\"head_end\\\": 32, \\\"tail_start\\\": 4, \\\"tail_end\\\": 12}], \\\"events\\\": [], \\\"cumulative_logprob\\\": -2.0602371407849915, \\\"n_tokens\\\": 121, \\\"mean_logprob\\\": -0.01702675322962803}, {\\\"entities\\\": [{\\\"text\\\": \\\"analyzer\\\", \\\"type\\\": \\\"Method\\\", \\\"start\\\": 4, \\\"end\\\": 12}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -2.2967071373061287, \\\"n_tokens\\\": 39, \\\"mean_logprob\\\": -0.05888992659759305}], \\\"greedy\\\": {\\\"entities\\\": [{\\\"text\\\": \\\"analyzer\\\", \\\"type\\\": \\\"Generic\\\", \\\"start\\\": 4, \\\"end\\\": 12}, {\\\"text\\\": \\\"Amorph\\\", \\\"type\\\": \\\"Method\\\", \\\"start\\\": 26, \\\"end\\\": 32}], \\\"relations\\\": [{\\\"head\\\": \\\"Amorph\\\", \\\"tail\\\": \\\"analyzer\\\", \\\"type\\\": \\\"HYPONYM-OF\\\", \\\"head_start\\\": 26, \\\"head_end\\\": 32, \\\"tail_start\\\": 4, \\\"tail_end\\\": 12}], \\\"events\\\": [], \\\"cumulative_logprob\\\": -2.0194471543091623, \\\"n_tokens\\\": 121, \\\"mean_logprob\\\": -0.016689645903381508}, \\\"logprobs\\\": [-0.03548351821198008, -0.03348976822102618, -0.023419218845811843, -0.03231736014863168, -0.3222180604932256, -0.06852674750233913, -0.01702675322962803, -0.05888992659759305]}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.14}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01TB1FdYwxT7MB3VatdKdthm`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/code/evaluation.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f3cc20fa-26de-4ab1-a5ab-60647c654156",
+  "uuid": "98fb3234-f1c9-4ad3-9da7-600dfa7cac92",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017yFXccKFXm4FNyFRyuhiPL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 901,
+      "cache_read_input_tokens": 23767,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 901
+      },
+      "output_tokens": 27,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-15T03:08:28.541Z_
+
+<details><summary>↩ Tool result · `toolu_01WfZyw4iAt4zuHVuhNzdiRQ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Consistency metrics for structured information extraction with self-consistency.\\n\\nImplements three complementary consistency measures over N sampled extractions:\\n1. Fleiss' Kappa (surface matching) — treats N samples as N raters on entity presence\\n2. Structural soft Jaccard — span-level soft overlap with Hungarian matching\\n3. Oracle best-of-N — upper-bound F1 by selecting the best sample per instance\\n\\nKey dependencies: numpy, scipy (linear_sum_assignment).\\n\\\"\\\"\\\"\\n\\nfrom __future__ import annotations\\n\\nfrom itertools import combinations\\nfrom typing import TYPE_CHECKING\\n\\nimport numpy as np\\nfrom scipy.optimize import linear_sum_assignment\\n\\nif TYPE_CHECKING:\\n    pass\\n\\n# ---------------------------------------------------------------------------\\n# Type aliases (mirrors shared data format)\\n# ---------------------------------------------------------------------------\\nEntity = dict       # {\\\"text\\\", \\\"type\\\", \\\"start\\\", \\\"end\\\"}\\nRelation = dict     # {\\\"head\\\", \\\"tail\\\", \\\"type\\\", ...}\\nEvent = dict        # {\\\"trigger\\\": {...}, \\\"arguments\\\": [...]}\\nExtraction = dict   # {\\\"entities\\\", \\\"relations\\\", \\\"events\\\"}\\n\\n\\n# ===================================================================\\n# 1. Fleiss' Kappa — surface-level entity agreement\\n# ===================================================================\\n\\ndef _extract_surface_keys(sample: Extraction, subtask: str) -> set[tuple]:\\n    \\\"\\\"\\\"Extract surface-level keys from a sample for Fleiss' Kappa computation.\\\"\\\"\\\"\\n    if subtask == \\\"ner\\\":\\n        return {(e[\\\"text\\\"], e[\\\"type\\\"]) for e in sample.get(\\\"entities\\\", [])}\\n    elif subtask == \\\"re\\\":\\n        return {(r[\\\"head\\\"], r[\\\"tail\\\"], r[\\\"type\\\"]) for r in sample.get(\\\"relations\\\", [])}\\n    elif subtask == \\\"eae\\\":\\n        keys: set[tuple] = set()\\n        for ev in sample.get(\\\"events\\\", []):\\n            t = ev.get(\\\"trigger\\\", {})\\n            for arg in ev.get(\\\"arguments\\\", []):\\n                keys.add((t.get(\\\"text\\\", \\\"\\\"), t.get(\\\"type\\\", \\\"\\\"), arg[\\\"role\\\"], arg[\\\"text\\\"]))\\n        return keys\\n    else:\\n        raise ValueError(f\\\"Unknown subtask: {subtask}\\\")\\n\\n\\ndef fleiss_kappa_surface(samples: list[Extraction], subtask: str = \\\"ner\\\") -> float:\\n    \\\"\\\"\\\"Compute Fleiss' kappa treating N LLM samples as N raters on item presence.\\n\\n    Items are subtask-dependent surface keys:\\n    - ner: (entity_text, entity_type)\\n    - re: (head_text, tail_text, relation_type)\\n    - eae: (trigger_text, trigger_type, role, argument_text)\\n\\n    Args:\\n        samples: List of N extraction dicts.\\n        subtask: \\\"ner\\\", \\\"re\\\", or \\\"eae\\\".\\n\\n    Returns:\\n        Fleiss' kappa in [-1, 1].  Returns 1.0 for degenerate cases (<=1 unique\\n        item, perfect agreement, or undefined P_e).\\n    \\\"\\\"\\\"\\n    n_raters = len(samples)\\n    if n_raters <= 1:\\n        return 1.0\\n\\n    # Collect unique keys and per-sample presence sets\\n    entity_sets: list[set[tuple]] = []\\n    all_keys: set[tuple] = set()\\n    for sample in samples:\\n        keys = _extract_surface_keys(sample, subtask)\\n        entity_sets.append(keys)\\n        all_keys |= keys\\n\\n    n_subjects = len(all_keys)\\n    if n_subjects <= 0:\\n        # All samples extracted nothing — perfect agreement on empty set\\n        return 1.0\\n\\n    key_list = sorted(all_keys)\\n\\n    # Build rating matrix: n_subjects x 2 (categories: absent=0, present=1)\\n    # n_ij = number of raters assigning subject i to category j\\n    rating = np.zeros((n_subjects, 2), dtype=np.int64)\\n    for es in entity_sets:\\n        for idx, key in enumerate(key_list):\\n            if key in es:\\n                rating[idx, 1] += 1\\n            else:\\n                rating[idx, 0] += 1\\n\\n    n = n_raters\\n    k = 2  # number of categories\\n\\n    # Check perfect agreement: every subject has all votes in one category\\n    if np.all(np.max(rating, axis=1) == n):\\n        return 1.0\\n\\n    # P_i for each subject\\n    P_i = (np.sum(rating ** 2, axis=1) - n) / (n * (n - 1))\\n    P_bar = np.mean(P_i)\\n\\n    # P_e — expected agreement by chance\\n    p_j = np.sum(rating, axis=0) / (n_subjects * n)\\n    P_e = np.sum(p_j ** 2)\\n\\n    if abs(1.0 - P_e) < 1e-12:\\n\\n... [截断: 输出过长，省略 5252 字符] ...\\n\\nn enumerate(ga):\\n            for j, ab in enumerate(gb):\\n                cost[i, j] = _span_soft_jaccard(aa[\\\"start\\\"], aa[\\\"end\\\"],\\n                                                 ab[\\\"start\\\"], ab[\\\"end\\\"])\\n\\n        row_ind, col_ind = linear_sum_assignment(-cost)\\n        matched_sim = cost[row_ind, col_ind].sum()\\n        total_score += matched_sim\\n\\n    if total_weight == 0:\\n        return 1.0\\n    return total_score / total_weight\\n\\n\\ndef structural_consistency_soft_jaccard(\\n    samples: list[Extraction],\\n    subtask: str = \\\"ner\\\",\\n) -> float:\\n    \\\"\\\"\\\"Span-level soft Jaccard consistency averaged over all sample pairs.\\n\\n    For each pair (i, j) with i < j, computes a type-aware soft Jaccard using\\n    Hungarian matching on span overlaps, then returns the mean.\\n\\n    Args:\\n        samples: N extraction dicts.\\n        subtask: \\\"ner\\\" for entity consistency, \\\"eae\\\" for event-argument consistency.\\n\\n    Returns:\\n        Mean pairwise soft Jaccard in [0, 1].\\n    \\\"\\\"\\\"\\n    n = len(samples)\\n    if n <= 1:\\n        return 1.0\\n\\n    if subtask == \\\"ner\\\":\\n        pair_fn = _ner_soft_jaccard_pair\\n    elif subtask == \\\"re\\\":\\n        pair_fn = _re_soft_jaccard_pair\\n    else:\\n        pair_fn = _eae_soft_jaccard_pair\\n\\n    field = {\\\"ner\\\": \\\"entities\\\", \\\"re\\\": \\\"relations\\\", \\\"eae\\\": \\\"events\\\"}[subtask]\\n\\n    scores: list[float] = []\\n    for i, j in combinations(range(n), 2):\\n        score = pair_fn(\\n            samples[i].get(field, []),\\n            samples[j].get(field, []),\\n        )\\n        scores.append(score)\\n\\n    return float(np.mean(scores))\\n\\n\\n# ===================================================================\\n# 3. Oracle best-of-N\\n# ===================================================================\\n\\ndef oracle_best_of_n(\\n    samples: list[Extraction],\\n    gold: Extraction,\\n    subtask: str = \\\"ner\\\",\\n) -> tuple[int, float]:\\n    \\\"\\\"\\\"Select the sample with the highest F1 against the gold extraction.\\n\\n    Args:\\n        samples: N extraction dicts.\\n        gold: Gold-standard extraction.\\n        subtask: Passed through to per_instance_f1.\\n\\n    Returns:\\n        (best_index, best_f1). Returns (-1, 0.0) if samples is empty.\\n    \\\"\\\"\\\"\\n    if not samples:\\n        return (-1, 0.0)\\n\\n    # Lazy import to avoid circular dependency with evaluation.py\\n    from evaluation import per_instance_f1\\n\\n    best_idx = -1\\n    best_f1 = -1.0\\n\\n    for idx, sample in enumerate(samples):\\n        f1 = per_instance_f1(sample, gold, subtask=subtask)\\n        if f1 > best_f1:\\n            best_f1 = f1\\n            best_idx = idx\\n\\n    return (best_idx, best_f1)\\n\\n\\n# ===================================================================\\n# Aggregate helper\\n# ===================================================================\\n\\ndef compute_all_consistency_scores(\\n    sampled_instances: list[dict],\\n    subtask: str = \\\"ner\\\",\\n) -> dict:\\n    \\\"\\\"\\\"Compute all consistency metrics for a list of sampled instances.\\n\\n    Args:\\n        sampled_instances: List of SampledInstance dicts, each with keys\\n            \\\"id\\\", \\\"text\\\", \\\"gold\\\" (Extraction), \\\"samples\\\" (list[Extraction]).\\n        subtask: \\\"ner\\\", \\\"re\\\", or \\\"eae\\\".\\n\\n    Returns:\\n        Dict with per-instance score lists::\\n\\n            {\\n                \\\"fleiss_kappa\\\": [float, ...],\\n                \\\"soft_jaccard\\\": [float, ...],\\n                \\\"oracle_f1\\\":    [float, ...],\\n                \\\"oracle_indices\\\": [int, ...],\\n            }\\n    \\\"\\\"\\\"\\n    result: dict[str, list] = {\\n        \\\"fleiss_kappa\\\": [],\\n        \\\"soft_jaccard\\\": [],\\n        \\\"oracle_f1\\\": [],\\n        \\\"oracle_indices\\\": [],\\n    }\\n\\n    for inst in sampled_instances:\\n        samples = inst[\\\"samples\\\"]\\n        gold = inst[\\\"gold\\\"]\\n\\n        result[\\\"fleiss_kappa\\\"].append(fleiss_kappa_surface(samples, subtask=subtask))\\n        result[\\\"soft_jaccard\\\"].append(\\n            structural_consistency_soft_jaccard(samples, subtask=subtask)\\n        )\\n\\n        best_idx, best_f1 = oracle_best_of_n(samples, gold, subtask=subtask)\\n        result[\\\"oracle_f1\\\"].append(best_f1)\\n        result[\\\"oracle_indices\\\"].append(best_idx)\\n\\n    return result\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f3cc20fa-26de-4ab1-a5ab-60647c654156",
+  "uuid": "e49987a5-45b0-49f8-bd56-2167d5924035",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Consistency metrics for structured information extraction with self-consistency.\\\\n\\\\nImplements three complementary consistency measures over N sampled extractions:\\\\n1. Fleiss' Kappa (surface matching) — treats N samples as N raters on entity presence\\\\n2. Structural soft Jaccard — span-level soft overlap with Hungarian matching\\\\n3. Oracle best-of-N — upper-bound F1 by selecting the best sample per instance\\\\n\\\\nKey dependencies: numpy, scipy (linear_sum_assignment).\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nfrom __future__ import annotations\\\\n\\\\nfrom itertools import combinations\\\\nfrom typing import TYPE_CHECKING\\\\n\\\\nimport numpy as np\\\\nfrom scipy.optimize import linear_sum_assignment\\\\n\\\\nif TYPE_CHECKING:\\\\n    pass\\\\n\\\\n# ---------------------------------------------------------------------------\\\\n# Type aliases (mirrors shared data format)\\\\n# ---------------------------------------------------------------------------\\\\nEntity = dict       # {\\\\\\\"text\\\\\\\", \\\\\\\"type\\\\\\\", \\\\\\\"start\\\\\\\", \\\\\\\"end\\\\\\\"}\\\\nRelation = dict     # {\\\\\\\"head\\\\\\\", \\\\\\\"tail\\\\\\\", \\\\\\\"type\\\\\\\", ...}\\\\nEvent = dict        # {\\\\\\\"trigger\\\\\\\": {...}, \\\\\\\"arguments\\\\\\\": [...]}\\\\nExtraction = dict   # {\\\\\\\"entities\\\\\\\", \\\\\\\"relations\\\\\\\", \\\\\\\"events\\\\\\\"}\\\\n\\\\n\\\\n# ===================================================================\\\\n# 1. Fleiss' Kappa — surface-level entity agreement\\\\n# ===================================================================\\\\n\\\\ndef _extract_surface_keys(sample: Extraction, subtask: str) -> set[tuple]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Extract surface-level keys from a sample for Fleiss' Kappa computation.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    if subtask == \\\\\\\"ner\\\\\\\":\\\\n        return {(e[\\\\\\\"text\\\\\\\"], e[\\\\\\\"type\\\\\\\"]) for e in sample.get(\\\\\\\"entities\\\\\\\", [])}\\\\n    elif subtask == \\\\\\\"re\\\\\\\":\\\\n        return {(r[\\\\\\\"head\\\\\\\"], r[\\\\\\\"tail\\\\\\\"], r[\\\\\\\"type\\\\\\\"]) for r in sample.get(\\\\\\\"relations\\\\\\\", [])}\\\\n    elif subtask == \\\\\\\"eae\\\\\\\":\\\\n        keys: set[tuple] = set()\\\\n        for ev in sample.get(\\\\\\\"events\\\\\\\", []):\\\\n            t = ev.get(\\\\\\\"trigger\\\\\\\", {})\\\\n            for arg in ev.get(\\\\\\\"arguments\\\\\\\", []):\\\\n                keys.add((t.get(\\\\\\\"text\\\\\\\", \\\\\\\"\\\\\\\"), t.get(\\\\\\\"type\\\\\\\", \\\\\\\"\\\\\\\"), arg[\\\\\\\"role\\\\\\\"], arg[\\\\\\\"text\\\\\\\"]))\\\\n        return keys\\\\n    else:\\\\n        raise ValueError(f\\\\\\\"Unknown subtask: {subtask}\\\\\\\")\\\\n\\\\n\\\\ndef fleiss_kappa_surface(samples: list[Extraction], subtask: str = \\\\\\\"ner\\\\\\\") -> float:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Compute Fleiss' kappa treating N LLM samples as N raters on item presence.\\\\n\\\\n    Items are subtask-dependent surface keys:\\\\n    - ner: (entity_text, entity_type)\\\\n    - re: (head_text, tail_text, relation_type)\\\\n    - eae: (trigger_text, trigger_type, role, argument_text)\\\\n\\\\n    Args:\\\\n        samples: List of N extraction dicts.\\\\n        subtask: \\\\\\\"ner\\\\\\\", \\\\\\\"re\\\\\\\", or \\\\\\\"eae\\\\\\\".\\\\n\\\\n    Returns:\\\\n        Fleiss' kappa in [-1, 1].  Returns 1.0 for degenerate cases (<=1 unique\\\\n        item, perfect agreement, or undefined P_e).\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    n_raters = len(samples)\\\\n    if n_raters <= 1:\\\\n        return 1.0\\\\n\\\\n    # Collect unique keys and per-sample presence sets\\\\n    entity_sets: list[set[tuple]] = []\\\\n    all_keys: set[tuple] = set()\\\\n    for sample in samples:\\\\n        keys = _extract_surface_keys(sample, subtask)\\\\n        entity_sets.append(keys)\\\\n        all_keys |= keys\\\\n\\\\n    n_subjects = len(all_keys)\\\\n    if n_subjects <= 0:\\\\n        # All samples extracted nothing — perfect agreement on empty set\\\\n        return 1.0\\\\n\\\\n    key_list = sorted(all_keys)\\\\n\\\\n    # Build rating matrix: n_subjects x 2 (categories: absent=0, present=1)\\\\n    # n_ij = number of raters assigning subject i to category j\\\\n    rating = np.zeros((n_subjects, 2), dtype=np.int64)\\\\n    for es in entity_sets:\\\\n        for idx, key in enumerate(key_list):\\\\n            if key in es:\\\\n                rating[idx, 1] += 1\\\\n            else:\\\\n                rating[idx, 0] += 1\\\\n\\\\n    n = n_raters\\\\n    k = 2  # number of categories\\\\n\\\\n    # Check perfect agreement: every subject has all votes in one category\\\\n    if np.all(np.max(rating, axis=1) == n):\\\\n        return 1.0\\\\n\\\\n    # P_i for each subject\\\\n    P_i = (np.sum(rating ** 2, axis=1) - n) / (n * (n - 1))\\\\n    P_bar = np.mean(P_i)\\\\n\\\\n    # P_e — expected agreement by chance\\\\n    p_j = np.sum(rating, axis=0) / (n_subjects * n)\\\\n    P_e = np.sum(p_j ** 2)\\\\n\\\\n    if abs(1.0 - P_e) < 1e-12:\\\\n\\\\n... [截断: 输出过长，省略 5252 字符] ...\\\\n\\\\nn enumerate(ga):\\\\n            for j, ab in enumerate(gb):\\\\n                cost[i, j] = _span_soft_jaccard(aa[\\\\\\\"start\\\\\\\"], aa[\\\\\\\"end\\\\\\\"],\\\\n                                                 ab[\\\\\\\"start\\\\\\\"], ab[\\\\\\\"end\\\\\\\"])\\\\n\\\\n        row_ind, col_ind = linear_sum_assignment(-cost)\\\\n        matched_sim = cost[row_ind, col_ind].sum()\\\\n        total_score += matched_sim\\\\n\\\\n    if total_weight == 0:\\\\n        return 1.0\\\\n    return total_score / total_weight\\\\n\\\\n\\\\ndef structural_consistency_soft_jaccard(\\\\n    samples: list[Extraction],\\\\n    subtask: str = \\\\\\\"ner\\\\\\\",\\\\n) -> float:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Span-level soft Jaccard consistency averaged over all sample pairs.\\\\n\\\\n    For each pair (i, j) with i < j, computes a type-aware soft Jaccard using\\\\n    Hungarian matching on span overlaps, then returns the mean.\\\\n\\\\n    Args:\\\\n        samples: N extraction dicts.\\\\n        subtask: \\\\\\\"ner\\\\\\\" for entity consistency, \\\\\\\"eae\\\\\\\" for event-argument consistency.\\\\n\\\\n    Returns:\\\\n        Mean pairwise soft Jaccard in [0, 1].\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    n = len(samples)\\\\n    if n <= 1:\\\\n        return 1.0\\\\n\\\\n    if subtask == \\\\\\\"ner\\\\\\\":\\\\n        pair_fn = _ner_soft_jaccard_pair\\\\n    elif subtask == \\\\\\\"re\\\\\\\":\\\\n        pair_fn = _re_soft_jaccard_pair\\\\n    else:\\\\n        pair_fn = _eae_soft_jaccard_pair\\\\n\\\\n    field = {\\\\\\\"ner\\\\\\\": \\\\\\\"entities\\\\\\\", \\\\\\\"re\\\\\\\": \\\\\\\"relations\\\\\\\", \\\\\\\"eae\\\\\\\": \\\\\\\"events\\\\\\\"}[subtask]\\\\n\\\\n    scores: list[float] = []\\\\n    for i, j in combinations(range(n), 2):\\\\n        score = pair_fn(\\\\n            samples[i].get(field, []),\\\\n            samples[j].get(field, []),\\\\n        )\\\\n        scores.append(score)\\\\n\\\\n    return float(np.mean(scores))\\\\n\\\\n\\\\n# ===================================================================\\\\n# 3. Oracle best-of-N\\\\n# ===================================================================\\\\n\\\\ndef oracle_best_of_n(\\\\n    samples: list[Extraction],\\\\n    gold: Extraction,\\\\n    subtask: str = \\\\\\\"ner\\\\\\\",\\\\n) -> tuple[int, float]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Select the sample with the highest F1 against the gold extraction.\\\\n\\\\n    Args:\\\\n        samples: N extraction dicts.\\\\n        gold: Gold-standard extraction.\\\\n        subtask: Passed through to per_instance_f1.\\\\n\\\\n    Returns:\\\\n        (best_index, best_f1). Returns (-1, 0.0) if samples is empty.\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    if not samples:\\\\n        return (-1, 0.0)\\\\n\\\\n    # Lazy import to avoid circular dependency with evaluation.py\\\\n    from evaluation import per_instance_f1\\\\n\\\\n    best_idx = -1\\\\n    best_f1 = -1.0\\\\n\\\\n    for idx, sample in enumerate(samples):\\\\n        f1 = per_instance_f1(sample, gold, subtask=subtask)\\\\n        if f1 > best_f1:\\\\n            best_f1 = f1\\\\n            best_idx = idx\\\\n\\\\n    return (best_idx, best_f1)\\\\n\\\\n\\\\n# ===================================================================\\\\n# Aggregate helper\\\\n# ===================================================================\\\\n\\\\ndef compute_all_consistency_scores(\\\\n    sampled_instances: list[dict],\\\\n    subtask: str = \\\\\\\"ner\\\\\\\",\\\\n) -> dict:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Compute all consistency metrics for a list of sampled instances.\\\\n\\\\n    Args:\\\\n        sampled_instances: List of SampledInstance dicts, each with keys\\\\n            \\\\\\\"id\\\\\\\", \\\\\\\"text\\\\\\\", \\\\\\\"gold\\\\\\\" (Extraction), \\\\\\\"samples\\\\\\\" (list[Extraction]).\\\\n        subtask: \\\\\\\"ner\\\\\\\", \\\\\\\"re\\\\\\\", or \\\\\\\"eae\\\\\\\".\\\\n\\\\n    Returns:\\\\n        Dict with per-instance score lists::\\\\n\\\\n            {\\\\n                \\\\\\\"fleiss_kappa\\\\\\\": [float, ...],\\\\n                \\\\\\\"soft_jaccard\\\\\\\": [float, ...],\\\\n                \\\\\\\"oracle_f1\\\\\\\":    [float, ...],\\\\n                \\\\\\\"oracle_indices\\\\\\\": [int, ...],\\\\n            }\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    result: dict[str, list] = {\\\\n        \\\\\\\"fleiss_kappa\\\\\\\": [],\\\\n        \\\\\\\"soft_jaccard\\\\\\\": [],\\\\n        \\\\\\\"oracle_f1\\\\\\\": [],\\\\n        \\\\\\\"oracle_indices\\\\\\\": [],\\\\n    }\\\\n\\\\n    for inst in sampled_instances:\\\\n        samples = inst[\\\\\\\"samples\\\\\\\"]\\\\n        gold = inst[\\\\\\\"gold\\\\\\\"]\\\\n\\\\n        result[\\\\\\\"fleiss_kappa\\\\\\\"].append(fleiss_kappa_surface(samples, subtask=subtask))\\\\n        result[\\\\\\\"soft_jaccard\\\\\\\"].append(\\\\n            structural_consistency_soft_jaccard(samples, subtask=subtask)\\\\n        )\\\\n\\\\n        best_idx, best_f1 = oracle_best_of_n(samples, gold, subtask=subtask)\\\\n        result[\\\\\\\"oracle_f1\\\\\\\"].append(best_f1)\\\\n        result[\\\\\\\"oracle_indices\\\\\\\"].append(best_idx)\\\\n\\\\n    return result\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Consistency metrics for structured information extraction with self-consistency.\\n\\nImplements three complementary consistency measures over N sampled extractions:\\n1. Fleiss' Kappa (surface matching) — treats N samples as N raters on entity presence\\n2. Structural soft Jaccard — span-level soft overlap with Hungarian matching\\n3. Oracle best-of-N — upper-bound F1 by selecting the best sample per instance\\n\\nKey dependencies: numpy, scipy (linear_sum_assignment).\\n\\\"\\\"\\\"\\n\\nfrom __future__ import annotations\\n\\nfrom itertools import combinations\\nfrom typing import TYPE_CHECKING\\n\\nimport numpy as np\\nfrom scipy.optimize import linear_sum_assignment\\n\\nif TYPE_CHECKING:\\n    pass\\n\\n# ---------------------------------------------------------------------------\\n# Type aliases (mirrors shared data format)\\n# ---------------------------------------------------------------------------\\nEntity = dict       # {\\\"text\\\", \\\"type\\\", \\\"start\\\", \\\"end\\\"}\\nRelation = dict     # {\\\"head\\\", \\\"tail\\\", \\\"type\\\", ...}\\nEvent = dict        # {\\\"trigger\\\": {...}, \\\"arguments\\\": [...]}\\nExtraction = dict   # {\\\"entities\\\", \\\"relations\\\", \\\"events\\\"}\\n\\n\\n# ===================================================================\\n# 1. Fleiss' Kappa — surface-level entity agreement\\n# ===================================================================\\n\\ndef _extract_surface_keys(sample: Extraction, subtask: str) -> set[tuple]:\\n    \\\"\\\"\\\"Extract surface-level keys from a sample for Fleiss' Kappa computation.\\\"\\\"\\\"\\n    if subtask == \\\"ner\\\":\\n        return {(e[\\\"text\\\"], e[\\\"type\\\"]) for e in sample.get(\\\"entities\\\", [])}\\n    elif subtask == \\\"re\\\":\\n        return {(r[\\\"head\\\"], r[\\\"tail\\\"], r[\\\"type\\\"]) for r in sample.get(\\\"relations\\\", [])}\\n    elif subtask == \\\"eae\\\":\\n        keys: set[tuple] = set()\\n        for ev in sample.get(\\\"events\\\", []):\\n            t = ev.get(\\\"trigger\\\", {})\\n            for arg in ev.get(\\\"arguments\\\", []):\\n                keys.add((t.get(\\\"text\\\", \\\"\\\"), t.get(\\\"type\\\", \\\"\\\"), arg[\\\"role\\\"], arg[\\\"text\\\"]))\\n        return keys\\n    else:\\n        raise ValueError(f\\\"Unknown subtask: {subtask}\\\")\\n\\n\\ndef fleiss_kappa_surface(samples: list[Extraction], subtask: str = \\\"ner\\\") -> float:\\n    \\\"\\\"\\\"Compute Fleiss' kappa treating N LLM samples as N raters on item presence.\\n\\n    Items are subtask-dependent surface keys:\\n    - ner: (entity_text, entity_type)\\n    - re: (head_text, tail_text, relation_type)\\n    - eae: (trigger_text, trigger_type, role, argument_text)\\n\\n    Args:\\n        samples: List of N extraction dicts.\\n        subtask: \\\"ner\\\", \\\"re\\\", or \\\"eae\\\".\\n\\n    Returns:\\n        Fleiss' kappa in [-1, 1].  Returns 1.0 for degenerate cases (<=1 unique\\n        item, perfect agreement, or undefined P_e).\\n    \\\"\\\"\\\"\\n    n_raters = len(samples)\\n    if n_raters <= 1:\\n        return 1.0\\n\\n    # Collect unique keys and per-sample presence sets\\n    entity_sets: list[set[tuple]] = []\\n    all_keys: set[tuple] = set()\\n    for sample in samples:\\n        keys = _extract_surface_keys(sample, subtask)\\n        entity_sets.append(keys)\\n        all_keys |= keys\\n\\n    n_subjects = len(all_keys)\\n    if n_subjects <= 0:\\n        # All samples extracted nothing — perfect agreement on empty set\\n        return 1.0\\n\\n    key_list = sorted(all_keys)\\n\\n    # Build rating matrix: n_subjects x 2 (categories: absent=0, present=1)\\n    # n_ij = number of raters assigning subject i to category j\\n    rating = np.zeros((n_subjects, 2), dtype=np.int64)\\n    for es in entity_sets:\\n        for idx, key in enumerate(key_list):\\n            if key in es:\\n                rating[idx, 1] += 1\\n            else:\\n                rating[idx, 0] += 1\\n\\n    n = n_raters\\n    k = 2  # number of categories\\n\\n    # Check perfect agreement: every subject has all votes in one category\\n    if np.all(np.max(rating, axis=1) == n):\\n        return 1.0\\n\\n    # P_i for each subject\\n    P_i = (np.sum(rating ** 2, axis=1) - n) / (n * (n - 1))\\n    P_bar = np.mean(P_i)\\n\\n    # P_e — expected agreement by chance\\n    p_j = np.sum(rating, axis=0) / (n_subjects * n)\\n    P_e = np.sum(p_j ** 2)\\n\\n    if abs(1.0 - P_e) < 1e-12:\\n\\n... [截断: 输出过长，省略 5252 字符] ...\\n\\nn enumerate(ga):\\n            for j, ab in enumerate(gb):\\n                cost[i, j] = _span_soft_jaccard(aa[\\\"start\\\"], aa[\\\"end\\\"],\\n                                                 ab[\\\"start\\\"], ab[\\\"end\\\"])\\n\\n        row_ind, col_ind = linear_sum_assignment(-cost)\\n        matched_sim = cost[row_ind, col_ind].sum()\\n        total_score += matched_sim\\n\\n    if total_weight == 0:\\n        return 1.0\\n    return total_score / total_weight\\n\\n\\ndef structural_consistency_soft_jaccard(\\n    samples: list[Extraction],\\n    subtask: str = \\\"ner\\\",\\n) -> float:\\n    \\\"\\\"\\\"Span-level soft Jaccard consistency averaged over all sample pairs.\\n\\n    For each pair (i, j) with i < j, computes a type-aware soft Jaccard using\\n    Hungarian matching on span overlaps, then returns the mean.\\n\\n    Args:\\n        samples: N extraction dicts.\\n        subtask: \\\"ner\\\" for entity consistency, \\\"eae\\\" for event-argument consistency.\\n\\n    Returns:\\n        Mean pairwise soft Jaccard in [0, 1].\\n    \\\"\\\"\\\"\\n    n = len(samples)\\n    if n <= 1:\\n        return 1.0\\n\\n    if subtask == \\\"ner\\\":\\n        pair_fn = _ner_soft_jaccard_pair\\n    elif subtask == \\\"re\\\":\\n        pair_fn = _re_soft_jaccard_pair\\n    else:\\n        pair_fn = _eae_soft_jaccard_pair\\n\\n    field = {\\\"ner\\\": \\\"entities\\\", \\\"re\\\": \\\"relations\\\", \\\"eae\\\": \\\"events\\\"}[subtask]\\n\\n    scores: list[float] = []\\n    for i, j in combinations(range(n), 2):\\n        score = pair_fn(\\n            samples[i].get(field, []),\\n            samples[j].get(field, []),\\n        )\\n        scores.append(score)\\n\\n    return float(np.mean(scores))\\n\\n\\n# ===================================================================\\n# 3. Oracle best-of-N\\n# ===================================================================\\n\\ndef oracle_best_of_n(\\n    samples: list[Extraction],\\n    gold: Extraction,\\n    subtask: str = \\\"ner\\\",\\n) -> tuple[int, float]:\\n    \\\"\\\"\\\"Select the sample with the highest F1 against the gold extraction.\\n\\n    Args:\\n        samples: N extraction dicts.\\n        gold: Gold-standard extraction.\\n        subtask: Passed through to per_instance_f1.\\n\\n    Returns:\\n        (best_index, best_f1). Returns (-1, 0.0) if samples is empty.\\n    \\\"\\\"\\\"\\n    if not samples:\\n        return (-1, 0.0)\\n\\n    # Lazy import to avoid circular dependency with evaluation.py\\n    from evaluation import per_instance_f1\\n\\n    best_idx = -1\\n    best_f1 = -1.0\\n\\n    for idx, sample in enumerate(samples):\\n        f1 = per_instance_f1(sample, gold, subtask=subtask)\\n        if f1 > best_f1:\\n            best_f1 = f1\\n            best_idx = idx\\n\\n    return (best_idx, best_f1)\\n\\n\\n# ===================================================================\\n# Aggregate helper\\n# ===================================================================\\n\\ndef compute_all_consistency_scores(\\n    sampled_instances: list[dict],\\n    subtask: str = \\\"ner\\\",\\n) -> dict:\\n    \\\"\\\"\\\"Compute all consistency metrics for a list of sampled instances.\\n\\n    Args:\\n        sampled_instances: List of SampledInstance dicts, each with keys\\n            \\\"id\\\", \\\"text\\\", \\\"gold\\\" (Extraction), \\\"samples\\\" (list[Extraction]).\\n        subtask: \\\"ner\\\", \\\"re\\\", or \\\"eae\\\".\\n\\n    Returns:\\n        Dict with per-instance score lists::\\n\\n            {\\n                \\\"fleiss_kappa\\\": [float, ...],\\n                \\\"soft_jaccard\\\": [float, ...],\\n                \\\"oracle_f1\\\":    [float, ...],\\n                \\\"oracle_indices\\\": [int, ...],\\n            }\\n    \\\"\\\"\\\"\\n    result: dict[str, list] = {\\n        \\\"fleiss_kappa\\\": [],\\n        \\\"soft_jaccard\\\": [],\\n        \\\"oracle_f1\\\": [],\\n        \\\"oracle_indices\\\": [],\\n    }\\n\\n    for inst in sampled_instances:\\n        samples = inst[\\\"samples\\\"]\\n        gold = inst[\\\"gold\\\"]\\n\\n        result[\\\"fleiss_kappa\\\"].append(fleiss_kappa_surface(samples, subtask=subtask))\\n        result[\\\"soft_jaccard\\\"].append(\\n            structural_consistency_soft_jaccard(samples, subtask=subtask)\\n        )\\n\\n        best_idx, best_f1 = oracle_best_of_n(samples, gold, subtask=subtask)\\n        result[\\\"oracle_f1\\\"].append(best_f1)\\n        result[\\\"oracle_indices\\\"].append(best_idx)\\n\\n    return result\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-15T03:08:28.964Z_
+
+<details><summary>↩ Tool result · `toolu_01TB1FdYwxT7MB3VatdKdthm`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Evaluation module for structured self-consistency IE experiments.\\n\\nProvides strict-match NER/EAE evaluation, per-instance F1 computation,\\ncorrelation analysis, and summary report generation.\\n\\\"\\\"\\\"\\n\\nfrom __future__ import annotations\\n\\nimport statistics\\nfrom typing import Any\\n\\nfrom scipy.stats import kendalltau, spearmanr\\n\\n\\n# ---------------------------------------------------------------------------\\n# NER evaluation (strict match)\\n# ---------------------------------------------------------------------------\\n\\ndef entity_strict_match(\\n    pred_entities: list[dict],\\n    gold_entities: list[dict],\\n) -> tuple[int, int, int]:\\n    \\\"\\\"\\\"Compute strict entity match counts.\\n\\n    Strict match requires exact span (start, end) AND exact type.\\n\\n    Args:\\n        pred_entities: Predicted entity dicts with keys text, type, start, end.\\n        gold_entities: Gold entity dicts with the same schema.\\n\\n    Returns:\\n        (tp, fp, fn) counts.\\n    \\\"\\\"\\\"\\n    pred_set = {(e[\\\"start\\\"], e[\\\"end\\\"], e[\\\"type\\\"]) for e in pred_entities}\\n    gold_set = {(e[\\\"start\\\"], e[\\\"end\\\"], e[\\\"type\\\"]) for e in gold_entities}\\n    tp = len(pred_set & gold_set)\\n    fp = len(pred_set - gold_set)\\n    fn = len(gold_set - pred_set)\\n    return tp, fp, fn\\n\\n\\ndef compute_ner_f1(\\n    predictions: list[dict],\\n    golds: list[dict],\\n) -> dict[str, float]:\\n    \\\"\\\"\\\"Compute micro-averaged NER precision, recall, and F1.\\n\\n    Args:\\n        predictions: List of Extraction dicts (one per instance).\\n        golds: List of Extraction dicts (one per instance), aligned with predictions.\\n\\n    Returns:\\n        Dict with keys \\\"precision\\\", \\\"recall\\\", \\\"f1\\\".\\n    \\\"\\\"\\\"\\n    total_tp = total_fp = total_fn = 0\\n    for pred, gold in zip(predictions, golds):\\n        tp, fp, fn = entity_strict_match(\\n            pred.get(\\\"entities\\\", []),\\n            gold.get(\\\"entities\\\", []),\\n        )\\n        total_tp += tp\\n        total_fp += fp\\n        total_fn += fn\\n    return _prf(total_tp, total_fp, total_fn)\\n\\n\\n# ---------------------------------------------------------------------------\\n# EAE evaluation (argument match)\\n# ---------------------------------------------------------------------------\\n\\ndef _event_argument_tuples(events: list[dict]) -> set[tuple]:\\n    \\\"\\\"\\\"Extract (trigger_start, trigger_end, trigger_type, role, arg_start, arg_end) tuples.\\\"\\\"\\\"\\n    tuples: set[tuple] = set()\\n    for event in events:\\n        trigger = event.get(\\\"trigger\\\", {})\\n        t_start = trigger.get(\\\"start\\\")\\n        t_end = trigger.get(\\\"end\\\")\\n        t_type = trigger.get(\\\"type\\\")\\n        for arg in event.get(\\\"arguments\\\", []):\\n            tuples.add((t_start, t_end, t_type, arg[\\\"role\\\"], arg[\\\"start\\\"], arg[\\\"end\\\"]))\\n    return tuples\\n\\n\\ndef relation_strict_match(\\n    pred_relations: list[dict],\\n    gold_relations: list[dict],\\n) -> tuple[int, int, int]:\\n    \\\"\\\"\\\"Strict relation match: (head_start, head_end, tail_start, tail_end, type) must all match.\\\"\\\"\\\"\\n    pred_set = {(r[\\\"head_start\\\"], r[\\\"head_end\\\"], r[\\\"tail_start\\\"], r[\\\"tail_end\\\"], r[\\\"type\\\"]) for r in pred_relations}\\n    gold_set = {(r[\\\"head_start\\\"], r[\\\"head_end\\\"], r[\\\"tail_start\\\"], r[\\\"tail_end\\\"], r[\\\"type\\\"]) for r in gold_relations}\\n    tp = len(pred_set & gold_set)\\n    fp = len(pred_set - gold_set)\\n    fn = len(gold_set - pred_set)\\n    return tp, fp, fn\\n\\n\\ndef compute_re_f1(\\n    predictions: list[dict],\\n    golds: list[dict],\\n) -> dict[str, float]:\\n    \\\"\\\"\\\"Compute micro-averaged RE precision, recall, and F1.\\\"\\\"\\\"\\n    total_tp = total_fp = total_fn = 0\\n    for pred, gold in zip(predictions, golds):\\n        tp, fp, fn = relation_strict_match(\\n            pred.get(\\\"relations\\\", []),\\n            gold.get(\\\"relations\\\", []),\\n        )\\n        total_tp += tp\\n        total_fp += fp\\n        total_fn += fn\\n    return _prf(total_tp, total_fp, total_fn)\\n\\n\\ndef argument_match(\\n    pred_events: list[dict],\\n    gold_events: list[dict],\\n) -> tuple[int, int, int]:\\n    \\\"\\\"\\\"Compute event argument match counts.\\n\\n    A correct argument requires trigger span match + trigger type match +\\n    argument role match + argument span match.\\n\\n    \\n\\n... [截断: 输出过长，省略 6581 字符] ...\\n\\nrn 0.5\\n    concordant = sum(1 for p in pos for n in neg if p > n)\\n    tied = sum(1 for p in pos for n in neg if p == n)\\n    return (concordant + 0.5 * tied) / (len(pos) * len(neg))\\n\\n\\n# ---------------------------------------------------------------------------\\n# Summary report\\n# ---------------------------------------------------------------------------\\n\\ndef generate_evaluation_report(\\n    sampled_instances: list[dict],\\n    consistency_scores: dict[str, list[float]],\\n    subtask: str = \\\"ner\\\",\\n) -> dict[str, Any]:\\n    \\\"\\\"\\\"Generate a structured evaluation report.\\n\\n    Computes greedy F1, oracle best-of-N F1, and consistency-F1 correlation\\n    for each consistency scoring method.\\n\\n    Args:\\n        sampled_instances: List of SampledInstance dicts, each containing\\n            \\\"id\\\", \\\"text\\\", \\\"gold\\\" (Extraction), \\\"samples\\\" (list of Extraction),\\n            and optionally \\\"greedy\\\" (Extraction).\\n        consistency_scores: Dict mapping method name to a list of per-instance\\n            consistency scores (aligned with sampled_instances).\\n        subtask: \\\"ner\\\" or \\\"eae\\\".\\n\\n    Returns:\\n        Dict with keys:\\n            - \\\"greedy_f1\\\": float, micro-averaged F1 of greedy outputs.\\n            - \\\"oracle_best_of_n_f1\\\": float, micro-averaged F1 using the\\n              best sample per instance.\\n            - \\\"per_instance_greedy_f1\\\": list of per-instance greedy F1 values.\\n            - \\\"correlations\\\": dict mapping method name to {\\\"rho\\\": float, \\\"p_value\\\": float}.\\n            - \\\"num_instances\\\": int.\\n            - \\\"num_samples_per_instance\\\": float, average number of samples.\\n    \\\"\\\"\\\"\\n    greedy_preds = []\\n    greedy_golds = []\\n    oracle_preds = []\\n    oracle_golds = []\\n    instance_greedy_f1s: list[float] = []\\n\\n    for inst in sampled_instances:\\n        gold = inst[\\\"gold\\\"]\\n\\n        # Greedy F1\\n        greedy = inst.get(\\\"greedy\\\")\\n        if greedy is not None:\\n            greedy_preds.append(greedy)\\n            greedy_golds.append(gold)\\n            instance_greedy_f1s.append(per_instance_f1(greedy, gold, subtask))\\n        else:\\n            instance_greedy_f1s.append(0.0)\\n\\n        # Oracle best-of-N: pick the sample with highest per-instance F1\\n        samples = inst.get(\\\"samples\\\", [])\\n        if samples:\\n            best_sample = max(samples, key=lambda s: per_instance_f1(s, gold, subtask))\\n            oracle_preds.append(best_sample)\\n            oracle_golds.append(gold)\\n\\n    # Micro-averaged scores\\n    f1_fn = {\\\"ner\\\": compute_ner_f1, \\\"re\\\": compute_re_f1, \\\"eae\\\": compute_eae_f1}[subtask]\\n    greedy_metrics = f1_fn(greedy_preds, greedy_golds) if greedy_preds else _prf(0, 0, 0)\\n    oracle_metrics = f1_fn(oracle_preds, oracle_golds) if oracle_preds else _prf(0, 0, 0)\\n\\n    # Correlation between consistency scores and per-instance greedy F1\\n    correlations: dict[str, dict[str, float]] = {}\\n    for method_name, scores in consistency_scores.items():\\n        rho, p_value = spearman_correlation(scores, instance_greedy_f1s)\\n        correlations[method_name] = {\\\"rho\\\": rho, \\\"p_value\\\": p_value}\\n\\n    total_samples = sum(len(inst.get(\\\"samples\\\", [])) for inst in sampled_instances)\\n    n = len(sampled_instances)\\n\\n    return {\\n        \\\"greedy_f1\\\": greedy_metrics[\\\"f1\\\"],\\n        \\\"oracle_best_of_n_f1\\\": oracle_metrics[\\\"f1\\\"],\\n        \\\"per_instance_greedy_f1\\\": instance_greedy_f1s,\\n        \\\"correlations\\\": correlations,\\n        \\\"num_instances\\\": n,\\n        \\\"num_samples_per_instance\\\": total_samples / n if n > 0 else 0.0,\\n    }\\n\\n\\n# ---------------------------------------------------------------------------\\n# Internal helpers\\n# ---------------------------------------------------------------------------\\n\\ndef _prf(tp: int, fp: int, fn: int) -> dict[str, float]:\\n    \\\"\\\"\\\"Compute precision, recall, F1 from raw counts.\\\"\\\"\\\"\\n    precision = tp / (tp + fp) if (tp + fp) > 0 else 0.0\\n    recall = tp / (tp + fn) if (tp + fn) > 0 else 0.0\\n    f1 = 2 * precision * recall / (precision + recall) if (precision + recall) > 0 else 0.0\\n    return {\\\"precision\\\": precision, \\\"recall\\\": recall, \\\"f1\\\": f1}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f3cc20fa-26de-4ab1-a5ab-60647c654156",
+  "uuid": "4a85eeb7-db73-4b4a-97d4-3f07ab58c4ed",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Evaluation module for structured self-consistency IE experiments.\\\\n\\\\nProvides strict-match NER/EAE evaluation, per-instance F1 computation,\\\\ncorrelation analysis, and summary report generation.\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nfrom __future__ import annotations\\\\n\\\\nimport statistics\\\\nfrom typing import Any\\\\n\\\\nfrom scipy.stats import kendalltau, spearmanr\\\\n\\\\n\\\\n# ---------------------------------------------------------------------------\\\\n# NER evaluation (strict match)\\\\n# ---------------------------------------------------------------------------\\\\n\\\\ndef entity_strict_match(\\\\n    pred_entities: list[dict],\\\\n    gold_entities: list[dict],\\\\n) -> tuple[int, int, int]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Compute strict entity match counts.\\\\n\\\\n    Strict match requires exact span (start, end) AND exact type.\\\\n\\\\n    Args:\\\\n        pred_entities: Predicted entity dicts with keys text, type, start, end.\\\\n        gold_entities: Gold entity dicts with the same schema.\\\\n\\\\n    Returns:\\\\n        (tp, fp, fn) counts.\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    pred_set = {(e[\\\\\\\"start\\\\\\\"], e[\\\\\\\"end\\\\\\\"], e[\\\\\\\"type\\\\\\\"]) for e in pred_entities}\\\\n    gold_set = {(e[\\\\\\\"start\\\\\\\"], e[\\\\\\\"end\\\\\\\"], e[\\\\\\\"type\\\\\\\"]) for e in gold_entities}\\\\n    tp = len(pred_set & gold_set)\\\\n    fp = len(pred_set - gold_set)\\\\n    fn = len(gold_set - pred_set)\\\\n    return tp, fp, fn\\\\n\\\\n\\\\ndef compute_ner_f1(\\\\n    predictions: list[dict],\\\\n    golds: list[dict],\\\\n) -> dict[str, float]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Compute micro-averaged NER precision, recall, and F1.\\\\n\\\\n    Args:\\\\n        predictions: List of Extraction dicts (one per instance).\\\\n        golds: List of Extraction dicts (one per instance), aligned with predictions.\\\\n\\\\n    Returns:\\\\n        Dict with keys \\\\\\\"precision\\\\\\\", \\\\\\\"recall\\\\\\\", \\\\\\\"f1\\\\\\\".\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    total_tp = total_fp = total_fn = 0\\\\n    for pred, gold in zip(predictions, golds):\\\\n        tp, fp, fn = entity_strict_match(\\\\n            pred.get(\\\\\\\"entities\\\\\\\", []),\\\\n            gold.get(\\\\\\\"entities\\\\\\\", []),\\\\n        )\\\\n        total_tp += tp\\\\n        total_fp += fp\\\\n        total_fn += fn\\\\n    return _prf(total_tp, total_fp, total_fn)\\\\n\\\\n\\\\n# ---------------------------------------------------------------------------\\\\n# EAE evaluation (argument match)\\\\n# ---------------------------------------------------------------------------\\\\n\\\\ndef _event_argument_tuples(events: list[dict]) -> set[tuple]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Extract (trigger_start, trigger_end, trigger_type, role, arg_start, arg_end) tuples.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    tuples: set[tuple] = set()\\\\n    for event in events:\\\\n        trigger = event.get(\\\\\\\"trigger\\\\\\\", {})\\\\n        t_start = trigger.get(\\\\\\\"start\\\\\\\")\\\\n        t_end = trigger.get(\\\\\\\"end\\\\\\\")\\\\n        t_type = trigger.get(\\\\\\\"type\\\\\\\")\\\\n        for arg in event.get(\\\\\\\"arguments\\\\\\\", []):\\\\n            tuples.add((t_start, t_end, t_type, arg[\\\\\\\"role\\\\\\\"], arg[\\\\\\\"start\\\\\\\"], arg[\\\\\\\"end\\\\\\\"]))\\\\n    return tuples\\\\n\\\\n\\\\ndef relation_strict_match(\\\\n    pred_relations: list[dict],\\\\n    gold_relations: list[dict],\\\\n) -> tuple[int, int, int]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Strict relation match: (head_start, head_end, tail_start, tail_end, type) must all match.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    pred_set = {(r[\\\\\\\"head_start\\\\\\\"], r[\\\\\\\"head_end\\\\\\\"], r[\\\\\\\"tail_start\\\\\\\"], r[\\\\\\\"tail_end\\\\\\\"], r[\\\\\\\"type\\\\\\\"]) for r in pred_relations}\\\\n    gold_set = {(r[\\\\\\\"head_start\\\\\\\"], r[\\\\\\\"head_end\\\\\\\"], r[\\\\\\\"tail_start\\\\\\\"], r[\\\\\\\"tail_end\\\\\\\"], r[\\\\\\\"type\\\\\\\"]) for r in gold_relations}\\\\n    tp = len(pred_set & gold_set)\\\\n    fp = len(pred_set - gold_set)\\\\n    fn = len(gold_set - pred_set)\\\\n    return tp, fp, fn\\\\n\\\\n\\\\ndef compute_re_f1(\\\\n    predictions: list[dict],\\\\n    golds: list[dict],\\\\n) -> dict[str, float]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Compute micro-averaged RE precision, recall, and F1.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    total_tp = total_fp = total_fn = 0\\\\n    for pred, gold in zip(predictions, golds):\\\\n        tp, fp, fn = relation_strict_match(\\\\n            pred.get(\\\\\\\"relations\\\\\\\", []),\\\\n            gold.get(\\\\\\\"relations\\\\\\\", []),\\\\n        )\\\\n        total_tp += tp\\\\n        total_fp += fp\\\\n        total_fn += fn\\\\n    return _prf(total_tp, total_fp, total_fn)\\\\n\\\\n\\\\ndef argument_match(\\\\n    pred_events: list[dict],\\\\n    gold_events: list[dict],\\\\n) -> tuple[int, int, int]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Compute event argument match counts.\\\\n\\\\n    A correct argument requires trigger span match + trigger type match +\\\\n    argument role match + argument span match.\\\\n\\\\n    \\\\n\\\\n... [截断: 输出过长，省略 6581 字符] ...\\\\n\\\\nrn 0.5\\\\n    concordant = sum(1 for p in pos for n in neg if p > n)\\\\n    tied = sum(1 for p in pos for n in neg if p == n)\\\\n    return (concordant + 0.5 * tied) / (len(pos) * len(neg))\\\\n\\\\n\\\\n# ---------------------------------------------------------------------------\\\\n# Summary report\\\\n# ---------------------------------------------------------------------------\\\\n\\\\ndef generate_evaluation_report(\\\\n    sampled_instances: list[dict],\\\\n    consistency_scores: dict[str, list[float]],\\\\n    subtask: str = \\\\\\\"ner\\\\\\\",\\\\n) -> dict[str, Any]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Generate a structured evaluation report.\\\\n\\\\n    Computes greedy F1, oracle best-of-N F1, and consistency-F1 correlation\\\\n    for each consistency scoring method.\\\\n\\\\n    Args:\\\\n        sampled_instances: List of SampledInstance dicts, each containing\\\\n            \\\\\\\"id\\\\\\\", \\\\\\\"text\\\\\\\", \\\\\\\"gold\\\\\\\" (Extraction), \\\\\\\"samples\\\\\\\" (list of Extraction),\\\\n            and optionally \\\\\\\"greedy\\\\\\\" (Extraction).\\\\n        consistency_scores: Dict mapping method name to a list of per-instance\\\\n            consistency scores (aligned with sampled_instances).\\\\n        subtask: \\\\\\\"ner\\\\\\\" or \\\\\\\"eae\\\\\\\".\\\\n\\\\n    Returns:\\\\n        Dict with keys:\\\\n            - \\\\\\\"greedy_f1\\\\\\\": float, micro-averaged F1 of greedy outputs.\\\\n            - \\\\\\\"oracle_best_of_n_f1\\\\\\\": float, micro-averaged F1 using the\\\\n              best sample per instance.\\\\n            - \\\\\\\"per_instance_greedy_f1\\\\\\\": list of per-instance greedy F1 values.\\\\n            - \\\\\\\"correlations\\\\\\\": dict mapping method name to {\\\\\\\"rho\\\\\\\": float, \\\\\\\"p_value\\\\\\\": float}.\\\\n            - \\\\\\\"num_instances\\\\\\\": int.\\\\n            - \\\\\\\"num_samples_per_instance\\\\\\\": float, average number of samples.\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    greedy_preds = []\\\\n    greedy_golds = []\\\\n    oracle_preds = []\\\\n    oracle_golds = []\\\\n    instance_greedy_f1s: list[float] = []\\\\n\\\\n    for inst in sampled_instances:\\\\n        gold = inst[\\\\\\\"gold\\\\\\\"]\\\\n\\\\n        # Greedy F1\\\\n        greedy = inst.get(\\\\\\\"greedy\\\\\\\")\\\\n        if greedy is not None:\\\\n            greedy_preds.append(greedy)\\\\n            greedy_golds.append(gold)\\\\n            instance_greedy_f1s.append(per_instance_f1(greedy, gold, subtask))\\\\n        else:\\\\n            instance_greedy_f1s.append(0.0)\\\\n\\\\n        # Oracle best-of-N: pick the sample with highest per-instance F1\\\\n        samples = inst.get(\\\\\\\"samples\\\\\\\", [])\\\\n        if samples:\\\\n            best_sample = max(samples, key=lambda s: per_instance_f1(s, gold, subtask))\\\\n            oracle_preds.append(best_sample)\\\\n            oracle_golds.append(gold)\\\\n\\\\n    # Micro-averaged scores\\\\n    f1_fn = {\\\\\\\"ner\\\\\\\": compute_ner_f1, \\\\\\\"re\\\\\\\": compute_re_f1, \\\\\\\"eae\\\\\\\": compute_eae_f1}[subtask]\\\\n    greedy_metrics = f1_fn(greedy_preds, greedy_golds) if greedy_preds else _prf(0, 0, 0)\\\\n    oracle_metrics = f1_fn(oracle_preds, oracle_golds) if oracle_preds else _prf(0, 0, 0)\\\\n\\\\n    # Correlation between consistency scores and per-instance greedy F1\\\\n    correlations: dict[str, dict[str, float]] = {}\\\\n    for method_name, scores in consistency_scores.items():\\\\n        rho, p_value = spearman_correlation(scores, instance_greedy_f1s)\\\\n        correlations[method_name] = {\\\\\\\"rho\\\\\\\": rho, \\\\\\\"p_value\\\\\\\": p_value}\\\\n\\\\n    total_samples = sum(len(inst.get(\\\\\\\"samples\\\\\\\", [])) for inst in sampled_instances)\\\\n    n = len(sampled_instances)\\\\n\\\\n    return {\\\\n        \\\\\\\"greedy_f1\\\\\\\": greedy_metrics[\\\\\\\"f1\\\\\\\"],\\\\n        \\\\\\\"oracle_best_of_n_f1\\\\\\\": oracle_metrics[\\\\\\\"f1\\\\\\\"],\\\\n        \\\\\\\"per_instance_greedy_f1\\\\\\\": instance_greedy_f1s,\\\\n        \\\\\\\"correlations\\\\\\\": correlations,\\\\n        \\\\\\\"num_instances\\\\\\\": n,\\\\n        \\\\\\\"num_samples_per_instance\\\\\\\": total_samples / n if n > 0 else 0.0,\\\\n    }\\\\n\\\\n\\\\n# ---------------------------------------------------------------------------\\\\n# Internal helpers\\\\n# ---------------------------------------------------------------------------\\\\n\\\\ndef _prf(tp: int, fp: int, fn: int) -> dict[str, float]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Compute precision, recall, F1 from raw counts.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    precision = tp / (tp + fp) if (tp + fp) > 0 else 0.0\\\\n    recall = tp / (tp + fn) if (tp + fn) > 0 else 0.0\\\\n    f1 = 2 * precision * recall / (precision + recall) if (precision + recall) > 0 else 0.0\\\\n    return {\\\\\\\"precision\\\\\\\": precision, \\\\\\\"recall\\\\\\\": recall, \\\\\\\"f1\\\\\\\": f1}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Evaluation module for structured self-consistency IE experiments.\\n\\nProvides strict-match NER/EAE evaluation, per-instance F1 computation,\\ncorrelation analysis, and summary report generation.\\n\\\"\\\"\\\"\\n\\nfrom __future__ import annotations\\n\\nimport statistics\\nfrom typing import Any\\n\\nfrom scipy.stats import kendalltau, spearmanr\\n\\n\\n# ---------------------------------------------------------------------------\\n# NER evaluation (strict match)\\n# ---------------------------------------------------------------------------\\n\\ndef entity_strict_match(\\n    pred_entities: list[dict],\\n    gold_entities: list[dict],\\n) -> tuple[int, int, int]:\\n    \\\"\\\"\\\"Compute strict entity match counts.\\n\\n    Strict match requires exact span (start, end) AND exact type.\\n\\n    Args:\\n        pred_entities: Predicted entity dicts with keys text, type, start, end.\\n        gold_entities: Gold entity dicts with the same schema.\\n\\n    Returns:\\n        (tp, fp, fn) counts.\\n    \\\"\\\"\\\"\\n    pred_set = {(e[\\\"start\\\"], e[\\\"end\\\"], e[\\\"type\\\"]) for e in pred_entities}\\n    gold_set = {(e[\\\"start\\\"], e[\\\"end\\\"], e[\\\"type\\\"]) for e in gold_entities}\\n    tp = len(pred_set & gold_set)\\n    fp = len(pred_set - gold_set)\\n    fn = len(gold_set - pred_set)\\n    return tp, fp, fn\\n\\n\\ndef compute_ner_f1(\\n    predictions: list[dict],\\n    golds: list[dict],\\n) -> dict[str, float]:\\n    \\\"\\\"\\\"Compute micro-averaged NER precision, recall, and F1.\\n\\n    Args:\\n        predictions: List of Extraction dicts (one per instance).\\n        golds: List of Extraction dicts (one per instance), aligned with predictions.\\n\\n    Returns:\\n        Dict with keys \\\"precision\\\", \\\"recall\\\", \\\"f1\\\".\\n    \\\"\\\"\\\"\\n    total_tp = total_fp = total_fn = 0\\n    for pred, gold in zip(predictions, golds):\\n        tp, fp, fn = entity_strict_match(\\n            pred.get(\\\"entities\\\", []),\\n            gold.get(\\\"entities\\\", []),\\n        )\\n        total_tp += tp\\n        total_fp += fp\\n        total_fn += fn\\n    return _prf(total_tp, total_fp, total_fn)\\n\\n\\n# ---------------------------------------------------------------------------\\n# EAE evaluation (argument match)\\n# ---------------------------------------------------------------------------\\n\\ndef _event_argument_tuples(events: list[dict]) -> set[tuple]:\\n    \\\"\\\"\\\"Extract (trigger_start, trigger_end, trigger_type, role, arg_start, arg_end) tuples.\\\"\\\"\\\"\\n    tuples: set[tuple] = set()\\n    for event in events:\\n        trigger = event.get(\\\"trigger\\\", {})\\n        t_start = trigger.get(\\\"start\\\")\\n        t_end = trigger.get(\\\"end\\\")\\n        t_type = trigger.get(\\\"type\\\")\\n        for arg in event.get(\\\"arguments\\\", []):\\n            tuples.add((t_start, t_end, t_type, arg[\\\"role\\\"], arg[\\\"start\\\"], arg[\\\"end\\\"]))\\n    return tuples\\n\\n\\ndef relation_strict_match(\\n    pred_relations: list[dict],\\n    gold_relations: list[dict],\\n) -> tuple[int, int, int]:\\n    \\\"\\\"\\\"Strict relation match: (head_start, head_end, tail_start, tail_end, type) must all match.\\\"\\\"\\\"\\n    pred_set = {(r[\\\"head_start\\\"], r[\\\"head_end\\\"], r[\\\"tail_start\\\"], r[\\\"tail_end\\\"], r[\\\"type\\\"]) for r in pred_relations}\\n    gold_set = {(r[\\\"head_start\\\"], r[\\\"head_end\\\"], r[\\\"tail_start\\\"], r[\\\"tail_end\\\"], r[\\\"type\\\"]) for r in gold_relations}\\n    tp = len(pred_set & gold_set)\\n    fp = len(pred_set - gold_set)\\n    fn = len(gold_set - pred_set)\\n    return tp, fp, fn\\n\\n\\ndef compute_re_f1(\\n    predictions: list[dict],\\n    golds: list[dict],\\n) -> dict[str, float]:\\n    \\\"\\\"\\\"Compute micro-averaged RE precision, recall, and F1.\\\"\\\"\\\"\\n    total_tp = total_fp = total_fn = 0\\n    for pred, gold in zip(predictions, golds):\\n        tp, fp, fn = relation_strict_match(\\n            pred.get(\\\"relations\\\", []),\\n            gold.get(\\\"relations\\\", []),\\n        )\\n        total_tp += tp\\n        total_fp += fp\\n        total_fn += fn\\n    return _prf(total_tp, total_fp, total_fn)\\n\\n\\ndef argument_match(\\n    pred_events: list[dict],\\n    gold_events: list[dict],\\n) -> tuple[int, int, int]:\\n    \\\"\\\"\\\"Compute event argument match counts.\\n\\n    A correct argument requires trigger span match + trigger type match +\\n    argument role match + argument span match.\\n\\n    \\n\\n... [截断: 输出过长，省略 6581 字符] ...\\n\\nrn 0.5\\n    concordant = sum(1 for p in pos for n in neg if p > n)\\n    tied = sum(1 for p in pos for n in neg if p == n)\\n    return (concordant + 0.5 * tied) / (len(pos) * len(neg))\\n\\n\\n# ---------------------------------------------------------------------------\\n# Summary report\\n# ---------------------------------------------------------------------------\\n\\ndef generate_evaluation_report(\\n    sampled_instances: list[dict],\\n    consistency_scores: dict[str, list[float]],\\n    subtask: str = \\\"ner\\\",\\n) -> dict[str, Any]:\\n    \\\"\\\"\\\"Generate a structured evaluation report.\\n\\n    Computes greedy F1, oracle best-of-N F1, and consistency-F1 correlation\\n    for each consistency scoring method.\\n\\n    Args:\\n        sampled_instances: List of SampledInstance dicts, each containing\\n            \\\"id\\\", \\\"text\\\", \\\"gold\\\" (Extraction), \\\"samples\\\" (list of Extraction),\\n            and optionally \\\"greedy\\\" (Extraction).\\n        consistency_scores: Dict mapping method name to a list of per-instance\\n            consistency scores (aligned with sampled_instances).\\n        subtask: \\\"ner\\\" or \\\"eae\\\".\\n\\n    Returns:\\n        Dict with keys:\\n            - \\\"greedy_f1\\\": float, micro-averaged F1 of greedy outputs.\\n            - \\\"oracle_best_of_n_f1\\\": float, micro-averaged F1 using the\\n              best sample per instance.\\n            - \\\"per_instance_greedy_f1\\\": list of per-instance greedy F1 values.\\n            - \\\"correlations\\\": dict mapping method name to {\\\"rho\\\": float, \\\"p_value\\\": float}.\\n            - \\\"num_instances\\\": int.\\n            - \\\"num_samples_per_instance\\\": float, average number of samples.\\n    \\\"\\\"\\\"\\n    greedy_preds = []\\n    greedy_golds = []\\n    oracle_preds = []\\n    oracle_golds = []\\n    instance_greedy_f1s: list[float] = []\\n\\n    for inst in sampled_instances:\\n        gold = inst[\\\"gold\\\"]\\n\\n        # Greedy F1\\n        greedy = inst.get(\\\"greedy\\\")\\n        if greedy is not None:\\n            greedy_preds.append(greedy)\\n            greedy_golds.append(gold)\\n            instance_greedy_f1s.append(per_instance_f1(greedy, gold, subtask))\\n        else:\\n            instance_greedy_f1s.append(0.0)\\n\\n        # Oracle best-of-N: pick the sample with highest per-instance F1\\n        samples = inst.get(\\\"samples\\\", [])\\n        if samples:\\n            best_sample = max(samples, key=lambda s: per_instance_f1(s, gold, subtask))\\n            oracle_preds.append(best_sample)\\n            oracle_golds.append(gold)\\n\\n    # Micro-averaged scores\\n    f1_fn = {\\\"ner\\\": compute_ner_f1, \\\"re\\\": compute_re_f1, \\\"eae\\\": compute_eae_f1}[subtask]\\n    greedy_metrics = f1_fn(greedy_preds, greedy_golds) if greedy_preds else _prf(0, 0, 0)\\n    oracle_metrics = f1_fn(oracle_preds, oracle_golds) if oracle_preds else _prf(0, 0, 0)\\n\\n    # Correlation between consistency scores and per-instance greedy F1\\n    correlations: dict[str, dict[str, float]] = {}\\n    for method_name, scores in consistency_scores.items():\\n        rho, p_value = spearman_correlation(scores, instance_greedy_f1s)\\n        correlations[method_name] = {\\\"rho\\\": rho, \\\"p_value\\\": p_value}\\n\\n    total_samples = sum(len(inst.get(\\\"samples\\\", [])) for inst in sampled_instances)\\n    n = len(sampled_instances)\\n\\n    return {\\n        \\\"greedy_f1\\\": greedy_metrics[\\\"f1\\\"],\\n        \\\"oracle_best_of_n_f1\\\": oracle_metrics[\\\"f1\\\"],\\n        \\\"per_instance_greedy_f1\\\": instance_greedy_f1s,\\n        \\\"correlations\\\": correlations,\\n        \\\"num_instances\\\": n,\\n        \\\"num_samples_per_instance\\\": total_samples / n if n > 0 else 0.0,\\n    }\\n\\n\\n# ---------------------------------------------------------------------------\\n# Internal helpers\\n# ---------------------------------------------------------------------------\\n\\ndef _prf(tp: int, fp: int, fn: int) -> dict[str, float]:\\n    \\\"\\\"\\\"Compute precision, recall, F1 from raw counts.\\\"\\\"\\\"\\n    precision = tp / (tp + fp) if (tp + fp) > 0 else 0.0\\n    recall = tp / (tp + fn) if (tp + fn) > 0 else 0.0\\n    f1 = 2 * precision * recall / (precision + recall) if (precision + recall) > 0 else 0.0\\n    return {\\\"precision\\\": precision, \\\"recall\\\": recall, \\\"f1\\\": f1}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 14_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a good understanding of the data format and the existing code. Let me also check what voting_conf and EM signals are - I need to understand how all 5 signals are computed. The 5 signals are:
+1. SJ (structural soft Jaccard) - from consistency.py
+2. FK (Fleiss' Kappa) - from consistency.py
+3. voting_conf - voting confidence
+4. EM (exact match) - 
+5. logprob - mean logprob from samples
+
+Let me check if there's existing code for voting_conf and EM, or if I need to understand what they mean. 
+
+Looking at the logprob signal, each sample has `mean_logprob` and `cumulative_logprob` fields, and the instance tracks a list of per-sample logprobs. For the other signals, I can see that SJ and FK are computed using functions from consistency.py, but I still need to figure out how voting_conf (the confidence of the majority vote) and EM (likely the exact match consistency between sample pairs) are calculated.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f3cc20fa-26de-4ab1-a5ab-60647c654156",
+  "uuid": "c92704ee-428a-42ea-9adb-80d5ec3b9187",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YaszwovJeJEEXvDAa77fyu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 11677,
+      "cache_read_input_tokens": 24668,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11677
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 15_
+
+Let me check how voting_conf, EM, and logprob signals are defined in existing analysis code.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f3cc20fa-26de-4ab1-a5ab-60647c654156",
+  "uuid": "5f359861-2478-437a-8194-b5402c3ce5e1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YaszwovJeJEEXvDAa77fyu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 11677,
+      "cache_read_input_tokens": 24668,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11677
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01SSAkfBnSDxxTYrpoCXLeak`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "grep -rn \"voting_conf\\|voting_confidence\\|em_consist\\|exact_match\\|logprob\" /root/autodl-tmp/struct_self_consist_ie/code/ --include=\"*.py\" -l",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f3cc20fa-26de-4ab1-a5ab-60647c654156",
+  "uuid": "f65f9dc2-e777-44fb-abf0-b14a6bd37b62",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YaszwovJeJEEXvDAa77fyu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 11677,
+      "cache_read_input_tokens": 24668,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11677
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-15T03:08:42.178Z_
+
+<details><summary>↩ Tool result · `toolu_01SSAkfBnSDxxTYrpoCXLeak`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f3cc20fa-26de-4ab1-a5ab-60647c654156",
+  "uuid": "e93c698a-6cf2-488c-b08f-4b52fdd30c85",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01JWhhTjifko6BKNPHpmt7XY`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "grep -rn \"voting_conf\" /root/autodl-tmp/struct_self_consist_ie/code/ --include=\"*.py\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f3cc20fa-26de-4ab1-a5ab-60647c654156",
+  "uuid": "d599e803-73b7-4f35-a2ae-0dd0b831962c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MUkiSMRcKF2YAekP5VQL73",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 715,
+      "cache_read_input_tokens": 36345,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 715
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-15T03:08:46.759Z_
+
+<details><summary>↩ Tool result · `toolu_01JWhhTjifko6BKNPHpmt7XY`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/code/analyze_entity_voting.py:8:5. Compute voting_confidence = mean(voting_rate of consensus items)\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_entity_voting.py:122:def voting_confidence(voting_rates, consensus_keys):\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_entity_voting.py:139:    voting_confs = []\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_entity_voting.py:183:            voting_confs.append(float(np.mean(list(v_rates.values()))))\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_entity_voting.py:185:            voting_confs.append(0.0)\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_entity_voting.py:194:    vc_v = [voting_confs[i] for i in valid]\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_entity_voting.py:206:    for name, scores in [(\\\"soft_jaccard\\\", sj_v), (\\\"fleiss_kappa\\\", fk_v), (\\\"voting_confidence\\\", vc_v)]:\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_entity_voting.py:250:    for name in [\\\"soft_jaccard\\\", \\\"fleiss_kappa\\\", \\\"voting_confidence\\\"]:\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp015_unified.py:63:def compute_voting_confidence(samples, subtask):\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp015_unified.py:109:        signals[\\\"entity_voting\\\"].append(compute_voting_confidence(samples, subtask))\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp004_re_diagnostic.py:199:def voting_confidence_re(samples):\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp004_re_diagnostic.py:219:def voting_confidence_ner(samples):\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp004_re_diagnostic.py:249:    For each type, compute SJ, FK, voting_conf correlation with greedy F1.\\\"\\\"\\\"\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp004_re_diagnostic.py:263:        vc_scores = [voting_confidence_re(inst[\\\"samples\\\"]) for inst in insts]\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp004_re_diagnostic.py:285:            \\\"rho_voting_conf\\\": round(rho_vc, 4),\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp004_re_diagnostic.py:286:            \\\"p_voting_conf\\\": float(f\\\"{p_vc:.4e}\\\"),\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp004_re_diagnostic.py:289:            \\\"mean_voting_conf\\\": round(float(np.mean(vc_scores)), 4),\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp004_re_diagnostic.py:421:        vc = voting_confidence_re(inst[\\\"samples\\\"])\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp004_re_diagnostic.py:503:    ner_vc = [voting_confidence_ner(inst[\\\"samples\\\"]) for inst in ner_insts]\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp004_re_diagnostic.py:508:    results[\\\"ner_voting_conf\\\"] = bootstrap_ci(ner_vc, ner_f1)\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp004_re_diagnostic.py:513:    re_vc_scores = [voting_confidence_re(inst[\\\"samples\\\"]) for inst in re_insts]\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp004_re_diagnostic.py:518:    results[\\\"re_voting_conf\\\"] = bootstrap_ci(re_vc_scores, re_f1_scores)\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp004_re_diagnostic.py:526:        cond_vc = [voting_confidence_re(inst[\\\"samples\\\"]) for inst in re_cond]\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp004_re_diagnostic.py:531:        results[\\\"re_cond_voting_conf\\\"] = bootstrap_ci(cond_vc, cond_f1)\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp004_re_diagnostic.py:562:    ner_vc = [voting_confidence_ner(inst[\\\"samples\\\"]) for inst in ner_insts]\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp004_re_diagnostic.py:572:    re_vc_scores = [voting_confidence_re(inst[\\\"samples\\\"]) for inst in re_insts]\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp004_re_diagnostic.py:598:            \\\"voting_conf\\\": {\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp004_re_diagnostic.py:626:              f\\\"ρ_sj={res['rho_sj']:+.3f}  ρ_fk={res['rho_fk']:+.3f}  ρ_vc={res['rho_voting_conf']:+.3f}\\\")\\n/root/autodl-tmp/st\\n\\n... [截断: 输出过长，省略 17800 字符] ...\\n\\n name in (\\\"SJ\\\", \\\"EM\\\", \\\"voting_conf\\\"): return np.clip(v, 0, 1)\\n/root/autodl-tmp/struct_self_consist_ie/code/eval_s456_5signal.py:107:        vc.append(compute_voting_confidence(samples))\\n/root/autodl-tmp/struct_self_consist_ie/code/eval_s456_5signal.py:110:               \\\"EM\\\": np.array(em), \\\"voting_conf\\\": np.array(vc)}\\n/root/autodl-tmp/struct_self_consist_ie/code/eval_s456_5signal.py:143:        vc_vals.append(compute_voting_confidence(samples))\\n/root/autodl-tmp/struct_self_consist_ie/code/eval_s456_5signal.py:163:        \\\"voting_conf_best\\\": round(float(np.mean(greedy_f1s)), 4),\\n/root/autodl-tmp/struct_self_consist_ie/code/eval_s456_5signal.py:208:        for sig in [\\\"SJ\\\", \\\"FK\\\", \\\"logprob\\\", \\\"EM\\\", \\\"voting_conf\\\"]:\\n/root/autodl-tmp/struct_self_consist_ie/code/exp001_3seed_all_signals.py:33:def compute_voting_confidence(samples):\\n/root/autodl-tmp/struct_self_consist_ie/code/exp001_3seed_all_signals.py:71:    if sig_name in (\\\"SJ\\\", \\\"EM\\\", \\\"voting_conf\\\"):\\n/root/autodl-tmp/struct_self_consist_ie/code/exp001_3seed_all_signals.py:121:        vc_vals.append(compute_voting_confidence(samples))\\n/root/autodl-tmp/struct_self_consist_ie/code/exp001_3seed_all_signals.py:126:               \\\"voting_conf\\\": np.array(vc_vals)}\\n/root/autodl-tmp/struct_self_consist_ie/code/compute_re_conditional.py:32:def compute_voting_confidence(samples):\\n/root/autodl-tmp/struct_self_consist_ie/code/compute_re_conditional.py:70:    if sig_name in (\\\"SJ\\\", \\\"EM\\\", \\\"voting_conf\\\"):\\n/root/autodl-tmp/struct_self_consist_ie/code/compute_re_conditional.py:120:        vc_vals.append(compute_voting_confidence(samples))\\n/root/autodl-tmp/struct_self_consist_ie/code/compute_re_conditional.py:125:               \\\"voting_conf\\\": np.array(vc_vals)}\\n/root/autodl-tmp/struct_self_consist_ie/code/compute_re_conditional.py:193:        for sig in [\\\"SJ\\\", \\\"FK\\\", \\\"EM\\\", \\\"voting_conf\\\", \\\"logprob\\\"]:\\n/root/autodl-tmp/struct_self_consist_ie/code/eval_exp012_rerun_auroc.py:27:def compute_voting_confidence(samples, subtask):\\n/root/autodl-tmp/struct_self_consist_ie/code/eval_exp012_rerun_auroc.py:86:            vc.append(compute_voting_confidence(samples, subtask))\\n/root/autodl-tmp/struct_self_consist_ie/code/eval_exp012_rerun_auroc.py:89:                    \\\"em\\\": np.array(em), \\\"voting_conf\\\": np.array(vc)}\\n/root/autodl-tmp/struct_self_consist_ie/code/eval_exp012_rerun_auroc.py:112:        for sig in [\\\"sj\\\", \\\"fk\\\", \\\"em\\\", \\\"voting_conf\\\", \\\"logprob\\\"]:\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp012_rerun_5signal.py:40:def compute_voting_confidence(samples, subtask):\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp012_rerun_5signal.py:101:    if signal_name in (\\\"SJ\\\", \\\"EM\\\", \\\"voting_conf\\\"):\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp012_rerun_5signal.py:175:            vc_vals.append(compute_voting_confidence(samples, subtask))\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp012_rerun_5signal.py:183:            \\\"voting_conf\\\": np.array(vc_vals, dtype=float),\\n/root/autodl-tmp/struct_self_consist_ie/code/gen_reliability_1024.py:105:def voting_confidence(samples, subtask):\\n/root/autodl-tmp/struct_self_consist_ie/code/gen_reliability_1024.py:150:        vc_ner_val = voting_confidence(samples, \\\"ner\\\")\\n/root/autodl-tmp/struct_self_consist_ie/code/gen_reliability_1024.py:151:        vc_re_val = voting_confidence(samples, \\\"re\\\")\\n/root/autodl-tmp/struct_self_consist_ie/code/plot_selection_gap_1024.py:32:    'SJ': 0.6450, 'voting_conf': 0.6337, 'logprob': 0.6501,\\n/root/autodl-tmp/struct_self_consist_ie/code/plot_selection_gap_1024.py:36:    'SJ': 0.3855, 'voting_conf': 0.3592, 'logprob': 0.3948,\\n/root/autodl-tmp/struct_self_consist_ie/code/plot_selection_gap_1024.py:40:ner_rho = {'SJ': 0.3599, 'voting_conf': 0.2524, 'logprob': 0.2052}\\n/root/autodl-tmp/struct_self_consist_ie/code/plot_selection_gap_1024.py:41:re_rho = {'SJ': 0.2503, 'voting_conf': 0.3311, 'logprob': 0.2662}\\n/root/autodl-tmp/struct_self_consist_ie/code/plot_selection_gap_1024.py:43:signals = ['SJ', 'voting_conf', 'logprob']\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f3cc20fa-26de-4ab1-a5ab-60647c654156",
+  "uuid": "0595e8aa-588e-4c3b-be8f-fb81e4497401",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/code/analyze_entity_voting.py:8:5. Compute voting_confidence = mean(voting_rate of consensus items)\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_entity_voting.py:122:def voting_confidence(voting_rates, consensus_keys):\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_entity_voting.py:139:    voting_confs = []\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_entity_voting.py:183:            voting_confs.append(float(np.mean(list(v_rates.values()))))\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_entity_voting.py:185:            voting_confs.append(0.0)\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_entity_voting.py:194:    vc_v = [voting_confs[i] for i in valid]\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_entity_voting.py:206:    for name, scores in [(\\\\\\\"soft_jaccard\\\\\\\", sj_v), (\\\\\\\"fleiss_kappa\\\\\\\", fk_v), (\\\\\\\"voting_confidence\\\\\\\", vc_v)]:\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_entity_voting.py:250:    for name in [\\\\\\\"soft_jaccard\\\\\\\", \\\\\\\"fleiss_kappa\\\\\\\", \\\\\\\"voting_confidence\\\\\\\"]:\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp015_unified.py:63:def compute_voting_confidence(samples, subtask):\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp015_unified.py:109:        signals[\\\\\\\"entity_voting\\\\\\\"].append(compute_voting_confidence(samples, subtask))\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp004_re_diagnostic.py:199:def voting_confidence_re(samples):\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp004_re_diagnostic.py:219:def voting_confidence_ner(samples):\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp004_re_diagnostic.py:249:    For each type, compute SJ, FK, voting_conf correlation with greedy F1.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp004_re_diagnostic.py:263:        vc_scores = [voting_confidence_re(inst[\\\\\\\"samples\\\\\\\"]) for inst in insts]\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp004_re_diagnostic.py:285:            \\\\\\\"rho_voting_conf\\\\\\\": round(rho_vc, 4),\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp004_re_diagnostic.py:286:            \\\\\\\"p_voting_conf\\\\\\\": float(f\\\\\\\"{p_vc:.4e}\\\\\\\"),\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp004_re_diagnostic.py:289:            \\\\\\\"mean_voting_conf\\\\\\\": round(float(np.mean(vc_scores)), 4),\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp004_re_diagnostic.py:421:        vc = voting_confidence_re(inst[\\\\\\\"samples\\\\\\\"])\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp004_re_diagnostic.py:503:    ner_vc = [voting_confidence_ner(inst[\\\\\\\"samples\\\\\\\"]) for inst in ner_insts]\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp004_re_diagnostic.py:508:    results[\\\\\\\"ner_voting_conf\\\\\\\"] = bootstrap_ci(ner_vc, ner_f1)\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp004_re_diagnostic.py:513:    re_vc_scores = [voting_confidence_re(inst[\\\\\\\"samples\\\\\\\"]) for inst in re_insts]\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp004_re_diagnostic.py:518:    results[\\\\\\\"re_voting_conf\\\\\\\"] = bootstrap_ci(re_vc_scores, re_f1_scores)\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp004_re_diagnostic.py:526:        cond_vc = [voting_confidence_re(inst[\\\\\\\"samples\\\\\\\"]) for inst in re_cond]\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp004_re_diagnostic.py:531:        results[\\\\\\\"re_cond_voting_conf\\\\\\\"] = bootstrap_ci(cond_vc, cond_f1)\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp004_re_diagnostic.py:562:    ner_vc = [voting_confidence_ner(inst[\\\\\\\"samples\\\\\\\"]) for inst in ner_insts]\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp004_re_diagnostic.py:572:    re_vc_scores = [voting_confidence_re(inst[\\\\\\\"samples\\\\\\\"]) for inst in re_insts]\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp004_re_diagnostic.py:598:            \\\\\\\"voting_conf\\\\\\\": {\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp004_re_diagnostic.py:626:              f\\\\\\\"ρ_sj={res['rho_sj']:+.3f}  ρ_fk={res['rho_fk']:+.3f}  ρ_vc={res['rho_voting_conf']:+.3f}\\\\\\\")\\\\n/root/autodl-tmp/st\\\\n\\\\n... [截断: 输出过长，省略 17800 字符] ...\\\\n\\\\n name in (\\\\\\\"SJ\\\\\\\", \\\\\\\"EM\\\\\\\", \\\\\\\"voting_conf\\\\\\\"): return np.clip(v, 0, 1)\\\\n/root/autodl-tmp/struct_self_consist_ie/code/eval_s456_5signal.py:107:        vc.append(compute_voting_confidence(samples))\\\\n/root/autodl-tmp/struct_self_consist_ie/code/eval_s456_5signal.py:110:               \\\\\\\"EM\\\\\\\": np.array(em), \\\\\\\"voting_conf\\\\\\\": np.array(vc)}\\\\n/root/autodl-tmp/struct_self_consist_ie/code/eval_s456_5signal.py:143:        vc_vals.append(compute_voting_confidence(samples))\\\\n/root/autodl-tmp/struct_self_consist_ie/code/eval_s456_5signal.py:163:        \\\\\\\"voting_conf_best\\\\\\\": round(float(np.mean(greedy_f1s)), 4),\\\\n/root/autodl-tmp/struct_self_consist_ie/code/eval_s456_5signal.py:208:        for sig in [\\\\\\\"SJ\\\\\\\", \\\\\\\"FK\\\\\\\", \\\\\\\"logprob\\\\\\\", \\\\\\\"EM\\\\\\\", \\\\\\\"voting_conf\\\\\\\"]:\\\\n/root/autodl-tmp/struct_self_consist_ie/code/exp001_3seed_all_signals.py:33:def compute_voting_confidence(samples):\\\\n/root/autodl-tmp/struct_self_consist_ie/code/exp001_3seed_all_signals.py:71:    if sig_name in (\\\\\\\"SJ\\\\\\\", \\\\\\\"EM\\\\\\\", \\\\\\\"voting_conf\\\\\\\"):\\\\n/root/autodl-tmp/struct_self_consist_ie/code/exp001_3seed_all_signals.py:121:        vc_vals.append(compute_voting_confidence(samples))\\\\n/root/autodl-tmp/struct_self_consist_ie/code/exp001_3seed_all_signals.py:126:               \\\\\\\"voting_conf\\\\\\\": np.array(vc_vals)}\\\\n/root/autodl-tmp/struct_self_consist_ie/code/compute_re_conditional.py:32:def compute_voting_confidence(samples):\\\\n/root/autodl-tmp/struct_self_consist_ie/code/compute_re_conditional.py:70:    if sig_name in (\\\\\\\"SJ\\\\\\\", \\\\\\\"EM\\\\\\\", \\\\\\\"voting_conf\\\\\\\"):\\\\n/root/autodl-tmp/struct_self_consist_ie/code/compute_re_conditional.py:120:        vc_vals.append(compute_voting_confidence(samples))\\\\n/root/autodl-tmp/struct_self_consist_ie/code/compute_re_conditional.py:125:               \\\\\\\"voting_conf\\\\\\\": np.array(vc_vals)}\\\\n/root/autodl-tmp/struct_self_consist_ie/code/compute_re_conditional.py:193:        for sig in [\\\\\\\"SJ\\\\\\\", \\\\\\\"FK\\\\\\\", \\\\\\\"EM\\\\\\\", \\\\\\\"voting_conf\\\\\\\", \\\\\\\"logprob\\\\\\\"]:\\\\n/root/autodl-tmp/struct_self_consist_ie/code/eval_exp012_rerun_auroc.py:27:def compute_voting_confidence(samples, subtask):\\\\n/root/autodl-tmp/struct_self_consist_ie/code/eval_exp012_rerun_auroc.py:86:            vc.append(compute_voting_confidence(samples, subtask))\\\\n/root/autodl-tmp/struct_self_consist_ie/code/eval_exp012_rerun_auroc.py:89:                    \\\\\\\"em\\\\\\\": np.array(em), \\\\\\\"voting_conf\\\\\\\": np.array(vc)}\\\\n/root/autodl-tmp/struct_self_consist_ie/code/eval_exp012_rerun_auroc.py:112:        for sig in [\\\\\\\"sj\\\\\\\", \\\\\\\"fk\\\\\\\", \\\\\\\"em\\\\\\\", \\\\\\\"voting_conf\\\\\\\", \\\\\\\"logprob\\\\\\\"]:\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp012_rerun_5signal.py:40:def compute_voting_confidence(samples, subtask):\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp012_rerun_5signal.py:101:    if signal_name in (\\\\\\\"SJ\\\\\\\", \\\\\\\"EM\\\\\\\", \\\\\\\"voting_conf\\\\\\\"):\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp012_rerun_5signal.py:175:            vc_vals.append(compute_voting_confidence(samples, subtask))\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp012_rerun_5signal.py:183:            \\\\\\\"voting_conf\\\\\\\": np.array(vc_vals, dtype=float),\\\\n/root/autodl-tmp/struct_self_consist_ie/code/gen_reliability_1024.py:105:def voting_confidence(samples, subtask):\\\\n/root/autodl-tmp/struct_self_consist_ie/code/gen_reliability_1024.py:150:        vc_ner_val = voting_confidence(samples, \\\\\\\"ner\\\\\\\")\\\\n/root/autodl-tmp/struct_self_consist_ie/code/gen_reliability_1024.py:151:        vc_re_val = voting_confidence(samples, \\\\\\\"re\\\\\\\")\\\\n/root/autodl-tmp/struct_self_consist_ie/code/plot_selection_gap_1024.py:32:    'SJ': 0.6450, 'voting_conf': 0.6337, 'logprob': 0.6501,\\\\n/root/autodl-tmp/struct_self_consist_ie/code/plot_selection_gap_1024.py:36:    'SJ': 0.3855, 'voting_conf': 0.3592, 'logprob': 0.3948,\\\\n/root/autodl-tmp/struct_self_consist_ie/code/plot_selection_gap_1024.py:40:ner_rho = {'SJ': 0.3599, 'voting_conf': 0.2524, 'logprob': 0.2052}\\\\n/root/autodl-tmp/struct_self_consist_ie/code/plot_selection_gap_1024.py:41:re_rho = {'SJ': 0.2503, 'voting_conf': 0.3311, 'logprob': 0.2662}\\\\n/root/autodl-tmp/struct_self_consist_ie/code/plot_selection_gap_1024.py:43:signals = ['SJ', 'voting_conf', 'logprob']\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/code/analyze_entity_voting.py:8:5. Compute voting_confidence = mean(voting_rate of consensus items)\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_entity_voting.py:122:def voting_confidence(voting_rates, consensus_keys):\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_entity_voting.py:139:    voting_confs = []\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_entity_voting.py:183:            voting_confs.append(float(np.mean(list(v_rates.values()))))\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_entity_voting.py:185:            voting_confs.append(0.0)\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_entity_voting.py:194:    vc_v = [voting_confs[i] for i in valid]\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_entity_voting.py:206:    for name, scores in [(\\\"soft_jaccard\\\", sj_v), (\\\"fleiss_kappa\\\", fk_v), (\\\"voting_confidence\\\", vc_v)]:\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_entity_voting.py:250:    for name in [\\\"soft_jaccard\\\", \\\"fleiss_kappa\\\", \\\"voting_confidence\\\"]:\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp015_unified.py:63:def compute_voting_confidence(samples, subtask):\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp015_unified.py:109:        signals[\\\"entity_voting\\\"].append(compute_voting_confidence(samples, subtask))\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp004_re_diagnostic.py:199:def voting_confidence_re(samples):\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp004_re_diagnostic.py:219:def voting_confidence_ner(samples):\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp004_re_diagnostic.py:249:    For each type, compute SJ, FK, voting_conf correlation with greedy F1.\\\"\\\"\\\"\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp004_re_diagnostic.py:263:        vc_scores = [voting_confidence_re(inst[\\\"samples\\\"]) for inst in insts]\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp004_re_diagnostic.py:285:            \\\"rho_voting_conf\\\": round(rho_vc, 4),\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp004_re_diagnostic.py:286:            \\\"p_voting_conf\\\": float(f\\\"{p_vc:.4e}\\\"),\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp004_re_diagnostic.py:289:            \\\"mean_voting_conf\\\": round(float(np.mean(vc_scores)), 4),\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp004_re_diagnostic.py:421:        vc = voting_confidence_re(inst[\\\"samples\\\"])\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp004_re_diagnostic.py:503:    ner_vc = [voting_confidence_ner(inst[\\\"samples\\\"]) for inst in ner_insts]\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp004_re_diagnostic.py:508:    results[\\\"ner_voting_conf\\\"] = bootstrap_ci(ner_vc, ner_f1)\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp004_re_diagnostic.py:513:    re_vc_scores = [voting_confidence_re(inst[\\\"samples\\\"]) for inst in re_insts]\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp004_re_diagnostic.py:518:    results[\\\"re_voting_conf\\\"] = bootstrap_ci(re_vc_scores, re_f1_scores)\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp004_re_diagnostic.py:526:        cond_vc = [voting_confidence_re(inst[\\\"samples\\\"]) for inst in re_cond]\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp004_re_diagnostic.py:531:        results[\\\"re_cond_voting_conf\\\"] = bootstrap_ci(cond_vc, cond_f1)\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp004_re_diagnostic.py:562:    ner_vc = [voting_confidence_ner(inst[\\\"samples\\\"]) for inst in ner_insts]\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp004_re_diagnostic.py:572:    re_vc_scores = [voting_confidence_re(inst[\\\"samples\\\"]) for inst in re_insts]\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp004_re_diagnostic.py:598:            \\\"voting_conf\\\": {\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp004_re_diagnostic.py:626:              f\\\"ρ_sj={res['rho_sj']:+.3f}  ρ_fk={res['rho_fk']:+.3f}  ρ_vc={res['rho_voting_conf']:+.3f}\\\")\\n/root/autodl-tmp/st\\n\\n... [截断: 输出过长，省略 17800 字符] ...\\n\\n name in (\\\"SJ\\\", \\\"EM\\\", \\\"voting_conf\\\"): return np.clip(v, 0, 1)\\n/root/autodl-tmp/struct_self_consist_ie/code/eval_s456_5signal.py:107:        vc.append(compute_voting_confidence(samples))\\n/root/autodl-tmp/struct_self_consist_ie/code/eval_s456_5signal.py:110:               \\\"EM\\\": np.array(em), \\\"voting_conf\\\": np.array(vc)}\\n/root/autodl-tmp/struct_self_consist_ie/code/eval_s456_5signal.py:143:        vc_vals.append(compute_voting_confidence(samples))\\n/root/autodl-tmp/struct_self_consist_ie/code/eval_s456_5signal.py:163:        \\\"voting_conf_best\\\": round(float(np.mean(greedy_f1s)), 4),\\n/root/autodl-tmp/struct_self_consist_ie/code/eval_s456_5signal.py:208:        for sig in [\\\"SJ\\\", \\\"FK\\\", \\\"logprob\\\", \\\"EM\\\", \\\"voting_conf\\\"]:\\n/root/autodl-tmp/struct_self_consist_ie/code/exp001_3seed_all_signals.py:33:def compute_voting_confidence(samples):\\n/root/autodl-tmp/struct_self_consist_ie/code/exp001_3seed_all_signals.py:71:    if sig_name in (\\\"SJ\\\", \\\"EM\\\", \\\"voting_conf\\\"):\\n/root/autodl-tmp/struct_self_consist_ie/code/exp001_3seed_all_signals.py:121:        vc_vals.append(compute_voting_confidence(samples))\\n/root/autodl-tmp/struct_self_consist_ie/code/exp001_3seed_all_signals.py:126:               \\\"voting_conf\\\": np.array(vc_vals)}\\n/root/autodl-tmp/struct_self_consist_ie/code/compute_re_conditional.py:32:def compute_voting_confidence(samples):\\n/root/autodl-tmp/struct_self_consist_ie/code/compute_re_conditional.py:70:    if sig_name in (\\\"SJ\\\", \\\"EM\\\", \\\"voting_conf\\\"):\\n/root/autodl-tmp/struct_self_consist_ie/code/compute_re_conditional.py:120:        vc_vals.append(compute_voting_confidence(samples))\\n/root/autodl-tmp/struct_self_consist_ie/code/compute_re_conditional.py:125:               \\\"voting_conf\\\": np.array(vc_vals)}\\n/root/autodl-tmp/struct_self_consist_ie/code/compute_re_conditional.py:193:        for sig in [\\\"SJ\\\", \\\"FK\\\", \\\"EM\\\", \\\"voting_conf\\\", \\\"logprob\\\"]:\\n/root/autodl-tmp/struct_self_consist_ie/code/eval_exp012_rerun_auroc.py:27:def compute_voting_confidence(samples, subtask):\\n/root/autodl-tmp/struct_self_consist_ie/code/eval_exp012_rerun_auroc.py:86:            vc.append(compute_voting_confidence(samples, subtask))\\n/root/autodl-tmp/struct_self_consist_ie/code/eval_exp012_rerun_auroc.py:89:                    \\\"em\\\": np.array(em), \\\"voting_conf\\\": np.array(vc)}\\n/root/autodl-tmp/struct_self_consist_ie/code/eval_exp012_rerun_auroc.py:112:        for sig in [\\\"sj\\\", \\\"fk\\\", \\\"em\\\", \\\"voting_conf\\\", \\\"logprob\\\"]:\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp012_rerun_5signal.py:40:def compute_voting_confidence(samples, subtask):\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp012_rerun_5signal.py:101:    if signal_name in (\\\"SJ\\\", \\\"EM\\\", \\\"voting_conf\\\"):\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp012_rerun_5signal.py:175:            vc_vals.append(compute_voting_confidence(samples, subtask))\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp012_rerun_5signal.py:183:            \\\"voting_conf\\\": np.array(vc_vals, dtype=float),\\n/root/autodl-tmp/struct_self_consist_ie/code/gen_reliability_1024.py:105:def voting_confidence(samples, subtask):\\n/root/autodl-tmp/struct_self_consist_ie/code/gen_reliability_1024.py:150:        vc_ner_val = voting_confidence(samples, \\\"ner\\\")\\n/root/autodl-tmp/struct_self_consist_ie/code/gen_reliability_1024.py:151:        vc_re_val = voting_confidence(samples, \\\"re\\\")\\n/root/autodl-tmp/struct_self_consist_ie/code/plot_selection_gap_1024.py:32:    'SJ': 0.6450, 'voting_conf': 0.6337, 'logprob': 0.6501,\\n/root/autodl-tmp/struct_self_consist_ie/code/plot_selection_gap_1024.py:36:    'SJ': 0.3855, 'voting_conf': 0.3592, 'logprob': 0.3948,\\n/root/autodl-tmp/struct_self_consist_ie/code/plot_selection_gap_1024.py:40:ner_rho = {'SJ': 0.3599, 'voting_conf': 0.2524, 'logprob': 0.2052}\\n/root/autodl-tmp/struct_self_consist_ie/code/plot_selection_gap_1024.py:41:re_rho = {'SJ': 0.2503, 'voting_conf': 0.3311, 'logprob': 0.2662}\\n/root/autodl-tmp/struct_self_consist_ie/code/plot_selection_gap_1024.py:43:signals = ['SJ', 'voting_conf', 'logprob']\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01FnLdDYMMaLiPLBxecQAHQ5`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "grep -rn \"def.*em_\" /root/autodl-tmp/struct_self_consist_ie/code/ --include=\"*.py\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f3cc20fa-26de-4ab1-a5ab-60647c654156",
+  "uuid": "9b3297ca-925b-448d-a31e-f078b023f094",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MUkiSMRcKF2YAekP5VQL73",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 715,
+      "cache_read_input_tokens": 36345,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 715
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-15T03:08:47.640Z_
+
+<details><summary>↩ Tool result · `toolu_01FnLdDYMMaLiPLBxecQAHQ5`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/code/exp_006_v2_selection.py:126:def compute_sample_em_scores(key_sets: list[frozenset]) -> list[float]:\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f3cc20fa-26de-4ab1-a5ab-60647c654156",
+  "uuid": "9da3343d-0865-40f1-bcd2-5b80e99c5f10",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/code/exp_006_v2_selection.py:126:def compute_sample_em_scores(key_sets: list[frozenset]) -> list[float]:\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/code/exp_006_v2_selection.py:126:def compute_sample_em_scores(key_sets: list[frozenset]) -> list[float]:\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01EExUNScN9uEaep1ZeekwAk`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "ls /root/autodl-tmp/struct_self_consist_ie/code/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f3cc20fa-26de-4ab1-a5ab-60647c654156",
+  "uuid": "e14fced7-0098-483b-b81e-02931220ca33",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MUkiSMRcKF2YAekP5VQL73",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 715,
+      "cache_read_input_tokens": 36345,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 715
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-15T03:08:48.140Z_
+
+<details><summary>↩ Tool result · `toolu_01EExUNScN9uEaep1ZeekwAk`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"__pycache__\\n_backup_cond_fix\\nanalyze_3seed_5signal.py\\nanalyze_component_wise_re.py\\nanalyze_entity_voting.py\\nanalyze_exact_match_voting.py\\nanalyze_exp002_conll2003.py\\nanalyze_exp004_re_diagnostic.py\\nanalyze_exp004_v2_re_diagnostic.py\\nanalyze_exp005_v2_temperature.py\\nanalyze_exp012_rerun_5signal.py\\nanalyze_exp015_unified.py\\nanalyze_exp015_v2_metrics.py\\nanalyze_exp016_ensemble.py\\nanalyze_exp017_5signal.py\\nanalyze_exp017_llama_conll_n16.py\\nanalyze_exp017_llama_conll_n16_s123.py\\nanalyze_logprob_baseline.py\\ncompute_re_conditional.py\\nconsistency.py\\nconvert_conll2003.py\\nconvert_to_llamafactory.py\\nconvert_wnut17.py\\ndata_utils.py\\ndiagnose_logprob_rho.py\\neval_exp012_rerun_auroc.py\\neval_n16_5signal.py\\neval_n8_5signal.py\\neval_s456_5signal.py\\nevaluation.py\\nexp001_3seed_all_signals.py\\nexp001_postprocess.py\\nexp009_stratification_analysis.py\\nexp010_selection_curves.py\\nexp_006_v2_selection.py\\nexp_009_v2_re_rerun.py\\nexp_009_v2_stratification.py\\nexp_016_v2_ensemble.py\\nextract_logprobs.py\\ngate0_diagnose.py\\ngate0_eval.py\\ngate0_realign_eval.py\\ngen_reliability_1024.py\\nmvp_pilot.py\\nplot_reliability_1024.py\\nplot_selection_gap_1024.py\\nrun_mvp_pilot.py\\nsampling.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f3cc20fa-26de-4ab1-a5ab-60647c654156",
+  "uuid": "8e971e04-6e91-4dea-8e6b-cfa89c833976",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"__pycache__\\\\n_backup_cond_fix\\\\nanalyze_3seed_5signal.py\\\\nanalyze_component_wise_re.py\\\\nanalyze_entity_voting.py\\\\nanalyze_exact_match_voting.py\\\\nanalyze_exp002_conll2003.py\\\\nanalyze_exp004_re_diagnostic.py\\\\nanalyze_exp004_v2_re_diagnostic.py\\\\nanalyze_exp005_v2_temperature.py\\\\nanalyze_exp012_rerun_5signal.py\\\\nanalyze_exp015_unified.py\\\\nanalyze_exp015_v2_metrics.py\\\\nanalyze_exp016_ensemble.py\\\\nanalyze_exp017_5signal.py\\\\nanalyze_exp017_llama_conll_n16.py\\\\nanalyze_exp017_llama_conll_n16_s123.py\\\\nanalyze_logprob_baseline.py\\\\ncompute_re_conditional.py\\\\nconsistency.py\\\\nconvert_conll2003.py\\\\nconvert_to_llamafactory.py\\\\nconvert_wnut17.py\\\\ndata_utils.py\\\\ndiagnose_logprob_rho.py\\\\neval_exp012_rerun_auroc.py\\\\neval_n16_5signal.py\\\\neval_n8_5signal.py\\\\neval_s456_5signal.py\\\\nevaluation.py\\\\nexp001_3seed_all_signals.py\\\\nexp001_postprocess.py\\\\nexp009_stratification_analysis.py\\\\nexp010_selection_curves.py\\\\nexp_006_v2_selection.py\\\\nexp_009_v2_re_rerun.py\\\\nexp_009_v2_stratification.py\\\\nexp_016_v2_ensemble.py\\\\nextract_logprobs.py\\\\ngate0_diagnose.py\\\\ngate0_eval.py\\\\ngate0_realign_eval.py\\\\ngen_reliability_1024.py\\\\nmvp_pilot.py\\\\nplot_reliability_1024.py\\\\nplot_selection_gap_1024.py\\\\nrun_mvp_pilot.py\\\\nsampling.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"__pycache__\\n_backup_cond_fix\\nanalyze_3seed_5signal.py\\nanalyze_component_wise_re.py\\nanalyze_entity_voting.py\\nanalyze_exact_match_voting.py\\nanalyze_exp002_conll2003.py\\nanalyze_exp004_re_diagnostic.py\\nanalyze_exp004_v2_re_diagnostic.py\\nanalyze_exp005_v2_temperature.py\\nanalyze_exp012_rerun_5signal.py\\nanalyze_exp015_unified.py\\nanalyze_exp015_v2_metrics.py\\nanalyze_exp016_ensemble.py\\nanalyze_exp017_5signal.py\\nanalyze_exp017_llama_conll_n16.py\\nanalyze_exp017_llama_conll_n16_s123.py\\nanalyze_logprob_baseline.py\\ncompute_re_conditional.py\\nconsistency.py\\nconvert_conll2003.py\\nconvert_to_llamafactory.py\\nconvert_wnut17.py\\ndata_utils.py\\ndiagnose_logprob_rho.py\\neval_exp012_rerun_auroc.py\\neval_n16_5signal.py\\neval_n8_5signal.py\\neval_s456_5signal.py\\nevaluation.py\\nexp001_3seed_all_signals.py\\nexp001_postprocess.py\\nexp009_stratification_analysis.py\\nexp010_selection_curves.py\\nexp_006_v2_selection.py\\nexp_009_v2_re_rerun.py\\nexp_009_v2_stratification.py\\nexp_016_v2_ensemble.py\\nextract_logprobs.py\\ngate0_diagnose.py\\ngate0_eval.py\\ngate0_realign_eval.py\\ngen_reliability_1024.py\\nmvp_pilot.py\\nplot_reliability_1024.py\\nplot_selection_gap_1024.py\\nrun_mvp_pilot.py\\nsampling.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 24_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The most relevant file is `analyze_exp012_rerun_5signal.py` since it's for exp_012_rerun data. Let me read it to understand how all 5 signals are computed.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f3cc20fa-26de-4ab1-a5ab-60647c654156",
+  "uuid": "06dc1de2-a91a-4c95-b105-ce5a45aa9785",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019JCa4ZZer97r6xgvDbaybK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4797,
+      "cache_read_input_tokens": 37060,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4797
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0118vGymZAYaCKjXY2YHp9dr`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "head -200 /root/autodl-tmp/struct_self_consist_ie/code/analyze_exp012_rerun_5signal.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f3cc20fa-26de-4ab1-a5ab-60647c654156",
+  "uuid": "24106407-cd21-4cfa-a3b9-1f75677a990b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019JCa4ZZer97r6xgvDbaybK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4797,
+      "cache_read_input_tokens": 37060,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4797
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-15T03:08:52.504Z_
+
+<details><summary>↩ Tool result · `toolu_0118vGymZAYaCKjXY2YHp9dr`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"exp_012_rerun_1024: Full 5-signal metrics for NER + RE.\\\"\\\"\\\"\\n\\nimport json\\nimport sys\\nfrom collections import Counter\\n\\nimport numpy as np\\nfrom scipy.stats import spearmanr, kendalltau, rankdata\\n\\nsys.path.insert(0, '/root/autodl-tmp/struct_self_consist_ie/code')\\nfrom consistency import compute_all_consistency_scores\\nfrom evaluation import per_instance_f1\\n\\nDATA_PATH = \\\"/root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/samples.jsonl\\\"\\nOUTPUT_PATH = \\\"/root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/all_signals_5signal.json\\\"\\nSUBTASKS = [\\\"ner\\\", \\\"re\\\"]\\n\\n\\ndef load_data(path):\\n    records = []\\n    with open(path) as f:\\n        for line in f:\\n            if line.strip():\\n                records.append(json.loads(line))\\n    return records\\n\\n\\ndef compute_exact_match_rate(samples, subtask):\\n    if subtask == \\\"ner\\\":\\n        keys = [frozenset((e[\\\"text\\\"], e[\\\"type\\\"]) for e in s.get(\\\"entities\\\", [])) for s in samples]\\n    else:\\n        keys = [frozenset((r[\\\"head\\\"], r[\\\"tail\\\"], r[\\\"type\\\"]) for r in s.get(\\\"relations\\\", [])) for s in samples]\\n    if not keys:\\n        return 0.0\\n    counter = Counter(keys)\\n    return counter.most_common(1)[0][1] / len(samples)\\n\\n\\ndef compute_voting_confidence(samples, subtask):\\n    N = len(samples)\\n    if N == 0:\\n        return 0.0\\n    counter = Counter()\\n    if subtask == \\\"ner\\\":\\n        for s in samples:\\n            for e in s.get(\\\"entities\\\", []):\\n                counter[(e[\\\"text\\\"], e[\\\"type\\\"])] += 1\\n    else:\\n        for s in samples:\\n            for r in s.get(\\\"relations\\\", []):\\n                counter[(r[\\\"head\\\"], r[\\\"tail\\\"], r[\\\"type\\\"])] += 1\\n    if not counter:\\n        return 0.0\\n    rates = [v / N for v in counter.values()]\\n    return float(np.mean(rates))\\n\\n\\ndef compute_mean_logprob(samples):\\n    logprobs = [s.get(\\\"mean_logprob\\\") for s in samples if s.get(\\\"mean_logprob\\\") is not None]\\n    logprobs = [lp for lp in logprobs if np.isfinite(lp)]\\n    if not logprobs:\\n        return float(\\\"nan\\\")\\n    return float(np.mean(logprobs))\\n\\n\\ndef safe_auroc(scores, labels):\\n    scores = np.asarray(scores, dtype=float)\\n    labels = np.asarray(labels, dtype=int)\\n    if len(np.unique(labels)) < 2:\\n        return float(\\\"nan\\\")\\n    n_pos = np.sum(labels == 1)\\n    n_neg = np.sum(labels == 0)\\n    if n_pos == 0 or n_neg == 0:\\n        return float(\\\"nan\\\")\\n    ranks = rankdata(scores)\\n    u = ranks[labels == 1].sum() - n_pos * (n_pos + 1) / 2\\n    return float(u / (n_pos * n_neg))\\n\\n\\ndef safe_spearman(x, y):\\n    x, y = np.asarray(x, dtype=float), np.asarray(y, dtype=float)\\n    mask = np.isfinite(x) & np.isfinite(y)\\n    x, y = x[mask], y[mask]\\n    if len(x) < 3:\\n        return float(\\\"nan\\\")\\n    return float(spearmanr(x, y).statistic)\\n\\n\\ndef safe_kendall(x, y):\\n    x, y = np.asarray(x, dtype=float), np.asarray(y, dtype=float)\\n    mask = np.isfinite(x) & np.isfinite(y)\\n    x, y = x[mask], y[mask]\\n    if len(x) < 3:\\n        return float(\\\"nan\\\")\\n    return float(kendalltau(x, y).statistic)\\n\\n\\ndef normalize_for_ece(signal_name, values):\\n    v = np.asarray(values, dtype=float)\\n    if signal_name in (\\\"SJ\\\", \\\"EM\\\", \\\"voting_conf\\\"):\\n        return np.clip(v, 0, 1)\\n    elif signal_name == \\\"FK\\\":\\n        return np.clip((v + 1) / 2, 0, 1)\\n    elif signal_name == \\\"logprob\\\":\\n        return np.clip(np.exp(v), 0, 1)\\n    return v\\n\\n\\ndef compute_ece(confidences, correctness, n_bins=10):\\n    conf = np.asarray(confidences, dtype=float)\\n    corr = np.asarray(correctness, dtype=float)\\n    mask = np.isfinite(conf)\\n    conf, corr = conf[mask], corr[mask]\\n    if len(conf) == 0:\\n        return float(\\\"nan\\\")\\n    bin_edges = np.linspace(0, 1, n_bins + 1)\\n    ece = 0.0\\n    total = len(conf)\\n    for i in range(n_bins):\\n        lo, hi = bin_edges[i], bin_edges[i + 1]\\n        in_bin = (conf >= lo) & (conf <= hi if i == n_bins - 1 else conf < hi)\\n        if in_bin.sum() == 0:\\n            continue\\n        bin_conf = conf[in_bin].mean()\\n        bin_acc = corr[in_bin].mean()\\n        ece += in_bin.sum() / total * abs(bin_acc - bin_conf)\\n    return float(ece)\\n\\n\\ndef bootstrap_metric(metric_fn, signals, targets, n_boot=1000, seed=42):\\n    rng = np.random.RandomState(seed)\\n    signals = np.asarray(signals, dtype=float)\\n    targets = np.asarray(targets, dtype=float)\\n    n = len(signals)\\n    boot_vals = []\\n    for _ in range(n_boot):\\n        idx = rng.randint(0, n, size=n)\\n        val = metric_fn(signals[idx], targets[idx])\\n        if np.isfinite(val):\\n            boot_vals.append(val)\\n    if not boot_vals:\\n        return [float(\\\"nan\\\"), float(\\\"nan\\\")]\\n    return [float(np.percentile(boot_vals, 2.5)), float(np.percentile(boot_vals, 97.5))]\\n\\n\\ndef evaluate_subtask(instances, subtask):\\n    if subtask == \\\"ner\\\":\\n        valid = [inst for inst in instances if len(inst[\\\"gold\\\"].get(\\\"entities\\\", [])) > 0]\\n    else:\\n        valid = [inst for inst in instances if len(inst[\\\"gold\\\"].get(\\\"relations\\\", [])) > 0]\\n    print(f\\\"\\\\n=== {subtask.upper()} === Valid: {len(valid)}\\\")\\n\\n    greedy_f1s_all = []\\n    for inst in valid:\\n        greedy = inst.get(\\\"greedy\\\", inst[\\\"samples\\\"][0])\\n        greedy_f1s_all.append(per_instance_f1(greedy, inst[\\\"gold\\\"], subtask=subtask))\\n    conditional = [inst for inst, f1 in zip(valid, greedy_f1s_all) if f1 > 0]\\n    print(f\\\"Conditional (greedy F1 > 0): {len(conditional)}\\\")\\n\\n    results = {}\\n    for split_name, split_instances in [(\\\"full\\\", valid), (\\\"conditional\\\", conditional)]:\\n        print(f\\\"\\\\n--- {split_name} ({len(split_instances)} instances) ---\\\")\\n        consistency = compute_all_consistency_scores(split_instances, subtask=subtask)\\n        sj_vals = consistency[\\\"soft_jaccard\\\"]\\n        fk_vals = consistency[\\\"fleiss_kappa\\\"]\\n\\n        lp_vals, em_vals, vc_vals, f1_vals = [], [], [], []\\n        for inst in split_instances:\\n            samples = inst[\\\"samples\\\"]\\n            gold = inst[\\\"gold\\\"]\\n            greedy = inst.get(\\\"greedy\\\", samples[0])\\n            lp_vals.append(compute_mean_logprob(samples))\\n            em_vals.append(compute_exact_match_rate(samples, subtask))\\n            vc_vals.append(compute_voting_confidence(samples, subtask))\\n            f1_vals.append(per_instance_f1(greedy, gold, subtask=subtask))\\n\\n        signals = {\\n            \\\"SJ\\\": np.array(sj_vals, dtype=float),\\n            \\\"FK\\\": np.array(fk_vals, dtype=float),\\n            \\\"logprob\\\": np.array(lp_vals, dtype=float),\\n            \\\"EM\\\": np.array(em_vals, dtype=float),\\n            \\\"voting_conf\\\": np.array(vc_vals, dtype=float),\\n        }\\n        f1_arr = np.array(f1_vals, dtype=float)\\n        binary_correct = (f1_arr >= 1.0).astype(int)\\n\\n        split_results = {\\\"n\\\": len(split_instances), \\\"pct_perfect\\\": float(binary_correct.mean())}\\n        metrics = {}\\n        for sig_name, sig_vals in signals.items():\\n            m = {}\\n            rho = safe_spearman(sig_vals, f1_arr)\\n            rho_ci = bootstrap_metric(safe_spearman, sig_vals, f1_arr)\\n            m[\\\"rho\\\"] = {\\\"value\\\": rho, \\\"ci_95\\\": rho_ci}\\n\\n            tau = safe_kendall(sig_vals, f1_arr)\\n            m[\\\"tau\\\"] = {\\\"value\\\": tau}\\n\\n            auroc = safe_auroc(sig_vals, binary_correct)\\n            auroc_ci = bootstrap_metric(safe_auroc, sig_vals, binary_correct.astype(float))\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f3cc20fa-26de-4ab1-a5ab-60647c654156",
+  "uuid": "cf06f3dd-f2d8-4130-9b8d-1950b485f1c0",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"exp_012_rerun_1024: Full 5-signal metrics for NER + RE.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport json\\\\nimport sys\\\\nfrom collections import Counter\\\\n\\\\nimport numpy as np\\\\nfrom scipy.stats import spearmanr, kendalltau, rankdata\\\\n\\\\nsys.path.insert(0, '/root/autodl-tmp/struct_self_consist_ie/code')\\\\nfrom consistency import compute_all_consistency_scores\\\\nfrom evaluation import per_instance_f1\\\\n\\\\nDATA_PATH = \\\\\\\"/root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/samples.jsonl\\\\\\\"\\\\nOUTPUT_PATH = \\\\\\\"/root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/all_signals_5signal.json\\\\\\\"\\\\nSUBTASKS = [\\\\\\\"ner\\\\\\\", \\\\\\\"re\\\\\\\"]\\\\n\\\\n\\\\ndef load_data(path):\\\\n    records = []\\\\n    with open(path) as f:\\\\n        for line in f:\\\\n            if line.strip():\\\\n                records.append(json.loads(line))\\\\n    return records\\\\n\\\\n\\\\ndef compute_exact_match_rate(samples, subtask):\\\\n    if subtask == \\\\\\\"ner\\\\\\\":\\\\n        keys = [frozenset((e[\\\\\\\"text\\\\\\\"], e[\\\\\\\"type\\\\\\\"]) for e in s.get(\\\\\\\"entities\\\\\\\", [])) for s in samples]\\\\n    else:\\\\n        keys = [frozenset((r[\\\\\\\"head\\\\\\\"], r[\\\\\\\"tail\\\\\\\"], r[\\\\\\\"type\\\\\\\"]) for r in s.get(\\\\\\\"relations\\\\\\\", [])) for s in samples]\\\\n    if not keys:\\\\n        return 0.0\\\\n    counter = Counter(keys)\\\\n    return counter.most_common(1)[0][1] / len(samples)\\\\n\\\\n\\\\ndef compute_voting_confidence(samples, subtask):\\\\n    N = len(samples)\\\\n    if N == 0:\\\\n        return 0.0\\\\n    counter = Counter()\\\\n    if subtask == \\\\\\\"ner\\\\\\\":\\\\n        for s in samples:\\\\n            for e in s.get(\\\\\\\"entities\\\\\\\", []):\\\\n                counter[(e[\\\\\\\"text\\\\\\\"], e[\\\\\\\"type\\\\\\\"])] += 1\\\\n    else:\\\\n        for s in samples:\\\\n            for r in s.get(\\\\\\\"relations\\\\\\\", []):\\\\n                counter[(r[\\\\\\\"head\\\\\\\"], r[\\\\\\\"tail\\\\\\\"], r[\\\\\\\"type\\\\\\\"])] += 1\\\\n    if not counter:\\\\n        return 0.0\\\\n    rates = [v / N for v in counter.values()]\\\\n    return float(np.mean(rates))\\\\n\\\\n\\\\ndef compute_mean_logprob(samples):\\\\n    logprobs = [s.get(\\\\\\\"mean_logprob\\\\\\\") for s in samples if s.get(\\\\\\\"mean_logprob\\\\\\\") is not None]\\\\n    logprobs = [lp for lp in logprobs if np.isfinite(lp)]\\\\n    if not logprobs:\\\\n        return float(\\\\\\\"nan\\\\\\\")\\\\n    return float(np.mean(logprobs))\\\\n\\\\n\\\\ndef safe_auroc(scores, labels):\\\\n    scores = np.asarray(scores, dtype=float)\\\\n    labels = np.asarray(labels, dtype=int)\\\\n    if len(np.unique(labels)) < 2:\\\\n        return float(\\\\\\\"nan\\\\\\\")\\\\n    n_pos = np.sum(labels == 1)\\\\n    n_neg = np.sum(labels == 0)\\\\n    if n_pos == 0 or n_neg == 0:\\\\n        return float(\\\\\\\"nan\\\\\\\")\\\\n    ranks = rankdata(scores)\\\\n    u = ranks[labels == 1].sum() - n_pos * (n_pos + 1) / 2\\\\n    return float(u / (n_pos * n_neg))\\\\n\\\\n\\\\ndef safe_spearman(x, y):\\\\n    x, y = np.asarray(x, dtype=float), np.asarray(y, dtype=float)\\\\n    mask = np.isfinite(x) & np.isfinite(y)\\\\n    x, y = x[mask], y[mask]\\\\n    if len(x) < 3:\\\\n        return float(\\\\\\\"nan\\\\\\\")\\\\n    return float(spearmanr(x, y).statistic)\\\\n\\\\n\\\\ndef safe_kendall(x, y):\\\\n    x, y = np.asarray(x, dtype=float), np.asarray(y, dtype=float)\\\\n    mask = np.isfinite(x) & np.isfinite(y)\\\\n    x, y = x[mask], y[mask]\\\\n    if len(x) < 3:\\\\n        return float(\\\\\\\"nan\\\\\\\")\\\\n    return float(kendalltau(x, y).statistic)\\\\n\\\\n\\\\ndef normalize_for_ece(signal_name, values):\\\\n    v = np.asarray(values, dtype=float)\\\\n    if signal_name in (\\\\\\\"SJ\\\\\\\", \\\\\\\"EM\\\\\\\", \\\\\\\"voting_conf\\\\\\\"):\\\\n        return np.clip(v, 0, 1)\\\\n    elif signal_name == \\\\\\\"FK\\\\\\\":\\\\n        return np.clip((v + 1) / 2, 0, 1)\\\\n    elif signal_name == \\\\\\\"logprob\\\\\\\":\\\\n        return np.clip(np.exp(v), 0, 1)\\\\n    return v\\\\n\\\\n\\\\ndef compute_ece(confidences, correctness, n_bins=10):\\\\n    conf = np.asarray(confidences, dtype=float)\\\\n    corr = np.asarray(correctness, dtype=float)\\\\n    mask = np.isfinite(conf)\\\\n    conf, corr = conf[mask], corr[mask]\\\\n    if len(conf) == 0:\\\\n        return float(\\\\\\\"nan\\\\\\\")\\\\n    bin_edges = np.linspace(0, 1, n_bins + 1)\\\\n    ece = 0.0\\\\n    total = len(conf)\\\\n    for i in range(n_bins):\\\\n        lo, hi = bin_edges[i], bin_edges[i + 1]\\\\n        in_bin = (conf >= lo) & (conf <= hi if i == n_bins - 1 else conf < hi)\\\\n        if in_bin.sum() == 0:\\\\n            continue\\\\n        bin_conf = conf[in_bin].mean()\\\\n        bin_acc = corr[in_bin].mean()\\\\n        ece += in_bin.sum() / total * abs(bin_acc - bin_conf)\\\\n    return float(ece)\\\\n\\\\n\\\\ndef bootstrap_metric(metric_fn, signals, targets, n_boot=1000, seed=42):\\\\n    rng = np.random.RandomState(seed)\\\\n    signals = np.asarray(signals, dtype=float)\\\\n    targets = np.asarray(targets, dtype=float)\\\\n    n = len(signals)\\\\n    boot_vals = []\\\\n    for _ in range(n_boot):\\\\n        idx = rng.randint(0, n, size=n)\\\\n        val = metric_fn(signals[idx], targets[idx])\\\\n        if np.isfinite(val):\\\\n            boot_vals.append(val)\\\\n    if not boot_vals:\\\\n        return [float(\\\\\\\"nan\\\\\\\"), float(\\\\\\\"nan\\\\\\\")]\\\\n    return [float(np.percentile(boot_vals, 2.5)), float(np.percentile(boot_vals, 97.5))]\\\\n\\\\n\\\\ndef evaluate_subtask(instances, subtask):\\\\n    if subtask == \\\\\\\"ner\\\\\\\":\\\\n        valid = [inst for inst in instances if len(inst[\\\\\\\"gold\\\\\\\"].get(\\\\\\\"entities\\\\\\\", [])) > 0]\\\\n    else:\\\\n        valid = [inst for inst in instances if len(inst[\\\\\\\"gold\\\\\\\"].get(\\\\\\\"relations\\\\\\\", [])) > 0]\\\\n    print(f\\\\\\\"\\\\\\\\n=== {subtask.upper()} === Valid: {len(valid)}\\\\\\\")\\\\n\\\\n    greedy_f1s_all = []\\\\n    for inst in valid:\\\\n        greedy = inst.get(\\\\\\\"greedy\\\\\\\", inst[\\\\\\\"samples\\\\\\\"][0])\\\\n        greedy_f1s_all.append(per_instance_f1(greedy, inst[\\\\\\\"gold\\\\\\\"], subtask=subtask))\\\\n    conditional = [inst for inst, f1 in zip(valid, greedy_f1s_all) if f1 > 0]\\\\n    print(f\\\\\\\"Conditional (greedy F1 > 0): {len(conditional)}\\\\\\\")\\\\n\\\\n    results = {}\\\\n    for split_name, split_instances in [(\\\\\\\"full\\\\\\\", valid), (\\\\\\\"conditional\\\\\\\", conditional)]:\\\\n        print(f\\\\\\\"\\\\\\\\n--- {split_name} ({len(split_instances)} instances) ---\\\\\\\")\\\\n        consistency = compute_all_consistency_scores(split_instances, subtask=subtask)\\\\n        sj_vals = consistency[\\\\\\\"soft_jaccard\\\\\\\"]\\\\n        fk_vals = consistency[\\\\\\\"fleiss_kappa\\\\\\\"]\\\\n\\\\n        lp_vals, em_vals, vc_vals, f1_vals = [], [], [], []\\\\n        for inst in split_instances:\\\\n            samples = inst[\\\\\\\"samples\\\\\\\"]\\\\n            gold = inst[\\\\\\\"gold\\\\\\\"]\\\\n            greedy = inst.get(\\\\\\\"greedy\\\\\\\", samples[0])\\\\n            lp_vals.append(compute_mean_logprob(samples))\\\\n            em_vals.append(compute_exact_match_rate(samples, subtask))\\\\n            vc_vals.append(compute_voting_confidence(samples, subtask))\\\\n            f1_vals.append(per_instance_f1(greedy, gold, subtask=subtask))\\\\n\\\\n        signals = {\\\\n            \\\\\\\"SJ\\\\\\\": np.array(sj_vals, dtype=float),\\\\n            \\\\\\\"FK\\\\\\\": np.array(fk_vals, dtype=float),\\\\n            \\\\\\\"logprob\\\\\\\": np.array(lp_vals, dtype=float),\\\\n            \\\\\\\"EM\\\\\\\": np.array(em_vals, dtype=float),\\\\n            \\\\\\\"voting_conf\\\\\\\": np.array(vc_vals, dtype=float),\\\\n        }\\\\n        f1_arr = np.array(f1_vals, dtype=float)\\\\n        binary_correct = (f1_arr >= 1.0).astype(int)\\\\n\\\\n        split_results = {\\\\\\\"n\\\\\\\": len(split_instances), \\\\\\\"pct_perfect\\\\\\\": float(binary_correct.mean())}\\\\n        metrics = {}\\\\n        for sig_name, sig_vals in signals.items():\\\\n            m = {}\\\\n            rho = safe_spearman(sig_vals, f1_arr)\\\\n            rho_ci = bootstrap_metric(safe_spearman, sig_vals, f1_arr)\\\\n            m[\\\\\\\"rho\\\\\\\"] = {\\\\\\\"value\\\\\\\": rho, \\\\\\\"ci_95\\\\\\\": rho_ci}\\\\n\\\\n            tau = safe_kendall(sig_vals, f1_arr)\\\\n            m[\\\\\\\"tau\\\\\\\"] = {\\\\\\\"value\\\\\\\": tau}\\\\n\\\\n            auroc = safe_auroc(sig_vals, binary_correct)\\\\n            auroc_ci = bootstrap_metric(safe_auroc, sig_vals, binary_correct.astype(float))\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"exp_012_rerun_1024: Full 5-signal metrics for NER + RE.\\\"\\\"\\\"\\n\\nimport json\\nimport sys\\nfrom collections import Counter\\n\\nimport numpy as np\\nfrom scipy.stats import spearmanr, kendalltau, rankdata\\n\\nsys.path.insert(0, '/root/autodl-tmp/struct_self_consist_ie/code')\\nfrom consistency import compute_all_consistency_scores\\nfrom evaluation import per_instance_f1\\n\\nDATA_PATH = \\\"/root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/samples.jsonl\\\"\\nOUTPUT_PATH = \\\"/root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/all_signals_5signal.json\\\"\\nSUBTASKS = [\\\"ner\\\", \\\"re\\\"]\\n\\n\\ndef load_data(path):\\n    records = []\\n    with open(path) as f:\\n        for line in f:\\n            if line.strip():\\n                records.append(json.loads(line))\\n    return records\\n\\n\\ndef compute_exact_match_rate(samples, subtask):\\n    if subtask == \\\"ner\\\":\\n        keys = [frozenset((e[\\\"text\\\"], e[\\\"type\\\"]) for e in s.get(\\\"entities\\\", [])) for s in samples]\\n    else:\\n        keys = [frozenset((r[\\\"head\\\"], r[\\\"tail\\\"], r[\\\"type\\\"]) for r in s.get(\\\"relations\\\", [])) for s in samples]\\n    if not keys:\\n        return 0.0\\n    counter = Counter(keys)\\n    return counter.most_common(1)[0][1] / len(samples)\\n\\n\\ndef compute_voting_confidence(samples, subtask):\\n    N = len(samples)\\n    if N == 0:\\n        return 0.0\\n    counter = Counter()\\n    if subtask == \\\"ner\\\":\\n        for s in samples:\\n            for e in s.get(\\\"entities\\\", []):\\n                counter[(e[\\\"text\\\"], e[\\\"type\\\"])] += 1\\n    else:\\n        for s in samples:\\n            for r in s.get(\\\"relations\\\", []):\\n                counter[(r[\\\"head\\\"], r[\\\"tail\\\"], r[\\\"type\\\"])] += 1\\n    if not counter:\\n        return 0.0\\n    rates = [v / N for v in counter.values()]\\n    return float(np.mean(rates))\\n\\n\\ndef compute_mean_logprob(samples):\\n    logprobs = [s.get(\\\"mean_logprob\\\") for s in samples if s.get(\\\"mean_logprob\\\") is not None]\\n    logprobs = [lp for lp in logprobs if np.isfinite(lp)]\\n    if not logprobs:\\n        return float(\\\"nan\\\")\\n    return float(np.mean(logprobs))\\n\\n\\ndef safe_auroc(scores, labels):\\n    scores = np.asarray(scores, dtype=float)\\n    labels = np.asarray(labels, dtype=int)\\n    if len(np.unique(labels)) < 2:\\n        return float(\\\"nan\\\")\\n    n_pos = np.sum(labels == 1)\\n    n_neg = np.sum(labels == 0)\\n    if n_pos == 0 or n_neg == 0:\\n        return float(\\\"nan\\\")\\n    ranks = rankdata(scores)\\n    u = ranks[labels == 1].sum() - n_pos * (n_pos + 1) / 2\\n    return float(u / (n_pos * n_neg))\\n\\n\\ndef safe_spearman(x, y):\\n    x, y = np.asarray(x, dtype=float), np.asarray(y, dtype=float)\\n    mask = np.isfinite(x) & np.isfinite(y)\\n    x, y = x[mask], y[mask]\\n    if len(x) < 3:\\n        return float(\\\"nan\\\")\\n    return float(spearmanr(x, y).statistic)\\n\\n\\ndef safe_kendall(x, y):\\n    x, y = np.asarray(x, dtype=float), np.asarray(y, dtype=float)\\n    mask = np.isfinite(x) & np.isfinite(y)\\n    x, y = x[mask], y[mask]\\n    if len(x) < 3:\\n        return float(\\\"nan\\\")\\n    return float(kendalltau(x, y).statistic)\\n\\n\\ndef normalize_for_ece(signal_name, values):\\n    v = np.asarray(values, dtype=float)\\n    if signal_name in (\\\"SJ\\\", \\\"EM\\\", \\\"voting_conf\\\"):\\n        return np.clip(v, 0, 1)\\n    elif signal_name == \\\"FK\\\":\\n        return np.clip((v + 1) / 2, 0, 1)\\n    elif signal_name == \\\"logprob\\\":\\n        return np.clip(np.exp(v), 0, 1)\\n    return v\\n\\n\\ndef compute_ece(confidences, correctness, n_bins=10):\\n    conf = np.asarray(confidences, dtype=float)\\n    corr = np.asarray(correctness, dtype=float)\\n    mask = np.isfinite(conf)\\n    conf, corr = conf[mask], corr[mask]\\n    if len(conf) == 0:\\n        return float(\\\"nan\\\")\\n    bin_edges = np.linspace(0, 1, n_bins + 1)\\n    ece = 0.0\\n    total = len(conf)\\n    for i in range(n_bins):\\n        lo, hi = bin_edges[i], bin_edges[i + 1]\\n        in_bin = (conf >= lo) & (conf <= hi if i == n_bins - 1 else conf < hi)\\n        if in_bin.sum() == 0:\\n            continue\\n        bin_conf = conf[in_bin].mean()\\n        bin_acc = corr[in_bin].mean()\\n        ece += in_bin.sum() / total * abs(bin_acc - bin_conf)\\n    return float(ece)\\n\\n\\ndef bootstrap_metric(metric_fn, signals, targets, n_boot=1000, seed=42):\\n    rng = np.random.RandomState(seed)\\n    signals = np.asarray(signals, dtype=float)\\n    targets = np.asarray(targets, dtype=float)\\n    n = len(signals)\\n    boot_vals = []\\n    for _ in range(n_boot):\\n        idx = rng.randint(0, n, size=n)\\n        val = metric_fn(signals[idx], targets[idx])\\n        if np.isfinite(val):\\n            boot_vals.append(val)\\n    if not boot_vals:\\n        return [float(\\\"nan\\\"), float(\\\"nan\\\")]\\n    return [float(np.percentile(boot_vals, 2.5)), float(np.percentile(boot_vals, 97.5))]\\n\\n\\ndef evaluate_subtask(instances, subtask):\\n    if subtask == \\\"ner\\\":\\n        valid = [inst for inst in instances if len(inst[\\\"gold\\\"].get(\\\"entities\\\", [])) > 0]\\n    else:\\n        valid = [inst for inst in instances if len(inst[\\\"gold\\\"].get(\\\"relations\\\", [])) > 0]\\n    print(f\\\"\\\\n=== {subtask.upper()} === Valid: {len(valid)}\\\")\\n\\n    greedy_f1s_all = []\\n    for inst in valid:\\n        greedy = inst.get(\\\"greedy\\\", inst[\\\"samples\\\"][0])\\n        greedy_f1s_all.append(per_instance_f1(greedy, inst[\\\"gold\\\"], subtask=subtask))\\n    conditional = [inst for inst, f1 in zip(valid, greedy_f1s_all) if f1 > 0]\\n    print(f\\\"Conditional (greedy F1 > 0): {len(conditional)}\\\")\\n\\n    results = {}\\n    for split_name, split_instances in [(\\\"full\\\", valid), (\\\"conditional\\\", conditional)]:\\n        print(f\\\"\\\\n--- {split_name} ({len(split_instances)} instances) ---\\\")\\n        consistency = compute_all_consistency_scores(split_instances, subtask=subtask)\\n        sj_vals = consistency[\\\"soft_jaccard\\\"]\\n        fk_vals = consistency[\\\"fleiss_kappa\\\"]\\n\\n        lp_vals, em_vals, vc_vals, f1_vals = [], [], [], []\\n        for inst in split_instances:\\n            samples = inst[\\\"samples\\\"]\\n            gold = inst[\\\"gold\\\"]\\n            greedy = inst.get(\\\"greedy\\\", samples[0])\\n            lp_vals.append(compute_mean_logprob(samples))\\n            em_vals.append(compute_exact_match_rate(samples, subtask))\\n            vc_vals.append(compute_voting_confidence(samples, subtask))\\n            f1_vals.append(per_instance_f1(greedy, gold, subtask=subtask))\\n\\n        signals = {\\n            \\\"SJ\\\": np.array(sj_vals, dtype=float),\\n            \\\"FK\\\": np.array(fk_vals, dtype=float),\\n            \\\"logprob\\\": np.array(lp_vals, dtype=float),\\n            \\\"EM\\\": np.array(em_vals, dtype=float),\\n            \\\"voting_conf\\\": np.array(vc_vals, dtype=float),\\n        }\\n        f1_arr = np.array(f1_vals, dtype=float)\\n        binary_correct = (f1_arr >= 1.0).astype(int)\\n\\n        split_results = {\\\"n\\\": len(split_instances), \\\"pct_perfect\\\": float(binary_correct.mean())}\\n        metrics = {}\\n        for sig_name, sig_vals in signals.items():\\n            m = {}\\n            rho = safe_spearman(sig_vals, f1_arr)\\n            rho_ci = bootstrap_metric(safe_spearman, sig_vals, f1_arr)\\n            m[\\\"rho\\\"] = {\\\"value\\\": rho, \\\"ci_95\\\": rho_ci}\\n\\n            tau = safe_kendall(sig_vals, f1_arr)\\n            m[\\\"tau\\\"] = {\\\"value\\\": tau}\\n\\n            auroc = safe_auroc(sig_vals, binary_correct)\\n            auroc_ci = bootstrap_metric(safe_auroc, sig_vals, binary_correct.astype(float))\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 27_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a clear understanding of all 5 signals:
+1. **SJ** (soft Jaccard) - `structural_consistency_soft_jaccard(samples, subtask)` from consistency.py
+2. **FK** (Fleiss' Kappa) - `fleiss_kappa_surface(samples, subtask)` from consistency.py
+3. **voting_conf** - voting confidence: for each entity key across N samples, compute vote rate = count/N, then average all rates
+4. **EM** (exact match rate) - fraction of samples that match the most common extraction
+
+
+5. **logprob** - mean of mean_logprob across samples
+
+The quality metric I'm using is per_instance_f1 (greedy vs gold, NER subtask). Now I need to build a script that loads the data, filters out gold-empty instances for NER, computes all 5 signals plus F1 for each instance, then runs bootstrap confidence intervals for each signal's correlation with F1, and finally calculates the delta-rho bootstrap CIs for the three pairwise comparisons.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f3cc20fa-26de-4ab1-a5ab-60647c654156",
+  "uuid": "20d45058-6c89-40bc-be63-b6b12381e0c6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SFkAR8Q5VtGWfSQTRyDQSe",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3274,
+      "cache_read_input_tokens": 41857,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3274
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 28_
+
+Now I have all the signal definitions. Let me write and execute the bootstrap CI analysis script.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f3cc20fa-26de-4ab1-a5ab-60647c654156",
+  "uuid": "268697d2-faa5-471e-bfb5-19409eb8938d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SFkAR8Q5VtGWfSQTRyDQSe",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3274,
+      "cache_read_input_tokens": 41857,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3274
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01QyeHDcCWfmedwmX4mzM9fD`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && mkdir -p /root/autodl-tmp/struct_self_consist_ie/output/review_round2 && cat > /tmp/n8_bootstrap_ci.py << 'PYEOF'\nimport json, sys\nimport numpy as np\nfrom collections import Counter\nfrom scipy.stats import spearmanr\n\nsys.path.insert(0, '/root/autodl-tmp/struct_self_consist_ie/code')\nfrom consistency import structural_consistency_soft_jaccard, fleiss_kappa_surface\nfrom evaluation import per_instance_f1\n\nDATA_PATH = \"/root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/samples.jsonl\"\nOUT_PATH = \"/root/autodl-tmp/struct_self_consist_ie/output/review_round2/n8_bootstrap_ci.json\"\nSUBTASK = \"ner\"\n\ndef load_data(path):\n    records = []\n    with open(path) as f:\n        for line in f:\n            if line.strip():\n                records.append(json.loads(line))\n    return records\n\ndef compute_exact_match_rate(samples, subtask):\n    if subtask == \"ner\":\n        keys = [frozenset((e[\"text\"], e[\"type\"]) for e in s.get(\"entities\", [])) for s in samples]\n    else:\n        keys = [frozenset((r[\"head\"], r[\"tail\"], r[\"type\"]) for r in s.get(\"relations\", [])) for s in samples]\n    if not keys:\n        return 0.0\n    counter = Counter(keys)\n    return counter.most_common(1)[0][1] / len(samples)\n\ndef compute_voting_confidence(samples, subtask):\n    N = len(samples)\n    if N == 0:\n        return 0.0\n    counter = Counter()\n    if subtask == \"ner\":\n        for s in samples:\n            for e in s.get(\"entities\", []):\n                counter[(e[\"text\"], e[\"type\"])] += 1\n    else:\n        for s in samples:\n            for r in s.get(\"relations\", []):\n                counter[(r[\"head\"], r[\"tail\"], r[\"type\"])] += 1\n    if not counter:\n        return 0.0\n    rates = [v / N for v in counter.values()]\n    return float(np.mean(rates))\n\ndef compute_mean_logprob(samples):\n    logprobs = [s.get(\"mean_logprob\") for s in samples if s.get(\"mean_logprob\") is not None]\n    logprobs = [lp for lp in logprobs if np.isfinite(lp)]\n    if not logprobs:\n        return float(\"nan\")\n    return float(np.mean(logprobs))\n\ndef bootstrap_rho_ci(signal, quality, n_boot=10000, alpha=0.05, rng=None):\n    rng = np.random.default_rng(42) if rng is None else rng\n    signal, quality = np.array(signal, dtype=float), np.array(quality, dtype=float)\n    mask = np.isfinite(signal) & np.isfinite(quality)\n    signal, quality = signal[mask], quality[mask]\n    n = len(signal)\n    point_rho = spearmanr(signal, quality).statistic\n    rhos = []\n    for _ in range(n_boot):\n        idx = rng.integers(0, n, size=n)\n        r = spearmanr(signal[idx], quality[idx]).statistic\n        if np.isfinite(r):\n            rhos.append(r)\n    rhos.sort()\n    lo = np.percentile(rhos, 100 * alpha / 2)\n    hi = np.percentile(rhos, 100 * (1 - alpha / 2))\n    return {\"rho\": round(float(point_rho), 4), \"ci_lo\": round(float(lo), 4), \"ci_hi\": round(float(hi), 4), \"n\": n}\n\ndef bootstrap_delta_ci(sig_a, sig_b, quality, n_boot=10000, alpha=0.05):\n    rng = np.random.default_rng(42)\n    sig_a, sig_b, quality = np.array(sig_a, dtype=float), np.array(sig_b, dtype=float), np.array(quality, dtype=float)\n    mask = np.isfinite(sig_a) & np.isfinite(sig_b) & np.isfinite(quality)\n    sig_a, sig_b, quality = sig_a[mask], sig_b[mask], quality[mask]\n    n = len(sig_a)\n    rho_a = spearmanr(sig_a, quality).statistic\n    rho_b = spearmanr(sig_b, quality).statistic\n    point_delta = rho_a - rho_b\n    deltas = []\n    for _ in range(n_boot):\n        idx = rng.integers(0, n, size=n)\n        ra = spearmanr(sig_a[idx], quality[idx]).statistic\n        rb = spearmanr(sig_b[idx], quality[idx]).statistic\n        d = ra - rb\n        if np.isfinite(d):\n            deltas.append(d)\n    deltas.sort()\n    lo = np.percentile(deltas, 100 * alpha / 2)\n    hi = np.percentile(deltas, 100 * (1 - alpha / 2))\n    significant = not (lo <= 0 <= hi)\n    return {\n        \"delta\": round(float(point_delta), 4),\n        \"ci_lo\": round(float(lo), 4),\n        \"ci_hi\": round(float(hi), 4),\n        \"significant\": significant\n    }\n\n# Load and filter\nrecords = load_data(DATA_PATH)\nprint(f\"Total records: {len(records)}\")\n\nvalid = [r for r in records if len(r[\"gold\"].get(\"entities\", [])) > 0]\nprint(f\"Valid (gold non-empty) for NER: {len(valid)}\")\n\n# Compute signals + F1\nsj_vals, fk_vals, vc_vals, em_vals, lp_vals, f1_vals = [], [], [], [], [], []\nfor inst in valid:\n    samples = inst[\"samples\"]\n    gold = inst[\"gold\"]\n    greedy = inst.get(\"greedy\", samples[0])\n\n    sj_vals.append(structural_consistency_soft_jaccard(samples, subtask=SUBTASK))\n    fk_vals.append(fleiss_kappa_surface(samples, subtask=SUBTASK))\n    vc_vals.append(compute_voting_confidence(samples, SUBTASK))\n    em_vals.append(compute_exact_match_rate(samples, SUBTASK))\n    lp_vals.append(compute_mean_logprob(samples))\n    f1_vals.append(per_instance_f1(greedy, gold, subtask=SUBTASK))\n\nsignals_map = {\n    \"sj\": np.array(sj_vals),\n    \"fk\": np.array(fk_vals),\n    \"voting_conf\": np.array(vc_vals),\n    \"em\": np.array(em_vals),\n    \"logprob\": np.array(lp_vals),\n}\nf1_arr = np.array(f1_vals)\n\n# Bootstrap CIs for each signal\nprint(\"\\nComputing bootstrap CIs (B=10000)...\")\nsignal_results = {}\nfor name, vals in signals_map.items():\n    ci = bootstrap_rho_ci(vals, f1_arr, n_boot=10000)\n    signal_results[name] = ci\n    print(f\"  {name:12s}: rho={ci['rho']:+.4f}  CI=[{ci['ci_lo']:+.4f}, {ci['ci_hi']:+.4f}]  n={ci['n']}\")\n\n# Delta comparisons\nprint(\"\\nDelta comparisons:\")\ndelta_results = {}\n\nd1 = bootstrap_delta_ci(signals_map[\"sj\"], signals_map[\"logprob\"], f1_arr)\ndelta_results[\"sj_minus_logprob\"] = d1\nprint(f\"  SJ - logprob:     delta={d1['delta']:+.4f}  CI=[{d1['ci_lo']:+.4f}, {d1['ci_hi']:+.4f}]  sig={d1['significant']}\")\n\nd2 = bootstrap_delta_ci(signals_map[\"voting_conf\"], signals_map[\"sj\"], f1_arr)\ndelta_results[\"voting_minus_sj\"] = d2\nprint(f\"  voting - SJ:      delta={d2['delta']:+.4f}  CI=[{d2['ci_lo']:+.4f}, {d2['ci_hi']:+.4f}]  sig={d2['significant']}\")\n\nd3 = bootstrap_delta_ci(signals_map[\"em\"], signals_map[\"sj\"], f1_arr)\ndelta_results[\"em_minus_sj\"] = d3\nprint(f\"  EM - SJ:          delta={d3['delta']:+.4f}  CI=[{d3['ci_lo']:+.4f}, {d3['ci_hi']:+.4f}]  sig={d3['significant']}\")\n\n# Assemble output\noutput = {\n    \"config\": \"Qwen SciERC N=8 seed=42\",\n    \"n_valid\": len(valid),\n    \"subtask\": SUBTASK,\n    \"signals\": signal_results,\n    \"delta_comparisons\": delta_results\n}\n\nwith open(OUT_PATH, \"w\") as f:\n    json.dump(output, f, indent=2)\n\nprint(f\"\\nSaved to {OUT_PATH}\")\nprint(\"\\n\" + json.dumps(output, indent=2))\nPYEOF\npython3 /tmp/n8_bootstrap_ci.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f3cc20fa-26de-4ab1-a5ab-60647c654156",
+  "uuid": "aac60664-8d73-4059-9bfd-7b49cdd7206c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SFkAR8Q5VtGWfSQTRyDQSe",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3274,
+      "cache_read_input_tokens": 41857,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3274
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-15T03:09:57.597Z_
+
+<details><summary>↩ Tool result · `toolu_01QyeHDcCWfmedwmX4mzM9fD`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && mkdir -p /root/autodl-tmp/struct_self_consist_ie/output/review_round2 && cat > /tmp/n8_bootstrap_ci.py << \\\\'PYEOF\\\\'\\\\nimport json, sys\\\\nimport numpy as np\\\\nfrom collections import Counter\\\\nfrom scipy.stats import spearmanr\\\\n\\\\nsys.path.insert(0, \\\\'/root/autodl-tmp/struct_self_consist_ie/code\\\\')\\\\nfrom consistency import structural_consistency_soft_jaccard, fleiss_kappa_surface\\\\nfrom evaluation import per_instance_f1\\\\n\\\\nDATA_PATH = \\\"/root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/samples.jsonl\\\"\\\\nOUT_PATH = \\\"/root/autodl-tmp/struct_self_consist_ie/output/review_round2/n8_bootstrap_ci.json\\\"\\\\nSUBTASK = \\\"ner\\\"\\\\n\\\\ndef load_data(path):\\\\n    records = []\\\\n    with open(path) as f:\\\\n        for line in f:\\\\n            if line.strip():\\\\n                records.append(json.loads(line))\\\\n    return records\\\\n\\\\ndef compute_exact_match_rate(samples, subtask):\\\\n    if subtask == \\\"ner\\\":\\\\n        keys = [frozenset((e[\\\"text\\\"], e[\\\"type\\\"]) for e in s.get(\\\"entities\\\", [])) for s in samples]\\\\n    else:\\\\n        keys = [frozenset((r[\\\"head\\\"], r[\\\"tail\\\"], r[\\\"type\\\"]) for r in s.get(\\\"relations\\\", [])) for s in samples]\\\\n    if not keys:\\\\n        return 0.0\\\\n    counter = Counter(keys)\\\\n    return counter.most_common(1)[0][1] / len(samples)\\\\n\\\\ndef compute_voting_confidence(samples, subtask):\\\\n    N = len(samples)\\\\n    if N == 0:\\\\n        return 0.0\\\\n    counter = Counter()\\\\n    if subtask == \\\"ner\\\":\\\\n        for s in samples:\\\\n            for e in s.get(\\\"entities\\\", []):\\\\n                counter[(e[\\\"text\\\"], e[\\\"type\\\"])] += 1\\\\n    else:\\\\n        for s in samples:\\\\n            for r in s.get(\\\"relations\\\", []):\\\\n                counter[(r[\\\"head\\\"], r[\\\"tail\\\"], r[\\\"type\\\"])] += 1\\\\n    if not counter:\\\\n        return 0.0\\\\n    rates = [v / N for v in counter.values()]\\\\n    return float(np.mean(rates))\\\\n\\\\ndef compute_mean_logprob(samples):\\\\n    logprobs = [s.get(\\\"mean_logprob\\\") for s in samples if s.get(\\\"mean_logprob\\\") is not None]\\\\n    logprobs = [lp for lp in logprobs if np.isfinite(lp)]\\\\n    if not logprobs:\\\\n        return float(\\\"nan\\\")\\\\n    return float(np.mean(logprobs))\\\\n\\\\ndef bootstrap_rho_ci(signal, quality, n_boot=10000, alpha=0.05, rng=None):\\\\n    rng = np.random.default_rng(42) if rng is None else rng\\\\n    signal, quality = np.array(signal, dtype=float), np.array(quality, dtype=float)\\\\n    mask = np.isfinite(signal) & np.isfinite(quality)\\\\n    signal, quality = signal[mask], quality[mask]\\\\n    n = len(signal)\\\\n    point_rho = spearmanr(signal, quality).statistic\\\\n    rhos = []\\\\n    for _ in range(n_boot):\\\\n        idx = rng.integers(0, n, size=n)\\\\n        r = spearmanr(signal[idx], quality[idx]).statistic\\\\n        if np.isfinite(r):\\\\n            rhos.append(r)\\\\n    rhos.sort()\\\\n    lo = np.percentile(rhos, 100 * alpha / 2)\\\\n    hi = np.percentile(rhos, 100 * (1 - alpha / 2))\\\\n    return {\\\"rho\\\": round(float(point_rho), 4), \\\"ci_lo\\\": round(float(lo), 4), \\\"ci_hi\\\": round(float(hi), 4), \\\"n\\\": n}\\\\n\\\\ndef bootstrap_delta_ci(sig_a, sig_b, quality, n_boot=10000, alpha=0.05):\\\\n    rng = np.random.default_rng(42)\\\\n    sig_a, sig_b, quality = np.array(sig_a, dtype=float), np.array(sig_b, dtype=float), np.array(quality, dtype=float)\\\\n    mask = np.isfinite(sig_a) & np.isfinite(sig_b) & np.isfinite(quality)\\\\n    sig_a, sig_b, quality = sig_a[mask], sig_b[mask], quality[mask]\\\\n    n = len(sig_a)\\\\n    rho_a = spearmanr(sig_a, quality).statistic\\\\n    rho_b = spearmanr(sig_b, quality).statistic\\\\n    point_delta = rho_a - rho_b\\\\n    deltas = []\\\\n    for _ in range(n_boot):\\\\n        idx = rng.integers(0, n, size=n)\\\\n        ra = spearmanr(sig_a[idx], quality[idx]).statistic\\\\n        rb = spearmanr(sig_b[idx], quality[idx]).statistic\\\\n        d = ra - rb\\\\n        if np.isfinite(d):\\\\n            deltas.append(d)\\\\n    deltas.sort()\\\\n    lo = np.percentile(deltas, 100 * alpha / 2)\\\\n    hi = np.percentile(deltas, 100 * (1 - alpha / 2))\\\\n    significant = not (lo <= 0 <= hi)\\\\n    return {\\\\n        \\\"delta\\\": round(float(point_delta), 4),\\\\n        \\\"ci_lo\\\": round(float(lo), 4),\\\\n        \\\"ci_hi\\\": round(float(hi), 4),\\\\n        \\\"significant\\\": significant\\\\n    }\\\\n\\\\n# Load and filter\\\\nrecords = load_data(DATA_PATH)\\\\nprint(f\\\"Total records: {len(records)}\\\")\\\\n\\\\nvalid = [r for r in records if len(r[\\\"gold\\\"].get(\\\"entities\\\", [])) > 0]\\\\nprint(f\\\"Valid (gold non-empty) for NER: {len(valid)}\\\")\\\\n\\\\n# Compute signals + F1\\\\nsj_vals, fk_vals, vc_vals, em_vals, lp_vals, f1_vals = [], [], [], [], [], []\\\\nfor inst in valid:\\\\n    samples = inst[\\\"samples\\\"]\\\\n    gold = inst[\\\"gold\\\"]\\\\n    greedy = inst.get(\\\"greedy\\\", samples[0])\\\\n\\\\n    sj_vals.append(structural_consistency_soft_jaccard(samples, subtask=SUBTASK))\\\\n    fk_vals.append(fleiss_kappa_surface(samples, subtask=SUBTASK))\\\\n    vc_vals.append(compute_voting_confidence(samples, SUBTASK))\\\\n    em_vals.append(compute_exact_match_rate(samples, SUBTASK))\\\\n    lp_vals.append(compute_mean_logprob(samples))\\\\n    f1_vals.append(per_instance_f1(greedy, gold, subtask=SUBTASK))\\\\n\\\\nsignals_map = {\\\\n    \\\"sj\\\": np.array(sj_vals),\\\\n    \\\"fk\\\": np.array(fk_vals),\\\\n    \\\"voting_conf\\\": np.array(vc_vals),\\\\n    \\\"em\\\": np.array(em_vals),\\\\n    \\\"logprob\\\": np.array(lp_vals),\\\\n}\\\\nf1_arr = np.array(f1_vals)\\\\n\\\\n# Bootstrap CIs for each signal\\\\nprint(\\\"\\\\\\\\nComputing bootstrap CIs (B=10000)...\\\")\\\\nsignal_results = {}\\\\nfor name, vals in signals_map.items():\\\\n    ci = bootstrap_rho_ci(vals, f1_arr, n_boot=10000)\\\\n    signal_results[name] = ci\\\\n    print(f\\\"  {name:12s}: rho={ci[\\\\'rho\\\\']:+.4f}  CI=[{ci[\\\\'ci_lo\\\\']:+.4f}, {ci[\\\\'ci_hi\\\\']:+.4f}]  n={ci[\\\\'n\\\\']}\\\")\\\\n\\\\n# Delta comparisons\\\\nprint(\\\"\\\\\\\\nDelta comparisons:\\\")\\\\ndelta_results = {}\\\\n\\\\nd1 = bootstrap_delta_ci(signals_map[\\\"sj\\\"], signals_map[\\\"logprob\\\"], f1_arr)\\\\ndelta_results[\\\"sj_minus_logprob\\\"] = d1\\\\nprint(f\\\"  SJ - logprob:     delta={d1[\\\\'delta\\\\']:+.4f}  CI=[{d1[\\\\'ci_lo\\\\']:+.4f}, {d1[\\\\'ci_hi\\\\']:+.4f}]  sig={d1[\\\\'significant\\\\']}\\\")\\\\n\\\\nd2 = bootstrap_delta_ci(signals_map[\\\"voting_conf\\\"], signals_map[\\\"sj\\\"], f1_arr)\\\\ndelta_results[\\\"voting_minus_sj\\\"] = d2\\\\nprint(f\\\"  voting - SJ:      delta={d2[\\\\'delta\\\\']:+.4f}  CI=[{d2[\\\\'ci_lo\\\\']:+.4f}, {d2[\\\\'ci_hi\\\\']:+.4f}]  sig={d2[\\\\'significant\\\\']}\\\")\\\\n\\\\nd3 = bootstrap_delta_ci(signals_map[\\\"em\\\"], signals_map[\\\"sj\\\"], f1_arr)\\\\ndelta_results[\\\"em_minus_sj\\\"] = d3\\\\nprint(f\\\"  EM - SJ:          delta={d3[\\\\'delta\\\\']:+.4f}  CI=[{d3[\\\\'ci_lo\\\\']:+.4f}, {d3[\\\\'ci_hi\\\\']:+.4f}]  sig={d3[\\\\'significant\\\\']}\\\")\\\\n\\\\n# Assemble output\\\\noutput = {\\\\n    \\\"config\\\": \\\"Qwen SciERC N=8 seed=42\\\",\\\\n    \\\"n_valid\\\": len(valid),\\\\n    \\\"subtask\\\": SUBTASK,\\\\n    \\\"signals\\\": signal_results,\\\\n    \\\"delta_comparisons\\\": delta_results\\\\n}\\\\n\\\\nwith open(OUT_PATH, \\\"w\\\") as f:\\\\n    json.dump(output, f, indent=2)\\\\n\\\\nprint(f\\\"\\\\\\\\nSaved to {OUT_PATH}\\\")\\\\nprint(\\\"\\\\\\\\n\\\" + json.dumps(output, indent=2))\\\\nPYEOF\\\\npython3 /tmp/n8_bootstrap_ci.py'\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.34}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f3cc20fa-26de-4ab1-a5ab-60647c654156",
+  "uuid": "97bd5a70-8d53-4ef0-9f19-7620e093632f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Command did not complete within 30 seconds!\\\\n\\\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && mkdir -p /root/autodl-tmp/struct_self_consist_ie/output/review_round2 && cat > /tmp/n8_bootstrap_ci.py << \\\\\\\\'PYEOF\\\\\\\\'\\\\\\\\nimport json, sys\\\\\\\\nimport numpy as np\\\\\\\\nfrom collections import Counter\\\\\\\\nfrom scipy.stats import spearmanr\\\\\\\\n\\\\\\\\nsys.path.insert(0, \\\\\\\\'/root/autodl-tmp/struct_self_consist_ie/code\\\\\\\\')\\\\\\\\nfrom consistency import structural_consistency_soft_jaccard, fleiss_kappa_surface\\\\\\\\nfrom evaluation import per_instance_f1\\\\\\\\n\\\\\\\\nDATA_PATH = \\\\\\\"/root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/samples.jsonl\\\\\\\"\\\\\\\\nOUT_PATH = \\\\\\\"/root/autodl-tmp/struct_self_consist_ie/output/review_round2/n8_bootstrap_ci.json\\\\\\\"\\\\\\\\nSUBTASK = \\\\\\\"ner\\\\\\\"\\\\\\\\n\\\\\\\\ndef load_data(path):\\\\\\\\n    records = []\\\\\\\\n    with open(path) as f:\\\\\\\\n        for line in f:\\\\\\\\n            if line.strip():\\\\\\\\n                records.append(json.loads(line))\\\\\\\\n    return records\\\\\\\\n\\\\\\\\ndef compute_exact_match_rate(samples, subtask):\\\\\\\\n    if subtask == \\\\\\\"ner\\\\\\\":\\\\\\\\n        keys = [frozenset((e[\\\\\\\"text\\\\\\\"], e[\\\\\\\"type\\\\\\\"]) for e in s.get(\\\\\\\"entities\\\\\\\", [])) for s in samples]\\\\\\\\n    else:\\\\\\\\n        keys = [frozenset((r[\\\\\\\"head\\\\\\\"], r[\\\\\\\"tail\\\\\\\"], r[\\\\\\\"type\\\\\\\"]) for r in s.get(\\\\\\\"relations\\\\\\\", [])) for s in samples]\\\\\\\\n    if not keys:\\\\\\\\n        return 0.0\\\\\\\\n    counter = Counter(keys)\\\\\\\\n    return counter.most_common(1)[0][1] / len(samples)\\\\\\\\n\\\\\\\\ndef compute_voting_confidence(samples, subtask):\\\\\\\\n    N = len(samples)\\\\\\\\n    if N == 0:\\\\\\\\n        return 0.0\\\\\\\\n    counter = Counter()\\\\\\\\n    if subtask == \\\\\\\"ner\\\\\\\":\\\\\\\\n        for s in samples:\\\\\\\\n            for e in s.get(\\\\\\\"entities\\\\\\\", []):\\\\\\\\n                counter[(e[\\\\\\\"text\\\\\\\"], e[\\\\\\\"type\\\\\\\"])] += 1\\\\\\\\n    else:\\\\\\\\n        for s in samples:\\\\\\\\n            for r in s.get(\\\\\\\"relations\\\\\\\", []):\\\\\\\\n                counter[(r[\\\\\\\"head\\\\\\\"], r[\\\\\\\"tail\\\\\\\"], r[\\\\\\\"type\\\\\\\"])] += 1\\\\\\\\n    if not counter:\\\\\\\\n        return 0.0\\\\\\\\n    rates = [v / N for v in counter.values()]\\\\\\\\n    return float(np.mean(rates))\\\\\\\\n\\\\\\\\ndef compute_mean_logprob(samples):\\\\\\\\n    logprobs = [s.get(\\\\\\\"mean_logprob\\\\\\\") for s in samples if s.get(\\\\\\\"mean_logprob\\\\\\\") is not None]\\\\\\\\n    logprobs = [lp for lp in logprobs if np.isfinite(lp)]\\\\\\\\n    if not logprobs:\\\\\\\\n        return float(\\\\\\\"nan\\\\\\\")\\\\\\\\n    return float(np.mean(logprobs))\\\\\\\\n\\\\\\\\ndef bootstrap_rho_ci(signal, quality, n_boot=10000, alpha=0.05, rng=None):\\\\\\\\n    rng = np.random.default_rng(42) if rng is None else rng\\\\\\\\n    signal, quality = np.array(signal, dtype=float), np.array(quality, dtype=float)\\\\\\\\n    mask = np.isfinite(signal) & np.isfinite(quality)\\\\\\\\n    signal, quality = signal[mask], quality[mask]\\\\\\\\n    n = len(signal)\\\\\\\\n    point_rho = spearmanr(signal, quality).statistic\\\\\\\\n    rhos = []\\\\\\\\n    for _ in range(n_boot):\\\\\\\\n        idx = rng.integers(0, n, size=n)\\\\\\\\n        r = spearmanr(signal[idx], quality[idx]).statistic\\\\\\\\n        if np.isfinite(r):\\\\\\\\n            rhos.append(r)\\\\\\\\n    rhos.sort()\\\\\\\\n    lo = np.percentile(rhos, 100 * alpha / 2)\\\\\\\\n    hi = np.percentile(rhos, 100 * (1 - alpha / 2))\\\\\\\\n    return {\\\\\\\"rho\\\\\\\": round(float(point_rho), 4), \\\\\\\"ci_lo\\\\\\\": round(float(lo), 4), \\\\\\\"ci_hi\\\\\\\": round(float(hi), 4), \\\\\\\"n\\\\\\\": n}\\\\\\\\n\\\\\\\\ndef bootstrap_delta_ci(sig_a, sig_b, quality, n_boot=10000, alpha=0.05):\\\\\\\\n    rng = np.random.default_rng(42)\\\\\\\\n    sig_a, sig_b, quality = np.array(sig_a, dtype=float), np.array(sig_b, dtype=float), np.array(quality, dtype=float)\\\\\\\\n    mask = np.isfinite(sig_a) & np.isfinite(sig_b) & np.isfinite(quality)\\\\\\\\n    sig_a, sig_b, quality = sig_a[mask], sig_b[mask], quality[mask]\\\\\\\\n    n = len(sig_a)\\\\\\\\n    rho_a = spearmanr(sig_a, quality).statistic\\\\\\\\n    rho_b = spearmanr(sig_b, quality).statistic\\\\\\\\n    point_delta = rho_a - rho_b\\\\\\\\n    deltas = []\\\\\\\\n    for _ in range(n_boot):\\\\\\\\n        idx = rng.integers(0, n, size=n)\\\\\\\\n        ra = spearmanr(sig_a[idx], quality[idx]).statistic\\\\\\\\n        rb = spearmanr(sig_b[idx], quality[idx]).statistic\\\\\\\\n        d = ra - rb\\\\\\\\n        if np.isfinite(d):\\\\\\\\n            deltas.append(d)\\\\\\\\n    deltas.sort()\\\\\\\\n    lo = np.percentile(deltas, 100 * alpha / 2)\\\\\\\\n    hi = np.percentile(deltas, 100 * (1 - alpha / 2))\\\\\\\\n    significant = not (lo <= 0 <= hi)\\\\\\\\n    return {\\\\\\\\n        \\\\\\\"delta\\\\\\\": round(float(point_delta), 4),\\\\\\\\n        \\\\\\\"ci_lo\\\\\\\": round(float(lo), 4),\\\\\\\\n        \\\\\\\"ci_hi\\\\\\\": round(float(hi), 4),\\\\\\\\n        \\\\\\\"significant\\\\\\\": significant\\\\\\\\n    }\\\\\\\\n\\\\\\\\n# Load and filter\\\\\\\\nrecords = load_data(DATA_PATH)\\\\\\\\nprint(f\\\\\\\"Total records: {len(records)}\\\\\\\")\\\\\\\\n\\\\\\\\nvalid = [r for r in records if len(r[\\\\\\\"gold\\\\\\\"].get(\\\\\\\"entities\\\\\\\", [])) > 0]\\\\\\\\nprint(f\\\\\\\"Valid (gold non-empty) for NER: {len(valid)}\\\\\\\")\\\\\\\\n\\\\\\\\n# Compute signals + F1\\\\\\\\nsj_vals, fk_vals, vc_vals, em_vals, lp_vals, f1_vals = [], [], [], [], [], []\\\\\\\\nfor inst in valid:\\\\\\\\n    samples = inst[\\\\\\\"samples\\\\\\\"]\\\\\\\\n    gold = inst[\\\\\\\"gold\\\\\\\"]\\\\\\\\n    greedy = inst.get(\\\\\\\"greedy\\\\\\\", samples[0])\\\\\\\\n\\\\\\\\n    sj_vals.append(structural_consistency_soft_jaccard(samples, subtask=SUBTASK))\\\\\\\\n    fk_vals.append(fleiss_kappa_surface(samples, subtask=SUBTASK))\\\\\\\\n    vc_vals.append(compute_voting_confidence(samples, SUBTASK))\\\\\\\\n    em_vals.append(compute_exact_match_rate(samples, SUBTASK))\\\\\\\\n    lp_vals.append(compute_mean_logprob(samples))\\\\\\\\n    f1_vals.append(per_instance_f1(greedy, gold, subtask=SUBTASK))\\\\\\\\n\\\\\\\\nsignals_map = {\\\\\\\\n    \\\\\\\"sj\\\\\\\": np.array(sj_vals),\\\\\\\\n    \\\\\\\"fk\\\\\\\": np.array(fk_vals),\\\\\\\\n    \\\\\\\"voting_conf\\\\\\\": np.array(vc_vals),\\\\\\\\n    \\\\\\\"em\\\\\\\": np.array(em_vals),\\\\\\\\n    \\\\\\\"logprob\\\\\\\": np.array(lp_vals),\\\\\\\\n}\\\\\\\\nf1_arr = np.array(f1_vals)\\\\\\\\n\\\\\\\\n# Bootstrap CIs for each signal\\\\\\\\nprint(\\\\\\\"\\\\\\\\\\\\\\\\nComputing bootstrap CIs (B=10000)...\\\\\\\")\\\\\\\\nsignal_results = {}\\\\\\\\nfor name, vals in signals_map.items():\\\\\\\\n    ci = bootstrap_rho_ci(vals, f1_arr, n_boot=10000)\\\\\\\\n    signal_results[name] = ci\\\\\\\\n    print(f\\\\\\\"  {name:12s}: rho={ci[\\\\\\\\'rho\\\\\\\\']:+.4f}  CI=[{ci[\\\\\\\\'ci_lo\\\\\\\\']:+.4f}, {ci[\\\\\\\\'ci_hi\\\\\\\\']:+.4f}]  n={ci[\\\\\\\\'n\\\\\\\\']}\\\\\\\")\\\\\\\\n\\\\\\\\n# Delta comparisons\\\\\\\\nprint(\\\\\\\"\\\\\\\\\\\\\\\\nDelta comparisons:\\\\\\\")\\\\\\\\ndelta_results = {}\\\\\\\\n\\\\\\\\nd1 = bootstrap_delta_ci(signals_map[\\\\\\\"sj\\\\\\\"], signals_map[\\\\\\\"logprob\\\\\\\"], f1_arr)\\\\\\\\ndelta_results[\\\\\\\"sj_minus_logprob\\\\\\\"] = d1\\\\\\\\nprint(f\\\\\\\"  SJ - logprob:     delta={d1[\\\\\\\\'delta\\\\\\\\']:+.4f}  CI=[{d1[\\\\\\\\'ci_lo\\\\\\\\']:+.4f}, {d1[\\\\\\\\'ci_hi\\\\\\\\']:+.4f}]  sig={d1[\\\\\\\\'significant\\\\\\\\']}\\\\\\\")\\\\\\\\n\\\\\\\\nd2 = bootstrap_delta_ci(signals_map[\\\\\\\"voting_conf\\\\\\\"], signals_map[\\\\\\\"sj\\\\\\\"], f1_arr)\\\\\\\\ndelta_results[\\\\\\\"voting_minus_sj\\\\\\\"] = d2\\\\\\\\nprint(f\\\\\\\"  voting - SJ:      delta={d2[\\\\\\\\'delta\\\\\\\\']:+.4f}  CI=[{d2[\\\\\\\\'ci_lo\\\\\\\\']:+.4f}, {d2[\\\\\\\\'ci_hi\\\\\\\\']:+.4f}]  sig={d2[\\\\\\\\'significant\\\\\\\\']}\\\\\\\")\\\\\\\\n\\\\\\\\nd3 = bootstrap_delta_ci(signals_map[\\\\\\\"em\\\\\\\"], signals_map[\\\\\\\"sj\\\\\\\"], f1_arr)\\\\\\\\ndelta_results[\\\\\\\"em_minus_sj\\\\\\\"] = d3\\\\\\\\nprint(f\\\\\\\"  EM - SJ:          delta={d3[\\\\\\\\'delta\\\\\\\\']:+.4f}  CI=[{d3[\\\\\\\\'ci_lo\\\\\\\\']:+.4f}, {d3[\\\\\\\\'ci_hi\\\\\\\\']:+.4f}]  sig={d3[\\\\\\\\'significant\\\\\\\\']}\\\\\\\")\\\\\\\\n\\\\\\\\n# Assemble output\\\\\\\\noutput = {\\\\\\\\n    \\\\\\\"config\\\\\\\": \\\\\\\"Qwen SciERC N=8 seed=42\\\\\\\",\\\\\\\\n    \\\\\\\"n_valid\\\\\\\": len(valid),\\\\\\\\n    \\\\\\\"subtask\\\\\\\": SUBTASK,\\\\\\\\n    \\\\\\\"signals\\\\\\\": signal_results,\\\\\\\\n    \\\\\\\"delta_comparisons\\\\\\\": delta_results\\\\\\\\n}\\\\\\\\n\\\\\\\\nwith open(OUT_PATH, \\\\\\\"w\\\\\\\") as f:\\\\\\\\n    json.dump(output, f, indent=2)\\\\\\\\n\\\\\\\\nprint(f\\\\\\\"\\\\\\\\\\\\\\\\nSaved to {OUT_PATH}\\\\\\\")\\\\\\\\nprint(\\\\\\\"\\\\\\\\\\\\\\\\n\\\\\\\" + json.dumps(output, indent=2))\\\\\\\\nPYEOF\\\\\\\\npython3 /tmp/n8_bootstrap_ci.py'\\\\n\\\\nStdout:\\\\n\\\\n\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 30.34}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && mkdir -p /root/autodl-tmp/struct_self_consist_ie/output/review_round2 && cat > /tmp/n8_bootstrap_ci.py << \\\\'PYEOF\\\\'\\\\nimport json, sys\\\\nimport numpy as np\\\\nfrom collections import Counter\\\\nfrom scipy.stats import spearmanr\\\\n\\\\nsys.path.insert(0, \\\\'/root/autodl-tmp/struct_self_consist_ie/code\\\\')\\\\nfrom consistency import structural_consistency_soft_jaccard, fleiss_kappa_surface\\\\nfrom evaluation import per_instance_f1\\\\n\\\\nDATA_PATH = \\\"/root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/samples.jsonl\\\"\\\\nOUT_PATH = \\\"/root/autodl-tmp/struct_self_consist_ie/output/review_round2/n8_bootstrap_ci.json\\\"\\\\nSUBTASK = \\\"ner\\\"\\\\n\\\\ndef load_data(path):\\\\n    records = []\\\\n    with open(path) as f:\\\\n        for line in f:\\\\n            if line.strip():\\\\n                records.append(json.loads(line))\\\\n    return records\\\\n\\\\ndef compute_exact_match_rate(samples, subtask):\\\\n    if subtask == \\\"ner\\\":\\\\n        keys = [frozenset((e[\\\"text\\\"], e[\\\"type\\\"]) for e in s.get(\\\"entities\\\", [])) for s in samples]\\\\n    else:\\\\n        keys = [frozenset((r[\\\"head\\\"], r[\\\"tail\\\"], r[\\\"type\\\"]) for r in s.get(\\\"relations\\\", [])) for s in samples]\\\\n    if not keys:\\\\n        return 0.0\\\\n    counter = Counter(keys)\\\\n    return counter.most_common(1)[0][1] / len(samples)\\\\n\\\\ndef compute_voting_confidence(samples, subtask):\\\\n    N = len(samples)\\\\n    if N == 0:\\\\n        return 0.0\\\\n    counter = Counter()\\\\n    if subtask == \\\"ner\\\":\\\\n        for s in samples:\\\\n            for e in s.get(\\\"entities\\\", []):\\\\n                counter[(e[\\\"text\\\"], e[\\\"type\\\"])] += 1\\\\n    else:\\\\n        for s in samples:\\\\n            for r in s.get(\\\"relations\\\", []):\\\\n                counter[(r[\\\"head\\\"], r[\\\"tail\\\"], r[\\\"type\\\"])] += 1\\\\n    if not counter:\\\\n        return 0.0\\\\n    rates = [v / N for v in counter.values()]\\\\n    return float(np.mean(rates))\\\\n\\\\ndef compute_mean_logprob(samples):\\\\n    logprobs = [s.get(\\\"mean_logprob\\\") for s in samples if s.get(\\\"mean_logprob\\\") is not None]\\\\n    logprobs = [lp for lp in logprobs if np.isfinite(lp)]\\\\n    if not logprobs:\\\\n        return float(\\\"nan\\\")\\\\n    return float(np.mean(logprobs))\\\\n\\\\ndef bootstrap_rho_ci(signal, quality, n_boot=10000, alpha=0.05, rng=None):\\\\n    rng = np.random.default_rng(42) if rng is None else rng\\\\n    signal, quality = np.array(signal, dtype=float), np.array(quality, dtype=float)\\\\n    mask = np.isfinite(signal) & np.isfinite(quality)\\\\n    signal, quality = signal[mask], quality[mask]\\\\n    n = len(signal)\\\\n    point_rho = spearmanr(signal, quality).statistic\\\\n    rhos = []\\\\n    for _ in range(n_boot):\\\\n        idx = rng.integers(0, n, size=n)\\\\n        r = spearmanr(signal[idx], quality[idx]).statistic\\\\n        if np.isfinite(r):\\\\n            rhos.append(r)\\\\n    rhos.sort()\\\\n    lo = np.percentile(rhos, 100 * alpha / 2)\\\\n    hi = np.percentile(rhos, 100 * (1 - alpha / 2))\\\\n    return {\\\"rho\\\": round(float(point_rho), 4), \\\"ci_lo\\\": round(float(lo), 4), \\\"ci_hi\\\": round(float(hi), 4), \\\"n\\\": n}\\\\n\\\\ndef bootstrap_delta_ci(sig_a, sig_b, quality, n_boot=10000, alpha=0.05):\\\\n    rng = np.random.default_rng(42)\\\\n    sig_a, sig_b, quality = np.array(sig_a, dtype=float), np.array(sig_b, dtype=float), np.array(quality, dtype=float)\\\\n    mask = np.isfinite(sig_a) & np.isfinite(sig_b) & np.isfinite(quality)\\\\n    sig_a, sig_b, quality = sig_a[mask], sig_b[mask], quality[mask]\\\\n    n = len(sig_a)\\\\n    rho_a = spearmanr(sig_a, quality).statistic\\\\n    rho_b = spearmanr(sig_b, quality).statistic\\\\n    point_delta = rho_a - rho_b\\\\n    deltas = []\\\\n    for _ in range(n_boot):\\\\n        idx = rng.integers(0, n, size=n)\\\\n        ra = spearmanr(sig_a[idx], quality[idx]).statistic\\\\n        rb = spearmanr(sig_b[idx], quality[idx]).statistic\\\\n        d = ra - rb\\\\n        if np.isfinite(d):\\\\n            deltas.append(d)\\\\n    deltas.sort()\\\\n    lo = np.percentile(deltas, 100 * alpha / 2)\\\\n    hi = np.percentile(deltas, 100 * (1 - alpha / 2))\\\\n    significant = not (lo <= 0 <= hi)\\\\n    return {\\\\n        \\\"delta\\\": round(float(point_delta), 4),\\\\n        \\\"ci_lo\\\": round(float(lo), 4),\\\\n        \\\"ci_hi\\\": round(float(hi), 4),\\\\n        \\\"significant\\\": significant\\\\n    }\\\\n\\\\n# Load and filter\\\\nrecords = load_data(DATA_PATH)\\\\nprint(f\\\"Total records: {len(records)}\\\")\\\\n\\\\nvalid = [r for r in records if len(r[\\\"gold\\\"].get(\\\"entities\\\", [])) > 0]\\\\nprint(f\\\"Valid (gold non-empty) for NER: {len(valid)}\\\")\\\\n\\\\n# Compute signals + F1\\\\nsj_vals, fk_vals, vc_vals, em_vals, lp_vals, f1_vals = [], [], [], [], [], []\\\\nfor inst in valid:\\\\n    samples = inst[\\\"samples\\\"]\\\\n    gold = inst[\\\"gold\\\"]\\\\n    greedy = inst.get(\\\"greedy\\\", samples[0])\\\\n\\\\n    sj_vals.append(structural_consistency_soft_jaccard(samples, subtask=SUBTASK))\\\\n    fk_vals.append(fleiss_kappa_surface(samples, subtask=SUBTASK))\\\\n    vc_vals.append(compute_voting_confidence(samples, SUBTASK))\\\\n    em_vals.append(compute_exact_match_rate(samples, SUBTASK))\\\\n    lp_vals.append(compute_mean_logprob(samples))\\\\n    f1_vals.append(per_instance_f1(greedy, gold, subtask=SUBTASK))\\\\n\\\\nsignals_map = {\\\\n    \\\"sj\\\": np.array(sj_vals),\\\\n    \\\"fk\\\": np.array(fk_vals),\\\\n    \\\"voting_conf\\\": np.array(vc_vals),\\\\n    \\\"em\\\": np.array(em_vals),\\\\n    \\\"logprob\\\": np.array(lp_vals),\\\\n}\\\\nf1_arr = np.array(f1_vals)\\\\n\\\\n# Bootstrap CIs for each signal\\\\nprint(\\\"\\\\\\\\nComputing bootstrap CIs (B=10000)...\\\")\\\\nsignal_results = {}\\\\nfor name, vals in signals_map.items():\\\\n    ci = bootstrap_rho_ci(vals, f1_arr, n_boot=10000)\\\\n    signal_results[name] = ci\\\\n    print(f\\\"  {name:12s}: rho={ci[\\\\'rho\\\\']:+.4f}  CI=[{ci[\\\\'ci_lo\\\\']:+.4f}, {ci[\\\\'ci_hi\\\\']:+.4f}]  n={ci[\\\\'n\\\\']}\\\")\\\\n\\\\n# Delta comparisons\\\\nprint(\\\"\\\\\\\\nDelta comparisons:\\\")\\\\ndelta_results = {}\\\\n\\\\nd1 = bootstrap_delta_ci(signals_map[\\\"sj\\\"], signals_map[\\\"logprob\\\"], f1_arr)\\\\ndelta_results[\\\"sj_minus_logprob\\\"] = d1\\\\nprint(f\\\"  SJ - logprob:     delta={d1[\\\\'delta\\\\']:+.4f}  CI=[{d1[\\\\'ci_lo\\\\']:+.4f}, {d1[\\\\'ci_hi\\\\']:+.4f}]  sig={d1[\\\\'significant\\\\']}\\\")\\\\n\\\\nd2 = bootstrap_delta_ci(signals_map[\\\"voting_conf\\\"], signals_map[\\\"sj\\\"], f1_arr)\\\\ndelta_results[\\\"voting_minus_sj\\\"] = d2\\\\nprint(f\\\"  voting - SJ:      delta={d2[\\\\'delta\\\\']:+.4f}  CI=[{d2[\\\\'ci_lo\\\\']:+.4f}, {d2[\\\\'ci_hi\\\\']:+.4f}]  sig={d2[\\\\'significant\\\\']}\\\")\\\\n\\\\nd3 = bootstrap_delta_ci(signals_map[\\\"em\\\"], signals_map[\\\"sj\\\"], f1_arr)\\\\ndelta_results[\\\"em_minus_sj\\\"] = d3\\\\nprint(f\\\"  EM - SJ:          delta={d3[\\\\'delta\\\\']:+.4f}  CI=[{d3[\\\\'ci_lo\\\\']:+.4f}, {d3[\\\\'ci_hi\\\\']:+.4f}]  sig={d3[\\\\'significant\\\\']}\\\")\\\\n\\\\n# Assemble output\\\\noutput = {\\\\n    \\\"config\\\": \\\"Qwen SciERC N=8 seed=42\\\",\\\\n    \\\"n_valid\\\": len(valid),\\\\n    \\\"subtask\\\": SUBTASK,\\\\n    \\\"signals\\\": signal_results,\\\\n    \\\"delta_comparisons\\\": delta_results\\\\n}\\\\n\\\\nwith open(OUT_PATH, \\\"w\\\") as f:\\\\n    json.dump(output, f, indent=2)\\\\n\\\\nprint(f\\\"\\\\\\\\nSaved to {OUT_PATH}\\\")\\\\nprint(\\\"\\\\\\\\n\\\" + json.dumps(output, indent=2))\\\\nPYEOF\\\\npython3 /tmp/n8_bootstrap_ci.py'\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.34}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 31_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The command timed out at 30 seconds. The script has B=10000 bootstrap iterations for 5 signals + 3 delta comparisons, which is 8 * 10000 = 80000 spearman computations on 529 instances. That's a lot. Let me use nohup and poll.
+
+Actually, the issue might be that the heredoc with escaping is getting too complex. Let me first write the file, then run it separately.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f3cc20fa-26de-4ab1-a5ab-60647c654156",
+  "uuid": "ee635317-2bdd-40d2-a42e-162a0bdb904c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MQbM9DWHME5q3AHipHWdQi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6225,
+      "cache_read_input_tokens": 45131,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6225
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 32_
+
+Timed out — too much escaping in one command. Let me write the script file first, then run it with nohup.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f3cc20fa-26de-4ab1-a5ab-60647c654156",
+  "uuid": "22269cd7-fc05-485b-92af-1351215039b3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MQbM9DWHME5q3AHipHWdQi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6225,
+      "cache_read_input_tokens": 45131,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6225
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01DPprXWpvvSivXbSwrMDNPd`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "mkdir -p /root/autodl-tmp/struct_self_consist_ie/output/review_round2",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f3cc20fa-26de-4ab1-a5ab-60647c654156",
+  "uuid": "e627c7c2-253c-44f0-852b-ea19e4f4daa0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MQbM9DWHME5q3AHipHWdQi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6225,
+      "cache_read_input_tokens": 45131,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6225
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-15T03:10:04.510Z_
+
+<details><summary>↩ Tool result · `toolu_01DPprXWpvvSivXbSwrMDNPd`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.85}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f3cc20fa-26de-4ab1-a5ab-60647c654156",
+  "uuid": "8651b8ac-5508-41f3-bec1-5b2cc80c734e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.85}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.85}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35_
+
+<details open><summary>🔧 Tool call — Write · `toolu_01MbmDF33muqN8aHVNUL26vM`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/n8_bootstrap_ci.py",
+  "content": "#!/usr/bin/env python3\n\"\"\"Bootstrap CI for 5 signals: Qwen SciERC N=8 seed=42.\"\"\"\nimport json, sys\nimport numpy as np\nfrom collections import Counter\nfrom scipy.stats import spearmanr\n\nsys.path.insert(0, '/root/autodl-tmp/struct_self_consist_ie/code')\nfrom consistency import structural_consistency_soft_jaccard, fleiss_kappa_surface\nfrom evaluation import per_instance_f1\n\nDATA_PATH = \"/root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/samples.jsonl\"\nOUT_PATH = \"/root/autodl-tmp/struct_self_consist_ie/output/review_round2/n8_bootstrap_ci.json\"\nSUBTASK = \"ner\"\n\ndef load_data(path):\n    records = []\n    with open(path) as f:\n        for line in f:\n            if line.strip():\n                records.append(json.loads(line))\n    return records\n\ndef compute_exact_match_rate(samples, subtask):\n    if subtask == \"ner\":\n        keys = [frozenset((e[\"text\"], e[\"type\"]) for e in s.get(\"entities\", [])) for s in samples]\n    else:\n        keys = [frozenset((r[\"head\"], r[\"tail\"], r[\"type\"]) for r in s.get(\"relations\", [])) for s in samples]\n    if not keys:\n        return 0.0\n    counter = Counter(keys)\n    return counter.most_common(1)[0][1] / len(samples)\n\ndef compute_voting_confidence(samples, subtask):\n    N = len(samples)\n    if N == 0:\n        return 0.0\n    counter = Counter()\n    if subtask == \"ner\":\n        for s in samples:\n            for e in s.get(\"entities\", []):\n                counter[(e[\"text\"], e[\"type\"])] += 1\n    else:\n        for s in samples:\n            for r in s.get(\"relations\", []):\n                counter[(r[\"head\"], r[\"tail\"], r[\"type\"])] += 1\n    if not counter:\n        return 0.0\n    rates = [v / N for v in counter.values()]\n    return float(np.mean(rates))\n\ndef compute_mean_logprob(samples):\n    logprobs = [s.get(\"mean_logprob\") for s in samples if s.get(\"mean_logprob\") is not None]\n    logprobs = [lp for lp in logprobs if np.isfinite(lp)]\n    if not logprobs:\n        return float(\"nan\")\n    return float(np.mean(logprobs))\n\ndef bootstrap_rho_ci(signal, quality, n_boot=10000, alpha=0.05):\n    rng = np.random.default_rng(42)\n    signal, quality = np.array(signal, dtype=float), np.array(quality, dtype=float)\n    mask = np.isfinite(signal) & np.isfinite(quality)\n    signal, quality = signal[mask], quality[mask]\n    n = len(signal)\n    point_rho = float(spearmanr(signal, quality).statistic)\n    rhos = []\n    for _ in range(n_boot):\n        idx = rng.integers(0, n, size=n)\n        r = spearmanr(signal[idx], quality[idx]).statistic\n        if np.isfinite(r):\n            rhos.append(float(r))\n    rhos.sort()\n    lo = float(np.percentile(rhos, 100 * alpha / 2))\n    hi = float(np.percentile(rhos, 100 * (1 - alpha / 2)))\n    return {\"rho\": round(point_rho, 4), \"ci_lo\": round(lo, 4), \"ci_hi\": round(hi, 4), \"n\": n}\n\ndef bootstrap_delta_ci(sig_a, sig_b, quality, n_boot=10000, alpha=0.05):\n    rng = np.random.default_rng(42)\n    sig_a = np.array(sig_a, dtype=float)\n    sig_b = np.array(sig_b, dtype=float)\n    quality = np.array(quality, dtype=float)\n    mask = np.isfinite(sig_a) & np.isfinite(sig_b) & np.isfinite(quality)\n    sig_a, sig_b, quality = sig_a[mask], sig_b[mask], quality[mask]\n    n = len(sig_a)\n    rho_a = float(spearmanr(sig_a, quality).statistic)\n    rho_b = float(spearmanr(sig_b, quality).statistic)\n    point_delta = rho_a - rho_b\n    deltas = []\n    for _ in range(n_boot):\n        idx = rng.integers(0, n, size=n)\n        ra = spearmanr(sig_a[idx], quality[idx]).statistic\n        rb = spearmanr(sig_b[idx], quality[idx]).statistic\n        d = float(ra) - float(rb)\n        if np.isfinite(d):\n            deltas.append(d)\n    deltas.sort()\n    lo = float(np.percentile(deltas, 100 * alpha / 2))\n    hi = float(np.percentile(deltas, 100 * (1 - alpha / 2)))\n    significant = not (lo <= 0 <= hi)\n    return {\n        \"delta\": round(point_delta, 4),\n        \"ci_lo\": round(lo, 4),\n        \"ci_hi\": round(hi, 4),\n        \"significant\": significant\n    }\n\n# Load and filter\nrecords = load_data(DATA_PATH)\nprint(f\"Total records: {len(records)}\")\n\nvalid = [r for r in records if len(r[\"gold\"].get(\"entities\", [])) > 0]\nprint(f\"Valid (gold non-empty) for NER: {len(valid)}\")\n\n# Compute signals + F1\nsj_vals, fk_vals, vc_vals, em_vals, lp_vals, f1_vals = [], [], [], [], [], []\nfor inst in valid:\n    samples = inst[\"samples\"]\n    gold = inst[\"gold\"]\n    greedy = inst.get(\"greedy\", samples[0])\n    sj_vals.append(structural_consistency_soft_jaccard(samples, subtask=SUBTASK))\n    fk_vals.append(fleiss_kappa_surface(samples, subtask=SUBTASK))\n    vc_vals.append(compute_voting_confidence(samples, SUBTASK))\n    em_vals.append(compute_exact_match_rate(samples, SUBTASK))\n    lp_vals.append(compute_mean_logprob(samples))\n    f1_vals.append(per_instance_f1(greedy, gold, subtask=SUBTASK))\n\nprint(f\"Signal computation done.\")\n\nsignals_map = {\n    \"sj\": np.array(sj_vals),\n    \"fk\": np.array(fk_vals),\n    \"voting_conf\": np.array(vc_vals),\n    \"em\": np.array(em_vals),\n    \"logprob\": np.array(lp_vals),\n}\nf1_arr = np.array(f1_vals)\n\n# Bootstrap CIs for each signal\nprint(\"Computing bootstrap CIs (B=10000)...\")\nsignal_results = {}\nfor name, vals in signals_map.items():\n    ci = bootstrap_rho_ci(vals, f1_arr, n_boot=10000)\n    signal_results[name] = ci\n    print(f\"  {name:12s}: rho={ci['rho']:+.4f}  CI=[{ci['ci_lo']:+.4f}, {ci['ci_hi']:+.4f}]  n={ci['n']}\")\n\n# Delta comparisons\nprint(\"Delta comparisons:\")\ndelta_results = {}\n\nd1 = bootstrap_delta_ci(signals_map[\"sj\"], signals_map[\"logprob\"], f1_arr)\ndelta_results[\"sj_minus_logprob\"] = d1\nprint(f\"  SJ - logprob:     delta={d1['delta']:+.4f}  CI=[{d1['ci_lo']:+.4f}, {d1['ci_hi']:+.4f}]  sig={d1['significant']}\")\n\nd2 = bootstrap_delta_ci(signals_map[\"voting_conf\"], signals_map[\"sj\"], f1_arr)\ndelta_results[\"voting_minus_sj\"] = d2\nprint(f\"  voting - SJ:      delta={d2['delta']:+.4f}  CI=[{d2['ci_lo']:+.4f}, {d2['ci_hi']:+.4f}]  sig={d2['significant']}\")\n\nd3 = bootstrap_delta_ci(signals_map[\"em\"], signals_map[\"sj\"], f1_arr)\ndelta_results[\"em_minus_sj\"] = d3\nprint(f\"  EM - SJ:          delta={d3['delta']:+.4f}  CI=[{d3['ci_lo']:+.4f}, {d3['ci_hi']:+.4f}]  sig={d3['significant']}\")\n\n# Assemble output\noutput = {\n    \"config\": \"Qwen SciERC N=8 seed=42\",\n    \"n_valid\": len(valid),\n    \"subtask\": SUBTASK,\n    \"signals\": signal_results,\n    \"delta_comparisons\": delta_results\n}\n\nwith open(OUT_PATH, \"w\") as f:\n    json.dump(output, f, indent=2)\n\nprint(f\"\\nSaved to {OUT_PATH}\")\nprint(\"\\n\" + json.dumps(output, indent=2))\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f3cc20fa-26de-4ab1-a5ab-60647c654156",
+  "uuid": "ea5409b9-9ea0-4216-84fe-e503dd52c516",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01W1Z5wpxecRqZBSzQ2geaBS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 347,
+      "cache_read_input_tokens": 51356,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 347
+      },
+      "output_tokens": 41,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-15T03:10:27.368Z_
+
+<details><summary>↩ Tool result · `toolu_01MbmDF33muqN8aHVNUL26vM`</summary>
+
+```text
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/n8_bootstrap_ci.py
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f3cc20fa-26de-4ab1-a5ab-60647c654156",
+  "uuid": "9220a2f5-339c-4307-b333-b5e4455c6bca",
+  "tool_use_result": {
+    "type": "create",
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/n8_bootstrap_ci.py",
+    "content": "#!/usr/bin/env python3\n\"\"\"Bootstrap CI for 5 signals: Qwen SciERC N=8 seed=42.\"\"\"\nimport json, sys\nimport numpy as np\nfrom collections import Counter\nfrom scipy.stats import spearmanr\n\nsys.path.insert(0, '/root/autodl-tmp/struct_self_consist_ie/code')\nfrom consistency import structural_consistency_soft_jaccard, fleiss_kappa_surface\nfrom evaluation import per_instance_f1\n\nDATA_PATH = \"/root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/samples.jsonl\"\nOUT_PATH = \"/root/autodl-tmp/struct_self_consist_ie/output/review_round2/n8_bootstrap_ci.json\"\nSUBTASK = \"ner\"\n\ndef load_data(path):\n    records = []\n    with open(path) as f:\n        for line in f:\n            if line.strip():\n                records.append(json.loads(line))\n    return records\n\ndef compute_exact_match_rate(samples, subtask):\n    if subtask == \"ner\":\n        keys = [frozenset((e[\"text\"], e[\"type\"]) for e in s.get(\"entities\", [])) for s in samples]\n    else:\n        keys = [frozenset((r[\"head\"], r[\"tail\"], r[\"type\"]) for r in s.get(\"relations\", [])) for s in samples]\n    if not keys:\n        return 0.0\n    counter = Counter(keys)\n    return counter.most_common(1)[0][1] / len(samples)\n\ndef compute_voting_confidence(samples, subtask):\n    N = len(samples)\n    if N == 0:\n        return 0.0\n    counter = Counter()\n    if subtask == \"ner\":\n        for s in samples:\n            for e in s.get(\"entities\", []):\n                counter[(e[\"text\"], e[\"type\"])] += 1\n    else:\n        for s in samples:\n            for r in s.get(\"relations\", []):\n                counter[(r[\"head\"], r[\"tail\"], r[\"type\"])] += 1\n    if not counter:\n        return 0.0\n    rates = [v / N for v in counter.values()]\n    return float(np.mean(rates))\n\ndef compute_mean_logprob(samples):\n    logprobs = [s.get(\"mean_logprob\") for s in samples if s.get(\"mean_logprob\") is not None]\n    logprobs = [lp for lp in logprobs if np.isfinite(lp)]\n    if not logprobs:\n        return float(\"nan\")\n    return float(np.mean(logprobs))\n\ndef bootstrap_rho_ci(signal, quality, n_boot=10000, alpha=0.05):\n    rng = np.random.default_rng(42)\n    signal, quality = np.array(signal, dtype=float), np.array(quality, dtype=float)\n    mask = np.isfinite(signal) & np.isfinite(quality)\n    signal, quality = signal[mask], quality[mask]\n    n = len(signal)\n    point_rho = float(spearmanr(signal, quality).statistic)\n    rhos = []\n    for _ in range(n_boot):\n        idx = rng.integers(0, n, size=n)\n        r = spearmanr(signal[idx], quality[idx]).statistic\n        if np.isfinite(r):\n            rhos.append(float(r))\n    rhos.sort()\n    lo = float(np.percentile(rhos, 100 * alpha / 2))\n    hi = float(np.percentile(rhos, 100 * (1 - alpha / 2)))\n    return {\"rho\": round(point_rho, 4), \"ci_lo\": round(lo, 4), \"ci_hi\": round(hi, 4), \"n\": n}\n\ndef bootstrap_delta_ci(sig_a, sig_b, quality, n_boot=10000, alpha=0.05):\n    rng = np.random.default_rng(42)\n    sig_a = np.array(sig_a, dtype=float)\n    sig_b = np.array(sig_b, dtype=float)\n    quality = np.array(quality, dtype=float)\n    mask = np.isfinite(sig_a) & np.isfinite(sig_b) & np.isfinite(quality)\n    sig_a, sig_b, quality = sig_a[mask], sig_b[mask], quality[mask]\n    n = len(sig_a)\n    rho_a = float(spearmanr(sig_a, quality).statistic)\n    rho_b = float(spearmanr(sig_b, quality).statistic)\n    point_delta = rho_a - rho_b\n    deltas = []\n    for _ in range(n_boot):\n        idx = rng.integers(0, n, size=n)\n        ra = spearmanr(sig_a[idx], quality[idx]).statistic\n        rb = spearmanr(sig_b[idx], quality[idx]).statistic\n        d = float(ra) - float(rb)\n        if np.isfinite(d):\n            deltas.append(d)\n    deltas.sort()\n    lo = float(np.percentile(deltas, 100 * alpha / 2))\n    hi = float(np.percentile(deltas, 100 * (1 - alpha / 2)))\n    significant = not (lo <= 0 <= hi)\n    return {\n        \"delta\": round(point_delta, 4),\n        \"ci_lo\": round(lo, 4),\n        \"ci_hi\": round(hi, 4),\n        \"significant\": significant\n    }\n\n# Load and filter\nrecords = load_data(DATA_PATH)\nprint(f\"Total records: {len(records)}\")\n\nvalid = [r for r in records if len(r[\"gold\"].get(\"entities\", [])) > 0]\nprint(f\"Valid (gold non-empty) for NER: {len(valid)}\")\n\n# Compute signals + F1\nsj_vals, fk_vals, vc_vals, em_vals, lp_vals, f1_vals = [], [], [], [], [], []\nfor inst in valid:\n    samples = inst[\"samples\"]\n    gold = inst[\"gold\"]\n    greedy = inst.get(\"greedy\", samples[0])\n    sj_vals.append(structural_consistency_soft_jaccard(samples, subtask=SUBTASK))\n    fk_vals.append(fleiss_kappa_surface(samples, subtask=SUBTASK))\n    vc_vals.append(compute_voting_confidence(samples, SUBTASK))\n    em_vals.append(compute_exact_match_rate(samples, SUBTASK))\n    lp_vals.append(compute_mean_logprob(samples))\n    f1_vals.append(per_instance_f1(greedy, gold, subtask=SUBTASK))\n\nprint(f\"Signal computation done.\")\n\nsignals_map = {\n    \"sj\": np.array(sj_vals),\n    \"fk\": np.array(fk_vals),\n    \"voting_conf\": np.array(vc_vals),\n    \"em\": np.array(em_vals),\n    \"logprob\": np.array(lp_vals),\n}\nf1_arr = np.array(f1_vals)\n\n# Bootstrap CIs for each signal\nprint(\"Computing bootstrap CIs (B=10000)...\")\nsignal_results = {}\nfor name, vals in signals_map.items():\n    ci = bootstrap_rho_ci(vals, f1_arr, n_boot=10000)\n    signal_results[name] = ci\n    print(f\"  {name:12s}: rho={ci['rho']:+.4f}  CI=[{ci['ci_lo']:+.4f}, {ci['ci_hi']:+.4f}]  n={ci['n']}\")\n\n# Delta comparisons\nprint(\"Delta comparisons:\")\ndelta_results = {}\n\nd1 = bootstrap_delta_ci(signals_map[\"sj\"], signals_map[\"logprob\"], f1_arr)\ndelta_results[\"sj_minus_logprob\"] = d1\nprint(f\"  SJ - logprob:     delta={d1['delta']:+.4f}  CI=[{d1['ci_lo']:+.4f}, {d1['ci_hi']:+.4f}]  sig={d1['significant']}\")\n\nd2 = bootstrap_delta_ci(signals_map[\"voting_conf\"], signals_map[\"sj\"], f1_arr)\ndelta_results[\"voting_minus_sj\"] = d2\nprint(f\"  voting - SJ:      delta={d2['delta']:+.4f}  CI=[{d2['ci_lo']:+.4f}, {d2['ci_hi']:+.4f}]  sig={d2['significant']}\")\n\nd3 = bootstrap_delta_ci(signals_map[\"em\"], signals_map[\"sj\"], f1_arr)\ndelta_results[\"em_minus_sj\"] = d3\nprint(f\"  EM - SJ:          delta={d3['delta']:+.4f}  CI=[{d3['ci_lo']:+.4f}, {d3['ci_hi']:+.4f}]  sig={d3['significant']}\")\n\n# Assemble output\noutput = {\n    \"config\": \"Qwen SciERC N=8 seed=42\",\n    \"n_valid\": len(valid),\n    \"subtask\": SUBTASK,\n    \"signals\": signal_results,\n    \"delta_comparisons\": delta_results\n}\n\nwith open(OUT_PATH, \"w\") as f:\n    json.dump(output, f, indent=2)\n\nprint(f\"\\nSaved to {OUT_PATH}\")\nprint(\"\\n\" + json.dumps(output, indent=2))\n",
+    "structuredPatch": [],
+    "originalFile": null,
+    "userModified": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01WDtZsm5apPMYaQU61rA7Wh`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat > /root/autodl-tmp/struct_self_consist_ie/code/n8_bootstrap_ci.py << 'PYEOF'\n#!/usr/bin/env python3\n\"\"\"Bootstrap CI for 5 signals: Qwen SciERC N=8 seed=42.\"\"\"\nimport json, sys\nimport numpy as np\nfrom collections import Counter\nfrom scipy.stats import spearmanr\n\nsys.path.insert(0, '/root/autodl-tmp/struct_self_consist_ie/code')\nfrom consistency import structural_consistency_soft_jaccard, fleiss_kappa_surface\nfrom evaluation import per_instance_f1\n\nDATA_PATH = \"/root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/samples.jsonl\"\nOUT_PATH = \"/root/autodl-tmp/struct_self_consist_ie/output/review_round2/n8_bootstrap_ci.json\"\nSUBTASK = \"ner\"\n\ndef load_data(path):\n    records = []\n    with open(path) as f:\n        for line in f:\n            if line.strip():\n                records.append(json.loads(line))\n    return records\n\ndef compute_exact_match_rate(samples, subtask):\n    if subtask == \"ner\":\n        keys = [frozenset((e[\"text\"], e[\"type\"]) for e in s.get(\"entities\", [])) for s in samples]\n    else:\n        keys = [frozenset((r[\"head\"], r[\"tail\"], r[\"type\"]) for r in s.get(\"relations\", [])) for s in samples]\n    if not keys:\n        return 0.0\n    counter = Counter(keys)\n    return counter.most_common(1)[0][1] / len(samples)\n\ndef compute_voting_confidence(samples, subtask):\n    N = len(samples)\n    if N == 0:\n        return 0.0\n    counter = Counter()\n    if subtask == \"ner\":\n        for s in samples:\n            for e in s.get(\"entities\", []):\n                counter[(e[\"text\"], e[\"type\"])] += 1\n    else:\n        for s in samples:\n            for r in s.get(\"relations\", []):\n                counter[(r[\"head\"], r[\"tail\"], r[\"type\"])] += 1\n    if not counter:\n        return 0.0\n    rates = [v / N for v in counter.values()]\n    return float(np.mean(rates))\n\ndef compute_mean_logprob(samples):\n    logprobs = [s.get(\"mean_logprob\") for s in samples if s.get(\"mean_logprob\") is not None]\n    logprobs = [lp for lp in logprobs if np.isfinite(lp)]\n    if not logprobs:\n        return float(\"nan\")\n    return float(np.mean(logprobs))\n\ndef bootstrap_rho_ci(signal, quality, n_boot=10000, alpha=0.05):\n    rng = np.random.default_rng(42)\n    signal, quality = np.array(signal, dtype=float), np.array(quality, dtype=float)\n    mask = np.isfinite(signal) & np.isfinite(quality)\n    signal, quality = signal[mask], quality[mask]\n    n = len(signal)\n    point_rho = float(spearmanr(signal, quality).statistic)\n    rhos = []\n    for _ in range(n_boot):\n        idx = rng.integers(0, n, size=n)\n        r = spearmanr(signal[idx], quality[idx]).statistic\n        if np.isfinite(r):\n            rhos.append(float(r))\n    rhos.sort()\n    lo = float(np.percentile(rhos, 100 * alpha / 2))\n    hi = float(np.percentile(rhos, 100 * (1 - alpha / 2)))\n    return {\"rho\": round(point_rho, 4), \"ci_lo\": round(lo, 4), \"ci_hi\": round(hi, 4), \"n\": n}\n\ndef bootstrap_delta_ci(sig_a, sig_b, quality, n_boot=10000, alpha=0.05):\n    rng = np.random.default_rng(42)\n    sig_a = np.array(sig_a, dtype=float)\n    sig_b = np.array(sig_b, dtype=float)\n    quality = np.array(quality, dtype=float)\n    mask = np.isfinite(sig_a) & np.isfinite(sig_b) & np.isfinite(quality)\n    sig_a, sig_b, quality = sig_a[mask], sig_b[mask], quality[mask]\n    n = len(sig_a)\n    rho_a = float(spearmanr(sig_a, quality).statistic)\n    rho_b = float(spearmanr(sig_b, quality).statistic)\n    point_delta = rho_a - rho_b\n    deltas = []\n    for _ in range(n_boot):\n        idx = rng.integers(0, n, size=n)\n        ra = spearmanr(sig_a[idx], quality[idx]).statistic\n        rb = spearmanr(sig_b[idx], quality[idx]).statistic\n        d = float(ra) - float(rb)\n        if np.isfinite(d):\n            deltas.append(d)\n    deltas.sort()\n    lo = float(np.percentile(deltas, 100 * alpha / 2))\n    hi = float(np.percentile(deltas, 100 * (1 - alpha / 2)))\n    significant = not (lo <= 0 <= hi)\n    return {\n        \"delta\": round(point_delta, 4),\n        \"ci_lo\": round(lo, 4),\n        \"ci_hi\": round(hi, 4),\n        \"significant\": significant\n    }\n\nrecords = load_data(DATA_PATH)\nprint(f\"Total records: {len(records)}\")\n\nvalid = [r for r in records if len(r[\"gold\"].get(\"entities\", [])) > 0]\nprint(f\"Valid (gold non-empty) for NER: {len(valid)}\")\n\nsj_vals, fk_vals, vc_vals, em_vals, lp_vals, f1_vals = [], [], [], [], [], []\nfor inst in valid:\n    samples = inst[\"samples\"]\n    gold = inst[\"gold\"]\n    greedy = inst.get(\"greedy\", samples[0])\n    sj_vals.append(structural_consistency_soft_jaccard(samples, subtask=SUBTASK))\n    fk_vals.append(fleiss_kappa_surface(samples, subtask=SUBTASK))\n    vc_vals.append(compute_voting_confidence(samples, SUBTASK))\n    em_vals.append(compute_exact_match_rate(samples, SUBTASK))\n    lp_vals.append(compute_mean_logprob(samples))\n    f1_vals.append(per_instance_f1(greedy, gold, subtask=SUBTASK))\n\nprint(\"Signal computation done.\")\n\nsignals_map = {\n    \"sj\": np.array(sj_vals),\n    \"fk\": np.array(fk_vals),\n    \"voting_conf\": np.array(vc_vals),\n    \"em\": np.array(em_vals),\n    \"logprob\": np.array(lp_vals),\n}\nf1_arr = np.array(f1_vals)\n\nprint(\"Computing bootstrap CIs (B=10000)...\")\nsignal_results = {}\nfor name, vals in signals_map.items():\n    ci = bootstrap_rho_ci(vals, f1_arr, n_boot=10000)\n    signal_results[name] = ci\n    print(f\"  {name:12s}: rho={ci['rho']:+.4f}  CI=[{ci['ci_lo']:+.4f}, {ci['ci_hi']:+.4f}]  n={ci['n']}\")\n\nprint(\"Delta comparisons:\")\ndelta_results = {}\n\nd1 = bootstrap_delta_ci(signals_map[\"sj\"], signals_map[\"logprob\"], f1_arr)\ndelta_results[\"sj_minus_logprob\"] = d1\nprint(f\"  SJ - logprob:     delta={d1['delta']:+.4f}  CI=[{d1['ci_lo']:+.4f}, {d1['ci_hi']:+.4f}]  sig={d1['significant']}\")\n\nd2 = bootstrap_delta_ci(signals_map[\"voting_conf\"], signals_map[\"sj\"], f1_arr)\ndelta_results[\"voting_minus_sj\"] = d2\nprint(f\"  voting - SJ:      delta={d2['delta']:+.4f}  CI=[{d2['ci_lo']:+.4f}, {d2['ci_hi']:+.4f}]  sig={d2['significant']}\")\n\nd3 = bootstrap_delta_ci(signals_map[\"em\"], signals_map[\"sj\"], f1_arr)\ndelta_results[\"em_minus_sj\"] = d3\nprint(f\"  EM - SJ:          delta={d3['delta']:+.4f}  CI=[{d3['ci_lo']:+.4f}, {d3['ci_hi']:+.4f}]  sig={d3['significant']}\")\n\noutput = {\n    \"config\": \"Qwen SciERC N=8 seed=42\",\n    \"n_valid\": len(valid),\n    \"subtask\": SUBTASK,\n    \"signals\": signal_results,\n    \"delta_comparisons\": delta_results\n}\n\nwith open(OUT_PATH, \"w\") as f:\n    json.dump(output, f, indent=2)\n\nprint(f\"\\nSaved to {OUT_PATH}\")\nprint(\"\\n\" + json.dumps(output, indent=2))\nPYEOF",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f3cc20fa-26de-4ab1-a5ab-60647c654156",
+  "uuid": "32df1fe5-fae8-4f5e-a077-30881173559a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01K74BWAioXxXYYGQWRS4c9J",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2635,
+      "cache_read_input_tokens": 51703,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2635
+      },
+      "output_tokens": 61,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-15T03:10:49.949Z_
+
+<details><summary>↩ Tool result · `toolu_01WDtZsm5apPMYaQU61rA7Wh`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f3cc20fa-26de-4ab1-a5ab-60647c654156",
+  "uuid": "6170d577-52bc-4250-87e5-7c500f5ba02d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01TF7YURe93FwuGDnvJyWCs1`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && nohup python3 /root/autodl-tmp/struct_self_consist_ie/code/n8_bootstrap_ci.py > /tmp/n8_bootstrap.log 2>&1 & echo \"PID=$!\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f3cc20fa-26de-4ab1-a5ab-60647c654156",
+  "uuid": "81253bac-bae2-4421-8e1a-55ca6cc2ea3b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TUX7UL9dDZkKcPJLd2q3gu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2647,
+      "cache_read_input_tokens": 54338,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2647
+      },
+      "output_tokens": 65,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-15T03:11:23.801Z_
+
+<details><summary>↩ Tool result · `toolu_01TF7YURe93FwuGDnvJyWCs1`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"PID=142518\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 30.33}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f3cc20fa-26de-4ab1-a5ab-60647c654156",
+  "uuid": "9320f0be-8396-4cfd-8e02-344756e27d0c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"PID=142518\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 30.33}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"PID=142518\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 30.33}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 41_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The nohup process started with PID 142518. Let me wait a bit and then check the output.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f3cc20fa-26de-4ab1-a5ab-60647c654156",
+  "uuid": "e7417472-f6c4-462e-be88-aa93db8971ca",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015ceAAdnuRpCtLG5g6gPFp5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 256,
+      "cache_read_input_tokens": 56985,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 256
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 42_
+
+Script running in background (PID 142518). Let me check progress.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f3cc20fa-26de-4ab1-a5ab-60647c654156",
+  "uuid": "214c1ae8-3252-4be3-835c-12921162399d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015ceAAdnuRpCtLG5g6gPFp5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 256,
+      "cache_read_input_tokens": 56985,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 256
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_012EnZh17UC6JdH8WKjG5qPP`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /tmp/n8_bootstrap.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f3cc20fa-26de-4ab1-a5ab-60647c654156",
+  "uuid": "722f22e9-dc85-4e2d-ac96-f88c7b1e11a8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015ceAAdnuRpCtLG5g6gPFp5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 256,
+      "cache_read_input_tokens": 56985,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 256
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-15T03:11:28.037Z_
+
+<details><summary>↩ Tool result · `toolu_012EnZh17UC6JdH8WKjG5qPP`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f3cc20fa-26de-4ab1-a5ab-60647c654156",
+  "uuid": "af20e0f2-4816-4fd2-a765-59c32c985c7e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 45_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Empty output — the process might still be starting. Let me check if it's running and wait a bit more.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f3cc20fa-26de-4ab1-a5ab-60647c654156",
+  "uuid": "3fa06383-ef23-4d75-a6ad-4ac8d1ce33cf",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RswmXgnFY8sGfWvZd7ewxu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 343,
+      "cache_read_input_tokens": 57241,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 343
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_012dVFaE6GzbCXCPyg4PA9xv`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "ps -p 142518 -o pid=",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f3cc20fa-26de-4ab1-a5ab-60647c654156",
+  "uuid": "b8cce2be-968b-4e5f-b470-76761b61a387",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RswmXgnFY8sGfWvZd7ewxu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 343,
+      "cache_read_input_tokens": 57241,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 343
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-15T03:11:31.869Z_
+
+<details><summary>↩ Tool result · `toolu_012dVFaE6GzbCXCPyg4PA9xv`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f3cc20fa-26de-4ab1-a5ab-60647c654156",
+  "uuid": "76f39457-621b-422f-8d75-ad14baed951c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 48_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Process already finished. Let me check the log.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f3cc20fa-26de-4ab1-a5ab-60647c654156",
+  "uuid": "cd30bbd7-9a89-4bbf-a929-e982e0bbe9c0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BSSAmKSxp9impVGeAyXZQK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 228,
+      "cache_read_input_tokens": 57584,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 228
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0152R2a9xYpZiovPSE6ofj7K`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /tmp/n8_bootstrap.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f3cc20fa-26de-4ab1-a5ab-60647c654156",
+  "uuid": "cfd3c3bc-bb67-4933-98fc-b848c78df031",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BSSAmKSxp9impVGeAyXZQK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 228,
+      "cache_read_input_tokens": 57584,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 228
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-15T03:11:35.190Z_
+
+<details><summary>↩ Tool result · `toolu_0152R2a9xYpZiovPSE6ofj7K`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Total records: 551\\nValid (gold non-empty) for NER: 529\\nSignal computation done.\\nComputing bootstrap CIs (B=10000)...\\n  sj          : rho=+0.3599  CI=[+0.2766, +0.4373]  n=529\\n  fk          : rho=+0.2665  CI=[+0.1758, +0.3537]  n=529\\n  voting_conf : rho=+0.3792  CI=[+0.2987, +0.4556]  n=529\\n  em          : rho=+0.2945  CI=[+0.2117, +0.3713]  n=529\\n  logprob     : rho=+0.2052  CI=[+0.1186, +0.2908]  n=529\\nDelta comparisons:\\n  SJ - logprob:     delta=+0.1547  CI=[+0.0737, +0.2340]  sig=True\\n  voting - SJ:      delta=+0.0193  CI=[-0.0327, +0.0725]  sig=False\\n  EM - SJ:          delta=-0.0653  CI=[-0.1296, -0.0027]  sig=True\\n\\nSaved to /root/autodl-tmp/struct_self_consist_ie/output/review_round2/n8_bootstrap_ci.json\\n\\n{\\n  \\\"config\\\": \\\"Qwen SciERC N=8 seed=42\\\",\\n  \\\"n_valid\\\": 529,\\n  \\\"subtask\\\": \\\"ner\\\",\\n  \\\"signals\\\": {\\n    \\\"sj\\\": {\\n      \\\"rho\\\": 0.3599,\\n      \\\"ci_lo\\\": 0.2766,\\n      \\\"ci_hi\\\": 0.4373,\\n      \\\"n\\\": 529\\n    },\\n    \\\"fk\\\": {\\n      \\\"rho\\\": 0.2665,\\n      \\\"ci_lo\\\": 0.1758,\\n      \\\"ci_hi\\\": 0.3537,\\n      \\\"n\\\": 529\\n    },\\n    \\\"voting_conf\\\": {\\n      \\\"rho\\\": 0.3792,\\n      \\\"ci_lo\\\": 0.2987,\\n      \\\"ci_hi\\\": 0.4556,\\n      \\\"n\\\": 529\\n    },\\n    \\\"em\\\": {\\n      \\\"rho\\\": 0.2945,\\n      \\\"ci_lo\\\": 0.2117,\\n      \\\"ci_hi\\\": 0.3713,\\n      \\\"n\\\": 529\\n    },\\n    \\\"logprob\\\": {\\n      \\\"rho\\\": 0.2052,\\n      \\\"ci_lo\\\": 0.1186,\\n      \\\"ci_hi\\\": 0.2908,\\n      \\\"n\\\": 529\\n    }\\n  },\\n  \\\"delta_comparisons\\\": {\\n    \\\"sj_minus_logprob\\\": {\\n      \\\"delta\\\": 0.1547,\\n      \\\"ci_lo\\\": 0.0737,\\n      \\\"ci_hi\\\": 0.234,\\n      \\\"significant\\\": true\\n    },\\n    \\\"voting_minus_sj\\\": {\\n      \\\"delta\\\": 0.0193,\\n      \\\"ci_lo\\\": -0.0327,\\n      \\\"ci_hi\\\": 0.0725,\\n      \\\"significant\\\": false\\n    },\\n    \\\"em_minus_sj\\\": {\\n      \\\"delta\\\": -0.0653,\\n      \\\"ci_lo\\\": -0.1296,\\n      \\\"ci_hi\\\": -0.0027,\\n      \\\"significant\\\": true\\n    }\\n  }\\n}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f3cc20fa-26de-4ab1-a5ab-60647c654156",
+  "uuid": "0f75c430-81d3-46c4-a849-29ba0ab0d863",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Total records: 551\\\\nValid (gold non-empty) for NER: 529\\\\nSignal computation done.\\\\nComputing bootstrap CIs (B=10000)...\\\\n  sj          : rho=+0.3599  CI=[+0.2766, +0.4373]  n=529\\\\n  fk          : rho=+0.2665  CI=[+0.1758, +0.3537]  n=529\\\\n  voting_conf : rho=+0.3792  CI=[+0.2987, +0.4556]  n=529\\\\n  em          : rho=+0.2945  CI=[+0.2117, +0.3713]  n=529\\\\n  logprob     : rho=+0.2052  CI=[+0.1186, +0.2908]  n=529\\\\nDelta comparisons:\\\\n  SJ - logprob:     delta=+0.1547  CI=[+0.0737, +0.2340]  sig=True\\\\n  voting - SJ:      delta=+0.0193  CI=[-0.0327, +0.0725]  sig=False\\\\n  EM - SJ:          delta=-0.0653  CI=[-0.1296, -0.0027]  sig=True\\\\n\\\\nSaved to /root/autodl-tmp/struct_self_consist_ie/output/review_round2/n8_bootstrap_ci.json\\\\n\\\\n{\\\\n  \\\\\\\"config\\\\\\\": \\\\\\\"Qwen SciERC N=8 seed=42\\\\\\\",\\\\n  \\\\\\\"n_valid\\\\\\\": 529,\\\\n  \\\\\\\"subtask\\\\\\\": \\\\\\\"ner\\\\\\\",\\\\n  \\\\\\\"signals\\\\\\\": {\\\\n    \\\\\\\"sj\\\\\\\": {\\\\n      \\\\\\\"rho\\\\\\\": 0.3599,\\\\n      \\\\\\\"ci_lo\\\\\\\": 0.2766,\\\\n      \\\\\\\"ci_hi\\\\\\\": 0.4373,\\\\n      \\\\\\\"n\\\\\\\": 529\\\\n    },\\\\n    \\\\\\\"fk\\\\\\\": {\\\\n      \\\\\\\"rho\\\\\\\": 0.2665,\\\\n      \\\\\\\"ci_lo\\\\\\\": 0.1758,\\\\n      \\\\\\\"ci_hi\\\\\\\": 0.3537,\\\\n      \\\\\\\"n\\\\\\\": 529\\\\n    },\\\\n    \\\\\\\"voting_conf\\\\\\\": {\\\\n      \\\\\\\"rho\\\\\\\": 0.3792,\\\\n      \\\\\\\"ci_lo\\\\\\\": 0.2987,\\\\n      \\\\\\\"ci_hi\\\\\\\": 0.4556,\\\\n      \\\\\\\"n\\\\\\\": 529\\\\n    },\\\\n    \\\\\\\"em\\\\\\\": {\\\\n      \\\\\\\"rho\\\\\\\": 0.2945,\\\\n      \\\\\\\"ci_lo\\\\\\\": 0.2117,\\\\n      \\\\\\\"ci_hi\\\\\\\": 0.3713,\\\\n      \\\\\\\"n\\\\\\\": 529\\\\n    },\\\\n    \\\\\\\"logprob\\\\\\\": {\\\\n      \\\\\\\"rho\\\\\\\": 0.2052,\\\\n      \\\\\\\"ci_lo\\\\\\\": 0.1186,\\\\n      \\\\\\\"ci_hi\\\\\\\": 0.2908,\\\\n      \\\\\\\"n\\\\\\\": 529\\\\n    }\\\\n  },\\\\n  \\\\\\\"delta_comparisons\\\\\\\": {\\\\n    \\\\\\\"sj_minus_logprob\\\\\\\": {\\\\n      \\\\\\\"delta\\\\\\\": 0.1547,\\\\n      \\\\\\\"ci_lo\\\\\\\": 0.0737,\\\\n      \\\\\\\"ci_hi\\\\\\\": 0.234,\\\\n      \\\\\\\"significant\\\\\\\": true\\\\n    },\\\\n    \\\\\\\"voting_minus_sj\\\\\\\": {\\\\n      \\\\\\\"delta\\\\\\\": 0.0193,\\\\n      \\\\\\\"ci_lo\\\\\\\": -0.0327,\\\\n      \\\\\\\"ci_hi\\\\\\\": 0.0725,\\\\n      \\\\\\\"significant\\\\\\\": false\\\\n    },\\\\n    \\\\\\\"em_minus_sj\\\\\\\": {\\\\n      \\\\\\\"delta\\\\\\\": -0.0653,\\\\n      \\\\\\\"ci_lo\\\\\\\": -0.1296,\\\\n      \\\\\\\"ci_hi\\\\\\\": -0.0027,\\\\n      \\\\\\\"significant\\\\\\\": true\\\\n    }\\\\n  }\\\\n}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Total records: 551\\nValid (gold non-empty) for NER: 529\\nSignal computation done.\\nComputing bootstrap CIs (B=10000)...\\n  sj          : rho=+0.3599  CI=[+0.2766, +0.4373]  n=529\\n  fk          : rho=+0.2665  CI=[+0.1758, +0.3537]  n=529\\n  voting_conf : rho=+0.3792  CI=[+0.2987, +0.4556]  n=529\\n  em          : rho=+0.2945  CI=[+0.2117, +0.3713]  n=529\\n  logprob     : rho=+0.2052  CI=[+0.1186, +0.2908]  n=529\\nDelta comparisons:\\n  SJ - logprob:     delta=+0.1547  CI=[+0.0737, +0.2340]  sig=True\\n  voting - SJ:      delta=+0.0193  CI=[-0.0327, +0.0725]  sig=False\\n  EM - SJ:          delta=-0.0653  CI=[-0.1296, -0.0027]  sig=True\\n\\nSaved to /root/autodl-tmp/struct_self_consist_ie/output/review_round2/n8_bootstrap_ci.json\\n\\n{\\n  \\\"config\\\": \\\"Qwen SciERC N=8 seed=42\\\",\\n  \\\"n_valid\\\": 529,\\n  \\\"subtask\\\": \\\"ner\\\",\\n  \\\"signals\\\": {\\n    \\\"sj\\\": {\\n      \\\"rho\\\": 0.3599,\\n      \\\"ci_lo\\\": 0.2766,\\n      \\\"ci_hi\\\": 0.4373,\\n      \\\"n\\\": 529\\n    },\\n    \\\"fk\\\": {\\n      \\\"rho\\\": 0.2665,\\n      \\\"ci_lo\\\": 0.1758,\\n      \\\"ci_hi\\\": 0.3537,\\n      \\\"n\\\": 529\\n    },\\n    \\\"voting_conf\\\": {\\n      \\\"rho\\\": 0.3792,\\n      \\\"ci_lo\\\": 0.2987,\\n      \\\"ci_hi\\\": 0.4556,\\n      \\\"n\\\": 529\\n    },\\n    \\\"em\\\": {\\n      \\\"rho\\\": 0.2945,\\n      \\\"ci_lo\\\": 0.2117,\\n      \\\"ci_hi\\\": 0.3713,\\n      \\\"n\\\": 529\\n    },\\n    \\\"logprob\\\": {\\n      \\\"rho\\\": 0.2052,\\n      \\\"ci_lo\\\": 0.1186,\\n      \\\"ci_hi\\\": 0.2908,\\n      \\\"n\\\": 529\\n    }\\n  },\\n  \\\"delta_comparisons\\\": {\\n    \\\"sj_minus_logprob\\\": {\\n      \\\"delta\\\": 0.1547,\\n      \\\"ci_lo\\\": 0.0737,\\n      \\\"ci_hi\\\": 0.234,\\n      \\\"significant\\\": true\\n    },\\n    \\\"voting_minus_sj\\\": {\\n      \\\"delta\\\": 0.0193,\\n      \\\"ci_lo\\\": -0.0327,\\n      \\\"ci_hi\\\": 0.0725,\\n      \\\"significant\\\": false\\n    },\\n    \\\"em_minus_sj\\\": {\\n      \\\"delta\\\": -0.0653,\\n      \\\"ci_lo\\\": -0.1296,\\n      \\\"ci_hi\\\": -0.0027,\\n      \\\"significant\\\": true\\n    }\\n  }\\n}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 51_
+
+JSON 已保存到 `/root/autodl-tmp/struct_self_consist_ie/output/review_round2/n8_bootstrap_ci.json`。
+
+结果 (n=529, B=10000, seed=42):
+
+**Signal ρ with 95% CI:**
+
+| Signal | ρ | 95% CI |
+|---|---|---|
+| voting_conf | +0.3792 | [+0.2987, +0.4556] |
+| SJ | +0.3599 | [+0.2766, +0.4373] |
+| EM | +0.2945 | [+0.2117, +0.3713] |
+| FK | +0.2665 | [+0.1758, +0.3537] |
+| logprob | +0.2052 | [+0.1186, +0.2908] |
+
+**Δρ comparisons:**
+
+| Comparison | Δρ | 95% CI | Significant? |
+|---|---|---|---|
+| SJ − logprob | +0.1547 | [+0.0737, +0.2340] | **Yes** |
+| voting − SJ | +0.0193 | [−0.0327, +0.0725] | No |
+| EM − SJ | −0.0653 | [−0.1296, −0.0027] | **Yes** (borderline) |
+
+SJ 显著优于 logprob；voting_conf 与 SJ 无显著差异（CI 跨 0）；SJ 显著优于 EM（CI 刚好不包含 0，下界 −0.0027）。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f3cc20fa-26de-4ab1-a5ab-60647c654156",
+  "uuid": "82329e28-fc80-4c0f-be9f-d4c03cc91e6f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WaGd1NZi1Fmbit5xbG9JFC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1334,
+      "cache_read_input_tokens": 57812,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1334
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 52_
+
+JSON 已保存到 `/root/autodl-tmp/struct_self_consist_ie/output/review_round2/n8_bootstrap_ci.json`。
+
+结果 (n=529, B=10000, seed=42):
+
+**Signal ρ with 95% CI:**
+
+| Signal | ρ | 95% CI |
+|---|---|---|
+| voting_conf | +0.3792 | [+0.2987, +0.4556] |
+| SJ | +0.3599 | [+0.2766, +0.4373] |
+| EM | +0.2945 | [+0.2117, +0.3713] |
+| FK | +0.2665 | [+0.1758, +0.3537] |
+| logprob | +0.2052 | [+0.1186, +0.2908] |
+
+**Δρ comparisons:**
+
+| Comparison | Δρ | 95% CI | Significant? |
+|---|---|---|---|
+| SJ − logprob | +0.1547 | [+0.0737, +0.2340] | **Yes** |
+| voting − SJ | +0.0193 | [−0.0327, +0.0725] | No |
+| EM − SJ | −0.0653 | [−0.1296, −0.0027] | **Yes** (borderline) |
+
+SJ 显著优于 logprob；voting_conf 与 SJ 无显著差异（CI 跨 0）；SJ 显著优于 EM（CI 刚好不包含 0，下界 −0.0027）。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 203900,
+  "duration_api_ms": 140806,
+  "num_turns": 18,
+  "stop_reason": "end_turn",
+  "session_id": "f3cc20fa-26de-4ab1-a5ab-60647c654156",
+  "total_cost_usd": 0.87893625,
+  "usage": {
+    "input_tokens": 18,
+    "cache_creation_input_tokens": 47305,
+    "cache_read_input_tokens": 607688,
+    "output_tokens": 11098,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 47305,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 425,
+        "cache_read_input_tokens": 57812,
+        "cache_creation_input_tokens": 1334,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 1334
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1776,
+      "outputTokens": 24,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.0018960000000000001,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 18,
+      "outputTokens": 11098,
+      "cacheReadInputTokens": 607688,
+      "cacheCreationInputTokens": 47305,
+      "webSearchRequests": 0,
+      "costUSD": 0.87704025,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "ff020cf2-0f10-41e4-8992-5fbbd681f7d1"
+}
+```
+
+</details>
+
+---

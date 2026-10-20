@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1dba5b59f64a59711356",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "paper verify appendix L363 L365",
+  "task_key": "worker_paper_verify-appendix-L363-L365_20260519T154004",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_paper_verify-appendix-L363-L365_20260519T154004_result.json",
+    "occurrence": 1,
+    "bytes": 1057,
+    "sha256": "d186299b78e615817bd2dbebfa9b3e696ad2a1aab6c08bef53ab539776b8daaa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三行已修正。汇报如下：\n\n## 数据来源确认与修改\n\n| 行 | 指标 | 原值 (N=16) | 新值 (N=8) | 来源确认 |\n|---|---|---|---|---|\n| L362 | Constant F1 | 61.7% | **未改** | 已是 N=8 三种子均值，正确 |\n| L363 | Constant utility | 49% | **66%** | 原值来自 d108 分析的 `CoNLL_NER_N16`（1708/3453=49.5%）。N=8 两种子均值：(65.6%+65.7%)/2≈66% |\n| L364 | Oracle gap closed | 41% | **36%** | 原值来自 d108 分析的 `CoNLL_NER_N16`（41.0%）。N=8 两种子均值：(38.4%+33.4%)/2≈36% |\n| L365 | Within-inst SJ ρ | 0.994 | **0.985** | 原值来自 d108 分析的 `CoNLL_NER_N16`（median=0.9937）。N=8 两种子均值：(0.981+0.990)/2≈0.985 |\n\n**注意**：CoNLL N=8 的 seed42 数据在旧服务器（autodl-5090）上，已不可用。新值为 seed123 + seed456 的两种子均值，而非与 SciERC 列一致的三种子均值。SciERC 两列和 Constant F1 行使用了包含 seed42 的三种子数据。如需完全一致，需要重跑 seed42 的 CoNLL N=8 实验。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-verify-appendix-l363-l365.md"
+}

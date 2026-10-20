@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "08bf31add48c76b0782f",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "paper fig bound",
+  "task_key": "worker_paper_fig-bound_20260522T205623",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_paper_fig-bound_20260522T205623_result.json",
+    "occurrence": 1,
+    "bytes": 378,
+    "sha256": "8eaeeb1e62d665de91f259f6dcbd16920ccf472edf4e4fe977c1a46d3a44287d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "PDF (29KB) 和 PNG (76KB) 已生成到 `docs/paper/figures/fig_bound.{pdf,png}`。\n\n图表包含全部 16 配置数据：左 panel 显示 SC gain vs degeneracy 及红色 signal-adjusted bound 曲线 (α=0.068)、θ_crit=0.70 垂直虚线、ε=0.3pp 水平点线；右 panel 仅显示 11 个正 gain 配置的 ratio to weak bound，全部低于 0.13 阈值线。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-fig-bound.md"
+}

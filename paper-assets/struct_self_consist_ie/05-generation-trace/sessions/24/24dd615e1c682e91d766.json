@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "24dd615e1c682e91d766",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis exp 018 llama scierc seed42 r1024",
+  "task_key": "worker_analysis_exp_018_llama_scierc_seed42_r1024_20260515T061759",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_exp_018_llama_scierc_seed42_r1024_20260515T061759_result.json",
+    "occurrence": 1,
+    "bytes": 1386,
+    "sha256": "1b193850db5099662cbc3e0efaf9189db1273eb1c23649123ea29c96bbf4fd5c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE/success。下面汇总跨 seed 对比。\n\n## 分析结果\n\n### exp_018_llama_scierc_seed42_r1024 — **DONE / success**\n\n551 实例，N=8，T=1.0，LLaMA-3.1-8B-SciERC-merged，joint (NER+RE)\n\n### NER 5-signal（full split, n=529）\n\n| Signal | ρ | τ | AUROC |\n|---|---|---|---|\n| **voting_conf** | **+0.405** | 0.304 | 0.697 |\n| SJ | +0.310 | 0.229 | 0.668 |\n| EM | +0.259 | 0.197 | **0.717** |\n| FK | +0.235 | 0.176 | 0.607 |\n| logprob | +0.150 | 0.109 | 0.532 |\n\nNER SJ ρ(0.310) > logprob ρ(0.150) → **structural signals 胜出**\n\n### RE 5-signal（full split, n=397）\n\n| Signal | ρ | τ | AUROC |\n|---|---|---|---|\n| **voting_conf** | **+0.384** | 0.297 | 0.734 |\n| logprob | +0.316 | 0.233 | 0.631 |\n| FK | +0.303 | 0.234 | 0.691 |\n| SJ | +0.275 | 0.210 | **0.724** |\n| EM | +0.168 | 0.128 | **0.770** |\n\nRE SJ ρ(0.275) < logprob ρ(0.316)，但 SJ AUROC(0.724) > logprob AUROC(0.631)\n\n### 跨 3-seed 对比（NER SJ full ρ）\n\n| Seed | SJ ρ | logprob ρ | SJ - logprob |\n|---|---|---|---|\n| 42 (r1024) | 0.310 | 0.150 | **+0.159** |\n| 123 | 0.355 | 0.197 | **+0.158** |\n| 456 (r1024) | 0.310 | 0.139 | **+0.171** |\n| **Mean** | **0.325** | **0.162** | **+0.163** |\n| CV | 8.1% | 18.9% | — |\n\n**3 个 seed 全部 NER SJ > logprob，优势稳定 (CV 8.1%)，均值差距 +0.163 pp。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-018-llama-scierc-seed42-r1024.md"
+}

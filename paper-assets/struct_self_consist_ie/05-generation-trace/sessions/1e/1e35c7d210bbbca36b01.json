@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1e35c7d210bbbca36b01",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "paper r8 content patch",
+  "task_key": "worker_paper_r8-content-patch_20260515T222032",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_paper_r8-content-patch_20260515T222032_result.json",
+    "occurrence": 1,
+    "bytes": 1673,
+    "sha256": "f21d1403aa48071f2c9bd09f48ef898b95079f67663a4ac6f9976984980da358"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All files pass validation. Here's a summary of all changes:\n\n**Task 1** (experiments.tex:118): Fixed `−3.4 pp` → `−2.2 pp` (LP worst case for 4B SciERC NER). Also tightened `≤0.2 pp` → `≤0.1 pp` for CoNLL to match data.\n\n**Task 2** (appendix.tex:93–117): Added FK Independence permutation test paragraph with table (`tab:fk_independence`, `\\label{app:fk_independence}`) inside the Robustness Analysis section. All three configs (SciERC Qwen n=529, CoNLL LLaMA n=2756, CoNLL Qwen n=2756) with exact numbers from the spec.\n\n**Task 3** (appendix.tex:338–376): Updated TOST section — replaced \"We lack an external anchor\" with forward reference, then added \"External equivalence margins\" paragraph after `tab:tost` introducing δ\\_SEM (0.43–1.33pp), δ\\_practical (0.5pp, Ratinov & Roth 2009), δ\\_literature (1.0pp, Berg-Kirkpatrick et al. 2012) with per-config results.\n\n**Task 4** (experiments.tex): Compressed ~15–17 source lines:\n- Merged two QE paragraphs into one tighter paragraph\n- Shortened selection gap intro (removed \"two layers\" exposition duplicated in discussion)\n- Trimmed 3 table captions and 2 footnotes\n- Tightened robustness and scale robustness paragraphs\n\n**Task 5** (discussion.tex): Compressed ~6 lines — removed redundant phrases, merged \"The gap widens with N\" into \"Why the gap exists\" paragraph, tightened practical recommendations and ablation paragraphs.\n\n**Task 6**: Found and fixed 2 missing \"preliminary\" annotations:\n- experiments.tex:50 — \"LP RE collapses to ρ=0.011 **(preliminary)**\"\n- discussion.tex:15 — \"On RE **(preliminary)**, LP reverses direction...\""
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-r8-content-patch.md"
+}

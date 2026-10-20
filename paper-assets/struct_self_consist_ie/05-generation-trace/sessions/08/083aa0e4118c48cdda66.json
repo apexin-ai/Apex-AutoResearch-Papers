@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "083aa0e4118c48cdda66",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis scierc construction aligned",
+  "task_key": "worker_analysis_scierc-construction-aligned_20260523T193856",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_scierc-construction-aligned_20260523T193856_result.json",
+    "occurrence": 1,
+    "bytes": 848,
+    "sha256": "a24d496ea540462c22d87b46049d51c04a1cd2fedc0550a3fde830e6deb1633d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。报告已写入 `artifacts/scierc_5seed_construction_aligned_report.md` 并注册。\n\n**结果摘要：**\n\n| Seed | Greedy F1 | Construction F1 | Δ (pp) | p-value | Sign |\n|------|-----------|-----------------|--------|---------|------|\n| 42 | 65.02 | 64.44 | −0.58 | 0.8242 | − |\n| 123 | 64.71 | 65.67 | +0.96 | 0.0853 | + |\n| 456 | 64.56 | 66.47 | +1.91 | 0.0031* | + |\n| 2024 | 64.78 | 66.25 | +1.48 | 0.0233* | + |\n| 3141 | 64.27 | 66.05 | +1.78 | 0.0075* | + |\n\n- **Mean Δ:** +1.11pp ± 1.01, **4/5 positive**\n- **Pooled p:** 0.0003 (significant)\n- **对齐影响：** Gold-filter 使 seed 2024 的 Δ 从 +0.87→+1.48pp，seed 3141 从 +0.62→+1.78pp（22 个 gold-empty instances 被移除后增益更明显）\n- **论文建议：** \"non-significant +0.32pp\" 应改为 \"+1.11pp (p < 0.001)\""
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-scierc-construction-aligned.md"
+}

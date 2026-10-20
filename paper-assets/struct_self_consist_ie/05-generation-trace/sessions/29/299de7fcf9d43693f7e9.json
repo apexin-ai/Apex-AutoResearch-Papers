@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "299de7fcf9d43693f7e9",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "submit 4b conll inference ckpt4200",
+  "task_key": "worker_submit_4b_conll_inference_ckpt4200_20260515T194153",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_submit_4b_conll_inference_ckpt4200_20260515T194153_result.json",
+    "occurrence": 1,
+    "bytes": 497,
+    "sha256": "55870765efde288f463e26f2e4923c48064236c52a76f9fb5eaaec4d2a60d6af"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All tasks for `exp_qwen3_4b_conll_scs_inference_v2` are complete. The checkpoint-4200 merged model inference finished successfully with all metrics recorded in the registry.\n\n**Summary of results**: Checkpoint-4200 improved all SCS correlation metrics over the checkpoint-3800 baseline (SJ_rho +1.72pp, FK_rho +2.20pp, LP_rho +1.28pp) with only a marginal greedy F1 regression (-0.17pp). Oracle headroom slightly increased (+0.13pp). Verdict: MARGINAL.\n\nNo pending tasks remain."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-4b-conll-inference-ckpt4200.md"
+}

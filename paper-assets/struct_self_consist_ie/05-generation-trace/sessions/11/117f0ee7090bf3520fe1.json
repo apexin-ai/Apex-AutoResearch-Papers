@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "117f0ee7090bf3520fe1",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis mf4 analyzing",
+  "task_key": "worker_analysis_mf4-analyzing_20260522T175428",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_mf4-analyzing_20260522T175428_result.json",
+    "occurrence": 1,
+    "bytes": 1390,
+    "sha256": "f27428de75448de8bbf0096b45a0b27388ab6db08e87d0ddf47b7cccd6ee0277"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验已更新为 DONE。以下是三 seed 汇总：\n\n## FewNERD MF4 三 Seed 汇总 (N=8, T=1.0, n=32565)\n\n| Metric | seed=42 | seed=123 | seed=456 | **Mean ± Std** |\n|---|---|---|---|---|\n| greedy_f1 | 0.7911 | 0.7909 | 0.7909 | **0.7910 ± 0.0001** |\n| mv_strict_f1 | 0.7585 | 0.7648 | 0.7685 | **0.7639 ± 0.0051** |\n| mv_delta_pp | −3.27 | −2.61 | −2.24 | **−2.71 ± 0.52** |\n| lp_f1 | 0.7918 | 0.7918 | 0.7921 | **0.7919 ± 0.0002** |\n| lp_delta_pp | +0.07 | +0.09 | +0.12 | **+0.09 ± 0.03** |\n| degeneracy_rate | 0.091 | 0.093 | 0.081 | **0.088 ± 0.006** |\n| oracle_f1 | 0.8787 | 0.8892 | 0.8810 | **0.8830 ± 0.0055** |\n| oracle_headroom_pp | 8.76 | 9.83 | 9.01 | **9.20 ± 0.56** |\n| fleiss_kappa | 0.3537 | 0.3503 | 0.3555 | **0.3532 ± 0.0026** |\n| soft_jaccard | 0.6751 | 0.6701 | 0.6845 | **0.6766 ± 0.0073** |\n\n**关键结论：**\n- **Greedy F1 极其稳定**：0.7910 ± 0.0001，三 seed 几乎无差异\n- **MV 一致性地 hurt**：−2.71 ± 0.52 pp，方差主要来自 MV，但方向一致（全部为负）\n- **LP 微弱正 delta**：+0.09 ± 0.03 pp，统计上接近零但方向一致（全部为正）\n- **退化率稳定**：~8.8%，模型在 ~1/11 的实例上 8 次采样产生完全相同的输出\n- **Oracle headroom 充足**：~9.2 pp，说明样本中蕴含的多样性信息远未被 MV/LP 充分利用"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-mf4-analyzing.md"
+}

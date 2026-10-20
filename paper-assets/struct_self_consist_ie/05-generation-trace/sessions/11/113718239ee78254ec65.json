@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "113718239ee78254ec65",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ssh verify 14b download 5090b retry",
+  "task_key": "worker_ssh_verify-14b-download-5090b-retry_20260520T035111",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_verify-14b-download-5090b-retry_20260520T035111_result.json",
+    "occurrence": 1,
+    "bytes": 420,
+    "sha256": "9038bcf3c18321bf74cdb3e645aa8cf5fc599e97dd55b0f13927a8b55d3e764b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**下载完成。**\n\n- **状态**: ✅ 已完成\n- **路径**: `/root/autodl-tmp/models/Qwen2.5-14B-Instruct`\n- **总大小**: 28GB\n- **safetensors**: 8/8 分片齐全（之前缺 shard 7，已通过 huggingface_hub 补下载完成）\n- **配套文件**: config.json, tokenizer.json, tokenizer_config.json, generation_config.json 等均在\n\n模型已就绪，可供 19:20 UTC 后的推理使用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-verify-14b-download-5090b-retry.md"
+}

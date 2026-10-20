@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1ebbbacee5e1dab89b04",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis gpu status check",
+  "task_key": "worker_analysis_gpu_status_check_20260515T160848",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_gpu_status_check_20260515T160848_result.json",
+    "occurrence": 1,
+    "bytes": 1548,
+    "sha256": "56ab7e6a75d35e813ec9e71a14593027ff2f37d93f58eef524ae25370f8c7834"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## autodl-5090 GPU 状态汇总\n\n### GPU 状态（4× RTX 5090 32GB）\n\n| GPU | 显存占用 | GPU利用率 | 温度 | 状态 |\n|-----|---------|----------|------|------|\n| cuda:0 | 2MiB / 32607MiB | 0% | 29°C | **空闲** |\n| cuda:1 | 2MiB / 32607MiB | 0% | 29°C | **空闲** |\n| cuda:2 | 2MiB / 32607MiB | 0% | 28°C | **空闲** |\n| cuda:3 | 2MiB / 32607MiB | 0% | 27°C | **空闲** |\n\n**无 GPU 进程运行。** 四张卡全部空闲。\n\n### tmux 会话\n\n存在一个 tmux 会话 `exp_001_n16_seed456`，但对应的 Python 进程已结束（ps 中无 python 进程），属于**残留会话**，可清理。\n\n### 实验结果（已完成，待收集）\n\n所有 ROADMAP 中标记的实验均已完成并有输出：\n\n| 实验 | 完成时间 | 输出文件 |\n|------|---------|---------|\n| **exp_017_llama_conll_n8_t07** (cuda:0) | May 15 23:38 | `report.json` (1.7KB) + `samples.jsonl` (9.5MB) |\n| **exp_lp_scierc_t07** (cuda:1) | May 15 23:40 | `report.json` (1.7KB) + `samples.jsonl` (3.8MB) |\n| **exp_re_scierc_seed123** (cuda:2) | May 15 23:45 | `report.json` (3.4KB) + `samples.jsonl` (3.8MB) |\n| **exp_re_scierc_seed456** (cuda:3) | May 15 23:45 | `report.json` (3.4KB) + `samples.jsonl` (3.8MB) |\n\n另外 `analysis_round8/` 目录下有 3 个新的分析 JSON 文件。\n\n### 结论\n\n- **4 张 GPU 全部空闲**，无训练进程\n- **无僵尸进程**（仅系统服务 + 1 个残留 tmux 会话）\n- **4 个实验全部完成**，结果待收集（均在 May 15 23:38-23:45 完成）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-gpu-status-check.md"
+}

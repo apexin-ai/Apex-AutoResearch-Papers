@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "27fd8136241d023f972b",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ops idle gpu planning",
+  "task_key": "worker_ops_idle-gpu-planning_20260522T181942",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_idle-gpu-planning_20260522T181942_result.json",
+    "occurrence": 1,
+    "bytes": 1182,
+    "sha256": "7afc046329dc7208f627daf205576029eecf865910c28a15b68b9e77a6e09c3c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇报如下：\n\n## FewNERD freeform 补算\n\n- **不需要 GPU**。MV/LP/degeneracy 都是 CPU-only 计算（读 `samples.jsonl`，计算统计量）\n- 输出在 **autodl-5090**：`/root/autodl-tmp/struct_self_consist_ie/output/fewnerd_freeform_n8_seed42/`（samples.jsonl 714MB，已有 report.json）\n- CoNLL freeform 也在同一台机器，也已完成\n\n## 当前 GPU 占用\n\n| 服务器 | GPU | 状态 | 任务 |\n|--------|-----|------|------|\n| autodl-5090 | cuda:0/1/2 | **空闲** | — |\n| autodl-5090 | cuda:3 | 占用 (29.8GB) | `exp_fewnerd_pretrained_n32_s42_v2` (vLLM, RUNNING) |\n| autodl-5090-c | cuda:0/2/3 | **空闲** | — |\n| autodl-5090-c | cuda:1 | 占用 (29.9GB) | `exp_fewnerd_pretrained_n16_s42_v2` (vLLM, RUNNING) |\n\n共 **6 GPU 空闲**。\n\n## experiment_plan 中可用的实验\n\nRegistry 中 21 个 PREPARING 实验全部 `conclusion: \"killed\"`，没有可直接提交的。experiment_plan.yaml 中大部分也已完成或被取代。\n\n**exp_fewnerd_mf4v2_s123_v4**（FewNERD seed=123 重跑）也标记 killed，没有成功的版本。如果这个仍然需要，需要重新创建实验并提交到空闲 GPU。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-idle-gpu-planning.md"
+}

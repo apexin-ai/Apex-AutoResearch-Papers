@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "23fbd4b6faef821cc68b",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis cpu parallel tasks",
+  "task_key": "worker_analysis_cpu_parallel_tasks_20260518T092937",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_cpu_parallel_tasks_20260518T092937_result.json",
+    "occurrence": 1,
+    "bytes": 3189,
+    "sha256": "1ef465ebdd329a4c43d2c9924c20b87b071ecb244995dd40ed285d47d11a5ecf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇总结果\n\n### 任务 1: Within-Instance ρ(LP, F1) 三数据集对比表\n\n| Dataset | Model | n_instances (gold-filtered) | n_valid_rho | Median ρ(LP,F1) | Mean ρ(LP,F1) | % Positive ρ | % LP-best=F1-best |\n|---------|-------|-----------------------------|-------------|-----------------|---------------|--------------|-------------------|\n| SciERC | Qwen | 529 | 435 | **0.2624** | 0.1791 | 64.14% | 58.41% |\n| Few-NERD | Qwen | 32,565 | 28,055 | **0.6667** | 0.5096 | 84.43% | 71.24% |\n| CoNLL | Qwen | 2,756 | 1,124 | **0.5055** | 0.3457 | 77.85% | 89.01% |\n| CoNLL | LLaMA | 2,756 | 298 | **0.5117** | 0.2172 | 65.10% | 96.01% |\n\n注：n_valid_rho < n_instances 因为排除了 constant-LP 和 constant-F1 的 instances（LLaMA CoNLL 仅 298/2756 有变异，说明高 degeneracy）。\n\n---\n\n### 任务 2: DALS 跨模型验证 (τ=0.05)\n\n| Dataset | Greedy F1 | LP-Sel F1 | DALS F1 | DALS Gain | Degen Rate | 95% CI |\n|---------|-----------|-----------|---------|-----------|------------|--------|\n| **CoNLL Qwen N=8** | 90.88 | — | 90.01 | **-0.87pp** | 40.4% | [-1.26, -0.50] |\n| **CoNLL LLaMA N=8** | 92.42 | — | 92.39 | **-0.04pp** | 86.8% | [-0.16, +0.05] |\n| **SciERC Qwen N=8** | 64.41 | — | 65.55 | **+1.14pp** | 60.3% | [+0.31, +2.02] |\n| SciERC LLaMA seed123 | 64.79 | — | 64.73 | -0.06pp | 59.2% | [-1.06, +0.92] |\n| SciERC LLaMA seed456 | 64.83 | — | 65.07 | +0.24pp | 55.8% | [-0.63, +1.10] |\n| SciERC LLaMA seed42_r1024 | 64.86 | — | 64.76 | -0.10pp | 55.4% | [-0.91, +0.76] |\n| SciERC LLaMA seed456_r1024 | 64.84 | — | 65.22 | +0.38pp | 57.1% | [-0.36, +1.18] |\n\n关键发现：\n- LLaMA CoNLL 的 degeneracy rate 极高 (86.8%)，导致 DALS 几乎退化为 greedy\n- LLaMA SciERC 的 DALS gain 在不同 seed 间不稳定（-0.10 到 +0.38pp），CI 都跨零\n- 只有 Qwen SciERC 有统计显著的正 gain\n\n---\n\n### 任务 3: LLaMA CoNLL N=16 3-seed 数据\n\n6 个 N=16 目录全部有 `samples.jsonl`（3453 instances, N=16）：\n\n| 目录 | has analysis | greedy_f1 | logprob ρ (full) | SJ ρ (full) | best_of_n logprob |\n|------|-------------|-----------|-----------------|-------------|-------------------|\n| `exp_017_llama_conll_n16` (default seed) | all_signals_report | 0.9243 | 0.3058 | 0.4642 | 0.9250 |\n| `exp_017_llama_conll_n16_s123` | all_signals_report | 0.9242 | 0.3161 | 0.4698 | 0.9253 |\n| `exp_017_llama_conll_n16_s456` | all_signals_report | 0.9243 | 0.3078 | 0.4552 | 0.9243 |\n| `exp_017_llama_conll_n16_r1024` | report only | — | — | — | — |\n| `exp_017_llama_conll_n16_s123_r1024` | report only | — | — | — | — |\n| `exp_017_llama_conll_n16_s456_r1024` | report only | — | — | — | — |\n\n3 个 non-r1024 seed 都有完整的 `all_signals_report.json`，N=8→N=16 delta 显示：SC signals (SJ/FK/EM) 的 ρ/AUROC 稳定提升约 +0.02~0.04，但 logprob 几乎不变（delta ~ 0）。\n\nr1024 variants 只有 `report.json`，没有 `all_signals_report.json`（没跑过 full signal analysis）。\n\n所有结果已保存到 `output/within_instance_rho_table.json`、`output/dals_cross_model.json`、`output/llama_conll_n16_check.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-cpu-parallel-tasks.md"
+}

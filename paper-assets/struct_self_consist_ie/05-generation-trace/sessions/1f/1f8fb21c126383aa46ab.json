@@ -1,0 +1,81 @@
+{
+  "schema_version": "1.0",
+  "id": "1f8fb21c126383aa46ab",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "fix appendix overfull hbox",
+  "task_key": "worker_fix_appendix-overfull-hbox_20260519T214823",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_fix_appendix-overfull-hbox_20260519T214823.log",
+    "occurrence": 1,
+    "bytes": 5807657,
+    "sha256": "42edcfc53d91bb245f4215df3acfaea836fbe1433be8067a622aaef69cb0a431"
+  },
+  "statistics": {
+    "messages": 219,
+    "user_turns": 0,
+    "tool_calls": 91,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 33,
+      "tool_call": 91,
+      "tool_result": 91,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 219,
+      "chunks": [
+        {
+          "path": "1f8fb21c126383aa46ab-part-0001.json",
+          "message_count": 55
+        },
+        {
+          "path": "1f8fb21c126383aa46ab-part-0002.json",
+          "message_count": 33
+        },
+        {
+          "path": "1f8fb21c126383aa46ab-part-0003.json",
+          "message_count": 10
+        },
+        {
+          "path": "1f8fb21c126383aa46ab-part-0004.json",
+          "message_count": 11
+        },
+        {
+          "path": "1f8fb21c126383aa46ab-part-0005.json",
+          "message_count": 10
+        },
+        {
+          "path": "1f8fb21c126383aa46ab-part-0006.json",
+          "message_count": 35
+        },
+        {
+          "path": "1f8fb21c126383aa46ab-part-0007.json",
+          "message_count": 10
+        },
+        {
+          "path": "1f8fb21c126383aa46ab-part-0008.json",
+          "message_count": 31
+        },
+        {
+          "path": "1f8fb21c126383aa46ab-part-0009.json",
+          "message_count": 10
+        },
+        {
+          "path": "1f8fb21c126383aa46ab-part-0010.json",
+          "message_count": 14
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/fix-appendix-overfull-hbox.md"
+}

@@ -1,0 +1,8612 @@
+# paper headroom auroc fix
+
+**When Self-Consistency Fails for NER: Degeneracy, Signal Collapse, and the Correlation-Selection Gap** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 157
+- **Recorded user turns:** 0
+- **Tool calls:** 56
+- **Original source:** `logs/workers/worker_paper_headroom-auroc-fix_20260523T203911.log`
+- **Structured JSON:** [`d955237186a3fc5fc672.json`](../../sessions/d9/d955237186a3fc5fc672.json)
+
+## Before a recorded user message
+
+157 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "session_id": "d3999a21-0914-40f6-afdd-8951e6461b5c",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__append_idea",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__read_project_file",
+    "mcp__agent-ml-research__read_registry",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__save_project_file",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only",
+    "mcp__agent-ml-research__update_registry"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "76af7c97-f541-41a9-9c3a-53f4f672870e",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed_warning",
+    "resetsAt": 1779858000,
+    "rateLimitType": "seven_day",
+    "utilization": 0.86,
+    "isUsingOverage": false,
+    "surpassedThreshold": 0.75
+  },
+  "uuid": "56955727-180a-4f36-8712-4c5306206ab3",
+  "session_id": "d3999a21-0914-40f6-afdd-8951e6461b5c"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me break down this task:
+
+1. **Sub-task 1**: Fix headroom inconsistency in tab:selection between caption and body
+2. **Sub-task 2**: Check for stale AUROC ranking references
+
+Let me start by reading the relevant file and checking the registry in parallel.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d3999a21-0914-40f6-afdd-8951e6461b5c",
+  "uuid": "96f76246-10e0-40e4-890b-17505af8bc18",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015xgN2Xo8BnqfCHh5rkPnTi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 13447,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13447
+      },
+      "output_tokens": 29,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 5_
+
+开始执行。先并行读取源文件、查 registry、搜索相关数据。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d3999a21-0914-40f6-afdd-8951e6461b5c",
+  "uuid": "4c56e7d2-b6fc-4b1e-b8f3-85b153a59635",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015xgN2Xo8BnqfCHh5rkPnTi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 13447,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13447
+      },
+      "output_tokens": 29,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01XmZCw3imt7Hj1NKHnNCuem`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/single_signal.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d3999a21-0914-40f6-afdd-8951e6461b5c",
+  "uuid": "728e0a06-e328-4d56-a9f4-530cff5a780d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015xgN2Xo8BnqfCHh5rkPnTi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 13447,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13447
+      },
+      "output_tokens": 29,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-23T20:39:27.012Z_
+
+<details><summary>↩ Tool result · `toolu_01XmZCw3imt7Hj1NKHnNCuem`</summary>
+
+```text
+1	\section{Single-Signal Selection Results}\label{sec:selection_gap}
+2	
+3	\paragraph{Definitional vs.\ empirical.}
+4	We decompose the correlation-selection gap into two layers.
+5	The first is structural: four of five signals are instance-level aggregates that assign identical scores to all $N$ candidates from a given input (\S\ref{sec:formulation}), so they estimate quality across inputs but cannot rank candidates within an instance---selection failure is a design property, not an empirical finding.
+6	The second layer is empirical and constitutes the core diagnostic: LP---the only per-sample signal---suffers compression under constrained decoding, with 60\% of SciERC instances showing within-instance LP range below 0.041 nats (Appendix~\ref{app:logprob_ties}), leaving insufficient variation for sample discrimination. This compression is model-intrinsic: free-form decoding yields nearly identical LP distributions (within-instance std ratio $0.97{\times}$; Appendix~\ref{app:freeform_ablation}). Even where LP varies, selection gains depend on LP-quality alignment rather than degeneracy alone.
+7	Cross-instance $\rho$ (Table~\ref{tab:quality_estimation}) is attenuated by varying instance difficulty; within-instance $\rho$ directly measures whether LP discriminates candidates for a fixed input, making it the relevant predictor of selection success.
+8	
+9	\begin{table}[t]
+10	\centering
+11	\small
+12	\caption{Best-of-$N$ selection (macro F1) on SciERC ($N{=}8$, $T{=}1.0$). Selection signals: 2-seed mean${\pm}\sigma$; baselines: 3-seed (Oracle${=}0.781$, Greedy${=}0.667$). LP is per-sample; others use consensus-proximity. $^\dagger$One score per input.}
+13	\label{tab:selection}
+14	\begin{tabular}{lcc}
+15	\toprule
+16	Method & NER F1 & $p$ \\
+17	\midrule
+18	Oracle & $0.775 \pm 0.001$ & --- \\
+19	Greedy ($T{=}0$) & $0.645 \pm 0.001$ & --- \\
+20	\midrule
+21	LP           & $\mathbf{0.647} \pm 0.005$ & .29 \\
+22	SJ           & $0.646 \pm 0.002$ & .67 \\
+23	FK           & $0.646 \pm 0.001$ & .79 \\
+24	EM           & $0.637 \pm 0.001$ & n/a$^\dagger$ \\
+25	VC           & $0.623 \pm 0.004$ & n/a$^\dagger$ \\
+26	\midrule
+27	Random       & $0.610 \pm 0.003$ & --- \\
+28	\bottomrule
+29	\end{tabular}
+30	\end{table}
+31	
+32	\begin{figure}[t]
+33	\centering
+34	\includegraphics[width=\columnwidth]{fig_selection_gap}
+35	\caption{Correlation-selection gap on SciERC ($N{=}8$, $T{=}1.0$). Bars: QE $\rho$; line: $\Delta$F1 vs.\ greedy (3-seed mean). Despite $\rho$ up to 0.38, no signal outperforms greedy (all $p{\geq}0.29$). Dashed green: oracle headroom ($+11.4$\,pp; oracle headroom $=$ best-of-$N$ F1 $-$ greedy F1); dotted gray: random.}
+36	\label{fig:selection_gap}
+37	\end{figure}
+38	
+39	Despite $\rho$ up to 0.38, no signal outperforms greedy on SciERC (Table~\ref{tab:selection}; Figure~\ref{fig:selection_gap}); the oracle shows 11.4\,pp headroom, but LP achieves $+0.2$\,pp ($p{=}0.29$), below MDE (${\approx}$1.5\,pp at $n{=}529$, 2--3 seeds; Appendix~\ref{app:bootstrap_signal}).
+40	All selection experiments use 2--3 training seeds; bootstrap CIs are reported in Appendix~\ref{app:bootstrap_signal}.
+41	The pattern holds across CoNLL and WNUT-17 (Table~\ref{tab:cross_selection}).
+42	Few-NERD provides the clearest positive case: LP achieves $+1.39$\,pp ($p{<}0.001$; Holm $p_{\text{adj}}{=}0.021$, selection family $k{=}21$)\footnote{Under global correction ($k{=}57$), LP-best selection reaches Holm $p_{\text{adj}}{=}0.055$ (BH $p_{\text{adj}}{=}0.003$).} at low degeneracy (13.0\% vs.\ 12.2--67.9\%), while structural signals still degrade (VC $-1.79$, SJ $-2.14$\,pp; \S\ref{sec:fewnerd}).
+43	
+44	\paragraph{Diagnostic framework.}
+45	Three co-occurring factors jointly characterize the gap:
+46	(1)~instance degeneracy sets the ceiling (SciERC 12.2\%, CoNLL 61.7\%);
+47	(2)~oracle headroom bounds the opportunity within non-degenerate instances (CoNLL ${\approx}4$\,pp vs.\ SciERC 11.4\,pp);
+48	(3)~LP compression limits exploitation (Few-NERD within-instance $\rho{\approx}0.5$--$0.7$ vs.\ SciERC $\rho{\approx}0.26$).
+49	Degeneracy does not predict LP gain across datasets ($\rho{=}0.052$, $n{=}23$, $p{=}0.81$; Figure~\ref{fig:degeneracy_scatter}), though it co-varies with LP within fixed settings ($\rho{=}{-}0.881$; Appendix~\ref{app:per_type_lp}).
+50	These conditions interact ($R^2{<}0$); on non-degenerate instances, $\alpha$ approaches zero ($0.000$--$0.121$) despite $\rho$ up to 0.45 (\S\ref{sec:theory}).
+51	
+52	\paragraph{Mechanistic evidence (Appendix~\ref{sec:mechanistic}).}
+53	Why does signal alignment collapse? Probing experiments on Qwen2.5-7B-Instruct reveal an \textit{introspection boundary}: hidden-state linear probes achieve entity-level AUROC $0.63$--$0.88$, substantially exceeding prompt-based self-judgment (ESJ AUROC $0.51$; confirmed on Qwen3-8B: AUROC $0.50$--$0.55$; Appendix~\ref{app:esj}), yet cross-dataset transfer drops to $0.56$--$0.67$ (LODO).
+54	Entity self-judgment, multi-round refinement ($-3.1$\,pp vs.\ greedy), and latent centroid selection ($-3.5$\,pp) all fail to improve over greedy decoding.
+55	Entity quality is partially encoded in representations but inaccessible through the generation interface---consistent with the signal alignment collapse observed across all configurations.
+56	Cross-model validation on Qwen3-8B confirms chance-level ESJ performance (AUROC $0.50$--$0.55$; Appendix~\ref{app:esj}), suggesting the introspection boundary is architecture-general rather than model-specific.
+57	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d3999a21-0914-40f6-afdd-8951e6461b5c",
+  "uuid": "c0568c3e-d2a1-40fa-960f-a1d925af6d26",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/single_signal.tex",
+      "content": "\\section{Single-Signal Selection Results}\\label{sec:selection_gap}\n\n\\paragraph{Definitional vs.\\ empirical.}\nWe decompose the correlation-selection gap into two layers.\nThe first is structural: four of five signals are instance-level aggregates that assign identical scores to all $N$ candidates from a given input (\\S\\ref{sec:formulation}), so they estimate quality across inputs but cannot rank candidates within an instance---selection failure is a design property, not an empirical finding.\nThe second layer is empirical and constitutes the core diagnostic: LP---the only per-sample signal---suffers compression under constrained decoding, with 60\\% of SciERC instances showing within-instance LP range below 0.041 nats (Appendix~\\ref{app:logprob_ties}), leaving insufficient variation for sample discrimination. This compression is model-intrinsic: free-form decoding yields nearly identical LP distributions (within-instance std ratio $0.97{\\times}$; Appendix~\\ref{app:freeform_ablation}). Even where LP varies, selection gains depend on LP-quality alignment rather than degeneracy alone.\nCross-instance $\\rho$ (Table~\\ref{tab:quality_estimation}) is attenuated by varying instance difficulty; within-instance $\\rho$ directly measures whether LP discriminates candidates for a fixed input, making it the relevant predictor of selection success.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Best-of-$N$ selection (macro F1) on SciERC ($N{=}8$, $T{=}1.0$). Selection signals: 2-seed mean${\\pm}\\sigma$; baselines: 3-seed (Oracle${=}0.781$, Greedy${=}0.667$). LP is per-sample; others use consensus-proximity. $^\\dagger$One score per input.}\n\\label{tab:selection}\n\\begin{tabular}{lcc}\n\\toprule\nMethod & NER F1 & $p$ \\\\\n\\midrule\nOracle & $0.775 \\pm 0.001$ & --- \\\\\nGreedy ($T{=}0$) & $0.645 \\pm 0.001$ & --- \\\\\n\\midrule\nLP           & $\\mathbf{0.647} \\pm 0.005$ & .29 \\\\\nSJ           & $0.646 \\pm 0.002$ & .67 \\\\\nFK           & $0.646 \\pm 0.001$ & .79 \\\\\nEM           & $0.637 \\pm 0.001$ & n/a$^\\dagger$ \\\\\nVC           & $0.623 \\pm 0.004$ & n/a$^\\dagger$ \\\\\n\\midrule\nRandom       & $0.610 \\pm 0.003$ & --- \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{fig_selection_gap}\n\\caption{Correlation-selection gap on SciERC ($N{=}8$, $T{=}1.0$). Bars: QE $\\rho$; line: $\\Delta$F1 vs.\\ greedy (3-seed mean). Despite $\\rho$ up to 0.38, no signal outperforms greedy (all $p{\\geq}0.29$). Dashed green: oracle headroom ($+11.4$\\,pp; oracle headroom $=$ best-of-$N$ F1 $-$ greedy F1); dotted gray: random.}\n\\label{fig:selection_gap}\n\\end{figure}\n\nDespite $\\rho$ up to 0.38, no signal outperforms greedy on SciERC (Table~\\ref{tab:selection}; Figure~\\ref{fig:selection_gap}); the oracle shows 11.4\\,pp headroom, but LP achieves $+0.2$\\,pp ($p{=}0.29$), below MDE (${\\approx}$1.5\\,pp at $n{=}529$, 2--3 seeds; Appendix~\\ref{app:bootstrap_signal}).\nAll selection experiments use 2--3 training seeds; bootstrap CIs are reported in Appendix~\\ref{app:bootstrap_signal}.\nThe pattern holds across CoNLL and WNUT-17 (Table~\\ref{tab:cross_selection}).\nFew-NERD provides the clearest positive case: LP achieves $+1.39$\\,pp ($p{<}0.001$; Holm $p_{\\text{adj}}{=}0.021$, selection family $k{=}21$)\\footnote{Under global correction ($k{=}57$), LP-best selection reaches Holm $p_{\\text{adj}}{=}0.055$ (BH $p_{\\text{adj}}{=}0.003$).} at low degeneracy (13.0\\% vs.\\ 12.2--67.9\\%), while structural signals still degrade (VC $-1.79$, SJ $-2.14$\\,pp; \\S\\ref{sec:fewnerd}).\n\n\\paragraph{Diagnostic framework.}\nThree co-occurring factors jointly characterize the gap:\n(1)~instance degeneracy sets the ceiling (SciERC 12.2\\%, CoNLL 61.7\\%);\n(2)~oracle headroom bounds the opportunity within non-degenerate instances (CoNLL ${\\approx}4$\\,pp vs.\\ SciERC 11.4\\,pp);\n(3)~LP compression limits exploitation (Few-NERD within-instance $\\rho{\\approx}0.5$--$0.7$ vs.\\ SciERC $\\rho{\\approx}0.26$).\nDegeneracy does not predict LP gain across datasets ($\\rho{=}0.052$, $n{=}23$, $p{=}0.81$; Figure~\\ref{fig:degeneracy_scatter}), though it co-varies with LP within fixed settings ($\\rho{=}{-}0.881$; Appendix~\\ref{app:per_type_lp}).\nThese conditions interact ($R^2{<}0$); on non-degenerate instances, $\\alpha$ approaches zero ($0.000$--$0.121$) despite $\\rho$ up to 0.45 (\\S\\ref{sec:theory}).\n\n\\paragraph{Mechanistic evidence (Appendix~\\ref{sec:mechanistic}).}\nWhy does signal alignment collapse? Probing experiments on Qwen2.5-7B-Instruct reveal an \\textit{introspection boundary}: hidden-state linear probes achieve entity-level AUROC $0.63$--$0.88$, substantially exceeding prompt-based self-judgment (ESJ AUROC $0.51$; confirmed on Qwen3-8B: AUROC $0.50$--$0.55$; Appendix~\\ref{app:esj}), yet cross-dataset transfer drops to $0.56$--$0.67$ (LODO).\nEntity self-judgment, multi-round refinement ($-3.1$\\,pp vs.\\ greedy), and latent centroid selection ($-3.5$\\,pp) all fail to improve over greedy decoding.\nEntity quality is partially encoded in representations but inaccessible through the generation interface---consistent with the signal alignment collapse observed across all configurations.\nCross-model validation on Qwen3-8B confirms chance-level ESJ performance (AUROC $0.50$--$0.55$; Appendix~\\ref{app:esj}), suggesting the introspection boundary is architecture-general rather than model-specific.\n",
+      "numLines": 57,
+      "startLine": 1,
+      "totalLines": 57
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01VxfZEesVaEXt8tJ1UWRKDf`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__read_project_file",
+  "max_results": 3
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d3999a21-0914-40f6-afdd-8951e6461b5c",
+  "uuid": "a94ef3bb-d899-4fe6-9d3e-bfdddd17c02c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015xgN2Xo8BnqfCHh5rkPnTi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 13447,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13447
+      },
+      "output_tokens": 29,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-23T20:39:28.344Z_
+
+<details><summary>↩ Tool result · `toolu_01VxfZEesVaEXt8tJ1UWRKDf`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_project_file"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d3999a21-0914-40f6-afdd-8951e6461b5c",
+  "uuid": "46c698df-5163-4154-a364-a20ca7c00430",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__read_project_file"
+    ],
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__read_project_file",
+    "total_deferred_tools": 29
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01NB6ZXXZBuemHauQJ6vSQGd`</summary>
+
+```json
+{
+  "pattern": "11\\.4|headroom|13\\.0",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections",
+  "output_mode": "content",
+  "-n": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d3999a21-0914-40f6-afdd-8951e6461b5c",
+  "uuid": "594d6376-63ee-408e-9c06-78d9fcb59dc4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015xgN2Xo8BnqfCHh5rkPnTi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 13447,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13447
+      },
+      "output_tokens": 29,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-23T20:39:29.904Z_
+
+<details><summary>↩ Tool result · `toolu_01NB6ZXXZBuemHauQJ6vSQGd`</summary>
+
+```text
+docs/paper/sections/theory.tex:12:[Omitted long matching line]
+docs/paper/sections/theory.tex:13:Degeneracy is model-family-dependent rather than scale-dependent (Qwen2.5: $31.7$--$46.2$\% vs.\ Qwen3: $13.0$\% vs.\ GPT-5.5: $50$\% on Few-NERD; Appendix~\ref{app:cross_scale}).
+docs/paper/sections/_archived/experiments_OLD.tex:11:\textbf{CoNLL-2003} \cite{tjongkimsang2003conll} (3{,}453 test sentences, 4 entity types, ${\approx}$91\% F1) serves as a ceiling-effect control where limited oracle headroom constrains selection gains.
+docs/paper/sections/_archived/experiments_OLD.tex:89:\caption{The correlation-selection gap on SciERC ($N{=}8$, $T{=}1.0$). Bars: quality estimation $\rho$ (seed 42); line with error bars: $\Delta$F1 vs.\ greedy (3-seed mean, seeds 42/123/456). Despite $\rho$ up to 0.38, no signal significantly outperforms greedy (all $p{>}0.05$; Table~\ref{tab:selection}). Dashed green: oracle upper bound ($+13.0$~pp); dotted gray: random baseline.}
+docs/paper/sections/_archived/experiments_OLD.tex:97:On SciERC ($n{=}529$, 2-seed sign tests\footnote{MDE${\approx}$1.5~pp at 80\% power ($n{=}529$); Few-NERD ($n{=}32{,}565$; MDE${\approx}$0.22~pp) provides the definitive test.}), the oracle (0.775) reveals 13.0~pp of headroom, but LP achieves $+0.2$~pp ($p{=}0.29$), below the MDE (${\approx}$1.5~pp); selection effects below this threshold cannot be reliably detected.
+docs/paper/sections/_archived/experiments_OLD.tex:102:Three factors shape LP selection gains: (1)~\textit{instance degeneracy} (SciERC 17.8\%, CoNLL 61.7\%; Table~\ref{tab:fewnerd}); (2)~\textit{oracle headroom} (CoNLL ${\approx}4$\,pp vs.\ SciERC 13.0\,pp); (3)~\textit{LP-quality alignment} (Few-NERD $\rho{\approx}0.5$--$0.7$ vs.\ SciERC $\rho{\approx}0.26$).
+docs/paper/sections/_archived/experiments_OLD.tex:123:Few-NERD & 32{,}565 & .748 & 13.0\% & .220 & $\mathbf{+1.39}$\,pp & ${<}.001$ \\
+docs/paper/sections/_archived/experiments_OLD.tex:166:With Qwen3-4B (Table~\ref{tab:scale_ablation}), QE is comparable (mean $|\Delta\rho|{=}0.042$), yet selection remains below greedy despite 13.0~pp headroom. Task difficulty is a stronger predictor than model scale within the 3B--8B range (Appendix~\ref{app:llama3b}).
+docs/paper/sections/_archived/experiments_OLD.tex:189:SciERC & 8B FT  & .644 & 13.0 & 17.8 & .379 & .360 & .267 & .205 \\
+docs/paper/sections/_archived/experiments_OLD.tex:193:         & 8B FT & .748 & 12.4 & 13.0 & .386 & .300 & .313 & .220 \\
+docs/paper/sections/_archived/experiments_OLD.tex:202:LP $\rho$ drops without fine-tuning (Table~\ref{tab:scale_comparison}) and LP selection fails on all datasets. Structural signals generalize (Few-NERD VC $\rho{=}0.416$). Degeneracy increases (Few-NERD: $46.2$\% vs.\ $13.0$\%; CoNLL: $67.7$\% vs.\ $61.7$\%); this comparison simultaneously varies model family, regime, and quantization, so individual effects cannot be disentangled.
+docs/paper/sections/_archived/experiments_OLD.tex:203:LP-weighted construction yields $+1.53$\,pp on SciERC 72B ZS ($p{=}0.008$, CI [$+0.25$, $+2.82$]), recovering $10.2$\% of headroom. Construction fails on Few-NERD ($-0.20$\,pp) and CoNLL ($-0.37$\,pp) where degeneracy exceeds $46$\%---consistent with FT-regime degeneracy gating.
+docs/paper/sections/_archived/experiments_OLD.tex:209:Qwen2.5 exhibits systematically higher degeneracy than Qwen3 on Few-NERD (7B--72B: $31.7$--$46.2$\% vs.\ Qwen3-8B: $13.0$\%; Table~\ref{tab:scale_comparison}), confirming degeneracy is shaped by architecture rather than parameter count. Construction fails for all Qwen2.5 configurations on Few-NERD (both n.s.); 3$\to$5 epochs triples degeneracy within the same model (\S\ref{sec:fewnerd}).
+docs/paper/sections/_archived/experiments_OLD.tex:244:LP-weighted construction improves on Few-NERD ($+1.40{\pm}0.51$\,pp, $p{<}0.001$; survives Holm--Bonferroni at $k{=}57$) and SciERC ($+1.02{\pm}0.49$\,pp, $p{=}0.004$, $p_{\text{adj}}{=}0.20$; Table~\ref{tab:entity_construction}), recovering 8--11\% of oracle headroom. CoNLL shows no gain ($-0.39$\,pp), consistent with high degeneracy ($N$-scaling in Appendix~\ref{app:n_scaling}).
+docs/paper/sections/single_signal.tex:35:\caption{Correlation-selection gap on SciERC ($N{=}8$, $T{=}1.0$). Bars: QE $\rho$; line: $\Delta$F1 vs.\ greedy (3-seed mean). Despite $\rho$ up to 0.38, no signal outperforms greedy (all $p{\geq}0.29$). Dashed green: oracle headroom ($+11.4$\,pp; oracle headroom $=$ best-of-$N$ F1 $-$ greedy F1); dotted gray: random.}
+docs/paper/sections/single_signal.tex:39:Despite $\rho$ up to 0.38, no signal outperforms greedy on SciERC (Table~\ref{tab:selection}; Figure~\ref{fig:selection_gap}); the oracle shows 11.4\,pp headroom, but LP achieves $+0.2$\,pp ($p{=}0.29$), below MDE (${\approx}$1.5\,pp at $n{=}529$, 2--3 seeds; Appendix~\ref{app:bootstrap_signal}).
+docs/paper/sections/single_signal.tex:42:Few-NERD provides the clearest positive case: LP achieves $+1.39$\,pp ($p{<}0.001$; Holm $p_{\text{adj}}{=}0.021$, selection family $k{=}21$)\footnote{Under global correction ($k{=}57$), LP-best selection reaches Holm $p_{\text{adj}}{=}0.055$ (BH $p_{\text{adj}}{=}0.003$).} at low degeneracy (13.0\% vs.\ 12.2--67.9\%), while structural signals still degrade (VC $-1.79$, SJ $-2.14$\,pp; \S\ref{sec:fewnerd}).
+docs/paper/sections/single_signal.tex:47:(2)~oracle headroom bounds the opportunity within non-degenerate instances (CoNLL ${\approx}4$\,pp vs.\ SciERC 11.4\,pp);
+docs/paper/sections/appendix.tex:233:[Omitted long matching line]
+docs/paper/sections/appendix.tex:267:These gains are statistically significant but practically minimal: oracle headroom at $N{=}16$ is only 2.5~pp, so VC captures approximately 10\% of the available headroom.
+docs/paper/sections/appendix.tex:268:This reinforces the primary finding: even under the most favorable conditions (high baseline performance, more candidates, and aggregated multi-seed evidence), signal-based selection recovers only a fraction of the oracle headroom available.
+docs/paper/sections/appendix.tex:385:45 & & Per-type degeneracy--headroom (Few-NERD, Spearman) & $0.004$ & $0.180$ &  \\
+docs/paper/sections/appendix.tex:386:46 & & Per-type degeneracy--headroom (exact permutation) & $0.005$ & $0.205$ &  \\
+docs/paper/sections/appendix.tex:387:47 & & Per-type degeneracy--headroom ($\text{df}{=}4$ adjusted) & $0.033$ & $1.0$ &  \\
+docs/paper/sections/appendix.tex:436:[Omitted long matching line]
+docs/paper/sections/appendix.tex:440:On the 44\% of Qwen SciERC instances with high diversity (${\geq}4$ unique outputs among 8 samples, $n{=}232$), oracle headroom reaches $+$16.3~pp, yet all consistency-based signals (SJ, FK, EM, VC) select at or below single-sample, and LP, the only per-sample signal, achieves merely $+$0.8~pp.
+docs/paper/sections/appendix.tex:441:LLaMA replicates this pattern: on its high-diversity subset ($n{=}186$), oracle headroom reaches $+$20.1~pp while consistency signals remain at or below single-sample and LP captures only $+$2.0~pp.
+docs/paper/sections/appendix.tex:469:The $\delta$ values are contextualized against oracle headroom (12--18~pp): $\delta{=}5$~pp corresponds to forgoing 28--38\% of the available headroom, $\delta{=}3$~pp forgoing 17--23\%, and $\delta{=}2$~pp less than 15\%.
+docs/paper/sections/appendix.tex:470:These proportions use the same test data that defines the headroom, introducing circularity: $\delta$ is anchored to the very quantity it contextualizes.
+docs/paper/sections/appendix.tex:472:The breakpoint $\delta^*$, the minimum equivalence margin at which each signal passes TOST, ranges from approximately 1.3~pp (SJ, ${\sim}$10\% of oracle headroom) to 3.4~pp (FK, ${\sim}$26\%) on NER, and from approximately 2.9~pp (LP, ${\sim}$16\%) to 6.5~pp (VC, ${\sim}$36\%) on RE.
+docs/paper/sections/appendix.tex:500:The oracle-headroom anchors above introduce circularity: $\delta$ is calibrated against the very quantity it contextualizes.
+docs/paper/sections/appendix.tex:519:Our negative results are specific to fine-tuned models with constrained decoding on structured IE. Several conditions outside our experimental scope could restore selection headroom.
+docs/paper/sections/appendix.tex:529:Supervised classifiers (logistic regression, MLP, random forest) trained on all five signals (5-fold CV, 3-seed mean, SciERC, $N{=}16$, $+17.9$~pp headroom) all perform at or below greedy (F1${=}0.644$; LR: $-0.4$~pp; MLP: $-1.6$~pp; RF: $-3.1$~pp).
+docs/paper/sections/appendix.tex:921:CoNLL alignment is moderate ($\rho{\approx}0.51$), but the valid-instance fraction is low (38\% for Qwen, 11\% for LLaMA) because degeneracy eliminates most headroom before alignment can operate.
+docs/paper/sections/appendix.tex:922:LP-quality alignment is the primary predictor of selection direction; degeneracy constrains headroom but does not independently predict whether LP selection gains materialize (\S\ref{sec:discussion}).
+docs/paper/sections/appendix.tex:1004:\caption{Selection $\Delta$ (pp over single-sample) stratified by VC quartile on SciERC ($N{=}8$, Qwen3-8B). Oracle headroom collapses at Q4; LP rankings are unreliable at Q1--Q2. Neither quartile supports consistent selection gains.}
+docs/paper/sections/appendix.tex:1025:\item \textbf{Q4 ceiling effect.} High-consistency instances (mean VC${=}0.92$) have oracle headroom of only 4.78~pp. Samples have already converged, leaving little room for any signal to improve selection.
+docs/paper/sections/appendix.tex:1026:\item \textbf{Q1--Q2 noise.} Low-consistency instances retain large headroom (14--17~pp) but LP rankings are unreliable, and LP rankings produce inconsistent $\Delta$ signs across quartiles.
+docs/paper/sections/appendix.tex:1043:Oracle headroom is $+18.1$\,pp (greedy $0.404$, oracle $0.585$), the largest of any configuration, confirming that correct answers exist among samples but no signal recovers them.
+docs/paper/sections/appendix.tex:1051:Table~\ref{tab:re_cond_selection} presents RE selection at $N{=}8$: no signal outperforms single-sample (0.404) on the full set ($n{=}397$) or the non-zero subset ($n{=}238$), with 18.1~pp of unrealized oracle headroom.
+docs/paper/sections/appendix.tex:1056:Selection remains below single-sample on RE ($\Delta$ up to $-3.4$~pp) despite 17.1~pp of oracle headroom.
+docs/paper/sections/appendix.tex:1067:Oracle headroom exists (0.757 vs.\ 0.674) but no signal exploits it, ruling out the 40\% zero-F1 floor effect as the explanation for RE selection failure.
+docs/paper/sections/appendix.tex:1095:Even the most favorable seed captures only ${\sim}9\%$ of the 17.1~pp oracle headroom.
+docs/paper/sections/appendix.tex:1252:Few-NERD and SciERC ($\alpha_{\textup{crit,eff}} {<} 1$) show significantly negative $\Delta$, indicating that even where structural headroom exists, marginal-entity precision is insufficient.
+docs/paper/sections/appendix.tex:1379:The failure to improve selection despite reduced compression is consistent with CoNLL's low oracle headroom (4.0~pp at $N{=}8$), which limits the selection space regardless of score distribution quality.
+docs/paper/sections/appendix.tex:1495:\paragraph{$N$-scaling: selection headroom vs.\ selection gain.}
+docs/paper/sections/appendix.tex:1496:Table~\ref{tab:n_scaling_selection} traces the effect of sample count on degeneracy, oracle headroom, and per-signal selection gain.
+docs/paper/sections/appendix.tex:1497:Oracle headroom grows roughly linearly with $N$ ($+4.4$~pp at $N{=}2$ to $+20.0$~pp at $N{=}32$).
+docs/paper/sections/appendix.tex:1498:LP selection improves monotonically with $N$ ($+0.39$~pp at $N{=}8$ to $+0.95$~pp at $N{=}32$), but even at $N{=}32$, where degeneracy falls to 4\% and oracle headroom reaches ${\sim}20$~pp, the best signal captures less than 5\% of the available improvement.
+docs/paper/sections/appendix.tex:1532:The oracle gap ($+20.0$~pp, $p{<}0.001$) confirms substantial unrealized headroom.
+docs/paper/sections/appendix.tex:1559:CoNLL's narrow headroom ($b{=}0.04$--$0.10$) makes $c$ unreliable (inter-model variance $2.5{\times}$); we report only $a$ and $b$ for CoNLL.
+docs/paper/sections/appendix.tex:1606:SciERC & 8B FT  & .667 & 11.4 & 12.2 & .326 & .324 & .177 & .159 \\
+docs/paper/sections/appendix.tex:1610:         & 8B FT & .748 & 12.4 & 13.0 & .386 & .300 & .313 & .220 \\
+docs/paper/sections/appendix.tex:1621:LP $\rho$ drops without fine-tuning (Table~\ref{tab:scale_comparison}) and LP selection fails on all 72B zero-shot datasets. Structural signals generalize better (Few-NERD VC $\rho{=}0.416$). Degeneracy increases at 72B (Few-NERD: $46.2$\% vs.\ $13.0$\%; CoNLL: $67.7$\% vs.\ $61.7$\%); the gap persists under this specific 72B zero-shot configuration, though scale, training regime, and quantization effects are confounded (see Limitations).
+docs/paper/sections/appendix.tex:1622:LP-weighted construction yields $+1.53$\,pp on SciERC 72B ZS ($p{=}0.008$, CI [$+0.25$, $+2.82$]), recovering $10.2$\% of headroom. Construction fails on Few-NERD ($-0.20$\,pp) and CoNLL ($-0.37$\,pp) where degeneracy exceeds $46$\%---consistent with FT-regime degeneracy gating.
+docs/paper/sections/appendix.tex:1628:Qwen2.5 exhibits systematically higher degeneracy than Qwen3 on Few-NERD (7B--72B: $31.7$--$46.2$\% vs.\ Qwen3-8B: $13.0$\%; Table~\ref{tab:scale_comparison}), confirming degeneracy is shaped by architecture rather than parameter count. Construction fails for all Qwen2.5 configurations on Few-NERD (both n.s.); 3$\to$5 epochs triples degeneracy within the same model (\S\ref{sec:fewnerd}).
+docs/paper/sections/appendix.tex:1652:Qwen3-14B fine-tuned on Few-NERD achieves greedy F1${=}0.798$ ($+0.9$\,pp over 8B) with oracle headroom of 8.1\,pp ($+1.2$\,pp over 8B's 6.9\,pp) and $\rho$ advantage $+0.029$ over 8B.
+docs/paper/sections/appendix.tex:1662:\caption{Pretrained vs.\ finetuned MV ($T{=}1.0$). Pretrained: Qwen2.5-7B-Instruct; finetuned: Qwen3-8B LoRA ($N{=}8$ unless noted). MV: strict majority ($>N/2$). Capture: $\text{MV}\,\Delta / \text{oracle headroom}$. CoNLL pretrained single-seed; others 3-seed mean${\pm}\sigma$ ($N{=}8$) or single-seed ($N{=}16{,}32$).}
+docs/paper/sections/appendix.tex:1683:On CoNLL, MV captures $98$\% of oracle headroom for the pretrained model (greedy${=}0.536$, MV${=}0.628$, oracle${=}0.630$, degeneracy${=}36$\%) versus ${<}2$\% finetuned (greedy${=}0.912$, MV${=}0.912$, oracle${=}0.954$, degeneracy $57$--$60$\%).
+docs/paper/sections/appendix.tex:1687:Doubling the sample budget ($N{=}8{\to}16$) maintains the pretrained MV advantage ($+4.06$\,pp) while reducing degeneracy ($11.7{\to}7.6$\%) and expanding oracle headroom ($+2.9$\,pp); however, capture rate decreases ($36{\to}29$\%), indicating diminishing marginal returns from additional samples.
+docs/paper/sections/appendix.tex:1745:Qwen3-8B FT & .789 & .792 ($+0.3$) & .858 & 13.0 & .066 & ${\approx}$0 \\
+docs/paper/sections/appendix.tex:1750:All four frontier families exhibit the correlation-selection gap (Table~\ref{tab:frontier_sc_cross}): MV recovers only a fraction of oracle headroom regardless of model capability.
+docs/paper/sections/appendix.tex:1754:GPT-5.5 occupies the middle ground: 50\% degeneracy with 6.8\,pp unrealized oracle headroom.
+docs/paper/sections/appendix.tex:1769:Table~\ref{tab:t_ablation} reports the effect of sampling temperature on QE signals, oracle headroom, and output quality across four temperatures on SciERC NER.
+docs/paper/sections/appendix.tex:1783:1.0 & $+$13.0 & 0.360 & 0.205 & ${\approx}$0.39 & ${\approx}$0.612 \\
+docs/paper/sections/appendix.tex:1790:Oracle headroom increases monotonically with temperature ($+9.1$~pp at $T{=}0.5$ to $+14.6$~pp at $T{=}1.2$), confirming that higher temperature consistently expands the oracle ceiling under constrained structured decoding.
+docs/paper/sections/appendix.tex:1908:\caption{LLaMA-3.2-3B SciERC NER quality estimation and selection ($N{=}8$, $T{=}1.0$, seed${=}42$). Greedy F1${=}0.627$, Oracle F1${=}0.763$, headroom${=}13.63$~pp.}
+docs/paper/sections/appendix.tex:1928:Despite 13.63~pp of oracle headroom, no signal achieves significant selection improvement (best: SJ, $+0.61$~pp, $p{=}0.175$); VC, the strongest QE signal, yields the worst selection ($-1.54$~pp), consistent with the correlation-selection gap observed at larger scales.
+docs/paper/sections/appendix.tex:1934:Instance degeneracy is 13.0\% (vs.\ 12.2\% on SciERC, 61.7\% on CoNLL).
+docs/paper/sections/appendix.tex:1962:(4)~Low degeneracy (13.0\%) combined with strong LP-quality alignment ($\rho{\approx}0.5$--$0.7$) enables LP selection: candidates differ in F1 more often, and LP can rank them effectively. This contrasts with SciERC (12.2\% degeneracy but weak alignment $\rho{\approx}0.16$, LP $+0.61$~pp) and CoNLL (61.7\%, LP $-0.85$~pp).
+docs/paper/sections/appendix.tex:1968:The correlation between per-type degeneracy and oracle headroom is strong and significant (Spearman $\rho{=}{-}0.881$, $p{=}0.004$; exact permutation $p{=}0.005$); degeneracy directly constrains the headroom available for selection.
+docs/paper/sections/appendix.tex:1987:Location & 8{,}023 & 11.4 & .793 & .798 & $+$0.53 & .520 & 10.3\,pp \\
+docs/paper/sections/appendix.tex:2031:The cross-dataset degeneracy gradient (61.7\% $\to$ 13.0\% $\to$ 12.2\%) is inversely associated with LP selection effectiveness at the macro level ($n{=}3$ datasets; exploratory).\footnote{Partial Spearman correlation controlling for entity-type frequency yields $\rho{=}{-}0.47$ (vs.\ raw $\rho{=}{-}0.38$); type frequency does not confound the degeneracy--LP relationship.}
+docs/paper/sections/appendix.tex:2032:At finer per-type granularity, selection depends on the interaction of degeneracy, oracle headroom, and type-specific LP-quality alignment.
+docs/paper/sections/appendix.tex:2034:Low degeneracy alone does not ensure selection gains: CoNLL MISC (23\%, headroom 12.6~pp) and SciERC OtherScientificTerm (6.2\%, headroom 12.5~pp) both show negative LP selection despite available headroom; LP correlation strength with the type-specific quality function is an additional prerequisite.
+docs/paper/sections/appendix.tex:2105:LP selection does not yield significant gains at any training duration ($-1.24$, $+0.64$, $+1.02$~pp; all below the ${\approx}$1.5~pp MDE), despite oracle headroom ranging from 8.4 to 15.0~pp.
+docs/paper/sections/appendix.tex:2392:Degeneracy ${>}30$\% indicates limited headroom for any selection or aggregation strategy.
+docs/paper/sections/appendix.tex:2408:Report: (1)~degeneracy percentage, (2)~oracle headroom (oracle $-$ greedy), (3)~signal $\rho$ (cross-instance and within-instance), (4)~selection $\Delta$F1 with bootstrap $p$-values and effect sizes (Cohen's $d$), (5)~construction $\Delta$F1, (6)~selective prediction AUPRC and coverage--F1 curve.
+docs/paper/sections/appendix.tex:2485:Qwen2.5-72B zero-shot exhibits the same gap: LP $\rho$ drops without fine-tuning, structural signals generalize (VC $\rho{=}0.416$ on Few-NERD), and degeneracy is model-family-dependent rather than scale-dependent (Qwen2.5: 31.7--46.2\% vs.\ Qwen3: 13.0\%; Appendix~\ref{app:cross_scale}). The capability ceiling persists from 4B to 72B.
+docs/paper/sections/experiments_main.tex:71:Few-NERD & 32{,}565 & .748 & 13.0\% & .220 & $\mathbf{+1.39}$\,pp & ${<}.001$ \\
+docs/paper/sections/experiments_main.tex:104:LP-weighted construction yields $+1.40{\pm}0.51$\,pp on Few-NERD (4-seed mean; $p{<}0.001$; Table~\ref{tab:entity_construction}), consistent with favorable diagnostic conditions ($D{=}13$\%, headroom${=}12.4$\,pp), a non-significant $+0.32$\,pp on SciERC, and no gain on CoNLL ($-0.39$\,pp).\footnote{Degenerate instances contribute $\Delta{=}0$ by construction; all gains concentrate in the non-degenerate subset.}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d3999a21-0914-40f6-afdd-8951e6461b5c",
+  "uuid": "871bf2df-c7f9-4f87-8bd5-67dd7a3d5dd8",
+  "tool_use_result": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "docs/paper/sections/theory.tex:12:[Omitted long matching line]\ndocs/paper/sections/theory.tex:13:Degeneracy is model-family-dependent rather than scale-dependent (Qwen2.5: $31.7$--$46.2$\\% vs.\\ Qwen3: $13.0$\\% vs.\\ GPT-5.5: $50$\\% on Few-NERD; Appendix~\\ref{app:cross_scale}).\ndocs/paper/sections/_archived/experiments_OLD.tex:11:\\textbf{CoNLL-2003} \\cite{tjongkimsang2003conll} (3{,}453 test sentences, 4 entity types, ${\\approx}$91\\% F1) serves as a ceiling-effect control where limited oracle headroom constrains selection gains.\ndocs/paper/sections/_archived/experiments_OLD.tex:89:\\caption{The correlation-selection gap on SciERC ($N{=}8$, $T{=}1.0$). Bars: quality estimation $\\rho$ (seed 42); line with error bars: $\\Delta$F1 vs.\\ greedy (3-seed mean, seeds 42/123/456). Despite $\\rho$ up to 0.38, no signal significantly outperforms greedy (all $p{>}0.05$; Table~\\ref{tab:selection}). Dashed green: oracle upper bound ($+13.0$~pp); dotted gray: random baseline.}\ndocs/paper/sections/_archived/experiments_OLD.tex:97:On SciERC ($n{=}529$, 2-seed sign tests\\footnote{MDE${\\approx}$1.5~pp at 80\\% power ($n{=}529$); Few-NERD ($n{=}32{,}565$; MDE${\\approx}$0.22~pp) provides the definitive test.}), the oracle (0.775) reveals 13.0~pp of headroom, but LP achieves $+0.2$~pp ($p{=}0.29$), below the MDE (${\\approx}$1.5~pp); selection effects below this threshold cannot be reliably detected.\ndocs/paper/sections/_archived/experiments_OLD.tex:102:Three factors shape LP selection gains: (1)~\\textit{instance degeneracy} (SciERC 17.8\\%, CoNLL 61.7\\%; Table~\\ref{tab:fewnerd}); (2)~\\textit{oracle headroom} (CoNLL ${\\approx}4$\\,pp vs.\\ SciERC 13.0\\,pp); (3)~\\textit{LP-quality alignment} (Few-NERD $\\rho{\\approx}0.5$--$0.7$ vs.\\ SciERC $\\rho{\\approx}0.26$).\ndocs/paper/sections/_archived/experiments_OLD.tex:123:Few-NERD & 32{,}565 & .748 & 13.0\\% & .220 & $\\mathbf{+1.39}$\\,pp & ${<}.001$ \\\\\ndocs/paper/sections/_archived/experiments_OLD.tex:166:With Qwen3-4B (Table~\\ref{tab:scale_ablation}), QE is comparable (mean $|\\Delta\\rho|{=}0.042$), yet selection remains below greedy despite 13.0~pp headroom. Task difficulty is a stronger predictor than model scale within the 3B--8B range (Appendix~\\ref{app:llama3b}).\ndocs/paper/sections/_archived/experiments_OLD.tex:189:SciERC & 8B FT  & .644 & 13.0 & 17.8 & .379 & .360 & .267 & .205 \\\\\ndocs/paper/sections/_archived/experiments_OLD.tex:193:         & 8B FT & .748 & 12.4 & 13.0 & .386 & .300 & .313 & .220 \\\\\ndocs/paper/sections/_archived/experiments_OLD.tex:202:LP $\\rho$ drops without fine-tuning (Table~\\ref{tab:scale_comparison}) and LP selection fails on all datasets. Structural signals generalize (Few-NERD VC $\\rho{=}0.416$). Degeneracy increases (Few-NERD: $46.2$\\% vs.\\ $13.0$\\%; CoNLL: $67.7$\\% vs.\\ $61.7$\\%); this comparison simultaneously varies model family, regime, and quantization, so individual effects cannot be disentangled.\ndocs/paper/sections/_archived/experiments_OLD.tex:203:LP-weighted construction yields $+1.53$\\,pp on SciERC 72B ZS ($p{=}0.008$, CI [$+0.25$, $+2.82$]), recovering $10.2$\\% of headroom. Construction fails on Few-NERD ($-0.20$\\,pp) and CoNLL ($-0.37$\\,pp) where degeneracy exceeds $46$\\%---consistent with FT-regime degeneracy gating.\ndocs/paper/sections/_archived/experiments_OLD.tex:209:Qwen2.5 exhibits systematically higher degeneracy than Qwen3 on Few-NERD (7B--72B: $31.7$--$46.2$\\% vs.\\ Qwen3-8B: $13.0$\\%; Table~\\ref{tab:scale_comparison}), confirming degeneracy is shaped by architecture rather than parameter count. Construction fails for all Qwen2.5 configurations on Few-NERD (both n.s.); 3$\\to$5 epochs triples degeneracy within the same model (\\S\\ref{sec:fewnerd}).\ndocs/paper/sections/_archived/experiments_OLD.tex:244:LP-weighted construction improves on Few-NERD ($+1.40{\\pm}0.51$\\,pp, $p{<}0.001$; survives Holm--Bonferroni at $k{=}57$) and SciERC ($+1.02{\\pm}0.49$\\,pp, $p{=}0.004$, $p_{\\text{adj}}{=}0.20$; Table~\\ref{tab:entity_construction}), recovering 8--11\\% of oracle headroom. CoNLL shows no gain ($-0.39$\\,pp), consistent with high degeneracy ($N$-scaling in Appendix~\\ref{app:n_scaling}).\ndocs/paper/sections/single_signal.tex:35:\\caption{Correlation-selection gap on SciERC ($N{=}8$, $T{=}1.0$). Bars: QE $\\rho$; line: $\\Delta$F1 vs.\\ greedy (3-seed mean). Despite $\\rho$ up to 0.38, no signal outperforms greedy (all $p{\\geq}0.29$). Dashed green: oracle headroom ($+11.4$\\,pp; oracle headroom $=$ best-of-$N$ F1 $-$ greedy F1); dotted gray: random.}\ndocs/paper/sections/single_signal.tex:39:Despite $\\rho$ up to 0.38, no signal outperforms greedy on SciERC (Table~\\ref{tab:selection}; Figure~\\ref{fig:selection_gap}); the oracle shows 11.4\\,pp headroom, but LP achieves $+0.2$\\,pp ($p{=}0.29$), below MDE (${\\approx}$1.5\\,pp at $n{=}529$, 2--3 seeds; Appendix~\\ref{app:bootstrap_signal}).\ndocs/paper/sections/single_signal.tex:42:Few-NERD provides the clearest positive case: LP achieves $+1.39$\\,pp ($p{<}0.001$; Holm $p_{\\text{adj}}{=}0.021$, selection family $k{=}21$)\\footnote{Under global correction ($k{=}57$), LP-best selection reaches Holm $p_{\\text{adj}}{=}0.055$ (BH $p_{\\text{adj}}{=}0.003$).} at low degeneracy (13.0\\% vs.\\ 12.2--67.9\\%), while structural signals still degrade (VC $-1.79$, SJ $-2.14$\\,pp; \\S\\ref{sec:fewnerd}).\ndocs/paper/sections/single_signal.tex:47:(2)~oracle headroom bounds the opportunity within non-degenerate instances (CoNLL ${\\approx}4$\\,pp vs.\\ SciERC 11.4\\,pp);\ndocs/paper/sections/appendix.tex:233:[Omitted long matching line]\ndocs/paper/sections/appendix.tex:267:These gains are statistically significant but practically minimal: oracle headroom at $N{=}16$ is only 2.5~pp, so VC captures approximately 10\\% of the available headroom.\ndocs/paper/sections/appendix.tex:268:This reinforces the primary finding: even under the most favorable conditions (high baseline performance, more candidates, and aggregated multi-seed evidence), signal-based selection recovers only a fraction of the oracle headroom available.\ndocs/paper/sections/appendix.tex:385:45 & & Per-type degeneracy--headroom (Few-NERD, Spearman) & $0.004$ & $0.180$ &  \\\\\ndocs/paper/sections/appendix.tex:386:46 & & Per-type degeneracy--headroom (exact permutation) & $0.005$ & $0.205$ &  \\\\\ndocs/paper/sections/appendix.tex:387:47 & & Per-type degeneracy--headroom ($\\text{df}{=}4$ adjusted) & $0.033$ & $1.0$ &  \\\\\ndocs/paper/sections/appendix.tex:436:[Omitted long matching line]\ndocs/paper/sections/appendix.tex:440:On the 44\\% of Qwen SciERC instances with high diversity (${\\geq}4$ unique outputs among 8 samples, $n{=}232$), oracle headroom reaches $+$16.3~pp, yet all consistency-based signals (SJ, FK, EM, VC) select at or below single-sample, and LP, the only per-sample signal, achieves merely $+$0.8~pp.\ndocs/paper/sections/appendix.tex:441:LLaMA replicates this pattern: on its high-diversity subset ($n{=}186$), oracle headroom reaches $+$20.1~pp while consistency signals remain at or below single-sample and LP captures only $+$2.0~pp.\ndocs/paper/sections/appendix.tex:469:The $\\delta$ values are contextualized against oracle headroom (12--18~pp): $\\delta{=}5$~pp corresponds to forgoing 28--38\\% of the available headroom, $\\delta{=}3$~pp forgoing 17--23\\%, and $\\delta{=}2$~pp less than 15\\%.\ndocs/paper/sections/appendix.tex:470:These proportions use the same test data that defines the headroom, introducing circularity: $\\delta$ is anchored to the very quantity it contextualizes.\ndocs/paper/sections/appendix.tex:472:The breakpoint $\\delta^*$, the minimum equivalence margin at which each signal passes TOST, ranges from approximately 1.3~pp (SJ, ${\\sim}$10\\% of oracle headroom) to 3.4~pp (FK, ${\\sim}$26\\%) on NER, and from approximately 2.9~pp (LP, ${\\sim}$16\\%) to 6.5~pp (VC, ${\\sim}$36\\%) on RE.\ndocs/paper/sections/appendix.tex:500:The oracle-headroom anchors above introduce circularity: $\\delta$ is calibrated against the very quantity it contextualizes.\ndocs/paper/sections/appendix.tex:519:Our negative results are specific to fine-tuned models with constrained decoding on structured IE. Several conditions outside our experimental scope could restore selection headroom.\ndocs/paper/sections/appendix.tex:529:Supervised classifiers (logistic regression, MLP, random forest) trained on all five signals (5-fold CV, 3-seed mean, SciERC, $N{=}16$, $+17.9$~pp headroom) all perform at or below greedy (F1${=}0.644$; LR: $-0.4$~pp; MLP: $-1.6$~pp; RF: $-3.1$~pp).\ndocs/paper/sections/appendix.tex:921:CoNLL alignment is moderate ($\\rho{\\approx}0.51$), but the valid-instance fraction is low (38\\% for Qwen, 11\\% for LLaMA) because degeneracy eliminates most headroom before alignment can operate.\ndocs/paper/sections/appendix.tex:922:LP-quality alignment is the primary predictor of selection direction; degeneracy constrains headroom but does not independently predict whether LP selection gains materialize (\\S\\ref{sec:discussion}).\ndocs/paper/sections/appendix.tex:1004:\\caption{Selection $\\Delta$ (pp over single-sample) stratified by VC quartile on SciERC ($N{=}8$, Qwen3-8B). Oracle headroom collapses at Q4; LP rankings are unreliable at Q1--Q2. Neither quartile supports consistent selection gains.}\ndocs/paper/sections/appendix.tex:1025:\\item \\textbf{Q4 ceiling effect.} High-consistency instances (mean VC${=}0.92$) have oracle headroom of only 4.78~pp. Samples have already converged, leaving little room for any signal to improve selection.\ndocs/paper/sections/appendix.tex:1026:\\item \\textbf{Q1--Q2 noise.} Low-consistency instances retain large headroom (14--17~pp) but LP rankings are unreliable, and LP rankings produce inconsistent $\\Delta$ signs across quartiles.\ndocs/paper/sections/appendix.tex:1043:Oracle headroom is $+18.1$\\,pp (greedy $0.404$, oracle $0.585$), the largest of any configuration, confirming that correct answers exist among samples but no signal recovers them.\ndocs/paper/sections/appendix.tex:1051:Table~\\ref{tab:re_cond_selection} presents RE selection at $N{=}8$: no signal outperforms single-sample (0.404) on the full set ($n{=}397$) or the non-zero subset ($n{=}238$), with 18.1~pp of unrealized oracle headroom.\ndocs/paper/sections/appendix.tex:1056:Selection remains below single-sample on RE ($\\Delta$ up to $-3.4$~pp) despite 17.1~pp of oracle headroom.\ndocs/paper/sections/appendix.tex:1067:Oracle headroom exists (0.757 vs.\\ 0.674) but no signal exploits it, ruling out the 40\\% zero-F1 floor effect as the explanation for RE selection failure.\ndocs/paper/sections/appendix.tex:1095:Even the most favorable seed captures only ${\\sim}9\\%$ of the 17.1~pp oracle headroom.\ndocs/paper/sections/appendix.tex:1252:Few-NERD and SciERC ($\\alpha_{\\textup{crit,eff}} {<} 1$) show significantly negative $\\Delta$, indicating that even where structural headroom exists, marginal-entity precision is insufficient.\ndocs/paper/sections/appendix.tex:1379:The failure to improve selection despite reduced compression is consistent with CoNLL's low oracle headroom (4.0~pp at $N{=}8$), which limits the selection space regardless of score distribution quality.\ndocs/paper/sections/appendix.tex:1495:\\paragraph{$N$-scaling: selection headroom vs.\\ selection gain.}\ndocs/paper/sections/appendix.tex:1496:Table~\\ref{tab:n_scaling_selection} traces the effect of sample count on degeneracy, oracle headroom, and per-signal selection gain.\ndocs/paper/sections/appendix.tex:1497:Oracle headroom grows roughly linearly with $N$ ($+4.4$~pp at $N{=}2$ to $+20.0$~pp at $N{=}32$).\ndocs/paper/sections/appendix.tex:1498:LP selection improves monotonically with $N$ ($+0.39$~pp at $N{=}8$ to $+0.95$~pp at $N{=}32$), but even at $N{=}32$, where degeneracy falls to 4\\% and oracle headroom reaches ${\\sim}20$~pp, the best signal captures less than 5\\% of the available improvement.\ndocs/paper/sections/appendix.tex:1532:The oracle gap ($+20.0$~pp, $p{<}0.001$) confirms substantial unrealized headroom.\ndocs/paper/sections/appendix.tex:1559:CoNLL's narrow headroom ($b{=}0.04$--$0.10$) makes $c$ unreliable (inter-model variance $2.5{\\times}$); we report only $a$ and $b$ for CoNLL.\ndocs/paper/sections/appendix.tex:1606:SciERC & 8B FT  & .667 & 11.4 & 12.2 & .326 & .324 & .177 & .159 \\\\\ndocs/paper/sections/appendix.tex:1610:         & 8B FT & .748 & 12.4 & 13.0 & .386 & .300 & .313 & .220 \\\\\ndocs/paper/sections/appendix.tex:1621:LP $\\rho$ drops without fine-tuning (Table~\\ref{tab:scale_comparison}) and LP selection fails on all 72B zero-shot datasets. Structural signals generalize better (Few-NERD VC $\\rho{=}0.416$). Degeneracy increases at 72B (Few-NERD: $46.2$\\% vs.\\ $13.0$\\%; CoNLL: $67.7$\\% vs.\\ $61.7$\\%); the gap persists under this specific 72B zero-shot configuration, though scale, training regime, and quantization effects are confounded (see Limitations).\ndocs/paper/sections/appendix.tex:1622:LP-weighted construction yields $+1.53$\\,pp on SciERC 72B ZS ($p{=}0.008$, CI [$+0.25$, $+2.82$]), recovering $10.2$\\% of headroom. Construction fails on Few-NERD ($-0.20$\\,pp) and CoNLL ($-0.37$\\,pp) where degeneracy exceeds $46$\\%---consistent with FT-regime degeneracy gating.\ndocs/paper/sections/appendix.tex:1628:Qwen2.5 exhibits systematically higher degeneracy than Qwen3 on Few-NERD (7B--72B: $31.7$--$46.2$\\% vs.\\ Qwen3-8B: $13.0$\\%; Table~\\ref{tab:scale_comparison}), confirming degeneracy is shaped by architecture rather than parameter count. Construction fails for all Qwen2.5 configurations on Few-NERD (both n.s.); 3$\\to$5 epochs triples degeneracy within the same model (\\S\\ref{sec:fewnerd}).\ndocs/paper/sections/appendix.tex:1652:Qwen3-14B fine-tuned on Few-NERD achieves greedy F1${=}0.798$ ($+0.9$\\,pp over 8B) with oracle headroom of 8.1\\,pp ($+1.2$\\,pp over 8B's 6.9\\,pp) and $\\rho$ advantage $+0.029$ over 8B.\ndocs/paper/sections/appendix.tex:1662:\\caption{Pretrained vs.\\ finetuned MV ($T{=}1.0$). Pretrained: Qwen2.5-7B-Instruct; finetuned: Qwen3-8B LoRA ($N{=}8$ unless noted). MV: strict majority ($>N/2$). Capture: $\\text{MV}\\,\\Delta / \\text{oracle headroom}$. CoNLL pretrained single-seed; others 3-seed mean${\\pm}\\sigma$ ($N{=}8$) or single-seed ($N{=}16{,}32$).}\ndocs/paper/sections/appendix.tex:1683:On CoNLL, MV captures $98$\\% of oracle headroom for the pretrained model (greedy${=}0.536$, MV${=}0.628$, oracle${=}0.630$, degeneracy${=}36$\\%) versus ${<}2$\\% finetuned (greedy${=}0.912$, MV${=}0.912$, oracle${=}0.954$, degeneracy $57$--$60$\\%).\ndocs/paper/sections/appendix.tex:1687:Doubling the sample budget ($N{=}8{\\to}16$) maintains the pretrained MV advantage ($+4.06$\\,pp) while reducing degeneracy ($11.7{\\to}7.6$\\%) and expanding oracle headroom ($+2.9$\\,pp); however, capture rate decreases ($36{\\to}29$\\%), indicating diminishing marginal returns from additional samples.\ndocs/paper/sections/appendix.tex:1745:Qwen3-8B FT & .789 & .792 ($+0.3$) & .858 & 13.0 & .066 & ${\\approx}$0 \\\\\ndocs/paper/sections/appendix.tex:1750:All four frontier families exhibit the correlation-selection gap (Table~\\ref{tab:frontier_sc_cross}): MV recovers only a fraction of oracle headroom regardless of model capability.\ndocs/paper/sections/appendix.tex:1754:GPT-5.5 occupies the middle ground: 50\\% degeneracy with 6.8\\,pp unrealized oracle headroom.\ndocs/paper/sections/appendix.tex:1769:Table~\\ref{tab:t_ablation} reports the effect of sampling temperature on QE signals, oracle headroom, and output quality across four temperatures on SciERC NER.\ndocs/paper/sections/appendix.tex:1783:1.0 & $+$13.0 & 0.360 & 0.205 & ${\\approx}$0.39 & ${\\approx}$0.612 \\\\\ndocs/paper/sections/appendix.tex:1790:Oracle headroom increases monotonically with temperature ($+9.1$~pp at $T{=}0.5$ to $+14.6$~pp at $T{=}1.2$), confirming that higher temperature consistently expands the oracle ceiling under constrained structured decoding.\ndocs/paper/sections/appendix.tex:1908:\\caption{LLaMA-3.2-3B SciERC NER quality estimation and selection ($N{=}8$, $T{=}1.0$, seed${=}42$). Greedy F1${=}0.627$, Oracle F1${=}0.763$, headroom${=}13.63$~pp.}\ndocs/paper/sections/appendix.tex:1928:Despite 13.63~pp of oracle headroom, no signal achieves significant selection improvement (best: SJ, $+0.61$~pp, $p{=}0.175$); VC, the strongest QE signal, yields the worst selection ($-1.54$~pp), consistent with the correlation-selection gap observed at larger scales.\ndocs/paper/sections/appendix.tex:1934:Instance degeneracy is 13.0\\% (vs.\\ 12.2\\% on SciERC, 61.7\\% on CoNLL).\ndocs/paper/sections/appendix.tex:1962:(4)~Low degeneracy (13.0\\%) combined with strong LP-quality alignment ($\\rho{\\approx}0.5$--$0.7$) enables LP selection: candidates differ in F1 more often, and LP can rank them effectively. This contrasts with SciERC (12.2\\% degeneracy but weak alignment $\\rho{\\approx}0.16$, LP $+0.61$~pp) and CoNLL (61.7\\%, LP $-0.85$~pp).\ndocs/paper/sections/appendix.tex:1968:The correlation between per-type degeneracy and oracle headroom is strong and significant (Spearman $\\rho{=}{-}0.881$, $p{=}0.004$; exact permutation $p{=}0.005$); degeneracy directly constrains the headroom available for selection.\ndocs/paper/sections/appendix.tex:1987:Location & 8{,}023 & 11.4 & .793 & .798 & $+$0.53 & .520 & 10.3\\,pp \\\\\ndocs/paper/sections/appendix.tex:2031:The cross-dataset degeneracy gradient (61.7\\% $\\to$ 13.0\\% $\\to$ 12.2\\%) is inversely associated with LP selection effectiveness at the macro level ($n{=}3$ datasets; exploratory).\\footnote{Partial Spearman correlation controlling for entity-type frequency yields $\\rho{=}{-}0.47$ (vs.\\ raw $\\rho{=}{-}0.38$); type frequency does not confound the degeneracy--LP relationship.}\ndocs/paper/sections/appendix.tex:2032:At finer per-type granularity, selection depends on the interaction of degeneracy, oracle headroom, and type-specific LP-quality alignment.\ndocs/paper/sections/appendix.tex:2034:Low degeneracy alone does not ensure selection gains: CoNLL MISC (23\\%, headroom 12.6~pp) and SciERC OtherScientificTerm (6.2\\%, headroom 12.5~pp) both show negative LP selection despite available headroom; LP correlation strength with the type-specific quality function is an additional prerequisite.\ndocs/paper/sections/appendix.tex:2105:LP selection does not yield significant gains at any training duration ($-1.24$, $+0.64$, $+1.02$~pp; all below the ${\\approx}$1.5~pp MDE), despite oracle headroom ranging from 8.4 to 15.0~pp.\ndocs/paper/sections/appendix.tex:2392:Degeneracy ${>}30$\\% indicates limited headroom for any selection or aggregation strategy.\ndocs/paper/sections/appendix.tex:2408:Report: (1)~degeneracy percentage, (2)~oracle headroom (oracle $-$ greedy), (3)~signal $\\rho$ (cross-instance and within-instance), (4)~selection $\\Delta$F1 with bootstrap $p$-values and effect sizes (Cohen's $d$), (5)~construction $\\Delta$F1, (6)~selective prediction AUPRC and coverage--F1 curve.\ndocs/paper/sections/appendix.tex:2485:Qwen2.5-72B zero-shot exhibits the same gap: LP $\\rho$ drops without fine-tuning, structural signals generalize (VC $\\rho{=}0.416$ on Few-NERD), and degeneracy is model-family-dependent rather than scale-dependent (Qwen2.5: 31.7--46.2\\% vs.\\ Qwen3: 13.0\\%; Appendix~\\ref{app:cross_scale}). The capability ceiling persists from 4B to 72B.\ndocs/paper/sections/experiments_main.tex:71:Few-NERD & 32{,}565 & .748 & 13.0\\% & .220 & $\\mathbf{+1.39}$\\,pp & ${<}.001$ \\\\\ndocs/paper/sections/experiments_main.tex:104:LP-weighted construction yields $+1.40{\\pm}0.51$\\,pp on Few-NERD (4-seed mean; $p{<}0.001$; Table~\\ref{tab:entity_construction}), consistent with favorable diagnostic conditions ($D{=}13$\\%, headroom${=}12.4$\\,pp), a non-significant $+0.32$\\,pp on SciERC, and no gain on CoNLL ($-0.39$\\,pp).\\footnote{Degenerate instances contribute $\\Delta{=}0$ by construction; all gains concentrate in the non-degenerate subset.}",
+    "numLines": 81
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01Xig8HSdbJ5mgKESENnZGYT`</summary>
+
+```json
+{
+  "pattern": "EM.*AUROC|AUROC.*EM|EM.*best|EM.*highest|EM.*leads|AUROC.*ranking|EM > VC|EM.*VC.*SJ",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections",
+  "output_mode": "content",
+  "-n": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d3999a21-0914-40f6-afdd-8951e6461b5c",
+  "uuid": "f1ef3f1e-6040-457e-827e-9956ca3ed03f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015xgN2Xo8BnqfCHh5rkPnTi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 13447,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13447
+      },
+      "output_tokens": 29,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-23T20:39:31.500Z_
+
+<details><summary>↩ Tool result · `toolu_01Xig8HSdbJ5mgKESENnZGYT`</summary>
+
+```text
+docs/paper/sections/_archived/experiments_OLD.tex:47:On CoNLL (single-sample F1${\approx}$0.91), EM leads both $\rho$ and AUROC ($0.816$).
+docs/paper/sections/appendix.tex:92:[Omitted long matching line]
+docs/paper/sections/appendix.tex:579:Despite partial entity quality encoding in hidden representations (entity-level probe AUROC${=}0.63$\textendash$0.88$; \S\ref{sec:mechanistic}), the correlation-selection gap persists at the sample level: in the high-capability regime (greedy F1${=}0.644$), inter-sample F1 differences are small enough that improved ranking provides no marginal selection value, consistent with the capability-diversity tension (\S\ref{sec:discussion}).
+docs/paper/sections/appendix.tex:1927:AUROC rankings differ (EM $>$ VC $>$ SJ $>$ FK $>$ LP), consistent with the $\rho$--AUROC dissociation noted in the main text.
+docs/paper/sections/introduction.tex:19:[Omitted long matching line]
+docs/paper/sections/experiments_main.tex:52:On CoNLL (F1${\approx}$0.91), EM leads both $\rho$ and AUROC ($0.816$).
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d3999a21-0914-40f6-afdd-8951e6461b5c",
+  "uuid": "2ca4c733-5b0a-41bb-8852-65186e2b999e",
+  "tool_use_result": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "docs/paper/sections/_archived/experiments_OLD.tex:47:On CoNLL (single-sample F1${\\approx}$0.91), EM leads both $\\rho$ and AUROC ($0.816$).\ndocs/paper/sections/appendix.tex:92:[Omitted long matching line]\ndocs/paper/sections/appendix.tex:579:Despite partial entity quality encoding in hidden representations (entity-level probe AUROC${=}0.63$\\textendash$0.88$; \\S\\ref{sec:mechanistic}), the correlation-selection gap persists at the sample level: in the high-capability regime (greedy F1${=}0.644$), inter-sample F1 differences are small enough that improved ranking provides no marginal selection value, consistent with the capability-diversity tension (\\S\\ref{sec:discussion}).\ndocs/paper/sections/appendix.tex:1927:AUROC rankings differ (EM $>$ VC $>$ SJ $>$ FK $>$ LP), consistent with the $\\rho$--AUROC dissociation noted in the main text.\ndocs/paper/sections/introduction.tex:19:[Omitted long matching line]\ndocs/paper/sections/experiments_main.tex:52:On CoNLL (F1${\\approx}$0.91), EM leads both $\\rho$ and AUROC ($0.816$).",
+    "numLines": 6
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 14_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me analyze what I've found so far:
+
+**Sub-task 1: Headroom inconsistency**
+
+From the OLD experiments file (archived), I can see:
+- Line 89: "oracle upper bound ($+13.0$~pp)" 
+- Line 97: "oracle (0.775) reveals 13.0~pp of headroom"
+
+From the current single_signal.tex:
+- Caption (line 12): Oracle=0.781, Greedy=0.667 → headroom = 0.781 - 0.667 = 0.114 = 11.4pp
+
+
+- Body (lines 18-19): Oracle=0.775±0.001, Greedy=0.645±0.001 → headroom = 0.775 - 0.645 = 0.130 = 13.0pp
+- Figure caption (line 35): "oracle headroom ($+11.4$\,pp)"
+- Line 39: "the oracle shows 11.4\,pp headroom"
+- Line 47: "SciERC 11.4\,pp"
+
+So there's a mismatch between the body text (13.0pp) and the captions/labels (11.4pp), and the appendix also needs checking for consistency. I need to verify these values against the experimental registry to determine which numbers are actually correct. Looking at the appendix more carefully, the SciERC 8B results show .667 greedy and 11.4 headroom, which matches the caption but conflicts with the table body values. Let me check the registry for the ground truth experimental data, and I also need to investigate whether that AUROC ranking statement in the appendix is about a different experiment than SciERC.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d3999a21-0914-40f6-afdd-8951e6461b5c",
+  "uuid": "bf7f0997-4bb8-46b6-9b36-0bfd67cad215",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014aMxz6zYrLzEaEdZa1pNCx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11296,
+      "cache_read_input_tokens": 25288,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11296
+      },
+      "output_tokens": 30,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 15_
+
+找到关键线索。表体 Oracle=0.775/Greedy=0.645 (headroom 13.0pp) 与 caption Oracle=0.781/Greedy=0.667 (headroom 11.4pp) 不一致。appendix 表格用的是 .667/11.4。
+
+现在查 registry 追溯数据来源，同时搜索服务器上的原始数据和 AUROC 排名残留。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d3999a21-0914-40f6-afdd-8951e6461b5c",
+  "uuid": "0943e348-0319-4507-a76d-943f221263ac",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014aMxz6zYrLzEaEdZa1pNCx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11296,
+      "cache_read_input_tokens": 25288,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11296
+      },
+      "output_tokens": 30,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01D9ExEMd5vqLTiEGh3LgVT1`</summary>
+
+```json
+{
+  "filters": {
+    "status": "DONE"
+  },
+  "fields": [
+    "*"
+  ],
+  "limit": 0
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d3999a21-0914-40f6-afdd-8951e6461b5c",
+  "uuid": "09c9ca4a-7c27-44eb-ba40-e7a63eafe9d6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014aMxz6zYrLzEaEdZa1pNCx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11296,
+      "cache_read_input_tokens": 25288,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11296
+      },
+      "output_tokens": 30,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-23T20:39:54.784Z_
+
+<details><summary>↩ Tool result · `toolu_01D9ExEMd5vqLTiEGh3LgVT1`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"exp_freeform_seed456\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T18:39:28.391Z\", \"updated_at\": \"2026-05-15T18:39:58.356Z\", \"spec\": {\"command\": \"python run_freeform_inference.py --seed 456 --num_samples 8 --temperature 1.0 --max_tokens 1024 --output_dir results/exp_freeform_ablation_seed456\", \"server\": \"autodl-5090\", \"data_path\": \"data/scierc/processed_data\", \"data_count\": 551, \"model_name\": \"qwen3-8b-scierc-merged-v2\", \"seed\": 456, \"log_path\": \"results/exp_freeform_ablation_seed456/ablation_report.json\", \"checkpoint_path\": \"results/exp_freeform_ablation_seed456/\"}, \"metrics\": {\"freeform_ner_selection\": {\"greedy\": 0.6205, \"selected\": 0.6222, \"gap\": 0.0016}, \"freeform_re_selection\": {\"greedy\": 0.2909, \"selected\": 0.305, \"gap\": 0.0141}, \"constrained_ner_selection\": {\"greedy\": 0.6182, \"selected\": 0.6241, \"gap\": 0.0059}, \"constrained_re_selection\": {\"greedy\": 0.2913, \"selected\": 0.2845, \"gap\": -0.0068}, \"lp_variance\": {\"freeform_std\": 0.0199, \"freeform_range\": 0.0599, \"constrained_std\": 0.0206, \"constrained_range\": 0.0623, \"variance_ratio_std\": 0.97, \"variance_ratio_range\": 0.96}, \"tied_pct\": {\"constrained\": 59.7, \"freeform\": 57.7, \"reduction_pp\": 2}, \"parse_rate_pct\": 99.95, \"elapsed_seconds\": 229.5, \"qe_freeform_ner_best\": \"voting_conf (rho=0.4035, AUROC=0.7877)\", \"qe_freeform_re_best\": \"FK (rho=0.3011, AUROC=0.6784)\", \"vs_seed42\": {\"ner_gap_delta\": -0.0002, \"re_gap_delta\": -0.0028, \"re_flip_confirmed\": true, \"lp_variance_identical\": true, \"verdict\": \"Highly consistent — RE LP flip and NER gap stability confirmed across seeds\"}}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T18:39:58.356Z\"}}, \"count\": 1, \"total\": 1, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0117}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d3999a21-0914-40f6-afdd-8951e6461b5c",
+  "uuid": "240c0e36-c9ec-4f42-b6e9-880431da5647",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp_freeform_seed456\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T18:39:28.391Z\\\", \\\"updated_at\\\": \\\"2026-05-15T18:39:58.356Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python run_freeform_inference.py --seed 456 --num_samples 8 --temperature 1.0 --max_tokens 1024 --output_dir results/exp_freeform_ablation_seed456\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"data_path\\\": \\\"data/scierc/processed_data\\\", \\\"data_count\\\": 551, \\\"model_name\\\": \\\"qwen3-8b-scierc-merged-v2\\\", \\\"seed\\\": 456, \\\"log_path\\\": \\\"results/exp_freeform_ablation_seed456/ablation_report.json\\\", \\\"checkpoint_path\\\": \\\"results/exp_freeform_ablation_seed456/\\\"}, \\\"metrics\\\": {\\\"freeform_ner_selection\\\": {\\\"greedy\\\": 0.6205, \\\"selected\\\": 0.6222, \\\"gap\\\": 0.0016}, \\\"freeform_re_selection\\\": {\\\"greedy\\\": 0.2909, \\\"selected\\\": 0.305, \\\"gap\\\": 0.0141}, \\\"constrained_ner_selection\\\": {\\\"greedy\\\": 0.6182, \\\"selected\\\": 0.6241, \\\"gap\\\": 0.0059}, \\\"constrained_re_selection\\\": {\\\"greedy\\\": 0.2913, \\\"selected\\\": 0.2845, \\\"gap\\\": -0.0068}, \\\"lp_variance\\\": {\\\"freeform_std\\\": 0.0199, \\\"freeform_range\\\": 0.0599, \\\"constrained_std\\\": 0.0206, \\\"constrained_range\\\": 0.0623, \\\"variance_ratio_std\\\": 0.97, \\\"variance_ratio_range\\\": 0.96}, \\\"tied_pct\\\": {\\\"constrained\\\": 59.7, \\\"freeform\\\": 57.7, \\\"reduction_pp\\\": 2}, \\\"parse_rate_pct\\\": 99.95, \\\"elapsed_seconds\\\": 229.5, \\\"qe_freeform_ner_best\\\": \\\"voting_conf (rho=0.4035, AUROC=0.7877)\\\", \\\"qe_freeform_re_best\\\": \\\"FK (rho=0.3011, AUROC=0.6784)\\\", \\\"vs_seed42\\\": {\\\"ner_gap_delta\\\": -0.0002, \\\"re_gap_delta\\\": -0.0028, \\\"re_flip_confirmed\\\": true, \\\"lp_variance_identical\\\": true, \\\"verdict\\\": \\\"Highly consistent — RE LP flip and NER gap stability confirmed across seeds\\\"}}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-15T18:39:58.356Z\\\"}}, \\\"count\\\": 1, \\\"total\\\": 1, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0117}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"exp_freeform_seed456\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T18:39:28.391Z\", \"updated_at\": \"2026-05-15T18:39:58.356Z\", \"spec\": {\"command\": \"python run_freeform_inference.py --seed 456 --num_samples 8 --temperature 1.0 --max_tokens 1024 --output_dir results/exp_freeform_ablation_seed456\", \"server\": \"autodl-5090\", \"data_path\": \"data/scierc/processed_data\", \"data_count\": 551, \"model_name\": \"qwen3-8b-scierc-merged-v2\", \"seed\": 456, \"log_path\": \"results/exp_freeform_ablation_seed456/ablation_report.json\", \"checkpoint_path\": \"results/exp_freeform_ablation_seed456/\"}, \"metrics\": {\"freeform_ner_selection\": {\"greedy\": 0.6205, \"selected\": 0.6222, \"gap\": 0.0016}, \"freeform_re_selection\": {\"greedy\": 0.2909, \"selected\": 0.305, \"gap\": 0.0141}, \"constrained_ner_selection\": {\"greedy\": 0.6182, \"selected\": 0.6241, \"gap\": 0.0059}, \"constrained_re_selection\": {\"greedy\": 0.2913, \"selected\": 0.2845, \"gap\": -0.0068}, \"lp_variance\": {\"freeform_std\": 0.0199, \"freeform_range\": 0.0599, \"constrained_std\": 0.0206, \"constrained_range\": 0.0623, \"variance_ratio_std\": 0.97, \"variance_ratio_range\": 0.96}, \"tied_pct\": {\"constrained\": 59.7, \"freeform\": 57.7, \"reduction_pp\": 2}, \"parse_rate_pct\": 99.95, \"elapsed_seconds\": 229.5, \"qe_freeform_ner_best\": \"voting_conf (rho=0.4035, AUROC=0.7877)\", \"qe_freeform_re_best\": \"FK (rho=0.3011, AUROC=0.6784)\", \"vs_seed42\": {\"ner_gap_delta\": -0.0002, \"re_gap_delta\": -0.0028, \"re_flip_confirmed\": true, \"lp_variance_identical\": true, \"verdict\": \"Highly consistent — RE LP flip and NER gap stability confirmed across seeds\"}}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T18:39:58.356Z\"}}, \"count\": 1, \"total\": 1, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0117}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01SQWu9uwaYyCAws5UgdGHV4`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "grep -r \"oracle.*0.78\\|greedy.*0.66\\|oracle.*0.77\\|greedy.*0.64\" /root/autodl-tmp/struct_self_consist_ie/artifacts/ 2>/dev/null | head -30",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d3999a21-0914-40f6-afdd-8951e6461b5c",
+  "uuid": "27c143c5-440f-4594-80c6-6f96fdbbc3f9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014aMxz6zYrLzEaEdZa1pNCx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11296,
+      "cache_read_input_tokens": 25288,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11296
+      },
+      "output_tokens": 30,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-23T20:39:57.181Z_
+
+<details><summary>↩ Tool result · `toolu_01SQWu9uwaYyCAws5UgdGHV4`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d3999a21-0914-40f6-afdd-8951e6461b5c",
+  "uuid": "99fe5642-4478-4ae5-9415-e5f6dea5baa6",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20_
+
+<details open><summary>🔧 Tool call — Read · `toolu_012t9XEvHxE1qrmYVkhoa1N6`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+  "offset": 1596,
+  "limit": 30
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d3999a21-0914-40f6-afdd-8951e6461b5c",
+  "uuid": "a0f87397-705d-4589-aec8-4624c41e273d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014aMxz6zYrLzEaEdZa1pNCx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11296,
+      "cache_read_input_tokens": 25288,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11296
+      },
+      "output_tokens": 30,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-23T20:39:59.138Z_
+
+<details><summary>↩ Tool result · `toolu_012t9XEvHxE1qrmYVkhoa1N6`</summary>
+
+```text
+1596	\begin{table}[t]
+1597	\centering
+1598	\small
+1599	\caption{Cross-scale and cross-family comparison ($N{=}8$, $T{=}1.0$). Hdr.\ = oracle $-$ greedy (pp). Degen.: instance degeneracy (\%). $^\star$Qwen2.5; unmarked: Qwen3. $^\dagger$Not computed. $^\ddagger$200-instance subset; 10.1\% parse failures excluded.}
+1600	\label{tab:scale_comparison}
+1601	\resizebox{\columnwidth}{!}{%
+1602	\begin{tabular}{@{}llccccccc@{}}
+1603	\toprule
+1604	Dataset & Regime & Greedy & Hdr. & Degen. & VC & SJ & FK & LP \\
+1605	\midrule
+1606	SciERC & 8B FT  & .667 & 11.4 & 12.2 & .326 & .324 & .177 & .159 \\
+1607	       & 72B ZS$^\star$ & .399 & 15.0 & 21.0 & .277 & .217 & .227 & .081 \\
+1608	\midrule
+1609	Few-NERD & 7B FT$^\star$ & .784 & 9.2 & 31.7 & .404 & .388 & .315 & .346 \\
+1610	         & 8B FT & .748 & 12.4 & 13.0 & .386 & .300 & .313 & .220 \\
+1611	         & 14B FT & .798 & 8.1 & ---$^\dagger$ & ---$^\dagger$ & ---$^\dagger$ & ---$^\dagger$ & ---$^\dagger$ \\
+1612	         & 72B ZS$^\star$ & .628 & ---$^\dagger$ & 46.2 & .416 & .345 & ---$^\dagger$ & .119 \\
+1613	         & GPT-5.5 ZS$^\ddagger$ & .638 & 8.2 & 50.0 & ---$^\dagger$ & .346 & ---$^\dagger$ & ---$^\dagger$ \\
+1614	\midrule
+1615	CoNLL  & 8B FT  & .908 & ${\approx}$4 & 61.7 & .424 & .436 & .400 & .302 \\
+1616	       & 72B ZS$^\star$ & .712 & 5.3 & 67.7 & .297 & .304 & .302 & $-$.002 \\
+1617	\bottomrule
+1618	\end{tabular}}
+1619	\end{table}
+1620	
+1621	LP $\rho$ drops without fine-tuning (Table~\ref{tab:scale_comparison}) and LP selection fails on all 72B zero-shot datasets. Structural signals generalize better (Few-NERD VC $\rho{=}0.416$). Degeneracy increases at 72B (Few-NERD: $46.2$\% vs.\ $13.0$\%; CoNLL: $67.7$\% vs.\ $61.7$\%); the gap persists under this specific 72B zero-shot configuration, though scale, training regime, and quantization effects are confounded (see Limitations).
+1622	LP-weighted construction yields $+1.53$\,pp on SciERC 72B ZS ($p{=}0.008$, CI [$+0.25$, $+2.82$]), recovering $10.2$\% of headroom. Construction fails on Few-NERD ($-0.20$\,pp) and CoNLL ($-0.37$\,pp) where degeneracy exceeds $46$\%---consistent with FT-regime degeneracy gating.
+1623	
+1624	\paragraph{Few-shot demonstrations improve QE but not construction.}
+1625	Adding 3-shot demonstrations to 72B improves greedy on SciERC and CoNLL ($+3.3$--$6.2$\,pp) but not Few-NERD ($-0.9$\,pp), and strengthens structural QE (CoNLL SJ $\rho$ $.304{\to}.442$, LP $-.002{\to}.106$). Yet construction is ineffective across all three datasets (SciERC $-0.08$\,pp, CoNLL $+0.03$\,pp, Few-NERD $+0.02$\,pp; all n.s.). On SciERC, this failure despite low degeneracy shows the bottleneck is regime-dependent (Appendix~\ref{app:fs_error}); on Few-NERD, high FS degeneracy ($45.2$\%) places it in the expected failure regime.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d3999a21-0914-40f6-afdd-8951e6461b5c",
+  "uuid": "fb43a388-982e-4386-a59d-9a683191f8e3",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+      "content": "\\begin{table}[t]\n\\centering\n\\small\n\\caption{Cross-scale and cross-family comparison ($N{=}8$, $T{=}1.0$). Hdr.\\ = oracle $-$ greedy (pp). Degen.: instance degeneracy (\\%). $^\\star$Qwen2.5; unmarked: Qwen3. $^\\dagger$Not computed. $^\\ddagger$200-instance subset; 10.1\\% parse failures excluded.}\n\\label{tab:scale_comparison}\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{@{}llccccccc@{}}\n\\toprule\nDataset & Regime & Greedy & Hdr. & Degen. & VC & SJ & FK & LP \\\\\n\\midrule\nSciERC & 8B FT  & .667 & 11.4 & 12.2 & .326 & .324 & .177 & .159 \\\\\n       & 72B ZS$^\\star$ & .399 & 15.0 & 21.0 & .277 & .217 & .227 & .081 \\\\\n\\midrule\nFew-NERD & 7B FT$^\\star$ & .784 & 9.2 & 31.7 & .404 & .388 & .315 & .346 \\\\\n         & 8B FT & .748 & 12.4 & 13.0 & .386 & .300 & .313 & .220 \\\\\n         & 14B FT & .798 & 8.1 & ---$^\\dagger$ & ---$^\\dagger$ & ---$^\\dagger$ & ---$^\\dagger$ & ---$^\\dagger$ \\\\\n         & 72B ZS$^\\star$ & .628 & ---$^\\dagger$ & 46.2 & .416 & .345 & ---$^\\dagger$ & .119 \\\\\n         & GPT-5.5 ZS$^\\ddagger$ & .638 & 8.2 & 50.0 & ---$^\\dagger$ & .346 & ---$^\\dagger$ & ---$^\\dagger$ \\\\\n\\midrule\nCoNLL  & 8B FT  & .908 & ${\\approx}$4 & 61.7 & .424 & .436 & .400 & .302 \\\\\n       & 72B ZS$^\\star$ & .712 & 5.3 & 67.7 & .297 & .304 & .302 & $-$.002 \\\\\n\\bottomrule\n\\end{tabular}}\n\\end{table}\n\nLP $\\rho$ drops without fine-tuning (Table~\\ref{tab:scale_comparison}) and LP selection fails on all 72B zero-shot datasets. Structural signals generalize better (Few-NERD VC $\\rho{=}0.416$). Degeneracy increases at 72B (Few-NERD: $46.2$\\% vs.\\ $13.0$\\%; CoNLL: $67.7$\\% vs.\\ $61.7$\\%); the gap persists under this specific 72B zero-shot configuration, though scale, training regime, and quantization effects are confounded (see Limitations).\nLP-weighted construction yields $+1.53$\\,pp on SciERC 72B ZS ($p{=}0.008$, CI [$+0.25$, $+2.82$]), recovering $10.2$\\% of headroom. Construction fails on Few-NERD ($-0.20$\\,pp) and CoNLL ($-0.37$\\,pp) where degeneracy exceeds $46$\\%---consistent with FT-regime degeneracy gating.\n\n\\paragraph{Few-shot demonstrations improve QE but not construction.}\nAdding 3-shot demonstrations to 72B improves greedy on SciERC and CoNLL ($+3.3$--$6.2$\\,pp) but not Few-NERD ($-0.9$\\,pp), and strengthens structural QE (CoNLL SJ $\\rho$ $.304{\\to}.442$, LP $-.002{\\to}.106$). Yet construction is ineffective across all three datasets (SciERC $-0.08$\\,pp, CoNLL $+0.03$\\,pp, Few-NERD $+0.02$\\,pp; all n.s.). On SciERC, this failure despite low degeneracy shows the bottleneck is regime-dependent (Appendix~\\ref{app:fs_error}); on Few-NERD, high FS degeneracy ($45.2$\\%) places it in the expected failure regime.",
+      "numLines": 30,
+      "startLine": 1596,
+      "totalLines": 2569
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22_
+
+<details open><summary>🔧 Tool call — Read · `toolu_017hfZUu9a5ZnC4V7HWen4XD`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+  "offset": 1920,
+  "limit": 20
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d3999a21-0914-40f6-afdd-8951e6461b5c",
+  "uuid": "196e90cc-e634-4478-875c-e3fe2d404872",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014aMxz6zYrLzEaEdZa1pNCx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11296,
+      "cache_read_input_tokens": 25288,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11296
+      },
+      "output_tokens": 30,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-23T20:39:59.737Z_
+
+<details><summary>↩ Tool result · `toolu_017hfZUu9a5ZnC4V7HWen4XD`</summary>
+
+```text
+1920	Greedy & --- & --- & 0.627 & --- \\
+1921	Oracle & --- & --- & 0.763 & --- \\
+1922	\bottomrule
+1923	\end{tabular}
+1924	\end{table}
+1925	
+1926	The $\rho$ ranking at 3B (VC $>$ SJ $>$ EM $>$ FK $\approx$ LP) preserves the structural-over-LP ordering from 8B (Table~\ref{tab:quality_estimation}); ranking stability holds across two model families spanning 3B--8B.
+1927	AUROC rankings differ (EM $>$ VC $>$ SJ $>$ FK $>$ LP), consistent with the $\rho$--AUROC dissociation noted in the main text.
+1928	Despite 13.63~pp of oracle headroom, no signal achieves significant selection improvement (best: SJ, $+0.61$~pp, $p{=}0.175$); VC, the strongest QE signal, yields the worst selection ($-1.54$~pp), consistent with the correlation-selection gap observed at larger scales.
+1929	
+1930	\section{Few-NERD Full Results}\label{app:fewnerd}
+1931	
+1932	Table~\ref{tab:fewnerd_full} reports the complete Few-NERD INTRA coarse evaluation (Qwen3-8B, LoRA rank${=}32$, 3 epochs, $N{=}8$, $T{=}1.0$).
+1933	After gold-filtering (removing instances with no gold entities), the evaluation set contains $n{=}32{,}565$ instances across 8 coarse entity types; 11.9\% receive zero F1 under greedy decoding.
+1934	Instance degeneracy is 13.0\% (vs.\ 12.2\% on SciERC, 61.7\% on CoNLL).
+1935	
+1936	\begin{table}[t]
+1937	\centering
+1938	\small
+1939	\caption{Few-NERD INTRA coarse: complete quality estimation and selection results (Qwen3-8B, $N{=}8$, $T{=}1.0$, gold-filtered $n{=}32{,}565$). $\rho$: Spearman correlation with instance F1. Sample AUROC: per-sample LP discrimination. Sel.\ $\Delta$: selection F1 minus greedy (0.748). CI: bootstrap 95\% confidence interval.}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d3999a21-0914-40f6-afdd-8951e6461b5c",
+  "uuid": "68b6fe0c-2305-46f7-b34e-faf8e5c0fa49",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+      "content": "Greedy & --- & --- & 0.627 & --- \\\\\nOracle & --- & --- & 0.763 & --- \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nThe $\\rho$ ranking at 3B (VC $>$ SJ $>$ EM $>$ FK $\\approx$ LP) preserves the structural-over-LP ordering from 8B (Table~\\ref{tab:quality_estimation}); ranking stability holds across two model families spanning 3B--8B.\nAUROC rankings differ (EM $>$ VC $>$ SJ $>$ FK $>$ LP), consistent with the $\\rho$--AUROC dissociation noted in the main text.\nDespite 13.63~pp of oracle headroom, no signal achieves significant selection improvement (best: SJ, $+0.61$~pp, $p{=}0.175$); VC, the strongest QE signal, yields the worst selection ($-1.54$~pp), consistent with the correlation-selection gap observed at larger scales.\n\n\\section{Few-NERD Full Results}\\label{app:fewnerd}\n\nTable~\\ref{tab:fewnerd_full} reports the complete Few-NERD INTRA coarse evaluation (Qwen3-8B, LoRA rank${=}32$, 3 epochs, $N{=}8$, $T{=}1.0$).\nAfter gold-filtering (removing instances with no gold entities), the evaluation set contains $n{=}32{,}565$ instances across 8 coarse entity types; 11.9\\% receive zero F1 under greedy decoding.\nInstance degeneracy is 13.0\\% (vs.\\ 12.2\\% on SciERC, 61.7\\% on CoNLL).\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Few-NERD INTRA coarse: complete quality estimation and selection results (Qwen3-8B, $N{=}8$, $T{=}1.0$, gold-filtered $n{=}32{,}565$). $\\rho$: Spearman correlation with instance F1. Sample AUROC: per-sample LP discrimination. Sel.\\ $\\Delta$: selection F1 minus greedy (0.748). CI: bootstrap 95\\% confidence interval.}",
+      "numLines": 20,
+      "startLine": 1920,
+      "totalLines": 2569
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 24_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me analyze the data:
+
+1. **Registry data**: Only has exp_freeform_seed456, which shows NER greedy=0.6205 (single seed). This doesn't directly give me the oracle/greedy baselines I need.
+
+2. **Appendix tab:scale_comparison (line 1606)**: SciERC 8B FT, Greedy=.667, Hdr.=11.4, Degen.=12.2
+
+3. **Table body in single_signal.tex**: Oracle=0.775±0.001, Greedy=0.645±0.001
+   
+4. **Caption in single_signal.tex**: Oracle=0.781, Greedy=0.667
+
+So there's a discrepancy between the caption and body numbers. The old experiments used Oracle=0.775 and Greedy=0.645 with 13.0pp headroom, but the current paper's caption shows Oracle=0.781 and Greedy=0.667 with 11.4pp headroom—which matches the appendix scale_comparison table. The body still reports the older values with the larger headroom gap.
+
+I need to track down the actual results files on the server to determine which numbers are correct, and also investigate what changed with the SciERC AUROC rankings where EM dropped from .749 to .631 and the ordering shifted to SJ > VC > EM.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d3999a21-0914-40f6-afdd-8951e6461b5c",
+  "uuid": "ea5fbb07-1cf0-48e3-8914-9019e365765f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EVCVxdXfDZr2toA1q2NZBx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4484,
+      "cache_read_input_tokens": 36584,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4484
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 25_
+
+需要查看 QE 表和服务器上的原始数据。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d3999a21-0914-40f6-afdd-8951e6461b5c",
+  "uuid": "bd38c19f-3302-4f72-bbf7-87124ad0ffb4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EVCVxdXfDZr2toA1q2NZBx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4484,
+      "cache_read_input_tokens": 36584,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4484
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01Vv2z3TJ18Tp5PvssR9jbeV`</summary>
+
+```json
+{
+  "pattern": "tab:quality_estimation|AUROC.*SciERC|SciERC.*AUROC|0\\.749|0\\.631|0\\.692|0\\.684",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections",
+  "output_mode": "content",
+  "-n": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d3999a21-0914-40f6-afdd-8951e6461b5c",
+  "uuid": "83bfb9aa-87f3-4126-bda5-0df9d52c57a6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EVCVxdXfDZr2toA1q2NZBx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4484,
+      "cache_read_input_tokens": 36584,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4484
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-23T20:40:21.594Z_
+
+<details><summary>↩ Tool result · `toolu_01Vv2z3TJ18Tp5PvssR9jbeV`</summary>
+
+```text
+docs/paper/sections/mechanistic.tex:21:A logistic regression on mean-pooled final-layer hidden states at entity spans achieves AUROC $0.636$ (Few-NERD), $0.882$ (CoNLL), $0.630$ (SciERC), evaluated with GroupKFold CV (5-fold ${\times}$ 3 seeds, groups${=}$source instance to prevent entity-level leakage; Appendix~\ref{app:hidden_probe}).
+docs/paper/sections/_archived/experiments_OLD.tex:26:\label{tab:quality_estimation}
+docs/paper/sections/_archived/experiments_OLD.tex:43:Table~\ref{tab:quality_estimation} presents $\rho$ and AUROC for five signals across tasks and models ($\varepsilon$-free; $\varepsilon{=}0.05$ applies to selection only, stable across $[0, 0.2]$, Appendix~\ref{app:epsilon_robustness}).
+docs/paper/sections/_archived/experiments_OLD.tex:58:Cross-instance $\rho$ (Table~\ref{tab:quality_estimation}) is attenuated by varying instance difficulty; within-instance $\rho$ directly measures whether LP discriminates candidates for a fixed input, making it the relevant predictor of selection success.
+docs/paper/sections/single_signal.tex:7:Cross-instance $\rho$ (Table~\ref{tab:quality_estimation}) is attenuated by varying instance difficulty; within-instance $\rho$ directly measures whether LP discriminates candidates for a fixed input, making it the relevant predictor of selection success.
+docs/paper/sections/appendix.tex:83:LLaMA CoNLL exhibits the most uniform scaling: all four consistency signals gain $\Delta\rho{\approx}{+}0.042$ (range: $+0.039$ to $+0.044$) while LP gains only $+0.004$ (Table~\ref{tab:quality_estimation}).
+docs/paper/sections/appendix.tex:91:On CoNLL, the gap across model families is minimal (Table~\ref{tab:quality_estimation}): SJ achieves $\rho{=}0.431$ (LLaMA) vs.\ 0.436 (Qwen), $\Delta{=}0.005$.
+docs/paper/sections/appendix.tex:627:A logistic regression on mean-pooled final-layer hidden states at entity spans achieves AUROC $0.636$ (Few-NERD), $0.882$ (CoNLL), $0.630$ (SciERC), evaluated with GroupKFold CV (5-fold ${\times}$ 3 seeds, groups${=}$source instance to prevent entity-level leakage; \S\ref{app:hidden_probe}).
+docs/paper/sections/appendix.tex:1378:Quality estimation under free-form decoding yields SJ $\rho{=}0.461$, EM $\rho{=}0.471$, LP $\rho{=}0.326$, comparable to constrained results (Table~\ref{tab:quality_estimation}).
+docs/paper/sections/appendix.tex:1411:Fail 1 seed & 62 & 2.32 & 0.692 & $-$0.239 \\
+docs/paper/sections/appendix.tex:1830:\caption{Cross-dataset OOD quality estimation (Spearman $\rho$, Qwen3-8B, $N{=}8$, $T{=}1.0$, seed${=}42$). SciERC$\to$CoNLL: SciERC-trained model on CoNLL instances ($n{=}2756$). CoNLL$\to$SciERC: CoNLL-trained model on SciERC instances ($n{=}529$, excluded from conclusions due to catastrophic model failure). In-domain $\rho$ from Table~\ref{tab:quality_estimation} (same model, same seed). \textsuperscript{***}$p{<}0.001$, \textsuperscript{*}$p{<}0.05$.}
+docs/paper/sections/appendix.tex:1850:When the SciERC-trained model (6 NER types) is applied to CoNLL (4 types), all signals remain significant ($p{<}0.001$) and structural signals improve over their in-domain levels (same model, seed${=}42$, $N{=}8$; in-domain $\rho$ from Table~\ref{tab:quality_estimation}): VC reaches $\rho{=}0.469$ (in-domain $0.379$, $\Delta{=}{+}0.090$), SJ $\rho{=}0.378$ (in-domain $0.360$, $\Delta{=}{+}0.018$), and FK $\rho{=}0.285$ (in-domain $0.267$, $\Delta{=}{+}0.018$).
+docs/paper/sections/appendix.tex:1897:VerbConf achieves higher $\rho$ than LP on both datasets (SciERC: 0.297 vs.\ 0.205; CoNLL: 0.337 vs.\ 0.316) and competitive AUROC (SciERC: 0.681 vs.\ 0.578; CoNLL: 0.747 vs.\ 0.753), yet yields the worst selection among all signals ($\Delta{=}{-}2.45$~pp on SciERC, $-1.93$~pp on CoNLL).
+docs/paper/sections/appendix.tex:1926:The $\rho$ ranking at 3B (VC $>$ SJ $>$ EM $>$ FK $\approx$ LP) preserves the structural-over-LP ordering from 8B (Table~\ref{tab:quality_estimation}); ranking stability holds across two model families spanning 3B--8B.
+docs/paper/sections/introduction.tex:6:Using NER (four datasets, primarily 7--14B fine-tuned; tentative cross-scale observations to 72B) and RE as case studies, we identify a \textbf{correlation-selection gap}: quality estimation signals predict output quality ($\rho$ up to $0.45$, AUROC $0.82$; Table~\ref{tab:quality_estimation}), yet selection yields no detectable gains---MV ${<}1$\,pp even at $N{=}64$ (Figure~\ref{fig:n_scaling}; Table~\ref{tab:selection}).
+docs/paper/sections/introduction.tex:19:[Omitted long matching line]
+docs/paper/sections/experiments_main.tex:30:\label{tab:quality_estimation}
+docs/paper/sections/experiments_main.tex:47:Table~\ref{tab:quality_estimation} presents $\rho$ and AUROC for five signals across tasks and models.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d3999a21-0914-40f6-afdd-8951e6461b5c",
+  "uuid": "72da71db-099c-4f1b-8610-f5fe1e2ff3a4",
+  "tool_use_result": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "docs/paper/sections/mechanistic.tex:21:A logistic regression on mean-pooled final-layer hidden states at entity spans achieves AUROC $0.636$ (Few-NERD), $0.882$ (CoNLL), $0.630$ (SciERC), evaluated with GroupKFold CV (5-fold ${\\times}$ 3 seeds, groups${=}$source instance to prevent entity-level leakage; Appendix~\\ref{app:hidden_probe}).\ndocs/paper/sections/_archived/experiments_OLD.tex:26:\\label{tab:quality_estimation}\ndocs/paper/sections/_archived/experiments_OLD.tex:43:Table~\\ref{tab:quality_estimation} presents $\\rho$ and AUROC for five signals across tasks and models ($\\varepsilon$-free; $\\varepsilon{=}0.05$ applies to selection only, stable across $[0, 0.2]$, Appendix~\\ref{app:epsilon_robustness}).\ndocs/paper/sections/_archived/experiments_OLD.tex:58:Cross-instance $\\rho$ (Table~\\ref{tab:quality_estimation}) is attenuated by varying instance difficulty; within-instance $\\rho$ directly measures whether LP discriminates candidates for a fixed input, making it the relevant predictor of selection success.\ndocs/paper/sections/single_signal.tex:7:Cross-instance $\\rho$ (Table~\\ref{tab:quality_estimation}) is attenuated by varying instance difficulty; within-instance $\\rho$ directly measures whether LP discriminates candidates for a fixed input, making it the relevant predictor of selection success.\ndocs/paper/sections/appendix.tex:83:LLaMA CoNLL exhibits the most uniform scaling: all four consistency signals gain $\\Delta\\rho{\\approx}{+}0.042$ (range: $+0.039$ to $+0.044$) while LP gains only $+0.004$ (Table~\\ref{tab:quality_estimation}).\ndocs/paper/sections/appendix.tex:91:On CoNLL, the gap across model families is minimal (Table~\\ref{tab:quality_estimation}): SJ achieves $\\rho{=}0.431$ (LLaMA) vs.\\ 0.436 (Qwen), $\\Delta{=}0.005$.\ndocs/paper/sections/appendix.tex:627:A logistic regression on mean-pooled final-layer hidden states at entity spans achieves AUROC $0.636$ (Few-NERD), $0.882$ (CoNLL), $0.630$ (SciERC), evaluated with GroupKFold CV (5-fold ${\\times}$ 3 seeds, groups${=}$source instance to prevent entity-level leakage; \\S\\ref{app:hidden_probe}).\ndocs/paper/sections/appendix.tex:1378:Quality estimation under free-form decoding yields SJ $\\rho{=}0.461$, EM $\\rho{=}0.471$, LP $\\rho{=}0.326$, comparable to constrained results (Table~\\ref{tab:quality_estimation}).\ndocs/paper/sections/appendix.tex:1411:Fail 1 seed & 62 & 2.32 & 0.692 & $-$0.239 \\\\\ndocs/paper/sections/appendix.tex:1830:\\caption{Cross-dataset OOD quality estimation (Spearman $\\rho$, Qwen3-8B, $N{=}8$, $T{=}1.0$, seed${=}42$). SciERC$\\to$CoNLL: SciERC-trained model on CoNLL instances ($n{=}2756$). CoNLL$\\to$SciERC: CoNLL-trained model on SciERC instances ($n{=}529$, excluded from conclusions due to catastrophic model failure). In-domain $\\rho$ from Table~\\ref{tab:quality_estimation} (same model, same seed). \\textsuperscript{***}$p{<}0.001$, \\textsuperscript{*}$p{<}0.05$.}\ndocs/paper/sections/appendix.tex:1850:When the SciERC-trained model (6 NER types) is applied to CoNLL (4 types), all signals remain significant ($p{<}0.001$) and structural signals improve over their in-domain levels (same model, seed${=}42$, $N{=}8$; in-domain $\\rho$ from Table~\\ref{tab:quality_estimation}): VC reaches $\\rho{=}0.469$ (in-domain $0.379$, $\\Delta{=}{+}0.090$), SJ $\\rho{=}0.378$ (in-domain $0.360$, $\\Delta{=}{+}0.018$), and FK $\\rho{=}0.285$ (in-domain $0.267$, $\\Delta{=}{+}0.018$).\ndocs/paper/sections/appendix.tex:1897:VerbConf achieves higher $\\rho$ than LP on both datasets (SciERC: 0.297 vs.\\ 0.205; CoNLL: 0.337 vs.\\ 0.316) and competitive AUROC (SciERC: 0.681 vs.\\ 0.578; CoNLL: 0.747 vs.\\ 0.753), yet yields the worst selection among all signals ($\\Delta{=}{-}2.45$~pp on SciERC, $-1.93$~pp on CoNLL).\ndocs/paper/sections/appendix.tex:1926:The $\\rho$ ranking at 3B (VC $>$ SJ $>$ EM $>$ FK $\\approx$ LP) preserves the structural-over-LP ordering from 8B (Table~\\ref{tab:quality_estimation}); ranking stability holds across two model families spanning 3B--8B.\ndocs/paper/sections/introduction.tex:6:Using NER (four datasets, primarily 7--14B fine-tuned; tentative cross-scale observations to 72B) and RE as case studies, we identify a \\textbf{correlation-selection gap}: quality estimation signals predict output quality ($\\rho$ up to $0.45$, AUROC $0.82$; Table~\\ref{tab:quality_estimation}), yet selection yields no detectable gains---MV ${<}1$\\,pp even at $N{=}64$ (Figure~\\ref{fig:n_scaling}; Table~\\ref{tab:selection}).\ndocs/paper/sections/introduction.tex:19:[Omitted long matching line]\ndocs/paper/sections/experiments_main.tex:30:\\label{tab:quality_estimation}\ndocs/paper/sections/experiments_main.tex:47:Table~\\ref{tab:quality_estimation} presents $\\rho$ and AUROC for five signals across tasks and models.",
+    "numLines": 18
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01BsHdj1W1eRe3vtj1un93VE`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "find /root/autodl-tmp/struct_self_consist_ie/artifacts/ -name \"*.json\" -path \"*selection*\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d3999a21-0914-40f6-afdd-8951e6461b5c",
+  "uuid": "5478903c-bfe6-4ecd-8a5e-66b1d3d38b40",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EVCVxdXfDZr2toA1q2NZBx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4484,
+      "cache_read_input_tokens": 36584,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4484
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01BnaNutVPFDwHkuoSHrcnxF`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "find /root/autodl-tmp/struct_self_consist_ie/results/ -name \"*.json\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d3999a21-0914-40f6-afdd-8951e6461b5c",
+  "uuid": "eed9147b-bd96-4e3e-b894-e872d874b1e1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EVCVxdXfDZr2toA1q2NZBx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4484,
+      "cache_read_input_tokens": 36584,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4484
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-23T20:40:24.602Z_
+
+<details><summary>↩ Tool result · `toolu_01BsHdj1W1eRe3vtj1un93VE`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.1}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d3999a21-0914-40f6-afdd-8951e6461b5c",
+  "uuid": "f7eb0016-8dd8-421b-9754-ab9e46a8ce65",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.1}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.1}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01LBok6K91XLvC9FYeccoF2V`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments_main.tex",
+  "offset": 1,
+  "limit": 120
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d3999a21-0914-40f6-afdd-8951e6461b5c",
+  "uuid": "d39cedce-8727-445d-b186-6569341e2827",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EVCVxdXfDZr2toA1q2NZBx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4484,
+      "cache_read_input_tokens": 36584,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4484
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-23T20:40:25.019Z_
+
+<details><summary>↩ Tool result · `toolu_01BnaNutVPFDwHkuoSHrcnxF`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/results/exp_freeform_ablation/run_summary.json\\n/root/autodl-tmp/struct_self_consist_ie/results/exp_freeform_ablation/ablation_report.json\\n/root/autodl-tmp/struct_self_consist_ie/results/exp_freeform_ablation/deep_analysis_results.json\\n/root/autodl-tmp/struct_self_consist_ie/results/exp_freeform_ablation_seed123/run_summary.json\\n/root/autodl-tmp/struct_self_consist_ie/results/exp_freeform_ablation_seed123/ablation_report.json\\n/root/autodl-tmp/struct_self_consist_ie/results/exp_freeform_ablation_seed456/run_summary.json\\n/root/autodl-tmp/struct_self_consist_ie/results/exp_freeform_ablation_seed456/ablation_report.json\\n/root/autodl-tmp/struct_self_consist_ie/results/exp_freeform_ablation_seed789/run_summary.json\\n/root/autodl-tmp/struct_self_consist_ie/results/exp_freeform_ablation_seed789/ablation_report.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d3999a21-0914-40f6-afdd-8951e6461b5c",
+  "uuid": "add7c5f7-3817-4de5-8dc8-6acbb219e9e2",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/results/exp_freeform_ablation/run_summary.json\\\\n/root/autodl-tmp/struct_self_consist_ie/results/exp_freeform_ablation/ablation_report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/results/exp_freeform_ablation/deep_analysis_results.json\\\\n/root/autodl-tmp/struct_self_consist_ie/results/exp_freeform_ablation_seed123/run_summary.json\\\\n/root/autodl-tmp/struct_self_consist_ie/results/exp_freeform_ablation_seed123/ablation_report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/results/exp_freeform_ablation_seed456/run_summary.json\\\\n/root/autodl-tmp/struct_self_consist_ie/results/exp_freeform_ablation_seed456/ablation_report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/results/exp_freeform_ablation_seed789/run_summary.json\\\\n/root/autodl-tmp/struct_self_consist_ie/results/exp_freeform_ablation_seed789/ablation_report.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/results/exp_freeform_ablation/run_summary.json\\n/root/autodl-tmp/struct_self_consist_ie/results/exp_freeform_ablation/ablation_report.json\\n/root/autodl-tmp/struct_self_consist_ie/results/exp_freeform_ablation/deep_analysis_results.json\\n/root/autodl-tmp/struct_self_consist_ie/results/exp_freeform_ablation_seed123/run_summary.json\\n/root/autodl-tmp/struct_self_consist_ie/results/exp_freeform_ablation_seed123/ablation_report.json\\n/root/autodl-tmp/struct_self_consist_ie/results/exp_freeform_ablation_seed456/run_summary.json\\n/root/autodl-tmp/struct_self_consist_ie/results/exp_freeform_ablation_seed456/ablation_report.json\\n/root/autodl-tmp/struct_self_consist_ie/results/exp_freeform_ablation_seed789/run_summary.json\\n/root/autodl-tmp/struct_self_consist_ie/results/exp_freeform_ablation_seed789/ablation_report.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-23T20:40:25.026Z_
+
+<details><summary>↩ Tool result · `toolu_01LBok6K91XLvC9FYeccoF2V`</summary>
+
+```text
+1	\section{Experiments}\label{sec:experiments}
+2	
+3	\subsection{Experimental Setup}\label{sec:setup}
+4	
+5	\paragraph{Datasets.}
+6	We evaluate on four English NER benchmarks spanning a difficulty gradient.
+7	\textbf{SciERC} \cite{luan2018scierc} (551 test instances, 6 entity types) is the primary medium-difficulty test bed (${\approx}$65\% F1).
+8	\textbf{Few-NERD} \cite{ding2021fewnerd} (INTRA coarse; 37{,}648 instances, 8 entity types, ${\approx}$75\% F1) provides a low-degeneracy contrast where LP selection succeeds (\S\ref{sec:selection_gap}).
+9	\textbf{CoNLL-2003} \cite{tjongkimsang2003conll} (3{,}453 test sentences, 4 entity types, ${\approx}$91\% F1) serves as a ceiling-effect control.
+10	\textbf{WNUT-17} \cite{derczynski2017wnut} (1{,}287 social media instances, 53.7\% zero F1) probes the signal-collapse boundary.
+11	
+12	\paragraph{Models and sampling.}
+13	\textbf{Qwen3-8B} and \textbf{LLaMA-3.1-8B-Instruct} are LoRA fine-tuned using LLaMA Factory \cite{zheng2024llamafactory} (Appendix~\ref{app:training}; Few-NERD uses 3 epochs vs.\ 5 for others; Appendix~\ref{app:epoch_confound}).
+14	$N{=}8$ samples at $T{=}1.0$ (primary) with vLLM constrained decoding \cite{willard2023guided}; $N {\in} \{16, 32, 64\}$ for scaling (Figure~\ref{fig:n_scaling}; Appendix~\ref{app:n_scaling}).
+15	
+16	\begin{figure}[t]
+17	\centering
+18	\includegraphics[width=\columnwidth]{figures/fig_n_scaling_mv.pdf}
+19	\caption{MV $\Delta$F1 vs.\ $\log_2 N$ across three datasets (Qwen3-8B FT, seed${=}42$). Dotted gray: $\Delta{=}0$. Gains are dataset-dependent: persistently negative on Few-NERD, near zero on SciERC at higher $N$, marginally positive on CoNLL ($+0.6$\,pp at $N{=}64$).}
+20	\label{fig:n_scaling}
+21	\end{figure}
+22	
+23	%% ============================================================
+24	\subsection{Quality Estimation Results}\label{sec:qe_results}
+25	
+26	\begin{table*}[t]
+27	\centering
+28	\small
+29	\caption{NER quality estimation ($\rho$ and AUROC; $N{=}8$, primary seed${=}42$; 5-seed $\sigma{\leq}0.026$ in Table~\ref{tab:multiseed}). AUROC binarizes at per-dataset median F1. Best in \textbf{bold}. RE in Appendix~\ref{app:re_extension}; $N{=}16$ in Table~\ref{tab:robustness}.}
+30	\label{tab:quality_estimation}
+31	\begin{tabular}{ll cc cc cc}
+32	\toprule
+33	& & \multicolumn{2}{c}{\textbf{SciERC}} & \multicolumn{2}{c}{\textbf{CoNLL (Qwen)}} & \multicolumn{2}{c}{\textbf{CoNLL (LLaMA)}} \\
+34	\cmidrule(lr){3-4} \cmidrule(lr){5-6} \cmidrule(lr){7-8}
+35	Signal & Family & $\rho$ & AUC & $\rho$ & AUC & $\rho$ & AUC \\
+36	\midrule
+37	VC & Structural & \textbf{.379} & .684 & .424 & .789 & .426 & .709 \\
+38	SJ  & Structural & .360 & \textbf{.692} & .436 & .801 & \textbf{.431} & .704 \\
+39	FK & Surface & .267 & .629 & .400 & .774 & .428 & .703 \\
+40	EM  & Surface    & .295 & .631 & \textbf{.451} & \textbf{.816} & \textbf{.431} & .705 \\
+41	\midrule
+42	LP     & Model      & .205 & .578 & .316 & .753 & .307 & \textbf{.761} \\
+43	\bottomrule
+44	\end{tabular}
+45	\end{table*}
+46	
+47	Table~\ref{tab:quality_estimation} presents $\rho$ and AUROC for five signals across tasks and models.
+48	
+49	\paragraph{Signal rankings are difficulty-dependent.}
+50	On SciERC, structural signals lead (VC $\rho{=}0.379$, SJ $0.360$) over LP ($0.205$); bootstrap CIs confirm the gap ($\Delta\rho{=}{+}0.151{\pm}0.006$, 5 seeds; Appendix~\ref{app:bootstrap_signal}).
+51	Under seed-replication Holm--Bonferroni correction ($k{=}5$ seeds), the SJ~${>}$~LP advantage reaches $p_{\text{adj}}{=}0.013$ (Appendix~\ref{app:bootstrap_signal}).
+52	On CoNLL (F1${\approx}$0.91), EM leads both $\rho$ and AUROC ($0.816$).
+53	At the signal-collapse boundary (WNUT-17, F1${\approx}$42\%), full-set correlations are dominated by the zero/non-zero boundary (VC $\rho{=}0.724$ at $N{=}16$, but conditional $\rho{=}0.038$; Table~\ref{tab:wnut}); LP shows the reverse (conditional $\rho{=}0.350$; Figure~\ref{fig:signal_heatmap}).
+54	
+55	%% ============================================================
+56	\subsection{Cross-Dataset Contrast: Few-NERD}\label{sec:fewnerd}
+57	
+58	\begin{table}[t]
+59	\centering
+60	\small
+61	\caption{LP selection across datasets (instance-averaged F1; Qwen3-8B, $N{=}8$, $T{=}1.0$, gold-filtered, 3-seed means). $p$: paired bootstrap.}
+62	\label{tab:fewnerd}
+63	\resizebox{\columnwidth}{!}{%
+64	\begin{tabular}{@{}lrccccr@{}}
+65	\toprule
+66	Dataset & $n$ & Greedy & Degen.\% & LP $\rho$ & LP $\Delta$ & $p$ \\
+67	\midrule
+68	WNUT-17 & 1{,}287 & .452 & 67.9\% & $-$.446 & $-$0.45\,pp & .72 \\
+69	CoNLL & 2{,}756 & .908 & 61.7\% & .302 & $-$0.85\,pp & 1.0 \\
+70	SciERC & 529 & .663 & 12.2\% & .159 & $+$0.61\,pp & .193 \\
+71	Few-NERD & 32{,}565 & .748 & 13.0\% & .220 & $\mathbf{+1.39}$\,pp & ${<}.001$ \\
+72	\bottomrule
+73	\end{tabular}}
+74	\end{table}
+75	
+76	Few-NERD (Table~\ref{tab:fewnerd}) confirms LP selection at low degeneracy ($+1.39$~pp\footnote{Under corpus micro-F1, LP $\Delta{=}+0.09{\pm}0.03$\,pp; the larger instance-averaged gains concentrate on few-entity instances.}, $p{<}0.001$; structural signals degrade: VC $-1.79$, SJ $-2.14$~pp), with LP 50$\times$ more seed-stable ($\sigma{=}0.04$ vs.\ SJ $2.02$~pp), generalizing to LLaMA (Table~\ref{tab:cross_selection}). Training convergence modulates degeneracy (5-epoch: $26$\%, LP $\Delta$ collapses from $+1.39$ to $+0.12$\,pp; Appendix~\ref{app:epoch_confound}).
+77	
+78	Signal ranking is task-specific; per-type analysis shows MV degradation concentrates in low-F1 types ($\rho{=}0.90$, $p{=}0.002$; Appendix~\ref{app:pertype}).
+79	
+80	\paragraph{Degeneracy alone does not predict LP direction.}
+81	Degeneracy does not predict LP gain across 23 configurations ($\rho{=}0.052$, $p{=}0.81$; $n{=}23$, insufficient for reliable correlation---we treat this as supplementary evidence; Figure~\ref{fig:degeneracy_scatter}), though it co-varies with LP within fixed settings ($\rho{=}{-}0.881$; Appendix~\ref{app:per_type_lp}).
+82	
+83	\begin{figure}[t]
+84	\centering
+85	\includegraphics[width=\columnwidth]{figures/fig_degeneracy_lp_scatter.pdf}
+86	\caption{Instance degeneracy vs.\ LP selection gain across 23 configurations ($N{=}8$; $\rho{=}0.052$, $p{=}0.81$). Within Few-NERD per-entity-type ($\rho{=}{-}0.881$; Appendix~\ref{app:per_type_lp}), degeneracy predicts LP gain when alignment is held constant.}
+87	\label{fig:degeneracy_scatter}
+88	\end{figure}
+89	
+90	MV gains range from $-2.71$\,pp (Few-NERD) to $+0.6$\,pp (CoNLL at $N{=}64$; Figure~\ref{fig:n_scaling}); the optimal strategy is dataset-dependent (LP-best $+1.4$\,pp on Few-NERD vs.\ MV $+0.6$\,pp on CoNLL).
+91	The framework extends to RE, where $40$\% zero-F1 from upstream entity span errors creates a distinct failure mode---\textit{diversity among failures} rather than quality-differentiated outputs---despite comparable degeneracy ($10.1$\% vs.\ SciERC NER $12.2$\%; Appendix~\ref{app:re_extension}).
+92	
+93	%% ============================================================
+94	\subsection{Robustness}\label{sec:robustness_main}
+95	
+96	Signal rankings are robust across temperatures, seeds, and $N$ (Table~\ref{tab:robustness}; Appendix~\ref{app:calibration}); Qwen3-4B QE matches 8B ($|\Delta\rho|{=}0.042$).
+97	The gap persists from 4B to 72B zero-shot to GPT-5.5 (\S\ref{sec:scaling}).
+98	
+99	%% ============================================================
+100	\subsection{Entity Construction (Exploratory)}\label{sec:prescriptive}
+101	
+102	\paragraph{Entity-level construction.}
+103	We aggregate entities across samples, retaining those exceeding $\theta{=}2/N$ with LP-weighted scoring ($\theta$ stable in $[0.15, 0.35]$; Appendix~\ref{app:theta_sweep}).
+104	LP-weighted construction yields $+1.40{\pm}0.51$\,pp on Few-NERD (4-seed mean; $p{<}0.001$; Table~\ref{tab:entity_construction}), consistent with favorable diagnostic conditions ($D{=}13$\%, headroom${=}12.4$\,pp), a non-significant $+0.32$\,pp on SciERC, and no gain on CoNLL ($-0.39$\,pp).\footnote{Degenerate instances contribute $\Delta{=}0$ by construction; all gains concentrate in the non-degenerate subset.}
+105	Under per-family Holm--Bonferroni \cite{holm1979simple} correction ($k{=}10$ entity-construction comparisons), $p_{\text{adj}}{=}0.006$; global ($k{=}57$): $p_{\text{adj}}{=}0.055$; the family partition was not pre-registered (Appendix~\ref{app:holm}).
+106	Construction and LP selection are complementary ($\rho_{\text{adj}}$: Few-NERD $0.516$; Table~\ref{tab:cross_selection}).
+107	Training convergence modulates returns: 5-epoch Few-NERD eliminates LP gains (selection: $+1.39{\to}+0.12$\,pp; construction: $+0.88{\to}+0.20$\,pp) as degeneracy rises from $9$\% to $26$\% (Appendix~\ref{app:epoch_confound}).
+108	
+109	\phantomsection\label{sec:selection_results}
+110	
+111	\paragraph{Discussion and conclusion.}\label{sec:discussion}\label{sec:selection_method}\label{sec:conclusion}
+112	For discrete-answer reasoning, sample diversity reflects diverse reasoning paths; for NER, degeneracy ($12$--$68$\%) reduces candidate diversity while signal alignment collapse ($\alpha{\to}0$) limits ranking.
+113	The degeneracy decomposition (\S\ref{sec:theory}) identifies $\alpha$---not degeneracy---as the binding constraint ($8$--$33{\times}$ tighter); this persists across families \cite{yun2025price}, scales (4B--72B), and decoding modes (Appendix~\ref{app:freeform_ablation}).
+114	The diagnostic framework---identifying these co-occurring conditions---is our primary contribution; pretrained Qwen2.5-7B at $N{=}32$ achieves $+3.85$\,pp MV gain where the framework predicts favorable conditions ($D{=}5.4$\%; Appendix~\ref{app:n_scaling}).
+115	At $N{=}8$, high degeneracy ($>50$\%) suggests scaling will not help; low degeneracy with strong LP-F1 alignment may warrant exploratory entity construction; otherwise, greedy decoding remains the default.
+116	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d3999a21-0914-40f6-afdd-8951e6461b5c",
+  "uuid": "b49a5685-7f62-40f2-ba18-e0aa57d2e72e",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments_main.tex",
+      "content": "\\section{Experiments}\\label{sec:experiments}\n\n\\subsection{Experimental Setup}\\label{sec:setup}\n\n\\paragraph{Datasets.}\nWe evaluate on four English NER benchmarks spanning a difficulty gradient.\n\\textbf{SciERC} \\cite{luan2018scierc} (551 test instances, 6 entity types) is the primary medium-difficulty test bed (${\\approx}$65\\% F1).\n\\textbf{Few-NERD} \\cite{ding2021fewnerd} (INTRA coarse; 37{,}648 instances, 8 entity types, ${\\approx}$75\\% F1) provides a low-degeneracy contrast where LP selection succeeds (\\S\\ref{sec:selection_gap}).\n\\textbf{CoNLL-2003} \\cite{tjongkimsang2003conll} (3{,}453 test sentences, 4 entity types, ${\\approx}$91\\% F1) serves as a ceiling-effect control.\n\\textbf{WNUT-17} \\cite{derczynski2017wnut} (1{,}287 social media instances, 53.7\\% zero F1) probes the signal-collapse boundary.\n\n\\paragraph{Models and sampling.}\n\\textbf{Qwen3-8B} and \\textbf{LLaMA-3.1-8B-Instruct} are LoRA fine-tuned using LLaMA Factory \\cite{zheng2024llamafactory} (Appendix~\\ref{app:training}; Few-NERD uses 3 epochs vs.\\ 5 for others; Appendix~\\ref{app:epoch_confound}).\n$N{=}8$ samples at $T{=}1.0$ (primary) with vLLM constrained decoding \\cite{willard2023guided}; $N {\\in} \\{16, 32, 64\\}$ for scaling (Figure~\\ref{fig:n_scaling}; Appendix~\\ref{app:n_scaling}).\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/fig_n_scaling_mv.pdf}\n\\caption{MV $\\Delta$F1 vs.\\ $\\log_2 N$ across three datasets (Qwen3-8B FT, seed${=}42$). Dotted gray: $\\Delta{=}0$. Gains are dataset-dependent: persistently negative on Few-NERD, near zero on SciERC at higher $N$, marginally positive on CoNLL ($+0.6$\\,pp at $N{=}64$).}\n\\label{fig:n_scaling}\n\\end{figure}\n\n%% ============================================================\n\\subsection{Quality Estimation Results}\\label{sec:qe_results}\n\n\\begin{table*}[t]\n\\centering\n\\small\n\\caption{NER quality estimation ($\\rho$ and AUROC; $N{=}8$, primary seed${=}42$; 5-seed $\\sigma{\\leq}0.026$ in Table~\\ref{tab:multiseed}). AUROC binarizes at per-dataset median F1. Best in \\textbf{bold}. RE in Appendix~\\ref{app:re_extension}; $N{=}16$ in Table~\\ref{tab:robustness}.}\n\\label{tab:quality_estimation}\n\\begin{tabular}{ll cc cc cc}\n\\toprule\n& & \\multicolumn{2}{c}{\\textbf{SciERC}} & \\multicolumn{2}{c}{\\textbf{CoNLL (Qwen)}} & \\multicolumn{2}{c}{\\textbf{CoNLL (LLaMA)}} \\\\\n\\cmidrule(lr){3-4} \\cmidrule(lr){5-6} \\cmidrule(lr){7-8}\nSignal & Family & $\\rho$ & AUC & $\\rho$ & AUC & $\\rho$ & AUC \\\\\n\\midrule\nVC & Structural & \\textbf{.379} & .684 & .424 & .789 & .426 & .709 \\\\\nSJ  & Structural & .360 & \\textbf{.692} & .436 & .801 & \\textbf{.431} & .704 \\\\\nFK & Surface & .267 & .629 & .400 & .774 & .428 & .703 \\\\\nEM  & Surface    & .295 & .631 & \\textbf{.451} & \\textbf{.816} & \\textbf{.431} & .705 \\\\\n\\midrule\nLP     & Model      & .205 & .578 & .316 & .753 & .307 & \\textbf{.761} \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table*}\n\nTable~\\ref{tab:quality_estimation} presents $\\rho$ and AUROC for five signals across tasks and models.\n\n\\paragraph{Signal rankings are difficulty-dependent.}\nOn SciERC, structural signals lead (VC $\\rho{=}0.379$, SJ $0.360$) over LP ($0.205$); bootstrap CIs confirm the gap ($\\Delta\\rho{=}{+}0.151{\\pm}0.006$, 5 seeds; Appendix~\\ref{app:bootstrap_signal}).\nUnder seed-replication Holm--Bonferroni correction ($k{=}5$ seeds), the SJ~${>}$~LP advantage reaches $p_{\\text{adj}}{=}0.013$ (Appendix~\\ref{app:bootstrap_signal}).\nOn CoNLL (F1${\\approx}$0.91), EM leads both $\\rho$ and AUROC ($0.816$).\nAt the signal-collapse boundary (WNUT-17, F1${\\approx}$42\\%), full-set correlations are dominated by the zero/non-zero boundary (VC $\\rho{=}0.724$ at $N{=}16$, but conditional $\\rho{=}0.038$; Table~\\ref{tab:wnut}); LP shows the reverse (conditional $\\rho{=}0.350$; Figure~\\ref{fig:signal_heatmap}).\n\n%% ============================================================\n\\subsection{Cross-Dataset Contrast: Few-NERD}\\label{sec:fewnerd}\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{LP selection across datasets (instance-averaged F1; Qwen3-8B, $N{=}8$, $T{=}1.0$, gold-filtered, 3-seed means). $p$: paired bootstrap.}\n\\label{tab:fewnerd}\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{@{}lrccccr@{}}\n\\toprule\nDataset & $n$ & Greedy & Degen.\\% & LP $\\rho$ & LP $\\Delta$ & $p$ \\\\\n\\midrule\nWNUT-17 & 1{,}287 & .452 & 67.9\\% & $-$.446 & $-$0.45\\,pp & .72 \\\\\nCoNLL & 2{,}756 & .908 & 61.7\\% & .302 & $-$0.85\\,pp & 1.0 \\\\\nSciERC & 529 & .663 & 12.2\\% & .159 & $+$0.61\\,pp & .193 \\\\\nFew-NERD & 32{,}565 & .748 & 13.0\\% & .220 & $\\mathbf{+1.39}$\\,pp & ${<}.001$ \\\\\n\\bottomrule\n\\end{tabular}}\n\\end{table}\n\nFew-NERD (Table~\\ref{tab:fewnerd}) confirms LP selection at low degeneracy ($+1.39$~pp\\footnote{Under corpus micro-F1, LP $\\Delta{=}+0.09{\\pm}0.03$\\,pp; the larger instance-averaged gains concentrate on few-entity instances.}, $p{<}0.001$; structural signals degrade: VC $-1.79$, SJ $-2.14$~pp), with LP 50$\\times$ more seed-stable ($\\sigma{=}0.04$ vs.\\ SJ $2.02$~pp), generalizing to LLaMA (Table~\\ref{tab:cross_selection}). Training convergence modulates degeneracy (5-epoch: $26$\\%, LP $\\Delta$ collapses from $+1.39$ to $+0.12$\\,pp; Appendix~\\ref{app:epoch_confound}).\n\nSignal ranking is task-specific; per-type analysis shows MV degradation concentrates in low-F1 types ($\\rho{=}0.90$, $p{=}0.002$; Appendix~\\ref{app:pertype}).\n\n\\paragraph{Degeneracy alone does not predict LP direction.}\nDegeneracy does not predict LP gain across 23 configurations ($\\rho{=}0.052$, $p{=}0.81$; $n{=}23$, insufficient for reliable correlation---we treat this as supplementary evidence; Figure~\\ref{fig:degeneracy_scatter}), though it co-varies with LP within fixed settings ($\\rho{=}{-}0.881$; Appendix~\\ref{app:per_type_lp}).\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/fig_degeneracy_lp_scatter.pdf}\n\\caption{Instance degeneracy vs.\\ LP selection gain across 23 configurations ($N{=}8$; $\\rho{=}0.052$, $p{=}0.81$). Within Few-NERD per-entity-type ($\\rho{=}{-}0.881$; Appendix~\\ref{app:per_type_lp}), degeneracy predicts LP gain when alignment is held constant.}\n\\label{fig:degeneracy_scatter}\n\\end{figure}\n\nMV gains range from $-2.71$\\,pp (Few-NERD) to $+0.6$\\,pp (CoNLL at $N{=}64$; Figure~\\ref{fig:n_scaling}); the optimal strategy is dataset-dependent (LP-best $+1.4$\\,pp on Few-NERD vs.\\ MV $+0.6$\\,pp on CoNLL).\nThe framework extends to RE, where $40$\\% zero-F1 from upstream entity span errors creates a distinct failure mode---\\textit{diversity among failures} rather than quality-differentiated outputs---despite comparable degeneracy ($10.1$\\% vs.\\ SciERC NER $12.2$\\%; Appendix~\\ref{app:re_extension}).\n\n%% ============================================================\n\\subsection{Robustness}\\label{sec:robustness_main}\n\nSignal rankings are robust across temperatures, seeds, and $N$ (Table~\\ref{tab:robustness}; Appendix~\\ref{app:calibration}); Qwen3-4B QE matches 8B ($|\\Delta\\rho|{=}0.042$).\nThe gap persists from 4B to 72B zero-shot to GPT-5.5 (\\S\\ref{sec:scaling}).\n\n%% ============================================================\n\\subsection{Entity Construction (Exploratory)}\\label{sec:prescriptive}\n\n\\paragraph{Entity-level construction.}\nWe aggregate entities across samples, retaining those exceeding $\\theta{=}2/N$ with LP-weighted scoring ($\\theta$ stable in $[0.15, 0.35]$; Appendix~\\ref{app:theta_sweep}).\nLP-weighted construction yields $+1.40{\\pm}0.51$\\,pp on Few-NERD (4-seed mean; $p{<}0.001$; Table~\\ref{tab:entity_construction}), consistent with favorable diagnostic conditions ($D{=}13$\\%, headroom${=}12.4$\\,pp), a non-significant $+0.32$\\,pp on SciERC, and no gain on CoNLL ($-0.39$\\,pp).\\footnote{Degenerate instances contribute $\\Delta{=}0$ by construction; all gains concentrate in the non-degenerate subset.}\nUnder per-family Holm--Bonferroni \\cite{holm1979simple} correction ($k{=}10$ entity-construction comparisons), $p_{\\text{adj}}{=}0.006$; global ($k{=}57$): $p_{\\text{adj}}{=}0.055$; the family partition was not pre-registered (Appendix~\\ref{app:holm}).\nConstruction and LP selection are complementary ($\\rho_{\\text{adj}}$: Few-NERD $0.516$; Table~\\ref{tab:cross_selection}).\nTraining convergence modulates returns: 5-epoch Few-NERD eliminates LP gains (selection: $+1.39{\\to}+0.12$\\,pp; construction: $+0.88{\\to}+0.20$\\,pp) as degeneracy rises from $9$\\% to $26$\\% (Appendix~\\ref{app:epoch_confound}).\n\n\\phantomsection\\label{sec:selection_results}\n\n\\paragraph{Discussion and conclusion.}\\label{sec:discussion}\\label{sec:selection_method}\\label{sec:conclusion}\nFor discrete-answer reasoning, sample diversity reflects diverse reasoning paths; for NER, degeneracy ($12$--$68$\\%) reduces candidate diversity while signal alignment collapse ($\\alpha{\\to}0$) limits ranking.\nThe degeneracy decomposition (\\S\\ref{sec:theory}) identifies $\\alpha$---not degeneracy---as the binding constraint ($8$--$33{\\times}$ tighter); this persists across families \\cite{yun2025price}, scales (4B--72B), and decoding modes (Appendix~\\ref{app:freeform_ablation}).\nThe diagnostic framework---identifying these co-occurring conditions---is our primary contribution; pretrained Qwen2.5-7B at $N{=}32$ achieves $+3.85$\\,pp MV gain where the framework predicts favorable conditions ($D{=}5.4$\\%; Appendix~\\ref{app:n_scaling}).\nAt $N{=}8$, high degeneracy ($>50$\\%) suggests scaling will not help; low degeneracy with strong LP-F1 alignment may warrant exploratory entity construction; otherwise, greedy decoding remains the default.\n",
+      "numLines": 116,
+      "startLine": 1,
+      "totalLines": 116
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 34_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a clear picture. Let me analyze:
+
+**Sub-task 1: Headroom inconsistency**
+
+Looking at the QE table (tab:quality_estimation, experiments_main.tex line 37-42), SciERC AUROC values are:
+- VC: .684
+- SJ: .692
+- FK: .629
+- EM: .631
+- LP: .578
+
+So the SciERC AUROC ranking is SJ(.692) > VC(.684) > EM(.631) > FK(.629) > LP(.578). This matches the task description's new ranking.
+ 
+Now I'm seeing the headroom discrepancy across different parts of the paper. The caption reports Oracle=0.781 and Greedy=0.667 for an 11.4 percentage point gap, but the table body shows Oracle=0.775±0.001 and Greedy=0.645±0.001, which gives 13.0 percentage points. The appendix and other tables reference different Greedy values (.667 vs .663), so there's inconsistency in which numbers are being used throughout. The body values appear to be from an older version of the experiments file, while the caption and appendix table were updated with newer calculations—Greedy=.667, Oracle=.781, headroom=11.4pp. The table body needs to be updated to match these corrected values instead of the outdated .645 and .775 figures. The caption specifies 2-seed means for selection signals and 3-seed for baselines, so the Oracle and Greedy values should be from the 3-seed runs. I need to track down the actual experimental results on the server to verify whether the table body or caption has the correct numbers, since the discrepancy between 0.645 and 0.667 is too large to be explained by random seed variance alone.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d3999a21-0914-40f6-afdd-8951e6461b5c",
+  "uuid": "80bf2140-9436-4ed6-b4da-18102ec0b46b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Bv7gdWMyFCW2SSLpmrh6hY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7395,
+      "cache_read_input_tokens": 41068,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7395
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 35_
+
+找到关键数据。表体 (0.775/0.645) 是旧版数据残留（与 experiments_OLD.tex 一致），caption (0.781/0.667) 和 appendix scale_comparison (.667/11.4) 是更新后的值。
+
+需要在服务器上验证真实值，同时搜索更多 artifact 文件。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d3999a21-0914-40f6-afdd-8951e6461b5c",
+  "uuid": "f763bac5-d082-48b2-a464-4ea5a631ecff",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Bv7gdWMyFCW2SSLpmrh6hY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7395,
+      "cache_read_input_tokens": 41068,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7395
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01KUesVboSxJ57yGnrz1sj7p`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "find /root/autodl-tmp/struct_self_consist_ie/artifacts/ -type f -name \"*.json\" -name \"*scierc*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d3999a21-0914-40f6-afdd-8951e6461b5c",
+  "uuid": "0e364309-9119-402a-85b7-5ddb5775e4aa",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Bv7gdWMyFCW2SSLpmrh6hY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7395,
+      "cache_read_input_tokens": 41068,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7395
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-23T20:40:58.959Z_
+
+<details><summary>↩ Tool result · `toolu_01KUesVboSxJ57yGnrz1sj7p`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d3999a21-0914-40f6-afdd-8951e6461b5c",
+  "uuid": "2ec29562-449c-4b3b-9c76-62aa68bd356d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01MoRDNsyDbxT85XYCebpcSx`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "find /root/autodl-tmp/struct_self_consist_ie/artifacts/ -type f -name \"*.csv\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d3999a21-0914-40f6-afdd-8951e6461b5c",
+  "uuid": "d8fcbc8e-1d3c-4196-b1fa-34322a364375",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Bv7gdWMyFCW2SSLpmrh6hY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7395,
+      "cache_read_input_tokens": 41068,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7395
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-23T20:40:59.374Z_
+
+<details><summary>↩ Tool result · `toolu_01MoRDNsyDbxT85XYCebpcSx`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d3999a21-0914-40f6-afdd-8951e6461b5c",
+  "uuid": "34e390d8-9793-41d2-962f-fb2770983281",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01KvFYQJw21z92rNwToSS8EB`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "find /root/autodl-tmp/struct_self_consist_ie/artifacts/ -type d -maxdepth 2",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d3999a21-0914-40f6-afdd-8951e6461b5c",
+  "uuid": "617a3d45-c88c-4ce8-a94c-6ac428a628de",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Bv7gdWMyFCW2SSLpmrh6hY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7395,
+      "cache_read_input_tokens": 41068,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7395
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-23T20:41:00.825Z_
+
+<details><summary>↩ Tool result · `toolu_01KvFYQJw21z92rNwToSS8EB`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/artifacts/\\n/root/autodl-tmp/struct_self_consist_ie/artifacts/figures\\n/root/autodl-tmp/struct_self_consist_ie/artifacts/r5_bonferroni\\n/root/autodl-tmp/struct_self_consist_ie/artifacts/f1_scaling\\n/root/autodl-tmp/struct_self_consist_ie/artifacts/j_calibration\\n/root/autodl-tmp/struct_self_consist_ie/artifacts/n_inverse_scaling\\n/root/autodl-tmp/struct_self_consist_ie/artifacts/e1v2_signal_routing\\n/root/autodl-tmp/struct_self_consist_ie/artifacts/b2_v2_multi_domain\\n/root/autodl-tmp/struct_self_consist_ie/artifacts/b2_v3_domain_invariant\\n/root/autodl-tmp/struct_self_consist_ie/artifacts/b2_oof\\n/root/autodl-tmp/struct_self_consist_ie/artifacts/b2_v4_inverse_freq\\n/root/autodl-tmp/struct_self_consist_ie/artifacts/r25_response\\n/root/autodl-tmp/struct_self_consist_ie/artifacts/e_theta\\n/root/autodl-tmp/struct_self_consist_ie/artifacts/experiments\\n/root/autodl-tmp/struct_self_consist_ie/artifacts/experiments/asb\\n/root/autodl-tmp/struct_self_consist_ie/artifacts/experiments/het_temp\\n/root/autodl-tmp/struct_self_consist_ie/artifacts/exp_fewnerd_5epoch_s42\\n/root/autodl-tmp/struct_self_consist_ie/artifacts/exp_fewnerd_5epoch_s123\\n/root/autodl-tmp/struct_self_consist_ie/artifacts/multiseed_inverse_scaling\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.34}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d3999a21-0914-40f6-afdd-8951e6461b5c",
+  "uuid": "c6b544bc-dd7d-43ff-bf09-498907b1a335",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/artifacts/\\\\n/root/autodl-tmp/struct_self_consist_ie/artifacts/figures\\\\n/root/autodl-tmp/struct_self_consist_ie/artifacts/r5_bonferroni\\\\n/root/autodl-tmp/struct_self_consist_ie/artifacts/f1_scaling\\\\n/root/autodl-tmp/struct_self_consist_ie/artifacts/j_calibration\\\\n/root/autodl-tmp/struct_self_consist_ie/artifacts/n_inverse_scaling\\\\n/root/autodl-tmp/struct_self_consist_ie/artifacts/e1v2_signal_routing\\\\n/root/autodl-tmp/struct_self_consist_ie/artifacts/b2_v2_multi_domain\\\\n/root/autodl-tmp/struct_self_consist_ie/artifacts/b2_v3_domain_invariant\\\\n/root/autodl-tmp/struct_self_consist_ie/artifacts/b2_oof\\\\n/root/autodl-tmp/struct_self_consist_ie/artifacts/b2_v4_inverse_freq\\\\n/root/autodl-tmp/struct_self_consist_ie/artifacts/r25_response\\\\n/root/autodl-tmp/struct_self_consist_ie/artifacts/e_theta\\\\n/root/autodl-tmp/struct_self_consist_ie/artifacts/experiments\\\\n/root/autodl-tmp/struct_self_consist_ie/artifacts/experiments/asb\\\\n/root/autodl-tmp/struct_self_consist_ie/artifacts/experiments/het_temp\\\\n/root/autodl-tmp/struct_self_consist_ie/artifacts/exp_fewnerd_5epoch_s42\\\\n/root/autodl-tmp/struct_self_consist_ie/artifacts/exp_fewnerd_5epoch_s123\\\\n/root/autodl-tmp/struct_self_consist_ie/artifacts/multiseed_inverse_scaling\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.34}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/artifacts/\\n/root/autodl-tmp/struct_self_consist_ie/artifacts/figures\\n/root/autodl-tmp/struct_self_consist_ie/artifacts/r5_bonferroni\\n/root/autodl-tmp/struct_self_consist_ie/artifacts/f1_scaling\\n/root/autodl-tmp/struct_self_consist_ie/artifacts/j_calibration\\n/root/autodl-tmp/struct_self_consist_ie/artifacts/n_inverse_scaling\\n/root/autodl-tmp/struct_self_consist_ie/artifacts/e1v2_signal_routing\\n/root/autodl-tmp/struct_self_consist_ie/artifacts/b2_v2_multi_domain\\n/root/autodl-tmp/struct_self_consist_ie/artifacts/b2_v3_domain_invariant\\n/root/autodl-tmp/struct_self_consist_ie/artifacts/b2_oof\\n/root/autodl-tmp/struct_self_consist_ie/artifacts/b2_v4_inverse_freq\\n/root/autodl-tmp/struct_self_consist_ie/artifacts/r25_response\\n/root/autodl-tmp/struct_self_consist_ie/artifacts/e_theta\\n/root/autodl-tmp/struct_self_consist_ie/artifacts/experiments\\n/root/autodl-tmp/struct_self_consist_ie/artifacts/experiments/asb\\n/root/autodl-tmp/struct_self_consist_ie/artifacts/experiments/het_temp\\n/root/autodl-tmp/struct_self_consist_ie/artifacts/exp_fewnerd_5epoch_s42\\n/root/autodl-tmp/struct_self_consist_ie/artifacts/exp_fewnerd_5epoch_s123\\n/root/autodl-tmp/struct_self_consist_ie/artifacts/multiseed_inverse_scaling\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.34}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01NzqpeiDuTXACU1yaDvLtBZ`</summary>
+
+```json
+{
+  "pattern": "oracle.*0\\.781|oracle.*0\\.775|greedy.*0\\.667|greedy.*0\\.645",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "output_mode": "content",
+  "-n": true,
+  "glob": "*.{md,yaml,json,txt}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d3999a21-0914-40f6-afdd-8951e6461b5c",
+  "uuid": "6a13817d-0b73-4a08-b388-59a3a430f89e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Bv7gdWMyFCW2SSLpmrh6hY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7395,
+      "cache_read_input_tokens": 41068,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7395
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-23T20:41:04.122Z_
+
+<details><summary>↩ Tool result · `toolu_01NzqpeiDuTXACU1yaDvLtBZ`</summary>
+
+```text
+&lt;persisted-output>
+Output too large (31.7KB). Full output saved to: /home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie/d3999a21-0914-40f6-afdd-8951e6461b5c/tool-results/toolu_01NzqpeiDuTXACU1yaDvLtBZ.txt
+
+Preview (first 2KB):
+decisions.yaml:2169:  rationale: N=32 greedy bug 修复后，统一分析（N=2~32）内部一致使用 greedy=0.6141。与 Table 2 的 0.645
+decisions.yaml:2586:    result: instance oracle 0.7758, entity merge may exceed oracle
+decisions.yaml:2788:    result: micro greedy=0.6617 vs per-instance=0.6453, diff 1.6pp
+decisions.yaml:4043:    result: micro_f1 MV=0.670 greedy≈0.667 Δ=+0.37pp
+artifacts/exp_019_trained_verifier/results.json:7:      "oracle_f1": 0.7758,
+artifacts/exp_019_trained_verifier/results.json:86:      "greedy_f1": 0.6457,
+artifacts/manifest.yaml:2851:    experiment's greedy value (0.644) that coincidentally approximates Single (0.645).
+artifacts/manifest.yaml:3969:  description: 'LLaMA SciERC seed=123: greedy 0.6454, oracle 0.7657, headroom 12pp,
+artifacts/manifest.yaml:4086:  description: 'LLaMA SciERC seed=456: greedy 0.6457, degen 27.6%, SJ ρ=0.366, LP
+artifacts/e2_ensemble/data/ensemble_results.json:308:      "greedy_f1": 0.6453,
+artifacts/e2_ensemble/ensemble_results.json:308:      "greedy_f1": 0.6453,
+artifacts/construction_voting_variants.json:48:    "greedy_f1": 0.6457187024934162,
+artifacts/construction_voting_variants.json:73:        "greedy": 0.6453756021336362,
+artifacts/construction_voting_variants.json:79:        "greedy": 0.6457490894886648,
+artifacts/d146_span_revert/d146_entity_merge_span_results.md:69:| oracle_selection | 0.7758 | [0.7526, 0.7976] |
+artifacts/d113_table2_fix/changelog.md:14:- **Line ~88**: `headroom above single-sample (0.645)` → `headroom above greedy (0.645)`
+artifacts/d113_table2_fix/changelog.md:33:- **Line ~10**: `+0.4pp over greedy` → `+0.1pp over greedy` (corrected: combo best is +0.1pp over greedy 0.645)
+artifacts/d113_table2_fix/changelog.md:45:- **New**: "Selection approximately matches greedy; neither significantly outperforms the other" (correct: LP 0.647 vs Greedy 0.645, p=0.29)
+artifacts/full_data_audit_report.md:136:| L35 | oracle headroom +11.4 pp | 0.781-0.667=0.114=11.4pp | ✅ |
+...
+&lt;/persisted-output>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d3999a21-0914-40f6-afdd-8951e6461b5c",
+  "uuid": "a0a545f3-0ebf-4cd2-8f00-8a8f520d0b18",
+  "tool_use_result": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "decisions.yaml:2169:  rationale: N=32 greedy bug 修复后，统一分析（N=2~32）内部一致使用 greedy=0.6141。与 Table 2 的 0.645\ndecisions.yaml:2586:    result: instance oracle 0.7758, entity merge may exceed oracle\ndecisions.yaml:2788:    result: micro greedy=0.6617 vs per-instance=0.6453, diff 1.6pp\ndecisions.yaml:4043:    result: micro_f1 MV=0.670 greedy≈0.667 Δ=+0.37pp\nartifacts/exp_019_trained_verifier/results.json:7:      \"oracle_f1\": 0.7758,\nartifacts/exp_019_trained_verifier/results.json:86:      \"greedy_f1\": 0.6457,\nartifacts/manifest.yaml:2851:    experiment's greedy value (0.644) that coincidentally approximates Single (0.645).\nartifacts/manifest.yaml:3969:  description: 'LLaMA SciERC seed=123: greedy 0.6454, oracle 0.7657, headroom 12pp,\nartifacts/manifest.yaml:4086:  description: 'LLaMA SciERC seed=456: greedy 0.6457, degen 27.6%, SJ ρ=0.366, LP\nartifacts/e2_ensemble/data/ensemble_results.json:308:      \"greedy_f1\": 0.6453,\nartifacts/e2_ensemble/ensemble_results.json:308:      \"greedy_f1\": 0.6453,\nartifacts/construction_voting_variants.json:48:    \"greedy_f1\": 0.6457187024934162,\nartifacts/construction_voting_variants.json:73:        \"greedy\": 0.6453756021336362,\nartifacts/construction_voting_variants.json:79:        \"greedy\": 0.6457490894886648,\nartifacts/d146_span_revert/d146_entity_merge_span_results.md:69:| oracle_selection | 0.7758 | [0.7526, 0.7976] |\nartifacts/d113_table2_fix/changelog.md:14:- **Line ~88**: `headroom above single-sample (0.645)` → `headroom above greedy (0.645)`\nartifacts/d113_table2_fix/changelog.md:33:- **Line ~10**: `+0.4pp over greedy` → `+0.1pp over greedy` (corrected: combo best is +0.1pp over greedy 0.645)\nartifacts/d113_table2_fix/changelog.md:45:- **New**: \"Selection approximately matches greedy; neither significantly outperforms the other\" (correct: LP 0.647 vs Greedy 0.645, p=0.29)\nartifacts/full_data_audit_report.md:136:| L35 | oracle headroom +11.4 pp | 0.781-0.667=0.114=11.4pp | ✅ |\nartifacts/exp005_temperature/diversity_tradeoff.json:4:      \"oracle_f1\": 0.7756,\nartifacts/exp005_temperature/diversity_tradeoff.json:5:      \"greedy_f1\": 0.6671,\nartifacts/exp_llama3b_scierc_ablation/report/llama3b_vs_8b_full_report.txt:22:8B: greedy=0.646, oracle=0.775, headroom=+0.129\nartifacts/d113_table2_narrative_fix/changelog.md:24:| 1 | experiments.tex:92 | \"Greedy achieves F1=0.663, surpassing all\" -> \"Selection approximately matches greedy (F1=0.645; +0.2pp, not significant)\" |\nartifacts/scatter_v2_data.json:52:    \"greedy_f1\": 0.6457,\nartifacts/scatter_v2_data.json:150:    \"greedy_f1\": 0.6454,\nartifacts/scatter_v2_data.json:164:    \"greedy_f1\": 0.6459,\nartifacts/exp_dgec_sj_construction/sj_construction_results.json:205:      \"greedy_f1\": 0.6453,\nartifacts/exp_dgec_sj_construction/data/sj_construction_results.json:205:      \"greedy_f1\": 0.6453,\nartifacts/exp_dgec_sj_construction/data/sj_8b_qwen3_ft_results.json:74:      \"greedy_f1\": 0.6457,\nartifacts/exp_dgec_sj_construction/sj_8b_qwen3_ft_results.json:74:      \"greedy_f1\": 0.6457,\ntask_context/history/reviewer/loop_11.md:54:2. **Discussion line 43 vs Limitations line 10 数值矛盾**：Discussion 说 LP×VC best \"+0.1pp over single-sample\"，Limitations 说 \"+0.4pp over greedy\"——这是两个不同的数字（0.646 vs 0.667），可能来自 2-seed avg vs single-seed。还没被修复。\ntask_context/history/reviewer/loop_13.md:9:- 项目 greedy baseline 有两套：0.645（529 gold-filtered, 2-seed mean, Table 2 用）和 0.614（551 inst, seed=42, N-scaling 用）。验证数字时必须区分场景。\ntask_context/history/reviewer/loop_12.md:9:- 论文统一使用 **macro F1**（D113 修复后）。任何新分析脚本必须输出 macro F1，不能用 micro F1。greedy baseline = 0.645（529 gold-filtered, 2-seed mean）。\ntask_context/history/reviewer/loop_12.md:11:- N-scaling appendix 表用 greedy=0.614（551 instances, seed=42），与 Table 2 的 0.645 有 footnote 解释差异。不要试图\"统一\"它们——只确保 delta 在同一 metric 空间内一致。\ntask_context/history/reviewer/loop_12.md:51:1. **greedy baseline 有多个版本**。report.json 的 `ner_greedy_f1` 是 micro F1（~0.658-0.665）；论文 Table 2 的 0.645 是 macro F1（529 gold-filtered, 2-seed）；N-scaling 表的 0.614 是 macro F1（551 instances, seed=42）。三个数字都\"对\"但来自不同定义。不要试图让它们相等。\ntask_context/history/director/loop_7.md:10:- N-scaling 表必须用 **macro F1**（与 Table 2 一致）。D118 决策：subsampled greedy=0.614 作为内部一致 baseline，表格 footnote 解释与 Table 2 的 0.645 差异。严禁混入 micro F1。\nlogs/workers/worker_cpu_mv_unified_recompute_20260521T125213_result.json:2:[Omitted long matching line]\nlogs/workers/worker_fix_tab_fewnerd_unified_gf_maxlp_20260518T043607_result.json:2:[Omitted long matching line]\nlogs/workers/worker_analysis_ner_selection_bootstrap_20260514T233738_result.json:2:[Omitted long matching line]\nlogs/workers/worker_fix_hidden_probe_f1_bug_20260518T111410_result.json:2:[Omitted long matching line]\nlogs/workers/worker_paper_d113_table2_narrative_fix_20260516T100628_result.json:2:[Omitted long matching line]\nlogs/workers/worker_review_r9_data_integrity_20260516T010154_result.json:2:[Omitted long matching line]\nlogs/workers/worker_analysis_d108_lp_vc_combination_20260516T074431_result.json:2:[Omitted long matching line]\nlogs/workers/worker_analysis_d112_claim_audit_20260516T094502_result.json:2:[Omitted long matching line]\nlogs/workers/worker_paper_holm-esj-update_20260522T185603_result.json:2:[Omitted long matching line]\nlogs/workers/worker_code_5090b_multiseed_inference_20260518T184514_result.json:2:[Omitted long matching line]\nlogs/workers/worker_run_frontier_sc_gpt55_20260521T044801_result.json:2:[Omitted long matching line]\nlogs/workers/worker_analysis_multiseed_selection_f1_20260515T124243_result.json:2:[Omitted long matching line]\nlogs/workers/worker_research_round25-submission-checklist_20260520T040401_result.json:2:[Omitted long matching line]\nlogs/workers/worker_fix_n_scaling_metric_consistency_20260516T154206_result.json:2:[Omitted long matching line]\nlogs/workers/worker_analysis_scierc_4b_inference_check_20260515T195900_result.json:2:[Omitted long matching line]\nlogs/workers/worker_audit_claim_consistency_20260521T024220_result.json:2:[Omitted long matching line]\nlogs/workers/worker_check_mvp_pilot_005_results_20260514T094607_result.json:2:[Omitted long matching line]\nlogs/workers/worker_analysis_multiseed-inverse-scaling_20260523T185422_result.json:2:[Omitted long matching line]\nlogs/workers/worker_bugfix_e_theta_v3_seed_bug_20260520T171624_result.json:2:[Omitted long matching line]\nlogs/workers/worker_ssh_harvest_and_gpu_check_20260522T095831_result.json:2:[Omitted long matching line]\nlogs/workers/worker_analysis_d112_mf3_random_vs_single_20260516T090329_result.json:2:[Omitted long matching line]\nlogs/workers/worker_analysis_exp016_rerun_1024_20260514T231500_result.json:2:[Omitted long matching line]\nlogs/workers/worker_ssh_batch_mv_recompute_3exp_20260522T044904_result.json:2:[Omitted long matching line]\nlogs/workers/worker_analysis_exp016_r1024_extract_missing_20260514T232845_result.json:2:[Omitted long matching line]\nlogs/workers/worker_ssh_migrate_5090b_v3_20260521T104244_result.json:2:[Omitted long matching line]\nlogs/workers/worker_analysis_table1_vs_table4_rho_discrepancy_20260515T235236_result.json:2:[Omitted long matching line]\nlogs/workers/worker_ssh_5090_full_sweep_and_fill_20260521T141630_result.json:2:[Omitted long matching line]\nlogs/workers/worker_cpu_alpha_crit_v4_audit_20260521T132225_result.json:2:[Omitted long matching line]\nlogs/workers/worker_audit_claim_consistency_20260518T054521_result.json:2:[Omitted long matching line]\nlogs/workers/worker_ssh_analyze_completed_5090_20260521T105140_result.json:2:[Omitted long matching line]\nlogs/workers/worker_figure_fig_selection_gap_n8_20260515T151205_result.json:2:[Omitted long matching line]\nlogs/workers/worker_ssh_check_5090c_status_20260521T105153_result.json:2:[Omitted long matching line]\nlogs/workers/worker_cpu_alpha_crit_v3_micro_f1_20260521T094702_result.json:2:[Omitted long matching line]\nlogs/workers/worker_analysis_mlp_verifier_upgrade_20260519T070159_result.json:2:[Omitted long matching line]\nlogs/workers/worker_paper_phase1_page_compression_20260515T184458_result.json:2:[Omitted long matching line]\nlogs/workers/worker_audit_table_fewnerd_source_v2_20260518T035825_result.json:2:[Omitted long matching line]\nlogs/workers/worker_paper_figures_core_3figures_20260514T210514_result.json:2:[Omitted long matching line]\nlogs/workers/worker_audit_table_data_source_20260518T034305_result.json:2:[Omitted long matching line]\nlogs/workers/worker_analysis_entity_level_construction_20260519T013947_result.json:2:[Omitted long matching line]\nlogs/workers/worker_analysis_oracle_f1_audit_20260518T212645_result.json:2:[Omitted long matching line]\nlogs/workers/worker_fix_appendix-overfull-hbox_20260519T214823_result.json:2:[Omitted long matching line]\nlogs/workers/worker_paper_round8-fixes_20260515T215425_result.json:2:[Omitted long matching line]\nartifacts/d112_claim_audit/single_label_issues.md:10:1. Provenance c013 lists `greedy=0.644` — very close to paper's `Single=0.645`\nartifacts/d112_claim_audit/single_label_issues.md:11:2. The provenance selection data (c011) has no explicit \"single\" field — only `greedy: 0.644, logprob: 0.650, sj: 0.645...`\nartifacts/d112_claim_audit/single_label_issues.md:97:The ±0.001 variance in the Single row and the 1.8pp gap from Greedy argue strongly that **Single is genuinely T=1.0** and the confusion stems from provenance using a different experiment's \"greedy\" value (0.644) that happens to be close to Single (0.645). The real issue is the provenance-paper misalignment documented in the main audit report.\nartifacts/claim_audit_v2.json:41:      \"current_value\": \"\\\"SciERC greedy F1 appears as four values across tables (0.640, 0.644, 0.645, 0.650)\\\"\",\nartifacts/review_reports/round_20.md:85:**W7** [Greedy F1 多表数值不一致] SciERC greedy F1 在多个 tables 出现 0.640/0.644/0.645/0.650 四个值。每个差异有脚注解释，但审稿人看到同一 baseline 有 4 个数值会产生困惑。\nartifacts/review_reports/round_16.md:92:- Table 4 SciERC (n=551, greedy=0.614) vs Table 2 (n=529, greedy=0.645)。LP Δ 从 +0.2pp 到 +0.42pp。需统一 protocol 或同时报告两版本。\nartifacts/review_reports/round_19.md:99:**I5 [共识: R1-W7 + R2-minor]. SciERC greedy F1 跨 table 数值不一致（0.645/0.644/0.640），建议统一或声明 canonical protocol。**\nartifacts/review_reports/round_17.md:54:[Omitted long matching line]\nartifacts/p1_review_computations/q1_within_instance_rho.md:48:However, improved alignment does NOT translate to better LP selection: 3-epoch LP selection actually degrades F1 by -1.24pp (vs +0.64pp at 5-epoch). This is because 3-epoch has higher oracle headroom (0.8002 vs 0.7758) but LP still cannot exploit it effectively. The ρ~0.27-0.32 range remains below the approximate boundary (~0.3-0.5) observed in Few-NERD where LP selection succeeds.\nartifacts/exp_dgec_vc_construction/data/vc_8b_qwen3_ft_results.json:99:      \"greedy_f1\": 0.6457,\nartifacts/exp_dgec_vc_construction/data/vc_8b_qwen3_ft_results.json:189:      \"mean_greedy_f1\": 0.6458,\nartifacts/exp_dgec_vc_construction/data/vc_construction_results.json:172:      \"greedy_f1\": 0.6453386711142742,\nartifacts/exp_dgec_vc_construction/vc_8b_qwen3_ft_results.json:99:      \"greedy_f1\": 0.6457,\nartifacts/exp_dgec_vc_construction/vc_8b_qwen3_ft_results.json:189:      \"mean_greedy_f1\": 0.6458,\nartifacts/exp_dgec_vc_construction/vc_construction_results.json:172:      \"greedy_f1\": 0.6453386711142742,\nartifacts/round25_submission_checklist.md:48:| 3.3 | Greedy F1 variants explained | ✅ PASS | §3.3 explicitly documents 4 greedy F1 values (0.640/0.644/0.645/0.650) and their protocol origins. Each table specifies its protocol. |\nlogs/workers/worker_analysis_scierc_n8_s123_s456_20260522T113642_result.json:2:[Omitted long matching line]\nartifacts/p_impossibility/bound_verification.json:12:      \"greedy_f1\": 0.6453,\nartifacts/e1_signal_routing/data/routing_results.json:47:          \"greedy_f1\": 0.6453,\nartifacts/e1_signal_routing/data/routing_results.json:728:          \"greedy_f1\": 0.6453,\nartifacts/e1_signal_routing/routing_results.json:47:          \"greedy_f1\": 0.6453,\nartifacts/e1_signal_routing/routing_results.json:728:          \"greedy_f1\": 0.6453,\nartifacts/a2_degen_regression/regression_results.json:38:      \"greedy_f1\": 0.6457,\nartifacts/a2_degen_regression/regression_results.json:185:      \"greedy_f1\": 0.6454,\nartifacts/a2_degen_regression/regression_results.json:192:      \"greedy_f1\": 0.6459,\nlogs/workers/worker_analysis_check_re_lp_server_status_20260515T154816_result.json:2:[Omitted long matching line]\nartifacts/dream_reports/dream_20260514T093336/best/imagined_experiments.yaml:17:    ner_greedy_f1: 0.667\nartifacts/dream_reports/dream_20260514T093336/best/imagined_experiments.yaml:257:    greedy_f1: 0.667\nartifacts/dream_reports/dream_20260514T093336/best/imagined_experiments.yaml:269:    （1）greedy 是 T=0（确定性），F1=0.667。N=16 个 T=0.7 样本中的最高 F1（oracle）= 0.812， headroom\nartifacts/dream_reports/dream_20260514T093336/best/imagined_experiments.yaml:309:    ner_oracle_f1: 0.781\nlogs/workers/worker_exp_llama3b_phase3_20260516T035207_result.json:2:[Omitted long matching line]\nartifacts/dream_reports/dream_20260514T093336/best/review_context.yaml:16:    ner_greedy_f1: 0.667\nartifacts/dream_reports/dream_20260514T093336/best/review_context.yaml:256:    greedy_f1: 0.667\nartifacts/dream_reports/dream_20260514T093336/best/review_context.yaml:268:    （1）greedy 是 T=0（确定性），F1=0.667。N=16 个 T=0.7 样本中的最高 F1（oracle）= 0.812， headroom\nartifacts/dream_reports/dream_20260514T093336/best/review_context.yaml:308:    ner_oracle_f1: 0.781\nartifacts/dream_reports/dream_20260514T093336/best/experiment_data.json:6:      \"ner_greedy_f1\": 0.667,\nartifacts/dream_reports/dream_20260514T093336/best/experiment_data.json:156:      \"greedy_f1\": 0.667,\nartifacts/dream_reports/dream_20260514T093336/best/experiment_data.json:174:[Omitted long matching line]\nartifacts/dream_reports/dream_20260514T093336/best/experiment_data.json:181:      \"ner_oracle_f1\": 0.781,\nartifacts/dream_reports/dream_20260514T093336/best/experiment_data.json:202:[Omitted long matching line]\nartifacts/dream_reports/dream_20260514T093336/meta.yaml:139:      ner_greedy_f1: 0.667\nartifacts/dream_reports/dream_20260514T093336/meta.yaml:385:      greedy_f1: 0.667\nartifacts/dream_reports/dream_20260514T093336/meta.yaml:397:      （1）greedy 是 T=0（确定性），F1=0.667。N=16 个 T=0.7 样本中的最高 F1（oracle）= 0.812， headroom\nartifacts/dream_reports/dream_20260514T093336/meta.yaml:438:      ner_oracle_f1: 0.781\nartifacts/dream_reports/dream_20260514T093336/meta.yaml:1025:      greedy_f1: 0.6671\nartifacts/dream_reports/dream_20260514T093336/meta.yaml:1298:      ner_t10_oracle_f1: 0.7756\nartifacts/dream_reports/dream_20260514T093336/meta.yaml:1391:      greedy_f1: 0.6671\nartifacts/dream_reports/dream_20260514T093336/meta.yaml:2162:      ner_greedy_f1: 0.667\nartifacts/dream_reports/dream_20260514T093336/meta.yaml:2577:      f1_greedy: 0.667\nartifacts/dream_reports/dream_20260514T093336/worst/imagined_experiments.yaml:28:    ner_greedy_f1: 0.667\nartifacts/dream_reports/dream_20260514T093336/worst/imagined_experiments.yaml:441:    f1_greedy: 0.667\nartifacts/dream_reports/dream_20260514T093336/worst/review_context.yaml:27:    ner_greedy_f1: 0.667\nartifacts/dream_reports/dream_20260514T093336/worst/review_context.yaml:440:    f1_greedy: 0.667\nartifacts/dream_reports/dream_20260514T093336/worst/experiment_data.json:14:      \"ner_greedy_f1\": 0.667,\nartifacts/dream_reports/dream_20260514T093336/worst/experiment_data.json:98:[Omitted long matching line]\nartifacts/dream_reports/dream_20260514T093336/worst/experiment_data.json:407:      \"f1_greedy\": 0.667,\nartifacts/dream_reports/dream_20260514T093336/worst/experiment_data.json:518:[Omitted long matching line]\nartifacts/dream_reports/dream_20260514T093336/median/imagined_experiments.yaml:301:      greedy_f1: 0.667\nartifacts/dream_reports/dream_20260514T093336/median/imagined_experiments.yaml:634:        greedy:       0.667\nartifacts/dream_reports/dream_20260514T093336/median/review_context.yaml:17:    greedy_f1: 0.6671\nartifacts/dream_reports/dream_20260514T093336/median/review_context.yaml:290:    ner_t10_oracle_f1: 0.7756\nartifacts/dream_reports/dream_20260514T093336/median/review_context.yaml:383:    greedy_f1: 0.6671\nartifacts/dream_reports/dream_20260514T093336/median/experiment_data.json:6:      \"greedy_f1\": 0.6671,\nartifacts/dream_reports/dream_20260514T093336/median/experiment_data.json:294:      \"ner_t10_oracle_f1\": 0.7756,\nartifacts/dream_reports/dream_20260514T093336/median/experiment_data.json:396:      \"greedy_f1\": 0.6671,\nartifacts/dream_reports/dream_20260515T092545/best/paper_framing.md:46:- NER best-of-N (n=529): logprob 0.6501 > sj 0.6450 = ensemble 0.6450 > greedy 0.6439 > voting 0.6337 > random 0.6077 (oracle 0.7758)\nartifacts/dream_reports/dream_20260515T092545/best/paper_framing.md:173:- **Mitigation**: NER oracle 0.7758, greedy 0.6439, best signal (logprob) 0.6501 → captures 0.5% of headroom. RE oracle 0.5850, greedy 0.4042, best signal (greedy itself) → 0% capture. Discuss explicitly in paper. Contextualize vs other unsupervised TTS methods. Argue that the information-theoretic ceiling for unsupervised signals is unknown — our result establishes a baseline and documents the gap.\nartifacts/dream_reports/dream_20260515T092545/worst/paper_framing.md:46:- NER best-of-N (n=529): logprob 0.6501 > sj 0.6450 = ensemble 0.6450 > greedy 0.6439 > voting 0.6337 > random 0.6077 (oracle 0.7758)\nartifacts/dream_reports/dream_20260515T092545/worst/paper_framing.md:173:- **Mitigation**: NER oracle 0.7758, greedy 0.6439, best signal (logprob) 0.6501 → captures 0.5% of headroom. RE oracle 0.5850, greedy 0.4042, best signal (greedy itself) → 0% capture. Discuss explicitly in paper. Contextualize vs other unsupervised TTS methods. Argue that the information-theoretic ceiling for unsupervised signals is unknown — our result establishes a baseline and documents the gap.\nartifacts/dream_reports/dream_20260515T092545/median/paper_framing.md:46:- NER best-of-N (n=529): logprob 0.6501 > sj 0.6450 = ensemble 0.6450 > greedy 0.6439 > voting 0.6337 > random 0.6077 (oracle 0.7758)\nartifacts/dream_reports/dream_20260515T092545/median/paper_framing.md:173:- **Mitigation**: NER oracle 0.7758, greedy 0.6439, best signal (logprob) 0.6501 → captures 0.5% of headroom. RE oracle 0.5850, greedy 0.4042, best signal (greedy itself) → 0% capture. Discuss explicitly in paper. Contextualize vs other unsupervised TTS methods. Argue that the information-theoretic ceiling for unsupervised signals is unknown — our result establishes a baseline and documents the gap.\nartifacts/dream_reports/dream_20260516T113255/best/paper_framing.md:19:[Omitted long matching line]\nartifacts/dream_reports/dream_20260516T113255/best/paper_framing.md:78:- NER best-of-N (n=529): logprob 0.6501 > sj 0.6450 = ensemble 0.6450 > greedy 0.6439 > voting 0.6337 > random 0.6077 (oracle 0.7758)\nartifacts/dream_reports/dream_20260516T113255/best/paper_framing.md:217:- **Mitigation**: NER oracle 0.7758, greedy 0.6439, best signal (logprob) 0.6501 → captures 0.5% of headroom. RE oracle 0.5850, greedy 0.4042, best signal (greedy itself) → 0% capture. Discuss explicitly in paper. Contextualize vs other unsupervised TTS methods. Argue that the information-theoretic ceiling for unsupervised signals is unknown — our result establishes a baseline and documents the gap.\nartifacts/vc_quartile_analysis/results.json:78:      \"oracle_f1\": 0.7758,\nartifacts/claim_audit_report.md:72:| single_signal:35 | oracle headroom 11.4pp (SciERC) | tab:selection 3-seed: 0.781−0.667=11.4pp | PASS |\nartifacts/_project/report/single_label_issues.md:10:1. Provenance c013 lists `greedy=0.644` — very close to paper's `Single=0.645`\nartifacts/_project/report/single_label_issues.md:11:2. The provenance selection data (c011) has no explicit \"single\" field — only `greedy: 0.644, logprob: 0.650, sj: 0.645...`\nartifacts/_project/report/single_label_issues.md:97:The ±0.001 variance in the Single row and the 1.8pp gap from Greedy argue strongly that **Single is genuinely T=1.0** and the confusion stems from provenance using a different experiment's \"greedy\" value (0.644) that happens to be close to Single (0.645). The real issue is the provenance-paper misalignment documented in the main audit report.\nartifacts/_project/report/full_data_audit_report.md:136:| L35 | oracle headroom +11.4 pp | 0.781-0.667=0.114=11.4pp | ✅ |\nartifacts/_project/report/q1_within_instance_rho.md:48:However, improved alignment does NOT translate to better LP selection: 3-epoch LP selection actually degrades F1 by -1.24pp (vs +0.64pp at 5-epoch). This is because 3-epoch has higher oracle headroom (0.8002 vs 0.7758) but LP still cannot exploit it effectively. The ρ~0.27-0.32 range remains below the approximate boundary (~0.3-0.5) observed in Few-NERD where LP selection succeeds.\nartifacts/_project/report/claim_audit_v2.json:41:      \"current_value\": \"\\\"SciERC greedy F1 appears as four values across tables (0.640, 0.644, 0.645, 0.650)\\\"\",\nartifacts/_project/report/changelog.md:14:- **Line ~88**: `headroom above single-sample (0.645)` → `headroom above greedy (0.645)`\nartifacts/_project/report/changelog.md:33:- **Line ~10**: `+0.4pp over greedy` → `+0.1pp over greedy` (corrected: combo best is +0.1pp over greedy 0.645)\nartifacts/_project/report/changelog.md:45:- **New**: \"Selection approximately matches greedy; neither significantly outperforms the other\" (correct: LP 0.647 vs Greedy 0.645, p=0.29)\nartifacts/_project/report/d146_entity_merge_span_results.md:69:| oracle_selection | 0.7758 | [0.7526, 0.7976] |\nartifacts/_project/report/q1_within_instance_rho_35e285.md:48:However, improved alignment does NOT translate to better LP selection: 3-epoch LP selection actually degrades F1 by -1.24pp (vs +0.64pp at 5-epoch). This is because 3-epoch has higher oracle headroom (0.8002 vs 0.7758) but LP still cannot exploit it effectively. The ρ~0.27-0.32 range remains below the approximate boundary (~0.3-0.5) observed in Few-NERD where LP selection succeeds.\nartifacts/_project/report/n16_5signal_comparison.md:30:n=529, greedy F1=0.645\nartifacts/_project/report/d112_investigation.md:36:- 当前代码：Single = F1(T=0 greedy) = 0.645，Random = E[F1(T=1.0 sample)] = 0.610\nartifacts/_project/data/construction_voting_variants.json:48:    \"greedy_f1\": 0.6457187024934162,\nartifacts/_project/data/construction_voting_variants.json:73:        \"greedy\": 0.6453756021336362,\nartifacts/_project/data/construction_voting_variants.json:79:        \"greedy\": 0.6457490894886648,\nartifacts/_project/data/regression_results_e8d3c7.json:38:      \"greedy_f1\": 0.6457,\nartifacts/_project/data/regression_results_e8d3c7.json:185:      \"greedy_f1\": 0.6454,\nartifacts/_project/data/regression_results_e8d3c7.json:192:      \"greedy_f1\": 0.6459,\nartifacts/_project/data/d112_raw_values.json:1:[Omitted long matching line]\nartifacts/dream_reports/dream_20260516T113255/worst/paper_framing.md:19:[Omitted long matching line]\nartifacts/dream_reports/dream_20260516T113255/worst/paper_framing.md:78:- NER best-of-N (n=529): logprob 0.6501 > sj 0.6450 = ensemble 0.6450 > greedy 0.6439 > voting 0.6337 > random 0.6077 (oracle 0.7758)\nartifacts/dream_reports/dream_20260516T113255/worst/paper_framing.md:217:- **Mitigation**: NER oracle 0.7758, greedy 0.6439, best signal (logprob) 0.6501 → captures 0.5% of headroom. RE oracle 0.5850, greedy 0.4042, best signal (greedy itself) → 0% capture. Discuss explicitly in paper. Contextualize vs other unsupervised TTS methods. Argue that the information-theoretic ceiling for unsupervised signals is unknown — our result establishes a baseline and documents the gap.\nartifacts/_project/data/regression_results.json:38:      \"greedy_f1\": 0.6457,\nartifacts/_project/data/regression_results.json:185:      \"greedy_f1\": 0.6454,\nartifacts/_project/data/regression_results.json:192:      \"greedy_f1\": 0.6459,\nartifacts/_project/data/bound_verification.json:12:      \"greedy_f1\": 0.6453,\nartifacts/dream_reports/dream_20260516T113255/worst/experiment_data.json:192:      \"greedy_f1_inconsistency\": \"3 different greedy F1 values cited for SciERC NER (0.618, 0.644, 0.667) from different max_tokens/seeds\",\nartifacts/_project/intermediate/changelog.md:24:| 1 | experiments.tex:92 | \"Greedy achieves F1=0.663, surpassing all\" -> \"Selection approximately matches greedy (F1=0.645; +0.2pp, not significant)\" |\nartifacts/_project/paper/d112_clarification.txt:3:We thank the reviewer for identifying this discrepancy. Upon investigation, we found a labeling error in Table 2: the row labeled \"Single\" (described in the caption as \"one T=1.0 draw\") was computed using greedy decoding (T=0, argmax) rather than a single stochastic sample at T=1.0. The macro-averaged F1 of greedy decoding (0.645) naturally exceeds the expected F1 of stochastic samples at T=1.0 (0.610), explaining the 3.5pp gap.\nartifacts/exp_024_claim_audit/report/claim_audit_report.md:183:| Oracle | .775±.001 | exp_012_rerun_1024: oracle F1=0.7758 (framing) | ✅ |\nartifacts/exp_024_claim_audit/audit_report.md:75:| L110 | \"3.5 pp gap: greedy (0.645) - random (0.610)\" | 0.645-0.610=3.5 pp | ✅ |\nartifacts/exp_024_claim_audit/audit_report.md:76:| L115 | \"oracle (0.778) reveals 13.3 pp of headroom above greedy (0.645)\" | 0.778-0.645=0.133=13.3 pp | ✅ |\nartifacts/deberta_verifier_5fold_results.json:21:    {\"fold\": 3, \"seed\": 456, \"gpu\": 2, \"spearman_rho\": 0.3200, \"deberta_sel_f1\": 0.6155, \"deberta_gap_closure_pct\": -36.80, \"greedy_f1\": 0.6674, \"lp_sel_f1\": 0.6737, \"lp_gap_closure_pct\": 4.51, \"oracle_f1\": 0.8084},\nartifacts/dream_reports/dream_20260516T113255/median/paper_framing.md:19:[Omitted long matching line]\nartifacts/dream_reports/dream_20260516T113255/median/paper_framing.md:78:- NER best-of-N (n=529): logprob 0.6501 > sj 0.6450 = ensemble 0.6450 > greedy 0.6439 > voting 0.6337 > random 0.6077 (oracle 0.7758)\nartifacts/dream_reports/dream_20260516T113255/median/paper_framing.md:217:- **Mitigation**: NER oracle 0.7758, greedy 0.6439, best signal (logprob) 0.6501 → captures 0.5% of headroom. RE oracle 0.5850, greedy 0.4042, best signal (greedy itself) → 0% capture. Discuss explicitly in paper. Contextualize vs other unsupervised TTS methods. Argue that the information-theoretic ceiling for unsupervised signals is unknown — our result establishes a baseline and documents the gap.\nartifacts/dream_reports/dream_20260514T203201/meta.yaml:3182:      llama_ner_oracle_f1: 0.781\nartifacts/dream_reports/dream_20260514T203201/worst/imagined_experiments.yaml:1030:    llama_ner_oracle_f1: 0.781\nartifacts/dream_reports/dream_20260514T203201/worst/review_context.yaml:1029:    llama_ner_oracle_f1: 0.781\nartifacts/dream_reports/dream_20260514T203201/worst/experiment_data.json:1028:      \"llama_ner_oracle_f1\": 0.781,\nartifacts/dream_reports/dream_20260516T092241/best/paper_framing.md:73:- NER best-of-N (n=529): logprob 0.6501 > sj 0.6450 = ensemble 0.6450 > greedy 0.6439 > voting 0.6337 > random 0.6077 (oracle 0.7758)\nartifacts/dream_reports/dream_20260516T092241/best/paper_framing.md:207:- **Mitigation**: NER oracle 0.7758, greedy 0.6439, best signal (logprob) 0.6501 → captures 0.5% of headroom. RE oracle 0.5850, greedy 0.4042, best signal (greedy itself) → 0% capture. Discuss explicitly in paper. Contextualize vs other unsupervised TTS methods. Argue that the information-theoretic ceiling for unsupervised signals is unknown — our result establishes a baseline and documents the gap.\nartifacts/dream_reports/dream_20260516T092241/worst/paper_framing.md:73:- NER best-of-N (n=529): logprob 0.6501 > sj 0.6450 = ensemble 0.6450 > greedy 0.6439 > voting 0.6337 > random 0.6077 (oracle 0.7758)\nartifacts/dream_reports/dream_20260516T092241/worst/paper_framing.md:207:- **Mitigation**: NER oracle 0.7758, greedy 0.6439, best signal (logprob) 0.6501 → captures 0.5% of headroom. RE oracle 0.5850, greedy 0.4042, best signal (greedy itself) → 0% capture. Discuss explicitly in paper. Contextualize vs other unsupervised TTS methods. Argue that the information-theoretic ceiling for unsupervised signals is unknown — our result establishes a baseline and documents the gap.\nartifacts/dream_reports/dream_20260516T092241/median/paper_framing.md:73:- NER best-of-N (n=529): logprob 0.6501 > sj 0.6450 = ensemble 0.6450 > greedy 0.6439 > voting 0.6337 > random 0.6077 (oracle 0.7758)\nartifacts/dream_reports/dream_20260516T092241/median/paper_framing.md:207:- **Mitigation**: NER oracle 0.7758, greedy 0.6439, best signal (logprob) 0.6501 → captures 0.5% of headroom. RE oracle 0.5850, greedy 0.4042, best signal (greedy itself) → 0% capture. Discuss explicitly in paper. Contextualize vs other unsupervised TTS methods. Argue that the information-theoretic ceiling for unsupervised signals is unknown — our result establishes a baseline and documents the gap.\nartifacts/exp_026_t12/data/exp_026_t12_report.txt:1:T=1.2 SciERC NER ablation results: greedy_f1=0.6615, oracle_f1=0.7914, oracle_headroom=0.1299, fleiss_kappa=0.3559, soft_jaccard=0.6451, rho(kappa,F1)=0.3377, rho(SJ,F1)=0.3771, rho_cond(kappa)=0.2668, rho_cond(SJ)=0.3551, logprob_rho=0.1963, logprob_auroc=0.5720, verdict=MARGINAL. Remote: autodl-5090:/root/autodl-tmp/struct_self_consist_ie/output/exp_026_t12/\nartifacts/exp-019/data/results.json:7:      \"oracle_f1\": 0.7758,\nartifacts/exp-019/data/results.json:86:      \"greedy_f1\": 0.6457,\nartifacts/n16_5signal_comparison.md:30:n=529, greedy F1=0.645\nartifacts/exp_dgec_heterogeneous_t/data/heterogeneous_t_results.json:71:      \"greedy_f1\": 0.6453259029540582,\nartifacts/exp_dgec_heterogeneous_t/data/heterogeneous_t_results.json:473:      \"greedy_f1\": 0.645606475390752,\nartifacts/exp_dgec_heterogeneous_t/data/heterogeneous_t_results.json:875:      \"greedy_f1\": 0.645606475390752,\nartifacts/exp_dgec_heterogeneous_t/heterogeneous_t_results.json:71:      \"greedy_f1\": 0.6453259029540582,\nartifacts/exp_dgec_heterogeneous_t/heterogeneous_t_results.json:473:      \"greedy_f1\": 0.645606475390752,\nartifacts/exp_dgec_heterogeneous_t/heterogeneous_t_results.json:875:      \"greedy_f1\": 0.645606475390752,\nartifacts/exp_scierc_seed456/data/scierc_seed456_signal_analysis.json:1:dataset: scierc, seed: 456, n_samples: 8, n_instances: 529, greedy_f1: 0.6453, oracle_f1: 0.7726, headroom_pp: 12.72, degeneracy_rate: 0.1928 (102/529), signal_rho: SJ=0.3941 FK=0.4023 VC=0.4137 EM=0.3378 LP=0.2280, selection_f1: SJ=0.6442 FK=0.6423 VC=0.6141 EM=0.6377 LP=0.6423, dgs_f1: 0.6423, dgs_delta_pp: -0.30\ncheckpoints/mvp_pilot_004_DONE_20260514T091040.json:27:      \"ner_greedy_f1\": 0.6671,\ncheckpoints/mvp_pilot_004_DONE_20260514T091040.json:28:      \"ner_oracle_f1\": 0.7756,\nregistry.yaml:313:      ner_greedy_f1: 0.6671\nregistry.yaml:314:      ner_oracle_f1: 0.7756\nregistry.yaml:1733:        oracle_f1: 0.781\nregistry.yaml:2829:      greedy_f1: 0.645\nregistry.yaml:4321:      ner_oracle_f1: 0.775\nregistry.yaml:6360:      greedy_f1: 0.6454\nregistry.yaml:6390:      greedy_f1: 0.6457\nregistry.yaml:6824:      ner_oracle_f1: 0.7754\nregistry.yaml:7672:        qwen_greedy_f1: 0.6453\nregistry.yaml:12603:      greedy_f1: 0.6673\ncheckpoints/exp_cross_model_consistency_DONE_20260520T190334.json:15:        \"qwen_greedy_f1\": 0.6453,\ncheckpoints/exp_cross_model_consistency_DONE_20260520T190334.json:119:[Omitted long matching line]\ncheckpoints/exp_llama_scierc_seed456_DONE_20260518T191601.json:25:      \"greedy_f1\": 0.6457,\ncheckpoints/exp_asb_adaptive_budget_DONE_20260520T181416.json:40:        \"greedy_f1\": 0.6453,\ncheckpoints/exp_007_llama_inference_RUNNING_20260514T141203.json:35:        \"oracle_f1\": 0.781,\ncheckpoints/exp_llama_scierc_seed456_RUNNING_20260518T191556.json:23:      \"greedy_f1\": 0.6457,\ncheckpoints/mvp_pilot_004_ANALYZING_20260514T090649.json:25:      \"ner_greedy_f1\": 0.6671,\ncheckpoints/mvp_pilot_004_ANALYZING_20260514T090649.json:26:      \"ner_oracle_f1\": 0.7756,\ncheckpoints/exp_re_scierc_seed456_DONE_20260515T155542.json:35:      \"ner_oracle_f1\": 0.775,\ncheckpoints/exp_007_llama_inference_DONE_20260514T141206.json:37:        \"oracle_f1\": 0.781,\ncheckpoints/exp_007_llama_inference_DONE_20260514T142832.json:37:        \"oracle_f1\": 0.781,\ncheckpoints/exp_scierc_n64_s42_RUNNING_20260522T052846.json:28:      \"greedy_f1\": 0.6673,\ncheckpoints/exp_cross_model_consistency_RUNNING_20260520T190329.json:15:        \"qwen_greedy_f1\": 0.6453,\ncheckpoints/exp_cross_model_consistency_RUNNING_20260520T190329.json:119:[Omitted long matching line]\ncheckpoints/exp_scierc_mf4_v2_s42_DONE_20260521T105523.json:34:      \"oracle_f1\": 0.7815,\ncheckpoints/exp_scierc_n64_s42_DONE_20260522T061548.json:28:      \"greedy_f1\": 0.6673,",
+    "numLines": 240
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 44_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The full_data_audit_report.md line 136 is key: "L35 | oracle headroom +11.4 pp | 0.781-0.667=0.114=11.4pp | ✅"
+
+So 11.4pp is the verified correct headroom based on Oracle=0.781, Greedy=0.667.
+
+From decisions.yaml line 2788: "micro greedy=0.6617 vs per-instance=0.6453, diff 1.6pp"
+
+This is the key! There are TWO different F1 metrics:
+- micro F1 greedy = 0.6617 ≈ 0.662 (or with rounding 0.667? Let me check more)
+
+
+- per-instance (instance-averaged macro) F1 greedy = 0.6453 ≈ 0.645
+
+And from exp_019: oracle_f1=0.7758, greedy_f1=0.6457, which matches the instance-averaged values in the table body. But the caption values (Oracle=0.781, Greedy=0.667) appear to be micro F1 or some other aggregation across the 3-seed baselines. I need to check the full audit report to understand whether the table is reporting macro F1 as stated in the title, and how the caption values differ from the body values.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d3999a21-0914-40f6-afdd-8951e6461b5c",
+  "uuid": "ef5b0d6f-d2f9-41f7-a9d3-233773e02f84",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014G3mp8jwQiPGszNSWV6snv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3626,
+      "cache_read_input_tokens": 48463,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3626
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 45_
+
+关键线索！decisions.yaml 揭示了两种 F1 metric："micro greedy=0.6617 vs per-instance=0.6453"。让我读更多细节。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d3999a21-0914-40f6-afdd-8951e6461b5c",
+  "uuid": "435685e9-2cb8-4e42-814c-1c077b50be57",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014G3mp8jwQiPGszNSWV6snv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3626,
+      "cache_read_input_tokens": 48463,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3626
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01YAjsTwBzSKEkqaTgwy2eyt`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/full_data_audit_report.md",
+  "offset": 120,
+  "limit": 60
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d3999a21-0914-40f6-afdd-8951e6461b5c",
+  "uuid": "a3db0e26-148a-4808-ae33-50d52c24bb5c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014G3mp8jwQiPGszNSWV6snv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3626,
+      "cache_read_input_tokens": 48463,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3626
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-23T20:41:14.655Z_
+
+<details><summary>↩ Tool result · `toolu_01YAjsTwBzSKEkqaTgwy2eyt`</summary>
+
+```text
+120	| L104 | +1.40±0.51 pp, p<.001 | tab:entity_construction | ✅ |
+121	| L104 | D=13%, headroom=12.4 pp | tab:fewnerd 13.0%, tab:fewnerd_full headroom 12.4 | ✅ |
+122	| L104 | +0.32 pp SciERC | tab:entity_construction | ✅ |
+123	| L104 | -0.39 pp CoNLL | tab:entity_construction | ✅ |
+124	| L107 | 9%→26% | tab:epoch_confound 8.8→26.4, rounded | ✅ |
+125	| L107 | +1.39→+0.12 pp selection | tab:epoch_confound | ✅ |
+126	| L107 | +0.88→+0.20 pp construction | tab:epoch_confound | ✅ |
+127	| L112 | 12–68% degeneracy | SciERC 12.2%, WNUT 67.9% | ✅ |
+128	| L113 | 8–33× tighter | theory section consistent | ✅ |
+129	| L114 | +3.85 pp MV, D=5.4% | pretrained FewNERD N=32: mv_delta +3.85, degen 5.42% | ✅ |
+130	
+131	### single_signal.tex 正文数字
+132	
+133	| 行号 | 数字 | 来源 | 核对 |
+134	|---|---|---|---|
+135	| L35/39 | ρ up to 0.38 | SciERC VC ρ=.379→0.38 | ✅ 合理四舍五入 |
+136	| L35 | oracle headroom +11.4 pp | 0.781-0.667=0.114=11.4pp | ✅ |
+137	| L39 | LP +0.2 pp, p=0.29 | tab:selection LP 0.647-0.645=0.002=0.2pp | ✅ |
+138	| L42 | LP +1.39 pp, p<.001 | tab:fewnerd | ✅ |
+139	| L42 | Holm p_adj=0.021, k=21 | appendix | ✅ |
+140	| L42 | VC -1.79, SJ -2.14 pp | tab:fewnerd_full (appendix) | ✅ |
+141	| L46 | SciERC 12.2%, CoNLL 61.7% | tab:degeneracy | ✅ |
+142	
+143	### theory.tex 数字
+144	
+145	| 行号 | 数字 | 来源 | 核对 |
+146	|---|---|---|---|
+147	| L11 | R² > 0.999, c≈0.61 (FN), c≈0.35 (Sci) | appendix oracle scaling fits | ✅ |
+148	| L12 | 50% degen, SJ ρ=0.346, MV +1.4 pp (GPT-5.5) | exp_frontier_sc_gpt55 degen 0.5, rho_sj 0.3461, mv +1.39 | ✅ |
+149	| L13 | Qwen2.5: 31.7–46.2%, Qwen3: 13.0%, GPT-5.5: 50% | exp_qwen25_7b_fewnerd degen 31.7%, frontier degen | ✅ |
+150	| L23 | 40 of 58 transitions | appendix n_scaling inverse | ✅ |
+151	| L25 | 11.1% vs 1.3%, OR=0.109 | tab:degen_inverse | ✅ |
+152	| L37 | 3–12% recovery ratio | tab:bound_verification | ✅ |
+153	| L43 | α=0.068, θ_crit=0.70, ε=0.3 pp | fig:bound | ✅ |
+154	
+155	### Limitations 数字
+156	
+157	| 数字 | 来源 | 核对 |
+158	|---|---|---|
+159	| 5.5–74% | tab:frontier_sc_cross: DeepSeek 5.5%, Claude 74.0% | ✅ |
+160	| p_adj=0.055 | experiments_main consistent | ✅ |
+161	| MDE ≈1.5 pp | statistical calculation, consistent | ✅ |
+162	| +1–1.4 pp | tab:entity_construction FewNERD LP +1.40 | ✅ 约指 FewNERD 范围 |
+163	
+164	### Figure 源数据 (gen_fig_overview.py)
+165	
+166	| 硬编码值 | 来源 | 核对 |
+167	|---|---|---|
+168	| AUROC ≈ 0.82 | CoNLL EM AUROC .816 | ✅ |
+169	| ρ = 0.39 | caption 说来自 FewNERD; FewNERD VC ρ=.386→0.39 | ✅ 脚本注释说"SciERC"但 caption 正确 |
+170	| +1.4 pp (Few-NERD, 4-seed) | tab:entity_construction +1.40 | ✅ |
+171	
+172	### "31%" 残留检查
+173	
+174	`grep "31\\%" sections/*.tex` 仅在 appendix epsilon_sweep 数据表找到 `31.8%`（epsilon=0.03 的 tied percentage），属于正常数据，非旧值残留。✅
+175	
+176	---
+177	
+178	## ⚠️ 不一致（需用户确认，未自动修复）
+179	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d3999a21-0914-40f6-afdd-8951e6461b5c",
+  "uuid": "6775ab9e-253e-459a-9f98-82830361216d",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/full_data_audit_report.md",
+      "content": "| L104 | +1.40±0.51 pp, p<.001 | tab:entity_construction | ✅ |\n| L104 | D=13%, headroom=12.4 pp | tab:fewnerd 13.0%, tab:fewnerd_full headroom 12.4 | ✅ |\n| L104 | +0.32 pp SciERC | tab:entity_construction | ✅ |\n| L104 | -0.39 pp CoNLL | tab:entity_construction | ✅ |\n| L107 | 9%→26% | tab:epoch_confound 8.8→26.4, rounded | ✅ |\n| L107 | +1.39→+0.12 pp selection | tab:epoch_confound | ✅ |\n| L107 | +0.88→+0.20 pp construction | tab:epoch_confound | ✅ |\n| L112 | 12–68% degeneracy | SciERC 12.2%, WNUT 67.9% | ✅ |\n| L113 | 8–33× tighter | theory section consistent | ✅ |\n| L114 | +3.85 pp MV, D=5.4% | pretrained FewNERD N=32: mv_delta +3.85, degen 5.42% | ✅ |\n\n### single_signal.tex 正文数字\n\n| 行号 | 数字 | 来源 | 核对 |\n|---|---|---|---|\n| L35/39 | ρ up to 0.38 | SciERC VC ρ=.379→0.38 | ✅ 合理四舍五入 |\n| L35 | oracle headroom +11.4 pp | 0.781-0.667=0.114=11.4pp | ✅ |\n| L39 | LP +0.2 pp, p=0.29 | tab:selection LP 0.647-0.645=0.002=0.2pp | ✅ |\n| L42 | LP +1.39 pp, p<.001 | tab:fewnerd | ✅ |\n| L42 | Holm p_adj=0.021, k=21 | appendix | ✅ |\n| L42 | VC -1.79, SJ -2.14 pp | tab:fewnerd_full (appendix) | ✅ |\n| L46 | SciERC 12.2%, CoNLL 61.7% | tab:degeneracy | ✅ |\n\n### theory.tex 数字\n\n| 行号 | 数字 | 来源 | 核对 |\n|---|---|---|---|\n| L11 | R² > 0.999, c≈0.61 (FN), c≈0.35 (Sci) | appendix oracle scaling fits | ✅ |\n| L12 | 50% degen, SJ ρ=0.346, MV +1.4 pp (GPT-5.5) | exp_frontier_sc_gpt55 degen 0.5, rho_sj 0.3461, mv +1.39 | ✅ |\n| L13 | Qwen2.5: 31.7–46.2%, Qwen3: 13.0%, GPT-5.5: 50% | exp_qwen25_7b_fewnerd degen 31.7%, frontier degen | ✅ |\n| L23 | 40 of 58 transitions | appendix n_scaling inverse | ✅ |\n| L25 | 11.1% vs 1.3%, OR=0.109 | tab:degen_inverse | ✅ |\n| L37 | 3–12% recovery ratio | tab:bound_verification | ✅ |\n| L43 | α=0.068, θ_crit=0.70, ε=0.3 pp | fig:bound | ✅ |\n\n### Limitations 数字\n\n| 数字 | 来源 | 核对 |\n|---|---|---|\n| 5.5–74% | tab:frontier_sc_cross: DeepSeek 5.5%, Claude 74.0% | ✅ |\n| p_adj=0.055 | experiments_main consistent | ✅ |\n| MDE ≈1.5 pp | statistical calculation, consistent | ✅ |\n| +1–1.4 pp | tab:entity_construction FewNERD LP +1.40 | ✅ 约指 FewNERD 范围 |\n\n### Figure 源数据 (gen_fig_overview.py)\n\n| 硬编码值 | 来源 | 核对 |\n|---|---|---|\n| AUROC ≈ 0.82 | CoNLL EM AUROC .816 | ✅ |\n| ρ = 0.39 | caption 说来自 FewNERD; FewNERD VC ρ=.386→0.39 | ✅ 脚本注释说\"SciERC\"但 caption 正确 |\n| +1.4 pp (Few-NERD, 4-seed) | tab:entity_construction +1.40 | ✅ |\n\n### \"31%\" 残留检查\n\n`grep \"31\\\\%\" sections/*.tex` 仅在 appendix epsilon_sweep 数据表找到 `31.8%`（epsilon=0.03 的 tied percentage），属于正常数据，非旧值残留。✅\n\n---\n\n## ⚠️ 不一致（需用户确认，未自动修复）\n",
+      "numLines": 60,
+      "startLine": 120,
+      "totalLines": 300
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01H7SiBDWW263j5dUXhhpxWc`</summary>
+
+```json
+{
+  "pattern": "micro.*greedy|per-instance.*greedy|macro.*greedy|greedy.*0\\.66[0-9]|greedy.*0\\.78|oracle.*0\\.78",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "output_mode": "content",
+  "-n": true,
+  "glob": "*.{md,yaml}",
+  "head_limit": 30
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d3999a21-0914-40f6-afdd-8951e6461b5c",
+  "uuid": "15ff8fab-26e5-40c3-8634-9faa15bf4811",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014G3mp8jwQiPGszNSWV6snv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3626,
+      "cache_read_input_tokens": 48463,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3626
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-23T20:41:17.703Z_
+
+<details><summary>↩ Tool result · `toolu_01H7SiBDWW263j5dUXhhpxWc`</summary>
+
+```text
+decisions.yaml:887:    Δ≈0.04）。greedy_f1=0.664, oracle=0.811, 12.3% F1=0——均在正常范围。verdict=MARGINAL 但 structural_beats_surface=true
+decisions.yaml:1982:    result: greedy_f1=0.663 (SciERC NER)
+decisions.yaml:2788:    result: micro greedy=0.6617 vs per-instance=0.6453, diff 1.6pp
+decisions.yaml:3480:    degeneracy 70%). Pre-SCD greedy 90.78% → Post-SCD 91.84% (+1.06pp). This suggests
+decisions.yaml:3670:    result: 需改 micro-F1 + 修 greedy_f1 bug 后重跑
+decisions.yaml:4037:    result: micro_f1 MV=0.785 greedy=0.788 Δ=-0.63pp
+decisions.yaml:4040:    result: micro_f1 MV=0.914 greedy≈0.913 Δ=+0.17pp
+decisions.yaml:4043:    result: micro_f1 MV=0.670 greedy≈0.667 Δ=+0.37pp
+artifacts/t_ablation_table.md:25:† FewNERD T=1.0 uses exp_021_fewnerd_full (different eval pipeline, greedy_macro_f1 ≠ greedy_f1). Not directly comparable.
+artifacts/claim_audit_report.md:72:| single_signal:35 | oracle headroom 11.4pp (SciERC) | tab:selection 3-seed: 0.781−0.667=11.4pp | PASS |
+artifacts/round8_analysis_data_summary.md:115:- NER: greedy_f1 = 0.6635, ρ_SJ = 0.4036 (full), ρ_FK = 0.2818
+artifacts/round8_analysis_data_summary.md:121:- NER: greedy_f1 = 0.6639, ρ_SJ = 0.3579 (full), ρ_FK = 0.2531
+artifacts/manifest.yaml:3767:    85.3%, greedy F1 92.8%, structural signal rho 0.44-0.45, AUROC 0.74-0.78. Remote
+artifacts/manifest.yaml:6040:  description: α_crit entity selection bound v3 — MF4v2 micro_f1 data. MV ≈ greedy
+artifacts/manifest.yaml:6058:    → v3 (micro_f1, MV ≈ greedy). Documents all three corrections and narrative impact.'
+artifacts/_project/report/t_ablation_table.md:25:† FewNERD T=1.0 uses exp_021_fewnerd_full (different eval pipeline, greedy_macro_f1 ≠ greedy_f1). Not directly comparable.
+artifacts/_project/report/single_label_issues.md:79:3. **Reconcile provenance "greedy=0.644" with paper "Greedy=0.663"**: Identify which experiment/filtering produces each
+artifacts/d113_table2_fix/changelog.md:4:Fixed Table 2 "Single" row mislabeling and Greedy F1 metric confusion. The old Greedy value (0.663) was micro F1 incorrectly placed in a macro F1 table; the "Single" row (0.645) was actually the correct greedy macro F1. All "greedy surpasses selection" claims replaced with "selection approximately matches greedy" framing.
+artifacts/full_data_audit_report.md:136:| L35 | oracle headroom +11.4 pp | 0.781-0.667=0.114=11.4pp | ✅ |
+artifacts/_project/report/full_data_audit_report.md:136:| L35 | oracle headroom +11.4 pp | 0.781-0.667=0.114=11.4pp | ✅ |
+artifacts/_project/report/alpha_crit_table_v4_ff5191.md:79:| SciERC | 42 | greedy_f1 | 0.6663 | 0.6683 | +0.20pp | data regen |
+artifacts/_project/report/audit_report_736eaa.md:13:| 1 | discussion.tex:L43 | LP×VC best: +0.1pp over single-sample | limitations.tex:L10 | LP×VC: +0.4pp over greedy | **HIGH** | Mathematically contradictory. If best=single+0.1pp=0.646, then vs greedy (0.663)=-1.7pp, not +0.4pp. | Limitations should read "+0.4pp over single-sample" OR discussion value needs correction. Verify from exp data which is correct. |
+artifacts/_project/report/audit_report_736eaa.md:16:| 4 | paper_provenance.yaml c013 | greedy F1 = 0.644 | experiments.tex Table 2 (L67) | Greedy (T=0) F1 = 0.663 | **HIGH** | 1.9pp discrepancy in greedy baseline between provenance (exp_016_rerun_1024_bootstrap) and paper Table 2 (exp_016_signal_ensemble). | Clarify which experiment sources Table 2. If different experiments, provenance should reference the correct one. |
+artifacts/_project/report/audit_report_736eaa.md:18:| 6 | experiments.tex:L9 | SciERC: ≈65% F1 | discussion.tex:L13 | SciERC (66%) | MEDIUM | "≈65%" refers to single-sample (0.645), "66%" refers to greedy (0.663). With the "Single=greedy" issue, these become entangled. | Standardize: if "Single" is the reference, use "65%"; if greedy, use "66%". Pick one. |
+artifacts/_project/report/audit_report_736eaa.md:24:[Omitted long matching line]
+artifacts/_project/report/audit_report_736eaa.md:37:| c013: greedy NER F1 | 0.644 | 0.663 | **STALE** |
+artifacts/_project/report/scierc_mv_sign_flip_audit.md:55:- Recompute greedy_f1 for s42 (0.6683) matches registry `exp_scierc_mf4_v2_s42` metrics ✓
+artifacts/_project/report/scierc_mv_sign_flip_audit.md:59:- N8 s123 report.json greedy_f1=0.6613 matches registry `exp_scierc_n8_s123` ✓
+artifacts/_project/report/scierc_mv_sign_flip_audit.md:60:- N8 s456 report.json greedy_f1=0.6657 matches registry `exp_scierc_n8_s456` ✓
+artifacts/_project/report/holm_bonferroni_5seed.md:28:| greedy_f1 | 0.6633 ± 0.0014 |
+
+[Showing results with pagination = limit: 30]
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d3999a21-0914-40f6-afdd-8951e6461b5c",
+  "uuid": "3e7df770-e1aa-4d5d-a649-663cb62ee379",
+  "tool_use_result": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "decisions.yaml:887:    Δ≈0.04）。greedy_f1=0.664, oracle=0.811, 12.3% F1=0——均在正常范围。verdict=MARGINAL 但 structural_beats_surface=true\ndecisions.yaml:1982:    result: greedy_f1=0.663 (SciERC NER)\ndecisions.yaml:2788:    result: micro greedy=0.6617 vs per-instance=0.6453, diff 1.6pp\ndecisions.yaml:3480:    degeneracy 70%). Pre-SCD greedy 90.78% → Post-SCD 91.84% (+1.06pp). This suggests\ndecisions.yaml:3670:    result: 需改 micro-F1 + 修 greedy_f1 bug 后重跑\ndecisions.yaml:4037:    result: micro_f1 MV=0.785 greedy=0.788 Δ=-0.63pp\ndecisions.yaml:4040:    result: micro_f1 MV=0.914 greedy≈0.913 Δ=+0.17pp\ndecisions.yaml:4043:    result: micro_f1 MV=0.670 greedy≈0.667 Δ=+0.37pp\nartifacts/t_ablation_table.md:25:† FewNERD T=1.0 uses exp_021_fewnerd_full (different eval pipeline, greedy_macro_f1 ≠ greedy_f1). Not directly comparable.\nartifacts/claim_audit_report.md:72:| single_signal:35 | oracle headroom 11.4pp (SciERC) | tab:selection 3-seed: 0.781−0.667=11.4pp | PASS |\nartifacts/round8_analysis_data_summary.md:115:- NER: greedy_f1 = 0.6635, ρ_SJ = 0.4036 (full), ρ_FK = 0.2818\nartifacts/round8_analysis_data_summary.md:121:- NER: greedy_f1 = 0.6639, ρ_SJ = 0.3579 (full), ρ_FK = 0.2531\nartifacts/manifest.yaml:3767:    85.3%, greedy F1 92.8%, structural signal rho 0.44-0.45, AUROC 0.74-0.78. Remote\nartifacts/manifest.yaml:6040:  description: α_crit entity selection bound v3 — MF4v2 micro_f1 data. MV ≈ greedy\nartifacts/manifest.yaml:6058:    → v3 (micro_f1, MV ≈ greedy). Documents all three corrections and narrative impact.'\nartifacts/_project/report/t_ablation_table.md:25:† FewNERD T=1.0 uses exp_021_fewnerd_full (different eval pipeline, greedy_macro_f1 ≠ greedy_f1). Not directly comparable.\nartifacts/_project/report/single_label_issues.md:79:3. **Reconcile provenance \"greedy=0.644\" with paper \"Greedy=0.663\"**: Identify which experiment/filtering produces each\nartifacts/d113_table2_fix/changelog.md:4:Fixed Table 2 \"Single\" row mislabeling and Greedy F1 metric confusion. The old Greedy value (0.663) was micro F1 incorrectly placed in a macro F1 table; the \"Single\" row (0.645) was actually the correct greedy macro F1. All \"greedy surpasses selection\" claims replaced with \"selection approximately matches greedy\" framing.\nartifacts/full_data_audit_report.md:136:| L35 | oracle headroom +11.4 pp | 0.781-0.667=0.114=11.4pp | ✅ |\nartifacts/_project/report/full_data_audit_report.md:136:| L35 | oracle headroom +11.4 pp | 0.781-0.667=0.114=11.4pp | ✅ |\nartifacts/_project/report/alpha_crit_table_v4_ff5191.md:79:| SciERC | 42 | greedy_f1 | 0.6663 | 0.6683 | +0.20pp | data regen |\nartifacts/_project/report/audit_report_736eaa.md:13:| 1 | discussion.tex:L43 | LP×VC best: +0.1pp over single-sample | limitations.tex:L10 | LP×VC: +0.4pp over greedy | **HIGH** | Mathematically contradictory. If best=single+0.1pp=0.646, then vs greedy (0.663)=-1.7pp, not +0.4pp. | Limitations should read \"+0.4pp over single-sample\" OR discussion value needs correction. Verify from exp data which is correct. |\nartifacts/_project/report/audit_report_736eaa.md:16:| 4 | paper_provenance.yaml c013 | greedy F1 = 0.644 | experiments.tex Table 2 (L67) | Greedy (T=0) F1 = 0.663 | **HIGH** | 1.9pp discrepancy in greedy baseline between provenance (exp_016_rerun_1024_bootstrap) and paper Table 2 (exp_016_signal_ensemble). | Clarify which experiment sources Table 2. If different experiments, provenance should reference the correct one. |\nartifacts/_project/report/audit_report_736eaa.md:18:| 6 | experiments.tex:L9 | SciERC: ≈65% F1 | discussion.tex:L13 | SciERC (66%) | MEDIUM | \"≈65%\" refers to single-sample (0.645), \"66%\" refers to greedy (0.663). With the \"Single=greedy\" issue, these become entangled. | Standardize: if \"Single\" is the reference, use \"65%\"; if greedy, use \"66%\". Pick one. |\nartifacts/_project/report/audit_report_736eaa.md:24:[Omitted long matching line]\nartifacts/_project/report/audit_report_736eaa.md:37:| c013: greedy NER F1 | 0.644 | 0.663 | **STALE** |\nartifacts/_project/report/scierc_mv_sign_flip_audit.md:55:- Recompute greedy_f1 for s42 (0.6683) matches registry `exp_scierc_mf4_v2_s42` metrics ✓\nartifacts/_project/report/scierc_mv_sign_flip_audit.md:59:- N8 s123 report.json greedy_f1=0.6613 matches registry `exp_scierc_n8_s123` ✓\nartifacts/_project/report/scierc_mv_sign_flip_audit.md:60:- N8 s456 report.json greedy_f1=0.6657 matches registry `exp_scierc_n8_s456` ✓\nartifacts/_project/report/holm_bonferroni_5seed.md:28:| greedy_f1 | 0.6633 ± 0.0014 |",
+    "numLines": 30,
+    "appliedLimit": 30
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 50_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01L52sEjvnqJYYu8hAUMHd2y`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/decisions.yaml",
+  "offset": 2780,
+  "limit": 30
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d3999a21-0914-40f6-afdd-8951e6461b5c",
+  "uuid": "ba85d87f-e16d-4b53-90fb-da4103acf146",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014G3mp8jwQiPGszNSWV6snv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3626,
+      "cache_read_input_tokens": 48463,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3626
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-23T20:41:18.482Z_
+
+<details><summary>↩ Tool result · `toolu_01L52sEjvnqJYYu8hAUMHd2y`</summary>
+
+```text
+2780	    F1'
+2781	  rationale: Reviewer 发现 micro-averaged (corpus-level) 与 per-instance mean F1 差异达
+2782	    1.6pp (greedy)。退化率和 selection 分析均基于 per-instance 粒度，混用聚合方式会产生不公平对比，是审稿人攻击面。所有论文数字统一用
+2783	    per-instance mean（unified_metrics），oracle_f1_recalc_results.json (74实验) 为 ground
+2784	    truth。
+2785	  related_experiments:
+2786	  - exp_id: exp_026_t10_seed42
+2787	    role: example
+2788	    result: micro greedy=0.6617 vs per-instance=0.6453, diff 1.6pp
+2789	  depends_on:
+2790	  - D151
+2791	- id: D154
+2792	  date: 2026-05-18 21:46 UTC
+2793	  summary: 'D154: 23点扩展后 degen-LP 相关性消失(ρ=0.052)，Two-Condition Framework 第一条件(退化率)不成立，LP
+2794	    ρ 可能是真正预测因子'
+2795	  rationale: 统一 N=8 + unified F1 后 23 个数据点的 Spearman ρ=0.052, p=0.81。明确反例：LLaMA CoNLL
+2796	    89% degen 但 LP 微正；3ep SciERC 6.4% degen 但 LP -1.18pp。退化率无法预测 LP 选择效果。LP 效果更可能由数据集特征/LP
+2797	    ρ 本身决定：FewNERD LP ρ~0.42 一致正向，SciERC LP ρ~0.20 混合，CoNLL LP ρ~0.30 混合。DGS 理论基础被削弱，Contribution
+2798	    C 需要简化——从 prescriptive diagnostic framework 简化为 honest empirical finding。
+2799	  related_experiments:
+2800	  - exp_id: fig_scatter_v2
+2801	    role: primary
+2802	    result: 23点 ρ=0.052 p=0.81
+2803	  - exp_id: exp_029a
+2804	    role: counterexample
+2805	    result: 3ep degen 6.4% LP -1.18pp
+2806	  - exp_id: exp_017_llama_conll_finetune
+2807	    role: counterexample
+2808	    result: degen 89% LP +0.14pp
+2809	  depends_on:
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d3999a21-0914-40f6-afdd-8951e6461b5c",
+  "uuid": "0515e143-b6d3-4955-8afd-d5e37f966bcc",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/decisions.yaml",
+      "content": "    F1'\n  rationale: Reviewer 发现 micro-averaged (corpus-level) 与 per-instance mean F1 差异达\n    1.6pp (greedy)。退化率和 selection 分析均基于 per-instance 粒度，混用聚合方式会产生不公平对比，是审稿人攻击面。所有论文数字统一用\n    per-instance mean（unified_metrics），oracle_f1_recalc_results.json (74实验) 为 ground\n    truth。\n  related_experiments:\n  - exp_id: exp_026_t10_seed42\n    role: example\n    result: micro greedy=0.6617 vs per-instance=0.6453, diff 1.6pp\n  depends_on:\n  - D151\n- id: D154\n  date: 2026-05-18 21:46 UTC\n  summary: 'D154: 23点扩展后 degen-LP 相关性消失(ρ=0.052)，Two-Condition Framework 第一条件(退化率)不成立，LP\n    ρ 可能是真正预测因子'\n  rationale: 统一 N=8 + unified F1 后 23 个数据点的 Spearman ρ=0.052, p=0.81。明确反例：LLaMA CoNLL\n    89% degen 但 LP 微正；3ep SciERC 6.4% degen 但 LP -1.18pp。退化率无法预测 LP 选择效果。LP 效果更可能由数据集特征/LP\n    ρ 本身决定：FewNERD LP ρ~0.42 一致正向，SciERC LP ρ~0.20 混合，CoNLL LP ρ~0.30 混合。DGS 理论基础被削弱，Contribution\n    C 需要简化——从 prescriptive diagnostic framework 简化为 honest empirical finding。\n  related_experiments:\n  - exp_id: fig_scatter_v2\n    role: primary\n    result: 23点 ρ=0.052 p=0.81\n  - exp_id: exp_029a\n    role: counterexample\n    result: 3ep degen 6.4% LP -1.18pp\n  - exp_id: exp_017_llama_conll_finetune\n    role: counterexample\n    result: degen 89% LP +0.14pp\n  depends_on:",
+      "numLines": 30,
+      "startLine": 2780,
+      "totalLines": 4369
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 52_
+
+<details open><summary>🔧 Tool call — Read · `toolu_0139uGTtaiXtBru8xLxgGybz`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/decisions.yaml",
+  "offset": 4035,
+  "limit": 25
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d3999a21-0914-40f6-afdd-8951e6461b5c",
+  "uuid": "5fb6650f-dc2b-4095-b38f-b50c0b69530d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014G3mp8jwQiPGszNSWV6snv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3626,
+      "cache_read_input_tokens": 48463,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3626
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 53 · 2026-05-23T20:41:19.118Z_
+
+<details><summary>↩ Tool result · `toolu_0139uGTtaiXtBru8xLxgGybz`</summary>
+
+```text
+4035	  - exp_id: exp_fewnerd_mf4_v2_s42
+4036	    role: evidence
+4037	    result: micro_f1 MV=0.785 greedy=0.788 Δ=-0.63pp
+4038	  - exp_id: exp_conll_mf4_v2_s123
+4039	    role: evidence
+4040	    result: micro_f1 MV=0.914 greedy≈0.913 Δ=+0.17pp
+4041	  - exp_id: exp_scierc_mf4_v2_s42
+4042	    role: evidence
+4043	    result: micro_f1 MV=0.670 greedy≈0.667 Δ=+0.37pp
+4044	  depends_on: []
+4045	- id: D224
+4046	  date: 2026-05-21 11:52 UTC
+4047	  summary: Round 27 审稿 Action Matrix 定稿：标题收窄为 NER，全文因果语言替换，k 值修正，degeneracy bound
+4048	    降级
+4049	  rationale: 'Round 27 评分 3.0 (Findings)。3 个 consensus critical 均为 framing/文本问题，不影响实验数据。Reviewer
+4050	    #52 确认：(1) 标题用 "Named Entity Recognition" 而非 "Structured IE"——证据 100% NER-centric，收窄后深度优势凸显；(2)
+4051	    degeneracy bound 降为 explanatory tool 不在 rebuttal 强辩；(3) C1+C2 合并执行一次 language
+4052	    sweep；(4) paper_framing.md 必须同步更新。修复后预期 3.0→3.5。'
+4053	  related_experiments:
+4054	  - exp_id: round_27_review
+4055	    role: trigger
+4056	    result: 3.0 Findings, 3 critical + 7 warning
+4057	  depends_on: []
+4058	- id: D225
+4059	  date: 2026-05-21 12:03 UTC
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d3999a21-0914-40f6-afdd-8951e6461b5c",
+  "uuid": "cf3a1b11-c594-4331-b65c-e6f777415a13",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/decisions.yaml",
+      "content": "  - exp_id: exp_fewnerd_mf4_v2_s42\n    role: evidence\n    result: micro_f1 MV=0.785 greedy=0.788 Δ=-0.63pp\n  - exp_id: exp_conll_mf4_v2_s123\n    role: evidence\n    result: micro_f1 MV=0.914 greedy≈0.913 Δ=+0.17pp\n  - exp_id: exp_scierc_mf4_v2_s42\n    role: evidence\n    result: micro_f1 MV=0.670 greedy≈0.667 Δ=+0.37pp\n  depends_on: []\n- id: D224\n  date: 2026-05-21 11:52 UTC\n  summary: Round 27 审稿 Action Matrix 定稿：标题收窄为 NER，全文因果语言替换，k 值修正，degeneracy bound\n    降级\n  rationale: 'Round 27 评分 3.0 (Findings)。3 个 consensus critical 均为 framing/文本问题，不影响实验数据。Reviewer\n    #52 确认：(1) 标题用 \"Named Entity Recognition\" 而非 \"Structured IE\"——证据 100% NER-centric，收窄后深度优势凸显；(2)\n    degeneracy bound 降为 explanatory tool 不在 rebuttal 强辩；(3) C1+C2 合并执行一次 language\n    sweep；(4) paper_framing.md 必须同步更新。修复后预期 3.0→3.5。'\n  related_experiments:\n  - exp_id: round_27_review\n    role: trigger\n    result: 3.0 Findings, 3 critical + 7 warning\n  depends_on: []\n- id: D225\n  date: 2026-05-21 12:03 UTC",
+      "numLines": 25,
+      "startLine": 4035,
+      "totalLines": 4369
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 54_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a much clearer picture. Let me trace the data:
+
+**Key finding from decisions.yaml D153 (line 2780-2790)**:
+- Decision was to unify ALL paper numbers to **per-instance mean F1** (not micro F1)
+- micro greedy=0.6617 vs per-instance=0.6453, diff 1.6pp
+
+**From d113_table2_fix/changelog.md**:
+"The old Greedy value (0.663) was micro F1 incorrectly placed in a macro F1 table; the "Single" row (0.645) was actually the correct greedy macro F1."
+ 
+Looking at the audit data, I'm seeing micro F1 values across multiple seeds from the MF4v2 experiments—around 0.667-0.668 for individual runs with a mean of 0.6633. But these are the micro scores, not the per-instance means that should actually be reported.
+
+The real discrepancy is that the body text reports per-instance F1 values (Oracle=0.775±0.001, Greedy=0.645±0.001), while the caption uses micro F1 values (Oracle=0.781, Greedy=0.667)—two different metrics entirely, which explains the gap between them. I'm seeing that 0.667 doesn't match either the micro F1 (0.6617) or per-instance mean F1 (0.6453) from the earlier analysis, but looking at the experimental logs, the greedy baseline for SciERC appears to be around 0.6663-0.6683 depending on the seed configuration, which rounds to 0.667 in the caption.
+
+The key distinction I need to clarify is what "macro F1" actually means here—it could be instance-averaged F1, entity-type-averaged F1, or corpus-level micro F1—and whether the MF4v2 pipeline computes metrics differently than the original approach.
+
+Looking at the data, I'm seeing two different pipelines with divergent results: the original pipeline gives greedy_f1 around 0.645 (per-instance), while MF4v2 yields greedy_f1 around 0.667, though I'm not yet certain if that's micro F1 or a recalculated metric. The holm_bonferroni_5seed results show 0.6633 ± 0.0014 as the 5-seed mean, which sits between these values and suggests the MF4v2 pipeline might be the source of the higher scores. I see now—that micro vs per-instance comparison was from an older experiment before the MF4v2 fix was applied. Looking at the claim_audit_report, the caption values of 0.781/0.667 were verified as correct, which means the table body values of 0.775/0.645 are stale and came from the old experiments file that wasn't updated when the caption was corrected.
+
+The discrepancy with the rounding is interesting though—the holm_bonferroni_5seed data shows greedy_f1 at 0.6633, which rounds to 0.663, not 0.667. But the caption and scale_comparison table both use 0.667, which matches the single-seed value from exp_scierc_mf4_v2_s42. Meanwhile, tab:fewnerd in the main experiments file lists the 3-seed mean as 0.663, so there's a slight inconsistency in how the values are being reported across different aggregations. I'm noticing the greedy baseline should be consistent regardless of selection method since it's just T=0 decoding, so these discrepancies suggest different seed sets are being used across the tables. Rather than chase down every number mismatch, I need to focus on the core issue: the table body shows old archived values (Oracle=0.775±0.001, Greedy=0.645±0.001) while the caption has newer numbers (Oracle=0.781, Greedy=0.667).
+
+The solution is to update the table body to match the caption values. From the 5-seed audit data, greedy comes out to 0.6633±0.0014, which rounds to 0.667, so I need to find the corresponding oracle value and determine the right uncertainty to report. The audit reports both confirm the oracle headroom calculation: 0.781 minus 0.667 equals 0.114, which is 11.4 percentage points—so that part checks out regardless of whether the 0.667 is from seed 42 alone or the 3-seed mean.
+
+The real issue is that the table body values (0.775/0.645) don't match the caption's authoritative values (0.781/0.667), so I need to update them. For the uncertainty bounds, the 5-seed greedy standard deviation is 0.0014, which suggests ±0.001 or ±0.002 for the 3-seed estimates, and I can probably keep the existing ±0.001 for oracle if I just update the point estimates themselves. I'm noticing inconsistencies in the baseline values across the table and caption—the Greedy score shows as .663 in one place and .667 in another, which suggests they might be from different experimental runs. For the tab:selection table, I should align the body values with what the caption states (Oracle=0.781, Greedy=0.667) and use ±0.001 for the standard deviation since I don't have the exact 3-seed values but the 5-seed greedy σ of 0.0014 rounds reasonably to that. However, I'm realizing the tab:fewnerd data shows a different Greedy value (.663) that doesn't match either baseline, so I need to trace through the actual line 70 entry more carefully to understand which metric is being reported. I'm realizing these are different metrics—macro F1 averages across entity types while instance-averaged F1 averages across instances—so the paper might be using the terminology loosely. Rather than get caught up in this distinction, I should just update the numbers to match what the audits confirmed: Oracle to 0.781±0.001 and Greedy to 0.667±0.001, making sure the standard deviations reflect the actual cross-seed variability. I'm noticing a discrepancy—the greedy F1 value of 0.667 doesn't match the calculated 3-seed mean of 0.6651, and it's actually the single-seed value for seed 42. But the audit reports consistently show 0.667 for the headroom calculation, so maybe the MF4v2 pipeline's 3-seed mean genuinely rounds to that value.
+
+Since the audits have verified these numbers, I'll trust them and proceed with updating the table. I need to change Oracle from 0.775 to 0.781 and Greedy from 0.645 to 0.667 in the single_signal.tex table body, then verify the AUROC ranking residuals are correctly attributed to the main SciERC results with Qwen3-8B rather than other model configurations.
+
+Now I'm checking the QE table in experiments_main.tex to see the current SciERC AUROC values and their ranking. The values show SJ at the top (.692), followed by VC (.684), then EM (.631), FK (.629), and LP (.578). The appendix mentions a different ranking for the LLaMA-3.2-3B model, so I need to verify whether the main text references the correct ranking for the primary experiment. I see that .631 is the updated AUROC value for EM on SciERC, replacing the old .749. Now I need to search through the document to find any remaining references that still cite the outdated .749 value or claim EM leads on SciERC AUROC.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d3999a21-0914-40f6-afdd-8951e6461b5c",
+  "uuid": "e518b450-051e-4ce8-b60d-6c5a1a02d73b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017qvcK8LTVFHp5g8QghKFGp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5839,
+      "cache_read_input_tokens": 52089,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5839
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 55_
+
+现在有清晰的全貌了。两个审计报告均确认 caption 值 (0.781/0.667=11.4pp) 正确，表体值 (0.775/0.645) 是旧版残留。
+
+让我读 LLaMA-3B 的表和 appendix 中被标记的 AUROC 行，确认 AUROC 排名情况。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d3999a21-0914-40f6-afdd-8951e6461b5c",
+  "uuid": "ee9c880b-7a64-47a4-b7fe-7717e6643ea2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017qvcK8LTVFHp5g8QghKFGp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5839,
+      "cache_read_input_tokens": 52089,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5839
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 56_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01R89tmotQmGJDntBQFjeMou`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+  "offset": 1895,
+  "limit": 40
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d3999a21-0914-40f6-afdd-8951e6461b5c",
+  "uuid": "f60d601e-1554-4348-b704-0603b5dd636a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017qvcK8LTVFHp5g8QghKFGp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5839,
+      "cache_read_input_tokens": 52089,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5839
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 57 · 2026-05-23T20:43:16.188Z_
+
+<details><summary>↩ Tool result · `toolu_01R89tmotQmGJDntBQFjeMou`</summary>
+
+```text
+1895	
+1896	\paragraph{QE--selection decoupling.}
+1897	VerbConf achieves higher $\rho$ than LP on both datasets (SciERC: 0.297 vs.\ 0.205; CoNLL: 0.337 vs.\ 0.316) and competitive AUROC (SciERC: 0.681 vs.\ 0.578; CoNLL: 0.747 vs.\ 0.753), yet yields the worst selection among all signals ($\Delta{=}{-}2.45$~pp on SciERC, $-1.93$~pp on CoNLL).
+1898	This dissociation further demonstrates the correlation-selection gap: a signal can rank instances by expected quality without being able to discriminate candidates within an instance.
+1899	The AUROC--$\rho$ decoupling on CoNLL (LP leads AUROC at 0.753 while VerbConf leads $\rho$ at 0.337) reflects differing sensitivity to binary vs.\ ordinal discrimination.
+1900	
+1901	\section{LLaMA-3.2-3B Scale Ablation}\label{app:llama3b}
+1902	
+1903	To extend scale coverage below 4B, we fine-tune LLaMA-3.2-3B-Instruct on SciERC NER under identical training conditions (LoRA rank${=}32$, $\alpha{=}64$, 5 epochs) and evaluate quality estimation and selection (Table~\ref{tab:llama3b}).
+1904	
+1905	\begin{table}[t]
+1906	\centering
+1907	\small
+1908	\caption{LLaMA-3.2-3B SciERC NER quality estimation and selection ($N{=}8$, $T{=}1.0$, seed${=}42$). Greedy F1${=}0.627$, Oracle F1${=}0.763$, headroom${=}13.63$~pp.}
+1909	\label{tab:llama3b}
+1910	\begin{tabular}{l cc cc}
+1911	\toprule
+1912	Signal & $\rho$ & AUROC & Sel.\ F1 & $\Delta$ vs.\ greedy \\
+1913	\midrule
+1914	VC & \textbf{.460} & .743 & 0.611 & $-$1.54\,pp \\
+1915	SJ & .375 & .738 & \textbf{0.633} & $+$0.61\,pp \\
+1916	EM & .334 & \textbf{.776} & --- & --- \\
+1917	FK & .268 & .671 & 0.630 & $+$0.28\,pp \\
+1918	LP & .266 & .633 & 0.628 & $+$0.12\,pp \\
+1919	\midrule
+1920	Greedy & --- & --- & 0.627 & --- \\
+1921	Oracle & --- & --- & 0.763 & --- \\
+1922	\bottomrule
+1923	\end{tabular}
+1924	\end{table}
+1925	
+1926	The $\rho$ ranking at 3B (VC $>$ SJ $>$ EM $>$ FK $\approx$ LP) preserves the structural-over-LP ordering from 8B (Table~\ref{tab:quality_estimation}); ranking stability holds across two model families spanning 3B--8B.
+1927	AUROC rankings differ (EM $>$ VC $>$ SJ $>$ FK $>$ LP), consistent with the $\rho$--AUROC dissociation noted in the main text.
+1928	Despite 13.63~pp of oracle headroom, no signal achieves significant selection improvement (best: SJ, $+0.61$~pp, $p{=}0.175$); VC, the strongest QE signal, yields the worst selection ($-1.54$~pp), consistent with the correlation-selection gap observed at larger scales.
+1929	
+1930	\section{Few-NERD Full Results}\label{app:fewnerd}
+1931	
+1932	Table~\ref{tab:fewnerd_full} reports the complete Few-NERD INTRA coarse evaluation (Qwen3-8B, LoRA rank${=}32$, 3 epochs, $N{=}8$, $T{=}1.0$).
+1933	After gold-filtering (removing instances with no gold entities), the evaluation set contains $n{=}32{,}565$ instances across 8 coarse entity types; 11.9\% receive zero F1 under greedy decoding.
+1934	Instance degeneracy is 13.0\% (vs.\ 12.2\% on SciERC, 61.7\% on CoNLL).
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d3999a21-0914-40f6-afdd-8951e6461b5c",
+  "uuid": "e142ee76-dcf5-413a-89ae-fe3db15a276a",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+      "content": "\n\\paragraph{QE--selection decoupling.}\nVerbConf achieves higher $\\rho$ than LP on both datasets (SciERC: 0.297 vs.\\ 0.205; CoNLL: 0.337 vs.\\ 0.316) and competitive AUROC (SciERC: 0.681 vs.\\ 0.578; CoNLL: 0.747 vs.\\ 0.753), yet yields the worst selection among all signals ($\\Delta{=}{-}2.45$~pp on SciERC, $-1.93$~pp on CoNLL).\nThis dissociation further demonstrates the correlation-selection gap: a signal can rank instances by expected quality without being able to discriminate candidates within an instance.\nThe AUROC--$\\rho$ decoupling on CoNLL (LP leads AUROC at 0.753 while VerbConf leads $\\rho$ at 0.337) reflects differing sensitivity to binary vs.\\ ordinal discrimination.\n\n\\section{LLaMA-3.2-3B Scale Ablation}\\label{app:llama3b}\n\nTo extend scale coverage below 4B, we fine-tune LLaMA-3.2-3B-Instruct on SciERC NER under identical training conditions (LoRA rank${=}32$, $\\alpha{=}64$, 5 epochs) and evaluate quality estimation and selection (Table~\\ref{tab:llama3b}).\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{LLaMA-3.2-3B SciERC NER quality estimation and selection ($N{=}8$, $T{=}1.0$, seed${=}42$). Greedy F1${=}0.627$, Oracle F1${=}0.763$, headroom${=}13.63$~pp.}\n\\label{tab:llama3b}\n\\begin{tabular}{l cc cc}\n\\toprule\nSignal & $\\rho$ & AUROC & Sel.\\ F1 & $\\Delta$ vs.\\ greedy \\\\\n\\midrule\nVC & \\textbf{.460} & .743 & 0.611 & $-$1.54\\,pp \\\\\nSJ & .375 & .738 & \\textbf{0.633} & $+$0.61\\,pp \\\\\nEM & .334 & \\textbf{.776} & --- & --- \\\\\nFK & .268 & .671 & 0.630 & $+$0.28\\,pp \\\\\nLP & .266 & .633 & 0.628 & $+$0.12\\,pp \\\\\n\\midrule\nGreedy & --- & --- & 0.627 & --- \\\\\nOracle & --- & --- & 0.763 & --- \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nThe $\\rho$ ranking at 3B (VC $>$ SJ $>$ EM $>$ FK $\\approx$ LP) preserves the structural-over-LP ordering from 8B (Table~\\ref{tab:quality_estimation}); ranking stability holds across two model families spanning 3B--8B.\nAUROC rankings differ (EM $>$ VC $>$ SJ $>$ FK $>$ LP), consistent with the $\\rho$--AUROC dissociation noted in the main text.\nDespite 13.63~pp of oracle headroom, no signal achieves significant selection improvement (best: SJ, $+0.61$~pp, $p{=}0.175$); VC, the strongest QE signal, yields the worst selection ($-1.54$~pp), consistent with the correlation-selection gap observed at larger scales.\n\n\\section{Few-NERD Full Results}\\label{app:fewnerd}\n\nTable~\\ref{tab:fewnerd_full} reports the complete Few-NERD INTRA coarse evaluation (Qwen3-8B, LoRA rank${=}32$, 3 epochs, $N{=}8$, $T{=}1.0$).\nAfter gold-filtering (removing instances with no gold entities), the evaluation set contains $n{=}32{,}565$ instances across 8 coarse entity types; 11.9\\% receive zero F1 under greedy decoding.\nInstance degeneracy is 13.0\\% (vs.\\ 12.2\\% on SciERC, 61.7\\% on CoNLL).",
+      "numLines": 40,
+      "startLine": 1895,
+      "totalLines": 2569
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 58_
+
+<details open><summary>🔧 Tool call — Read · `toolu_014HqxQPPFqqdQrTpqZpR1PS`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+  "offset": 85,
+  "limit": 20
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d3999a21-0914-40f6-afdd-8951e6461b5c",
+  "uuid": "cff3bcfa-52be-40e3-8611-f9e4fed559dd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017qvcK8LTVFHp5g8QghKFGp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5839,
+      "cache_read_input_tokens": 52089,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5839
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 59 · 2026-05-23T20:43:17.652Z_
+
+<details><summary>↩ Tool result · `toolu_014HqxQPPFqqdQrTpqZpR1PS`</summary>
+
+```text
+85	VC $N$-scaling is consistently positive ($+0.005$ on Qwen CoNLL, $+0.018$ on LLaMA SciERC, $+0.030$ on Qwen SciERC), while LP is approximately $N$-invariant ($\Delta{\leq}0.034$).
+86	SJ, EM, and VC scale consistently across all tested settings; only FK shows seed-dependent variation that does not constitute a reliable trend, structural and binary-agreement signals are the most robust to $N$.
+87	At $N{=}16$, SJ converges to comparable NER performance with VC ($\Delta{=}0.002$) while exhibiting lower cross-seed variance ($\sigma{=}0.010$ vs.\ $0.026$), a more stable alternative at higher sample sizes.
+88	
+89	\paragraph{Transfer across model families.}
+90	LLaMA-3.1-8B-Instruct shows a similar SJ--FK ordering on SciERC NER (SJ $\rho{=}0.325{\pm}0.021$, FK $\rho{=}0.256{\pm}0.024$, $\Delta\rho{=}0.069$; permutation $p{=}0.06$, borderline).
+91	On CoNLL, the gap across model families is minimal (Table~\ref{tab:quality_estimation}): SJ achieves $\rho{=}0.431$ (LLaMA) vs.\ 0.436 (Qwen), $\Delta{=}0.005$.
+92	At $N{=}16$, the structural-over-LP advantage holds across all four tested NER settings: Qwen SciERC (VC $\rho{=}0.409$ vs.\ LP 0.239, $\Delta{=}{+}0.170$), Qwen CoNLL (EM $\rho{=}0.463$ vs.\ LP 0.328, $\Delta{=}{+}0.135$),\footnote{Qwen CoNLL $N{=}16$ was not recomputed under the unified pipeline; LP $\rho{=}0.328$ may differ slightly from the registry value (0.315) due to instance filtering.} LLaMA SciERC (VC $\rho{=}0.452$ vs.\ LP 0.277, $\Delta{=}{+}0.175$), and LLaMA CoNLL 3-seed (SJ $\rho{=}0.474{\pm}0.009$ vs.\ LP $0.311{\pm}0.003$, $\Delta{=}{+}0.163$).
+93	
+94	\paragraph{FK independence: instance-level permutation test.}\label{app:fk_independence}
+95	
+96	To verify that Fleiss' $\kappa$ reflects genuine within-instance agreement rather than marginal-rate artifacts, we conduct instance-level permutation tests across three configurations.
+97	For each instance, we permute sample labels 10{,}000 times to generate a null distribution of FK under independence, then compare the observed FK against this null via a one-sample $t$-test and permutation $p$-value.
+98	
+99	\begin{table}[t]
+100	\centering
+101	\small
+102	\caption{Instance-level FK independence test. Permutation tests confirm FK reflects true within-instance agreement (all $p{<}0.001$). Split-half reliability $r$ computed by randomly partitioning $N$ samples into two halves and correlating their FK scores.}
+103	\label{tab:fk_independence}
+104	\resizebox{\columnwidth}{!}{
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d3999a21-0914-40f6-afdd-8951e6461b5c",
+  "uuid": "51c9c8e6-dbe4-4ada-beda-4ba3f12ac87a",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+      "content": "VC $N$-scaling is consistently positive ($+0.005$ on Qwen CoNLL, $+0.018$ on LLaMA SciERC, $+0.030$ on Qwen SciERC), while LP is approximately $N$-invariant ($\\Delta{\\leq}0.034$).\nSJ, EM, and VC scale consistently across all tested settings; only FK shows seed-dependent variation that does not constitute a reliable trend, structural and binary-agreement signals are the most robust to $N$.\nAt $N{=}16$, SJ converges to comparable NER performance with VC ($\\Delta{=}0.002$) while exhibiting lower cross-seed variance ($\\sigma{=}0.010$ vs.\\ $0.026$), a more stable alternative at higher sample sizes.\n\n\\paragraph{Transfer across model families.}\nLLaMA-3.1-8B-Instruct shows a similar SJ--FK ordering on SciERC NER (SJ $\\rho{=}0.325{\\pm}0.021$, FK $\\rho{=}0.256{\\pm}0.024$, $\\Delta\\rho{=}0.069$; permutation $p{=}0.06$, borderline).\nOn CoNLL, the gap across model families is minimal (Table~\\ref{tab:quality_estimation}): SJ achieves $\\rho{=}0.431$ (LLaMA) vs.\\ 0.436 (Qwen), $\\Delta{=}0.005$.\nAt $N{=}16$, the structural-over-LP advantage holds across all four tested NER settings: Qwen SciERC (VC $\\rho{=}0.409$ vs.\\ LP 0.239, $\\Delta{=}{+}0.170$), Qwen CoNLL (EM $\\rho{=}0.463$ vs.\\ LP 0.328, $\\Delta{=}{+}0.135$),\\footnote{Qwen CoNLL $N{=}16$ was not recomputed under the unified pipeline; LP $\\rho{=}0.328$ may differ slightly from the registry value (0.315) due to instance filtering.} LLaMA SciERC (VC $\\rho{=}0.452$ vs.\\ LP 0.277, $\\Delta{=}{+}0.175$), and LLaMA CoNLL 3-seed (SJ $\\rho{=}0.474{\\pm}0.009$ vs.\\ LP $0.311{\\pm}0.003$, $\\Delta{=}{+}0.163$).\n\n\\paragraph{FK independence: instance-level permutation test.}\\label{app:fk_independence}\n\nTo verify that Fleiss' $\\kappa$ reflects genuine within-instance agreement rather than marginal-rate artifacts, we conduct instance-level permutation tests across three configurations.\nFor each instance, we permute sample labels 10{,}000 times to generate a null distribution of FK under independence, then compare the observed FK against this null via a one-sample $t$-test and permutation $p$-value.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Instance-level FK independence test. Permutation tests confirm FK reflects true within-instance agreement (all $p{<}0.001$). Split-half reliability $r$ computed by randomly partitioning $N$ samples into two halves and correlating their FK scores.}\n\\label{tab:fk_independence}\n\\resizebox{\\columnwidth}{!}{",
+      "numLines": 20,
+      "startLine": 85,
+      "totalLines": 2569
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 60_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01CkzJKu7rQE35A7vPrc7VsL`</summary>
+
+```json
+{
+  "pattern": "0\\.749|EM.*leads.*SciERC|SciERC.*EM.*best|EM.*highest.*SciERC",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections",
+  "output_mode": "content",
+  "-n": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d3999a21-0914-40f6-afdd-8951e6461b5c",
+  "uuid": "767ec844-4095-452b-aeba-847401050cb1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017qvcK8LTVFHp5g8QghKFGp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5839,
+      "cache_read_input_tokens": 52089,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5839
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 61 · 2026-05-23T20:43:19.620Z_
+
+<details><summary>↩ Tool result · `toolu_01CkzJKu7rQE35A7vPrc7VsL`</summary>
+
+```text
+No matches found
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d3999a21-0914-40f6-afdd-8951e6461b5c",
+  "uuid": "4ed70492-66a3-4fe2-9a10-ea7ca23ec13f",
+  "tool_use_result": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "",
+    "numLines": 0
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 62_
+
+<details open><summary>🔧 Tool call — Glob · `toolu_01RDJKTdUhz9bSC7sEk8YQWk`</summary>
+
+```json
+{
+  "pattern": "**/docs/paper/**/response*",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d3999a21-0914-40f6-afdd-8951e6461b5c",
+  "uuid": "11e8dbcd-0f1a-41b0-a543-445f54eef3dd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017qvcK8LTVFHp5g8QghKFGp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5839,
+      "cache_read_input_tokens": 52089,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5839
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 63 · 2026-05-23T20:43:20.343Z_
+
+<details><summary>↩ Tool result · `toolu_01RDJKTdUhz9bSC7sEk8YQWk`</summary>
+
+```text
+No files found
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d3999a21-0914-40f6-afdd-8951e6461b5c",
+  "uuid": "7c4120b1-87c8-442d-8302-0eab5d95de8a",
+  "tool_use_result": {
+    "filenames": [],
+    "durationMs": 117,
+    "numFiles": 0,
+    "truncated": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 64_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have full clarity.
+
+**Sub-task 1 Analysis:**
+
+The table body in single_signal.tex has old values that were never updated:
+- Oracle: 0.775 → should be 0.781
+- Greedy: 0.645 → should be 0.667
+- This makes headroom 11.4pp (matching caption, figure caption, all prose references)
+
+This is **Method C**: update table body to match caption. The 11.4pp headroom is correct throughout the rest of the paper.
+
+**Sub-task 2 Analysis:**
+
+For AUROC ranking:
+1. The **main QE table** (experiments_main.tex, tab:quality_estimation) already has the UPDATED SciERC AUROC values: SJ(.692) > VC(.684) > EM(.631) > FK(.629) > LP(.578). ✅
+
+
+2. The appendix statement about AUROC rankings at line 1927 refers to LLaMA-3.2-3B results, not the main SciERC model. Checking the LLaMA-3B table confirms EM > VC > SJ > FK > LP is correct for that model, so this statement is accurate and doesn't need updating.
+
+3. The CoNLL reference at line 52 in experiments_main.tex correctly cites EM AUROC of 0.816 on CoNLL data.
+
+4. I'm not finding any lingering references to the old EM AUROC value of .749 or claims that EM leads on SciERC, so there don't appear to be any stale AUROC rankings to fix.
+
+I should also check if there are any response or rebuttal files in the directory, and scan the appendix for any other SciERC AUROC descriptions I might have missed.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d3999a21-0914-40f6-afdd-8951e6461b5c",
+  "uuid": "3a146d60-494b-43b0-8df2-ade734dd76c7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EUFQ9ETgyFZ8Z7ZRg4TsMY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8192,
+      "cache_read_input_tokens": 57928,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8192
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 65_
+
+LLaMA-3B 的 AUROC 排名 (EM > VC > SJ > FK > LP) 与其表格数据一致——不是旧排名残留。没有找到旧 EM=.749 值或 SciERC AUROC 旧排名引用。
+
+现在执行修复。需要改 single_signal.tex 表体，然后编译验证。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d3999a21-0914-40f6-afdd-8951e6461b5c",
+  "uuid": "80d5d736-0a74-466d-89c6-6502bb0c711e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EUFQ9ETgyFZ8Z7ZRg4TsMY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8192,
+      "cache_read_input_tokens": 57928,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8192
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 66_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01QXhqK8xcbMXSyEyeRbNHYE`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/single_signal.tex",
+  "old_string": "Oracle & $0.775 \\pm 0.001$ & --- \\\\\nGreedy ($T{=}0$) & $0.645 \\pm 0.001$ & --- \\\\",
+  "new_string": "Oracle & $0.781 \\pm 0.001$ & --- \\\\\nGreedy ($T{=}0$) & $0.667 \\pm 0.001$ & --- \\\\"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d3999a21-0914-40f6-afdd-8951e6461b5c",
+  "uuid": "3cf8e6c2-f7c0-4d24-95dd-e806e182659c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EUFQ9ETgyFZ8Z7ZRg4TsMY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8192,
+      "cache_read_input_tokens": 57928,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8192
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 67 · 2026-05-23T20:43:46.483Z_
+
+<details><summary>↩ Tool result · `toolu_01QXhqK8xcbMXSyEyeRbNHYE`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/single_signal.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d3999a21-0914-40f6-afdd-8951e6461b5c",
+  "uuid": "7c231a12-c1a3-4c88-bb83-05f7a9a4df96",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/single_signal.tex",
+    "oldString": "Oracle & $0.775 \\pm 0.001$ & --- \\\\\nGreedy ($T{=}0$) & $0.645 \\pm 0.001$ & --- \\\\",
+    "newString": "Oracle & $0.781 \\pm 0.001$ & --- \\\\\nGreedy ($T{=}0$) & $0.667 \\pm 0.001$ & --- \\\\",
+    "originalFile": "\\section{Single-Signal Selection Results}\\label{sec:selection_gap}\n\n\\paragraph{Definitional vs.\\ empirical.}\nWe decompose the correlation-selection gap into two layers.\nThe first is structural: four of five signals are instance-level aggregates that assign identical scores to all $N$ candidates from a given input (\\S\\ref{sec:formulation}), so they estimate quality across inputs but cannot rank candidates within an instance---selection failure is a design property, not an empirical finding.\nThe second layer is empirical and constitutes the core diagnostic: LP---the only per-sample signal---suffers compression under constrained decoding, with 60\\% of SciERC instances showing within-instance LP range below 0.041 nats (Appendix~\\ref{app:logprob_ties}), leaving insufficient variation for sample discrimination. This compression is model-intrinsic: free-form decoding yields nearly identical LP distributions (within-instance std ratio $0.97{\\times}$; Appendix~\\ref{app:freeform_ablation}). Even where LP varies, selection gains depend on LP-quality alignment rather than degeneracy alone.\nCross-instance $\\rho$ (Table~\\ref{tab:quality_estimation}) is attenuated by varying instance difficulty; within-instance $\\rho$ directly measures whether LP discriminates candidates for a fixed input, making it the relevant predictor of selection success.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Best-of-$N$ selection (macro F1) on SciERC ($N{=}8$, $T{=}1.0$). Selection signals: 2-seed mean${\\pm}\\sigma$; baselines: 3-seed (Oracle${=}0.781$, Greedy${=}0.667$). LP is per-sample; others use consensus-proximity. $^\\dagger$One score per input.}\n\\label{tab:selection}\n\\begin{tabular}{lcc}\n\\toprule\nMethod & NER F1 & $p$ \\\\\n\\midrule\nOracle & $0.775 \\pm 0.001$ & --- \\\\\nGreedy ($T{=}0$) & $0.645 \\pm 0.001$ & --- \\\\\n\\midrule\nLP           & $\\mathbf{0.647} \\pm 0.005$ & .29 \\\\\nSJ           & $0.646 \\pm 0.002$ & .67 \\\\\nFK           & $0.646 \\pm 0.001$ & .79 \\\\\nEM           & $0.637 \\pm 0.001$ & n/a$^\\dagger$ \\\\\nVC           & $0.623 \\pm 0.004$ & n/a$^\\dagger$ \\\\\n\\midrule\nRandom       & $0.610 \\pm 0.003$ & --- \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{fig_selection_gap}\n\\caption{Correlation-selection gap on SciERC ($N{=}8$, $T{=}1.0$). Bars: QE $\\rho$; line: $\\Delta$F1 vs.\\ greedy (3-seed mean). Despite $\\rho$ up to 0.38, no signal outperforms greedy (all $p{\\geq}0.29$). Dashed green: oracle headroom ($+11.4$\\,pp; oracle headroom $=$ best-of-$N$ F1 $-$ greedy F1); dotted gray: random.}\n\\label{fig:selection_gap}\n\\end{figure}\n\nDespite $\\rho$ up to 0.38, no signal outperforms greedy on SciERC (Table~\\ref{tab:selection}; Figure~\\ref{fig:selection_gap}); the oracle shows 11.4\\,pp headroom, but LP achieves $+0.2$\\,pp ($p{=}0.29$), below MDE (${\\approx}$1.5\\,pp at $n{=}529$, 2--3 seeds; Appendix~\\ref{app:bootstrap_signal}).\nAll selection experiments use 2--3 training seeds; bootstrap CIs are reported in Appendix~\\ref{app:bootstrap_signal}.\nThe pattern holds across CoNLL and WNUT-17 (Table~\\ref{tab:cross_selection}).\nFew-NERD provides the clearest positive case: LP achieves $+1.39$\\,pp ($p{<}0.001$; Holm $p_{\\text{adj}}{=}0.021$, selection family $k{=}21$)\\footnote{Under global correction ($k{=}57$), LP-best selection reaches Holm $p_{\\text{adj}}{=}0.055$ (BH $p_{\\text{adj}}{=}0.003$).} at low degeneracy (13.0\\% vs.\\ 12.2--67.9\\%), while structural signals still degrade (VC $-1.79$, SJ $-2.14$\\,pp; \\S\\ref{sec:fewnerd}).\n\n\\paragraph{Diagnostic framework.}\nThree co-occurring factors jointly characterize the gap:\n(1)~instance degeneracy sets the ceiling (SciERC 12.2\\%, CoNLL 61.7\\%);\n(2)~oracle headroom bounds the opportunity within non-degenerate instances (CoNLL ${\\approx}4$\\,pp vs.\\ SciERC 11.4\\,pp);\n(3)~LP compression limits exploitation (Few-NERD within-instance $\\rho{\\approx}0.5$--$0.7$ vs.\\ SciERC $\\rho{\\approx}0.26$).\nDegeneracy does not predict LP gain across datasets ($\\rho{=}0.052$, $n{=}23$, $p{=}0.81$; Figure~\\ref{fig:degeneracy_scatter}), though it co-varies with LP within fixed settings ($\\rho{=}{-}0.881$; Appendix~\\ref{app:per_type_lp}).\nThese conditions interact ($R^2{<}0$); on non-degenerate instances, $\\alpha$ approaches zero ($0.000$--$0.121$) despite $\\rho$ up to 0.45 (\\S\\ref{sec:theory}).\n\n\\paragraph{Mechanistic evidence (Appendix~\\ref{sec:mechanistic}).}\nWhy does signal alignment collapse? Probing experiments on Qwen2.5-7B-Instruct reveal an \\textit{introspection boundary}: hidden-state linear probes achieve entity-level AUROC $0.63$--$0.88$, substantially exceeding prompt-based self-judgment (ESJ AUROC $0.51$; confirmed on Qwen3-8B: AUROC $0.50$--$0.55$; Appendix~\\ref{app:esj}), yet cross-dataset transfer drops to $0.56$--$0.67$ (LODO).\nEntity self-judgment, multi-round refinement ($-3.1$\\,pp vs.\\ greedy), and latent centroid selection ($-3.5$\\,pp) all fail to improve over greedy decoding.\nEntity quality is partially encoded in representations but inaccessible through the generation interface---consistent with the signal alignment collapse observed across all configurations.\nCross-model validation on Qwen3-8B confirms chance-level ESJ performance (AUROC $0.50$--$0.55$; Appendix~\\ref{app:esj}), suggesting the introspection boundary is architecture-general rather than model-specific.\n",
+    "structuredPatch": [
+      {
+        "oldStart": 15,
+        "oldLines": 8,
+        "newStart": 15,
+        "newLines": 8,
+        "lines": [
+          " \\toprule",
+          " Method & NER F1 & $p$ \\\\",
+          " \\midrule",
+          "-Oracle & $0.775 \\pm 0.001$ & --- \\\\",
+          "-Greedy ($T{=}0$) & $0.645 \\pm 0.001$ & --- \\\\",
+          "+Oracle & $0.781 \\pm 0.001$ & --- \\\\",
+          "+Greedy ($T{=}0$) & $0.667 \\pm 0.001$ & --- \\\\",
+          " \\midrule",
+          " LP           & $\\mathbf{0.647} \\pm 0.005$ & .29 \\\\",
+          " SJ           & $0.646 \\pm 0.002$ & .67 \\\\"
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 68_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed_warning",
+    "resetsAt": 1779858000,
+    "rateLimitType": "seven_day",
+    "utilization": 0.87,
+    "isUsingOverage": false,
+    "surpassedThreshold": 0.75
+  },
+  "uuid": "21fa39ff-0e9f-47c6-80a1-c50f6f5acfae",
+  "session_id": "d3999a21-0914-40f6-afdd-8951e6461b5c"
+}
+```
+
+---
+
+### Assistant
+
+_source line 69_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me verify the fix by reading the updated file, and then compile.
+
+Also, let me double-check: the LP value in the table is 0.647. With the new greedy 0.667, the LP Δ should be 0.647 - 0.667 = -0.020 = -2.0pp. But the text says "+0.2pp" for LP...
+
+Wait, that doesn't make sense. LP selected F1 = 0.647, Greedy = 0.667. Then LP is -2.0pp below greedy, not +0.2pp.
+ 
+Ah, I see it now—the audit report shows the comparison was actually against 0.645, not 0.667. So the 0.645 greedy value in the table is the correct one for the selection metric, while 0.667 must be a different metric entirely, probably used in the caption or baseline. This explains the discrepancy. Let me dig into the changelog to understand what metrics are being mixed up here. So after the data regeneration, the greedy F1 for seed 42 shifted to 0.6683, but the audit report has conflicting values—line 136 references 0.667 from the figure caption while line 137 uses 0.645 when verifying the LP difference. This inconsistency suggests the audit was checking against different versions of the greedy baseline.
+
+The audit validated each set of numbers independently: the caption's 0.781 minus 0.667 for the oracle headroom, and the table body's LP 0.647 minus greedy 0.645 for the +0.2pp improvement. But it never caught that these two greedy values contradict each other across the document.
+
+Now I need to figure out which greedy value is actually correct. The table body shows greedy at 0.645 with LP at 0.647, giving the +0.2pp difference that matches the text. If greedy were really 0.667 from the caption, then LP would be 2.0 percentage points *below* greedy, which completely contradicts both the reported improvement and the statistical significance. Since the LP value of 0.647 was clearly computed against greedy=0.645, changing greedy to 0.667 would break the entire narrative.
+
+So the body values (0.775/0.645) are the correct per-instance metrics used in the selection experiments, while the caption values (0.781/0.667) must be using a different metric altogether—possibly micro F1 or some other computation. I should revert my earlier edit and instead fix the caption to align with the body values.
+
+But now I'm noticing the appendix scale_comparison table also uses greedy=0.667 with Hdr=11.4, which suggests it might also be using this different metric. Looking back at the decisions.yaml file, it explicitly states that both the degradation analysis and selection analysis are based on per-instance granularity, with all paper numbers unified to use per-instance mean from the unified_metrics—and it even mentions micro greedy=0.6617, which is closer to the caption value.
+
+The per-instance greedy value is 0.6453 (rounding to 0.645), which matches what's in the table body. So the decision clearly calls for unifying everything to per-instance mean, yet the caption still shows 0.667. Either the caption was updated after that decision with incorrect values, or those numbers came from a later computation like MF4v2. Looking at the alpha_crit_table, I see greedy_f1 values around 0.6663-0.6683, and the 5-seed average is 0.6633, which is closer to the caption's 0.667.
+
+It seems like the MF4v2 pipeline might have changed how per-instance F1 is computed, shifting the greedy baseline from 0.645 to around 0.663-0.668. If that's the case, then the entire table body would need recalculation, not just the baseline values. Let me examine the table body more carefully to see if those values have been updated accordingly.
+
+Looking at the reported scores for LP, SJ, FK, EM, VC, and Random, they're all clustered in the 0.610-0.647 range, which would place them well below a greedy baseline of 0.667. This actually makes sense for a selection experiment where no method outperforms the greedy approach, though it contradicts the claim about LP achieving a +0.2pp improvement.
+
+The key insight is that the p-value of 0.29 paired with the reported +0.2pp difference only makes sense if greedy is actually 0.645, not 0.667. A -2.0pp gap would produce a very different p-value. This means the table and the reported statistics must be using the same internal metric, confirming that greedy=0.645 is the baseline used for computing both the selection F1 scores and their significance tests.
+
+Now I'm realizing the caption might be reporting 3-seed baselines separately from the 2-seed selection results shown in the table body—so Oracle and Greedy in the caption come from a different seed count than the selection signals themselves. The table body is internally consistent with greedy=0.645, but the caption uses greedy=0.667, suggesting the caption was updated to a different metric while the body wasn't recalculated. I need to decide whether to align the caption with the body values or vice versa—changing the caption would require updating all the headroom references throughout the paper, while changing the body would need to match the caption's 0.667 baseline.
+
+The real problem is that the paper appears to be mixing two different F1 metrics: the caption and scale_comparison tables use one metric (greedy=0.667, oracle=0.781, headroom=11.4pp), while the table body and selection values use another (greedy=0.645, oracle=0.775, headroom=13.0pp). Changing either baseline would break the consistency of the other metric's calculations.
+
+Looking back at the decision document, it's clear the paper should unify everything to per-instance mean F1, which means the greedy=0.645, oracle=0.775, headroom=13.0pp values are correct—but then the caption's 0.667/0.781/11.4pp numbers are inconsistent with that choice.
+
+It seems like something shifted after that decision was made. The MF4v2 pipeline must have recalculated the per-instance F1 values differently, pushing greedy up to around 0.667. I'm seeing references to data regeneration that changed the greedy F1 from 0.6663 to 0.6683 for one seed, so the question is whether this recalculation affected the overall per-instance mean and whether the caption numbers reflect that newer calculation.
+
+Rather than keep chasing down these discrepancies, I should look for a provenance file that documents what actually happened. But wait—the task description already lays out two concrete options for me: either trace the data sources to clarify which F1 metric and seed counts were used in each place, or unify the numbers by updating the caption if the header and body used different metrics or seed counts.
+
+Let me work through the metrics systematically. From the decisions file, the per-instance F1 of 0.6453 rounds to 0.645, which matches one of my numbers. For the 0.667 figure, I'm seeing references to a micro F1 around 0.670 from the MF4v2 pipeline, which would round to 0.667. So I'm tracking down which metric each number actually represents. The MF4v2 values might actually represent corrected per-instance F1 scores after fixing a computation bug, or they could be using micro F1 instead—without seeing the code, I can't be certain. Given that the selection deltas and p-values are anchored to the original greedy=0.645 baseline, and the figure caption explicitly states the headroom as 0.781-0.667, the safest approach is to acknowledge in the caption that the baselines use different F1 metrics or seed sets while keeping both sets of numbers accurate.
+
+But that creates an inconsistency—I can't show Oracle=0.775 in the table body while the caption says Oracle=0.781. If all the selection method values (LP, SJ, FK, EM, VC, Random) need recalculating under the new metric, that's beyond what I can do without re-running experiments. I need to revert my changes first and reconsider the approach given these constraints: the table body is internally consistent with the delta calculations, and the caption aligns with the rest of the paper, but they're measuring against different baselines.
+
+The cleanest solution without re-running experiments is to clarify in the caption that the table body and caption use different metrics for the baseline. But now I'm noticing the table title says "macro F1" and looking at other tables in the paper, they report different Greedy baseline values—tab:fewnerd shows 0.663 while tab:scale_comparison shows 0.667, suggesting they might be computing F1 differently across tables. Let me check what the actual 3-seed mean is from the audit data.
+
+Computing the average gives me around 0.665, which matches tab:fewnerd's 0.663 when using a 5-seed mean. This suggests tab:fewnerd might be using a different seed set or computation method entirely. I need to step back here—I absolutely have to revert my edit changing Greedy from 0.645 to 0.667 because that breaks the LP improvement claim and invalidates all the p-values. So my real choice is between updating the caption headroom to 13.0pp or clarifying why the discrepancy exists.
+
+If I go with updating the caption to 13.0pp, that means changing Oracle to 0.775 and Greedy to 0.645, which shifts the headroom from 11.4pp to 13.0pp everywhere. This aligns with the table body but conflicts with tab:scale_comparison. Rather than keep spiraling through these inconsistencies, I should search the server for the actual MF4v2 values and check whether the selection F1 scores were ever recalculated.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d3999a21-0914-40f6-afdd-8951e6461b5c",
+  "uuid": "2e8cf546-a40c-465d-a375-7087583715de",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BWDKD8jMxywXYB6ZXGD4rg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 949,
+      "cache_read_input_tokens": 66120,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 949
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 70_
+
+我需要重新分析。表体中 LP=0.647, Greedy=0.645, Δ=+0.2pp 是内部一致的。如果改 Greedy 为 0.667，LP 就变成 -2.0pp，会破坏所有 Δ 和 p 值。让我先还原编辑，然后查找更多数据。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d3999a21-0914-40f6-afdd-8951e6461b5c",
+  "uuid": "797466e8-6b52-467e-9357-2cc00a809120",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BWDKD8jMxywXYB6ZXGD4rg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 949,
+      "cache_read_input_tokens": 66120,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 949
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 71_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_012oRuYM54tqgBbQh43PCxZ2`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/single_signal.tex",
+  "old_string": "Oracle & $0.781 \\pm 0.001$ & --- \\\\\nGreedy ($T{=}0$) & $0.667 \\pm 0.001$ & --- \\\\",
+  "new_string": "Oracle & $0.775 \\pm 0.001$ & --- \\\\\nGreedy ($T{=}0$) & $0.645 \\pm 0.001$ & --- \\\\"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d3999a21-0914-40f6-afdd-8951e6461b5c",
+  "uuid": "fbe3632e-cad2-4fd7-8986-ac3c2780d97d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BWDKD8jMxywXYB6ZXGD4rg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 949,
+      "cache_read_input_tokens": 66120,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 949
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 72 · 2026-05-23T20:45:45.081Z_
+
+<details><summary>↩ Tool result · `toolu_012oRuYM54tqgBbQh43PCxZ2`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/single_signal.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d3999a21-0914-40f6-afdd-8951e6461b5c",
+  "uuid": "09de2c69-c396-41df-9fc3-9121d8630ea2",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/single_signal.tex",
+    "oldString": "Oracle & $0.781 \\pm 0.001$ & --- \\\\\nGreedy ($T{=}0$) & $0.667 \\pm 0.001$ & --- \\\\",
+    "newString": "Oracle & $0.775 \\pm 0.001$ & --- \\\\\nGreedy ($T{=}0$) & $0.645 \\pm 0.001$ & --- \\\\",
+    "originalFile": "\\section{Single-Signal Selection Results}\\label{sec:selection_gap}\n\n\\paragraph{Definitional vs.\\ empirical.}\nWe decompose the correlation-selection gap into two layers.\nThe first is structural: four of five signals are instance-level aggregates that assign identical scores to all $N$ candidates from a given input (\\S\\ref{sec:formulation}), so they estimate quality across inputs but cannot rank candidates within an instance---selection failure is a design property, not an empirical finding.\nThe second layer is empirical and constitutes the core diagnostic: LP---the only per-sample signal---suffers compression under constrained decoding, with 60\\% of SciERC instances showing within-instance LP range below 0.041 nats (Appendix~\\ref{app:logprob_ties}), leaving insufficient variation for sample discrimination. This compression is model-intrinsic: free-form decoding yields nearly identical LP distributions (within-instance std ratio $0.97{\\times}$; Appendix~\\ref{app:freeform_ablation}). Even where LP varies, selection gains depend on LP-quality alignment rather than degeneracy alone.\nCross-instance $\\rho$ (Table~\\ref{tab:quality_estimation}) is attenuated by varying instance difficulty; within-instance $\\rho$ directly measures whether LP discriminates candidates for a fixed input, making it the relevant predictor of selection success.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Best-of-$N$ selection (macro F1) on SciERC ($N{=}8$, $T{=}1.0$). Selection signals: 2-seed mean${\\pm}\\sigma$; baselines: 3-seed (Oracle${=}0.781$, Greedy${=}0.667$). LP is per-sample; others use consensus-proximity. $^\\dagger$One score per input.}\n\\label{tab:selection}\n\\begin{tabular}{lcc}\n\\toprule\nMethod & NER F1 & $p$ \\\\\n\\midrule\nOracle & $0.781 \\pm 0.001$ & --- \\\\\nGreedy ($T{=}0$) & $0.667 \\pm 0.001$ & --- \\\\\n\\midrule\nLP           & $\\mathbf{0.647} \\pm 0.005$ & .29 \\\\\nSJ           & $0.646 \\pm 0.002$ & .67 \\\\\nFK           & $0.646 \\pm 0.001$ & .79 \\\\\nEM           & $0.637 \\pm 0.001$ & n/a$^\\dagger$ \\\\\nVC           & $0.623 \\pm 0.004$ & n/a$^\\dagger$ \\\\\n\\midrule\nRandom       & $0.610 \\pm 0.003$ & --- \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{fig_selection_gap}\n\\caption{Correlation-selection gap on SciERC ($N{=}8$, $T{=}1.0$). Bars: QE $\\rho$; line: $\\Delta$F1 vs.\\ greedy (3-seed mean). Despite $\\rho$ up to 0.38, no signal outperforms greedy (all $p{\\geq}0.29$). Dashed green: oracle headroom ($+11.4$\\,pp; oracle headroom $=$ best-of-$N$ F1 $-$ greedy F1); dotted gray: random.}\n\\label{fig:selection_gap}\n\\end{figure}\n\nDespite $\\rho$ up to 0.38, no signal outperforms greedy on SciERC (Table~\\ref{tab:selection}; Figure~\\ref{fig:selection_gap}); the oracle shows 11.4\\,pp headroom, but LP achieves $+0.2$\\,pp ($p{=}0.29$), below MDE (${\\approx}$1.5\\,pp at $n{=}529$, 2--3 seeds; Appendix~\\ref{app:bootstrap_signal}).\nAll selection experiments use 2--3 training seeds; bootstrap CIs are reported in Appendix~\\ref{app:bootstrap_signal}.\nThe pattern holds across CoNLL and WNUT-17 (Table~\\ref{tab:cross_selection}).\nFew-NERD provides the clearest positive case: LP achieves $+1.39$\\,pp ($p{<}0.001$; Holm $p_{\\text{adj}}{=}0.021$, selection family $k{=}21$)\\footnote{Under global correction ($k{=}57$), LP-best selection reaches Holm $p_{\\text{adj}}{=}0.055$ (BH $p_{\\text{adj}}{=}0.003$).} at low degeneracy (13.0\\% vs.\\ 12.2--67.9\\%), while structural signals still degrade (VC $-1.79$, SJ $-2.14$\\,pp; \\S\\ref{sec:fewnerd}).\n\n\\paragraph{Diagnostic framework.}\nThree co-occurring factors jointly characterize the gap:\n(1)~instance degeneracy sets the ceiling (SciERC 12.2\\%, CoNLL 61.7\\%);\n(2)~oracle headroom bounds the opportunity within non-degenerate instances (CoNLL ${\\approx}4$\\,pp vs.\\ SciERC 11.4\\,pp);\n(3)~LP compression limits exploitation (Few-NERD within-instance $\\rho{\\approx}0.5$--$0.7$ vs.\\ SciERC $\\rho{\\approx}0.26$).\nDegeneracy does not predict LP gain across datasets ($\\rho{=}0.052$, $n{=}23$, $p{=}0.81$; Figure~\\ref{fig:degeneracy_scatter}), though it co-varies with LP within fixed settings ($\\rho{=}{-}0.881$; Appendix~\\ref{app:per_type_lp}).\nThese conditions interact ($R^2{<}0$); on non-degenerate instances, $\\alpha$ approaches zero ($0.000$--$0.121$) despite $\\rho$ up to 0.45 (\\S\\ref{sec:theory}).\n\n\\paragraph{Mechanistic evidence (Appendix~\\ref{sec:mechanistic}).}\nWhy does signal alignment collapse? Probing experiments on Qwen2.5-7B-Instruct reveal an \\textit{introspection boundary}: hidden-state linear probes achieve entity-level AUROC $0.63$--$0.88$, substantially exceeding prompt-based self-judgment (ESJ AUROC $0.51$; confirmed on Qwen3-8B: AUROC $0.50$--$0.55$; Appendix~\\ref{app:esj}), yet cross-dataset transfer drops to $0.56$--$0.67$ (LODO).\nEntity self-judgment, multi-round refinement ($-3.1$\\,pp vs.\\ greedy), and latent centroid selection ($-3.5$\\,pp) all fail to improve over greedy decoding.\nEntity quality is partially encoded in representations but inaccessible through the generation interface---consistent with the signal alignment collapse observed across all configurations.\nCross-model validation on Qwen3-8B confirms chance-level ESJ performance (AUROC $0.50$--$0.55$; Appendix~\\ref{app:esj}), suggesting the introspection boundary is architecture-general rather than model-specific.\n",
+    "structuredPatch": [
+      {
+        "oldStart": 15,
+        "oldLines": 8,
+        "newStart": 15,
+        "newLines": 8,
+        "lines": [
+          " \\toprule",
+          " Method & NER F1 & $p$ \\\\",
+          " \\midrule",
+          "-Oracle & $0.781 \\pm 0.001$ & --- \\\\",
+          "-Greedy ($T{=}0$) & $0.667 \\pm 0.001$ & --- \\\\",
+          "+Oracle & $0.775 \\pm 0.001$ & --- \\\\",
+          "+Greedy ($T{=}0$) & $0.645 \\pm 0.001$ & --- \\\\",
+          " \\midrule",
+          " LP           & $\\mathbf{0.647} \\pm 0.005$ & .29 \\\\",
+          " SJ           & $0.646 \\pm 0.002$ & .67 \\\\"
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 73_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01LWryNUYyWc9pehZLddyuWP`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "find /root/autodl-tmp/struct_self_consist_ie -name \"*mf4*\" -o -name \"*unified*\" -o -name \"*selection*report*\" -type f 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d3999a21-0914-40f6-afdd-8951e6461b5c",
+  "uuid": "17fdc803-4a2a-4e8d-9b8c-58a3059ef88b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BWDKD8jMxywXYB6ZXGD4rg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 949,
+      "cache_read_input_tokens": 66120,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 949
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 74 · 2026-05-23T20:45:46.733Z_
+
+<details><summary>↩ Tool result · `toolu_01LWryNUYyWc9pehZLddyuWP`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d3999a21-0914-40f6-afdd-8951e6461b5c",
+  "uuid": "a8c7bdcd-1d96-49aa-9aa2-6e0cc9f611fe",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 75_
+
+<details open><summary>🔧 Tool call — Read · `toolu_016VRZxSVKvpunbLXhoyCUFj`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/full_data_audit_report.md",
+  "offset": 170,
+  "limit": 60
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d3999a21-0914-40f6-afdd-8951e6461b5c",
+  "uuid": "0446d78e-105a-4255-8621-7b77dc0757ad",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BWDKD8jMxywXYB6ZXGD4rg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 949,
+      "cache_read_input_tokens": 66120,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 949
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 76 · 2026-05-23T20:45:47.702Z_
+
+<details><summary>↩ Tool result · `toolu_016VRZxSVKvpunbLXhoyCUFj`</summary>
+
+```text
+170	| +1.4 pp (Few-NERD, 4-seed) | tab:entity_construction +1.40 | ✅ |
+171	
+172	### "31%" 残留检查
+173	
+174	`grep "31\\%" sections/*.tex` 仅在 appendix epsilon_sweep 数据表找到 `31.8%`（epsilon=0.03 的 tied percentage），属于正常数据，非旧值残留。✅
+175	
+176	---
+177	
+178	## ⚠️ 不一致（需用户确认，未自动修复）
+179	
+180	### Issue 1: CRITICAL — tab:quality_estimation SciERC EM AUROC vs tab:multiseed
+181	
+182	- **主表** (tab:quality_estimation, experiments_main.tex L40): SciERC EM AUROC = **.749** (bold,标为最佳)
+183	- **多种子表** (tab:multiseed, appendix L726): EM AUROC Qwen 5-seed mean = **.631±.013**
+184	- **数学不可能**：seed=42 值 .749 距 5-seed 均值 .631 有 **9.1σ** 偏差。若其中一个 seed 为 .749，其余 4 个需均值 .601，整体 σ 应为 ~0.059 而非 .013。
+185	- **影响**：主表中 SciERC AUROC 最佳信号从 EM (.749) 可能变为 SJ (.692) 或 VC (.684)
+186	- **推测原因**：数据复制错误（.749 可能来自 RE 或其他配置），或 multiseed AUROC 使用了不同的计算方法
+187	- **建议**：回查 SciERC seed=42 EM AUROC 的原始计算脚本
+188	
+189	### Issue 2: SIGNIFICANT — tab:selection 表头 vs 表体不一致
+190	
+191	- **表头** (caption, single_signal.tex L12): `baselines: 3-seed (Oracle=0.781, Greedy=0.667)`
+192	- **表体** (L18-19): `Oracle = 0.775±0.001`, `Greedy (T=0) = 0.645±0.001`
+193	- **Oracle**: 表头 .781 vs 表体 .775 (Δ=.006)
+194	- **Greedy**: 表头 .667 vs 表体 .645 (Δ=.022)
+195	- **Oracle headroom**: 表头计算 .781-.667 = **11.4 pp** (与正文/图标一致); 表体计算 .775-.645 = **13.0 pp** (与正文不一致)
+196	- **正文一致性**：全文使用 11.4 pp headroom (single_signal.tex L35, L39)，与表头一致
+197	- **推测原因**：表体使用 entity-type-averaged macro F1 (较低), 表头使用 micro/instance-averaged F1 (较高)，两种 F1 计算未统一
+198	- **建议**：统一 F1 指标。若表标题 "macro F1" 正确，则表头和正文的 11.4pp 需更新为 13.0pp；若正文的 11.4pp 正确，则表体需使用同一 F1 指标重算
+199	
+200	### Issue 3: MINOR — MV +0.61 pp on CoNLL 无法精确追溯
+201	
+202	- **出现位置**: introduction L11 ("MV $+0.61$\,pp on CoNLL"), experiments_main.tex L90 ("MV $+0.61$\,pp on CoNLL")
+203	- **Figure caption**: fig_n_scaling_mv caption 说 "+0.6 pp at N=64"
+204	- **Registry**: CoNLL N=64 seed=42: MV Δ = +0.64 pp
+205	- **分析**: +0.64→+0.6 是合理四舍五入, 但 +0.61 不是 +0.64 的标准四舍五入。可能来自多种子平均或不同 N 值，但 registry 无对应精确值。
+206	- **影响极小**: 0.03 pp 差异不影响结论
+207	- **建议**: 统一为 +0.6 pp (与 figure caption 一致) 或确认多种子来源
+208	
+209	---
+210	
+211	## ❌ 无法追溯
+212	
+213	### 1. WNUT-17 LP ρ = −.446 (tab:fewnerd)
+214	- 表格标注 "3-seed means"，但 registry 仅有 1-2 个 WNUT seed
+215	- exp_003_ner_wnut17: rho_logprob_full = -0.414 (1 seed)
+216	- 3-seed 均值可能来自未记录的其他 seed 实验
+217	- **风险**: 低（排名和方向一致）
+218	
+219	### 2. CoNLL (LLaMA) AUROC 值
+220	- tab:quality_estimation CoNLL(LLaMA) AUROC: VC .709, SJ .704, FK .703, EM .705, LP .761
+221	- Registry 中未找到 LLaMA CoNLL N=8 seed=42 的 AUROC 值
+222	- ρ 值已验证一致，AUROC 来源应为同一实验
+223	- **风险**: 低
+224	
+225	### 3. tab:robustness LLaMA CoNLL N=16 3-seed ρ 值轻微偏差
+226	- 表中 SJ: 0.474±0.009
+227	- Registry basic N=16 3-seed mean: 0.4631 (from exp_017_llama_conll_n16 series)
+228	- Registry r=1024 N=16 values: ~0.478-0.484
+229	- 表值 0.474 介于两者之间，可能来自特定 LoRA rank 或评估配置
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d3999a21-0914-40f6-afdd-8951e6461b5c",
+  "uuid": "80552886-d446-429d-830f-2d3c6f493b85",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/full_data_audit_report.md",
+      "content": "| +1.4 pp (Few-NERD, 4-seed) | tab:entity_construction +1.40 | ✅ |\n\n### \"31%\" 残留检查\n\n`grep \"31\\\\%\" sections/*.tex` 仅在 appendix epsilon_sweep 数据表找到 `31.8%`（epsilon=0.03 的 tied percentage），属于正常数据，非旧值残留。✅\n\n---\n\n## ⚠️ 不一致（需用户确认，未自动修复）\n\n### Issue 1: CRITICAL — tab:quality_estimation SciERC EM AUROC vs tab:multiseed\n\n- **主表** (tab:quality_estimation, experiments_main.tex L40): SciERC EM AUROC = **.749** (bold,标为最佳)\n- **多种子表** (tab:multiseed, appendix L726): EM AUROC Qwen 5-seed mean = **.631±.013**\n- **数学不可能**：seed=42 值 .749 距 5-seed 均值 .631 有 **9.1σ** 偏差。若其中一个 seed 为 .749，其余 4 个需均值 .601，整体 σ 应为 ~0.059 而非 .013。\n- **影响**：主表中 SciERC AUROC 最佳信号从 EM (.749) 可能变为 SJ (.692) 或 VC (.684)\n- **推测原因**：数据复制错误（.749 可能来自 RE 或其他配置），或 multiseed AUROC 使用了不同的计算方法\n- **建议**：回查 SciERC seed=42 EM AUROC 的原始计算脚本\n\n### Issue 2: SIGNIFICANT — tab:selection 表头 vs 表体不一致\n\n- **表头** (caption, single_signal.tex L12): `baselines: 3-seed (Oracle=0.781, Greedy=0.667)`\n- **表体** (L18-19): `Oracle = 0.775±0.001`, `Greedy (T=0) = 0.645±0.001`\n- **Oracle**: 表头 .781 vs 表体 .775 (Δ=.006)\n- **Greedy**: 表头 .667 vs 表体 .645 (Δ=.022)\n- **Oracle headroom**: 表头计算 .781-.667 = **11.4 pp** (与正文/图标一致); 表体计算 .775-.645 = **13.0 pp** (与正文不一致)\n- **正文一致性**：全文使用 11.4 pp headroom (single_signal.tex L35, L39)，与表头一致\n- **推测原因**：表体使用 entity-type-averaged macro F1 (较低), 表头使用 micro/instance-averaged F1 (较高)，两种 F1 计算未统一\n- **建议**：统一 F1 指标。若表标题 \"macro F1\" 正确，则表头和正文的 11.4pp 需更新为 13.0pp；若正文的 11.4pp 正确，则表体需使用同一 F1 指标重算\n\n### Issue 3: MINOR — MV +0.61 pp on CoNLL 无法精确追溯\n\n- **出现位置**: introduction L11 (\"MV $+0.61$\\,pp on CoNLL\"), experiments_main.tex L90 (\"MV $+0.61$\\,pp on CoNLL\")\n- **Figure caption**: fig_n_scaling_mv caption 说 \"+0.6 pp at N=64\"\n- **Registry**: CoNLL N=64 seed=42: MV Δ = +0.64 pp\n- **分析**: +0.64→+0.6 是合理四舍五入, 但 +0.61 不是 +0.64 的标准四舍五入。可能来自多种子平均或不同 N 值，但 registry 无对应精确值。\n- **影响极小**: 0.03 pp 差异不影响结论\n- **建议**: 统一为 +0.6 pp (与 figure caption 一致) 或确认多种子来源\n\n---\n\n## ❌ 无法追溯\n\n### 1. WNUT-17 LP ρ = −.446 (tab:fewnerd)\n- 表格标注 \"3-seed means\"，但 registry 仅有 1-2 个 WNUT seed\n- exp_003_ner_wnut17: rho_logprob_full = -0.414 (1 seed)\n- 3-seed 均值可能来自未记录的其他 seed 实验\n- **风险**: 低（排名和方向一致）\n\n### 2. CoNLL (LLaMA) AUROC 值\n- tab:quality_estimation CoNLL(LLaMA) AUROC: VC .709, SJ .704, FK .703, EM .705, LP .761\n- Registry 中未找到 LLaMA CoNLL N=8 seed=42 的 AUROC 值\n- ρ 值已验证一致，AUROC 来源应为同一实验\n- **风险**: 低\n\n### 3. tab:robustness LLaMA CoNLL N=16 3-seed ρ 值轻微偏差\n- 表中 SJ: 0.474±0.009\n- Registry basic N=16 3-seed mean: 0.4631 (from exp_017_llama_conll_n16 series)\n- Registry r=1024 N=16 values: ~0.478-0.484\n- 表值 0.474 介于两者之间，可能来自特定 LoRA rank 或评估配置",
+      "numLines": 60,
+      "startLine": 170,
+      "totalLines": 300
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 77_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I see the full picture clearly from the audit report:
+
+**Issue 1 (CRITICAL)**: EM AUROC was .749 in the main table, but 5-seed mean is .631±.013. This was flagged and already fixed — looking at the current QE table (experiments_main.tex line 40), EM SciERC AUROC is now **.631**, not .749. So this issue HAS been fixed.
+
+**Issue 2 (SIGNIFICANT)**: Exactly the tab:selection headroom inconsistency we're dealing with. The audit report says:
+- "推测原因：表体使用 entity-type-averaged macro F1 (较低), 表头使用 micro/instance-averaged F1 (较高)，两种 F1 计算未统一"
+
+
+- The audit flagged this but left the decision to us: either align the table title and header to use macro F1 (which would mean updating the 11.4pp headroom to 13.0pp), or recalculate the table body using the same F1 metric as the header. The core question is which F1 metric should actually be used.
+
+- Looking at the evidence: the table body's greedy=0.645 value aligns with the per-instance mean F1 metric used in the selection experiments (the Δ values and p-values check out), while the caption consistently references 0.667 and 11.4pp throughout the paper. The problem is these are two different metrics entirely—the table body uses one, the caption uses another.
+
+- I'm stuck because recalculating all the selection experiment values to match the caption metric isn't feasible, and I can't just swap the caption numbers into the table body without breaking the Δ and p-values. So I need to pick a direction: either update the caption to match the body's per-instance metric (which means changing Oracle to 0.775, Greedy to 0.645, and updating every 11.4pp reference in the paper), or clarify the metric choice somehow.
+
+- Actually, looking more closely at what the audit report says—the table body uses entity-type-averaged F1 (the lower 0.645 value) while the caption uses micro/instance-averaged F1 (the higher 0.667 value). But that's counterintuitive to what I'd normally expect from those metric types.
+
+Let me trace through the numbers: the audit shows micro greedy at 0.6617 versus per-instance at 0.6453, so micro is higher. That matches—0.667 is higher than 0.645. So the caption's 0.667 appears to be the micro value and the body's 0.645 is the per-instance value.
+
+The real issue is that the selection Δ values and p-values are all anchored to greedy=0.645, so I can't change the body values without recalculating everything. The only viable fix is updating the caption to match what's actually in the table body: Oracle=0.775, Greedy=0.645.
+
+That means the headroom becomes 13.0 percentage points instead of 11.4, and I need to hunt down and update every reference to 11.4pp throughout the paper—the figure caption, the main text mentions, and the appendix table that currently shows 0.667 and 11.4.
+
+But there's a complication: I'm finding conflicting Greedy values for SciERC across different tables. The scale_comparison table has 0.667, but tab:fewnerd shows 0.663, and the selection body shows 0.645. I need to figure out which one is actually correct before I can properly update the 11.4pp figure.
+
+Looking at the metadata, the 0.663 value from tab:fewnerd is labeled as "instance-averaged F1" and appears to match the 5-seed mean from holm_bonferroni_5seed.md (0.6633 ± 0.0014), so that's likely the authoritative unified metric. The other two values probably represent different F1 calculation methods or older pipeline results.
+
+Now I'm working through whether the 0.667 in the table is actually a single-seed result from the MF4v2 pipeline (0.6683 rounded), which would make the 0.645 an outdated value. If that's true, then the selection F1 comparisons would need adjustment—with greedy at 0.663, the LP delta would be around -1.6 percentage points.
+
+But this creates another problem: if the selection values like LP=0.647 were also computed with the old pipeline, they'd likely be different under the new one, which I can't verify without re-running. Given this data provenance issue, I think the most pragmatic approach is to report the discrepancy to the user and propose a fix that maintains internal consistency—either updating the caption and headroom values to match the table body, or adding a note about the inconsistency. I'm settling on removing the specific Oracle and Greedy values from the caption entirely since they're already shown in the table body, then updating all references to the headroom from 11.4pp to 13.0pp to match what's actually displayed, and adjusting the comparison table values accordingly.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d3999a21-0914-40f6-afdd-8951e6461b5c",
+  "uuid": "f5d3fd49-76c6-4096-9930-13b02039e99f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DBtxtWBxnhDLZUTSLoZWbA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7758,
+      "cache_read_input_tokens": 67069,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7758
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 78_
+
+审计报告已经精确定位了这个问题。让我查看 provenance 数据和更多上下文来确定正确的修复方案。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d3999a21-0914-40f6-afdd-8951e6461b5c",
+  "uuid": "88bb7d46-c620-4bf6-9a4a-78459275eb92",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DBtxtWBxnhDLZUTSLoZWbA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7758,
+      "cache_read_input_tokens": 67069,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7758
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 79_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_01ExtsuqT7Wgiy1qMhkrV5HW`</summary>
+
+```json
+{
+  "project": "struct_self_consist_ie",
+  "file": "paper_provenance.yaml",
+  "max_chars": 0
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d3999a21-0914-40f6-afdd-8951e6461b5c",
+  "uuid": "c6cfd1a0-4c87-4cc5-be08-4aa78427e058",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DBtxtWBxnhDLZUTSLoZWbA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7758,
+      "cache_read_input_tokens": 67069,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7758
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 80 · 2026-05-23T20:46:48.587Z_
+
+<details><summary>↩ Tool result · `toolu_01ExtsuqT7Wgiy1qMhkrV5HW`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/paper_provenance.yaml\", \"content\": \"paper:\\n  title: 'Strong Predictors, Weak Selectors: A Systematic Comparison of Confidence\\n    Signals for Test-Time Scaling in Information Extraction'\\n  version: 196\\n  generated_at: '2026-05-22T13:13:25.551495+00:00'\\n  source: manual provenance build by Paper Agent\\nclaims:\\n- id: c001_voting_rho_scierc_ner\\n  text: Voting Confidence achieves ρ=0.379 on SciERC NER (corrected from 0.502 truncation\\n    artifact)\\n  sections:\\n  - abstract\\n  - introduction\\n  - experiments\\n  - conclusion\\n  - discussion\\n  - related_work\\n  tier: 1\\n  evidence:\\n  - exp_id: exp_012_rerun_1024\\n    metric: ner.voting_rho_full\\n    value: 0.379\\n  note: Old value 0.502 from exp_015 was inflated by max_tokens=512 truncation. Corrected\\n    via exp_012_rerun_1024 (max_tokens=1024).\\n- id: c002_auroc_dissociation_scierc\\n  text: ρ-AUROC dissociation on SciERC — EM leads AUROC (NER 0.749, RE 0.706) while\\n    Voting leads ρ (NER 0.379, RE 0.422)\\n  sections:\\n  - abstract\\n  - introduction\\n  - experiments\\n  - conclusion\\n  - discussion\\n  tier: 1\\n  evidence:\\n  - exp_id: exp_012_rerun_1024\\n    metric: ner.em_auroc\\n    value: 0.749\\n  - exp_id: exp_012_rerun_1024\\n    metric: re.em_auroc\\n    value: 0.706\\n  - exp_id: exp_012_rerun_1024\\n    metric: ner.voting_auroc\\n    value: 0.684\\n  note: Old Table 1 had Voting NER AUROC=.741 (from exp_015 truncated). Corrected\\n    to .684 via exp_012_rerun_1024. EM now leads AUROC on both NER and RE. Headline\\n    claim changed from \\\"entity voting achieves ρ=0.38 and AUROC=0.74\\\" to split ρ (Voting\\n    0.38) / AUROC (EM 0.75) claim.\\n- id: c003_sj_rho_scierc_ner\\n  text: SJ achieves ρ=0.360 on SciERC NER (corrected from 0.357)\\n  sections:\\n  - experiments\\n  tier: 1\\n  evidence:\\n  - exp_id: exp_012_rerun_1024\\n    metric: ner.sj_rho_full\\n    value: 0.36\\n  - exp_id: exp_004_re_diagnostic\\n    metric: bootstrap_ci_95.ner_sj\\n    value:\\n    - 0.2946\\n    - 0.4586\\n- id: c004_voting_leads_re\\n  text: Voting leads RE full set (ρ=0.350, corrected from 0.422)\\n  sections:\\n  - experiments\\n  tier: 1\\n  evidence:\\n  - exp_id: exp_012_rerun_1024\\n    metric: re.voting_rho_full\\n    value: 0.35\\n  note: Corrected from exp_015_metrics_expansion (0.4217) via exp_012_rerun_1024.\\n- id: c005_fk_beats_sj_re\\n  text: FK (ρ=0.275) exceeds SJ (ρ=0.250) on RE—a reversal from NER\\n  sections:\\n  - experiments\\n  tier: 1\\n  evidence:\\n  - exp_id: exp_012_rerun_1024\\n    metric: re.fk_rho_full\\n    value: 0.275\\n  - exp_id: exp_012_rerun_1024\\n    metric: re.sj_rho_full\\n    value: 0.25\\n  note: Corrected from exp_015 (FK 0.253, SJ 0.211) via exp_012_rerun_1024.\\n- id: c006_re_40pct_zero_f1\\n  text: 40% of RE instances receive zero F1 (N=8, seed=42; 159/397)\\n  sections:\\n  - experiments\\n  - discussion\\n  tier: 1\\n  evidence:\\n  - exp_id: mvp_pilot_004\\n    metric: re_sample_f1_pct_zero\\n    value: 44.3\\n    note: 44.3% from mvp_pilot_004; paper uses 40% from primary config (N=8, seed=42)\\n  - exp_id: exp_008_re_n16_v2\\n    metric: f1_zero_pct\\n    value: 44.3\\n    note: 44.3% at N=16; zero-F1 fraction varies with N and seed\\n- id: c007_em_leads_conll\\n  text: EM leads CoNLL with ρ=0.451 and AUROC=0.816\\n  sections:\\n  - experiments\\n  tier: 1\\n  evidence:\\n  - exp_id: exp_002\\n    metric: em_rho_full\\n    value: 0.4507\\n  - exp_id: exp_002\\n    metric: em_auroc_full\\n    value: 0.8156\\n  - exp_id: exp_015_v2\\n    metric: auroc_best.EM.conll_ner\\n    value: 0.8156\\n- id: c008_cross_model_sj_stability\\n  text: 'SJ cross-model gap: ρ=0.436 (Qwen) vs 0.431 (LLaMA), Δ=0.005'\\n  sections:\\n  - experiments\\n  tier: 1\\n  evidence:\\n  - exp_id: exp_002\\n    metric: sj_rho_full\\n    value: 0.4357\\n  - exp_id: exp_017_llama_conll_infer\\n    metric: full.SJ_rho\\n    value: 0.4314\\n- id: c009_logprob_paradox\\n  text: Logprob achieves highest AUROC (0.761) yet lowest ρ (0.307) on CoNLL LLaMA\\n  sections:\\n  - experiments\\n  - discussion\\n  tier: 1\\n  evidence:\\n  - exp_id: exp_017_llama_conll_infer\\n    metric: full.logprob_AUROC\\n    value: 0.761\\n  - exp_id: exp_017_llama_conll_infer\\n    metric: full.logprob_rho\\n    value: 0.3072\\n- id: c010_conll_oracle_headroom\\n  text: 'CoNLL oracle headroom: +4.2pp (Qwen), +1.8pp (LLaMA)'\\n  sections:\\n  - experiments\\n  tier: 1\\n  evidence:\\n  - exp_id: exp_002\\n    metric: oracle_headroom\\n    value: 0.042\\n  - exp_id: exp_017_llama_conll_infer\\n    metric: oracle_headroom\\n    value: 0.0177\\n- id: c011_ner_no_reliable_selection\\n  text: No signal reliably surpasses greedy on NER (logprob +0.6pp, p=0.39, 3-seed\\n    bootstrap)\\n  sections:\\n  - abstract\\n  - introduction\\n  - experiments\\n  - conclusion\\n  - discussion\\n  - related_work\\n  tier: 1\\n  evidence:\\n  - exp_id: exp_016_rerun_1024_bootstrap\\n    metric: selection_f1_ner\\n    value:\\n      greedy: 0.644\\n      logprob: 0.65\\n      sj: 0.645\\n      voting: 0.634\\n      random: 0.608\\n      oracle: 0.776\\n  - exp_id: exp_016_rerun_1024_bootstrap\\n    metric: bootstrap_selection_test\\n    value:\\n      logprob_vs_greedy_p: 0.39\\n      ci_95:\\n      - -0.03\\n      - 0.042\\n      cohens_d: 0.038\\n      sign_test: 61W/70L\\n  note: 3-seed bootstrap confirms +0.6pp is NOT statistically significant. Unified\\n    with c012 — no signal reliably helps on either task.\\n- id: c012_re_no_signal_beats_greedy\\n  text: No signal surpasses greedy on RE; logprob drops to −0.9pp\\n  sections:\\n  - abstract\\n  - introduction\\n  - experiments\\n  - conclusion\\n  - discussion\\n  tier: 1\\n  evidence:\\n  - exp_id: exp_016_rerun_1024_bootstrap\\n    metric: selection_f1_re\\n    value:\\n      greedy: 0.404\\n      logprob: 0.395\\n      sj: 0.386\\n      voting: 0.359\\n      random: 0.354\\n      oracle: 0.585\\n  note: CLAIM REVERSED from exp_016 (max_tokens=512). Old claim was \\\"only logprob\\n    helps on RE (+2.3pp)\\\". Corrected via exp_016_rerun_1024_bootstrap.\\n- id: c013_oracle_headroom_ner\\n  text: Oracle upper bound 0.776, 13.2pp above greedy 0.644 on NER\\n  sections:\\n  - experiments\\n  - discussion\\n  tier: 1\\n  evidence:\\n  - exp_id: exp_016_rerun_1024_bootstrap\\n    metric: selection_f1_ner.oracle\\n    value: 0.776\\n  - exp_id: exp_016_rerun_1024_bootstrap\\n    metric: selection_f1_ner.greedy\\n    value: 0.644\\n- id: c014_re_oracle_headroom\\n  text: 'RE oracle gap: 18.1pp (0.585 vs 0.404)'\\n  sections:\\n  - experiments\\n  - discussion\\n  tier: 1\\n  evidence:\\n  - exp_id: exp_016_rerun_1024_bootstrap\\n    metric: selection_f1_re.oracle\\n    value: 0.585\\n  - exp_id: exp_016_rerun_1024_bootstrap\\n    metric: selection_f1_re.greedy\\n    value: 0.404\\n- id: c015_ensemble_auroc\\n  text: SJ+Voting ensemble AUROC=0.666, below best individual signal EM (0.749)\\n  sections:\\n  - discussion\\n  tier: 1\\n  evidence:\\n  - exp_id: exp_016_rerun_1024_bootstrap\\n    metric: ensemble_ner_auroc\\n    value: 0.666\\n  note: Ensemble does NOT improve over best individual. Changed from positive to negative\\n    finding.\\n- id: c016_ece_calibration\\n  text: NER reasonably well-calibrated (calibration ECE 0.069-0.096), RE shows greater\\n    miscalibration (ECE 0.109-0.339)\\n  sections:\\n  - experiments\\n  tier: 1\\n  evidence:\\n  - exp_id: exp_016_rerun_1024_bootstrap\\n    metric: calibration_ece\\n    value:\\n      ner_range: 0.069-0.096\\n      re_range: 0.109-0.339\\n  note: Previous c016 used binary ECE (0.27-0.77) which was incorrect metric. Calibration\\n    ECE (signal confidence → mean F1 deviation) shows NER is well-calibrated, RE has\\n    moderate miscalibration. Consistent with fig_reliability_1024.\\n- id: c017_fisher_z_ner_vs_re\\n  text: 'Fisher''s z-test ρ_SJ NER vs RE: z=2.31, p=0.021'\\n  sections:\\n  - experiments\\n  tier: 1\\n  evidence:\\n  - exp_id: exp_004_re_diagnostic\\n    metric: fisher_z_ner_vs_re.sj_z\\n    value: 2.31\\n  - exp_id: exp_004_re_diagnostic\\n    metric: fisher_z_ner_vs_re.sj_p\\n    value: 0.0209\\n- id: c018_per_relation_diagnostic\\n  text: Feature-Of ρ≈0.004, Hyponym-Of ρ=0.646\\n  sections:\\n  - experiments\\n  tier: 1\\n  evidence:\\n  - exp_id: exp_004_re_diagnostic\\n    metric: per_relation_type.FEATURE-OF.rho_sj\\n    value: 0.004\\n  - exp_id: exp_004_re_diagnostic\\n    metric: per_relation_type.HYPONYM-OF.rho_fk\\n    value: 0.646\\n- id: c019_entity_span_errors\\n  text: Entity span errors account for 55.5% of RE false negatives\\n  sections:\\n  - experiments\\n  tier: 1\\n  evidence:\\n  - exp_id: exp_004_re_diagnostic\\n    metric: error_propagation\\n    value: head_error 17.7% + tail_error (derived) + head_tail_error 15.9% + full_error\\n      21.7% → entity span errors ~55.5%\\n  note: Computed from error_propagation breakdown in exp_004\\n- id: c020_capability_stratification_ner\\n  text: SJ ρ=0.547 on SciERC instances with 6+ entities, vs 0.415 for 1-2 entities\\n  sections:\\n  - experiments\\n  tier: 1\\n  evidence:\\n  - exp_id: exp_009_capability_stratification\\n    metric: scierc_ner.by_ent_count.6plus_sj_rho\\n    value: 0.547\\n  - exp_id: exp_009_capability_stratification\\n    metric: scierc_ner.by_ent_count.1_2_sj_rho\\n    value: 0.415\\n- id: c021_wnut_boundary\\n  text: 'WNUT-17: SJ ρ=0.089 (p=0.020), 54% zero F1'\\n  sections:\\n  - experiments\\n  - conclusion\\n  tier: 1\\n  evidence:\\n  - exp_id: exp_003_wnut17_eval\\n    metric: rho_sj\\n    value: 0.089\\n  - exp_id: exp_003_wnut17_eval\\n    metric: sample_f1_pct_zero\\n    value: 53.7\\n  note: 'Corrected 2026-05-16: paper uses ρ=0.089 from exp003_wnut17_eval (gold-filtered\\n    n=689, p=0.020). Old value 0.062 was untraceable — only in deprecated draft.'\\n- id: c022_wnut_logprob_negative\\n  text: WNUT logprob shows strong negative correlation\\n  sections:\\n  - experiments\\n  tier: 1\\n  evidence:\\n  - exp_id: exp_003_ner_wnut17\\n    metric: ner.rho_logprob_full\\n    value: -0.414\\n  - exp_id: exp_003_wnut17_eval\\n    metric: rho_logprob_full\\n    value: -0.409\\n- id: c023_re_sent_length_sj\\n  text: 'RE SJ ρ increases with sentence length: Q1 0.110 → Q4 0.473 (Fisher p=0.004)'\\n  sections:\\n  - experiments\\n  tier: 2\\n  evidence:\\n  - exp_id: exp_009_v2_re_rerun\\n    metric: by_sent_len_quartiles\\n    value:\\n      Q1_sj_rho: 0.11\\n      Q4_sj_rho: 0.473\\n      fisher_z_p: 0.004\\n  note: 'Corrected 2026-05-16: source is exp_009_v2_re_rerun (gold-filtered n=397).\\n    Old registry exp_009 values (Q1=0.447, Q4=0.540) used unfiltered n=551.'\\n- id: c024_high_complexity_re_subset\\n  text: 'High-complexity RE subset (n=81): Voting ρ=0.630, logprob ρ=0.554, SJ ρ=0.502'\\n  sections:\\n  - experiments\\n  tier: 2\\n  evidence:\\n  - exp_id: exp_009_capability_stratification\\n    metric: scierc_re.by_rel_count\\n    value:\\n      6plus_sj_rho: 0.527\\n  note: Registry has 6plus_sj_rho=0.527; paper may use exp_009_v2 data. Voting and\\n    logprob values not in registry summary.\\n- id: c025_temperature_sj_stable\\n  text: SJ NER ρ shifts from 0.388 (T=0.7) to 0.360 (T=1.0), Δ=0.028\\n  sections:\\n  - experiments\\n  tier: 1\\n  evidence:\\n  - exp_id: exp_005\\n    metric: sj_rho_t07_ner\\n    value: 0.388\\n  - exp_id: exp_012_rerun_1024\\n    metric: ner.sj_rho_full\\n    value: 0.36\\n  note: T=0.7 data from exp_005; T=1.0 from exp_015\\n- id: c026_n_scaling_sj\\n  text: SJ N=8→N=16 improves ρ from 0.360 to 0.412±0.025 (3-seed, +0.052) on Qwen\\n    SciERC NER\\n  sections:\\n  - experiments\\n  tier: 1\\n  evidence:\\n  - exp_id: exp_012_rerun_1024\\n    metric: ner.sj_rho_full\\n    value: 0.36\\n  - exp_id: exp_001_seed42_v2\\n    metric: sj_rho_full\\n    value: 0.428\\n  - exp_id: exp_001_seed123_v2\\n    metric: sj_rho_full\\n    value: 0.424\\n  - exp_id: exp_001_seed456_v2_ner\\n    metric: full.SJ.rho\\n    value: 0.384\\n  note: '3-seed mean: (0.428+0.424+0.384)/3 ≈ 0.412, σ=0.025'\\n- id: c027_llama_conll_3seed\\n  text: 'LLaMA CoNLL N=16 3-seed: SJ ρ=0.463±0.007, logprob ρ=0.310±0.005'\\n  sections:\\n  - experiments\\n  tier: 1\\n  evidence:\\n  - exp_id: exp_017_llama_conll_n16\\n    metric: full.SJ_rho\\n    value: 0.4642\\n  - exp_id: exp_017_llama_conll_n16_s123\\n    metric: full.SJ_rho\\n    value: 0.4698\\n  - exp_id: exp_017_llama_conll_n16_s456\\n    metric: full.SJ_rho\\n    value: 0.4552\\n  - exp_id: exp_017_llama_conll_n16\\n    metric: full.logprob_rho\\n    value: 0.3058\\n  - exp_id: exp_017_llama_conll_n16_s123\\n    metric: full.logprob_rho\\n    value: 0.3161\\n  - exp_id: exp_017_llama_conll_n16_s456\\n    metric: full.logprob_rho\\n    value: 0.3078\\n- id: c028_loo_sj_circularity\\n  text: LOO-SJ Δρ=-0.014, max per-instance Δρ=3.1×10⁻⁴—circularity negligible\\n  sections:\\n  - experiments\\n  tier: 1\\n  evidence:\\n  - exp_id: exp_015_v2\\n    metric: loo_sj.max_delta_rho\\n    value: 0.000305\\n  - exp_id: exp_015_v2\\n    metric: loo_sj.all_no_circularity\\n    value: true\\n- id: c029_llama_scierc_cross_model\\n  text: 'LLaMA replicates structural-over-surface on SciERC: NER SJ ρ=0.363 > FK ρ=0.327;\\n    conditional RE SJ ρ=0.405 > FK ρ=0.259'\\n  sections:\\n  - experiments\\n  tier: 1\\n  evidence:\\n  - exp_id: exp_007_llama_inference\\n    metric: ner.rho_sj\\n    value: 0.363\\n  - exp_id: exp_007_llama_inference\\n    metric: ner.rho_fk\\n    value: 0.327\\n  - exp_id: exp_007_llama_inference\\n    metric: re.sj_rho_cond\\n    value: 0.405\\n  - exp_id: exp_007_llama_inference\\n    metric: re.fk_rho_cond\\n    value: 0.259\\n- id: c030_em_conditional_dominance\\n  text: 'EM ranks #1 on conditional set across all 4 configurations'\\n  sections:\\n  - experiments\\n  tier: 1\\n  evidence:\\n  - exp_id: exp_015_metrics_expansion\\n    metric: ner.em_rho_cond\\n    value: 0.3427\\n  - exp_id: exp_015_metrics_expansion\\n    metric: re.em_rho_cond\\n    value: 0.3607\\n  - exp_id: exp_002_conll_n16\\n    metric: conditional.EM_rho\\n    value: 0.4658\\n  - exp_id: exp_017_llama_conll_n16_s123\\n    metric: conditional.EM_rho\\n    value: 0.4732\\n  note: 'Paper cites EM conditional: SciERC NER 0.408, RE 0.485, CoNLL Qwen N=16 0.466,\\n    CoNLL LLaMA 3-seed 0.462. Registry has slightly different values from different\\n    seed/N combinations.'\\n- id: c031_em_conditional_scierc\\n  text: 'EM conditional: NER ρ=0.408, RE ρ=0.485'\\n  sections:\\n  - experiments\\n  tier: 1\\n  evidence:\\n  - exp_id: exp_001_ner_n16_scierc\\n    metric: ner_cond_em_rho\\n    value: 0.414\\n  - exp_id: exp_001_ner_n16_scierc\\n    metric: re_cond_em_rho\\n    value: 0.475\\n  note: 'Paper rounds: 0.414→0.408, 0.475→0.485. May use different seed/N baseline.'\\n- id: c032_logprob_re_cond_collapse\\n  text: Logprob conditional RE collapses to ρ=0.011\\n  sections:\\n  - experiments\\n  tier: 1\\n  evidence:\\n  - exp_id: exp_012_rerun_1024\\n    metric: re_cond.logprob.rho\\n    value: 0.0112\\n  note: 'Corrected 2026-05-16: source is exp_012_rerun_1024 (greedy_f1>0 filter, n=238).\\n    Old exp_015 value 0.1457 used wrong filter (any sample F1>0, n=331). Old text\\n    0.002 was stale and untraceable.'\\n- id: c033_sj_n16_cond_re\\n  text: At N=16, SJ maintains ρ=0.308 on conditional RE while logprob drops to -0.026\\n  sections:\\n  - experiments\\n  - discussion\\n  tier: 1\\n  evidence:\\n  - exp_id: exp_008_re_n16_v2\\n    metric: sj_rho_cond\\n    value: 0.308\\n- id: c034_structural_over_logprob_n16\\n  text: Structural-over-logprob advantage holds across all 4 N=16 settings (Δ=+0.124\\n    to +0.175)\\n  sections:\\n  - experiments\\n  - discussion\\n  tier: 1\\n  evidence:\\n  - exp_id: exp_001_ner_n16_scierc\\n    metric: ner_voting_conf_rho\\n    value: 0.399\\n  - exp_id: exp_001_ner_n16_scierc\\n    metric: ner_logprob_rho\\n    value: 0.237\\n  - exp_id: exp_002_conll_n16\\n    metric: full.EM_rho\\n    value: 0.4627\\n  - exp_id: exp_002_conll_n16\\n    metric: full.logprob_rho\\n    value: 0.3146\\n  - exp_id: exp_007_llama_n16\\n    metric: full.voting_conf_rho\\n    value: 0.4515\\n  - exp_id: exp_007_llama_n16\\n    metric: full.logprob_rho\\n    value: 0.2041\\n  - exp_id: exp_017_llama_conll_n16\\n    metric: full.SJ_rho\\n    value: 0.4642\\n  - exp_id: exp_017_llama_conll_n16\\n    metric: full.logprob_rho\\n    value: 0.3058\\n- id: c035_n_scaling_diminishing\\n  text: 'SJ N-scaling gains are sublinear: +0.052 Qwen SciERC, +0.032 LLaMA CoNLL'\\n  sections:\\n  - discussion\\n  tier: 1\\n  evidence:\\n  - exp_id: exp_001_seed42_v2\\n    metric: sj_rho_full\\n    value: 0.428\\n  - exp_id: exp_015_metrics_expansion\\n    metric: ner.sj_rho_full\\n    value: 0.3565\\n  - exp_id: exp_017_llama_conll_n16\\n    metric: full.SJ_rho\\n    value: 0.4642\\n  - exp_id: exp_017_llama_conll_infer\\n    metric: full.SJ_rho\\n    value: 0.4314\\n  note: 'Qwen SciERC: 0.412 (3-seed mean) - 0.360 = +0.052. LLaMA CoNLL: 0.463 (3-seed)\\n    - 0.431 = +0.032'\\n- id: c036_sj_ece_calibration\\n  text: '[DEPRECATED] SJ achieves lowest calibration error (ECE=0.075-0.102 across\\n    settings)'\\n  sections: []\\n  tier: X\\n  evidence: []\\n  note: DEPRECATED — reversed by c016_ece_miscalibration. Old ECE values (0.075-0.102)\\n    were from exp_015 (max_tokens=512 truncation artifact). Corrected data shows all\\n    signals ECE 0.27-0.77.\\n- id: C001\\n  location:\\n    section: abstract\\n    paragraph: 0\\n    sentence: 0\\n  text: No signal significantly improves sample selection over greedy decoding despite\\n    13-18pp oracle headroom\\n  type: empirical\\n  evidence:\\n  - exp_012_rerun_1024\\n  decisions:\\n  - D070\\n  - D071\\n  deprecated: true\\n- id: C003\\n  location:\\n    section: abstract\\n    paragraph: 0\\n    sentence: 0\\n  text: LP scores compressed into effective ties for 60% of instances under constrained\\n    decoding\\n  type: empirical\\n  evidence:\\n  - exp_012_rerun_1024\\n  decisions: []\\n  deprecated: true\\n- id: C006\\n  location:\\n    section: abstract\\n    paragraph: 0\\n    sentence: 0\\n  text: Where LP compression is absent, selection recovers +2.9pp (p=0.01)\\n  type: empirical\\n  evidence:\\n  - exp_012_rerun_1024\\n  decisions: []\\n  deprecated: true\\n- id: C010\\n  location:\\n    section: abstract\\n    paragraph: 0\\n    sentence: 0\\n  text: Constrained-decoding score compression is the primary bottleneck\\n  type: empirical\\n  evidence:\\n  - exp_012_rerun_1024\\n  decisions: []\\n  deprecated: true\\n- id: C011\\n  location:\\n    section: discussion\\n    paragraph: 0\\n    sentence: 0\\n  text: LP carries useful per-sample quality information; score compression is the\\n    primary bottleneck\\n  type: empirical\\n  evidence:\\n  - exp_012_rerun_1024\\n  decisions:\\n  - D071\\n  deprecated: false\\n- id: C013\\n  location:\\n    section: discussion\\n    paragraph: 0\\n    sentence: 0\\n  text: MBR utility correlates with F1 across instances but not within\\n  type: empirical\\n  evidence:\\n  - exp_012_rerun_1024\\n  decisions: []\\n  deprecated: false\\n- id: C016\\n  location:\\n    section: discussion\\n    paragraph: 0\\n    sentence: 0\\n  text: Free-form ablation would test if bottleneck is decoding-regime-specific\\n  type: planned\\n  evidence: []\\n  decisions:\\n  - D071\\n  deprecated: false\\n- id: C017\\n  location:\\n    section: conclusion\\n    paragraph: 0\\n    sentence: 0\\n  text: Consistency signals effective QE (rho up to 0.38, AUROC up to 0.75) but fail\\n    at selection\\n  type: empirical\\n  evidence:\\n  - exp_012_rerun_1024\\n  decisions: []\\n  deprecated: true\\n- id: C019\\n  location:\\n    section: conclusion\\n    paragraph: 0\\n    sentence: 0\\n  text: LP fails due to constrained-decoding score compression\\n  type: empirical\\n  evidence:\\n  - exp_012_rerun_1024\\n  decisions: []\\n  deprecated: true\\n- id: C022\\n  location:\\n    section: conclusion\\n    paragraph: 0\\n    sentence: 0\\n  text: RE findings preliminary, single benchmark\\n  type: scope_limitation\\n  evidence:\\n  - exp_012_rerun_1024\\n  decisions: []\\n  deprecated: true\\n- id: C023\\n  location:\\n    section: sections/discussion\\n    paragraph: 0\\n    sentence: 0\\n  text: Entity-token LP exhibits 4x higher within-instance variance than full-sequence\\n    LP on SciERC, but selection performs worse (-2.0pp)\\n  type: quantitative\\n  evidence:\\n  - exp_id: exp_entity_token_lp\\n    metric: scierc_entity_lp_variance_ratio\\n    value: 4.0x\\n  - exp_id: exp_entity_token_lp\\n    metric: scierc_entity_lp_selection_delta\\n    value: -1.68\\n  decisions: []\\n  deprecated: false\\n- id: C024\\n  location:\\n    section: sections/discussion\\n    paragraph: 0\\n    sentence: 0\\n  text: On CoNLL, entity-token LP variance collapses to near-zero (median 2e-10) with\\n    79% tied\\n  type: quantitative\\n  evidence:\\n  - exp_id: exp_entity_token_lp\\n    metric: conll_entity_lp_variance_median\\n    value: 2e-10\\n  - exp_id: exp_entity_token_lp\\n    metric: conll_entity_lp_tied_fraction\\n    value: 0.794\\n  decisions: []\\n  deprecated: false\\n- id: C025\\n  location:\\n    section: sections/discussion\\n    paragraph: 0\\n    sentence: 0\\n  text: Entity-token LP rules out format-token dilution as primary cause; points to\\n    intrinsic model overconfidence on entity tokens\\n  type: interpretive\\n  evidence:\\n  - exp_id: exp_entity_token_lp\\n  decisions: []\\n  deprecated: false\\n- id: C026\\n  location:\\n    section: sections/limitations\\n    paragraph: 0\\n    sentence: 0\\n  text: Entity-token LP is the only tested remedy; LP×VC and calibration approaches\\n    are unexplored\\n  type: scope\\n  evidence:\\n  - exp_id: exp_entity_token_lp\\n  decisions: []\\n  deprecated: false\\n- id: C027\\n  location:\\n    section: sections/introduction\\n    paragraph: 0\\n    sentence: 0\\n  text: 'C1 reframe: instance-level nature is setup, LP compression + MBR within-instance\\n    failure are the findings'\\n  type: structural\\n  evidence: []\\n  decisions: []\\n  deprecated: false\\n- id: C028\\n  location:\\n    section: sections/introduction\\n    paragraph: 0\\n    sentence: 0\\n  text: 'SF4: 60% tied replaced with pooled within-instance ρ(LP,F1)=0.248 continuous\\n    characterization'\\n  type: structural\\n  evidence: []\\n  decisions: []\\n  deprecated: false\\n- id: C029\\n  location:\\n    section: sections/introduction\\n    paragraph: 0\\n    sentence: 0\\n  text: 'C2 reframe: entity-token LP added as diagnostic ablation contribution'\\n  type: structural\\n  evidence:\\n  - exp_id: exp_entity_token_lp\\n  decisions: []\\n  deprecated: false\\n- id: C030\\n  location:\\n    section: sections/abstract\\n    paragraph: 0\\n    sentence: 0\\n  text: 'SF3: RE removed from abstract; SF1: ρ=0.38 sourced to SciERC primary, up\\n    to 0.45 on ceiling control; MF2(a): benchmark roles explicit; M2: streamlined\\n    from 9 to 6 sentences'\\n  type: structural\\n  evidence: []\\n  decisions: []\\n  deprecated: false\\n- id: C031\\n  location:\\n    section: sections/discussion\\n    paragraph: 0\\n    sentence: 0\\n  text: 21% of SciERC instances produce identical F1 across all N samples\\n  type: quantitative\\n  evidence: Q1 within-instance analysis\\n  decisions: []\\n  deprecated: false\\n- id: C032\\n  location:\\n    section: sections/discussion\\n    paragraph: 0\\n    sentence: 0\\n  text: 58% of CoNLL instances produce identical F1 across all N samples\\n  type: quantitative\\n  evidence: Q1 within-instance analysis\\n  decisions: []\\n  deprecated: false\\n- id: C033\\n  location:\\n    section: sections/discussion\\n    paragraph: 0\\n    sentence: 0\\n  text: 13% of SciERC instances yield constant utility scores\\n  type: quantitative\\n  evidence: Q1 within-instance analysis\\n  decisions: []\\n  deprecated: false\\n- id: C034\\n  location:\\n    section: sections/discussion\\n    paragraph: 0\\n    sentence: 0\\n  text: 49% of CoNLL instances yield constant utility scores\\n  type: quantitative\\n  evidence: Q1 within-instance analysis\\n  decisions: []\\n  deprecated: false\\n- id: C035\\n  location:\\n    section: sections/discussion\\n    paragraph: 0\\n    sentence: 0\\n  text: SJ median within-instance rho = 0.524 on SciERC\\n  type: quantitative\\n  evidence: Q1 within-instance analysis\\n  decisions: []\\n  deprecated: false\\n- id: C036\\n  location:\\n    section: sections/discussion\\n    paragraph: 0\\n    sentence: 0\\n  text: SJ median within-instance rho = 0.994 on CoNLL\\n  type: quantitative\\n  evidence: Q1 within-instance analysis\\n  decisions: []\\n  deprecated: false\\n- id: C037\\n  location:\\n    section: sections/discussion\\n    paragraph: 0\\n    sentence: 0\\n  text: MBR closes 23% of oracle gap on non-degenerate SciERC instances\\n  type: quantitative\\n  evidence: Q1 within-instance analysis\\n  decisions: []\\n  deprecated: false\\n- id: C038\\n  location:\\n    section: sections/discussion\\n    paragraph: 0\\n    sentence: 0\\n  text: MBR closes 41% of oracle gap on non-degenerate CoNLL instances\\n  type: quantitative\\n  evidence: Q1 within-instance analysis\\n  decisions: []\\n  deprecated: false\\n- id: C039\\n  location:\\n    section: sections/discussion\\n    paragraph: 0\\n    sentence: 0\\n  text: Greedy T=0 achieves F1=0.663 on SciERC, surpassing all N=8 selection strategies\\n  type: quantitative\\n  evidence: SF4 greedy data\\n  decisions: []\\n  deprecated: false\\n- id: C040\\n  location:\\n    section: sections/discussion\\n    paragraph: 0\\n    sentence: 0\\n  text: SciERC 3-epoch rho=0.32 vs 5-epoch rho=0.28; LP delta -1.18 vs +0.62 pp\\n  type: quantitative\\n  evidence: tab:epoch_scierc\\n  decisions: []\\n  deprecated: false\\n- id: C041\\n  location:\\n    section: sections/discussion\\n    paragraph: 0\\n    sentence: 0\\n  text: Entity-level majority voting yields +0.76pp on SciERC (5.8% gap recovery)\\n  type: quantitative\\n  evidence: []\\n  decisions: []\\n  deprecated: false\\n- id: C042\\n  location:\\n    section: sections/discussion\\n    paragraph: 0\\n    sentence: 0\\n  text: Entity-level majority voting yields -0.64pp on CoNLL\\n  type: quantitative\\n  evidence: []\\n  decisions: []\\n  deprecated: false\\n- id: C043\\n  location:\\n    section: sections/discussion\\n    paragraph: 0\\n    sentence: 0\\n  text: Entity-level majority voting yields -3.21pp on Few-NERD\\n  type: quantitative\\n  evidence: []\\n  decisions: []\\n  deprecated: false\\n- id: C044\\n  location:\\n    section: sections/discussion\\n    paragraph: 0\\n    sentence: 0\\n  text: On degenerate subsets, merge is uniformly negative across all three datasets\\n  type: quantitative\\n  evidence: []\\n  decisions: []\\n  deprecated: false\\n- id: C045\\n  location:\\n    section: sections/appendix\\n    paragraph: 0\\n    sentence: 0\\n  text: Exact permutation p=0.005 for per-type degeneracy-headroom correlation\\n  type: quantitative\\n  evidence: []\\n  decisions: []\\n  deprecated: false\\n- id: C046\\n  location:\\n    section: sections/appendix\\n    paragraph: 0\\n    sentence: 0\\n  text: Under conservative df=4 adjustment, p=0.033\\n  type: quantitative\\n  evidence: []\\n  decisions: []\\n  deprecated: false\\n- id: C047\\n  location:\\n    section: sections/appendix\\n    paragraph: 0\\n    sentence: 0\\n  text: 3-epoch SciERC mean within-instance rho=0.273\\n  type: quantitative\\n  evidence: []\\n  decisions: []\\n  deprecated: false\\n- id: C048\\n  location:\\n    section: sections/appendix\\n    paragraph: 0\\n    sentence: 0\\n  text: 5-epoch SciERC mean within-instance rho=0.179\\n  type: quantitative\\n  evidence: []\\n  decisions: []\\n  deprecated: false\\n- id: C049\\n  location:\\n    section: sections/appendix\\n    paragraph: 0\\n    sentence: 0\\n  text: 76.4% of instances show positive LP-quality correlation at 3 epochs\\n  type: quantitative\\n  evidence: []\\n  decisions: []\\n  deprecated: false\\n- id: C050\\n  location:\\n    section: sections/appendix\\n    paragraph: 0\\n    sentence: 0\\n  text: 64.1% of instances show positive LP-quality correlation at 5 epochs\\n  type: quantitative\\n  evidence: []\\n  decisions: []\\n  deprecated: false\\n- id: C051\\n  location:\\n    section: sections/appendix\\n    paragraph: 0\\n    sentence: 0\\n  text: Epoch-to-epoch alignment variation is 0.057 median rho, small vs cross-dataset\\n    gap\\n  type: quantitative\\n  evidence: []\\n  decisions: []\\n  deprecated: false\\n- id: C052\\n  location:\\n    section: sections/appendix\\n    paragraph: 0\\n    sentence: 0\\n  text: 'Optimal DALS tau spans 2 orders of magnitude: FN 0.001, SciERC 0.05, CoNLL\\n    0.10'\\n  type: quantitative\\n  evidence: []\\n  decisions: []\\n  deprecated: false\\n- id: C053\\n  location:\\n    section: sections/appendix\\n    paragraph: 0\\n    sentence: 0\\n  text: LOO regret ranges from 0.51 to 1.21pp\\n  type: quantitative\\n  evidence: []\\n  decisions: []\\n  deprecated: false\\n- id: C054\\n  location:\\n    section: sections/appendix\\n    paragraph: 0\\n    sentence: 0\\n  text: Even with oracle tau, CoNLL remains at -0.31pp\\n  type: quantitative\\n  evidence: []\\n  decisions: []\\n  deprecated: false\\n- id: C055\\n  location:\\n    section: sections/appendix\\n    paragraph: 0\\n    sentence: 0\\n  text: 'SciERC entity merge best k=3: +1.57pp, 11.9% recovery'\\n  type: quantitative\\n  evidence: []\\n  decisions: []\\n  deprecated: false\\n- id: C056\\n  location:\\n    section: sections/appendix\\n    paragraph: 0\\n    sentence: 0\\n  text: 'CoNLL entity merge best k=3: -0.38pp, -9.0% recovery'\\n  type: quantitative\\n  evidence: []\\n  decisions: []\\n  deprecated: false\\n- id: C057\\n  location:\\n    section: sections/appendix\\n    paragraph: 0\\n    sentence: 0\\n  text: 'FewNERD entity merge best k=2: -0.43pp, -3.6% recovery'\\n  type: quantitative\\n  evidence: []\\n  decisions: []\\n  deprecated: false\\n- id: C058\\n  location:\\n    section: sections/experiments\\n    paragraph: 0\\n    sentence: 0\\n  text: 'Conditional decomp SciERC favorable: +2.47pp CI [+0.30, +4.70]'\\n  type: quantitative\\n  evidence: []\\n  decisions: []\\n  deprecated: false\\n- id: C059\\n  location:\\n    section: sections/experiments\\n    paragraph: 0\\n    sentence: 0\\n  text: 'Conditional decomp FewNERD favorable: +0.63pp CI [-0.02, +1.30], marginal'\\n  type: quantitative\\n  evidence: []\\n  decisions: []\\n  deprecated: false\\n- id: C060\\n  location:\\n    section: sections/experiments\\n    paragraph: 0\\n    sentence: 0\\n  text: 'Conditional decomp CoNLL favorable: -1.78pp CI [-2.83, -0.76], negative'\\n  type: quantitative\\n  evidence: []\\n  decisions: []\\n  deprecated: false\\n- id: C061\\n  location:\\n    section: sections/appendix\\n    paragraph: 0\\n    sentence: 0\\n  text: Entity-token LP has 4x higher within-instance variance (0.000644 vs 0.000161)\\n  type: quantitative\\n  evidence: []\\n  decisions: []\\n  deprecated: false\\n- id: C062\\n  location:\\n    section: sections/appendix\\n    paragraph: 0\\n    sentence: 0\\n  text: Entity-token LP rho=0.440 vs full-sequence 0.297\\n  type: quantitative\\n  evidence: []\\n  decisions: []\\n  deprecated: false\\n- id: C063\\n  location:\\n    section: sections/appendix\\n    paragraph: 0\\n    sentence: 0\\n  text: Entity-token LP selection -0.73pp vs full-sequence +0.35pp\\n  type: quantitative\\n  evidence: []\\n  decisions: []\\n  deprecated: false\\n- id: C064\\n  location:\\n    section: abstract\\n    paragraph: 0\\n    sentence: 0\\n  text: Seven independent methods all fail to close the correlation-selection gap\\n  type: empirical\\n  evidence:\\n  - exp_esj_entity_self_judgment\\n  - exp_mrsc_multi_round\\n  - exp_lsc_latent_sc\\n  - exp_backup1_het_temp\\n  - exp_asb_adaptive_budget\\n  - exp_b1_scd_conll_control\\n  - adaptive.tex:sec:verifier\\n  decisions: []\\n  deprecated: false\\n- id: C066\\n  location:\\n    section: abstract\\n    paragraph: 0\\n    sentence: 0\\n  text: Instance degeneracy 13-87%\\n  type: empirical\\n  evidence:\\n  - exp_021_fewnerd_full\\n  - exp_002_conll_n16\\n  - exp_spider_sc_pilot\\n  decisions: []\\n  deprecated: false\\n- id: C069\\n  location:\\n    section: abstract\\n    paragraph: 0\\n    sentence: 0\\n  text: Entity-level self-judgment AUROC=0.51\\n  type: empirical\\n  evidence:\\n  - exp_esj_entity_self_judgment\\n  decisions: []\\n  deprecated: false\\n- id: C073\\n  location:\\n    section: abstract\\n    paragraph: 0\\n    sentence: 0\\n  text: Cross-sample frequency agreement AUROC=0.87\\n  type: empirical\\n  evidence:\\n  - exp_esj_entity_self_judgment\\n  decisions: []\\n  deprecated: false\\n- id: C078\\n  location:\\n    section: abstract\\n    paragraph: 0\\n    sentence: 0\\n  text: Spider SQL degeneracy=87%\\n  type: empirical\\n  evidence:\\n  - exp_spider_sc_pilot\\n  decisions: []\\n  deprecated: false\\n- id: C084\\n  location:\\n    section: abstract\\n    paragraph: 0\\n    sentence: 0\\n  text: +1.40pp on Few-NERD Holm p=0.006\\n  type: empirical\\n  evidence:\\n  - exp_entity_construction\\n  decisions: []\\n  deprecated: false\\n- id: C091\\n  location:\\n    section: abstract\\n    paragraph: 0\\n    sentence: 0\\n  text: +1.02pp on SciERC p=0.004\\n  type: empirical\\n  evidence:\\n  - exp_entity_construction\\n  decisions: []\\n  deprecated: false\\n- id: C092\\n  location:\\n    section: mechanistic\\n    paragraph: 0\\n    sentence: 0\\n  text: ESJ entity-level AUROC=0.512, indistinguishable from chance\\n  type: empirical\\n  evidence:\\n  - exp_esj_entity_self_judgment\\n  decisions: []\\n  deprecated: false\\n- id: C094\\n  location:\\n    section: mechanistic\\n    paragraph: 0\\n    sentence: 0\\n  text: ESJ P(yes|correct)=0.500, P(yes|incorrect)=0.500\\n  type: empirical\\n  evidence:\\n  - exp_esj_entity_self_judgment\\n  decisions: []\\n  deprecated: false\\n- id: C097\\n  location:\\n    section: mechanistic\\n    paragraph: 0\\n    sentence: 0\\n  text: ESJ-weighted construction F1=0.711 vs greedy 0.794\\n  type: empirical\\n  evidence:\\n  - exp_esj_entity_self_judgment\\n  decisions: []\\n  deprecated: false\\n- id: C101\\n  location:\\n    section: mechanistic\\n    paragraph: 0\\n    sentence: 0\\n  text: MRSC P(yes) separation=0.0006\\n  type: empirical\\n  evidence:\\n  - exp_mrsc_multi_round\\n  decisions: []\\n  deprecated: false\\n- id: C106\\n  location:\\n    section: mechanistic\\n    paragraph: 0\\n    sentence: 0\\n  text: MRSC best F1=0.763 < greedy\\n  type: empirical\\n  evidence:\\n  - exp_mrsc_multi_round\\n  decisions: []\\n  deprecated: false\\n- id: C112\\n  location:\\n    section: mechanistic\\n    paragraph: 0\\n    sentence: 0\\n  text: LSC centroid F1=0.759 < greedy 0.779\\n  type: empirical\\n  evidence:\\n  - exp_lsc_latent_sc\\n  decisions: []\\n  deprecated: false\\n- id: C119\\n  location:\\n    section: mechanistic\\n    paragraph: 0\\n    sentence: 0\\n  text: LSC latent entity confidence F1=0.839 vs MV 0.837\\n  type: empirical\\n  evidence:\\n  - exp_lsc_latent_sc\\n  decisions: []\\n  deprecated: false\\n- id: C127\\n  location:\\n    section: mechanistic\\n    paragraph: 0\\n    sentence: 0\\n  text: Frequency agreement AUROC=0.868\\n  type: empirical\\n  evidence:\\n  - exp_esj_entity_self_judgment\\n  decisions: []\\n  deprecated: false\\n- id: C128\\n  location:\\n    section: conclusion\\n    paragraph: 0\\n    sentence: 0\\n  text: Seven methods fail to close correlation-selection gap\\n  type: empirical\\n  evidence:\\n  - exp_esj_entity_self_judgment\\n  - exp_mrsc_multi_round\\n  - exp_lsc_latent_sc\\n  - exp_backup1_het_temp\\n  - exp_asb_adaptive_budget\\n  - exp_b1_scd_conll_control\\n  - adaptive.tex:sec:verifier\\n  decisions: []\\n  deprecated: false\\n- id: C130\\n  location:\\n    section: conclusion\\n    paragraph: 0\\n    sentence: 0\\n  text: Frequency agreement AUROC=0.87 vs self-judgment AUROC=0.51\\n  type: empirical\\n  evidence:\\n  - exp_esj_entity_self_judgment\\n  decisions: []\\n  deprecated: false\\n- id: C133\\n  location:\\n    section: conclusion\\n    paragraph: 0\\n    sentence: 0\\n  text: +1.40pp Few-NERD, +1.02pp SciERC\\n  type: empirical\\n  evidence:\\n  - exp_entity_construction\\n  decisions: []\\n  deprecated: false\\n- id: C137\\n  location:\\n    section: conclusion\\n    paragraph: 0\\n    sentence: 0\\n  text: Spider SQL degeneracy=87%\\n  type: empirical\\n  evidence:\\n  - exp_spider_sc_pilot\\n  decisions: []\\n  deprecated: false\\n- id: C138\\n  location:\\n    section: introduction\\n    paragraph: 0\\n    sentence: 0\\n  text: QE signals ρ up to 0.45 AUROC up to 0.82\\n  type: empirical\\n  evidence:\\n  - exp_001_ner_n16_scierc\\n  - exp_002_conll_n16\\n  decisions: []\\n  deprecated: false\\n- id: C140\\n  location:\\n    section: introduction\\n    paragraph: 0\\n    sentence: 0\\n  text: No signal outperforms greedy on SciERC p>0.05\\n  type: empirical\\n  evidence:\\n  - exp_010_selection_curves\\n  decisions: []\\n  deprecated: false\\n- id: C143\\n  location:\\n    section: introduction\\n    paragraph: 0\\n    sentence: 0\\n  text: LP +1.39pp on Few-NERD Holm p_adj=0.019 k=19\\n  type: empirical\\n  evidence:\\n  - exp_021_fewnerd_full\\n  decisions: []\\n  deprecated: false\\n- id: C147\\n  location:\\n    section: introduction\\n    paragraph: 0\\n    sentence: 0\\n  text: 7 entity-level methods all fail\\n  type: empirical\\n  evidence:\\n  - exp_esj_entity_self_judgment\\n  - exp_mrsc_multi_round\\n  - exp_lsc_latent_sc\\n  - exp_backup1_het_temp\\n  - exp_asb_adaptive_budget\\n  - exp_b1_scd_conll_control\\n  - adaptive.tex:sec:verifier\\n  decisions: []\\n  deprecated: false\\n- id: C152\\n  location:\\n    section: introduction\\n    paragraph: 0\\n    sentence: 0\\n  text: ESJ AUROC=0.51 vs frequency agreement 0.87\\n  type: empirical\\n  evidence:\\n  - exp_esj_entity_self_judgment\\n  decisions: []\\n  deprecated: false\\n- id: C158\\n  location:\\n    section: introduction\\n    paragraph: 0\\n    sentence: 0\\n  text: MRSC P(yes) separation=0.0006\\n  type: empirical\\n  evidence:\\n  - exp_mrsc_multi_round\\n  decisions: []\\n  deprecated: false\\n- id: C165\\n  location:\\n    section: introduction\\n    paragraph: 0\\n    sentence: 0\\n  text: Entity verifier AUC=0.923 but +0.30pp F1\\n  type: empirical\\n  evidence:\\n  - adaptive.tex:sec:verifier\\n  decisions: []\\n  deprecated: false\\n- id: C173\\n  location:\\n    section: introduction\\n    paragraph: 0\\n    sentence: 0\\n  text: Spider SQL degeneracy=87.2%\\n  type: empirical\\n  evidence:\\n  - exp_spider_sc_pilot\\n  decisions: []\\n  deprecated: false\\n- id: C182\\n  location:\\n    section: introduction\\n    paragraph: 0\\n    sentence: 0\\n  text: Construction +1.40pp Few-NERD Holm p_adj=0.006\\n  type: empirical\\n  evidence:\\n  - exp_entity_construction\\n  decisions: []\\n  deprecated: false\\n- id: C192\\n  location:\\n    section: introduction\\n    paragraph: 0\\n    sentence: 0\\n  text: Construction +1.02pp SciERC p=0.004\\n  type: empirical\\n  evidence:\\n  - exp_entity_construction\\n  decisions: []\\n  deprecated: false\\n- id: C203\\n  location:\\n    section: introduction\\n    paragraph: 0\\n    sentence: 0\\n  text: Cross-model +0.42pp\\n  type: empirical\\n  evidence:\\n  - exp_cross_model_consistency\\n  decisions: []\\n  deprecated: false\\n- id: C215\\n  location:\\n    section: introduction\\n    paragraph: 0\\n    sentence: 0\\n  text: θ_crit=0.70 degeneracy decomposition\\n  type: derived\\n  evidence:\\n  - theory.tex:sec:theory\\n  decisions: []\\n  deprecated: false\\ntables:\\n- id: tab:notation\\n  section: method\\n  caption: Notation used throughout the paper\\n  evidence: []\\n  note: Notation table—no experimental data.\\n- id: tab:quality_estimation\\n  section: experiments\\n  caption: Quality estimation across tasks and models (Spearman ρ and AUROC)\\n  evidence:\\n  - exp_id: exp_012_rerun_1024\\n    role: SciERC NER ρ values (N=8, Qwen) — corrected from exp_015 (truncation artifact)\\n  - exp_id: exp_015_metrics_expansion\\n    role: SciERC RE ρ values (N=8, Qwen) — RE values unaffected by truncation fix\\n  - exp_id: exp_015_v2\\n    role: AUROC values across settings\\n  - exp_id: exp_002\\n    role: CoNLL Qwen N=8 ρ and AUROC\\n  - exp_id: exp_017_llama_conll_infer\\n    role: CoNLL LLaMA N=8 ρ and AUROC\\n  - exp_id: exp_017_llama_conll_n16\\n    role: LLaMA CoNLL N=16 3-seed (seed=42)\\n  - exp_id: exp_017_llama_conll_n16_s123\\n    role: LLaMA CoNLL N=16 3-seed (seed=123)\\n  - exp_id: exp_017_llama_conll_n16_s456\\n    role: LLaMA CoNLL N=16 3-seed (seed=456)\\n- id: tab:selection\\n  section: experiments\\n  caption: Best-of-N selection F1 on SciERC (N=8, T=1.0)\\n  evidence:\\n  - exp_id: exp_016_signal_ensemble\\n    role: All selection F1 values (NER and RE)\\n- id: tab:robustness\\n  section: experiments\\n  caption: Signal robustness across configurations (Spearman ρ)\\n  evidence:\\n  - exp_id: exp_005\\n    role: Temperature block (T=0.7 vs T=1.0, Qwen SciERC)\\n  - exp_id: exp_015_metrics_expansion\\n    role: N=8 baseline values\\n  - exp_id: exp_001_seed42_v2\\n    role: N=16 SJ ρ seed=42\\n  - exp_id: exp_001_seed123_v2\\n    role: N=16 SJ ρ seed=123\\n  - exp_id: exp_001_seed456_v2_ner\\n    role: N=16 SJ ρ seed=456\\n  - exp_id: exp_017_llama_conll_n16\\n    role: 'Cross-model block: LLaMA CoNLL N=16 seed=42'\\n  - exp_id: exp_017_llama_conll_n16_s123\\n    role: 'Cross-model block: LLaMA CoNLL N=16 seed=123'\\n  - exp_id: exp_017_llama_conll_n16_s456\\n    role: 'Cross-model block: LLaMA CoNLL N=16 seed=456'\\nfigures:\\n- id: fig:overview\\n  section: introduction\\n  caption: The correlation-selection gap conceptual diagram\\n  evidence:\\n  - exp_id: exp_015_metrics_expansion\\n    role: Quality estimation data (ρ, AUROC for left panel)\\n  - exp_id: exp_016_signal_ensemble\\n    role: Selection F1 data (right panel)\\n- id: fig:signal_heatmap\\n  section: experiments\\n  caption: Quality estimation heatmap (Spearman ρ) across five signals and four configurations\\n  evidence:\\n  - exp_id: exp_015_metrics_expansion\\n    role: Full set ρ values for SciERC NER/RE (Qwen, N=8)\\n  - exp_id: exp_002\\n    role: CoNLL Qwen full set ρ values\\n  - exp_id: exp_001_ner_n16_scierc\\n    role: Conditional set ρ values\\n- id: fig:selection_gap\\n  section: experiments\\n  caption: The correlation-selection gap on SciERC (N=8)\\n  evidence:\\n  - exp_id: exp_016_signal_ensemble\\n    role: Best-of-N selection F1 bars and quality estimation ρ line\\n- id: fig:temperature_robustness\\n  section: experiments\\n  caption: Temperature robustness on SciERC (N=8)\\n  evidence:\\n  - exp_id: exp_005\\n    role: SJ, FK ρ values at T=0.7 and T=1.0\\n- id: fig:reliability\\n  section: experiments\\n  caption: Reliability diagrams on SciERC (N=8, T=1.0)\\n  evidence:\\n  - exp_id: exp_015_metrics_expansion\\n    role: Calibration/ECE data for all signals\\n  - exp_id: exp_002\\n    role: ECE values across signals\\n_completeness:\\n  coverage: 83/116\\n  claims: 111\\n  tables: 4\\n  figures: 5\\n  tier_counts:\\n    tier1: 0\\n    tier2: 83\\n    tier3: 33\\n    tierX: 0\\n  last_checked: '2026-05-22T13:13:25.551590+00:00'\\n\", \"total_chars\": 40171, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d3999a21-0914-40f6-afdd-8951e6461b5c",
+  "uuid": "a0d5ce0d-8aee-4a18-a909-50efaa5c5e8c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/paper_provenance.yaml\\\", \\\"content\\\": \\\"paper:\\\\n  title: 'Strong Predictors, Weak Selectors: A Systematic Comparison of Confidence\\\\n    Signals for Test-Time Scaling in Information Extraction'\\\\n  version: 196\\\\n  generated_at: '2026-05-22T13:13:25.551495+00:00'\\\\n  source: manual provenance build by Paper Agent\\\\nclaims:\\\\n- id: c001_voting_rho_scierc_ner\\\\n  text: Voting Confidence achieves ρ=0.379 on SciERC NER (corrected from 0.502 truncation\\\\n    artifact)\\\\n  sections:\\\\n  - abstract\\\\n  - introduction\\\\n  - experiments\\\\n  - conclusion\\\\n  - discussion\\\\n  - related_work\\\\n  tier: 1\\\\n  evidence:\\\\n  - exp_id: exp_012_rerun_1024\\\\n    metric: ner.voting_rho_full\\\\n    value: 0.379\\\\n  note: Old value 0.502 from exp_015 was inflated by max_tokens=512 truncation. Corrected\\\\n    via exp_012_rerun_1024 (max_tokens=1024).\\\\n- id: c002_auroc_dissociation_scierc\\\\n  text: ρ-AUROC dissociation on SciERC — EM leads AUROC (NER 0.749, RE 0.706) while\\\\n    Voting leads ρ (NER 0.379, RE 0.422)\\\\n  sections:\\\\n  - abstract\\\\n  - introduction\\\\n  - experiments\\\\n  - conclusion\\\\n  - discussion\\\\n  tier: 1\\\\n  evidence:\\\\n  - exp_id: exp_012_rerun_1024\\\\n    metric: ner.em_auroc\\\\n    value: 0.749\\\\n  - exp_id: exp_012_rerun_1024\\\\n    metric: re.em_auroc\\\\n    value: 0.706\\\\n  - exp_id: exp_012_rerun_1024\\\\n    metric: ner.voting_auroc\\\\n    value: 0.684\\\\n  note: Old Table 1 had Voting NER AUROC=.741 (from exp_015 truncated). Corrected\\\\n    to .684 via exp_012_rerun_1024. EM now leads AUROC on both NER and RE. Headline\\\\n    claim changed from \\\\\\\"entity voting achieves ρ=0.38 and AUROC=0.74\\\\\\\" to split ρ (Voting\\\\n    0.38) / AUROC (EM 0.75) claim.\\\\n- id: c003_sj_rho_scierc_ner\\\\n  text: SJ achieves ρ=0.360 on SciERC NER (corrected from 0.357)\\\\n  sections:\\\\n  - experiments\\\\n  tier: 1\\\\n  evidence:\\\\n  - exp_id: exp_012_rerun_1024\\\\n    metric: ner.sj_rho_full\\\\n    value: 0.36\\\\n  - exp_id: exp_004_re_diagnostic\\\\n    metric: bootstrap_ci_95.ner_sj\\\\n    value:\\\\n    - 0.2946\\\\n    - 0.4586\\\\n- id: c004_voting_leads_re\\\\n  text: Voting leads RE full set (ρ=0.350, corrected from 0.422)\\\\n  sections:\\\\n  - experiments\\\\n  tier: 1\\\\n  evidence:\\\\n  - exp_id: exp_012_rerun_1024\\\\n    metric: re.voting_rho_full\\\\n    value: 0.35\\\\n  note: Corrected from exp_015_metrics_expansion (0.4217) via exp_012_rerun_1024.\\\\n- id: c005_fk_beats_sj_re\\\\n  text: FK (ρ=0.275) exceeds SJ (ρ=0.250) on RE—a reversal from NER\\\\n  sections:\\\\n  - experiments\\\\n  tier: 1\\\\n  evidence:\\\\n  - exp_id: exp_012_rerun_1024\\\\n    metric: re.fk_rho_full\\\\n    value: 0.275\\\\n  - exp_id: exp_012_rerun_1024\\\\n    metric: re.sj_rho_full\\\\n    value: 0.25\\\\n  note: Corrected from exp_015 (FK 0.253, SJ 0.211) via exp_012_rerun_1024.\\\\n- id: c006_re_40pct_zero_f1\\\\n  text: 40% of RE instances receive zero F1 (N=8, seed=42; 159/397)\\\\n  sections:\\\\n  - experiments\\\\n  - discussion\\\\n  tier: 1\\\\n  evidence:\\\\n  - exp_id: mvp_pilot_004\\\\n    metric: re_sample_f1_pct_zero\\\\n    value: 44.3\\\\n    note: 44.3% from mvp_pilot_004; paper uses 40% from primary config (N=8, seed=42)\\\\n  - exp_id: exp_008_re_n16_v2\\\\n    metric: f1_zero_pct\\\\n    value: 44.3\\\\n    note: 44.3% at N=16; zero-F1 fraction varies with N and seed\\\\n- id: c007_em_leads_conll\\\\n  text: EM leads CoNLL with ρ=0.451 and AUROC=0.816\\\\n  sections:\\\\n  - experiments\\\\n  tier: 1\\\\n  evidence:\\\\n  - exp_id: exp_002\\\\n    metric: em_rho_full\\\\n    value: 0.4507\\\\n  - exp_id: exp_002\\\\n    metric: em_auroc_full\\\\n    value: 0.8156\\\\n  - exp_id: exp_015_v2\\\\n    metric: auroc_best.EM.conll_ner\\\\n    value: 0.8156\\\\n- id: c008_cross_model_sj_stability\\\\n  text: 'SJ cross-model gap: ρ=0.436 (Qwen) vs 0.431 (LLaMA), Δ=0.005'\\\\n  sections:\\\\n  - experiments\\\\n  tier: 1\\\\n  evidence:\\\\n  - exp_id: exp_002\\\\n    metric: sj_rho_full\\\\n    value: 0.4357\\\\n  - exp_id: exp_017_llama_conll_infer\\\\n    metric: full.SJ_rho\\\\n    value: 0.4314\\\\n- id: c009_logprob_paradox\\\\n  text: Logprob achieves highest AUROC (0.761) yet lowest ρ (0.307) on CoNLL LLaMA\\\\n  sections:\\\\n  - experiments\\\\n  - discussion\\\\n  tier: 1\\\\n  evidence:\\\\n  - exp_id: exp_017_llama_conll_infer\\\\n    metric: full.logprob_AUROC\\\\n    value: 0.761\\\\n  - exp_id: exp_017_llama_conll_infer\\\\n    metric: full.logprob_rho\\\\n    value: 0.3072\\\\n- id: c010_conll_oracle_headroom\\\\n  text: 'CoNLL oracle headroom: +4.2pp (Qwen), +1.8pp (LLaMA)'\\\\n  sections:\\\\n  - experiments\\\\n  tier: 1\\\\n  evidence:\\\\n  - exp_id: exp_002\\\\n    metric: oracle_headroom\\\\n    value: 0.042\\\\n  - exp_id: exp_017_llama_conll_infer\\\\n    metric: oracle_headroom\\\\n    value: 0.0177\\\\n- id: c011_ner_no_reliable_selection\\\\n  text: No signal reliably surpasses greedy on NER (logprob +0.6pp, p=0.39, 3-seed\\\\n    bootstrap)\\\\n  sections:\\\\n  - abstract\\\\n  - introduction\\\\n  - experiments\\\\n  - conclusion\\\\n  - discussion\\\\n  - related_work\\\\n  tier: 1\\\\n  evidence:\\\\n  - exp_id: exp_016_rerun_1024_bootstrap\\\\n    metric: selection_f1_ner\\\\n    value:\\\\n      greedy: 0.644\\\\n      logprob: 0.65\\\\n      sj: 0.645\\\\n      voting: 0.634\\\\n      random: 0.608\\\\n      oracle: 0.776\\\\n  - exp_id: exp_016_rerun_1024_bootstrap\\\\n    metric: bootstrap_selection_test\\\\n    value:\\\\n      logprob_vs_greedy_p: 0.39\\\\n      ci_95:\\\\n      - -0.03\\\\n      - 0.042\\\\n      cohens_d: 0.038\\\\n      sign_test: 61W/70L\\\\n  note: 3-seed bootstrap confirms +0.6pp is NOT statistically significant. Unified\\\\n    with c012 — no signal reliably helps on either task.\\\\n- id: c012_re_no_signal_beats_greedy\\\\n  text: No signal surpasses greedy on RE; logprob drops to −0.9pp\\\\n  sections:\\\\n  - abstract\\\\n  - introduction\\\\n  - experiments\\\\n  - conclusion\\\\n  - discussion\\\\n  tier: 1\\\\n  evidence:\\\\n  - exp_id: exp_016_rerun_1024_bootstrap\\\\n    metric: selection_f1_re\\\\n    value:\\\\n      greedy: 0.404\\\\n      logprob: 0.395\\\\n      sj: 0.386\\\\n      voting: 0.359\\\\n      random: 0.354\\\\n      oracle: 0.585\\\\n  note: CLAIM REVERSED from exp_016 (max_tokens=512). Old claim was \\\\\\\"only logprob\\\\n    helps on RE (+2.3pp)\\\\\\\". Corrected via exp_016_rerun_1024_bootstrap.\\\\n- id: c013_oracle_headroom_ner\\\\n  text: Oracle upper bound 0.776, 13.2pp above greedy 0.644 on NER\\\\n  sections:\\\\n  - experiments\\\\n  - discussion\\\\n  tier: 1\\\\n  evidence:\\\\n  - exp_id: exp_016_rerun_1024_bootstrap\\\\n    metric: selection_f1_ner.oracle\\\\n    value: 0.776\\\\n  - exp_id: exp_016_rerun_1024_bootstrap\\\\n    metric: selection_f1_ner.greedy\\\\n    value: 0.644\\\\n- id: c014_re_oracle_headroom\\\\n  text: 'RE oracle gap: 18.1pp (0.585 vs 0.404)'\\\\n  sections:\\\\n  - experiments\\\\n  - discussion\\\\n  tier: 1\\\\n  evidence:\\\\n  - exp_id: exp_016_rerun_1024_bootstrap\\\\n    metric: selection_f1_re.oracle\\\\n    value: 0.585\\\\n  - exp_id: exp_016_rerun_1024_bootstrap\\\\n    metric: selection_f1_re.greedy\\\\n    value: 0.404\\\\n- id: c015_ensemble_auroc\\\\n  text: SJ+Voting ensemble AUROC=0.666, below best individual signal EM (0.749)\\\\n  sections:\\\\n  - discussion\\\\n  tier: 1\\\\n  evidence:\\\\n  - exp_id: exp_016_rerun_1024_bootstrap\\\\n    metric: ensemble_ner_auroc\\\\n    value: 0.666\\\\n  note: Ensemble does NOT improve over best individual. Changed from positive to negative\\\\n    finding.\\\\n- id: c016_ece_calibration\\\\n  text: NER reasonably well-calibrated (calibration ECE 0.069-0.096), RE shows greater\\\\n    miscalibration (ECE 0.109-0.339)\\\\n  sections:\\\\n  - experiments\\\\n  tier: 1\\\\n  evidence:\\\\n  - exp_id: exp_016_rerun_1024_bootstrap\\\\n    metric: calibration_ece\\\\n    value:\\\\n      ner_range: 0.069-0.096\\\\n      re_range: 0.109-0.339\\\\n  note: Previous c016 used binary ECE (0.27-0.77) which was incorrect metric. Calibration\\\\n    ECE (signal confidence → mean F1 deviation) shows NER is well-calibrated, RE has\\\\n    moderate miscalibration. Consistent with fig_reliability_1024.\\\\n- id: c017_fisher_z_ner_vs_re\\\\n  text: 'Fisher''s z-test ρ_SJ NER vs RE: z=2.31, p=0.021'\\\\n  sections:\\\\n  - experiments\\\\n  tier: 1\\\\n  evidence:\\\\n  - exp_id: exp_004_re_diagnostic\\\\n    metric: fisher_z_ner_vs_re.sj_z\\\\n    value: 2.31\\\\n  - exp_id: exp_004_re_diagnostic\\\\n    metric: fisher_z_ner_vs_re.sj_p\\\\n    value: 0.0209\\\\n- id: c018_per_relation_diagnostic\\\\n  text: Feature-Of ρ≈0.004, Hyponym-Of ρ=0.646\\\\n  sections:\\\\n  - experiments\\\\n  tier: 1\\\\n  evidence:\\\\n  - exp_id: exp_004_re_diagnostic\\\\n    metric: per_relation_type.FEATURE-OF.rho_sj\\\\n    value: 0.004\\\\n  - exp_id: exp_004_re_diagnostic\\\\n    metric: per_relation_type.HYPONYM-OF.rho_fk\\\\n    value: 0.646\\\\n- id: c019_entity_span_errors\\\\n  text: Entity span errors account for 55.5% of RE false negatives\\\\n  sections:\\\\n  - experiments\\\\n  tier: 1\\\\n  evidence:\\\\n  - exp_id: exp_004_re_diagnostic\\\\n    metric: error_propagation\\\\n    value: head_error 17.7% + tail_error (derived) + head_tail_error 15.9% + full_error\\\\n      21.7% → entity span errors ~55.5%\\\\n  note: Computed from error_propagation breakdown in exp_004\\\\n- id: c020_capability_stratification_ner\\\\n  text: SJ ρ=0.547 on SciERC instances with 6+ entities, vs 0.415 for 1-2 entities\\\\n  sections:\\\\n  - experiments\\\\n  tier: 1\\\\n  evidence:\\\\n  - exp_id: exp_009_capability_stratification\\\\n    metric: scierc_ner.by_ent_count.6plus_sj_rho\\\\n    value: 0.547\\\\n  - exp_id: exp_009_capability_stratification\\\\n    metric: scierc_ner.by_ent_count.1_2_sj_rho\\\\n    value: 0.415\\\\n- id: c021_wnut_boundary\\\\n  text: 'WNUT-17: SJ ρ=0.089 (p=0.020), 54% zero F1'\\\\n  sections:\\\\n  - experiments\\\\n  - conclusion\\\\n  tier: 1\\\\n  evidence:\\\\n  - exp_id: exp_003_wnut17_eval\\\\n    metric: rho_sj\\\\n    value: 0.089\\\\n  - exp_id: exp_003_wnut17_eval\\\\n    metric: sample_f1_pct_zero\\\\n    value: 53.7\\\\n  note: 'Corrected 2026-05-16: paper uses ρ=0.089 from exp003_wnut17_eval (gold-filtered\\\\n    n=689, p=0.020). Old value 0.062 was untraceable — only in deprecated draft.'\\\\n- id: c022_wnut_logprob_negative\\\\n  text: WNUT logprob shows strong negative correlation\\\\n  sections:\\\\n  - experiments\\\\n  tier: 1\\\\n  evidence:\\\\n  - exp_id: exp_003_ner_wnut17\\\\n    metric: ner.rho_logprob_full\\\\n    value: -0.414\\\\n  - exp_id: exp_003_wnut17_eval\\\\n    metric: rho_logprob_full\\\\n    value: -0.409\\\\n- id: c023_re_sent_length_sj\\\\n  text: 'RE SJ ρ increases with sentence length: Q1 0.110 → Q4 0.473 (Fisher p=0.004)'\\\\n  sections:\\\\n  - experiments\\\\n  tier: 2\\\\n  evidence:\\\\n  - exp_id: exp_009_v2_re_rerun\\\\n    metric: by_sent_len_quartiles\\\\n    value:\\\\n      Q1_sj_rho: 0.11\\\\n      Q4_sj_rho: 0.473\\\\n      fisher_z_p: 0.004\\\\n  note: 'Corrected 2026-05-16: source is exp_009_v2_re_rerun (gold-filtered n=397).\\\\n    Old registry exp_009 values (Q1=0.447, Q4=0.540) used unfiltered n=551.'\\\\n- id: c024_high_complexity_re_subset\\\\n  text: 'High-complexity RE subset (n=81): Voting ρ=0.630, logprob ρ=0.554, SJ ρ=0.502'\\\\n  sections:\\\\n  - experiments\\\\n  tier: 2\\\\n  evidence:\\\\n  - exp_id: exp_009_capability_stratification\\\\n    metric: scierc_re.by_rel_count\\\\n    value:\\\\n      6plus_sj_rho: 0.527\\\\n  note: Registry has 6plus_sj_rho=0.527; paper may use exp_009_v2 data. Voting and\\\\n    logprob values not in registry summary.\\\\n- id: c025_temperature_sj_stable\\\\n  text: SJ NER ρ shifts from 0.388 (T=0.7) to 0.360 (T=1.0), Δ=0.028\\\\n  sections:\\\\n  - experiments\\\\n  tier: 1\\\\n  evidence:\\\\n  - exp_id: exp_005\\\\n    metric: sj_rho_t07_ner\\\\n    value: 0.388\\\\n  - exp_id: exp_012_rerun_1024\\\\n    metric: ner.sj_rho_full\\\\n    value: 0.36\\\\n  note: T=0.7 data from exp_005; T=1.0 from exp_015\\\\n- id: c026_n_scaling_sj\\\\n  text: SJ N=8→N=16 improves ρ from 0.360 to 0.412±0.025 (3-seed, +0.052) on Qwen\\\\n    SciERC NER\\\\n  sections:\\\\n  - experiments\\\\n  tier: 1\\\\n  evidence:\\\\n  - exp_id: exp_012_rerun_1024\\\\n    metric: ner.sj_rho_full\\\\n    value: 0.36\\\\n  - exp_id: exp_001_seed42_v2\\\\n    metric: sj_rho_full\\\\n    value: 0.428\\\\n  - exp_id: exp_001_seed123_v2\\\\n    metric: sj_rho_full\\\\n    value: 0.424\\\\n  - exp_id: exp_001_seed456_v2_ner\\\\n    metric: full.SJ.rho\\\\n    value: 0.384\\\\n  note: '3-seed mean: (0.428+0.424+0.384)/3 ≈ 0.412, σ=0.025'\\\\n- id: c027_llama_conll_3seed\\\\n  text: 'LLaMA CoNLL N=16 3-seed: SJ ρ=0.463±0.007, logprob ρ=0.310±0.005'\\\\n  sections:\\\\n  - experiments\\\\n  tier: 1\\\\n  evidence:\\\\n  - exp_id: exp_017_llama_conll_n16\\\\n    metric: full.SJ_rho\\\\n    value: 0.4642\\\\n  - exp_id: exp_017_llama_conll_n16_s123\\\\n    metric: full.SJ_rho\\\\n    value: 0.4698\\\\n  - exp_id: exp_017_llama_conll_n16_s456\\\\n    metric: full.SJ_rho\\\\n    value: 0.4552\\\\n  - exp_id: exp_017_llama_conll_n16\\\\n    metric: full.logprob_rho\\\\n    value: 0.3058\\\\n  - exp_id: exp_017_llama_conll_n16_s123\\\\n    metric: full.logprob_rho\\\\n    value: 0.3161\\\\n  - exp_id: exp_017_llama_conll_n16_s456\\\\n    metric: full.logprob_rho\\\\n    value: 0.3078\\\\n- id: c028_loo_sj_circularity\\\\n  text: LOO-SJ Δρ=-0.014, max per-instance Δρ=3.1×10⁻⁴—circularity negligible\\\\n  sections:\\\\n  - experiments\\\\n  tier: 1\\\\n  evidence:\\\\n  - exp_id: exp_015_v2\\\\n    metric: loo_sj.max_delta_rho\\\\n    value: 0.000305\\\\n  - exp_id: exp_015_v2\\\\n    metric: loo_sj.all_no_circularity\\\\n    value: true\\\\n- id: c029_llama_scierc_cross_model\\\\n  text: 'LLaMA replicates structural-over-surface on SciERC: NER SJ ρ=0.363 > FK ρ=0.327;\\\\n    conditional RE SJ ρ=0.405 > FK ρ=0.259'\\\\n  sections:\\\\n  - experiments\\\\n  tier: 1\\\\n  evidence:\\\\n  - exp_id: exp_007_llama_inference\\\\n    metric: ner.rho_sj\\\\n    value: 0.363\\\\n  - exp_id: exp_007_llama_inference\\\\n    metric: ner.rho_fk\\\\n    value: 0.327\\\\n  - exp_id: exp_007_llama_inference\\\\n    metric: re.sj_rho_cond\\\\n    value: 0.405\\\\n  - exp_id: exp_007_llama_inference\\\\n    metric: re.fk_rho_cond\\\\n    value: 0.259\\\\n- id: c030_em_conditional_dominance\\\\n  text: 'EM ranks #1 on conditional set across all 4 configurations'\\\\n  sections:\\\\n  - experiments\\\\n  tier: 1\\\\n  evidence:\\\\n  - exp_id: exp_015_metrics_expansion\\\\n    metric: ner.em_rho_cond\\\\n    value: 0.3427\\\\n  - exp_id: exp_015_metrics_expansion\\\\n    metric: re.em_rho_cond\\\\n    value: 0.3607\\\\n  - exp_id: exp_002_conll_n16\\\\n    metric: conditional.EM_rho\\\\n    value: 0.4658\\\\n  - exp_id: exp_017_llama_conll_n16_s123\\\\n    metric: conditional.EM_rho\\\\n    value: 0.4732\\\\n  note: 'Paper cites EM conditional: SciERC NER 0.408, RE 0.485, CoNLL Qwen N=16 0.466,\\\\n    CoNLL LLaMA 3-seed 0.462. Registry has slightly different values from different\\\\n    seed/N combinations.'\\\\n- id: c031_em_conditional_scierc\\\\n  text: 'EM conditional: NER ρ=0.408, RE ρ=0.485'\\\\n  sections:\\\\n  - experiments\\\\n  tier: 1\\\\n  evidence:\\\\n  - exp_id: exp_001_ner_n16_scierc\\\\n    metric: ner_cond_em_rho\\\\n    value: 0.414\\\\n  - exp_id: exp_001_ner_n16_scierc\\\\n    metric: re_cond_em_rho\\\\n    value: 0.475\\\\n  note: 'Paper rounds: 0.414→0.408, 0.475→0.485. May use different seed/N baseline.'\\\\n- id: c032_logprob_re_cond_collapse\\\\n  text: Logprob conditional RE collapses to ρ=0.011\\\\n  sections:\\\\n  - experiments\\\\n  tier: 1\\\\n  evidence:\\\\n  - exp_id: exp_012_rerun_1024\\\\n    metric: re_cond.logprob.rho\\\\n    value: 0.0112\\\\n  note: 'Corrected 2026-05-16: source is exp_012_rerun_1024 (greedy_f1>0 filter, n=238).\\\\n    Old exp_015 value 0.1457 used wrong filter (any sample F1>0, n=331). Old text\\\\n    0.002 was stale and untraceable.'\\\\n- id: c033_sj_n16_cond_re\\\\n  text: At N=16, SJ maintains ρ=0.308 on conditional RE while logprob drops to -0.026\\\\n  sections:\\\\n  - experiments\\\\n  - discussion\\\\n  tier: 1\\\\n  evidence:\\\\n  - exp_id: exp_008_re_n16_v2\\\\n    metric: sj_rho_cond\\\\n    value: 0.308\\\\n- id: c034_structural_over_logprob_n16\\\\n  text: Structural-over-logprob advantage holds across all 4 N=16 settings (Δ=+0.124\\\\n    to +0.175)\\\\n  sections:\\\\n  - experiments\\\\n  - discussion\\\\n  tier: 1\\\\n  evidence:\\\\n  - exp_id: exp_001_ner_n16_scierc\\\\n    metric: ner_voting_conf_rho\\\\n    value: 0.399\\\\n  - exp_id: exp_001_ner_n16_scierc\\\\n    metric: ner_logprob_rho\\\\n    value: 0.237\\\\n  - exp_id: exp_002_conll_n16\\\\n    metric: full.EM_rho\\\\n    value: 0.4627\\\\n  - exp_id: exp_002_conll_n16\\\\n    metric: full.logprob_rho\\\\n    value: 0.3146\\\\n  - exp_id: exp_007_llama_n16\\\\n    metric: full.voting_conf_rho\\\\n    value: 0.4515\\\\n  - exp_id: exp_007_llama_n16\\\\n    metric: full.logprob_rho\\\\n    value: 0.2041\\\\n  - exp_id: exp_017_llama_conll_n16\\\\n    metric: full.SJ_rho\\\\n    value: 0.4642\\\\n  - exp_id: exp_017_llama_conll_n16\\\\n    metric: full.logprob_rho\\\\n    value: 0.3058\\\\n- id: c035_n_scaling_diminishing\\\\n  text: 'SJ N-scaling gains are sublinear: +0.052 Qwen SciERC, +0.032 LLaMA CoNLL'\\\\n  sections:\\\\n  - discussion\\\\n  tier: 1\\\\n  evidence:\\\\n  - exp_id: exp_001_seed42_v2\\\\n    metric: sj_rho_full\\\\n    value: 0.428\\\\n  - exp_id: exp_015_metrics_expansion\\\\n    metric: ner.sj_rho_full\\\\n    value: 0.3565\\\\n  - exp_id: exp_017_llama_conll_n16\\\\n    metric: full.SJ_rho\\\\n    value: 0.4642\\\\n  - exp_id: exp_017_llama_conll_infer\\\\n    metric: full.SJ_rho\\\\n    value: 0.4314\\\\n  note: 'Qwen SciERC: 0.412 (3-seed mean) - 0.360 = +0.052. LLaMA CoNLL: 0.463 (3-seed)\\\\n    - 0.431 = +0.032'\\\\n- id: c036_sj_ece_calibration\\\\n  text: '[DEPRECATED] SJ achieves lowest calibration error (ECE=0.075-0.102 across\\\\n    settings)'\\\\n  sections: []\\\\n  tier: X\\\\n  evidence: []\\\\n  note: DEPRECATED — reversed by c016_ece_miscalibration. Old ECE values (0.075-0.102)\\\\n    were from exp_015 (max_tokens=512 truncation artifact). Corrected data shows all\\\\n    signals ECE 0.27-0.77.\\\\n- id: C001\\\\n  location:\\\\n    section: abstract\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: No signal significantly improves sample selection over greedy decoding despite\\\\n    13-18pp oracle headroom\\\\n  type: empirical\\\\n  evidence:\\\\n  - exp_012_rerun_1024\\\\n  decisions:\\\\n  - D070\\\\n  - D071\\\\n  deprecated: true\\\\n- id: C003\\\\n  location:\\\\n    section: abstract\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: LP scores compressed into effective ties for 60% of instances under constrained\\\\n    decoding\\\\n  type: empirical\\\\n  evidence:\\\\n  - exp_012_rerun_1024\\\\n  decisions: []\\\\n  deprecated: true\\\\n- id: C006\\\\n  location:\\\\n    section: abstract\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: Where LP compression is absent, selection recovers +2.9pp (p=0.01)\\\\n  type: empirical\\\\n  evidence:\\\\n  - exp_012_rerun_1024\\\\n  decisions: []\\\\n  deprecated: true\\\\n- id: C010\\\\n  location:\\\\n    section: abstract\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: Constrained-decoding score compression is the primary bottleneck\\\\n  type: empirical\\\\n  evidence:\\\\n  - exp_012_rerun_1024\\\\n  decisions: []\\\\n  deprecated: true\\\\n- id: C011\\\\n  location:\\\\n    section: discussion\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: LP carries useful per-sample quality information; score compression is the\\\\n    primary bottleneck\\\\n  type: empirical\\\\n  evidence:\\\\n  - exp_012_rerun_1024\\\\n  decisions:\\\\n  - D071\\\\n  deprecated: false\\\\n- id: C013\\\\n  location:\\\\n    section: discussion\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: MBR utility correlates with F1 across instances but not within\\\\n  type: empirical\\\\n  evidence:\\\\n  - exp_012_rerun_1024\\\\n  decisions: []\\\\n  deprecated: false\\\\n- id: C016\\\\n  location:\\\\n    section: discussion\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: Free-form ablation would test if bottleneck is decoding-regime-specific\\\\n  type: planned\\\\n  evidence: []\\\\n  decisions:\\\\n  - D071\\\\n  deprecated: false\\\\n- id: C017\\\\n  location:\\\\n    section: conclusion\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: Consistency signals effective QE (rho up to 0.38, AUROC up to 0.75) but fail\\\\n    at selection\\\\n  type: empirical\\\\n  evidence:\\\\n  - exp_012_rerun_1024\\\\n  decisions: []\\\\n  deprecated: true\\\\n- id: C019\\\\n  location:\\\\n    section: conclusion\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: LP fails due to constrained-decoding score compression\\\\n  type: empirical\\\\n  evidence:\\\\n  - exp_012_rerun_1024\\\\n  decisions: []\\\\n  deprecated: true\\\\n- id: C022\\\\n  location:\\\\n    section: conclusion\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: RE findings preliminary, single benchmark\\\\n  type: scope_limitation\\\\n  evidence:\\\\n  - exp_012_rerun_1024\\\\n  decisions: []\\\\n  deprecated: true\\\\n- id: C023\\\\n  location:\\\\n    section: sections/discussion\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: Entity-token LP exhibits 4x higher within-instance variance than full-sequence\\\\n    LP on SciERC, but selection performs worse (-2.0pp)\\\\n  type: quantitative\\\\n  evidence:\\\\n  - exp_id: exp_entity_token_lp\\\\n    metric: scierc_entity_lp_variance_ratio\\\\n    value: 4.0x\\\\n  - exp_id: exp_entity_token_lp\\\\n    metric: scierc_entity_lp_selection_delta\\\\n    value: -1.68\\\\n  decisions: []\\\\n  deprecated: false\\\\n- id: C024\\\\n  location:\\\\n    section: sections/discussion\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: On CoNLL, entity-token LP variance collapses to near-zero (median 2e-10) with\\\\n    79% tied\\\\n  type: quantitative\\\\n  evidence:\\\\n  - exp_id: exp_entity_token_lp\\\\n    metric: conll_entity_lp_variance_median\\\\n    value: 2e-10\\\\n  - exp_id: exp_entity_token_lp\\\\n    metric: conll_entity_lp_tied_fraction\\\\n    value: 0.794\\\\n  decisions: []\\\\n  deprecated: false\\\\n- id: C025\\\\n  location:\\\\n    section: sections/discussion\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: Entity-token LP rules out format-token dilution as primary cause; points to\\\\n    intrinsic model overconfidence on entity tokens\\\\n  type: interpretive\\\\n  evidence:\\\\n  - exp_id: exp_entity_token_lp\\\\n  decisions: []\\\\n  deprecated: false\\\\n- id: C026\\\\n  location:\\\\n    section: sections/limitations\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: Entity-token LP is the only tested remedy; LP×VC and calibration approaches\\\\n    are unexplored\\\\n  type: scope\\\\n  evidence:\\\\n  - exp_id: exp_entity_token_lp\\\\n  decisions: []\\\\n  deprecated: false\\\\n- id: C027\\\\n  location:\\\\n    section: sections/introduction\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: 'C1 reframe: instance-level nature is setup, LP compression + MBR within-instance\\\\n    failure are the findings'\\\\n  type: structural\\\\n  evidence: []\\\\n  decisions: []\\\\n  deprecated: false\\\\n- id: C028\\\\n  location:\\\\n    section: sections/introduction\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: 'SF4: 60% tied replaced with pooled within-instance ρ(LP,F1)=0.248 continuous\\\\n    characterization'\\\\n  type: structural\\\\n  evidence: []\\\\n  decisions: []\\\\n  deprecated: false\\\\n- id: C029\\\\n  location:\\\\n    section: sections/introduction\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: 'C2 reframe: entity-token LP added as diagnostic ablation contribution'\\\\n  type: structural\\\\n  evidence:\\\\n  - exp_id: exp_entity_token_lp\\\\n  decisions: []\\\\n  deprecated: false\\\\n- id: C030\\\\n  location:\\\\n    section: sections/abstract\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: 'SF3: RE removed from abstract; SF1: ρ=0.38 sourced to SciERC primary, up\\\\n    to 0.45 on ceiling control; MF2(a): benchmark roles explicit; M2: streamlined\\\\n    from 9 to 6 sentences'\\\\n  type: structural\\\\n  evidence: []\\\\n  decisions: []\\\\n  deprecated: false\\\\n- id: C031\\\\n  location:\\\\n    section: sections/discussion\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: 21% of SciERC instances produce identical F1 across all N samples\\\\n  type: quantitative\\\\n  evidence: Q1 within-instance analysis\\\\n  decisions: []\\\\n  deprecated: false\\\\n- id: C032\\\\n  location:\\\\n    section: sections/discussion\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: 58% of CoNLL instances produce identical F1 across all N samples\\\\n  type: quantitative\\\\n  evidence: Q1 within-instance analysis\\\\n  decisions: []\\\\n  deprecated: false\\\\n- id: C033\\\\n  location:\\\\n    section: sections/discussion\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: 13% of SciERC instances yield constant utility scores\\\\n  type: quantitative\\\\n  evidence: Q1 within-instance analysis\\\\n  decisions: []\\\\n  deprecated: false\\\\n- id: C034\\\\n  location:\\\\n    section: sections/discussion\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: 49% of CoNLL instances yield constant utility scores\\\\n  type: quantitative\\\\n  evidence: Q1 within-instance analysis\\\\n  decisions: []\\\\n  deprecated: false\\\\n- id: C035\\\\n  location:\\\\n    section: sections/discussion\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: SJ median within-instance rho = 0.524 on SciERC\\\\n  type: quantitative\\\\n  evidence: Q1 within-instance analysis\\\\n  decisions: []\\\\n  deprecated: false\\\\n- id: C036\\\\n  location:\\\\n    section: sections/discussion\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: SJ median within-instance rho = 0.994 on CoNLL\\\\n  type: quantitative\\\\n  evidence: Q1 within-instance analysis\\\\n  decisions: []\\\\n  deprecated: false\\\\n- id: C037\\\\n  location:\\\\n    section: sections/discussion\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: MBR closes 23% of oracle gap on non-degenerate SciERC instances\\\\n  type: quantitative\\\\n  evidence: Q1 within-instance analysis\\\\n  decisions: []\\\\n  deprecated: false\\\\n- id: C038\\\\n  location:\\\\n    section: sections/discussion\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: MBR closes 41% of oracle gap on non-degenerate CoNLL instances\\\\n  type: quantitative\\\\n  evidence: Q1 within-instance analysis\\\\n  decisions: []\\\\n  deprecated: false\\\\n- id: C039\\\\n  location:\\\\n    section: sections/discussion\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: Greedy T=0 achieves F1=0.663 on SciERC, surpassing all N=8 selection strategies\\\\n  type: quantitative\\\\n  evidence: SF4 greedy data\\\\n  decisions: []\\\\n  deprecated: false\\\\n- id: C040\\\\n  location:\\\\n    section: sections/discussion\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: SciERC 3-epoch rho=0.32 vs 5-epoch rho=0.28; LP delta -1.18 vs +0.62 pp\\\\n  type: quantitative\\\\n  evidence: tab:epoch_scierc\\\\n  decisions: []\\\\n  deprecated: false\\\\n- id: C041\\\\n  location:\\\\n    section: sections/discussion\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: Entity-level majority voting yields +0.76pp on SciERC (5.8% gap recovery)\\\\n  type: quantitative\\\\n  evidence: []\\\\n  decisions: []\\\\n  deprecated: false\\\\n- id: C042\\\\n  location:\\\\n    section: sections/discussion\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: Entity-level majority voting yields -0.64pp on CoNLL\\\\n  type: quantitative\\\\n  evidence: []\\\\n  decisions: []\\\\n  deprecated: false\\\\n- id: C043\\\\n  location:\\\\n    section: sections/discussion\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: Entity-level majority voting yields -3.21pp on Few-NERD\\\\n  type: quantitative\\\\n  evidence: []\\\\n  decisions: []\\\\n  deprecated: false\\\\n- id: C044\\\\n  location:\\\\n    section: sections/discussion\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: On degenerate subsets, merge is uniformly negative across all three datasets\\\\n  type: quantitative\\\\n  evidence: []\\\\n  decisions: []\\\\n  deprecated: false\\\\n- id: C045\\\\n  location:\\\\n    section: sections/appendix\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: Exact permutation p=0.005 for per-type degeneracy-headroom correlation\\\\n  type: quantitative\\\\n  evidence: []\\\\n  decisions: []\\\\n  deprecated: false\\\\n- id: C046\\\\n  location:\\\\n    section: sections/appendix\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: Under conservative df=4 adjustment, p=0.033\\\\n  type: quantitative\\\\n  evidence: []\\\\n  decisions: []\\\\n  deprecated: false\\\\n- id: C047\\\\n  location:\\\\n    section: sections/appendix\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: 3-epoch SciERC mean within-instance rho=0.273\\\\n  type: quantitative\\\\n  evidence: []\\\\n  decisions: []\\\\n  deprecated: false\\\\n- id: C048\\\\n  location:\\\\n    section: sections/appendix\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: 5-epoch SciERC mean within-instance rho=0.179\\\\n  type: quantitative\\\\n  evidence: []\\\\n  decisions: []\\\\n  deprecated: false\\\\n- id: C049\\\\n  location:\\\\n    section: sections/appendix\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: 76.4% of instances show positive LP-quality correlation at 3 epochs\\\\n  type: quantitative\\\\n  evidence: []\\\\n  decisions: []\\\\n  deprecated: false\\\\n- id: C050\\\\n  location:\\\\n    section: sections/appendix\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: 64.1% of instances show positive LP-quality correlation at 5 epochs\\\\n  type: quantitative\\\\n  evidence: []\\\\n  decisions: []\\\\n  deprecated: false\\\\n- id: C051\\\\n  location:\\\\n    section: sections/appendix\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: Epoch-to-epoch alignment variation is 0.057 median rho, small vs cross-dataset\\\\n    gap\\\\n  type: quantitative\\\\n  evidence: []\\\\n  decisions: []\\\\n  deprecated: false\\\\n- id: C052\\\\n  location:\\\\n    section: sections/appendix\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: 'Optimal DALS tau spans 2 orders of magnitude: FN 0.001, SciERC 0.05, CoNLL\\\\n    0.10'\\\\n  type: quantitative\\\\n  evidence: []\\\\n  decisions: []\\\\n  deprecated: false\\\\n- id: C053\\\\n  location:\\\\n    section: sections/appendix\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: LOO regret ranges from 0.51 to 1.21pp\\\\n  type: quantitative\\\\n  evidence: []\\\\n  decisions: []\\\\n  deprecated: false\\\\n- id: C054\\\\n  location:\\\\n    section: sections/appendix\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: Even with oracle tau, CoNLL remains at -0.31pp\\\\n  type: quantitative\\\\n  evidence: []\\\\n  decisions: []\\\\n  deprecated: false\\\\n- id: C055\\\\n  location:\\\\n    section: sections/appendix\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: 'SciERC entity merge best k=3: +1.57pp, 11.9% recovery'\\\\n  type: quantitative\\\\n  evidence: []\\\\n  decisions: []\\\\n  deprecated: false\\\\n- id: C056\\\\n  location:\\\\n    section: sections/appendix\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: 'CoNLL entity merge best k=3: -0.38pp, -9.0% recovery'\\\\n  type: quantitative\\\\n  evidence: []\\\\n  decisions: []\\\\n  deprecated: false\\\\n- id: C057\\\\n  location:\\\\n    section: sections/appendix\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: 'FewNERD entity merge best k=2: -0.43pp, -3.6% recovery'\\\\n  type: quantitative\\\\n  evidence: []\\\\n  decisions: []\\\\n  deprecated: false\\\\n- id: C058\\\\n  location:\\\\n    section: sections/experiments\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: 'Conditional decomp SciERC favorable: +2.47pp CI [+0.30, +4.70]'\\\\n  type: quantitative\\\\n  evidence: []\\\\n  decisions: []\\\\n  deprecated: false\\\\n- id: C059\\\\n  location:\\\\n    section: sections/experiments\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: 'Conditional decomp FewNERD favorable: +0.63pp CI [-0.02, +1.30], marginal'\\\\n  type: quantitative\\\\n  evidence: []\\\\n  decisions: []\\\\n  deprecated: false\\\\n- id: C060\\\\n  location:\\\\n    section: sections/experiments\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: 'Conditional decomp CoNLL favorable: -1.78pp CI [-2.83, -0.76], negative'\\\\n  type: quantitative\\\\n  evidence: []\\\\n  decisions: []\\\\n  deprecated: false\\\\n- id: C061\\\\n  location:\\\\n    section: sections/appendix\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: Entity-token LP has 4x higher within-instance variance (0.000644 vs 0.000161)\\\\n  type: quantitative\\\\n  evidence: []\\\\n  decisions: []\\\\n  deprecated: false\\\\n- id: C062\\\\n  location:\\\\n    section: sections/appendix\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: Entity-token LP rho=0.440 vs full-sequence 0.297\\\\n  type: quantitative\\\\n  evidence: []\\\\n  decisions: []\\\\n  deprecated: false\\\\n- id: C063\\\\n  location:\\\\n    section: sections/appendix\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: Entity-token LP selection -0.73pp vs full-sequence +0.35pp\\\\n  type: quantitative\\\\n  evidence: []\\\\n  decisions: []\\\\n  deprecated: false\\\\n- id: C064\\\\n  location:\\\\n    section: abstract\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: Seven independent methods all fail to close the correlation-selection gap\\\\n  type: empirical\\\\n  evidence:\\\\n  - exp_esj_entity_self_judgment\\\\n  - exp_mrsc_multi_round\\\\n  - exp_lsc_latent_sc\\\\n  - exp_backup1_het_temp\\\\n  - exp_asb_adaptive_budget\\\\n  - exp_b1_scd_conll_control\\\\n  - adaptive.tex:sec:verifier\\\\n  decisions: []\\\\n  deprecated: false\\\\n- id: C066\\\\n  location:\\\\n    section: abstract\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: Instance degeneracy 13-87%\\\\n  type: empirical\\\\n  evidence:\\\\n  - exp_021_fewnerd_full\\\\n  - exp_002_conll_n16\\\\n  - exp_spider_sc_pilot\\\\n  decisions: []\\\\n  deprecated: false\\\\n- id: C069\\\\n  location:\\\\n    section: abstract\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: Entity-level self-judgment AUROC=0.51\\\\n  type: empirical\\\\n  evidence:\\\\n  - exp_esj_entity_self_judgment\\\\n  decisions: []\\\\n  deprecated: false\\\\n- id: C073\\\\n  location:\\\\n    section: abstract\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: Cross-sample frequency agreement AUROC=0.87\\\\n  type: empirical\\\\n  evidence:\\\\n  - exp_esj_entity_self_judgment\\\\n  decisions: []\\\\n  deprecated: false\\\\n- id: C078\\\\n  location:\\\\n    section: abstract\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: Spider SQL degeneracy=87%\\\\n  type: empirical\\\\n  evidence:\\\\n  - exp_spider_sc_pilot\\\\n  decisions: []\\\\n  deprecated: false\\\\n- id: C084\\\\n  location:\\\\n    section: abstract\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: +1.40pp on Few-NERD Holm p=0.006\\\\n  type: empirical\\\\n  evidence:\\\\n  - exp_entity_construction\\\\n  decisions: []\\\\n  deprecated: false\\\\n- id: C091\\\\n  location:\\\\n    section: abstract\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: +1.02pp on SciERC p=0.004\\\\n  type: empirical\\\\n  evidence:\\\\n  - exp_entity_construction\\\\n  decisions: []\\\\n  deprecated: false\\\\n- id: C092\\\\n  location:\\\\n    section: mechanistic\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: ESJ entity-level AUROC=0.512, indistinguishable from chance\\\\n  type: empirical\\\\n  evidence:\\\\n  - exp_esj_entity_self_judgment\\\\n  decisions: []\\\\n  deprecated: false\\\\n- id: C094\\\\n  location:\\\\n    section: mechanistic\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: ESJ P(yes|correct)=0.500, P(yes|incorrect)=0.500\\\\n  type: empirical\\\\n  evidence:\\\\n  - exp_esj_entity_self_judgment\\\\n  decisions: []\\\\n  deprecated: false\\\\n- id: C097\\\\n  location:\\\\n    section: mechanistic\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: ESJ-weighted construction F1=0.711 vs greedy 0.794\\\\n  type: empirical\\\\n  evidence:\\\\n  - exp_esj_entity_self_judgment\\\\n  decisions: []\\\\n  deprecated: false\\\\n- id: C101\\\\n  location:\\\\n    section: mechanistic\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: MRSC P(yes) separation=0.0006\\\\n  type: empirical\\\\n  evidence:\\\\n  - exp_mrsc_multi_round\\\\n  decisions: []\\\\n  deprecated: false\\\\n- id: C106\\\\n  location:\\\\n    section: mechanistic\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: MRSC best F1=0.763 < greedy\\\\n  type: empirical\\\\n  evidence:\\\\n  - exp_mrsc_multi_round\\\\n  decisions: []\\\\n  deprecated: false\\\\n- id: C112\\\\n  location:\\\\n    section: mechanistic\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: LSC centroid F1=0.759 < greedy 0.779\\\\n  type: empirical\\\\n  evidence:\\\\n  - exp_lsc_latent_sc\\\\n  decisions: []\\\\n  deprecated: false\\\\n- id: C119\\\\n  location:\\\\n    section: mechanistic\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: LSC latent entity confidence F1=0.839 vs MV 0.837\\\\n  type: empirical\\\\n  evidence:\\\\n  - exp_lsc_latent_sc\\\\n  decisions: []\\\\n  deprecated: false\\\\n- id: C127\\\\n  location:\\\\n    section: mechanistic\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: Frequency agreement AUROC=0.868\\\\n  type: empirical\\\\n  evidence:\\\\n  - exp_esj_entity_self_judgment\\\\n  decisions: []\\\\n  deprecated: false\\\\n- id: C128\\\\n  location:\\\\n    section: conclusion\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: Seven methods fail to close correlation-selection gap\\\\n  type: empirical\\\\n  evidence:\\\\n  - exp_esj_entity_self_judgment\\\\n  - exp_mrsc_multi_round\\\\n  - exp_lsc_latent_sc\\\\n  - exp_backup1_het_temp\\\\n  - exp_asb_adaptive_budget\\\\n  - exp_b1_scd_conll_control\\\\n  - adaptive.tex:sec:verifier\\\\n  decisions: []\\\\n  deprecated: false\\\\n- id: C130\\\\n  location:\\\\n    section: conclusion\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: Frequency agreement AUROC=0.87 vs self-judgment AUROC=0.51\\\\n  type: empirical\\\\n  evidence:\\\\n  - exp_esj_entity_self_judgment\\\\n  decisions: []\\\\n  deprecated: false\\\\n- id: C133\\\\n  location:\\\\n    section: conclusion\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: +1.40pp Few-NERD, +1.02pp SciERC\\\\n  type: empirical\\\\n  evidence:\\\\n  - exp_entity_construction\\\\n  decisions: []\\\\n  deprecated: false\\\\n- id: C137\\\\n  location:\\\\n    section: conclusion\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: Spider SQL degeneracy=87%\\\\n  type: empirical\\\\n  evidence:\\\\n  - exp_spider_sc_pilot\\\\n  decisions: []\\\\n  deprecated: false\\\\n- id: C138\\\\n  location:\\\\n    section: introduction\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: QE signals ρ up to 0.45 AUROC up to 0.82\\\\n  type: empirical\\\\n  evidence:\\\\n  - exp_001_ner_n16_scierc\\\\n  - exp_002_conll_n16\\\\n  decisions: []\\\\n  deprecated: false\\\\n- id: C140\\\\n  location:\\\\n    section: introduction\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: No signal outperforms greedy on SciERC p>0.05\\\\n  type: empirical\\\\n  evidence:\\\\n  - exp_010_selection_curves\\\\n  decisions: []\\\\n  deprecated: false\\\\n- id: C143\\\\n  location:\\\\n    section: introduction\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: LP +1.39pp on Few-NERD Holm p_adj=0.019 k=19\\\\n  type: empirical\\\\n  evidence:\\\\n  - exp_021_fewnerd_full\\\\n  decisions: []\\\\n  deprecated: false\\\\n- id: C147\\\\n  location:\\\\n    section: introduction\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: 7 entity-level methods all fail\\\\n  type: empirical\\\\n  evidence:\\\\n  - exp_esj_entity_self_judgment\\\\n  - exp_mrsc_multi_round\\\\n  - exp_lsc_latent_sc\\\\n  - exp_backup1_het_temp\\\\n  - exp_asb_adaptive_budget\\\\n  - exp_b1_scd_conll_control\\\\n  - adaptive.tex:sec:verifier\\\\n  decisions: []\\\\n  deprecated: false\\\\n- id: C152\\\\n  location:\\\\n    section: introduction\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: ESJ AUROC=0.51 vs frequency agreement 0.87\\\\n  type: empirical\\\\n  evidence:\\\\n  - exp_esj_entity_self_judgment\\\\n  decisions: []\\\\n  deprecated: false\\\\n- id: C158\\\\n  location:\\\\n    section: introduction\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: MRSC P(yes) separation=0.0006\\\\n  type: empirical\\\\n  evidence:\\\\n  - exp_mrsc_multi_round\\\\n  decisions: []\\\\n  deprecated: false\\\\n- id: C165\\\\n  location:\\\\n    section: introduction\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: Entity verifier AUC=0.923 but +0.30pp F1\\\\n  type: empirical\\\\n  evidence:\\\\n  - adaptive.tex:sec:verifier\\\\n  decisions: []\\\\n  deprecated: false\\\\n- id: C173\\\\n  location:\\\\n    section: introduction\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: Spider SQL degeneracy=87.2%\\\\n  type: empirical\\\\n  evidence:\\\\n  - exp_spider_sc_pilot\\\\n  decisions: []\\\\n  deprecated: false\\\\n- id: C182\\\\n  location:\\\\n    section: introduction\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: Construction +1.40pp Few-NERD Holm p_adj=0.006\\\\n  type: empirical\\\\n  evidence:\\\\n  - exp_entity_construction\\\\n  decisions: []\\\\n  deprecated: false\\\\n- id: C192\\\\n  location:\\\\n    section: introduction\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: Construction +1.02pp SciERC p=0.004\\\\n  type: empirical\\\\n  evidence:\\\\n  - exp_entity_construction\\\\n  decisions: []\\\\n  deprecated: false\\\\n- id: C203\\\\n  location:\\\\n    section: introduction\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: Cross-model +0.42pp\\\\n  type: empirical\\\\n  evidence:\\\\n  - exp_cross_model_consistency\\\\n  decisions: []\\\\n  deprecated: false\\\\n- id: C215\\\\n  location:\\\\n    section: introduction\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: θ_crit=0.70 degeneracy decomposition\\\\n  type: derived\\\\n  evidence:\\\\n  - theory.tex:sec:theory\\\\n  decisions: []\\\\n  deprecated: false\\\\ntables:\\\\n- id: tab:notation\\\\n  section: method\\\\n  caption: Notation used throughout the paper\\\\n  evidence: []\\\\n  note: Notation table—no experimental data.\\\\n- id: tab:quality_estimation\\\\n  section: experiments\\\\n  caption: Quality estimation across tasks and models (Spearman ρ and AUROC)\\\\n  evidence:\\\\n  - exp_id: exp_012_rerun_1024\\\\n    role: SciERC NER ρ values (N=8, Qwen) — corrected from exp_015 (truncation artifact)\\\\n  - exp_id: exp_015_metrics_expansion\\\\n    role: SciERC RE ρ values (N=8, Qwen) — RE values unaffected by truncation fix\\\\n  - exp_id: exp_015_v2\\\\n    role: AUROC values across settings\\\\n  - exp_id: exp_002\\\\n    role: CoNLL Qwen N=8 ρ and AUROC\\\\n  - exp_id: exp_017_llama_conll_infer\\\\n    role: CoNLL LLaMA N=8 ρ and AUROC\\\\n  - exp_id: exp_017_llama_conll_n16\\\\n    role: LLaMA CoNLL N=16 3-seed (seed=42)\\\\n  - exp_id: exp_017_llama_conll_n16_s123\\\\n    role: LLaMA CoNLL N=16 3-seed (seed=123)\\\\n  - exp_id: exp_017_llama_conll_n16_s456\\\\n    role: LLaMA CoNLL N=16 3-seed (seed=456)\\\\n- id: tab:selection\\\\n  section: experiments\\\\n  caption: Best-of-N selection F1 on SciERC (N=8, T=1.0)\\\\n  evidence:\\\\n  - exp_id: exp_016_signal_ensemble\\\\n    role: All selection F1 values (NER and RE)\\\\n- id: tab:robustness\\\\n  section: experiments\\\\n  caption: Signal robustness across configurations (Spearman ρ)\\\\n  evidence:\\\\n  - exp_id: exp_005\\\\n    role: Temperature block (T=0.7 vs T=1.0, Qwen SciERC)\\\\n  - exp_id: exp_015_metrics_expansion\\\\n    role: N=8 baseline values\\\\n  - exp_id: exp_001_seed42_v2\\\\n    role: N=16 SJ ρ seed=42\\\\n  - exp_id: exp_001_seed123_v2\\\\n    role: N=16 SJ ρ seed=123\\\\n  - exp_id: exp_001_seed456_v2_ner\\\\n    role: N=16 SJ ρ seed=456\\\\n  - exp_id: exp_017_llama_conll_n16\\\\n    role: 'Cross-model block: LLaMA CoNLL N=16 seed=42'\\\\n  - exp_id: exp_017_llama_conll_n16_s123\\\\n    role: 'Cross-model block: LLaMA CoNLL N=16 seed=123'\\\\n  - exp_id: exp_017_llama_conll_n16_s456\\\\n    role: 'Cross-model block: LLaMA CoNLL N=16 seed=456'\\\\nfigures:\\\\n- id: fig:overview\\\\n  section: introduction\\\\n  caption: The correlation-selection gap conceptual diagram\\\\n  evidence:\\\\n  - exp_id: exp_015_metrics_expansion\\\\n    role: Quality estimation data (ρ, AUROC for left panel)\\\\n  - exp_id: exp_016_signal_ensemble\\\\n    role: Selection F1 data (right panel)\\\\n- id: fig:signal_heatmap\\\\n  section: experiments\\\\n  caption: Quality estimation heatmap (Spearman ρ) across five signals and four configurations\\\\n  evidence:\\\\n  - exp_id: exp_015_metrics_expansion\\\\n    role: Full set ρ values for SciERC NER/RE (Qwen, N=8)\\\\n  - exp_id: exp_002\\\\n    role: CoNLL Qwen full set ρ values\\\\n  - exp_id: exp_001_ner_n16_scierc\\\\n    role: Conditional set ρ values\\\\n- id: fig:selection_gap\\\\n  section: experiments\\\\n  caption: The correlation-selection gap on SciERC (N=8)\\\\n  evidence:\\\\n  - exp_id: exp_016_signal_ensemble\\\\n    role: Best-of-N selection F1 bars and quality estimation ρ line\\\\n- id: fig:temperature_robustness\\\\n  section: experiments\\\\n  caption: Temperature robustness on SciERC (N=8)\\\\n  evidence:\\\\n  - exp_id: exp_005\\\\n    role: SJ, FK ρ values at T=0.7 and T=1.0\\\\n- id: fig:reliability\\\\n  section: experiments\\\\n  caption: Reliability diagrams on SciERC (N=8, T=1.0)\\\\n  evidence:\\\\n  - exp_id: exp_015_metrics_expansion\\\\n    role: Calibration/ECE data for all signals\\\\n  - exp_id: exp_002\\\\n    role: ECE values across signals\\\\n_completeness:\\\\n  coverage: 83/116\\\\n  claims: 111\\\\n  tables: 4\\\\n  figures: 5\\\\n  tier_counts:\\\\n    tier1: 0\\\\n    tier2: 83\\\\n    tier3: 33\\\\n    tierX: 0\\\\n  last_checked: '2026-05-22T13:13:25.551590+00:00'\\\\n\\\", \\\"total_chars\\\": 40171, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/paper_provenance.yaml\", \"content\": \"paper:\\n  title: 'Strong Predictors, Weak Selectors: A Systematic Comparison of Confidence\\n    Signals for Test-Time Scaling in Information Extraction'\\n  version: 196\\n  generated_at: '2026-05-22T13:13:25.551495+00:00'\\n  source: manual provenance build by Paper Agent\\nclaims:\\n- id: c001_voting_rho_scierc_ner\\n  text: Voting Confidence achieves ρ=0.379 on SciERC NER (corrected from 0.502 truncation\\n    artifact)\\n  sections:\\n  - abstract\\n  - introduction\\n  - experiments\\n  - conclusion\\n  - discussion\\n  - related_work\\n  tier: 1\\n  evidence:\\n  - exp_id: exp_012_rerun_1024\\n    metric: ner.voting_rho_full\\n    value: 0.379\\n  note: Old value 0.502 from exp_015 was inflated by max_tokens=512 truncation. Corrected\\n    via exp_012_rerun_1024 (max_tokens=1024).\\n- id: c002_auroc_dissociation_scierc\\n  text: ρ-AUROC dissociation on SciERC — EM leads AUROC (NER 0.749, RE 0.706) while\\n    Voting leads ρ (NER 0.379, RE 0.422)\\n  sections:\\n  - abstract\\n  - introduction\\n  - experiments\\n  - conclusion\\n  - discussion\\n  tier: 1\\n  evidence:\\n  - exp_id: exp_012_rerun_1024\\n    metric: ner.em_auroc\\n    value: 0.749\\n  - exp_id: exp_012_rerun_1024\\n    metric: re.em_auroc\\n    value: 0.706\\n  - exp_id: exp_012_rerun_1024\\n    metric: ner.voting_auroc\\n    value: 0.684\\n  note: Old Table 1 had Voting NER AUROC=.741 (from exp_015 truncated). Corrected\\n    to .684 via exp_012_rerun_1024. EM now leads AUROC on both NER and RE. Headline\\n    claim changed from \\\"entity voting achieves ρ=0.38 and AUROC=0.74\\\" to split ρ (Voting\\n    0.38) / AUROC (EM 0.75) claim.\\n- id: c003_sj_rho_scierc_ner\\n  text: SJ achieves ρ=0.360 on SciERC NER (corrected from 0.357)\\n  sections:\\n  - experiments\\n  tier: 1\\n  evidence:\\n  - exp_id: exp_012_rerun_1024\\n    metric: ner.sj_rho_full\\n    value: 0.36\\n  - exp_id: exp_004_re_diagnostic\\n    metric: bootstrap_ci_95.ner_sj\\n    value:\\n    - 0.2946\\n    - 0.4586\\n- id: c004_voting_leads_re\\n  text: Voting leads RE full set (ρ=0.350, corrected from 0.422)\\n  sections:\\n  - experiments\\n  tier: 1\\n  evidence:\\n  - exp_id: exp_012_rerun_1024\\n    metric: re.voting_rho_full\\n    value: 0.35\\n  note: Corrected from exp_015_metrics_expansion (0.4217) via exp_012_rerun_1024.\\n- id: c005_fk_beats_sj_re\\n  text: FK (ρ=0.275) exceeds SJ (ρ=0.250) on RE—a reversal from NER\\n  sections:\\n  - experiments\\n  tier: 1\\n  evidence:\\n  - exp_id: exp_012_rerun_1024\\n    metric: re.fk_rho_full\\n    value: 0.275\\n  - exp_id: exp_012_rerun_1024\\n    metric: re.sj_rho_full\\n    value: 0.25\\n  note: Corrected from exp_015 (FK 0.253, SJ 0.211) via exp_012_rerun_1024.\\n- id: c006_re_40pct_zero_f1\\n  text: 40% of RE instances receive zero F1 (N=8, seed=42; 159/397)\\n  sections:\\n  - experiments\\n  - discussion\\n  tier: 1\\n  evidence:\\n  - exp_id: mvp_pilot_004\\n    metric: re_sample_f1_pct_zero\\n    value: 44.3\\n    note: 44.3% from mvp_pilot_004; paper uses 40% from primary config (N=8, seed=42)\\n  - exp_id: exp_008_re_n16_v2\\n    metric: f1_zero_pct\\n    value: 44.3\\n    note: 44.3% at N=16; zero-F1 fraction varies with N and seed\\n- id: c007_em_leads_conll\\n  text: EM leads CoNLL with ρ=0.451 and AUROC=0.816\\n  sections:\\n  - experiments\\n  tier: 1\\n  evidence:\\n  - exp_id: exp_002\\n    metric: em_rho_full\\n    value: 0.4507\\n  - exp_id: exp_002\\n    metric: em_auroc_full\\n    value: 0.8156\\n  - exp_id: exp_015_v2\\n    metric: auroc_best.EM.conll_ner\\n    value: 0.8156\\n- id: c008_cross_model_sj_stability\\n  text: 'SJ cross-model gap: ρ=0.436 (Qwen) vs 0.431 (LLaMA), Δ=0.005'\\n  sections:\\n  - experiments\\n  tier: 1\\n  evidence:\\n  - exp_id: exp_002\\n    metric: sj_rho_full\\n    value: 0.4357\\n  - exp_id: exp_017_llama_conll_infer\\n    metric: full.SJ_rho\\n    value: 0.4314\\n- id: c009_logprob_paradox\\n  text: Logprob achieves highest AUROC (0.761) yet lowest ρ (0.307) on CoNLL LLaMA\\n  sections:\\n  - experiments\\n  - discussion\\n  tier: 1\\n  evidence:\\n  - exp_id: exp_017_llama_conll_infer\\n    metric: full.logprob_AUROC\\n    value: 0.761\\n  - exp_id: exp_017_llama_conll_infer\\n    metric: full.logprob_rho\\n    value: 0.3072\\n- id: c010_conll_oracle_headroom\\n  text: 'CoNLL oracle headroom: +4.2pp (Qwen), +1.8pp (LLaMA)'\\n  sections:\\n  - experiments\\n  tier: 1\\n  evidence:\\n  - exp_id: exp_002\\n    metric: oracle_headroom\\n    value: 0.042\\n  - exp_id: exp_017_llama_conll_infer\\n    metric: oracle_headroom\\n    value: 0.0177\\n- id: c011_ner_no_reliable_selection\\n  text: No signal reliably surpasses greedy on NER (logprob +0.6pp, p=0.39, 3-seed\\n    bootstrap)\\n  sections:\\n  - abstract\\n  - introduction\\n  - experiments\\n  - conclusion\\n  - discussion\\n  - related_work\\n  tier: 1\\n  evidence:\\n  - exp_id: exp_016_rerun_1024_bootstrap\\n    metric: selection_f1_ner\\n    value:\\n      greedy: 0.644\\n      logprob: 0.65\\n      sj: 0.645\\n      voting: 0.634\\n      random: 0.608\\n      oracle: 0.776\\n  - exp_id: exp_016_rerun_1024_bootstrap\\n    metric: bootstrap_selection_test\\n    value:\\n      logprob_vs_greedy_p: 0.39\\n      ci_95:\\n      - -0.03\\n      - 0.042\\n      cohens_d: 0.038\\n      sign_test: 61W/70L\\n  note: 3-seed bootstrap confirms +0.6pp is NOT statistically significant. Unified\\n    with c012 — no signal reliably helps on either task.\\n- id: c012_re_no_signal_beats_greedy\\n  text: No signal surpasses greedy on RE; logprob drops to −0.9pp\\n  sections:\\n  - abstract\\n  - introduction\\n  - experiments\\n  - conclusion\\n  - discussion\\n  tier: 1\\n  evidence:\\n  - exp_id: exp_016_rerun_1024_bootstrap\\n    metric: selection_f1_re\\n    value:\\n      greedy: 0.404\\n      logprob: 0.395\\n      sj: 0.386\\n      voting: 0.359\\n      random: 0.354\\n      oracle: 0.585\\n  note: CLAIM REVERSED from exp_016 (max_tokens=512). Old claim was \\\"only logprob\\n    helps on RE (+2.3pp)\\\". Corrected via exp_016_rerun_1024_bootstrap.\\n- id: c013_oracle_headroom_ner\\n  text: Oracle upper bound 0.776, 13.2pp above greedy 0.644 on NER\\n  sections:\\n  - experiments\\n  - discussion\\n  tier: 1\\n  evidence:\\n  - exp_id: exp_016_rerun_1024_bootstrap\\n    metric: selection_f1_ner.oracle\\n    value: 0.776\\n  - exp_id: exp_016_rerun_1024_bootstrap\\n    metric: selection_f1_ner.greedy\\n    value: 0.644\\n- id: c014_re_oracle_headroom\\n  text: 'RE oracle gap: 18.1pp (0.585 vs 0.404)'\\n  sections:\\n  - experiments\\n  - discussion\\n  tier: 1\\n  evidence:\\n  - exp_id: exp_016_rerun_1024_bootstrap\\n    metric: selection_f1_re.oracle\\n    value: 0.585\\n  - exp_id: exp_016_rerun_1024_bootstrap\\n    metric: selection_f1_re.greedy\\n    value: 0.404\\n- id: c015_ensemble_auroc\\n  text: SJ+Voting ensemble AUROC=0.666, below best individual signal EM (0.749)\\n  sections:\\n  - discussion\\n  tier: 1\\n  evidence:\\n  - exp_id: exp_016_rerun_1024_bootstrap\\n    metric: ensemble_ner_auroc\\n    value: 0.666\\n  note: Ensemble does NOT improve over best individual. Changed from positive to negative\\n    finding.\\n- id: c016_ece_calibration\\n  text: NER reasonably well-calibrated (calibration ECE 0.069-0.096), RE shows greater\\n    miscalibration (ECE 0.109-0.339)\\n  sections:\\n  - experiments\\n  tier: 1\\n  evidence:\\n  - exp_id: exp_016_rerun_1024_bootstrap\\n    metric: calibration_ece\\n    value:\\n      ner_range: 0.069-0.096\\n      re_range: 0.109-0.339\\n  note: Previous c016 used binary ECE (0.27-0.77) which was incorrect metric. Calibration\\n    ECE (signal confidence → mean F1 deviation) shows NER is well-calibrated, RE has\\n    moderate miscalibration. Consistent with fig_reliability_1024.\\n- id: c017_fisher_z_ner_vs_re\\n  text: 'Fisher''s z-test ρ_SJ NER vs RE: z=2.31, p=0.021'\\n  sections:\\n  - experiments\\n  tier: 1\\n  evidence:\\n  - exp_id: exp_004_re_diagnostic\\n    metric: fisher_z_ner_vs_re.sj_z\\n    value: 2.31\\n  - exp_id: exp_004_re_diagnostic\\n    metric: fisher_z_ner_vs_re.sj_p\\n    value: 0.0209\\n- id: c018_per_relation_diagnostic\\n  text: Feature-Of ρ≈0.004, Hyponym-Of ρ=0.646\\n  sections:\\n  - experiments\\n  tier: 1\\n  evidence:\\n  - exp_id: exp_004_re_diagnostic\\n    metric: per_relation_type.FEATURE-OF.rho_sj\\n    value: 0.004\\n  - exp_id: exp_004_re_diagnostic\\n    metric: per_relation_type.HYPONYM-OF.rho_fk\\n    value: 0.646\\n- id: c019_entity_span_errors\\n  text: Entity span errors account for 55.5% of RE false negatives\\n  sections:\\n  - experiments\\n  tier: 1\\n  evidence:\\n  - exp_id: exp_004_re_diagnostic\\n    metric: error_propagation\\n    value: head_error 17.7% + tail_error (derived) + head_tail_error 15.9% + full_error\\n      21.7% → entity span errors ~55.5%\\n  note: Computed from error_propagation breakdown in exp_004\\n- id: c020_capability_stratification_ner\\n  text: SJ ρ=0.547 on SciERC instances with 6+ entities, vs 0.415 for 1-2 entities\\n  sections:\\n  - experiments\\n  tier: 1\\n  evidence:\\n  - exp_id: exp_009_capability_stratification\\n    metric: scierc_ner.by_ent_count.6plus_sj_rho\\n    value: 0.547\\n  - exp_id: exp_009_capability_stratification\\n    metric: scierc_ner.by_ent_count.1_2_sj_rho\\n    value: 0.415\\n- id: c021_wnut_boundary\\n  text: 'WNUT-17: SJ ρ=0.089 (p=0.020), 54% zero F1'\\n  sections:\\n  - experiments\\n  - conclusion\\n  tier: 1\\n  evidence:\\n  - exp_id: exp_003_wnut17_eval\\n    metric: rho_sj\\n    value: 0.089\\n  - exp_id: exp_003_wnut17_eval\\n    metric: sample_f1_pct_zero\\n    value: 53.7\\n  note: 'Corrected 2026-05-16: paper uses ρ=0.089 from exp003_wnut17_eval (gold-filtered\\n    n=689, p=0.020). Old value 0.062 was untraceable — only in deprecated draft.'\\n- id: c022_wnut_logprob_negative\\n  text: WNUT logprob shows strong negative correlation\\n  sections:\\n  - experiments\\n  tier: 1\\n  evidence:\\n  - exp_id: exp_003_ner_wnut17\\n    metric: ner.rho_logprob_full\\n    value: -0.414\\n  - exp_id: exp_003_wnut17_eval\\n    metric: rho_logprob_full\\n    value: -0.409\\n- id: c023_re_sent_length_sj\\n  text: 'RE SJ ρ increases with sentence length: Q1 0.110 → Q4 0.473 (Fisher p=0.004)'\\n  sections:\\n  - experiments\\n  tier: 2\\n  evidence:\\n  - exp_id: exp_009_v2_re_rerun\\n    metric: by_sent_len_quartiles\\n    value:\\n      Q1_sj_rho: 0.11\\n      Q4_sj_rho: 0.473\\n      fisher_z_p: 0.004\\n  note: 'Corrected 2026-05-16: source is exp_009_v2_re_rerun (gold-filtered n=397).\\n    Old registry exp_009 values (Q1=0.447, Q4=0.540) used unfiltered n=551.'\\n- id: c024_high_complexity_re_subset\\n  text: 'High-complexity RE subset (n=81): Voting ρ=0.630, logprob ρ=0.554, SJ ρ=0.502'\\n  sections:\\n  - experiments\\n  tier: 2\\n  evidence:\\n  - exp_id: exp_009_capability_stratification\\n    metric: scierc_re.by_rel_count\\n    value:\\n      6plus_sj_rho: 0.527\\n  note: Registry has 6plus_sj_rho=0.527; paper may use exp_009_v2 data. Voting and\\n    logprob values not in registry summary.\\n- id: c025_temperature_sj_stable\\n  text: SJ NER ρ shifts from 0.388 (T=0.7) to 0.360 (T=1.0), Δ=0.028\\n  sections:\\n  - experiments\\n  tier: 1\\n  evidence:\\n  - exp_id: exp_005\\n    metric: sj_rho_t07_ner\\n    value: 0.388\\n  - exp_id: exp_012_rerun_1024\\n    metric: ner.sj_rho_full\\n    value: 0.36\\n  note: T=0.7 data from exp_005; T=1.0 from exp_015\\n- id: c026_n_scaling_sj\\n  text: SJ N=8→N=16 improves ρ from 0.360 to 0.412±0.025 (3-seed, +0.052) on Qwen\\n    SciERC NER\\n  sections:\\n  - experiments\\n  tier: 1\\n  evidence:\\n  - exp_id: exp_012_rerun_1024\\n    metric: ner.sj_rho_full\\n    value: 0.36\\n  - exp_id: exp_001_seed42_v2\\n    metric: sj_rho_full\\n    value: 0.428\\n  - exp_id: exp_001_seed123_v2\\n    metric: sj_rho_full\\n    value: 0.424\\n  - exp_id: exp_001_seed456_v2_ner\\n    metric: full.SJ.rho\\n    value: 0.384\\n  note: '3-seed mean: (0.428+0.424+0.384)/3 ≈ 0.412, σ=0.025'\\n- id: c027_llama_conll_3seed\\n  text: 'LLaMA CoNLL N=16 3-seed: SJ ρ=0.463±0.007, logprob ρ=0.310±0.005'\\n  sections:\\n  - experiments\\n  tier: 1\\n  evidence:\\n  - exp_id: exp_017_llama_conll_n16\\n    metric: full.SJ_rho\\n    value: 0.4642\\n  - exp_id: exp_017_llama_conll_n16_s123\\n    metric: full.SJ_rho\\n    value: 0.4698\\n  - exp_id: exp_017_llama_conll_n16_s456\\n    metric: full.SJ_rho\\n    value: 0.4552\\n  - exp_id: exp_017_llama_conll_n16\\n    metric: full.logprob_rho\\n    value: 0.3058\\n  - exp_id: exp_017_llama_conll_n16_s123\\n    metric: full.logprob_rho\\n    value: 0.3161\\n  - exp_id: exp_017_llama_conll_n16_s456\\n    metric: full.logprob_rho\\n    value: 0.3078\\n- id: c028_loo_sj_circularity\\n  text: LOO-SJ Δρ=-0.014, max per-instance Δρ=3.1×10⁻⁴—circularity negligible\\n  sections:\\n  - experiments\\n  tier: 1\\n  evidence:\\n  - exp_id: exp_015_v2\\n    metric: loo_sj.max_delta_rho\\n    value: 0.000305\\n  - exp_id: exp_015_v2\\n    metric: loo_sj.all_no_circularity\\n    value: true\\n- id: c029_llama_scierc_cross_model\\n  text: 'LLaMA replicates structural-over-surface on SciERC: NER SJ ρ=0.363 > FK ρ=0.327;\\n    conditional RE SJ ρ=0.405 > FK ρ=0.259'\\n  sections:\\n  - experiments\\n  tier: 1\\n  evidence:\\n  - exp_id: exp_007_llama_inference\\n    metric: ner.rho_sj\\n    value: 0.363\\n  - exp_id: exp_007_llama_inference\\n    metric: ner.rho_fk\\n    value: 0.327\\n  - exp_id: exp_007_llama_inference\\n    metric: re.sj_rho_cond\\n    value: 0.405\\n  - exp_id: exp_007_llama_inference\\n    metric: re.fk_rho_cond\\n    value: 0.259\\n- id: c030_em_conditional_dominance\\n  text: 'EM ranks #1 on conditional set across all 4 configurations'\\n  sections:\\n  - experiments\\n  tier: 1\\n  evidence:\\n  - exp_id: exp_015_metrics_expansion\\n    metric: ner.em_rho_cond\\n    value: 0.3427\\n  - exp_id: exp_015_metrics_expansion\\n    metric: re.em_rho_cond\\n    value: 0.3607\\n  - exp_id: exp_002_conll_n16\\n    metric: conditional.EM_rho\\n    value: 0.4658\\n  - exp_id: exp_017_llama_conll_n16_s123\\n    metric: conditional.EM_rho\\n    value: 0.4732\\n  note: 'Paper cites EM conditional: SciERC NER 0.408, RE 0.485, CoNLL Qwen N=16 0.466,\\n    CoNLL LLaMA 3-seed 0.462. Registry has slightly different values from different\\n    seed/N combinations.'\\n- id: c031_em_conditional_scierc\\n  text: 'EM conditional: NER ρ=0.408, RE ρ=0.485'\\n  sections:\\n  - experiments\\n  tier: 1\\n  evidence:\\n  - exp_id: exp_001_ner_n16_scierc\\n    metric: ner_cond_em_rho\\n    value: 0.414\\n  - exp_id: exp_001_ner_n16_scierc\\n    metric: re_cond_em_rho\\n    value: 0.475\\n  note: 'Paper rounds: 0.414→0.408, 0.475→0.485. May use different seed/N baseline.'\\n- id: c032_logprob_re_cond_collapse\\n  text: Logprob conditional RE collapses to ρ=0.011\\n  sections:\\n  - experiments\\n  tier: 1\\n  evidence:\\n  - exp_id: exp_012_rerun_1024\\n    metric: re_cond.logprob.rho\\n    value: 0.0112\\n  note: 'Corrected 2026-05-16: source is exp_012_rerun_1024 (greedy_f1>0 filter, n=238).\\n    Old exp_015 value 0.1457 used wrong filter (any sample F1>0, n=331). Old text\\n    0.002 was stale and untraceable.'\\n- id: c033_sj_n16_cond_re\\n  text: At N=16, SJ maintains ρ=0.308 on conditional RE while logprob drops to -0.026\\n  sections:\\n  - experiments\\n  - discussion\\n  tier: 1\\n  evidence:\\n  - exp_id: exp_008_re_n16_v2\\n    metric: sj_rho_cond\\n    value: 0.308\\n- id: c034_structural_over_logprob_n16\\n  text: Structural-over-logprob advantage holds across all 4 N=16 settings (Δ=+0.124\\n    to +0.175)\\n  sections:\\n  - experiments\\n  - discussion\\n  tier: 1\\n  evidence:\\n  - exp_id: exp_001_ner_n16_scierc\\n    metric: ner_voting_conf_rho\\n    value: 0.399\\n  - exp_id: exp_001_ner_n16_scierc\\n    metric: ner_logprob_rho\\n    value: 0.237\\n  - exp_id: exp_002_conll_n16\\n    metric: full.EM_rho\\n    value: 0.4627\\n  - exp_id: exp_002_conll_n16\\n    metric: full.logprob_rho\\n    value: 0.3146\\n  - exp_id: exp_007_llama_n16\\n    metric: full.voting_conf_rho\\n    value: 0.4515\\n  - exp_id: exp_007_llama_n16\\n    metric: full.logprob_rho\\n    value: 0.2041\\n  - exp_id: exp_017_llama_conll_n16\\n    metric: full.SJ_rho\\n    value: 0.4642\\n  - exp_id: exp_017_llama_conll_n16\\n    metric: full.logprob_rho\\n    value: 0.3058\\n- id: c035_n_scaling_diminishing\\n  text: 'SJ N-scaling gains are sublinear: +0.052 Qwen SciERC, +0.032 LLaMA CoNLL'\\n  sections:\\n  - discussion\\n  tier: 1\\n  evidence:\\n  - exp_id: exp_001_seed42_v2\\n    metric: sj_rho_full\\n    value: 0.428\\n  - exp_id: exp_015_metrics_expansion\\n    metric: ner.sj_rho_full\\n    value: 0.3565\\n  - exp_id: exp_017_llama_conll_n16\\n    metric: full.SJ_rho\\n    value: 0.4642\\n  - exp_id: exp_017_llama_conll_infer\\n    metric: full.SJ_rho\\n    value: 0.4314\\n  note: 'Qwen SciERC: 0.412 (3-seed mean) - 0.360 = +0.052. LLaMA CoNLL: 0.463 (3-seed)\\n    - 0.431 = +0.032'\\n- id: c036_sj_ece_calibration\\n  text: '[DEPRECATED] SJ achieves lowest calibration error (ECE=0.075-0.102 across\\n    settings)'\\n  sections: []\\n  tier: X\\n  evidence: []\\n  note: DEPRECATED — reversed by c016_ece_miscalibration. Old ECE values (0.075-0.102)\\n    were from exp_015 (max_tokens=512 truncation artifact). Corrected data shows all\\n    signals ECE 0.27-0.77.\\n- id: C001\\n  location:\\n    section: abstract\\n    paragraph: 0\\n    sentence: 0\\n  text: No signal significantly improves sample selection over greedy decoding despite\\n    13-18pp oracle headroom\\n  type: empirical\\n  evidence:\\n  - exp_012_rerun_1024\\n  decisions:\\n  - D070\\n  - D071\\n  deprecated: true\\n- id: C003\\n  location:\\n    section: abstract\\n    paragraph: 0\\n    sentence: 0\\n  text: LP scores compressed into effective ties for 60% of instances under constrained\\n    decoding\\n  type: empirical\\n  evidence:\\n  - exp_012_rerun_1024\\n  decisions: []\\n  deprecated: true\\n- id: C006\\n  location:\\n    section: abstract\\n    paragraph: 0\\n    sentence: 0\\n  text: Where LP compression is absent, selection recovers +2.9pp (p=0.01)\\n  type: empirical\\n  evidence:\\n  - exp_012_rerun_1024\\n  decisions: []\\n  deprecated: true\\n- id: C010\\n  location:\\n    section: abstract\\n    paragraph: 0\\n    sentence: 0\\n  text: Constrained-decoding score compression is the primary bottleneck\\n  type: empirical\\n  evidence:\\n  - exp_012_rerun_1024\\n  decisions: []\\n  deprecated: true\\n- id: C011\\n  location:\\n    section: discussion\\n    paragraph: 0\\n    sentence: 0\\n  text: LP carries useful per-sample quality information; score compression is the\\n    primary bottleneck\\n  type: empirical\\n  evidence:\\n  - exp_012_rerun_1024\\n  decisions:\\n  - D071\\n  deprecated: false\\n- id: C013\\n  location:\\n    section: discussion\\n    paragraph: 0\\n    sentence: 0\\n  text: MBR utility correlates with F1 across instances but not within\\n  type: empirical\\n  evidence:\\n  - exp_012_rerun_1024\\n  decisions: []\\n  deprecated: false\\n- id: C016\\n  location:\\n    section: discussion\\n    paragraph: 0\\n    sentence: 0\\n  text: Free-form ablation would test if bottleneck is decoding-regime-specific\\n  type: planned\\n  evidence: []\\n  decisions:\\n  - D071\\n  deprecated: false\\n- id: C017\\n  location:\\n    section: conclusion\\n    paragraph: 0\\n    sentence: 0\\n  text: Consistency signals effective QE (rho up to 0.38, AUROC up to 0.75) but fail\\n    at selection\\n  type: empirical\\n  evidence:\\n  - exp_012_rerun_1024\\n  decisions: []\\n  deprecated: true\\n- id: C019\\n  location:\\n    section: conclusion\\n    paragraph: 0\\n    sentence: 0\\n  text: LP fails due to constrained-decoding score compression\\n  type: empirical\\n  evidence:\\n  - exp_012_rerun_1024\\n  decisions: []\\n  deprecated: true\\n- id: C022\\n  location:\\n    section: conclusion\\n    paragraph: 0\\n    sentence: 0\\n  text: RE findings preliminary, single benchmark\\n  type: scope_limitation\\n  evidence:\\n  - exp_012_rerun_1024\\n  decisions: []\\n  deprecated: true\\n- id: C023\\n  location:\\n    section: sections/discussion\\n    paragraph: 0\\n    sentence: 0\\n  text: Entity-token LP exhibits 4x higher within-instance variance than full-sequence\\n    LP on SciERC, but selection performs worse (-2.0pp)\\n  type: quantitative\\n  evidence:\\n  - exp_id: exp_entity_token_lp\\n    metric: scierc_entity_lp_variance_ratio\\n    value: 4.0x\\n  - exp_id: exp_entity_token_lp\\n    metric: scierc_entity_lp_selection_delta\\n    value: -1.68\\n  decisions: []\\n  deprecated: false\\n- id: C024\\n  location:\\n    section: sections/discussion\\n    paragraph: 0\\n    sentence: 0\\n  text: On CoNLL, entity-token LP variance collapses to near-zero (median 2e-10) with\\n    79% tied\\n  type: quantitative\\n  evidence:\\n  - exp_id: exp_entity_token_lp\\n    metric: conll_entity_lp_variance_median\\n    value: 2e-10\\n  - exp_id: exp_entity_token_lp\\n    metric: conll_entity_lp_tied_fraction\\n    value: 0.794\\n  decisions: []\\n  deprecated: false\\n- id: C025\\n  location:\\n    section: sections/discussion\\n    paragraph: 0\\n    sentence: 0\\n  text: Entity-token LP rules out format-token dilution as primary cause; points to\\n    intrinsic model overconfidence on entity tokens\\n  type: interpretive\\n  evidence:\\n  - exp_id: exp_entity_token_lp\\n  decisions: []\\n  deprecated: false\\n- id: C026\\n  location:\\n    section: sections/limitations\\n    paragraph: 0\\n    sentence: 0\\n  text: Entity-token LP is the only tested remedy; LP×VC and calibration approaches\\n    are unexplored\\n  type: scope\\n  evidence:\\n  - exp_id: exp_entity_token_lp\\n  decisions: []\\n  deprecated: false\\n- id: C027\\n  location:\\n    section: sections/introduction\\n    paragraph: 0\\n    sentence: 0\\n  text: 'C1 reframe: instance-level nature is setup, LP compression + MBR within-instance\\n    failure are the findings'\\n  type: structural\\n  evidence: []\\n  decisions: []\\n  deprecated: false\\n- id: C028\\n  location:\\n    section: sections/introduction\\n    paragraph: 0\\n    sentence: 0\\n  text: 'SF4: 60% tied replaced with pooled within-instance ρ(LP,F1)=0.248 continuous\\n    characterization'\\n  type: structural\\n  evidence: []\\n  decisions: []\\n  deprecated: false\\n- id: C029\\n  location:\\n    section: sections/introduction\\n    paragraph: 0\\n    sentence: 0\\n  text: 'C2 reframe: entity-token LP added as diagnostic ablation contribution'\\n  type: structural\\n  evidence:\\n  - exp_id: exp_entity_token_lp\\n  decisions: []\\n  deprecated: false\\n- id: C030\\n  location:\\n    section: sections/abstract\\n    paragraph: 0\\n    sentence: 0\\n  text: 'SF3: RE removed from abstract; SF1: ρ=0.38 sourced to SciERC primary, up\\n    to 0.45 on ceiling control; MF2(a): benchmark roles explicit; M2: streamlined\\n    from 9 to 6 sentences'\\n  type: structural\\n  evidence: []\\n  decisions: []\\n  deprecated: false\\n- id: C031\\n  location:\\n    section: sections/discussion\\n    paragraph: 0\\n    sentence: 0\\n  text: 21% of SciERC instances produce identical F1 across all N samples\\n  type: quantitative\\n  evidence: Q1 within-instance analysis\\n  decisions: []\\n  deprecated: false\\n- id: C032\\n  location:\\n    section: sections/discussion\\n    paragraph: 0\\n    sentence: 0\\n  text: 58% of CoNLL instances produce identical F1 across all N samples\\n  type: quantitative\\n  evidence: Q1 within-instance analysis\\n  decisions: []\\n  deprecated: false\\n- id: C033\\n  location:\\n    section: sections/discussion\\n    paragraph: 0\\n    sentence: 0\\n  text: 13% of SciERC instances yield constant utility scores\\n  type: quantitative\\n  evidence: Q1 within-instance analysis\\n  decisions: []\\n  deprecated: false\\n- id: C034\\n  location:\\n    section: sections/discussion\\n    paragraph: 0\\n    sentence: 0\\n  text: 49% of CoNLL instances yield constant utility scores\\n  type: quantitative\\n  evidence: Q1 within-instance analysis\\n  decisions: []\\n  deprecated: false\\n- id: C035\\n  location:\\n    section: sections/discussion\\n    paragraph: 0\\n    sentence: 0\\n  text: SJ median within-instance rho = 0.524 on SciERC\\n  type: quantitative\\n  evidence: Q1 within-instance analysis\\n  decisions: []\\n  deprecated: false\\n- id: C036\\n  location:\\n    section: sections/discussion\\n    paragraph: 0\\n    sentence: 0\\n  text: SJ median within-instance rho = 0.994 on CoNLL\\n  type: quantitative\\n  evidence: Q1 within-instance analysis\\n  decisions: []\\n  deprecated: false\\n- id: C037\\n  location:\\n    section: sections/discussion\\n    paragraph: 0\\n    sentence: 0\\n  text: MBR closes 23% of oracle gap on non-degenerate SciERC instances\\n  type: quantitative\\n  evidence: Q1 within-instance analysis\\n  decisions: []\\n  deprecated: false\\n- id: C038\\n  location:\\n    section: sections/discussion\\n    paragraph: 0\\n    sentence: 0\\n  text: MBR closes 41% of oracle gap on non-degenerate CoNLL instances\\n  type: quantitative\\n  evidence: Q1 within-instance analysis\\n  decisions: []\\n  deprecated: false\\n- id: C039\\n  location:\\n    section: sections/discussion\\n    paragraph: 0\\n    sentence: 0\\n  text: Greedy T=0 achieves F1=0.663 on SciERC, surpassing all N=8 selection strategies\\n  type: quantitative\\n  evidence: SF4 greedy data\\n  decisions: []\\n  deprecated: false\\n- id: C040\\n  location:\\n    section: sections/discussion\\n    paragraph: 0\\n    sentence: 0\\n  text: SciERC 3-epoch rho=0.32 vs 5-epoch rho=0.28; LP delta -1.18 vs +0.62 pp\\n  type: quantitative\\n  evidence: tab:epoch_scierc\\n  decisions: []\\n  deprecated: false\\n- id: C041\\n  location:\\n    section: sections/discussion\\n    paragraph: 0\\n    sentence: 0\\n  text: Entity-level majority voting yields +0.76pp on SciERC (5.8% gap recovery)\\n  type: quantitative\\n  evidence: []\\n  decisions: []\\n  deprecated: false\\n- id: C042\\n  location:\\n    section: sections/discussion\\n    paragraph: 0\\n    sentence: 0\\n  text: Entity-level majority voting yields -0.64pp on CoNLL\\n  type: quantitative\\n  evidence: []\\n  decisions: []\\n  deprecated: false\\n- id: C043\\n  location:\\n    section: sections/discussion\\n    paragraph: 0\\n    sentence: 0\\n  text: Entity-level majority voting yields -3.21pp on Few-NERD\\n  type: quantitative\\n  evidence: []\\n  decisions: []\\n  deprecated: false\\n- id: C044\\n  location:\\n    section: sections/discussion\\n    paragraph: 0\\n    sentence: 0\\n  text: On degenerate subsets, merge is uniformly negative across all three datasets\\n  type: quantitative\\n  evidence: []\\n  decisions: []\\n  deprecated: false\\n- id: C045\\n  location:\\n    section: sections/appendix\\n    paragraph: 0\\n    sentence: 0\\n  text: Exact permutation p=0.005 for per-type degeneracy-headroom correlation\\n  type: quantitative\\n  evidence: []\\n  decisions: []\\n  deprecated: false\\n- id: C046\\n  location:\\n    section: sections/appendix\\n    paragraph: 0\\n    sentence: 0\\n  text: Under conservative df=4 adjustment, p=0.033\\n  type: quantitative\\n  evidence: []\\n  decisions: []\\n  deprecated: false\\n- id: C047\\n  location:\\n    section: sections/appendix\\n    paragraph: 0\\n    sentence: 0\\n  text: 3-epoch SciERC mean within-instance rho=0.273\\n  type: quantitative\\n  evidence: []\\n  decisions: []\\n  deprecated: false\\n- id: C048\\n  location:\\n    section: sections/appendix\\n    paragraph: 0\\n    sentence: 0\\n  text: 5-epoch SciERC mean within-instance rho=0.179\\n  type: quantitative\\n  evidence: []\\n  decisions: []\\n  deprecated: false\\n- id: C049\\n  location:\\n    section: sections/appendix\\n    paragraph: 0\\n    sentence: 0\\n  text: 76.4% of instances show positive LP-quality correlation at 3 epochs\\n  type: quantitative\\n  evidence: []\\n  decisions: []\\n  deprecated: false\\n- id: C050\\n  location:\\n    section: sections/appendix\\n    paragraph: 0\\n    sentence: 0\\n  text: 64.1% of instances show positive LP-quality correlation at 5 epochs\\n  type: quantitative\\n  evidence: []\\n  decisions: []\\n  deprecated: false\\n- id: C051\\n  location:\\n    section: sections/appendix\\n    paragraph: 0\\n    sentence: 0\\n  text: Epoch-to-epoch alignment variation is 0.057 median rho, small vs cross-dataset\\n    gap\\n  type: quantitative\\n  evidence: []\\n  decisions: []\\n  deprecated: false\\n- id: C052\\n  location:\\n    section: sections/appendix\\n    paragraph: 0\\n    sentence: 0\\n  text: 'Optimal DALS tau spans 2 orders of magnitude: FN 0.001, SciERC 0.05, CoNLL\\n    0.10'\\n  type: quantitative\\n  evidence: []\\n  decisions: []\\n  deprecated: false\\n- id: C053\\n  location:\\n    section: sections/appendix\\n    paragraph: 0\\n    sentence: 0\\n  text: LOO regret ranges from 0.51 to 1.21pp\\n  type: quantitative\\n  evidence: []\\n  decisions: []\\n  deprecated: false\\n- id: C054\\n  location:\\n    section: sections/appendix\\n    paragraph: 0\\n    sentence: 0\\n  text: Even with oracle tau, CoNLL remains at -0.31pp\\n  type: quantitative\\n  evidence: []\\n  decisions: []\\n  deprecated: false\\n- id: C055\\n  location:\\n    section: sections/appendix\\n    paragraph: 0\\n    sentence: 0\\n  text: 'SciERC entity merge best k=3: +1.57pp, 11.9% recovery'\\n  type: quantitative\\n  evidence: []\\n  decisions: []\\n  deprecated: false\\n- id: C056\\n  location:\\n    section: sections/appendix\\n    paragraph: 0\\n    sentence: 0\\n  text: 'CoNLL entity merge best k=3: -0.38pp, -9.0% recovery'\\n  type: quantitative\\n  evidence: []\\n  decisions: []\\n  deprecated: false\\n- id: C057\\n  location:\\n    section: sections/appendix\\n    paragraph: 0\\n    sentence: 0\\n  text: 'FewNERD entity merge best k=2: -0.43pp, -3.6% recovery'\\n  type: quantitative\\n  evidence: []\\n  decisions: []\\n  deprecated: false\\n- id: C058\\n  location:\\n    section: sections/experiments\\n    paragraph: 0\\n    sentence: 0\\n  text: 'Conditional decomp SciERC favorable: +2.47pp CI [+0.30, +4.70]'\\n  type: quantitative\\n  evidence: []\\n  decisions: []\\n  deprecated: false\\n- id: C059\\n  location:\\n    section: sections/experiments\\n    paragraph: 0\\n    sentence: 0\\n  text: 'Conditional decomp FewNERD favorable: +0.63pp CI [-0.02, +1.30], marginal'\\n  type: quantitative\\n  evidence: []\\n  decisions: []\\n  deprecated: false\\n- id: C060\\n  location:\\n    section: sections/experiments\\n    paragraph: 0\\n    sentence: 0\\n  text: 'Conditional decomp CoNLL favorable: -1.78pp CI [-2.83, -0.76], negative'\\n  type: quantitative\\n  evidence: []\\n  decisions: []\\n  deprecated: false\\n- id: C061\\n  location:\\n    section: sections/appendix\\n    paragraph: 0\\n    sentence: 0\\n  text: Entity-token LP has 4x higher within-instance variance (0.000644 vs 0.000161)\\n  type: quantitative\\n  evidence: []\\n  decisions: []\\n  deprecated: false\\n- id: C062\\n  location:\\n    section: sections/appendix\\n    paragraph: 0\\n    sentence: 0\\n  text: Entity-token LP rho=0.440 vs full-sequence 0.297\\n  type: quantitative\\n  evidence: []\\n  decisions: []\\n  deprecated: false\\n- id: C063\\n  location:\\n    section: sections/appendix\\n    paragraph: 0\\n    sentence: 0\\n  text: Entity-token LP selection -0.73pp vs full-sequence +0.35pp\\n  type: quantitative\\n  evidence: []\\n  decisions: []\\n  deprecated: false\\n- id: C064\\n  location:\\n    section: abstract\\n    paragraph: 0\\n    sentence: 0\\n  text: Seven independent methods all fail to close the correlation-selection gap\\n  type: empirical\\n  evidence:\\n  - exp_esj_entity_self_judgment\\n  - exp_mrsc_multi_round\\n  - exp_lsc_latent_sc\\n  - exp_backup1_het_temp\\n  - exp_asb_adaptive_budget\\n  - exp_b1_scd_conll_control\\n  - adaptive.tex:sec:verifier\\n  decisions: []\\n  deprecated: false\\n- id: C066\\n  location:\\n    section: abstract\\n    paragraph: 0\\n    sentence: 0\\n  text: Instance degeneracy 13-87%\\n  type: empirical\\n  evidence:\\n  - exp_021_fewnerd_full\\n  - exp_002_conll_n16\\n  - exp_spider_sc_pilot\\n  decisions: []\\n  deprecated: false\\n- id: C069\\n  location:\\n    section: abstract\\n    paragraph: 0\\n    sentence: 0\\n  text: Entity-level self-judgment AUROC=0.51\\n  type: empirical\\n  evidence:\\n  - exp_esj_entity_self_judgment\\n  decisions: []\\n  deprecated: false\\n- id: C073\\n  location:\\n    section: abstract\\n    paragraph: 0\\n    sentence: 0\\n  text: Cross-sample frequency agreement AUROC=0.87\\n  type: empirical\\n  evidence:\\n  - exp_esj_entity_self_judgment\\n  decisions: []\\n  deprecated: false\\n- id: C078\\n  location:\\n    section: abstract\\n    paragraph: 0\\n    sentence: 0\\n  text: Spider SQL degeneracy=87%\\n  type: empirical\\n  evidence:\\n  - exp_spider_sc_pilot\\n  decisions: []\\n  deprecated: false\\n- id: C084\\n  location:\\n    section: abstract\\n    paragraph: 0\\n    sentence: 0\\n  text: +1.40pp on Few-NERD Holm p=0.006\\n  type: empirical\\n  evidence:\\n  - exp_entity_construction\\n  decisions: []\\n  deprecated: false\\n- id: C091\\n  location:\\n    section: abstract\\n    paragraph: 0\\n    sentence: 0\\n  text: +1.02pp on SciERC p=0.004\\n  type: empirical\\n  evidence:\\n  - exp_entity_construction\\n  decisions: []\\n  deprecated: false\\n- id: C092\\n  location:\\n    section: mechanistic\\n    paragraph: 0\\n    sentence: 0\\n  text: ESJ entity-level AUROC=0.512, indistinguishable from chance\\n  type: empirical\\n  evidence:\\n  - exp_esj_entity_self_judgment\\n  decisions: []\\n  deprecated: false\\n- id: C094\\n  location:\\n    section: mechanistic\\n    paragraph: 0\\n    sentence: 0\\n  text: ESJ P(yes|correct)=0.500, P(yes|incorrect)=0.500\\n  type: empirical\\n  evidence:\\n  - exp_esj_entity_self_judgment\\n  decisions: []\\n  deprecated: false\\n- id: C097\\n  location:\\n    section: mechanistic\\n    paragraph: 0\\n    sentence: 0\\n  text: ESJ-weighted construction F1=0.711 vs greedy 0.794\\n  type: empirical\\n  evidence:\\n  - exp_esj_entity_self_judgment\\n  decisions: []\\n  deprecated: false\\n- id: C101\\n  location:\\n    section: mechanistic\\n    paragraph: 0\\n    sentence: 0\\n  text: MRSC P(yes) separation=0.0006\\n  type: empirical\\n  evidence:\\n  - exp_mrsc_multi_round\\n  decisions: []\\n  deprecated: false\\n- id: C106\\n  location:\\n    section: mechanistic\\n    paragraph: 0\\n    sentence: 0\\n  text: MRSC best F1=0.763 < greedy\\n  type: empirical\\n  evidence:\\n  - exp_mrsc_multi_round\\n  decisions: []\\n  deprecated: false\\n- id: C112\\n  location:\\n    section: mechanistic\\n    paragraph: 0\\n    sentence: 0\\n  text: LSC centroid F1=0.759 < greedy 0.779\\n  type: empirical\\n  evidence:\\n  - exp_lsc_latent_sc\\n  decisions: []\\n  deprecated: false\\n- id: C119\\n  location:\\n    section: mechanistic\\n    paragraph: 0\\n    sentence: 0\\n  text: LSC latent entity confidence F1=0.839 vs MV 0.837\\n  type: empirical\\n  evidence:\\n  - exp_lsc_latent_sc\\n  decisions: []\\n  deprecated: false\\n- id: C127\\n  location:\\n    section: mechanistic\\n    paragraph: 0\\n    sentence: 0\\n  text: Frequency agreement AUROC=0.868\\n  type: empirical\\n  evidence:\\n  - exp_esj_entity_self_judgment\\n  decisions: []\\n  deprecated: false\\n- id: C128\\n  location:\\n    section: conclusion\\n    paragraph: 0\\n    sentence: 0\\n  text: Seven methods fail to close correlation-selection gap\\n  type: empirical\\n  evidence:\\n  - exp_esj_entity_self_judgment\\n  - exp_mrsc_multi_round\\n  - exp_lsc_latent_sc\\n  - exp_backup1_het_temp\\n  - exp_asb_adaptive_budget\\n  - exp_b1_scd_conll_control\\n  - adaptive.tex:sec:verifier\\n  decisions: []\\n  deprecated: false\\n- id: C130\\n  location:\\n    section: conclusion\\n    paragraph: 0\\n    sentence: 0\\n  text: Frequency agreement AUROC=0.87 vs self-judgment AUROC=0.51\\n  type: empirical\\n  evidence:\\n  - exp_esj_entity_self_judgment\\n  decisions: []\\n  deprecated: false\\n- id: C133\\n  location:\\n    section: conclusion\\n    paragraph: 0\\n    sentence: 0\\n  text: +1.40pp Few-NERD, +1.02pp SciERC\\n  type: empirical\\n  evidence:\\n  - exp_entity_construction\\n  decisions: []\\n  deprecated: false\\n- id: C137\\n  location:\\n    section: conclusion\\n    paragraph: 0\\n    sentence: 0\\n  text: Spider SQL degeneracy=87%\\n  type: empirical\\n  evidence:\\n  - exp_spider_sc_pilot\\n  decisions: []\\n  deprecated: false\\n- id: C138\\n  location:\\n    section: introduction\\n    paragraph: 0\\n    sentence: 0\\n  text: QE signals ρ up to 0.45 AUROC up to 0.82\\n  type: empirical\\n  evidence:\\n  - exp_001_ner_n16_scierc\\n  - exp_002_conll_n16\\n  decisions: []\\n  deprecated: false\\n- id: C140\\n  location:\\n    section: introduction\\n    paragraph: 0\\n    sentence: 0\\n  text: No signal outperforms greedy on SciERC p>0.05\\n  type: empirical\\n  evidence:\\n  - exp_010_selection_curves\\n  decisions: []\\n  deprecated: false\\n- id: C143\\n  location:\\n    section: introduction\\n    paragraph: 0\\n    sentence: 0\\n  text: LP +1.39pp on Few-NERD Holm p_adj=0.019 k=19\\n  type: empirical\\n  evidence:\\n  - exp_021_fewnerd_full\\n  decisions: []\\n  deprecated: false\\n- id: C147\\n  location:\\n    section: introduction\\n    paragraph: 0\\n    sentence: 0\\n  text: 7 entity-level methods all fail\\n  type: empirical\\n  evidence:\\n  - exp_esj_entity_self_judgment\\n  - exp_mrsc_multi_round\\n  - exp_lsc_latent_sc\\n  - exp_backup1_het_temp\\n  - exp_asb_adaptive_budget\\n  - exp_b1_scd_conll_control\\n  - adaptive.tex:sec:verifier\\n  decisions: []\\n  deprecated: false\\n- id: C152\\n  location:\\n    section: introduction\\n    paragraph: 0\\n    sentence: 0\\n  text: ESJ AUROC=0.51 vs frequency agreement 0.87\\n  type: empirical\\n  evidence:\\n  - exp_esj_entity_self_judgment\\n  decisions: []\\n  deprecated: false\\n- id: C158\\n  location:\\n    section: introduction\\n    paragraph: 0\\n    sentence: 0\\n  text: MRSC P(yes) separation=0.0006\\n  type: empirical\\n  evidence:\\n  - exp_mrsc_multi_round\\n  decisions: []\\n  deprecated: false\\n- id: C165\\n  location:\\n    section: introduction\\n    paragraph: 0\\n    sentence: 0\\n  text: Entity verifier AUC=0.923 but +0.30pp F1\\n  type: empirical\\n  evidence:\\n  - adaptive.tex:sec:verifier\\n  decisions: []\\n  deprecated: false\\n- id: C173\\n  location:\\n    section: introduction\\n    paragraph: 0\\n    sentence: 0\\n  text: Spider SQL degeneracy=87.2%\\n  type: empirical\\n  evidence:\\n  - exp_spider_sc_pilot\\n  decisions: []\\n  deprecated: false\\n- id: C182\\n  location:\\n    section: introduction\\n    paragraph: 0\\n    sentence: 0\\n  text: Construction +1.40pp Few-NERD Holm p_adj=0.006\\n  type: empirical\\n  evidence:\\n  - exp_entity_construction\\n  decisions: []\\n  deprecated: false\\n- id: C192\\n  location:\\n    section: introduction\\n    paragraph: 0\\n    sentence: 0\\n  text: Construction +1.02pp SciERC p=0.004\\n  type: empirical\\n  evidence:\\n  - exp_entity_construction\\n  decisions: []\\n  deprecated: false\\n- id: C203\\n  location:\\n    section: introduction\\n    paragraph: 0\\n    sentence: 0\\n  text: Cross-model +0.42pp\\n  type: empirical\\n  evidence:\\n  - exp_cross_model_consistency\\n  decisions: []\\n  deprecated: false\\n- id: C215\\n  location:\\n    section: introduction\\n    paragraph: 0\\n    sentence: 0\\n  text: θ_crit=0.70 degeneracy decomposition\\n  type: derived\\n  evidence:\\n  - theory.tex:sec:theory\\n  decisions: []\\n  deprecated: false\\ntables:\\n- id: tab:notation\\n  section: method\\n  caption: Notation used throughout the paper\\n  evidence: []\\n  note: Notation table—no experimental data.\\n- id: tab:quality_estimation\\n  section: experiments\\n  caption: Quality estimation across tasks and models (Spearman ρ and AUROC)\\n  evidence:\\n  - exp_id: exp_012_rerun_1024\\n    role: SciERC NER ρ values (N=8, Qwen) — corrected from exp_015 (truncation artifact)\\n  - exp_id: exp_015_metrics_expansion\\n    role: SciERC RE ρ values (N=8, Qwen) — RE values unaffected by truncation fix\\n  - exp_id: exp_015_v2\\n    role: AUROC values across settings\\n  - exp_id: exp_002\\n    role: CoNLL Qwen N=8 ρ and AUROC\\n  - exp_id: exp_017_llama_conll_infer\\n    role: CoNLL LLaMA N=8 ρ and AUROC\\n  - exp_id: exp_017_llama_conll_n16\\n    role: LLaMA CoNLL N=16 3-seed (seed=42)\\n  - exp_id: exp_017_llama_conll_n16_s123\\n    role: LLaMA CoNLL N=16 3-seed (seed=123)\\n  - exp_id: exp_017_llama_conll_n16_s456\\n    role: LLaMA CoNLL N=16 3-seed (seed=456)\\n- id: tab:selection\\n  section: experiments\\n  caption: Best-of-N selection F1 on SciERC (N=8, T=1.0)\\n  evidence:\\n  - exp_id: exp_016_signal_ensemble\\n    role: All selection F1 values (NER and RE)\\n- id: tab:robustness\\n  section: experiments\\n  caption: Signal robustness across configurations (Spearman ρ)\\n  evidence:\\n  - exp_id: exp_005\\n    role: Temperature block (T=0.7 vs T=1.0, Qwen SciERC)\\n  - exp_id: exp_015_metrics_expansion\\n    role: N=8 baseline values\\n  - exp_id: exp_001_seed42_v2\\n    role: N=16 SJ ρ seed=42\\n  - exp_id: exp_001_seed123_v2\\n    role: N=16 SJ ρ seed=123\\n  - exp_id: exp_001_seed456_v2_ner\\n    role: N=16 SJ ρ seed=456\\n  - exp_id: exp_017_llama_conll_n16\\n    role: 'Cross-model block: LLaMA CoNLL N=16 seed=42'\\n  - exp_id: exp_017_llama_conll_n16_s123\\n    role: 'Cross-model block: LLaMA CoNLL N=16 seed=123'\\n  - exp_id: exp_017_llama_conll_n16_s456\\n    role: 'Cross-model block: LLaMA CoNLL N=16 seed=456'\\nfigures:\\n- id: fig:overview\\n  section: introduction\\n  caption: The correlation-selection gap conceptual diagram\\n  evidence:\\n  - exp_id: exp_015_metrics_expansion\\n    role: Quality estimation data (ρ, AUROC for left panel)\\n  - exp_id: exp_016_signal_ensemble\\n    role: Selection F1 data (right panel)\\n- id: fig:signal_heatmap\\n  section: experiments\\n  caption: Quality estimation heatmap (Spearman ρ) across five signals and four configurations\\n  evidence:\\n  - exp_id: exp_015_metrics_expansion\\n    role: Full set ρ values for SciERC NER/RE (Qwen, N=8)\\n  - exp_id: exp_002\\n    role: CoNLL Qwen full set ρ values\\n  - exp_id: exp_001_ner_n16_scierc\\n    role: Conditional set ρ values\\n- id: fig:selection_gap\\n  section: experiments\\n  caption: The correlation-selection gap on SciERC (N=8)\\n  evidence:\\n  - exp_id: exp_016_signal_ensemble\\n    role: Best-of-N selection F1 bars and quality estimation ρ line\\n- id: fig:temperature_robustness\\n  section: experiments\\n  caption: Temperature robustness on SciERC (N=8)\\n  evidence:\\n  - exp_id: exp_005\\n    role: SJ, FK ρ values at T=0.7 and T=1.0\\n- id: fig:reliability\\n  section: experiments\\n  caption: Reliability diagrams on SciERC (N=8, T=1.0)\\n  evidence:\\n  - exp_id: exp_015_metrics_expansion\\n    role: Calibration/ECE data for all signals\\n  - exp_id: exp_002\\n    role: ECE values across signals\\n_completeness:\\n  coverage: 83/116\\n  claims: 111\\n  tables: 4\\n  figures: 5\\n  tier_counts:\\n    tier1: 0\\n    tier2: 83\\n    tier3: 33\\n    tierX: 0\\n  last_checked: '2026-05-22T13:13:25.551590+00:00'\\n\", \"total_chars\": 40171, \"truncated\": false}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 81_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Crucial finding from paper_provenance.yaml:
+
+**c002_auroc_dissociation_scierc**: "EM leads AUROC (NER **0.749**, RE 0.706) while Voting leads ρ"
+- Evidence: exp_012_rerun_1024, metric: ner.em_auroc, value: **0.749**
+- Note: "Old Table 1 had Voting NER AUROC=.741 (from exp_015 truncated). Corrected to .684 via exp_012_rerun_1024. **EM now leads AUROC on both NER and RE.**"
+
+
+- But the QE table now shows EM AUROC=0.631, and the audit report flagged this discrepancy: the main table reported EM AUROC=0.749 (marked as best) while the 5-seed analysis revealed EM AUROC mean=0.631±0.013. So the single-run result from exp_012_rerun_1024 doesn't match the multi-seed average.
+
+The main table was corrected to 0.631, but the provenance still references 0.749. With the corrected values, the ranking is now SJ(.692) > VC(.684) > EM(.631), which means the provenance claims about EM leading on AUROC and the ensemble being below EM are both outdated.
+
+I'm not fixing the provenance itself though—just the tex files. Now I need to look at c013_oracle_headroom_ner and check what the oracle upper bound claim says.
+
+The oracle headroom claim states oracle=0.776 and greedy=0.644 on NER, giving a 13.2pp gap. The table body shows oracle=0.775±0.001 and greedy=0.645±0.001, which rounds to match those values, so the table is consistent with the original experiment.
+
+Now checking c011 about whether any signal reliably surpasses greedy on NER. I'm realizing the caption values come from the MF4v2 pipeline, which uses a different F1 metric than what's in the body. The old metric gives Greedy=0.645 and Oracle=0.775, while the new corrected metric yields Greedy=0.667 and Oracle=0.781—and this metric choice fundamentally changes the LP improvement delta from +0.2pp to -2pp.
+
+Since the rest of the paper consistently uses the new metric with 11.4pp headroom and Greedy=0.667, I should update the caption to match the body by reverting to the old metric values, which means changing Oracle to 0.775 and Greedy to 0.645, then updating all headroom references from 11.4pp to 13.0pp to maintain consistency throughout.
+
+But wait—I'm noticing something more troubling. Looking across the tables, I'm seeing three different Greedy values for SciERC: 0.663 in tab:fewnerd, 0.667 in tab:scale_comparison, and 0.645 in tab:selection's body. These inconsistencies suggest the safer approach is to clarify in the caption that the selection signals and baselines use different experimental setups—specifically noting that LP is per-sample while others use consensus-proximity, and that baselines are 3-seed while selection signals are 2-seed mean±σ.
+
+If I remove the specific Oracle and Greedy values from the caption and treat the table body as the definitive baseline, the headroom becomes 13.0pp rather than 11.4pp. But that means I'd need to hunt through the document and update every mention of 11.4pp—in the figure caption, multiple text references, and the appendix—which is getting unwieldy. I should verify whether that 0.645 value in the body is actually from an outdated pipeline before committing to this change.
+
+Looking at the actual experiment records, the greedy baseline varies depending on which pipeline was used: 0.644 from the original experiment, but 0.663 from the newer MF4v2 pipeline and the bootstrap runs. If the paper was supposed to be unified under the new metric as decided earlier, then the body's 0.645 should have been updated to match the new pipeline's ~0.663, along with all the selection F1 values. But they weren't, which means the body is stale and I can't fix it without re-running the selection experiments with the new metric.
+
+The pragmatic approach would be to remove the specific Oracle/Greedy values from the selection table caption since they're already shown in the body, and keep the body values as-is since they're internally consistent. But there's a complication: the figure caption explicitly states the oracle headroom is 11.4pp with a dashed green line showing that value. If I update the text to 13.0pp while the figure still displays 11.4pp, there's a visual inconsistency. This suggests the figure was generated using the original experiment's data, not the newer pipeline.
+
+Now I'm seeing the full scope of the problem: the paper has been partially migrated to a new F1 metric where the greedy baseline shifted from 0.645 to 0.667, which explains the 11.4pp oracle headroom in the figure. Most of the paper reflects this new metric, but the selection table body still uses the old greedy value, and I can't recalculate those selection F1 values myself. So I'm left with either updating the table to match the caption while noting the delta values use the old baseline, or leaving things as they are—both options are messy. The safest approach is to report this as a data provenance issue and apply a minimal fix: update the caption to match the body values since those determine the selection deltas and p-values, then note that the figure may need regeneration. Looking back at the old experiments file, I see the previous version consistently used 13.0pp throughout, so there's historical precedent for this value.
+
+Now I'm realizing the scope of the inconsistency is larger than just the figure—both the table body and the prose "+0.2pp" statement are using the old metric, while the figure, caption, and scale_comparison table have been updated to the new metric. If I update the body to match the new metric, I'll need to update the prose as well to maintain consistency.
+
+Looking at the task instructions more carefully, there are two distinct paths: either update the caption and all prose references to use the old 13.0pp headroom value (which would require regenerating the figure), or update the table body to use the new metric while keeping the prose 11.4pp unchanged. Neither option is clean without re-running the experiments.
+
+The task seems to anticipate Method C—updating the table body to match the caption—but this creates a problem: if greedy is actually 0.667 under the new metric, then the LP improvement of +0.2pp no longer holds. I'm wondering if the task acknowledges this change is acceptable, or if I need to recalculate LP under the new metric as well. Let me check what values might be available from the selection experiments, particularly from the audit results that show greedy F1 scores around 0.668 and 0.661 across different seeds.
+
+I'm looking for the corresponding selection F1 values under this new pipeline, but from what I can find in the registry—like the MV result showing 0.670 with a +0.37pp delta—it seems the per-signal selection values might not have been computed yet, or they're buried in the experiment artifacts somewhere.
+
+I've spent enough time tracking this down. The pragmatic move is to go with Method C: update the body numbers to match the caption since the 11.4pp headroom is already baked throughout the paper and the figure's been regenerated with those values. That means updating just the Oracle and Greedy rows in the body, plus recalculating the LP delta from +0.2pp to whatever the new pipeline gives us.
+
+Actually, there's something interesting here—if the new metric shifts all F1 values uniformly upward by about 0.022, then the relative differences between methods would stay roughly the same. So the LP delta might still come out to around +0.2pp even under the new numbers, which would mean the narrative about selection effectiveness doesn't really change.
+
+But looking at the actual shifts in the data, they're not uniform—Greedy jumped by 0.022 while Oracle only moved 0.006. Still, for the selection methods clustered in that mid-range, a roughly uniform shift of about 0.022 seems reasonable, which would put LP around 0.669 and the other methods proportionally higher as well.
+
+I'm going to go with updating just the Oracle and Greedy baselines to match the caption, then flag to the user that the selection F1 values are from an older metric calculation and ideally need recalculation, while the Δ and p-values should be approximately preserved since the metric shift affects everything fairly uniformly. But I need to think through what happens if I only update those two baselines and leave the selection values unchanged.
+
+If LP stays at 0.647 while Greedy becomes 0.667, that creates a direct contradiction with the text claiming "+0.2pp improvement"—a reviewer would immediately spot that LP is actually 2.0pp worse. So this approach isn't safe without also updating the selection values and the corresponding text claims. Let me reconsider whether the table body values might have already been updated under the new metric while the baselines weren't, or if I need to check the original file more carefully.
+
+Looking back at the old file, the text mentioned "oracle (0.775) reveals 13.0~pp of headroom, but LP achieves +0.2~pp", while the current version says "oracle shows 11.4~pp headroom, but LP achieves +0.2~pp"—so the headroom got updated from 13.0pp to 11.4pp, but the LP delta stayed at +0.2pp. The table body still has the old Oracle and Greedy values. This suggests the text was partially updated while the table wasn't. If the new metric actually preserves the LP delta around +0.2pp, then the main inconsistency is just the table body rows needing to be updated to match.
+
+But updating those to 0.781/0.667 creates a different problem: the body would show LP at 0.647, which is 2.0pp below Greedy, directly contradicting the text saying LP achieves +0.2pp. Unless the LP F1 value itself should also shift to around 0.669 under the new metric, but that would require recalculating the selection F1 values, which I haven't done. I think the real issue is that the body values were never recalculated under the new metric at all. Let me just report this inconsistency to the user and apply a minimal fix. Actually, wait—let me check if the caption and body might intentionally use different baselines, like 3-seed micro F1 for the caption versus per-instance F1 for the body.
+
+But that creates confusion: having two different Oracle/Greedy values for the same table will definitely get flagged by reviewers. So here's what I'll do: keep the body Oracle/Greedy values from exp_016 (per-instance F1) since the selection Δ and p-values depend on them, remove the specific numbers from the caption to avoid the conflict, and note that the 11.4pp headroom figure comes from a different metric entirely. Since the table values are the actual experimental results and the delta/p-values depend on them, I should update the caption to reflect 13.0pp instead of 11.4pp. But there's a problem: I can't verify whether the figure's green line was actually drawn at 13.0pp or 11.4pp without checking the generation script, so changing just the text would create a visual mismatch if they don't align.
+
+My best approach is to make the text corrections across the caption, prose, and appendix tables to use 13.0pp consistently, then flag to the user that the figure itself may need regeneration to ensure the line position matches the updated value. Updating the caption values would flip the narrative—LP drops from slightly above greedy to significantly below it—but this actually strengthens the paper's core claim that no signal outperforms greedy, even though it changes the specific numbers and invalidates the original p-value of 0.29.
+
+Let me reconsider whether the selection F1 values themselves need updating too. If the metric shift of ~2.2pp that moved greedy from 0.645 to 0.667 also applies to LP and SJ, then the deltas would stay around +0.2pp and +0.1pp respectively. But Oracle only shifted by 0.006pp, which breaks this pattern—the metric change isn't uniform across all values.
+
+The difference is that greedy produces a single output while Oracle picks the best of eight samples, so the metric change affects them differently. Without the actual experimental data, I can't recalculate the correct new-metric values for the selection methods. I'll keep the paper's existing values where the prose and figures use the new metric (greedy≈0.667) and just flag the selection table as needing verification. and p-values (.29) are well-established numbers in the paper. The safest approach is to update the caption to remove the specific Oracle/Greedy values that conflict with the body text, keeping the body as the authoritative source. But this creates a mismatch—the table shows 13.0pp headroom while the text claims 11.4pp, which a reviewer will definitely notice. The real issue is that this metric inconsistency requires re-running the selection experiments, so I should inform the user of this while applying the best temporary fix I can manage. Looking at the task requirements and the audit's identification of this as Issue 2, I need to follow Method B: update the caption values to match the table body (Oracle=.775, Greedy=.645, headroom=13.0pp) and note any discrepancies that remain. the body data is NOT newer — it's from the OLD pipeline. The caption data is newer (from MF4v2).
+
+The task's Method C says: "如果表头数据是正确的：更新表体 Oracle 和 Greedy 行, 正文 11.4pp 不变"
+
+If the caption data is correct (and it IS the newer data), then Method C applies. But Method C breaks LP Δ...
+
+Unless the task expects me to update LP Δ too?
+
+Actually, re-reading Method C: "更新表体 Oracle 和 Greedy 行, 正文 11.4pp 不变". It says update the Oracle and Greedy ROWS in the body. It doesn't say anything about updating LP Δ or the text's "+0.2pp".
+
+The Δ between LP and Greedy would change, but the text could say something like "LP achieves Δ of $-2.0$pp" instead of "+0.2pp" — though that completely changes the narrative. Or maybe the selection F1 values should also be updated, but the task only mentions updating Oracle and Greedy rows. Perhaps the expectation is that the selection values are already in the new metric and only the baselines are stale?
+
+If LP were already updated to the new metric, the Δ would stay roughly the same, but that seems unlikely given the old LP was 0.647 and the new estimate is around 0.669.
+
+Let me check if the selection values were recalculated. The provenance shows the selection evidence comes from exp_016_signal_ensemble, which is the old experiment, so the selection F1 values are probably still from the old metric. But the LP Δ of +0.2pp appears in both old and new versions of the text — either it was explicitly kept because it's correct under both metrics, or it was overlooked. If it was intentionally kept, maybe LP's selection F1 in the new metric is actually 0.647 after all.
+
+But wait, if LP Δ ≈ +0.2pp holds in both metrics and Oracle is now 0.781, then LP should be around 0.669, not 0.647. The table body still shows 0.647, which means it wasn't updated. Most likely someone fixed the headroom in the caption and prose but forgot to update the table values, and the LP Δ just happens to be approximately correct under both metrics. I should update the table body to match the caption values and recalculate all the selection metrics — except I don't actually have the new-metric selection values.
+
+I could try estimating them based on the shifts I see (Greedy went up 0.022, Oracle only 0.006), but those shifts aren't uniform, so any estimate would be unreliable. Instead, I'll just update Oracle and Greedy to match the caption, acknowledge that I don't have the exact selection F1 values under the new metric, and note this honestly in the report. The Δ values should be approximately preserved since mid-range F1 values shift similarly, so the narrative stays intact even if the absolute numbers are off.
+
+But updating those values creates a new problem: if LP stays at 0.647 while Greedy becomes 0.667, the text claiming LP achieves +0.2pp becomes inconsistent with what the table shows. I need to figure out what the correct LP Δ should be, but I don't have enough information to calculate it reliably.
+
+Given this constraint, I'm going with Method B instead—updating the caption and all prose to match the actual body values, changing the reported improvement from 11.4pp to 13.0pp. The body contains the real experimental results with correct statistics, so everything else should align with it. The figure itself might still show the old visual, but the caption can reflect the correct numbers. I'll need to regenerate the figure eventually, but for now I can update the text and appendix to be consistent.
+
+Let me double-check what the old figure caption actually said...
+
+Looking back at the original file, the caption already mentioned 13.0pp, so this isn't a new change—it's reverting to what was there before. The current figure must have been regenerated with the 11.4pp value at some point, which created this mismatch. Since I can't easily trace the figure's data source right now, I think the best approach is to present both options to the user and let them decide, since this is fundamentally a data provenance question that I shouldn't resolve on my own.
+
+But wait—the task says to execute sequentially and choose based on tracing results. Let me look at what I've actually verified: the caption data (0.781 - 0.667 = 11.4pp) is confirmed in the audit, it's used consistently in the table and prose, and the body text references different numbers from a separate experiment. So the 11.4pp in the caption is the correct value for that particular comparison, while 13.0pp appears to be from an older version of the figure.
+
+The real issue is that the selection F1 values haven't been recalculated with the newer metric, so updating just the Oracle and Greedy rows would create an inconsistency. But the task's Method C specifically says to update only those rows and leave the prose unchanged, which suggests the selection values might be in a separate column or context that doesn't need updating. I need to step back and reconsider the whole picture. Maybe the table's macro F1 values are actually correct and internally consistent, while the caption numbers got pulled from a different metric by mistake. Let me trace through what the table actually claims and build a clean report flagging the inconsistencies I can verify and recommending fixes for what needs attention. The figure reports 11.4pp headroom using instance-averaged F1, while the table shows 13.0pp under macro F1—both are valid as long as they're labeled clearly. But the text references both the table and figure together when citing the 11.4pp value, which creates an inconsistency since the table actually shows 13.0pp headroom instead.
+
+The core problem is that the table uses macro F1 while the rest of the paper uses instance-averaged F1. I could either align the table to instance-averaged metrics or clarify in the text which metric each reference points to, but changing the 11.4pp value would break the figure reference.
+
+Let me check whether "macro F1" in the table might actually be mislabeled instance-averaged F1 from an older pipeline version—if there was a bug fix that changed the greedy baseline from 0.645 to 0.667, then the selection values would need recalculation too.
+
+I need to stop second-guessing myself and commit to a fix: I'll update the caption to match the body values by changing Oracle/Greedy from .781/.667 to .775/.645, adjusting the headroom from 11.4pp to 13.0pp throughout the caption, figure, and body text. This keeps all the selection data, deltas, and p-values intact—the most important parts. The green line in the figure might render at the wrong position, but I'll flag that issue.
+
+Now I'm verifying the math works out: if I change the body text to say the oracle shows 13.0pp headroom, that's consistent with 0.775 - 0.645 = 0.130, and the LP improvement of +0.2pp matches 0.647 - 0.645 = 0.002. I also need to update the figure caption and the scale_comparison table to reflect these same changes.
+
+But I'm noticing a potential issue with the fewnerd table—it reports SciERC Greedy as 0.663, which is different from both the 0.645 and 0.667 values I'm seeing elsewhere. The caption says it uses instance-averaged F1, which is a different metric than macro F1, so that difference might be intentional. However, if I'm changing scale_comparison from 0.667 to 0.645 without specifying which metric it uses, I need to make sure that doesn't create an inconsistency with the other tables. Looking at the instance-averaged greedy score for SciERC, it should be .663 from the same table, which means changing .667 to .645 would actually be incorrect for the scale comparison table. Rather than continuing to second-guess myself on these inconsistencies, I should present the user with a clear tracing report showing where each value originates, lay out the options for fixing the discrepancies with their trade-offs, and let them decide on the best approach. For the AUROC ranking subtask, the fix is already complete with no stale references remaining, so I'll focus on preparing that report now. I'm realizing that simply removing the numbers from the caption creates a different problem—a careful reader will compute the difference from the table itself and get 13.0pp, which contradicts the 11.4pp mentioned in the text and figure. So I need a solution that either updates all the numbers consistently or acknowledges they're measuring different things, but just removing the caption numbers doesn't actually resolve the inconsistency.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d3999a21-0914-40f6-afdd-8951e6461b5c",
+  "uuid": "1dacdc63-7813-4d25-87d0-1b1f2ab33b80",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JVZScgeFTDERYYRjAKJ11R",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 19542,
+      "cache_read_input_tokens": 74827,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 19542
+      },
+      "output_tokens": 18,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 82_
+
+完成数据追溯。发现复杂的度量指标不一致问题：
+
+- **表体** (.775/.645)：来自 exp_016_signal_ensemble，使用 per-instance macro F1，所有 selection Δ 和 p 值与之一致
+- **Caption** (.781/.667)：来自 MF4v2 pipeline，使用不同的 F1 计算方式
+- **正文/图** 11.4pp：与 caption 一致
+- **provenance c013**: Oracle=0.776, Greedy=0.644, headroom=13.2pp（与表体一致）
+
+关键问题：更新表体 Oracle/Greedy 为 .781/.667 会导致 LP=0.647 < Greedy=0.667 (Δ=-2.0pp)，与正文 "+0.2pp" 和 p=0.29 矛盾。Selection F1 值 (LP=0.647 等) 未在新 metric 下重算。
+
+最安全的修复是：**移除 caption 中的具体 Oracle/Greedy 数值**（避免与表体冲突），并**将正文/图的 headroom 改为与表体一致的 13.0pp**。
+
+让我执行：
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d3999a21-0914-40f6-afdd-8951e6461b5c",
+  "uuid": "6e471b54-b3bf-4f54-a1b7-c5edac7a91c3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JVZScgeFTDERYYRjAKJ11R",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 19542,
+      "cache_read_input_tokens": 74827,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 19542
+      },
+      "output_tokens": 18,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 83_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01S7vK1KsNaDCxu16M2CvcvS`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/single_signal.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d3999a21-0914-40f6-afdd-8951e6461b5c",
+  "uuid": "ace49711-295f-44e3-b80e-ca1997a1c7ee",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JVZScgeFTDERYYRjAKJ11R",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 19542,
+      "cache_read_input_tokens": 74827,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 19542
+      },
+      "output_tokens": 18,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 84 · 2026-05-23T20:51:34.228Z_
+
+<details><summary>↩ Tool result · `toolu_01S7vK1KsNaDCxu16M2CvcvS`</summary>
+
+```text
+1	\section{Single-Signal Selection Results}\label{sec:selection_gap}
+2	
+3	\paragraph{Definitional vs.\ empirical.}
+4	We decompose the correlation-selection gap into two layers.
+5	The first is structural: four of five signals are instance-level aggregates that assign identical scores to all $N$ candidates from a given input (\S\ref{sec:formulation}), so they estimate quality across inputs but cannot rank candidates within an instance---selection failure is a design property, not an empirical finding.
+6	The second layer is empirical and constitutes the core diagnostic: LP---the only per-sample signal---suffers compression under constrained decoding, with 60\% of SciERC instances showing within-instance LP range below 0.041 nats (Appendix~\ref{app:logprob_ties}), leaving insufficient variation for sample discrimination. This compression is model-intrinsic: free-form decoding yields nearly identical LP distributions (within-instance std ratio $0.97{\times}$; Appendix~\ref{app:freeform_ablation}). Even where LP varies, selection gains depend on LP-quality alignment rather than degeneracy alone.
+7	Cross-instance $\rho$ (Table~\ref{tab:quality_estimation}) is attenuated by varying instance difficulty; within-instance $\rho$ directly measures whether LP discriminates candidates for a fixed input, making it the relevant predictor of selection success.
+8	
+9	\begin{table}[t]
+10	\centering
+11	\small
+12	\caption{Best-of-$N$ selection (macro F1) on SciERC ($N{=}8$, $T{=}1.0$). Selection signals: 2-seed mean${\pm}\sigma$; baselines: 3-seed (Oracle${=}0.781$, Greedy${=}0.667$). LP is per-sample; others use consensus-proximity. $^\dagger$One score per input.}
+13	\label{tab:selection}
+14	\begin{tabular}{lcc}
+15	\toprule
+16	Method & NER F1 & $p$ \\
+17	\midrule
+18	Oracle & $0.775 \pm 0.001$ & --- \\
+19	Greedy ($T{=}0$) & $0.645 \pm 0.001$ & --- \\
+20	\midrule
+21	LP           & $\mathbf{0.647} \pm 0.005$ & .29 \\
+22	SJ           & $0.646 \pm 0.002$ & .67 \\
+23	FK           & $0.646 \pm 0.001$ & .79 \\
+24	EM           & $0.637 \pm 0.001$ & n/a$^\dagger$ \\
+25	VC           & $0.623 \pm 0.004$ & n/a$^\dagger$ \\
+26	\midrule
+27	Random       & $0.610 \pm 0.003$ & --- \\
+28	\bottomrule
+29	\end{tabular}
+30	\end{table}
+31	
+32	\begin{figure}[t]
+33	\centering
+34	\includegraphics[width=\columnwidth]{fig_selection_gap}
+35	\caption{Correlation-selection gap on SciERC ($N{=}8$, $T{=}1.0$). Bars: QE $\rho$; line: $\Delta$F1 vs.\ greedy (3-seed mean). Despite $\rho$ up to 0.38, no signal outperforms greedy (all $p{\geq}0.29$). Dashed green: oracle headroom ($+11.4$\,pp; oracle headroom $=$ best-of-$N$ F1 $-$ greedy F1); dotted gray: random.}
+36	\label{fig:selection_gap}
+37	\end{figure}
+38	
+39	Despite $\rho$ up to 0.38, no signal outperforms greedy on SciERC (Table~\ref{tab:selection}; Figure~\ref{fig:selection_gap}); the oracle shows 11.4\,pp headroom, but LP achieves $+0.2$\,pp ($p{=}0.29$), below MDE (${\approx}$1.5\,pp at $n{=}529$, 2--3 seeds; Appendix~\ref{app:bootstrap_signal}).
+40	All selection experiments use 2--3 training seeds; bootstrap CIs are reported in Appendix~\ref{app:bootstrap_signal}.
+41	The pattern holds across CoNLL and WNUT-17 (Table~\ref{tab:cross_selection}).
+42	Few-NERD provides the clearest positive case: LP achieves $+1.39$\,pp ($p{<}0.001$; Holm $p_{\text{adj}}{=}0.021$, selection family $k{=}21$)\footnote{Under global correction ($k{=}57$), LP-best selection reaches Holm $p_{\text{adj}}{=}0.055$ (BH $p_{\text{adj}}{=}0.003$).} at low degeneracy (13.0\% vs.\ 12.2--67.9\%), while structural signals still degrade (VC $-1.79$, SJ $-2.14$\,pp; \S\ref{sec:fewnerd}).
+43	
+44	\paragraph{Diagnostic framework.}
+45	Three co-occurring factors jointly characterize the gap:
+46	(1)~instance degeneracy sets the ceiling (SciERC 12.2\%, CoNLL 61.7\%);
+47	(2)~oracle headroom bounds the opportunity within non-degenerate instances (CoNLL ${\approx}4$\,pp vs.\ SciERC 11.4\,pp);
+48	(3)~LP compression limits exploitation (Few-NERD within-instance $\rho{\approx}0.5$--$0.7$ vs.\ SciERC $\rho{\approx}0.26$).
+49	Degeneracy does not predict LP gain across datasets ($\rho{=}0.052$, $n{=}23$, $p{=}0.81$; Figure~\ref{fig:degeneracy_scatter}), though it co-varies with LP within fixed settings ($\rho{=}{-}0.881$; Appendix~\ref{app:per_type_lp}).
+50	These conditions interact ($R^2{<}0$); on non-degenerate instances, $\alpha$ approaches zero ($0.000$--$0.121$) despite $\rho$ up to 0.45 (\S\ref{sec:theory}).
+51	
+52	\paragraph{Mechanistic evidence (Appendix~\ref{sec:mechanistic}).}
+53	Why does signal alignment collapse? Probing experiments on Qwen2.5-7B-Instruct reveal an \textit{introspection boundary}: hidden-state linear probes achieve entity-level AUROC $0.63$--$0.88$, substantially exceeding prompt-based self-judgment (ESJ AUROC $0.51$; confirmed on Qwen3-8B: AUROC $0.50$--$0.55$; Appendix~\ref{app:esj}), yet cross-dataset transfer drops to $0.56$--$0.67$ (LODO).
+54	Entity self-judgment, multi-round refinement ($-3.1$\,pp vs.\ greedy), and latent centroid selection ($-3.5$\,pp) all fail to improve over greedy decoding.
+55	Entity quality is partially encoded in representations but inaccessible through the generation interface---consistent with the signal alignment collapse observed across all configurations.
+56	Cross-model validation on Qwen3-8B confirms chance-level ESJ performance (AUROC $0.50$--$0.55$; Appendix~\ref{app:esj}), suggesting the introspection boundary is architecture-general rather than model-specific.
+57	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d3999a21-0914-40f6-afdd-8951e6461b5c",
+  "uuid": "3e83dd0f-8092-44c2-b266-016bd9c9f632",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/single_signal.tex",
+      "content": "\\section{Single-Signal Selection Results}\\label{sec:selection_gap}\n\n\\paragraph{Definitional vs.\\ empirical.}\nWe decompose the correlation-selection gap into two layers.\nThe first is structural: four of five signals are instance-level aggregates that assign identical scores to all $N$ candidates from a given input (\\S\\ref{sec:formulation}), so they estimate quality across inputs but cannot rank candidates within an instance---selection failure is a design property, not an empirical finding.\nThe second layer is empirical and constitutes the core diagnostic: LP---the only per-sample signal---suffers compression under constrained decoding, with 60\\% of SciERC instances showing within-instance LP range below 0.041 nats (Appendix~\\ref{app:logprob_ties}), leaving insufficient variation for sample discrimination. This compression is model-intrinsic: free-form decoding yields nearly identical LP distributions (within-instance std ratio $0.97{\\times}$; Appendix~\\ref{app:freeform_ablation}). Even where LP varies, selection gains depend on LP-quality alignment rather than degeneracy alone.\nCross-instance $\\rho$ (Table~\\ref{tab:quality_estimation}) is attenuated by varying instance difficulty; within-instance $\\rho$ directly measures whether LP discriminates candidates for a fixed input, making it the relevant predictor of selection success.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Best-of-$N$ selection (macro F1) on SciERC ($N{=}8$, $T{=}1.0$). Selection signals: 2-seed mean${\\pm}\\sigma$; baselines: 3-seed (Oracle${=}0.781$, Greedy${=}0.667$). LP is per-sample; others use consensus-proximity. $^\\dagger$One score per input.}\n\\label{tab:selection}\n\\begin{tabular}{lcc}\n\\toprule\nMethod & NER F1 & $p$ \\\\\n\\midrule\nOracle & $0.775 \\pm 0.001$ & --- \\\\\nGreedy ($T{=}0$) & $0.645 \\pm 0.001$ & --- \\\\\n\\midrule\nLP           & $\\mathbf{0.647} \\pm 0.005$ & .29 \\\\\nSJ           & $0.646 \\pm 0.002$ & .67 \\\\\nFK           & $0.646 \\pm 0.001$ & .79 \\\\\nEM           & $0.637 \\pm 0.001$ & n/a$^\\dagger$ \\\\\nVC           & $0.623 \\pm 0.004$ & n/a$^\\dagger$ \\\\\n\\midrule\nRandom       & $0.610 \\pm 0.003$ & --- \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{fig_selection_gap}\n\\caption{Correlation-selection gap on SciERC ($N{=}8$, $T{=}1.0$). Bars: QE $\\rho$; line: $\\Delta$F1 vs.\\ greedy (3-seed mean). Despite $\\rho$ up to 0.38, no signal outperforms greedy (all $p{\\geq}0.29$). Dashed green: oracle headroom ($+11.4$\\,pp; oracle headroom $=$ best-of-$N$ F1 $-$ greedy F1); dotted gray: random.}\n\\label{fig:selection_gap}\n\\end{figure}\n\nDespite $\\rho$ up to 0.38, no signal outperforms greedy on SciERC (Table~\\ref{tab:selection}; Figure~\\ref{fig:selection_gap}); the oracle shows 11.4\\,pp headroom, but LP achieves $+0.2$\\,pp ($p{=}0.29$), below MDE (${\\approx}$1.5\\,pp at $n{=}529$, 2--3 seeds; Appendix~\\ref{app:bootstrap_signal}).\nAll selection experiments use 2--3 training seeds; bootstrap CIs are reported in Appendix~\\ref{app:bootstrap_signal}.\nThe pattern holds across CoNLL and WNUT-17 (Table~\\ref{tab:cross_selection}).\nFew-NERD provides the clearest positive case: LP achieves $+1.39$\\,pp ($p{<}0.001$; Holm $p_{\\text{adj}}{=}0.021$, selection family $k{=}21$)\\footnote{Under global correction ($k{=}57$), LP-best selection reaches Holm $p_{\\text{adj}}{=}0.055$ (BH $p_{\\text{adj}}{=}0.003$).} at low degeneracy (13.0\\% vs.\\ 12.2--67.9\\%), while structural signals still degrade (VC $-1.79$, SJ $-2.14$\\,pp; \\S\\ref{sec:fewnerd}).\n\n\\paragraph{Diagnostic framework.}\nThree co-occurring factors jointly characterize the gap:\n(1)~instance degeneracy sets the ceiling (SciERC 12.2\\%, CoNLL 61.7\\%);\n(2)~oracle headroom bounds the opportunity within non-degenerate instances (CoNLL ${\\approx}4$\\,pp vs.\\ SciERC 11.4\\,pp);\n(3)~LP compression limits exploitation (Few-NERD within-instance $\\rho{\\approx}0.5$--$0.7$ vs.\\ SciERC $\\rho{\\approx}0.26$).\nDegeneracy does not predict LP gain across datasets ($\\rho{=}0.052$, $n{=}23$, $p{=}0.81$; Figure~\\ref{fig:degeneracy_scatter}), though it co-varies with LP within fixed settings ($\\rho{=}{-}0.881$; Appendix~\\ref{app:per_type_lp}).\nThese conditions interact ($R^2{<}0$); on non-degenerate instances, $\\alpha$ approaches zero ($0.000$--$0.121$) despite $\\rho$ up to 0.45 (\\S\\ref{sec:theory}).\n\n\\paragraph{Mechanistic evidence (Appendix~\\ref{sec:mechanistic}).}\nWhy does signal alignment collapse? Probing experiments on Qwen2.5-7B-Instruct reveal an \\textit{introspection boundary}: hidden-state linear probes achieve entity-level AUROC $0.63$--$0.88$, substantially exceeding prompt-based self-judgment (ESJ AUROC $0.51$; confirmed on Qwen3-8B: AUROC $0.50$--$0.55$; Appendix~\\ref{app:esj}), yet cross-dataset transfer drops to $0.56$--$0.67$ (LODO).\nEntity self-judgment, multi-round refinement ($-3.1$\\,pp vs.\\ greedy), and latent centroid selection ($-3.5$\\,pp) all fail to improve over greedy decoding.\nEntity quality is partially encoded in representations but inaccessible through the generation interface---consistent with the signal alignment collapse observed across all configurations.\nCross-model validation on Qwen3-8B confirms chance-level ESJ performance (AUROC $0.50$--$0.55$; Appendix~\\ref{app:esj}), suggesting the introspection boundary is architecture-general rather than model-specific.\n",
+      "numLines": 57,
+      "startLine": 1,
+      "totalLines": 57
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 85_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+OK let me make a decision and execute.
+
+Looking at the actual table data one more time:
+
+Body:
+- Oracle = 0.775 ± 0.001
+- Greedy = 0.645 ± 0.001  → headroom = 13.0pp
+- LP = 0.647 ± 0.005  → LP - Greedy = +0.2pp (p=.29) ✓
+- SJ = 0.646 ± 0.002  → SJ - Greedy = +0.1pp (p=.67) ✓
+
+
+- ... all internally consistent
+
+The caption shows Oracle=0.781 and Greedy=0.667 with 11.4pp headroom, which doesn't match the body values. The body data comes from the actual selection experiments with correct Δ and p values, while the caption values are from a newer pipeline that wasn't fully recalculated. Since I can't regenerate the selection values, the safest approach is to update the caption to align with the body and change all references from 11.4pp to 13.0pp.
+
+Now I'm mapping out all the specific locations that need updating: the caption in single_signal.tex needs the Oracle and Greedy values corrected, then I need to find and replace the 11.4pp headroom value with 13.0pp across three locations in that file. For the scale_comparison table in appendix.tex, I need to determine whether it's using the same metric as the selection table before deciding what values to update there. I need to check the figure generation script to see whether the green line was drawn at 11.4pp or 13.0pp, since that determines whether the caption text matches the visual. If the figure uses the same data as the table body (13.0pp headroom), then the old caption was incorrect and needs updating.
+
+Rather than keep second-guessing myself, I'll update the caption baseline values to match the body data, change the three instances of 11.4 to 13.0 for consistency, and flag the discrepancy for the user to review.
+
+But I need to be careful about tab:scale_comparison—it uses different experiment data and its Greedy value of .667 is actually correct for that table, so I'll leave it untouched and only modify the selection table references.
+
+Now I'm realizing there's a deeper issue: if I change the text to 13.0pp but the figure caption still shows +11.4pp with a dashed line drawn at that position, reviewers will spot the mismatch. Without regenerating the figure from the same data, there's no way to make everything perfectly consistent, so I'll proceed with the table body corrections and accept that the figure may show a different headroom value.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d3999a21-0914-40f6-afdd-8951e6461b5c",
+  "uuid": "b7b8391c-48ef-4a1f-b9b3-a0fac0ed59e6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AYS17EbMMGPn4aNzWgBbfm",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 14754,
+      "cache_read_input_tokens": 94369,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 14754
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 86_
+
+Let me check the figure generation script to verify what headroom value the figure actually shows.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d3999a21-0914-40f6-afdd-8951e6461b5c",
+  "uuid": "ffb3a45e-4240-4912-96c6-476b94a1de6a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AYS17EbMMGPn4aNzWgBbfm",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 14754,
+      "cache_read_input_tokens": 94369,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 14754
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 87_
+
+<details open><summary>🔧 Tool call — Glob · `toolu_01W8o7Kb7b5wnHSN6wPWa2M4`</summary>
+
+```json
+{
+  "pattern": "**/gen_fig_selection*",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d3999a21-0914-40f6-afdd-8951e6461b5c",
+  "uuid": "3922c6b7-502e-48c5-9a23-d9a9789a7bfa",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AYS17EbMMGPn4aNzWgBbfm",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 14754,
+      "cache_read_input_tokens": 94369,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 14754
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 88 · 2026-05-23T20:52:22.512Z_
+
+<details><summary>↩ Tool result · `toolu_01W8o7Kb7b5wnHSN6wPWa2M4`</summary>
+
+```text
+No files found
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d3999a21-0914-40f6-afdd-8951e6461b5c",
+  "uuid": "140f52a6-ca5c-43bf-99a3-63fed7c5fa0c",
+  "tool_use_result": {
+    "filenames": [],
+    "durationMs": 110,
+    "numFiles": 0,
+    "truncated": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 89_
+
+<details open><summary>🔧 Tool call — Glob · `toolu_013eZVN85aa1f6eo9CpyCnx5`</summary>
+
+```json
+{
+  "pattern": "**/fig_selection*",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d3999a21-0914-40f6-afdd-8951e6461b5c",
+  "uuid": "b7408273-69d1-4ddd-bc2f-7c6bfa6863f4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AYS17EbMMGPn4aNzWgBbfm",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 14754,
+      "cache_read_input_tokens": 94369,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 14754
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 90 · 2026-05-23T20:52:23.479Z_
+
+<details><summary>↩ Tool result · `toolu_013eZVN85aa1f6eo9CpyCnx5`</summary>
+
+```text
+figures/paper/fig_selection_gap.pdf
+artifacts/_project/chart/fig_selection_gap.pdf
+figures/paper/fig_selection_gap.png
+artifacts/exp010_selection_curves/figures/paper/fig_selection_curves.png
+artifacts/exp010_selection_curves/figures/paper/fig_selection_curves.pdf
+artifacts/exp_010_selection_curves/chart/fig_selection_curves.pdf
+figures/paper/fig_selection_curves.pdf
+figures/paper/fig_selection_curves.png
+artifacts/_project/chart/fig_selection_gap_1024.pdf
+artifacts/figures/fig_selection_gap_1024.pdf
+artifacts/exp_016_rerun_1024_bootstrap/chart/fig_selection_gap_1024.pdf
+artifacts/figures/fig_selection_gap_1024.png
+artifacts/_project/chart/fig_selection_gap_e39ede.pdf
+artifacts/fig_selection_gap.png
+artifacts/_project/chart/fig_selection_gap_21a567.pdf
+artifacts/figures/fig_selection_gap.pdf
+artifacts/figures/fig_selection_gap.png
+artifacts/_project/chart/fig_selection_gap_e20038.pdf
+docs/paper/figures/fig_selection_gap.pdf
+docs/paper/figures/fig_selection_gap.png
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d3999a21-0914-40f6-afdd-8951e6461b5c",
+  "uuid": "39a23f96-dabe-4c13-8adb-091b0fcd801b",
+  "tool_use_result": {
+    "filenames": [
+      "figures/paper/fig_selection_gap.pdf",
+      "artifacts/_project/chart/fig_selection_gap.pdf",
+      "figures/paper/fig_selection_gap.png",
+      "artifacts/exp010_selection_curves/figures/paper/fig_selection_curves.png",
+      "artifacts/exp010_selection_curves/figures/paper/fig_selection_curves.pdf",
+      "artifacts/exp_010_selection_curves/chart/fig_selection_curves.pdf",
+      "figures/paper/fig_selection_curves.pdf",
+      "figures/paper/fig_selection_curves.png",
+      "artifacts/_project/chart/fig_selection_gap_1024.pdf",
+      "artifacts/figures/fig_selection_gap_1024.pdf",
+      "artifacts/exp_016_rerun_1024_bootstrap/chart/fig_selection_gap_1024.pdf",
+      "artifacts/figures/fig_selection_gap_1024.png",
+      "artifacts/_project/chart/fig_selection_gap_e39ede.pdf",
+      "artifacts/fig_selection_gap.png",
+      "artifacts/_project/chart/fig_selection_gap_21a567.pdf",
+      "artifacts/figures/fig_selection_gap.pdf",
+      "artifacts/figures/fig_selection_gap.png",
+      "artifacts/_project/chart/fig_selection_gap_e20038.pdf",
+      "docs/paper/figures/fig_selection_gap.pdf",
+      "docs/paper/figures/fig_selection_gap.png"
+    ],
+    "durationMs": 108,
+    "numFiles": 20,
+    "truncated": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 91_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01DhhKrWcNx5ZzCrqjFpVtMn`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "find /root/autodl-tmp/struct_self_consist_ie -name \"*fig_selection*\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d3999a21-0914-40f6-afdd-8951e6461b5c",
+  "uuid": "92bb0198-e113-4d58-b6ba-11107a35fe79",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AYS17EbMMGPn4aNzWgBbfm",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 14754,
+      "cache_read_input_tokens": 94369,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 14754
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 92 · 2026-05-23T20:52:24.982Z_
+
+<details><summary>↩ Tool result · `toolu_01DhhKrWcNx5ZzCrqjFpVtMn`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/output/exp010_selection_curves/figures/fig_selection_curves.pdf\\n/root/autodl-tmp/struct_self_consist_ie/output/exp010_selection_curves/figures/fig_selection_curves.png\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round2/fig_selection_gap.pdf\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round2/fig_selection_gap.png\\n/root/autodl-tmp/struct_self_consist_ie/output/figures/fig_selection_gap.pdf\\n/root/autodl-tmp/struct_self_consist_ie/output/figures/fig_selection_gap.png\\n/root/autodl-tmp/struct_self_consist_ie/output/figures/fig_selection_gap_with_re.pdf\\n/root/autodl-tmp/struct_self_consist_ie/output/figures/fig_selection_gap_with_re.png\\n/root/autodl-tmp/struct_self_consist_ie/artifacts/figures/fig_selection_gap_1024.pdf\\n/root/autodl-tmp/struct_self_consist_ie/artifacts/figures/fig_selection_gap_1024.png\\n/root/autodl-tmp/struct_self_consist_ie/docs/paper/figures/fig_selection_gap.pdf\\n/root/autodl-tmp/struct_self_consist_ie/docs/paper/figures/fig_selection_gap.png\\n/root/autodl-tmp/struct_self_consist_ie/docs/paper/figures/fig_selection_gap_dual_panel.pdf\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d3999a21-0914-40f6-afdd-8951e6461b5c",
+  "uuid": "447ad2ef-3972-4dec-adfb-d1ce480390ce",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/exp010_selection_curves/figures/fig_selection_curves.pdf\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp010_selection_curves/figures/fig_selection_curves.png\\\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round2/fig_selection_gap.pdf\\\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round2/fig_selection_gap.png\\\\n/root/autodl-tmp/struct_self_consist_ie/output/figures/fig_selection_gap.pdf\\\\n/root/autodl-tmp/struct_self_consist_ie/output/figures/fig_selection_gap.png\\\\n/root/autodl-tmp/struct_self_consist_ie/output/figures/fig_selection_gap_with_re.pdf\\\\n/root/autodl-tmp/struct_self_consist_ie/output/figures/fig_selection_gap_with_re.png\\\\n/root/autodl-tmp/struct_self_consist_ie/artifacts/figures/fig_selection_gap_1024.pdf\\\\n/root/autodl-tmp/struct_self_consist_ie/artifacts/figures/fig_selection_gap_1024.png\\\\n/root/autodl-tmp/struct_self_consist_ie/docs/paper/figures/fig_selection_gap.pdf\\\\n/root/autodl-tmp/struct_self_consist_ie/docs/paper/figures/fig_selection_gap.png\\\\n/root/autodl-tmp/struct_self_consist_ie/docs/paper/figures/fig_selection_gap_dual_panel.pdf\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/output/exp010_selection_curves/figures/fig_selection_curves.pdf\\n/root/autodl-tmp/struct_self_consist_ie/output/exp010_selection_curves/figures/fig_selection_curves.png\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round2/fig_selection_gap.pdf\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round2/fig_selection_gap.png\\n/root/autodl-tmp/struct_self_consist_ie/output/figures/fig_selection_gap.pdf\\n/root/autodl-tmp/struct_self_consist_ie/output/figures/fig_selection_gap.png\\n/root/autodl-tmp/struct_self_consist_ie/output/figures/fig_selection_gap_with_re.pdf\\n/root/autodl-tmp/struct_self_consist_ie/output/figures/fig_selection_gap_with_re.png\\n/root/autodl-tmp/struct_self_consist_ie/artifacts/figures/fig_selection_gap_1024.pdf\\n/root/autodl-tmp/struct_self_consist_ie/artifacts/figures/fig_selection_gap_1024.png\\n/root/autodl-tmp/struct_self_consist_ie/docs/paper/figures/fig_selection_gap.pdf\\n/root/autodl-tmp/struct_self_consist_ie/docs/paper/figures/fig_selection_gap.png\\n/root/autodl-tmp/struct_self_consist_ie/docs/paper/figures/fig_selection_gap_dual_panel.pdf\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 93_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01GNWgqjpsga1MT3pc2PM6fe`</summary>
+
+```json
+{
+  "pattern": "gen_fig_selection|selection_gap.*\\.py|fig_selection.*gen",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "glob": "*.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d3999a21-0914-40f6-afdd-8951e6461b5c",
+  "uuid": "5c3978de-b938-4da3-9541-d18d390e235e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Eh2Lf6isF3YPuUxavK7zP3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2939,
+      "cache_read_input_tokens": 109123,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2939
+      },
+      "output_tokens": 39,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 94 · 2026-05-23T20:52:29.216Z_
+
+<details><summary>↩ Tool result · `toolu_01GNWgqjpsga1MT3pc2PM6fe`</summary>
+
+```text
+No files found
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d3999a21-0914-40f6-afdd-8951e6461b5c",
+  "uuid": "290dd15d-fed1-40b8-868f-5ac37eee8738",
+  "tool_use_result": {
+    "mode": "files_with_matches",
+    "filenames": [],
+    "numFiles": 0
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 95_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01AJj8SCGranhW9nMFyuR17p`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/figures/fig_selection_gap.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d3999a21-0914-40f6-afdd-8951e6461b5c",
+  "uuid": "f222ae5c-4075-4d6e-af51-7e85f50efad0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Eh2Lf6isF3YPuUxavK7zP3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2939,
+      "cache_read_input_tokens": 109123,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2939
+      },
+      "output_tokens": 39,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 96 · 2026-05-23T20:52:29.456Z_
+
+<details><summary>↩ Tool result · `toolu_01AJj8SCGranhW9nMFyuR17p`</summary>
+
+````text
+```json
+{
+  "type": "image",
+  "source": {
+    "type": "base64",
+    "data": "[ATTACHMENT_DATA_REDACTED]",
+    "media_type": "image/png"
+  }
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d3999a21-0914-40f6-afdd-8951e6461b5c",
+  "uuid": "47332316-7129-4546-bb95-7e8235214ee7",
+  "tool_use_result": {
+    "type": "image",
+    "file": {
+      "base64": "[ATTACHMENT_DATA_REDACTED]",
+      "type": "image/png",
+      "originalSize": 98315,
+      "dimensions": {
+        "originalWidth": 1299,
+        "originalHeight": 789,
+        "displayWidth": 1299,
+        "displayHeight": 789
+      }
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 97_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I can see the figure clearly. The green dashed line is labeled "Oracle +13.1" (approximately at 13.1pp on the right y-axis). The figure shows:
+- Oracle headroom = +13.1pp
+- LP ΔF1 = +0.04pp
+- SJ ΔF1 = -0.45pp
+- FK ΔF1 = -0.46pp
+- EM ΔF1 = -1.19pp
+- VC ΔF1 = -2.65pp
+
+
+- Random = -3.9pp
+
+There's a discrepancy here—the figure displays Oracle at +13.1pp, but the caption claims 11.4pp, suggesting the figure was generated with the body data showing approximately 13.0-13.1pp headroom while the caption was incorrectly updated. The LP signal shows +0.04pp in the figure rather than the +0.2pp mentioned in the text, and all other signals fall below the greedy baseline.
+
+The figure's Oracle value of +13.1pp aligns with the body data (Oracle=.775, Greedy=.645, headroom≈13.0pp), confirming this is the correct experimental result, while the caption's "11.4pp" appears to be an error. All three sources converge on approximately 13pp—the provenance shows 13.2pp, the table body calculates 13.0pp, and the figure displays 13.1pp—so I'll use 13.0pp from the table for consistency. Now I need to update the caption with the correct Oracle and Greedy values from the body, and then make the corresponding changes to the LaTeX file. I'm noticing an inconsistency across the tables—tab:scale_comparison shows SciERC at .667, but tab:fewnerd has it at .663, and the body text uses .645. Since .645 is the experimentally verified value from tab:selection, I should update tab:scale_comparison to match that, along with changing the Hdr value from 11.4 to 13.0 for consistency. — if tab:fewnerd shows SciERC Greedy=.663, and tab:scale_comparison now shows .645, these two tables have different Greedy values for SciERC. But they might use different metrics (tab:fewnerd says "instance-averaged F1", tab:scale_comparison doesn't specify). Or they might use different seed sets (tab:fewnerd is 3-seed, tab:scale_comparison might be single-seed).
+
+Actually, looking at the table body of tab:selection: LP=0.647 (best selection), Greedy=0.645, LP Δ=+0.2pp. But the FIGURE shows LP Δ=+0.04pp. So the figure and table use different data (figure might be single-seed, table is 2-seed mean).
+
+I'll focus on fixing the clear inconsistencies: the tab:selection caption versus body mismatch, and the figure caption error where it says 11.4pp but the figure actually shows 13.1pp. The scale_comparison table has its own separate issues I can address later. So I need to update the caption values from Oracle .781→.775 and Greedy .667→.645, fix the figure caption from 11.4→13.0, and propagate that same change through lines 39 and 47, plus update the appendix line 1606 to match. I'm realizing the scale_comparison table uses a different seed than tab:fewnerd, so the .667 Greedy value for SciERC comes from a single-seed run rather than the multi-seed mean of .663. This means I can keep scale_comparison unchanged since it's internally consistent, even though it differs from tab:selection due to using different metrics. Now I'll finalize the specific changes needed: updating the caption in single_signal.tex to reflect the corrected Oracle and Greedy values.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d3999a21-0914-40f6-afdd-8951e6461b5c",
+  "uuid": "88ae0c99-662c-4ec6-8e8f-3969c6a141b5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VW4xWsZF7B8kW4zjbirT1h",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1642,
+      "cache_read_input_tokens": 112062,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1642
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 98_
+
+**关键发现**：图中绿色虚线标注的是 "Oracle +13.1"，NOT 11.4pp！这证实表体数据 (.775/.645 → 13.0pp headroom) 是正确的实验数据，caption 的 "11.4pp"/".781"/".667" 是错误的覆盖。
+
+现在执行 **Method B**：更新 caption 和正文以匹配表体和图的实际数据。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d3999a21-0914-40f6-afdd-8951e6461b5c",
+  "uuid": "8e777347-bf5e-44fe-bc94-32d2ba381fd7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VW4xWsZF7B8kW4zjbirT1h",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1642,
+      "cache_read_input_tokens": 112062,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1642
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 99_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01WEcErWGpFULdnNMUbKqv3C`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/single_signal.tex",
+  "old_string": "baselines: 3-seed (Oracle${=}0.781$, Greedy${=}0.667$)",
+  "new_string": "baselines: 3-seed (Oracle${=}0.775$, Greedy${=}0.645$)"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d3999a21-0914-40f6-afdd-8951e6461b5c",
+  "uuid": "48212b79-c085-427d-b77d-1db1e517c79e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VW4xWsZF7B8kW4zjbirT1h",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1642,
+      "cache_read_input_tokens": 112062,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1642
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 100 · 2026-05-23T20:53:28.973Z_
+
+<details><summary>↩ Tool result · `toolu_01WEcErWGpFULdnNMUbKqv3C`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/single_signal.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d3999a21-0914-40f6-afdd-8951e6461b5c",
+  "uuid": "fa12b3a0-ab85-4096-9633-8d708e52870f",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/single_signal.tex",
+    "oldString": "baselines: 3-seed (Oracle${=}0.781$, Greedy${=}0.667$)",
+    "newString": "baselines: 3-seed (Oracle${=}0.775$, Greedy${=}0.645$)",
+    "originalFile": "\\section{Single-Signal Selection Results}\\label{sec:selection_gap}\n\n\\paragraph{Definitional vs.\\ empirical.}\nWe decompose the correlation-selection gap into two layers.\nThe first is structural: four of five signals are instance-level aggregates that assign identical scores to all $N$ candidates from a given input (\\S\\ref{sec:formulation}), so they estimate quality across inputs but cannot rank candidates within an instance---selection failure is a design property, not an empirical finding.\nThe second layer is empirical and constitutes the core diagnostic: LP---the only per-sample signal---suffers compression under constrained decoding, with 60\\% of SciERC instances showing within-instance LP range below 0.041 nats (Appendix~\\ref{app:logprob_ties}), leaving insufficient variation for sample discrimination. This compression is model-intrinsic: free-form decoding yields nearly identical LP distributions (within-instance std ratio $0.97{\\times}$; Appendix~\\ref{app:freeform_ablation}). Even where LP varies, selection gains depend on LP-quality alignment rather than degeneracy alone.\nCross-instance $\\rho$ (Table~\\ref{tab:quality_estimation}) is attenuated by varying instance difficulty; within-instance $\\rho$ directly measures whether LP discriminates candidates for a fixed input, making it the relevant predictor of selection success.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Best-of-$N$ selection (macro F1) on SciERC ($N{=}8$, $T{=}1.0$). Selection signals: 2-seed mean${\\pm}\\sigma$; baselines: 3-seed (Oracle${=}0.781$, Greedy${=}0.667$). LP is per-sample; others use consensus-proximity. $^\\dagger$One score per input.}\n\\label{tab:selection}\n\\begin{tabular}{lcc}\n\\toprule\nMethod & NER F1 & $p$ \\\\\n\\midrule\nOracle & $0.775 \\pm 0.001$ & --- \\\\\nGreedy ($T{=}0$) & $0.645 \\pm 0.001$ & --- \\\\\n\\midrule\nLP           & $\\mathbf{0.647} \\pm 0.005$ & .29 \\\\\nSJ           & $0.646 \\pm 0.002$ & .67 \\\\\nFK           & $0.646 \\pm 0.001$ & .79 \\\\\nEM           & $0.637 \\pm 0.001$ & n/a$^\\dagger$ \\\\\nVC           & $0.623 \\pm 0.004$ & n/a$^\\dagger$ \\\\\n\\midrule\nRandom       & $0.610 \\pm 0.003$ & --- \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{fig_selection_gap}\n\\caption{Correlation-selection gap on SciERC ($N{=}8$, $T{=}1.0$). Bars: QE $\\rho$; line: $\\Delta$F1 vs.\\ greedy (3-seed mean). Despite $\\rho$ up to 0.38, no signal outperforms greedy (all $p{\\geq}0.29$). Dashed green: oracle headroom ($+11.4$\\,pp; oracle headroom $=$ best-of-$N$ F1 $-$ greedy F1); dotted gray: random.}\n\\label{fig:selection_gap}\n\\end{figure}\n\nDespite $\\rho$ up to 0.38, no signal outperforms greedy on SciERC (Table~\\ref{tab:selection}; Figure~\\ref{fig:selection_gap}); the oracle shows 11.4\\,pp headroom, but LP achieves $+0.2$\\,pp ($p{=}0.29$), below MDE (${\\approx}$1.5\\,pp at $n{=}529$, 2--3 seeds; Appendix~\\ref{app:bootstrap_signal}).\nAll selection experiments use 2--3 training seeds; bootstrap CIs are reported in Appendix~\\ref{app:bootstrap_signal}.\nThe pattern holds across CoNLL and WNUT-17 (Table~\\ref{tab:cross_selection}).\nFew-NERD provides the clearest positive case: LP achieves $+1.39$\\,pp ($p{<}0.001$; Holm $p_{\\text{adj}}{=}0.021$, selection family $k{=}21$)\\footnote{Under global correction ($k{=}57$), LP-best selection reaches Holm $p_{\\text{adj}}{=}0.055$ (BH $p_{\\text{adj}}{=}0.003$).} at low degeneracy (13.0\\% vs.\\ 12.2--67.9\\%), while structural signals still degrade (VC $-1.79$, SJ $-2.14$\\,pp; \\S\\ref{sec:fewnerd}).\n\n\\paragraph{Diagnostic framework.}\nThree co-occurring factors jointly characterize the gap:\n(1)~instance degeneracy sets the ceiling (SciERC 12.2\\%, CoNLL 61.7\\%);\n(2)~oracle headroom bounds the opportunity within non-degenerate instances (CoNLL ${\\approx}4$\\,pp vs.\\ SciERC 11.4\\,pp);\n(3)~LP compression limits exploitation (Few-NERD within-instance $\\rho{\\approx}0.5$--$0.7$ vs.\\ SciERC $\\rho{\\approx}0.26$).\nDegeneracy does not predict LP gain across datasets ($\\rho{=}0.052$, $n{=}23$, $p{=}0.81$; Figure~\\ref{fig:degeneracy_scatter}), though it co-varies with LP within fixed settings ($\\rho{=}{-}0.881$; Appendix~\\ref{app:per_type_lp}).\nThese conditions interact ($R^2{<}0$); on non-degenerate instances, $\\alpha$ approaches zero ($0.000$--$0.121$) despite $\\rho$ up to 0.45 (\\S\\ref{sec:theory}).\n\n\\paragraph{Mechanistic evidence (Appendix~\\ref{sec:mechanistic}).}\nWhy does signal alignment collapse? Probing experiments on Qwen2.5-7B-Instruct reveal an \\textit{introspection boundary}: hidden-state linear probes achieve entity-level AUROC $0.63$--$0.88$, substantially exceeding prompt-based self-judgment (ESJ AUROC $0.51$; confirmed on Qwen3-8B: AUROC $0.50$--$0.55$; Appendix~\\ref{app:esj}), yet cross-dataset transfer drops to $0.56$--$0.67$ (LODO).\nEntity self-judgment, multi-round refinement ($-3.1$\\,pp vs.\\ greedy), and latent centroid selection ($-3.5$\\,pp) all fail to improve over greedy decoding.\nEntity quality is partially encoded in representations but inaccessible through the generation interface---consistent with the signal alignment collapse observed across all configurations.\nCross-model validation on Qwen3-8B confirms chance-level ESJ performance (AUROC $0.50$--$0.55$; Appendix~\\ref{app:esj}), suggesting the introspection boundary is architecture-general rather than model-specific.\n",
+    "structuredPatch": [
+      {
+        "oldStart": 9,
+        "oldLines": 7,
+        "newStart": 9,
+        "newLines": 7,
+        "lines": [
+          " \\begin{table}[t]",
+          " \\centering",
+          " \\small",
+          "-\\caption{Best-of-$N$ selection (macro F1) on SciERC ($N{=}8$, $T{=}1.0$). Selection signals: 2-seed mean${\\pm}\\sigma$; baselines: 3-seed (Oracle${=}0.781$, Greedy${=}0.667$). LP is per-sample; others use consensus-proximity. $^\\dagger$One score per input.}",
+          "+\\caption{Best-of-$N$ selection (macro F1) on SciERC ($N{=}8$, $T{=}1.0$). Selection signals: 2-seed mean${\\pm}\\sigma$; baselines: 3-seed (Oracle${=}0.775$, Greedy${=}0.645$). LP is per-sample; others use consensus-proximity. $^\\dagger$One score per input.}",
+          " \\label{tab:selection}",
+          " \\begin{tabular}{lcc}",
+          " \\toprule"
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 101_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01YPqndsY6P23T4BTeZLA3NQ`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/single_signal.tex",
+  "old_string": "Dashed green: oracle headroom ($+11.4$\\,pp",
+  "new_string": "Dashed green: oracle headroom ($+13.0$\\,pp"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d3999a21-0914-40f6-afdd-8951e6461b5c",
+  "uuid": "54e81856-0636-4148-bab2-efc0da016da8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VW4xWsZF7B8kW4zjbirT1h",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1642,
+      "cache_read_input_tokens": 112062,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1642
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 102 · 2026-05-23T20:53:30.312Z_
+
+<details><summary>↩ Tool result · `toolu_01YPqndsY6P23T4BTeZLA3NQ`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/single_signal.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d3999a21-0914-40f6-afdd-8951e6461b5c",
+  "uuid": "1a23b386-cca0-4838-8886-3ebbb17335a3",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/single_signal.tex",
+    "oldString": "Dashed green: oracle headroom ($+11.4$\\,pp",
+    "newString": "Dashed green: oracle headroom ($+13.0$\\,pp",
+    "originalFile": "\\section{Single-Signal Selection Results}\\label{sec:selection_gap}\n\n\\paragraph{Definitional vs.\\ empirical.}\nWe decompose the correlation-selection gap into two layers.\nThe first is structural: four of five signals are instance-level aggregates that assign identical scores to all $N$ candidates from a given input (\\S\\ref{sec:formulation}), so they estimate quality across inputs but cannot rank candidates within an instance---selection failure is a design property, not an empirical finding.\nThe second layer is empirical and constitutes the core diagnostic: LP---the only per-sample signal---suffers compression under constrained decoding, with 60\\% of SciERC instances showing within-instance LP range below 0.041 nats (Appendix~\\ref{app:logprob_ties}), leaving insufficient variation for sample discrimination. This compression is model-intrinsic: free-form decoding yields nearly identical LP distributions (within-instance std ratio $0.97{\\times}$; Appendix~\\ref{app:freeform_ablation}). Even where LP varies, selection gains depend on LP-quality alignment rather than degeneracy alone.\nCross-instance $\\rho$ (Table~\\ref{tab:quality_estimation}) is attenuated by varying instance difficulty; within-instance $\\rho$ directly measures whether LP discriminates candidates for a fixed input, making it the relevant predictor of selection success.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Best-of-$N$ selection (macro F1) on SciERC ($N{=}8$, $T{=}1.0$). Selection signals: 2-seed mean${\\pm}\\sigma$; baselines: 3-seed (Oracle${=}0.775$, Greedy${=}0.645$). LP is per-sample; others use consensus-proximity. $^\\dagger$One score per input.}\n\\label{tab:selection}\n\\begin{tabular}{lcc}\n\\toprule\nMethod & NER F1 & $p$ \\\\\n\\midrule\nOracle & $0.775 \\pm 0.001$ & --- \\\\\nGreedy ($T{=}0$) & $0.645 \\pm 0.001$ & --- \\\\\n\\midrule\nLP           & $\\mathbf{0.647} \\pm 0.005$ & .29 \\\\\nSJ           & $0.646 \\pm 0.002$ & .67 \\\\\nFK           & $0.646 \\pm 0.001$ & .79 \\\\\nEM           & $0.637 \\pm 0.001$ & n/a$^\\dagger$ \\\\\nVC           & $0.623 \\pm 0.004$ & n/a$^\\dagger$ \\\\\n\\midrule\nRandom       & $0.610 \\pm 0.003$ & --- \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{fig_selection_gap}\n\\caption{Correlation-selection gap on SciERC ($N{=}8$, $T{=}1.0$). Bars: QE $\\rho$; line: $\\Delta$F1 vs.\\ greedy (3-seed mean). Despite $\\rho$ up to 0.38, no signal outperforms greedy (all $p{\\geq}0.29$). Dashed green: oracle headroom ($+11.4$\\,pp; oracle headroom $=$ best-of-$N$ F1 $-$ greedy F1); dotted gray: random.}\n\\label{fig:selection_gap}\n\\end{figure}\n\nDespite $\\rho$ up to 0.38, no signal outperforms greedy on SciERC (Table~\\ref{tab:selection}; Figure~\\ref{fig:selection_gap}); the oracle shows 11.4\\,pp headroom, but LP achieves $+0.2$\\,pp ($p{=}0.29$), below MDE (${\\approx}$1.5\\,pp at $n{=}529$, 2--3 seeds; Appendix~\\ref{app:bootstrap_signal}).\nAll selection experiments use 2--3 training seeds; bootstrap CIs are reported in Appendix~\\ref{app:bootstrap_signal}.\nThe pattern holds across CoNLL and WNUT-17 (Table~\\ref{tab:cross_selection}).\nFew-NERD provides the clearest positive case: LP achieves $+1.39$\\,pp ($p{<}0.001$; Holm $p_{\\text{adj}}{=}0.021$, selection family $k{=}21$)\\footnote{Under global correction ($k{=}57$), LP-best selection reaches Holm $p_{\\text{adj}}{=}0.055$ (BH $p_{\\text{adj}}{=}0.003$).} at low degeneracy (13.0\\% vs.\\ 12.2--67.9\\%), while structural signals still degrade (VC $-1.79$, SJ $-2.14$\\,pp; \\S\\ref{sec:fewnerd}).\n\n\\paragraph{Diagnostic framework.}\nThree co-occurring factors jointly characterize the gap:\n(1)~instance degeneracy sets the ceiling (SciERC 12.2\\%, CoNLL 61.7\\%);\n(2)~oracle headroom bounds the opportunity within non-degenerate instances (CoNLL ${\\approx}4$\\,pp vs.\\ SciERC 11.4\\,pp);\n(3)~LP compression limits exploitation (Few-NERD within-instance $\\rho{\\approx}0.5$--$0.7$ vs.\\ SciERC $\\rho{\\approx}0.26$).\nDegeneracy does not predict LP gain across datasets ($\\rho{=}0.052$, $n{=}23$, $p{=}0.81$; Figure~\\ref{fig:degeneracy_scatter}), though it co-varies with LP within fixed settings ($\\rho{=}{-}0.881$; Appendix~\\ref{app:per_type_lp}).\nThese conditions interact ($R^2{<}0$); on non-degenerate instances, $\\alpha$ approaches zero ($0.000$--$0.121$) despite $\\rho$ up to 0.45 (\\S\\ref{sec:theory}).\n\n\\paragraph{Mechanistic evidence (Appendix~\\ref{sec:mechanistic}).}\nWhy does signal alignment collapse? Probing experiments on Qwen2.5-7B-Instruct reveal an \\textit{introspection boundary}: hidden-state linear probes achieve entity-level AUROC $0.63$--$0.88$, substantially exceeding prompt-based self-judgment (ESJ AUROC $0.51$; confirmed on Qwen3-8B: AUROC $0.50$--$0.55$; Appendix~\\ref{app:esj}), yet cross-dataset transfer drops to $0.56$--$0.67$ (LODO).\nEntity self-judgment, multi-round refinement ($-3.1$\\,pp vs.\\ greedy), and latent centroid selection ($-3.5$\\,pp) all fail to improve over greedy decoding.\nEntity quality is partially encoded in representations but inaccessible through the generation interface---consistent with the signal alignment collapse observed across all configurations.\nCross-model validation on Qwen3-8B confirms chance-level ESJ performance (AUROC $0.50$--$0.55$; Appendix~\\ref{app:esj}), suggesting the introspection boundary is architecture-general rather than model-specific.\n",
+    "structuredPatch": [
+      {
+        "oldStart": 32,
+        "oldLines": 7,
+        "newStart": 32,
+        "newLines": 7,
+        "lines": [
+          " \\begin{figure}[t]",
+          " \\centering",
+          " \\includegraphics[width=\\columnwidth]{fig_selection_gap}",
+          "-\\caption{Correlation-selection gap on SciERC ($N{=}8$, $T{=}1.0$). Bars: QE $\\rho$; line: $\\Delta$F1 vs.\\ greedy (3-seed mean). Despite $\\rho$ up to 0.38, no signal outperforms greedy (all $p{\\geq}0.29$). Dashed green: oracle headroom ($+11.4$\\,pp; oracle headroom $=$ best-of-$N$ F1 $-$ greedy F1); dotted gray: random.}",
+          "+\\caption{Correlation-selection gap on SciERC ($N{=}8$, $T{=}1.0$). Bars: QE $\\rho$; line: $\\Delta$F1 vs.\\ greedy (3-seed mean). Despite $\\rho$ up to 0.38, no signal outperforms greedy (all $p{\\geq}0.29$). Dashed green: oracle headroom ($+13.0$\\,pp; oracle headroom $=$ best-of-$N$ F1 $-$ greedy F1); dotted gray: random.}",
+          " \\label{fig:selection_gap}",
+          " \\end{figure}",
+          " "
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 103_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01YM1wp5PXctimhZvz4tWAL5`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/single_signal.tex",
+  "old_string": "the oracle shows 11.4\\,pp headroom",
+  "new_string": "the oracle shows 13.0\\,pp headroom"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d3999a21-0914-40f6-afdd-8951e6461b5c",
+  "uuid": "ba5ddd81-aeaf-413b-bd4a-ea32e2143bed",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VW4xWsZF7B8kW4zjbirT1h",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1642,
+      "cache_read_input_tokens": 112062,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1642
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 104 · 2026-05-23T20:53:31.294Z_
+
+<details><summary>↩ Tool result · `toolu_01YM1wp5PXctimhZvz4tWAL5`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/single_signal.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d3999a21-0914-40f6-afdd-8951e6461b5c",
+  "uuid": "56b537cc-76d4-4fa9-ae03-8d0b731d53a9",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/single_signal.tex",
+    "oldString": "the oracle shows 11.4\\,pp headroom",
+    "newString": "the oracle shows 13.0\\,pp headroom",
+    "originalFile": "\\section{Single-Signal Selection Results}\\label{sec:selection_gap}\n\n\\paragraph{Definitional vs.\\ empirical.}\nWe decompose the correlation-selection gap into two layers.\nThe first is structural: four of five signals are instance-level aggregates that assign identical scores to all $N$ candidates from a given input (\\S\\ref{sec:formulation}), so they estimate quality across inputs but cannot rank candidates within an instance---selection failure is a design property, not an empirical finding.\nThe second layer is empirical and constitutes the core diagnostic: LP---the only per-sample signal---suffers compression under constrained decoding, with 60\\% of SciERC instances showing within-instance LP range below 0.041 nats (Appendix~\\ref{app:logprob_ties}), leaving insufficient variation for sample discrimination. This compression is model-intrinsic: free-form decoding yields nearly identical LP distributions (within-instance std ratio $0.97{\\times}$; Appendix~\\ref{app:freeform_ablation}). Even where LP varies, selection gains depend on LP-quality alignment rather than degeneracy alone.\nCross-instance $\\rho$ (Table~\\ref{tab:quality_estimation}) is attenuated by varying instance difficulty; within-instance $\\rho$ directly measures whether LP discriminates candidates for a fixed input, making it the relevant predictor of selection success.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Best-of-$N$ selection (macro F1) on SciERC ($N{=}8$, $T{=}1.0$). Selection signals: 2-seed mean${\\pm}\\sigma$; baselines: 3-seed (Oracle${=}0.775$, Greedy${=}0.645$). LP is per-sample; others use consensus-proximity. $^\\dagger$One score per input.}\n\\label{tab:selection}\n\\begin{tabular}{lcc}\n\\toprule\nMethod & NER F1 & $p$ \\\\\n\\midrule\nOracle & $0.775 \\pm 0.001$ & --- \\\\\nGreedy ($T{=}0$) & $0.645 \\pm 0.001$ & --- \\\\\n\\midrule\nLP           & $\\mathbf{0.647} \\pm 0.005$ & .29 \\\\\nSJ           & $0.646 \\pm 0.002$ & .67 \\\\\nFK           & $0.646 \\pm 0.001$ & .79 \\\\\nEM           & $0.637 \\pm 0.001$ & n/a$^\\dagger$ \\\\\nVC           & $0.623 \\pm 0.004$ & n/a$^\\dagger$ \\\\\n\\midrule\nRandom       & $0.610 \\pm 0.003$ & --- \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{fig_selection_gap}\n\\caption{Correlation-selection gap on SciERC ($N{=}8$, $T{=}1.0$). Bars: QE $\\rho$; line: $\\Delta$F1 vs.\\ greedy (3-seed mean). Despite $\\rho$ up to 0.38, no signal outperforms greedy (all $p{\\geq}0.29$). Dashed green: oracle headroom ($+13.0$\\,pp; oracle headroom $=$ best-of-$N$ F1 $-$ greedy F1); dotted gray: random.}\n\\label{fig:selection_gap}\n\\end{figure}\n\nDespite $\\rho$ up to 0.38, no signal outperforms greedy on SciERC (Table~\\ref{tab:selection}; Figure~\\ref{fig:selection_gap}); the oracle shows 11.4\\,pp headroom, but LP achieves $+0.2$\\,pp ($p{=}0.29$), below MDE (${\\approx}$1.5\\,pp at $n{=}529$, 2--3 seeds; Appendix~\\ref{app:bootstrap_signal}).\nAll selection experiments use 2--3 training seeds; bootstrap CIs are reported in Appendix~\\ref{app:bootstrap_signal}.\nThe pattern holds across CoNLL and WNUT-17 (Table~\\ref{tab:cross_selection}).\nFew-NERD provides the clearest positive case: LP achieves $+1.39$\\,pp ($p{<}0.001$; Holm $p_{\\text{adj}}{=}0.021$, selection family $k{=}21$)\\footnote{Under global correction ($k{=}57$), LP-best selection reaches Holm $p_{\\text{adj}}{=}0.055$ (BH $p_{\\text{adj}}{=}0.003$).} at low degeneracy (13.0\\% vs.\\ 12.2--67.9\\%), while structural signals still degrade (VC $-1.79$, SJ $-2.14$\\,pp; \\S\\ref{sec:fewnerd}).\n\n\\paragraph{Diagnostic framework.}\nThree co-occurring factors jointly characterize the gap:\n(1)~instance degeneracy sets the ceiling (SciERC 12.2\\%, CoNLL 61.7\\%);\n(2)~oracle headroom bounds the opportunity within non-degenerate instances (CoNLL ${\\approx}4$\\,pp vs.\\ SciERC 11.4\\,pp);\n(3)~LP compression limits exploitation (Few-NERD within-instance $\\rho{\\approx}0.5$--$0.7$ vs.\\ SciERC $\\rho{\\approx}0.26$).\nDegeneracy does not predict LP gain across datasets ($\\rho{=}0.052$, $n{=}23$, $p{=}0.81$; Figure~\\ref{fig:degeneracy_scatter}), though it co-varies with LP within fixed settings ($\\rho{=}{-}0.881$; Appendix~\\ref{app:per_type_lp}).\nThese conditions interact ($R^2{<}0$); on non-degenerate instances, $\\alpha$ approaches zero ($0.000$--$0.121$) despite $\\rho$ up to 0.45 (\\S\\ref{sec:theory}).\n\n\\paragraph{Mechanistic evidence (Appendix~\\ref{sec:mechanistic}).}\nWhy does signal alignment collapse? Probing experiments on Qwen2.5-7B-Instruct reveal an \\textit{introspection boundary}: hidden-state linear probes achieve entity-level AUROC $0.63$--$0.88$, substantially exceeding prompt-based self-judgment (ESJ AUROC $0.51$; confirmed on Qwen3-8B: AUROC $0.50$--$0.55$; Appendix~\\ref{app:esj}), yet cross-dataset transfer drops to $0.56$--$0.67$ (LODO).\nEntity self-judgment, multi-round refinement ($-3.1$\\,pp vs.\\ greedy), and latent centroid selection ($-3.5$\\,pp) all fail to improve over greedy decoding.\nEntity quality is partially encoded in representations but inaccessible through the generation interface---consistent with the signal alignment collapse observed across all configurations.\nCross-model validation on Qwen3-8B confirms chance-level ESJ performance (AUROC $0.50$--$0.55$; Appendix~\\ref{app:esj}), suggesting the introspection boundary is architecture-general rather than model-specific.\n",
+    "structuredPatch": [
+      {
+        "oldStart": 36,
+        "oldLines": 7,
+        "newStart": 36,
+        "newLines": 7,
+        "lines": [
+          " \\label{fig:selection_gap}",
+          " \\end{figure}",
+          " ",
+          "-Despite $\\rho$ up to 0.38, no signal outperforms greedy on SciERC (Table~\\ref{tab:selection}; Figure~\\ref{fig:selection_gap}); the oracle shows 11.4\\,pp headroom, but LP achieves $+0.2$\\,pp ($p{=}0.29$), below MDE (${\\approx}$1.5\\,pp at $n{=}529$, 2--3 seeds; Appendix~\\ref{app:bootstrap_signal}).",
+          "+Despite $\\rho$ up to 0.38, no signal outperforms greedy on SciERC (Table~\\ref{tab:selection}; Figure~\\ref{fig:selection_gap}); the oracle shows 13.0\\,pp headroom, but LP achieves $+0.2$\\,pp ($p{=}0.29$), below MDE (${\\approx}$1.5\\,pp at $n{=}529$, 2--3 seeds; Appendix~\\ref{app:bootstrap_signal}).",
+          " All selection experiments use 2--3 training seeds; bootstrap CIs are reported in Appendix~\\ref{app:bootstrap_signal}.",
+          " The pattern holds across CoNLL and WNUT-17 (Table~\\ref{tab:cross_selection}).",
+          " Few-NERD provides the clearest positive case: LP achieves $+1.39$\\,pp ($p{<}0.001$; Holm $p_{\\text{adj}}{=}0.021$, selection family $k{=}21$)\\footnote{Under global correction ($k{=}57$), LP-best selection reaches Holm $p_{\\text{adj}}{=}0.055$ (BH $p_{\\text{adj}}{=}0.003$).} at low degeneracy (13.0\\% vs.\\ 12.2--67.9\\%), while structural signals still degrade (VC $-1.79$, SJ $-2.14$\\,pp; \\S\\ref{sec:fewnerd})."
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 105_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_0141ZJY1KoTqRtPqgCqQmrVy`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/single_signal.tex",
+  "old_string": "CoNLL ${\\approx}4$\\,pp vs.\\ SciERC 11.4\\,pp",
+  "new_string": "CoNLL ${\\approx}4$\\,pp vs.\\ SciERC 13.0\\,pp"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d3999a21-0914-40f6-afdd-8951e6461b5c",
+  "uuid": "e70436b3-9ee9-423a-8ebf-f5703737ac90",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VW4xWsZF7B8kW4zjbirT1h",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1642,
+      "cache_read_input_tokens": 112062,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1642
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 106 · 2026-05-23T20:53:32.592Z_
+
+<details><summary>↩ Tool result · `toolu_0141ZJY1KoTqRtPqgCqQmrVy`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/single_signal.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d3999a21-0914-40f6-afdd-8951e6461b5c",
+  "uuid": "c36c785b-9ea7-4a9c-b3e9-273bd0f9af7c",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/single_signal.tex",
+    "oldString": "CoNLL ${\\approx}4$\\,pp vs.\\ SciERC 11.4\\,pp",
+    "newString": "CoNLL ${\\approx}4$\\,pp vs.\\ SciERC 13.0\\,pp",
+    "originalFile": "\\section{Single-Signal Selection Results}\\label{sec:selection_gap}\n\n\\paragraph{Definitional vs.\\ empirical.}\nWe decompose the correlation-selection gap into two layers.\nThe first is structural: four of five signals are instance-level aggregates that assign identical scores to all $N$ candidates from a given input (\\S\\ref{sec:formulation}), so they estimate quality across inputs but cannot rank candidates within an instance---selection failure is a design property, not an empirical finding.\nThe second layer is empirical and constitutes the core diagnostic: LP---the only per-sample signal---suffers compression under constrained decoding, with 60\\% of SciERC instances showing within-instance LP range below 0.041 nats (Appendix~\\ref{app:logprob_ties}), leaving insufficient variation for sample discrimination. This compression is model-intrinsic: free-form decoding yields nearly identical LP distributions (within-instance std ratio $0.97{\\times}$; Appendix~\\ref{app:freeform_ablation}). Even where LP varies, selection gains depend on LP-quality alignment rather than degeneracy alone.\nCross-instance $\\rho$ (Table~\\ref{tab:quality_estimation}) is attenuated by varying instance difficulty; within-instance $\\rho$ directly measures whether LP discriminates candidates for a fixed input, making it the relevant predictor of selection success.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Best-of-$N$ selection (macro F1) on SciERC ($N{=}8$, $T{=}1.0$). Selection signals: 2-seed mean${\\pm}\\sigma$; baselines: 3-seed (Oracle${=}0.775$, Greedy${=}0.645$). LP is per-sample; others use consensus-proximity. $^\\dagger$One score per input.}\n\\label{tab:selection}\n\\begin{tabular}{lcc}\n\\toprule\nMethod & NER F1 & $p$ \\\\\n\\midrule\nOracle & $0.775 \\pm 0.001$ & --- \\\\\nGreedy ($T{=}0$) & $0.645 \\pm 0.001$ & --- \\\\\n\\midrule\nLP           & $\\mathbf{0.647} \\pm 0.005$ & .29 \\\\\nSJ           & $0.646 \\pm 0.002$ & .67 \\\\\nFK           & $0.646 \\pm 0.001$ & .79 \\\\\nEM           & $0.637 \\pm 0.001$ & n/a$^\\dagger$ \\\\\nVC           & $0.623 \\pm 0.004$ & n/a$^\\dagger$ \\\\\n\\midrule\nRandom       & $0.610 \\pm 0.003$ & --- \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{fig_selection_gap}\n\\caption{Correlation-selection gap on SciERC ($N{=}8$, $T{=}1.0$). Bars: QE $\\rho$; line: $\\Delta$F1 vs.\\ greedy (3-seed mean). Despite $\\rho$ up to 0.38, no signal outperforms greedy (all $p{\\geq}0.29$). Dashed green: oracle headroom ($+13.0$\\,pp; oracle headroom $=$ best-of-$N$ F1 $-$ greedy F1); dotted gray: random.}\n\\label{fig:selection_gap}\n\\end{figure}\n\nDespite $\\rho$ up to 0.38, no signal outperforms greedy on SciERC (Table~\\ref{tab:selection}; Figure~\\ref{fig:selection_gap}); the oracle shows 13.0\\,pp headroom, but LP achieves $+0.2$\\,pp ($p{=}0.29$), below MDE (${\\approx}$1.5\\,pp at $n{=}529$, 2--3 seeds; Appendix~\\ref{app:bootstrap_signal}).\nAll selection experiments use 2--3 training seeds; bootstrap CIs are reported in Appendix~\\ref{app:bootstrap_signal}.\nThe pattern holds across CoNLL and WNUT-17 (Table~\\ref{tab:cross_selection}).\nFew-NERD provides the clearest positive case: LP achieves $+1.39$\\,pp ($p{<}0.001$; Holm $p_{\\text{adj}}{=}0.021$, selection family $k{=}21$)\\footnote{Under global correction ($k{=}57$), LP-best selection reaches Holm $p_{\\text{adj}}{=}0.055$ (BH $p_{\\text{adj}}{=}0.003$).} at low degeneracy (13.0\\% vs.\\ 12.2--67.9\\%), while structural signals still degrade (VC $-1.79$, SJ $-2.14$\\,pp; \\S\\ref{sec:fewnerd}).\n\n\\paragraph{Diagnostic framework.}\nThree co-occurring factors jointly characterize the gap:\n(1)~instance degeneracy sets the ceiling (SciERC 12.2\\%, CoNLL 61.7\\%);\n(2)~oracle headroom bounds the opportunity within non-degenerate instances (CoNLL ${\\approx}4$\\,pp vs.\\ SciERC 11.4\\,pp);\n(3)~LP compression limits exploitation (Few-NERD within-instance $\\rho{\\approx}0.5$--$0.7$ vs.\\ SciERC $\\rho{\\approx}0.26$).\nDegeneracy does not predict LP gain across datasets ($\\rho{=}0.052$, $n{=}23$, $p{=}0.81$; Figure~\\ref{fig:degeneracy_scatter}), though it co-varies with LP within fixed settings ($\\rho{=}{-}0.881$; Appendix~\\ref{app:per_type_lp}).\nThese conditions interact ($R^2{<}0$); on non-degenerate instances, $\\alpha$ approaches zero ($0.000$--$0.121$) despite $\\rho$ up to 0.45 (\\S\\ref{sec:theory}).\n\n\\paragraph{Mechanistic evidence (Appendix~\\ref{sec:mechanistic}).}\nWhy does signal alignment collapse? Probing experiments on Qwen2.5-7B-Instruct reveal an \\textit{introspection boundary}: hidden-state linear probes achieve entity-level AUROC $0.63$--$0.88$, substantially exceeding prompt-based self-judgment (ESJ AUROC $0.51$; confirmed on Qwen3-8B: AUROC $0.50$--$0.55$; Appendix~\\ref{app:esj}), yet cross-dataset transfer drops to $0.56$--$0.67$ (LODO).\nEntity self-judgment, multi-round refinement ($-3.1$\\,pp vs.\\ greedy), and latent centroid selection ($-3.5$\\,pp) all fail to improve over greedy decoding.\nEntity quality is partially encoded in representations but inaccessible through the generation interface---consistent with the signal alignment collapse observed across all configurations.\nCross-model validation on Qwen3-8B confirms chance-level ESJ performance (AUROC $0.50$--$0.55$; Appendix~\\ref{app:esj}), suggesting the introspection boundary is architecture-general rather than model-specific.\n",
+    "structuredPatch": [
+      {
+        "oldStart": 44,
+        "oldLines": 7,
+        "newStart": 44,
+        "newLines": 7,
+        "lines": [
+          " \\paragraph{Diagnostic framework.}",
+          " Three co-occurring factors jointly characterize the gap:",
+          " (1)~instance degeneracy sets the ceiling (SciERC 12.2\\%, CoNLL 61.7\\%);",
+          "-(2)~oracle headroom bounds the opportunity within non-degenerate instances (CoNLL ${\\approx}4$\\,pp vs.\\ SciERC 11.4\\,pp);",
+          "+(2)~oracle headroom bounds the opportunity within non-degenerate instances (CoNLL ${\\approx}4$\\,pp vs.\\ SciERC 13.0\\,pp);",
+          " (3)~LP compression limits exploitation (Few-NERD within-instance $\\rho{\\approx}0.5$--$0.7$ vs.\\ SciERC $\\rho{\\approx}0.26$).",
+          " Degeneracy does not predict LP gain across datasets ($\\rho{=}0.052$, $n{=}23$, $p{=}0.81$; Figure~\\ref{fig:degeneracy_scatter}), though it co-varies with LP within fixed settings ($\\rho{=}{-}0.881$; Appendix~\\ref{app:per_type_lp}).",
+          " These conditions interact ($R^2{<}0$); on non-degenerate instances, $\\alpha$ approaches zero ($0.000$--$0.121$) despite $\\rho$ up to 0.45 (\\S\\ref{sec:theory})."
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 107_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good, the single_signal.tex changes are done. Now I need to check:
+1. appendix.tex for the scale_comparison table (line 1606)
+2. Any other references to 11.4pp in appendix.tex
+3. AUROC ranking residuals
+
+Let me check appendix.tex line 1606. I already decided to update it since it refers to the same SciERC 8B FT data.
+
+Wait, from my earlier analysis, the scale_comparison table uses Greedy values that match tab:fewnerd for FewNERD (.748) and CoNLL (.908), but SciERC shows .667 which doesn't match tab:fewnerd's .663. 
+
+The .667 value comes from a single seed run, while tab:selection body uses .645 which is entity-type-averaged macro F1. If I change scale_comparison to .645, I'd be mixing different F1 metrics in the same table since the other Greedy values (.748/.908) are instance-averaged. So I should leave scale_comparison as is and instead search for other instances of 11.4 in the appendix related to SciERC.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d3999a21-0914-40f6-afdd-8951e6461b5c",
+  "uuid": "fa916d11-4a94-42e0-94fe-48de541eaf54",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LvX7kgrN8NwzH2eNvGW3qh",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3586,
+      "cache_read_input_tokens": 113704,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3586
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 108_
+
+Now let me check the appendix for any references to 11.4pp that should be updated.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d3999a21-0914-40f6-afdd-8951e6461b5c",
+  "uuid": "e7c33dfa-f95e-43b8-b180-5f640d342e8a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LvX7kgrN8NwzH2eNvGW3qh",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3586,
+      "cache_read_input_tokens": 113704,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3586
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 109_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01FEZd6phWuWo7LrTfWHB8cJ`</summary>
+
+```json
+{
+  "pattern": "11\\.4",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+  "output_mode": "content",
+  "-n": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d3999a21-0914-40f6-afdd-8951e6461b5c",
+  "uuid": "50b2c734-9004-4373-ab0f-2e35f7971f6a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LvX7kgrN8NwzH2eNvGW3qh",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3586,
+      "cache_read_input_tokens": 113704,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3586
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 110 · 2026-05-23T20:53:46.440Z_
+
+<details><summary>↩ Tool result · `toolu_01FEZd6phWuWo7LrTfWHB8cJ`</summary>
+
+```text
+1606:SciERC & 8B FT  & .667 & 11.4 & 12.2 & .326 & .324 & .177 & .159 \\
+1987:Location & 8{,}023 & 11.4 & .793 & .798 & $+$0.53 & .520 & 10.3\,pp \\
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d3999a21-0914-40f6-afdd-8951e6461b5c",
+  "uuid": "7a47b1a5-59e3-4a72-b946-87900c6f7053",
+  "tool_use_result": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "1606:SciERC & 8B FT  & .667 & 11.4 & 12.2 & .326 & .324 & .177 & .159 \\\\\n1987:Location & 8{,}023 & 11.4 & .793 & .798 & $+$0.53 & .520 & 10.3\\,pp \\\\",
+    "numLines": 2
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 111_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01A4GsJ7UdPi9v9XB1uDK4md`</summary>
+
+```json
+{
+  "pattern": "11\\.4",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections",
+  "output_mode": "content",
+  "-n": true,
+  "glob": "*.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d3999a21-0914-40f6-afdd-8951e6461b5c",
+  "uuid": "dfa4b473-e6d0-4680-9a2a-fe7e5ab14951",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LvX7kgrN8NwzH2eNvGW3qh",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3586,
+      "cache_read_input_tokens": 113704,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3586
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 112 · 2026-05-23T20:53:47.428Z_
+
+<details><summary>↩ Tool result · `toolu_01A4GsJ7UdPi9v9XB1uDK4md`</summary>
+
+```text
+docs/paper/sections/appendix.tex:1606:SciERC & 8B FT  & .667 & 11.4 & 12.2 & .326 & .324 & .177 & .159 \\
+docs/paper/sections/appendix.tex:1987:Location & 8{,}023 & 11.4 & .793 & .798 & $+$0.53 & .520 & 10.3\,pp \\
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d3999a21-0914-40f6-afdd-8951e6461b5c",
+  "uuid": "befd66b8-9e90-4c45-91c6-ac56f2655c93",
+  "tool_use_result": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "docs/paper/sections/appendix.tex:1606:SciERC & 8B FT  & .667 & 11.4 & 12.2 & .326 & .324 & .177 & .159 \\\\\ndocs/paper/sections/appendix.tex:1987:Location & 8{,}023 & 11.4 & .793 & .798 & $+$0.53 & .520 & 10.3\\,pp \\\\",
+    "numLines": 2
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 113_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Two occurrences of 11.4 in appendix.tex:
+
+1. Line 1606: `SciERC & 8B FT & .667 & 11.4 & 12.2 & .326 & .324 & .177 & .159 \\`
+   - This is in tab:scale_comparison. The 11.4 is the Hdr (headroom). It uses .667 Greedy.
+   - I decided NOT to change this because it uses a different metric from tab:selection.
+   - But now that I've changed tab:selection's headroom to 13.0pp, having 11.4pp in scale_comparison for the same SciERC 8B FT experiment is inconsistent.
+   - Actually, these tables measure different things — tab:selection reports macro F1 while tab:scale_comparison doesn't specify the metric, and the Greedy scores differ (.645 vs .667), which explains why the headroom values diverge. I'll keep this unchanged since it's a separate measurement.
+
+2. Line 1987: `Location & 8{,}023 & 11.4 & .793 & .798 & $+$0.53 & .520 & 10.3\,pp \\`
+   - This 11.4 refers to degeneracy percentage for the Location entity type, not headroom.
+
+The real issue is that a reviewer might notice the SciERC 8B FT headroom differs between tab:selection (13.0pp) and tab:scale_comparison (11.4pp) and question why. The Greedy values are different because they're computing different F1 variants, but I should clarify whether this needs a note.
+
+Looking at the evidence, the body text values match the figure (+13.1 on the oracle line), so those are from the actual experiment. The scale_comparison table likely comes from a separate pipeline run, so I'll leave it as-is and flag the discrepancy rather than change it without full understanding of its provenance.
+
+I should also check if introduction.tex or conclusion.tex reference headroom values that might indirectly point to the 11.4pp figure.
+
+Let me search across all tex files for any remaining SciERC headroom references I might have missed, particularly since I already updated single_signal.tex.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d3999a21-0914-40f6-afdd-8951e6461b5c",
+  "uuid": "07926079-a0a2-4764-b3db-e748114183cf",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HEso3W4FjHCdMJZXM7X9sW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 958,
+      "cache_read_input_tokens": 117290,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 958
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 114_
+
+Line 1606 is in tab:scale_comparison (different metric/seed from tab:selection). Line 1987 is Location entity degeneracy 11.4% — unrelated. Let me check other tex files for SciERC headroom references.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d3999a21-0914-40f6-afdd-8951e6461b5c",
+  "uuid": "c31f0297-c975-4bb4-8e42-5c484810cb31",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HEso3W4FjHCdMJZXM7X9sW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 958,
+      "cache_read_input_tokens": 117290,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 958
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 115_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_016CD79wiuF3D7Y7bHnE8Gid`</summary>
+
+```json
+{
+  "pattern": "SciERC.*headroom|headroom.*SciERC|headroom.*11\\.|11\\..*headroom",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections",
+  "output_mode": "content",
+  "-n": true,
+  "glob": "*.tex",
+  "-i": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d3999a21-0914-40f6-afdd-8951e6461b5c",
+  "uuid": "be139f0a-f446-48ab-90fe-6adf3e155072",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HEso3W4FjHCdMJZXM7X9sW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 958,
+      "cache_read_input_tokens": 117290,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 958
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 116 · 2026-05-23T20:54:10.330Z_
+
+<details><summary>↩ Tool result · `toolu_016CD79wiuF3D7Y7bHnE8Gid`</summary>
+
+```text
+docs/paper/sections/_archived/experiments_OLD.tex:97:On SciERC ($n{=}529$, 2-seed sign tests\footnote{MDE${\approx}$1.5~pp at 80\% power ($n{=}529$); Few-NERD ($n{=}32{,}565$; MDE${\approx}$0.22~pp) provides the definitive test.}), the oracle (0.775) reveals 13.0~pp of headroom, but LP achieves $+0.2$~pp ($p{=}0.29$), below the MDE (${\approx}$1.5~pp); selection effects below this threshold cannot be reliably detected.
+docs/paper/sections/_archived/experiments_OLD.tex:102:Three factors shape LP selection gains: (1)~\textit{instance degeneracy} (SciERC 17.8\%, CoNLL 61.7\%; Table~\ref{tab:fewnerd}); (2)~\textit{oracle headroom} (CoNLL ${\approx}4$\,pp vs.\ SciERC 13.0\,pp); (3)~\textit{LP-quality alignment} (Few-NERD $\rho{\approx}0.5$--$0.7$ vs.\ SciERC $\rho{\approx}0.26$).
+docs/paper/sections/_archived/experiments_OLD.tex:203:LP-weighted construction yields $+1.53$\,pp on SciERC 72B ZS ($p{=}0.008$, CI [$+0.25$, $+2.82$]), recovering $10.2$\% of headroom. Construction fails on Few-NERD ($-0.20$\,pp) and CoNLL ($-0.37$\,pp) where degeneracy exceeds $46$\%---consistent with FT-regime degeneracy gating.
+docs/paper/sections/_archived/experiments_OLD.tex:244:LP-weighted construction improves on Few-NERD ($+1.40{\pm}0.51$\,pp, $p{<}0.001$; survives Holm--Bonferroni at $k{=}57$) and SciERC ($+1.02{\pm}0.49$\,pp, $p{=}0.004$, $p_{\text{adj}}{=}0.20$; Table~\ref{tab:entity_construction}), recovering 8--11\% of oracle headroom. CoNLL shows no gain ($-0.39$\,pp), consistent with high degeneracy ($N$-scaling in Appendix~\ref{app:n_scaling}).
+docs/paper/sections/single_signal.tex:35:\caption{Correlation-selection gap on SciERC ($N{=}8$, $T{=}1.0$). Bars: QE $\rho$; line: $\Delta$F1 vs.\ greedy (3-seed mean). Despite $\rho$ up to 0.38, no signal outperforms greedy (all $p{\geq}0.29$). Dashed green: oracle headroom ($+13.0$\,pp; oracle headroom $=$ best-of-$N$ F1 $-$ greedy F1); dotted gray: random.}
+docs/paper/sections/single_signal.tex:39:Despite $\rho$ up to 0.38, no signal outperforms greedy on SciERC (Table~\ref{tab:selection}; Figure~\ref{fig:selection_gap}); the oracle shows 13.0\,pp headroom, but LP achieves $+0.2$\,pp ($p{=}0.29$), below MDE (${\approx}$1.5\,pp at $n{=}529$, 2--3 seeds; Appendix~\ref{app:bootstrap_signal}).
+docs/paper/sections/single_signal.tex:47:(2)~oracle headroom bounds the opportunity within non-degenerate instances (CoNLL ${\approx}4$\,pp vs.\ SciERC 13.0\,pp);
+docs/paper/sections/appendix.tex:436:[Omitted long matching line]
+docs/paper/sections/appendix.tex:440:On the 44\% of Qwen SciERC instances with high diversity (${\geq}4$ unique outputs among 8 samples, $n{=}232$), oracle headroom reaches $+$16.3~pp, yet all consistency-based signals (SJ, FK, EM, VC) select at or below single-sample, and LP, the only per-sample signal, achieves merely $+$0.8~pp.
+docs/paper/sections/appendix.tex:529:Supervised classifiers (logistic regression, MLP, random forest) trained on all five signals (5-fold CV, 3-seed mean, SciERC, $N{=}16$, $+17.9$~pp headroom) all perform at or below greedy (F1${=}0.644$; LR: $-0.4$~pp; MLP: $-1.6$~pp; RF: $-3.1$~pp).
+docs/paper/sections/appendix.tex:1004:\caption{Selection $\Delta$ (pp over single-sample) stratified by VC quartile on SciERC ($N{=}8$, Qwen3-8B). Oracle headroom collapses at Q4; LP rankings are unreliable at Q1--Q2. Neither quartile supports consistent selection gains.}
+docs/paper/sections/appendix.tex:1252:Few-NERD and SciERC ($\alpha_{\textup{crit,eff}} {<} 1$) show significantly negative $\Delta$, indicating that even where structural headroom exists, marginal-entity precision is insufficient.
+docs/paper/sections/appendix.tex:1622:LP-weighted construction yields $+1.53$\,pp on SciERC 72B ZS ($p{=}0.008$, CI [$+0.25$, $+2.82$]), recovering $10.2$\% of headroom. Construction fails on Few-NERD ($-0.20$\,pp) and CoNLL ($-0.37$\,pp) where degeneracy exceeds $46$\%---consistent with FT-regime degeneracy gating.
+docs/paper/sections/appendix.tex:1687:Doubling the sample budget ($N{=}8{\to}16$) maintains the pretrained MV advantage ($+4.06$\,pp) while reducing degeneracy ($11.7{\to}7.6$\%) and expanding oracle headroom ($+2.9$\,pp); however, capture rate decreases ($36{\to}29$\%), indicating diminishing marginal returns from additional samples.
+docs/paper/sections/appendix.tex:1769:Table~\ref{tab:t_ablation} reports the effect of sampling temperature on QE signals, oracle headroom, and output quality across four temperatures on SciERC NER.
+docs/paper/sections/appendix.tex:1908:\caption{LLaMA-3.2-3B SciERC NER quality estimation and selection ($N{=}8$, $T{=}1.0$, seed${=}42$). Greedy F1${=}0.627$, Oracle F1${=}0.763$, headroom${=}13.63$~pp.}
+docs/paper/sections/appendix.tex:2034:Low degeneracy alone does not ensure selection gains: CoNLL MISC (23\%, headroom 12.6~pp) and SciERC OtherScientificTerm (6.2\%, headroom 12.5~pp) both show negative LP selection despite available headroom; LP correlation strength with the type-specific quality function is an additional prerequisite.
+docs/paper/sections/experiments_main.tex:104:LP-weighted construction yields $+1.40{\pm}0.51$\,pp on Few-NERD (4-seed mean; $p{<}0.001$; Table~\ref{tab:entity_construction}), consistent with favorable diagnostic conditions ($D{=}13$\%, headroom${=}12.4$\,pp), a non-significant $+0.32$\,pp on SciERC, and no gain on CoNLL ($-0.39$\,pp).\footnote{Degenerate instances contribute $\Delta{=}0$ by construction; all gains concentrate in the non-degenerate subset.}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d3999a21-0914-40f6-afdd-8951e6461b5c",
+  "uuid": "50c1a107-ef17-40f1-af9d-a2d02c67dc15",
+  "tool_use_result": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "docs/paper/sections/_archived/experiments_OLD.tex:97:On SciERC ($n{=}529$, 2-seed sign tests\\footnote{MDE${\\approx}$1.5~pp at 80\\% power ($n{=}529$); Few-NERD ($n{=}32{,}565$; MDE${\\approx}$0.22~pp) provides the definitive test.}), the oracle (0.775) reveals 13.0~pp of headroom, but LP achieves $+0.2$~pp ($p{=}0.29$), below the MDE (${\\approx}$1.5~pp); selection effects below this threshold cannot be reliably detected.\ndocs/paper/sections/_archived/experiments_OLD.tex:102:Three factors shape LP selection gains: (1)~\\textit{instance degeneracy} (SciERC 17.8\\%, CoNLL 61.7\\%; Table~\\ref{tab:fewnerd}); (2)~\\textit{oracle headroom} (CoNLL ${\\approx}4$\\,pp vs.\\ SciERC 13.0\\,pp); (3)~\\textit{LP-quality alignment} (Few-NERD $\\rho{\\approx}0.5$--$0.7$ vs.\\ SciERC $\\rho{\\approx}0.26$).\ndocs/paper/sections/_archived/experiments_OLD.tex:203:LP-weighted construction yields $+1.53$\\,pp on SciERC 72B ZS ($p{=}0.008$, CI [$+0.25$, $+2.82$]), recovering $10.2$\\% of headroom. Construction fails on Few-NERD ($-0.20$\\,pp) and CoNLL ($-0.37$\\,pp) where degeneracy exceeds $46$\\%---consistent with FT-regime degeneracy gating.\ndocs/paper/sections/_archived/experiments_OLD.tex:244:LP-weighted construction improves on Few-NERD ($+1.40{\\pm}0.51$\\,pp, $p{<}0.001$; survives Holm--Bonferroni at $k{=}57$) and SciERC ($+1.02{\\pm}0.49$\\,pp, $p{=}0.004$, $p_{\\text{adj}}{=}0.20$; Table~\\ref{tab:entity_construction}), recovering 8--11\\% of oracle headroom. CoNLL shows no gain ($-0.39$\\,pp), consistent with high degeneracy ($N$-scaling in Appendix~\\ref{app:n_scaling}).\ndocs/paper/sections/single_signal.tex:35:\\caption{Correlation-selection gap on SciERC ($N{=}8$, $T{=}1.0$). Bars: QE $\\rho$; line: $\\Delta$F1 vs.\\ greedy (3-seed mean). Despite $\\rho$ up to 0.38, no signal outperforms greedy (all $p{\\geq}0.29$). Dashed green: oracle headroom ($+13.0$\\,pp; oracle headroom $=$ best-of-$N$ F1 $-$ greedy F1); dotted gray: random.}\ndocs/paper/sections/single_signal.tex:39:Despite $\\rho$ up to 0.38, no signal outperforms greedy on SciERC (Table~\\ref{tab:selection}; Figure~\\ref{fig:selection_gap}); the oracle shows 13.0\\,pp headroom, but LP achieves $+0.2$\\,pp ($p{=}0.29$), below MDE (${\\approx}$1.5\\,pp at $n{=}529$, 2--3 seeds; Appendix~\\ref{app:bootstrap_signal}).\ndocs/paper/sections/single_signal.tex:47:(2)~oracle headroom bounds the opportunity within non-degenerate instances (CoNLL ${\\approx}4$\\,pp vs.\\ SciERC 13.0\\,pp);\ndocs/paper/sections/appendix.tex:436:[Omitted long matching line]\ndocs/paper/sections/appendix.tex:440:On the 44\\% of Qwen SciERC instances with high diversity (${\\geq}4$ unique outputs among 8 samples, $n{=}232$), oracle headroom reaches $+$16.3~pp, yet all consistency-based signals (SJ, FK, EM, VC) select at or below single-sample, and LP, the only per-sample signal, achieves merely $+$0.8~pp.\ndocs/paper/sections/appendix.tex:529:Supervised classifiers (logistic regression, MLP, random forest) trained on all five signals (5-fold CV, 3-seed mean, SciERC, $N{=}16$, $+17.9$~pp headroom) all perform at or below greedy (F1${=}0.644$; LR: $-0.4$~pp; MLP: $-1.6$~pp; RF: $-3.1$~pp).\ndocs/paper/sections/appendix.tex:1004:\\caption{Selection $\\Delta$ (pp over single-sample) stratified by VC quartile on SciERC ($N{=}8$, Qwen3-8B). Oracle headroom collapses at Q4; LP rankings are unreliable at Q1--Q2. Neither quartile supports consistent selection gains.}\ndocs/paper/sections/appendix.tex:1252:Few-NERD and SciERC ($\\alpha_{\\textup{crit,eff}} {<} 1$) show significantly negative $\\Delta$, indicating that even where structural headroom exists, marginal-entity precision is insufficient.\ndocs/paper/sections/appendix.tex:1622:LP-weighted construction yields $+1.53$\\,pp on SciERC 72B ZS ($p{=}0.008$, CI [$+0.25$, $+2.82$]), recovering $10.2$\\% of headroom. Construction fails on Few-NERD ($-0.20$\\,pp) and CoNLL ($-0.37$\\,pp) where degeneracy exceeds $46$\\%---consistent with FT-regime degeneracy gating.\ndocs/paper/sections/appendix.tex:1687:Doubling the sample budget ($N{=}8{\\to}16$) maintains the pretrained MV advantage ($+4.06$\\,pp) while reducing degeneracy ($11.7{\\to}7.6$\\%) and expanding oracle headroom ($+2.9$\\,pp); however, capture rate decreases ($36{\\to}29$\\%), indicating diminishing marginal returns from additional samples.\ndocs/paper/sections/appendix.tex:1769:Table~\\ref{tab:t_ablation} reports the effect of sampling temperature on QE signals, oracle headroom, and output quality across four temperatures on SciERC NER.\ndocs/paper/sections/appendix.tex:1908:\\caption{LLaMA-3.2-3B SciERC NER quality estimation and selection ($N{=}8$, $T{=}1.0$, seed${=}42$). Greedy F1${=}0.627$, Oracle F1${=}0.763$, headroom${=}13.63$~pp.}\ndocs/paper/sections/appendix.tex:2034:Low degeneracy alone does not ensure selection gains: CoNLL MISC (23\\%, headroom 12.6~pp) and SciERC OtherScientificTerm (6.2\\%, headroom 12.5~pp) both show negative LP selection despite available headroom; LP correlation strength with the type-specific quality function is an additional prerequisite.\ndocs/paper/sections/experiments_main.tex:104:LP-weighted construction yields $+1.40{\\pm}0.51$\\,pp on Few-NERD (4-seed mean; $p{<}0.001$; Table~\\ref{tab:entity_construction}), consistent with favorable diagnostic conditions ($D{=}13$\\%, headroom${=}12.4$\\,pp), a non-significant $+0.32$\\,pp on SciERC, and no gain on CoNLL ($-0.39$\\,pp).\\footnote{Degenerate instances contribute $\\Delta{=}0$ by construction; all gains concentrate in the non-degenerate subset.}",
+    "numLines": 18
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 117_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_015afKikqvDuWtrr42ALeuh5`</summary>
+
+```json
+{
+  "pattern": "11\\.4.*pp|SciERC 11|11\\.4\\\\\\\\,pp",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections",
+  "output_mode": "content",
+  "-n": true,
+  "glob": "*.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d3999a21-0914-40f6-afdd-8951e6461b5c",
+  "uuid": "05ac0bc2-d020-4428-a862-61e1f5aad2bf",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HEso3W4FjHCdMJZXM7X9sW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 958,
+      "cache_read_input_tokens": 117290,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 958
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 118 · 2026-05-23T20:54:11.541Z_
+
+<details><summary>↩ Tool result · `toolu_015afKikqvDuWtrr42ALeuh5`</summary>
+
+```text
+docs/paper/sections/appendix.tex:1987:Location & 8{,}023 & 11.4 & .793 & .798 & $+$0.53 & .520 & 10.3\,pp \\
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d3999a21-0914-40f6-afdd-8951e6461b5c",
+  "uuid": "8033bbdf-7762-4382-9cfe-b941a0ab197a",
+  "tool_use_result": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "docs/paper/sections/appendix.tex:1987:Location & 8{,}023 & 11.4 & .793 & .798 & $+$0.53 & .520 & 10.3\\,pp \\\\",
+    "numLines": 1
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 119_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+No remaining "11.4 pp" references in the active tex files (non-archived). The only "11.4" left is in appendix.tex line 1606 (tab:scale_comparison, different metric) and line 1987 (Location entity type degeneracy, unrelated).
+
+The OLD experiments file (_archived) has "13.0 pp" which is consistent with the fix.
+
+Now let me also update the appendix scale_comparison table. Looking at it again:
+
+Line 1606: `SciERC & 8B FT  & .667 & 11.4 & 12.2 & .326 & .324 & .177 & .159 \\`
+
+
+The issue is that tab:scale_comparison shows SciERC 8B FT with Greedy=.667 and Hdr=11.4 from the MF4v2 pipeline, but tab:selection body uses .645/13.0 from the figure—so a reader comparing these tables for the same experiment would see conflicting values, even though the caption defines Hdr as oracle minus greedy in percentage points.
+
+Looking more closely, I notice scale_comparison and tab:fewnerd actually agree on the Few-NERD and CoNLL Greedy scores (.748 and .908), but differ on SciERC (.667 vs .663), which suggests the discrepancy stems from different F1 computation methods rather than an error within either table itself. NLL (.908), but disagree on SciERC (.667 vs .663). This small difference could be seed selection (tab:fewnerd is 3-seed mean, scale_comparison might be single seed s42 where greedy=0.6683≈.668≈.667).
+
+In any case, both .663 and .667 differ from the tab:selection body's .645. So tab:selection body uses a clearly different metric.
+
+Now, the question is: should I change the tab:scale_comparison SciERC line to match tab:selection body (.645/13.0)? Arguments for consistency point to it being the same experiment (SciERC, Qwen3-8B, 8B FT, N=8, T=1.0), but the tables use different F1 metrics and changing one column would break scale_comparison's internal consistency. Since I don't know the correct ρ values under the .645 metric, I'll keep scale_comparison as-is — both tables can maintain their own metric consistency.
+
+For sub-task 2 on AUROC ranking, I've verified the main QE table has the correct order (SJ > VC > EM), the LLaMA-3B appendix matches its data, CoNLL shows EM leading as expected for that dataset, and there are no stale .749 references or incorrect "EM leads SciERC" claims. Sub-task 2 checks out clean.
+
+Now I'm moving on to check the introduction for any headroom references that might need updating.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d3999a21-0914-40f6-afdd-8951e6461b5c",
+  "uuid": "e6166a9e-00de-4c43-a5c7-c531fcd3c4ae",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018hnQAckFLyRqhmkdpyYgxL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3486,
+      "cache_read_input_tokens": 118248,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3486
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 120_
+
+single_signal.tex 的 11.4pp 引用已全部更新为 13.0pp。appendix.tex 的 11.4 出现在 tab:scale_comparison (不同 metric，保持不变) 和 Location entity degeneracy (无关)。
+
+让我检查 introduction.tex 和其他主文件是否有 headroom 引用。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d3999a21-0914-40f6-afdd-8951e6461b5c",
+  "uuid": "88759c0e-cb07-4b93-b3a9-b7aae72b39cf",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018hnQAckFLyRqhmkdpyYgxL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3486,
+      "cache_read_input_tokens": 118248,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3486
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 121_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01VcJPsuRBtkVtSbYQnkHjmL`</summary>
+
+```json
+{
+  "pattern": "11\\.4|headroom.*pp|pp.*headroom",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/introduction.tex",
+  "output_mode": "content",
+  "-n": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d3999a21-0914-40f6-afdd-8951e6461b5c",
+  "uuid": "27da4407-f54e-4949-abb5-c165f867c4c1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018hnQAckFLyRqhmkdpyYgxL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3486,
+      "cache_read_input_tokens": 118248,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3486
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 122 · 2026-05-23T20:54:45.990Z_
+
+<details><summary>↩ Tool result · `toolu_01VcJPsuRBtkVtSbYQnkHjmL`</summary>
+
+```text
+No matches found
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d3999a21-0914-40f6-afdd-8951e6461b5c",
+  "uuid": "0afe5a11-e139-41c7-b095-9963e1fa0d9e",
+  "tool_use_result": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "",
+    "numLines": 0
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 123_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01Hy46ML3PSoAa8fqx89rKjZ`</summary>
+
+```json
+{
+  "pattern": "11\\.4|oracle.*headroom.*SciERC|SciERC.*headroom",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections",
+  "output_mode": "content",
+  "-n": true,
+  "glob": "*.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d3999a21-0914-40f6-afdd-8951e6461b5c",
+  "uuid": "2e30385f-2227-437b-aad1-13cb2b3b9016",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018hnQAckFLyRqhmkdpyYgxL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3486,
+      "cache_read_input_tokens": 118248,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3486
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 124 · 2026-05-23T20:54:47.248Z_
+
+<details><summary>↩ Tool result · `toolu_01Hy46ML3PSoAa8fqx89rKjZ`</summary>
+
+```text
+docs/paper/sections/_archived/experiments_OLD.tex:97:On SciERC ($n{=}529$, 2-seed sign tests\footnote{MDE${\approx}$1.5~pp at 80\% power ($n{=}529$); Few-NERD ($n{=}32{,}565$; MDE${\approx}$0.22~pp) provides the definitive test.}), the oracle (0.775) reveals 13.0~pp of headroom, but LP achieves $+0.2$~pp ($p{=}0.29$), below the MDE (${\approx}$1.5~pp); selection effects below this threshold cannot be reliably detected.
+docs/paper/sections/_archived/experiments_OLD.tex:102:Three factors shape LP selection gains: (1)~\textit{instance degeneracy} (SciERC 17.8\%, CoNLL 61.7\%; Table~\ref{tab:fewnerd}); (2)~\textit{oracle headroom} (CoNLL ${\approx}4$\,pp vs.\ SciERC 13.0\,pp); (3)~\textit{LP-quality alignment} (Few-NERD $\rho{\approx}0.5$--$0.7$ vs.\ SciERC $\rho{\approx}0.26$).
+docs/paper/sections/_archived/experiments_OLD.tex:203:LP-weighted construction yields $+1.53$\,pp on SciERC 72B ZS ($p{=}0.008$, CI [$+0.25$, $+2.82$]), recovering $10.2$\% of headroom. Construction fails on Few-NERD ($-0.20$\,pp) and CoNLL ($-0.37$\,pp) where degeneracy exceeds $46$\%---consistent with FT-regime degeneracy gating.
+docs/paper/sections/_archived/experiments_OLD.tex:244:LP-weighted construction improves on Few-NERD ($+1.40{\pm}0.51$\,pp, $p{<}0.001$; survives Holm--Bonferroni at $k{=}57$) and SciERC ($+1.02{\pm}0.49$\,pp, $p{=}0.004$, $p_{\text{adj}}{=}0.20$; Table~\ref{tab:entity_construction}), recovering 8--11\% of oracle headroom. CoNLL shows no gain ($-0.39$\,pp), consistent with high degeneracy ($N$-scaling in Appendix~\ref{app:n_scaling}).
+docs/paper/sections/single_signal.tex:35:\caption{Correlation-selection gap on SciERC ($N{=}8$, $T{=}1.0$). Bars: QE $\rho$; line: $\Delta$F1 vs.\ greedy (3-seed mean). Despite $\rho$ up to 0.38, no signal outperforms greedy (all $p{\geq}0.29$). Dashed green: oracle headroom ($+13.0$\,pp; oracle headroom $=$ best-of-$N$ F1 $-$ greedy F1); dotted gray: random.}
+docs/paper/sections/single_signal.tex:39:Despite $\rho$ up to 0.38, no signal outperforms greedy on SciERC (Table~\ref{tab:selection}; Figure~\ref{fig:selection_gap}); the oracle shows 13.0\,pp headroom, but LP achieves $+0.2$\,pp ($p{=}0.29$), below MDE (${\approx}$1.5\,pp at $n{=}529$, 2--3 seeds; Appendix~\ref{app:bootstrap_signal}).
+docs/paper/sections/single_signal.tex:47:(2)~oracle headroom bounds the opportunity within non-degenerate instances (CoNLL ${\approx}4$\,pp vs.\ SciERC 13.0\,pp);
+docs/paper/sections/appendix.tex:436:[Omitted long matching line]
+docs/paper/sections/appendix.tex:440:On the 44\% of Qwen SciERC instances with high diversity (${\geq}4$ unique outputs among 8 samples, $n{=}232$), oracle headroom reaches $+$16.3~pp, yet all consistency-based signals (SJ, FK, EM, VC) select at or below single-sample, and LP, the only per-sample signal, achieves merely $+$0.8~pp.
+docs/paper/sections/appendix.tex:529:Supervised classifiers (logistic regression, MLP, random forest) trained on all five signals (5-fold CV, 3-seed mean, SciERC, $N{=}16$, $+17.9$~pp headroom) all perform at or below greedy (F1${=}0.644$; LR: $-0.4$~pp; MLP: $-1.6$~pp; RF: $-3.1$~pp).
+docs/paper/sections/appendix.tex:1004:\caption{Selection $\Delta$ (pp over single-sample) stratified by VC quartile on SciERC ($N{=}8$, Qwen3-8B). Oracle headroom collapses at Q4; LP rankings are unreliable at Q1--Q2. Neither quartile supports consistent selection gains.}
+docs/paper/sections/appendix.tex:1252:Few-NERD and SciERC ($\alpha_{\textup{crit,eff}} {<} 1$) show significantly negative $\Delta$, indicating that even where structural headroom exists, marginal-entity precision is insufficient.
+docs/paper/sections/appendix.tex:1606:SciERC & 8B FT  & .667 & 11.4 & 12.2 & .326 & .324 & .177 & .159 \\
+docs/paper/sections/appendix.tex:1622:LP-weighted construction yields $+1.53$\,pp on SciERC 72B ZS ($p{=}0.008$, CI [$+0.25$, $+2.82$]), recovering $10.2$\% of headroom. Construction fails on Few-NERD ($-0.20$\,pp) and CoNLL ($-0.37$\,pp) where degeneracy exceeds $46$\%---consistent with FT-regime degeneracy gating.
+docs/paper/sections/appendix.tex:1769:Table~\ref{tab:t_ablation} reports the effect of sampling temperature on QE signals, oracle headroom, and output quality across four temperatures on SciERC NER.
+docs/paper/sections/appendix.tex:1908:\caption{LLaMA-3.2-3B SciERC NER quality estimation and selection ($N{=}8$, $T{=}1.0$, seed${=}42$). Greedy F1${=}0.627$, Oracle F1${=}0.763$, headroom${=}13.63$~pp.}
+docs/paper/sections/appendix.tex:1987:Location & 8{,}023 & 11.4 & .793 & .798 & $+$0.53 & .520 & 10.3\,pp \\
+docs/paper/sections/appendix.tex:2034:Low degeneracy alone does not ensure selection gains: CoNLL MISC (23\%, headroom 12.6~pp) and SciERC OtherScientificTerm (6.2\%, headroom 12.5~pp) both show negative LP selection despite available headroom; LP correlation strength with the type-specific quality function is an additional prerequisite.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d3999a21-0914-40f6-afdd-8951e6461b5c",
+  "uuid": "ddac7aad-538b-4e0f-b377-011277ac5718",
+  "tool_use_result": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "docs/paper/sections/_archived/experiments_OLD.tex:97:On SciERC ($n{=}529$, 2-seed sign tests\\footnote{MDE${\\approx}$1.5~pp at 80\\% power ($n{=}529$); Few-NERD ($n{=}32{,}565$; MDE${\\approx}$0.22~pp) provides the definitive test.}), the oracle (0.775) reveals 13.0~pp of headroom, but LP achieves $+0.2$~pp ($p{=}0.29$), below the MDE (${\\approx}$1.5~pp); selection effects below this threshold cannot be reliably detected.\ndocs/paper/sections/_archived/experiments_OLD.tex:102:Three factors shape LP selection gains: (1)~\\textit{instance degeneracy} (SciERC 17.8\\%, CoNLL 61.7\\%; Table~\\ref{tab:fewnerd}); (2)~\\textit{oracle headroom} (CoNLL ${\\approx}4$\\,pp vs.\\ SciERC 13.0\\,pp); (3)~\\textit{LP-quality alignment} (Few-NERD $\\rho{\\approx}0.5$--$0.7$ vs.\\ SciERC $\\rho{\\approx}0.26$).\ndocs/paper/sections/_archived/experiments_OLD.tex:203:LP-weighted construction yields $+1.53$\\,pp on SciERC 72B ZS ($p{=}0.008$, CI [$+0.25$, $+2.82$]), recovering $10.2$\\% of headroom. Construction fails on Few-NERD ($-0.20$\\,pp) and CoNLL ($-0.37$\\,pp) where degeneracy exceeds $46$\\%---consistent with FT-regime degeneracy gating.\ndocs/paper/sections/_archived/experiments_OLD.tex:244:LP-weighted construction improves on Few-NERD ($+1.40{\\pm}0.51$\\,pp, $p{<}0.001$; survives Holm--Bonferroni at $k{=}57$) and SciERC ($+1.02{\\pm}0.49$\\,pp, $p{=}0.004$, $p_{\\text{adj}}{=}0.20$; Table~\\ref{tab:entity_construction}), recovering 8--11\\% of oracle headroom. CoNLL shows no gain ($-0.39$\\,pp), consistent with high degeneracy ($N$-scaling in Appendix~\\ref{app:n_scaling}).\ndocs/paper/sections/single_signal.tex:35:\\caption{Correlation-selection gap on SciERC ($N{=}8$, $T{=}1.0$). Bars: QE $\\rho$; line: $\\Delta$F1 vs.\\ greedy (3-seed mean). Despite $\\rho$ up to 0.38, no signal outperforms greedy (all $p{\\geq}0.29$). Dashed green: oracle headroom ($+13.0$\\,pp; oracle headroom $=$ best-of-$N$ F1 $-$ greedy F1); dotted gray: random.}\ndocs/paper/sections/single_signal.tex:39:Despite $\\rho$ up to 0.38, no signal outperforms greedy on SciERC (Table~\\ref{tab:selection}; Figure~\\ref{fig:selection_gap}); the oracle shows 13.0\\,pp headroom, but LP achieves $+0.2$\\,pp ($p{=}0.29$), below MDE (${\\approx}$1.5\\,pp at $n{=}529$, 2--3 seeds; Appendix~\\ref{app:bootstrap_signal}).\ndocs/paper/sections/single_signal.tex:47:(2)~oracle headroom bounds the opportunity within non-degenerate instances (CoNLL ${\\approx}4$\\,pp vs.\\ SciERC 13.0\\,pp);\ndocs/paper/sections/appendix.tex:436:[Omitted long matching line]\ndocs/paper/sections/appendix.tex:440:On the 44\\% of Qwen SciERC instances with high diversity (${\\geq}4$ unique outputs among 8 samples, $n{=}232$), oracle headroom reaches $+$16.3~pp, yet all consistency-based signals (SJ, FK, EM, VC) select at or below single-sample, and LP, the only per-sample signal, achieves merely $+$0.8~pp.\ndocs/paper/sections/appendix.tex:529:Supervised classifiers (logistic regression, MLP, random forest) trained on all five signals (5-fold CV, 3-seed mean, SciERC, $N{=}16$, $+17.9$~pp headroom) all perform at or below greedy (F1${=}0.644$; LR: $-0.4$~pp; MLP: $-1.6$~pp; RF: $-3.1$~pp).\ndocs/paper/sections/appendix.tex:1004:\\caption{Selection $\\Delta$ (pp over single-sample) stratified by VC quartile on SciERC ($N{=}8$, Qwen3-8B). Oracle headroom collapses at Q4; LP rankings are unreliable at Q1--Q2. Neither quartile supports consistent selection gains.}\ndocs/paper/sections/appendix.tex:1252:Few-NERD and SciERC ($\\alpha_{\\textup{crit,eff}} {<} 1$) show significantly negative $\\Delta$, indicating that even where structural headroom exists, marginal-entity precision is insufficient.\ndocs/paper/sections/appendix.tex:1606:SciERC & 8B FT  & .667 & 11.4 & 12.2 & .326 & .324 & .177 & .159 \\\\\ndocs/paper/sections/appendix.tex:1622:LP-weighted construction yields $+1.53$\\,pp on SciERC 72B ZS ($p{=}0.008$, CI [$+0.25$, $+2.82$]), recovering $10.2$\\% of headroom. Construction fails on Few-NERD ($-0.20$\\,pp) and CoNLL ($-0.37$\\,pp) where degeneracy exceeds $46$\\%---consistent with FT-regime degeneracy gating.\ndocs/paper/sections/appendix.tex:1769:Table~\\ref{tab:t_ablation} reports the effect of sampling temperature on QE signals, oracle headroom, and output quality across four temperatures on SciERC NER.\ndocs/paper/sections/appendix.tex:1908:\\caption{LLaMA-3.2-3B SciERC NER quality estimation and selection ($N{=}8$, $T{=}1.0$, seed${=}42$). Greedy F1${=}0.627$, Oracle F1${=}0.763$, headroom${=}13.63$~pp.}\ndocs/paper/sections/appendix.tex:1987:Location & 8{,}023 & 11.4 & .793 & .798 & $+$0.53 & .520 & 10.3\\,pp \\\\\ndocs/paper/sections/appendix.tex:2034:Low degeneracy alone does not ensure selection gains: CoNLL MISC (23\\%, headroom 12.6~pp) and SciERC OtherScientificTerm (6.2\\%, headroom 12.5~pp) both show negative LP selection despite available headroom; LP correlation strength with the type-specific quality function is an additional prerequisite.",
+    "numLines": 18
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 125_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good news: No "11.4" or "11.4pp" references to SciERC headroom remain in the active (non-archived) tex files, EXCEPT:
+
+1. appendix.tex line 1606: tab:scale_comparison with .667/11.4 — different metric, leave as-is
+2. appendix.tex line 1987: Location entity degeneracy 11.4% — unrelated
+
+The introduction.tex has NO 11.4pp references. The single_signal.tex now consistently uses 13.0pp.
+
+Now let me also verify the _archived file doesn't get compiled. 
+
+Since it's in _archived/, it shouldn't be included. Let me proceed with sub-task 2 verification and then compile.
+
+For sub-task 2, I already confirmed:
+- No stale AUROC ranking references for SciERC
+- LLaMA-3B's "EM > VC > SJ > FK > LP" is correct for that specific experiment
+- CoNLL's "EM leads" is correct
+- No .749 references in active files
+
+Let me also check for rebuttal/response files. Actually, I already checked the project directory...
+
+→ No files found.
+
+So sub-task 2 is clean. Now let me verify the edited file and compile.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d3999a21-0914-40f6-afdd-8951e6461b5c",
+  "uuid": "3de64944-623e-4ad6-8f43-6842a8d81b17",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012LNygbB2uYmJisFZ6Xyhrg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3390,
+      "cache_read_input_tokens": 121734,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3390
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 126_
+
+Introduction 没有 11.4pp 引用。所有活跃 tex 文件中的 SciERC headroom 现在一致为 13.0pp（appendix scale_comparison 的 11.4 使用不同 metric，保持不变）。
+
+子任务 2 确认：无 AUROC 旧排名残留。
+
+现在验证修改后的文件并编译。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d3999a21-0914-40f6-afdd-8951e6461b5c",
+  "uuid": "ca7ed7b5-ab7d-4fbd-9514-69ed00f6a654",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012LNygbB2uYmJisFZ6Xyhrg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3390,
+      "cache_read_input_tokens": 121734,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3390
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 127_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01Ur1c5p9Z7YM6Pgwq4kWWVF`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/single_signal.tex",
+  "offset": 9,
+  "limit": 42
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d3999a21-0914-40f6-afdd-8951e6461b5c",
+  "uuid": "9ba9a1ec-63eb-43ea-a25a-9991a26c882b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012LNygbB2uYmJisFZ6Xyhrg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3390,
+      "cache_read_input_tokens": 121734,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3390
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 128 · 2026-05-23T20:55:04.762Z_
+
+<details><summary>↩ Tool result · `toolu_01Ur1c5p9Z7YM6Pgwq4kWWVF`</summary>
+
+```text
+9	\begin{table}[t]
+10	\centering
+11	\small
+12	\caption{Best-of-$N$ selection (macro F1) on SciERC ($N{=}8$, $T{=}1.0$). Selection signals: 2-seed mean${\pm}\sigma$; baselines: 3-seed (Oracle${=}0.775$, Greedy${=}0.645$). LP is per-sample; others use consensus-proximity. $^\dagger$One score per input.}
+13	\label{tab:selection}
+14	\begin{tabular}{lcc}
+15	\toprule
+16	Method & NER F1 & $p$ \\
+17	\midrule
+18	Oracle & $0.775 \pm 0.001$ & --- \\
+19	Greedy ($T{=}0$) & $0.645 \pm 0.001$ & --- \\
+20	\midrule
+21	LP           & $\mathbf{0.647} \pm 0.005$ & .29 \\
+22	SJ           & $0.646 \pm 0.002$ & .67 \\
+23	FK           & $0.646 \pm 0.001$ & .79 \\
+24	EM           & $0.637 \pm 0.001$ & n/a$^\dagger$ \\
+25	VC           & $0.623 \pm 0.004$ & n/a$^\dagger$ \\
+26	\midrule
+27	Random       & $0.610 \pm 0.003$ & --- \\
+28	\bottomrule
+29	\end{tabular}
+30	\end{table}
+31	
+32	\begin{figure}[t]
+33	\centering
+34	\includegraphics[width=\columnwidth]{fig_selection_gap}
+35	\caption{Correlation-selection gap on SciERC ($N{=}8$, $T{=}1.0$). Bars: QE $\rho$; line: $\Delta$F1 vs.\ greedy (3-seed mean). Despite $\rho$ up to 0.38, no signal outperforms greedy (all $p{\geq}0.29$). Dashed green: oracle headroom ($+13.0$\,pp; oracle headroom $=$ best-of-$N$ F1 $-$ greedy F1); dotted gray: random.}
+36	\label{fig:selection_gap}
+37	\end{figure}
+38	
+39	Despite $\rho$ up to 0.38, no signal outperforms greedy on SciERC (Table~\ref{tab:selection}; Figure~\ref{fig:selection_gap}); the oracle shows 13.0\,pp headroom, but LP achieves $+0.2$\,pp ($p{=}0.29$), below MDE (${\approx}$1.5\,pp at $n{=}529$, 2--3 seeds; Appendix~\ref{app:bootstrap_signal}).
+40	All selection experiments use 2--3 training seeds; bootstrap CIs are reported in Appendix~\ref{app:bootstrap_signal}.
+41	The pattern holds across CoNLL and WNUT-17 (Table~\ref{tab:cross_selection}).
+42	Few-NERD provides the clearest positive case: LP achieves $+1.39$\,pp ($p{<}0.001$; Holm $p_{\text{adj}}{=}0.021$, selection family $k{=}21$)\footnote{Under global correction ($k{=}57$), LP-best selection reaches Holm $p_{\text{adj}}{=}0.055$ (BH $p_{\text{adj}}{=}0.003$).} at low degeneracy (13.0\% vs.\ 12.2--67.9\%), while structural signals still degrade (VC $-1.79$, SJ $-2.14$\,pp; \S\ref{sec:fewnerd}).
+43	
+44	\paragraph{Diagnostic framework.}
+45	Three co-occurring factors jointly characterize the gap:
+46	(1)~instance degeneracy sets the ceiling (SciERC 12.2\%, CoNLL 61.7\%);
+47	(2)~oracle headroom bounds the opportunity within non-degenerate instances (CoNLL ${\approx}4$\,pp vs.\ SciERC 13.0\,pp);
+48	(3)~LP compression limits exploitation (Few-NERD within-instance $\rho{\approx}0.5$--$0.7$ vs.\ SciERC $\rho{\approx}0.26$).
+49	Degeneracy does not predict LP gain across datasets ($\rho{=}0.052$, $n{=}23$, $p{=}0.81$; Figure~\ref{fig:degeneracy_scatter}), though it co-varies with LP within fixed settings ($\rho{=}{-}0.881$; Appendix~\ref{app:per_type_lp}).
+50	These conditions interact ($R^2{<}0$); on non-degenerate instances, $\alpha$ approaches zero ($0.000$--$0.121$) despite $\rho$ up to 0.45 (\S\ref{sec:theory}).
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d3999a21-0914-40f6-afdd-8951e6461b5c",
+  "uuid": "8b4e6779-e81e-4516-8cc4-273cfd1db513",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/single_signal.tex",
+      "content": "\\begin{table}[t]\n\\centering\n\\small\n\\caption{Best-of-$N$ selection (macro F1) on SciERC ($N{=}8$, $T{=}1.0$). Selection signals: 2-seed mean${\\pm}\\sigma$; baselines: 3-seed (Oracle${=}0.775$, Greedy${=}0.645$). LP is per-sample; others use consensus-proximity. $^\\dagger$One score per input.}\n\\label{tab:selection}\n\\begin{tabular}{lcc}\n\\toprule\nMethod & NER F1 & $p$ \\\\\n\\midrule\nOracle & $0.775 \\pm 0.001$ & --- \\\\\nGreedy ($T{=}0$) & $0.645 \\pm 0.001$ & --- \\\\\n\\midrule\nLP           & $\\mathbf{0.647} \\pm 0.005$ & .29 \\\\\nSJ           & $0.646 \\pm 0.002$ & .67 \\\\\nFK           & $0.646 \\pm 0.001$ & .79 \\\\\nEM           & $0.637 \\pm 0.001$ & n/a$^\\dagger$ \\\\\nVC           & $0.623 \\pm 0.004$ & n/a$^\\dagger$ \\\\\n\\midrule\nRandom       & $0.610 \\pm 0.003$ & --- \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{fig_selection_gap}\n\\caption{Correlation-selection gap on SciERC ($N{=}8$, $T{=}1.0$). Bars: QE $\\rho$; line: $\\Delta$F1 vs.\\ greedy (3-seed mean). Despite $\\rho$ up to 0.38, no signal outperforms greedy (all $p{\\geq}0.29$). Dashed green: oracle headroom ($+13.0$\\,pp; oracle headroom $=$ best-of-$N$ F1 $-$ greedy F1); dotted gray: random.}\n\\label{fig:selection_gap}\n\\end{figure}\n\nDespite $\\rho$ up to 0.38, no signal outperforms greedy on SciERC (Table~\\ref{tab:selection}; Figure~\\ref{fig:selection_gap}); the oracle shows 13.0\\,pp headroom, but LP achieves $+0.2$\\,pp ($p{=}0.29$), below MDE (${\\approx}$1.5\\,pp at $n{=}529$, 2--3 seeds; Appendix~\\ref{app:bootstrap_signal}).\nAll selection experiments use 2--3 training seeds; bootstrap CIs are reported in Appendix~\\ref{app:bootstrap_signal}.\nThe pattern holds across CoNLL and WNUT-17 (Table~\\ref{tab:cross_selection}).\nFew-NERD provides the clearest positive case: LP achieves $+1.39$\\,pp ($p{<}0.001$; Holm $p_{\\text{adj}}{=}0.021$, selection family $k{=}21$)\\footnote{Under global correction ($k{=}57$), LP-best selection reaches Holm $p_{\\text{adj}}{=}0.055$ (BH $p_{\\text{adj}}{=}0.003$).} at low degeneracy (13.0\\% vs.\\ 12.2--67.9\\%), while structural signals still degrade (VC $-1.79$, SJ $-2.14$\\,pp; \\S\\ref{sec:fewnerd}).\n\n\\paragraph{Diagnostic framework.}\nThree co-occurring factors jointly characterize the gap:\n(1)~instance degeneracy sets the ceiling (SciERC 12.2\\%, CoNLL 61.7\\%);\n(2)~oracle headroom bounds the opportunity within non-degenerate instances (CoNLL ${\\approx}4$\\,pp vs.\\ SciERC 13.0\\,pp);\n(3)~LP compression limits exploitation (Few-NERD within-instance $\\rho{\\approx}0.5$--$0.7$ vs.\\ SciERC $\\rho{\\approx}0.26$).\nDegeneracy does not predict LP gain across datasets ($\\rho{=}0.052$, $n{=}23$, $p{=}0.81$; Figure~\\ref{fig:degeneracy_scatter}), though it co-varies with LP within fixed settings ($\\rho{=}{-}0.881$; Appendix~\\ref{app:per_type_lp}).\nThese conditions interact ($R^2{<}0$); on non-degenerate instances, $\\alpha$ approaches zero ($0.000$--$0.121$) despite $\\rho$ up to 0.45 (\\S\\ref{sec:theory}).",
+      "numLines": 42,
+      "startLine": 9,
+      "totalLines": 57
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 129_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01JRg2cLZmp8GL6MEmPhHwUN`</summary>
+
+```json
+{
+  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper && pdflatex -interaction=nonstopmode main.tex 2>&1 | tail -20",
+  "description": "Compile LaTeX (first pass)",
+  "timeout": 60000
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d3999a21-0914-40f6-afdd-8951e6461b5c",
+  "uuid": "29718624-1adb-442a-98bb-a54df92937aa",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012LNygbB2uYmJisFZ6Xyhrg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3390,
+      "cache_read_input_tokens": 121734,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3390
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 130 · 2026-05-23T20:55:08.197Z_
+
+<details><summary>↩ Tool result · `toolu_01JRg2cLZmp8GL6MEmPhHwUN`</summary>
+
+```text
+/cmmi6.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.
+pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb>&lt;/u
+sr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb>&lt;/usr/shar
+e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb>&lt;/usr/share/texli
+ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb>&lt;/usr/share/texlive/texmf
+-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb>&lt;/usr/share/texlive/texmf-dist/fo
+nts/type1/public/amsfonts/cm/cmr8.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type
+1/public/amsfonts/cm/cmr9.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public
+/amsfonts/cm/cmsy10.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfo
+nts/cm/cmsy6.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/
+cmsy7.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.p
+fb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb>&lt;/us
+r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb>&lt;/usr
+/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>&lt;/usr/
+share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb>&lt;/usr/share/texliv
+e/texmf-dist/fonts/type1/urw/times/utmb8a.pfb>&lt;/usr/share/texlive/texmf-dist/fo
+nts/type1/urw/times/utmr8a.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/urw/t
+imes/utmri8a.pfb>
+Output written on main.pdf (46 pages, 957591 bytes).
+Transcript written on main.log.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d3999a21-0914-40f6-afdd-8951e6461b5c",
+  "uuid": "34e7a091-68b7-4381-a493-0d24c3385cfd",
+  "tool_use_result": {
+    "stdout": "/cmmi6.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.\npfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb>&lt;/u\nsr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb>&lt;/usr/shar\ne/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb>&lt;/usr/share/texli\nve/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb>&lt;/usr/share/texlive/texmf\n-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb>&lt;/usr/share/texlive/texmf-dist/fo\nnts/type1/public/amsfonts/cm/cmr8.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type\n1/public/amsfonts/cm/cmr9.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public\n/amsfonts/cm/cmsy10.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfo\nnts/cm/cmsy6.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/\ncmsy7.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.p\nfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb>&lt;/us\nr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb>&lt;/usr\n/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>&lt;/usr/\nshare/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb>&lt;/usr/share/texliv\ne/texmf-dist/fonts/type1/urw/times/utmb8a.pfb>&lt;/usr/share/texlive/texmf-dist/fo\nnts/type1/urw/times/utmr8a.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/urw/t\nimes/utmri8a.pfb>\nOutput written on main.pdf (46 pages, 957591 bytes).\nTranscript written on main.log.",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 131_
+
+编译成功。运行完整编译流程 (bibtex + 2x pdflatex) 并检查 undefined refs 和页数。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d3999a21-0914-40f6-afdd-8951e6461b5c",
+  "uuid": "8e8d2394-3eee-4c14-bcf9-72db446df0ca",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YHpioDQuAFGw9sqr9NdHGV",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2988,
+      "cache_read_input_tokens": 125124,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2988
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 132_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01LDr7Kejiqx42yFgAxj5W2U`</summary>
+
+```json
+{
+  "command": "bibtex main 2>&1 | tail -5 && pdflatex -interaction=nonstopmode main.tex 2>&1 | tail -3 && pdflatex -interaction=nonstopmode main.tex 2>&1 | tail -3",
+  "description": "Full LaTeX compilation with bibtex",
+  "timeout": 120000
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d3999a21-0914-40f6-afdd-8951e6461b5c",
+  "uuid": "c81a991e-2163-40bb-8108-4312307fdcff",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YHpioDQuAFGw9sqr9NdHGV",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2988,
+      "cache_read_input_tokens": 125124,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2988
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 133_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_started",
+  "task_id": "bfk4w559b",
+  "tool_use_id": "toolu_01LDr7Kejiqx42yFgAxj5W2U",
+  "description": "Full LaTeX compilation with bibtex",
+  "task_type": "local_bash",
+  "uuid": "78898c10-b9cf-4bb9-943a-88e9f2633869",
+  "session_id": "d3999a21-0914-40f6-afdd-8951e6461b5c"
+}
+```
+
+---
+
+### System
+
+_source line 134_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_notification",
+  "task_id": "bfk4w559b",
+  "tool_use_id": "toolu_01LDr7Kejiqx42yFgAxj5W2U",
+  "status": "completed",
+  "output_file": "",
+  "summary": "Full LaTeX compilation with bibtex",
+  "uuid": "5b3d9b11-8b1b-40bf-b22f-c096a9bedd23",
+  "session_id": "d3999a21-0914-40f6-afdd-8951e6461b5c"
+}
+```
+
+---
+
+### Tool result
+
+_source line 135 · 2026-05-23T20:55:19.284Z_
+
+<details><summary>↩ Tool result · `toolu_01LDr7Kejiqx42yFgAxj5W2U`</summary>
+
+```text
+This is BibTeX, Version 0.99d (TeX Live 2025/Debian)
+The top-level auxiliary file: main.aux
+The style file: acl_natbib.bst
+Database file #1: references.bib
+imes/utmri8a.pfb>
+Output written on main.pdf (46 pages, 957591 bytes).
+Transcript written on main.log.
+imes/utmri8a.pfb>
+Output written on main.pdf (46 pages, 957591 bytes).
+Transcript written on main.log.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d3999a21-0914-40f6-afdd-8951e6461b5c",
+  "uuid": "19435813-f5b8-4c90-9510-c1b695595402",
+  "tool_use_result": {
+    "stdout": "This is BibTeX, Version 0.99d (TeX Live 2025/Debian)\nThe top-level auxiliary file: main.aux\nThe style file: acl_natbib.bst\nDatabase file #1: references.bib\nimes/utmri8a.pfb>\nOutput written on main.pdf (46 pages, 957591 bytes).\nTranscript written on main.log.\nimes/utmri8a.pfb>\nOutput written on main.pdf (46 pages, 957591 bytes).\nTranscript written on main.log.",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 136_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01DBNrpmFdSTP3STRpXxxaDF`</summary>
+
+```json
+{
+  "command": "grep -c \"undefined\" /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/main.log | head -1 && grep \"LaTeX Warning.*undefined\" /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/main.log | head -5",
+  "description": "Check for undefined references"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d3999a21-0914-40f6-afdd-8951e6461b5c",
+  "uuid": "08c7e42e-7557-455c-90a6-1df2eedeb6d9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014qyosXSroMiMVZyf1mpirM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 345,
+      "cache_read_input_tokens": 128112,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 345
+      },
+      "output_tokens": 39,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 137 · 2026-05-23T20:55:24.411Z_
+
+<details><summary>↩ Tool result · `toolu_01DBNrpmFdSTP3STRpXxxaDF`</summary>
+
+```text
+0
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d3999a21-0914-40f6-afdd-8951e6461b5c",
+  "uuid": "cd711885-ca3b-4f33-9a41-39c936bc5ba0",
+  "tool_use_result": {
+    "stdout": "0",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 138_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01VvBNFgQry1dJMroJ2MhEXx`</summary>
+
+```json
+{
+  "command": "grep \"Output written\" /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/main.log | tail -1",
+  "description": "Check page count"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d3999a21-0914-40f6-afdd-8951e6461b5c",
+  "uuid": "09129451-4634-430a-8c1d-11a3d2282ab4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014qyosXSroMiMVZyf1mpirM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 345,
+      "cache_read_input_tokens": 128112,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 345
+      },
+      "output_tokens": 39,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 139 · 2026-05-23T20:55:25.151Z_
+
+<details><summary>↩ Tool result · `toolu_01VvBNFgQry1dJMroJ2MhEXx`</summary>
+
+```text
+Output written on main.pdf (46 pages, 957591 bytes).
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d3999a21-0914-40f6-afdd-8951e6461b5c",
+  "uuid": "3a1cf442-693a-4f60-82b6-ed0d32f24bbd",
+  "tool_use_result": {
+    "stdout": "Output written on main.pdf (46 pages, 957591 bytes).",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 140_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+0 undefined references, 46 pages total. I need to check the main text page count (should be ≤ 8 pages). 46 pages is the total including appendix. Let me check the main text page count.
+
+Actually, the EMNLP constraint says "8-page limit for main text, with unlimited space for references." The 46 pages include appendix. Let me check how many pages the main text is.
+
+I can look at where the references/appendix start in the PDF, or check the log for page info. Let me just check the last page of the main text before references.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d3999a21-0914-40f6-afdd-8951e6461b5c",
+  "uuid": "0fecf0d5-eb22-48b6-86d7-b44629ea9412",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019top8MzAU6rgSzz67v9DeD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 347,
+      "cache_read_input_tokens": 128457,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 347
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 141_
+
+0 undefined references. 46 pages total (includes appendix). Let me verify main text is ≤ 8 pages.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d3999a21-0914-40f6-afdd-8951e6461b5c",
+  "uuid": "3a257ecc-9f18-4bb2-9a5c-6035dec31e7f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019top8MzAU6rgSzz67v9DeD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 347,
+      "cache_read_input_tokens": 128457,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 347
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 142_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01HcGmYHeAG5E2fts34jsrPx`</summary>
+
+```json
+{
+  "command": "grep -n \"\\\\\\\\bibliography\\|\\\\\\\\appendix\\|\\\\\\\\section{Limitations}\" /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/main.tex",
+  "description": "Find main text boundaries"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d3999a21-0914-40f6-afdd-8951e6461b5c",
+  "uuid": "1cf648da-9b8d-4fd2-b7c8-8c20699c1833",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019top8MzAU6rgSzz67v9DeD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 347,
+      "cache_read_input_tokens": 128457,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 347
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 143 · 2026-05-23T20:55:35.667Z_
+
+<details><summary>↩ Tool result · `toolu_01HcGmYHeAG5E2fts34jsrPx`</summary>
+
+```text
+47:\bibliography{references}
+49:\appendix
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d3999a21-0914-40f6-afdd-8951e6461b5c",
+  "uuid": "740c1cc9-ad4d-4a0c-b619-2eb3f8c18f74",
+  "tool_use_result": {
+    "stdout": "47:\\bibliography{references}\n49:\\appendix",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 144_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_0149GNfptWxKFcfoU5i2Y4de`</summary>
+
+```json
+{
+  "command": "grep \"shipout.*page\\|Output.*page\" /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/main.log 2>/dev/null | head -3; grep -c \"\\[8\\]\" /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/main.log; grep \"\\[7\\]\\|\\[8\\]\\|\\[9\\]\" /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/main.log | head -5",
+  "description": "Check page numbers around main text boundary"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d3999a21-0914-40f6-afdd-8951e6461b5c",
+  "uuid": "8ba14f96-3dc2-4cfb-8f45-c87d16123eb7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01W3ese4VsjXEQjFXiCYGejj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 334,
+      "cache_read_input_tokens": 128804,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 334
+      },
+      "output_tokens": 36,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 145 · 2026-05-23T20:55:42.289Z_
+
+<details><summary>↩ Tool result · `toolu_0149GNfptWxKFcfoU5i2Y4de`</summary>
+
+```text
+Output written on main.pdf (46 pages, 957591 bytes).
+0
+s/fig_degeneracy_lp_scatter.pdf>] (./main.bbl [9]
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d3999a21-0914-40f6-afdd-8951e6461b5c",
+  "uuid": "5cb19264-53d9-4fa3-851e-59cd373432f4",
+  "tool_use_result": {
+    "stdout": "Output written on main.pdf (46 pages, 957591 bytes).\n0\ns/fig_degeneracy_lp_scatter.pdf>] (./main.bbl [9]",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 146_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The bibliography starts at page 9, meaning main text ends at page 8 (since the bibliography starts on page 9 and doesn't count toward the 8-page limit). Let me verify:
+- Page 8 is the last page of main text
+- Page 9+ is references and appendix
+
+So main text is 8 pages ✅ (meeting the ≤ 8 pages requirement).
+
+Now let me sync to the anonymous repo. Let me first check the current state of the anon repo.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d3999a21-0914-40f6-afdd-8951e6461b5c",
+  "uuid": "aa918a12-8fa3-4621-9a6c-a92678355a67",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Yb8ZTEzqJQVVnPZ4FDRHSr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 296,
+      "cache_read_input_tokens": 129138,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 296
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 147_
+
+Main text = 8 pages (bibliography starts page 9). ✅
+
+Now sync to anonymous repo.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d3999a21-0914-40f6-afdd-8951e6461b5c",
+  "uuid": "0386b0e5-4d21-4c07-8a40-7bd717b0b835",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Yb8ZTEzqJQVVnPZ4FDRHSr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 296,
+      "cache_read_input_tokens": 129138,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 296
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 148_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_019jUppUMHbdZT7CFsYvfSJz`</summary>
+
+```json
+{
+  "command": "ls /tmp/anon_repo/docs/paper/sections/ 2>/dev/null && echo \"EXISTS\" || echo \"NOT_FOUND\"",
+  "description": "Check if anon repo exists"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d3999a21-0914-40f6-afdd-8951e6461b5c",
+  "uuid": "a2c64055-b247-4832-abf5-3fa92767da58",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Yb8ZTEzqJQVVnPZ4FDRHSr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 296,
+      "cache_read_input_tokens": 129138,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 296
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 149 · 2026-05-23T20:55:49.011Z_
+
+<details><summary>↩ Tool result · `toolu_019jUppUMHbdZT7CFsYvfSJz`</summary>
+
+```text
+appendix.tex
+experiments_main.tex
+introduction.tex
+single_signal.tex
+EXISTS
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d3999a21-0914-40f6-afdd-8951e6461b5c",
+  "uuid": "c3bd8cb4-eea3-4125-8959-42ab2290b43b",
+  "tool_use_result": {
+    "stdout": "appendix.tex\nexperiments_main.tex\nintroduction.tex\nsingle_signal.tex\nEXISTS",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 150_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01Na9WKyyEfCkqJuHwEfro9P`</summary>
+
+```json
+{
+  "command": "cp /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/single_signal.tex /tmp/anon_repo/docs/paper/sections/single_signal.tex",
+  "description": "Copy updated file to anon repo"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d3999a21-0914-40f6-afdd-8951e6461b5c",
+  "uuid": "2df740f3-6343-4e66-b4e1-76a3bd83d2b6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015kdd2fpQEhhCT3iooX2oM6",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 297,
+      "cache_read_input_tokens": 129434,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 297
+      },
+      "output_tokens": 64,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 151 · 2026-05-23T20:55:51.796Z_
+
+<details><summary>↩ Tool result · `toolu_01Na9WKyyEfCkqJuHwEfro9P`</summary>
+
+```text
+(Bash completed with no output)
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d3999a21-0914-40f6-afdd-8951e6461b5c",
+  "uuid": "73a450df-c6f9-41da-853e-dac07baecb95",
+  "tool_use_result": {
+    "stdout": "",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": true
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 152_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_019ANYvUhyTSMAoKJ6VzMxJr`</summary>
+
+```json
+{
+  "command": "cd /tmp/anon_repo && git diff --stat && git diff docs/paper/sections/single_signal.tex",
+  "description": "Check anon repo diff"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d3999a21-0914-40f6-afdd-8951e6461b5c",
+  "uuid": "0681b6f2-db88-4842-ad2c-2629e3e2c10a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WW266knfzSYETdoerTe3kQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 257,
+      "cache_read_input_tokens": 129731,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 257
+      },
+      "output_tokens": 46,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 153 · 2026-05-23T20:55:54.472Z_
+
+<details><summary>↩ Tool result · `toolu_019ANYvUhyTSMAoKJ6VzMxJr`</summary>
+
+```text
+ docs/paper/sections/single_signal.tex | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+diff --git a/docs/paper/sections/single_signal.tex b/docs/paper/sections/single_signal.tex
+index cb0fc9c..cfe10e6 100644
+--- a/docs/paper/sections/single_signal.tex
++++ b/docs/paper/sections/single_signal.tex
+@@ -9,7 +9,7 @@ Cross-instance $\rho$ (Table~\ref{tab:quality_estimation}) is attenuated by vary
+ \begin{table}[t]
+ \centering
+ \small
+-\caption{Best-of-$N$ selection (macro F1) on SciERC ($N{=}8$, $T{=}1.0$). Selection signals: 2-seed mean${\pm}\sigma$; baselines: 3-seed (Oracle${=}0.781$, Greedy${=}0.667$). LP is per-sample; others use consensus-proximity. $^\dagger$One score per input.}
++\caption{Best-of-$N$ selection (macro F1) on SciERC ($N{=}8$, $T{=}1.0$). Selection signals: 2-seed mean${\pm}\sigma$; baselines: 3-seed (Oracle${=}0.775$, Greedy${=}0.645$). LP is per-sample; others use consensus-proximity. $^\dagger$One score per input.}
+ \label{tab:selection}
+ \begin{tabular}{lcc}
+ \toprule
+@@ -32,11 +32,11 @@ Random       & $0.610 \pm 0.003$ & --- \\
+ \begin{figure}[t]
+ \centering
+ \includegraphics[width=\columnwidth]{fig_selection_gap}
+-\caption{Correlation-selection gap on SciERC ($N{=}8$, $T{=}1.0$). Bars: QE $\rho$; line: $\Delta$F1 vs.\ greedy (3-seed mean). Despite $\rho$ up to 0.38, no signal outperforms greedy (all $p{\geq}0.29$). Dashed green: oracle headroom ($+11.4$\,pp; oracle headroom $=$ best-of-$N$ F1 $-$ greedy F1); dotted gray: random.}
++\caption{Correlation-selection gap on SciERC ($N{=}8$, $T{=}1.0$). Bars: QE $\rho$; line: $\Delta$F1 vs.\ greedy (3-seed mean). Despite $\rho$ up to 0.38, no signal outperforms greedy (all $p{\geq}0.29$). Dashed green: oracle headroom ($+13.0$\,pp; oracle headroom $=$ best-of-$N$ F1 $-$ greedy F1); dotted gray: random.}
+ \label{fig:selection_gap}
+ \end{figure}
+ 
+-Despite $\rho$ up to 0.38, no signal outperforms greedy on SciERC (Table~\ref{tab:selection}; Figure~\ref{fig:selection_gap}); the oracle shows 11.4\,pp headroom, but LP achieves $+0.2$\,pp ($p{=}0.29$), below MDE (${\approx}$1.5\,pp at $n{=}529$, 2--3 seeds; Appendix~\ref{app:bootstrap_signal}).
++Despite $\rho$ up to 0.38, no signal outperforms greedy on SciERC (Table~\ref{tab:selection}; Figure~\ref{fig:selection_gap}); the oracle shows 13.0\,pp headroom, but LP achieves $+0.2$\,pp ($p{=}0.29$), below MDE (${\approx}$1.5\,pp at $n{=}529$, 2--3 seeds; Appendix~\ref{app:bootstrap_signal}).
+ All selection experiments use 2--3 training seeds; bootstrap CIs are reported in Appendix~\ref{app:bootstrap_signal}.
+ The pattern holds across CoNLL and WNUT-17 (Table~\ref{tab:cross_selection}).
+ Few-NERD provides the clearest positive case: LP achieves $+1.39$\,pp ($p{<}0.001$; Holm $p_{\text{adj}}{=}0.021$, selection family $k{=}21$)\footnote{Under global correction ($k{=}57$), LP-best selection reaches Holm $p_{\text{adj}}{=}0.055$ (BH $p_{\text{adj}}{=}0.003$).} at low degeneracy (13.0\% vs.\ 12.2--67.9\%), while structural signals still degrade (VC $-1.79$, SJ $-2.14$\,pp; \S\ref{sec:fewnerd}).
+@@ -44,7 +44,7 @@ Few-NERD provides the clearest positive case: LP achieves $+1.39$\,pp ($p{<}0.00
+ \paragraph{Diagnostic framework.}
+ Three co-occurring factors jointly characterize the gap:
+ (1)~instance degeneracy sets the ceiling (SciERC 12.2\%, CoNLL 61.7\%);
+-(2)~oracle headroom bounds the opportunity within non-degenerate instances (CoNLL ${\approx}4$\,pp vs.\ SciERC 11.4\,pp);
++(2)~oracle headroom bounds the opportunity within non-degenerate instances (CoNLL ${\approx}4$\,pp vs.\ SciERC 13.0\,pp);
+ (3)~LP compression limits exploitation (Few-NERD within-instance $\rho{\approx}0.5$--$0.7$ vs.\ SciERC $\rho{\approx}0.26$).
+ Degeneracy does not predict LP gain across datasets ($\rho{=}0.052$, $n{=}23$, $p{=}0.81$; Figure~\ref{fig:degeneracy_scatter}), though it co-varies with LP within fixed settings ($\rho{=}{-}0.881$; Appendix~\ref{app:per_type_lp}).
+ These conditions interact ($R^2{<}0$); on non-degenerate instances, $\alpha$ approaches zero ($0.000$--$0.121$) despite $\rho$ up to 0.45 (\S\ref{sec:theory}).
+Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d3999a21-0914-40f6-afdd-8951e6461b5c",
+  "uuid": "33b8d416-59de-4ad2-998f-7b66ab41ead7",
+  "tool_use_result": {
+    "stdout": " docs/paper/sections/single_signal.tex | 8 ++++----\n 1 file changed, 4 insertions(+), 4 deletions(-)\ndiff --git a/docs/paper/sections/single_signal.tex b/docs/paper/sections/single_signal.tex\nindex cb0fc9c..cfe10e6 100644\n--- a/docs/paper/sections/single_signal.tex\n+++ b/docs/paper/sections/single_signal.tex\n@@ -9,7 +9,7 @@ Cross-instance $\\rho$ (Table~\\ref{tab:quality_estimation}) is attenuated by vary\n \\begin{table}[t]\n \\centering\n \\small\n-\\caption{Best-of-$N$ selection (macro F1) on SciERC ($N{=}8$, $T{=}1.0$). Selection signals: 2-seed mean${\\pm}\\sigma$; baselines: 3-seed (Oracle${=}0.781$, Greedy${=}0.667$). LP is per-sample; others use consensus-proximity. $^\\dagger$One score per input.}\n+\\caption{Best-of-$N$ selection (macro F1) on SciERC ($N{=}8$, $T{=}1.0$). Selection signals: 2-seed mean${\\pm}\\sigma$; baselines: 3-seed (Oracle${=}0.775$, Greedy${=}0.645$). LP is per-sample; others use consensus-proximity. $^\\dagger$One score per input.}\n \\label{tab:selection}\n \\begin{tabular}{lcc}\n \\toprule\n@@ -32,11 +32,11 @@ Random       & $0.610 \\pm 0.003$ & --- \\\\\n \\begin{figure}[t]\n \\centering\n \\includegraphics[width=\\columnwidth]{fig_selection_gap}\n-\\caption{Correlation-selection gap on SciERC ($N{=}8$, $T{=}1.0$). Bars: QE $\\rho$; line: $\\Delta$F1 vs.\\ greedy (3-seed mean). Despite $\\rho$ up to 0.38, no signal outperforms greedy (all $p{\\geq}0.29$). Dashed green: oracle headroom ($+11.4$\\,pp; oracle headroom $=$ best-of-$N$ F1 $-$ greedy F1); dotted gray: random.}\n+\\caption{Correlation-selection gap on SciERC ($N{=}8$, $T{=}1.0$). Bars: QE $\\rho$; line: $\\Delta$F1 vs.\\ greedy (3-seed mean). Despite $\\rho$ up to 0.38, no signal outperforms greedy (all $p{\\geq}0.29$). Dashed green: oracle headroom ($+13.0$\\,pp; oracle headroom $=$ best-of-$N$ F1 $-$ greedy F1); dotted gray: random.}\n \\label{fig:selection_gap}\n \\end{figure}\n \n-Despite $\\rho$ up to 0.38, no signal outperforms greedy on SciERC (Table~\\ref{tab:selection}; Figure~\\ref{fig:selection_gap}); the oracle shows 11.4\\,pp headroom, but LP achieves $+0.2$\\,pp ($p{=}0.29$), below MDE (${\\approx}$1.5\\,pp at $n{=}529$, 2--3 seeds; Appendix~\\ref{app:bootstrap_signal}).\n+Despite $\\rho$ up to 0.38, no signal outperforms greedy on SciERC (Table~\\ref{tab:selection}; Figure~\\ref{fig:selection_gap}); the oracle shows 13.0\\,pp headroom, but LP achieves $+0.2$\\,pp ($p{=}0.29$), below MDE (${\\approx}$1.5\\,pp at $n{=}529$, 2--3 seeds; Appendix~\\ref{app:bootstrap_signal}).\n All selection experiments use 2--3 training seeds; bootstrap CIs are reported in Appendix~\\ref{app:bootstrap_signal}.\n The pattern holds across CoNLL and WNUT-17 (Table~\\ref{tab:cross_selection}).\n Few-NERD provides the clearest positive case: LP achieves $+1.39$\\,pp ($p{<}0.001$; Holm $p_{\\text{adj}}{=}0.021$, selection family $k{=}21$)\\footnote{Under global correction ($k{=}57$), LP-best selection reaches Holm $p_{\\text{adj}}{=}0.055$ (BH $p_{\\text{adj}}{=}0.003$).} at low degeneracy (13.0\\% vs.\\ 12.2--67.9\\%), while structural signals still degrade (VC $-1.79$, SJ $-2.14$\\,pp; \\S\\ref{sec:fewnerd}).\n@@ -44,7 +44,7 @@ Few-NERD provides the clearest positive case: LP achieves $+1.39$\\,pp ($p{<}0.00\n \\paragraph{Diagnostic framework.}\n Three co-occurring factors jointly characterize the gap:\n (1)~instance degeneracy sets the ceiling (SciERC 12.2\\%, CoNLL 61.7\\%);\n-(2)~oracle headroom bounds the opportunity within non-degenerate instances (CoNLL ${\\approx}4$\\,pp vs.\\ SciERC 11.4\\,pp);\n+(2)~oracle headroom bounds the opportunity within non-degenerate instances (CoNLL ${\\approx}4$\\,pp vs.\\ SciERC 13.0\\,pp);\n (3)~LP compression limits exploitation (Few-NERD within-instance $\\rho{\\approx}0.5$--$0.7$ vs.\\ SciERC $\\rho{\\approx}0.26$).\n Degeneracy does not predict LP gain across datasets ($\\rho{=}0.052$, $n{=}23$, $p{=}0.81$; Figure~\\ref{fig:degeneracy_scatter}), though it co-varies with LP within fixed settings ($\\rho{=}{-}0.881$; Appendix~\\ref{app:per_type_lp}).\n These conditions interact ($R^2{<}0$); on non-degenerate instances, $\\alpha$ approaches zero ($0.000$--$0.121$) despite $\\rho$ up to 0.45 (\\S\\ref{sec:theory}).",
+    "stderr": "\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 154_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01F5g5smUn9ubTggvwdwxCTn`</summary>
+
+```json
+{
+  "command": "cd /tmp/anon_repo && git add docs/paper/sections/single_signal.tex && git -c user.name=\"Anonymous\" -c user.email=\"anonymous@example.com\" commit -m \"Fix tab:selection headroom consistency: caption matched to table body (13.0pp)\" && git push origin main 2>&1",
+  "description": "Commit and push to anon repo",
+  "timeout": 30000
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d3999a21-0914-40f6-afdd-8951e6461b5c",
+  "uuid": "86c77074-7b0f-4463-bda4-09f51761c60a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PNxupVWLK8VCLcZwkvXYaB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1867,
+      "cache_read_input_tokens": 129988,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1867
+      },
+      "output_tokens": 39,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 155 · 2026-05-23T20:56:00.465Z_
+
+<details><summary>↩ Tool result · `toolu_01F5g5smUn9ubTggvwdwxCTn`</summary>
+
+```text
+[main 70ed395] Fix tab:selection headroom consistency: caption matched to table body (13.0pp)
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+To https://github.com/anonymous-nlp-2026/struct_self_consist_ie.git
+   b26efad..70ed395  main -> main
+Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d3999a21-0914-40f6-afdd-8951e6461b5c",
+  "uuid": "76770e0d-17c9-4e01-818c-4beba56b1515",
+  "tool_use_result": {
+    "stdout": "[main 70ed395] Fix tab:selection headroom consistency: caption matched to table body (13.0pp)\n 1 file changed, 4 insertions(+), 4 deletions(-)\nTo https://github.com/anonymous-nlp-2026/struct_self_consist_ie.git\n   b26efad..70ed395  main -> main",
+    "stderr": "\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 156_
+
+完成。
+
+---
+
+## 追溯报告
+
+### 子任务 1: tab:selection headroom 不一致
+
+**数据来源追溯**:
+- **表体** (.775/.645 → 13.0pp): 来自 `exp_016_signal_ensemble` / `exp_016_rerun_1024_bootstrap` (provenance c013: Oracle=0.776, Greedy=0.644, headroom=13.2pp)。Selection Δ (LP +0.2pp, p=.29) 和所有 p 值均与此数据一致。
+- **旧 caption** (.781/.667 → 11.4pp): 来自 MF4v2 pipeline 重算，使用不同的 F1 计算方式（micro greedy=0.6617 vs per-instance=0.6453, decisions D153）。
+- **图**: 实际绿线标注 "Oracle +13.1"，与表体一致。旧 caption "11.4pp" 是错误覆盖。
+
+**修复方案**: Method B — 更新 caption 和正文以匹配表体（13.0pp），因为：
+1. 表体值与 selection Δ 和 p 值一致
+2. 图实际显示 +13.1pp
+3. provenance c013 确认 Oracle=0.776, Greedy=0.644
+
+**修改位置** (`single_signal.tex`):
+| 行 | 修改 |
+|---|---|
+| L12 | Caption: Oracle .781→.775, Greedy .667→.645 |
+| L35 | Figure caption: 11.4pp → 13.0pp |
+| L39 | 正文: 11.4pp → 13.0pp |
+| L47 | 正文: 11.4pp → 13.0pp |
+
+**残留不一致（需注意）**: appendix tab:scale_comparison (L1606) 仍有 SciERC Greedy=.667, Hdr=11.4。该表使用不同 seed/metric（s42 单 seed vs 多 seed 均值），与 tab:fewnerd SciERC Greedy=.663 也不同。属于独立 metric 一致性问题。
+
+### 子任务 2: AUROC 排名残留
+
+**无旧排名残留**。确认结果：
+- 主表 (tab:quality_estimation): SJ(.692) > VC(.684) > EM(.631) ✅ 已为新值
+- appendix L1927 "EM > VC > SJ > FK > LP": 描述 **LLaMA-3.2-3B** 实验（非 SciERC Qwen），与该模型的表格数据一致 ✅
+- experiments_main L52 "EM leads CoNLL": CoNLL 实验，EM AUROC=.816 正确 ✅
+- 无 .749 旧值残留
+- 无 rebuttal/response 文件
+
+### 产出
+1. ✅ 追溯报告（如上）
+2. ✅ 修正 `docs/paper/sections/single_signal.tex`（4 处修改）
+3. ✅ 编译通过：0 undefined refs, 8 pages main text, 46 pages total
+4. ✅ 匿名仓库 commit: `70ed395`
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d3999a21-0914-40f6-afdd-8951e6461b5c",
+  "uuid": "986d7f82-2a44-472e-835f-9eea97f223d2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HJomxQxbQQ3NJGJ86PMLh8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 303,
+      "cache_read_input_tokens": 131855,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 303
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 157_
+
+完成。
+
+---
+
+## 追溯报告
+
+### 子任务 1: tab:selection headroom 不一致
+
+**数据来源追溯**:
+- **表体** (.775/.645 → 13.0pp): 来自 `exp_016_signal_ensemble` / `exp_016_rerun_1024_bootstrap` (provenance c013: Oracle=0.776, Greedy=0.644, headroom=13.2pp)。Selection Δ (LP +0.2pp, p=.29) 和所有 p 值均与此数据一致。
+- **旧 caption** (.781/.667 → 11.4pp): 来自 MF4v2 pipeline 重算，使用不同的 F1 计算方式（micro greedy=0.6617 vs per-instance=0.6453, decisions D153）。
+- **图**: 实际绿线标注 "Oracle +13.1"，与表体一致。旧 caption "11.4pp" 是错误覆盖。
+
+**修复方案**: Method B — 更新 caption 和正文以匹配表体（13.0pp），因为：
+1. 表体值与 selection Δ 和 p 值一致
+2. 图实际显示 +13.1pp
+3. provenance c013 确认 Oracle=0.776, Greedy=0.644
+
+**修改位置** (`single_signal.tex`):
+| 行 | 修改 |
+|---|---|
+| L12 | Caption: Oracle .781→.775, Greedy .667→.645 |
+| L35 | Figure caption: 11.4pp → 13.0pp |
+| L39 | 正文: 11.4pp → 13.0pp |
+| L47 | 正文: 11.4pp → 13.0pp |
+
+**残留不一致（需注意）**: appendix tab:scale_comparison (L1606) 仍有 SciERC Greedy=.667, Hdr=11.4。该表使用不同 seed/metric（s42 单 seed vs 多 seed 均值），与 tab:fewnerd SciERC Greedy=.663 也不同。属于独立 metric 一致性问题。
+
+### 子任务 2: AUROC 排名残留
+
+**无旧排名残留**。确认结果：
+- 主表 (tab:quality_estimation): SJ(.692) > VC(.684) > EM(.631) ✅ 已为新值
+- appendix L1927 "EM > VC > SJ > FK > LP": 描述 **LLaMA-3.2-3B** 实验（非 SciERC Qwen），与该模型的表格数据一致 ✅
+- experiments_main L52 "EM leads CoNLL": CoNLL 实验，EM AUROC=.816 正确 ✅
+- 无 .749 旧值残留
+- 无 rebuttal/response 文件
+
+### 产出
+1. ✅ 追溯报告（如上）
+2. ✅ 修正 `docs/paper/sections/single_signal.tex`（4 处修改）
+3. ✅ 编译通过：0 undefined refs, 8 pages main text, 46 pages total
+4. ✅ 匿名仓库 commit: `70ed395`
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 1027111,
+  "duration_api_ms": 1019072,
+  "num_turns": 57,
+  "stop_reason": "end_turn",
+  "session_id": "d3999a21-0914-40f6-afdd-8951e6461b5c",
+  "total_cost_usd": 3.1151922499999998,
+  "usage": {
+    "input_tokens": 29,
+    "cache_creation_input_tokens": 120317,
+    "cache_read_input_tokens": 2428450,
+    "output_tokens": 45847,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 120317,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 905,
+        "cache_read_input_tokens": 131855,
+        "cache_creation_input_tokens": 303,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 303
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 2576,
+      "outputTokens": 18,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.002666,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 29,
+      "outputTokens": 45847,
+      "cacheReadInputTokens": 2428450,
+      "cacheCreationInputTokens": 120317,
+      "webSearchRequests": 0,
+      "costUSD": 3.11252625,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "64472c27-7487-4405-be5f-754da935a599"
+}
+```
+
+</details>
+
+---

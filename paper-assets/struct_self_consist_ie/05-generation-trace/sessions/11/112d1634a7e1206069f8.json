@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "112d1634a7e1206069f8",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "check all running experiments status",
+  "task_key": "worker_check_all_running_experiments_status_20260515T183532",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_check_all_running_experiments_status_20260515T183532_result.json",
+    "occurrence": 1,
+    "bytes": 946,
+    "sha256": "7766a808ea4b6a0704536bdab89ffb703abcb0111bbec2490077fdb201f98c70"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 实验状态汇总\n\n### 1. exp_freeform_seed123 — **COMPLETED** → ANALYZING\n- 进程 207084 已退出\n- 551 instances × 8 samples = 4408 total, 4406 parsed (99.95%)\n- 耗时 228s\n- 输出: `results/exp_freeform_ablation_seed123/samples.jsonl` (7.16MB, 551行)\n\n### 2. exp_freeform_seed456 — **COMPLETED** → ANALYZING\n- 进程 207157 已退出\n- 551 instances × 8 samples = 4408 total, 4406 parsed (99.95%)\n- 耗时 229s\n- 输出: `results/exp_freeform_ablation_seed456/samples.jsonl` (7.16MB, 551行)\n\n### 3. exp_qwen3_4b_conll_finetune — **RUNNING** (不改状态)\n- GPU 0: 14902/32607 MiB, 42% utilization\n- 进度: step **3070/4390** (69.93%), epoch 3.50\n- loss: 0.0201, eval_loss: 0.0293 (step 3000)\n- 已运行 1h47m, 预估剩余 ~46min\n- 最新 checkpoint: `checkpoint-3000`\n- 日志位置: `checkpoints/qwen3-4b-conll2003-lora/trainer_log.jsonl`（注意: `~/runs/` 下无此实验 log）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-all-running-experiments-status.md"
+}

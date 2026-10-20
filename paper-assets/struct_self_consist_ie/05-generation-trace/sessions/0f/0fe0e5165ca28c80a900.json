@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "0fe0e5165ca28c80a900",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "exp 010 selection curves",
+  "task_key": "worker_exp_010_selection_curves_20260514T144948",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_exp_010_selection_curves_20260514T144948.log",
+    "occurrence": 1,
+    "bytes": 674458,
+    "sha256": "686f3f519d66df2158a111f9d8a3aecf6ae89d2c10210158f692d750b5fcb866"
+  },
+  "statistics": {
+    "messages": 259,
+    "user_turns": 1,
+    "tool_calls": 91,
+    "roles": {
+      "log": 1,
+      "system": 37,
+      "record": 1,
+      "assistant": 36,
+      "tool_call": 91,
+      "user": 1,
+      "tool_result": 91,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 6,
+      "chunks": [
+        {
+          "path": "0fe0e5165ca28c80a900-part-0001.json",
+          "message_count": 6
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 253,
+      "chunks": [
+        {
+          "path": "0fe0e5165ca28c80a900-part-0001.json",
+          "message_count": 174
+        },
+        {
+          "path": "0fe0e5165ca28c80a900-part-0002.json",
+          "message_count": 79
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/exp-010-selection-curves.md"
+}

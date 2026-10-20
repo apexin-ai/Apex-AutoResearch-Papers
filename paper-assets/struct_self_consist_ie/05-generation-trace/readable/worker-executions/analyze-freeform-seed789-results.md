@@ -1,0 +1,3429 @@
+# analyze freeform seed789 results
+
+**When Self-Consistency Fails for NER: Degeneracy, Signal Collapse, and the Correlation-Selection Gap** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 73
+- **Recorded user turns:** 0
+- **Tool calls:** 28
+- **Original source:** `logs/workers/worker_analyze_freeform_seed789_results_20260515T193127.log`
+- **Structured JSON:** [`3d57f20aa8353597e364.json`](../../sessions/3d/3d57f20aa8353597e364.json)
+
+## Before a recorded user message
+
+73 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "session_id": "7eba3c0b-27a3-473d-9ada-eb8130f6c3d2",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__read_registry",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only",
+    "mcp__agent-ml-research__update_registry"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "5dd2d882-09f4-4b37-9e09-6ab05a1a57f7",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1778887800,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "ed1c3233-32d0-4cf4-9b40-2e2f379df9f8",
+  "session_id": "7eba3c0b-27a3-473d-9ada-eb8130f6c3d2"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by reading the results from the server. I need to use the MCP tools for SSH access. Let me first load the tool schemas.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7eba3c0b-27a3-473d-9ada-eb8130f6c3d2",
+  "uuid": "de848511-e283-47a5-b47e-f42b3c22e3b6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GBoHuUgjEVqo8PG8G5YNgb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11832,
+      "cache_read_input_tokens": 11701,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11832
+      },
+      "output_tokens": 25,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01YCz7wTKcX9j7sp9UYs7p38`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__detect_image",
+  "max_results": 4
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7eba3c0b-27a3-473d-9ada-eb8130f6c3d2",
+  "uuid": "b5d1055d-603f-482a-9d71-48bacb7fa388",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GBoHuUgjEVqo8PG8G5YNgb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11832,
+      "cache_read_input_tokens": 11701,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11832
+      },
+      "output_tokens": 25,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-15T19:31:41.324Z_
+
+<details><summary>↩ Tool result · `toolu_01YCz7wTKcX9j7sp9UYs7p38`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__update_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__detect_image"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7eba3c0b-27a3-473d-9ada-eb8130f6c3d2",
+  "uuid": "92794ccf-6cb9-4838-b23a-cd3397dccbac",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__update_registry",
+      "mcp__agent-ml-research__detect_image"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__detect_image",
+    "total_deferred_tools": 26
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7_
+
+读取三个 seed 的结果文件。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7eba3c0b-27a3-473d-9ada-eb8130f6c3d2",
+  "uuid": "3e9e7f05-c04b-4663-977d-d1e467680492",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01F2VHsLaP2z5yFVDvY7UTGH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1326,
+      "cache_read_input_tokens": 23533,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1326
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01SPhyNWkS94pNhJrivpBMDW`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "ls -la /root/autodl-tmp/struct_self_consist_ie/results/exp_freeform_ablation_seed789/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7eba3c0b-27a3-473d-9ada-eb8130f6c3d2",
+  "uuid": "e4574a5f-0f98-41da-9a60-783f1d6b75c5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01F2VHsLaP2z5yFVDvY7UTGH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1326,
+      "cache_read_input_tokens": 23533,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1326
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_017WoWojU8jUjVTp5j6XAqPM`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "ls -la /root/autodl-tmp/struct_self_consist_ie/results/exp_freeform_ablation/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7eba3c0b-27a3-473d-9ada-eb8130f6c3d2",
+  "uuid": "0b488c26-722e-4911-ac53-95ce37d2d10f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01F2VHsLaP2z5yFVDvY7UTGH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1326,
+      "cache_read_input_tokens": 23533,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1326
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-15T19:31:46.284Z_
+
+<details><summary>↩ Tool result · `toolu_01SPhyNWkS94pNhJrivpBMDW`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 6976\\ndrwxr-xr-x 2 root root      63 May 16 03:28 .\\ndrwxr-xr-x 6 root root     166 May 16 03:24 ..\\n-rw-r--r-- 1 root root     345 May 16 03:28 run_summary.json\\n-rw-r--r-- 1 root root 7137437 May 16 03:28 samples.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.2}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7eba3c0b-27a3-473d-9ada-eb8130f6c3d2",
+  "uuid": "2c104742-cfee-4ff5-9a5f-f0d8a6f32842",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 6976\\\\ndrwxr-xr-x 2 root root      63 May 16 03:28 .\\\\ndrwxr-xr-x 6 root root     166 May 16 03:24 ..\\\\n-rw-r--r-- 1 root root     345 May 16 03:28 run_summary.json\\\\n-rw-r--r-- 1 root root 7137437 May 16 03:28 samples.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.2}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 6976\\ndrwxr-xr-x 2 root root      63 May 16 03:28 .\\ndrwxr-xr-x 6 root root     166 May 16 03:24 ..\\n-rw-r--r-- 1 root root     345 May 16 03:28 run_summary.json\\n-rw-r--r-- 1 root root 7137437 May 16 03:28 samples.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.2}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-15T19:31:46.702Z_
+
+<details><summary>↩ Tool result · `toolu_017WoWojU8jUjVTp5j6XAqPM`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 7020\\ndrwxr-xr-x 2 root root     133 May 15 18:33 .\\ndrwxr-xr-x 6 root root     166 May 16 03:24 ..\\n-rw-r--r-- 1 root root    3519 May 15 17:58 ablation_report.json\\n-rw-r--r-- 1 root root    9245 May 15 18:33 deep_analysis_results.json\\n-rw-r--r-- 1 root root     344 May 15 17:46 run_summary.json\\n-rw-r--r-- 1 root root 7165184 May 15 17:46 samples.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7eba3c0b-27a3-473d-9ada-eb8130f6c3d2",
+  "uuid": "fbd8537d-5fb3-48f6-839d-9b1b8533ecfc",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 7020\\\\ndrwxr-xr-x 2 root root     133 May 15 18:33 .\\\\ndrwxr-xr-x 6 root root     166 May 16 03:24 ..\\\\n-rw-r--r-- 1 root root    3519 May 15 17:58 ablation_report.json\\\\n-rw-r--r-- 1 root root    9245 May 15 18:33 deep_analysis_results.json\\\\n-rw-r--r-- 1 root root     344 May 15 17:46 run_summary.json\\\\n-rw-r--r-- 1 root root 7165184 May 15 17:46 samples.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 7020\\ndrwxr-xr-x 2 root root     133 May 15 18:33 .\\ndrwxr-xr-x 6 root root     166 May 16 03:24 ..\\n-rw-r--r-- 1 root root    3519 May 15 17:58 ablation_report.json\\n-rw-r--r-- 1 root root    9245 May 15 18:33 deep_analysis_results.json\\n-rw-r--r-- 1 root root     344 May 15 17:46 run_summary.json\\n-rw-r--r-- 1 root root 7165184 May 15 17:46 samples.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01VwDw7Czx3p3Gu5UbDEAPCK`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "ls -la /root/autodl-tmp/struct_self_consist_ie/results/exp_freeform_ablation_seed456/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7eba3c0b-27a3-473d-9ada-eb8130f6c3d2",
+  "uuid": "8665ca3d-84e1-404f-84c8-080ec267dd02",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01F2VHsLaP2z5yFVDvY7UTGH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1326,
+      "cache_read_input_tokens": 23533,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1326
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-15T19:31:47.127Z_
+
+<details><summary>↩ Tool result · `toolu_01VwDw7Czx3p3Gu5UbDEAPCK`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 7028\\ndrwxr-xr-x 2 root root      95 May 16 03:11 .\\ndrwxr-xr-x 6 root root     166 May 16 03:24 ..\\n-rw-r--r-- 1 root root    3517 May 16 03:11 ablation_report.json\\n-rw-r--r-- 1 root root     345 May 16 03:10 run_summary.json\\n-rw-r--r-- 1 root root 7185479 May 16 03:10 samples.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7eba3c0b-27a3-473d-9ada-eb8130f6c3d2",
+  "uuid": "09b5b53f-e447-417f-b721-5a299c85c102",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 7028\\\\ndrwxr-xr-x 2 root root      95 May 16 03:11 .\\\\ndrwxr-xr-x 6 root root     166 May 16 03:24 ..\\\\n-rw-r--r-- 1 root root    3517 May 16 03:11 ablation_report.json\\\\n-rw-r--r-- 1 root root     345 May 16 03:10 run_summary.json\\\\n-rw-r--r-- 1 root root 7185479 May 16 03:10 samples.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 7028\\ndrwxr-xr-x 2 root root      95 May 16 03:11 .\\ndrwxr-xr-x 6 root root     166 May 16 03:24 ..\\n-rw-r--r-- 1 root root    3517 May 16 03:11 ablation_report.json\\n-rw-r--r-- 1 root root     345 May 16 03:10 run_summary.json\\n-rw-r--r-- 1 root root 7185479 May 16 03:10 samples.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 14_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me read the JSON results from all three seeds.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7eba3c0b-27a3-473d-9ada-eb8130f6c3d2",
+  "uuid": "55ec3bfd-2cc5-465c-96a7-e7273e2d7c0c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0187XYbQHejWttXLNV37SkHB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1161,
+      "cache_read_input_tokens": 24859,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1161
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 15_
+
+读取三个 seed 的 run_summary 和 ablation_report。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7eba3c0b-27a3-473d-9ada-eb8130f6c3d2",
+  "uuid": "4cac40fc-574e-453a-9801-d9e58c2c0b18",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0187XYbQHejWttXLNV37SkHB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1161,
+      "cache_read_input_tokens": 24859,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1161
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01KxvsQLife7WHkyWbJpD4WJ`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/results/exp_freeform_ablation_seed789/run_summary.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7eba3c0b-27a3-473d-9ada-eb8130f6c3d2",
+  "uuid": "6f864323-6f82-4602-b1a3-aa697553c130",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0187XYbQHejWttXLNV37SkHB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1161,
+      "cache_read_input_tokens": 24859,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1161
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-15T19:31:51.186Z_
+
+<details><summary>↩ Tool result · `toolu_01KxvsQLife7WHkyWbJpD4WJ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"experiment\\\": \\\"exp_freeform_ablation\\\",\\n  \\\"model\\\": \\\"checkpoints/qwen3-8b-scierc-merged-v2\\\",\\n  \\\"dataset\\\": \\\"scierc\\\",\\n  \\\"n_instances\\\": 551,\\n  \\\"n_samples\\\": 8,\\n  \\\"temperature\\\": 1.0,\\n  \\\"max_tokens\\\": 1024,\\n  \\\"seed\\\": 789,\\n  \\\"use_grammar\\\": false,\\n  \\\"total_samples\\\": 4408,\\n  \\\"total_parsed\\\": 4408,\\n  \\\"parse_rate_pct\\\": 100.0,\\n  \\\"elapsed_seconds\\\": 229.7\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7eba3c0b-27a3-473d-9ada-eb8130f6c3d2",
+  "uuid": "474a8b9f-636a-4770-8c0d-57c3fe2f3758",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"experiment\\\\\\\": \\\\\\\"exp_freeform_ablation\\\\\\\",\\\\n  \\\\\\\"model\\\\\\\": \\\\\\\"checkpoints/qwen3-8b-scierc-merged-v2\\\\\\\",\\\\n  \\\\\\\"dataset\\\\\\\": \\\\\\\"scierc\\\\\\\",\\\\n  \\\\\\\"n_instances\\\\\\\": 551,\\\\n  \\\\\\\"n_samples\\\\\\\": 8,\\\\n  \\\\\\\"temperature\\\\\\\": 1.0,\\\\n  \\\\\\\"max_tokens\\\\\\\": 1024,\\\\n  \\\\\\\"seed\\\\\\\": 789,\\\\n  \\\\\\\"use_grammar\\\\\\\": false,\\\\n  \\\\\\\"total_samples\\\\\\\": 4408,\\\\n  \\\\\\\"total_parsed\\\\\\\": 4408,\\\\n  \\\\\\\"parse_rate_pct\\\\\\\": 100.0,\\\\n  \\\\\\\"elapsed_seconds\\\\\\\": 229.7\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"experiment\\\": \\\"exp_freeform_ablation\\\",\\n  \\\"model\\\": \\\"checkpoints/qwen3-8b-scierc-merged-v2\\\",\\n  \\\"dataset\\\": \\\"scierc\\\",\\n  \\\"n_instances\\\": 551,\\n  \\\"n_samples\\\": 8,\\n  \\\"temperature\\\": 1.0,\\n  \\\"max_tokens\\\": 1024,\\n  \\\"seed\\\": 789,\\n  \\\"use_grammar\\\": false,\\n  \\\"total_samples\\\": 4408,\\n  \\\"total_parsed\\\": 4408,\\n  \\\"parse_rate_pct\\\": 100.0,\\n  \\\"elapsed_seconds\\\": 229.7\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_016f7GNc7oUwq6XQhBu12ASo`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/results/exp_freeform_ablation/run_summary.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7eba3c0b-27a3-473d-9ada-eb8130f6c3d2",
+  "uuid": "8761c898-c5cb-4182-aa9e-cda4f34e9f9a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0187XYbQHejWttXLNV37SkHB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1161,
+      "cache_read_input_tokens": 24859,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1161
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-15T19:31:52.117Z_
+
+<details><summary>↩ Tool result · `toolu_016f7GNc7oUwq6XQhBu12ASo`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"experiment\\\": \\\"exp_freeform_ablation\\\",\\n  \\\"model\\\": \\\"checkpoints/qwen3-8b-scierc-merged-v2\\\",\\n  \\\"dataset\\\": \\\"scierc\\\",\\n  \\\"n_instances\\\": 551,\\n  \\\"n_samples\\\": 8,\\n  \\\"temperature\\\": 1.0,\\n  \\\"max_tokens\\\": 1024,\\n  \\\"seed\\\": 42,\\n  \\\"use_grammar\\\": false,\\n  \\\"total_samples\\\": 4408,\\n  \\\"total_parsed\\\": 4406,\\n  \\\"parse_rate_pct\\\": 99.95,\\n  \\\"elapsed_seconds\\\": 225.8\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7eba3c0b-27a3-473d-9ada-eb8130f6c3d2",
+  "uuid": "2a507a1b-f4c6-4f54-9c8c-635fe5cf1b7b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"experiment\\\\\\\": \\\\\\\"exp_freeform_ablation\\\\\\\",\\\\n  \\\\\\\"model\\\\\\\": \\\\\\\"checkpoints/qwen3-8b-scierc-merged-v2\\\\\\\",\\\\n  \\\\\\\"dataset\\\\\\\": \\\\\\\"scierc\\\\\\\",\\\\n  \\\\\\\"n_instances\\\\\\\": 551,\\\\n  \\\\\\\"n_samples\\\\\\\": 8,\\\\n  \\\\\\\"temperature\\\\\\\": 1.0,\\\\n  \\\\\\\"max_tokens\\\\\\\": 1024,\\\\n  \\\\\\\"seed\\\\\\\": 42,\\\\n  \\\\\\\"use_grammar\\\\\\\": false,\\\\n  \\\\\\\"total_samples\\\\\\\": 4408,\\\\n  \\\\\\\"total_parsed\\\\\\\": 4406,\\\\n  \\\\\\\"parse_rate_pct\\\\\\\": 99.95,\\\\n  \\\\\\\"elapsed_seconds\\\\\\\": 225.8\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"experiment\\\": \\\"exp_freeform_ablation\\\",\\n  \\\"model\\\": \\\"checkpoints/qwen3-8b-scierc-merged-v2\\\",\\n  \\\"dataset\\\": \\\"scierc\\\",\\n  \\\"n_instances\\\": 551,\\n  \\\"n_samples\\\": 8,\\n  \\\"temperature\\\": 1.0,\\n  \\\"max_tokens\\\": 1024,\\n  \\\"seed\\\": 42,\\n  \\\"use_grammar\\\": false,\\n  \\\"total_samples\\\": 4408,\\n  \\\"total_parsed\\\": 4406,\\n  \\\"parse_rate_pct\\\": 99.95,\\n  \\\"elapsed_seconds\\\": 225.8\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01HTvULCKzPzQTJyuumDiZ6K`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/results/exp_freeform_ablation_seed456/run_summary.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7eba3c0b-27a3-473d-9ada-eb8130f6c3d2",
+  "uuid": "1134bccf-e411-4845-9011-ad662201d1e3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0187XYbQHejWttXLNV37SkHB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1161,
+      "cache_read_input_tokens": 24859,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1161
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-15T19:31:53.049Z_
+
+<details><summary>↩ Tool result · `toolu_01HTvULCKzPzQTJyuumDiZ6K`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"experiment\\\": \\\"exp_freeform_ablation\\\",\\n  \\\"model\\\": \\\"checkpoints/qwen3-8b-scierc-merged-v2\\\",\\n  \\\"dataset\\\": \\\"scierc\\\",\\n  \\\"n_instances\\\": 551,\\n  \\\"n_samples\\\": 8,\\n  \\\"temperature\\\": 1.0,\\n  \\\"max_tokens\\\": 1024,\\n  \\\"seed\\\": 456,\\n  \\\"use_grammar\\\": false,\\n  \\\"total_samples\\\": 4408,\\n  \\\"total_parsed\\\": 4407,\\n  \\\"parse_rate_pct\\\": 99.98,\\n  \\\"elapsed_seconds\\\": 232.4\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7eba3c0b-27a3-473d-9ada-eb8130f6c3d2",
+  "uuid": "9c03ba13-ca1f-48ff-b76f-e6e07e491a8b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"experiment\\\\\\\": \\\\\\\"exp_freeform_ablation\\\\\\\",\\\\n  \\\\\\\"model\\\\\\\": \\\\\\\"checkpoints/qwen3-8b-scierc-merged-v2\\\\\\\",\\\\n  \\\\\\\"dataset\\\\\\\": \\\\\\\"scierc\\\\\\\",\\\\n  \\\\\\\"n_instances\\\\\\\": 551,\\\\n  \\\\\\\"n_samples\\\\\\\": 8,\\\\n  \\\\\\\"temperature\\\\\\\": 1.0,\\\\n  \\\\\\\"max_tokens\\\\\\\": 1024,\\\\n  \\\\\\\"seed\\\\\\\": 456,\\\\n  \\\\\\\"use_grammar\\\\\\\": false,\\\\n  \\\\\\\"total_samples\\\\\\\": 4408,\\\\n  \\\\\\\"total_parsed\\\\\\\": 4407,\\\\n  \\\\\\\"parse_rate_pct\\\\\\\": 99.98,\\\\n  \\\\\\\"elapsed_seconds\\\\\\\": 232.4\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"experiment\\\": \\\"exp_freeform_ablation\\\",\\n  \\\"model\\\": \\\"checkpoints/qwen3-8b-scierc-merged-v2\\\",\\n  \\\"dataset\\\": \\\"scierc\\\",\\n  \\\"n_instances\\\": 551,\\n  \\\"n_samples\\\": 8,\\n  \\\"temperature\\\": 1.0,\\n  \\\"max_tokens\\\": 1024,\\n  \\\"seed\\\": 456,\\n  \\\"use_grammar\\\": false,\\n  \\\"total_samples\\\": 4408,\\n  \\\"total_parsed\\\": 4407,\\n  \\\"parse_rate_pct\\\": 99.98,\\n  \\\"elapsed_seconds\\\": 232.4\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01UkRZE3UDnM7v7CfCmLu9Ni`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/results/exp_freeform_ablation/ablation_report.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7eba3c0b-27a3-473d-9ada-eb8130f6c3d2",
+  "uuid": "06d85d01-9e49-484a-94d5-3bfd51b3213e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0187XYbQHejWttXLNV37SkHB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1161,
+      "cache_read_input_tokens": 24859,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1161
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-15T19:31:54.003Z_
+
+<details><summary>↩ Tool result · `toolu_01UkRZE3UDnM7v7CfCmLu9Ni`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"constrained\\\": {\\n    \\\"logprob_variance\\\": {\\n      \\\"mean_std\\\": 0.020589,\\n      \\\"median_std\\\": 0.013616,\\n      \\\"mean_range\\\": 0.062305,\\n      \\\"median_range\\\": 0.041348,\\n      \\\"tied_pct\\\": 59.7,\\n      \\\"n\\\": 551\\n    },\\n    \\\"selection_ner\\\": {\\n      \\\"greedy\\\": 0.6182,\\n      \\\"selected\\\": 0.6241,\\n      \\\"gap\\\": 0.0059\\n    },\\n    \\\"selection_re\\\": {\\n      \\\"greedy\\\": 0.2913,\\n      \\\"selected\\\": 0.2845,\\n      \\\"gap\\\": -0.0068\\n    },\\n    \\\"qe_ner\\\": {\\n      \\\"n\\\": 529,\\n      \\\"signals\\\": {\\n        \\\"SJ\\\": {\\n          \\\"rho\\\": 0.359891,\\n          \\\"p_rho\\\": 0.0,\\n          \\\"auroc\\\": 0.717989\\n        },\\n        \\\"FK\\\": {\\n          \\\"rho\\\": 0.266511,\\n          \\\"p_rho\\\": 0.0,\\n          \\\"auroc\\\": 0.747783\\n        },\\n        \\\"logprob\\\": {\\n          \\\"rho\\\": 0.205174,\\n          \\\"p_rho\\\": 2e-06,\\n          \\\"auroc\\\": 0.654773\\n        },\\n        \\\"EM\\\": {\\n          \\\"rho\\\": 0.294549,\\n          \\\"p_rho\\\": 0.0,\\n          \\\"auroc\\\": 0.499819\\n        },\\n        \\\"voting_conf\\\": {\\n          \\\"rho\\\": 0.379176,\\n          \\\"p_rho\\\": 0.0,\\n          \\\"auroc\\\": 0.772093\\n        }\\n      }\\n    },\\n    \\\"qe_re\\\": {\\n      \\\"n\\\": 397,\\n      \\\"signals\\\": {\\n        \\\"SJ\\\": {\\n          \\\"rho\\\": 0.250336,\\n          \\\"p_rho\\\": 0.0,\\n          \\\"auroc\\\": 0.609931\\n        },\\n        \\\"FK\\\": {\\n          \\\"rho\\\": 0.275204,\\n          \\\"p_rho\\\": 0.0,\\n          \\\"auroc\\\": 0.663813\\n        },\\n        \\\"logprob\\\": {\\n          \\\"rho\\\": 0.266245,\\n          \\\"p_rho\\\": 0.0,\\n          \\\"auroc\\\": 0.67803\\n        },\\n        \\\"EM\\\": {\\n          \\\"rho\\\": 0.134388,\\n          \\\"p_rho\\\": 0.007332,\\n          \\\"auroc\\\": 0.488597\\n        },\\n        \\\"voting_conf\\\": {\\n          \\\"rho\\\": 0.34977,\\n          \\\"p_rho\\\": 0.0,\\n          \\\"auroc\\\": 0.68202\\n        }\\n      }\\n    }\\n  },\\n  \\\"freeform\\\": {\\n    \\\"logprob_variance\\\": {\\n      \\\"mean_std\\\": 0.019881,\\n      \\\"median_std\\\": 0.013715,\\n      \\\"mean_range\\\": 0.059864,\\n      \\\"median_range\\\": 0.041788,\\n      \\\"tied_pct\\\": 57.7,\\n      \\\"n\\\": 551\\n    },\\n    \\\"parse_rate\\\": {\\n      \\\"total_samples\\\": 4408,\\n      \\\"parsed\\\": 4406,\\n      \\\"rate_pct\\\": 99.95\\n    },\\n    \\\"selection_ner\\\": {\\n      \\\"greedy\\\": 0.6204,\\n      \\\"selected\\\": 0.6222,\\n      \\\"gap\\\": 0.0018\\n    },\\n    \\\"selection_re\\\": {\\n      \\\"greedy\\\": 0.288,\\n      \\\"selected\\\": 0.305,\\n      \\\"gap\\\": 0.0169\\n    },\\n    \\\"qe_ner\\\": {\\n      \\\"n\\\": 529,\\n      \\\"signals\\\": {\\n        \\\"SJ\\\": {\\n          \\\"rho\\\": 0.377378,\\n          \\\"p_rho\\\": 0.0,\\n          \\\"auroc\\\": 0.746284\\n        },\\n        \\\"FK\\\": {\\n          \\\"rho\\\": 0.31971,\\n          \\\"p_rho\\\": 0.0,\\n          \\\"auroc\\\": 0.762067\\n        },\\n        \\\"logprob\\\": {\\n          \\\"rho\\\": 0.212861,\\n          \\\"p_rho\\\": 1e-06,\\n          \\\"auroc\\\": 0.698413\\n        },\\n        \\\"EM\\\": {\\n          \\\"rho\\\": 0.317078,\\n          \\\"p_rho\\\": 0.0,\\n          \\\"auroc\\\": 0.518998\\n        },\\n        \\\"voting_conf\\\": {\\n          \\\"rho\\\": 0.408865,\\n          \\\"p_rho\\\": 0.0,\\n          \\\"auroc\\\": 0.795846\\n        }\\n      }\\n    },\\n    \\\"qe_re\\\": {\\n      \\\"n\\\": 397,\\n      \\\"signals\\\": {\\n        \\\"SJ\\\": {\\n          \\\"rho\\\": 0.272831,\\n          \\\"p_rho\\\": 0.0,\\n          \\\"auroc\\\": 0.617314\\n        },\\n        \\\"FK\\\": {\\n          \\\"rho\\\": 0.314487,\\n          \\\"p_rho\\\": 0.0,\\n          \\\"auroc\\\": 0.683716\\n        },\\n        \\\"logprob\\\": {\\n          \\\"rho\\\": 0.304178,\\n          \\\"p_rho\\\": 0.0,\\n          \\\"auroc\\\": 0.702479\\n        },\\n        \\\"EM\\\": {\\n          \\\"rho\\\": 0.136749,\\n          \\\"p_rho\\\": 0.006354,\\n          \\\"auroc\\\": 0.487686\\n        },\\n        \\\"voting_conf\\\": {\\n          \\\"rho\\\": 0.323423,\\n          \\\"p_rho\\\": 0.0,\\n          \\\"auroc\\\": 0.655302\\n        }\\n      }\\n    }\\n  },\\n  \\\"comparison\\\": {\\n    \\\"variance_ratio_std\\\": 0.97,\\n    \\\"variance_ratio_range\\\": 0.96,\\n    \\\"tied_reduction_pp\\\": 2.0,\\n    \\\"parse_rate_pct\\\": 99.95\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7eba3c0b-27a3-473d-9ada-eb8130f6c3d2",
+  "uuid": "3d34a95b-7900-45fb-a9c4-ec79fcc7954d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"constrained\\\\\\\": {\\\\n    \\\\\\\"logprob_variance\\\\\\\": {\\\\n      \\\\\\\"mean_std\\\\\\\": 0.020589,\\\\n      \\\\\\\"median_std\\\\\\\": 0.013616,\\\\n      \\\\\\\"mean_range\\\\\\\": 0.062305,\\\\n      \\\\\\\"median_range\\\\\\\": 0.041348,\\\\n      \\\\\\\"tied_pct\\\\\\\": 59.7,\\\\n      \\\\\\\"n\\\\\\\": 551\\\\n    },\\\\n    \\\\\\\"selection_ner\\\\\\\": {\\\\n      \\\\\\\"greedy\\\\\\\": 0.6182,\\\\n      \\\\\\\"selected\\\\\\\": 0.6241,\\\\n      \\\\\\\"gap\\\\\\\": 0.0059\\\\n    },\\\\n    \\\\\\\"selection_re\\\\\\\": {\\\\n      \\\\\\\"greedy\\\\\\\": 0.2913,\\\\n      \\\\\\\"selected\\\\\\\": 0.2845,\\\\n      \\\\\\\"gap\\\\\\\": -0.0068\\\\n    },\\\\n    \\\\\\\"qe_ner\\\\\\\": {\\\\n      \\\\\\\"n\\\\\\\": 529,\\\\n      \\\\\\\"signals\\\\\\\": {\\\\n        \\\\\\\"SJ\\\\\\\": {\\\\n          \\\\\\\"rho\\\\\\\": 0.359891,\\\\n          \\\\\\\"p_rho\\\\\\\": 0.0,\\\\n          \\\\\\\"auroc\\\\\\\": 0.717989\\\\n        },\\\\n        \\\\\\\"FK\\\\\\\": {\\\\n          \\\\\\\"rho\\\\\\\": 0.266511,\\\\n          \\\\\\\"p_rho\\\\\\\": 0.0,\\\\n          \\\\\\\"auroc\\\\\\\": 0.747783\\\\n        },\\\\n        \\\\\\\"logprob\\\\\\\": {\\\\n          \\\\\\\"rho\\\\\\\": 0.205174,\\\\n          \\\\\\\"p_rho\\\\\\\": 2e-06,\\\\n          \\\\\\\"auroc\\\\\\\": 0.654773\\\\n        },\\\\n        \\\\\\\"EM\\\\\\\": {\\\\n          \\\\\\\"rho\\\\\\\": 0.294549,\\\\n          \\\\\\\"p_rho\\\\\\\": 0.0,\\\\n          \\\\\\\"auroc\\\\\\\": 0.499819\\\\n        },\\\\n        \\\\\\\"voting_conf\\\\\\\": {\\\\n          \\\\\\\"rho\\\\\\\": 0.379176,\\\\n          \\\\\\\"p_rho\\\\\\\": 0.0,\\\\n          \\\\\\\"auroc\\\\\\\": 0.772093\\\\n        }\\\\n      }\\\\n    },\\\\n    \\\\\\\"qe_re\\\\\\\": {\\\\n      \\\\\\\"n\\\\\\\": 397,\\\\n      \\\\\\\"signals\\\\\\\": {\\\\n        \\\\\\\"SJ\\\\\\\": {\\\\n          \\\\\\\"rho\\\\\\\": 0.250336,\\\\n          \\\\\\\"p_rho\\\\\\\": 0.0,\\\\n          \\\\\\\"auroc\\\\\\\": 0.609931\\\\n        },\\\\n        \\\\\\\"FK\\\\\\\": {\\\\n          \\\\\\\"rho\\\\\\\": 0.275204,\\\\n          \\\\\\\"p_rho\\\\\\\": 0.0,\\\\n          \\\\\\\"auroc\\\\\\\": 0.663813\\\\n        },\\\\n        \\\\\\\"logprob\\\\\\\": {\\\\n          \\\\\\\"rho\\\\\\\": 0.266245,\\\\n          \\\\\\\"p_rho\\\\\\\": 0.0,\\\\n          \\\\\\\"auroc\\\\\\\": 0.67803\\\\n        },\\\\n        \\\\\\\"EM\\\\\\\": {\\\\n          \\\\\\\"rho\\\\\\\": 0.134388,\\\\n          \\\\\\\"p_rho\\\\\\\": 0.007332,\\\\n          \\\\\\\"auroc\\\\\\\": 0.488597\\\\n        },\\\\n        \\\\\\\"voting_conf\\\\\\\": {\\\\n          \\\\\\\"rho\\\\\\\": 0.34977,\\\\n          \\\\\\\"p_rho\\\\\\\": 0.0,\\\\n          \\\\\\\"auroc\\\\\\\": 0.68202\\\\n        }\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"freeform\\\\\\\": {\\\\n    \\\\\\\"logprob_variance\\\\\\\": {\\\\n      \\\\\\\"mean_std\\\\\\\": 0.019881,\\\\n      \\\\\\\"median_std\\\\\\\": 0.013715,\\\\n      \\\\\\\"mean_range\\\\\\\": 0.059864,\\\\n      \\\\\\\"median_range\\\\\\\": 0.041788,\\\\n      \\\\\\\"tied_pct\\\\\\\": 57.7,\\\\n      \\\\\\\"n\\\\\\\": 551\\\\n    },\\\\n    \\\\\\\"parse_rate\\\\\\\": {\\\\n      \\\\\\\"total_samples\\\\\\\": 4408,\\\\n      \\\\\\\"parsed\\\\\\\": 4406,\\\\n      \\\\\\\"rate_pct\\\\\\\": 99.95\\\\n    },\\\\n    \\\\\\\"selection_ner\\\\\\\": {\\\\n      \\\\\\\"greedy\\\\\\\": 0.6204,\\\\n      \\\\\\\"selected\\\\\\\": 0.6222,\\\\n      \\\\\\\"gap\\\\\\\": 0.0018\\\\n    },\\\\n    \\\\\\\"selection_re\\\\\\\": {\\\\n      \\\\\\\"greedy\\\\\\\": 0.288,\\\\n      \\\\\\\"selected\\\\\\\": 0.305,\\\\n      \\\\\\\"gap\\\\\\\": 0.0169\\\\n    },\\\\n    \\\\\\\"qe_ner\\\\\\\": {\\\\n      \\\\\\\"n\\\\\\\": 529,\\\\n      \\\\\\\"signals\\\\\\\": {\\\\n        \\\\\\\"SJ\\\\\\\": {\\\\n          \\\\\\\"rho\\\\\\\": 0.377378,\\\\n          \\\\\\\"p_rho\\\\\\\": 0.0,\\\\n          \\\\\\\"auroc\\\\\\\": 0.746284\\\\n        },\\\\n        \\\\\\\"FK\\\\\\\": {\\\\n          \\\\\\\"rho\\\\\\\": 0.31971,\\\\n          \\\\\\\"p_rho\\\\\\\": 0.0,\\\\n          \\\\\\\"auroc\\\\\\\": 0.762067\\\\n        },\\\\n        \\\\\\\"logprob\\\\\\\": {\\\\n          \\\\\\\"rho\\\\\\\": 0.212861,\\\\n          \\\\\\\"p_rho\\\\\\\": 1e-06,\\\\n          \\\\\\\"auroc\\\\\\\": 0.698413\\\\n        },\\\\n        \\\\\\\"EM\\\\\\\": {\\\\n          \\\\\\\"rho\\\\\\\": 0.317078,\\\\n          \\\\\\\"p_rho\\\\\\\": 0.0,\\\\n          \\\\\\\"auroc\\\\\\\": 0.518998\\\\n        },\\\\n        \\\\\\\"voting_conf\\\\\\\": {\\\\n          \\\\\\\"rho\\\\\\\": 0.408865,\\\\n          \\\\\\\"p_rho\\\\\\\": 0.0,\\\\n          \\\\\\\"auroc\\\\\\\": 0.795846\\\\n        }\\\\n      }\\\\n    },\\\\n    \\\\\\\"qe_re\\\\\\\": {\\\\n      \\\\\\\"n\\\\\\\": 397,\\\\n      \\\\\\\"signals\\\\\\\": {\\\\n        \\\\\\\"SJ\\\\\\\": {\\\\n          \\\\\\\"rho\\\\\\\": 0.272831,\\\\n          \\\\\\\"p_rho\\\\\\\": 0.0,\\\\n          \\\\\\\"auroc\\\\\\\": 0.617314\\\\n        },\\\\n        \\\\\\\"FK\\\\\\\": {\\\\n          \\\\\\\"rho\\\\\\\": 0.314487,\\\\n          \\\\\\\"p_rho\\\\\\\": 0.0,\\\\n          \\\\\\\"auroc\\\\\\\": 0.683716\\\\n        },\\\\n        \\\\\\\"logprob\\\\\\\": {\\\\n          \\\\\\\"rho\\\\\\\": 0.304178,\\\\n          \\\\\\\"p_rho\\\\\\\": 0.0,\\\\n          \\\\\\\"auroc\\\\\\\": 0.702479\\\\n        },\\\\n        \\\\\\\"EM\\\\\\\": {\\\\n          \\\\\\\"rho\\\\\\\": 0.136749,\\\\n          \\\\\\\"p_rho\\\\\\\": 0.006354,\\\\n          \\\\\\\"auroc\\\\\\\": 0.487686\\\\n        },\\\\n        \\\\\\\"voting_conf\\\\\\\": {\\\\n          \\\\\\\"rho\\\\\\\": 0.323423,\\\\n          \\\\\\\"p_rho\\\\\\\": 0.0,\\\\n          \\\\\\\"auroc\\\\\\\": 0.655302\\\\n        }\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"comparison\\\\\\\": {\\\\n    \\\\\\\"variance_ratio_std\\\\\\\": 0.97,\\\\n    \\\\\\\"variance_ratio_range\\\\\\\": 0.96,\\\\n    \\\\\\\"tied_reduction_pp\\\\\\\": 2.0,\\\\n    \\\\\\\"parse_rate_pct\\\\\\\": 99.95\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"constrained\\\": {\\n    \\\"logprob_variance\\\": {\\n      \\\"mean_std\\\": 0.020589,\\n      \\\"median_std\\\": 0.013616,\\n      \\\"mean_range\\\": 0.062305,\\n      \\\"median_range\\\": 0.041348,\\n      \\\"tied_pct\\\": 59.7,\\n      \\\"n\\\": 551\\n    },\\n    \\\"selection_ner\\\": {\\n      \\\"greedy\\\": 0.6182,\\n      \\\"selected\\\": 0.6241,\\n      \\\"gap\\\": 0.0059\\n    },\\n    \\\"selection_re\\\": {\\n      \\\"greedy\\\": 0.2913,\\n      \\\"selected\\\": 0.2845,\\n      \\\"gap\\\": -0.0068\\n    },\\n    \\\"qe_ner\\\": {\\n      \\\"n\\\": 529,\\n      \\\"signals\\\": {\\n        \\\"SJ\\\": {\\n          \\\"rho\\\": 0.359891,\\n          \\\"p_rho\\\": 0.0,\\n          \\\"auroc\\\": 0.717989\\n        },\\n        \\\"FK\\\": {\\n          \\\"rho\\\": 0.266511,\\n          \\\"p_rho\\\": 0.0,\\n          \\\"auroc\\\": 0.747783\\n        },\\n        \\\"logprob\\\": {\\n          \\\"rho\\\": 0.205174,\\n          \\\"p_rho\\\": 2e-06,\\n          \\\"auroc\\\": 0.654773\\n        },\\n        \\\"EM\\\": {\\n          \\\"rho\\\": 0.294549,\\n          \\\"p_rho\\\": 0.0,\\n          \\\"auroc\\\": 0.499819\\n        },\\n        \\\"voting_conf\\\": {\\n          \\\"rho\\\": 0.379176,\\n          \\\"p_rho\\\": 0.0,\\n          \\\"auroc\\\": 0.772093\\n        }\\n      }\\n    },\\n    \\\"qe_re\\\": {\\n      \\\"n\\\": 397,\\n      \\\"signals\\\": {\\n        \\\"SJ\\\": {\\n          \\\"rho\\\": 0.250336,\\n          \\\"p_rho\\\": 0.0,\\n          \\\"auroc\\\": 0.609931\\n        },\\n        \\\"FK\\\": {\\n          \\\"rho\\\": 0.275204,\\n          \\\"p_rho\\\": 0.0,\\n          \\\"auroc\\\": 0.663813\\n        },\\n        \\\"logprob\\\": {\\n          \\\"rho\\\": 0.266245,\\n          \\\"p_rho\\\": 0.0,\\n          \\\"auroc\\\": 0.67803\\n        },\\n        \\\"EM\\\": {\\n          \\\"rho\\\": 0.134388,\\n          \\\"p_rho\\\": 0.007332,\\n          \\\"auroc\\\": 0.488597\\n        },\\n        \\\"voting_conf\\\": {\\n          \\\"rho\\\": 0.34977,\\n          \\\"p_rho\\\": 0.0,\\n          \\\"auroc\\\": 0.68202\\n        }\\n      }\\n    }\\n  },\\n  \\\"freeform\\\": {\\n    \\\"logprob_variance\\\": {\\n      \\\"mean_std\\\": 0.019881,\\n      \\\"median_std\\\": 0.013715,\\n      \\\"mean_range\\\": 0.059864,\\n      \\\"median_range\\\": 0.041788,\\n      \\\"tied_pct\\\": 57.7,\\n      \\\"n\\\": 551\\n    },\\n    \\\"parse_rate\\\": {\\n      \\\"total_samples\\\": 4408,\\n      \\\"parsed\\\": 4406,\\n      \\\"rate_pct\\\": 99.95\\n    },\\n    \\\"selection_ner\\\": {\\n      \\\"greedy\\\": 0.6204,\\n      \\\"selected\\\": 0.6222,\\n      \\\"gap\\\": 0.0018\\n    },\\n    \\\"selection_re\\\": {\\n      \\\"greedy\\\": 0.288,\\n      \\\"selected\\\": 0.305,\\n      \\\"gap\\\": 0.0169\\n    },\\n    \\\"qe_ner\\\": {\\n      \\\"n\\\": 529,\\n      \\\"signals\\\": {\\n        \\\"SJ\\\": {\\n          \\\"rho\\\": 0.377378,\\n          \\\"p_rho\\\": 0.0,\\n          \\\"auroc\\\": 0.746284\\n        },\\n        \\\"FK\\\": {\\n          \\\"rho\\\": 0.31971,\\n          \\\"p_rho\\\": 0.0,\\n          \\\"auroc\\\": 0.762067\\n        },\\n        \\\"logprob\\\": {\\n          \\\"rho\\\": 0.212861,\\n          \\\"p_rho\\\": 1e-06,\\n          \\\"auroc\\\": 0.698413\\n        },\\n        \\\"EM\\\": {\\n          \\\"rho\\\": 0.317078,\\n          \\\"p_rho\\\": 0.0,\\n          \\\"auroc\\\": 0.518998\\n        },\\n        \\\"voting_conf\\\": {\\n          \\\"rho\\\": 0.408865,\\n          \\\"p_rho\\\": 0.0,\\n          \\\"auroc\\\": 0.795846\\n        }\\n      }\\n    },\\n    \\\"qe_re\\\": {\\n      \\\"n\\\": 397,\\n      \\\"signals\\\": {\\n        \\\"SJ\\\": {\\n          \\\"rho\\\": 0.272831,\\n          \\\"p_rho\\\": 0.0,\\n          \\\"auroc\\\": 0.617314\\n        },\\n        \\\"FK\\\": {\\n          \\\"rho\\\": 0.314487,\\n          \\\"p_rho\\\": 0.0,\\n          \\\"auroc\\\": 0.683716\\n        },\\n        \\\"logprob\\\": {\\n          \\\"rho\\\": 0.304178,\\n          \\\"p_rho\\\": 0.0,\\n          \\\"auroc\\\": 0.702479\\n        },\\n        \\\"EM\\\": {\\n          \\\"rho\\\": 0.136749,\\n          \\\"p_rho\\\": 0.006354,\\n          \\\"auroc\\\": 0.487686\\n        },\\n        \\\"voting_conf\\\": {\\n          \\\"rho\\\": 0.323423,\\n          \\\"p_rho\\\": 0.0,\\n          \\\"auroc\\\": 0.655302\\n        }\\n      }\\n    }\\n  },\\n  \\\"comparison\\\": {\\n    \\\"variance_ratio_std\\\": 0.97,\\n    \\\"variance_ratio_range\\\": 0.96,\\n    \\\"tied_reduction_pp\\\": 2.0,\\n    \\\"parse_rate_pct\\\": 99.95\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01ANFLbEukCU8hY2AumYKPFM`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/results/exp_freeform_ablation_seed456/ablation_report.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7eba3c0b-27a3-473d-9ada-eb8130f6c3d2",
+  "uuid": "c3885e2c-1b4b-4f48-8e9e-6dfdcbe0c959",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0187XYbQHejWttXLNV37SkHB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1161,
+      "cache_read_input_tokens": 24859,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1161
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-15T19:31:54.469Z_
+
+<details><summary>↩ Tool result · `toolu_01ANFLbEukCU8hY2AumYKPFM`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"constrained\\\": {\\n    \\\"logprob_variance\\\": {\\n      \\\"mean_std\\\": 0.020589,\\n      \\\"median_std\\\": 0.013616,\\n      \\\"mean_range\\\": 0.062305,\\n      \\\"median_range\\\": 0.041348,\\n      \\\"tied_pct\\\": 59.7,\\n      \\\"n\\\": 551\\n    },\\n    \\\"selection_ner\\\": {\\n      \\\"greedy\\\": 0.6182,\\n      \\\"selected\\\": 0.6241,\\n      \\\"gap\\\": 0.0059\\n    },\\n    \\\"selection_re\\\": {\\n      \\\"greedy\\\": 0.2913,\\n      \\\"selected\\\": 0.2845,\\n      \\\"gap\\\": -0.0068\\n    },\\n    \\\"qe_ner\\\": {\\n      \\\"n\\\": 529,\\n      \\\"signals\\\": {\\n        \\\"SJ\\\": {\\n          \\\"rho\\\": 0.359891,\\n          \\\"p_rho\\\": 0.0,\\n          \\\"auroc\\\": 0.717989\\n        },\\n        \\\"FK\\\": {\\n          \\\"rho\\\": 0.266511,\\n          \\\"p_rho\\\": 0.0,\\n          \\\"auroc\\\": 0.747783\\n        },\\n        \\\"logprob\\\": {\\n          \\\"rho\\\": 0.205174,\\n          \\\"p_rho\\\": 2e-06,\\n          \\\"auroc\\\": 0.654773\\n        },\\n        \\\"EM\\\": {\\n          \\\"rho\\\": 0.294549,\\n          \\\"p_rho\\\": 0.0,\\n          \\\"auroc\\\": 0.499819\\n        },\\n        \\\"voting_conf\\\": {\\n          \\\"rho\\\": 0.379176,\\n          \\\"p_rho\\\": 0.0,\\n          \\\"auroc\\\": 0.772093\\n        }\\n      }\\n    },\\n    \\\"qe_re\\\": {\\n      \\\"n\\\": 397,\\n      \\\"signals\\\": {\\n        \\\"SJ\\\": {\\n          \\\"rho\\\": 0.250336,\\n          \\\"p_rho\\\": 0.0,\\n          \\\"auroc\\\": 0.609931\\n        },\\n        \\\"FK\\\": {\\n          \\\"rho\\\": 0.275204,\\n          \\\"p_rho\\\": 0.0,\\n          \\\"auroc\\\": 0.663813\\n        },\\n        \\\"logprob\\\": {\\n          \\\"rho\\\": 0.266245,\\n          \\\"p_rho\\\": 0.0,\\n          \\\"auroc\\\": 0.67803\\n        },\\n        \\\"EM\\\": {\\n          \\\"rho\\\": 0.134388,\\n          \\\"p_rho\\\": 0.007332,\\n          \\\"auroc\\\": 0.488597\\n        },\\n        \\\"voting_conf\\\": {\\n          \\\"rho\\\": 0.34977,\\n          \\\"p_rho\\\": 0.0,\\n          \\\"auroc\\\": 0.68202\\n        }\\n      }\\n    }\\n  },\\n  \\\"freeform\\\": {\\n    \\\"logprob_variance\\\": {\\n      \\\"mean_std\\\": 0.018631,\\n      \\\"median_std\\\": 0.014078,\\n      \\\"mean_range\\\": 0.056792,\\n      \\\"median_range\\\": 0.043223,\\n      \\\"tied_pct\\\": 58.4,\\n      \\\"n\\\": 551\\n    },\\n    \\\"parse_rate\\\": {\\n      \\\"total_samples\\\": 4408,\\n      \\\"parsed\\\": 4407,\\n      \\\"rate_pct\\\": 99.98\\n    },\\n    \\\"selection_ner\\\": {\\n      \\\"greedy\\\": 0.6198,\\n      \\\"selected\\\": 0.6205,\\n      \\\"gap\\\": 0.0007\\n    },\\n    \\\"selection_re\\\": {\\n      \\\"greedy\\\": 0.2908,\\n      \\\"selected\\\": 0.3108,\\n      \\\"gap\\\": 0.02\\n    },\\n    \\\"qe_ner\\\": {\\n      \\\"n\\\": 529,\\n      \\\"signals\\\": {\\n        \\\"SJ\\\": {\\n          \\\"rho\\\": 0.378498,\\n          \\\"p_rho\\\": 0.0,\\n          \\\"auroc\\\": 0.707769\\n        },\\n        \\\"FK\\\": {\\n          \\\"rho\\\": 0.286163,\\n          \\\"p_rho\\\": 0.0,\\n          \\\"auroc\\\": 0.754779\\n        },\\n        \\\"logprob\\\": {\\n          \\\"rho\\\": 0.227089,\\n          \\\"p_rho\\\": 0.0,\\n          \\\"auroc\\\": 0.672081\\n        },\\n        \\\"EM\\\": {\\n          \\\"rho\\\": 0.319997,\\n          \\\"p_rho\\\": 0.0,\\n          \\\"auroc\\\": 0.47789\\n        },\\n        \\\"voting_conf\\\": {\\n          \\\"rho\\\": 0.416853,\\n          \\\"p_rho\\\": 0.0,\\n          \\\"auroc\\\": 0.756543\\n        }\\n      }\\n    },\\n    \\\"qe_re\\\": {\\n      \\\"n\\\": 397,\\n      \\\"signals\\\": {\\n        \\\"SJ\\\": {\\n          \\\"rho\\\": 0.211331,\\n          \\\"p_rho\\\": 2.2e-05,\\n          \\\"auroc\\\": 0.572335\\n        },\\n        \\\"FK\\\": {\\n          \\\"rho\\\": 0.259074,\\n          \\\"p_rho\\\": 0.0,\\n          \\\"auroc\\\": 0.652998\\n        },\\n        \\\"logprob\\\": {\\n          \\\"rho\\\": 0.306382,\\n          \\\"p_rho\\\": 0.0,\\n          \\\"auroc\\\": 0.70134\\n        },\\n        \\\"EM\\\": {\\n          \\\"rho\\\": 0.1043,\\n          \\\"p_rho\\\": 0.037775,\\n          \\\"auroc\\\": 0.461641\\n        },\\n        \\\"voting_conf\\\": {\\n          \\\"rho\\\": 0.301507,\\n          \\\"p_rho\\\": 0.0,\\n          \\\"auroc\\\": 0.628873\\n        }\\n      }\\n    }\\n  },\\n  \\\"comparison\\\": {\\n    \\\"variance_ratio_std\\\": 0.9,\\n    \\\"variance_ratio_range\\\": 0.91,\\n    \\\"tied_reduction_pp\\\": 1.3,\\n    \\\"parse_rate_pct\\\": 99.98\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7eba3c0b-27a3-473d-9ada-eb8130f6c3d2",
+  "uuid": "23c29119-4a7f-4ff8-9ca6-b2450bcc4faa",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"constrained\\\\\\\": {\\\\n    \\\\\\\"logprob_variance\\\\\\\": {\\\\n      \\\\\\\"mean_std\\\\\\\": 0.020589,\\\\n      \\\\\\\"median_std\\\\\\\": 0.013616,\\\\n      \\\\\\\"mean_range\\\\\\\": 0.062305,\\\\n      \\\\\\\"median_range\\\\\\\": 0.041348,\\\\n      \\\\\\\"tied_pct\\\\\\\": 59.7,\\\\n      \\\\\\\"n\\\\\\\": 551\\\\n    },\\\\n    \\\\\\\"selection_ner\\\\\\\": {\\\\n      \\\\\\\"greedy\\\\\\\": 0.6182,\\\\n      \\\\\\\"selected\\\\\\\": 0.6241,\\\\n      \\\\\\\"gap\\\\\\\": 0.0059\\\\n    },\\\\n    \\\\\\\"selection_re\\\\\\\": {\\\\n      \\\\\\\"greedy\\\\\\\": 0.2913,\\\\n      \\\\\\\"selected\\\\\\\": 0.2845,\\\\n      \\\\\\\"gap\\\\\\\": -0.0068\\\\n    },\\\\n    \\\\\\\"qe_ner\\\\\\\": {\\\\n      \\\\\\\"n\\\\\\\": 529,\\\\n      \\\\\\\"signals\\\\\\\": {\\\\n        \\\\\\\"SJ\\\\\\\": {\\\\n          \\\\\\\"rho\\\\\\\": 0.359891,\\\\n          \\\\\\\"p_rho\\\\\\\": 0.0,\\\\n          \\\\\\\"auroc\\\\\\\": 0.717989\\\\n        },\\\\n        \\\\\\\"FK\\\\\\\": {\\\\n          \\\\\\\"rho\\\\\\\": 0.266511,\\\\n          \\\\\\\"p_rho\\\\\\\": 0.0,\\\\n          \\\\\\\"auroc\\\\\\\": 0.747783\\\\n        },\\\\n        \\\\\\\"logprob\\\\\\\": {\\\\n          \\\\\\\"rho\\\\\\\": 0.205174,\\\\n          \\\\\\\"p_rho\\\\\\\": 2e-06,\\\\n          \\\\\\\"auroc\\\\\\\": 0.654773\\\\n        },\\\\n        \\\\\\\"EM\\\\\\\": {\\\\n          \\\\\\\"rho\\\\\\\": 0.294549,\\\\n          \\\\\\\"p_rho\\\\\\\": 0.0,\\\\n          \\\\\\\"auroc\\\\\\\": 0.499819\\\\n        },\\\\n        \\\\\\\"voting_conf\\\\\\\": {\\\\n          \\\\\\\"rho\\\\\\\": 0.379176,\\\\n          \\\\\\\"p_rho\\\\\\\": 0.0,\\\\n          \\\\\\\"auroc\\\\\\\": 0.772093\\\\n        }\\\\n      }\\\\n    },\\\\n    \\\\\\\"qe_re\\\\\\\": {\\\\n      \\\\\\\"n\\\\\\\": 397,\\\\n      \\\\\\\"signals\\\\\\\": {\\\\n        \\\\\\\"SJ\\\\\\\": {\\\\n          \\\\\\\"rho\\\\\\\": 0.250336,\\\\n          \\\\\\\"p_rho\\\\\\\": 0.0,\\\\n          \\\\\\\"auroc\\\\\\\": 0.609931\\\\n        },\\\\n        \\\\\\\"FK\\\\\\\": {\\\\n          \\\\\\\"rho\\\\\\\": 0.275204,\\\\n          \\\\\\\"p_rho\\\\\\\": 0.0,\\\\n          \\\\\\\"auroc\\\\\\\": 0.663813\\\\n        },\\\\n        \\\\\\\"logprob\\\\\\\": {\\\\n          \\\\\\\"rho\\\\\\\": 0.266245,\\\\n          \\\\\\\"p_rho\\\\\\\": 0.0,\\\\n          \\\\\\\"auroc\\\\\\\": 0.67803\\\\n        },\\\\n        \\\\\\\"EM\\\\\\\": {\\\\n          \\\\\\\"rho\\\\\\\": 0.134388,\\\\n          \\\\\\\"p_rho\\\\\\\": 0.007332,\\\\n          \\\\\\\"auroc\\\\\\\": 0.488597\\\\n        },\\\\n        \\\\\\\"voting_conf\\\\\\\": {\\\\n          \\\\\\\"rho\\\\\\\": 0.34977,\\\\n          \\\\\\\"p_rho\\\\\\\": 0.0,\\\\n          \\\\\\\"auroc\\\\\\\": 0.68202\\\\n        }\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"freeform\\\\\\\": {\\\\n    \\\\\\\"logprob_variance\\\\\\\": {\\\\n      \\\\\\\"mean_std\\\\\\\": 0.018631,\\\\n      \\\\\\\"median_std\\\\\\\": 0.014078,\\\\n      \\\\\\\"mean_range\\\\\\\": 0.056792,\\\\n      \\\\\\\"median_range\\\\\\\": 0.043223,\\\\n      \\\\\\\"tied_pct\\\\\\\": 58.4,\\\\n      \\\\\\\"n\\\\\\\": 551\\\\n    },\\\\n    \\\\\\\"parse_rate\\\\\\\": {\\\\n      \\\\\\\"total_samples\\\\\\\": 4408,\\\\n      \\\\\\\"parsed\\\\\\\": 4407,\\\\n      \\\\\\\"rate_pct\\\\\\\": 99.98\\\\n    },\\\\n    \\\\\\\"selection_ner\\\\\\\": {\\\\n      \\\\\\\"greedy\\\\\\\": 0.6198,\\\\n      \\\\\\\"selected\\\\\\\": 0.6205,\\\\n      \\\\\\\"gap\\\\\\\": 0.0007\\\\n    },\\\\n    \\\\\\\"selection_re\\\\\\\": {\\\\n      \\\\\\\"greedy\\\\\\\": 0.2908,\\\\n      \\\\\\\"selected\\\\\\\": 0.3108,\\\\n      \\\\\\\"gap\\\\\\\": 0.02\\\\n    },\\\\n    \\\\\\\"qe_ner\\\\\\\": {\\\\n      \\\\\\\"n\\\\\\\": 529,\\\\n      \\\\\\\"signals\\\\\\\": {\\\\n        \\\\\\\"SJ\\\\\\\": {\\\\n          \\\\\\\"rho\\\\\\\": 0.378498,\\\\n          \\\\\\\"p_rho\\\\\\\": 0.0,\\\\n          \\\\\\\"auroc\\\\\\\": 0.707769\\\\n        },\\\\n        \\\\\\\"FK\\\\\\\": {\\\\n          \\\\\\\"rho\\\\\\\": 0.286163,\\\\n          \\\\\\\"p_rho\\\\\\\": 0.0,\\\\n          \\\\\\\"auroc\\\\\\\": 0.754779\\\\n        },\\\\n        \\\\\\\"logprob\\\\\\\": {\\\\n          \\\\\\\"rho\\\\\\\": 0.227089,\\\\n          \\\\\\\"p_rho\\\\\\\": 0.0,\\\\n          \\\\\\\"auroc\\\\\\\": 0.672081\\\\n        },\\\\n        \\\\\\\"EM\\\\\\\": {\\\\n          \\\\\\\"rho\\\\\\\": 0.319997,\\\\n          \\\\\\\"p_rho\\\\\\\": 0.0,\\\\n          \\\\\\\"auroc\\\\\\\": 0.47789\\\\n        },\\\\n        \\\\\\\"voting_conf\\\\\\\": {\\\\n          \\\\\\\"rho\\\\\\\": 0.416853,\\\\n          \\\\\\\"p_rho\\\\\\\": 0.0,\\\\n          \\\\\\\"auroc\\\\\\\": 0.756543\\\\n        }\\\\n      }\\\\n    },\\\\n    \\\\\\\"qe_re\\\\\\\": {\\\\n      \\\\\\\"n\\\\\\\": 397,\\\\n      \\\\\\\"signals\\\\\\\": {\\\\n        \\\\\\\"SJ\\\\\\\": {\\\\n          \\\\\\\"rho\\\\\\\": 0.211331,\\\\n          \\\\\\\"p_rho\\\\\\\": 2.2e-05,\\\\n          \\\\\\\"auroc\\\\\\\": 0.572335\\\\n        },\\\\n        \\\\\\\"FK\\\\\\\": {\\\\n          \\\\\\\"rho\\\\\\\": 0.259074,\\\\n          \\\\\\\"p_rho\\\\\\\": 0.0,\\\\n          \\\\\\\"auroc\\\\\\\": 0.652998\\\\n        },\\\\n        \\\\\\\"logprob\\\\\\\": {\\\\n          \\\\\\\"rho\\\\\\\": 0.306382,\\\\n          \\\\\\\"p_rho\\\\\\\": 0.0,\\\\n          \\\\\\\"auroc\\\\\\\": 0.70134\\\\n        },\\\\n        \\\\\\\"EM\\\\\\\": {\\\\n          \\\\\\\"rho\\\\\\\": 0.1043,\\\\n          \\\\\\\"p_rho\\\\\\\": 0.037775,\\\\n          \\\\\\\"auroc\\\\\\\": 0.461641\\\\n        },\\\\n        \\\\\\\"voting_conf\\\\\\\": {\\\\n          \\\\\\\"rho\\\\\\\": 0.301507,\\\\n          \\\\\\\"p_rho\\\\\\\": 0.0,\\\\n          \\\\\\\"auroc\\\\\\\": 0.628873\\\\n        }\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"comparison\\\\\\\": {\\\\n    \\\\\\\"variance_ratio_std\\\\\\\": 0.9,\\\\n    \\\\\\\"variance_ratio_range\\\\\\\": 0.91,\\\\n    \\\\\\\"tied_reduction_pp\\\\\\\": 1.3,\\\\n    \\\\\\\"parse_rate_pct\\\\\\\": 99.98\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"constrained\\\": {\\n    \\\"logprob_variance\\\": {\\n      \\\"mean_std\\\": 0.020589,\\n      \\\"median_std\\\": 0.013616,\\n      \\\"mean_range\\\": 0.062305,\\n      \\\"median_range\\\": 0.041348,\\n      \\\"tied_pct\\\": 59.7,\\n      \\\"n\\\": 551\\n    },\\n    \\\"selection_ner\\\": {\\n      \\\"greedy\\\": 0.6182,\\n      \\\"selected\\\": 0.6241,\\n      \\\"gap\\\": 0.0059\\n    },\\n    \\\"selection_re\\\": {\\n      \\\"greedy\\\": 0.2913,\\n      \\\"selected\\\": 0.2845,\\n      \\\"gap\\\": -0.0068\\n    },\\n    \\\"qe_ner\\\": {\\n      \\\"n\\\": 529,\\n      \\\"signals\\\": {\\n        \\\"SJ\\\": {\\n          \\\"rho\\\": 0.359891,\\n          \\\"p_rho\\\": 0.0,\\n          \\\"auroc\\\": 0.717989\\n        },\\n        \\\"FK\\\": {\\n          \\\"rho\\\": 0.266511,\\n          \\\"p_rho\\\": 0.0,\\n          \\\"auroc\\\": 0.747783\\n        },\\n        \\\"logprob\\\": {\\n          \\\"rho\\\": 0.205174,\\n          \\\"p_rho\\\": 2e-06,\\n          \\\"auroc\\\": 0.654773\\n        },\\n        \\\"EM\\\": {\\n          \\\"rho\\\": 0.294549,\\n          \\\"p_rho\\\": 0.0,\\n          \\\"auroc\\\": 0.499819\\n        },\\n        \\\"voting_conf\\\": {\\n          \\\"rho\\\": 0.379176,\\n          \\\"p_rho\\\": 0.0,\\n          \\\"auroc\\\": 0.772093\\n        }\\n      }\\n    },\\n    \\\"qe_re\\\": {\\n      \\\"n\\\": 397,\\n      \\\"signals\\\": {\\n        \\\"SJ\\\": {\\n          \\\"rho\\\": 0.250336,\\n          \\\"p_rho\\\": 0.0,\\n          \\\"auroc\\\": 0.609931\\n        },\\n        \\\"FK\\\": {\\n          \\\"rho\\\": 0.275204,\\n          \\\"p_rho\\\": 0.0,\\n          \\\"auroc\\\": 0.663813\\n        },\\n        \\\"logprob\\\": {\\n          \\\"rho\\\": 0.266245,\\n          \\\"p_rho\\\": 0.0,\\n          \\\"auroc\\\": 0.67803\\n        },\\n        \\\"EM\\\": {\\n          \\\"rho\\\": 0.134388,\\n          \\\"p_rho\\\": 0.007332,\\n          \\\"auroc\\\": 0.488597\\n        },\\n        \\\"voting_conf\\\": {\\n          \\\"rho\\\": 0.34977,\\n          \\\"p_rho\\\": 0.0,\\n          \\\"auroc\\\": 0.68202\\n        }\\n      }\\n    }\\n  },\\n  \\\"freeform\\\": {\\n    \\\"logprob_variance\\\": {\\n      \\\"mean_std\\\": 0.018631,\\n      \\\"median_std\\\": 0.014078,\\n      \\\"mean_range\\\": 0.056792,\\n      \\\"median_range\\\": 0.043223,\\n      \\\"tied_pct\\\": 58.4,\\n      \\\"n\\\": 551\\n    },\\n    \\\"parse_rate\\\": {\\n      \\\"total_samples\\\": 4408,\\n      \\\"parsed\\\": 4407,\\n      \\\"rate_pct\\\": 99.98\\n    },\\n    \\\"selection_ner\\\": {\\n      \\\"greedy\\\": 0.6198,\\n      \\\"selected\\\": 0.6205,\\n      \\\"gap\\\": 0.0007\\n    },\\n    \\\"selection_re\\\": {\\n      \\\"greedy\\\": 0.2908,\\n      \\\"selected\\\": 0.3108,\\n      \\\"gap\\\": 0.02\\n    },\\n    \\\"qe_ner\\\": {\\n      \\\"n\\\": 529,\\n      \\\"signals\\\": {\\n        \\\"SJ\\\": {\\n          \\\"rho\\\": 0.378498,\\n          \\\"p_rho\\\": 0.0,\\n          \\\"auroc\\\": 0.707769\\n        },\\n        \\\"FK\\\": {\\n          \\\"rho\\\": 0.286163,\\n          \\\"p_rho\\\": 0.0,\\n          \\\"auroc\\\": 0.754779\\n        },\\n        \\\"logprob\\\": {\\n          \\\"rho\\\": 0.227089,\\n          \\\"p_rho\\\": 0.0,\\n          \\\"auroc\\\": 0.672081\\n        },\\n        \\\"EM\\\": {\\n          \\\"rho\\\": 0.319997,\\n          \\\"p_rho\\\": 0.0,\\n          \\\"auroc\\\": 0.47789\\n        },\\n        \\\"voting_conf\\\": {\\n          \\\"rho\\\": 0.416853,\\n          \\\"p_rho\\\": 0.0,\\n          \\\"auroc\\\": 0.756543\\n        }\\n      }\\n    },\\n    \\\"qe_re\\\": {\\n      \\\"n\\\": 397,\\n      \\\"signals\\\": {\\n        \\\"SJ\\\": {\\n          \\\"rho\\\": 0.211331,\\n          \\\"p_rho\\\": 2.2e-05,\\n          \\\"auroc\\\": 0.572335\\n        },\\n        \\\"FK\\\": {\\n          \\\"rho\\\": 0.259074,\\n          \\\"p_rho\\\": 0.0,\\n          \\\"auroc\\\": 0.652998\\n        },\\n        \\\"logprob\\\": {\\n          \\\"rho\\\": 0.306382,\\n          \\\"p_rho\\\": 0.0,\\n          \\\"auroc\\\": 0.70134\\n        },\\n        \\\"EM\\\": {\\n          \\\"rho\\\": 0.1043,\\n          \\\"p_rho\\\": 0.037775,\\n          \\\"auroc\\\": 0.461641\\n        },\\n        \\\"voting_conf\\\": {\\n          \\\"rho\\\": 0.301507,\\n          \\\"p_rho\\\": 0.0,\\n          \\\"auroc\\\": 0.628873\\n        }\\n      }\\n    }\\n  },\\n  \\\"comparison\\\": {\\n    \\\"variance_ratio_std\\\": 0.9,\\n    \\\"variance_ratio_range\\\": 0.91,\\n    \\\"tied_reduction_pp\\\": 1.3,\\n    \\\"parse_rate_pct\\\": 99.98\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 26_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I need to get the seed789 ablation report. The seed789 directory only has `run_summary.json` and `samples.jsonl`, no `ablation_report.json`. I need to generate the ablation report for seed789, or perhaps the metrics need to be computed. Let me check if there's a script to generate the ablation report.
+
+Actually, looking more carefully, seed789 only has run_summary.json and samples.jsonl - no ablation_report.json. I need to generate this. Let me check how the ablation report was generated for the other seeds.
+
+
+The task mentions the experiment is complete, but the results directory is missing the ablation report file. I need to find the analysis script that generates this report.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7eba3c0b-27a3-473d-9ada-eb8130f6c3d2",
+  "uuid": "6ac460a7-c9d0-4bbd-b600-f209afdfd036",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CL5MxMgBiFcwMKDutxu3GR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6427,
+      "cache_read_input_tokens": 26020,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6427
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 27_
+
+seed789 缺少 ablation_report.json，需要生成。查找分析脚本。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7eba3c0b-27a3-473d-9ada-eb8130f6c3d2",
+  "uuid": "25600af3-1649-4ae2-8daf-6a5c7cca61f3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CL5MxMgBiFcwMKDutxu3GR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6427,
+      "cache_read_input_tokens": 26020,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6427
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_017V6Xaobop8kx3V2qGCC7Ka`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "find /root/autodl-tmp/struct_self_consist_ie -name \"*.py\" -path \"*ablation*\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7eba3c0b-27a3-473d-9ada-eb8130f6c3d2",
+  "uuid": "832a8604-4727-4a5d-9fe2-ed8342e91809",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CL5MxMgBiFcwMKDutxu3GR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6427,
+      "cache_read_input_tokens": 26020,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6427
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-15T19:32:05.041Z_
+
+<details><summary>↩ Tool result · `toolu_017V6Xaobop8kx3V2qGCC7Ka`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/analyze_freeform_ablation.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7eba3c0b-27a3-473d-9ada-eb8130f6c3d2",
+  "uuid": "f924c880-fdd1-4922-abb4-7babeb0cde0f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/analyze_freeform_ablation.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/analyze_freeform_ablation.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_018iucH5R9HSiVZNbh5rAHtM`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "find /root/autodl-tmp/struct_self_consist_ie -name \"*.py\" -path \"*analys*\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7eba3c0b-27a3-473d-9ada-eb8130f6c3d2",
+  "uuid": "27dde227-c26b-4c0a-a16d-4c8ea8d97eca",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CL5MxMgBiFcwMKDutxu3GR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6427,
+      "cache_read_input_tokens": 26020,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6427
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-15T19:32:05.741Z_
+
+<details><summary>↩ Tool result · `toolu_018iucH5R9HSiVZNbh5rAHtM`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/output/n16_3seed_analysis.py\\n/root/autodl-tmp/struct_self_consist_ie/output/analysis_round8/epsilon_sweep.py\\n/root/autodl-tmp/struct_self_consist_ie/output/analysis_round8/run_task2.py\\n/root/autodl-tmp/struct_self_consist_ie/output/analysis_round8/run_task3.py\\n/root/autodl-tmp/struct_self_consist_ie/output/analysis_round8/run_sj_union_conll.py\\n/root/autodl-tmp/struct_self_consist_ie/output/analysis_round8/run_epsilon_fine.py\\n/root/autodl-tmp/struct_self_consist_ie/code/exp009_stratification_analysis.py\\n/root/autodl-tmp/struct_self_consist_ie/code/wnut17_full_signal_analysis.py\\n/root/autodl-tmp/struct_self_consist_ie/code/diversity_analysis.py\\n/root/autodl-tmp/struct_self_consist_ie/code/re_conditional_analysis.py\\n/root/autodl-tmp/struct_self_consist_ie/code/exp018_5signal_analysis.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analysis_multiseed_selection_f1.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analysis_scierc_n16_selection.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analysis_scierc_re_n16_selection.py\\n/root/autodl-tmp/struct_self_consist_ie/bootstrap_analysis.py\\n/root/autodl-tmp/struct_self_consist_ie/bootstrap_analysis2.py\\n/root/autodl-tmp/struct_self_consist_ie/logprob_tie_analysis.py\\n/root/autodl-tmp/struct_self_consist_ie/deep_freeform_analysis.py\\n/root/autodl-tmp/struct_self_consist_ie/multiseed_flip_analysis.py\\n/root/autodl-tmp/struct_self_consist_ie/multiseed_flip_analysis_part2.py\\n/root/autodl-tmp/struct_self_consist_ie/analysis_rho_unification/compute_full_unified_rho.py\\n/root/autodl-tmp/struct_self_consist_ie/analysis_round8/epsilon_sweep.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7eba3c0b-27a3-473d-9ada-eb8130f6c3d2",
+  "uuid": "14cbff65-fee7-44a7-a044-dc6330103d9c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/n16_3seed_analysis.py\\\\n/root/autodl-tmp/struct_self_consist_ie/output/analysis_round8/epsilon_sweep.py\\\\n/root/autodl-tmp/struct_self_consist_ie/output/analysis_round8/run_task2.py\\\\n/root/autodl-tmp/struct_self_consist_ie/output/analysis_round8/run_task3.py\\\\n/root/autodl-tmp/struct_self_consist_ie/output/analysis_round8/run_sj_union_conll.py\\\\n/root/autodl-tmp/struct_self_consist_ie/output/analysis_round8/run_epsilon_fine.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/exp009_stratification_analysis.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/wnut17_full_signal_analysis.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/diversity_analysis.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/re_conditional_analysis.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/exp018_5signal_analysis.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analysis_multiseed_selection_f1.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analysis_scierc_n16_selection.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analysis_scierc_re_n16_selection.py\\\\n/root/autodl-tmp/struct_self_consist_ie/bootstrap_analysis.py\\\\n/root/autodl-tmp/struct_self_consist_ie/bootstrap_analysis2.py\\\\n/root/autodl-tmp/struct_self_consist_ie/logprob_tie_analysis.py\\\\n/root/autodl-tmp/struct_self_consist_ie/deep_freeform_analysis.py\\\\n/root/autodl-tmp/struct_self_consist_ie/multiseed_flip_analysis.py\\\\n/root/autodl-tmp/struct_self_consist_ie/multiseed_flip_analysis_part2.py\\\\n/root/autodl-tmp/struct_self_consist_ie/analysis_rho_unification/compute_full_unified_rho.py\\\\n/root/autodl-tmp/struct_self_consist_ie/analysis_round8/epsilon_sweep.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/output/n16_3seed_analysis.py\\n/root/autodl-tmp/struct_self_consist_ie/output/analysis_round8/epsilon_sweep.py\\n/root/autodl-tmp/struct_self_consist_ie/output/analysis_round8/run_task2.py\\n/root/autodl-tmp/struct_self_consist_ie/output/analysis_round8/run_task3.py\\n/root/autodl-tmp/struct_self_consist_ie/output/analysis_round8/run_sj_union_conll.py\\n/root/autodl-tmp/struct_self_consist_ie/output/analysis_round8/run_epsilon_fine.py\\n/root/autodl-tmp/struct_self_consist_ie/code/exp009_stratification_analysis.py\\n/root/autodl-tmp/struct_self_consist_ie/code/wnut17_full_signal_analysis.py\\n/root/autodl-tmp/struct_self_consist_ie/code/diversity_analysis.py\\n/root/autodl-tmp/struct_self_consist_ie/code/re_conditional_analysis.py\\n/root/autodl-tmp/struct_self_consist_ie/code/exp018_5signal_analysis.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analysis_multiseed_selection_f1.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analysis_scierc_n16_selection.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analysis_scierc_re_n16_selection.py\\n/root/autodl-tmp/struct_self_consist_ie/bootstrap_analysis.py\\n/root/autodl-tmp/struct_self_consist_ie/bootstrap_analysis2.py\\n/root/autodl-tmp/struct_self_consist_ie/logprob_tie_analysis.py\\n/root/autodl-tmp/struct_self_consist_ie/deep_freeform_analysis.py\\n/root/autodl-tmp/struct_self_consist_ie/multiseed_flip_analysis.py\\n/root/autodl-tmp/struct_self_consist_ie/multiseed_flip_analysis_part2.py\\n/root/autodl-tmp/struct_self_consist_ie/analysis_rho_unification/compute_full_unified_rho.py\\n/root/autodl-tmp/struct_self_consist_ie/analysis_round8/epsilon_sweep.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_014EL1BkpMuzNjvpeWaDeQyp`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "head -30 /root/autodl-tmp/struct_self_consist_ie/analyze_freeform_ablation.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7eba3c0b-27a3-473d-9ada-eb8130f6c3d2",
+  "uuid": "899d9d52-c6e3-4c2b-b1e5-ff604b7a33d5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NE2gqqZzi8JzYce1fHEaoR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1387,
+      "cache_read_input_tokens": 32447,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1387
+      },
+      "output_tokens": 65,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-15T19:32:12.683Z_
+
+<details><summary>↩ Tool result · `toolu_014EL1BkpMuzNjvpeWaDeQyp`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Analyze free-form vs constrained decoding ablation.\\n\\nCompares logprob variance, selection performance, QE signals, and parse rate\\nbetween constrained (exp_012_rerun_1024) and free-form (exp_freeform_ablation).\\n\\nInput:\\n  - output/exp_012_rerun_1024/samples.jsonl (constrained baseline)\\n  - results/exp_freeform_ablation/samples.jsonl (free-form)\\nOutput:\\n  - results/exp_freeform_ablation/ablation_report.json\\nDependencies: code/{consistency,evaluation}.py\\n\\\"\\\"\\\"\\n\\nfrom __future__ import annotations\\n\\nimport argparse\\nimport json\\nimport os\\nimport sys\\nfrom collections import Counter\\n\\nimport numpy as np\\nfrom scipy.stats import spearmanr, rankdata\\n\\nsys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), \\\"code\\\"))\\n\\nfrom consistency import (\\n    fleiss_kappa_surface,\\n    structural_consistency_soft_jaccard,\\n)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7eba3c0b-27a3-473d-9ada-eb8130f6c3d2",
+  "uuid": "f2354578-cf88-4ad4-b68f-8b758144ab56",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Analyze free-form vs constrained decoding ablation.\\\\n\\\\nCompares logprob variance, selection performance, QE signals, and parse rate\\\\nbetween constrained (exp_012_rerun_1024) and free-form (exp_freeform_ablation).\\\\n\\\\nInput:\\\\n  - output/exp_012_rerun_1024/samples.jsonl (constrained baseline)\\\\n  - results/exp_freeform_ablation/samples.jsonl (free-form)\\\\nOutput:\\\\n  - results/exp_freeform_ablation/ablation_report.json\\\\nDependencies: code/{consistency,evaluation}.py\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nfrom __future__ import annotations\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport os\\\\nimport sys\\\\nfrom collections import Counter\\\\n\\\\nimport numpy as np\\\\nfrom scipy.stats import spearmanr, rankdata\\\\n\\\\nsys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), \\\\\\\"code\\\\\\\"))\\\\n\\\\nfrom consistency import (\\\\n    fleiss_kappa_surface,\\\\n    structural_consistency_soft_jaccard,\\\\n)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Analyze free-form vs constrained decoding ablation.\\n\\nCompares logprob variance, selection performance, QE signals, and parse rate\\nbetween constrained (exp_012_rerun_1024) and free-form (exp_freeform_ablation).\\n\\nInput:\\n  - output/exp_012_rerun_1024/samples.jsonl (constrained baseline)\\n  - results/exp_freeform_ablation/samples.jsonl (free-form)\\nOutput:\\n  - results/exp_freeform_ablation/ablation_report.json\\nDependencies: code/{consistency,evaluation}.py\\n\\\"\\\"\\\"\\n\\nfrom __future__ import annotations\\n\\nimport argparse\\nimport json\\nimport os\\nimport sys\\nfrom collections import Counter\\n\\nimport numpy as np\\nfrom scipy.stats import spearmanr, rankdata\\n\\nsys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), \\\"code\\\"))\\n\\nfrom consistency import (\\n    fleiss_kappa_surface,\\n    structural_consistency_soft_jaccard,\\n)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Jhm7wFqUQtmbo93YWVYBnP`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "grep -n \"argparse\\|add_argument\\|--freeform\\|--constrained\\|--seed\\|--output\" /root/autodl-tmp/struct_self_consist_ie/analyze_freeform_ablation.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7eba3c0b-27a3-473d-9ada-eb8130f6c3d2",
+  "uuid": "9fc3cb64-2592-494c-a161-f821be2cc1c1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EEhY6pY8B3VYJwsSVUP1bq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 512,
+      "cache_read_input_tokens": 33834,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 512
+      },
+      "output_tokens": 67,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-15T19:32:31.139Z_
+
+<details><summary>↩ Tool result · `toolu_01Jhm7wFqUQtmbo93YWVYBnP`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7eba3c0b-27a3-473d-9ada-eb8130f6c3d2",
+  "uuid": "384bc018-33d7-466c-ad9d-82af5f6840ab",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01JxfZfj3xRoZ6DucBVw5mD3`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "grep -n \"argparse\\|add_argument\\|def main\\|freeform_dir\\|constrained_dir\" /root/autodl-tmp/struct_self_consist_ie/analyze_freeform_ablation.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7eba3c0b-27a3-473d-9ada-eb8130f6c3d2",
+  "uuid": "7d33b89e-db82-4a4c-aacf-a96a5a0661c6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01379eyrtF3i8Fp8EPBThWXa",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 251,
+      "cache_read_input_tokens": 34346,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 251
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-15T19:32:33.980Z_
+
+<details><summary>↩ Tool result · `toolu_01JxfZfj3xRoZ6DucBVw5mD3`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7eba3c0b-27a3-473d-9ada-eb8130f6c3d2",
+  "uuid": "d2402e89-25a6-46b8-97d3-b9ebfee94aa5",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01LyfHfmA4UdHnvEpkU9N9h6`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "grep -n \"argparse\" /root/autodl-tmp/struct_self_consist_ie/analyze_freeform_ablation.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7eba3c0b-27a3-473d-9ada-eb8130f6c3d2",
+  "uuid": "346c8ad1-d37b-4480-be9c-b5b3458735b4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EDoWeRtMyLteYikUox491R",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 249,
+      "cache_read_input_tokens": 34597,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 249
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-15T19:32:37.048Z_
+
+<details><summary>↩ Tool result · `toolu_01LyfHfmA4UdHnvEpkU9N9h6`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"16:import argparse\\n196:    p = argparse.ArgumentParser()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7eba3c0b-27a3-473d-9ada-eb8130f6c3d2",
+  "uuid": "b7c123c8-361c-4563-899d-0bd07c881e93",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"16:import argparse\\\\n196:    p = argparse.ArgumentParser()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"16:import argparse\\n196:    p = argparse.ArgumentParser()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01EtnrTpGLm4cK9fib8eUdFY`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "grep -n \"add_argument\" /root/autodl-tmp/struct_self_consist_ie/analyze_freeform_ablation.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7eba3c0b-27a3-473d-9ada-eb8130f6c3d2",
+  "uuid": "6f912d46-cf79-48ec-a9ea-3a1759695cc6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EDoWeRtMyLteYikUox491R",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 249,
+      "cache_read_input_tokens": 34597,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 249
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01H8NjESXNfMsCrzjaCu2bxQ`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "grep -n \"def main\" /root/autodl-tmp/struct_self_consist_ie/analyze_freeform_ablation.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7eba3c0b-27a3-473d-9ada-eb8130f6c3d2",
+  "uuid": "10f8e891-58dd-4c84-83db-e5b555f67085",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EDoWeRtMyLteYikUox491R",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 249,
+      "cache_read_input_tokens": 34597,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 249
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-15T19:32:38.281Z_
+
+<details><summary>↩ Tool result · `toolu_01EtnrTpGLm4cK9fib8eUdFY`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"197:    p.add_argument(\\\"--constrained\\\", default=CONSTRAINED_PATH)\\n198:    p.add_argument(\\\"--freeform\\\", default=FREEFORM_PATH)\\n199:    p.add_argument(\\\"--output_dir\\\", default=\\\"results/exp_freeform_ablation\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7eba3c0b-27a3-473d-9ada-eb8130f6c3d2",
+  "uuid": "09636aa4-7c95-4965-8c0a-47cf344c18fd",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"197:    p.add_argument(\\\\\\\"--constrained\\\\\\\", default=CONSTRAINED_PATH)\\\\n198:    p.add_argument(\\\\\\\"--freeform\\\\\\\", default=FREEFORM_PATH)\\\\n199:    p.add_argument(\\\\\\\"--output_dir\\\\\\\", default=\\\\\\\"results/exp_freeform_ablation\\\\\\\")\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"197:    p.add_argument(\\\"--constrained\\\", default=CONSTRAINED_PATH)\\n198:    p.add_argument(\\\"--freeform\\\", default=FREEFORM_PATH)\\n199:    p.add_argument(\\\"--output_dir\\\", default=\\\"results/exp_freeform_ablation\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-15T19:32:39.039Z_
+
+<details><summary>↩ Tool result · `toolu_01H8NjESXNfMsCrzjaCu2bxQ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"195:def main():\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.74}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7eba3c0b-27a3-473d-9ada-eb8130f6c3d2",
+  "uuid": "f6f1b552-2153-4073-9452-9197ca33c6d0",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"195:def main():\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.74}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"195:def main():\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.74}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 44_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I need to check the constrained path and freeform path defaults, and then run the analysis for seed789. Let me check the default paths.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7eba3c0b-27a3-473d-9ada-eb8130f6c3d2",
+  "uuid": "99781a0e-a0f6-4a51-8b98-30b55d44676e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011U2sHanFcpECsCabybwdKi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 793,
+      "cache_read_input_tokens": 34846,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 793
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01ACnGtz2Eki68EWAk6n5JYC`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "grep -n \"CONSTRAINED_PATH\\|FREEFORM_PATH\" /root/autodl-tmp/struct_self_consist_ie/analyze_freeform_ablation.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7eba3c0b-27a3-473d-9ada-eb8130f6c3d2",
+  "uuid": "96474afc-68bb-465f-b10e-e657e733fb55",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011U2sHanFcpECsCabybwdKi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 793,
+      "cache_read_input_tokens": 34846,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 793
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-15T19:32:43.380Z_
+
+<details><summary>↩ Tool result · `toolu_01ACnGtz2Eki68EWAk6n5JYC`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7eba3c0b-27a3-473d-9ada-eb8130f6c3d2",
+  "uuid": "05747e6b-f586-4f7a-a6d5-c66b21faf600",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01HawGzmG5tVPj8qtfyPs5qT`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "grep -n \"CONSTRAINED_PATH\" /root/autodl-tmp/struct_self_consist_ie/analyze_freeform_ablation.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7eba3c0b-27a3-473d-9ada-eb8130f6c3d2",
+  "uuid": "ed76ae26-fbf3-4e7d-84f6-c16bdad7966a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WDi8oVhzqmHKutTDFFSGJX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 388,
+      "cache_read_input_tokens": 35639,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 388
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-15T19:32:47.754Z_
+
+<details><summary>↩ Tool result · `toolu_01HawGzmG5tVPj8qtfyPs5qT`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"34:CONSTRAINED_PATH = \\\"output/exp_012_rerun_1024/samples.jsonl\\\"\\n197:    p.add_argument(\\\"--constrained\\\", default=CONSTRAINED_PATH)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7eba3c0b-27a3-473d-9ada-eb8130f6c3d2",
+  "uuid": "6105fc76-74cb-4d0a-948a-689d14b09397",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"34:CONSTRAINED_PATH = \\\\\\\"output/exp_012_rerun_1024/samples.jsonl\\\\\\\"\\\\n197:    p.add_argument(\\\\\\\"--constrained\\\\\\\", default=CONSTRAINED_PATH)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"34:CONSTRAINED_PATH = \\\"output/exp_012_rerun_1024/samples.jsonl\\\"\\n197:    p.add_argument(\\\"--constrained\\\", default=CONSTRAINED_PATH)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01TU8ooNoA5bNxRxMiZCjZ5E`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "grep -n \"FREEFORM_PATH\" /root/autodl-tmp/struct_self_consist_ie/analyze_freeform_ablation.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7eba3c0b-27a3-473d-9ada-eb8130f6c3d2",
+  "uuid": "d725f9ed-ef65-456d-9d7f-acc1617a24c5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WDi8oVhzqmHKutTDFFSGJX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 388,
+      "cache_read_input_tokens": 35639,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 388
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-15T19:32:48.396Z_
+
+<details><summary>↩ Tool result · `toolu_01TU8ooNoA5bNxRxMiZCjZ5E`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"35:FREEFORM_PATH = \\\"results/exp_freeform_ablation/samples.jsonl\\\"\\n198:    p.add_argument(\\\"--freeform\\\", default=FREEFORM_PATH)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7eba3c0b-27a3-473d-9ada-eb8130f6c3d2",
+  "uuid": "9862a84d-6dfb-40a9-9c25-901e972dc2b1",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"35:FREEFORM_PATH = \\\\\\\"results/exp_freeform_ablation/samples.jsonl\\\\\\\"\\\\n198:    p.add_argument(\\\\\\\"--freeform\\\\\\\", default=FREEFORM_PATH)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"35:FREEFORM_PATH = \\\"results/exp_freeform_ablation/samples.jsonl\\\"\\n198:    p.add_argument(\\\"--freeform\\\", default=FREEFORM_PATH)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 51_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I need to run the analysis script for seed789. The constrained baseline should be the same (exp_012_rerun_1024), and the freeform path should point to the seed789 results.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7eba3c0b-27a3-473d-9ada-eb8130f6c3d2",
+  "uuid": "51a3ebf1-251f-42be-ae4b-f1d32d2c3eb3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RKJBUPA5EGLLHQLP8aBi7p",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 583,
+      "cache_read_input_tokens": 36027,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 583
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 52_
+
+运行分析脚本为 seed789 生成 ablation_report.json。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7eba3c0b-27a3-473d-9ada-eb8130f6c3d2",
+  "uuid": "cc825299-8409-47b0-8b44-12a6ffd6aaf9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RKJBUPA5EGLLHQLP8aBi7p",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 583,
+      "cache_read_input_tokens": 36027,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 583
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01HkkKrDbb8UiRHyDMLdABYJ`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cd /root/autodl-tmp/struct_self_consist_ie && python3 analyze_freeform_ablation.py --freeform results/exp_freeform_ablation_seed789/samples.jsonl --output_dir results/exp_freeform_ablation_seed789/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7eba3c0b-27a3-473d-9ada-eb8130f6c3d2",
+  "uuid": "0f9834b6-50d6-42c7-99bd-c674ce8af70b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RKJBUPA5EGLLHQLP8aBi7p",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 583,
+      "cache_read_input_tokens": 36027,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 583
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-15T19:32:55.037Z_
+
+<details><summary>↩ Tool result · `toolu_01HkkKrDbb8UiRHyDMLdABYJ`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'cd /root/autodl-tmp/struct_self_consist_ie && python3 analyze_freeform_ablation.py --freeform results/exp_freeform_ablation_seed789/samples.jsonl --output_dir results/exp_freeform_ablation_seed789/'\\n\\nExit code: 127\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\nbash: line 1: python3: command not found\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7eba3c0b-27a3-473d-9ada-eb8130f6c3d2",
+  "uuid": "d81f8520-f112-4d66-a8f0-a0dc9b319fa1",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'cd /root/autodl-tmp/struct_self_consist_ie && python3 analyze_freeform_ablation.py --freeform results/exp_freeform_ablation_seed789/samples.jsonl --output_dir results/exp_freeform_ablation_seed789/'\\\\n\\\\nExit code: 127\\\\n\\\\nStdout:\\\\n\\\\n\\\\n\\\\nStderr:\\\\n\\\\nbash: line 1: python3: command not found\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'cd /root/autodl-tmp/struct_self_consist_ie && python3 analyze_freeform_ablation.py --freeform results/exp_freeform_ablation_seed789/samples.jsonl --output_dir results/exp_freeform_ablation_seed789/'\\n\\nExit code: 127\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\nbash: line 1: python3: command not found\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_011GroUHwcE4n1xjrYH3itf4`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "ls /root/miniconda3/bin/python3",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7eba3c0b-27a3-473d-9ada-eb8130f6c3d2",
+  "uuid": "8e092424-2cfb-4611-b34b-220815026230",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EsoMJPxHxVocV7atSY2JVQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 438,
+      "cache_read_input_tokens": 36610,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 438
+      },
+      "output_tokens": 63,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-15T19:33:05.398Z_
+
+<details><summary>↩ Tool result · `toolu_011GroUHwcE4n1xjrYH3itf4`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/miniconda3/bin/python3\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.72}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7eba3c0b-27a3-473d-9ada-eb8130f6c3d2",
+  "uuid": "37120994-1c1b-4ddb-b735-a42ad5d6bd6d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/miniconda3/bin/python3\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.72}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/miniconda3/bin/python3\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.72}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01UF6MUbNFp7uBK1CcByvHnh`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cd /root/autodl-tmp/struct_self_consist_ie && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 analyze_freeform_ablation.py --freeform results/exp_freeform_ablation_seed789/samples.jsonl --output_dir results/exp_freeform_ablation_seed789/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7eba3c0b-27a3-473d-9ada-eb8130f6c3d2",
+  "uuid": "9d2e93b3-3b36-47c1-a96b-600eb83df900",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JChHqiK82E5SC5vM6ZeE7u",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 201,
+      "cache_read_input_tokens": 37048,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 201
+      },
+      "output_tokens": 68,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-15T19:33:10.310Z_
+
+<details><summary>↩ Tool result · `toolu_01UF6MUbNFp7uBK1CcByvHnh`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Loading data...\\n  Constrained: 551 | Free-form: 551\\n\\n=== Logprob Variance ===\\n  Constrained: std=0.0206 range=0.0623 tied=59.7%\\n  Free-form:   std=0.0183 range=0.0549 tied=59.0%\\n\\n=== Parse Rate: 100.0% (4408/4408) ===\\n\\n=== Selection F1 ===\\n  [NER] Con: 0.6182 -> 0.6241 (+0.0059) | Free: 0.6204 -> 0.6232 (+0.0028)\\n  [RE] Con: 0.2913 -> 0.2845 (-0.0068) | Free: 0.2880 -> 0.3100 (+0.0219)\\n\\n=== QE Metrics ===\\n\\n  [NER] n_con=529 n_free=529\\n  Signal          C_rho  C_AUROC    F_rho  F_AUROC  delta_rho\\n  SJ             0.3599   0.7180   0.3955   0.7367    +0.0356\\n  FK             0.2665   0.7478   0.3243   0.7989    +0.0578\\n  logprob        0.2052   0.6548   0.2463   0.6792    +0.0411\\n  EM             0.2945   0.4998   0.3209   0.5206    +0.0263\\n  voting_conf    0.3792   0.7721   0.4242   0.7729    +0.0450\\n\\n  [RE] n_con=397 n_free=397\\n  Signal          C_rho  C_AUROC    F_rho  F_AUROC  delta_rho\\n  SJ             0.2503   0.6099   0.2059   0.5763    -0.0445\\n  FK             0.2752   0.6638   0.2394   0.6430    -0.0359\\n  logprob        0.2662   0.6780   0.2951   0.6913    +0.0288\\n  EM             0.1344   0.4886   0.1045   0.4732    -0.0299\\n  voting_conf    0.3498   0.6820   0.3104   0.6464    -0.0393\\n\\n=== Summary ===\\nVariance ratio (std):   0.89x\\nVariance ratio (range): 0.88x\\nTied reduction:         +0.7pp\\nParse rate:             100.0%\\n\\nReport: results/exp_freeform_ablation_seed789/ablation_report.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.96}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7eba3c0b-27a3-473d-9ada-eb8130f6c3d2",
+  "uuid": "e510d68d-34f0-41b2-89c5-c61f1953abd9",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Loading data...\\\\n  Constrained: 551 | Free-form: 551\\\\n\\\\n=== Logprob Variance ===\\\\n  Constrained: std=0.0206 range=0.0623 tied=59.7%\\\\n  Free-form:   std=0.0183 range=0.0549 tied=59.0%\\\\n\\\\n=== Parse Rate: 100.0% (4408/4408) ===\\\\n\\\\n=== Selection F1 ===\\\\n  [NER] Con: 0.6182 -> 0.6241 (+0.0059) | Free: 0.6204 -> 0.6232 (+0.0028)\\\\n  [RE] Con: 0.2913 -> 0.2845 (-0.0068) | Free: 0.2880 -> 0.3100 (+0.0219)\\\\n\\\\n=== QE Metrics ===\\\\n\\\\n  [NER] n_con=529 n_free=529\\\\n  Signal          C_rho  C_AUROC    F_rho  F_AUROC  delta_rho\\\\n  SJ             0.3599   0.7180   0.3955   0.7367    +0.0356\\\\n  FK             0.2665   0.7478   0.3243   0.7989    +0.0578\\\\n  logprob        0.2052   0.6548   0.2463   0.6792    +0.0411\\\\n  EM             0.2945   0.4998   0.3209   0.5206    +0.0263\\\\n  voting_conf    0.3792   0.7721   0.4242   0.7729    +0.0450\\\\n\\\\n  [RE] n_con=397 n_free=397\\\\n  Signal          C_rho  C_AUROC    F_rho  F_AUROC  delta_rho\\\\n  SJ             0.2503   0.6099   0.2059   0.5763    -0.0445\\\\n  FK             0.2752   0.6638   0.2394   0.6430    -0.0359\\\\n  logprob        0.2662   0.6780   0.2951   0.6913    +0.0288\\\\n  EM             0.1344   0.4886   0.1045   0.4732    -0.0299\\\\n  voting_conf    0.3498   0.6820   0.3104   0.6464    -0.0393\\\\n\\\\n=== Summary ===\\\\nVariance ratio (std):   0.89x\\\\nVariance ratio (range): 0.88x\\\\nTied reduction:         +0.7pp\\\\nParse rate:             100.0%\\\\n\\\\nReport: results/exp_freeform_ablation_seed789/ablation_report.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.96}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Loading data...\\n  Constrained: 551 | Free-form: 551\\n\\n=== Logprob Variance ===\\n  Constrained: std=0.0206 range=0.0623 tied=59.7%\\n  Free-form:   std=0.0183 range=0.0549 tied=59.0%\\n\\n=== Parse Rate: 100.0% (4408/4408) ===\\n\\n=== Selection F1 ===\\n  [NER] Con: 0.6182 -> 0.6241 (+0.0059) | Free: 0.6204 -> 0.6232 (+0.0028)\\n  [RE] Con: 0.2913 -> 0.2845 (-0.0068) | Free: 0.2880 -> 0.3100 (+0.0219)\\n\\n=== QE Metrics ===\\n\\n  [NER] n_con=529 n_free=529\\n  Signal          C_rho  C_AUROC    F_rho  F_AUROC  delta_rho\\n  SJ             0.3599   0.7180   0.3955   0.7367    +0.0356\\n  FK             0.2665   0.7478   0.3243   0.7989    +0.0578\\n  logprob        0.2052   0.6548   0.2463   0.6792    +0.0411\\n  EM             0.2945   0.4998   0.3209   0.5206    +0.0263\\n  voting_conf    0.3792   0.7721   0.4242   0.7729    +0.0450\\n\\n  [RE] n_con=397 n_free=397\\n  Signal          C_rho  C_AUROC    F_rho  F_AUROC  delta_rho\\n  SJ             0.2503   0.6099   0.2059   0.5763    -0.0445\\n  FK             0.2752   0.6638   0.2394   0.6430    -0.0359\\n  logprob        0.2662   0.6780   0.2951   0.6913    +0.0288\\n  EM             0.1344   0.4886   0.1045   0.4732    -0.0299\\n  voting_conf    0.3498   0.6820   0.3104   0.6464    -0.0393\\n\\n=== Summary ===\\nVariance ratio (std):   0.89x\\nVariance ratio (range): 0.88x\\nTied reduction:         +0.7pp\\nParse rate:             100.0%\\n\\nReport: results/exp_freeform_ablation_seed789/ablation_report.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.96}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 59_
+
+seed789 ablation_report 已生成。读取完整 JSON 确认数据。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7eba3c0b-27a3-473d-9ada-eb8130f6c3d2",
+  "uuid": "c1090410-5d0e-4ff3-9e49-95dc717854f9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014sNtB7qVcrk8xyMxQmLEUE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 999,
+      "cache_read_input_tokens": 37249,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 999
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "unavailable"
+      }
+    },
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 60_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_014TgafFKNYoGqPBpnrwKh9s`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/results/exp_freeform_ablation_seed789/ablation_report.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7eba3c0b-27a3-473d-9ada-eb8130f6c3d2",
+  "uuid": "5ebf18c6-e73f-4cbb-ae72-7eed929fa81a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014sNtB7qVcrk8xyMxQmLEUE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 999,
+      "cache_read_input_tokens": 37249,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 999
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "unavailable"
+      }
+    },
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 61 · 2026-05-15T19:33:14.323Z_
+
+<details><summary>↩ Tool result · `toolu_014TgafFKNYoGqPBpnrwKh9s`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"constrained\\\": {\\n    \\\"logprob_variance\\\": {\\n      \\\"mean_std\\\": 0.020589,\\n      \\\"median_std\\\": 0.013616,\\n      \\\"mean_range\\\": 0.062305,\\n      \\\"median_range\\\": 0.041348,\\n      \\\"tied_pct\\\": 59.7,\\n      \\\"n\\\": 551\\n    },\\n    \\\"selection_ner\\\": {\\n      \\\"greedy\\\": 0.6182,\\n      \\\"selected\\\": 0.6241,\\n      \\\"gap\\\": 0.0059\\n    },\\n    \\\"selection_re\\\": {\\n      \\\"greedy\\\": 0.2913,\\n      \\\"selected\\\": 0.2845,\\n      \\\"gap\\\": -0.0068\\n    },\\n    \\\"qe_ner\\\": {\\n      \\\"n\\\": 529,\\n      \\\"signals\\\": {\\n        \\\"SJ\\\": {\\n          \\\"rho\\\": 0.359891,\\n          \\\"p_rho\\\": 0.0,\\n          \\\"auroc\\\": 0.717989\\n        },\\n        \\\"FK\\\": {\\n          \\\"rho\\\": 0.266511,\\n          \\\"p_rho\\\": 0.0,\\n          \\\"auroc\\\": 0.747783\\n        },\\n        \\\"logprob\\\": {\\n          \\\"rho\\\": 0.205174,\\n          \\\"p_rho\\\": 2e-06,\\n          \\\"auroc\\\": 0.654773\\n        },\\n        \\\"EM\\\": {\\n          \\\"rho\\\": 0.294549,\\n          \\\"p_rho\\\": 0.0,\\n          \\\"auroc\\\": 0.499819\\n        },\\n        \\\"voting_conf\\\": {\\n          \\\"rho\\\": 0.379176,\\n          \\\"p_rho\\\": 0.0,\\n          \\\"auroc\\\": 0.772093\\n        }\\n      }\\n    },\\n    \\\"qe_re\\\": {\\n      \\\"n\\\": 397,\\n      \\\"signals\\\": {\\n        \\\"SJ\\\": {\\n          \\\"rho\\\": 0.250336,\\n          \\\"p_rho\\\": 0.0,\\n          \\\"auroc\\\": 0.609931\\n        },\\n        \\\"FK\\\": {\\n          \\\"rho\\\": 0.275204,\\n          \\\"p_rho\\\": 0.0,\\n          \\\"auroc\\\": 0.663813\\n        },\\n        \\\"logprob\\\": {\\n          \\\"rho\\\": 0.266245,\\n          \\\"p_rho\\\": 0.0,\\n          \\\"auroc\\\": 0.67803\\n        },\\n        \\\"EM\\\": {\\n          \\\"rho\\\": 0.134388,\\n          \\\"p_rho\\\": 0.007332,\\n          \\\"auroc\\\": 0.488597\\n        },\\n        \\\"voting_conf\\\": {\\n          \\\"rho\\\": 0.34977,\\n          \\\"p_rho\\\": 0.0,\\n          \\\"auroc\\\": 0.68202\\n        }\\n      }\\n    }\\n  },\\n  \\\"freeform\\\": {\\n    \\\"logprob_variance\\\": {\\n      \\\"mean_std\\\": 0.0183,\\n      \\\"median_std\\\": 0.014358,\\n      \\\"mean_range\\\": 0.054908,\\n      \\\"median_range\\\": 0.043426,\\n      \\\"tied_pct\\\": 59.0,\\n      \\\"n\\\": 551\\n    },\\n    \\\"parse_rate\\\": {\\n      \\\"total_samples\\\": 4408,\\n      \\\"parsed\\\": 4408,\\n      \\\"rate_pct\\\": 100.0\\n    },\\n    \\\"selection_ner\\\": {\\n      \\\"greedy\\\": 0.6204,\\n      \\\"selected\\\": 0.6232,\\n      \\\"gap\\\": 0.0028\\n    },\\n    \\\"selection_re\\\": {\\n      \\\"greedy\\\": 0.288,\\n      \\\"selected\\\": 0.31,\\n      \\\"gap\\\": 0.0219\\n    },\\n    \\\"qe_ner\\\": {\\n      \\\"n\\\": 529,\\n      \\\"signals\\\": {\\n        \\\"SJ\\\": {\\n          \\\"rho\\\": 0.395461,\\n          \\\"p_rho\\\": 0.0,\\n          \\\"auroc\\\": 0.736743\\n        },\\n        \\\"FK\\\": {\\n          \\\"rho\\\": 0.324325,\\n          \\\"p_rho\\\": 0.0,\\n          \\\"auroc\\\": 0.798935\\n        },\\n        \\\"logprob\\\": {\\n          \\\"rho\\\": 0.246271,\\n          \\\"p_rho\\\": 0.0,\\n          \\\"auroc\\\": 0.679165\\n        },\\n        \\\"EM\\\": {\\n          \\\"rho\\\": 0.320884,\\n          \\\"p_rho\\\": 0.0,\\n          \\\"auroc\\\": 0.520626\\n        },\\n        \\\"voting_conf\\\": {\\n          \\\"rho\\\": 0.424194,\\n          \\\"p_rho\\\": 0.0,\\n          \\\"auroc\\\": 0.77286\\n        }\\n      }\\n    },\\n    \\\"qe_re\\\": {\\n      \\\"n\\\": 397,\\n      \\\"signals\\\": {\\n        \\\"SJ\\\": {\\n          \\\"rho\\\": 0.20586,\\n          \\\"p_rho\\\": 3.6e-05,\\n          \\\"auroc\\\": 0.576347\\n        },\\n        \\\"FK\\\": {\\n          \\\"rho\\\": 0.239351,\\n          \\\"p_rho\\\": 1e-06,\\n          \\\"auroc\\\": 0.643027\\n        },\\n        \\\"logprob\\\": {\\n          \\\"rho\\\": 0.295083,\\n          \\\"p_rho\\\": 0.0,\\n          \\\"auroc\\\": 0.69133\\n        },\\n        \\\"EM\\\": {\\n          \\\"rho\\\": 0.10452,\\n          \\\"p_rho\\\": 0.037372,\\n          \\\"auroc\\\": 0.473161\\n        },\\n        \\\"voting_conf\\\": {\\n          \\\"rho\\\": 0.310445,\\n          \\\"p_rho\\\": 0.0,\\n          \\\"auroc\\\": 0.646404\\n        }\\n      }\\n    }\\n  },\\n  \\\"comparison\\\": {\\n    \\\"variance_ratio_std\\\": 0.89,\\n    \\\"variance_ratio_range\\\": 0.88,\\n    \\\"tied_reduction_pp\\\": 0.7,\\n    \\\"parse_rate_pct\\\": 100.0\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7eba3c0b-27a3-473d-9ada-eb8130f6c3d2",
+  "uuid": "16a50dc1-5fb2-40a0-b186-6eacc8d91e75",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"constrained\\\\\\\": {\\\\n    \\\\\\\"logprob_variance\\\\\\\": {\\\\n      \\\\\\\"mean_std\\\\\\\": 0.020589,\\\\n      \\\\\\\"median_std\\\\\\\": 0.013616,\\\\n      \\\\\\\"mean_range\\\\\\\": 0.062305,\\\\n      \\\\\\\"median_range\\\\\\\": 0.041348,\\\\n      \\\\\\\"tied_pct\\\\\\\": 59.7,\\\\n      \\\\\\\"n\\\\\\\": 551\\\\n    },\\\\n    \\\\\\\"selection_ner\\\\\\\": {\\\\n      \\\\\\\"greedy\\\\\\\": 0.6182,\\\\n      \\\\\\\"selected\\\\\\\": 0.6241,\\\\n      \\\\\\\"gap\\\\\\\": 0.0059\\\\n    },\\\\n    \\\\\\\"selection_re\\\\\\\": {\\\\n      \\\\\\\"greedy\\\\\\\": 0.2913,\\\\n      \\\\\\\"selected\\\\\\\": 0.2845,\\\\n      \\\\\\\"gap\\\\\\\": -0.0068\\\\n    },\\\\n    \\\\\\\"qe_ner\\\\\\\": {\\\\n      \\\\\\\"n\\\\\\\": 529,\\\\n      \\\\\\\"signals\\\\\\\": {\\\\n        \\\\\\\"SJ\\\\\\\": {\\\\n          \\\\\\\"rho\\\\\\\": 0.359891,\\\\n          \\\\\\\"p_rho\\\\\\\": 0.0,\\\\n          \\\\\\\"auroc\\\\\\\": 0.717989\\\\n        },\\\\n        \\\\\\\"FK\\\\\\\": {\\\\n          \\\\\\\"rho\\\\\\\": 0.266511,\\\\n          \\\\\\\"p_rho\\\\\\\": 0.0,\\\\n          \\\\\\\"auroc\\\\\\\": 0.747783\\\\n        },\\\\n        \\\\\\\"logprob\\\\\\\": {\\\\n          \\\\\\\"rho\\\\\\\": 0.205174,\\\\n          \\\\\\\"p_rho\\\\\\\": 2e-06,\\\\n          \\\\\\\"auroc\\\\\\\": 0.654773\\\\n        },\\\\n        \\\\\\\"EM\\\\\\\": {\\\\n          \\\\\\\"rho\\\\\\\": 0.294549,\\\\n          \\\\\\\"p_rho\\\\\\\": 0.0,\\\\n          \\\\\\\"auroc\\\\\\\": 0.499819\\\\n        },\\\\n        \\\\\\\"voting_conf\\\\\\\": {\\\\n          \\\\\\\"rho\\\\\\\": 0.379176,\\\\n          \\\\\\\"p_rho\\\\\\\": 0.0,\\\\n          \\\\\\\"auroc\\\\\\\": 0.772093\\\\n        }\\\\n      }\\\\n    },\\\\n    \\\\\\\"qe_re\\\\\\\": {\\\\n      \\\\\\\"n\\\\\\\": 397,\\\\n      \\\\\\\"signals\\\\\\\": {\\\\n        \\\\\\\"SJ\\\\\\\": {\\\\n          \\\\\\\"rho\\\\\\\": 0.250336,\\\\n          \\\\\\\"p_rho\\\\\\\": 0.0,\\\\n          \\\\\\\"auroc\\\\\\\": 0.609931\\\\n        },\\\\n        \\\\\\\"FK\\\\\\\": {\\\\n          \\\\\\\"rho\\\\\\\": 0.275204,\\\\n          \\\\\\\"p_rho\\\\\\\": 0.0,\\\\n          \\\\\\\"auroc\\\\\\\": 0.663813\\\\n        },\\\\n        \\\\\\\"logprob\\\\\\\": {\\\\n          \\\\\\\"rho\\\\\\\": 0.266245,\\\\n          \\\\\\\"p_rho\\\\\\\": 0.0,\\\\n          \\\\\\\"auroc\\\\\\\": 0.67803\\\\n        },\\\\n        \\\\\\\"EM\\\\\\\": {\\\\n          \\\\\\\"rho\\\\\\\": 0.134388,\\\\n          \\\\\\\"p_rho\\\\\\\": 0.007332,\\\\n          \\\\\\\"auroc\\\\\\\": 0.488597\\\\n        },\\\\n        \\\\\\\"voting_conf\\\\\\\": {\\\\n          \\\\\\\"rho\\\\\\\": 0.34977,\\\\n          \\\\\\\"p_rho\\\\\\\": 0.0,\\\\n          \\\\\\\"auroc\\\\\\\": 0.68202\\\\n        }\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"freeform\\\\\\\": {\\\\n    \\\\\\\"logprob_variance\\\\\\\": {\\\\n      \\\\\\\"mean_std\\\\\\\": 0.0183,\\\\n      \\\\\\\"median_std\\\\\\\": 0.014358,\\\\n      \\\\\\\"mean_range\\\\\\\": 0.054908,\\\\n      \\\\\\\"median_range\\\\\\\": 0.043426,\\\\n      \\\\\\\"tied_pct\\\\\\\": 59.0,\\\\n      \\\\\\\"n\\\\\\\": 551\\\\n    },\\\\n    \\\\\\\"parse_rate\\\\\\\": {\\\\n      \\\\\\\"total_samples\\\\\\\": 4408,\\\\n      \\\\\\\"parsed\\\\\\\": 4408,\\\\n      \\\\\\\"rate_pct\\\\\\\": 100.0\\\\n    },\\\\n    \\\\\\\"selection_ner\\\\\\\": {\\\\n      \\\\\\\"greedy\\\\\\\": 0.6204,\\\\n      \\\\\\\"selected\\\\\\\": 0.6232,\\\\n      \\\\\\\"gap\\\\\\\": 0.0028\\\\n    },\\\\n    \\\\\\\"selection_re\\\\\\\": {\\\\n      \\\\\\\"greedy\\\\\\\": 0.288,\\\\n      \\\\\\\"selected\\\\\\\": 0.31,\\\\n      \\\\\\\"gap\\\\\\\": 0.0219\\\\n    },\\\\n    \\\\\\\"qe_ner\\\\\\\": {\\\\n      \\\\\\\"n\\\\\\\": 529,\\\\n      \\\\\\\"signals\\\\\\\": {\\\\n        \\\\\\\"SJ\\\\\\\": {\\\\n          \\\\\\\"rho\\\\\\\": 0.395461,\\\\n          \\\\\\\"p_rho\\\\\\\": 0.0,\\\\n          \\\\\\\"auroc\\\\\\\": 0.736743\\\\n        },\\\\n        \\\\\\\"FK\\\\\\\": {\\\\n          \\\\\\\"rho\\\\\\\": 0.324325,\\\\n          \\\\\\\"p_rho\\\\\\\": 0.0,\\\\n          \\\\\\\"auroc\\\\\\\": 0.798935\\\\n        },\\\\n        \\\\\\\"logprob\\\\\\\": {\\\\n          \\\\\\\"rho\\\\\\\": 0.246271,\\\\n          \\\\\\\"p_rho\\\\\\\": 0.0,\\\\n          \\\\\\\"auroc\\\\\\\": 0.679165\\\\n        },\\\\n        \\\\\\\"EM\\\\\\\": {\\\\n          \\\\\\\"rho\\\\\\\": 0.320884,\\\\n          \\\\\\\"p_rho\\\\\\\": 0.0,\\\\n          \\\\\\\"auroc\\\\\\\": 0.520626\\\\n        },\\\\n        \\\\\\\"voting_conf\\\\\\\": {\\\\n          \\\\\\\"rho\\\\\\\": 0.424194,\\\\n          \\\\\\\"p_rho\\\\\\\": 0.0,\\\\n          \\\\\\\"auroc\\\\\\\": 0.77286\\\\n        }\\\\n      }\\\\n    },\\\\n    \\\\\\\"qe_re\\\\\\\": {\\\\n      \\\\\\\"n\\\\\\\": 397,\\\\n      \\\\\\\"signals\\\\\\\": {\\\\n        \\\\\\\"SJ\\\\\\\": {\\\\n          \\\\\\\"rho\\\\\\\": 0.20586,\\\\n          \\\\\\\"p_rho\\\\\\\": 3.6e-05,\\\\n          \\\\\\\"auroc\\\\\\\": 0.576347\\\\n        },\\\\n        \\\\\\\"FK\\\\\\\": {\\\\n          \\\\\\\"rho\\\\\\\": 0.239351,\\\\n          \\\\\\\"p_rho\\\\\\\": 1e-06,\\\\n          \\\\\\\"auroc\\\\\\\": 0.643027\\\\n        },\\\\n        \\\\\\\"logprob\\\\\\\": {\\\\n          \\\\\\\"rho\\\\\\\": 0.295083,\\\\n          \\\\\\\"p_rho\\\\\\\": 0.0,\\\\n          \\\\\\\"auroc\\\\\\\": 0.69133\\\\n        },\\\\n        \\\\\\\"EM\\\\\\\": {\\\\n          \\\\\\\"rho\\\\\\\": 0.10452,\\\\n          \\\\\\\"p_rho\\\\\\\": 0.037372,\\\\n          \\\\\\\"auroc\\\\\\\": 0.473161\\\\n        },\\\\n        \\\\\\\"voting_conf\\\\\\\": {\\\\n          \\\\\\\"rho\\\\\\\": 0.310445,\\\\n          \\\\\\\"p_rho\\\\\\\": 0.0,\\\\n          \\\\\\\"auroc\\\\\\\": 0.646404\\\\n        }\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"comparison\\\\\\\": {\\\\n    \\\\\\\"variance_ratio_std\\\\\\\": 0.89,\\\\n    \\\\\\\"variance_ratio_range\\\\\\\": 0.88,\\\\n    \\\\\\\"tied_reduction_pp\\\\\\\": 0.7,\\\\n    \\\\\\\"parse_rate_pct\\\\\\\": 100.0\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"constrained\\\": {\\n    \\\"logprob_variance\\\": {\\n      \\\"mean_std\\\": 0.020589,\\n      \\\"median_std\\\": 0.013616,\\n      \\\"mean_range\\\": 0.062305,\\n      \\\"median_range\\\": 0.041348,\\n      \\\"tied_pct\\\": 59.7,\\n      \\\"n\\\": 551\\n    },\\n    \\\"selection_ner\\\": {\\n      \\\"greedy\\\": 0.6182,\\n      \\\"selected\\\": 0.6241,\\n      \\\"gap\\\": 0.0059\\n    },\\n    \\\"selection_re\\\": {\\n      \\\"greedy\\\": 0.2913,\\n      \\\"selected\\\": 0.2845,\\n      \\\"gap\\\": -0.0068\\n    },\\n    \\\"qe_ner\\\": {\\n      \\\"n\\\": 529,\\n      \\\"signals\\\": {\\n        \\\"SJ\\\": {\\n          \\\"rho\\\": 0.359891,\\n          \\\"p_rho\\\": 0.0,\\n          \\\"auroc\\\": 0.717989\\n        },\\n        \\\"FK\\\": {\\n          \\\"rho\\\": 0.266511,\\n          \\\"p_rho\\\": 0.0,\\n          \\\"auroc\\\": 0.747783\\n        },\\n        \\\"logprob\\\": {\\n          \\\"rho\\\": 0.205174,\\n          \\\"p_rho\\\": 2e-06,\\n          \\\"auroc\\\": 0.654773\\n        },\\n        \\\"EM\\\": {\\n          \\\"rho\\\": 0.294549,\\n          \\\"p_rho\\\": 0.0,\\n          \\\"auroc\\\": 0.499819\\n        },\\n        \\\"voting_conf\\\": {\\n          \\\"rho\\\": 0.379176,\\n          \\\"p_rho\\\": 0.0,\\n          \\\"auroc\\\": 0.772093\\n        }\\n      }\\n    },\\n    \\\"qe_re\\\": {\\n      \\\"n\\\": 397,\\n      \\\"signals\\\": {\\n        \\\"SJ\\\": {\\n          \\\"rho\\\": 0.250336,\\n          \\\"p_rho\\\": 0.0,\\n          \\\"auroc\\\": 0.609931\\n        },\\n        \\\"FK\\\": {\\n          \\\"rho\\\": 0.275204,\\n          \\\"p_rho\\\": 0.0,\\n          \\\"auroc\\\": 0.663813\\n        },\\n        \\\"logprob\\\": {\\n          \\\"rho\\\": 0.266245,\\n          \\\"p_rho\\\": 0.0,\\n          \\\"auroc\\\": 0.67803\\n        },\\n        \\\"EM\\\": {\\n          \\\"rho\\\": 0.134388,\\n          \\\"p_rho\\\": 0.007332,\\n          \\\"auroc\\\": 0.488597\\n        },\\n        \\\"voting_conf\\\": {\\n          \\\"rho\\\": 0.34977,\\n          \\\"p_rho\\\": 0.0,\\n          \\\"auroc\\\": 0.68202\\n        }\\n      }\\n    }\\n  },\\n  \\\"freeform\\\": {\\n    \\\"logprob_variance\\\": {\\n      \\\"mean_std\\\": 0.0183,\\n      \\\"median_std\\\": 0.014358,\\n      \\\"mean_range\\\": 0.054908,\\n      \\\"median_range\\\": 0.043426,\\n      \\\"tied_pct\\\": 59.0,\\n      \\\"n\\\": 551\\n    },\\n    \\\"parse_rate\\\": {\\n      \\\"total_samples\\\": 4408,\\n      \\\"parsed\\\": 4408,\\n      \\\"rate_pct\\\": 100.0\\n    },\\n    \\\"selection_ner\\\": {\\n      \\\"greedy\\\": 0.6204,\\n      \\\"selected\\\": 0.6232,\\n      \\\"gap\\\": 0.0028\\n    },\\n    \\\"selection_re\\\": {\\n      \\\"greedy\\\": 0.288,\\n      \\\"selected\\\": 0.31,\\n      \\\"gap\\\": 0.0219\\n    },\\n    \\\"qe_ner\\\": {\\n      \\\"n\\\": 529,\\n      \\\"signals\\\": {\\n        \\\"SJ\\\": {\\n          \\\"rho\\\": 0.395461,\\n          \\\"p_rho\\\": 0.0,\\n          \\\"auroc\\\": 0.736743\\n        },\\n        \\\"FK\\\": {\\n          \\\"rho\\\": 0.324325,\\n          \\\"p_rho\\\": 0.0,\\n          \\\"auroc\\\": 0.798935\\n        },\\n        \\\"logprob\\\": {\\n          \\\"rho\\\": 0.246271,\\n          \\\"p_rho\\\": 0.0,\\n          \\\"auroc\\\": 0.679165\\n        },\\n        \\\"EM\\\": {\\n          \\\"rho\\\": 0.320884,\\n          \\\"p_rho\\\": 0.0,\\n          \\\"auroc\\\": 0.520626\\n        },\\n        \\\"voting_conf\\\": {\\n          \\\"rho\\\": 0.424194,\\n          \\\"p_rho\\\": 0.0,\\n          \\\"auroc\\\": 0.77286\\n        }\\n      }\\n    },\\n    \\\"qe_re\\\": {\\n      \\\"n\\\": 397,\\n      \\\"signals\\\": {\\n        \\\"SJ\\\": {\\n          \\\"rho\\\": 0.20586,\\n          \\\"p_rho\\\": 3.6e-05,\\n          \\\"auroc\\\": 0.576347\\n        },\\n        \\\"FK\\\": {\\n          \\\"rho\\\": 0.239351,\\n          \\\"p_rho\\\": 1e-06,\\n          \\\"auroc\\\": 0.643027\\n        },\\n        \\\"logprob\\\": {\\n          \\\"rho\\\": 0.295083,\\n          \\\"p_rho\\\": 0.0,\\n          \\\"auroc\\\": 0.69133\\n        },\\n        \\\"EM\\\": {\\n          \\\"rho\\\": 0.10452,\\n          \\\"p_rho\\\": 0.037372,\\n          \\\"auroc\\\": 0.473161\\n        },\\n        \\\"voting_conf\\\": {\\n          \\\"rho\\\": 0.310445,\\n          \\\"p_rho\\\": 0.0,\\n          \\\"auroc\\\": 0.646404\\n        }\\n      }\\n    }\\n  },\\n  \\\"comparison\\\": {\\n    \\\"variance_ratio_std\\\": 0.89,\\n    \\\"variance_ratio_range\\\": 0.88,\\n    \\\"tied_reduction_pp\\\": 0.7,\\n    \\\"parse_rate_pct\\\": 100.0\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 62_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have all three seed results. Let me compile the data:
+
+**seed42** (from exp_freeform_ablation/ablation_report.json):
+- Freeform:
+  - NER selection gap: +0.0018
+  - RE selection gap: +0.0169
+  - LP std: 0.019881
+  - LP range: 0.059864
+  - Tied%: 57.7%
+  - RE LP flip: constrained RE gap = -0.0068, freeform RE gap = +0.0169 → positive flip ✓
+  
+Looking at seed456 and seed789, I'm seeing consistent patterns across the runs. Seed456 shows a slightly smaller NER gap but a larger RE gap at +0.0200, with similar LP variability and another positive RE flip. Seed789 continues this trend with an even larger NER gap of +0.0028, though the RE gap data appears incomplete in what I'm reviewing.
+
+Let me recalculate the NER selection gaps across all three seeds to get a clearer picture of the mean and variance. Now I'm calculating the selection gap for the freeform RE metric across the three seeds, finding a mean of about 0.0196 and computing the sample standard deviation. Now I'm calculating the standard deviation for the LP range across the freeform seeds, working through the variance formula with the three data points to get the final standard deviation value. Generating markdown table...
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7eba3c0b-27a3-473d-9ada-eb8130f6c3d2",
+  "uuid": "136f43e4-4cf9-452b-99e2-158dbd44c7ff",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MGXRPMcZcuNYBf1XdHfVs5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2466,
+      "cache_read_input_tokens": 38248,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2466
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 63_
+
+数据已全部收集。更新 registry。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7eba3c0b-27a3-473d-9ada-eb8130f6c3d2",
+  "uuid": "6d5fa903-81dc-4db5-b80d-e5668c6e4b93",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MGXRPMcZcuNYBf1XdHfVs5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2466,
+      "cache_read_input_tokens": 38248,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2466
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 64_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_017HkgPut56Z1qNW5L9c5EKB`</summary>
+
+```json
+{
+  "exp_id": "exp_freeform_seed789_v3",
+  "field": "status",
+  "value": "DONE",
+  "project": "struct_self_consist_ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7eba3c0b-27a3-473d-9ada-eb8130f6c3d2",
+  "uuid": "30b5fd7b-378b-47e8-a01e-6eb82b385cfa",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MGXRPMcZcuNYBf1XdHfVs5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2466,
+      "cache_read_input_tokens": 38248,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2466
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01JwBeWthWGyjFCWPsycCW3B`</summary>
+
+```json
+{
+  "exp_id": "exp_freeform_seed789_v3",
+  "field": "conclusion",
+  "value": "success",
+  "project": "struct_self_consist_ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7eba3c0b-27a3-473d-9ada-eb8130f6c3d2",
+  "uuid": "df279b89-7476-42a5-be3e-fe313e9386f6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MGXRPMcZcuNYBf1XdHfVs5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2466,
+      "cache_read_input_tokens": 38248,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2466
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-15T19:33:43.289Z_
+
+<details><summary>↩ Tool result · `toolu_017HkgPut56Z1qNW5L9c5EKB`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_freeform_seed789_v3\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T19:24:26.805Z\", \"updated_at\": \"2026-05-15T19:33:42.340Z\", \"spec\": {\"command\": \"CANCELLED\", \"server\": \"autodl-5090\", \"gpu\": [\"cuda:2\"], \"pid\": \"226329\", \"log_path\": \"~/runs/struct_self_consist_ie/exp_freeform_seed789_v3.log\", \"submitted_at\": \"2026-05-15T19:24:48.986Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"N/A\", \"data_count\": 0, \"model_name\": \"N/A\", \"seed\": 789, \"wall_clock_seconds\": 362.1, \"gpu_hours\": 0.1}, \"conclusion\": \"killed\", \"completed_at\": \"2026-05-15T19:30:51.048Z\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.2419}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7eba3c0b-27a3-473d-9ada-eb8130f6c3d2",
+  "uuid": "a16a92d6-dfcf-4dd8-87dc-65835a65701a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_freeform_seed789_v3\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T19:24:26.805Z\\\", \\\"updated_at\\\": \\\"2026-05-15T19:33:42.340Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"CANCELLED\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"226329\\\", \\\"log_path\\\": \\\"~/runs/struct_self_consist_ie/exp_freeform_seed789_v3.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T19:24:48.986Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"N/A\\\", \\\"data_count\\\": 0, \\\"model_name\\\": \\\"N/A\\\", \\\"seed\\\": 789, \\\"wall_clock_seconds\\\": 362.1, \\\"gpu_hours\\\": 0.1}, \\\"conclusion\\\": \\\"killed\\\", \\\"completed_at\\\": \\\"2026-05-15T19:30:51.048Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.2419}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp_freeform_seed789_v3\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T19:24:26.805Z\", \"updated_at\": \"2026-05-15T19:33:42.340Z\", \"spec\": {\"command\": \"CANCELLED\", \"server\": \"autodl-5090\", \"gpu\": [\"cuda:2\"], \"pid\": \"226329\", \"log_path\": \"~/runs/struct_self_consist_ie/exp_freeform_seed789_v3.log\", \"submitted_at\": \"2026-05-15T19:24:48.986Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"N/A\", \"data_count\": 0, \"model_name\": \"N/A\", \"seed\": 789, \"wall_clock_seconds\": 362.1, \"gpu_hours\": 0.1}, \"conclusion\": \"killed\", \"completed_at\": \"2026-05-15T19:30:51.048Z\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.2419}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 67 · 2026-05-15T19:33:43.974Z_
+
+<details><summary>↩ Tool result · `toolu_01JwBeWthWGyjFCWPsycCW3B`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_freeform_seed789_v3\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T19:24:26.805Z\", \"updated_at\": \"2026-05-15T19:33:43.585Z\", \"spec\": {\"command\": \"CANCELLED\", \"server\": \"autodl-5090\", \"gpu\": [\"cuda:2\"], \"pid\": \"226329\", \"log_path\": \"~/runs/struct_self_consist_ie/exp_freeform_seed789_v3.log\", \"submitted_at\": \"2026-05-15T19:24:48.986Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"N/A\", \"data_count\": 0, \"model_name\": \"N/A\", \"seed\": 789, \"wall_clock_seconds\": 362.1, \"gpu_hours\": 0.1}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T19:30:51.048Z\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6766}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7eba3c0b-27a3-473d-9ada-eb8130f6c3d2",
+  "uuid": "9ce39cb2-99ff-4efc-97f7-f93afffff3a9",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_freeform_seed789_v3\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T19:24:26.805Z\\\", \\\"updated_at\\\": \\\"2026-05-15T19:33:43.585Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"CANCELLED\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"226329\\\", \\\"log_path\\\": \\\"~/runs/struct_self_consist_ie/exp_freeform_seed789_v3.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T19:24:48.986Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"N/A\\\", \\\"data_count\\\": 0, \\\"model_name\\\": \\\"N/A\\\", \\\"seed\\\": 789, \\\"wall_clock_seconds\\\": 362.1, \\\"gpu_hours\\\": 0.1}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-15T19:30:51.048Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6766}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp_freeform_seed789_v3\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T19:24:26.805Z\", \"updated_at\": \"2026-05-15T19:33:43.585Z\", \"spec\": {\"command\": \"CANCELLED\", \"server\": \"autodl-5090\", \"gpu\": [\"cuda:2\"], \"pid\": \"226329\", \"log_path\": \"~/runs/struct_self_consist_ie/exp_freeform_seed789_v3.log\", \"submitted_at\": \"2026-05-15T19:24:48.986Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"N/A\", \"data_count\": 0, \"model_name\": \"N/A\", \"seed\": 789, \"wall_clock_seconds\": 362.1, \"gpu_hours\": 0.1}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T19:30:51.048Z\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6766}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 68_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01PdeXGVfW2Tpj1BvjUDe43R`</summary>
+
+```json
+{
+  "exp_id": "exp_freeform_seed789_v3",
+  "field": "spec",
+  "value": {
+    "log_path": "~/runs/struct_self_consist_ie/exp_freeform_seed789_v3.log",
+    "checkpoint_path": "results/exp_freeform_ablation_seed789/"
+  },
+  "project": "struct_self_consist_ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7eba3c0b-27a3-473d-9ada-eb8130f6c3d2",
+  "uuid": "5f8672b4-81ac-488b-b028-afcde7b7aca9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MGXRPMcZcuNYBf1XdHfVs5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2466,
+      "cache_read_input_tokens": 38248,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2466
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 69 · 2026-05-15T19:33:45.422Z_
+
+<details><summary>↩ Tool result · `toolu_01PdeXGVfW2Tpj1BvjUDe43R`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_freeform_seed789_v3\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T19:24:26.805Z\", \"updated_at\": \"2026-05-15T19:33:45.223Z\", \"spec\": {\"log_path\": \"~/runs/struct_self_consist_ie/exp_freeform_seed789_v3.log\", \"checkpoint_path\": \"results/exp_freeform_ablation_seed789/\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T19:30:51.048Z\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4952}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7eba3c0b-27a3-473d-9ada-eb8130f6c3d2",
+  "uuid": "e3ff0c7a-5a9a-4c84-ba88-36acea33caf5",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_freeform_seed789_v3\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T19:24:26.805Z\\\", \\\"updated_at\\\": \\\"2026-05-15T19:33:45.223Z\\\", \\\"spec\\\": {\\\"log_path\\\": \\\"~/runs/struct_self_consist_ie/exp_freeform_seed789_v3.log\\\", \\\"checkpoint_path\\\": \\\"results/exp_freeform_ablation_seed789/\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-15T19:30:51.048Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4952}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp_freeform_seed789_v3\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T19:24:26.805Z\", \"updated_at\": \"2026-05-15T19:33:45.223Z\", \"spec\": {\"log_path\": \"~/runs/struct_self_consist_ie/exp_freeform_seed789_v3.log\", \"checkpoint_path\": \"results/exp_freeform_ablation_seed789/\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T19:30:51.048Z\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4952}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 70_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01PY7hSJKo6wBRfGVmM8bLWV`</summary>
+
+```json
+{
+  "exp_id": "exp_freeform_seed789_v3",
+  "field": "metrics",
+  "value": {
+    "n_instances": 551,
+    "n_samples": 8,
+    "parse_rate_pct": 100,
+    "elapsed_seconds": 229.7,
+    "freeform_ner_selection_gap": 0.0028,
+    "freeform_re_selection_gap": 0.0219,
+    "freeform_lp_std": 0.0183,
+    "freeform_lp_range": 0.054908,
+    "freeform_tied_pct": 59,
+    "re_lp_flip_positive": true,
+    "variance_ratio_std": 0.89,
+    "variance_ratio_range": 0.88
+  },
+  "project": "struct_self_consist_ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7eba3c0b-27a3-473d-9ada-eb8130f6c3d2",
+  "uuid": "3218c3b5-9c56-4f7a-8ca6-5f4cbf0e1a21",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MGXRPMcZcuNYBf1XdHfVs5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2466,
+      "cache_read_input_tokens": 38248,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2466
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 71 · 2026-05-15T19:33:47.850Z_
+
+<details><summary>↩ Tool result · `toolu_01PY7hSJKo6wBRfGVmM8bLWV`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_freeform_seed789_v3\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T19:24:26.805Z\", \"updated_at\": \"2026-05-15T19:33:47.629Z\", \"spec\": {\"log_path\": \"~/runs/struct_self_consist_ie/exp_freeform_seed789_v3.log\", \"checkpoint_path\": \"results/exp_freeform_ablation_seed789/\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T19:30:51.048Z\", \"metrics\": {\"n_instances\": 551, \"n_samples\": 8, \"parse_rate_pct\": 100, \"elapsed_seconds\": 229.7, \"freeform_ner_selection_gap\": 0.0028, \"freeform_re_selection_gap\": 0.0219, \"freeform_lp_std\": 0.0183, \"freeform_lp_range\": 0.054908, \"freeform_tied_pct\": 59, \"re_lp_flip_positive\": true, \"variance_ratio_std\": 0.89, \"variance_ratio_range\": 0.88}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5713}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7eba3c0b-27a3-473d-9ada-eb8130f6c3d2",
+  "uuid": "484e6d77-fc83-4a82-a960-62c719758cf6",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_freeform_seed789_v3\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T19:24:26.805Z\\\", \\\"updated_at\\\": \\\"2026-05-15T19:33:47.629Z\\\", \\\"spec\\\": {\\\"log_path\\\": \\\"~/runs/struct_self_consist_ie/exp_freeform_seed789_v3.log\\\", \\\"checkpoint_path\\\": \\\"results/exp_freeform_ablation_seed789/\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-15T19:30:51.048Z\\\", \\\"metrics\\\": {\\\"n_instances\\\": 551, \\\"n_samples\\\": 8, \\\"parse_rate_pct\\\": 100, \\\"elapsed_seconds\\\": 229.7, \\\"freeform_ner_selection_gap\\\": 0.0028, \\\"freeform_re_selection_gap\\\": 0.0219, \\\"freeform_lp_std\\\": 0.0183, \\\"freeform_lp_range\\\": 0.054908, \\\"freeform_tied_pct\\\": 59, \\\"re_lp_flip_positive\\\": true, \\\"variance_ratio_std\\\": 0.89, \\\"variance_ratio_range\\\": 0.88}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5713}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp_freeform_seed789_v3\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T19:24:26.805Z\", \"updated_at\": \"2026-05-15T19:33:47.629Z\", \"spec\": {\"log_path\": \"~/runs/struct_self_consist_ie/exp_freeform_seed789_v3.log\", \"checkpoint_path\": \"results/exp_freeform_ablation_seed789/\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T19:30:51.048Z\", \"metrics\": {\"n_instances\": 551, \"n_samples\": 8, \"parse_rate_pct\": 100, \"elapsed_seconds\": 229.7, \"freeform_ner_selection_gap\": 0.0028, \"freeform_re_selection_gap\": 0.0219, \"freeform_lp_std\": 0.0183, \"freeform_lp_range\": 0.054908, \"freeform_tied_pct\": 59, \"re_lp_flip_positive\": true, \"variance_ratio_std\": 0.89, \"variance_ratio_range\": 0.88}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5713}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 72_
+
+Registry 已更新。以下是 3-seed 汇总表：
+
+## Freeform Ablation 3-Seed 对比 (Constrained baseline 共用)
+
+| Metric | seed42 | seed456 | seed789 | mean±σ |
+|--------|--------|---------|---------|--------|
+| **NER selection gap** | +0.0018 | +0.0007 | +0.0028 | +0.0018±0.0011 |
+| **RE selection gap** | +0.0169 | +0.0200 | +0.0219 | +0.0196±0.0025 |
+| **LP std (freeform)** | 0.01988 | 0.01863 | 0.01830 | 0.01894±0.00083 |
+| **LP range (freeform)** | 0.05986 | 0.05679 | 0.05491 | 0.05719±0.00250 |
+| **Tied% (freeform)** | 57.7% | 58.4% | 59.0% | 58.4%±0.65 |
+| **RE LP flip (positive?)** | ✓ (+0.0169) | ✓ (+0.0200) | ✓ (+0.0219) | **3/3 一致** |
+| Parse rate | 99.95% | 99.98% | 100.0% | 99.98% |
+| Variance ratio (std) | 0.97x | 0.90x | 0.89x | 0.92x |
+| Variance ratio (range) | 0.96x | 0.91x | 0.88x | 0.92x |
+
+### 关键结论
+
+1. **RE LP 翻转 3 seed 100% 一致**：constrained RE gap = −0.0068（负），freeform RE gap 全部为正（+0.017~+0.022），翻转幅度 mean=+0.0196±0.0025，非常稳定
+2. **NER gap 稳定但微弱**：3 seed 均为正但量级小（+0.0007~+0.0028），mean=+0.0018±0.0011
+3. **LP variance 在 freeform 下略低**（ratio 0.88~0.97x），tied% 在 57.7~59.0% 范围内波动小
+4. **Parse rate 近乎完美**：≥99.95%，freeform 不损害输出质量
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7eba3c0b-27a3-473d-9ada-eb8130f6c3d2",
+  "uuid": "14b844a7-a6a7-45c3-b82e-25078aa9832b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014ZxJHkG49CatC7n3d43u2b",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4047,
+      "cache_read_input_tokens": 40714,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4047
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 73_
+
+Registry 已更新。以下是 3-seed 汇总表：
+
+## Freeform Ablation 3-Seed 对比 (Constrained baseline 共用)
+
+| Metric | seed42 | seed456 | seed789 | mean±σ |
+|--------|--------|---------|---------|--------|
+| **NER selection gap** | +0.0018 | +0.0007 | +0.0028 | +0.0018±0.0011 |
+| **RE selection gap** | +0.0169 | +0.0200 | +0.0219 | +0.0196±0.0025 |
+| **LP std (freeform)** | 0.01988 | 0.01863 | 0.01830 | 0.01894±0.00083 |
+| **LP range (freeform)** | 0.05986 | 0.05679 | 0.05491 | 0.05719±0.00250 |
+| **Tied% (freeform)** | 57.7% | 58.4% | 59.0% | 58.4%±0.65 |
+| **RE LP flip (positive?)** | ✓ (+0.0169) | ✓ (+0.0200) | ✓ (+0.0219) | **3/3 一致** |
+| Parse rate | 99.95% | 99.98% | 100.0% | 99.98% |
+| Variance ratio (std) | 0.97x | 0.90x | 0.89x | 0.92x |
+| Variance ratio (range) | 0.96x | 0.91x | 0.88x | 0.92x |
+
+### 关键结论
+
+1. **RE LP 翻转 3 seed 100% 一致**：constrained RE gap = −0.0068（负），freeform RE gap 全部为正（+0.017~+0.022），翻转幅度 mean=+0.0196±0.0025，非常稳定
+2. **NER gap 稳定但微弱**：3 seed 均为正但量级小（+0.0007~+0.0028），mean=+0.0018±0.0011
+3. **LP variance 在 freeform 下略低**（ratio 0.88~0.97x），tied% 在 57.7~59.0% 范围内波动小
+4. **Parse rate 近乎完美**：≥99.95%，freeform 不损害输出质量
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 144472,
+  "duration_api_ms": 140176,
+  "num_turns": 29,
+  "stop_reason": "end_turn",
+  "session_id": "7eba3c0b-27a3-473d-9ada-eb8130f6c3d2",
+  "total_cost_usd": 0.6381300000000001,
+  "usage": {
+    "input_tokens": 20,
+    "cache_creation_input_tokens": 33060,
+    "cache_read_input_tokens": 517718,
+    "output_tokens": 6832,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 33060,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 668,
+        "cache_read_input_tokens": 40714,
+        "cache_creation_input_tokens": 4047,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 4047
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1646,
+      "outputTokens": 20,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001746,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 20,
+      "outputTokens": 6832,
+      "cacheReadInputTokens": 517718,
+      "cacheCreationInputTokens": 33060,
+      "webSearchRequests": 0,
+      "costUSD": 0.6363840000000001,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "25a88c04-e969-4780-b129-415401a72625"
+}
+```
+
+</details>
+
+---

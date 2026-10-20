@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "11a121dd7bb7d26db1bf",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis scierc metric verification",
+  "task_key": "worker_analysis_scierc-metric-verification_20260524T083725",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_scierc-metric-verification_20260524T083725_result.json",
+    "occurrence": 1,
+    "bytes": 898,
+    "sha256": "169dce144ef7ead92226b8d3f2ccb82ef565d462d97f603830ca1c9782ad9b62"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证完成。核心结论：\n\n1. **greedy 字段存在且正确使用** — samples.jsonl 里 551/551 个实例都有 `greedy` 字段（T=0 decode），old script 的 `inst.get(\"greedy\", inst[\"samples\"][0])` 正确取到了它\n\n2. **64.67% vs 66.3% 的差距完全来自 metric 类型** — micro-F1（论文用的）vs instance-averaged F1（construction 脚本用的），差距约 1.8-2.1pp，与观察到的 ~1.6pp 完全吻合\n\n3. **用论文一致的 micro-F1 重算后，LP construction Δ = -0.20pp（p=0.78）**，5个seed中只有1个正向。+1.11pp 的增益完全是 metric 不一致的产物\n\n**对论文 patch 的影响**：SciERC 上的 construction 增益在 micro-F1 下不成立。需要决定：\n- 整篇论文改用 instance-averaged F1（需要修改所有 baseline 数字）\n- 或接受 construction 在 SciERC micro-F1 下无效，调整 claim"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-scierc-metric-verification.md"
+}

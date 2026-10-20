@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "06bb66fbf3a9f142e111",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis sj normalizer seed456 lp",
+  "task_key": "worker_analysis_sj_normalizer_seed456_lp_20260515T153520",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_sj_normalizer_seed456_lp_20260515T153520_result.json",
+    "occurrence": 1,
+    "bytes": 1103,
+    "sha256": "44ce725faad5220322c44b4989ec353799ef1e0a9c4379b7e82bbcb1a2482e4f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个任务都完成了。\n\n### Task 2: SJ Normalizer Ablation\n\n| Metric | SJ_max | SJ_union |\n|--------|--------|----------|\n| ρ (Spearman) | 0.3599 | **0.3650** |\n| AUROC | **0.7180** | 0.7154 |\n| Mean SJ | 0.7026 | 0.6918 |\n| Std SJ | 0.1956 | 0.1977 |\n\nUnion normalizer ρ 略高 (+0.005)，AUROC 略低 (-0.003)。差异极小，两种 normalizer 本质等价。\n\n### Task 3: Seed 456 LP Range\n\n| Metric | seed42 (N=8, joint) | seed456 (N=8, joint) |\n|--------|---------------------|----------------------|\n| Median LP range | 0.0401 | 0.0396 |\n| IQR [25, 75] | [0.0265, 0.0685] | [0.0236, 0.0733] |\n| Tied fraction (ε=0.05) | 60.3% | 62.2% |\n\n两个 seed 的 LP range 分布几乎一致。~60% 实例的 LP range < 0.05（即 tied），说明 mean_logprob 在大多数实例上区分力很弱，且不受 seed 影响。\n\n注：exp_018_qwen_scierc_seed456 实际为 N=8（非 N=16），subtask=joint，与 seed42 数据可比。\n\n输出已保存至 `output/analysis_round8/sj_normalizer_ablation.json` 和 `output/analysis_round8/seed456_lp_range.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-sj-normalizer-seed456-lp.md"
+}

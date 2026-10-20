@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1208a1f82ebaf2ca2b85",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "check 72b fewshot process",
+  "task_key": "worker_check_72b-fewshot-process_20260519T174051",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_check_72b-fewshot-process_20260519T174051_result.json",
+    "occurrence": 1,
+    "bytes": 587,
+    "sha256": "4c367ba4620448adb5c33c39c4857c61b05da73ec50f7e5169a82c16c05c7177"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "进程状态汇总：\n\n| 项目 | 状态 |\n|------|------|\n| **PID 131293** | 存活 ✓ |\n| **GPU 利用率** | 4×100%，显存 4×31972 MiB 全满 |\n| **进度** | 29152 / 301184 prompts（**~9.7%**），已运行 ~36 分钟 |\n| **预估剩余** | ~6.5 小时（按当前 ~11 it/s） |\n| **吞吐** | input ~22512 toks/s, output ~1321 toks/s |\n| **已产出** | `output/72b_fewshot/` 下有 `scierc/` 和 `conll2003/` 两个子目录 |\n| **数据集** | scierc、conll2003 已有部分产出，fewnerd 尚未开始 |\n\n进程正常运行中，无需干预。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-72b-fewshot-process.md"
+}

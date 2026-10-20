@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "009ce142613c56acce1f",
+  "project": "struct_self_consist_ie",
+  "kind": "history",
+  "title": "reviewer / loop_10.md",
+  "task_key": "loop_10",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/reviewer/loop_10.md",
+    "occurrence": 1,
+    "bytes": 3456,
+    "sha256": "e401cdbb0f0c7b138231bd30a9c2528fec039fd56f22b6a5848cc3a949e3a0cc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 10\nreason: max_wall_time\nupdated: '2026-05-16T04:04:53+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- **论文 tex 只改 `docs/paper/sections/`**，绝对不碰 `artifacts/_project/paper/`（C001 constraint，本 session 已有 3 个 worker 踩坑）\n- **data-integrity audit v2 不可信**——它验证了旧版论文（exp_015/016 数据），所有 \"✅\" 对当前论文无效。如需数据完整性检查必须重新执行\n- Registry 中 `_full` 后缀 = gold-filtered（n=2756 CoNLL / n=529 SciERC），不是全集。D103 已确认。不要再质疑 Table 4 的 .422/.418\n\n### 2. 🖥️ 基础设施快照\n- 服务器：`autodl-5090(root)`，4× RTX 5090 32GB，**全部空闲**\n- 工作目录：`/root/autodl-tmp/struct_self_consist_ie`\n- Python：`/root/miniconda3/bin/python`（conda base）\n- 编译论文：本地 `projects/struct_self_consist_ie/docs/paper/sections/*.tex`\n- 补充实验产出：`output/review_round9_experiments/{freeform_conll,verbalized_confidence,llama3b_scierc}/`\n- 补充服务器 `autodl-4x5090` 用于 freeform_conll 实验（非常驻）\n- 无活跃进程、无 cron、无 tmux session\n\n### 3. 📊 当前状态\n本轮审查了 8 个 worker 通知：\n- ✅ patch-narrative: Discussion L11 修复正确，发现 RE LP Δ -0.7pp vs Table 2 -0.9pp 精度不一致（WARNING，未修复）\n- ✅ fix-appendix-labels: 72 labels 零重复，PASS\n- ⚠️ patch-experiments: 写了 artifacts/ 而非 docs/（WARNING，已促成 C001）\n- ❌ data-integrity-v2: 验证了旧版论文，CRITICAL\n- ✅ freeform_conll_4seed: LP 压缩跨数据集确认，selection -0.77pp，PASS\n- ✅ verbalized_confidence: negative，overconfident 8.58/10，强化 compression-is-general，PASS\n- ✅ llama3b_scierc: 3B gap 成立，2 family × 2 scale 完整矩阵，PASS\n- ✅ table4_gold_filter: _full = gold-filtered 确认，撤回我此前 warning，PASS\n\nRegistry: `exp_llama3b_scierc_ablation` DONE，所有 107 个实验无 RUNNING/PREPARING。\n等待：Paper Agent 整合 3 组实验数据 → Round 10 审稿触发\n\n### 4. 📋 待办\n- Paper Agent 整合完成通知到达 → 审查是否写入 docs/ 而非 artifacts/，数字是否与 registry 一致\n- Round 10 审稿请求 → 按 §5 章节审查模式执行，重点关注新增数据的 claim 强度\n- Discussion -0.7pp 修复通知 → 验证 Discussion L15 与 Table 2 / Appendix L655 三处对齐\n- 如有新 data-integrity audit → 确认基于 docs/paper/sections/ 当前版本执行\n- 4 个 orphan bib + formatting issue 修复通知 → 快速验证\n\n### 5. 🎯 战略上下文\n- **核心结论**：correlation-selection gap 是 universal 的——5 signals × 3 datasets × 2 families × 3 scales 全部验证。Instance-level signals fail by construction，LP 因 score compression 失败（model/task intrinsic），MBR across-not-within 失败\n- **论文状态**：Borderline→Weak Accept (3.25/5)，DDL 2026-05-25（9天），关键路径无风险\n- **最容易判断错的事**：\n  1. 不要信 data-integrity audit v2 的任何 \"✅\"——它查的是 exp_015/016 时代的旧数据\n  2. `artifacts/_project/paper/` 是历史残留，不是编译源。Worker 已 3 次踩坑\n  3. Registry `_full` ≠ 全集，= gold-filtered。D103 已终结此争议\n  4. Discussion 的 RE LP \"-0.7pp\" 与 Table 2 的 0.395/0.404 (-0.9pp) 不一致——这是 unrounded vs rounded 差异，Table 2 caption 已加说明，但 Discussion 数字本身未修\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-10-copy-3.md"
+}

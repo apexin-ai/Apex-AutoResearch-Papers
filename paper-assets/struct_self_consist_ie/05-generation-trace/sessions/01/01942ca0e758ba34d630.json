@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "01942ca0e758ba34d630",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "fix hidden probe entity matching",
+  "task_key": "worker_fix_hidden_probe_entity_matching_20260518T111442",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_fix_hidden_probe_entity_matching_20260518T111442.log",
+    "occurrence": 1,
+    "bytes": 599841,
+    "sha256": "bc6280427067db387c2fd859f2c24aeee2457ac744c563b370715e6acad8004c"
+  },
+  "statistics": {
+    "messages": 376,
+    "user_turns": 0,
+    "tool_calls": 150,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 72,
+      "tool_call": 150,
+      "tool_result": 150,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 376,
+      "chunks": [
+        {
+          "path": "01942ca0e758ba34d630-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "01942ca0e758ba34d630-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "01942ca0e758ba34d630-part-0003.json",
+          "message_count": 16
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/fix-hidden-probe-entity-matching.md"
+}

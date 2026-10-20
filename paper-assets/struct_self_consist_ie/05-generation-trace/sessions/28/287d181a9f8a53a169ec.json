@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "287d181a9f8a53a169ec",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "analysis holm bonferroni 5seed",
+  "task_key": "worker_analysis_holm-bonferroni-5seed_20260522T184852",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_holm-bonferroni-5seed_20260522T184852.log",
+    "occurrence": 1,
+    "bytes": 723883,
+    "sha256": "2c1d226d8a437f429515054aed6e532dc85783ff2abfc6cd4deb7f90874ac428"
+  },
+  "statistics": {
+    "messages": 76,
+    "user_turns": 1,
+    "tool_calls": 23,
+    "roles": {
+      "log": 1,
+      "system": 13,
+      "record": 1,
+      "assistant": 13,
+      "tool_call": 23,
+      "tool_result": 23,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 13,
+      "chunks": [
+        {
+          "path": "287d181a9f8a53a169ec-part-0001.json",
+          "message_count": 13
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 63,
+      "chunks": [
+        {
+          "path": "287d181a9f8a53a169ec-part-0001.json",
+          "message_count": 38
+        },
+        {
+          "path": "287d181a9f8a53a169ec-part-0002.json",
+          "message_count": 25
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-holm-bonferroni-5seed.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "183cd68106b70d86e11c",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "research qwen3 4b model check",
+  "task_key": "worker_research_qwen3_4b_model_check_20260515T164029",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_research_qwen3_4b_model_check_20260515T164029_result.json",
+    "occurrence": 1,
+    "bytes": 613,
+    "sha256": "506ad7be466a3d71efdad2ef2ae26f113799aefc5a5c29d2d2d54a3546a8a625"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n| 项目 | 详情 |\n|------|------|\n| **模型状态** | 已下载完成 |\n| **ModelScope ID** | `Qwen/Qwen3-4B` |\n| **本地路径** | `/root/autodl-tmp/models/Qwen3-4B/Qwen/Qwen3-4B` |\n| **模型大小** | 7.6GB |\n| **模型配置** | type=qwen3, hidden=2560, layers=36, heads=32, intermediate=9728, vocab=151936, ~4.9B params |\n| **磁盘** | 250GB 总量，已用 166GB，剩余 85GB (67%) |\n\n模型已就绪，可用于 Scale Ablation 实验。与 Qwen3-8B（hidden=4096, layers=32）对比，Qwen3-4B 层数更多（36 vs 32）但 hidden size 更小（2560 vs 4096）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-qwen3-4b-model-check.md"
+}

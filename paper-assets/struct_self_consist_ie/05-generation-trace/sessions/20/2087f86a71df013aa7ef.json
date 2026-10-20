@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2087f86a71df013aa7ef",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "train ft 002 v2",
+  "task_key": "worker_train_ft_002_v2_20260514T080903",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_train_ft_002_v2_20260514T080903_result.json",
+    "occurrence": 1,
+    "bytes": 861,
+    "sha256": "4f68bcfc6e14e1ea1115fcb58c254d405d393c5ddc8bf946eda8cbf08f529514"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "5 分钟监控完成，训练稳定运行。\n\n## ft_002v2 训练报告\n\n| 项目 | 值 |\n|------|-----|\n| **PID** | 24947 |\n| **GPU** | cuda:1, 26804 MiB / 32607 MiB (~82%) |\n| **当前进度** | step 132/585 (22%) |\n| **速度** | ~2.8s/it |\n| **checkpoint** | checkpoint-100 已保存 ✓ |\n\n**Loss 趋势**（每 10 step 记录）：\n\n| Step | Loss | Epoch |\n|------|------|-------|\n| 10 | 0.7721 | 0.09 |\n| 20 | 0.2694 | 0.17 |\n| 30 | 0.1639 | 0.26 |\n| 40 | 0.1438 | 0.34 |\n| 50 | 0.1253 | 0.43 |\n| 60 | 0.1193 | 0.52 |\n| 70 | 0.1143 | 0.60 |\n| 80 | 0.1038 | 0.69 |\n| 90 | 0.1064 | 0.77 |\n| 100 | 0.1001 | 0.86 |\n\nLoss 从 0.77 快速降至 0.10，收敛良好。OOM 问题已解决——已安全通过原崩溃点 step 70。\n\n**预估完成时间**：剩余 453 steps × 2.8s ≈ 21 分钟，约 16:37 完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/train-ft-002-v2.md"
+}

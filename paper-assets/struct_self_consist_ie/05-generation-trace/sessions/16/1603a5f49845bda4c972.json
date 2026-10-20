@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1603a5f49845bda4c972",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "diagnostic gpu status check",
+  "task_key": "worker_diagnostic_gpu_status_check_20260518T123758",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnostic_gpu_status_check_20260518T123758_result.json",
+    "occurrence": 1,
+    "bytes": 1395,
+    "sha256": "94809e20f6acd4aa072de6cd6b00a73c5e49232a7695d69a505aba40478d1734"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## GPU 使用状态汇总\n\n### 各 GPU 状态\n\n| GPU | 显存 | GPU-Util | 温度 | 状态 |\n|-----|------|----------|------|------|\n| 0 | 2MiB / 32607MiB | 0% | 30°C | **空闲** |\n| 1 | 30888MiB / 32607MiB | 94% | 80°C | **忙碌** — LLaMA Few-NERD 训练 |\n| 2 | 2MiB / 32607MiB | 0% | 28°C | **空闲** |\n| 3 | 2MiB / 32607MiB | 0% | 27°C | **空闲** |\n\n### LLaMA Few-NERD 训练\n\n- **PID**: 137865\n- **启动时间**: 今天 17:31（已运行约 3 小时）\n- **命令**: `llamafactory-cli train train_config_llama_fewnerd.yaml`\n- **运行脚本**: `run_llama_fewnerd_train_single_gpu.sh`（通过 tmux pts/3）\n- **显存占用**: 30878MiB（GPU 1 几乎满载）\n- **进度**: **9% (423/4706 steps)**，约 ~8.5 it/s，预计还需约 8 分钟完成当前 epoch\n- **日志**: `logs/llama_fewnerd_train.log`\n\n### tmux sessions\n\n可见有活跃的 tmux session：\n- `exp_001_n16_seed456` — 之前的 pilot 实验 session（挂着但进程似乎已完成，只有 bash shell）\n- pts/3 — LLaMA 训练正在跑\n\n### 孤儿进程\n\n无孤儿进程。所有 Python 进程都有明确的父进程和用途：\n- LLaMA 训练（PID 137865）— 正常运行\n- Jupyter Lab / TensorBoard / supervisord — 系统服务，正常\n\n### 结论\n\nGPU 0/2/3 空闲可用。GPU 1 正在跑 LLaMA Few-NERD 单卡训练，进度 9%，运行正常。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnostic-gpu-status-check.md"
+}

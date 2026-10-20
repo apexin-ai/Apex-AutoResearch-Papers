@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "13bfe44d86aed7034f49",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis lp range cdf",
+  "task_key": "worker_analysis_lp_range_cdf_20260515T124301",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_lp_range_cdf_20260515T124301_result.json",
+    "occurrence": 1,
+    "bytes": 1342,
+    "sha256": "cab70934dedf2e8214c05162d74e57dcae0af6f0b3a2a7eecc74e6f92621bacb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总结果：\n\n### LP Range CDF 分析结果\n\n**551 个 SciERC NER instances, N=8 samples, Qwen3-8B**\n\n#### LP Range 分布\n| Percentile | LP Range (nats) |\n|-----------|----------------|\n| Median | 0.041 |\n| 75th | 0.069 |\n| 90th | 0.122 |\n| 95th | 0.177 |\n| Mean ± Std | 0.062 ± 0.069 |\n\n#### 各 ε 阈值下的 \"effectively tied\" 比例\n| ε | Fraction below |\n|------|---------------|\n| 0.01 | 2.0% |\n| 0.02 | 14.2% |\n| 0.03 | 31.8% |\n| **0.05** | **59.7%** |\n| 0.10 | 83.7% |\n| 0.15 | 93.1% |\n| 0.20 | 96.6% |\n\nCDF 曲线是平滑的——不存在 ε=0.05 处的 cliff，59.7% 处于连续 CDF 的自然位置，而非 arbitrary cutoff 造成的跳变。\n\n#### Within-instance LP-F1 Correlation（ε-free 指标）\n- **Pooled Spearman ρ(LP, F1) = 0.248**（p < 1e-62, n=4408 pairs）——LP 对质量有弱正相关但解释力有限\n- **Instance-level Spearman ρ(LP_range, F1_range) = 0.328**（p < 1e-14）——LP 分散度越大，F1 变异越大\n- **Per-instance Spearman**: 435 个可计算，仅 21.6% 达到 p<0.05 显著，mean ρ=0.18——N=8 下 LP 对单 instance 质量排序能力弱\n\n#### 产出文件\n- 数据：`output/analysis_lp_range_cdf.json`\n- 图表：`output/figures/lp_range_cdf.pdf` / `.png`\n- 脚本：`code/analyze_lp_range_cdf.py`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-lp-range-cdf.md"
+}

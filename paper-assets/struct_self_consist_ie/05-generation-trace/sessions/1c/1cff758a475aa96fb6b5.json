@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "1cff758a475aa96fb6b5",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "cpu alpha crit seed audit",
+  "task_key": "worker_cpu_alpha_crit_seed_audit_20260521T092648",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_cpu_alpha_crit_seed_audit_20260521T092648.log",
+    "occurrence": 1,
+    "bytes": 1134192,
+    "sha256": "23fec8139d7651ddc0f7b9decb0c6be1c4b035f1a99c2c7c2afa7b2f885f9321"
+  },
+  "statistics": {
+    "messages": 158,
+    "user_turns": 0,
+    "tool_calls": 58,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "assistant": 38,
+      "record": 1,
+      "tool_call": 58,
+      "tool_result": 58,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 158,
+      "chunks": [
+        {
+          "path": "1cff758a475aa96fb6b5-part-0001.json",
+          "message_count": 65
+        },
+        {
+          "path": "1cff758a475aa96fb6b5-part-0002.json",
+          "message_count": 93
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/cpu-alpha-crit-seed-audit.md"
+}

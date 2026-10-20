@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0a9df0e7f6ba0e346529",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis 3seed llama scierc",
+  "task_key": "worker_analysis_3seed_llama_scierc_20260515T060020",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_3seed_llama_scierc_20260515T060020_result.json",
+    "occurrence": 1,
+    "bytes": 1159,
+    "sha256": "3028b2fc8276594da92959297abb7b2107606a61aa148432f97f72a7e4548400"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Sanity check 完全匹配 report.json（SJ ρ=0.3630, FK ρ=0.3266, LP ρ=0.1827, LP AUROC=0.5964）。\n\n结果：\n\n### NER — LLaMA/SciERC 3-seed (42, 123, 456)\n\n| Signal | Spearman ρ | AUROC |\n|---|---|---|\n| Voting Confidence | 0.4023 ± 0.0122 | 0.6940 ± 0.0067 |\n| Soft Jaccard | 0.3615 ± 0.0047 | 0.6715 ± 0.0024 |\n| Exact Match | 0.3117 ± 0.0122 | 0.6477 ± 0.0047 |\n| Fleiss' Kappa | 0.3093 ± 0.0151 | 0.6391 ± 0.0065 |\n| Log-probability | 0.1903 ± 0.0059 | 0.5931 ± 0.0066 |\n\n### RE — LLaMA/SciERC 3-seed (42, 123, 456)\n\n| Signal | Spearman ρ | AUROC |\n|---|---|---|\n| Voting Confidence | 0.3301 ± 0.0122 | 0.6804 ± 0.0071 |\n| Log-probability | 0.3061 ± 0.0148 | 0.6552 ± 0.0100 |\n| Fleiss' Kappa | 0.2872 ± 0.0225 | 0.6492 ± 0.0141 |\n| Soft Jaccard | 0.2772 ± 0.0224 | 0.6565 ± 0.0137 |\n| Exact Match | 0.1860 ± 0.0186 | 0.6108 ± 0.0107 |\n\nJSON 已保存到 `output/review_round2/llama_scierc_3seed_summary.json`。各 seed 间标准差很小（σ ≤ 0.02），信号排序稳定——NER 端 Voting Confidence 最强（ρ=0.40），RE 端同样 Voting Confidence 领先（ρ=0.33）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-3seed-llama-scierc.md"
+}

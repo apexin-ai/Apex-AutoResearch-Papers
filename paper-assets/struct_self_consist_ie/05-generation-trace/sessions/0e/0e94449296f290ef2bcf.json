@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0e94449296f290ef2bcf",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ssh fewnerd 5epoch lp prepare submit",
+  "task_key": "worker_ssh_fewnerd_5epoch_lp_prepare_submit_20260522T113000",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_fewnerd_5epoch_lp_prepare_submit_20260522T113000_result.json",
+    "occurrence": 1,
+    "bytes": 736,
+    "sha256": "748756a0c866df86040d8268b6e1062f922fe4d170fb08e32bfda2b674d7b3c5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验已注册并运行。报告：\n\n```\n5-epoch checkpoint: /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-fewnerd-5epoch-merged (autodl-5090)\nCheckpoint 状态: merged（4 分片 safetensors，完整）\n提交状态: 已提交 PID 137895，cuda:3，vLLM 引擎已加载，推理进行中\n运行命令: CUDA_VISIBLE_DEVICES=3 python -u code/run_mvp_pilot.py \\\n  --model_path checkpoints/qwen3-8b-fewnerd-5epoch-merged \\\n  --data_dir data/fewnerd/ --dataset fewnerd --subtask ner \\\n  --n_samples 8 --temperature 1.0 --seed 42 \\\n  --collect_logprobs --output_dir output/fewnerd_5epoch_lp_seed42/\n日志: /tmp/exp_fewnerd_5epoch_lp_s42.log\nRegistry: exp_fewnerd_5epoch_lp_s42 → RUNNING\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-fewnerd-5epoch-lp-prepare-submit.md"
+}

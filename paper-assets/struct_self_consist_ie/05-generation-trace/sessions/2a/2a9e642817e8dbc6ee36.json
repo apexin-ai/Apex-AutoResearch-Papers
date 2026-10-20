@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2a9e642817e8dbc6ee36",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis epoch scierc rho text based",
+  "task_key": "worker_analysis_epoch_scierc_rho_text_based_20260518T145948",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_epoch_scierc_rho_text_based_20260518T145948_result.json",
+    "occurrence": 1,
+    "bytes": 677,
+    "sha256": "128f3cb1014a352964c67ad0e39bf6ffaf3e60f2da52932c4ec4f44949708723"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**Text-based rho(LP, F1) 结果 (tab:epoch_scierc 更新值):**\n\n| Epoch | median ρ | mean ρ | %pos | n_valid/n_total |\n|-------|---------|--------|------|-----------------|\n| 3-epoch | 0.3192 | 0.2726 | 76.4% | 495/551 |\n| 5-epoch | 0.2624 | 0.1791 | 64.1% | 435/551 |\n| 10-epoch | 0.1116 | 0.0660 | 54.0% | 276/551 |\n\n**与 tab:within_rho 交叉验证**: 5-epoch 值 0.2624 → 四舍五入 0.262，与 tab:within_rho 一致。\n\n**与旧 span-based 值差异**: 最大偏差 0.015 (5-epoch)，趋势不变 (3 > 5 > 10)。\n\n脚本: `code/compute_epoch_scierc_rho_textbased.py`，独立实现 text-based F1，不依赖 evaluation.py。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-epoch-scierc-rho-text-based.md"
+}

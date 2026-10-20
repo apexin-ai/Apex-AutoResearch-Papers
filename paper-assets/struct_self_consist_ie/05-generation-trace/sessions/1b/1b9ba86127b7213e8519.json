@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1b9ba86127b7213e8519",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis d108 mbr within rho",
+  "task_key": "worker_analysis_d108_mbr_within_rho_20260516T070432",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_d108_mbr_within_rho_20260516T070432_result.json",
+    "occurrence": 1,
+    "bytes": 1160,
+    "sha256": "df7797e4c235b13a9e509164e45c633b7f934932f5b2b9e77de3555fcbffe520"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。核心结果：\n\n**SciERC NER (N=8, 551 instances)**\n| | Within-ρ (rich, ≥3 unique) | Across-ρ |\n|---|---|---|\n| SJ | median=0.47, n=251 | 0.55 |\n| EM | median=0.33, n=109 | 0.37 |\n\n- 21% instances 所有 sample F1 相同（无选择余地）\n- SJ selection 关闭 oracle gap 的 22.6%\n\n**CoNLL NER (N=16, 3453 instances)**\n| | Within-ρ (rich, ≥3 unique) | Across-ρ |\n|---|---|---|\n| SJ | median=0.94, n=605 | 0.48 |\n| EM | median=0.83, n=436 | 0.45 |\n\n- 58% instances 所有 sample F1 相同\n- SJ selection 关闭 oracle gap 的 41.0%\n\n**关键发现**：within-instance ρ 实际上是**正的且中等偏强**，与论文原声称（\"utility correlates across but not within\"）不一致。建议修改论文 framing：utility 在 within/across 两个层面都正相关，但 within-instance 选择增益有限（仅关闭 23-41% oracle gap），原因是 (a) 大量 instances 无 within-instance F1 方差，(b) 相关性虽正但不完美。\n\n产出已保存在 `autodl-5090:/root/autodl-tmp/struct_self_consist_ie/output/d108_mbr_within_rho/` 并注册为 artifact `d108_mbr_within_instance_rho`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-d108-mbr-within-rho.md"
+}

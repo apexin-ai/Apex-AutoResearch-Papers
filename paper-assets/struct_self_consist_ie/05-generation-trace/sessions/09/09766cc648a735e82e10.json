@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "09766cc648a735e82e10",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "fix exp 029b oom",
+  "task_key": "worker_fix_exp_029b_oom_20260517T233710",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_fix_exp_029b_oom_20260517T233710_result.json",
+    "occurrence": 1,
+    "bytes": 615,
+    "sha256": "1cf1282d55d9d189a7010a439ee10008e9b1fef43e2c5f261b993d0f033f41fe"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇报：\n\n1. **vLLM 进程 (PID 416808)**: 已 kill，退出码 0\n2. **GPU 1 显存**: 已完全释放（2MiB / 32607MiB），空闲可用\n3. **exp_029a 状态**: 仍在 GPU 0 上运行，进度 77/351 steps（~22%），GPU 利用率 85%，显存 30128MiB\n4. **配置文件 GPU 设置**: 两个 yaml 均无 `device`/`cuda`/`gpu` 指定（只有 `per_device_*batch_size`），GPU 分配完全由 `submit_training_job` 的 `CUDA_VISIBLE_DEVICES` 控制，无需修改配置\n5. **OOM 根因确认**: GPU 1 被残留 vLLM 进程占满显存，已清除。exp_029b 现在可以安全提交到 GPU 1"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-exp-029b-oom.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "154a797ee7dc44efb73c",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "code exp026 t ablation submit",
+  "task_key": "worker_code_exp026_t_ablation_submit_20260518T152445",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_exp026_t_ablation_submit_20260518T152445_result.json",
+    "occurrence": 1,
+    "bytes": 1021,
+    "sha256": "98e21d5b976ab52abb12a490c6bfb20de07cc1e104b3531ecf1cae11b7a802ed"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3 个实验全部完成，registry 已更新为 DONE。\n\n## 结果摘要\n\n推理已有（`output/exp_026_t05/t08/t12/samples.jsonl`，每个 551 instances x N=8 + logprobs，模型 `qwen3-8b-scierc-merged-v2` = ft_002_v2）。5-signal 分析已跑完，输出到各目录的 `all_signals_5signal.json`。\n\n**NER 5-signal（full split, rho）**\n\n| Signal | T=0.5 | T=0.8 | T=1.2 |\n|--------|-------|-------|-------|\n| SJ | 0.26 | 0.36 | 0.38 |\n| FK | 0.23 | 0.25 | 0.34 |\n| LP | 0.22 | 0.25 | 0.20 |\n| EM | 0.29 | 0.29 | 0.34 |\n| VC | 0.38 | 0.38 | 0.40 |\n\n**RE 5-signal（full split, rho）**\n\n| Signal | T=0.5 | T=0.8 | T=1.2 |\n|--------|-------|-------|-------|\n| SJ | 0.18 | 0.27 | 0.26 |\n| FK | 0.13 | 0.20 | 0.35 |\n| LP | 0.28 | 0.33 | 0.29 |\n| EM | 0.10 | 0.20 | 0.12 |\n| VC | 0.28 | 0.40 | 0.40 |\n\n趋势：结构信号（SJ, FK, EM）随温度升高而增强（更多样本多样性 → 更好的信号区分度），LP 信号相对稳定但 conditional 下高温退化。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp026-t-ablation-submit.md"
+}

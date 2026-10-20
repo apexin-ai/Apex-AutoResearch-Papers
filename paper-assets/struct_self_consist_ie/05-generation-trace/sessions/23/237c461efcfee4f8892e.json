@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "237c461efcfee4f8892e",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "check 14b inference progress",
+  "task_key": "worker_check_14b_inference_progress_20260520T221255",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_check_14b_inference_progress_20260520T221255_result.json",
+    "occurrence": 1,
+    "bytes": 1040,
+    "sha256": "03f3adc069b417be444ec95c596142de7105429bde6fb98d5c3d7a6a29f1eb92"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 14B FewNERD 推理状态\n\n**进程存活**: PID 230885 (VLLM::EngineCore)，GPU 0 占用 31GB / 99% 利用率\n\n**当前任务**: `fewnerd_n4` — **92,592 / 150,592 prompts (61.4%)**，已跑 2h03m\n\n### 完成情况\n\n| 数据集 | N=1 | N=2 | N=4 | N=8 | N=16 |\n|--------|-----|-----|-----|-----|------|\n| SciERC | ✅ | ✅ | ✅ | ✅ | ✅ |\n| CoNLL2003 | ✅ | ✅ | ✅ | ✅ | ✅ |\n| FewNERD | ✅ (163M) | ✅ (233M) | **61% 进行中** | 待运行 | 将被跳过 |\n\n### 时间估算\n\n- **fewnerd_n4 剩余**: ~1h15m-1h30m（ETA ~07:30）\n- **fewnerd_n8**: 301,184 prompts，预计 ~6.5-7h\n- **fewnerd_n16**: `kill_after_n8.sh` 会在 n8 完成后自动杀掉进程，不会运行 n16\n- **全部完成 ETA**: ~14:00-15:00 May 21（约 8h 后）\n\n### 关键发现\n\n`run_14b_fewnerd.sh` 循环 N∈{1,2,4,8,16}，但 `kill_after_n8.sh`（PID 224789）监控日志，n8 完成后会自动终止进程树。FewNERD n4 的 throughput 约 ~12.5 prompts/s (input 2277 toks/s, output 1086 toks/s)。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-14b-inference-progress.md"
+}

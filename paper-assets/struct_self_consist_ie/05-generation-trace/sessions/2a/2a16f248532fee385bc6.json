@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2a16f248532fee385bc6",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ssh check 5epoch lp existing data",
+  "task_key": "worker_ssh_check_5epoch_lp_existing_data_20260522T113056",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_check_5epoch_lp_existing_data_20260522T113056_result.json",
+    "occurrence": 1,
+    "bytes": 1351,
+    "sha256": "22b99c442049aab4925f105d7bc47220b8dee7dc8fb8762a53c122ca01cffb95"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据收集完毕。\n\n---\n\n```\n5-epoch FewNERD LP selection 数据:\n- 状态: 部分存在\n\n已有数据:\n  1. Pilot (exp_028_fewnerd_5epoch, n=5000, seed42):\n     - LP selection F1: 0.7835\n     - LP selection Δ (vs greedy): +0.624 pp\n     - Greedy F1 (macro): 0.7773\n     - 对比 3-epoch (exp021): LP Δ 从 +1.37 pp → +0.624 pp（确认\"halving\"叙事）\n     - 来源: output/exp_028_fewnerd_5epoch/analysis_results.json\n\n  2. 3-seed 全量 run (n=37648, seeds 42/123/456):\n     - Greedy F1: ~0.7978 (3-seed 均值)\n     - MV results: 已有 (recompute_mv_results.txt)\n     - logprob_baseline rho/auroc: 已有 (report.json)\n     - LP selection F1: ❌ 未计算\n     - samples.jsonl 含 logprobs: ✅ (cumulative_logprob + mean_logprob per sample)\n\n不存在的数据:\n  - 3-seed 全量 run 的 LP selection F1 和 Δ 未计算\n  - fewnerd_5epoch_lp_seed42 目录已创建但为空（似乎开始了 recompute 但未执行）\n\n能否 recompute:\n  - ✅ 可以，CPU only\n  - 3 个 samples.jsonl (~680MB each) 均含 per-sample logprobs\n  - 只需读取每个 instance 的 samples，选 max mean_logprob 的 sample，计算 F1 vs gold\n\n对比 3-epoch LP Δ 参考值:\n  - 3-epoch FewNERD LP Δ (3-seed 均值): +1.39 pp\n  - 5-epoch pilot LP Δ: +0.624 pp (约减半，支持论文叙事)\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-5epoch-lp-existing-data.md"
+}

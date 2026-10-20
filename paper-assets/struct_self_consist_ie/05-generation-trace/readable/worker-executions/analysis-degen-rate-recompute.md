@@ -1,0 +1,2018 @@
+# analysis degen rate recompute
+
+**When Self-Consistency Fails for NER: Degeneracy, Signal Collapse, and the Correlation-Selection Gap** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 43
+- **Recorded user turns:** 0
+- **Tool calls:** 15
+- **Original source:** `logs/workers/worker_analysis_degen_rate_recompute_20260519T141932.log`
+- **Structured JSON:** [`664ee0d101462d6d4768.json`](../../sessions/66/664ee0d101462d6d4768.json)
+
+## Before a recorded user message
+
+43 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "session_id": "910780dc-4507-4b6d-b6f8-a8010b0eaa6b",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__append_idea",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__read_project_file",
+    "mcp__agent-ml-research__save_project_file",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "6a974296-1477-4ce1-9c0c-d3d2e5a95f65",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779207000,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "40752026-1688-41de-84dd-27cb72c0a45f",
+  "session_id": "910780dc-4507-4b6d-b6f8-a8010b0eaa6b"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me break this down into parallel tasks:
+
+1. SSH to the server to find exp_002 output files and compute degeneracy rates
+2. Search local tex files for all "48.4" and "degen" references
+
+Let me start both in parallel.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "910780dc-4507-4b6d-b6f8-a8010b0eaa6b",
+  "uuid": "f6aaf08e-7669-457e-9b6d-ab5e8ce75ad2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01T216fdUKQfRGNu4dnRiXtp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12773,
+      "cache_read_input_tokens": 11701,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12773
+      },
+      "output_tokens": 33,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01X2obseRi28y1mNCCKoHbUp`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "910780dc-4507-4b6d-b6f8-a8010b0eaa6b",
+  "uuid": "94d0a3ac-faa2-4c35-8092-ea6ec37ee355",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01T216fdUKQfRGNu4dnRiXtp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12773,
+      "cache_read_input_tokens": 11701,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12773
+      },
+      "output_tokens": 33,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-19T14:19:44.103Z_
+
+<details><summary>↩ Tool result · `toolu_01X2obseRi28y1mNCCKoHbUp`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "910780dc-4507-4b6d-b6f8-a8010b0eaa6b",
+  "uuid": "236caf79-c1f0-4d19-96fc-cbd0a17f57be",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__ssh_execute"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+    "total_deferred_tools": 26
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7_
+
+Finding exp_002 output files on the server and searching local tex files in parallel.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "910780dc-4507-4b6d-b6f8-a8010b0eaa6b",
+  "uuid": "bf97d595-cc10-432e-8259-ce975b89f647",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AMevR4czP7gt3eQBAEUoep",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 744,
+      "cache_read_input_tokens": 24474,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 744
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_017hA97CNumueQHFEKtwMKu3`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "find /root/autodl-tmp/struct_self_consist_ie/ -name \"*conll*\" -type f 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "910780dc-4507-4b6d-b6f8-a8010b0eaa6b",
+  "uuid": "ac8ecf30-7a17-4a4e-8572-18d9393b1b39",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AMevR4czP7gt3eQBAEUoep",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 744,
+      "cache_read_input_tokens": 24474,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 744
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-19T14:19:48.126Z_
+
+<details><summary>↩ Tool result · `toolu_017hA97CNumueQHFEKtwMKu3`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "910780dc-4507-4b6d-b6f8-a8010b0eaa6b",
+  "uuid": "aca22829-4d34-4cc9-94d9-56c8a0194d83",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01BqbctpW4pJMGNcV9LXbmEi`</summary>
+
+```json
+{
+  "pattern": "48\\.4",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections",
+  "output_mode": "content",
+  "-n": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "910780dc-4507-4b6d-b6f8-a8010b0eaa6b",
+  "uuid": "eb1e8bdf-8008-4128-bec1-7764ba7b5d95",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AMevR4czP7gt3eQBAEUoep",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 744,
+      "cache_read_input_tokens": 24474,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 744
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-19T14:19:49.132Z_
+
+<details><summary>↩ Tool result · `toolu_01BqbctpW4pJMGNcV9LXbmEi`</summary>
+
+```text
+docs/paper/sections/experiments.tex:102:[Omitted long matching line]
+docs/paper/sections/experiments.tex:122:CoNLL & 2{,}756 & .908 & 48.4\% & .302 & $-$0.85\,pp & 1.0 \\
+docs/paper/sections/appendix.tex:362:Constant F1 & 17.8\% & 10.4\% & 48.4\% \\
+docs/paper/sections/appendix.tex:1248:Instance degeneracy is 13.8\% (vs.\ 17.8\% on SciERC, 48.4\% on CoNLL).
+docs/paper/sections/appendix.tex:1274:(4)~Low degeneracy (13.8\%) combined with strong LP-quality alignment ($\rho{\approx}0.5$--$0.7$) enables LP selection: candidates differ in F1 more often, and LP can rank them effectively. This contrasts with SciERC (17.8\% degeneracy but weak alignment $\rho{\approx}0.24$, LP $+0.61$~pp) and CoNLL (48.4\%, LP $-0.85$~pp).
+docs/paper/sections/appendix.tex:1341:The cross-dataset degeneracy gradient (48.4\% $\to$ 17.8\% $\to$ 13.8\%) is inversely associated with LP selection effectiveness at the macro level ($n{=}3$ datasets; exploratory).\footnote{Partial Spearman correlation controlling for entity-type frequency yields $\rho{=}{-}0.47$ (vs.\ raw $\rho{=}{-}0.38$); type frequency does not confound the degeneracy--LP relationship.}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "910780dc-4507-4b6d-b6f8-a8010b0eaa6b",
+  "uuid": "b5176cee-b6ba-4374-b5b2-f89243ca28df",
+  "tool_use_result": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "docs/paper/sections/experiments.tex:102:[Omitted long matching line]\ndocs/paper/sections/experiments.tex:122:CoNLL & 2{,}756 & .908 & 48.4\\% & .302 & $-$0.85\\,pp & 1.0 \\\\\ndocs/paper/sections/appendix.tex:362:Constant F1 & 17.8\\% & 10.4\\% & 48.4\\% \\\\\ndocs/paper/sections/appendix.tex:1248:Instance degeneracy is 13.8\\% (vs.\\ 17.8\\% on SciERC, 48.4\\% on CoNLL).\ndocs/paper/sections/appendix.tex:1274:(4)~Low degeneracy (13.8\\%) combined with strong LP-quality alignment ($\\rho{\\approx}0.5$--$0.7$) enables LP selection: candidates differ in F1 more often, and LP can rank them effectively. This contrasts with SciERC (17.8\\% degeneracy but weak alignment $\\rho{\\approx}0.24$, LP $+0.61$~pp) and CoNLL (48.4\\%, LP $-0.85$~pp).\ndocs/paper/sections/appendix.tex:1341:The cross-dataset degeneracy gradient (48.4\\% $\\to$ 17.8\\% $\\to$ 13.8\\%) is inversely associated with LP selection effectiveness at the macro level ($n{=}3$ datasets; exploratory).\\footnote{Partial Spearman correlation controlling for entity-type frequency yields $\\rho{=}{-}0.47$ (vs.\\ raw $\\rho{=}{-}0.38$); type frequency does not confound the degeneracy--LP relationship.}",
+    "numLines": 6
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01Cd3KmQwEX4VHJuGNBDnHTR`</summary>
+
+```json
+{
+  "pattern": "degen",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections",
+  "output_mode": "content",
+  "-n": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "910780dc-4507-4b6d-b6f8-a8010b0eaa6b",
+  "uuid": "dad5c82a-d3b7-4633-b396-2cb0460b8b48",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AMevR4czP7gt3eQBAEUoep",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 744,
+      "cache_read_input_tokens": 24474,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 744
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-19T14:19:49.739Z_
+
+<details><summary>↩ Tool result · `toolu_01Cd3KmQwEX4VHJuGNBDnHTR`</summary>
+
+```text
+&lt;persisted-output>
+Output too large (19.9KB). Full output saved to: /home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie/910780dc-4507-4b6d-b6f8-a8010b0eaa6b/tool-results/toolu_01Cd3KmQwEX4VHJuGNBDnHTR.txt
+
+Preview (first 2KB):
+docs/paper/sections/related_work.tex:7:All target discrete-answer reasoning; structured prediction requires different gating signals because degeneracy operates at the entity-set level.
+docs/paper/sections/related_work.tex:10:\citet{yao2026consistency} show consistency correlates with accuracy for LLM-based NER/RE; we show correlation alone does not ensure selection gains, diagnosing degeneracy and compression as blocking mechanisms.
+docs/paper/sections/related_work.tex:21:Our selection strategies instantiate MBR decoding \cite{eikema2022sampling, deguchi2024centroid}; unlike MT where MBR yields consistent gains \cite{freitag2022high} and code generation where execution-based MBR improves selection \cite{shi2022mbr}, instance degeneracy eliminates the headroom MBR needs even when utility is well-aligned ($\rho{=}0.52$; \S\ref{sec:discussion}).
+docs/paper/sections/related_work.tex:22:\citet{eikema2025structured} find MBR utilities degrade on structured outputs; our diagnosis is complementary: degeneracy, not utility misalignment, is the primary bottleneck.
+docs/paper/sections/experiments.tex:10:\textbf{Few-NERD} \cite{ding2021fewnerd} (INTRA coarse; 37{,}648 instances, 8 entity types, ${\approx}$75\% F1) provides a low-degeneracy contrast where LP selection succeeds (\S\ref{sec:fewnerd}).
+docs/paper/sections/experiments.tex:57:LP selection effectiveness is primarily determined by LP-quality alignment rather than degeneracy level (\S\ref{sec:discussion}).
+docs/paper/sections/experiments.tex:99:Few-NERD provides the definitive contrast: LP achieves $+1.39$~pp ($p{<}0.001$) at low degeneracy (\S\ref{sec:fewnerd}), while structural signals still degrade selection.
+docs/paper/sections/experiments.tex:102:[Omitted long matching line]
+docs/paper/sections/experiments.tex:103:[Omitted long matching line]
+...
+&lt;/persisted-output>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "910780dc-4507-4b6d-b6f8-a8010b0eaa6b",
+  "uuid": "62b331b3-5ea1-40ce-836e-c66acfa692d4",
+  "tool_use_result": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "docs/paper/sections/related_work.tex:7:All target discrete-answer reasoning; structured prediction requires different gating signals because degeneracy operates at the entity-set level.\ndocs/paper/sections/related_work.tex:10:\\citet{yao2026consistency} show consistency correlates with accuracy for LLM-based NER/RE; we show correlation alone does not ensure selection gains, diagnosing degeneracy and compression as blocking mechanisms.\ndocs/paper/sections/related_work.tex:21:Our selection strategies instantiate MBR decoding \\cite{eikema2022sampling, deguchi2024centroid}; unlike MT where MBR yields consistent gains \\cite{freitag2022high} and code generation where execution-based MBR improves selection \\cite{shi2022mbr}, instance degeneracy eliminates the headroom MBR needs even when utility is well-aligned ($\\rho{=}0.52$; \\S\\ref{sec:discussion}).\ndocs/paper/sections/related_work.tex:22:\\citet{eikema2025structured} find MBR utilities degrade on structured outputs; our diagnosis is complementary: degeneracy, not utility misalignment, is the primary bottleneck.\ndocs/paper/sections/experiments.tex:10:\\textbf{Few-NERD} \\cite{ding2021fewnerd} (INTRA coarse; 37{,}648 instances, 8 entity types, ${\\approx}$75\\% F1) provides a low-degeneracy contrast where LP selection succeeds (\\S\\ref{sec:fewnerd}).\ndocs/paper/sections/experiments.tex:57:LP selection effectiveness is primarily determined by LP-quality alignment rather than degeneracy level (\\S\\ref{sec:discussion}).\ndocs/paper/sections/experiments.tex:99:Few-NERD provides the definitive contrast: LP achieves $+1.39$~pp ($p{<}0.001$) at low degeneracy (\\S\\ref{sec:fewnerd}), while structural signals still degrade selection.\ndocs/paper/sections/experiments.tex:102:[Omitted long matching line]\ndocs/paper/sections/experiments.tex:103:[Omitted long matching line]\ndocs/paper/sections/experiments.tex:129:Few-NERD (Table~\\ref{tab:fewnerd}) confirms LP selection at low degeneracy: $+1.39$~pp ($p{<}0.001$), while structural signals degrade selection (VC $-1.79$, SJ $-2.14$~pp). LP is 50$\\times$ more seed-stable ($\\sigma{=}0.04$ vs.\\ SJ $2.02$~pp) and generalizes to LLaMA-3.1-8B (Table~\\ref{tab:cross_selection}).\ndocs/paper/sections/experiments.tex:130:Training convergence modulates degeneracy: 5-epoch Few-NERD raises degeneracy to 31\\% and halves LP gains (Appendix~\\ref{app:epoch_confound}).\ndocs/paper/sections/experiments.tex:133:Across 23 configurations, degeneracy does not predict LP gain ($\\rho{=}0.052$, $p{=}0.81$; Figure~\\ref{fig:degeneracy_scatter}), though within fixed settings it causally modulates LP ($\\rho{=}{-}0.881$; Appendix~\\ref{app:per_type_lp}).\ndocs/paper/sections/experiments.tex:138:\\includegraphics[width=\\columnwidth]{figures/fig_degeneracy_lp_scatter.pdf}\ndocs/paper/sections/experiments.tex:139:\\caption{Instance degeneracy vs.\\ LP selection gain across 23 configurations ($N{=}8$; $\\rho{=}0.052$, $p{=}0.81$). Within Few-NERD per-entity-type analysis ($\\rho{=}{-}0.881$; Appendix~\\ref{app:per_type_lp}), degeneracy predicts LP gain when alignment is held constant.}\ndocs/paper/sections/experiments.tex:140:\\label{fig:degeneracy_scatter}\ndocs/paper/sections/experiments.tex:170:Degeneracy scales with capability: 8B shows 17.8\\% vs.\\ 4B's 10.4\\% on SciERC (Table~\\ref{tab:degeneracy}).\ndocs/paper/sections/experiments.tex:173:LoRA rank${=}8$ (vs.\\ 32) lowers degeneracy to 7.2\\% but LP remains below greedy ($\\rho(\\text{LP}, \\text{F1}){\\approx}0.24$); temperature manipulation ($T{=}1.2$; \\S\\ref{sec:discussion}) confirms that low degeneracy and adequate alignment are independently necessary.\ndocs/paper/sections/experiments.tex:206:\\textcolor{red}{TODO: (1) Add 72B fine-tuned results to determine whether fine-tuning at larger scale recovers signal quality. (2) Report degeneracy percentages for 72B zero-shot.}\ndocs/paper/sections/experiments.tex:246:[Omitted long matching line]\ndocs/paper/sections/conclusion.tex:3:[Omitted long matching line]\ndocs/paper/sections/discussion.tex:4:Three factors qualitatively constrain selection: instance degeneracy (17.8--67.9\\%) compresses the candidate space, limited oracle headroom bounds achievable gains, and LP compression (within-instance $\\rho$ 0.043--0.667) prevents exploiting the remainder; within non-degenerate instances, MBR utility correlates positively with F1 (SJ median $\\rho{=}0.524$) \\cite{eikema2022sampling}.\ndocs/paper/sections/discussion.tex:6:Temperature disentangles degeneracy from alignment: at $T{=}1.2$, degeneracy drops to 14.9\\% yet LP does not improve (median $\\rho{=}0.225$; Table~\\ref{tab:t_degeneracy}); the selection window narrows as models improve \\cite{wang2023selfconsistency, snell2025scaling}.\ndocs/paper/sections/method.tex:61:We define \\textbf{instance degeneracy} as the fraction of instances where all $N$ samples yield identical F1;\\footnote{``Identical F1'' means constant F1 across all $N$ samples for a given instance, not necessarily F1${=}1.0$. Samples may differ in surface form but produce the same entity set and thus the same score.} for these instances, no signal can improve selection.\ndocs/paper/sections/limitations.tex:4:We cover 4B\\textendash 8B scale; whether the gap holds for 70B+ models or closed-source APIs is untested. Larger models may produce more diverse samples (potentially reducing degeneracy), but their LP-quality alignment behavior is unknown, and these two factors may shift in opposite directions.\ndocs/paper/sections/abstract.tex:6:We identify three qualitative factors: instance degeneracy, oracle headroom, and LP-quality alignment; degeneracy causally modulates LP within fixed settings but does not predict cross-dataset direction.\ndocs/paper/sections/appendix.tex:231:[Omitted long matching line]\ndocs/paper/sections/appendix.tex:350:\\paragraph{Instance degeneracy statistics.}\ndocs/paper/sections/appendix.tex:351:Table~\\ref{tab:degeneracy} quantifies instance degeneracy across configurations. ``Constant F1'' denotes instances where all $N$ samples receive identical instance-level F1; ``Constant utility'' denotes instances where MBR (SJ) utility is identical across candidates, preventing ranking.\ndocs/paper/sections/appendix.tex:356:\\caption{Instance degeneracy statistics ($T{=}1.0$). ``Constant F1'': all $N$ samples receive identical instance-level F1. ``Constant utility'': MBR (SJ) utility identical across candidates. 4B data confirms degeneracy scales with model capability.}\ndocs/paper/sections/appendix.tex:357:\\label{tab:degeneracy}\ndocs/paper/sections/appendix.tex:424:(c)~Ensemble or mixture-of-experts settings generate structurally diverse candidates by design, reducing instance degeneracy below the levels observed in our single-model sampling.\ndocs/paper/sections/appendix.tex:685:Table~\\ref{tab:within_rho} reports median within-instance $\\rho(\\text{LP}, \\text{F1})$ across datasets, computed over non-degenerate instances (those with ${\\geq}2$ distinct F1 values across $N{=}8$ samples).\ndocs/paper/sections/appendix.tex:687:CoNLL alignment is moderate ($\\rho{\\approx}0.51$), but the valid-instance fraction is low (41\\% for Qwen, 11\\% for LLaMA) because degeneracy eliminates most headroom before alignment can operate.\ndocs/paper/sections/appendix.tex:688:LP-quality alignment is the primary predictor of selection direction; degeneracy constrains headroom but does not independently predict whether LP selection gains materialize (\\S\\ref{sec:discussion}).\ndocs/paper/sections/appendix.tex:693:\\caption{Within-instance LP-quality alignment across datasets ($N{=}8$, $T{=}1.0$). $\\rho$: median Spearman correlation between LP and F1 within each instance, over non-degenerate instances ($n_{\\text{valid}}$: ${\\geq}2$ distinct F1 values).}\ndocs/paper/sections/appendix.tex:830:Despite MBR's success in machine translation \\cite{freitag2022high} and its extension to summarization, code generation, and captioning \\cite{jinnai2024mbr}, all variants fail here: despite positive within-instance utility--F1 correlation, selection gains are limited by instance degeneracy, the core of the correlation-selection gap.\ndocs/paper/sections/appendix.tex:1038:Table~\\ref{tab:n_scaling_selection} traces the effect of sample count on degeneracy, oracle headroom, and per-signal selection gain.\ndocs/paper/sections/appendix.tex:1040:LP selection improves monotonically with $N$ ($+0.39$~pp at $N{=}8$ to $+0.95$~pp at $N{=}32$), but even at $N{=}32$, where degeneracy falls to 4\\% and oracle headroom reaches ${\\sim}20$~pp, the best signal captures less than 5\\% of the available improvement.\ndocs/paper/sections/appendix.tex:1041:Degeneracy drops monotonically (43\\% at $N{=}2$ to 4\\% at $N{=}32$), yet reduced degeneracy does not unlock selection, consistent with the LoRA-rank ablation finding (\\S\\ref{sec:robustness_main}).\ndocs/paper/sections/appendix.tex:1117:\\paragraph{Temperature controls degeneracy and LP spread.}\ndocs/paper/sections/appendix.tex:1118:Table~\\ref{tab:t_degeneracy} reports instance degeneracy (constant F1, gold-filtered) and median within-instance LP range across four temperatures on SciERC.\ndocs/paper/sections/appendix.tex:1119:Both quantities are strictly monotonic in $T$: degeneracy falls from 41.4\\% ($T{=}0.5$) to 14.9\\% ($T{=}1.2$), while LP range increases from 0.015 to 0.058 nats.\ndocs/paper/sections/appendix.tex:1120:Temperature thus provides a direct lever for practitioners to shift the degeneracy regime.\ndocs/paper/sections/appendix.tex:1121:However, even at $T{=}1.2$ where degeneracy (14.9\\%) approaches Few-NERD levels (${\\sim}$14\\%), within-instance $\\rho(\\text{LP}, \\text{F1})$ remains at 0.225, far below Few-NERD's ${\\sim}$0.5.\ndocs/paper/sections/appendix.tex:1122:This confirms that temperature controls degeneracy but cannot improve LP-quality alignment, which is largely determined by task structure and remains relatively stable across generation configurations (\\S\\ref{app:epoch_confound}). LP-quality alignment, not degeneracy, is the primary predictor of LP selection direction (\\S\\ref{sec:discussion}).\ndocs/paper/sections/appendix.tex:1127:\\caption{Temperature sensitivity of degeneracy and LP spread (SciERC NER, Qwen3-8B, $N{=}8$). Degeneracy: constant-F1, gold-filtered. LP range: median within-instance range.}\ndocs/paper/sections/appendix.tex:1128:\\label{tab:t_degeneracy}\ndocs/paper/sections/appendix.tex:1248:Instance degeneracy is 13.8\\% (vs.\\ 17.8\\% on SciERC, 48.4\\% on CoNLL).\ndocs/paper/sections/appendix.tex:1274:(4)~Low degeneracy (13.8\\%) combined with strong LP-quality alignment ($\\rho{\\approx}0.5$--$0.7$) enables LP selection: candidates differ in F1 more often, and LP can rank them effectively. This contrasts with SciERC (17.8\\% degeneracy but weak alignment $\\rho{\\approx}0.24$, LP $+0.61$~pp) and CoNLL (48.4\\%, LP $-0.85$~pp).\ndocs/paper/sections/appendix.tex:1278:Table~\\ref{tab:per_type_lp} stratifies LP selection by entity type on Few-NERD, sorted by degeneracy rate.\ndocs/paper/sections/appendix.tex:1279:The degeneracy-gating mechanism holds at entity-type granularity: 7 of 8 types show positive LP selection gains, and the sole negative type (Art, $-0.17$~pp) has the highest degeneracy (19.8\\%).\ndocs/paper/sections/appendix.tex:1280:The correlation between per-type degeneracy and oracle headroom is strong and significant (Spearman $\\rho{=}{-}0.881$, $p{=}0.004$; exact permutation $p{=}0.005$); degeneracy directly constrains the headroom available for selection.\ndocs/paper/sections/appendix.tex:1287:\\caption{Per-entity-type LP selection on Few-NERD INTRA coarse (Qwen3-8B, $N{=}8$, $T{=}1.0$), sorted by degeneracy. LP $\\Delta$: LP selection F1 minus greedy. 7/8 types show positive $\\Delta$; Art (highest degeneracy) is the sole exception.}\ndocs/paper/sections/appendix.tex:1308:\\caption{CoNLL-2003 per-type LP selection (Qwen3-8B, $N{=}16$, $T{=}1.0$). All types exceed 20\\% degeneracy and show negative LP selection, consistent with the dataset's ceiling-regime performance (F1 $>$ 90\\%).}\ndocs/paper/sections/appendix.tex:1325:\\caption{SciERC per-type LP selection (Qwen3-8B, $N{=}8$, $T{=}1.0$). Within-dataset, degeneracy alone does not predict LP effectiveness (Spearman $\\rho{=}0.14$, $p{=}0.79$); additional type-specific factors likely modulate selection at this granularity.}\ndocs/paper/sections/appendix.tex:1341:The cross-dataset degeneracy gradient (48.4\\% $\\to$ 17.8\\% $\\to$ 13.8\\%) is inversely associated with LP selection effectiveness at the macro level ($n{=}3$ datasets; exploratory).\\footnote{Partial Spearman correlation controlling for entity-type frequency yields $\\rho{=}{-}0.47$ (vs.\\ raw $\\rho{=}{-}0.38$); type frequency does not confound the degeneracy--LP relationship.}\ndocs/paper/sections/appendix.tex:1342:At finer per-type granularity, selection depends on the interaction of degeneracy, oracle headroom, and type-specific LP-quality alignment.\ndocs/paper/sections/appendix.tex:1344:Low degeneracy alone does not ensure selection gains: CoNLL MISC (23\\%, headroom 12.6~pp) and SciERC OtherScientificTerm (6.2\\%, headroom 12.5~pp) both show negative LP selection despite available headroom; LP correlation strength with the type-specific quality function is an additional prerequisite.\ndocs/paper/sections/appendix.tex:1376:\\paragraph{Training convergence modulates degeneracy.}\ndocs/paper/sections/appendix.tex:1378:Extended training increases greedy F1 by $+2.95$~pp (0.748 $\\to$ 0.777) but nearly triples instance degeneracy (11.1\\% $\\to$ 31.3\\%), reducing the fraction of instances with non-degenerate outputs from 85.6\\% to 68.7\\%.\ndocs/paper/sections/appendix.tex:1379:LP selection gains drop correspondingly ($+1.37$~pp $\\to$ $+0.62$~pp), consistent with the degeneracy-gating mechanism identified in the main text (\\S\\ref{sec:discussion}).\ndocs/paper/sections/appendix.tex:1383:Standard early stopping practice thus naturally selects the low-degeneracy regime where LP selection is most effective.\ndocs/paper/sections/appendix.tex:1384:This finding refines the narrative: degeneracy is not a fixed property of datasets but is modulated by the degree of training convergence. Over-trained models compress their output distributions, collapsing diversity even on datasets that support it under well-regularized training.\ndocs/paper/sections/appendix.tex:1389:[Omitted long matching line]\ndocs/paper/sections/appendix.tex:1396:Instance degen.\\ (\\%) & 11.1 & 31.3 \\\\\ndocs/paper/sections/appendix.tex:1410:The 3-epoch model has higher within-instance alignment ($\\rho{=}0.319$) than the 5-epoch model ($\\rho{=}0.262$), yet LP selection is worse ($-1.24$ vs.\\ $+0.64$~pp): at 6.4\\% degeneracy, more non-degenerate instances enter the candidate pool, but LP ranking precision is too low to exploit them, so the broader pool hurts rather than helps. This illustrates that low degeneracy does not ensure selection gains; LP-quality alignment determines selection direction.\ndocs/paper/sections/appendix.tex:1411:At 10 epochs, the model retains competitive greedy F1 (0.649 vs.\\ 0.650 at 3 epochs) yet conditions are unfavorable: 47.8\\% degenerate instances and $\\rho{=}0.112$.\ndocs/paper/sections/appendix.tex:1412:[Omitted long matching line]\ndocs/paper/sections/appendix.tex:1418:[Omitted long matching line]\ndocs/paper/sections/appendix.tex:1425:Instance degen.\\ (\\%) & 6.4 & 17.8 & 47.8 \\\\\ndocs/paper/sections/appendix.tex:1435:The Few-NERD epoch analysis covers 2 points (3 vs.\\ 5 epochs); the SciERC curve provides a 3-point gradient showing monotonic degeneracy increase with simultaneous within-instance alignment degradation.\ndocs/paper/sections/appendix.tex:1436:CoNLL epoch variation remains unverified; high-degeneracy datasets (CoNLL at 59--89\\%) may exhibit a ceiling effect where additional training has limited marginal impact.\ndocs/paper/sections/appendix.tex:1442:The non-tied subset analysis (Table~\\ref{tab:nontied_main}) identifies within-instance LP range (max minus min LP across $N$ samples) as a per-instance degeneracy proxy: instances with near-zero LP range carry no discriminative signal.\ndocs/paper/sections/appendix.tex:1445:DALS improves over pure LP selection when degeneracy is moderate, provides partial damage control when LP selection is harmful, and defaults to greedy when LP range signals no information.\ndocs/paper/sections/appendix.tex:1446:While gains are modest and seed-sensitive, LP range serves as an operationally accessible degeneracy proxy, though the mixed cross-dataset results confirm that degeneracy gating alone cannot ensure positive selection outcomes.\ndocs/paper/sections/appendix.tex:1452:This sensitivity reinforces the diagnostic framing of DALS: per-dataset $\\tau$ tuning is required for positive gains, and even optimally tuned DALS cannot overcome weak LP-quality alignment on high-degeneracy datasets.\ndocs/paper/sections/appendix.tex:1456:To test whether LP-quality alignment drives selection gains within datasets, we restrict LP selection to the favorable subset: non-degenerate instances whose within-instance LP range exceeds the dataset-specific median (SciERC: 0.040 nats, CoNLL: 0.062, Few-NERD: 0.067).\ndocs/paper/sections/appendix.tex:1462:\\caption{LP selection on the favorable subset (non-degenerate instances with LP range above the dataset-specific median) per dataset (Qwen3-8B, $N{=}8$, $T{=}1.0$). CI: bootstrap 95\\% confidence interval.}\ndocs/paper/sections/appendix.tex:1475:On SciERC, restricting to the favorable subset recovers a significant LP gain, consistent with LP-quality alignment driving selection within the non-degenerate pool.\ndocs/paper/sections/appendix.tex:1524:On degenerate subsets (instances where all $N$ samples yield identical F1), merge is uniformly negative across all three datasets, confirming that entity-level aggregation cannot bypass the diversity bottleneck identified in the main text (\\S\\ref{sec:discussion}).\ndocs/paper/sections/introduction.tex:8:Unlike \\citet{yao2026consistency}, who demonstrate that self-consistency correlates with task accuracy, we provide the first systematic empirical characterization of \\textit{when and why} LP-based selection succeeds or fails for structured prediction, diagnosing degeneracy and compression as the two blocking mechanisms.\ndocs/paper/sections/introduction.tex:13:For selection, LP achieves $+1.39$~pp on Few-NERD ($p{<}0.001$) in settings where both low instance degeneracy and adequate alignment are present, with gains scaling with $N$.\ndocs/paper/sections/introduction.tex:15:Three factors qualitatively shape this gap: (a)~\\textit{instance degeneracy} (13\\textendash 87\\% across our benchmarks) compresses the candidate space; (b)~\\textit{oracle headroom} bounds the achievable gain; (c)~\\textit{LP-quality alignment} (within-instance $\\rho(\\text{LP}, \\text{F1})$) determines whether LP can discriminate candidates in non-degenerate instances (\\S\\ref{sec:selection_gap}).\ndocs/paper/sections/introduction.tex:16:Our diagnosis is complementary to minimum Bayes risk (MBR) utility misalignment \\cite{eikema2025structured}: where MBR failures in structured prediction stem from poorly chosen utility functions, we find that degeneracy eliminates candidate diversity before utility alignment matters.\ndocs/paper/sections/introduction.tex:17:Within non-degenerate instances, MBR utility correlates positively with F1 ($\\rho{=}0.52$; \\S\\ref{sec:discussion}).\ndocs/paper/sections/introduction.tex:18:Both mechanisms intensify with model capability: degeneracy rises with scale and training convergence (\\S\\ref{sec:discussion}). This creates a tension between model quality and test-time improvability.\ndocs/paper/sections/introduction.tex:27:We evaluate five signals from three families (structural, surface, and model-internal) on SciERC \\cite{luan2018scierc} as a primary medium-difficulty test bed, with Few-NERD \\cite{ding2021fewnerd} (low-degeneracy contrast), CoNLL-2003 \\cite{tjongkimsang2003conll} (ceiling-effect control), and WNUT-17 \\cite{derczynski2017wnut} (signal-collapse boundary), using two 8B models (Qwen3-8B, LLaMA-3.1-8B) with a 4B ablation (Qwen3-4B).\ndocs/paper/sections/introduction.tex:38:    Instance degeneracy causally modulates LP within fixed settings (epoch and temperature ablations), but does not predict cross-dataset direction ($\\rho{=}0.052$, 23 configurations); structural signals fail by construction; supervised combinations and hidden state probes (Appendix~\\ref{app:hidden_probe}) confirm the gap persists.",
+    "numLines": 88
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01V2hqfy3uDgHUvxX2rk7Q7M`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "find /root/autodl-tmp/struct_self_consist_ie -name \"*conll*\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "910780dc-4507-4b6d-b6f8-a8010b0eaa6b",
+  "uuid": "c409eee7-fbbf-4756-bd05-db31129c76f7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Qe1vNSReey72toD9HUVV49",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1694,
+      "cache_read_input_tokens": 25218,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1694
+      },
+      "output_tokens": 63,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-19T14:19:53.869Z_
+
+<details><summary>↩ Tool result · `toolu_01V2hqfy3uDgHUvxX2rk7Q7M`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/logs/train_conll2003.log\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_infer.log\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n16.log\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16_s123.log\\n/root/autodl-tmp/struct_self_consist_ie/output/bootstrap_ci_nscaling/llama_conll_result.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16_s456.log\\n/root/autodl-tmp/struct_self_consist_ie/output/llama_conll_n16_3seed_5signal_summary.json\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round2/selection_f1_qwen_conll_n8.json\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round2/selection_f1_llama_conll_n8.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16_r1024_run.log\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16_s456_r1024_run.log\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_011_ood_scierc_to_conll_run.log\\n/root/autodl-tmp/struct_self_consist_ie/output/analysis_round8/run_sj_union_conll.py\\n/root/autodl-tmp/struct_self_consist_ie/output/analysis_round8/sj_union_conll.json\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round9_experiments/verbalized_confidence/conll2003_results.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_entity_token_lp_conll_run.log\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed456.log\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed123_run.log\\n/root/autodl-tmp/struct_self_consist_ie/output/merge_conll.log\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_030_conll_t12.log\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_pipeline.log\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n16_seed123.log\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n16_seed456.log\\n/root/autodl-tmp/struct_self_consist_ie/output/dev_set_lp_probe/conll2003_dev_samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/code/convert_conll2003.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp002_conll2003.py\\n/root/autodl-tmp/struct_self_consist_ie/code/_backup_cond_fix/analyze_exp002_conll2003.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp017_llama_conll_n16.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp017_llama_conll_n16_s123.py\\n/root/autodl-tmp/struct_self_consist_ie/code/conll_seed456_analysis.py\\n/root/autodl-tmp/struct_self_consist_ie/code/infer_conll_seed123.sh\\n/root/autodl-tmp/struct_self_consist_ie/code/conll_seed123_analysis.py\\n/root/autodl-tmp/struct_self_consist_ie/code/conll_seed42_analysis.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analysis_dgs_llama_conll.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analysis_dgs_llama_conll_report.py\\n/root/autodl-tmp/struct_self_consist_ie/train_config_conll2003.yaml\\n/root/autodl-tmp/struct_self_consist_ie/export_config_conll2003.yaml\\n/root/autodl-tmp/struct_self_consist_ie/conll2003_lora.yaml\\n/root/autodl-tmp/struct_self_consist_ie/train_config_llama_conll2003.yaml\\n/root/autodl-tmp/struct_self_consist_ie/export_config_llama_conll2003.yaml\\n/root/autodl-tmp/struct_self_consist_ie/run_llama_conll_bootstrap.py\\n/root/autodl-tmp/struct_self_consist_ie/train_config_conll2003_4b.yaml\\n/root/autodl-tmp/struct_self_consist_ie/export_config_conll2003_4b.yaml\\n/root/autodl-tmp/struct_self_consist_ie/train_config_conll2003_4b_resume.yaml\\n/root/autodl-tmp/struct_self_consist_ie/export_config_conll2003_ckpt4200.yaml\\n/root/autodl-tmp/struct_self_consist_ie/run_freeform_conll.py\\n/root/autodl-tmp/struct_self_consist_ie/analyze_freeform_conll.py\\n/root/autodl-tmp/struct_self_consist_ie/run_conll_seed456.sh\\n/root/autodl-tmp/struct_self_consist_ie/train_config_llama_conll2003_3ep.yaml\\n/root/autodl-tmp/struct_self_consist_ie/merge_conll.py\\n/root/autodl-tmp/struct_self_consist_ie/run_exp017_llama_conll_pipeline.sh\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.01}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "910780dc-4507-4b6d-b6f8-a8010b0eaa6b",
+  "uuid": "9bc560e2-c867-4484-9476-d2cd5f0097f2",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/logs/train_conll2003.log\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_infer.log\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n16.log\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16_s123.log\\\\n/root/autodl-tmp/struct_self_consist_ie/output/bootstrap_ci_nscaling/llama_conll_result.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16_s456.log\\\\n/root/autodl-tmp/struct_self_consist_ie/output/llama_conll_n16_3seed_5signal_summary.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round2/selection_f1_qwen_conll_n8.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round2/selection_f1_llama_conll_n8.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16_r1024_run.log\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16_s456_r1024_run.log\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_011_ood_scierc_to_conll_run.log\\\\n/root/autodl-tmp/struct_self_consist_ie/output/analysis_round8/run_sj_union_conll.py\\\\n/root/autodl-tmp/struct_self_consist_ie/output/analysis_round8/sj_union_conll.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round9_experiments/verbalized_confidence/conll2003_results.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_entity_token_lp_conll_run.log\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed456.log\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed123_run.log\\\\n/root/autodl-tmp/struct_self_consist_ie/output/merge_conll.log\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_030_conll_t12.log\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_pipeline.log\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n16_seed123.log\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n16_seed456.log\\\\n/root/autodl-tmp/struct_self_consist_ie/output/dev_set_lp_probe/conll2003_dev_samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/code/convert_conll2003.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp002_conll2003.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/_backup_cond_fix/analyze_exp002_conll2003.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp017_llama_conll_n16.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp017_llama_conll_n16_s123.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/conll_seed456_analysis.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/infer_conll_seed123.sh\\\\n/root/autodl-tmp/struct_self_consist_ie/code/conll_seed123_analysis.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/conll_seed42_analysis.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analysis_dgs_llama_conll.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analysis_dgs_llama_conll_report.py\\\\n/root/autodl-tmp/struct_self_consist_ie/train_config_conll2003.yaml\\\\n/root/autodl-tmp/struct_self_consist_ie/export_config_conll2003.yaml\\\\n/root/autodl-tmp/struct_self_consist_ie/conll2003_lora.yaml\\\\n/root/autodl-tmp/struct_self_consist_ie/train_config_llama_conll2003.yaml\\\\n/root/autodl-tmp/struct_self_consist_ie/export_config_llama_conll2003.yaml\\\\n/root/autodl-tmp/struct_self_consist_ie/run_llama_conll_bootstrap.py\\\\n/root/autodl-tmp/struct_self_consist_ie/train_config_conll2003_4b.yaml\\\\n/root/autodl-tmp/struct_self_consist_ie/export_config_conll2003_4b.yaml\\\\n/root/autodl-tmp/struct_self_consist_ie/train_config_conll2003_4b_resume.yaml\\\\n/root/autodl-tmp/struct_self_consist_ie/export_config_conll2003_ckpt4200.yaml\\\\n/root/autodl-tmp/struct_self_consist_ie/run_freeform_conll.py\\\\n/root/autodl-tmp/struct_self_consist_ie/analyze_freeform_conll.py\\\\n/root/autodl-tmp/struct_self_consist_ie/run_conll_seed456.sh\\\\n/root/autodl-tmp/struct_self_consist_ie/train_config_llama_conll2003_3ep.yaml\\\\n/root/autodl-tmp/struct_self_consist_ie/merge_conll.py\\\\n/root/autodl-tmp/struct_self_consist_ie/run_exp017_llama_conll_pipeline.sh\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.01}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/logs/train_conll2003.log\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_infer.log\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n16.log\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16_s123.log\\n/root/autodl-tmp/struct_self_consist_ie/output/bootstrap_ci_nscaling/llama_conll_result.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16_s456.log\\n/root/autodl-tmp/struct_self_consist_ie/output/llama_conll_n16_3seed_5signal_summary.json\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round2/selection_f1_qwen_conll_n8.json\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round2/selection_f1_llama_conll_n8.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16_r1024_run.log\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16_s456_r1024_run.log\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_011_ood_scierc_to_conll_run.log\\n/root/autodl-tmp/struct_self_consist_ie/output/analysis_round8/run_sj_union_conll.py\\n/root/autodl-tmp/struct_self_consist_ie/output/analysis_round8/sj_union_conll.json\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round9_experiments/verbalized_confidence/conll2003_results.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_entity_token_lp_conll_run.log\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed456.log\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed123_run.log\\n/root/autodl-tmp/struct_self_consist_ie/output/merge_conll.log\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_030_conll_t12.log\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_pipeline.log\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n16_seed123.log\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n16_seed456.log\\n/root/autodl-tmp/struct_self_consist_ie/output/dev_set_lp_probe/conll2003_dev_samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/code/convert_conll2003.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp002_conll2003.py\\n/root/autodl-tmp/struct_self_consist_ie/code/_backup_cond_fix/analyze_exp002_conll2003.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp017_llama_conll_n16.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp017_llama_conll_n16_s123.py\\n/root/autodl-tmp/struct_self_consist_ie/code/conll_seed456_analysis.py\\n/root/autodl-tmp/struct_self_consist_ie/code/infer_conll_seed123.sh\\n/root/autodl-tmp/struct_self_consist_ie/code/conll_seed123_analysis.py\\n/root/autodl-tmp/struct_self_consist_ie/code/conll_seed42_analysis.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analysis_dgs_llama_conll.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analysis_dgs_llama_conll_report.py\\n/root/autodl-tmp/struct_self_consist_ie/train_config_conll2003.yaml\\n/root/autodl-tmp/struct_self_consist_ie/export_config_conll2003.yaml\\n/root/autodl-tmp/struct_self_consist_ie/conll2003_lora.yaml\\n/root/autodl-tmp/struct_self_consist_ie/train_config_llama_conll2003.yaml\\n/root/autodl-tmp/struct_self_consist_ie/export_config_llama_conll2003.yaml\\n/root/autodl-tmp/struct_self_consist_ie/run_llama_conll_bootstrap.py\\n/root/autodl-tmp/struct_self_consist_ie/train_config_conll2003_4b.yaml\\n/root/autodl-tmp/struct_self_consist_ie/export_config_conll2003_4b.yaml\\n/root/autodl-tmp/struct_self_consist_ie/train_config_conll2003_4b_resume.yaml\\n/root/autodl-tmp/struct_self_consist_ie/export_config_conll2003_ckpt4200.yaml\\n/root/autodl-tmp/struct_self_consist_ie/run_freeform_conll.py\\n/root/autodl-tmp/struct_self_consist_ie/analyze_freeform_conll.py\\n/root/autodl-tmp/struct_self_consist_ie/run_conll_seed456.sh\\n/root/autodl-tmp/struct_self_consist_ie/train_config_llama_conll2003_3ep.yaml\\n/root/autodl-tmp/struct_self_consist_ie/merge_conll.py\\n/root/autodl-tmp/struct_self_consist_ie/run_exp017_llama_conll_pipeline.sh\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.01}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 16_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me look for the exp_002 JSONL output files. I see several relevant files:
+- `/root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n16.log`
+- `/root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed456.log`
+- `/root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed123_run.log`
+
+
+- `/root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n16_seed123.log`
+- `/root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n16_seed456.log`
+
+But these are just log files. I need to find the actual JSONL files with the results, so let me search the output directory more thoroughly.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "910780dc-4507-4b6d-b6f8-a8010b0eaa6b",
+  "uuid": "1e163ddd-900a-442e-b444-724dac841423",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013FwnUvREn26trt6JVepMqb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1886,
+      "cache_read_input_tokens": 26912,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1886
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 17_
+
+Let me search for the actual JSONL result files and the analysis scripts.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "910780dc-4507-4b6d-b6f8-a8010b0eaa6b",
+  "uuid": "a4d94a5c-5765-461f-bc13-ae49d3868cd9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013FwnUvREn26trt6JVepMqb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1886,
+      "cache_read_input_tokens": 26912,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1886
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01JiMVcHdoqx16akJvX3Bdsu`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "find /root/autodl-tmp/struct_self_consist_ie/output -name \"*.jsonl\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "910780dc-4507-4b6d-b6f8-a8010b0eaa6b",
+  "uuid": "a8e76319-9e88-4760-8847-2eba57b664bf",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013FwnUvREn26trt6JVepMqb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1886,
+      "cache_read_input_tokens": 26912,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1886
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-19T14:20:01.419Z_
+
+<details><summary>↩ Tool result · `toolu_01JiMVcHdoqx16akJvX3Bdsu`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/output/gate0_all_predictions.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/gate0_realigned_predictions.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_001/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_003/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/gate0_ft002v2/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/gate0_ft002v2_ckpt400/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_004/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_005/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_012_logprob/samples_with_logprobs.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed42_v2_r1024/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed42_200only_backup/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed42/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp002_conll2003/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed123_200only/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed456_200only/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp008_re_n16_200only/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed456/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp008_re_n16/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed123/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_seed456_t10_full/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_seed123_t10_full/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp008_re_n16_t10_full/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp003_wnut17_pilot/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp003_wnut17_dryrun/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp003_wnut17_eval/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp007_llama_dryrun/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp007_llama_inference/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed42_v2/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed123_v2/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_008_re_n16_v2/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_007_llama_seed123/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_007_llama_seed456/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_008_re_seed123/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed456_v2/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed456_v2_ner/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_003_wnut17_v2_infer/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_infer/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n16/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_007_llama_n16/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16_s123/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16_s456/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n16_r1024/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16_s123_r1024/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16_s456_r1024/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_007_llama_n16_r1024/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_018_qwen_scierc_seed456/samples.jsonl\\n/root/autodl-tmp/struct_self_\\n\\n... [截断: 输出过长，省略 2721 字符] ...\\n\\nutput/exp_025_n32/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_020_pilot/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_021_fewnerd_full/trainer_log.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_021_inference/shard_0/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_021_inference/shard_2/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_021_inference/shard_1/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_021_inference/shard_3/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_021_inference/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_027_fewnerd_n16/shard_0/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_027_fewnerd_n16/shard_1/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_027_fewnerd_n16/shard_2/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_027_fewnerd_n16/shard_3/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_027_fewnerd_n16/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_026_T05/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_026_T08/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_026_T12/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_028_fewnerd_5epoch/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_029a_scierc_3epoch/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_029b_scierc_10epoch/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_021_fewnerd_n8_seed123/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_021_fewnerd_n8_seed456/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed456/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed123/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/hidden_state_probe_fewnerd/subsampled_instances.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_030_conll_t12/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_031_fewnerd_t12/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n16_seed123/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n16_seed456/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_026_t12_seed123/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_026_t05_seed123/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_026_t08_seed123/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_026_t05_seed456/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_026_t08_seed456/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_026_t12_seed456/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_026_t10_seed42/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_026_t10_seed123/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_026_t10_seed456/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_021_fewnerd_n8_seed789_shard0/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_021_fewnerd_n8_seed789_shard1/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_021_fewnerd_n8_seed789_shard2/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/fewnerd_seed789_merged/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/llama_fewnerd_s123/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/llama_fewnerd_s42/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/llama_fewnerd_s456/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/dev_set_lp_probe/scierc_dev_samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/dev_set_lp_probe/conll2003_dev_samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/dev_set_lp_probe/fewnerd_dev_samples.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "910780dc-4507-4b6d-b6f8-a8010b0eaa6b",
+  "uuid": "fa6f098f-65d8-4060-b6c6-f657ccbc9c78",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/gate0_all_predictions.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/gate0_realigned_predictions.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_001/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_003/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/gate0_ft002v2/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/gate0_ft002v2_ckpt400/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_004/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_005/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_012_logprob/samples_with_logprobs.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed42_v2_r1024/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed42_200only_backup/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed42/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp002_conll2003/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed123_200only/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed456_200only/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp008_re_n16_200only/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed456/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp008_re_n16/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed123/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_seed456_t10_full/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_seed123_t10_full/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp008_re_n16_t10_full/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp003_wnut17_pilot/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp003_wnut17_dryrun/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp003_wnut17_eval/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp007_llama_dryrun/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp007_llama_inference/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed42_v2/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed123_v2/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_008_re_n16_v2/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_007_llama_seed123/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_007_llama_seed456/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_008_re_seed123/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed456_v2/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed456_v2_ner/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_003_wnut17_v2_infer/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_infer/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n16/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_007_llama_n16/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16_s123/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16_s456/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n16_r1024/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16_s123_r1024/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16_s456_r1024/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_007_llama_n16_r1024/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_018_qwen_scierc_seed456/samples.jsonl\\\\n/root/autodl-tmp/struct_self_\\\\n\\\\n... [截断: 输出过长，省略 2721 字符] ...\\\\n\\\\nutput/exp_025_n32/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_020_pilot/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_021_fewnerd_full/trainer_log.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_021_inference/shard_0/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_021_inference/shard_2/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_021_inference/shard_1/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_021_inference/shard_3/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_021_inference/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_027_fewnerd_n16/shard_0/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_027_fewnerd_n16/shard_1/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_027_fewnerd_n16/shard_2/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_027_fewnerd_n16/shard_3/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_027_fewnerd_n16/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_026_T05/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_026_T08/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_026_T12/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_028_fewnerd_5epoch/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_029a_scierc_3epoch/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_029b_scierc_10epoch/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_021_fewnerd_n8_seed123/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_021_fewnerd_n8_seed456/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed456/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed123/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/hidden_state_probe_fewnerd/subsampled_instances.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_030_conll_t12/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_031_fewnerd_t12/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n16_seed123/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n16_seed456/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_026_t12_seed123/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_026_t05_seed123/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_026_t08_seed123/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_026_t05_seed456/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_026_t08_seed456/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_026_t12_seed456/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_026_t10_seed42/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_026_t10_seed123/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_026_t10_seed456/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_021_fewnerd_n8_seed789_shard0/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_021_fewnerd_n8_seed789_shard1/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_021_fewnerd_n8_seed789_shard2/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/fewnerd_seed789_merged/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/llama_fewnerd_s123/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/llama_fewnerd_s42/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/llama_fewnerd_s456/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/dev_set_lp_probe/scierc_dev_samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/dev_set_lp_probe/conll2003_dev_samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/dev_set_lp_probe/fewnerd_dev_samples.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/output/gate0_all_predictions.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/gate0_realigned_predictions.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_001/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_003/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/gate0_ft002v2/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/gate0_ft002v2_ckpt400/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_004/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_005/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_012_logprob/samples_with_logprobs.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed42_v2_r1024/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed42_200only_backup/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed42/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp002_conll2003/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed123_200only/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed456_200only/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp008_re_n16_200only/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed456/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp008_re_n16/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed123/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_seed456_t10_full/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_seed123_t10_full/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp008_re_n16_t10_full/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp003_wnut17_pilot/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp003_wnut17_dryrun/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp003_wnut17_eval/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp007_llama_dryrun/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp007_llama_inference/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed42_v2/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed123_v2/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_008_re_n16_v2/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_007_llama_seed123/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_007_llama_seed456/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_008_re_seed123/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed456_v2/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed456_v2_ner/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_003_wnut17_v2_infer/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_infer/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n16/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_007_llama_n16/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16_s123/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16_s456/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n16_r1024/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16_s123_r1024/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16_s456_r1024/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_007_llama_n16_r1024/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_018_qwen_scierc_seed456/samples.jsonl\\n/root/autodl-tmp/struct_self_\\n\\n... [截断: 输出过长，省略 2721 字符] ...\\n\\nutput/exp_025_n32/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_020_pilot/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_021_fewnerd_full/trainer_log.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_021_inference/shard_0/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_021_inference/shard_2/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_021_inference/shard_1/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_021_inference/shard_3/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_021_inference/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_027_fewnerd_n16/shard_0/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_027_fewnerd_n16/shard_1/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_027_fewnerd_n16/shard_2/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_027_fewnerd_n16/shard_3/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_027_fewnerd_n16/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_026_T05/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_026_T08/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_026_T12/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_028_fewnerd_5epoch/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_029a_scierc_3epoch/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_029b_scierc_10epoch/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_021_fewnerd_n8_seed123/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_021_fewnerd_n8_seed456/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed456/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed123/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/hidden_state_probe_fewnerd/subsampled_instances.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_030_conll_t12/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_031_fewnerd_t12/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n16_seed123/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n16_seed456/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_026_t12_seed123/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_026_t05_seed123/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_026_t08_seed123/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_026_t05_seed456/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_026_t08_seed456/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_026_t12_seed456/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_026_t10_seed42/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_026_t10_seed123/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_026_t10_seed456/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_021_fewnerd_n8_seed789_shard0/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_021_fewnerd_n8_seed789_shard1/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_021_fewnerd_n8_seed789_shard2/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/fewnerd_seed789_merged/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/llama_fewnerd_s123/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/llama_fewnerd_s42/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/llama_fewnerd_s456/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/dev_set_lp_probe/scierc_dev_samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/dev_set_lp_probe/conll2003_dev_samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/dev_set_lp_probe/fewnerd_dev_samples.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_011oUdLwbQWoYPNv25i2X5bR`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "find /root/autodl-tmp/struct_self_consist_ie/output -name \"*exp_002*\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "910780dc-4507-4b6d-b6f8-a8010b0eaa6b",
+  "uuid": "6c12fc43-edbd-42cc-bb95-f5eb83e701b5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013FwnUvREn26trt6JVepMqb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1886,
+      "cache_read_input_tokens": 26912,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1886
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-19T14:20:01.858Z_
+
+<details><summary>↩ Tool result · `toolu_011oUdLwbQWoYPNv25i2X5bR`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n16.log\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed456.log\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed123_run.log\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n16_seed123.log\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n16_seed456.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "910780dc-4507-4b6d-b6f8-a8010b0eaa6b",
+  "uuid": "768752b1-74b8-4d03-a1a6-b63e3302dfe1",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n16.log\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed456.log\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed123_run.log\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n16_seed123.log\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n16_seed456.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n16.log\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed456.log\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed123_run.log\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n16_seed123.log\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n16_seed456.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01YWk3jy5uzQ9wQ8rTZB4EcR`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "find /root/autodl-tmp/struct_self_consist_ie -name \"*.jsonl\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "910780dc-4507-4b6d-b6f8-a8010b0eaa6b",
+  "uuid": "0d9dde40-2677-41fe-9fb7-05af76ee9e0b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013FwnUvREn26trt6JVepMqb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1886,
+      "cache_read_input_tokens": 26912,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1886
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-19T14:20:02.987Z_
+
+<details><summary>↩ Tool result · `toolu_01YWk3jy5uzQ9wQ8rTZB4EcR`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-lora-v2/trainer_log.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-conll2003-lora/trainer_log.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-wnut17-lora/trainer_log.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/llama3.1-8b-scierc-lora/trainer_log.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-4b-conll2003-lora/trainer_log.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-4b-scierc-lora/trainer_log.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-lora-rank8/trainer_log.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/ft_fewnerd_smoke/trainer_log.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-fewnerd-5epoch-lora/trainer_log.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-10epoch-lora/trainer_log.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-3epoch-lora/trainer_log.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/llama3.1-8b-fewnerd-lora/trainer_log.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen25-32b-fewnerd-qlora-s42/trainer_log.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/data/train.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/data/dev.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/data/test.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/gate0_all_predictions.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/gate0_realigned_predictions.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_001/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_003/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/gate0_ft002v2/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/gate0_ft002v2_ckpt400/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_004/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_005/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_012_logprob/samples_with_logprobs.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed42_v2_r1024/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed42_200only_backup/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed42/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp002_conll2003/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed123_200only/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed456_200only/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp008_re_n16_200only/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed456/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp008_re_n16/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed123/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_seed456_t10_full/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_seed123_t10_full/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp008_re_n16_t10_full/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp003_wnut17_pilot/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp003_wnut17_dryrun/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp003_wnut17_eval/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp007_llama_dryrun/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp007_llama_inference/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed42_v2/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed123_v2/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_008_re_n16_v2/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_007_llama_seed123/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_007_llama_seed456/samples.jsonl\\n\\n... [截断: 输出过长，省略 4481 字符] ...\\n\\n.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_021_inference/shard_1/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_021_inference/shard_3/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_021_inference/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_027_fewnerd_n16/shard_0/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_027_fewnerd_n16/shard_1/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_027_fewnerd_n16/shard_2/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_027_fewnerd_n16/shard_3/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_027_fewnerd_n16/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_026_T05/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_026_T08/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_026_T12/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_028_fewnerd_5epoch/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_029a_scierc_3epoch/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_029b_scierc_10epoch/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_021_fewnerd_n8_seed123/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_021_fewnerd_n8_seed456/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed456/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed123/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/hidden_state_probe_fewnerd/subsampled_instances.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_030_conll_t12/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_031_fewnerd_t12/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n16_seed123/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n16_seed456/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_026_t12_seed123/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_026_t05_seed123/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_026_t08_seed123/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_026_t05_seed456/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_026_t08_seed456/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_026_t12_seed456/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_026_t10_seed42/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_026_t10_seed123/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_026_t10_seed456/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_021_fewnerd_n8_seed789_shard0/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_021_fewnerd_n8_seed789_shard1/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_021_fewnerd_n8_seed789_shard2/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/fewnerd_seed789_merged/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/llama_fewnerd_s123/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/llama_fewnerd_s42/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/llama_fewnerd_s456/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/dev_set_lp_probe/scierc_dev_samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/dev_set_lp_probe/conll2003_dev_samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/dev_set_lp_probe/fewnerd_dev_samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/results/exp_freeform_ablation/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/results/exp_freeform_ablation_seed123/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/results/exp_freeform_ablation_seed456/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/results/exp_freeform_ablation_seed789/samples.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "910780dc-4507-4b6d-b6f8-a8010b0eaa6b",
+  "uuid": "b8f7a2ce-7287-4231-a561-ad599e043dc8",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-lora-v2/trainer_log.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-conll2003-lora/trainer_log.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-wnut17-lora/trainer_log.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/llama3.1-8b-scierc-lora/trainer_log.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-4b-conll2003-lora/trainer_log.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-4b-scierc-lora/trainer_log.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-lora-rank8/trainer_log.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/ft_fewnerd_smoke/trainer_log.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-fewnerd-5epoch-lora/trainer_log.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-10epoch-lora/trainer_log.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-3epoch-lora/trainer_log.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/llama3.1-8b-fewnerd-lora/trainer_log.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen25-32b-fewnerd-qlora-s42/trainer_log.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/data/train.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/data/dev.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/data/test.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/gate0_all_predictions.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/gate0_realigned_predictions.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_001/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_003/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/gate0_ft002v2/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/gate0_ft002v2_ckpt400/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_004/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_005/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_012_logprob/samples_with_logprobs.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed42_v2_r1024/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed42_200only_backup/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed42/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp002_conll2003/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed123_200only/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed456_200only/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp008_re_n16_200only/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed456/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp008_re_n16/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed123/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_seed456_t10_full/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_seed123_t10_full/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp008_re_n16_t10_full/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp003_wnut17_pilot/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp003_wnut17_dryrun/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp003_wnut17_eval/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp007_llama_dryrun/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp007_llama_inference/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed42_v2/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed123_v2/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_008_re_n16_v2/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_007_llama_seed123/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_007_llama_seed456/samples.jsonl\\\\n\\\\n... [截断: 输出过长，省略 4481 字符] ...\\\\n\\\\n.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_021_inference/shard_1/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_021_inference/shard_3/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_021_inference/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_027_fewnerd_n16/shard_0/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_027_fewnerd_n16/shard_1/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_027_fewnerd_n16/shard_2/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_027_fewnerd_n16/shard_3/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_027_fewnerd_n16/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_026_T05/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_026_T08/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_026_T12/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_028_fewnerd_5epoch/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_029a_scierc_3epoch/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_029b_scierc_10epoch/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_021_fewnerd_n8_seed123/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_021_fewnerd_n8_seed456/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed456/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed123/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/hidden_state_probe_fewnerd/subsampled_instances.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_030_conll_t12/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_031_fewnerd_t12/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n16_seed123/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n16_seed456/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_026_t12_seed123/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_026_t05_seed123/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_026_t08_seed123/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_026_t05_seed456/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_026_t08_seed456/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_026_t12_seed456/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_026_t10_seed42/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_026_t10_seed123/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_026_t10_seed456/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_021_fewnerd_n8_seed789_shard0/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_021_fewnerd_n8_seed789_shard1/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_021_fewnerd_n8_seed789_shard2/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/fewnerd_seed789_merged/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/llama_fewnerd_s123/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/llama_fewnerd_s42/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/llama_fewnerd_s456/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/dev_set_lp_probe/scierc_dev_samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/dev_set_lp_probe/conll2003_dev_samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/dev_set_lp_probe/fewnerd_dev_samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/results/exp_freeform_ablation/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/results/exp_freeform_ablation_seed123/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/results/exp_freeform_ablation_seed456/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/results/exp_freeform_ablation_seed789/samples.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.7}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-lora-v2/trainer_log.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-conll2003-lora/trainer_log.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-wnut17-lora/trainer_log.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/llama3.1-8b-scierc-lora/trainer_log.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-4b-conll2003-lora/trainer_log.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-4b-scierc-lora/trainer_log.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-lora-rank8/trainer_log.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/ft_fewnerd_smoke/trainer_log.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-fewnerd-5epoch-lora/trainer_log.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-10epoch-lora/trainer_log.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-3epoch-lora/trainer_log.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/llama3.1-8b-fewnerd-lora/trainer_log.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen25-32b-fewnerd-qlora-s42/trainer_log.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/data/train.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/data/dev.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/data/test.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/gate0_all_predictions.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/gate0_realigned_predictions.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_001/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_003/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/gate0_ft002v2/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/gate0_ft002v2_ckpt400/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_004/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_005/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_012_logprob/samples_with_logprobs.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed42_v2_r1024/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed42_200only_backup/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed42/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp002_conll2003/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed123_200only/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed456_200only/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp008_re_n16_200only/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed456/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp008_re_n16/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed123/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_seed456_t10_full/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_seed123_t10_full/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp008_re_n16_t10_full/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp003_wnut17_pilot/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp003_wnut17_dryrun/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp003_wnut17_eval/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp007_llama_dryrun/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp007_llama_inference/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed42_v2/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed123_v2/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_008_re_n16_v2/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_007_llama_seed123/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_007_llama_seed456/samples.jsonl\\n\\n... [截断: 输出过长，省略 4481 字符] ...\\n\\n.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_021_inference/shard_1/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_021_inference/shard_3/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_021_inference/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_027_fewnerd_n16/shard_0/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_027_fewnerd_n16/shard_1/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_027_fewnerd_n16/shard_2/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_027_fewnerd_n16/shard_3/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_027_fewnerd_n16/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_026_T05/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_026_T08/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_026_T12/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_028_fewnerd_5epoch/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_029a_scierc_3epoch/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_029b_scierc_10epoch/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_021_fewnerd_n8_seed123/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_021_fewnerd_n8_seed456/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed456/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed123/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/hidden_state_probe_fewnerd/subsampled_instances.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_030_conll_t12/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_031_fewnerd_t12/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n16_seed123/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n16_seed456/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_026_t12_seed123/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_026_t05_seed123/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_026_t08_seed123/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_026_t05_seed456/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_026_t08_seed456/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_026_t12_seed456/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_026_t10_seed42/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_026_t10_seed123/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_026_t10_seed456/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_021_fewnerd_n8_seed789_shard0/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_021_fewnerd_n8_seed789_shard1/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_021_fewnerd_n8_seed789_shard2/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/fewnerd_seed789_merged/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/llama_fewnerd_s123/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/llama_fewnerd_s42/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/llama_fewnerd_s456/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/dev_set_lp_probe/scierc_dev_samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/dev_set_lp_probe/conll2003_dev_samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/dev_set_lp_probe/fewnerd_dev_samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/results/exp_freeform_ablation/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/results/exp_freeform_ablation_seed123/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/results/exp_freeform_ablation_seed456/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/results/exp_freeform_ablation_seed789/samples.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 24_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I found the key files:
+
+For exp_002 (CoNLL):
+- N=8 (seed 42, the original): `/root/autodl-tmp/struct_self_consist_ie/output/exp002_conll2003/samples.jsonl`
+- N=8 seed 456: `/root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed456/samples.jsonl`
+- N=8 seed 123: `/root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed123/samples.jsonl`
+
+
+- N=16 with different seeds: `/root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n16/samples.jsonl`, `/root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n16_seed123/samples.jsonl`, and `/root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n16_seed456/samples.jsonl`
+
+Now I need to examine the JSONL format to understand the data structure, then calculate the degeneracy rates for both N=8 and N=16 experiments. Let me start by looking at a sample record and checking if there's an existing analysis script I can reference.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "910780dc-4507-4b6d-b6f8-a8010b0eaa6b",
+  "uuid": "e625a584-d2cd-4f0b-ad06-92863bddc1e0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011TZJRedBD9ycCwhcsxFEhA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8031,
+      "cache_read_input_tokens": 28798,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8031
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 25_
+
+Found the relevant files. Let me examine the data format and the existing analysis script.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "910780dc-4507-4b6d-b6f8-a8010b0eaa6b",
+  "uuid": "7c62ed1f-5e55-4c3f-bb72-fd45748eec73",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011TZJRedBD9ycCwhcsxFEhA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8031,
+      "cache_read_input_tokens": 28798,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8031
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01PUYpkLKBW9e5bavbE4N5Gn`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "head -2 /root/autodl-tmp/struct_self_consist_ie/output/exp002_conll2003/samples.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "910780dc-4507-4b6d-b6f8-a8010b0eaa6b",
+  "uuid": "0f39d939-702c-4fb1-9985-e37e188e7edd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011TZJRedBD9ycCwhcsxFEhA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8031,
+      "cache_read_input_tokens": 28798,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8031
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-19T14:20:12.290Z_
+
+<details><summary>↩ Tool result · `toolu_01PUYpkLKBW9e5bavbE4N5Gn`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"id\\\": \\\"conll2003_test_00000\\\", \\\"text\\\": \\\"SOCCER - JAPAN GET LUCKY WIN , CHINA IN SURPRISE DEFEAT .\\\", \\\"gold\\\": {\\\"entities\\\": [{\\\"text\\\": \\\"JAPAN\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 9, \\\"end\\\": 14}, {\\\"text\\\": \\\"CHINA\\\", \\\"type\\\": \\\"PER\\\", \\\"start\\\": 31, \\\"end\\\": 36}], \\\"relations\\\": [], \\\"events\\\": []}, \\\"samples\\\": [{\\\"entities\\\": [{\\\"text\\\": \\\"JAPAN\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 9, \\\"end\\\": 14}, {\\\"text\\\": \\\"CHINA\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 31, \\\"end\\\": 36}], \\\"relations\\\": [{\\\"head\\\": \\\"JAPAN\\\", \\\"tail\\\": \\\"CHINA\\\", \\\"type\\\": \\\"DEFEAT\\\", \\\"head_start\\\": 9, \\\"head_end\\\": 14, \\\"tail_start\\\": 31, \\\"tail_end\\\": 36}], \\\"events\\\": [], \\\"cumulative_logprob\\\": -8.094252856627776, \\\"n_tokens\\\": 120, \\\"mean_logprob\\\": -0.0674521071385648}, {\\\"entities\\\": [{\\\"text\\\": \\\"JAPAN\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 9, \\\"end\\\": 14}, {\\\"text\\\": \\\"CHINA\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 31, \\\"end\\\": 36}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -4.469490054730798, \\\"n_tokens\\\": 67, \\\"mean_logprob\\\": -0.06670880678702684}, {\\\"entities\\\": [{\\\"text\\\": \\\"JAPAN\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 9, \\\"end\\\": 14}, {\\\"text\\\": \\\"CHINA\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 31, \\\"end\\\": 36}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -12.203311816377365, \\\"n_tokens\\\": 67, \\\"mean_logprob\\\": -0.18213898233399053}, {\\\"entities\\\": [{\\\"text\\\": \\\"JAPAN\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 9, \\\"end\\\": 14}, {\\\"text\\\": \\\"CHINA\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 31, \\\"end\\\": 36}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -3.9871149744665857, \\\"n_tokens\\\": 68, \\\"mean_logprob\\\": -0.058634043742155674}, {\\\"entities\\\": [{\\\"text\\\": \\\"JAPAN\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 9, \\\"end\\\": 14}, {\\\"text\\\": \\\"CHINA\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 31, \\\"end\\\": 36}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -2.8177477526460493, \\\"n_tokens\\\": 67, \\\"mean_logprob\\\": -0.04205593660665745}, {\\\"entities\\\": [{\\\"text\\\": \\\"JAPAN\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 9, \\\"end\\\": 14}, {\\\"text\\\": \\\"CHINA\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 31, \\\"end\\\": 36}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -2.3873716148257103, \\\"n_tokens\\\": 67, \\\"mean_logprob\\\": -0.03563241216157777}, {\\\"entities\\\": [{\\\"text\\\": \\\"JAPAN\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 9, \\\"end\\\": 14}, {\\\"text\\\": \\\"CHINA\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 31, \\\"end\\\": 36}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -4.601242798301307, \\\"n_tokens\\\": 67, \\\"mean_logprob\\\": -0.06867526564628816}, {\\\"entities\\\": [{\\\"text\\\": \\\"JAPAN\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 9, \\\"end\\\": 14}, {\\\"text\\\": \\\"CHINA\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 31, \\\"end\\\": 36}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -7.419630717840896, \\\"n_tokens\\\": 68, \\\"mean_logprob\\\": -0.1091122164388367}], \\\"greedy\\\": {\\\"entities\\\": [{\\\"text\\\": \\\"JAPAN\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 9, \\\"end\\\": 14}, {\\\"text\\\": \\\"CHINA\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 31, \\\"end\\\": 36}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -2.2914553984788526, \\\"n_tokens\\\": 67, \\\"mean_logprob\\\": -0.03420082684296795}, \\\"logprobs\\\": [-0.0674521071385648, -0.06670880678702684, -0.18213898233399053, -0.058634043742155674, -0.04205593660665745, -0.03563241216157777, -0.06867526564628816, -0.1091122164388367]}\\n{\\\"id\\\": \\\"conll2003_test_00001\\\", \\\"text\\\": \\\"Nadim Ladki\\\", \\\"gold\\\": {\\\"entities\\\": [{\\\"text\\\": \\\"Nadim Ladki\\\", \\\"type\\\": \\\"PER\\\", \\\"start\\\": 0, \\\"end\\\": 11}], \\\"relations\\\": [], \\\"events\\\": []}, \\\"samples\\\": [{\\\"entities\\\": [{\\\"text\\\": \\\"Nadim Ladki\\\", \\\"type\\\": \\\"PER\\\", \\\"start\\\": 0, \\\"end\\\": 11}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -0.14068506995684515, \\\"n_tokens\\\": 42, \\\"mean_logprob\\\": -0.0033496445227820274}, {\\\"entities\\\": [{\\\"text\\\": \\\"Nadim Ladki\\\", \\\"type\\\": \\\"PER\\\", \\\"start\\\": 0, \\\"end\\\": 11}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -0.14068506995684515, \\\"n_tokens\\\": 42, \\\"mean_logprob\\\": -0.0033496445227820274}, {\\\"entities\\\": [{\\\"text\\\": \\\"Nadim Ladki\\\", \\\"type\\\": \\\"PER\\\", \\\"start\\\": 0, \\\"end\\\": 11}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -0.14068506995684515, \\\"n_tokens\\\": 42, \\\"mean_logprob\\\": -0.0033496445227820274}, {\\\"entities\\\": [{\\\"text\\\": \\\"Nadim Ladki\\\", \\\"type\\\": \\\"PER\\\", \\\"start\\\": 0, \\\"end\\\": 11}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -0.14068506995684515, \\\"n_tokens\\\": 42, \\\"mean_logprob\\\": -0.0033496445227820274}, {\\\"entities\\\": [{\\\"text\\\": \\\"Nadim Ladki\\\", \\\"type\\\": \\\"PER\\\", \\\"start\\\": 0, \\\"end\\\": 11}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -0.14068506995684515, \\\"n_tokens\\\": 42, \\\"mean_logprob\\\": -0.0033496445227820274}, {\\\"entities\\\": [{\\\"text\\\": \\\"Nadim Ladki\\\", \\\"type\\\": \\\"PER\\\", \\\"start\\\": 0, \\\"end\\\": 11}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -2.765945530661746, \\\"n_tokens\\\": 42, \\\"mean_logprob\\\": -0.0658558459681368}, {\\\"entities\\\": [{\\\"text\\\": \\\"Nadim Ladki\\\", \\\"type\\\": \\\"PER\\\", \\\"start\\\": 0, \\\"end\\\": 11}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -0.14068506995684515, \\\"n_tokens\\\": 42, \\\"mean_logprob\\\": -0.0033496445227820274}, {\\\"entities\\\": [{\\\"text\\\": \\\"Nadim Ladki\\\", \\\"type\\\": \\\"PER\\\", \\\"start\\\": 0, \\\"end\\\": 11}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -0.14068506995684515, \\\"n_tokens\\\": 42, \\\"mean_logprob\\\": -0.0033496445227820274}], \\\"greedy\\\": {\\\"entities\\\": [{\\\"text\\\": \\\"Nadim Ladki\\\", \\\"type\\\": \\\"PER\\\", \\\"start\\\": 0, \\\"end\\\": 11}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -0.13187831497040747, \\\"n_tokens\\\": 42, \\\"mean_logprob\\\": -0.003139959880247797}, \\\"logprobs\\\": [-0.0033496445227820274, -0.0033496445227820274, -0.0033496445227820274, -0.0033496445227820274, -0.0033496445227820274, -0.0658558459681368, -0.0033496445227820274, -0.0033496445227820274]}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "910780dc-4507-4b6d-b6f8-a8010b0eaa6b",
+  "uuid": "865084d8-c30a-44cf-8629-688f8408639c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"id\\\\\\\": \\\\\\\"conll2003_test_00000\\\\\\\", \\\\\\\"text\\\\\\\": \\\\\\\"SOCCER - JAPAN GET LUCKY WIN , CHINA IN SURPRISE DEFEAT .\\\\\\\", \\\\\\\"gold\\\\\\\": {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"JAPAN\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\", \\\\\\\"start\\\\\\\": 9, \\\\\\\"end\\\\\\\": 14}, {\\\\\\\"text\\\\\\\": \\\\\\\"CHINA\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"PER\\\\\\\", \\\\\\\"start\\\\\\\": 31, \\\\\\\"end\\\\\\\": 36}], \\\\\\\"relations\\\\\\\": [], \\\\\\\"events\\\\\\\": []}, \\\\\\\"samples\\\\\\\": [{\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"JAPAN\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\", \\\\\\\"start\\\\\\\": 9, \\\\\\\"end\\\\\\\": 14}, {\\\\\\\"text\\\\\\\": \\\\\\\"CHINA\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\", \\\\\\\"start\\\\\\\": 31, \\\\\\\"end\\\\\\\": 36}], \\\\\\\"relations\\\\\\\": [{\\\\\\\"head\\\\\\\": \\\\\\\"JAPAN\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"CHINA\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"DEFEAT\\\\\\\", \\\\\\\"head_start\\\\\\\": 9, \\\\\\\"head_end\\\\\\\": 14, \\\\\\\"tail_start\\\\\\\": 31, \\\\\\\"tail_end\\\\\\\": 36}], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -8.094252856627776, \\\\\\\"n_tokens\\\\\\\": 120, \\\\\\\"mean_logprob\\\\\\\": -0.0674521071385648}, {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"JAPAN\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\", \\\\\\\"start\\\\\\\": 9, \\\\\\\"end\\\\\\\": 14}, {\\\\\\\"text\\\\\\\": \\\\\\\"CHINA\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\", \\\\\\\"start\\\\\\\": 31, \\\\\\\"end\\\\\\\": 36}], \\\\\\\"relations\\\\\\\": [], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -4.469490054730798, \\\\\\\"n_tokens\\\\\\\": 67, \\\\\\\"mean_logprob\\\\\\\": -0.06670880678702684}, {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"JAPAN\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\", \\\\\\\"start\\\\\\\": 9, \\\\\\\"end\\\\\\\": 14}, {\\\\\\\"text\\\\\\\": \\\\\\\"CHINA\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\", \\\\\\\"start\\\\\\\": 31, \\\\\\\"end\\\\\\\": 36}], \\\\\\\"relations\\\\\\\": [], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -12.203311816377365, \\\\\\\"n_tokens\\\\\\\": 67, \\\\\\\"mean_logprob\\\\\\\": -0.18213898233399053}, {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"JAPAN\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\", \\\\\\\"start\\\\\\\": 9, \\\\\\\"end\\\\\\\": 14}, {\\\\\\\"text\\\\\\\": \\\\\\\"CHINA\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\", \\\\\\\"start\\\\\\\": 31, \\\\\\\"end\\\\\\\": 36}], \\\\\\\"relations\\\\\\\": [], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -3.9871149744665857, \\\\\\\"n_tokens\\\\\\\": 68, \\\\\\\"mean_logprob\\\\\\\": -0.058634043742155674}, {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"JAPAN\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\", \\\\\\\"start\\\\\\\": 9, \\\\\\\"end\\\\\\\": 14}, {\\\\\\\"text\\\\\\\": \\\\\\\"CHINA\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\", \\\\\\\"start\\\\\\\": 31, \\\\\\\"end\\\\\\\": 36}], \\\\\\\"relations\\\\\\\": [], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -2.8177477526460493, \\\\\\\"n_tokens\\\\\\\": 67, \\\\\\\"mean_logprob\\\\\\\": -0.04205593660665745}, {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"JAPAN\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\", \\\\\\\"start\\\\\\\": 9, \\\\\\\"end\\\\\\\": 14}, {\\\\\\\"text\\\\\\\": \\\\\\\"CHINA\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\", \\\\\\\"start\\\\\\\": 31, \\\\\\\"end\\\\\\\": 36}], \\\\\\\"relations\\\\\\\": [], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -2.3873716148257103, \\\\\\\"n_tokens\\\\\\\": 67, \\\\\\\"mean_logprob\\\\\\\": -0.03563241216157777}, {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"JAPAN\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\", \\\\\\\"start\\\\\\\": 9, \\\\\\\"end\\\\\\\": 14}, {\\\\\\\"text\\\\\\\": \\\\\\\"CHINA\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\", \\\\\\\"start\\\\\\\": 31, \\\\\\\"end\\\\\\\": 36}], \\\\\\\"relations\\\\\\\": [], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -4.601242798301307, \\\\\\\"n_tokens\\\\\\\": 67, \\\\\\\"mean_logprob\\\\\\\": -0.06867526564628816}, {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"JAPAN\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\", \\\\\\\"start\\\\\\\": 9, \\\\\\\"end\\\\\\\": 14}, {\\\\\\\"text\\\\\\\": \\\\\\\"CHINA\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\", \\\\\\\"start\\\\\\\": 31, \\\\\\\"end\\\\\\\": 36}], \\\\\\\"relations\\\\\\\": [], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -7.419630717840896, \\\\\\\"n_tokens\\\\\\\": 68, \\\\\\\"mean_logprob\\\\\\\": -0.1091122164388367}], \\\\\\\"greedy\\\\\\\": {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"JAPAN\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\", \\\\\\\"start\\\\\\\": 9, \\\\\\\"end\\\\\\\": 14}, {\\\\\\\"text\\\\\\\": \\\\\\\"CHINA\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\", \\\\\\\"start\\\\\\\": 31, \\\\\\\"end\\\\\\\": 36}], \\\\\\\"relations\\\\\\\": [], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -2.2914553984788526, \\\\\\\"n_tokens\\\\\\\": 67, \\\\\\\"mean_logprob\\\\\\\": -0.03420082684296795}, \\\\\\\"logprobs\\\\\\\": [-0.0674521071385648, -0.06670880678702684, -0.18213898233399053, -0.058634043742155674, -0.04205593660665745, -0.03563241216157777, -0.06867526564628816, -0.1091122164388367]}\\\\n{\\\\\\\"id\\\\\\\": \\\\\\\"conll2003_test_00001\\\\\\\", \\\\\\\"text\\\\\\\": \\\\\\\"Nadim Ladki\\\\\\\", \\\\\\\"gold\\\\\\\": {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"Nadim Ladki\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"PER\\\\\\\", \\\\\\\"start\\\\\\\": 0, \\\\\\\"end\\\\\\\": 11}], \\\\\\\"relations\\\\\\\": [], \\\\\\\"events\\\\\\\": []}, \\\\\\\"samples\\\\\\\": [{\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"Nadim Ladki\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"PER\\\\\\\", \\\\\\\"start\\\\\\\": 0, \\\\\\\"end\\\\\\\": 11}], \\\\\\\"relations\\\\\\\": [], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -0.14068506995684515, \\\\\\\"n_tokens\\\\\\\": 42, \\\\\\\"mean_logprob\\\\\\\": -0.0033496445227820274}, {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"Nadim Ladki\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"PER\\\\\\\", \\\\\\\"start\\\\\\\": 0, \\\\\\\"end\\\\\\\": 11}], \\\\\\\"relations\\\\\\\": [], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -0.14068506995684515, \\\\\\\"n_tokens\\\\\\\": 42, \\\\\\\"mean_logprob\\\\\\\": -0.0033496445227820274}, {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"Nadim Ladki\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"PER\\\\\\\", \\\\\\\"start\\\\\\\": 0, \\\\\\\"end\\\\\\\": 11}], \\\\\\\"relations\\\\\\\": [], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -0.14068506995684515, \\\\\\\"n_tokens\\\\\\\": 42, \\\\\\\"mean_logprob\\\\\\\": -0.0033496445227820274}, {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"Nadim Ladki\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"PER\\\\\\\", \\\\\\\"start\\\\\\\": 0, \\\\\\\"end\\\\\\\": 11}], \\\\\\\"relations\\\\\\\": [], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -0.14068506995684515, \\\\\\\"n_tokens\\\\\\\": 42, \\\\\\\"mean_logprob\\\\\\\": -0.0033496445227820274}, {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"Nadim Ladki\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"PER\\\\\\\", \\\\\\\"start\\\\\\\": 0, \\\\\\\"end\\\\\\\": 11}], \\\\\\\"relations\\\\\\\": [], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -0.14068506995684515, \\\\\\\"n_tokens\\\\\\\": 42, \\\\\\\"mean_logprob\\\\\\\": -0.0033496445227820274}, {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"Nadim Ladki\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"PER\\\\\\\", \\\\\\\"start\\\\\\\": 0, \\\\\\\"end\\\\\\\": 11}], \\\\\\\"relations\\\\\\\": [], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -2.765945530661746, \\\\\\\"n_tokens\\\\\\\": 42, \\\\\\\"mean_logprob\\\\\\\": -0.0658558459681368}, {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"Nadim Ladki\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"PER\\\\\\\", \\\\\\\"start\\\\\\\": 0, \\\\\\\"end\\\\\\\": 11}], \\\\\\\"relations\\\\\\\": [], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -0.14068506995684515, \\\\\\\"n_tokens\\\\\\\": 42, \\\\\\\"mean_logprob\\\\\\\": -0.0033496445227820274}, {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"Nadim Ladki\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"PER\\\\\\\", \\\\\\\"start\\\\\\\": 0, \\\\\\\"end\\\\\\\": 11}], \\\\\\\"relations\\\\\\\": [], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -0.14068506995684515, \\\\\\\"n_tokens\\\\\\\": 42, \\\\\\\"mean_logprob\\\\\\\": -0.0033496445227820274}], \\\\\\\"greedy\\\\\\\": {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"Nadim Ladki\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"PER\\\\\\\", \\\\\\\"start\\\\\\\": 0, \\\\\\\"end\\\\\\\": 11}], \\\\\\\"relations\\\\\\\": [], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -0.13187831497040747, \\\\\\\"n_tokens\\\\\\\": 42, \\\\\\\"mean_logprob\\\\\\\": -0.003139959880247797}, \\\\\\\"logprobs\\\\\\\": [-0.0033496445227820274, -0.0033496445227820274, -0.0033496445227820274, -0.0033496445227820274, -0.0033496445227820274, -0.0658558459681368, -0.0033496445227820274, -0.0033496445227820274]}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\\"id\\\": \\\"conll2003_test_00000\\\", \\\"text\\\": \\\"SOCCER - JAPAN GET LUCKY WIN , CHINA IN SURPRISE DEFEAT .\\\", \\\"gold\\\": {\\\"entities\\\": [{\\\"text\\\": \\\"JAPAN\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 9, \\\"end\\\": 14}, {\\\"text\\\": \\\"CHINA\\\", \\\"type\\\": \\\"PER\\\", \\\"start\\\": 31, \\\"end\\\": 36}], \\\"relations\\\": [], \\\"events\\\": []}, \\\"samples\\\": [{\\\"entities\\\": [{\\\"text\\\": \\\"JAPAN\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 9, \\\"end\\\": 14}, {\\\"text\\\": \\\"CHINA\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 31, \\\"end\\\": 36}], \\\"relations\\\": [{\\\"head\\\": \\\"JAPAN\\\", \\\"tail\\\": \\\"CHINA\\\", \\\"type\\\": \\\"DEFEAT\\\", \\\"head_start\\\": 9, \\\"head_end\\\": 14, \\\"tail_start\\\": 31, \\\"tail_end\\\": 36}], \\\"events\\\": [], \\\"cumulative_logprob\\\": -8.094252856627776, \\\"n_tokens\\\": 120, \\\"mean_logprob\\\": -0.0674521071385648}, {\\\"entities\\\": [{\\\"text\\\": \\\"JAPAN\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 9, \\\"end\\\": 14}, {\\\"text\\\": \\\"CHINA\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 31, \\\"end\\\": 36}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -4.469490054730798, \\\"n_tokens\\\": 67, \\\"mean_logprob\\\": -0.06670880678702684}, {\\\"entities\\\": [{\\\"text\\\": \\\"JAPAN\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 9, \\\"end\\\": 14}, {\\\"text\\\": \\\"CHINA\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 31, \\\"end\\\": 36}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -12.203311816377365, \\\"n_tokens\\\": 67, \\\"mean_logprob\\\": -0.18213898233399053}, {\\\"entities\\\": [{\\\"text\\\": \\\"JAPAN\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 9, \\\"end\\\": 14}, {\\\"text\\\": \\\"CHINA\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 31, \\\"end\\\": 36}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -3.9871149744665857, \\\"n_tokens\\\": 68, \\\"mean_logprob\\\": -0.058634043742155674}, {\\\"entities\\\": [{\\\"text\\\": \\\"JAPAN\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 9, \\\"end\\\": 14}, {\\\"text\\\": \\\"CHINA\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 31, \\\"end\\\": 36}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -2.8177477526460493, \\\"n_tokens\\\": 67, \\\"mean_logprob\\\": -0.04205593660665745}, {\\\"entities\\\": [{\\\"text\\\": \\\"JAPAN\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 9, \\\"end\\\": 14}, {\\\"text\\\": \\\"CHINA\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 31, \\\"end\\\": 36}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -2.3873716148257103, \\\"n_tokens\\\": 67, \\\"mean_logprob\\\": -0.03563241216157777}, {\\\"entities\\\": [{\\\"text\\\": \\\"JAPAN\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 9, \\\"end\\\": 14}, {\\\"text\\\": \\\"CHINA\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 31, \\\"end\\\": 36}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -4.601242798301307, \\\"n_tokens\\\": 67, \\\"mean_logprob\\\": -0.06867526564628816}, {\\\"entities\\\": [{\\\"text\\\": \\\"JAPAN\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 9, \\\"end\\\": 14}, {\\\"text\\\": \\\"CHINA\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 31, \\\"end\\\": 36}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -7.419630717840896, \\\"n_tokens\\\": 68, \\\"mean_logprob\\\": -0.1091122164388367}], \\\"greedy\\\": {\\\"entities\\\": [{\\\"text\\\": \\\"JAPAN\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 9, \\\"end\\\": 14}, {\\\"text\\\": \\\"CHINA\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 31, \\\"end\\\": 36}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -2.2914553984788526, \\\"n_tokens\\\": 67, \\\"mean_logprob\\\": -0.03420082684296795}, \\\"logprobs\\\": [-0.0674521071385648, -0.06670880678702684, -0.18213898233399053, -0.058634043742155674, -0.04205593660665745, -0.03563241216157777, -0.06867526564628816, -0.1091122164388367]}\\n{\\\"id\\\": \\\"conll2003_test_00001\\\", \\\"text\\\": \\\"Nadim Ladki\\\", \\\"gold\\\": {\\\"entities\\\": [{\\\"text\\\": \\\"Nadim Ladki\\\", \\\"type\\\": \\\"PER\\\", \\\"start\\\": 0, \\\"end\\\": 11}], \\\"relations\\\": [], \\\"events\\\": []}, \\\"samples\\\": [{\\\"entities\\\": [{\\\"text\\\": \\\"Nadim Ladki\\\", \\\"type\\\": \\\"PER\\\", \\\"start\\\": 0, \\\"end\\\": 11}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -0.14068506995684515, \\\"n_tokens\\\": 42, \\\"mean_logprob\\\": -0.0033496445227820274}, {\\\"entities\\\": [{\\\"text\\\": \\\"Nadim Ladki\\\", \\\"type\\\": \\\"PER\\\", \\\"start\\\": 0, \\\"end\\\": 11}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -0.14068506995684515, \\\"n_tokens\\\": 42, \\\"mean_logprob\\\": -0.0033496445227820274}, {\\\"entities\\\": [{\\\"text\\\": \\\"Nadim Ladki\\\", \\\"type\\\": \\\"PER\\\", \\\"start\\\": 0, \\\"end\\\": 11}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -0.14068506995684515, \\\"n_tokens\\\": 42, \\\"mean_logprob\\\": -0.0033496445227820274}, {\\\"entities\\\": [{\\\"text\\\": \\\"Nadim Ladki\\\", \\\"type\\\": \\\"PER\\\", \\\"start\\\": 0, \\\"end\\\": 11}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -0.14068506995684515, \\\"n_tokens\\\": 42, \\\"mean_logprob\\\": -0.0033496445227820274}, {\\\"entities\\\": [{\\\"text\\\": \\\"Nadim Ladki\\\", \\\"type\\\": \\\"PER\\\", \\\"start\\\": 0, \\\"end\\\": 11}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -0.14068506995684515, \\\"n_tokens\\\": 42, \\\"mean_logprob\\\": -0.0033496445227820274}, {\\\"entities\\\": [{\\\"text\\\": \\\"Nadim Ladki\\\", \\\"type\\\": \\\"PER\\\", \\\"start\\\": 0, \\\"end\\\": 11}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -2.765945530661746, \\\"n_tokens\\\": 42, \\\"mean_logprob\\\": -0.0658558459681368}, {\\\"entities\\\": [{\\\"text\\\": \\\"Nadim Ladki\\\", \\\"type\\\": \\\"PER\\\", \\\"start\\\": 0, \\\"end\\\": 11}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -0.14068506995684515, \\\"n_tokens\\\": 42, \\\"mean_logprob\\\": -0.0033496445227820274}, {\\\"entities\\\": [{\\\"text\\\": \\\"Nadim Ladki\\\", \\\"type\\\": \\\"PER\\\", \\\"start\\\": 0, \\\"end\\\": 11}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -0.14068506995684515, \\\"n_tokens\\\": 42, \\\"mean_logprob\\\": -0.0033496445227820274}], \\\"greedy\\\": {\\\"entities\\\": [{\\\"text\\\": \\\"Nadim Ladki\\\", \\\"type\\\": \\\"PER\\\", \\\"start\\\": 0, \\\"end\\\": 11}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -0.13187831497040747, \\\"n_tokens\\\": 42, \\\"mean_logprob\\\": -0.003139959880247797}, \\\"logprobs\\\": [-0.0033496445227820274, -0.0033496445227820274, -0.0033496445227820274, -0.0033496445227820274, -0.0033496445227820274, -0.0658558459681368, -0.0033496445227820274, -0.0033496445227820274]}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01QhN7i2VAWV7Nybhyvfode3`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "head -2 /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n16/samples.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "910780dc-4507-4b6d-b6f8-a8010b0eaa6b",
+  "uuid": "64cbc76c-8b83-4b8f-a2fb-84c2ca8fa3fc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011TZJRedBD9ycCwhcsxFEhA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8031,
+      "cache_read_input_tokens": 28798,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8031
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-19T14:20:13.266Z_
+
+<details><summary>↩ Tool result · `toolu_01QhN7i2VAWV7Nybhyvfode3`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"id\\\": \\\"conll2003_test_00000\\\", \\\"text\\\": \\\"SOCCER - JAPAN GET LUCKY WIN , CHINA IN SURPRISE DEFEAT .\\\", \\\"gold\\\": {\\\"entities\\\": [{\\\"text\\\": \\\"JAPAN\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 9, \\\"end\\\": 14}, {\\\"text\\\": \\\"CHINA\\\", \\\"type\\\": \\\"PER\\\", \\\"start\\\": 31, \\\"end\\\": 36}], \\\"relations\\\": [], \\\"events\\\": []}, \\\"samples\\\": [{\\\"entities\\\": [{\\\"text\\\": \\\"JAPAN\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 9, \\\"end\\\": 14}, {\\\"text\\\": \\\"CHINA\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 31, \\\"end\\\": 36}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -2.3127497540126996, \\\"n_tokens\\\": 67, \\\"mean_logprob\\\": -0.034518653044965666}, {\\\"entities\\\": [{\\\"text\\\": \\\"JAPAN\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 9, \\\"end\\\": 14}, {\\\"text\\\": \\\"CHINA\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 31, \\\"end\\\": 36}], \\\"relations\\\": [{\\\"head\\\": \\\"JAPAN\\\", \\\"tail\\\": \\\"CHINA\\\", \\\"type\\\": \\\"DEF\\\", \\\"head_start\\\": 9, \\\"head_end\\\": 14, \\\"tail_start\\\": 31, \\\"tail_end\\\": 36}], \\\"events\\\": [], \\\"cumulative_logprob\\\": -8.45723202665031, \\\"n_tokens\\\": 118, \\\"mean_logprob\\\": -0.07167145785296873}, {\\\"entities\\\": [{\\\"text\\\": \\\"JAPAN\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 9, \\\"end\\\": 14}, {\\\"text\\\": \\\"CHINA\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 31, \\\"end\\\": 36}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -4.7914715850595755, \\\"n_tokens\\\": 67, \\\"mean_logprob\\\": -0.07151450126954591}, {\\\"entities\\\": [{\\\"text\\\": \\\"JAPAN\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 9, \\\"end\\\": 14}, {\\\"text\\\": \\\"CHINA\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 31, \\\"end\\\": 36}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -2.9481195445343005, \\\"n_tokens\\\": 67, \\\"mean_logprob\\\": -0.044001784246780605}, {\\\"entities\\\": [{\\\"text\\\": \\\"JAPAN\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 9, \\\"end\\\": 14}, {\\\"text\\\": \\\"CHINA\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 31, \\\"end\\\": 36}], \\\"relations\\\": [{\\\"head\\\": \\\"JAPAN\\\", \\\"tail\\\": \\\"CHINA\\\", \\\"type\\\": \\\"EVALUATE\\\", \\\"head_start\\\": 9, \\\"head_end\\\": 14, \\\"tail_start\\\": 31, \\\"tail_end\\\": 36}], \\\"events\\\": [], \\\"cumulative_logprob\\\": -13.48846215037257, \\\"n_tokens\\\": 121, \\\"mean_logprob\\\": -0.11147489380473198}, {\\\"entities\\\": [{\\\"text\\\": \\\"JAPAN\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 9, \\\"end\\\": 14}, {\\\"text\\\": \\\"CHINA\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 31, \\\"end\\\": 36}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -5.203329032957001, \\\"n_tokens\\\": 68, \\\"mean_logprob\\\": -0.07651954460230884}, {\\\"entities\\\": [{\\\"text\\\": \\\"JAPAN\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 9, \\\"end\\\": 14}, {\\\"text\\\": \\\"CHINA\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 31, \\\"end\\\": 36}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -4.846331515187309, \\\"n_tokens\\\": 68, \\\"mean_logprob\\\": -0.07126958110569571}, {\\\"entities\\\": [{\\\"text\\\": \\\"JAPAN\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 9, \\\"end\\\": 14}, {\\\"text\\\": \\\"CHINA\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 31, \\\"end\\\": 36}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -2.3127497540126996, \\\"n_tokens\\\": 67, \\\"mean_logprob\\\": -0.034518653044965666}, {\\\"entities\\\": [{\\\"text\\\": \\\"JAPAN\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 9, \\\"end\\\": 14}, {\\\"text\\\": \\\"CHINA\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 31, \\\"end\\\": 36}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -4.207035481011353, \\\"n_tokens\\\": 68, \\\"mean_logprob\\\": -0.061868168838402245}, {\\\"entities\\\": [{\\\"text\\\": \\\"JAPAN\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 9, \\\"end\\\": 14}, {\\\"text\\\": \\\"CHINA\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 31, \\\"end\\\": 36}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -4.827977447867561, \\\"n_tokens\\\": 68, \\\"mean_logprob\\\": -0.07099966835099354}, {\\\"entities\\\": [{\\\"text\\\": \\\"JAPAN\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 9, \\\"end\\\": 14}, {\\\"text\\\": \\\"CHINA\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 31, \\\"end\\\": 36}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -2.9441061857679856, \\\"n_tokens\\\": 67, \\\"mean_logprob\\\": -0.043941883369671426}, {\\\"entities\\\": [{\\\"text\\\": \\\"JAPAN\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 9, \\\"end\\\": 14}, {\\\"text\\\": \\\"CHINA\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 31, \\\"end\\\": 36}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -3.8226090805595945, \\\"n_tokens\\\": 67, \\\"mean_logprob\\\": -0.0570538668740238}, {\\\"entities\\\": [{\\\"text\\\": \\\"JAPAN\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 9, \\\"end\\\": 14}, {\\\"text\\\": \\\"CHINA\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 31, \\\"end\\\": 36}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -8.72693828036438, \\\"n_tokens\\\": 68, \\\"mean_logprob\\\": -0.12833732765241734}, {\\\"entities\\\": [{\\\"text\\\": \\\"JAPAN\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 9, \\\"end\\\": 14}, {\\\"text\\\": \\\"CHINA\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 31, \\n\\n... [截断: 输出过长，省略 1432 字符] ...\\n\\n\\\": 11}], \\\"relations\\\": [], \\\"events\\\": []}, \\\"samples\\\": [{\\\"entities\\\": [{\\\"text\\\": \\\"Nadim Ladki\\\", \\\"type\\\": \\\"PER\\\", \\\"start\\\": 0, \\\"end\\\": 11}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -0.13085026214915274, \\\"n_tokens\\\": 42, \\\"mean_logprob\\\": -0.003115482432122684}, {\\\"entities\\\": [{\\\"text\\\": \\\"Nadim Ladki\\\", \\\"type\\\": \\\"PER\\\", \\\"start\\\": 0, \\\"end\\\": 11}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -0.13085026214915274, \\\"n_tokens\\\": 42, \\\"mean_logprob\\\": -0.003115482432122684}, {\\\"entities\\\": [{\\\"text\\\": \\\"Nadim Ladki\\\", \\\"type\\\": \\\"PER\\\", \\\"start\\\": 0, \\\"end\\\": 11}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -0.13085026214915274, \\\"n_tokens\\\": 42, \\\"mean_logprob\\\": -0.003115482432122684}, {\\\"entities\\\": [{\\\"text\\\": \\\"Nadim Ladki\\\", \\\"type\\\": \\\"PER\\\", \\\"start\\\": 0, \\\"end\\\": 11}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -0.13085026214915274, \\\"n_tokens\\\": 42, \\\"mean_logprob\\\": -0.003115482432122684}, {\\\"entities\\\": [{\\\"text\\\": \\\"Nadim Ladki\\\", \\\"type\\\": \\\"PER\\\", \\\"start\\\": 0, \\\"end\\\": 11}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -0.13085026214915274, \\\"n_tokens\\\": 42, \\\"mean_logprob\\\": -0.003115482432122684}, {\\\"entities\\\": [{\\\"text\\\": \\\"Nadim Ladki\\\", \\\"type\\\": \\\"PER\\\", \\\"start\\\": 0, \\\"end\\\": 11}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -0.13085026214915274, \\\"n_tokens\\\": 42, \\\"mean_logprob\\\": -0.003115482432122684}, {\\\"entities\\\": [{\\\"text\\\": \\\"Nadim Ladki\\\", \\\"type\\\": \\\"PER\\\", \\\"start\\\": 0, \\\"end\\\": 11}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -0.13085026214915274, \\\"n_tokens\\\": 42, \\\"mean_logprob\\\": -0.003115482432122684}, {\\\"entities\\\": [{\\\"text\\\": \\\"Nadim Ladki\\\", \\\"type\\\": \\\"PER\\\", \\\"start\\\": 0, \\\"end\\\": 11}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -0.13085026214915274, \\\"n_tokens\\\": 42, \\\"mean_logprob\\\": -0.003115482432122684}, {\\\"entities\\\": [{\\\"text\\\": \\\"Nadim Ladki\\\", \\\"type\\\": \\\"PER\\\", \\\"start\\\": 0, \\\"end\\\": 11}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -0.13085026214915274, \\\"n_tokens\\\": 42, \\\"mean_logprob\\\": -0.003115482432122684}, {\\\"entities\\\": [{\\\"text\\\": \\\"Nadim Ladki\\\", \\\"type\\\": \\\"PER\\\", \\\"start\\\": 0, \\\"end\\\": 11}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -0.13085026214915274, \\\"n_tokens\\\": 42, \\\"mean_logprob\\\": -0.003115482432122684}, {\\\"entities\\\": [{\\\"text\\\": \\\"Nadim Ladki\\\", \\\"type\\\": \\\"PER\\\", \\\"start\\\": 0, \\\"end\\\": 11}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -0.13085026214915274, \\\"n_tokens\\\": 42, \\\"mean_logprob\\\": -0.003115482432122684}, {\\\"entities\\\": [{\\\"text\\\": \\\"Nadim Ladki\\\", \\\"type\\\": \\\"PER\\\", \\\"start\\\": 0, \\\"end\\\": 11}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -0.13085026214915274, \\\"n_tokens\\\": 42, \\\"mean_logprob\\\": -0.003115482432122684}, {\\\"entities\\\": [{\\\"text\\\": \\\"Nadim Ladki\\\", \\\"type\\\": \\\"PER\\\", \\\"start\\\": 0, \\\"end\\\": 11}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -0.13085026214915274, \\\"n_tokens\\\": 42, \\\"mean_logprob\\\": -0.003115482432122684}, {\\\"entities\\\": [{\\\"text\\\": \\\"Nadim Ladki\\\", \\\"type\\\": \\\"PER\\\", \\\"start\\\": 0, \\\"end\\\": 11}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -0.13085026214915274, \\\"n_tokens\\\": 42, \\\"mean_logprob\\\": -0.003115482432122684}, {\\\"entities\\\": [{\\\"text\\\": \\\"Nadim Ladki\\\", \\\"type\\\": \\\"PER\\\", \\\"start\\\": 0, \\\"end\\\": 11}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -0.13085026214915274, \\\"n_tokens\\\": 42, \\\"mean_logprob\\\": -0.003115482432122684}, {\\\"entities\\\": [{\\\"text\\\": \\\"Nadim Ladki\\\", \\\"type\\\": \\\"PER\\\", \\\"start\\\": 0, \\\"end\\\": 11}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -0.13085026214915274, \\\"n_tokens\\\": 42, \\\"mean_logprob\\\": -0.003115482432122684}], \\\"greedy\\\": {\\\"entities\\\": [{\\\"text\\\": \\\"Nadim Ladki\\\", \\\"type\\\": \\\"PER\\\", \\\"start\\\": 0, \\\"end\\\": 11}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -0.13862508697243925, \\\"n_tokens\\\": 42, \\\"mean_logprob\\\": -0.0033005973088676014}, \\\"logprobs\\\": [-0.003115482432122684, -0.003115482432122684, -0.003115482432122684, -0.003115482432122684, -0.003115482432122684, -0.003115482432122684, -0.003115482432122684, -0.003115482432122684, -0.003115482432122684, -0.003115482432122684, -0.003115482432122684, -0.003115482432122684, -0.003115482432122684, -0.003115482432122684, -0.003115482432122684, -0.003115482432122684]}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "910780dc-4507-4b6d-b6f8-a8010b0eaa6b",
+  "uuid": "c939128c-36d1-4916-bb55-12df4c356b14",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"id\\\\\\\": \\\\\\\"conll2003_test_00000\\\\\\\", \\\\\\\"text\\\\\\\": \\\\\\\"SOCCER - JAPAN GET LUCKY WIN , CHINA IN SURPRISE DEFEAT .\\\\\\\", \\\\\\\"gold\\\\\\\": {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"JAPAN\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\", \\\\\\\"start\\\\\\\": 9, \\\\\\\"end\\\\\\\": 14}, {\\\\\\\"text\\\\\\\": \\\\\\\"CHINA\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"PER\\\\\\\", \\\\\\\"start\\\\\\\": 31, \\\\\\\"end\\\\\\\": 36}], \\\\\\\"relations\\\\\\\": [], \\\\\\\"events\\\\\\\": []}, \\\\\\\"samples\\\\\\\": [{\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"JAPAN\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\", \\\\\\\"start\\\\\\\": 9, \\\\\\\"end\\\\\\\": 14}, {\\\\\\\"text\\\\\\\": \\\\\\\"CHINA\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\", \\\\\\\"start\\\\\\\": 31, \\\\\\\"end\\\\\\\": 36}], \\\\\\\"relations\\\\\\\": [], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -2.3127497540126996, \\\\\\\"n_tokens\\\\\\\": 67, \\\\\\\"mean_logprob\\\\\\\": -0.034518653044965666}, {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"JAPAN\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\", \\\\\\\"start\\\\\\\": 9, \\\\\\\"end\\\\\\\": 14}, {\\\\\\\"text\\\\\\\": \\\\\\\"CHINA\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\", \\\\\\\"start\\\\\\\": 31, \\\\\\\"end\\\\\\\": 36}], \\\\\\\"relations\\\\\\\": [{\\\\\\\"head\\\\\\\": \\\\\\\"JAPAN\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"CHINA\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"DEF\\\\\\\", \\\\\\\"head_start\\\\\\\": 9, \\\\\\\"head_end\\\\\\\": 14, \\\\\\\"tail_start\\\\\\\": 31, \\\\\\\"tail_end\\\\\\\": 36}], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -8.45723202665031, \\\\\\\"n_tokens\\\\\\\": 118, \\\\\\\"mean_logprob\\\\\\\": -0.07167145785296873}, {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"JAPAN\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\", \\\\\\\"start\\\\\\\": 9, \\\\\\\"end\\\\\\\": 14}, {\\\\\\\"text\\\\\\\": \\\\\\\"CHINA\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\", \\\\\\\"start\\\\\\\": 31, \\\\\\\"end\\\\\\\": 36}], \\\\\\\"relations\\\\\\\": [], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -4.7914715850595755, \\\\\\\"n_tokens\\\\\\\": 67, \\\\\\\"mean_logprob\\\\\\\": -0.07151450126954591}, {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"JAPAN\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\", \\\\\\\"start\\\\\\\": 9, \\\\\\\"end\\\\\\\": 14}, {\\\\\\\"text\\\\\\\": \\\\\\\"CHINA\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\", \\\\\\\"start\\\\\\\": 31, \\\\\\\"end\\\\\\\": 36}], \\\\\\\"relations\\\\\\\": [], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -2.9481195445343005, \\\\\\\"n_tokens\\\\\\\": 67, \\\\\\\"mean_logprob\\\\\\\": -0.044001784246780605}, {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"JAPAN\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\", \\\\\\\"start\\\\\\\": 9, \\\\\\\"end\\\\\\\": 14}, {\\\\\\\"text\\\\\\\": \\\\\\\"CHINA\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\", \\\\\\\"start\\\\\\\": 31, \\\\\\\"end\\\\\\\": 36}], \\\\\\\"relations\\\\\\\": [{\\\\\\\"head\\\\\\\": \\\\\\\"JAPAN\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"CHINA\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"EVALUATE\\\\\\\", \\\\\\\"head_start\\\\\\\": 9, \\\\\\\"head_end\\\\\\\": 14, \\\\\\\"tail_start\\\\\\\": 31, \\\\\\\"tail_end\\\\\\\": 36}], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -13.48846215037257, \\\\\\\"n_tokens\\\\\\\": 121, \\\\\\\"mean_logprob\\\\\\\": -0.11147489380473198}, {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"JAPAN\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\", \\\\\\\"start\\\\\\\": 9, \\\\\\\"end\\\\\\\": 14}, {\\\\\\\"text\\\\\\\": \\\\\\\"CHINA\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\", \\\\\\\"start\\\\\\\": 31, \\\\\\\"end\\\\\\\": 36}], \\\\\\\"relations\\\\\\\": [], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -5.203329032957001, \\\\\\\"n_tokens\\\\\\\": 68, \\\\\\\"mean_logprob\\\\\\\": -0.07651954460230884}, {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"JAPAN\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\", \\\\\\\"start\\\\\\\": 9, \\\\\\\"end\\\\\\\": 14}, {\\\\\\\"text\\\\\\\": \\\\\\\"CHINA\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\", \\\\\\\"start\\\\\\\": 31, \\\\\\\"end\\\\\\\": 36}], \\\\\\\"relations\\\\\\\": [], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -4.846331515187309, \\\\\\\"n_tokens\\\\\\\": 68, \\\\\\\"mean_logprob\\\\\\\": -0.07126958110569571}, {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"JAPAN\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\", \\\\\\\"start\\\\\\\": 9, \\\\\\\"end\\\\\\\": 14}, {\\\\\\\"text\\\\\\\": \\\\\\\"CHINA\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\", \\\\\\\"start\\\\\\\": 31, \\\\\\\"end\\\\\\\": 36}], \\\\\\\"relations\\\\\\\": [], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -2.3127497540126996, \\\\\\\"n_tokens\\\\\\\": 67, \\\\\\\"mean_logprob\\\\\\\": -0.034518653044965666}, {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"JAPAN\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\", \\\\\\\"start\\\\\\\": 9, \\\\\\\"end\\\\\\\": 14}, {\\\\\\\"text\\\\\\\": \\\\\\\"CHINA\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\", \\\\\\\"start\\\\\\\": 31, \\\\\\\"end\\\\\\\": 36}], \\\\\\\"relations\\\\\\\": [], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -4.207035481011353, \\\\\\\"n_tokens\\\\\\\": 68, \\\\\\\"mean_logprob\\\\\\\": -0.061868168838402245}, {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"JAPAN\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\", \\\\\\\"start\\\\\\\": 9, \\\\\\\"end\\\\\\\": 14}, {\\\\\\\"text\\\\\\\": \\\\\\\"CHINA\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\", \\\\\\\"start\\\\\\\": 31, \\\\\\\"end\\\\\\\": 36}], \\\\\\\"relations\\\\\\\": [], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -4.827977447867561, \\\\\\\"n_tokens\\\\\\\": 68, \\\\\\\"mean_logprob\\\\\\\": -0.07099966835099354}, {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"JAPAN\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\", \\\\\\\"start\\\\\\\": 9, \\\\\\\"end\\\\\\\": 14}, {\\\\\\\"text\\\\\\\": \\\\\\\"CHINA\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\", \\\\\\\"start\\\\\\\": 31, \\\\\\\"end\\\\\\\": 36}], \\\\\\\"relations\\\\\\\": [], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -2.9441061857679856, \\\\\\\"n_tokens\\\\\\\": 67, \\\\\\\"mean_logprob\\\\\\\": -0.043941883369671426}, {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"JAPAN\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\", \\\\\\\"start\\\\\\\": 9, \\\\\\\"end\\\\\\\": 14}, {\\\\\\\"text\\\\\\\": \\\\\\\"CHINA\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\", \\\\\\\"start\\\\\\\": 31, \\\\\\\"end\\\\\\\": 36}], \\\\\\\"relations\\\\\\\": [], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -3.8226090805595945, \\\\\\\"n_tokens\\\\\\\": 67, \\\\\\\"mean_logprob\\\\\\\": -0.0570538668740238}, {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"JAPAN\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\", \\\\\\\"start\\\\\\\": 9, \\\\\\\"end\\\\\\\": 14}, {\\\\\\\"text\\\\\\\": \\\\\\\"CHINA\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\", \\\\\\\"start\\\\\\\": 31, \\\\\\\"end\\\\\\\": 36}], \\\\\\\"relations\\\\\\\": [], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -8.72693828036438, \\\\\\\"n_tokens\\\\\\\": 68, \\\\\\\"mean_logprob\\\\\\\": -0.12833732765241734}, {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"JAPAN\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\", \\\\\\\"start\\\\\\\": 9, \\\\\\\"end\\\\\\\": 14}, {\\\\\\\"text\\\\\\\": \\\\\\\"CHINA\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\", \\\\\\\"start\\\\\\\": 31, \\\\n\\\\n... [截断: 输出过长，省略 1432 字符] ...\\\\n\\\\n\\\\\\\": 11}], \\\\\\\"relations\\\\\\\": [], \\\\\\\"events\\\\\\\": []}, \\\\\\\"samples\\\\\\\": [{\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"Nadim Ladki\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"PER\\\\\\\", \\\\\\\"start\\\\\\\": 0, \\\\\\\"end\\\\\\\": 11}], \\\\\\\"relations\\\\\\\": [], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -0.13085026214915274, \\\\\\\"n_tokens\\\\\\\": 42, \\\\\\\"mean_logprob\\\\\\\": -0.003115482432122684}, {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"Nadim Ladki\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"PER\\\\\\\", \\\\\\\"start\\\\\\\": 0, \\\\\\\"end\\\\\\\": 11}], \\\\\\\"relations\\\\\\\": [], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -0.13085026214915274, \\\\\\\"n_tokens\\\\\\\": 42, \\\\\\\"mean_logprob\\\\\\\": -0.003115482432122684}, {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"Nadim Ladki\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"PER\\\\\\\", \\\\\\\"start\\\\\\\": 0, \\\\\\\"end\\\\\\\": 11}], \\\\\\\"relations\\\\\\\": [], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -0.13085026214915274, \\\\\\\"n_tokens\\\\\\\": 42, \\\\\\\"mean_logprob\\\\\\\": -0.003115482432122684}, {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"Nadim Ladki\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"PER\\\\\\\", \\\\\\\"start\\\\\\\": 0, \\\\\\\"end\\\\\\\": 11}], \\\\\\\"relations\\\\\\\": [], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -0.13085026214915274, \\\\\\\"n_tokens\\\\\\\": 42, \\\\\\\"mean_logprob\\\\\\\": -0.003115482432122684}, {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"Nadim Ladki\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"PER\\\\\\\", \\\\\\\"start\\\\\\\": 0, \\\\\\\"end\\\\\\\": 11}], \\\\\\\"relations\\\\\\\": [], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -0.13085026214915274, \\\\\\\"n_tokens\\\\\\\": 42, \\\\\\\"mean_logprob\\\\\\\": -0.003115482432122684}, {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"Nadim Ladki\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"PER\\\\\\\", \\\\\\\"start\\\\\\\": 0, \\\\\\\"end\\\\\\\": 11}], \\\\\\\"relations\\\\\\\": [], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -0.13085026214915274, \\\\\\\"n_tokens\\\\\\\": 42, \\\\\\\"mean_logprob\\\\\\\": -0.003115482432122684}, {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"Nadim Ladki\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"PER\\\\\\\", \\\\\\\"start\\\\\\\": 0, \\\\\\\"end\\\\\\\": 11}], \\\\\\\"relations\\\\\\\": [], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -0.13085026214915274, \\\\\\\"n_tokens\\\\\\\": 42, \\\\\\\"mean_logprob\\\\\\\": -0.003115482432122684}, {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"Nadim Ladki\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"PER\\\\\\\", \\\\\\\"start\\\\\\\": 0, \\\\\\\"end\\\\\\\": 11}], \\\\\\\"relations\\\\\\\": [], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -0.13085026214915274, \\\\\\\"n_tokens\\\\\\\": 42, \\\\\\\"mean_logprob\\\\\\\": -0.003115482432122684}, {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"Nadim Ladki\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"PER\\\\\\\", \\\\\\\"start\\\\\\\": 0, \\\\\\\"end\\\\\\\": 11}], \\\\\\\"relations\\\\\\\": [], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -0.13085026214915274, \\\\\\\"n_tokens\\\\\\\": 42, \\\\\\\"mean_logprob\\\\\\\": -0.003115482432122684}, {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"Nadim Ladki\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"PER\\\\\\\", \\\\\\\"start\\\\\\\": 0, \\\\\\\"end\\\\\\\": 11}], \\\\\\\"relations\\\\\\\": [], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -0.13085026214915274, \\\\\\\"n_tokens\\\\\\\": 42, \\\\\\\"mean_logprob\\\\\\\": -0.003115482432122684}, {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"Nadim Ladki\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"PER\\\\\\\", \\\\\\\"start\\\\\\\": 0, \\\\\\\"end\\\\\\\": 11}], \\\\\\\"relations\\\\\\\": [], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -0.13085026214915274, \\\\\\\"n_tokens\\\\\\\": 42, \\\\\\\"mean_logprob\\\\\\\": -0.003115482432122684}, {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"Nadim Ladki\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"PER\\\\\\\", \\\\\\\"start\\\\\\\": 0, \\\\\\\"end\\\\\\\": 11}], \\\\\\\"relations\\\\\\\": [], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -0.13085026214915274, \\\\\\\"n_tokens\\\\\\\": 42, \\\\\\\"mean_logprob\\\\\\\": -0.003115482432122684}, {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"Nadim Ladki\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"PER\\\\\\\", \\\\\\\"start\\\\\\\": 0, \\\\\\\"end\\\\\\\": 11}], \\\\\\\"relations\\\\\\\": [], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -0.13085026214915274, \\\\\\\"n_tokens\\\\\\\": 42, \\\\\\\"mean_logprob\\\\\\\": -0.003115482432122684}, {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"Nadim Ladki\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"PER\\\\\\\", \\\\\\\"start\\\\\\\": 0, \\\\\\\"end\\\\\\\": 11}], \\\\\\\"relations\\\\\\\": [], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -0.13085026214915274, \\\\\\\"n_tokens\\\\\\\": 42, \\\\\\\"mean_logprob\\\\\\\": -0.003115482432122684}, {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"Nadim Ladki\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"PER\\\\\\\", \\\\\\\"start\\\\\\\": 0, \\\\\\\"end\\\\\\\": 11}], \\\\\\\"relations\\\\\\\": [], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -0.13085026214915274, \\\\\\\"n_tokens\\\\\\\": 42, \\\\\\\"mean_logprob\\\\\\\": -0.003115482432122684}, {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"Nadim Ladki\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"PER\\\\\\\", \\\\\\\"start\\\\\\\": 0, \\\\\\\"end\\\\\\\": 11}], \\\\\\\"relations\\\\\\\": [], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -0.13085026214915274, \\\\\\\"n_tokens\\\\\\\": 42, \\\\\\\"mean_logprob\\\\\\\": -0.003115482432122684}], \\\\\\\"greedy\\\\\\\": {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"Nadim Ladki\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"PER\\\\\\\", \\\\\\\"start\\\\\\\": 0, \\\\\\\"end\\\\\\\": 11}], \\\\\\\"relations\\\\\\\": [], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -0.13862508697243925, \\\\\\\"n_tokens\\\\\\\": 42, \\\\\\\"mean_logprob\\\\\\\": -0.0033005973088676014}, \\\\\\\"logprobs\\\\\\\": [-0.003115482432122684, -0.003115482432122684, -0.003115482432122684, -0.003115482432122684, -0.003115482432122684, -0.003115482432122684, -0.003115482432122684, -0.003115482432122684, -0.003115482432122684, -0.003115482432122684, -0.003115482432122684, -0.003115482432122684, -0.003115482432122684, -0.003115482432122684, -0.003115482432122684, -0.003115482432122684]}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\\"id\\\": \\\"conll2003_test_00000\\\", \\\"text\\\": \\\"SOCCER - JAPAN GET LUCKY WIN , CHINA IN SURPRISE DEFEAT .\\\", \\\"gold\\\": {\\\"entities\\\": [{\\\"text\\\": \\\"JAPAN\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 9, \\\"end\\\": 14}, {\\\"text\\\": \\\"CHINA\\\", \\\"type\\\": \\\"PER\\\", \\\"start\\\": 31, \\\"end\\\": 36}], \\\"relations\\\": [], \\\"events\\\": []}, \\\"samples\\\": [{\\\"entities\\\": [{\\\"text\\\": \\\"JAPAN\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 9, \\\"end\\\": 14}, {\\\"text\\\": \\\"CHINA\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 31, \\\"end\\\": 36}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -2.3127497540126996, \\\"n_tokens\\\": 67, \\\"mean_logprob\\\": -0.034518653044965666}, {\\\"entities\\\": [{\\\"text\\\": \\\"JAPAN\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 9, \\\"end\\\": 14}, {\\\"text\\\": \\\"CHINA\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 31, \\\"end\\\": 36}], \\\"relations\\\": [{\\\"head\\\": \\\"JAPAN\\\", \\\"tail\\\": \\\"CHINA\\\", \\\"type\\\": \\\"DEF\\\", \\\"head_start\\\": 9, \\\"head_end\\\": 14, \\\"tail_start\\\": 31, \\\"tail_end\\\": 36}], \\\"events\\\": [], \\\"cumulative_logprob\\\": -8.45723202665031, \\\"n_tokens\\\": 118, \\\"mean_logprob\\\": -0.07167145785296873}, {\\\"entities\\\": [{\\\"text\\\": \\\"JAPAN\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 9, \\\"end\\\": 14}, {\\\"text\\\": \\\"CHINA\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 31, \\\"end\\\": 36}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -4.7914715850595755, \\\"n_tokens\\\": 67, \\\"mean_logprob\\\": -0.07151450126954591}, {\\\"entities\\\": [{\\\"text\\\": \\\"JAPAN\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 9, \\\"end\\\": 14}, {\\\"text\\\": \\\"CHINA\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 31, \\\"end\\\": 36}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -2.9481195445343005, \\\"n_tokens\\\": 67, \\\"mean_logprob\\\": -0.044001784246780605}, {\\\"entities\\\": [{\\\"text\\\": \\\"JAPAN\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 9, \\\"end\\\": 14}, {\\\"text\\\": \\\"CHINA\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 31, \\\"end\\\": 36}], \\\"relations\\\": [{\\\"head\\\": \\\"JAPAN\\\", \\\"tail\\\": \\\"CHINA\\\", \\\"type\\\": \\\"EVALUATE\\\", \\\"head_start\\\": 9, \\\"head_end\\\": 14, \\\"tail_start\\\": 31, \\\"tail_end\\\": 36}], \\\"events\\\": [], \\\"cumulative_logprob\\\": -13.48846215037257, \\\"n_tokens\\\": 121, \\\"mean_logprob\\\": -0.11147489380473198}, {\\\"entities\\\": [{\\\"text\\\": \\\"JAPAN\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 9, \\\"end\\\": 14}, {\\\"text\\\": \\\"CHINA\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 31, \\\"end\\\": 36}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -5.203329032957001, \\\"n_tokens\\\": 68, \\\"mean_logprob\\\": -0.07651954460230884}, {\\\"entities\\\": [{\\\"text\\\": \\\"JAPAN\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 9, \\\"end\\\": 14}, {\\\"text\\\": \\\"CHINA\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 31, \\\"end\\\": 36}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -4.846331515187309, \\\"n_tokens\\\": 68, \\\"mean_logprob\\\": -0.07126958110569571}, {\\\"entities\\\": [{\\\"text\\\": \\\"JAPAN\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 9, \\\"end\\\": 14}, {\\\"text\\\": \\\"CHINA\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 31, \\\"end\\\": 36}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -2.3127497540126996, \\\"n_tokens\\\": 67, \\\"mean_logprob\\\": -0.034518653044965666}, {\\\"entities\\\": [{\\\"text\\\": \\\"JAPAN\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 9, \\\"end\\\": 14}, {\\\"text\\\": \\\"CHINA\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 31, \\\"end\\\": 36}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -4.207035481011353, \\\"n_tokens\\\": 68, \\\"mean_logprob\\\": -0.061868168838402245}, {\\\"entities\\\": [{\\\"text\\\": \\\"JAPAN\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 9, \\\"end\\\": 14}, {\\\"text\\\": \\\"CHINA\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 31, \\\"end\\\": 36}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -4.827977447867561, \\\"n_tokens\\\": 68, \\\"mean_logprob\\\": -0.07099966835099354}, {\\\"entities\\\": [{\\\"text\\\": \\\"JAPAN\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 9, \\\"end\\\": 14}, {\\\"text\\\": \\\"CHINA\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 31, \\\"end\\\": 36}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -2.9441061857679856, \\\"n_tokens\\\": 67, \\\"mean_logprob\\\": -0.043941883369671426}, {\\\"entities\\\": [{\\\"text\\\": \\\"JAPAN\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 9, \\\"end\\\": 14}, {\\\"text\\\": \\\"CHINA\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 31, \\\"end\\\": 36}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -3.8226090805595945, \\\"n_tokens\\\": 67, \\\"mean_logprob\\\": -0.0570538668740238}, {\\\"entities\\\": [{\\\"text\\\": \\\"JAPAN\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 9, \\\"end\\\": 14}, {\\\"text\\\": \\\"CHINA\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 31, \\\"end\\\": 36}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -8.72693828036438, \\\"n_tokens\\\": 68, \\\"mean_logprob\\\": -0.12833732765241734}, {\\\"entities\\\": [{\\\"text\\\": \\\"JAPAN\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 9, \\\"end\\\": 14}, {\\\"text\\\": \\\"CHINA\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 31, \\n\\n... [截断: 输出过长，省略 1432 字符] ...\\n\\n\\\": 11}], \\\"relations\\\": [], \\\"events\\\": []}, \\\"samples\\\": [{\\\"entities\\\": [{\\\"text\\\": \\\"Nadim Ladki\\\", \\\"type\\\": \\\"PER\\\", \\\"start\\\": 0, \\\"end\\\": 11}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -0.13085026214915274, \\\"n_tokens\\\": 42, \\\"mean_logprob\\\": -0.003115482432122684}, {\\\"entities\\\": [{\\\"text\\\": \\\"Nadim Ladki\\\", \\\"type\\\": \\\"PER\\\", \\\"start\\\": 0, \\\"end\\\": 11}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -0.13085026214915274, \\\"n_tokens\\\": 42, \\\"mean_logprob\\\": -0.003115482432122684}, {\\\"entities\\\": [{\\\"text\\\": \\\"Nadim Ladki\\\", \\\"type\\\": \\\"PER\\\", \\\"start\\\": 0, \\\"end\\\": 11}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -0.13085026214915274, \\\"n_tokens\\\": 42, \\\"mean_logprob\\\": -0.003115482432122684}, {\\\"entities\\\": [{\\\"text\\\": \\\"Nadim Ladki\\\", \\\"type\\\": \\\"PER\\\", \\\"start\\\": 0, \\\"end\\\": 11}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -0.13085026214915274, \\\"n_tokens\\\": 42, \\\"mean_logprob\\\": -0.003115482432122684}, {\\\"entities\\\": [{\\\"text\\\": \\\"Nadim Ladki\\\", \\\"type\\\": \\\"PER\\\", \\\"start\\\": 0, \\\"end\\\": 11}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -0.13085026214915274, \\\"n_tokens\\\": 42, \\\"mean_logprob\\\": -0.003115482432122684}, {\\\"entities\\\": [{\\\"text\\\": \\\"Nadim Ladki\\\", \\\"type\\\": \\\"PER\\\", \\\"start\\\": 0, \\\"end\\\": 11}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -0.13085026214915274, \\\"n_tokens\\\": 42, \\\"mean_logprob\\\": -0.003115482432122684}, {\\\"entities\\\": [{\\\"text\\\": \\\"Nadim Ladki\\\", \\\"type\\\": \\\"PER\\\", \\\"start\\\": 0, \\\"end\\\": 11}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -0.13085026214915274, \\\"n_tokens\\\": 42, \\\"mean_logprob\\\": -0.003115482432122684}, {\\\"entities\\\": [{\\\"text\\\": \\\"Nadim Ladki\\\", \\\"type\\\": \\\"PER\\\", \\\"start\\\": 0, \\\"end\\\": 11}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -0.13085026214915274, \\\"n_tokens\\\": 42, \\\"mean_logprob\\\": -0.003115482432122684}, {\\\"entities\\\": [{\\\"text\\\": \\\"Nadim Ladki\\\", \\\"type\\\": \\\"PER\\\", \\\"start\\\": 0, \\\"end\\\": 11}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -0.13085026214915274, \\\"n_tokens\\\": 42, \\\"mean_logprob\\\": -0.003115482432122684}, {\\\"entities\\\": [{\\\"text\\\": \\\"Nadim Ladki\\\", \\\"type\\\": \\\"PER\\\", \\\"start\\\": 0, \\\"end\\\": 11}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -0.13085026214915274, \\\"n_tokens\\\": 42, \\\"mean_logprob\\\": -0.003115482432122684}, {\\\"entities\\\": [{\\\"text\\\": \\\"Nadim Ladki\\\", \\\"type\\\": \\\"PER\\\", \\\"start\\\": 0, \\\"end\\\": 11}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -0.13085026214915274, \\\"n_tokens\\\": 42, \\\"mean_logprob\\\": -0.003115482432122684}, {\\\"entities\\\": [{\\\"text\\\": \\\"Nadim Ladki\\\", \\\"type\\\": \\\"PER\\\", \\\"start\\\": 0, \\\"end\\\": 11}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -0.13085026214915274, \\\"n_tokens\\\": 42, \\\"mean_logprob\\\": -0.003115482432122684}, {\\\"entities\\\": [{\\\"text\\\": \\\"Nadim Ladki\\\", \\\"type\\\": \\\"PER\\\", \\\"start\\\": 0, \\\"end\\\": 11}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -0.13085026214915274, \\\"n_tokens\\\": 42, \\\"mean_logprob\\\": -0.003115482432122684}, {\\\"entities\\\": [{\\\"text\\\": \\\"Nadim Ladki\\\", \\\"type\\\": \\\"PER\\\", \\\"start\\\": 0, \\\"end\\\": 11}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -0.13085026214915274, \\\"n_tokens\\\": 42, \\\"mean_logprob\\\": -0.003115482432122684}, {\\\"entities\\\": [{\\\"text\\\": \\\"Nadim Ladki\\\", \\\"type\\\": \\\"PER\\\", \\\"start\\\": 0, \\\"end\\\": 11}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -0.13085026214915274, \\\"n_tokens\\\": 42, \\\"mean_logprob\\\": -0.003115482432122684}, {\\\"entities\\\": [{\\\"text\\\": \\\"Nadim Ladki\\\", \\\"type\\\": \\\"PER\\\", \\\"start\\\": 0, \\\"end\\\": 11}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -0.13085026214915274, \\\"n_tokens\\\": 42, \\\"mean_logprob\\\": -0.003115482432122684}], \\\"greedy\\\": {\\\"entities\\\": [{\\\"text\\\": \\\"Nadim Ladki\\\", \\\"type\\\": \\\"PER\\\", \\\"start\\\": 0, \\\"end\\\": 11}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -0.13862508697243925, \\\"n_tokens\\\": 42, \\\"mean_logprob\\\": -0.0033005973088676014}, \\\"logprobs\\\": [-0.003115482432122684, -0.003115482432122684, -0.003115482432122684, -0.003115482432122684, -0.003115482432122684, -0.003115482432122684, -0.003115482432122684, -0.003115482432122684, -0.003115482432122684, -0.003115482432122684, -0.003115482432122684, -0.003115482432122684, -0.003115482432122684, -0.003115482432122684, -0.003115482432122684, -0.003115482432122684]}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01FNVT3RJgvYbJ6RDu8Q4k6v`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "wc -l /root/autodl-tmp/struct_self_consist_ie/output/exp002_conll2003/samples.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "910780dc-4507-4b6d-b6f8-a8010b0eaa6b",
+  "uuid": "64a145d2-0f5b-4414-a5df-3f74888430d8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011TZJRedBD9ycCwhcsxFEhA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8031,
+      "cache_read_input_tokens": 28798,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8031
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-19T14:20:14.229Z_
+
+<details><summary>↩ Tool result · `toolu_01FNVT3RJgvYbJ6RDu8Q4k6v`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"3453 /root/autodl-tmp/struct_self_consist_ie/output/exp002_conll2003/samples.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "910780dc-4507-4b6d-b6f8-a8010b0eaa6b",
+  "uuid": "84ba35cb-5cab-4157-88d4-a8d3c8493001",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"3453 /root/autodl-tmp/struct_self_consist_ie/output/exp002_conll2003/samples.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"3453 /root/autodl-tmp/struct_self_consist_ie/output/exp002_conll2003/samples.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01U6cvrtLffjhapFP7iu1aLM`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "wc -l /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n16/samples.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "910780dc-4507-4b6d-b6f8-a8010b0eaa6b",
+  "uuid": "59617407-845a-4d97-b3d6-3d6bffe2bd26",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011TZJRedBD9ycCwhcsxFEhA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8031,
+      "cache_read_input_tokens": 28798,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8031
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-19T14:20:15.126Z_
+
+<details><summary>↩ Tool result · `toolu_01U6cvrtLffjhapFP7iu1aLM`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"3453 /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n16/samples.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "910780dc-4507-4b6d-b6f8-a8010b0eaa6b",
+  "uuid": "2095c904-dc85-4886-90c8-01f36708158a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"3453 /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n16/samples.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"3453 /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n16/samples.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_015HkokLGZGVwMRhy8uREFqa`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "head -1 /root/autodl-tmp/struct_self_consist_ie/code/analyze_exp002_conll2003.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "910780dc-4507-4b6d-b6f8-a8010b0eaa6b",
+  "uuid": "8f297a6a-7f2c-4ac6-95d3-09a3e4dfcd93",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011TZJRedBD9ycCwhcsxFEhA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8031,
+      "cache_read_input_tokens": 28798,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8031
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-19T14:20:16.158Z_
+
+<details><summary>↩ Tool result · `toolu_015HkokLGZGVwMRhy8uREFqa`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"exp-002: 5-signal analysis for CoNLL-2003 NER (cross-dataset validation).\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.64}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "910780dc-4507-4b6d-b6f8-a8010b0eaa6b",
+  "uuid": "8f94c2cf-1655-4556-8968-c031ecd5e31a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"exp-002: 5-signal analysis for CoNLL-2003 NER (cross-dataset validation).\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.64}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"exp-002: 5-signal analysis for CoNLL-2003 NER (cross-dataset validation).\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.64}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 36_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I understand the data format:
+- Each JSONL record has an `id`, `text`, `gold`, `samples` (list of N samples), `greedy`, and `logprobs`
+- Each sample has `entities`, `relations`, `events` with their logprob info
+- The N=8 file (exp002_conll2003) has 8 samples per instance
+- The N=16 file (exp_002_conll_n16) has 16 samples per instance
+- Both have 3453 instances
+
+I need to compute instance-level F1 for each sample, then check if all N samples have the same F1. The data doesn't have pre-computed F1 per sample - I need to compute it from the entities.
+
+
+I should check the existing analysis script to see how F1 is being calculated, then write a script to compute entity-level F1 for each sample and identify which instances have degeneracy.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "910780dc-4507-4b6d-b6f8-a8010b0eaa6b",
+  "uuid": "1f73bea3-f438-4437-8eb1-80b566179f42",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TAS8PZuQJtrMHU23P9ReLm",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 10323,
+      "cache_read_input_tokens": 36829,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 10323
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 37_
+
+Data format is clear: each instance has `samples` (list of entity sets) and `gold`. No pre-computed per-sample F1 — I need to compute it. Let me check the existing analysis script and then run the computation.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "910780dc-4507-4b6d-b6f8-a8010b0eaa6b",
+  "uuid": "e10c9de2-1501-4312-afd2-57067dd4ee7d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TAS8PZuQJtrMHU23P9ReLm",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 10323,
+      "cache_read_input_tokens": 36829,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 10323
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_011ctptpeEJ8g9wa3gVLRQoF`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/code/analyze_exp002_conll2003.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "910780dc-4507-4b6d-b6f8-a8010b0eaa6b",
+  "uuid": "8c09b8e2-36cd-4a98-a110-a72b7afaeab7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TAS8PZuQJtrMHU23P9ReLm",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 10323,
+      "cache_read_input_tokens": 36829,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 10323
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-19T14:20:27.023Z_
+
+<details><summary>↩ Tool result · `toolu_011ctptpeEJ8g9wa3gVLRQoF`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"exp-002: 5-signal analysis for CoNLL-2003 NER (cross-dataset validation).\\n\\nComputes: soft_jaccard, fleiss_kappa, mean_logprob, exact_match_rate, entity_voting_conf\\nMetrics: Spearman rho, Kendall tau, AUROC, bootstrap 95% CI\\n\\\"\\\"\\\"\\n\\nimport json\\nimport os\\nimport sys\\nfrom collections import Counter\\n\\nimport numpy as np\\nfrom scipy.stats import spearmanr, kendalltau\\n\\nsys.path.insert(0, '/root/autodl-tmp/struct_self_consist_ie/code')\\nfrom consistency import compute_all_consistency_scores\\nfrom evaluation import per_instance_f1\\n\\nDATA_PATH = \\\"/root/autodl-tmp/struct_self_consist_ie/output/exp002_conll2003/samples.jsonl\\\"\\nOUTPUT_DIR = \\\"/root/autodl-tmp/struct_self_consist_ie/output/exp002_conll2003\\\"\\nSUBTASK = \\\"ner\\\"\\n\\n\\ndef load_data(path):\\n    instances = []\\n    with open(path) as f:\\n        for line in f:\\n            if line.strip():\\n                instances.append(json.loads(line))\\n    return instances\\n\\n\\ndef auroc_simple(scores, labels):\\n    scores = np.array(scores, dtype=float)\\n    labels = np.array(labels, dtype=int)\\n    if len(set(labels)) < 2:\\n        return float('nan')\\n    pos = scores[labels == 1]\\n    neg = scores[labels == 0]\\n    if len(pos) == 0 or len(neg) == 0:\\n        return float('nan')\\n    count = sum(np.sum(p > neg) + 0.5 * np.sum(p == neg) for p in pos)\\n    return count / (len(pos) * len(neg))\\n\\n\\ndef compute_exact_match_rate(samples, subtask):\\n    keys = [frozenset((e[\\\"text\\\"], e[\\\"type\\\"]) for e in s.get(\\\"entities\\\", [])) for s in samples]\\n    counter = Counter(keys)\\n    return counter.most_common(1)[0][1] / len(samples)\\n\\n\\ndef compute_entity_voting_conf(samples, subtask):\\n    N = len(samples)\\n    counter = Counter()\\n    for s in samples:\\n        for e in s.get(\\\"entities\\\", []):\\n            counter[(e[\\\"text\\\"], e[\\\"type\\\"])] += 1\\n    if not counter:\\n        return 0.0\\n    return float(np.mean([v / N for v in counter.values()]))\\n\\n\\ndef compute_mean_logprob(samples):\\n    logprobs = [s.get(\\\"mean_logprob\\\") for s in samples if s.get(\\\"mean_logprob\\\") is not None]\\n    logprobs = [lp for lp in logprobs if np.isfinite(lp)]\\n    if not logprobs:\\n        return float(\\\"nan\\\")\\n    return float(np.mean(logprobs))\\n\\n\\ndef compute_instance_mean_logprob(inst):\\n    if \\\"logprobs\\\" in inst and inst[\\\"logprobs\\\"]:\\n        lps = [lp for lp in inst[\\\"logprobs\\\"] if np.isfinite(lp)]\\n        return float(np.mean(lps)) if lps else float(\\\"nan\\\")\\n    samples = inst[\\\"samples\\\"]\\n    lps = [compute_mean_logprob([s]) for s in samples]\\n    lps = [lp for lp in lps if np.isfinite(lp)]\\n    return float(np.mean(lps)) if lps else float(\\\"nan\\\")\\n\\n\\ndef compute_all_signals(instances, subtask):\\n    consistency = compute_all_consistency_scores(instances, subtask=subtask)\\n    signals = {\\n        \\\"soft_jaccard\\\": consistency[\\\"soft_jaccard\\\"],\\n        \\\"fleiss_kappa\\\": consistency[\\\"fleiss_kappa\\\"],\\n        \\\"mean_logprob\\\": [],\\n        \\\"exact_match\\\": [],\\n        \\\"entity_voting\\\": [],\\n    }\\n    f1_scores = []\\n    for inst in instances:\\n        samples = inst[\\\"samples\\\"]\\n        gold = inst[\\\"gold\\\"]\\n        greedy = inst.get(\\\"greedy\\\")\\n        if greedy is not None:\\n            f1 = per_instance_f1(greedy, gold, subtask=subtask)\\n        else:\\n            f1 = per_instance_f1(samples[0], gold, subtask=subtask)\\n        f1_scores.append(f1)\\n        signals[\\\"mean_logprob\\\"].append(compute_instance_mean_logprob(inst))\\n        signals[\\\"exact_match\\\"].append(compute_exact_match_rate(samples, subtask))\\n        signals[\\\"entity_voting\\\"].append(compute_entity_voting_conf(samples, subtask))\\n    return signals, f1_scores\\n\\n\\ndef compute_metrics(signal_values, f1_values, median_f1):\\n    x = np.array(signal_values, dtype=float)\\n    y = np.array(f1_values, dtype=float)\\n    mask = np.isfinite(x) & np.isfinite(y)\\n    x, y = x[mask], y[mask]\\n    if len(x) < 3:\\n        return {\\\"rho\\\": float(\\\"nan\\\"), \\\"p_rho\\\": float(\\\"nan\\\"),\\n                \\\"tau\\\": float(\\\"nan\\\"), \\\"p_tau\\\": float(\\\"nan\\\"),\\n                \\\"auroc\\\": float(\\\"nan\\\"), \\\"n\\\": int(mask.sum())}\\n    rho, p_rho = spearmanr(x, y)\\n    tau, p_tau = kendalltau(x, y)\\n    labels = (y >= me\\n\\n... [截断: 输出过长，省略 2421 字符] ...\\n\\nbtask\\\": \\\"ner\\\",\\n        \\\"n_total\\\": len(instances),\\n        \\\"n_valid\\\": len(valid),\\n        \\\"n_conditional\\\": len(cond_idx),\\n        \\\"median_f1_full\\\": median_full,\\n        \\\"median_f1_cond\\\": median_cond,\\n        \\\"signals\\\": {},\\n    }\\n\\n    print(f\\\"\\\\n{'='*70}\\\")\\n    print(f\\\"{'Signal':<20} {'ρ (full)':>10} {'τ (full)':>10} {'AUROC':>10} {'ρ (cond)':>10}\\\")\\n    print(f\\\"{'-'*70}\\\")\\n\\n    for sname in signal_order:\\n        svals = signals[sname]\\n        full_m = compute_metrics(svals, f1_scores, median_full)\\n        cond_svals = [svals[i] for i in cond_idx]\\n        cond_m = compute_metrics(cond_svals, cond_f1, median_cond)\\n        results[\\\"signals\\\"][sname] = {\\\"full\\\": full_m, \\\"cond\\\": cond_m}\\n        print(f\\\"{signal_labels[sname]:<20} {full_m['rho']:>+10.4f} {full_m['tau']:>+10.4f} {full_m['auroc']:>10.4f} {cond_m['rho']:>+10.4f}\\\")\\n\\n    # Bootstrap CI: SJ vs each other signal\\n    print(f\\\"\\\\n{'='*70}\\\")\\n    print(\\\"Bootstrap CI (SJ vs others, n_boot=2000)\\\")\\n    sj = signals[\\\"soft_jaccard\\\"]\\n    bootstrap = {}\\n    for other in [\\\"fleiss_kappa\\\", \\\"mean_logprob\\\", \\\"exact_match\\\", \\\"entity_voting\\\"]:\\n        boot = bootstrap_rho_diff(sj, signals[other], f1_scores)\\n        bootstrap[f\\\"sj_vs_{other}\\\"] = boot\\n        sig_str = \\\"***\\\" if boot[\\\"significant\\\"] else \\\"\\\"\\n        print(f\\\"  SJ vs {signal_labels[other]:<20}: Δρ={boot['mean_diff']:+.4f}  CI=[{boot['ci_95_low']:+.4f}, {boot['ci_95_high']:+.4f}] {sig_str}\\\")\\n    results[\\\"bootstrap_ci\\\"] = bootstrap\\n\\n    # Key comparison: SJ vs logprob\\n    sj_rho = results[\\\"signals\\\"][\\\"soft_jaccard\\\"][\\\"full\\\"][\\\"rho\\\"]\\n    lp_rho = results[\\\"signals\\\"][\\\"mean_logprob\\\"][\\\"full\\\"][\\\"rho\\\"]\\n    sj_wins = sj_rho > lp_rho\\n    boot_sj_lp = bootstrap.get(\\\"sj_vs_mean_logprob\\\", {})\\n\\n    results[\\\"key_comparison\\\"] = {\\n        \\\"sj_rho\\\": sj_rho,\\n        \\\"logprob_rho\\\": lp_rho,\\n        \\\"sj_wins\\\": sj_wins,\\n        \\\"delta_rho\\\": sj_rho - lp_rho,\\n        \\\"bootstrap_significant\\\": boot_sj_lp.get(\\\"significant\\\", False),\\n    }\\n\\n    # Voting-based F1\\n    from evaluation import compute_ner_f1\\n    greedy_preds = [inst.get(\\\"greedy\\\", inst[\\\"samples\\\"][0]) for inst in valid]\\n    golds = [inst[\\\"gold\\\"] for inst in valid]\\n    greedy_f1 = compute_ner_f1(greedy_preds, golds)[\\\"f1\\\"]\\n    oracle_preds = [max(inst[\\\"samples\\\"], key=lambda s: per_instance_f1(s, inst[\\\"gold\\\"], SUBTASK)) for inst in valid]\\n    oracle_f1 = compute_ner_f1(oracle_preds, golds)[\\\"f1\\\"]\\n\\n    # Majority voting\\n    voting_preds = []\\n    for inst in valid:\\n        entity_counter = Counter()\\n        for s in inst[\\\"samples\\\"]:\\n            for e in s.get(\\\"entities\\\", []):\\n                entity_counter[(e[\\\"text\\\"], e[\\\"type\\\"], e.get(\\\"start\\\", 0), e.get(\\\"end\\\", 0))] += 1\\n        N = len(inst[\\\"samples\\\"])\\n        voted_entities = [{\\\"text\\\": k[0], \\\"type\\\": k[1], \\\"start\\\": k[2], \\\"end\\\": k[3]} for k, v in entity_counter.items() if v > N / 2]\\n        voting_preds.append({\\\"entities\\\": voted_entities})\\n    voting_f1 = compute_ner_f1(voting_preds, golds)[\\\"f1\\\"]\\n\\n    results[\\\"f1_summary\\\"] = {\\n        \\\"greedy_f1\\\": greedy_f1,\\n        \\\"oracle_f1\\\": oracle_f1,\\n        \\\"voting_f1\\\": voting_f1,\\n        \\\"oracle_headroom\\\": oracle_f1 - greedy_f1,\\n    }\\n\\n    print(f\\\"\\\\n{'='*70}\\\")\\n    print(f\\\"F1 Summary: greedy={greedy_f1:.4f}  voting={voting_f1:.4f}  oracle={oracle_f1:.4f}  headroom={oracle_f1-greedy_f1:.4f}\\\")\\n\\n    conclusion = \\\"success\\\" if sj_wins else \\\"negative\\\"\\n    print(f\\\"\\\\n*** Conclusion: {conclusion.upper()} (SJ ρ={sj_rho:.4f} vs LogProb ρ={lp_rho:.4f}, delta={sj_rho-lp_rho:+.4f})\\\")\\n    if boot_sj_lp.get(\\\"significant\\\"):\\n        print(f\\\"    Bootstrap significant: CI=[{boot_sj_lp['ci_95_low']:+.4f}, {boot_sj_lp['ci_95_high']:+.4f}]\\\")\\n    else:\\n        print(f\\\"    Bootstrap NOT significant: CI=[{boot_sj_lp.get('ci_95_low',0):+.4f}, {boot_sj_lp.get('ci_95_high',0):+.4f}]\\\")\\n    results[\\\"conclusion\\\"] = conclusion\\n\\n    json_path = os.path.join(OUTPUT_DIR, \\\"exp002_5signal_report.json\\\")\\n    with open(json_path, \\\"w\\\") as f:\\n        json.dump(results, f, indent=2, ensure_ascii=False)\\n    print(f\\\"\\\\nSaved: {json_path}\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "910780dc-4507-4b6d-b6f8-a8010b0eaa6b",
+  "uuid": "1fabf8a1-fc99-4cd6-b0f4-6b3f27a6e929",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"exp-002: 5-signal analysis for CoNLL-2003 NER (cross-dataset validation).\\\\n\\\\nComputes: soft_jaccard, fleiss_kappa, mean_logprob, exact_match_rate, entity_voting_conf\\\\nMetrics: Spearman rho, Kendall tau, AUROC, bootstrap 95% CI\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport json\\\\nimport os\\\\nimport sys\\\\nfrom collections import Counter\\\\n\\\\nimport numpy as np\\\\nfrom scipy.stats import spearmanr, kendalltau\\\\n\\\\nsys.path.insert(0, '/root/autodl-tmp/struct_self_consist_ie/code')\\\\nfrom consistency import compute_all_consistency_scores\\\\nfrom evaluation import per_instance_f1\\\\n\\\\nDATA_PATH = \\\\\\\"/root/autodl-tmp/struct_self_consist_ie/output/exp002_conll2003/samples.jsonl\\\\\\\"\\\\nOUTPUT_DIR = \\\\\\\"/root/autodl-tmp/struct_self_consist_ie/output/exp002_conll2003\\\\\\\"\\\\nSUBTASK = \\\\\\\"ner\\\\\\\"\\\\n\\\\n\\\\ndef load_data(path):\\\\n    instances = []\\\\n    with open(path) as f:\\\\n        for line in f:\\\\n            if line.strip():\\\\n                instances.append(json.loads(line))\\\\n    return instances\\\\n\\\\n\\\\ndef auroc_simple(scores, labels):\\\\n    scores = np.array(scores, dtype=float)\\\\n    labels = np.array(labels, dtype=int)\\\\n    if len(set(labels)) < 2:\\\\n        return float('nan')\\\\n    pos = scores[labels == 1]\\\\n    neg = scores[labels == 0]\\\\n    if len(pos) == 0 or len(neg) == 0:\\\\n        return float('nan')\\\\n    count = sum(np.sum(p > neg) + 0.5 * np.sum(p == neg) for p in pos)\\\\n    return count / (len(pos) * len(neg))\\\\n\\\\n\\\\ndef compute_exact_match_rate(samples, subtask):\\\\n    keys = [frozenset((e[\\\\\\\"text\\\\\\\"], e[\\\\\\\"type\\\\\\\"]) for e in s.get(\\\\\\\"entities\\\\\\\", [])) for s in samples]\\\\n    counter = Counter(keys)\\\\n    return counter.most_common(1)[0][1] / len(samples)\\\\n\\\\n\\\\ndef compute_entity_voting_conf(samples, subtask):\\\\n    N = len(samples)\\\\n    counter = Counter()\\\\n    for s in samples:\\\\n        for e in s.get(\\\\\\\"entities\\\\\\\", []):\\\\n            counter[(e[\\\\\\\"text\\\\\\\"], e[\\\\\\\"type\\\\\\\"])] += 1\\\\n    if not counter:\\\\n        return 0.0\\\\n    return float(np.mean([v / N for v in counter.values()]))\\\\n\\\\n\\\\ndef compute_mean_logprob(samples):\\\\n    logprobs = [s.get(\\\\\\\"mean_logprob\\\\\\\") for s in samples if s.get(\\\\\\\"mean_logprob\\\\\\\") is not None]\\\\n    logprobs = [lp for lp in logprobs if np.isfinite(lp)]\\\\n    if not logprobs:\\\\n        return float(\\\\\\\"nan\\\\\\\")\\\\n    return float(np.mean(logprobs))\\\\n\\\\n\\\\ndef compute_instance_mean_logprob(inst):\\\\n    if \\\\\\\"logprobs\\\\\\\" in inst and inst[\\\\\\\"logprobs\\\\\\\"]:\\\\n        lps = [lp for lp in inst[\\\\\\\"logprobs\\\\\\\"] if np.isfinite(lp)]\\\\n        return float(np.mean(lps)) if lps else float(\\\\\\\"nan\\\\\\\")\\\\n    samples = inst[\\\\\\\"samples\\\\\\\"]\\\\n    lps = [compute_mean_logprob([s]) for s in samples]\\\\n    lps = [lp for lp in lps if np.isfinite(lp)]\\\\n    return float(np.mean(lps)) if lps else float(\\\\\\\"nan\\\\\\\")\\\\n\\\\n\\\\ndef compute_all_signals(instances, subtask):\\\\n    consistency = compute_all_consistency_scores(instances, subtask=subtask)\\\\n    signals = {\\\\n        \\\\\\\"soft_jaccard\\\\\\\": consistency[\\\\\\\"soft_jaccard\\\\\\\"],\\\\n        \\\\\\\"fleiss_kappa\\\\\\\": consistency[\\\\\\\"fleiss_kappa\\\\\\\"],\\\\n        \\\\\\\"mean_logprob\\\\\\\": [],\\\\n        \\\\\\\"exact_match\\\\\\\": [],\\\\n        \\\\\\\"entity_voting\\\\\\\": [],\\\\n    }\\\\n    f1_scores = []\\\\n    for inst in instances:\\\\n        samples = inst[\\\\\\\"samples\\\\\\\"]\\\\n        gold = inst[\\\\\\\"gold\\\\\\\"]\\\\n        greedy = inst.get(\\\\\\\"greedy\\\\\\\")\\\\n        if greedy is not None:\\\\n            f1 = per_instance_f1(greedy, gold, subtask=subtask)\\\\n        else:\\\\n            f1 = per_instance_f1(samples[0], gold, subtask=subtask)\\\\n        f1_scores.append(f1)\\\\n        signals[\\\\\\\"mean_logprob\\\\\\\"].append(compute_instance_mean_logprob(inst))\\\\n        signals[\\\\\\\"exact_match\\\\\\\"].append(compute_exact_match_rate(samples, subtask))\\\\n        signals[\\\\\\\"entity_voting\\\\\\\"].append(compute_entity_voting_conf(samples, subtask))\\\\n    return signals, f1_scores\\\\n\\\\n\\\\ndef compute_metrics(signal_values, f1_values, median_f1):\\\\n    x = np.array(signal_values, dtype=float)\\\\n    y = np.array(f1_values, dtype=float)\\\\n    mask = np.isfinite(x) & np.isfinite(y)\\\\n    x, y = x[mask], y[mask]\\\\n    if len(x) < 3:\\\\n        return {\\\\\\\"rho\\\\\\\": float(\\\\\\\"nan\\\\\\\"), \\\\\\\"p_rho\\\\\\\": float(\\\\\\\"nan\\\\\\\"),\\\\n                \\\\\\\"tau\\\\\\\": float(\\\\\\\"nan\\\\\\\"), \\\\\\\"p_tau\\\\\\\": float(\\\\\\\"nan\\\\\\\"),\\\\n                \\\\\\\"auroc\\\\\\\": float(\\\\\\\"nan\\\\\\\"), \\\\\\\"n\\\\\\\": int(mask.sum())}\\\\n    rho, p_rho = spearmanr(x, y)\\\\n    tau, p_tau = kendalltau(x, y)\\\\n    labels = (y >= me\\\\n\\\\n... [截断: 输出过长，省略 2421 字符] ...\\\\n\\\\nbtask\\\\\\\": \\\\\\\"ner\\\\\\\",\\\\n        \\\\\\\"n_total\\\\\\\": len(instances),\\\\n        \\\\\\\"n_valid\\\\\\\": len(valid),\\\\n        \\\\\\\"n_conditional\\\\\\\": len(cond_idx),\\\\n        \\\\\\\"median_f1_full\\\\\\\": median_full,\\\\n        \\\\\\\"median_f1_cond\\\\\\\": median_cond,\\\\n        \\\\\\\"signals\\\\\\\": {},\\\\n    }\\\\n\\\\n    print(f\\\\\\\"\\\\\\\\n{'='*70}\\\\\\\")\\\\n    print(f\\\\\\\"{'Signal':<20} {'ρ (full)':>10} {'τ (full)':>10} {'AUROC':>10} {'ρ (cond)':>10}\\\\\\\")\\\\n    print(f\\\\\\\"{'-'*70}\\\\\\\")\\\\n\\\\n    for sname in signal_order:\\\\n        svals = signals[sname]\\\\n        full_m = compute_metrics(svals, f1_scores, median_full)\\\\n        cond_svals = [svals[i] for i in cond_idx]\\\\n        cond_m = compute_metrics(cond_svals, cond_f1, median_cond)\\\\n        results[\\\\\\\"signals\\\\\\\"][sname] = {\\\\\\\"full\\\\\\\": full_m, \\\\\\\"cond\\\\\\\": cond_m}\\\\n        print(f\\\\\\\"{signal_labels[sname]:<20} {full_m['rho']:>+10.4f} {full_m['tau']:>+10.4f} {full_m['auroc']:>10.4f} {cond_m['rho']:>+10.4f}\\\\\\\")\\\\n\\\\n    # Bootstrap CI: SJ vs each other signal\\\\n    print(f\\\\\\\"\\\\\\\\n{'='*70}\\\\\\\")\\\\n    print(\\\\\\\"Bootstrap CI (SJ vs others, n_boot=2000)\\\\\\\")\\\\n    sj = signals[\\\\\\\"soft_jaccard\\\\\\\"]\\\\n    bootstrap = {}\\\\n    for other in [\\\\\\\"fleiss_kappa\\\\\\\", \\\\\\\"mean_logprob\\\\\\\", \\\\\\\"exact_match\\\\\\\", \\\\\\\"entity_voting\\\\\\\"]:\\\\n        boot = bootstrap_rho_diff(sj, signals[other], f1_scores)\\\\n        bootstrap[f\\\\\\\"sj_vs_{other}\\\\\\\"] = boot\\\\n        sig_str = \\\\\\\"***\\\\\\\" if boot[\\\\\\\"significant\\\\\\\"] else \\\\\\\"\\\\\\\"\\\\n        print(f\\\\\\\"  SJ vs {signal_labels[other]:<20}: Δρ={boot['mean_diff']:+.4f}  CI=[{boot['ci_95_low']:+.4f}, {boot['ci_95_high']:+.4f}] {sig_str}\\\\\\\")\\\\n    results[\\\\\\\"bootstrap_ci\\\\\\\"] = bootstrap\\\\n\\\\n    # Key comparison: SJ vs logprob\\\\n    sj_rho = results[\\\\\\\"signals\\\\\\\"][\\\\\\\"soft_jaccard\\\\\\\"][\\\\\\\"full\\\\\\\"][\\\\\\\"rho\\\\\\\"]\\\\n    lp_rho = results[\\\\\\\"signals\\\\\\\"][\\\\\\\"mean_logprob\\\\\\\"][\\\\\\\"full\\\\\\\"][\\\\\\\"rho\\\\\\\"]\\\\n    sj_wins = sj_rho > lp_rho\\\\n    boot_sj_lp = bootstrap.get(\\\\\\\"sj_vs_mean_logprob\\\\\\\", {})\\\\n\\\\n    results[\\\\\\\"key_comparison\\\\\\\"] = {\\\\n        \\\\\\\"sj_rho\\\\\\\": sj_rho,\\\\n        \\\\\\\"logprob_rho\\\\\\\": lp_rho,\\\\n        \\\\\\\"sj_wins\\\\\\\": sj_wins,\\\\n        \\\\\\\"delta_rho\\\\\\\": sj_rho - lp_rho,\\\\n        \\\\\\\"bootstrap_significant\\\\\\\": boot_sj_lp.get(\\\\\\\"significant\\\\\\\", False),\\\\n    }\\\\n\\\\n    # Voting-based F1\\\\n    from evaluation import compute_ner_f1\\\\n    greedy_preds = [inst.get(\\\\\\\"greedy\\\\\\\", inst[\\\\\\\"samples\\\\\\\"][0]) for inst in valid]\\\\n    golds = [inst[\\\\\\\"gold\\\\\\\"] for inst in valid]\\\\n    greedy_f1 = compute_ner_f1(greedy_preds, golds)[\\\\\\\"f1\\\\\\\"]\\\\n    oracle_preds = [max(inst[\\\\\\\"samples\\\\\\\"], key=lambda s: per_instance_f1(s, inst[\\\\\\\"gold\\\\\\\"], SUBTASK)) for inst in valid]\\\\n    oracle_f1 = compute_ner_f1(oracle_preds, golds)[\\\\\\\"f1\\\\\\\"]\\\\n\\\\n    # Majority voting\\\\n    voting_preds = []\\\\n    for inst in valid:\\\\n        entity_counter = Counter()\\\\n        for s in inst[\\\\\\\"samples\\\\\\\"]:\\\\n            for e in s.get(\\\\\\\"entities\\\\\\\", []):\\\\n                entity_counter[(e[\\\\\\\"text\\\\\\\"], e[\\\\\\\"type\\\\\\\"], e.get(\\\\\\\"start\\\\\\\", 0), e.get(\\\\\\\"end\\\\\\\", 0))] += 1\\\\n        N = len(inst[\\\\\\\"samples\\\\\\\"])\\\\n        voted_entities = [{\\\\\\\"text\\\\\\\": k[0], \\\\\\\"type\\\\\\\": k[1], \\\\\\\"start\\\\\\\": k[2], \\\\\\\"end\\\\\\\": k[3]} for k, v in entity_counter.items() if v > N / 2]\\\\n        voting_preds.append({\\\\\\\"entities\\\\\\\": voted_entities})\\\\n    voting_f1 = compute_ner_f1(voting_preds, golds)[\\\\\\\"f1\\\\\\\"]\\\\n\\\\n    results[\\\\\\\"f1_summary\\\\\\\"] = {\\\\n        \\\\\\\"greedy_f1\\\\\\\": greedy_f1,\\\\n        \\\\\\\"oracle_f1\\\\\\\": oracle_f1,\\\\n        \\\\\\\"voting_f1\\\\\\\": voting_f1,\\\\n        \\\\\\\"oracle_headroom\\\\\\\": oracle_f1 - greedy_f1,\\\\n    }\\\\n\\\\n    print(f\\\\\\\"\\\\\\\\n{'='*70}\\\\\\\")\\\\n    print(f\\\\\\\"F1 Summary: greedy={greedy_f1:.4f}  voting={voting_f1:.4f}  oracle={oracle_f1:.4f}  headroom={oracle_f1-greedy_f1:.4f}\\\\\\\")\\\\n\\\\n    conclusion = \\\\\\\"success\\\\\\\" if sj_wins else \\\\\\\"negative\\\\\\\"\\\\n    print(f\\\\\\\"\\\\\\\\n*** Conclusion: {conclusion.upper()} (SJ ρ={sj_rho:.4f} vs LogProb ρ={lp_rho:.4f}, delta={sj_rho-lp_rho:+.4f})\\\\\\\")\\\\n    if boot_sj_lp.get(\\\\\\\"significant\\\\\\\"):\\\\n        print(f\\\\\\\"    Bootstrap significant: CI=[{boot_sj_lp['ci_95_low']:+.4f}, {boot_sj_lp['ci_95_high']:+.4f}]\\\\\\\")\\\\n    else:\\\\n        print(f\\\\\\\"    Bootstrap NOT significant: CI=[{boot_sj_lp.get('ci_95_low',0):+.4f}, {boot_sj_lp.get('ci_95_high',0):+.4f}]\\\\\\\")\\\\n    results[\\\\\\\"conclusion\\\\\\\"] = conclusion\\\\n\\\\n    json_path = os.path.join(OUTPUT_DIR, \\\\\\\"exp002_5signal_report.json\\\\\\\")\\\\n    with open(json_path, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(results, f, indent=2, ensure_ascii=False)\\\\n    print(f\\\\\\\"\\\\\\\\nSaved: {json_path}\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"exp-002: 5-signal analysis for CoNLL-2003 NER (cross-dataset validation).\\n\\nComputes: soft_jaccard, fleiss_kappa, mean_logprob, exact_match_rate, entity_voting_conf\\nMetrics: Spearman rho, Kendall tau, AUROC, bootstrap 95% CI\\n\\\"\\\"\\\"\\n\\nimport json\\nimport os\\nimport sys\\nfrom collections import Counter\\n\\nimport numpy as np\\nfrom scipy.stats import spearmanr, kendalltau\\n\\nsys.path.insert(0, '/root/autodl-tmp/struct_self_consist_ie/code')\\nfrom consistency import compute_all_consistency_scores\\nfrom evaluation import per_instance_f1\\n\\nDATA_PATH = \\\"/root/autodl-tmp/struct_self_consist_ie/output/exp002_conll2003/samples.jsonl\\\"\\nOUTPUT_DIR = \\\"/root/autodl-tmp/struct_self_consist_ie/output/exp002_conll2003\\\"\\nSUBTASK = \\\"ner\\\"\\n\\n\\ndef load_data(path):\\n    instances = []\\n    with open(path) as f:\\n        for line in f:\\n            if line.strip():\\n                instances.append(json.loads(line))\\n    return instances\\n\\n\\ndef auroc_simple(scores, labels):\\n    scores = np.array(scores, dtype=float)\\n    labels = np.array(labels, dtype=int)\\n    if len(set(labels)) < 2:\\n        return float('nan')\\n    pos = scores[labels == 1]\\n    neg = scores[labels == 0]\\n    if len(pos) == 0 or len(neg) == 0:\\n        return float('nan')\\n    count = sum(np.sum(p > neg) + 0.5 * np.sum(p == neg) for p in pos)\\n    return count / (len(pos) * len(neg))\\n\\n\\ndef compute_exact_match_rate(samples, subtask):\\n    keys = [frozenset((e[\\\"text\\\"], e[\\\"type\\\"]) for e in s.get(\\\"entities\\\", [])) for s in samples]\\n    counter = Counter(keys)\\n    return counter.most_common(1)[0][1] / len(samples)\\n\\n\\ndef compute_entity_voting_conf(samples, subtask):\\n    N = len(samples)\\n    counter = Counter()\\n    for s in samples:\\n        for e in s.get(\\\"entities\\\", []):\\n            counter[(e[\\\"text\\\"], e[\\\"type\\\"])] += 1\\n    if not counter:\\n        return 0.0\\n    return float(np.mean([v / N for v in counter.values()]))\\n\\n\\ndef compute_mean_logprob(samples):\\n    logprobs = [s.get(\\\"mean_logprob\\\") for s in samples if s.get(\\\"mean_logprob\\\") is not None]\\n    logprobs = [lp for lp in logprobs if np.isfinite(lp)]\\n    if not logprobs:\\n        return float(\\\"nan\\\")\\n    return float(np.mean(logprobs))\\n\\n\\ndef compute_instance_mean_logprob(inst):\\n    if \\\"logprobs\\\" in inst and inst[\\\"logprobs\\\"]:\\n        lps = [lp for lp in inst[\\\"logprobs\\\"] if np.isfinite(lp)]\\n        return float(np.mean(lps)) if lps else float(\\\"nan\\\")\\n    samples = inst[\\\"samples\\\"]\\n    lps = [compute_mean_logprob([s]) for s in samples]\\n    lps = [lp for lp in lps if np.isfinite(lp)]\\n    return float(np.mean(lps)) if lps else float(\\\"nan\\\")\\n\\n\\ndef compute_all_signals(instances, subtask):\\n    consistency = compute_all_consistency_scores(instances, subtask=subtask)\\n    signals = {\\n        \\\"soft_jaccard\\\": consistency[\\\"soft_jaccard\\\"],\\n        \\\"fleiss_kappa\\\": consistency[\\\"fleiss_kappa\\\"],\\n        \\\"mean_logprob\\\": [],\\n        \\\"exact_match\\\": [],\\n        \\\"entity_voting\\\": [],\\n    }\\n    f1_scores = []\\n    for inst in instances:\\n        samples = inst[\\\"samples\\\"]\\n        gold = inst[\\\"gold\\\"]\\n        greedy = inst.get(\\\"greedy\\\")\\n        if greedy is not None:\\n            f1 = per_instance_f1(greedy, gold, subtask=subtask)\\n        else:\\n            f1 = per_instance_f1(samples[0], gold, subtask=subtask)\\n        f1_scores.append(f1)\\n        signals[\\\"mean_logprob\\\"].append(compute_instance_mean_logprob(inst))\\n        signals[\\\"exact_match\\\"].append(compute_exact_match_rate(samples, subtask))\\n        signals[\\\"entity_voting\\\"].append(compute_entity_voting_conf(samples, subtask))\\n    return signals, f1_scores\\n\\n\\ndef compute_metrics(signal_values, f1_values, median_f1):\\n    x = np.array(signal_values, dtype=float)\\n    y = np.array(f1_values, dtype=float)\\n    mask = np.isfinite(x) & np.isfinite(y)\\n    x, y = x[mask], y[mask]\\n    if len(x) < 3:\\n        return {\\\"rho\\\": float(\\\"nan\\\"), \\\"p_rho\\\": float(\\\"nan\\\"),\\n                \\\"tau\\\": float(\\\"nan\\\"), \\\"p_tau\\\": float(\\\"nan\\\"),\\n                \\\"auroc\\\": float(\\\"nan\\\"), \\\"n\\\": int(mask.sum())}\\n    rho, p_rho = spearmanr(x, y)\\n    tau, p_tau = kendalltau(x, y)\\n    labels = (y >= me\\n\\n... [截断: 输出过长，省略 2421 字符] ...\\n\\nbtask\\\": \\\"ner\\\",\\n        \\\"n_total\\\": len(instances),\\n        \\\"n_valid\\\": len(valid),\\n        \\\"n_conditional\\\": len(cond_idx),\\n        \\\"median_f1_full\\\": median_full,\\n        \\\"median_f1_cond\\\": median_cond,\\n        \\\"signals\\\": {},\\n    }\\n\\n    print(f\\\"\\\\n{'='*70}\\\")\\n    print(f\\\"{'Signal':<20} {'ρ (full)':>10} {'τ (full)':>10} {'AUROC':>10} {'ρ (cond)':>10}\\\")\\n    print(f\\\"{'-'*70}\\\")\\n\\n    for sname in signal_order:\\n        svals = signals[sname]\\n        full_m = compute_metrics(svals, f1_scores, median_full)\\n        cond_svals = [svals[i] for i in cond_idx]\\n        cond_m = compute_metrics(cond_svals, cond_f1, median_cond)\\n        results[\\\"signals\\\"][sname] = {\\\"full\\\": full_m, \\\"cond\\\": cond_m}\\n        print(f\\\"{signal_labels[sname]:<20} {full_m['rho']:>+10.4f} {full_m['tau']:>+10.4f} {full_m['auroc']:>10.4f} {cond_m['rho']:>+10.4f}\\\")\\n\\n    # Bootstrap CI: SJ vs each other signal\\n    print(f\\\"\\\\n{'='*70}\\\")\\n    print(\\\"Bootstrap CI (SJ vs others, n_boot=2000)\\\")\\n    sj = signals[\\\"soft_jaccard\\\"]\\n    bootstrap = {}\\n    for other in [\\\"fleiss_kappa\\\", \\\"mean_logprob\\\", \\\"exact_match\\\", \\\"entity_voting\\\"]:\\n        boot = bootstrap_rho_diff(sj, signals[other], f1_scores)\\n        bootstrap[f\\\"sj_vs_{other}\\\"] = boot\\n        sig_str = \\\"***\\\" if boot[\\\"significant\\\"] else \\\"\\\"\\n        print(f\\\"  SJ vs {signal_labels[other]:<20}: Δρ={boot['mean_diff']:+.4f}  CI=[{boot['ci_95_low']:+.4f}, {boot['ci_95_high']:+.4f}] {sig_str}\\\")\\n    results[\\\"bootstrap_ci\\\"] = bootstrap\\n\\n    # Key comparison: SJ vs logprob\\n    sj_rho = results[\\\"signals\\\"][\\\"soft_jaccard\\\"][\\\"full\\\"][\\\"rho\\\"]\\n    lp_rho = results[\\\"signals\\\"][\\\"mean_logprob\\\"][\\\"full\\\"][\\\"rho\\\"]\\n    sj_wins = sj_rho > lp_rho\\n    boot_sj_lp = bootstrap.get(\\\"sj_vs_mean_logprob\\\", {})\\n\\n    results[\\\"key_comparison\\\"] = {\\n        \\\"sj_rho\\\": sj_rho,\\n        \\\"logprob_rho\\\": lp_rho,\\n        \\\"sj_wins\\\": sj_wins,\\n        \\\"delta_rho\\\": sj_rho - lp_rho,\\n        \\\"bootstrap_significant\\\": boot_sj_lp.get(\\\"significant\\\", False),\\n    }\\n\\n    # Voting-based F1\\n    from evaluation import compute_ner_f1\\n    greedy_preds = [inst.get(\\\"greedy\\\", inst[\\\"samples\\\"][0]) for inst in valid]\\n    golds = [inst[\\\"gold\\\"] for inst in valid]\\n    greedy_f1 = compute_ner_f1(greedy_preds, golds)[\\\"f1\\\"]\\n    oracle_preds = [max(inst[\\\"samples\\\"], key=lambda s: per_instance_f1(s, inst[\\\"gold\\\"], SUBTASK)) for inst in valid]\\n    oracle_f1 = compute_ner_f1(oracle_preds, golds)[\\\"f1\\\"]\\n\\n    # Majority voting\\n    voting_preds = []\\n    for inst in valid:\\n        entity_counter = Counter()\\n        for s in inst[\\\"samples\\\"]:\\n            for e in s.get(\\\"entities\\\", []):\\n                entity_counter[(e[\\\"text\\\"], e[\\\"type\\\"], e.get(\\\"start\\\", 0), e.get(\\\"end\\\", 0))] += 1\\n        N = len(inst[\\\"samples\\\"])\\n        voted_entities = [{\\\"text\\\": k[0], \\\"type\\\": k[1], \\\"start\\\": k[2], \\\"end\\\": k[3]} for k, v in entity_counter.items() if v > N / 2]\\n        voting_preds.append({\\\"entities\\\": voted_entities})\\n    voting_f1 = compute_ner_f1(voting_preds, golds)[\\\"f1\\\"]\\n\\n    results[\\\"f1_summary\\\"] = {\\n        \\\"greedy_f1\\\": greedy_f1,\\n        \\\"oracle_f1\\\": oracle_f1,\\n        \\\"voting_f1\\\": voting_f1,\\n        \\\"oracle_headroom\\\": oracle_f1 - greedy_f1,\\n    }\\n\\n    print(f\\\"\\\\n{'='*70}\\\")\\n    print(f\\\"F1 Summary: greedy={greedy_f1:.4f}  voting={voting_f1:.4f}  oracle={oracle_f1:.4f}  headroom={oracle_f1-greedy_f1:.4f}\\\")\\n\\n    conclusion = \\\"success\\\" if sj_wins else \\\"negative\\\"\\n    print(f\\\"\\\\n*** Conclusion: {conclusion.upper()} (SJ ρ={sj_rho:.4f} vs LogProb ρ={lp_rho:.4f}, delta={sj_rho-lp_rho:+.4f})\\\")\\n    if boot_sj_lp.get(\\\"significant\\\"):\\n        print(f\\\"    Bootstrap significant: CI=[{boot_sj_lp['ci_95_low']:+.4f}, {boot_sj_lp['ci_95_high']:+.4f}]\\\")\\n    else:\\n        print(f\\\"    Bootstrap NOT significant: CI=[{boot_sj_lp.get('ci_95_low',0):+.4f}, {boot_sj_lp.get('ci_95_high',0):+.4f}]\\\")\\n    results[\\\"conclusion\\\"] = conclusion\\n\\n    json_path = os.path.join(OUTPUT_DIR, \\\"exp002_5signal_report.json\\\")\\n    with open(json_path, \\\"w\\\") as f:\\n        json.dump(results, f, indent=2, ensure_ascii=False)\\n    print(f\\\"\\\\nSaved: {json_path}\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 40_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I need to understand how `per_instance_f1` works. Let me check the `evaluation.py` module to understand how entity-level F1 is computed per instance.
+
+Actually, for the degeneracy calculation, I need to compute per-sample F1 (each sample vs gold), not per-instance F1. Let me look at the `per_instance_f1` function.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "910780dc-4507-4b6d-b6f8-a8010b0eaa6b",
+  "uuid": "ada3cbfa-0710-4a70-b963-c0ace11b717e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QRb2Dv9bfJB91psCe3JYFg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4261,
+      "cache_read_input_tokens": 47152,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4261
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 41_
+
+Let me check how `per_instance_f1` computes F1 — I need to compute it per sample.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "910780dc-4507-4b6d-b6f8-a8010b0eaa6b",
+  "uuid": "84db14ae-76b8-4faa-9a4d-c57ac27ac417",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QRb2Dv9bfJB91psCe3JYFg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4261,
+      "cache_read_input_tokens": 47152,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4261
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01HhMaWSdzfEnAFdQGBZmx1Q`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "grep -n \"def per_instance_f1\" /root/autodl-tmp/struct_self_consist_ie/code/evaluation.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "910780dc-4507-4b6d-b6f8-a8010b0eaa6b",
+  "uuid": "f501567d-e31b-4996-973b-d0ba840e461e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QRb2Dv9bfJB91psCe3JYFg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4261,
+      "cache_read_input_tokens": 47152,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4261
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-19T14:20:32.531Z_
+
+<details><summary>↩ Tool result · `toolu_01HhMaWSdzfEnAFdQGBZmx1Q`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"167:def per_instance_f1(\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "910780dc-4507-4b6d-b6f8-a8010b0eaa6b",
+  "uuid": "59fa4747-9a7f-4cd1-88dc-9f194324edde",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"167:def per_instance_f1(\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"167:def per_instance_f1(\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"
+    }
+  }
+}
+```
+
+</details>
+
+---

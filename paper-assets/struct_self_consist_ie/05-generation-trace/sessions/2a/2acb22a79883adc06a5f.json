@@ -1,0 +1,812 @@
+{
+  "schema_version": "1.0",
+  "id": "2acb22a79883adc06a5f",
+  "project": "struct_self_consist_ie",
+  "kind": "conversation",
+  "title": "check exp 020 022 025",
+  "task_key": "worker_check_exp_020_022_025_20260516T140557",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/worker_check_exp_020_022_025_20260516T140557.jsonl",
+    "occurrence": 1,
+    "bytes": 31842,
+    "sha256": "6a8db4a878449cd1bf6f85486b335a44f21509bacd2c6d7979971ebe6d30d032"
+  },
+  "statistics": {
+    "messages": 39,
+    "user_turns": 0,
+    "tool_calls": 19,
+    "roles": {
+      "tool_call": 19,
+      "tool_result": 19,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-16T14:07:07.615255+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_exp_020_022_025_20260516T140557",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-16T14:07:07.615619+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_exp_020_022_025_20260516T140557",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-16T14:07:07.615803+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_exp_020_022_025_20260516T140557",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "tmux ls 2>/dev/null",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-16T14:07:07.615949+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_exp_020_022_025_20260516T140557",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-16T14:07:07.616079+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_exp_020_022_025_20260516T140557",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "ls -la /root/autodl-tmp/struct_self_consist_ie/output/",
+              "account": "root"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-16T14:07:07.616280+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_exp_020_022_025_20260516T140557",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "ps aux | grep -i -E \"fewnerd|seed789|n32|exp_02\" | grep -v grep",
+              "account": "root"
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-16T14:07:07.616516+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 7420\\\\ndrwxr-xr-x 115 root root    8192 May 16 21:37 .\\\\ndrwxr-xr-x  15 root root    4096 May 16 18:29 ..\\\\ndrwxr-xr-x   2 root root      85 May 16 00:37 analysis_epsilon_sweep\\\\n-rw-r--r--   1 root root    7926 May 15 20:56 analysis_fk_bootstrap_ci.json\\\\n-rw-r--r--   1 root root    5824 May 15 21:16 analysis_fk_bootstrap_per_instance.json\\\\n-rw-r--r--   1 root root  150381 May 15 21:15 analysis_lp_range_cdf.json\\\\n-rw-r--r--   1 root root    3197 May 15 21:15 analysis_lp_range_cdf_n16_3seed.json\\\\n-rw-r--r--   1 root root   10542 May 15 20:46 analysis_multiseed_selection_f1.json\\\\ndrwxr-xr-x   2 root root    4096 May 16 00:50 analysis_round8\\\\n-rw-r--r--   1 root root   20864 May 15 21:14 analysis_scierc_n16_3seed_selection_f1.json\\\\n-rw-r--r--   1 root root   30781 May 15 21:26 analysis_scierc_n16_3seed_selection_f1_merged.json\\\\n-rw-r--r--   1 root root    9919 May 15 21:26 analysis_scierc_re_n16_3seed_selection_f1.json\\\\n-rw-r--r--   1 root root    7621 May 15 22:57 analysis_unified_rho_full.json\\\\ndrwxr-xr-x   2 root root      69 May 15 05:17 bootstrap_ci_nscaling\\\\n-rw-r--r--   1 root root   18675 May 15 06:05 bootstrap_ci_summary.json\\\\n-rw-r--r--   1 root root    1977 May 15 06:06 bootstrap_ci_tables.tex\\\\n-rw-r--r--   1 root root    2098 May 14 20:48 conditional_filter_diagnosis.json\\\\ndrwxr-xr-x   2 root root      54 May 16 15:25 d108_greedy_f1\\\\ndrwxr-xr-x   2 root root      85 May 16 15:47 d108_lp_vc_combination\\\\ndrwxr-xr-x   2 root root      90 May 16 15:08 d108_mbr_within_rho\\\\ndrwxr-xr-x   2 root root     166 May 16 15:50 d108_q4q5\\\\ndrwxr-xr-x   2 root root      90 May 16 16:12 d110_4b_degeneracy\\\\ndrwxr-xr-x   2 root root      37 May 16 17:47 d112_disk_cleanup\\\\ndrwxr-xr-x   2 root root      85 May 16 17:26 d112_hybrid_strategy\\\\ndrwxr-xr-x   2 root root      94 May 16 17:10 d112_mf3_random_single\\\\ndrwxr-xr-x   2 root root    4096 May 16 17:48 d112_table2_fix\\\\ndrwxr-xr-x   2 root root\n…[truncated 6433 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_exp_020_022_025_20260516T140557",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-16T14:07:07.616702+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_exp_020_022_025_20260516T140557",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-16T14:07:07.616850+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_exp_020_022_025_20260516T140557",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "find /root/autodl-tmp/struct_self_consist_ie/ -path \"*exp*020*\" -type f",
+              "account": "root"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-16T14:07:07.616980+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_exp_020_022_025_20260516T140557",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-16T14:07:07.617101+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_exp_020_022_025_20260516T140557",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "ls -la /root/autodl-tmp/struct_self_consist_ie/output/exp_022_seed789/",
+              "account": "root"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-16T14:07:07.617550+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 19644\\\\ndrwxr-xr-x   2 root root       58 May 16 18:12 .\\\\ndrwxr-xr-x 115 root root     8192 May 16 21:37 ..\\\\n-rw-r--r--   1 root root     3382 May 16 18:12 report.json\\\\n-rw-r--r--   1 root root 20098657 May 16 18:12 samples.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_exp_020_022_025_20260516T140557",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-16T14:07:07.617705+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_exp_020_022_025_20260516T140557",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "ls -la /root/autodl-tmp/struct_self_consist_ie/output/exp_025_n32/",
+              "account": "root"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-16T14:07:07.617836+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 70664\\\\ndrwxr-xr-x   2 root root       58 May 16 21:53 .\\\\ndrwxr-xr-x 115 root root     8192 May 16 21:37 ..\\\\n-rw-r--r--   1 root root     3375 May 16 21:53 report.json\\\\n-rw-r--r--   1 root root 72343491 May 16 21:53 samples.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_exp_020_022_025_20260516T140557",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-16T14:07:07.617963+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_exp_020_022_025_20260516T140557",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "find /root/autodl-tmp/struct_self_consist_ie/ -path \"*fewnerd*\" -type d",
+              "account": "root"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-16T14:07:07.618092+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/checkpoints/ft_fewnerd_smoke\\\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/ft_fewnerd_smoke/checkpoint-3000\\\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/ft_fewnerd_smoke/checkpoint-4000\\\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/ft_fewnerd_smoke/checkpoint-5000\\\\n/root/autodl-tmp/struct_self_consist_ie/data/fewnerd\\\\n/root/autodl-tmp/struct_self_consist_ie/data/fewnerd/_intra_backup\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_exp_020_022_025_20260516T140557",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-16T14:07:07.618251+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_exp_020_022_025_20260516T140557",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "ls -la /root/autodl-tmp/struct_self_consist_ie/checkpoints/ft_fewnerd_smoke/",
+              "account": "root"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-16T14:07:07.618380+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 40\\\\ndrwxr-xr-x  5 root root   120 May 16 22:05 .\\\\ndrwxr-xr-x 22 root root  4096 May 16 19:19 ..\\\\ndrwxr-xr-x  2 root root  4096 May 16 20:39 checkpoint-3000\\\\ndrwxr-xr-x  2 root root  4096 May 16 21:22 checkpoint-4000\\\\ndrwxr-xr-x  2 root root  4096 May 16 22:05 checkpoint-5000\\\\n-rw-r--r--  1 root root 20563 May 16 22:05 trainer_log.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_exp_020_022_025_20260516T140557",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-16T14:07:07.618501+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_exp_020_022_025_20260516T140557",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/exp_022_seed789/report.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-16T14:07:07.619047+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"dataset\\\\\\\": \\\\\\\"scierc\\\\\\\",\\\\n  \\\\\\\"subtask\\\\\\\": \\\\\\\"joint\\\\\\\",\\\\n  \\\\\\\"n_samples\\\\\\\": 8,\\\\n  \\\\\\\"temperature\\\\\\\": 1.0,\\\\n  \\\\\\\"num_instances\\\\\\\": 551,\\\\n  \\\\\\\"use_train_format\\\\\\\": true,\\\\n  \\\\\\\"ner_greedy_f1\\\\\\\": 0.6664684898929845,\\\\n  \\\\\\\"ner_oracle_f1\\\\\\\": 0.7856294536817102,\\\\n  \\\\\\\"ner_oracle_headroom\\\\\\\": 0.11916096378872576,\\\\n  \\\\\\\"ner_fleiss_kappa_mean\\\\\\\": 0.3874439327102626,\\\\n  \\\\\\\"ner_soft_jaccard_mean\\\\\\\": 0.6985305838231555,\\\\n  \\\\\\\"ner_correlation_fleiss_vs_f1_full\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.23423703233847612,\\\\n    \\\\\\\"p_value\\\\\\\": 5.016666964952752e-08,\\\\n    \\\\\\\"n\\\\\\\": 529\\\\n  },\\\\n  \\\\\\\"ner_correlation_softjaccard_vs_f1_full\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.38378196826186733,\\\\n    \\\\\\\"p_value\\\\\\\": 5.229492921679125e-20,\\\\n    \\\\\\\"n\\\\\\\": 529\\\\n  },\\\\n  \\\\\\\"ner_correlation_fleiss_vs_f1_conditional\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.16398897705272145,\\\\n    \\\\\\\"p_value\\\\\\\": 0.00030868000832392134,\\\\n    \\\\\\\"n\\\\\\\": 480\\\\n  },\\\\n  \\\\\\\"ner_correlation_softjaccard_vs_f1_conditional\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.33685803679978554,\\\\n    \\\\\\\"p_value\\\\\\\": 3.3580697084759704e-14,\\\\n    \\\\\\\"n\\\\\\\": 480\\\\n  },\\\\n  \\\\\\\"ner_n_gold_empty_filtered\\\\\\\": 22,\\\\n  \\\\\\\"ner_n_greedy_f1_zero_filtered\\\\\\\": 49,\\\\n  \\\\\\\"ner_structural_beats_surface\\\\\\\": true,\\\\n  \\\\\\\"ner_rho_advantage\\\\\\\": 0.14954493592339121,\\\\n  \\\\\\\"ner_sample_f1_mean\\\\\\\": 0.6120457119502796,\\\\n  \\\\\\\"ner_sample_f1_std\\\\\\\": 0.31650177703760796,\\\\n  \\\\\\\"ner_sample_f1_pct_zero\\\\\\\": 12.216446124763705,\\\\n  \\\\\\\"ner_logprob_baseline\\\\\\\": {\\\\n    \\\\\\\"full\\\\\\\": {\\\\n      \\\\\\\"rho\\\\\\\": 0.2072664891181495,\\\\n      \\\\\\\"p_rho\\\\\\\": 1.5232427001431113e-06,\\\\n      \\\\\\\"tau\\\\\\\": 0.14857797286448046,\\\\n      \\\\\\\"p_tau\\\\\\\": 1.0979139325289003e-06,\\\\n      \\\\\\\"auroc\\\\\\\": 0.6123789764868603,\\\\n      \\\\\\\"n\\\\\\\": 529\\\\n    },\\\\n    \\\\\\\"conditional\\\\\\\": {\\\\n      \\\\\\\"rho\\\\\\\": 0.15047998893218514,\\\\n      \\\\\\\"p_rho\\\\\\\": 0.0009426531935129758,\\\\n      \\\\\\\"tau\\\\\\\": 0.107528610\n…[truncated 2351 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_exp_020_022_025_20260516T140557",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-16T14:07:07.619392+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_exp_020_022_025_20260516T140557",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/exp_025_n32/report.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-16T14:07:07.619644+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"dataset\\\\\\\": \\\\\\\"scierc\\\\\\\",\\\\n  \\\\\\\"subtask\\\\\\\": \\\\\\\"joint\\\\\\\",\\\\n  \\\\\\\"n_samples\\\\\\\": 32,\\\\n  \\\\\\\"temperature\\\\\\\": 1.0,\\\\n  \\\\\\\"num_instances\\\\\\\": 551,\\\\n  \\\\\\\"use_train_format\\\\\\\": true,\\\\n  \\\\\\\"ner_greedy_f1\\\\\\\": 0.6581145584725536,\\\\n  \\\\\\\"ner_oracle_f1\\\\\\\": 0.8379351740696278,\\\\n  \\\\\\\"ner_oracle_headroom\\\\\\\": 0.17982061559707418,\\\\n  \\\\\\\"ner_fleiss_kappa_mean\\\\\\\": 0.49884618890774235,\\\\n  \\\\\\\"ner_soft_jaccard_mean\\\\\\\": 0.6972727616819528,\\\\n  \\\\\\\"ner_correlation_fleiss_vs_f1_full\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.3104317317443776,\\\\n    \\\\\\\"p_value\\\\\\\": 2.7879349634746094e-13,\\\\n    \\\\\\\"n\\\\\\\": 529\\\\n  },\\\\n  \\\\\\\"ner_correlation_softjaccard_vs_f1_full\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.43972007053492873,\\\\n    \\\\\\\"p_value\\\\\\\": 2.0197400341096664e-26,\\\\n    \\\\\\\"n\\\\\\\": 529\\\\n  },\\\\n  \\\\\\\"ner_correlation_fleiss_vs_f1_conditional\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.22489714613893846,\\\\n    \\\\\\\"p_value\\\\\\\": 6.953617417429226e-07,\\\\n    \\\\\\\"n\\\\\\\": 477\\\\n  },\\\\n  \\\\\\\"ner_correlation_softjaccard_vs_f1_conditional\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.3949849480599202,\\\\n    \\\\\\\"p_value\\\\\\\": 2.929001157753286e-19,\\\\n    \\\\\\\"n\\\\\\\": 477\\\\n  },\\\\n  \\\\\\\"ner_n_gold_empty_filtered\\\\\\\": 22,\\\\n  \\\\\\\"ner_n_greedy_f1_zero_filtered\\\\\\\": 52,\\\\n  \\\\\\\"ner_structural_beats_surface\\\\\\\": true,\\\\n  \\\\\\\"ner_rho_advantage\\\\\\\": 0.12928833879055113,\\\\n  \\\\\\\"ner_sample_f1_mean\\\\\\\": 0.6102440308251512,\\\\n  \\\\\\\"ner_sample_f1_std\\\\\\\": 0.31752821191771086,\\\\n  \\\\\\\"ner_sample_f1_pct_zero\\\\\\\": 12.340500945179585,\\\\n  \\\\\\\"ner_logprob_baseline\\\\\\\": {\\\\n    \\\\\\\"full\\\\\\\": {\\\\n      \\\\\\\"rho\\\\\\\": 0.21069909022670782,\\\\n      \\\\\\\"p_rho\\\\\\\": 1.0103511807447588e-06,\\\\n      \\\\\\\"tau\\\\\\\": 0.15259812016250662,\\\\n      \\\\\\\"p_tau\\\\\\\": 5.442449251443652e-07,\\\\n      \\\\\\\"auroc\\\\\\\": 0.573367358775084,\\\\n      \\\\\\\"n\\\\\\\": 529\\\\n    },\\\\n    \\\\\\\"conditional\\\\\\\": {\\\\n      \\\\\\\"rho\\\\\\\": 0.1476779389494176,\\\\n      \\\\\\\"p_rho\\\\\\\": 0.0012180261242491065,\\\\n      \\\\\\\"tau\\\\\\\": 0.10746986008\n…[truncated 2344 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_exp_020_022_025_20260516T140557",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-16T14:07:07.619806+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_exp_020_022_025_20260516T140557",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "wc -l /root/autodl-tmp/struct_self_consist_ie/output/exp_022_seed789/samples.jsonl",
+              "account": "root"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-16T14:07:07.619949+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"551 /root/autodl-tmp/struct_self_consist_ie/output/exp_022_seed789/samples.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_exp_020_022_025_20260516T140557",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-16T14:07:07.620077+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_exp_020_022_025_20260516T140557",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "wc -l /root/autodl-tmp/struct_self_consist_ie/output/exp_025_n32/samples.jsonl",
+              "account": "root"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-16T14:07:07.620229+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"551 /root/autodl-tmp/struct_self_consist_ie/output/exp_025_n32/samples.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_exp_020_022_025_20260516T140557",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-16T14:07:07.620366+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_exp_020_022_025_20260516T140557",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "tail -5 /root/autodl-tmp/struct_self_consist_ie/checkpoints/ft_fewnerd_smoke/trainer_log.jsonl",
+              "account": "root"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-16T14:07:07.620516+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"current_steps\\\\\\\": 4850, \\\\\\\"total_steps\\\\\\\": 8236, \\\\\\\"loss\\\\\\\": 0.0418, \\\\\\\"lr\\\\\\\": 8.6520273412588e-05, \\\\\\\"epoch\\\\\\\": 0.5889138485823568, \\\\\\\"percentage\\\\\\\": 58.89, \\\\\\\"elapsed_time\\\\\\\": \\\\\\\"3:20:09\\\\\\\", \\\\\\\"remaining_time\\\\\\\": \\\\\\\"2:19:44\\\\\\\"}\\\\n{\\\\\\\"current_steps\\\\\\\": 4900, \\\\\\\"total_steps\\\\\\\": 8236, \\\\\\\"loss\\\\\\\": 0.0444, \\\\\\\"lr\\\\\\\": 8.44235385114088e-05, \\\\\\\"epoch\\\\\\\": 0.5949851253718657, \\\\\\\"percentage\\\\\\\": 59.49, \\\\\\\"elapsed_time\\\\\\\": \\\\\\\"3:21:49\\\\\\\", \\\\\\\"remaining_time\\\\\\\": \\\\\\\"2:17:24\\\\\\\"}\\\\n{\\\\\\\"current_steps\\\\\\\": 4950, \\\\\\\"total_steps\\\\\\\": 8236, \\\\\\\"loss\\\\\\\": 0.0444, \\\\\\\"lr\\\\\\\": 8.233379915409145e-05, \\\\\\\"epoch\\\\\\\": 0.6010564021613746, \\\\\\\"percentage\\\\\\\": 60.1, \\\\\\\"elapsed_time\\\\\\\": \\\\\\\"3:23:28\\\\\\\", \\\\\\\"remaining_time\\\\\\\": \\\\\\\"2:15:04\\\\\\\"}\\\\n{\\\\\\\"current_steps\\\\\\\": 5000, \\\\\\\"total_steps\\\\\\\": 8236, \\\\\\\"loss\\\\\\\": 0.041, \\\\\\\"lr\\\\\\\": 8.025199386337699e-05, \\\\\\\"epoch\\\\\\\": 0.6071276789508834, \\\\\\\"percentage\\\\\\\": 60.71, \\\\\\\"elapsed_time\\\\\\\": \\\\\\\"3:25:09\\\\\\\", \\\\\\\"remaining_time\\\\\\\": \\\\\\\"2:12:46\\\\\\\"}\\\\n{\\\\\\\"current_steps\\\\\\\": 5000, \\\\\\\"total_steps\\\\\\\": 8236, \\\\\\\"eval_loss\\\\\\\": 0.04263564571738243, \\\\\\\"epoch\\\\\\\": 0.6071276789508834, \\\\\\\"percentage\\\\\\\": 60.71, \\\\\\\"elapsed_time\\\\\\\": \\\\\\\"3:35:26\\\\\\\", \\\\\\\"remaining_time\\\\\\\": \\\\\\\"2:19:25\\\\\\\"}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_exp_020_022_025_20260516T140557",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-16T14:07:07.620801+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_exp_020_022_025_20260516T140557",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "ls -la /root/autodl-tmp/struct_self_consist_ie/checkpoints/ft_fewnerd_smoke/checkpoint-5000/",
+              "account": "root"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-16T14:07:07.621277+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 527572\\\\ndrwxr-xr-x 2 root root      4096 May 16 22:05 .\\\\ndrwxr-xr-x 5 root root       120 May 16 22:05 ..\\\\n-rw-r--r-- 1 root root      5250 May 16 22:05 README.md\\\\n-rw-r--r-- 1 root root       951 May 16 22:05 adapter_config.json\\\\n-rw-r--r-- 1 root root 174655536 May 16 22:05 adapter_model.safetensors\\\\n-rw-r--r-- 1 root root       707 May 16 22:05 added_tokens.json\\\\n-rw-r--r-- 1 root root      4168 May 16 22:05 chat_template.jinja\\\\n-rw-r--r-- 1 root root   1671853 May 16 22:05 merges.txt\\\\n-rw-r--r-- 1 root root 349608907 May 16 22:05 optimizer.pt\\\\n-rw-r--r-- 1 root root     14645 May 16 22:05 rng_state.pth\\\\n-rw-r--r-- 1 root root      1465 May 16 22:05 scheduler.pt\\\\n-rw-r--r-- 1 root root       613 May 16 22:05 special_tokens_map.json\\\\n-rw-r--r-- 1 root root  11422654 May 16 22:05 tokenizer.json\\\\n-rw-r--r-- 1 root root      5431 May 16 22:05 tokenizer_config.json\\\\n-rw-r--r-- 1 root root     19470 May 16 22:05 trainer_state.json\\\\n-rw-r--r-- 1 root root      6353 May 16 22:05 training_args.bin\\\\n-rw-r--r-- 1 root root   2776833 May 16 22:05 vocab.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_exp_020_022_025_20260516T140557",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-16T14:07:07.621500+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_exp_020_022_025_20260516T140557",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "find /root/autodl-tmp/struct_self_consist_ie/ -name \"*.log\" -path \"*020*\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-16T14:07:07.621665+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_exp_020_022_025_20260516T140557",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-16T14:07:07.621794+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_exp_020_022_025_20260516T140557",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "find /root/autodl-tmp/struct_self_consist_ie/ -name \"*.log\" -path \"*fewnerd*\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-16T14:07:07.621919+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/checkpoints/fewnerd_train.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_exp_020_022_025_20260516T140557",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-16T14:07:07.622040+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_exp_020_022_025_20260516T140557",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "tail -10 /root/autodl-tmp/struct_self_consist_ie/checkpoints/fewnerd_train.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-16T14:07:07.622198+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_exp_020_022_025_20260516T140557",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "head -1 /root/autodl-tmp/struct_self_consist_ie/output/exp_022_seed789/samples.jsonl",
+              "account": "root"
+            }
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-16T14:07:07.622404+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  \\\\\\\"use_cache\\\\\\\": true,\\\\n  \\\\\\\"use_sliding_window\\\\\\\": false,\\\\n  \\\\\\\"vocab_size\\\\\\\": 151936\\\\n}\\\\n\\\\n[INFO|tokenization_utils_base.py:2421] 2026-05-16 22:05:47,171 >> chat template saved in /root/autodl-tmp/struct_self_consist_ie/checkpoints/ft_fewnerd_smoke/checkpoint-5000/chat_template.jinja\\\\n[INFO|tokenization_utils_base.py:2590] 2026-05-16 22:05:47,171 >> tokenizer config file saved in /root/autodl-tmp/struct_self_consist_ie/checkpoints/ft_fewnerd_smoke/checkpoint-5000/tokenizer_config.json\\\\n[INFO|tokenization_utils_base.py:2599] 2026-05-16 22:05:47,171 >> Special tokens file saved in /root/autodl-tmp/struct_self_consist_ie/checkpoints/ft_fewnerd_smoke/checkpoint-5000/special_tokens_map.json\\\\n[INFO|trainer.py:4418] 2026-05-16 22:05:47,596 >> Deleting older checkpoint [/root/autodl-tmp/struct_self_consist_ie/checkpoints/ft_fewnerd_smoke/checkpoint-2000] due to args.save_total_limit\\\\n\\\\r 61%|██████    | 5001/8236 [3:35:28<168:10:01, 187.14s/it]\\\\r 61%|██████    | 5002/8236 [3:35:30<118:13:59, 131.61s/it]\\\\r 61%|██████    | 5003/8236 [3:35:33<83:23:14, 92.85s/it]  \\\\r 61%|██████    | 5004/8236 [3:35:35<58:55:07, 65.63s/it]\\\\r 61%|██████    | 5005/8236 [3:35:37<41:45:35, 46.53s/it]\\\\r 61%|██████    | 5006/8236 [3:35:39<29:47:15, 33.20s/it]\\\\r 61%|██████    | 5007/8236 [3:35:41<21:25:49, 23.89s/it]\\\\r 61%|██████    | 5008/8236 [3:35:43<15:30:52, 17.30s/it]\\\\r 61%|██████    | 5009/8236 [3:35:45<11:22:36, 12.69s/it]\\\\r 61%|██████    | 5010/8236 [3:35:47<8:29:27,  9.48s/it] \\\\r 61%|██████    | 5011/8236 [3:35:49<6:31:01,  7.27s/it]\\\\r 61%|██████    | 5012/8236 [3:35:51<5:08:17,  5.74s/it]\\\\r 61%|██████    | 5013/8236 [3:35:53<4:07:34,  4.61s/it]\\\\r 61%|██████    | 5014/8236 [3:35:55<3:24:50,  3.81s/it]\\\\r 61%|██████    | 5015/8236 [3:35:57<2:55:36,  3.27s/it]\\\\r 61%|██████    | 5016/8236 [3:35:59<2:33:57,  2.87s/it]\\\\r 61%|██████    | 5017/8236 [3:36:01<2:19:31,  2.60s/it]\\\\r 61%|██████    | 5018/8236 [3:3\n…[truncated 708 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_exp_020_022_025_20260516T140557",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-16T14:07:07.622773+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"id\\\\\\\": \\\\\\\"X96-1059_sent000\\\\\\\", \\\\\\\"text\\\\\\\": \\\\\\\"Recognition of proper nouns in Japanese text has been studied as a part of the more general problem of morphological analysis in Japanese text processing -LRB- -LSB- 1 -RSB- -LSB- 2 -RSB- -RRB- .\\\\\\\", \\\\\\\"gold\\\\\\\": {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"Recognition of proper nouns\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 0, \\\\\\\"end\\\\\\\": 27}, {\\\\\\\"text\\\\\\\": \\\\\\\"proper nouns\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"OtherScientificTerm\\\\\\\", \\\\\\\"start\\\\\\\": 15, \\\\\\\"end\\\\\\\": 27}, {\\\\\\\"text\\\\\\\": \\\\\\\"Japanese text\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Material\\\\\\\", \\\\\\\"start\\\\\\\": 31, \\\\\\\"end\\\\\\\": 44}, {\\\\\\\"text\\\\\\\": \\\\\\\"morphological analysis\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 103, \\\\\\\"end\\\\\\\": 125}, {\\\\\\\"text\\\\\\\": \\\\\\\"Japanese text processing\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 129, \\\\\\\"end\\\\\\\": 153}], \\\\\\\"relations\\\\\\\": [{\\\\\\\"head\\\\\\\": \\\\\\\"Recognition of proper nouns\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"morphological analysis\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"PART-OF\\\\\\\", \\\\\\\"head_start\\\\\\\": 0, \\\\\\\"head_end\\\\\\\": 27, \\\\\\\"tail_start\\\\\\\": 103, \\\\\\\"tail_end\\\\\\\": 125}, {\\\\\\\"head\\\\\\\": \\\\\\\"proper nouns\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"Japanese text\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"PART-OF\\\\\\\", \\\\\\\"head_start\\\\\\\": 15, \\\\\\\"head_end\\\\\\\": 27, \\\\\\\"tail_start\\\\\\\": 31, \\\\\\\"tail_end\\\\\\\": 44}, {\\\\\\\"head\\\\\\\": \\\\\\\"morphological analysis\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"Japanese text processing\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"USED-FOR\\\\\\\", \\\\\\\"head_start\\\\\\\": 103, \\\\\\\"head_end\\\\\\\": 125, \\\\\\\"tail_start\\\\\\\": 129, \\\\\\\"tail_end\\\\\\\": 153}], \\\\\\\"events\\\\\\\": []}, \\\\\\\"samples\\\\\\\": [{\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"Recognition of proper nouns in Japanese text\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 0, \\\\\\\"end\\\\\\\": 44}, {\\\\\\\"text\\\\\\\": \\\\\\\"Japanese text\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Material\\\\\\\", \\\\\\\"start\\\\\\\": 31, \\\\\\\"end\\\\\\\": 44}, {\\\\\\\"text\\\\\\\": \\\\\\\"morphological analysis\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 103, \\\\\\\"end\\\\\\\": 125}, {\\\n…[truncated 8970 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_exp_020_022_025_20260516T140557",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-16T14:07:07.622991+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 实验产出报告\n\n### 1. exp-020 Few-NERD smoke test (LoRA training)\n\n**状态：still_running** (61%, step 5028/8236)\n\n| 项目 | 详情 |\n|------|------|\n| Checkpoint 路径 | `/root/autodl-tmp/struct_self_consist_ie/checkpoints/ft_fewnerd_smoke/` |\n| 已保存 checkpoints | checkpoint-3000, checkpoint-4000, checkpoint-5000 |\n| 当前进度 | 61% (step ~5028), elapsed 3h35m, 剩余约 1h45m |\n| Loss | 0.041 (step 5000), eval_loss 0.0426 |\n| Adapter weights | `checkpoint-5000/adapter_model.safetensors` (167MB) |\n| 训练日志 | `/root/autodl-tmp/struct_self_consist_ie/checkpoints/fewnerd_train.log` |\n\n**结论**：训练仍在进行，预计还需约 1h45m 完成。尚无 merged model，需等训练结束后 merge。\n\n---\n\n### 2. exp-022 seed789 SciERC inference (N=8, T=1.0)\n\n**状态：completed**\n\n| 项目 | 详情 |\n|------|------|\n| 产出路径 | `/root/autodl-tmp/struct_self_consist_ie/output/exp_022_seed789/` |\n| samples.jsonl | 551 行, 19.2MB |\n| report.json | 3.3KB |\n| NER greedy F1 | 0.666, oracle F1 0.786, headroom 11.9pp |\n| NER ρ(soft_jaccard, F1) | 0.384 (full), 0.337 (conditional) |\n| RE greedy F1 | 0.419, oracle F1 0.588, headroom 16.9pp |\n| Verdict | FAIL (RE ρ_sj=0.224 < 0.40 阈值) |\n\n---\n\n### 3. exp-025 N=32 SciERC inference\n\n**状态：completed**\n\n| 项目 | 详情 |\n|------|------|\n| 产出路径 | `/root/autodl-tmp/struct_self_consist_ie/output/exp_025_n32/` |\n| samples.jsonl | 551 行, 69MB |\n| report.json | 3.4KB |\n| NER greedy F1 | 0.658, oracle F1 0.838, headroom **18.0pp** |\n| NER ρ(soft_jaccard, F1) | **0.440** (full), **0.395** (conditional) |\n| NER Fleiss κ mean | 0.499 |\n| RE greedy F1 | 0.423, oracle F1 0.673, headroom **25.0pp** |\n| RE ρ(Fleiss, F1) | 0.353 (full), RE ρ(soft_jaccard) 0.348 (conditional) |\n| Verdict | FAIL (RE ρ_sj=0.300 < 0.40 阈值) |\n\n**N=32 vs N=8 改善**：NER oracle headroom +6pp, NER ρ_sj full 从 0.384→0.440，RE oracle headroom +8pp。信号明显随 N 增大增强，但 RE conditional 仍未达标。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_exp_020_022_025_20260516T140557"
+          },
+          "id": "event-000039"
+        }
+      ],
+      "message_count": 39
+    }
+  ],
+  "readable_path": "readable/conversations/check-exp-020-022-025.md"
+}

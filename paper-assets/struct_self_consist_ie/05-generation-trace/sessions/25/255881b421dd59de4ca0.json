@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "255881b421dd59de4ca0",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "analysis scierc 5seed construction",
+  "task_key": "worker_analysis_scierc-5seed-construction_20260523T191438",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_scierc-5seed-construction_20260523T191438.log",
+    "occurrence": 1,
+    "bytes": 639897,
+    "sha256": "2b9a746042007299bd7a03b3ddbddb0fd1dcf59ea4f94daca88ebf2ad4ffca4f"
+  },
+  "statistics": {
+    "messages": 136,
+    "user_turns": 1,
+    "tool_calls": 43,
+    "roles": {
+      "log": 1,
+      "system": 29,
+      "record": 1,
+      "assistant": 17,
+      "tool_call": 43,
+      "tool_result": 43,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 12,
+      "chunks": [
+        {
+          "path": "255881b421dd59de4ca0-part-0001.json",
+          "message_count": 12
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 124,
+      "chunks": [
+        {
+          "path": "255881b421dd59de4ca0-part-0001.json",
+          "message_count": 110
+        },
+        {
+          "path": "255881b421dd59de4ca0-part-0002.json",
+          "message_count": 14
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-scierc-5seed-construction.md"
+}

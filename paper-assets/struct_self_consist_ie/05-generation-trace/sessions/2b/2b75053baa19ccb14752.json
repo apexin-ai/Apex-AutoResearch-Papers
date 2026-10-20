@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2b75053baa19ccb14752",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ssh b2 oof and n validation",
+  "task_key": "worker_ssh_b2-oof-and-n-validation_20260520T114212",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_b2-oof-and-n-validation_20260520T114212_result.json",
+    "occurrence": 1,
+    "bytes": 1841,
+    "sha256": "be008809519d92b33723ae2668667cee34dc00d47e3fc098125fe600c2154c09"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n## 结果汇总\n\n### 任务 1: B2 Out-of-Fold Construction 评估\n\n**设置**: 18,855 instances (SciERC×3 + CoNLL×3 + FewNERD×3), 80,647 entity candidates, 5-fold instance-level CV, LightGBM verifier.\n\n**OOF AUC**: 0.9233 ± 0.0018 (verifier discrimination能力仍然很强)\n\n**关键结果** (fold-averaged, unbiased):\n\n| Method | F1 | vs Greedy |\n|---|---|---|\n| Greedy | 0.8216 | — |\n| Majority Vote | 0.8048 | -1.68pp |\n| **OOF Path A** | **0.8246** | **+0.30pp** |\n| OOF Path B | 0.8059 | -1.57pp |\n\n**结论**: 原始 B2 的 +3.62pp 中，**91% 是 train-on-test 泄露**。OOF 后 Path A 仅剩 +0.32pp（不显著），Path B 反而伤害性能。**B2 verifier 不应进入论文 §5。**\n\nPer-dataset: SciERC +1.28pp, CoNLL +0.55pp, FewNERD +0.02pp (≈0)\n\n---\n\n### 任务 2: N Inverse Scaling 数据验证\n\n**n=4351 原因**: `exp_027_fewnerd_n16` 仅包含 5000 instances（4 shards × 1250，ID 分布在 6-37627），gold_filter 后剩 4351。完整 FewNERD test set 有 37,648 lines / 32,565 with gold。\n\n**F1=0.7926 原因**: 这是该 subset 上的 greedy F1，完全合法。完整 test set 的 greedy F1=0.7913（仅差 +0.13pp）。\n\n**N_samples 差异**: exp_027 有 N=16 samples（专为 inverse scaling 实验生成），而其他 FewNERD 实验用 N=8。\n\n**结论: 不是 bug。** Inverse scaling 分析在一个有代表性的 subset 上运行，相对比较（inverse scaling detection）仍然有效。但论文中引用绝对数值时需注明 subset（n=4351/32565）。\n\n**产出文件**:\n- `artifacts/b2_oof/oof_construction_f1.json` — 完整 OOF 结果\n- `artifacts/b2_oof/comparison.json` — 对比摘要\n- `artifacts/b2_oof/b2_oof_evaluation.py` — 完整代码\n- `artifacts/n_inverse_scaling/data_validation.json` — 数据验证结果"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-b2-oof-and-n-validation.md"
+}

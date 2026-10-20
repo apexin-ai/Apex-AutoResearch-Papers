@@ -1,0 +1,3009 @@
+# ssh 5090c collect e2 scierc fill gpu
+
+**When Self-Consistency Fails for NER: Degeneracy, Signal Collapse, and the Correlation-Selection Gap** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 61
+- **Recorded user turns:** 0
+- **Tool calls:** 23
+- **Original source:** `logs/workers/worker_ssh_5090c_collect_e2_scierc_fill_gpu_20260521T143841.log`
+- **Structured JSON:** [`5e0d2b3c32fe0575847f.json`](../../sessions/5e/5e0d2b3c32fe0575847f.json)
+
+## Before a recorded user message
+
+61 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "session_id": "a94f6381-619b-451f-90e4-77c695265736",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__read_registry",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only",
+    "mcp__agent-ml-research__update_registry"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "f0f8d7e1-90cc-47d2-b91a-e631c385a886",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed_warning",
+    "resetsAt": 1779580800,
+    "rateLimitType": "seven_day",
+    "utilization": 0.85,
+    "isUsingOverage": false,
+    "surpassedThreshold": 0.75
+  },
+  "uuid": "aebb1ab9-a250-4575-a826-3929fb99084a",
+  "session_id": "a94f6381-619b-451f-90e4-77c695265736"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to:
+1. SSH to autodl-5090-c to collect experiment results for e2_pretrained_scierc_s123 and s456
+2. Check available models on the server
+3. Update registry with results
+4. Report findings
+
+Let me start by loading the necessary MCP tools.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a94f6381-619b-451f-90e4-77c695265736",
+  "uuid": "c0101b23-aa5c-4c16-8ce2-5a6eab592559",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AZKTtc2ZDMjA3XNBmcYt7k",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12200,
+      "cache_read_input_tokens": 11701,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12200
+      },
+      "output_tokens": 40,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01QEoT8Hxj7TMGa3rC8wG7oc`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__read_registry",
+  "max_results": 4
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a94f6381-619b-451f-90e4-77c695265736",
+  "uuid": "ddfa699f-af37-41dc-bfdb-405dc7305053",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AZKTtc2ZDMjA3XNBmcYt7k",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12200,
+      "cache_read_input_tokens": 11701,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12200
+      },
+      "output_tokens": 40,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-21T14:38:57.383Z_
+
+<details><summary>↩ Tool result · `toolu_01QEoT8Hxj7TMGa3rC8wG7oc`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__update_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_registry"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a94f6381-619b-451f-90e4-77c695265736",
+  "uuid": "ca413492-8b57-4454-ad62-7ce45e5632ba",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__update_registry",
+      "mcp__agent-ml-research__read_registry"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__read_registry",
+    "total_deferred_tools": 26
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by running the SSH commands in parallel to collect experiment results and check available models.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a94f6381-619b-451f-90e4-77c695265736",
+  "uuid": "f1200a09-3d0f-4ced-b0a8-eeca38ad49bc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QkR3pQa4wX6GL37nGx2zGg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1598,
+      "cache_read_input_tokens": 23901,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1598
+      },
+      "output_tokens": 38,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 8_
+
+开始收集结果和检查模型。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a94f6381-619b-451f-90e4-77c695265736",
+  "uuid": "45e0c5cf-158d-43e6-9a5e-885758864feb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QkR3pQa4wX6GL37nGx2zGg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1598,
+      "cache_read_input_tokens": 23901,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1598
+      },
+      "output_tokens": 38,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01FMz5BbEAK7MnxocFBReXNw`</summary>
+
+```json
+{
+  "server": "autodl-5090-c",
+  "command": "find /root/autodl-tmp/struct_self_consist_ie/output/ -maxdepth 3 -name \"report.json\" -path \"*scierc*\" 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a94f6381-619b-451f-90e4-77c695265736",
+  "uuid": "9aa5474b-ae01-4554-a186-6d5d7c448a11",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QkR3pQa4wX6GL37nGx2zGg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1598,
+      "cache_read_input_tokens": 23901,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1598
+      },
+      "output_tokens": 38,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-21T14:39:02.142Z_
+
+<details><summary>↩ Tool result · `toolu_01FMz5BbEAK7MnxocFBReXNw`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a94f6381-619b-451f-90e4-77c695265736",
+  "uuid": "f0f78e84-f47f-46cf-82ad-8524440f61d2",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_014AFnDmNdHUh3kg4UmihLoc`</summary>
+
+```json
+{
+  "server": "autodl-5090-c",
+  "command": "ls -lt /root/autodl-tmp/struct_self_consist_ie/output/ 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a94f6381-619b-451f-90e4-77c695265736",
+  "uuid": "db18cad2-9948-476f-8764-35c802ca6fe8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QkR3pQa4wX6GL37nGx2zGg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1598,
+      "cache_read_input_tokens": 23901,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1598
+      },
+      "output_tokens": 38,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-21T14:39:03.065Z_
+
+<details><summary>↩ Tool result · `toolu_014AFnDmNdHUh3kg4UmihLoc`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a94f6381-619b-451f-90e4-77c695265736",
+  "uuid": "5c45fc40-dfe3-4e13-a387-8b7144c22aff",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01PKPWrY7iu2Fn2zvuqLbMs7`</summary>
+
+```json
+{
+  "server": "autodl-5090-c",
+  "command": "ls -la /root/autodl-tmp/struct_self_consist_ie/checkpoints/ 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a94f6381-619b-451f-90e4-77c695265736",
+  "uuid": "2691397f-316c-4e77-961b-45c5da3d8856",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QkR3pQa4wX6GL37nGx2zGg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1598,
+      "cache_read_input_tokens": 23901,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1598
+      },
+      "output_tokens": 38,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-21T14:39:04.138Z_
+
+<details><summary>↩ Tool result · `toolu_01PKPWrY7iu2Fn2zvuqLbMs7`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a94f6381-619b-451f-90e4-77c695265736",
+  "uuid": "e6df7e72-54e9-4fe6-8c14-fe0eda081ebc",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_011Lkpf44vxAVmDps3Dx9yZm`</summary>
+
+```json
+{
+  "server": "autodl-5090-c",
+  "command": "ls -la /root/autodl-tmp/models/ 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a94f6381-619b-451f-90e4-77c695265736",
+  "uuid": "1b95c6e9-128e-4b3a-8639-ace8b6becb76",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QkR3pQa4wX6GL37nGx2zGg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1598,
+      "cache_read_input_tokens": 23901,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1598
+      },
+      "output_tokens": 38,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-21T14:39:04.997Z_
+
+<details><summary>↩ Tool result · `toolu_011Lkpf44vxAVmDps3Dx9yZm`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a94f6381-619b-451f-90e4-77c695265736",
+  "uuid": "5887238b-5e3e-46d3-8e49-655990729be5",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01G9HvSenzcQutZ633vSRQih`</summary>
+
+```json
+{
+  "filters": {
+    "exp_id": "exp_e2_pretrained_scierc_s123"
+  },
+  "project": "struct_self_consist_ie",
+  "fields": [
+    "*"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a94f6381-619b-451f-90e4-77c695265736",
+  "uuid": "74e69c21-15cc-4b4d-af57-381f2ac5825f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QkR3pQa4wX6GL37nGx2zGg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1598,
+      "cache_read_input_tokens": 23901,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1598
+      },
+      "output_tokens": 38,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-21T14:39:06.364Z_
+
+<details><summary>↩ Tool result · `toolu_01G9HvSenzcQutZ633vSRQih`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7817}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a94f6381-619b-451f-90e4-77c695265736",
+  "uuid": "03ba6542-fa63-4ff3-a6d3-6f532df7f422",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.7817}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7817}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 19_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The `2>/dev/null` redirect is being blocked by the shell metacharacter filter. Let me retry without redirects. Also let me check the registry with a different filter since `exp_id` might not be a filterable field.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a94f6381-619b-451f-90e4-77c695265736",
+  "uuid": "6bc91d99-d61e-4229-b638-bff303d5b882",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01515osbUXbnbhyEdJbt6W2v",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1215,
+      "cache_read_input_tokens": 25499,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1215
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 20_
+
+重定向符号被拦截了，去掉 `2>/dev/null` 重试。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a94f6381-619b-451f-90e4-77c695265736",
+  "uuid": "d095536a-c803-42c1-8469-6c68cf23d433",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01515osbUXbnbhyEdJbt6W2v",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1215,
+      "cache_read_input_tokens": 25499,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1215
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_015ZyMVofZSt8TK7BzT2EoMq`</summary>
+
+```json
+{
+  "server": "autodl-5090-c",
+  "command": "find /root/autodl-tmp/struct_self_consist_ie/output/ -maxdepth 3 -name \"report.json\" -path \"*scierc*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a94f6381-619b-451f-90e4-77c695265736",
+  "uuid": "d79964f0-d640-49cc-8ba3-b867173c1420",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01515osbUXbnbhyEdJbt6W2v",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1215,
+      "cache_read_input_tokens": 25499,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1215
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01K6rd9czWY6kSgPTRMXeSWt`</summary>
+
+```json
+{
+  "server": "autodl-5090-c",
+  "command": "ls -lt /root/autodl-tmp/struct_self_consist_ie/output/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a94f6381-619b-451f-90e4-77c695265736",
+  "uuid": "b1934e77-1655-490d-a20f-ab0a2af1e1be",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01515osbUXbnbhyEdJbt6W2v",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1215,
+      "cache_read_input_tokens": 25499,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1215
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-21T14:39:13.389Z_
+
+<details><summary>↩ Tool result · `toolu_015ZyMVofZSt8TK7BzT2EoMq`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/output/14b_final_inference/scierc_n1/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/14b_final_inference/scierc_n2/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/14b_final_inference/scierc_n4/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/14b_final_inference/scierc_n8/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/14b_final_inference/scierc_n16/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_scierc_8b_t08_s42/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/scierc_t08_s123/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/scierc_t12_s456/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/e2_pretrained_scierc/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/scierc_n16_s42/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/e2_pretrained_scierc_s123/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/e2_pretrained_scierc_s456/report.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.85}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a94f6381-619b-451f-90e4-77c695265736",
+  "uuid": "c88cd2c9-6fe1-4f43-a4e6-f687412c6fad",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/14b_final_inference/scierc_n1/report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/14b_final_inference/scierc_n2/report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/14b_final_inference/scierc_n4/report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/14b_final_inference/scierc_n8/report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/14b_final_inference/scierc_n16/report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_scierc_8b_t08_s42/report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/scierc_t08_s123/report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/scierc_t12_s456/report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/e2_pretrained_scierc/report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/scierc_n16_s42/report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/e2_pretrained_scierc_s123/report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/e2_pretrained_scierc_s456/report.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.85}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/output/14b_final_inference/scierc_n1/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/14b_final_inference/scierc_n2/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/14b_final_inference/scierc_n4/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/14b_final_inference/scierc_n8/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/14b_final_inference/scierc_n16/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_scierc_8b_t08_s42/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/scierc_t08_s123/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/scierc_t12_s456/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/e2_pretrained_scierc/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/scierc_n16_s42/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/e2_pretrained_scierc_s123/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/e2_pretrained_scierc_s456/report.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.85}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_017TXxZ6D2WAj77FDGQpnc5h`</summary>
+
+```json
+{
+  "server": "autodl-5090-c",
+  "command": "ls -la /root/autodl-tmp/struct_self_consist_ie/checkpoints/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a94f6381-619b-451f-90e4-77c695265736",
+  "uuid": "6828992d-77ff-4ba4-b398-01378c6f5883",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01515osbUXbnbhyEdJbt6W2v",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1215,
+      "cache_read_input_tokens": 25499,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1215
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01HfVthshy5zgB5iP2GVJ5Xv`</summary>
+
+```json
+{
+  "server": "autodl-5090-c",
+  "command": "ls -la /root/autodl-tmp/models/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a94f6381-619b-451f-90e4-77c695265736",
+  "uuid": "5640bc7e-f543-4398-9d23-e4f1df2dae02",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01515osbUXbnbhyEdJbt6W2v",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1215,
+      "cache_read_input_tokens": 25499,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1215
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01AH76CPZoXbc5jYWeJaYSEy`</summary>
+
+```json
+{
+  "filters": {
+    "status": "RUNNING"
+  },
+  "project": "struct_self_consist_ie",
+  "fields": [
+    "*"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a94f6381-619b-451f-90e4-77c695265736",
+  "uuid": "55e55771-71ab-4a6a-bb13-6daf363654f9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01515osbUXbnbhyEdJbt6W2v",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1215,
+      "cache_read_input_tokens": 25499,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1215
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-21T14:39:14.508Z_
+
+<details><summary>↩ Tool result · `toolu_01K6rd9czWY6kSgPTRMXeSWt`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 11448\\ndrwxr-xr-x  2 root root      58 May 21 22:26 e2_pretrained_scierc_s123\\ndrwxr-xr-x  2 root root      58 May 21 22:26 e2_pretrained_scierc_s456\\ndrwxr-xr-x  2 root root      58 May 21 21:20 e2_pretrained_conll_s123\\ndrwxr-xr-x  2 root root      58 May 21 21:20 e2_pretrained_conll_s456\\ndrwxr-xr-x  2 root root      58 May 21 20:18 conll_n16_s123\\n-rw-r--r--  1 root root     214 May 21 19:58 e3_mbr_multiseed_results.json\\ndrwxr-xr-x  2 root root      58 May 21 19:46 scierc_n16_s42\\ndrwxr-xr-x  2 root root      35 May 21 19:43 frontier_sc_claude_sonnet4\\ndrwxr-xr-x  2 root root      10 May 21 19:23 fewnerd_n16_s123\\ndrwxr-xr-x  2 root root      10 May 21 19:22 scierc_n16_s123\\n-rw-r--r--  1 root root  499885 May 21 19:03 14b_conll_v2_run.log\\ndrwxr-xr-x  2 root root      58 May 21 19:03 14b_conll_v2\\ndrwxr-xr-x  2 root root      58 May 21 19:02 fewnerd_n16_seed456_v2\\ndrwxr-xr-x  2 root root      58 May 21 18:27 conll_mf4v2_seed42\\ndrwxr-xr-x  2 root root      10 May 21 18:18 e2_pretrained_fewnerd_s123\\ndrwxr-xr-x  2 root root      87 May 21 17:12 frontier_sc_gemini25pro\\ndrwxr-xr-x  2 root root      87 May 21 15:58 frontier_sc_deepseek\\ndrwxr-xr-x  2 root root      58 May 21 15:34 conll_n16_seed456_v2\\ndrwxr-xr-x  2 root root      58 May 21 15:34 conll_n16_seed123_v2\\ndrwxr-xr-x  2 root root      58 May 21 15:24 e2_pretrained_scierc\\ndrwxr-xr-x 17 root root    4096 May 21 14:55 14b_final_inference\\ndrwxr-xr-x  2 root root      87 May 21 14:52 frontier_sc_gpt55_fewnerd\\ndrwxr-xr-x  6 root root     106 May 21 14:20 14b_base_inference\\ndrwxr-xr-x  2 root root      58 May 21 13:37 fewnerd_7b_n16_seed42\\ndrwxr-xr-x  2 root root      87 May 21 13:09 frontier_sc_gpt55_fewnerd_dryrun2\\ndrwxr-xr-x  2 root root      10 May 21 12:32 fewnerd_n16_seed456\\ndrwxr-xr-x  2 root root    4096 May 21 12:07 entity_probe_fulldata\\ndrwxr-xr-x  2 root root      58 May 21 11:31 scierc_t12_s456\\ndrwxr-xr-x  2 root root      58 May 21 11:30 conll_n16_s42\\ndrwxr-xr-x  2 root root    4096 May 21 11:21 entity_probe_auroc_groupkfold\\ndrwxr-xr-x  2 root root      58 May 21 11:17 scierc_t08_s123\\ndrwxr-xr-x  2 root root      58 May 21 10:41 exp_conll_t10_seed42\\ndrwxr-xr-x  2 root root    4096 May 21 10:41 entity_probe_auroc\\ndrwxr-xr-x  2 root root      58 May 21 10:33 exp_scierc_8b_t08_s42\\ndrwxr-xr-x  2 root root      10 May 21 09:43 exp_002_conll_n16\\ndrwxr-xr-x  2 root root      10 May 21 09:43 exp_012_rerun_1024\\ndrwxr-xr-x  2 root root      10 May 21 09:43 exp_021_inference\\n-rw-r--r--  1 root root  323332 May 21 08:54 exp_conll_t12_seed456.log\\ndrwxr-xr-x  2 root root      58 May 21 08:54 exp_conll_t12_seed456\\n-rw-r--r--  1 root root  319392 May 21 08:53 exp_conll_t08_seed456.log\\ndrwxr-xr-x  2 root root      58 May 21 08:53 exp_conll_t08_seed456\\n-rw-r--r--  1 root root  316813 May 21 08:52 exp_conll_t05_seed456.log\\ndrwxr-xr-x  2 root root      58 May 21 08:52 exp_conll_t05_seed456\\n-rw-r--r--  1 root root  322119 May 21 07:49 exp_conll_t12_seed123.log\\ndrwxr-xr-x  2 root root      58 May 21 07:49 exp_conll_t12_seed123\\n-rw-r--r--  1 root root  318830 May 21 07:49 exp_conll_t08_seed123.log\\ndrwxr-xr-x  2 root root      58 May 21 07:49 exp_conll_t08_seed123\\n-rw-r--r--  1 root root  315237 May 21 07:48 exp_conll_t05_seed123.log\\ndrwxr-xr-x  2 root root      58 May 21 07:48 exp_conll_t05_seed123\\n-rw-r--r--  1 root root  331943 May 21 06:51 exp_conll_t12_seed42.log\\ndrwxr-xr-x  2 root root      58 May 21 06:51 exp_conll_t12_seed42\\n-rw-r--r--  1 root root  318510 May 21 06:50 exp_conll_t08_seed42.log\\ndrwxr-xr-x  2 root root      58 May 21 06:50 exp_conll_t08_seed42\\n-rw-r--r--  1 root root  318771 May 21 06:50 exp_conll_t05_seed42.log\\ndrwxr-xr-x  2 root root      58 May 21 06:50 exp_conll_t05_seed42\\ndrwxr-xr-x  2 root root     119 May 21 05:19 fewrel_re_sc\\ndrwxr-xr-x  2 root root     100 May 21 04:40 re_sc\\ndrwxr-xr-x  2 root root     140 May 21 04:40 docred_re_sc\\n-rw-r--r--  1 root root 3750935 May 21 03:30 exp_tlow_fewnerd_t05_s42.log\\ndrwxr-xr-x  2 root root      58 May 21 03:30 exp_tlow_fewnerd_t05_s42\\n-rw-r--r--  1 root root    9698 May 21 01:27 exp_esj_entity_self_judgment.log\\ndrwxr-xr-x  2 root root      38 May 21 01:27 exp_esj_entity_self_judgment\\ndrwxr-xr-x  2 root root      38 May 21 01:00 exp_esj_entity_self_judgment_dryrun\\n-rw-r--r--  1 root root    2894 May 21 00:51 exp_lsc_latent_sc.log\\ndrwxr-xr-x  2 root root      66 May 21 00:51 exp_lsc_latent_sc\\n-rw-r--r--  1 root root    2752 May 21 00:48 exp_mrsc_multi_round.log\\ndrwxr-xr-x  2 root root      66 May 21 00:42 exp_lsc_latent_sc_dryrun\\ndrwxr-xr-x  2 root root      39 May 21 00:36 exp_mrsc_multi_round\\ndrwxr-xr-x  2 root root    4096 May 20 20:26 exp_b3_prompted_diversity\\ndrwxr-xr-x  3 root root      43 May 20 19:21 fewnerd_14b_ckpt36000\\ndrwxr-xr-x  4 root root      73 May 20 11:58 fewnerd_7b\\ndrwxr-xr-x  2 root root      10 May 20 04:44 7b_ft_signals\\ndrwxr-xr-x  5 root root     105 May 19 18:21 wnut17\\n-rw-r--r--  1 root root 4079598 May 19 06:13 exp_fewnerd_seed789.log\\ndrwxr-xr-x  2 root root      58 May 19 06:13 exp_fewnerd_seed789\\n-rw-r--r--  1 root root  416853 May 19 04:52 exp_conll_seed789.log\\ndrwxr-xr-x  2 root root      58 May 19 04:52 exp_conll_seed789\\ndrwxr-xr-x  2 root root      10 May 19 04:37 exp_llama_scierc_seed123\\n-rw-r--r--  1 root root     581 May 19 04:36 exp_scierc_seed789_5090c.log\\n-rw-r--r--  1 root root     581 May 19 04:36 exp_scierc_t12_seed456.log\\ndrwxr-xr-x  2 root root      10 May 19 04:36 exp_scierc_t12_seed456\\ndrwxr-xr-x  2 root root      10 May 19 04:36 exp_scierc_seed789_5090c\\ndrwxr-xr-x  2 root root      10 May 19 04:05 exp_fewnerd_seed456\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.11}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a94f6381-619b-451f-90e4-77c695265736",
+  "uuid": "a4bdba41-3e1f-4e59-b1ac-367975df890d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 11448\\\\ndrwxr-xr-x  2 root root      58 May 21 22:26 e2_pretrained_scierc_s123\\\\ndrwxr-xr-x  2 root root      58 May 21 22:26 e2_pretrained_scierc_s456\\\\ndrwxr-xr-x  2 root root      58 May 21 21:20 e2_pretrained_conll_s123\\\\ndrwxr-xr-x  2 root root      58 May 21 21:20 e2_pretrained_conll_s456\\\\ndrwxr-xr-x  2 root root      58 May 21 20:18 conll_n16_s123\\\\n-rw-r--r--  1 root root     214 May 21 19:58 e3_mbr_multiseed_results.json\\\\ndrwxr-xr-x  2 root root      58 May 21 19:46 scierc_n16_s42\\\\ndrwxr-xr-x  2 root root      35 May 21 19:43 frontier_sc_claude_sonnet4\\\\ndrwxr-xr-x  2 root root      10 May 21 19:23 fewnerd_n16_s123\\\\ndrwxr-xr-x  2 root root      10 May 21 19:22 scierc_n16_s123\\\\n-rw-r--r--  1 root root  499885 May 21 19:03 14b_conll_v2_run.log\\\\ndrwxr-xr-x  2 root root      58 May 21 19:03 14b_conll_v2\\\\ndrwxr-xr-x  2 root root      58 May 21 19:02 fewnerd_n16_seed456_v2\\\\ndrwxr-xr-x  2 root root      58 May 21 18:27 conll_mf4v2_seed42\\\\ndrwxr-xr-x  2 root root      10 May 21 18:18 e2_pretrained_fewnerd_s123\\\\ndrwxr-xr-x  2 root root      87 May 21 17:12 frontier_sc_gemini25pro\\\\ndrwxr-xr-x  2 root root      87 May 21 15:58 frontier_sc_deepseek\\\\ndrwxr-xr-x  2 root root      58 May 21 15:34 conll_n16_seed456_v2\\\\ndrwxr-xr-x  2 root root      58 May 21 15:34 conll_n16_seed123_v2\\\\ndrwxr-xr-x  2 root root      58 May 21 15:24 e2_pretrained_scierc\\\\ndrwxr-xr-x 17 root root    4096 May 21 14:55 14b_final_inference\\\\ndrwxr-xr-x  2 root root      87 May 21 14:52 frontier_sc_gpt55_fewnerd\\\\ndrwxr-xr-x  6 root root     106 May 21 14:20 14b_base_inference\\\\ndrwxr-xr-x  2 root root      58 May 21 13:37 fewnerd_7b_n16_seed42\\\\ndrwxr-xr-x  2 root root      87 May 21 13:09 frontier_sc_gpt55_fewnerd_dryrun2\\\\ndrwxr-xr-x  2 root root      10 May 21 12:32 fewnerd_n16_seed456\\\\ndrwxr-xr-x  2 root root    4096 May 21 12:07 entity_probe_fulldata\\\\ndrwxr-xr-x  2 root root      58 May 21 11:31 scierc_t12_s456\\\\ndrwxr-xr-x  2 root root      58 May 21 11:30 conll_n16_s42\\\\ndrwxr-xr-x  2 root root    4096 May 21 11:21 entity_probe_auroc_groupkfold\\\\ndrwxr-xr-x  2 root root      58 May 21 11:17 scierc_t08_s123\\\\ndrwxr-xr-x  2 root root      58 May 21 10:41 exp_conll_t10_seed42\\\\ndrwxr-xr-x  2 root root    4096 May 21 10:41 entity_probe_auroc\\\\ndrwxr-xr-x  2 root root      58 May 21 10:33 exp_scierc_8b_t08_s42\\\\ndrwxr-xr-x  2 root root      10 May 21 09:43 exp_002_conll_n16\\\\ndrwxr-xr-x  2 root root      10 May 21 09:43 exp_012_rerun_1024\\\\ndrwxr-xr-x  2 root root      10 May 21 09:43 exp_021_inference\\\\n-rw-r--r--  1 root root  323332 May 21 08:54 exp_conll_t12_seed456.log\\\\ndrwxr-xr-x  2 root root      58 May 21 08:54 exp_conll_t12_seed456\\\\n-rw-r--r--  1 root root  319392 May 21 08:53 exp_conll_t08_seed456.log\\\\ndrwxr-xr-x  2 root root      58 May 21 08:53 exp_conll_t08_seed456\\\\n-rw-r--r--  1 root root  316813 May 21 08:52 exp_conll_t05_seed456.log\\\\ndrwxr-xr-x  2 root root      58 May 21 08:52 exp_conll_t05_seed456\\\\n-rw-r--r--  1 root root  322119 May 21 07:49 exp_conll_t12_seed123.log\\\\ndrwxr-xr-x  2 root root      58 May 21 07:49 exp_conll_t12_seed123\\\\n-rw-r--r--  1 root root  318830 May 21 07:49 exp_conll_t08_seed123.log\\\\ndrwxr-xr-x  2 root root      58 May 21 07:49 exp_conll_t08_seed123\\\\n-rw-r--r--  1 root root  315237 May 21 07:48 exp_conll_t05_seed123.log\\\\ndrwxr-xr-x  2 root root      58 May 21 07:48 exp_conll_t05_seed123\\\\n-rw-r--r--  1 root root  331943 May 21 06:51 exp_conll_t12_seed42.log\\\\ndrwxr-xr-x  2 root root      58 May 21 06:51 exp_conll_t12_seed42\\\\n-rw-r--r--  1 root root  318510 May 21 06:50 exp_conll_t08_seed42.log\\\\ndrwxr-xr-x  2 root root      58 May 21 06:50 exp_conll_t08_seed42\\\\n-rw-r--r--  1 root root  318771 May 21 06:50 exp_conll_t05_seed42.log\\\\ndrwxr-xr-x  2 root root      58 May 21 06:50 exp_conll_t05_seed42\\\\ndrwxr-xr-x  2 root root     119 May 21 05:19 fewrel_re_sc\\\\ndrwxr-xr-x  2 root root     100 May 21 04:40 re_sc\\\\ndrwxr-xr-x  2 root root     140 May 21 04:40 docred_re_sc\\\\n-rw-r--r--  1 root root 3750935 May 21 03:30 exp_tlow_fewnerd_t05_s42.log\\\\ndrwxr-xr-x  2 root root      58 May 21 03:30 exp_tlow_fewnerd_t05_s42\\\\n-rw-r--r--  1 root root    9698 May 21 01:27 exp_esj_entity_self_judgment.log\\\\ndrwxr-xr-x  2 root root      38 May 21 01:27 exp_esj_entity_self_judgment\\\\ndrwxr-xr-x  2 root root      38 May 21 01:00 exp_esj_entity_self_judgment_dryrun\\\\n-rw-r--r--  1 root root    2894 May 21 00:51 exp_lsc_latent_sc.log\\\\ndrwxr-xr-x  2 root root      66 May 21 00:51 exp_lsc_latent_sc\\\\n-rw-r--r--  1 root root    2752 May 21 00:48 exp_mrsc_multi_round.log\\\\ndrwxr-xr-x  2 root root      66 May 21 00:42 exp_lsc_latent_sc_dryrun\\\\ndrwxr-xr-x  2 root root      39 May 21 00:36 exp_mrsc_multi_round\\\\ndrwxr-xr-x  2 root root    4096 May 20 20:26 exp_b3_prompted_diversity\\\\ndrwxr-xr-x  3 root root      43 May 20 19:21 fewnerd_14b_ckpt36000\\\\ndrwxr-xr-x  4 root root      73 May 20 11:58 fewnerd_7b\\\\ndrwxr-xr-x  2 root root      10 May 20 04:44 7b_ft_signals\\\\ndrwxr-xr-x  5 root root     105 May 19 18:21 wnut17\\\\n-rw-r--r--  1 root root 4079598 May 19 06:13 exp_fewnerd_seed789.log\\\\ndrwxr-xr-x  2 root root      58 May 19 06:13 exp_fewnerd_seed789\\\\n-rw-r--r--  1 root root  416853 May 19 04:52 exp_conll_seed789.log\\\\ndrwxr-xr-x  2 root root      58 May 19 04:52 exp_conll_seed789\\\\ndrwxr-xr-x  2 root root      10 May 19 04:37 exp_llama_scierc_seed123\\\\n-rw-r--r--  1 root root     581 May 19 04:36 exp_scierc_seed789_5090c.log\\\\n-rw-r--r--  1 root root     581 May 19 04:36 exp_scierc_t12_seed456.log\\\\ndrwxr-xr-x  2 root root      10 May 19 04:36 exp_scierc_t12_seed456\\\\ndrwxr-xr-x  2 root root      10 May 19 04:36 exp_scierc_seed789_5090c\\\\ndrwxr-xr-x  2 root root      10 May 19 04:05 exp_fewnerd_seed456\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.11}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 11448\\ndrwxr-xr-x  2 root root      58 May 21 22:26 e2_pretrained_scierc_s123\\ndrwxr-xr-x  2 root root      58 May 21 22:26 e2_pretrained_scierc_s456\\ndrwxr-xr-x  2 root root      58 May 21 21:20 e2_pretrained_conll_s123\\ndrwxr-xr-x  2 root root      58 May 21 21:20 e2_pretrained_conll_s456\\ndrwxr-xr-x  2 root root      58 May 21 20:18 conll_n16_s123\\n-rw-r--r--  1 root root     214 May 21 19:58 e3_mbr_multiseed_results.json\\ndrwxr-xr-x  2 root root      58 May 21 19:46 scierc_n16_s42\\ndrwxr-xr-x  2 root root      35 May 21 19:43 frontier_sc_claude_sonnet4\\ndrwxr-xr-x  2 root root      10 May 21 19:23 fewnerd_n16_s123\\ndrwxr-xr-x  2 root root      10 May 21 19:22 scierc_n16_s123\\n-rw-r--r--  1 root root  499885 May 21 19:03 14b_conll_v2_run.log\\ndrwxr-xr-x  2 root root      58 May 21 19:03 14b_conll_v2\\ndrwxr-xr-x  2 root root      58 May 21 19:02 fewnerd_n16_seed456_v2\\ndrwxr-xr-x  2 root root      58 May 21 18:27 conll_mf4v2_seed42\\ndrwxr-xr-x  2 root root      10 May 21 18:18 e2_pretrained_fewnerd_s123\\ndrwxr-xr-x  2 root root      87 May 21 17:12 frontier_sc_gemini25pro\\ndrwxr-xr-x  2 root root      87 May 21 15:58 frontier_sc_deepseek\\ndrwxr-xr-x  2 root root      58 May 21 15:34 conll_n16_seed456_v2\\ndrwxr-xr-x  2 root root      58 May 21 15:34 conll_n16_seed123_v2\\ndrwxr-xr-x  2 root root      58 May 21 15:24 e2_pretrained_scierc\\ndrwxr-xr-x 17 root root    4096 May 21 14:55 14b_final_inference\\ndrwxr-xr-x  2 root root      87 May 21 14:52 frontier_sc_gpt55_fewnerd\\ndrwxr-xr-x  6 root root     106 May 21 14:20 14b_base_inference\\ndrwxr-xr-x  2 root root      58 May 21 13:37 fewnerd_7b_n16_seed42\\ndrwxr-xr-x  2 root root      87 May 21 13:09 frontier_sc_gpt55_fewnerd_dryrun2\\ndrwxr-xr-x  2 root root      10 May 21 12:32 fewnerd_n16_seed456\\ndrwxr-xr-x  2 root root    4096 May 21 12:07 entity_probe_fulldata\\ndrwxr-xr-x  2 root root      58 May 21 11:31 scierc_t12_s456\\ndrwxr-xr-x  2 root root      58 May 21 11:30 conll_n16_s42\\ndrwxr-xr-x  2 root root    4096 May 21 11:21 entity_probe_auroc_groupkfold\\ndrwxr-xr-x  2 root root      58 May 21 11:17 scierc_t08_s123\\ndrwxr-xr-x  2 root root      58 May 21 10:41 exp_conll_t10_seed42\\ndrwxr-xr-x  2 root root    4096 May 21 10:41 entity_probe_auroc\\ndrwxr-xr-x  2 root root      58 May 21 10:33 exp_scierc_8b_t08_s42\\ndrwxr-xr-x  2 root root      10 May 21 09:43 exp_002_conll_n16\\ndrwxr-xr-x  2 root root      10 May 21 09:43 exp_012_rerun_1024\\ndrwxr-xr-x  2 root root      10 May 21 09:43 exp_021_inference\\n-rw-r--r--  1 root root  323332 May 21 08:54 exp_conll_t12_seed456.log\\ndrwxr-xr-x  2 root root      58 May 21 08:54 exp_conll_t12_seed456\\n-rw-r--r--  1 root root  319392 May 21 08:53 exp_conll_t08_seed456.log\\ndrwxr-xr-x  2 root root      58 May 21 08:53 exp_conll_t08_seed456\\n-rw-r--r--  1 root root  316813 May 21 08:52 exp_conll_t05_seed456.log\\ndrwxr-xr-x  2 root root      58 May 21 08:52 exp_conll_t05_seed456\\n-rw-r--r--  1 root root  322119 May 21 07:49 exp_conll_t12_seed123.log\\ndrwxr-xr-x  2 root root      58 May 21 07:49 exp_conll_t12_seed123\\n-rw-r--r--  1 root root  318830 May 21 07:49 exp_conll_t08_seed123.log\\ndrwxr-xr-x  2 root root      58 May 21 07:49 exp_conll_t08_seed123\\n-rw-r--r--  1 root root  315237 May 21 07:48 exp_conll_t05_seed123.log\\ndrwxr-xr-x  2 root root      58 May 21 07:48 exp_conll_t05_seed123\\n-rw-r--r--  1 root root  331943 May 21 06:51 exp_conll_t12_seed42.log\\ndrwxr-xr-x  2 root root      58 May 21 06:51 exp_conll_t12_seed42\\n-rw-r--r--  1 root root  318510 May 21 06:50 exp_conll_t08_seed42.log\\ndrwxr-xr-x  2 root root      58 May 21 06:50 exp_conll_t08_seed42\\n-rw-r--r--  1 root root  318771 May 21 06:50 exp_conll_t05_seed42.log\\ndrwxr-xr-x  2 root root      58 May 21 06:50 exp_conll_t05_seed42\\ndrwxr-xr-x  2 root root     119 May 21 05:19 fewrel_re_sc\\ndrwxr-xr-x  2 root root     100 May 21 04:40 re_sc\\ndrwxr-xr-x  2 root root     140 May 21 04:40 docred_re_sc\\n-rw-r--r--  1 root root 3750935 May 21 03:30 exp_tlow_fewnerd_t05_s42.log\\ndrwxr-xr-x  2 root root      58 May 21 03:30 exp_tlow_fewnerd_t05_s42\\n-rw-r--r--  1 root root    9698 May 21 01:27 exp_esj_entity_self_judgment.log\\ndrwxr-xr-x  2 root root      38 May 21 01:27 exp_esj_entity_self_judgment\\ndrwxr-xr-x  2 root root      38 May 21 01:00 exp_esj_entity_self_judgment_dryrun\\n-rw-r--r--  1 root root    2894 May 21 00:51 exp_lsc_latent_sc.log\\ndrwxr-xr-x  2 root root      66 May 21 00:51 exp_lsc_latent_sc\\n-rw-r--r--  1 root root    2752 May 21 00:48 exp_mrsc_multi_round.log\\ndrwxr-xr-x  2 root root      66 May 21 00:42 exp_lsc_latent_sc_dryrun\\ndrwxr-xr-x  2 root root      39 May 21 00:36 exp_mrsc_multi_round\\ndrwxr-xr-x  2 root root    4096 May 20 20:26 exp_b3_prompted_diversity\\ndrwxr-xr-x  3 root root      43 May 20 19:21 fewnerd_14b_ckpt36000\\ndrwxr-xr-x  4 root root      73 May 20 11:58 fewnerd_7b\\ndrwxr-xr-x  2 root root      10 May 20 04:44 7b_ft_signals\\ndrwxr-xr-x  5 root root     105 May 19 18:21 wnut17\\n-rw-r--r--  1 root root 4079598 May 19 06:13 exp_fewnerd_seed789.log\\ndrwxr-xr-x  2 root root      58 May 19 06:13 exp_fewnerd_seed789\\n-rw-r--r--  1 root root  416853 May 19 04:52 exp_conll_seed789.log\\ndrwxr-xr-x  2 root root      58 May 19 04:52 exp_conll_seed789\\ndrwxr-xr-x  2 root root      10 May 19 04:37 exp_llama_scierc_seed123\\n-rw-r--r--  1 root root     581 May 19 04:36 exp_scierc_seed789_5090c.log\\n-rw-r--r--  1 root root     581 May 19 04:36 exp_scierc_t12_seed456.log\\ndrwxr-xr-x  2 root root      10 May 19 04:36 exp_scierc_t12_seed456\\ndrwxr-xr-x  2 root root      10 May 19 04:36 exp_scierc_seed789_5090c\\ndrwxr-xr-x  2 root root      10 May 19 04:05 exp_fewnerd_seed456\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.11}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-21T14:39:15.641Z_
+
+<details><summary>↩ Tool result · `toolu_017TXxZ6D2WAj77FDGQpnc5h`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 56\\ndrwxr-xr-x 15 root root 4096 May 20 22:21 .\\ndrwxr-xr-x 11 root root 4096 May 21 03:29 ..\\ndrwxr-xr-x  5 root root 4096 May 14 21:08 llama3.1-8b-scierc-lora\\ndrwxr-xr-x  2 root root   10 May 19 03:34 llama3.1-8b-scierc-merged\\ndrwxr-xr-x  2 root root 4096 May 20 19:20 qwen25-14b-fewnerd-merged-ckpt36000\\ndrwxr-xr-x  2 root root 4096 May 20 22:22 qwen25-14b-fewnerd-merged-final\\ndrwxr-xr-x  5 root root 4096 May 20 22:08 qwen25-14b-fewnerd-qlora-s42\\ndrwxr-xr-x  2 root root 4096 May 20 10:13 qwen25-7b-fewnerd-merged\\ndrwxr-xr-x  5 root root 4096 May 20 10:12 qwen25-7b-fewnerd-qlora-s42\\ndrwxr-xr-x  2 root root 4096 May 19 18:16 qwen25-7b-wnut17-merged\\ndrwxr-xr-x  5 root root 4096 May 19 18:15 qwen25-7b-wnut17-qlora-s42\\ndrwxr-xr-x  2 root root 4096 May 19 01:38 qwen3-8b-conll2003-merged\\ndrwxr-xr-x  2 root root 4096 May 19 03:30 qwen3-8b-fewnerd-exp021-lora\\ndrwxr-xr-x  2 root root 4096 May 19 04:09 qwen3-8b-fewnerd-exp021-merged\\ndrwxr-xr-x  2 root root 4096 May 14 16:44 qwen3-8b-scierc-merged-v2\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.12}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a94f6381-619b-451f-90e4-77c695265736",
+  "uuid": "e23dc032-7599-44b0-927b-c31c03f7f2db",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 56\\\\ndrwxr-xr-x 15 root root 4096 May 20 22:21 .\\\\ndrwxr-xr-x 11 root root 4096 May 21 03:29 ..\\\\ndrwxr-xr-x  5 root root 4096 May 14 21:08 llama3.1-8b-scierc-lora\\\\ndrwxr-xr-x  2 root root   10 May 19 03:34 llama3.1-8b-scierc-merged\\\\ndrwxr-xr-x  2 root root 4096 May 20 19:20 qwen25-14b-fewnerd-merged-ckpt36000\\\\ndrwxr-xr-x  2 root root 4096 May 20 22:22 qwen25-14b-fewnerd-merged-final\\\\ndrwxr-xr-x  5 root root 4096 May 20 22:08 qwen25-14b-fewnerd-qlora-s42\\\\ndrwxr-xr-x  2 root root 4096 May 20 10:13 qwen25-7b-fewnerd-merged\\\\ndrwxr-xr-x  5 root root 4096 May 20 10:12 qwen25-7b-fewnerd-qlora-s42\\\\ndrwxr-xr-x  2 root root 4096 May 19 18:16 qwen25-7b-wnut17-merged\\\\ndrwxr-xr-x  5 root root 4096 May 19 18:15 qwen25-7b-wnut17-qlora-s42\\\\ndrwxr-xr-x  2 root root 4096 May 19 01:38 qwen3-8b-conll2003-merged\\\\ndrwxr-xr-x  2 root root 4096 May 19 03:30 qwen3-8b-fewnerd-exp021-lora\\\\ndrwxr-xr-x  2 root root 4096 May 19 04:09 qwen3-8b-fewnerd-exp021-merged\\\\ndrwxr-xr-x  2 root root 4096 May 14 16:44 qwen3-8b-scierc-merged-v2\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.12}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 56\\ndrwxr-xr-x 15 root root 4096 May 20 22:21 .\\ndrwxr-xr-x 11 root root 4096 May 21 03:29 ..\\ndrwxr-xr-x  5 root root 4096 May 14 21:08 llama3.1-8b-scierc-lora\\ndrwxr-xr-x  2 root root   10 May 19 03:34 llama3.1-8b-scierc-merged\\ndrwxr-xr-x  2 root root 4096 May 20 19:20 qwen25-14b-fewnerd-merged-ckpt36000\\ndrwxr-xr-x  2 root root 4096 May 20 22:22 qwen25-14b-fewnerd-merged-final\\ndrwxr-xr-x  5 root root 4096 May 20 22:08 qwen25-14b-fewnerd-qlora-s42\\ndrwxr-xr-x  2 root root 4096 May 20 10:13 qwen25-7b-fewnerd-merged\\ndrwxr-xr-x  5 root root 4096 May 20 10:12 qwen25-7b-fewnerd-qlora-s42\\ndrwxr-xr-x  2 root root 4096 May 19 18:16 qwen25-7b-wnut17-merged\\ndrwxr-xr-x  5 root root 4096 May 19 18:15 qwen25-7b-wnut17-qlora-s42\\ndrwxr-xr-x  2 root root 4096 May 19 01:38 qwen3-8b-conll2003-merged\\ndrwxr-xr-x  2 root root 4096 May 19 03:30 qwen3-8b-fewnerd-exp021-lora\\ndrwxr-xr-x  2 root root 4096 May 19 04:09 qwen3-8b-fewnerd-exp021-merged\\ndrwxr-xr-x  2 root root 4096 May 14 16:44 qwen3-8b-scierc-merged-v2\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.12}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-21T14:39:16.765Z_
+
+<details><summary>↩ Tool result · `toolu_01HfVthshy5zgB5iP2GVJ5Xv`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/root/autodl-tmp/models/': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 1.11}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a94f6381-619b-451f-90e4-77c695265736",
+  "uuid": "9bf6d115-0350-4d10-8551-0a232bb92110",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"ls: cannot access '/root/autodl-tmp/models/': No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.11}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/root/autodl-tmp/models/': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 1.11}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-21T14:39:17.527Z_
+
+<details><summary>↩ Tool result · `toolu_01AH76CPZoXbc5jYWeJaYSEy`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"exp_e2_pretrained_scierc_s456\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-21T14:20:30.755Z\", \"updated_at\": \"2026-05-21T14:21:10.793Z\", \"hypothesis\": \"E2 pre-trained baseline SciERC seed=456: Qwen2.5-7B-Instruct (unfinetuned) on SciERC SC pipeline N=8 T=1.0. Third seed for E2 pre-trained baseline statistical power on SciERC.\", \"spec\": {\"command\": \"python -u code/run_mvp_pilot.py --model_path /root/autodl-tmp/.hf_cache/Qwen2.5-7B-Instruct --data_dir data/scierc/processed_data/ --dataset scierc --subtask ner --n_samples 8 --temperature 1.0 --seed 456 --collect_logprobs --output_dir output/e2_pretrained_scierc_s456/\", \"server\": \"autodl-5090-c\", \"gpu\": [\"cuda:2\"], \"pid\": \"326645\", \"log_path\": \"~/runs/struct_self_consist_ie/exp_e2_pretrained_scierc_s456.log\", \"submitted_at\": \"2026-05-21T14:20:56.182Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/scierc/processed_data/\", \"data_count\": 551, \"model_name\": \"Qwen2.5-7B-Instruct\", \"seed\": 456}}, \"exp_e2_pretrained_scierc_s123\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-21T14:20:29.367Z\", \"updated_at\": \"2026-05-21T14:21:05.940Z\", \"hypothesis\": \"E2 pre-trained baseline SciERC seed=123: Qwen2.5-7B-Instruct (unfinetuned) on SciERC SC pipeline N=8 T=1.0. Additional seed for E2 pre-trained baseline. Tests whether correlation-selection gap and structural vs surface patterns are consistent across seeds on SciERC.\", \"spec\": {\"command\": \"python -u code/run_mvp_pilot.py --model_path /root/autodl-tmp/.hf_cache/Qwen2.5-7B-Instruct --data_dir data/scierc/processed_data/ --dataset scierc --subtask ner --n_samples 8 --temperature 1.0 --seed 123 --collect_logprobs --output_dir output/e2_pretrained_scierc_s123/\", \"server\": \"autodl-5090-c\", \"gpu\": [\"cuda:1\"], \"pid\": \"326377\", \"log_path\": \"~/runs/struct_self_consist_ie/exp_e2_pretrained_scierc_s123.log\", \"submitted_at\": \"2026-05-21T14:20:52.083Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/scierc/processed_data/\", \"data_count\": 551, \"model_name\": \"Qwen2.5-7B-Instruct\", \"seed\": 123}}, \"exp_fewnerd_n16_s123\": {\"status\": \"RUNNING\", \"retry_count\": 1, \"created_at\": \"2026-05-21T04:30:47.609Z\", \"updated_at\": \"2026-05-21T11:26:57.114Z\", \"hypothesis\": \"FewNERD N=16 seed=123: second seed for N=16 scaling analysis. Tests whether doubling samples from N=8 to N=16 increases oracle headroom consistently across seeds, and whether MV aggregation gap widens or narrows.\", \"server\": \"autodl-5090-b\", \"gpu\": \"cuda:3\", \"completed_at\": \"2026-05-21T08:33:10.578Z\", \"extra\": {\"previous_failure\": {\"conclusion\": \"success\", \"metrics\": {\"greedy_f1\": 0.7888, \"oracle_f1\": 0.9147, \"oracle_headroom\": 0.126, \"rho_fk_full\": 0.224, \"rho_sj_full\": 0.352, \"rho_fk_cond\": 0.083, \"rho_sj_cond\": 0.282, \"logprob_rho_full\": 0.28, \"logprob_rho_cond\": 0.258, \"instances\": 37648}}}, \"spec\": {\"command\": \"python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-fewnerd-exp021-merged --data_dir data/fewnerd/ --dataset fewnerd --subtask ner --n_samples 16 --temperature 1.0 --seed 123 --collect_logprobs --output_dir output/fewnerd_n16_s123/\", \"server\": \"autodl-5090-c\", \"gpu\": [\"cuda:0\"], \"pid\": \"311981\", \"log_path\": \"~/runs/struct_self_consist_ie/exp_fewnerd_n16_s123.log\", \"submitted_at\": \"2026-05-21T11:23:58.304Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/fewnerd/\", \"data_count\": 37648, \"model_name\": \"qwen3-8b-fewnerd-exp021-merged\", \"seed\": 123}}, \"exp_fewnerd_n16_s42_v2\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-21T11:21:49.005Z\", \"updated_at\": \"2026-05-21T11:25:49.740Z\", \"hypothesis\": \"FewNERD N=16 scaling: doubling sample count from N=8 to N=16 increases oracle headroom and tests whether additional samples improve MV aggregation or only expand the correlation-selection gap.\", \"spec\": {\"command\": \"python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-fewnerd-exp021-merged --data_dir data/fewnerd/ --dataset fewnerd --subtask ner --n_samples 16 --temperature 1.0 --seed 42 --collect_logprobs --output_dir output/fewnerd_n16_s42/\", \"server\": \"autodl-5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"32117\", \"data_path\": \"data/fewnerd/\", \"data_count\": 37648, \"model_name\": \"qwen3-8b-fewnerd-exp021-merged\", \"seed\": 42}}, \"exp_e2_pretrained_fewnerd_s123\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-21T10:17:12.679Z\", \"updated_at\": \"2026-05-21T10:19:53.375Z\", \"hypothesis\": \"E2 pre-trained baseline seed 123: Qwen2.5-7B-Instruct (unfinetuned) on FewNERD SC pipeline N=8 T=1.0. Additional seed for E2 pre-trained baseline statistical power. If correlation-selection gap persists without fine-tuning → phenomenon is model-intrinsic.\", \"parent\": \"exp_e2_pretrained_fewnerd\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=3 python -u code/run_mvp_pilot.py --model_path /root/autodl-tmp/.hf_cache/Qwen2.5-7B-Instruct --data_dir data/fewnerd/ --dataset fewnerd --subtask ner --n_samples 8 --temperature 1.0 --seed 123 --collect_logprobs --output_dir output/e2_pretrained_fewnerd_s123/\", \"server\": \"autodl-5090-c\", \"data_path\": \"data/fewnerd/\", \"data_count\": 4706, \"model_name\": \"Qwen2.5-7B-Instruct\", \"seed\": 123, \"checkpoint_source\": \"/root/autodl-tmp/.hf_cache/Qwen2.5-7B-Instruct\", \"eval_data\": \"data/fewnerd/\"}}}, \"count\": 5, \"total\": 5, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7511}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a94f6381-619b-451f-90e4-77c695265736",
+  "uuid": "2a175353-e9d9-4212-ab88-0fe748adb10e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp_e2_pretrained_scierc_s456\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T14:20:30.755Z\\\", \\\"updated_at\\\": \\\"2026-05-21T14:21:10.793Z\\\", \\\"hypothesis\\\": \\\"E2 pre-trained baseline SciERC seed=456: Qwen2.5-7B-Instruct (unfinetuned) on SciERC SC pipeline N=8 T=1.0. Third seed for E2 pre-trained baseline statistical power on SciERC.\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -u code/run_mvp_pilot.py --model_path /root/autodl-tmp/.hf_cache/Qwen2.5-7B-Instruct --data_dir data/scierc/processed_data/ --dataset scierc --subtask ner --n_samples 8 --temperature 1.0 --seed 456 --collect_logprobs --output_dir output/e2_pretrained_scierc_s456/\\\", \\\"server\\\": \\\"autodl-5090-c\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"326645\\\", \\\"log_path\\\": \\\"~/runs/struct_self_consist_ie/exp_e2_pretrained_scierc_s456.log\\\", \\\"submitted_at\\\": \\\"2026-05-21T14:20:56.182Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"data/scierc/processed_data/\\\", \\\"data_count\\\": 551, \\\"model_name\\\": \\\"Qwen2.5-7B-Instruct\\\", \\\"seed\\\": 456}}, \\\"exp_e2_pretrained_scierc_s123\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T14:20:29.367Z\\\", \\\"updated_at\\\": \\\"2026-05-21T14:21:05.940Z\\\", \\\"hypothesis\\\": \\\"E2 pre-trained baseline SciERC seed=123: Qwen2.5-7B-Instruct (unfinetuned) on SciERC SC pipeline N=8 T=1.0. Additional seed for E2 pre-trained baseline. Tests whether correlation-selection gap and structural vs surface patterns are consistent across seeds on SciERC.\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -u code/run_mvp_pilot.py --model_path /root/autodl-tmp/.hf_cache/Qwen2.5-7B-Instruct --data_dir data/scierc/processed_data/ --dataset scierc --subtask ner --n_samples 8 --temperature 1.0 --seed 123 --collect_logprobs --output_dir output/e2_pretrained_scierc_s123/\\\", \\\"server\\\": \\\"autodl-5090-c\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"326377\\\", \\\"log_path\\\": \\\"~/runs/struct_self_consist_ie/exp_e2_pretrained_scierc_s123.log\\\", \\\"submitted_at\\\": \\\"2026-05-21T14:20:52.083Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"data/scierc/processed_data/\\\", \\\"data_count\\\": 551, \\\"model_name\\\": \\\"Qwen2.5-7B-Instruct\\\", \\\"seed\\\": 123}}, \\\"exp_fewnerd_n16_s123\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 1, \\\"created_at\\\": \\\"2026-05-21T04:30:47.609Z\\\", \\\"updated_at\\\": \\\"2026-05-21T11:26:57.114Z\\\", \\\"hypothesis\\\": \\\"FewNERD N=16 seed=123: second seed for N=16 scaling analysis. Tests whether doubling samples from N=8 to N=16 increases oracle headroom consistently across seeds, and whether MV aggregation gap widens or narrows.\\\", \\\"server\\\": \\\"autodl-5090-b\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"completed_at\\\": \\\"2026-05-21T08:33:10.578Z\\\", \\\"extra\\\": {\\\"previous_failure\\\": {\\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"greedy_f1\\\": 0.7888, \\\"oracle_f1\\\": 0.9147, \\\"oracle_headroom\\\": 0.126, \\\"rho_fk_full\\\": 0.224, \\\"rho_sj_full\\\": 0.352, \\\"rho_fk_cond\\\": 0.083, \\\"rho_sj_cond\\\": 0.282, \\\"logprob_rho_full\\\": 0.28, \\\"logprob_rho_cond\\\": 0.258, \\\"instances\\\": 37648}}}, \\\"spec\\\": {\\\"command\\\": \\\"python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-fewnerd-exp021-merged --data_dir data/fewnerd/ --dataset fewnerd --subtask ner --n_samples 16 --temperature 1.0 --seed 123 --collect_logprobs --output_dir output/fewnerd_n16_s123/\\\", \\\"server\\\": \\\"autodl-5090-c\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"311981\\\", \\\"log_path\\\": \\\"~/runs/struct_self_consist_ie/exp_fewnerd_n16_s123.log\\\", \\\"submitted_at\\\": \\\"2026-05-21T11:23:58.304Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"data/fewnerd/\\\", \\\"data_count\\\": 37648, \\\"model_name\\\": \\\"qwen3-8b-fewnerd-exp021-merged\\\", \\\"seed\\\": 123}}, \\\"exp_fewnerd_n16_s42_v2\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T11:21:49.005Z\\\", \\\"updated_at\\\": \\\"2026-05-21T11:25:49.740Z\\\", \\\"hypothesis\\\": \\\"FewNERD N=16 scaling: doubling sample count from N=8 to N=16 increases oracle headroom and tests whether additional samples improve MV aggregation or only expand the correlation-selection gap.\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-fewnerd-exp021-merged --data_dir data/fewnerd/ --dataset fewnerd --subtask ner --n_samples 16 --temperature 1.0 --seed 42 --collect_logprobs --output_dir output/fewnerd_n16_s42/\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"32117\\\", \\\"data_path\\\": \\\"data/fewnerd/\\\", \\\"data_count\\\": 37648, \\\"model_name\\\": \\\"qwen3-8b-fewnerd-exp021-merged\\\", \\\"seed\\\": 42}}, \\\"exp_e2_pretrained_fewnerd_s123\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T10:17:12.679Z\\\", \\\"updated_at\\\": \\\"2026-05-21T10:19:53.375Z\\\", \\\"hypothesis\\\": \\\"E2 pre-trained baseline seed 123: Qwen2.5-7B-Instruct (unfinetuned) on FewNERD SC pipeline N=8 T=1.0. Additional seed for E2 pre-trained baseline statistical power. If correlation-selection gap persists without fine-tuning → phenomenon is model-intrinsic.\\\", \\\"parent\\\": \\\"exp_e2_pretrained_fewnerd\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=3 python -u code/run_mvp_pilot.py --model_path /root/autodl-tmp/.hf_cache/Qwen2.5-7B-Instruct --data_dir data/fewnerd/ --dataset fewnerd --subtask ner --n_samples 8 --temperature 1.0 --seed 123 --collect_logprobs --output_dir output/e2_pretrained_fewnerd_s123/\\\", \\\"server\\\": \\\"autodl-5090-c\\\", \\\"data_path\\\": \\\"data/fewnerd/\\\", \\\"data_count\\\": 4706, \\\"model_name\\\": \\\"Qwen2.5-7B-Instruct\\\", \\\"seed\\\": 123, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/.hf_cache/Qwen2.5-7B-Instruct\\\", \\\"eval_data\\\": \\\"data/fewnerd/\\\"}}}, \\\"count\\\": 5, \\\"total\\\": 5, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.7511}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"exp_e2_pretrained_scierc_s456\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-21T14:20:30.755Z\", \"updated_at\": \"2026-05-21T14:21:10.793Z\", \"hypothesis\": \"E2 pre-trained baseline SciERC seed=456: Qwen2.5-7B-Instruct (unfinetuned) on SciERC SC pipeline N=8 T=1.0. Third seed for E2 pre-trained baseline statistical power on SciERC.\", \"spec\": {\"command\": \"python -u code/run_mvp_pilot.py --model_path /root/autodl-tmp/.hf_cache/Qwen2.5-7B-Instruct --data_dir data/scierc/processed_data/ --dataset scierc --subtask ner --n_samples 8 --temperature 1.0 --seed 456 --collect_logprobs --output_dir output/e2_pretrained_scierc_s456/\", \"server\": \"autodl-5090-c\", \"gpu\": [\"cuda:2\"], \"pid\": \"326645\", \"log_path\": \"~/runs/struct_self_consist_ie/exp_e2_pretrained_scierc_s456.log\", \"submitted_at\": \"2026-05-21T14:20:56.182Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/scierc/processed_data/\", \"data_count\": 551, \"model_name\": \"Qwen2.5-7B-Instruct\", \"seed\": 456}}, \"exp_e2_pretrained_scierc_s123\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-21T14:20:29.367Z\", \"updated_at\": \"2026-05-21T14:21:05.940Z\", \"hypothesis\": \"E2 pre-trained baseline SciERC seed=123: Qwen2.5-7B-Instruct (unfinetuned) on SciERC SC pipeline N=8 T=1.0. Additional seed for E2 pre-trained baseline. Tests whether correlation-selection gap and structural vs surface patterns are consistent across seeds on SciERC.\", \"spec\": {\"command\": \"python -u code/run_mvp_pilot.py --model_path /root/autodl-tmp/.hf_cache/Qwen2.5-7B-Instruct --data_dir data/scierc/processed_data/ --dataset scierc --subtask ner --n_samples 8 --temperature 1.0 --seed 123 --collect_logprobs --output_dir output/e2_pretrained_scierc_s123/\", \"server\": \"autodl-5090-c\", \"gpu\": [\"cuda:1\"], \"pid\": \"326377\", \"log_path\": \"~/runs/struct_self_consist_ie/exp_e2_pretrained_scierc_s123.log\", \"submitted_at\": \"2026-05-21T14:20:52.083Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/scierc/processed_data/\", \"data_count\": 551, \"model_name\": \"Qwen2.5-7B-Instruct\", \"seed\": 123}}, \"exp_fewnerd_n16_s123\": {\"status\": \"RUNNING\", \"retry_count\": 1, \"created_at\": \"2026-05-21T04:30:47.609Z\", \"updated_at\": \"2026-05-21T11:26:57.114Z\", \"hypothesis\": \"FewNERD N=16 seed=123: second seed for N=16 scaling analysis. Tests whether doubling samples from N=8 to N=16 increases oracle headroom consistently across seeds, and whether MV aggregation gap widens or narrows.\", \"server\": \"autodl-5090-b\", \"gpu\": \"cuda:3\", \"completed_at\": \"2026-05-21T08:33:10.578Z\", \"extra\": {\"previous_failure\": {\"conclusion\": \"success\", \"metrics\": {\"greedy_f1\": 0.7888, \"oracle_f1\": 0.9147, \"oracle_headroom\": 0.126, \"rho_fk_full\": 0.224, \"rho_sj_full\": 0.352, \"rho_fk_cond\": 0.083, \"rho_sj_cond\": 0.282, \"logprob_rho_full\": 0.28, \"logprob_rho_cond\": 0.258, \"instances\": 37648}}}, \"spec\": {\"command\": \"python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-fewnerd-exp021-merged --data_dir data/fewnerd/ --dataset fewnerd --subtask ner --n_samples 16 --temperature 1.0 --seed 123 --collect_logprobs --output_dir output/fewnerd_n16_s123/\", \"server\": \"autodl-5090-c\", \"gpu\": [\"cuda:0\"], \"pid\": \"311981\", \"log_path\": \"~/runs/struct_self_consist_ie/exp_fewnerd_n16_s123.log\", \"submitted_at\": \"2026-05-21T11:23:58.304Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/fewnerd/\", \"data_count\": 37648, \"model_name\": \"qwen3-8b-fewnerd-exp021-merged\", \"seed\": 123}}, \"exp_fewnerd_n16_s42_v2\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-21T11:21:49.005Z\", \"updated_at\": \"2026-05-21T11:25:49.740Z\", \"hypothesis\": \"FewNERD N=16 scaling: doubling sample count from N=8 to N=16 increases oracle headroom and tests whether additional samples improve MV aggregation or only expand the correlation-selection gap.\", \"spec\": {\"command\": \"python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-fewnerd-exp021-merged --data_dir data/fewnerd/ --dataset fewnerd --subtask ner --n_samples 16 --temperature 1.0 --seed 42 --collect_logprobs --output_dir output/fewnerd_n16_s42/\", \"server\": \"autodl-5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"32117\", \"data_path\": \"data/fewnerd/\", \"data_count\": 37648, \"model_name\": \"qwen3-8b-fewnerd-exp021-merged\", \"seed\": 42}}, \"exp_e2_pretrained_fewnerd_s123\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-21T10:17:12.679Z\", \"updated_at\": \"2026-05-21T10:19:53.375Z\", \"hypothesis\": \"E2 pre-trained baseline seed 123: Qwen2.5-7B-Instruct (unfinetuned) on FewNERD SC pipeline N=8 T=1.0. Additional seed for E2 pre-trained baseline statistical power. If correlation-selection gap persists without fine-tuning → phenomenon is model-intrinsic.\", \"parent\": \"exp_e2_pretrained_fewnerd\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=3 python -u code/run_mvp_pilot.py --model_path /root/autodl-tmp/.hf_cache/Qwen2.5-7B-Instruct --data_dir data/fewnerd/ --dataset fewnerd --subtask ner --n_samples 8 --temperature 1.0 --seed 123 --collect_logprobs --output_dir output/e2_pretrained_fewnerd_s123/\", \"server\": \"autodl-5090-c\", \"data_path\": \"data/fewnerd/\", \"data_count\": 4706, \"model_name\": \"Qwen2.5-7B-Instruct\", \"seed\": 123, \"checkpoint_source\": \"/root/autodl-tmp/.hf_cache/Qwen2.5-7B-Instruct\", \"eval_data\": \"data/fewnerd/\"}}}, \"count\": 5, \"total\": 5, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7511}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 31_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Found the report.json files. Let me read them now.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a94f6381-619b-451f-90e4-77c695265736",
+  "uuid": "b29deb7f-cd51-4360-bdc3-c8e79813b5ad",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01L3DroYJQtJGqMYVeVypUmP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7769,
+      "cache_read_input_tokens": 26714,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7769
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 32_
+
+找到两个 report.json，读取内容。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a94f6381-619b-451f-90e4-77c695265736",
+  "uuid": "7891c78e-31d9-421f-b5b2-f9a48494595e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01L3DroYJQtJGqMYVeVypUmP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7769,
+      "cache_read_input_tokens": 26714,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7769
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Y3jLPgW3kqbqduA2P48ZsX`</summary>
+
+```json
+{
+  "server": "autodl-5090-c",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/e2_pretrained_scierc_s123/report.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a94f6381-619b-451f-90e4-77c695265736",
+  "uuid": "e3036fa1-aea0-4b4f-b29a-3fdbb16db243",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01L3DroYJQtJGqMYVeVypUmP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7769,
+      "cache_read_input_tokens": 26714,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7769
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01F7NoQimoETHhLqFfPGkNoo`</summary>
+
+```json
+{
+  "server": "autodl-5090-c",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/e2_pretrained_scierc_s456/report.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a94f6381-619b-451f-90e4-77c695265736",
+  "uuid": "e745a490-81c8-434f-b3a6-6080d1eb1872",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01L3DroYJQtJGqMYVeVypUmP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7769,
+      "cache_read_input_tokens": 26714,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7769
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-21T14:39:23.146Z_
+
+<details><summary>↩ Tool result · `toolu_01Y3jLPgW3kqbqduA2P48ZsX`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"dataset\\\": \\\"scierc\\\",\\n  \\\"subtask\\\": \\\"ner\\\",\\n  \\\"n_samples\\\": 8,\\n  \\\"temperature\\\": 1.0,\\n  \\\"num_instances\\\": 551,\\n  \\\"use_train_format\\\": true,\\n  \\\"greedy_f1\\\": 0.23964714530752268,\\n  \\\"oracle_f1\\\": 0.3867375348013161,\\n  \\\"oracle_headroom\\\": 0.14709038949379344,\\n  \\\"fleiss_kappa_mean\\\": 0.20533985125930532,\\n  \\\"soft_jaccard_mean\\\": 0.452342027711968,\\n  \\\"correlation_fleiss_vs_f1_full\\\": {\\n    \\\"rho\\\": 0.19744497595317248,\\n    \\\"p_value\\\": 4.748307229189163e-06,\\n    \\\"n\\\": 529\\n  },\\n  \\\"correlation_softjaccard_vs_f1_full\\\": {\\n    \\\"rho\\\": 0.18078572560857498,\\n    \\\"p_value\\\": 2.8800472684972654e-05,\\n    \\\"n\\\": 529\\n  },\\n  \\\"correlation_fleiss_vs_f1_conditional\\\": {\\n    \\\"rho\\\": 0.22205964214939933,\\n    \\\"p_value\\\": 0.00013369800313015346,\\n    \\\"n\\\": 291\\n  },\\n  \\\"correlation_softjaccard_vs_f1_conditional\\\": {\\n    \\\"rho\\\": 0.22495814269601946,\\n    \\\"p_value\\\": 0.00010851904700075604,\\n    \\\"n\\\": 291\\n  },\\n  \\\"n_gold_empty_filtered\\\": 22,\\n  \\\"n_greedy_f1_zero_filtered\\\": 238,\\n  \\\"structural_beats_surface\\\": false,\\n  \\\"rho_advantage\\\": -0.016659250344597504,\\n  \\\"sample_f1_mean\\\": 0.2234170142348355,\\n  \\\"sample_f1_std\\\": 0.2546303343970169,\\n  \\\"sample_f1_pct_zero\\\": 45.959357277882795,\\n  \\\"logprob_baseline\\\": {\\n    \\\"full\\\": {\\n      \\\"rho\\\": 0.047776958730195246,\\n      \\\"p_rho\\\": 0.27268636780059347,\\n      \\\"tau\\\": 0.034627761614686135,\\n      \\\"p_tau\\\": 0.26915570121927845,\\n      \\\"auroc\\\": 0.5289879931389365,\\n      \\\"n\\\": 529\\n    },\\n    \\\"conditional\\\": {\\n      \\\"rho\\\": 0.22612780789095394,\\n      \\\"p_rho\\\": 9.967921875920234e-05,\\n      \\\"tau\\\": 0.15704388380717949,\\n      \\\"p_tau\\\": 9.813869059775264e-05,\\n      \\\"auroc\\\": 0.5778937381404174,\\n      \\\"n\\\": 291\\n    }\\n  },\\n  \\\"verdict\\\": \\\"FAIL\\\",\\n  \\\"verdict_note\\\": \\\"MVP verdict on single subtask; final pass requires at least one of NER/RE/EAE to meet threshold\\\",\\n  \\\"warning\\\": \\\"⚠️ >30% samples F1=0, recommend re-running at T=0.7\\\"\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.95}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a94f6381-619b-451f-90e4-77c695265736",
+  "uuid": "851cf0cd-7611-4dfd-a969-6ba1f0d3533e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"dataset\\\\\\\": \\\\\\\"scierc\\\\\\\",\\\\n  \\\\\\\"subtask\\\\\\\": \\\\\\\"ner\\\\\\\",\\\\n  \\\\\\\"n_samples\\\\\\\": 8,\\\\n  \\\\\\\"temperature\\\\\\\": 1.0,\\\\n  \\\\\\\"num_instances\\\\\\\": 551,\\\\n  \\\\\\\"use_train_format\\\\\\\": true,\\\\n  \\\\\\\"greedy_f1\\\\\\\": 0.23964714530752268,\\\\n  \\\\\\\"oracle_f1\\\\\\\": 0.3867375348013161,\\\\n  \\\\\\\"oracle_headroom\\\\\\\": 0.14709038949379344,\\\\n  \\\\\\\"fleiss_kappa_mean\\\\\\\": 0.20533985125930532,\\\\n  \\\\\\\"soft_jaccard_mean\\\\\\\": 0.452342027711968,\\\\n  \\\\\\\"correlation_fleiss_vs_f1_full\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.19744497595317248,\\\\n    \\\\\\\"p_value\\\\\\\": 4.748307229189163e-06,\\\\n    \\\\\\\"n\\\\\\\": 529\\\\n  },\\\\n  \\\\\\\"correlation_softjaccard_vs_f1_full\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.18078572560857498,\\\\n    \\\\\\\"p_value\\\\\\\": 2.8800472684972654e-05,\\\\n    \\\\\\\"n\\\\\\\": 529\\\\n  },\\\\n  \\\\\\\"correlation_fleiss_vs_f1_conditional\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.22205964214939933,\\\\n    \\\\\\\"p_value\\\\\\\": 0.00013369800313015346,\\\\n    \\\\\\\"n\\\\\\\": 291\\\\n  },\\\\n  \\\\\\\"correlation_softjaccard_vs_f1_conditional\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.22495814269601946,\\\\n    \\\\\\\"p_value\\\\\\\": 0.00010851904700075604,\\\\n    \\\\\\\"n\\\\\\\": 291\\\\n  },\\\\n  \\\\\\\"n_gold_empty_filtered\\\\\\\": 22,\\\\n  \\\\\\\"n_greedy_f1_zero_filtered\\\\\\\": 238,\\\\n  \\\\\\\"structural_beats_surface\\\\\\\": false,\\\\n  \\\\\\\"rho_advantage\\\\\\\": -0.016659250344597504,\\\\n  \\\\\\\"sample_f1_mean\\\\\\\": 0.2234170142348355,\\\\n  \\\\\\\"sample_f1_std\\\\\\\": 0.2546303343970169,\\\\n  \\\\\\\"sample_f1_pct_zero\\\\\\\": 45.959357277882795,\\\\n  \\\\\\\"logprob_baseline\\\\\\\": {\\\\n    \\\\\\\"full\\\\\\\": {\\\\n      \\\\\\\"rho\\\\\\\": 0.047776958730195246,\\\\n      \\\\\\\"p_rho\\\\\\\": 0.27268636780059347,\\\\n      \\\\\\\"tau\\\\\\\": 0.034627761614686135,\\\\n      \\\\\\\"p_tau\\\\\\\": 0.26915570121927845,\\\\n      \\\\\\\"auroc\\\\\\\": 0.5289879931389365,\\\\n      \\\\\\\"n\\\\\\\": 529\\\\n    },\\\\n    \\\\\\\"conditional\\\\\\\": {\\\\n      \\\\\\\"rho\\\\\\\": 0.22612780789095394,\\\\n      \\\\\\\"p_rho\\\\\\\": 9.967921875920234e-05,\\\\n      \\\\\\\"tau\\\\\\\": 0.15704388380717949,\\\\n      \\\\\\\"p_tau\\\\\\\": 9.813869059775264e-05,\\\\n      \\\\\\\"auroc\\\\\\\": 0.5778937381404174,\\\\n      \\\\\\\"n\\\\\\\": 291\\\\n    }\\\\n  },\\\\n  \\\\\\\"verdict\\\\\\\": \\\\\\\"FAIL\\\\\\\",\\\\n  \\\\\\\"verdict_note\\\\\\\": \\\\\\\"MVP verdict on single subtask; final pass requires at least one of NER/RE/EAE to meet threshold\\\\\\\",\\\\n  \\\\\\\"warning\\\\\\\": \\\\\\\"⚠️ >30% samples F1=0, recommend re-running at T=0.7\\\\\\\"\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.95}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"dataset\\\": \\\"scierc\\\",\\n  \\\"subtask\\\": \\\"ner\\\",\\n  \\\"n_samples\\\": 8,\\n  \\\"temperature\\\": 1.0,\\n  \\\"num_instances\\\": 551,\\n  \\\"use_train_format\\\": true,\\n  \\\"greedy_f1\\\": 0.23964714530752268,\\n  \\\"oracle_f1\\\": 0.3867375348013161,\\n  \\\"oracle_headroom\\\": 0.14709038949379344,\\n  \\\"fleiss_kappa_mean\\\": 0.20533985125930532,\\n  \\\"soft_jaccard_mean\\\": 0.452342027711968,\\n  \\\"correlation_fleiss_vs_f1_full\\\": {\\n    \\\"rho\\\": 0.19744497595317248,\\n    \\\"p_value\\\": 4.748307229189163e-06,\\n    \\\"n\\\": 529\\n  },\\n  \\\"correlation_softjaccard_vs_f1_full\\\": {\\n    \\\"rho\\\": 0.18078572560857498,\\n    \\\"p_value\\\": 2.8800472684972654e-05,\\n    \\\"n\\\": 529\\n  },\\n  \\\"correlation_fleiss_vs_f1_conditional\\\": {\\n    \\\"rho\\\": 0.22205964214939933,\\n    \\\"p_value\\\": 0.00013369800313015346,\\n    \\\"n\\\": 291\\n  },\\n  \\\"correlation_softjaccard_vs_f1_conditional\\\": {\\n    \\\"rho\\\": 0.22495814269601946,\\n    \\\"p_value\\\": 0.00010851904700075604,\\n    \\\"n\\\": 291\\n  },\\n  \\\"n_gold_empty_filtered\\\": 22,\\n  \\\"n_greedy_f1_zero_filtered\\\": 238,\\n  \\\"structural_beats_surface\\\": false,\\n  \\\"rho_advantage\\\": -0.016659250344597504,\\n  \\\"sample_f1_mean\\\": 0.2234170142348355,\\n  \\\"sample_f1_std\\\": 0.2546303343970169,\\n  \\\"sample_f1_pct_zero\\\": 45.959357277882795,\\n  \\\"logprob_baseline\\\": {\\n    \\\"full\\\": {\\n      \\\"rho\\\": 0.047776958730195246,\\n      \\\"p_rho\\\": 0.27268636780059347,\\n      \\\"tau\\\": 0.034627761614686135,\\n      \\\"p_tau\\\": 0.26915570121927845,\\n      \\\"auroc\\\": 0.5289879931389365,\\n      \\\"n\\\": 529\\n    },\\n    \\\"conditional\\\": {\\n      \\\"rho\\\": 0.22612780789095394,\\n      \\\"p_rho\\\": 9.967921875920234e-05,\\n      \\\"tau\\\": 0.15704388380717949,\\n      \\\"p_tau\\\": 9.813869059775264e-05,\\n      \\\"auroc\\\": 0.5778937381404174,\\n      \\\"n\\\": 291\\n    }\\n  },\\n  \\\"verdict\\\": \\\"FAIL\\\",\\n  \\\"verdict_note\\\": \\\"MVP verdict on single subtask; final pass requires at least one of NER/RE/EAE to meet threshold\\\",\\n  \\\"warning\\\": \\\"⚠️ >30% samples F1=0, recommend re-running at T=0.7\\\"\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.95}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-21T14:39:24.312Z_
+
+<details><summary>↩ Tool result · `toolu_01F7NoQimoETHhLqFfPGkNoo`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"dataset\\\": \\\"scierc\\\",\\n  \\\"subtask\\\": \\\"ner\\\",\\n  \\\"n_samples\\\": 8,\\n  \\\"temperature\\\": 1.0,\\n  \\\"num_instances\\\": 551,\\n  \\\"use_train_format\\\": true,\\n  \\\"greedy_f1\\\": 0.24027403963787616,\\n  \\\"oracle_f1\\\": 0.38746867167919796,\\n  \\\"oracle_headroom\\\": 0.1471946320413218,\\n  \\\"fleiss_kappa_mean\\\": 0.22723591646500055,\\n  \\\"soft_jaccard_mean\\\": 0.4705510317931617,\\n  \\\"correlation_fleiss_vs_f1_full\\\": {\\n    \\\"rho\\\": 0.23399822785176622,\\n    \\\"p_value\\\": 5.180476337936254e-08,\\n    \\\"n\\\": 529\\n  },\\n  \\\"correlation_softjaccard_vs_f1_full\\\": {\\n    \\\"rho\\\": 0.21510617074542415,\\n    \\\"p_value\\\": 5.904338894664963e-07,\\n    \\\"n\\\": 529\\n  },\\n  \\\"correlation_fleiss_vs_f1_conditional\\\": {\\n    \\\"rho\\\": 0.19581663489693948,\\n    \\\"p_value\\\": 0.0007671234838222415,\\n    \\\"n\\\": 292\\n  },\\n  \\\"correlation_softjaccard_vs_f1_conditional\\\": {\\n    \\\"rho\\\": 0.2186806094357171,\\n    \\\"p_value\\\": 0.0001655688023914149,\\n    \\\"n\\\": 292\\n  },\\n  \\\"n_gold_empty_filtered\\\": 22,\\n  \\\"n_greedy_f1_zero_filtered\\\": 237,\\n  \\\"structural_beats_surface\\\": false,\\n  \\\"rho_advantage\\\": -0.018892057106342064,\\n  \\\"sample_f1_mean\\\": 0.22907226166447886,\\n  \\\"sample_f1_std\\\": 0.25816508584507863,\\n  \\\"sample_f1_pct_zero\\\": 45.534026465028354,\\n  \\\"logprob_baseline\\\": {\\n    \\\"full\\\": {\\n      \\\"rho\\\": 0.06531022317457262,\\n      \\\"p_rho\\\": 0.13356680429284976,\\n      \\\"tau\\\": 0.04560744708606112,\\n      \\\"p_tau\\\": 0.1455053223425615,\\n      \\\"auroc\\\": 0.5213158346200034,\\n      \\\"n\\\": 529\\n    },\\n    \\\"conditional\\\": {\\n      \\\"rho\\\": 0.20018518585011708,\\n      \\\"p_rho\\\": 0.0005795924939551614,\\n      \\\"tau\\\": 0.13593746409591292,\\n      \\\"p_tau\\\": 0.000736739770523731,\\n      \\\"auroc\\\": 0.5718389451377442,\\n      \\\"n\\\": 292\\n    }\\n  },\\n  \\\"verdict\\\": \\\"FAIL\\\",\\n  \\\"verdict_note\\\": \\\"MVP verdict on single subtask; final pass requires at least one of NER/RE/EAE to meet threshold\\\",\\n  \\\"warning\\\": \\\"⚠️ >30% samples F1=0, recommend re-running at T=0.7\\\"\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.16}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a94f6381-619b-451f-90e4-77c695265736",
+  "uuid": "389d4d71-c7ab-4545-98e7-b4ee848047ce",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"dataset\\\\\\\": \\\\\\\"scierc\\\\\\\",\\\\n  \\\\\\\"subtask\\\\\\\": \\\\\\\"ner\\\\\\\",\\\\n  \\\\\\\"n_samples\\\\\\\": 8,\\\\n  \\\\\\\"temperature\\\\\\\": 1.0,\\\\n  \\\\\\\"num_instances\\\\\\\": 551,\\\\n  \\\\\\\"use_train_format\\\\\\\": true,\\\\n  \\\\\\\"greedy_f1\\\\\\\": 0.24027403963787616,\\\\n  \\\\\\\"oracle_f1\\\\\\\": 0.38746867167919796,\\\\n  \\\\\\\"oracle_headroom\\\\\\\": 0.1471946320413218,\\\\n  \\\\\\\"fleiss_kappa_mean\\\\\\\": 0.22723591646500055,\\\\n  \\\\\\\"soft_jaccard_mean\\\\\\\": 0.4705510317931617,\\\\n  \\\\\\\"correlation_fleiss_vs_f1_full\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.23399822785176622,\\\\n    \\\\\\\"p_value\\\\\\\": 5.180476337936254e-08,\\\\n    \\\\\\\"n\\\\\\\": 529\\\\n  },\\\\n  \\\\\\\"correlation_softjaccard_vs_f1_full\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.21510617074542415,\\\\n    \\\\\\\"p_value\\\\\\\": 5.904338894664963e-07,\\\\n    \\\\\\\"n\\\\\\\": 529\\\\n  },\\\\n  \\\\\\\"correlation_fleiss_vs_f1_conditional\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.19581663489693948,\\\\n    \\\\\\\"p_value\\\\\\\": 0.0007671234838222415,\\\\n    \\\\\\\"n\\\\\\\": 292\\\\n  },\\\\n  \\\\\\\"correlation_softjaccard_vs_f1_conditional\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.2186806094357171,\\\\n    \\\\\\\"p_value\\\\\\\": 0.0001655688023914149,\\\\n    \\\\\\\"n\\\\\\\": 292\\\\n  },\\\\n  \\\\\\\"n_gold_empty_filtered\\\\\\\": 22,\\\\n  \\\\\\\"n_greedy_f1_zero_filtered\\\\\\\": 237,\\\\n  \\\\\\\"structural_beats_surface\\\\\\\": false,\\\\n  \\\\\\\"rho_advantage\\\\\\\": -0.018892057106342064,\\\\n  \\\\\\\"sample_f1_mean\\\\\\\": 0.22907226166447886,\\\\n  \\\\\\\"sample_f1_std\\\\\\\": 0.25816508584507863,\\\\n  \\\\\\\"sample_f1_pct_zero\\\\\\\": 45.534026465028354,\\\\n  \\\\\\\"logprob_baseline\\\\\\\": {\\\\n    \\\\\\\"full\\\\\\\": {\\\\n      \\\\\\\"rho\\\\\\\": 0.06531022317457262,\\\\n      \\\\\\\"p_rho\\\\\\\": 0.13356680429284976,\\\\n      \\\\\\\"tau\\\\\\\": 0.04560744708606112,\\\\n      \\\\\\\"p_tau\\\\\\\": 0.1455053223425615,\\\\n      \\\\\\\"auroc\\\\\\\": 0.5213158346200034,\\\\n      \\\\\\\"n\\\\\\\": 529\\\\n    },\\\\n    \\\\\\\"conditional\\\\\\\": {\\\\n      \\\\\\\"rho\\\\\\\": 0.20018518585011708,\\\\n      \\\\\\\"p_rho\\\\\\\": 0.0005795924939551614,\\\\n      \\\\\\\"tau\\\\\\\": 0.13593746409591292,\\\\n      \\\\\\\"p_tau\\\\\\\": 0.000736739770523731,\\\\n      \\\\\\\"auroc\\\\\\\": 0.5718389451377442,\\\\n      \\\\\\\"n\\\\\\\": 292\\\\n    }\\\\n  },\\\\n  \\\\\\\"verdict\\\\\\\": \\\\\\\"FAIL\\\\\\\",\\\\n  \\\\\\\"verdict_note\\\\\\\": \\\\\\\"MVP verdict on single subtask; final pass requires at least one of NER/RE/EAE to meet threshold\\\\\\\",\\\\n  \\\\\\\"warning\\\\\\\": \\\\\\\"⚠️ >30% samples F1=0, recommend re-running at T=0.7\\\\\\\"\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.16}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"dataset\\\": \\\"scierc\\\",\\n  \\\"subtask\\\": \\\"ner\\\",\\n  \\\"n_samples\\\": 8,\\n  \\\"temperature\\\": 1.0,\\n  \\\"num_instances\\\": 551,\\n  \\\"use_train_format\\\": true,\\n  \\\"greedy_f1\\\": 0.24027403963787616,\\n  \\\"oracle_f1\\\": 0.38746867167919796,\\n  \\\"oracle_headroom\\\": 0.1471946320413218,\\n  \\\"fleiss_kappa_mean\\\": 0.22723591646500055,\\n  \\\"soft_jaccard_mean\\\": 0.4705510317931617,\\n  \\\"correlation_fleiss_vs_f1_full\\\": {\\n    \\\"rho\\\": 0.23399822785176622,\\n    \\\"p_value\\\": 5.180476337936254e-08,\\n    \\\"n\\\": 529\\n  },\\n  \\\"correlation_softjaccard_vs_f1_full\\\": {\\n    \\\"rho\\\": 0.21510617074542415,\\n    \\\"p_value\\\": 5.904338894664963e-07,\\n    \\\"n\\\": 529\\n  },\\n  \\\"correlation_fleiss_vs_f1_conditional\\\": {\\n    \\\"rho\\\": 0.19581663489693948,\\n    \\\"p_value\\\": 0.0007671234838222415,\\n    \\\"n\\\": 292\\n  },\\n  \\\"correlation_softjaccard_vs_f1_conditional\\\": {\\n    \\\"rho\\\": 0.2186806094357171,\\n    \\\"p_value\\\": 0.0001655688023914149,\\n    \\\"n\\\": 292\\n  },\\n  \\\"n_gold_empty_filtered\\\": 22,\\n  \\\"n_greedy_f1_zero_filtered\\\": 237,\\n  \\\"structural_beats_surface\\\": false,\\n  \\\"rho_advantage\\\": -0.018892057106342064,\\n  \\\"sample_f1_mean\\\": 0.22907226166447886,\\n  \\\"sample_f1_std\\\": 0.25816508584507863,\\n  \\\"sample_f1_pct_zero\\\": 45.534026465028354,\\n  \\\"logprob_baseline\\\": {\\n    \\\"full\\\": {\\n      \\\"rho\\\": 0.06531022317457262,\\n      \\\"p_rho\\\": 0.13356680429284976,\\n      \\\"tau\\\": 0.04560744708606112,\\n      \\\"p_tau\\\": 0.1455053223425615,\\n      \\\"auroc\\\": 0.5213158346200034,\\n      \\\"n\\\": 529\\n    },\\n    \\\"conditional\\\": {\\n      \\\"rho\\\": 0.20018518585011708,\\n      \\\"p_rho\\\": 0.0005795924939551614,\\n      \\\"tau\\\": 0.13593746409591292,\\n      \\\"p_tau\\\": 0.000736739770523731,\\n      \\\"auroc\\\": 0.5718389451377442,\\n      \\\"n\\\": 292\\n    }\\n  },\\n  \\\"verdict\\\": \\\"FAIL\\\",\\n  \\\"verdict_note\\\": \\\"MVP verdict on single subtask; final pass requires at least one of NER/RE/EAE to meet threshold\\\",\\n  \\\"warning\\\": \\\"⚠️ >30% samples F1=0, recommend re-running at T=0.7\\\"\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.16}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_019xStkvpWgFciHDga8i7PN1`</summary>
+
+```json
+{
+  "server": "autodl-5090-c",
+  "command": "find /root/autodl-tmp/ -maxdepth 4 -name \"config.json\" -path \"*fewnerd*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a94f6381-619b-451f-90e4-77c695265736",
+  "uuid": "831afa9f-3993-4739-8a65-b4bf7d1fc2a7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01L3DroYJQtJGqMYVeVypUmP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7769,
+      "cache_read_input_tokens": 26714,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7769
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01WqAKNBwqaW3g1krYxgACqc`</summary>
+
+```json
+{
+  "server": "autodl-5090-c",
+  "command": "find /root/autodl-tmp/ -maxdepth 4 -name \"config.json\" -path \"*qwen3*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a94f6381-619b-451f-90e4-77c695265736",
+  "uuid": "352b2c80-6f9d-400c-8cec-34c5b11e2ba7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01L3DroYJQtJGqMYVeVypUmP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7769,
+      "cache_read_input_tokens": 26714,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7769
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-21T14:39:25.507Z_
+
+<details><summary>↩ Tool result · `toolu_019xStkvpWgFciHDga8i7PN1`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-fewnerd-exp021-merged/config.json\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen25-7b-fewnerd-merged/config.json\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen25-14b-fewnerd-merged-ckpt36000/config.json\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen25-14b-fewnerd-merged-final/config.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.99}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a94f6381-619b-451f-90e4-77c695265736",
+  "uuid": "3c10ff6c-c9d9-4132-ab93-c949d9e21570",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-fewnerd-exp021-merged/config.json\\\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen25-7b-fewnerd-merged/config.json\\\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen25-14b-fewnerd-merged-ckpt36000/config.json\\\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen25-14b-fewnerd-merged-final/config.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.99}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-fewnerd-exp021-merged/config.json\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen25-7b-fewnerd-merged/config.json\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen25-14b-fewnerd-merged-ckpt36000/config.json\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen25-14b-fewnerd-merged-final/config.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.99}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-21T14:39:27.101Z_
+
+<details><summary>↩ Tool result · `toolu_01WqAKNBwqaW3g1krYxgACqc`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-fewnerd-exp021-merged/config.json\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-conll2003-merged/config.json\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-merged-v2/config.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.59}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a94f6381-619b-451f-90e4-77c695265736",
+  "uuid": "3b0bf2ea-cc31-4d6c-b8e8-8c9e3aceb69e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-fewnerd-exp021-merged/config.json\\\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-conll2003-merged/config.json\\\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-merged-v2/config.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.59}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-fewnerd-exp021-merged/config.json\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-conll2003-merged/config.json\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-merged-v2/config.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.59}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 41_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I have all the data. Let me now update the registry for both experiments and also check the reference seed=42 result for comparison.
+
+Results summary:
+
+**exp_e2_pretrained_scierc_s123:**
+- greedy_f1: 0.2396
+- oracle_f1: 0.3867
+- oracle_headroom: 0.1471
+- rho_FK_full: 0.1974, rho_SJ_full: 0.1808
+- rho_FK_cond: 0.2221, rho_SJ_cond: 0.2250
+
+
+- logprob_rho_full: 0.0478 (n.s.), logprob_rho_cond: 0.2261
+- structural_beats_surface: false
+- verdict: FAIL
+- ~46% samples F1=0
+
+**exp_e2_pretrained_scierc_s456:**
+- greedy_f1: 0.2403
+- oracle_f1: 0.3875
+- oracle_headroom: 0.1472
+- rho_FK_full: 0.2340, rho_SJ_full: 0.2151
+- rho_FK_cond: 0.2250, rho_SJ_cond: 0.2261
+- logprob_rho_full: 0.0653 (n.s.), logprob_rho_cond: 0.2002
+- structural_beats_surface: false
+- verdict: FAIL
+- ~46% samples F1=0
+
+The pattern holds across all three seeds on the pretrained SciERC model—consistent results around greedy F1 of 0.24 and conditional rho near 0.20. The pretrained model just isn't strong enough on SciERC to generate reliable structural signals. Now I need to update the registry with these findings.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a94f6381-619b-451f-90e4-77c695265736",
+  "uuid": "aff6324d-d3f9-4fdc-9115-74f96b306dcf",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DjFFGrfxs29MqBmV2Dzga5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3417,
+      "cache_read_input_tokens": 34483,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3417
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 42_
+
+结果已获取。两个实验均 FAIL，与 s42 一致。更新 registry。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a94f6381-619b-451f-90e4-77c695265736",
+  "uuid": "ee08acbf-8130-4a15-aed3-eae23ef6c8ed",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DjFFGrfxs29MqBmV2Dzga5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3417,
+      "cache_read_input_tokens": 34483,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3417
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_011wYmRYbwAzZu7wCagqL6nu`</summary>
+
+```json
+{
+  "exp_id": "exp_e2_pretrained_scierc_s123",
+  "field": "status",
+  "value": "DONE",
+  "project": "struct_self_consist_ie",
+  "spec": {
+    "checkpoint_path": "N/A (inference-only)",
+    "log_path": "~/runs/struct_self_consist_ie/exp_e2_pretrained_scierc_s123.log"
+  }
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a94f6381-619b-451f-90e4-77c695265736",
+  "uuid": "2253bd1a-dd57-4f4e-a3f7-f01dbad4fccd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DjFFGrfxs29MqBmV2Dzga5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3417,
+      "cache_read_input_tokens": 34483,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3417
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-21T14:39:40.143Z_
+
+<details><summary>↩ Tool result · `toolu_011wYmRYbwAzZu7wCagqL6nu`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Cannot transition to DONE without a 'conclusion' field. Set conclusion first.\", \"metadata\": {\"elapsed_seconds\": 0.8383}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a94f6381-619b-451f-90e4-77c695265736",
+  "uuid": "b8e34ec5-d67c-422c-9b92-14b4aecd72c9",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Cannot transition to DONE without a 'conclusion' field. Set conclusion first.\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.8383}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Cannot transition to DONE without a 'conclusion' field. Set conclusion first.\", \"metadata\": {\"elapsed_seconds\": 0.8383}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_013EeP6qXRYD6yFBd6RJiW2P`</summary>
+
+```json
+{
+  "exp_id": "exp_e2_pretrained_scierc_s456",
+  "field": "status",
+  "value": "DONE",
+  "project": "struct_self_consist_ie",
+  "spec": {
+    "checkpoint_path": "N/A (inference-only)",
+    "log_path": "~/runs/struct_self_consist_ie/exp_e2_pretrained_scierc_s456.log"
+  }
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a94f6381-619b-451f-90e4-77c695265736",
+  "uuid": "afd79a03-4aca-46dd-82f1-0f04dc05b125",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DjFFGrfxs29MqBmV2Dzga5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3417,
+      "cache_read_input_tokens": 34483,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3417
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-21T14:39:41.708Z_
+
+<details><summary>↩ Tool result · `toolu_013EeP6qXRYD6yFBd6RJiW2P`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Cannot transition to DONE without a 'conclusion' field. Set conclusion first.\", \"metadata\": {\"elapsed_seconds\": 1.4152}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a94f6381-619b-451f-90e4-77c695265736",
+  "uuid": "7e6bca97-a80d-494c-abb6-c2eb139a99fc",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Cannot transition to DONE without a 'conclusion' field. Set conclusion first.\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.4152}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Cannot transition to DONE without a 'conclusion' field. Set conclusion first.\", \"metadata\": {\"elapsed_seconds\": 1.4152}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_012rbbKBR4muEWYzE5GtgGoL`</summary>
+
+```json
+{
+  "exp_id": "exp_e2_pretrained_scierc_s123",
+  "field": "conclusion",
+  "value": "negative",
+  "project": "struct_self_consist_ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a94f6381-619b-451f-90e4-77c695265736",
+  "uuid": "57ee9b33-719d-4f0c-9394-e89f73f274b1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0187XfyLZqfpoUCNCPeyVLg4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1072,
+      "cache_read_input_tokens": 37900,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1072
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_018h3fQruAk3sdVpGJbDkGN8`</summary>
+
+```json
+{
+  "exp_id": "exp_e2_pretrained_scierc_s456",
+  "field": "conclusion",
+  "value": "negative",
+  "project": "struct_self_consist_ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a94f6381-619b-451f-90e4-77c695265736",
+  "uuid": "a11ee7b4-4ec9-4831-a3d9-5eff05c26e55",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0187XfyLZqfpoUCNCPeyVLg4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1072,
+      "cache_read_input_tokens": 37900,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1072
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-21T14:39:47.418Z_
+
+<details><summary>↩ Tool result · `toolu_012rbbKBR4muEWYzE5GtgGoL`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_e2_pretrained_scierc_s123\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-21T14:20:29.367Z\", \"updated_at\": \"2026-05-21T14:39:46.550Z\", \"hypothesis\": \"E2 pre-trained baseline SciERC seed=123: Qwen2.5-7B-Instruct (unfinetuned) on SciERC SC pipeline N=8 T=1.0. Additional seed for E2 pre-trained baseline. Tests whether correlation-selection gap and structural vs surface patterns are consistent across seeds on SciERC.\", \"spec\": {\"command\": \"python -u code/run_mvp_pilot.py --model_path /root/autodl-tmp/.hf_cache/Qwen2.5-7B-Instruct --data_dir data/scierc/processed_data/ --dataset scierc --subtask ner --n_samples 8 --temperature 1.0 --seed 123 --collect_logprobs --output_dir output/e2_pretrained_scierc_s123/\", \"server\": \"autodl-5090-c\", \"gpu\": [\"cuda:1\"], \"pid\": \"326377\", \"log_path\": \"~/runs/struct_self_consist_ie/exp_e2_pretrained_scierc_s123.log\", \"submitted_at\": \"2026-05-21T14:20:52.083Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/scierc/processed_data/\", \"data_count\": 551, \"model_name\": \"Qwen2.5-7B-Instruct\", \"seed\": 123}, \"conclusion\": \"negative\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.3158}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a94f6381-619b-451f-90e4-77c695265736",
+  "uuid": "3dcb1129-357b-43fa-81d5-d65cbd09ce61",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_e2_pretrained_scierc_s123\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T14:20:29.367Z\\\", \\\"updated_at\\\": \\\"2026-05-21T14:39:46.550Z\\\", \\\"hypothesis\\\": \\\"E2 pre-trained baseline SciERC seed=123: Qwen2.5-7B-Instruct (unfinetuned) on SciERC SC pipeline N=8 T=1.0. Additional seed for E2 pre-trained baseline. Tests whether correlation-selection gap and structural vs surface patterns are consistent across seeds on SciERC.\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -u code/run_mvp_pilot.py --model_path /root/autodl-tmp/.hf_cache/Qwen2.5-7B-Instruct --data_dir data/scierc/processed_data/ --dataset scierc --subtask ner --n_samples 8 --temperature 1.0 --seed 123 --collect_logprobs --output_dir output/e2_pretrained_scierc_s123/\\\", \\\"server\\\": \\\"autodl-5090-c\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"326377\\\", \\\"log_path\\\": \\\"~/runs/struct_self_consist_ie/exp_e2_pretrained_scierc_s123.log\\\", \\\"submitted_at\\\": \\\"2026-05-21T14:20:52.083Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"data/scierc/processed_data/\\\", \\\"data_count\\\": 551, \\\"model_name\\\": \\\"Qwen2.5-7B-Instruct\\\", \\\"seed\\\": 123}, \\\"conclusion\\\": \\\"negative\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.3158}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp_e2_pretrained_scierc_s123\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-21T14:20:29.367Z\", \"updated_at\": \"2026-05-21T14:39:46.550Z\", \"hypothesis\": \"E2 pre-trained baseline SciERC seed=123: Qwen2.5-7B-Instruct (unfinetuned) on SciERC SC pipeline N=8 T=1.0. Additional seed for E2 pre-trained baseline. Tests whether correlation-selection gap and structural vs surface patterns are consistent across seeds on SciERC.\", \"spec\": {\"command\": \"python -u code/run_mvp_pilot.py --model_path /root/autodl-tmp/.hf_cache/Qwen2.5-7B-Instruct --data_dir data/scierc/processed_data/ --dataset scierc --subtask ner --n_samples 8 --temperature 1.0 --seed 123 --collect_logprobs --output_dir output/e2_pretrained_scierc_s123/\", \"server\": \"autodl-5090-c\", \"gpu\": [\"cuda:1\"], \"pid\": \"326377\", \"log_path\": \"~/runs/struct_self_consist_ie/exp_e2_pretrained_scierc_s123.log\", \"submitted_at\": \"2026-05-21T14:20:52.083Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/scierc/processed_data/\", \"data_count\": 551, \"model_name\": \"Qwen2.5-7B-Instruct\", \"seed\": 123}, \"conclusion\": \"negative\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.3158}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-21T14:39:48.960Z_
+
+<details><summary>↩ Tool result · `toolu_018h3fQruAk3sdVpGJbDkGN8`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_e2_pretrained_scierc_s456\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-21T14:20:30.755Z\", \"updated_at\": \"2026-05-21T14:39:48.454Z\", \"hypothesis\": \"E2 pre-trained baseline SciERC seed=456: Qwen2.5-7B-Instruct (unfinetuned) on SciERC SC pipeline N=8 T=1.0. Third seed for E2 pre-trained baseline statistical power on SciERC.\", \"spec\": {\"command\": \"python -u code/run_mvp_pilot.py --model_path /root/autodl-tmp/.hf_cache/Qwen2.5-7B-Instruct --data_dir data/scierc/processed_data/ --dataset scierc --subtask ner --n_samples 8 --temperature 1.0 --seed 456 --collect_logprobs --output_dir output/e2_pretrained_scierc_s456/\", \"server\": \"autodl-5090-c\", \"gpu\": [\"cuda:2\"], \"pid\": \"326645\", \"log_path\": \"~/runs/struct_self_consist_ie/exp_e2_pretrained_scierc_s456.log\", \"submitted_at\": \"2026-05-21T14:20:56.182Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/scierc/processed_data/\", \"data_count\": 551, \"model_name\": \"Qwen2.5-7B-Instruct\", \"seed\": 456}, \"conclusion\": \"negative\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.519}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a94f6381-619b-451f-90e4-77c695265736",
+  "uuid": "c8eebb52-5eee-4e7a-82f5-50e18777442a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_e2_pretrained_scierc_s456\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T14:20:30.755Z\\\", \\\"updated_at\\\": \\\"2026-05-21T14:39:48.454Z\\\", \\\"hypothesis\\\": \\\"E2 pre-trained baseline SciERC seed=456: Qwen2.5-7B-Instruct (unfinetuned) on SciERC SC pipeline N=8 T=1.0. Third seed for E2 pre-trained baseline statistical power on SciERC.\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -u code/run_mvp_pilot.py --model_path /root/autodl-tmp/.hf_cache/Qwen2.5-7B-Instruct --data_dir data/scierc/processed_data/ --dataset scierc --subtask ner --n_samples 8 --temperature 1.0 --seed 456 --collect_logprobs --output_dir output/e2_pretrained_scierc_s456/\\\", \\\"server\\\": \\\"autodl-5090-c\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"326645\\\", \\\"log_path\\\": \\\"~/runs/struct_self_consist_ie/exp_e2_pretrained_scierc_s456.log\\\", \\\"submitted_at\\\": \\\"2026-05-21T14:20:56.182Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"data/scierc/processed_data/\\\", \\\"data_count\\\": 551, \\\"model_name\\\": \\\"Qwen2.5-7B-Instruct\\\", \\\"seed\\\": 456}, \\\"conclusion\\\": \\\"negative\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.519}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp_e2_pretrained_scierc_s456\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-21T14:20:30.755Z\", \"updated_at\": \"2026-05-21T14:39:48.454Z\", \"hypothesis\": \"E2 pre-trained baseline SciERC seed=456: Qwen2.5-7B-Instruct (unfinetuned) on SciERC SC pipeline N=8 T=1.0. Third seed for E2 pre-trained baseline statistical power on SciERC.\", \"spec\": {\"command\": \"python -u code/run_mvp_pilot.py --model_path /root/autodl-tmp/.hf_cache/Qwen2.5-7B-Instruct --data_dir data/scierc/processed_data/ --dataset scierc --subtask ner --n_samples 8 --temperature 1.0 --seed 456 --collect_logprobs --output_dir output/e2_pretrained_scierc_s456/\", \"server\": \"autodl-5090-c\", \"gpu\": [\"cuda:2\"], \"pid\": \"326645\", \"log_path\": \"~/runs/struct_self_consist_ie/exp_e2_pretrained_scierc_s456.log\", \"submitted_at\": \"2026-05-21T14:20:56.182Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/scierc/processed_data/\", \"data_count\": 551, \"model_name\": \"Qwen2.5-7B-Instruct\", \"seed\": 456}, \"conclusion\": \"negative\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.519}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 51_
+
+Now set status to DONE and add metrics.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a94f6381-619b-451f-90e4-77c695265736",
+  "uuid": "dea7658c-6ea2-453e-8e51-ff63783114a4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011aNy1CPMxpF5RMCZZLHM8G",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1492,
+      "cache_read_input_tokens": 38972,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1492
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 52_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01FNUrKdtSKCayX1jh7HxN9S`</summary>
+
+```json
+{
+  "exp_id": "exp_e2_pretrained_scierc_s123",
+  "field": "status",
+  "value": "DONE",
+  "project": "struct_self_consist_ie",
+  "spec": {
+    "checkpoint_path": "N/A (inference-only)",
+    "log_path": "~/runs/struct_self_consist_ie/exp_e2_pretrained_scierc_s123.log"
+  }
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a94f6381-619b-451f-90e4-77c695265736",
+  "uuid": "1d5336b4-c1c5-4d23-ba0a-064a6af6c15c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011aNy1CPMxpF5RMCZZLHM8G",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1492,
+      "cache_read_input_tokens": 38972,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1492
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01VZp4x2wFcfb8mXDugZQGY1`</summary>
+
+```json
+{
+  "exp_id": "exp_e2_pretrained_scierc_s456",
+  "field": "status",
+  "value": "DONE",
+  "project": "struct_self_consist_ie",
+  "spec": {
+    "checkpoint_path": "N/A (inference-only)",
+    "log_path": "~/runs/struct_self_consist_ie/exp_e2_pretrained_scierc_s456.log"
+  }
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a94f6381-619b-451f-90e4-77c695265736",
+  "uuid": "92dad587-5a7c-4db5-a202-e0120190d3ed",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011aNy1CPMxpF5RMCZZLHM8G",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1492,
+      "cache_read_input_tokens": 38972,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1492
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-21T14:39:56.323Z_
+
+<details><summary>↩ Tool result · `toolu_01FNUrKdtSKCayX1jh7HxN9S`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_e2_pretrained_scierc_s123\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T14:20:29.367Z\", \"updated_at\": \"2026-05-21T14:39:53.937Z\", \"hypothesis\": \"E2 pre-trained baseline SciERC seed=123: Qwen2.5-7B-Instruct (unfinetuned) on SciERC SC pipeline N=8 T=1.0. Additional seed for E2 pre-trained baseline. Tests whether correlation-selection gap and structural vs surface patterns are consistent across seeds on SciERC.\", \"spec\": {\"command\": \"python -u code/run_mvp_pilot.py --model_path /root/autodl-tmp/.hf_cache/Qwen2.5-7B-Instruct --data_dir data/scierc/processed_data/ --dataset scierc --subtask ner --n_samples 8 --temperature 1.0 --seed 123 --collect_logprobs --output_dir output/e2_pretrained_scierc_s123/\", \"server\": \"autodl-5090-c\", \"gpu\": [\"cuda:1\"], \"pid\": \"326377\", \"log_path\": \"~/runs/struct_self_consist_ie/exp_e2_pretrained_scierc_s123.log\", \"submitted_at\": \"2026-05-21T14:20:52.083Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/scierc/processed_data/\", \"data_count\": 551, \"model_name\": \"Qwen2.5-7B-Instruct\", \"seed\": 123, \"checkpoint_path\": \"N/A (inference-only)\", \"wall_clock_seconds\": 1141.9, \"gpu_hours\": 0.32}, \"conclusion\": \"negative\", \"completed_at\": \"2026-05-21T14:39:53.937Z\"}, \"hint\": \"💡 建议将本次教训写入 memory.md（什么不 work、为什么）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.1431}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a94f6381-619b-451f-90e4-77c695265736",
+  "uuid": "7c918d79-ed4d-42e7-82c5-b4574ab53496",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_e2_pretrained_scierc_s123\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T14:20:29.367Z\\\", \\\"updated_at\\\": \\\"2026-05-21T14:39:53.937Z\\\", \\\"hypothesis\\\": \\\"E2 pre-trained baseline SciERC seed=123: Qwen2.5-7B-Instruct (unfinetuned) on SciERC SC pipeline N=8 T=1.0. Additional seed for E2 pre-trained baseline. Tests whether correlation-selection gap and structural vs surface patterns are consistent across seeds on SciERC.\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -u code/run_mvp_pilot.py --model_path /root/autodl-tmp/.hf_cache/Qwen2.5-7B-Instruct --data_dir data/scierc/processed_data/ --dataset scierc --subtask ner --n_samples 8 --temperature 1.0 --seed 123 --collect_logprobs --output_dir output/e2_pretrained_scierc_s123/\\\", \\\"server\\\": \\\"autodl-5090-c\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"326377\\\", \\\"log_path\\\": \\\"~/runs/struct_self_consist_ie/exp_e2_pretrained_scierc_s123.log\\\", \\\"submitted_at\\\": \\\"2026-05-21T14:20:52.083Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"data/scierc/processed_data/\\\", \\\"data_count\\\": 551, \\\"model_name\\\": \\\"Qwen2.5-7B-Instruct\\\", \\\"seed\\\": 123, \\\"checkpoint_path\\\": \\\"N/A (inference-only)\\\", \\\"wall_clock_seconds\\\": 1141.9, \\\"gpu_hours\\\": 0.32}, \\\"conclusion\\\": \\\"negative\\\", \\\"completed_at\\\": \\\"2026-05-21T14:39:53.937Z\\\"}, \\\"hint\\\": \\\"💡 建议将本次教训写入 memory.md（什么不 work、为什么）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.1431}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp_e2_pretrained_scierc_s123\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T14:20:29.367Z\", \"updated_at\": \"2026-05-21T14:39:53.937Z\", \"hypothesis\": \"E2 pre-trained baseline SciERC seed=123: Qwen2.5-7B-Instruct (unfinetuned) on SciERC SC pipeline N=8 T=1.0. Additional seed for E2 pre-trained baseline. Tests whether correlation-selection gap and structural vs surface patterns are consistent across seeds on SciERC.\", \"spec\": {\"command\": \"python -u code/run_mvp_pilot.py --model_path /root/autodl-tmp/.hf_cache/Qwen2.5-7B-Instruct --data_dir data/scierc/processed_data/ --dataset scierc --subtask ner --n_samples 8 --temperature 1.0 --seed 123 --collect_logprobs --output_dir output/e2_pretrained_scierc_s123/\", \"server\": \"autodl-5090-c\", \"gpu\": [\"cuda:1\"], \"pid\": \"326377\", \"log_path\": \"~/runs/struct_self_consist_ie/exp_e2_pretrained_scierc_s123.log\", \"submitted_at\": \"2026-05-21T14:20:52.083Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/scierc/processed_data/\", \"data_count\": 551, \"model_name\": \"Qwen2.5-7B-Instruct\", \"seed\": 123, \"checkpoint_path\": \"N/A (inference-only)\", \"wall_clock_seconds\": 1141.9, \"gpu_hours\": 0.32}, \"conclusion\": \"negative\", \"completed_at\": \"2026-05-21T14:39:53.937Z\"}, \"hint\": \"💡 建议将本次教训写入 memory.md（什么不 work、为什么）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.1431}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 55 · 2026-05-21T14:39:59.450Z_
+
+<details><summary>↩ Tool result · `toolu_01VZp4x2wFcfb8mXDugZQGY1`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_e2_pretrained_scierc_s456\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T14:20:30.755Z\", \"updated_at\": \"2026-05-21T14:39:57.115Z\", \"hypothesis\": \"E2 pre-trained baseline SciERC seed=456: Qwen2.5-7B-Instruct (unfinetuned) on SciERC SC pipeline N=8 T=1.0. Third seed for E2 pre-trained baseline statistical power on SciERC.\", \"spec\": {\"command\": \"python -u code/run_mvp_pilot.py --model_path /root/autodl-tmp/.hf_cache/Qwen2.5-7B-Instruct --data_dir data/scierc/processed_data/ --dataset scierc --subtask ner --n_samples 8 --temperature 1.0 --seed 456 --collect_logprobs --output_dir output/e2_pretrained_scierc_s456/\", \"server\": \"autodl-5090-c\", \"gpu\": [\"cuda:2\"], \"pid\": \"326645\", \"log_path\": \"~/runs/struct_self_consist_ie/exp_e2_pretrained_scierc_s456.log\", \"submitted_at\": \"2026-05-21T14:20:56.182Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/scierc/processed_data/\", \"data_count\": 551, \"model_name\": \"Qwen2.5-7B-Instruct\", \"seed\": 456, \"checkpoint_path\": \"N/A (inference-only)\", \"wall_clock_seconds\": 1140.9, \"gpu_hours\": 0.32}, \"conclusion\": \"negative\", \"completed_at\": \"2026-05-21T14:39:57.115Z\"}, \"hint\": \"💡 建议将本次教训写入 memory.md（什么不 work、为什么）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.116}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a94f6381-619b-451f-90e4-77c695265736",
+  "uuid": "b2f08672-03db-4234-b769-ffcdbe73b996",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_e2_pretrained_scierc_s456\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T14:20:30.755Z\\\", \\\"updated_at\\\": \\\"2026-05-21T14:39:57.115Z\\\", \\\"hypothesis\\\": \\\"E2 pre-trained baseline SciERC seed=456: Qwen2.5-7B-Instruct (unfinetuned) on SciERC SC pipeline N=8 T=1.0. Third seed for E2 pre-trained baseline statistical power on SciERC.\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -u code/run_mvp_pilot.py --model_path /root/autodl-tmp/.hf_cache/Qwen2.5-7B-Instruct --data_dir data/scierc/processed_data/ --dataset scierc --subtask ner --n_samples 8 --temperature 1.0 --seed 456 --collect_logprobs --output_dir output/e2_pretrained_scierc_s456/\\\", \\\"server\\\": \\\"autodl-5090-c\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"326645\\\", \\\"log_path\\\": \\\"~/runs/struct_self_consist_ie/exp_e2_pretrained_scierc_s456.log\\\", \\\"submitted_at\\\": \\\"2026-05-21T14:20:56.182Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"data/scierc/processed_data/\\\", \\\"data_count\\\": 551, \\\"model_name\\\": \\\"Qwen2.5-7B-Instruct\\\", \\\"seed\\\": 456, \\\"checkpoint_path\\\": \\\"N/A (inference-only)\\\", \\\"wall_clock_seconds\\\": 1140.9, \\\"gpu_hours\\\": 0.32}, \\\"conclusion\\\": \\\"negative\\\", \\\"completed_at\\\": \\\"2026-05-21T14:39:57.115Z\\\"}, \\\"hint\\\": \\\"💡 建议将本次教训写入 memory.md（什么不 work、为什么）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.116}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp_e2_pretrained_scierc_s456\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T14:20:30.755Z\", \"updated_at\": \"2026-05-21T14:39:57.115Z\", \"hypothesis\": \"E2 pre-trained baseline SciERC seed=456: Qwen2.5-7B-Instruct (unfinetuned) on SciERC SC pipeline N=8 T=1.0. Third seed for E2 pre-trained baseline statistical power on SciERC.\", \"spec\": {\"command\": \"python -u code/run_mvp_pilot.py --model_path /root/autodl-tmp/.hf_cache/Qwen2.5-7B-Instruct --data_dir data/scierc/processed_data/ --dataset scierc --subtask ner --n_samples 8 --temperature 1.0 --seed 456 --collect_logprobs --output_dir output/e2_pretrained_scierc_s456/\", \"server\": \"autodl-5090-c\", \"gpu\": [\"cuda:2\"], \"pid\": \"326645\", \"log_path\": \"~/runs/struct_self_consist_ie/exp_e2_pretrained_scierc_s456.log\", \"submitted_at\": \"2026-05-21T14:20:56.182Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/scierc/processed_data/\", \"data_count\": 551, \"model_name\": \"Qwen2.5-7B-Instruct\", \"seed\": 456, \"checkpoint_path\": \"N/A (inference-only)\", \"wall_clock_seconds\": 1140.9, \"gpu_hours\": 0.32}, \"conclusion\": \"negative\", \"completed_at\": \"2026-05-21T14:39:57.115Z\"}, \"hint\": \"💡 建议将本次教训写入 memory.md（什么不 work、为什么）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.116}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 56_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01YWPVug2Ag2vkXNrPpxKuuj`</summary>
+
+```json
+{
+  "exp_id": "exp_e2_pretrained_scierc_s123",
+  "field": "metrics",
+  "value": {
+    "greedy_f1": 0.2396,
+    "oracle_f1": 0.3867,
+    "oracle_headroom": 0.1471,
+    "rho_FK_full": 0.1974,
+    "rho_SJ_full": 0.1808,
+    "rho_FK_cond": 0.2221,
+    "rho_SJ_cond": 0.225,
+    "logprob_rho_full": 0.0478,
+    "logprob_rho_cond": 0.2261,
+    "structural_beats_surface": false,
+    "sample_f1_pct_zero": 45.96,
+    "verdict": "FAIL"
+  },
+  "project": "struct_self_consist_ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a94f6381-619b-451f-90e4-77c695265736",
+  "uuid": "ff4694f2-30af-44f2-b6c1-f2f6ac64feb7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PnCu1XmiAmumpg6bqXDQ79",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1726,
+      "cache_read_input_tokens": 40464,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1726
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 57 · 2026-05-21T14:40:06.152Z_
+
+<details><summary>↩ Tool result · `toolu_01YWPVug2Ag2vkXNrPpxKuuj`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_e2_pretrained_scierc_s123\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T14:20:29.367Z\", \"updated_at\": \"2026-05-21T14:40:05.664Z\", \"hypothesis\": \"E2 pre-trained baseline SciERC seed=123: Qwen2.5-7B-Instruct (unfinetuned) on SciERC SC pipeline N=8 T=1.0. Additional seed for E2 pre-trained baseline. Tests whether correlation-selection gap and structural vs surface patterns are consistent across seeds on SciERC.\", \"spec\": {\"command\": \"python -u code/run_mvp_pilot.py --model_path /root/autodl-tmp/.hf_cache/Qwen2.5-7B-Instruct --data_dir data/scierc/processed_data/ --dataset scierc --subtask ner --n_samples 8 --temperature 1.0 --seed 123 --collect_logprobs --output_dir output/e2_pretrained_scierc_s123/\", \"server\": \"autodl-5090-c\", \"gpu\": [\"cuda:1\"], \"pid\": \"326377\", \"log_path\": \"~/runs/struct_self_consist_ie/exp_e2_pretrained_scierc_s123.log\", \"submitted_at\": \"2026-05-21T14:20:52.083Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/scierc/processed_data/\", \"data_count\": 551, \"model_name\": \"Qwen2.5-7B-Instruct\", \"seed\": 123, \"checkpoint_path\": \"N/A (inference-only)\", \"wall_clock_seconds\": 1141.9, \"gpu_hours\": 0.32}, \"conclusion\": \"negative\", \"completed_at\": \"2026-05-21T14:39:53.937Z\", \"metrics\": {\"greedy_f1\": 0.2396, \"oracle_f1\": 0.3867, \"oracle_headroom\": 0.1471, \"rho_FK_full\": 0.1974, \"rho_SJ_full\": 0.1808, \"rho_FK_cond\": 0.2221, \"rho_SJ_cond\": 0.225, \"logprob_rho_full\": 0.0478, \"logprob_rho_cond\": 0.2261, \"structural_beats_surface\": false, \"sample_f1_pct_zero\": 45.96, \"verdict\": \"FAIL\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.4033}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a94f6381-619b-451f-90e4-77c695265736",
+  "uuid": "2cfb9f4d-0990-4e66-b352-b17db0118ca3",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_e2_pretrained_scierc_s123\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T14:20:29.367Z\\\", \\\"updated_at\\\": \\\"2026-05-21T14:40:05.664Z\\\", \\\"hypothesis\\\": \\\"E2 pre-trained baseline SciERC seed=123: Qwen2.5-7B-Instruct (unfinetuned) on SciERC SC pipeline N=8 T=1.0. Additional seed for E2 pre-trained baseline. Tests whether correlation-selection gap and structural vs surface patterns are consistent across seeds on SciERC.\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -u code/run_mvp_pilot.py --model_path /root/autodl-tmp/.hf_cache/Qwen2.5-7B-Instruct --data_dir data/scierc/processed_data/ --dataset scierc --subtask ner --n_samples 8 --temperature 1.0 --seed 123 --collect_logprobs --output_dir output/e2_pretrained_scierc_s123/\\\", \\\"server\\\": \\\"autodl-5090-c\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"326377\\\", \\\"log_path\\\": \\\"~/runs/struct_self_consist_ie/exp_e2_pretrained_scierc_s123.log\\\", \\\"submitted_at\\\": \\\"2026-05-21T14:20:52.083Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"data/scierc/processed_data/\\\", \\\"data_count\\\": 551, \\\"model_name\\\": \\\"Qwen2.5-7B-Instruct\\\", \\\"seed\\\": 123, \\\"checkpoint_path\\\": \\\"N/A (inference-only)\\\", \\\"wall_clock_seconds\\\": 1141.9, \\\"gpu_hours\\\": 0.32}, \\\"conclusion\\\": \\\"negative\\\", \\\"completed_at\\\": \\\"2026-05-21T14:39:53.937Z\\\", \\\"metrics\\\": {\\\"greedy_f1\\\": 0.2396, \\\"oracle_f1\\\": 0.3867, \\\"oracle_headroom\\\": 0.1471, \\\"rho_FK_full\\\": 0.1974, \\\"rho_SJ_full\\\": 0.1808, \\\"rho_FK_cond\\\": 0.2221, \\\"rho_SJ_cond\\\": 0.225, \\\"logprob_rho_full\\\": 0.0478, \\\"logprob_rho_cond\\\": 0.2261, \\\"structural_beats_surface\\\": false, \\\"sample_f1_pct_zero\\\": 45.96, \\\"verdict\\\": \\\"FAIL\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.4033}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp_e2_pretrained_scierc_s123\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T14:20:29.367Z\", \"updated_at\": \"2026-05-21T14:40:05.664Z\", \"hypothesis\": \"E2 pre-trained baseline SciERC seed=123: Qwen2.5-7B-Instruct (unfinetuned) on SciERC SC pipeline N=8 T=1.0. Additional seed for E2 pre-trained baseline. Tests whether correlation-selection gap and structural vs surface patterns are consistent across seeds on SciERC.\", \"spec\": {\"command\": \"python -u code/run_mvp_pilot.py --model_path /root/autodl-tmp/.hf_cache/Qwen2.5-7B-Instruct --data_dir data/scierc/processed_data/ --dataset scierc --subtask ner --n_samples 8 --temperature 1.0 --seed 123 --collect_logprobs --output_dir output/e2_pretrained_scierc_s123/\", \"server\": \"autodl-5090-c\", \"gpu\": [\"cuda:1\"], \"pid\": \"326377\", \"log_path\": \"~/runs/struct_self_consist_ie/exp_e2_pretrained_scierc_s123.log\", \"submitted_at\": \"2026-05-21T14:20:52.083Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/scierc/processed_data/\", \"data_count\": 551, \"model_name\": \"Qwen2.5-7B-Instruct\", \"seed\": 123, \"checkpoint_path\": \"N/A (inference-only)\", \"wall_clock_seconds\": 1141.9, \"gpu_hours\": 0.32}, \"conclusion\": \"negative\", \"completed_at\": \"2026-05-21T14:39:53.937Z\", \"metrics\": {\"greedy_f1\": 0.2396, \"oracle_f1\": 0.3867, \"oracle_headroom\": 0.1471, \"rho_FK_full\": 0.1974, \"rho_SJ_full\": 0.1808, \"rho_FK_cond\": 0.2221, \"rho_SJ_cond\": 0.225, \"logprob_rho_full\": 0.0478, \"logprob_rho_cond\": 0.2261, \"structural_beats_surface\": false, \"sample_f1_pct_zero\": 45.96, \"verdict\": \"FAIL\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.4033}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 58_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_0192v8szTR7jKXss4LSmizMR`</summary>
+
+```json
+{
+  "exp_id": "exp_e2_pretrained_scierc_s456",
+  "field": "metrics",
+  "value": {
+    "greedy_f1": 0.2403,
+    "oracle_f1": 0.3875,
+    "oracle_headroom": 0.1472,
+    "rho_FK_full": 0.234,
+    "rho_SJ_full": 0.2151,
+    "rho_FK_cond": 0.1958,
+    "rho_SJ_cond": 0.2187,
+    "logprob_rho_full": 0.0653,
+    "logprob_rho_cond": 0.2002,
+    "structural_beats_surface": false,
+    "sample_f1_pct_zero": 45.53,
+    "verdict": "FAIL"
+  },
+  "project": "struct_self_consist_ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a94f6381-619b-451f-90e4-77c695265736",
+  "uuid": "ae0c1544-7ab0-40b6-904e-bf80752b8a58",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PnCu1XmiAmumpg6bqXDQ79",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1726,
+      "cache_read_input_tokens": 40464,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1726
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 59 · 2026-05-21T14:40:07.959Z_
+
+<details><summary>↩ Tool result · `toolu_0192v8szTR7jKXss4LSmizMR`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_e2_pretrained_scierc_s456\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T14:20:30.755Z\", \"updated_at\": \"2026-05-21T14:40:07.463Z\", \"hypothesis\": \"E2 pre-trained baseline SciERC seed=456: Qwen2.5-7B-Instruct (unfinetuned) on SciERC SC pipeline N=8 T=1.0. Third seed for E2 pre-trained baseline statistical power on SciERC.\", \"spec\": {\"command\": \"python -u code/run_mvp_pilot.py --model_path /root/autodl-tmp/.hf_cache/Qwen2.5-7B-Instruct --data_dir data/scierc/processed_data/ --dataset scierc --subtask ner --n_samples 8 --temperature 1.0 --seed 456 --collect_logprobs --output_dir output/e2_pretrained_scierc_s456/\", \"server\": \"autodl-5090-c\", \"gpu\": [\"cuda:2\"], \"pid\": \"326645\", \"log_path\": \"~/runs/struct_self_consist_ie/exp_e2_pretrained_scierc_s456.log\", \"submitted_at\": \"2026-05-21T14:20:56.182Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/scierc/processed_data/\", \"data_count\": 551, \"model_name\": \"Qwen2.5-7B-Instruct\", \"seed\": 456, \"checkpoint_path\": \"N/A (inference-only)\", \"wall_clock_seconds\": 1140.9, \"gpu_hours\": 0.32}, \"conclusion\": \"negative\", \"completed_at\": \"2026-05-21T14:39:57.115Z\", \"metrics\": {\"greedy_f1\": 0.2403, \"oracle_f1\": 0.3875, \"oracle_headroom\": 0.1472, \"rho_FK_full\": 0.234, \"rho_SJ_full\": 0.2151, \"rho_FK_cond\": 0.1958, \"rho_SJ_cond\": 0.2187, \"logprob_rho_full\": 0.0653, \"logprob_rho_cond\": 0.2002, \"structural_beats_surface\": false, \"sample_f1_pct_zero\": 45.53, \"verdict\": \"FAIL\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.2457}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a94f6381-619b-451f-90e4-77c695265736",
+  "uuid": "a8087f12-3c1f-4760-a1ef-a7227bfe44d7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_e2_pretrained_scierc_s456\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T14:20:30.755Z\\\", \\\"updated_at\\\": \\\"2026-05-21T14:40:07.463Z\\\", \\\"hypothesis\\\": \\\"E2 pre-trained baseline SciERC seed=456: Qwen2.5-7B-Instruct (unfinetuned) on SciERC SC pipeline N=8 T=1.0. Third seed for E2 pre-trained baseline statistical power on SciERC.\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -u code/run_mvp_pilot.py --model_path /root/autodl-tmp/.hf_cache/Qwen2.5-7B-Instruct --data_dir data/scierc/processed_data/ --dataset scierc --subtask ner --n_samples 8 --temperature 1.0 --seed 456 --collect_logprobs --output_dir output/e2_pretrained_scierc_s456/\\\", \\\"server\\\": \\\"autodl-5090-c\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"326645\\\", \\\"log_path\\\": \\\"~/runs/struct_self_consist_ie/exp_e2_pretrained_scierc_s456.log\\\", \\\"submitted_at\\\": \\\"2026-05-21T14:20:56.182Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"data/scierc/processed_data/\\\", \\\"data_count\\\": 551, \\\"model_name\\\": \\\"Qwen2.5-7B-Instruct\\\", \\\"seed\\\": 456, \\\"checkpoint_path\\\": \\\"N/A (inference-only)\\\", \\\"wall_clock_seconds\\\": 1140.9, \\\"gpu_hours\\\": 0.32}, \\\"conclusion\\\": \\\"negative\\\", \\\"completed_at\\\": \\\"2026-05-21T14:39:57.115Z\\\", \\\"metrics\\\": {\\\"greedy_f1\\\": 0.2403, \\\"oracle_f1\\\": 0.3875, \\\"oracle_headroom\\\": 0.1472, \\\"rho_FK_full\\\": 0.234, \\\"rho_SJ_full\\\": 0.2151, \\\"rho_FK_cond\\\": 0.1958, \\\"rho_SJ_cond\\\": 0.2187, \\\"logprob_rho_full\\\": 0.0653, \\\"logprob_rho_cond\\\": 0.2002, \\\"structural_beats_surface\\\": false, \\\"sample_f1_pct_zero\\\": 45.53, \\\"verdict\\\": \\\"FAIL\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.2457}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp_e2_pretrained_scierc_s456\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T14:20:30.755Z\", \"updated_at\": \"2026-05-21T14:40:07.463Z\", \"hypothesis\": \"E2 pre-trained baseline SciERC seed=456: Qwen2.5-7B-Instruct (unfinetuned) on SciERC SC pipeline N=8 T=1.0. Third seed for E2 pre-trained baseline statistical power on SciERC.\", \"spec\": {\"command\": \"python -u code/run_mvp_pilot.py --model_path /root/autodl-tmp/.hf_cache/Qwen2.5-7B-Instruct --data_dir data/scierc/processed_data/ --dataset scierc --subtask ner --n_samples 8 --temperature 1.0 --seed 456 --collect_logprobs --output_dir output/e2_pretrained_scierc_s456/\", \"server\": \"autodl-5090-c\", \"gpu\": [\"cuda:2\"], \"pid\": \"326645\", \"log_path\": \"~/runs/struct_self_consist_ie/exp_e2_pretrained_scierc_s456.log\", \"submitted_at\": \"2026-05-21T14:20:56.182Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/scierc/processed_data/\", \"data_count\": 551, \"model_name\": \"Qwen2.5-7B-Instruct\", \"seed\": 456, \"checkpoint_path\": \"N/A (inference-only)\", \"wall_clock_seconds\": 1140.9, \"gpu_hours\": 0.32}, \"conclusion\": \"negative\", \"completed_at\": \"2026-05-21T14:39:57.115Z\", \"metrics\": {\"greedy_f1\": 0.2403, \"oracle_f1\": 0.3875, \"oracle_headroom\": 0.1472, \"rho_FK_full\": 0.234, \"rho_SJ_full\": 0.2151, \"rho_FK_cond\": 0.1958, \"rho_SJ_cond\": 0.2187, \"logprob_rho_full\": 0.0653, \"logprob_rho_cond\": 0.2002, \"structural_beats_surface\": false, \"sample_f1_pct_zero\": 45.53, \"verdict\": \"FAIL\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.2457}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 60_
+
+Registry 已更新。汇总如下：
+
+---
+
+## 1. e2_pretrained_scierc 三种子完整对比
+
+| Metric | s42 | s123 | s456 |
+|--------|-----|------|------|
+| greedy_f1 | 0.2418 | 0.2396 | 0.2403 |
+| oracle_f1 | — | 0.3867 | 0.3875 |
+| oracle_headroom | — | 0.1471 | 0.1472 |
+| rho_FK_full | — | 0.1974 | 0.2340 |
+| rho_SJ_full | — | 0.1808 | 0.2151 |
+| rho_FK_cond | — | 0.2221 | 0.1958 |
+| **rho_SJ_cond** | **0.1987** | **0.2250** | **0.2187** |
+| logprob_rho_full | — | 0.048 (n.s.) | 0.065 (n.s.) |
+| logprob_rho_cond | — | 0.2261 | 0.2002 |
+| structural_beats_surface | — | false | false |
+| sample_f1_pct_zero | — | 45.96% | 45.53% |
+| **verdict** | **FAIL** | **FAIL** | **FAIL** |
+
+**结论：三种子高度一致，全部 FAIL。** 预训练 Qwen2.5-7B-Instruct 在 SciERC 上 greedy_f1 仅 ~0.24，~46% 样本 F1=0，SC 信号极弱（rho_SJ_cond ~0.20-0.22），logprob 在 full 条件下甚至不显著。模型未经微调在 SciERC 上能力不足，无法产生有意义的 SC 信号。
+
+---
+
+## 2. 5090-c 可用模型
+
+`checkpoints/` 目录：
+
+| 模型 | 类型 |
+|------|------|
+| qwen3-8b-fewnerd-exp021-merged | Qwen3-8B FewNERD finetuned |
+| qwen3-8b-conll2003-merged | Qwen3-8B CoNLL finetuned |
+| qwen3-8b-scierc-merged-v2 | Qwen3-8B SciERC finetuned |
+| qwen25-7b-fewnerd-merged | Qwen2.5-7B FewNERD finetuned |
+| qwen25-14b-fewnerd-merged-ckpt36000 | Qwen2.5-14B FewNERD ckpt36000 |
+| qwen25-14b-fewnerd-merged-final | Qwen2.5-14B FewNERD final |
+| llama3.1-8b-scierc-lora | LLaMA3.1-8B SciERC LoRA |
+
+**Qwen3-8B-FewNERD finetuned 模型已在 5090-c 上可用**（`qwen3-8b-fewnerd-exp021-merged`）。
+
+`/root/autodl-tmp/models/` 不存在。
+
+---
+
+## 3. cuda:1/2 利用建议
+
+当前 5090-c 状态：cuda:0 被 `fewnerd_n16_s123` 占用（RUNNING），cuda:1/2 空闲。
+
+可选方案（按优先级）：
+1. **FewNERD N=16 多种子补充**（s456）— 如果 N=16 scaling 实验需要第三种子
+2. **SciERC finetuned N=16 scaling** — 用 `qwen3-8b-scierc-merged-v2` 跑 SciERC N=16（与 FewNERD N=16 对称）
+3. **MF4v2 pipeline** — Qwen3-8B-FewNERD 模型已就位，可直接启动 MF4v2 相关实验
+4. **CoNLL N=16 补充种子** — 用 `qwen3-8b-conll2003-merged` 补 CoNLL 多种子
+
+取决于当前 roadmap 的优先级，需要你决定。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a94f6381-619b-451f-90e4-77c695265736",
+  "uuid": "8b026c1d-cf23-43fa-9880-625077a72613",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018ENzXKoZPRX5Nia6ppoE72",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2198,
+      "cache_read_input_tokens": 42190,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2198
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 61_
+
+Registry 已更新。汇总如下：
+
+---
+
+## 1. e2_pretrained_scierc 三种子完整对比
+
+| Metric | s42 | s123 | s456 |
+|--------|-----|------|------|
+| greedy_f1 | 0.2418 | 0.2396 | 0.2403 |
+| oracle_f1 | — | 0.3867 | 0.3875 |
+| oracle_headroom | — | 0.1471 | 0.1472 |
+| rho_FK_full | — | 0.1974 | 0.2340 |
+| rho_SJ_full | — | 0.1808 | 0.2151 |
+| rho_FK_cond | — | 0.2221 | 0.1958 |
+| **rho_SJ_cond** | **0.1987** | **0.2250** | **0.2187** |
+| logprob_rho_full | — | 0.048 (n.s.) | 0.065 (n.s.) |
+| logprob_rho_cond | — | 0.2261 | 0.2002 |
+| structural_beats_surface | — | false | false |
+| sample_f1_pct_zero | — | 45.96% | 45.53% |
+| **verdict** | **FAIL** | **FAIL** | **FAIL** |
+
+**结论：三种子高度一致，全部 FAIL。** 预训练 Qwen2.5-7B-Instruct 在 SciERC 上 greedy_f1 仅 ~0.24，~46% 样本 F1=0，SC 信号极弱（rho_SJ_cond ~0.20-0.22），logprob 在 full 条件下甚至不显著。模型未经微调在 SciERC 上能力不足，无法产生有意义的 SC 信号。
+
+---
+
+## 2. 5090-c 可用模型
+
+`checkpoints/` 目录：
+
+| 模型 | 类型 |
+|------|------|
+| qwen3-8b-fewnerd-exp021-merged | Qwen3-8B FewNERD finetuned |
+| qwen3-8b-conll2003-merged | Qwen3-8B CoNLL finetuned |
+| qwen3-8b-scierc-merged-v2 | Qwen3-8B SciERC finetuned |
+| qwen25-7b-fewnerd-merged | Qwen2.5-7B FewNERD finetuned |
+| qwen25-14b-fewnerd-merged-ckpt36000 | Qwen2.5-14B FewNERD ckpt36000 |
+| qwen25-14b-fewnerd-merged-final | Qwen2.5-14B FewNERD final |
+| llama3.1-8b-scierc-lora | LLaMA3.1-8B SciERC LoRA |
+
+**Qwen3-8B-FewNERD finetuned 模型已在 5090-c 上可用**（`qwen3-8b-fewnerd-exp021-merged`）。
+
+`/root/autodl-tmp/models/` 不存在。
+
+---
+
+## 3. cuda:1/2 利用建议
+
+当前 5090-c 状态：cuda:0 被 `fewnerd_n16_s123` 占用（RUNNING），cuda:1/2 空闲。
+
+可选方案（按优先级）：
+1. **FewNERD N=16 多种子补充**（s456）— 如果 N=16 scaling 实验需要第三种子
+2. **SciERC finetuned N=16 scaling** — 用 `qwen3-8b-scierc-merged-v2` 跑 SciERC N=16（与 FewNERD N=16 对称）
+3. **MF4v2 pipeline** — Qwen3-8B-FewNERD 模型已就位，可直接启动 MF4v2 相关实验
+4. **CoNLL N=16 补充种子** — 用 `qwen3-8b-conll2003-merged` 补 CoNLL 多种子
+
+取决于当前 roadmap 的优先级，需要你决定。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 96560,
+  "duration_api_ms": 80462,
+  "num_turns": 24,
+  "stop_reason": "end_turn",
+  "session_id": "a94f6381-619b-451f-90e4-77c695265736",
+  "total_cost_usd": 0.47983374999999995,
+  "usage": {
+    "input_tokens": 13,
+    "cache_creation_input_tokens": 32687,
+    "cache_read_input_tokens": 281824,
+    "output_tokens": 5318,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 32687,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 1189,
+        "cache_read_input_tokens": 42190,
+        "cache_creation_input_tokens": 2198,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 2198
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1493,
+      "outputTokens": 24,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001613,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 13,
+      "outputTokens": 5318,
+      "cacheReadInputTokens": 281824,
+      "cacheCreationInputTokens": 32687,
+      "webSearchRequests": 0,
+      "costUSD": 0.47822075,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "d41310c0-8a8e-4172-a703-9da72341b78b"
+}
+```
+
+</details>
+
+---

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0c6b7223be432c7e38ba",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "postprocess exp 028 collect",
+  "task_key": "worker_postprocess_exp_028_collect_20260517T202025",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_postprocess_exp_028_collect_20260517T202025_result.json",
+    "occurrence": 1,
+    "bytes": 91,
+    "sha256": "7ba566935304ccc59af53ac16dff0c8cf933db8ae4cbe5ac8e12a4d5b1910612"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Inference 进度 97% (38776/40000)，约 2 分钟后再检查完成状态。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/postprocess-exp-028-collect.md"
+}

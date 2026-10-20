@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0aa24c33c744ac09c8f2",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "paper writing d157 prescriptive",
+  "task_key": "worker_paper_writing_d157_prescriptive_20260519T022603",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_paper_writing_d157_prescriptive_20260519T022603_result.json",
+    "occurrence": 1,
+    "bytes": 309,
+    "sha256": "e30680f2121729a2a9952c24e3982182f5a411b2c5d525dfdf2747b8307b295b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Draft written to `docs/paper/sections/_draft_prescriptive.tex`. Four paragraphs plus one table, matching the existing `experiments.tex` formatting (column padding, booktabs, `\\,pp` notation, bold best values). No em-dashes, no -ing endings, no banned words. All numbers from the provided data."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-d157-prescriptive.md"
+}

@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "22976e6870bed934d7d3",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "exp exp 023 lora rank8",
+  "task_key": "worker_exp_exp_023_lora_rank8_20260516T102605",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_exp_exp_023_lora_rank8_20260516T102605.log",
+    "occurrence": 1,
+    "bytes": 639827,
+    "sha256": "86666ae6320a8c57b8b5ac042e35f09c267ced10ac83e284513d8773f025888b"
+  },
+  "statistics": {
+    "messages": 158,
+    "user_turns": 0,
+    "tool_calls": 57,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 40,
+      "tool_call": 57,
+      "tool_result": 57,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 158,
+      "chunks": [
+        {
+          "path": "22976e6870bed934d7d3-part-0001.json",
+          "message_count": 148
+        },
+        {
+          "path": "22976e6870bed934d7d3-part-0002.json",
+          "message_count": 10
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/exp-exp-023-lora-rank8.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "009b11fb122ce260847f",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ops kill r1024 processes",
+  "task_key": "worker_ops_kill_r1024_processes_20260514T222848",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_kill_r1024_processes_20260514T222848_result.json",
+    "occurrence": 1,
+    "bytes": 561,
+    "sha256": "90f1960d97f1f854de706daed42bc6eb0af74acb359c8635dc2214c21b125a1f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果：\n\n- **无 _r1024 进程在运行** — 所有 _r1024 重跑实验已经不在了（可能之前已完成或已被终止）\n- **唯一活跃实验**：`exp_017_llama_conll_n16_s123`（tmux session `exp017_s123`，GPU 1）— 不含 _r1024，未动它\n- **GPU 状态**：4 卡全部空闲（各 2 MiB 显存占用，0% 利用率）\n\n注意：`exp_017_llama_conll_n16_s123` 的 python 进程虽然还在（PID 108051），但 GPU 显存已释放，可能处于 CPU 阶段或即将结束。该实验不在 kill 范围内，已保留。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-kill-r1024-processes.md"
+}

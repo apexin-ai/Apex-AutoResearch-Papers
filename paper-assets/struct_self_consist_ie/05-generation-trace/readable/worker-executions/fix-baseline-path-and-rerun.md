@@ -1,0 +1,2199 @@
+# fix baseline path and rerun
+
+**When Self-Consistency Fails for NER: Degeneracy, Signal Collapse, and the Correlation-Selection Gap** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 45
+- **Recorded user turns:** 0
+- **Tool calls:** 14
+- **Original source:** `logs/workers/worker_fix_baseline_path_and_rerun_20260518T031951.log`
+- **Structured JSON:** [`1e8628b4c1c88be21455.json`](../../sessions/1e/1e8628b4c1c88be21455.json)
+
+## Before a recorded user message
+
+45 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "session_id": "f972e873-2fed-46d9-9650-cae175aa4e15",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "446bf923-141a-477a-8a60-68e25f99b1dc",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779090000,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "1fba1650-dc5d-4e2e-b287-504f52b62d0f",
+  "session_id": "f972e873-2fed-46d9-9650-cae175aa4e15"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by searching for the files that reference the old baseline path, then make the necessary changes and rerun the analyses.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f972e873-2fed-46d9-9650-cae175aa4e15",
+  "uuid": "76a79076-be99-4757-a97c-13f8bd948f06",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XHxi7ZqW9WXdteh1UoEqim",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13816,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13816
+      },
+      "output_tokens": 25,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 5_
+
+开始执行：先在服务器上搜索所有引用旧 baseline 的文件。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f972e873-2fed-46d9-9650-cae175aa4e15",
+  "uuid": "3bcbd847-3064-4918-8080-6c1a7dc7b9c6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XHxi7ZqW9WXdteh1UoEqim",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13816,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13816
+      },
+      "output_tokens": 25,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_013eKbHd59E3uYWyC1kWTq64`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_execute",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f972e873-2fed-46d9-9650-cae175aa4e15",
+  "uuid": "4312a265-865c-4f89-af08-d759c797fddc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XHxi7ZqW9WXdteh1UoEqim",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13816,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13816
+      },
+      "output_tokens": 25,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-18T03:20:04.306Z_
+
+<details><summary>↩ Tool result · `toolu_013eKbHd59E3uYWyC1kWTq64`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f972e873-2fed-46d9-9650-cae175aa4e15",
+  "uuid": "bd5560b3-8457-45df-afb4-034ba44201e4",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_execute"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_execute",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01KAcw7s3RDAgAVsKJ4ywZdf`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "account": "root",
+  "command": "cd /root/autodl-tmp/struct_self_consist_ie && grep -rn \"exp_012_logprob\\|samples_with_logprobs\" scripts/exp_029a*/ scripts/exp_029b*/ 2>/dev/null"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f972e873-2fed-46d9-9650-cae175aa4e15",
+  "uuid": "cde2f520-5df6-4e26-a11d-7d9fe606d6a6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NDyxk5kRsXQqpGXxYbxcwy",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 415,
+      "cache_read_input_tokens": 25657,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 415
+      },
+      "output_tokens": 68,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-18T03:20:09.303Z_
+
+<details><summary>↩ Tool result · `toolu_01KAcw7s3RDAgAVsKJ4ywZdf`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"scripts/exp_029a_postprocess/03_analyze_fixed.py:31:BASELINE_PATH = f\\\"{BASE}/output/exp_012_logprob/samples_with_logprobs.jsonl\\\"\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.16}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f972e873-2fed-46d9-9650-cae175aa4e15",
+  "uuid": "1d223a44-8aff-4e51-a96b-bbf47c88ff54",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"scripts/exp_029a_postprocess/03_analyze_fixed.py:31:BASELINE_PATH = f\\\\\\\"{BASE}/output/exp_012_logprob/samples_with_logprobs.jsonl\\\\\\\"\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.16}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"scripts/exp_029a_postprocess/03_analyze_fixed.py:31:BASELINE_PATH = f\\\"{BASE}/output/exp_012_logprob/samples_with_logprobs.jsonl\\\"\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.16}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01LbfCwEPXkPZrdLJPzVkuZb`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "account": "root",
+  "command": "ls -la /root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/samples.jsonl && python3 -c \"import json; lines=open('/root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/samples.jsonl').readlines(); print(f'Lines: {len(lines)}'); d=json.loads(lines[0]); print(f'Keys: {list(d.keys())[:10]}')\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f972e873-2fed-46d9-9650-cae175aa4e15",
+  "uuid": "c8e98fba-153b-469a-8eef-6b205fb66e7a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NDyxk5kRsXQqpGXxYbxcwy",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 415,
+      "cache_read_input_tokens": 25657,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 415
+      },
+      "output_tokens": 68,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-18T03:20:09.721Z_
+
+<details><summary>↩ Tool result · `toolu_01LbfCwEPXkPZrdLJPzVkuZb`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'ls -la /root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/samples.jsonl && python3 -c \\\"import json; lines=open(\\\\'/root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/samples.jsonl\\\\').readlines(); print(f\\\\'Lines: {len(lines)}\\\\'); d=json.loads(lines[0]); print(f\\\\'Keys: {list(d.keys())[:10]}\\\\')\\\"'\\n\\nExit code: 127\\n\\nStdout:\\n\\n-rw-r--r-- 1 root root 3820412 May 15 06:17 /root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/samples.jsonl\\n\\nStderr:\\n\\nbash: line 1: python3: command not found\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f972e873-2fed-46d9-9650-cae175aa4e15",
+  "uuid": "4ce819b7-e7f4-4ff3-ac35-4e4d43bcaec4",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'ls -la /root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/samples.jsonl && python3 -c \\\\\\\"import json; lines=open(\\\\\\\\'/root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/samples.jsonl\\\\\\\\').readlines(); print(f\\\\\\\\'Lines: {len(lines)}\\\\\\\\'); d=json.loads(lines[0]); print(f\\\\\\\\'Keys: {list(d.keys())[:10]}\\\\\\\\')\\\\\\\"'\\\\n\\\\nExit code: 127\\\\n\\\\nStdout:\\\\n\\\\n-rw-r--r-- 1 root root 3820412 May 15 06:17 /root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/samples.jsonl\\\\n\\\\nStderr:\\\\n\\\\nbash: line 1: python3: command not found\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'ls -la /root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/samples.jsonl && python3 -c \\\"import json; lines=open(\\\\'/root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/samples.jsonl\\\\').readlines(); print(f\\\\'Lines: {len(lines)}\\\\'); d=json.loads(lines[0]); print(f\\\\'Keys: {list(d.keys())[:10]}\\\\')\\\"'\\n\\nExit code: 127\\n\\nStdout:\\n\\n-rw-r--r-- 1 root root 3820412 May 15 06:17 /root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/samples.jsonl\\n\\nStderr:\\n\\nbash: line 1: python3: command not found\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12_
+
+找到唯一引用点：`scripts/exp_029a_postprocess/03_analyze_fixed.py:31`。正确文件存在（3.8MB, May 15）。python3 不在 PATH，需要用完整路径。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f972e873-2fed-46d9-9650-cae175aa4e15",
+  "uuid": "3e8b5929-0afe-4012-9648-ec98e7b12cab",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CawJWieomU9GdgERXbzzYG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 870,
+      "cache_read_input_tokens": 26072,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 870
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_0151idcQ3y4MPN9U4qZeQ1MH`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "account": "root",
+  "command": "cd /root/autodl-tmp/struct_self_consist_ie && /root/miniconda3/bin/python -c \"import json; lines=open('output/exp_012_rerun_1024/samples.jsonl').readlines(); print(f'Lines: {len(lines)}'); d=json.loads(lines[0]); print(f'Keys: {list(d.keys())[:10]}')\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f972e873-2fed-46d9-9650-cae175aa4e15",
+  "uuid": "5bd41c89-1cb9-414d-89f9-0438d1050275",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CawJWieomU9GdgERXbzzYG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 870,
+      "cache_read_input_tokens": 26072,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 870
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-18T03:20:16.074Z_
+
+<details><summary>↩ Tool result · `toolu_0151idcQ3y4MPN9U4qZeQ1MH`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Lines: 551\\nKeys: ['id', 'text', 'gold', 'samples', 'greedy', 'logprobs']\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.99}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f972e873-2fed-46d9-9650-cae175aa4e15",
+  "uuid": "d5e19a51-34be-4935-9168-e1e6ac0fcae0",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Lines: 551\\\\nKeys: ['id', 'text', 'gold', 'samples', 'greedy', 'logprobs']\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.99}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Lines: 551\\nKeys: ['id', 'text', 'gold', 'samples', 'greedy', 'logprobs']\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.99}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01BXgg8TBfFcA68fgjwwRvDj`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "account": "root",
+  "command": "grep -rn \"exp_012_logprob\\|samples_with_logprobs\\|BASELINE\" /root/autodl-tmp/struct_self_consist_ie/scripts/exp_029b*/03_analyze.py 2>/dev/null; ls /root/autodl-tmp/struct_self_consist_ie/scripts/exp_029b*/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f972e873-2fed-46d9-9650-cae175aa4e15",
+  "uuid": "16ec5c36-8bde-4c86-913e-c7f22438ec33",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CawJWieomU9GdgERXbzzYG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 870,
+      "cache_read_input_tokens": 26072,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 870
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01DMwyfpu1CMBDoaaUWdyLj6`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "account": "root",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/scripts/exp_029a_postprocess/03_analyze_fixed.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f972e873-2fed-46d9-9650-cae175aa4e15",
+  "uuid": "f480a9b1-b164-4259-a013-d3e2ca790120",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CawJWieomU9GdgERXbzzYG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 870,
+      "cache_read_input_tokens": 26072,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 870
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-18T03:20:17.442Z_
+
+<details><summary>↩ Tool result · `toolu_01BXgg8TBfFcA68fgjwwRvDj`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"32:BASELINE_3EPOCH_PATH = f\\\"{BASE}/output/exp_029a_scierc_3epoch/comparison_report_fixed.json\\\"\\n33:BASELINE_5EPOCH_SAMPLES_PATH = f\\\"{BASE}/output/exp_012_rerun_1024/samples.jsonl\\\"\\n38:    with open(BASELINE_3EPOCH_PATH) as f:\\n417:            \\\"source\\\": BASELINE_3EPOCH_PATH,\\n01_merge_lora.sh\\n02_inference.sh\\n03_analyze.py\\nrun_all.sh\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.95}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f972e873-2fed-46d9-9650-cae175aa4e15",
+  "uuid": "ab9ee339-9641-43dd-9c37-a687b261148a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"32:BASELINE_3EPOCH_PATH = f\\\\\\\"{BASE}/output/exp_029a_scierc_3epoch/comparison_report_fixed.json\\\\\\\"\\\\n33:BASELINE_5EPOCH_SAMPLES_PATH = f\\\\\\\"{BASE}/output/exp_012_rerun_1024/samples.jsonl\\\\\\\"\\\\n38:    with open(BASELINE_3EPOCH_PATH) as f:\\\\n417:            \\\\\\\"source\\\\\\\": BASELINE_3EPOCH_PATH,\\\\n01_merge_lora.sh\\\\n02_inference.sh\\\\n03_analyze.py\\\\nrun_all.sh\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.95}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"32:BASELINE_3EPOCH_PATH = f\\\"{BASE}/output/exp_029a_scierc_3epoch/comparison_report_fixed.json\\\"\\n33:BASELINE_5EPOCH_SAMPLES_PATH = f\\\"{BASE}/output/exp_012_rerun_1024/samples.jsonl\\\"\\n38:    with open(BASELINE_3EPOCH_PATH) as f:\\n417:            \\\"source\\\": BASELINE_3EPOCH_PATH,\\n01_merge_lora.sh\\n02_inference.sh\\n03_analyze.py\\nrun_all.sh\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.95}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-18T03:20:18.115Z_
+
+<details><summary>↩ Tool result · `toolu_01DMwyfpu1CMBDoaaUWdyLj6`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"exp_029a analysis: SciERC 3-epoch vs 5-epoch degeneracy comparison.\\n\\nFixed version: computes baseline from exp-012 raw data instead of\\nhardcoding values copied from Few-NERD (exp_028).\\n\\nComputes:\\n1. Constant F1 gold-filtered degeneracy rate\\n2. LP selection F1 (best-of-N by logprob)\\n3. All 5 signals QE metrics (SJ, FK, VC, EM, LP)\\n4. Within-instance rho(LP, F1)\\n5. LP range statistics\\n6. Comparison table vs exp-012 (SciERC 5-epoch baseline, computed from raw data)\\n7. Conclusion judgment\\n\\\"\\\"\\\"\\nimport json\\nimport os\\nimport sys\\nimport warnings\\nimport numpy as np\\nfrom collections import Counter\\nfrom scipy.stats import spearmanr\\n\\nsys.path.insert(0, '/root/autodl-tmp/struct_self_consist_ie/code')\\nfrom consistency import structural_consistency_soft_jaccard, fleiss_kappa_surface, _extract_surface_keys, _ner_soft_jaccard_pair\\nfrom evaluation import per_instance_f1\\n\\nBASE = \\\"/root/autodl-tmp/struct_self_consist_ie\\\"\\nINPUT_PATH = f\\\"{BASE}/output/exp_029a_scierc_3epoch/samples.jsonl\\\"\\nOUTPUT_DIR = f\\\"{BASE}/output/exp_029a_scierc_3epoch\\\"\\nBASELINE_PATH = f\\\"{BASE}/output/exp_012_logprob/samples_with_logprobs.jsonl\\\"\\nSUBTASK = \\\"ner\\\"\\nN_SAMPLES = 8\\n\\n\\ndef load_data(path):\\n    instances = []\\n    with open(path) as f:\\n        for line in f:\\n            if line.strip():\\n                instances.append(json.loads(line))\\n    return instances\\n\\n\\ndef entity_strict_f1(pred_entities, gold_entities):\\n    pred_set = {(e[\\\"start\\\"], e[\\\"end\\\"], e[\\\"type\\\"]) for e in pred_entities}\\n    gold_set = {(e[\\\"start\\\"], e[\\\"end\\\"], e[\\\"type\\\"]) for e in gold_entities}\\n    tp = len(pred_set & gold_set)\\n    fp = len(pred_set - gold_set)\\n    fn = len(gold_set - pred_set)\\n    precision = tp / (tp + fp) if (tp + fp) > 0 else 0.0\\n    recall = tp / (tp + fn) if (tp + fn) > 0 else 0.0\\n    f1 = 2 * precision * recall / (precision + recall) if (precision + recall) > 0 else 0.0\\n    return f1\\n\\n\\ndef compute_signals(samples):\\n    n = len(samples)\\n\\n    lp_scores = []\\n    for s in samples:\\n        lp = s.get(\\\"mean_logprob\\\")\\n        if lp is None:\\n            lp = s.get(\\\"cumulative_logprob\\\", -999) / max(s.get(\\\"n_tokens\\\", 1), 1)\\n        lp_scores.append(lp)\\n\\n    key_sets = [frozenset(_extract_surface_keys(s, SUBTASK)) for s in samples]\\n\\n    sj_matrix = np.zeros((n, n))\\n    for i in range(n):\\n        for j in range(i + 1, n):\\n            s = _ner_soft_jaccard_pair(samples[i].get(\\\"entities\\\", []), samples[j].get(\\\"entities\\\", []))\\n            sj_matrix[i][j] = s\\n            sj_matrix[j][i] = s\\n    np.fill_diagonal(sj_matrix, 1.0)\\n    sj_scores = [float(np.mean([sj_matrix[k][j] for j in range(n) if j != k])) for k in range(n)]\\n\\n    fk_matrix = np.zeros((n, n))\\n    for i in range(n):\\n        for j in range(i + 1, n):\\n            union = len(key_sets[i] | key_sets[j])\\n            inter = len(key_sets[i] & key_sets[j])\\n            s = inter / union if union > 0 else 1.0\\n            fk_matrix[i][j] = s\\n            fk_matrix[j][i] = s\\n    np.fill_diagonal(fk_matrix, 1.0)\\n    fk_scores = [float(np.mean([fk_matrix[k][j] for j in range(n) if j != k])) for k in range(n)]\\n\\n    all_keys_count = Counter()\\n    for ks in key_sets:\\n        for key in ks:\\n            all_keys_count[key] += 1\\n    vc_scores = []\\n    for ks in key_sets:\\n        if not ks:\\n            vc_scores.append(0.0)\\n        else:\\n            fracs = [all_keys_count[key] / n for key in ks]\\n            vc_scores.append(float(np.mean(fracs)))\\n\\n    em_scores = [float(sum(1 for j in range(n) if j != k and key_sets[k] == key_sets[j])) for k in range(n)]\\n\\n    return {\\\"LP\\\": lp_scores, \\\"SJ\\\": sj_scores, \\\"FK\\\": fk_scores, \\\"EM\\\": em_scores, \\\"VC\\\": vc_scores}, key_sets\\n\\n\\ndef safe_spearmanr(x, y):\\n    with warnings.catch_warnings():\\n        warnings.simplefilter(\\\"ignore\\\")\\n        if len(set(x)) < 2 or len(set(y)) < 2:\\n            return float('nan'), float('nan')\\n        r, p = spearmanr(x, y)\\n        return float(r), float(p)\\n\\n\\ndef safe_auroc(labels, scores):\\n    from sklearn.metrics import roc_auc_score\\n    if len(set(labels)) < 2 or len(set(sc\\n\\n... [截断: 输出过长，省略 12055 字符] ...\\n\\n1'])*100:+.2f}pp\\\"),\\n        (\\\"Oracle F1\\\", \\\"N/A\\\", f\\\"{oracle_macro_f1:.4f}\\\", \\\"\\\"),\\n        (\\\"Headroom (pp)\\\", \\\"N/A\\\", f\\\"{headroom_pp:.2f}\\\", \\\"\\\"),\\n        (\\\"LP sel delta (pp)\\\", f\\\"{BASELINE_REF['lp_sel_delta_pp']:+.2f}\\\", f\\\"{lp_sel_delta_pp:+.2f}\\\",\\n         f\\\"{lp_sel_delta_pp - BASELINE_REF['lp_sel_delta_pp']:+.2f}\\\"),\\n        (\\\"Within-inst median rho\\\", within_median_baseline, within_median_029a, \\\"\\\"),\\n        (\\\"Within-inst mean rho\\\",\\n         f\\\"{BASELINE_REF['within_instance_mean_rho']:.4f}\\\" if BASELINE_REF['within_instance_mean_rho'] is not None else \\\"N/A\\\",\\n         f\\\"{np.mean(within_rho_arr):.4f}\\\" if len(within_rhos) > 0 else \\\"N/A\\\", \\\"\\\"),\\n        (\\\"LP range mean\\\", \\\"N/A\\\", f\\\"{np.mean(lp_range_arr):.6f}\\\", \\\"\\\"),\\n    ]\\n\\n    for label, ref, exp029a, delta in rows:\\n        print(f\\\"  {label:<25} | {ref:>18} | {exp029a:>18} | {delta:>8}\\\")\\n\\n    # === 7. Conclusion ===\\n    print(\\\"\\\\n--- 7. Conclusion ---\\\")\\n    if degeneracy_rate < BASELINE_REF[\\\"degeneracy_cf1_pct\\\"]:\\n        conclusion = \\\"SUCCESS\\\"\\n        msg = (f\\\"3-epoch degeneracy ({degeneracy_rate:.1f}%) < 5-epoch ({BASELINE_REF['degeneracy_cf1_pct']:.1f}%). \\\"\\n               f\\\"Confirms epoch-degeneracy relationship holds for SciERC: fewer epochs produce lower degeneracy.\\\")\\n    elif degeneracy_rate == BASELINE_REF[\\\"degeneracy_cf1_pct\\\"]:\\n        conclusion = \\\"BORDERLINE\\\"\\n        msg = f\\\"3-epoch degeneracy ({degeneracy_rate:.1f}%) == 5-epoch. No clear effect.\\\"\\n    else:\\n        conclusion = \\\"NEGATIVE\\\"\\n        msg = (f\\\"3-epoch degeneracy ({degeneracy_rate:.1f}%) >= 5-epoch ({BASELINE_REF['degeneracy_cf1_pct']:.1f}%). \\\"\\n               f\\\"Epoch-degeneracy hypothesis not confirmed for SciERC.\\\")\\n\\n    print(f\\\"  Verdict: {conclusion}\\\")\\n    print(f\\\"  {msg}\\\")\\n\\n    # === Save JSON ===\\n    results = {\\n        \\\"experiment\\\": \\\"exp_029a\\\",\\n        \\\"description\\\": \\\"SciERC 3-epoch LoRA degeneracy test (FIXED: baseline from exp-012 raw data)\\\",\\n        \\\"baseline_source\\\": \\\"exp-012 (SciERC 5-epoch, rank=32) computed from raw inference data\\\",\\n        \\\"n_total\\\": n_total,\\n        \\\"n_gold_filtered\\\": n_gold_filtered,\\n        \\\"n_samples\\\": N_SAMPLES,\\n        \\\"degeneracy\\\": {\\n            \\\"definition\\\": \\\"Constant F1 gold-filtered\\\",\\n            \\\"constant_f1_count\\\": constant_f1_count,\\n            \\\"gold_filtered_total\\\": n_gold_filtered,\\n            \\\"rate_pct\\\": round(degeneracy_rate, 4),\\n        },\\n        \\\"basic\\\": {\\n            \\\"greedy_macro_f1\\\": round(greedy_macro_f1, 4),\\n            \\\"oracle_macro_f1\\\": round(oracle_macro_f1, 4),\\n            \\\"headroom_pp\\\": round(headroom_pp, 4),\\n        },\\n        \\\"lp_selection\\\": {\\n            \\\"f1\\\": round(lp_sel_macro_f1, 4),\\n            \\\"delta_pp\\\": round(lp_sel_delta_pp, 4),\\n        },\\n        \\\"qe_signals\\\": qe_results,\\n        \\\"within_instance_rho\\\": {\\n            \\\"mean\\\": round(float(np.mean(within_rho_arr)), 4) if len(within_rhos) > 0 else None,\\n            \\\"median\\\": round(float(np.median(within_rho_arr)), 4) if len(within_rhos) > 0 else None,\\n            \\\"std\\\": round(float(np.std(within_rho_arr)), 4) if len(within_rhos) > 0 else None,\\n            \\\"valid_count\\\": len(within_rhos),\\n            \\\"valid_pct\\\": round(valid_pct, 2),\\n        },\\n        \\\"lp_range\\\": {\\n            \\\"mean\\\": round(float(np.mean(lp_range_arr)), 6),\\n            \\\"std\\\": round(float(np.std(lp_range_arr)), 6),\\n            \\\"median\\\": round(float(np.median(lp_range_arr)), 6),\\n        },\\n        \\\"comparison_baseline\\\": {\\n            \\\"baseline_ref\\\": BASELINE_REF,\\n            \\\"degeneracy_delta_pp\\\": round(degeneracy_rate - BASELINE_REF[\\\"degeneracy_cf1_pct\\\"], 4),\\n            \\\"lp_sel_delta_delta\\\": round(lp_sel_delta_pp - BASELINE_REF[\\\"lp_sel_delta_pp\\\"], 4),\\n        },\\n        \\\"conclusion\\\": {\\n            \\\"verdict\\\": conclusion,\\n            \\\"message\\\": msg,\\n        },\\n    }\\n\\n    output_path = os.path.join(OUTPUT_DIR, \\\"comparison_report_fixed.json\\\")\\n    os.makedirs(OUTPUT_DIR, exist_ok=True)\\n    with open(output_path, \\\"w\\\") as f:\\n        json.dump(results, f, indent=2)\\n    print(f\\\"\\\\nResults saved to {output_path}\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.66}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f972e873-2fed-46d9-9650-cae175aa4e15",
+  "uuid": "480500b2-6387-4ab5-af1e-c0ee3589115b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"exp_029a analysis: SciERC 3-epoch vs 5-epoch degeneracy comparison.\\\\n\\\\nFixed version: computes baseline from exp-012 raw data instead of\\\\nhardcoding values copied from Few-NERD (exp_028).\\\\n\\\\nComputes:\\\\n1. Constant F1 gold-filtered degeneracy rate\\\\n2. LP selection F1 (best-of-N by logprob)\\\\n3. All 5 signals QE metrics (SJ, FK, VC, EM, LP)\\\\n4. Within-instance rho(LP, F1)\\\\n5. LP range statistics\\\\n6. Comparison table vs exp-012 (SciERC 5-epoch baseline, computed from raw data)\\\\n7. Conclusion judgment\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport json\\\\nimport os\\\\nimport sys\\\\nimport warnings\\\\nimport numpy as np\\\\nfrom collections import Counter\\\\nfrom scipy.stats import spearmanr\\\\n\\\\nsys.path.insert(0, '/root/autodl-tmp/struct_self_consist_ie/code')\\\\nfrom consistency import structural_consistency_soft_jaccard, fleiss_kappa_surface, _extract_surface_keys, _ner_soft_jaccard_pair\\\\nfrom evaluation import per_instance_f1\\\\n\\\\nBASE = \\\\\\\"/root/autodl-tmp/struct_self_consist_ie\\\\\\\"\\\\nINPUT_PATH = f\\\\\\\"{BASE}/output/exp_029a_scierc_3epoch/samples.jsonl\\\\\\\"\\\\nOUTPUT_DIR = f\\\\\\\"{BASE}/output/exp_029a_scierc_3epoch\\\\\\\"\\\\nBASELINE_PATH = f\\\\\\\"{BASE}/output/exp_012_logprob/samples_with_logprobs.jsonl\\\\\\\"\\\\nSUBTASK = \\\\\\\"ner\\\\\\\"\\\\nN_SAMPLES = 8\\\\n\\\\n\\\\ndef load_data(path):\\\\n    instances = []\\\\n    with open(path) as f:\\\\n        for line in f:\\\\n            if line.strip():\\\\n                instances.append(json.loads(line))\\\\n    return instances\\\\n\\\\n\\\\ndef entity_strict_f1(pred_entities, gold_entities):\\\\n    pred_set = {(e[\\\\\\\"start\\\\\\\"], e[\\\\\\\"end\\\\\\\"], e[\\\\\\\"type\\\\\\\"]) for e in pred_entities}\\\\n    gold_set = {(e[\\\\\\\"start\\\\\\\"], e[\\\\\\\"end\\\\\\\"], e[\\\\\\\"type\\\\\\\"]) for e in gold_entities}\\\\n    tp = len(pred_set & gold_set)\\\\n    fp = len(pred_set - gold_set)\\\\n    fn = len(gold_set - pred_set)\\\\n    precision = tp / (tp + fp) if (tp + fp) > 0 else 0.0\\\\n    recall = tp / (tp + fn) if (tp + fn) > 0 else 0.0\\\\n    f1 = 2 * precision * recall / (precision + recall) if (precision + recall) > 0 else 0.0\\\\n    return f1\\\\n\\\\n\\\\ndef compute_signals(samples):\\\\n    n = len(samples)\\\\n\\\\n    lp_scores = []\\\\n    for s in samples:\\\\n        lp = s.get(\\\\\\\"mean_logprob\\\\\\\")\\\\n        if lp is None:\\\\n            lp = s.get(\\\\\\\"cumulative_logprob\\\\\\\", -999) / max(s.get(\\\\\\\"n_tokens\\\\\\\", 1), 1)\\\\n        lp_scores.append(lp)\\\\n\\\\n    key_sets = [frozenset(_extract_surface_keys(s, SUBTASK)) for s in samples]\\\\n\\\\n    sj_matrix = np.zeros((n, n))\\\\n    for i in range(n):\\\\n        for j in range(i + 1, n):\\\\n            s = _ner_soft_jaccard_pair(samples[i].get(\\\\\\\"entities\\\\\\\", []), samples[j].get(\\\\\\\"entities\\\\\\\", []))\\\\n            sj_matrix[i][j] = s\\\\n            sj_matrix[j][i] = s\\\\n    np.fill_diagonal(sj_matrix, 1.0)\\\\n    sj_scores = [float(np.mean([sj_matrix[k][j] for j in range(n) if j != k])) for k in range(n)]\\\\n\\\\n    fk_matrix = np.zeros((n, n))\\\\n    for i in range(n):\\\\n        for j in range(i + 1, n):\\\\n            union = len(key_sets[i] | key_sets[j])\\\\n            inter = len(key_sets[i] & key_sets[j])\\\\n            s = inter / union if union > 0 else 1.0\\\\n            fk_matrix[i][j] = s\\\\n            fk_matrix[j][i] = s\\\\n    np.fill_diagonal(fk_matrix, 1.0)\\\\n    fk_scores = [float(np.mean([fk_matrix[k][j] for j in range(n) if j != k])) for k in range(n)]\\\\n\\\\n    all_keys_count = Counter()\\\\n    for ks in key_sets:\\\\n        for key in ks:\\\\n            all_keys_count[key] += 1\\\\n    vc_scores = []\\\\n    for ks in key_sets:\\\\n        if not ks:\\\\n            vc_scores.append(0.0)\\\\n        else:\\\\n            fracs = [all_keys_count[key] / n for key in ks]\\\\n            vc_scores.append(float(np.mean(fracs)))\\\\n\\\\n    em_scores = [float(sum(1 for j in range(n) if j != k and key_sets[k] == key_sets[j])) for k in range(n)]\\\\n\\\\n    return {\\\\\\\"LP\\\\\\\": lp_scores, \\\\\\\"SJ\\\\\\\": sj_scores, \\\\\\\"FK\\\\\\\": fk_scores, \\\\\\\"EM\\\\\\\": em_scores, \\\\\\\"VC\\\\\\\": vc_scores}, key_sets\\\\n\\\\n\\\\ndef safe_spearmanr(x, y):\\\\n    with warnings.catch_warnings():\\\\n        warnings.simplefilter(\\\\\\\"ignore\\\\\\\")\\\\n        if len(set(x)) < 2 or len(set(y)) < 2:\\\\n            return float('nan'), float('nan')\\\\n        r, p = spearmanr(x, y)\\\\n        return float(r), float(p)\\\\n\\\\n\\\\ndef safe_auroc(labels, scores):\\\\n    from sklearn.metrics import roc_auc_score\\\\n    if len(set(labels)) < 2 or len(set(sc\\\\n\\\\n... [截断: 输出过长，省略 12055 字符] ...\\\\n\\\\n1'])*100:+.2f}pp\\\\\\\"),\\\\n        (\\\\\\\"Oracle F1\\\\\\\", \\\\\\\"N/A\\\\\\\", f\\\\\\\"{oracle_macro_f1:.4f}\\\\\\\", \\\\\\\"\\\\\\\"),\\\\n        (\\\\\\\"Headroom (pp)\\\\\\\", \\\\\\\"N/A\\\\\\\", f\\\\\\\"{headroom_pp:.2f}\\\\\\\", \\\\\\\"\\\\\\\"),\\\\n        (\\\\\\\"LP sel delta (pp)\\\\\\\", f\\\\\\\"{BASELINE_REF['lp_sel_delta_pp']:+.2f}\\\\\\\", f\\\\\\\"{lp_sel_delta_pp:+.2f}\\\\\\\",\\\\n         f\\\\\\\"{lp_sel_delta_pp - BASELINE_REF['lp_sel_delta_pp']:+.2f}\\\\\\\"),\\\\n        (\\\\\\\"Within-inst median rho\\\\\\\", within_median_baseline, within_median_029a, \\\\\\\"\\\\\\\"),\\\\n        (\\\\\\\"Within-inst mean rho\\\\\\\",\\\\n         f\\\\\\\"{BASELINE_REF['within_instance_mean_rho']:.4f}\\\\\\\" if BASELINE_REF['within_instance_mean_rho'] is not None else \\\\\\\"N/A\\\\\\\",\\\\n         f\\\\\\\"{np.mean(within_rho_arr):.4f}\\\\\\\" if len(within_rhos) > 0 else \\\\\\\"N/A\\\\\\\", \\\\\\\"\\\\\\\"),\\\\n        (\\\\\\\"LP range mean\\\\\\\", \\\\\\\"N/A\\\\\\\", f\\\\\\\"{np.mean(lp_range_arr):.6f}\\\\\\\", \\\\\\\"\\\\\\\"),\\\\n    ]\\\\n\\\\n    for label, ref, exp029a, delta in rows:\\\\n        print(f\\\\\\\"  {label:<25} | {ref:>18} | {exp029a:>18} | {delta:>8}\\\\\\\")\\\\n\\\\n    # === 7. Conclusion ===\\\\n    print(\\\\\\\"\\\\\\\\n--- 7. Conclusion ---\\\\\\\")\\\\n    if degeneracy_rate < BASELINE_REF[\\\\\\\"degeneracy_cf1_pct\\\\\\\"]:\\\\n        conclusion = \\\\\\\"SUCCESS\\\\\\\"\\\\n        msg = (f\\\\\\\"3-epoch degeneracy ({degeneracy_rate:.1f}%) < 5-epoch ({BASELINE_REF['degeneracy_cf1_pct']:.1f}%). \\\\\\\"\\\\n               f\\\\\\\"Confirms epoch-degeneracy relationship holds for SciERC: fewer epochs produce lower degeneracy.\\\\\\\")\\\\n    elif degeneracy_rate == BASELINE_REF[\\\\\\\"degeneracy_cf1_pct\\\\\\\"]:\\\\n        conclusion = \\\\\\\"BORDERLINE\\\\\\\"\\\\n        msg = f\\\\\\\"3-epoch degeneracy ({degeneracy_rate:.1f}%) == 5-epoch. No clear effect.\\\\\\\"\\\\n    else:\\\\n        conclusion = \\\\\\\"NEGATIVE\\\\\\\"\\\\n        msg = (f\\\\\\\"3-epoch degeneracy ({degeneracy_rate:.1f}%) >= 5-epoch ({BASELINE_REF['degeneracy_cf1_pct']:.1f}%). \\\\\\\"\\\\n               f\\\\\\\"Epoch-degeneracy hypothesis not confirmed for SciERC.\\\\\\\")\\\\n\\\\n    print(f\\\\\\\"  Verdict: {conclusion}\\\\\\\")\\\\n    print(f\\\\\\\"  {msg}\\\\\\\")\\\\n\\\\n    # === Save JSON ===\\\\n    results = {\\\\n        \\\\\\\"experiment\\\\\\\": \\\\\\\"exp_029a\\\\\\\",\\\\n        \\\\\\\"description\\\\\\\": \\\\\\\"SciERC 3-epoch LoRA degeneracy test (FIXED: baseline from exp-012 raw data)\\\\\\\",\\\\n        \\\\\\\"baseline_source\\\\\\\": \\\\\\\"exp-012 (SciERC 5-epoch, rank=32) computed from raw inference data\\\\\\\",\\\\n        \\\\\\\"n_total\\\\\\\": n_total,\\\\n        \\\\\\\"n_gold_filtered\\\\\\\": n_gold_filtered,\\\\n        \\\\\\\"n_samples\\\\\\\": N_SAMPLES,\\\\n        \\\\\\\"degeneracy\\\\\\\": {\\\\n            \\\\\\\"definition\\\\\\\": \\\\\\\"Constant F1 gold-filtered\\\\\\\",\\\\n            \\\\\\\"constant_f1_count\\\\\\\": constant_f1_count,\\\\n            \\\\\\\"gold_filtered_total\\\\\\\": n_gold_filtered,\\\\n            \\\\\\\"rate_pct\\\\\\\": round(degeneracy_rate, 4),\\\\n        },\\\\n        \\\\\\\"basic\\\\\\\": {\\\\n            \\\\\\\"greedy_macro_f1\\\\\\\": round(greedy_macro_f1, 4),\\\\n            \\\\\\\"oracle_macro_f1\\\\\\\": round(oracle_macro_f1, 4),\\\\n            \\\\\\\"headroom_pp\\\\\\\": round(headroom_pp, 4),\\\\n        },\\\\n        \\\\\\\"lp_selection\\\\\\\": {\\\\n            \\\\\\\"f1\\\\\\\": round(lp_sel_macro_f1, 4),\\\\n            \\\\\\\"delta_pp\\\\\\\": round(lp_sel_delta_pp, 4),\\\\n        },\\\\n        \\\\\\\"qe_signals\\\\\\\": qe_results,\\\\n        \\\\\\\"within_instance_rho\\\\\\\": {\\\\n            \\\\\\\"mean\\\\\\\": round(float(np.mean(within_rho_arr)), 4) if len(within_rhos) > 0 else None,\\\\n            \\\\\\\"median\\\\\\\": round(float(np.median(within_rho_arr)), 4) if len(within_rhos) > 0 else None,\\\\n            \\\\\\\"std\\\\\\\": round(float(np.std(within_rho_arr)), 4) if len(within_rhos) > 0 else None,\\\\n            \\\\\\\"valid_count\\\\\\\": len(within_rhos),\\\\n            \\\\\\\"valid_pct\\\\\\\": round(valid_pct, 2),\\\\n        },\\\\n        \\\\\\\"lp_range\\\\\\\": {\\\\n            \\\\\\\"mean\\\\\\\": round(float(np.mean(lp_range_arr)), 6),\\\\n            \\\\\\\"std\\\\\\\": round(float(np.std(lp_range_arr)), 6),\\\\n            \\\\\\\"median\\\\\\\": round(float(np.median(lp_range_arr)), 6),\\\\n        },\\\\n        \\\\\\\"comparison_baseline\\\\\\\": {\\\\n            \\\\\\\"baseline_ref\\\\\\\": BASELINE_REF,\\\\n            \\\\\\\"degeneracy_delta_pp\\\\\\\": round(degeneracy_rate - BASELINE_REF[\\\\\\\"degeneracy_cf1_pct\\\\\\\"], 4),\\\\n            \\\\\\\"lp_sel_delta_delta\\\\\\\": round(lp_sel_delta_pp - BASELINE_REF[\\\\\\\"lp_sel_delta_pp\\\\\\\"], 4),\\\\n        },\\\\n        \\\\\\\"conclusion\\\\\\\": {\\\\n            \\\\\\\"verdict\\\\\\\": conclusion,\\\\n            \\\\\\\"message\\\\\\\": msg,\\\\n        },\\\\n    }\\\\n\\\\n    output_path = os.path.join(OUTPUT_DIR, \\\\\\\"comparison_report_fixed.json\\\\\\\")\\\\n    os.makedirs(OUTPUT_DIR, exist_ok=True)\\\\n    with open(output_path, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(results, f, indent=2)\\\\n    print(f\\\\\\\"\\\\\\\\nResults saved to {output_path}\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.66}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"exp_029a analysis: SciERC 3-epoch vs 5-epoch degeneracy comparison.\\n\\nFixed version: computes baseline from exp-012 raw data instead of\\nhardcoding values copied from Few-NERD (exp_028).\\n\\nComputes:\\n1. Constant F1 gold-filtered degeneracy rate\\n2. LP selection F1 (best-of-N by logprob)\\n3. All 5 signals QE metrics (SJ, FK, VC, EM, LP)\\n4. Within-instance rho(LP, F1)\\n5. LP range statistics\\n6. Comparison table vs exp-012 (SciERC 5-epoch baseline, computed from raw data)\\n7. Conclusion judgment\\n\\\"\\\"\\\"\\nimport json\\nimport os\\nimport sys\\nimport warnings\\nimport numpy as np\\nfrom collections import Counter\\nfrom scipy.stats import spearmanr\\n\\nsys.path.insert(0, '/root/autodl-tmp/struct_self_consist_ie/code')\\nfrom consistency import structural_consistency_soft_jaccard, fleiss_kappa_surface, _extract_surface_keys, _ner_soft_jaccard_pair\\nfrom evaluation import per_instance_f1\\n\\nBASE = \\\"/root/autodl-tmp/struct_self_consist_ie\\\"\\nINPUT_PATH = f\\\"{BASE}/output/exp_029a_scierc_3epoch/samples.jsonl\\\"\\nOUTPUT_DIR = f\\\"{BASE}/output/exp_029a_scierc_3epoch\\\"\\nBASELINE_PATH = f\\\"{BASE}/output/exp_012_logprob/samples_with_logprobs.jsonl\\\"\\nSUBTASK = \\\"ner\\\"\\nN_SAMPLES = 8\\n\\n\\ndef load_data(path):\\n    instances = []\\n    with open(path) as f:\\n        for line in f:\\n            if line.strip():\\n                instances.append(json.loads(line))\\n    return instances\\n\\n\\ndef entity_strict_f1(pred_entities, gold_entities):\\n    pred_set = {(e[\\\"start\\\"], e[\\\"end\\\"], e[\\\"type\\\"]) for e in pred_entities}\\n    gold_set = {(e[\\\"start\\\"], e[\\\"end\\\"], e[\\\"type\\\"]) for e in gold_entities}\\n    tp = len(pred_set & gold_set)\\n    fp = len(pred_set - gold_set)\\n    fn = len(gold_set - pred_set)\\n    precision = tp / (tp + fp) if (tp + fp) > 0 else 0.0\\n    recall = tp / (tp + fn) if (tp + fn) > 0 else 0.0\\n    f1 = 2 * precision * recall / (precision + recall) if (precision + recall) > 0 else 0.0\\n    return f1\\n\\n\\ndef compute_signals(samples):\\n    n = len(samples)\\n\\n    lp_scores = []\\n    for s in samples:\\n        lp = s.get(\\\"mean_logprob\\\")\\n        if lp is None:\\n            lp = s.get(\\\"cumulative_logprob\\\", -999) / max(s.get(\\\"n_tokens\\\", 1), 1)\\n        lp_scores.append(lp)\\n\\n    key_sets = [frozenset(_extract_surface_keys(s, SUBTASK)) for s in samples]\\n\\n    sj_matrix = np.zeros((n, n))\\n    for i in range(n):\\n        for j in range(i + 1, n):\\n            s = _ner_soft_jaccard_pair(samples[i].get(\\\"entities\\\", []), samples[j].get(\\\"entities\\\", []))\\n            sj_matrix[i][j] = s\\n            sj_matrix[j][i] = s\\n    np.fill_diagonal(sj_matrix, 1.0)\\n    sj_scores = [float(np.mean([sj_matrix[k][j] for j in range(n) if j != k])) for k in range(n)]\\n\\n    fk_matrix = np.zeros((n, n))\\n    for i in range(n):\\n        for j in range(i + 1, n):\\n            union = len(key_sets[i] | key_sets[j])\\n            inter = len(key_sets[i] & key_sets[j])\\n            s = inter / union if union > 0 else 1.0\\n            fk_matrix[i][j] = s\\n            fk_matrix[j][i] = s\\n    np.fill_diagonal(fk_matrix, 1.0)\\n    fk_scores = [float(np.mean([fk_matrix[k][j] for j in range(n) if j != k])) for k in range(n)]\\n\\n    all_keys_count = Counter()\\n    for ks in key_sets:\\n        for key in ks:\\n            all_keys_count[key] += 1\\n    vc_scores = []\\n    for ks in key_sets:\\n        if not ks:\\n            vc_scores.append(0.0)\\n        else:\\n            fracs = [all_keys_count[key] / n for key in ks]\\n            vc_scores.append(float(np.mean(fracs)))\\n\\n    em_scores = [float(sum(1 for j in range(n) if j != k and key_sets[k] == key_sets[j])) for k in range(n)]\\n\\n    return {\\\"LP\\\": lp_scores, \\\"SJ\\\": sj_scores, \\\"FK\\\": fk_scores, \\\"EM\\\": em_scores, \\\"VC\\\": vc_scores}, key_sets\\n\\n\\ndef safe_spearmanr(x, y):\\n    with warnings.catch_warnings():\\n        warnings.simplefilter(\\\"ignore\\\")\\n        if len(set(x)) < 2 or len(set(y)) < 2:\\n            return float('nan'), float('nan')\\n        r, p = spearmanr(x, y)\\n        return float(r), float(p)\\n\\n\\ndef safe_auroc(labels, scores):\\n    from sklearn.metrics import roc_auc_score\\n    if len(set(labels)) < 2 or len(set(sc\\n\\n... [截断: 输出过长，省略 12055 字符] ...\\n\\n1'])*100:+.2f}pp\\\"),\\n        (\\\"Oracle F1\\\", \\\"N/A\\\", f\\\"{oracle_macro_f1:.4f}\\\", \\\"\\\"),\\n        (\\\"Headroom (pp)\\\", \\\"N/A\\\", f\\\"{headroom_pp:.2f}\\\", \\\"\\\"),\\n        (\\\"LP sel delta (pp)\\\", f\\\"{BASELINE_REF['lp_sel_delta_pp']:+.2f}\\\", f\\\"{lp_sel_delta_pp:+.2f}\\\",\\n         f\\\"{lp_sel_delta_pp - BASELINE_REF['lp_sel_delta_pp']:+.2f}\\\"),\\n        (\\\"Within-inst median rho\\\", within_median_baseline, within_median_029a, \\\"\\\"),\\n        (\\\"Within-inst mean rho\\\",\\n         f\\\"{BASELINE_REF['within_instance_mean_rho']:.4f}\\\" if BASELINE_REF['within_instance_mean_rho'] is not None else \\\"N/A\\\",\\n         f\\\"{np.mean(within_rho_arr):.4f}\\\" if len(within_rhos) > 0 else \\\"N/A\\\", \\\"\\\"),\\n        (\\\"LP range mean\\\", \\\"N/A\\\", f\\\"{np.mean(lp_range_arr):.6f}\\\", \\\"\\\"),\\n    ]\\n\\n    for label, ref, exp029a, delta in rows:\\n        print(f\\\"  {label:<25} | {ref:>18} | {exp029a:>18} | {delta:>8}\\\")\\n\\n    # === 7. Conclusion ===\\n    print(\\\"\\\\n--- 7. Conclusion ---\\\")\\n    if degeneracy_rate < BASELINE_REF[\\\"degeneracy_cf1_pct\\\"]:\\n        conclusion = \\\"SUCCESS\\\"\\n        msg = (f\\\"3-epoch degeneracy ({degeneracy_rate:.1f}%) < 5-epoch ({BASELINE_REF['degeneracy_cf1_pct']:.1f}%). \\\"\\n               f\\\"Confirms epoch-degeneracy relationship holds for SciERC: fewer epochs produce lower degeneracy.\\\")\\n    elif degeneracy_rate == BASELINE_REF[\\\"degeneracy_cf1_pct\\\"]:\\n        conclusion = \\\"BORDERLINE\\\"\\n        msg = f\\\"3-epoch degeneracy ({degeneracy_rate:.1f}%) == 5-epoch. No clear effect.\\\"\\n    else:\\n        conclusion = \\\"NEGATIVE\\\"\\n        msg = (f\\\"3-epoch degeneracy ({degeneracy_rate:.1f}%) >= 5-epoch ({BASELINE_REF['degeneracy_cf1_pct']:.1f}%). \\\"\\n               f\\\"Epoch-degeneracy hypothesis not confirmed for SciERC.\\\")\\n\\n    print(f\\\"  Verdict: {conclusion}\\\")\\n    print(f\\\"  {msg}\\\")\\n\\n    # === Save JSON ===\\n    results = {\\n        \\\"experiment\\\": \\\"exp_029a\\\",\\n        \\\"description\\\": \\\"SciERC 3-epoch LoRA degeneracy test (FIXED: baseline from exp-012 raw data)\\\",\\n        \\\"baseline_source\\\": \\\"exp-012 (SciERC 5-epoch, rank=32) computed from raw inference data\\\",\\n        \\\"n_total\\\": n_total,\\n        \\\"n_gold_filtered\\\": n_gold_filtered,\\n        \\\"n_samples\\\": N_SAMPLES,\\n        \\\"degeneracy\\\": {\\n            \\\"definition\\\": \\\"Constant F1 gold-filtered\\\",\\n            \\\"constant_f1_count\\\": constant_f1_count,\\n            \\\"gold_filtered_total\\\": n_gold_filtered,\\n            \\\"rate_pct\\\": round(degeneracy_rate, 4),\\n        },\\n        \\\"basic\\\": {\\n            \\\"greedy_macro_f1\\\": round(greedy_macro_f1, 4),\\n            \\\"oracle_macro_f1\\\": round(oracle_macro_f1, 4),\\n            \\\"headroom_pp\\\": round(headroom_pp, 4),\\n        },\\n        \\\"lp_selection\\\": {\\n            \\\"f1\\\": round(lp_sel_macro_f1, 4),\\n            \\\"delta_pp\\\": round(lp_sel_delta_pp, 4),\\n        },\\n        \\\"qe_signals\\\": qe_results,\\n        \\\"within_instance_rho\\\": {\\n            \\\"mean\\\": round(float(np.mean(within_rho_arr)), 4) if len(within_rhos) > 0 else None,\\n            \\\"median\\\": round(float(np.median(within_rho_arr)), 4) if len(within_rhos) > 0 else None,\\n            \\\"std\\\": round(float(np.std(within_rho_arr)), 4) if len(within_rhos) > 0 else None,\\n            \\\"valid_count\\\": len(within_rhos),\\n            \\\"valid_pct\\\": round(valid_pct, 2),\\n        },\\n        \\\"lp_range\\\": {\\n            \\\"mean\\\": round(float(np.mean(lp_range_arr)), 6),\\n            \\\"std\\\": round(float(np.std(lp_range_arr)), 6),\\n            \\\"median\\\": round(float(np.median(lp_range_arr)), 6),\\n        },\\n        \\\"comparison_baseline\\\": {\\n            \\\"baseline_ref\\\": BASELINE_REF,\\n            \\\"degeneracy_delta_pp\\\": round(degeneracy_rate - BASELINE_REF[\\\"degeneracy_cf1_pct\\\"], 4),\\n            \\\"lp_sel_delta_delta\\\": round(lp_sel_delta_pp - BASELINE_REF[\\\"lp_sel_delta_pp\\\"], 4),\\n        },\\n        \\\"conclusion\\\": {\\n            \\\"verdict\\\": conclusion,\\n            \\\"message\\\": msg,\\n        },\\n    }\\n\\n    output_path = os.path.join(OUTPUT_DIR, \\\"comparison_report_fixed.json\\\")\\n    os.makedirs(OUTPUT_DIR, exist_ok=True)\\n    with open(output_path, \\\"w\\\") as f:\\n        json.dump(results, f, indent=2)\\n    print(f\\\"\\\\nResults saved to {output_path}\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.66}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 19_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me analyze what I found:
+
+1. **exp_029a**: `scripts/exp_029a_postprocess/03_analyze_fixed.py` line 31 has `BASELINE_PATH = f"{BASE}/output/exp_012_logprob/samples_with_logprobs.jsonl"` - needs to be changed to `exp_012_rerun_1024/samples.jsonl`
+
+2. **exp_029b**: `scripts/exp_029b_postprocess/03_analyze.py` lines 32-33 show:
+   - `BASELINE_3EPOCH_PATH = f"{BASE}/output/exp_029a_scierc_3epoch/comparison_report_fixed.json"` (reads from exp_029a output)
+   - `BASELINE_5EPOCH_SAMPLES_PATH = f"{BASE}/output/exp_012_rerun_1024/samples.jsonl"` - already pointing to correct file!
+
+So exp_029b already uses the correct path for 5-epoch baseline samples, but it depends on exp_029a's `comparison_report_fixed.json` for 3-epoch data. The correct file exists with 551 lines and contains the expected keys.
+
+Now I need to fix exp_029a's BASELINE_PATH on line 31, which currently points to the wrong location. The script is supposed to compute the baseline reference from exp_012 raw data rather than hardcoding it, so I'll update that path and then run both analyses in sequence.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f972e873-2fed-46d9-9650-cae175aa4e15",
+  "uuid": "a974a304-859f-461d-8ac2-f1bb089c665c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PNjDAnj7XA6bdEbftBvJFF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4683,
+      "cache_read_input_tokens": 26942,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4683
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 20_
+
+情况清楚了：
+- **exp_029a**: line 31 引用旧路径，需修改
+- **exp_029b**: 已经指向 `exp_012_rerun_1024/samples.jsonl`，但依赖 exp_029a 的 `comparison_report_fixed.json`
+
+先修改 exp_029a 并查看 exp_029b 完整脚本。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f972e873-2fed-46d9-9650-cae175aa4e15",
+  "uuid": "0e1f8819-2479-41a4-9850-9b296ab26246",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PNjDAnj7XA6bdEbftBvJFF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4683,
+      "cache_read_input_tokens": 26942,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4683
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01XnYF6tKnLWcuwQnWETWWtj`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "account": "root",
+  "command": "cd /root/autodl-tmp/struct_self_consist_ie && sed -i 's|exp_012_logprob/samples_with_logprobs.jsonl|exp_012_rerun_1024/samples.jsonl|g' scripts/exp_029a_postprocess/03_analyze_fixed.py && grep -n \"BASELINE_PATH\\|exp_012\" scripts/exp_029a_postprocess/03_analyze_fixed.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f972e873-2fed-46d9-9650-cae175aa4e15",
+  "uuid": "3bc639ab-7050-4fc7-b62d-fa8ff3ac6311",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PNjDAnj7XA6bdEbftBvJFF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4683,
+      "cache_read_input_tokens": 26942,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4683
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-18T03:20:32.958Z_
+
+<details><summary>↩ Tool result · `toolu_01XnYF6tKnLWcuwQnWETWWtj`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"31:BASELINE_PATH = f\\\"{BASE}/output/exp_012_rerun_1024/samples.jsonl\\\"\\n218:    BASELINE_REF = compute_baseline_from_exp012(BASELINE_PATH)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.48}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f972e873-2fed-46d9-9650-cae175aa4e15",
+  "uuid": "0ba00bf9-69fc-4901-827f-74b85ddeb07e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"31:BASELINE_PATH = f\\\\\\\"{BASE}/output/exp_012_rerun_1024/samples.jsonl\\\\\\\"\\\\n218:    BASELINE_REF = compute_baseline_from_exp012(BASELINE_PATH)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.48}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"31:BASELINE_PATH = f\\\"{BASE}/output/exp_012_rerun_1024/samples.jsonl\\\"\\n218:    BASELINE_REF = compute_baseline_from_exp012(BASELINE_PATH)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.48}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01VuPS8ruP5yevKq5zJKFxB7`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "account": "root",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/scripts/exp_029b_postprocess/03_analyze.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f972e873-2fed-46d9-9650-cae175aa4e15",
+  "uuid": "c2ec1d89-f75d-46ba-983b-50573c467bd3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PNjDAnj7XA6bdEbftBvJFF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4683,
+      "cache_read_input_tokens": 26942,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4683
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-18T03:20:33.643Z_
+
+<details><summary>↩ Tool result · `toolu_01VuPS8ruP5yevKq5zJKFxB7`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"exp_029b analysis: SciERC 10-epoch degeneracy comparison.\\n\\nComputes:\\n1. Constant F1 gold-filtered degeneracy rate\\n2. LP selection F1 (best-of-N by logprob)\\n3. All 5 signals QE metrics (SJ, FK, VC, EM, LP)\\n4. Within-instance rho(LP, F1)\\n5. LP range statistics\\n6. Comparison table vs 5-epoch baseline (dynamic) and 3-epoch (exp_029a)\\n7. Conclusion judgment\\n\\\"\\\"\\\"\\nimport json\\nimport os\\nimport sys\\nimport warnings\\nimport numpy as np\\nfrom collections import Counter\\nfrom scipy.stats import spearmanr\\n\\nsys.path.insert(0, '/root/autodl-tmp/struct_self_consist_ie/code')\\nfrom consistency import structural_consistency_soft_jaccard, fleiss_kappa_surface, _extract_surface_keys, _ner_soft_jaccard_pair\\nfrom evaluation import per_instance_f1\\n\\nBASE = \\\"/root/autodl-tmp/struct_self_consist_ie\\\"\\nINPUT_PATH = f\\\"{BASE}/output/exp_029b_scierc_10epoch/samples.jsonl\\\"\\nOUTPUT_DIR = f\\\"{BASE}/output/exp_029b_scierc_10epoch\\\"\\nSUBTASK = \\\"ner\\\"\\nN_SAMPLES = 8\\n\\n# Dynamic baseline paths\\nBASELINE_3EPOCH_PATH = f\\\"{BASE}/output/exp_029a_scierc_3epoch/comparison_report_fixed.json\\\"\\nBASELINE_5EPOCH_SAMPLES_PATH = f\\\"{BASE}/output/exp_012_rerun_1024/samples.jsonl\\\"\\n\\n\\ndef load_baseline_from_029a():\\n    \\\"\\\"\\\"Load 3-epoch and 5-epoch baselines from exp_029a analysis results.\\\"\\\"\\\"\\n    with open(BASELINE_3EPOCH_PATH) as f:\\n        data = json.load(f)\\n\\n    ref_3epoch = {\\n        \\\"degeneracy_cf1_pct\\\": data[\\\"degeneracy\\\"][\\\"rate_pct\\\"],\\n        \\\"greedy_f1\\\": data[\\\"basic\\\"][\\\"greedy_macro_f1\\\"],\\n        \\\"oracle_f1\\\": data[\\\"basic\\\"][\\\"oracle_macro_f1\\\"],\\n        \\\"lp_sel_delta_pp\\\": data[\\\"lp_selection\\\"][\\\"delta_pp\\\"],\\n        \\\"within_instance_median_rho\\\": data[\\\"within_instance_rho\\\"][\\\"median\\\"],\\n        \\\"lp_range_mean\\\": data[\\\"lp_range\\\"][\\\"mean\\\"],\\n    }\\n\\n    ref_5epoch = data[\\\"comparison_baseline\\\"][\\\"baseline_ref\\\"]\\n\\n    return ref_3epoch, ref_5epoch\\n\\n\\ndef load_data(path):\\n    instances = []\\n    with open(path) as f:\\n        for line in f:\\n            if line.strip():\\n                instances.append(json.loads(line))\\n    return instances\\n\\n\\ndef entity_strict_f1(pred_entities, gold_entities):\\n    pred_set = {(e[\\\"start\\\"], e[\\\"end\\\"], e[\\\"type\\\"]) for e in pred_entities}\\n    gold_set = {(e[\\\"start\\\"], e[\\\"end\\\"], e[\\\"type\\\"]) for e in gold_entities}\\n    tp = len(pred_set & gold_set)\\n    fp = len(pred_set - gold_set)\\n    fn = len(gold_set - pred_set)\\n    precision = tp / (tp + fp) if (tp + fp) > 0 else 0.0\\n    recall = tp / (tp + fn) if (tp + fn) > 0 else 0.0\\n    f1 = 2 * precision * recall / (precision + recall) if (precision + recall) > 0 else 0.0\\n    return f1\\n\\n\\ndef compute_signals(samples):\\n    n = len(samples)\\n\\n    lp_scores = []\\n    for s in samples:\\n        lp = s.get(\\\"mean_logprob\\\")\\n        if lp is None:\\n            lp = s.get(\\\"cumulative_logprob\\\", -999) / max(s.get(\\\"n_tokens\\\", 1), 1)\\n        lp_scores.append(lp)\\n\\n    key_sets = [frozenset(_extract_surface_keys(s, SUBTASK)) for s in samples]\\n\\n    sj_matrix = np.zeros((n, n))\\n    for i in range(n):\\n        for j in range(i + 1, n):\\n            s = _ner_soft_jaccard_pair(samples[i].get(\\\"entities\\\", []), samples[j].get(\\\"entities\\\", []))\\n            sj_matrix[i][j] = s\\n            sj_matrix[j][i] = s\\n    np.fill_diagonal(sj_matrix, 1.0)\\n    sj_scores = [float(np.mean([sj_matrix[k][j] for j in range(n) if j != k])) for k in range(n)]\\n\\n    fk_matrix = np.zeros((n, n))\\n    for i in range(n):\\n        for j in range(i + 1, n):\\n            union = len(key_sets[i] | key_sets[j])\\n            inter = len(key_sets[i] & key_sets[j])\\n            s = inter / union if union > 0 else 1.0\\n            fk_matrix[i][j] = s\\n            fk_matrix[j][i] = s\\n    np.fill_diagonal(fk_matrix, 1.0)\\n    fk_scores = [float(np.mean([fk_matrix[k][j] for j in range(n) if j != k])) for k in range(n)]\\n\\n    all_keys_count = Counter()\\n    for ks in key_sets:\\n        for key in ks:\\n            all_keys_count[key] += 1\\n    vc_scores = []\\n    for ks in key_sets:\\n        if not ks:\\n            vc_scores.append(0.0)\\n        else:\\n            fracs = [all_keys_count[key] / n for key in ks]\\n\\n\\n... [截断: 输出过长，省略 9065 字符] ...\\n\\nf\\\"{np.median(within_rho_arr):.4f}\\\" if len(within_rhos) > 0 else \\\"N/A\\\",\\n         \\\"\\\",\\n         \\\"\\\"),\\n        (\\\"LP range mean\\\",\\n         \\\"N/A\\\",\\n         f\\\"{ref_3epoch['lp_range_mean']:.6f}\\\",\\n         f\\\"{np.mean(lp_range_arr):.6f}\\\",\\n         \\\"\\\",\\n         \\\"\\\"),\\n    ]\\n\\n    for label, v5, v3, v10, d5, d3 in rows:\\n        print(f\\\"  {label:<25} | {v5:>18} | {v3:>18} | {v10:>18} | {d5:>10} | {d3:>10}\\\")\\n\\n    # === 7. Conclusion ===\\n    print(\\\"\\\\n--- 7. Conclusion ---\\\")\\n    if degeneracy_rate > ref_5epoch[\\\"degeneracy_cf1_pct\\\"]:\\n        conclusion = \\\"CONFIRMED\\\"\\n        msg = (f\\\"10-epoch degeneracy ({degeneracy_rate:.1f}%) > 5-epoch ({ref_5epoch['degeneracy_cf1_pct']:.1f}%) \\\"\\n               f\\\"> 3-epoch ({ref_3epoch['degeneracy_cf1_pct']:.1f}%). \\\"\\n               f\\\"Epoch-degeneracy monotonic relationship confirmed for SciERC: more epochs produce higher degeneracy.\\\")\\n    elif degeneracy_rate > ref_3epoch[\\\"degeneracy_cf1_pct\\\"]:\\n        conclusion = \\\"PARTIAL\\\"\\n        msg = (f\\\"10-epoch degeneracy ({degeneracy_rate:.1f}%) > 3-epoch ({ref_3epoch['degeneracy_cf1_pct']:.1f}%) \\\"\\n               f\\\"but <= 5-epoch ({ref_5epoch['degeneracy_cf1_pct']:.1f}%). Monotonicity not fully confirmed.\\\")\\n    else:\\n        conclusion = \\\"NEGATIVE\\\"\\n        msg = (f\\\"10-epoch degeneracy ({degeneracy_rate:.1f}%) <= 3-epoch ({ref_3epoch['degeneracy_cf1_pct']:.1f}%). \\\"\\n               f\\\"No epoch-degeneracy trend. Unexpected result.\\\")\\n\\n    print(f\\\"  Verdict: {conclusion}\\\")\\n    print(f\\\"  {msg}\\\")\\n\\n    # === Save JSON ===\\n    results = {\\n        \\\"experiment\\\": \\\"exp_029b\\\",\\n        \\\"description\\\": \\\"SciERC 10-epoch LoRA degeneracy test\\\",\\n        \\\"n_total\\\": n_total,\\n        \\\"n_gold_filtered\\\": n_gold_filtered,\\n        \\\"n_samples\\\": N_SAMPLES,\\n        \\\"degeneracy\\\": {\\n            \\\"definition\\\": \\\"Constant F1 gold-filtered\\\",\\n            \\\"constant_f1_count\\\": constant_f1_count,\\n            \\\"gold_filtered_total\\\": n_gold_filtered,\\n            \\\"rate_pct\\\": round(degeneracy_rate, 4),\\n        },\\n        \\\"basic\\\": {\\n            \\\"greedy_macro_f1\\\": round(greedy_macro_f1, 4),\\n            \\\"oracle_macro_f1\\\": round(oracle_macro_f1, 4),\\n            \\\"headroom_pp\\\": round(headroom_pp, 4),\\n        },\\n        \\\"lp_selection\\\": {\\n            \\\"f1\\\": round(lp_sel_macro_f1, 4),\\n            \\\"delta_pp\\\": round(lp_sel_delta_pp, 4),\\n        },\\n        \\\"qe_signals\\\": qe_results,\\n        \\\"within_instance_rho\\\": {\\n            \\\"mean\\\": round(float(np.mean(within_rho_arr)), 4) if len(within_rhos) > 0 else None,\\n            \\\"median\\\": round(float(np.median(within_rho_arr)), 4) if len(within_rhos) > 0 else None,\\n            \\\"std\\\": round(float(np.std(within_rho_arr)), 4) if len(within_rhos) > 0 else None,\\n            \\\"valid_count\\\": len(within_rhos),\\n            \\\"valid_pct\\\": round(valid_pct, 2),\\n        },\\n        \\\"lp_range\\\": {\\n            \\\"mean\\\": round(float(np.mean(lp_range_arr)), 6),\\n            \\\"std\\\": round(float(np.std(lp_range_arr)), 6),\\n            \\\"median\\\": round(float(np.median(lp_range_arr)), 6),\\n        },\\n        \\\"comparison_5epoch\\\": {\\n            \\\"source\\\": \\\"dynamic from exp_029a comparison_report_fixed.json\\\",\\n            \\\"baseline_ref\\\": ref_5epoch,\\n            \\\"degeneracy_delta_pp\\\": round(degeneracy_rate - ref_5epoch[\\\"degeneracy_cf1_pct\\\"], 4),\\n            \\\"lp_sel_delta_delta\\\": round(lp_sel_delta_pp - ref_5epoch[\\\"lp_sel_delta_pp\\\"], 4),\\n        },\\n        \\\"comparison_3epoch\\\": {\\n            \\\"source\\\": BASELINE_3EPOCH_PATH,\\n            \\\"baseline_ref\\\": ref_3epoch,\\n            \\\"degeneracy_delta_pp\\\": round(degeneracy_rate - ref_3epoch[\\\"degeneracy_cf1_pct\\\"], 4),\\n            \\\"lp_sel_delta_delta\\\": round(lp_sel_delta_pp - ref_3epoch[\\\"lp_sel_delta_pp\\\"], 4),\\n        },\\n        \\\"conclusion\\\": {\\n            \\\"verdict\\\": conclusion,\\n            \\\"message\\\": msg,\\n        },\\n    }\\n\\n    output_path = os.path.join(OUTPUT_DIR, \\\"analysis_results.json\\\")\\n    os.makedirs(OUTPUT_DIR, exist_ok=True)\\n    with open(output_path, \\\"w\\\") as f:\\n        json.dump(results, f, indent=2)\\n    print(f\\\"\\\\nResults saved to {output_path}\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f972e873-2fed-46d9-9650-cae175aa4e15",
+  "uuid": "9183ee66-2cc3-49c7-81c5-1a74563541e9",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"exp_029b analysis: SciERC 10-epoch degeneracy comparison.\\\\n\\\\nComputes:\\\\n1. Constant F1 gold-filtered degeneracy rate\\\\n2. LP selection F1 (best-of-N by logprob)\\\\n3. All 5 signals QE metrics (SJ, FK, VC, EM, LP)\\\\n4. Within-instance rho(LP, F1)\\\\n5. LP range statistics\\\\n6. Comparison table vs 5-epoch baseline (dynamic) and 3-epoch (exp_029a)\\\\n7. Conclusion judgment\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport json\\\\nimport os\\\\nimport sys\\\\nimport warnings\\\\nimport numpy as np\\\\nfrom collections import Counter\\\\nfrom scipy.stats import spearmanr\\\\n\\\\nsys.path.insert(0, '/root/autodl-tmp/struct_self_consist_ie/code')\\\\nfrom consistency import structural_consistency_soft_jaccard, fleiss_kappa_surface, _extract_surface_keys, _ner_soft_jaccard_pair\\\\nfrom evaluation import per_instance_f1\\\\n\\\\nBASE = \\\\\\\"/root/autodl-tmp/struct_self_consist_ie\\\\\\\"\\\\nINPUT_PATH = f\\\\\\\"{BASE}/output/exp_029b_scierc_10epoch/samples.jsonl\\\\\\\"\\\\nOUTPUT_DIR = f\\\\\\\"{BASE}/output/exp_029b_scierc_10epoch\\\\\\\"\\\\nSUBTASK = \\\\\\\"ner\\\\\\\"\\\\nN_SAMPLES = 8\\\\n\\\\n# Dynamic baseline paths\\\\nBASELINE_3EPOCH_PATH = f\\\\\\\"{BASE}/output/exp_029a_scierc_3epoch/comparison_report_fixed.json\\\\\\\"\\\\nBASELINE_5EPOCH_SAMPLES_PATH = f\\\\\\\"{BASE}/output/exp_012_rerun_1024/samples.jsonl\\\\\\\"\\\\n\\\\n\\\\ndef load_baseline_from_029a():\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Load 3-epoch and 5-epoch baselines from exp_029a analysis results.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    with open(BASELINE_3EPOCH_PATH) as f:\\\\n        data = json.load(f)\\\\n\\\\n    ref_3epoch = {\\\\n        \\\\\\\"degeneracy_cf1_pct\\\\\\\": data[\\\\\\\"degeneracy\\\\\\\"][\\\\\\\"rate_pct\\\\\\\"],\\\\n        \\\\\\\"greedy_f1\\\\\\\": data[\\\\\\\"basic\\\\\\\"][\\\\\\\"greedy_macro_f1\\\\\\\"],\\\\n        \\\\\\\"oracle_f1\\\\\\\": data[\\\\\\\"basic\\\\\\\"][\\\\\\\"oracle_macro_f1\\\\\\\"],\\\\n        \\\\\\\"lp_sel_delta_pp\\\\\\\": data[\\\\\\\"lp_selection\\\\\\\"][\\\\\\\"delta_pp\\\\\\\"],\\\\n        \\\\\\\"within_instance_median_rho\\\\\\\": data[\\\\\\\"within_instance_rho\\\\\\\"][\\\\\\\"median\\\\\\\"],\\\\n        \\\\\\\"lp_range_mean\\\\\\\": data[\\\\\\\"lp_range\\\\\\\"][\\\\\\\"mean\\\\\\\"],\\\\n    }\\\\n\\\\n    ref_5epoch = data[\\\\\\\"comparison_baseline\\\\\\\"][\\\\\\\"baseline_ref\\\\\\\"]\\\\n\\\\n    return ref_3epoch, ref_5epoch\\\\n\\\\n\\\\ndef load_data(path):\\\\n    instances = []\\\\n    with open(path) as f:\\\\n        for line in f:\\\\n            if line.strip():\\\\n                instances.append(json.loads(line))\\\\n    return instances\\\\n\\\\n\\\\ndef entity_strict_f1(pred_entities, gold_entities):\\\\n    pred_set = {(e[\\\\\\\"start\\\\\\\"], e[\\\\\\\"end\\\\\\\"], e[\\\\\\\"type\\\\\\\"]) for e in pred_entities}\\\\n    gold_set = {(e[\\\\\\\"start\\\\\\\"], e[\\\\\\\"end\\\\\\\"], e[\\\\\\\"type\\\\\\\"]) for e in gold_entities}\\\\n    tp = len(pred_set & gold_set)\\\\n    fp = len(pred_set - gold_set)\\\\n    fn = len(gold_set - pred_set)\\\\n    precision = tp / (tp + fp) if (tp + fp) > 0 else 0.0\\\\n    recall = tp / (tp + fn) if (tp + fn) > 0 else 0.0\\\\n    f1 = 2 * precision * recall / (precision + recall) if (precision + recall) > 0 else 0.0\\\\n    return f1\\\\n\\\\n\\\\ndef compute_signals(samples):\\\\n    n = len(samples)\\\\n\\\\n    lp_scores = []\\\\n    for s in samples:\\\\n        lp = s.get(\\\\\\\"mean_logprob\\\\\\\")\\\\n        if lp is None:\\\\n            lp = s.get(\\\\\\\"cumulative_logprob\\\\\\\", -999) / max(s.get(\\\\\\\"n_tokens\\\\\\\", 1), 1)\\\\n        lp_scores.append(lp)\\\\n\\\\n    key_sets = [frozenset(_extract_surface_keys(s, SUBTASK)) for s in samples]\\\\n\\\\n    sj_matrix = np.zeros((n, n))\\\\n    for i in range(n):\\\\n        for j in range(i + 1, n):\\\\n            s = _ner_soft_jaccard_pair(samples[i].get(\\\\\\\"entities\\\\\\\", []), samples[j].get(\\\\\\\"entities\\\\\\\", []))\\\\n            sj_matrix[i][j] = s\\\\n            sj_matrix[j][i] = s\\\\n    np.fill_diagonal(sj_matrix, 1.0)\\\\n    sj_scores = [float(np.mean([sj_matrix[k][j] for j in range(n) if j != k])) for k in range(n)]\\\\n\\\\n    fk_matrix = np.zeros((n, n))\\\\n    for i in range(n):\\\\n        for j in range(i + 1, n):\\\\n            union = len(key_sets[i] | key_sets[j])\\\\n            inter = len(key_sets[i] & key_sets[j])\\\\n            s = inter / union if union > 0 else 1.0\\\\n            fk_matrix[i][j] = s\\\\n            fk_matrix[j][i] = s\\\\n    np.fill_diagonal(fk_matrix, 1.0)\\\\n    fk_scores = [float(np.mean([fk_matrix[k][j] for j in range(n) if j != k])) for k in range(n)]\\\\n\\\\n    all_keys_count = Counter()\\\\n    for ks in key_sets:\\\\n        for key in ks:\\\\n            all_keys_count[key] += 1\\\\n    vc_scores = []\\\\n    for ks in key_sets:\\\\n        if not ks:\\\\n            vc_scores.append(0.0)\\\\n        else:\\\\n            fracs = [all_keys_count[key] / n for key in ks]\\\\n\\\\n\\\\n... [截断: 输出过长，省略 9065 字符] ...\\\\n\\\\nf\\\\\\\"{np.median(within_rho_arr):.4f}\\\\\\\" if len(within_rhos) > 0 else \\\\\\\"N/A\\\\\\\",\\\\n         \\\\\\\"\\\\\\\",\\\\n         \\\\\\\"\\\\\\\"),\\\\n        (\\\\\\\"LP range mean\\\\\\\",\\\\n         \\\\\\\"N/A\\\\\\\",\\\\n         f\\\\\\\"{ref_3epoch['lp_range_mean']:.6f}\\\\\\\",\\\\n         f\\\\\\\"{np.mean(lp_range_arr):.6f}\\\\\\\",\\\\n         \\\\\\\"\\\\\\\",\\\\n         \\\\\\\"\\\\\\\"),\\\\n    ]\\\\n\\\\n    for label, v5, v3, v10, d5, d3 in rows:\\\\n        print(f\\\\\\\"  {label:<25} | {v5:>18} | {v3:>18} | {v10:>18} | {d5:>10} | {d3:>10}\\\\\\\")\\\\n\\\\n    # === 7. Conclusion ===\\\\n    print(\\\\\\\"\\\\\\\\n--- 7. Conclusion ---\\\\\\\")\\\\n    if degeneracy_rate > ref_5epoch[\\\\\\\"degeneracy_cf1_pct\\\\\\\"]:\\\\n        conclusion = \\\\\\\"CONFIRMED\\\\\\\"\\\\n        msg = (f\\\\\\\"10-epoch degeneracy ({degeneracy_rate:.1f}%) > 5-epoch ({ref_5epoch['degeneracy_cf1_pct']:.1f}%) \\\\\\\"\\\\n               f\\\\\\\"> 3-epoch ({ref_3epoch['degeneracy_cf1_pct']:.1f}%). \\\\\\\"\\\\n               f\\\\\\\"Epoch-degeneracy monotonic relationship confirmed for SciERC: more epochs produce higher degeneracy.\\\\\\\")\\\\n    elif degeneracy_rate > ref_3epoch[\\\\\\\"degeneracy_cf1_pct\\\\\\\"]:\\\\n        conclusion = \\\\\\\"PARTIAL\\\\\\\"\\\\n        msg = (f\\\\\\\"10-epoch degeneracy ({degeneracy_rate:.1f}%) > 3-epoch ({ref_3epoch['degeneracy_cf1_pct']:.1f}%) \\\\\\\"\\\\n               f\\\\\\\"but <= 5-epoch ({ref_5epoch['degeneracy_cf1_pct']:.1f}%). Monotonicity not fully confirmed.\\\\\\\")\\\\n    else:\\\\n        conclusion = \\\\\\\"NEGATIVE\\\\\\\"\\\\n        msg = (f\\\\\\\"10-epoch degeneracy ({degeneracy_rate:.1f}%) <= 3-epoch ({ref_3epoch['degeneracy_cf1_pct']:.1f}%). \\\\\\\"\\\\n               f\\\\\\\"No epoch-degeneracy trend. Unexpected result.\\\\\\\")\\\\n\\\\n    print(f\\\\\\\"  Verdict: {conclusion}\\\\\\\")\\\\n    print(f\\\\\\\"  {msg}\\\\\\\")\\\\n\\\\n    # === Save JSON ===\\\\n    results = {\\\\n        \\\\\\\"experiment\\\\\\\": \\\\\\\"exp_029b\\\\\\\",\\\\n        \\\\\\\"description\\\\\\\": \\\\\\\"SciERC 10-epoch LoRA degeneracy test\\\\\\\",\\\\n        \\\\\\\"n_total\\\\\\\": n_total,\\\\n        \\\\\\\"n_gold_filtered\\\\\\\": n_gold_filtered,\\\\n        \\\\\\\"n_samples\\\\\\\": N_SAMPLES,\\\\n        \\\\\\\"degeneracy\\\\\\\": {\\\\n            \\\\\\\"definition\\\\\\\": \\\\\\\"Constant F1 gold-filtered\\\\\\\",\\\\n            \\\\\\\"constant_f1_count\\\\\\\": constant_f1_count,\\\\n            \\\\\\\"gold_filtered_total\\\\\\\": n_gold_filtered,\\\\n            \\\\\\\"rate_pct\\\\\\\": round(degeneracy_rate, 4),\\\\n        },\\\\n        \\\\\\\"basic\\\\\\\": {\\\\n            \\\\\\\"greedy_macro_f1\\\\\\\": round(greedy_macro_f1, 4),\\\\n            \\\\\\\"oracle_macro_f1\\\\\\\": round(oracle_macro_f1, 4),\\\\n            \\\\\\\"headroom_pp\\\\\\\": round(headroom_pp, 4),\\\\n        },\\\\n        \\\\\\\"lp_selection\\\\\\\": {\\\\n            \\\\\\\"f1\\\\\\\": round(lp_sel_macro_f1, 4),\\\\n            \\\\\\\"delta_pp\\\\\\\": round(lp_sel_delta_pp, 4),\\\\n        },\\\\n        \\\\\\\"qe_signals\\\\\\\": qe_results,\\\\n        \\\\\\\"within_instance_rho\\\\\\\": {\\\\n            \\\\\\\"mean\\\\\\\": round(float(np.mean(within_rho_arr)), 4) if len(within_rhos) > 0 else None,\\\\n            \\\\\\\"median\\\\\\\": round(float(np.median(within_rho_arr)), 4) if len(within_rhos) > 0 else None,\\\\n            \\\\\\\"std\\\\\\\": round(float(np.std(within_rho_arr)), 4) if len(within_rhos) > 0 else None,\\\\n            \\\\\\\"valid_count\\\\\\\": len(within_rhos),\\\\n            \\\\\\\"valid_pct\\\\\\\": round(valid_pct, 2),\\\\n        },\\\\n        \\\\\\\"lp_range\\\\\\\": {\\\\n            \\\\\\\"mean\\\\\\\": round(float(np.mean(lp_range_arr)), 6),\\\\n            \\\\\\\"std\\\\\\\": round(float(np.std(lp_range_arr)), 6),\\\\n            \\\\\\\"median\\\\\\\": round(float(np.median(lp_range_arr)), 6),\\\\n        },\\\\n        \\\\\\\"comparison_5epoch\\\\\\\": {\\\\n            \\\\\\\"source\\\\\\\": \\\\\\\"dynamic from exp_029a comparison_report_fixed.json\\\\\\\",\\\\n            \\\\\\\"baseline_ref\\\\\\\": ref_5epoch,\\\\n            \\\\\\\"degeneracy_delta_pp\\\\\\\": round(degeneracy_rate - ref_5epoch[\\\\\\\"degeneracy_cf1_pct\\\\\\\"], 4),\\\\n            \\\\\\\"lp_sel_delta_delta\\\\\\\": round(lp_sel_delta_pp - ref_5epoch[\\\\\\\"lp_sel_delta_pp\\\\\\\"], 4),\\\\n        },\\\\n        \\\\\\\"comparison_3epoch\\\\\\\": {\\\\n            \\\\\\\"source\\\\\\\": BASELINE_3EPOCH_PATH,\\\\n            \\\\\\\"baseline_ref\\\\\\\": ref_3epoch,\\\\n            \\\\\\\"degeneracy_delta_pp\\\\\\\": round(degeneracy_rate - ref_3epoch[\\\\\\\"degeneracy_cf1_pct\\\\\\\"], 4),\\\\n            \\\\\\\"lp_sel_delta_delta\\\\\\\": round(lp_sel_delta_pp - ref_3epoch[\\\\\\\"lp_sel_delta_pp\\\\\\\"], 4),\\\\n        },\\\\n        \\\\\\\"conclusion\\\\\\\": {\\\\n            \\\\\\\"verdict\\\\\\\": conclusion,\\\\n            \\\\\\\"message\\\\\\\": msg,\\\\n        },\\\\n    }\\\\n\\\\n    output_path = os.path.join(OUTPUT_DIR, \\\\\\\"analysis_results.json\\\\\\\")\\\\n    os.makedirs(OUTPUT_DIR, exist_ok=True)\\\\n    with open(output_path, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(results, f, indent=2)\\\\n    print(f\\\\\\\"\\\\\\\\nResults saved to {output_path}\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"exp_029b analysis: SciERC 10-epoch degeneracy comparison.\\n\\nComputes:\\n1. Constant F1 gold-filtered degeneracy rate\\n2. LP selection F1 (best-of-N by logprob)\\n3. All 5 signals QE metrics (SJ, FK, VC, EM, LP)\\n4. Within-instance rho(LP, F1)\\n5. LP range statistics\\n6. Comparison table vs 5-epoch baseline (dynamic) and 3-epoch (exp_029a)\\n7. Conclusion judgment\\n\\\"\\\"\\\"\\nimport json\\nimport os\\nimport sys\\nimport warnings\\nimport numpy as np\\nfrom collections import Counter\\nfrom scipy.stats import spearmanr\\n\\nsys.path.insert(0, '/root/autodl-tmp/struct_self_consist_ie/code')\\nfrom consistency import structural_consistency_soft_jaccard, fleiss_kappa_surface, _extract_surface_keys, _ner_soft_jaccard_pair\\nfrom evaluation import per_instance_f1\\n\\nBASE = \\\"/root/autodl-tmp/struct_self_consist_ie\\\"\\nINPUT_PATH = f\\\"{BASE}/output/exp_029b_scierc_10epoch/samples.jsonl\\\"\\nOUTPUT_DIR = f\\\"{BASE}/output/exp_029b_scierc_10epoch\\\"\\nSUBTASK = \\\"ner\\\"\\nN_SAMPLES = 8\\n\\n# Dynamic baseline paths\\nBASELINE_3EPOCH_PATH = f\\\"{BASE}/output/exp_029a_scierc_3epoch/comparison_report_fixed.json\\\"\\nBASELINE_5EPOCH_SAMPLES_PATH = f\\\"{BASE}/output/exp_012_rerun_1024/samples.jsonl\\\"\\n\\n\\ndef load_baseline_from_029a():\\n    \\\"\\\"\\\"Load 3-epoch and 5-epoch baselines from exp_029a analysis results.\\\"\\\"\\\"\\n    with open(BASELINE_3EPOCH_PATH) as f:\\n        data = json.load(f)\\n\\n    ref_3epoch = {\\n        \\\"degeneracy_cf1_pct\\\": data[\\\"degeneracy\\\"][\\\"rate_pct\\\"],\\n        \\\"greedy_f1\\\": data[\\\"basic\\\"][\\\"greedy_macro_f1\\\"],\\n        \\\"oracle_f1\\\": data[\\\"basic\\\"][\\\"oracle_macro_f1\\\"],\\n        \\\"lp_sel_delta_pp\\\": data[\\\"lp_selection\\\"][\\\"delta_pp\\\"],\\n        \\\"within_instance_median_rho\\\": data[\\\"within_instance_rho\\\"][\\\"median\\\"],\\n        \\\"lp_range_mean\\\": data[\\\"lp_range\\\"][\\\"mean\\\"],\\n    }\\n\\n    ref_5epoch = data[\\\"comparison_baseline\\\"][\\\"baseline_ref\\\"]\\n\\n    return ref_3epoch, ref_5epoch\\n\\n\\ndef load_data(path):\\n    instances = []\\n    with open(path) as f:\\n        for line in f:\\n            if line.strip():\\n                instances.append(json.loads(line))\\n    return instances\\n\\n\\ndef entity_strict_f1(pred_entities, gold_entities):\\n    pred_set = {(e[\\\"start\\\"], e[\\\"end\\\"], e[\\\"type\\\"]) for e in pred_entities}\\n    gold_set = {(e[\\\"start\\\"], e[\\\"end\\\"], e[\\\"type\\\"]) for e in gold_entities}\\n    tp = len(pred_set & gold_set)\\n    fp = len(pred_set - gold_set)\\n    fn = len(gold_set - pred_set)\\n    precision = tp / (tp + fp) if (tp + fp) > 0 else 0.0\\n    recall = tp / (tp + fn) if (tp + fn) > 0 else 0.0\\n    f1 = 2 * precision * recall / (precision + recall) if (precision + recall) > 0 else 0.0\\n    return f1\\n\\n\\ndef compute_signals(samples):\\n    n = len(samples)\\n\\n    lp_scores = []\\n    for s in samples:\\n        lp = s.get(\\\"mean_logprob\\\")\\n        if lp is None:\\n            lp = s.get(\\\"cumulative_logprob\\\", -999) / max(s.get(\\\"n_tokens\\\", 1), 1)\\n        lp_scores.append(lp)\\n\\n    key_sets = [frozenset(_extract_surface_keys(s, SUBTASK)) for s in samples]\\n\\n    sj_matrix = np.zeros((n, n))\\n    for i in range(n):\\n        for j in range(i + 1, n):\\n            s = _ner_soft_jaccard_pair(samples[i].get(\\\"entities\\\", []), samples[j].get(\\\"entities\\\", []))\\n            sj_matrix[i][j] = s\\n            sj_matrix[j][i] = s\\n    np.fill_diagonal(sj_matrix, 1.0)\\n    sj_scores = [float(np.mean([sj_matrix[k][j] for j in range(n) if j != k])) for k in range(n)]\\n\\n    fk_matrix = np.zeros((n, n))\\n    for i in range(n):\\n        for j in range(i + 1, n):\\n            union = len(key_sets[i] | key_sets[j])\\n            inter = len(key_sets[i] & key_sets[j])\\n            s = inter / union if union > 0 else 1.0\\n            fk_matrix[i][j] = s\\n            fk_matrix[j][i] = s\\n    np.fill_diagonal(fk_matrix, 1.0)\\n    fk_scores = [float(np.mean([fk_matrix[k][j] for j in range(n) if j != k])) for k in range(n)]\\n\\n    all_keys_count = Counter()\\n    for ks in key_sets:\\n        for key in ks:\\n            all_keys_count[key] += 1\\n    vc_scores = []\\n    for ks in key_sets:\\n        if not ks:\\n            vc_scores.append(0.0)\\n        else:\\n            fracs = [all_keys_count[key] / n for key in ks]\\n\\n\\n... [截断: 输出过长，省略 9065 字符] ...\\n\\nf\\\"{np.median(within_rho_arr):.4f}\\\" if len(within_rhos) > 0 else \\\"N/A\\\",\\n         \\\"\\\",\\n         \\\"\\\"),\\n        (\\\"LP range mean\\\",\\n         \\\"N/A\\\",\\n         f\\\"{ref_3epoch['lp_range_mean']:.6f}\\\",\\n         f\\\"{np.mean(lp_range_arr):.6f}\\\",\\n         \\\"\\\",\\n         \\\"\\\"),\\n    ]\\n\\n    for label, v5, v3, v10, d5, d3 in rows:\\n        print(f\\\"  {label:<25} | {v5:>18} | {v3:>18} | {v10:>18} | {d5:>10} | {d3:>10}\\\")\\n\\n    # === 7. Conclusion ===\\n    print(\\\"\\\\n--- 7. Conclusion ---\\\")\\n    if degeneracy_rate > ref_5epoch[\\\"degeneracy_cf1_pct\\\"]:\\n        conclusion = \\\"CONFIRMED\\\"\\n        msg = (f\\\"10-epoch degeneracy ({degeneracy_rate:.1f}%) > 5-epoch ({ref_5epoch['degeneracy_cf1_pct']:.1f}%) \\\"\\n               f\\\"> 3-epoch ({ref_3epoch['degeneracy_cf1_pct']:.1f}%). \\\"\\n               f\\\"Epoch-degeneracy monotonic relationship confirmed for SciERC: more epochs produce higher degeneracy.\\\")\\n    elif degeneracy_rate > ref_3epoch[\\\"degeneracy_cf1_pct\\\"]:\\n        conclusion = \\\"PARTIAL\\\"\\n        msg = (f\\\"10-epoch degeneracy ({degeneracy_rate:.1f}%) > 3-epoch ({ref_3epoch['degeneracy_cf1_pct']:.1f}%) \\\"\\n               f\\\"but <= 5-epoch ({ref_5epoch['degeneracy_cf1_pct']:.1f}%). Monotonicity not fully confirmed.\\\")\\n    else:\\n        conclusion = \\\"NEGATIVE\\\"\\n        msg = (f\\\"10-epoch degeneracy ({degeneracy_rate:.1f}%) <= 3-epoch ({ref_3epoch['degeneracy_cf1_pct']:.1f}%). \\\"\\n               f\\\"No epoch-degeneracy trend. Unexpected result.\\\")\\n\\n    print(f\\\"  Verdict: {conclusion}\\\")\\n    print(f\\\"  {msg}\\\")\\n\\n    # === Save JSON ===\\n    results = {\\n        \\\"experiment\\\": \\\"exp_029b\\\",\\n        \\\"description\\\": \\\"SciERC 10-epoch LoRA degeneracy test\\\",\\n        \\\"n_total\\\": n_total,\\n        \\\"n_gold_filtered\\\": n_gold_filtered,\\n        \\\"n_samples\\\": N_SAMPLES,\\n        \\\"degeneracy\\\": {\\n            \\\"definition\\\": \\\"Constant F1 gold-filtered\\\",\\n            \\\"constant_f1_count\\\": constant_f1_count,\\n            \\\"gold_filtered_total\\\": n_gold_filtered,\\n            \\\"rate_pct\\\": round(degeneracy_rate, 4),\\n        },\\n        \\\"basic\\\": {\\n            \\\"greedy_macro_f1\\\": round(greedy_macro_f1, 4),\\n            \\\"oracle_macro_f1\\\": round(oracle_macro_f1, 4),\\n            \\\"headroom_pp\\\": round(headroom_pp, 4),\\n        },\\n        \\\"lp_selection\\\": {\\n            \\\"f1\\\": round(lp_sel_macro_f1, 4),\\n            \\\"delta_pp\\\": round(lp_sel_delta_pp, 4),\\n        },\\n        \\\"qe_signals\\\": qe_results,\\n        \\\"within_instance_rho\\\": {\\n            \\\"mean\\\": round(float(np.mean(within_rho_arr)), 4) if len(within_rhos) > 0 else None,\\n            \\\"median\\\": round(float(np.median(within_rho_arr)), 4) if len(within_rhos) > 0 else None,\\n            \\\"std\\\": round(float(np.std(within_rho_arr)), 4) if len(within_rhos) > 0 else None,\\n            \\\"valid_count\\\": len(within_rhos),\\n            \\\"valid_pct\\\": round(valid_pct, 2),\\n        },\\n        \\\"lp_range\\\": {\\n            \\\"mean\\\": round(float(np.mean(lp_range_arr)), 6),\\n            \\\"std\\\": round(float(np.std(lp_range_arr)), 6),\\n            \\\"median\\\": round(float(np.median(lp_range_arr)), 6),\\n        },\\n        \\\"comparison_5epoch\\\": {\\n            \\\"source\\\": \\\"dynamic from exp_029a comparison_report_fixed.json\\\",\\n            \\\"baseline_ref\\\": ref_5epoch,\\n            \\\"degeneracy_delta_pp\\\": round(degeneracy_rate - ref_5epoch[\\\"degeneracy_cf1_pct\\\"], 4),\\n            \\\"lp_sel_delta_delta\\\": round(lp_sel_delta_pp - ref_5epoch[\\\"lp_sel_delta_pp\\\"], 4),\\n        },\\n        \\\"comparison_3epoch\\\": {\\n            \\\"source\\\": BASELINE_3EPOCH_PATH,\\n            \\\"baseline_ref\\\": ref_3epoch,\\n            \\\"degeneracy_delta_pp\\\": round(degeneracy_rate - ref_3epoch[\\\"degeneracy_cf1_pct\\\"], 4),\\n            \\\"lp_sel_delta_delta\\\": round(lp_sel_delta_pp - ref_3epoch[\\\"lp_sel_delta_pp\\\"], 4),\\n        },\\n        \\\"conclusion\\\": {\\n            \\\"verdict\\\": conclusion,\\n            \\\"message\\\": msg,\\n        },\\n    }\\n\\n    output_path = os.path.join(OUTPUT_DIR, \\\"analysis_results.json\\\")\\n    os.makedirs(OUTPUT_DIR, exist_ok=True)\\n    with open(output_path, \\\"w\\\") as f:\\n        json.dump(results, f, indent=2)\\n    print(f\\\"\\\\nResults saved to {output_path}\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 25_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good. Now I understand the full picture:
+
+1. **exp_029a** script (now fixed) will compute baseline from `exp_012_rerun_1024/samples.jsonl` and save to `comparison_report_fixed.json`
+2. **exp_029b** reads:
+   - 3-epoch data from exp_029a's `comparison_report_fixed.json`
+   - 5-epoch baseline ref from exp_029a's `comparison_report_fixed.json` (via `ref_5epoch = data["comparison_baseline"]["baseline_ref"]`)
+   - It also has `BASELINE_5EPOCH_SAMPLES_PATH` pointing to the correct file and independently computes the 5-epoch baseline from those samples
+
+So the execution order is: fix exp_029a → run exp_029a → run exp_029b. Let me start the exp_029a analysis now.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f972e873-2fed-46d9-9650-cae175aa4e15",
+  "uuid": "3319e53d-5780-4fed-9f85-744d01832cbf",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XTrsgUD2wFXqicUbBceRiM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5016,
+      "cache_read_input_tokens": 31625,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5016
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 26_
+
+exp_029a 路径已修正。现在重跑 exp_029a 分析。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f972e873-2fed-46d9-9650-cae175aa4e15",
+  "uuid": "ff8ed4b1-1c57-45d6-a334-b82387ff496a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XTrsgUD2wFXqicUbBceRiM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5016,
+      "cache_read_input_tokens": 31625,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5016
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01EBXuWsDvCoDsACqsG9M1ds`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "account": "root",
+  "command": "cd /root/autodl-tmp/struct_self_consist_ie && source /root/miniconda3/bin/activate && python scripts/exp_029a_postprocess/03_analyze_fixed.py 2>&1",
+  "warn": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f972e873-2fed-46d9-9650-cae175aa4e15",
+  "uuid": "7398811a-4947-4546-81fc-ff0800cf785d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XTrsgUD2wFXqicUbBceRiM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5016,
+      "cache_read_input_tokens": 31625,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5016
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-18T03:20:45.981Z_
+
+<details><summary>↩ Tool result · `toolu_01EBXuWsDvCoDsACqsG9M1ds`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"============================================================\\nexp_029a Analysis: SciERC 3-epoch vs 5-epoch (FIXED)\\n  Baseline computed from exp-012 raw data\\n============================================================\\nComputing baseline from exp-012: /root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/samples.jsonl\\n  Baseline degeneracy: 17.8%\\n  Baseline LP sel delta: +0.61pp\\n  Baseline within-inst median rho: 0.2817\\n  Baseline within-inst mean rho: 0.1795\\n  Baseline greedy F1: 0.6439\\n\\nTotal instances: 551\\nGold-filtered (non-empty gold entities): 529\\n\\n--- 1. Degeneracy (Constant F1, gold-filtered) ---\\n  Constant F1 instances: 34 / 529\\n  Degeneracy rate: 6.4%\\n  Greedy F1: 0.6501\\n  Oracle F1: 0.7998\\n  Headroom: 14.97pp\\n\\n--- 2. LP Selection F1 ---\\n  LP selection F1: 0.6383\\n  LP selection delta: -1.18pp\\n\\n--- 3. QE Signals (AUROC, global rho, selection F1, delta) ---\\n  LP: AUROC=0.6641, rho=0.3551, sel_F1=0.6383, delta=-1.18pp\\n  SJ: AUROC=0.744, rho=0.516, sel_F1=0.6208, delta=-2.93pp\\n  FK: AUROC=0.7523, rho=0.5302, sel_F1=0.6219, delta=-2.82pp\\n  EM: AUROC=0.634, rho=0.3353, sel_F1=0.5847, delta=-6.54pp\\n  VC: AUROC=0.736, rho=0.5074, sel_F1=0.5852, delta=-6.49pp\\n\\n--- 4. Within-instance LP-F1 correlation ---\\n  Valid instances: 495 / 529 (93.6%)\\n  Mean rho: 0.2727\\n  Median rho: 0.3172\\n  Std rho: 0.4316\\n\\n--- 5. LP Range Statistics ---\\n  Mean LP range: 0.085427\\n  Std LP range: 0.062149\\n  Median LP range: 0.067187\\n\\n--- 6. Comparison: exp-012 (5-epoch) vs exp_029a (3-epoch) ---\\n  Metric                    |  5-epoch (exp-012) |     3-epoch (029a) |    Delta\\n  --------------------------+--------------------+--------------------+---------\\n  Degeneracy (CF1) %        |              17.8% |               6.4% |  -11.3pp\\n  Greedy F1                 |             0.6439 |             0.6501 |  +0.62pp\\n  Oracle F1                 |                N/A |             0.7998 |         \\n  Headroom (pp)             |                N/A |              14.97 |         \\n  LP sel delta (pp)         |              +0.61 |              -1.18 |    -1.80\\n  Within-inst median rho    |             0.2817 |             0.3172 |         \\n  Within-inst mean rho      |             0.1795 |             0.2727 |         \\n  LP range mean             |                N/A |           0.085427 |         \\n\\n--- 7. Conclusion ---\\n  Verdict: SUCCESS\\n  3-epoch degeneracy (6.4%) < 5-epoch (17.8%). Confirms epoch-degeneracy relationship holds for SciERC: fewer epochs produce lower degeneracy.\\n\\nResults saved to /root/autodl-tmp/struct_self_consist_ie/output/exp_029a_scierc_3epoch/comparison_report_fixed.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.67}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f972e873-2fed-46d9-9650-cae175aa4e15",
+  "uuid": "0b9c9a92-f98f-431a-ac5c-310adcaa8071",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"============================================================\\\\nexp_029a Analysis: SciERC 3-epoch vs 5-epoch (FIXED)\\\\n  Baseline computed from exp-012 raw data\\\\n============================================================\\\\nComputing baseline from exp-012: /root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/samples.jsonl\\\\n  Baseline degeneracy: 17.8%\\\\n  Baseline LP sel delta: +0.61pp\\\\n  Baseline within-inst median rho: 0.2817\\\\n  Baseline within-inst mean rho: 0.1795\\\\n  Baseline greedy F1: 0.6439\\\\n\\\\nTotal instances: 551\\\\nGold-filtered (non-empty gold entities): 529\\\\n\\\\n--- 1. Degeneracy (Constant F1, gold-filtered) ---\\\\n  Constant F1 instances: 34 / 529\\\\n  Degeneracy rate: 6.4%\\\\n  Greedy F1: 0.6501\\\\n  Oracle F1: 0.7998\\\\n  Headroom: 14.97pp\\\\n\\\\n--- 2. LP Selection F1 ---\\\\n  LP selection F1: 0.6383\\\\n  LP selection delta: -1.18pp\\\\n\\\\n--- 3. QE Signals (AUROC, global rho, selection F1, delta) ---\\\\n  LP: AUROC=0.6641, rho=0.3551, sel_F1=0.6383, delta=-1.18pp\\\\n  SJ: AUROC=0.744, rho=0.516, sel_F1=0.6208, delta=-2.93pp\\\\n  FK: AUROC=0.7523, rho=0.5302, sel_F1=0.6219, delta=-2.82pp\\\\n  EM: AUROC=0.634, rho=0.3353, sel_F1=0.5847, delta=-6.54pp\\\\n  VC: AUROC=0.736, rho=0.5074, sel_F1=0.5852, delta=-6.49pp\\\\n\\\\n--- 4. Within-instance LP-F1 correlation ---\\\\n  Valid instances: 495 / 529 (93.6%)\\\\n  Mean rho: 0.2727\\\\n  Median rho: 0.3172\\\\n  Std rho: 0.4316\\\\n\\\\n--- 5. LP Range Statistics ---\\\\n  Mean LP range: 0.085427\\\\n  Std LP range: 0.062149\\\\n  Median LP range: 0.067187\\\\n\\\\n--- 6. Comparison: exp-012 (5-epoch) vs exp_029a (3-epoch) ---\\\\n  Metric                    |  5-epoch (exp-012) |     3-epoch (029a) |    Delta\\\\n  --------------------------+--------------------+--------------------+---------\\\\n  Degeneracy (CF1) %        |              17.8% |               6.4% |  -11.3pp\\\\n  Greedy F1                 |             0.6439 |             0.6501 |  +0.62pp\\\\n  Oracle F1                 |                N/A |             0.7998 |         \\\\n  Headroom (pp)             |                N/A |              14.97 |         \\\\n  LP sel delta (pp)         |              +0.61 |              -1.18 |    -1.80\\\\n  Within-inst median rho    |             0.2817 |             0.3172 |         \\\\n  Within-inst mean rho      |             0.1795 |             0.2727 |         \\\\n  LP range mean             |                N/A |           0.085427 |         \\\\n\\\\n--- 7. Conclusion ---\\\\n  Verdict: SUCCESS\\\\n  3-epoch degeneracy (6.4%) < 5-epoch (17.8%). Confirms epoch-degeneracy relationship holds for SciERC: fewer epochs produce lower degeneracy.\\\\n\\\\nResults saved to /root/autodl-tmp/struct_self_consist_ie/output/exp_029a_scierc_3epoch/comparison_report_fixed.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.67}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"============================================================\\nexp_029a Analysis: SciERC 3-epoch vs 5-epoch (FIXED)\\n  Baseline computed from exp-012 raw data\\n============================================================\\nComputing baseline from exp-012: /root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/samples.jsonl\\n  Baseline degeneracy: 17.8%\\n  Baseline LP sel delta: +0.61pp\\n  Baseline within-inst median rho: 0.2817\\n  Baseline within-inst mean rho: 0.1795\\n  Baseline greedy F1: 0.6439\\n\\nTotal instances: 551\\nGold-filtered (non-empty gold entities): 529\\n\\n--- 1. Degeneracy (Constant F1, gold-filtered) ---\\n  Constant F1 instances: 34 / 529\\n  Degeneracy rate: 6.4%\\n  Greedy F1: 0.6501\\n  Oracle F1: 0.7998\\n  Headroom: 14.97pp\\n\\n--- 2. LP Selection F1 ---\\n  LP selection F1: 0.6383\\n  LP selection delta: -1.18pp\\n\\n--- 3. QE Signals (AUROC, global rho, selection F1, delta) ---\\n  LP: AUROC=0.6641, rho=0.3551, sel_F1=0.6383, delta=-1.18pp\\n  SJ: AUROC=0.744, rho=0.516, sel_F1=0.6208, delta=-2.93pp\\n  FK: AUROC=0.7523, rho=0.5302, sel_F1=0.6219, delta=-2.82pp\\n  EM: AUROC=0.634, rho=0.3353, sel_F1=0.5847, delta=-6.54pp\\n  VC: AUROC=0.736, rho=0.5074, sel_F1=0.5852, delta=-6.49pp\\n\\n--- 4. Within-instance LP-F1 correlation ---\\n  Valid instances: 495 / 529 (93.6%)\\n  Mean rho: 0.2727\\n  Median rho: 0.3172\\n  Std rho: 0.4316\\n\\n--- 5. LP Range Statistics ---\\n  Mean LP range: 0.085427\\n  Std LP range: 0.062149\\n  Median LP range: 0.067187\\n\\n--- 6. Comparison: exp-012 (5-epoch) vs exp_029a (3-epoch) ---\\n  Metric                    |  5-epoch (exp-012) |     3-epoch (029a) |    Delta\\n  --------------------------+--------------------+--------------------+---------\\n  Degeneracy (CF1) %        |              17.8% |               6.4% |  -11.3pp\\n  Greedy F1                 |             0.6439 |             0.6501 |  +0.62pp\\n  Oracle F1                 |                N/A |             0.7998 |         \\n  Headroom (pp)             |                N/A |              14.97 |         \\n  LP sel delta (pp)         |              +0.61 |              -1.18 |    -1.80\\n  Within-inst median rho    |             0.2817 |             0.3172 |         \\n  Within-inst mean rho      |             0.1795 |             0.2727 |         \\n  LP range mean             |                N/A |           0.085427 |         \\n\\n--- 7. Conclusion ---\\n  Verdict: SUCCESS\\n  3-epoch degeneracy (6.4%) < 5-epoch (17.8%). Confirms epoch-degeneracy relationship holds for SciERC: fewer epochs produce lower degeneracy.\\n\\nResults saved to /root/autodl-tmp/struct_self_consist_ie/output/exp_029a_scierc_3epoch/comparison_report_fixed.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.67}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 29_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+exp_029a ran successfully. Now let me run exp_029b.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f972e873-2fed-46d9-9650-cae175aa4e15",
+  "uuid": "65c553bc-e060-4a70-bbf5-4712c46a4afe",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KqQ2h6t8q7BFhrxP3cURai",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1544,
+      "cache_read_input_tokens": 36641,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1544
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 30_
+
+exp_029a 完成。5-epoch baseline 现在是 corrected 版本（greedy_f1=0.6439, degeneracy=17.8%）。重跑 exp_029b。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f972e873-2fed-46d9-9650-cae175aa4e15",
+  "uuid": "89a82812-a07d-4e59-8cbe-cea13e08c8bf",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KqQ2h6t8q7BFhrxP3cURai",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1544,
+      "cache_read_input_tokens": 36641,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1544
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01SdRaV28rqjxis2GyFEvjrf`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "account": "root",
+  "command": "cd /root/autodl-tmp/struct_self_consist_ie && source /root/miniconda3/bin/activate && python scripts/exp_029b_postprocess/03_analyze.py 2>&1",
+  "warn": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f972e873-2fed-46d9-9650-cae175aa4e15",
+  "uuid": "1fc4351d-8882-41f2-800e-cca098d72fcf",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KqQ2h6t8q7BFhrxP3cURai",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1544,
+      "cache_read_input_tokens": 36641,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1544
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-18T03:20:52.592Z_
+
+<details><summary>↩ Tool result · `toolu_01SdRaV28rqjxis2GyFEvjrf`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"============================================================\\n  exp_029b: SciERC 10-epoch LoRA Degeneracy Analysis\\n============================================================\\n\\n--- Loading baselines ---\\n  5-epoch baseline: degeneracy=17.8%, lp_sel_delta=+0.61pp, within_rho_med=0.2817\\n  3-epoch baseline: degeneracy=6.4%, lp_sel_delta=-1.18pp, within_rho_med=0.3172\\n\\n--- 1. Loading data from /root/autodl-tmp/struct_self_consist_ie/output/exp_029b_scierc_10epoch/samples.jsonl ---\\n  Loaded 551 instances\\n  Gold-filtered: 529 (removed 22 empty-gold)\\n\\n--- 2. Degeneracy (CF1 gold-filtered) ---\\n  Constant F1 instances: 253/529 = 47.83%\\n\\n--- 3. Basic Metrics ---\\n  Greedy F1:  0.6491\\n  Oracle F1:  0.7331\\n  Headroom:   8.40 pp\\n  LP sel F1:  0.6567 (+0.75 pp)\\n\\n--- 4. QE Signals (global) ---\\n  LP: AUROC=0.5720, rho=0.1588, sel_delta=+0.75pp\\n  SJ: AUROC=0.6598, rho=0.3441, sel_delta=+0.39pp\\n  FK: AUROC=0.6598, rho=0.3413, sel_delta=+0.40pp\\n  EM: AUROC=0.6408, rho=0.3035, sel_delta=+0.36pp\\n  VC: AUROC=0.6670, rho=0.3571, sel_delta=+0.41pp\\n\\n--- 5. Within-Instance rho(LP, F1) ---\\n  Mean:   0.0685\\n  Median: 0.1201\\n  Std:    0.5249\\n  Valid:  276/529 (52.2%)\\n\\n  LP range mean:   0.033337\\n  LP range median: 0.023715\\n\\n--- 6. Comparison Table ---\\n  Metric                    |            5-epoch |            3-epoch |           10-epoch |     vs 5ep |     vs 3ep\\n  --------------------------+--------------------+--------------------+--------------------+------------+-----------\\n  Degeneracy (CF1) %        |              17.8% |               6.4% |              47.8% |    +30.1pp |    +41.4pp\\n  Greedy F1                 |                N/A |             0.6501 |             0.6491 |            |    -0.10pp\\n  Oracle F1                 |                N/A |             0.7998 |             0.7331 |            |    -6.67pp\\n  Headroom (pp)             |                N/A |              14.97 |               8.40 |            |           \\n  LP sel delta (pp)         |              +0.61 |              -1.18 |              +0.75 |      +0.14 |      +1.94\\n  Within-inst med rho       |             0.2817 |             0.3172 |             0.1201 |            |           \\n  LP range mean             |                N/A |           0.085427 |           0.033337 |            |           \\n\\n--- 7. Conclusion ---\\n  Verdict: CONFIRMED\\n  10-epoch degeneracy (47.8%) > 5-epoch (17.8%) > 3-epoch (6.4%). Epoch-degeneracy monotonic relationship confirmed for SciERC: more epochs produce higher degeneracy.\\n\\nResults saved to /root/autodl-tmp/struct_self_consist_ie/output/exp_029b_scierc_10epoch/analysis_results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.14}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f972e873-2fed-46d9-9650-cae175aa4e15",
+  "uuid": "7a8af0c2-a6a8-4813-8bb2-205e7f46985b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"============================================================\\\\n  exp_029b: SciERC 10-epoch LoRA Degeneracy Analysis\\\\n============================================================\\\\n\\\\n--- Loading baselines ---\\\\n  5-epoch baseline: degeneracy=17.8%, lp_sel_delta=+0.61pp, within_rho_med=0.2817\\\\n  3-epoch baseline: degeneracy=6.4%, lp_sel_delta=-1.18pp, within_rho_med=0.3172\\\\n\\\\n--- 1. Loading data from /root/autodl-tmp/struct_self_consist_ie/output/exp_029b_scierc_10epoch/samples.jsonl ---\\\\n  Loaded 551 instances\\\\n  Gold-filtered: 529 (removed 22 empty-gold)\\\\n\\\\n--- 2. Degeneracy (CF1 gold-filtered) ---\\\\n  Constant F1 instances: 253/529 = 47.83%\\\\n\\\\n--- 3. Basic Metrics ---\\\\n  Greedy F1:  0.6491\\\\n  Oracle F1:  0.7331\\\\n  Headroom:   8.40 pp\\\\n  LP sel F1:  0.6567 (+0.75 pp)\\\\n\\\\n--- 4. QE Signals (global) ---\\\\n  LP: AUROC=0.5720, rho=0.1588, sel_delta=+0.75pp\\\\n  SJ: AUROC=0.6598, rho=0.3441, sel_delta=+0.39pp\\\\n  FK: AUROC=0.6598, rho=0.3413, sel_delta=+0.40pp\\\\n  EM: AUROC=0.6408, rho=0.3035, sel_delta=+0.36pp\\\\n  VC: AUROC=0.6670, rho=0.3571, sel_delta=+0.41pp\\\\n\\\\n--- 5. Within-Instance rho(LP, F1) ---\\\\n  Mean:   0.0685\\\\n  Median: 0.1201\\\\n  Std:    0.5249\\\\n  Valid:  276/529 (52.2%)\\\\n\\\\n  LP range mean:   0.033337\\\\n  LP range median: 0.023715\\\\n\\\\n--- 6. Comparison Table ---\\\\n  Metric                    |            5-epoch |            3-epoch |           10-epoch |     vs 5ep |     vs 3ep\\\\n  --------------------------+--------------------+--------------------+--------------------+------------+-----------\\\\n  Degeneracy (CF1) %        |              17.8% |               6.4% |              47.8% |    +30.1pp |    +41.4pp\\\\n  Greedy F1                 |                N/A |             0.6501 |             0.6491 |            |    -0.10pp\\\\n  Oracle F1                 |                N/A |             0.7998 |             0.7331 |            |    -6.67pp\\\\n  Headroom (pp)             |                N/A |              14.97 |               8.40 |            |           \\\\n  LP sel delta (pp)         |              +0.61 |              -1.18 |              +0.75 |      +0.14 |      +1.94\\\\n  Within-inst med rho       |             0.2817 |             0.3172 |             0.1201 |            |           \\\\n  LP range mean             |                N/A |           0.085427 |           0.033337 |            |           \\\\n\\\\n--- 7. Conclusion ---\\\\n  Verdict: CONFIRMED\\\\n  10-epoch degeneracy (47.8%) > 5-epoch (17.8%) > 3-epoch (6.4%). Epoch-degeneracy monotonic relationship confirmed for SciERC: more epochs produce higher degeneracy.\\\\n\\\\nResults saved to /root/autodl-tmp/struct_self_consist_ie/output/exp_029b_scierc_10epoch/analysis_results.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.14}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"============================================================\\n  exp_029b: SciERC 10-epoch LoRA Degeneracy Analysis\\n============================================================\\n\\n--- Loading baselines ---\\n  5-epoch baseline: degeneracy=17.8%, lp_sel_delta=+0.61pp, within_rho_med=0.2817\\n  3-epoch baseline: degeneracy=6.4%, lp_sel_delta=-1.18pp, within_rho_med=0.3172\\n\\n--- 1. Loading data from /root/autodl-tmp/struct_self_consist_ie/output/exp_029b_scierc_10epoch/samples.jsonl ---\\n  Loaded 551 instances\\n  Gold-filtered: 529 (removed 22 empty-gold)\\n\\n--- 2. Degeneracy (CF1 gold-filtered) ---\\n  Constant F1 instances: 253/529 = 47.83%\\n\\n--- 3. Basic Metrics ---\\n  Greedy F1:  0.6491\\n  Oracle F1:  0.7331\\n  Headroom:   8.40 pp\\n  LP sel F1:  0.6567 (+0.75 pp)\\n\\n--- 4. QE Signals (global) ---\\n  LP: AUROC=0.5720, rho=0.1588, sel_delta=+0.75pp\\n  SJ: AUROC=0.6598, rho=0.3441, sel_delta=+0.39pp\\n  FK: AUROC=0.6598, rho=0.3413, sel_delta=+0.40pp\\n  EM: AUROC=0.6408, rho=0.3035, sel_delta=+0.36pp\\n  VC: AUROC=0.6670, rho=0.3571, sel_delta=+0.41pp\\n\\n--- 5. Within-Instance rho(LP, F1) ---\\n  Mean:   0.0685\\n  Median: 0.1201\\n  Std:    0.5249\\n  Valid:  276/529 (52.2%)\\n\\n  LP range mean:   0.033337\\n  LP range median: 0.023715\\n\\n--- 6. Comparison Table ---\\n  Metric                    |            5-epoch |            3-epoch |           10-epoch |     vs 5ep |     vs 3ep\\n  --------------------------+--------------------+--------------------+--------------------+------------+-----------\\n  Degeneracy (CF1) %        |              17.8% |               6.4% |              47.8% |    +30.1pp |    +41.4pp\\n  Greedy F1                 |                N/A |             0.6501 |             0.6491 |            |    -0.10pp\\n  Oracle F1                 |                N/A |             0.7998 |             0.7331 |            |    -6.67pp\\n  Headroom (pp)             |                N/A |              14.97 |               8.40 |            |           \\n  LP sel delta (pp)         |              +0.61 |              -1.18 |              +0.75 |      +0.14 |      +1.94\\n  Within-inst med rho       |             0.2817 |             0.3172 |             0.1201 |            |           \\n  LP range mean             |                N/A |           0.085427 |           0.033337 |            |           \\n\\n--- 7. Conclusion ---\\n  Verdict: CONFIRMED\\n  10-epoch degeneracy (47.8%) > 5-epoch (17.8%) > 3-epoch (6.4%). Epoch-degeneracy monotonic relationship confirmed for SciERC: more epochs produce higher degeneracy.\\n\\nResults saved to /root/autodl-tmp/struct_self_consist_ie/output/exp_029b_scierc_10epoch/analysis_results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.14}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 33_
+
+两个分析都完成。现在读取完整 JSON 输出并搜索全项目残留的旧路径引用。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f972e873-2fed-46d9-9650-cae175aa4e15",
+  "uuid": "2bf5d4af-fa13-4bec-b14c-075624e0b4bd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01REMq3SeCLSCa4Q3dR4KCw5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1344,
+      "cache_read_input_tokens": 38185,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1344
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_0149Hxg3NbzwyrSLUt3KpsNa`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "account": "root",
+  "command": "cd /root/autodl-tmp/struct_self_consist_ie && /root/miniconda3/bin/python -c \"\nimport json\nd = json.load(open('output/exp_029a_scierc_3epoch/comparison_report_fixed.json'))\nprint(json.dumps(d, indent=2))\n\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f972e873-2fed-46d9-9650-cae175aa4e15",
+  "uuid": "ab27eb49-a5b2-4e4f-bdfd-80817ff039bf",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01REMq3SeCLSCa4Q3dR4KCw5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1344,
+      "cache_read_input_tokens": 38185,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1344
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01UhcigCsfdgBvogGMUDNgHw`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "account": "root",
+  "command": "cd /root/autodl-tmp/struct_self_consist_ie && /root/miniconda3/bin/python -c \"\nimport json\nd = json.load(open('output/exp_029b_scierc_10epoch/analysis_results.json'))\nprint(json.dumps(d, indent=2))\n\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f972e873-2fed-46d9-9650-cae175aa4e15",
+  "uuid": "e8fd67b8-22c8-4f1b-9daf-f1da45fd9c8f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01REMq3SeCLSCa4Q3dR4KCw5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1344,
+      "cache_read_input_tokens": 38185,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1344
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-18T03:21:01.587Z_
+
+<details><summary>↩ Tool result · `toolu_0149Hxg3NbzwyrSLUt3KpsNa`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"experiment\\\": \\\"exp_029a\\\",\\n  \\\"description\\\": \\\"SciERC 3-epoch LoRA degeneracy test (FIXED: baseline from exp-012 raw data)\\\",\\n  \\\"baseline_source\\\": \\\"exp-012 (SciERC 5-epoch, rank=32) computed from raw inference data\\\",\\n  \\\"n_total\\\": 551,\\n  \\\"n_gold_filtered\\\": 529,\\n  \\\"n_samples\\\": 8,\\n  \\\"degeneracy\\\": {\\n    \\\"definition\\\": \\\"Constant F1 gold-filtered\\\",\\n    \\\"constant_f1_count\\\": 34,\\n    \\\"gold_filtered_total\\\": 529,\\n    \\\"rate_pct\\\": 6.4272\\n  },\\n  \\\"basic\\\": {\\n    \\\"greedy_macro_f1\\\": 0.6501,\\n    \\\"oracle_macro_f1\\\": 0.7998,\\n    \\\"headroom_pp\\\": 14.9685\\n  },\\n  \\\"lp_selection\\\": {\\n    \\\"f1\\\": 0.6383,\\n    \\\"delta_pp\\\": -1.1814\\n  },\\n  \\\"qe_signals\\\": {\\n    \\\"LP\\\": {\\n      \\\"auroc\\\": 0.6641,\\n      \\\"spearman_global\\\": 0.3551,\\n      \\\"selection_f1\\\": 0.6383,\\n      \\\"selection_delta_pp\\\": -1.18\\n    },\\n    \\\"SJ\\\": {\\n      \\\"auroc\\\": 0.744,\\n      \\\"spearman_global\\\": 0.516,\\n      \\\"selection_f1\\\": 0.6208,\\n      \\\"selection_delta_pp\\\": -2.93\\n    },\\n    \\\"FK\\\": {\\n      \\\"auroc\\\": 0.7523,\\n      \\\"spearman_global\\\": 0.5302,\\n      \\\"selection_f1\\\": 0.6219,\\n      \\\"selection_delta_pp\\\": -2.82\\n    },\\n    \\\"EM\\\": {\\n      \\\"auroc\\\": 0.634,\\n      \\\"spearman_global\\\": 0.3353,\\n      \\\"selection_f1\\\": 0.5847,\\n      \\\"selection_delta_pp\\\": -6.54\\n    },\\n    \\\"VC\\\": {\\n      \\\"auroc\\\": 0.736,\\n      \\\"spearman_global\\\": 0.5074,\\n      \\\"selection_f1\\\": 0.5852,\\n      \\\"selection_delta_pp\\\": -6.49\\n    }\\n  },\\n  \\\"within_instance_rho\\\": {\\n    \\\"mean\\\": 0.2727,\\n    \\\"median\\\": 0.3172,\\n    \\\"std\\\": 0.4316,\\n    \\\"valid_count\\\": 495,\\n    \\\"valid_pct\\\": 93.57\\n  },\\n  \\\"lp_range\\\": {\\n    \\\"mean\\\": 0.085427,\\n    \\\"std\\\": 0.062149,\\n    \\\"median\\\": 0.067187\\n  },\\n  \\\"comparison_baseline\\\": {\\n    \\\"baseline_ref\\\": {\\n      \\\"degeneracy_cf1_pct\\\": 17.7694,\\n      \\\"lp_sel_delta_pp\\\": 0.615,\\n      \\\"within_instance_median_rho\\\": 0.2817,\\n      \\\"within_instance_mean_rho\\\": 0.1795,\\n      \\\"greedy_macro_f1\\\": 0.6439,\\n      \\\"n_gold_filtered\\\": 529,\\n      \\\"within_rho_valid_count\\\": 435\\n    },\\n    \\\"degeneracy_delta_pp\\\": -11.3422,\\n    \\\"lp_sel_delta_delta\\\": -1.7964\\n  },\\n  \\\"conclusion\\\": {\\n    \\\"verdict\\\": \\\"SUCCESS\\\",\\n    \\\"message\\\": \\\"3-epoch degeneracy (6.4%) < 5-epoch (17.8%). Confirms epoch-degeneracy relationship holds for SciERC: fewer epochs produce lower degeneracy.\\\"\\n  }\\n}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f972e873-2fed-46d9-9650-cae175aa4e15",
+  "uuid": "ee70481c-fc57-4b45-90e1-3ffea3216bf4",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"experiment\\\\\\\": \\\\\\\"exp_029a\\\\\\\",\\\\n  \\\\\\\"description\\\\\\\": \\\\\\\"SciERC 3-epoch LoRA degeneracy test (FIXED: baseline from exp-012 raw data)\\\\\\\",\\\\n  \\\\\\\"baseline_source\\\\\\\": \\\\\\\"exp-012 (SciERC 5-epoch, rank=32) computed from raw inference data\\\\\\\",\\\\n  \\\\\\\"n_total\\\\\\\": 551,\\\\n  \\\\\\\"n_gold_filtered\\\\\\\": 529,\\\\n  \\\\\\\"n_samples\\\\\\\": 8,\\\\n  \\\\\\\"degeneracy\\\\\\\": {\\\\n    \\\\\\\"definition\\\\\\\": \\\\\\\"Constant F1 gold-filtered\\\\\\\",\\\\n    \\\\\\\"constant_f1_count\\\\\\\": 34,\\\\n    \\\\\\\"gold_filtered_total\\\\\\\": 529,\\\\n    \\\\\\\"rate_pct\\\\\\\": 6.4272\\\\n  },\\\\n  \\\\\\\"basic\\\\\\\": {\\\\n    \\\\\\\"greedy_macro_f1\\\\\\\": 0.6501,\\\\n    \\\\\\\"oracle_macro_f1\\\\\\\": 0.7998,\\\\n    \\\\\\\"headroom_pp\\\\\\\": 14.9685\\\\n  },\\\\n  \\\\\\\"lp_selection\\\\\\\": {\\\\n    \\\\\\\"f1\\\\\\\": 0.6383,\\\\n    \\\\\\\"delta_pp\\\\\\\": -1.1814\\\\n  },\\\\n  \\\\\\\"qe_signals\\\\\\\": {\\\\n    \\\\\\\"LP\\\\\\\": {\\\\n      \\\\\\\"auroc\\\\\\\": 0.6641,\\\\n      \\\\\\\"spearman_global\\\\\\\": 0.3551,\\\\n      \\\\\\\"selection_f1\\\\\\\": 0.6383,\\\\n      \\\\\\\"selection_delta_pp\\\\\\\": -1.18\\\\n    },\\\\n    \\\\\\\"SJ\\\\\\\": {\\\\n      \\\\\\\"auroc\\\\\\\": 0.744,\\\\n      \\\\\\\"spearman_global\\\\\\\": 0.516,\\\\n      \\\\\\\"selection_f1\\\\\\\": 0.6208,\\\\n      \\\\\\\"selection_delta_pp\\\\\\\": -2.93\\\\n    },\\\\n    \\\\\\\"FK\\\\\\\": {\\\\n      \\\\\\\"auroc\\\\\\\": 0.7523,\\\\n      \\\\\\\"spearman_global\\\\\\\": 0.5302,\\\\n      \\\\\\\"selection_f1\\\\\\\": 0.6219,\\\\n      \\\\\\\"selection_delta_pp\\\\\\\": -2.82\\\\n    },\\\\n    \\\\\\\"EM\\\\\\\": {\\\\n      \\\\\\\"auroc\\\\\\\": 0.634,\\\\n      \\\\\\\"spearman_global\\\\\\\": 0.3353,\\\\n      \\\\\\\"selection_f1\\\\\\\": 0.5847,\\\\n      \\\\\\\"selection_delta_pp\\\\\\\": -6.54\\\\n    },\\\\n    \\\\\\\"VC\\\\\\\": {\\\\n      \\\\\\\"auroc\\\\\\\": 0.736,\\\\n      \\\\\\\"spearman_global\\\\\\\": 0.5074,\\\\n      \\\\\\\"selection_f1\\\\\\\": 0.5852,\\\\n      \\\\\\\"selection_delta_pp\\\\\\\": -6.49\\\\n    }\\\\n  },\\\\n  \\\\\\\"within_instance_rho\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.2727,\\\\n    \\\\\\\"median\\\\\\\": 0.3172,\\\\n    \\\\\\\"std\\\\\\\": 0.4316,\\\\n    \\\\\\\"valid_count\\\\\\\": 495,\\\\n    \\\\\\\"valid_pct\\\\\\\": 93.57\\\\n  },\\\\n  \\\\\\\"lp_range\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.085427,\\\\n    \\\\\\\"std\\\\\\\": 0.062149,\\\\n    \\\\\\\"median\\\\\\\": 0.067187\\\\n  },\\\\n  \\\\\\\"comparison_baseline\\\\\\\": {\\\\n    \\\\\\\"baseline_ref\\\\\\\": {\\\\n      \\\\\\\"degeneracy_cf1_pct\\\\\\\": 17.7694,\\\\n      \\\\\\\"lp_sel_delta_pp\\\\\\\": 0.615,\\\\n      \\\\\\\"within_instance_median_rho\\\\\\\": 0.2817,\\\\n      \\\\\\\"within_instance_mean_rho\\\\\\\": 0.1795,\\\\n      \\\\\\\"greedy_macro_f1\\\\\\\": 0.6439,\\\\n      \\\\\\\"n_gold_filtered\\\\\\\": 529,\\\\n      \\\\\\\"within_rho_valid_count\\\\\\\": 435\\\\n    },\\\\n    \\\\\\\"degeneracy_delta_pp\\\\\\\": -11.3422,\\\\n    \\\\\\\"lp_sel_delta_delta\\\\\\\": -1.7964\\\\n  },\\\\n  \\\\\\\"conclusion\\\\\\\": {\\\\n    \\\\\\\"verdict\\\\\\\": \\\\\\\"SUCCESS\\\\\\\",\\\\n    \\\\\\\"message\\\\\\\": \\\\\\\"3-epoch degeneracy (6.4%) < 5-epoch (17.8%). Confirms epoch-degeneracy relationship holds for SciERC: fewer epochs produce lower degeneracy.\\\\\\\"\\\\n  }\\\\n}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"experiment\\\": \\\"exp_029a\\\",\\n  \\\"description\\\": \\\"SciERC 3-epoch LoRA degeneracy test (FIXED: baseline from exp-012 raw data)\\\",\\n  \\\"baseline_source\\\": \\\"exp-012 (SciERC 5-epoch, rank=32) computed from raw inference data\\\",\\n  \\\"n_total\\\": 551,\\n  \\\"n_gold_filtered\\\": 529,\\n  \\\"n_samples\\\": 8,\\n  \\\"degeneracy\\\": {\\n    \\\"definition\\\": \\\"Constant F1 gold-filtered\\\",\\n    \\\"constant_f1_count\\\": 34,\\n    \\\"gold_filtered_total\\\": 529,\\n    \\\"rate_pct\\\": 6.4272\\n  },\\n  \\\"basic\\\": {\\n    \\\"greedy_macro_f1\\\": 0.6501,\\n    \\\"oracle_macro_f1\\\": 0.7998,\\n    \\\"headroom_pp\\\": 14.9685\\n  },\\n  \\\"lp_selection\\\": {\\n    \\\"f1\\\": 0.6383,\\n    \\\"delta_pp\\\": -1.1814\\n  },\\n  \\\"qe_signals\\\": {\\n    \\\"LP\\\": {\\n      \\\"auroc\\\": 0.6641,\\n      \\\"spearman_global\\\": 0.3551,\\n      \\\"selection_f1\\\": 0.6383,\\n      \\\"selection_delta_pp\\\": -1.18\\n    },\\n    \\\"SJ\\\": {\\n      \\\"auroc\\\": 0.744,\\n      \\\"spearman_global\\\": 0.516,\\n      \\\"selection_f1\\\": 0.6208,\\n      \\\"selection_delta_pp\\\": -2.93\\n    },\\n    \\\"FK\\\": {\\n      \\\"auroc\\\": 0.7523,\\n      \\\"spearman_global\\\": 0.5302,\\n      \\\"selection_f1\\\": 0.6219,\\n      \\\"selection_delta_pp\\\": -2.82\\n    },\\n    \\\"EM\\\": {\\n      \\\"auroc\\\": 0.634,\\n      \\\"spearman_global\\\": 0.3353,\\n      \\\"selection_f1\\\": 0.5847,\\n      \\\"selection_delta_pp\\\": -6.54\\n    },\\n    \\\"VC\\\": {\\n      \\\"auroc\\\": 0.736,\\n      \\\"spearman_global\\\": 0.5074,\\n      \\\"selection_f1\\\": 0.5852,\\n      \\\"selection_delta_pp\\\": -6.49\\n    }\\n  },\\n  \\\"within_instance_rho\\\": {\\n    \\\"mean\\\": 0.2727,\\n    \\\"median\\\": 0.3172,\\n    \\\"std\\\": 0.4316,\\n    \\\"valid_count\\\": 495,\\n    \\\"valid_pct\\\": 93.57\\n  },\\n  \\\"lp_range\\\": {\\n    \\\"mean\\\": 0.085427,\\n    \\\"std\\\": 0.062149,\\n    \\\"median\\\": 0.067187\\n  },\\n  \\\"comparison_baseline\\\": {\\n    \\\"baseline_ref\\\": {\\n      \\\"degeneracy_cf1_pct\\\": 17.7694,\\n      \\\"lp_sel_delta_pp\\\": 0.615,\\n      \\\"within_instance_median_rho\\\": 0.2817,\\n      \\\"within_instance_mean_rho\\\": 0.1795,\\n      \\\"greedy_macro_f1\\\": 0.6439,\\n      \\\"n_gold_filtered\\\": 529,\\n      \\\"within_rho_valid_count\\\": 435\\n    },\\n    \\\"degeneracy_delta_pp\\\": -11.3422,\\n    \\\"lp_sel_delta_delta\\\": -1.7964\\n  },\\n  \\\"conclusion\\\": {\\n    \\\"verdict\\\": \\\"SUCCESS\\\",\\n    \\\"message\\\": \\\"3-epoch degeneracy (6.4%) < 5-epoch (17.8%). Confirms epoch-degeneracy relationship holds for SciERC: fewer epochs produce lower degeneracy.\\\"\\n  }\\n}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01WY2HqFLZudGjYgfQ1DhwF2`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "account": "root",
+  "command": "cd /root/autodl-tmp/struct_self_consist_ie && grep -rn \"exp_012_logprob\\|samples_with_logprobs\" scripts/ output/ --include=\"*.py\" --include=\"*.sh\" --include=\"*.json\" 2>/dev/null | grep -v \"__pycache__\" | grep -v \".pyc\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f972e873-2fed-46d9-9650-cae175aa4e15",
+  "uuid": "d34bef2c-9284-4099-b4ac-c2b88cc18b0d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01REMq3SeCLSCa4Q3dR4KCw5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1344,
+      "cache_read_input_tokens": 38185,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1344
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-18T03:21:02.053Z_
+
+<details><summary>↩ Tool result · `toolu_01UhcigCsfdgBvogGMUDNgHw`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"experiment\\\": \\\"exp_029b\\\",\\n  \\\"description\\\": \\\"SciERC 10-epoch LoRA degeneracy test\\\",\\n  \\\"n_total\\\": 551,\\n  \\\"n_gold_filtered\\\": 529,\\n  \\\"n_samples\\\": 8,\\n  \\\"degeneracy\\\": {\\n    \\\"definition\\\": \\\"Constant F1 gold-filtered\\\",\\n    \\\"constant_f1_count\\\": 253,\\n    \\\"gold_filtered_total\\\": 529,\\n    \\\"rate_pct\\\": 47.8261\\n  },\\n  \\\"basic\\\": {\\n    \\\"greedy_macro_f1\\\": 0.6491,\\n    \\\"oracle_macro_f1\\\": 0.7331,\\n    \\\"headroom_pp\\\": 8.399\\n  },\\n  \\\"lp_selection\\\": {\\n    \\\"f1\\\": 0.6567,\\n    \\\"delta_pp\\\": 0.7543\\n  },\\n  \\\"qe_signals\\\": {\\n    \\\"LP\\\": {\\n      \\\"auroc\\\": 0.572,\\n      \\\"spearman_global\\\": 0.1588,\\n      \\\"spearman_global_p\\\": 0.0,\\n      \\\"selection_f1\\\": 0.6567,\\n      \\\"selection_delta_pp\\\": 0.75\\n    },\\n    \\\"SJ\\\": {\\n      \\\"auroc\\\": 0.6598,\\n      \\\"spearman_global\\\": 0.3441,\\n      \\\"spearman_global_p\\\": 0.0,\\n      \\\"selection_f1\\\": 0.6531,\\n      \\\"selection_delta_pp\\\": 0.39\\n    },\\n    \\\"FK\\\": {\\n      \\\"auroc\\\": 0.6598,\\n      \\\"spearman_global\\\": 0.3413,\\n      \\\"spearman_global_p\\\": 0.0,\\n      \\\"selection_f1\\\": 0.6531,\\n      \\\"selection_delta_pp\\\": 0.4\\n    },\\n    \\\"EM\\\": {\\n      \\\"auroc\\\": 0.6408,\\n      \\\"spearman_global\\\": 0.3035,\\n      \\\"spearman_global_p\\\": 0.0,\\n      \\\"selection_f1\\\": 0.6527,\\n      \\\"selection_delta_pp\\\": 0.36\\n    },\\n    \\\"VC\\\": {\\n      \\\"auroc\\\": 0.667,\\n      \\\"spearman_global\\\": 0.3571,\\n      \\\"spearman_global_p\\\": 0.0,\\n      \\\"selection_f1\\\": 0.6532,\\n      \\\"selection_delta_pp\\\": 0.41\\n    }\\n  },\\n  \\\"within_instance_rho\\\": {\\n    \\\"mean\\\": 0.0685,\\n    \\\"median\\\": 0.1201,\\n    \\\"std\\\": 0.5249,\\n    \\\"valid_count\\\": 276,\\n    \\\"valid_pct\\\": 52.17\\n  },\\n  \\\"lp_range\\\": {\\n    \\\"mean\\\": 0.033337,\\n    \\\"std\\\": 0.039483,\\n    \\\"median\\\": 0.023715\\n  },\\n  \\\"comparison_5epoch\\\": {\\n    \\\"source\\\": \\\"dynamic from exp_029a comparison_report_fixed.json\\\",\\n    \\\"baseline_ref\\\": {\\n      \\\"degeneracy_cf1_pct\\\": 17.7694,\\n      \\\"lp_sel_delta_pp\\\": 0.615,\\n      \\\"within_instance_median_rho\\\": 0.2817,\\n      \\\"within_instance_mean_rho\\\": 0.1795,\\n      \\\"greedy_macro_f1\\\": 0.6439,\\n      \\\"n_gold_filtered\\\": 529,\\n      \\\"within_rho_valid_count\\\": 435\\n    },\\n    \\\"degeneracy_delta_pp\\\": 30.0567,\\n    \\\"lp_sel_delta_delta\\\": 0.1393\\n  },\\n  \\\"comparison_3epoch\\\": {\\n    \\\"source\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/exp_029a_scierc_3epoch/comparison_report_fixed.json\\\",\\n    \\\"baseline_ref\\\": {\\n      \\\"degeneracy_cf1_pct\\\": 6.4272,\\n      \\\"greedy_f1\\\": 0.6501,\\n      \\\"oracle_f1\\\": 0.7998,\\n      \\\"lp_sel_delta_pp\\\": -1.1814,\\n      \\\"within_instance_median_rho\\\": 0.3172,\\n      \\\"lp_range_mean\\\": 0.085427\\n    },\\n    \\\"degeneracy_delta_pp\\\": 41.3989,\\n    \\\"lp_sel_delta_delta\\\": 1.9357\\n  },\\n  \\\"conclusion\\\": {\\n    \\\"verdict\\\": \\\"CONFIRMED\\\",\\n    \\\"message\\\": \\\"10-epoch degeneracy (47.8%) > 5-epoch (17.8%) > 3-epoch (6.4%). Epoch-degeneracy monotonic relationship confirmed for SciERC: more epochs produce higher degeneracy.\\\"\\n  }\\n}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f972e873-2fed-46d9-9650-cae175aa4e15",
+  "uuid": "e3814bb5-8cb9-4026-a0c4-e60dd5629fd9",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"experiment\\\\\\\": \\\\\\\"exp_029b\\\\\\\",\\\\n  \\\\\\\"description\\\\\\\": \\\\\\\"SciERC 10-epoch LoRA degeneracy test\\\\\\\",\\\\n  \\\\\\\"n_total\\\\\\\": 551,\\\\n  \\\\\\\"n_gold_filtered\\\\\\\": 529,\\\\n  \\\\\\\"n_samples\\\\\\\": 8,\\\\n  \\\\\\\"degeneracy\\\\\\\": {\\\\n    \\\\\\\"definition\\\\\\\": \\\\\\\"Constant F1 gold-filtered\\\\\\\",\\\\n    \\\\\\\"constant_f1_count\\\\\\\": 253,\\\\n    \\\\\\\"gold_filtered_total\\\\\\\": 529,\\\\n    \\\\\\\"rate_pct\\\\\\\": 47.8261\\\\n  },\\\\n  \\\\\\\"basic\\\\\\\": {\\\\n    \\\\\\\"greedy_macro_f1\\\\\\\": 0.6491,\\\\n    \\\\\\\"oracle_macro_f1\\\\\\\": 0.7331,\\\\n    \\\\\\\"headroom_pp\\\\\\\": 8.399\\\\n  },\\\\n  \\\\\\\"lp_selection\\\\\\\": {\\\\n    \\\\\\\"f1\\\\\\\": 0.6567,\\\\n    \\\\\\\"delta_pp\\\\\\\": 0.7543\\\\n  },\\\\n  \\\\\\\"qe_signals\\\\\\\": {\\\\n    \\\\\\\"LP\\\\\\\": {\\\\n      \\\\\\\"auroc\\\\\\\": 0.572,\\\\n      \\\\\\\"spearman_global\\\\\\\": 0.1588,\\\\n      \\\\\\\"spearman_global_p\\\\\\\": 0.0,\\\\n      \\\\\\\"selection_f1\\\\\\\": 0.6567,\\\\n      \\\\\\\"selection_delta_pp\\\\\\\": 0.75\\\\n    },\\\\n    \\\\\\\"SJ\\\\\\\": {\\\\n      \\\\\\\"auroc\\\\\\\": 0.6598,\\\\n      \\\\\\\"spearman_global\\\\\\\": 0.3441,\\\\n      \\\\\\\"spearman_global_p\\\\\\\": 0.0,\\\\n      \\\\\\\"selection_f1\\\\\\\": 0.6531,\\\\n      \\\\\\\"selection_delta_pp\\\\\\\": 0.39\\\\n    },\\\\n    \\\\\\\"FK\\\\\\\": {\\\\n      \\\\\\\"auroc\\\\\\\": 0.6598,\\\\n      \\\\\\\"spearman_global\\\\\\\": 0.3413,\\\\n      \\\\\\\"spearman_global_p\\\\\\\": 0.0,\\\\n      \\\\\\\"selection_f1\\\\\\\": 0.6531,\\\\n      \\\\\\\"selection_delta_pp\\\\\\\": 0.4\\\\n    },\\\\n    \\\\\\\"EM\\\\\\\": {\\\\n      \\\\\\\"auroc\\\\\\\": 0.6408,\\\\n      \\\\\\\"spearman_global\\\\\\\": 0.3035,\\\\n      \\\\\\\"spearman_global_p\\\\\\\": 0.0,\\\\n      \\\\\\\"selection_f1\\\\\\\": 0.6527,\\\\n      \\\\\\\"selection_delta_pp\\\\\\\": 0.36\\\\n    },\\\\n    \\\\\\\"VC\\\\\\\": {\\\\n      \\\\\\\"auroc\\\\\\\": 0.667,\\\\n      \\\\\\\"spearman_global\\\\\\\": 0.3571,\\\\n      \\\\\\\"spearman_global_p\\\\\\\": 0.0,\\\\n      \\\\\\\"selection_f1\\\\\\\": 0.6532,\\\\n      \\\\\\\"selection_delta_pp\\\\\\\": 0.41\\\\n    }\\\\n  },\\\\n  \\\\\\\"within_instance_rho\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.0685,\\\\n    \\\\\\\"median\\\\\\\": 0.1201,\\\\n    \\\\\\\"std\\\\\\\": 0.5249,\\\\n    \\\\\\\"valid_count\\\\\\\": 276,\\\\n    \\\\\\\"valid_pct\\\\\\\": 52.17\\\\n  },\\\\n  \\\\\\\"lp_range\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.033337,\\\\n    \\\\\\\"std\\\\\\\": 0.039483,\\\\n    \\\\\\\"median\\\\\\\": 0.023715\\\\n  },\\\\n  \\\\\\\"comparison_5epoch\\\\\\\": {\\\\n    \\\\\\\"source\\\\\\\": \\\\\\\"dynamic from exp_029a comparison_report_fixed.json\\\\\\\",\\\\n    \\\\\\\"baseline_ref\\\\\\\": {\\\\n      \\\\\\\"degeneracy_cf1_pct\\\\\\\": 17.7694,\\\\n      \\\\\\\"lp_sel_delta_pp\\\\\\\": 0.615,\\\\n      \\\\\\\"within_instance_median_rho\\\\\\\": 0.2817,\\\\n      \\\\\\\"within_instance_mean_rho\\\\\\\": 0.1795,\\\\n      \\\\\\\"greedy_macro_f1\\\\\\\": 0.6439,\\\\n      \\\\\\\"n_gold_filtered\\\\\\\": 529,\\\\n      \\\\\\\"within_rho_valid_count\\\\\\\": 435\\\\n    },\\\\n    \\\\\\\"degeneracy_delta_pp\\\\\\\": 30.0567,\\\\n    \\\\\\\"lp_sel_delta_delta\\\\\\\": 0.1393\\\\n  },\\\\n  \\\\\\\"comparison_3epoch\\\\\\\": {\\\\n    \\\\\\\"source\\\\\\\": \\\\\\\"/root/autodl-tmp/struct_self_consist_ie/output/exp_029a_scierc_3epoch/comparison_report_fixed.json\\\\\\\",\\\\n    \\\\\\\"baseline_ref\\\\\\\": {\\\\n      \\\\\\\"degeneracy_cf1_pct\\\\\\\": 6.4272,\\\\n      \\\\\\\"greedy_f1\\\\\\\": 0.6501,\\\\n      \\\\\\\"oracle_f1\\\\\\\": 0.7998,\\\\n      \\\\\\\"lp_sel_delta_pp\\\\\\\": -1.1814,\\\\n      \\\\\\\"within_instance_median_rho\\\\\\\": 0.3172,\\\\n      \\\\\\\"lp_range_mean\\\\\\\": 0.085427\\\\n    },\\\\n    \\\\\\\"degeneracy_delta_pp\\\\\\\": 41.3989,\\\\n    \\\\\\\"lp_sel_delta_delta\\\\\\\": 1.9357\\\\n  },\\\\n  \\\\\\\"conclusion\\\\\\\": {\\\\n    \\\\\\\"verdict\\\\\\\": \\\\\\\"CONFIRMED\\\\\\\",\\\\n    \\\\\\\"message\\\\\\\": \\\\\\\"10-epoch degeneracy (47.8%) > 5-epoch (17.8%) > 3-epoch (6.4%). Epoch-degeneracy monotonic relationship confirmed for SciERC: more epochs produce higher degeneracy.\\\\\\\"\\\\n  }\\\\n}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"experiment\\\": \\\"exp_029b\\\",\\n  \\\"description\\\": \\\"SciERC 10-epoch LoRA degeneracy test\\\",\\n  \\\"n_total\\\": 551,\\n  \\\"n_gold_filtered\\\": 529,\\n  \\\"n_samples\\\": 8,\\n  \\\"degeneracy\\\": {\\n    \\\"definition\\\": \\\"Constant F1 gold-filtered\\\",\\n    \\\"constant_f1_count\\\": 253,\\n    \\\"gold_filtered_total\\\": 529,\\n    \\\"rate_pct\\\": 47.8261\\n  },\\n  \\\"basic\\\": {\\n    \\\"greedy_macro_f1\\\": 0.6491,\\n    \\\"oracle_macro_f1\\\": 0.7331,\\n    \\\"headroom_pp\\\": 8.399\\n  },\\n  \\\"lp_selection\\\": {\\n    \\\"f1\\\": 0.6567,\\n    \\\"delta_pp\\\": 0.7543\\n  },\\n  \\\"qe_signals\\\": {\\n    \\\"LP\\\": {\\n      \\\"auroc\\\": 0.572,\\n      \\\"spearman_global\\\": 0.1588,\\n      \\\"spearman_global_p\\\": 0.0,\\n      \\\"selection_f1\\\": 0.6567,\\n      \\\"selection_delta_pp\\\": 0.75\\n    },\\n    \\\"SJ\\\": {\\n      \\\"auroc\\\": 0.6598,\\n      \\\"spearman_global\\\": 0.3441,\\n      \\\"spearman_global_p\\\": 0.0,\\n      \\\"selection_f1\\\": 0.6531,\\n      \\\"selection_delta_pp\\\": 0.39\\n    },\\n    \\\"FK\\\": {\\n      \\\"auroc\\\": 0.6598,\\n      \\\"spearman_global\\\": 0.3413,\\n      \\\"spearman_global_p\\\": 0.0,\\n      \\\"selection_f1\\\": 0.6531,\\n      \\\"selection_delta_pp\\\": 0.4\\n    },\\n    \\\"EM\\\": {\\n      \\\"auroc\\\": 0.6408,\\n      \\\"spearman_global\\\": 0.3035,\\n      \\\"spearman_global_p\\\": 0.0,\\n      \\\"selection_f1\\\": 0.6527,\\n      \\\"selection_delta_pp\\\": 0.36\\n    },\\n    \\\"VC\\\": {\\n      \\\"auroc\\\": 0.667,\\n      \\\"spearman_global\\\": 0.3571,\\n      \\\"spearman_global_p\\\": 0.0,\\n      \\\"selection_f1\\\": 0.6532,\\n      \\\"selection_delta_pp\\\": 0.41\\n    }\\n  },\\n  \\\"within_instance_rho\\\": {\\n    \\\"mean\\\": 0.0685,\\n    \\\"median\\\": 0.1201,\\n    \\\"std\\\": 0.5249,\\n    \\\"valid_count\\\": 276,\\n    \\\"valid_pct\\\": 52.17\\n  },\\n  \\\"lp_range\\\": {\\n    \\\"mean\\\": 0.033337,\\n    \\\"std\\\": 0.039483,\\n    \\\"median\\\": 0.023715\\n  },\\n  \\\"comparison_5epoch\\\": {\\n    \\\"source\\\": \\\"dynamic from exp_029a comparison_report_fixed.json\\\",\\n    \\\"baseline_ref\\\": {\\n      \\\"degeneracy_cf1_pct\\\": 17.7694,\\n      \\\"lp_sel_delta_pp\\\": 0.615,\\n      \\\"within_instance_median_rho\\\": 0.2817,\\n      \\\"within_instance_mean_rho\\\": 0.1795,\\n      \\\"greedy_macro_f1\\\": 0.6439,\\n      \\\"n_gold_filtered\\\": 529,\\n      \\\"within_rho_valid_count\\\": 435\\n    },\\n    \\\"degeneracy_delta_pp\\\": 30.0567,\\n    \\\"lp_sel_delta_delta\\\": 0.1393\\n  },\\n  \\\"comparison_3epoch\\\": {\\n    \\\"source\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/exp_029a_scierc_3epoch/comparison_report_fixed.json\\\",\\n    \\\"baseline_ref\\\": {\\n      \\\"degeneracy_cf1_pct\\\": 6.4272,\\n      \\\"greedy_f1\\\": 0.6501,\\n      \\\"oracle_f1\\\": 0.7998,\\n      \\\"lp_sel_delta_pp\\\": -1.1814,\\n      \\\"within_instance_median_rho\\\": 0.3172,\\n      \\\"lp_range_mean\\\": 0.085427\\n    },\\n    \\\"degeneracy_delta_pp\\\": 41.3989,\\n    \\\"lp_sel_delta_delta\\\": 1.9357\\n  },\\n  \\\"conclusion\\\": {\\n    \\\"verdict\\\": \\\"CONFIRMED\\\",\\n    \\\"message\\\": \\\"10-epoch degeneracy (47.8%) > 5-epoch (17.8%) > 3-epoch (6.4%). Epoch-degeneracy monotonic relationship confirmed for SciERC: more epochs produce higher degeneracy.\\\"\\n  }\\n}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-18T03:21:02.537Z_
+
+<details><summary>↩ Tool result · `toolu_01WY2HqFLZudGjYgfQ1DhwF2`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"scripts/analyze_lp_range_cdf_n529.py:10:DATA_PATH = \\\"/root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/samples_with_logprobs.jsonl\\\"\\nscripts/calibration_baseline.py:23:    \\\"SciERC\\\": OUTPUT_DIR / \\\"exp_012_rerun_1024\\\" / \\\"samples_with_logprobs.jsonl\\\",\\nscripts/adalp_analysis.py:14:    \\\"SciERC\\\": \\\"output/exp_012_logprob/samples_with_logprobs.jsonl\\\",\\noutput/exp_005_v2_temperature/temperature_sensitivity_report.json:7:    \\\"T10_logprob\\\": \\\"exp_012_logprob (551 instances, N=8, T=1.0, with logprobs)\\\"\\noutput/exp004v2_re_diagnostic/full_report.json:2:  \\\"data_source\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/exp_012_logprob/samples_with_logprobs.jsonl\\\",\\noutput/exp_015_v2/exp015_v2_metrics.json:185:    \\\"file\\\": \\\"exp_012_logprob/samples_with_logprobs.jsonl\\\"\\noutput/exp_015_v2/exp015_v2_metrics.json:370:    \\\"file\\\": \\\"exp_012_logprob/samples_with_logprobs.jsonl\\\"\\noutput/analysis_round8/run_epsilon_fine.py:9:data_path = \\\"/root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/samples_with_logprobs.jsonl\\\"\\noutput/d108_lp_vc_combination/analyze_lp_vc.py:30:        \\\"path\\\": f\\\"{BASE}/output/exp_012_rerun_1024/samples_with_logprobs.jsonl\\\",\\noutput/lp_rank_comparison.py:96:    \\\"/root/autodl-tmp/struct_self_consist_ie/output/exp_012_logprob/samples_with_logprobs.jsonl\\\",\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.47}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f972e873-2fed-46d9-9650-cae175aa4e15",
+  "uuid": "c5360bdc-666d-460c-829c-0336c27e7235",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"scripts/analyze_lp_range_cdf_n529.py:10:DATA_PATH = \\\\\\\"/root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/samples_with_logprobs.jsonl\\\\\\\"\\\\nscripts/calibration_baseline.py:23:    \\\\\\\"SciERC\\\\\\\": OUTPUT_DIR / \\\\\\\"exp_012_rerun_1024\\\\\\\" / \\\\\\\"samples_with_logprobs.jsonl\\\\\\\",\\\\nscripts/adalp_analysis.py:14:    \\\\\\\"SciERC\\\\\\\": \\\\\\\"output/exp_012_logprob/samples_with_logprobs.jsonl\\\\\\\",\\\\noutput/exp_005_v2_temperature/temperature_sensitivity_report.json:7:    \\\\\\\"T10_logprob\\\\\\\": \\\\\\\"exp_012_logprob (551 instances, N=8, T=1.0, with logprobs)\\\\\\\"\\\\noutput/exp004v2_re_diagnostic/full_report.json:2:  \\\\\\\"data_source\\\\\\\": \\\\\\\"/root/autodl-tmp/struct_self_consist_ie/output/exp_012_logprob/samples_with_logprobs.jsonl\\\\\\\",\\\\noutput/exp_015_v2/exp015_v2_metrics.json:185:    \\\\\\\"file\\\\\\\": \\\\\\\"exp_012_logprob/samples_with_logprobs.jsonl\\\\\\\"\\\\noutput/exp_015_v2/exp015_v2_metrics.json:370:    \\\\\\\"file\\\\\\\": \\\\\\\"exp_012_logprob/samples_with_logprobs.jsonl\\\\\\\"\\\\noutput/analysis_round8/run_epsilon_fine.py:9:data_path = \\\\\\\"/root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/samples_with_logprobs.jsonl\\\\\\\"\\\\noutput/d108_lp_vc_combination/analyze_lp_vc.py:30:        \\\\\\\"path\\\\\\\": f\\\\\\\"{BASE}/output/exp_012_rerun_1024/samples_with_logprobs.jsonl\\\\\\\",\\\\noutput/lp_rank_comparison.py:96:    \\\\\\\"/root/autodl-tmp/struct_self_consist_ie/output/exp_012_logprob/samples_with_logprobs.jsonl\\\\\\\",\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.47}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"scripts/analyze_lp_range_cdf_n529.py:10:DATA_PATH = \\\"/root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/samples_with_logprobs.jsonl\\\"\\nscripts/calibration_baseline.py:23:    \\\"SciERC\\\": OUTPUT_DIR / \\\"exp_012_rerun_1024\\\" / \\\"samples_with_logprobs.jsonl\\\",\\nscripts/adalp_analysis.py:14:    \\\"SciERC\\\": \\\"output/exp_012_logprob/samples_with_logprobs.jsonl\\\",\\noutput/exp_005_v2_temperature/temperature_sensitivity_report.json:7:    \\\"T10_logprob\\\": \\\"exp_012_logprob (551 instances, N=8, T=1.0, with logprobs)\\\"\\noutput/exp004v2_re_diagnostic/full_report.json:2:  \\\"data_source\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/exp_012_logprob/samples_with_logprobs.jsonl\\\",\\noutput/exp_015_v2/exp015_v2_metrics.json:185:    \\\"file\\\": \\\"exp_012_logprob/samples_with_logprobs.jsonl\\\"\\noutput/exp_015_v2/exp015_v2_metrics.json:370:    \\\"file\\\": \\\"exp_012_logprob/samples_with_logprobs.jsonl\\\"\\noutput/analysis_round8/run_epsilon_fine.py:9:data_path = \\\"/root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/samples_with_logprobs.jsonl\\\"\\noutput/d108_lp_vc_combination/analyze_lp_vc.py:30:        \\\"path\\\": f\\\"{BASE}/output/exp_012_rerun_1024/samples_with_logprobs.jsonl\\\",\\noutput/lp_rank_comparison.py:96:    \\\"/root/autodl-tmp/struct_self_consist_ie/output/exp_012_logprob/samples_with_logprobs.jsonl\\\",\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.47}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 40_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I need to also get the 5-epoch baseline metrics directly from exp_012_rerun_1024. The exp_029a script computed some baseline metrics but not all (missing oracle_f1, headroom, LP range, some QE signals). Let me compute the full 5-epoch baseline metrics directly.
+
+But first, let me check if `exp_012_rerun_1024/samples.jsonl` has logprobs — looking at the exp_029a script, it accesses `mean_logprob` and `cumulative_logprob` from the samples. The file keys showed: `['id', 'text', 'gold', 'samples', 'greedy', 'logprobs']`. 
+
+The logprobs are stored at the instance level rather than per-sample. Looking back at the exp_029a script, the `compute_baseline_from_exp012` function processes the baseline data the same way as the main analysis, so the 5-epoch baseline values should be complete for whatever metrics it computes. But some metrics show as "N/A" in the comparison table because that function only computes a subset: degeneracy, greedy_f1, lp_sel_delta, within_instance_median_rho, and a few others.
+
+I need to write a script to compute the full set of 5-epoch metrics...
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f972e873-2fed-46d9-9650-cae175aa4e15",
+  "uuid": "7bc75d88-6664-47a5-bcf9-6795857a36c0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NNMpLCXufMcvNoNnzJ8yYz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4467,
+      "cache_read_input_tokens": 39529,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4467
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 41_
+
+exp_029a 和 exp_029b 都成功重跑。还有其他脚本引用旧路径，但这些是历史实验脚本，不影响当前 029a/029b 分析。
+
+现在需要计算 5-epoch baseline 的完整指标（exp_029a 脚本只算了部分）。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f972e873-2fed-46d9-9650-cae175aa4e15",
+  "uuid": "ec17a6ba-33b0-451e-b7fa-0a1e22cbd24f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NNMpLCXufMcvNoNnzJ8yYz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4467,
+      "cache_read_input_tokens": 39529,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4467
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01MyB2o6kFS46YTiYQcARXqM`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "account": "root",
+  "command": "cd /root/autodl-tmp/struct_self_consist_ie && source /root/miniconda3/bin/activate && python -c \"\nimport json, sys, warnings\nimport numpy as np\nfrom collections import Counter\nfrom scipy.stats import spearmanr\n\nsys.path.insert(0, 'code')\nfrom consistency import _extract_surface_keys, _ner_soft_jaccard_pair\nfrom evaluation import per_instance_f1\n\nSUBTASK = 'ner'\n\ndef entity_strict_f1(pred, gold):\n    ps = {(e['start'], e['end'], e['type']) for e in pred}\n    gs = {(e['start'], e['end'], e['type']) for e in gold}\n    tp = len(ps & gs); fp = len(ps - gs); fn = len(gs - ps)\n    p = tp/(tp+fp) if tp+fp else 0; r = tp/(tp+fn) if tp+fn else 0\n    return 2*p*r/(p+r) if p+r else 0\n\ndata = [json.loads(l) for l in open('output/exp_012_rerun_1024/samples.jsonl') if l.strip()]\nprint(f'Total: {len(data)}')\ngold_filtered = [d for d in data if d.get('gold',{}).get('entities',[])]\nn_gf = len(gold_filtered)\nprint(f'Gold-filtered: {n_gf}')\n\n# degeneracy, greedy, oracle, headroom\ncf1_count = 0; greedy_f1s = []; oracle_f1s = []; lp_sel_f1s = []\nwithin_rhos = []; lp_ranges = []\nall_f1s_flat = []; all_lp_flat = []; all_sj_flat = []; all_fk_flat = []; all_em_flat = []; all_vc_flat = []\n\nfor inst in gold_filtered:\n    gold_ents = inst['gold']['entities']\n    samples = inst['samples']\n    greedy = inst.get('greedy', samples[0])\n    gf1 = entity_strict_f1(greedy.get('entities',[]), gold_ents)\n    greedy_f1s.append(gf1)\n    \n    sample_f1s = [entity_strict_f1(s.get('entities',[]), gold_ents) for s in samples]\n    oracle_f1s.append(max(sample_f1s))\n    \n    if len(set(sample_f1s)) == 1:\n        cf1_count += 1\n    \n    # LP scores\n    lps = []\n    for s in samples:\n        lp = s.get('mean_logprob')\n        if lp is None:\n            lp = s.get('cumulative_logprob', -999) / max(s.get('n_tokens',1),1)\n        lps.append(lp)\n    \n    best_idx = int(np.argmax(lps))\n    lp_sel_f1s.append(sample_f1s[best_idx])\n    \n    lp_range = max(lps) - min(lps)\n    lp_ranges.append(lp_range)\n    \n    # within-instance rho\n    if len(set(lps)) >= 2 and len(set(sample_f1s)) >= 2:\n        with warnings.catch_warnings():\n            warnings.simplefilter('ignore')\n            r, _ = spearmanr(lps, sample_f1s)\n            if not np.isnan(r):\n                within_rhos.append(r)\n    \n    # QE signals\n    n = len(samples)\n    key_sets = [frozenset(_extract_surface_keys(s, SUBTASK)) for s in samples]\n    \n    sj_matrix = np.zeros((n,n))\n    for i in range(n):\n        for j in range(i+1,n):\n            v = _ner_soft_jaccard_pair(samples[i].get('entities',[]), samples[j].get('entities',[]))\n            sj_matrix[i][j] = v; sj_matrix[j][i] = v\n    np.fill_diagonal(sj_matrix, 1.0)\n    sj_scores = [float(np.mean([sj_matrix[k][j] for j in range(n) if j!=k])) for k in range(n)]\n    \n    fk_matrix = np.zeros((n,n))\n    for i in range(n):\n        for j in range(i+1,n):\n            u = len(key_sets[i]|key_sets[j]); inter = len(key_sets[i]&key_sets[j])\n            v = inter/u if u else 1.0\n            fk_matrix[i][j] = v; fk_matrix[j][i] = v\n    np.fill_diagonal(fk_matrix, 1.0)\n    fk_scores = [float(np.mean([fk_matrix[k][j] for j in range(n) if j!=k])) for k in range(n)]\n    \n    all_keys_count = Counter()\n    for ks in key_sets:\n        for key in ks: all_keys_count[key] += 1\n    vc_scores = []\n    for ks in key_sets:\n        if not ks: vc_scores.append(0.0)\n        else: vc_scores.append(float(np.mean([all_keys_count[key]/n for key in ks])))\n    \n    em_scores = [float(sum(1 for j in range(n) if j!=k and key_sets[k]==key_sets[j])) for k in range(n)]\n    \n    all_f1s_flat.extend(sample_f1s)\n    all_lp_flat.extend(lps)\n    all_sj_flat.extend(sj_scores)\n    all_fk_flat.extend(fk_scores)\n    all_em_flat.extend(em_scores)\n    all_vc_flat.extend(vc_scores)\n\ngreedy_macro = np.mean(greedy_f1s)\noracle_macro = np.mean(oracle_f1s)\nheadroom = (oracle_macro - greedy_macro)*100\nlp_sel_macro = np.mean(lp_sel_f1s)\nlp_sel_delta = (lp_sel_macro - greedy_macro)*100\ndegen_rate = cf1_count/n_gf*100\n\ndef safe_rho(x,y):\n    with warnings.catch_warnings():\n        warnings.simplefilter('ignore')\n        if len(set(x))<2 or len(set(y))<2: return float('nan')\n        r,_ = spearmanr(x,y)\n        return float(r)\n\nprint(f'Degeneracy (CF1): {cf1_count}/{n_gf} = {degen_rate:.4f}%')\nprint(f'Greedy F1: {greedy_macro:.4f}')\nprint(f'Oracle F1: {oracle_macro:.4f}')\nprint(f'Headroom: {headroom:.4f}pp')\nprint(f'LP sel F1: {lp_sel_macro:.4f}')\nprint(f'LP sel delta: {lp_sel_delta:+.4f}pp')\nprint(f'Within-inst rho mean: {np.mean(within_rhos):.4f}')\nprint(f'Within-inst rho median: {np.median(within_rhos):.4f}')\nprint(f'LP range mean: {np.mean(lp_ranges):.6f}')\nprint(f'LP range median: {np.median(lp_ranges):.6f}')\nprint(f'Valid rho instances: {len(within_rhos)}/{n_gf} ({len(within_rhos)/n_gf*100:.1f}%)')\n\nlp_rho = safe_rho(all_lp_flat, all_f1s_flat)\nsj_rho = safe_rho(all_sj_flat, all_f1s_flat)\nfk_rho = safe_rho(all_fk_flat, all_f1s_flat)\nem_rho = safe_rho(all_em_flat, all_f1s_flat)\nvc_rho = safe_rho(all_vc_flat, all_f1s_flat)\nprint(f'LP rho (global): {lp_rho:.4f}')\nprint(f'SJ rho (global): {sj_rho:.4f}')\nprint(f'FK rho (global): {fk_rho:.4f}')\nprint(f'EM rho (global): {em_rho:.4f}')\nprint(f'VC rho (global): {vc_rho:.4f}')\n\" 2>&1",
+  "warn": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f972e873-2fed-46d9-9650-cae175aa4e15",
+  "uuid": "fb14ece4-63c0-4781-9822-2d935a974cf4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NNMpLCXufMcvNoNnzJ8yYz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4467,
+      "cache_read_input_tokens": 39529,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4467
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-18T03:21:47.347Z_
+
+<details><summary>↩ Tool result · `toolu_01MyB2o6kFS46YTiYQcARXqM`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Total: 551\\nGold-filtered: 529\\nDegeneracy (CF1): 94/529 = 17.7694%\\nGreedy F1: 0.6439\\nOracle F1: 0.7758\\nHeadroom: 13.1880pp\\nLP sel F1: 0.6501\\nLP sel delta: +0.6150pp\\nWithin-inst rho mean: 0.1795\\nWithin-inst rho median: 0.2817\\nLP range mean: 0.062189\\nLP range median: 0.040121\\nValid rho instances: 435/529 (82.2%)\\nLP rho (global): 0.2830\\nSJ rho (global): 0.4647\\nFK rho (global): 0.4834\\nEM rho (global): 0.3851\\nVC rho (global): 0.4606\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.61}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f972e873-2fed-46d9-9650-cae175aa4e15",
+  "uuid": "7bd1e953-3c2d-4e65-9a74-e2482ab09f87",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Total: 551\\\\nGold-filtered: 529\\\\nDegeneracy (CF1): 94/529 = 17.7694%\\\\nGreedy F1: 0.6439\\\\nOracle F1: 0.7758\\\\nHeadroom: 13.1880pp\\\\nLP sel F1: 0.6501\\\\nLP sel delta: +0.6150pp\\\\nWithin-inst rho mean: 0.1795\\\\nWithin-inst rho median: 0.2817\\\\nLP range mean: 0.062189\\\\nLP range median: 0.040121\\\\nValid rho instances: 435/529 (82.2%)\\\\nLP rho (global): 0.2830\\\\nSJ rho (global): 0.4647\\\\nFK rho (global): 0.4834\\\\nEM rho (global): 0.3851\\\\nVC rho (global): 0.4606\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.61}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Total: 551\\nGold-filtered: 529\\nDegeneracy (CF1): 94/529 = 17.7694%\\nGreedy F1: 0.6439\\nOracle F1: 0.7758\\nHeadroom: 13.1880pp\\nLP sel F1: 0.6501\\nLP sel delta: +0.6150pp\\nWithin-inst rho mean: 0.1795\\nWithin-inst rho median: 0.2817\\nLP range mean: 0.062189\\nLP range median: 0.040121\\nValid rho instances: 435/529 (82.2%)\\nLP rho (global): 0.2830\\nSJ rho (global): 0.4647\\nFK rho (global): 0.4834\\nEM rho (global): 0.3851\\nVC rho (global): 0.4606\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.61}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 44_
+
+全部数据齐全。以下是修正后的完整 3-point curve：
+
+## 修正后完整结果
+
+**修改内容**: `scripts/exp_029a_postprocess/03_analyze_fixed.py` line 31: `exp_012_logprob/samples_with_logprobs.jsonl` → `exp_012_rerun_1024/samples.jsonl`
+
+**残留旧路径引用**（历史脚本，不影响 029a/029b）:
+- `scripts/analyze_lp_range_cdf_n529.py`
+- `scripts/calibration_baseline.py`
+- `scripts/adalp_analysis.py`
+- `output/exp_005_v2_temperature/temperature_sensitivity_report.json`
+- `output/exp004v2_re_diagnostic/full_report.json`
+- `output/exp_015_v2/exp015_v2_metrics.json`
+- `output/analysis_round8/run_epsilon_fine.py`
+- `output/d108_lp_vc_combination/analyze_lp_vc.py`
+- `output/lp_rank_comparison.py`
+
+---
+
+### Corrected 3-Point Curve (SciERC, N=8, gold-filtered n=529)
+
+| Metric | 3-epoch (029a) | 5-epoch (corrected) | 10-epoch (029b) |
+|---|---|---|---|
+| **Degeneracy (CF1 gold-filtered) %** | **6.43** | **17.77** | **47.83** |
+| Greedy F1 | 0.6501 | 0.6439 | 0.6491 |
+| Oracle F1 | 0.7998 | 0.7758 | 0.7331 |
+| Headroom (pp) | 14.97 | 13.19 | 8.40 |
+| LP selection F1 | 0.6383 | 0.6501 | 0.6567 |
+| LP selection delta (pp) | -1.18 | +0.62 | +0.75 |
+| Within-inst ρ(LP,F1) mean | 0.2727 | 0.1795 | 0.0685 |
+| Within-inst ρ(LP,F1) median | 0.3172 | 0.2817 | 0.1201 |
+| LP range mean | 0.085427 | 0.062189 | 0.033337 |
+| LP range median | 0.067187 | 0.040121 | 0.023715 |
+| FK ρ (global) | 0.5302 | 0.4834 | 0.3413 |
+| SJ ρ (global) | 0.5160 | 0.4647 | 0.3441 |
+| EM ρ (global) | 0.3353 | 0.3851 | 0.3035 |
+| VC ρ (global) | 0.5074 | 0.4606 | 0.3571 |
+| LP ρ (global) | 0.3551 | 0.2830 | 0.1588 |
+| Valid ρ instances | 495 (93.6%) | 435 (82.2%) | 276 (52.2%) |
+
+**关键发现**:
+- Degeneracy 单调递增：6.4% → 17.8% → 47.8%（epoch-degeneracy 关系确认）
+- LP range 单调递减：0.085 → 0.062 → 0.033（更多 epoch → logprob 分布更集中）
+- Within-instance ρ 单调递减：0.317 → 0.282 → 0.120（LP 信号质量随 epoch 退化）
+- 所有 global QE ρ 在 10-epoch 均下降，LP 下降最严重（0.355 → 0.283 → 0.159）
+- LP selection 在 5/10-epoch 仍为正 delta（+0.62/+0.75pp），但 3-epoch 反而为负（-1.18pp）
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f972e873-2fed-46d9-9650-cae175aa4e15",
+  "uuid": "b59085ec-f8ec-466c-b32f-f8d9bb25c09e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WaVadR9TuSkqPW3JrGWAJM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3251,
+      "cache_read_input_tokens": 43996,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3251
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 45_
+
+全部数据齐全。以下是修正后的完整 3-point curve：
+
+## 修正后完整结果
+
+**修改内容**: `scripts/exp_029a_postprocess/03_analyze_fixed.py` line 31: `exp_012_logprob/samples_with_logprobs.jsonl` → `exp_012_rerun_1024/samples.jsonl`
+
+**残留旧路径引用**（历史脚本，不影响 029a/029b）:
+- `scripts/analyze_lp_range_cdf_n529.py`
+- `scripts/calibration_baseline.py`
+- `scripts/adalp_analysis.py`
+- `output/exp_005_v2_temperature/temperature_sensitivity_report.json`
+- `output/exp004v2_re_diagnostic/full_report.json`
+- `output/exp_015_v2/exp015_v2_metrics.json`
+- `output/analysis_round8/run_epsilon_fine.py`
+- `output/d108_lp_vc_combination/analyze_lp_vc.py`
+- `output/lp_rank_comparison.py`
+
+---
+
+### Corrected 3-Point Curve (SciERC, N=8, gold-filtered n=529)
+
+| Metric | 3-epoch (029a) | 5-epoch (corrected) | 10-epoch (029b) |
+|---|---|---|---|
+| **Degeneracy (CF1 gold-filtered) %** | **6.43** | **17.77** | **47.83** |
+| Greedy F1 | 0.6501 | 0.6439 | 0.6491 |
+| Oracle F1 | 0.7998 | 0.7758 | 0.7331 |
+| Headroom (pp) | 14.97 | 13.19 | 8.40 |
+| LP selection F1 | 0.6383 | 0.6501 | 0.6567 |
+| LP selection delta (pp) | -1.18 | +0.62 | +0.75 |
+| Within-inst ρ(LP,F1) mean | 0.2727 | 0.1795 | 0.0685 |
+| Within-inst ρ(LP,F1) median | 0.3172 | 0.2817 | 0.1201 |
+| LP range mean | 0.085427 | 0.062189 | 0.033337 |
+| LP range median | 0.067187 | 0.040121 | 0.023715 |
+| FK ρ (global) | 0.5302 | 0.4834 | 0.3413 |
+| SJ ρ (global) | 0.5160 | 0.4647 | 0.3441 |
+| EM ρ (global) | 0.3353 | 0.3851 | 0.3035 |
+| VC ρ (global) | 0.5074 | 0.4606 | 0.3571 |
+| LP ρ (global) | 0.3551 | 0.2830 | 0.1588 |
+| Valid ρ instances | 495 (93.6%) | 435 (82.2%) | 276 (52.2%) |
+
+**关键发现**:
+- Degeneracy 单调递增：6.4% → 17.8% → 47.8%（epoch-degeneracy 关系确认）
+- LP range 单调递减：0.085 → 0.062 → 0.033（更多 epoch → logprob 分布更集中）
+- Within-instance ρ 单调递减：0.317 → 0.282 → 0.120（LP 信号质量随 epoch 退化）
+- 所有 global QE ρ 在 10-epoch 均下降，LP 下降最严重（0.355 → 0.283 → 0.159）
+- LP selection 在 5/10-epoch 仍为正 delta（+0.62/+0.75pp），但 3-epoch 反而为负（-1.18pp）
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 125685,
+  "duration_api_ms": 117020,
+  "num_turns": 15,
+  "stop_reason": "end_turn",
+  "session_id": "f972e873-2fed-46d9-9650-cae175aa4e15",
+  "total_cost_usd": 0.5432575000000001,
+  "usage": {
+    "input_tokens": 13,
+    "cache_creation_input_tokens": 35406,
+    "cache_read_input_tokens": 280488,
+    "output_tokens": 7166,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 35406,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 1091,
+        "cache_read_input_tokens": 43996,
+        "cache_creation_input_tokens": 3251,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 3251
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 2406,
+      "outputTokens": 21,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.002511,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 13,
+      "outputTokens": 7166,
+      "cacheReadInputTokens": 280488,
+      "cacheCreationInputTokens": 35406,
+      "webSearchRequests": 0,
+      "costUSD": 0.5407465,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "e0ca85e2-a7ee-48e4-a45e-1cb9241eaaed"
+}
+```
+
+</details>
+
+---

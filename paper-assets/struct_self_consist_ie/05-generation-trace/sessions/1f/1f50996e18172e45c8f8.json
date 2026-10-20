@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "1f50996e18172e45c8f8",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "analysis fewnerd n16 data audit",
+  "task_key": "worker_analysis_fewnerd_n16_data_audit_20260519T075713",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_fewnerd_n16_data_audit_20260519T075713.log",
+    "occurrence": 1,
+    "bytes": 874860,
+    "sha256": "45f7d1862182538f204a603c2e966b728bc6e3886337321c22b3dc454928cecb"
+  },
+  "statistics": {
+    "messages": 156,
+    "user_turns": 1,
+    "tool_calls": 56,
+    "roles": {
+      "log": 1,
+      "system": 13,
+      "record": 1,
+      "assistant": 27,
+      "tool_call": 56,
+      "tool_result": 56,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 17,
+      "chunks": [
+        {
+          "path": "1f50996e18172e45c8f8-part-0001.json",
+          "message_count": 17
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 139,
+      "chunks": [
+        {
+          "path": "1f50996e18172e45c8f8-part-0001.json",
+          "message_count": 72
+        },
+        {
+          "path": "1f50996e18172e45c8f8-part-0002.json",
+          "message_count": 67
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-fewnerd-n16-data-audit.md"
+}

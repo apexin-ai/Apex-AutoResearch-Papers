@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "251d72c20fdf84285e61",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "exp hidden probe exp016",
+  "task_key": "worker_exp_hidden_probe_exp016_20260518T113602",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_exp_hidden_probe_exp016_20260518T113602.log",
+    "occurrence": 1,
+    "bytes": 648197,
+    "sha256": "95c5fb0344f2e0baca691337e923a9c2946499cf631b64d03c3828f57bb51024"
+  },
+  "statistics": {
+    "messages": 320,
+    "user_turns": 0,
+    "tool_calls": 133,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 50,
+      "tool_call": 133,
+      "tool_result": 133,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 320,
+      "chunks": [
+        {
+          "path": "251d72c20fdf84285e61-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "251d72c20fdf84285e61-part-0002.json",
+          "message_count": 140
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/exp-hidden-probe-exp016.md"
+}

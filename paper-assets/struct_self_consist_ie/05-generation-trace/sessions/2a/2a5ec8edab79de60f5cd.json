@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2a5ec8edab79de60f5cd",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "exp exp 025 n32 inference",
+  "task_key": "worker_exp_exp_025_n32_inference_20260516T133547",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_exp_exp_025_n32_inference_20260516T133547_result.json",
+    "occurrence": 1,
+    "bytes": 319,
+    "sha256": "6ad924a4fb659813442bfdaeacee73ac5a2b83e0d9d9ae498590841e7dca34a6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务已启动并注册：\n\n- **exp_025_n32** → RUNNING on autodl-5090 cuda:0\n- 551 instances × 32 samples = 17632 prompts\n- 模型: qwen3-8b-scierc-merged-v2, T=1.0, seed=42, joint (NER+RE)\n- 日志: `output/exp_025_n32.log`\n- 预计 20-30 分钟完成（RTX 5090 推理速度约 3000 tok/s）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-exp-025-n32-inference.md"
+}

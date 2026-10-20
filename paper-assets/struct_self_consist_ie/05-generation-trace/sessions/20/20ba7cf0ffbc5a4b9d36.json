@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "20ba7cf0ffbc5a4b9d36",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "check mvp pilot 005 results",
+  "task_key": "worker_check_mvp_pilot_005_results_20260514T094607",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_check_mvp_pilot_005_results_20260514T094607_result.json",
+    "occurrence": 1,
+    "bytes": 1827,
+    "sha256": "96a9d806c96144af42f2f9438f115f0e80439cfcdec9c765243b9a32bd818699"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 更新完成 (DONE/negative)。\n\n---\n\n## mvp_pilot_005 结果汇总\n\n**Verdict: FAIL** — RE full ρ_sj = 0.234 < 0.30 硬截止线\n\n### NER 指标\n\n| 指标 | pilot_005 (T=0.7) | pilot_004 (T=1.0) | 变化 |\n|------|-------|-------|------|\n| greedy_f1 | 0.662 | 0.667 | -0.005 |\n| oracle_f1 | 0.759 | 0.776 | -0.017 |\n| headroom | 9.7pp | 10.9pp | -1.2pp |\n| ρ_sj (full) | **0.388** | 0.383 | +0.005 |\n| ρ_fk (full) | 0.321 | 0.259 | +0.062 |\n| ρ_sj (cond) | **0.387** | 0.376 | +0.011 |\n| SJ > FK | ✅ both | ✅ both | — |\n| pct_zero | 11.2% | 12.2% | -1.0pp |\n| soft_jaccard_mean | 0.776 | 0.701 | +0.075 |\n\n### RE 指标\n\n| 指标 | pilot_005 (T=0.7) | pilot_004 (T=1.0) | 变化 |\n|------|-------|-------|------|\n| greedy_f1 | 0.422 | 0.421 | +0.001 |\n| oracle_f1 | 0.553 | 0.588 | -0.035 |\n| headroom | 13.1pp | 16.7pp | **-3.6pp** |\n| ρ_sj (full) | **0.234** | 0.244 | **-0.010 ↓** |\n| ρ_fk (full) | 0.184 | 0.278 | -0.094 |\n| ρ_sj (cond) | **0.372** | 0.316 | **+0.056 ↑** |\n| ρ_fk (cond) | 0.253 | 0.307 | -0.054 |\n| SJ > FK | ✅ both | ❌full/✅cond | **改善** |\n| pct_zero | 42.4% | 44.3% | -1.9pp |\n| soft_jaccard_mean | 0.687 | 0.611 | +0.076 |\n\n### 关键发现\n\n1. **RE full ρ_sj = 0.234 < 0.30**：Director 硬截止线未通过，甚至比 pilot_004 (0.244) 更差\n2. **RE cond ρ_sj 显著提升**：0.316 → 0.372 (+0.056)，T=0.7 在非零子集上有效\n3. **RE zero rate 几乎没变**：44.3% → 42.4%，降温未能实质性解决零值问题\n4. **SJ > FK 全面恢复**：T=0.7 下 RE full set 也 SJ > FK（pilot_004 full set 是 FK > SJ）\n5. **NER 稳定**：ρ_sj 略升至 0.388，T=0.7 对 NER 无负面影响\n6. **Oracle headroom 收窄**：T=0.7 降低了多样性，RE oracle F1 从 0.588 降到 0.553"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-mvp-pilot-005-results.md"
+}

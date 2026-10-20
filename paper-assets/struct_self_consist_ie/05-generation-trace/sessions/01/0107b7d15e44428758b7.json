@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0107b7d15e44428758b7",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis exp 017 llama conll eval",
+  "task_key": "worker_analysis_exp_017_llama_conll_eval_20260514T175246",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_exp_017_llama_conll_eval_20260514T175246_result.json",
+    "occurrence": 1,
+    "bytes": 876,
+    "sha256": "c8c9424fdbbd48bc4a2498c4d4d03cc89b8a3e3d5673a432e49794f23fa72db6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 更新完成。汇总：\n\n## exp_017 LLaMA CoNLL-2003 NER N=8 — 5-signal 结果\n\n| Signal | ρ (full) | ρ (cond) | AUROC (full) | AUROC (cond) |\n|--------|----------|----------|--------------|--------------|\n| **SJ** | **0.4314** | **0.4356** | 0.7039 | 0.7225 |\n| FK | 0.4277 | 0.4310 | 0.7026 | 0.7208 |\n| logprob | 0.3072 | 0.3282 | **0.7610** | **0.8102** |\n| EM | 0.4306 | **0.4403** | 0.7046 | 0.7257 |\n| voting_conf | 0.4256 | 0.3743 | 0.7088 | 0.6989 |\n\n**Conclusion: success**\n- SJ ρ=0.431 > logprob ρ=0.307（Δ=+0.124），结构信号在相关性维度胜出\n- ρ-AUROC 分离持续存在：logprob AUROC=0.761 > SJ AUROC=0.704\n- EM 在 conditional split 上 ρ 最高（0.4403）\n- N=8（非 N=16），因 3453 test instances 成本约束\n- 与 exp_002（Qwen CoNLL N=8）和 exp_007（LLaMA SciERC N=8）直接可比"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-017-llama-conll-eval.md"
+}

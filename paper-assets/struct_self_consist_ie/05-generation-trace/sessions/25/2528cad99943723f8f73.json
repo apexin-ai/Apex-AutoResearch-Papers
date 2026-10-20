@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2528cad99943723f8f73",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "run wnut lora merge pilot",
+  "task_key": "worker_run_wnut_lora_merge_pilot_20260514T133121",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_run_wnut_lora_merge_pilot_20260514T133121_result.json",
+    "occurrence": 1,
+    "bytes": 915,
+    "sha256": "91fc8021f58347358ca5ecb356795213391682c6d81d5e32e2eeebdcbbe08b5c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务完成。总结：\n\n## WNUT-17 LoRA Merge + Pilot 结果\n\n**Step 1: LoRA Merge** — 成功\n- Merged model: `/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-wnut17-merged/` (19GB, 4 shards)\n\n**Step 2: Pilot Inference** — 完成，Verdict: **FAIL**\n\n| 指标 | 值 |\n|------|-----|\n| greedy F1 | 0.525 |\n| oracle F1 | 0.664 |\n| headroom | 0.139 |\n| ρ(SJ, F1) full | 0.082 |\n| ρ(SJ, F1) cond | **0.275** |\n| ρ(FK, F1) cond | 0.164 |\n| ρ(logprob, F1) cond | **0.352** |\n| sample F1=0 % | **53.7%** |\n\n关键发现：\n- **Logprob baseline 在 conditional 上强于结构一致性**（0.352 vs 0.275），structural_beats_surface=false\n- **53.7% samples F1=0**，远超 30% 阈值，脚本建议 T=0.7 重跑\n- 46% gold-empty instances（598/1287），WNUT-17 大量句子无实体\n- WNUT-17 上模型表现明显弱于 SciERC（greedy F1 0.525 vs 0.663）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/run-wnut-lora-merge-pilot.md"
+}

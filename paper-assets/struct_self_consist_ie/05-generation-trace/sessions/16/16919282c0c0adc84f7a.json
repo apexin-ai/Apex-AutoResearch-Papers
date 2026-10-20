@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "16919282c0c0adc84f7a",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "fix d132 cascade items 2to5 v2",
+  "task_key": "worker_fix_d132_cascade_items_2to5_v2_20260518T052720",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_fix_d132_cascade_items_2to5_v2_20260518T052720_result.json",
+    "occurrence": 1,
+    "bytes": 1330,
+    "sha256": "3494e459d15b3e6ecb12fff3647a1f12ccc236f65bfb77f217ff62d5d6516be4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Confirmed: N=8 CoNLL gives 59.0% (~59.1%), while N=16 gives 48.3%. The table has the wrong value. All data is now collected.\n\n## #2 tab:degeneracy N=16 CoNLL\n- N=16 实验: `output/exp_002_conll_n16/`\n- N=16 F1-based degeneracy (gf): **48.3%**\n- N=8 验证: 59.0% (与论文 59.1% 一致，确认论文误用了 N=8 值)\n- 论文当前值: 59.1%\n- 需要更新: **YES** (59.1% → 48.3%)\n\n## #3 N-scaling LP Δ\n- 论文当前值: +0.42pp (appendix L978, tab:n_scaling_selection, N=8 行)\n- 来自旧 full-set: **YES** (脚注明确 \"full 551-instance test set\"，gold-filtered 为 529)\n- 正确 gf max_LP N=8 值 (exp_012_rerun_1024): **+0.61pp**\n- 需要更新: **YES** (整个 N-scaling 表需用 gold-filtered 重算；N=8 LP 行从 +0.42 → ~+0.61pp)\n\n## #4 LLaMA degeneracy\n- 论文当前值: 89.2% (discussion.tex L11)\n- 当前定义: 不确定来源，但与 F1-based 和 keyset-based 均不完全匹配\n- F1-based gf 值: **86.4%** (2380/2756)\n- Keyset-based gf 值: 84.9% (2340/2756)\n- 89.2% 可能来自 non-gold-filtered 或 N=8 实验\n- 需要更新: **YES** (89.2% → 86.4% F1-based gf)\n\n## #5 p-value\n- 实验: exp_012_rerun_1024, gold-filtered n=529\n- LP selection mean delta: +0.61pp\n- Permutation test (10000 permutations, two-sided): **p = 0.3860**\n- +0.61pp p=0.386"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-d132-cascade-items-2to5-v2.md"
+}

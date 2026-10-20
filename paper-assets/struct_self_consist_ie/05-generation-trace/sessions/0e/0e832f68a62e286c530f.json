@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0e832f68a62e286c530f",
+  "project": "struct_self_consist_ie",
+  "kind": "history",
+  "title": "agent / loop_10_1778893029.md",
+  "task_key": "loop_10_1778893029",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/agent/loop_10_1778893029.md",
+    "occurrence": 1,
+    "bytes": 4645,
+    "sha256": "82e76211235d795d11ddd9191d2e4fc766375d6aca443ffcb9e580ce90500b24"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 10\nreason: idle_timeout\nupdated: '2026-05-15T22:15:31+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：`cuda:0, cuda:1, cuda:2, cuda:3` on autodl-5090。不得使用其他设备。\n- 论文 ρ 值必须来自 gold-filtered 管道（排除 gold-empty 实例）。CoNLL n=2756, SciERC n=551/529。禁止直接引用 registry metrics 中的 EM/VC 到论文（report.json 与分析脚本有系统性差异，D066）。\n- 论文数据必须来自 `_rerun_1024` 或本身就用 max_tokens=1024 的实验。exp_012 原始数据（max_tokens=512）已废弃。\n- 551 全集为 canonical（无选择偏差），529 交集仅作参考不进论文。\n- DDL: **2026-05-25**，10 天。Paper Agent 的 round8-fixes worker 已失败一次（见第 4 节），需要排查后重新派发。\n- `review_round: 9`（config 已设为 Round 9），下次审稿用 continue mode。\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: autodl-5090 (bjb1-21071), 4× RTX 5090 32GB — **全部空闲**\n- **工作目录**: `/root/autodl-tmp/struct_self_consist_ie/`\n- **Python**: `/root/miniconda3/bin/python`，激活命令: `source /etc/network_turbo && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- **基座模型**: `/root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/`\n- **ft merged**: `checkpoints/qwen3-8b-scierc-merged-v2/`\n- **canonical 数据**: `artifacts/analysis_unified_rho.json`, `analysis_round8/epsilon_sweep.csv`\n- **活跃进程**: 无（所有实验已完成，无 tmux session / cron）\n- **W&B**: 未在 memory 中记录 project name，Worker 需自行确认\n- **feishu chat_id**: Director `oc_1b56445332d8ca2b4964b30f300f0e00`, 运维群 `oc_523053f5a039428dc15666668fa856b3`, 投稿群 `oc_3897c2857f11615119e277e820eae311`\n\n### 3. 📊 当前状态\n全部 104 个实验均为 DONE（success 58 / negative 22 / failed 4 / killed 20）。无 RUNNING/PREPARING/PENDING 实验，无活跃 Worker，无活跃 Cron。\n\n**刚完成的关键工作**:\n- 4B scale ablation 2×2 矩阵全部完成（D098）。核心结论：gap 与 model capacity 无关，task difficulty 是主驱动。\n- ε sweep 确认 ε=0.05 稳健（D095）。RE 3-seed 一致、LP T=0.7 compression 数据就绪。\n- LLaMA SciERC 数据污染已修复（D092-D094），unified_rho_full.json 已更正。\n- `worker_paper_round8-fixes` **失败**（2026-05-15T21:54-21:58），原因未深入排查。同批的 `analysis:fk-independence-tost-fix` 和 `analysis:r8w3_sj_union_v2` 均成功完成。\n- Registry desync 清理部分完成（9 个 PREPARING+killed 实验因状态机限制无法推进，已在 memory.md 记录）。\n\n**等待中**: 无 Worker 回调、无 Cron、无 Director 决策待处理。\n\n### 4. 📋 待办（条件触发式）\n- **立即**: 排查 `worker_paper_round8-fixes` 失败原因 → 修复后重新 spawn Paper Agent 执行 Round 8 修复全流程（4B compact table + 页数压缩 + 标题/Abstract + ε robustness 写入 + RE 标注修复）\n- Paper Agent 完成 Phase 1-5 → 触发 Round 9 审稿（`review_round: 9`, continue mode）\n- Round 9 审稿完成 → 处理反馈 (1-2d) → Final polish → 提交 (DDL 2026-05-25)\n- 如 Round 9 审稿发现需要补充实验 → 4 块 GPU 全部空闲可立即启动\n- 如 Director 指示新实验方向 → 检查 experiment_plan.yaml 剩余未填格子，优先并行铺开\n\n### 5. 🎯 战略上下文\n**核心结论链**: 结构化 IE 的 test-time scaling 存在 universal correlation-selection gap。5 类置信信号能预测质量（AUROC 最高 0.75）但无法从多个样本中选出更好的。Controlled free-form ablation 证明 score compression 是 model/task intrinsic（非 constrained decoding artifact）。4B scale ablation 证明 gap 与 model capacity 无关。\n\n**关键决策**: D095（ε robust）、D098（4B 完成，gap universal）、D099（4B NER SJ_ρ 4B>8B 反直觉发现）。\n\n**易错点**:\n1. 不要混淆 full ρ 和 cond ρ — robustness/temperature 用 full ρ，score compression 分析用 cond ρ，必须标注。\n2. RE LP 的 ρ 优势完全来自 zero/nonzero F1 二分（cond ρ=0.011, p=0.86），不是真正的质量估计能力。\n3. CoNLL 4B headroom 仅 1.70pp（vs 8B 4.20pp），selection 结果 MARGINAL 不是 negative — 叙事上应区分 \"headroom 不足导致 marginal\" vs \"SciERC 有 13pp headroom 但信号仍 fail\"。\n4. Paper Agent 已失败一次，重新派发时注意检查其失败日志，可能是工具权限或文件路径问题。\n5. 当前项目处于纯写作/修改阶段，GPU 全空闲是正常的（非失职），但 Round 9 审稿可能产生新实验需求，保持待命。\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-10-1778893029.md"
+}

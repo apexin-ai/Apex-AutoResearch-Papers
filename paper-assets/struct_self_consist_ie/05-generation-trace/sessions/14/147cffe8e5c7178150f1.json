@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "147cffe8e5c7178150f1",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analyze exp fewnerd n16 s123",
+  "task_key": "worker_analyze_exp_fewnerd_n16_s123_20260521T151628",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analyze_exp_fewnerd_n16_s123_20260521T151628_result.json",
+    "occurrence": 1,
+    "bytes": 283,
+    "sha256": "2df76e163a4cf91f2866eae520bb767a9d9f63317fc142656916f64116a30244"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。已写入 `artifacts/exp_fewnerd_n16_s123_analysis.md`。\n\n核心结论：seed=123 的结果与上次运行几乎完全一致，所有指标 delta < 0.002。跨 seed 可复现性确认。samples.jsonl（1.2GB）已生成，可用于 MV 统一重算。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-exp-fewnerd-n16-s123.md"
+}

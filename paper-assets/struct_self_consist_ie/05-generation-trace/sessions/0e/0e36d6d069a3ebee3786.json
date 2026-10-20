@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0e36d6d069a3ebee3786",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "exp fewnerd dals multiseed",
+  "task_key": "worker_exp_fewnerd_dals_multiseed_20260518T070429",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_exp_fewnerd_dals_multiseed_20260518T070429_result.json",
+    "occurrence": 1,
+    "bytes": 1457,
+    "sha256": "8582cdb593208fa47c8537e064d12c58108769a747f3b13a9a03adf451f5440d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果出来了。汇总：\n\n## Task 1: Few-NERD 3-seed Bootstrap (τ=0.05)\n\n| | Value |\n|---|---|\n| N instances (gold-filtered) | 4351 |\n| Greedy F1 | 74.93 |\n| LP Selection F1 | 76.78 |\n| **DALS F1** | **76.01** |\n| **DALS gain** | **+1.08pp** |\n| LP selected | 3498/4351 (80.4%) |\n\nBootstrap (n=10000) 跨 3 个 seed 完全一致（DALS 本身是确定性的，只有 CI 宽度微变）：\n\n| Seed | Gain (pp) | 95% CI | p-value |\n|---|---|---|---|\n| 42 | +1.0842 | [0.6984, 1.4709] | 0.0000 |\n| 123 | +1.0842 | [0.7049, 1.4794] | 0.0000 |\n| 456 | +1.0842 | [0.7090, 1.4803] | 0.0000 |\n\n**所有 3 seed 均 p<0.001，CI 不含 0。Few-NERD DALS 效果高度稳定。**\n\n## Task 2: τ Sensitivity\n\n| τ | DALS F1 | Gain vs Greedy (pp) | Gain vs LP (pp) | % LP Selected |\n|---|---|---|---|---|\n| 0.01 | 76.66 | +1.73 | -0.12 | 96.2% |\n| 0.03 | 76.22 | +1.29 | -0.56 | 91.4% |\n| **0.05** | **76.01** | **+1.08** | **-0.77** | **80.4%** |\n| 0.10 | 75.50 | +0.57 | -1.28 | 50.3% |\n| 0.15 | 75.01 | +0.08 | -1.77 | 32.0% |\n| 0.20 | 74.92 | -0.01 | -1.86 | 18.3% |\n\n关键发现：\n- Gain 在 τ=0.01~0.10 范围内均为正且单调递减，τ=0.05 不是最优（τ=0.01 给出 +1.73pp）\n- τ≥0.20 时 gain 消失（接近 0）\n- 说明 Few-NERD 的 +1.08pp 效果稳健，不依赖 τ=0.05 的特定选择；更小的 τ 反而更好\n\n结果已保存到 `output/fewnerd_dals_multiseed_results.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-fewnerd-dals-multiseed.md"
+}

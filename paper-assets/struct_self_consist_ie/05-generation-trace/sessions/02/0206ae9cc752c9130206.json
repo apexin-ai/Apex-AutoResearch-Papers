@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0206ae9cc752c9130206",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis fig3 final option a",
+  "task_key": "worker_analysis_fig3_final_option_a_20260517T091328",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_fig3_final_option_a_20260517T091328_result.json",
+    "occurrence": 1,
+    "bytes": 1299,
+    "sha256": "1c73b94a1a8e26fe2a5e3710d90ac111a201eb9c79bd3543fb284cd5aa4dc1fe"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All tasks complete. Summary:\n\n**子任务 1: Figure 3 重绘 (Option A)**\n- PDF/PNG saved: `output/figures/fig_degeneracy_lp_scatter.{pdf,png}`\n- Script updated: `output/figures/plot_degeneracy_lp.py`\n- Cross-dataset: CoNLL (47.4%, -1.05), SciERC (17.8%, +0.62), Few-NERD (13.8%, +1.36)\n- Per-type: original KeySet x values [5.97–19.81%]\n\n**子任务 2: Spearman ρ**\n\n| Subset | ρ | p |\n|--------|------|------|\n| 11-point global | -0.5182 | 0.1025 |\n| Per-type (n=8) | -0.3810 | 0.3518 |\n| Dataset-level (n=3) | -1.0000 | — |\n\n**注意**: Per-type ρ = -0.381, **不是** 预期的 -0.881。原因：原始 KeySet x 值范围窄 (5.97–19.81%)，且 \"other\" 类型是 outlier (degeneracy 仅 6.61% 但 LP delta 高达 +4.73pp)，破坏了单调关系。论文 line 171 目前写的 ρ=-0.881 是用 Constant F1 x 值计算的结果（但用 CF1 x 重算也只得到 -0.286）。这个数字可能来自更早版本的分析，需要 Director 决定如何处理。\n\n**子任务 3: tex 修改**\n- `docs/paper/sections/experiments.tex` line 175: `11.1%` → `14.6%`, `4.5%` → `7.0%` ✓\n\n**额外发现需 Director 决定**:\n- Line 151: `+0.42~pp` → 应改为 `+0.62~pp`？\n- Line 171: `ρ=-0.881, p=0.004` → 实际值不符，需确认正确来源"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-fig3-final-option-a.md"
+}

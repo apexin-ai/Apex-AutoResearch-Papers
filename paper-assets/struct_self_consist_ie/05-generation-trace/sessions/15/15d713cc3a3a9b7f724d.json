@@ -1,0 +1,87 @@
+{
+  "schema_version": "1.0",
+  "id": "15d713cc3a3a9b7f724d",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "paper full data audit",
+  "task_key": "worker_paper_full-data-audit_20260523T191904",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_paper_full-data-audit_20260523T191904.log",
+    "occurrence": 1,
+    "bytes": 1480291,
+    "sha256": "ac56222c6f91e254f7d2ea9ef82168e72ffe773e86593fc44cd8c957e6d8e252"
+  },
+  "statistics": {
+    "messages": 212,
+    "user_turns": 3,
+    "tool_calls": 67,
+    "roles": {
+      "log": 1,
+      "system": 45,
+      "record": 8,
+      "assistant": 20,
+      "tool_call": 67,
+      "tool_result": 67,
+      "user": 3,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 38,
+      "chunks": [
+        {
+          "path": "15d713cc3a3a9b7f724d-part-0001.json",
+          "message_count": 38
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 9,
+      "chunks": [
+        {
+          "path": "15d713cc3a3a9b7f724d-part-0001.json",
+          "message_count": 7
+        },
+        {
+          "path": "15d713cc3a3a9b7f724d-part-0002.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 6,
+      "chunks": [
+        {
+          "path": "15d713cc3a3a9b7f724d-part-0002.json",
+          "message_count": 6
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 159,
+      "chunks": [
+        {
+          "path": "15d713cc3a3a9b7f724d-part-0002.json",
+          "message_count": 115
+        },
+        {
+          "path": "15d713cc3a3a9b7f724d-part-0003.json",
+          "message_count": 44
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/paper-full-data-audit.md"
+}

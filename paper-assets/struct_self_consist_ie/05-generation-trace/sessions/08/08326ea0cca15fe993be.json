@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "08326ea0cca15fe993be",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis exp 029b",
+  "task_key": "worker_analysis_exp_029b_20260518T015955",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_exp_029b_20260518T015955_result.json",
+    "occurrence": 1,
+    "bytes": 455,
+    "sha256": "c025d3770dfb78b138d771c2fd9ab9c570abb70e485b1fbb204aa8dc5965d9b3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练正在进行中（step 540/1170, 46%, ~31 min remaining）。已准备好全部后处理脚本：\n\n- `scripts/exp_029b_postprocess/01_merge_lora.sh` — LoRA 合并\n- `scripts/exp_029b_postprocess/02_inference.sh` — N=8 采样推理\n- `scripts/exp_029b_postprocess/03_analyze.py` — degeneracy + QE signals 分析\n- `export_config_scierc_10epoch.yaml` — 导出配置\n\n等待训练完成后自动继续执行分析流程。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-029b.md"
+}

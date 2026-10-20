@@ -1,0 +1,1432 @@
+# analysis freeform 3seed integration — Part 3 of 3
+
+**When Self-Consistency Fails for NER: Degeneracy, Signal Collapse, and the Correlation-Selection Gap** · Worker execution logs
+
+[← Part 2](part-002.md) · [Transcript overview](../analysis-freeform-3seed-integration.md) · [Structured JSON](../../../sessions/5d/5d20903d4b1d41fa2ddf.json)
+
+## Round 1
+
+### Tool result
+
+_source line 720 · 2026-05-15T19:16:27.928Z_
+
+<details><summary>↩ Tool result · `toolu_01VMeJCFucvCzFsTeATrJ2fz`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_freeform_seed789\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T18:38:29.851Z\", \"updated_at\": \"2026-05-15T19:16:27.541Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python run_freeform_inference.py --seed 789 --num_samples 8 --temperature 1.0 --max_tokens 1024 --output_dir results/exp_freeform_ablation_seed789\\\"\", \"server\": \"autodl-5090\", \"gpu\": [\"cuda:3\"], \"pid\": \"216722\", \"log_path\": \"~/runs/struct_self_consist_ie/exp_freeform_seed789.log\", \"submitted_at\": \"2026-05-15T18:58:46.406Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 92.2, \"gpu_hours\": 0.03}, \"notes\": \"cuda:3 被 Director 重新分配给 exp_qwen3_4b_scierc_finetune。seed789 延后至 cuda:1/2 释放后执行。\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T19:00:18.576Z\", \"metrics\": {\"inference\": {\"n_instances\": 551, \"n_samples\": 8, \"total_samples\": 4408, \"total_parsed\": 4408, \"parse_rate_pct\": 100, \"elapsed_seconds\": 227.5}, \"freeform\": {\"selection_ner\": {\"greedy\": 0.6205, \"selected\": 0.6232, \"gap\": 0.0027}, \"selection_re\": {\"greedy\": 0.2909, \"selected\": 0.31, \"gap\": 0.0191}, \"logprob_variance\": {\"mean_std\": 0.0183, \"mean_range\": 0.054908, \"tied_pct\": 59}, \"qe_ner\": {\"n\": 529, \"SJ\": {\"rho\": 0.393995, \"auroc\": 0.734474}, \"FK\": {\"rho\": 0.312292, \"auroc\": 0.794384}, \"LP\": {\"rho\": 0.247096, \"auroc\": 0.677824}, \"EM\": {\"rho\": 0.320383, \"auroc\": 0.527033}, \"VC\": {\"rho\": 0.420625, \"auroc\": 0.768111}}, \"qe_re\": {\"n\": 397, \"SJ\": {\"rho\": 0.201746, \"auroc\": 0.574388}, \"FK\": {\"rho\": 0.2202, \"auroc\": 0.633014}, \"LP\": {\"rho\": 0.295765, \"auroc\": 0.687067}, \"EM\": {\"rho\": 0.103633, \"auroc\": 0.474737}, \"VC\": {\"rho\": 0.306868, \"auroc\": 0.642197}}}, \"constrained_ref\": {\"selection_ner\": {\"greedy\": 0.6182, \"selected\": 0.6241, \"gap\": 0.0059}, \"selection_re\": {\"greedy\": 0.2913, \"selected\": 0.2845, \"gap\": -0.0068}, \"logprob_variance\": {\"mean_std\": 0.020589, \"mean_range\": 0.062305, \"tied_pct\": 59.7}}, \"comparison\": {\"variance_ratio_std\": 0.89, \"variance_ratio_range\": 0.88, \"tied_reduction_pp\": 0.7}}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6741}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fc9ae230-8b51-47fe-8208-ca1c147eb0ed",
+  "uuid": "52f60b3c-45ae-4115-98cc-a11242c3625c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_freeform_seed789\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T18:38:29.851Z\\\", \\\"updated_at\\\": \\\"2026-05-15T19:16:27.541Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python run_freeform_inference.py --seed 789 --num_samples 8 --temperature 1.0 --max_tokens 1024 --output_dir results/exp_freeform_ablation_seed789\\\\\\\"\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"216722\\\", \\\"log_path\\\": \\\"~/runs/struct_self_consist_ie/exp_freeform_seed789.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T18:58:46.406Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"wall_clock_seconds\\\": 92.2, \\\"gpu_hours\\\": 0.03}, \\\"notes\\\": \\\"cuda:3 被 Director 重新分配给 exp_qwen3_4b_scierc_finetune。seed789 延后至 cuda:1/2 释放后执行。\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-15T19:00:18.576Z\\\", \\\"metrics\\\": {\\\"inference\\\": {\\\"n_instances\\\": 551, \\\"n_samples\\\": 8, \\\"total_samples\\\": 4408, \\\"total_parsed\\\": 4408, \\\"parse_rate_pct\\\": 100, \\\"elapsed_seconds\\\": 227.5}, \\\"freeform\\\": {\\\"selection_ner\\\": {\\\"greedy\\\": 0.6205, \\\"selected\\\": 0.6232, \\\"gap\\\": 0.0027}, \\\"selection_re\\\": {\\\"greedy\\\": 0.2909, \\\"selected\\\": 0.31, \\\"gap\\\": 0.0191}, \\\"logprob_variance\\\": {\\\"mean_std\\\": 0.0183, \\\"mean_range\\\": 0.054908, \\\"tied_pct\\\": 59}, \\\"qe_ner\\\": {\\\"n\\\": 529, \\\"SJ\\\": {\\\"rho\\\": 0.393995, \\\"auroc\\\": 0.734474}, \\\"FK\\\": {\\\"rho\\\": 0.312292, \\\"auroc\\\": 0.794384}, \\\"LP\\\": {\\\"rho\\\": 0.247096, \\\"auroc\\\": 0.677824}, \\\"EM\\\": {\\\"rho\\\": 0.320383, \\\"auroc\\\": 0.527033}, \\\"VC\\\": {\\\"rho\\\": 0.420625, \\\"auroc\\\": 0.768111}}, \\\"qe_re\\\": {\\\"n\\\": 397, \\\"SJ\\\": {\\\"rho\\\": 0.201746, \\\"auroc\\\": 0.574388}, \\\"FK\\\": {\\\"rho\\\": 0.2202, \\\"auroc\\\": 0.633014}, \\\"LP\\\": {\\\"rho\\\": 0.295765, \\\"auroc\\\": 0.687067}, \\\"EM\\\": {\\\"rho\\\": 0.103633, \\\"auroc\\\": 0.474737}, \\\"VC\\\": {\\\"rho\\\": 0.306868, \\\"auroc\\\": 0.642197}}}, \\\"constrained_ref\\\": {\\\"selection_ner\\\": {\\\"greedy\\\": 0.6182, \\\"selected\\\": 0.6241, \\\"gap\\\": 0.0059}, \\\"selection_re\\\": {\\\"greedy\\\": 0.2913, \\\"selected\\\": 0.2845, \\\"gap\\\": -0.0068}, \\\"logprob_variance\\\": {\\\"mean_std\\\": 0.020589, \\\"mean_range\\\": 0.062305, \\\"tied_pct\\\": 59.7}}, \\\"comparison\\\": {\\\"variance_ratio_std\\\": 0.89, \\\"variance_ratio_range\\\": 0.88, \\\"tied_reduction_pp\\\": 0.7}}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6741}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp_freeform_seed789\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T18:38:29.851Z\", \"updated_at\": \"2026-05-15T19:16:27.541Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python run_freeform_inference.py --seed 789 --num_samples 8 --temperature 1.0 --max_tokens 1024 --output_dir results/exp_freeform_ablation_seed789\\\"\", \"server\": \"autodl-5090\", \"gpu\": [\"cuda:3\"], \"pid\": \"216722\", \"log_path\": \"~/runs/struct_self_consist_ie/exp_freeform_seed789.log\", \"submitted_at\": \"2026-05-15T18:58:46.406Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 92.2, \"gpu_hours\": 0.03}, \"notes\": \"cuda:3 被 Director 重新分配给 exp_qwen3_4b_scierc_finetune。seed789 延后至 cuda:1/2 释放后执行。\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T19:00:18.576Z\", \"metrics\": {\"inference\": {\"n_instances\": 551, \"n_samples\": 8, \"total_samples\": 4408, \"total_parsed\": 4408, \"parse_rate_pct\": 100, \"elapsed_seconds\": 227.5}, \"freeform\": {\"selection_ner\": {\"greedy\": 0.6205, \"selected\": 0.6232, \"gap\": 0.0027}, \"selection_re\": {\"greedy\": 0.2909, \"selected\": 0.31, \"gap\": 0.0191}, \"logprob_variance\": {\"mean_std\": 0.0183, \"mean_range\": 0.054908, \"tied_pct\": 59}, \"qe_ner\": {\"n\": 529, \"SJ\": {\"rho\": 0.393995, \"auroc\": 0.734474}, \"FK\": {\"rho\": 0.312292, \"auroc\": 0.794384}, \"LP\": {\"rho\": 0.247096, \"auroc\": 0.677824}, \"EM\": {\"rho\": 0.320383, \"auroc\": 0.527033}, \"VC\": {\"rho\": 0.420625, \"auroc\": 0.768111}}, \"qe_re\": {\"n\": 397, \"SJ\": {\"rho\": 0.201746, \"auroc\": 0.574388}, \"FK\": {\"rho\": 0.2202, \"auroc\": 0.633014}, \"LP\": {\"rho\": 0.295765, \"auroc\": 0.687067}, \"EM\": {\"rho\": 0.103633, \"auroc\": 0.474737}, \"VC\": {\"rho\": 0.306868, \"auroc\": 0.642197}}}, \"constrained_ref\": {\"selection_ner\": {\"greedy\": 0.6182, \"selected\": 0.6241, \"gap\": 0.0059}, \"selection_re\": {\"greedy\": 0.2913, \"selected\": 0.2845, \"gap\": -0.0068}, \"logprob_variance\": {\"mean_std\": 0.020589, \"mean_range\": 0.062305, \"tied_pct\": 59.7}}, \"comparison\": {\"variance_ratio_std\": 0.89, \"variance_ratio_range\": 0.88, \"tied_reduction_pp\": 0.7}}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6741}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 721_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01UbDsCpFWgnFVjRGGhScBb6`</summary>
+
+```json
+{
+  "exp_id": "exp_freeform_seed789",
+  "field": "notes",
+  "value": "Rerun with fixed seed-passing code on cuda:3. Original run was killed for GPU reallocation. Parse rate 100%, 227.5s elapsed. LP compression confirmed: tied_pct=59.0% (vs constrained 59.7%), variance_ratio=0.89x.",
+  "project": "struct_self_consist_ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fc9ae230-8b51-47fe-8208-ca1c147eb0ed",
+  "uuid": "96578b89-9565-4e33-93ca-d6a76cca4009",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TWBrkDrs39rYGaqDUCVePG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2654,
+      "cache_read_input_tokens": 74365,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2654
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 722 · 2026-05-15T19:16:30.109Z_
+
+<details><summary>↩ Tool result · `toolu_01UbDsCpFWgnFVjRGGhScBb6`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_freeform_seed789\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T18:38:29.851Z\", \"updated_at\": \"2026-05-15T19:16:29.902Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python run_freeform_inference.py --seed 789 --num_samples 8 --temperature 1.0 --max_tokens 1024 --output_dir results/exp_freeform_ablation_seed789\\\"\", \"server\": \"autodl-5090\", \"gpu\": [\"cuda:3\"], \"pid\": \"216722\", \"log_path\": \"~/runs/struct_self_consist_ie/exp_freeform_seed789.log\", \"submitted_at\": \"2026-05-15T18:58:46.406Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 92.2, \"gpu_hours\": 0.03}, \"notes\": \"Rerun with fixed seed-passing code on cuda:3. Original run was killed for GPU reallocation. Parse rate 100%, 227.5s elapsed. LP compression confirmed: tied_pct=59.0% (vs constrained 59.7%), variance_ratio=0.89x.\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T19:00:18.576Z\", \"metrics\": {\"inference\": {\"n_instances\": 551, \"n_samples\": 8, \"total_samples\": 4408, \"total_parsed\": 4408, \"parse_rate_pct\": 100, \"elapsed_seconds\": 227.5}, \"freeform\": {\"selection_ner\": {\"greedy\": 0.6205, \"selected\": 0.6232, \"gap\": 0.0027}, \"selection_re\": {\"greedy\": 0.2909, \"selected\": 0.31, \"gap\": 0.0191}, \"logprob_variance\": {\"mean_std\": 0.0183, \"mean_range\": 0.054908, \"tied_pct\": 59}, \"qe_ner\": {\"n\": 529, \"SJ\": {\"rho\": 0.393995, \"auroc\": 0.734474}, \"FK\": {\"rho\": 0.312292, \"auroc\": 0.794384}, \"LP\": {\"rho\": 0.247096, \"auroc\": 0.677824}, \"EM\": {\"rho\": 0.320383, \"auroc\": 0.527033}, \"VC\": {\"rho\": 0.420625, \"auroc\": 0.768111}}, \"qe_re\": {\"n\": 397, \"SJ\": {\"rho\": 0.201746, \"auroc\": 0.574388}, \"FK\": {\"rho\": 0.2202, \"auroc\": 0.633014}, \"LP\": {\"rho\": 0.295765, \"auroc\": 0.687067}, \"EM\": {\"rho\": 0.103633, \"auroc\": 0.474737}, \"VC\": {\"rho\": 0.306868, \"auroc\": 0.642197}}}, \"constrained_ref\": {\"selection_ner\": {\"greedy\": 0.6182, \"selected\": 0.6241, \"gap\": 0.0059}, \"selection_re\": {\"greedy\": 0.2913, \"selected\": 0.2845, \"gap\": -0.0068}, \"logprob_variance\": {\"mean_std\": 0.020589, \"mean_range\": 0.062305, \"tied_pct\": 59.7}}, \"comparison\": {\"variance_ratio_std\": 0.89, \"variance_ratio_range\": 0.88, \"tied_reduction_pp\": 0.7}}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.523}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fc9ae230-8b51-47fe-8208-ca1c147eb0ed",
+  "uuid": "d5e0b2c2-76aa-4247-9352-2d55b0827af2",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_freeform_seed789\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T18:38:29.851Z\\\", \\\"updated_at\\\": \\\"2026-05-15T19:16:29.902Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python run_freeform_inference.py --seed 789 --num_samples 8 --temperature 1.0 --max_tokens 1024 --output_dir results/exp_freeform_ablation_seed789\\\\\\\"\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"216722\\\", \\\"log_path\\\": \\\"~/runs/struct_self_consist_ie/exp_freeform_seed789.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T18:58:46.406Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"wall_clock_seconds\\\": 92.2, \\\"gpu_hours\\\": 0.03}, \\\"notes\\\": \\\"Rerun with fixed seed-passing code on cuda:3. Original run was killed for GPU reallocation. Parse rate 100%, 227.5s elapsed. LP compression confirmed: tied_pct=59.0% (vs constrained 59.7%), variance_ratio=0.89x.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-15T19:00:18.576Z\\\", \\\"metrics\\\": {\\\"inference\\\": {\\\"n_instances\\\": 551, \\\"n_samples\\\": 8, \\\"total_samples\\\": 4408, \\\"total_parsed\\\": 4408, \\\"parse_rate_pct\\\": 100, \\\"elapsed_seconds\\\": 227.5}, \\\"freeform\\\": {\\\"selection_ner\\\": {\\\"greedy\\\": 0.6205, \\\"selected\\\": 0.6232, \\\"gap\\\": 0.0027}, \\\"selection_re\\\": {\\\"greedy\\\": 0.2909, \\\"selected\\\": 0.31, \\\"gap\\\": 0.0191}, \\\"logprob_variance\\\": {\\\"mean_std\\\": 0.0183, \\\"mean_range\\\": 0.054908, \\\"tied_pct\\\": 59}, \\\"qe_ner\\\": {\\\"n\\\": 529, \\\"SJ\\\": {\\\"rho\\\": 0.393995, \\\"auroc\\\": 0.734474}, \\\"FK\\\": {\\\"rho\\\": 0.312292, \\\"auroc\\\": 0.794384}, \\\"LP\\\": {\\\"rho\\\": 0.247096, \\\"auroc\\\": 0.677824}, \\\"EM\\\": {\\\"rho\\\": 0.320383, \\\"auroc\\\": 0.527033}, \\\"VC\\\": {\\\"rho\\\": 0.420625, \\\"auroc\\\": 0.768111}}, \\\"qe_re\\\": {\\\"n\\\": 397, \\\"SJ\\\": {\\\"rho\\\": 0.201746, \\\"auroc\\\": 0.574388}, \\\"FK\\\": {\\\"rho\\\": 0.2202, \\\"auroc\\\": 0.633014}, \\\"LP\\\": {\\\"rho\\\": 0.295765, \\\"auroc\\\": 0.687067}, \\\"EM\\\": {\\\"rho\\\": 0.103633, \\\"auroc\\\": 0.474737}, \\\"VC\\\": {\\\"rho\\\": 0.306868, \\\"auroc\\\": 0.642197}}}, \\\"constrained_ref\\\": {\\\"selection_ner\\\": {\\\"greedy\\\": 0.6182, \\\"selected\\\": 0.6241, \\\"gap\\\": 0.0059}, \\\"selection_re\\\": {\\\"greedy\\\": 0.2913, \\\"selected\\\": 0.2845, \\\"gap\\\": -0.0068}, \\\"logprob_variance\\\": {\\\"mean_std\\\": 0.020589, \\\"mean_range\\\": 0.062305, \\\"tied_pct\\\": 59.7}}, \\\"comparison\\\": {\\\"variance_ratio_std\\\": 0.89, \\\"variance_ratio_range\\\": 0.88, \\\"tied_reduction_pp\\\": 0.7}}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.523}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp_freeform_seed789\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T18:38:29.851Z\", \"updated_at\": \"2026-05-15T19:16:29.902Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python run_freeform_inference.py --seed 789 --num_samples 8 --temperature 1.0 --max_tokens 1024 --output_dir results/exp_freeform_ablation_seed789\\\"\", \"server\": \"autodl-5090\", \"gpu\": [\"cuda:3\"], \"pid\": \"216722\", \"log_path\": \"~/runs/struct_self_consist_ie/exp_freeform_seed789.log\", \"submitted_at\": \"2026-05-15T18:58:46.406Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 92.2, \"gpu_hours\": 0.03}, \"notes\": \"Rerun with fixed seed-passing code on cuda:3. Original run was killed for GPU reallocation. Parse rate 100%, 227.5s elapsed. LP compression confirmed: tied_pct=59.0% (vs constrained 59.7%), variance_ratio=0.89x.\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T19:00:18.576Z\", \"metrics\": {\"inference\": {\"n_instances\": 551, \"n_samples\": 8, \"total_samples\": 4408, \"total_parsed\": 4408, \"parse_rate_pct\": 100, \"elapsed_seconds\": 227.5}, \"freeform\": {\"selection_ner\": {\"greedy\": 0.6205, \"selected\": 0.6232, \"gap\": 0.0027}, \"selection_re\": {\"greedy\": 0.2909, \"selected\": 0.31, \"gap\": 0.0191}, \"logprob_variance\": {\"mean_std\": 0.0183, \"mean_range\": 0.054908, \"tied_pct\": 59}, \"qe_ner\": {\"n\": 529, \"SJ\": {\"rho\": 0.393995, \"auroc\": 0.734474}, \"FK\": {\"rho\": 0.312292, \"auroc\": 0.794384}, \"LP\": {\"rho\": 0.247096, \"auroc\": 0.677824}, \"EM\": {\"rho\": 0.320383, \"auroc\": 0.527033}, \"VC\": {\"rho\": 0.420625, \"auroc\": 0.768111}}, \"qe_re\": {\"n\": 397, \"SJ\": {\"rho\": 0.201746, \"auroc\": 0.574388}, \"FK\": {\"rho\": 0.2202, \"auroc\": 0.633014}, \"LP\": {\"rho\": 0.295765, \"auroc\": 0.687067}, \"EM\": {\"rho\": 0.103633, \"auroc\": 0.474737}, \"VC\": {\"rho\": 0.306868, \"auroc\": 0.642197}}}, \"constrained_ref\": {\"selection_ner\": {\"greedy\": 0.6182, \"selected\": 0.6241, \"gap\": 0.0059}, \"selection_re\": {\"greedy\": 0.2913, \"selected\": 0.2845, \"gap\": -0.0068}, \"logprob_variance\": {\"mean_std\": 0.020589, \"mean_range\": 0.062305, \"tied_pct\": 59.7}}, \"comparison\": {\"variance_ratio_std\": 0.89, \"variance_ratio_range\": 0.88, \"tied_reduction_pp\": 0.7}}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.523}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 723_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+All 3 seeds complete and in the registry. Now I need to do Step 3: 3-seed mean±σ integration.
+
+Let me compile all the data:
+
+## seed123 (from registry, note different key names: logprob/voting_conf vs LP/VC)
+Freeform NER QE (n=529):
+- SJ: rho=0.384214, auroc=0.748728
+- FK: rho=0.323956, auroc=0.766039
+- LP: rho=0.217297, auroc=0.701657
+
+
+- EM: rho=0.326887, auroc=0.52533
+- VC: rho=0.407893, auroc=0.799676
+
+Freeform RE QE (n=397):
+- SJ: rho=0.272776, auroc=0.614056
+- FK: rho=0.314429, auroc=0.678534
+- LP: rho=0.309673, auroc=0.70414
+- EM: rho=0.137216, auroc=0.487342
+- VC: rho=0.316667, auroc=0.647442
+
+I also have the logprob variance metrics from seed123 showing a mean standard deviation of 0.019881 and mean range of 0.059864.
+
+Looking at seed456 now, I'm seeing the NER and RE quality estimation results with a similar set of metrics across the different methods. The tied percentage is 57.7%, and there's a small gap in both the NER and RE selection metrics. The variance ratios between seeds are quite close to 1, suggesting consistent performance across runs. Now I'm looking at the NER results for seed 789, where FK shows the strongest correlation at 0.312 rho and notably high auroc of 0.794, while VC also performs well with 0.421 rho. The RE metrics are more modest across the board, with LP leading at 0.296 rho. The variance and selection gap metrics remain fairly consistent with the previous seed. Now I'm compiling the mean and standard deviation across the three seeds for each metric—SJ shows the most stable rho around 0.386 with tight variance, while FK and LP have lower rho values but comparable auroc performance, and EM demonstrates the lowest variance in rho despite moderate absolute performance. Now I'm looking at the performance metrics for the remaining methods on the RE QE dataset—FK, LP, EM, and VC all show their correlation and AUROC scores across the three runs with their respective means and standard deviations. Now I'm looking at the tied percentage metrics for freeform across the runs, then comparing against the constrained deterministic baseline. The variance ratios show that freeform has slightly lower variance than constrained, and there's a modest reduction in tied predictions. Let me verify these calculations with a quick script to ensure accuracy.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fc9ae230-8b51-47fe-8208-ca1c147eb0ed",
+  "uuid": "b305608d-6f54-4583-960c-80a71f2a9a87",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VzG287Tbnu4oZwDKmKaWHN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2743,
+      "cache_read_input_tokens": 77019,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2743
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 724_
+
+All 3 seeds done. Now computing 3-seed mean±σ integration. Let me write a script to compute this precisely.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fc9ae230-8b51-47fe-8208-ca1c147eb0ed",
+  "uuid": "172898a7-91e5-4573-98d9-efaff3a577a8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VzG287Tbnu4oZwDKmKaWHN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2743,
+      "cache_read_input_tokens": 77019,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2743
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 725_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_016DzETHtCMh22pcFTC2jSYN`</summary>
+
+```json
+{
+  "command": "python3 -c \"\nimport json, numpy as np\n\n# seed123 (from registry - note different key names normalized here)\ns123 = {\n    'ner': {'SJ': {'rho': 0.384214, 'auroc': 0.748728}, 'FK': {'rho': 0.323956, 'auroc': 0.766039}, 'LP': {'rho': 0.217297, 'auroc': 0.701657}, 'EM': {'rho': 0.326887, 'auroc': 0.52533}, 'VC': {'rho': 0.407893, 'auroc': 0.799676}},\n    're': {'SJ': {'rho': 0.272776, 'auroc': 0.614056}, 'FK': {'rho': 0.314429, 'auroc': 0.678534}, 'LP': {'rho': 0.309673, 'auroc': 0.70414}, 'EM': {'rho': 0.137216, 'auroc': 0.487342}, 'VC': {'rho': 0.316667, 'auroc': 0.647442}},\n    'lp_var': {'mean_std': 0.019881, 'mean_range': 0.059864, 'tied_pct': 57.7},\n    'sel_ner_gap': 0.0028, 'sel_re_gap': 0.0176,\n    'var_ratio_std': 0.97, 'var_ratio_range': 0.96, 'tied_reduction_pp': 2.0,\n    'parse_rate': 99.95, 'elapsed': 228.1\n}\n\ns456 = {\n    'ner': {'SJ': {'rho': 0.378498, 'auroc': 0.707769}, 'FK': {'rho': 0.286163, 'auroc': 0.754779}, 'LP': {'rho': 0.227089, 'auroc': 0.672081}, 'EM': {'rho': 0.319997, 'auroc': 0.47789}, 'VC': {'rho': 0.416853, 'auroc': 0.756543}},\n    're': {'SJ': {'rho': 0.211331, 'auroc': 0.572335}, 'FK': {'rho': 0.259074, 'auroc': 0.652998}, 'LP': {'rho': 0.306382, 'auroc': 0.70134}, 'EM': {'rho': 0.1043, 'auroc': 0.461641}, 'VC': {'rho': 0.301507, 'auroc': 0.628873}},\n    'lp_var': {'mean_std': 0.018631, 'mean_range': 0.056792, 'tied_pct': 58.4},\n    'sel_ner_gap': 0.0007, 'sel_re_gap': 0.02,\n    'var_ratio_std': 0.90, 'var_ratio_range': 0.91, 'tied_reduction_pp': 1.3,\n    'parse_rate': 99.98, 'elapsed': 232.4\n}\n\ns789 = {\n    'ner': {'SJ': {'rho': 0.393995, 'auroc': 0.734474}, 'FK': {'rho': 0.312292, 'auroc': 0.794384}, 'LP': {'rho': 0.247096, 'auroc': 0.677824}, 'EM': {'rho': 0.320383, 'auroc': 0.527033}, 'VC': {'rho': 0.420625, 'auroc': 0.768111}},\n    're': {'SJ': {'rho': 0.201746, 'auroc': 0.574388}, 'FK': {'rho': 0.2202, 'auroc': 0.633014}, 'LP': {'rho': 0.295765, 'auroc': 0.687067}, 'EM': {'rho': 0.103633, 'auroc': 0.474737}, 'VC': {'rho': 0.306868, 'auroc': 0.642197}},\n    'lp_var': {'mean_std': 0.0183, 'mean_range': 0.054908, 'tied_pct': 59.0},\n    'sel_ner_gap': 0.0027, 'sel_re_gap': 0.0191,\n    'var_ratio_std': 0.89, 'var_ratio_range': 0.88, 'tied_reduction_pp': 0.7,\n    'parse_rate': 100.0, 'elapsed': 227.5\n}\n\nseeds = [s123, s456, s789]\n\ndef mean_std(vals):\n    a = np.array(vals)\n    return float(np.mean(a)), float(np.std(a, ddof=1))\n\n# QE signals\nqe_summary = {}\nfor task in ['ner', 're']:\n    qe_summary[task] = {}\n    for sig in ['SJ', 'FK', 'LP', 'EM', 'VC']:\n        rhos = [s[task][sig]['rho'] for s in seeds]\n        aurocs = [s[task][sig]['auroc'] for s in seeds]\n        m_rho, s_rho = mean_std(rhos)\n        m_aur, s_aur = mean_std(aurocs)\n        qe_summary[task][sig] = {\n            'rho_mean': round(m_rho, 4), 'rho_std': round(s_rho, 4),\n            'auroc_mean': round(m_aur, 4), 'auroc_std': round(s_aur, 4),\n            'rho_per_seed': [round(r, 4) for r in rhos],\n            'auroc_per_seed': [round(a, 4) for a in aurocs]\n        }\n\n# Selection gaps\nsel_gaps = {}\nfor task, key in [('ner', 'sel_ner_gap'), ('re', 'sel_re_gap')]:\n    gaps = [s[key] for s in seeds]\n    m, s = mean_std(gaps)\n    sel_gaps[task] = {'mean': round(m, 4), 'std': round(s, 4), 'per_seed': [round(g, 4) for g in gaps]}\n\n# LP compression\nlp_comp = {}\nfor metric in ['mean_std', 'mean_range', 'tied_pct']:\n    vals = [s['lp_var'][metric] for s in seeds]\n    m, s = mean_std(vals)\n    lp_comp[f'freeform_{metric}'] = {'mean': round(m, 6) if 'pct' not in metric else round(m, 2), 'std': round(s, 6) if 'pct' not in metric else round(s, 2)}\n\n# Constrained reference (deterministic, same across seeds)\nlp_comp['constrained_mean_std'] = 0.020589\nlp_comp['constrained_mean_range'] = 0.062305\nlp_comp['constrained_tied_pct'] = 59.7\n\n# Variance ratios\nfor key in ['var_ratio_std', 'var_ratio_range', 'tied_reduction_pp']:\n    vals = [s[key] for s in seeds]\n    m, s = mean_std(vals)\n    lp_comp[key] = {'mean': round(m, 3), 'std': round(s, 3)}\n\n# Parse rates\nparse_rates = [s['parse_rate'] for s in seeds]\nm_pr, s_pr = mean_std(parse_rates)\n\nsummary = {\n    'experiment': 'freeform_ablation_3seed',\n    'dataset': 'SciERC',\n    'model': 'Qwen3-8B (LoRA merged, scierc-v2)',\n    'n_instances': 551,\n    'n_samples_per_instance': 8,\n    'temperature': 1.0,\n    'seeds': [123, 456, 789],\n    'n_gold_filtered_ner': 529,\n    'n_gold_filtered_re': 397,\n    'freeform_qe': qe_summary,\n    'freeform_selection_gap': sel_gaps,\n    'lp_compression': lp_comp,\n    'parse_rate': {'mean': round(m_pr, 2), 'std': round(s_pr, 2)},\n    'constrained_ref': {\n        'selection_ner': {'greedy': 0.6182, 'selected': 0.6241, 'gap': 0.0059},\n        'selection_re': {'greedy': 0.2913, 'selected': 0.2845, 'gap': -0.0068},\n        'qe_ner': {'SJ_rho': 0.3599, 'FK_rho': 0.2665, 'LP_rho': 0.2052, 'EM_rho': 0.2945, 'VC_rho': 0.3792},\n        'qe_re': {'SJ_rho': 0.2503, 'FK_rho': 0.2752, 'LP_rho': 0.2662, 'EM_rho': 0.1344, 'VC_rho': 0.3498}\n    },\n    'conclusion': {\n        'lp_compression_intrinsic': True,\n        'evidence': 'Freeform tied_pct=58.37±0.65% vs constrained 59.7%. Variance ratio 0.92±0.04x. LP compression persists without grammar constraints, confirming it is model/task intrinsic.',\n        'qe_ranking_ner': 'VC > SJ > EM > FK > LP (by rho, consistent across 3 seeds)',\n        'qe_ranking_re': 'VC > LP > FK > SJ > EM (LP strongest correlation signal for RE)',\n        'selection_gap': 'NER +0.21±0.12pp, RE +1.89±0.12pp (freeform consistently positive)',\n        'parse_rate': '99.98±0.03% (near-perfect without grammar constraints)'\n    }\n}\n\nprint(json.dumps(summary, indent=2, ensure_ascii=False))\n\"\n",
+  "description": "Compute 3-seed mean±σ integration"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fc9ae230-8b51-47fe-8208-ca1c147eb0ed",
+  "uuid": "b938c5d1-4bdf-4ce7-8439-2c4e723e8d4e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VzG287Tbnu4oZwDKmKaWHN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2743,
+      "cache_read_input_tokens": 77019,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2743
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 726 · 2026-05-15T19:17:34.258Z_
+
+<details><summary>↩ Tool result · `toolu_016DzETHtCMh22pcFTC2jSYN`</summary>
+
+```text
+{
+  "experiment": "freeform_ablation_3seed",
+  "dataset": "SciERC",
+  "model": "Qwen3-8B (LoRA merged, scierc-v2)",
+  "n_instances": 551,
+  "n_samples_per_instance": 8,
+  "temperature": 1.0,
+  "seeds": [
+    123,
+    456,
+    789
+  ],
+  "n_gold_filtered_ner": 529,
+  "n_gold_filtered_re": 397,
+  "freeform_qe": {
+    "ner": {
+      "SJ": {
+        "rho_mean": 0.3856,
+        "rho_std": 0.0078,
+        "auroc_mean": 0.7303,
+        "auroc_std": 0.0208,
+        "rho_per_seed": [
+          0.3842,
+          0.3785,
+          0.394
+        ],
+        "auroc_per_seed": [
+          0.7487,
+          0.7078,
+          0.7345
+        ]
+      },
+      "FK": {
+        "rho_mean": 0.3075,
+        "rho_std": 0.0194,
+        "auroc_mean": 0.7717,
+        "auroc_std": 0.0204,
+        "rho_per_seed": [
+          0.324,
+          0.2862,
+          0.3123
+        ],
+        "auroc_per_seed": [
+          0.766,
+          0.7548,
+          0.7944
+        ]
+      },
+      "LP": {
+        "rho_mean": 0.2305,
+        "rho_std": 0.0152,
+        "auroc_mean": 0.6839,
+        "auroc_std": 0.0157,
+        "rho_per_seed": [
+          0.2173,
+          0.2271,
+          0.2471
+        ],
+        "auroc_per_seed": [
+          0.7017,
+          0.6721,
+          0.6778
+        ]
+      },
+      "EM": {
+        "rho_mean": 0.3224,
+        "rho_std": 0.0039,
+        "auroc_mean": 0.5101,
+        "auroc_std": 0.0279,
+        "rho_per_seed": [
+          0.3269,
+          0.32,
+          0.3204
+        ],
+        "auroc_per_seed": [
+          0.5253,
+          0.4779,
+          0.527
+        ]
+      },
+      "VC": {
+        "rho_mean": 0.4151,
+        "rho_std": 0.0065,
+        "auroc_mean": 0.7748,
+        "auroc_std": 0.0223,
+        "rho_per_seed": [
+          0.4079,
+          0.4169,
+          0.4206
+        ],
+        "auroc_per_seed": [
+          0.7997,
+          0.7565,
+          0.7681
+        ]
+      }
+    },
+    "re": {
+      "SJ": {
+        "rho_mean": 0.2286,
+        "rho_std": 0.0385,
+        "auroc_mean": 0.5869,
+        "auroc_std": 0.0235,
+        "rho_per_seed": [
+          0.2728,
+          0.2113,
+          0.2017
+        ],
+        "auroc_per_seed": [
+          0.6141,
+          0.5723,
+          0.5744
+        ]
+      },
+      "FK": {
+        "rho_mean": 0.2646,
+        "rho_std": 0.0474,
+        "auroc_mean": 0.6548,
+        "auroc_std": 0.0228,
+        "rho_per_seed": [
+          0.3144,
+          0.2591,
+          0.2202
+        ],
+        "auroc_per_seed": [
+          0.6785,
+          0.653,
+          0.633
+        ]
+      },
+      "LP": {
+        "rho_mean": 0.3039,
+        "rho_std": 0.0073,
+        "auroc_mean": 0.6975,
+        "auroc_std": 0.0092,
+        "rho_per_seed": [
+          0.3097,
+          0.3064,
+          0.2958
+        ],
+        "auroc_per_seed": [
+          0.7041,
+          0.7013,
+          0.6871
+        ]
+      },
+      "EM": {
+        "rho_mean": 0.115,
+        "rho_std": 0.0192,
+        "auroc_mean": 0.4746,
+        "auroc_std": 0.0129,
+        "rho_per_seed": [
+          0.1372,
+          0.1043,
+          0.1036
+        ],
+        "auroc_per_seed": [
+          0.4873,
+          0.4616,
+          0.4747
+        ]
+      },
+      "VC": {
+        "rho_mean": 0.3083,
+        "rho_std": 0.0077,
+        "auroc_mean": 0.6395,
+        "auroc_std": 0.0096,
+        "rho_per_seed": [
+          0.3167,
+          0.3015,
+          0.3069
+        ],
+        "auroc_per_seed": [
+          0.6474,
+          0.6289,
+          0.6422
+        ]
+      }
+    }
+  },
+  "freeform_selection_gap": {
+    "ner": {
+      "mean": 0.0021,
+      "std": 0.0012,
+      "per_seed": [
+        0.0028,
+        0.0007,
+        0.0027
+      ]
+    },
+    "re": {
+      "mean": 0.0189,
+      "std": 0.0012,
+      "per_seed": [
+        0.0176,
+        0.02,
+        0.0191
+      ]
+    }
+  },
+  "lp_compression": {
+    "freeform_mean_std": {
+      "mean": 0.018937,
+      "std": 0.000834
+    },
+    "freeform_mean_range": {
+      "mean": 0.057188,
+      "std": 0.002502
+    },
+    "freeform_tied_pct": {
+      "mean": 58.37,
+      "std": 0.65
+    },
+    "constrained_mean_std": 0.020589,
+    "constrained_mean_range": 0.062305,
+    "constrained_tied_pct": 59.7,
+    "var_ratio_std": {
+      "mean": 0.92,
+      "std": 0.044
+    },
+    "var_ratio_range": {
+      "mean": 0.917,
+      "std": 0.04
+    },
+    "tied_reduction_pp": {
+      "mean": 1.333,
+      "std": 0.651
+    }
+  },
+  "parse_rate": {
+    "mean": 99.98,
+    "std": 0.03
+  },
+  "constrained_ref": {
+    "selection_ner": {
+      "greedy": 0.6182,
+      "selected": 0.6241,
+      "gap": 0.0059
+    },
+    "selection_re": {
+      "greedy": 0.2913,
+      "selected": 0.2845,
+      "gap": -0.0068
+    },
+    "qe_ner": {
+      "SJ_rho": 0.3599,
+      "FK_rho": 0.2665,
+      "LP_rho": 0.2052,
+      "EM_rho": 0.2945,
+      "VC_rho": 0.3792
+    },
+    "qe_re": {
+      "SJ_rho": 0.2503,
+      "FK_rho": 0.2752,
+      "LP_rho": 0.2662,
+      "EM_rho": 0.1344,
+      "VC_rho": 0.3498
+    }
+  },
+  "conclusion": {
+    "lp_compression_intrinsic": true,
+    "evidence": "Freeform tied_pct=58.37±0.65% vs constrained 59.7%. Variance ratio 0.92±0.04x. LP compression persists without grammar constraints, confirming it is model/task intrinsic.",
+    "qe_ranking_ner": "VC > SJ > EM > FK > LP (by rho, consistent across 3 seeds)",
+    "qe_ranking_re": "VC > LP > FK > SJ > EM (LP strongest correlation signal for RE)",
+    "selection_gap": "NER +0.21±0.12pp, RE +1.89±0.12pp (freeform consistently positive)",
+    "parse_rate": "99.98±0.03% (near-perfect without grammar constraints)"
+  }
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fc9ae230-8b51-47fe-8208-ca1c147eb0ed",
+  "uuid": "c6b683a1-4648-46ac-acec-6012cf2fa4ad",
+  "tool_use_result": {
+    "stdout": "{\n  \"experiment\": \"freeform_ablation_3seed\",\n  \"dataset\": \"SciERC\",\n  \"model\": \"Qwen3-8B (LoRA merged, scierc-v2)\",\n  \"n_instances\": 551,\n  \"n_samples_per_instance\": 8,\n  \"temperature\": 1.0,\n  \"seeds\": [\n    123,\n    456,\n    789\n  ],\n  \"n_gold_filtered_ner\": 529,\n  \"n_gold_filtered_re\": 397,\n  \"freeform_qe\": {\n    \"ner\": {\n      \"SJ\": {\n        \"rho_mean\": 0.3856,\n        \"rho_std\": 0.0078,\n        \"auroc_mean\": 0.7303,\n        \"auroc_std\": 0.0208,\n        \"rho_per_seed\": [\n          0.3842,\n          0.3785,\n          0.394\n        ],\n        \"auroc_per_seed\": [\n          0.7487,\n          0.7078,\n          0.7345\n        ]\n      },\n      \"FK\": {\n        \"rho_mean\": 0.3075,\n        \"rho_std\": 0.0194,\n        \"auroc_mean\": 0.7717,\n        \"auroc_std\": 0.0204,\n        \"rho_per_seed\": [\n          0.324,\n          0.2862,\n          0.3123\n        ],\n        \"auroc_per_seed\": [\n          0.766,\n          0.7548,\n          0.7944\n        ]\n      },\n      \"LP\": {\n        \"rho_mean\": 0.2305,\n        \"rho_std\": 0.0152,\n        \"auroc_mean\": 0.6839,\n        \"auroc_std\": 0.0157,\n        \"rho_per_seed\": [\n          0.2173,\n          0.2271,\n          0.2471\n        ],\n        \"auroc_per_seed\": [\n          0.7017,\n          0.6721,\n          0.6778\n        ]\n      },\n      \"EM\": {\n        \"rho_mean\": 0.3224,\n        \"rho_std\": 0.0039,\n        \"auroc_mean\": 0.5101,\n        \"auroc_std\": 0.0279,\n        \"rho_per_seed\": [\n          0.3269,\n          0.32,\n          0.3204\n        ],\n        \"auroc_per_seed\": [\n          0.5253,\n          0.4779,\n          0.527\n        ]\n      },\n      \"VC\": {\n        \"rho_mean\": 0.4151,\n        \"rho_std\": 0.0065,\n        \"auroc_mean\": 0.7748,\n        \"auroc_std\": 0.0223,\n        \"rho_per_seed\": [\n          0.4079,\n          0.4169,\n          0.4206\n        ],\n        \"auroc_per_seed\": [\n          0.7997,\n          0.7565,\n          0.7681\n        ]\n      }\n    },\n    \"re\": {\n      \"SJ\": {\n        \"rho_mean\": 0.2286,\n        \"rho_std\": 0.0385,\n        \"auroc_mean\": 0.5869,\n        \"auroc_std\": 0.0235,\n        \"rho_per_seed\": [\n          0.2728,\n          0.2113,\n          0.2017\n        ],\n        \"auroc_per_seed\": [\n          0.6141,\n          0.5723,\n          0.5744\n        ]\n      },\n      \"FK\": {\n        \"rho_mean\": 0.2646,\n        \"rho_std\": 0.0474,\n        \"auroc_mean\": 0.6548,\n        \"auroc_std\": 0.0228,\n        \"rho_per_seed\": [\n          0.3144,\n          0.2591,\n          0.2202\n        ],\n        \"auroc_per_seed\": [\n          0.6785,\n          0.653,\n          0.633\n        ]\n      },\n      \"LP\": {\n        \"rho_mean\": 0.3039,\n        \"rho_std\": 0.0073,\n        \"auroc_mean\": 0.6975,\n        \"auroc_std\": 0.0092,\n        \"rho_per_seed\": [\n          0.3097,\n          0.3064,\n          0.2958\n        ],\n        \"auroc_per_seed\": [\n          0.7041,\n          0.7013,\n          0.6871\n        ]\n      },\n      \"EM\": {\n        \"rho_mean\": 0.115,\n        \"rho_std\": 0.0192,\n        \"auroc_mean\": 0.4746,\n        \"auroc_std\": 0.0129,\n        \"rho_per_seed\": [\n          0.1372,\n          0.1043,\n          0.1036\n        ],\n        \"auroc_per_seed\": [\n          0.4873,\n          0.4616,\n          0.4747\n        ]\n      },\n      \"VC\": {\n        \"rho_mean\": 0.3083,\n        \"rho_std\": 0.0077,\n        \"auroc_mean\": 0.6395,\n        \"auroc_std\": 0.0096,\n        \"rho_per_seed\": [\n          0.3167,\n          0.3015,\n          0.3069\n        ],\n        \"auroc_per_seed\": [\n          0.6474,\n          0.6289,\n          0.6422\n        ]\n      }\n    }\n  },\n  \"freeform_selection_gap\": {\n    \"ner\": {\n      \"mean\": 0.0021,\n      \"std\": 0.0012,\n      \"per_seed\": [\n        0.0028,\n        0.0007,\n        0.0027\n      ]\n    },\n    \"re\": {\n      \"mean\": 0.0189,\n      \"std\": 0.0012,\n      \"per_seed\": [\n        0.0176,\n        0.02,\n        0.0191\n      ]\n    }\n  },\n  \"lp_compression\": {\n    \"freeform_mean_std\": {\n      \"mean\": 0.018937,\n      \"std\": 0.000834\n    },\n    \"freeform_mean_range\": {\n      \"mean\": 0.057188,\n      \"std\": 0.002502\n    },\n    \"freeform_tied_pct\": {\n      \"mean\": 58.37,\n      \"std\": 0.65\n    },\n    \"constrained_mean_std\": 0.020589,\n    \"constrained_mean_range\": 0.062305,\n    \"constrained_tied_pct\": 59.7,\n    \"var_ratio_std\": {\n      \"mean\": 0.92,\n      \"std\": 0.044\n    },\n    \"var_ratio_range\": {\n      \"mean\": 0.917,\n      \"std\": 0.04\n    },\n    \"tied_reduction_pp\": {\n      \"mean\": 1.333,\n      \"std\": 0.651\n    }\n  },\n  \"parse_rate\": {\n    \"mean\": 99.98,\n    \"std\": 0.03\n  },\n  \"constrained_ref\": {\n    \"selection_ner\": {\n      \"greedy\": 0.6182,\n      \"selected\": 0.6241,\n      \"gap\": 0.0059\n    },\n    \"selection_re\": {\n      \"greedy\": 0.2913,\n      \"selected\": 0.2845,\n      \"gap\": -0.0068\n    },\n    \"qe_ner\": {\n      \"SJ_rho\": 0.3599,\n      \"FK_rho\": 0.2665,\n      \"LP_rho\": 0.2052,\n      \"EM_rho\": 0.2945,\n      \"VC_rho\": 0.3792\n    },\n    \"qe_re\": {\n      \"SJ_rho\": 0.2503,\n      \"FK_rho\": 0.2752,\n      \"LP_rho\": 0.2662,\n      \"EM_rho\": 0.1344,\n      \"VC_rho\": 0.3498\n    }\n  },\n  \"conclusion\": {\n    \"lp_compression_intrinsic\": true,\n    \"evidence\": \"Freeform tied_pct=58.37±0.65% vs constrained 59.7%. Variance ratio 0.92±0.04x. LP compression persists without grammar constraints, confirming it is model/task intrinsic.\",\n    \"qe_ranking_ner\": \"VC > SJ > EM > FK > LP (by rho, consistent across 3 seeds)\",\n    \"qe_ranking_re\": \"VC > LP > FK > SJ > EM (LP strongest correlation signal for RE)\",\n    \"selection_gap\": \"NER +0.21±0.12pp, RE +1.89±0.12pp (freeform consistently positive)\",\n    \"parse_rate\": \"99.98±0.03% (near-perfect without grammar constraints)\"\n  }\n}",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 727_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me save this to the artifacts directory and register it.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fc9ae230-8b51-47fe-8208-ca1c147eb0ed",
+  "uuid": "5fa770ed-1d27-4c1a-a644-59cd3d1f7eff",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Xre6AAHAkuLC7DioqsBpqP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7614,
+      "cache_read_input_tokens": 79762,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7614
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 728_
+
+Now saving the artifact and registering it.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fc9ae230-8b51-47fe-8208-ca1c147eb0ed",
+  "uuid": "70c08c9c-cc35-4eb6-9447-64636a4d1e10",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Xre6AAHAkuLC7DioqsBpqP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7614,
+      "cache_read_input_tokens": 79762,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7614
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 729_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01WcPJ7QxSMhCgv4ViPtJKra`</summary>
+
+```json
+{
+  "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/",
+  "description": "List artifacts directory"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fc9ae230-8b51-47fe-8208-ca1c147eb0ed",
+  "uuid": "c742d944-dfd5-453a-95ab-2c7c9556b93a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Xre6AAHAkuLC7DioqsBpqP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7614,
+      "cache_read_input_tokens": 79762,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7614
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 730 · 2026-05-15T19:17:39.117Z_
+
+<details><summary>↩ Tool result · `toolu_01WcPJ7QxSMhCgv4ViPtJKra`</summary>
+
+```text
+3seed_ner_summary.md
+3seed_summary
+__pycache__
+_project
+analysis_fk_bootstrap_ci_full.json
+analysis_lp_range_cdf.json
+analysis_lp_range_cdf_n16_3seed.json
+analysis_scierc_n16_3seed_selection_f1.json
+analysis_scierc_re_n16_3seed_selection_f1.json
+analysis_unified_rho.json
+analysis_unified_rho_full.json
+analyze_exp004_re_diagnostic.py
+analyze_exp004_v2_re_diagnostic.py
+analyze_exp005_v2_temperature.py
+analyze_exp015_metrics_expansion.py
+analyze_exp016_ensemble.py
+analyze_ood_signals.py
+audit_autodl5090_loop3.md
+audit_gpu5090_4x2_loop3.md
+auroc_bug_diagnosis.md
+autodl_process_check.md
+bjb1_status_report.md
+bootstrap_ci_nscaling
+bootstrap_ci_summary.json
+bootstrap_ci_tables.tex
+consistency.py
+d072_paper_patch_inventory.md
+data
+data_utils.py
+dream_reports
+evaluate_verifier.py
+evaluation.py
+exp-001
+exp-015
+exp001_postprocess.py
+exp005_temperature
+exp009_stratification_analysis.py
+exp010_selection_curves
+exp_001
+exp_001_n16
+exp_001_ner_n16_scierc
+exp_001_seed456_v2_ner
+exp_002
+exp_003
+exp_004_re_diagnostic
+exp_004_v2
+exp_005
+exp_005_v2
+exp_009_capability_stratification
+exp_009_v2
+exp_009_v2_re_rerun
+exp_009_v2_stratification.py
+exp_010_selection_curves
+exp_011_ood_scierc_to_conll
+exp_012_logprob_baseline
+exp_012_rerun_1024
+exp_015_metrics_expansion
+exp_016_rerun_1024
+exp_016_rerun_1024_bootstrap
+exp_016_signal_ensemble
+exp_016_v2
+exp_016_v2_ensemble.py
+exp_017_llama_conll_n8_t07
+exp_018
+exp_018_provenance_report.md
+exp_freeform_ablation
+fig_selection_gap.png
+figures
+fk_excess_agreement_all_configs.md
+freeform_ablation_appendix_table.tex
+freeform_ablation_deep_analysis.md
+freeform_ablation_results.md
+ft_001
+ft_002
+greedy_f1_discrepancy_audit.md
+heatmap_data_audit.md
+logprob_tie_analysis.md
+loo_sj_cross_dataset
+lp_range_cdf.pdf
+lp_range_cdf.png
+lp_range_cdf_n16_3seed.pdf
+lp_range_cdf_n16_3seed.png
+manifest.yaml
+multi_seed_stability_table.md
+multiseed_flip_overlap_analysis.md
+mvp_pilot.py
+mvp_pilot_001
+mvp_pilot_004
+n16_3seed_scs_analysis.md
+n16_5signal_comparison.md
+n16_readiness_report.md
+n8_bootstrap_ci.py
+n8_seed123_unified_rho_results.md
+n_scaling_appendix_tables.tex
+ood_cross_dataset_results.md
+pending_exp_readiness.md
+plot_length_logprob_scatter.py
+qwen3_thinking_confirmation.md
+re_conditional_analysis.py
+re_nonzero_selection_analysis.md
+review_issues.yaml
+review_reports
+rho_consistency_audit.md
+rho_paper_impact_list.md
+round8_analysis_data_summary.md
+run_mvp_pilot.py
+sampling.py
+tost_breakpoint_delta_star.md
+train_supervised_verifier.py
+training_config_appendix.md
+vc_implementation_rho_diff.md
+wnut17_diagnosis_report.md
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fc9ae230-8b51-47fe-8208-ca1c147eb0ed",
+  "uuid": "27805ecc-4522-4639-9dd7-cbcbd1f1eaf7",
+  "tool_use_result": {
+    "stdout": "3seed_ner_summary.md\n3seed_summary\n__pycache__\n_project\nanalysis_fk_bootstrap_ci_full.json\nanalysis_lp_range_cdf.json\nanalysis_lp_range_cdf_n16_3seed.json\nanalysis_scierc_n16_3seed_selection_f1.json\nanalysis_scierc_re_n16_3seed_selection_f1.json\nanalysis_unified_rho.json\nanalysis_unified_rho_full.json\nanalyze_exp004_re_diagnostic.py\nanalyze_exp004_v2_re_diagnostic.py\nanalyze_exp005_v2_temperature.py\nanalyze_exp015_metrics_expansion.py\nanalyze_exp016_ensemble.py\nanalyze_ood_signals.py\naudit_autodl5090_loop3.md\naudit_gpu5090_4x2_loop3.md\nauroc_bug_diagnosis.md\nautodl_process_check.md\nbjb1_status_report.md\nbootstrap_ci_nscaling\nbootstrap_ci_summary.json\nbootstrap_ci_tables.tex\nconsistency.py\nd072_paper_patch_inventory.md\ndata\ndata_utils.py\ndream_reports\nevaluate_verifier.py\nevaluation.py\nexp-001\nexp-015\nexp001_postprocess.py\nexp005_temperature\nexp009_stratification_analysis.py\nexp010_selection_curves\nexp_001\nexp_001_n16\nexp_001_ner_n16_scierc\nexp_001_seed456_v2_ner\nexp_002\nexp_003\nexp_004_re_diagnostic\nexp_004_v2\nexp_005\nexp_005_v2\nexp_009_capability_stratification\nexp_009_v2\nexp_009_v2_re_rerun\nexp_009_v2_stratification.py\nexp_010_selection_curves\nexp_011_ood_scierc_to_conll\nexp_012_logprob_baseline\nexp_012_rerun_1024\nexp_015_metrics_expansion\nexp_016_rerun_1024\nexp_016_rerun_1024_bootstrap\nexp_016_signal_ensemble\nexp_016_v2\nexp_016_v2_ensemble.py\nexp_017_llama_conll_n8_t07\nexp_018\nexp_018_provenance_report.md\nexp_freeform_ablation\nfig_selection_gap.png\nfigures\nfk_excess_agreement_all_configs.md\nfreeform_ablation_appendix_table.tex\nfreeform_ablation_deep_analysis.md\nfreeform_ablation_results.md\nft_001\nft_002\ngreedy_f1_discrepancy_audit.md\nheatmap_data_audit.md\nlogprob_tie_analysis.md\nloo_sj_cross_dataset\nlp_range_cdf.pdf\nlp_range_cdf.png\nlp_range_cdf_n16_3seed.pdf\nlp_range_cdf_n16_3seed.png\nmanifest.yaml\nmulti_seed_stability_table.md\nmultiseed_flip_overlap_analysis.md\nmvp_pilot.py\nmvp_pilot_001\nmvp_pilot_004\nn16_3seed_scs_analysis.md\nn16_5signal_comparison.md\nn16_readiness_report.md\nn8_bootstrap_ci.py\nn8_seed123_unified_rho_results.md\nn_scaling_appendix_tables.tex\nood_cross_dataset_results.md\npending_exp_readiness.md\nplot_length_logprob_scatter.py\nqwen3_thinking_confirmation.md\nre_conditional_analysis.py\nre_nonzero_selection_analysis.md\nreview_issues.yaml\nreview_reports\nrho_consistency_audit.md\nrho_paper_impact_list.md\nround8_analysis_data_summary.md\nrun_mvp_pilot.py\nsampling.py\ntost_breakpoint_delta_star.md\ntrain_supervised_verifier.py\ntraining_config_appendix.md\nvc_implementation_rho_diff.md\nwnut17_diagnosis_report.md",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 731_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01VFLdSobJN67Ceqw9vQLqaS`</summary>
+
+```json
+{
+  "command": "python3 -c \"\nimport json, numpy as np\n\nseeds_data = {\n    123: {\n        'ner': {'SJ': {'rho': 0.384214, 'auroc': 0.748728}, 'FK': {'rho': 0.323956, 'auroc': 0.766039}, 'LP': {'rho': 0.217297, 'auroc': 0.701657}, 'EM': {'rho': 0.326887, 'auroc': 0.52533}, 'VC': {'rho': 0.407893, 'auroc': 0.799676}},\n        're': {'SJ': {'rho': 0.272776, 'auroc': 0.614056}, 'FK': {'rho': 0.314429, 'auroc': 0.678534}, 'LP': {'rho': 0.309673, 'auroc': 0.70414}, 'EM': {'rho': 0.137216, 'auroc': 0.487342}, 'VC': {'rho': 0.316667, 'auroc': 0.647442}},\n        'lp_var': {'mean_std': 0.019881, 'mean_range': 0.059864, 'tied_pct': 57.7},\n        'sel_ner_gap': 0.0028, 'sel_re_gap': 0.0176,\n        'var_ratio_std': 0.97, 'var_ratio_range': 0.96, 'tied_reduction_pp': 2.0,\n        'parse_rate': 99.95, 'elapsed': 228.1\n    },\n    456: {\n        'ner': {'SJ': {'rho': 0.378498, 'auroc': 0.707769}, 'FK': {'rho': 0.286163, 'auroc': 0.754779}, 'LP': {'rho': 0.227089, 'auroc': 0.672081}, 'EM': {'rho': 0.319997, 'auroc': 0.47789}, 'VC': {'rho': 0.416853, 'auroc': 0.756543}},\n        're': {'SJ': {'rho': 0.211331, 'auroc': 0.572335}, 'FK': {'rho': 0.259074, 'auroc': 0.652998}, 'LP': {'rho': 0.306382, 'auroc': 0.70134}, 'EM': {'rho': 0.1043, 'auroc': 0.461641}, 'VC': {'rho': 0.301507, 'auroc': 0.628873}},\n        'lp_var': {'mean_std': 0.018631, 'mean_range': 0.056792, 'tied_pct': 58.4},\n        'sel_ner_gap': 0.0007, 'sel_re_gap': 0.02,\n        'var_ratio_std': 0.90, 'var_ratio_range': 0.91, 'tied_reduction_pp': 1.3,\n        'parse_rate': 99.98, 'elapsed': 232.4\n    },\n    789: {\n        'ner': {'SJ': {'rho': 0.393995, 'auroc': 0.734474}, 'FK': {'rho': 0.312292, 'auroc': 0.794384}, 'LP': {'rho': 0.247096, 'auroc': 0.677824}, 'EM': {'rho': 0.320383, 'auroc': 0.527033}, 'VC': {'rho': 0.420625, 'auroc': 0.768111}},\n        're': {'SJ': {'rho': 0.201746, 'auroc': 0.574388}, 'FK': {'rho': 0.2202, 'auroc': 0.633014}, 'LP': {'rho': 0.295765, 'auroc': 0.687067}, 'EM': {'rho': 0.103633, 'auroc': 0.474737}, 'VC': {'rho': 0.306868, 'auroc': 0.642197}},\n        'lp_var': {'mean_std': 0.0183, 'mean_range': 0.054908, 'tied_pct': 59.0},\n        'sel_ner_gap': 0.0027, 'sel_re_gap': 0.0191,\n        'var_ratio_std': 0.89, 'var_ratio_range': 0.88, 'tied_reduction_pp': 0.7,\n        'parse_rate': 100.0, 'elapsed': 227.5\n    }\n}\n\nseeds = [seeds_data[123], seeds_data[456], seeds_data[789]]\n\ndef ms(vals):\n    a = np.array(vals)\n    return round(float(np.mean(a)), 4), round(float(np.std(a, ddof=1)), 4)\n\nqe = {}\nfor task in ['ner', 're']:\n    qe[task] = {}\n    for sig in ['SJ', 'FK', 'LP', 'EM', 'VC']:\n        rhos = [s[task][sig]['rho'] for s in seeds]\n        aurocs = [s[task][sig]['auroc'] for s in seeds]\n        mr, sr = ms(rhos)\n        ma, sa = ms(aurocs)\n        qe[task][sig] = {\n            'rho_mean': mr, 'rho_std': sr,\n            'auroc_mean': ma, 'auroc_std': sa,\n            'rho_per_seed': [round(r, 4) for r in rhos],\n            'auroc_per_seed': [round(a, 4) for a in aurocs]\n        }\n\nsel = {}\nfor task, key in [('ner', 'sel_ner_gap'), ('re', 'sel_re_gap')]:\n    gaps = [s[key] for s in seeds]\n    m, s = ms(gaps)\n    sel[task] = {'mean': m, 'std': s, 'per_seed': [round(g,4) for g in gaps]}\n\nlpc = {}\nfor metric in ['mean_std', 'mean_range', 'tied_pct']:\n    vals = [s['lp_var'][metric] for s in seeds]\n    m, s = ms(vals)\n    lpc[f'freeform_{metric}'] = {'mean': round(m,6) if 'pct' not in metric else round(m,2), 'std': round(s,6) if 'pct' not in metric else round(s,2)}\nlpc['constrained_mean_std'] = 0.020589\nlpc['constrained_mean_range'] = 0.062305\nlpc['constrained_tied_pct'] = 59.7\nfor key in ['var_ratio_std', 'var_ratio_range', 'tied_reduction_pp']:\n    vals = [s[key] for s in seeds]\n    m, s = ms(vals)\n    lpc[key] = {'mean': round(m,3), 'std': round(s,3)}\n\nprates = [s['parse_rate'] for s in seeds]\nmpr, spr = ms(prates)\n\nsummary = {\n    'experiment': 'freeform_ablation_3seed',\n    'dataset': 'SciERC',\n    'model': 'Qwen3-8B (LoRA merged, scierc-v2)',\n    'n_instances': 551,\n    'n_samples_per_instance': 8,\n    'temperature': 1.0,\n    'seeds': [123, 456, 789],\n    'n_gold_filtered': {'ner': 529, 're': 397},\n    'freeform_qe': qe,\n    'freeform_selection_gap': sel,\n    'lp_compression': lpc,\n    'parse_rate': {'mean': round(mpr,2), 'std': round(spr,2)},\n    'constrained_ref': {\n        'selection_ner': {'greedy': 0.6182, 'selected': 0.6241, 'gap': 0.0059},\n        'selection_re': {'greedy': 0.2913, 'selected': 0.2845, 'gap': -0.0068},\n        'qe_ner': {'SJ_rho': 0.3599, 'FK_rho': 0.2665, 'LP_rho': 0.2052, 'EM_rho': 0.2945, 'VC_rho': 0.3792},\n        'qe_re': {'SJ_rho': 0.2503, 'FK_rho': 0.2752, 'LP_rho': 0.2662, 'EM_rho': 0.1344, 'VC_rho': 0.3498}\n    },\n    'conclusion': {\n        'lp_compression_intrinsic': True,\n        'evidence': 'Freeform tied_pct=58.37+/-0.65% vs constrained 59.7%. Variance ratio 0.92+/-0.04x. LP compression persists without grammar constraints, confirming it is model/task intrinsic, not a constrained decoding artifact.',\n        'qe_ranking_ner': 'VC (0.415+/-0.007) > SJ (0.386+/-0.008) > EM (0.322+/-0.004) > FK (0.307+/-0.019) > LP (0.230+/-0.015)',\n        'qe_ranking_re': 'VC (0.308+/-0.008) > LP (0.304+/-0.007) > FK (0.265+/-0.047) > SJ (0.229+/-0.039) > EM (0.115+/-0.019)',\n        'selection_gap': 'NER +0.21+/-0.12pp, RE +1.89+/-0.12pp (freeform consistently positive, stronger for RE)',\n        'parse_rate': '99.98+/-0.03% (near-perfect without grammar constraints)',\n        'key_finding': 'LP is the most stable QE signal for RE across seeds (std=0.007), while being the weakest for NER. This task-dependent behavior is preserved in freeform, ruling out grammar-induced artifacts.'\n    }\n}\n\nwith open('/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/freeform_3seed_summary.json', 'w') as f:\n    json.dump(summary, f, indent=2, ensure_ascii=False)\nprint('Saved to artifacts/freeform_3seed_summary.json')\n\" 2>&1\n",
+  "description": "Generate and save 3-seed summary artifact"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fc9ae230-8b51-47fe-8208-ca1c147eb0ed",
+  "uuid": "d2bb665c-a984-47a1-9e5c-c24d98bddb5d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01W1W3Hprj7f6pg9sopVqNEd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1199,
+      "cache_read_input_tokens": 87376,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1199
+      },
+      "output_tokens": 42,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 732 · 2026-05-15T19:18:16.934Z_
+
+<details><summary>↩ Tool result · `toolu_01VFLdSobJN67Ceqw9vQLqaS`</summary>
+
+```text
+Saved to artifacts/freeform_3seed_summary.json
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fc9ae230-8b51-47fe-8208-ca1c147eb0ed",
+  "uuid": "593a4241-6eaa-42cc-85a6-f2af1af4d859",
+  "tool_use_result": {
+    "stdout": "Saved to artifacts/freeform_3seed_summary.json",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 733_
+
+Now registering the artifact.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fc9ae230-8b51-47fe-8208-ca1c147eb0ed",
+  "uuid": "d36f18f6-c9cf-4a93-8c9d-e75f57b7f3d9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017MbceubdEESHxzQZnEUCVf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2911,
+      "cache_read_input_tokens": 88575,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2911
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 734_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01ShP9cgLzgGeM7ePqwWYT6X`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__register_artifact",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fc9ae230-8b51-47fe-8208-ca1c147eb0ed",
+  "uuid": "8143b7a9-904c-4d87-bbdd-1abe31fc728f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017MbceubdEESHxzQZnEUCVf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2911,
+      "cache_read_input_tokens": 88575,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2911
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 735 · 2026-05-15T19:18:23.416Z_
+
+<details><summary>↩ Tool result · `toolu_01ShP9cgLzgGeM7ePqwWYT6X`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__register_artifact"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fc9ae230-8b51-47fe-8208-ca1c147eb0ed",
+  "uuid": "038234cd-c97e-43c7-8b12-16f1176395a3",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__register_artifact"
+    ],
+    "query": "select:mcp__agent-ml-research__register_artifact",
+    "total_deferred_tools": 26
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 736_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact · `toolu_0187nSJSLJgKfPM7cBoEfPqA`</summary>
+
+```json
+{
+  "name": "freeform_3seed_summary",
+  "type": "data",
+  "description": "3-seed (123/456/789) freeform ablation summary: mean±σ for all QE signals (SJ/FK/LP/EM/VC rho+AUROC), selection gaps, LP compression metrics. Confirms LP compression is model/task intrinsic.",
+  "project": "struct_self_consist_ie",
+  "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/freeform_3seed_summary.json",
+  "tags": [
+    "freeform",
+    "ablation",
+    "3seed",
+    "lp_compression",
+    "qe"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fc9ae230-8b51-47fe-8208-ca1c147eb0ed",
+  "uuid": "b0526a53-33a7-47f6-8f22-7f3edba7d8fc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ufuov5xMmcti3k21EQrVya",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 821,
+      "cache_read_input_tokens": 91486,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 821
+      },
+      "output_tokens": 65,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 737 · 2026-05-15T19:18:29.123Z_
+
+<details><summary>↩ Tool result · `toolu_0187nSJSLJgKfPM7cBoEfPqA`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260515_74add7\", \"name\": \"freeform_3seed_summary\", \"type\": \"data\", \"description\": \"3-seed (123/456/789) freeform ablation summary: mean±σ for all QE signals (SJ/FK/LP/EM/VC rho+AUROC), selection gaps, LP compression metrics. Confirms LP compression is model/task intrinsic.\", \"path\": \"projects/struct_self_consist_ie/artifacts/_project/data/freeform_3seed_summary.json\", \"url\": null, \"project\": \"struct_self_consist_ie\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-15T19:18:28.884589+00:00\", \"tags\": [\"freeform\", \"ablation\", \"3seed\", \"lp_compression\", \"qe\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fc9ae230-8b51-47fe-8208-ca1c147eb0ed",
+  "uuid": "bf54cb9d-1e0d-47d8-9f49-945a0d8a6906",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260515_74add7\\\", \\\"name\\\": \\\"freeform_3seed_summary\\\", \\\"type\\\": \\\"data\\\", \\\"description\\\": \\\"3-seed (123/456/789) freeform ablation summary: mean±σ for all QE signals (SJ/FK/LP/EM/VC rho+AUROC), selection gaps, LP compression metrics. Confirms LP compression is model/task intrinsic.\\\", \\\"path\\\": \\\"projects/struct_self_consist_ie/artifacts/_project/data/freeform_3seed_summary.json\\\", \\\"url\\\": null, \\\"project\\\": \\\"struct_self_consist_ie\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-15T19:18:28.884589+00:00\\\", \\\"tags\\\": [\\\"freeform\\\", \\\"ablation\\\", \\\"3seed\\\", \\\"lp_compression\\\", \\\"qe\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260515_74add7\", \"name\": \"freeform_3seed_summary\", \"type\": \"data\", \"description\": \"3-seed (123/456/789) freeform ablation summary: mean±σ for all QE signals (SJ/FK/LP/EM/VC rho+AUROC), selection gaps, LP compression metrics. Confirms LP compression is model/task intrinsic.\", \"path\": \"projects/struct_self_consist_ie/artifacts/_project/data/freeform_3seed_summary.json\", \"url\": null, \"project\": \"struct_self_consist_ie\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-15T19:18:28.884589+00:00\", \"tags\": [\"freeform\", \"ablation\", \"3seed\", \"lp_compression\", \"qe\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 738_
+
+All done. Here's the 3-seed freeform ablation summary:
+
+### Freeform QE Signals (mean±σ across seeds 123/456/789)
+
+**NER (n=529)**
+| Signal | ρ | AUROC |
+|--------|---|-------|
+| VC | 0.415±0.007 | 0.775±0.022 |
+| SJ | 0.386±0.008 | 0.730±0.021 |
+| EM | 0.322±0.004 | 0.510±0.028 |
+| FK | 0.307±0.019 | 0.772±0.020 |
+| LP | 0.230±0.015 | 0.684±0.016 |
+
+**RE (n=397)**
+| Signal | ρ | AUROC |
+|--------|---|-------|
+| VC | 0.308±0.008 | 0.640±0.010 |
+| LP | 0.304±0.007 | 0.698±0.009 |
+| FK | 0.265±0.047 | 0.655±0.023 |
+| SJ | 0.229±0.039 | 0.587±0.024 |
+| EM | 0.115±0.019 | 0.475±0.013 |
+
+### LP Compression
+- Freeform tied_pct = **58.37±0.65%** vs constrained **59.7%**
+- Variance ratio = **0.92±0.04x** (freeform slightly *less* compressed)
+- Tied reduction = **1.33±0.65pp** (minimal)
+
+### Selection Gap (freeform)
+- NER: **+0.21±0.12pp** (consistently positive)
+- RE: **+1.89±0.12pp** (stronger, very stable)
+
+### Conclusion
+LP compression persists in freeform decoding (58.4% tied vs 59.7% constrained), confirming it is **model/task intrinsic**, not a constrained decoding artifact. LP is notably the most stable RE signal across seeds (σ=0.007) while being weakest for NER — this task-dependent pattern is preserved in freeform. Parse rate 99.98±0.03% shows grammar constraints aren't needed for structural output fidelity.
+
+Artifact registered: `freeform_3seed_summary.json` (art_20260515_74add7).
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fc9ae230-8b51-47fe-8208-ca1c147eb0ed",
+  "uuid": "32c85fbe-dd16-46cc-8222-9fea1f7ec609",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011nvoQ8bDUmNkfVn7z5KBmz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 617,
+      "cache_read_input_tokens": 92307,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 617
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Task result
+
+_source line 739_
+
+All done. Here's the 3-seed freeform ablation summary:
+
+### Freeform QE Signals (mean±σ across seeds 123/456/789)
+
+**NER (n=529)**
+| Signal | ρ | AUROC |
+|--------|---|-------|
+| VC | 0.415±0.007 | 0.775±0.022 |
+| SJ | 0.386±0.008 | 0.730±0.021 |
+| EM | 0.322±0.004 | 0.510±0.028 |
+| FK | 0.307±0.019 | 0.772±0.020 |
+| LP | 0.230±0.015 | 0.684±0.016 |
+
+**RE (n=397)**
+| Signal | ρ | AUROC |
+|--------|---|-------|
+| VC | 0.308±0.008 | 0.640±0.010 |
+| LP | 0.304±0.007 | 0.698±0.009 |
+| FK | 0.265±0.047 | 0.655±0.023 |
+| SJ | 0.229±0.039 | 0.587±0.024 |
+| EM | 0.115±0.019 | 0.475±0.013 |
+
+### LP Compression
+- Freeform tied_pct = **58.37±0.65%** vs constrained **59.7%**
+- Variance ratio = **0.92±0.04x** (freeform slightly *less* compressed)
+- Tied reduction = **1.33±0.65pp** (minimal)
+
+### Selection Gap (freeform)
+- NER: **+0.21±0.12pp** (consistently positive)
+- RE: **+1.89±0.12pp** (stronger, very stable)
+
+### Conclusion
+LP compression persists in freeform decoding (58.4% tied vs 59.7% constrained), confirming it is **model/task intrinsic**, not a constrained decoding artifact. LP is notably the most stable RE signal across seeds (σ=0.007) while being weakest for NER — this task-dependent pattern is preserved in freeform. Parse rate 99.98±0.03% shows grammar constraints aren't needed for structural output fidelity.
+
+Artifact registered: `freeform_3seed_summary.json` (art_20260515_74add7).
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 1768737,
+  "duration_api_ms": 1567738,
+  "num_turns": 311,
+  "stop_reason": "end_turn",
+  "session_id": "fc9ae230-8b51-47fe-8208-ca1c147eb0ed",
+  "total_cost_usd": 18.276117500000005,
+  "usage": {
+    "input_tokens": 301,
+    "cache_creation_input_tokens": 236435,
+    "cache_read_input_tokens": 29720858,
+    "output_tokens": 69177,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 236435,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 615,
+        "cache_read_input_tokens": 92307,
+        "cache_creation_input_tokens": 617,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 617
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 2002,
+      "outputTokens": 20,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.0021019999999999997,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 1636,
+      "outputTokens": 73736,
+      "cacheReadInputTokens": 29887771,
+      "cacheCreationInputTokens": 236568,
+      "webSearchRequests": 0,
+      "costUSD": 18.274015500000004,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "95a7514d-72c1-4060-b77c-3652c49749b5"
+}
+```
+
+</details>
+
+---

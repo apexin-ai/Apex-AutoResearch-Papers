@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0af508f2da195b307e22",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ssh p theoretical impossibility",
+  "task_key": "worker_ssh_p-theoretical-impossibility_20260520T105516",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_p-theoretical-impossibility_20260520T105516_result.json",
+    "occurrence": 1,
+    "bytes": 1064,
+    "sha256": "721a173f930c5c726e2aae32864f5baae5a27ff67696dc030cd44e983f20cab6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部产出已完成。核心结论：\n\n**定理**: $\\mathbb{E}[\\Delta F_1] \\leq (1-D) \\cdot G_{nd} \\cdot \\alpha$\n\n**数值验证 (16 configs, N=8)**:\n- $G_{nd}$ ≈ 14.8pp (非退化实例的 oracle gap，跨 config 相对稳定)\n- $\\alpha$ ≈ 0.068 (signal alignment，最好的 config 也只恢复 oracle gap 的 ~12%)\n- $\\theta_{crit}$ = **0.70** (D 超过此值，SC gain 必低于 0.3pp 显著性阈值)\n\n**验证一致性**:\n- 所有 D > 0.62 的 config (CoNLL 全部) 的 best-method gain 均为负 → 符合 bound 预测\n- 最大 gain 出现在低 D 的 FewNERD-FT (D≈0.12, +1.56pp) 和 SciERC-ZS (D≈0.21, +1.53pp)\n- Bound 是 valid 的，但 loose (ratio 仅 3-12%)，瓶颈在 α 而非 D 本身\n\n**产出文件** (`artifacts/p_impossibility/`):\n- `theorem.tex` — 3 个定理 + 1 个推论 + partial degeneracy 扩展 + 有限样本修正\n- `bound_verification.json` — 16 config 逐条数据\n- `bound_plot.png` — D vs gain 散点 + bound 曲线 + θ_crit 标注\n- `summary.md` — 完整分析报告"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-p-theoretical-impossibility.md"
+}

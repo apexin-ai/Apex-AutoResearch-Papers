@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2a17dad51f754ee35f8a",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis p0 data verification",
+  "task_key": "worker_analysis_p0_data_verification_20260519T135417",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_p0_data_verification_20260519T135417_result.json",
+    "occurrence": 1,
+    "bytes": 938,
+    "sha256": "2b32ed6ed05b2a80fd7f1d2097c1c8be420091fb96f9ed504abb4b37383dda2f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "四项调查结果：\n\n| # | 问题 | 结论 |\n|---|------|------|\n| 1 | SciERC AUROC Table 1 vs registry | **误报** — paper 用 median-split AUROC，registry 用 F1≥1.0 AUROC，是两个不同指标，paper 正确 |\n| 2 | CoNLL LP Δ 不一致 | **确认错误** — Table 3 写 -0.85pp，实际计算为 -1.05pp（seed 42）；且标题声称 3-seed mean 但只有 1 个 seed |\n| 3 | FewNERD degen 13.8% | **值正确，标题错** — 13.8% 是 seed 42 单 seed 的 unified_metrics 结果（13.754%），但 Table 3 标题谎称 3-seed mean |\n| 4 | CoNLL degen 48.4% | **确认错误** — 48.4% 来自 N=16 (exp_002_conll_n16)，N=8 实际是 59.1% |\n\n**跨问题共性**：Table 3 标题声称 \"Few-NERD/CoNLL: 3-seed means\"，但 `w1_table3_multiseed.json` 显示两者都只有 seed 42。需要补跑 seed 或修正标题。\n\n报告已写入 `artifacts/p0_data_verification_report.md` 并注册。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-p0-data-verification.md"
+}

@@ -1,0 +1,1348 @@
+# diagnose 5090b fewnerd t ablation
+
+**When Self-Consistency Fails for NER: Degeneracy, Signal Collapse, and the Correlation-Selection Gap** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 27
+- **Recorded user turns:** 0
+- **Tool calls:** 9
+- **Original source:** `logs/workers/worker_diagnose_5090b_fewnerd_t_ablation_20260521T003622.log`
+- **Structured JSON:** [`d68e7e34f4415c32079c.json`](../../sessions/d6/d68e7e34f4415c32079c.json)
+
+## Before a recorded user message
+
+27 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "session_id": "76d953cb-c7f6-4df5-a554-a05152dd8139",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__read_registry",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only",
+    "mcp__agent-ml-research__update_registry"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "a4e02eb2-6fa9-40db-ac31-0e8ac485e9db",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779340200,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "06d31a64-9c59-4286-a02c-394fa81bc277",
+  "session_id": "76d953cb-c7f6-4df5-a554-a05152dd8139"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to check the status of three FewNERD T-ablation experiments running on autodl-5090-b. Let me SSH in and run the diagnostic commands.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "76d953cb-c7f6-4df5-a554-a05152dd8139",
+  "uuid": "8e1392dc-39a7-4a3f-a166-97c0a7ae6131",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SNTPtTbjj7G7s4b15uPN5K",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12065,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12065
+      },
+      "output_tokens": 41,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_017nBD5psTKDxgwmaXRkru1Z`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "76d953cb-c7f6-4df5-a554-a05152dd8139",
+  "uuid": "9522d9f4-6b99-4ed0-acef-5bed59b78880",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SNTPtTbjj7G7s4b15uPN5K",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12065,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12065
+      },
+      "output_tokens": 41,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-21T00:36:33.790Z_
+
+<details><summary>↩ Tool result · `toolu_017nBD5psTKDxgwmaXRkru1Z`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "76d953cb-c7f6-4df5-a554-a05152dd8139",
+  "uuid": "74c75692-9e7b-4709-a056-2059ff30dfdd",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only",
+    "total_deferred_tools": 26
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01StedV672cLuLzZuYxoHpve`</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "command": "hostname",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "76d953cb-c7f6-4df5-a554-a05152dd8139",
+  "uuid": "185277df-aa18-4b34-bf81-dadb1f48f36f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DTC2ZCjHUJSseogJ2BgJhY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 481,
+      "cache_read_input_tokens": 23906,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 481
+      },
+      "output_tokens": 66,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-21T00:36:36.276Z_
+
+<details><summary>↩ Tool result · `toolu_01StedV672cLuLzZuYxoHpve`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'hostname' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "76d953cb-c7f6-4df5-a554-a05152dd8139",
+  "uuid": "3373e4c0-eee3-41cd-a6a3-7c91f1fb5243",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: 'hostname' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'hostname' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01JagkHezzMCLrh5FFNEZjHo`</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "command": "cat /etc/hostname",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "76d953cb-c7f6-4df5-a554-a05152dd8139",
+  "uuid": "8a41bd3c-850f-4b6c-a120-43e1ac687c42",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XZUwBvFXZFk8YvMox62Mqs",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 199,
+      "cache_read_input_tokens": 24387,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 199
+      },
+      "output_tokens": 67,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-21T00:36:39.886Z_
+
+<details><summary>↩ Tool result · `toolu_01JagkHezzMCLrh5FFNEZjHo`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"autodl-container-e5da499dd4-3f2e5eb9\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.88}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "76d953cb-c7f6-4df5-a554-a05152dd8139",
+  "uuid": "ca94ec46-555a-4e27-bdf6-72f4f4399aaf",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"autodl-container-e5da499dd4-3f2e5eb9\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.88}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"autodl-container-e5da499dd4-3f2e5eb9\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.88}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01A8QP7UWNPFNX3ftNN5zQAG`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__read_registry",
+  "max_results": 3
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "76d953cb-c7f6-4df5-a554-a05152dd8139",
+  "uuid": "afa4057e-4513-42c5-8f26-654e5935a7c3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XZUwBvFXZFk8YvMox62Mqs",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 199,
+      "cache_read_input_tokens": 24387,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 199
+      },
+      "output_tokens": 67,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-21T00:36:39.923Z_
+
+<details><summary>↩ Tool result · `toolu_01A8QP7UWNPFNX3ftNN5zQAG`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__update_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_registry"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "76d953cb-c7f6-4df5-a554-a05152dd8139",
+  "uuid": "72ca5906-2ca9-4a97-8fc0-840bda5189d8",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__update_registry",
+      "mcp__agent-ml-research__read_registry"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__read_registry",
+    "total_deferred_tools": 26
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_012zXVnxngtMiayaU6wWdYVc`</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "command": "nvidia-smi --query-gpu=index,utilization.gpu,memory.used,memory.total --format=csv,noheader && echo \"---PROCS---\" && ps aux | grep -E \"run_mvp_pilot|temperature|t_ablation\" | grep -v grep",
+  "account": "root",
+  "warn": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "76d953cb-c7f6-4df5-a554-a05152dd8139",
+  "uuid": "4af55b2b-6f18-4e37-91cc-004f971834a6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018SeGtG4BuH7jnCny5TfsUN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1410,
+      "cache_read_input_tokens": 24586,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1410
+      },
+      "output_tokens": 44,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-21T00:36:45.364Z_
+
+<details><summary>↩ Tool result · `toolu_012zXVnxngtMiayaU6wWdYVc`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"0, 93 %, 30620 MiB, 32607 MiB\\n1, 87 %, 30618 MiB, 32607 MiB\\n2, 93 %, 30920 MiB, 32607 MiB\\n3, 0 %, 2 MiB, 32607 MiB\\n---PROCS---\\nroot     287672  0.0  0.0   4364  3136 pts/4    Ss+  06:40   0:00 bash -c source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && CUDA_VISIBLE_DEVICES=0 python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-fewnerd-exp021-merged --data_dir data/fewnerd/ --dataset fewnerd --subtask ner --n_samples 8 --temperature 0.5 --seed 42 --collect_logprobs --output_dir output/fewnerd_t05_s42/ 2>&1 | tee logs/fewnerd_t05_s42.log\\nroot     287678 36.2  1.8 45822332 14503636 pts/4 Sl+ 06:40  42:06 python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-fewnerd-exp021-merged --data_dir data/fewnerd/ --dataset fewnerd --subtask ner --n_samples 8 --temperature 0.5 --seed 42 --collect_logprobs --output_dir output/fewnerd_t05_s42/\\nroot     287808  0.0  0.0   4364  3204 pts/5    Ss+  06:40   0:00 bash -c source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && CUDA_VISIBLE_DEVICES=1 python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-fewnerd-exp021-merged --data_dir data/fewnerd/ --dataset fewnerd --subtask ner --n_samples 8 --temperature 0.8 --seed 42 --collect_logprobs --output_dir output/fewnerd_t08_s42/ 2>&1 | tee logs/fewnerd_t08_s42.log\\nroot     287814 36.2  1.7 45449948 14136944 pts/5 Sl+ 06:40  42:04 python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-fewnerd-exp021-merged --data_dir data/fewnerd/ --dataset fewnerd --subtask ner --n_samples 8 --temperature 0.8 --seed 42 --collect_logprobs --output_dir output/fewnerd_t08_s42/\\nroot     287948  0.0  0.0   4364  3252 pts/6    Ss+  06:40   0:00 bash -c source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && CUDA_VISIBLE_DEVICES=2 python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-fewnerd-exp021-merged --data_dir data/fewnerd/ --dataset fewnerd --subtask ner --n_samples 8 --temperature 1.2 --seed 42 --collect_logprobs --output_dir output/fewnerd_t12_s42/ 2>&1 | tee logs/fewnerd_t12_s42.log\\nroot     288081 34.0  1.6 44557964 13240312 pts/6 Sl+ 06:40  39:30 python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-fewnerd-exp021-merged --data_dir data/fewnerd/ --dataset fewnerd --subtask ner --n_samples 8 --temperature 1.2 --seed 42 --collect_logprobs --output_dir output/fewnerd_t12_s42/\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "76d953cb-c7f6-4df5-a554-a05152dd8139",
+  "uuid": "6bae8676-5c85-4990-a8dc-8ebb8a3f2602",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 93 %, 30620 MiB, 32607 MiB\\\\n1, 87 %, 30618 MiB, 32607 MiB\\\\n2, 93 %, 30920 MiB, 32607 MiB\\\\n3, 0 %, 2 MiB, 32607 MiB\\\\n---PROCS---\\\\nroot     287672  0.0  0.0   4364  3136 pts/4    Ss+  06:40   0:00 bash -c source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && CUDA_VISIBLE_DEVICES=0 python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-fewnerd-exp021-merged --data_dir data/fewnerd/ --dataset fewnerd --subtask ner --n_samples 8 --temperature 0.5 --seed 42 --collect_logprobs --output_dir output/fewnerd_t05_s42/ 2>&1 | tee logs/fewnerd_t05_s42.log\\\\nroot     287678 36.2  1.8 45822332 14503636 pts/4 Sl+ 06:40  42:06 python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-fewnerd-exp021-merged --data_dir data/fewnerd/ --dataset fewnerd --subtask ner --n_samples 8 --temperature 0.5 --seed 42 --collect_logprobs --output_dir output/fewnerd_t05_s42/\\\\nroot     287808  0.0  0.0   4364  3204 pts/5    Ss+  06:40   0:00 bash -c source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && CUDA_VISIBLE_DEVICES=1 python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-fewnerd-exp021-merged --data_dir data/fewnerd/ --dataset fewnerd --subtask ner --n_samples 8 --temperature 0.8 --seed 42 --collect_logprobs --output_dir output/fewnerd_t08_s42/ 2>&1 | tee logs/fewnerd_t08_s42.log\\\\nroot     287814 36.2  1.7 45449948 14136944 pts/5 Sl+ 06:40  42:04 python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-fewnerd-exp021-merged --data_dir data/fewnerd/ --dataset fewnerd --subtask ner --n_samples 8 --temperature 0.8 --seed 42 --collect_logprobs --output_dir output/fewnerd_t08_s42/\\\\nroot     287948  0.0  0.0   4364  3252 pts/6    Ss+  06:40   0:00 bash -c source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && CUDA_VISIBLE_DEVICES=2 python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-fewnerd-exp021-merged --data_dir data/fewnerd/ --dataset fewnerd --subtask ner --n_samples 8 --temperature 1.2 --seed 42 --collect_logprobs --output_dir output/fewnerd_t12_s42/ 2>&1 | tee logs/fewnerd_t12_s42.log\\\\nroot     288081 34.0  1.6 44557964 13240312 pts/6 Sl+ 06:40  39:30 python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-fewnerd-exp021-merged --data_dir data/fewnerd/ --dataset fewnerd --subtask ner --n_samples 8 --temperature 1.2 --seed 42 --collect_logprobs --output_dir output/fewnerd_t12_s42/\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"0, 93 %, 30620 MiB, 32607 MiB\\n1, 87 %, 30618 MiB, 32607 MiB\\n2, 93 %, 30920 MiB, 32607 MiB\\n3, 0 %, 2 MiB, 32607 MiB\\n---PROCS---\\nroot     287672  0.0  0.0   4364  3136 pts/4    Ss+  06:40   0:00 bash -c source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && CUDA_VISIBLE_DEVICES=0 python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-fewnerd-exp021-merged --data_dir data/fewnerd/ --dataset fewnerd --subtask ner --n_samples 8 --temperature 0.5 --seed 42 --collect_logprobs --output_dir output/fewnerd_t05_s42/ 2>&1 | tee logs/fewnerd_t05_s42.log\\nroot     287678 36.2  1.8 45822332 14503636 pts/4 Sl+ 06:40  42:06 python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-fewnerd-exp021-merged --data_dir data/fewnerd/ --dataset fewnerd --subtask ner --n_samples 8 --temperature 0.5 --seed 42 --collect_logprobs --output_dir output/fewnerd_t05_s42/\\nroot     287808  0.0  0.0   4364  3204 pts/5    Ss+  06:40   0:00 bash -c source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && CUDA_VISIBLE_DEVICES=1 python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-fewnerd-exp021-merged --data_dir data/fewnerd/ --dataset fewnerd --subtask ner --n_samples 8 --temperature 0.8 --seed 42 --collect_logprobs --output_dir output/fewnerd_t08_s42/ 2>&1 | tee logs/fewnerd_t08_s42.log\\nroot     287814 36.2  1.7 45449948 14136944 pts/5 Sl+ 06:40  42:04 python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-fewnerd-exp021-merged --data_dir data/fewnerd/ --dataset fewnerd --subtask ner --n_samples 8 --temperature 0.8 --seed 42 --collect_logprobs --output_dir output/fewnerd_t08_s42/\\nroot     287948  0.0  0.0   4364  3252 pts/6    Ss+  06:40   0:00 bash -c source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && CUDA_VISIBLE_DEVICES=2 python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-fewnerd-exp021-merged --data_dir data/fewnerd/ --dataset fewnerd --subtask ner --n_samples 8 --temperature 1.2 --seed 42 --collect_logprobs --output_dir output/fewnerd_t12_s42/ 2>&1 | tee logs/fewnerd_t12_s42.log\\nroot     288081 34.0  1.6 44557964 13240312 pts/6 Sl+ 06:40  39:30 python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-fewnerd-exp021-merged --data_dir data/fewnerd/ --dataset fewnerd --subtask ner --n_samples 8 --temperature 1.2 --seed 42 --collect_logprobs --output_dir output/fewnerd_t12_s42/\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_014uYZvYVYdYJfCjUjhudVQz`</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "command": "for t in 0.5 0.8 1.2; do echo \"=== T=$t ===\"; ls -la /root/autodl-tmp/struct_self_consist_ie/output/*t${t}*s42* 2>/dev/null || echo \"no output dir\"; echo \"---jsonl---\"; wc -l /root/autodl-tmp/struct_self_consist_ie/output/*t${t}*s42*/*.jsonl 2>/dev/null || echo \"no jsonl\"; done",
+  "account": "root",
+  "warn": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "76d953cb-c7f6-4df5-a554-a05152dd8139",
+  "uuid": "736de849-1520-48e0-a69a-dc98278f6d19",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018SeGtG4BuH7jnCny5TfsUN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1410,
+      "cache_read_input_tokens": 24586,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1410
+      },
+      "output_tokens": 44,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-21T00:36:48.641Z_
+
+<details><summary>↩ Tool result · `toolu_014uYZvYVYdYJfCjUjhudVQz`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"=== T=0.5 ===\\nno output dir\\n---jsonl---\\nno jsonl\\n=== T=0.8 ===\\nno output dir\\n---jsonl---\\nno jsonl\\n=== T=1.2 ===\\nno output dir\\n---jsonl---\\nno jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "76d953cb-c7f6-4df5-a554-a05152dd8139",
+  "uuid": "44632124-0aed-44ea-ae94-a39102260e81",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"=== T=0.5 ===\\\\nno output dir\\\\n---jsonl---\\\\nno jsonl\\\\n=== T=0.8 ===\\\\nno output dir\\\\n---jsonl---\\\\nno jsonl\\\\n=== T=1.2 ===\\\\nno output dir\\\\n---jsonl---\\\\nno jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"=== T=0.5 ===\\nno output dir\\n---jsonl---\\nno jsonl\\n=== T=0.8 ===\\nno output dir\\n---jsonl---\\nno jsonl\\n=== T=1.2 ===\\nno output dir\\n---jsonl---\\nno jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 17_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+All three experiments are still running. No output files yet. Let me check the logs to see progress.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "76d953cb-c7f6-4df5-a554-a05152dd8139",
+  "uuid": "b2139eab-c118-46c9-9a98-197483c00b02",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FiQAjvmhrbejtsQaEFvbaQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1830,
+      "cache_read_input_tokens": 25996,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1830
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 18_
+
+三个实验都还在运行，尚无输出文件。查看日志获取进度。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "76d953cb-c7f6-4df5-a554-a05152dd8139",
+  "uuid": "ad099d36-0676-4f1b-bd99-fd356a3745d1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FiQAjvmhrbejtsQaEFvbaQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1830,
+      "cache_read_input_tokens": 25996,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1830
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01EpqV1z9rtcEpWbgowQiAF8`</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "command": "tail -20 /root/autodl-tmp/struct_self_consist_ie/logs/fewnerd_t05_s42.log",
+  "account": "root",
+  "warn": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "76d953cb-c7f6-4df5-a554-a05152dd8139",
+  "uuid": "9b981f2c-13ef-479b-bbf8-117a7ced813b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FiQAjvmhrbejtsQaEFvbaQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1830,
+      "cache_read_input_tokens": 25996,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1830
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01MtEUb4ji9RS9Qw2mCFpS4i`</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "command": "tail -20 /root/autodl-tmp/struct_self_consist_ie/logs/fewnerd_t08_s42.log",
+  "account": "root",
+  "warn": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "76d953cb-c7f6-4df5-a554-a05152dd8139",
+  "uuid": "957f7fa2-d33a-4c3a-8cef-e1bd9abd010a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FiQAjvmhrbejtsQaEFvbaQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1830,
+      "cache_read_input_tokens": 25996,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1830
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_0182sxc8saMuUFmMvt7q23JV`</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "command": "tail -20 /root/autodl-tmp/struct_self_consist_ie/logs/fewnerd_t12_s42.log",
+  "account": "root",
+  "warn": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "76d953cb-c7f6-4df5-a554-a05152dd8139",
+  "uuid": "23512e39-e1b7-42ed-9b41-7838dc6f6e9d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FiQAjvmhrbejtsQaEFvbaQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1830,
+      "cache_read_input_tokens": 25996,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1830
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-21T00:37:00.410Z_
+
+<details><summary>↩ Tool result · `toolu_01EpqV1z9rtcEpWbgowQiAF8`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"(EngineCore pid=288746) INFO 05-21 06:40:57 [monitor.py:48] torch.compile took 3.37 s in total\\n(EngineCore pid=288746) INFO 05-21 06:40:57 [decorators.py:296] Directly load AOT compilation from path /root/.cache/vllm/torch_compile_cache/torch_aot_compile/eab5dd26de4269ce1cebe89803a55f98a94211fe3b7adcd1b2cc8520d8b977f9/rank_0_0/model\\n(EngineCore pid=288746) INFO 05-21 06:40:57 [monitor.py:76] Initial profiling/warmup run took 0.12 s\\n(EngineCore pid=288746) INFO 05-21 06:40:58 [kv_cache_utils.py:826] Overriding num_gpu_blocks=0 with num_gpu_blocks_override=512\\n(EngineCore pid=288746) INFO 05-21 06:40:58 [gpu_model_runner.py:5607] Profiling CUDA graph memory: PIECEWISE=51 (largest=512), FULL=35 (largest=256)\\n(EngineCore pid=288746) INFO 05-21 06:41:00 [gpu_model_runner.py:5686] Estimated CUDA graph memory: 0.55 GiB total\\n(EngineCore pid=288746) INFO 05-21 06:41:00 [gpu_worker.py:456] Available KV cache memory: 11.97 GiB\\n(EngineCore pid=288746) INFO 05-21 06:41:00 [gpu_worker.py:490] In v0.19, CUDA graph memory profiling will be enabled by default (VLLM_MEMORY_PROFILER_ESTIMATE_CUDAGRAPHS=1), which more accurately accounts for CUDA graph memory during KV cache allocation. To try it now, set VLLM_MEMORY_PROFILER_ESTIMATE_CUDAGRAPHS=1 and increase --gpu-memory-utilization from 0.9000 to 0.9176 to maintain the same effective KV cache size.\\n(EngineCore pid=288746) INFO 05-21 06:41:00 [kv_cache_utils.py:1316] GPU KV cache size: 87,136 tokens\\n(EngineCore pid=288746) INFO 05-21 06:41:00 [kv_cache_utils.py:1321] Maximum concurrency for 4,096 tokens per request: 21.27x\\n(EngineCore pid=288746) \\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):   0%|          | 0/51 [00:00<?, ?it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):   4%|▍         | 2/51 [00:00<00:02, 17.99it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):   8%|▊         | 4/51 [00:00<00:02, 17.98it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  12%|█▏        | 6/51 [00:00<00:02, 17.85it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  16%|█▌        | 8/51 [00:00<00:02, 17.87it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  20%|█▉        | 10/51 [00:00<00:02, 18.43it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  24%|██▎       | 12/51 [00:00<00:02, 18.82it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  29%|██▉       | 15/51 [00:00<00:01, 19.60it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  35%|███▌      | 18/51 [00:00<00:01, 20.49it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  41%|████      | 21/51 [00:01<00:01, 21.66it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  47%|████▋     | 24/51 [00:01<00:01, 22.88it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  53%|█████▎    | 27/51 [00:01<00:00, 24.26it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  59%|█████��    | 30/51 [00:01<00:00, 23.89it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  65%|██████▍   | 33/51 [00:01<00:00, 25.06it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  71%|███████   | 36/51 [00:01<00:00, 26.38it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  76%|███████▋  | 39/51 [00:01<00:00, 27.19it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  84%|████████▍ | 43/51 [00:01<00:00, 28.98it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  92%|█████████▏| 47/51 [00:01<00:00, 30.91it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE): 100%|██████████| 51/51 [00:02<00:00, 31.30it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE): 100%|██████████| 51/51 [00:02<00:00, 24.53it/s]\\n(EngineCore pid=288746) \\rCapturing CUDA graphs (decode, FULL):   0%|          | 0/35 [00:00<?, ?it/s]\\rCapturing CUDA graphs (decode, FULL):   9%|▊         | 3/35 [00:00<00:01, 25.27it/s]\\rCapturing CUDA graphs (decode, FULL):  17%|█▋        | 6/35 [00:00<00:01, 26.32it/s]\\rCapturing CUDA graphs (decode, F\\n\\n... [截断: 输出过长，省略 3483790 字符] ...\\n\\nit/s, est. speed input: 5783.60 toks/s, output: 3092.30 toks/s]\\rProcessed prompts:  55%|█████▍    | 20647/37648 [09:46<09:18, 30.43it/s, est. speed input: 5783.70 toks/s, output: 3092.94 toks/s]\\rProcessed prompts:  55%|█████▍    | 20651/37648 [09:46<09:46, 28.96it/s, est. speed input: 5783.23 toks/s, output: 3092.60 toks/s]\\rProcessed prompts:  55%|██��██▍    | 20657/37648 [09:46<09:09, 30.94it/s, est. speed input: 5783.14 toks/s, output: 3092.52 toks/s]\\rProcessed prompts:  55%|█████▍    | 20661/37648 [09:47<10:46, 26.29it/s, est. speed input: 5782.08 toks/s, output: 3092.14 toks/s]\\rProcessed prompts:  55%|█████▍    | 20667/37648 [09:47<09:54, 28.59it/s, est. speed input: 5782.10 toks/s, output: 3092.23 toks/s]\\rProcessed prompts:  55%|█████▍    | 20670/37648 [09:47<10:23, 27.24it/s, est. speed input: 5781.63 toks/s, output: 3092.03 toks/s]\\rProcessed prompts:  55%|█████▍    | 20675/37648 [09:47<09:00, 31.43it/s, est. speed input: 5781.92 toks/s, output: 3092.01 toks/s]\\rProcessed prompts:  55%|█████▍    | 20680/37648 [09:47<08:15, 34.23it/s, est. speed input: 5782.12 toks/s, output: 3092.07 toks/s]\\rProcessed prompts:  55%|█████▍    | 20684/37648 [09:47<07:58, 35.43it/s, est. speed input: 5782.31 toks/s, output: 3091.96 toks/s]\\rProcessed prompts:  55%|██���██▍    | 20692/37648 [09:47<07:27, 37.87it/s, est. speed input: 5782.60 toks/s, output: 3091.94 toks/s]\\rProcessed prompts:  55%|█████▍    | 20696/37648 [09:48<08:29, 33.25it/s, est. speed input: 5782.18 toks/s, output: 3092.70 toks/s]\\rProcessed prompts:  55%|█████▍    | 20703/37648 [09:48<08:16, 34.11it/s, est. speed input: 5782.20 toks/s, output: 3092.78 toks/s]\\rProcessed prompts:  55%|█████▌    | 20707/37648 [09:48<08:48, 32.03it/s, est. speed input: 5781.93 toks/s, output: 3092.82 toks/s]\\rProcessed prompts:  55%|█████▌    | 20715/37648 [09:48<08:10, 34.52it/s, est. speed input: 5782.07 toks/s, output: 3092.78 toks/s]\\rProcessed prompts:  55%|█████▌    | 20719/37648 [09:48<08:43, 32.32it/s, est. speed input: 5781.71 toks/s, output: 3092.61 toks/s]\\rProcessed prompts:  55%|█████▌    | 20726/37648 [09:49<08:23, 33.59it/s, est. speed input: 5781.77 toks/s, output: 3092.49 toks/s]\\rProcessed prompts:  55%|█████▌    | 20732/37648 [09:49<08:20, 33.78it/s, est. speed input: 5781.63 toks/s, output: 3092.16 toks/s]\\rProcessed prompts:  55%|█████▌    | 20738/37648 [09:49<08:21, 33.74it/s, est. speed input: 5781.50 toks/s, output: 3092.04 toks/s]\\rProcessed prompts:  55%|█████▌    | 20743/37648 [09:49<08:39, 32.55it/s, est. speed input: 5781.24 toks/s, output: 3091.75 toks/s]\\rProcessed prompts:  55%|█████▌    | 20747/37648 [09:49<08:58, 31.40it/s, est. speed input: 5780.99 toks/s, output: 3091.35 toks/s]\\rProcessed prompts:  55%|█████▌    | 20752/37648 [09:49<09:05, 30.96it/s, est. speed input: 5780.74 toks/s, output: 3090.93 toks/s]\\rProcessed prompts:  55%|█████▌    | 20756/37648 [09:50<09:36, 29.31it/s, est. speed input: 5780.36 toks/s, output: 3090.78 toks/s]\\rProcessed prompts:  55%|█████▌    | 20761/37648 [09:54<1:23:19,  3.38it/s, est. speed input: 5738.97 toks/s, output: 3068.83 toks/s]\\rProcessed prompts:  55%|█████▌    | 20798/37648 [09:54<20:04, 13.98it/s, est. speed input: 5748.04 toks/s, output: 3073.05 toks/s]  \\rProcessed prompts:  55%|█████▌    | 20844/37648 [09:54<08:50, 31.66it/s, est. speed input: 5759.80 toks/s, output: 3079.65 toks/s]\\rProcessed prompts:  56%|█████▌    | 20920/37648 [09:54<04:01, 69.40it/s, est. speed input: 5779.63 toks/s, output: 3090.07 toks/s]\\rProcessed prompts:  56%|█████▌    | 20953/37648 [09:55<05:28, 50.88it/s, est. speed input: 5777.68 toks/s, output: 3088.91 toks/s]\\rProcessed prompts:  56%|█████▌    | 20977/37648 [09:56<06:23, 43.49it/s, est. speed input: 5776.14 toks/s, output: 3088.62 toks/s]\\rProcessed prompts:  56%|█████▌    | 20995/37648 [09:57<06:40, 41.59it/s, est. speed input: 5776.20 toks/s, output: 3089.23 toks/s]\\rProcessed prompts:  56%|█████▌    | 21009/37648 [09:57<07:45, 35.71it/s, est. speed input: 5773.60 toks/s, output: 3087.66 toks/s]\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 6.61}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "76d953cb-c7f6-4df5-a554-a05152dd8139",
+  "uuid": "5ce57a08-0651-47c5-a209-dc24aad9bb7e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"(EngineCore pid=288746) INFO 05-21 06:40:57 [monitor.py:48] torch.compile took 3.37 s in total\\\\n(EngineCore pid=288746) INFO 05-21 06:40:57 [decorators.py:296] Directly load AOT compilation from path /root/.cache/vllm/torch_compile_cache/torch_aot_compile/eab5dd26de4269ce1cebe89803a55f98a94211fe3b7adcd1b2cc8520d8b977f9/rank_0_0/model\\\\n(EngineCore pid=288746) INFO 05-21 06:40:57 [monitor.py:76] Initial profiling/warmup run took 0.12 s\\\\n(EngineCore pid=288746) INFO 05-21 06:40:58 [kv_cache_utils.py:826] Overriding num_gpu_blocks=0 with num_gpu_blocks_override=512\\\\n(EngineCore pid=288746) INFO 05-21 06:40:58 [gpu_model_runner.py:5607] Profiling CUDA graph memory: PIECEWISE=51 (largest=512), FULL=35 (largest=256)\\\\n(EngineCore pid=288746) INFO 05-21 06:41:00 [gpu_model_runner.py:5686] Estimated CUDA graph memory: 0.55 GiB total\\\\n(EngineCore pid=288746) INFO 05-21 06:41:00 [gpu_worker.py:456] Available KV cache memory: 11.97 GiB\\\\n(EngineCore pid=288746) INFO 05-21 06:41:00 [gpu_worker.py:490] In v0.19, CUDA graph memory profiling will be enabled by default (VLLM_MEMORY_PROFILER_ESTIMATE_CUDAGRAPHS=1), which more accurately accounts for CUDA graph memory during KV cache allocation. To try it now, set VLLM_MEMORY_PROFILER_ESTIMATE_CUDAGRAPHS=1 and increase --gpu-memory-utilization from 0.9000 to 0.9176 to maintain the same effective KV cache size.\\\\n(EngineCore pid=288746) INFO 05-21 06:41:00 [kv_cache_utils.py:1316] GPU KV cache size: 87,136 tokens\\\\n(EngineCore pid=288746) INFO 05-21 06:41:00 [kv_cache_utils.py:1321] Maximum concurrency for 4,096 tokens per request: 21.27x\\\\n(EngineCore pid=288746) \\\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):   0%|          | 0/51 [00:00<?, ?it/s]\\\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):   4%|▍         | 2/51 [00:00<00:02, 17.99it/s]\\\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):   8%|▊         | 4/51 [00:00<00:02, 17.98it/s]\\\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  12%|█▏        | 6/51 [00:00<00:02, 17.85it/s]\\\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  16%|█▌        | 8/51 [00:00<00:02, 17.87it/s]\\\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  20%|█▉        | 10/51 [00:00<00:02, 18.43it/s]\\\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  24%|██▎       | 12/51 [00:00<00:02, 18.82it/s]\\\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  29%|██▉       | 15/51 [00:00<00:01, 19.60it/s]\\\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  35%|███▌      | 18/51 [00:00<00:01, 20.49it/s]\\\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  41%|████      | 21/51 [00:01<00:01, 21.66it/s]\\\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  47%|████▋     | 24/51 [00:01<00:01, 22.88it/s]\\\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  53%|█████▎    | 27/51 [00:01<00:00, 24.26it/s]\\\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  59%|█████��    | 30/51 [00:01<00:00, 23.89it/s]\\\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  65%|██████▍   | 33/51 [00:01<00:00, 25.06it/s]\\\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  71%|███████   | 36/51 [00:01<00:00, 26.38it/s]\\\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  76%|███████▋  | 39/51 [00:01<00:00, 27.19it/s]\\\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  84%|████████▍ | 43/51 [00:01<00:00, 28.98it/s]\\\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  92%|█████████▏| 47/51 [00:01<00:00, 30.91it/s]\\\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE): 100%|██████████| 51/51 [00:02<00:00, 31.30it/s]\\\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE): 100%|██████████| 51/51 [00:02<00:00, 24.53it/s]\\\\n(EngineCore pid=288746) \\\\rCapturing CUDA graphs (decode, FULL):   0%|          | 0/35 [00:00<?, ?it/s]\\\\rCapturing CUDA graphs (decode, FULL):   9%|▊         | 3/35 [00:00<00:01, 25.27it/s]\\\\rCapturing CUDA graphs (decode, FULL):  17%|█▋        | 6/35 [00:00<00:01, 26.32it/s]\\\\rCapturing CUDA graphs (decode, F\\\\n\\\\n... [截断: 输出过长，省略 3483790 字符] ...\\\\n\\\\nit/s, est. speed input: 5783.60 toks/s, output: 3092.30 toks/s]\\\\rProcessed prompts:  55%|█████▍    | 20647/37648 [09:46<09:18, 30.43it/s, est. speed input: 5783.70 toks/s, output: 3092.94 toks/s]\\\\rProcessed prompts:  55%|█████▍    | 20651/37648 [09:46<09:46, 28.96it/s, est. speed input: 5783.23 toks/s, output: 3092.60 toks/s]\\\\rProcessed prompts:  55%|██��██▍    | 20657/37648 [09:46<09:09, 30.94it/s, est. speed input: 5783.14 toks/s, output: 3092.52 toks/s]\\\\rProcessed prompts:  55%|█████▍    | 20661/37648 [09:47<10:46, 26.29it/s, est. speed input: 5782.08 toks/s, output: 3092.14 toks/s]\\\\rProcessed prompts:  55%|█████▍    | 20667/37648 [09:47<09:54, 28.59it/s, est. speed input: 5782.10 toks/s, output: 3092.23 toks/s]\\\\rProcessed prompts:  55%|█████▍    | 20670/37648 [09:47<10:23, 27.24it/s, est. speed input: 5781.63 toks/s, output: 3092.03 toks/s]\\\\rProcessed prompts:  55%|█████▍    | 20675/37648 [09:47<09:00, 31.43it/s, est. speed input: 5781.92 toks/s, output: 3092.01 toks/s]\\\\rProcessed prompts:  55%|█████▍    | 20680/37648 [09:47<08:15, 34.23it/s, est. speed input: 5782.12 toks/s, output: 3092.07 toks/s]\\\\rProcessed prompts:  55%|█████▍    | 20684/37648 [09:47<07:58, 35.43it/s, est. speed input: 5782.31 toks/s, output: 3091.96 toks/s]\\\\rProcessed prompts:  55%|██���██▍    | 20692/37648 [09:47<07:27, 37.87it/s, est. speed input: 5782.60 toks/s, output: 3091.94 toks/s]\\\\rProcessed prompts:  55%|█████▍    | 20696/37648 [09:48<08:29, 33.25it/s, est. speed input: 5782.18 toks/s, output: 3092.70 toks/s]\\\\rProcessed prompts:  55%|█████▍    | 20703/37648 [09:48<08:16, 34.11it/s, est. speed input: 5782.20 toks/s, output: 3092.78 toks/s]\\\\rProcessed prompts:  55%|█████▌    | 20707/37648 [09:48<08:48, 32.03it/s, est. speed input: 5781.93 toks/s, output: 3092.82 toks/s]\\\\rProcessed prompts:  55%|█████▌    | 20715/37648 [09:48<08:10, 34.52it/s, est. speed input: 5782.07 toks/s, output: 3092.78 toks/s]\\\\rProcessed prompts:  55%|█████▌    | 20719/37648 [09:48<08:43, 32.32it/s, est. speed input: 5781.71 toks/s, output: 3092.61 toks/s]\\\\rProcessed prompts:  55%|█████▌    | 20726/37648 [09:49<08:23, 33.59it/s, est. speed input: 5781.77 toks/s, output: 3092.49 toks/s]\\\\rProcessed prompts:  55%|█████▌    | 20732/37648 [09:49<08:20, 33.78it/s, est. speed input: 5781.63 toks/s, output: 3092.16 toks/s]\\\\rProcessed prompts:  55%|█████▌    | 20738/37648 [09:49<08:21, 33.74it/s, est. speed input: 5781.50 toks/s, output: 3092.04 toks/s]\\\\rProcessed prompts:  55%|█████▌    | 20743/37648 [09:49<08:39, 32.55it/s, est. speed input: 5781.24 toks/s, output: 3091.75 toks/s]\\\\rProcessed prompts:  55%|█████▌    | 20747/37648 [09:49<08:58, 31.40it/s, est. speed input: 5780.99 toks/s, output: 3091.35 toks/s]\\\\rProcessed prompts:  55%|█████▌    | 20752/37648 [09:49<09:05, 30.96it/s, est. speed input: 5780.74 toks/s, output: 3090.93 toks/s]\\\\rProcessed prompts:  55%|█████▌    | 20756/37648 [09:50<09:36, 29.31it/s, est. speed input: 5780.36 toks/s, output: 3090.78 toks/s]\\\\rProcessed prompts:  55%|█████▌    | 20761/37648 [09:54<1:23:19,  3.38it/s, est. speed input: 5738.97 toks/s, output: 3068.83 toks/s]\\\\rProcessed prompts:  55%|█████▌    | 20798/37648 [09:54<20:04, 13.98it/s, est. speed input: 5748.04 toks/s, output: 3073.05 toks/s]  \\\\rProcessed prompts:  55%|█████▌    | 20844/37648 [09:54<08:50, 31.66it/s, est. speed input: 5759.80 toks/s, output: 3079.65 toks/s]\\\\rProcessed prompts:  56%|█████▌    | 20920/37648 [09:54<04:01, 69.40it/s, est. speed input: 5779.63 toks/s, output: 3090.07 toks/s]\\\\rProcessed prompts:  56%|█████▌    | 20953/37648 [09:55<05:28, 50.88it/s, est. speed input: 5777.68 toks/s, output: 3088.91 toks/s]\\\\rProcessed prompts:  56%|█████▌    | 20977/37648 [09:56<06:23, 43.49it/s, est. speed input: 5776.14 toks/s, output: 3088.62 toks/s]\\\\rProcessed prompts:  56%|█████▌    | 20995/37648 [09:57<06:40, 41.59it/s, est. speed input: 5776.20 toks/s, output: 3089.23 toks/s]\\\\rProcessed prompts:  56%|█████▌    | 21009/37648 [09:57<07:45, 35.71it/s, est. speed input: 5773.60 toks/s, output: 3087.66 toks/s]\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 6.61}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"(EngineCore pid=288746) INFO 05-21 06:40:57 [monitor.py:48] torch.compile took 3.37 s in total\\n(EngineCore pid=288746) INFO 05-21 06:40:57 [decorators.py:296] Directly load AOT compilation from path /root/.cache/vllm/torch_compile_cache/torch_aot_compile/eab5dd26de4269ce1cebe89803a55f98a94211fe3b7adcd1b2cc8520d8b977f9/rank_0_0/model\\n(EngineCore pid=288746) INFO 05-21 06:40:57 [monitor.py:76] Initial profiling/warmup run took 0.12 s\\n(EngineCore pid=288746) INFO 05-21 06:40:58 [kv_cache_utils.py:826] Overriding num_gpu_blocks=0 with num_gpu_blocks_override=512\\n(EngineCore pid=288746) INFO 05-21 06:40:58 [gpu_model_runner.py:5607] Profiling CUDA graph memory: PIECEWISE=51 (largest=512), FULL=35 (largest=256)\\n(EngineCore pid=288746) INFO 05-21 06:41:00 [gpu_model_runner.py:5686] Estimated CUDA graph memory: 0.55 GiB total\\n(EngineCore pid=288746) INFO 05-21 06:41:00 [gpu_worker.py:456] Available KV cache memory: 11.97 GiB\\n(EngineCore pid=288746) INFO 05-21 06:41:00 [gpu_worker.py:490] In v0.19, CUDA graph memory profiling will be enabled by default (VLLM_MEMORY_PROFILER_ESTIMATE_CUDAGRAPHS=1), which more accurately accounts for CUDA graph memory during KV cache allocation. To try it now, set VLLM_MEMORY_PROFILER_ESTIMATE_CUDAGRAPHS=1 and increase --gpu-memory-utilization from 0.9000 to 0.9176 to maintain the same effective KV cache size.\\n(EngineCore pid=288746) INFO 05-21 06:41:00 [kv_cache_utils.py:1316] GPU KV cache size: 87,136 tokens\\n(EngineCore pid=288746) INFO 05-21 06:41:00 [kv_cache_utils.py:1321] Maximum concurrency for 4,096 tokens per request: 21.27x\\n(EngineCore pid=288746) \\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):   0%|          | 0/51 [00:00<?, ?it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):   4%|▍         | 2/51 [00:00<00:02, 17.99it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):   8%|▊         | 4/51 [00:00<00:02, 17.98it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  12%|█▏        | 6/51 [00:00<00:02, 17.85it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  16%|█▌        | 8/51 [00:00<00:02, 17.87it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  20%|█▉        | 10/51 [00:00<00:02, 18.43it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  24%|██▎       | 12/51 [00:00<00:02, 18.82it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  29%|██▉       | 15/51 [00:00<00:01, 19.60it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  35%|███▌      | 18/51 [00:00<00:01, 20.49it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  41%|████      | 21/51 [00:01<00:01, 21.66it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  47%|████▋     | 24/51 [00:01<00:01, 22.88it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  53%|█████▎    | 27/51 [00:01<00:00, 24.26it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  59%|█████��    | 30/51 [00:01<00:00, 23.89it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  65%|██████▍   | 33/51 [00:01<00:00, 25.06it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  71%|███████   | 36/51 [00:01<00:00, 26.38it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  76%|███████▋  | 39/51 [00:01<00:00, 27.19it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  84%|████████▍ | 43/51 [00:01<00:00, 28.98it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  92%|█████████▏| 47/51 [00:01<00:00, 30.91it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE): 100%|██████████| 51/51 [00:02<00:00, 31.30it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE): 100%|██████████| 51/51 [00:02<00:00, 24.53it/s]\\n(EngineCore pid=288746) \\rCapturing CUDA graphs (decode, FULL):   0%|          | 0/35 [00:00<?, ?it/s]\\rCapturing CUDA graphs (decode, FULL):   9%|▊         | 3/35 [00:00<00:01, 25.27it/s]\\rCapturing CUDA graphs (decode, FULL):  17%|█▋        | 6/35 [00:00<00:01, 26.32it/s]\\rCapturing CUDA graphs (decode, F\\n\\n... [截断: 输出过长，省略 3483790 字符] ...\\n\\nit/s, est. speed input: 5783.60 toks/s, output: 3092.30 toks/s]\\rProcessed prompts:  55%|█████▍    | 20647/37648 [09:46<09:18, 30.43it/s, est. speed input: 5783.70 toks/s, output: 3092.94 toks/s]\\rProcessed prompts:  55%|█████▍    | 20651/37648 [09:46<09:46, 28.96it/s, est. speed input: 5783.23 toks/s, output: 3092.60 toks/s]\\rProcessed prompts:  55%|██��██▍    | 20657/37648 [09:46<09:09, 30.94it/s, est. speed input: 5783.14 toks/s, output: 3092.52 toks/s]\\rProcessed prompts:  55%|█████▍    | 20661/37648 [09:47<10:46, 26.29it/s, est. speed input: 5782.08 toks/s, output: 3092.14 toks/s]\\rProcessed prompts:  55%|█████▍    | 20667/37648 [09:47<09:54, 28.59it/s, est. speed input: 5782.10 toks/s, output: 3092.23 toks/s]\\rProcessed prompts:  55%|█████▍    | 20670/37648 [09:47<10:23, 27.24it/s, est. speed input: 5781.63 toks/s, output: 3092.03 toks/s]\\rProcessed prompts:  55%|█████▍    | 20675/37648 [09:47<09:00, 31.43it/s, est. speed input: 5781.92 toks/s, output: 3092.01 toks/s]\\rProcessed prompts:  55%|█████▍    | 20680/37648 [09:47<08:15, 34.23it/s, est. speed input: 5782.12 toks/s, output: 3092.07 toks/s]\\rProcessed prompts:  55%|█████▍    | 20684/37648 [09:47<07:58, 35.43it/s, est. speed input: 5782.31 toks/s, output: 3091.96 toks/s]\\rProcessed prompts:  55%|██���██▍    | 20692/37648 [09:47<07:27, 37.87it/s, est. speed input: 5782.60 toks/s, output: 3091.94 toks/s]\\rProcessed prompts:  55%|█████▍    | 20696/37648 [09:48<08:29, 33.25it/s, est. speed input: 5782.18 toks/s, output: 3092.70 toks/s]\\rProcessed prompts:  55%|█████▍    | 20703/37648 [09:48<08:16, 34.11it/s, est. speed input: 5782.20 toks/s, output: 3092.78 toks/s]\\rProcessed prompts:  55%|█████▌    | 20707/37648 [09:48<08:48, 32.03it/s, est. speed input: 5781.93 toks/s, output: 3092.82 toks/s]\\rProcessed prompts:  55%|█████▌    | 20715/37648 [09:48<08:10, 34.52it/s, est. speed input: 5782.07 toks/s, output: 3092.78 toks/s]\\rProcessed prompts:  55%|█████▌    | 20719/37648 [09:48<08:43, 32.32it/s, est. speed input: 5781.71 toks/s, output: 3092.61 toks/s]\\rProcessed prompts:  55%|█████▌    | 20726/37648 [09:49<08:23, 33.59it/s, est. speed input: 5781.77 toks/s, output: 3092.49 toks/s]\\rProcessed prompts:  55%|█████▌    | 20732/37648 [09:49<08:20, 33.78it/s, est. speed input: 5781.63 toks/s, output: 3092.16 toks/s]\\rProcessed prompts:  55%|█████▌    | 20738/37648 [09:49<08:21, 33.74it/s, est. speed input: 5781.50 toks/s, output: 3092.04 toks/s]\\rProcessed prompts:  55%|█████▌    | 20743/37648 [09:49<08:39, 32.55it/s, est. speed input: 5781.24 toks/s, output: 3091.75 toks/s]\\rProcessed prompts:  55%|█████▌    | 20747/37648 [09:49<08:58, 31.40it/s, est. speed input: 5780.99 toks/s, output: 3091.35 toks/s]\\rProcessed prompts:  55%|█████▌    | 20752/37648 [09:49<09:05, 30.96it/s, est. speed input: 5780.74 toks/s, output: 3090.93 toks/s]\\rProcessed prompts:  55%|█████▌    | 20756/37648 [09:50<09:36, 29.31it/s, est. speed input: 5780.36 toks/s, output: 3090.78 toks/s]\\rProcessed prompts:  55%|█████▌    | 20761/37648 [09:54<1:23:19,  3.38it/s, est. speed input: 5738.97 toks/s, output: 3068.83 toks/s]\\rProcessed prompts:  55%|█████▌    | 20798/37648 [09:54<20:04, 13.98it/s, est. speed input: 5748.04 toks/s, output: 3073.05 toks/s]  \\rProcessed prompts:  55%|█████▌    | 20844/37648 [09:54<08:50, 31.66it/s, est. speed input: 5759.80 toks/s, output: 3079.65 toks/s]\\rProcessed prompts:  56%|█████▌    | 20920/37648 [09:54<04:01, 69.40it/s, est. speed input: 5779.63 toks/s, output: 3090.07 toks/s]\\rProcessed prompts:  56%|█████▌    | 20953/37648 [09:55<05:28, 50.88it/s, est. speed input: 5777.68 toks/s, output: 3088.91 toks/s]\\rProcessed prompts:  56%|█████▌    | 20977/37648 [09:56<06:23, 43.49it/s, est. speed input: 5776.14 toks/s, output: 3088.62 toks/s]\\rProcessed prompts:  56%|█████▌    | 20995/37648 [09:57<06:40, 41.59it/s, est. speed input: 5776.20 toks/s, output: 3089.23 toks/s]\\rProcessed prompts:  56%|█████▌    | 21009/37648 [09:57<07:45, 35.71it/s, est. speed input: 5773.60 toks/s, output: 3087.66 toks/s]\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 6.61}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-21T00:37:02.827Z_
+
+<details><summary>↩ Tool result · `toolu_01MtEUb4ji9RS9Qw2mCFpS4i`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"(EngineCore pid=288794) INFO 05-21 06:40:58 [monitor.py:48] torch.compile took 3.38 s in total\\n(EngineCore pid=288794) INFO 05-21 06:40:58 [decorators.py:296] Directly load AOT compilation from path /root/.cache/vllm/torch_compile_cache/torch_aot_compile/eab5dd26de4269ce1cebe89803a55f98a94211fe3b7adcd1b2cc8520d8b977f9/rank_0_0/model\\n(EngineCore pid=288794) INFO 05-21 06:40:58 [monitor.py:76] Initial profiling/warmup run took 0.12 s\\n(EngineCore pid=288794) INFO 05-21 06:40:59 [kv_cache_utils.py:826] Overriding num_gpu_blocks=0 with num_gpu_blocks_override=512\\n(EngineCore pid=288794) INFO 05-21 06:40:59 [gpu_model_runner.py:5607] Profiling CUDA graph memory: PIECEWISE=51 (largest=512), FULL=35 (largest=256)\\n(EngineCore pid=288794) INFO 05-21 06:41:01 [gpu_model_runner.py:5686] Estimated CUDA graph memory: 0.55 GiB total\\n(EngineCore pid=288794) INFO 05-21 06:41:02 [gpu_worker.py:456] Available KV cache memory: 11.97 GiB\\n(EngineCore pid=288794) INFO 05-21 06:41:02 [gpu_worker.py:490] In v0.19, CUDA graph memory profiling will be enabled by default (VLLM_MEMORY_PROFILER_ESTIMATE_CUDAGRAPHS=1), which more accurately accounts for CUDA graph memory during KV cache allocation. To try it now, set VLLM_MEMORY_PROFILER_ESTIMATE_CUDAGRAPHS=1 and increase --gpu-memory-utilization from 0.9000 to 0.9176 to maintain the same effective KV cache size.\\n(EngineCore pid=288794) INFO 05-21 06:41:02 [kv_cache_utils.py:1316] GPU KV cache size: 87,136 tokens\\n(EngineCore pid=288794) INFO 05-21 06:41:02 [kv_cache_utils.py:1321] Maximum concurrency for 4,096 tokens per request: 21.27x\\n(EngineCore pid=288794) \\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):   0%|          | 0/51 [00:00<?, ?it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):   4%|▍         | 2/51 [00:00<00:02, 18.27it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):   8%|▊         | 4/51 [00:00<00:02, 18.07it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  12%|█▏        | 6/51 [00:00<00:02, 18.08it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  16%|█▌        | 8/51 [00:00<00:02, 18.09it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  20%|█▉        | 10/51 [00:00<00:02, 18.60it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  24%|██▎       | 12/51 [00:00<00:02, 19.01it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  29%|██▉       | 15/51 [00:00<00:01, 19.78it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  35%|███▌      | 18/51 [00:00<00:01, 20.75it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  41%|████      | 21/51 [00:01<00:01, 21.82it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  47%|████▋     | 24/51 [00:01<00:01, 23.05it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  53%|█████▎    | 27/51 [00:01<00:00, 24.32it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  59%|█████��    | 30/51 [00:01<00:00, 23.93it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  65%|██████▍   | 33/51 [00:01<00:00, 25.11it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  71%|███████   | 36/51 [00:01<00:00, 26.39it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  76%|███████▋  | 39/51 [00:01<00:00, 27.22it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  84%|████████▍ | 43/51 [00:01<00:00, 28.99it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  92%|█████████▏| 47/51 [00:01<00:00, 30.84it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE): 100%|██████████| 51/51 [00:02<00:00, 31.28it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE): 100%|██████████| 51/51 [00:02<00:00, 24.64it/s]\\n(EngineCore pid=288794) \\rCapturing CUDA graphs (decode, FULL):   0%|          | 0/35 [00:00<?, ?it/s]\\rCapturing CUDA graphs (decode, FULL):   9%|▊         | 3/35 [00:00<00:01, 25.32it/s]\\rCapturing CUDA graphs (decode, FULL):  17%|█▋        | 6/35 [00:00<00:01, 26.35it/s]\\rCapturing CUDA graphs (decode, F\\n\\n... [截断: 输出过长，省略 3526808 字符] ...\\n\\n, 29.31it/s, est. speed input: 5842.97 toks/s, output: 3129.24 toks/s]\\rProcessed prompts:  68%|██████▊   | 25460/37648 [11:54<03:04, 66.21it/s, est. speed input: 5860.18 toks/s, output: 3138.64 toks/s]\\rProcessed prompts:  68%|██████▊   | 25499/37648 [11:54<03:03, 66.38it/s, est. speed input: 5864.41 toks/s, output: 3140.56 toks/s]\\rProcessed prompts:  68%|██████▊   | 25529/37648 [11:55<03:54, 51.75it/s, est. speed input: 5863.32 toks/s, output: 3139.75 toks/s]\\rProcessed prompts:  68%|██████▊   | 25551/37648 [11:56<04:20, 46.48it/s, est. speed input: 5862.93 toks/s, output: 3139.00 toks/s]\\rProcessed prompts:  68%|██████▊   | 25567/37648 [11:56<04:44, 42.47it/s, est. speed input: 5862.23 toks/s, output: 3138.44 toks/s]\\rProcessed prompts:  68%|██████▊   | 25580/37648 [11:57<04:59, 40.33it/s, est. speed input: 5861.86 toks/s, output: 3137.93 toks/s]\\rProcessed prompts:  68%|██████▊   | 25590/37648 [11:57<04:48, 41.76it/s, est. speed input: 5862.59 toks/s, output: 3138.25 toks/s]\\rProcessed prompts:  68%|██████▊   | 25599/37648 [11:57<05:08, 39.06it/s, est. speed input: 5862.22 toks/s, output: 3138.46 toks/s]\\rProcessed prompts:  68%|██████▊   | 25606/37648 [11:57<05:17, 37.98it/s, est. speed input: 5862.07 toks/s, output: 3138.61 toks/s]\\rProcessed prompts:  68%|██████▊   | 25612/37648 [11:58<05:02, 39.76it/s, est. speed input: 5862.50 toks/s, output: 3138.90 toks/s]\\rProcessed prompts:  68%|██████▊   | 25618/37648 [11:58<04:46, 42.00it/s, est. speed input: 5862.97 toks/s, output: 3139.21 toks/s]\\rProcessed prompts:  68%|██████▊   | 25624/37648 [11:58<06:07, 32.71it/s, est. speed input: 5861.67 toks/s, output: 3138.63 toks/s]\\rProcessed prompts:  68%|██████▊   | 25629/37648 [11:58<06:18, 31.77it/s, est. speed input: 5861.40 toks/s, output: 3138.92 toks/s]\\rProcessed prompts:  68%|██████▊   | 25635/37648 [11:58<06:24, 31.27it/s, est. speed input: 5861.45 toks/s, output: 3138.61 toks/s]\\rProcessed prompts:  68%|██████▊   | 25640/37648 [11:59<06:27, 31.02it/s, est. speed input: 5861.24 toks/s, output: 3138.60 toks/s]\\rProcessed prompts:  68%|██████▊   | 25650/37648 [11:59<05:27, 36.63it/s, est. speed input: 5861.92 toks/s, output: 3139.05 toks/s]\\rProcessed prompts:  68%|██████▊   | 25657/37648 [11:59<05:24, 36.95it/s, est. speed input: 5862.02 toks/s, output: 3139.13 toks/s]\\rProcessed prompts:  68%|██████▊   | 25661/37648 [11:59<05:51, 34.11it/s, est. speed input: 5861.65 toks/s, output: 3138.85 toks/s]\\rProcessed prompts:  68%|██████▊   | 25668/37648 [11:59<05:38, 35.44it/s, est. speed input: 5861.85 toks/s, output: 3139.06 toks/s]\\rProcessed prompts:  68%|██████▊   | 25673/37648 [11:59<05:18, 37.58it/s, est. speed input: 5862.08 toks/s, output: 3139.06 toks/s]\\rProcessed prompts:  68%|██████▊   | 25679/37648 [11:59<04:51, 41.11it/s, est. speed input: 5862.57 toks/s, output: 3139.53 toks/s]\\rProcessed prompts:  68%|██████▊   | 25684/37648 [12:00<05:18, 37.57it/s, est. speed input: 5862.38 toks/s, output: 3139.47 toks/s]\\rProcessed prompts:  68%|██████▊   | 25688/37648 [12:00<05:45, 34.61it/s, est. speed input: 5862.14 toks/s, output: 3139.56 toks/s]\\rProcessed prompts:  68%|██████▊   | 25695/37648 [12:00<05:39, 35.25it/s, est. speed input: 5862.15 toks/s, output: 3139.55 toks/s]\\rProcessed prompts:  68%|██████▊   | 25700/37648 [12:00<05:56, 33.49it/s, est. speed input: 5861.87 toks/s, output: 3139.35 toks/s]\\rProcessed prompts:  68%|██████▊   | 25707/37648 [12:00<05:12, 38.21it/s, est. speed input: 5862.40 toks/s, output: 3139.58 toks/s]\\rProcessed prompts:  68%|██████▊   | 25712/37648 [12:00<05:34, 35.74it/s, est. speed input: 5862.18 toks/s, output: 3139.24 toks/s]\\rProcessed prompts:  68%|██████▊   | 25716/37648 [12:01<06:03, 32.86it/s, est. speed input: 5861.86 toks/s, output: 3139.00 toks/s]\\rProcessed prompts:  68%|██████▊   | 25721/37648 [12:01<05:31, 35.96it/s, est. speed input: 5862.17 toks/s, output: 3139.10 toks/s]\\rProcessed prompts:  68%|██████▊   | 25726/37648 [12:01<05:49, 34.15it/s, est. speed input: 5861.97 toks/s, output: 3138.81 toks/s]\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.41}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "76d953cb-c7f6-4df5-a554-a05152dd8139",
+  "uuid": "f7cf63c7-d556-4cf8-bbc1-48f97a237068",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"(EngineCore pid=288794) INFO 05-21 06:40:58 [monitor.py:48] torch.compile took 3.38 s in total\\\\n(EngineCore pid=288794) INFO 05-21 06:40:58 [decorators.py:296] Directly load AOT compilation from path /root/.cache/vllm/torch_compile_cache/torch_aot_compile/eab5dd26de4269ce1cebe89803a55f98a94211fe3b7adcd1b2cc8520d8b977f9/rank_0_0/model\\\\n(EngineCore pid=288794) INFO 05-21 06:40:58 [monitor.py:76] Initial profiling/warmup run took 0.12 s\\\\n(EngineCore pid=288794) INFO 05-21 06:40:59 [kv_cache_utils.py:826] Overriding num_gpu_blocks=0 with num_gpu_blocks_override=512\\\\n(EngineCore pid=288794) INFO 05-21 06:40:59 [gpu_model_runner.py:5607] Profiling CUDA graph memory: PIECEWISE=51 (largest=512), FULL=35 (largest=256)\\\\n(EngineCore pid=288794) INFO 05-21 06:41:01 [gpu_model_runner.py:5686] Estimated CUDA graph memory: 0.55 GiB total\\\\n(EngineCore pid=288794) INFO 05-21 06:41:02 [gpu_worker.py:456] Available KV cache memory: 11.97 GiB\\\\n(EngineCore pid=288794) INFO 05-21 06:41:02 [gpu_worker.py:490] In v0.19, CUDA graph memory profiling will be enabled by default (VLLM_MEMORY_PROFILER_ESTIMATE_CUDAGRAPHS=1), which more accurately accounts for CUDA graph memory during KV cache allocation. To try it now, set VLLM_MEMORY_PROFILER_ESTIMATE_CUDAGRAPHS=1 and increase --gpu-memory-utilization from 0.9000 to 0.9176 to maintain the same effective KV cache size.\\\\n(EngineCore pid=288794) INFO 05-21 06:41:02 [kv_cache_utils.py:1316] GPU KV cache size: 87,136 tokens\\\\n(EngineCore pid=288794) INFO 05-21 06:41:02 [kv_cache_utils.py:1321] Maximum concurrency for 4,096 tokens per request: 21.27x\\\\n(EngineCore pid=288794) \\\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):   0%|          | 0/51 [00:00<?, ?it/s]\\\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):   4%|▍         | 2/51 [00:00<00:02, 18.27it/s]\\\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):   8%|▊         | 4/51 [00:00<00:02, 18.07it/s]\\\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  12%|█▏        | 6/51 [00:00<00:02, 18.08it/s]\\\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  16%|█▌        | 8/51 [00:00<00:02, 18.09it/s]\\\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  20%|█▉        | 10/51 [00:00<00:02, 18.60it/s]\\\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  24%|██▎       | 12/51 [00:00<00:02, 19.01it/s]\\\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  29%|██▉       | 15/51 [00:00<00:01, 19.78it/s]\\\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  35%|███▌      | 18/51 [00:00<00:01, 20.75it/s]\\\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  41%|████      | 21/51 [00:01<00:01, 21.82it/s]\\\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  47%|████▋     | 24/51 [00:01<00:01, 23.05it/s]\\\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  53%|█████▎    | 27/51 [00:01<00:00, 24.32it/s]\\\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  59%|█████��    | 30/51 [00:01<00:00, 23.93it/s]\\\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  65%|██████▍   | 33/51 [00:01<00:00, 25.11it/s]\\\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  71%|███████   | 36/51 [00:01<00:00, 26.39it/s]\\\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  76%|███████▋  | 39/51 [00:01<00:00, 27.22it/s]\\\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  84%|████████▍ | 43/51 [00:01<00:00, 28.99it/s]\\\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  92%|█████████▏| 47/51 [00:01<00:00, 30.84it/s]\\\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE): 100%|██████████| 51/51 [00:02<00:00, 31.28it/s]\\\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE): 100%|██████████| 51/51 [00:02<00:00, 24.64it/s]\\\\n(EngineCore pid=288794) \\\\rCapturing CUDA graphs (decode, FULL):   0%|          | 0/35 [00:00<?, ?it/s]\\\\rCapturing CUDA graphs (decode, FULL):   9%|▊         | 3/35 [00:00<00:01, 25.32it/s]\\\\rCapturing CUDA graphs (decode, FULL):  17%|█▋        | 6/35 [00:00<00:01, 26.35it/s]\\\\rCapturing CUDA graphs (decode, F\\\\n\\\\n... [截断: 输出过长，省略 3526808 字符] ...\\\\n\\\\n, 29.31it/s, est. speed input: 5842.97 toks/s, output: 3129.24 toks/s]\\\\rProcessed prompts:  68%|██████▊   | 25460/37648 [11:54<03:04, 66.21it/s, est. speed input: 5860.18 toks/s, output: 3138.64 toks/s]\\\\rProcessed prompts:  68%|██████▊   | 25499/37648 [11:54<03:03, 66.38it/s, est. speed input: 5864.41 toks/s, output: 3140.56 toks/s]\\\\rProcessed prompts:  68%|██████▊   | 25529/37648 [11:55<03:54, 51.75it/s, est. speed input: 5863.32 toks/s, output: 3139.75 toks/s]\\\\rProcessed prompts:  68%|██████▊   | 25551/37648 [11:56<04:20, 46.48it/s, est. speed input: 5862.93 toks/s, output: 3139.00 toks/s]\\\\rProcessed prompts:  68%|██████▊   | 25567/37648 [11:56<04:44, 42.47it/s, est. speed input: 5862.23 toks/s, output: 3138.44 toks/s]\\\\rProcessed prompts:  68%|██████▊   | 25580/37648 [11:57<04:59, 40.33it/s, est. speed input: 5861.86 toks/s, output: 3137.93 toks/s]\\\\rProcessed prompts:  68%|██████▊   | 25590/37648 [11:57<04:48, 41.76it/s, est. speed input: 5862.59 toks/s, output: 3138.25 toks/s]\\\\rProcessed prompts:  68%|██████▊   | 25599/37648 [11:57<05:08, 39.06it/s, est. speed input: 5862.22 toks/s, output: 3138.46 toks/s]\\\\rProcessed prompts:  68%|██████▊   | 25606/37648 [11:57<05:17, 37.98it/s, est. speed input: 5862.07 toks/s, output: 3138.61 toks/s]\\\\rProcessed prompts:  68%|██████▊   | 25612/37648 [11:58<05:02, 39.76it/s, est. speed input: 5862.50 toks/s, output: 3138.90 toks/s]\\\\rProcessed prompts:  68%|██████▊   | 25618/37648 [11:58<04:46, 42.00it/s, est. speed input: 5862.97 toks/s, output: 3139.21 toks/s]\\\\rProcessed prompts:  68%|██████▊   | 25624/37648 [11:58<06:07, 32.71it/s, est. speed input: 5861.67 toks/s, output: 3138.63 toks/s]\\\\rProcessed prompts:  68%|██████▊   | 25629/37648 [11:58<06:18, 31.77it/s, est. speed input: 5861.40 toks/s, output: 3138.92 toks/s]\\\\rProcessed prompts:  68%|██████▊   | 25635/37648 [11:58<06:24, 31.27it/s, est. speed input: 5861.45 toks/s, output: 3138.61 toks/s]\\\\rProcessed prompts:  68%|██████▊   | 25640/37648 [11:59<06:27, 31.02it/s, est. speed input: 5861.24 toks/s, output: 3138.60 toks/s]\\\\rProcessed prompts:  68%|██████▊   | 25650/37648 [11:59<05:27, 36.63it/s, est. speed input: 5861.92 toks/s, output: 3139.05 toks/s]\\\\rProcessed prompts:  68%|██████▊   | 25657/37648 [11:59<05:24, 36.95it/s, est. speed input: 5862.02 toks/s, output: 3139.13 toks/s]\\\\rProcessed prompts:  68%|██████▊   | 25661/37648 [11:59<05:51, 34.11it/s, est. speed input: 5861.65 toks/s, output: 3138.85 toks/s]\\\\rProcessed prompts:  68%|██████▊   | 25668/37648 [11:59<05:38, 35.44it/s, est. speed input: 5861.85 toks/s, output: 3139.06 toks/s]\\\\rProcessed prompts:  68%|██████▊   | 25673/37648 [11:59<05:18, 37.58it/s, est. speed input: 5862.08 toks/s, output: 3139.06 toks/s]\\\\rProcessed prompts:  68%|██████▊   | 25679/37648 [11:59<04:51, 41.11it/s, est. speed input: 5862.57 toks/s, output: 3139.53 toks/s]\\\\rProcessed prompts:  68%|██████▊   | 25684/37648 [12:00<05:18, 37.57it/s, est. speed input: 5862.38 toks/s, output: 3139.47 toks/s]\\\\rProcessed prompts:  68%|██████▊   | 25688/37648 [12:00<05:45, 34.61it/s, est. speed input: 5862.14 toks/s, output: 3139.56 toks/s]\\\\rProcessed prompts:  68%|██████▊   | 25695/37648 [12:00<05:39, 35.25it/s, est. speed input: 5862.15 toks/s, output: 3139.55 toks/s]\\\\rProcessed prompts:  68%|██████▊   | 25700/37648 [12:00<05:56, 33.49it/s, est. speed input: 5861.87 toks/s, output: 3139.35 toks/s]\\\\rProcessed prompts:  68%|██████▊   | 25707/37648 [12:00<05:12, 38.21it/s, est. speed input: 5862.40 toks/s, output: 3139.58 toks/s]\\\\rProcessed prompts:  68%|██████▊   | 25712/37648 [12:00<05:34, 35.74it/s, est. speed input: 5862.18 toks/s, output: 3139.24 toks/s]\\\\rProcessed prompts:  68%|██████▊   | 25716/37648 [12:01<06:03, 32.86it/s, est. speed input: 5861.86 toks/s, output: 3139.00 toks/s]\\\\rProcessed prompts:  68%|██████▊   | 25721/37648 [12:01<05:31, 35.96it/s, est. speed input: 5862.17 toks/s, output: 3139.10 toks/s]\\\\rProcessed prompts:  68%|██████▊   | 25726/37648 [12:01<05:49, 34.15it/s, est. speed input: 5861.97 toks/s, output: 3138.81 toks/s]\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.41}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"(EngineCore pid=288794) INFO 05-21 06:40:58 [monitor.py:48] torch.compile took 3.38 s in total\\n(EngineCore pid=288794) INFO 05-21 06:40:58 [decorators.py:296] Directly load AOT compilation from path /root/.cache/vllm/torch_compile_cache/torch_aot_compile/eab5dd26de4269ce1cebe89803a55f98a94211fe3b7adcd1b2cc8520d8b977f9/rank_0_0/model\\n(EngineCore pid=288794) INFO 05-21 06:40:58 [monitor.py:76] Initial profiling/warmup run took 0.12 s\\n(EngineCore pid=288794) INFO 05-21 06:40:59 [kv_cache_utils.py:826] Overriding num_gpu_blocks=0 with num_gpu_blocks_override=512\\n(EngineCore pid=288794) INFO 05-21 06:40:59 [gpu_model_runner.py:5607] Profiling CUDA graph memory: PIECEWISE=51 (largest=512), FULL=35 (largest=256)\\n(EngineCore pid=288794) INFO 05-21 06:41:01 [gpu_model_runner.py:5686] Estimated CUDA graph memory: 0.55 GiB total\\n(EngineCore pid=288794) INFO 05-21 06:41:02 [gpu_worker.py:456] Available KV cache memory: 11.97 GiB\\n(EngineCore pid=288794) INFO 05-21 06:41:02 [gpu_worker.py:490] In v0.19, CUDA graph memory profiling will be enabled by default (VLLM_MEMORY_PROFILER_ESTIMATE_CUDAGRAPHS=1), which more accurately accounts for CUDA graph memory during KV cache allocation. To try it now, set VLLM_MEMORY_PROFILER_ESTIMATE_CUDAGRAPHS=1 and increase --gpu-memory-utilization from 0.9000 to 0.9176 to maintain the same effective KV cache size.\\n(EngineCore pid=288794) INFO 05-21 06:41:02 [kv_cache_utils.py:1316] GPU KV cache size: 87,136 tokens\\n(EngineCore pid=288794) INFO 05-21 06:41:02 [kv_cache_utils.py:1321] Maximum concurrency for 4,096 tokens per request: 21.27x\\n(EngineCore pid=288794) \\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):   0%|          | 0/51 [00:00<?, ?it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):   4%|▍         | 2/51 [00:00<00:02, 18.27it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):   8%|▊         | 4/51 [00:00<00:02, 18.07it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  12%|█▏        | 6/51 [00:00<00:02, 18.08it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  16%|█▌        | 8/51 [00:00<00:02, 18.09it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  20%|█▉        | 10/51 [00:00<00:02, 18.60it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  24%|██▎       | 12/51 [00:00<00:02, 19.01it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  29%|██▉       | 15/51 [00:00<00:01, 19.78it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  35%|███▌      | 18/51 [00:00<00:01, 20.75it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  41%|████      | 21/51 [00:01<00:01, 21.82it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  47%|████▋     | 24/51 [00:01<00:01, 23.05it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  53%|█████▎    | 27/51 [00:01<00:00, 24.32it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  59%|█████��    | 30/51 [00:01<00:00, 23.93it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  65%|██████▍   | 33/51 [00:01<00:00, 25.11it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  71%|███████   | 36/51 [00:01<00:00, 26.39it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  76%|███████▋  | 39/51 [00:01<00:00, 27.22it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  84%|████████▍ | 43/51 [00:01<00:00, 28.99it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  92%|█████████▏| 47/51 [00:01<00:00, 30.84it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE): 100%|██████████| 51/51 [00:02<00:00, 31.28it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE): 100%|██████████| 51/51 [00:02<00:00, 24.64it/s]\\n(EngineCore pid=288794) \\rCapturing CUDA graphs (decode, FULL):   0%|          | 0/35 [00:00<?, ?it/s]\\rCapturing CUDA graphs (decode, FULL):   9%|▊         | 3/35 [00:00<00:01, 25.32it/s]\\rCapturing CUDA graphs (decode, FULL):  17%|█▋        | 6/35 [00:00<00:01, 26.35it/s]\\rCapturing CUDA graphs (decode, F\\n\\n... [截断: 输出过长，省略 3526808 字符] ...\\n\\n, 29.31it/s, est. speed input: 5842.97 toks/s, output: 3129.24 toks/s]\\rProcessed prompts:  68%|██████▊   | 25460/37648 [11:54<03:04, 66.21it/s, est. speed input: 5860.18 toks/s, output: 3138.64 toks/s]\\rProcessed prompts:  68%|██████▊   | 25499/37648 [11:54<03:03, 66.38it/s, est. speed input: 5864.41 toks/s, output: 3140.56 toks/s]\\rProcessed prompts:  68%|██████▊   | 25529/37648 [11:55<03:54, 51.75it/s, est. speed input: 5863.32 toks/s, output: 3139.75 toks/s]\\rProcessed prompts:  68%|██████▊   | 25551/37648 [11:56<04:20, 46.48it/s, est. speed input: 5862.93 toks/s, output: 3139.00 toks/s]\\rProcessed prompts:  68%|██████▊   | 25567/37648 [11:56<04:44, 42.47it/s, est. speed input: 5862.23 toks/s, output: 3138.44 toks/s]\\rProcessed prompts:  68%|██████▊   | 25580/37648 [11:57<04:59, 40.33it/s, est. speed input: 5861.86 toks/s, output: 3137.93 toks/s]\\rProcessed prompts:  68%|██████▊   | 25590/37648 [11:57<04:48, 41.76it/s, est. speed input: 5862.59 toks/s, output: 3138.25 toks/s]\\rProcessed prompts:  68%|██████▊   | 25599/37648 [11:57<05:08, 39.06it/s, est. speed input: 5862.22 toks/s, output: 3138.46 toks/s]\\rProcessed prompts:  68%|██████▊   | 25606/37648 [11:57<05:17, 37.98it/s, est. speed input: 5862.07 toks/s, output: 3138.61 toks/s]\\rProcessed prompts:  68%|██████▊   | 25612/37648 [11:58<05:02, 39.76it/s, est. speed input: 5862.50 toks/s, output: 3138.90 toks/s]\\rProcessed prompts:  68%|██████▊   | 25618/37648 [11:58<04:46, 42.00it/s, est. speed input: 5862.97 toks/s, output: 3139.21 toks/s]\\rProcessed prompts:  68%|██████▊   | 25624/37648 [11:58<06:07, 32.71it/s, est. speed input: 5861.67 toks/s, output: 3138.63 toks/s]\\rProcessed prompts:  68%|██████▊   | 25629/37648 [11:58<06:18, 31.77it/s, est. speed input: 5861.40 toks/s, output: 3138.92 toks/s]\\rProcessed prompts:  68%|██████▊   | 25635/37648 [11:58<06:24, 31.27it/s, est. speed input: 5861.45 toks/s, output: 3138.61 toks/s]\\rProcessed prompts:  68%|██████▊   | 25640/37648 [11:59<06:27, 31.02it/s, est. speed input: 5861.24 toks/s, output: 3138.60 toks/s]\\rProcessed prompts:  68%|██████▊   | 25650/37648 [11:59<05:27, 36.63it/s, est. speed input: 5861.92 toks/s, output: 3139.05 toks/s]\\rProcessed prompts:  68%|██████▊   | 25657/37648 [11:59<05:24, 36.95it/s, est. speed input: 5862.02 toks/s, output: 3139.13 toks/s]\\rProcessed prompts:  68%|██████▊   | 25661/37648 [11:59<05:51, 34.11it/s, est. speed input: 5861.65 toks/s, output: 3138.85 toks/s]\\rProcessed prompts:  68%|██████▊   | 25668/37648 [11:59<05:38, 35.44it/s, est. speed input: 5861.85 toks/s, output: 3139.06 toks/s]\\rProcessed prompts:  68%|██████▊   | 25673/37648 [11:59<05:18, 37.58it/s, est. speed input: 5862.08 toks/s, output: 3139.06 toks/s]\\rProcessed prompts:  68%|██████▊   | 25679/37648 [11:59<04:51, 41.11it/s, est. speed input: 5862.57 toks/s, output: 3139.53 toks/s]\\rProcessed prompts:  68%|██████▊   | 25684/37648 [12:00<05:18, 37.57it/s, est. speed input: 5862.38 toks/s, output: 3139.47 toks/s]\\rProcessed prompts:  68%|██████▊   | 25688/37648 [12:00<05:45, 34.61it/s, est. speed input: 5862.14 toks/s, output: 3139.56 toks/s]\\rProcessed prompts:  68%|██████▊   | 25695/37648 [12:00<05:39, 35.25it/s, est. speed input: 5862.15 toks/s, output: 3139.55 toks/s]\\rProcessed prompts:  68%|██████▊   | 25700/37648 [12:00<05:56, 33.49it/s, est. speed input: 5861.87 toks/s, output: 3139.35 toks/s]\\rProcessed prompts:  68%|██████▊   | 25707/37648 [12:00<05:12, 38.21it/s, est. speed input: 5862.40 toks/s, output: 3139.58 toks/s]\\rProcessed prompts:  68%|██████▊   | 25712/37648 [12:00<05:34, 35.74it/s, est. speed input: 5862.18 toks/s, output: 3139.24 toks/s]\\rProcessed prompts:  68%|██████▊   | 25716/37648 [12:01<06:03, 32.86it/s, est. speed input: 5861.86 toks/s, output: 3139.00 toks/s]\\rProcessed prompts:  68%|██████▊   | 25721/37648 [12:01<05:31, 35.96it/s, est. speed input: 5862.17 toks/s, output: 3139.10 toks/s]\\rProcessed prompts:  68%|██████▊   | 25726/37648 [12:01<05:49, 34.15it/s, est. speed input: 5861.97 toks/s, output: 3138.81 toks/s]\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.41}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-21T00:37:05.785Z_
+
+<details><summary>↩ Tool result · `toolu_0182sxc8saMuUFmMvt7q23JV`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"(EngineCore pid=289006) INFO 05-21 06:41:00 [monitor.py:48] torch.compile took 3.39 s in total\\n(EngineCore pid=289006) INFO 05-21 06:41:00 [decorators.py:296] Directly load AOT compilation from path /root/.cache/vllm/torch_compile_cache/torch_aot_compile/eab5dd26de4269ce1cebe89803a55f98a94211fe3b7adcd1b2cc8520d8b977f9/rank_0_0/model\\n(EngineCore pid=289006) INFO 05-21 06:41:00 [monitor.py:76] Initial profiling/warmup run took 0.12 s\\n(EngineCore pid=289006) INFO 05-21 06:41:01 [kv_cache_utils.py:826] Overriding num_gpu_blocks=0 with num_gpu_blocks_override=512\\n(EngineCore pid=289006) INFO 05-21 06:41:01 [gpu_model_runner.py:5607] Profiling CUDA graph memory: PIECEWISE=51 (largest=512), FULL=35 (largest=256)\\n(EngineCore pid=289006) INFO 05-21 06:41:03 [gpu_model_runner.py:5686] Estimated CUDA graph memory: 0.55 GiB total\\n(EngineCore pid=289006) INFO 05-21 06:41:04 [gpu_worker.py:456] Available KV cache memory: 11.97 GiB\\n(EngineCore pid=289006) INFO 05-21 06:41:04 [gpu_worker.py:490] In v0.19, CUDA graph memory profiling will be enabled by default (VLLM_MEMORY_PROFILER_ESTIMATE_CUDAGRAPHS=1), which more accurately accounts for CUDA graph memory during KV cache allocation. To try it now, set VLLM_MEMORY_PROFILER_ESTIMATE_CUDAGRAPHS=1 and increase --gpu-memory-utilization from 0.9000 to 0.9176 to maintain the same effective KV cache size.\\n(EngineCore pid=289006) INFO 05-21 06:41:04 [kv_cache_utils.py:1316] GPU KV cache size: 87,136 tokens\\n(EngineCore pid=289006) INFO 05-21 06:41:04 [kv_cache_utils.py:1321] Maximum concurrency for 4,096 tokens per request: 21.27x\\n(EngineCore pid=289006) \\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):   0%|          | 0/51 [00:00<?, ?it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):   4%|▍         | 2/51 [00:00<00:02, 18.14it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):   8%|▊         | 4/51 [00:00<00:02, 18.18it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  12%|█▏        | 6/51 [00:00<00:02, 18.03it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  16%|█▌        | 8/51 [00:00<00:02, 18.02it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  20%|█▉        | 10/51 [00:00<00:02, 18.54it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  24%|██▎       | 12/51 [00:00<00:02, 18.96it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  29%|██▉       | 15/51 [00:00<00:01, 19.76it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  35%|███▌      | 18/51 [00:00<00:01, 20.71it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  41%|████      | 21/51 [00:01<00:01, 21.85it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  47%|████▋     | 24/51 [00:01<00:01, 23.07it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  53%|█████▎    | 27/51 [00:01<00:00, 24.42it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  59%|█████��    | 30/51 [00:01<00:00, 23.97it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  65%|██████▍   | 33/51 [00:01<00:00, 25.13it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  71%|███████   | 36/51 [00:01<00:00, 26.41it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  76%|███████▋  | 39/51 [00:01<00:00, 27.21it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  84%|████████▍ | 43/51 [00:01<00:00, 28.92it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  92%|█████████▏| 47/51 [00:01<00:00, 30.80it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE): 100%|██████████| 51/51 [00:02<00:00, 31.22it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE): 100%|██████████| 51/51 [00:02<00:00, 24.63it/s]\\n(EngineCore pid=289006) \\rCapturing CUDA graphs (decode, FULL):   0%|          | 0/35 [00:00<?, ?it/s]\\rCapturing CUDA graphs (decode, FULL):   9%|▊         | 3/35 [00:00<00:01, 25.40it/s]\\rCapturing CUDA graphs (decode, FULL):  17%|█▋        | 6/35 [00:00<00:01, 26.45it/s]\\rCapturing CUDA graphs (decode, F\\n\\n... [截断: 输出过长，省略 3615372 字符] ...\\n\\n 33.86it/s, est. speed input: 5748.28 toks/s, output: 3078.90 toks/s]\\rProcessed prompts:  93%|█████████▎| 34934/37648 [16:38<01:17, 34.95it/s, est. speed input: 5748.28 toks/s, output: 3078.83 toks/s]\\rProcessed prompts:  93%|█████████▎| 34941/37648 [16:38<01:15, 35.89it/s, est. speed input: 5748.40 toks/s, output: 3078.78 toks/s]\\rProcessed prompts:  93%|█████████▎| 34945/37648 [16:39<01:21, 32.98it/s, est. speed input: 5748.11 toks/s, output: 3078.50 toks/s]\\rProcessed prompts:  93%|█████████▎| 34949/37648 [16:39<01:38, 27.53it/s, est. speed input: 5747.45 toks/s, output: 3078.06 toks/s]\\rProcessed prompts:  93%|█████████▎| 34956/37648 [16:39<01:27, 30.62it/s, est. speed input: 5747.52 toks/s, output: 3078.04 toks/s]\\rProcessed prompts:  93%|█████████▎| 34961/37648 [16:39<01:19, 33.90it/s, est. speed input: 5747.76 toks/s, output: 3078.25 toks/s]\\rProcessed prompts:  93%|█████████▎| 34967/37648 [16:39<01:18, 34.19it/s, est. speed input: 5747.73 toks/s, output: 3078.20 toks/s]\\rProcessed prompts:  93%|█████████▎| 34974/37648 [16:39<01:06, 40.28it/s, est. speed input: 5748.23 toks/s, output: 3078.39 toks/s]\\rProcessed prompts:  93%|█████████▎| 34979/37648 [16:40<01:15, 35.22it/s, est. speed input: 5747.96 toks/s, output: 3078.11 toks/s]\\rProcessed prompts:  93%|█████████▎| 34983/37648 [16:40<01:23, 31.88it/s, est. speed input: 5747.63 toks/s, output: 3077.78 toks/s]\\rProcessed prompts:  93%|█████████▎| 34987/37648 [16:40<01:30, 29.49it/s, est. speed input: 5747.34 toks/s, output: 3077.88 toks/s]\\rProcessed prompts:  93%|█████████▎| 34993/37648 [16:40<01:25, 31.19it/s, est. speed input: 5747.31 toks/s, output: 3077.96 toks/s]\\rProcessed prompts:  93%|█████████▎| 34997/37648 [16:40<01:26, 30.51it/s, est. speed input: 5747.11 toks/s, output: 3077.78 toks/s]\\rProcessed prompts:  93%|█████████▎| 35001/37648 [16:40<01:23, 31.52it/s, est. speed input: 5747.06 toks/s, output: 3077.75 toks/s]\\rProcessed prompts:  93%|█████████▎| 35009/37648 [16:41<01:16, 34.58it/s, est. speed input: 5747.23 toks/s, output: 3077.80 toks/s]\\rProcessed prompts:  93%|█████████▎| 35014/37648 [16:41<01:19, 33.10it/s, est. speed input: 5747.10 toks/s, output: 3077.75 toks/s]\\rProcessed prompts:  93%|█████████▎| 35018/37648 [16:41<01:24, 31.26it/s, est. speed input: 5746.93 toks/s, output: 3077.83 toks/s]\\rProcessed prompts:  93%|█████████▎| 35023/37648 [16:41<01:16, 34.16it/s, est. speed input: 5747.06 toks/s, output: 3077.80 toks/s]\\rProcessed prompts:  93%|█████████▎| 35027/37648 [16:41<01:22, 31.61it/s, est. speed input: 5746.89 toks/s, output: 3077.98 toks/s]\\rProcessed prompts:  93%|█████████▎| 35033/37648 [16:41<01:20, 32.39it/s, est. speed input: 5746.85 toks/s, output: 3077.81 toks/s]\\rProcessed prompts:  93%|█████████▎| 35038/37648 [16:41<01:13, 35.50it/s, est. speed input: 5747.01 toks/s, output: 3077.91 toks/s]\\rProcessed prompts:  93%|████��████▎| 35042/37648 [16:42<01:19, 32.87it/s, est. speed input: 5746.81 toks/s, output: 3077.74 toks/s]\\rProcessed prompts:  93%|█████████▎| 35050/37648 [16:42<01:12, 35.89it/s, est. speed input: 5747.03 toks/s, output: 3077.84 toks/s]\\rProcessed prompts:  93%|█████████▎| 35056/37648 [16:42<01:13, 35.33it/s, est. speed input: 5746.99 toks/s, output: 3077.78 toks/s]\\rProcessed prompts:  93%|█████████▎| 35060/37648 [16:42<01:19, 32.43it/s, est. speed input: 5746.74 toks/s, output: 3077.72 toks/s]\\rProcessed prompts:  93%|█████████▎| 35065/37648 [16:42<01:21, 31.79it/s, est. speed input: 5746.66 toks/s, output: 3077.92 toks/s]\\rProcessed prompts:  93%|█████████▎| 35074/37648 [16:42<01:11, 36.19it/s, est. speed input: 5746.97 toks/s, output: 3078.29 toks/s]\\rProcessed prompts:  93%|█████████▎| 35080/37648 [16:43<01:12, 35.29it/s, est. speed input: 5746.91 toks/s, output: 3078.24 toks/s]\\rProcessed prompts:  93%|█████████▎| 35085/37648 [16:43<01:15, 34.10it/s, est. speed input: 5746.81 toks/s, output: 3078.20 toks/s]\\rProcessed prompts:  93%|█████████▎| 35089/37648 [16:43<01:12, 35.15it/s, est. speed input: 5746.84 toks/s, output: 3078.19 toks/s]\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.94}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "76d953cb-c7f6-4df5-a554-a05152dd8139",
+  "uuid": "32560b5b-ab84-401b-b23f-0efd82505ce0",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"(EngineCore pid=289006) INFO 05-21 06:41:00 [monitor.py:48] torch.compile took 3.39 s in total\\\\n(EngineCore pid=289006) INFO 05-21 06:41:00 [decorators.py:296] Directly load AOT compilation from path /root/.cache/vllm/torch_compile_cache/torch_aot_compile/eab5dd26de4269ce1cebe89803a55f98a94211fe3b7adcd1b2cc8520d8b977f9/rank_0_0/model\\\\n(EngineCore pid=289006) INFO 05-21 06:41:00 [monitor.py:76] Initial profiling/warmup run took 0.12 s\\\\n(EngineCore pid=289006) INFO 05-21 06:41:01 [kv_cache_utils.py:826] Overriding num_gpu_blocks=0 with num_gpu_blocks_override=512\\\\n(EngineCore pid=289006) INFO 05-21 06:41:01 [gpu_model_runner.py:5607] Profiling CUDA graph memory: PIECEWISE=51 (largest=512), FULL=35 (largest=256)\\\\n(EngineCore pid=289006) INFO 05-21 06:41:03 [gpu_model_runner.py:5686] Estimated CUDA graph memory: 0.55 GiB total\\\\n(EngineCore pid=289006) INFO 05-21 06:41:04 [gpu_worker.py:456] Available KV cache memory: 11.97 GiB\\\\n(EngineCore pid=289006) INFO 05-21 06:41:04 [gpu_worker.py:490] In v0.19, CUDA graph memory profiling will be enabled by default (VLLM_MEMORY_PROFILER_ESTIMATE_CUDAGRAPHS=1), which more accurately accounts for CUDA graph memory during KV cache allocation. To try it now, set VLLM_MEMORY_PROFILER_ESTIMATE_CUDAGRAPHS=1 and increase --gpu-memory-utilization from 0.9000 to 0.9176 to maintain the same effective KV cache size.\\\\n(EngineCore pid=289006) INFO 05-21 06:41:04 [kv_cache_utils.py:1316] GPU KV cache size: 87,136 tokens\\\\n(EngineCore pid=289006) INFO 05-21 06:41:04 [kv_cache_utils.py:1321] Maximum concurrency for 4,096 tokens per request: 21.27x\\\\n(EngineCore pid=289006) \\\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):   0%|          | 0/51 [00:00<?, ?it/s]\\\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):   4%|▍         | 2/51 [00:00<00:02, 18.14it/s]\\\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):   8%|▊         | 4/51 [00:00<00:02, 18.18it/s]\\\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  12%|█▏        | 6/51 [00:00<00:02, 18.03it/s]\\\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  16%|█▌        | 8/51 [00:00<00:02, 18.02it/s]\\\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  20%|█▉        | 10/51 [00:00<00:02, 18.54it/s]\\\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  24%|██▎       | 12/51 [00:00<00:02, 18.96it/s]\\\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  29%|██▉       | 15/51 [00:00<00:01, 19.76it/s]\\\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  35%|███▌      | 18/51 [00:00<00:01, 20.71it/s]\\\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  41%|████      | 21/51 [00:01<00:01, 21.85it/s]\\\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  47%|████▋     | 24/51 [00:01<00:01, 23.07it/s]\\\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  53%|█████▎    | 27/51 [00:01<00:00, 24.42it/s]\\\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  59%|█████��    | 30/51 [00:01<00:00, 23.97it/s]\\\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  65%|██████▍   | 33/51 [00:01<00:00, 25.13it/s]\\\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  71%|███████   | 36/51 [00:01<00:00, 26.41it/s]\\\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  76%|███████▋  | 39/51 [00:01<00:00, 27.21it/s]\\\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  84%|████████▍ | 43/51 [00:01<00:00, 28.92it/s]\\\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  92%|█████████▏| 47/51 [00:01<00:00, 30.80it/s]\\\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE): 100%|██████████| 51/51 [00:02<00:00, 31.22it/s]\\\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE): 100%|██████████| 51/51 [00:02<00:00, 24.63it/s]\\\\n(EngineCore pid=289006) \\\\rCapturing CUDA graphs (decode, FULL):   0%|          | 0/35 [00:00<?, ?it/s]\\\\rCapturing CUDA graphs (decode, FULL):   9%|▊         | 3/35 [00:00<00:01, 25.40it/s]\\\\rCapturing CUDA graphs (decode, FULL):  17%|█▋        | 6/35 [00:00<00:01, 26.45it/s]\\\\rCapturing CUDA graphs (decode, F\\\\n\\\\n... [截断: 输出过长，省略 3615372 字符] ...\\\\n\\\\n 33.86it/s, est. speed input: 5748.28 toks/s, output: 3078.90 toks/s]\\\\rProcessed prompts:  93%|█████████▎| 34934/37648 [16:38<01:17, 34.95it/s, est. speed input: 5748.28 toks/s, output: 3078.83 toks/s]\\\\rProcessed prompts:  93%|█████████▎| 34941/37648 [16:38<01:15, 35.89it/s, est. speed input: 5748.40 toks/s, output: 3078.78 toks/s]\\\\rProcessed prompts:  93%|█████████▎| 34945/37648 [16:39<01:21, 32.98it/s, est. speed input: 5748.11 toks/s, output: 3078.50 toks/s]\\\\rProcessed prompts:  93%|█████████▎| 34949/37648 [16:39<01:38, 27.53it/s, est. speed input: 5747.45 toks/s, output: 3078.06 toks/s]\\\\rProcessed prompts:  93%|█████████▎| 34956/37648 [16:39<01:27, 30.62it/s, est. speed input: 5747.52 toks/s, output: 3078.04 toks/s]\\\\rProcessed prompts:  93%|█████████▎| 34961/37648 [16:39<01:19, 33.90it/s, est. speed input: 5747.76 toks/s, output: 3078.25 toks/s]\\\\rProcessed prompts:  93%|█████████▎| 34967/37648 [16:39<01:18, 34.19it/s, est. speed input: 5747.73 toks/s, output: 3078.20 toks/s]\\\\rProcessed prompts:  93%|█████████▎| 34974/37648 [16:39<01:06, 40.28it/s, est. speed input: 5748.23 toks/s, output: 3078.39 toks/s]\\\\rProcessed prompts:  93%|█████████▎| 34979/37648 [16:40<01:15, 35.22it/s, est. speed input: 5747.96 toks/s, output: 3078.11 toks/s]\\\\rProcessed prompts:  93%|█████████▎| 34983/37648 [16:40<01:23, 31.88it/s, est. speed input: 5747.63 toks/s, output: 3077.78 toks/s]\\\\rProcessed prompts:  93%|█████████▎| 34987/37648 [16:40<01:30, 29.49it/s, est. speed input: 5747.34 toks/s, output: 3077.88 toks/s]\\\\rProcessed prompts:  93%|█████████▎| 34993/37648 [16:40<01:25, 31.19it/s, est. speed input: 5747.31 toks/s, output: 3077.96 toks/s]\\\\rProcessed prompts:  93%|█████████▎| 34997/37648 [16:40<01:26, 30.51it/s, est. speed input: 5747.11 toks/s, output: 3077.78 toks/s]\\\\rProcessed prompts:  93%|█████████▎| 35001/37648 [16:40<01:23, 31.52it/s, est. speed input: 5747.06 toks/s, output: 3077.75 toks/s]\\\\rProcessed prompts:  93%|█████████▎| 35009/37648 [16:41<01:16, 34.58it/s, est. speed input: 5747.23 toks/s, output: 3077.80 toks/s]\\\\rProcessed prompts:  93%|█████████▎| 35014/37648 [16:41<01:19, 33.10it/s, est. speed input: 5747.10 toks/s, output: 3077.75 toks/s]\\\\rProcessed prompts:  93%|█████████▎| 35018/37648 [16:41<01:24, 31.26it/s, est. speed input: 5746.93 toks/s, output: 3077.83 toks/s]\\\\rProcessed prompts:  93%|█████████▎| 35023/37648 [16:41<01:16, 34.16it/s, est. speed input: 5747.06 toks/s, output: 3077.80 toks/s]\\\\rProcessed prompts:  93%|█████████▎| 35027/37648 [16:41<01:22, 31.61it/s, est. speed input: 5746.89 toks/s, output: 3077.98 toks/s]\\\\rProcessed prompts:  93%|█████████▎| 35033/37648 [16:41<01:20, 32.39it/s, est. speed input: 5746.85 toks/s, output: 3077.81 toks/s]\\\\rProcessed prompts:  93%|█████████▎| 35038/37648 [16:41<01:13, 35.50it/s, est. speed input: 5747.01 toks/s, output: 3077.91 toks/s]\\\\rProcessed prompts:  93%|████��████▎| 35042/37648 [16:42<01:19, 32.87it/s, est. speed input: 5746.81 toks/s, output: 3077.74 toks/s]\\\\rProcessed prompts:  93%|█████████▎| 35050/37648 [16:42<01:12, 35.89it/s, est. speed input: 5747.03 toks/s, output: 3077.84 toks/s]\\\\rProcessed prompts:  93%|█████████▎| 35056/37648 [16:42<01:13, 35.33it/s, est. speed input: 5746.99 toks/s, output: 3077.78 toks/s]\\\\rProcessed prompts:  93%|█████████▎| 35060/37648 [16:42<01:19, 32.43it/s, est. speed input: 5746.74 toks/s, output: 3077.72 toks/s]\\\\rProcessed prompts:  93%|█████████▎| 35065/37648 [16:42<01:21, 31.79it/s, est. speed input: 5746.66 toks/s, output: 3077.92 toks/s]\\\\rProcessed prompts:  93%|█████████▎| 35074/37648 [16:42<01:11, 36.19it/s, est. speed input: 5746.97 toks/s, output: 3078.29 toks/s]\\\\rProcessed prompts:  93%|█████████▎| 35080/37648 [16:43<01:12, 35.29it/s, est. speed input: 5746.91 toks/s, output: 3078.24 toks/s]\\\\rProcessed prompts:  93%|█████████▎| 35085/37648 [16:43<01:15, 34.10it/s, est. speed input: 5746.81 toks/s, output: 3078.20 toks/s]\\\\rProcessed prompts:  93%|█████████▎| 35089/37648 [16:43<01:12, 35.15it/s, est. speed input: 5746.84 toks/s, output: 3078.19 toks/s]\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.94}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"(EngineCore pid=289006) INFO 05-21 06:41:00 [monitor.py:48] torch.compile took 3.39 s in total\\n(EngineCore pid=289006) INFO 05-21 06:41:00 [decorators.py:296] Directly load AOT compilation from path /root/.cache/vllm/torch_compile_cache/torch_aot_compile/eab5dd26de4269ce1cebe89803a55f98a94211fe3b7adcd1b2cc8520d8b977f9/rank_0_0/model\\n(EngineCore pid=289006) INFO 05-21 06:41:00 [monitor.py:76] Initial profiling/warmup run took 0.12 s\\n(EngineCore pid=289006) INFO 05-21 06:41:01 [kv_cache_utils.py:826] Overriding num_gpu_blocks=0 with num_gpu_blocks_override=512\\n(EngineCore pid=289006) INFO 05-21 06:41:01 [gpu_model_runner.py:5607] Profiling CUDA graph memory: PIECEWISE=51 (largest=512), FULL=35 (largest=256)\\n(EngineCore pid=289006) INFO 05-21 06:41:03 [gpu_model_runner.py:5686] Estimated CUDA graph memory: 0.55 GiB total\\n(EngineCore pid=289006) INFO 05-21 06:41:04 [gpu_worker.py:456] Available KV cache memory: 11.97 GiB\\n(EngineCore pid=289006) INFO 05-21 06:41:04 [gpu_worker.py:490] In v0.19, CUDA graph memory profiling will be enabled by default (VLLM_MEMORY_PROFILER_ESTIMATE_CUDAGRAPHS=1), which more accurately accounts for CUDA graph memory during KV cache allocation. To try it now, set VLLM_MEMORY_PROFILER_ESTIMATE_CUDAGRAPHS=1 and increase --gpu-memory-utilization from 0.9000 to 0.9176 to maintain the same effective KV cache size.\\n(EngineCore pid=289006) INFO 05-21 06:41:04 [kv_cache_utils.py:1316] GPU KV cache size: 87,136 tokens\\n(EngineCore pid=289006) INFO 05-21 06:41:04 [kv_cache_utils.py:1321] Maximum concurrency for 4,096 tokens per request: 21.27x\\n(EngineCore pid=289006) \\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):   0%|          | 0/51 [00:00<?, ?it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):   4%|▍         | 2/51 [00:00<00:02, 18.14it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):   8%|▊         | 4/51 [00:00<00:02, 18.18it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  12%|█▏        | 6/51 [00:00<00:02, 18.03it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  16%|█▌        | 8/51 [00:00<00:02, 18.02it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  20%|█▉        | 10/51 [00:00<00:02, 18.54it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  24%|██▎       | 12/51 [00:00<00:02, 18.96it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  29%|██▉       | 15/51 [00:00<00:01, 19.76it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  35%|███▌      | 18/51 [00:00<00:01, 20.71it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  41%|████      | 21/51 [00:01<00:01, 21.85it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  47%|████▋     | 24/51 [00:01<00:01, 23.07it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  53%|█████▎    | 27/51 [00:01<00:00, 24.42it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  59%|█████��    | 30/51 [00:01<00:00, 23.97it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  65%|██████▍   | 33/51 [00:01<00:00, 25.13it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  71%|███████   | 36/51 [00:01<00:00, 26.41it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  76%|███████▋  | 39/51 [00:01<00:00, 27.21it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  84%|████████▍ | 43/51 [00:01<00:00, 28.92it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  92%|█████████▏| 47/51 [00:01<00:00, 30.80it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE): 100%|██████████| 51/51 [00:02<00:00, 31.22it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE): 100%|██████████| 51/51 [00:02<00:00, 24.63it/s]\\n(EngineCore pid=289006) \\rCapturing CUDA graphs (decode, FULL):   0%|          | 0/35 [00:00<?, ?it/s]\\rCapturing CUDA graphs (decode, FULL):   9%|▊         | 3/35 [00:00<00:01, 25.40it/s]\\rCapturing CUDA graphs (decode, FULL):  17%|█▋        | 6/35 [00:00<00:01, 26.45it/s]\\rCapturing CUDA graphs (decode, F\\n\\n... [截断: 输出过长，省略 3615372 字符] ...\\n\\n 33.86it/s, est. speed input: 5748.28 toks/s, output: 3078.90 toks/s]\\rProcessed prompts:  93%|█████████▎| 34934/37648 [16:38<01:17, 34.95it/s, est. speed input: 5748.28 toks/s, output: 3078.83 toks/s]\\rProcessed prompts:  93%|█████████▎| 34941/37648 [16:38<01:15, 35.89it/s, est. speed input: 5748.40 toks/s, output: 3078.78 toks/s]\\rProcessed prompts:  93%|█████████▎| 34945/37648 [16:39<01:21, 32.98it/s, est. speed input: 5748.11 toks/s, output: 3078.50 toks/s]\\rProcessed prompts:  93%|█████████▎| 34949/37648 [16:39<01:38, 27.53it/s, est. speed input: 5747.45 toks/s, output: 3078.06 toks/s]\\rProcessed prompts:  93%|█████████▎| 34956/37648 [16:39<01:27, 30.62it/s, est. speed input: 5747.52 toks/s, output: 3078.04 toks/s]\\rProcessed prompts:  93%|█████████▎| 34961/37648 [16:39<01:19, 33.90it/s, est. speed input: 5747.76 toks/s, output: 3078.25 toks/s]\\rProcessed prompts:  93%|█████████▎| 34967/37648 [16:39<01:18, 34.19it/s, est. speed input: 5747.73 toks/s, output: 3078.20 toks/s]\\rProcessed prompts:  93%|█████████▎| 34974/37648 [16:39<01:06, 40.28it/s, est. speed input: 5748.23 toks/s, output: 3078.39 toks/s]\\rProcessed prompts:  93%|█████████▎| 34979/37648 [16:40<01:15, 35.22it/s, est. speed input: 5747.96 toks/s, output: 3078.11 toks/s]\\rProcessed prompts:  93%|█████████▎| 34983/37648 [16:40<01:23, 31.88it/s, est. speed input: 5747.63 toks/s, output: 3077.78 toks/s]\\rProcessed prompts:  93%|█████████▎| 34987/37648 [16:40<01:30, 29.49it/s, est. speed input: 5747.34 toks/s, output: 3077.88 toks/s]\\rProcessed prompts:  93%|█████████▎| 34993/37648 [16:40<01:25, 31.19it/s, est. speed input: 5747.31 toks/s, output: 3077.96 toks/s]\\rProcessed prompts:  93%|█████████▎| 34997/37648 [16:40<01:26, 30.51it/s, est. speed input: 5747.11 toks/s, output: 3077.78 toks/s]\\rProcessed prompts:  93%|█████████▎| 35001/37648 [16:40<01:23, 31.52it/s, est. speed input: 5747.06 toks/s, output: 3077.75 toks/s]\\rProcessed prompts:  93%|█████████▎| 35009/37648 [16:41<01:16, 34.58it/s, est. speed input: 5747.23 toks/s, output: 3077.80 toks/s]\\rProcessed prompts:  93%|█████████▎| 35014/37648 [16:41<01:19, 33.10it/s, est. speed input: 5747.10 toks/s, output: 3077.75 toks/s]\\rProcessed prompts:  93%|█████████▎| 35018/37648 [16:41<01:24, 31.26it/s, est. speed input: 5746.93 toks/s, output: 3077.83 toks/s]\\rProcessed prompts:  93%|█████████▎| 35023/37648 [16:41<01:16, 34.16it/s, est. speed input: 5747.06 toks/s, output: 3077.80 toks/s]\\rProcessed prompts:  93%|█████████▎| 35027/37648 [16:41<01:22, 31.61it/s, est. speed input: 5746.89 toks/s, output: 3077.98 toks/s]\\rProcessed prompts:  93%|█████████▎| 35033/37648 [16:41<01:20, 32.39it/s, est. speed input: 5746.85 toks/s, output: 3077.81 toks/s]\\rProcessed prompts:  93%|█████████▎| 35038/37648 [16:41<01:13, 35.50it/s, est. speed input: 5747.01 toks/s, output: 3077.91 toks/s]\\rProcessed prompts:  93%|████��████▎| 35042/37648 [16:42<01:19, 32.87it/s, est. speed input: 5746.81 toks/s, output: 3077.74 toks/s]\\rProcessed prompts:  93%|█████████▎| 35050/37648 [16:42<01:12, 35.89it/s, est. speed input: 5747.03 toks/s, output: 3077.84 toks/s]\\rProcessed prompts:  93%|█████████▎| 35056/37648 [16:42<01:13, 35.33it/s, est. speed input: 5746.99 toks/s, output: 3077.78 toks/s]\\rProcessed prompts:  93%|█████████▎| 35060/37648 [16:42<01:19, 32.43it/s, est. speed input: 5746.74 toks/s, output: 3077.72 toks/s]\\rProcessed prompts:  93%|█████████▎| 35065/37648 [16:42<01:21, 31.79it/s, est. speed input: 5746.66 toks/s, output: 3077.92 toks/s]\\rProcessed prompts:  93%|█████████▎| 35074/37648 [16:42<01:11, 36.19it/s, est. speed input: 5746.97 toks/s, output: 3078.29 toks/s]\\rProcessed prompts:  93%|█████████▎| 35080/37648 [16:43<01:12, 35.29it/s, est. speed input: 5746.91 toks/s, output: 3078.24 toks/s]\\rProcessed prompts:  93%|█████████▎| 35085/37648 [16:43<01:15, 34.10it/s, est. speed input: 5746.81 toks/s, output: 3078.20 toks/s]\\rProcessed prompts:  93%|█████████▎| 35089/37648 [16:43<01:12, 35.15it/s, est. speed input: 5746.84 toks/s, output: 3078.19 toks/s]\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.94}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 25_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me extract the key information from the logs:
+
+1. **T=0.5 (cuda:0)**: Progress at 55% (20761/37648 → ~21009/37648), ~9:57 elapsed, ETA ~7:45 remaining based on current speed (~35 it/s). So total ~37648 prompts, currently at ~21009.
+
+2. **T=0.8 (cuda:1)**: Progress at 68% (25726/37648), ~12:01 elapsed, ETA ~5:18 remaining.
+
+
+3. **T=1.2 (cuda:2)**: Progress at 93% (35089/37648), ~16:43 elapsed, ETA ~1:15 remaining. The third GPU is nearly done, while the first two are still working through their batches. All three should finish within the next 8 minutes, with T=1.2 wrapping up first around 06:55 UTC.
+
+Now I'm noticing a timing discrepancy—the process logs show timestamps from 06:40 UTC on May 21, but the user mentioned starting around 22:41 UTC on May 20. The elapsed times in the progress bars (9-17 minutes) suggest these are recent restarts rather than continuous runs from yesterday. The GPU utilization at 87-93% confirms they're actively computing right now, so these must be fresh inference sessions that kicked off this morning. Looking at the inference elapsed times across the three temperature settings, they're all converging on roughly 18 minutes total, which means about 8-10 minutes remaining from now. But there's a timing discrepancy—if the process started at 06:40 and it's now around 06:55-07:00, that's only 15-20 minutes elapsed, yet the user mentioned starting around 22:41 UTC yesterday, which would be 8 hours ago. This suggests either these are separate runs, the process was restarted, or the timestamps are in a different timezone than I initially thought.
+
+The 37,648 prompts being processed with 8 samples each works out to about 4,700 examples, which does seem substantial for FewNERD. All three experiments are actively running with T=1.2 nearly done at 93%, T=0.8 at 68%, and T=0.5 at 55%, but no output files have appeared yet. GPU 3 remains idle, so there's spare capacity if needed.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "76d953cb-c7f6-4df5-a554-a05152dd8139",
+  "uuid": "5c720828-25f6-4e40-b974-027df8c85c0e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019VKxzVxHEhMhKAhJpe46qL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 12848,
+      "cache_read_input_tokens": 27826,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12848
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 26_
+
+三个实验都还在运行，进度如下：
+
+| 实验 | GPU | 进度 | 已推理时间 | 预计剩余 |
+|------|-----|------|-----------|---------|
+| **T=0.5** (exp_fewnerd_t05_s42) | cuda:0 (93% util) | **55%** (21009/37648) | ~10 min | ~8 min |
+| **T=0.8** (exp_fewnerd_t08_s42) | cuda:1 (87% util) | **68%** (25726/37648) | ~12 min | ~6 min |
+| **T=1.2** (exp_fewnerd_t12_s42) | cuda:2 (93% util) | **93%** (35089/37648) | ~17 min | ~1.5 min |
+
+**说明：**
+- 进程启动时间显示为 06:40 UTC（May 21），而非 22:41 UTC May 20。看起来这批是重启过的，实际推理阶段运行了约 10-17 分钟。
+- 总共 37,648 个 prompts（N=8 × 4,706 examples）。
+- 推理速度 ~5,750-5,860 toks/s input, ~3,080-3,140 toks/s output。
+- 尚无输出文件（完成后写入 output/ 目录）。
+
+**T=1.2 将在 ~1-2 分钟内完成，T=0.8 ~6 分钟，T=0.5 ~8-9 分钟。**
+
+**cuda:3** 完全空闲（0% util, 2 MiB memory）。可以铺新任务，比如另一个 seed 的实验或其他数据集的 T-ablation。
+
+要不要等完成后再来拉 metrics？或者先安排 cuda:3 的任务？
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "76d953cb-c7f6-4df5-a554-a05152dd8139",
+  "uuid": "7264781a-a991-4215-b65f-096d75229975",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019VKxzVxHEhMhKAhJpe46qL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 12848,
+      "cache_read_input_tokens": 27826,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12848
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 27_
+
+三个实验都还在运行，进度如下：
+
+| 实验 | GPU | 进度 | 已推理时间 | 预计剩余 |
+|------|-----|------|-----------|---------|
+| **T=0.5** (exp_fewnerd_t05_s42) | cuda:0 (93% util) | **55%** (21009/37648) | ~10 min | ~8 min |
+| **T=0.8** (exp_fewnerd_t08_s42) | cuda:1 (87% util) | **68%** (25726/37648) | ~12 min | ~6 min |
+| **T=1.2** (exp_fewnerd_t12_s42) | cuda:2 (93% util) | **93%** (35089/37648) | ~17 min | ~1.5 min |
+
+**说明：**
+- 进程启动时间显示为 06:40 UTC（May 21），而非 22:41 UTC May 20。看起来这批是重启过的，实际推理阶段运行了约 10-17 分钟。
+- 总共 37,648 个 prompts（N=8 × 4,706 examples）。
+- 推理速度 ~5,750-5,860 toks/s input, ~3,080-3,140 toks/s output。
+- 尚无输出文件（完成后写入 output/ 目录）。
+
+**T=1.2 将在 ~1-2 分钟内完成，T=0.8 ~6 分钟，T=0.5 ~8-9 分钟。**
+
+**cuda:3** 完全空闲（0% util, 2 MiB memory）。可以铺新任务，比如另一个 seed 的实验或其他数据集的 T-ablation。
+
+要不要等完成后再来拉 metrics？或者先安排 cuda:3 的任务？
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 77634,
+  "duration_api_ms": 68031,
+  "num_turns": 10,
+  "stop_reason": "end_turn",
+  "session_id": "76d953cb-c7f6-4df5-a554-a05152dd8139",
+  "total_cost_usd": 0.32577825,
+  "usage": {
+    "input_tokens": 12,
+    "cache_creation_input_tokens": 28833,
+    "cache_read_input_tokens": 138542,
+    "output_tokens": 2988,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 28833,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 1645,
+        "cache_read_input_tokens": 27826,
+        "cache_creation_input_tokens": 12848,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 12848
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1406,
+      "outputTokens": 27,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.0015409999999999998,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 12,
+      "outputTokens": 2988,
+      "cacheReadInputTokens": 138542,
+      "cacheCreationInputTokens": 28833,
+      "webSearchRequests": 0,
+      "costUSD": 0.32423725,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "84539c25-3528-4f1d-bfdc-e3fa9d5ea5cc"
+}
+```
+
+</details>
+
+---

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "090b41a3a92c6a2ac95f",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "code scierc 4b merge inference",
+  "task_key": "worker_code_scierc_4b_merge_inference_20260515T194605",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_scierc_4b_merge_inference_20260515T194605_result.json",
+    "occurrence": 1,
+    "bytes": 92,
+    "sha256": "3978082e15774ed48b301c18f57c9eec672f05ed464e7a701977b2c5322d0980"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练在 570/585 步，约 30 秒完成。已设置 60 秒后轮询检查。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-scierc-4b-merge-inference.md"
+}

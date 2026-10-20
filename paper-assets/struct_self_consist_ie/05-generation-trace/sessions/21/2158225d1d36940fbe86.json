@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2158225d1d36940fbe86",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ssh urgent full status check",
+  "task_key": "worker_ssh_urgent_full_status_check_20260521T224150",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_urgent_full_status_check_20260521T224150_result.json",
+    "occurrence": 1,
+    "bytes": 1720,
+    "sha256": "79dd3db547667a89e07393682dd50799cff0c527cdf59ebb84afad5fde5eafd1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Step 1: GPU 实际状态\n\n### autodl-5090\n| GPU | utilization | memory_used/total | 进程 |\n|-----|------------|-------------------|------|\n| 0 | 84% | 30186/32607 MiB | **mf4v2_s42_v3** (run_mvp_pilot.py, seed 42, fewnerd, exp021-merged) |\n| 1 | 0% | 2/32607 MiB | 空闲 |\n| 2 | 0% | 2/32607 MiB | 空闲 |\n| 3 | 0% | 2/32607 MiB | 空闲 |\n\n### autodl-5090-c\n| GPU | utilization | memory_used/total | 进程 |\n|-----|------------|-------------------|------|\n| 0 | 85% | 30263/32607 MiB | **mf4v2_s42_v4** (run_mvp_pilot.py, seed 42, fewnerd, exp021-merged) |\n| 1 | 0% | 0/32607 MiB | 空闲 |\n| 2 | 0% | 0/32607 MiB | 空闲 |\n| 3 | 84% | 30889/32607 MiB | **pretrained_s42_v2** (run_mvp_pilot.py, seed 42, fewnerd, Qwen2.5-7B-Instruct pretrained) |\n\n## Step 2: 5-epoch 持久化\n\n| seed | output/ | artifacts/ |\n|------|---------|------------|\n| s42 | ✓ (902B, May 22 06:01) | ✓ (902B, May 22 06:07) |\n| s123 | ✓ (905B, May 22 06:01) | ✓ (905B, May 22 06:07) |\n| s456 | ✓ (904B, May 22 05:20, 5090-c) | ✓ **已创建**（刚从 output/ 复制） |\n\n## Step 3: mf4v2_s42\n\n| 实验 | 服务器 | 状态 | 进度 | ETA |\n|------|--------|------|------|-----|\n| **v3** | 5090 GPU:0 | **running** | 78% (234456/301184) | ~25 min |\n| **v4** | 5090-c GPU:0 | **running** | 32% (96016/301184) | ~1h13min |\n| **pretrained_s42_v2** | 5090-c GPU:3 | **running** | 53% (19843/37648) | ~15 min |\n\n注：v3/v4 的 output 目录目前为空（samples.jsonl 尚未写入），数据在推理完成后才落盘。pretrained_s42_v2 使用原始 Qwen2.5-7B-Instruct，速度较慢（~17 it/s vs mf4v2 的 ~50 it/s），因为是非 fine-tuned 模型生成更长输出。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-urgent-full-status-check.md"
+}

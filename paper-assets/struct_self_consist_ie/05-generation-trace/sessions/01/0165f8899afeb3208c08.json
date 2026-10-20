@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0165f8899afeb3208c08",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "code prepare 7b postprocessing",
+  "task_key": "worker_code_prepare-7b-postprocessing_20260520T033218",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_prepare-7b-postprocessing_20260520T033218_result.json",
+    "occurrence": 1,
+    "bytes": 6729,
+    "sha256": "96b03f1eb0bc49484f4d86af94a7ef79fbd59ff1ea42ba1a4c475dd54cde3185"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 7B 后处理 Pipeline 审查报告\n\n### 一、各脚本输入/输出/参数\n\n#### 1. `compute_signals.py`\n| 项 | 值 |\n|---|---|\n| 输入 | `--input-dir <dir>` — 期望 `<dir>/fewnerd/samples.jsonl` 或 `<dir>/samples.jsonl` |\n| 输出 | `full_signal_report.json` + `fewnerd_per_instance.json`（写入 input-dir 或 `--output-dir`） |\n| 关键参数 | `--model-size 7 --regime ft` |\n| 依赖 | `consistency.py`（通过 `STRUCT_CODE_DIR` 加载，默认 `/root/autodl-tmp/struct_self_consist_ie/code`） |\n\n#### 2. `format_for_scaling.py`\n| 项 | 值 |\n|---|---|\n| 输入 | `--report <path>/full_signal_report.json --model-size 7 --regime ft` |\n| 输出 | 打印到 stdout — 需手动 copy-paste 到 `plot_scaling_curve.py` DATA dict |\n| 注意 | 接受多个 `--report`，但**无内置 multi-seed 平均**，每个 report 独立输出 |\n\n#### 3. `bootstrap_construction.py`\n| 项 | 值 |\n|---|---|\n| 输入 | `--per-instance <path>/fewnerd_per_instance.json --dataset fewnerd` 或 `--input-dir` |\n| 输出 | `fewnerd_paired_bootstrap_result.json` |\n| 参数 | B=10000, seed=42, paired bootstrap |\n\n#### 4. `plot_scaling_curve.py`\n| 项 | 值 |\n|---|---|\n| 数据格式 | `DATA[(7, \"ft\", \"FewNERD\")] = {\"lp_rho\": ..., \"sj_rho\": ..., \"degen\": ..., ...}` |\n| 当前状态 | 7B FewNERD 行已有 placeholder（全 None），需填入 3-seed 平均值 |\n\n---\n\n### 二、实际路径与服务器分布\n\n| 服务器 | Seed | 路径 |\n|--------|------|------|\n| autodl-5090-c | 42 | `/root/autodl-tmp/struct_self_consist_ie/output/fewnerd_7b/qwen25_7b_n8_seed42/fewnerd/samples.jsonl` |\n| autodl-5090-b | 123 | `/root/autodl-tmp/struct_self_consist_ie/output/fewnerd_7b/qwen25_7b_n8_seed123/fewnerd/samples.jsonl` |\n| autodl-5090-b | 456 | `/root/autodl-tmp/struct_self_consist_ie/output/fewnerd_7b/qwen25_7b_n8_seed456/fewnerd/samples.jsonl` |\n\n**路径注意**：post_completion_checklist.md 写的是 `output/qwen25_7b_fewnerd_seed42`，但实际推理目录是 `output/fewnerd_7b/qwen25_7b_n8_seed42/`。checklist 中的路径**不准确**，执行时必须用实际路径。\n\n---\n\n### 三、跨服务器数据传输\n\n**不需要提前汇集原始数据。** compute_signals.py 对每个 seed 独立运行，可在各自服务器上原地执行。最终只需传输 3 个 `full_signal_report.json` + 3 个 `fewnerd_per_instance.json`（小文件，几 KB）到同一台服务器做聚合。\n\n---\n\n### 四、需要修改/补充的地方\n\n1. **缺少 3-seed 平均聚合步骤**：`format_for_scaling.py` 只处理单个 report，不做 multi-seed mean。需要手动算 3 个 report 的均值后填入 `plot_scaling_curve.py` DATA dict，或写一个简单聚合脚本。\n2. **post_completion_checklist.md 路径错误**：`output/qwen25_7b_fewnerd_seedXXX` 应改为 `output/fewnerd_7b/qwen25_7b_n8_seedXXX`。\n3. **consistency.py 必须在服务器 code/ 目录下**：compute_signals.py 通过 `STRUCT_CODE_DIR` 导入。如果 code/ 目录没有 `consistency.py`，SJ/FK 信号会被跳过（只打 WARNING，不报错）。需确认服务器上已部署。\n\n---\n\n### 五、完整执行计划\n\n#### Phase 1: 各服务器独立执行 compute_signals（可并行）\n\n```bash\n# === Server C (autodl-5090-c): seed42 ===\ncd /root/autodl-tmp/struct_self_consist_ie\npython artifacts/compute_signals.py \\\n  --input-dir output/fewnerd_7b/qwen25_7b_n8_seed42 \\\n  --model-size 7 --regime ft\n\n# === Server B (autodl-5090-b): seed123 ===\ncd /root/autodl-tmp/struct_self_consist_ie\npython artifacts/compute_signals.py \\\n  --input-dir output/fewnerd_7b/qwen25_7b_n8_seed123 \\\n  --model-size 7 --regime ft\n\n# === Server B (autodl-5090-b): seed456 ===\ncd /root/autodl-tmp/struct_self_consist_ie\npython artifacts/compute_signals.py \\\n  --input-dir output/fewnerd_7b/qwen25_7b_n8_seed456 \\\n  --model-size 7 --regime ft\n```\n\n**可并行**：3 个 seed 完全独立，B 上两个可同时跑。\n\n#### Phase 2: bootstrap_construction（可并行，与 Phase 1 在同一服务器顺序执行）\n\n```bash\n# === Server C: seed42 ===\npython artifacts/bootstrap_construction.py \\\n  --per-instance output/fewnerd_7b/qwen25_7b_n8_seed42/fewnerd_per_instance.json \\\n  --dataset fewnerd \\\n  --output-dir output/fewnerd_7b/qwen25_7b_n8_seed42\n\n# === Server B: seed123 ===\npython artifacts/bootstrap_construction.py \\\n  --per-instance output/fewnerd_7b/qwen25_7b_n8_seed123/fewnerd_per_instance.json \\\n  --dataset fewnerd \\\n  --output-dir output/fewnerd_7b/qwen25_7b_n8_seed123\n\n# === Server B: seed456 ===\npython artifacts/bootstrap_construction.py \\\n  --per-instance output/fewnerd_7b/qwen25_7b_n8_seed456/fewnerd_per_instance.json \\\n  --dataset fewnerd \\\n  --output-dir output/fewnerd_7b/qwen25_7b_n8_seed456\n```\n\n#### Phase 3: 收集结果到一台服务器（Server B 或 A）\n\n```bash\n# 从 Server C 拉 seed42 的 report 到 Server B\nscp autodl-5090-c:/root/autodl-tmp/struct_self_consist_ie/output/fewnerd_7b/qwen25_7b_n8_seed42/full_signal_report.json \\\n    /root/autodl-tmp/struct_self_consist_ie/output/fewnerd_7b/qwen25_7b_n8_seed42/full_signal_report.json\n```\n\n或者直接在本地（control plane）收集 3 个 JSON。\n\n#### Phase 4: format_for_scaling + 手动 3-seed 平均\n\n```bash\n# 各 seed 独立 format（查看各 seed 数值）\npython artifacts/format_for_scaling.py \\\n  --report output/fewnerd_7b/qwen25_7b_n8_seed42/full_signal_report.json \\\n  --model-size 7 --regime ft\n\npython artifacts/format_for_scaling.py \\\n  --report output/fewnerd_7b/qwen25_7b_n8_seed123/full_signal_report.json \\\n  --model-size 7 --regime ft\n\npython artifacts/format_for_scaling.py \\\n  --report output/fewnerd_7b/qwen25_7b_n8_seed456/full_signal_report.json \\\n  --model-size 7 --regime ft\n```\n\n然后**手动计算 3-seed 均值**（lp_rho, sj_rho, vc_rho, degen, construction_lp_delta, greedy_f1, oracle_f1），填入 `plot_scaling_curve.py` 的 `(7, \"ft\", \"FewNERD\")` 条目。\n\n#### Phase 5: 生成图表\n\n```bash\npython artifacts/plot_scaling_curve.py\n# 输出: artifacts/scaling_signal_rho.pdf, scaling_degeneracy.pdf, scaling_construction_delta.pdf, scaling_curve_draft.pdf\n```\n\n---\n\n### 六、并行性总结\n\n| Phase | 步骤 | 并行度 |\n|-------|------|--------|\n| 1 | compute_signals ×3 | 3 并行（跨服务器） |\n| 2 | bootstrap ×3 | 3 并行（Phase 1 各自完成后） |\n| 3 | scp 收集 | 串行 |\n| 4 | format + 手动平均 | 串行 |\n| 5 | plot | 串行 |\n\n总耗时估计：Phase 1 是瓶颈（FewNERD 4706 instances × SJ/FK 计算较重，单 seed 约 5-15 min），Phase 2 约 2 min/seed，Phase 3-5 < 1 min。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-prepare-7b-postprocessing.md"
+}

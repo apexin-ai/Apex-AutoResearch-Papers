@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "01f006122dc021cb2f0a",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis multiseed flip overlap",
+  "task_key": "worker_analysis_multiseed_flip_overlap_20260515T113411",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_multiseed_flip_overlap_20260515T113411_result.json",
+    "occurrence": 1,
+    "bytes": 891,
+    "sha256": "03ddcace9bf4bf1317af12e26d4b540a30590bfd95253501fb1c11b8da6df16b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。核心结论：\n\n**Jaccard ~0.42** — 中等稳定性，LP failure pattern 部分 systematic 但不够 robust。\n\n关键数据点：\n- 3-seed stable failures: 34/551 instances（排除 0-gold-rel 后 24 个）\n- Gold relation 数与 failure rate 强正相关（1 rel → 4.3%, 6 rels → 26.2%）\n- Flip instances 仅 5-6 个，太少做独立论点\n- LP 在 sample 级别极不稳定（1.5% 三种子一致），但 instance 级别中等稳定\n- Constrained vs free-form LP delta 相关 r=0.52\n\n**Section 5 建议**: 用中等措辞——\"LP failures are partially systematic, driven by instance complexity\"。Flip instances 只适合作为 illustrative example 提及，不适合作为独立 subsection。完整 Jaccard 矩阵和 stable failure 列表放 appendix。\n\n报告已写到 `artifacts/multiseed_flip_overlap_analysis.md` 并注册。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-multiseed-flip-overlap.md"
+}

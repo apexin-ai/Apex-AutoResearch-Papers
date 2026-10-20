@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "id": "0026d0c9bb8b17ef9a6d",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "gpu exp 001 seed123",
+  "task_key": "worker_gpu_exp_001_seed123_20260514T122309",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_gpu_exp_001_seed123_20260514T122309.log",
+    "occurrence": 1,
+    "bytes": 548157,
+    "sha256": "fc044ff20077e78cb8d9de05d0d2d70d2c2204cda2e00a1930a169f54903b7ab"
+  },
+  "statistics": {
+    "messages": 284,
+    "user_turns": 0,
+    "tool_calls": 100,
+    "roles": {
+      "system": 1,
+      "record": 14,
+      "assistant": 68,
+      "tool_call": 100,
+      "tool_result": 100,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 1
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 284,
+      "chunks": [
+        {
+          "path": "0026d0c9bb8b17ef9a6d-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "0026d0c9bb8b17ef9a6d-part-0002.json",
+          "message_count": 104
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/gpu-exp-001-seed123.md"
+}

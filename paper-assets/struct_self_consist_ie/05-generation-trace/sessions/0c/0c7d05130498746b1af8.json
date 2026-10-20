@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0c7d05130498746b1af8",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "cleanup kill r1024 processes",
+  "task_key": "worker_cleanup_kill_r1024_processes_20260514T222854",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_cleanup_kill_r1024_processes_20260514T222854_result.json",
+    "occurrence": 1,
+    "bytes": 268,
+    "sha256": "8367cef45699720c8ff5b3de03fd3f660ed0225dcaa8d6edf25ada45227c4dbf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "没有找到任何 r1024 相关进程。当前服务器上运行的唯一实验是 **exp017_s123**（输出到 `output/exp_017_llama_conll_n16_s123`），不含 r1024，无需终止。\n\nD054 重跑的推理进程已经不在运行了，无需清理。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/cleanup-kill-r1024-processes.md"
+}

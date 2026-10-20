@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "04829076ffe98d446120",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ssh 5090c e2 fewnerd s456",
+  "task_key": "worker_ssh_5090c_e2_fewnerd_s456_20260521T181011",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_5090c_e2_fewnerd_s456_20260521T181011_result.json",
+    "occurrence": 1,
+    "bytes": 493,
+    "sha256": "87fbe902651bcb913fe8a9b4081844f7e504498ad3f7ff05766c393ae58f4136"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "启动成功。\n\n- **tmux session**: `exp_e2_pretrained_fewnerd_s456`\n- **GPU 2**: 29635 MiB / 32607 MiB 已占用\n- **进度**: 正在渲染 prompts（37648 个实例），~588 it/s\n- **模型**: Qwen2.5-7B-Instruct, bf16, vLLM v0.18.1, FlashAttention v2\n- **日志**: `output/e2_pretrained_fewnerd_s456.log`\n\n注：`submit_training_job` 工具在当前环境不可用，改用 tmux session 替代。查看进度可用 `tail -f output/e2_pretrained_fewnerd_s456.log`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-5090c-e2-fewnerd-s456.md"
+}

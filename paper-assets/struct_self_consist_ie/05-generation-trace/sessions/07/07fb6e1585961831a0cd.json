@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "07fb6e1585961831a0cd",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "verify exp 018 max tokens",
+  "task_key": "worker_verify_exp_018_max_tokens_20260515T061147",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_verify_exp_018_max_tokens_20260515T061147_result.json",
+    "occurrence": 1,
+    "bytes": 1018,
+    "sha256": "71db846c17ddd3b727806927f7775f27d2eb768f49a45692cf4fe60ad4d482af"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有证据已收集完毕。\n\n## 确认结果\n\n- **exp_018_llama_scierc_seed123**: max_tokens=**1024**\n- **exp_018_llama_scierc_seed456**: max_tokens=**1024**\n\n### 依据\n\n| 证据 | 详情 |\n|------|------|\n| **代码默认值** | `run_mvp_pilot.py:57` → `--max_tokens` default=1024；`sampling.py:149,522` → `max_tokens: int = 1024` |\n| **日志无覆盖** | 两个实验的日志均不包含 \"max_tokens\" 字符串，vLLM 日志仅记录了 `max_model_len=4096`，未见命令行覆盖 |\n| **实际 token 分布一致** | seed123 最长=834 tokens，seed456 最长=823 tokens，无任何 sample 达到或接近 1024 截断边界（>=1000: 0个） |\n| **对照组验证** | exp_012_rerun_1024（已知 max_tokens=1024）最长=1024（恰好 1 个被截断），top-10 分布 [1024, 986, 984, 976, ...]，说明 SciERC 数据上模型在 1024 以内自然终止是正常行为 |\n\n**结论**：两个实验均使用 max_tokens=1024（代码默认值），且无输出被截断。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/verify-exp-018-max-tokens.md"
+}

@@ -1,0 +1,10071 @@
+# analysis table1 vs table4 rho discrepancy — Part 1 of 2
+
+**When Self-Consistency Fails for NER: Degeneracy, Signal Collapse, and the Correlation-Selection Gap** · Worker execution logs
+
+[Transcript overview](../analysis-table1-vs-table4-rho-discrepancy.md) · [Part 2 →](part-002.md) · [Structured JSON](../../../sessions/3f/3f1edd9c77e514b3d1cc.json)
+
+## Before a recorded user message
+
+## Before a recorded user message
+
+136 recorded events
+
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "5def7724-89c6-4445-a897-1c93ba46c385",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1778906400,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "4d11006d-5a32-41ed-94d0-4e01b5919ac1",
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0"
+}
+```
+
+---
+
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to investigate a discrepancy between Table 1 and Table 4 in their paper regarding SciERC 8B Spearman ρ values. Let me start by exploring the server and local project files to find the data sources.
+
+Let me first check the local project structure and then investigate on the server.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "ea9b0fdf-b7f9-4391-a656-0d2b0b3d22a8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MA7iDiRmr2c5P2sWgmVWKQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12641,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12641
+      },
+      "output_tokens": 32,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 5_
+
+开始调查 Table 1 vs Table 4 SciERC 8B ρ 不一致问题。先并行探查本地项目结构和服务器上的输出文件。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "789f9cae-b7f1-45f8-9fcd-7b8f0ce53dca",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MA7iDiRmr2c5P2sWgmVWKQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12641,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12641
+      },
+      "output_tokens": 32,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 6_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_014YcsQqXf7dZK3XRhy8ZyVk`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+  "max_results": 3
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "416a7496-b1ae-4043-9b06-b5e30b71dfcf",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MA7iDiRmr2c5P2sWgmVWKQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12641,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12641
+      },
+      "output_tokens": 32,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 7 · 2026-05-15T23:52:49.921Z_
+
+<details><summary>↩ Tool result · `toolu_014YcsQqXf7dZK3XRhy8ZyVk`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__detect_image"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "967cc0f0-688c-4e3b-b624-2cd0da9ceeac",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__detect_image"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01KzLEGk72SMg9PkyyyTjfPH`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "ls -lt /root/autodl-tmp/struct_self_consist_ie/output/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "33c7cfca-1734-4f52-a4d5-0b938cea9037",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EyrfyHjD6ZHekaKtRBp57a",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1013,
+      "cache_read_input_tokens": 24482,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1013
+      },
+      "output_tokens": 67,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 9 · 2026-05-15T23:52:54.083Z_
+
+<details><summary>↩ Tool result · `toolu_01KzLEGk72SMg9PkyyyTjfPH`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 6540\\ndrwxr-xr-x 2 root root    4096 May 16 06:42 review_round8\\n-rw-r--r-- 1 root root    3219 May 16 04:03 selection_f1_4b_results.json\\ndrwxr-xr-x 2 root root      58 May 16 03:56 exp_qwen3_4b_scierc_scs_inference\\ndrwxr-xr-x 2 root root      58 May 16 03:53 exp_qwen3_4b_conll_scs_inference_v2\\ndrwxr-xr-x 2 root root      96 May 16 03:49 exp_scale_qwen3_4b_conll\\ndrwxr-xr-x 2 root root      10 May 16 03:45 exp_qwen3_4b_conll_merge_inference_v2\\ndrwxr-xr-x 2 root root      58 May 16 03:17 exp_qwen3_4b_conll_scs_inference\\ndrwxr-xr-x 2 root root    4096 May 16 00:50 analysis_round8\\ndrwxr-xr-x 2 root root      85 May 16 00:37 analysis_epsilon_sweep\\ndrwxr-xr-x 2 root root      58 May 15 23:45 exp_re_scierc_seed123\\ndrwxr-xr-x 2 root root      58 May 15 23:45 exp_re_scierc_seed456\\ndrwxr-xr-x 2 root root      58 May 15 23:40 exp_lp_scierc_t07\\ndrwxr-xr-x 2 root root      58 May 15 23:38 exp_017_llama_conll_n8_t07\\ndrwxr-xr-x 2 root root    4096 May 15 23:32 review_round2\\n-rw-r--r-- 1 root root    7621 May 15 22:57 analysis_unified_rho_full.json\\ndrwxr-xr-x 2 root root    4096 May 15 21:45 figures\\n-rw-r--r-- 1 root root   30781 May 15 21:26 analysis_scierc_n16_3seed_selection_f1_merged.json\\n-rw-r--r-- 1 root root    9919 May 15 21:26 analysis_scierc_re_n16_3seed_selection_f1.json\\n-rw-r--r-- 1 root root    3732 May 15 21:23 rho_audit_results.json\\n-rw-r--r-- 1 root root    5824 May 15 21:16 analysis_fk_bootstrap_per_instance.json\\n-rw-r--r-- 1 root root    3197 May 15 21:15 analysis_lp_range_cdf_n16_3seed.json\\n-rw-r--r-- 1 root root  150381 May 15 21:15 analysis_lp_range_cdf.json\\n-rw-r--r-- 1 root root   20864 May 15 21:14 analysis_scierc_n16_3seed_selection_f1.json\\n-rw-r--r-- 1 root root    7926 May 15 20:56 analysis_fk_bootstrap_ci.json\\n-rw-r--r-- 1 root root   18926 May 15 20:53 multiseed_selection_f1.json\\n-rw-r--r-- 1 root root   10542 May 15 20:46 analysis_multiseed_selection_f1.json\\ndrwxr-xr-x 2 root root      92 May 15 19:50 exp_011_ood_analysis\\ndrwxr-xr-x 2 root root      58 May 15 19:50 exp_011_ood_conll_to_scierc\\n-rw-r--r-- 1 root root  329955 May 15 19:47 exp_011_ood_scierc_to_conll_run.log\\ndrwxr-xr-x 2 root root      58 May 15 19:47 exp_011_ood_scierc_to_conll\\n-rw-r--r-- 1 root root    1895 May 15 19:37 n16_3seed_5signal_results.json\\n-rw-r--r-- 1 root root    4263 May 15 19:37 n16_3seed_analysis.py\\n-rw-r--r-- 1 root root  387114 May 15 18:52 exp_017_llama_conll_n16_s456_r1024_run.log\\ndrwxr-xr-x 2 root root      58 May 15 18:52 exp_017_llama_conll_n16_s456_r1024\\n-rw-r--r-- 1 root root  388600 May 15 18:51 exp_017_llama_conll_n16_r1024_run.log\\ndrwxr-xr-x 2 root root      58 May 15 18:51 exp_017_llama_conll_n16_r1024\\n-rw-r--r-- 1 root root  108381 May 15 18:41 exp001_n16_seed456_run.log\\ndrwxr-xr-x 2 root root      58 May 15 18:41 exp001_n16_seed456\\ndrwxr-xr-x 2 root root     169 May 15 15:38 review_round4\\ndrwxr-xr-x 2 root root      93 May 15 14:20 exp_018_llama_scierc_seed42_r1024\\ndrwxr-xr-x 2 root root      58 May 15 14:17 exp_018_llama_scierc_seed456_r1024\\n-rw-r--r-- 1 root root    6255 May 15 14:09 exp018_3seed_5signal_results.json\\n-rw-r--r-- 1 root root   99473 May 15 13:13 exp_018_qwen_scierc_seed123.log\\ndrwxr-xr-x 2 root root      58 May 15 13:13 exp_018_qwen_scierc_seed123\\ndrwxr-xr-x 2 root root      77 May 15 13:13 exp_018_qwen_scierc_seed456\\n-rw-r--r-- 1 root root   94924 May 15 13:13 exp_018_llama_scierc_seed123.log\\ndrwxr-xr-x 2 root root      58 May 15 13:13 exp_018_llama_scierc_seed123\\ndrwxr-xr-x 2 root root      77 May 15 13:08 exp_018_llama_scierc_seed456\\ndrwxr-xr-x 2 root root    4096 May 15 07:38 exp_012_rerun_1024\\ndrwxr-xr-x 2 root root    4096 May 15 07:16 exp_016_rerun_1024\\ndrwxr-xr-x 2 root root      77 May 15 06:34 exp_002_conll_n16_r1024\\ndrwxr-xr-x 2 root root      77 May 15 06:34 exp_007_llama_n16_r1024\\ndrwxr-xr-x 2 root root      77 May 15 06:33 exp_017_llama_conll_n16_s123_r1024\\ndrwxr-xr-x 2 root root      29 May 15 06:27 exp_001_seed123_v2_r1024\\ndrwxr-xr-x 2 root root      77 May 15 06:27 exp_001_seed42_\\n\\n... [截断: 输出过长，省略 1536 字符] ...\\n\\n1 root root  286982 May 15 01:41 exp_017_llama_conll_infer.log\\n-rw-r--r-- 1 root root  107581 May 15 01:21 exp_001_seed456_v2_ner.log\\ndrwxr-xr-x 2 root root      77 May 15 01:16 exp_003_wnut17_v2_infer\\ndrwxr-xr-x 2 root root      77 May 14 23:48 exp_001_seed456_v2\\ndrwxr-xr-x 2 root root     176 May 14 23:36 exp_016_v2\\ndrwxr-xr-x 2 root root     180 May 14 23:35 exp_009_v2\\n-rw-r--r-- 1 root root   23037 May 14 23:35 exp_009_v2_run.log\\ndrwxr-xr-x 2 root root      44 May 14 23:33 exp_015_v2\\ndrwxr-xr-x 2 root root     148 May 14 23:29 exp004v2_re_diagnostic\\n-rw-r--r-- 1 root root    4229 May 14 23:29 exp_006_v2_run.log\\ndrwxr-xr-x 2 root root      45 May 14 23:29 exp_006_v2\\ndrwxr-xr-x 2 root root      57 May 14 23:25 exp_005_v2_temperature\\ndrwxr-xr-x 2 root root      77 May 14 23:16 exp_008_re_seed123\\ndrwxr-xr-x 2 root root      77 May 14 23:12 exp_007_llama_seed456\\ndrwxr-xr-x 2 root root      77 May 14 23:12 exp_007_llama_seed123\\ndrwxr-xr-x 3 root root      96 May 14 23:00 exp010_selection_curves\\n-rw-r--r-- 1 root root   64331 May 14 22:57 exp009_stratification_results.json\\ndrwxr-xr-x 2 root root      77 May 14 22:43 exp_008_re_n16_v2\\ndrwxr-xr-x 2 root root      58 May 14 21:58 exp007_llama_inference\\ndrwxr-xr-x 2 root root      58 May 14 21:54 exp007_llama_dryrun\\n-rw-r--r-- 1 root root  117772 May 14 21:50 exp003_wnut17_eval.log\\ndrwxr-xr-x 2 root root      58 May 14 21:50 exp003_wnut17_eval\\n-rw-r--r-- 1 root root  117114 May 14 21:39 exp003_wnut17_pilot.log\\ndrwxr-xr-x 2 root root      58 May 14 21:39 exp003_wnut17_pilot\\ndrwxr-xr-x 2 root root      58 May 14 21:35 exp003_wnut17_dryrun\\n-rw-r--r-- 1 root root  108350 May 14 21:35 exp001_seed123_t10_full.log\\ndrwxr-xr-x 2 root root      58 May 14 21:35 exp001_seed123_t10_full\\n-rw-r--r-- 1 root root  108319 May 14 21:35 exp008_re_n16_t10_full.log\\ndrwxr-xr-x 2 root root      58 May 14 21:35 exp008_re_n16_t10_full\\n-rw-r--r-- 1 root root  107921 May 14 21:35 exp001_seed456_t10_full.log\\ndrwxr-xr-x 2 root root      58 May 14 21:35 exp001_seed456_t10_full\\n-rw-r--r-- 1 root root  108646 May 14 20:54 exp001_n16_seed123_run.log\\ndrwxr-xr-x 2 root root      58 May 14 20:54 exp001_n16_seed123\\ndrwxr-xr-x 2 root root      58 May 14 20:53 exp008_re_n16\\ndrwxr-xr-x 2 root root     146 May 14 20:49 exp001_n16_seed42\\n-rw-r--r-- 1 root root    2098 May 14 20:48 conditional_filter_diagnosis.json\\ndrwxr-xr-x 2 root root      10 May 14 20:44 exp001_n16_seed123_full\\ndrwxr-xr-x 2 root root      10 May 14 20:43 exp001_n16_seed123_200only_backup\\ndrwxr-xr-x 2 root root      96 May 14 20:39 exp002_conll2003\\ndrwxr-xr-x 2 root root      36 May 14 20:25 logprob_diagnosis\\n-rw-r--r-- 1 root root  107674 May 14 20:24 exp001_n16_seed42_run.log\\ndrwxr-xr-x 2 root root      77 May 14 20:18 exp008_re_n16_200only\\ndrwxr-xr-x 2 root root      77 May 14 20:16 exp001_n16_seed456_200only\\ndrwxr-xr-x 2 root root      77 May 14 20:13 exp001_n16_seed123_200only\\ndrwxr-xr-x 2 root root    4096 May 14 20:12 exp016_signal_ensemble\\ndrwxr-xr-x 2 root root     119 May 14 19:55 exp001_n16_seed42_200only_backup\\ndrwxr-xr-x 2 root root     182 May 14 19:48 exp004_re_diagnostic\\ndrwxr-xr-x 2 root root      77 May 14 19:47 exp_015_unified\\ndrwxr-xr-x 2 root root     187 May 14 19:17 mvp_pilot_004\\ndrwxr-xr-x 2 root root      81 May 14 19:06 exp_012_logprob\\ndrwxr-xr-x 2 root root      58 May 14 17:19 mvp_pilot_005\\ndrwxr-xr-x 2 root root      58 May 14 16:51 gate0_ft002v2_ckpt400\\ndrwxr-xr-x 2 root root      58 May 14 16:47 gate0_ft002v2\\ndrwxr-xr-x 2 root root      58 May 14 16:20 mvp_pilot_003\\n-rw-r--r-- 1 root root  104190 May 14 15:51 mvp_pilot_001.log\\ndrwxr-xr-x 2 root root      58 May 14 15:51 mvp_pilot_001\\n-rw-r--r-- 1 root root 1036079 May 14 15:30 gate0_realigned_predictions.jsonl\\n-rw-r--r-- 1 root root     898 May 14 15:30 gate0_realigned_results.json\\n-rw-r--r-- 1 root root 1118105 May 14 14:55 gate0_all_predictions.jsonl\\n-rw-r--r-- 1 root root     747 May 14 14:55 gate0_results.json\\n-rw-r--r-- 1 root root   12691 May 14 14:52 gate0_samples.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.88}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "f1255d6a-31a5-4ad0-aec5-b47181fb4f99",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 6540\\\\ndrwxr-xr-x 2 root root    4096 May 16 06:42 review_round8\\\\n-rw-r--r-- 1 root root    3219 May 16 04:03 selection_f1_4b_results.json\\\\ndrwxr-xr-x 2 root root      58 May 16 03:56 exp_qwen3_4b_scierc_scs_inference\\\\ndrwxr-xr-x 2 root root      58 May 16 03:53 exp_qwen3_4b_conll_scs_inference_v2\\\\ndrwxr-xr-x 2 root root      96 May 16 03:49 exp_scale_qwen3_4b_conll\\\\ndrwxr-xr-x 2 root root      10 May 16 03:45 exp_qwen3_4b_conll_merge_inference_v2\\\\ndrwxr-xr-x 2 root root      58 May 16 03:17 exp_qwen3_4b_conll_scs_inference\\\\ndrwxr-xr-x 2 root root    4096 May 16 00:50 analysis_round8\\\\ndrwxr-xr-x 2 root root      85 May 16 00:37 analysis_epsilon_sweep\\\\ndrwxr-xr-x 2 root root      58 May 15 23:45 exp_re_scierc_seed123\\\\ndrwxr-xr-x 2 root root      58 May 15 23:45 exp_re_scierc_seed456\\\\ndrwxr-xr-x 2 root root      58 May 15 23:40 exp_lp_scierc_t07\\\\ndrwxr-xr-x 2 root root      58 May 15 23:38 exp_017_llama_conll_n8_t07\\\\ndrwxr-xr-x 2 root root    4096 May 15 23:32 review_round2\\\\n-rw-r--r-- 1 root root    7621 May 15 22:57 analysis_unified_rho_full.json\\\\ndrwxr-xr-x 2 root root    4096 May 15 21:45 figures\\\\n-rw-r--r-- 1 root root   30781 May 15 21:26 analysis_scierc_n16_3seed_selection_f1_merged.json\\\\n-rw-r--r-- 1 root root    9919 May 15 21:26 analysis_scierc_re_n16_3seed_selection_f1.json\\\\n-rw-r--r-- 1 root root    3732 May 15 21:23 rho_audit_results.json\\\\n-rw-r--r-- 1 root root    5824 May 15 21:16 analysis_fk_bootstrap_per_instance.json\\\\n-rw-r--r-- 1 root root    3197 May 15 21:15 analysis_lp_range_cdf_n16_3seed.json\\\\n-rw-r--r-- 1 root root  150381 May 15 21:15 analysis_lp_range_cdf.json\\\\n-rw-r--r-- 1 root root   20864 May 15 21:14 analysis_scierc_n16_3seed_selection_f1.json\\\\n-rw-r--r-- 1 root root    7926 May 15 20:56 analysis_fk_bootstrap_ci.json\\\\n-rw-r--r-- 1 root root   18926 May 15 20:53 multiseed_selection_f1.json\\\\n-rw-r--r-- 1 root root   10542 May 15 20:46 analysis_multiseed_selection_f1.json\\\\ndrwxr-xr-x 2 root root      92 May 15 19:50 exp_011_ood_analysis\\\\ndrwxr-xr-x 2 root root      58 May 15 19:50 exp_011_ood_conll_to_scierc\\\\n-rw-r--r-- 1 root root  329955 May 15 19:47 exp_011_ood_scierc_to_conll_run.log\\\\ndrwxr-xr-x 2 root root      58 May 15 19:47 exp_011_ood_scierc_to_conll\\\\n-rw-r--r-- 1 root root    1895 May 15 19:37 n16_3seed_5signal_results.json\\\\n-rw-r--r-- 1 root root    4263 May 15 19:37 n16_3seed_analysis.py\\\\n-rw-r--r-- 1 root root  387114 May 15 18:52 exp_017_llama_conll_n16_s456_r1024_run.log\\\\ndrwxr-xr-x 2 root root      58 May 15 18:52 exp_017_llama_conll_n16_s456_r1024\\\\n-rw-r--r-- 1 root root  388600 May 15 18:51 exp_017_llama_conll_n16_r1024_run.log\\\\ndrwxr-xr-x 2 root root      58 May 15 18:51 exp_017_llama_conll_n16_r1024\\\\n-rw-r--r-- 1 root root  108381 May 15 18:41 exp001_n16_seed456_run.log\\\\ndrwxr-xr-x 2 root root      58 May 15 18:41 exp001_n16_seed456\\\\ndrwxr-xr-x 2 root root     169 May 15 15:38 review_round4\\\\ndrwxr-xr-x 2 root root      93 May 15 14:20 exp_018_llama_scierc_seed42_r1024\\\\ndrwxr-xr-x 2 root root      58 May 15 14:17 exp_018_llama_scierc_seed456_r1024\\\\n-rw-r--r-- 1 root root    6255 May 15 14:09 exp018_3seed_5signal_results.json\\\\n-rw-r--r-- 1 root root   99473 May 15 13:13 exp_018_qwen_scierc_seed123.log\\\\ndrwxr-xr-x 2 root root      58 May 15 13:13 exp_018_qwen_scierc_seed123\\\\ndrwxr-xr-x 2 root root      77 May 15 13:13 exp_018_qwen_scierc_seed456\\\\n-rw-r--r-- 1 root root   94924 May 15 13:13 exp_018_llama_scierc_seed123.log\\\\ndrwxr-xr-x 2 root root      58 May 15 13:13 exp_018_llama_scierc_seed123\\\\ndrwxr-xr-x 2 root root      77 May 15 13:08 exp_018_llama_scierc_seed456\\\\ndrwxr-xr-x 2 root root    4096 May 15 07:38 exp_012_rerun_1024\\\\ndrwxr-xr-x 2 root root    4096 May 15 07:16 exp_016_rerun_1024\\\\ndrwxr-xr-x 2 root root      77 May 15 06:34 exp_002_conll_n16_r1024\\\\ndrwxr-xr-x 2 root root      77 May 15 06:34 exp_007_llama_n16_r1024\\\\ndrwxr-xr-x 2 root root      77 May 15 06:33 exp_017_llama_conll_n16_s123_r1024\\\\ndrwxr-xr-x 2 root root      29 May 15 06:27 exp_001_seed123_v2_r1024\\\\ndrwxr-xr-x 2 root root      77 May 15 06:27 exp_001_seed42_\\\\n\\\\n... [截断: 输出过长，省略 1536 字符] ...\\\\n\\\\n1 root root  286982 May 15 01:41 exp_017_llama_conll_infer.log\\\\n-rw-r--r-- 1 root root  107581 May 15 01:21 exp_001_seed456_v2_ner.log\\\\ndrwxr-xr-x 2 root root      77 May 15 01:16 exp_003_wnut17_v2_infer\\\\ndrwxr-xr-x 2 root root      77 May 14 23:48 exp_001_seed456_v2\\\\ndrwxr-xr-x 2 root root     176 May 14 23:36 exp_016_v2\\\\ndrwxr-xr-x 2 root root     180 May 14 23:35 exp_009_v2\\\\n-rw-r--r-- 1 root root   23037 May 14 23:35 exp_009_v2_run.log\\\\ndrwxr-xr-x 2 root root      44 May 14 23:33 exp_015_v2\\\\ndrwxr-xr-x 2 root root     148 May 14 23:29 exp004v2_re_diagnostic\\\\n-rw-r--r-- 1 root root    4229 May 14 23:29 exp_006_v2_run.log\\\\ndrwxr-xr-x 2 root root      45 May 14 23:29 exp_006_v2\\\\ndrwxr-xr-x 2 root root      57 May 14 23:25 exp_005_v2_temperature\\\\ndrwxr-xr-x 2 root root      77 May 14 23:16 exp_008_re_seed123\\\\ndrwxr-xr-x 2 root root      77 May 14 23:12 exp_007_llama_seed456\\\\ndrwxr-xr-x 2 root root      77 May 14 23:12 exp_007_llama_seed123\\\\ndrwxr-xr-x 3 root root      96 May 14 23:00 exp010_selection_curves\\\\n-rw-r--r-- 1 root root   64331 May 14 22:57 exp009_stratification_results.json\\\\ndrwxr-xr-x 2 root root      77 May 14 22:43 exp_008_re_n16_v2\\\\ndrwxr-xr-x 2 root root      58 May 14 21:58 exp007_llama_inference\\\\ndrwxr-xr-x 2 root root      58 May 14 21:54 exp007_llama_dryrun\\\\n-rw-r--r-- 1 root root  117772 May 14 21:50 exp003_wnut17_eval.log\\\\ndrwxr-xr-x 2 root root      58 May 14 21:50 exp003_wnut17_eval\\\\n-rw-r--r-- 1 root root  117114 May 14 21:39 exp003_wnut17_pilot.log\\\\ndrwxr-xr-x 2 root root      58 May 14 21:39 exp003_wnut17_pilot\\\\ndrwxr-xr-x 2 root root      58 May 14 21:35 exp003_wnut17_dryrun\\\\n-rw-r--r-- 1 root root  108350 May 14 21:35 exp001_seed123_t10_full.log\\\\ndrwxr-xr-x 2 root root      58 May 14 21:35 exp001_seed123_t10_full\\\\n-rw-r--r-- 1 root root  108319 May 14 21:35 exp008_re_n16_t10_full.log\\\\ndrwxr-xr-x 2 root root      58 May 14 21:35 exp008_re_n16_t10_full\\\\n-rw-r--r-- 1 root root  107921 May 14 21:35 exp001_seed456_t10_full.log\\\\ndrwxr-xr-x 2 root root      58 May 14 21:35 exp001_seed456_t10_full\\\\n-rw-r--r-- 1 root root  108646 May 14 20:54 exp001_n16_seed123_run.log\\\\ndrwxr-xr-x 2 root root      58 May 14 20:54 exp001_n16_seed123\\\\ndrwxr-xr-x 2 root root      58 May 14 20:53 exp008_re_n16\\\\ndrwxr-xr-x 2 root root     146 May 14 20:49 exp001_n16_seed42\\\\n-rw-r--r-- 1 root root    2098 May 14 20:48 conditional_filter_diagnosis.json\\\\ndrwxr-xr-x 2 root root      10 May 14 20:44 exp001_n16_seed123_full\\\\ndrwxr-xr-x 2 root root      10 May 14 20:43 exp001_n16_seed123_200only_backup\\\\ndrwxr-xr-x 2 root root      96 May 14 20:39 exp002_conll2003\\\\ndrwxr-xr-x 2 root root      36 May 14 20:25 logprob_diagnosis\\\\n-rw-r--r-- 1 root root  107674 May 14 20:24 exp001_n16_seed42_run.log\\\\ndrwxr-xr-x 2 root root      77 May 14 20:18 exp008_re_n16_200only\\\\ndrwxr-xr-x 2 root root      77 May 14 20:16 exp001_n16_seed456_200only\\\\ndrwxr-xr-x 2 root root      77 May 14 20:13 exp001_n16_seed123_200only\\\\ndrwxr-xr-x 2 root root    4096 May 14 20:12 exp016_signal_ensemble\\\\ndrwxr-xr-x 2 root root     119 May 14 19:55 exp001_n16_seed42_200only_backup\\\\ndrwxr-xr-x 2 root root     182 May 14 19:48 exp004_re_diagnostic\\\\ndrwxr-xr-x 2 root root      77 May 14 19:47 exp_015_unified\\\\ndrwxr-xr-x 2 root root     187 May 14 19:17 mvp_pilot_004\\\\ndrwxr-xr-x 2 root root      81 May 14 19:06 exp_012_logprob\\\\ndrwxr-xr-x 2 root root      58 May 14 17:19 mvp_pilot_005\\\\ndrwxr-xr-x 2 root root      58 May 14 16:51 gate0_ft002v2_ckpt400\\\\ndrwxr-xr-x 2 root root      58 May 14 16:47 gate0_ft002v2\\\\ndrwxr-xr-x 2 root root      58 May 14 16:20 mvp_pilot_003\\\\n-rw-r--r-- 1 root root  104190 May 14 15:51 mvp_pilot_001.log\\\\ndrwxr-xr-x 2 root root      58 May 14 15:51 mvp_pilot_001\\\\n-rw-r--r-- 1 root root 1036079 May 14 15:30 gate0_realigned_predictions.jsonl\\\\n-rw-r--r-- 1 root root     898 May 14 15:30 gate0_realigned_results.json\\\\n-rw-r--r-- 1 root root 1118105 May 14 14:55 gate0_all_predictions.jsonl\\\\n-rw-r--r-- 1 root root     747 May 14 14:55 gate0_results.json\\\\n-rw-r--r-- 1 root root   12691 May 14 14:52 gate0_samples.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.88}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 6540\\ndrwxr-xr-x 2 root root    4096 May 16 06:42 review_round8\\n-rw-r--r-- 1 root root    3219 May 16 04:03 selection_f1_4b_results.json\\ndrwxr-xr-x 2 root root      58 May 16 03:56 exp_qwen3_4b_scierc_scs_inference\\ndrwxr-xr-x 2 root root      58 May 16 03:53 exp_qwen3_4b_conll_scs_inference_v2\\ndrwxr-xr-x 2 root root      96 May 16 03:49 exp_scale_qwen3_4b_conll\\ndrwxr-xr-x 2 root root      10 May 16 03:45 exp_qwen3_4b_conll_merge_inference_v2\\ndrwxr-xr-x 2 root root      58 May 16 03:17 exp_qwen3_4b_conll_scs_inference\\ndrwxr-xr-x 2 root root    4096 May 16 00:50 analysis_round8\\ndrwxr-xr-x 2 root root      85 May 16 00:37 analysis_epsilon_sweep\\ndrwxr-xr-x 2 root root      58 May 15 23:45 exp_re_scierc_seed123\\ndrwxr-xr-x 2 root root      58 May 15 23:45 exp_re_scierc_seed456\\ndrwxr-xr-x 2 root root      58 May 15 23:40 exp_lp_scierc_t07\\ndrwxr-xr-x 2 root root      58 May 15 23:38 exp_017_llama_conll_n8_t07\\ndrwxr-xr-x 2 root root    4096 May 15 23:32 review_round2\\n-rw-r--r-- 1 root root    7621 May 15 22:57 analysis_unified_rho_full.json\\ndrwxr-xr-x 2 root root    4096 May 15 21:45 figures\\n-rw-r--r-- 1 root root   30781 May 15 21:26 analysis_scierc_n16_3seed_selection_f1_merged.json\\n-rw-r--r-- 1 root root    9919 May 15 21:26 analysis_scierc_re_n16_3seed_selection_f1.json\\n-rw-r--r-- 1 root root    3732 May 15 21:23 rho_audit_results.json\\n-rw-r--r-- 1 root root    5824 May 15 21:16 analysis_fk_bootstrap_per_instance.json\\n-rw-r--r-- 1 root root    3197 May 15 21:15 analysis_lp_range_cdf_n16_3seed.json\\n-rw-r--r-- 1 root root  150381 May 15 21:15 analysis_lp_range_cdf.json\\n-rw-r--r-- 1 root root   20864 May 15 21:14 analysis_scierc_n16_3seed_selection_f1.json\\n-rw-r--r-- 1 root root    7926 May 15 20:56 analysis_fk_bootstrap_ci.json\\n-rw-r--r-- 1 root root   18926 May 15 20:53 multiseed_selection_f1.json\\n-rw-r--r-- 1 root root   10542 May 15 20:46 analysis_multiseed_selection_f1.json\\ndrwxr-xr-x 2 root root      92 May 15 19:50 exp_011_ood_analysis\\ndrwxr-xr-x 2 root root      58 May 15 19:50 exp_011_ood_conll_to_scierc\\n-rw-r--r-- 1 root root  329955 May 15 19:47 exp_011_ood_scierc_to_conll_run.log\\ndrwxr-xr-x 2 root root      58 May 15 19:47 exp_011_ood_scierc_to_conll\\n-rw-r--r-- 1 root root    1895 May 15 19:37 n16_3seed_5signal_results.json\\n-rw-r--r-- 1 root root    4263 May 15 19:37 n16_3seed_analysis.py\\n-rw-r--r-- 1 root root  387114 May 15 18:52 exp_017_llama_conll_n16_s456_r1024_run.log\\ndrwxr-xr-x 2 root root      58 May 15 18:52 exp_017_llama_conll_n16_s456_r1024\\n-rw-r--r-- 1 root root  388600 May 15 18:51 exp_017_llama_conll_n16_r1024_run.log\\ndrwxr-xr-x 2 root root      58 May 15 18:51 exp_017_llama_conll_n16_r1024\\n-rw-r--r-- 1 root root  108381 May 15 18:41 exp001_n16_seed456_run.log\\ndrwxr-xr-x 2 root root      58 May 15 18:41 exp001_n16_seed456\\ndrwxr-xr-x 2 root root     169 May 15 15:38 review_round4\\ndrwxr-xr-x 2 root root      93 May 15 14:20 exp_018_llama_scierc_seed42_r1024\\ndrwxr-xr-x 2 root root      58 May 15 14:17 exp_018_llama_scierc_seed456_r1024\\n-rw-r--r-- 1 root root    6255 May 15 14:09 exp018_3seed_5signal_results.json\\n-rw-r--r-- 1 root root   99473 May 15 13:13 exp_018_qwen_scierc_seed123.log\\ndrwxr-xr-x 2 root root      58 May 15 13:13 exp_018_qwen_scierc_seed123\\ndrwxr-xr-x 2 root root      77 May 15 13:13 exp_018_qwen_scierc_seed456\\n-rw-r--r-- 1 root root   94924 May 15 13:13 exp_018_llama_scierc_seed123.log\\ndrwxr-xr-x 2 root root      58 May 15 13:13 exp_018_llama_scierc_seed123\\ndrwxr-xr-x 2 root root      77 May 15 13:08 exp_018_llama_scierc_seed456\\ndrwxr-xr-x 2 root root    4096 May 15 07:38 exp_012_rerun_1024\\ndrwxr-xr-x 2 root root    4096 May 15 07:16 exp_016_rerun_1024\\ndrwxr-xr-x 2 root root      77 May 15 06:34 exp_002_conll_n16_r1024\\ndrwxr-xr-x 2 root root      77 May 15 06:34 exp_007_llama_n16_r1024\\ndrwxr-xr-x 2 root root      77 May 15 06:33 exp_017_llama_conll_n16_s123_r1024\\ndrwxr-xr-x 2 root root      29 May 15 06:27 exp_001_seed123_v2_r1024\\ndrwxr-xr-x 2 root root      77 May 15 06:27 exp_001_seed42_\\n\\n... [截断: 输出过长，省略 1536 字符] ...\\n\\n1 root root  286982 May 15 01:41 exp_017_llama_conll_infer.log\\n-rw-r--r-- 1 root root  107581 May 15 01:21 exp_001_seed456_v2_ner.log\\ndrwxr-xr-x 2 root root      77 May 15 01:16 exp_003_wnut17_v2_infer\\ndrwxr-xr-x 2 root root      77 May 14 23:48 exp_001_seed456_v2\\ndrwxr-xr-x 2 root root     176 May 14 23:36 exp_016_v2\\ndrwxr-xr-x 2 root root     180 May 14 23:35 exp_009_v2\\n-rw-r--r-- 1 root root   23037 May 14 23:35 exp_009_v2_run.log\\ndrwxr-xr-x 2 root root      44 May 14 23:33 exp_015_v2\\ndrwxr-xr-x 2 root root     148 May 14 23:29 exp004v2_re_diagnostic\\n-rw-r--r-- 1 root root    4229 May 14 23:29 exp_006_v2_run.log\\ndrwxr-xr-x 2 root root      45 May 14 23:29 exp_006_v2\\ndrwxr-xr-x 2 root root      57 May 14 23:25 exp_005_v2_temperature\\ndrwxr-xr-x 2 root root      77 May 14 23:16 exp_008_re_seed123\\ndrwxr-xr-x 2 root root      77 May 14 23:12 exp_007_llama_seed456\\ndrwxr-xr-x 2 root root      77 May 14 23:12 exp_007_llama_seed123\\ndrwxr-xr-x 3 root root      96 May 14 23:00 exp010_selection_curves\\n-rw-r--r-- 1 root root   64331 May 14 22:57 exp009_stratification_results.json\\ndrwxr-xr-x 2 root root      77 May 14 22:43 exp_008_re_n16_v2\\ndrwxr-xr-x 2 root root      58 May 14 21:58 exp007_llama_inference\\ndrwxr-xr-x 2 root root      58 May 14 21:54 exp007_llama_dryrun\\n-rw-r--r-- 1 root root  117772 May 14 21:50 exp003_wnut17_eval.log\\ndrwxr-xr-x 2 root root      58 May 14 21:50 exp003_wnut17_eval\\n-rw-r--r-- 1 root root  117114 May 14 21:39 exp003_wnut17_pilot.log\\ndrwxr-xr-x 2 root root      58 May 14 21:39 exp003_wnut17_pilot\\ndrwxr-xr-x 2 root root      58 May 14 21:35 exp003_wnut17_dryrun\\n-rw-r--r-- 1 root root  108350 May 14 21:35 exp001_seed123_t10_full.log\\ndrwxr-xr-x 2 root root      58 May 14 21:35 exp001_seed123_t10_full\\n-rw-r--r-- 1 root root  108319 May 14 21:35 exp008_re_n16_t10_full.log\\ndrwxr-xr-x 2 root root      58 May 14 21:35 exp008_re_n16_t10_full\\n-rw-r--r-- 1 root root  107921 May 14 21:35 exp001_seed456_t10_full.log\\ndrwxr-xr-x 2 root root      58 May 14 21:35 exp001_seed456_t10_full\\n-rw-r--r-- 1 root root  108646 May 14 20:54 exp001_n16_seed123_run.log\\ndrwxr-xr-x 2 root root      58 May 14 20:54 exp001_n16_seed123\\ndrwxr-xr-x 2 root root      58 May 14 20:53 exp008_re_n16\\ndrwxr-xr-x 2 root root     146 May 14 20:49 exp001_n16_seed42\\n-rw-r--r-- 1 root root    2098 May 14 20:48 conditional_filter_diagnosis.json\\ndrwxr-xr-x 2 root root      10 May 14 20:44 exp001_n16_seed123_full\\ndrwxr-xr-x 2 root root      10 May 14 20:43 exp001_n16_seed123_200only_backup\\ndrwxr-xr-x 2 root root      96 May 14 20:39 exp002_conll2003\\ndrwxr-xr-x 2 root root      36 May 14 20:25 logprob_diagnosis\\n-rw-r--r-- 1 root root  107674 May 14 20:24 exp001_n16_seed42_run.log\\ndrwxr-xr-x 2 root root      77 May 14 20:18 exp008_re_n16_200only\\ndrwxr-xr-x 2 root root      77 May 14 20:16 exp001_n16_seed456_200only\\ndrwxr-xr-x 2 root root      77 May 14 20:13 exp001_n16_seed123_200only\\ndrwxr-xr-x 2 root root    4096 May 14 20:12 exp016_signal_ensemble\\ndrwxr-xr-x 2 root root     119 May 14 19:55 exp001_n16_seed42_200only_backup\\ndrwxr-xr-x 2 root root     182 May 14 19:48 exp004_re_diagnostic\\ndrwxr-xr-x 2 root root      77 May 14 19:47 exp_015_unified\\ndrwxr-xr-x 2 root root     187 May 14 19:17 mvp_pilot_004\\ndrwxr-xr-x 2 root root      81 May 14 19:06 exp_012_logprob\\ndrwxr-xr-x 2 root root      58 May 14 17:19 mvp_pilot_005\\ndrwxr-xr-x 2 root root      58 May 14 16:51 gate0_ft002v2_ckpt400\\ndrwxr-xr-x 2 root root      58 May 14 16:47 gate0_ft002v2\\ndrwxr-xr-x 2 root root      58 May 14 16:20 mvp_pilot_003\\n-rw-r--r-- 1 root root  104190 May 14 15:51 mvp_pilot_001.log\\ndrwxr-xr-x 2 root root      58 May 14 15:51 mvp_pilot_001\\n-rw-r--r-- 1 root root 1036079 May 14 15:30 gate0_realigned_predictions.jsonl\\n-rw-r--r-- 1 root root     898 May 14 15:30 gate0_realigned_results.json\\n-rw-r--r-- 1 root root 1118105 May 14 14:55 gate0_all_predictions.jsonl\\n-rw-r--r-- 1 root root     747 May 14 14:55 gate0_results.json\\n-rw-r--r-- 1 root root   12691 May 14 14:52 gate0_samples.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.88}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — Glob · `toolu_016D9RZL4y1uWunvovJt84pd`</summary>
+
+```json
+{
+  "pattern": "**/*.tex",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "8ee9960c-77dd-48a4-babd-add9609bd675",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EyrfyHjD6ZHekaKtRBp57a",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1013,
+      "cache_read_input_tokens": 24482,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1013
+      },
+      "output_tokens": 67,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 11 · 2026-05-15T23:52:54.196Z_
+
+<details><summary>↩ Tool result · `toolu_016D9RZL4y1uWunvovJt84pd`</summary>
+
+```text
+artifacts/dream_reports/dream_20260514T093336/best/paper.tex
+artifacts/dream_reports/dream_20260514T093336/median/paper.tex
+artifacts/dream_reports/dream_20260514T093336/worst/paper.tex
+artifacts/dream_reports/dream_20260514T105303/best/paper.tex
+artifacts/dream_reports/dream_20260514T105303/median/paper.tex
+artifacts/dream_reports/dream_20260514T105303/worst/paper.tex
+artifacts/_project/paper/introduction.tex
+artifacts/_project/paper/related_work.tex
+artifacts/_project/paper/discussion.tex
+artifacts/dream_reports/dream_20260514T203201/best/paper.tex
+artifacts/_project/paper/abstract.tex
+artifacts/_project/paper/conclusion.tex
+artifacts/_project/paper/limitations.tex
+artifacts/dream_reports/dream_20260514T203201/median/paper.tex
+artifacts/dream_reports/dream_20260514T203201/worst/paper.tex
+artifacts/bootstrap_ci_tables.tex
+artifacts/dream_reports/dream_20260515T092545/best/paper.tex
+artifacts/dream_reports/dream_20260515T092545/median/paper.tex
+artifacts/dream_reports/dream_20260515T092545/worst/paper.tex
+artifacts/_project/paper/freeform_ablation_appendix_table.tex
+artifacts/freeform_ablation_appendix_table.tex
+artifacts/_project/paper/n_scaling_appendix_tables.tex
+artifacts/_project/paper/n_scaling_appendix_tables_44b000.tex
+artifacts/n_scaling_appendix_tables.tex
+artifacts/_project/paper/experiments.tex
+docs/paper/main.tex
+docs/paper/sections/abstract.tex
+docs/paper/sections/introduction.tex
+docs/paper/sections/related_work.tex
+docs/paper/sections/method.tex
+docs/paper/sections/limitations.tex
+docs/paper/sections/conclusion.tex
+docs/paper/sections/appendix.tex
+docs/paper/sections/discussion.tex
+docs/paper/sections/experiments.tex
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "1d38735d-77dd-434f-971d-9a0b02b157a6",
+  "tool_use_result": {
+    "filenames": [
+      "artifacts/dream_reports/dream_20260514T093336/best/paper.tex",
+      "artifacts/dream_reports/dream_20260514T093336/median/paper.tex",
+      "artifacts/dream_reports/dream_20260514T093336/worst/paper.tex",
+      "artifacts/dream_reports/dream_20260514T105303/best/paper.tex",
+      "artifacts/dream_reports/dream_20260514T105303/median/paper.tex",
+      "artifacts/dream_reports/dream_20260514T105303/worst/paper.tex",
+      "artifacts/_project/paper/introduction.tex",
+      "artifacts/_project/paper/related_work.tex",
+      "artifacts/_project/paper/discussion.tex",
+      "artifacts/dream_reports/dream_20260514T203201/best/paper.tex",
+      "artifacts/_project/paper/abstract.tex",
+      "artifacts/_project/paper/conclusion.tex",
+      "artifacts/_project/paper/limitations.tex",
+      "artifacts/dream_reports/dream_20260514T203201/median/paper.tex",
+      "artifacts/dream_reports/dream_20260514T203201/worst/paper.tex",
+      "artifacts/bootstrap_ci_tables.tex",
+      "artifacts/dream_reports/dream_20260515T092545/best/paper.tex",
+      "artifacts/dream_reports/dream_20260515T092545/median/paper.tex",
+      "artifacts/dream_reports/dream_20260515T092545/worst/paper.tex",
+      "artifacts/_project/paper/freeform_ablation_appendix_table.tex",
+      "artifacts/freeform_ablation_appendix_table.tex",
+      "artifacts/_project/paper/n_scaling_appendix_tables.tex",
+      "artifacts/_project/paper/n_scaling_appendix_tables_44b000.tex",
+      "artifacts/n_scaling_appendix_tables.tex",
+      "artifacts/_project/paper/experiments.tex",
+      "docs/paper/main.tex",
+      "docs/paper/sections/abstract.tex",
+      "docs/paper/sections/introduction.tex",
+      "docs/paper/sections/related_work.tex",
+      "docs/paper/sections/method.tex",
+      "docs/paper/sections/limitations.tex",
+      "docs/paper/sections/conclusion.tex",
+      "docs/paper/sections/appendix.tex",
+      "docs/paper/sections/discussion.tex",
+      "docs/paper/sections/experiments.tex"
+    ],
+    "durationMs": 25,
+    "numFiles": 35,
+    "truncated": false
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 12_
+
+<details open><summary>🔧 Tool call — Glob · `toolu_01WFcYHjUrT7HgBb3iohUDjh`</summary>
+
+```json
+{
+  "pattern": "**/paper/**",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "01fc164e-22f1-4985-8e22-6faaedb4c863",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EyrfyHjD6ZHekaKtRBp57a",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1013,
+      "cache_read_input_tokens": 24482,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1013
+      },
+      "output_tokens": 67,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 13 · 2026-05-15T23:52:54.919Z_
+
+<details><summary>↩ Tool result · `toolu_01WFcYHjUrT7HgBb3iohUDjh`</summary>
+
+```text
+figures/paper/fig_overview.pdf
+figures/paper/fig_selection_gap.pdf
+figures/paper/fig_selection_gap.png
+figures/paper/fig_reliability_data.json
+artifacts/exp010_selection_curves/figures/paper/fig_selection_curves.png
+artifacts/exp010_selection_curves/figures/paper/fig_selection_curves.pdf
+figures/paper/fig_signal_heatmap.py
+figures/paper/fig_signal_heatmap.pdf
+figures/paper/fig_signal_heatmap.png
+figures/paper/fig_reliability.py
+figures/paper/fig_reliability.pdf
+figures/paper/fig_reliability.png
+figures/paper/fig_selection_curves.pdf
+figures/paper/fig_selection_curves.png
+docs/paper/acl.sty
+docs/paper/acl_natbib.bst
+docs/paper/figures/fig_overview.pdf
+docs/paper/figures/fig_reliability.pdf
+artifacts/_project/paper/introduction.tex
+artifacts/_project/paper/related_work.tex
+artifacts/_project/paper/discussion.tex
+artifacts/_project/paper/abstract.tex
+artifacts/_project/paper/conclusion.tex
+artifacts/_project/paper/limitations.tex
+docs/paper/figures/fig_signal_heatmap.pdf
+docs/paper/figures/fig_temperature_robustness.pdf
+docs/paper/figures/fig_length_logprob_scatter.pdf
+artifacts/_project/paper/freeform_ablation_appendix_table.tex
+artifacts/_project/paper/n_scaling_appendix_tables.tex
+artifacts/_project/paper/n_scaling_appendix_tables_44b000.tex
+docs/paper/_pdf_images/main_p13.png
+docs/paper/_pdf_images/main_p14.png
+docs/paper/_pdf_images/main_p15.png
+docs/paper/_pdf_images/main_p16.png
+docs/paper/_pdf_images/main_p17.png
+docs/paper/_pdf_images/main_p18.png
+docs/paper/_pdf_images/main_p19.png
+docs/paper/_pdf_images/main_p20.png
+docs/paper/figures/fig_lp_range_cdf.pdf
+docs/paper/_pdf_images/main_p1.png
+docs/paper/_pdf_images/main_p2.png
+docs/paper/_pdf_images/main_p3.png
+docs/paper/_pdf_images/main_p4.png
+docs/paper/_pdf_images/main_p5.png
+docs/paper/_pdf_images/main_p6.png
+docs/paper/figures/fig_selection_gap.pdf
+docs/paper/figures/fig_selection_gap.png
+artifacts/_project/paper/experiments.tex
+docs/paper/_pdf_images/main_p7.png
+docs/paper/_pdf_images/main_p10.png
+docs/paper/_pdf_images/main_p11.png
+docs/paper/_pdf_images/main_p12.png
+docs/paper/_pdf_images/main_p9.png
+docs/paper/_pdf_images/main_p8.png
+docs/paper/main.tex
+docs/paper/sections/abstract.tex
+docs/paper/sections/introduction.tex
+docs/paper/sections/related_work.tex
+docs/paper/sections/method.tex
+docs/paper/sections/limitations.tex
+docs/paper/sections/conclusion.tex
+docs/paper/references.bib
+docs/paper/sections/appendix.tex
+docs/paper/sections/discussion.tex
+docs/paper/main.blg
+docs/paper/main.bbl
+docs/paper/main.aux
+docs/paper/main.out
+docs/paper/main.fls
+docs/paper/main.log
+docs/paper/main.pdf
+docs/paper/main.fdb_latexmk
+docs/paper/sections/experiments.tex
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "4cc82d2c-33a8-4506-91ff-cfdcbadc3f3d",
+  "tool_use_result": {
+    "filenames": [
+      "figures/paper/fig_overview.pdf",
+      "figures/paper/fig_selection_gap.pdf",
+      "figures/paper/fig_selection_gap.png",
+      "figures/paper/fig_reliability_data.json",
+      "artifacts/exp010_selection_curves/figures/paper/fig_selection_curves.png",
+      "artifacts/exp010_selection_curves/figures/paper/fig_selection_curves.pdf",
+      "figures/paper/fig_signal_heatmap.py",
+      "figures/paper/fig_signal_heatmap.pdf",
+      "figures/paper/fig_signal_heatmap.png",
+      "figures/paper/fig_reliability.py",
+      "figures/paper/fig_reliability.pdf",
+      "figures/paper/fig_reliability.png",
+      "figures/paper/fig_selection_curves.pdf",
+      "figures/paper/fig_selection_curves.png",
+      "docs/paper/acl.sty",
+      "docs/paper/acl_natbib.bst",
+      "docs/paper/figures/fig_overview.pdf",
+      "docs/paper/figures/fig_reliability.pdf",
+      "artifacts/_project/paper/introduction.tex",
+      "artifacts/_project/paper/related_work.tex",
+      "artifacts/_project/paper/discussion.tex",
+      "artifacts/_project/paper/abstract.tex",
+      "artifacts/_project/paper/conclusion.tex",
+      "artifacts/_project/paper/limitations.tex",
+      "docs/paper/figures/fig_signal_heatmap.pdf",
+      "docs/paper/figures/fig_temperature_robustness.pdf",
+      "docs/paper/figures/fig_length_logprob_scatter.pdf",
+      "artifacts/_project/paper/freeform_ablation_appendix_table.tex",
+      "artifacts/_project/paper/n_scaling_appendix_tables.tex",
+      "artifacts/_project/paper/n_scaling_appendix_tables_44b000.tex",
+      "docs/paper/_pdf_images/main_p13.png",
+      "docs/paper/_pdf_images/main_p14.png",
+      "docs/paper/_pdf_images/main_p15.png",
+      "docs/paper/_pdf_images/main_p16.png",
+      "docs/paper/_pdf_images/main_p17.png",
+      "docs/paper/_pdf_images/main_p18.png",
+      "docs/paper/_pdf_images/main_p19.png",
+      "docs/paper/_pdf_images/main_p20.png",
+      "docs/paper/figures/fig_lp_range_cdf.pdf",
+      "docs/paper/_pdf_images/main_p1.png",
+      "docs/paper/_pdf_images/main_p2.png",
+      "docs/paper/_pdf_images/main_p3.png",
+      "docs/paper/_pdf_images/main_p4.png",
+      "docs/paper/_pdf_images/main_p5.png",
+      "docs/paper/_pdf_images/main_p6.png",
+      "docs/paper/figures/fig_selection_gap.pdf",
+      "docs/paper/figures/fig_selection_gap.png",
+      "artifacts/_project/paper/experiments.tex",
+      "docs/paper/_pdf_images/main_p7.png",
+      "docs/paper/_pdf_images/main_p10.png",
+      "docs/paper/_pdf_images/main_p11.png",
+      "docs/paper/_pdf_images/main_p12.png",
+      "docs/paper/_pdf_images/main_p9.png",
+      "docs/paper/_pdf_images/main_p8.png",
+      "docs/paper/main.tex",
+      "docs/paper/sections/abstract.tex",
+      "docs/paper/sections/introduction.tex",
+      "docs/paper/sections/related_work.tex",
+      "docs/paper/sections/method.tex",
+      "docs/paper/sections/limitations.tex",
+      "docs/paper/sections/conclusion.tex",
+      "docs/paper/references.bib",
+      "docs/paper/sections/appendix.tex",
+      "docs/paper/sections/discussion.tex",
+      "docs/paper/main.blg",
+      "docs/paper/main.bbl",
+      "docs/paper/main.aux",
+      "docs/paper/main.out",
+      "docs/paper/main.fls",
+      "docs/paper/main.log",
+      "docs/paper/main.pdf",
+      "docs/paper/main.fdb_latexmk",
+      "docs/paper/sections/experiments.tex"
+    ],
+    "durationMs": 28,
+    "numFiles": 73,
+    "truncated": false
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 14_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me now look at the experiments.tex for Table 1 and Table 4, and also check the key data files on the server.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "cad7b0f7-a1e2-44d0-8bd5-a30743e8b746",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016nBK7PM5kwn3yhUyeuFsx7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6312,
+      "cache_read_input_tokens": 25495,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6312
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 15_
+
+找到论文 tex 文件。并行读取 Table 1 和 Table 4 相关的 tex，以及服务器上的关键数据文件。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "b55eecd8-d6d2-492d-bdf7-177213a821ba",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016nBK7PM5kwn3yhUyeuFsx7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6312,
+      "cache_read_input_tokens": 25495,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6312
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 16_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01WEpaDDGNFofcR3DPYZfDy8`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "103c324a-28e5-4dda-b26e-59d54774b163",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016nBK7PM5kwn3yhUyeuFsx7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6312,
+      "cache_read_input_tokens": 25495,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6312
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 17 · 2026-05-15T23:53:00.866Z_
+
+<details><summary>↩ Tool result · `toolu_01WEpaDDGNFofcR3DPYZfDy8`</summary>
+
+```text
+1	\section{Experiments}
+2	\label{sec:experiments}
+3	
+4	\subsection{Experimental Setup}
+5	\label{sec:setup}
+6	
+7	\paragraph{Datasets.}
+8	We evaluate on three English IE benchmarks spanning a difficulty gradient.
+9	\textbf{SciERC} \cite{luan2018scierc} contains 551 test instances annotated for joint NER (6 types) and RE (7 types).
+10	\textbf{CoNLL-2003} \cite{tjongkimsang2003conll} provides 3{,}453 test sentences with 4 entity types, where models achieve ${\approx}$91\% micro F1.
+11	\textbf{WNUT-17} \cite{derczynski2017wnut} consists of 1{,}287 social media instances with emerging entities, used to probe method boundaries (52\% zero F1).
+12	
+13	\paragraph{Models and sampling.}
+14	Both \textbf{Qwen3-8B} and \textbf{LLaMA-3.1-8B-Instruct} are fine-tuned with LoRA (rank$=$32, $\alpha{=}64$) for 5 epochs using LLaMA Factory \cite{zheng2024llamafactory} under identical training procedures.
+15	Qwen3-8B's SciERC checkpoint has a minor train--test mismatch (empty thinking tokens); a quantitative analysis rules out this confound (Appendix~\ref{app:thinking_token}).
+16	We draw $N{=}8$ samples at $T{=}1.0$ (primary), with $N{=}16$ for scaling experiments.\footnote{$N{=}16$ with 3 seeds verifies scaling and ranking stability ($\sigma{\leq}0.026$; Table~\ref{tab:multiseed}); gains beyond $N{=}8$ are sublinear (Appendix~\ref{app:n_scaling}).}
+17	Inference uses vLLM with constrained decoding \cite{willard2023guided}.
+18	
+19	%% ============================================================
+20	\subsection{Quality Estimation Results}
+21	\label{sec:qe_results}
+22	
+23	\begin{table*}[t]
+24	\centering
+25	\small
+26	\caption{Quality estimation ($\rho$ and AUROC; $N{=}8$, seed${=}42$). Best in \textbf{bold}. RE: preliminary. $N{=}16$ in Table~\ref{tab:robustness}.}
+27	\label{tab:quality_estimation}
+28	\begin{tabular}{ll cc cc cc cc}
+29	\toprule
+30	& & \multicolumn{2}{c}{\textbf{SciERC NER}} & \multicolumn{2}{c}{\textbf{SciERC RE}} & \multicolumn{2}{c}{\textbf{CoNLL (Qwen)}} & \multicolumn{2}{c}{\textbf{CoNLL (LLaMA)}} \\
+31	\cmidrule(lr){3-4} \cmidrule(lr){5-6} \cmidrule(lr){7-8} \cmidrule(lr){9-10}
+32	Signal & Family & $\rho$ & AUC & $\rho$ & AUC & $\rho$ & AUC & $\rho$ & AUC \\
+33	\midrule
+34	VC & Structural & \textbf{.379} & \textbf{.663} & \textbf{.350} & .694 & .424 & .789 & .426 & .709 \\
+35	SJ  & Structural & .360 & .650 & .250 & .670 & .436 & .801 & \textbf{.431} & .704 \\
+36	FK & Surface & .267 & .602 & .275 & .609 & .400 & .774 & .428 & .703 \\
+37	EM  & Surface    & .295 & .614 & .134 & \textbf{.706} & \textbf{.451} & \textbf{.816} & \textbf{.431} & .705 \\
+38	\midrule
+39	LP     & Model      & .205 & .578 & .266 & .601 & .316 & .753 & .307 & \textbf{.761} \\
+40	\bottomrule
+41	\end{tabular}
+42	\end{table*}
+43	
+44	Table~\ref{tab:quality_estimation} presents $\rho$ and AUROC for five signals across tasks and models.\footnote{$\varepsilon{=}0.05$ applies only to selection (\S\ref{sec:selection_gap}); quality estimation is $\varepsilon$-free. Selection F1 is stable across $\varepsilon \in [0, 0.2]$ (Appendix~\ref{app:epsilon_robustness}).}
+45	
+46	\paragraph{Signal rankings are difficulty-dependent.}
+47	On SciERC NER, structural signals lead (VC $\rho{=}0.379$, SJ $0.360$) over surface ($\rho{\leq}0.295$) and LP ($0.205$); bootstrap CIs confirm the SJ--LP gap ($\Delta\rho{=}{+}0.155$; Appendix~\ref{app:bootstrap_signal}).
+48	On CoNLL (greedy F1${\approx}$0.91), EM leads both $\rho$ and AUROC ($0.816$); the $\rho$--AUROC dissociation across datasets reflects use-case alignment.
+49	On RE (preliminary), LP rises above SJ and FK at $N{=}16$ (Table~\ref{tab:multiseed}).
+50	At the capability boundary---WNUT-17 (52\% zero F1)---all conditional signals collapse (Table~\ref{tab:wnut}); restricting to non-zero instances reshuffles rankings, with EM strongest on NER ($\rho{=}0.360$) and RE ($\rho{=}0.417$; preliminary) while LP RE collapses to $\rho{=}0.011$ (preliminary) (Figure~\ref{fig:signal_heatmap}, Appendix~\ref{app:additional}).
+51	
+52	%% ============================================================
+53	\subsection{The Correlation-Selection Gap}
+54	\label{sec:selection_gap}
+55	
+56	\begin{table}[t]
+57	\centering
+58	\small
+59	\caption{Best-of-$N$ selection F1 on SciERC ($N{=}8$, $T{=}1.0$). LP is per-sample; others are instance-level. NER: 2-seed mean${\pm}\sigma$, Fisher $p$ vs.\ greedy; RE: single seed (preliminary). Best non-oracle in \textbf{bold}. $^\dagger$Greedy: $T{=}1.0$ sample.}
+60	\label{tab:selection}
+61	\begin{tabular}{lccc}
+62	\toprule
+63	Method & NER F1 & $p$ & RE F1 \\
+64	\midrule
+65	Oracle & $0.778 \pm 0.003$ & --- & 0.585 \\
+66	\midrule
+67	\multicolumn{4}{l}{\textit{Per-sample signal}} \\
+68	LP           & $\mathbf{0.647} \pm 0.005$ & .29 & 0.395 \\
+69	\midrule
+70	\multicolumn{4}{l}{\textit{Instance-level signals (consensus-proximity selection)}} \\
+71	SJ           & $0.646 \pm 0.002$ & .68 & 0.386 \\
+72	FK           & $0.646 \pm 0.001$ & .79 & --- \\
+73	EM           & $0.637 \pm 0.001$ & .45 & 0.372 \\
+74	VC           & $0.623 \pm 0.004$ & .26 & 0.359 \\
+75	\midrule
+76	Greedy$^\dagger$ & $0.645 \pm 0.001$ & --- & \textbf{0.404} \\
+77	Random           & $0.610 \pm 0.003$ & --- & 0.354 \\
+78	\bottomrule
+79	\end{tabular}
+80	\end{table}
+81	
+82	Despite strong quality estimation, confidence signals yield limited selection gains (Table~\ref{tab:selection}, Figure~\ref{fig:selection_gap}).
+83	Instance-level signals (SJ, FK, EM, VC) assign identical scores to all candidates per input and cannot rank outputs by construction; the key question is whether LP---the only per-sample signal---can exploit the oracle headroom.
+84	
+85	\paragraph{No significant improvement over greedy.}
+86	On SciERC NER (2-seed sign tests, $n{=}551$), the oracle (0.778) reveals 13.3~pp of headroom above greedy (0.645), yet LP achieves only 0.647 ($\Delta{=}{+}0.2$~pp, $p{=}0.29$); all signals fail significance ($p{>}0.05$).
+87	On RE, the best signal (LP, 0.395) falls below greedy (0.404; preliminary), with 18.1~pp unrealized.
+88	The pattern holds across CoNLL and WNUT-17 (Table~\ref{tab:cross_selection}).
+89	Instance-level signals predict \textit{which inputs} the model handles reliably, not \textit{which output} is best; closing this gap likely requires trained verifiers \cite{cobbe2021verifiers}.
+90	
+91	%% ============================================================
+92	\subsection{Robustness}
+93	\label{sec:robustness_main}
+94	
+95	Consistency signals are robust across $T{\in}\{0.7, 1.0\}$ with sublinear $N$-scaling gains (Table~\ref{tab:robustness}); LP shows the largest temperature sensitivity ($\Delta\rho{=}{+}0.044$).
+96	NER calibration is reasonable (ECE 0.069--0.096); RE miscalibration (ECE${\leq}$0.339, preliminary) caps $\rho$ at ${\approx}0.28$ for $N{=}16$ (Appendix~\ref{app:calibration}).
+97	
+98	\begin{table}[t]
+99	\centering
+100	\small
+101	\caption{Scale ablation: Qwen3-8B vs.\ 4B quality estimation ($\rho$; $N{=}8$, $T{=}1.0$, seed${=}42$). 8B recomputed under matched conditions. $^\dagger$Preliminary.}
+102	\label{tab:scale_ablation}
+103	\begin{tabular}{@{}ll cc r@{}}
+104	\toprule
+105	& & \textbf{8B} & \textbf{4B} & $\Delta$ \\
+106	\midrule
+107	CoNLL NER & SJ & .436 & .422 & $-$.014 \\
+108	          & FK & .400 & .418 & $+$.018 \\
+109	SciERC NER & SJ & .383 & .422 & $+$.040 \\
+110	           & FK & .259 & .326 & $+$.067 \\
+111	SciERC RE$^\dagger$ & SJ & .244 & .267 & $+$.023 \\
+112	           & FK & .278 & .359 & $+$.081 \\
+113	\bottomrule
+114	\end{tabular}
+115	\end{table}
+116	
+117	\paragraph{Scale robustness.}
+118	Repeating with Qwen3-4B (Table~\ref{tab:scale_ablation}), quality estimation is comparable or improved (mean $|\Delta\rho|{=}0.041$), yet selection remains below greedy on SciERC ($\Delta$ up to $-3.4$~pp) despite 13.0~pp of oracle headroom, and indistinguishable on CoNLL (${<}0.3$~pp, 1.7~pp headroom). Task difficulty, not model capacity, drives the gap.
+119	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "216bc0e9-4044-4fa1-9f5e-e3c6dcfc84b7",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex",
+      "content": "\\section{Experiments}\n\\label{sec:experiments}\n\n\\subsection{Experimental Setup}\n\\label{sec:setup}\n\n\\paragraph{Datasets.}\nWe evaluate on three English IE benchmarks spanning a difficulty gradient.\n\\textbf{SciERC} \\cite{luan2018scierc} contains 551 test instances annotated for joint NER (6 types) and RE (7 types).\n\\textbf{CoNLL-2003} \\cite{tjongkimsang2003conll} provides 3{,}453 test sentences with 4 entity types, where models achieve ${\\approx}$91\\% micro F1.\n\\textbf{WNUT-17} \\cite{derczynski2017wnut} consists of 1{,}287 social media instances with emerging entities, used to probe method boundaries (52\\% zero F1).\n\n\\paragraph{Models and sampling.}\nBoth \\textbf{Qwen3-8B} and \\textbf{LLaMA-3.1-8B-Instruct} are fine-tuned with LoRA (rank$=$32, $\\alpha{=}64$) for 5 epochs using LLaMA Factory \\cite{zheng2024llamafactory} under identical training procedures.\nQwen3-8B's SciERC checkpoint has a minor train--test mismatch (empty thinking tokens); a quantitative analysis rules out this confound (Appendix~\\ref{app:thinking_token}).\nWe draw $N{=}8$ samples at $T{=}1.0$ (primary), with $N{=}16$ for scaling experiments.\\footnote{$N{=}16$ with 3 seeds verifies scaling and ranking stability ($\\sigma{\\leq}0.026$; Table~\\ref{tab:multiseed}); gains beyond $N{=}8$ are sublinear (Appendix~\\ref{app:n_scaling}).}\nInference uses vLLM with constrained decoding \\cite{willard2023guided}.\n\n%% ============================================================\n\\subsection{Quality Estimation Results}\n\\label{sec:qe_results}\n\n\\begin{table*}[t]\n\\centering\n\\small\n\\caption{Quality estimation ($\\rho$ and AUROC; $N{=}8$, seed${=}42$). Best in \\textbf{bold}. RE: preliminary. $N{=}16$ in Table~\\ref{tab:robustness}.}\n\\label{tab:quality_estimation}\n\\begin{tabular}{ll cc cc cc cc}\n\\toprule\n& & \\multicolumn{2}{c}{\\textbf{SciERC NER}} & \\multicolumn{2}{c}{\\textbf{SciERC RE}} & \\multicolumn{2}{c}{\\textbf{CoNLL (Qwen)}} & \\multicolumn{2}{c}{\\textbf{CoNLL (LLaMA)}} \\\\\n\\cmidrule(lr){3-4} \\cmidrule(lr){5-6} \\cmidrule(lr){7-8} \\cmidrule(lr){9-10}\nSignal & Family & $\\rho$ & AUC & $\\rho$ & AUC & $\\rho$ & AUC & $\\rho$ & AUC \\\\\n\\midrule\nVC & Structural & \\textbf{.379} & \\textbf{.663} & \\textbf{.350} & .694 & .424 & .789 & .426 & .709 \\\\\nSJ  & Structural & .360 & .650 & .250 & .670 & .436 & .801 & \\textbf{.431} & .704 \\\\\nFK & Surface & .267 & .602 & .275 & .609 & .400 & .774 & .428 & .703 \\\\\nEM  & Surface    & .295 & .614 & .134 & \\textbf{.706} & \\textbf{.451} & \\textbf{.816} & \\textbf{.431} & .705 \\\\\n\\midrule\nLP     & Model      & .205 & .578 & .266 & .601 & .316 & .753 & .307 & \\textbf{.761} \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table*}\n\nTable~\\ref{tab:quality_estimation} presents $\\rho$ and AUROC for five signals across tasks and models.\\footnote{$\\varepsilon{=}0.05$ applies only to selection (\\S\\ref{sec:selection_gap}); quality estimation is $\\varepsilon$-free. Selection F1 is stable across $\\varepsilon \\in [0, 0.2]$ (Appendix~\\ref{app:epsilon_robustness}).}\n\n\\paragraph{Signal rankings are difficulty-dependent.}\nOn SciERC NER, structural signals lead (VC $\\rho{=}0.379$, SJ $0.360$) over surface ($\\rho{\\leq}0.295$) and LP ($0.205$); bootstrap CIs confirm the SJ--LP gap ($\\Delta\\rho{=}{+}0.155$; Appendix~\\ref{app:bootstrap_signal}).\nOn CoNLL (greedy F1${\\approx}$0.91), EM leads both $\\rho$ and AUROC ($0.816$); the $\\rho$--AUROC dissociation across datasets reflects use-case alignment.\nOn RE (preliminary), LP rises above SJ and FK at $N{=}16$ (Table~\\ref{tab:multiseed}).\nAt the capability boundary---WNUT-17 (52\\% zero F1)---all conditional signals collapse (Table~\\ref{tab:wnut}); restricting to non-zero instances reshuffles rankings, with EM strongest on NER ($\\rho{=}0.360$) and RE ($\\rho{=}0.417$; preliminary) while LP RE collapses to $\\rho{=}0.011$ (preliminary) (Figure~\\ref{fig:signal_heatmap}, Appendix~\\ref{app:additional}).\n\n%% ============================================================\n\\subsection{The Correlation-Selection Gap}\n\\label{sec:selection_gap}\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Best-of-$N$ selection F1 on SciERC ($N{=}8$, $T{=}1.0$). LP is per-sample; others are instance-level. NER: 2-seed mean${\\pm}\\sigma$, Fisher $p$ vs.\\ greedy; RE: single seed (preliminary). Best non-oracle in \\textbf{bold}. $^\\dagger$Greedy: $T{=}1.0$ sample.}\n\\label{tab:selection}\n\\begin{tabular}{lccc}\n\\toprule\nMethod & NER F1 & $p$ & RE F1 \\\\\n\\midrule\nOracle & $0.778 \\pm 0.003$ & --- & 0.585 \\\\\n\\midrule\n\\multicolumn{4}{l}{\\textit{Per-sample signal}} \\\\\nLP           & $\\mathbf{0.647} \\pm 0.005$ & .29 & 0.395 \\\\\n\\midrule\n\\multicolumn{4}{l}{\\textit{Instance-level signals (consensus-proximity selection)}} \\\\\nSJ           & $0.646 \\pm 0.002$ & .68 & 0.386 \\\\\nFK           & $0.646 \\pm 0.001$ & .79 & --- \\\\\nEM           & $0.637 \\pm 0.001$ & .45 & 0.372 \\\\\nVC           & $0.623 \\pm 0.004$ & .26 & 0.359 \\\\\n\\midrule\nGreedy$^\\dagger$ & $0.645 \\pm 0.001$ & --- & \\textbf{0.404} \\\\\nRandom           & $0.610 \\pm 0.003$ & --- & 0.354 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nDespite strong quality estimation, confidence signals yield limited selection gains (Table~\\ref{tab:selection}, Figure~\\ref{fig:selection_gap}).\nInstance-level signals (SJ, FK, EM, VC) assign identical scores to all candidates per input and cannot rank outputs by construction; the key question is whether LP---the only per-sample signal---can exploit the oracle headroom.\n\n\\paragraph{No significant improvement over greedy.}\nOn SciERC NER (2-seed sign tests, $n{=}551$), the oracle (0.778) reveals 13.3~pp of headroom above greedy (0.645), yet LP achieves only 0.647 ($\\Delta{=}{+}0.2$~pp, $p{=}0.29$); all signals fail significance ($p{>}0.05$).\nOn RE, the best signal (LP, 0.395) falls below greedy (0.404; preliminary), with 18.1~pp unrealized.\nThe pattern holds across CoNLL and WNUT-17 (Table~\\ref{tab:cross_selection}).\nInstance-level signals predict \\textit{which inputs} the model handles reliably, not \\textit{which output} is best; closing this gap likely requires trained verifiers \\cite{cobbe2021verifiers}.\n\n%% ============================================================\n\\subsection{Robustness}\n\\label{sec:robustness_main}\n\nConsistency signals are robust across $T{\\in}\\{0.7, 1.0\\}$ with sublinear $N$-scaling gains (Table~\\ref{tab:robustness}); LP shows the largest temperature sensitivity ($\\Delta\\rho{=}{+}0.044$).\nNER calibration is reasonable (ECE 0.069--0.096); RE miscalibration (ECE${\\leq}$0.339, preliminary) caps $\\rho$ at ${\\approx}0.28$ for $N{=}16$ (Appendix~\\ref{app:calibration}).\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Scale ablation: Qwen3-8B vs.\\ 4B quality estimation ($\\rho$; $N{=}8$, $T{=}1.0$, seed${=}42$). 8B recomputed under matched conditions. $^\\dagger$Preliminary.}\n\\label{tab:scale_ablation}\n\\begin{tabular}{@{}ll cc r@{}}\n\\toprule\n& & \\textbf{8B} & \\textbf{4B} & $\\Delta$ \\\\\n\\midrule\nCoNLL NER & SJ & .436 & .422 & $-$.014 \\\\\n          & FK & .400 & .418 & $+$.018 \\\\\nSciERC NER & SJ & .383 & .422 & $+$.040 \\\\\n           & FK & .259 & .326 & $+$.067 \\\\\nSciERC RE$^\\dagger$ & SJ & .244 & .267 & $+$.023 \\\\\n           & FK & .278 & .359 & $+$.081 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\paragraph{Scale robustness.}\nRepeating with Qwen3-4B (Table~\\ref{tab:scale_ablation}), quality estimation is comparable or improved (mean $|\\Delta\\rho|{=}0.041$), yet selection remains below greedy on SciERC ($\\Delta$ up to $-3.4$~pp) despite 13.0~pp of oracle headroom, and indistinguishable on CoNLL (${<}0.3$~pp, 1.7~pp headroom). Task difficulty, not model capacity, drives the gap.\n",
+      "numLines": 119,
+      "startLine": 1,
+      "totalLines": 119
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 18_
+
+<details open><summary>🔧 Tool call — Read · `toolu_011f6uUoiAzPug9iVXMKKrie`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "09e35c8f-96b2-4b88-bb4f-c473fe36f3c5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016nBK7PM5kwn3yhUyeuFsx7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6312,
+      "cache_read_input_tokens": 25495,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6312
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 19 · 2026-05-15T23:53:02.008Z_
+
+<details><summary>↩ Tool result · `toolu_011f6uUoiAzPug9iVXMKKrie`</summary>
+
+```text
+1	\section{Notation}\label{app:notation}
+2	
+3	Table~\ref{tab:notation} summarizes the notation used throughout the paper.
+4	
+5	\begin{table}[h]
+6	\centering
+7	\small
+8	\begin{tabular}{cl}
+9	\toprule
+10	Symbol & Meaning \\
+11	\midrule
+12	$\mathcal{M}$ & Language model \\
+13	$x$ & Input instance \\
+14	$y_i$ & $i$-th stochastic sample \\
+15	$N$ & Number of samples \\
+16	$T$ & Sampling temperature \\
+17	$c(\cdot)$ & Confidence signal \\
+18	SJ & Soft Jaccard similarity \\
+19	FK & Fleiss' $\kappa$ \\
+20	EM & Exact-match voting rate \\
+21	VC ($c_{\mathrm{vc}}$) & Entity voting confidence \\
+22	LP ($c_{\mathrm{lp}}$) & Log-probability (mean token log-likelihood) \\
+23	\bottomrule
+24	\end{tabular}
+25	\caption{Notation used throughout the paper.}
+26	\label{tab:notation}
+27	\end{table}
+28	
+29	\section{Robustness Analysis}\label{app:robustness}
+30	
+31	We exclude instances with empty gold annotations from all correlation analyses (CoNLL: 697/3{,}453 instances, 20.2\%; SciERC: 22/551, 4.0\%).
+32	For these instances, F1 is trivially zero regardless of prediction quality, and consistency signals reflect agreement on the empty set rather than extraction quality---including them inflates or deflates Spearman $\rho$ depending on signal behavior at the boundary.
+33	
+34	\begin{table}[t]
+35	\centering
+36	\small
+37	\caption{Signal robustness across configurations (Spearman $\rho$). Top: temperature on Qwen SciERC. Middle: sample size on Qwen SciERC. Bottom: transfer across model families (both 8B) (LLaMA CoNLL $N{=}16$, 3-seed mean $\pm\sigma$). $^\dagger$Mean over 3 seeds ($\sigma{=}0.013$; individual: 0.398, 0.423, 0.410). $\sigma$ computed as sample standard deviation.}
+38	\label{tab:robustness}
+39	\begin{tabular}{llcc}
+40	\toprule
+41	& & NER $\rho$ & RE $\rho$ \\
+42	\midrule
+43	\multicolumn{4}{l}{\textit{Temperature} (Qwen SciERC, $N{=}8$)} \\
+44	\quad SJ & $T{=}0.7$ & 0.364 & 0.234 \\
+45	\quad SJ & $T{=}1.0$ & 0.360 & 0.250 \\
+46	\quad FK & $T{=}0.7$ & 0.289 & 0.184 \\
+47	\quad FK & $T{=}1.0$ & 0.267 & 0.275 \\
+48	\quad LP & $T{=}0.7$ & 0.249 & --- \\
+49	\quad LP & $T{=}1.0$ & 0.205 & 0.266 \\
+50	\midrule
+51	\multicolumn{4}{l}{\textit{Sample size} (Qwen SciERC, $T{=}1.0$)} \\
+52	\quad SJ & $N{=}8$  & 0.360 & 0.250 \\
+53	\quad SJ & $N{=}16$ & 0.411$^\dagger$ & 0.281 \\
+54	\quad FK & $N{=}8$  & 0.267 & 0.275 \\
+55	\quad FK & $N{=}16$ & 0.283 & 0.279 \\
+56	\midrule
+57	\multicolumn{4}{l}{\textit{Across model families} (LLaMA CoNLL, $N{=}16$, 3 seeds)} \\
+58	\quad SJ &  & $0.474{\pm}0.009$ & --- \\
+59	\quad FK &  & $0.467{\pm}0.009$ & --- \\
+60	\quad EM &  & $0.473{\pm}0.010$ & --- \\
+61	\quad VC &  & $0.470{\pm}0.006$ & --- \\
+62	\quad LP &  & $0.311{\pm}0.003$ & --- \\
+63	\bottomrule
+64	\end{tabular}
+65	\end{table}
+66	
+67	\begin{figure}[t]
+68	\centering
+69	\includegraphics[width=\columnwidth]{fig_temperature_robustness}
+70	\caption{Temperature robustness on SciERC ($N{=}8$). Top: NER; bottom: RE. SJ maintains stable $\rho$ across $T{=}0.7$ and $T{=}1.0$, while FK shows mixed sensitivity. LP shows the largest NER temperature effect ($\Delta\rho{=}{+}0.044$); RE $T{=}0.7$ LP data unavailable.}
+71	\label{fig:temperature_robustness}
+72	\end{figure}
+73	
+74	\paragraph{Temperature sensitivity.}
+75	SJ NER $\rho$ shifts from 0.364 ($T{=}0.7$) to 0.360 ($T{=}1.0$), a difference of 0.004.
+76	FK NER $\rho$ drops by 0.022, while RE $\rho$ increases by 0.091, likely reflecting reduced diversity at lower temperature interacting differently across tasks.
+77	LP exhibits the largest temperature effect on NER ($\rho{=}0.249$ at $T{=}0.7$ vs.\ $0.205$ at $T{=}1.0$, $\Delta{=}{+}0.044$), consistent with lower temperature concentrating probability mass and improving LP's discriminative power for quality estimation; RE $T{=}0.7$ LP data is not available.
+78	Across all comparisons, the signal hierarchy is preserved at both temperatures on NER (SJ${>}$FK${>}$LP at $T{=}0.7$: $0.364{>}0.289{>}0.249$; at $T{=}1.0$: $0.360{>}0.267{>}0.205$).
+79	
+80	\paragraph{Sample size scaling.}
+81	Increasing from $N{=}8$ to $N{=}16$ improves SJ on Qwen SciERC NER: $\rho$ rises from 0.360 to $0.411{\pm}0.010$ (three seeds: 0.398, 0.423, 0.410), a gain of $+0.047$.
+82	The magnitude of $N$-scaling gains is setting-dependent---LLaMA SciERC NER yields $+0.016$ and Qwen CoNLL NER $+0.014$---though the direction is consistently positive.
+83	LLaMA CoNLL exhibits the most uniform scaling: all four consistency signals gain $\Delta\rho{\approx}{+}0.042$ (range: $+0.039$ to $+0.044$) while LP gains only $+0.004$ (Table~\ref{tab:quality_estimation}).
+84	FK $N$-scaling is seed-dependent: Qwen SciERC gains range from $+0.005$ to $+0.023$ across seeds (mean $+0.016$), while LLaMA CoNLL yields $+0.039$ (3-seed mean); individual seed FK shifts vary substantially under the unified pipeline, so this should not be interpreted as a robust trend.
+85	VC $N$-scaling is consistently positive ($+0.005$ on Qwen CoNLL, $+0.018$ on LLaMA SciERC, $+0.030$ on Qwen SciERC), while LP is approximately $N$-invariant ($\Delta{\leq}0.034$).
+86	SJ, EM, and VC scale consistently across all tested settings; only FK shows seed-dependent variation that does not constitute a reliable trend, suggesting that structural and binary-agreement signals are the most robust to $N$.
+87	At $N{=}16$, SJ converges to comparable NER performance with VC ($\Delta{=}0.002$) while exhibiting lower cross-seed variance ($\sigma{=}0.010$ vs.\ $0.026$), making it a more stable alternative at higher sample sizes.
+88	
+89	\paragraph{Transfer across model families.}
+90	LLaMA-3.1-8B-Instruct shows a similar SJ--FK ordering on SciERC NER (SJ $\rho{=}0.325{\pm}0.021$, FK $\rho{=}0.256{\pm}0.024$, $\Delta\rho{=}0.069$; permutation $p{=}0.06$, borderline).
+91	On CoNLL, the gap across model families is minimal (Table~\ref{tab:quality_estimation}): SJ achieves $\rho{=}0.431$ (LLaMA) vs.\ 0.436 (Qwen), $\Delta{=}0.005$.
+92	At $N{=}16$, the structural-over-LP advantage holds across all four tested NER settings: Qwen SciERC (VC $\rho{=}0.409$ vs.\ LP 0.239, $\Delta{=}{+}0.170$), Qwen CoNLL (EM $\rho{=}0.463$ vs.\ LP 0.328, $\Delta{=}{+}0.135$),\footnote{Qwen CoNLL $N{=}16$ was not recomputed under the unified pipeline; LP $\rho{=}0.328$ may differ slightly from the registry value (0.315) due to instance filtering.} LLaMA SciERC (VC $\rho{=}0.452$ vs.\ LP 0.277, $\Delta{=}{+}0.175$), and LLaMA CoNLL 3-seed (SJ $\rho{=}0.474{\pm}0.009$ vs.\ LP $0.311{\pm}0.003$, $\Delta{=}{+}0.163$).
+93	
+94	\paragraph{FK independence: instance-level permutation test.}\label{app:fk_independence}
+95	
+96	To verify that Fleiss' $\kappa$ reflects genuine within-instance agreement rather than marginal-rate artifacts, we conduct instance-level permutation tests across three configurations.
+97	For each instance, we permute sample labels 10{,}000 times to generate a null distribution of FK under independence, then compare the observed FK against this null via a one-sample $t$-test and permutation $p$-value.
+98	
+99	\begin{table}[t]
+100	\centering
+101	\small
+102	\caption{Instance-level FK independence test. Permutation tests confirm FK reflects true within-instance agreement (all $p{<}0.001$). Split-half reliability $r$ computed by randomly partitioning $N$ samples into two halves and correlating their FK scores.}
+103	\label{tab:fk_independence}
+104	\begin{tabular}{lrcccc}
+105	\toprule
+106	Config & $n$ & FK mean & 95\% CI & $t$ & Split-half $r$ \\
+107	\midrule
+108	SciERC (Qwen) & 529 & 0.402 & [0.376, 0.428] & 30.8 & 0.395 \\
+109	CoNLL (LLaMA) & 2{,}756 & 0.927 & [0.919, 0.935] & 225.9 & 0.578 \\
+110	CoNLL (Qwen) & 2{,}756 & 0.720 & [0.706, 0.734] & 102.1 & 0.520 \\
+111	\bottomrule
+112	\end{tabular}
+113	\end{table}
+114	
+115	Table~\ref{tab:fk_independence} reports the results.
+116	All configurations reject the independence null at $p{<}0.001$ ($n{=}529$--$2{,}756$), confirming that FK captures genuine inter-sample agreement rather than chance label co-occurrence.
+117	Split-half reliability ranges from $r{=}0.395$ (SciERC) to $r{=}0.578$ (CoNLL LLaMA), indicating moderate stability: FK estimates from half the samples correlate positively with those from the other half, though the SciERC value suggests noisier estimation on harder tasks with fewer samples.
+118	The higher FK means on CoNLL ($0.720$--$0.927$) vs.\ SciERC ($0.402$) mirror the difficulty gradient observed in the main quality estimation results.
+119	
+120	\section{Calibration Analysis}\label{app:calibration}
+121	
+122	\begin{figure*}[t]
+123	\centering
+124	\includegraphics[width=\textwidth]{fig_reliability}
+125	\caption{Reliability diagrams on SciERC ($N{=}8$, $T{=}1.0$). Top: mean F1 vs.\ binned confidence; bottom: instance counts per bin. Left: NER; right: RE. NER signals are reasonably well-calibrated (calibration ECE 0.069--0.096), while RE shows greater miscalibration (ECE 0.109--0.339), reflecting the difficulty of calibrating confidence for compound extraction tasks.}
+126	\label{fig:reliability}
+127	\end{figure*}
+128	
+129	Reliability diagrams use 10 equal-width bins.
+130	NER signals are reasonably well-calibrated (calibration ECE 0.069--0.096), while RE exhibits greater miscalibration (ECE 0.109--0.339), indicating that translating consistency scores into calibrated confidence estimates is feasible for NER but remains challenging for compound extraction tasks.
+131	
+132	\section{Additional Analyses}\label{app:additional}
+133	
+134	\begin{figure*}[t]
+135	\centering
+136	\includegraphics[width=\textwidth]{fig_signal_heatmap}
+137	\caption{Quality estimation heatmap (Spearman $\rho$) across five signals and four configurations. Left: full evaluation set; right: conditional set (non-zero F1 instances). On the full set, structural signals dominate on SciERC NER while all signals converge on CoNLL. On the conditional set, EM emerges as the strongest signal on both NER ($\rho{=}0.360$) and RE ($\rho{=}0.417$), while LP RE collapses to near-zero ($\rho{=}0.011$).}
+138	\label{fig:signal_heatmap}
+139	\end{figure*}
+140	
+141	\paragraph{Per-relation diagnostic.}
+142	RE signal degradation is relation-specific.
+143	\textsc{Feature-Of} has near-zero correlation ($\rho{=}0.004$), while \textsc{Hyponym-Of} achieves $\rho{=}0.646$.
+144	The primary bottleneck is entity span errors, which account for 55.5\% of RE false negatives---a prerequisite failure that consistency signals cannot detect, as they measure agreement among equally incorrect extractions.
+145	We note that RE analysis relies on a single dataset (SciERC); generalization to other RE benchmarks remains to be validated.
+146	
+147	\paragraph{Capability stratification.}
+148	For NER, SJ effectiveness scales with structural complexity: on SciERC instances with 6+ entities, $\rho{=}0.547$, compared to $\rho{=}0.415$ for 1--2 entities.
+149	The SJ advantage over LP remains stable across sentence-length quartiles ($\Delta\rho{\approx}0.08$--$0.20$).
+150	For RE, SJ $\rho$ increases monotonically with sentence length (Q1: 0.110 $\to$ Q4: 0.473; Fisher $z$-test $p{=}0.004$), indicating that longer, more relation-dense sentences provide richer structure for consistency-based estimation.
+151	Both proxies are weakly correlated with F1 ($|r|{<}0.15$), confirming they capture input complexity rather than directly predicting output quality; however, entity count and sentence length are themselves moderately correlated ($\rho{=}0.650$), so they reflect overlapping rather than independent complexity dimensions.
+152	For RE, entity count and relation count are strongly correlated ($\rho{=}0.769$) and thus reflect a single structural complexity dimension rather than independent axes.
+153	On the high-complexity RE subset ($n{=}81$, high relation count), signals improve substantially: VC reaches $\rho{=}0.630$, LP $\rho{=}0.554$, and SJ $\rho{=}0.502$---all far above the full-set levels.
+154	Richer relational structure provides more signal for consistency-based estimation, complementing the task-level boundary established by WNUT-17: structural signals are most effective within a ``sweet spot'' of sufficient model capability and sufficient output complexity.
+155	
+156	\paragraph{Length vs.\ log-probability.}
+157	Figure~\ref{fig:length_logprob_scatter} shows that mean log-probability is weakly positively correlated with output length (NER: $\rho{=}0.386$, $n{=}4{,}232$; RE: $\rho{=}0.326$, $n{=}3{,}176$), ruling out length-penalty confounding as an explanation for LP's selection failure: longer outputs receive \textit{higher}, not lower, token-averaged log-probability under constrained decoding.
+158	
+159	\begin{figure}[t]
+160	\centering
+161	\includegraphics[width=\columnwidth]{fig_length_logprob_scatter}
+162	\caption{Output length vs.\ mean log-probability on SciERC ($N{=}8$, $T{=}1.0$). Positive correlations (NER: $\rho{=}0.386$; RE: $\rho{=}0.326$) rule out length-penalty confounding.}
+163	\label{fig:length_logprob_scatter}
+164	\end{figure}
+165	
+166	\paragraph{Evaluation circularity and LOO-SJ equivalence.}
+167	Consensus-proximity selection chooses $\hat{y} = \arg\max_{y_i} \sum_{j \neq i} \text{SJ}(y_i, y_j)$.
+168	Leave-one-out SJ (LOO-SJ) for sample $y_i$ is $\text{LOO-SJ}_i = \frac{1}{N-1}\sum_{j \neq i} \text{SJ}(y_i, y_j)$.
+169	Since the $\frac{1}{N-1}$ constant is shared across all candidates within an instance, $\arg\max_{y_i} \text{LOO-SJ}_i = \arg\max_{y_i} \sum_{j \neq i} \text{SJ}(y_i, y_j)$, making the two selection rules equivalent.
+170	Standard (non-LOO) SJ adds the self-comparison term $\text{SJ}(y_i, y_i) = 1$ to each candidate, which is constant and thus does not affect ranking.
+171	Empirically, LOO-SJ yields $\Delta\rho{=}{-}0.014$ relative to standard SJ (a correlation-level difference), with a maximum per-instance score difference of $3.1{\times}10^{-4}$ (negligible at the individual prediction level).
+172	Evaluation circularity is negligible.
+173	
+174	\paragraph{SJ normalizer robustness.}
+175	Equation~\ref{eq:sj} uses $\max(|g_i|, |g_j|)$ as the denominator; an alternative is the union size $|g_i \cup g_j|$.
+176	Table~\ref{tab:sj_normalizer} compares the two normalizers across all six model--dataset combinations ($N{=}8$, $T{=}1.0$, seed${=}42$): $|\Delta\rho|{<}0.01$ in every case, confirming that the choice between max and union normalization does not affect conclusions.
+177	
+178	\begin{table}[h]
+179	\centering
+180	\small
+181	\caption{SJ normalizer comparison (Spearman $\rho$; $N{=}8$, $T{=}1.0$, seed${=}42$). Max: $\max(|g_i|,|g_j|)$; Union: $|g_i \cup g_j|$.}
+182	\label{tab:sj_normalizer}
+183	\begin{tabular}{@{}ll ccc@{}}
+184	\toprule
+185	Dataset & Model & $\rho$(max) & $\rho$(union) & $\Delta\rho$ \\
+186	\midrule
+187	CoNLL & Qwen3-8B & .436 & .438 & $-$.002 \\
+188	CoNLL & Qwen3-4B & .422 & .421 & $+$.000 \\
+189	CoNLL & LLaMA-8B & .431 & .432 & $-$.000 \\
+190	SciERC & Qwen3-8B & .360 & .365 & $-$.005 \\
+191	SciERC & Qwen3-4B & .422 & .423 & $-$.001 \\
+192	SciERC & LLaMA-8B & .363 & .372 & $-$.009 \\
+193	\bottomrule
+194	\end{tabular}
+195	\end{table}
+196	
+197	\paragraph{Conditional filtering details.}
+198	On LLaMA conditional RE (non-zero F1 instances), SJ recovers to $\rho{=}0.405$ while FK drops to $\rho{=}0.259$, consistent with the NER structural advantage; on full-set RE, however, the SJ--FK difference is non-significant ($\Delta\rho{=}{-}0.005$, $p{=}0.53$; preliminary).
+199	At $N{=}16$, the divergence persists: SJ maintains $\rho{=}0.308$ on conditional RE while LP drops to $\rho{=}{-}0.026$.
+200	EM ranks first across all four tested conditional configurations---SciERC NER ($\rho{=}0.360$), CoNLL Qwen $N{=}16$ ($\rho{=}0.466$), CoNLL LLaMA 3-seed ($\rho{=}0.462$), and SciERC RE ($\rho{=}0.417$)---despite full-set rankings ranging from \#1 (CoNLL Qwen) to \#5 (SciERC RE).
+201	On the full set, EM is diluted by trivial agreement: instances where all $N$ samples produce identical (possibly incorrect) outputs receive EM${=}1$ regardless of quality, compressing the signal's dynamic range.
+202	On the conditional set---where the model demonstrably produces varied outputs---exact agreement becomes the strongest quality signal.
+203	The margin over SJ is largest on RE ($\Delta\rho{=}{+}0.171$), where compound extraction decisions amplify output variability, and smallest on CoNLL LLaMA ($\Delta\rho{=}{+}0.002$), where all signals converge near $\rho{\approx}0.46$.
+204	
+205	\paragraph{WNUT-17 full signal analysis.}
+206	Table~\ref{tab:wnut} reports all five signals on WNUT-17.
+207	VC achieves $\rho{=}0.724$ (AUROC${=}0.913$) on the full set, but conditional analysis (non-zero F1 instances) reveals this is entirely driven by the zero/non-zero boundary: conditional $\rho{=}0.038$ ($p{=}0.49$).
+208	LP shows the reverse pattern: full-set $\rho{=}{-}0.410$ but conditional $\rho{=}0.350$, the highest among all signals on the conditional set.
+209	This inversion confirms that full-set correlations on high-failure-rate datasets conflate binary success prediction with quality gradation.
+210	
+211	\begin{table}[t]
+212	\centering
+213	\small
+214	\caption{Quality estimation on WNUT-17 (Qwen, $N{=}16$, $T{=}1.0$, $n{=}689$ after filtering gold-empty instances). Cond: non-zero F1 instances ($n{=}334$). LP exhibits strong negative full-set $\rho$; its conditional $\rho$ reverses to the highest among all signals, confirming that full-set correlations on high-failure-rate datasets conflate binary success prediction with quality gradation.}
+215	\label{tab:wnut}
+216	\begin{tabular}{lccccc}
+217	\toprule
+218	Signal & $\rho$ & $p$ & AUROC & Cond.\ $\rho$ & Cond.\ $p$ \\
+219	\midrule
+220	VC      & .724 & ${<}$1e-112 & .913 & .038 & .487 \\
+221	FK      & .125 & .001 & .555 & .169 & .002 \\
+222	SJ      & .089 & .020 & .517 & .288 & ${<}$1e-7 \\
+223	EM      & .050 & .194 & .487 & .333 & ${<}$1e-9 \\
+224	LP & $-$.410 & ${<}$1e-28 & .219 & .350 & ${<}$1e-10 \\
+225	\bottomrule
+226	\end{tabular}
+227	\end{table}
+228	
+229	\paragraph{Cross-configuration selection analysis.}
+230	Table~\ref{tab:cross_selection} extends the selection analysis to four additional configurations.
+231	On LLaMA SciERC, where output diversity remains substantial (18\% identical outputs, 39\% unique), LP achieves the highest selection F1 (0.652) at $N{=}8$ but still falls within bootstrap noise of greedy (0.646), replicating the gap observed on Qwen SciERC (Table~\ref{tab:selection}).
+232	On CoNLL, 57--88\% of instances produce identical outputs across all $N$ samples, reflecting a ceiling effect (greedy F1 ${\approx}$0.91--0.92) rather than signal failure; selection analysis on these configurations is uninformative because there is little per-sample variance for any signal to exploit.
+233	
+234	\begin{table*}[t]
+235	\centering
+236	\small
+237	\caption{Best-of-$N$ selection F1 (macro, instance-averaged) across configurations ($T{=}1.0$). Best non-oracle signal per row in \textbf{bold}. At $N{=}8$, no signal significantly outperforms greedy in any configuration. At $N{=}16$ on LLaMA CoNLL, VC achieves small but significant gains ($+0.28$~pp, $p{<}0.03$; see text below). CoNLL shows especially tight clustering where greedy already exceeds 0.90.}
+238	\label{tab:cross_selection}
+239	\begin{tabular}{llccccccc}
+240	\toprule
+241	Config & $n$ & Greedy & Oracle & SJ & FK & EM & LP & VC \\
+242	\midrule
+243	LLaMA/SciERC $N{=}8$ & 529 & .646 & .778 & .643 & .639 & .634 & \textbf{.652} & .633 \\
+244	LLaMA/SciERC $N{=}16$ & 529 & .645 & .806 & \textbf{.649} & \textbf{.649} & .640 & .646 & .640 \\
+245	Qwen/CoNLL $N{=}8$ & 2{,}756 & .908 & .948 & \textbf{.899} & .893 & .898 & .897 & .895 \\
+246	LLaMA/CoNLL $N{=}8$ & 2{,}756 & .924 & .943 & .924 & \textbf{.925} & .924 & .924 & .923 \\
+247	\bottomrule
+248	\end{tabular}
+249	\end{table*}
+250	
+251	\paragraph{Diminishing returns of $N$-scaling.}
+252	Our $N{=}8$ and $N{=}16$ comparisons (Table~\ref{tab:robustness}) characterize the marginal value of additional samples for test-time scaling \cite{brown2024monkeys, snell2025scaling}.
+253	For quality estimation, structural signals benefit consistently but sublinearly: SJ $\rho$ improves by $+0.047$ (Qwen SciERC, 3-seed mean) and $+0.032$ (LLaMA CoNLL, 3-seed mean) when doubling from $N{=}8$ to $N{=}16$, while log-probability is approximately $N$-invariant ($\Delta\rho{\leq}0.021$).
+254	Structural signals leverage $\binom{N}{2}$ pairwise comparisons (28 pairs at $N{=}8$, 120 at $N{=}16$), but the $\rho$ improvement is far less than proportional, indicating diminishing information per additional comparison.
+255	This asymmetry gives structural signals a relative advantage in the compute-constrained regime: at $N{=}8$, SJ already achieves $\rho{=}0.431$ on LLaMA CoNLL (vs.\ LP $\rho{=}0.307$, $\Delta{=}{+}0.124$), and the gap \textit{widens} at $N{=}16$ ($\Delta{=}{+}0.163$) because structural signals continue to benefit from additional pairwise evidence while LP does not.
+256	For sample selection, additional samples increase the oracle upper bound---more draws raise the probability of a high-quality candidate---but signal-based selection remains flat because the selector's inability to identify the best candidate is a granularity limitation, not a sample size limitation.
+257	The practical implication is that $N{=}8$ captures most of the achievable quality estimation benefit; further scaling widens rather than closes the correlation-selection gap absent stronger per-sample selectors.
+258	
+259	\paragraph{$N{=}16$ CoNLL selection: small but significant.}
+260	While quality estimation benefits sublinearly from $N$-scaling, selection behavior at $N{=}16$ reveals a nuanced exception on LLaMA CoNLL.
+261	VC achieves the largest gain over greedy ($+0.28$~pp, $p{=}0.003$--$0.027$ across 3 seeds, all significant), with SJ, FK, and EM at $+0.22$--$0.23$~pp and LP at $+0.12$~pp (2/3 seeds significant).
+262	These gains are statistically significant but practically minimal: oracle headroom at $N{=}16$ is only 2.5~pp, so VC captures approximately 10\% of the available headroom.
+263	This reinforces the primary finding: even under the most favorable conditions---high baseline performance, more candidates, and aggregated multi-seed evidence---signal-based selection recovers only a fraction of the oracle headroom available.
+264	
+265	\section{Bootstrap CI for Signal Comparisons}\label{app:bootstrap_signal}
+266	
+267	Table~\ref{tab:bootstrap_signal_ci} reports bootstrap confidence intervals for individual signal $\rho$ and pairwise $\Delta\rho$ on SciERC NER ($N{=}8$, $n{=}529$, $B{=}10{,}000$, seed${=}42$).
+268	The SJ--LP gap ($\Delta\rho{=}{+}0.155$) is clearly significant, confirming the structural advantage reported in \S\ref{sec:qe_results}.
+269	The VC--SJ gap ($\Delta\rho{=}{+}0.019$) is not significant, indicating that these two structural signals perform comparably.
+270	The SJ--EM gap ($\Delta\rho{=}{+}0.065$) is borderline significant, with the CI lower bound at $+0.003$ and upper bound at $+0.130$.
+271	
+272	\begin{table}[t]
+273	\centering
+274	\small
+275	\caption{Bootstrap 95\% CIs for signal $\rho$ on SciERC NER ($N{=}8$, $n{=}529$, $B{=}10{,}000$, seed${=}42$). Top: individual signals. Bottom: pairwise $\Delta\rho$; ``Sig.'' indicates whether the 95\% CI excludes zero.}
+276	\label{tab:bootstrap_signal_ci}
+277	\begin{tabular}{lcc}
+278	\toprule
+279	Signal & $\rho$ & 95\% CI \\
+280	\midrule
+281	VC & +0.379 & [+0.299, +0.456] \\
+282	SJ & +0.360 & [+0.277, +0.437] \\
+283	EM & +0.295 & [+0.212, +0.371] \\
+284	FK & +0.267 & [+0.176, +0.354] \\
+285	LP & +0.205 & [+0.119, +0.291] \\
+286	\bottomrule
+287	\end{tabular}
+288	
+289	\vspace{0.5em}
+290	
+291	\begin{tabular}{lccc}
+292	\toprule
+293	Comparison & $\Delta\rho$ & 95\% CI & Sig. \\
+294	\midrule
+295	SJ $-$ LP & +0.155 & [+0.074, +0.234] & Yes \\
+296	VC $-$ SJ & +0.019 & [$-$0.033, +0.073] & No \\
+297	SJ $-$ EM & +0.065 & [+0.003, +0.130] & Marginal$^\dagger$ \\
+298	\bottomrule
+299	\end{tabular}
+300	
+301	\smallskip
+302	{\footnotesize $^\dagger$Marginally significant without multiple comparison correction; would not survive Bonferroni correction for 10 pairwise comparisons ($\alpha_{\text{adj}}{=}0.005$).}
+303	\end{table}
+304	
+305	At $N{=}16$ ($B{=}10{,}000$, permutation test), the structural advantage extends to FK comparisons.
+306	On SciERC NER ($n{=}529$), SJ--FK ($\Delta\rho{=}0.147$--$0.160$, all $p{\leq}0.002$) and VC--FK ($\Delta\rho{=}0.138$--$0.188$, all $p{\leq}0.003$) are clearly significant across all three seeds; EM--FK is seed-dependent ($\Delta\rho{=}0.054$--$0.093$, $p{=}0.048$--$0.15$).
+307	On CoNLL ($n{=}2{,}756$), all signals significantly outperform FK: EM $\Delta\rho{=}0.071$ ($p{<}0.001$), SJ $\Delta\rho{=}0.056$ ($p{<}0.001$), VC $\Delta\rho{=}0.022$ ($p{=}0.040$).
+308	
+309	\section{Diversity and Selection Analysis}\label{app:diversity}
+310	
+311	\begin{figure*}[t]
+312	\centering
+313	\includegraphics[width=\textwidth]{fig_selection_gap}
+314	\caption{The correlation-selection gap on SciERC NER ($N{=}8$, $T{=}1.0$, 2-seed mean). Bars show best-of-$N$ selection F1; the line marks quality estimation $\rho$. Despite $\rho$ up to 0.40, no signal significantly outperforms greedy (all $p{>}0.05$; Table~\ref{tab:selection}). Dashed line indicates oracle upper bound. RE selection results in Table~\ref{tab:selection}.}
+315	\label{fig:selection_gap}
+316	\end{figure*}
+317	
+318	\paragraph{Output diversity quantification.}
+319	Table~\ref{tab:diversity} summarizes output diversity across configurations.
+320	On SciERC, output diversity is substantial: Qwen produces 43\% unique outputs per instance (mean 3.5 distinct out of $N{=}8$), with per-sample F1 standard deviation of 0.144 and mean pairwise SJ of 0.703.
+321	LLaMA shows similar diversity (39\% unique, F1 std 0.11).
+322	On CoNLL, diversity collapses: 57\% (Qwen) to 88\% (LLaMA) of instances produce identical outputs across all $N$ samples, reflecting a ceiling effect where greedy F1 already exceeds 0.90.
+323	WNUT-17 shows 55\% identical outputs, driven by the 52\% zero-F1 rate.
+324	
+325	\begin{table}[t]
+326	\centering
+327	\small
+328	\caption{Output diversity across configurations ($N{=}8$, $T{=}1.0$). ``Identical'' = fraction of instances with all $N$ outputs identical. ``Unique'' = mean fraction of distinct outputs per instance.}
+329	\label{tab:diversity}
+330	\begin{tabular}{lcc}
+331	\toprule
+332	Config & Identical & Unique \\
+333	\midrule
+334	Qwen/SciERC & 11\% & 43\% \\
+335	LLaMA/SciERC & 18\% & 39\% \\
+336	Qwen/CoNLL & 57\% & --- \\
+337	LLaMA/CoNLL & 88\% & --- \\
+338	WNUT-17 & 55\% & --- \\
+339	\bottomrule
+340	\end{tabular}
+341	\end{table}
+342	
+343	\paragraph{Oracle-improvable fraction.}
+344	Across SciERC configurations, 39--42\% of instances contain at least one sample with F1 exceeding greedy\footnote{Oracle-improvable and diversity-stratified analyses use $n{=}529$ (excluding instances with empty gold annotations; see \S\ref{sec:evaluation}); the diversity quantification in Table~\ref{tab:diversity} uses the full test set.}: Qwen NER 42.0\% (222/529, mean headroom $+$31.9~pp among improvable instances), Qwen RE 41.3\% (164/397, $+$45.3~pp), LLaMA NER 39.3\% (208/529, $+$33.7~pp).
+345	On CoNLL, only 4--9\% of instances are improvable, confirming the ceiling effect.
+346	
+347	\paragraph{Diversity-stratified selection gap.}
+348	On the 44\% of Qwen SciERC instances with high diversity (${\geq}4$ unique outputs among 8 samples, $n{=}232$), oracle headroom reaches $+$16.3~pp, yet all consistency-based signals (SJ, FK, EM, VC) select at or below greedy, and LP---the only per-sample signal---achieves merely $+$0.8~pp.
+349	LLaMA replicates this pattern: on its high-diversity subset ($n{=}186$), oracle headroom reaches $+$20.1~pp while consistency signals remain at or below greedy and LP captures only $+$2.0~pp.
+350	This rules out insufficient diversity as an explanation for the correlation-selection gap.
+351	
+352	\paragraph{TOST equivalence testing.}
+353	The primary evidence against selection gains comes from effect sizes and confidence intervals: Cohen's $d{=}0.038$ for the best signal (NER LP) and bootstrap 95\% CI [$-$3.0, $+$4.2]~pp spanning zero.
+354	Table~\ref{tab:tost} supplements this with two one-sided tests (TOST), testing whether each signal's selection F1 is equivalent to greedy within a bound $\delta$.
+355	The $\delta$ values are contextualized against oracle headroom (12--18~pp): $\delta{=}5$~pp corresponds to forgoing 28--38\% of the available headroom, $\delta{=}3$~pp forgoing 17--23\%, and $\delta{=}2$~pp less than 15\%.
+356	These proportions use the same test data that defines the headroom, introducing circularity: $\delta$ is anchored to the very quantity it contextualizes.
+357	We address this below with externally anchored equivalence margins.
+358	The breakpoint $\delta^*$---the minimum equivalence margin at which each signal passes TOST---ranges from approximately 1.3~pp (SJ, ${\sim}$10\% of oracle headroom) to 3.4~pp (FK, ${\sim}$26\%) on NER, and from approximately 2.9~pp (LP, ${\sim}$16\%) to 6.5~pp (VC, ${\sim}$36\%) on RE.
+359	On NER ($n{=}529$), at $\delta{=}{\pm}2$~pp, SJ and LP are confirmed equivalent to greedy (TOST $p{<}0.05$); at $\delta{=}{\pm}3$~pp, four of five signals pass; at $\delta{=}{\pm}5$~pp, all five pass.
+360	On RE ($n{=}397$, preliminary), EM and VC fail equivalence even at $\delta{=}{\pm}5$~pp due to systematic underperformance ($\Delta{=}{-}3.2$~pp and $-4.5$~pp respectively).
+361	The effect sizes are negligible ($d{=}0.038$) and confidence intervals span zero, with TOST confirming equivalence at practically meaningful margins.
+362	
+363	\begin{table}[t]
+364	\centering
+365	\small
+366	\caption{TOST equivalence testing: signals vs.\ greedy on SciERC ($N{=}8$, $T{=}1.0$). \checkmark: equivalent at $p{<}0.05$; \texttimes: not equivalent. $\Delta$: mean F1 difference (signal $-$ greedy).}
+367	\label{tab:tost}
+368	\begin{tabular}{l cccc cccc}
+369	\toprule
+370	& \multicolumn{4}{c}{\textbf{NER}} & \multicolumn{4}{c}{\textbf{RE}} \\
+371	\cmidrule(lr){2-5} \cmidrule(lr){6-9}
+372	Signal & $\Delta$ & $\pm$2 & $\pm$3 & $\pm$5 & $\Delta$ & $\pm$2 & $\pm$3 & $\pm$5 \\
+373	\midrule
+374	LP & +0.6 & \checkmark & \checkmark & \checkmark & $-$0.9 & \texttimes & \checkmark & \checkmark \\
+375	SJ & +0.1 & \checkmark & \checkmark & \checkmark & $-$1.8 & \texttimes & \texttimes & \checkmark \\
+376	FK & $-$0.5 & \texttimes & \checkmark & \checkmark & $-$1.6 & \texttimes & \texttimes & \checkmark \\
+377	EM & $-$0.8 & \texttimes & \checkmark & \checkmark & $-$3.2 & \texttimes & \texttimes & \texttimes \\
+378	VC & $-$1.0 & \texttimes & \texttimes & \checkmark & $-$4.5 & \texttimes & \texttimes & \texttimes \\
+379	\bottomrule
+380	\end{tabular}
+381	\end{table}
+382	
+383	\paragraph{External equivalence margins.}
+384	The oracle-headroom anchors above introduce circularity, as a reviewer correctly noted: $\delta$ is calibrated against the very quantity it contextualizes.
+385	To resolve this, we supplement with three externally grounded margins:
+386	(1) $\delta_{\mathrm{SEM}}$: the bootstrapped standard error of greedy F1 (0.43--1.33~pp depending on configuration), representing measurement noise;
+387	(2) $\delta_{\mathrm{practical}}{=}0.5$~pp, reflecting the threshold below which NER differences are considered negligible \cite{ratinov2009design};
+388	(3) $\delta_{\mathrm{literature}}{=}1.0$~pp, the approximate significant-difference threshold established in NER evaluation methodology \cite{bergkirkpatrick2012empirical}.
+389	
+390	Results under these external anchors diverge sharply by configuration.
+391	On LLaMA CoNLL ($n{=}2{,}756$), all signals pass equivalence at every $\delta$ ($p{<}0.001$), consistent with the near-zero selection deltas ($|\Delta|{\leq}0.1$~pp) and tight CIs at this sample size.
+392	On Qwen CoNLL ($n{=}2{,}756$), no signal passes at any external $\delta$: selection F1 degrades by 0.9--1.5~pp relative to greedy, exceeding even $\delta_{\mathrm{literature}}$.
+393	On SciERC NER ($n{=}529$), only SJ passes at $\delta_{\mathrm{SEM}}{=}1.33$~pp (the widest SEM bound); all other signals and tighter margins fail.
+394	These external anchors confirm that the equivalence conclusion is configuration-dependent: LLaMA CoNLL selection is robustly equivalent to greedy under any reasonable margin, while SciERC and Qwen CoNLL selection shows detectable degradation at externally calibrated thresholds.
+395	
+396	\section{Multi-Seed Stability}\label{app:multiseed}
+397	
+398	Table~\ref{tab:multiseed} reports quality estimation metrics across three random seeds for both model families on SciERC ($N{=}8$, $T{=}1.0$).
+399	On NER, the signal ranking VC${>}$SJ${>}$EM${>}$FK${>}$LP is identical across all six model-seed combinations, with $\sigma{\leq}0.025$ for all signals.
+400	On RE (Qwen only, preliminary), VC remains the top signal ($\rho{=}0.309{\pm}0.024$), but LP rises to \#2 ($\rho{=}0.297{\pm}0.022$), above FK, SJ, and EM---a reversal from the NER ranking that reflects RE's higher sensitivity to per-sample scoring.
+401	LLaMA absolute values are systematically lower than Qwen on NER, consistent with the directionally-consistent-but-magnitude-dependent characterization in the main text.
+402	
+403	\begin{table}[t]
+404	\centering
+405	\small
+406	\caption{Multi-seed quality estimation on SciERC ($N{=}8$, $T{=}1.0$, seeds: 42, 123, 456). NER: both models; RE: Qwen only (preliminary). Signal ranking is stable across seeds ($\sigma{\leq}0.025$). $\sigma$ is population standard deviation over 3 seeds.}
+407	\label{tab:multiseed}
+408	\begin{tabular}{lccccc}
+409	\toprule
+410	& LP & FK & SJ & VC & EM \\
+411	\midrule
+412	\multicolumn{6}{l}{\textit{NER Spearman $\rho$ (mean $\pm\sigma$)}} \\
+413	Qwen & .217${\pm}$.013 & .254${\pm}$.016 & .364${\pm}$.018 & .386${\pm}$.019 & .307${\pm}$.008 \\
+414	LLaMA & .162${\pm}$.025 & .256${\pm}$.024 & .325${\pm}$.021 & .384${\pm}$.014 & .279${\pm}$.011 \\
+415	\midrule
+416	\multicolumn{6}{l}{\textit{RE Spearman $\rho$ (mean $\pm\sigma$, Qwen)}} \\
+417	Qwen & .297${\pm}$.022 & .290${\pm}$.012 & .249${\pm}$.002 & .309${\pm}$.024 & .135${\pm}$.016 \\
+418	\midrule
+419	\multicolumn{6}{l}{\textit{NER AUROC (mean $\pm\sigma$)}} \\
+420	Qwen & .613${\pm}$.002 & .618${\pm}$.009 & .684${\pm}$.009 & .697${\pm}$.010 & .661${\pm}$.010 \\
+421	LLaMA & .577${\pm}$.007 & .616${\pm}$.011 & .655${\pm}$.010 & .689${\pm}$.005 & .636${\pm}$.006 \\
+422	\bottomrule
+423	\end{tabular}
+424	\end{table}
+425	
+426	\section{Training Configuration}\label{app:training}
+427	
+428	Both models are fine-tuned with identical hyperparameters (Table~\ref{tab:training}) to ensure comparisons across model families reflect model differences rather than training confounds.
+429	
+430	\begin{table}[t]
+431	\centering
+432	\small
+433	\caption{Training configuration. Both Qwen3-8B and LLaMA-3.1-8B-Instruct use identical settings unless noted.}
+434	\label{tab:training}
+435	\begin{tabular}{ll}
+436	\toprule
+437	Parameter & Value \\
+438	\midrule
+439	LoRA rank / $\alpha$ & 32 / 64 \\
+440	LoRA target & All linear modules \\
+441	LoRA dropout & 0 \\
+442	Optimizer & AdamW \\
+443	Learning rate & 2e-4, cosine schedule \\
+444	Warmup ratio & 0.1 \\
+445	Effective batch size & 16 (2 $\times$ grad.\ accum.\ 8) \\
+446	Epochs & 5 \\
+447	Max sequence length & 2048 \\
+448	Precision & bf16 \\
+449	Gradient checkpointing & Enabled \\
+450	Max gradient norm & 1.0 \\
+451	Training seed & 42 \\
+452	Framework & LLaMA Factory \\
+453	\midrule
+454	\multicolumn{2}{l}{\textit{Dataset-specific}} \\
+455	SciERC split & 1861 / 275 / 551 \\
+456	CoNLL / WNUT & +\,load\_best\_model\_at\_end, \\
+457	& eval\_steps${=}$200, save\_limit${=}$5 \\
+458	\bottomrule
+459	\end{tabular}
+460	\end{table}
+461	
+462	\paragraph{Prompt template.}
+463	For NER, we use a structured prompt:
+464	\begin{quote}
+465	\small
+466	\texttt{System:} You are an expert in Named Entity Recognition.\\
+467	\texttt{User:} Extract all named entities from the following text. Output as JSON.\\
+468	Text: \texttt{\{input\_text\}}\\
+469	Entity types: \texttt{\{schema\_types\}}
+470	\end{quote}
+471	RE follows the same structure with ``Relation Extraction'' and relation type lists substituted accordingly.
+472	
+473	\paragraph{Constrained decoding.}
+474	Inference uses vLLM with XGrammar-based JSON schema enforcement \cite{willard2023guided}, which constrains outputs to valid entity/relation structures matching the target schema.
+475	This eliminates format errors but may compress per-sample diversity by restricting the output space.\footnote{SciERC training used \texttt{enable\_thinking=True} (LLaMA Factory 0.9.4 default), injecting empty \texttt{&lt;think>&lt;/think>} blocks (4--5 tokens) into each training response with loss computation; CoNLL and WNUT explicitly set \texttt{enable\_thinking=False}. Constrained decoding at inference time enforces JSON-only output, suppressing thinking tokens. See \S\ref{sec:setup} and Limitations for discussion of this confound.}
+476	
+477	\section{Thinking Token Impact Analysis}\label{app:thinking_token}
+478	
+479	Qwen3-8B's SciERC checkpoint was trained with empty \texttt{&lt;think>&lt;/think>} blocks prepended to each response (\S\ref{sec:setup}).
+480	We quantify the potential impact on LP scores through three complementary arguments.
+481	
+482	\paragraph{LP shift magnitude.}
+483	Empty thinking tokens (mean 4.5 per sample) constitute 2.1\% of tokens on SciERC.
+484	The estimated LP shift is 0.001 nats per token (2.68\% of the median within-instance LP range of 0.041 nats).
+485	Because all samples share identical thinking-token LP offsets, cumulative LP rankings are invariant; mean LP changes selection for ${<}1.5\%$ of instances.
+486	
+487	\paragraph{Constant prefix cancellation.}
+488	All $N$ samples within an instance share the same prompt and, under constrained decoding, the same absence of thinking tokens at inference time.
+489	Any LP bias from the training-time thinking prefix is therefore a near-constant additive shift across all candidates within an instance, leaving within-instance LP \textit{rankings} unchanged.
+490	
+491	\paragraph{CoNLL control group.}
+492	CoNLL and WNUT-17 checkpoints were trained without thinking tokens (\texttt{enable\_thinking=False}).
+493	If thinking tokens caused LP compression on SciERC, CoNLL should exhibit lower tied fractions.
+494	Instead, CoNLL shows \textit{higher} tied fractions at both temperatures (86.8\% at $T{=}1.0$, 95.8\% at $T{=}0.7$) than SciERC (60.3\% at $T{=}1.0$), directly contradicting the thinking-token hypothesis.
+495	
+496	\section{Log-Probability Score Compression}\label{app:logprob_ties}
+497	
+498	Under constrained decoding, log-probability scores are severely compressed within instances, limiting per-sample discrimination (Table~\ref{tab:logprob_ties}, Figure~\ref{fig:lp_range_cdf}).
+499	The median within-instance LP range is only 0.041 nats---below the $\varepsilon{=}0.05$ threshold used throughout, providing data-driven justification for this cutoff rather than an arbitrary choice.
+500	At $\varepsilon{=}0.05$, 60.3\% of instances ($n{=}529$, excluding empty gold annotations) have a within-sample range below the threshold, and 75\% of pairwise comparisons are effective ties ($|\Delta|{<}0.026$).
+501	The CDF rises smoothly with no cliff or discontinuity (Figure~\ref{fig:lp_range_cdf}), confirming that compression is a pervasive regime rather than a bimodal split.
+502	This compression is stable across seeds: seed${=}456$ yields median LP range${=}0.040$ nats and tied fraction${=}62.2\%$ (vs.\ seed${=}42$: $0.041$ nats, $60.3\%$).
+503	Seed~456 uses a different subtask flag (joint vs.\ ner for seeds 42 and 123); the LP distributions are statistically indistinguishable (median LP: 8.37 vs.\ 8.20 nats; Mann--Whitney $p{=}0.55$), confirming that the subtask change does not affect compression.
+504	For comparison, SJ has only 12.5\% tied instances at the same threshold---SJ's advantage over LP for selection is one of score resolution, not information content.
+505	
+506	\begin{figure}[t]
+507	\centering
+508	\includegraphics[width=\columnwidth]{fig_lp_range_cdf}
+509	\caption{CDF of within-instance LP range on SciERC NER ($N{=}8$, $n{=}529$). The median LP range is 0.041 nats (dashed line), below $\varepsilon{=}0.05$. The smooth CDF confirms compression is pervasive, not bimodal.}
+510	\label{fig:lp_range_cdf}
+511	\end{figure}
+512	
+513	\begin{table}[t]
+514	\centering
+515	\small
+516	\caption{Log-probability score compression on SciERC NER ($N{=}8$, $n{=}529$). ``Tied'' = fraction of instances where within-instance LP range ${<}\varepsilon$.}
+517	\label{tab:logprob_ties}
+518	\begin{tabular}{lc}
+519	\toprule
+520	$\varepsilon$ threshold & Tied instances (\%) \\
+521	\midrule
+522	0.01 & 1.1\% \\
+523	0.05 & 60.3\% \\
+524	0.1  & ${\sim}$84\% \\
+525	0.5  & ${\sim}$99\% \\
+526	\bottomrule
+527	\end{tabular}
+528	\end{table}
+529	
+530	\paragraph{Non-tied subset.}
+531	Among instances with LP range ${\geq}0.05$ ($n{=}210$, 40\% of total), log-probability selection \textit{significantly} outperforms greedy ($+2.9$~pp F1, $p{=}0.004$), and within-instance $\rho(\text{LP}, \text{F1})$ rises from 0.08 (tied subset) to 0.39 (non-tied subset).
+532	As a continuous complement to the binary tied/non-tied analysis, pooled within-instance $\rho(\text{LP}, \text{F1}){=}0.248$ across all instances confirms weak but positive per-sample signal; however, only 21.6\% of instances achieve $p{<}0.05$ significance, and $\rho(\text{LP range}, \text{F1 range}){=}0.328$ shows that instances with more LP spread also exhibit more F1 variability---LP carries information but compression limits its exploitation.
+533	A free-form NER decoding ablation (Appendix~\ref{app:freeform_ablation}) confirms this compression persists without constrained decoding.
+534	
+535	\paragraph{$\varepsilon$ sensitivity sweep.}
+536	Table~\ref{tab:epsilon_sweep} sweeps the tied/non-tied threshold from $\varepsilon{=}0.01$ to $0.20$.
+537	The tied fraction increases smoothly with no cliff or discontinuity, and the selection gain $\Delta$ grows monotonically as the non-tied subset narrows to progressively higher-spread instances.
+538	$\varepsilon{=}0.05$ yields the strongest statistical separation ($p{=}0.004$); at $\varepsilon{\geq}0.15$, the non-tied subset becomes too small for reliable inference ($n{\leq}36$).
+539	
+540	\begin{table}[t]
+541	\centering
+542	\small
+543	\caption{$\varepsilon$ sensitivity sweep for LP selection on SciERC NER ($N{=}8$, seed${=}42$, $n{=}529$). ``Tied\%'' = fraction with within-instance LP range ${<}\varepsilon$. $\Delta$: selection F1 gain over greedy on the non-tied subset. The tied fraction increases smoothly; $\varepsilon{=}0.05$ yields the strongest statistical separation.}
+544	\label{tab:epsilon_sweep}
+545	\begin{tabular}{ccccc}
+546	\toprule
+547	$\varepsilon$ & Tied\% & Non-tied $n$ & $\Delta$ (pp) & $p$ \\
+548	\midrule
+549	0.01 & 1.1\% & 523 & $+$0.58 & .21 \\
+550	0.02 & 13.6\% & 457 & $+$0.83 & .15 \\
+551	0.03 & 31.8\% & 361 & $+$1.31 & .079 \\
+552	\textbf{0.05} & \textbf{60.3\%} & \textbf{210} & \textbf{$+$2.86} & \textbf{.004} \\
+553	0.10 & 83.9\% & 85 & $+$3.69 & .034 \\
+554	0.15 & 93.2\% & 36 & $+$4.15 & .11 \\
+555	0.20 & 96.4\% & 19 & $+$4.59 & .13 \\
+556	\bottomrule
+557	\end{tabular}
+558	\end{table}
+559	
+560	\paragraph{$\varepsilon$ robustness of selection F1.}\label{app:epsilon_robustness}
+561	The preceding analysis stratifies LP by a tied/non-tied threshold; consistency-based signals (SJ, FK, VC, EM) also use $\varepsilon$ to define MBR-style proximity in selection.
+562	Table~\ref{tab:epsilon_robustness} reports the maximum selection F1 variation across $\varepsilon \in [0, 0.2]$ for all signals and configurations.
+563	At $\varepsilon{=}0.05$, consistency signals change by at most 1.09~pp (mean 0.21~pp), with EM completely $\varepsilon$-invariant (integer scoring); LP is the most sensitive (up to 3.65~pp across the full range), as expected.
+564	Spearman $\rho$---the primary quality estimation metric throughout---is a continuous rank correlation that does not depend on any discretization threshold; the $\varepsilon$ parameter affects only the selection analysis.
+565	
+566	\begin{table}[t]
+567	\centering
+568	\small
+569	\caption{Maximum selection F1 variation (pp) across $\varepsilon \in [0, 0.2]$. At $\varepsilon{=}0.05$ (used throughout), consistency signals change by ${\leq}1.09$~pp; EM is invariant (integer scoring). LP is most sensitive as $\varepsilon$ governs its tied/non-tied partition. SciERC: $n{=}529$; CoNLL: $n{=}2{,}756$.}
+570	\label{tab:epsilon_robustness}
+571	\begin{tabular}{lcccc}
+572	\toprule
+573	& \multicolumn{2}{c}{\textbf{SciERC}} & \multicolumn{2}{c}{\textbf{CoNLL}} \\
+574	\cmidrule(lr){2-3} \cmidrule(lr){4-5}
+575	Signal & Qwen & LLaMA & Qwen & LLaMA \\
+576	\midrule
+577	SJ & 0.92 & 1.45 & 0.99 & 0.18 \\
+578	FK & 1.03 & 0.93 & 0.60 & 0.15 \\
+579	VC & 2.33 & 0.53 & 0.72 & 0.18 \\
+580	EM & 0.00 & 0.00 & 0.00 & 0.00 \\
+581	LP & 3.65 & 2.58 & 3.00 & 0.31 \\
+582	\bottomrule
+583	\end{tabular}
+584	\end{table}
+585	
+586	\section{RE Conditional Selection}\label{app:re_conditional_selection}
+587	
+588	Table~\ref{tab:re_cond_selection} extends the selection analysis to the RE non-zero F1 subset.
+589	Of $n{=}397$ RE instances, 238 (60\%) have non-zero F1 and 159 (40\%) have zero F1.
+590	All five signals underperform greedy on both subsets.
+591	On the non-zero subset, selection performance is \textit{worse} than on the full set (e.g., VC: $-10.0$~pp on non-zero vs.\ $-4.5$~pp on full set), because greedy is already strong on non-zero instances (F1${=}0.674$) and signals actively select inferior samples.
+592	Oracle headroom exists (0.757 vs.\ 0.674) but no signal exploits it, ruling out the 40\% zero-F1 floor effect as the explanation for RE selection failure.
+593	
+594	\begin{table}[t]
+595	\centering
+596	\small
+597	\caption{RE selection F1 (macro, instance-averaged) on SciERC ($N{=}8$, $T{=}1.0$). Full set ($n{=}397$) and non-zero F1 subset ($n{=}238$). No signal outperforms greedy on either subset.}
+598	\label{tab:re_cond_selection}
+599	\begin{tabular}{lcc}
+600	\toprule
+601	Method & Full ($n{=}397$) & Non-zero ($n{=}238$) \\
+602	\midrule
+603	Oracle & 0.585 & 0.757 \\
+604	\midrule
+605	LP & 0.395 & 0.600 \\
+606	SJ & 0.386 & 0.604 \\
+607	EM & 0.372 & 0.583 \\
+608	VC & 0.359 & 0.574 \\
+609	\midrule
+610	Greedy & 0.404 & 0.674 \\
+611	\bottomrule
+612	\end{tabular}
+613	\end{table}
+614	
+615	\section{RE $N{=}16$ Selection Analysis}\label{app:re_n16_selection}
+616	
+617	Table~\ref{tab:re_n16_selection} extends the selection analysis to RE at $N{=}16$ with 3-seed statistics.
+618	All four consistency signals underperform greedy, with EM showing the largest deficit ($\Delta{=}{-}1.5$~pp, Fisher $p{>}0.99$).
+619	LP is the only positive signal ($\Delta{=}{+}0.7$~pp, Fisher $p{=}0.058$), driven primarily by seed~456 ($\Delta{=}{+}1.5$~pp, $p{=}0.026$); the remaining seeds show smaller effects ($+0.1$ and $+0.6$~pp, $p{>}0.20$).
+620	Even the most favorable seed captures only ${\sim}9\%$ of the 17.1~pp oracle headroom.
+621	This cross-task consistency---LP as the only viable selection signal on both NER and RE---reinforces the structural limitation of instance-level signals for candidate ranking.
+622	
+623	\begin{table}[t]
+624	\centering
+625	\small
+626	\caption{RE best-of-$N$ selection F1 (macro, instance-averaged) on SciERC (Qwen3-4B, $N{=}16$, $T{=}1.0$, 3-seed mean${\pm}\sigma$, $n{=}551$). Fisher combined $p$ vs.\ greedy. LP is the only signal with positive $\Delta$. $\sigma$ is population standard deviation over 3 seeds.}
+627	\label{tab:re_n16_selection}
+628	\begin{tabular}{lccc}
+629	\toprule
+630	Method & F1 & $\Delta$ (pp) & $p$(Fisher) \\
+631	\midrule
+632	Oracle & $.463{\pm}.006$ & $+$17.1 & --- \\
+633	\midrule
+634	LP & $\mathbf{.299}{\pm}.007$ & $+$0.7 & .058 \\
+635	VC & $.284{\pm}.002$ & $-$0.8 & .973 \\
+636	FK & $.283{\pm}.005$ & $-$0.9 & .985 \\
+637	SJ & $.281{\pm}.005$ & $-$1.0 & .993 \\
+638	EM & $.277{\pm}.007$ & $-$1.5 & .999 \\
+639	\midrule
+640	Greedy & $.291{\pm}.000$ & --- & --- \\
+641	Random & $.262{\pm}.001$ & $-$2.9 & --- \\
+642	\bottomrule
+643	\end{tabular}
+644	\end{table}
+645	
+646	\section{MBR Decoding and Task-Specific Interactions}\label{app:mbr_discussion}
+647	
+648	\paragraph{Connection to MBR decoding.}
+649	Our selection strategies instantiate minimum Bayes risk (MBR) decoding \cite{eikema2022sampling, muller2021understanding}: each selects $\hat{y} = \arg\max_{y_i} \sum_{j \neq i} U(y_i, y_j)$ with utility $U$ defined by SJ, EM, or entity overlap.
+650	Despite MBR's success in machine translation \cite{freitag2022high} and its extension to summarization, code generation, and captioning \cite{jinnai2024mbr}, all variants fail here because the utility functions correlate with F1 at the instance level but not within a single instance---the mathematical essence of the correlation-selection gap.
+651	\citet{eikema2025structured} study structure-conditional MBR decoding and find that standard utility functions degrade on structured outputs---consistent with our finding that consensus-proximity selection fails in IE despite its success in machine translation.
+652	
+653	\paragraph{Task-specific decoding interactions.}
+654	The free-form ablation reveals divergent behavior across tasks.
+655	On RE, LP selection flips from $-0.68$~pp (constrained) to $+1.69$~pp (free-form; preliminary, single RE benchmark), a reversal that spans all 7 relation types and is driven by selective variance reallocation ($p{<}0.0001$).
+656	The win/loss ratio shifts from 36:59 (constrained) to 45:45 (free-form), with the gains concentrated on relation-dense instances (mean 3.3 gold relations).
+657	This interaction does not generalize to NER, where selection remains negligible under both regimes.
+658	This ablation uses a single seed (seed${=}42$); whether the RE reversal replicates across seeds and generalizes to other RE benchmarks warrants further investigation.
+659	The non-tied subset ($n{=}210$) is partially reshuffled under free-form decoding: Jaccard similarity between the constrained and free-form non-tied sets is 0.472, indicating that 87 instances newly gain LP discrimination while others lose it, yielding a $3{\times}$ increase in within-instance LP range for the newly non-tied subset.
+660	Despite this reshuffling, aggregate NER selection gains remain negligible---score compression is not a fixed property of specific instances but rather a pervasive regime that shifts across instances without producing net selection improvement.
+661	Free-form decoding also slightly improves quality estimation (NER VC $\rho$: 0.379$\to$0.409), though this does not translate to selection gains.
+662	
+663	\section{Free-Form Decoding Ablation}\label{app:freeform_ablation}
+664	
+665	Table~\ref{tab:freeform_ablation} compares constrained and free-form decoding across four dimensions on SciERC ($N{=}8$, $T{=}1.0$, Qwen3-8B).
+666	Free-form decoding removes grammar constraints entirely; outputs are parsed post-hoc (parse rate 99.95\%, 4406/4408).
+667	LP score distributions are nearly identical across regimes (Panel~A: within-instance std ratio $0.97{\times}$), and NER selection gains remain negligible under both regimes (Panel~B).
+668	RE LP selection flips positive under free-form decoding ($+1.69$~pp vs.\ $-0.68$~pp constrained).
+669	Quality estimation improves modestly for most signals under free-form decoding (Panel~C), with the largest gain for FK ($+0.053$ NER, $+0.039$ RE).
+670	
+671	\begin{table*}[t]
+672	\centering
+673	\caption{Comparison of constrained vs.\ free-form decoding on SciERC (Qwen3-8B, $N{=}8$, $T{=}1.0$, seed=42).}
+674	\label{tab:freeform_ablation}
+675	
+676	\vspace{2pt}
+677	{\small\textsc{Panel A: Logprob Distribution}}
+678	\vspace{2pt}
+679	
+680	\begin{tabular}{lccc}
+681	\toprule
+682	Metric & Constrained & Free-form & $\Delta$ \\
+683	\midrule
+684	Mean LP std        & 0.0206 & 0.0199 & $-$0.0007 \\
+685	Mean LP range      & 0.0623 & 0.0599 & $-$0.0024 \\
+686	Tied fraction ($\varepsilon{=}0.05$) & 59.7\% & 57.7\% & $-$2.0\,pp \\
+687	\bottomrule
+688	\end{tabular}
+689	
+690	\vspace{8pt}
+691	
+692	{\small\textsc{Panel B: Selection F1}}
+693	\vspace{2pt}
+694	
+695	\begin{tabular}{llccc}
+696	\toprule
+697	Task & Method & Constrained & Free-form & $\Delta$ \\
+698	\midrule
+699	\multirow{3}{*}{NER}
+700	  & Greedy        & 0.6182 & 0.6204 & $+$0.0022 \\
+701	  & LP-selected   & 0.6241 & 0.6222 & $-$0.0019 \\
+702	  & Selection gap & $+$0.0059 & $+$0.0018 & $-$0.0041 \\
+703	\midrule
+704	\multirow{3}{*}{RE}
+705	  & Greedy        & 0.2913 & 0.2880 & $-$0.0033 \\
+706	  & LP-selected   & 0.2845 & 0.3050 & \textbf{$+$0.0205} \\
+707	  & Selection gap & $-$0.0068 & $+$0.0169 & \textbf{$+$0.0237} \\
+708	\bottomrule
+709	\end{tabular}
+710	
+711	\vspace{8pt}
+712	
+713	{\small\textsc{Panel C: QE Signal Quality (Spearman $\rho$)}}
+714	\vspace{2pt}
+715	
+716	\begin{tabular}{l ccc ccc}
+717	\toprule
+718	 & \multicolumn{3}{c}{NER ($n{=}529$)} & \multicolumn{3}{c}{RE ($n{=}397$)} \\
+719	\cmidrule(lr){2-4} \cmidrule(lr){5-7}
+720	Signal & Constr. & Free & $\Delta$ & Constr. & Free & $\Delta$ \\
+721	\midrule
+722	SJ & 0.360 & 0.377 & $+$0.018 & 0.250 & 0.273 & $+$0.023 \\
+723	FK & 0.267 & 0.320 & $+$0.053 & 0.275 & 0.315 & $+$0.039 \\
+724	LP & 0.205 & 0.213 & $+$0.008 & 0.266 & 0.304 & $+$0.038 \\
+725	EM & 0.295 & 0.317 & $+$0.023 & 0.134 & 0.137 & $+$0.002 \\
+726	VC & 0.379 & 0.409 & $+$0.030 & 0.350 & 0.323 & $-$0.026 \\
+727	\bottomrule
+728	\end{tabular}
+729	
+730	\vspace{8pt}
+731	
+732	{\small\textsc{Panel D: Parse Rate (Free-form)}}
+733	\vspace{2pt}
+734	
+735	\begin{tabular}{lc}
+736	\toprule
+737	Metric & Value \\
+738	\midrule
+739	Total samples          & 4408 \\
+740	Parse rate             & 99.95\% \\
+741	Instances 8/8 valid    & 549\,/\,551 (99.6\%) \\
+742	\bottomrule
+743	\end{tabular}
+744	
+745	\end{table*}
+746	
+747	\section{LP Selection Failure Stability}\label{app:lp_failure_stability}
+748	
+749	We analyze RE LP selection failures across three random seeds (constrained decoding, $N{=}8$, $T{=}1.0$, Qwen3-8B) to assess whether failures are systematic or stochastic.
+750	
+751	\paragraph{Pairwise overlap.}
+752	LP selection failures (instances where LP-selected F1 $<$ greedy F1) show moderate cross-seed stability: the average pairwise Jaccard similarity is 0.42 (range: 0.38--0.46), indicating that failures are partially systematic---driven by instance complexity---but not fully deterministic.
+753	The 3-way intersection contains 34 instances (27.9\% of any-seed failures), confirming a stable failure core.
+754	
+755	\paragraph{Instance complexity drives failure.}
+756	Table~\ref{tab:stable_failures} stratifies instances by failure stability.
+757	Stable failures (all 3 seeds) involve more gold relations (2.12 vs.\ 1.62 for never-fail instances) and higher greedy F1 (0.688 vs.\ 0.429), indicating that LP mis-selects on instances where the model already performs well---precisely the instances where selection would be most valuable.
+758	Failure rate increases monotonically with gold relation count: 4.3\% at 1 relation, 20.7\% at 3 relations, 26.2\% at 6 relations.
+759	
+760	\begin{table}[t]
+761	\centering
+762	\small
+763	\caption{RE LP selection failure stability across 3 seeds (SciERC, $N{=}8$). Stable failures concentrate on relation-dense instances with high greedy F1.}
+764	\label{tab:stable_failures}
+765	\begin{tabular}{lcccc}
+766	\toprule
+767	Group & $n$ & Gold rels & Greedy F1 & LP $\Delta$F1 \\
+768	\midrule
+769	Stable fail (3 seeds) & 34 & 2.12 & 0.688 & $-$0.499 \\
+770	Fail 2+ seeds & 26 & 2.46 & 0.774 & $-$0.450 \\
+771	Fail 1 seed & 62 & 2.32 & 0.692 & $-$0.239 \\
+772	Never fail & 429 & 1.62 & 0.429 & $+$0.041 \\
+773	\bottomrule
+774	\end{tabular}
+775	\end{table}
+776	
+777	\paragraph{Flip instances.}
+778	Only 5 RE instances with gold relations flip from LP failure (constrained) to LP success (free-form), with mean gold relation count 3.67 (well above the population mean of 1.86).
+779	These instances show large constrained LP errors ($\Delta{=}{-}0.430$) that reverse under free-form decoding ($\Delta{=}{+}0.503$), but their rarity (5/397) confirms that the RE selection flip is driven by aggregate variance reallocation rather than systematic instance-level correction.
+780	
+781	\section{$N$-Scaling Detailed Analysis}\label{app:n_scaling}
+782	
+783	Tables~\ref{tab:n-scaling}--\ref{tab:sigma-comparison} provide detailed $N$-scaling analysis on Qwen3-8B SciERC with 3-seed statistics.
+784	
+785	\begin{table}[t]
+786	\centering
+787	\caption{Effect of sample pool size on signal quality (Qwen3-8B, SciERC, 3-seed mean Spearman $\rho$).}
+788	\label{tab:n-scaling}
+789	\small
+790	\begin{tabular}{l ccc ccc}
+791	\toprule
+792	 & \multicolumn{3}{c}{\textbf{NER} $\rho$} & \multicolumn{3}{c}{\textbf{RE} $\rho$} \\
+793	\cmidrule(lr){2-4} \cmidrule(lr){5-7}
+794	Signal & $N\!=\!8$ & $N\!=\!16$ & $\Delta$ & $N\!=\!8$ & $N\!=\!16$ & $\Delta$ \\
+795	\midrule
+796	SJ & 0.3641 & 0.4105 & \textbf{+0.0464} & 0.2485 & 0.2758 & \textbf{+0.0273} \\
+797	FK & 0.2536 & 0.2833 & \textbf{+0.0297} & 0.2903 & 0.2964 & \textbf{+0.0061} \\
+798	VC & 0.3861 & 0.4092 & \textbf{+0.0231} & 0.3088 & 0.3738 & \textbf{+0.0650} \\
+799	LP & 0.2167 & 0.2393 & \textbf{+0.0226} & 0.2970 & 0.3100 & \textbf{+0.0130} \\
+800	EM & 0.3071 & 0.3395 & \textbf{+0.0324} & 0.1353 & 0.1506 & \textbf{+0.0153} \\
+801	\midrule
+802	Mean & 0.3055 & 0.3364 & \textbf{+0.0308} & 0.2560 & 0.2813 & \textbf{+0.0253} \\
+803	\bottomrule
+804	\end{tabular}
+805	\end{table}
+806	
+807	\begin{table}[t]
+808	\centering
+809	\caption{Cross-seed signal ranking stability (Kendall's $W$, 3 seeds).}
+810	\label{tab:ranking-stability}
+811	\small
+812	\begin{tabular}{ll cc l}
+813	\toprule
+814	Model & Task & $N$ & Kendall's $W$ & Consensus ranking \\
+815	\midrule
+816	Qwen  & NER & 8  & 1.000 & VC $>$ SJ $>$ EM $>$ FK $>$ LP \\
+817	Qwen  & NER & 16 & 0.956 & SJ $\approx$ VC $>$ EM $>$ FK $>$ LP \\
+818	Qwen  & RE  & 8  & 0.822 & VC $>$ LP $>$ FK $>$ SJ $>$ EM \\
+819	Qwen  & RE  & 16 & 0.956 & VC $>$ LP $>$ FK $>$ SJ $>$ EM \\
+820	LLaMA & NER & 8  & 1.000 & VC $>$ SJ $>$ EM $>$ FK $>$ LP \\
+821	\bottomrule
+822	\end{tabular}
+823	\end{table}
+824	
+825	\begin{table}[t]
+826	\centering
+827	\caption{Cross-seed standard deviation ($\sigma$) of Spearman $\rho$ at $N\!=\!8$ vs.\ $N\!=\!16$ (Qwen3-8B, SciERC, 3 seeds). $\sigma$ is population standard deviation.}
+828	\label{tab:sigma-comparison}
+829	\small
+830	\begin{tabular}{l cc cc}
+831	\toprule
+832	 & \multicolumn{2}{c}{\textbf{NER} $\sigma_\rho$} & \multicolumn{2}{c}{\textbf{RE} $\sigma_\rho$} \\
+833	\cmidrule(lr){2-3} \cmidrule(lr){4-5}
+834	Signal & $N\!=\!8$ & $N\!=\!16$ & $N\!=\!8$ & $N\!=\!16$ \\
+835	\midrule
+836	SJ & 0.0179 & 0.0102 & 0.0015 & 0.0067 \\
+837	FK & 0.0157 & 0.0079 & 0.0121 & 0.0143 \\
+838	VC & 0.0187 & 0.0260 & 0.0244 & 0.0158 \\
+839	EM & 0.0076 & 0.0031 & 0.0157 & 0.0049 \\
+840	LP & 0.0125 & 0.0017 & 0.0218 & 0.0152 \\
+841	\midrule
+842	Mean & 0.0145 & 0.0098 & 0.0151 & 0.0114 \\
+843	\bottomrule
+844	\end{tabular}
+845	\end{table}
+846	
+847	Signal rankings are highly stable across seeds: Kendall's $W{=}1.000$ for NER at $N{=}8$ (both models), dropping only to $W{=}0.956$ at $N{=}16$ where SJ and VC converge (Table~\ref{tab:ranking-stability}).
+848	Doubling $N$ reduces cross-seed $\sigma$ by 32\% on NER and 24\% on RE (Table~\ref{tab:sigma-comparison}), with the largest reductions for SJ ($-43\%$ NER) and EM ($-59\%$ NER), confirming that additional samples stabilize structural signals more than LP.
+849	
+850	\section{Cross-Dataset OOD Analysis}\label{app:ood}
+851	
+852	To test whether confidence signals generalize under domain shift, we evaluate models on out-of-distribution data: a SciERC-trained model applied to CoNLL instances (wider$\to$narrower schema) and vice versa (Table~\ref{tab:ood}).
+853	
+854	\begin{table}[t]
+855	\centering
+856	\small
+857	\caption{Cross-dataset OOD quality estimation (Spearman $\rho$, Qwen3-8B, $N{=}8$, $T{=}1.0$, seed${=}42$). SciERC$\to$CoNLL: SciERC-trained model on CoNLL instances ($n{=}2756$). CoNLL$\to$SciERC: CoNLL-trained model on SciERC instances ($n{=}529$, excluded from conclusions due to catastrophic model failure). In-domain $\rho$ from Table~\ref{tab:quality_estimation} (same model, same seed). \textsuperscript{***}$p{<}0.001$, \textsuperscript{*}$p{<}0.05$.}
+858	\label{tab:ood}
+859	\begin{tabular}{l ccc ccc}
+860	\toprule
+861	 & \multicolumn{3}{c}{\textbf{SciERC$\to$CoNLL}} & \multicolumn{3}{c}{\textbf{CoNLL$\to$SciERC}} \\
+862	\cmidrule(lr){2-4} \cmidrule(lr){5-7}
+863	Signal & $\rho$ & In-dom. & $\Delta$ & $\rho$ & In-dom. & $\Delta$ \\
+864	\midrule
+865	VC & .469\textsuperscript{***} & .379 & +.090 & +.105\textsuperscript{*} & .379 & $-$.274 \\
+866	SJ & .378\textsuperscript{***} & .360 & +.018 & $-$.186\textsuperscript{***} & .360 & $-$.546 \\
+867	EM & .300\textsuperscript{***} & .295 & +.005 & $-$.202\textsuperscript{***} & .295 & $-$.497 \\
+868	FK & .285\textsuperscript{***} & .267 & +.018 & $-$.070 & .267 & $-$.337 \\
+869	LP & .246\textsuperscript{***} & .205 & +.041 & $-$.152\textsuperscript{***} & .205 & $-$.357 \\
+870	\bottomrule
+871	\end{tabular}
+872	\end{table}
+873	
+874	\paragraph{Wider-to-narrower schema transfer.}
+875	When the SciERC-trained model (6 NER types) is applied to CoNLL (4 types), all signals remain significant ($p{<}0.001$) and structural signals improve over their in-domain levels (same model, seed${=}42$, $N{=}8$; in-domain $\rho$ from Table~\ref{tab:quality_estimation}): VC reaches $\rho{=}0.469$ (in-domain $0.379$, $\Delta{=}{+}0.090$), SJ $\rho{=}0.378$ (in-domain $0.360$, $\Delta{=}{+}0.018$), and FK $\rho{=}0.285$ (in-domain $0.267$, $\Delta{=}{+}0.018$).
+876	The wider training schema subsumes CoNLL's narrower schema, so the model produces reasonable outputs even out-of-domain (greedy F1${=}0.522$), and structural signals benefit from the simpler target schema's reduced output ambiguity.
+877	
+878	\paragraph{Narrower-to-wider schema transfer (excluded).}
+879	The reverse direction is excluded from our conclusions due to catastrophic model failure, not signal failure.
+880	The CoNLL-trained model recognizes only 4 news entity types (PER, ORG, LOC, MISC) and has no relation extraction capability; when applied to SciERC's 6 scientific entity types and 7 relation types, the model cannot produce meaningful structured outputs (greedy NER F1${=}0.009$, RE F1${=}0.001$).
+881	Under this regime, most signals flip to negative or near-zero correlations (Table~\ref{tab:ood}); only VC retains weak positive correlation ($\rho{=}0.105$, $p{=}0.016$).
+882	These negative correlations reflect the model systematically generating confident but incorrect outputs---a capability failure analogous to WNUT-17 (\S\ref{sec:qe_results}), not evidence against signal utility.
+883	
+884	\paragraph{Asymmetry interpretation.}
+885	The directional asymmetry is driven by schema coverage: wider$\to$narrower preserves signal utility because the SciERC model's 6-type schema subsumes CoNLL's 4 types, while narrower$\to$wider fails because the CoNLL model lacks the entity and relation types required by SciERC.
+886	This extends the capability boundary identified on WNUT-17 to the domain-shift setting: confidence signals require sufficient model capability as a prerequisite, and results from the CoNLL$\to$SciERC direction should not be interpreted as evidence of signal degradation under domain shift.
+887	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "37c00ede-7c60-4b2e-92a4-04d4304184ed",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+      "content": "\\section{Notation}\\label{app:notation}\n\nTable~\\ref{tab:notation} summarizes the notation used throughout the paper.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\begin{tabular}{cl}\n\\toprule\nSymbol & Meaning \\\\\n\\midrule\n$\\mathcal{M}$ & Language model \\\\\n$x$ & Input instance \\\\\n$y_i$ & $i$-th stochastic sample \\\\\n$N$ & Number of samples \\\\\n$T$ & Sampling temperature \\\\\n$c(\\cdot)$ & Confidence signal \\\\\nSJ & Soft Jaccard similarity \\\\\nFK & Fleiss' $\\kappa$ \\\\\nEM & Exact-match voting rate \\\\\nVC ($c_{\\mathrm{vc}}$) & Entity voting confidence \\\\\nLP ($c_{\\mathrm{lp}}$) & Log-probability (mean token log-likelihood) \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Notation used throughout the paper.}\n\\label{tab:notation}\n\\end{table}\n\n\\section{Robustness Analysis}\\label{app:robustness}\n\nWe exclude instances with empty gold annotations from all correlation analyses (CoNLL: 697/3{,}453 instances, 20.2\\%; SciERC: 22/551, 4.0\\%).\nFor these instances, F1 is trivially zero regardless of prediction quality, and consistency signals reflect agreement on the empty set rather than extraction quality---including them inflates or deflates Spearman $\\rho$ depending on signal behavior at the boundary.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Signal robustness across configurations (Spearman $\\rho$). Top: temperature on Qwen SciERC. Middle: sample size on Qwen SciERC. Bottom: transfer across model families (both 8B) (LLaMA CoNLL $N{=}16$, 3-seed mean $\\pm\\sigma$). $^\\dagger$Mean over 3 seeds ($\\sigma{=}0.013$; individual: 0.398, 0.423, 0.410). $\\sigma$ computed as sample standard deviation.}\n\\label{tab:robustness}\n\\begin{tabular}{llcc}\n\\toprule\n& & NER $\\rho$ & RE $\\rho$ \\\\\n\\midrule\n\\multicolumn{4}{l}{\\textit{Temperature} (Qwen SciERC, $N{=}8$)} \\\\\n\\quad SJ & $T{=}0.7$ & 0.364 & 0.234 \\\\\n\\quad SJ & $T{=}1.0$ & 0.360 & 0.250 \\\\\n\\quad FK & $T{=}0.7$ & 0.289 & 0.184 \\\\\n\\quad FK & $T{=}1.0$ & 0.267 & 0.275 \\\\\n\\quad LP & $T{=}0.7$ & 0.249 & --- \\\\\n\\quad LP & $T{=}1.0$ & 0.205 & 0.266 \\\\\n\\midrule\n\\multicolumn{4}{l}{\\textit{Sample size} (Qwen SciERC, $T{=}1.0$)} \\\\\n\\quad SJ & $N{=}8$  & 0.360 & 0.250 \\\\\n\\quad SJ & $N{=}16$ & 0.411$^\\dagger$ & 0.281 \\\\\n\\quad FK & $N{=}8$  & 0.267 & 0.275 \\\\\n\\quad FK & $N{=}16$ & 0.283 & 0.279 \\\\\n\\midrule\n\\multicolumn{4}{l}{\\textit{Across model families} (LLaMA CoNLL, $N{=}16$, 3 seeds)} \\\\\n\\quad SJ &  & $0.474{\\pm}0.009$ & --- \\\\\n\\quad FK &  & $0.467{\\pm}0.009$ & --- \\\\\n\\quad EM &  & $0.473{\\pm}0.010$ & --- \\\\\n\\quad VC &  & $0.470{\\pm}0.006$ & --- \\\\\n\\quad LP &  & $0.311{\\pm}0.003$ & --- \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{fig_temperature_robustness}\n\\caption{Temperature robustness on SciERC ($N{=}8$). Top: NER; bottom: RE. SJ maintains stable $\\rho$ across $T{=}0.7$ and $T{=}1.0$, while FK shows mixed sensitivity. LP shows the largest NER temperature effect ($\\Delta\\rho{=}{+}0.044$); RE $T{=}0.7$ LP data unavailable.}\n\\label{fig:temperature_robustness}\n\\end{figure}\n\n\\paragraph{Temperature sensitivity.}\nSJ NER $\\rho$ shifts from 0.364 ($T{=}0.7$) to 0.360 ($T{=}1.0$), a difference of 0.004.\nFK NER $\\rho$ drops by 0.022, while RE $\\rho$ increases by 0.091, likely reflecting reduced diversity at lower temperature interacting differently across tasks.\nLP exhibits the largest temperature effect on NER ($\\rho{=}0.249$ at $T{=}0.7$ vs.\\ $0.205$ at $T{=}1.0$, $\\Delta{=}{+}0.044$), consistent with lower temperature concentrating probability mass and improving LP's discriminative power for quality estimation; RE $T{=}0.7$ LP data is not available.\nAcross all comparisons, the signal hierarchy is preserved at both temperatures on NER (SJ${>}$FK${>}$LP at $T{=}0.7$: $0.364{>}0.289{>}0.249$; at $T{=}1.0$: $0.360{>}0.267{>}0.205$).\n\n\\paragraph{Sample size scaling.}\nIncreasing from $N{=}8$ to $N{=}16$ improves SJ on Qwen SciERC NER: $\\rho$ rises from 0.360 to $0.411{\\pm}0.010$ (three seeds: 0.398, 0.423, 0.410), a gain of $+0.047$.\nThe magnitude of $N$-scaling gains is setting-dependent---LLaMA SciERC NER yields $+0.016$ and Qwen CoNLL NER $+0.014$---though the direction is consistently positive.\nLLaMA CoNLL exhibits the most uniform scaling: all four consistency signals gain $\\Delta\\rho{\\approx}{+}0.042$ (range: $+0.039$ to $+0.044$) while LP gains only $+0.004$ (Table~\\ref{tab:quality_estimation}).\nFK $N$-scaling is seed-dependent: Qwen SciERC gains range from $+0.005$ to $+0.023$ across seeds (mean $+0.016$), while LLaMA CoNLL yields $+0.039$ (3-seed mean); individual seed FK shifts vary substantially under the unified pipeline, so this should not be interpreted as a robust trend.\nVC $N$-scaling is consistently positive ($+0.005$ on Qwen CoNLL, $+0.018$ on LLaMA SciERC, $+0.030$ on Qwen SciERC), while LP is approximately $N$-invariant ($\\Delta{\\leq}0.034$).\nSJ, EM, and VC scale consistently across all tested settings; only FK shows seed-dependent variation that does not constitute a reliable trend, suggesting that structural and binary-agreement signals are the most robust to $N$.\nAt $N{=}16$, SJ converges to comparable NER performance with VC ($\\Delta{=}0.002$) while exhibiting lower cross-seed variance ($\\sigma{=}0.010$ vs.\\ $0.026$), making it a more stable alternative at higher sample sizes.\n\n\\paragraph{Transfer across model families.}\nLLaMA-3.1-8B-Instruct shows a similar SJ--FK ordering on SciERC NER (SJ $\\rho{=}0.325{\\pm}0.021$, FK $\\rho{=}0.256{\\pm}0.024$, $\\Delta\\rho{=}0.069$; permutation $p{=}0.06$, borderline).\nOn CoNLL, the gap across model families is minimal (Table~\\ref{tab:quality_estimation}): SJ achieves $\\rho{=}0.431$ (LLaMA) vs.\\ 0.436 (Qwen), $\\Delta{=}0.005$.\nAt $N{=}16$, the structural-over-LP advantage holds across all four tested NER settings: Qwen SciERC (VC $\\rho{=}0.409$ vs.\\ LP 0.239, $\\Delta{=}{+}0.170$), Qwen CoNLL (EM $\\rho{=}0.463$ vs.\\ LP 0.328, $\\Delta{=}{+}0.135$),\\footnote{Qwen CoNLL $N{=}16$ was not recomputed under the unified pipeline; LP $\\rho{=}0.328$ may differ slightly from the registry value (0.315) due to instance filtering.} LLaMA SciERC (VC $\\rho{=}0.452$ vs.\\ LP 0.277, $\\Delta{=}{+}0.175$), and LLaMA CoNLL 3-seed (SJ $\\rho{=}0.474{\\pm}0.009$ vs.\\ LP $0.311{\\pm}0.003$, $\\Delta{=}{+}0.163$).\n\n\\paragraph{FK independence: instance-level permutation test.}\\label{app:fk_independence}\n\nTo verify that Fleiss' $\\kappa$ reflects genuine within-instance agreement rather than marginal-rate artifacts, we conduct instance-level permutation tests across three configurations.\nFor each instance, we permute sample labels 10{,}000 times to generate a null distribution of FK under independence, then compare the observed FK against this null via a one-sample $t$-test and permutation $p$-value.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Instance-level FK independence test. Permutation tests confirm FK reflects true within-instance agreement (all $p{<}0.001$). Split-half reliability $r$ computed by randomly partitioning $N$ samples into two halves and correlating their FK scores.}\n\\label{tab:fk_independence}\n\\begin{tabular}{lrcccc}\n\\toprule\nConfig & $n$ & FK mean & 95\\% CI & $t$ & Split-half $r$ \\\\\n\\midrule\nSciERC (Qwen) & 529 & 0.402 & [0.376, 0.428] & 30.8 & 0.395 \\\\\nCoNLL (LLaMA) & 2{,}756 & 0.927 & [0.919, 0.935] & 225.9 & 0.578 \\\\\nCoNLL (Qwen) & 2{,}756 & 0.720 & [0.706, 0.734] & 102.1 & 0.520 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nTable~\\ref{tab:fk_independence} reports the results.\nAll configurations reject the independence null at $p{<}0.001$ ($n{=}529$--$2{,}756$), confirming that FK captures genuine inter-sample agreement rather than chance label co-occurrence.\nSplit-half reliability ranges from $r{=}0.395$ (SciERC) to $r{=}0.578$ (CoNLL LLaMA), indicating moderate stability: FK estimates from half the samples correlate positively with those from the other half, though the SciERC value suggests noisier estimation on harder tasks with fewer samples.\nThe higher FK means on CoNLL ($0.720$--$0.927$) vs.\\ SciERC ($0.402$) mirror the difficulty gradient observed in the main quality estimation results.\n\n\\section{Calibration Analysis}\\label{app:calibration}\n\n\\begin{figure*}[t]\n\\centering\n\\includegraphics[width=\\textwidth]{fig_reliability}\n\\caption{Reliability diagrams on SciERC ($N{=}8$, $T{=}1.0$). Top: mean F1 vs.\\ binned confidence; bottom: instance counts per bin. Left: NER; right: RE. NER signals are reasonably well-calibrated (calibration ECE 0.069--0.096), while RE shows greater miscalibration (ECE 0.109--0.339), reflecting the difficulty of calibrating confidence for compound extraction tasks.}\n\\label{fig:reliability}\n\\end{figure*}\n\nReliability diagrams use 10 equal-width bins.\nNER signals are reasonably well-calibrated (calibration ECE 0.069--0.096), while RE exhibits greater miscalibration (ECE 0.109--0.339), indicating that translating consistency scores into calibrated confidence estimates is feasible for NER but remains challenging for compound extraction tasks.\n\n\\section{Additional Analyses}\\label{app:additional}\n\n\\begin{figure*}[t]\n\\centering\n\\includegraphics[width=\\textwidth]{fig_signal_heatmap}\n\\caption{Quality estimation heatmap (Spearman $\\rho$) across five signals and four configurations. Left: full evaluation set; right: conditional set (non-zero F1 instances). On the full set, structural signals dominate on SciERC NER while all signals converge on CoNLL. On the conditional set, EM emerges as the strongest signal on both NER ($\\rho{=}0.360$) and RE ($\\rho{=}0.417$), while LP RE collapses to near-zero ($\\rho{=}0.011$).}\n\\label{fig:signal_heatmap}\n\\end{figure*}\n\n\\paragraph{Per-relation diagnostic.}\nRE signal degradation is relation-specific.\n\\textsc{Feature-Of} has near-zero correlation ($\\rho{=}0.004$), while \\textsc{Hyponym-Of} achieves $\\rho{=}0.646$.\nThe primary bottleneck is entity span errors, which account for 55.5\\% of RE false negatives---a prerequisite failure that consistency signals cannot detect, as they measure agreement among equally incorrect extractions.\nWe note that RE analysis relies on a single dataset (SciERC); generalization to other RE benchmarks remains to be validated.\n\n\\paragraph{Capability stratification.}\nFor NER, SJ effectiveness scales with structural complexity: on SciERC instances with 6+ entities, $\\rho{=}0.547$, compared to $\\rho{=}0.415$ for 1--2 entities.\nThe SJ advantage over LP remains stable across sentence-length quartiles ($\\Delta\\rho{\\approx}0.08$--$0.20$).\nFor RE, SJ $\\rho$ increases monotonically with sentence length (Q1: 0.110 $\\to$ Q4: 0.473; Fisher $z$-test $p{=}0.004$), indicating that longer, more relation-dense sentences provide richer structure for consistency-based estimation.\nBoth proxies are weakly correlated with F1 ($|r|{<}0.15$), confirming they capture input complexity rather than directly predicting output quality; however, entity count and sentence length are themselves moderately correlated ($\\rho{=}0.650$), so they reflect overlapping rather than independent complexity dimensions.\nFor RE, entity count and relation count are strongly correlated ($\\rho{=}0.769$) and thus reflect a single structural complexity dimension rather than independent axes.\nOn the high-complexity RE subset ($n{=}81$, high relation count), signals improve substantially: VC reaches $\\rho{=}0.630$, LP $\\rho{=}0.554$, and SJ $\\rho{=}0.502$---all far above the full-set levels.\nRicher relational structure provides more signal for consistency-based estimation, complementing the task-level boundary established by WNUT-17: structural signals are most effective within a ``sweet spot'' of sufficient model capability and sufficient output complexity.\n\n\\paragraph{Length vs.\\ log-probability.}\nFigure~\\ref{fig:length_logprob_scatter} shows that mean log-probability is weakly positively correlated with output length (NER: $\\rho{=}0.386$, $n{=}4{,}232$; RE: $\\rho{=}0.326$, $n{=}3{,}176$), ruling out length-penalty confounding as an explanation for LP's selection failure: longer outputs receive \\textit{higher}, not lower, token-averaged log-probability under constrained decoding.\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{fig_length_logprob_scatter}\n\\caption{Output length vs.\\ mean log-probability on SciERC ($N{=}8$, $T{=}1.0$). Positive correlations (NER: $\\rho{=}0.386$; RE: $\\rho{=}0.326$) rule out length-penalty confounding.}\n\\label{fig:length_logprob_scatter}\n\\end{figure}\n\n\\paragraph{Evaluation circularity and LOO-SJ equivalence.}\nConsensus-proximity selection chooses $\\hat{y} = \\arg\\max_{y_i} \\sum_{j \\neq i} \\text{SJ}(y_i, y_j)$.\nLeave-one-out SJ (LOO-SJ) for sample $y_i$ is $\\text{LOO-SJ}_i = \\frac{1}{N-1}\\sum_{j \\neq i} \\text{SJ}(y_i, y_j)$.\nSince the $\\frac{1}{N-1}$ constant is shared across all candidates within an instance, $\\arg\\max_{y_i} \\text{LOO-SJ}_i = \\arg\\max_{y_i} \\sum_{j \\neq i} \\text{SJ}(y_i, y_j)$, making the two selection rules equivalent.\nStandard (non-LOO) SJ adds the self-comparison term $\\text{SJ}(y_i, y_i) = 1$ to each candidate, which is constant and thus does not affect ranking.\nEmpirically, LOO-SJ yields $\\Delta\\rho{=}{-}0.014$ relative to standard SJ (a correlation-level difference), with a maximum per-instance score difference of $3.1{\\times}10^{-4}$ (negligible at the individual prediction level).\nEvaluation circularity is negligible.\n\n\\paragraph{SJ normalizer robustness.}\nEquation~\\ref{eq:sj} uses $\\max(|g_i|, |g_j|)$ as the denominator; an alternative is the union size $|g_i \\cup g_j|$.\nTable~\\ref{tab:sj_normalizer} compares the two normalizers across all six model--dataset combinations ($N{=}8$, $T{=}1.0$, seed${=}42$): $|\\Delta\\rho|{<}0.01$ in every case, confirming that the choice between max and union normalization does not affect conclusions.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{SJ normalizer comparison (Spearman $\\rho$; $N{=}8$, $T{=}1.0$, seed${=}42$). Max: $\\max(|g_i|,|g_j|)$; Union: $|g_i \\cup g_j|$.}\n\\label{tab:sj_normalizer}\n\\begin{tabular}{@{}ll ccc@{}}\n\\toprule\nDataset & Model & $\\rho$(max) & $\\rho$(union) & $\\Delta\\rho$ \\\\\n\\midrule\nCoNLL & Qwen3-8B & .436 & .438 & $-$.002 \\\\\nCoNLL & Qwen3-4B & .422 & .421 & $+$.000 \\\\\nCoNLL & LLaMA-8B & .431 & .432 & $-$.000 \\\\\nSciERC & Qwen3-8B & .360 & .365 & $-$.005 \\\\\nSciERC & Qwen3-4B & .422 & .423 & $-$.001 \\\\\nSciERC & LLaMA-8B & .363 & .372 & $-$.009 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\paragraph{Conditional filtering details.}\nOn LLaMA conditional RE (non-zero F1 instances), SJ recovers to $\\rho{=}0.405$ while FK drops to $\\rho{=}0.259$, consistent with the NER structural advantage; on full-set RE, however, the SJ--FK difference is non-significant ($\\Delta\\rho{=}{-}0.005$, $p{=}0.53$; preliminary).\nAt $N{=}16$, the divergence persists: SJ maintains $\\rho{=}0.308$ on conditional RE while LP drops to $\\rho{=}{-}0.026$.\nEM ranks first across all four tested conditional configurations---SciERC NER ($\\rho{=}0.360$), CoNLL Qwen $N{=}16$ ($\\rho{=}0.466$), CoNLL LLaMA 3-seed ($\\rho{=}0.462$), and SciERC RE ($\\rho{=}0.417$)---despite full-set rankings ranging from \\#1 (CoNLL Qwen) to \\#5 (SciERC RE).\nOn the full set, EM is diluted by trivial agreement: instances where all $N$ samples produce identical (possibly incorrect) outputs receive EM${=}1$ regardless of quality, compressing the signal's dynamic range.\nOn the conditional set---where the model demonstrably produces varied outputs---exact agreement becomes the strongest quality signal.\nThe margin over SJ is largest on RE ($\\Delta\\rho{=}{+}0.171$), where compound extraction decisions amplify output variability, and smallest on CoNLL LLaMA ($\\Delta\\rho{=}{+}0.002$), where all signals converge near $\\rho{\\approx}0.46$.\n\n\\paragraph{WNUT-17 full signal analysis.}\nTable~\\ref{tab:wnut} reports all five signals on WNUT-17.\nVC achieves $\\rho{=}0.724$ (AUROC${=}0.913$) on the full set, but conditional analysis (non-zero F1 instances) reveals this is entirely driven by the zero/non-zero boundary: conditional $\\rho{=}0.038$ ($p{=}0.49$).\nLP shows the reverse pattern: full-set $\\rho{=}{-}0.410$ but conditional $\\rho{=}0.350$, the highest among all signals on the conditional set.\nThis inversion confirms that full-set correlations on high-failure-rate datasets conflate binary success prediction with quality gradation.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Quality estimation on WNUT-17 (Qwen, $N{=}16$, $T{=}1.0$, $n{=}689$ after filtering gold-empty instances). Cond: non-zero F1 instances ($n{=}334$). LP exhibits strong negative full-set $\\rho$; its conditional $\\rho$ reverses to the highest among all signals, confirming that full-set correlations on high-failure-rate datasets conflate binary success prediction with quality gradation.}\n\\label{tab:wnut}\n\\begin{tabular}{lccccc}\n\\toprule\nSignal & $\\rho$ & $p$ & AUROC & Cond.\\ $\\rho$ & Cond.\\ $p$ \\\\\n\\midrule\nVC      & .724 & ${<}$1e-112 & .913 & .038 & .487 \\\\\nFK      & .125 & .001 & .555 & .169 & .002 \\\\\nSJ      & .089 & .020 & .517 & .288 & ${<}$1e-7 \\\\\nEM      & .050 & .194 & .487 & .333 & ${<}$1e-9 \\\\\nLP & $-$.410 & ${<}$1e-28 & .219 & .350 & ${<}$1e-10 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\paragraph{Cross-configuration selection analysis.}\nTable~\\ref{tab:cross_selection} extends the selection analysis to four additional configurations.\nOn LLaMA SciERC, where output diversity remains substantial (18\\% identical outputs, 39\\% unique), LP achieves the highest selection F1 (0.652) at $N{=}8$ but still falls within bootstrap noise of greedy (0.646), replicating the gap observed on Qwen SciERC (Table~\\ref{tab:selection}).\nOn CoNLL, 57--88\\% of instances produce identical outputs across all $N$ samples, reflecting a ceiling effect (greedy F1 ${\\approx}$0.91--0.92) rather than signal failure; selection analysis on these configurations is uninformative because there is little per-sample variance for any signal to exploit.\n\n\\begin{table*}[t]\n\\centering\n\\small\n\\caption{Best-of-$N$ selection F1 (macro, instance-averaged) across configurations ($T{=}1.0$). Best non-oracle signal per row in \\textbf{bold}. At $N{=}8$, no signal significantly outperforms greedy in any configuration. At $N{=}16$ on LLaMA CoNLL, VC achieves small but significant gains ($+0.28$~pp, $p{<}0.03$; see text below). CoNLL shows especially tight clustering where greedy already exceeds 0.90.}\n\\label{tab:cross_selection}\n\\begin{tabular}{llccccccc}\n\\toprule\nConfig & $n$ & Greedy & Oracle & SJ & FK & EM & LP & VC \\\\\n\\midrule\nLLaMA/SciERC $N{=}8$ & 529 & .646 & .778 & .643 & .639 & .634 & \\textbf{.652} & .633 \\\\\nLLaMA/SciERC $N{=}16$ & 529 & .645 & .806 & \\textbf{.649} & \\textbf{.649} & .640 & .646 & .640 \\\\\nQwen/CoNLL $N{=}8$ & 2{,}756 & .908 & .948 & \\textbf{.899} & .893 & .898 & .897 & .895 \\\\\nLLaMA/CoNLL $N{=}8$ & 2{,}756 & .924 & .943 & .924 & \\textbf{.925} & .924 & .924 & .923 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table*}\n\n\\paragraph{Diminishing returns of $N$-scaling.}\nOur $N{=}8$ and $N{=}16$ comparisons (Table~\\ref{tab:robustness}) characterize the marginal value of additional samples for test-time scaling \\cite{brown2024monkeys, snell2025scaling}.\nFor quality estimation, structural signals benefit consistently but sublinearly: SJ $\\rho$ improves by $+0.047$ (Qwen SciERC, 3-seed mean) and $+0.032$ (LLaMA CoNLL, 3-seed mean) when doubling from $N{=}8$ to $N{=}16$, while log-probability is approximately $N$-invariant ($\\Delta\\rho{\\leq}0.021$).\nStructural signals leverage $\\binom{N}{2}$ pairwise comparisons (28 pairs at $N{=}8$, 120 at $N{=}16$), but the $\\rho$ improvement is far less than proportional, indicating diminishing information per additional comparison.\nThis asymmetry gives structural signals a relative advantage in the compute-constrained regime: at $N{=}8$, SJ already achieves $\\rho{=}0.431$ on LLaMA CoNLL (vs.\\ LP $\\rho{=}0.307$, $\\Delta{=}{+}0.124$), and the gap \\textit{widens} at $N{=}16$ ($\\Delta{=}{+}0.163$) because structural signals continue to benefit from additional pairwise evidence while LP does not.\nFor sample selection, additional samples increase the oracle upper bound---more draws raise the probability of a high-quality candidate---but signal-based selection remains flat because the selector's inability to identify the best candidate is a granularity limitation, not a sample size limitation.\nThe practical implication is that $N{=}8$ captures most of the achievable quality estimation benefit; further scaling widens rather than closes the correlation-selection gap absent stronger per-sample selectors.\n\n\\paragraph{$N{=}16$ CoNLL selection: small but significant.}\nWhile quality estimation benefits sublinearly from $N$-scaling, selection behavior at $N{=}16$ reveals a nuanced exception on LLaMA CoNLL.\nVC achieves the largest gain over greedy ($+0.28$~pp, $p{=}0.003$--$0.027$ across 3 seeds, all significant), with SJ, FK, and EM at $+0.22$--$0.23$~pp and LP at $+0.12$~pp (2/3 seeds significant).\nThese gains are statistically significant but practically minimal: oracle headroom at $N{=}16$ is only 2.5~pp, so VC captures approximately 10\\% of the available headroom.\nThis reinforces the primary finding: even under the most favorable conditions---high baseline performance, more candidates, and aggregated multi-seed evidence---signal-based selection recovers only a fraction of the oracle headroom available.\n\n\\section{Bootstrap CI for Signal Comparisons}\\label{app:bootstrap_signal}\n\nTable~\\ref{tab:bootstrap_signal_ci} reports bootstrap confidence intervals for individual signal $\\rho$ and pairwise $\\Delta\\rho$ on SciERC NER ($N{=}8$, $n{=}529$, $B{=}10{,}000$, seed${=}42$).\nThe SJ--LP gap ($\\Delta\\rho{=}{+}0.155$) is clearly significant, confirming the structural advantage reported in \\S\\ref{sec:qe_results}.\nThe VC--SJ gap ($\\Delta\\rho{=}{+}0.019$) is not significant, indicating that these two structural signals perform comparably.\nThe SJ--EM gap ($\\Delta\\rho{=}{+}0.065$) is borderline significant, with the CI lower bound at $+0.003$ and upper bound at $+0.130$.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Bootstrap 95\\% CIs for signal $\\rho$ on SciERC NER ($N{=}8$, $n{=}529$, $B{=}10{,}000$, seed${=}42$). Top: individual signals. Bottom: pairwise $\\Delta\\rho$; ``Sig.'' indicates whether the 95\\% CI excludes zero.}\n\\label{tab:bootstrap_signal_ci}\n\\begin{tabular}{lcc}\n\\toprule\nSignal & $\\rho$ & 95\\% CI \\\\\n\\midrule\nVC & +0.379 & [+0.299, +0.456] \\\\\nSJ & +0.360 & [+0.277, +0.437] \\\\\nEM & +0.295 & [+0.212, +0.371] \\\\\nFK & +0.267 & [+0.176, +0.354] \\\\\nLP & +0.205 & [+0.119, +0.291] \\\\\n\\bottomrule\n\\end{tabular}\n\n\\vspace{0.5em}\n\n\\begin{tabular}{lccc}\n\\toprule\nComparison & $\\Delta\\rho$ & 95\\% CI & Sig. \\\\\n\\midrule\nSJ $-$ LP & +0.155 & [+0.074, +0.234] & Yes \\\\\nVC $-$ SJ & +0.019 & [$-$0.033, +0.073] & No \\\\\nSJ $-$ EM & +0.065 & [+0.003, +0.130] & Marginal$^\\dagger$ \\\\\n\\bottomrule\n\\end{tabular}\n\n\\smallskip\n{\\footnotesize $^\\dagger$Marginally significant without multiple comparison correction; would not survive Bonferroni correction for 10 pairwise comparisons ($\\alpha_{\\text{adj}}{=}0.005$).}\n\\end{table}\n\nAt $N{=}16$ ($B{=}10{,}000$, permutation test), the structural advantage extends to FK comparisons.\nOn SciERC NER ($n{=}529$), SJ--FK ($\\Delta\\rho{=}0.147$--$0.160$, all $p{\\leq}0.002$) and VC--FK ($\\Delta\\rho{=}0.138$--$0.188$, all $p{\\leq}0.003$) are clearly significant across all three seeds; EM--FK is seed-dependent ($\\Delta\\rho{=}0.054$--$0.093$, $p{=}0.048$--$0.15$).\nOn CoNLL ($n{=}2{,}756$), all signals significantly outperform FK: EM $\\Delta\\rho{=}0.071$ ($p{<}0.001$), SJ $\\Delta\\rho{=}0.056$ ($p{<}0.001$), VC $\\Delta\\rho{=}0.022$ ($p{=}0.040$).\n\n\\section{Diversity and Selection Analysis}\\label{app:diversity}\n\n\\begin{figure*}[t]\n\\centering\n\\includegraphics[width=\\textwidth]{fig_selection_gap}\n\\caption{The correlation-selection gap on SciERC NER ($N{=}8$, $T{=}1.0$, 2-seed mean). Bars show best-of-$N$ selection F1; the line marks quality estimation $\\rho$. Despite $\\rho$ up to 0.40, no signal significantly outperforms greedy (all $p{>}0.05$; Table~\\ref{tab:selection}). Dashed line indicates oracle upper bound. RE selection results in Table~\\ref{tab:selection}.}\n\\label{fig:selection_gap}\n\\end{figure*}\n\n\\paragraph{Output diversity quantification.}\nTable~\\ref{tab:diversity} summarizes output diversity across configurations.\nOn SciERC, output diversity is substantial: Qwen produces 43\\% unique outputs per instance (mean 3.5 distinct out of $N{=}8$), with per-sample F1 standard deviation of 0.144 and mean pairwise SJ of 0.703.\nLLaMA shows similar diversity (39\\% unique, F1 std 0.11).\nOn CoNLL, diversity collapses: 57\\% (Qwen) to 88\\% (LLaMA) of instances produce identical outputs across all $N$ samples, reflecting a ceiling effect where greedy F1 already exceeds 0.90.\nWNUT-17 shows 55\\% identical outputs, driven by the 52\\% zero-F1 rate.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Output diversity across configurations ($N{=}8$, $T{=}1.0$). ``Identical'' = fraction of instances with all $N$ outputs identical. ``Unique'' = mean fraction of distinct outputs per instance.}\n\\label{tab:diversity}\n\\begin{tabular}{lcc}\n\\toprule\nConfig & Identical & Unique \\\\\n\\midrule\nQwen/SciERC & 11\\% & 43\\% \\\\\nLLaMA/SciERC & 18\\% & 39\\% \\\\\nQwen/CoNLL & 57\\% & --- \\\\\nLLaMA/CoNLL & 88\\% & --- \\\\\nWNUT-17 & 55\\% & --- \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\paragraph{Oracle-improvable fraction.}\nAcross SciERC configurations, 39--42\\% of instances contain at least one sample with F1 exceeding greedy\\footnote{Oracle-improvable and diversity-stratified analyses use $n{=}529$ (excluding instances with empty gold annotations; see \\S\\ref{sec:evaluation}); the diversity quantification in Table~\\ref{tab:diversity} uses the full test set.}: Qwen NER 42.0\\% (222/529, mean headroom $+$31.9~pp among improvable instances), Qwen RE 41.3\\% (164/397, $+$45.3~pp), LLaMA NER 39.3\\% (208/529, $+$33.7~pp).\nOn CoNLL, only 4--9\\% of instances are improvable, confirming the ceiling effect.\n\n\\paragraph{Diversity-stratified selection gap.}\nOn the 44\\% of Qwen SciERC instances with high diversity (${\\geq}4$ unique outputs among 8 samples, $n{=}232$), oracle headroom reaches $+$16.3~pp, yet all consistency-based signals (SJ, FK, EM, VC) select at or below greedy, and LP---the only per-sample signal---achieves merely $+$0.8~pp.\nLLaMA replicates this pattern: on its high-diversity subset ($n{=}186$), oracle headroom reaches $+$20.1~pp while consistency signals remain at or below greedy and LP captures only $+$2.0~pp.\nThis rules out insufficient diversity as an explanation for the correlation-selection gap.\n\n\\paragraph{TOST equivalence testing.}\nThe primary evidence against selection gains comes from effect sizes and confidence intervals: Cohen's $d{=}0.038$ for the best signal (NER LP) and bootstrap 95\\% CI [$-$3.0, $+$4.2]~pp spanning zero.\nTable~\\ref{tab:tost} supplements this with two one-sided tests (TOST), testing whether each signal's selection F1 is equivalent to greedy within a bound $\\delta$.\nThe $\\delta$ values are contextualized against oracle headroom (12--18~pp): $\\delta{=}5$~pp corresponds to forgoing 28--38\\% of the available headroom, $\\delta{=}3$~pp forgoing 17--23\\%, and $\\delta{=}2$~pp less than 15\\%.\nThese proportions use the same test data that defines the headroom, introducing circularity: $\\delta$ is anchored to the very quantity it contextualizes.\nWe address this below with externally anchored equivalence margins.\nThe breakpoint $\\delta^*$---the minimum equivalence margin at which each signal passes TOST---ranges from approximately 1.3~pp (SJ, ${\\sim}$10\\% of oracle headroom) to 3.4~pp (FK, ${\\sim}$26\\%) on NER, and from approximately 2.9~pp (LP, ${\\sim}$16\\%) to 6.5~pp (VC, ${\\sim}$36\\%) on RE.\nOn NER ($n{=}529$), at $\\delta{=}{\\pm}2$~pp, SJ and LP are confirmed equivalent to greedy (TOST $p{<}0.05$); at $\\delta{=}{\\pm}3$~pp, four of five signals pass; at $\\delta{=}{\\pm}5$~pp, all five pass.\nOn RE ($n{=}397$, preliminary), EM and VC fail equivalence even at $\\delta{=}{\\pm}5$~pp due to systematic underperformance ($\\Delta{=}{-}3.2$~pp and $-4.5$~pp respectively).\nThe effect sizes are negligible ($d{=}0.038$) and confidence intervals span zero, with TOST confirming equivalence at practically meaningful margins.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{TOST equivalence testing: signals vs.\\ greedy on SciERC ($N{=}8$, $T{=}1.0$). \\checkmark: equivalent at $p{<}0.05$; \\texttimes: not equivalent. $\\Delta$: mean F1 difference (signal $-$ greedy).}\n\\label{tab:tost}\n\\begin{tabular}{l cccc cccc}\n\\toprule\n& \\multicolumn{4}{c}{\\textbf{NER}} & \\multicolumn{4}{c}{\\textbf{RE}} \\\\\n\\cmidrule(lr){2-5} \\cmidrule(lr){6-9}\nSignal & $\\Delta$ & $\\pm$2 & $\\pm$3 & $\\pm$5 & $\\Delta$ & $\\pm$2 & $\\pm$3 & $\\pm$5 \\\\\n\\midrule\nLP & +0.6 & \\checkmark & \\checkmark & \\checkmark & $-$0.9 & \\texttimes & \\checkmark & \\checkmark \\\\\nSJ & +0.1 & \\checkmark & \\checkmark & \\checkmark & $-$1.8 & \\texttimes & \\texttimes & \\checkmark \\\\\nFK & $-$0.5 & \\texttimes & \\checkmark & \\checkmark & $-$1.6 & \\texttimes & \\texttimes & \\checkmark \\\\\nEM & $-$0.8 & \\texttimes & \\checkmark & \\checkmark & $-$3.2 & \\texttimes & \\texttimes & \\texttimes \\\\\nVC & $-$1.0 & \\texttimes & \\texttimes & \\checkmark & $-$4.5 & \\texttimes & \\texttimes & \\texttimes \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\paragraph{External equivalence margins.}\nThe oracle-headroom anchors above introduce circularity, as a reviewer correctly noted: $\\delta$ is calibrated against the very quantity it contextualizes.\nTo resolve this, we supplement with three externally grounded margins:\n(1) $\\delta_{\\mathrm{SEM}}$: the bootstrapped standard error of greedy F1 (0.43--1.33~pp depending on configuration), representing measurement noise;\n(2) $\\delta_{\\mathrm{practical}}{=}0.5$~pp, reflecting the threshold below which NER differences are considered negligible \\cite{ratinov2009design};\n(3) $\\delta_{\\mathrm{literature}}{=}1.0$~pp, the approximate significant-difference threshold established in NER evaluation methodology \\cite{bergkirkpatrick2012empirical}.\n\nResults under these external anchors diverge sharply by configuration.\nOn LLaMA CoNLL ($n{=}2{,}756$), all signals pass equivalence at every $\\delta$ ($p{<}0.001$), consistent with the near-zero selection deltas ($|\\Delta|{\\leq}0.1$~pp) and tight CIs at this sample size.\nOn Qwen CoNLL ($n{=}2{,}756$), no signal passes at any external $\\delta$: selection F1 degrades by 0.9--1.5~pp relative to greedy, exceeding even $\\delta_{\\mathrm{literature}}$.\nOn SciERC NER ($n{=}529$), only SJ passes at $\\delta_{\\mathrm{SEM}}{=}1.33$~pp (the widest SEM bound); all other signals and tighter margins fail.\nThese external anchors confirm that the equivalence conclusion is configuration-dependent: LLaMA CoNLL selection is robustly equivalent to greedy under any reasonable margin, while SciERC and Qwen CoNLL selection shows detectable degradation at externally calibrated thresholds.\n\n\\section{Multi-Seed Stability}\\label{app:multiseed}\n\nTable~\\ref{tab:multiseed} reports quality estimation metrics across three random seeds for both model families on SciERC ($N{=}8$, $T{=}1.0$).\nOn NER, the signal ranking VC${>}$SJ${>}$EM${>}$FK${>}$LP is identical across all six model-seed combinations, with $\\sigma{\\leq}0.025$ for all signals.\nOn RE (Qwen only, preliminary), VC remains the top signal ($\\rho{=}0.309{\\pm}0.024$), but LP rises to \\#2 ($\\rho{=}0.297{\\pm}0.022$), above FK, SJ, and EM---a reversal from the NER ranking that reflects RE's higher sensitivity to per-sample scoring.\nLLaMA absolute values are systematically lower than Qwen on NER, consistent with the directionally-consistent-but-magnitude-dependent characterization in the main text.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Multi-seed quality estimation on SciERC ($N{=}8$, $T{=}1.0$, seeds: 42, 123, 456). NER: both models; RE: Qwen only (preliminary). Signal ranking is stable across seeds ($\\sigma{\\leq}0.025$). $\\sigma$ is population standard deviation over 3 seeds.}\n\\label{tab:multiseed}\n\\begin{tabular}{lccccc}\n\\toprule\n& LP & FK & SJ & VC & EM \\\\\n\\midrule\n\\multicolumn{6}{l}{\\textit{NER Spearman $\\rho$ (mean $\\pm\\sigma$)}} \\\\\nQwen & .217${\\pm}$.013 & .254${\\pm}$.016 & .364${\\pm}$.018 & .386${\\pm}$.019 & .307${\\pm}$.008 \\\\\nLLaMA & .162${\\pm}$.025 & .256${\\pm}$.024 & .325${\\pm}$.021 & .384${\\pm}$.014 & .279${\\pm}$.011 \\\\\n\\midrule\n\\multicolumn{6}{l}{\\textit{RE Spearman $\\rho$ (mean $\\pm\\sigma$, Qwen)}} \\\\\nQwen & .297${\\pm}$.022 & .290${\\pm}$.012 & .249${\\pm}$.002 & .309${\\pm}$.024 & .135${\\pm}$.016 \\\\\n\\midrule\n\\multicolumn{6}{l}{\\textit{NER AUROC (mean $\\pm\\sigma$)}} \\\\\nQwen & .613${\\pm}$.002 & .618${\\pm}$.009 & .684${\\pm}$.009 & .697${\\pm}$.010 & .661${\\pm}$.010 \\\\\nLLaMA & .577${\\pm}$.007 & .616${\\pm}$.011 & .655${\\pm}$.010 & .689${\\pm}$.005 & .636${\\pm}$.006 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\section{Training Configuration}\\label{app:training}\n\nBoth models are fine-tuned with identical hyperparameters (Table~\\ref{tab:training}) to ensure comparisons across model families reflect model differences rather than training confounds.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Training configuration. Both Qwen3-8B and LLaMA-3.1-8B-Instruct use identical settings unless noted.}\n\\label{tab:training}\n\\begin{tabular}{ll}\n\\toprule\nParameter & Value \\\\\n\\midrule\nLoRA rank / $\\alpha$ & 32 / 64 \\\\\nLoRA target & All linear modules \\\\\nLoRA dropout & 0 \\\\\nOptimizer & AdamW \\\\\nLearning rate & 2e-4, cosine schedule \\\\\nWarmup ratio & 0.1 \\\\\nEffective batch size & 16 (2 $\\times$ grad.\\ accum.\\ 8) \\\\\nEpochs & 5 \\\\\nMax sequence length & 2048 \\\\\nPrecision & bf16 \\\\\nGradient checkpointing & Enabled \\\\\nMax gradient norm & 1.0 \\\\\nTraining seed & 42 \\\\\nFramework & LLaMA Factory \\\\\n\\midrule\n\\multicolumn{2}{l}{\\textit{Dataset-specific}} \\\\\nSciERC split & 1861 / 275 / 551 \\\\\nCoNLL / WNUT & +\\,load\\_best\\_model\\_at\\_end, \\\\\n& eval\\_steps${=}$200, save\\_limit${=}$5 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\paragraph{Prompt template.}\nFor NER, we use a structured prompt:\n\\begin{quote}\n\\small\n\\texttt{System:} You are an expert in Named Entity Recognition.\\\\\n\\texttt{User:} Extract all named entities from the following text. Output as JSON.\\\\\nText: \\texttt{\\{input\\_text\\}}\\\\\nEntity types: \\texttt{\\{schema\\_types\\}}\n\\end{quote}\nRE follows the same structure with ``Relation Extraction'' and relation type lists substituted accordingly.\n\n\\paragraph{Constrained decoding.}\nInference uses vLLM with XGrammar-based JSON schema enforcement \\cite{willard2023guided}, which constrains outputs to valid entity/relation structures matching the target schema.\nThis eliminates format errors but may compress per-sample diversity by restricting the output space.\\footnote{SciERC training used \\texttt{enable\\_thinking=True} (LLaMA Factory 0.9.4 default), injecting empty \\texttt{&lt;think>&lt;/think>} blocks (4--5 tokens) into each training response with loss computation; CoNLL and WNUT explicitly set \\texttt{enable\\_thinking=False}. Constrained decoding at inference time enforces JSON-only output, suppressing thinking tokens. See \\S\\ref{sec:setup} and Limitations for discussion of this confound.}\n\n\\section{Thinking Token Impact Analysis}\\label{app:thinking_token}\n\nQwen3-8B's SciERC checkpoint was trained with empty \\texttt{&lt;think>&lt;/think>} blocks prepended to each response (\\S\\ref{sec:setup}).\nWe quantify the potential impact on LP scores through three complementary arguments.\n\n\\paragraph{LP shift magnitude.}\nEmpty thinking tokens (mean 4.5 per sample) constitute 2.1\\% of tokens on SciERC.\nThe estimated LP shift is 0.001 nats per token (2.68\\% of the median within-instance LP range of 0.041 nats).\nBecause all samples share identical thinking-token LP offsets, cumulative LP rankings are invariant; mean LP changes selection for ${<}1.5\\%$ of instances.\n\n\\paragraph{Constant prefix cancellation.}\nAll $N$ samples within an instance share the same prompt and, under constrained decoding, the same absence of thinking tokens at inference time.\nAny LP bias from the training-time thinking prefix is therefore a near-constant additive shift across all candidates within an instance, leaving within-instance LP \\textit{rankings} unchanged.\n\n\\paragraph{CoNLL control group.}\nCoNLL and WNUT-17 checkpoints were trained without thinking tokens (\\texttt{enable\\_thinking=False}).\nIf thinking tokens caused LP compression on SciERC, CoNLL should exhibit lower tied fractions.\nInstead, CoNLL shows \\textit{higher} tied fractions at both temperatures (86.8\\% at $T{=}1.0$, 95.8\\% at $T{=}0.7$) than SciERC (60.3\\% at $T{=}1.0$), directly contradicting the thinking-token hypothesis.\n\n\\section{Log-Probability Score Compression}\\label{app:logprob_ties}\n\nUnder constrained decoding, log-probability scores are severely compressed within instances, limiting per-sample discrimination (Table~\\ref{tab:logprob_ties}, Figure~\\ref{fig:lp_range_cdf}).\nThe median within-instance LP range is only 0.041 nats---below the $\\varepsilon{=}0.05$ threshold used throughout, providing data-driven justification for this cutoff rather than an arbitrary choice.\nAt $\\varepsilon{=}0.05$, 60.3\\% of instances ($n{=}529$, excluding empty gold annotations) have a within-sample range below the threshold, and 75\\% of pairwise comparisons are effective ties ($|\\Delta|{<}0.026$).\nThe CDF rises smoothly with no cliff or discontinuity (Figure~\\ref{fig:lp_range_cdf}), confirming that compression is a pervasive regime rather than a bimodal split.\nThis compression is stable across seeds: seed${=}456$ yields median LP range${=}0.040$ nats and tied fraction${=}62.2\\%$ (vs.\\ seed${=}42$: $0.041$ nats, $60.3\\%$).\nSeed~456 uses a different subtask flag (joint vs.\\ ner for seeds 42 and 123); the LP distributions are statistically indistinguishable (median LP: 8.37 vs.\\ 8.20 nats; Mann--Whitney $p{=}0.55$), confirming that the subtask change does not affect compression.\nFor comparison, SJ has only 12.5\\% tied instances at the same threshold---SJ's advantage over LP for selection is one of score resolution, not information content.\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{fig_lp_range_cdf}\n\\caption{CDF of within-instance LP range on SciERC NER ($N{=}8$, $n{=}529$). The median LP range is 0.041 nats (dashed line), below $\\varepsilon{=}0.05$. The smooth CDF confirms compression is pervasive, not bimodal.}\n\\label{fig:lp_range_cdf}\n\\end{figure}\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Log-probability score compression on SciERC NER ($N{=}8$, $n{=}529$). ``Tied'' = fraction of instances where within-instance LP range ${<}\\varepsilon$.}\n\\label{tab:logprob_ties}\n\\begin{tabular}{lc}\n\\toprule\n$\\varepsilon$ threshold & Tied instances (\\%) \\\\\n\\midrule\n0.01 & 1.1\\% \\\\\n0.05 & 60.3\\% \\\\\n0.1  & ${\\sim}$84\\% \\\\\n0.5  & ${\\sim}$99\\% \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\paragraph{Non-tied subset.}\nAmong instances with LP range ${\\geq}0.05$ ($n{=}210$, 40\\% of total), log-probability selection \\textit{significantly} outperforms greedy ($+2.9$~pp F1, $p{=}0.004$), and within-instance $\\rho(\\text{LP}, \\text{F1})$ rises from 0.08 (tied subset) to 0.39 (non-tied subset).\nAs a continuous complement to the binary tied/non-tied analysis, pooled within-instance $\\rho(\\text{LP}, \\text{F1}){=}0.248$ across all instances confirms weak but positive per-sample signal; however, only 21.6\\% of instances achieve $p{<}0.05$ significance, and $\\rho(\\text{LP range}, \\text{F1 range}){=}0.328$ shows that instances with more LP spread also exhibit more F1 variability---LP carries information but compression limits its exploitation.\nA free-form NER decoding ablation (Appendix~\\ref{app:freeform_ablation}) confirms this compression persists without constrained decoding.\n\n\\paragraph{$\\varepsilon$ sensitivity sweep.}\nTable~\\ref{tab:epsilon_sweep} sweeps the tied/non-tied threshold from $\\varepsilon{=}0.01$ to $0.20$.\nThe tied fraction increases smoothly with no cliff or discontinuity, and the selection gain $\\Delta$ grows monotonically as the non-tied subset narrows to progressively higher-spread instances.\n$\\varepsilon{=}0.05$ yields the strongest statistical separation ($p{=}0.004$); at $\\varepsilon{\\geq}0.15$, the non-tied subset becomes too small for reliable inference ($n{\\leq}36$).\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{$\\varepsilon$ sensitivity sweep for LP selection on SciERC NER ($N{=}8$, seed${=}42$, $n{=}529$). ``Tied\\%'' = fraction with within-instance LP range ${<}\\varepsilon$. $\\Delta$: selection F1 gain over greedy on the non-tied subset. The tied fraction increases smoothly; $\\varepsilon{=}0.05$ yields the strongest statistical separation.}\n\\label{tab:epsilon_sweep}\n\\begin{tabular}{ccccc}\n\\toprule\n$\\varepsilon$ & Tied\\% & Non-tied $n$ & $\\Delta$ (pp) & $p$ \\\\\n\\midrule\n0.01 & 1.1\\% & 523 & $+$0.58 & .21 \\\\\n0.02 & 13.6\\% & 457 & $+$0.83 & .15 \\\\\n0.03 & 31.8\\% & 361 & $+$1.31 & .079 \\\\\n\\textbf{0.05} & \\textbf{60.3\\%} & \\textbf{210} & \\textbf{$+$2.86} & \\textbf{.004} \\\\\n0.10 & 83.9\\% & 85 & $+$3.69 & .034 \\\\\n0.15 & 93.2\\% & 36 & $+$4.15 & .11 \\\\\n0.20 & 96.4\\% & 19 & $+$4.59 & .13 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\paragraph{$\\varepsilon$ robustness of selection F1.}\\label{app:epsilon_robustness}\nThe preceding analysis stratifies LP by a tied/non-tied threshold; consistency-based signals (SJ, FK, VC, EM) also use $\\varepsilon$ to define MBR-style proximity in selection.\nTable~\\ref{tab:epsilon_robustness} reports the maximum selection F1 variation across $\\varepsilon \\in [0, 0.2]$ for all signals and configurations.\nAt $\\varepsilon{=}0.05$, consistency signals change by at most 1.09~pp (mean 0.21~pp), with EM completely $\\varepsilon$-invariant (integer scoring); LP is the most sensitive (up to 3.65~pp across the full range), as expected.\nSpearman $\\rho$---the primary quality estimation metric throughout---is a continuous rank correlation that does not depend on any discretization threshold; the $\\varepsilon$ parameter affects only the selection analysis.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Maximum selection F1 variation (pp) across $\\varepsilon \\in [0, 0.2]$. At $\\varepsilon{=}0.05$ (used throughout), consistency signals change by ${\\leq}1.09$~pp; EM is invariant (integer scoring). LP is most sensitive as $\\varepsilon$ governs its tied/non-tied partition. SciERC: $n{=}529$; CoNLL: $n{=}2{,}756$.}\n\\label{tab:epsilon_robustness}\n\\begin{tabular}{lcccc}\n\\toprule\n& \\multicolumn{2}{c}{\\textbf{SciERC}} & \\multicolumn{2}{c}{\\textbf{CoNLL}} \\\\\n\\cmidrule(lr){2-3} \\cmidrule(lr){4-5}\nSignal & Qwen & LLaMA & Qwen & LLaMA \\\\\n\\midrule\nSJ & 0.92 & 1.45 & 0.99 & 0.18 \\\\\nFK & 1.03 & 0.93 & 0.60 & 0.15 \\\\\nVC & 2.33 & 0.53 & 0.72 & 0.18 \\\\\nEM & 0.00 & 0.00 & 0.00 & 0.00 \\\\\nLP & 3.65 & 2.58 & 3.00 & 0.31 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\section{RE Conditional Selection}\\label{app:re_conditional_selection}\n\nTable~\\ref{tab:re_cond_selection} extends the selection analysis to the RE non-zero F1 subset.\nOf $n{=}397$ RE instances, 238 (60\\%) have non-zero F1 and 159 (40\\%) have zero F1.\nAll five signals underperform greedy on both subsets.\nOn the non-zero subset, selection performance is \\textit{worse} than on the full set (e.g., VC: $-10.0$~pp on non-zero vs.\\ $-4.5$~pp on full set), because greedy is already strong on non-zero instances (F1${=}0.674$) and signals actively select inferior samples.\nOracle headroom exists (0.757 vs.\\ 0.674) but no signal exploits it, ruling out the 40\\% zero-F1 floor effect as the explanation for RE selection failure.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{RE selection F1 (macro, instance-averaged) on SciERC ($N{=}8$, $T{=}1.0$). Full set ($n{=}397$) and non-zero F1 subset ($n{=}238$). No signal outperforms greedy on either subset.}\n\\label{tab:re_cond_selection}\n\\begin{tabular}{lcc}\n\\toprule\nMethod & Full ($n{=}397$) & Non-zero ($n{=}238$) \\\\\n\\midrule\nOracle & 0.585 & 0.757 \\\\\n\\midrule\nLP & 0.395 & 0.600 \\\\\nSJ & 0.386 & 0.604 \\\\\nEM & 0.372 & 0.583 \\\\\nVC & 0.359 & 0.574 \\\\\n\\midrule\nGreedy & 0.404 & 0.674 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\section{RE $N{=}16$ Selection Analysis}\\label{app:re_n16_selection}\n\nTable~\\ref{tab:re_n16_selection} extends the selection analysis to RE at $N{=}16$ with 3-seed statistics.\nAll four consistency signals underperform greedy, with EM showing the largest deficit ($\\Delta{=}{-}1.5$~pp, Fisher $p{>}0.99$).\nLP is the only positive signal ($\\Delta{=}{+}0.7$~pp, Fisher $p{=}0.058$), driven primarily by seed~456 ($\\Delta{=}{+}1.5$~pp, $p{=}0.026$); the remaining seeds show smaller effects ($+0.1$ and $+0.6$~pp, $p{>}0.20$).\nEven the most favorable seed captures only ${\\sim}9\\%$ of the 17.1~pp oracle headroom.\nThis cross-task consistency---LP as the only viable selection signal on both NER and RE---reinforces the structural limitation of instance-level signals for candidate ranking.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{RE best-of-$N$ selection F1 (macro, instance-averaged) on SciERC (Qwen3-4B, $N{=}16$, $T{=}1.0$, 3-seed mean${\\pm}\\sigma$, $n{=}551$). Fisher combined $p$ vs.\\ greedy. LP is the only signal with positive $\\Delta$. $\\sigma$ is population standard deviation over 3 seeds.}\n\\label{tab:re_n16_selection}\n\\begin{tabular}{lccc}\n\\toprule\nMethod & F1 & $\\Delta$ (pp) & $p$(Fisher) \\\\\n\\midrule\nOracle & $.463{\\pm}.006$ & $+$17.1 & --- \\\\\n\\midrule\nLP & $\\mathbf{.299}{\\pm}.007$ & $+$0.7 & .058 \\\\\nVC & $.284{\\pm}.002$ & $-$0.8 & .973 \\\\\nFK & $.283{\\pm}.005$ & $-$0.9 & .985 \\\\\nSJ & $.281{\\pm}.005$ & $-$1.0 & .993 \\\\\nEM & $.277{\\pm}.007$ & $-$1.5 & .999 \\\\\n\\midrule\nGreedy & $.291{\\pm}.000$ & --- & --- \\\\\nRandom & $.262{\\pm}.001$ & $-$2.9 & --- \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\section{MBR Decoding and Task-Specific Interactions}\\label{app:mbr_discussion}\n\n\\paragraph{Connection to MBR decoding.}\nOur selection strategies instantiate minimum Bayes risk (MBR) decoding \\cite{eikema2022sampling, muller2021understanding}: each selects $\\hat{y} = \\arg\\max_{y_i} \\sum_{j \\neq i} U(y_i, y_j)$ with utility $U$ defined by SJ, EM, or entity overlap.\nDespite MBR's success in machine translation \\cite{freitag2022high} and its extension to summarization, code generation, and captioning \\cite{jinnai2024mbr}, all variants fail here because the utility functions correlate with F1 at the instance level but not within a single instance---the mathematical essence of the correlation-selection gap.\n\\citet{eikema2025structured} study structure-conditional MBR decoding and find that standard utility functions degrade on structured outputs---consistent with our finding that consensus-proximity selection fails in IE despite its success in machine translation.\n\n\\paragraph{Task-specific decoding interactions.}\nThe free-form ablation reveals divergent behavior across tasks.\nOn RE, LP selection flips from $-0.68$~pp (constrained) to $+1.69$~pp (free-form; preliminary, single RE benchmark), a reversal that spans all 7 relation types and is driven by selective variance reallocation ($p{<}0.0001$).\nThe win/loss ratio shifts from 36:59 (constrained) to 45:45 (free-form), with the gains concentrated on relation-dense instances (mean 3.3 gold relations).\nThis interaction does not generalize to NER, where selection remains negligible under both regimes.\nThis ablation uses a single seed (seed${=}42$); whether the RE reversal replicates across seeds and generalizes to other RE benchmarks warrants further investigation.\nThe non-tied subset ($n{=}210$) is partially reshuffled under free-form decoding: Jaccard similarity between the constrained and free-form non-tied sets is 0.472, indicating that 87 instances newly gain LP discrimination while others lose it, yielding a $3{\\times}$ increase in within-instance LP range for the newly non-tied subset.\nDespite this reshuffling, aggregate NER selection gains remain negligible---score compression is not a fixed property of specific instances but rather a pervasive regime that shifts across instances without producing net selection improvement.\nFree-form decoding also slightly improves quality estimation (NER VC $\\rho$: 0.379$\\to$0.409), though this does not translate to selection gains.\n\n\\section{Free-Form Decoding Ablation}\\label{app:freeform_ablation}\n\nTable~\\ref{tab:freeform_ablation} compares constrained and free-form decoding across four dimensions on SciERC ($N{=}8$, $T{=}1.0$, Qwen3-8B).\nFree-form decoding removes grammar constraints entirely; outputs are parsed post-hoc (parse rate 99.95\\%, 4406/4408).\nLP score distributions are nearly identical across regimes (Panel~A: within-instance std ratio $0.97{\\times}$), and NER selection gains remain negligible under both regimes (Panel~B).\nRE LP selection flips positive under free-form decoding ($+1.69$~pp vs.\\ $-0.68$~pp constrained).\nQuality estimation improves modestly for most signals under free-form decoding (Panel~C), with the largest gain for FK ($+0.053$ NER, $+0.039$ RE).\n\n\\begin{table*}[t]\n\\centering\n\\caption{Comparison of constrained vs.\\ free-form decoding on SciERC (Qwen3-8B, $N{=}8$, $T{=}1.0$, seed=42).}\n\\label{tab:freeform_ablation}\n\n\\vspace{2pt}\n{\\small\\textsc{Panel A: Logprob Distribution}}\n\\vspace{2pt}\n\n\\begin{tabular}{lccc}\n\\toprule\nMetric & Constrained & Free-form & $\\Delta$ \\\\\n\\midrule\nMean LP std        & 0.0206 & 0.0199 & $-$0.0007 \\\\\nMean LP range      & 0.0623 & 0.0599 & $-$0.0024 \\\\\nTied fraction ($\\varepsilon{=}0.05$) & 59.7\\% & 57.7\\% & $-$2.0\\,pp \\\\\n\\bottomrule\n\\end{tabular}\n\n\\vspace{8pt}\n\n{\\small\\textsc{Panel B: Selection F1}}\n\\vspace{2pt}\n\n\\begin{tabular}{llccc}\n\\toprule\nTask & Method & Constrained & Free-form & $\\Delta$ \\\\\n\\midrule\n\\multirow{3}{*}{NER}\n  & Greedy        & 0.6182 & 0.6204 & $+$0.0022 \\\\\n  & LP-selected   & 0.6241 & 0.6222 & $-$0.0019 \\\\\n  & Selection gap & $+$0.0059 & $+$0.0018 & $-$0.0041 \\\\\n\\midrule\n\\multirow{3}{*}{RE}\n  & Greedy        & 0.2913 & 0.2880 & $-$0.0033 \\\\\n  & LP-selected   & 0.2845 & 0.3050 & \\textbf{$+$0.0205} \\\\\n  & Selection gap & $-$0.0068 & $+$0.0169 & \\textbf{$+$0.0237} \\\\\n\\bottomrule\n\\end{tabular}\n\n\\vspace{8pt}\n\n{\\small\\textsc{Panel C: QE Signal Quality (Spearman $\\rho$)}}\n\\vspace{2pt}\n\n\\begin{tabular}{l ccc ccc}\n\\toprule\n & \\multicolumn{3}{c}{NER ($n{=}529$)} & \\multicolumn{3}{c}{RE ($n{=}397$)} \\\\\n\\cmidrule(lr){2-4} \\cmidrule(lr){5-7}\nSignal & Constr. & Free & $\\Delta$ & Constr. & Free & $\\Delta$ \\\\\n\\midrule\nSJ & 0.360 & 0.377 & $+$0.018 & 0.250 & 0.273 & $+$0.023 \\\\\nFK & 0.267 & 0.320 & $+$0.053 & 0.275 & 0.315 & $+$0.039 \\\\\nLP & 0.205 & 0.213 & $+$0.008 & 0.266 & 0.304 & $+$0.038 \\\\\nEM & 0.295 & 0.317 & $+$0.023 & 0.134 & 0.137 & $+$0.002 \\\\\nVC & 0.379 & 0.409 & $+$0.030 & 0.350 & 0.323 & $-$0.026 \\\\\n\\bottomrule\n\\end{tabular}\n\n\\vspace{8pt}\n\n{\\small\\textsc{Panel D: Parse Rate (Free-form)}}\n\\vspace{2pt}\n\n\\begin{tabular}{lc}\n\\toprule\nMetric & Value \\\\\n\\midrule\nTotal samples          & 4408 \\\\\nParse rate             & 99.95\\% \\\\\nInstances 8/8 valid    & 549\\,/\\,551 (99.6\\%) \\\\\n\\bottomrule\n\\end{tabular}\n\n\\end{table*}\n\n\\section{LP Selection Failure Stability}\\label{app:lp_failure_stability}\n\nWe analyze RE LP selection failures across three random seeds (constrained decoding, $N{=}8$, $T{=}1.0$, Qwen3-8B) to assess whether failures are systematic or stochastic.\n\n\\paragraph{Pairwise overlap.}\nLP selection failures (instances where LP-selected F1 $<$ greedy F1) show moderate cross-seed stability: the average pairwise Jaccard similarity is 0.42 (range: 0.38--0.46), indicating that failures are partially systematic---driven by instance complexity---but not fully deterministic.\nThe 3-way intersection contains 34 instances (27.9\\% of any-seed failures), confirming a stable failure core.\n\n\\paragraph{Instance complexity drives failure.}\nTable~\\ref{tab:stable_failures} stratifies instances by failure stability.\nStable failures (all 3 seeds) involve more gold relations (2.12 vs.\\ 1.62 for never-fail instances) and higher greedy F1 (0.688 vs.\\ 0.429), indicating that LP mis-selects on instances where the model already performs well---precisely the instances where selection would be most valuable.\nFailure rate increases monotonically with gold relation count: 4.3\\% at 1 relation, 20.7\\% at 3 relations, 26.2\\% at 6 relations.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{RE LP selection failure stability across 3 seeds (SciERC, $N{=}8$). Stable failures concentrate on relation-dense instances with high greedy F1.}\n\\label{tab:stable_failures}\n\\begin{tabular}{lcccc}\n\\toprule\nGroup & $n$ & Gold rels & Greedy F1 & LP $\\Delta$F1 \\\\\n\\midrule\nStable fail (3 seeds) & 34 & 2.12 & 0.688 & $-$0.499 \\\\\nFail 2+ seeds & 26 & 2.46 & 0.774 & $-$0.450 \\\\\nFail 1 seed & 62 & 2.32 & 0.692 & $-$0.239 \\\\\nNever fail & 429 & 1.62 & 0.429 & $+$0.041 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\paragraph{Flip instances.}\nOnly 5 RE instances with gold relations flip from LP failure (constrained) to LP success (free-form), with mean gold relation count 3.67 (well above the population mean of 1.86).\nThese instances show large constrained LP errors ($\\Delta{=}{-}0.430$) that reverse under free-form decoding ($\\Delta{=}{+}0.503$), but their rarity (5/397) confirms that the RE selection flip is driven by aggregate variance reallocation rather than systematic instance-level correction.\n\n\\section{$N$-Scaling Detailed Analysis}\\label{app:n_scaling}\n\nTables~\\ref{tab:n-scaling}--\\ref{tab:sigma-comparison} provide detailed $N$-scaling analysis on Qwen3-8B SciERC with 3-seed statistics.\n\n\\begin{table}[t]\n\\centering\n\\caption{Effect of sample pool size on signal quality (Qwen3-8B, SciERC, 3-seed mean Spearman $\\rho$).}\n\\label{tab:n-scaling}\n\\small\n\\begin{tabular}{l ccc ccc}\n\\toprule\n & \\multicolumn{3}{c}{\\textbf{NER} $\\rho$} & \\multicolumn{3}{c}{\\textbf{RE} $\\rho$} \\\\\n\\cmidrule(lr){2-4} \\cmidrule(lr){5-7}\nSignal & $N\\!=\\!8$ & $N\\!=\\!16$ & $\\Delta$ & $N\\!=\\!8$ & $N\\!=\\!16$ & $\\Delta$ \\\\\n\\midrule\nSJ & 0.3641 & 0.4105 & \\textbf{+0.0464} & 0.2485 & 0.2758 & \\textbf{+0.0273} \\\\\nFK & 0.2536 & 0.2833 & \\textbf{+0.0297} & 0.2903 & 0.2964 & \\textbf{+0.0061} \\\\\nVC & 0.3861 & 0.4092 & \\textbf{+0.0231} & 0.3088 & 0.3738 & \\textbf{+0.0650} \\\\\nLP & 0.2167 & 0.2393 & \\textbf{+0.0226} & 0.2970 & 0.3100 & \\textbf{+0.0130} \\\\\nEM & 0.3071 & 0.3395 & \\textbf{+0.0324} & 0.1353 & 0.1506 & \\textbf{+0.0153} \\\\\n\\midrule\nMean & 0.3055 & 0.3364 & \\textbf{+0.0308} & 0.2560 & 0.2813 & \\textbf{+0.0253} \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\begin{table}[t]\n\\centering\n\\caption{Cross-seed signal ranking stability (Kendall's $W$, 3 seeds).}\n\\label{tab:ranking-stability}\n\\small\n\\begin{tabular}{ll cc l}\n\\toprule\nModel & Task & $N$ & Kendall's $W$ & Consensus ranking \\\\\n\\midrule\nQwen  & NER & 8  & 1.000 & VC $>$ SJ $>$ EM $>$ FK $>$ LP \\\\\nQwen  & NER & 16 & 0.956 & SJ $\\approx$ VC $>$ EM $>$ FK $>$ LP \\\\\nQwen  & RE  & 8  & 0.822 & VC $>$ LP $>$ FK $>$ SJ $>$ EM \\\\\nQwen  & RE  & 16 & 0.956 & VC $>$ LP $>$ FK $>$ SJ $>$ EM \\\\\nLLaMA & NER & 8  & 1.000 & VC $>$ SJ $>$ EM $>$ FK $>$ LP \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\begin{table}[t]\n\\centering\n\\caption{Cross-seed standard deviation ($\\sigma$) of Spearman $\\rho$ at $N\\!=\\!8$ vs.\\ $N\\!=\\!16$ (Qwen3-8B, SciERC, 3 seeds). $\\sigma$ is population standard deviation.}\n\\label{tab:sigma-comparison}\n\\small\n\\begin{tabular}{l cc cc}\n\\toprule\n & \\multicolumn{2}{c}{\\textbf{NER} $\\sigma_\\rho$} & \\multicolumn{2}{c}{\\textbf{RE} $\\sigma_\\rho$} \\\\\n\\cmidrule(lr){2-3} \\cmidrule(lr){4-5}\nSignal & $N\\!=\\!8$ & $N\\!=\\!16$ & $N\\!=\\!8$ & $N\\!=\\!16$ \\\\\n\\midrule\nSJ & 0.0179 & 0.0102 & 0.0015 & 0.0067 \\\\\nFK & 0.0157 & 0.0079 & 0.0121 & 0.0143 \\\\\nVC & 0.0187 & 0.0260 & 0.0244 & 0.0158 \\\\\nEM & 0.0076 & 0.0031 & 0.0157 & 0.0049 \\\\\nLP & 0.0125 & 0.0017 & 0.0218 & 0.0152 \\\\\n\\midrule\nMean & 0.0145 & 0.0098 & 0.0151 & 0.0114 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nSignal rankings are highly stable across seeds: Kendall's $W{=}1.000$ for NER at $N{=}8$ (both models), dropping only to $W{=}0.956$ at $N{=}16$ where SJ and VC converge (Table~\\ref{tab:ranking-stability}).\nDoubling $N$ reduces cross-seed $\\sigma$ by 32\\% on NER and 24\\% on RE (Table~\\ref{tab:sigma-comparison}), with the largest reductions for SJ ($-43\\%$ NER) and EM ($-59\\%$ NER), confirming that additional samples stabilize structural signals more than LP.\n\n\\section{Cross-Dataset OOD Analysis}\\label{app:ood}\n\nTo test whether confidence signals generalize under domain shift, we evaluate models on out-of-distribution data: a SciERC-trained model applied to CoNLL instances (wider$\\to$narrower schema) and vice versa (Table~\\ref{tab:ood}).\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Cross-dataset OOD quality estimation (Spearman $\\rho$, Qwen3-8B, $N{=}8$, $T{=}1.0$, seed${=}42$). SciERC$\\to$CoNLL: SciERC-trained model on CoNLL instances ($n{=}2756$). CoNLL$\\to$SciERC: CoNLL-trained model on SciERC instances ($n{=}529$, excluded from conclusions due to catastrophic model failure). In-domain $\\rho$ from Table~\\ref{tab:quality_estimation} (same model, same seed). \\textsuperscript{***}$p{<}0.001$, \\textsuperscript{*}$p{<}0.05$.}\n\\label{tab:ood}\n\\begin{tabular}{l ccc ccc}\n\\toprule\n & \\multicolumn{3}{c}{\\textbf{SciERC$\\to$CoNLL}} & \\multicolumn{3}{c}{\\textbf{CoNLL$\\to$SciERC}} \\\\\n\\cmidrule(lr){2-4} \\cmidrule(lr){5-7}\nSignal & $\\rho$ & In-dom. & $\\Delta$ & $\\rho$ & In-dom. & $\\Delta$ \\\\\n\\midrule\nVC & .469\\textsuperscript{***} & .379 & +.090 & +.105\\textsuperscript{*} & .379 & $-$.274 \\\\\nSJ & .378\\textsuperscript{***} & .360 & +.018 & $-$.186\\textsuperscript{***} & .360 & $-$.546 \\\\\nEM & .300\\textsuperscript{***} & .295 & +.005 & $-$.202\\textsuperscript{***} & .295 & $-$.497 \\\\\nFK & .285\\textsuperscript{***} & .267 & +.018 & $-$.070 & .267 & $-$.337 \\\\\nLP & .246\\textsuperscript{***} & .205 & +.041 & $-$.152\\textsuperscript{***} & .205 & $-$.357 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\paragraph{Wider-to-narrower schema transfer.}\nWhen the SciERC-trained model (6 NER types) is applied to CoNLL (4 types), all signals remain significant ($p{<}0.001$) and structural signals improve over their in-domain levels (same model, seed${=}42$, $N{=}8$; in-domain $\\rho$ from Table~\\ref{tab:quality_estimation}): VC reaches $\\rho{=}0.469$ (in-domain $0.379$, $\\Delta{=}{+}0.090$), SJ $\\rho{=}0.378$ (in-domain $0.360$, $\\Delta{=}{+}0.018$), and FK $\\rho{=}0.285$ (in-domain $0.267$, $\\Delta{=}{+}0.018$).\nThe wider training schema subsumes CoNLL's narrower schema, so the model produces reasonable outputs even out-of-domain (greedy F1${=}0.522$), and structural signals benefit from the simpler target schema's reduced output ambiguity.\n\n\\paragraph{Narrower-to-wider schema transfer (excluded).}\nThe reverse direction is excluded from our conclusions due to catastrophic model failure, not signal failure.\nThe CoNLL-trained model recognizes only 4 news entity types (PER, ORG, LOC, MISC) and has no relation extraction capability; when applied to SciERC's 6 scientific entity types and 7 relation types, the model cannot produce meaningful structured outputs (greedy NER F1${=}0.009$, RE F1${=}0.001$).\nUnder this regime, most signals flip to negative or near-zero correlations (Table~\\ref{tab:ood}); only VC retains weak positive correlation ($\\rho{=}0.105$, $p{=}0.016$).\nThese negative correlations reflect the model systematically generating confident but incorrect outputs---a capability failure analogous to WNUT-17 (\\S\\ref{sec:qe_results}), not evidence against signal utility.\n\n\\paragraph{Asymmetry interpretation.}\nThe directional asymmetry is driven by schema coverage: wider$\\to$narrower preserves signal utility because the SciERC model's 6-type schema subsumes CoNLL's 4 types, while narrower$\\to$wider fails because the CoNLL model lacks the entity and relation types required by SciERC.\nThis extends the capability boundary identified on WNUT-17 to the domain-shift setting: confidence signals require sufficient model capability as a prerequisite, and results from the CoNLL$\\to$SciERC direction should not be interpreted as evidence of signal degradation under domain shift.\n",
+      "numLines": 887,
+      "startLine": 1,
+      "totalLines": 887
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 20_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_015YANW3W3zTteKGhLitiNwW`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/analysis_unified_rho_full.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "8fcdc284-38c4-4845-a34b-d3e14fa0b691",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016nBK7PM5kwn3yhUyeuFsx7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6312,
+      "cache_read_input_tokens": 25495,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6312
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 21 · 2026-05-15T23:53:03.507Z_
+
+<details><summary>↩ Tool result · `toolu_015YANW3W3zTteKGhLitiNwW`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"metadata\\\": {\\n    \\\"pipeline\\\": \\\"unified_gold_filtered\\\",\\n    \\\"date\\\": \\\"2026-05-15\\\",\\n    \\\"fk_empty_fix\\\": true,\\n    \\\"gold_filter\\\": \\\"exclude instances where len(gold.entities)==0\\\",\\n    \\\"conll_n_valid\\\": 2756,\\n    \\\"scierc_n_valid\\\": 529,\\n    \\\"n8_seed123_added\\\": true\\n  },\\n  \\\"results\\\": {\\n    \\\"llama_conll_n16_seed42\\\": {\\n      \\\"n_instances\\\": 2756,\\n      \\\"n_total\\\": 3453,\\n      \\\"n_gold_empty\\\": 697,\\n      \\\"VC\\\": 0.4746,\\n      \\\"SJ\\\": 0.4836,\\n      \\\"FK\\\": 0.4752,\\n      \\\"EM\\\": 0.4818,\\n      \\\"LP\\\": 0.3136,\\n      \\\"auroc_VC\\\": 0.7529,\\n      \\\"auroc_SJ\\\": 0.7496,\\n      \\\"auroc_FK\\\": 0.7467,\\n      \\\"auroc_EM\\\": 0.7508,\\n      \\\"auroc_LP\\\": 0.7661\\n    },\\n    \\\"llama_conll_n16_seed123\\\": {\\n      \\\"n_instances\\\": 2756,\\n      \\\"n_total\\\": 3453,\\n      \\\"n_gold_empty\\\": 697,\\n      \\\"VC\\\": 0.4633,\\n      \\\"SJ\\\": 0.4662,\\n      \\\"FK\\\": 0.4573,\\n      \\\"EM\\\": 0.4632,\\n      \\\"LP\\\": 0.308,\\n      \\\"auroc_VC\\\": 0.7444,\\n      \\\"auroc_SJ\\\": 0.7391,\\n      \\\"auroc_FK\\\": 0.7358,\\n      \\\"auroc_EM\\\": 0.7395,\\n      \\\"auroc_LP\\\": 0.7611\\n    },\\n    \\\"llama_conll_n16_seed456\\\": {\\n      \\\"n_instances\\\": 2756,\\n      \\\"n_total\\\": 3453,\\n      \\\"n_gold_empty\\\": 697,\\n      \\\"VC\\\": 0.4722,\\n      \\\"SJ\\\": 0.4734,\\n      \\\"FK\\\": 0.469,\\n      \\\"EM\\\": 0.4752,\\n      \\\"LP\\\": 0.3099,\\n      \\\"auroc_VC\\\": 0.7495,\\n      \\\"auroc_SJ\\\": 0.7428,\\n      \\\"auroc_FK\\\": 0.7408,\\n      \\\"auroc_EM\\\": 0.7444,\\n      \\\"auroc_LP\\\": 0.7628\\n    },\\n    \\\"qwen_scierc_n16_seed42\\\": {\\n      \\\"n_instances\\\": 529,\\n      \\\"n_total\\\": 551,\\n      \\\"n_gold_empty\\\": 22,\\n      \\\"VC\\\": 0.3993,\\n      \\\"SJ\\\": 0.3984,\\n      \\\"FK\\\": 0.2876,\\n      \\\"EM\\\": 0.3386,\\n      \\\"LP\\\": 0.2373,\\n      \\\"auroc_VC\\\": 0.7085,\\n      \\\"auroc_SJ\\\": 0.7205,\\n      \\\"auroc_FK\\\": 0.6348,\\n      \\\"auroc_EM\\\": 0.7837,\\n      \\\"auroc_LP\\\": 0.6096,\\n      \\\"re_n_valid\\\": 397,\\n      \\\"re_FK\\\": 0.2808,\\n      \\\"re_SJ\\\": 0.2766\\n    },\\n    \\\"qwen_scierc_n16_seed123\\\": {\\n      \\\"n_instances\\\": 529,\\n      \\\"n_total\\\": 551,\\n      \\\"n_gold_empty\\\": 22,\\n      \\\"VC\\\": 0.3835,\\n      \\\"SJ\\\": 0.4234,\\n      \\\"FK\\\": 0.2899,\\n      \\\"EM\\\": 0.3437,\\n      \\\"LP\\\": 0.2391,\\n      \\\"auroc_VC\\\": 0.7024,\\n      \\\"auroc_SJ\\\": 0.7352,\\n      \\\"auroc_FK\\\": 0.6292,\\n      \\\"auroc_EM\\\": 0.7878,\\n      \\\"auroc_LP\\\": 0.6045,\\n      \\\"re_n_valid\\\": 397,\\n      \\\"re_FK\\\": 0.3154,\\n      \\\"re_SJ\\\": 0.2672\\n    },\\n    \\\"qwen_scierc_n16_seed456\\\": {\\n      \\\"n_instances\\\": 529,\\n      \\\"n_total\\\": 551,\\n      \\\"n_gold_empty\\\": 22,\\n      \\\"VC\\\": 0.4449,\\n      \\\"SJ\\\": 0.4098,\\n      \\\"FK\\\": 0.2723,\\n      \\\"EM\\\": 0.3363,\\n      \\\"LP\\\": 0.2415,\\n      \\\"auroc_VC\\\": 0.7392,\\n      \\\"auroc_SJ\\\": 0.7367,\\n      \\\"auroc_FK\\\": 0.6157,\\n      \\\"auroc_EM\\\": 0.7848,\\n      \\\"auroc_LP\\\": 0.6054,\\n      \\\"re_n_valid\\\": 397,\\n      \\\"re_FK\\\": 0.2929,\\n      \\\"re_SJ\\\": 0.2835\\n    },\\n    \\\"llama_conll_n8_seed42\\\": {\\n      \\\"n_instances\\\": 2756,\\n      \\\"n_total\\\": 3453,\\n      \\\"n_gold_empty\\\": 697,\\n      \\\"VC\\\": 0.4256,\\n      \\\"SJ\\\": 0.4314,\\n      \\\"FK\\\": 0.4277,\\n      \\\"EM\\\": 0.4306,\\n      \\\"LP\\\": 0.3072,\\n      \\\"auroc_VC\\\": 0.7088,\\n      \\\"auroc_SJ\\\": 0.7039,\\n      \\\"auroc_FK\\\": 0.7026,\\n      \\\"auroc_EM\\\": 0.7046,\\n      \\\"auroc_LP\\\": 0.761\\n    },\\n    \\\"qwen_conll_n8_seed42\\\": {\\n      \\\"n_instances\\\": 2756,\\n      \\\"n_total\\\": 3453,\\n      \\\"n_gold_empty\\\": 697,\\n      \\\"VC\\\": 0.4237,\\n      \\\"SJ\\\": 0.4357,\\n      \\\"FK\\\": 0.3998,\\n      \\\"EM\\\": 0.4507,\\n      \\\"LP\\\": 0.3157,\\n      \\\"auroc_VC\\\": 0.7889,\\n      \\\"auroc_SJ\\\": 0.8008,\\n      \\\"auroc_FK\\\": 0.7741,\\n      \\\"auroc_EM\\\": 0.8156,\\n      \\\"auroc_LP\\\": 0.7532\\n    },\\n    \\\"llama_scierc_n8_seed42\\\": {\\n      \\\"n_instances\\\": 529,\\n      \\\"n_total\\\": 551,\\n      \\\"n_gold_empty\\\": 22,\\n      \\\"VC\\\": 0.4331,\\n      \\\"SJ\\\": 0.363,\\n      \\\"FK\\\": 0.3266,\\n      \\\"EM\\\": 0.3152,\\n      \\\"LP\\\": 0.1827,\\n      \\\"auroc_VC\\\": 0.7283,\\n      \\\"auroc_SJ\\\": 0.7099,\\n      \\\"auroc_FK\\\": 0.6648,\\n      \\\"auroc_EM\\\": 0.7658,\\n      \\\"auroc_LP\\\": 0.5569\\n    },\\n    \\\"qwen_scierc_n8_seed42\\\": {\\n      \\\"n_instances\\\": 529,\\n      \\\"n_total\\\": 551,\\n      \\\"n_gold_empty\\\": 22,\\n      \\\"VC\\\": 0.3792,\\n      \\\"SJ\\\": 0.3599,\\n      \\\"FK\\\": 0.2665,\\n      \\\"EM\\\": 0.2945,\\n      \\\"LP\\\": 0.2052,\\n      \\\"auroc_VC\\\": 0.6627,\\n      \\\"auroc_SJ\\\": 0.65,\\n      \\\"auroc_FK\\\": 0.6019,\\n      \\\"auroc_EM\\\": 0.6138,\\n      \\\"auroc_LP\\\": 0.5778,\\n      \\\"re_n_valid\\\": 397,\\n      \\\"re_FK\\\": 0.2752,\\n      \\\"re_SJ\\\": 0.2503\\n    },\\n    \\\"qwen_scierc_n8_seed123\\\": {\\n      \\\"n_instances\\\": 529,\\n      \\\"n_total\\\": 551,\\n      \\\"n_gold_empty\\\": 22,\\n      \\\"VC\\\": 0.4133,\\n      \\\"SJ\\\": 0.3878,\\n      \\\"FK\\\": 0.2628,\\n      \\\"EM\\\": 0.3135,\\n      \\\"LP\\\": 0.2341,\\n      \\\"auroc_VC\\\": 0.6898,\\n      \\\"auroc_SJ\\\": 0.6813,\\n      \\\"auroc_FK\\\": 0.6183,\\n      \\\"auroc_EM\\\": 0.6439,\\n      \\\"auroc_LP\\\": 0.5898,\\n      \\\"re_n_valid\\\": 397,\\n      \\\"re_FK\\\": 0.2908,\\n      \\\"re_SJ\\\": 0.2486\\n    },\\n    \\\"llama_scierc_n8_seed123\\\": {\\n      \\\"n_instances\\\": 529,\\n      \\\"n_total\\\": 551,\\n      \\\"n_gold_empty\\\": 22,\\n      \\\"VC\\\": 0.4193,\\n      \\\"SJ\\\": 0.3552,\\n      \\\"FK\\\": 0.2897,\\n      \\\"EM\\\": 0.2844,\\n      \\\"LP\\\": 0.197,\\n      \\\"auroc_VC\\\": 0.6715,\\n      \\\"auroc_SJ\\\": 0.6399,\\n      \\\"auroc_FK\\\": 0.5974,\\n      \\\"auroc_EM\\\": 0.6027,\\n      \\\"auroc_LP\\\": 0.5722,\\n      \\\"re_n_valid\\\": 397,\\n      \\\"re_FK\\\": 0.2555,\\n      \\\"re_SJ\\\": 0.2462\\n    }\\n  },\\n  \\\"sanity_check_vs_rho_audit\\\": {\\n    \\\"llama_conll_n16_seed42.FK\\\": {\\n      \\\"expected\\\": 0.4752,\\n      \\\"got\\\": 0.4752,\\n      \\\"match\\\": true\\n    },\\n    \\\"llama_conll_n16_seed42.SJ\\\": {\\n      \\\"expected\\\": 0.4836,\\n      \\\"got\\\": 0.4836,\\n      \\\"match\\\": true\\n    },\\n    \\\"llama_conll_n16_seed42.VC\\\": {\\n      \\\"expected\\\": 0.4746,\\n      \\\"got\\\": 0.4746,\\n      \\\"match\\\": true\\n    },\\n    \\\"llama_conll_n16_seed42.EM\\\": {\\n      \\\"expected\\\": 0.4818,\\n      \\\"got\\\": 0.4818,\\n      \\\"match\\\": true\\n    },\\n    \\\"llama_conll_n16_seed42.LP\\\": {\\n      \\\"expected\\\": 0.3136,\\n      \\\"got\\\": 0.3136,\\n      \\\"match\\\": true\\n    },\\n    \\\"llama_conll_n16_seed456.FK\\\": {\\n      \\\"expected\\\": 0.469,\\n      \\\"got\\\": 0.469,\\n      \\\"match\\\": true\\n    },\\n    \\\"llama_conll_n16_seed456.SJ\\\": {\\n      \\\"expected\\\": 0.4734,\\n      \\\"got\\\": 0.4734,\\n      \\\"match\\\": true\\n    },\\n    \\\"llama_conll_n16_seed456.VC\\\": {\\n      \\\"expected\\\": 0.4722,\\n      \\\"got\\\": 0.4722,\\n      \\\"match\\\": true\\n    },\\n    \\\"llama_conll_n16_seed456.EM\\\": {\\n      \\\"expected\\\": 0.4752,\\n      \\\"got\\\": 0.4752,\\n      \\\"match\\\": true\\n    },\\n    \\\"llama_conll_n16_seed456.LP\\\": {\\n      \\\"expected\\\": 0.3099,\\n      \\\"got\\\": 0.3099,\\n      \\\"match\\\": true\\n    },\\n    \\\"qwen_scierc_n16_seed456.FK\\\": {\\n      \\\"expected\\\": 0.2723,\\n      \\\"got\\\": 0.2723,\\n      \\\"match\\\": true\\n    },\\n    \\\"qwen_scierc_n16_seed456.SJ\\\": {\\n      \\\"expected\\\": 0.4098,\\n      \\\"got\\\": 0.4098,\\n      \\\"match\\\": true\\n    },\\n    \\\"qwen_scierc_n16_seed456.VC\\\": {\\n      \\\"expected\\\": 0.4449,\\n      \\\"got\\\": 0.4449,\\n      \\\"match\\\": true\\n    },\\n    \\\"qwen_scierc_n16_seed456.EM\\\": {\\n      \\\"expected\\\": 0.3363,\\n      \\\"got\\\": 0.3363,\\n      \\\"match\\\": true\\n    },\\n    \\\"qwen_scierc_n16_seed456.LP\\\": {\\n      \\\"expected\\\": 0.2415,\\n      \\\"got\\\": 0.2415,\\n      \\\"match\\\": true\\n    }\\n  },\\n  \\\"sanity_check_vs_n8_5signal\\\": {\\n    \\\"qwen_conll_n8_seed42.SJ\\\": {\\n      \\\"expected\\\": 0.4357,\\n      \\\"got\\\": 0.4357,\\n      \\\"match\\\": true\\n    },\\n    \\\"qwen_conll_n8_seed42.FK\\\": {\\n      \\\"expected\\\": 0.3998,\\n      \\\"got\\\": 0.3998,\\n      \\\"match\\\": true\\n    },\\n    \\\"qwen_conll_n8_seed42.EM\\\": {\\n      \\\"expected\\\": 0.4507,\\n      \\\"got\\\": 0.4507,\\n      \\\"match\\\": true\\n    },\\n    \\\"qwen_conll_n8_seed42.LP\\\": {\\n      \\\"expected\\\": 0.3157,\\n      \\\"got\\\": 0.3157,\\n      \\\"match\\\": true\\n    },\\n    \\\"qwen_conll_n8_seed42.VC\\\": {\\n      \\\"expected\\\": 0.4237,\\n      \\\"got\\\": 0.4237,\\n      \\\"match\\\": true\\n    },\\n    \\\"llama_scierc_n8_seed42.SJ\\\": {\\n      \\\"expected\\\": 0.363,\\n      \\\"got\\\": 0.363,\\n      \\\"match\\\": true\\n    },\\n    \\\"llama_scierc_n8_seed42.FK\\\": {\\n      \\\"expected\\\": 0.3266,\\n      \\\"got\\\": 0.3266,\\n      \\\"match\\\": true\\n    },\\n    \\\"llama_scierc_n8_seed42.EM\\\": {\\n      \\\"expected\\\": 0.3152,\\n      \\\"got\\\": 0.3152,\\n      \\\"match\\\": true\\n    },\\n    \\\"llama_scierc_n8_seed42.LP\\\": {\\n      \\\"expected\\\": 0.1827,\\n      \\\"got\\\": 0.1827,\\n      \\\"match\\\": true\\n    },\\n    \\\"llama_scierc_n8_seed42.VC\\\": {\\n      \\\"expected\\\": 0.4331,\\n      \\\"got\\\": 0.4331,\\n      \\\"match\\\": true\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "ddf28bad-ccf2-4e20-99cf-ed855c41e57b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"metadata\\\\\\\": {\\\\n    \\\\\\\"pipeline\\\\\\\": \\\\\\\"unified_gold_filtered\\\\\\\",\\\\n    \\\\\\\"date\\\\\\\": \\\\\\\"2026-05-15\\\\\\\",\\\\n    \\\\\\\"fk_empty_fix\\\\\\\": true,\\\\n    \\\\\\\"gold_filter\\\\\\\": \\\\\\\"exclude instances where len(gold.entities)==0\\\\\\\",\\\\n    \\\\\\\"conll_n_valid\\\\\\\": 2756,\\\\n    \\\\\\\"scierc_n_valid\\\\\\\": 529,\\\\n    \\\\\\\"n8_seed123_added\\\\\\\": true\\\\n  },\\\\n  \\\\\\\"results\\\\\\\": {\\\\n    \\\\\\\"llama_conll_n16_seed42\\\\\\\": {\\\\n      \\\\\\\"n_instances\\\\\\\": 2756,\\\\n      \\\\\\\"n_total\\\\\\\": 3453,\\\\n      \\\\\\\"n_gold_empty\\\\\\\": 697,\\\\n      \\\\\\\"VC\\\\\\\": 0.4746,\\\\n      \\\\\\\"SJ\\\\\\\": 0.4836,\\\\n      \\\\\\\"FK\\\\\\\": 0.4752,\\\\n      \\\\\\\"EM\\\\\\\": 0.4818,\\\\n      \\\\\\\"LP\\\\\\\": 0.3136,\\\\n      \\\\\\\"auroc_VC\\\\\\\": 0.7529,\\\\n      \\\\\\\"auroc_SJ\\\\\\\": 0.7496,\\\\n      \\\\\\\"auroc_FK\\\\\\\": 0.7467,\\\\n      \\\\\\\"auroc_EM\\\\\\\": 0.7508,\\\\n      \\\\\\\"auroc_LP\\\\\\\": 0.7661\\\\n    },\\\\n    \\\\\\\"llama_conll_n16_seed123\\\\\\\": {\\\\n      \\\\\\\"n_instances\\\\\\\": 2756,\\\\n      \\\\\\\"n_total\\\\\\\": 3453,\\\\n      \\\\\\\"n_gold_empty\\\\\\\": 697,\\\\n      \\\\\\\"VC\\\\\\\": 0.4633,\\\\n      \\\\\\\"SJ\\\\\\\": 0.4662,\\\\n      \\\\\\\"FK\\\\\\\": 0.4573,\\\\n      \\\\\\\"EM\\\\\\\": 0.4632,\\\\n      \\\\\\\"LP\\\\\\\": 0.308,\\\\n      \\\\\\\"auroc_VC\\\\\\\": 0.7444,\\\\n      \\\\\\\"auroc_SJ\\\\\\\": 0.7391,\\\\n      \\\\\\\"auroc_FK\\\\\\\": 0.7358,\\\\n      \\\\\\\"auroc_EM\\\\\\\": 0.7395,\\\\n      \\\\\\\"auroc_LP\\\\\\\": 0.7611\\\\n    },\\\\n    \\\\\\\"llama_conll_n16_seed456\\\\\\\": {\\\\n      \\\\\\\"n_instances\\\\\\\": 2756,\\\\n      \\\\\\\"n_total\\\\\\\": 3453,\\\\n      \\\\\\\"n_gold_empty\\\\\\\": 697,\\\\n      \\\\\\\"VC\\\\\\\": 0.4722,\\\\n      \\\\\\\"SJ\\\\\\\": 0.4734,\\\\n      \\\\\\\"FK\\\\\\\": 0.469,\\\\n      \\\\\\\"EM\\\\\\\": 0.4752,\\\\n      \\\\\\\"LP\\\\\\\": 0.3099,\\\\n      \\\\\\\"auroc_VC\\\\\\\": 0.7495,\\\\n      \\\\\\\"auroc_SJ\\\\\\\": 0.7428,\\\\n      \\\\\\\"auroc_FK\\\\\\\": 0.7408,\\\\n      \\\\\\\"auroc_EM\\\\\\\": 0.7444,\\\\n      \\\\\\\"auroc_LP\\\\\\\": 0.7628\\\\n    },\\\\n    \\\\\\\"qwen_scierc_n16_seed42\\\\\\\": {\\\\n      \\\\\\\"n_instances\\\\\\\": 529,\\\\n      \\\\\\\"n_total\\\\\\\": 551,\\\\n      \\\\\\\"n_gold_empty\\\\\\\": 22,\\\\n      \\\\\\\"VC\\\\\\\": 0.3993,\\\\n      \\\\\\\"SJ\\\\\\\": 0.3984,\\\\n      \\\\\\\"FK\\\\\\\": 0.2876,\\\\n      \\\\\\\"EM\\\\\\\": 0.3386,\\\\n      \\\\\\\"LP\\\\\\\": 0.2373,\\\\n      \\\\\\\"auroc_VC\\\\\\\": 0.7085,\\\\n      \\\\\\\"auroc_SJ\\\\\\\": 0.7205,\\\\n      \\\\\\\"auroc_FK\\\\\\\": 0.6348,\\\\n      \\\\\\\"auroc_EM\\\\\\\": 0.7837,\\\\n      \\\\\\\"auroc_LP\\\\\\\": 0.6096,\\\\n      \\\\\\\"re_n_valid\\\\\\\": 397,\\\\n      \\\\\\\"re_FK\\\\\\\": 0.2808,\\\\n      \\\\\\\"re_SJ\\\\\\\": 0.2766\\\\n    },\\\\n    \\\\\\\"qwen_scierc_n16_seed123\\\\\\\": {\\\\n      \\\\\\\"n_instances\\\\\\\": 529,\\\\n      \\\\\\\"n_total\\\\\\\": 551,\\\\n      \\\\\\\"n_gold_empty\\\\\\\": 22,\\\\n      \\\\\\\"VC\\\\\\\": 0.3835,\\\\n      \\\\\\\"SJ\\\\\\\": 0.4234,\\\\n      \\\\\\\"FK\\\\\\\": 0.2899,\\\\n      \\\\\\\"EM\\\\\\\": 0.3437,\\\\n      \\\\\\\"LP\\\\\\\": 0.2391,\\\\n      \\\\\\\"auroc_VC\\\\\\\": 0.7024,\\\\n      \\\\\\\"auroc_SJ\\\\\\\": 0.7352,\\\\n      \\\\\\\"auroc_FK\\\\\\\": 0.6292,\\\\n      \\\\\\\"auroc_EM\\\\\\\": 0.7878,\\\\n      \\\\\\\"auroc_LP\\\\\\\": 0.6045,\\\\n      \\\\\\\"re_n_valid\\\\\\\": 397,\\\\n      \\\\\\\"re_FK\\\\\\\": 0.3154,\\\\n      \\\\\\\"re_SJ\\\\\\\": 0.2672\\\\n    },\\\\n    \\\\\\\"qwen_scierc_n16_seed456\\\\\\\": {\\\\n      \\\\\\\"n_instances\\\\\\\": 529,\\\\n      \\\\\\\"n_total\\\\\\\": 551,\\\\n      \\\\\\\"n_gold_empty\\\\\\\": 22,\\\\n      \\\\\\\"VC\\\\\\\": 0.4449,\\\\n      \\\\\\\"SJ\\\\\\\": 0.4098,\\\\n      \\\\\\\"FK\\\\\\\": 0.2723,\\\\n      \\\\\\\"EM\\\\\\\": 0.3363,\\\\n      \\\\\\\"LP\\\\\\\": 0.2415,\\\\n      \\\\\\\"auroc_VC\\\\\\\": 0.7392,\\\\n      \\\\\\\"auroc_SJ\\\\\\\": 0.7367,\\\\n      \\\\\\\"auroc_FK\\\\\\\": 0.6157,\\\\n      \\\\\\\"auroc_EM\\\\\\\": 0.7848,\\\\n      \\\\\\\"auroc_LP\\\\\\\": 0.6054,\\\\n      \\\\\\\"re_n_valid\\\\\\\": 397,\\\\n      \\\\\\\"re_FK\\\\\\\": 0.2929,\\\\n      \\\\\\\"re_SJ\\\\\\\": 0.2835\\\\n    },\\\\n    \\\\\\\"llama_conll_n8_seed42\\\\\\\": {\\\\n      \\\\\\\"n_instances\\\\\\\": 2756,\\\\n      \\\\\\\"n_total\\\\\\\": 3453,\\\\n      \\\\\\\"n_gold_empty\\\\\\\": 697,\\\\n      \\\\\\\"VC\\\\\\\": 0.4256,\\\\n      \\\\\\\"SJ\\\\\\\": 0.4314,\\\\n      \\\\\\\"FK\\\\\\\": 0.4277,\\\\n      \\\\\\\"EM\\\\\\\": 0.4306,\\\\n      \\\\\\\"LP\\\\\\\": 0.3072,\\\\n      \\\\\\\"auroc_VC\\\\\\\": 0.7088,\\\\n      \\\\\\\"auroc_SJ\\\\\\\": 0.7039,\\\\n      \\\\\\\"auroc_FK\\\\\\\": 0.7026,\\\\n      \\\\\\\"auroc_EM\\\\\\\": 0.7046,\\\\n      \\\\\\\"auroc_LP\\\\\\\": 0.761\\\\n    },\\\\n    \\\\\\\"qwen_conll_n8_seed42\\\\\\\": {\\\\n      \\\\\\\"n_instances\\\\\\\": 2756,\\\\n      \\\\\\\"n_total\\\\\\\": 3453,\\\\n      \\\\\\\"n_gold_empty\\\\\\\": 697,\\\\n      \\\\\\\"VC\\\\\\\": 0.4237,\\\\n      \\\\\\\"SJ\\\\\\\": 0.4357,\\\\n      \\\\\\\"FK\\\\\\\": 0.3998,\\\\n      \\\\\\\"EM\\\\\\\": 0.4507,\\\\n      \\\\\\\"LP\\\\\\\": 0.3157,\\\\n      \\\\\\\"auroc_VC\\\\\\\": 0.7889,\\\\n      \\\\\\\"auroc_SJ\\\\\\\": 0.8008,\\\\n      \\\\\\\"auroc_FK\\\\\\\": 0.7741,\\\\n      \\\\\\\"auroc_EM\\\\\\\": 0.8156,\\\\n      \\\\\\\"auroc_LP\\\\\\\": 0.7532\\\\n    },\\\\n    \\\\\\\"llama_scierc_n8_seed42\\\\\\\": {\\\\n      \\\\\\\"n_instances\\\\\\\": 529,\\\\n      \\\\\\\"n_total\\\\\\\": 551,\\\\n      \\\\\\\"n_gold_empty\\\\\\\": 22,\\\\n      \\\\\\\"VC\\\\\\\": 0.4331,\\\\n      \\\\\\\"SJ\\\\\\\": 0.363,\\\\n      \\\\\\\"FK\\\\\\\": 0.3266,\\\\n      \\\\\\\"EM\\\\\\\": 0.3152,\\\\n      \\\\\\\"LP\\\\\\\": 0.1827,\\\\n      \\\\\\\"auroc_VC\\\\\\\": 0.7283,\\\\n      \\\\\\\"auroc_SJ\\\\\\\": 0.7099,\\\\n      \\\\\\\"auroc_FK\\\\\\\": 0.6648,\\\\n      \\\\\\\"auroc_EM\\\\\\\": 0.7658,\\\\n      \\\\\\\"auroc_LP\\\\\\\": 0.5569\\\\n    },\\\\n    \\\\\\\"qwen_scierc_n8_seed42\\\\\\\": {\\\\n      \\\\\\\"n_instances\\\\\\\": 529,\\\\n      \\\\\\\"n_total\\\\\\\": 551,\\\\n      \\\\\\\"n_gold_empty\\\\\\\": 22,\\\\n      \\\\\\\"VC\\\\\\\": 0.3792,\\\\n      \\\\\\\"SJ\\\\\\\": 0.3599,\\\\n      \\\\\\\"FK\\\\\\\": 0.2665,\\\\n      \\\\\\\"EM\\\\\\\": 0.2945,\\\\n      \\\\\\\"LP\\\\\\\": 0.2052,\\\\n      \\\\\\\"auroc_VC\\\\\\\": 0.6627,\\\\n      \\\\\\\"auroc_SJ\\\\\\\": 0.65,\\\\n      \\\\\\\"auroc_FK\\\\\\\": 0.6019,\\\\n      \\\\\\\"auroc_EM\\\\\\\": 0.6138,\\\\n      \\\\\\\"auroc_LP\\\\\\\": 0.5778,\\\\n      \\\\\\\"re_n_valid\\\\\\\": 397,\\\\n      \\\\\\\"re_FK\\\\\\\": 0.2752,\\\\n      \\\\\\\"re_SJ\\\\\\\": 0.2503\\\\n    },\\\\n    \\\\\\\"qwen_scierc_n8_seed123\\\\\\\": {\\\\n      \\\\\\\"n_instances\\\\\\\": 529,\\\\n      \\\\\\\"n_total\\\\\\\": 551,\\\\n      \\\\\\\"n_gold_empty\\\\\\\": 22,\\\\n      \\\\\\\"VC\\\\\\\": 0.4133,\\\\n      \\\\\\\"SJ\\\\\\\": 0.3878,\\\\n      \\\\\\\"FK\\\\\\\": 0.2628,\\\\n      \\\\\\\"EM\\\\\\\": 0.3135,\\\\n      \\\\\\\"LP\\\\\\\": 0.2341,\\\\n      \\\\\\\"auroc_VC\\\\\\\": 0.6898,\\\\n      \\\\\\\"auroc_SJ\\\\\\\": 0.6813,\\\\n      \\\\\\\"auroc_FK\\\\\\\": 0.6183,\\\\n      \\\\\\\"auroc_EM\\\\\\\": 0.6439,\\\\n      \\\\\\\"auroc_LP\\\\\\\": 0.5898,\\\\n      \\\\\\\"re_n_valid\\\\\\\": 397,\\\\n      \\\\\\\"re_FK\\\\\\\": 0.2908,\\\\n      \\\\\\\"re_SJ\\\\\\\": 0.2486\\\\n    },\\\\n    \\\\\\\"llama_scierc_n8_seed123\\\\\\\": {\\\\n      \\\\\\\"n_instances\\\\\\\": 529,\\\\n      \\\\\\\"n_total\\\\\\\": 551,\\\\n      \\\\\\\"n_gold_empty\\\\\\\": 22,\\\\n      \\\\\\\"VC\\\\\\\": 0.4193,\\\\n      \\\\\\\"SJ\\\\\\\": 0.3552,\\\\n      \\\\\\\"FK\\\\\\\": 0.2897,\\\\n      \\\\\\\"EM\\\\\\\": 0.2844,\\\\n      \\\\\\\"LP\\\\\\\": 0.197,\\\\n      \\\\\\\"auroc_VC\\\\\\\": 0.6715,\\\\n      \\\\\\\"auroc_SJ\\\\\\\": 0.6399,\\\\n      \\\\\\\"auroc_FK\\\\\\\": 0.5974,\\\\n      \\\\\\\"auroc_EM\\\\\\\": 0.6027,\\\\n      \\\\\\\"auroc_LP\\\\\\\": 0.5722,\\\\n      \\\\\\\"re_n_valid\\\\\\\": 397,\\\\n      \\\\\\\"re_FK\\\\\\\": 0.2555,\\\\n      \\\\\\\"re_SJ\\\\\\\": 0.2462\\\\n    }\\\\n  },\\\\n  \\\\\\\"sanity_check_vs_rho_audit\\\\\\\": {\\\\n    \\\\\\\"llama_conll_n16_seed42.FK\\\\\\\": {\\\\n      \\\\\\\"expected\\\\\\\": 0.4752,\\\\n      \\\\\\\"got\\\\\\\": 0.4752,\\\\n      \\\\\\\"match\\\\\\\": true\\\\n    },\\\\n    \\\\\\\"llama_conll_n16_seed42.SJ\\\\\\\": {\\\\n      \\\\\\\"expected\\\\\\\": 0.4836,\\\\n      \\\\\\\"got\\\\\\\": 0.4836,\\\\n      \\\\\\\"match\\\\\\\": true\\\\n    },\\\\n    \\\\\\\"llama_conll_n16_seed42.VC\\\\\\\": {\\\\n      \\\\\\\"expected\\\\\\\": 0.4746,\\\\n      \\\\\\\"got\\\\\\\": 0.4746,\\\\n      \\\\\\\"match\\\\\\\": true\\\\n    },\\\\n    \\\\\\\"llama_conll_n16_seed42.EM\\\\\\\": {\\\\n      \\\\\\\"expected\\\\\\\": 0.4818,\\\\n      \\\\\\\"got\\\\\\\": 0.4818,\\\\n      \\\\\\\"match\\\\\\\": true\\\\n    },\\\\n    \\\\\\\"llama_conll_n16_seed42.LP\\\\\\\": {\\\\n      \\\\\\\"expected\\\\\\\": 0.3136,\\\\n      \\\\\\\"got\\\\\\\": 0.3136,\\\\n      \\\\\\\"match\\\\\\\": true\\\\n    },\\\\n    \\\\\\\"llama_conll_n16_seed456.FK\\\\\\\": {\\\\n      \\\\\\\"expected\\\\\\\": 0.469,\\\\n      \\\\\\\"got\\\\\\\": 0.469,\\\\n      \\\\\\\"match\\\\\\\": true\\\\n    },\\\\n    \\\\\\\"llama_conll_n16_seed456.SJ\\\\\\\": {\\\\n      \\\\\\\"expected\\\\\\\": 0.4734,\\\\n      \\\\\\\"got\\\\\\\": 0.4734,\\\\n      \\\\\\\"match\\\\\\\": true\\\\n    },\\\\n    \\\\\\\"llama_conll_n16_seed456.VC\\\\\\\": {\\\\n      \\\\\\\"expected\\\\\\\": 0.4722,\\\\n      \\\\\\\"got\\\\\\\": 0.4722,\\\\n      \\\\\\\"match\\\\\\\": true\\\\n    },\\\\n    \\\\\\\"llama_conll_n16_seed456.EM\\\\\\\": {\\\\n      \\\\\\\"expected\\\\\\\": 0.4752,\\\\n      \\\\\\\"got\\\\\\\": 0.4752,\\\\n      \\\\\\\"match\\\\\\\": true\\\\n    },\\\\n    \\\\\\\"llama_conll_n16_seed456.LP\\\\\\\": {\\\\n      \\\\\\\"expected\\\\\\\": 0.3099,\\\\n      \\\\\\\"got\\\\\\\": 0.3099,\\\\n      \\\\\\\"match\\\\\\\": true\\\\n    },\\\\n    \\\\\\\"qwen_scierc_n16_seed456.FK\\\\\\\": {\\\\n      \\\\\\\"expected\\\\\\\": 0.2723,\\\\n      \\\\\\\"got\\\\\\\": 0.2723,\\\\n      \\\\\\\"match\\\\\\\": true\\\\n    },\\\\n    \\\\\\\"qwen_scierc_n16_seed456.SJ\\\\\\\": {\\\\n      \\\\\\\"expected\\\\\\\": 0.4098,\\\\n      \\\\\\\"got\\\\\\\": 0.4098,\\\\n      \\\\\\\"match\\\\\\\": true\\\\n    },\\\\n    \\\\\\\"qwen_scierc_n16_seed456.VC\\\\\\\": {\\\\n      \\\\\\\"expected\\\\\\\": 0.4449,\\\\n      \\\\\\\"got\\\\\\\": 0.4449,\\\\n      \\\\\\\"match\\\\\\\": true\\\\n    },\\\\n    \\\\\\\"qwen_scierc_n16_seed456.EM\\\\\\\": {\\\\n      \\\\\\\"expected\\\\\\\": 0.3363,\\\\n      \\\\\\\"got\\\\\\\": 0.3363,\\\\n      \\\\\\\"match\\\\\\\": true\\\\n    },\\\\n    \\\\\\\"qwen_scierc_n16_seed456.LP\\\\\\\": {\\\\n      \\\\\\\"expected\\\\\\\": 0.2415,\\\\n      \\\\\\\"got\\\\\\\": 0.2415,\\\\n      \\\\\\\"match\\\\\\\": true\\\\n    }\\\\n  },\\\\n  \\\\\\\"sanity_check_vs_n8_5signal\\\\\\\": {\\\\n    \\\\\\\"qwen_conll_n8_seed42.SJ\\\\\\\": {\\\\n      \\\\\\\"expected\\\\\\\": 0.4357,\\\\n      \\\\\\\"got\\\\\\\": 0.4357,\\\\n      \\\\\\\"match\\\\\\\": true\\\\n    },\\\\n    \\\\\\\"qwen_conll_n8_seed42.FK\\\\\\\": {\\\\n      \\\\\\\"expected\\\\\\\": 0.3998,\\\\n      \\\\\\\"got\\\\\\\": 0.3998,\\\\n      \\\\\\\"match\\\\\\\": true\\\\n    },\\\\n    \\\\\\\"qwen_conll_n8_seed42.EM\\\\\\\": {\\\\n      \\\\\\\"expected\\\\\\\": 0.4507,\\\\n      \\\\\\\"got\\\\\\\": 0.4507,\\\\n      \\\\\\\"match\\\\\\\": true\\\\n    },\\\\n    \\\\\\\"qwen_conll_n8_seed42.LP\\\\\\\": {\\\\n      \\\\\\\"expected\\\\\\\": 0.3157,\\\\n      \\\\\\\"got\\\\\\\": 0.3157,\\\\n      \\\\\\\"match\\\\\\\": true\\\\n    },\\\\n    \\\\\\\"qwen_conll_n8_seed42.VC\\\\\\\": {\\\\n      \\\\\\\"expected\\\\\\\": 0.4237,\\\\n      \\\\\\\"got\\\\\\\": 0.4237,\\\\n      \\\\\\\"match\\\\\\\": true\\\\n    },\\\\n    \\\\\\\"llama_scierc_n8_seed42.SJ\\\\\\\": {\\\\n      \\\\\\\"expected\\\\\\\": 0.363,\\\\n      \\\\\\\"got\\\\\\\": 0.363,\\\\n      \\\\\\\"match\\\\\\\": true\\\\n    },\\\\n    \\\\\\\"llama_scierc_n8_seed42.FK\\\\\\\": {\\\\n      \\\\\\\"expected\\\\\\\": 0.3266,\\\\n      \\\\\\\"got\\\\\\\": 0.3266,\\\\n      \\\\\\\"match\\\\\\\": true\\\\n    },\\\\n    \\\\\\\"llama_scierc_n8_seed42.EM\\\\\\\": {\\\\n      \\\\\\\"expected\\\\\\\": 0.3152,\\\\n      \\\\\\\"got\\\\\\\": 0.3152,\\\\n      \\\\\\\"match\\\\\\\": true\\\\n    },\\\\n    \\\\\\\"llama_scierc_n8_seed42.LP\\\\\\\": {\\\\n      \\\\\\\"expected\\\\\\\": 0.1827,\\\\n      \\\\\\\"got\\\\\\\": 0.1827,\\\\n      \\\\\\\"match\\\\\\\": true\\\\n    },\\\\n    \\\\\\\"llama_scierc_n8_seed42.VC\\\\\\\": {\\\\n      \\\\\\\"expected\\\\\\\": 0.4331,\\\\n      \\\\\\\"got\\\\\\\": 0.4331,\\\\n      \\\\\\\"match\\\\\\\": true\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"metadata\\\": {\\n    \\\"pipeline\\\": \\\"unified_gold_filtered\\\",\\n    \\\"date\\\": \\\"2026-05-15\\\",\\n    \\\"fk_empty_fix\\\": true,\\n    \\\"gold_filter\\\": \\\"exclude instances where len(gold.entities)==0\\\",\\n    \\\"conll_n_valid\\\": 2756,\\n    \\\"scierc_n_valid\\\": 529,\\n    \\\"n8_seed123_added\\\": true\\n  },\\n  \\\"results\\\": {\\n    \\\"llama_conll_n16_seed42\\\": {\\n      \\\"n_instances\\\": 2756,\\n      \\\"n_total\\\": 3453,\\n      \\\"n_gold_empty\\\": 697,\\n      \\\"VC\\\": 0.4746,\\n      \\\"SJ\\\": 0.4836,\\n      \\\"FK\\\": 0.4752,\\n      \\\"EM\\\": 0.4818,\\n      \\\"LP\\\": 0.3136,\\n      \\\"auroc_VC\\\": 0.7529,\\n      \\\"auroc_SJ\\\": 0.7496,\\n      \\\"auroc_FK\\\": 0.7467,\\n      \\\"auroc_EM\\\": 0.7508,\\n      \\\"auroc_LP\\\": 0.7661\\n    },\\n    \\\"llama_conll_n16_seed123\\\": {\\n      \\\"n_instances\\\": 2756,\\n      \\\"n_total\\\": 3453,\\n      \\\"n_gold_empty\\\": 697,\\n      \\\"VC\\\": 0.4633,\\n      \\\"SJ\\\": 0.4662,\\n      \\\"FK\\\": 0.4573,\\n      \\\"EM\\\": 0.4632,\\n      \\\"LP\\\": 0.308,\\n      \\\"auroc_VC\\\": 0.7444,\\n      \\\"auroc_SJ\\\": 0.7391,\\n      \\\"auroc_FK\\\": 0.7358,\\n      \\\"auroc_EM\\\": 0.7395,\\n      \\\"auroc_LP\\\": 0.7611\\n    },\\n    \\\"llama_conll_n16_seed456\\\": {\\n      \\\"n_instances\\\": 2756,\\n      \\\"n_total\\\": 3453,\\n      \\\"n_gold_empty\\\": 697,\\n      \\\"VC\\\": 0.4722,\\n      \\\"SJ\\\": 0.4734,\\n      \\\"FK\\\": 0.469,\\n      \\\"EM\\\": 0.4752,\\n      \\\"LP\\\": 0.3099,\\n      \\\"auroc_VC\\\": 0.7495,\\n      \\\"auroc_SJ\\\": 0.7428,\\n      \\\"auroc_FK\\\": 0.7408,\\n      \\\"auroc_EM\\\": 0.7444,\\n      \\\"auroc_LP\\\": 0.7628\\n    },\\n    \\\"qwen_scierc_n16_seed42\\\": {\\n      \\\"n_instances\\\": 529,\\n      \\\"n_total\\\": 551,\\n      \\\"n_gold_empty\\\": 22,\\n      \\\"VC\\\": 0.3993,\\n      \\\"SJ\\\": 0.3984,\\n      \\\"FK\\\": 0.2876,\\n      \\\"EM\\\": 0.3386,\\n      \\\"LP\\\": 0.2373,\\n      \\\"auroc_VC\\\": 0.7085,\\n      \\\"auroc_SJ\\\": 0.7205,\\n      \\\"auroc_FK\\\": 0.6348,\\n      \\\"auroc_EM\\\": 0.7837,\\n      \\\"auroc_LP\\\": 0.6096,\\n      \\\"re_n_valid\\\": 397,\\n      \\\"re_FK\\\": 0.2808,\\n      \\\"re_SJ\\\": 0.2766\\n    },\\n    \\\"qwen_scierc_n16_seed123\\\": {\\n      \\\"n_instances\\\": 529,\\n      \\\"n_total\\\": 551,\\n      \\\"n_gold_empty\\\": 22,\\n      \\\"VC\\\": 0.3835,\\n      \\\"SJ\\\": 0.4234,\\n      \\\"FK\\\": 0.2899,\\n      \\\"EM\\\": 0.3437,\\n      \\\"LP\\\": 0.2391,\\n      \\\"auroc_VC\\\": 0.7024,\\n      \\\"auroc_SJ\\\": 0.7352,\\n      \\\"auroc_FK\\\": 0.6292,\\n      \\\"auroc_EM\\\": 0.7878,\\n      \\\"auroc_LP\\\": 0.6045,\\n      \\\"re_n_valid\\\": 397,\\n      \\\"re_FK\\\": 0.3154,\\n      \\\"re_SJ\\\": 0.2672\\n    },\\n    \\\"qwen_scierc_n16_seed456\\\": {\\n      \\\"n_instances\\\": 529,\\n      \\\"n_total\\\": 551,\\n      \\\"n_gold_empty\\\": 22,\\n      \\\"VC\\\": 0.4449,\\n      \\\"SJ\\\": 0.4098,\\n      \\\"FK\\\": 0.2723,\\n      \\\"EM\\\": 0.3363,\\n      \\\"LP\\\": 0.2415,\\n      \\\"auroc_VC\\\": 0.7392,\\n      \\\"auroc_SJ\\\": 0.7367,\\n      \\\"auroc_FK\\\": 0.6157,\\n      \\\"auroc_EM\\\": 0.7848,\\n      \\\"auroc_LP\\\": 0.6054,\\n      \\\"re_n_valid\\\": 397,\\n      \\\"re_FK\\\": 0.2929,\\n      \\\"re_SJ\\\": 0.2835\\n    },\\n    \\\"llama_conll_n8_seed42\\\": {\\n      \\\"n_instances\\\": 2756,\\n      \\\"n_total\\\": 3453,\\n      \\\"n_gold_empty\\\": 697,\\n      \\\"VC\\\": 0.4256,\\n      \\\"SJ\\\": 0.4314,\\n      \\\"FK\\\": 0.4277,\\n      \\\"EM\\\": 0.4306,\\n      \\\"LP\\\": 0.3072,\\n      \\\"auroc_VC\\\": 0.7088,\\n      \\\"auroc_SJ\\\": 0.7039,\\n      \\\"auroc_FK\\\": 0.7026,\\n      \\\"auroc_EM\\\": 0.7046,\\n      \\\"auroc_LP\\\": 0.761\\n    },\\n    \\\"qwen_conll_n8_seed42\\\": {\\n      \\\"n_instances\\\": 2756,\\n      \\\"n_total\\\": 3453,\\n      \\\"n_gold_empty\\\": 697,\\n      \\\"VC\\\": 0.4237,\\n      \\\"SJ\\\": 0.4357,\\n      \\\"FK\\\": 0.3998,\\n      \\\"EM\\\": 0.4507,\\n      \\\"LP\\\": 0.3157,\\n      \\\"auroc_VC\\\": 0.7889,\\n      \\\"auroc_SJ\\\": 0.8008,\\n      \\\"auroc_FK\\\": 0.7741,\\n      \\\"auroc_EM\\\": 0.8156,\\n      \\\"auroc_LP\\\": 0.7532\\n    },\\n    \\\"llama_scierc_n8_seed42\\\": {\\n      \\\"n_instances\\\": 529,\\n      \\\"n_total\\\": 551,\\n      \\\"n_gold_empty\\\": 22,\\n      \\\"VC\\\": 0.4331,\\n      \\\"SJ\\\": 0.363,\\n      \\\"FK\\\": 0.3266,\\n      \\\"EM\\\": 0.3152,\\n      \\\"LP\\\": 0.1827,\\n      \\\"auroc_VC\\\": 0.7283,\\n      \\\"auroc_SJ\\\": 0.7099,\\n      \\\"auroc_FK\\\": 0.6648,\\n      \\\"auroc_EM\\\": 0.7658,\\n      \\\"auroc_LP\\\": 0.5569\\n    },\\n    \\\"qwen_scierc_n8_seed42\\\": {\\n      \\\"n_instances\\\": 529,\\n      \\\"n_total\\\": 551,\\n      \\\"n_gold_empty\\\": 22,\\n      \\\"VC\\\": 0.3792,\\n      \\\"SJ\\\": 0.3599,\\n      \\\"FK\\\": 0.2665,\\n      \\\"EM\\\": 0.2945,\\n      \\\"LP\\\": 0.2052,\\n      \\\"auroc_VC\\\": 0.6627,\\n      \\\"auroc_SJ\\\": 0.65,\\n      \\\"auroc_FK\\\": 0.6019,\\n      \\\"auroc_EM\\\": 0.6138,\\n      \\\"auroc_LP\\\": 0.5778,\\n      \\\"re_n_valid\\\": 397,\\n      \\\"re_FK\\\": 0.2752,\\n      \\\"re_SJ\\\": 0.2503\\n    },\\n    \\\"qwen_scierc_n8_seed123\\\": {\\n      \\\"n_instances\\\": 529,\\n      \\\"n_total\\\": 551,\\n      \\\"n_gold_empty\\\": 22,\\n      \\\"VC\\\": 0.4133,\\n      \\\"SJ\\\": 0.3878,\\n      \\\"FK\\\": 0.2628,\\n      \\\"EM\\\": 0.3135,\\n      \\\"LP\\\": 0.2341,\\n      \\\"auroc_VC\\\": 0.6898,\\n      \\\"auroc_SJ\\\": 0.6813,\\n      \\\"auroc_FK\\\": 0.6183,\\n      \\\"auroc_EM\\\": 0.6439,\\n      \\\"auroc_LP\\\": 0.5898,\\n      \\\"re_n_valid\\\": 397,\\n      \\\"re_FK\\\": 0.2908,\\n      \\\"re_SJ\\\": 0.2486\\n    },\\n    \\\"llama_scierc_n8_seed123\\\": {\\n      \\\"n_instances\\\": 529,\\n      \\\"n_total\\\": 551,\\n      \\\"n_gold_empty\\\": 22,\\n      \\\"VC\\\": 0.4193,\\n      \\\"SJ\\\": 0.3552,\\n      \\\"FK\\\": 0.2897,\\n      \\\"EM\\\": 0.2844,\\n      \\\"LP\\\": 0.197,\\n      \\\"auroc_VC\\\": 0.6715,\\n      \\\"auroc_SJ\\\": 0.6399,\\n      \\\"auroc_FK\\\": 0.5974,\\n      \\\"auroc_EM\\\": 0.6027,\\n      \\\"auroc_LP\\\": 0.5722,\\n      \\\"re_n_valid\\\": 397,\\n      \\\"re_FK\\\": 0.2555,\\n      \\\"re_SJ\\\": 0.2462\\n    }\\n  },\\n  \\\"sanity_check_vs_rho_audit\\\": {\\n    \\\"llama_conll_n16_seed42.FK\\\": {\\n      \\\"expected\\\": 0.4752,\\n      \\\"got\\\": 0.4752,\\n      \\\"match\\\": true\\n    },\\n    \\\"llama_conll_n16_seed42.SJ\\\": {\\n      \\\"expected\\\": 0.4836,\\n      \\\"got\\\": 0.4836,\\n      \\\"match\\\": true\\n    },\\n    \\\"llama_conll_n16_seed42.VC\\\": {\\n      \\\"expected\\\": 0.4746,\\n      \\\"got\\\": 0.4746,\\n      \\\"match\\\": true\\n    },\\n    \\\"llama_conll_n16_seed42.EM\\\": {\\n      \\\"expected\\\": 0.4818,\\n      \\\"got\\\": 0.4818,\\n      \\\"match\\\": true\\n    },\\n    \\\"llama_conll_n16_seed42.LP\\\": {\\n      \\\"expected\\\": 0.3136,\\n      \\\"got\\\": 0.3136,\\n      \\\"match\\\": true\\n    },\\n    \\\"llama_conll_n16_seed456.FK\\\": {\\n      \\\"expected\\\": 0.469,\\n      \\\"got\\\": 0.469,\\n      \\\"match\\\": true\\n    },\\n    \\\"llama_conll_n16_seed456.SJ\\\": {\\n      \\\"expected\\\": 0.4734,\\n      \\\"got\\\": 0.4734,\\n      \\\"match\\\": true\\n    },\\n    \\\"llama_conll_n16_seed456.VC\\\": {\\n      \\\"expected\\\": 0.4722,\\n      \\\"got\\\": 0.4722,\\n      \\\"match\\\": true\\n    },\\n    \\\"llama_conll_n16_seed456.EM\\\": {\\n      \\\"expected\\\": 0.4752,\\n      \\\"got\\\": 0.4752,\\n      \\\"match\\\": true\\n    },\\n    \\\"llama_conll_n16_seed456.LP\\\": {\\n      \\\"expected\\\": 0.3099,\\n      \\\"got\\\": 0.3099,\\n      \\\"match\\\": true\\n    },\\n    \\\"qwen_scierc_n16_seed456.FK\\\": {\\n      \\\"expected\\\": 0.2723,\\n      \\\"got\\\": 0.2723,\\n      \\\"match\\\": true\\n    },\\n    \\\"qwen_scierc_n16_seed456.SJ\\\": {\\n      \\\"expected\\\": 0.4098,\\n      \\\"got\\\": 0.4098,\\n      \\\"match\\\": true\\n    },\\n    \\\"qwen_scierc_n16_seed456.VC\\\": {\\n      \\\"expected\\\": 0.4449,\\n      \\\"got\\\": 0.4449,\\n      \\\"match\\\": true\\n    },\\n    \\\"qwen_scierc_n16_seed456.EM\\\": {\\n      \\\"expected\\\": 0.3363,\\n      \\\"got\\\": 0.3363,\\n      \\\"match\\\": true\\n    },\\n    \\\"qwen_scierc_n16_seed456.LP\\\": {\\n      \\\"expected\\\": 0.2415,\\n      \\\"got\\\": 0.2415,\\n      \\\"match\\\": true\\n    }\\n  },\\n  \\\"sanity_check_vs_n8_5signal\\\": {\\n    \\\"qwen_conll_n8_seed42.SJ\\\": {\\n      \\\"expected\\\": 0.4357,\\n      \\\"got\\\": 0.4357,\\n      \\\"match\\\": true\\n    },\\n    \\\"qwen_conll_n8_seed42.FK\\\": {\\n      \\\"expected\\\": 0.3998,\\n      \\\"got\\\": 0.3998,\\n      \\\"match\\\": true\\n    },\\n    \\\"qwen_conll_n8_seed42.EM\\\": {\\n      \\\"expected\\\": 0.4507,\\n      \\\"got\\\": 0.4507,\\n      \\\"match\\\": true\\n    },\\n    \\\"qwen_conll_n8_seed42.LP\\\": {\\n      \\\"expected\\\": 0.3157,\\n      \\\"got\\\": 0.3157,\\n      \\\"match\\\": true\\n    },\\n    \\\"qwen_conll_n8_seed42.VC\\\": {\\n      \\\"expected\\\": 0.4237,\\n      \\\"got\\\": 0.4237,\\n      \\\"match\\\": true\\n    },\\n    \\\"llama_scierc_n8_seed42.SJ\\\": {\\n      \\\"expected\\\": 0.363,\\n      \\\"got\\\": 0.363,\\n      \\\"match\\\": true\\n    },\\n    \\\"llama_scierc_n8_seed42.FK\\\": {\\n      \\\"expected\\\": 0.3266,\\n      \\\"got\\\": 0.3266,\\n      \\\"match\\\": true\\n    },\\n    \\\"llama_scierc_n8_seed42.EM\\\": {\\n      \\\"expected\\\": 0.3152,\\n      \\\"got\\\": 0.3152,\\n      \\\"match\\\": true\\n    },\\n    \\\"llama_scierc_n8_seed42.LP\\\": {\\n      \\\"expected\\\": 0.1827,\\n      \\\"got\\\": 0.1827,\\n      \\\"match\\\": true\\n    },\\n    \\\"llama_scierc_n8_seed42.VC\\\": {\\n      \\\"expected\\\": 0.4331,\\n      \\\"got\\\": 0.4331,\\n      \\\"match\\\": true\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 22_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01AdVKzXp33PoPFDzyUxuSqh`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/n16_3seed_5signal_results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "ee6c63ec-c0c6-4a8e-942d-3a0d9ee1547d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016nBK7PM5kwn3yhUyeuFsx7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6312,
+      "cache_read_input_tokens": 25495,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6312
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 23 · 2026-05-15T23:53:04.534Z_
+
+<details><summary>↩ Tool result · `toolu_01AdVKzXp33PoPFDzyUxuSqh`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"42\\\": {\\n    \\\"ner\\\": {\\n      \\\"n_valid\\\": 529,\\n      \\\"rho\\\": {\\n        \\\"SJ\\\": 0.3984,\\n        \\\"FK\\\": 0.2876,\\n        \\\"VC\\\": 0.3993,\\n        \\\"EM\\\": 0.3386,\\n        \\\"LP\\\": 0.2373\\n      },\\n      \\\"auroc\\\": {\\n        \\\"SJ\\\": 0.6965,\\n        \\\"FK\\\": 0.6323,\\n        \\\"VC\\\": 0.7039,\\n        \\\"EM\\\": 0.6773,\\n        \\\"LP\\\": 0.6215\\n      }\\n    },\\n    \\\"re\\\": {\\n      \\\"n_valid\\\": 397,\\n      \\\"rho\\\": {\\n        \\\"SJ\\\": 0.2766,\\n        \\\"FK\\\": 0.2808,\\n        \\\"VC\\\": 0.3801,\\n        \\\"EM\\\": 0.1475,\\n        \\\"LP\\\": 0.2931\\n      },\\n      \\\"auroc\\\": {\\n        \\\"SJ\\\": 0.6372,\\n        \\\"FK\\\": 0.6514,\\n        \\\"VC\\\": 0.6989,\\n        \\\"EM\\\": 0.5557,\\n        \\\"LP\\\": 0.6552\\n      }\\n    }\\n  },\\n  \\\"123\\\": {\\n    \\\"ner\\\": {\\n      \\\"n_valid\\\": 529,\\n      \\\"rho\\\": {\\n        \\\"SJ\\\": 0.4234,\\n        \\\"FK\\\": 0.2899,\\n        \\\"VC\\\": 0.3835,\\n        \\\"EM\\\": 0.3437,\\n        \\\"LP\\\": 0.2391\\n      },\\n      \\\"auroc\\\": {\\n        \\\"SJ\\\": 0.7131,\\n        \\\"FK\\\": 0.6393,\\n        \\\"VC\\\": 0.6947,\\n        \\\"EM\\\": 0.6787,\\n        \\\"LP\\\": 0.6261\\n      }\\n    },\\n    \\\"re\\\": {\\n      \\\"n_valid\\\": 397,\\n      \\\"rho\\\": {\\n        \\\"SJ\\\": 0.2672,\\n        \\\"FK\\\": 0.3154,\\n        \\\"VC\\\": 0.3522,\\n        \\\"EM\\\": 0.1575,\\n        \\\"LP\\\": 0.3071\\n      },\\n      \\\"auroc\\\": {\\n        \\\"SJ\\\": 0.6425,\\n        \\\"FK\\\": 0.6579,\\n        \\\"VC\\\": 0.6846,\\n        \\\"EM\\\": 0.5905,\\n        \\\"LP\\\": 0.6466\\n      }\\n    }\\n  },\\n  \\\"456\\\": {\\n    \\\"ner\\\": {\\n      \\\"n_valid\\\": 529,\\n      \\\"rho\\\": {\\n        \\\"SJ\\\": 0.4098,\\n        \\\"FK\\\": 0.2723,\\n        \\\"VC\\\": 0.4449,\\n        \\\"EM\\\": 0.3363,\\n        \\\"LP\\\": 0.2415\\n      },\\n      \\\"auroc\\\": {\\n        \\\"SJ\\\": 0.6997,\\n        \\\"FK\\\": 0.6261,\\n        \\\"VC\\\": 0.7141,\\n        \\\"EM\\\": 0.6651,\\n        \\\"LP\\\": 0.6204\\n      }\\n    },\\n    \\\"re\\\": {\\n      \\\"n_valid\\\": 397,\\n      \\\"rho\\\": {\\n        \\\"SJ\\\": 0.2835,\\n        \\\"FK\\\": 0.2929,\\n        \\\"VC\\\": 0.3892,\\n        \\\"EM\\\": 0.1469,\\n        \\\"LP\\\": 0.3298\\n      },\\n      \\\"auroc\\\": {\\n        \\\"SJ\\\": 0.671,\\n        \\\"FK\\\": 0.6777,\\n        \\\"VC\\\": 0.7029,\\n        \\\"EM\\\": 0.6013,\\n        \\\"LP\\\": 0.671\\n      }\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "22dc5c5e-c193-4d8c-90de-9a89593a3825",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"42\\\\\\\": {\\\\n    \\\\\\\"ner\\\\\\\": {\\\\n      \\\\\\\"n_valid\\\\\\\": 529,\\\\n      \\\\\\\"rho\\\\\\\": {\\\\n        \\\\\\\"SJ\\\\\\\": 0.3984,\\\\n        \\\\\\\"FK\\\\\\\": 0.2876,\\\\n        \\\\\\\"VC\\\\\\\": 0.3993,\\\\n        \\\\\\\"EM\\\\\\\": 0.3386,\\\\n        \\\\\\\"LP\\\\\\\": 0.2373\\\\n      },\\\\n      \\\\\\\"auroc\\\\\\\": {\\\\n        \\\\\\\"SJ\\\\\\\": 0.6965,\\\\n        \\\\\\\"FK\\\\\\\": 0.6323,\\\\n        \\\\\\\"VC\\\\\\\": 0.7039,\\\\n        \\\\\\\"EM\\\\\\\": 0.6773,\\\\n        \\\\\\\"LP\\\\\\\": 0.6215\\\\n      }\\\\n    },\\\\n    \\\\\\\"re\\\\\\\": {\\\\n      \\\\\\\"n_valid\\\\\\\": 397,\\\\n      \\\\\\\"rho\\\\\\\": {\\\\n        \\\\\\\"SJ\\\\\\\": 0.2766,\\\\n        \\\\\\\"FK\\\\\\\": 0.2808,\\\\n        \\\\\\\"VC\\\\\\\": 0.3801,\\\\n        \\\\\\\"EM\\\\\\\": 0.1475,\\\\n        \\\\\\\"LP\\\\\\\": 0.2931\\\\n      },\\\\n      \\\\\\\"auroc\\\\\\\": {\\\\n        \\\\\\\"SJ\\\\\\\": 0.6372,\\\\n        \\\\\\\"FK\\\\\\\": 0.6514,\\\\n        \\\\\\\"VC\\\\\\\": 0.6989,\\\\n        \\\\\\\"EM\\\\\\\": 0.5557,\\\\n        \\\\\\\"LP\\\\\\\": 0.6552\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"123\\\\\\\": {\\\\n    \\\\\\\"ner\\\\\\\": {\\\\n      \\\\\\\"n_valid\\\\\\\": 529,\\\\n      \\\\\\\"rho\\\\\\\": {\\\\n        \\\\\\\"SJ\\\\\\\": 0.4234,\\\\n        \\\\\\\"FK\\\\\\\": 0.2899,\\\\n        \\\\\\\"VC\\\\\\\": 0.3835,\\\\n        \\\\\\\"EM\\\\\\\": 0.3437,\\\\n        \\\\\\\"LP\\\\\\\": 0.2391\\\\n      },\\\\n      \\\\\\\"auroc\\\\\\\": {\\\\n        \\\\\\\"SJ\\\\\\\": 0.7131,\\\\n        \\\\\\\"FK\\\\\\\": 0.6393,\\\\n        \\\\\\\"VC\\\\\\\": 0.6947,\\\\n        \\\\\\\"EM\\\\\\\": 0.6787,\\\\n        \\\\\\\"LP\\\\\\\": 0.6261\\\\n      }\\\\n    },\\\\n    \\\\\\\"re\\\\\\\": {\\\\n      \\\\\\\"n_valid\\\\\\\": 397,\\\\n      \\\\\\\"rho\\\\\\\": {\\\\n        \\\\\\\"SJ\\\\\\\": 0.2672,\\\\n        \\\\\\\"FK\\\\\\\": 0.3154,\\\\n        \\\\\\\"VC\\\\\\\": 0.3522,\\\\n        \\\\\\\"EM\\\\\\\": 0.1575,\\\\n        \\\\\\\"LP\\\\\\\": 0.3071\\\\n      },\\\\n      \\\\\\\"auroc\\\\\\\": {\\\\n        \\\\\\\"SJ\\\\\\\": 0.6425,\\\\n        \\\\\\\"FK\\\\\\\": 0.6579,\\\\n        \\\\\\\"VC\\\\\\\": 0.6846,\\\\n        \\\\\\\"EM\\\\\\\": 0.5905,\\\\n        \\\\\\\"LP\\\\\\\": 0.6466\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"456\\\\\\\": {\\\\n    \\\\\\\"ner\\\\\\\": {\\\\n      \\\\\\\"n_valid\\\\\\\": 529,\\\\n      \\\\\\\"rho\\\\\\\": {\\\\n        \\\\\\\"SJ\\\\\\\": 0.4098,\\\\n        \\\\\\\"FK\\\\\\\": 0.2723,\\\\n        \\\\\\\"VC\\\\\\\": 0.4449,\\\\n        \\\\\\\"EM\\\\\\\": 0.3363,\\\\n        \\\\\\\"LP\\\\\\\": 0.2415\\\\n      },\\\\n      \\\\\\\"auroc\\\\\\\": {\\\\n        \\\\\\\"SJ\\\\\\\": 0.6997,\\\\n        \\\\\\\"FK\\\\\\\": 0.6261,\\\\n        \\\\\\\"VC\\\\\\\": 0.7141,\\\\n        \\\\\\\"EM\\\\\\\": 0.6651,\\\\n        \\\\\\\"LP\\\\\\\": 0.6204\\\\n      }\\\\n    },\\\\n    \\\\\\\"re\\\\\\\": {\\\\n      \\\\\\\"n_valid\\\\\\\": 397,\\\\n      \\\\\\\"rho\\\\\\\": {\\\\n        \\\\\\\"SJ\\\\\\\": 0.2835,\\\\n        \\\\\\\"FK\\\\\\\": 0.2929,\\\\n        \\\\\\\"VC\\\\\\\": 0.3892,\\\\n        \\\\\\\"EM\\\\\\\": 0.1469,\\\\n        \\\\\\\"LP\\\\\\\": 0.3298\\\\n      },\\\\n      \\\\\\\"auroc\\\\\\\": {\\\\n        \\\\\\\"SJ\\\\\\\": 0.671,\\\\n        \\\\\\\"FK\\\\\\\": 0.6777,\\\\n        \\\\\\\"VC\\\\\\\": 0.7029,\\\\n        \\\\\\\"EM\\\\\\\": 0.6013,\\\\n        \\\\\\\"LP\\\\\\\": 0.671\\\\n      }\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"42\\\": {\\n    \\\"ner\\\": {\\n      \\\"n_valid\\\": 529,\\n      \\\"rho\\\": {\\n        \\\"SJ\\\": 0.3984,\\n        \\\"FK\\\": 0.2876,\\n        \\\"VC\\\": 0.3993,\\n        \\\"EM\\\": 0.3386,\\n        \\\"LP\\\": 0.2373\\n      },\\n      \\\"auroc\\\": {\\n        \\\"SJ\\\": 0.6965,\\n        \\\"FK\\\": 0.6323,\\n        \\\"VC\\\": 0.7039,\\n        \\\"EM\\\": 0.6773,\\n        \\\"LP\\\": 0.6215\\n      }\\n    },\\n    \\\"re\\\": {\\n      \\\"n_valid\\\": 397,\\n      \\\"rho\\\": {\\n        \\\"SJ\\\": 0.2766,\\n        \\\"FK\\\": 0.2808,\\n        \\\"VC\\\": 0.3801,\\n        \\\"EM\\\": 0.1475,\\n        \\\"LP\\\": 0.2931\\n      },\\n      \\\"auroc\\\": {\\n        \\\"SJ\\\": 0.6372,\\n        \\\"FK\\\": 0.6514,\\n        \\\"VC\\\": 0.6989,\\n        \\\"EM\\\": 0.5557,\\n        \\\"LP\\\": 0.6552\\n      }\\n    }\\n  },\\n  \\\"123\\\": {\\n    \\\"ner\\\": {\\n      \\\"n_valid\\\": 529,\\n      \\\"rho\\\": {\\n        \\\"SJ\\\": 0.4234,\\n        \\\"FK\\\": 0.2899,\\n        \\\"VC\\\": 0.3835,\\n        \\\"EM\\\": 0.3437,\\n        \\\"LP\\\": 0.2391\\n      },\\n      \\\"auroc\\\": {\\n        \\\"SJ\\\": 0.7131,\\n        \\\"FK\\\": 0.6393,\\n        \\\"VC\\\": 0.6947,\\n        \\\"EM\\\": 0.6787,\\n        \\\"LP\\\": 0.6261\\n      }\\n    },\\n    \\\"re\\\": {\\n      \\\"n_valid\\\": 397,\\n      \\\"rho\\\": {\\n        \\\"SJ\\\": 0.2672,\\n        \\\"FK\\\": 0.3154,\\n        \\\"VC\\\": 0.3522,\\n        \\\"EM\\\": 0.1575,\\n        \\\"LP\\\": 0.3071\\n      },\\n      \\\"auroc\\\": {\\n        \\\"SJ\\\": 0.6425,\\n        \\\"FK\\\": 0.6579,\\n        \\\"VC\\\": 0.6846,\\n        \\\"EM\\\": 0.5905,\\n        \\\"LP\\\": 0.6466\\n      }\\n    }\\n  },\\n  \\\"456\\\": {\\n    \\\"ner\\\": {\\n      \\\"n_valid\\\": 529,\\n      \\\"rho\\\": {\\n        \\\"SJ\\\": 0.4098,\\n        \\\"FK\\\": 0.2723,\\n        \\\"VC\\\": 0.4449,\\n        \\\"EM\\\": 0.3363,\\n        \\\"LP\\\": 0.2415\\n      },\\n      \\\"auroc\\\": {\\n        \\\"SJ\\\": 0.6997,\\n        \\\"FK\\\": 0.6261,\\n        \\\"VC\\\": 0.7141,\\n        \\\"EM\\\": 0.6651,\\n        \\\"LP\\\": 0.6204\\n      }\\n    },\\n    \\\"re\\\": {\\n      \\\"n_valid\\\": 397,\\n      \\\"rho\\\": {\\n        \\\"SJ\\\": 0.2835,\\n        \\\"FK\\\": 0.2929,\\n        \\\"VC\\\": 0.3892,\\n        \\\"EM\\\": 0.1469,\\n        \\\"LP\\\": 0.3298\\n      },\\n      \\\"auroc\\\": {\\n        \\\"SJ\\\": 0.671,\\n        \\\"FK\\\": 0.6777,\\n        \\\"VC\\\": 0.7029,\\n        \\\"EM\\\": 0.6013,\\n        \\\"LP\\\": 0.671\\n      }\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 24_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01SA7roBBP1kqiBzcSeF9jTM`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "ls /root/autodl-tmp/struct_self_consist_ie/output/review_round8/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "0e53f4b6-0a01-4de0-84b4-b6b6b7276ad6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016nBK7PM5kwn3yhUyeuFsx7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6312,
+      "cache_read_input_tokens": 25495,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6312
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 25 · 2026-05-15T23:53:05.342Z_
+
+<details><summary>↩ Tool result · `toolu_01SA7roBBP1kqiBzcSeF9jTM`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"r7c1_re_multiseed.json\\nr7c1_re_multiseed_selection.json\\nr8w2_thinking_token_analysis.json\\nr8w2_thinking_token_lp.json\\nr8w3_sj_normalizer_comparison.json\\nr8w3_sj_union_v2.json\\nr8w4_lp_range_analysis.json\\nr8w5_n8_multiseed.json\\ntask1_sj_normalizer_final.json\\ntask2_lp_range_final.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "9de9f58d-2844-493f-9d16-c87571e0f9f9",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"r7c1_re_multiseed.json\\\\nr7c1_re_multiseed_selection.json\\\\nr8w2_thinking_token_analysis.json\\\\nr8w2_thinking_token_lp.json\\\\nr8w3_sj_normalizer_comparison.json\\\\nr8w3_sj_union_v2.json\\\\nr8w4_lp_range_analysis.json\\\\nr8w5_n8_multiseed.json\\\\ntask1_sj_normalizer_final.json\\\\ntask2_lp_range_final.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"r7c1_re_multiseed.json\\nr7c1_re_multiseed_selection.json\\nr8w2_thinking_token_analysis.json\\nr8w2_thinking_token_lp.json\\nr8w3_sj_normalizer_comparison.json\\nr8w3_sj_union_v2.json\\nr8w4_lp_range_analysis.json\\nr8w5_n8_multiseed.json\\ntask1_sj_normalizer_final.json\\ntask2_lp_range_final.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 26_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have the key data. Let me analyze the discrepancy:
+
+**Table 1** (`tab:quality_estimation`) at line 35 of experiments.tex:
+- SJ = .360, FK = .267
+
+**Table 4** (`tab:scale_ablation`) at line 109 of experiments.tex:
+- SJ = .383, FK = .259
+
+Both claim N=8, seed=42.
+
+Looking at `analysis_unified_rho_full.json`, the entry `qwen_scierc_n8_seed42` shows:
+- SJ = 0.3599, FK = 0.2665, VC = 0.3792, EM = 0.2945, LP = 0.2052
+
+
+These match Table 1 perfectly when rounded. But Table 4's values are different, so I need to find where those come from. Checking `n16_3seed_5signal_results.json` for N=16 results with seed 42 gives NER values of SJ=0.3984, FK=0.2876, which don't match Table 4 either.
+
+Let me reconsider—Table 4 mentions "8B recomputed under matched conditions," so the 4B results might be from a separate analysis. I should look through the `selection_f1_4b_results.json` file and check what's in the `analysis_round8/` directory, then search for that 0.383 value in the output files to trace where it actually comes from.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "2cd59aac-f2f1-4217-bf2e-3ba8c0acb0c6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011qf11mwcCrhVjn5tNLSwUR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 35618,
+      "cache_read_input_tokens": 31807,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 35618
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 27_
+
+找到了关键数据。Table 1 的 SJ=.360, FK=.267 与 `analysis_unified_rho_full.json` 中 `qwen_scierc_n8_seed42` 完全匹配。现在需要找 Table 4 的 SJ=.383, FK=.259 来源。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "e8cabdfd-1e63-4139-a493-012b4da0bd02",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011qf11mwcCrhVjn5tNLSwUR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 35618,
+      "cache_read_input_tokens": 31807,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 35618
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 28_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01RfftYaL3TncrbwQssfmEi6`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/review_round8/r8w5_n8_multiseed.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "efb09075-db76-442c-8e17-2913b95a7f16",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011qf11mwcCrhVjn5tNLSwUR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 35618,
+      "cache_read_input_tokens": 31807,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 35618
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 29 · 2026-05-15T23:53:20.859Z_
+
+<details><summary>↩ Tool result · `toolu_01RfftYaL3TncrbwQssfmEi6`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"task\\\": \\\"R8-W5: N=8 Multi-seed QE rho\\\",\\n  \\\"status\\\": \\\"INCOMPLETE - seed=456 N=8 data does not exist. Only seed=42 and seed=123 available.\\\",\\n  \\\"available_seeds\\\": {\\n    \\\"42\\\": {\\n      \\\"source\\\": \\\"bootstrap_ci_nscaling/results.json + review_round2/n8_bootstrap_ci.json\\\",\\n      \\\"configs\\\": [\\n        \\\"Qwen_CoNLL\\\",\\n        \\\"Qwen_SciERC\\\",\\n        \\\"LLaMA_SciERC\\\",\\n        \\\"LLaMA_CoNLL\\\"\\n      ],\\n      \\\"qwen_scierc_n8_rho\\\": {\\n        \\\"sj\\\": 0.3599,\\n        \\\"fk\\\": 0.2665,\\n        \\\"voting_conf\\\": 0.3792,\\n        \\\"em\\\": 0.2945,\\n        \\\"logprob\\\": 0.2052\\n      }\\n    },\\n    \\\"123\\\": {\\n      \\\"source\\\": \\\"review_round2/n8_seed123_unified_rho.json\\\",\\n      \\\"configs\\\": [\\n        \\\"llama_conll_n8_seed123\\\",\\n        \\\"llama_scierc_n8_seed123\\\",\\n        \\\"qwen_scierc_n8_seed123\\\"\\n      ],\\n      \\\"rho_data\\\": {\\n        \\\"llama_conll_n8_seed123\\\": {\\n          \\\"VC\\\": 0.42,\\n          \\\"SJ\\\": 0.4307,\\n          \\\"FK\\\": 0.4256,\\n          \\\"EM\\\": 0.4284,\\n          \\\"LP\\\": 0.3074\\n        },\\n        \\\"llama_scierc_n8_seed123\\\": {\\n          \\\"VC\\\": 0.4193,\\n          \\\"SJ\\\": 0.3552,\\n          \\\"FK\\\": 0.2897,\\n          \\\"EM\\\": 0.2844,\\n          \\\"LP\\\": 0.197\\n        },\\n        \\\"qwen_scierc_n8_seed123\\\": {\\n          \\\"VC\\\": 0.4133,\\n          \\\"SJ\\\": 0.3878,\\n          \\\"FK\\\": 0.2628,\\n          \\\"EM\\\": 0.3135,\\n          \\\"LP\\\": 0.2341\\n        }\\n      }\\n    },\\n    \\\"456\\\": \\\"NOT AVAILABLE - no N=8 inference output for seed=456 exists\\\"\\n  },\\n  \\\"conclusion\\\": \\\"N=8 QE data: only seed=42 and seed=123 available. Seed=456 N=8 inference was never run. Paper Agent has already written a design rationale footnote for the single-seed N=8 results.\\\"\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "e210d88f-b9da-4467-980c-602ee23debdd",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"task\\\\\\\": \\\\\\\"R8-W5: N=8 Multi-seed QE rho\\\\\\\",\\\\n  \\\\\\\"status\\\\\\\": \\\\\\\"INCOMPLETE - seed=456 N=8 data does not exist. Only seed=42 and seed=123 available.\\\\\\\",\\\\n  \\\\\\\"available_seeds\\\\\\\": {\\\\n    \\\\\\\"42\\\\\\\": {\\\\n      \\\\\\\"source\\\\\\\": \\\\\\\"bootstrap_ci_nscaling/results.json + review_round2/n8_bootstrap_ci.json\\\\\\\",\\\\n      \\\\\\\"configs\\\\\\\": [\\\\n        \\\\\\\"Qwen_CoNLL\\\\\\\",\\\\n        \\\\\\\"Qwen_SciERC\\\\\\\",\\\\n        \\\\\\\"LLaMA_SciERC\\\\\\\",\\\\n        \\\\\\\"LLaMA_CoNLL\\\\\\\"\\\\n      ],\\\\n      \\\\\\\"qwen_scierc_n8_rho\\\\\\\": {\\\\n        \\\\\\\"sj\\\\\\\": 0.3599,\\\\n        \\\\\\\"fk\\\\\\\": 0.2665,\\\\n        \\\\\\\"voting_conf\\\\\\\": 0.3792,\\\\n        \\\\\\\"em\\\\\\\": 0.2945,\\\\n        \\\\\\\"logprob\\\\\\\": 0.2052\\\\n      }\\\\n    },\\\\n    \\\\\\\"123\\\\\\\": {\\\\n      \\\\\\\"source\\\\\\\": \\\\\\\"review_round2/n8_seed123_unified_rho.json\\\\\\\",\\\\n      \\\\\\\"configs\\\\\\\": [\\\\n        \\\\\\\"llama_conll_n8_seed123\\\\\\\",\\\\n        \\\\\\\"llama_scierc_n8_seed123\\\\\\\",\\\\n        \\\\\\\"qwen_scierc_n8_seed123\\\\\\\"\\\\n      ],\\\\n      \\\\\\\"rho_data\\\\\\\": {\\\\n        \\\\\\\"llama_conll_n8_seed123\\\\\\\": {\\\\n          \\\\\\\"VC\\\\\\\": 0.42,\\\\n          \\\\\\\"SJ\\\\\\\": 0.4307,\\\\n          \\\\\\\"FK\\\\\\\": 0.4256,\\\\n          \\\\\\\"EM\\\\\\\": 0.4284,\\\\n          \\\\\\\"LP\\\\\\\": 0.3074\\\\n        },\\\\n        \\\\\\\"llama_scierc_n8_seed123\\\\\\\": {\\\\n          \\\\\\\"VC\\\\\\\": 0.4193,\\\\n          \\\\\\\"SJ\\\\\\\": 0.3552,\\\\n          \\\\\\\"FK\\\\\\\": 0.2897,\\\\n          \\\\\\\"EM\\\\\\\": 0.2844,\\\\n          \\\\\\\"LP\\\\\\\": 0.197\\\\n        },\\\\n        \\\\\\\"qwen_scierc_n8_seed123\\\\\\\": {\\\\n          \\\\\\\"VC\\\\\\\": 0.4133,\\\\n          \\\\\\\"SJ\\\\\\\": 0.3878,\\\\n          \\\\\\\"FK\\\\\\\": 0.2628,\\\\n          \\\\\\\"EM\\\\\\\": 0.3135,\\\\n          \\\\\\\"LP\\\\\\\": 0.2341\\\\n        }\\\\n      }\\\\n    },\\\\n    \\\\\\\"456\\\\\\\": \\\\\\\"NOT AVAILABLE - no N=8 inference output for seed=456 exists\\\\\\\"\\\\n  },\\\\n  \\\\\\\"conclusion\\\\\\\": \\\\\\\"N=8 QE data: only seed=42 and seed=123 available. Seed=456 N=8 inference was never run. Paper Agent has already written a design rationale footnote for the single-seed N=8 results.\\\\\\\"\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"task\\\": \\\"R8-W5: N=8 Multi-seed QE rho\\\",\\n  \\\"status\\\": \\\"INCOMPLETE - seed=456 N=8 data does not exist. Only seed=42 and seed=123 available.\\\",\\n  \\\"available_seeds\\\": {\\n    \\\"42\\\": {\\n      \\\"source\\\": \\\"bootstrap_ci_nscaling/results.json + review_round2/n8_bootstrap_ci.json\\\",\\n      \\\"configs\\\": [\\n        \\\"Qwen_CoNLL\\\",\\n        \\\"Qwen_SciERC\\\",\\n        \\\"LLaMA_SciERC\\\",\\n        \\\"LLaMA_CoNLL\\\"\\n      ],\\n      \\\"qwen_scierc_n8_rho\\\": {\\n        \\\"sj\\\": 0.3599,\\n        \\\"fk\\\": 0.2665,\\n        \\\"voting_conf\\\": 0.3792,\\n        \\\"em\\\": 0.2945,\\n        \\\"logprob\\\": 0.2052\\n      }\\n    },\\n    \\\"123\\\": {\\n      \\\"source\\\": \\\"review_round2/n8_seed123_unified_rho.json\\\",\\n      \\\"configs\\\": [\\n        \\\"llama_conll_n8_seed123\\\",\\n        \\\"llama_scierc_n8_seed123\\\",\\n        \\\"qwen_scierc_n8_seed123\\\"\\n      ],\\n      \\\"rho_data\\\": {\\n        \\\"llama_conll_n8_seed123\\\": {\\n          \\\"VC\\\": 0.42,\\n          \\\"SJ\\\": 0.4307,\\n          \\\"FK\\\": 0.4256,\\n          \\\"EM\\\": 0.4284,\\n          \\\"LP\\\": 0.3074\\n        },\\n        \\\"llama_scierc_n8_seed123\\\": {\\n          \\\"VC\\\": 0.4193,\\n          \\\"SJ\\\": 0.3552,\\n          \\\"FK\\\": 0.2897,\\n          \\\"EM\\\": 0.2844,\\n          \\\"LP\\\": 0.197\\n        },\\n        \\\"qwen_scierc_n8_seed123\\\": {\\n          \\\"VC\\\": 0.4133,\\n          \\\"SJ\\\": 0.3878,\\n          \\\"FK\\\": 0.2628,\\n          \\\"EM\\\": 0.3135,\\n          \\\"LP\\\": 0.2341\\n        }\\n      }\\n    },\\n    \\\"456\\\": \\\"NOT AVAILABLE - no N=8 inference output for seed=456 exists\\\"\\n  },\\n  \\\"conclusion\\\": \\\"N=8 QE data: only seed=42 and seed=123 available. Seed=456 N=8 inference was never run. Paper Agent has already written a design rationale footnote for the single-seed N=8 results.\\\"\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 30_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_019PmFELpUqSKbNoBBGMUN54`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/selection_f1_4b_results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "78cdd2f4-9e88-46ad-897e-03fbc74777c2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011qf11mwcCrhVjn5tNLSwUR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 35618,
+      "cache_read_input_tokens": 31807,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 35618
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 31 · 2026-05-15T23:53:21.806Z_
+
+<details><summary>↩ Tool result · `toolu_019PmFELpUqSKbNoBBGMUN54`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"qwen3_4b_conll_ner\\\": {\\n    \\\"n_instances\\\": 2756,\\n    \\\"n_samples_per_instance\\\": 8,\\n    \\\"greedy_f1\\\": 0.92125,\\n    \\\"random_f1\\\": 0.91832,\\n    \\\"oracle_f1\\\": 0.93824,\\n    \\\"VC\\\": {\\n      \\\"selection_f1\\\": 0.92328,\\n      \\\"delta_vs_greedy\\\": 0.00203,\\n      \\\"bootstrap_p\\\": 0.0758,\\n      \\\"bootstrap_ci95\\\": [\\n        -0.00076,\\n        0.00489\\n      ]\\n    },\\n    \\\"SJ\\\": {\\n      \\\"selection_f1\\\": 0.92197,\\n      \\\"delta_vs_greedy\\\": 0.00072,\\n      \\\"bootstrap_p\\\": 0.2562,\\n      \\\"bootstrap_ci95\\\": [\\n        -0.0015,\\n        0.00302\\n      ]\\n    },\\n    \\\"FK\\\": {\\n      \\\"selection_f1\\\": 0.9215,\\n      \\\"delta_vs_greedy\\\": 0.00025,\\n      \\\"bootstrap_p\\\": 0.4105,\\n      \\\"bootstrap_ci95\\\": [\\n        -0.00191,\\n        0.00246\\n      ]\\n    },\\n    \\\"EM\\\": {\\n      \\\"selection_f1\\\": 0.92196,\\n      \\\"delta_vs_greedy\\\": 0.00071,\\n      \\\"bootstrap_p\\\": 0.2545,\\n      \\\"bootstrap_ci95\\\": [\\n        -0.00149,\\n        0.00296\\n      ]\\n    },\\n    \\\"LP\\\": {\\n      \\\"selection_f1\\\": 0.92214,\\n      \\\"delta_vs_greedy\\\": 0.00089,\\n      \\\"bootstrap_p\\\": 0.0932,\\n      \\\"bootstrap_ci95\\\": [\\n        -0.00038,\\n        0.00237\\n      ]\\n    }\\n  },\\n  \\\"qwen3_4b_scierc_ner\\\": {\\n    \\\"n_instances\\\": 529,\\n    \\\"n_samples_per_instance\\\": 8,\\n    \\\"greedy_f1\\\": 0.66224,\\n    \\\"random_f1\\\": 0.59913,\\n    \\\"oracle_f1\\\": 0.79249,\\n    \\\"VC\\\": {\\n      \\\"selection_f1\\\": 0.62825,\\n      \\\"delta_vs_greedy\\\": -0.03399,\\n      \\\"bootstrap_p\\\": 0.9999,\\n      \\\"bootstrap_ci95\\\": [\\n        -0.0523,\\n        -0.01552\\n      ]\\n    },\\n    \\\"SJ\\\": {\\n      \\\"selection_f1\\\": 0.64733,\\n      \\\"delta_vs_greedy\\\": -0.01491,\\n      \\\"bootstrap_p\\\": 0.9749,\\n      \\\"bootstrap_ci95\\\": [\\n        -0.03009,\\n        1e-05\\n      ]\\n    },\\n    \\\"FK\\\": {\\n      \\\"selection_f1\\\": 0.64663,\\n      \\\"delta_vs_greedy\\\": -0.01561,\\n      \\\"bootstrap_p\\\": 0.9795,\\n      \\\"bootstrap_ci95\\\": [\\n        -0.03082,\\n        -0.00058\\n      ]\\n    },\\n    \\\"EM\\\": {\\n      \\\"selection_f1\\\": 0.64357,\\n      \\\"delta_vs_greedy\\\": -0.01867,\\n      \\\"bootstrap_p\\\": 0.992,\\n      \\\"bootstrap_ci95\\\": [\\n        -0.03429,\\n        -0.00296\\n      ]\\n    },\\n    \\\"LP\\\": {\\n      \\\"selection_f1\\\": 0.63994,\\n      \\\"delta_vs_greedy\\\": -0.0223,\\n      \\\"bootstrap_p\\\": 0.9983,\\n      \\\"bootstrap_ci95\\\": [\\n        -0.03748,\\n        -0.0073\\n      ]\\n    }\\n  },\\n  \\\"qwen3_4b_scierc_re\\\": {\\n    \\\"n_instances\\\": 397,\\n    \\\"n_samples_per_instance\\\": 8,\\n    \\\"greedy_f1\\\": 0.40759,\\n    \\\"random_f1\\\": 0.33498,\\n    \\\"oracle_f1\\\": 0.597,\\n    \\\"VC\\\": {\\n      \\\"selection_f1\\\": 0.40024,\\n      \\\"delta_vs_greedy\\\": -0.00735,\\n      \\\"bootstrap_p\\\": 0.7127,\\n      \\\"bootstrap_ci95\\\": [\\n        -0.03257,\\n        0.01827\\n      ]\\n    },\\n    \\\"SJ\\\": {\\n      \\\"selection_f1\\\": 0.40734,\\n      \\\"delta_vs_greedy\\\": -0.00024,\\n      \\\"bootstrap_p\\\": 0.5105,\\n      \\\"bootstrap_ci95\\\": [\\n        -0.02152,\\n        0.02113\\n      ]\\n    },\\n    \\\"FK\\\": {\\n      \\\"selection_f1\\\": 0.39246,\\n      \\\"delta_vs_greedy\\\": -0.01513,\\n      \\\"bootstrap_p\\\": 0.9121,\\n      \\\"bootstrap_ci95\\\": [\\n        -0.03706,\\n        0.00654\\n      ]\\n    },\\n    \\\"EM\\\": {\\n      \\\"selection_f1\\\": 0.38037,\\n      \\\"delta_vs_greedy\\\": -0.02721,\\n      \\\"bootstrap_p\\\": 0.9947,\\n      \\\"bootstrap_ci95\\\": [\\n        -0.04888,\\n        -0.00592\\n      ]\\n    },\\n    \\\"LP\\\": {\\n      \\\"selection_f1\\\": 0.39409,\\n      \\\"delta_vs_greedy\\\": -0.01349,\\n      \\\"bootstrap_p\\\": 0.8524,\\n      \\\"bootstrap_ci95\\\": [\\n        -0.03901,\\n        0.01198\\n      ]\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "d145eea3-6c3c-406e-a2c1-37a9a3007f7c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"qwen3_4b_conll_ner\\\\\\\": {\\\\n    \\\\\\\"n_instances\\\\\\\": 2756,\\\\n    \\\\\\\"n_samples_per_instance\\\\\\\": 8,\\\\n    \\\\\\\"greedy_f1\\\\\\\": 0.92125,\\\\n    \\\\\\\"random_f1\\\\\\\": 0.91832,\\\\n    \\\\\\\"oracle_f1\\\\\\\": 0.93824,\\\\n    \\\\\\\"VC\\\\\\\": {\\\\n      \\\\\\\"selection_f1\\\\\\\": 0.92328,\\\\n      \\\\\\\"delta_vs_greedy\\\\\\\": 0.00203,\\\\n      \\\\\\\"bootstrap_p\\\\\\\": 0.0758,\\\\n      \\\\\\\"bootstrap_ci95\\\\\\\": [\\\\n        -0.00076,\\\\n        0.00489\\\\n      ]\\\\n    },\\\\n    \\\\\\\"SJ\\\\\\\": {\\\\n      \\\\\\\"selection_f1\\\\\\\": 0.92197,\\\\n      \\\\\\\"delta_vs_greedy\\\\\\\": 0.00072,\\\\n      \\\\\\\"bootstrap_p\\\\\\\": 0.2562,\\\\n      \\\\\\\"bootstrap_ci95\\\\\\\": [\\\\n        -0.0015,\\\\n        0.00302\\\\n      ]\\\\n    },\\\\n    \\\\\\\"FK\\\\\\\": {\\\\n      \\\\\\\"selection_f1\\\\\\\": 0.9215,\\\\n      \\\\\\\"delta_vs_greedy\\\\\\\": 0.00025,\\\\n      \\\\\\\"bootstrap_p\\\\\\\": 0.4105,\\\\n      \\\\\\\"bootstrap_ci95\\\\\\\": [\\\\n        -0.00191,\\\\n        0.00246\\\\n      ]\\\\n    },\\\\n    \\\\\\\"EM\\\\\\\": {\\\\n      \\\\\\\"selection_f1\\\\\\\": 0.92196,\\\\n      \\\\\\\"delta_vs_greedy\\\\\\\": 0.00071,\\\\n      \\\\\\\"bootstrap_p\\\\\\\": 0.2545,\\\\n      \\\\\\\"bootstrap_ci95\\\\\\\": [\\\\n        -0.00149,\\\\n        0.00296\\\\n      ]\\\\n    },\\\\n    \\\\\\\"LP\\\\\\\": {\\\\n      \\\\\\\"selection_f1\\\\\\\": 0.92214,\\\\n      \\\\\\\"delta_vs_greedy\\\\\\\": 0.00089,\\\\n      \\\\\\\"bootstrap_p\\\\\\\": 0.0932,\\\\n      \\\\\\\"bootstrap_ci95\\\\\\\": [\\\\n        -0.00038,\\\\n        0.00237\\\\n      ]\\\\n    }\\\\n  },\\\\n  \\\\\\\"qwen3_4b_scierc_ner\\\\\\\": {\\\\n    \\\\\\\"n_instances\\\\\\\": 529,\\\\n    \\\\\\\"n_samples_per_instance\\\\\\\": 8,\\\\n    \\\\\\\"greedy_f1\\\\\\\": 0.66224,\\\\n    \\\\\\\"random_f1\\\\\\\": 0.59913,\\\\n    \\\\\\\"oracle_f1\\\\\\\": 0.79249,\\\\n    \\\\\\\"VC\\\\\\\": {\\\\n      \\\\\\\"selection_f1\\\\\\\": 0.62825,\\\\n      \\\\\\\"delta_vs_greedy\\\\\\\": -0.03399,\\\\n      \\\\\\\"bootstrap_p\\\\\\\": 0.9999,\\\\n      \\\\\\\"bootstrap_ci95\\\\\\\": [\\\\n        -0.0523,\\\\n        -0.01552\\\\n      ]\\\\n    },\\\\n    \\\\\\\"SJ\\\\\\\": {\\\\n      \\\\\\\"selection_f1\\\\\\\": 0.64733,\\\\n      \\\\\\\"delta_vs_greedy\\\\\\\": -0.01491,\\\\n      \\\\\\\"bootstrap_p\\\\\\\": 0.9749,\\\\n      \\\\\\\"bootstrap_ci95\\\\\\\": [\\\\n        -0.03009,\\\\n        1e-05\\\\n      ]\\\\n    },\\\\n    \\\\\\\"FK\\\\\\\": {\\\\n      \\\\\\\"selection_f1\\\\\\\": 0.64663,\\\\n      \\\\\\\"delta_vs_greedy\\\\\\\": -0.01561,\\\\n      \\\\\\\"bootstrap_p\\\\\\\": 0.9795,\\\\n      \\\\\\\"bootstrap_ci95\\\\\\\": [\\\\n        -0.03082,\\\\n        -0.00058\\\\n      ]\\\\n    },\\\\n    \\\\\\\"EM\\\\\\\": {\\\\n      \\\\\\\"selection_f1\\\\\\\": 0.64357,\\\\n      \\\\\\\"delta_vs_greedy\\\\\\\": -0.01867,\\\\n      \\\\\\\"bootstrap_p\\\\\\\": 0.992,\\\\n      \\\\\\\"bootstrap_ci95\\\\\\\": [\\\\n        -0.03429,\\\\n        -0.00296\\\\n      ]\\\\n    },\\\\n    \\\\\\\"LP\\\\\\\": {\\\\n      \\\\\\\"selection_f1\\\\\\\": 0.63994,\\\\n      \\\\\\\"delta_vs_greedy\\\\\\\": -0.0223,\\\\n      \\\\\\\"bootstrap_p\\\\\\\": 0.9983,\\\\n      \\\\\\\"bootstrap_ci95\\\\\\\": [\\\\n        -0.03748,\\\\n        -0.0073\\\\n      ]\\\\n    }\\\\n  },\\\\n  \\\\\\\"qwen3_4b_scierc_re\\\\\\\": {\\\\n    \\\\\\\"n_instances\\\\\\\": 397,\\\\n    \\\\\\\"n_samples_per_instance\\\\\\\": 8,\\\\n    \\\\\\\"greedy_f1\\\\\\\": 0.40759,\\\\n    \\\\\\\"random_f1\\\\\\\": 0.33498,\\\\n    \\\\\\\"oracle_f1\\\\\\\": 0.597,\\\\n    \\\\\\\"VC\\\\\\\": {\\\\n      \\\\\\\"selection_f1\\\\\\\": 0.40024,\\\\n      \\\\\\\"delta_vs_greedy\\\\\\\": -0.00735,\\\\n      \\\\\\\"bootstrap_p\\\\\\\": 0.7127,\\\\n      \\\\\\\"bootstrap_ci95\\\\\\\": [\\\\n        -0.03257,\\\\n        0.01827\\\\n      ]\\\\n    },\\\\n    \\\\\\\"SJ\\\\\\\": {\\\\n      \\\\\\\"selection_f1\\\\\\\": 0.40734,\\\\n      \\\\\\\"delta_vs_greedy\\\\\\\": -0.00024,\\\\n      \\\\\\\"bootstrap_p\\\\\\\": 0.5105,\\\\n      \\\\\\\"bootstrap_ci95\\\\\\\": [\\\\n        -0.02152,\\\\n        0.02113\\\\n      ]\\\\n    },\\\\n    \\\\\\\"FK\\\\\\\": {\\\\n      \\\\\\\"selection_f1\\\\\\\": 0.39246,\\\\n      \\\\\\\"delta_vs_greedy\\\\\\\": -0.01513,\\\\n      \\\\\\\"bootstrap_p\\\\\\\": 0.9121,\\\\n      \\\\\\\"bootstrap_ci95\\\\\\\": [\\\\n        -0.03706,\\\\n        0.00654\\\\n      ]\\\\n    },\\\\n    \\\\\\\"EM\\\\\\\": {\\\\n      \\\\\\\"selection_f1\\\\\\\": 0.38037,\\\\n      \\\\\\\"delta_vs_greedy\\\\\\\": -0.02721,\\\\n      \\\\\\\"bootstrap_p\\\\\\\": 0.9947,\\\\n      \\\\\\\"bootstrap_ci95\\\\\\\": [\\\\n        -0.04888,\\\\n        -0.00592\\\\n      ]\\\\n    },\\\\n    \\\\\\\"LP\\\\\\\": {\\\\n      \\\\\\\"selection_f1\\\\\\\": 0.39409,\\\\n      \\\\\\\"delta_vs_greedy\\\\\\\": -0.01349,\\\\n      \\\\\\\"bootstrap_p\\\\\\\": 0.8524,\\\\n      \\\\\\\"bootstrap_ci95\\\\\\\": [\\\\n        -0.03901,\\\\n        0.01198\\\\n      ]\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"qwen3_4b_conll_ner\\\": {\\n    \\\"n_instances\\\": 2756,\\n    \\\"n_samples_per_instance\\\": 8,\\n    \\\"greedy_f1\\\": 0.92125,\\n    \\\"random_f1\\\": 0.91832,\\n    \\\"oracle_f1\\\": 0.93824,\\n    \\\"VC\\\": {\\n      \\\"selection_f1\\\": 0.92328,\\n      \\\"delta_vs_greedy\\\": 0.00203,\\n      \\\"bootstrap_p\\\": 0.0758,\\n      \\\"bootstrap_ci95\\\": [\\n        -0.00076,\\n        0.00489\\n      ]\\n    },\\n    \\\"SJ\\\": {\\n      \\\"selection_f1\\\": 0.92197,\\n      \\\"delta_vs_greedy\\\": 0.00072,\\n      \\\"bootstrap_p\\\": 0.2562,\\n      \\\"bootstrap_ci95\\\": [\\n        -0.0015,\\n        0.00302\\n      ]\\n    },\\n    \\\"FK\\\": {\\n      \\\"selection_f1\\\": 0.9215,\\n      \\\"delta_vs_greedy\\\": 0.00025,\\n      \\\"bootstrap_p\\\": 0.4105,\\n      \\\"bootstrap_ci95\\\": [\\n        -0.00191,\\n        0.00246\\n      ]\\n    },\\n    \\\"EM\\\": {\\n      \\\"selection_f1\\\": 0.92196,\\n      \\\"delta_vs_greedy\\\": 0.00071,\\n      \\\"bootstrap_p\\\": 0.2545,\\n      \\\"bootstrap_ci95\\\": [\\n        -0.00149,\\n        0.00296\\n      ]\\n    },\\n    \\\"LP\\\": {\\n      \\\"selection_f1\\\": 0.92214,\\n      \\\"delta_vs_greedy\\\": 0.00089,\\n      \\\"bootstrap_p\\\": 0.0932,\\n      \\\"bootstrap_ci95\\\": [\\n        -0.00038,\\n        0.00237\\n      ]\\n    }\\n  },\\n  \\\"qwen3_4b_scierc_ner\\\": {\\n    \\\"n_instances\\\": 529,\\n    \\\"n_samples_per_instance\\\": 8,\\n    \\\"greedy_f1\\\": 0.66224,\\n    \\\"random_f1\\\": 0.59913,\\n    \\\"oracle_f1\\\": 0.79249,\\n    \\\"VC\\\": {\\n      \\\"selection_f1\\\": 0.62825,\\n      \\\"delta_vs_greedy\\\": -0.03399,\\n      \\\"bootstrap_p\\\": 0.9999,\\n      \\\"bootstrap_ci95\\\": [\\n        -0.0523,\\n        -0.01552\\n      ]\\n    },\\n    \\\"SJ\\\": {\\n      \\\"selection_f1\\\": 0.64733,\\n      \\\"delta_vs_greedy\\\": -0.01491,\\n      \\\"bootstrap_p\\\": 0.9749,\\n      \\\"bootstrap_ci95\\\": [\\n        -0.03009,\\n        1e-05\\n      ]\\n    },\\n    \\\"FK\\\": {\\n      \\\"selection_f1\\\": 0.64663,\\n      \\\"delta_vs_greedy\\\": -0.01561,\\n      \\\"bootstrap_p\\\": 0.9795,\\n      \\\"bootstrap_ci95\\\": [\\n        -0.03082,\\n        -0.00058\\n      ]\\n    },\\n    \\\"EM\\\": {\\n      \\\"selection_f1\\\": 0.64357,\\n      \\\"delta_vs_greedy\\\": -0.01867,\\n      \\\"bootstrap_p\\\": 0.992,\\n      \\\"bootstrap_ci95\\\": [\\n        -0.03429,\\n        -0.00296\\n      ]\\n    },\\n    \\\"LP\\\": {\\n      \\\"selection_f1\\\": 0.63994,\\n      \\\"delta_vs_greedy\\\": -0.0223,\\n      \\\"bootstrap_p\\\": 0.9983,\\n      \\\"bootstrap_ci95\\\": [\\n        -0.03748,\\n        -0.0073\\n      ]\\n    }\\n  },\\n  \\\"qwen3_4b_scierc_re\\\": {\\n    \\\"n_instances\\\": 397,\\n    \\\"n_samples_per_instance\\\": 8,\\n    \\\"greedy_f1\\\": 0.40759,\\n    \\\"random_f1\\\": 0.33498,\\n    \\\"oracle_f1\\\": 0.597,\\n    \\\"VC\\\": {\\n      \\\"selection_f1\\\": 0.40024,\\n      \\\"delta_vs_greedy\\\": -0.00735,\\n      \\\"bootstrap_p\\\": 0.7127,\\n      \\\"bootstrap_ci95\\\": [\\n        -0.03257,\\n        0.01827\\n      ]\\n    },\\n    \\\"SJ\\\": {\\n      \\\"selection_f1\\\": 0.40734,\\n      \\\"delta_vs_greedy\\\": -0.00024,\\n      \\\"bootstrap_p\\\": 0.5105,\\n      \\\"bootstrap_ci95\\\": [\\n        -0.02152,\\n        0.02113\\n      ]\\n    },\\n    \\\"FK\\\": {\\n      \\\"selection_f1\\\": 0.39246,\\n      \\\"delta_vs_greedy\\\": -0.01513,\\n      \\\"bootstrap_p\\\": 0.9121,\\n      \\\"bootstrap_ci95\\\": [\\n        -0.03706,\\n        0.00654\\n      ]\\n    },\\n    \\\"EM\\\": {\\n      \\\"selection_f1\\\": 0.38037,\\n      \\\"delta_vs_greedy\\\": -0.02721,\\n      \\\"bootstrap_p\\\": 0.9947,\\n      \\\"bootstrap_ci95\\\": [\\n        -0.04888,\\n        -0.00592\\n      ]\\n    },\\n    \\\"LP\\\": {\\n      \\\"selection_f1\\\": 0.39409,\\n      \\\"delta_vs_greedy\\\": -0.01349,\\n      \\\"bootstrap_p\\\": 0.8524,\\n      \\\"bootstrap_ci95\\\": [\\n        -0.03901,\\n        0.01198\\n      ]\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 32_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_016fPYb8p38TALHaLb6jmvnw`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "ls /root/autodl-tmp/struct_self_consist_ie/output/analysis_round8/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "f4487f78-f80c-4ed1-bb9f-e38b4bd09270",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011qf11mwcCrhVjn5tNLSwUR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 35618,
+      "cache_read_input_tokens": 31807,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 35618
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 33 · 2026-05-15T23:53:22.409Z_
+
+<details><summary>↩ Tool result · `toolu_016fPYb8p38TALHaLb6jmvnw`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"epsilon_fine_grain.json\\nepsilon_sweep.csv\\nepsilon_sweep.py\\nexp017_t07_lp_range.json\\nfk_bootstrap_test.json\\nrun_epsilon_fine.py\\nrun_sj_union_conll.py\\nrun_task2.py\\nrun_task3.py\\nseed456_lp_range.json\\nsj_normalizer_ablation.json\\nsj_union_conll.json\\nthinking_token_lp_dilution.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "29bd17cb-d4e6-47c4-8873-6bcd1f5931e8",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"epsilon_fine_grain.json\\\\nepsilon_sweep.csv\\\\nepsilon_sweep.py\\\\nexp017_t07_lp_range.json\\\\nfk_bootstrap_test.json\\\\nrun_epsilon_fine.py\\\\nrun_sj_union_conll.py\\\\nrun_task2.py\\\\nrun_task3.py\\\\nseed456_lp_range.json\\\\nsj_normalizer_ablation.json\\\\nsj_union_conll.json\\\\nthinking_token_lp_dilution.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"epsilon_fine_grain.json\\nepsilon_sweep.csv\\nepsilon_sweep.py\\nexp017_t07_lp_range.json\\nfk_bootstrap_test.json\\nrun_epsilon_fine.py\\nrun_sj_union_conll.py\\nrun_task2.py\\nrun_task3.py\\nseed456_lp_range.json\\nsj_normalizer_ablation.json\\nsj_union_conll.json\\nthinking_token_lp_dilution.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 34_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The `selection_f1_4b_results.json` doesn't have the 8B ρ values for Table 4. Let me search for where the Table 4 values come from. I need to find files containing 0.383 (SJ for Table 4) and look at scale ablation related files.
+
+Let me search more broadly, and also check the scale_qwen3_4b_conll and exp_qwen3_4b* directories, and any scale-related analysis files.
+
+Also, I notice something in the multiseed data:
+
+
+- `n16_3seed_5signal_results.json` has N=16 data
+- For seed=42 N=16: SJ=0.3984
+- For seed=123 N=8: SJ=0.3878
+
+Wait - Table 4 SJ=.383 could be a 3-seed average of the N=8 data. Looking at `analysis_unified_rho_full.json`, I see qwen_scierc_n8_seed42 has SJ=0.3599 and FK=0.2665, while qwen_scierc_n8_seed123 has SJ=0.3878 and FK=0.2628. Let me check what the multiseed table shows.
+
+The appendix lists Qwen NER as SJ .364±.018, FK .254±.016 across 3 seeds. But averaging just the two seeds I found (0.3599 + 0.3878)/2 = 0.37385, which rounds to 0.374, not the 0.383 in Table 4. And Table 4 specifically says "8B recomputed under matched conditions" with seed=42, so that doesn't match either. Let me look at the scale experiment data to see if there's another source for these numbers.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "cfd1c5ec-b4d4-4f47-93af-967ecff2d858",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014g15G3v9TRwfGSXCjWmAs1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4217,
+      "cache_read_input_tokens": 67425,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4217
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 35_
+
+需要找 Table 4 中 SJ=.383, FK=.259 的来源。搜索包含这些值的文件，以及 scale ablation 相关的分析。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "04525589-de39-4059-89a3-ef9973195c2b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014g15G3v9TRwfGSXCjWmAs1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4217,
+      "cache_read_input_tokens": 67425,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4217
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 36_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01JHMuGuz33CtfPVfACjR8fJ`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "find /root/autodl-tmp/struct_self_consist_ie/output -name \"*.json\" -newer /root/autodl-tmp/struct_self_consist_ie/output/selection_f1_4b_results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "adc14b3d-da5f-47a3-8825-c2a189080af8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014g15G3v9TRwfGSXCjWmAs1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4217,
+      "cache_read_input_tokens": 67425,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4217
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 37 · 2026-05-15T23:53:39.987Z_
+
+<details><summary>↩ Tool result · `toolu_01JHMuGuz33CtfPVfACjR8fJ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/output/review_round8/r8w3_sj_normalizer_comparison.json\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round8/r8w3_sj_union_v2.json\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round8/r8w4_lp_range_analysis.json\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round8/task1_sj_normalizer_final.json\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round8/task2_lp_range_final.json\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round8/r8w2_thinking_token_lp.json\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round8/r7c1_re_multiseed_selection.json\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round8/r7c1_re_multiseed.json\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round8/r8w5_n8_multiseed.json\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round8/r8w2_thinking_token_analysis.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "a896729d-10b8-4764-ac6a-82a6a43e7935",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/review_round8/r8w3_sj_normalizer_comparison.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round8/r8w3_sj_union_v2.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round8/r8w4_lp_range_analysis.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round8/task1_sj_normalizer_final.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round8/task2_lp_range_final.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round8/r8w2_thinking_token_lp.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round8/r7c1_re_multiseed_selection.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round8/r7c1_re_multiseed.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round8/r8w5_n8_multiseed.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round8/r8w2_thinking_token_analysis.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/output/review_round8/r8w3_sj_normalizer_comparison.json\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round8/r8w3_sj_union_v2.json\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round8/r8w4_lp_range_analysis.json\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round8/task1_sj_normalizer_final.json\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round8/task2_lp_range_final.json\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round8/r8w2_thinking_token_lp.json\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round8/r7c1_re_multiseed_selection.json\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round8/r7c1_re_multiseed.json\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round8/r8w5_n8_multiseed.json\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round8/r8w2_thinking_token_analysis.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 38_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01WRHtwZQDxeR8vJB1nBUioK`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "find /root/autodl-tmp/struct_self_consist_ie/output -name \"*scale*\" -o -name \"*4b*\" -o -name \"*ablation*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "f0125172-7f7c-4f38-a1dc-eb5b87217427",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014g15G3v9TRwfGSXCjWmAs1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4217,
+      "cache_read_input_tokens": 67425,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4217
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 39 · 2026-05-15T23:53:40.934Z_
+
+<details><summary>↩ Tool result · `toolu_01WRHtwZQDxeR8vJB1nBUioK`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/output/analysis_round8/sj_normalizer_ablation.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_qwen3_4b_conll_scs_inference\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_scale_qwen3_4b_conll\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_scale_qwen3_4b_conll/scale_ablation_report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_qwen3_4b_conll_merge_inference_v2\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_qwen3_4b_conll_scs_inference_v2\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_qwen3_4b_scierc_scs_inference\\n/root/autodl-tmp/struct_self_consist_ie/output/selection_f1_4b_results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "22e8825c-0cb9-491d-81e9-9b6f9e4f6274",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/analysis_round8/sj_normalizer_ablation.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_qwen3_4b_conll_scs_inference\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_scale_qwen3_4b_conll\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_scale_qwen3_4b_conll/scale_ablation_report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_qwen3_4b_conll_merge_inference_v2\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_qwen3_4b_conll_scs_inference_v2\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_qwen3_4b_scierc_scs_inference\\\\n/root/autodl-tmp/struct_self_consist_ie/output/selection_f1_4b_results.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/output/analysis_round8/sj_normalizer_ablation.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_qwen3_4b_conll_scs_inference\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_scale_qwen3_4b_conll\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_scale_qwen3_4b_conll/scale_ablation_report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_qwen3_4b_conll_merge_inference_v2\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_qwen3_4b_conll_scs_inference_v2\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_qwen3_4b_scierc_scs_inference\\n/root/autodl-tmp/struct_self_consist_ie/output/selection_f1_4b_results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 40_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_016CxKmXdrTbJbmi67HWV3R8`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "grep -rl \"0.383\\|0.3830\\|0.3826\\|0.3828\\|0.3832\\|0.3834\" /root/autodl-tmp/struct_self_consist_ie/output/ --include=\"*.json\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "ecbb5a2d-31b2-470a-8f5e-79fc312df983",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014g15G3v9TRwfGSXCjWmAs1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4217,
+      "cache_read_input_tokens": 67425,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4217
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 41 · 2026-05-15T23:53:41.661Z_
+
+<details><summary>↩ Tool result · `toolu_016CxKmXdrTbJbmi67HWV3R8`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "7596c049-42ad-4a82-b8aa-60db8775c8cd",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 42_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01WzDs8ELfDiWESnc6Zqzjck`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/exp_scale_qwen3_4b_conll/scale_ablation_report.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "05da7f38-b002-4c1a-929b-1afa138c77da",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Y2TkWCHrE1SWZTC998xFpB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2129,
+      "cache_read_input_tokens": 71642,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2129
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 43 · 2026-05-15T23:53:45.246Z_
+
+<details><summary>↩ Tool result · `toolu_01WzDs8ELfDiWESnc6Zqzjck`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"qwen3_8b_conll\\\": {\\n    \\\"n_total\\\": 3453,\\n    \\\"n_valid\\\": 2756,\\n    \\\"n_conditional\\\": 2617,\\n    \\\"greedy_f1\\\": 0.9079,\\n    \\\"oracle_f1\\\": 0.9483,\\n    \\\"lp_tied_count\\\": 694,\\n    \\\"lp_tied_pct\\\": 25.2,\\n    \\\"full\\\": {\\n      \\\"n\\\": 2756,\\n      \\\"SJ\\\": {\\n        \\\"rho\\\": 0.4357,\\n        \\\"auroc\\\": 0.8008\\n      },\\n      \\\"FK\\\": {\\n        \\\"rho\\\": 0.3998,\\n        \\\"auroc\\\": 0.7741\\n      },\\n      \\\"LP\\\": {\\n        \\\"rho\\\": 0.3157,\\n        \\\"auroc\\\": 0.7532\\n      },\\n      \\\"EM\\\": {\\n        \\\"rho\\\": 0.4507,\\n        \\\"auroc\\\": 0.8156\\n      },\\n      \\\"Voting\\\": {\\n        \\\"rho\\\": 0.4237,\\n        \\\"auroc\\\": 0.7889\\n      },\\n      \\\"greedy_f1_mean\\\": 0.9079\\n    },\\n    \\\"conditional\\\": {\\n      \\\"n\\\": 2617,\\n      \\\"SJ\\\": {\\n        \\\"rho\\\": 0.3994,\\n        \\\"auroc\\\": 0.8061\\n      },\\n      \\\"FK\\\": {\\n        \\\"rho\\\": 0.3521,\\n        \\\"auroc\\\": 0.7699\\n      },\\n      \\\"LP\\\": {\\n        \\\"rho\\\": 0.3671,\\n        \\\"auroc\\\": 0.8185\\n      },\\n      \\\"EM\\\": {\\n        \\\"rho\\\": 0.4449,\\n        \\\"auroc\\\": 0.842\\n      },\\n      \\\"Voting\\\": {\\n        \\\"rho\\\": 0.3521,\\n        \\\"auroc\\\": 0.7697\\n      },\\n      \\\"greedy_f1_mean\\\": 0.9561\\n    },\\n    \\\"model\\\": \\\"Qwen3-8B\\\"\\n  },\\n  \\\"qwen3_4b_conll\\\": {\\n    \\\"n_total\\\": 3453,\\n    \\\"n_valid\\\": 2756,\\n    \\\"n_conditional\\\": 2640,\\n    \\\"greedy_f1\\\": 0.9208,\\n    \\\"oracle_f1\\\": 0.9384,\\n    \\\"lp_tied_count\\\": 1971,\\n    \\\"lp_tied_pct\\\": 71.5,\\n    \\\"full\\\": {\\n      \\\"n\\\": 2756,\\n      \\\"SJ\\\": {\\n        \\\"rho\\\": 0.4324,\\n        \\\"auroc\\\": 0.6931\\n      },\\n      \\\"FK\\\": {\\n        \\\"rho\\\": 0.4244,\\n        \\\"auroc\\\": 0.6906\\n      },\\n      \\\"LP\\\": {\\n        \\\"rho\\\": 0.3295,\\n        \\\"auroc\\\": 0.7737\\n      },\\n      \\\"EM\\\": {\\n        \\\"rho\\\": 0.4261,\\n        \\\"auroc\\\": 0.6919\\n      },\\n      \\\"Voting\\\": {\\n        \\\"rho\\\": 0.4006,\\n        \\\"auroc\\\": 0.688\\n      },\\n      \\\"greedy_f1_mean\\\": 0.9208\\n    },\\n    \\\"conditional\\\": {\\n      \\\"n\\\": 2640,\\n      \\\"SJ\\\": {\\n        \\\"rho\\\": 0.4404,\\n        \\\"auroc\\\": 0.7102\\n      },\\n      \\\"FK\\\": {\\n        \\\"rho\\\": 0.4302,\\n        \\\"auroc\\\": 0.7069\\n      },\\n      \\\"LP\\\": {\\n        \\\"rho\\\": 0.3381,\\n        \\\"auroc\\\": 0.8116\\n      },\\n      \\\"EM\\\": {\\n        \\\"rho\\\": 0.4368,\\n        \\\"auroc\\\": 0.7102\\n      },\\n      \\\"Voting\\\": {\\n        \\\"rho\\\": 0.3578,\\n        \\\"auroc\\\": 0.681\\n      },\\n      \\\"greedy_f1_mean\\\": 0.9613\\n    },\\n    \\\"model\\\": \\\"Qwen3-4B\\\"\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "34baddaa-cbe8-43c0-a007-09eadfaeac80",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"qwen3_8b_conll\\\\\\\": {\\\\n    \\\\\\\"n_total\\\\\\\": 3453,\\\\n    \\\\\\\"n_valid\\\\\\\": 2756,\\\\n    \\\\\\\"n_conditional\\\\\\\": 2617,\\\\n    \\\\\\\"greedy_f1\\\\\\\": 0.9079,\\\\n    \\\\\\\"oracle_f1\\\\\\\": 0.9483,\\\\n    \\\\\\\"lp_tied_count\\\\\\\": 694,\\\\n    \\\\\\\"lp_tied_pct\\\\\\\": 25.2,\\\\n    \\\\\\\"full\\\\\\\": {\\\\n      \\\\\\\"n\\\\\\\": 2756,\\\\n      \\\\\\\"SJ\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.4357,\\\\n        \\\\\\\"auroc\\\\\\\": 0.8008\\\\n      },\\\\n      \\\\\\\"FK\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.3998,\\\\n        \\\\\\\"auroc\\\\\\\": 0.7741\\\\n      },\\\\n      \\\\\\\"LP\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.3157,\\\\n        \\\\\\\"auroc\\\\\\\": 0.7532\\\\n      },\\\\n      \\\\\\\"EM\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.4507,\\\\n        \\\\\\\"auroc\\\\\\\": 0.8156\\\\n      },\\\\n      \\\\\\\"Voting\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.4237,\\\\n        \\\\\\\"auroc\\\\\\\": 0.7889\\\\n      },\\\\n      \\\\\\\"greedy_f1_mean\\\\\\\": 0.9079\\\\n    },\\\\n    \\\\\\\"conditional\\\\\\\": {\\\\n      \\\\\\\"n\\\\\\\": 2617,\\\\n      \\\\\\\"SJ\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.3994,\\\\n        \\\\\\\"auroc\\\\\\\": 0.8061\\\\n      },\\\\n      \\\\\\\"FK\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.3521,\\\\n        \\\\\\\"auroc\\\\\\\": 0.7699\\\\n      },\\\\n      \\\\\\\"LP\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.3671,\\\\n        \\\\\\\"auroc\\\\\\\": 0.8185\\\\n      },\\\\n      \\\\\\\"EM\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.4449,\\\\n        \\\\\\\"auroc\\\\\\\": 0.842\\\\n      },\\\\n      \\\\\\\"Voting\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.3521,\\\\n        \\\\\\\"auroc\\\\\\\": 0.7697\\\\n      },\\\\n      \\\\\\\"greedy_f1_mean\\\\\\\": 0.9561\\\\n    },\\\\n    \\\\\\\"model\\\\\\\": \\\\\\\"Qwen3-8B\\\\\\\"\\\\n  },\\\\n  \\\\\\\"qwen3_4b_conll\\\\\\\": {\\\\n    \\\\\\\"n_total\\\\\\\": 3453,\\\\n    \\\\\\\"n_valid\\\\\\\": 2756,\\\\n    \\\\\\\"n_conditional\\\\\\\": 2640,\\\\n    \\\\\\\"greedy_f1\\\\\\\": 0.9208,\\\\n    \\\\\\\"oracle_f1\\\\\\\": 0.9384,\\\\n    \\\\\\\"lp_tied_count\\\\\\\": 1971,\\\\n    \\\\\\\"lp_tied_pct\\\\\\\": 71.5,\\\\n    \\\\\\\"full\\\\\\\": {\\\\n      \\\\\\\"n\\\\\\\": 2756,\\\\n      \\\\\\\"SJ\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.4324,\\\\n        \\\\\\\"auroc\\\\\\\": 0.6931\\\\n      },\\\\n      \\\\\\\"FK\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.4244,\\\\n        \\\\\\\"auroc\\\\\\\": 0.6906\\\\n      },\\\\n      \\\\\\\"LP\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.3295,\\\\n        \\\\\\\"auroc\\\\\\\": 0.7737\\\\n      },\\\\n      \\\\\\\"EM\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.4261,\\\\n        \\\\\\\"auroc\\\\\\\": 0.6919\\\\n      },\\\\n      \\\\\\\"Voting\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.4006,\\\\n        \\\\\\\"auroc\\\\\\\": 0.688\\\\n      },\\\\n      \\\\\\\"greedy_f1_mean\\\\\\\": 0.9208\\\\n    },\\\\n    \\\\\\\"conditional\\\\\\\": {\\\\n      \\\\\\\"n\\\\\\\": 2640,\\\\n      \\\\\\\"SJ\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.4404,\\\\n        \\\\\\\"auroc\\\\\\\": 0.7102\\\\n      },\\\\n      \\\\\\\"FK\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.4302,\\\\n        \\\\\\\"auroc\\\\\\\": 0.7069\\\\n      },\\\\n      \\\\\\\"LP\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.3381,\\\\n        \\\\\\\"auroc\\\\\\\": 0.8116\\\\n      },\\\\n      \\\\\\\"EM\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.4368,\\\\n        \\\\\\\"auroc\\\\\\\": 0.7102\\\\n      },\\\\n      \\\\\\\"Voting\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.3578,\\\\n        \\\\\\\"auroc\\\\\\\": 0.681\\\\n      },\\\\n      \\\\\\\"greedy_f1_mean\\\\\\\": 0.9613\\\\n    },\\\\n    \\\\\\\"model\\\\\\\": \\\\\\\"Qwen3-4B\\\\\\\"\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"qwen3_8b_conll\\\": {\\n    \\\"n_total\\\": 3453,\\n    \\\"n_valid\\\": 2756,\\n    \\\"n_conditional\\\": 2617,\\n    \\\"greedy_f1\\\": 0.9079,\\n    \\\"oracle_f1\\\": 0.9483,\\n    \\\"lp_tied_count\\\": 694,\\n    \\\"lp_tied_pct\\\": 25.2,\\n    \\\"full\\\": {\\n      \\\"n\\\": 2756,\\n      \\\"SJ\\\": {\\n        \\\"rho\\\": 0.4357,\\n        \\\"auroc\\\": 0.8008\\n      },\\n      \\\"FK\\\": {\\n        \\\"rho\\\": 0.3998,\\n        \\\"auroc\\\": 0.7741\\n      },\\n      \\\"LP\\\": {\\n        \\\"rho\\\": 0.3157,\\n        \\\"auroc\\\": 0.7532\\n      },\\n      \\\"EM\\\": {\\n        \\\"rho\\\": 0.4507,\\n        \\\"auroc\\\": 0.8156\\n      },\\n      \\\"Voting\\\": {\\n        \\\"rho\\\": 0.4237,\\n        \\\"auroc\\\": 0.7889\\n      },\\n      \\\"greedy_f1_mean\\\": 0.9079\\n    },\\n    \\\"conditional\\\": {\\n      \\\"n\\\": 2617,\\n      \\\"SJ\\\": {\\n        \\\"rho\\\": 0.3994,\\n        \\\"auroc\\\": 0.8061\\n      },\\n      \\\"FK\\\": {\\n        \\\"rho\\\": 0.3521,\\n        \\\"auroc\\\": 0.7699\\n      },\\n      \\\"LP\\\": {\\n        \\\"rho\\\": 0.3671,\\n        \\\"auroc\\\": 0.8185\\n      },\\n      \\\"EM\\\": {\\n        \\\"rho\\\": 0.4449,\\n        \\\"auroc\\\": 0.842\\n      },\\n      \\\"Voting\\\": {\\n        \\\"rho\\\": 0.3521,\\n        \\\"auroc\\\": 0.7697\\n      },\\n      \\\"greedy_f1_mean\\\": 0.9561\\n    },\\n    \\\"model\\\": \\\"Qwen3-8B\\\"\\n  },\\n  \\\"qwen3_4b_conll\\\": {\\n    \\\"n_total\\\": 3453,\\n    \\\"n_valid\\\": 2756,\\n    \\\"n_conditional\\\": 2640,\\n    \\\"greedy_f1\\\": 0.9208,\\n    \\\"oracle_f1\\\": 0.9384,\\n    \\\"lp_tied_count\\\": 1971,\\n    \\\"lp_tied_pct\\\": 71.5,\\n    \\\"full\\\": {\\n      \\\"n\\\": 2756,\\n      \\\"SJ\\\": {\\n        \\\"rho\\\": 0.4324,\\n        \\\"auroc\\\": 0.6931\\n      },\\n      \\\"FK\\\": {\\n        \\\"rho\\\": 0.4244,\\n        \\\"auroc\\\": 0.6906\\n      },\\n      \\\"LP\\\": {\\n        \\\"rho\\\": 0.3295,\\n        \\\"auroc\\\": 0.7737\\n      },\\n      \\\"EM\\\": {\\n        \\\"rho\\\": 0.4261,\\n        \\\"auroc\\\": 0.6919\\n      },\\n      \\\"Voting\\\": {\\n        \\\"rho\\\": 0.4006,\\n        \\\"auroc\\\": 0.688\\n      },\\n      \\\"greedy_f1_mean\\\": 0.9208\\n    },\\n    \\\"conditional\\\": {\\n      \\\"n\\\": 2640,\\n      \\\"SJ\\\": {\\n        \\\"rho\\\": 0.4404,\\n        \\\"auroc\\\": 0.7102\\n      },\\n      \\\"FK\\\": {\\n        \\\"rho\\\": 0.4302,\\n        \\\"auroc\\\": 0.7069\\n      },\\n      \\\"LP\\\": {\\n        \\\"rho\\\": 0.3381,\\n        \\\"auroc\\\": 0.8116\\n      },\\n      \\\"EM\\\": {\\n        \\\"rho\\\": 0.4368,\\n        \\\"auroc\\\": 0.7102\\n      },\\n      \\\"Voting\\\": {\\n        \\\"rho\\\": 0.3578,\\n        \\\"auroc\\\": 0.681\\n      },\\n      \\\"greedy_f1_mean\\\": 0.9613\\n    },\\n    \\\"model\\\": \\\"Qwen3-4B\\\"\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 44_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01SdiqAezfFGyuDWaLZg6HGW`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "grep -r \"0.383\" /root/autodl-tmp/struct_self_consist_ie/output/ --include=\"*.json\" -l",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "dad46175-24f2-4418-9082-a57cd8ec8477",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Y2TkWCHrE1SWZTC998xFpB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2129,
+      "cache_read_input_tokens": 71642,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2129
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 45 · 2026-05-15T23:53:46.189Z_
+
+<details><summary>↩ Tool result · `toolu_01SdiqAezfFGyuDWaLZg6HGW`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_003/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_004/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp004_re_diagnostic/per_relation_type.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed42_v2_r1024/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp016_signal_ensemble/selection_f1_full.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed123_200only/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp007_llama_inference/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp009_stratification_results.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_007_llama_seed123/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp004v2_re_diagnostic/threshold_sensitivity.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp004v2_re_diagnostic/cross_type_comparison.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp004v2_re_diagnostic/full_report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_015_v2/exp015_v2_metrics.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_009_v2/results.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_016_v2/linear_combo_grid.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed456_v2_ner/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed456_v2_ner/all_signals_report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_009_v2_re_rerun/results.json\\n/root/autodl-tmp/struct_self_consist_ie/output/n8_5signal_results.json\\n/root/autodl-tmp/struct_self_consist_ie/output/bootstrap_ci_summary.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/all_signals_5signal.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/reliability_data_1024.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_016_rerun_1024/logistic_ensemble.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_016_rerun_1024/selection_f1_full.json\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round2/llama_scierc_3seed_fresh_summary.json\\n/root/autodl-tmp/struct_self_consist_ie/output/n16_3seed_5signal_results.json\\n/root/autodl-tmp/struct_self_consist_ie/output/analysis_lp_range_cdf.json\\n/root/autodl-tmp/struct_self_consist_ie/output/analysis_fk_bootstrap_ci.json\\n/root/autodl-tmp/struct_self_consist_ie/output/analysis_scierc_n16_3seed_selection_f1.json\\n/root/autodl-tmp/struct_self_consist_ie/output/analysis_scierc_n16_3seed_selection_f1_merged.json\\n/root/autodl-tmp/struct_self_consist_ie/output/analysis_unified_rho_full.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "042d6f8f-dd37-4b31-84c9-bd961ee2a9ac",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_003/report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_004/report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp004_re_diagnostic/per_relation_type.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed42_v2_r1024/report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp016_signal_ensemble/selection_f1_full.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed123_200only/report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp007_llama_inference/report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp009_stratification_results.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_007_llama_seed123/report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp004v2_re_diagnostic/threshold_sensitivity.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp004v2_re_diagnostic/cross_type_comparison.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp004v2_re_diagnostic/full_report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_015_v2/exp015_v2_metrics.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_009_v2/results.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_016_v2/linear_combo_grid.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed456_v2_ner/report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed456_v2_ner/all_signals_report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_009_v2_re_rerun/results.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/n8_5signal_results.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/bootstrap_ci_summary.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/all_signals_5signal.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/reliability_data_1024.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_016_rerun_1024/logistic_ensemble.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_016_rerun_1024/selection_f1_full.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round2/llama_scierc_3seed_fresh_summary.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/n16_3seed_5signal_results.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/analysis_lp_range_cdf.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/analysis_fk_bootstrap_ci.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/analysis_scierc_n16_3seed_selection_f1.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/analysis_scierc_n16_3seed_selection_f1_merged.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/analysis_unified_rho_full.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_003/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_004/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp004_re_diagnostic/per_relation_type.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed42_v2_r1024/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp016_signal_ensemble/selection_f1_full.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed123_200only/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp007_llama_inference/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp009_stratification_results.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_007_llama_seed123/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp004v2_re_diagnostic/threshold_sensitivity.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp004v2_re_diagnostic/cross_type_comparison.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp004v2_re_diagnostic/full_report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_015_v2/exp015_v2_metrics.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_009_v2/results.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_016_v2/linear_combo_grid.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed456_v2_ner/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed456_v2_ner/all_signals_report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_009_v2_re_rerun/results.json\\n/root/autodl-tmp/struct_self_consist_ie/output/n8_5signal_results.json\\n/root/autodl-tmp/struct_self_consist_ie/output/bootstrap_ci_summary.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/all_signals_5signal.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/reliability_data_1024.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_016_rerun_1024/logistic_ensemble.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_016_rerun_1024/selection_f1_full.json\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round2/llama_scierc_3seed_fresh_summary.json\\n/root/autodl-tmp/struct_self_consist_ie/output/n16_3seed_5signal_results.json\\n/root/autodl-tmp/struct_self_consist_ie/output/analysis_lp_range_cdf.json\\n/root/autodl-tmp/struct_self_consist_ie/output/analysis_fk_bootstrap_ci.json\\n/root/autodl-tmp/struct_self_consist_ie/output/analysis_scierc_n16_3seed_selection_f1.json\\n/root/autodl-tmp/struct_self_consist_ie/output/analysis_scierc_n16_3seed_selection_f1_merged.json\\n/root/autodl-tmp/struct_self_consist_ie/output/analysis_unified_rho_full.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 46_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_013MU5oCsk78MahfXGm52QNC`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "ls /root/autodl-tmp/struct_self_consist_ie/output/exp_qwen3_4b_scierc_scs_inference/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "05bf3cdc-9979-40b1-87c4-ab8ee23deded",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Y2TkWCHrE1SWZTC998xFpB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2129,
+      "cache_read_input_tokens": 71642,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2129
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 47 · 2026-05-15T23:53:46.825Z_
+
+<details><summary>↩ Tool result · `toolu_013MU5oCsk78MahfXGm52QNC`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"report.json\\nsamples.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "15e21b25-e4d3-42c7-8f04-8bf2c4d57d7c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"report.json\\\\nsamples.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"report.json\\nsamples.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 48_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The scale_ablation_report.json has the CoNLL data but uses different values: 
+- 8B CoNLL: SJ=0.4357, FK=0.3998 (matches Table 1 and Table 4 for CoNLL)
+- 4B CoNLL: SJ=0.4324, FK=0.4244
+
+Wait, but Table 4 CoNLL 8B is SJ=.436, FK=.400 — that matches the unified registry `qwen_conll_n8_seed42`.
+
+
+There's a discrepancy with the SciERC numbers though — Table 4 shows SJ=.383, FK=.259 for 8B, but the registry has `qwen_scierc_n8_seed42` at SJ=.360, FK=.267. I need to track down where that .383/.259 comes from, maybe checking the 4B SciERC report or searching for those specific values in the results.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "31a902f7-42c1-40c9-8f49-fa400fdba324",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HVE8KKYZJthnVsPvZDXmVp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3371,
+      "cache_read_input_tokens": 73771,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3371
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 49_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_013qyFYe1ySsV2qqn1cEJstZ`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/exp_qwen3_4b_scierc_scs_inference/report.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "183145b0-4bb7-4c7e-abaf-2e8fbc41e73a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HVE8KKYZJthnVsPvZDXmVp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3371,
+      "cache_read_input_tokens": 73771,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3371
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 50_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01EwCPppFmTY3mCUtSbCNut6`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "grep -r \"0.259\" /root/autodl-tmp/struct_self_consist_ie/output/ --include=\"*.json\" -l",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "a29a7b6f-cdaa-4ec5-8919-736bbbe724a2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HVE8KKYZJthnVsPvZDXmVp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3371,
+      "cache_read_input_tokens": 73771,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3371
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 51 · 2026-05-15T23:54:01.059Z_
+
+<details><summary>↩ Tool result · `toolu_013qyFYe1ySsV2qqn1cEJstZ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"dataset\\\": \\\"scierc\\\",\\n  \\\"subtask\\\": \\\"joint\\\",\\n  \\\"n_samples\\\": 8,\\n  \\\"temperature\\\": 1.0,\\n  \\\"num_instances\\\": 551,\\n  \\\"use_train_format\\\": true,\\n  \\\"ner_greedy_f1\\\": 0.6611617312072894,\\n  \\\"ner_oracle_f1\\\": 0.7839488223320733,\\n  \\\"ner_oracle_headroom\\\": 0.12278709112478392,\\n  \\\"ner_fleiss_kappa_mean\\\": 0.3627662026254509,\\n  \\\"ner_soft_jaccard_mean\\\": 0.6417319480071191,\\n  \\\"ner_correlation_fleiss_vs_f1_full\\\": {\\n    \\\"rho\\\": 0.325825924958949,\\n    \\\"p_value\\\": 1.5059643082856944e-14,\\n    \\\"n\\\": 529\\n  },\\n  \\\"ner_correlation_softjaccard_vs_f1_full\\\": {\\n    \\\"rho\\\": 0.42206691768705,\\n    \\\"p_value\\\": 2.8900364123236118e-24,\\n    \\\"n\\\": 529\\n  },\\n  \\\"ner_correlation_fleiss_vs_f1_conditional\\\": {\\n    \\\"rho\\\": 0.28139474856764607,\\n    \\\"p_value\\\": 2.0895265978043796e-10,\\n    \\\"n\\\": 492\\n  },\\n  \\\"ner_correlation_softjaccard_vs_f1_conditional\\\": {\\n    \\\"rho\\\": 0.3807880496255638,\\n    \\\"p_value\\\": 2.007402504563935e-18,\\n    \\\"n\\\": 492\\n  },\\n  \\\"ner_n_gold_empty_filtered\\\": 22,\\n  \\\"ner_n_greedy_f1_zero_filtered\\\": 37,\\n  \\\"ner_structural_beats_surface\\\": true,\\n  \\\"ner_rho_advantage\\\": 0.096240992728101,\\n  \\\"ner_sample_f1_mean\\\": 0.5991348774074003,\\n  \\\"ner_sample_f1_std\\\": 0.3115358106123299,\\n  \\\"ner_sample_f1_pct_zero\\\": 11.36578449905482,\\n  \\\"ner_logprob_baseline\\\": {\\n    \\\"full\\\": {\\n      \\\"rho\\\": 0.2800331541140455,\\n      \\\"p_rho\\\": 5.483886459901985e-11,\\n      \\\"tau\\\": 0.20027883487619444,\\n      \\\"p_tau\\\": 5.0020767023235506e-11,\\n      \\\"auroc\\\": 0.6439186264608282,\\n      \\\"n\\\": 529\\n    },\\n    \\\"conditional\\\": {\\n      \\\"rho\\\": 0.22082506121957016,\\n      \\\"p_rho\\\": 7.54139592711259e-07,\\n      \\\"tau\\\": 0.15850227072478087,\\n      \\\"p_tau\\\": 5.929392334545479e-07,\\n      \\\"auroc\\\": 0.6227363685977475,\\n      \\\"n\\\": 492\\n    }\\n  },\\n  \\\"re_greedy_f1\\\": 0.413589364844904,\\n  \\\"re_oracle_f1\\\": 0.5845532559313478,\\n  \\\"re_oracle_headroom\\\": 0.17096389108644378,\\n  \\\"re_fleiss_kappa_mean\\\": 0.21928771494878732,\\n  \\\"re_soft_jaccard_mean\\\": 0.5220345499669466,\\n  \\\"re_correlation_fleiss_vs_f1_full\\\": {\\n    \\\"rho\\\": 0.3592801699349844,\\n    \\\"p_value\\\": 1.5357749907036103e-13,\\n    \\\"n\\\": 397\\n  },\\n  \\\"re_correlation_softjaccard_vs_f1_full\\\": {\\n    \\\"rho\\\": 0.26727299625989215,\\n    \\\"p_value\\\": 6.399436094575238e-08,\\n    \\\"n\\\": 397\\n  },\\n  \\\"re_correlation_fleiss_vs_f1_conditional\\\": {\\n    \\\"rho\\\": 0.2305172837888738,\\n    \\\"p_value\\\": 0.000250957150282477,\\n    \\\"n\\\": 248\\n  },\\n  \\\"re_correlation_softjaccard_vs_f1_conditional\\\": {\\n    \\\"rho\\\": 0.34677266451503785,\\n    \\\"p_value\\\": 2.0422636707331214e-08,\\n    \\\"n\\\": 248\\n  },\\n  \\\"re_n_gold_empty_filtered\\\": 154,\\n  \\\"re_n_greedy_f1_zero_filtered\\\": 149,\\n  \\\"re_structural_beats_surface\\\": false,\\n  \\\"re_rho_advantage\\\": -0.09200717367509226,\\n  \\\"re_sample_f1_mean\\\": 0.33498281083673853,\\n  \\\"re_sample_f1_std\\\": 0.3757009446152005,\\n  \\\"re_sample_f1_pct_zero\\\": 47.60705289672544,\\n  \\\"re_logprob_baseline\\\": {\\n    \\\"full\\\": {\\n      \\\"rho\\\": 0.35119903469134295,\\n      \\\"p_rho\\\": 5.747019958870511e-13,\\n      \\\"tau\\\": 0.2573981510747004,\\n      \\\"p_tau\\\": 1.3424157749789915e-12,\\n      \\\"auroc\\\": 0.6662836423063173,\\n      \\\"n\\\": 397\\n    },\\n    \\\"conditional\\\": {\\n      \\\"rho\\\": 0.11350711351303888,\\n      \\\"p_rho\\\": 0.07438273957363101,\\n      \\\"tau\\\": 0.08117057813099905,\\n      \\\"p_tau\\\": 0.07284900062507596,\\n      \\\"auroc\\\": 0.5569068678459937,\\n      \\\"n\\\": 248\\n    }\\n  },\\n  \\\"verdict\\\": \\\"FAIL\\\",\\n  \\\"verdict_note\\\": \\\"Joint mode: verdict requires RE ρ_sj ≥ 0.40 AND ρ_sj > ρ_fk AND any subtask headroom ≥ 2pp\\\",\\n  \\\"warning\\\": \\\"⚠️ >30% samples F1=0, recommend re-running at T=0.7\\\"\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "b6b2c84b-c24f-412f-889c-c296fa7c491f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"dataset\\\\\\\": \\\\\\\"scierc\\\\\\\",\\\\n  \\\\\\\"subtask\\\\\\\": \\\\\\\"joint\\\\\\\",\\\\n  \\\\\\\"n_samples\\\\\\\": 8,\\\\n  \\\\\\\"temperature\\\\\\\": 1.0,\\\\n  \\\\\\\"num_instances\\\\\\\": 551,\\\\n  \\\\\\\"use_train_format\\\\\\\": true,\\\\n  \\\\\\\"ner_greedy_f1\\\\\\\": 0.6611617312072894,\\\\n  \\\\\\\"ner_oracle_f1\\\\\\\": 0.7839488223320733,\\\\n  \\\\\\\"ner_oracle_headroom\\\\\\\": 0.12278709112478392,\\\\n  \\\\\\\"ner_fleiss_kappa_mean\\\\\\\": 0.3627662026254509,\\\\n  \\\\\\\"ner_soft_jaccard_mean\\\\\\\": 0.6417319480071191,\\\\n  \\\\\\\"ner_correlation_fleiss_vs_f1_full\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.325825924958949,\\\\n    \\\\\\\"p_value\\\\\\\": 1.5059643082856944e-14,\\\\n    \\\\\\\"n\\\\\\\": 529\\\\n  },\\\\n  \\\\\\\"ner_correlation_softjaccard_vs_f1_full\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.42206691768705,\\\\n    \\\\\\\"p_value\\\\\\\": 2.8900364123236118e-24,\\\\n    \\\\\\\"n\\\\\\\": 529\\\\n  },\\\\n  \\\\\\\"ner_correlation_fleiss_vs_f1_conditional\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.28139474856764607,\\\\n    \\\\\\\"p_value\\\\\\\": 2.0895265978043796e-10,\\\\n    \\\\\\\"n\\\\\\\": 492\\\\n  },\\\\n  \\\\\\\"ner_correlation_softjaccard_vs_f1_conditional\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.3807880496255638,\\\\n    \\\\\\\"p_value\\\\\\\": 2.007402504563935e-18,\\\\n    \\\\\\\"n\\\\\\\": 492\\\\n  },\\\\n  \\\\\\\"ner_n_gold_empty_filtered\\\\\\\": 22,\\\\n  \\\\\\\"ner_n_greedy_f1_zero_filtered\\\\\\\": 37,\\\\n  \\\\\\\"ner_structural_beats_surface\\\\\\\": true,\\\\n  \\\\\\\"ner_rho_advantage\\\\\\\": 0.096240992728101,\\\\n  \\\\\\\"ner_sample_f1_mean\\\\\\\": 0.5991348774074003,\\\\n  \\\\\\\"ner_sample_f1_std\\\\\\\": 0.3115358106123299,\\\\n  \\\\\\\"ner_sample_f1_pct_zero\\\\\\\": 11.36578449905482,\\\\n  \\\\\\\"ner_logprob_baseline\\\\\\\": {\\\\n    \\\\\\\"full\\\\\\\": {\\\\n      \\\\\\\"rho\\\\\\\": 0.2800331541140455,\\\\n      \\\\\\\"p_rho\\\\\\\": 5.483886459901985e-11,\\\\n      \\\\\\\"tau\\\\\\\": 0.20027883487619444,\\\\n      \\\\\\\"p_tau\\\\\\\": 5.0020767023235506e-11,\\\\n      \\\\\\\"auroc\\\\\\\": 0.6439186264608282,\\\\n      \\\\\\\"n\\\\\\\": 529\\\\n    },\\\\n    \\\\\\\"conditional\\\\\\\": {\\\\n      \\\\\\\"rho\\\\\\\": 0.22082506121957016,\\\\n      \\\\\\\"p_rho\\\\\\\": 7.54139592711259e-07,\\\\n      \\\\\\\"tau\\\\\\\": 0.15850227072478087,\\\\n      \\\\\\\"p_tau\\\\\\\": 5.929392334545479e-07,\\\\n      \\\\\\\"auroc\\\\\\\": 0.6227363685977475,\\\\n      \\\\\\\"n\\\\\\\": 492\\\\n    }\\\\n  },\\\\n  \\\\\\\"re_greedy_f1\\\\\\\": 0.413589364844904,\\\\n  \\\\\\\"re_oracle_f1\\\\\\\": 0.5845532559313478,\\\\n  \\\\\\\"re_oracle_headroom\\\\\\\": 0.17096389108644378,\\\\n  \\\\\\\"re_fleiss_kappa_mean\\\\\\\": 0.21928771494878732,\\\\n  \\\\\\\"re_soft_jaccard_mean\\\\\\\": 0.5220345499669466,\\\\n  \\\\\\\"re_correlation_fleiss_vs_f1_full\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.3592801699349844,\\\\n    \\\\\\\"p_value\\\\\\\": 1.5357749907036103e-13,\\\\n    \\\\\\\"n\\\\\\\": 397\\\\n  },\\\\n  \\\\\\\"re_correlation_softjaccard_vs_f1_full\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.26727299625989215,\\\\n    \\\\\\\"p_value\\\\\\\": 6.399436094575238e-08,\\\\n    \\\\\\\"n\\\\\\\": 397\\\\n  },\\\\n  \\\\\\\"re_correlation_fleiss_vs_f1_conditional\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.2305172837888738,\\\\n    \\\\\\\"p_value\\\\\\\": 0.000250957150282477,\\\\n    \\\\\\\"n\\\\\\\": 248\\\\n  },\\\\n  \\\\\\\"re_correlation_softjaccard_vs_f1_conditional\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.34677266451503785,\\\\n    \\\\\\\"p_value\\\\\\\": 2.0422636707331214e-08,\\\\n    \\\\\\\"n\\\\\\\": 248\\\\n  },\\\\n  \\\\\\\"re_n_gold_empty_filtered\\\\\\\": 154,\\\\n  \\\\\\\"re_n_greedy_f1_zero_filtered\\\\\\\": 149,\\\\n  \\\\\\\"re_structural_beats_surface\\\\\\\": false,\\\\n  \\\\\\\"re_rho_advantage\\\\\\\": -0.09200717367509226,\\\\n  \\\\\\\"re_sample_f1_mean\\\\\\\": 0.33498281083673853,\\\\n  \\\\\\\"re_sample_f1_std\\\\\\\": 0.3757009446152005,\\\\n  \\\\\\\"re_sample_f1_pct_zero\\\\\\\": 47.60705289672544,\\\\n  \\\\\\\"re_logprob_baseline\\\\\\\": {\\\\n    \\\\\\\"full\\\\\\\": {\\\\n      \\\\\\\"rho\\\\\\\": 0.35119903469134295,\\\\n      \\\\\\\"p_rho\\\\\\\": 5.747019958870511e-13,\\\\n      \\\\\\\"tau\\\\\\\": 0.2573981510747004,\\\\n      \\\\\\\"p_tau\\\\\\\": 1.3424157749789915e-12,\\\\n      \\\\\\\"auroc\\\\\\\": 0.6662836423063173,\\\\n      \\\\\\\"n\\\\\\\": 397\\\\n    },\\\\n    \\\\\\\"conditional\\\\\\\": {\\\\n      \\\\\\\"rho\\\\\\\": 0.11350711351303888,\\\\n      \\\\\\\"p_rho\\\\\\\": 0.07438273957363101,\\\\n      \\\\\\\"tau\\\\\\\": 0.08117057813099905,\\\\n      \\\\\\\"p_tau\\\\\\\": 0.07284900062507596,\\\\n      \\\\\\\"auroc\\\\\\\": 0.5569068678459937,\\\\n      \\\\\\\"n\\\\\\\": 248\\\\n    }\\\\n  },\\\\n  \\\\\\\"verdict\\\\\\\": \\\\\\\"FAIL\\\\\\\",\\\\n  \\\\\\\"verdict_note\\\\\\\": \\\\\\\"Joint mode: verdict requires RE ρ_sj ≥ 0.40 AND ρ_sj > ρ_fk AND any subtask headroom ≥ 2pp\\\\\\\",\\\\n  \\\\\\\"warning\\\\\\\": \\\\\\\"⚠️ >30% samples F1=0, recommend re-running at T=0.7\\\\\\\"\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"dataset\\\": \\\"scierc\\\",\\n  \\\"subtask\\\": \\\"joint\\\",\\n  \\\"n_samples\\\": 8,\\n  \\\"temperature\\\": 1.0,\\n  \\\"num_instances\\\": 551,\\n  \\\"use_train_format\\\": true,\\n  \\\"ner_greedy_f1\\\": 0.6611617312072894,\\n  \\\"ner_oracle_f1\\\": 0.7839488223320733,\\n  \\\"ner_oracle_headroom\\\": 0.12278709112478392,\\n  \\\"ner_fleiss_kappa_mean\\\": 0.3627662026254509,\\n  \\\"ner_soft_jaccard_mean\\\": 0.6417319480071191,\\n  \\\"ner_correlation_fleiss_vs_f1_full\\\": {\\n    \\\"rho\\\": 0.325825924958949,\\n    \\\"p_value\\\": 1.5059643082856944e-14,\\n    \\\"n\\\": 529\\n  },\\n  \\\"ner_correlation_softjaccard_vs_f1_full\\\": {\\n    \\\"rho\\\": 0.42206691768705,\\n    \\\"p_value\\\": 2.8900364123236118e-24,\\n    \\\"n\\\": 529\\n  },\\n  \\\"ner_correlation_fleiss_vs_f1_conditional\\\": {\\n    \\\"rho\\\": 0.28139474856764607,\\n    \\\"p_value\\\": 2.0895265978043796e-10,\\n    \\\"n\\\": 492\\n  },\\n  \\\"ner_correlation_softjaccard_vs_f1_conditional\\\": {\\n    \\\"rho\\\": 0.3807880496255638,\\n    \\\"p_value\\\": 2.007402504563935e-18,\\n    \\\"n\\\": 492\\n  },\\n  \\\"ner_n_gold_empty_filtered\\\": 22,\\n  \\\"ner_n_greedy_f1_zero_filtered\\\": 37,\\n  \\\"ner_structural_beats_surface\\\": true,\\n  \\\"ner_rho_advantage\\\": 0.096240992728101,\\n  \\\"ner_sample_f1_mean\\\": 0.5991348774074003,\\n  \\\"ner_sample_f1_std\\\": 0.3115358106123299,\\n  \\\"ner_sample_f1_pct_zero\\\": 11.36578449905482,\\n  \\\"ner_logprob_baseline\\\": {\\n    \\\"full\\\": {\\n      \\\"rho\\\": 0.2800331541140455,\\n      \\\"p_rho\\\": 5.483886459901985e-11,\\n      \\\"tau\\\": 0.20027883487619444,\\n      \\\"p_tau\\\": 5.0020767023235506e-11,\\n      \\\"auroc\\\": 0.6439186264608282,\\n      \\\"n\\\": 529\\n    },\\n    \\\"conditional\\\": {\\n      \\\"rho\\\": 0.22082506121957016,\\n      \\\"p_rho\\\": 7.54139592711259e-07,\\n      \\\"tau\\\": 0.15850227072478087,\\n      \\\"p_tau\\\": 5.929392334545479e-07,\\n      \\\"auroc\\\": 0.6227363685977475,\\n      \\\"n\\\": 492\\n    }\\n  },\\n  \\\"re_greedy_f1\\\": 0.413589364844904,\\n  \\\"re_oracle_f1\\\": 0.5845532559313478,\\n  \\\"re_oracle_headroom\\\": 0.17096389108644378,\\n  \\\"re_fleiss_kappa_mean\\\": 0.21928771494878732,\\n  \\\"re_soft_jaccard_mean\\\": 0.5220345499669466,\\n  \\\"re_correlation_fleiss_vs_f1_full\\\": {\\n    \\\"rho\\\": 0.3592801699349844,\\n    \\\"p_value\\\": 1.5357749907036103e-13,\\n    \\\"n\\\": 397\\n  },\\n  \\\"re_correlation_softjaccard_vs_f1_full\\\": {\\n    \\\"rho\\\": 0.26727299625989215,\\n    \\\"p_value\\\": 6.399436094575238e-08,\\n    \\\"n\\\": 397\\n  },\\n  \\\"re_correlation_fleiss_vs_f1_conditional\\\": {\\n    \\\"rho\\\": 0.2305172837888738,\\n    \\\"p_value\\\": 0.000250957150282477,\\n    \\\"n\\\": 248\\n  },\\n  \\\"re_correlation_softjaccard_vs_f1_conditional\\\": {\\n    \\\"rho\\\": 0.34677266451503785,\\n    \\\"p_value\\\": 2.0422636707331214e-08,\\n    \\\"n\\\": 248\\n  },\\n  \\\"re_n_gold_empty_filtered\\\": 154,\\n  \\\"re_n_greedy_f1_zero_filtered\\\": 149,\\n  \\\"re_structural_beats_surface\\\": false,\\n  \\\"re_rho_advantage\\\": -0.09200717367509226,\\n  \\\"re_sample_f1_mean\\\": 0.33498281083673853,\\n  \\\"re_sample_f1_std\\\": 0.3757009446152005,\\n  \\\"re_sample_f1_pct_zero\\\": 47.60705289672544,\\n  \\\"re_logprob_baseline\\\": {\\n    \\\"full\\\": {\\n      \\\"rho\\\": 0.35119903469134295,\\n      \\\"p_rho\\\": 5.747019958870511e-13,\\n      \\\"tau\\\": 0.2573981510747004,\\n      \\\"p_tau\\\": 1.3424157749789915e-12,\\n      \\\"auroc\\\": 0.6662836423063173,\\n      \\\"n\\\": 397\\n    },\\n    \\\"conditional\\\": {\\n      \\\"rho\\\": 0.11350711351303888,\\n      \\\"p_rho\\\": 0.07438273957363101,\\n      \\\"tau\\\": 0.08117057813099905,\\n      \\\"p_tau\\\": 0.07284900062507596,\\n      \\\"auroc\\\": 0.5569068678459937,\\n      \\\"n\\\": 248\\n    }\\n  },\\n  \\\"verdict\\\": \\\"FAIL\\\",\\n  \\\"verdict_note\\\": \\\"Joint mode: verdict requires RE ρ_sj ≥ 0.40 AND ρ_sj > ρ_fk AND any subtask headroom ≥ 2pp\\\",\\n  \\\"warning\\\": \\\"⚠️ >30% samples F1=0, recommend re-running at T=0.7\\\"\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 52_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01K2ynAZovx9bmFPChq4oRpZ`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/n8_5signal_results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "393cd50b-36d9-40c2-83e9-bd5193cf7846",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HVE8KKYZJthnVsPvZDXmVp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3371,
+      "cache_read_input_tokens": 73771,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3371
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 53 · 2026-05-15T23:54:01.488Z_
+
+<details><summary>↩ Tool result · `toolu_01EwCPppFmTY3mCUtSbCNut6`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_001/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_004/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_004/exp013_exact_match_report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_004/exp014_entity_voting_report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp004_re_diagnostic/per_relation_type.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp004_re_diagnostic/bootstrap_ci.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp004_re_diagnostic/ner_vs_re_comparison.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed42/exp001_all_signals_report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_seed456_t10_full/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp007_llama_inference/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp009_stratification_results.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_005_v2_temperature/temperature_sensitivity_report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp004v2_re_diagnostic/threshold_sensitivity.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_015_v2/exp015_v2_metrics.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_006_v2/exp_006_v2_results.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_009_v2/results.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_016_v2/linear_combo_grid.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_009_v2_re_rerun/results.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16_s456/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/bootstrap_ci_summary.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/reliability_data_1024.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16_s456_r1024/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_016_rerun_1024/correlation_matrix.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_016_rerun_1024/linear_combo_grid.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_016_rerun_1024/logistic_ensemble.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_011_ood_scierc_to_conll/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/analysis_lp_range_cdf.json\\n/root/autodl-tmp/struct_self_consist_ie/output/analysis_fk_bootstrap_ci.json\\n/root/autodl-tmp/struct_self_consist_ie/output/analysis_scierc_n16_3seed_selection_f1.json\\n/root/autodl-tmp/struct_self_consist_ie/output/analysis_scierc_re_n16_3seed_selection_f1.json\\n/root/autodl-tmp/struct_self_consist_ie/output/analysis_scierc_n16_3seed_selection_f1_merged.json\\n/root/autodl-tmp/struct_self_consist_ie/output/analysis_epsilon_sweep/epsilon_sweep_summary.json\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round8/r7c1_re_multiseed_selection.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "b8385ec5-b503-4985-b66c-6ba899049c3e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_001/report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_004/report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_004/exp013_exact_match_report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_004/exp014_entity_voting_report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp004_re_diagnostic/per_relation_type.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp004_re_diagnostic/bootstrap_ci.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp004_re_diagnostic/ner_vs_re_comparison.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed42/exp001_all_signals_report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_seed456_t10_full/report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp007_llama_inference/report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp009_stratification_results.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_005_v2_temperature/temperature_sensitivity_report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp004v2_re_diagnostic/threshold_sensitivity.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_015_v2/exp015_v2_metrics.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_006_v2/exp_006_v2_results.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_009_v2/results.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_016_v2/linear_combo_grid.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_009_v2_re_rerun/results.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16_s456/report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/bootstrap_ci_summary.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/reliability_data_1024.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16_s456_r1024/report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_016_rerun_1024/correlation_matrix.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_016_rerun_1024/linear_combo_grid.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_016_rerun_1024/logistic_ensemble.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_011_ood_scierc_to_conll/report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/analysis_lp_range_cdf.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/analysis_fk_bootstrap_ci.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/analysis_scierc_n16_3seed_selection_f1.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/analysis_scierc_re_n16_3seed_selection_f1.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/analysis_scierc_n16_3seed_selection_f1_merged.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/analysis_epsilon_sweep/epsilon_sweep_summary.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round8/r7c1_re_multiseed_selection.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_001/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_004/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_004/exp013_exact_match_report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_004/exp014_entity_voting_report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp004_re_diagnostic/per_relation_type.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp004_re_diagnostic/bootstrap_ci.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp004_re_diagnostic/ner_vs_re_comparison.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed42/exp001_all_signals_report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_seed456_t10_full/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp007_llama_inference/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp009_stratification_results.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_005_v2_temperature/temperature_sensitivity_report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp004v2_re_diagnostic/threshold_sensitivity.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_015_v2/exp015_v2_metrics.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_006_v2/exp_006_v2_results.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_009_v2/results.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_016_v2/linear_combo_grid.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_009_v2_re_rerun/results.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16_s456/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/bootstrap_ci_summary.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/reliability_data_1024.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16_s456_r1024/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_016_rerun_1024/correlation_matrix.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_016_rerun_1024/linear_combo_grid.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_016_rerun_1024/logistic_ensemble.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_011_ood_scierc_to_conll/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/analysis_lp_range_cdf.json\\n/root/autodl-tmp/struct_self_consist_ie/output/analysis_fk_bootstrap_ci.json\\n/root/autodl-tmp/struct_self_consist_ie/output/analysis_scierc_n16_3seed_selection_f1.json\\n/root/autodl-tmp/struct_self_consist_ie/output/analysis_scierc_re_n16_3seed_selection_f1.json\\n/root/autodl-tmp/struct_self_consist_ie/output/analysis_scierc_n16_3seed_selection_f1_merged.json\\n/root/autodl-tmp/struct_self_consist_ie/output/analysis_epsilon_sweep/epsilon_sweep_summary.json\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round8/r7c1_re_multiseed_selection.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 54 · 2026-05-15T23:54:01.906Z_
+
+<details><summary>↩ Tool result · `toolu_01K2ynAZovx9bmFPChq4oRpZ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"exp_002_conll_n8\\\": {\\n    \\\"n_total\\\": 3453,\\n    \\\"n_valid\\\": 2756,\\n    \\\"n_conditional\\\": 2617,\\n    \\\"full\\\": {\\n      \\\"n\\\": 2756,\\n      \\\"SJ\\\": {\\n        \\\"rho\\\": 0.4357,\\n        \\\"p_rho\\\": 4.712009758299203e-128,\\n        \\\"auroc\\\": 0.8008,\\n        \\\"ece\\\": 0.0871\\n      },\\n      \\\"FK\\\": {\\n        \\\"rho\\\": 0.3998,\\n        \\\"p_rho\\\": 2.6472486805154954e-106,\\n        \\\"auroc\\\": 0.7741,\\n        \\\"ece\\\": 0.1867\\n      },\\n      \\\"logprob\\\": {\\n        \\\"rho\\\": 0.3157,\\n        \\\"p_rho\\\": 8.156803289565863e-65,\\n        \\\"auroc\\\": 0.7532,\\n        \\\"ece\\\": 0.1419\\n      },\\n      \\\"EM\\\": {\\n        \\\"rho\\\": 0.4507,\\n        \\\"p_rho\\\": 5.131271323324008e-138,\\n        \\\"auroc\\\": 0.8156,\\n        \\\"ece\\\": 0.0993\\n      },\\n      \\\"voting_conf\\\": {\\n        \\\"rho\\\": 0.4237,\\n        \\\"p_rho\\\": 1.70625274366621e-120,\\n        \\\"auroc\\\": 0.7889,\\n        \\\"ece\\\": 0.4712\\n      },\\n      \\\"greedy_f1_mean\\\": 0.9079\\n    },\\n    \\\"conditional\\\": {\\n      \\\"n\\\": 2617,\\n      \\\"SJ\\\": {\\n        \\\"rho\\\": 0.3994,\\n        \\\"p_rho\\\": 8.386092104206872e-101,\\n        \\\"auroc\\\": 0.8061,\\n        \\\"ece\\\": 0.1013\\n      },\\n      \\\"FK\\\": {\\n        \\\"rho\\\": 0.3521,\\n        \\\"p_rho\\\": 3.194643880667708e-77,\\n        \\\"auroc\\\": 0.7699,\\n        \\\"ece\\\": 0.1924\\n      },\\n      \\\"logprob\\\": {\\n        \\\"rho\\\": 0.3671,\\n        \\\"p_rho\\\": 2.729796996601389e-84,\\n        \\\"auroc\\\": 0.8185,\\n        \\\"ece\\\": 0.1837\\n      },\\n      \\\"EM\\\": {\\n        \\\"rho\\\": 0.4449,\\n        \\\"p_rho\\\": 1.9991366022672317e-127,\\n        \\\"auroc\\\": 0.842,\\n        \\\"ece\\\": 0.1161\\n      },\\n      \\\"voting_conf\\\": {\\n        \\\"rho\\\": 0.3521,\\n        \\\"p_rho\\\": 2.9827366631109865e-77,\\n        \\\"auroc\\\": 0.7697,\\n        \\\"ece\\\": 0.5573\\n      },\\n      \\\"greedy_f1_mean\\\": 0.9561\\n    },\\n    \\\"dataset\\\": \\\"conll2003\\\"\\n  },\\n  \\\"exp_007_llama_n8\\\": {\\n    \\\"n_total\\\": 551,\\n    \\\"n_valid\\\": 529,\\n    \\\"n_conditional\\\": 478,\\n    \\\"full\\\": {\\n      \\\"n\\\": 529,\\n      \\\"SJ\\\": {\\n        \\\"rho\\\": 0.363,\\n        \\\"p_rho\\\": 6.413176314947488e-18,\\n        \\\"auroc\\\": 0.7099,\\n        \\\"ece\\\": 0.1272\\n      },\\n      \\\"FK\\\": {\\n        \\\"rho\\\": 0.3266,\\n        \\\"p_rho\\\": 1.287570740649135e-14,\\n        \\\"auroc\\\": 0.6648,\\n        \\\"ece\\\": 0.1897\\n      },\\n      \\\"logprob\\\": {\\n        \\\"rho\\\": 0.1827,\\n        \\\"p_rho\\\": 2.3501690317650754e-05,\\n        \\\"auroc\\\": 0.5569,\\n        \\\"ece\\\": 0.0874\\n      },\\n      \\\"EM\\\": {\\n        \\\"rho\\\": 0.3152,\\n        \\\"p_rho\\\": 1.1549560195690028e-13,\\n        \\\"auroc\\\": 0.7658,\\n        \\\"ece\\\": 0.1764\\n      },\\n      \\\"voting_conf\\\": {\\n        \\\"rho\\\": 0.4331,\\n        \\\"p_rho\\\": 1.3417662297453879e-25,\\n        \\\"auroc\\\": 0.7283,\\n        \\\"ece\\\": 0.1178\\n      },\\n      \\\"greedy_f1_mean\\\": 0.646\\n    },\\n    \\\"conditional\\\": {\\n      \\\"n\\\": 478,\\n      \\\"SJ\\\": {\\n        \\\"rho\\\": 0.3114,\\n        \\\"p_rho\\\": 3.2938800700438393e-12,\\n        \\\"auroc\\\": 0.6954,\\n        \\\"ece\\\": 0.1433\\n      },\\n      \\\"FK\\\": {\\n        \\\"rho\\\": 0.2259,\\n        \\\"p_rho\\\": 6.000276463748115e-07,\\n        \\\"auroc\\\": 0.6424,\\n        \\\"ece\\\": 0.2165\\n      },\\n      \\\"logprob\\\": {\\n        \\\"rho\\\": 0.1089,\\n        \\\"p_rho\\\": 0.01724994426000704,\\n        \\\"auroc\\\": 0.5365,\\n        \\\"ece\\\": 0.1249\\n      },\\n      \\\"EM\\\": {\\n        \\\"rho\\\": 0.3437,\\n        \\\"p_rho\\\": 1.0609617090593958e-14,\\n        \\\"auroc\\\": 0.7655,\\n        \\\"ece\\\": 0.1929\\n      },\\n      \\\"voting_conf\\\": {\\n        \\\"rho\\\": 0.3473,\\n        \\\"p_rho\\\": 5.404065654769051e-15,\\n        \\\"auroc\\\": 0.7059,\\n        \\\"ece\\\": 0.2447\\n      },\\n      \\\"greedy_f1_mean\\\": 0.7149\\n    },\\n    \\\"dataset\\\": \\\"scierc\\\"\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "a2c432c4-57f0-4ab7-888d-949881b0b2a1",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"exp_002_conll_n8\\\\\\\": {\\\\n    \\\\\\\"n_total\\\\\\\": 3453,\\\\n    \\\\\\\"n_valid\\\\\\\": 2756,\\\\n    \\\\\\\"n_conditional\\\\\\\": 2617,\\\\n    \\\\\\\"full\\\\\\\": {\\\\n      \\\\\\\"n\\\\\\\": 2756,\\\\n      \\\\\\\"SJ\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.4357,\\\\n        \\\\\\\"p_rho\\\\\\\": 4.712009758299203e-128,\\\\n        \\\\\\\"auroc\\\\\\\": 0.8008,\\\\n        \\\\\\\"ece\\\\\\\": 0.0871\\\\n      },\\\\n      \\\\\\\"FK\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.3998,\\\\n        \\\\\\\"p_rho\\\\\\\": 2.6472486805154954e-106,\\\\n        \\\\\\\"auroc\\\\\\\": 0.7741,\\\\n        \\\\\\\"ece\\\\\\\": 0.1867\\\\n      },\\\\n      \\\\\\\"logprob\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.3157,\\\\n        \\\\\\\"p_rho\\\\\\\": 8.156803289565863e-65,\\\\n        \\\\\\\"auroc\\\\\\\": 0.7532,\\\\n        \\\\\\\"ece\\\\\\\": 0.1419\\\\n      },\\\\n      \\\\\\\"EM\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.4507,\\\\n        \\\\\\\"p_rho\\\\\\\": 5.131271323324008e-138,\\\\n        \\\\\\\"auroc\\\\\\\": 0.8156,\\\\n        \\\\\\\"ece\\\\\\\": 0.0993\\\\n      },\\\\n      \\\\\\\"voting_conf\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.4237,\\\\n        \\\\\\\"p_rho\\\\\\\": 1.70625274366621e-120,\\\\n        \\\\\\\"auroc\\\\\\\": 0.7889,\\\\n        \\\\\\\"ece\\\\\\\": 0.4712\\\\n      },\\\\n      \\\\\\\"greedy_f1_mean\\\\\\\": 0.9079\\\\n    },\\\\n    \\\\\\\"conditional\\\\\\\": {\\\\n      \\\\\\\"n\\\\\\\": 2617,\\\\n      \\\\\\\"SJ\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.3994,\\\\n        \\\\\\\"p_rho\\\\\\\": 8.386092104206872e-101,\\\\n        \\\\\\\"auroc\\\\\\\": 0.8061,\\\\n        \\\\\\\"ece\\\\\\\": 0.1013\\\\n      },\\\\n      \\\\\\\"FK\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.3521,\\\\n        \\\\\\\"p_rho\\\\\\\": 3.194643880667708e-77,\\\\n        \\\\\\\"auroc\\\\\\\": 0.7699,\\\\n        \\\\\\\"ece\\\\\\\": 0.1924\\\\n      },\\\\n      \\\\\\\"logprob\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.3671,\\\\n        \\\\\\\"p_rho\\\\\\\": 2.729796996601389e-84,\\\\n        \\\\\\\"auroc\\\\\\\": 0.8185,\\\\n        \\\\\\\"ece\\\\\\\": 0.1837\\\\n      },\\\\n      \\\\\\\"EM\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.4449,\\\\n        \\\\\\\"p_rho\\\\\\\": 1.9991366022672317e-127,\\\\n        \\\\\\\"auroc\\\\\\\": 0.842,\\\\n        \\\\\\\"ece\\\\\\\": 0.1161\\\\n      },\\\\n      \\\\\\\"voting_conf\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.3521,\\\\n        \\\\\\\"p_rho\\\\\\\": 2.9827366631109865e-77,\\\\n        \\\\\\\"auroc\\\\\\\": 0.7697,\\\\n        \\\\\\\"ece\\\\\\\": 0.5573\\\\n      },\\\\n      \\\\\\\"greedy_f1_mean\\\\\\\": 0.9561\\\\n    },\\\\n    \\\\\\\"dataset\\\\\\\": \\\\\\\"conll2003\\\\\\\"\\\\n  },\\\\n  \\\\\\\"exp_007_llama_n8\\\\\\\": {\\\\n    \\\\\\\"n_total\\\\\\\": 551,\\\\n    \\\\\\\"n_valid\\\\\\\": 529,\\\\n    \\\\\\\"n_conditional\\\\\\\": 478,\\\\n    \\\\\\\"full\\\\\\\": {\\\\n      \\\\\\\"n\\\\\\\": 529,\\\\n      \\\\\\\"SJ\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.363,\\\\n        \\\\\\\"p_rho\\\\\\\": 6.413176314947488e-18,\\\\n        \\\\\\\"auroc\\\\\\\": 0.7099,\\\\n        \\\\\\\"ece\\\\\\\": 0.1272\\\\n      },\\\\n      \\\\\\\"FK\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.3266,\\\\n        \\\\\\\"p_rho\\\\\\\": 1.287570740649135e-14,\\\\n        \\\\\\\"auroc\\\\\\\": 0.6648,\\\\n        \\\\\\\"ece\\\\\\\": 0.1897\\\\n      },\\\\n      \\\\\\\"logprob\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.1827,\\\\n        \\\\\\\"p_rho\\\\\\\": 2.3501690317650754e-05,\\\\n        \\\\\\\"auroc\\\\\\\": 0.5569,\\\\n        \\\\\\\"ece\\\\\\\": 0.0874\\\\n      },\\\\n      \\\\\\\"EM\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.3152,\\\\n        \\\\\\\"p_rho\\\\\\\": 1.1549560195690028e-13,\\\\n        \\\\\\\"auroc\\\\\\\": 0.7658,\\\\n        \\\\\\\"ece\\\\\\\": 0.1764\\\\n      },\\\\n      \\\\\\\"voting_conf\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.4331,\\\\n        \\\\\\\"p_rho\\\\\\\": 1.3417662297453879e-25,\\\\n        \\\\\\\"auroc\\\\\\\": 0.7283,\\\\n        \\\\\\\"ece\\\\\\\": 0.1178\\\\n      },\\\\n      \\\\\\\"greedy_f1_mean\\\\\\\": 0.646\\\\n    },\\\\n    \\\\\\\"conditional\\\\\\\": {\\\\n      \\\\\\\"n\\\\\\\": 478,\\\\n      \\\\\\\"SJ\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.3114,\\\\n        \\\\\\\"p_rho\\\\\\\": 3.2938800700438393e-12,\\\\n        \\\\\\\"auroc\\\\\\\": 0.6954,\\\\n        \\\\\\\"ece\\\\\\\": 0.1433\\\\n      },\\\\n      \\\\\\\"FK\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.2259,\\\\n        \\\\\\\"p_rho\\\\\\\": 6.000276463748115e-07,\\\\n        \\\\\\\"auroc\\\\\\\": 0.6424,\\\\n        \\\\\\\"ece\\\\\\\": 0.2165\\\\n      },\\\\n      \\\\\\\"logprob\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.1089,\\\\n        \\\\\\\"p_rho\\\\\\\": 0.01724994426000704,\\\\n        \\\\\\\"auroc\\\\\\\": 0.5365,\\\\n        \\\\\\\"ece\\\\\\\": 0.1249\\\\n      },\\\\n      \\\\\\\"EM\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.3437,\\\\n        \\\\\\\"p_rho\\\\\\\": 1.0609617090593958e-14,\\\\n        \\\\\\\"auroc\\\\\\\": 0.7655,\\\\n        \\\\\\\"ece\\\\\\\": 0.1929\\\\n      },\\\\n      \\\\\\\"voting_conf\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.3473,\\\\n        \\\\\\\"p_rho\\\\\\\": 5.404065654769051e-15,\\\\n        \\\\\\\"auroc\\\\\\\": 0.7059,\\\\n        \\\\\\\"ece\\\\\\\": 0.2447\\\\n      },\\\\n      \\\\\\\"greedy_f1_mean\\\\\\\": 0.7149\\\\n    },\\\\n    \\\\\\\"dataset\\\\\\\": \\\\\\\"scierc\\\\\\\"\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"exp_002_conll_n8\\\": {\\n    \\\"n_total\\\": 3453,\\n    \\\"n_valid\\\": 2756,\\n    \\\"n_conditional\\\": 2617,\\n    \\\"full\\\": {\\n      \\\"n\\\": 2756,\\n      \\\"SJ\\\": {\\n        \\\"rho\\\": 0.4357,\\n        \\\"p_rho\\\": 4.712009758299203e-128,\\n        \\\"auroc\\\": 0.8008,\\n        \\\"ece\\\": 0.0871\\n      },\\n      \\\"FK\\\": {\\n        \\\"rho\\\": 0.3998,\\n        \\\"p_rho\\\": 2.6472486805154954e-106,\\n        \\\"auroc\\\": 0.7741,\\n        \\\"ece\\\": 0.1867\\n      },\\n      \\\"logprob\\\": {\\n        \\\"rho\\\": 0.3157,\\n        \\\"p_rho\\\": 8.156803289565863e-65,\\n        \\\"auroc\\\": 0.7532,\\n        \\\"ece\\\": 0.1419\\n      },\\n      \\\"EM\\\": {\\n        \\\"rho\\\": 0.4507,\\n        \\\"p_rho\\\": 5.131271323324008e-138,\\n        \\\"auroc\\\": 0.8156,\\n        \\\"ece\\\": 0.0993\\n      },\\n      \\\"voting_conf\\\": {\\n        \\\"rho\\\": 0.4237,\\n        \\\"p_rho\\\": 1.70625274366621e-120,\\n        \\\"auroc\\\": 0.7889,\\n        \\\"ece\\\": 0.4712\\n      },\\n      \\\"greedy_f1_mean\\\": 0.9079\\n    },\\n    \\\"conditional\\\": {\\n      \\\"n\\\": 2617,\\n      \\\"SJ\\\": {\\n        \\\"rho\\\": 0.3994,\\n        \\\"p_rho\\\": 8.386092104206872e-101,\\n        \\\"auroc\\\": 0.8061,\\n        \\\"ece\\\": 0.1013\\n      },\\n      \\\"FK\\\": {\\n        \\\"rho\\\": 0.3521,\\n        \\\"p_rho\\\": 3.194643880667708e-77,\\n        \\\"auroc\\\": 0.7699,\\n        \\\"ece\\\": 0.1924\\n      },\\n      \\\"logprob\\\": {\\n        \\\"rho\\\": 0.3671,\\n        \\\"p_rho\\\": 2.729796996601389e-84,\\n        \\\"auroc\\\": 0.8185,\\n        \\\"ece\\\": 0.1837\\n      },\\n      \\\"EM\\\": {\\n        \\\"rho\\\": 0.4449,\\n        \\\"p_rho\\\": 1.9991366022672317e-127,\\n        \\\"auroc\\\": 0.842,\\n        \\\"ece\\\": 0.1161\\n      },\\n      \\\"voting_conf\\\": {\\n        \\\"rho\\\": 0.3521,\\n        \\\"p_rho\\\": 2.9827366631109865e-77,\\n        \\\"auroc\\\": 0.7697,\\n        \\\"ece\\\": 0.5573\\n      },\\n      \\\"greedy_f1_mean\\\": 0.9561\\n    },\\n    \\\"dataset\\\": \\\"conll2003\\\"\\n  },\\n  \\\"exp_007_llama_n8\\\": {\\n    \\\"n_total\\\": 551,\\n    \\\"n_valid\\\": 529,\\n    \\\"n_conditional\\\": 478,\\n    \\\"full\\\": {\\n      \\\"n\\\": 529,\\n      \\\"SJ\\\": {\\n        \\\"rho\\\": 0.363,\\n        \\\"p_rho\\\": 6.413176314947488e-18,\\n        \\\"auroc\\\": 0.7099,\\n        \\\"ece\\\": 0.1272\\n      },\\n      \\\"FK\\\": {\\n        \\\"rho\\\": 0.3266,\\n        \\\"p_rho\\\": 1.287570740649135e-14,\\n        \\\"auroc\\\": 0.6648,\\n        \\\"ece\\\": 0.1897\\n      },\\n      \\\"logprob\\\": {\\n        \\\"rho\\\": 0.1827,\\n        \\\"p_rho\\\": 2.3501690317650754e-05,\\n        \\\"auroc\\\": 0.5569,\\n        \\\"ece\\\": 0.0874\\n      },\\n      \\\"EM\\\": {\\n        \\\"rho\\\": 0.3152,\\n        \\\"p_rho\\\": 1.1549560195690028e-13,\\n        \\\"auroc\\\": 0.7658,\\n        \\\"ece\\\": 0.1764\\n      },\\n      \\\"voting_conf\\\": {\\n        \\\"rho\\\": 0.4331,\\n        \\\"p_rho\\\": 1.3417662297453879e-25,\\n        \\\"auroc\\\": 0.7283,\\n        \\\"ece\\\": 0.1178\\n      },\\n      \\\"greedy_f1_mean\\\": 0.646\\n    },\\n    \\\"conditional\\\": {\\n      \\\"n\\\": 478,\\n      \\\"SJ\\\": {\\n        \\\"rho\\\": 0.3114,\\n        \\\"p_rho\\\": 3.2938800700438393e-12,\\n        \\\"auroc\\\": 0.6954,\\n        \\\"ece\\\": 0.1433\\n      },\\n      \\\"FK\\\": {\\n        \\\"rho\\\": 0.2259,\\n        \\\"p_rho\\\": 6.000276463748115e-07,\\n        \\\"auroc\\\": 0.6424,\\n        \\\"ece\\\": 0.2165\\n      },\\n      \\\"logprob\\\": {\\n        \\\"rho\\\": 0.1089,\\n        \\\"p_rho\\\": 0.01724994426000704,\\n        \\\"auroc\\\": 0.5365,\\n        \\\"ece\\\": 0.1249\\n      },\\n      \\\"EM\\\": {\\n        \\\"rho\\\": 0.3437,\\n        \\\"p_rho\\\": 1.0609617090593958e-14,\\n        \\\"auroc\\\": 0.7655,\\n        \\\"ece\\\": 0.1929\\n      },\\n      \\\"voting_conf\\\": {\\n        \\\"rho\\\": 0.3473,\\n        \\\"p_rho\\\": 5.404065654769051e-15,\\n        \\\"auroc\\\": 0.7059,\\n        \\\"ece\\\": 0.2447\\n      },\\n      \\\"greedy_f1_mean\\\": 0.7149\\n    },\\n    \\\"dataset\\\": \\\"scierc\\\"\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 55_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I found something very important. Looking at the 4B SciERC report (`exp_qwen3_4b_scierc_scs_inference/report.json`):
+- NER SJ full rho: 0.422 (n=529)
+- NER FK full rho: 0.326 (n=529)
+- NER SJ conditional rho: 0.381 (n=492)
+- NER FK conditional rho: 0.281 (n=492)
+
+Wait - the 4B report shows full SJ=0.422, full FK=0.326, and conditional SJ=0.381, conditional FK=0.281.
+
+
+Now I'm checking Table 4 and seeing that the 4B SciERC numbers (SJ=.422, FK=.326) match the full dataset metrics, not the conditional ones. The 4B filtering excludes gold_empty instances (n=529) versus the conditional set which filters greedy_f1_zero (n=492), so "full" refers to the larger dataset without those exclusions.
+
+For the 8B column though, the values (SJ=.383, FK=.259) don't align with any of the unified registry entries I'm seeing for the 8B seed=42 configuration. The full dataset shows SJ=0.3599 and FK=0.2665, which are different. I'm wondering if these 8B values might be calculated on a different subset of instances than what I'm comparing against.
+
+The caption mentions "8B recomputed under matched conditions," which suggests the 8B metrics were recalculated to match some constraint from the 4B model—possibly filtering to instances where 4B produces valid outputs, since the two models would have different greedy outputs and thus different conditional filtering results. But the table itself doesn't explicitly state what conditional filtering was applied, and when I look at the CoNLL NER rows, the 8B full values (SJ=.436, FK=.400) match perfectly, so I'm still trying to figure out what subset produced those intermediate numbers.
+
+Now I'm checking the scale ablation report to see if the 4B value of .422 corresponds to anything there. The report shows qwen3_4b_conll full with SJ rho=0.4324, which rounds to .432, not .422—so there's a discrepancy I need to trace back to the actual inference outputs. I found the source of the 4B values—they're coming from the SciERC inference results which match Table 4 perfectly. Now I'm checking whether the 8B values in Table 4 might be derived from multiseed analysis instead of a single run.
+
+Looking at the individual seed results, seed 123 gives SJ≈0.388 and FK≈0.263, which are close but not exact matches to the .383 and .259 in the table. Even averaging the two seeds together yields .374 and .265, which still doesn't align with what's reported.
+
+Let me reconsider what "recomputed under matched conditions" might mean. Perhaps the 8B analysis was rerun using the 4B's filtering approach instead. Looking at the 4B's conditional NER values—SJ conditional rho of 0.381 and FK conditional rho of 0.281—these are much closer to the Table 4 values, though still not exact matches.
+
+Now I'm checking whether the Table 4 8B values might actually be the conditional values themselves, computed by excluding greedy_f1=0 instances from the 8B dataset. I need to verify this against the old results files, but I'm noticing that the `n8_5signal_results.json` doesn't have a Qwen SciERC N=8 conditional entry, though `analysis_unified_rho_full.json` does have `qwen_scierc_n8_seed42`.
+
+The 4B report shows SJ (full) = 0.422, which matches Table 4 when rounded, so that's consistent. But I'm wondering if the 4B inference code uses a different script version that handles edge cases differently than the 8B unified pipeline. Let me search for where that 0.383 value appears across the experiment files to trace back its source. I'm realizing the grep match on "0.383" was picking up "0.3835" as a substring, which explains the confusion. The actual value for qwen_scierc_n8_seed42 from the unified analysis is 0.3599, not 0.383. To track down where Table 4's specific numbers come from, I should check the artifacts or code directory for the scale ablation scripts that generated those hardcoded values.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "60ba0928-5d0e-450c-8d4b-733db9cf11d9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01393DTNZ5Py4jKGpbS8kaE8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6465,
+      "cache_read_input_tokens": 77142,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6465
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 56_
+
+需要找 Table 4 中 SJ=.383, FK=.259 的精确来源。检查 4B SciERC 报告中的条件过滤差异，以及是否有专门的 scale ablation 分析脚本。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "f9d1c4f2-e192-4faa-92f0-1e280cb11f75",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01393DTNZ5Py4jKGpbS8kaE8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6465,
+      "cache_read_input_tokens": 77142,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6465
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 57_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01FiqWwGihUjudZzy45prDkY`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "ls /root/autodl-tmp/struct_self_consist_ie/output/exp_qwen3_4b_conll_scs_inference_v2/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "bc69958d-a337-47ef-8699-846f9e8890df",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01393DTNZ5Py4jKGpbS8kaE8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6465,
+      "cache_read_input_tokens": 77142,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6465
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 58 · 2026-05-15T23:54:54.711Z_
+
+<details><summary>↩ Tool result · `toolu_01FiqWwGihUjudZzy45prDkY`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"report.json\\nsamples.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "7d0144fa-b976-41dd-b051-db21da9872ad",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"report.json\\\\nsamples.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"report.json\\nsamples.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 59_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01LFhgdfDzRh9hKCGH6JkKNw`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "find /root/autodl-tmp/struct_self_consist_ie/code -name \"*scale*\" -o -name \"*4b*\" -o -name \"*ablation*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "3ab8d29a-8bf4-402f-bb2b-a06f059e21c8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01393DTNZ5Py4jKGpbS8kaE8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6465,
+      "cache_read_input_tokens": 77142,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6465
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 60 · 2026-05-15T23:54:56.019Z_
+
+<details><summary>↩ Tool result · `toolu_01LFhgdfDzRh9hKCGH6JkKNw`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/code/analyze_scale_ablation_4b.py\\n/root/autodl-tmp/struct_self_consist_ie/code/selection_f1_4b.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.34}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "d7118379-67c2-464d-bee3-ab3cb0311c50",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/code/analyze_scale_ablation_4b.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/selection_f1_4b.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.34}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/code/analyze_scale_ablation_4b.py\\n/root/autodl-tmp/struct_self_consist_ie/code/selection_f1_4b.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.34}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 61_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_0118JYA3SnZg2uss9CbxLxQ9`</summary>
+
+```json
+{
+  "pattern": "scale_ablation|tab:scale|\\.383|\\.259",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts",
+  "glob": "*.tex",
+  "output_mode": "content"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "a07900a6-59bc-4491-88d9-b8ff811b2522",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01393DTNZ5Py4jKGpbS8kaE8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6465,
+      "cache_read_input_tokens": 77142,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6465
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 62 · 2026-05-15T23:54:57.427Z_
+
+<details><summary>↩ Tool result · `toolu_0118JYA3SnZg2uss9CbxLxQ9`</summary>
+
+```text
+artifacts/dream_reports/dream_20260514T105303/best/paper.tex:447:SJ & 0.388 & 0.383 & +0.005 & $T{=}0.7$ \\
+artifacts/dream_reports/dream_20260514T105303/best/paper.tex:448:FK & 0.321 & 0.259 & +0.062 & $T{=}0.7$ \\
+artifacts/dream_reports/dream_20260514T105303/best/paper.tex:455:[Omitted long matching line]
+artifacts/_project/paper/experiments.tex:209:On conditional RE (non-zero F1 instances), SJ recovers to $\rho{=}0.405$ while FK drops to $\rho{=}0.259$, confirming that structural advantage is robust across both models and evaluation conditions.
+artifacts/dream_reports/dream_20260514T105303/median/paper.tex:348:\SJ{} & .388 & .383 & .005 & .234 & .244 & $-$.010 \\
+artifacts/dream_reports/dream_20260514T105303/median/paper.tex:350:\FK{} & .321 & .259 & .062 & .184 & .278 & $-$.094 \\
+artifacts/dream_reports/dream_20260514T093336/best/paper.tex:179:8  & .383 & .268 & +.115 & .775 & .108 \\
+artifacts/dream_reports/dream_20260514T093336/best/paper.tex:188:[Omitted long matching line]
+artifacts/dream_reports/dream_20260514T093336/best/paper.tex:201:Qwen3-8B        & .667 & .383 & .268 & +.115 & .108 \\
+artifacts/dream_reports/dream_20260514T093336/best/paper.tex:243:                      & 1.0 & .383 & --- & .108 & 12.2 \\
+artifacts/dream_reports/dream_20260514T093336/best/paper.tex:268:\multirow{2}{*}{NER} & 8  & .383 & --- & .268 & .108 \\
+artifacts/dream_reports/dream_20260514T093336/worst/paper.tex:149:SciERC & Scientific & 6 & .667 & .383 & .259 & +.124 \\
+artifacts/dream_reports/dream_20260514T093336/worst/paper.tex:158:On SciERC, SJ achieves $\rho{=}0.383$ (vs.\ FK $\rho{=}0.259$, $\Delta{=}+0.124$), a statistically significant advantage ($p < 10^{-17}$).
+artifacts/dream_reports/dream_20260514T093336/worst/paper.tex:215:NER & $\rho_{\text{SJ}}$ (full) & .376 & .383 & $-$.007 \\
+artifacts/dream_reports/dream_20260514T093336/worst/paper.tex:216:NER & $\rho_{\text{FK}}$ (full) & .268 & .259 & +.009 \\
+artifacts/dream_reports/dream_20260514T093336/worst/paper.tex:231:For NER, $T{=}0.7$ leaves $\rho_{\text{SJ}}$ essentially unchanged (0.376 vs.\ 0.383) while reducing oracle headroom by 3.7pp---the samples become more similar but not more informatively similar.
+artifacts/dream_reports/dream_20260514T093336/worst/paper.tex:291:8 & .383 & .259 & +.124 & 10.9pp & 12.2\% \\
+artifacts/dream_reports/dream_20260514T093336/worst/paper.tex:304:Doubling the sample budget from 8 to 16 does not improve the consistency signal---for NER, $\rho_{\text{SJ}}$ \emph{decreases} from 0.383 to 0.362 (cross-seed mean, std$=$0.009, Table~\ref{tab:crossseed}).
+artifacts/dream_reports/dream_20260514T093336/worst/paper.tex:412:Qwen3-8B & .667 & .383 & .259 & +.124 & 0 \\
+artifacts/dream_reports/dream_20260514T093336/median/paper.tex:131:Increasing $N$ from 8 to 16 yields a modest improvement in $\rho_{\text{SJ}}$ from 0.383 to 0.41, with oracle F1 increasing from 0.776 to 0.789.
+artifacts/dream_reports/dream_20260514T093336/median/paper.tex:143:$\rho_{\text{SJ}}$ (full)     & 0.383 & 0.41 \\
+artifacts/dream_reports/dream_20260514T093336/median/paper.tex:144:$\rho_{\text{FK}}$ (full)     & 0.259 & 0.29 \\
+artifacts/dream_reports/dream_20260514T093336/median/paper.tex:333:$\rho_{\text{SJ}}$ (full) & 0.383 & 0.39 & +0.008 \\
+artifacts/dream_reports/dream_20260514T203201/median/paper.tex:371:Table~\ref{tab:nscaling} shows that increasing from $N{=}8$ to $N{=}16$ provides marginal improvement for NER SJ ($\rho$: $0.383 \to 0.398$) and is stable across three random seeds (mean $\rho{=}0.412 \pm 0.025$).
+artifacts/dream_reports/dream_20260514T203201/median/paper.tex:384:$N{=}8$, s42       & 0.383 & 0.244 & 0.689 & 0.592 \\
+artifacts/dream_reports/dream_20260514T203201/median/paper.tex:439:CONJUNCTION  & 86  & 0.383 & 0.350 & 0.484 & 0.480 \\
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "1b46fbc1-a2ef-497a-a2e9-3118b50d8601",
+  "tool_use_result": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "artifacts/dream_reports/dream_20260514T105303/best/paper.tex:447:SJ & 0.388 & 0.383 & +0.005 & $T{=}0.7$ \\\\\nartifacts/dream_reports/dream_20260514T105303/best/paper.tex:448:FK & 0.321 & 0.259 & +0.062 & $T{=}0.7$ \\\\\nartifacts/dream_reports/dream_20260514T105303/best/paper.tex:455:[Omitted long matching line]\nartifacts/_project/paper/experiments.tex:209:On conditional RE (non-zero F1 instances), SJ recovers to $\\rho{=}0.405$ while FK drops to $\\rho{=}0.259$, confirming that structural advantage is robust across both models and evaluation conditions.\nartifacts/dream_reports/dream_20260514T105303/median/paper.tex:348:\\SJ{} & .388 & .383 & .005 & .234 & .244 & $-$.010 \\\\\nartifacts/dream_reports/dream_20260514T105303/median/paper.tex:350:\\FK{} & .321 & .259 & .062 & .184 & .278 & $-$.094 \\\\\nartifacts/dream_reports/dream_20260514T093336/best/paper.tex:179:8  & .383 & .268 & +.115 & .775 & .108 \\\\\nartifacts/dream_reports/dream_20260514T093336/best/paper.tex:188:[Omitted long matching line]\nartifacts/dream_reports/dream_20260514T093336/best/paper.tex:201:Qwen3-8B        & .667 & .383 & .268 & +.115 & .108 \\\\\nartifacts/dream_reports/dream_20260514T093336/best/paper.tex:243:                      & 1.0 & .383 & --- & .108 & 12.2 \\\\\nartifacts/dream_reports/dream_20260514T093336/best/paper.tex:268:\\multirow{2}{*}{NER} & 8  & .383 & --- & .268 & .108 \\\\\nartifacts/dream_reports/dream_20260514T093336/worst/paper.tex:149:SciERC & Scientific & 6 & .667 & .383 & .259 & +.124 \\\\\nartifacts/dream_reports/dream_20260514T093336/worst/paper.tex:158:On SciERC, SJ achieves $\\rho{=}0.383$ (vs.\\ FK $\\rho{=}0.259$, $\\Delta{=}+0.124$), a statistically significant advantage ($p < 10^{-17}$).\nartifacts/dream_reports/dream_20260514T093336/worst/paper.tex:215:NER & $\\rho_{\\text{SJ}}$ (full) & .376 & .383 & $-$.007 \\\\\nartifacts/dream_reports/dream_20260514T093336/worst/paper.tex:216:NER & $\\rho_{\\text{FK}}$ (full) & .268 & .259 & +.009 \\\\\nartifacts/dream_reports/dream_20260514T093336/worst/paper.tex:231:For NER, $T{=}0.7$ leaves $\\rho_{\\text{SJ}}$ essentially unchanged (0.376 vs.\\ 0.383) while reducing oracle headroom by 3.7pp---the samples become more similar but not more informatively similar.\nartifacts/dream_reports/dream_20260514T093336/worst/paper.tex:291:8 & .383 & .259 & +.124 & 10.9pp & 12.2\\% \\\\\nartifacts/dream_reports/dream_20260514T093336/worst/paper.tex:304:Doubling the sample budget from 8 to 16 does not improve the consistency signal---for NER, $\\rho_{\\text{SJ}}$ \\emph{decreases} from 0.383 to 0.362 (cross-seed mean, std$=$0.009, Table~\\ref{tab:crossseed}).\nartifacts/dream_reports/dream_20260514T093336/worst/paper.tex:412:Qwen3-8B & .667 & .383 & .259 & +.124 & 0 \\\\\nartifacts/dream_reports/dream_20260514T093336/median/paper.tex:131:Increasing $N$ from 8 to 16 yields a modest improvement in $\\rho_{\\text{SJ}}$ from 0.383 to 0.41, with oracle F1 increasing from 0.776 to 0.789.\nartifacts/dream_reports/dream_20260514T093336/median/paper.tex:143:$\\rho_{\\text{SJ}}$ (full)     & 0.383 & 0.41 \\\\\nartifacts/dream_reports/dream_20260514T093336/median/paper.tex:144:$\\rho_{\\text{FK}}$ (full)     & 0.259 & 0.29 \\\\\nartifacts/dream_reports/dream_20260514T093336/median/paper.tex:333:$\\rho_{\\text{SJ}}$ (full) & 0.383 & 0.39 & +0.008 \\\\\nartifacts/dream_reports/dream_20260514T203201/median/paper.tex:371:Table~\\ref{tab:nscaling} shows that increasing from $N{=}8$ to $N{=}16$ provides marginal improvement for NER SJ ($\\rho$: $0.383 \\to 0.398$) and is stable across three random seeds (mean $\\rho{=}0.412 \\pm 0.025$).\nartifacts/dream_reports/dream_20260514T203201/median/paper.tex:384:$N{=}8$, s42       & 0.383 & 0.244 & 0.689 & 0.592 \\\\\nartifacts/dream_reports/dream_20260514T203201/median/paper.tex:439:CONJUNCTION  & 86  & 0.383 & 0.350 & 0.484 & 0.480 \\\\",
+    "numLines": 26
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 63_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The grep across the dream reports (which are automatically generated paper drafts) shows that .383 and .259 are used extensively. These are dream reports from 2026-05-14, which is before the current tex was finalized. Let me look at the `analyze_scale_ablation_4b.py` script on the server to understand what it does.
+
+Also, I notice the dream reports show .383/.259 for SciERC, which matches the values in Table 4. In the worst dream report, it says `.383 & .259` in a table for SciERC Qwen3-8B. 
+
+It looks like these values were serving as the 8B baseline in earlier versions of the paper. Now I need to check what `analyze_scale_ablation_4b.py` actually does to see how those 8B numbers were originally computed.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "ad73b21f-2d53-488f-8bf6-4dd1a0eb5af2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NQiucitF4VgPxpra2uVnNx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4831,
+      "cache_read_input_tokens": 83607,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4831
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 64_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01XsGaLgBvnKUBq4taCimH6i`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/code/analyze_scale_ablation_4b.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "0b5422f0-5d51-4f69-baf5-d1a670326f18",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NQiucitF4VgPxpra2uVnNx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4831,
+      "cache_read_input_tokens": 83607,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4831
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 65 · 2026-05-15T23:55:04.899Z_
+
+<details><summary>↩ Tool result · `toolu_01XsGaLgBvnKUBq4taCimH6i`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Scale ablation: Qwen3-4B vs 8B CoNLL NER — 5-signal comparison.\\\"\\\"\\\"\\nimport json, sys\\nimport numpy as np\\nfrom scipy.stats import spearmanr, rankdata\\nfrom collections import Counter\\n\\nsys.path.insert(0, '/root/autodl-tmp/struct_self_consist_ie/code')\\nfrom consistency import compute_all_consistency_scores\\nfrom evaluation import per_instance_f1\\n\\nEXPERIMENTS = {\\n    \\\"qwen3_8b_conll\\\": {\\n        \\\"path\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/exp002_conll2003/samples.jsonl\\\",\\n        \\\"subtask\\\": \\\"ner\\\",\\n        \\\"model\\\": \\\"Qwen3-8B\\\",\\n    },\\n    \\\"qwen3_4b_conll\\\": {\\n        \\\"path\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/exp_scale_qwen3_4b_conll/samples.jsonl\\\",\\n        \\\"subtask\\\": \\\"ner\\\",\\n        \\\"model\\\": \\\"Qwen3-4B\\\",\\n    },\\n}\\n\\ndef load_data(path):\\n    with open(path) as f:\\n        return [json.loads(line) for line in f if line.strip()]\\n\\ndef compute_exact_match_rate(samples, subtask):\\n    if subtask == \\\"ner\\\":\\n        keys = [frozenset((e[\\\"text\\\"], e[\\\"type\\\"]) for e in s.get(\\\"entities\\\", [])) for s in samples]\\n    else:\\n        keys = [frozenset((r[\\\"head\\\"], r[\\\"tail\\\"], r[\\\"type\\\"]) for r in s.get(\\\"relations\\\", [])) for s in samples]\\n    if not keys: return 0.0\\n    c = Counter(keys)\\n    return c.most_common(1)[0][1] / len(samples)\\n\\ndef compute_voting_confidence(samples, subtask):\\n    N = len(samples)\\n    if N == 0: return 0.0\\n    counter = Counter()\\n    if subtask == \\\"ner\\\":\\n        for s in samples:\\n            for e in s.get(\\\"entities\\\", []):\\n                counter[(e[\\\"text\\\"], e[\\\"type\\\"])] += 1\\n    else:\\n        for s in samples:\\n            for r in s.get(\\\"relations\\\", []):\\n                counter[(r[\\\"head\\\"], r[\\\"tail\\\"], r[\\\"type\\\"])] += 1\\n    if not counter: return 0.0\\n    return float(np.mean([v / N for v in counter.values()]))\\n\\ndef compute_mean_logprob(samples):\\n    lps = [s.get(\\\"mean_logprob\\\") for s in samples if s.get(\\\"mean_logprob\\\") is not None]\\n    lps = [lp for lp in lps if np.isfinite(lp)]\\n    return float(np.mean(lps)) if lps else float(\\\"nan\\\")\\n\\ndef safe_spearman(x, y):\\n    x, y = np.asarray(x, float), np.asarray(y, float)\\n    m = np.isfinite(x) & np.isfinite(y)\\n    x, y = x[m], y[m]\\n    if len(x) < 3: return float(\\\"nan\\\"), float(\\\"nan\\\")\\n    r = spearmanr(x, y)\\n    return float(r.statistic), float(r.pvalue)\\n\\ndef safe_auroc(scores, labels):\\n    scores, labels = np.asarray(scores, float), np.asarray(labels, int)\\n    if len(np.unique(labels)) < 2: return float(\\\"nan\\\")\\n    n_pos, n_neg = (labels==1).sum(), (labels==0).sum()\\n    if n_pos == 0 or n_neg == 0: return float(\\\"nan\\\")\\n    ranks = rankdata(scores)\\n    u = ranks[labels==1].sum() - n_pos*(n_pos+1)/2\\n    return float(u / (n_pos * n_neg))\\n\\ndef compute_selection_f1(signal_scores, sample_f1_per_sample, n_samples=8):\\n    \\\"\\\"\\\"Selection F1: pick best sample per instance by signal, compute mean F1.\\\"\\\"\\\"\\n    assert len(signal_scores) == len(sample_f1_per_sample)\\n    selected_f1s = []\\n    for i in range(len(signal_scores)):\\n        f1s = sample_f1_per_sample[i]\\n        if len(f1s) == 0:\\n            continue\\n        best_idx = int(np.argmax(signal_scores[i])) if hasattr(signal_scores[i], '__len__') else 0\\n        selected_f1s.append(f1s[best_idx] if best_idx < len(f1s) else f1s[0])\\n    return float(np.mean(selected_f1s)) if selected_f1s else float(\\\"nan\\\")\\n\\ndef compute_lp_tied_fraction(samples_list):\\n    n_tied = 0\\n    for inst_samples in samples_list:\\n        lps = [s.get(\\\"mean_logprob\\\") for s in inst_samples if s.get(\\\"mean_logprob\\\") is not None]\\n        lps = [lp for lp in lps if np.isfinite(lp)]\\n        if len(lps) >= 2:\\n            unique_ratio = len(set([round(lp, 6) for lp in lps])) / len(lps)\\n            if unique_ratio < 0.5:\\n                n_tied += 1\\n    return n_tied\\n\\ndef analyze(path, subtask):\\n    instances = load_data(path)\\n    entity_key = \\\"entities\\\" if subtask == \\\"ner\\\" else \\\"relations\\\"\\n    valid = [inst for inst in instances if len(inst[\\\"gold\\\"].get(entity_key, [])) > 0]\\n\\n    greedy_f1s = []\\n    for inst in valid:\\n        greedy = inst.get(\\\"greedy\\\", inst[\\\"sam\\n\\n... [截断: 输出过长，省略 731 字符] ...\\n\\nunt\\\": lp_tied,\\n        \\\"lp_tied_pct\\\": round(lp_tied / len(valid) * 100, 1) if valid else 0,\\n    }\\n    \\n    for split_name, split_insts in [(\\\"full\\\", valid), (\\\"conditional\\\", conditional)]:\\n        cons = compute_all_consistency_scores(split_insts, subtask=subtask)\\n        sj = cons[\\\"soft_jaccard\\\"]\\n        fk = cons[\\\"fleiss_kappa\\\"]\\n        \\n        lp, em, vc, f1s = [], [], [], []\\n        sample_f1_per_inst = []\\n        for inst in split_insts:\\n            samples = inst[\\\"samples\\\"]\\n            greedy = inst.get(\\\"greedy\\\", samples[0])\\n            lp.append(compute_mean_logprob(samples))\\n            em.append(compute_exact_match_rate(samples, subtask))\\n            vc.append(compute_voting_confidence(samples, subtask))\\n            f1s.append(per_instance_f1(greedy, inst[\\\"gold\\\"], subtask=subtask))\\n            sample_f1_per_inst.append([per_instance_f1(s, inst[\\\"gold\\\"], subtask=subtask) for s in samples])\\n        \\n        signals = {\\\"SJ\\\": np.array(sj), \\\"FK\\\": np.array(fk), \\\"LP\\\": np.array(lp),\\n                    \\\"EM\\\": np.array(em), \\\"Voting\\\": np.array(vc)}\\n        f1_arr = np.array(f1s)\\n        binary = (f1_arr >= 1.0).astype(int)\\n        \\n        split_res = {\\\"n\\\": len(split_insts)}\\n        for name, vals in signals.items():\\n            rho, p_rho = safe_spearman(vals, f1_arr)\\n            auroc = safe_auroc(vals, binary)\\n            split_res[name] = {\\\"rho\\\": round(rho, 4), \\\"auroc\\\": round(auroc, 4)}\\n        \\n        # Selection F1 for each signal\\n        greedy_mean = round(float(np.mean(f1s)), 4)\\n        split_res[\\\"greedy_f1_mean\\\"] = greedy_mean\\n        \\n        # Per-sample signal selection\\n        for sig_name, vals in signals.items():\\n            if sig_name in (\\\"SJ\\\", \\\"FK\\\", \\\"Voting\\\"):\\n                # These are per-instance, not per-sample; use greedy as selection baseline\\n                pass\\n        \\n        results[split_name] = split_res\\n    return results\\n\\nall_results = {}\\nfor exp_id, cfg in EXPERIMENTS.items():\\n    print(f\\\"Processing {exp_id} ({cfg['model']})...\\\")\\n    res = analyze(cfg[\\\"path\\\"], cfg[\\\"subtask\\\"])\\n    res[\\\"model\\\"] = cfg[\\\"model\\\"]\\n    all_results[exp_id] = res\\n\\n# Print comparison table\\nprint(\\\"\\\\n\\\" + \\\"=\\\"*80)\\nprint(\\\"  SCALE ABLATION: Qwen3-4B vs Qwen3-8B — CoNLL NER — 5-Signal Comparison\\\")\\nprint(\\\"=\\\"*80)\\n\\nfor split in [\\\"full\\\", \\\"conditional\\\"]:\\n    print(f\\\"\\\\n--- {split.upper()} split ---\\\")\\n    print(f\\\"{'Signal':<12} {'8B ρ':>8} {'8B AUROC':>10} {'4B ρ':>8} {'4B AUROC':>10} {'Δρ':>8}\\\")\\n    print(\\\"-\\\"*60)\\n    for sig in [\\\"Voting\\\", \\\"SJ\\\", \\\"FK\\\", \\\"EM\\\", \\\"LP\\\"]:\\n        r8 = all_results[\\\"qwen3_8b_conll\\\"][split][sig]\\n        r4 = all_results[\\\"qwen3_4b_conll\\\"][split][sig]\\n        delta = r4[\\\"rho\\\"] - r8[\\\"rho\\\"]\\n        print(f\\\"{sig:<12} {r8['rho']:>+8.4f} {r8['auroc']:>10.4f} {r4['rho']:>+8.4f} {r4['auroc']:>10.4f} {delta:>+8.4f}\\\")\\n    print(f\\\"\\\\n  Greedy F1:  8B={all_results['qwen3_8b_conll'][split]['greedy_f1_mean']:.4f}  \\\"\\n          f\\\"4B={all_results['qwen3_4b_conll'][split]['greedy_f1_mean']:.4f}\\\")\\n\\nprint(f\\\"\\\\n--- LP Score Compression ---\\\")\\nfor exp_id in [\\\"qwen3_8b_conll\\\", \\\"qwen3_4b_conll\\\"]:\\n    r = all_results[exp_id]\\n    print(f\\\"  {r['model']}: tied_pct={r['lp_tied_pct']}%\\\")\\n\\nprint(f\\\"\\\\n--- SJ > FK ordering ---\\\")\\nfor exp_id in [\\\"qwen3_8b_conll\\\", \\\"qwen3_4b_conll\\\"]:\\n    r = all_results[exp_id]\\n    sj_rho = r[\\\"full\\\"][\\\"SJ\\\"][\\\"rho\\\"]\\n    fk_rho = r[\\\"full\\\"][\\\"FK\\\"][\\\"rho\\\"]\\n    print(f\\\"  {r['model']}: SJ={sj_rho:.4f} FK={fk_rho:.4f} SJ>FK={sj_rho > fk_rho} (delta={sj_rho-fk_rho:+.4f})\\\")\\n\\nprint(f\\\"\\\\n--- Correlation-Selection Gap ---\\\")\\nfor exp_id in [\\\"qwen3_8b_conll\\\", \\\"qwen3_4b_conll\\\"]:\\n    r = all_results[exp_id]\\n    print(f\\\"  {r['model']}: greedy_f1={r['greedy_f1']:.4f} oracle_f1={r['oracle_f1']:.4f} gap={r['oracle_f1']-r['greedy_f1']:+.4f}\\\")\\n\\n# Save report\\nout_path = \\\"/root/autodl-tmp/struct_self_consist_ie/output/exp_scale_qwen3_4b_conll/scale_ablation_report.json\\\"\\nwith open(out_path, \\\"w\\\") as f:\\n    json.dump(all_results, f, indent=2, default=lambda o: float(o) if isinstance(o, (np.floating,)) else str(o))\\nprint(f\\\"\\\\nReport saved to {out_path}\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "3dabcc0f-d3d8-406c-bb07-12682d3adb16",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"Scale ablation: Qwen3-4B vs 8B CoNLL NER — 5-signal comparison.\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport json, sys\\\\nimport numpy as np\\\\nfrom scipy.stats import spearmanr, rankdata\\\\nfrom collections import Counter\\\\n\\\\nsys.path.insert(0, '/root/autodl-tmp/struct_self_consist_ie/code')\\\\nfrom consistency import compute_all_consistency_scores\\\\nfrom evaluation import per_instance_f1\\\\n\\\\nEXPERIMENTS = {\\\\n    \\\\\\\"qwen3_8b_conll\\\\\\\": {\\\\n        \\\\\\\"path\\\\\\\": \\\\\\\"/root/autodl-tmp/struct_self_consist_ie/output/exp002_conll2003/samples.jsonl\\\\\\\",\\\\n        \\\\\\\"subtask\\\\\\\": \\\\\\\"ner\\\\\\\",\\\\n        \\\\\\\"model\\\\\\\": \\\\\\\"Qwen3-8B\\\\\\\",\\\\n    },\\\\n    \\\\\\\"qwen3_4b_conll\\\\\\\": {\\\\n        \\\\\\\"path\\\\\\\": \\\\\\\"/root/autodl-tmp/struct_self_consist_ie/output/exp_scale_qwen3_4b_conll/samples.jsonl\\\\\\\",\\\\n        \\\\\\\"subtask\\\\\\\": \\\\\\\"ner\\\\\\\",\\\\n        \\\\\\\"model\\\\\\\": \\\\\\\"Qwen3-4B\\\\\\\",\\\\n    },\\\\n}\\\\n\\\\ndef load_data(path):\\\\n    with open(path) as f:\\\\n        return [json.loads(line) for line in f if line.strip()]\\\\n\\\\ndef compute_exact_match_rate(samples, subtask):\\\\n    if subtask == \\\\\\\"ner\\\\\\\":\\\\n        keys = [frozenset((e[\\\\\\\"text\\\\\\\"], e[\\\\\\\"type\\\\\\\"]) for e in s.get(\\\\\\\"entities\\\\\\\", [])) for s in samples]\\\\n    else:\\\\n        keys = [frozenset((r[\\\\\\\"head\\\\\\\"], r[\\\\\\\"tail\\\\\\\"], r[\\\\\\\"type\\\\\\\"]) for r in s.get(\\\\\\\"relations\\\\\\\", [])) for s in samples]\\\\n    if not keys: return 0.0\\\\n    c = Counter(keys)\\\\n    return c.most_common(1)[0][1] / len(samples)\\\\n\\\\ndef compute_voting_confidence(samples, subtask):\\\\n    N = len(samples)\\\\n    if N == 0: return 0.0\\\\n    counter = Counter()\\\\n    if subtask == \\\\\\\"ner\\\\\\\":\\\\n        for s in samples:\\\\n            for e in s.get(\\\\\\\"entities\\\\\\\", []):\\\\n                counter[(e[\\\\\\\"text\\\\\\\"], e[\\\\\\\"type\\\\\\\"])] += 1\\\\n    else:\\\\n        for s in samples:\\\\n            for r in s.get(\\\\\\\"relations\\\\\\\", []):\\\\n                counter[(r[\\\\\\\"head\\\\\\\"], r[\\\\\\\"tail\\\\\\\"], r[\\\\\\\"type\\\\\\\"])] += 1\\\\n    if not counter: return 0.0\\\\n    return float(np.mean([v / N for v in counter.values()]))\\\\n\\\\ndef compute_mean_logprob(samples):\\\\n    lps = [s.get(\\\\\\\"mean_logprob\\\\\\\") for s in samples if s.get(\\\\\\\"mean_logprob\\\\\\\") is not None]\\\\n    lps = [lp for lp in lps if np.isfinite(lp)]\\\\n    return float(np.mean(lps)) if lps else float(\\\\\\\"nan\\\\\\\")\\\\n\\\\ndef safe_spearman(x, y):\\\\n    x, y = np.asarray(x, float), np.asarray(y, float)\\\\n    m = np.isfinite(x) & np.isfinite(y)\\\\n    x, y = x[m], y[m]\\\\n    if len(x) < 3: return float(\\\\\\\"nan\\\\\\\"), float(\\\\\\\"nan\\\\\\\")\\\\n    r = spearmanr(x, y)\\\\n    return float(r.statistic), float(r.pvalue)\\\\n\\\\ndef safe_auroc(scores, labels):\\\\n    scores, labels = np.asarray(scores, float), np.asarray(labels, int)\\\\n    if len(np.unique(labels)) < 2: return float(\\\\\\\"nan\\\\\\\")\\\\n    n_pos, n_neg = (labels==1).sum(), (labels==0).sum()\\\\n    if n_pos == 0 or n_neg == 0: return float(\\\\\\\"nan\\\\\\\")\\\\n    ranks = rankdata(scores)\\\\n    u = ranks[labels==1].sum() - n_pos*(n_pos+1)/2\\\\n    return float(u / (n_pos * n_neg))\\\\n\\\\ndef compute_selection_f1(signal_scores, sample_f1_per_sample, n_samples=8):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Selection F1: pick best sample per instance by signal, compute mean F1.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    assert len(signal_scores) == len(sample_f1_per_sample)\\\\n    selected_f1s = []\\\\n    for i in range(len(signal_scores)):\\\\n        f1s = sample_f1_per_sample[i]\\\\n        if len(f1s) == 0:\\\\n            continue\\\\n        best_idx = int(np.argmax(signal_scores[i])) if hasattr(signal_scores[i], '__len__') else 0\\\\n        selected_f1s.append(f1s[best_idx] if best_idx < len(f1s) else f1s[0])\\\\n    return float(np.mean(selected_f1s)) if selected_f1s else float(\\\\\\\"nan\\\\\\\")\\\\n\\\\ndef compute_lp_tied_fraction(samples_list):\\\\n    n_tied = 0\\\\n    for inst_samples in samples_list:\\\\n        lps = [s.get(\\\\\\\"mean_logprob\\\\\\\") for s in inst_samples if s.get(\\\\\\\"mean_logprob\\\\\\\") is not None]\\\\n        lps = [lp for lp in lps if np.isfinite(lp)]\\\\n        if len(lps) >= 2:\\\\n            unique_ratio = len(set([round(lp, 6) for lp in lps])) / len(lps)\\\\n            if unique_ratio < 0.5:\\\\n                n_tied += 1\\\\n    return n_tied\\\\n\\\\ndef analyze(path, subtask):\\\\n    instances = load_data(path)\\\\n    entity_key = \\\\\\\"entities\\\\\\\" if subtask == \\\\\\\"ner\\\\\\\" else \\\\\\\"relations\\\\\\\"\\\\n    valid = [inst for inst in instances if len(inst[\\\\\\\"gold\\\\\\\"].get(entity_key, [])) > 0]\\\\n\\\\n    greedy_f1s = []\\\\n    for inst in valid:\\\\n        greedy = inst.get(\\\\\\\"greedy\\\\\\\", inst[\\\\\\\"sam\\\\n\\\\n... [截断: 输出过长，省略 731 字符] ...\\\\n\\\\nunt\\\\\\\": lp_tied,\\\\n        \\\\\\\"lp_tied_pct\\\\\\\": round(lp_tied / len(valid) * 100, 1) if valid else 0,\\\\n    }\\\\n    \\\\n    for split_name, split_insts in [(\\\\\\\"full\\\\\\\", valid), (\\\\\\\"conditional\\\\\\\", conditional)]:\\\\n        cons = compute_all_consistency_scores(split_insts, subtask=subtask)\\\\n        sj = cons[\\\\\\\"soft_jaccard\\\\\\\"]\\\\n        fk = cons[\\\\\\\"fleiss_kappa\\\\\\\"]\\\\n        \\\\n        lp, em, vc, f1s = [], [], [], []\\\\n        sample_f1_per_inst = []\\\\n        for inst in split_insts:\\\\n            samples = inst[\\\\\\\"samples\\\\\\\"]\\\\n            greedy = inst.get(\\\\\\\"greedy\\\\\\\", samples[0])\\\\n            lp.append(compute_mean_logprob(samples))\\\\n            em.append(compute_exact_match_rate(samples, subtask))\\\\n            vc.append(compute_voting_confidence(samples, subtask))\\\\n            f1s.append(per_instance_f1(greedy, inst[\\\\\\\"gold\\\\\\\"], subtask=subtask))\\\\n            sample_f1_per_inst.append([per_instance_f1(s, inst[\\\\\\\"gold\\\\\\\"], subtask=subtask) for s in samples])\\\\n        \\\\n        signals = {\\\\\\\"SJ\\\\\\\": np.array(sj), \\\\\\\"FK\\\\\\\": np.array(fk), \\\\\\\"LP\\\\\\\": np.array(lp),\\\\n                    \\\\\\\"EM\\\\\\\": np.array(em), \\\\\\\"Voting\\\\\\\": np.array(vc)}\\\\n        f1_arr = np.array(f1s)\\\\n        binary = (f1_arr >= 1.0).astype(int)\\\\n        \\\\n        split_res = {\\\\\\\"n\\\\\\\": len(split_insts)}\\\\n        for name, vals in signals.items():\\\\n            rho, p_rho = safe_spearman(vals, f1_arr)\\\\n            auroc = safe_auroc(vals, binary)\\\\n            split_res[name] = {\\\\\\\"rho\\\\\\\": round(rho, 4), \\\\\\\"auroc\\\\\\\": round(auroc, 4)}\\\\n        \\\\n        # Selection F1 for each signal\\\\n        greedy_mean = round(float(np.mean(f1s)), 4)\\\\n        split_res[\\\\\\\"greedy_f1_mean\\\\\\\"] = greedy_mean\\\\n        \\\\n        # Per-sample signal selection\\\\n        for sig_name, vals in signals.items():\\\\n            if sig_name in (\\\\\\\"SJ\\\\\\\", \\\\\\\"FK\\\\\\\", \\\\\\\"Voting\\\\\\\"):\\\\n                # These are per-instance, not per-sample; use greedy as selection baseline\\\\n                pass\\\\n        \\\\n        results[split_name] = split_res\\\\n    return results\\\\n\\\\nall_results = {}\\\\nfor exp_id, cfg in EXPERIMENTS.items():\\\\n    print(f\\\\\\\"Processing {exp_id} ({cfg['model']})...\\\\\\\")\\\\n    res = analyze(cfg[\\\\\\\"path\\\\\\\"], cfg[\\\\\\\"subtask\\\\\\\"])\\\\n    res[\\\\\\\"model\\\\\\\"] = cfg[\\\\\\\"model\\\\\\\"]\\\\n    all_results[exp_id] = res\\\\n\\\\n# Print comparison table\\\\nprint(\\\\\\\"\\\\\\\\n\\\\\\\" + \\\\\\\"=\\\\\\\"*80)\\\\nprint(\\\\\\\"  SCALE ABLATION: Qwen3-4B vs Qwen3-8B — CoNLL NER — 5-Signal Comparison\\\\\\\")\\\\nprint(\\\\\\\"=\\\\\\\"*80)\\\\n\\\\nfor split in [\\\\\\\"full\\\\\\\", \\\\\\\"conditional\\\\\\\"]:\\\\n    print(f\\\\\\\"\\\\\\\\n--- {split.upper()} split ---\\\\\\\")\\\\n    print(f\\\\\\\"{'Signal':<12} {'8B ρ':>8} {'8B AUROC':>10} {'4B ρ':>8} {'4B AUROC':>10} {'Δρ':>8}\\\\\\\")\\\\n    print(\\\\\\\"-\\\\\\\"*60)\\\\n    for sig in [\\\\\\\"Voting\\\\\\\", \\\\\\\"SJ\\\\\\\", \\\\\\\"FK\\\\\\\", \\\\\\\"EM\\\\\\\", \\\\\\\"LP\\\\\\\"]:\\\\n        r8 = all_results[\\\\\\\"qwen3_8b_conll\\\\\\\"][split][sig]\\\\n        r4 = all_results[\\\\\\\"qwen3_4b_conll\\\\\\\"][split][sig]\\\\n        delta = r4[\\\\\\\"rho\\\\\\\"] - r8[\\\\\\\"rho\\\\\\\"]\\\\n        print(f\\\\\\\"{sig:<12} {r8['rho']:>+8.4f} {r8['auroc']:>10.4f} {r4['rho']:>+8.4f} {r4['auroc']:>10.4f} {delta:>+8.4f}\\\\\\\")\\\\n    print(f\\\\\\\"\\\\\\\\n  Greedy F1:  8B={all_results['qwen3_8b_conll'][split]['greedy_f1_mean']:.4f}  \\\\\\\"\\\\n          f\\\\\\\"4B={all_results['qwen3_4b_conll'][split]['greedy_f1_mean']:.4f}\\\\\\\")\\\\n\\\\nprint(f\\\\\\\"\\\\\\\\n--- LP Score Compression ---\\\\\\\")\\\\nfor exp_id in [\\\\\\\"qwen3_8b_conll\\\\\\\", \\\\\\\"qwen3_4b_conll\\\\\\\"]:\\\\n    r = all_results[exp_id]\\\\n    print(f\\\\\\\"  {r['model']}: tied_pct={r['lp_tied_pct']}%\\\\\\\")\\\\n\\\\nprint(f\\\\\\\"\\\\\\\\n--- SJ > FK ordering ---\\\\\\\")\\\\nfor exp_id in [\\\\\\\"qwen3_8b_conll\\\\\\\", \\\\\\\"qwen3_4b_conll\\\\\\\"]:\\\\n    r = all_results[exp_id]\\\\n    sj_rho = r[\\\\\\\"full\\\\\\\"][\\\\\\\"SJ\\\\\\\"][\\\\\\\"rho\\\\\\\"]\\\\n    fk_rho = r[\\\\\\\"full\\\\\\\"][\\\\\\\"FK\\\\\\\"][\\\\\\\"rho\\\\\\\"]\\\\n    print(f\\\\\\\"  {r['model']}: SJ={sj_rho:.4f} FK={fk_rho:.4f} SJ>FK={sj_rho > fk_rho} (delta={sj_rho-fk_rho:+.4f})\\\\\\\")\\\\n\\\\nprint(f\\\\\\\"\\\\\\\\n--- Correlation-Selection Gap ---\\\\\\\")\\\\nfor exp_id in [\\\\\\\"qwen3_8b_conll\\\\\\\", \\\\\\\"qwen3_4b_conll\\\\\\\"]:\\\\n    r = all_results[exp_id]\\\\n    print(f\\\\\\\"  {r['model']}: greedy_f1={r['greedy_f1']:.4f} oracle_f1={r['oracle_f1']:.4f} gap={r['oracle_f1']-r['greedy_f1']:+.4f}\\\\\\\")\\\\n\\\\n# Save report\\\\nout_path = \\\\\\\"/root/autodl-tmp/struct_self_consist_ie/output/exp_scale_qwen3_4b_conll/scale_ablation_report.json\\\\\\\"\\\\nwith open(out_path, \\\\\\\"w\\\\\\\") as f:\\\\n    json.dump(all_results, f, indent=2, default=lambda o: float(o) if isinstance(o, (np.floating,)) else str(o))\\\\nprint(f\\\\\\\"\\\\\\\\nReport saved to {out_path}\\\\\\\")\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Scale ablation: Qwen3-4B vs 8B CoNLL NER — 5-signal comparison.\\\"\\\"\\\"\\nimport json, sys\\nimport numpy as np\\nfrom scipy.stats import spearmanr, rankdata\\nfrom collections import Counter\\n\\nsys.path.insert(0, '/root/autodl-tmp/struct_self_consist_ie/code')\\nfrom consistency import compute_all_consistency_scores\\nfrom evaluation import per_instance_f1\\n\\nEXPERIMENTS = {\\n    \\\"qwen3_8b_conll\\\": {\\n        \\\"path\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/exp002_conll2003/samples.jsonl\\\",\\n        \\\"subtask\\\": \\\"ner\\\",\\n        \\\"model\\\": \\\"Qwen3-8B\\\",\\n    },\\n    \\\"qwen3_4b_conll\\\": {\\n        \\\"path\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/exp_scale_qwen3_4b_conll/samples.jsonl\\\",\\n        \\\"subtask\\\": \\\"ner\\\",\\n        \\\"model\\\": \\\"Qwen3-4B\\\",\\n    },\\n}\\n\\ndef load_data(path):\\n    with open(path) as f:\\n        return [json.loads(line) for line in f if line.strip()]\\n\\ndef compute_exact_match_rate(samples, subtask):\\n    if subtask == \\\"ner\\\":\\n        keys = [frozenset((e[\\\"text\\\"], e[\\\"type\\\"]) for e in s.get(\\\"entities\\\", [])) for s in samples]\\n    else:\\n        keys = [frozenset((r[\\\"head\\\"], r[\\\"tail\\\"], r[\\\"type\\\"]) for r in s.get(\\\"relations\\\", [])) for s in samples]\\n    if not keys: return 0.0\\n    c = Counter(keys)\\n    return c.most_common(1)[0][1] / len(samples)\\n\\ndef compute_voting_confidence(samples, subtask):\\n    N = len(samples)\\n    if N == 0: return 0.0\\n    counter = Counter()\\n    if subtask == \\\"ner\\\":\\n        for s in samples:\\n            for e in s.get(\\\"entities\\\", []):\\n                counter[(e[\\\"text\\\"], e[\\\"type\\\"])] += 1\\n    else:\\n        for s in samples:\\n            for r in s.get(\\\"relations\\\", []):\\n                counter[(r[\\\"head\\\"], r[\\\"tail\\\"], r[\\\"type\\\"])] += 1\\n    if not counter: return 0.0\\n    return float(np.mean([v / N for v in counter.values()]))\\n\\ndef compute_mean_logprob(samples):\\n    lps = [s.get(\\\"mean_logprob\\\") for s in samples if s.get(\\\"mean_logprob\\\") is not None]\\n    lps = [lp for lp in lps if np.isfinite(lp)]\\n    return float(np.mean(lps)) if lps else float(\\\"nan\\\")\\n\\ndef safe_spearman(x, y):\\n    x, y = np.asarray(x, float), np.asarray(y, float)\\n    m = np.isfinite(x) & np.isfinite(y)\\n    x, y = x[m], y[m]\\n    if len(x) < 3: return float(\\\"nan\\\"), float(\\\"nan\\\")\\n    r = spearmanr(x, y)\\n    return float(r.statistic), float(r.pvalue)\\n\\ndef safe_auroc(scores, labels):\\n    scores, labels = np.asarray(scores, float), np.asarray(labels, int)\\n    if len(np.unique(labels)) < 2: return float(\\\"nan\\\")\\n    n_pos, n_neg = (labels==1).sum(), (labels==0).sum()\\n    if n_pos == 0 or n_neg == 0: return float(\\\"nan\\\")\\n    ranks = rankdata(scores)\\n    u = ranks[labels==1].sum() - n_pos*(n_pos+1)/2\\n    return float(u / (n_pos * n_neg))\\n\\ndef compute_selection_f1(signal_scores, sample_f1_per_sample, n_samples=8):\\n    \\\"\\\"\\\"Selection F1: pick best sample per instance by signal, compute mean F1.\\\"\\\"\\\"\\n    assert len(signal_scores) == len(sample_f1_per_sample)\\n    selected_f1s = []\\n    for i in range(len(signal_scores)):\\n        f1s = sample_f1_per_sample[i]\\n        if len(f1s) == 0:\\n            continue\\n        best_idx = int(np.argmax(signal_scores[i])) if hasattr(signal_scores[i], '__len__') else 0\\n        selected_f1s.append(f1s[best_idx] if best_idx < len(f1s) else f1s[0])\\n    return float(np.mean(selected_f1s)) if selected_f1s else float(\\\"nan\\\")\\n\\ndef compute_lp_tied_fraction(samples_list):\\n    n_tied = 0\\n    for inst_samples in samples_list:\\n        lps = [s.get(\\\"mean_logprob\\\") for s in inst_samples if s.get(\\\"mean_logprob\\\") is not None]\\n        lps = [lp for lp in lps if np.isfinite(lp)]\\n        if len(lps) >= 2:\\n            unique_ratio = len(set([round(lp, 6) for lp in lps])) / len(lps)\\n            if unique_ratio < 0.5:\\n                n_tied += 1\\n    return n_tied\\n\\ndef analyze(path, subtask):\\n    instances = load_data(path)\\n    entity_key = \\\"entities\\\" if subtask == \\\"ner\\\" else \\\"relations\\\"\\n    valid = [inst for inst in instances if len(inst[\\\"gold\\\"].get(entity_key, [])) > 0]\\n\\n    greedy_f1s = []\\n    for inst in valid:\\n        greedy = inst.get(\\\"greedy\\\", inst[\\\"sam\\n\\n... [截断: 输出过长，省略 731 字符] ...\\n\\nunt\\\": lp_tied,\\n        \\\"lp_tied_pct\\\": round(lp_tied / len(valid) * 100, 1) if valid else 0,\\n    }\\n    \\n    for split_name, split_insts in [(\\\"full\\\", valid), (\\\"conditional\\\", conditional)]:\\n        cons = compute_all_consistency_scores(split_insts, subtask=subtask)\\n        sj = cons[\\\"soft_jaccard\\\"]\\n        fk = cons[\\\"fleiss_kappa\\\"]\\n        \\n        lp, em, vc, f1s = [], [], [], []\\n        sample_f1_per_inst = []\\n        for inst in split_insts:\\n            samples = inst[\\\"samples\\\"]\\n            greedy = inst.get(\\\"greedy\\\", samples[0])\\n            lp.append(compute_mean_logprob(samples))\\n            em.append(compute_exact_match_rate(samples, subtask))\\n            vc.append(compute_voting_confidence(samples, subtask))\\n            f1s.append(per_instance_f1(greedy, inst[\\\"gold\\\"], subtask=subtask))\\n            sample_f1_per_inst.append([per_instance_f1(s, inst[\\\"gold\\\"], subtask=subtask) for s in samples])\\n        \\n        signals = {\\\"SJ\\\": np.array(sj), \\\"FK\\\": np.array(fk), \\\"LP\\\": np.array(lp),\\n                    \\\"EM\\\": np.array(em), \\\"Voting\\\": np.array(vc)}\\n        f1_arr = np.array(f1s)\\n        binary = (f1_arr >= 1.0).astype(int)\\n        \\n        split_res = {\\\"n\\\": len(split_insts)}\\n        for name, vals in signals.items():\\n            rho, p_rho = safe_spearman(vals, f1_arr)\\n            auroc = safe_auroc(vals, binary)\\n            split_res[name] = {\\\"rho\\\": round(rho, 4), \\\"auroc\\\": round(auroc, 4)}\\n        \\n        # Selection F1 for each signal\\n        greedy_mean = round(float(np.mean(f1s)), 4)\\n        split_res[\\\"greedy_f1_mean\\\"] = greedy_mean\\n        \\n        # Per-sample signal selection\\n        for sig_name, vals in signals.items():\\n            if sig_name in (\\\"SJ\\\", \\\"FK\\\", \\\"Voting\\\"):\\n                # These are per-instance, not per-sample; use greedy as selection baseline\\n                pass\\n        \\n        results[split_name] = split_res\\n    return results\\n\\nall_results = {}\\nfor exp_id, cfg in EXPERIMENTS.items():\\n    print(f\\\"Processing {exp_id} ({cfg['model']})...\\\")\\n    res = analyze(cfg[\\\"path\\\"], cfg[\\\"subtask\\\"])\\n    res[\\\"model\\\"] = cfg[\\\"model\\\"]\\n    all_results[exp_id] = res\\n\\n# Print comparison table\\nprint(\\\"\\\\n\\\" + \\\"=\\\"*80)\\nprint(\\\"  SCALE ABLATION: Qwen3-4B vs Qwen3-8B — CoNLL NER — 5-Signal Comparison\\\")\\nprint(\\\"=\\\"*80)\\n\\nfor split in [\\\"full\\\", \\\"conditional\\\"]:\\n    print(f\\\"\\\\n--- {split.upper()} split ---\\\")\\n    print(f\\\"{'Signal':<12} {'8B ρ':>8} {'8B AUROC':>10} {'4B ρ':>8} {'4B AUROC':>10} {'Δρ':>8}\\\")\\n    print(\\\"-\\\"*60)\\n    for sig in [\\\"Voting\\\", \\\"SJ\\\", \\\"FK\\\", \\\"EM\\\", \\\"LP\\\"]:\\n        r8 = all_results[\\\"qwen3_8b_conll\\\"][split][sig]\\n        r4 = all_results[\\\"qwen3_4b_conll\\\"][split][sig]\\n        delta = r4[\\\"rho\\\"] - r8[\\\"rho\\\"]\\n        print(f\\\"{sig:<12} {r8['rho']:>+8.4f} {r8['auroc']:>10.4f} {r4['rho']:>+8.4f} {r4['auroc']:>10.4f} {delta:>+8.4f}\\\")\\n    print(f\\\"\\\\n  Greedy F1:  8B={all_results['qwen3_8b_conll'][split]['greedy_f1_mean']:.4f}  \\\"\\n          f\\\"4B={all_results['qwen3_4b_conll'][split]['greedy_f1_mean']:.4f}\\\")\\n\\nprint(f\\\"\\\\n--- LP Score Compression ---\\\")\\nfor exp_id in [\\\"qwen3_8b_conll\\\", \\\"qwen3_4b_conll\\\"]:\\n    r = all_results[exp_id]\\n    print(f\\\"  {r['model']}: tied_pct={r['lp_tied_pct']}%\\\")\\n\\nprint(f\\\"\\\\n--- SJ > FK ordering ---\\\")\\nfor exp_id in [\\\"qwen3_8b_conll\\\", \\\"qwen3_4b_conll\\\"]:\\n    r = all_results[exp_id]\\n    sj_rho = r[\\\"full\\\"][\\\"SJ\\\"][\\\"rho\\\"]\\n    fk_rho = r[\\\"full\\\"][\\\"FK\\\"][\\\"rho\\\"]\\n    print(f\\\"  {r['model']}: SJ={sj_rho:.4f} FK={fk_rho:.4f} SJ>FK={sj_rho > fk_rho} (delta={sj_rho-fk_rho:+.4f})\\\")\\n\\nprint(f\\\"\\\\n--- Correlation-Selection Gap ---\\\")\\nfor exp_id in [\\\"qwen3_8b_conll\\\", \\\"qwen3_4b_conll\\\"]:\\n    r = all_results[exp_id]\\n    print(f\\\"  {r['model']}: greedy_f1={r['greedy_f1']:.4f} oracle_f1={r['oracle_f1']:.4f} gap={r['oracle_f1']-r['greedy_f1']:+.4f}\\\")\\n\\n# Save report\\nout_path = \\\"/root/autodl-tmp/struct_self_consist_ie/output/exp_scale_qwen3_4b_conll/scale_ablation_report.json\\\"\\nwith open(out_path, \\\"w\\\") as f:\\n    json.dump(all_results, f, indent=2, default=lambda o: float(o) if isinstance(o, (np.floating,)) else str(o))\\nprint(f\\\"\\\\nReport saved to {out_path}\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 66_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+This script only analyzes CoNLL, not SciERC. The Table 4 CoNLL 8B values (SJ=.436, FK=.400) match the unified registry exactly, so no issue there.
+
+The issue is with SciERC 8B in Table 4. Let me look at the 4B SciERC report more closely. The 4B SciERC report shows:
+- NER full: SJ rho=0.422, FK rho=0.326
+
+
+- NER conditional: SJ rho=0.381, FK rho=0.281
+
+Table 4 shows 4B SciERC: SJ=.422, FK=.326, which match the full values. But where did the 8B SciERC values in Table 4 come from? SJ=.383, FK=.259. Let me check if a different script generated the 4B SciERC data and also computed matched 8B values, or if the n8_5signal_results.json file contains something I'm missing.
+
+I need to find the original report or script that explicitly contains both .383 and .259 for the 8B SciERC values. Let me search through the early experiment directories and artifacts to locate where these specific numbers came from.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "23f4e92a-18c1-4516-bd8c-795f81ff2872",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01T6yfTkUFsA6RdqzZPzFCRE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4199,
+      "cache_read_input_tokens": 88438,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4199
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 67_
+
+Let me check the n_scaling_appendix_tables.tex which might have the Table 4 data source, and search for the origin of these specific values.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "7af56e1f-caac-4377-912b-1c4250ba295a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01T6yfTkUFsA6RdqzZPzFCRE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4199,
+      "cache_read_input_tokens": 88438,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4199
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 68_
+
+<details open><summary>🔧 Tool call — Read · `toolu_017yvfg6E9czi5ccKizsJ8vd`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/n_scaling_appendix_tables.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "3be40d9a-0693-4e65-b05c-4986b1eee306",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01T6yfTkUFsA6RdqzZPzFCRE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4199,
+      "cache_read_input_tokens": 88438,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4199
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 69 · 2026-05-15T23:55:18.225Z_
+
+<details><summary>↩ Tool result · `toolu_017yvfg6E9czi5ccKizsJ8vd`</summary>
+
+```text
+1	% N-scaling appendix tables for Structured Self-Consistency paper
+2	% Requires: booktabs package
+3	
+4	%%% Table 1: N=8 vs N=16 Comparison (Spearman ρ)
+5	\begin{table}[t]
+6	\centering
+7	\caption{Effect of sample pool size on signal quality (Qwen 2.5-7B, SciERC, 3-seed mean Spearman $\rho$).}
+8	\label{tab:n-scaling}
+9	\small
+10	\begin{tabular}{l ccc ccc}
+11	\toprule
+12	 & \multicolumn{3}{c}{\textbf{NER} $\rho$} & \multicolumn{3}{c}{\textbf{RE} $\rho$} \\
+13	\cmidrule(lr){2-4} \cmidrule(lr){5-7}
+14	Signal & $N\!=\!8$ & $N\!=\!16$ & $\Delta$ & $N\!=\!8$ & $N\!=\!16$ & $\Delta$ \\
+15	\midrule
+16	SJ & 0.3641 & 0.4105 & \textbf{+0.0464} & 0.2485 & 0.2758 & \textbf{+0.0273} \\
+17	FK & 0.2536 & 0.2833 & \textbf{+0.0297} & 0.2903 & 0.2964 & \textbf{+0.0061} \\
+18	VC & 0.3861 & 0.4092 & \textbf{+0.0231} & 0.3088 & 0.3738 & \textbf{+0.0650} \\
+19	LP & 0.2167 & 0.2393 & \textbf{+0.0226} & 0.2970 & 0.3100 & \textbf{+0.0130} \\
+20	EM & 0.3071 & 0.3395 & \textbf{+0.0324} & 0.1353 & 0.1506 & \textbf{+0.0153} \\
+21	\midrule
+22	Mean & 0.3055 & 0.3364 & \textbf{+0.0308} & 0.2560 & 0.2813 & \textbf{+0.0253} \\
+23	\bottomrule
+24	\end{tabular}
+25	\end{table}
+26	
+27	%%% Table 2: Cross-seed Signal Ranking Stability (Kendall's W)
+28	\begin{table}[t]
+29	\centering
+30	\caption{Cross-seed signal ranking stability (Kendall's $W$, 3 seeds).}
+31	\label{tab:ranking-stability}
+32	\small
+33	\begin{tabular}{ll cc l}
+34	\toprule
+35	Model & Task & $N$ & Kendall's $W$ & Consensus ranking \\
+36	\midrule
+37	Qwen  & NER & 8  & 1.000 & VC $>$ SJ $>$ EM $>$ FK $>$ LP \\
+38	Qwen  & NER & 16 & 0.956 & SJ $\approx$ VC $>$ EM $>$ FK $>$ LP \\
+39	Qwen  & RE  & 8  & 0.822 & VC $>$ LP $>$ FK $>$ SJ $>$ EM \\
+40	Qwen  & RE  & 16 & 0.956 & VC $>$ LP $>$ FK $>$ SJ $>$ EM \\
+41	LLaMA & NER & 8  & 1.000 & VC $>$ SJ $>$ EM $>$ FK $>$ LP \\
+42	\bottomrule
+43	\end{tabular}
+44	\end{table}
+45	
+46	%%% Table 3: Per-signal Cross-seed σ Comparison
+47	\begin{table}[t]
+48	\centering
+49	\caption{Cross-seed standard deviation ($\sigma$) of Spearman $\rho$ at $N\!=\!8$ vs.\ $N\!=\!16$ (Qwen 2.5-7B, SciERC, 3 seeds).}
+50	\label{tab:sigma-comparison}
+51	\small
+52	\begin{tabular}{l cc cc}
+53	\toprule
+54	 & \multicolumn{2}{c}{\textbf{NER} $\sigma_\rho$} & \multicolumn{2}{c}{\textbf{RE} $\sigma_\rho$} \\
+55	\cmidrule(lr){2-3} \cmidrule(lr){4-5}
+56	Signal & $N\!=\!8$ & $N\!=\!16$ & $N\!=\!8$ & $N\!=\!16$ \\
+57	\midrule
+58	SJ & 0.0179 & 0.0102 & 0.0015 & 0.0067 \\
+59	FK & 0.0157 & 0.0079 & 0.0121 & 0.0143 \\
+60	VC & 0.0187 & 0.0260 & 0.0244 & 0.0158 \\
+61	EM & 0.0076 & 0.0031 & 0.0157 & 0.0049 \\
+62	LP & 0.0125 & 0.0017 & 0.0218 & 0.0152 \\
+63	\midrule
+64	Mean & 0.0145 & 0.0098 & 0.0151 & 0.0114 \\
+65	\bottomrule
+66	\end{tabular}
+67	\end{table}
+68	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "53dd2383-c8d6-4d82-857b-e78b4cc4b9d2",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/n_scaling_appendix_tables.tex",
+      "content": "% N-scaling appendix tables for Structured Self-Consistency paper\n% Requires: booktabs package\n\n%%% Table 1: N=8 vs N=16 Comparison (Spearman ρ)\n\\begin{table}[t]\n\\centering\n\\caption{Effect of sample pool size on signal quality (Qwen 2.5-7B, SciERC, 3-seed mean Spearman $\\rho$).}\n\\label{tab:n-scaling}\n\\small\n\\begin{tabular}{l ccc ccc}\n\\toprule\n & \\multicolumn{3}{c}{\\textbf{NER} $\\rho$} & \\multicolumn{3}{c}{\\textbf{RE} $\\rho$} \\\\\n\\cmidrule(lr){2-4} \\cmidrule(lr){5-7}\nSignal & $N\\!=\\!8$ & $N\\!=\\!16$ & $\\Delta$ & $N\\!=\\!8$ & $N\\!=\\!16$ & $\\Delta$ \\\\\n\\midrule\nSJ & 0.3641 & 0.4105 & \\textbf{+0.0464} & 0.2485 & 0.2758 & \\textbf{+0.0273} \\\\\nFK & 0.2536 & 0.2833 & \\textbf{+0.0297} & 0.2903 & 0.2964 & \\textbf{+0.0061} \\\\\nVC & 0.3861 & 0.4092 & \\textbf{+0.0231} & 0.3088 & 0.3738 & \\textbf{+0.0650} \\\\\nLP & 0.2167 & 0.2393 & \\textbf{+0.0226} & 0.2970 & 0.3100 & \\textbf{+0.0130} \\\\\nEM & 0.3071 & 0.3395 & \\textbf{+0.0324} & 0.1353 & 0.1506 & \\textbf{+0.0153} \\\\\n\\midrule\nMean & 0.3055 & 0.3364 & \\textbf{+0.0308} & 0.2560 & 0.2813 & \\textbf{+0.0253} \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n%%% Table 2: Cross-seed Signal Ranking Stability (Kendall's W)\n\\begin{table}[t]\n\\centering\n\\caption{Cross-seed signal ranking stability (Kendall's $W$, 3 seeds).}\n\\label{tab:ranking-stability}\n\\small\n\\begin{tabular}{ll cc l}\n\\toprule\nModel & Task & $N$ & Kendall's $W$ & Consensus ranking \\\\\n\\midrule\nQwen  & NER & 8  & 1.000 & VC $>$ SJ $>$ EM $>$ FK $>$ LP \\\\\nQwen  & NER & 16 & 0.956 & SJ $\\approx$ VC $>$ EM $>$ FK $>$ LP \\\\\nQwen  & RE  & 8  & 0.822 & VC $>$ LP $>$ FK $>$ SJ $>$ EM \\\\\nQwen  & RE  & 16 & 0.956 & VC $>$ LP $>$ FK $>$ SJ $>$ EM \\\\\nLLaMA & NER & 8  & 1.000 & VC $>$ SJ $>$ EM $>$ FK $>$ LP \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n%%% Table 3: Per-signal Cross-seed σ Comparison\n\\begin{table}[t]\n\\centering\n\\caption{Cross-seed standard deviation ($\\sigma$) of Spearman $\\rho$ at $N\\!=\\!8$ vs.\\ $N\\!=\\!16$ (Qwen 2.5-7B, SciERC, 3 seeds).}\n\\label{tab:sigma-comparison}\n\\small\n\\begin{tabular}{l cc cc}\n\\toprule\n & \\multicolumn{2}{c}{\\textbf{NER} $\\sigma_\\rho$} & \\multicolumn{2}{c}{\\textbf{RE} $\\sigma_\\rho$} \\\\\n\\cmidrule(lr){2-3} \\cmidrule(lr){4-5}\nSignal & $N\\!=\\!8$ & $N\\!=\\!16$ & $N\\!=\\!8$ & $N\\!=\\!16$ \\\\\n\\midrule\nSJ & 0.0179 & 0.0102 & 0.0015 & 0.0067 \\\\\nFK & 0.0157 & 0.0079 & 0.0121 & 0.0143 \\\\\nVC & 0.0187 & 0.0260 & 0.0244 & 0.0158 \\\\\nEM & 0.0076 & 0.0031 & 0.0157 & 0.0049 \\\\\nLP & 0.0125 & 0.0017 & 0.0218 & 0.0152 \\\\\n\\midrule\nMean & 0.0145 & 0.0098 & 0.0151 & 0.0114 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n",
+      "numLines": 68,
+      "startLine": 1,
+      "totalLines": 68
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 70_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01VJcv2rVtS9dytGJurgEvag`</summary>
+
+```json
+{
+  "pattern": "\\.383.*\\.259|scale.*ablation.*8B",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "glob": "*.py",
+  "output_mode": "content"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "b15c0700-6855-4809-9b67-5b38e75221f8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01T6yfTkUFsA6RdqzZPzFCRE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4199,
+      "cache_read_input_tokens": 88438,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4199
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 71 · 2026-05-15T23:55:19.566Z_
+
+<details><summary>↩ Tool result · `toolu_01VJcv2rVtS9dytGJurgEvag`</summary>
+
+```text
+No matches found
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "4c0a55da-c4d8-4f75-ad08-44d4b1cb9539",
+  "tool_use_result": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "",
+    "numLines": 0
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 72_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01JvZoqpPZysk5zCTyXdztP7`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "grep -r \"0.383\" /root/autodl-tmp/struct_self_consist_ie/output/exp_qwen3_4b_scierc_scs_inference/report.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "4f56cc3c-c3d3-4f89-b788-7160ba067e89",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01T6yfTkUFsA6RdqzZPzFCRE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4199,
+      "cache_read_input_tokens": 88438,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4199
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 73 · 2026-05-15T23:55:21.178Z_
+
+<details><summary>↩ Tool result · `toolu_01JvZoqpPZysk5zCTyXdztP7`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "c3055400-4443-4412-a6d8-9700533698a2",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 74_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+So 0.383 doesn't appear in the 4B SciERC report. That's expected — the 4B report has different numbers.
+
+The dream reports (auto-generated paper drafts) consistently used .383 and .259 as the SciERC 8B baseline. These dream reports are from 2026-05-14, before the final paper tex was written. This means .383 and .259 were the "original" 8B SciERC values in earlier versions of the analysis, before the unified pipeline was run.
+
+Let me check the mvp_pilot_004 and exp_001_seed42_v2_r1024 reports, which appeared in the grep for 0.383:
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "f0ef8efa-df02-493b-a4fb-e1d4bf754e5d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KngnkroXkEw8Sa8CsxHHhH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2639,
+      "cache_read_input_tokens": 92637,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2639
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 75_
+
+The dream reports consistently used .383/.259 as 8B SciERC values. Let me trace these to the original experiment reports.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "9a26369f-70c5-459f-b304-e6e62bc18ab5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KngnkroXkEw8Sa8CsxHHhH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2639,
+      "cache_read_input_tokens": 92637,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2639
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 76_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01L4a9s47QPrGP8ztqE3bp32`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_004/report.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "5a2aafc9-809b-47ca-a0f6-c34d2666d964",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KngnkroXkEw8Sa8CsxHHhH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2639,
+      "cache_read_input_tokens": 92637,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2639
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 77 · 2026-05-15T23:55:30.234Z_
+
+<details><summary>↩ Tool result · `toolu_01L4a9s47QPrGP8ztqE3bp32`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"dataset\\\": \\\"scierc\\\",\\n  \\\"subtask\\\": \\\"joint\\\",\\n  \\\"n_samples\\\": 8,\\n  \\\"temperature\\\": 1.0,\\n  \\\"num_instances\\\": 551,\\n  \\\"use_train_format\\\": true,\\n  \\\"ner_greedy_f1\\\": 0.6670644391408114,\\n  \\\"ner_oracle_f1\\\": 0.7755707085680403,\\n  \\\"ner_oracle_headroom\\\": 0.10850626942722896,\\n  \\\"ner_fleiss_kappa_mean\\\": 0.404833077782123,\\n  \\\"ner_soft_jaccard_mean\\\": 0.7007668853280039,\\n  \\\"ner_correlation_fleiss_vs_f1_full\\\": {\\n    \\\"rho\\\": 0.2590287670611875,\\n    \\\"p_value\\\": 1.4749617362002596e-09,\\n    \\\"n\\\": 529\\n  },\\n  \\\"ner_correlation_softjaccard_vs_f1_full\\\": {\\n    \\\"rho\\\": 0.3825183376668469,\\n    \\\"p_value\\\": 7.075136887733191e-20,\\n    \\\"n\\\": 529\\n  },\\n  \\\"ner_correlation_fleiss_vs_f1_conditional\\\": {\\n    \\\"rho\\\": 0.23519998074107282,\\n    \\\"p_value\\\": 8.162404147668711e-08,\\n    \\\"n\\\": 508\\n  },\\n  \\\"ner_correlation_softjaccard_vs_f1_conditional\\\": {\\n    \\\"rho\\\": 0.3761747231572503,\\n    \\\"p_value\\\": 1.6016428996438062e-18,\\n    \\\"n\\\": 508\\n  },\\n  \\\"ner_n_gold_empty_filtered\\\": 22,\\n  \\\"ner_n_all_samples_f1_zero_filtered\\\": 21,\\n  \\\"ner_structural_beats_surface\\\": true,\\n  \\\"ner_rho_advantage\\\": 0.1234895706056594,\\n  \\\"ner_sample_f1_mean\\\": 0.6083957210996992,\\n  \\\"ner_sample_f1_std\\\": 0.3173545540187574,\\n  \\\"ner_sample_f1_pct_zero\\\": 12.19281663516068,\\n  \\\"re_greedy_f1\\\": 0.4207896051974013,\\n  \\\"re_oracle_f1\\\": 0.5882352941176471,\\n  \\\"re_oracle_headroom\\\": 0.1674456889202458,\\n  \\\"re_fleiss_kappa_mean\\\": 0.2996385624366326,\\n  \\\"re_soft_jaccard_mean\\\": 0.6113509598733148,\\n  \\\"re_correlation_fleiss_vs_f1_full\\\": {\\n    \\\"rho\\\": 0.2782151188817765,\\n    \\\"p_value\\\": 1.7243205365720716e-08,\\n    \\\"n\\\": 397\\n  },\\n  \\\"re_correlation_softjaccard_vs_f1_full\\\": {\\n    \\\"rho\\\": 0.2440702831280834,\\n    \\\"p_value\\\": 8.550224511243979e-07,\\n    \\\"n\\\": 397\\n  },\\n  \\\"re_correlation_fleiss_vs_f1_conditional\\\": {\\n    \\\"rho\\\": 0.3067010369107279,\\n    \\\"p_value\\\": 3.051941342129941e-08,\\n    \\\"n\\\": 313\\n  },\\n  \\\"re_correlation_softjaccard_vs_f1_conditional\\\": {\\n    \\\"rho\\\": 0.31612432525905776,\\n    \\\"p_value\\\": 1.0795971808906936e-08,\\n    \\\"n\\\": 313\\n  },\\n  \\\"re_n_gold_empty_filtered\\\": 154,\\n  \\\"re_n_all_samples_f1_zero_filtered\\\": 84,\\n  \\\"re_structural_beats_surface\\\": false,\\n  \\\"re_rho_advantage\\\": -0.03414483575369312,\\n  \\\"re_sample_f1_mean\\\": 0.36116953342051505,\\n  \\\"re_sample_f1_std\\\": 0.3830344166083389,\\n  \\\"re_sample_f1_pct_zero\\\": 44.30100755667506,\\n  \\\"verdict\\\": \\\"FAIL\\\",\\n  \\\"verdict_note\\\": \\\"Joint mode: verdict requires RE rho_sj >= 0.40 AND rho_sj > rho_fk AND any subtask headroom >= 2pp\\\",\\n  \\\"warning\\\": \\\"WARNING: >30% samples F1=0, recommend re-running at T=0.7\\\"\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "2402ae9a-0046-4963-bf55-30a8c2be5163",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"dataset\\\\\\\": \\\\\\\"scierc\\\\\\\",\\\\n  \\\\\\\"subtask\\\\\\\": \\\\\\\"joint\\\\\\\",\\\\n  \\\\\\\"n_samples\\\\\\\": 8,\\\\n  \\\\\\\"temperature\\\\\\\": 1.0,\\\\n  \\\\\\\"num_instances\\\\\\\": 551,\\\\n  \\\\\\\"use_train_format\\\\\\\": true,\\\\n  \\\\\\\"ner_greedy_f1\\\\\\\": 0.6670644391408114,\\\\n  \\\\\\\"ner_oracle_f1\\\\\\\": 0.7755707085680403,\\\\n  \\\\\\\"ner_oracle_headroom\\\\\\\": 0.10850626942722896,\\\\n  \\\\\\\"ner_fleiss_kappa_mean\\\\\\\": 0.404833077782123,\\\\n  \\\\\\\"ner_soft_jaccard_mean\\\\\\\": 0.7007668853280039,\\\\n  \\\\\\\"ner_correlation_fleiss_vs_f1_full\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.2590287670611875,\\\\n    \\\\\\\"p_value\\\\\\\": 1.4749617362002596e-09,\\\\n    \\\\\\\"n\\\\\\\": 529\\\\n  },\\\\n  \\\\\\\"ner_correlation_softjaccard_vs_f1_full\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.3825183376668469,\\\\n    \\\\\\\"p_value\\\\\\\": 7.075136887733191e-20,\\\\n    \\\\\\\"n\\\\\\\": 529\\\\n  },\\\\n  \\\\\\\"ner_correlation_fleiss_vs_f1_conditional\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.23519998074107282,\\\\n    \\\\\\\"p_value\\\\\\\": 8.162404147668711e-08,\\\\n    \\\\\\\"n\\\\\\\": 508\\\\n  },\\\\n  \\\\\\\"ner_correlation_softjaccard_vs_f1_conditional\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.3761747231572503,\\\\n    \\\\\\\"p_value\\\\\\\": 1.6016428996438062e-18,\\\\n    \\\\\\\"n\\\\\\\": 508\\\\n  },\\\\n  \\\\\\\"ner_n_gold_empty_filtered\\\\\\\": 22,\\\\n  \\\\\\\"ner_n_all_samples_f1_zero_filtered\\\\\\\": 21,\\\\n  \\\\\\\"ner_structural_beats_surface\\\\\\\": true,\\\\n  \\\\\\\"ner_rho_advantage\\\\\\\": 0.1234895706056594,\\\\n  \\\\\\\"ner_sample_f1_mean\\\\\\\": 0.6083957210996992,\\\\n  \\\\\\\"ner_sample_f1_std\\\\\\\": 0.3173545540187574,\\\\n  \\\\\\\"ner_sample_f1_pct_zero\\\\\\\": 12.19281663516068,\\\\n  \\\\\\\"re_greedy_f1\\\\\\\": 0.4207896051974013,\\\\n  \\\\\\\"re_oracle_f1\\\\\\\": 0.5882352941176471,\\\\n  \\\\\\\"re_oracle_headroom\\\\\\\": 0.1674456889202458,\\\\n  \\\\\\\"re_fleiss_kappa_mean\\\\\\\": 0.2996385624366326,\\\\n  \\\\\\\"re_soft_jaccard_mean\\\\\\\": 0.6113509598733148,\\\\n  \\\\\\\"re_correlation_fleiss_vs_f1_full\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.2782151188817765,\\\\n    \\\\\\\"p_value\\\\\\\": 1.7243205365720716e-08,\\\\n    \\\\\\\"n\\\\\\\": 397\\\\n  },\\\\n  \\\\\\\"re_correlation_softjaccard_vs_f1_full\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.2440702831280834,\\\\n    \\\\\\\"p_value\\\\\\\": 8.550224511243979e-07,\\\\n    \\\\\\\"n\\\\\\\": 397\\\\n  },\\\\n  \\\\\\\"re_correlation_fleiss_vs_f1_conditional\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.3067010369107279,\\\\n    \\\\\\\"p_value\\\\\\\": 3.051941342129941e-08,\\\\n    \\\\\\\"n\\\\\\\": 313\\\\n  },\\\\n  \\\\\\\"re_correlation_softjaccard_vs_f1_conditional\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.31612432525905776,\\\\n    \\\\\\\"p_value\\\\\\\": 1.0795971808906936e-08,\\\\n    \\\\\\\"n\\\\\\\": 313\\\\n  },\\\\n  \\\\\\\"re_n_gold_empty_filtered\\\\\\\": 154,\\\\n  \\\\\\\"re_n_all_samples_f1_zero_filtered\\\\\\\": 84,\\\\n  \\\\\\\"re_structural_beats_surface\\\\\\\": false,\\\\n  \\\\\\\"re_rho_advantage\\\\\\\": -0.03414483575369312,\\\\n  \\\\\\\"re_sample_f1_mean\\\\\\\": 0.36116953342051505,\\\\n  \\\\\\\"re_sample_f1_std\\\\\\\": 0.3830344166083389,\\\\n  \\\\\\\"re_sample_f1_pct_zero\\\\\\\": 44.30100755667506,\\\\n  \\\\\\\"verdict\\\\\\\": \\\\\\\"FAIL\\\\\\\",\\\\n  \\\\\\\"verdict_note\\\\\\\": \\\\\\\"Joint mode: verdict requires RE rho_sj >= 0.40 AND rho_sj > rho_fk AND any subtask headroom >= 2pp\\\\\\\",\\\\n  \\\\\\\"warning\\\\\\\": \\\\\\\"WARNING: >30% samples F1=0, recommend re-running at T=0.7\\\\\\\"\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"dataset\\\": \\\"scierc\\\",\\n  \\\"subtask\\\": \\\"joint\\\",\\n  \\\"n_samples\\\": 8,\\n  \\\"temperature\\\": 1.0,\\n  \\\"num_instances\\\": 551,\\n  \\\"use_train_format\\\": true,\\n  \\\"ner_greedy_f1\\\": 0.6670644391408114,\\n  \\\"ner_oracle_f1\\\": 0.7755707085680403,\\n  \\\"ner_oracle_headroom\\\": 0.10850626942722896,\\n  \\\"ner_fleiss_kappa_mean\\\": 0.404833077782123,\\n  \\\"ner_soft_jaccard_mean\\\": 0.7007668853280039,\\n  \\\"ner_correlation_fleiss_vs_f1_full\\\": {\\n    \\\"rho\\\": 0.2590287670611875,\\n    \\\"p_value\\\": 1.4749617362002596e-09,\\n    \\\"n\\\": 529\\n  },\\n  \\\"ner_correlation_softjaccard_vs_f1_full\\\": {\\n    \\\"rho\\\": 0.3825183376668469,\\n    \\\"p_value\\\": 7.075136887733191e-20,\\n    \\\"n\\\": 529\\n  },\\n  \\\"ner_correlation_fleiss_vs_f1_conditional\\\": {\\n    \\\"rho\\\": 0.23519998074107282,\\n    \\\"p_value\\\": 8.162404147668711e-08,\\n    \\\"n\\\": 508\\n  },\\n  \\\"ner_correlation_softjaccard_vs_f1_conditional\\\": {\\n    \\\"rho\\\": 0.3761747231572503,\\n    \\\"p_value\\\": 1.6016428996438062e-18,\\n    \\\"n\\\": 508\\n  },\\n  \\\"ner_n_gold_empty_filtered\\\": 22,\\n  \\\"ner_n_all_samples_f1_zero_filtered\\\": 21,\\n  \\\"ner_structural_beats_surface\\\": true,\\n  \\\"ner_rho_advantage\\\": 0.1234895706056594,\\n  \\\"ner_sample_f1_mean\\\": 0.6083957210996992,\\n  \\\"ner_sample_f1_std\\\": 0.3173545540187574,\\n  \\\"ner_sample_f1_pct_zero\\\": 12.19281663516068,\\n  \\\"re_greedy_f1\\\": 0.4207896051974013,\\n  \\\"re_oracle_f1\\\": 0.5882352941176471,\\n  \\\"re_oracle_headroom\\\": 0.1674456889202458,\\n  \\\"re_fleiss_kappa_mean\\\": 0.2996385624366326,\\n  \\\"re_soft_jaccard_mean\\\": 0.6113509598733148,\\n  \\\"re_correlation_fleiss_vs_f1_full\\\": {\\n    \\\"rho\\\": 0.2782151188817765,\\n    \\\"p_value\\\": 1.7243205365720716e-08,\\n    \\\"n\\\": 397\\n  },\\n  \\\"re_correlation_softjaccard_vs_f1_full\\\": {\\n    \\\"rho\\\": 0.2440702831280834,\\n    \\\"p_value\\\": 8.550224511243979e-07,\\n    \\\"n\\\": 397\\n  },\\n  \\\"re_correlation_fleiss_vs_f1_conditional\\\": {\\n    \\\"rho\\\": 0.3067010369107279,\\n    \\\"p_value\\\": 3.051941342129941e-08,\\n    \\\"n\\\": 313\\n  },\\n  \\\"re_correlation_softjaccard_vs_f1_conditional\\\": {\\n    \\\"rho\\\": 0.31612432525905776,\\n    \\\"p_value\\\": 1.0795971808906936e-08,\\n    \\\"n\\\": 313\\n  },\\n  \\\"re_n_gold_empty_filtered\\\": 154,\\n  \\\"re_n_all_samples_f1_zero_filtered\\\": 84,\\n  \\\"re_structural_beats_surface\\\": false,\\n  \\\"re_rho_advantage\\\": -0.03414483575369312,\\n  \\\"re_sample_f1_mean\\\": 0.36116953342051505,\\n  \\\"re_sample_f1_std\\\": 0.3830344166083389,\\n  \\\"re_sample_f1_pct_zero\\\": 44.30100755667506,\\n  \\\"verdict\\\": \\\"FAIL\\\",\\n  \\\"verdict_note\\\": \\\"Joint mode: verdict requires RE rho_sj >= 0.40 AND rho_sj > rho_fk AND any subtask headroom >= 2pp\\\",\\n  \\\"warning\\\": \\\"WARNING: >30% samples F1=0, recommend re-running at T=0.7\\\"\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 78_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01JGMHo69fMCvuAhGaYmGUy9`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed42_v2_r1024/report.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "e2039c76-991a-4589-8db3-8c51c82d9504",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KngnkroXkEw8Sa8CsxHHhH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2639,
+      "cache_read_input_tokens": 92637,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2639
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 79 · 2026-05-15T23:55:30.866Z_
+
+<details><summary>↩ Tool result · `toolu_01JGMHo69fMCvuAhGaYmGUy9`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"dataset\\\": \\\"scierc\\\",\\n  \\\"subtask\\\": \\\"ner\\\",\\n  \\\"n_samples\\\": 16,\\n  \\\"temperature\\\": 1.0,\\n  \\\"num_instances\\\": 551,\\n  \\\"use_train_format\\\": true,\\n  \\\"greedy_f1\\\": 0.6589285714285714,\\n  \\\"oracle_f1\\\": 0.8167067307692307,\\n  \\\"oracle_headroom\\\": 0.1577781593406593,\\n  \\\"fleiss_kappa_mean\\\": 0.44883983088395657,\\n  \\\"soft_jaccard_mean\\\": 0.6974458649565253,\\n  \\\"correlation_fleiss_vs_f1_full\\\": {\\n    \\\"rho\\\": 0.2835925683818121,\\n    \\\"p_value\\\": 3.0510730961216146e-11,\\n    \\\"n\\\": 529\\n  },\\n  \\\"correlation_softjaccard_vs_f1_full\\\": {\\n    \\\"rho\\\": 0.41219052078770757,\\n    \\\"p_value\\\": 4.0976099003839636e-23,\\n    \\\"n\\\": 529\\n  },\\n  \\\"correlation_fleiss_vs_f1_conditional\\\": {\\n    \\\"rho\\\": 0.20883235712245884,\\n    \\\"p_value\\\": 4.1314420502670735e-06,\\n    \\\"n\\\": 478\\n  },\\n  \\\"correlation_softjaccard_vs_f1_conditional\\\": {\\n    \\\"rho\\\": 0.3738003725173118,\\n    \\\"p_value\\\": 2.6811135412141576e-17,\\n    \\\"n\\\": 478\\n  },\\n  \\\"n_gold_empty_filtered\\\": 22,\\n  \\\"n_greedy_f1_zero_filtered\\\": 51,\\n  \\\"structural_beats_surface\\\": true,\\n  \\\"rho_advantage\\\": 0.12859795240589544,\\n  \\\"sample_f1_mean\\\": 0.611913449217116,\\n  \\\"sample_f1_std\\\": 0.31917379310518557,\\n  \\\"sample_f1_pct_zero\\\": 12.39366729678639,\\n  \\\"logprob_baseline\\\": {\\n    \\\"full\\\": {\\n      \\\"rho\\\": 0.21519201437754185,\\n      \\\"p_rho\\\": 5.842217488328323e-07,\\n      \\\"tau\\\": 0.1550550144947651,\\n      \\\"p_tau\\\": 3.620362180306769e-07,\\n      \\\"auroc\\\": 0.6155173413757105,\\n      \\\"n\\\": 529\\n    },\\n    \\\"conditional\\\": {\\n      \\\"rho\\\": 0.14603725740137286,\\n      \\\"p_rho\\\": 0.0013663596924555668,\\n      \\\"tau\\\": 0.10528016009309402,\\n      \\\"p_tau\\\": 0.001081587463032782,\\n      \\\"auroc\\\": 0.5916440395900849,\\n      \\\"n\\\": 478\\n    }\\n  },\\n  \\\"verdict\\\": \\\"PASS\\\",\\n  \\\"verdict_note\\\": \\\"MVP verdict on single subtask; final pass requires at least one of NER/RE/EAE to meet threshold\\\"\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "9d8265f7-64c0-46aa-bcba-f25f9f1d8dc0",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"dataset\\\\\\\": \\\\\\\"scierc\\\\\\\",\\\\n  \\\\\\\"subtask\\\\\\\": \\\\\\\"ner\\\\\\\",\\\\n  \\\\\\\"n_samples\\\\\\\": 16,\\\\n  \\\\\\\"temperature\\\\\\\": 1.0,\\\\n  \\\\\\\"num_instances\\\\\\\": 551,\\\\n  \\\\\\\"use_train_format\\\\\\\": true,\\\\n  \\\\\\\"greedy_f1\\\\\\\": 0.6589285714285714,\\\\n  \\\\\\\"oracle_f1\\\\\\\": 0.8167067307692307,\\\\n  \\\\\\\"oracle_headroom\\\\\\\": 0.1577781593406593,\\\\n  \\\\\\\"fleiss_kappa_mean\\\\\\\": 0.44883983088395657,\\\\n  \\\\\\\"soft_jaccard_mean\\\\\\\": 0.6974458649565253,\\\\n  \\\\\\\"correlation_fleiss_vs_f1_full\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.2835925683818121,\\\\n    \\\\\\\"p_value\\\\\\\": 3.0510730961216146e-11,\\\\n    \\\\\\\"n\\\\\\\": 529\\\\n  },\\\\n  \\\\\\\"correlation_softjaccard_vs_f1_full\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.41219052078770757,\\\\n    \\\\\\\"p_value\\\\\\\": 4.0976099003839636e-23,\\\\n    \\\\\\\"n\\\\\\\": 529\\\\n  },\\\\n  \\\\\\\"correlation_fleiss_vs_f1_conditional\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.20883235712245884,\\\\n    \\\\\\\"p_value\\\\\\\": 4.1314420502670735e-06,\\\\n    \\\\\\\"n\\\\\\\": 478\\\\n  },\\\\n  \\\\\\\"correlation_softjaccard_vs_f1_conditional\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.3738003725173118,\\\\n    \\\\\\\"p_value\\\\\\\": 2.6811135412141576e-17,\\\\n    \\\\\\\"n\\\\\\\": 478\\\\n  },\\\\n  \\\\\\\"n_gold_empty_filtered\\\\\\\": 22,\\\\n  \\\\\\\"n_greedy_f1_zero_filtered\\\\\\\": 51,\\\\n  \\\\\\\"structural_beats_surface\\\\\\\": true,\\\\n  \\\\\\\"rho_advantage\\\\\\\": 0.12859795240589544,\\\\n  \\\\\\\"sample_f1_mean\\\\\\\": 0.611913449217116,\\\\n  \\\\\\\"sample_f1_std\\\\\\\": 0.31917379310518557,\\\\n  \\\\\\\"sample_f1_pct_zero\\\\\\\": 12.39366729678639,\\\\n  \\\\\\\"logprob_baseline\\\\\\\": {\\\\n    \\\\\\\"full\\\\\\\": {\\\\n      \\\\\\\"rho\\\\\\\": 0.21519201437754185,\\\\n      \\\\\\\"p_rho\\\\\\\": 5.842217488328323e-07,\\\\n      \\\\\\\"tau\\\\\\\": 0.1550550144947651,\\\\n      \\\\\\\"p_tau\\\\\\\": 3.620362180306769e-07,\\\\n      \\\\\\\"auroc\\\\\\\": 0.6155173413757105,\\\\n      \\\\\\\"n\\\\\\\": 529\\\\n    },\\\\n    \\\\\\\"conditional\\\\\\\": {\\\\n      \\\\\\\"rho\\\\\\\": 0.14603725740137286,\\\\n      \\\\\\\"p_rho\\\\\\\": 0.0013663596924555668,\\\\n      \\\\\\\"tau\\\\\\\": 0.10528016009309402,\\\\n      \\\\\\\"p_tau\\\\\\\": 0.001081587463032782,\\\\n      \\\\\\\"auroc\\\\\\\": 0.5916440395900849,\\\\n      \\\\\\\"n\\\\\\\": 478\\\\n    }\\\\n  },\\\\n  \\\\\\\"verdict\\\\\\\": \\\\\\\"PASS\\\\\\\",\\\\n  \\\\\\\"verdict_note\\\\\\\": \\\\\\\"MVP verdict on single subtask; final pass requires at least one of NER/RE/EAE to meet threshold\\\\\\\"\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"dataset\\\": \\\"scierc\\\",\\n  \\\"subtask\\\": \\\"ner\\\",\\n  \\\"n_samples\\\": 16,\\n  \\\"temperature\\\": 1.0,\\n  \\\"num_instances\\\": 551,\\n  \\\"use_train_format\\\": true,\\n  \\\"greedy_f1\\\": 0.6589285714285714,\\n  \\\"oracle_f1\\\": 0.8167067307692307,\\n  \\\"oracle_headroom\\\": 0.1577781593406593,\\n  \\\"fleiss_kappa_mean\\\": 0.44883983088395657,\\n  \\\"soft_jaccard_mean\\\": 0.6974458649565253,\\n  \\\"correlation_fleiss_vs_f1_full\\\": {\\n    \\\"rho\\\": 0.2835925683818121,\\n    \\\"p_value\\\": 3.0510730961216146e-11,\\n    \\\"n\\\": 529\\n  },\\n  \\\"correlation_softjaccard_vs_f1_full\\\": {\\n    \\\"rho\\\": 0.41219052078770757,\\n    \\\"p_value\\\": 4.0976099003839636e-23,\\n    \\\"n\\\": 529\\n  },\\n  \\\"correlation_fleiss_vs_f1_conditional\\\": {\\n    \\\"rho\\\": 0.20883235712245884,\\n    \\\"p_value\\\": 4.1314420502670735e-06,\\n    \\\"n\\\": 478\\n  },\\n  \\\"correlation_softjaccard_vs_f1_conditional\\\": {\\n    \\\"rho\\\": 0.3738003725173118,\\n    \\\"p_value\\\": 2.6811135412141576e-17,\\n    \\\"n\\\": 478\\n  },\\n  \\\"n_gold_empty_filtered\\\": 22,\\n  \\\"n_greedy_f1_zero_filtered\\\": 51,\\n  \\\"structural_beats_surface\\\": true,\\n  \\\"rho_advantage\\\": 0.12859795240589544,\\n  \\\"sample_f1_mean\\\": 0.611913449217116,\\n  \\\"sample_f1_std\\\": 0.31917379310518557,\\n  \\\"sample_f1_pct_zero\\\": 12.39366729678639,\\n  \\\"logprob_baseline\\\": {\\n    \\\"full\\\": {\\n      \\\"rho\\\": 0.21519201437754185,\\n      \\\"p_rho\\\": 5.842217488328323e-07,\\n      \\\"tau\\\": 0.1550550144947651,\\n      \\\"p_tau\\\": 3.620362180306769e-07,\\n      \\\"auroc\\\": 0.6155173413757105,\\n      \\\"n\\\": 529\\n    },\\n    \\\"conditional\\\": {\\n      \\\"rho\\\": 0.14603725740137286,\\n      \\\"p_rho\\\": 0.0013663596924555668,\\n      \\\"tau\\\": 0.10528016009309402,\\n      \\\"p_tau\\\": 0.001081587463032782,\\n      \\\"auroc\\\": 0.5916440395900849,\\n      \\\"n\\\": 478\\n    }\\n  },\\n  \\\"verdict\\\": \\\"PASS\\\",\\n  \\\"verdict_note\\\": \\\"MVP verdict on single subtask; final pass requires at least one of NER/RE/EAE to meet threshold\\\"\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 80_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Found it! The `mvp_pilot_004/report.json` shows:
+- NER SJ full rho = **0.3825** (rounds to .383)
+- NER FK full rho = **0.2590** (rounds to .259)
+- n=529 (gold_empty filtered), seed presumed 42
+
+These are the Table 4 values! Now let me understand the difference:
+
+**Table 1** uses `analysis_unified_rho_full.json` → `qwen_scierc_n8_seed42`:
+- SJ = 0.3599 → .360
+
+
+- FK = 0.2665 → .267
+
+**Table 4** uses `mvp_pilot_004/report.json`:
+- SJ = 0.3825 → .383
+- FK = 0.2590 → .259
+
+Both datasets have N=8, seed=42, and n=529, but the metrics diverge—the difference must stem from how the computation pipeline processes the data. Looking closer, `mvp_pilot_004` applies a different conditional filter with `ner_n_all_samples_f1_zero_filtered: 21`, which adjusts the effective sample count to 508, explaining why these rho values don't match. produced the `analysis_unified_rho_full.json` values? There are a few possibilities: the unified pipeline might have fixed how it handles empty sets in FK computation, or there could be differences in how SJ is normalized between the two versions, or they might be using different inference output files entirely. Let me check the file timestamps and trace which inference outputs each pipeline actually used.
+
+Looking at the dates, mvp_pilot_004 ran on May 14 early morning, while the unified pipeline's analysis came much later on May 15 evening, suggesting it's a more refined version. The key question is whether both pipelines analyzed the same samples.jsonl with different code, or if they're working from different source data altogether. I need to check what samples file mvp_pilot_004 used and compare it against what the unified pipeline processed.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "35bf32e0-f13a-4cf7-b9a3-1cde821ced99",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PAcFSEiBGDFzKkEHibqyxD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3252,
+      "cache_read_input_tokens": 95276,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3252
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 81_
+
+Found the source. `mvp_pilot_004/report.json` produces exactly SJ=.383 (0.3825) and FK=.259 (0.2590), while the unified pipeline gives SJ=.360, FK=.267. Both are N=8, seed=42, n=529. Let me identify the computation difference.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "32c9194d-b2d1-4f96-bdf1-abd1d99c9145",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PAcFSEiBGDFzKkEHibqyxD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3252,
+      "cache_read_input_tokens": 95276,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3252
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 82_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01LxT1XYfBkkmUQe1HiGYBBk`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "ls -la /root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_004/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "aa3988b8-ebea-4b24-831f-57f83882cba2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PAcFSEiBGDFzKkEHibqyxD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3252,
+      "cache_read_input_tokens": 95276,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3252
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 83 · 2026-05-15T23:55:52.622Z_
+
+<details><summary>↩ Tool result · `toolu_01LxT1XYfBkkmUQe1HiGYBBk`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 3200\\ndrwxr-xr-x  2 root root     187 May 14 19:17 .\\ndrwxr-xr-x 91 root root    8192 May 16 04:23 ..\\n-rw-r--r--  1 root root    1687 May 14 17:21 e1_component_decomposition.json\\n-rw-r--r--  1 root root    1750 May 14 19:17 exp013_exact_match_report.json\\n-rw-r--r--  1 root root    2450 May 14 19:17 exp014_entity_voting_report.json\\n-rw-r--r--  1 root root    2447 May 14 17:02 report.json\\n-rw-r--r--  1 root root 3245910 May 14 17:02 samples.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "3c6fb573-8f98-4aba-8177-f79ad128b497",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 3200\\\\ndrwxr-xr-x  2 root root     187 May 14 19:17 .\\\\ndrwxr-xr-x 91 root root    8192 May 16 04:23 ..\\\\n-rw-r--r--  1 root root    1687 May 14 17:21 e1_component_decomposition.json\\\\n-rw-r--r--  1 root root    1750 May 14 19:17 exp013_exact_match_report.json\\\\n-rw-r--r--  1 root root    2450 May 14 19:17 exp014_entity_voting_report.json\\\\n-rw-r--r--  1 root root    2447 May 14 17:02 report.json\\\\n-rw-r--r--  1 root root 3245910 May 14 17:02 samples.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 3200\\ndrwxr-xr-x  2 root root     187 May 14 19:17 .\\ndrwxr-xr-x 91 root root    8192 May 16 04:23 ..\\n-rw-r--r--  1 root root    1687 May 14 17:21 e1_component_decomposition.json\\n-rw-r--r--  1 root root    1750 May 14 19:17 exp013_exact_match_report.json\\n-rw-r--r--  1 root root    2450 May 14 19:17 exp014_entity_voting_report.json\\n-rw-r--r--  1 root root    2447 May 14 17:02 report.json\\n-rw-r--r--  1 root root 3245910 May 14 17:02 samples.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 84_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_018rS28tSLBqPsCemrMaCYz8`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "head -5 /root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_004/samples.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "7cd4acaf-9964-441f-9857-4c4ea1ad1892",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PAcFSEiBGDFzKkEHibqyxD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3252,
+      "cache_read_input_tokens": 95276,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3252
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 85 · 2026-05-15T23:55:53.550Z_
+
+<details><summary>↩ Tool result · `toolu_018rS28tSLBqPsCemrMaCYz8`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"id\\\": \\\"X96-1059_sent000\\\", \\\"text\\\": \\\"Recognition of proper nouns in Japanese text has been studied as a part of the more general problem of morphological analysis in Japanese text processing -LRB- -LSB- 1 -RSB- -LSB- 2 -RSB- -RRB- .\\\", \\\"gold\\\": {\\\"entities\\\": [{\\\"text\\\": \\\"Recognition of proper nouns\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 0, \\\"end\\\": 27}, {\\\"text\\\": \\\"proper nouns\\\", \\\"type\\\": \\\"OtherScientificTerm\\\", \\\"start\\\": 15, \\\"end\\\": 27}, {\\\"text\\\": \\\"Japanese text\\\", \\\"type\\\": \\\"Material\\\", \\\"start\\\": 31, \\\"end\\\": 44}, {\\\"text\\\": \\\"morphological analysis\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 103, \\\"end\\\": 125}, {\\\"text\\\": \\\"Japanese text processing\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 129, \\\"end\\\": 153}], \\\"relations\\\": [{\\\"head\\\": \\\"Recognition of proper nouns\\\", \\\"tail\\\": \\\"morphological analysis\\\", \\\"type\\\": \\\"PART-OF\\\", \\\"head_start\\\": 0, \\\"head_end\\\": 27, \\\"tail_start\\\": 103, \\\"tail_end\\\": 125}, {\\\"head\\\": \\\"proper nouns\\\", \\\"tail\\\": \\\"Japanese text\\\", \\\"type\\\": \\\"PART-OF\\\", \\\"head_start\\\": 15, \\\"head_end\\\": 27, \\\"tail_start\\\": 31, \\\"tail_end\\\": 44}, {\\\"head\\\": \\\"morphological analysis\\\", \\\"tail\\\": \\\"Japanese text processing\\\", \\\"type\\\": \\\"USED-FOR\\\", \\\"head_start\\\": 103, \\\"head_end\\\": 125, \\\"tail_start\\\": 129, \\\"tail_end\\\": 153}], \\\"events\\\": []}, \\\"samples\\\": [{\\\"entities\\\": [{\\\"text\\\": \\\"Recognition of proper nouns\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 0, \\\"end\\\": 27}, {\\\"text\\\": \\\"Japanese text\\\", \\\"type\\\": \\\"Material\\\", \\\"start\\\": 31, \\\"end\\\": 44}, {\\\"text\\\": \\\"morphological analysis\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 103, \\\"end\\\": 125}, {\\\"text\\\": \\\"Japanese text processing\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 129, \\\"end\\\": 153}], \\\"relations\\\": [{\\\"head\\\": \\\"Recognition of proper nouns\\\", \\\"tail\\\": \\\"morphological analysis\\\", \\\"type\\\": \\\"PART-OF\\\", \\\"head_start\\\": 0, \\\"head_end\\\": 27, \\\"tail_start\\\": 103, \\\"tail_end\\\": 125}, {\\\"head\\\": \\\"Recognition of proper nouns\\\", \\\"tail\\\": \\\"Japanese text processing\\\", \\\"type\\\": \\\"PART-OF\\\", \\\"head_start\\\": 0, \\\"head_end\\\": 27, \\\"tail_start\\\": 129, \\\"tail_end\\\": 153}, {\\\"head\\\": \\\"Japanese text\\\", \\\"tail\\\": \\\"morphological analysis\\\", \\\"type\\\": \\\"USED-FOR\\\", \\\"head_start\\\": 31, \\\"head_end\\\": 44, \\\"tail_start\\\": 103, \\\"tail_end\\\": 125}, {\\\"head\\\": \\\"morphological analysis\\\", \\\"tail\\\": \\\"Japanese text processing\\\", \\\"type\\\": \\\"PART-OF\\\", \\\"head_start\\\": 103, \\\"head_end\\\": 125, \\\"tail_start\\\": 129, \\\"tail_end\\\": 153}], \\\"events\\\": []}, {\\\"entities\\\": [{\\\"text\\\": \\\"Recognition of proper nouns\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 0, \\\"end\\\": 27}, {\\\"text\\\": \\\"Japanese text\\\", \\\"type\\\": \\\"Material\\\", \\\"start\\\": 31, \\\"end\\\": 44}, {\\\"text\\\": \\\"morphological analysis\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 103, \\\"end\\\": 125}, {\\\"text\\\": \\\"Japanese text processing\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 129, \\\"end\\\": 153}], \\\"relations\\\": [{\\\"head\\\": \\\"Recognition of proper nouns\\\", \\\"tail\\\": \\\"morphological analysis\\\", \\\"type\\\": \\\"PART-OF\\\", \\\"head_start\\\": 0, \\\"head_end\\\": 27, \\\"tail_start\\\": 103, \\\"tail_end\\\": 125}, {\\\"head\\\": \\\"morphological analysis\\\", \\\"tail\\\": \\\"Japanese text processing\\\", \\\"type\\\": \\\"PART-OF\\\", \\\"head_start\\\": 103, \\\"head_end\\\": 125, \\\"tail_start\\\": 129, \\\"tail_end\\\": 153}], \\\"events\\\": []}, {\\\"entities\\\": [{\\\"text\\\": \\\"Recognition of proper nouns in Japanese text\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 0, \\\"end\\\": 44}, {\\\"text\\\": \\\"proper nouns in Japanese text\\\", \\\"type\\\": \\\"Material\\\", \\\"start\\\": 15, \\\"end\\\": 44}, {\\\"text\\\": \\\"morphological analysis in Japanese text processing\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 103, \\\"end\\\": 153}], \\\"relations\\\": [{\\\"head\\\": \\\"Recognition of proper nouns in Japanese text\\\", \\\"tail\\\": \\\"morphological analysis in Japanese text processing\\\", \\\"type\\\": \\\"PART-OF\\\", \\\"head_start\\\": 0, \\\"head_end\\\": 44, \\\"tail_start\\\": 103, \\\"tail_end\\\": 153}], \\\"events\\\": []}, {\\\"entities\\\": [{\\\"text\\\": \\\"Recognition of proper nouns\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 0, \\\"end\\\": 27}, {\\\"text\\\": \\\"Japanese text\\\", \\\"type\\\": \\\"Material\\\", \\\"start\\\": 31, \\\"end\\\": 44}, {\\\"text\\\": \\\"morphological analysis in Japanese text processing\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 103, \\\"end\\\": 153}], \\\"relations\\\": [{\\\"head\\\": \\\"Recognition of proper nouns\\\", \\\"tail\\\": \\\"morphological analysis in Japanese text processing\\\", \\\"type\\\": \\\"PART-OF\\\", \\\"head_start\\\": 0, \\\"head_end\\\": 27, \\\"tail_start\\\": 103, \\\"tail_end\\\": 153}], \\\"events\\\": []}, {\\\"entities\\\": [{\\\"text\\\": \\\"Recognition of proper nouns\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 0, \\\"end\\\": 27}, {\\\"text\\\": \\\"Japanese text\\\", \\\"type\\\": \\\"Mater\\n\\n... [截断: 输出过长，省略 28295 字符] ...\\n\\nn and classification of proper names\\\", \\\"type\\\": \\\"HYPONYM-OF\\\", \\\"head_start\\\": 116, \\\"head_end\\\": 150, \\\"tail_start\\\": 67, \\\"tail_end\\\": 113}, {\\\"head\\\": \\\"Japanese text\\\", \\\"tail\\\": \\\"Named Entity -LRB- NE -RRB- items\\\", \\\"type\\\": \\\"FEATURE-OF\\\", \\\"head_start\\\": 199, \\\"head_end\\\": 212, \\\"tail_start\\\": 158, \\\"tail_end\\\": 191}], \\\"events\\\": []}], \\\"greedy\\\": {\\\"entities\\\": [{\\\"text\\\": \\\"morphological analyzer\\\", \\\"type\\\": \\\"Method\\\", \\\"start\\\": 4, \\\"end\\\": 26}, {\\\"text\\\": \\\"recognition and classification of proper names , numerical and temporal expressions\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 67, \\\"end\\\": 150}, {\\\"text\\\": \\\"Named Entity -LRB- NE -RRB- items\\\", \\\"type\\\": \\\"OtherScientificTerm\\\", \\\"start\\\": 158, \\\"end\\\": 191}, {\\\"text\\\": \\\"Japanese text\\\", \\\"type\\\": \\\"Material\\\", \\\"start\\\": 199, \\\"end\\\": 212}], \\\"relations\\\": [{\\\"head\\\": \\\"morphological analyzer\\\", \\\"tail\\\": \\\"recognition and classification of proper names , numerical and temporal expressions\\\", \\\"type\\\": \\\"USED-FOR\\\", \\\"head_start\\\": 4, \\\"head_end\\\": 26, \\\"tail_start\\\": 67, \\\"tail_end\\\": 150}, {\\\"head\\\": \\\"Named Entity -LRB- NE -RRB- items\\\", \\\"tail\\\": \\\"recognition and classification of proper names , numerical and temporal expressions\\\", \\\"type\\\": \\\"HYPONYM-OF\\\", \\\"head_start\\\": 158, \\\"head_end\\\": 191, \\\"tail_start\\\": 67, \\\"tail_end\\\": 150}, {\\\"head\\\": \\\"Japanese text\\\", \\\"tail\\\": \\\"Named Entity -LRB- NE -RRB- items\\\", \\\"type\\\": \\\"FEATURE-OF\\\", \\\"head_start\\\": 199, \\\"head_end\\\": 212, \\\"tail_start\\\": 158, \\\"tail_end\\\": 191}], \\\"events\\\": []}}\\n{\\\"id\\\": \\\"X96-1059_sent004\\\", \\\"text\\\": \\\"The analyzer is called `` Amorph '' .\\\", \\\"gold\\\": {\\\"entities\\\": [{\\\"text\\\": \\\"analyzer\\\", \\\"type\\\": \\\"Generic\\\", \\\"start\\\": 4, \\\"end\\\": 12}, {\\\"text\\\": \\\"`` Amorph ''\\\", \\\"type\\\": \\\"Method\\\", \\\"start\\\": 23, \\\"end\\\": 35}], \\\"relations\\\": [], \\\"events\\\": []}, \\\"samples\\\": [{\\\"entities\\\": [{\\\"text\\\": \\\"analyzer\\\", \\\"type\\\": \\\"Generic\\\", \\\"start\\\": 4, \\\"end\\\": 12}, {\\\"text\\\": \\\"Amorph\\\", \\\"type\\\": \\\"Method\\\", \\\"start\\\": 26, \\\"end\\\": 32}], \\\"relations\\\": [{\\\"head\\\": \\\"Amorph\\\", \\\"tail\\\": \\\"analyzer\\\", \\\"type\\\": \\\"HYPONYM-OF\\\", \\\"head_start\\\": 26, \\\"head_end\\\": 32, \\\"tail_start\\\": 4, \\\"tail_end\\\": 12}], \\\"events\\\": []}, {\\\"entities\\\": [{\\\"text\\\": \\\"analyzer\\\", \\\"type\\\": \\\"Method\\\", \\\"start\\\": 4, \\\"end\\\": 12}, {\\\"text\\\": \\\"`` Amorph ''\\\", \\\"type\\\": \\\"Method\\\", \\\"start\\\": 23, \\\"end\\\": 35}], \\\"relations\\\": [{\\\"head\\\": \\\"`` Amorph ''\\\", \\\"tail\\\": \\\"analyzer\\\", \\\"type\\\": \\\"HYPONYM-OF\\\", \\\"head_start\\\": 23, \\\"head_end\\\": 35, \\\"tail_start\\\": 4, \\\"tail_end\\\": 12}], \\\"events\\\": []}, {\\\"entities\\\": [{\\\"text\\\": \\\"analyzer\\\", \\\"type\\\": \\\"Method\\\", \\\"start\\\": 4, \\\"end\\\": 12}, {\\\"text\\\": \\\"Amorph\\\", \\\"type\\\": \\\"Method\\\", \\\"start\\\": 26, \\\"end\\\": 32}], \\\"relations\\\": [{\\\"head\\\": \\\"Amorph\\\", \\\"tail\\\": \\\"analyzer\\\", \\\"type\\\": \\\"HYPONYM-OF\\\", \\\"head_start\\\": 26, \\\"head_end\\\": 32, \\\"tail_start\\\": 4, \\\"tail_end\\\": 12}], \\\"events\\\": []}, {\\\"entities\\\": [{\\\"text\\\": \\\"analyzer\\\", \\\"type\\\": \\\"Generic\\\", \\\"start\\\": 4, \\\"end\\\": 12}, {\\\"text\\\": \\\"Amorph\\\", \\\"type\\\": \\\"Method\\\", \\\"start\\\": 26, \\\"end\\\": 32}], \\\"relations\\\": [{\\\"head\\\": \\\"analyzer\\\", \\\"tail\\\": \\\"Amorph\\\", \\\"type\\\": \\\"HYPONYM-OF\\\", \\\"head_start\\\": 4, \\\"head_end\\\": 12, \\\"tail_start\\\": 26, \\\"tail_end\\\": 32}], \\\"events\\\": []}, {\\\"entities\\\": [{\\\"text\\\": \\\"analyzer\\\", \\\"type\\\": \\\"Generic\\\", \\\"start\\\": 4, \\\"end\\\": 12}, {\\\"text\\\": \\\"Amorph\\\", \\\"type\\\": \\\"Method\\\", \\\"start\\\": 26, \\\"end\\\": 32}], \\\"relations\\\": [{\\\"head\\\": \\\"Amorph\\\", \\\"tail\\\": \\\"analyzer\\\", \\\"type\\\": \\\"HYPONYM-OF\\\", \\\"head_start\\\": 26, \\\"head_end\\\": 32, \\\"tail_start\\\": 4, \\\"tail_end\\\": 12}], \\\"events\\\": []}, {\\\"entities\\\": [{\\\"text\\\": \\\"analyzer\\\", \\\"type\\\": \\\"Generic\\\", \\\"start\\\": 4, \\\"end\\\": 12}, {\\\"text\\\": \\\"Amorph\\\", \\\"type\\\": \\\"Method\\\", \\\"start\\\": 26, \\\"end\\\": 32}], \\\"relations\\\": [{\\\"head\\\": \\\"Amorph\\\", \\\"tail\\\": \\\"analyzer\\\", \\\"type\\\": \\\"HYPONYM-OF\\\", \\\"head_start\\\": 26, \\\"head_end\\\": 32, \\\"tail_start\\\": 4, \\\"tail_end\\\": 12}], \\\"events\\\": []}, {\\\"entities\\\": [{\\\"text\\\": \\\"analyzer\\\", \\\"type\\\": \\\"Method\\\", \\\"start\\\": 4, \\\"end\\\": 12}], \\\"relations\\\": [], \\\"events\\\": []}, {\\\"entities\\\": [{\\\"text\\\": \\\"analyzer\\\", \\\"type\\\": \\\"Generic\\\", \\\"start\\\": 4, \\\"end\\\": 12}], \\\"relations\\\": [], \\\"events\\\": []}], \\\"greedy\\\": {\\\"entities\\\": [{\\\"text\\\": \\\"analyzer\\\", \\\"type\\\": \\\"Generic\\\", \\\"start\\\": 4, \\\"end\\\": 12}, {\\\"text\\\": \\\"Amorph\\\", \\\"type\\\": \\\"Method\\\", \\\"start\\\": 26, \\\"end\\\": 32}], \\\"relations\\\": [{\\\"head\\\": \\\"Amorph\\\", \\\"tail\\\": \\\"analyzer\\\", \\\"type\\\": \\\"HYPONYM-OF\\\", \\\"head_start\\\": 26, \\\"head_end\\\": 32, \\\"tail_start\\\": 4, \\\"tail_end\\\": 12}], \\\"events\\\": []}}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "50275f61-1203-4865-91a4-f22c66ff5329",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"id\\\\\\\": \\\\\\\"X96-1059_sent000\\\\\\\", \\\\\\\"text\\\\\\\": \\\\\\\"Recognition of proper nouns in Japanese text has been studied as a part of the more general problem of morphological analysis in Japanese text processing -LRB- -LSB- 1 -RSB- -LSB- 2 -RSB- -RRB- .\\\\\\\", \\\\\\\"gold\\\\\\\": {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"Recognition of proper nouns\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 0, \\\\\\\"end\\\\\\\": 27}, {\\\\\\\"text\\\\\\\": \\\\\\\"proper nouns\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"OtherScientificTerm\\\\\\\", \\\\\\\"start\\\\\\\": 15, \\\\\\\"end\\\\\\\": 27}, {\\\\\\\"text\\\\\\\": \\\\\\\"Japanese text\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Material\\\\\\\", \\\\\\\"start\\\\\\\": 31, \\\\\\\"end\\\\\\\": 44}, {\\\\\\\"text\\\\\\\": \\\\\\\"morphological analysis\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 103, \\\\\\\"end\\\\\\\": 125}, {\\\\\\\"text\\\\\\\": \\\\\\\"Japanese text processing\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 129, \\\\\\\"end\\\\\\\": 153}], \\\\\\\"relations\\\\\\\": [{\\\\\\\"head\\\\\\\": \\\\\\\"Recognition of proper nouns\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"morphological analysis\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"PART-OF\\\\\\\", \\\\\\\"head_start\\\\\\\": 0, \\\\\\\"head_end\\\\\\\": 27, \\\\\\\"tail_start\\\\\\\": 103, \\\\\\\"tail_end\\\\\\\": 125}, {\\\\\\\"head\\\\\\\": \\\\\\\"proper nouns\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"Japanese text\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"PART-OF\\\\\\\", \\\\\\\"head_start\\\\\\\": 15, \\\\\\\"head_end\\\\\\\": 27, \\\\\\\"tail_start\\\\\\\": 31, \\\\\\\"tail_end\\\\\\\": 44}, {\\\\\\\"head\\\\\\\": \\\\\\\"morphological analysis\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"Japanese text processing\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"USED-FOR\\\\\\\", \\\\\\\"head_start\\\\\\\": 103, \\\\\\\"head_end\\\\\\\": 125, \\\\\\\"tail_start\\\\\\\": 129, \\\\\\\"tail_end\\\\\\\": 153}], \\\\\\\"events\\\\\\\": []}, \\\\\\\"samples\\\\\\\": [{\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"Recognition of proper nouns\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 0, \\\\\\\"end\\\\\\\": 27}, {\\\\\\\"text\\\\\\\": \\\\\\\"Japanese text\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Material\\\\\\\", \\\\\\\"start\\\\\\\": 31, \\\\\\\"end\\\\\\\": 44}, {\\\\\\\"text\\\\\\\": \\\\\\\"morphological analysis\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 103, \\\\\\\"end\\\\\\\": 125}, {\\\\\\\"text\\\\\\\": \\\\\\\"Japanese text processing\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 129, \\\\\\\"end\\\\\\\": 153}], \\\\\\\"relations\\\\\\\": [{\\\\\\\"head\\\\\\\": \\\\\\\"Recognition of proper nouns\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"morphological analysis\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"PART-OF\\\\\\\", \\\\\\\"head_start\\\\\\\": 0, \\\\\\\"head_end\\\\\\\": 27, \\\\\\\"tail_start\\\\\\\": 103, \\\\\\\"tail_end\\\\\\\": 125}, {\\\\\\\"head\\\\\\\": \\\\\\\"Recognition of proper nouns\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"Japanese text processing\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"PART-OF\\\\\\\", \\\\\\\"head_start\\\\\\\": 0, \\\\\\\"head_end\\\\\\\": 27, \\\\\\\"tail_start\\\\\\\": 129, \\\\\\\"tail_end\\\\\\\": 153}, {\\\\\\\"head\\\\\\\": \\\\\\\"Japanese text\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"morphological analysis\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"USED-FOR\\\\\\\", \\\\\\\"head_start\\\\\\\": 31, \\\\\\\"head_end\\\\\\\": 44, \\\\\\\"tail_start\\\\\\\": 103, \\\\\\\"tail_end\\\\\\\": 125}, {\\\\\\\"head\\\\\\\": \\\\\\\"morphological analysis\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"Japanese text processing\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"PART-OF\\\\\\\", \\\\\\\"head_start\\\\\\\": 103, \\\\\\\"head_end\\\\\\\": 125, \\\\\\\"tail_start\\\\\\\": 129, \\\\\\\"tail_end\\\\\\\": 153}], \\\\\\\"events\\\\\\\": []}, {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"Recognition of proper nouns\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 0, \\\\\\\"end\\\\\\\": 27}, {\\\\\\\"text\\\\\\\": \\\\\\\"Japanese text\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Material\\\\\\\", \\\\\\\"start\\\\\\\": 31, \\\\\\\"end\\\\\\\": 44}, {\\\\\\\"text\\\\\\\": \\\\\\\"morphological analysis\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 103, \\\\\\\"end\\\\\\\": 125}, {\\\\\\\"text\\\\\\\": \\\\\\\"Japanese text processing\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 129, \\\\\\\"end\\\\\\\": 153}], \\\\\\\"relations\\\\\\\": [{\\\\\\\"head\\\\\\\": \\\\\\\"Recognition of proper nouns\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"morphological analysis\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"PART-OF\\\\\\\", \\\\\\\"head_start\\\\\\\": 0, \\\\\\\"head_end\\\\\\\": 27, \\\\\\\"tail_start\\\\\\\": 103, \\\\\\\"tail_end\\\\\\\": 125}, {\\\\\\\"head\\\\\\\": \\\\\\\"morphological analysis\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"Japanese text processing\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"PART-OF\\\\\\\", \\\\\\\"head_start\\\\\\\": 103, \\\\\\\"head_end\\\\\\\": 125, \\\\\\\"tail_start\\\\\\\": 129, \\\\\\\"tail_end\\\\\\\": 153}], \\\\\\\"events\\\\\\\": []}, {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"Recognition of proper nouns in Japanese text\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 0, \\\\\\\"end\\\\\\\": 44}, {\\\\\\\"text\\\\\\\": \\\\\\\"proper nouns in Japanese text\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Material\\\\\\\", \\\\\\\"start\\\\\\\": 15, \\\\\\\"end\\\\\\\": 44}, {\\\\\\\"text\\\\\\\": \\\\\\\"morphological analysis in Japanese text processing\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 103, \\\\\\\"end\\\\\\\": 153}], \\\\\\\"relations\\\\\\\": [{\\\\\\\"head\\\\\\\": \\\\\\\"Recognition of proper nouns in Japanese text\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"morphological analysis in Japanese text processing\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"PART-OF\\\\\\\", \\\\\\\"head_start\\\\\\\": 0, \\\\\\\"head_end\\\\\\\": 44, \\\\\\\"tail_start\\\\\\\": 103, \\\\\\\"tail_end\\\\\\\": 153}], \\\\\\\"events\\\\\\\": []}, {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"Recognition of proper nouns\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 0, \\\\\\\"end\\\\\\\": 27}, {\\\\\\\"text\\\\\\\": \\\\\\\"Japanese text\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Material\\\\\\\", \\\\\\\"start\\\\\\\": 31, \\\\\\\"end\\\\\\\": 44}, {\\\\\\\"text\\\\\\\": \\\\\\\"morphological analysis in Japanese text processing\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 103, \\\\\\\"end\\\\\\\": 153}], \\\\\\\"relations\\\\\\\": [{\\\\\\\"head\\\\\\\": \\\\\\\"Recognition of proper nouns\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"morphological analysis in Japanese text processing\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"PART-OF\\\\\\\", \\\\\\\"head_start\\\\\\\": 0, \\\\\\\"head_end\\\\\\\": 27, \\\\\\\"tail_start\\\\\\\": 103, \\\\\\\"tail_end\\\\\\\": 153}], \\\\\\\"events\\\\\\\": []}, {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"Recognition of proper nouns\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 0, \\\\\\\"end\\\\\\\": 27}, {\\\\\\\"text\\\\\\\": \\\\\\\"Japanese text\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Mater\\\\n\\\\n... [截断: 输出过长，省略 28295 字符] ...\\\\n\\\\nn and classification of proper names\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"HYPONYM-OF\\\\\\\", \\\\\\\"head_start\\\\\\\": 116, \\\\\\\"head_end\\\\\\\": 150, \\\\\\\"tail_start\\\\\\\": 67, \\\\\\\"tail_end\\\\\\\": 113}, {\\\\\\\"head\\\\\\\": \\\\\\\"Japanese text\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"Named Entity -LRB- NE -RRB- items\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"FEATURE-OF\\\\\\\", \\\\\\\"head_start\\\\\\\": 199, \\\\\\\"head_end\\\\\\\": 212, \\\\\\\"tail_start\\\\\\\": 158, \\\\\\\"tail_end\\\\\\\": 191}], \\\\\\\"events\\\\\\\": []}], \\\\\\\"greedy\\\\\\\": {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"morphological analyzer\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Method\\\\\\\", \\\\\\\"start\\\\\\\": 4, \\\\\\\"end\\\\\\\": 26}, {\\\\\\\"text\\\\\\\": \\\\\\\"recognition and classification of proper names , numerical and temporal expressions\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 67, \\\\\\\"end\\\\\\\": 150}, {\\\\\\\"text\\\\\\\": \\\\\\\"Named Entity -LRB- NE -RRB- items\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"OtherScientificTerm\\\\\\\", \\\\\\\"start\\\\\\\": 158, \\\\\\\"end\\\\\\\": 191}, {\\\\\\\"text\\\\\\\": \\\\\\\"Japanese text\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Material\\\\\\\", \\\\\\\"start\\\\\\\": 199, \\\\\\\"end\\\\\\\": 212}], \\\\\\\"relations\\\\\\\": [{\\\\\\\"head\\\\\\\": \\\\\\\"morphological analyzer\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"recognition and classification of proper names , numerical and temporal expressions\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"USED-FOR\\\\\\\", \\\\\\\"head_start\\\\\\\": 4, \\\\\\\"head_end\\\\\\\": 26, \\\\\\\"tail_start\\\\\\\": 67, \\\\\\\"tail_end\\\\\\\": 150}, {\\\\\\\"head\\\\\\\": \\\\\\\"Named Entity -LRB- NE -RRB- items\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"recognition and classification of proper names , numerical and temporal expressions\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"HYPONYM-OF\\\\\\\", \\\\\\\"head_start\\\\\\\": 158, \\\\\\\"head_end\\\\\\\": 191, \\\\\\\"tail_start\\\\\\\": 67, \\\\\\\"tail_end\\\\\\\": 150}, {\\\\\\\"head\\\\\\\": \\\\\\\"Japanese text\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"Named Entity -LRB- NE -RRB- items\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"FEATURE-OF\\\\\\\", \\\\\\\"head_start\\\\\\\": 199, \\\\\\\"head_end\\\\\\\": 212, \\\\\\\"tail_start\\\\\\\": 158, \\\\\\\"tail_end\\\\\\\": 191}], \\\\\\\"events\\\\\\\": []}}\\\\n{\\\\\\\"id\\\\\\\": \\\\\\\"X96-1059_sent004\\\\\\\", \\\\\\\"text\\\\\\\": \\\\\\\"The analyzer is called `` Amorph '' .\\\\\\\", \\\\\\\"gold\\\\\\\": {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"analyzer\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Generic\\\\\\\", \\\\\\\"start\\\\\\\": 4, \\\\\\\"end\\\\\\\": 12}, {\\\\\\\"text\\\\\\\": \\\\\\\"`` Amorph ''\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Method\\\\\\\", \\\\\\\"start\\\\\\\": 23, \\\\\\\"end\\\\\\\": 35}], \\\\\\\"relations\\\\\\\": [], \\\\\\\"events\\\\\\\": []}, \\\\\\\"samples\\\\\\\": [{\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"analyzer\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Generic\\\\\\\", \\\\\\\"start\\\\\\\": 4, \\\\\\\"end\\\\\\\": 12}, {\\\\\\\"text\\\\\\\": \\\\\\\"Amorph\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Method\\\\\\\", \\\\\\\"start\\\\\\\": 26, \\\\\\\"end\\\\\\\": 32}], \\\\\\\"relations\\\\\\\": [{\\\\\\\"head\\\\\\\": \\\\\\\"Amorph\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"analyzer\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"HYPONYM-OF\\\\\\\", \\\\\\\"head_start\\\\\\\": 26, \\\\\\\"head_end\\\\\\\": 32, \\\\\\\"tail_start\\\\\\\": 4, \\\\\\\"tail_end\\\\\\\": 12}], \\\\\\\"events\\\\\\\": []}, {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"analyzer\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Method\\\\\\\", \\\\\\\"start\\\\\\\": 4, \\\\\\\"end\\\\\\\": 12}, {\\\\\\\"text\\\\\\\": \\\\\\\"`` Amorph ''\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Method\\\\\\\", \\\\\\\"start\\\\\\\": 23, \\\\\\\"end\\\\\\\": 35}], \\\\\\\"relations\\\\\\\": [{\\\\\\\"head\\\\\\\": \\\\\\\"`` Amorph ''\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"analyzer\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"HYPONYM-OF\\\\\\\", \\\\\\\"head_start\\\\\\\": 23, \\\\\\\"head_end\\\\\\\": 35, \\\\\\\"tail_start\\\\\\\": 4, \\\\\\\"tail_end\\\\\\\": 12}], \\\\\\\"events\\\\\\\": []}, {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"analyzer\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Method\\\\\\\", \\\\\\\"start\\\\\\\": 4, \\\\\\\"end\\\\\\\": 12}, {\\\\\\\"text\\\\\\\": \\\\\\\"Amorph\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Method\\\\\\\", \\\\\\\"start\\\\\\\": 26, \\\\\\\"end\\\\\\\": 32}], \\\\\\\"relations\\\\\\\": [{\\\\\\\"head\\\\\\\": \\\\\\\"Amorph\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"analyzer\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"HYPONYM-OF\\\\\\\", \\\\\\\"head_start\\\\\\\": 26, \\\\\\\"head_end\\\\\\\": 32, \\\\\\\"tail_start\\\\\\\": 4, \\\\\\\"tail_end\\\\\\\": 12}], \\\\\\\"events\\\\\\\": []}, {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"analyzer\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Generic\\\\\\\", \\\\\\\"start\\\\\\\": 4, \\\\\\\"end\\\\\\\": 12}, {\\\\\\\"text\\\\\\\": \\\\\\\"Amorph\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Method\\\\\\\", \\\\\\\"start\\\\\\\": 26, \\\\\\\"end\\\\\\\": 32}], \\\\\\\"relations\\\\\\\": [{\\\\\\\"head\\\\\\\": \\\\\\\"analyzer\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"Amorph\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"HYPONYM-OF\\\\\\\", \\\\\\\"head_start\\\\\\\": 4, \\\\\\\"head_end\\\\\\\": 12, \\\\\\\"tail_start\\\\\\\": 26, \\\\\\\"tail_end\\\\\\\": 32}], \\\\\\\"events\\\\\\\": []}, {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"analyzer\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Generic\\\\\\\", \\\\\\\"start\\\\\\\": 4, \\\\\\\"end\\\\\\\": 12}, {\\\\\\\"text\\\\\\\": \\\\\\\"Amorph\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Method\\\\\\\", \\\\\\\"start\\\\\\\": 26, \\\\\\\"end\\\\\\\": 32}], \\\\\\\"relations\\\\\\\": [{\\\\\\\"head\\\\\\\": \\\\\\\"Amorph\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"analyzer\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"HYPONYM-OF\\\\\\\", \\\\\\\"head_start\\\\\\\": 26, \\\\\\\"head_end\\\\\\\": 32, \\\\\\\"tail_start\\\\\\\": 4, \\\\\\\"tail_end\\\\\\\": 12}], \\\\\\\"events\\\\\\\": []}, {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"analyzer\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Generic\\\\\\\", \\\\\\\"start\\\\\\\": 4, \\\\\\\"end\\\\\\\": 12}, {\\\\\\\"text\\\\\\\": \\\\\\\"Amorph\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Method\\\\\\\", \\\\\\\"start\\\\\\\": 26, \\\\\\\"end\\\\\\\": 32}], \\\\\\\"relations\\\\\\\": [{\\\\\\\"head\\\\\\\": \\\\\\\"Amorph\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"analyzer\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"HYPONYM-OF\\\\\\\", \\\\\\\"head_start\\\\\\\": 26, \\\\\\\"head_end\\\\\\\": 32, \\\\\\\"tail_start\\\\\\\": 4, \\\\\\\"tail_end\\\\\\\": 12}], \\\\\\\"events\\\\\\\": []}, {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"analyzer\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Method\\\\\\\", \\\\\\\"start\\\\\\\": 4, \\\\\\\"end\\\\\\\": 12}], \\\\\\\"relations\\\\\\\": [], \\\\\\\"events\\\\\\\": []}, {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"analyzer\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Generic\\\\\\\", \\\\\\\"start\\\\\\\": 4, \\\\\\\"end\\\\\\\": 12}], \\\\\\\"relations\\\\\\\": [], \\\\\\\"events\\\\\\\": []}], \\\\\\\"greedy\\\\\\\": {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"analyzer\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Generic\\\\\\\", \\\\\\\"start\\\\\\\": 4, \\\\\\\"end\\\\\\\": 12}, {\\\\\\\"text\\\\\\\": \\\\\\\"Amorph\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Method\\\\\\\", \\\\\\\"start\\\\\\\": 26, \\\\\\\"end\\\\\\\": 32}], \\\\\\\"relations\\\\\\\": [{\\\\\\\"head\\\\\\\": \\\\\\\"Amorph\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"analyzer\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"HYPONYM-OF\\\\\\\", \\\\\\\"head_start\\\\\\\": 26, \\\\\\\"head_end\\\\\\\": 32, \\\\\\\"tail_start\\\\\\\": 4, \\\\\\\"tail_end\\\\\\\": 12}], \\\\\\\"events\\\\\\\": []}}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\\"id\\\": \\\"X96-1059_sent000\\\", \\\"text\\\": \\\"Recognition of proper nouns in Japanese text has been studied as a part of the more general problem of morphological analysis in Japanese text processing -LRB- -LSB- 1 -RSB- -LSB- 2 -RSB- -RRB- .\\\", \\\"gold\\\": {\\\"entities\\\": [{\\\"text\\\": \\\"Recognition of proper nouns\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 0, \\\"end\\\": 27}, {\\\"text\\\": \\\"proper nouns\\\", \\\"type\\\": \\\"OtherScientificTerm\\\", \\\"start\\\": 15, \\\"end\\\": 27}, {\\\"text\\\": \\\"Japanese text\\\", \\\"type\\\": \\\"Material\\\", \\\"start\\\": 31, \\\"end\\\": 44}, {\\\"text\\\": \\\"morphological analysis\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 103, \\\"end\\\": 125}, {\\\"text\\\": \\\"Japanese text processing\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 129, \\\"end\\\": 153}], \\\"relations\\\": [{\\\"head\\\": \\\"Recognition of proper nouns\\\", \\\"tail\\\": \\\"morphological analysis\\\", \\\"type\\\": \\\"PART-OF\\\", \\\"head_start\\\": 0, \\\"head_end\\\": 27, \\\"tail_start\\\": 103, \\\"tail_end\\\": 125}, {\\\"head\\\": \\\"proper nouns\\\", \\\"tail\\\": \\\"Japanese text\\\", \\\"type\\\": \\\"PART-OF\\\", \\\"head_start\\\": 15, \\\"head_end\\\": 27, \\\"tail_start\\\": 31, \\\"tail_end\\\": 44}, {\\\"head\\\": \\\"morphological analysis\\\", \\\"tail\\\": \\\"Japanese text processing\\\", \\\"type\\\": \\\"USED-FOR\\\", \\\"head_start\\\": 103, \\\"head_end\\\": 125, \\\"tail_start\\\": 129, \\\"tail_end\\\": 153}], \\\"events\\\": []}, \\\"samples\\\": [{\\\"entities\\\": [{\\\"text\\\": \\\"Recognition of proper nouns\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 0, \\\"end\\\": 27}, {\\\"text\\\": \\\"Japanese text\\\", \\\"type\\\": \\\"Material\\\", \\\"start\\\": 31, \\\"end\\\": 44}, {\\\"text\\\": \\\"morphological analysis\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 103, \\\"end\\\": 125}, {\\\"text\\\": \\\"Japanese text processing\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 129, \\\"end\\\": 153}], \\\"relations\\\": [{\\\"head\\\": \\\"Recognition of proper nouns\\\", \\\"tail\\\": \\\"morphological analysis\\\", \\\"type\\\": \\\"PART-OF\\\", \\\"head_start\\\": 0, \\\"head_end\\\": 27, \\\"tail_start\\\": 103, \\\"tail_end\\\": 125}, {\\\"head\\\": \\\"Recognition of proper nouns\\\", \\\"tail\\\": \\\"Japanese text processing\\\", \\\"type\\\": \\\"PART-OF\\\", \\\"head_start\\\": 0, \\\"head_end\\\": 27, \\\"tail_start\\\": 129, \\\"tail_end\\\": 153}, {\\\"head\\\": \\\"Japanese text\\\", \\\"tail\\\": \\\"morphological analysis\\\", \\\"type\\\": \\\"USED-FOR\\\", \\\"head_start\\\": 31, \\\"head_end\\\": 44, \\\"tail_start\\\": 103, \\\"tail_end\\\": 125}, {\\\"head\\\": \\\"morphological analysis\\\", \\\"tail\\\": \\\"Japanese text processing\\\", \\\"type\\\": \\\"PART-OF\\\", \\\"head_start\\\": 103, \\\"head_end\\\": 125, \\\"tail_start\\\": 129, \\\"tail_end\\\": 153}], \\\"events\\\": []}, {\\\"entities\\\": [{\\\"text\\\": \\\"Recognition of proper nouns\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 0, \\\"end\\\": 27}, {\\\"text\\\": \\\"Japanese text\\\", \\\"type\\\": \\\"Material\\\", \\\"start\\\": 31, \\\"end\\\": 44}, {\\\"text\\\": \\\"morphological analysis\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 103, \\\"end\\\": 125}, {\\\"text\\\": \\\"Japanese text processing\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 129, \\\"end\\\": 153}], \\\"relations\\\": [{\\\"head\\\": \\\"Recognition of proper nouns\\\", \\\"tail\\\": \\\"morphological analysis\\\", \\\"type\\\": \\\"PART-OF\\\", \\\"head_start\\\": 0, \\\"head_end\\\": 27, \\\"tail_start\\\": 103, \\\"tail_end\\\": 125}, {\\\"head\\\": \\\"morphological analysis\\\", \\\"tail\\\": \\\"Japanese text processing\\\", \\\"type\\\": \\\"PART-OF\\\", \\\"head_start\\\": 103, \\\"head_end\\\": 125, \\\"tail_start\\\": 129, \\\"tail_end\\\": 153}], \\\"events\\\": []}, {\\\"entities\\\": [{\\\"text\\\": \\\"Recognition of proper nouns in Japanese text\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 0, \\\"end\\\": 44}, {\\\"text\\\": \\\"proper nouns in Japanese text\\\", \\\"type\\\": \\\"Material\\\", \\\"start\\\": 15, \\\"end\\\": 44}, {\\\"text\\\": \\\"morphological analysis in Japanese text processing\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 103, \\\"end\\\": 153}], \\\"relations\\\": [{\\\"head\\\": \\\"Recognition of proper nouns in Japanese text\\\", \\\"tail\\\": \\\"morphological analysis in Japanese text processing\\\", \\\"type\\\": \\\"PART-OF\\\", \\\"head_start\\\": 0, \\\"head_end\\\": 44, \\\"tail_start\\\": 103, \\\"tail_end\\\": 153}], \\\"events\\\": []}, {\\\"entities\\\": [{\\\"text\\\": \\\"Recognition of proper nouns\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 0, \\\"end\\\": 27}, {\\\"text\\\": \\\"Japanese text\\\", \\\"type\\\": \\\"Material\\\", \\\"start\\\": 31, \\\"end\\\": 44}, {\\\"text\\\": \\\"morphological analysis in Japanese text processing\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 103, \\\"end\\\": 153}], \\\"relations\\\": [{\\\"head\\\": \\\"Recognition of proper nouns\\\", \\\"tail\\\": \\\"morphological analysis in Japanese text processing\\\", \\\"type\\\": \\\"PART-OF\\\", \\\"head_start\\\": 0, \\\"head_end\\\": 27, \\\"tail_start\\\": 103, \\\"tail_end\\\": 153}], \\\"events\\\": []}, {\\\"entities\\\": [{\\\"text\\\": \\\"Recognition of proper nouns\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 0, \\\"end\\\": 27}, {\\\"text\\\": \\\"Japanese text\\\", \\\"type\\\": \\\"Mater\\n\\n... [截断: 输出过长，省略 28295 字符] ...\\n\\nn and classification of proper names\\\", \\\"type\\\": \\\"HYPONYM-OF\\\", \\\"head_start\\\": 116, \\\"head_end\\\": 150, \\\"tail_start\\\": 67, \\\"tail_end\\\": 113}, {\\\"head\\\": \\\"Japanese text\\\", \\\"tail\\\": \\\"Named Entity -LRB- NE -RRB- items\\\", \\\"type\\\": \\\"FEATURE-OF\\\", \\\"head_start\\\": 199, \\\"head_end\\\": 212, \\\"tail_start\\\": 158, \\\"tail_end\\\": 191}], \\\"events\\\": []}], \\\"greedy\\\": {\\\"entities\\\": [{\\\"text\\\": \\\"morphological analyzer\\\", \\\"type\\\": \\\"Method\\\", \\\"start\\\": 4, \\\"end\\\": 26}, {\\\"text\\\": \\\"recognition and classification of proper names , numerical and temporal expressions\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 67, \\\"end\\\": 150}, {\\\"text\\\": \\\"Named Entity -LRB- NE -RRB- items\\\", \\\"type\\\": \\\"OtherScientificTerm\\\", \\\"start\\\": 158, \\\"end\\\": 191}, {\\\"text\\\": \\\"Japanese text\\\", \\\"type\\\": \\\"Material\\\", \\\"start\\\": 199, \\\"end\\\": 212}], \\\"relations\\\": [{\\\"head\\\": \\\"morphological analyzer\\\", \\\"tail\\\": \\\"recognition and classification of proper names , numerical and temporal expressions\\\", \\\"type\\\": \\\"USED-FOR\\\", \\\"head_start\\\": 4, \\\"head_end\\\": 26, \\\"tail_start\\\": 67, \\\"tail_end\\\": 150}, {\\\"head\\\": \\\"Named Entity -LRB- NE -RRB- items\\\", \\\"tail\\\": \\\"recognition and classification of proper names , numerical and temporal expressions\\\", \\\"type\\\": \\\"HYPONYM-OF\\\", \\\"head_start\\\": 158, \\\"head_end\\\": 191, \\\"tail_start\\\": 67, \\\"tail_end\\\": 150}, {\\\"head\\\": \\\"Japanese text\\\", \\\"tail\\\": \\\"Named Entity -LRB- NE -RRB- items\\\", \\\"type\\\": \\\"FEATURE-OF\\\", \\\"head_start\\\": 199, \\\"head_end\\\": 212, \\\"tail_start\\\": 158, \\\"tail_end\\\": 191}], \\\"events\\\": []}}\\n{\\\"id\\\": \\\"X96-1059_sent004\\\", \\\"text\\\": \\\"The analyzer is called `` Amorph '' .\\\", \\\"gold\\\": {\\\"entities\\\": [{\\\"text\\\": \\\"analyzer\\\", \\\"type\\\": \\\"Generic\\\", \\\"start\\\": 4, \\\"end\\\": 12}, {\\\"text\\\": \\\"`` Amorph ''\\\", \\\"type\\\": \\\"Method\\\", \\\"start\\\": 23, \\\"end\\\": 35}], \\\"relations\\\": [], \\\"events\\\": []}, \\\"samples\\\": [{\\\"entities\\\": [{\\\"text\\\": \\\"analyzer\\\", \\\"type\\\": \\\"Generic\\\", \\\"start\\\": 4, \\\"end\\\": 12}, {\\\"text\\\": \\\"Amorph\\\", \\\"type\\\": \\\"Method\\\", \\\"start\\\": 26, \\\"end\\\": 32}], \\\"relations\\\": [{\\\"head\\\": \\\"Amorph\\\", \\\"tail\\\": \\\"analyzer\\\", \\\"type\\\": \\\"HYPONYM-OF\\\", \\\"head_start\\\": 26, \\\"head_end\\\": 32, \\\"tail_start\\\": 4, \\\"tail_end\\\": 12}], \\\"events\\\": []}, {\\\"entities\\\": [{\\\"text\\\": \\\"analyzer\\\", \\\"type\\\": \\\"Method\\\", \\\"start\\\": 4, \\\"end\\\": 12}, {\\\"text\\\": \\\"`` Amorph ''\\\", \\\"type\\\": \\\"Method\\\", \\\"start\\\": 23, \\\"end\\\": 35}], \\\"relations\\\": [{\\\"head\\\": \\\"`` Amorph ''\\\", \\\"tail\\\": \\\"analyzer\\\", \\\"type\\\": \\\"HYPONYM-OF\\\", \\\"head_start\\\": 23, \\\"head_end\\\": 35, \\\"tail_start\\\": 4, \\\"tail_end\\\": 12}], \\\"events\\\": []}, {\\\"entities\\\": [{\\\"text\\\": \\\"analyzer\\\", \\\"type\\\": \\\"Method\\\", \\\"start\\\": 4, \\\"end\\\": 12}, {\\\"text\\\": \\\"Amorph\\\", \\\"type\\\": \\\"Method\\\", \\\"start\\\": 26, \\\"end\\\": 32}], \\\"relations\\\": [{\\\"head\\\": \\\"Amorph\\\", \\\"tail\\\": \\\"analyzer\\\", \\\"type\\\": \\\"HYPONYM-OF\\\", \\\"head_start\\\": 26, \\\"head_end\\\": 32, \\\"tail_start\\\": 4, \\\"tail_end\\\": 12}], \\\"events\\\": []}, {\\\"entities\\\": [{\\\"text\\\": \\\"analyzer\\\", \\\"type\\\": \\\"Generic\\\", \\\"start\\\": 4, \\\"end\\\": 12}, {\\\"text\\\": \\\"Amorph\\\", \\\"type\\\": \\\"Method\\\", \\\"start\\\": 26, \\\"end\\\": 32}], \\\"relations\\\": [{\\\"head\\\": \\\"analyzer\\\", \\\"tail\\\": \\\"Amorph\\\", \\\"type\\\": \\\"HYPONYM-OF\\\", \\\"head_start\\\": 4, \\\"head_end\\\": 12, \\\"tail_start\\\": 26, \\\"tail_end\\\": 32}], \\\"events\\\": []}, {\\\"entities\\\": [{\\\"text\\\": \\\"analyzer\\\", \\\"type\\\": \\\"Generic\\\", \\\"start\\\": 4, \\\"end\\\": 12}, {\\\"text\\\": \\\"Amorph\\\", \\\"type\\\": \\\"Method\\\", \\\"start\\\": 26, \\\"end\\\": 32}], \\\"relations\\\": [{\\\"head\\\": \\\"Amorph\\\", \\\"tail\\\": \\\"analyzer\\\", \\\"type\\\": \\\"HYPONYM-OF\\\", \\\"head_start\\\": 26, \\\"head_end\\\": 32, \\\"tail_start\\\": 4, \\\"tail_end\\\": 12}], \\\"events\\\": []}, {\\\"entities\\\": [{\\\"text\\\": \\\"analyzer\\\", \\\"type\\\": \\\"Generic\\\", \\\"start\\\": 4, \\\"end\\\": 12}, {\\\"text\\\": \\\"Amorph\\\", \\\"type\\\": \\\"Method\\\", \\\"start\\\": 26, \\\"end\\\": 32}], \\\"relations\\\": [{\\\"head\\\": \\\"Amorph\\\", \\\"tail\\\": \\\"analyzer\\\", \\\"type\\\": \\\"HYPONYM-OF\\\", \\\"head_start\\\": 26, \\\"head_end\\\": 32, \\\"tail_start\\\": 4, \\\"tail_end\\\": 12}], \\\"events\\\": []}, {\\\"entities\\\": [{\\\"text\\\": \\\"analyzer\\\", \\\"type\\\": \\\"Method\\\", \\\"start\\\": 4, \\\"end\\\": 12}], \\\"relations\\\": [], \\\"events\\\": []}, {\\\"entities\\\": [{\\\"text\\\": \\\"analyzer\\\", \\\"type\\\": \\\"Generic\\\", \\\"start\\\": 4, \\\"end\\\": 12}], \\\"relations\\\": [], \\\"events\\\": []}], \\\"greedy\\\": {\\\"entities\\\": [{\\\"text\\\": \\\"analyzer\\\", \\\"type\\\": \\\"Generic\\\", \\\"start\\\": 4, \\\"end\\\": 12}, {\\\"text\\\": \\\"Amorph\\\", \\\"type\\\": \\\"Method\\\", \\\"start\\\": 26, \\\"end\\\": 32}], \\\"relations\\\": [{\\\"head\\\": \\\"Amorph\\\", \\\"tail\\\": \\\"analyzer\\\", \\\"type\\\": \\\"HYPONYM-OF\\\", \\\"head_start\\\": 26, \\\"head_end\\\": 32, \\\"tail_start\\\": 4, \\\"tail_end\\\": 12}], \\\"events\\\": []}}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 86_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01WcuenyDKFwAVPbEWJdAEMX`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "wc -l /root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_004/samples.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "61cfd530-4523-425b-b175-5a438095ca1d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PAcFSEiBGDFzKkEHibqyxD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3252,
+      "cache_read_input_tokens": 95276,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3252
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 87 · 2026-05-15T23:55:54.364Z_
+
+<details><summary>↩ Tool result · `toolu_01WcuenyDKFwAVPbEWJdAEMX`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"551 /root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_004/samples.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "cbf71fb1-6a36-4ef9-8960-bd89f025c430",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"551 /root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_004/samples.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"551 /root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_004/samples.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 88_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I need to understand what the unified pipeline uses. The unified pipeline has `qwen_scierc_n8_seed42` with SJ=0.3599 and FK=0.2665. Let me find the samples.jsonl that the unified pipeline uses, and compare it to the mvp_pilot_004 samples.
+
+Looking at the unified pipeline's metadata: it says `fk_empty_fix: true` and `gold_filter: exclude instances where len(gold.entities)==0`. Let me check which samples file the unified pipeline analyzes for qwen_scierc_n8.
+
+Let me also look at the `exp_001_seed42_` directory which is likely the samples used by the unified pipeline.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "6d7b3664-f1ff-4c16-bb19-ab03e196971f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01C2Q3szR4xQG1pNC1iuzSTH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6967,
+      "cache_read_input_tokens": 98528,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6967
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 89_
+
+Now I need to determine what samples file the unified pipeline used, compared to mvp_pilot_004.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "c8d7633a-da04-423a-b73c-dbb819ebab10",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01C2Q3szR4xQG1pNC1iuzSTH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6967,
+      "cache_read_input_tokens": 98528,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6967
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 90_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01GFPJs3mLhwY7jerwFwTzYL`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "ls -la /root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed42_/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "a13b04bb-d76a-4e32-bcbf-b7d843c90d2d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01C2Q3szR4xQG1pNC1iuzSTH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6967,
+      "cache_read_input_tokens": 98528,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6967
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 91 · 2026-05-15T23:56:02.758Z_
+
+<details><summary>↩ Tool result · `toolu_01GFPJs3mLhwY7jerwFwTzYL`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed42_/': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "be2787fd-c731-437f-a517-87e65ffd3505",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"ls: cannot access '/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed42_/': No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed42_/': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 92_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01HZZoy6CwyLbf7Th6tt3LNh`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "wc -l /root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed42_/samples.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "bae9aecc-e6d9-4190-95d7-28e271077ecc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01C2Q3szR4xQG1pNC1iuzSTH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6967,
+      "cache_read_input_tokens": 98528,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6967
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 93 · 2026-05-15T23:56:03.765Z_
+
+<details><summary>↩ Tool result · `toolu_01HZZoy6CwyLbf7Th6tt3LNh`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"wc: /root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed42_/samples.jsonl: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.34}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "18518311-21b8-450d-a79f-dc5428ebfe8d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"wc: /root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed42_/samples.jsonl: No such file or directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.34}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"wc: /root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed42_/samples.jsonl: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.34}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 94_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01TM41CJEC5ihLvsa5Fq9zgp`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "find /root/autodl-tmp/struct_self_consist_ie/code -name \"unified*\" -o -name \"analyze_unified*\" -o -name \"rho_audit*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "34ee87db-1d4c-4ea8-8da8-5958d4245406",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01C2Q3szR4xQG1pNC1iuzSTH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6967,
+      "cache_read_input_tokens": 98528,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6967
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 95 · 2026-05-15T23:56:04.945Z_
+
+<details><summary>↩ Tool result · `toolu_01TM41CJEC5ihLvsa5Fq9zgp`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "c01777f8-b5f0-4c5b-b884-d9f622cc1e86",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 96_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01GQBcmcL63GAYCn7jyusNqe`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "ls /root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed42/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "1685fde2-ee91-4a3e-8a3b-5cbdf9a03c27",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JiZevFSCyssGxX72vMPuX4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1073,
+      "cache_read_input_tokens": 105495,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1073
+      },
+      "output_tokens": 64,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 97 · 2026-05-15T23:56:08.584Z_
+
+<details><summary>↩ Tool result · `toolu_01GQBcmcL63GAYCn7jyusNqe`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"corrected_conditional_metrics.json\\nexp001_all_signals_report.json\\nreport.json\\nsamples.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "0bfd68ca-98f6-4bc7-bfd9-f244c404d1c4",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"corrected_conditional_metrics.json\\\\nexp001_all_signals_report.json\\\\nreport.json\\\\nsamples.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"corrected_conditional_metrics.json\\nexp001_all_signals_report.json\\nreport.json\\nsamples.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 98_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01YDcfYeJimmhaZxteG5tUi2`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "find /root/autodl-tmp/struct_self_consist_ie/code -name \"*.py\" -newer /root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_004/report.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "d0dd3ea3-e679-4153-b102-3f5c389a98f3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JiZevFSCyssGxX72vMPuX4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1073,
+      "cache_read_input_tokens": 105495,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1073
+      },
+      "output_tokens": 64,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 99 · 2026-05-15T23:56:10.005Z_
+
+<details><summary>↩ Tool result · `toolu_01YDcfYeJimmhaZxteG5tUi2`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/code/data_utils.py\\n/root/autodl-tmp/struct_self_consist_ie/code/evaluation.py\\n/root/autodl-tmp/struct_self_consist_ie/code/sampling.py\\n/root/autodl-tmp/struct_self_consist_ie/code/run_mvp_pilot.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_component_wise_re.py\\n/root/autodl-tmp/struct_self_consist_ie/code/convert_wnut17.py\\n/root/autodl-tmp/struct_self_consist_ie/code/convert_conll2003.py\\n/root/autodl-tmp/struct_self_consist_ie/code/extract_logprobs.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_logprob_baseline.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exact_match_voting.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_entity_voting.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp015_unified.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp004_re_diagnostic.py\\n/root/autodl-tmp/struct_self_consist_ie/code/exp001_postprocess.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp016_ensemble.py\\n/root/autodl-tmp/struct_self_consist_ie/code/diagnose_logprob_rho.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp002_conll2003.py\\n/root/autodl-tmp/struct_self_consist_ie/code/_backup_cond_fix/run_mvp_pilot.py\\n/root/autodl-tmp/struct_self_consist_ie/code/_backup_cond_fix/analyze_exp015_unified.py\\n/root/autodl-tmp/struct_self_consist_ie/code/_backup_cond_fix/analyze_exp004_re_diagnostic.py\\n/root/autodl-tmp/struct_self_consist_ie/code/_backup_cond_fix/analyze_component_wise_re.py\\n/root/autodl-tmp/struct_self_consist_ie/code/_backup_cond_fix/analyze_logprob_baseline.py\\n/root/autodl-tmp/struct_self_consist_ie/code/_backup_cond_fix/analyze_exp002_conll2003.py\\n/root/autodl-tmp/struct_self_consist_ie/code/exp009_stratification_analysis.py\\n/root/autodl-tmp/struct_self_consist_ie/code/exp010_selection_curves.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp005_v2_temperature.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp004_v2_re_diagnostic.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp015_v2_metrics.py\\n/root/autodl-tmp/struct_self_consist_ie/code/exp_006_v2_selection.py\\n/root/autodl-tmp/struct_self_consist_ie/code/exp_009_v2_stratification.py\\n/root/autodl-tmp/struct_self_consist_ie/code/exp_016_v2_ensemble.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp017_5signal.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_3seed_5signal.py\\n/root/autodl-tmp/struct_self_consist_ie/code/exp_009_v2_re_rerun.py\\n/root/autodl-tmp/struct_self_consist_ie/code/eval_n16_5signal.py\\n/root/autodl-tmp/struct_self_consist_ie/code/eval_n8_5signal.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp017_llama_conll_n16.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp017_llama_conll_n16_s123.py\\n/root/autodl-tmp/struct_self_consist_ie/code/eval_s456_5signal.py\\n/root/autodl-tmp/struct_self_consist_ie/code/exp001_3seed_all_signals.py\\n/root/autodl-tmp/struct_self_consist_ie/code/compute_re_conditional.py\\n/root/autodl-tmp/struct_self_consist_ie/code/eval_exp012_rerun_auroc.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp012_rerun_5signal.py\\n/root/autodl-tmp/struct_self_consist_ie/code/gen_reliability_1024.py\\n/root/autodl-tmp/struct_self_consist_ie/code/plot_selection_gap_1024.py\\n/root/autodl-tmp/struct_self_consist_ie/code/plot_reliability_1024.py\\n/root/autodl-tmp/struct_self_consist_ie/code/wnut17_full_signal_analysis.py\\n/root/autodl-tmp/struct_self_consist_ie/code/n8_bootstrap_ci.py\\n/root/autodl-tmp/struct_self_consist_ie/code/re_selection_recompute.py\\n/root/autodl-tmp/struct_self_consist_ie/code/diversity_analysis.py\\n/root/autodl-tmp/struct_self_consist_ie/code/re_conditional_analysis.py\\n/root/autodl-tmp/struct_self_consist_ie/code/em_exact_match_freq.py\\n/root/autodl-tmp/struct_self_consist_ie/code/fk_independence_test.py\\n/root/autodl-tmp/struct_self_consist_ie/code/diversity_stratified_selection.py\\n/root/autodl-tmp/struct_self_consist_ie/code/vc_impl_diff_verify.py\\n/root/autodl-tmp/struct_self_consist_ie/code/compute_em_selection_f1.py\\n/root/autodl-tmp/struct_self_consist_ie/code/oracle_improvable.py\\n/root/autodl-tmp/struct_self_consist_ie/code/oracle_improvable_tost.py\\n/root/autodl-tmp/struct_self_consist_ie/code/exp018_5signal_analysis.py\\n/root/autodl-tmp/struct_self_consist_ie/code/eval_seed42_r1024_5signal.py\\n/root/autodl-tmp/struct_self_consist_ie/code/re_nonzero_selection.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_ood_signals.py\\n/root/autodl-tmp/struct_self_consist_ie/code/compute_metrics.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_lp_range_cdf.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analysis_multiseed_selection_f1.py\\n/root/autodl-tmp/struct_self_consist_ie/code/fk_bootstrap_ci.py\\n/root/autodl-tmp/struct_self_consist_ie/code/compute_selection_f1.py\\n/root/autodl-tmp/struct_self_consist_ie/code/fk_bootstrap_per_instance.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analysis_scierc_n16_selection.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analysis_scierc_re_n16_selection.py\\n/root/autodl-tmp/struct_self_consist_ie/code/plot_selection_gap_3seed.py\\n/root/autodl-tmp/struct_self_consist_ie/code/plot_selection_gap_n8.py\\n/root/autodl-tmp/struct_self_consist_ie/code/table2_selection_f1.py\\n/root/autodl-tmp/struct_self_consist_ie/code/fk_bootstrap_test.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp017_t07.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_thinking_token_lp_dilution.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_scale_ablation_4b.py\\n/root/autodl-tmp/struct_self_consist_ie/code/selection_f1_4b.py\\n/root/autodl-tmp/struct_self_consist_ie/code/r8w3_sj_normalizer_comparison.py\\n/root/autodl-tmp/struct_self_consist_ie/code/r8w3_sj_union_v2.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "58fa2a14-a46d-413c-bc69-36cc5cf8aa1d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/code/data_utils.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/evaluation.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/sampling.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/run_mvp_pilot.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_component_wise_re.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/convert_wnut17.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/convert_conll2003.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/extract_logprobs.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_logprob_baseline.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exact_match_voting.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_entity_voting.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp015_unified.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp004_re_diagnostic.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/exp001_postprocess.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp016_ensemble.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/diagnose_logprob_rho.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp002_conll2003.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/_backup_cond_fix/run_mvp_pilot.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/_backup_cond_fix/analyze_exp015_unified.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/_backup_cond_fix/analyze_exp004_re_diagnostic.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/_backup_cond_fix/analyze_component_wise_re.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/_backup_cond_fix/analyze_logprob_baseline.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/_backup_cond_fix/analyze_exp002_conll2003.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/exp009_stratification_analysis.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/exp010_selection_curves.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp005_v2_temperature.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp004_v2_re_diagnostic.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp015_v2_metrics.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/exp_006_v2_selection.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/exp_009_v2_stratification.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/exp_016_v2_ensemble.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp017_5signal.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_3seed_5signal.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/exp_009_v2_re_rerun.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/eval_n16_5signal.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/eval_n8_5signal.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp017_llama_conll_n16.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp017_llama_conll_n16_s123.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/eval_s456_5signal.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/exp001_3seed_all_signals.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/compute_re_conditional.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/eval_exp012_rerun_auroc.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp012_rerun_5signal.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/gen_reliability_1024.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/plot_selection_gap_1024.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/plot_reliability_1024.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/wnut17_full_signal_analysis.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/n8_bootstrap_ci.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/re_selection_recompute.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/diversity_analysis.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/re_conditional_analysis.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/em_exact_match_freq.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/fk_independence_test.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/diversity_stratified_selection.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/vc_impl_diff_verify.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/compute_em_selection_f1.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/oracle_improvable.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/oracle_improvable_tost.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/exp018_5signal_analysis.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/eval_seed42_r1024_5signal.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/re_nonzero_selection.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_ood_signals.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/compute_metrics.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_lp_range_cdf.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analysis_multiseed_selection_f1.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/fk_bootstrap_ci.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/compute_selection_f1.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/fk_bootstrap_per_instance.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analysis_scierc_n16_selection.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analysis_scierc_re_n16_selection.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/plot_selection_gap_3seed.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/plot_selection_gap_n8.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/table2_selection_f1.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/fk_bootstrap_test.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp017_t07.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_thinking_token_lp_dilution.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_scale_ablation_4b.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/selection_f1_4b.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/r8w3_sj_normalizer_comparison.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/r8w3_sj_union_v2.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/code/data_utils.py\\n/root/autodl-tmp/struct_self_consist_ie/code/evaluation.py\\n/root/autodl-tmp/struct_self_consist_ie/code/sampling.py\\n/root/autodl-tmp/struct_self_consist_ie/code/run_mvp_pilot.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_component_wise_re.py\\n/root/autodl-tmp/struct_self_consist_ie/code/convert_wnut17.py\\n/root/autodl-tmp/struct_self_consist_ie/code/convert_conll2003.py\\n/root/autodl-tmp/struct_self_consist_ie/code/extract_logprobs.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_logprob_baseline.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exact_match_voting.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_entity_voting.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp015_unified.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp004_re_diagnostic.py\\n/root/autodl-tmp/struct_self_consist_ie/code/exp001_postprocess.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp016_ensemble.py\\n/root/autodl-tmp/struct_self_consist_ie/code/diagnose_logprob_rho.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp002_conll2003.py\\n/root/autodl-tmp/struct_self_consist_ie/code/_backup_cond_fix/run_mvp_pilot.py\\n/root/autodl-tmp/struct_self_consist_ie/code/_backup_cond_fix/analyze_exp015_unified.py\\n/root/autodl-tmp/struct_self_consist_ie/code/_backup_cond_fix/analyze_exp004_re_diagnostic.py\\n/root/autodl-tmp/struct_self_consist_ie/code/_backup_cond_fix/analyze_component_wise_re.py\\n/root/autodl-tmp/struct_self_consist_ie/code/_backup_cond_fix/analyze_logprob_baseline.py\\n/root/autodl-tmp/struct_self_consist_ie/code/_backup_cond_fix/analyze_exp002_conll2003.py\\n/root/autodl-tmp/struct_self_consist_ie/code/exp009_stratification_analysis.py\\n/root/autodl-tmp/struct_self_consist_ie/code/exp010_selection_curves.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp005_v2_temperature.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp004_v2_re_diagnostic.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp015_v2_metrics.py\\n/root/autodl-tmp/struct_self_consist_ie/code/exp_006_v2_selection.py\\n/root/autodl-tmp/struct_self_consist_ie/code/exp_009_v2_stratification.py\\n/root/autodl-tmp/struct_self_consist_ie/code/exp_016_v2_ensemble.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp017_5signal.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_3seed_5signal.py\\n/root/autodl-tmp/struct_self_consist_ie/code/exp_009_v2_re_rerun.py\\n/root/autodl-tmp/struct_self_consist_ie/code/eval_n16_5signal.py\\n/root/autodl-tmp/struct_self_consist_ie/code/eval_n8_5signal.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp017_llama_conll_n16.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp017_llama_conll_n16_s123.py\\n/root/autodl-tmp/struct_self_consist_ie/code/eval_s456_5signal.py\\n/root/autodl-tmp/struct_self_consist_ie/code/exp001_3seed_all_signals.py\\n/root/autodl-tmp/struct_self_consist_ie/code/compute_re_conditional.py\\n/root/autodl-tmp/struct_self_consist_ie/code/eval_exp012_rerun_auroc.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp012_rerun_5signal.py\\n/root/autodl-tmp/struct_self_consist_ie/code/gen_reliability_1024.py\\n/root/autodl-tmp/struct_self_consist_ie/code/plot_selection_gap_1024.py\\n/root/autodl-tmp/struct_self_consist_ie/code/plot_reliability_1024.py\\n/root/autodl-tmp/struct_self_consist_ie/code/wnut17_full_signal_analysis.py\\n/root/autodl-tmp/struct_self_consist_ie/code/n8_bootstrap_ci.py\\n/root/autodl-tmp/struct_self_consist_ie/code/re_selection_recompute.py\\n/root/autodl-tmp/struct_self_consist_ie/code/diversity_analysis.py\\n/root/autodl-tmp/struct_self_consist_ie/code/re_conditional_analysis.py\\n/root/autodl-tmp/struct_self_consist_ie/code/em_exact_match_freq.py\\n/root/autodl-tmp/struct_self_consist_ie/code/fk_independence_test.py\\n/root/autodl-tmp/struct_self_consist_ie/code/diversity_stratified_selection.py\\n/root/autodl-tmp/struct_self_consist_ie/code/vc_impl_diff_verify.py\\n/root/autodl-tmp/struct_self_consist_ie/code/compute_em_selection_f1.py\\n/root/autodl-tmp/struct_self_consist_ie/code/oracle_improvable.py\\n/root/autodl-tmp/struct_self_consist_ie/code/oracle_improvable_tost.py\\n/root/autodl-tmp/struct_self_consist_ie/code/exp018_5signal_analysis.py\\n/root/autodl-tmp/struct_self_consist_ie/code/eval_seed42_r1024_5signal.py\\n/root/autodl-tmp/struct_self_consist_ie/code/re_nonzero_selection.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_ood_signals.py\\n/root/autodl-tmp/struct_self_consist_ie/code/compute_metrics.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_lp_range_cdf.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analysis_multiseed_selection_f1.py\\n/root/autodl-tmp/struct_self_consist_ie/code/fk_bootstrap_ci.py\\n/root/autodl-tmp/struct_self_consist_ie/code/compute_selection_f1.py\\n/root/autodl-tmp/struct_self_consist_ie/code/fk_bootstrap_per_instance.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analysis_scierc_n16_selection.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analysis_scierc_re_n16_selection.py\\n/root/autodl-tmp/struct_self_consist_ie/code/plot_selection_gap_3seed.py\\n/root/autodl-tmp/struct_self_consist_ie/code/plot_selection_gap_n8.py\\n/root/autodl-tmp/struct_self_consist_ie/code/table2_selection_f1.py\\n/root/autodl-tmp/struct_self_consist_ie/code/fk_bootstrap_test.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp017_t07.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_thinking_token_lp_dilution.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_scale_ablation_4b.py\\n/root/autodl-tmp/struct_self_consist_ie/code/selection_f1_4b.py\\n/root/autodl-tmp/struct_self_consist_ie/code/r8w3_sj_normalizer_comparison.py\\n/root/autodl-tmp/struct_self_consist_ie/code/r8w3_sj_union_v2.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 100_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01WayVqs2unefUM87XeVDy6k`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/rho_audit_results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "0650f2b6-d13f-45c7-b605-faf78d87aa8d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JiZevFSCyssGxX72vMPuX4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1073,
+      "cache_read_input_tokens": 105495,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1073
+      },
+      "output_tokens": 64,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 101 · 2026-05-15T23:56:10.533Z_
+
+<details><summary>↩ Tool result · `toolu_01WayVqs2unefUM87XeVDy6k`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"exp_017_llama_conll_n16_r1024\\\": {\\n    \\\"exp_id\\\": \\\"exp_017_llama_conll_n16_r1024\\\",\\n    \\\"n_total\\\": 3453,\\n    \\\"n_gold_empty\\\": 697,\\n    \\\"n_valid\\\": 2756,\\n    \\\"n_conditional\\\": 2641,\\n    \\\"gold_empty_analysis\\\": {\\n      \\\"n\\\": 697,\\n      \\\"fk_mean\\\": 0.0372,\\n      \\\"fk_std\\\": 0.1982,\\n      \\\"sj_mean\\\": 0.9789,\\n      \\\"f1_mean\\\": 0.0\\n    },\\n    \\\"old_pipeline\\\": {\\n      \\\"n\\\": 3453,\\n      \\\"rho_fk\\\": 0.8095,\\n      \\\"rho_sj\\\": 0.1815,\\n      \\\"registry_rho_fk\\\": 0.8095,\\n      \\\"registry_rho_sj\\\": 0.1815\\n    },\\n    \\\"new_pipeline_full\\\": {\\n      \\\"n\\\": 2756,\\n      \\\"rho_fk\\\": 0.4752,\\n      \\\"rho_sj\\\": 0.4836,\\n      \\\"rho_vc\\\": 0.4746,\\n      \\\"rho_em\\\": 0.4818,\\n      \\\"rho_lp\\\": 0.3136,\\n      \\\"auroc_fk\\\": 0.7467,\\n      \\\"auroc_sj\\\": 0.7496,\\n      \\\"auroc_vc\\\": 0.7529,\\n      \\\"auroc_em\\\": 0.7508,\\n      \\\"auroc_lp\\\": 0.7661,\\n      \\\"median_f1\\\": 1.0\\n    },\\n    \\\"new_pipeline_conditional\\\": {\\n      \\\"n\\\": 2641,\\n      \\\"rho_fk\\\": 0.4767,\\n      \\\"rho_sj\\\": 0.4856\\n    }\\n  },\\n  \\\"exp_017_llama_conll_n16_s456_r1024\\\": {\\n    \\\"exp_id\\\": \\\"exp_017_llama_conll_n16_s456_r1024\\\",\\n    \\\"n_total\\\": 3453,\\n    \\\"n_gold_empty\\\": 697,\\n    \\\"n_valid\\\": 2756,\\n    \\\"n_conditional\\\": 2642,\\n    \\\"gold_empty_analysis\\\": {\\n      \\\"n\\\": 697,\\n      \\\"fk_mean\\\": 0.0372,\\n      \\\"fk_std\\\": 0.1991,\\n      \\\"sj_mean\\\": 0.9777,\\n      \\\"f1_mean\\\": 0.0\\n    },\\n    \\\"old_pipeline\\\": {\\n      \\\"n\\\": 3453,\\n      \\\"rho_fk\\\": 0.8085,\\n      \\\"rho_sj\\\": 0.1895,\\n      \\\"registry_rho_fk\\\": 0.8085,\\n      \\\"registry_rho_sj\\\": 0.1895\\n    },\\n    \\\"new_pipeline_full\\\": {\\n      \\\"n\\\": 2756,\\n      \\\"rho_fk\\\": 0.469,\\n      \\\"rho_sj\\\": 0.4734,\\n      \\\"rho_vc\\\": 0.4722,\\n      \\\"rho_em\\\": 0.4752,\\n      \\\"rho_lp\\\": 0.3099,\\n      \\\"auroc_fk\\\": 0.7408,\\n      \\\"auroc_sj\\\": 0.7428,\\n      \\\"auroc_vc\\\": 0.7495,\\n      \\\"auroc_em\\\": 0.7444,\\n      \\\"auroc_lp\\\": 0.7628,\\n      \\\"median_f1\\\": 1.0\\n    },\\n    \\\"new_pipeline_conditional\\\": {\\n      \\\"n\\\": 2642,\\n      \\\"rho_fk\\\": 0.4694,\\n      \\\"rho_sj\\\": 0.4728\\n    }\\n  },\\n  \\\"exp_001_n16_seed456\\\": {\\n    \\\"exp_id\\\": \\\"exp_001_n16_seed456\\\",\\n    \\\"n_total\\\": 551,\\n    \\\"n_gold_empty\\\": 22,\\n    \\\"n_valid\\\": 529,\\n    \\\"n_conditional\\\": 478,\\n    \\\"gold_empty_analysis\\\": {\\n      \\\"n\\\": 22,\\n      \\\"fk_mean\\\": 0.038,\\n      \\\"fk_std\\\": 0.1144,\\n      \\\"sj_mean\\\": 0.582,\\n      \\\"f1_mean\\\": 0.0\\n    },\\n    \\\"old_pipeline\\\": {\\n      \\\"n\\\": 551,\\n      \\\"rho_fk\\\": 0.3448,\\n      \\\"rho_sj\\\": 0.4134,\\n      \\\"registry_rho_fk\\\": 0.3448,\\n      \\\"registry_rho_sj\\\": 0.4134\\n    },\\n    \\\"new_pipeline_full\\\": {\\n      \\\"n\\\": 529,\\n      \\\"rho_fk\\\": 0.2723,\\n      \\\"rho_sj\\\": 0.4098,\\n      \\\"rho_vc\\\": 0.4449,\\n      \\\"rho_em\\\": 0.3363,\\n      \\\"rho_lp\\\": 0.2415,\\n      \\\"auroc_fk\\\": 0.6179,\\n      \\\"auroc_sj\\\": 0.6823,\\n      \\\"auroc_vc\\\": 0.6981,\\n      \\\"auroc_em\\\": 0.649,\\n      \\\"auroc_lp\\\": 0.5885,\\n      \\\"median_f1\\\": 0.6667\\n    },\\n    \\\"new_pipeline_conditional\\\": {\\n      \\\"n\\\": 478,\\n      \\\"rho_fk\\\": 0.1887,\\n      \\\"rho_sj\\\": 0.3735\\n    },\\n    \\\"re_metrics\\\": {\\n      \\\"n_re_valid\\\": 397,\\n      \\\"rho_fk_re\\\": 0.2929,\\n      \\\"rho_sj_re\\\": 0.2835\\n    }\\n  },\\n  \\\"exp_011_ood_conll_to_scierc\\\": {\\n    \\\"exp_id\\\": \\\"exp_011_ood_conll_to_scierc\\\",\\n    \\\"n_total\\\": 551,\\n    \\\"n_gold_empty\\\": 22,\\n    \\\"n_valid\\\": 529,\\n    \\\"n_conditional\\\": 12,\\n    \\\"gold_empty_analysis\\\": {\\n      \\\"n\\\": 22,\\n      \\\"fk_mean\\\": -0.0032,\\n      \\\"fk_std\\\": 0.1227,\\n      \\\"sj_mean\\\": 0.9432,\\n      \\\"f1_mean\\\": 0.0\\n    },\\n    \\\"old_pipeline\\\": {\\n      \\\"n\\\": 551,\\n      \\\"rho_fk\\\": 0.011,\\n      \\\"rho_sj\\\": -0.1856,\\n      \\\"registry_rho_fk\\\": -0.069,\\n      \\\"registry_rho_sj\\\": -0.186\\n    },\\n    \\\"new_pipeline_full\\\": {\\n      \\\"n\\\": 529,\\n      \\\"rho_fk\\\": -0.0695,\\n      \\\"rho_sj\\\": -0.1857,\\n      \\\"rho_vc\\\": 0.1972,\\n      \\\"rho_em\\\": -0.2015,\\n      \\\"rho_lp\\\": -0.1521,\\n      \\\"auroc_fk\\\": NaN,\\n      \\\"auroc_sj\\\": NaN,\\n      \\\"auroc_vc\\\": NaN,\\n      \\\"auroc_em\\\": NaN,\\n      \\\"auroc_lp\\\": NaN,\\n      \\\"median_f1\\\": 0.0\\n    },\\n    \\\"new_pipeline_conditional\\\": {\\n      \\\"n\\\": 12,\\n      \\\"rho_fk\\\": -0.265,\\n      \\\"rho_sj\\\": 0.3357\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "e5685d7f-33b5-43a2-a5d3-5e7c5e5cc99e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"exp_017_llama_conll_n16_r1024\\\\\\\": {\\\\n    \\\\\\\"exp_id\\\\\\\": \\\\\\\"exp_017_llama_conll_n16_r1024\\\\\\\",\\\\n    \\\\\\\"n_total\\\\\\\": 3453,\\\\n    \\\\\\\"n_gold_empty\\\\\\\": 697,\\\\n    \\\\\\\"n_valid\\\\\\\": 2756,\\\\n    \\\\\\\"n_conditional\\\\\\\": 2641,\\\\n    \\\\\\\"gold_empty_analysis\\\\\\\": {\\\\n      \\\\\\\"n\\\\\\\": 697,\\\\n      \\\\\\\"fk_mean\\\\\\\": 0.0372,\\\\n      \\\\\\\"fk_std\\\\\\\": 0.1982,\\\\n      \\\\\\\"sj_mean\\\\\\\": 0.9789,\\\\n      \\\\\\\"f1_mean\\\\\\\": 0.0\\\\n    },\\\\n    \\\\\\\"old_pipeline\\\\\\\": {\\\\n      \\\\\\\"n\\\\\\\": 3453,\\\\n      \\\\\\\"rho_fk\\\\\\\": 0.8095,\\\\n      \\\\\\\"rho_sj\\\\\\\": 0.1815,\\\\n      \\\\\\\"registry_rho_fk\\\\\\\": 0.8095,\\\\n      \\\\\\\"registry_rho_sj\\\\\\\": 0.1815\\\\n    },\\\\n    \\\\\\\"new_pipeline_full\\\\\\\": {\\\\n      \\\\\\\"n\\\\\\\": 2756,\\\\n      \\\\\\\"rho_fk\\\\\\\": 0.4752,\\\\n      \\\\\\\"rho_sj\\\\\\\": 0.4836,\\\\n      \\\\\\\"rho_vc\\\\\\\": 0.4746,\\\\n      \\\\\\\"rho_em\\\\\\\": 0.4818,\\\\n      \\\\\\\"rho_lp\\\\\\\": 0.3136,\\\\n      \\\\\\\"auroc_fk\\\\\\\": 0.7467,\\\\n      \\\\\\\"auroc_sj\\\\\\\": 0.7496,\\\\n      \\\\\\\"auroc_vc\\\\\\\": 0.7529,\\\\n      \\\\\\\"auroc_em\\\\\\\": 0.7508,\\\\n      \\\\\\\"auroc_lp\\\\\\\": 0.7661,\\\\n      \\\\\\\"median_f1\\\\\\\": 1.0\\\\n    },\\\\n    \\\\\\\"new_pipeline_conditional\\\\\\\": {\\\\n      \\\\\\\"n\\\\\\\": 2641,\\\\n      \\\\\\\"rho_fk\\\\\\\": 0.4767,\\\\n      \\\\\\\"rho_sj\\\\\\\": 0.4856\\\\n    }\\\\n  },\\\\n  \\\\\\\"exp_017_llama_conll_n16_s456_r1024\\\\\\\": {\\\\n    \\\\\\\"exp_id\\\\\\\": \\\\\\\"exp_017_llama_conll_n16_s456_r1024\\\\\\\",\\\\n    \\\\\\\"n_total\\\\\\\": 3453,\\\\n    \\\\\\\"n_gold_empty\\\\\\\": 697,\\\\n    \\\\\\\"n_valid\\\\\\\": 2756,\\\\n    \\\\\\\"n_conditional\\\\\\\": 2642,\\\\n    \\\\\\\"gold_empty_analysis\\\\\\\": {\\\\n      \\\\\\\"n\\\\\\\": 697,\\\\n      \\\\\\\"fk_mean\\\\\\\": 0.0372,\\\\n      \\\\\\\"fk_std\\\\\\\": 0.1991,\\\\n      \\\\\\\"sj_mean\\\\\\\": 0.9777,\\\\n      \\\\\\\"f1_mean\\\\\\\": 0.0\\\\n    },\\\\n    \\\\\\\"old_pipeline\\\\\\\": {\\\\n      \\\\\\\"n\\\\\\\": 3453,\\\\n      \\\\\\\"rho_fk\\\\\\\": 0.8085,\\\\n      \\\\\\\"rho_sj\\\\\\\": 0.1895,\\\\n      \\\\\\\"registry_rho_fk\\\\\\\": 0.8085,\\\\n      \\\\\\\"registry_rho_sj\\\\\\\": 0.1895\\\\n    },\\\\n    \\\\\\\"new_pipeline_full\\\\\\\": {\\\\n      \\\\\\\"n\\\\\\\": 2756,\\\\n      \\\\\\\"rho_fk\\\\\\\": 0.469,\\\\n      \\\\\\\"rho_sj\\\\\\\": 0.4734,\\\\n      \\\\\\\"rho_vc\\\\\\\": 0.4722,\\\\n      \\\\\\\"rho_em\\\\\\\": 0.4752,\\\\n      \\\\\\\"rho_lp\\\\\\\": 0.3099,\\\\n      \\\\\\\"auroc_fk\\\\\\\": 0.7408,\\\\n      \\\\\\\"auroc_sj\\\\\\\": 0.7428,\\\\n      \\\\\\\"auroc_vc\\\\\\\": 0.7495,\\\\n      \\\\\\\"auroc_em\\\\\\\": 0.7444,\\\\n      \\\\\\\"auroc_lp\\\\\\\": 0.7628,\\\\n      \\\\\\\"median_f1\\\\\\\": 1.0\\\\n    },\\\\n    \\\\\\\"new_pipeline_conditional\\\\\\\": {\\\\n      \\\\\\\"n\\\\\\\": 2642,\\\\n      \\\\\\\"rho_fk\\\\\\\": 0.4694,\\\\n      \\\\\\\"rho_sj\\\\\\\": 0.4728\\\\n    }\\\\n  },\\\\n  \\\\\\\"exp_001_n16_seed456\\\\\\\": {\\\\n    \\\\\\\"exp_id\\\\\\\": \\\\\\\"exp_001_n16_seed456\\\\\\\",\\\\n    \\\\\\\"n_total\\\\\\\": 551,\\\\n    \\\\\\\"n_gold_empty\\\\\\\": 22,\\\\n    \\\\\\\"n_valid\\\\\\\": 529,\\\\n    \\\\\\\"n_conditional\\\\\\\": 478,\\\\n    \\\\\\\"gold_empty_analysis\\\\\\\": {\\\\n      \\\\\\\"n\\\\\\\": 22,\\\\n      \\\\\\\"fk_mean\\\\\\\": 0.038,\\\\n      \\\\\\\"fk_std\\\\\\\": 0.1144,\\\\n      \\\\\\\"sj_mean\\\\\\\": 0.582,\\\\n      \\\\\\\"f1_mean\\\\\\\": 0.0\\\\n    },\\\\n    \\\\\\\"old_pipeline\\\\\\\": {\\\\n      \\\\\\\"n\\\\\\\": 551,\\\\n      \\\\\\\"rho_fk\\\\\\\": 0.3448,\\\\n      \\\\\\\"rho_sj\\\\\\\": 0.4134,\\\\n      \\\\\\\"registry_rho_fk\\\\\\\": 0.3448,\\\\n      \\\\\\\"registry_rho_sj\\\\\\\": 0.4134\\\\n    },\\\\n    \\\\\\\"new_pipeline_full\\\\\\\": {\\\\n      \\\\\\\"n\\\\\\\": 529,\\\\n      \\\\\\\"rho_fk\\\\\\\": 0.2723,\\\\n      \\\\\\\"rho_sj\\\\\\\": 0.4098,\\\\n      \\\\\\\"rho_vc\\\\\\\": 0.4449,\\\\n      \\\\\\\"rho_em\\\\\\\": 0.3363,\\\\n      \\\\\\\"rho_lp\\\\\\\": 0.2415,\\\\n      \\\\\\\"auroc_fk\\\\\\\": 0.6179,\\\\n      \\\\\\\"auroc_sj\\\\\\\": 0.6823,\\\\n      \\\\\\\"auroc_vc\\\\\\\": 0.6981,\\\\n      \\\\\\\"auroc_em\\\\\\\": 0.649,\\\\n      \\\\\\\"auroc_lp\\\\\\\": 0.5885,\\\\n      \\\\\\\"median_f1\\\\\\\": 0.6667\\\\n    },\\\\n    \\\\\\\"new_pipeline_conditional\\\\\\\": {\\\\n      \\\\\\\"n\\\\\\\": 478,\\\\n      \\\\\\\"rho_fk\\\\\\\": 0.1887,\\\\n      \\\\\\\"rho_sj\\\\\\\": 0.3735\\\\n    },\\\\n    \\\\\\\"re_metrics\\\\\\\": {\\\\n      \\\\\\\"n_re_valid\\\\\\\": 397,\\\\n      \\\\\\\"rho_fk_re\\\\\\\": 0.2929,\\\\n      \\\\\\\"rho_sj_re\\\\\\\": 0.2835\\\\n    }\\\\n  },\\\\n  \\\\\\\"exp_011_ood_conll_to_scierc\\\\\\\": {\\\\n    \\\\\\\"exp_id\\\\\\\": \\\\\\\"exp_011_ood_conll_to_scierc\\\\\\\",\\\\n    \\\\\\\"n_total\\\\\\\": 551,\\\\n    \\\\\\\"n_gold_empty\\\\\\\": 22,\\\\n    \\\\\\\"n_valid\\\\\\\": 529,\\\\n    \\\\\\\"n_conditional\\\\\\\": 12,\\\\n    \\\\\\\"gold_empty_analysis\\\\\\\": {\\\\n      \\\\\\\"n\\\\\\\": 22,\\\\n      \\\\\\\"fk_mean\\\\\\\": -0.0032,\\\\n      \\\\\\\"fk_std\\\\\\\": 0.1227,\\\\n      \\\\\\\"sj_mean\\\\\\\": 0.9432,\\\\n      \\\\\\\"f1_mean\\\\\\\": 0.0\\\\n    },\\\\n    \\\\\\\"old_pipeline\\\\\\\": {\\\\n      \\\\\\\"n\\\\\\\": 551,\\\\n      \\\\\\\"rho_fk\\\\\\\": 0.011,\\\\n      \\\\\\\"rho_sj\\\\\\\": -0.1856,\\\\n      \\\\\\\"registry_rho_fk\\\\\\\": -0.069,\\\\n      \\\\\\\"registry_rho_sj\\\\\\\": -0.186\\\\n    },\\\\n    \\\\\\\"new_pipeline_full\\\\\\\": {\\\\n      \\\\\\\"n\\\\\\\": 529,\\\\n      \\\\\\\"rho_fk\\\\\\\": -0.0695,\\\\n      \\\\\\\"rho_sj\\\\\\\": -0.1857,\\\\n      \\\\\\\"rho_vc\\\\\\\": 0.1972,\\\\n      \\\\\\\"rho_em\\\\\\\": -0.2015,\\\\n      \\\\\\\"rho_lp\\\\\\\": -0.1521,\\\\n      \\\\\\\"auroc_fk\\\\\\\": NaN,\\\\n      \\\\\\\"auroc_sj\\\\\\\": NaN,\\\\n      \\\\\\\"auroc_vc\\\\\\\": NaN,\\\\n      \\\\\\\"auroc_em\\\\\\\": NaN,\\\\n      \\\\\\\"auroc_lp\\\\\\\": NaN,\\\\n      \\\\\\\"median_f1\\\\\\\": 0.0\\\\n    },\\\\n    \\\\\\\"new_pipeline_conditional\\\\\\\": {\\\\n      \\\\\\\"n\\\\\\\": 12,\\\\n      \\\\\\\"rho_fk\\\\\\\": -0.265,\\\\n      \\\\\\\"rho_sj\\\\\\\": 0.3357\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"exp_017_llama_conll_n16_r1024\\\": {\\n    \\\"exp_id\\\": \\\"exp_017_llama_conll_n16_r1024\\\",\\n    \\\"n_total\\\": 3453,\\n    \\\"n_gold_empty\\\": 697,\\n    \\\"n_valid\\\": 2756,\\n    \\\"n_conditional\\\": 2641,\\n    \\\"gold_empty_analysis\\\": {\\n      \\\"n\\\": 697,\\n      \\\"fk_mean\\\": 0.0372,\\n      \\\"fk_std\\\": 0.1982,\\n      \\\"sj_mean\\\": 0.9789,\\n      \\\"f1_mean\\\": 0.0\\n    },\\n    \\\"old_pipeline\\\": {\\n      \\\"n\\\": 3453,\\n      \\\"rho_fk\\\": 0.8095,\\n      \\\"rho_sj\\\": 0.1815,\\n      \\\"registry_rho_fk\\\": 0.8095,\\n      \\\"registry_rho_sj\\\": 0.1815\\n    },\\n    \\\"new_pipeline_full\\\": {\\n      \\\"n\\\": 2756,\\n      \\\"rho_fk\\\": 0.4752,\\n      \\\"rho_sj\\\": 0.4836,\\n      \\\"rho_vc\\\": 0.4746,\\n      \\\"rho_em\\\": 0.4818,\\n      \\\"rho_lp\\\": 0.3136,\\n      \\\"auroc_fk\\\": 0.7467,\\n      \\\"auroc_sj\\\": 0.7496,\\n      \\\"auroc_vc\\\": 0.7529,\\n      \\\"auroc_em\\\": 0.7508,\\n      \\\"auroc_lp\\\": 0.7661,\\n      \\\"median_f1\\\": 1.0\\n    },\\n    \\\"new_pipeline_conditional\\\": {\\n      \\\"n\\\": 2641,\\n      \\\"rho_fk\\\": 0.4767,\\n      \\\"rho_sj\\\": 0.4856\\n    }\\n  },\\n  \\\"exp_017_llama_conll_n16_s456_r1024\\\": {\\n    \\\"exp_id\\\": \\\"exp_017_llama_conll_n16_s456_r1024\\\",\\n    \\\"n_total\\\": 3453,\\n    \\\"n_gold_empty\\\": 697,\\n    \\\"n_valid\\\": 2756,\\n    \\\"n_conditional\\\": 2642,\\n    \\\"gold_empty_analysis\\\": {\\n      \\\"n\\\": 697,\\n      \\\"fk_mean\\\": 0.0372,\\n      \\\"fk_std\\\": 0.1991,\\n      \\\"sj_mean\\\": 0.9777,\\n      \\\"f1_mean\\\": 0.0\\n    },\\n    \\\"old_pipeline\\\": {\\n      \\\"n\\\": 3453,\\n      \\\"rho_fk\\\": 0.8085,\\n      \\\"rho_sj\\\": 0.1895,\\n      \\\"registry_rho_fk\\\": 0.8085,\\n      \\\"registry_rho_sj\\\": 0.1895\\n    },\\n    \\\"new_pipeline_full\\\": {\\n      \\\"n\\\": 2756,\\n      \\\"rho_fk\\\": 0.469,\\n      \\\"rho_sj\\\": 0.4734,\\n      \\\"rho_vc\\\": 0.4722,\\n      \\\"rho_em\\\": 0.4752,\\n      \\\"rho_lp\\\": 0.3099,\\n      \\\"auroc_fk\\\": 0.7408,\\n      \\\"auroc_sj\\\": 0.7428,\\n      \\\"auroc_vc\\\": 0.7495,\\n      \\\"auroc_em\\\": 0.7444,\\n      \\\"auroc_lp\\\": 0.7628,\\n      \\\"median_f1\\\": 1.0\\n    },\\n    \\\"new_pipeline_conditional\\\": {\\n      \\\"n\\\": 2642,\\n      \\\"rho_fk\\\": 0.4694,\\n      \\\"rho_sj\\\": 0.4728\\n    }\\n  },\\n  \\\"exp_001_n16_seed456\\\": {\\n    \\\"exp_id\\\": \\\"exp_001_n16_seed456\\\",\\n    \\\"n_total\\\": 551,\\n    \\\"n_gold_empty\\\": 22,\\n    \\\"n_valid\\\": 529,\\n    \\\"n_conditional\\\": 478,\\n    \\\"gold_empty_analysis\\\": {\\n      \\\"n\\\": 22,\\n      \\\"fk_mean\\\": 0.038,\\n      \\\"fk_std\\\": 0.1144,\\n      \\\"sj_mean\\\": 0.582,\\n      \\\"f1_mean\\\": 0.0\\n    },\\n    \\\"old_pipeline\\\": {\\n      \\\"n\\\": 551,\\n      \\\"rho_fk\\\": 0.3448,\\n      \\\"rho_sj\\\": 0.4134,\\n      \\\"registry_rho_fk\\\": 0.3448,\\n      \\\"registry_rho_sj\\\": 0.4134\\n    },\\n    \\\"new_pipeline_full\\\": {\\n      \\\"n\\\": 529,\\n      \\\"rho_fk\\\": 0.2723,\\n      \\\"rho_sj\\\": 0.4098,\\n      \\\"rho_vc\\\": 0.4449,\\n      \\\"rho_em\\\": 0.3363,\\n      \\\"rho_lp\\\": 0.2415,\\n      \\\"auroc_fk\\\": 0.6179,\\n      \\\"auroc_sj\\\": 0.6823,\\n      \\\"auroc_vc\\\": 0.6981,\\n      \\\"auroc_em\\\": 0.649,\\n      \\\"auroc_lp\\\": 0.5885,\\n      \\\"median_f1\\\": 0.6667\\n    },\\n    \\\"new_pipeline_conditional\\\": {\\n      \\\"n\\\": 478,\\n      \\\"rho_fk\\\": 0.1887,\\n      \\\"rho_sj\\\": 0.3735\\n    },\\n    \\\"re_metrics\\\": {\\n      \\\"n_re_valid\\\": 397,\\n      \\\"rho_fk_re\\\": 0.2929,\\n      \\\"rho_sj_re\\\": 0.2835\\n    }\\n  },\\n  \\\"exp_011_ood_conll_to_scierc\\\": {\\n    \\\"exp_id\\\": \\\"exp_011_ood_conll_to_scierc\\\",\\n    \\\"n_total\\\": 551,\\n    \\\"n_gold_empty\\\": 22,\\n    \\\"n_valid\\\": 529,\\n    \\\"n_conditional\\\": 12,\\n    \\\"gold_empty_analysis\\\": {\\n      \\\"n\\\": 22,\\n      \\\"fk_mean\\\": -0.0032,\\n      \\\"fk_std\\\": 0.1227,\\n      \\\"sj_mean\\\": 0.9432,\\n      \\\"f1_mean\\\": 0.0\\n    },\\n    \\\"old_pipeline\\\": {\\n      \\\"n\\\": 551,\\n      \\\"rho_fk\\\": 0.011,\\n      \\\"rho_sj\\\": -0.1856,\\n      \\\"registry_rho_fk\\\": -0.069,\\n      \\\"registry_rho_sj\\\": -0.186\\n    },\\n    \\\"new_pipeline_full\\\": {\\n      \\\"n\\\": 529,\\n      \\\"rho_fk\\\": -0.0695,\\n      \\\"rho_sj\\\": -0.1857,\\n      \\\"rho_vc\\\": 0.1972,\\n      \\\"rho_em\\\": -0.2015,\\n      \\\"rho_lp\\\": -0.1521,\\n      \\\"auroc_fk\\\": NaN,\\n      \\\"auroc_sj\\\": NaN,\\n      \\\"auroc_vc\\\": NaN,\\n      \\\"auroc_em\\\": NaN,\\n      \\\"auroc_lp\\\": NaN,\\n      \\\"median_f1\\\": 0.0\\n    },\\n    \\\"new_pipeline_conditional\\\": {\\n      \\\"n\\\": 12,\\n      \\\"rho_fk\\\": -0.265,\\n      \\\"rho_sj\\\": 0.3357\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 102_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The `rho_audit_results.json` is very informative. It shows for some experiments the difference between `old_pipeline` (which computed on all 551 instances) and `new_pipeline_full` (which computed on 529 instances after filtering gold-empty).
+
+For example, `exp_001_n16_seed456`:
+- old_pipeline (n=551): rho_sj=0.4134, rho_fk=0.3448
+- new_pipeline_full (n=529): rho_sj=0.4098, rho_fk=0.2723
+
+
+This reveals a substantial drop in FK scores between the two approaches. The audit data doesn't capture all my experiments—notably missing the Qwen SciERC N=8 seed=42 run—but the trend is unmistakable: the old pipeline included all 551 instances while the new one filters down to 529 by removing gold-empty cases. Looking at mvp_pilot_004, I'm seeing SJ full rho of 0.3825 and FK full rho of 0.2590, both computed on the filtered set of 529 instances.
+
+The unified pipeline shows slightly different values—SJ rho of 0.3599 and FK rho of 0.2665—but both also use n=529, so the discrepancy isn't simply from the gold-empty filtering. There's an additional conditional filter in mvp_pilot_004 that removes instances where all N samples have F1=0, which reduces the conditional set to 508, but since I'm comparing full-set rho values here, that shouldn't be the source of the difference. Let me reconsider what's actually being measured in the mvp_pilot_004 report—the "full" rho values are already post-gold-filtering, so I need to look more carefully at what's driving these score variations.
+
+The SJ rho differs between mvp_pilot_004 (0.3825) and the unified pipeline (0.3599) despite using the same data and filtering, which suggests the consistency computation itself changed. I notice there's a backup directory that hints at a code modification, so I should compare the consistency.py files to identify what shifted in the calculation.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "cb15d74b-aaf7-480d-adb8-992894c7f208",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Bd8v89rFCNXkyKypfwAJiM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5824,
+      "cache_read_input_tokens": 106568,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5824
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 103_
+
+Both pipelines filter to n=529, but SJ and FK differ. There's a `_backup_cond_fix` directory suggesting a code change. Let me compare the old vs new consistency computation.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "79d83171-0be8-43b6-ab40-76748ee65925",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Bd8v89rFCNXkyKypfwAJiM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5824,
+      "cache_read_input_tokens": 106568,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5824
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 104_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Dc83yNd9AjrQfwtvE7tYXZ`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "find /root/autodl-tmp/struct_self_consist_ie/code -name \"consistency*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "d62a8eb8-65ac-4ce0-8ac6-72ca3e2cb8fd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Bd8v89rFCNXkyKypfwAJiM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5824,
+      "cache_read_input_tokens": 106568,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5824
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 105 · 2026-05-15T23:56:30.175Z_
+
+<details><summary>↩ Tool result · `toolu_01Dc83yNd9AjrQfwtvE7tYXZ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/code/__pycache__/consistency.cpython-312.pyc\\n/root/autodl-tmp/struct_self_consist_ie/code/consistency.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "eea14f6f-e6a7-4b5e-9dfb-65c08eab8bc8",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/code/__pycache__/consistency.cpython-312.pyc\\\\n/root/autodl-tmp/struct_self_consist_ie/code/consistency.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/code/__pycache__/consistency.cpython-312.pyc\\n/root/autodl-tmp/struct_self_consist_ie/code/consistency.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 106_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01DKSZA6ygCSpnSonaocARQM`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "ls /root/autodl-tmp/struct_self_consist_ie/code/_backup_cond_fix/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "8847855d-9b2e-418c-a677-3c470e76cf15",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Bd8v89rFCNXkyKypfwAJiM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5824,
+      "cache_read_input_tokens": 106568,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5824
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 107 · 2026-05-15T23:56:31.121Z_
+
+<details><summary>↩ Tool result · `toolu_01DKSZA6ygCSpnSonaocARQM`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"analyze_component_wise_re.py\\nanalyze_exp002_conll2003.py\\nanalyze_exp004_re_diagnostic.py\\nanalyze_exp015_unified.py\\nanalyze_logprob_baseline.py\\nrun_mvp_pilot.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "939a59d6-86fd-4f89-8964-4e015f464bd8",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"analyze_component_wise_re.py\\\\nanalyze_exp002_conll2003.py\\\\nanalyze_exp004_re_diagnostic.py\\\\nanalyze_exp015_unified.py\\\\nanalyze_logprob_baseline.py\\\\nrun_mvp_pilot.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"analyze_component_wise_re.py\\nanalyze_exp002_conll2003.py\\nanalyze_exp004_re_diagnostic.py\\nanalyze_exp015_unified.py\\nanalyze_logprob_baseline.py\\nrun_mvp_pilot.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 108_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_014eXhxWxoVandECqvJeJzzS`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/conditional_filter_diagnosis.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "15b7af53-ed88-474d-bf44-f9a850690441",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Bd8v89rFCNXkyKypfwAJiM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5824,
+      "cache_read_input_tokens": 106568,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5824
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 109 · 2026-05-15T23:56:31.717Z_
+
+<details><summary>↩ Tool result · `toolu_014eXhxWxoVandECqvJeJzzS`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"diagnosis_date\\\": \\\"2026-05-14\\\",\\n  \\\"issue\\\": \\\"Conditional filtering definition inconsistency across analysis scripts\\\",\\n  \\\"standard_definition\\\": \\\"Exclude instances where greedy_F1 == 0 (knowledge-gap instances where the model has zero extraction capability at T=0)\\\",\\n  \\\"sources\\\": {\\n    \\\"exp001_postprocess.py\\\": {\\n      \\\"line\\\": 128,\\n      \\\"code\\\": \\\"cond = [i for i in valid if f1s[i] > 0]\\\",\\n      \\\"filter\\\": \\\"greedy_f1 > 0\\\",\\n      \\\"status\\\": \\\"CORRECT\\\",\\n      \\\"report_file\\\": \\\"exp001_all_signals_report.json\\\",\\n      \\\"re_n_cond\\\": 238,\\n      \\\"ner_n_cond\\\": 478\\n    },\\n    \\\"run_mvp_pilot.py\\\": {\\n      \\\"line\\\": 259,\\n      \\\"code\\\": \\\"cond_mask.append(any(f > 0 for f in sample_f1s_i))\\\",\\n      \\\"filter\\\": \\\"any sample F1 > 0\\\",\\n      \\\"status\\\": \\\"WRONG\\\",\\n      \\\"report_file\\\": \\\"report.json\\\",\\n      \\\"re_n_cond\\\": 331,\\n      \\\"ner_n_cond\\\": 510\\n    },\\n    \\\"analyze_exp015_unified.py\\\": {\\n      \\\"lines\\\": \\\"290-297\\\",\\n      \\\"code\\\": \\\"any(per_instance_f1(s, inst['gold'], subtask=subtask) > 0 for s in inst['samples'])\\\",\\n      \\\"filter\\\": \\\"any sample F1 > 0\\\",\\n      \\\"status\\\": \\\"WRONG\\\"\\n    },\\n    \\\"analyze_logprob_baseline.py\\\": {\\n      \\\"lines\\\": \\\"95-100\\\",\\n      \\\"code\\\": \\\"any(f > 0 for f in sample_f1s)\\\",\\n      \\\"filter\\\": \\\"any sample F1 > 0\\\",\\n      \\\"status\\\": \\\"WRONG\\\"\\n    },\\n    \\\"analyze_component_wise_re.py\\\": {\\n      \\\"lines\\\": \\\"107-110\\\",\\n      \\\"code\\\": \\\"any(per_instance_f1(s, inst['gold'], subtask='re') > 0 for s in inst['samples'])\\\",\\n      \\\"filter\\\": \\\"any sample F1 > 0\\\",\\n      \\\"status\\\": \\\"WRONG\\\"\\n    },\\n    \\\"analyze_exp004_re_diagnostic.py\\\": {\\n      \\\"locations\\\": [\\n        {\\\"line\\\": 439, \\\"function\\\": \\\"threshold_sensitivity\\\", \\\"code\\\": \\\"x['max_sample_f1'] > 0\\\"},\\n        {\\\"lines\\\": \\\"524-528\\\", \\\"function\\\": \\\"compute_bootstrap_cis\\\", \\\"code\\\": \\\"any(f > 0 for f in sf1s)\\\"}\\n      ],\\n      \\\"filter\\\": \\\"any sample F1 > 0 / max_sample_f1 > 0\\\",\\n      \\\"status\\\": \\\"WRONG\\\"\\n    }\\n  },\\n  \\\"impact\\\": {\\n    \\\"re_n_cond_wrong\\\": 331,\\n    \\\"re_n_cond_correct\\\": 238,\\n    \\\"delta_instances\\\": 93,\\n    \\\"explanation\\\": \\\"93 RE instances have greedy_F1=0 but at least one sample has F1>0. Wrong filter includes these, inflating n_cond and changing correlation estimates.\\\"\\n  }\\n}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "c86979a4-9a66-4e1c-95f8-5f6774407c97",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"diagnosis_date\\\\\\\": \\\\\\\"2026-05-14\\\\\\\",\\\\n  \\\\\\\"issue\\\\\\\": \\\\\\\"Conditional filtering definition inconsistency across analysis scripts\\\\\\\",\\\\n  \\\\\\\"standard_definition\\\\\\\": \\\\\\\"Exclude instances where greedy_F1 == 0 (knowledge-gap instances where the model has zero extraction capability at T=0)\\\\\\\",\\\\n  \\\\\\\"sources\\\\\\\": {\\\\n    \\\\\\\"exp001_postprocess.py\\\\\\\": {\\\\n      \\\\\\\"line\\\\\\\": 128,\\\\n      \\\\\\\"code\\\\\\\": \\\\\\\"cond = [i for i in valid if f1s[i] > 0]\\\\\\\",\\\\n      \\\\\\\"filter\\\\\\\": \\\\\\\"greedy_f1 > 0\\\\\\\",\\\\n      \\\\\\\"status\\\\\\\": \\\\\\\"CORRECT\\\\\\\",\\\\n      \\\\\\\"report_file\\\\\\\": \\\\\\\"exp001_all_signals_report.json\\\\\\\",\\\\n      \\\\\\\"re_n_cond\\\\\\\": 238,\\\\n      \\\\\\\"ner_n_cond\\\\\\\": 478\\\\n    },\\\\n    \\\\\\\"run_mvp_pilot.py\\\\\\\": {\\\\n      \\\\\\\"line\\\\\\\": 259,\\\\n      \\\\\\\"code\\\\\\\": \\\\\\\"cond_mask.append(any(f > 0 for f in sample_f1s_i))\\\\\\\",\\\\n      \\\\\\\"filter\\\\\\\": \\\\\\\"any sample F1 > 0\\\\\\\",\\\\n      \\\\\\\"status\\\\\\\": \\\\\\\"WRONG\\\\\\\",\\\\n      \\\\\\\"report_file\\\\\\\": \\\\\\\"report.json\\\\\\\",\\\\n      \\\\\\\"re_n_cond\\\\\\\": 331,\\\\n      \\\\\\\"ner_n_cond\\\\\\\": 510\\\\n    },\\\\n    \\\\\\\"analyze_exp015_unified.py\\\\\\\": {\\\\n      \\\\\\\"lines\\\\\\\": \\\\\\\"290-297\\\\\\\",\\\\n      \\\\\\\"code\\\\\\\": \\\\\\\"any(per_instance_f1(s, inst['gold'], subtask=subtask) > 0 for s in inst['samples'])\\\\\\\",\\\\n      \\\\\\\"filter\\\\\\\": \\\\\\\"any sample F1 > 0\\\\\\\",\\\\n      \\\\\\\"status\\\\\\\": \\\\\\\"WRONG\\\\\\\"\\\\n    },\\\\n    \\\\\\\"analyze_logprob_baseline.py\\\\\\\": {\\\\n      \\\\\\\"lines\\\\\\\": \\\\\\\"95-100\\\\\\\",\\\\n      \\\\\\\"code\\\\\\\": \\\\\\\"any(f > 0 for f in sample_f1s)\\\\\\\",\\\\n      \\\\\\\"filter\\\\\\\": \\\\\\\"any sample F1 > 0\\\\\\\",\\\\n      \\\\\\\"status\\\\\\\": \\\\\\\"WRONG\\\\\\\"\\\\n    },\\\\n    \\\\\\\"analyze_component_wise_re.py\\\\\\\": {\\\\n      \\\\\\\"lines\\\\\\\": \\\\\\\"107-110\\\\\\\",\\\\n      \\\\\\\"code\\\\\\\": \\\\\\\"any(per_instance_f1(s, inst['gold'], subtask='re') > 0 for s in inst['samples'])\\\\\\\",\\\\n      \\\\\\\"filter\\\\\\\": \\\\\\\"any sample F1 > 0\\\\\\\",\\\\n      \\\\\\\"status\\\\\\\": \\\\\\\"WRONG\\\\\\\"\\\\n    },\\\\n    \\\\\\\"analyze_exp004_re_diagnostic.py\\\\\\\": {\\\\n      \\\\\\\"locations\\\\\\\": [\\\\n        {\\\\\\\"line\\\\\\\": 439, \\\\\\\"function\\\\\\\": \\\\\\\"threshold_sensitivity\\\\\\\", \\\\\\\"code\\\\\\\": \\\\\\\"x['max_sample_f1'] > 0\\\\\\\"},\\\\n        {\\\\\\\"lines\\\\\\\": \\\\\\\"524-528\\\\\\\", \\\\\\\"function\\\\\\\": \\\\\\\"compute_bootstrap_cis\\\\\\\", \\\\\\\"code\\\\\\\": \\\\\\\"any(f > 0 for f in sf1s)\\\\\\\"}\\\\n      ],\\\\n      \\\\\\\"filter\\\\\\\": \\\\\\\"any sample F1 > 0 / max_sample_f1 > 0\\\\\\\",\\\\n      \\\\\\\"status\\\\\\\": \\\\\\\"WRONG\\\\\\\"\\\\n    }\\\\n  },\\\\n  \\\\\\\"impact\\\\\\\": {\\\\n    \\\\\\\"re_n_cond_wrong\\\\\\\": 331,\\\\n    \\\\\\\"re_n_cond_correct\\\\\\\": 238,\\\\n    \\\\\\\"delta_instances\\\\\\\": 93,\\\\n    \\\\\\\"explanation\\\\\\\": \\\\\\\"93 RE instances have greedy_F1=0 but at least one sample has F1>0. Wrong filter includes these, inflating n_cond and changing correlation estimates.\\\\\\\"\\\\n  }\\\\n}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"diagnosis_date\\\": \\\"2026-05-14\\\",\\n  \\\"issue\\\": \\\"Conditional filtering definition inconsistency across analysis scripts\\\",\\n  \\\"standard_definition\\\": \\\"Exclude instances where greedy_F1 == 0 (knowledge-gap instances where the model has zero extraction capability at T=0)\\\",\\n  \\\"sources\\\": {\\n    \\\"exp001_postprocess.py\\\": {\\n      \\\"line\\\": 128,\\n      \\\"code\\\": \\\"cond = [i for i in valid if f1s[i] > 0]\\\",\\n      \\\"filter\\\": \\\"greedy_f1 > 0\\\",\\n      \\\"status\\\": \\\"CORRECT\\\",\\n      \\\"report_file\\\": \\\"exp001_all_signals_report.json\\\",\\n      \\\"re_n_cond\\\": 238,\\n      \\\"ner_n_cond\\\": 478\\n    },\\n    \\\"run_mvp_pilot.py\\\": {\\n      \\\"line\\\": 259,\\n      \\\"code\\\": \\\"cond_mask.append(any(f > 0 for f in sample_f1s_i))\\\",\\n      \\\"filter\\\": \\\"any sample F1 > 0\\\",\\n      \\\"status\\\": \\\"WRONG\\\",\\n      \\\"report_file\\\": \\\"report.json\\\",\\n      \\\"re_n_cond\\\": 331,\\n      \\\"ner_n_cond\\\": 510\\n    },\\n    \\\"analyze_exp015_unified.py\\\": {\\n      \\\"lines\\\": \\\"290-297\\\",\\n      \\\"code\\\": \\\"any(per_instance_f1(s, inst['gold'], subtask=subtask) > 0 for s in inst['samples'])\\\",\\n      \\\"filter\\\": \\\"any sample F1 > 0\\\",\\n      \\\"status\\\": \\\"WRONG\\\"\\n    },\\n    \\\"analyze_logprob_baseline.py\\\": {\\n      \\\"lines\\\": \\\"95-100\\\",\\n      \\\"code\\\": \\\"any(f > 0 for f in sample_f1s)\\\",\\n      \\\"filter\\\": \\\"any sample F1 > 0\\\",\\n      \\\"status\\\": \\\"WRONG\\\"\\n    },\\n    \\\"analyze_component_wise_re.py\\\": {\\n      \\\"lines\\\": \\\"107-110\\\",\\n      \\\"code\\\": \\\"any(per_instance_f1(s, inst['gold'], subtask='re') > 0 for s in inst['samples'])\\\",\\n      \\\"filter\\\": \\\"any sample F1 > 0\\\",\\n      \\\"status\\\": \\\"WRONG\\\"\\n    },\\n    \\\"analyze_exp004_re_diagnostic.py\\\": {\\n      \\\"locations\\\": [\\n        {\\\"line\\\": 439, \\\"function\\\": \\\"threshold_sensitivity\\\", \\\"code\\\": \\\"x['max_sample_f1'] > 0\\\"},\\n        {\\\"lines\\\": \\\"524-528\\\", \\\"function\\\": \\\"compute_bootstrap_cis\\\", \\\"code\\\": \\\"any(f > 0 for f in sf1s)\\\"}\\n      ],\\n      \\\"filter\\\": \\\"any sample F1 > 0 / max_sample_f1 > 0\\\",\\n      \\\"status\\\": \\\"WRONG\\\"\\n    }\\n  },\\n  \\\"impact\\\": {\\n    \\\"re_n_cond_wrong\\\": 331,\\n    \\\"re_n_cond_correct\\\": 238,\\n    \\\"delta_instances\\\": 93,\\n    \\\"explanation\\\": \\\"93 RE instances have greedy_F1=0 but at least one sample has F1>0. Wrong filter includes these, inflating n_cond and changing correlation estimates.\\\"\\n  }\\n}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 110_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I see the conditional filtering diagnosis. But the Table 1 and Table 4 discrepancy is about **full** set values, not conditional. Both use n=529 (gold-empty filtered).
+
+Wait, let me re-read the mvp_pilot_004 report more carefully:
+- `ner_n_all_samples_f1_zero_filtered: 21`
+
+This is different from the unified pipeline. The `mvp_pilot_004` says it filtered instances where **all** samples have F1=0 (21 instances) for conditional. But for the "full" set, it should still be n=529.
+ 
+The SJ and FK values differ between mvp_pilot_004 and unified even though both report n=529, so the filtering is identical but the computation must differ. I'm wondering if they're actually using different samples.jsonl files—maybe from separate inference runs despite both being labeled "Qwen SciERC N=8 seed=42". Let me check the file timestamps to see which samples file the unified pipeline actually used.
+
+Looking at the conditional filtering logic, I notice the backup scripts use a different condition than the current version—the old code checks `any(f > 0 for f in sample_f1s_i)` while the corrected version likely uses `greedy_f1 > 0`, which could explain the metric discrepancy.
+
+But the full-set rho values are still different between mvp_pilot_004 and the unified analysis despite both having n=529, so the conditional filter fix alone doesn't account for it. Let me check whether the consistency.py computation itself changed—the backup directory only has old analysis scripts, not the consistency calculation code, so that might be where the actual divergence is.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "8914eb59-3c30-402e-ae50-7edc3cee4827",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FkdfpcH3jMWeQyb2DWD6EF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2641,
+      "cache_read_input_tokens": 112392,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2641
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 111_
+
+The conditional filter was indeed wrong in old code, but the discrepancy is in **full-set** values. Let me check if the `run_mvp_pilot.py` computes SJ/FK differently from the unified pipeline.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "a58f07f1-9be6-4cad-8fd0-a20932233dfc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FkdfpcH3jMWeQyb2DWD6EF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2641,
+      "cache_read_input_tokens": 112392,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2641
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 112_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_012BvEcGysZhG9tV7ivMRKF9`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "head -100 /root/autodl-tmp/struct_self_consist_ie/code/_backup_cond_fix/run_mvp_pilot.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "40a8758c-77cf-48e3-8ebd-8fc14b0b45d8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FkdfpcH3jMWeQyb2DWD6EF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2641,
+      "cache_read_input_tokens": 112392,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2641
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 113_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01SWXtNd6wVK9RCPEM23Zw5h`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "head -100 /root/autodl-tmp/struct_self_consist_ie/code/run_mvp_pilot.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "a5036fc5-7910-4574-a733-665ac91fefa8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FkdfpcH3jMWeQyb2DWD6EF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2641,
+      "cache_read_input_tokens": 112392,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2641
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 114 · 2026-05-15T23:56:52.112Z_
+
+<details><summary>↩ Tool result · `toolu_012BvEcGysZhG9tV7ivMRKF9`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"MVP pilot experiment script for structured self-consistency IE.\\n\\nIntegrates data loading, vLLM sampling, consistency scoring, and evaluation\\ninto a single CLI-driven pipeline. Outputs a verdict (PASS/MARGINAL/FAIL)\\nbased on the correlation between structural consistency and per-instance F1.\\n\\\"\\\"\\\"\\n\\nfrom __future__ import annotations\\n\\nimport argparse\\nimport json\\nimport os\\nimport random\\nimport sys\\n\\nimport numpy as np\\n\\nfrom data_utils import load_scierc, load_ace05, load_conll2003, load_wnut17\\nfrom sampling import (\\n    VLLMSampler,\\n    run_sampling_pipeline,\\n    save_sampled_results,\\n    load_sampled_results,\\n    realign_spans,\\n    SCIERC_SCHEMA_HINT,\\n    CONLL2003_SCHEMA_HINT,\\n    WNUT17_SCHEMA_HINT,\\n)\\nfrom consistency import compute_all_consistency_scores\\nfrom evaluation import (\\n    per_instance_f1,\\n    compute_ner_f1,\\n    compute_re_f1,\\n    compute_eae_f1,\\n    spearman_correlation,\\n    kendall_correlation,\\n    compute_auroc,\\n    compute_sample_f1_distribution,\\n)\\n\\n\\ndef parse_args() -> argparse.Namespace:\\n    \\\"\\\"\\\"Parse command-line arguments.\\\"\\\"\\\"\\n    p = argparse.ArgumentParser(description=\\\"MVP pilot for structured self-consistency IE\\\")\\n    p.add_argument(\\\"--model_path\\\", type=str, required=True, help=\\\"Path to the fine-tuned model\\\")\\n    p.add_argument(\\\"--data_dir\\\", type=str, required=True, help=\\\"Dataset directory (SciERC or ACE05)\\\")\\n    p.add_argument(\\\"--dataset\\\", type=str, default=\\\"scierc\\\", choices=[\\\"scierc\\\", \\\"ace05\\\", \\\"conll2003\\\", \\\"wnut17\\\"],\\n                   help=\\\"Dataset name (default: scierc)\\\")\\n    p.add_argument(\\\"--subtask\\\", type=str, default=\\\"ner\\\", choices=[\\\"ner\\\", \\\"re\\\", \\\"eae\\\", \\\"joint\\\"],\\n                   help=\\\"Subtask (default: ner)\\\")\\n    p.add_argument(\\\"--schema_hint\\\", type=str, default=\\\"\\\",\\n                   help=\\\"Schema hint string (entity/relation types). Auto-set for scierc if empty\\\")\\n    p.add_argument(\\\"--use_train_format\\\", type=lambda x: x.lower() != \\\"false\\\", default=True,\\n                   help=\\\"Use train-aligned prompt template (default: True)\\\")\\n    p.add_argument(\\\"--n_samples\\\", type=int, default=8, help=\\\"Number of samples per instance (default: 8)\\\")\\n    p.add_argument(\\\"--temperature\\\", type=float, default=1.0, help=\\\"Sampling temperature (default: 1.0)\\\")\\n    p.add_argument(\\\"--max_tokens\\\", type=int, default=1024, help=\\\"Max generation tokens (default: 1024)\\\")\\n    p.add_argument(\\\"--output_dir\\\", type=str, default=\\\"output\\\", help=\\\"Output directory (default: output)\\\")\\n    p.add_argument(\\\"--num_test\\\", type=int, default=99999, help=\\\"Max test instances (default: 99999, i.e. use all)\\\")\\n    p.add_argument(\\\"--seed\\\", type=int, default=42, help=\\\"Random seed (default: 42)\\\")\\n    p.add_argument(\\\"--tensor_parallel\\\", type=int, default=1, help=\\\"vLLM tensor parallel size (default: 1)\\\")\\n    p.add_argument(\\\"--skip_sampling\\\", action=\\\"store_true\\\", help=\\\"Skip sampling, load from existing results\\\")\\n    p.add_argument(\\\"--samples_path\\\", type=str, default=None,\\n                   help=\\\"Path to existing sampling results (used with --skip_sampling)\\\")\\n    p.add_argument(\\\"--no_realign\\\", action=\\\"store_true\\\",\\n                   help=\\\"Disable span realignment post-processing (default: realign enabled)\\\")\\n    p.add_argument(\\\"--collect_logprobs\\\", action=\\\"store_true\\\",\\n                   help=\\\"Collect per-sample log-probabilities during generation\\\")\\n    return p.parse_args()\\n\\n\\ndef _print_subtask_block(report: dict, prefix: str = \\\"\\\") -> None:\\n    \\\"\\\"\\\"Print metrics block for a single subtask.\\\"\\\"\\\"\\n    p = prefix\\n    print(f\\\"  Greedy F1:      {report[f'{p}greedy_f1']:.4f}\\\")\\n    print(f\\\"  Oracle F1:      {report[f'{p}oracle_f1']:.4f}\\\")\\n    print(f\\\"  Oracle headroom:{report[f'{p}oracle_headroom']:+.4f}\\\")\\n    print(\\\"-\\\" * 60)\\n    print(f\\\"  Fleiss' kappa (mean):    {report[f'{p}fleiss_kappa_mean']:.4f}\\\")\\n    print(f\\\"  Soft Jaccard (mean):     {report[f'{p}soft_jaccard_mean']:.4f}\\\")\\n    print(\\\"-\\\" * 60)\\n    print(f\\\"  Sample F1 (mean):        {report[f'{p}sample_f1_mean']:.4f}\\\")\\n    print(f\\\"  Sample F1 (std):         {report[f'{p}sample_f1_std']:.4f}\\\")\\n    print(f\\\"  Sample F1=0 (%):         {report[f'{p}sample_f1_pct_zero']:.1f}%\\\")\\n    print(\\\"-\\\" * 60)\\n    n_empty = report.get(f\\\"{p}n_gold_empty_filtered\\\", 0)\\n    n_zero = report.get(f\\\"{p}n_all_samples_f1_zero_filtered\\\", 0)\\n    print(f\\\"  Gold-empty filtered:     {n_empty}\\\")\\n    print(f\\\"  All-samples-F1=0 filtered: {n_zero}\\\")\\n    print(\\\"-\\\" * 60)\\n    fk_full = report[f\\\"{p}correlation_fleiss_vs_f1_full\\\"]\\n    sj_full = report[f\\\"{p}correlation_softjaccard_vs_f1_full\\\"]\\n    fk_cond = report[f\\\"{p}correlation_fleiss_vs_f1_conditional\\\"]\\n    sj_cond = report[f\\\"{p}correlation_softjaccard_vs_f1_conditional\\\"]\\n    print(f\\\"  Full ρ(κ,F1):   {fk_full['rho']:+.4f}  p={fk_full['p_value']:.4e}  n={fk_full['n']}\\\")\\n    print(f\\\"  Full ρ(SJ,F1):  {sj_full['rho']:+.4f}  p={sj_full['p_value']:.4e}  n={sj_full['n']}\\\")\\n    print(f\\\"  Cond ρ(κ,F1):   {fk_cond['rho']:+.4f}  p={fk_cond['p_value']:.4e}  n={fk_cond['n']}\\\")\\n    print(f\\\"  Cond ρ(SJ,F1):  {sj_cond['rho']:+.4f}  p={sj_cond['p_value']:.4e}  n={sj_cond['n']}\\\")\\n    if fk_cond['n'] < 30:\\n        print(f\\\"  ⚠️ Conditional n={fk_cond['n']} < 30, ρ may be unreliable\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "0aa948fe-514f-471d-a080-548603eb6acf",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"MVP pilot experiment script for structured self-consistency IE.\\\\n\\\\nIntegrates data loading, vLLM sampling, consistency scoring, and evaluation\\\\ninto a single CLI-driven pipeline. Outputs a verdict (PASS/MARGINAL/FAIL)\\\\nbased on the correlation between structural consistency and per-instance F1.\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nfrom __future__ import annotations\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport os\\\\nimport random\\\\nimport sys\\\\n\\\\nimport numpy as np\\\\n\\\\nfrom data_utils import load_scierc, load_ace05, load_conll2003, load_wnut17\\\\nfrom sampling import (\\\\n    VLLMSampler,\\\\n    run_sampling_pipeline,\\\\n    save_sampled_results,\\\\n    load_sampled_results,\\\\n    realign_spans,\\\\n    SCIERC_SCHEMA_HINT,\\\\n    CONLL2003_SCHEMA_HINT,\\\\n    WNUT17_SCHEMA_HINT,\\\\n)\\\\nfrom consistency import compute_all_consistency_scores\\\\nfrom evaluation import (\\\\n    per_instance_f1,\\\\n    compute_ner_f1,\\\\n    compute_re_f1,\\\\n    compute_eae_f1,\\\\n    spearman_correlation,\\\\n    kendall_correlation,\\\\n    compute_auroc,\\\\n    compute_sample_f1_distribution,\\\\n)\\\\n\\\\n\\\\ndef parse_args() -> argparse.Namespace:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Parse command-line arguments.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    p = argparse.ArgumentParser(description=\\\\\\\"MVP pilot for structured self-consistency IE\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--model_path\\\\\\\", type=str, required=True, help=\\\\\\\"Path to the fine-tuned model\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--data_dir\\\\\\\", type=str, required=True, help=\\\\\\\"Dataset directory (SciERC or ACE05)\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--dataset\\\\\\\", type=str, default=\\\\\\\"scierc\\\\\\\", choices=[\\\\\\\"scierc\\\\\\\", \\\\\\\"ace05\\\\\\\", \\\\\\\"conll2003\\\\\\\", \\\\\\\"wnut17\\\\\\\"],\\\\n                   help=\\\\\\\"Dataset name (default: scierc)\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--subtask\\\\\\\", type=str, default=\\\\\\\"ner\\\\\\\", choices=[\\\\\\\"ner\\\\\\\", \\\\\\\"re\\\\\\\", \\\\\\\"eae\\\\\\\", \\\\\\\"joint\\\\\\\"],\\\\n                   help=\\\\\\\"Subtask (default: ner)\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--schema_hint\\\\\\\", type=str, default=\\\\\\\"\\\\\\\",\\\\n                   help=\\\\\\\"Schema hint string (entity/relation types). Auto-set for scierc if empty\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--use_train_format\\\\\\\", type=lambda x: x.lower() != \\\\\\\"false\\\\\\\", default=True,\\\\n                   help=\\\\\\\"Use train-aligned prompt template (default: True)\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--n_samples\\\\\\\", type=int, default=8, help=\\\\\\\"Number of samples per instance (default: 8)\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--temperature\\\\\\\", type=float, default=1.0, help=\\\\\\\"Sampling temperature (default: 1.0)\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--max_tokens\\\\\\\", type=int, default=1024, help=\\\\\\\"Max generation tokens (default: 1024)\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--output_dir\\\\\\\", type=str, default=\\\\\\\"output\\\\\\\", help=\\\\\\\"Output directory (default: output)\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--num_test\\\\\\\", type=int, default=99999, help=\\\\\\\"Max test instances (default: 99999, i.e. use all)\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--seed\\\\\\\", type=int, default=42, help=\\\\\\\"Random seed (default: 42)\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--tensor_parallel\\\\\\\", type=int, default=1, help=\\\\\\\"vLLM tensor parallel size (default: 1)\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--skip_sampling\\\\\\\", action=\\\\\\\"store_true\\\\\\\", help=\\\\\\\"Skip sampling, load from existing results\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--samples_path\\\\\\\", type=str, default=None,\\\\n                   help=\\\\\\\"Path to existing sampling results (used with --skip_sampling)\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--no_realign\\\\\\\", action=\\\\\\\"store_true\\\\\\\",\\\\n                   help=\\\\\\\"Disable span realignment post-processing (default: realign enabled)\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--collect_logprobs\\\\\\\", action=\\\\\\\"store_true\\\\\\\",\\\\n                   help=\\\\\\\"Collect per-sample log-probabilities during generation\\\\\\\")\\\\n    return p.parse_args()\\\\n\\\\n\\\\ndef _print_subtask_block(report: dict, prefix: str = \\\\\\\"\\\\\\\") -> None:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Print metrics block for a single subtask.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    p = prefix\\\\n    print(f\\\\\\\"  Greedy F1:      {report[f'{p}greedy_f1']:.4f}\\\\\\\")\\\\n    print(f\\\\\\\"  Oracle F1:      {report[f'{p}oracle_f1']:.4f}\\\\\\\")\\\\n    print(f\\\\\\\"  Oracle headroom:{report[f'{p}oracle_headroom']:+.4f}\\\\\\\")\\\\n    print(\\\\\\\"-\\\\\\\" * 60)\\\\n    print(f\\\\\\\"  Fleiss' kappa (mean):    {report[f'{p}fleiss_kappa_mean']:.4f}\\\\\\\")\\\\n    print(f\\\\\\\"  Soft Jaccard (mean):     {report[f'{p}soft_jaccard_mean']:.4f}\\\\\\\")\\\\n    print(\\\\\\\"-\\\\\\\" * 60)\\\\n    print(f\\\\\\\"  Sample F1 (mean):        {report[f'{p}sample_f1_mean']:.4f}\\\\\\\")\\\\n    print(f\\\\\\\"  Sample F1 (std):         {report[f'{p}sample_f1_std']:.4f}\\\\\\\")\\\\n    print(f\\\\\\\"  Sample F1=0 (%):         {report[f'{p}sample_f1_pct_zero']:.1f}%\\\\\\\")\\\\n    print(\\\\\\\"-\\\\\\\" * 60)\\\\n    n_empty = report.get(f\\\\\\\"{p}n_gold_empty_filtered\\\\\\\", 0)\\\\n    n_zero = report.get(f\\\\\\\"{p}n_all_samples_f1_zero_filtered\\\\\\\", 0)\\\\n    print(f\\\\\\\"  Gold-empty filtered:     {n_empty}\\\\\\\")\\\\n    print(f\\\\\\\"  All-samples-F1=0 filtered: {n_zero}\\\\\\\")\\\\n    print(\\\\\\\"-\\\\\\\" * 60)\\\\n    fk_full = report[f\\\\\\\"{p}correlation_fleiss_vs_f1_full\\\\\\\"]\\\\n    sj_full = report[f\\\\\\\"{p}correlation_softjaccard_vs_f1_full\\\\\\\"]\\\\n    fk_cond = report[f\\\\\\\"{p}correlation_fleiss_vs_f1_conditional\\\\\\\"]\\\\n    sj_cond = report[f\\\\\\\"{p}correlation_softjaccard_vs_f1_conditional\\\\\\\"]\\\\n    print(f\\\\\\\"  Full ρ(κ,F1):   {fk_full['rho']:+.4f}  p={fk_full['p_value']:.4e}  n={fk_full['n']}\\\\\\\")\\\\n    print(f\\\\\\\"  Full ρ(SJ,F1):  {sj_full['rho']:+.4f}  p={sj_full['p_value']:.4e}  n={sj_full['n']}\\\\\\\")\\\\n    print(f\\\\\\\"  Cond ρ(κ,F1):   {fk_cond['rho']:+.4f}  p={fk_cond['p_value']:.4e}  n={fk_cond['n']}\\\\\\\")\\\\n    print(f\\\\\\\"  Cond ρ(SJ,F1):  {sj_cond['rho']:+.4f}  p={sj_cond['p_value']:.4e}  n={sj_cond['n']}\\\\\\\")\\\\n    if fk_cond['n'] < 30:\\\\n        print(f\\\\\\\"  ⚠️ Conditional n={fk_cond['n']} < 30, ρ may be unreliable\\\\\\\")\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"MVP pilot experiment script for structured self-consistency IE.\\n\\nIntegrates data loading, vLLM sampling, consistency scoring, and evaluation\\ninto a single CLI-driven pipeline. Outputs a verdict (PASS/MARGINAL/FAIL)\\nbased on the correlation between structural consistency and per-instance F1.\\n\\\"\\\"\\\"\\n\\nfrom __future__ import annotations\\n\\nimport argparse\\nimport json\\nimport os\\nimport random\\nimport sys\\n\\nimport numpy as np\\n\\nfrom data_utils import load_scierc, load_ace05, load_conll2003, load_wnut17\\nfrom sampling import (\\n    VLLMSampler,\\n    run_sampling_pipeline,\\n    save_sampled_results,\\n    load_sampled_results,\\n    realign_spans,\\n    SCIERC_SCHEMA_HINT,\\n    CONLL2003_SCHEMA_HINT,\\n    WNUT17_SCHEMA_HINT,\\n)\\nfrom consistency import compute_all_consistency_scores\\nfrom evaluation import (\\n    per_instance_f1,\\n    compute_ner_f1,\\n    compute_re_f1,\\n    compute_eae_f1,\\n    spearman_correlation,\\n    kendall_correlation,\\n    compute_auroc,\\n    compute_sample_f1_distribution,\\n)\\n\\n\\ndef parse_args() -> argparse.Namespace:\\n    \\\"\\\"\\\"Parse command-line arguments.\\\"\\\"\\\"\\n    p = argparse.ArgumentParser(description=\\\"MVP pilot for structured self-consistency IE\\\")\\n    p.add_argument(\\\"--model_path\\\", type=str, required=True, help=\\\"Path to the fine-tuned model\\\")\\n    p.add_argument(\\\"--data_dir\\\", type=str, required=True, help=\\\"Dataset directory (SciERC or ACE05)\\\")\\n    p.add_argument(\\\"--dataset\\\", type=str, default=\\\"scierc\\\", choices=[\\\"scierc\\\", \\\"ace05\\\", \\\"conll2003\\\", \\\"wnut17\\\"],\\n                   help=\\\"Dataset name (default: scierc)\\\")\\n    p.add_argument(\\\"--subtask\\\", type=str, default=\\\"ner\\\", choices=[\\\"ner\\\", \\\"re\\\", \\\"eae\\\", \\\"joint\\\"],\\n                   help=\\\"Subtask (default: ner)\\\")\\n    p.add_argument(\\\"--schema_hint\\\", type=str, default=\\\"\\\",\\n                   help=\\\"Schema hint string (entity/relation types). Auto-set for scierc if empty\\\")\\n    p.add_argument(\\\"--use_train_format\\\", type=lambda x: x.lower() != \\\"false\\\", default=True,\\n                   help=\\\"Use train-aligned prompt template (default: True)\\\")\\n    p.add_argument(\\\"--n_samples\\\", type=int, default=8, help=\\\"Number of samples per instance (default: 8)\\\")\\n    p.add_argument(\\\"--temperature\\\", type=float, default=1.0, help=\\\"Sampling temperature (default: 1.0)\\\")\\n    p.add_argument(\\\"--max_tokens\\\", type=int, default=1024, help=\\\"Max generation tokens (default: 1024)\\\")\\n    p.add_argument(\\\"--output_dir\\\", type=str, default=\\\"output\\\", help=\\\"Output directory (default: output)\\\")\\n    p.add_argument(\\\"--num_test\\\", type=int, default=99999, help=\\\"Max test instances (default: 99999, i.e. use all)\\\")\\n    p.add_argument(\\\"--seed\\\", type=int, default=42, help=\\\"Random seed (default: 42)\\\")\\n    p.add_argument(\\\"--tensor_parallel\\\", type=int, default=1, help=\\\"vLLM tensor parallel size (default: 1)\\\")\\n    p.add_argument(\\\"--skip_sampling\\\", action=\\\"store_true\\\", help=\\\"Skip sampling, load from existing results\\\")\\n    p.add_argument(\\\"--samples_path\\\", type=str, default=None,\\n                   help=\\\"Path to existing sampling results (used with --skip_sampling)\\\")\\n    p.add_argument(\\\"--no_realign\\\", action=\\\"store_true\\\",\\n                   help=\\\"Disable span realignment post-processing (default: realign enabled)\\\")\\n    p.add_argument(\\\"--collect_logprobs\\\", action=\\\"store_true\\\",\\n                   help=\\\"Collect per-sample log-probabilities during generation\\\")\\n    return p.parse_args()\\n\\n\\ndef _print_subtask_block(report: dict, prefix: str = \\\"\\\") -> None:\\n    \\\"\\\"\\\"Print metrics block for a single subtask.\\\"\\\"\\\"\\n    p = prefix\\n    print(f\\\"  Greedy F1:      {report[f'{p}greedy_f1']:.4f}\\\")\\n    print(f\\\"  Oracle F1:      {report[f'{p}oracle_f1']:.4f}\\\")\\n    print(f\\\"  Oracle headroom:{report[f'{p}oracle_headroom']:+.4f}\\\")\\n    print(\\\"-\\\" * 60)\\n    print(f\\\"  Fleiss' kappa (mean):    {report[f'{p}fleiss_kappa_mean']:.4f}\\\")\\n    print(f\\\"  Soft Jaccard (mean):     {report[f'{p}soft_jaccard_mean']:.4f}\\\")\\n    print(\\\"-\\\" * 60)\\n    print(f\\\"  Sample F1 (mean):        {report[f'{p}sample_f1_mean']:.4f}\\\")\\n    print(f\\\"  Sample F1 (std):         {report[f'{p}sample_f1_std']:.4f}\\\")\\n    print(f\\\"  Sample F1=0 (%):         {report[f'{p}sample_f1_pct_zero']:.1f}%\\\")\\n    print(\\\"-\\\" * 60)\\n    n_empty = report.get(f\\\"{p}n_gold_empty_filtered\\\", 0)\\n    n_zero = report.get(f\\\"{p}n_all_samples_f1_zero_filtered\\\", 0)\\n    print(f\\\"  Gold-empty filtered:     {n_empty}\\\")\\n    print(f\\\"  All-samples-F1=0 filtered: {n_zero}\\\")\\n    print(\\\"-\\\" * 60)\\n    fk_full = report[f\\\"{p}correlation_fleiss_vs_f1_full\\\"]\\n    sj_full = report[f\\\"{p}correlation_softjaccard_vs_f1_full\\\"]\\n    fk_cond = report[f\\\"{p}correlation_fleiss_vs_f1_conditional\\\"]\\n    sj_cond = report[f\\\"{p}correlation_softjaccard_vs_f1_conditional\\\"]\\n    print(f\\\"  Full ρ(κ,F1):   {fk_full['rho']:+.4f}  p={fk_full['p_value']:.4e}  n={fk_full['n']}\\\")\\n    print(f\\\"  Full ρ(SJ,F1):  {sj_full['rho']:+.4f}  p={sj_full['p_value']:.4e}  n={sj_full['n']}\\\")\\n    print(f\\\"  Cond ρ(κ,F1):   {fk_cond['rho']:+.4f}  p={fk_cond['p_value']:.4e}  n={fk_cond['n']}\\\")\\n    print(f\\\"  Cond ρ(SJ,F1):  {sj_cond['rho']:+.4f}  p={sj_cond['p_value']:.4e}  n={sj_cond['n']}\\\")\\n    if fk_cond['n'] < 30:\\n        print(f\\\"  ⚠️ Conditional n={fk_cond['n']} < 30, ρ may be unreliable\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 115 · 2026-05-15T23:56:52.533Z_
+
+<details><summary>↩ Tool result · `toolu_01SWXtNd6wVK9RCPEM23Zw5h`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"MVP pilot experiment script for structured self-consistency IE.\\n\\nIntegrates data loading, vLLM sampling, consistency scoring, and evaluation\\ninto a single CLI-driven pipeline. Outputs a verdict (PASS/MARGINAL/FAIL)\\nbased on the correlation between structural consistency and per-instance F1.\\n\\\"\\\"\\\"\\n\\nfrom __future__ import annotations\\n\\nimport argparse\\nimport json\\nimport os\\nimport random\\nimport sys\\n\\nimport numpy as np\\n\\nfrom data_utils import load_scierc, load_ace05, load_conll2003, load_wnut17\\nfrom sampling import (\\n    VLLMSampler,\\n    run_sampling_pipeline,\\n    save_sampled_results,\\n    load_sampled_results,\\n    realign_spans,\\n    SCIERC_SCHEMA_HINT,\\n    CONLL2003_SCHEMA_HINT,\\n    WNUT17_SCHEMA_HINT,\\n)\\nfrom consistency import compute_all_consistency_scores\\nfrom evaluation import (\\n    per_instance_f1,\\n    compute_ner_f1,\\n    compute_re_f1,\\n    compute_eae_f1,\\n    spearman_correlation,\\n    kendall_correlation,\\n    compute_auroc,\\n    compute_sample_f1_distribution,\\n)\\n\\n\\ndef parse_args() -> argparse.Namespace:\\n    \\\"\\\"\\\"Parse command-line arguments.\\\"\\\"\\\"\\n    p = argparse.ArgumentParser(description=\\\"MVP pilot for structured self-consistency IE\\\")\\n    p.add_argument(\\\"--model_path\\\", type=str, required=True, help=\\\"Path to the fine-tuned model\\\")\\n    p.add_argument(\\\"--data_dir\\\", type=str, required=True, help=\\\"Dataset directory (SciERC or ACE05)\\\")\\n    p.add_argument(\\\"--dataset\\\", type=str, default=\\\"scierc\\\", choices=[\\\"scierc\\\", \\\"ace05\\\", \\\"conll2003\\\", \\\"wnut17\\\"],\\n                   help=\\\"Dataset name (default: scierc)\\\")\\n    p.add_argument(\\\"--subtask\\\", type=str, default=\\\"ner\\\", choices=[\\\"ner\\\", \\\"re\\\", \\\"eae\\\", \\\"joint\\\"],\\n                   help=\\\"Subtask (default: ner)\\\")\\n    p.add_argument(\\\"--schema_hint\\\", type=str, default=\\\"\\\",\\n                   help=\\\"Schema hint string (entity/relation types). Auto-set for scierc if empty\\\")\\n    p.add_argument(\\\"--use_train_format\\\", type=lambda x: x.lower() != \\\"false\\\", default=True,\\n                   help=\\\"Use train-aligned prompt template (default: True)\\\")\\n    p.add_argument(\\\"--n_samples\\\", type=int, default=8, help=\\\"Number of samples per instance (default: 8)\\\")\\n    p.add_argument(\\\"--temperature\\\", type=float, default=1.0, help=\\\"Sampling temperature (default: 1.0)\\\")\\n    p.add_argument(\\\"--max_tokens\\\", type=int, default=1024, help=\\\"Max generation tokens (default: 1024)\\\")\\n    p.add_argument(\\\"--output_dir\\\", type=str, default=\\\"output\\\", help=\\\"Output directory (default: output)\\\")\\n    p.add_argument(\\\"--num_test\\\", type=int, default=99999, help=\\\"Max test instances (default: 99999, i.e. use all)\\\")\\n    p.add_argument(\\\"--seed\\\", type=int, default=42, help=\\\"Random seed (default: 42)\\\")\\n    p.add_argument(\\\"--tensor_parallel\\\", type=int, default=1, help=\\\"vLLM tensor parallel size (default: 1)\\\")\\n    p.add_argument(\\\"--skip_sampling\\\", action=\\\"store_true\\\", help=\\\"Skip sampling, load from existing results\\\")\\n    p.add_argument(\\\"--samples_path\\\", type=str, default=None,\\n                   help=\\\"Path to existing sampling results (used with --skip_sampling)\\\")\\n    p.add_argument(\\\"--no_realign\\\", action=\\\"store_true\\\",\\n                   help=\\\"Disable span realignment post-processing (default: realign enabled)\\\")\\n    p.add_argument(\\\"--collect_logprobs\\\", action=\\\"store_true\\\",\\n                   help=\\\"Collect per-sample log-probabilities during generation\\\")\\n    return p.parse_args()\\n\\n\\ndef _print_subtask_block(report: dict, prefix: str = \\\"\\\") -> None:\\n    \\\"\\\"\\\"Print metrics block for a single subtask.\\\"\\\"\\\"\\n    p = prefix\\n    print(f\\\"  Greedy F1:      {report[f'{p}greedy_f1']:.4f}\\\")\\n    print(f\\\"  Oracle F1:      {report[f'{p}oracle_f1']:.4f}\\\")\\n    print(f\\\"  Oracle headroom:{report[f'{p}oracle_headroom']:+.4f}\\\")\\n    print(\\\"-\\\" * 60)\\n    print(f\\\"  Fleiss' kappa (mean):    {report[f'{p}fleiss_kappa_mean']:.4f}\\\")\\n    print(f\\\"  Soft Jaccard (mean):     {report[f'{p}soft_jaccard_mean']:.4f}\\\")\\n    print(\\\"-\\\" * 60)\\n    print(f\\\"  Sample F1 (mean):        {report[f'{p}sample_f1_mean']:.4f}\\\")\\n    print(f\\\"  Sample F1 (std):         {report[f'{p}sample_f1_std']:.4f}\\\")\\n    print(f\\\"  Sample F1=0 (%):         {report[f'{p}sample_f1_pct_zero']:.1f}%\\\")\\n    print(\\\"-\\\" * 60)\\n    n_empty = report.get(f\\\"{p}n_gold_empty_filtered\\\", 0)\\n    n_zero = report.get(f\\\"{p}n_greedy_f1_zero_filtered\\\", 0)\\n    print(f\\\"  Gold-empty filtered:     {n_empty}\\\")\\n    print(f\\\"  All-samples-F1=0 filtered: {n_zero}\\\")\\n    print(\\\"-\\\" * 60)\\n    fk_full = report[f\\\"{p}correlation_fleiss_vs_f1_full\\\"]\\n    sj_full = report[f\\\"{p}correlation_softjaccard_vs_f1_full\\\"]\\n    fk_cond = report[f\\\"{p}correlation_fleiss_vs_f1_conditional\\\"]\\n    sj_cond = report[f\\\"{p}correlation_softjaccard_vs_f1_conditional\\\"]\\n    print(f\\\"  Full ρ(κ,F1):   {fk_full['rho']:+.4f}  p={fk_full['p_value']:.4e}  n={fk_full['n']}\\\")\\n    print(f\\\"  Full ρ(SJ,F1):  {sj_full['rho']:+.4f}  p={sj_full['p_value']:.4e}  n={sj_full['n']}\\\")\\n    print(f\\\"  Cond ρ(κ,F1):   {fk_cond['rho']:+.4f}  p={fk_cond['p_value']:.4e}  n={fk_cond['n']}\\\")\\n    print(f\\\"  Cond ρ(SJ,F1):  {sj_cond['rho']:+.4f}  p={sj_cond['p_value']:.4e}  n={sj_cond['n']}\\\")\\n    if fk_cond['n'] < 30:\\n        print(f\\\"  ⚠️ Conditional n={fk_cond['n']} < 30, ρ may be unreliable\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "8299f349-6327-4040-bbc2-e56820f8e474",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"MVP pilot experiment script for structured self-consistency IE.\\\\n\\\\nIntegrates data loading, vLLM sampling, consistency scoring, and evaluation\\\\ninto a single CLI-driven pipeline. Outputs a verdict (PASS/MARGINAL/FAIL)\\\\nbased on the correlation between structural consistency and per-instance F1.\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nfrom __future__ import annotations\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport os\\\\nimport random\\\\nimport sys\\\\n\\\\nimport numpy as np\\\\n\\\\nfrom data_utils import load_scierc, load_ace05, load_conll2003, load_wnut17\\\\nfrom sampling import (\\\\n    VLLMSampler,\\\\n    run_sampling_pipeline,\\\\n    save_sampled_results,\\\\n    load_sampled_results,\\\\n    realign_spans,\\\\n    SCIERC_SCHEMA_HINT,\\\\n    CONLL2003_SCHEMA_HINT,\\\\n    WNUT17_SCHEMA_HINT,\\\\n)\\\\nfrom consistency import compute_all_consistency_scores\\\\nfrom evaluation import (\\\\n    per_instance_f1,\\\\n    compute_ner_f1,\\\\n    compute_re_f1,\\\\n    compute_eae_f1,\\\\n    spearman_correlation,\\\\n    kendall_correlation,\\\\n    compute_auroc,\\\\n    compute_sample_f1_distribution,\\\\n)\\\\n\\\\n\\\\ndef parse_args() -> argparse.Namespace:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Parse command-line arguments.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    p = argparse.ArgumentParser(description=\\\\\\\"MVP pilot for structured self-consistency IE\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--model_path\\\\\\\", type=str, required=True, help=\\\\\\\"Path to the fine-tuned model\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--data_dir\\\\\\\", type=str, required=True, help=\\\\\\\"Dataset directory (SciERC or ACE05)\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--dataset\\\\\\\", type=str, default=\\\\\\\"scierc\\\\\\\", choices=[\\\\\\\"scierc\\\\\\\", \\\\\\\"ace05\\\\\\\", \\\\\\\"conll2003\\\\\\\", \\\\\\\"wnut17\\\\\\\"],\\\\n                   help=\\\\\\\"Dataset name (default: scierc)\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--subtask\\\\\\\", type=str, default=\\\\\\\"ner\\\\\\\", choices=[\\\\\\\"ner\\\\\\\", \\\\\\\"re\\\\\\\", \\\\\\\"eae\\\\\\\", \\\\\\\"joint\\\\\\\"],\\\\n                   help=\\\\\\\"Subtask (default: ner)\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--schema_hint\\\\\\\", type=str, default=\\\\\\\"\\\\\\\",\\\\n                   help=\\\\\\\"Schema hint string (entity/relation types). Auto-set for scierc if empty\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--use_train_format\\\\\\\", type=lambda x: x.lower() != \\\\\\\"false\\\\\\\", default=True,\\\\n                   help=\\\\\\\"Use train-aligned prompt template (default: True)\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--n_samples\\\\\\\", type=int, default=8, help=\\\\\\\"Number of samples per instance (default: 8)\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--temperature\\\\\\\", type=float, default=1.0, help=\\\\\\\"Sampling temperature (default: 1.0)\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--max_tokens\\\\\\\", type=int, default=1024, help=\\\\\\\"Max generation tokens (default: 1024)\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--output_dir\\\\\\\", type=str, default=\\\\\\\"output\\\\\\\", help=\\\\\\\"Output directory (default: output)\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--num_test\\\\\\\", type=int, default=99999, help=\\\\\\\"Max test instances (default: 99999, i.e. use all)\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--seed\\\\\\\", type=int, default=42, help=\\\\\\\"Random seed (default: 42)\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--tensor_parallel\\\\\\\", type=int, default=1, help=\\\\\\\"vLLM tensor parallel size (default: 1)\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--skip_sampling\\\\\\\", action=\\\\\\\"store_true\\\\\\\", help=\\\\\\\"Skip sampling, load from existing results\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--samples_path\\\\\\\", type=str, default=None,\\\\n                   help=\\\\\\\"Path to existing sampling results (used with --skip_sampling)\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--no_realign\\\\\\\", action=\\\\\\\"store_true\\\\\\\",\\\\n                   help=\\\\\\\"Disable span realignment post-processing (default: realign enabled)\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--collect_logprobs\\\\\\\", action=\\\\\\\"store_true\\\\\\\",\\\\n                   help=\\\\\\\"Collect per-sample log-probabilities during generation\\\\\\\")\\\\n    return p.parse_args()\\\\n\\\\n\\\\ndef _print_subtask_block(report: dict, prefix: str = \\\\\\\"\\\\\\\") -> None:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Print metrics block for a single subtask.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    p = prefix\\\\n    print(f\\\\\\\"  Greedy F1:      {report[f'{p}greedy_f1']:.4f}\\\\\\\")\\\\n    print(f\\\\\\\"  Oracle F1:      {report[f'{p}oracle_f1']:.4f}\\\\\\\")\\\\n    print(f\\\\\\\"  Oracle headroom:{report[f'{p}oracle_headroom']:+.4f}\\\\\\\")\\\\n    print(\\\\\\\"-\\\\\\\" * 60)\\\\n    print(f\\\\\\\"  Fleiss' kappa (mean):    {report[f'{p}fleiss_kappa_mean']:.4f}\\\\\\\")\\\\n    print(f\\\\\\\"  Soft Jaccard (mean):     {report[f'{p}soft_jaccard_mean']:.4f}\\\\\\\")\\\\n    print(\\\\\\\"-\\\\\\\" * 60)\\\\n    print(f\\\\\\\"  Sample F1 (mean):        {report[f'{p}sample_f1_mean']:.4f}\\\\\\\")\\\\n    print(f\\\\\\\"  Sample F1 (std):         {report[f'{p}sample_f1_std']:.4f}\\\\\\\")\\\\n    print(f\\\\\\\"  Sample F1=0 (%):         {report[f'{p}sample_f1_pct_zero']:.1f}%\\\\\\\")\\\\n    print(\\\\\\\"-\\\\\\\" * 60)\\\\n    n_empty = report.get(f\\\\\\\"{p}n_gold_empty_filtered\\\\\\\", 0)\\\\n    n_zero = report.get(f\\\\\\\"{p}n_greedy_f1_zero_filtered\\\\\\\", 0)\\\\n    print(f\\\\\\\"  Gold-empty filtered:     {n_empty}\\\\\\\")\\\\n    print(f\\\\\\\"  All-samples-F1=0 filtered: {n_zero}\\\\\\\")\\\\n    print(\\\\\\\"-\\\\\\\" * 60)\\\\n    fk_full = report[f\\\\\\\"{p}correlation_fleiss_vs_f1_full\\\\\\\"]\\\\n    sj_full = report[f\\\\\\\"{p}correlation_softjaccard_vs_f1_full\\\\\\\"]\\\\n    fk_cond = report[f\\\\\\\"{p}correlation_fleiss_vs_f1_conditional\\\\\\\"]\\\\n    sj_cond = report[f\\\\\\\"{p}correlation_softjaccard_vs_f1_conditional\\\\\\\"]\\\\n    print(f\\\\\\\"  Full ρ(κ,F1):   {fk_full['rho']:+.4f}  p={fk_full['p_value']:.4e}  n={fk_full['n']}\\\\\\\")\\\\n    print(f\\\\\\\"  Full ρ(SJ,F1):  {sj_full['rho']:+.4f}  p={sj_full['p_value']:.4e}  n={sj_full['n']}\\\\\\\")\\\\n    print(f\\\\\\\"  Cond ρ(κ,F1):   {fk_cond['rho']:+.4f}  p={fk_cond['p_value']:.4e}  n={fk_cond['n']}\\\\\\\")\\\\n    print(f\\\\\\\"  Cond ρ(SJ,F1):  {sj_cond['rho']:+.4f}  p={sj_cond['p_value']:.4e}  n={sj_cond['n']}\\\\\\\")\\\\n    if fk_cond['n'] < 30:\\\\n        print(f\\\\\\\"  ⚠️ Conditional n={fk_cond['n']} < 30, ρ may be unreliable\\\\\\\")\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"MVP pilot experiment script for structured self-consistency IE.\\n\\nIntegrates data loading, vLLM sampling, consistency scoring, and evaluation\\ninto a single CLI-driven pipeline. Outputs a verdict (PASS/MARGINAL/FAIL)\\nbased on the correlation between structural consistency and per-instance F1.\\n\\\"\\\"\\\"\\n\\nfrom __future__ import annotations\\n\\nimport argparse\\nimport json\\nimport os\\nimport random\\nimport sys\\n\\nimport numpy as np\\n\\nfrom data_utils import load_scierc, load_ace05, load_conll2003, load_wnut17\\nfrom sampling import (\\n    VLLMSampler,\\n    run_sampling_pipeline,\\n    save_sampled_results,\\n    load_sampled_results,\\n    realign_spans,\\n    SCIERC_SCHEMA_HINT,\\n    CONLL2003_SCHEMA_HINT,\\n    WNUT17_SCHEMA_HINT,\\n)\\nfrom consistency import compute_all_consistency_scores\\nfrom evaluation import (\\n    per_instance_f1,\\n    compute_ner_f1,\\n    compute_re_f1,\\n    compute_eae_f1,\\n    spearman_correlation,\\n    kendall_correlation,\\n    compute_auroc,\\n    compute_sample_f1_distribution,\\n)\\n\\n\\ndef parse_args() -> argparse.Namespace:\\n    \\\"\\\"\\\"Parse command-line arguments.\\\"\\\"\\\"\\n    p = argparse.ArgumentParser(description=\\\"MVP pilot for structured self-consistency IE\\\")\\n    p.add_argument(\\\"--model_path\\\", type=str, required=True, help=\\\"Path to the fine-tuned model\\\")\\n    p.add_argument(\\\"--data_dir\\\", type=str, required=True, help=\\\"Dataset directory (SciERC or ACE05)\\\")\\n    p.add_argument(\\\"--dataset\\\", type=str, default=\\\"scierc\\\", choices=[\\\"scierc\\\", \\\"ace05\\\", \\\"conll2003\\\", \\\"wnut17\\\"],\\n                   help=\\\"Dataset name (default: scierc)\\\")\\n    p.add_argument(\\\"--subtask\\\", type=str, default=\\\"ner\\\", choices=[\\\"ner\\\", \\\"re\\\", \\\"eae\\\", \\\"joint\\\"],\\n                   help=\\\"Subtask (default: ner)\\\")\\n    p.add_argument(\\\"--schema_hint\\\", type=str, default=\\\"\\\",\\n                   help=\\\"Schema hint string (entity/relation types). Auto-set for scierc if empty\\\")\\n    p.add_argument(\\\"--use_train_format\\\", type=lambda x: x.lower() != \\\"false\\\", default=True,\\n                   help=\\\"Use train-aligned prompt template (default: True)\\\")\\n    p.add_argument(\\\"--n_samples\\\", type=int, default=8, help=\\\"Number of samples per instance (default: 8)\\\")\\n    p.add_argument(\\\"--temperature\\\", type=float, default=1.0, help=\\\"Sampling temperature (default: 1.0)\\\")\\n    p.add_argument(\\\"--max_tokens\\\", type=int, default=1024, help=\\\"Max generation tokens (default: 1024)\\\")\\n    p.add_argument(\\\"--output_dir\\\", type=str, default=\\\"output\\\", help=\\\"Output directory (default: output)\\\")\\n    p.add_argument(\\\"--num_test\\\", type=int, default=99999, help=\\\"Max test instances (default: 99999, i.e. use all)\\\")\\n    p.add_argument(\\\"--seed\\\", type=int, default=42, help=\\\"Random seed (default: 42)\\\")\\n    p.add_argument(\\\"--tensor_parallel\\\", type=int, default=1, help=\\\"vLLM tensor parallel size (default: 1)\\\")\\n    p.add_argument(\\\"--skip_sampling\\\", action=\\\"store_true\\\", help=\\\"Skip sampling, load from existing results\\\")\\n    p.add_argument(\\\"--samples_path\\\", type=str, default=None,\\n                   help=\\\"Path to existing sampling results (used with --skip_sampling)\\\")\\n    p.add_argument(\\\"--no_realign\\\", action=\\\"store_true\\\",\\n                   help=\\\"Disable span realignment post-processing (default: realign enabled)\\\")\\n    p.add_argument(\\\"--collect_logprobs\\\", action=\\\"store_true\\\",\\n                   help=\\\"Collect per-sample log-probabilities during generation\\\")\\n    return p.parse_args()\\n\\n\\ndef _print_subtask_block(report: dict, prefix: str = \\\"\\\") -> None:\\n    \\\"\\\"\\\"Print metrics block for a single subtask.\\\"\\\"\\\"\\n    p = prefix\\n    print(f\\\"  Greedy F1:      {report[f'{p}greedy_f1']:.4f}\\\")\\n    print(f\\\"  Oracle F1:      {report[f'{p}oracle_f1']:.4f}\\\")\\n    print(f\\\"  Oracle headroom:{report[f'{p}oracle_headroom']:+.4f}\\\")\\n    print(\\\"-\\\" * 60)\\n    print(f\\\"  Fleiss' kappa (mean):    {report[f'{p}fleiss_kappa_mean']:.4f}\\\")\\n    print(f\\\"  Soft Jaccard (mean):     {report[f'{p}soft_jaccard_mean']:.4f}\\\")\\n    print(\\\"-\\\" * 60)\\n    print(f\\\"  Sample F1 (mean):        {report[f'{p}sample_f1_mean']:.4f}\\\")\\n    print(f\\\"  Sample F1 (std):         {report[f'{p}sample_f1_std']:.4f}\\\")\\n    print(f\\\"  Sample F1=0 (%):         {report[f'{p}sample_f1_pct_zero']:.1f}%\\\")\\n    print(\\\"-\\\" * 60)\\n    n_empty = report.get(f\\\"{p}n_gold_empty_filtered\\\", 0)\\n    n_zero = report.get(f\\\"{p}n_greedy_f1_zero_filtered\\\", 0)\\n    print(f\\\"  Gold-empty filtered:     {n_empty}\\\")\\n    print(f\\\"  All-samples-F1=0 filtered: {n_zero}\\\")\\n    print(\\\"-\\\" * 60)\\n    fk_full = report[f\\\"{p}correlation_fleiss_vs_f1_full\\\"]\\n    sj_full = report[f\\\"{p}correlation_softjaccard_vs_f1_full\\\"]\\n    fk_cond = report[f\\\"{p}correlation_fleiss_vs_f1_conditional\\\"]\\n    sj_cond = report[f\\\"{p}correlation_softjaccard_vs_f1_conditional\\\"]\\n    print(f\\\"  Full ρ(κ,F1):   {fk_full['rho']:+.4f}  p={fk_full['p_value']:.4e}  n={fk_full['n']}\\\")\\n    print(f\\\"  Full ρ(SJ,F1):  {sj_full['rho']:+.4f}  p={sj_full['p_value']:.4e}  n={sj_full['n']}\\\")\\n    print(f\\\"  Cond ρ(κ,F1):   {fk_cond['rho']:+.4f}  p={fk_cond['p_value']:.4e}  n={fk_cond['n']}\\\")\\n    print(f\\\"  Cond ρ(SJ,F1):  {sj_cond['rho']:+.4f}  p={sj_cond['p_value']:.4e}  n={sj_cond['n']}\\\")\\n    if fk_cond['n'] < 30:\\n        print(f\\\"  ⚠️ Conditional n={fk_cond['n']} < 30, ρ may be unreliable\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 116_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The old and new `run_mvp_pilot.py` are almost identical in structure (both import from the same `consistency.py`), but there's a key difference:
+
+Old (backup): `n_zero = report.get(f"{p}n_all_samples_f1_zero_filtered", 0)`
+New (current): `n_zero = report.get(f"{p}n_greedy_f1_zero_filtered", 0)`
+
+This changes the conditional filter key, but this is only the display line. The actual filtering logic must be further in the file.
+
+
+The full-set values are n=529 in both cases (gold-empty filtered only), so the conditional filter doesn't explain the SJ and FK differences. Both `mvp_pilot_004` and the unified pipeline call `consistency.compute_all_consistency_scores()`, but they might be working with different sample sets — `mvp_pilot_004` has its own `samples.jsonl` (3.2MB), while the unified pipeline could be using a fresh inference run.
+
+I should check whether the unified pipeline references `mvp_pilot_004/samples.jsonl` or pulls from something like `exp_012_rerun_1024` (dated May 15), which might be a re-inference with `max_tokens=1024`. Let me trace which data source the unified pipeline actually points to.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "5f01a1d3-9cad-400c-b01f-fffb9fd5541d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ustm1EuqDSMCPKG4s7QEAf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5988,
+      "cache_read_input_tokens": 115033,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5988
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 117_
+
+The code diff is minor (display only). The core difference likely lies in **which samples.jsonl** each pipeline uses. Let me check if there was a re-inference run.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "2194fc49-15a1-4afb-9d3e-63e05f3619bf",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ustm1EuqDSMCPKG4s7QEAf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5988,
+      "cache_read_input_tokens": 115033,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5988
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 118_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_015h4LhXxAejXRJMpwJD4hcJ`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/all_signals_5signal.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "4c197559-0ea6-4691-b80e-e05030b91e70",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ustm1EuqDSMCPKG4s7QEAf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5988,
+      "cache_read_input_tokens": 115033,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5988
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 119_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Wt6t8cAsmZggeCr3risDDB`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "ls -la /root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "c6ab41c1-fc5d-4f21-b50d-1a338c854a72",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ustm1EuqDSMCPKG4s7QEAf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5988,
+      "cache_read_input_tokens": 115033,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5988
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 120 · 2026-05-15T23:57:08.006Z_
+
+<details><summary>↩ Tool result · `toolu_015h4LhXxAejXRJMpwJD4hcJ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"ner\\\": {\\n    \\\"full\\\": {\\n      \\\"n\\\": 529,\\n      \\\"pct_perfect\\\": 0.2495274102079395,\\n      \\\"metrics\\\": {\\n        \\\"SJ\\\": {\\n          \\\"rho\\\": {\\n            \\\"value\\\": 0.3598905669976535,\\n            \\\"ci_95\\\": [\\n              0.2732249154962052,\\n              0.4389387695378309\\n            ]\\n          },\\n          \\\"tau\\\": {\\n            \\\"value\\\": 0.26461187931901686\\n          },\\n          \\\"AUROC\\\": {\\n            \\\"value\\\": 0.6917410884665293,\\n            \\\"ci_95\\\": [\\n              0.6303734201016633,\\n              0.74057642792587\\n            ]\\n          },\\n          \\\"ECE\\\": {\\n            \\\"value\\\": 0.4530916055268938\\n          }\\n        },\\n        \\\"FK\\\": {\\n          \\\"rho\\\": {\\n            \\\"value\\\": 0.2665109373463269,\\n            \\\"ci_95\\\": [\\n              0.1742613109914005,\\n              0.3486237484303476\\n            ]\\n          },\\n          \\\"tau\\\": {\\n            \\\"value\\\": 0.19742423874169443\\n          },\\n          \\\"AUROC\\\": {\\n            \\\"value\\\": 0.6289977864285169,\\n            \\\"ci_95\\\": [\\n              0.5612201516175135,\\n              0.6882363040668321\\n            ]\\n          },\\n          \\\"ECE\\\": {\\n            \\\"value\\\": 0.4512460702104627\\n          }\\n        },\\n        \\\"logprob\\\": {\\n          \\\"rho\\\": {\\n            \\\"value\\\": 0.20517413101613924,\\n            \\\"ci_95\\\": [\\n              0.11711193891033023,\\n              0.29041687549583595\\n            ]\\n          },\\n          \\\"tau\\\": {\\n            \\\"value\\\": 0.14782758668777154\\n          },\\n          \\\"AUROC\\\": {\\n            \\\"value\\\": 0.578333714983589,\\n            \\\"ci_95\\\": [\\n              0.5179122379711025,\\n              0.6387157727851094\\n            ]\\n          },\\n          \\\"ECE\\\": {\\n            \\\"value\\\": 0.7064166865459139\\n          }\\n        },\\n        \\\"EM\\\": {\\n          \\\"rho\\\": {\\n            \\\"value\\\": 0.29454936499782386,\\n            \\\"ci_95\\\": [\\n              0.20936835648562818,\\n              0.3699705726620087\\n            ]\\n          },\\n          \\\"tau\\\": {\\n            \\\"value\\\": 0.22075091084787923\\n          },\\n          \\\"AUROC\\\": {\\n            \\\"value\\\": 0.7492653232577666,\\n            \\\"ci_95\\\": [\\n              0.7002464721715858,\\n              0.7927663987096141\\n            ]\\n          },\\n          \\\"ECE\\\": {\\n            \\\"value\\\": 0.3525519848771266\\n          }\\n        },\\n        \\\"voting_conf\\\": {\\n          \\\"rho\\\": {\\n            \\\"value\\\": 0.37917563366909485,\\n            \\\"ci_95\\\": [\\n              0.29720005333289673,\\n              0.4486265187900855\\n            ]\\n          },\\n          \\\"tau\\\": {\\n            \\\"value\\\": 0.2805174463502211\\n          },\\n          \\\"AUROC\\\": {\\n            \\\"value\\\": 0.6840985420960232,\\n            \\\"ci_95\\\": [\\n              0.6249350383310399,\\n              0.7365724824583717\\n            ]\\n          },\\n          \\\"ECE\\\": {\\n            \\\"value\\\": 0.38065986143136427\\n          }\\n        }\\n      }\\n    },\\n    \\\"conditional\\\": {\\n      \\\"n\\\": 477,\\n      \\\"pct_perfect\\\": 0.27672955974842767,\\n      \\\"metrics\\\": {\\n        \\\"SJ\\\": {\\n          \\\"rho\\\": {\\n            \\\"value\\\": 0.3113352549686453,\\n            \\\"ci_95\\\": [\\n              0.23532116378741175,\\n              0.3958529031031408\\n            ]\\n          },\\n          \\\"tau\\\": {\\n            \\\"value\\\": 0.22571431969875558\\n          },\\n          \\\"AUROC\\\": {\\n            \\\"value\\\": 0.6771629336846728,\\n            \\\"ci_95\\\": [\\n              0.6210339956990252,\\n              0.7337041757894038\\n            ]\\n          },\\n          \\\"ECE\\\": {\\n            \\\"value\\\": 0.44157077996187405\\n          }\\n        },\\n        \\\"FK\\\": {\\n          \\\"rho\\\": {\\n            \\\"value\\\": 0.17607370722783125,\\n            \\\"ci_95\\\": [\\n              0.08391245090889748,\\n              0.2664734473461506\\n            ]\\n          },\\n          \\\"tau\\\": {\\n            \\\"value\\\": 0.12837527564008475\\n          },\\n          \\\"AUROC\\\": {\\n            \\\"value\\\": 0.6078392621870883,\\n            \\\"ci_95\\\": [\\n              0.5441633502799531,\\n              0.670860672194393\\n            ]\\n          },\\n          \\\"ECE\\\": {\\n            \\\"value\\\": 0.43886419438914537\\n          }\\n        },\\n        \\\"logprob\\\": {\\n          \\\"rho\\\": {\\n            \\\"value\\\": 0.15378254187\\n\\n... [截断: 输出过长，省略 3092 字符] ...\\n\\n         0.6695873181781157\\n            ]\\n          },\\n          \\\"ECE\\\": {\\n            \\\"value\\\": 0.7693572100309359\\n          }\\n        },\\n        \\\"EM\\\": {\\n          \\\"rho\\\": {\\n            \\\"value\\\": 0.13438797119403903,\\n            \\\"ci_95\\\": [\\n              0.032082795259033355,\\n              0.23034437900691396\\n            ]\\n          },\\n          \\\"tau\\\": {\\n            \\\"value\\\": 0.10812954769892691\\n          },\\n          \\\"AUROC\\\": {\\n            \\\"value\\\": 0.705853418593212,\\n            \\\"ci_95\\\": [\\n              0.6422562293152689,\\n              0.764076965144062\\n            ]\\n          },\\n          \\\"ECE\\\": {\\n            \\\"value\\\": 0.35484886649874053\\n          }\\n        },\\n        \\\"voting_conf\\\": {\\n          \\\"rho\\\": {\\n            \\\"value\\\": 0.34977022743098657,\\n            \\\"ci_95\\\": [\\n              0.25427717129933813,\\n              0.4375236674846643\\n            ]\\n          },\\n          \\\"tau\\\": {\\n            \\\"value\\\": 0.26626939223263557\\n          },\\n          \\\"AUROC\\\": {\\n            \\\"value\\\": 0.6934743400557468,\\n            \\\"ci_95\\\": [\\n              0.626529320858861,\\n              0.7604153877608888\\n            ]\\n          },\\n          \\\"ECE\\\": {\\n            \\\"value\\\": 0.27239365410228683\\n          }\\n        }\\n      }\\n    },\\n    \\\"conditional\\\": {\\n      \\\"n\\\": 238,\\n      \\\"pct_perfect\\\": 0.31932773109243695,\\n      \\\"metrics\\\": {\\n        \\\"SJ\\\": {\\n          \\\"rho\\\": {\\n            \\\"value\\\": 0.24569967508929075,\\n            \\\"ci_95\\\": [\\n              0.11819277318529235,\\n              0.36367965026403465\\n            ]\\n          },\\n          \\\"tau\\\": {\\n            \\\"value\\\": 0.18105214777743353\\n          },\\n          \\\"AUROC\\\": {\\n            \\\"value\\\": 0.6462800519818064,\\n            \\\"ci_95\\\": [\\n              0.5693271485381949,\\n              0.7180861553107575\\n            ]\\n          },\\n          \\\"ECE\\\": {\\n            \\\"value\\\": 0.2940920168915632\\n          }\\n        },\\n        \\\"FK\\\": {\\n          \\\"rho\\\": {\\n            \\\"value\\\": 0.11387685552692939,\\n            \\\"ci_95\\\": [\\n              -0.019433843854777637,\\n              0.24189972068157\\n            ]\\n          },\\n          \\\"tau\\\": {\\n            \\\"value\\\": 0.08755098312892196\\n          },\\n          \\\"AUROC\\\": {\\n            \\\"value\\\": 0.5510477582846004,\\n            \\\"ci_95\\\": [\\n              0.46109973296866474,\\n              0.6345271484870576\\n            ]\\n          },\\n          \\\"ECE\\\": {\\n            \\\"value\\\": 0.3423655487366528\\n          }\\n        },\\n        \\\"logprob\\\": {\\n          \\\"rho\\\": {\\n            \\\"value\\\": 0.011185364740047766,\\n            \\\"ci_95\\\": [\\n              -0.11923402710214627,\\n              0.13516948784193147\\n            ]\\n          },\\n          \\\"tau\\\": {\\n            \\\"value\\\": 0.005069639898728457\\n          },\\n          \\\"AUROC\\\": {\\n            \\\"value\\\": 0.5185997400909682,\\n            \\\"ci_95\\\": [\\n              0.4357479911911906,\\n              0.5925112254226892\\n            ]\\n          },\\n          \\\"ECE\\\": {\\n            \\\"value\\\": 0.6464289178950907\\n          }\\n        },\\n        \\\"EM\\\": {\\n          \\\"rho\\\": {\\n            \\\"value\\\": 0.41645261687840945,\\n            \\\"ci_95\\\": [\\n              0.3019475235089537,\\n              0.5274107295266577\\n            ]\\n          },\\n          \\\"tau\\\": {\\n            \\\"value\\\": 0.32562835786371874\\n          },\\n          \\\"AUROC\\\": {\\n            \\\"value\\\": 0.7514619883040936,\\n            \\\"ci_95\\\": [\\n              0.6869912517023105,\\n              0.811335193836893\\n            ]\\n          },\\n          \\\"ECE\\\": {\\n            \\\"value\\\": 0.2232142857142857\\n          }\\n        },\\n        \\\"voting_conf\\\": {\\n          \\\"rho\\\": {\\n            \\\"value\\\": 0.24094236343484574,\\n            \\\"ci_95\\\": [\\n              0.12282582755698385,\\n              0.36484029871601126\\n            ]\\n          },\\n          \\\"tau\\\": {\\n            \\\"value\\\": 0.17799286667397157\\n          },\\n          \\\"AUROC\\\": {\\n            \\\"value\\\": 0.6419753086419753,\\n            \\\"ci_95\\\": [\\n              0.5721473327624279,\\n              0.7189425322267944\\n            ]\\n          },\\n          \\\"ECE\\\": {\\n            \\\"value\\\": 0.20696781776436057\\n          }\\n        }\\n      }\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "7a6c8438-f7a2-48d4-98ac-c93e1339241a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"ner\\\\\\\": {\\\\n    \\\\\\\"full\\\\\\\": {\\\\n      \\\\\\\"n\\\\\\\": 529,\\\\n      \\\\\\\"pct_perfect\\\\\\\": 0.2495274102079395,\\\\n      \\\\\\\"metrics\\\\\\\": {\\\\n        \\\\\\\"SJ\\\\\\\": {\\\\n          \\\\\\\"rho\\\\\\\": {\\\\n            \\\\\\\"value\\\\\\\": 0.3598905669976535,\\\\n            \\\\\\\"ci_95\\\\\\\": [\\\\n              0.2732249154962052,\\\\n              0.4389387695378309\\\\n            ]\\\\n          },\\\\n          \\\\\\\"tau\\\\\\\": {\\\\n            \\\\\\\"value\\\\\\\": 0.26461187931901686\\\\n          },\\\\n          \\\\\\\"AUROC\\\\\\\": {\\\\n            \\\\\\\"value\\\\\\\": 0.6917410884665293,\\\\n            \\\\\\\"ci_95\\\\\\\": [\\\\n              0.6303734201016633,\\\\n              0.74057642792587\\\\n            ]\\\\n          },\\\\n          \\\\\\\"ECE\\\\\\\": {\\\\n            \\\\\\\"value\\\\\\\": 0.4530916055268938\\\\n          }\\\\n        },\\\\n        \\\\\\\"FK\\\\\\\": {\\\\n          \\\\\\\"rho\\\\\\\": {\\\\n            \\\\\\\"value\\\\\\\": 0.2665109373463269,\\\\n            \\\\\\\"ci_95\\\\\\\": [\\\\n              0.1742613109914005,\\\\n              0.3486237484303476\\\\n            ]\\\\n          },\\\\n          \\\\\\\"tau\\\\\\\": {\\\\n            \\\\\\\"value\\\\\\\": 0.19742423874169443\\\\n          },\\\\n          \\\\\\\"AUROC\\\\\\\": {\\\\n            \\\\\\\"value\\\\\\\": 0.6289977864285169,\\\\n            \\\\\\\"ci_95\\\\\\\": [\\\\n              0.5612201516175135,\\\\n              0.6882363040668321\\\\n            ]\\\\n          },\\\\n          \\\\\\\"ECE\\\\\\\": {\\\\n            \\\\\\\"value\\\\\\\": 0.4512460702104627\\\\n          }\\\\n        },\\\\n        \\\\\\\"logprob\\\\\\\": {\\\\n          \\\\\\\"rho\\\\\\\": {\\\\n            \\\\\\\"value\\\\\\\": 0.20517413101613924,\\\\n            \\\\\\\"ci_95\\\\\\\": [\\\\n              0.11711193891033023,\\\\n              0.29041687549583595\\\\n            ]\\\\n          },\\\\n          \\\\\\\"tau\\\\\\\": {\\\\n            \\\\\\\"value\\\\\\\": 0.14782758668777154\\\\n          },\\\\n          \\\\\\\"AUROC\\\\\\\": {\\\\n            \\\\\\\"value\\\\\\\": 0.578333714983589,\\\\n            \\\\\\\"ci_95\\\\\\\": [\\\\n              0.5179122379711025,\\\\n              0.6387157727851094\\\\n            ]\\\\n          },\\\\n          \\\\\\\"ECE\\\\\\\": {\\\\n            \\\\\\\"value\\\\\\\": 0.7064166865459139\\\\n          }\\\\n        },\\\\n        \\\\\\\"EM\\\\\\\": {\\\\n          \\\\\\\"rho\\\\\\\": {\\\\n            \\\\\\\"value\\\\\\\": 0.29454936499782386,\\\\n            \\\\\\\"ci_95\\\\\\\": [\\\\n              0.20936835648562818,\\\\n              0.3699705726620087\\\\n            ]\\\\n          },\\\\n          \\\\\\\"tau\\\\\\\": {\\\\n            \\\\\\\"value\\\\\\\": 0.22075091084787923\\\\n          },\\\\n          \\\\\\\"AUROC\\\\\\\": {\\\\n            \\\\\\\"value\\\\\\\": 0.7492653232577666,\\\\n            \\\\\\\"ci_95\\\\\\\": [\\\\n              0.7002464721715858,\\\\n              0.7927663987096141\\\\n            ]\\\\n          },\\\\n          \\\\\\\"ECE\\\\\\\": {\\\\n            \\\\\\\"value\\\\\\\": 0.3525519848771266\\\\n          }\\\\n        },\\\\n        \\\\\\\"voting_conf\\\\\\\": {\\\\n          \\\\\\\"rho\\\\\\\": {\\\\n            \\\\\\\"value\\\\\\\": 0.37917563366909485,\\\\n            \\\\\\\"ci_95\\\\\\\": [\\\\n              0.29720005333289673,\\\\n              0.4486265187900855\\\\n            ]\\\\n          },\\\\n          \\\\\\\"tau\\\\\\\": {\\\\n            \\\\\\\"value\\\\\\\": 0.2805174463502211\\\\n          },\\\\n          \\\\\\\"AUROC\\\\\\\": {\\\\n            \\\\\\\"value\\\\\\\": 0.6840985420960232,\\\\n            \\\\\\\"ci_95\\\\\\\": [\\\\n              0.6249350383310399,\\\\n              0.7365724824583717\\\\n            ]\\\\n          },\\\\n          \\\\\\\"ECE\\\\\\\": {\\\\n            \\\\\\\"value\\\\\\\": 0.38065986143136427\\\\n          }\\\\n        }\\\\n      }\\\\n    },\\\\n    \\\\\\\"conditional\\\\\\\": {\\\\n      \\\\\\\"n\\\\\\\": 477,\\\\n      \\\\\\\"pct_perfect\\\\\\\": 0.27672955974842767,\\\\n      \\\\\\\"metrics\\\\\\\": {\\\\n        \\\\\\\"SJ\\\\\\\": {\\\\n          \\\\\\\"rho\\\\\\\": {\\\\n            \\\\\\\"value\\\\\\\": 0.3113352549686453,\\\\n            \\\\\\\"ci_95\\\\\\\": [\\\\n              0.23532116378741175,\\\\n              0.3958529031031408\\\\n            ]\\\\n          },\\\\n          \\\\\\\"tau\\\\\\\": {\\\\n            \\\\\\\"value\\\\\\\": 0.22571431969875558\\\\n          },\\\\n          \\\\\\\"AUROC\\\\\\\": {\\\\n            \\\\\\\"value\\\\\\\": 0.6771629336846728,\\\\n            \\\\\\\"ci_95\\\\\\\": [\\\\n              0.6210339956990252,\\\\n              0.7337041757894038\\\\n            ]\\\\n          },\\\\n          \\\\\\\"ECE\\\\\\\": {\\\\n            \\\\\\\"value\\\\\\\": 0.44157077996187405\\\\n          }\\\\n        },\\\\n        \\\\\\\"FK\\\\\\\": {\\\\n          \\\\\\\"rho\\\\\\\": {\\\\n            \\\\\\\"value\\\\\\\": 0.17607370722783125,\\\\n            \\\\\\\"ci_95\\\\\\\": [\\\\n              0.08391245090889748,\\\\n              0.2664734473461506\\\\n            ]\\\\n          },\\\\n          \\\\\\\"tau\\\\\\\": {\\\\n            \\\\\\\"value\\\\\\\": 0.12837527564008475\\\\n          },\\\\n          \\\\\\\"AUROC\\\\\\\": {\\\\n            \\\\\\\"value\\\\\\\": 0.6078392621870883,\\\\n            \\\\\\\"ci_95\\\\\\\": [\\\\n              0.5441633502799531,\\\\n              0.670860672194393\\\\n            ]\\\\n          },\\\\n          \\\\\\\"ECE\\\\\\\": {\\\\n            \\\\\\\"value\\\\\\\": 0.43886419438914537\\\\n          }\\\\n        },\\\\n        \\\\\\\"logprob\\\\\\\": {\\\\n          \\\\\\\"rho\\\\\\\": {\\\\n            \\\\\\\"value\\\\\\\": 0.15378254187\\\\n\\\\n... [截断: 输出过长，省略 3092 字符] ...\\\\n\\\\n         0.6695873181781157\\\\n            ]\\\\n          },\\\\n          \\\\\\\"ECE\\\\\\\": {\\\\n            \\\\\\\"value\\\\\\\": 0.7693572100309359\\\\n          }\\\\n        },\\\\n        \\\\\\\"EM\\\\\\\": {\\\\n          \\\\\\\"rho\\\\\\\": {\\\\n            \\\\\\\"value\\\\\\\": 0.13438797119403903,\\\\n            \\\\\\\"ci_95\\\\\\\": [\\\\n              0.032082795259033355,\\\\n              0.23034437900691396\\\\n            ]\\\\n          },\\\\n          \\\\\\\"tau\\\\\\\": {\\\\n            \\\\\\\"value\\\\\\\": 0.10812954769892691\\\\n          },\\\\n          \\\\\\\"AUROC\\\\\\\": {\\\\n            \\\\\\\"value\\\\\\\": 0.705853418593212,\\\\n            \\\\\\\"ci_95\\\\\\\": [\\\\n              0.6422562293152689,\\\\n              0.764076965144062\\\\n            ]\\\\n          },\\\\n          \\\\\\\"ECE\\\\\\\": {\\\\n            \\\\\\\"value\\\\\\\": 0.35484886649874053\\\\n          }\\\\n        },\\\\n        \\\\\\\"voting_conf\\\\\\\": {\\\\n          \\\\\\\"rho\\\\\\\": {\\\\n            \\\\\\\"value\\\\\\\": 0.34977022743098657,\\\\n            \\\\\\\"ci_95\\\\\\\": [\\\\n              0.25427717129933813,\\\\n              0.4375236674846643\\\\n            ]\\\\n          },\\\\n          \\\\\\\"tau\\\\\\\": {\\\\n            \\\\\\\"value\\\\\\\": 0.26626939223263557\\\\n          },\\\\n          \\\\\\\"AUROC\\\\\\\": {\\\\n            \\\\\\\"value\\\\\\\": 0.6934743400557468,\\\\n            \\\\\\\"ci_95\\\\\\\": [\\\\n              0.626529320858861,\\\\n              0.7604153877608888\\\\n            ]\\\\n          },\\\\n          \\\\\\\"ECE\\\\\\\": {\\\\n            \\\\\\\"value\\\\\\\": 0.27239365410228683\\\\n          }\\\\n        }\\\\n      }\\\\n    },\\\\n    \\\\\\\"conditional\\\\\\\": {\\\\n      \\\\\\\"n\\\\\\\": 238,\\\\n      \\\\\\\"pct_perfect\\\\\\\": 0.31932773109243695,\\\\n      \\\\\\\"metrics\\\\\\\": {\\\\n        \\\\\\\"SJ\\\\\\\": {\\\\n          \\\\\\\"rho\\\\\\\": {\\\\n            \\\\\\\"value\\\\\\\": 0.24569967508929075,\\\\n            \\\\\\\"ci_95\\\\\\\": [\\\\n              0.11819277318529235,\\\\n              0.36367965026403465\\\\n            ]\\\\n          },\\\\n          \\\\\\\"tau\\\\\\\": {\\\\n            \\\\\\\"value\\\\\\\": 0.18105214777743353\\\\n          },\\\\n          \\\\\\\"AUROC\\\\\\\": {\\\\n            \\\\\\\"value\\\\\\\": 0.6462800519818064,\\\\n            \\\\\\\"ci_95\\\\\\\": [\\\\n              0.5693271485381949,\\\\n              0.7180861553107575\\\\n            ]\\\\n          },\\\\n          \\\\\\\"ECE\\\\\\\": {\\\\n            \\\\\\\"value\\\\\\\": 0.2940920168915632\\\\n          }\\\\n        },\\\\n        \\\\\\\"FK\\\\\\\": {\\\\n          \\\\\\\"rho\\\\\\\": {\\\\n            \\\\\\\"value\\\\\\\": 0.11387685552692939,\\\\n            \\\\\\\"ci_95\\\\\\\": [\\\\n              -0.019433843854777637,\\\\n              0.24189972068157\\\\n            ]\\\\n          },\\\\n          \\\\\\\"tau\\\\\\\": {\\\\n            \\\\\\\"value\\\\\\\": 0.08755098312892196\\\\n          },\\\\n          \\\\\\\"AUROC\\\\\\\": {\\\\n            \\\\\\\"value\\\\\\\": 0.5510477582846004,\\\\n            \\\\\\\"ci_95\\\\\\\": [\\\\n              0.46109973296866474,\\\\n              0.6345271484870576\\\\n            ]\\\\n          },\\\\n          \\\\\\\"ECE\\\\\\\": {\\\\n            \\\\\\\"value\\\\\\\": 0.3423655487366528\\\\n          }\\\\n        },\\\\n        \\\\\\\"logprob\\\\\\\": {\\\\n          \\\\\\\"rho\\\\\\\": {\\\\n            \\\\\\\"value\\\\\\\": 0.011185364740047766,\\\\n            \\\\\\\"ci_95\\\\\\\": [\\\\n              -0.11923402710214627,\\\\n              0.13516948784193147\\\\n            ]\\\\n          },\\\\n          \\\\\\\"tau\\\\\\\": {\\\\n            \\\\\\\"value\\\\\\\": 0.005069639898728457\\\\n          },\\\\n          \\\\\\\"AUROC\\\\\\\": {\\\\n            \\\\\\\"value\\\\\\\": 0.5185997400909682,\\\\n            \\\\\\\"ci_95\\\\\\\": [\\\\n              0.4357479911911906,\\\\n              0.5925112254226892\\\\n            ]\\\\n          },\\\\n          \\\\\\\"ECE\\\\\\\": {\\\\n            \\\\\\\"value\\\\\\\": 0.6464289178950907\\\\n          }\\\\n        },\\\\n        \\\\\\\"EM\\\\\\\": {\\\\n          \\\\\\\"rho\\\\\\\": {\\\\n            \\\\\\\"value\\\\\\\": 0.41645261687840945,\\\\n            \\\\\\\"ci_95\\\\\\\": [\\\\n              0.3019475235089537,\\\\n              0.5274107295266577\\\\n            ]\\\\n          },\\\\n          \\\\\\\"tau\\\\\\\": {\\\\n            \\\\\\\"value\\\\\\\": 0.32562835786371874\\\\n          },\\\\n          \\\\\\\"AUROC\\\\\\\": {\\\\n            \\\\\\\"value\\\\\\\": 0.7514619883040936,\\\\n            \\\\\\\"ci_95\\\\\\\": [\\\\n              0.6869912517023105,\\\\n              0.811335193836893\\\\n            ]\\\\n          },\\\\n          \\\\\\\"ECE\\\\\\\": {\\\\n            \\\\\\\"value\\\\\\\": 0.2232142857142857\\\\n          }\\\\n        },\\\\n        \\\\\\\"voting_conf\\\\\\\": {\\\\n          \\\\\\\"rho\\\\\\\": {\\\\n            \\\\\\\"value\\\\\\\": 0.24094236343484574,\\\\n            \\\\\\\"ci_95\\\\\\\": [\\\\n              0.12282582755698385,\\\\n              0.36484029871601126\\\\n            ]\\\\n          },\\\\n          \\\\\\\"tau\\\\\\\": {\\\\n            \\\\\\\"value\\\\\\\": 0.17799286667397157\\\\n          },\\\\n          \\\\\\\"AUROC\\\\\\\": {\\\\n            \\\\\\\"value\\\\\\\": 0.6419753086419753,\\\\n            \\\\\\\"ci_95\\\\\\\": [\\\\n              0.5721473327624279,\\\\n              0.7189425322267944\\\\n            ]\\\\n          },\\\\n          \\\\\\\"ECE\\\\\\\": {\\\\n            \\\\\\\"value\\\\\\\": 0.20696781776436057\\\\n          }\\\\n        }\\\\n      }\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"ner\\\": {\\n    \\\"full\\\": {\\n      \\\"n\\\": 529,\\n      \\\"pct_perfect\\\": 0.2495274102079395,\\n      \\\"metrics\\\": {\\n        \\\"SJ\\\": {\\n          \\\"rho\\\": {\\n            \\\"value\\\": 0.3598905669976535,\\n            \\\"ci_95\\\": [\\n              0.2732249154962052,\\n              0.4389387695378309\\n            ]\\n          },\\n          \\\"tau\\\": {\\n            \\\"value\\\": 0.26461187931901686\\n          },\\n          \\\"AUROC\\\": {\\n            \\\"value\\\": 0.6917410884665293,\\n            \\\"ci_95\\\": [\\n              0.6303734201016633,\\n              0.74057642792587\\n            ]\\n          },\\n          \\\"ECE\\\": {\\n            \\\"value\\\": 0.4530916055268938\\n          }\\n        },\\n        \\\"FK\\\": {\\n          \\\"rho\\\": {\\n            \\\"value\\\": 0.2665109373463269,\\n            \\\"ci_95\\\": [\\n              0.1742613109914005,\\n              0.3486237484303476\\n            ]\\n          },\\n          \\\"tau\\\": {\\n            \\\"value\\\": 0.19742423874169443\\n          },\\n          \\\"AUROC\\\": {\\n            \\\"value\\\": 0.6289977864285169,\\n            \\\"ci_95\\\": [\\n              0.5612201516175135,\\n              0.6882363040668321\\n            ]\\n          },\\n          \\\"ECE\\\": {\\n            \\\"value\\\": 0.4512460702104627\\n          }\\n        },\\n        \\\"logprob\\\": {\\n          \\\"rho\\\": {\\n            \\\"value\\\": 0.20517413101613924,\\n            \\\"ci_95\\\": [\\n              0.11711193891033023,\\n              0.29041687549583595\\n            ]\\n          },\\n          \\\"tau\\\": {\\n            \\\"value\\\": 0.14782758668777154\\n          },\\n          \\\"AUROC\\\": {\\n            \\\"value\\\": 0.578333714983589,\\n            \\\"ci_95\\\": [\\n              0.5179122379711025,\\n              0.6387157727851094\\n            ]\\n          },\\n          \\\"ECE\\\": {\\n            \\\"value\\\": 0.7064166865459139\\n          }\\n        },\\n        \\\"EM\\\": {\\n          \\\"rho\\\": {\\n            \\\"value\\\": 0.29454936499782386,\\n            \\\"ci_95\\\": [\\n              0.20936835648562818,\\n              0.3699705726620087\\n            ]\\n          },\\n          \\\"tau\\\": {\\n            \\\"value\\\": 0.22075091084787923\\n          },\\n          \\\"AUROC\\\": {\\n            \\\"value\\\": 0.7492653232577666,\\n            \\\"ci_95\\\": [\\n              0.7002464721715858,\\n              0.7927663987096141\\n            ]\\n          },\\n          \\\"ECE\\\": {\\n            \\\"value\\\": 0.3525519848771266\\n          }\\n        },\\n        \\\"voting_conf\\\": {\\n          \\\"rho\\\": {\\n            \\\"value\\\": 0.37917563366909485,\\n            \\\"ci_95\\\": [\\n              0.29720005333289673,\\n              0.4486265187900855\\n            ]\\n          },\\n          \\\"tau\\\": {\\n            \\\"value\\\": 0.2805174463502211\\n          },\\n          \\\"AUROC\\\": {\\n            \\\"value\\\": 0.6840985420960232,\\n            \\\"ci_95\\\": [\\n              0.6249350383310399,\\n              0.7365724824583717\\n            ]\\n          },\\n          \\\"ECE\\\": {\\n            \\\"value\\\": 0.38065986143136427\\n          }\\n        }\\n      }\\n    },\\n    \\\"conditional\\\": {\\n      \\\"n\\\": 477,\\n      \\\"pct_perfect\\\": 0.27672955974842767,\\n      \\\"metrics\\\": {\\n        \\\"SJ\\\": {\\n          \\\"rho\\\": {\\n            \\\"value\\\": 0.3113352549686453,\\n            \\\"ci_95\\\": [\\n              0.23532116378741175,\\n              0.3958529031031408\\n            ]\\n          },\\n          \\\"tau\\\": {\\n            \\\"value\\\": 0.22571431969875558\\n          },\\n          \\\"AUROC\\\": {\\n            \\\"value\\\": 0.6771629336846728,\\n            \\\"ci_95\\\": [\\n              0.6210339956990252,\\n              0.7337041757894038\\n            ]\\n          },\\n          \\\"ECE\\\": {\\n            \\\"value\\\": 0.44157077996187405\\n          }\\n        },\\n        \\\"FK\\\": {\\n          \\\"rho\\\": {\\n            \\\"value\\\": 0.17607370722783125,\\n            \\\"ci_95\\\": [\\n              0.08391245090889748,\\n              0.2664734473461506\\n            ]\\n          },\\n          \\\"tau\\\": {\\n            \\\"value\\\": 0.12837527564008475\\n          },\\n          \\\"AUROC\\\": {\\n            \\\"value\\\": 0.6078392621870883,\\n            \\\"ci_95\\\": [\\n              0.5441633502799531,\\n              0.670860672194393\\n            ]\\n          },\\n          \\\"ECE\\\": {\\n            \\\"value\\\": 0.43886419438914537\\n          }\\n        },\\n        \\\"logprob\\\": {\\n          \\\"rho\\\": {\\n            \\\"value\\\": 0.15378254187\\n\\n... [截断: 输出过长，省略 3092 字符] ...\\n\\n         0.6695873181781157\\n            ]\\n          },\\n          \\\"ECE\\\": {\\n            \\\"value\\\": 0.7693572100309359\\n          }\\n        },\\n        \\\"EM\\\": {\\n          \\\"rho\\\": {\\n            \\\"value\\\": 0.13438797119403903,\\n            \\\"ci_95\\\": [\\n              0.032082795259033355,\\n              0.23034437900691396\\n            ]\\n          },\\n          \\\"tau\\\": {\\n            \\\"value\\\": 0.10812954769892691\\n          },\\n          \\\"AUROC\\\": {\\n            \\\"value\\\": 0.705853418593212,\\n            \\\"ci_95\\\": [\\n              0.6422562293152689,\\n              0.764076965144062\\n            ]\\n          },\\n          \\\"ECE\\\": {\\n            \\\"value\\\": 0.35484886649874053\\n          }\\n        },\\n        \\\"voting_conf\\\": {\\n          \\\"rho\\\": {\\n            \\\"value\\\": 0.34977022743098657,\\n            \\\"ci_95\\\": [\\n              0.25427717129933813,\\n              0.4375236674846643\\n            ]\\n          },\\n          \\\"tau\\\": {\\n            \\\"value\\\": 0.26626939223263557\\n          },\\n          \\\"AUROC\\\": {\\n            \\\"value\\\": 0.6934743400557468,\\n            \\\"ci_95\\\": [\\n              0.626529320858861,\\n              0.7604153877608888\\n            ]\\n          },\\n          \\\"ECE\\\": {\\n            \\\"value\\\": 0.27239365410228683\\n          }\\n        }\\n      }\\n    },\\n    \\\"conditional\\\": {\\n      \\\"n\\\": 238,\\n      \\\"pct_perfect\\\": 0.31932773109243695,\\n      \\\"metrics\\\": {\\n        \\\"SJ\\\": {\\n          \\\"rho\\\": {\\n            \\\"value\\\": 0.24569967508929075,\\n            \\\"ci_95\\\": [\\n              0.11819277318529235,\\n              0.36367965026403465\\n            ]\\n          },\\n          \\\"tau\\\": {\\n            \\\"value\\\": 0.18105214777743353\\n          },\\n          \\\"AUROC\\\": {\\n            \\\"value\\\": 0.6462800519818064,\\n            \\\"ci_95\\\": [\\n              0.5693271485381949,\\n              0.7180861553107575\\n            ]\\n          },\\n          \\\"ECE\\\": {\\n            \\\"value\\\": 0.2940920168915632\\n          }\\n        },\\n        \\\"FK\\\": {\\n          \\\"rho\\\": {\\n            \\\"value\\\": 0.11387685552692939,\\n            \\\"ci_95\\\": [\\n              -0.019433843854777637,\\n              0.24189972068157\\n            ]\\n          },\\n          \\\"tau\\\": {\\n            \\\"value\\\": 0.08755098312892196\\n          },\\n          \\\"AUROC\\\": {\\n            \\\"value\\\": 0.5510477582846004,\\n            \\\"ci_95\\\": [\\n              0.46109973296866474,\\n              0.6345271484870576\\n            ]\\n          },\\n          \\\"ECE\\\": {\\n            \\\"value\\\": 0.3423655487366528\\n          }\\n        },\\n        \\\"logprob\\\": {\\n          \\\"rho\\\": {\\n            \\\"value\\\": 0.011185364740047766,\\n            \\\"ci_95\\\": [\\n              -0.11923402710214627,\\n              0.13516948784193147\\n            ]\\n          },\\n          \\\"tau\\\": {\\n            \\\"value\\\": 0.005069639898728457\\n          },\\n          \\\"AUROC\\\": {\\n            \\\"value\\\": 0.5185997400909682,\\n            \\\"ci_95\\\": [\\n              0.4357479911911906,\\n              0.5925112254226892\\n            ]\\n          },\\n          \\\"ECE\\\": {\\n            \\\"value\\\": 0.6464289178950907\\n          }\\n        },\\n        \\\"EM\\\": {\\n          \\\"rho\\\": {\\n            \\\"value\\\": 0.41645261687840945,\\n            \\\"ci_95\\\": [\\n              0.3019475235089537,\\n              0.5274107295266577\\n            ]\\n          },\\n          \\\"tau\\\": {\\n            \\\"value\\\": 0.32562835786371874\\n          },\\n          \\\"AUROC\\\": {\\n            \\\"value\\\": 0.7514619883040936,\\n            \\\"ci_95\\\": [\\n              0.6869912517023105,\\n              0.811335193836893\\n            ]\\n          },\\n          \\\"ECE\\\": {\\n            \\\"value\\\": 0.2232142857142857\\n          }\\n        },\\n        \\\"voting_conf\\\": {\\n          \\\"rho\\\": {\\n            \\\"value\\\": 0.24094236343484574,\\n            \\\"ci_95\\\": [\\n              0.12282582755698385,\\n              0.36484029871601126\\n            ]\\n          },\\n          \\\"tau\\\": {\\n            \\\"value\\\": 0.17799286667397157\\n          },\\n          \\\"AUROC\\\": {\\n            \\\"value\\\": 0.6419753086419753,\\n            \\\"ci_95\\\": [\\n              0.5721473327624279,\\n              0.7189425322267944\\n            ]\\n          },\\n          \\\"ECE\\\": {\\n            \\\"value\\\": 0.20696781776436057\\n          }\\n        }\\n      }\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 121 · 2026-05-15T23:57:08.425Z_
+
+<details><summary>↩ Tool result · `toolu_01Wt6t8cAsmZggeCr3risDDB`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 4048\\ndrwxr-xr-x  2 root root    4096 May 15 07:38 .\\ndrwxr-xr-x 91 root root    8192 May 16 04:23 ..\\n-rw-r--r--  1 root root   11092 May 15 07:09 all_signals_5signal.json\\n-rw-r--r--  1 root root    1078 May 15 06:51 auroc_5signal.json\\n-rw-r--r--  1 root root     395 May 15 06:18 comparison.json\\n-rw-r--r--  1 root root  177568 May 15 07:38 reliability_data_1024.json\\n-rw-r--r--  1 root root    3376 May 15 06:17 report.json\\n-rw-r--r--  1 root root  100164 May 15 06:17 run.log\\n-rw-r--r--  1 root root 3820412 May 15 06:17 samples.jsonl\\nlrwxrwxrwx  1 root root      79 May 15 07:16 samples_with_logprobs.jsonl -> /root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/samples.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "07814522-e5d3-490a-ac57-8742ee0e6dc0",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 4048\\\\ndrwxr-xr-x  2 root root    4096 May 15 07:38 .\\\\ndrwxr-xr-x 91 root root    8192 May 16 04:23 ..\\\\n-rw-r--r--  1 root root   11092 May 15 07:09 all_signals_5signal.json\\\\n-rw-r--r--  1 root root    1078 May 15 06:51 auroc_5signal.json\\\\n-rw-r--r--  1 root root     395 May 15 06:18 comparison.json\\\\n-rw-r--r--  1 root root  177568 May 15 07:38 reliability_data_1024.json\\\\n-rw-r--r--  1 root root    3376 May 15 06:17 report.json\\\\n-rw-r--r--  1 root root  100164 May 15 06:17 run.log\\\\n-rw-r--r--  1 root root 3820412 May 15 06:17 samples.jsonl\\\\nlrwxrwxrwx  1 root root      79 May 15 07:16 samples_with_logprobs.jsonl -> /root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/samples.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 4048\\ndrwxr-xr-x  2 root root    4096 May 15 07:38 .\\ndrwxr-xr-x 91 root root    8192 May 16 04:23 ..\\n-rw-r--r--  1 root root   11092 May 15 07:09 all_signals_5signal.json\\n-rw-r--r--  1 root root    1078 May 15 06:51 auroc_5signal.json\\n-rw-r--r--  1 root root     395 May 15 06:18 comparison.json\\n-rw-r--r--  1 root root  177568 May 15 07:38 reliability_data_1024.json\\n-rw-r--r--  1 root root    3376 May 15 06:17 report.json\\n-rw-r--r--  1 root root  100164 May 15 06:17 run.log\\n-rw-r--r--  1 root root 3820412 May 15 06:17 samples.jsonl\\nlrwxrwxrwx  1 root root      79 May 15 07:16 samples_with_logprobs.jsonl -> /root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/samples.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 122_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Excellent! Now I found the critical evidence. The `exp_012_rerun_1024` directory:
+- Has its own `samples.jsonl` (3,820,412 bytes)
+- Has `all_signals_5signal.json` which shows SJ rho = 0.3599 and FK rho = 0.2665 — matching the unified pipeline values!
+
+While `mvp_pilot_004`:
+- Has its own `samples.jsonl` (3,245,910 bytes — **smaller**)
+- Report shows SJ rho = 0.3825 and FK rho = 0.2590
+
+
+- Used an earlier inference run with lower max_tokens (likely 512), which explains the different correlation values
+
+The `exp_012_rerun_1024` is a re-inference with `max_tokens=1024` that produced different samples and better-aligned metrics, so the root cause is that `mvp_pilot_004` was based on an older inference configuration.
+
+Now I need to check the comparison.json file to confirm this hypothesis about the different inference runs.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "053751d7-58fb-4f13-8498-4d060fd63022",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015nG83N3MkVEdkpj169j54S",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4980,
+      "cache_read_input_tokens": 121021,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4980
+      },
+      "output_tokens": 33,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 123_
+
+Found it! Different `samples.jsonl` files: mvp_pilot_004 (3.25MB, old inference) vs exp_012_rerun_1024 (3.82MB, re-inference with max_tokens=1024). Let me confirm.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "b33037df-6be5-4cc5-b1f0-82549f25c10f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015nG83N3MkVEdkpj169j54S",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4980,
+      "cache_read_input_tokens": 121021,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4980
+      },
+      "output_tokens": 33,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 124_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_014MZDdf12TwrUw6qVETVUoR`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/comparison.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "4a89ad00-a773-47c9-ba97-d27de3201c04",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015nG83N3MkVEdkpj169j54S",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4980,
+      "cache_read_input_tokens": 121021,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4980
+      },
+      "output_tokens": 33,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 125 · 2026-05-15T23:57:22.148Z_
+
+<details><summary>↩ Tool result · `toolu_014MZDdf12TwrUw6qVETVUoR`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"exp_012_old_max512\\\": {\\n    \\\"SJ\\\": 0.3565,\\n    \\\"FK\\\": 0.2651,\\n    \\\"EM\\\": 0.2566,\\n    \\\"voting_conf\\\": 0.5018,\\n    \\\"logprob\\\": 0.1396\\n  },\\n  \\\"exp_012_rerun_max1024\\\": {\\n    \\\"SJ\\\": 0.3599,\\n    \\\"FK\\\": 0.2665,\\n    \\\"logprob\\\": 0.2052,\\n    \\\"EM\\\": 0.2945,\\n    \\\"voting_conf\\\": 0.3792\\n  },\\n  \\\"delta\\\": {\\n    \\\"SJ\\\": 0.0034,\\n    \\\"FK\\\": 0.0014,\\n    \\\"EM\\\": 0.0379,\\n    \\\"voting_conf\\\": -0.1226,\\n    \\\"logprob\\\": 0.0656\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "7f27c55b-613a-4b07-ba8b-73cb9e897330",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"exp_012_old_max512\\\\\\\": {\\\\n    \\\\\\\"SJ\\\\\\\": 0.3565,\\\\n    \\\\\\\"FK\\\\\\\": 0.2651,\\\\n    \\\\\\\"EM\\\\\\\": 0.2566,\\\\n    \\\\\\\"voting_conf\\\\\\\": 0.5018,\\\\n    \\\\\\\"logprob\\\\\\\": 0.1396\\\\n  },\\\\n  \\\\\\\"exp_012_rerun_max1024\\\\\\\": {\\\\n    \\\\\\\"SJ\\\\\\\": 0.3599,\\\\n    \\\\\\\"FK\\\\\\\": 0.2665,\\\\n    \\\\\\\"logprob\\\\\\\": 0.2052,\\\\n    \\\\\\\"EM\\\\\\\": 0.2945,\\\\n    \\\\\\\"voting_conf\\\\\\\": 0.3792\\\\n  },\\\\n  \\\\\\\"delta\\\\\\\": {\\\\n    \\\\\\\"SJ\\\\\\\": 0.0034,\\\\n    \\\\\\\"FK\\\\\\\": 0.0014,\\\\n    \\\\\\\"EM\\\\\\\": 0.0379,\\\\n    \\\\\\\"voting_conf\\\\\\\": -0.1226,\\\\n    \\\\\\\"logprob\\\\\\\": 0.0656\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"exp_012_old_max512\\\": {\\n    \\\"SJ\\\": 0.3565,\\n    \\\"FK\\\": 0.2651,\\n    \\\"EM\\\": 0.2566,\\n    \\\"voting_conf\\\": 0.5018,\\n    \\\"logprob\\\": 0.1396\\n  },\\n  \\\"exp_012_rerun_max1024\\\": {\\n    \\\"SJ\\\": 0.3599,\\n    \\\"FK\\\": 0.2665,\\n    \\\"logprob\\\": 0.2052,\\n    \\\"EM\\\": 0.2945,\\n    \\\"voting_conf\\\": 0.3792\\n  },\\n  \\\"delta\\\": {\\n    \\\"SJ\\\": 0.0034,\\n    \\\"FK\\\": 0.0014,\\n    \\\"EM\\\": 0.0379,\\n    \\\"voting_conf\\\": -0.1226,\\n    \\\"logprob\\\": 0.0656\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 126_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Kjn9vQfwLF2ywdbkdPHev8`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/report.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "a9aff6d0-1a18-4585-9c29-280d98b44939",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015nG83N3MkVEdkpj169j54S",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4980,
+      "cache_read_input_tokens": 121021,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4980
+      },
+      "output_tokens": 33,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 127 · 2026-05-15T23:57:22.624Z_
+
+<details><summary>↩ Tool result · `toolu_01Kjn9vQfwLF2ywdbkdPHev8`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"dataset\\\": \\\"scierc\\\",\\n  \\\"subtask\\\": \\\"joint\\\",\\n  \\\"n_samples\\\": 8,\\n  \\\"temperature\\\": 1.0,\\n  \\\"num_instances\\\": 551,\\n  \\\"use_train_format\\\": true,\\n  \\\"ner_greedy_f1\\\": 0.6632805497460412,\\n  \\\"ner_oracle_f1\\\": 0.7775133848899465,\\n  \\\"ner_oracle_headroom\\\": 0.11423283514390525,\\n  \\\"ner_fleiss_kappa_mean\\\": 0.3932668065534345,\\n  \\\"ner_soft_jaccard_mean\\\": 0.6963097751953397,\\n  \\\"ner_correlation_fleiss_vs_f1_full\\\": {\\n    \\\"rho\\\": 0.2665109373463269,\\n    \\\"p_value\\\": 4.716829112137585e-10,\\n    \\\"n\\\": 529\\n  },\\n  \\\"ner_correlation_softjaccard_vs_f1_full\\\": {\\n    \\\"rho\\\": 0.3598905669976535,\\n    \\\"p_value\\\": 1.2752281196882738e-17,\\n    \\\"n\\\": 529\\n  },\\n  \\\"ner_correlation_fleiss_vs_f1_conditional\\\": {\\n    \\\"rho\\\": 0.17607370722783125,\\n    \\\"p_value\\\": 0.00011078924939793821,\\n    \\\"n\\\": 477\\n  },\\n  \\\"ner_correlation_softjaccard_vs_f1_conditional\\\": {\\n    \\\"rho\\\": 0.3113352549686453,\\n    \\\"p_value\\\": 3.5148620246813462e-12,\\n    \\\"n\\\": 477\\n  },\\n  \\\"ner_n_gold_empty_filtered\\\": 22,\\n  \\\"ner_n_greedy_f1_zero_filtered\\\": 52,\\n  \\\"ner_structural_beats_surface\\\": true,\\n  \\\"ner_rho_advantage\\\": 0.09337962965132657,\\n  \\\"ner_sample_f1_mean\\\": 0.6077394535406134,\\n  \\\"ner_sample_f1_std\\\": 0.3177849195309394,\\n  \\\"ner_sample_f1_pct_zero\\\": 12.594517958412098,\\n  \\\"ner_logprob_baseline\\\": {\\n    \\\"full\\\": {\\n      \\\"rho\\\": 0.20517413101613924,\\n      \\\"p_rho\\\": 1.9498006196855416e-06,\\n      \\\"tau\\\": 0.14782758668777154,\\n      \\\"p_tau\\\": 1.2434769103035355e-06,\\n      \\\"auroc\\\": 0.6115722797477874,\\n      \\\"n\\\": 529\\n    },\\n    \\\"conditional\\\": {\\n      \\\"rho\\\": 0.1537825418721844,\\n      \\\"p_rho\\\": 0.0007519115126420073,\\n      \\\"tau\\\": 0.11105453570642614,\\n      \\\"p_tau\\\": 0.000576950633780567,\\n      \\\"auroc\\\": 0.5929390252479078,\\n      \\\"n\\\": 477\\n    }\\n  },\\n  \\\"re_greedy_f1\\\": 0.42893018583626313,\\n  \\\"re_oracle_f1\\\": 0.5795918367346938,\\n  \\\"re_oracle_headroom\\\": 0.1506616508984307,\\n  \\\"re_fleiss_kappa_mean\\\": 0.29342166441787654,\\n  \\\"re_soft_jaccard_mean\\\": 0.6146283784710029,\\n  \\\"re_correlation_fleiss_vs_f1_full\\\": {\\n    \\\"rho\\\": 0.2752041540770546,\\n    \\\"p_value\\\": 2.4879922095201242e-08,\\n    \\\"n\\\": 397\\n  },\\n  \\\"re_correlation_softjaccard_vs_f1_full\\\": {\\n    \\\"rho\\\": 0.2503364334141933,\\n    \\\"p_value\\\": 4.3522331002259703e-07,\\n    \\\"n\\\": 397\\n  },\\n  \\\"re_correlation_fleiss_vs_f1_conditional\\\": {\\n    \\\"rho\\\": 0.11387685552692939,\\n    \\\"p_value\\\": 0.07955653487541735,\\n    \\\"n\\\": 238\\n  },\\n  \\\"re_correlation_softjaccard_vs_f1_conditional\\\": {\\n    \\\"rho\\\": 0.24569967508929075,\\n    \\\"p_value\\\": 0.00012846667277061877,\\n    \\\"n\\\": 238\\n  },\\n  \\\"re_n_gold_empty_filtered\\\": 154,\\n  \\\"re_n_greedy_f1_zero_filtered\\\": 159,\\n  \\\"re_structural_beats_surface\\\": false,\\n  \\\"re_rho_advantage\\\": -0.024867720662861303,\\n  \\\"re_sample_f1_mean\\\": 0.3544350077048391,\\n  \\\"re_sample_f1_std\\\": 0.37736734533106986,\\n  \\\"re_sample_f1_pct_zero\\\": 44.395465994962215,\\n  \\\"re_logprob_baseline\\\": {\\n    \\\"full\\\": {\\n      \\\"rho\\\": 0.26624475312006335,\\n      \\\"p_rho\\\": 7.217251690334773e-08,\\n      \\\"tau\\\": 0.19508661157044746,\\n      \\\"p_tau\\\": 8.831074413665826e-08,\\n      \\\"auroc\\\": 0.6204557091653866,\\n      \\\"n\\\": 397\\n    },\\n    \\\"conditional\\\": {\\n      \\\"rho\\\": 0.011185364740047766,\\n      \\\"p_rho\\\": 0.8637077626329154,\\n      \\\"tau\\\": 0.005069639898728457,\\n      \\\"p_tau\\\": 0.9126852484133136,\\n      \\\"auroc\\\": 0.5632929642445214,\\n      \\\"n\\\": 238\\n    }\\n  },\\n  \\\"verdict\\\": \\\"FAIL\\\",\\n  \\\"verdict_note\\\": \\\"Joint mode: verdict requires RE ρ_sj ≥ 0.40 AND ρ_sj > ρ_fk AND any subtask headroom ≥ 2pp\\\",\\n  \\\"warning\\\": \\\"⚠️ >30% samples F1=0, recommend re-running at T=0.7\\\"\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "90bb6afa-005a-4074-b6bd-64311846f183",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"dataset\\\\\\\": \\\\\\\"scierc\\\\\\\",\\\\n  \\\\\\\"subtask\\\\\\\": \\\\\\\"joint\\\\\\\",\\\\n  \\\\\\\"n_samples\\\\\\\": 8,\\\\n  \\\\\\\"temperature\\\\\\\": 1.0,\\\\n  \\\\\\\"num_instances\\\\\\\": 551,\\\\n  \\\\\\\"use_train_format\\\\\\\": true,\\\\n  \\\\\\\"ner_greedy_f1\\\\\\\": 0.6632805497460412,\\\\n  \\\\\\\"ner_oracle_f1\\\\\\\": 0.7775133848899465,\\\\n  \\\\\\\"ner_oracle_headroom\\\\\\\": 0.11423283514390525,\\\\n  \\\\\\\"ner_fleiss_kappa_mean\\\\\\\": 0.3932668065534345,\\\\n  \\\\\\\"ner_soft_jaccard_mean\\\\\\\": 0.6963097751953397,\\\\n  \\\\\\\"ner_correlation_fleiss_vs_f1_full\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.2665109373463269,\\\\n    \\\\\\\"p_value\\\\\\\": 4.716829112137585e-10,\\\\n    \\\\\\\"n\\\\\\\": 529\\\\n  },\\\\n  \\\\\\\"ner_correlation_softjaccard_vs_f1_full\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.3598905669976535,\\\\n    \\\\\\\"p_value\\\\\\\": 1.2752281196882738e-17,\\\\n    \\\\\\\"n\\\\\\\": 529\\\\n  },\\\\n  \\\\\\\"ner_correlation_fleiss_vs_f1_conditional\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.17607370722783125,\\\\n    \\\\\\\"p_value\\\\\\\": 0.00011078924939793821,\\\\n    \\\\\\\"n\\\\\\\": 477\\\\n  },\\\\n  \\\\\\\"ner_correlation_softjaccard_vs_f1_conditional\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.3113352549686453,\\\\n    \\\\\\\"p_value\\\\\\\": 3.5148620246813462e-12,\\\\n    \\\\\\\"n\\\\\\\": 477\\\\n  },\\\\n  \\\\\\\"ner_n_gold_empty_filtered\\\\\\\": 22,\\\\n  \\\\\\\"ner_n_greedy_f1_zero_filtered\\\\\\\": 52,\\\\n  \\\\\\\"ner_structural_beats_surface\\\\\\\": true,\\\\n  \\\\\\\"ner_rho_advantage\\\\\\\": 0.09337962965132657,\\\\n  \\\\\\\"ner_sample_f1_mean\\\\\\\": 0.6077394535406134,\\\\n  \\\\\\\"ner_sample_f1_std\\\\\\\": 0.3177849195309394,\\\\n  \\\\\\\"ner_sample_f1_pct_zero\\\\\\\": 12.594517958412098,\\\\n  \\\\\\\"ner_logprob_baseline\\\\\\\": {\\\\n    \\\\\\\"full\\\\\\\": {\\\\n      \\\\\\\"rho\\\\\\\": 0.20517413101613924,\\\\n      \\\\\\\"p_rho\\\\\\\": 1.9498006196855416e-06,\\\\n      \\\\\\\"tau\\\\\\\": 0.14782758668777154,\\\\n      \\\\\\\"p_tau\\\\\\\": 1.2434769103035355e-06,\\\\n      \\\\\\\"auroc\\\\\\\": 0.6115722797477874,\\\\n      \\\\\\\"n\\\\\\\": 529\\\\n    },\\\\n    \\\\\\\"conditional\\\\\\\": {\\\\n      \\\\\\\"rho\\\\\\\": 0.1537825418721844,\\\\n      \\\\\\\"p_rho\\\\\\\": 0.0007519115126420073,\\\\n      \\\\\\\"tau\\\\\\\": 0.11105453570642614,\\\\n      \\\\\\\"p_tau\\\\\\\": 0.000576950633780567,\\\\n      \\\\\\\"auroc\\\\\\\": 0.5929390252479078,\\\\n      \\\\\\\"n\\\\\\\": 477\\\\n    }\\\\n  },\\\\n  \\\\\\\"re_greedy_f1\\\\\\\": 0.42893018583626313,\\\\n  \\\\\\\"re_oracle_f1\\\\\\\": 0.5795918367346938,\\\\n  \\\\\\\"re_oracle_headroom\\\\\\\": 0.1506616508984307,\\\\n  \\\\\\\"re_fleiss_kappa_mean\\\\\\\": 0.29342166441787654,\\\\n  \\\\\\\"re_soft_jaccard_mean\\\\\\\": 0.6146283784710029,\\\\n  \\\\\\\"re_correlation_fleiss_vs_f1_full\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.2752041540770546,\\\\n    \\\\\\\"p_value\\\\\\\": 2.4879922095201242e-08,\\\\n    \\\\\\\"n\\\\\\\": 397\\\\n  },\\\\n  \\\\\\\"re_correlation_softjaccard_vs_f1_full\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.2503364334141933,\\\\n    \\\\\\\"p_value\\\\\\\": 4.3522331002259703e-07,\\\\n    \\\\\\\"n\\\\\\\": 397\\\\n  },\\\\n  \\\\\\\"re_correlation_fleiss_vs_f1_conditional\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.11387685552692939,\\\\n    \\\\\\\"p_value\\\\\\\": 0.07955653487541735,\\\\n    \\\\\\\"n\\\\\\\": 238\\\\n  },\\\\n  \\\\\\\"re_correlation_softjaccard_vs_f1_conditional\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.24569967508929075,\\\\n    \\\\\\\"p_value\\\\\\\": 0.00012846667277061877,\\\\n    \\\\\\\"n\\\\\\\": 238\\\\n  },\\\\n  \\\\\\\"re_n_gold_empty_filtered\\\\\\\": 154,\\\\n  \\\\\\\"re_n_greedy_f1_zero_filtered\\\\\\\": 159,\\\\n  \\\\\\\"re_structural_beats_surface\\\\\\\": false,\\\\n  \\\\\\\"re_rho_advantage\\\\\\\": -0.024867720662861303,\\\\n  \\\\\\\"re_sample_f1_mean\\\\\\\": 0.3544350077048391,\\\\n  \\\\\\\"re_sample_f1_std\\\\\\\": 0.37736734533106986,\\\\n  \\\\\\\"re_sample_f1_pct_zero\\\\\\\": 44.395465994962215,\\\\n  \\\\\\\"re_logprob_baseline\\\\\\\": {\\\\n    \\\\\\\"full\\\\\\\": {\\\\n      \\\\\\\"rho\\\\\\\": 0.26624475312006335,\\\\n      \\\\\\\"p_rho\\\\\\\": 7.217251690334773e-08,\\\\n      \\\\\\\"tau\\\\\\\": 0.19508661157044746,\\\\n      \\\\\\\"p_tau\\\\\\\": 8.831074413665826e-08,\\\\n      \\\\\\\"auroc\\\\\\\": 0.6204557091653866,\\\\n      \\\\\\\"n\\\\\\\": 397\\\\n    },\\\\n    \\\\\\\"conditional\\\\\\\": {\\\\n      \\\\\\\"rho\\\\\\\": 0.011185364740047766,\\\\n      \\\\\\\"p_rho\\\\\\\": 0.8637077626329154,\\\\n      \\\\\\\"tau\\\\\\\": 0.005069639898728457,\\\\n      \\\\\\\"p_tau\\\\\\\": 0.9126852484133136,\\\\n      \\\\\\\"auroc\\\\\\\": 0.5632929642445214,\\\\n      \\\\\\\"n\\\\\\\": 238\\\\n    }\\\\n  },\\\\n  \\\\\\\"verdict\\\\\\\": \\\\\\\"FAIL\\\\\\\",\\\\n  \\\\\\\"verdict_note\\\\\\\": \\\\\\\"Joint mode: verdict requires RE ρ_sj ≥ 0.40 AND ρ_sj > ρ_fk AND any subtask headroom ≥ 2pp\\\\\\\",\\\\n  \\\\\\\"warning\\\\\\\": \\\\\\\"⚠️ >30% samples F1=0, recommend re-running at T=0.7\\\\\\\"\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"dataset\\\": \\\"scierc\\\",\\n  \\\"subtask\\\": \\\"joint\\\",\\n  \\\"n_samples\\\": 8,\\n  \\\"temperature\\\": 1.0,\\n  \\\"num_instances\\\": 551,\\n  \\\"use_train_format\\\": true,\\n  \\\"ner_greedy_f1\\\": 0.6632805497460412,\\n  \\\"ner_oracle_f1\\\": 0.7775133848899465,\\n  \\\"ner_oracle_headroom\\\": 0.11423283514390525,\\n  \\\"ner_fleiss_kappa_mean\\\": 0.3932668065534345,\\n  \\\"ner_soft_jaccard_mean\\\": 0.6963097751953397,\\n  \\\"ner_correlation_fleiss_vs_f1_full\\\": {\\n    \\\"rho\\\": 0.2665109373463269,\\n    \\\"p_value\\\": 4.716829112137585e-10,\\n    \\\"n\\\": 529\\n  },\\n  \\\"ner_correlation_softjaccard_vs_f1_full\\\": {\\n    \\\"rho\\\": 0.3598905669976535,\\n    \\\"p_value\\\": 1.2752281196882738e-17,\\n    \\\"n\\\": 529\\n  },\\n  \\\"ner_correlation_fleiss_vs_f1_conditional\\\": {\\n    \\\"rho\\\": 0.17607370722783125,\\n    \\\"p_value\\\": 0.00011078924939793821,\\n    \\\"n\\\": 477\\n  },\\n  \\\"ner_correlation_softjaccard_vs_f1_conditional\\\": {\\n    \\\"rho\\\": 0.3113352549686453,\\n    \\\"p_value\\\": 3.5148620246813462e-12,\\n    \\\"n\\\": 477\\n  },\\n  \\\"ner_n_gold_empty_filtered\\\": 22,\\n  \\\"ner_n_greedy_f1_zero_filtered\\\": 52,\\n  \\\"ner_structural_beats_surface\\\": true,\\n  \\\"ner_rho_advantage\\\": 0.09337962965132657,\\n  \\\"ner_sample_f1_mean\\\": 0.6077394535406134,\\n  \\\"ner_sample_f1_std\\\": 0.3177849195309394,\\n  \\\"ner_sample_f1_pct_zero\\\": 12.594517958412098,\\n  \\\"ner_logprob_baseline\\\": {\\n    \\\"full\\\": {\\n      \\\"rho\\\": 0.20517413101613924,\\n      \\\"p_rho\\\": 1.9498006196855416e-06,\\n      \\\"tau\\\": 0.14782758668777154,\\n      \\\"p_tau\\\": 1.2434769103035355e-06,\\n      \\\"auroc\\\": 0.6115722797477874,\\n      \\\"n\\\": 529\\n    },\\n    \\\"conditional\\\": {\\n      \\\"rho\\\": 0.1537825418721844,\\n      \\\"p_rho\\\": 0.0007519115126420073,\\n      \\\"tau\\\": 0.11105453570642614,\\n      \\\"p_tau\\\": 0.000576950633780567,\\n      \\\"auroc\\\": 0.5929390252479078,\\n      \\\"n\\\": 477\\n    }\\n  },\\n  \\\"re_greedy_f1\\\": 0.42893018583626313,\\n  \\\"re_oracle_f1\\\": 0.5795918367346938,\\n  \\\"re_oracle_headroom\\\": 0.1506616508984307,\\n  \\\"re_fleiss_kappa_mean\\\": 0.29342166441787654,\\n  \\\"re_soft_jaccard_mean\\\": 0.6146283784710029,\\n  \\\"re_correlation_fleiss_vs_f1_full\\\": {\\n    \\\"rho\\\": 0.2752041540770546,\\n    \\\"p_value\\\": 2.4879922095201242e-08,\\n    \\\"n\\\": 397\\n  },\\n  \\\"re_correlation_softjaccard_vs_f1_full\\\": {\\n    \\\"rho\\\": 0.2503364334141933,\\n    \\\"p_value\\\": 4.3522331002259703e-07,\\n    \\\"n\\\": 397\\n  },\\n  \\\"re_correlation_fleiss_vs_f1_conditional\\\": {\\n    \\\"rho\\\": 0.11387685552692939,\\n    \\\"p_value\\\": 0.07955653487541735,\\n    \\\"n\\\": 238\\n  },\\n  \\\"re_correlation_softjaccard_vs_f1_conditional\\\": {\\n    \\\"rho\\\": 0.24569967508929075,\\n    \\\"p_value\\\": 0.00012846667277061877,\\n    \\\"n\\\": 238\\n  },\\n  \\\"re_n_gold_empty_filtered\\\": 154,\\n  \\\"re_n_greedy_f1_zero_filtered\\\": 159,\\n  \\\"re_structural_beats_surface\\\": false,\\n  \\\"re_rho_advantage\\\": -0.024867720662861303,\\n  \\\"re_sample_f1_mean\\\": 0.3544350077048391,\\n  \\\"re_sample_f1_std\\\": 0.37736734533106986,\\n  \\\"re_sample_f1_pct_zero\\\": 44.395465994962215,\\n  \\\"re_logprob_baseline\\\": {\\n    \\\"full\\\": {\\n      \\\"rho\\\": 0.26624475312006335,\\n      \\\"p_rho\\\": 7.217251690334773e-08,\\n      \\\"tau\\\": 0.19508661157044746,\\n      \\\"p_tau\\\": 8.831074413665826e-08,\\n      \\\"auroc\\\": 0.6204557091653866,\\n      \\\"n\\\": 397\\n    },\\n    \\\"conditional\\\": {\\n      \\\"rho\\\": 0.011185364740047766,\\n      \\\"p_rho\\\": 0.8637077626329154,\\n      \\\"tau\\\": 0.005069639898728457,\\n      \\\"p_tau\\\": 0.9126852484133136,\\n      \\\"auroc\\\": 0.5632929642445214,\\n      \\\"n\\\": 238\\n    }\\n  },\\n  \\\"verdict\\\": \\\"FAIL\\\",\\n  \\\"verdict_note\\\": \\\"Joint mode: verdict requires RE ρ_sj ≥ 0.40 AND ρ_sj > ρ_fk AND any subtask headroom ≥ 2pp\\\",\\n  \\\"warning\\\": \\\"⚠️ >30% samples F1=0, recommend re-running at T=0.7\\\"\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 128_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a very clear picture. Let me summarize:
+
+**comparison.json** shows:
+- `exp_012_old_max512`: SJ=0.3565, FK=0.2651 (old inference, max_tokens=512)
+- `exp_012_rerun_max1024`: SJ=0.3599, FK=0.2665 (re-inference, max_tokens=1024)
+
+But wait — the `exp_012_old_max512` values (SJ=0.3565, FK=0.2651) don't match mvp_pilot_004 (SJ=0.3825, FK=0.2590) either.
+
+
+So I'm seeing three distinct sets of results: mvp_pilot_004 with the highest SJ score, exp_012_old_max512 with different values despite using the same data, and exp_012_rerun_max1024 showing the impact of increasing max_tokens. The discrepancies suggest either different analysis code versions or changes in the inference pipeline between runs.
+
+Looking more carefully at what changed between runs, the old code paired with old samples gives one result, while switching to new analysis code on those same old samples produces noticeably different SJ and FK scores. Then when I re-ran with both the new code and new samples with higher token limits, the metrics shifted again. This tells me the code changes themselves are having a measurable effect on the results.
+
+The `_backup_cond_fix` directory name hints at some conditional filtering adjustment, but since I'm examining the full dataset correlations, that shouldn't be the culprit. I need to dig into the actual correlation computation logic between the old and new versions of the analysis script to see what's actually different.
+
+There's another angle though — the metadata flag `fk_empty_fix: true` suggests there might have been a bug in how FK values were handled when dealing with empty sets. Let me check the consistency script to see if there's any mention of this fix.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "8614a487-1d17-4594-a10a-d1d14d17bea5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Aouks5JYjazRvUbUGFs4Ea",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3369,
+      "cache_read_input_tokens": 126001,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3369
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 129_
+
+Three different values from three pipeline stages. The code changed more than the data. Let me check the consistency.py for the FK fix, and compare the old/new run_mvp_pilot correlation computation.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "213c4b87-eac8-469e-af38-fe7b7436c6b0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Aouks5JYjazRvUbUGFs4Ea",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3369,
+      "cache_read_input_tokens": 126001,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3369
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 130_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01R3qYdsgz59Lz6wiwjadGnh`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/code/consistency.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "406ddcb3-02fa-4f63-8150-d450f57464b0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Aouks5JYjazRvUbUGFs4Ea",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3369,
+      "cache_read_input_tokens": 126001,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3369
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 131 · 2026-05-15T23:57:42.041Z_
+
+<details><summary>↩ Tool result · `toolu_01R3qYdsgz59Lz6wiwjadGnh`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Consistency metrics for structured information extraction with self-consistency.\\n\\nImplements three complementary consistency measures over N sampled extractions:\\n1. Fleiss' Kappa (surface matching) — treats N samples as N raters on entity presence\\n2. Structural soft Jaccard — span-level soft overlap with Hungarian matching\\n3. Oracle best-of-N — upper-bound F1 by selecting the best sample per instance\\n\\nKey dependencies: numpy, scipy (linear_sum_assignment).\\n\\\"\\\"\\\"\\n\\nfrom __future__ import annotations\\n\\nfrom itertools import combinations\\nfrom typing import TYPE_CHECKING\\n\\nimport numpy as np\\nfrom scipy.optimize import linear_sum_assignment\\n\\nif TYPE_CHECKING:\\n    pass\\n\\n# ---------------------------------------------------------------------------\\n# Type aliases (mirrors shared data format)\\n# ---------------------------------------------------------------------------\\nEntity = dict       # {\\\"text\\\", \\\"type\\\", \\\"start\\\", \\\"end\\\"}\\nRelation = dict     # {\\\"head\\\", \\\"tail\\\", \\\"type\\\", ...}\\nEvent = dict        # {\\\"trigger\\\": {...}, \\\"arguments\\\": [...]}\\nExtraction = dict   # {\\\"entities\\\", \\\"relations\\\", \\\"events\\\"}\\n\\n\\n# ===================================================================\\n# 1. Fleiss' Kappa — surface-level entity agreement\\n# ===================================================================\\n\\ndef _extract_surface_keys(sample: Extraction, subtask: str) -> set[tuple]:\\n    \\\"\\\"\\\"Extract surface-level keys from a sample for Fleiss' Kappa computation.\\\"\\\"\\\"\\n    if subtask == \\\"ner\\\":\\n        return {(e[\\\"text\\\"], e[\\\"type\\\"]) for e in sample.get(\\\"entities\\\", [])}\\n    elif subtask == \\\"re\\\":\\n        return {(r[\\\"head\\\"], r[\\\"tail\\\"], r[\\\"type\\\"]) for r in sample.get(\\\"relations\\\", [])}\\n    elif subtask == \\\"eae\\\":\\n        keys: set[tuple] = set()\\n        for ev in sample.get(\\\"events\\\", []):\\n            t = ev.get(\\\"trigger\\\", {})\\n            for arg in ev.get(\\\"arguments\\\", []):\\n                keys.add((t.get(\\\"text\\\", \\\"\\\"), t.get(\\\"type\\\", \\\"\\\"), arg[\\\"role\\\"], arg[\\\"text\\\"]))\\n        return keys\\n    else:\\n        raise ValueError(f\\\"Unknown subtask: {subtask}\\\")\\n\\n\\ndef fleiss_kappa_surface(samples: list[Extraction], subtask: str = \\\"ner\\\") -> float:\\n    \\\"\\\"\\\"Compute Fleiss' kappa treating N LLM samples as N raters on item presence.\\n\\n    Items are subtask-dependent surface keys:\\n    - ner: (entity_text, entity_type)\\n    - re: (head_text, tail_text, relation_type)\\n    - eae: (trigger_text, trigger_type, role, argument_text)\\n\\n    Args:\\n        samples: List of N extraction dicts.\\n        subtask: \\\"ner\\\", \\\"re\\\", or \\\"eae\\\".\\n\\n    Returns:\\n        Fleiss' kappa in [-1, 1].  Returns 1.0 for degenerate cases (<=1 unique\\n        item, perfect agreement, or undefined P_e).\\n    \\\"\\\"\\\"\\n    n_raters = len(samples)\\n    if n_raters <= 1:\\n        return 1.0\\n\\n    # Collect unique keys and per-sample presence sets\\n    entity_sets: list[set[tuple]] = []\\n    all_keys: set[tuple] = set()\\n    for sample in samples:\\n        keys = _extract_surface_keys(sample, subtask)\\n        entity_sets.append(keys)\\n        all_keys |= keys\\n\\n    n_subjects = len(all_keys)\\n    if n_subjects <= 0:\\n        # All samples extracted nothing — perfect agreement on empty set\\n        return 1.0\\n\\n    key_list = sorted(all_keys)\\n\\n    # Build rating matrix: n_subjects x 2 (categories: absent=0, present=1)\\n    # n_ij = number of raters assigning subject i to category j\\n    rating = np.zeros((n_subjects, 2), dtype=np.int64)\\n    for es in entity_sets:\\n        for idx, key in enumerate(key_list):\\n            if key in es:\\n                rating[idx, 1] += 1\\n            else:\\n                rating[idx, 0] += 1\\n\\n    n = n_raters\\n    k = 2  # number of categories\\n\\n    # Check perfect agreement: every subject has all votes in one category\\n    if np.all(np.max(rating, axis=1) == n):\\n        return 1.0\\n\\n    # P_i for each subject\\n    P_i = (np.sum(rating ** 2, axis=1) - n) / (n * (n - 1))\\n    P_bar = np.mean(P_i)\\n\\n    # P_e — expected agreement by chance\\n    p_j = np.sum(rating, axis=0) / (n_subjects * n)\\n    P_e = np.sum(p_j ** 2)\\n\\n    if abs(1.0 - P_e) < 1e-12:\\n\\n... [截断: 输出过长，省略 5252 字符] ...\\n\\nn enumerate(ga):\\n            for j, ab in enumerate(gb):\\n                cost[i, j] = _span_soft_jaccard(aa[\\\"start\\\"], aa[\\\"end\\\"],\\n                                                 ab[\\\"start\\\"], ab[\\\"end\\\"])\\n\\n        row_ind, col_ind = linear_sum_assignment(-cost)\\n        matched_sim = cost[row_ind, col_ind].sum()\\n        total_score += matched_sim\\n\\n    if total_weight == 0:\\n        return 1.0\\n    return total_score / total_weight\\n\\n\\ndef structural_consistency_soft_jaccard(\\n    samples: list[Extraction],\\n    subtask: str = \\\"ner\\\",\\n) -> float:\\n    \\\"\\\"\\\"Span-level soft Jaccard consistency averaged over all sample pairs.\\n\\n    For each pair (i, j) with i < j, computes a type-aware soft Jaccard using\\n    Hungarian matching on span overlaps, then returns the mean.\\n\\n    Args:\\n        samples: N extraction dicts.\\n        subtask: \\\"ner\\\" for entity consistency, \\\"eae\\\" for event-argument consistency.\\n\\n    Returns:\\n        Mean pairwise soft Jaccard in [0, 1].\\n    \\\"\\\"\\\"\\n    n = len(samples)\\n    if n <= 1:\\n        return 1.0\\n\\n    if subtask == \\\"ner\\\":\\n        pair_fn = _ner_soft_jaccard_pair\\n    elif subtask == \\\"re\\\":\\n        pair_fn = _re_soft_jaccard_pair\\n    else:\\n        pair_fn = _eae_soft_jaccard_pair\\n\\n    field = {\\\"ner\\\": \\\"entities\\\", \\\"re\\\": \\\"relations\\\", \\\"eae\\\": \\\"events\\\"}[subtask]\\n\\n    scores: list[float] = []\\n    for i, j in combinations(range(n), 2):\\n        score = pair_fn(\\n            samples[i].get(field, []),\\n            samples[j].get(field, []),\\n        )\\n        scores.append(score)\\n\\n    return float(np.mean(scores))\\n\\n\\n# ===================================================================\\n# 3. Oracle best-of-N\\n# ===================================================================\\n\\ndef oracle_best_of_n(\\n    samples: list[Extraction],\\n    gold: Extraction,\\n    subtask: str = \\\"ner\\\",\\n) -> tuple[int, float]:\\n    \\\"\\\"\\\"Select the sample with the highest F1 against the gold extraction.\\n\\n    Args:\\n        samples: N extraction dicts.\\n        gold: Gold-standard extraction.\\n        subtask: Passed through to per_instance_f1.\\n\\n    Returns:\\n        (best_index, best_f1). Returns (-1, 0.0) if samples is empty.\\n    \\\"\\\"\\\"\\n    if not samples:\\n        return (-1, 0.0)\\n\\n    # Lazy import to avoid circular dependency with evaluation.py\\n    from evaluation import per_instance_f1\\n\\n    best_idx = -1\\n    best_f1 = -1.0\\n\\n    for idx, sample in enumerate(samples):\\n        f1 = per_instance_f1(sample, gold, subtask=subtask)\\n        if f1 > best_f1:\\n            best_f1 = f1\\n            best_idx = idx\\n\\n    return (best_idx, best_f1)\\n\\n\\n# ===================================================================\\n# Aggregate helper\\n# ===================================================================\\n\\ndef compute_all_consistency_scores(\\n    sampled_instances: list[dict],\\n    subtask: str = \\\"ner\\\",\\n) -> dict:\\n    \\\"\\\"\\\"Compute all consistency metrics for a list of sampled instances.\\n\\n    Args:\\n        sampled_instances: List of SampledInstance dicts, each with keys\\n            \\\"id\\\", \\\"text\\\", \\\"gold\\\" (Extraction), \\\"samples\\\" (list[Extraction]).\\n        subtask: \\\"ner\\\", \\\"re\\\", or \\\"eae\\\".\\n\\n    Returns:\\n        Dict with per-instance score lists::\\n\\n            {\\n                \\\"fleiss_kappa\\\": [float, ...],\\n                \\\"soft_jaccard\\\": [float, ...],\\n                \\\"oracle_f1\\\":    [float, ...],\\n                \\\"oracle_indices\\\": [int, ...],\\n            }\\n    \\\"\\\"\\\"\\n    result: dict[str, list] = {\\n        \\\"fleiss_kappa\\\": [],\\n        \\\"soft_jaccard\\\": [],\\n        \\\"oracle_f1\\\": [],\\n        \\\"oracle_indices\\\": [],\\n    }\\n\\n    for inst in sampled_instances:\\n        samples = inst[\\\"samples\\\"]\\n        gold = inst[\\\"gold\\\"]\\n\\n        result[\\\"fleiss_kappa\\\"].append(fleiss_kappa_surface(samples, subtask=subtask))\\n        result[\\\"soft_jaccard\\\"].append(\\n            structural_consistency_soft_jaccard(samples, subtask=subtask)\\n        )\\n\\n        best_idx, best_f1 = oracle_best_of_n(samples, gold, subtask=subtask)\\n        result[\\\"oracle_f1\\\"].append(best_f1)\\n        result[\\\"oracle_indices\\\"].append(best_idx)\\n\\n    return result\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "bff63c32-1008-4d2a-854a-224356132ec1",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Consistency metrics for structured information extraction with self-consistency.\\\\n\\\\nImplements three complementary consistency measures over N sampled extractions:\\\\n1. Fleiss' Kappa (surface matching) — treats N samples as N raters on entity presence\\\\n2. Structural soft Jaccard — span-level soft overlap with Hungarian matching\\\\n3. Oracle best-of-N — upper-bound F1 by selecting the best sample per instance\\\\n\\\\nKey dependencies: numpy, scipy (linear_sum_assignment).\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nfrom __future__ import annotations\\\\n\\\\nfrom itertools import combinations\\\\nfrom typing import TYPE_CHECKING\\\\n\\\\nimport numpy as np\\\\nfrom scipy.optimize import linear_sum_assignment\\\\n\\\\nif TYPE_CHECKING:\\\\n    pass\\\\n\\\\n# ---------------------------------------------------------------------------\\\\n# Type aliases (mirrors shared data format)\\\\n# ---------------------------------------------------------------------------\\\\nEntity = dict       # {\\\\\\\"text\\\\\\\", \\\\\\\"type\\\\\\\", \\\\\\\"start\\\\\\\", \\\\\\\"end\\\\\\\"}\\\\nRelation = dict     # {\\\\\\\"head\\\\\\\", \\\\\\\"tail\\\\\\\", \\\\\\\"type\\\\\\\", ...}\\\\nEvent = dict        # {\\\\\\\"trigger\\\\\\\": {...}, \\\\\\\"arguments\\\\\\\": [...]}\\\\nExtraction = dict   # {\\\\\\\"entities\\\\\\\", \\\\\\\"relations\\\\\\\", \\\\\\\"events\\\\\\\"}\\\\n\\\\n\\\\n# ===================================================================\\\\n# 1. Fleiss' Kappa — surface-level entity agreement\\\\n# ===================================================================\\\\n\\\\ndef _extract_surface_keys(sample: Extraction, subtask: str) -> set[tuple]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Extract surface-level keys from a sample for Fleiss' Kappa computation.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    if subtask == \\\\\\\"ner\\\\\\\":\\\\n        return {(e[\\\\\\\"text\\\\\\\"], e[\\\\\\\"type\\\\\\\"]) for e in sample.get(\\\\\\\"entities\\\\\\\", [])}\\\\n    elif subtask == \\\\\\\"re\\\\\\\":\\\\n        return {(r[\\\\\\\"head\\\\\\\"], r[\\\\\\\"tail\\\\\\\"], r[\\\\\\\"type\\\\\\\"]) for r in sample.get(\\\\\\\"relations\\\\\\\", [])}\\\\n    elif subtask == \\\\\\\"eae\\\\\\\":\\\\n        keys: set[tuple] = set()\\\\n        for ev in sample.get(\\\\\\\"events\\\\\\\", []):\\\\n            t = ev.get(\\\\\\\"trigger\\\\\\\", {})\\\\n            for arg in ev.get(\\\\\\\"arguments\\\\\\\", []):\\\\n                keys.add((t.get(\\\\\\\"text\\\\\\\", \\\\\\\"\\\\\\\"), t.get(\\\\\\\"type\\\\\\\", \\\\\\\"\\\\\\\"), arg[\\\\\\\"role\\\\\\\"], arg[\\\\\\\"text\\\\\\\"]))\\\\n        return keys\\\\n    else:\\\\n        raise ValueError(f\\\\\\\"Unknown subtask: {subtask}\\\\\\\")\\\\n\\\\n\\\\ndef fleiss_kappa_surface(samples: list[Extraction], subtask: str = \\\\\\\"ner\\\\\\\") -> float:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Compute Fleiss' kappa treating N LLM samples as N raters on item presence.\\\\n\\\\n    Items are subtask-dependent surface keys:\\\\n    - ner: (entity_text, entity_type)\\\\n    - re: (head_text, tail_text, relation_type)\\\\n    - eae: (trigger_text, trigger_type, role, argument_text)\\\\n\\\\n    Args:\\\\n        samples: List of N extraction dicts.\\\\n        subtask: \\\\\\\"ner\\\\\\\", \\\\\\\"re\\\\\\\", or \\\\\\\"eae\\\\\\\".\\\\n\\\\n    Returns:\\\\n        Fleiss' kappa in [-1, 1].  Returns 1.0 for degenerate cases (<=1 unique\\\\n        item, perfect agreement, or undefined P_e).\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    n_raters = len(samples)\\\\n    if n_raters <= 1:\\\\n        return 1.0\\\\n\\\\n    # Collect unique keys and per-sample presence sets\\\\n    entity_sets: list[set[tuple]] = []\\\\n    all_keys: set[tuple] = set()\\\\n    for sample in samples:\\\\n        keys = _extract_surface_keys(sample, subtask)\\\\n        entity_sets.append(keys)\\\\n        all_keys |= keys\\\\n\\\\n    n_subjects = len(all_keys)\\\\n    if n_subjects <= 0:\\\\n        # All samples extracted nothing — perfect agreement on empty set\\\\n        return 1.0\\\\n\\\\n    key_list = sorted(all_keys)\\\\n\\\\n    # Build rating matrix: n_subjects x 2 (categories: absent=0, present=1)\\\\n    # n_ij = number of raters assigning subject i to category j\\\\n    rating = np.zeros((n_subjects, 2), dtype=np.int64)\\\\n    for es in entity_sets:\\\\n        for idx, key in enumerate(key_list):\\\\n            if key in es:\\\\n                rating[idx, 1] += 1\\\\n            else:\\\\n                rating[idx, 0] += 1\\\\n\\\\n    n = n_raters\\\\n    k = 2  # number of categories\\\\n\\\\n    # Check perfect agreement: every subject has all votes in one category\\\\n    if np.all(np.max(rating, axis=1) == n):\\\\n        return 1.0\\\\n\\\\n    # P_i for each subject\\\\n    P_i = (np.sum(rating ** 2, axis=1) - n) / (n * (n - 1))\\\\n    P_bar = np.mean(P_i)\\\\n\\\\n    # P_e — expected agreement by chance\\\\n    p_j = np.sum(rating, axis=0) / (n_subjects * n)\\\\n    P_e = np.sum(p_j ** 2)\\\\n\\\\n    if abs(1.0 - P_e) < 1e-12:\\\\n\\\\n... [截断: 输出过长，省略 5252 字符] ...\\\\n\\\\nn enumerate(ga):\\\\n            for j, ab in enumerate(gb):\\\\n                cost[i, j] = _span_soft_jaccard(aa[\\\\\\\"start\\\\\\\"], aa[\\\\\\\"end\\\\\\\"],\\\\n                                                 ab[\\\\\\\"start\\\\\\\"], ab[\\\\\\\"end\\\\\\\"])\\\\n\\\\n        row_ind, col_ind = linear_sum_assignment(-cost)\\\\n        matched_sim = cost[row_ind, col_ind].sum()\\\\n        total_score += matched_sim\\\\n\\\\n    if total_weight == 0:\\\\n        return 1.0\\\\n    return total_score / total_weight\\\\n\\\\n\\\\ndef structural_consistency_soft_jaccard(\\\\n    samples: list[Extraction],\\\\n    subtask: str = \\\\\\\"ner\\\\\\\",\\\\n) -> float:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Span-level soft Jaccard consistency averaged over all sample pairs.\\\\n\\\\n    For each pair (i, j) with i < j, computes a type-aware soft Jaccard using\\\\n    Hungarian matching on span overlaps, then returns the mean.\\\\n\\\\n    Args:\\\\n        samples: N extraction dicts.\\\\n        subtask: \\\\\\\"ner\\\\\\\" for entity consistency, \\\\\\\"eae\\\\\\\" for event-argument consistency.\\\\n\\\\n    Returns:\\\\n        Mean pairwise soft Jaccard in [0, 1].\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    n = len(samples)\\\\n    if n <= 1:\\\\n        return 1.0\\\\n\\\\n    if subtask == \\\\\\\"ner\\\\\\\":\\\\n        pair_fn = _ner_soft_jaccard_pair\\\\n    elif subtask == \\\\\\\"re\\\\\\\":\\\\n        pair_fn = _re_soft_jaccard_pair\\\\n    else:\\\\n        pair_fn = _eae_soft_jaccard_pair\\\\n\\\\n    field = {\\\\\\\"ner\\\\\\\": \\\\\\\"entities\\\\\\\", \\\\\\\"re\\\\\\\": \\\\\\\"relations\\\\\\\", \\\\\\\"eae\\\\\\\": \\\\\\\"events\\\\\\\"}[subtask]\\\\n\\\\n    scores: list[float] = []\\\\n    for i, j in combinations(range(n), 2):\\\\n        score = pair_fn(\\\\n            samples[i].get(field, []),\\\\n            samples[j].get(field, []),\\\\n        )\\\\n        scores.append(score)\\\\n\\\\n    return float(np.mean(scores))\\\\n\\\\n\\\\n# ===================================================================\\\\n# 3. Oracle best-of-N\\\\n# ===================================================================\\\\n\\\\ndef oracle_best_of_n(\\\\n    samples: list[Extraction],\\\\n    gold: Extraction,\\\\n    subtask: str = \\\\\\\"ner\\\\\\\",\\\\n) -> tuple[int, float]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Select the sample with the highest F1 against the gold extraction.\\\\n\\\\n    Args:\\\\n        samples: N extraction dicts.\\\\n        gold: Gold-standard extraction.\\\\n        subtask: Passed through to per_instance_f1.\\\\n\\\\n    Returns:\\\\n        (best_index, best_f1). Returns (-1, 0.0) if samples is empty.\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    if not samples:\\\\n        return (-1, 0.0)\\\\n\\\\n    # Lazy import to avoid circular dependency with evaluation.py\\\\n    from evaluation import per_instance_f1\\\\n\\\\n    best_idx = -1\\\\n    best_f1 = -1.0\\\\n\\\\n    for idx, sample in enumerate(samples):\\\\n        f1 = per_instance_f1(sample, gold, subtask=subtask)\\\\n        if f1 > best_f1:\\\\n            best_f1 = f1\\\\n            best_idx = idx\\\\n\\\\n    return (best_idx, best_f1)\\\\n\\\\n\\\\n# ===================================================================\\\\n# Aggregate helper\\\\n# ===================================================================\\\\n\\\\ndef compute_all_consistency_scores(\\\\n    sampled_instances: list[dict],\\\\n    subtask: str = \\\\\\\"ner\\\\\\\",\\\\n) -> dict:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Compute all consistency metrics for a list of sampled instances.\\\\n\\\\n    Args:\\\\n        sampled_instances: List of SampledInstance dicts, each with keys\\\\n            \\\\\\\"id\\\\\\\", \\\\\\\"text\\\\\\\", \\\\\\\"gold\\\\\\\" (Extraction), \\\\\\\"samples\\\\\\\" (list[Extraction]).\\\\n        subtask: \\\\\\\"ner\\\\\\\", \\\\\\\"re\\\\\\\", or \\\\\\\"eae\\\\\\\".\\\\n\\\\n    Returns:\\\\n        Dict with per-instance score lists::\\\\n\\\\n            {\\\\n                \\\\\\\"fleiss_kappa\\\\\\\": [float, ...],\\\\n                \\\\\\\"soft_jaccard\\\\\\\": [float, ...],\\\\n                \\\\\\\"oracle_f1\\\\\\\":    [float, ...],\\\\n                \\\\\\\"oracle_indices\\\\\\\": [int, ...],\\\\n            }\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    result: dict[str, list] = {\\\\n        \\\\\\\"fleiss_kappa\\\\\\\": [],\\\\n        \\\\\\\"soft_jaccard\\\\\\\": [],\\\\n        \\\\\\\"oracle_f1\\\\\\\": [],\\\\n        \\\\\\\"oracle_indices\\\\\\\": [],\\\\n    }\\\\n\\\\n    for inst in sampled_instances:\\\\n        samples = inst[\\\\\\\"samples\\\\\\\"]\\\\n        gold = inst[\\\\\\\"gold\\\\\\\"]\\\\n\\\\n        result[\\\\\\\"fleiss_kappa\\\\\\\"].append(fleiss_kappa_surface(samples, subtask=subtask))\\\\n        result[\\\\\\\"soft_jaccard\\\\\\\"].append(\\\\n            structural_consistency_soft_jaccard(samples, subtask=subtask)\\\\n        )\\\\n\\\\n        best_idx, best_f1 = oracle_best_of_n(samples, gold, subtask=subtask)\\\\n        result[\\\\\\\"oracle_f1\\\\\\\"].append(best_f1)\\\\n        result[\\\\\\\"oracle_indices\\\\\\\"].append(best_idx)\\\\n\\\\n    return result\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Consistency metrics for structured information extraction with self-consistency.\\n\\nImplements three complementary consistency measures over N sampled extractions:\\n1. Fleiss' Kappa (surface matching) — treats N samples as N raters on entity presence\\n2. Structural soft Jaccard — span-level soft overlap with Hungarian matching\\n3. Oracle best-of-N — upper-bound F1 by selecting the best sample per instance\\n\\nKey dependencies: numpy, scipy (linear_sum_assignment).\\n\\\"\\\"\\\"\\n\\nfrom __future__ import annotations\\n\\nfrom itertools import combinations\\nfrom typing import TYPE_CHECKING\\n\\nimport numpy as np\\nfrom scipy.optimize import linear_sum_assignment\\n\\nif TYPE_CHECKING:\\n    pass\\n\\n# ---------------------------------------------------------------------------\\n# Type aliases (mirrors shared data format)\\n# ---------------------------------------------------------------------------\\nEntity = dict       # {\\\"text\\\", \\\"type\\\", \\\"start\\\", \\\"end\\\"}\\nRelation = dict     # {\\\"head\\\", \\\"tail\\\", \\\"type\\\", ...}\\nEvent = dict        # {\\\"trigger\\\": {...}, \\\"arguments\\\": [...]}\\nExtraction = dict   # {\\\"entities\\\", \\\"relations\\\", \\\"events\\\"}\\n\\n\\n# ===================================================================\\n# 1. Fleiss' Kappa — surface-level entity agreement\\n# ===================================================================\\n\\ndef _extract_surface_keys(sample: Extraction, subtask: str) -> set[tuple]:\\n    \\\"\\\"\\\"Extract surface-level keys from a sample for Fleiss' Kappa computation.\\\"\\\"\\\"\\n    if subtask == \\\"ner\\\":\\n        return {(e[\\\"text\\\"], e[\\\"type\\\"]) for e in sample.get(\\\"entities\\\", [])}\\n    elif subtask == \\\"re\\\":\\n        return {(r[\\\"head\\\"], r[\\\"tail\\\"], r[\\\"type\\\"]) for r in sample.get(\\\"relations\\\", [])}\\n    elif subtask == \\\"eae\\\":\\n        keys: set[tuple] = set()\\n        for ev in sample.get(\\\"events\\\", []):\\n            t = ev.get(\\\"trigger\\\", {})\\n            for arg in ev.get(\\\"arguments\\\", []):\\n                keys.add((t.get(\\\"text\\\", \\\"\\\"), t.get(\\\"type\\\", \\\"\\\"), arg[\\\"role\\\"], arg[\\\"text\\\"]))\\n        return keys\\n    else:\\n        raise ValueError(f\\\"Unknown subtask: {subtask}\\\")\\n\\n\\ndef fleiss_kappa_surface(samples: list[Extraction], subtask: str = \\\"ner\\\") -> float:\\n    \\\"\\\"\\\"Compute Fleiss' kappa treating N LLM samples as N raters on item presence.\\n\\n    Items are subtask-dependent surface keys:\\n    - ner: (entity_text, entity_type)\\n    - re: (head_text, tail_text, relation_type)\\n    - eae: (trigger_text, trigger_type, role, argument_text)\\n\\n    Args:\\n        samples: List of N extraction dicts.\\n        subtask: \\\"ner\\\", \\\"re\\\", or \\\"eae\\\".\\n\\n    Returns:\\n        Fleiss' kappa in [-1, 1].  Returns 1.0 for degenerate cases (<=1 unique\\n        item, perfect agreement, or undefined P_e).\\n    \\\"\\\"\\\"\\n    n_raters = len(samples)\\n    if n_raters <= 1:\\n        return 1.0\\n\\n    # Collect unique keys and per-sample presence sets\\n    entity_sets: list[set[tuple]] = []\\n    all_keys: set[tuple] = set()\\n    for sample in samples:\\n        keys = _extract_surface_keys(sample, subtask)\\n        entity_sets.append(keys)\\n        all_keys |= keys\\n\\n    n_subjects = len(all_keys)\\n    if n_subjects <= 0:\\n        # All samples extracted nothing — perfect agreement on empty set\\n        return 1.0\\n\\n    key_list = sorted(all_keys)\\n\\n    # Build rating matrix: n_subjects x 2 (categories: absent=0, present=1)\\n    # n_ij = number of raters assigning subject i to category j\\n    rating = np.zeros((n_subjects, 2), dtype=np.int64)\\n    for es in entity_sets:\\n        for idx, key in enumerate(key_list):\\n            if key in es:\\n                rating[idx, 1] += 1\\n            else:\\n                rating[idx, 0] += 1\\n\\n    n = n_raters\\n    k = 2  # number of categories\\n\\n    # Check perfect agreement: every subject has all votes in one category\\n    if np.all(np.max(rating, axis=1) == n):\\n        return 1.0\\n\\n    # P_i for each subject\\n    P_i = (np.sum(rating ** 2, axis=1) - n) / (n * (n - 1))\\n    P_bar = np.mean(P_i)\\n\\n    # P_e — expected agreement by chance\\n    p_j = np.sum(rating, axis=0) / (n_subjects * n)\\n    P_e = np.sum(p_j ** 2)\\n\\n    if abs(1.0 - P_e) < 1e-12:\\n\\n... [截断: 输出过长，省略 5252 字符] ...\\n\\nn enumerate(ga):\\n            for j, ab in enumerate(gb):\\n                cost[i, j] = _span_soft_jaccard(aa[\\\"start\\\"], aa[\\\"end\\\"],\\n                                                 ab[\\\"start\\\"], ab[\\\"end\\\"])\\n\\n        row_ind, col_ind = linear_sum_assignment(-cost)\\n        matched_sim = cost[row_ind, col_ind].sum()\\n        total_score += matched_sim\\n\\n    if total_weight == 0:\\n        return 1.0\\n    return total_score / total_weight\\n\\n\\ndef structural_consistency_soft_jaccard(\\n    samples: list[Extraction],\\n    subtask: str = \\\"ner\\\",\\n) -> float:\\n    \\\"\\\"\\\"Span-level soft Jaccard consistency averaged over all sample pairs.\\n\\n    For each pair (i, j) with i < j, computes a type-aware soft Jaccard using\\n    Hungarian matching on span overlaps, then returns the mean.\\n\\n    Args:\\n        samples: N extraction dicts.\\n        subtask: \\\"ner\\\" for entity consistency, \\\"eae\\\" for event-argument consistency.\\n\\n    Returns:\\n        Mean pairwise soft Jaccard in [0, 1].\\n    \\\"\\\"\\\"\\n    n = len(samples)\\n    if n <= 1:\\n        return 1.0\\n\\n    if subtask == \\\"ner\\\":\\n        pair_fn = _ner_soft_jaccard_pair\\n    elif subtask == \\\"re\\\":\\n        pair_fn = _re_soft_jaccard_pair\\n    else:\\n        pair_fn = _eae_soft_jaccard_pair\\n\\n    field = {\\\"ner\\\": \\\"entities\\\", \\\"re\\\": \\\"relations\\\", \\\"eae\\\": \\\"events\\\"}[subtask]\\n\\n    scores: list[float] = []\\n    for i, j in combinations(range(n), 2):\\n        score = pair_fn(\\n            samples[i].get(field, []),\\n            samples[j].get(field, []),\\n        )\\n        scores.append(score)\\n\\n    return float(np.mean(scores))\\n\\n\\n# ===================================================================\\n# 3. Oracle best-of-N\\n# ===================================================================\\n\\ndef oracle_best_of_n(\\n    samples: list[Extraction],\\n    gold: Extraction,\\n    subtask: str = \\\"ner\\\",\\n) -> tuple[int, float]:\\n    \\\"\\\"\\\"Select the sample with the highest F1 against the gold extraction.\\n\\n    Args:\\n        samples: N extraction dicts.\\n        gold: Gold-standard extraction.\\n        subtask: Passed through to per_instance_f1.\\n\\n    Returns:\\n        (best_index, best_f1). Returns (-1, 0.0) if samples is empty.\\n    \\\"\\\"\\\"\\n    if not samples:\\n        return (-1, 0.0)\\n\\n    # Lazy import to avoid circular dependency with evaluation.py\\n    from evaluation import per_instance_f1\\n\\n    best_idx = -1\\n    best_f1 = -1.0\\n\\n    for idx, sample in enumerate(samples):\\n        f1 = per_instance_f1(sample, gold, subtask=subtask)\\n        if f1 > best_f1:\\n            best_f1 = f1\\n            best_idx = idx\\n\\n    return (best_idx, best_f1)\\n\\n\\n# ===================================================================\\n# Aggregate helper\\n# ===================================================================\\n\\ndef compute_all_consistency_scores(\\n    sampled_instances: list[dict],\\n    subtask: str = \\\"ner\\\",\\n) -> dict:\\n    \\\"\\\"\\\"Compute all consistency metrics for a list of sampled instances.\\n\\n    Args:\\n        sampled_instances: List of SampledInstance dicts, each with keys\\n            \\\"id\\\", \\\"text\\\", \\\"gold\\\" (Extraction), \\\"samples\\\" (list[Extraction]).\\n        subtask: \\\"ner\\\", \\\"re\\\", or \\\"eae\\\".\\n\\n    Returns:\\n        Dict with per-instance score lists::\\n\\n            {\\n                \\\"fleiss_kappa\\\": [float, ...],\\n                \\\"soft_jaccard\\\": [float, ...],\\n                \\\"oracle_f1\\\":    [float, ...],\\n                \\\"oracle_indices\\\": [int, ...],\\n            }\\n    \\\"\\\"\\\"\\n    result: dict[str, list] = {\\n        \\\"fleiss_kappa\\\": [],\\n        \\\"soft_jaccard\\\": [],\\n        \\\"oracle_f1\\\": [],\\n        \\\"oracle_indices\\\": [],\\n    }\\n\\n    for inst in sampled_instances:\\n        samples = inst[\\\"samples\\\"]\\n        gold = inst[\\\"gold\\\"]\\n\\n        result[\\\"fleiss_kappa\\\"].append(fleiss_kappa_surface(samples, subtask=subtask))\\n        result[\\\"soft_jaccard\\\"].append(\\n            structural_consistency_soft_jaccard(samples, subtask=subtask)\\n        )\\n\\n        best_idx, best_f1 = oracle_best_of_n(samples, gold, subtask=subtask)\\n        result[\\\"oracle_f1\\\"].append(best_f1)\\n        result[\\\"oracle_indices\\\"].append(best_idx)\\n\\n    return result\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 132_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+OK, the consistency.py itself looks clean. The key change is in FK: when all samples extract nothing (`n_subjects <= 0`), it returns 1.0. The `fk_empty_fix` in the unified pipeline metadata suggests there was a previous bug related to how FK handles empty sets.
+
+Let me now check the old vs new `run_mvp_pilot.py` more carefully to find the correlation computation. The difference in the FULL set values (SJ: 0.383 vs 0.360) can't be explained by just conditional filtering or FK empty fix.
+
+Wait, but I also see that `comparison.json` shows `exp_012_old_max512` SJ=0.3565, FK=0.2651. 
+
+So this is the old samples analyzed with the new code. And `mvp_pilot_004` report shows SJ=0.3825, FK=0.2590 — both analyzing the same samples. Let me verify the sample sizes match: mvp_pilot_004/samples.jsonl is 3,245,910 bytes. I need to check if exp_012_rerun_1024 has access to the old samples. The comparison.json explicitly labels `exp_012_old_max512` as using old max_tokens=512 inference with the new code, so the values should be directly comparable.
+
+The new code on old samples gives SJ=0.3565, while the old code on old samples gives SJ=0.3825 — a difference of 0.026, which shows the code change does matter. But I'm uncertain which old samples `exp_012_old_max512` actually refers to, since mvp_pilot_004 is a specific experiment and `exp_012_old_max512` might be pointing to `exp_012_logprob` instead. Let me check if that directory exists.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "60e8096f-1341-4482-8a74-9c67cdf47d9a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WiuLjPZiWsy3pyKuNbRrAe",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4077,
+      "cache_read_input_tokens": 129370,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4077
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 133_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01SkaYGRK9AhPMdWhwnqbCiN`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "ls -la /root/autodl-tmp/struct_self_consist_ie/output/exp_012_logprob/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "710102c7-705c-442b-9602-d446c825f8d0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WiuLjPZiWsy3pyKuNbRrAe",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4077,
+      "cache_read_input_tokens": 129370,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4077
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 134 · 2026-05-15T23:57:54.980Z_
+
+<details><summary>↩ Tool result · `toolu_01SkaYGRK9AhPMdWhwnqbCiN`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 3276\\ndrwxr-xr-x  2 root root      81 May 14 19:06 .\\ndrwxr-xr-x 91 root root    8192 May 16 04:23 ..\\n-rw-r--r--  1 root root    6196 May 14 19:06 analysis_report.json\\n-rw-r--r--  1 root root 3333863 May 14 19:04 samples_with_logprobs.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "22127bfd-c4f3-4eee-8b84-8e23ecc82209",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 3276\\\\ndrwxr-xr-x  2 root root      81 May 14 19:06 .\\\\ndrwxr-xr-x 91 root root    8192 May 16 04:23 ..\\\\n-rw-r--r--  1 root root    6196 May 14 19:06 analysis_report.json\\\\n-rw-r--r--  1 root root 3333863 May 14 19:04 samples_with_logprobs.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 3276\\ndrwxr-xr-x  2 root root      81 May 14 19:06 .\\ndrwxr-xr-x 91 root root    8192 May 16 04:23 ..\\n-rw-r--r--  1 root root    6196 May 14 19:06 analysis_report.json\\n-rw-r--r--  1 root root 3333863 May 14 19:04 samples_with_logprobs.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 135_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_01GccSxW1D88rdjMAw6B3SoY`</summary>
+
+```json
+{
+  "description": "Search mvp_pilot analysis code",
+  "subagent_type": "Explore",
+  "prompt": "I need to find the difference between the old and new `run_mvp_pilot.py` in the project at `/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie`. Specifically:\n\n1. The old version is in `code/_backup_cond_fix/run_mvp_pilot.py` on the remote server at `/root/autodl-tmp/struct_self_consist_ie/code/_backup_cond_fix/run_mvp_pilot.py`\n2. The new version is in `code/run_mvp_pilot.py` at `/root/autodl-tmp/struct_self_consist_ie/code/run_mvp_pilot.py`\n\nI need to understand what changed between these two versions, specifically in how the \"full\" (non-conditional) Spearman rho for SJ and FK is computed. The old version produces SJ=0.383, FK=0.259 while the new version produces SJ=0.360, FK=0.267 — both on the same dataset with n=529 instances.\n\nLook at the local project tree to see if these files exist locally, and search for any diffs or documentation about this change. The key area is the correlation computation after gold-empty filtering.\n\nQuick search - just find what's available locally."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "3ed688f2-79e9-462d-9761-c9ca65f265ab",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WiuLjPZiWsy3pyKuNbRrAe",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4077,
+      "cache_read_input_tokens": 129370,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4077
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 136_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_started",
+  "task_id": "ac3de103cc59f1fe9",
+  "tool_use_id": "toolu_01GccSxW1D88rdjMAw6B3SoY",
+  "description": "Search mvp_pilot analysis code",
+  "task_type": "local_agent",
+  "prompt": "I need to find the difference between the old and new `run_mvp_pilot.py` in the project at `/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie`. Specifically:\n\n1. The old version is in `code/_backup_cond_fix/run_mvp_pilot.py` on the remote server at `/root/autodl-tmp/struct_self_consist_ie/code/_backup_cond_fix/run_mvp_pilot.py`\n2. The new version is in `code/run_mvp_pilot.py` at `/root/autodl-tmp/struct_self_consist_ie/code/run_mvp_pilot.py`\n\nI need to understand what changed between these two versions, specifically in how the \"full\" (non-conditional) Spearman rho for SJ and FK is computed. The old version produces SJ=0.383, FK=0.259 while the new version produces SJ=0.360, FK=0.267 — both on the same dataset with n=529 instances.\n\nLook at the local project tree to see if these files exist locally, and search for any diffs or documentation about this change. The key area is the correlation computation after gold-empty filtering.\n\nQuick search - just find what's available locally.",
+  "uuid": "701ce8e9-33a0-46ae-81ed-d9dc98c4abe9",
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0"
+}
+```
+
+---
+
+
+## Round 1
+
+## Round 1
+
+107 recorded events
+
+
+### User
+
+_source line 137 · 2026-05-15T23:58:00.802Z_
+
+I need to find the difference between the old and new `run_mvp_pilot.py` in the project at `/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie`. Specifically:
+
+1. The old version is in `code/_backup_cond_fix/run_mvp_pilot.py` on the remote server at `/root/autodl-tmp/struct_self_consist_ie/code/_backup_cond_fix/run_mvp_pilot.py`
+2. The new version is in `code/run_mvp_pilot.py` at `/root/autodl-tmp/struct_self_consist_ie/code/run_mvp_pilot.py`
+
+I need to understand what changed between these two versions, specifically in how the "full" (non-conditional) Spearman rho for SJ and FK is computed. The old version produces SJ=0.383, FK=0.259 while the new version produces SJ=0.360, FK=0.267 — both on the same dataset with n=529 instances.
+
+Look at the local project tree to see if these files exist locally, and search for any diffs or documentation about this change. The key area is the correlation computation after gold-empty filtering.
+
+Quick search - just find what's available locally.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01GccSxW1D88rdjMAw6B3SoY",
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "4288df4f-3f43-4b15-8b07-8d8ba28d81ca"
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 138_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "ac3de103cc59f1fe9",
+  "tool_use_id": "toolu_01GccSxW1D88rdjMAw6B3SoY",
+  "description": "Running find /home/ubuntu/.agent-ml-research-idea_gen_051…",
+  "usage": {
+    "total_tokens": 15864,
+    "tool_uses": 1,
+    "duration_ms": 5426
+  },
+  "last_tool_name": "Bash",
+  "uuid": "0a920ad5-899a-46f0-99f8-1322acf891d9",
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0"
+}
+```
+
+---
+
+
+### Tool call
+
+_source line 139_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01EmqABZFq1MYyTdeEYidNmk`</summary>
+
+```json
+{
+  "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie -type f -name \"*.py\" | grep -E \"(run_mvp|backup)\" | head -20"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01GccSxW1D88rdjMAw6B3SoY",
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "92adf94a-7b5d-41e5-80ac-a4fd7602d4bf",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_01NZNPUnpMwAUhfvpJXNoa8n",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 15847,
+      "cache_read_input_tokens": 0,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 15847,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 7,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 140 · 2026-05-15T23:58:06.414Z_
+
+<details><summary>↩ Tool result · `toolu_01EmqABZFq1MYyTdeEYidNmk`</summary>
+
+```text
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/data/run_mvp_pilot.py
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/run_mvp_pilot.py
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01GccSxW1D88rdjMAw6B3SoY",
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "59b2d59e-a130-4176-a4d8-57276a80a474"
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 141_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "ac3de103cc59f1fe9",
+  "tool_use_id": "toolu_01GccSxW1D88rdjMAw6B3SoY",
+  "description": "Running ls -la /home/ubuntu/.agent-ml-research-idea_gen_0…",
+  "usage": {
+    "total_tokens": 16948,
+    "tool_uses": 2,
+    "duration_ms": 7253
+  },
+  "last_tool_name": "Bash",
+  "uuid": "b070c779-e197-4b38-a446-eeb26d3afba3",
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0"
+}
+```
+
+---
+
+
+### Tool call
+
+_source line 142_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_013QTc79PtgMQm2rjg8DAJiY`</summary>
+
+```json
+{
+  "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/ | head -20"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01GccSxW1D88rdjMAw6B3SoY",
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "6b2d4d07-0889-4099-afea-ac63c3c2a7e6",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_01YF2topZ4wyGrUApm5WJSbU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 5,
+      "cache_creation_input_tokens": 1076,
+      "cache_read_input_tokens": 15847,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1076,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 3,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 143 · 2026-05-15T23:58:08.122Z_
+
+<details><summary>↩ Tool result · `toolu_013QTc79PtgMQm2rjg8DAJiY`</summary>
+
+```text
+total 568
+drwxr-xr-x 10 ubuntu ubuntu   4096 May 15 20:08 .
+drwxrwxr-x  4 ubuntu ubuntu   4096 May 14 04:20 ..
+drwxr-xr-x  3 ubuntu ubuntu   4096 May 14 04:20 .claude
+drwxr-xr-x  6 ubuntu ubuntu   4096 May 15 02:23 .venv
+-rw-r--r--  1 ubuntu ubuntu  12794 May 15 23:52 AGENTS.md
+-rw-r--r--  1 ubuntu ubuntu      0 May 14 04:23 ROADMAP.lock
+-rw-------  1 ubuntu ubuntu   4330 May 15 20:08 ROADMAP.md
+drwxr-xr-x 44 ubuntu ubuntu   4096 May 15 22:32 artifacts
+drwxr-xr-x  2 ubuntu ubuntu  61440 May 15 20:04 checkpoints
+-rw-r--r--  1 ubuntu ubuntu      0 May 14 04:23 decisions.lock
+-rw-------  1 ubuntu ubuntu  97278 May 15 20:08 decisions.yaml
+drwxr-xr-x  4 ubuntu ubuntu   4096 May 15 05:25 docs
+-rwxr-xr-x  1 ubuntu ubuntu      0 May 14 09:33 dream_registry.lock
+-rw-------  1 ubuntu ubuntu   4341 May 15 10:29 dream_registry.yaml
+-rw-r--r--  1 ubuntu ubuntu   4346 May 15 10:29 dream_registry.yaml.bak
+-rw-r--r--  1 ubuntu ubuntu      0 May 14 11:49 experiment_plan.lock
+-rw-------  1 ubuntu ubuntu   9749 May 15 19:26 experiment_plan.yaml
+drwxr-xr-x  3 ubuntu ubuntu   4096 May 14 13:35 figures
+-rw-r--r--  1 ubuntu ubuntu      0 May 14 15:47 literature_map.lock
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01GccSxW1D88rdjMAw6B3SoY",
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "254f608a-5865-4ba1-b3c1-0ece17d90353"
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 144_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "ac3de103cc59f1fe9",
+  "tool_use_id": "toolu_01GccSxW1D88rdjMAw6B3SoY",
+  "description": "Running find /home/ubuntu/.agent-ml-research-idea_gen_051…",
+  "usage": {
+    "total_tokens": 17612,
+    "tool_uses": 3,
+    "duration_ms": 8726
+  },
+  "last_tool_name": "Bash",
+  "uuid": "3b58abdc-0f80-40b7-95a5-8faf136f8cc0",
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0"
+}
+```
+
+---
+
+
+### Tool call
+
+_source line 145_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01EHgA7LpYBxTR3cJA78srZ5`</summary>
+
+```json
+{
+  "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie -type d -name \"code\" | head -10"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01GccSxW1D88rdjMAw6B3SoY",
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "04a839af-cc17-4dff-8b47-84d9f0381ae7",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_017pEHaYzS19KRWFLdJDuW22",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 5,
+      "cache_creation_input_tokens": 662,
+      "cache_read_input_tokens": 16923,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 662,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 146 · 2026-05-15T23:58:09.622Z_
+
+<details><summary>↩ Tool result · `toolu_01EHgA7LpYBxTR3cJA78srZ5`</summary>
+
+```text
+(Bash completed with no output)
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01GccSxW1D88rdjMAw6B3SoY",
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "f8817543-0e3f-4dba-93af-c859b6674bb0"
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 147_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "ac3de103cc59f1fe9",
+  "tool_use_id": "toolu_01GccSxW1D88rdjMAw6B3SoY",
+  "description": "Running ls -la /home/ubuntu/.agent-ml-research-idea_gen_0…",
+  "usage": {
+    "total_tokens": 17738,
+    "tool_uses": 4,
+    "duration_ms": 10916
+  },
+  "last_tool_name": "Bash",
+  "uuid": "7b885d66-6ba0-46b1-8f9c-a60fbd6d06e8",
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0"
+}
+```
+
+---
+
+
+### Tool call
+
+_source line 148_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_015FYjWoDc6gzymF3B1LYGdS`</summary>
+
+```json
+{
+  "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/ | head -30"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01GccSxW1D88rdjMAw6B3SoY",
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "20d150fe-3f09-4573-bc00-3b5957316ad1",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_01QpoPwVoMjgrQgTTrGkDRh1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 4,
+      "cache_creation_input_tokens": 125,
+      "cache_read_input_tokens": 17585,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 125,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 149 · 2026-05-15T23:58:11.779Z_
+
+<details><summary>↩ Tool result · `toolu_015FYjWoDc6gzymF3B1LYGdS`</summary>
+
+```text
+total 1544
+drwxr-xr-x 44 ubuntu ubuntu   4096 May 15 22:32 .
+drwxr-xr-x 10 ubuntu ubuntu   4096 May 15 20:08 ..
+-rw-r--r--  1 ubuntu ubuntu   4393 May 14 18:55 3seed_ner_summary.md
+drwxr-xr-x  2 ubuntu ubuntu   4096 May 14 18:34 3seed_summary
+drwxr-xr-x  2 ubuntu ubuntu   4096 May 14 05:09 __pycache__
+drwxr-xr-x  7 ubuntu ubuntu   4096 May 14 19:29 _project
+-rw-r--r--  1 ubuntu ubuntu   1443 May 15 13:16 analysis_fk_bootstrap_ci_full.json
+-rw-r--r--  1 ubuntu ubuntu 150381 May 15 13:16 analysis_lp_range_cdf.json
+-rw-r--r--  1 ubuntu ubuntu   3197 May 15 13:16 analysis_lp_range_cdf_n16_3seed.json
+-rw-r--r--  1 ubuntu ubuntu  20864 May 15 13:14 analysis_scierc_n16_3seed_selection_f1.json
+-rw-r--r--  1 ubuntu ubuntu   8624 May 15 13:27 analysis_scierc_re_n16_3seed_selection_f1.json
+-rw-r--r--  1 ubuntu ubuntu   2806 May 15 13:24 analysis_unified_rho.json
+-rw-r--r--  1 ubuntu ubuntu   6213 May 15 16:20 analysis_unified_rho_full.json
+-rw-r--r--  1 ubuntu ubuntu  25806 May 14 11:49 analyze_exp004_re_diagnostic.py
+-rw-r--r--  1 ubuntu ubuntu  21379 May 14 15:24 analyze_exp004_v2_re_diagnostic.py
+-rw-r--r--  1 ubuntu ubuntu  15051 May 14 15:24 analyze_exp005_v2_temperature.py
+-rw-r--r--  1 ubuntu ubuntu  21562 May 14 11:47 analyze_exp015_metrics_expansion.py
+-rw-r--r--  1 ubuntu ubuntu  31742 May 14 12:14 analyze_exp016_ensemble.py
+-rw-r--r--  1 ubuntu ubuntu   9093 May 15 11:41 analyze_ood_signals.py
+-rw-r--r--  1 ubuntu ubuntu   4165 May 14 17:43 audit_autodl5090_loop3.md
+-rw-r--r--  1 ubuntu ubuntu   1323 May 14 17:42 audit_gpu5090_4x2_loop3.md
+-rw-r--r--  1 ubuntu ubuntu   3459 May 14 14:31 auroc_bug_diagnosis.md
+-rw-r--r--  1 ubuntu ubuntu   2183 May 14 14:29 autodl_process_check.md
+-rw-r--r--  1 ubuntu ubuntu   2274 May 14 14:28 bjb1_status_report.md
+drwxr-xr-x  3 ubuntu ubuntu   4096 May 14 19:36 bootstrap_ci_nscaling
+-rw-r--r--  1 ubuntu ubuntu  18674 May 14 22:10 bootstrap_ci_summary.json
+-rw-r--r--  1 ubuntu ubuntu   1978 May 14 22:10 bootstrap_ci_tables.tex
+-rw-r--r--  1 ubuntu ubuntu  13271 May 14 05:50 consistency.py
+-rw-r--r--  1 ubuntu ubuntu   8652 May 15 11:37 d072_paper_patch_inventory.md
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01GccSxW1D88rdjMAw6B3SoY",
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "c66d951b-18b9-424e-b3db-759a96c544bc"
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 150_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "ac3de103cc59f1fe9",
+  "tool_use_id": "toolu_01GccSxW1D88rdjMAw6B3SoY",
+  "description": "Running find /home/ubuntu/.agent-ml-research-idea_gen_051…",
+  "usage": {
+    "total_tokens": 18886,
+    "tool_uses": 5,
+    "duration_ms": 13050
+  },
+  "last_tool_name": "Bash",
+  "uuid": "34e3f850-9f19-4a9d-a380-56ba90544de1",
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0"
+}
+```
+
+---
+
+
+### Tool call
+
+_source line 151_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01PfAtxQc9peNuhAv1g3FKJ2`</summary>
+
+```json
+{
+  "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project -type f -name \"run_mvp_pilot.py\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01GccSxW1D88rdjMAw6B3SoY",
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "4828f0a2-b3d5-4a8e-b179-17e519d98786",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_01V2ticqXPD539NDjwKe7b7a",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 4,
+      "cache_creation_input_tokens": 1138,
+      "cache_read_input_tokens": 17710,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1138,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 5,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 152 · 2026-05-15T23:58:13.902Z_
+
+<details><summary>↩ Tool result · `toolu_01PfAtxQc9peNuhAv1g3FKJ2`</summary>
+
+```text
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/data/run_mvp_pilot.py
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01GccSxW1D88rdjMAw6B3SoY",
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "a35c9e8f-a70f-4717-8e13-eea26434d2f6"
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 153_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "ac3de103cc59f1fe9",
+  "tool_use_id": "toolu_01GccSxW1D88rdjMAw6B3SoY",
+  "description": "Running find /home/ubuntu/.agent-ml-research-idea_gen_051…",
+  "usage": {
+    "total_tokens": 19054,
+    "tool_uses": 6,
+    "duration_ms": 15109
+  },
+  "last_tool_name": "Bash",
+  "uuid": "2f1bfc95-839c-463a-a079-bd06b3117933",
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0"
+}
+```
+
+---
+
+
+### Tool call
+
+_source line 154_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_0137ZdpfFZgmBHss86ECoaSc`</summary>
+
+```json
+{
+  "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie -type f \\( -name \"*diff*\" -o -name \"*change*\" -o -name \"*backup*\" \\) | head -20"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01GccSxW1D88rdjMAw6B3SoY",
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "38084f22-822f-4211-8c44-9f38b62e63a6",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_01A92brzMmhKFHbCJGxEZky9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 4,
+      "cache_creation_input_tokens": 166,
+      "cache_read_input_tokens": 18848,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 166,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 155 · 2026-05-15T23:58:16.004Z_
+
+<details><summary>↩ Tool result · `toolu_0137ZdpfFZgmBHss86ECoaSc`</summary>
+
+```text
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/logs/workers/worker_analysis_d070_vc_rho_diff_20260515T091741.log
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/logs/workers/worker_verify_vc_implementation_diff_20260515T044547_result.json
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/logs/workers/worker_analysis_d070_vc_rho_diff_20260515T091741_result.json
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/logs/workers/worker_verify_vc_implementation_diff_20260515T044547.log
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.venv/lib/python3.14/site-packages/fontTools/diff/__pycache__/diff.cpython-314.pyc
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.venv/lib/python3.14/site-packages/fontTools/diff/diff.py
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.venv/lib/python3.14/site-packages/scipy/stats/__pycache__/_finite_differences.cpython-314.pyc
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.venv/lib/python3.14/site-packages/scipy/stats/_finite_differences.py
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.venv/lib/python3.14/site-packages/scipy/optimize/_differentialevolution.py
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.venv/lib/python3.14/site-packages/scipy/optimize/__pycache__/_differentialevolution.cpython-314.pyc
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.venv/lib/python3.14/site-packages/scipy/optimize/__pycache__/_differentiable_functions.cpython-314.pyc
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.venv/lib/python3.14/site-packages/scipy/optimize/__pycache__/_numdiff.cpython-314.pyc
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.venv/lib/python3.14/site-packages/scipy/optimize/_differentiable_functions.py
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.venv/lib/python3.14/site-packages/scipy/optimize/tests/test__differential_evolution.py
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.venv/lib/python3.14/site-packages/scipy/optimize/tests/__pycache__/test__differential_evolution.cpython-314.pyc
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.venv/lib/python3.14/site-packages/scipy/optimize/tests/__pycache__/test__numdiff.cpython-314.pyc
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.venv/lib/python3.14/site-packages/scipy/optimize/tests/__pycache__/test_differentiable_functions.cpython-314.pyc
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.venv/lib/python3.14/site-packages/scipy/optimize/tests/test_differentiable_functions.py
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.venv/lib/python3.14/site-packages/scipy/optimize/tests/test__numdiff.py
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.venv/lib/python3.14/site-packages/scipy/optimize/_numdiff.py
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01GccSxW1D88rdjMAw6B3SoY",
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "6b626f9e-d377-4535-b5f2-8718219a7061"
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 156_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "ac3de103cc59f1fe9",
+  "tool_use_id": "toolu_01GccSxW1D88rdjMAw6B3SoY",
+  "description": "Reading logs/workers/worker_analysis_d070_vc_rho_diff_20260515T091741_result.json",
+  "usage": {
+    "total_tokens": 20413,
+    "tool_uses": 7,
+    "duration_ms": 17258
+  },
+  "last_tool_name": "Read",
+  "uuid": "247e3702-2c94-4689-8b7d-8633fe29cb8e",
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0"
+}
+```
+
+---
+
+
+### Tool call
+
+_source line 157_
+
+<details open><summary>🔧 Tool call — Read · `toolu_012QK7zt2FpWB7JempVX2AMF`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/logs/workers/worker_analysis_d070_vc_rho_diff_20260515T091741_result.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01GccSxW1D88rdjMAw6B3SoY",
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "e4b20b49-13ad-4b03-932c-9f0596a56f3f",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_013AqDtio66HJvQ6tiT96z9M",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 4,
+      "cache_creation_input_tokens": 1357,
+      "cache_read_input_tokens": 19014,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1357,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 158 · 2026-05-15T23:58:18.066Z_
+
+<details><summary>↩ Tool result · `toolu_012QK7zt2FpWB7JempVX2AMF`</summary>
+
+```text
+1	{
+2	  "raw": "报告已写入 `artifacts/vc_implementation_rho_diff.md` 并注册。\n\n核心结果（Qwen × SciERC seed42，本地验证）：\n\n| Task | ρ\\_eq6 | ρ\\_majority | Δρ |\n|------|--------|-------------|-----|\n| NER | 0.3792 | 0.2524 | **+0.1268** |\n| RE | 0.3498 | 0.3311 | **+0.0187** |\n\nNER 差异显著（+0.127），因为 majority threshold 丢弃了大量出现 ≤4/8 次的有效 entity；RE 差异很小（+0.019），因为 relation 本身稀疏，两种实现趋同。LLaMA × SciERC 和 CoNLL 配置仅有 Eq.6 版本的 registry 值，majority 版需从服务器 samples.jsonl 重算。"
+3	}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01GccSxW1D88rdjMAw6B3SoY",
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "77e949cd-84d0-4797-89f2-dfefb223d056"
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 159_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "ac3de103cc59f1fe9",
+  "tool_use_id": "toolu_01GccSxW1D88rdjMAw6B3SoY",
+  "description": "Reading logs/workers/worker_verify_vc_implementation_diff_20260515T044547_result.json",
+  "usage": {
+    "total_tokens": 20414,
+    "tool_uses": 8,
+    "duration_ms": 17784
+  },
+  "last_tool_name": "Read",
+  "uuid": "e65029d9-732c-4d3d-9919-7eddbc5f4bc2",
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0"
+}
+```
+
+---
+
+
+### Tool call
+
+_source line 160_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01G8jNVBamrZkzfqism3agnm`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/logs/workers/worker_verify_vc_implementation_diff_20260515T044547_result.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01GccSxW1D88rdjMAw6B3SoY",
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "f0f012d4-6e3e-46b2-aada-75fbdaba816a",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_013AqDtio66HJvQ6tiT96z9M",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 4,
+      "cache_creation_input_tokens": 1357,
+      "cache_read_input_tokens": 19014,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1357,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 161 · 2026-05-15T23:58:18.591Z_
+
+<details><summary>↩ Tool result · `toolu_01G8jNVBamrZkzfqism3agnm`</summary>
+
+````text
+1	{
+2	  "raw": "结果完全确认。\n\n## 结论\n\n```\nRE (n=397 full, n=238 cond):\n  实现 A (majority threshold > N/2):  full ρ=+0.3311, cond ρ=+0.1386  ← 匹配 Worker 重算值\n  实现 B (all items, no threshold):   full ρ=+0.3498, cond ρ=+0.2409  ← 匹配 Registry 值 (精确匹配)\n\n  Registry 值:   full=0.3498, cond=0.2409\n  Worker 重算值: full=0.3311, cond=0.1386\n\nNER (n=529 full, n=477 cond):\n  实现 A: full ρ=+0.2524, cond ρ=+0.1405\n  实现 B: full ρ=+0.3792, cond ρ=+0.3000\n  差异:   full Δ=0.1268, cond Δ=0.1595  ← NER 上差异同样显著\n```\n\n**根因确认**：\n- **Registry 使用的是实现 B**（无 threshold，计算所有 items 的平均 voting rate）—— 这是服务器上 `analyze_exp012_rerun_5signal.py`、`analyze_exp015_unified.py` 等代码中的实际实现\n- **Worker 重算使用了实现 A**（带 majority threshold `> N/2`），错误地只保留了出现超过半数的 items\n\nNER 上两个实现差异也很大（Δ≈0.13-0.16），说明即使是 entity 也有大量非 majority items，并非\"NER 差异小因为大部分 entity 都是 majority\"的假设。\n\n**论文中正确的实现是 B**（Registry 版本，无 threshold）。"
+3	}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01GccSxW1D88rdjMAw6B3SoY",
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "756c06d5-d8d7-4643-b323-661eaaa20151"
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 162_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "ac3de103cc59f1fe9",
+  "tool_use_id": "toolu_01GccSxW1D88rdjMAw6B3SoY",
+  "description": "Running find /home/ubuntu/.agent-ml-research-idea_gen_051…",
+  "usage": {
+    "total_tokens": 21555,
+    "tool_uses": 9,
+    "duration_ms": 19673
+  },
+  "last_tool_name": "Bash",
+  "uuid": "6d908a36-2d47-4ccf-9f40-aa3ff26ba2ca",
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0"
+}
+```
+
+---
+
+
+### Tool call
+
+_source line 163_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_0175Mt2NYEHS2JT71XFkthGJ`</summary>
+
+```json
+{
+  "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts -type f -name \"*vc_implementation_rho_diff*\" -o -name \"*rho_diff*\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01GccSxW1D88rdjMAw6B3SoY",
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "b843d58a-741e-44e3-9213-d6ca7d93da2f",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_01JrcNYQNT3bAEqFwcktTuqb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 5,
+      "cache_creation_input_tokens": 1130,
+      "cache_read_input_tokens": 20371,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1130,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 5,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 164 · 2026-05-15T23:58:20.537Z_
+
+<details><summary>↩ Tool result · `toolu_0175Mt2NYEHS2JT71XFkthGJ`</summary>
+
+```text
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/report/vc_implementation_rho_diff.md
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/vc_implementation_rho_diff.md
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01GccSxW1D88rdjMAw6B3SoY",
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "a0dce439-65dc-4bf6-9019-90b56fc776dd"
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 165_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "ac3de103cc59f1fe9",
+  "tool_use_id": "toolu_01GccSxW1D88rdjMAw6B3SoY",
+  "description": "Reading artifacts/vc_implementation_rho_diff.md",
+  "usage": {
+    "total_tokens": 21787,
+    "tool_uses": 10,
+    "duration_ms": 21028
+  },
+  "last_tool_name": "Read",
+  "uuid": "ed591a25-4054-452a-beb7-f169a5be288f",
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0"
+}
+```
+
+---
+
+
+### Tool call
+
+_source line 166_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01UqzqMHo3sM6tit2YjyqKTF`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/vc_implementation_rho_diff.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01GccSxW1D88rdjMAw6B3SoY",
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "955e8c0b-c9c2-41a3-9474-2748c7452e53",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_01K27FXgU1DwAZ8jZAtar9K5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 4,
+      "cache_creation_input_tokens": 231,
+      "cache_read_input_tokens": 21501,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 231,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 167 · 2026-05-15T23:58:21.841Z_
+
+<details><summary>↩ Tool result · `toolu_01UqzqMHo3sM6tit2YjyqKTF`</summary>
+
+```text
+1	# VC Implementation ρ Difference: Eq.6 vs Majority Threshold
+2	
+3	Two Voting Confidence (VC) implementations exist in the codebase:
+4	
+5	- **Eq.6 (no threshold)**: `mean([v/N for v in counter.values()])` — averages voting rate over all unique items
+6	- **Majority threshold**: `mean([v/N for v in counter.values() if v > N/2])` else 0.0 — only items appearing in >50% of samples
+7	
+8	D068 unified the paper to majority threshold for Table 2.
+9	
+10	## Spearman ρ (VC vs F1), full split (non-empty gold)
+11	
+12	| Dataset | Model | Task | N | n | ρ\_eq6 | ρ\_majority | Δρ (eq6 − maj) |
+13	|---------|-------|------|---|---|--------|-------------|----------------|
+14	| SciERC | Qwen | NER | 8 | 529 | 0.3792 | 0.2524 | **+0.1268** |
+15	| SciERC | Qwen | RE | 8 | 397 | 0.3498 | 0.3311 | **+0.0187** |
+16	| SciERC | LLaMA | NER | 8 | 529 | 0.4053 | — | — |
+17	| SciERC | LLaMA | RE | 8 | 397 | 0.3840 | — | — |
+18	| CoNLL | LLaMA | NER | 8 | 2756 | 0.4256 | — | — |
+19	| CoNLL | Qwen | NER | 16 | 2756 | 0.4286 | — | — |
+20	
+21	"—" = samples.jsonl not available locally; majority-threshold ρ requires recomputation from raw samples.
+22	
+23	## Methodology
+24	
+25	- **Qwen × SciERC**: Computed from local `exp_012_rerun_1024/samples_with_logprobs.jsonl` (seed=42). NER F1 uses strict span match `(start, end, type)`. RE F1 uses `(head_start, head_end, tail_start, tail_end, type)`. Values validated against worker verification result (exact match).
+26	- **Other configurations**: ρ\_eq6 from experiment registry (all registry entries use Eq.6 implementation, confirmed by worker verification of exp\_012).
+27	
+28	## Key observations
+29	
+30	1. **NER Δρ is large (+0.127)**: The majority threshold discards all items appearing in ≤4 of 8 samples. For NER, many valid but rare entity mentions get filtered out, collapsing the signal's dynamic range and reducing correlation with F1.
+31	
+32	2. **RE Δρ is small (+0.019)**: Relations are inherently sparser — most extracted relations either appear consistently (majority) or not at all. The threshold filter removes fewer items proportionally, so the two implementations converge.
+33	
+34	3. **Direction is consistent**: Eq.6 ≥ majority threshold in both subtasks. The no-threshold version preserves more discriminative signal from low-frequency items.
+35	
+36	4. **Practical impact on paper claims**: The qualitative ranking VC > SJ > others holds under both implementations for NER. For RE, VC remains the top signal either way. The D068 decision to use majority threshold is conservative — it reports the weaker of the two ρ values.
+37	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01GccSxW1D88rdjMAw6B3SoY",
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "cc38e82e-9d25-41b9-a74e-18b0ce98f9cd"
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 168_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "ac3de103cc59f1fe9",
+  "tool_use_id": "toolu_01GccSxW1D88rdjMAw6B3SoY",
+  "description": "Reading artifacts/_project/data/run_mvp_pilot.py",
+  "usage": {
+    "total_tokens": 22825,
+    "tool_uses": 11,
+    "duration_ms": 23023
+  },
+  "last_tool_name": "Read",
+  "uuid": "11ea43d4-005a-4de3-afe4-88d96c6adef4",
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0"
+}
+```
+
+---
+
+
+### Tool call
+
+_source line 169_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01DGawV7KvkZNCTC6BsA4YES`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/data/run_mvp_pilot.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01GccSxW1D88rdjMAw6B3SoY",
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "7446847c-d809-45c6-a6bd-bfa1252168a5",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_013DeUuCv2yaLWCbobiMyeDk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 4,
+      "cache_creation_input_tokens": 1036,
+      "cache_read_input_tokens": 21732,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1036,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 170 · 2026-05-15T23:58:23.832Z_
+
+<details><summary>↩ Tool result · `toolu_01DGawV7KvkZNCTC6BsA4YES`</summary>
+
+```text
+1	"""MVP pilot experiment script for structured self-consistency IE.
+2	
+3	Integrates data loading, vLLM sampling, consistency scoring, and evaluation
+4	into a single CLI-driven pipeline. Outputs a verdict (PASS/MARGINAL/FAIL)
+5	based on the correlation between structural consistency and per-instance F1.
+6	"""
+7	
+8	from __future__ import annotations
+9	
+10	import argparse
+11	import json
+12	import os
+13	import random
+14	import sys
+15	
+16	import numpy as np
+17	
+18	from data_utils import load_scierc, load_ace05
+19	from sampling import (
+20	    VLLMSampler,
+21	    run_sampling_pipeline,
+22	    save_sampled_results,
+23	    load_sampled_results,
+24	)
+25	from consistency import compute_all_consistency_scores
+26	from evaluation import (
+27	    per_instance_f1,
+28	    compute_ner_f1,
+29	    compute_eae_f1,
+30	    spearman_correlation,
+31	)
+32	
+33	
+34	def parse_args() -> argparse.Namespace:
+35	    """Parse command-line arguments."""
+36	    p = argparse.ArgumentParser(description="MVP pilot for structured self-consistency IE")
+37	    p.add_argument("--model_path", type=str, required=True, help="Path to the fine-tuned model")
+38	    p.add_argument("--data_dir", type=str, required=True, help="Dataset directory (SciERC or ACE05)")
+39	    p.add_argument("--dataset", type=str, default="scierc", choices=["scierc", "ace05"],
+40	                   help="Dataset name (default: scierc)")
+41	    p.add_argument("--subtask", type=str, default="ner", choices=["ner", "eae"],
+42	                   help="Subtask (default: ner)")
+43	    p.add_argument("--n_samples", type=int, default=8, help="Number of samples per instance (default: 8)")
+44	    p.add_argument("--temperature", type=float, default=1.0, help="Sampling temperature (default: 1.0)")
+45	    p.add_argument("--max_tokens", type=int, default=512, help="Max generation tokens (default: 512)")
+46	    p.add_argument("--output_dir", type=str, default="output", help="Output directory (default: output)")
+47	    p.add_argument("--num_test", type=int, default=200, help="Max test instances (default: 200)")
+48	    p.add_argument("--seed", type=int, default=42, help="Random seed (default: 42)")
+49	    p.add_argument("--tensor_parallel", type=int, default=1, help="vLLM tensor parallel size (default: 1)")
+50	    p.add_argument("--skip_sampling", action="store_true", help="Skip sampling, load from existing results")
+51	    p.add_argument("--samples_path", type=str, default=None,
+52	                   help="Path to existing sampling results (used with --skip_sampling)")
+53	    return p.parse_args()
+54	
+55	
+56	def print_report(report: dict) -> None:
+57	    """Pretty-print the experiment report to stdout.
+58	
+59	    Args:
+60	        report: Report dict produced by main().
+61	    """
+62	    print("\n" + "=" * 60)
+63	    print("  Structured Self-Consistency IE — MVP Pilot Report")
+64	    print("=" * 60)
+65	    print(f"  Dataset:        {report['dataset']} / {report['subtask']}")
+66	    print(f"  Instances:      {report['num_instances']}")
+67	    print(f"  Samples/inst:   {report['n_samples']}")
+68	    print(f"  Temperature:    {report['temperature']}")
+69	    print("-" * 60)
+70	    print(f"  Greedy F1:      {report['greedy_f1']:.4f}")
+71	    print(f"  Oracle F1:      {report['oracle_f1']:.4f}")
+72	    print(f"  Oracle headroom:{report['oracle_headroom']:+.4f}")
+73	    print("-" * 60)
+74	    print(f"  Fleiss' kappa (mean):    {report['fleiss_kappa_mean']:.4f}")
+75	    print(f"  Soft Jaccard (mean):     {report['soft_jaccard_mean']:.4f}")
+76	    print("-" * 60)
+77	
+78	    corr_fk = report["correlation_fleiss_vs_f1"]
+79	    corr_sj = report["correlation_softjaccard_vs_f1"]
+80	    print(f"  Corr(fleiss_kappa, F1):  rho={corr_fk['rho']:+.4f}  p={corr_fk['p_value']:.4e}")
+81	    print(f"  Corr(soft_jaccard, F1):  rho={corr_sj['rho']:+.4f}  p={corr_sj['p_value']:.4e}")
+82	    print("-" * 60)
+83	    print(f"  Verdict:        {report['verdict']}")
+84	    print("=" * 60 + "\n")
+85	
+86	
+87	def main() -> None:
+88	    args = parse_args()
+89	
+90	    random.seed(args.seed)
+91	    np.random.seed(args.seed)
+92	
+93	    os.makedirs(args.output_dir, exist_ok=True)
+94	
+95	    # --- 1. Load data ---
+96	    if args.dataset == "scierc":
+97	        data = load_scierc(args.data_dir)
+98	    else:
+99	        data = load_ace05(args.data_dir, subtask=args.subtask)
+100	
+101	    test_instances = data["test"][:args.num_test]
+102	    print(f"Loaded {len(test_instances)} test instances from {args.dataset}")
+103	
+104	    # --- 2. Sampling (or load existing) ---
+105	    if args.skip_sampling:
+106	        if not args.samples_path:
+107	            print("ERROR: --samples_path required when using --skip_sampling", file=sys.stderr)
+108	            sys.exit(1)
+109	        sampled = load_sampled_results(args.samples_path)
+110	        print(f"Loaded {len(sampled)} sampled instances from {args.samples_path}")
+111	    else:
+112	        sampler = VLLMSampler(
+113	            args.model_path,
+114	            tensor_parallel_size=args.tensor_parallel,
+115	        )
+116	        samples_out = os.path.join(args.output_dir, "samples.jsonl")
+117	        sampled = run_sampling_pipeline(
+118	            sampler,
+119	            test_instances,
+120	            n_samples=args.n_samples,
+121	            temperature=args.temperature,
+122	            max_tokens=args.max_tokens,
+123	            subtask=args.subtask,
+124	            output_path=samples_out,
+125	        )
+126	        print(f"Sampling complete. Saved to {samples_out}")
+127	
+128	    # --- 3. Consistency scores ---
+129	    consistency = compute_all_consistency_scores(sampled, subtask=args.subtask)
+130	
+131	    # --- 4. Evaluation metrics ---
+132	    greedy_preds = [inst["greedy"] for inst in sampled]
+133	    golds = [inst["gold"] for inst in sampled]
+134	
+135	    if args.subtask == "ner":
+136	        greedy_metrics = compute_ner_f1(greedy_preds, golds)
+137	        oracle_preds = []
+138	        for inst in sampled:
+139	            best = max(inst["samples"], key=lambda s: per_instance_f1(s, inst["gold"], "ner"))
+140	            oracle_preds.append(best)
+141	        oracle_metrics = compute_ner_f1(oracle_preds, golds)
+142	    else:
+143	        greedy_metrics = compute_eae_f1(greedy_preds, golds)
+144	        oracle_preds = []
+145	        for inst in sampled:
+146	            best = max(inst["samples"], key=lambda s: per_instance_f1(s, inst["gold"], "eae"))
+147	            oracle_preds.append(best)
+148	        oracle_metrics = compute_eae_f1(oracle_preds, golds)
+149	
+150	    greedy_f1 = greedy_metrics["f1"]
+151	    oracle_f1 = oracle_metrics["f1"]
+152	    oracle_headroom = oracle_f1 - greedy_f1
+153	
+154	    instance_f1s = [per_instance_f1(pred, gold, subtask=args.subtask)
+155	                    for pred, gold in zip(greedy_preds, golds)]
+156	
+157	    # --- 5. Correlation analysis ---
+158	    rho_fk, p_fk = spearman_correlation(consistency["fleiss_kappa"], instance_f1s)
+159	    rho_sj, p_sj = spearman_correlation(consistency["soft_jaccard"], instance_f1s)
+160	
+161	    rho_structural = max(rho_fk, rho_sj)
+162	
+163	    # --- 6. Pass/Fail verdict ---
+164	    if rho_structural >= 0.40 and oracle_headroom >= 0.02:
+165	        verdict = "PASS"
+166	    elif rho_structural >= 0.30:
+167	        verdict = "MARGINAL"
+168	    else:
+169	        verdict = "FAIL"
+170	
+171	    # --- 7. Report ---
+172	    report = {
+173	        "dataset": args.dataset,
+174	        "subtask": args.subtask,
+175	        "n_samples": args.n_samples,
+176	        "temperature": args.temperature,
+177	        "num_instances": len(sampled),
+178	        "greedy_f1": greedy_f1,
+179	        "oracle_f1": oracle_f1,
+180	        "oracle_headroom": oracle_headroom,
+181	        "fleiss_kappa_mean": float(np.mean(consistency["fleiss_kappa"])),
+182	        "soft_jaccard_mean": float(np.mean(consistency["soft_jaccard"])),
+183	        "correlation_fleiss_vs_f1": {"rho": rho_fk, "p_value": p_fk},
+184	        "correlation_softjaccard_vs_f1": {"rho": rho_sj, "p_value": p_sj},
+185	        "verdict": verdict,
+186	    }
+187	
+188	    print_report(report)
+189	
+190	    report_path = os.path.join(args.output_dir, "report.json")
+191	    with open(report_path, "w", encoding="utf-8") as f:
+192	        json.dump(report, f, indent=2, ensure_ascii=False)
+193	    print(f"Report saved to {report_path}")
+194	
+195	
+196	if __name__ == "__main__":
+197	    main()
+198	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01GccSxW1D88rdjMAw6B3SoY",
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "af09495e-8551-4cfc-8fa1-dde8690001ab"
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 171_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "ac3de103cc59f1fe9",
+  "tool_use_id": "toolu_01GccSxW1D88rdjMAw6B3SoY",
+  "description": "Running grep -r \"0.383\\|0.259\\|0.360\\|0.267\" /home/ubuntu…",
+  "usage": {
+    "total_tokens": 25969,
+    "tool_uses": 12,
+    "duration_ms": 25890
+  },
+  "last_tool_name": "Bash",
+  "uuid": "6e6bb729-5907-4e9f-933f-facc00bfbf36",
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0"
+}
+```
+
+---
+
+
+### Tool call
+
+_source line 172_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01Tgdjh2eHAV7caeJHZWggyd`</summary>
+
+```json
+{
+  "command": "grep -r \"0.383\\|0.259\\|0.360\\|0.267\" /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts --include=\"*.md\" --include=\"*.json\" | head -20"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01GccSxW1D88rdjMAw6B3SoY",
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "6b984283-a1db-4652-97bb-78c9cd450783",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_018xLjFDVBB4Ek7yNkMQFs8a",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 4,
+      "cache_creation_input_tokens": 3142,
+      "cache_read_input_tokens": 22768,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 3142,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 173 · 2026-05-15T23:58:26.748Z_
+
+<details><summary>↩ Tool result · `toolu_01Tgdjh2eHAV7caeJHZWggyd`</summary>
+
+```text
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/data/analysis_lp_range_cdf.json:      0.05360364990414727,
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/data/analysis_lp_range_cdf.json:      0.0605259481674254,
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/data/analysis_lp_range_cdf.json:      0.0607267658821784,
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/data/analysis_lp_range_cdf.json:      0.06267293791076556,
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/data/analysis_lp_range_cdf.json:      0.08267389379329282,
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/data/analysis_lp_range_cdf.json:      0.08804862063839099,
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/data/analysis_lp_range_cdf.json:      0.17263111120225944,
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/data/analysis_lp_range_cdf.json:      0.007259528130671506,
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/data/analysis_lp_range_cdf.json:      0.010889292196007259,
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/data/analysis_lp_range_cdf.json:      0.04900181488203267,
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/data/analysis_lp_range_cdf.json:      0.07259528130671507,
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/data/analysis_lp_range_cdf.json:      0.08892921960072596,
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/data/analysis_lp_range_cdf.json:      0.19600725952813067,
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/data/analysis_lp_range_cdf.json:      0.21960072595281308,
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/data/analysis_lp_range_cdf.json:      0.2595281306715064,
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/data/analysis_lp_range_cdf.json:      0.29219600725952816,
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/data/analysis_lp_range_cdf.json:      0.4900181488203267,
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/data/analysis_lp_range_cdf.json:      0.6007259528130672,
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/data/analysis_lp_range_cdf.json:      0.8892921960072595,
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/data/analysis_lp_range_cdf.json:      0.8929219600725953,
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01GccSxW1D88rdjMAw6B3SoY",
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "ce4b5a90-b6db-40b4-a910-c63125b32114"
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 174_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "ac3de103cc59f1fe9",
+  "tool_use_id": "toolu_01GccSxW1D88rdjMAw6B3SoY",
+  "description": "Running find /home/ubuntu/.agent-ml-research-idea_gen_051…",
+  "usage": {
+    "total_tokens": 27299,
+    "tool_uses": 13,
+    "duration_ms": 28142
+  },
+  "last_tool_name": "Bash",
+  "uuid": "55aeff3a-984e-4de5-898d-041edca91ccc",
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0"
+}
+```
+
+---
+
+
+### Tool call
+
+_source line 175_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_012y1qPeT4bthuu5ACXjxbBM`</summary>
+
+```json
+{
+  "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie -type f \\( -name \"*.md\" -o -name \"*.yaml\" \\) -exec grep -l \"majority\\|threshold\\|eq6\\|VC.*implementation\" {} \\; | head -20"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01GccSxW1D88rdjMAw6B3SoY",
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "49715c42-729d-4a08-881d-c1120721b306",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_014M2CY4WRaqQxTQqTojLLiu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 4,
+      "cache_creation_input_tokens": 1328,
+      "cache_read_input_tokens": 25910,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1328,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 176 · 2026-05-15T23:58:29.349Z_
+
+<details><summary>↩ Tool result · `toolu_012y1qPeT4bthuu5ACXjxbBM`</summary>
+
+```text
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/IDEA_BRIEF.md
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/task_context/history/agent/loop_6_1778848721.md
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/task_context/history/agent/loop_1.md
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/task_context/history/reviewer/loop_4.md
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/task_context/history/reviewer/loop_5.md
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/writing_plan.yaml
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/paper_provenance.yaml
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/literature_map.yaml
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/registry.yaml
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/report/d072_paper_patch_inventory.md
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/report/round_7_consistency.md
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/report/D070_D071_revision_summary.md
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/report/vc_implementation_rho_diff.md
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/report/analysis_fk_tost_round8.md
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/report/round_7_consistency_de165f.md
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/report/freeform_ablation_deep_analysis.md
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/report/re_nonzero_selection_analysis.md
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/d072_paper_patch_inventory.md
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/dream_reports/dream_20260514T203201/median/review_context.yaml
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/dream_reports/dream_20260514T203201/median/review_report.md
+find: ‘grep’ terminated by signal 13
+find: ‘grep’ terminated by signal 13
+find: ‘grep’ terminated by signal 13
+find: ‘grep’ terminated by signal 13
+find: ‘grep’ terminated by signal 13
+find: ‘grep’ terminated by signal 13
+find: ‘grep’ terminated by signal 13
+find: ‘grep’ terminated by signal 13
+find: ‘grep’ terminated by signal 13
+find: ‘grep’ terminated by signal 13
+find: ‘grep’ terminated by signal 13
+find: ‘grep’ terminated by signal 13
+find: ‘grep’ terminated by signal 13
+find: ‘grep’ terminated by signal 13
+find: ‘grep’ terminated by signal 13
+find: ‘grep’ terminated by signal 13
+find: ‘grep’ terminated by signal 13
+find: ‘grep’ terminated by signal 13
+find: ‘grep’ terminated by signal 13
+find: ‘grep’ terminated by signal 13
+find: ‘grep’ terminated by signal 13
+find: ‘grep’ terminated by signal 13
+find: ‘grep’ terminated by signal 13
+find: ‘grep’ terminated by signal 13
+find: ‘grep’ terminated by signal 13
+find: ‘grep’ terminated by signal 13
+find: ‘grep’ terminated by signal 13
+find: ‘grep’ terminated by signal 13
+find: ‘grep’ terminated by signal 13
+find: ‘grep’ terminated by signal 13
+find: ‘grep’ terminated by signal 13
+find: ‘grep’ terminated by signal 13
+find: ‘grep’ terminated by signal 13
+find: ‘grep’ terminated by signal 13
+find: ‘grep’ terminated by signal 13
+find: ‘grep’ terminated by signal 13
+find: ‘grep’ terminated by signal 13
+find: ‘grep’ terminated by signal 13
+find: ‘grep’ terminated by signal 13
+find: ‘grep’ terminated by signal 13
+find: ‘grep’ terminated by signal 13
+find: ‘grep’ terminated by signal 13
+find: ‘grep’ terminated by signal 13
+find: ‘grep’ terminated by signal 13
+find: ‘grep’ terminated by signal 13
+find: ‘grep’ terminated by signal 13
+find: ‘grep’ terminated by signal 13
+find: ‘grep’ terminated by signal 13
+find: ‘grep’ terminated by signal 13
+find: ‘grep’ terminated by signal 13
+find: ‘grep’ terminated by signal 13
+find: ‘grep’ terminated by signal 13
+find: ‘grep’ terminated by signal 13
+find: ‘grep’ terminated by signal 13
+find: ‘grep’ terminated by signal 13
+find: ‘grep’ terminated by signal 13
+find: ‘grep’ terminated by signal 13
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01GccSxW1D88rdjMAw6B3SoY",
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "1fbc96ac-ff9c-4113-806f-a037c4a8b67e"
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 177_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "ac3de103cc59f1fe9",
+  "tool_use_id": "toolu_01GccSxW1D88rdjMAw6B3SoY",
+  "description": "Reading artifacts/_project/report/D070_D071_revision_summary.md",
+  "usage": {
+    "total_tokens": 29033,
+    "tool_uses": 14,
+    "duration_ms": 30210
+  },
+  "last_tool_name": "Read",
+  "uuid": "7a64cc90-85d0-4e8a-bd4a-7682f4a88f76",
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0"
+}
+```
+
+---
+
+
+### Tool call
+
+_source line 178_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01Qgi7Ue77thpDmRk8SFEnnD`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/report/D070_D071_revision_summary.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01GccSxW1D88rdjMAw6B3SoY",
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "fb8e8c46-c80c-4ddf-b0a6-dd993458f9af",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_01DPdtNKCzjzqzgEkD4nW7Q4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 4,
+      "cache_creation_input_tokens": 1732,
+      "cache_read_input_tokens": 27238,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1732,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 179 · 2026-05-15T23:58:31.023Z_
+
+<details><summary>↩ Tool result · `toolu_01Qgi7Ue77thpDmRk8SFEnnD`</summary>
+
+```text
+1	# D070+D071 Paper Revision Summary (Round 7)
+2	
+3	## Files Modified
+4	- docs/paper/sections/abstract.tex — SF-5: simplified to problem-finding-significance, removed ρ/AUROC numbers, bottleneck framing
+5	- docs/paper/sections/introduction.tex — MF-2: 3 contributions (bottleneck/framework/complexity), no "first" claims
+6	- docs/paper/sections/experiments.tex — SF-2: thinking confound with confirmed data, Minor-9: N=8 seed note
+7	- docs/paper/sections/discussion.tex — D071: free-form ablation placeholder, SF-1/SF-6 fixes
+8	- docs/paper/sections/conclusion.tex — D071: free-form ablation mention, bottleneck framing
+9	- docs/paper/sections/method.tex — SF-7: VC ρ diff in footnote, Minor-3: FK significance test
+10	- docs/paper/sections/related_work.tex — Minor-5: he2024uncertainty context
+11	- docs/paper/sections/appendix.tex — MF-3: TOST δ* data, SF-4: cross-model heading, SF-2: thinking footnote
+12	
+13	## Computation Artifacts Integrated
+14	1. tost_breakpoint_delta_star.md — NER δ* ∈ [1.28, 3.38]pp, RE δ* ∈ [2.86, 6.53]pp
+15	2. qwen3_thinking_confirmation.md — enable_thinking=True for SciERC, loss participation confirmed
+16	3. vc_implementation_rho_diff.md — Eq.6 vs majority: NER Δρ=+0.127, RE Δρ=+0.019
+17	
+18	## D071 Narrative Spine (verified across all sections)
+19	1. Problem: TTS for structured IE under constrained decoding ✓
+20	2. Conceptual: 4/5 instance-level by construction → noted, not discovered ✓
+21	3. Core empirical: LP compression 60% tied ✓
+22	4. Control: free-form ablation [PLANNED] ✓
+23	5. Practical: non-tied +2.9pp + relaxed decoding ✓
+24	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01GccSxW1D88rdjMAw6B3SoY",
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "7a4a3799-cdad-4a8c-a572-3c0d4ea82440"
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 180_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "ac3de103cc59f1fe9",
+  "tool_use_id": "toolu_01GccSxW1D88rdjMAw6B3SoY",
+  "description": "Running grep -A 20 -B 5 \"majority\\|eq6\\|VC implementation…",
+  "usage": {
+    "total_tokens": 29752,
+    "tool_uses": 15,
+    "duration_ms": 32201
+  },
+  "last_tool_name": "Bash",
+  "uuid": "ff1fd858-0f23-4873-bcdb-fbc86cb1aded",
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0"
+}
+```
+
+---
+
+
+### Tool call
+
+_source line 181_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_013NDMTdysbHuswNR94QstN6`</summary>
+
+```json
+{
+  "command": "grep -A 20 -B 5 \"majority\\|eq6\\|VC implementation\" /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/decisions.yaml | head -100"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01GccSxW1D88rdjMAw6B3SoY",
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "3739054b-8732-4f96-ab38-3af28d1a5ca6",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_01Msavucx4gfbZBH9pYkykrA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 4,
+      "cache_creation_input_tokens": 711,
+      "cache_read_input_tokens": 28970,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 711,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 182 · 2026-05-15T23:58:33.060Z_
+
+<details><summary>↩ Tool result · `toolu_013NDMTdysbHuswNR94QstN6`</summary>
+
+```text
+    result: 需从 samples.jsonl 计算 conditional rho
+  depends_on: []
+- id: D053
+  date: 2026-05-14 21:31 UTC
+  summary: voting_conf 从 bootstrap CI 报告中排除，论文 CI 只覆盖 SJ/FK/EM/logprob
+  rationale: Bootstrap 代码中 voting_conf 定义与主 pipeline 不一致（多了 majority 过滤），导致 ρ 系统性偏低
+    ~0.04。修代码简单但重跑 B=10000 耗时。论文排除 voting_conf CI 是最快最干净的修复，4 个信号的 CI 已足够支撑结论。
+  related_experiments:
+  - exp_id: exp_017_llama_conll_n16
+    role: bootstrap 数据源
+    result: SJ/FK/logprob bootstrap 与 registry 一致，voting_conf 偏低 0.04
+  depends_on: []
+- id: D054
+  date: 2026-05-14 22:15 UTC
+  summary: 全部推理实验统一重跑 max_tokens=1024，消除 512 截断隐患
+  rationale: 审计发现全部 17 个 N=16 实验和大部分 N=8 实验使用默认 max_tokens=512。虽然 N-scaling 内部对比一致（同为
+    512），但绝对 ρ 值可能受截断影响，且审稿人必问。重跑成本仅 1-2 小时（4 GPU 并行，每个推理分钟级），收益是方法论无死角。选 Option B
+    而非 A（留隐患）或 C（递把柄）。
+  related_experiments:
+  - exp_id: exp_012_rerun_1024
+    role: N=8 1024 重跑已在进行
+    result: running
+  - exp_id: pilot_004
+    role: 唯一已有 1024 数据的 N=8 实验
+    result: completed
+  depends_on: []
+--
+  depends_on:
+  - D064
+  - D066
+- id: D068
+  date: 2026-05-15 08:00 UTC
+  summary: 'VC implementation: unify to Table 2 version (worker) across all tables,
+    add footnote'
+  rationale: 'Two VC implementations exist (majority threshold vs no threshold). Table
+    2 has used worker version (0.359 for RE) through 4 review rounds. Switching to
+    recompute (0.394) would cascade into TOST table and weaken "EM and Voting fail
+    equivalence at ±5pp" claim. Pragmatic choice: keep Table 2 anchor, unify Appendix
+    J to match, add footnote documenting the implementation choice. Qualitative conclusions
+    unchanged either way (all signals worse than greedy for RE selection).'
+  related_experiments: []
+  depends_on:
+  - D067
+- id: D069
+  date: 2026-05-15 08:10 UTC
+  summary: Round 5 策略：constrained decoding scope limiting + C2 reframe + writing consistency
+    sweep。不加新实验。
+  rationale: 'Round 5 仍 3.0/5。SYSTEMIC_ISSUE #1：claim scope 超出 evidence（5 条指向同一根因）。关键新发现：Appendix
+    F non-tied subset（logprob +2.9pp, p=0.01）自证 gap 主因是 constrained decoding score
+    compression，而非 IE 固有属性。修复路径：(1) title/abstract/conclusion 加 constrained decoding
+    scope，(2) C2 从"5 signals all fail"改为"logprob compression + MBR IE failure"，(3)
+    提升 Appendix F 到主文 Discussion，(4) 去掉"first"/"cross-architecture"等过度 claim，(5) RE
+    preliminary 全文一致。不跑 free-form decoding 实验——non-tied subset 已是天然内部对照，更方法论干净。纯 Paper
+    Agent 任务。'
+  related_experiments: []
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01GccSxW1D88rdjMAw6B3SoY",
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "2c3d90bd-6905-4649-9f5f-cc29f62287ac"
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 183_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "ac3de103cc59f1fe9",
+  "tool_use_id": "toolu_01GccSxW1D88rdjMAw6B3SoY",
+  "description": "Running grep -A 30 \"id: D068\" /home/ubuntu/.agent-ml-rese…",
+  "usage": {
+    "total_tokens": 31035,
+    "tool_uses": 16,
+    "duration_ms": 34471
+  },
+  "last_tool_name": "Bash",
+  "uuid": "866efb77-86a6-474c-9094-c81eba0d9127",
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0"
+}
+```
+
+---
+
+
+### Tool call
+
+_source line 184_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01S9odeUdgLBgRRe4Y7vBEb8`</summary>
+
+```json
+{
+  "command": "grep -A 30 \"id: D068\" /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/decisions.yaml"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01GccSxW1D88rdjMAw6B3SoY",
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "fa31352c-cd2e-4488-9a53-97fceef3358b",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_01LGFRr4enAT95nmoyEHGuQh",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 4,
+      "cache_creation_input_tokens": 1281,
+      "cache_read_input_tokens": 29681,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1281,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 185 · 2026-05-15T23:58:35.340Z_
+
+<details><summary>↩ Tool result · `toolu_01S9odeUdgLBgRRe4Y7vBEb8`</summary>
+
+```text
+- id: D068
+  date: 2026-05-15 08:00 UTC
+  summary: 'VC implementation: unify to Table 2 version (worker) across all tables,
+    add footnote'
+  rationale: 'Two VC implementations exist (majority threshold vs no threshold). Table
+    2 has used worker version (0.359 for RE) through 4 review rounds. Switching to
+    recompute (0.394) would cascade into TOST table and weaken "EM and Voting fail
+    equivalence at ±5pp" claim. Pragmatic choice: keep Table 2 anchor, unify Appendix
+    J to match, add footnote documenting the implementation choice. Qualitative conclusions
+    unchanged either way (all signals worse than greedy for RE selection).'
+  related_experiments: []
+  depends_on:
+  - D067
+- id: D069
+  date: 2026-05-15 08:10 UTC
+  summary: Round 5 策略：constrained decoding scope limiting + C2 reframe + writing consistency
+    sweep。不加新实验。
+  rationale: 'Round 5 仍 3.0/5。SYSTEMIC_ISSUE #1：claim scope 超出 evidence（5 条指向同一根因）。关键新发现：Appendix
+    F non-tied subset（logprob +2.9pp, p=0.01）自证 gap 主因是 constrained decoding score
+    compression，而非 IE 固有属性。修复路径：(1) title/abstract/conclusion 加 constrained decoding
+    scope，(2) C2 从"5 signals all fail"改为"logprob compression + MBR IE failure"，(3)
+    提升 Appendix F 到主文 Discussion，(4) 去掉"first"/"cross-architecture"等过度 claim，(5) RE
+    preliminary 全文一致。不跑 free-form decoding 实验——non-tied subset 已是天然内部对照，更方法论干净。纯 Paper
+    Agent 任务。'
+  related_experiments: []
+  depends_on:
+  - D067
+  - D068
+- id: D070
+  date: 2026-05-15 09:14 UTC
+  summary: Round 6 策略：narrative restructure (dismiss definitional 4/5 failure, center
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01GccSxW1D88rdjMAw6B3SoY",
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "ac86dbd0-4be2-488c-88f2-4dfd844e8aa9"
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 186_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "ac3de103cc59f1fe9",
+  "tool_use_id": "toolu_01GccSxW1D88rdjMAw6B3SoY",
+  "description": "Running grep -r \"gold-empty\\|gold_empty\\|non_empty\\|non-e…",
+  "usage": {
+    "total_tokens": 31756,
+    "tool_uses": 17,
+    "duration_ms": 36259
+  },
+  "last_tool_name": "Bash",
+  "uuid": "3535c881-b40c-4b81-9170-70a69370adeb",
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0"
+}
+```
+
+---
+
+
+### Tool call
+
+_source line 187_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01JMAK5QMvMmagv8SjpihGfF`</summary>
+
+```json
+{
+  "command": "grep -r \"gold-empty\\|gold_empty\\|non_empty\\|non-empty\" /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts --include=\"*.md\" | head -20"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01GccSxW1D88rdjMAw6B3SoY",
+  "session_id": "14fb43c5-866f-4adc-9d8a-0b1846828cb0",
+  "uuid": "078b8869-5e04-4750-ac7c-9a71e1bb7f86",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_01KF8hPuC5cuVves1yu8v2c3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 4,
+      "cache_creation_input_tokens": 719,
+      "cache_read_input_tokens": 30962,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 719,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---

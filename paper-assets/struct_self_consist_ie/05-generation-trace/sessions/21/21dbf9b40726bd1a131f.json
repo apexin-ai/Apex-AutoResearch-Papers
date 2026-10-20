@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "21dbf9b40726bd1a131f",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis 4b selection pipeline",
+  "task_key": "worker_analysis_4b_selection_pipeline_20260515T200110",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_4b_selection_pipeline_20260515T200110_result.json",
+    "occurrence": 1,
+    "bytes": 2949,
+    "sha256": "00c25512f3747788da630f3fa5afa395e5b04b880343660daf31d46aabc856ad"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部数据齐了。以下是完整结果：\n\n---\n\n## Qwen3-4B Selection F1 Results\n\n### CoNLL NER (n=2756, N=8)\n\n| Method | Sel F1 | Δ Greedy | p-value |\n|--------|--------|----------|---------|\n| Greedy | 0.9213 | — | — |\n| Random | 0.9183 | -0.0029 | — |\n| **VC** | **0.9233** | **+0.0020** | 0.076 |\n| SJ | 0.9220 | +0.0007 | 0.256 |\n| FK | 0.9215 | +0.0003 | 0.411 |\n| EM | 0.9220 | +0.0007 | 0.255 |\n| LP | 0.9221 | +0.0009 | 0.093 |\n| Oracle | 0.9382 | +0.0170 | — |\n\n**Selection gaps**: SJ-FK=+0.0005, SJ-VC=-0.0013, SJ-LP=-0.0002\n\n### SciERC NER (n=529, N=8)\n\n| Method | Sel F1 | Δ Greedy | p-value |\n|--------|--------|----------|---------|\n| Greedy | 0.6622 | — | — |\n| Random | 0.5991 | -0.0631 | — |\n| VC | 0.6282 | -0.0340 | 1.000 |\n| **SJ** | **0.6473** | **-0.0149** | 0.975 |\n| FK | 0.6466 | -0.0156 | 0.980 |\n| EM | 0.6436 | -0.0187 | 0.992 |\n| LP | 0.6399 | -0.0223 | 0.998 |\n| Oracle | 0.7925 | +0.1302 | — |\n\n**Selection gaps**: SJ-FK=+0.0007, SJ-VC=+0.0191, SJ-LP=+0.0074\n\n### SciERC RE (n=397, N=8)\n\n| Method | Sel F1 | Δ Greedy | p-value |\n|--------|--------|----------|---------|\n| Greedy | 0.4076 | — | — |\n| Random | 0.3350 | -0.0726 | — |\n| VC | 0.4002 | -0.0074 | 0.713 |\n| **SJ** | **0.4073** | **-0.0002** | 0.511 |\n| FK | 0.3925 | -0.0151 | 0.912 |\n| EM | 0.3804 | -0.0272 | 0.995 |\n| LP | 0.3941 | -0.0135 | 0.852 |\n| Oracle | 0.5970 | +0.1894 | — |\n\n**Selection gaps**: SJ-FK=+0.0149, SJ-VC=+0.0071, SJ-LP=+0.0132\n\n---\n\n## 4B vs 8B Comparison (N=8)\n\n### CoNLL NER\n\n| Metric | 8B | 4B |\n|--------|----|----|\n| Greedy | 0.9079 | 0.9213 |\n| Oracle | 0.9483 | 0.9382 |\n| Headroom | +0.0404 | +0.0170 |\n| SJ sel | 0.8990 | 0.9220 |\n| FK sel | 0.8988 | 0.9215 |\n| SJ-FK sel gap | +0.0002 | +0.0005 |\n| SJ ρ | 0.4357 | 0.4324 |\n| FK ρ | 0.3998 | 0.4244 |\n| SJ-FK ρ gap | +0.0359 | +0.0080 |\n\n### SciERC NER (8B = 3-seed mean N=8)\n\n| Metric | 8B | 4B |\n|--------|----|----|\n| Greedy | 0.6458 | 0.6622 |\n| Oracle | 0.7764 | 0.7925 |\n| SJ sel | 0.6413 | 0.6473 |\n| FK sel | 0.6413 | 0.6466 |\n| SJ-FK sel gap | +0.0001 | +0.0007 |\n| SJ ρ | ~0.42 | 0.4221 |\n| FK ρ | ~0.33 | 0.3258 |\n| SJ-FK ρ gap | ~+0.09 | +0.0963 |\n\n---\n\n## Key Finding for Correlation-Selection Gap Claim\n\n**SciERC NER 4B** demonstrates the pattern clearly:\n- **Correlation gap** (SJ-FK ρ): **+0.096** — SJ correlates much better with quality\n- **Selection gap** (SJ-FK sel F1): **+0.0007** — but selects virtually identically\n\n**SciERC RE 4B** shows the largest selection gap:\n- SJ-FK sel: **+0.0149** (SJ definitively better at selection for RE)\n- SJ-LP sel: **+0.0132**\n\n**CoNLL 4B** has compressed headroom (only 1.7pp greedy-oracle gap), so all signals are packed together with negligible selection gaps.\n\nResults saved to `/root/autodl-tmp/struct_self_consist_ie/output/selection_f1_4b_results.json`."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-4b-selection-pipeline.md"
+}

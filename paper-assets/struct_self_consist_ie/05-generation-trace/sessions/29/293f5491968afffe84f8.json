@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "293f5491968afffe84f8",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "check ft 002 v2 completion",
+  "task_key": "worker_check_ft_002_v2_completion_20260514T083952",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_check_ft_002_v2_completion_20260514T083952_result.json",
+    "occurrence": 1,
+    "bytes": 665,
+    "sha256": "2aa7b64fd08230f5efa544d3d5be95e526dc5c4b44639af032645f698df5d82a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## ft_002_v2 训练报告\n\n**状态：成功完成**\n\n| 指标 | 值 |\n|------|-----|\n| Epochs | 5.0 / 5.0 |\n| Total steps | 585 |\n| Train loss | 0.0806 |\n| Eval loss | 0.089 |\n| Runtime | 28m41s |\n| Throughput | 5.41 samples/s, 0.34 steps/s |\n\n**Checkpoint 路径：** `/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-lora-v2/`\n- `adapter_model.safetensors` (333MB) 已保存\n- 中间 checkpoints: checkpoint-400, checkpoint-500, checkpoint-585\n\n**GPU 状态：** 4 块 GPU 均空闲（0% utilization, 2 MiB），训练进程已正常退出。\n\n**Registry 已更新** conclusion=success，**cron 已删除**。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-ft-002-v2-completion.md"
+}

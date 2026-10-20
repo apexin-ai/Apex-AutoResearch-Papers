@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "231acdf3bd8e52df2d7d",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis multiseed selection f1",
+  "task_key": "worker_analysis_multiseed_selection_f1_20260515T124808",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_multiseed_selection_f1_20260515T124808_result.json",
+    "occurrence": 1,
+    "bytes": 1289,
+    "sha256": "36c9fc8c9c3c875a537b2a00ddbe805c155bbf679507dd4457fd14e017cc525f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总结果：\n\n## 结果摘要\n\n### 5 个实验组，3 seeds (42, 123, 456)，bootstrap 10000 次\n\n| 配置 | N | 最佳 Signal | Δ greedy | p (Fisher) |\n|------|---|------------|----------|------------|\n| **Qwen SciERC NER N=16** | 529 | LP | +0.0047 | 0.066 |\n| **Qwen SciERC RE N=16** | 397 | LP | +0.0101 | 0.053 |\n| **Qwen SciERC NER N=8** | 529 | LP | +0.0004 | 0.541 |\n| **LLaMA SciERC NER N=8** | 529 | FK | -0.0014 | 0.698 |\n| **LLaMA CoNLL NER N=16** | 2756 | VC | +0.0028 | **0.0001** |\n\n**关键发现：**\n- **CoNLL N=16** 是唯一所有 signal 都显著优于 greedy 的配置（p < 0.001，Fisher 合并），所有 5 个 signal 一致显著\n- **SciERC 上无论 NER 还是 RE**，没有 signal 在 3-seed 合并后达到 p < 0.05（LP 最接近，p ≈ 0.05-0.07）\n- VC 在 SciERC 上一致 **低于** greedy（Δ ≈ -0.03），说明 voting confidence 在 SciERC 这种复杂 schema 上会 hurt\n- Oracle F1 远高于 greedy（SciERC NER: +17.6pp, RE: +23.8pp），说明有大量 room for improvement，但现有 signal 还不够好\n\n**产出文件：**\n- 脚本：`code/compute_selection_f1.py`\n- JSON 数据：`output/multiseed_selection_f1.json`\n- Markdown 报告：`artifacts/multiseed_selection_f1_report.md`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-multiseed-selection-f1.md"
+}

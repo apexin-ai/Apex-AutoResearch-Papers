@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "06941163f3589bd0be9f",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis fk bootstrap round8",
+  "task_key": "worker_analysis_fk_bootstrap_round8_20260515T153706",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_fk_bootstrap_round8_20260515T153706_result.json",
+    "occurrence": 1,
+    "bytes": 950,
+    "sha256": "db2430b228774755e749627adaadbfcbdb155e768cee5634db27df8b94226fab"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果已保存到 `output/analysis_round8/fk_bootstrap_test.json`。\n\n**核心结果：**\n\n| 指标 | 值 |\n|------|-----|\n| n_valid | 529 |\n| Real FK mean | 0.4015 (std=0.30, median=0.37) |\n| FK IQR | [0.206, 0.543] |\n| Permuted FK mean (null) | **-0.1406** (std=0.0002) |\n| Permutation p-value | **p < 0.0001** (0/10000 permutations ≥ real) |\n| Split-half reliability | **r = 0.394 ± 0.028** |\n| FK-F1 Spearman ρ | 0.267 (p=4.7e-10) |\n\n**结论**：FK within-instance agreement 远超 random baseline（0.40 vs -0.14，p<0.0001），10000 次 permutation 中没有一次达到真实 FK 均值。Split-half reliability r=0.39 表明即使将 8 个 sample 拆成 4+4，FK 信号仍然稳定。这有力回应了 reviewer 关于 FK independence assumption 的质疑——即使 LLM samples 不是完全独立的 raters，FK 仍捕获了有意义的、显著高于随机的 within-instance agreement 信号。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-fk-bootstrap-round8.md"
+}

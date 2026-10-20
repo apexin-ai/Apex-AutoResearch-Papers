@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "11e56f2d7668b5904809",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ops anon repo audit push",
+  "task_key": "worker_ops_anon_repo_audit_push_20260525T083815",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_anon_repo_audit_push_20260525T083815_result.json",
+    "occurrence": 1,
+    "bytes": 386,
+    "sha256": "2ab4bfbbeec59dc9cd8d8a9584be1b62a313a923207343f3d9c89ac01fddacc9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计完成。结果：\n\n- **密钥**: PAT 有效，推送权限确认\n- **匿名性**: 全部通过，无泄露\n- **完整性**: README/requirements.txt/核心代码/configs 齐全\n- **干净度**: 无垃圾文件、无大二进制、无敏感信息\n- **推送**: 仓库已是最新，无需 force-push\n\n报告已写入 `artifacts/anon_repo_audit_report.txt`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-anon-repo-audit-push.md"
+}

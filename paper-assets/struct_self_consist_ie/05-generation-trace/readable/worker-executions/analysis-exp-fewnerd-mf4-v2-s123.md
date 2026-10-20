@@ -1,0 +1,2242 @@
+# analysis exp fewnerd mf4 v2 s123
+
+**When Self-Consistency Fails for NER: Degeneracy, Signal Collapse, and the Correlation-Selection Gap** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 43
+- **Recorded user turns:** 0
+- **Tool calls:** 13
+- **Original source:** `logs/workers/worker_analysis_exp_fewnerd_mf4_v2_s123_20260521T073956.log`
+- **Structured JSON:** [`c384ad5aa3bbaa07af1e.json`](../../sessions/c3/c384ad5aa3bbaa07af1e.json)
+
+## Before a recorded user message
+
+43 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "session_id": "17a8fad4-60e8-42aa-aa9b-470382fc9e0a",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__read_registry",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only",
+    "mcp__agent-ml-research__update_registry"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "04db4121-bb3d-487f-8cb9-7fe682fe211d",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779358800,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "f315e3a2-1e22-4eb0-bdd7-6915dce48bb0",
+  "session_id": "17a8fad4-60e8-42aa-aa9b-470382fc9e0a"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by reading the log file and checking the output directory on the server.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "17a8fad4-60e8-42aa-aa9b-470382fc9e0a",
+  "uuid": "9058340e-aea6-4d88-8f3c-26ccc61ea2bc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SVdN521NXsGjDXGUXzoumm",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12586,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12586
+      },
+      "output_tokens": 53,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_018GXXfhZ9kgHSgDLwm4dkhg`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__read_registry",
+  "max_results": 3
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "17a8fad4-60e8-42aa-aa9b-470382fc9e0a",
+  "uuid": "50cb019d-d2e8-443c-8849-8747fc4e9af3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SVdN521NXsGjDXGUXzoumm",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12586,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12586
+      },
+      "output_tokens": 53,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-21T07:40:06.172Z_
+
+<details><summary>↩ Tool result · `toolu_018GXXfhZ9kgHSgDLwm4dkhg`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__update_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_registry"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "17a8fad4-60e8-42aa-aa9b-470382fc9e0a",
+  "uuid": "2afb4bdd-66cd-4961-8e65-c37f71f8e2e6",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__update_registry",
+      "mcp__agent-ml-research__read_registry"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__read_registry",
+    "total_deferred_tools": 26
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by reading the log file and checking the output directory in parallel.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "17a8fad4-60e8-42aa-aa9b-470382fc9e0a",
+  "uuid": "554d96a5-5c22-4029-b2d7-e9ab975ea87a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YWAC4KfqxwPzVo4qVSwbQX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1297,
+      "cache_read_input_tokens": 24427,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1297
+      },
+      "output_tokens": 56,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01G6H82ngD9PSi4jr5wR65Cs`</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "command": "tail -100 ~/runs/struct_self_consist_ie/exp_fewnerd_mf4_v2_s123.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "17a8fad4-60e8-42aa-aa9b-470382fc9e0a",
+  "uuid": "115c42ee-2e1b-4fdb-bc45-d6e89ebbd59e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YWAC4KfqxwPzVo4qVSwbQX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1297,
+      "cache_read_input_tokens": 24427,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1297
+      },
+      "output_tokens": 56,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01WG4ey1k2Q4BFwpwLMDtceZ`</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "command": "ls -la /root/autodl-tmp/struct_self_consist_ie/output/fewnerd_mf4v2_seed123/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "17a8fad4-60e8-42aa-aa9b-470382fc9e0a",
+  "uuid": "1fa316da-1e9d-4f2c-8a81-9756a0c4d014",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YWAC4KfqxwPzVo4qVSwbQX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1297,
+      "cache_read_input_tokens": 24427,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1297
+      },
+      "output_tokens": 56,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01S9B2i1xn5sX6if7zA32zbP`</summary>
+
+```json
+{
+  "project": "struct_self_consist_ie",
+  "filters": {
+    "exp_id": "exp_fewnerd_mf4_v2_s123"
+  },
+  "fields": [
+    "*"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "17a8fad4-60e8-42aa-aa9b-470382fc9e0a",
+  "uuid": "7dd528f3-0d10-4e42-a07c-f065d380cbdc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YWAC4KfqxwPzVo4qVSwbQX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1297,
+      "cache_read_input_tokens": 24427,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1297
+      },
+      "output_tokens": 56,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-21T07:40:17.671Z_
+
+<details><summary>↩ Tool result · `toolu_01G6H82ngD9PSi4jr5wR65Cs`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Loaded 37648 test instances from fewnerd [index 0:None]\\nINFO 05-21 13:33:43 [utils.py:233] non-default args: {'max_model_len': 4096, 'disable_log_stats': True, 'model': 'checkpoints/qwen3-8b-fewnerd-exp021-merged'}\\nINFO 05-21 13:33:43 [model.py:533] Resolved architecture: Qwen3ForCausalLM\\nINFO 05-21 13:33:43 [model.py:1582] Using max model len 4096\\nINFO 05-21 13:33:43 [scheduler.py:231] Chunked prefill is enabled with max_num_batched_tokens=8192.\\nINFO 05-21 13:33:43 [vllm.py:775] Asynchronous scheduling is enabled.\\n(EngineCore pid=320860) INFO 05-21 13:33:44 [core.py:103] Initializing a V1 LLM engine (v0.18.1) with config: model='checkpoints/qwen3-8b-fewnerd-exp021-merged', speculative_config=None, tokenizer='checkpoints/qwen3-8b-fewnerd-exp021-merged', skip_tokenizer_init=False, tokenizer_mode=auto, revision=None, tokenizer_revision=None, trust_remote_code=False, dtype=torch.bfloat16, max_seq_len=4096, download_dir=None, load_format=auto, tensor_parallel_size=1, pipeline_parallel_size=1, data_parallel_size=1, decode_context_parallel_size=1, dcp_comm_backend=ag_rs, disable_custom_all_reduce=False, quantization=None, enforce_eager=False, enable_return_routed_experts=False, kv_cache_dtype=auto, device_config=cuda, structured_outputs_config=StructuredOutputsConfig(backend='auto', disable_any_whitespace=False, disable_additional_properties=False, reasoning_parser='', reasoning_parser_plugin='', enable_in_reasoning=False), observability_config=ObservabilityConfig(show_hidden_metrics_for_version=None, otlp_traces_endpoint=None, collect_detailed_traces=None, kv_cache_metrics=False, kv_cache_metrics_sample=0.01, cudagraph_metrics=False, enable_layerwise_nvtx_tracing=False, enable_mfu_metrics=False, enable_mm_processor_stats=False, enable_logging_iteration_details=False), seed=0, served_model_name=checkpoints/qwen3-8b-fewnerd-exp021-merged, enable_prefix_caching=True, enable_chunked_prefill=True, pooler_config=None, compilation_config={'mode': &lt;CompilationMode.VLLM_COMPILE: 3>, 'debug_dump_path': None, 'cache_dir': '', 'compile_cache_save_format': 'binary', 'backend': 'inductor', 'custom_ops': ['none'], 'splitting_ops': ['vllm::unified_attention', 'vllm::unified_attention_with_output', 'vllm::unified_mla_attention', 'vllm::unified_mla_attention_with_output', 'vllm::mamba_mixer2', 'vllm::mamba_mixer', 'vllm::short_conv', 'vllm::linear_attention', 'vllm::plamo2_mamba_mixer', 'vllm::gdn_attention_core', 'vllm::olmo_hybrid_gdn_full_forward', 'vllm::kda_attention', 'vllm::sparse_attn_indexer', 'vllm::rocm_aiter_sparse_attn_indexer', 'vllm::unified_kv_cache_update', 'vllm::unified_mla_kv_cache_update'], 'compile_mm_encoder': False, 'compile_sizes': [], 'compile_ranges_endpoints': [8192], 'inductor_compile_config': {'enable_auto_functionalized_v2': False, 'combo_kernels': True, 'benchmark_combo_kernel': True}, 'inductor_passes': {}, 'cudagraph_mode': &lt;CUDAGraphMode.FULL_AND_PIECEWISE: (2, 1)>, 'cudagraph_num_of_warmups': 1, 'cudagraph_capture_sizes': [1, 2, 4, 8, 16, 24, 32, 40, 48, 56, 64, 72, 80, 88, 96, 104, 112, 120, 128, 136, 144, 152, 160, 168, 176, 184, 192, 200, 208, 216, 224, 232, 240, 248, 256, 272, 288, 304, 320, 336, 352, 368, 384, 400, 416, 432, 448, 464, 480, 496, 512], 'cudagraph_copy_inputs': False, 'cudagraph_specialize_lora': True, 'use_inductor_graph_partition': False, 'pass_config': {'fuse_norm_quant': False, 'fuse_act_quant': False, 'fuse_attn_quant': False, 'enable_sp': False, 'fuse_gemm_comms': False, 'fuse_allreduce_rms': False}, 'max_cudagraph_capture_size': 512, 'dynamic_shapes_config': {'type': &lt;DynamicShapesType.BACKED: 'backed'>, 'evaluate_guards': False, 'assume_32_bit_indexing': False}, 'local_cache_dir': None, 'fast_moe_cold_start': True, 'static_all_moe_layers': []}\\n(EngineCore pid=320860) INFO 05-21 13:33:45 [parallel_state.py:1395] world_size=1 rank=0 local_rank=0 distributed_init_method=tcp://172.17.0.2:49103 backend=nccl\\n(EngineCore pid=320860) INFO 05-21 13:33:45 [parallel_state.py:1717] rank 0 in world s\\n\\n... [截断: 输出过长，省略 3786203 字符] ...\\n\\nks/s]\\rProcessed prompts: 100%|█████████▉| 37579/37648 [17:49<00:01, 68.14it/s, est. speed input: 5774.96 toks/s, output: 3096.47 toks/s]\\rProcessed prompts: 100%|█████████▉| 37586/37648 [17:49<00:01, 53.68it/s, est. speed input: 5774.93 toks/s, output: 3096.64 toks/s]\\rProcessed prompts: 100%|█████████▉| 37592/37648 [17:49<00:01, 48.01it/s, est. speed input: 5775.03 toks/s, output: 3097.13 toks/s]\\rProcessed prompts: 100%|█████████▉| 37599/37648 [17:49<00:00, 51.41it/s, est. speed input: 5775.66 toks/s, output: 3098.00 toks/s]\\rProcessed prompts: 100%|█████████▉| 37605/37648 [17:49<00:00, 52.17it/s, est. speed input: 5776.14 toks/s, output: 3098.60 toks/s]\\rProcessed prompts: 100%|█████████▉| 37612/37648 [17:50<00:00, 52.80it/s, est. speed input: 5776.72 toks/s, output: 3099.58 toks/s]\\rProcessed prompts: 100%|█████████▉| 37620/37648 [17:50<00:00, 46.83it/s, est. speed input: 5776.91 toks/s, output: 3100.31 toks/s]\\rProcessed prompts: 100%|█████████▉| 37625/37648 [17:50<00:00, 40.51it/s, est. speed input: 5776.76 toks/s, output: 3100.65 toks/s]\\rProcessed prompts: 100%|█████████▉| 37630/37648 [17:50<00:00, 36.44it/s, est. speed input: 5776.61 toks/s, output: 3101.08 toks/s]\\rProcessed prompts: 100%|█████████▉| 37634/37648 [17:50<00:00, 34.35it/s, est. speed input: 5776.64 toks/s, output: 3101.71 toks/s]\\rProcessed prompts: 100%|█████████▉| 37638/37648 [17:50<00:00, 29.70it/s, est. speed input: 5776.33 toks/s, output: 3102.21 toks/s]\\rProcessed prompts: 100%|█████████▉| 37642/37648 [17:51<00:00, 17.78it/s, est. speed input: 5774.49 toks/s, output: 3101.75 toks/s]\\rProcessed prompts: 100%|█████████▉| 37645/37648 [17:52<00:00,  7.18it/s, est. speed input: 5767.96 toks/s, output: 3098.94 toks/s]\\rProcessed prompts: 100%|█████████▉| 37647/37648 [17:54<00:00,  4.25it/s, est. speed input: 5760.87 toks/s, output: 3096.31 toks/s]\\rProcessed prompts: 100%|██████████| 37648/37648 [17:56<00:00,  4.25it/s, est. speed input: 5750.05 toks/s, output: 3091.11 toks/s]\\rProcessed prompts: 100%|██████████| 37648/37648 [17:56<00:00, 34.98it/s, est. speed input: 5750.05 toks/s, output: 3091.11 toks/s]\\nSampling complete. Saved to output/fewnerd_mf4v2_seed123/samples.jsonl\\n\\n============================================================\\n  Structured Self-Consistency IE — MVP Pilot Report\\n============================================================\\n  Dataset:        fewnerd / ner\\n  Instances:      37648\\n  Samples/inst:   8\\n  Temperature:    1.0\\n  Train format:   True\\n------------------------------------------------------------\\n  Greedy F1:      0.7883\\n  Oracle F1:      0.8891\\n  Oracle headroom:+0.1009\\n------------------------------------------------------------\\n  Fleiss' kappa (mean):    0.3483\\n  Soft Jaccard (mean):     0.6689\\n------------------------------------------------------------\\n  Sample F1 (mean):        0.6364\\n  Sample F1 (std):         0.3819\\n  Sample F1=0 (%):         20.5%\\n------------------------------------------------------------\\n  Gold-empty filtered:     5083\\n  All-samples-F1=0 filtered: 3880\\n------------------------------------------------------------\\n  Full ρ(κ,F1):   +0.1588  p=7.5046e-183  n=32565\\n  Full ρ(SJ,F1):  +0.3070  p=0.0000e+00  n=32565\\n  Cond ρ(κ,F1):   +0.0031  p=6.0126e-01  n=28685\\n  Cond ρ(SJ,F1):  +0.1966  p=6.6750e-248  n=28685\\n  Structural > Surface:    YES  (delta=+0.1482)\\n------------------------------------------------------------\\n  Logprob (full):  ρ=+0.2193  τ=+0.1641  AUROC=0.6056\\n  Logprob (cond):  ρ=+0.1818  τ=+0.1369  AUROC=0.5892\\n------------------------------------------------------------\\n  Verdict:        MARGINAL\\n  Note:           MVP verdict on single subtask; final pass requires at least one of NER/RE/EAE to meet threshold\\n============================================================\\n\\nReport saved to output/fewnerd_mf4v2_seed123/report.json\\n(EngineCore pid=320860) INFO 05-21 15:36:38 [core.py:1201] Shutdown initiated (timeout=0)\\n(EngineCore pid=320860) INFO 05-21 15:36:38 [core.py:1224] Shutdown complete\\nEXIT_CODE=0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 7.88}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "17a8fad4-60e8-42aa-aa9b-470382fc9e0a",
+  "uuid": "fe9fc81a-d4e6-44ce-ae98-f590eb03d664",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Loaded 37648 test instances from fewnerd [index 0:None]\\\\nINFO 05-21 13:33:43 [utils.py:233] non-default args: {'max_model_len': 4096, 'disable_log_stats': True, 'model': 'checkpoints/qwen3-8b-fewnerd-exp021-merged'}\\\\nINFO 05-21 13:33:43 [model.py:533] Resolved architecture: Qwen3ForCausalLM\\\\nINFO 05-21 13:33:43 [model.py:1582] Using max model len 4096\\\\nINFO 05-21 13:33:43 [scheduler.py:231] Chunked prefill is enabled with max_num_batched_tokens=8192.\\\\nINFO 05-21 13:33:43 [vllm.py:775] Asynchronous scheduling is enabled.\\\\n(EngineCore pid=320860) INFO 05-21 13:33:44 [core.py:103] Initializing a V1 LLM engine (v0.18.1) with config: model='checkpoints/qwen3-8b-fewnerd-exp021-merged', speculative_config=None, tokenizer='checkpoints/qwen3-8b-fewnerd-exp021-merged', skip_tokenizer_init=False, tokenizer_mode=auto, revision=None, tokenizer_revision=None, trust_remote_code=False, dtype=torch.bfloat16, max_seq_len=4096, download_dir=None, load_format=auto, tensor_parallel_size=1, pipeline_parallel_size=1, data_parallel_size=1, decode_context_parallel_size=1, dcp_comm_backend=ag_rs, disable_custom_all_reduce=False, quantization=None, enforce_eager=False, enable_return_routed_experts=False, kv_cache_dtype=auto, device_config=cuda, structured_outputs_config=StructuredOutputsConfig(backend='auto', disable_any_whitespace=False, disable_additional_properties=False, reasoning_parser='', reasoning_parser_plugin='', enable_in_reasoning=False), observability_config=ObservabilityConfig(show_hidden_metrics_for_version=None, otlp_traces_endpoint=None, collect_detailed_traces=None, kv_cache_metrics=False, kv_cache_metrics_sample=0.01, cudagraph_metrics=False, enable_layerwise_nvtx_tracing=False, enable_mfu_metrics=False, enable_mm_processor_stats=False, enable_logging_iteration_details=False), seed=0, served_model_name=checkpoints/qwen3-8b-fewnerd-exp021-merged, enable_prefix_caching=True, enable_chunked_prefill=True, pooler_config=None, compilation_config={'mode': &lt;CompilationMode.VLLM_COMPILE: 3>, 'debug_dump_path': None, 'cache_dir': '', 'compile_cache_save_format': 'binary', 'backend': 'inductor', 'custom_ops': ['none'], 'splitting_ops': ['vllm::unified_attention', 'vllm::unified_attention_with_output', 'vllm::unified_mla_attention', 'vllm::unified_mla_attention_with_output', 'vllm::mamba_mixer2', 'vllm::mamba_mixer', 'vllm::short_conv', 'vllm::linear_attention', 'vllm::plamo2_mamba_mixer', 'vllm::gdn_attention_core', 'vllm::olmo_hybrid_gdn_full_forward', 'vllm::kda_attention', 'vllm::sparse_attn_indexer', 'vllm::rocm_aiter_sparse_attn_indexer', 'vllm::unified_kv_cache_update', 'vllm::unified_mla_kv_cache_update'], 'compile_mm_encoder': False, 'compile_sizes': [], 'compile_ranges_endpoints': [8192], 'inductor_compile_config': {'enable_auto_functionalized_v2': False, 'combo_kernels': True, 'benchmark_combo_kernel': True}, 'inductor_passes': {}, 'cudagraph_mode': &lt;CUDAGraphMode.FULL_AND_PIECEWISE: (2, 1)>, 'cudagraph_num_of_warmups': 1, 'cudagraph_capture_sizes': [1, 2, 4, 8, 16, 24, 32, 40, 48, 56, 64, 72, 80, 88, 96, 104, 112, 120, 128, 136, 144, 152, 160, 168, 176, 184, 192, 200, 208, 216, 224, 232, 240, 248, 256, 272, 288, 304, 320, 336, 352, 368, 384, 400, 416, 432, 448, 464, 480, 496, 512], 'cudagraph_copy_inputs': False, 'cudagraph_specialize_lora': True, 'use_inductor_graph_partition': False, 'pass_config': {'fuse_norm_quant': False, 'fuse_act_quant': False, 'fuse_attn_quant': False, 'enable_sp': False, 'fuse_gemm_comms': False, 'fuse_allreduce_rms': False}, 'max_cudagraph_capture_size': 512, 'dynamic_shapes_config': {'type': &lt;DynamicShapesType.BACKED: 'backed'>, 'evaluate_guards': False, 'assume_32_bit_indexing': False}, 'local_cache_dir': None, 'fast_moe_cold_start': True, 'static_all_moe_layers': []}\\\\n(EngineCore pid=320860) INFO 05-21 13:33:45 [parallel_state.py:1395] world_size=1 rank=0 local_rank=0 distributed_init_method=tcp://172.17.0.2:49103 backend=nccl\\\\n(EngineCore pid=320860) INFO 05-21 13:33:45 [parallel_state.py:1717] rank 0 in world s\\\\n\\\\n... [截断: 输出过长，省略 3786203 字符] ...\\\\n\\\\nks/s]\\\\rProcessed prompts: 100%|█████████▉| 37579/37648 [17:49<00:01, 68.14it/s, est. speed input: 5774.96 toks/s, output: 3096.47 toks/s]\\\\rProcessed prompts: 100%|█████████▉| 37586/37648 [17:49<00:01, 53.68it/s, est. speed input: 5774.93 toks/s, output: 3096.64 toks/s]\\\\rProcessed prompts: 100%|█████████▉| 37592/37648 [17:49<00:01, 48.01it/s, est. speed input: 5775.03 toks/s, output: 3097.13 toks/s]\\\\rProcessed prompts: 100%|█████████▉| 37599/37648 [17:49<00:00, 51.41it/s, est. speed input: 5775.66 toks/s, output: 3098.00 toks/s]\\\\rProcessed prompts: 100%|█████████▉| 37605/37648 [17:49<00:00, 52.17it/s, est. speed input: 5776.14 toks/s, output: 3098.60 toks/s]\\\\rProcessed prompts: 100%|█████████▉| 37612/37648 [17:50<00:00, 52.80it/s, est. speed input: 5776.72 toks/s, output: 3099.58 toks/s]\\\\rProcessed prompts: 100%|█████████▉| 37620/37648 [17:50<00:00, 46.83it/s, est. speed input: 5776.91 toks/s, output: 3100.31 toks/s]\\\\rProcessed prompts: 100%|█████████▉| 37625/37648 [17:50<00:00, 40.51it/s, est. speed input: 5776.76 toks/s, output: 3100.65 toks/s]\\\\rProcessed prompts: 100%|█████████▉| 37630/37648 [17:50<00:00, 36.44it/s, est. speed input: 5776.61 toks/s, output: 3101.08 toks/s]\\\\rProcessed prompts: 100%|█████████▉| 37634/37648 [17:50<00:00, 34.35it/s, est. speed input: 5776.64 toks/s, output: 3101.71 toks/s]\\\\rProcessed prompts: 100%|█████████▉| 37638/37648 [17:50<00:00, 29.70it/s, est. speed input: 5776.33 toks/s, output: 3102.21 toks/s]\\\\rProcessed prompts: 100%|█████████▉| 37642/37648 [17:51<00:00, 17.78it/s, est. speed input: 5774.49 toks/s, output: 3101.75 toks/s]\\\\rProcessed prompts: 100%|█████████▉| 37645/37648 [17:52<00:00,  7.18it/s, est. speed input: 5767.96 toks/s, output: 3098.94 toks/s]\\\\rProcessed prompts: 100%|█████████▉| 37647/37648 [17:54<00:00,  4.25it/s, est. speed input: 5760.87 toks/s, output: 3096.31 toks/s]\\\\rProcessed prompts: 100%|██████████| 37648/37648 [17:56<00:00,  4.25it/s, est. speed input: 5750.05 toks/s, output: 3091.11 toks/s]\\\\rProcessed prompts: 100%|██████████| 37648/37648 [17:56<00:00, 34.98it/s, est. speed input: 5750.05 toks/s, output: 3091.11 toks/s]\\\\nSampling complete. Saved to output/fewnerd_mf4v2_seed123/samples.jsonl\\\\n\\\\n============================================================\\\\n  Structured Self-Consistency IE — MVP Pilot Report\\\\n============================================================\\\\n  Dataset:        fewnerd / ner\\\\n  Instances:      37648\\\\n  Samples/inst:   8\\\\n  Temperature:    1.0\\\\n  Train format:   True\\\\n------------------------------------------------------------\\\\n  Greedy F1:      0.7883\\\\n  Oracle F1:      0.8891\\\\n  Oracle headroom:+0.1009\\\\n------------------------------------------------------------\\\\n  Fleiss' kappa (mean):    0.3483\\\\n  Soft Jaccard (mean):     0.6689\\\\n------------------------------------------------------------\\\\n  Sample F1 (mean):        0.6364\\\\n  Sample F1 (std):         0.3819\\\\n  Sample F1=0 (%):         20.5%\\\\n------------------------------------------------------------\\\\n  Gold-empty filtered:     5083\\\\n  All-samples-F1=0 filtered: 3880\\\\n------------------------------------------------------------\\\\n  Full ρ(κ,F1):   +0.1588  p=7.5046e-183  n=32565\\\\n  Full ρ(SJ,F1):  +0.3070  p=0.0000e+00  n=32565\\\\n  Cond ρ(κ,F1):   +0.0031  p=6.0126e-01  n=28685\\\\n  Cond ρ(SJ,F1):  +0.1966  p=6.6750e-248  n=28685\\\\n  Structural > Surface:    YES  (delta=+0.1482)\\\\n------------------------------------------------------------\\\\n  Logprob (full):  ρ=+0.2193  τ=+0.1641  AUROC=0.6056\\\\n  Logprob (cond):  ρ=+0.1818  τ=+0.1369  AUROC=0.5892\\\\n------------------------------------------------------------\\\\n  Verdict:        MARGINAL\\\\n  Note:           MVP verdict on single subtask; final pass requires at least one of NER/RE/EAE to meet threshold\\\\n============================================================\\\\n\\\\nReport saved to output/fewnerd_mf4v2_seed123/report.json\\\\n(EngineCore pid=320860) INFO 05-21 15:36:38 [core.py:1201] Shutdown initiated (timeout=0)\\\\n(EngineCore pid=320860) INFO 05-21 15:36:38 [core.py:1224] Shutdown complete\\\\nEXIT_CODE=0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 7.88}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Loaded 37648 test instances from fewnerd [index 0:None]\\nINFO 05-21 13:33:43 [utils.py:233] non-default args: {'max_model_len': 4096, 'disable_log_stats': True, 'model': 'checkpoints/qwen3-8b-fewnerd-exp021-merged'}\\nINFO 05-21 13:33:43 [model.py:533] Resolved architecture: Qwen3ForCausalLM\\nINFO 05-21 13:33:43 [model.py:1582] Using max model len 4096\\nINFO 05-21 13:33:43 [scheduler.py:231] Chunked prefill is enabled with max_num_batched_tokens=8192.\\nINFO 05-21 13:33:43 [vllm.py:775] Asynchronous scheduling is enabled.\\n(EngineCore pid=320860) INFO 05-21 13:33:44 [core.py:103] Initializing a V1 LLM engine (v0.18.1) with config: model='checkpoints/qwen3-8b-fewnerd-exp021-merged', speculative_config=None, tokenizer='checkpoints/qwen3-8b-fewnerd-exp021-merged', skip_tokenizer_init=False, tokenizer_mode=auto, revision=None, tokenizer_revision=None, trust_remote_code=False, dtype=torch.bfloat16, max_seq_len=4096, download_dir=None, load_format=auto, tensor_parallel_size=1, pipeline_parallel_size=1, data_parallel_size=1, decode_context_parallel_size=1, dcp_comm_backend=ag_rs, disable_custom_all_reduce=False, quantization=None, enforce_eager=False, enable_return_routed_experts=False, kv_cache_dtype=auto, device_config=cuda, structured_outputs_config=StructuredOutputsConfig(backend='auto', disable_any_whitespace=False, disable_additional_properties=False, reasoning_parser='', reasoning_parser_plugin='', enable_in_reasoning=False), observability_config=ObservabilityConfig(show_hidden_metrics_for_version=None, otlp_traces_endpoint=None, collect_detailed_traces=None, kv_cache_metrics=False, kv_cache_metrics_sample=0.01, cudagraph_metrics=False, enable_layerwise_nvtx_tracing=False, enable_mfu_metrics=False, enable_mm_processor_stats=False, enable_logging_iteration_details=False), seed=0, served_model_name=checkpoints/qwen3-8b-fewnerd-exp021-merged, enable_prefix_caching=True, enable_chunked_prefill=True, pooler_config=None, compilation_config={'mode': &lt;CompilationMode.VLLM_COMPILE: 3>, 'debug_dump_path': None, 'cache_dir': '', 'compile_cache_save_format': 'binary', 'backend': 'inductor', 'custom_ops': ['none'], 'splitting_ops': ['vllm::unified_attention', 'vllm::unified_attention_with_output', 'vllm::unified_mla_attention', 'vllm::unified_mla_attention_with_output', 'vllm::mamba_mixer2', 'vllm::mamba_mixer', 'vllm::short_conv', 'vllm::linear_attention', 'vllm::plamo2_mamba_mixer', 'vllm::gdn_attention_core', 'vllm::olmo_hybrid_gdn_full_forward', 'vllm::kda_attention', 'vllm::sparse_attn_indexer', 'vllm::rocm_aiter_sparse_attn_indexer', 'vllm::unified_kv_cache_update', 'vllm::unified_mla_kv_cache_update'], 'compile_mm_encoder': False, 'compile_sizes': [], 'compile_ranges_endpoints': [8192], 'inductor_compile_config': {'enable_auto_functionalized_v2': False, 'combo_kernels': True, 'benchmark_combo_kernel': True}, 'inductor_passes': {}, 'cudagraph_mode': &lt;CUDAGraphMode.FULL_AND_PIECEWISE: (2, 1)>, 'cudagraph_num_of_warmups': 1, 'cudagraph_capture_sizes': [1, 2, 4, 8, 16, 24, 32, 40, 48, 56, 64, 72, 80, 88, 96, 104, 112, 120, 128, 136, 144, 152, 160, 168, 176, 184, 192, 200, 208, 216, 224, 232, 240, 248, 256, 272, 288, 304, 320, 336, 352, 368, 384, 400, 416, 432, 448, 464, 480, 496, 512], 'cudagraph_copy_inputs': False, 'cudagraph_specialize_lora': True, 'use_inductor_graph_partition': False, 'pass_config': {'fuse_norm_quant': False, 'fuse_act_quant': False, 'fuse_attn_quant': False, 'enable_sp': False, 'fuse_gemm_comms': False, 'fuse_allreduce_rms': False}, 'max_cudagraph_capture_size': 512, 'dynamic_shapes_config': {'type': &lt;DynamicShapesType.BACKED: 'backed'>, 'evaluate_guards': False, 'assume_32_bit_indexing': False}, 'local_cache_dir': None, 'fast_moe_cold_start': True, 'static_all_moe_layers': []}\\n(EngineCore pid=320860) INFO 05-21 13:33:45 [parallel_state.py:1395] world_size=1 rank=0 local_rank=0 distributed_init_method=tcp://172.17.0.2:49103 backend=nccl\\n(EngineCore pid=320860) INFO 05-21 13:33:45 [parallel_state.py:1717] rank 0 in world s\\n\\n... [截断: 输出过长，省略 3786203 字符] ...\\n\\nks/s]\\rProcessed prompts: 100%|█████████▉| 37579/37648 [17:49<00:01, 68.14it/s, est. speed input: 5774.96 toks/s, output: 3096.47 toks/s]\\rProcessed prompts: 100%|█████████▉| 37586/37648 [17:49<00:01, 53.68it/s, est. speed input: 5774.93 toks/s, output: 3096.64 toks/s]\\rProcessed prompts: 100%|█████████▉| 37592/37648 [17:49<00:01, 48.01it/s, est. speed input: 5775.03 toks/s, output: 3097.13 toks/s]\\rProcessed prompts: 100%|█████████▉| 37599/37648 [17:49<00:00, 51.41it/s, est. speed input: 5775.66 toks/s, output: 3098.00 toks/s]\\rProcessed prompts: 100%|█████████▉| 37605/37648 [17:49<00:00, 52.17it/s, est. speed input: 5776.14 toks/s, output: 3098.60 toks/s]\\rProcessed prompts: 100%|█████████▉| 37612/37648 [17:50<00:00, 52.80it/s, est. speed input: 5776.72 toks/s, output: 3099.58 toks/s]\\rProcessed prompts: 100%|█████████▉| 37620/37648 [17:50<00:00, 46.83it/s, est. speed input: 5776.91 toks/s, output: 3100.31 toks/s]\\rProcessed prompts: 100%|█████████▉| 37625/37648 [17:50<00:00, 40.51it/s, est. speed input: 5776.76 toks/s, output: 3100.65 toks/s]\\rProcessed prompts: 100%|█████████▉| 37630/37648 [17:50<00:00, 36.44it/s, est. speed input: 5776.61 toks/s, output: 3101.08 toks/s]\\rProcessed prompts: 100%|█████████▉| 37634/37648 [17:50<00:00, 34.35it/s, est. speed input: 5776.64 toks/s, output: 3101.71 toks/s]\\rProcessed prompts: 100%|█████████▉| 37638/37648 [17:50<00:00, 29.70it/s, est. speed input: 5776.33 toks/s, output: 3102.21 toks/s]\\rProcessed prompts: 100%|█████████▉| 37642/37648 [17:51<00:00, 17.78it/s, est. speed input: 5774.49 toks/s, output: 3101.75 toks/s]\\rProcessed prompts: 100%|█████████▉| 37645/37648 [17:52<00:00,  7.18it/s, est. speed input: 5767.96 toks/s, output: 3098.94 toks/s]\\rProcessed prompts: 100%|█████████▉| 37647/37648 [17:54<00:00,  4.25it/s, est. speed input: 5760.87 toks/s, output: 3096.31 toks/s]\\rProcessed prompts: 100%|██████████| 37648/37648 [17:56<00:00,  4.25it/s, est. speed input: 5750.05 toks/s, output: 3091.11 toks/s]\\rProcessed prompts: 100%|██████████| 37648/37648 [17:56<00:00, 34.98it/s, est. speed input: 5750.05 toks/s, output: 3091.11 toks/s]\\nSampling complete. Saved to output/fewnerd_mf4v2_seed123/samples.jsonl\\n\\n============================================================\\n  Structured Self-Consistency IE — MVP Pilot Report\\n============================================================\\n  Dataset:        fewnerd / ner\\n  Instances:      37648\\n  Samples/inst:   8\\n  Temperature:    1.0\\n  Train format:   True\\n------------------------------------------------------------\\n  Greedy F1:      0.7883\\n  Oracle F1:      0.8891\\n  Oracle headroom:+0.1009\\n------------------------------------------------------------\\n  Fleiss' kappa (mean):    0.3483\\n  Soft Jaccard (mean):     0.6689\\n------------------------------------------------------------\\n  Sample F1 (mean):        0.6364\\n  Sample F1 (std):         0.3819\\n  Sample F1=0 (%):         20.5%\\n------------------------------------------------------------\\n  Gold-empty filtered:     5083\\n  All-samples-F1=0 filtered: 3880\\n------------------------------------------------------------\\n  Full ρ(κ,F1):   +0.1588  p=7.5046e-183  n=32565\\n  Full ρ(SJ,F1):  +0.3070  p=0.0000e+00  n=32565\\n  Cond ρ(κ,F1):   +0.0031  p=6.0126e-01  n=28685\\n  Cond ρ(SJ,F1):  +0.1966  p=6.6750e-248  n=28685\\n  Structural > Surface:    YES  (delta=+0.1482)\\n------------------------------------------------------------\\n  Logprob (full):  ρ=+0.2193  τ=+0.1641  AUROC=0.6056\\n  Logprob (cond):  ρ=+0.1818  τ=+0.1369  AUROC=0.5892\\n------------------------------------------------------------\\n  Verdict:        MARGINAL\\n  Note:           MVP verdict on single subtask; final pass requires at least one of NER/RE/EAE to meet threshold\\n============================================================\\n\\nReport saved to output/fewnerd_mf4v2_seed123/report.json\\n(EngineCore pid=320860) INFO 05-21 15:36:38 [core.py:1201] Shutdown initiated (timeout=0)\\n(EngineCore pid=320860) INFO 05-21 15:36:38 [core.py:1224] Shutdown complete\\nEXIT_CODE=0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 7.88}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-21T07:40:18.008Z_
+
+<details><summary>↩ Tool result · `toolu_01WG4ey1k2Q4BFwpwLMDtceZ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 668504\\ndrwxr-xr-x  2 root root        58 May 21 15:36 .\\ndrwxr-xr-x 41 root root      4096 May 21 13:33 ..\\n-rw-r--r--  1 root root      1696 May 21 15:36 report.json\\n-rw-r--r--  1 root root 684538251 May 21 15:36 samples.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.32}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "17a8fad4-60e8-42aa-aa9b-470382fc9e0a",
+  "uuid": "98f01388-3010-4d52-899c-b534d22ec01c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 668504\\\\ndrwxr-xr-x  2 root root        58 May 21 15:36 .\\\\ndrwxr-xr-x 41 root root      4096 May 21 13:33 ..\\\\n-rw-r--r--  1 root root      1696 May 21 15:36 report.json\\\\n-rw-r--r--  1 root root 684538251 May 21 15:36 samples.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.32}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 668504\\ndrwxr-xr-x  2 root root        58 May 21 15:36 .\\ndrwxr-xr-x 41 root root      4096 May 21 13:33 ..\\n-rw-r--r--  1 root root      1696 May 21 15:36 report.json\\n-rw-r--r--  1 root root 684538251 May 21 15:36 samples.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.32}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-21T07:40:18.926Z_
+
+<details><summary>↩ Tool result · `toolu_01S9B2i1xn5sX6if7zA32zbP`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.9032}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "17a8fad4-60e8-42aa-aa9b-470382fc9e0a",
+  "uuid": "5d0cfd18-6488-426f-9f81-d109c165f431",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.9032}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.9032}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 14_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good, I have the log output with all the metrics. Let me also read the report.json for the full structured data. The registry doesn't have this experiment yet, so I'll need to create it.
+
+Let me extract the metrics from the log:
+
+- Greedy F1: 0.7883
+- Oracle F1: 0.8891
+- Oracle headroom: +0.1009
+- Fleiss' kappa (mean): 0.3483
+- Soft Jaccard (mean): 0.6689
+
+
+- Sample F1 (mean): 0.6364
+- Sample F1 (std): 0.3819
+- Sample F1=0 (%): 20.5%
+- Gold-empty filtered: 5083
+- All-samples-F1=0 filtered: 3880
+
+I'm also looking at the correlation analysis showing the relationship between kappa and F1 scores across the full dataset, as well as the conditional correlations with soft Jaccard similarity.
+
+The structural metrics outperform surface-level ones by about 1.5 percentage points, and the log probability scores show moderate predictive power with an AUROC around 0.59-0.61. The overall verdict is marginal, and I'm working with roughly 37,600 instances. Now I need to check the structured data in the report file.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "17a8fad4-60e8-42aa-aa9b-470382fc9e0a",
+  "uuid": "79d5d906-d4fe-4cc1-9986-2f6e6e8f1c6c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013kqpiF92xpEZ58afFojSSE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4291,
+      "cache_read_input_tokens": 25724,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4291
+      },
+      "output_tokens": 11,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 15_
+
+读取 report.json 获取结构化指标。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "17a8fad4-60e8-42aa-aa9b-470382fc9e0a",
+  "uuid": "a35e6524-09bd-4545-af04-8a087a0adceb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013kqpiF92xpEZ58afFojSSE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4291,
+      "cache_read_input_tokens": 25724,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4291
+      },
+      "output_tokens": 11,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01DjExnCQuH78xQN6AZL1Jsd`</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/fewnerd_mf4v2_seed123/report.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "17a8fad4-60e8-42aa-aa9b-470382fc9e0a",
+  "uuid": "566cca29-2f47-40cc-ba5d-2d46fdd1ab29",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013kqpiF92xpEZ58afFojSSE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4291,
+      "cache_read_input_tokens": 25724,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4291
+      },
+      "output_tokens": 11,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-21T07:40:27.888Z_
+
+<details><summary>↩ Tool result · `toolu_01DjExnCQuH78xQN6AZL1Jsd`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"dataset\\\": \\\"fewnerd\\\",\\n  \\\"subtask\\\": \\\"ner\\\",\\n  \\\"n_samples\\\": 8,\\n  \\\"temperature\\\": 1.0,\\n  \\\"num_instances\\\": 37648,\\n  \\\"use_train_format\\\": true,\\n  \\\"greedy_f1\\\": 0.7882604978834289,\\n  \\\"oracle_f1\\\": 0.8891440924136998,\\n  \\\"oracle_headroom\\\": 0.10088359453027096,\\n  \\\"fleiss_kappa_mean\\\": 0.34828980944234245,\\n  \\\"soft_jaccard_mean\\\": 0.6688512032787685,\\n  \\\"correlation_fleiss_vs_f1_full\\\": {\\n    \\\"rho\\\": 0.1587871768738307,\\n    \\\"p_value\\\": 7.504584491120589e-183,\\n    \\\"n\\\": 32565\\n  },\\n  \\\"correlation_softjaccard_vs_f1_full\\\": {\\n    \\\"rho\\\": 0.307018216957455,\\n    \\\"p_value\\\": 0.0,\\n    \\\"n\\\": 32565\\n  },\\n  \\\"correlation_fleiss_vs_f1_conditional\\\": {\\n    \\\"rho\\\": 0.0030857021594694147,\\n    \\\"p_value\\\": 0.6012575536762153,\\n    \\\"n\\\": 28685\\n  },\\n  \\\"correlation_softjaccard_vs_f1_conditional\\\": {\\n    \\\"rho\\\": 0.19661571706520217,\\n    \\\"p_value\\\": 6.675042316789795e-248,\\n    \\\"n\\\": 28685\\n  },\\n  \\\"n_gold_empty_filtered\\\": 5083,\\n  \\\"n_greedy_f1_zero_filtered\\\": 3880,\\n  \\\"structural_beats_surface\\\": true,\\n  \\\"rho_advantage\\\": 0.1482310400836243,\\n  \\\"sample_f1_mean\\\": 0.6364422410618819,\\n  \\\"sample_f1_std\\\": 0.38194825185180786,\\n  \\\"sample_f1_pct_zero\\\": 20.491708889912484,\\n  \\\"logprob_baseline\\\": {\\n    \\\"full\\\": {\\n      \\\"rho\\\": 0.21933291708973512,\\n      \\\"p_rho\\\": 0.0,\\n      \\\"tau\\\": 0.16408262272405857,\\n      \\\"p_tau\\\": 0.0,\\n      \\\"auroc\\\": 0.6056221602862428,\\n      \\\"n\\\": 32565\\n    },\\n    \\\"conditional\\\": {\\n      \\\"rho\\\": 0.18183988895697545,\\n      \\\"p_rho\\\": 9.62260830657174e-212,\\n      \\\"tau\\\": 0.13693061782025395,\\n      \\\"p_tau\\\": 1.523191113203146e-213,\\n      \\\"auroc\\\": 0.5891939287147968,\\n      \\\"n\\\": 28685\\n    }\\n  },\\n  \\\"verdict\\\": \\\"MARGINAL\\\",\\n  \\\"verdict_note\\\": \\\"MVP verdict on single subtask; final pass requires at least one of NER/RE/EAE to meet threshold\\\"\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "17a8fad4-60e8-42aa-aa9b-470382fc9e0a",
+  "uuid": "1cfcdd7c-247e-436f-9459-5cc95852485c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"dataset\\\\\\\": \\\\\\\"fewnerd\\\\\\\",\\\\n  \\\\\\\"subtask\\\\\\\": \\\\\\\"ner\\\\\\\",\\\\n  \\\\\\\"n_samples\\\\\\\": 8,\\\\n  \\\\\\\"temperature\\\\\\\": 1.0,\\\\n  \\\\\\\"num_instances\\\\\\\": 37648,\\\\n  \\\\\\\"use_train_format\\\\\\\": true,\\\\n  \\\\\\\"greedy_f1\\\\\\\": 0.7882604978834289,\\\\n  \\\\\\\"oracle_f1\\\\\\\": 0.8891440924136998,\\\\n  \\\\\\\"oracle_headroom\\\\\\\": 0.10088359453027096,\\\\n  \\\\\\\"fleiss_kappa_mean\\\\\\\": 0.34828980944234245,\\\\n  \\\\\\\"soft_jaccard_mean\\\\\\\": 0.6688512032787685,\\\\n  \\\\\\\"correlation_fleiss_vs_f1_full\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.1587871768738307,\\\\n    \\\\\\\"p_value\\\\\\\": 7.504584491120589e-183,\\\\n    \\\\\\\"n\\\\\\\": 32565\\\\n  },\\\\n  \\\\\\\"correlation_softjaccard_vs_f1_full\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.307018216957455,\\\\n    \\\\\\\"p_value\\\\\\\": 0.0,\\\\n    \\\\\\\"n\\\\\\\": 32565\\\\n  },\\\\n  \\\\\\\"correlation_fleiss_vs_f1_conditional\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.0030857021594694147,\\\\n    \\\\\\\"p_value\\\\\\\": 0.6012575536762153,\\\\n    \\\\\\\"n\\\\\\\": 28685\\\\n  },\\\\n  \\\\\\\"correlation_softjaccard_vs_f1_conditional\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.19661571706520217,\\\\n    \\\\\\\"p_value\\\\\\\": 6.675042316789795e-248,\\\\n    \\\\\\\"n\\\\\\\": 28685\\\\n  },\\\\n  \\\\\\\"n_gold_empty_filtered\\\\\\\": 5083,\\\\n  \\\\\\\"n_greedy_f1_zero_filtered\\\\\\\": 3880,\\\\n  \\\\\\\"structural_beats_surface\\\\\\\": true,\\\\n  \\\\\\\"rho_advantage\\\\\\\": 0.1482310400836243,\\\\n  \\\\\\\"sample_f1_mean\\\\\\\": 0.6364422410618819,\\\\n  \\\\\\\"sample_f1_std\\\\\\\": 0.38194825185180786,\\\\n  \\\\\\\"sample_f1_pct_zero\\\\\\\": 20.491708889912484,\\\\n  \\\\\\\"logprob_baseline\\\\\\\": {\\\\n    \\\\\\\"full\\\\\\\": {\\\\n      \\\\\\\"rho\\\\\\\": 0.21933291708973512,\\\\n      \\\\\\\"p_rho\\\\\\\": 0.0,\\\\n      \\\\\\\"tau\\\\\\\": 0.16408262272405857,\\\\n      \\\\\\\"p_tau\\\\\\\": 0.0,\\\\n      \\\\\\\"auroc\\\\\\\": 0.6056221602862428,\\\\n      \\\\\\\"n\\\\\\\": 32565\\\\n    },\\\\n    \\\\\\\"conditional\\\\\\\": {\\\\n      \\\\\\\"rho\\\\\\\": 0.18183988895697545,\\\\n      \\\\\\\"p_rho\\\\\\\": 9.62260830657174e-212,\\\\n      \\\\\\\"tau\\\\\\\": 0.13693061782025395,\\\\n      \\\\\\\"p_tau\\\\\\\": 1.523191113203146e-213,\\\\n      \\\\\\\"auroc\\\\\\\": 0.5891939287147968,\\\\n      \\\\\\\"n\\\\\\\": 28685\\\\n    }\\\\n  },\\\\n  \\\\\\\"verdict\\\\\\\": \\\\\\\"MARGINAL\\\\\\\",\\\\n  \\\\\\\"verdict_note\\\\\\\": \\\\\\\"MVP verdict on single subtask; final pass requires at least one of NER/RE/EAE to meet threshold\\\\\\\"\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"dataset\\\": \\\"fewnerd\\\",\\n  \\\"subtask\\\": \\\"ner\\\",\\n  \\\"n_samples\\\": 8,\\n  \\\"temperature\\\": 1.0,\\n  \\\"num_instances\\\": 37648,\\n  \\\"use_train_format\\\": true,\\n  \\\"greedy_f1\\\": 0.7882604978834289,\\n  \\\"oracle_f1\\\": 0.8891440924136998,\\n  \\\"oracle_headroom\\\": 0.10088359453027096,\\n  \\\"fleiss_kappa_mean\\\": 0.34828980944234245,\\n  \\\"soft_jaccard_mean\\\": 0.6688512032787685,\\n  \\\"correlation_fleiss_vs_f1_full\\\": {\\n    \\\"rho\\\": 0.1587871768738307,\\n    \\\"p_value\\\": 7.504584491120589e-183,\\n    \\\"n\\\": 32565\\n  },\\n  \\\"correlation_softjaccard_vs_f1_full\\\": {\\n    \\\"rho\\\": 0.307018216957455,\\n    \\\"p_value\\\": 0.0,\\n    \\\"n\\\": 32565\\n  },\\n  \\\"correlation_fleiss_vs_f1_conditional\\\": {\\n    \\\"rho\\\": 0.0030857021594694147,\\n    \\\"p_value\\\": 0.6012575536762153,\\n    \\\"n\\\": 28685\\n  },\\n  \\\"correlation_softjaccard_vs_f1_conditional\\\": {\\n    \\\"rho\\\": 0.19661571706520217,\\n    \\\"p_value\\\": 6.675042316789795e-248,\\n    \\\"n\\\": 28685\\n  },\\n  \\\"n_gold_empty_filtered\\\": 5083,\\n  \\\"n_greedy_f1_zero_filtered\\\": 3880,\\n  \\\"structural_beats_surface\\\": true,\\n  \\\"rho_advantage\\\": 0.1482310400836243,\\n  \\\"sample_f1_mean\\\": 0.6364422410618819,\\n  \\\"sample_f1_std\\\": 0.38194825185180786,\\n  \\\"sample_f1_pct_zero\\\": 20.491708889912484,\\n  \\\"logprob_baseline\\\": {\\n    \\\"full\\\": {\\n      \\\"rho\\\": 0.21933291708973512,\\n      \\\"p_rho\\\": 0.0,\\n      \\\"tau\\\": 0.16408262272405857,\\n      \\\"p_tau\\\": 0.0,\\n      \\\"auroc\\\": 0.6056221602862428,\\n      \\\"n\\\": 32565\\n    },\\n    \\\"conditional\\\": {\\n      \\\"rho\\\": 0.18183988895697545,\\n      \\\"p_rho\\\": 9.62260830657174e-212,\\n      \\\"tau\\\": 0.13693061782025395,\\n      \\\"p_tau\\\": 1.523191113203146e-213,\\n      \\\"auroc\\\": 0.5891939287147968,\\n      \\\"n\\\": 28685\\n    }\\n  },\\n  \\\"verdict\\\": \\\"MARGINAL\\\",\\n  \\\"verdict_note\\\": \\\"MVP verdict on single subtask; final pass requires at least one of NER/RE/EAE to meet threshold\\\"\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 18_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I have all the data. Now let me update the registry. The registry doesn't have this experiment yet, so I need to create it. Let me set the fields.
+
+Let me check what the current registry has for reference experiments (like exp_conll_t10_s42 or any FewNERD experiments).
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "17a8fad4-60e8-42aa-aa9b-470382fc9e0a",
+  "uuid": "3bdda700-2556-425b-b34d-b51127800343",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VYFvEtTRo2f41RSWnYp1PH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1741,
+      "cache_read_input_tokens": 30015,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1741
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 19_
+
+数据完整。查一下 registry 中是否有可对比的 FewNERD 实验。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "17a8fad4-60e8-42aa-aa9b-470382fc9e0a",
+  "uuid": "84004094-731e-4b1f-99aa-d5cead4b4388",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VYFvEtTRo2f41RSWnYp1PH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1741,
+      "cache_read_input_tokens": 30015,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1741
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01Mmki2gGnBgKz4TDP6Ex173`</summary>
+
+```json
+{
+  "project": "struct_self_consist_ie",
+  "filters": {
+    "status": "DONE"
+  },
+  "fields": [
+    "exp_id",
+    "hypothesis",
+    "conclusion",
+    "metrics"
+  ],
+  "limit": 20
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "17a8fad4-60e8-42aa-aa9b-470382fc9e0a",
+  "uuid": "0f9ded8c-4007-411d-a293-90bba9d93305",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VYFvEtTRo2f41RSWnYp1PH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1741,
+      "cache_read_input_tokens": 30015,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1741
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-21T07:40:34.619Z_
+
+<details><summary>↩ Tool result · `toolu_01Mmki2gGnBgKz4TDP6Ex173`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"exp_14b_inference_fewnerd\": {\"hypothesis\": \"14B Qwen2.5 inference on FewNERD (N∈{1,2,4,8}): primary dataset should show oracle scaling law F1(N)=a-b*N^(-c) consistent at 14B scale, filling the scaling curve between 7B and 32B. N=16 cut per Director decision.\", \"conclusion\": \"success\", \"metrics\": {\"fewnerd_n1\": {\"greedy_f1\": 0.7985, \"oracle_f1\": 0.7541, \"oracle_headroom\": -0.044, \"verdict\": \"FAIL\"}, \"fewnerd_n2\": {\"greedy_f1\": 0.7985, \"oracle_f1\": 0.8086, \"oracle_headroom\": 0.01, \"soft_jaccard_rho_full\": 0.205, \"rho_advantage\": -0.006, \"structural_beats_surface\": false, \"verdict\": \"FAIL\"}, \"fewnerd_n4\": {\"greedy_f1\": 0.7984, \"oracle_f1\": 0.8544, \"oracle_headroom\": 0.056, \"soft_jaccard_rho_full\": 0.314, \"rho_advantage\": 0.042, \"structural_beats_surface\": true, \"verdict\": \"MARGINAL\"}, \"fewnerd_n8\": {\"greedy_f1\": 0.7984, \"oracle_f1\": 0.8791, \"oracle_headroom\": 0.081, \"soft_jaccard_rho_full\": 0.324, \"rho_advantage\": 0.083, \"structural_beats_surface\": true, \"verdict\": \"MARGINAL\"}, \"cross_domain_scierc_conll\": \"completed but expected poor (cross-domain)\", \"n16_status\": \"cut per Director decision, kill_after_n8.sh executed\"}}, \"exp_fewnerd_7b_n16_s42\": {\"hypothesis\": \"FewNERD N=16 with Qwen2.5-7B: extending N-scaling curve to N=16 for 7B model. At N=8 the 7B model shows diminishing oracle gains; N=16 tests whether the plateau continues or breaks, providing a critical data point for the N-scaling law F1(N)=a-b*N^(-c) at the 7B scale.\", \"conclusion\": \"failed\"}, \"exp_fewnerd_n16_s456\": {\"hypothesis\": \"FewNERD N=16 (seed=456): extending N-scaling curve to N=16 for Qwen3-8B-FT. Tests whether oracle gains plateau or continue at higher sample counts, critical for F1(N)=a-b*N^(-c) scaling law estimation. Third seed for 3-seed statistical power.\", \"conclusion\": \"failed\"}, \"exp_conll_mf4_s456\": {\"hypothesis\": \"MF4 pipeline fix: CoNLL N=8 T=1.0 seed=456 using run_mvp_pilot.py (greedy_f1/micro-F1). Extends exp_conll_t10_s42 to 3-seed set for statistical power.\", \"conclusion\": \"killed\"}, \"exp_conll_mf4_s123\": {\"hypothesis\": \"MF4 pipeline fix: CoNLL N=8 T=1.0 seed=123 using run_mvp_pilot.py (greedy_f1/micro-F1). Extends exp_conll_t10_s42 to 3-seed set for statistical power.\", \"conclusion\": \"killed\"}, \"exp_fewnerd_t05_s456\": {\"hypothesis\": \"FewNERD temperature ablation (T=0.5, seed=456): third seed complementing seed=42+123 for 3-seed statistical power. N=8, Qwen3-8B-FT.\", \"conclusion\": \"success\"}, \"exp_14b_inference_conll\": {\"hypothesis\": \"14B Qwen2.5 inference on CoNLL (N∈{1,2,4,8}): filling scale curve between 8B (greedy F1=0.907) and 32B. Tests whether 14B shows intermediate behavior in SC diagnostic metrics.\", \"conclusion\": \"killed\"}, \"exp_conll_n16_s456\": {\"hypothesis\": \"CoNLL N=16 (seed=456): extending N-scaling curve to N=16 for Qwen3-8B-FT on CoNLL-2003. Tests whether oracle gains plateau or continue at higher sample counts, critical for F1(N)=a-b*N^(-c) scaling law estimation. Third seed for 3-seed statistical power.\", \"conclusion\": \"failed\"}, \"exp_conll_n16_s123\": {\"hypothesis\": \"CoNLL N=16 (seed=123): extending N-scaling curve to N=16 for Qwen3-8B-FT on CoNLL-2003. Tests whether oracle gains plateau or continue at higher sample counts, critical for F1(N)=a-b*N^(-c) scaling law estimation. Second seed (s42 running).\", \"conclusion\": \"failed\"}, \"exp_scierc_n16_s456\": {\"hypothesis\": \"SciERC N=16 (seed=456): extending N-scaling curve to N=16 for Qwen3-8B-FT on SciERC. Tests whether oracle gains plateau or continue at higher sample counts, critical for F1(N)=a-b*N^(-c) scaling law estimation. Third seed for 3-seed statistical power.\", \"conclusion\": \"success\"}, \"exp_scierc_n16_s123\": {\"hypothesis\": \"SciERC N=16 (seed=123): extending N-scaling curve to N=16 for Qwen3-8B-FT on SciERC. Tests whether oracle gains plateau or continue at higher sample counts, critical for F1(N)=a-b*N^(-c) scaling law estimation. Second seed (s42 completed in exp-001).\", \"conclusion\": \"success\"}, \"exp_scierc_t12_s456\": {\"hypothesis\": \"SciERC temperature ablation (T=1.2, seed=456): third seed for SciERC T-ablation 3-seed statistical power. N=8, Qwen3-8B-FT.\", \"conclusion\": \"success\", \"metrics\": {\"greedy_f1\": 0.663, \"oracle_f1\": 0.782, \"rho_SJ_full\": 0.42, \"rho_FK_full\": 0.32, \"rho_advantage\": 0.099, \"oracle_headroom\": 0.119, \"degeneracy_pct\": 14.1, \"verdict\": \"PASS\"}}, \"exp_conll_n16_s42\": {\"hypothesis\": \"CoNLL N=16 ablation (T=1.0, seed=42): test whether doubling sample count from N=8 to N=16 improves SC diagnostic correlation and oracle F1 on CoNLL-2003. Qwen3-8B-FT.\", \"conclusion\": \"success\", \"metrics\": {\"greedy_f1\": 0.908, \"oracle_f1\": 0.959, \"rho_SJ_full\": 0.446, \"rho_FK_full\": 0.427, \"rho_advantage\": 0.019, \"oracle_headroom\": 0.051, \"degeneracy_pct\": 7.8, \"verdict\": \"PASS\"}}, \"exp_scierc_t08_s123\": {\"hypothesis\": \"SciERC temperature ablation (T=0.8, seed=123): second seed for SciERC T-ablation replication. N=8, Qwen3-8B-FT.\", \"conclusion\": \"success\", \"metrics\": {\"greedy_f1\": 0.662, \"oracle_f1\": 0.773, \"rho_SJ_full\": 0.382, \"rho_FK_full\": 0.298, \"rho_advantage\": 0.084, \"oracle_headroom\": 0.11, \"degeneracy_pct\": 11.2, \"verdict\": \"MARGINAL\"}}, \"exp_scierc_t08_s456\": {\"hypothesis\": \"SciERC temperature ablation (T=0.8, seed=456): third seed for SciERC T-ablation 3-seed statistical power. N=8, Qwen3-8B-FT.\", \"conclusion\": \"success\", \"metrics\": {\"greedy_f1\": 0.664, \"oracle_f1\": 0.769, \"rho_SJ_full\": 0.362, \"rho_FK_full\": 0.244, \"rho_advantage\": 0.118, \"oracle_headroom\": 0.105, \"degeneracy_pct\": 11.9, \"verdict\": \"MARGINAL\"}}, \"exp_scierc_t05_s456\": {\"hypothesis\": \"SciERC temperature ablation (T=0.5, seed=456): third seed for SciERC T-ablation 3-seed statistical power. N=8, Qwen3-8B-FT.\", \"conclusion\": \"success\", \"metrics\": {\"greedy_f1\": 0.663, \"oracle_f1\": 0.746, \"rho_SJ_full\": 0.326, \"rho_FK_full\": 0.272, \"rho_advantage\": 0.054, \"oracle_headroom\": 0.083, \"degeneracy_pct\": 10.3, \"verdict\": \"MARGINAL\"}}, \"exp_scierc_t12_s123\": {\"hypothesis\": \"SciERC temperature ablation (T=1.2, seed=123): second seed for SciERC T-ablation replication. N=8, Qwen3-8B-FT.\", \"conclusion\": \"success\", \"metrics\": {\"greedy_f1\": 0.664, \"oracle_f1\": 0.788, \"rho_SJ_full\": 0.346, \"rho_FK_full\": 0.223, \"rho_advantage\": 0.124, \"oracle_headroom\": 0.124, \"degeneracy_pct\": 13.9, \"verdict\": \"MARGINAL\"}}, \"exp_scierc_t05_s123\": {\"hypothesis\": \"SciERC temperature ablation (T=0.5, seed=123): second seed for SciERC T-ablation replication. N=8, Qwen3-8B-FT.\", \"conclusion\": \"success\", \"metrics\": {\"greedy_f1\": 0.665, \"oracle_f1\": 0.743, \"rho_SJ_full\": 0.322, \"rho_FK_full\": 0.295, \"rho_advantage\": 0.026, \"oracle_headroom\": 0.078, \"degeneracy_pct\": 10, \"verdict\": \"MARGINAL\"}}, \"exp_fewnerd_t08_s456\": {\"hypothesis\": \"FewNERD T-ablation seed=456 (T=0.8): third seed for T=0.8 sweet-spot, providing 3-seed statistical power for the key operating point. With seeds 42/123/456, can compute confidence intervals on rho_SJ and degeneracy_rate for the recommended T=0.8 setting.\", \"conclusion\": \"success\", \"metrics\": {\"greedy_f1\": 0.788, \"oracle_f1\": 0.877, \"rho_SJ_full\": 0.328, \"rho_FK_full\": 0.202, \"rho_advantage\": 0.126, \"oracle_headroom\": 0.088, \"degeneracy_pct\": 16.3, \"verdict\": \"MARGINAL\"}}, \"exp_fewnerd_t12_s123\": {\"hypothesis\": \"FewNERD T-ablation seed=123 replication (T=1.2): second seed for statistical power on T=1.2 negative result (over-diversification, 28.2% degeneracy, lowest rho_SJ=0.136 in seed=42). Confirms T=1.2 is consistently suboptimal for SC diagnostics on FewNERD.\", \"conclusion\": \"negative\", \"metrics\": {\"greedy_f1\": 0.789, \"oracle_f1\": 0.887, \"rho_SJ_full\": 0.285, \"rho_FK_full\": 0.163, \"rho_advantage\": 0.122, \"oracle_headroom\": 0.098, \"degeneracy_pct\": 24.7, \"verdict\": \"FAIL\"}}}, \"count\": 20, \"total\": 234, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6805}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "17a8fad4-60e8-42aa-aa9b-470382fc9e0a",
+  "uuid": "b376da7c-8db0-4b45-9283-6b384c805a3e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp_14b_inference_fewnerd\\\": {\\\"hypothesis\\\": \\\"14B Qwen2.5 inference on FewNERD (N∈{1,2,4,8}): primary dataset should show oracle scaling law F1(N)=a-b*N^(-c) consistent at 14B scale, filling the scaling curve between 7B and 32B. N=16 cut per Director decision.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"fewnerd_n1\\\": {\\\"greedy_f1\\\": 0.7985, \\\"oracle_f1\\\": 0.7541, \\\"oracle_headroom\\\": -0.044, \\\"verdict\\\": \\\"FAIL\\\"}, \\\"fewnerd_n2\\\": {\\\"greedy_f1\\\": 0.7985, \\\"oracle_f1\\\": 0.8086, \\\"oracle_headroom\\\": 0.01, \\\"soft_jaccard_rho_full\\\": 0.205, \\\"rho_advantage\\\": -0.006, \\\"structural_beats_surface\\\": false, \\\"verdict\\\": \\\"FAIL\\\"}, \\\"fewnerd_n4\\\": {\\\"greedy_f1\\\": 0.7984, \\\"oracle_f1\\\": 0.8544, \\\"oracle_headroom\\\": 0.056, \\\"soft_jaccard_rho_full\\\": 0.314, \\\"rho_advantage\\\": 0.042, \\\"structural_beats_surface\\\": true, \\\"verdict\\\": \\\"MARGINAL\\\"}, \\\"fewnerd_n8\\\": {\\\"greedy_f1\\\": 0.7984, \\\"oracle_f1\\\": 0.8791, \\\"oracle_headroom\\\": 0.081, \\\"soft_jaccard_rho_full\\\": 0.324, \\\"rho_advantage\\\": 0.083, \\\"structural_beats_surface\\\": true, \\\"verdict\\\": \\\"MARGINAL\\\"}, \\\"cross_domain_scierc_conll\\\": \\\"completed but expected poor (cross-domain)\\\", \\\"n16_status\\\": \\\"cut per Director decision, kill_after_n8.sh executed\\\"}}, \\\"exp_fewnerd_7b_n16_s42\\\": {\\\"hypothesis\\\": \\\"FewNERD N=16 with Qwen2.5-7B: extending N-scaling curve to N=16 for 7B model. At N=8 the 7B model shows diminishing oracle gains; N=16 tests whether the plateau continues or breaks, providing a critical data point for the N-scaling law F1(N)=a-b*N^(-c) at the 7B scale.\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"exp_fewnerd_n16_s456\\\": {\\\"hypothesis\\\": \\\"FewNERD N=16 (seed=456): extending N-scaling curve to N=16 for Qwen3-8B-FT. Tests whether oracle gains plateau or continue at higher sample counts, critical for F1(N)=a-b*N^(-c) scaling law estimation. Third seed for 3-seed statistical power.\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"exp_conll_mf4_s456\\\": {\\\"hypothesis\\\": \\\"MF4 pipeline fix: CoNLL N=8 T=1.0 seed=456 using run_mvp_pilot.py (greedy_f1/micro-F1). Extends exp_conll_t10_s42 to 3-seed set for statistical power.\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"exp_conll_mf4_s123\\\": {\\\"hypothesis\\\": \\\"MF4 pipeline fix: CoNLL N=8 T=1.0 seed=123 using run_mvp_pilot.py (greedy_f1/micro-F1). Extends exp_conll_t10_s42 to 3-seed set for statistical power.\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"exp_fewnerd_t05_s456\\\": {\\\"hypothesis\\\": \\\"FewNERD temperature ablation (T=0.5, seed=456): third seed complementing seed=42+123 for 3-seed statistical power. N=8, Qwen3-8B-FT.\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_14b_inference_conll\\\": {\\\"hypothesis\\\": \\\"14B Qwen2.5 inference on CoNLL (N∈{1,2,4,8}): filling scale curve between 8B (greedy F1=0.907) and 32B. Tests whether 14B shows intermediate behavior in SC diagnostic metrics.\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"exp_conll_n16_s456\\\": {\\\"hypothesis\\\": \\\"CoNLL N=16 (seed=456): extending N-scaling curve to N=16 for Qwen3-8B-FT on CoNLL-2003. Tests whether oracle gains plateau or continue at higher sample counts, critical for F1(N)=a-b*N^(-c) scaling law estimation. Third seed for 3-seed statistical power.\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"exp_conll_n16_s123\\\": {\\\"hypothesis\\\": \\\"CoNLL N=16 (seed=123): extending N-scaling curve to N=16 for Qwen3-8B-FT on CoNLL-2003. Tests whether oracle gains plateau or continue at higher sample counts, critical for F1(N)=a-b*N^(-c) scaling law estimation. Second seed (s42 running).\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"exp_scierc_n16_s456\\\": {\\\"hypothesis\\\": \\\"SciERC N=16 (seed=456): extending N-scaling curve to N=16 for Qwen3-8B-FT on SciERC. Tests whether oracle gains plateau or continue at higher sample counts, critical for F1(N)=a-b*N^(-c) scaling law estimation. Third seed for 3-seed statistical power.\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_scierc_n16_s123\\\": {\\\"hypothesis\\\": \\\"SciERC N=16 (seed=123): extending N-scaling curve to N=16 for Qwen3-8B-FT on SciERC. Tests whether oracle gains plateau or continue at higher sample counts, critical for F1(N)=a-b*N^(-c) scaling law estimation. Second seed (s42 completed in exp-001).\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_scierc_t12_s456\\\": {\\\"hypothesis\\\": \\\"SciERC temperature ablation (T=1.2, seed=456): third seed for SciERC T-ablation 3-seed statistical power. N=8, Qwen3-8B-FT.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"greedy_f1\\\": 0.663, \\\"oracle_f1\\\": 0.782, \\\"rho_SJ_full\\\": 0.42, \\\"rho_FK_full\\\": 0.32, \\\"rho_advantage\\\": 0.099, \\\"oracle_headroom\\\": 0.119, \\\"degeneracy_pct\\\": 14.1, \\\"verdict\\\": \\\"PASS\\\"}}, \\\"exp_conll_n16_s42\\\": {\\\"hypothesis\\\": \\\"CoNLL N=16 ablation (T=1.0, seed=42): test whether doubling sample count from N=8 to N=16 improves SC diagnostic correlation and oracle F1 on CoNLL-2003. Qwen3-8B-FT.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"greedy_f1\\\": 0.908, \\\"oracle_f1\\\": 0.959, \\\"rho_SJ_full\\\": 0.446, \\\"rho_FK_full\\\": 0.427, \\\"rho_advantage\\\": 0.019, \\\"oracle_headroom\\\": 0.051, \\\"degeneracy_pct\\\": 7.8, \\\"verdict\\\": \\\"PASS\\\"}}, \\\"exp_scierc_t08_s123\\\": {\\\"hypothesis\\\": \\\"SciERC temperature ablation (T=0.8, seed=123): second seed for SciERC T-ablation replication. N=8, Qwen3-8B-FT.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"greedy_f1\\\": 0.662, \\\"oracle_f1\\\": 0.773, \\\"rho_SJ_full\\\": 0.382, \\\"rho_FK_full\\\": 0.298, \\\"rho_advantage\\\": 0.084, \\\"oracle_headroom\\\": 0.11, \\\"degeneracy_pct\\\": 11.2, \\\"verdict\\\": \\\"MARGINAL\\\"}}, \\\"exp_scierc_t08_s456\\\": {\\\"hypothesis\\\": \\\"SciERC temperature ablation (T=0.8, seed=456): third seed for SciERC T-ablation 3-seed statistical power. N=8, Qwen3-8B-FT.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"greedy_f1\\\": 0.664, \\\"oracle_f1\\\": 0.769, \\\"rho_SJ_full\\\": 0.362, \\\"rho_FK_full\\\": 0.244, \\\"rho_advantage\\\": 0.118, \\\"oracle_headroom\\\": 0.105, \\\"degeneracy_pct\\\": 11.9, \\\"verdict\\\": \\\"MARGINAL\\\"}}, \\\"exp_scierc_t05_s456\\\": {\\\"hypothesis\\\": \\\"SciERC temperature ablation (T=0.5, seed=456): third seed for SciERC T-ablation 3-seed statistical power. N=8, Qwen3-8B-FT.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"greedy_f1\\\": 0.663, \\\"oracle_f1\\\": 0.746, \\\"rho_SJ_full\\\": 0.326, \\\"rho_FK_full\\\": 0.272, \\\"rho_advantage\\\": 0.054, \\\"oracle_headroom\\\": 0.083, \\\"degeneracy_pct\\\": 10.3, \\\"verdict\\\": \\\"MARGINAL\\\"}}, \\\"exp_scierc_t12_s123\\\": {\\\"hypothesis\\\": \\\"SciERC temperature ablation (T=1.2, seed=123): second seed for SciERC T-ablation replication. N=8, Qwen3-8B-FT.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"greedy_f1\\\": 0.664, \\\"oracle_f1\\\": 0.788, \\\"rho_SJ_full\\\": 0.346, \\\"rho_FK_full\\\": 0.223, \\\"rho_advantage\\\": 0.124, \\\"oracle_headroom\\\": 0.124, \\\"degeneracy_pct\\\": 13.9, \\\"verdict\\\": \\\"MARGINAL\\\"}}, \\\"exp_scierc_t05_s123\\\": {\\\"hypothesis\\\": \\\"SciERC temperature ablation (T=0.5, seed=123): second seed for SciERC T-ablation replication. N=8, Qwen3-8B-FT.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"greedy_f1\\\": 0.665, \\\"oracle_f1\\\": 0.743, \\\"rho_SJ_full\\\": 0.322, \\\"rho_FK_full\\\": 0.295, \\\"rho_advantage\\\": 0.026, \\\"oracle_headroom\\\": 0.078, \\\"degeneracy_pct\\\": 10, \\\"verdict\\\": \\\"MARGINAL\\\"}}, \\\"exp_fewnerd_t08_s456\\\": {\\\"hypothesis\\\": \\\"FewNERD T-ablation seed=456 (T=0.8): third seed for T=0.8 sweet-spot, providing 3-seed statistical power for the key operating point. With seeds 42/123/456, can compute confidence intervals on rho_SJ and degeneracy_rate for the recommended T=0.8 setting.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"greedy_f1\\\": 0.788, \\\"oracle_f1\\\": 0.877, \\\"rho_SJ_full\\\": 0.328, \\\"rho_FK_full\\\": 0.202, \\\"rho_advantage\\\": 0.126, \\\"oracle_headroom\\\": 0.088, \\\"degeneracy_pct\\\": 16.3, \\\"verdict\\\": \\\"MARGINAL\\\"}}, \\\"exp_fewnerd_t12_s123\\\": {\\\"hypothesis\\\": \\\"FewNERD T-ablation seed=123 replication (T=1.2): second seed for statistical power on T=1.2 negative result (over-diversification, 28.2% degeneracy, lowest rho_SJ=0.136 in seed=42). Confirms T=1.2 is consistently suboptimal for SC diagnostics on FewNERD.\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"greedy_f1\\\": 0.789, \\\"oracle_f1\\\": 0.887, \\\"rho_SJ_full\\\": 0.285, \\\"rho_FK_full\\\": 0.163, \\\"rho_advantage\\\": 0.122, \\\"oracle_headroom\\\": 0.098, \\\"degeneracy_pct\\\": 24.7, \\\"verdict\\\": \\\"FAIL\\\"}}}, \\\"count\\\": 20, \\\"total\\\": 234, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6805}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"exp_14b_inference_fewnerd\": {\"hypothesis\": \"14B Qwen2.5 inference on FewNERD (N∈{1,2,4,8}): primary dataset should show oracle scaling law F1(N)=a-b*N^(-c) consistent at 14B scale, filling the scaling curve between 7B and 32B. N=16 cut per Director decision.\", \"conclusion\": \"success\", \"metrics\": {\"fewnerd_n1\": {\"greedy_f1\": 0.7985, \"oracle_f1\": 0.7541, \"oracle_headroom\": -0.044, \"verdict\": \"FAIL\"}, \"fewnerd_n2\": {\"greedy_f1\": 0.7985, \"oracle_f1\": 0.8086, \"oracle_headroom\": 0.01, \"soft_jaccard_rho_full\": 0.205, \"rho_advantage\": -0.006, \"structural_beats_surface\": false, \"verdict\": \"FAIL\"}, \"fewnerd_n4\": {\"greedy_f1\": 0.7984, \"oracle_f1\": 0.8544, \"oracle_headroom\": 0.056, \"soft_jaccard_rho_full\": 0.314, \"rho_advantage\": 0.042, \"structural_beats_surface\": true, \"verdict\": \"MARGINAL\"}, \"fewnerd_n8\": {\"greedy_f1\": 0.7984, \"oracle_f1\": 0.8791, \"oracle_headroom\": 0.081, \"soft_jaccard_rho_full\": 0.324, \"rho_advantage\": 0.083, \"structural_beats_surface\": true, \"verdict\": \"MARGINAL\"}, \"cross_domain_scierc_conll\": \"completed but expected poor (cross-domain)\", \"n16_status\": \"cut per Director decision, kill_after_n8.sh executed\"}}, \"exp_fewnerd_7b_n16_s42\": {\"hypothesis\": \"FewNERD N=16 with Qwen2.5-7B: extending N-scaling curve to N=16 for 7B model. At N=8 the 7B model shows diminishing oracle gains; N=16 tests whether the plateau continues or breaks, providing a critical data point for the N-scaling law F1(N)=a-b*N^(-c) at the 7B scale.\", \"conclusion\": \"failed\"}, \"exp_fewnerd_n16_s456\": {\"hypothesis\": \"FewNERD N=16 (seed=456): extending N-scaling curve to N=16 for Qwen3-8B-FT. Tests whether oracle gains plateau or continue at higher sample counts, critical for F1(N)=a-b*N^(-c) scaling law estimation. Third seed for 3-seed statistical power.\", \"conclusion\": \"failed\"}, \"exp_conll_mf4_s456\": {\"hypothesis\": \"MF4 pipeline fix: CoNLL N=8 T=1.0 seed=456 using run_mvp_pilot.py (greedy_f1/micro-F1). Extends exp_conll_t10_s42 to 3-seed set for statistical power.\", \"conclusion\": \"killed\"}, \"exp_conll_mf4_s123\": {\"hypothesis\": \"MF4 pipeline fix: CoNLL N=8 T=1.0 seed=123 using run_mvp_pilot.py (greedy_f1/micro-F1). Extends exp_conll_t10_s42 to 3-seed set for statistical power.\", \"conclusion\": \"killed\"}, \"exp_fewnerd_t05_s456\": {\"hypothesis\": \"FewNERD temperature ablation (T=0.5, seed=456): third seed complementing seed=42+123 for 3-seed statistical power. N=8, Qwen3-8B-FT.\", \"conclusion\": \"success\"}, \"exp_14b_inference_conll\": {\"hypothesis\": \"14B Qwen2.5 inference on CoNLL (N∈{1,2,4,8}): filling scale curve between 8B (greedy F1=0.907) and 32B. Tests whether 14B shows intermediate behavior in SC diagnostic metrics.\", \"conclusion\": \"killed\"}, \"exp_conll_n16_s456\": {\"hypothesis\": \"CoNLL N=16 (seed=456): extending N-scaling curve to N=16 for Qwen3-8B-FT on CoNLL-2003. Tests whether oracle gains plateau or continue at higher sample counts, critical for F1(N)=a-b*N^(-c) scaling law estimation. Third seed for 3-seed statistical power.\", \"conclusion\": \"failed\"}, \"exp_conll_n16_s123\": {\"hypothesis\": \"CoNLL N=16 (seed=123): extending N-scaling curve to N=16 for Qwen3-8B-FT on CoNLL-2003. Tests whether oracle gains plateau or continue at higher sample counts, critical for F1(N)=a-b*N^(-c) scaling law estimation. Second seed (s42 running).\", \"conclusion\": \"failed\"}, \"exp_scierc_n16_s456\": {\"hypothesis\": \"SciERC N=16 (seed=456): extending N-scaling curve to N=16 for Qwen3-8B-FT on SciERC. Tests whether oracle gains plateau or continue at higher sample counts, critical for F1(N)=a-b*N^(-c) scaling law estimation. Third seed for 3-seed statistical power.\", \"conclusion\": \"success\"}, \"exp_scierc_n16_s123\": {\"hypothesis\": \"SciERC N=16 (seed=123): extending N-scaling curve to N=16 for Qwen3-8B-FT on SciERC. Tests whether oracle gains plateau or continue at higher sample counts, critical for F1(N)=a-b*N^(-c) scaling law estimation. Second seed (s42 completed in exp-001).\", \"conclusion\": \"success\"}, \"exp_scierc_t12_s456\": {\"hypothesis\": \"SciERC temperature ablation (T=1.2, seed=456): third seed for SciERC T-ablation 3-seed statistical power. N=8, Qwen3-8B-FT.\", \"conclusion\": \"success\", \"metrics\": {\"greedy_f1\": 0.663, \"oracle_f1\": 0.782, \"rho_SJ_full\": 0.42, \"rho_FK_full\": 0.32, \"rho_advantage\": 0.099, \"oracle_headroom\": 0.119, \"degeneracy_pct\": 14.1, \"verdict\": \"PASS\"}}, \"exp_conll_n16_s42\": {\"hypothesis\": \"CoNLL N=16 ablation (T=1.0, seed=42): test whether doubling sample count from N=8 to N=16 improves SC diagnostic correlation and oracle F1 on CoNLL-2003. Qwen3-8B-FT.\", \"conclusion\": \"success\", \"metrics\": {\"greedy_f1\": 0.908, \"oracle_f1\": 0.959, \"rho_SJ_full\": 0.446, \"rho_FK_full\": 0.427, \"rho_advantage\": 0.019, \"oracle_headroom\": 0.051, \"degeneracy_pct\": 7.8, \"verdict\": \"PASS\"}}, \"exp_scierc_t08_s123\": {\"hypothesis\": \"SciERC temperature ablation (T=0.8, seed=123): second seed for SciERC T-ablation replication. N=8, Qwen3-8B-FT.\", \"conclusion\": \"success\", \"metrics\": {\"greedy_f1\": 0.662, \"oracle_f1\": 0.773, \"rho_SJ_full\": 0.382, \"rho_FK_full\": 0.298, \"rho_advantage\": 0.084, \"oracle_headroom\": 0.11, \"degeneracy_pct\": 11.2, \"verdict\": \"MARGINAL\"}}, \"exp_scierc_t08_s456\": {\"hypothesis\": \"SciERC temperature ablation (T=0.8, seed=456): third seed for SciERC T-ablation 3-seed statistical power. N=8, Qwen3-8B-FT.\", \"conclusion\": \"success\", \"metrics\": {\"greedy_f1\": 0.664, \"oracle_f1\": 0.769, \"rho_SJ_full\": 0.362, \"rho_FK_full\": 0.244, \"rho_advantage\": 0.118, \"oracle_headroom\": 0.105, \"degeneracy_pct\": 11.9, \"verdict\": \"MARGINAL\"}}, \"exp_scierc_t05_s456\": {\"hypothesis\": \"SciERC temperature ablation (T=0.5, seed=456): third seed for SciERC T-ablation 3-seed statistical power. N=8, Qwen3-8B-FT.\", \"conclusion\": \"success\", \"metrics\": {\"greedy_f1\": 0.663, \"oracle_f1\": 0.746, \"rho_SJ_full\": 0.326, \"rho_FK_full\": 0.272, \"rho_advantage\": 0.054, \"oracle_headroom\": 0.083, \"degeneracy_pct\": 10.3, \"verdict\": \"MARGINAL\"}}, \"exp_scierc_t12_s123\": {\"hypothesis\": \"SciERC temperature ablation (T=1.2, seed=123): second seed for SciERC T-ablation replication. N=8, Qwen3-8B-FT.\", \"conclusion\": \"success\", \"metrics\": {\"greedy_f1\": 0.664, \"oracle_f1\": 0.788, \"rho_SJ_full\": 0.346, \"rho_FK_full\": 0.223, \"rho_advantage\": 0.124, \"oracle_headroom\": 0.124, \"degeneracy_pct\": 13.9, \"verdict\": \"MARGINAL\"}}, \"exp_scierc_t05_s123\": {\"hypothesis\": \"SciERC temperature ablation (T=0.5, seed=123): second seed for SciERC T-ablation replication. N=8, Qwen3-8B-FT.\", \"conclusion\": \"success\", \"metrics\": {\"greedy_f1\": 0.665, \"oracle_f1\": 0.743, \"rho_SJ_full\": 0.322, \"rho_FK_full\": 0.295, \"rho_advantage\": 0.026, \"oracle_headroom\": 0.078, \"degeneracy_pct\": 10, \"verdict\": \"MARGINAL\"}}, \"exp_fewnerd_t08_s456\": {\"hypothesis\": \"FewNERD T-ablation seed=456 (T=0.8): third seed for T=0.8 sweet-spot, providing 3-seed statistical power for the key operating point. With seeds 42/123/456, can compute confidence intervals on rho_SJ and degeneracy_rate for the recommended T=0.8 setting.\", \"conclusion\": \"success\", \"metrics\": {\"greedy_f1\": 0.788, \"oracle_f1\": 0.877, \"rho_SJ_full\": 0.328, \"rho_FK_full\": 0.202, \"rho_advantage\": 0.126, \"oracle_headroom\": 0.088, \"degeneracy_pct\": 16.3, \"verdict\": \"MARGINAL\"}}, \"exp_fewnerd_t12_s123\": {\"hypothesis\": \"FewNERD T-ablation seed=123 replication (T=1.2): second seed for statistical power on T=1.2 negative result (over-diversification, 28.2% degeneracy, lowest rho_SJ=0.136 in seed=42). Confirms T=1.2 is consistently suboptimal for SC diagnostics on FewNERD.\", \"conclusion\": \"negative\", \"metrics\": {\"greedy_f1\": 0.789, \"oracle_f1\": 0.887, \"rho_SJ_full\": 0.285, \"rho_FK_full\": 0.163, \"rho_advantage\": 0.122, \"oracle_headroom\": 0.098, \"degeneracy_pct\": 24.7, \"verdict\": \"FAIL\"}}}, \"count\": 20, \"total\": 234, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6805}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 22_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have good reference data. Let me look for the MF4 v2 FewNERD experiments specifically, and also the exp_conll_t10_s42 if it's there. Let me also look for the seed=42 version of this experiment (exp_fewnerd_mf4_v2_s42).
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "17a8fad4-60e8-42aa-aa9b-470382fc9e0a",
+  "uuid": "78d12efd-29dc-4213-81c3-3b858bcd045c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0112csoTK87hRmLezyXWuK4u",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3653,
+      "cache_read_input_tokens": 31756,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3653
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01XAtsXi6Z5qV8wVERD7kYn2`</summary>
+
+```json
+{
+  "project": "struct_self_consist_ie",
+  "filters": {
+    "exp_id": "exp_conll_t10_s42"
+  },
+  "fields": [
+    "exp_id",
+    "conclusion",
+    "metrics"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "17a8fad4-60e8-42aa-aa9b-470382fc9e0a",
+  "uuid": "11af6ddd-5509-462b-a326-812142dd05ba",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0112csoTK87hRmLezyXWuK4u",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3653,
+      "cache_read_input_tokens": 31756,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3653
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_019JSrc6vf1TvEn3H6poaMPq`</summary>
+
+```json
+{
+  "project": "struct_self_consist_ie",
+  "filters": {
+    "exp_id": "exp_fewnerd_mf4_v2_s42"
+  },
+  "fields": [
+    "*"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "17a8fad4-60e8-42aa-aa9b-470382fc9e0a",
+  "uuid": "94b50578-d529-403b-95c9-4dc409c45842",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0112csoTK87hRmLezyXWuK4u",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3653,
+      "cache_read_input_tokens": 31756,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3653
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-21T07:40:39.923Z_
+
+<details><summary>↩ Tool result · `toolu_01XAtsXi6Z5qV8wVERD7kYn2`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6661}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "17a8fad4-60e8-42aa-aa9b-470382fc9e0a",
+  "uuid": "b2e1f314-9c9b-4c11-93b7-3f130baa98c2",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6661}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6661}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-21T07:40:40.577Z_
+
+<details><summary>↩ Tool result · `toolu_019JSrc6vf1TvEn3H6poaMPq`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6406}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "17a8fad4-60e8-42aa-aa9b-470382fc9e0a",
+  "uuid": "2050184e-e3b6-428c-9f5f-4dbd60752d8d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6406}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6406}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 27_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Neither exp_conll_t10_s42 nor exp_fewnerd_mf4_v2_s42 found by exact filter. Let me search for FewNERD MF4 experiments more broadly.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "17a8fad4-60e8-42aa-aa9b-470382fc9e0a",
+  "uuid": "1ee7a77b-5054-4f65-b265-3aa9fc6700dc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LBTR9J3mLuWwoiWnGaeQHe",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 642,
+      "cache_read_input_tokens": 35409,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 642
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01QyUm53V1wybtG46qa2NcVn`</summary>
+
+```json
+{
+  "project": "struct_self_consist_ie",
+  "filters": {
+    "status": "RUNNING"
+  },
+  "fields": [
+    "exp_id",
+    "hypothesis",
+    "status"
+  ],
+  "limit": 10
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "17a8fad4-60e8-42aa-aa9b-470382fc9e0a",
+  "uuid": "08002fab-a046-4885-aa44-e13f4ea70378",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LBTR9J3mLuWwoiWnGaeQHe",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 642,
+      "cache_read_input_tokens": 35409,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 642
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-21T07:40:45.060Z_
+
+<details><summary>↩ Tool result · `toolu_01QyUm53V1wybtG46qa2NcVn`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"exp_e2_pretrained_scierc\": {\"status\": \"RUNNING\", \"hypothesis\": \"E2 pre-trained baseline: Qwen2.5-7B-Instruct (unfinetuned) on SciERC SC pipeline N=8 T=1.0. Third dataset for E2 baseline, validates whether correlation-selection gap exists without task-specific fine-tuning across all 3 NER benchmarks.\"}, \"exp_conll_n16_s456_v2\": {\"status\": \"RUNNING\", \"hypothesis\": \"CoNLL N=16 (seed=456, v2): retry after previous failure on 5090. Third seed for 3-seed statistical power on CoNLL-2003 N=16.\"}, \"exp_conll_n16_s123_v2\": {\"status\": \"RUNNING\", \"hypothesis\": \"CoNLL N=16 (seed=123, v2): retry after previous failure on 5090 (damaged checkpoint). Extending N-scaling curve to N=16 for Qwen3-8B-FT on CoNLL-2003.\"}, \"exp_fewnerd_n16_s456_v2\": {\"status\": \"RUNNING\", \"hypothesis\": \"FewNERD N=16 (seed=456, v2 rerun): data lost in previous run. Extending N-scaling curve to N=16 for Qwen3-8B-FT, critical for F1(N)=a-b*N^(-c) scaling law. Third seed for 3-seed statistical power.\"}, \"exp_frontier_sc_gpt55_fewnerd_v2\": {\"status\": \"RUNNING\", \"hypothesis\": \"Frontier model GPT-5.5 on FewNERD SC (200 instances, N=8, T=1.0): if correlation-selection gap persists in frontier models, the finding is fundamental and not a model capability limitation. Previous attempt failed due to API credit exhaustion.\"}, \"exp_e2_pretrained_fewnerd\": {\"status\": \"RUNNING\", \"hypothesis\": \"E2 pre-trained baseline: Qwen2.5-7B-Instruct (unfinetuned) on FewNERD SC pipeline N=8 T=1.0. Tests whether correlation-selection gap exists without task-specific fine-tuning. If gap persists → phenomenon is model-intrinsic, not fine-tuning artifact.\"}, \"exp_e2_pretrained_conll\": {\"status\": \"RUNNING\", \"hypothesis\": \"E2 pre-trained baseline: Qwen2.5-7B-Instruct (unfinetuned) on CoNLL SC pipeline N=8 T=1.0. Cross-dataset validation of pre-trained baseline. Together with FewNERD baseline, shows whether fine-tuning modulates the gap magnitude.\"}, \"exp_fewnerd_mf4_v2_s42\": {\"status\": \"RUNNING\", \"hypothesis\": \"MF4 pipeline fix v2: FewNERD N=8 T=1.0 seed=42 using run_mvp_pilot.py (greedy_f1/micro-F1). Replaces exp_021 which used incompatible greedy_macro_f1. 3-seed statistical power.\"}, \"exp_frontier_sc_deepseek\": {\"status\": \"RUNNING\", \"hypothesis\": \"Frontier model DeepSeek Chat on FewNERD SC (200 inst, N=8, T=1.0): 4-family cross-validation of correlation-selection gap universality.\"}, \"exp_frontier_sc_gemini25pro\": {\"status\": \"RUNNING\", \"hypothesis\": \"Frontier model Gemini 2.5 Pro on FewNERD SC (200 inst, N=8, T=1.0): 4-family cross-validation. If correlation-selection gap persists across GPT + Claude + Gemini + DeepSeek, the finding is universal.\"}}, \"count\": 10, \"total\": 14, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6716}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "17a8fad4-60e8-42aa-aa9b-470382fc9e0a",
+  "uuid": "83e3b6ae-262a-4def-b80b-ed692b54e85d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp_e2_pretrained_scierc\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"hypothesis\\\": \\\"E2 pre-trained baseline: Qwen2.5-7B-Instruct (unfinetuned) on SciERC SC pipeline N=8 T=1.0. Third dataset for E2 baseline, validates whether correlation-selection gap exists without task-specific fine-tuning across all 3 NER benchmarks.\\\"}, \\\"exp_conll_n16_s456_v2\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"hypothesis\\\": \\\"CoNLL N=16 (seed=456, v2): retry after previous failure on 5090. Third seed for 3-seed statistical power on CoNLL-2003 N=16.\\\"}, \\\"exp_conll_n16_s123_v2\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"hypothesis\\\": \\\"CoNLL N=16 (seed=123, v2): retry after previous failure on 5090 (damaged checkpoint). Extending N-scaling curve to N=16 for Qwen3-8B-FT on CoNLL-2003.\\\"}, \\\"exp_fewnerd_n16_s456_v2\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"hypothesis\\\": \\\"FewNERD N=16 (seed=456, v2 rerun): data lost in previous run. Extending N-scaling curve to N=16 for Qwen3-8B-FT, critical for F1(N)=a-b*N^(-c) scaling law. Third seed for 3-seed statistical power.\\\"}, \\\"exp_frontier_sc_gpt55_fewnerd_v2\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"hypothesis\\\": \\\"Frontier model GPT-5.5 on FewNERD SC (200 instances, N=8, T=1.0): if correlation-selection gap persists in frontier models, the finding is fundamental and not a model capability limitation. Previous attempt failed due to API credit exhaustion.\\\"}, \\\"exp_e2_pretrained_fewnerd\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"hypothesis\\\": \\\"E2 pre-trained baseline: Qwen2.5-7B-Instruct (unfinetuned) on FewNERD SC pipeline N=8 T=1.0. Tests whether correlation-selection gap exists without task-specific fine-tuning. If gap persists → phenomenon is model-intrinsic, not fine-tuning artifact.\\\"}, \\\"exp_e2_pretrained_conll\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"hypothesis\\\": \\\"E2 pre-trained baseline: Qwen2.5-7B-Instruct (unfinetuned) on CoNLL SC pipeline N=8 T=1.0. Cross-dataset validation of pre-trained baseline. Together with FewNERD baseline, shows whether fine-tuning modulates the gap magnitude.\\\"}, \\\"exp_fewnerd_mf4_v2_s42\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"hypothesis\\\": \\\"MF4 pipeline fix v2: FewNERD N=8 T=1.0 seed=42 using run_mvp_pilot.py (greedy_f1/micro-F1). Replaces exp_021 which used incompatible greedy_macro_f1. 3-seed statistical power.\\\"}, \\\"exp_frontier_sc_deepseek\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"hypothesis\\\": \\\"Frontier model DeepSeek Chat on FewNERD SC (200 inst, N=8, T=1.0): 4-family cross-validation of correlation-selection gap universality.\\\"}, \\\"exp_frontier_sc_gemini25pro\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"hypothesis\\\": \\\"Frontier model Gemini 2.5 Pro on FewNERD SC (200 inst, N=8, T=1.0): 4-family cross-validation. If correlation-selection gap persists across GPT + Claude + Gemini + DeepSeek, the finding is universal.\\\"}}, \\\"count\\\": 10, \\\"total\\\": 14, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6716}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"exp_e2_pretrained_scierc\": {\"status\": \"RUNNING\", \"hypothesis\": \"E2 pre-trained baseline: Qwen2.5-7B-Instruct (unfinetuned) on SciERC SC pipeline N=8 T=1.0. Third dataset for E2 baseline, validates whether correlation-selection gap exists without task-specific fine-tuning across all 3 NER benchmarks.\"}, \"exp_conll_n16_s456_v2\": {\"status\": \"RUNNING\", \"hypothesis\": \"CoNLL N=16 (seed=456, v2): retry after previous failure on 5090. Third seed for 3-seed statistical power on CoNLL-2003 N=16.\"}, \"exp_conll_n16_s123_v2\": {\"status\": \"RUNNING\", \"hypothesis\": \"CoNLL N=16 (seed=123, v2): retry after previous failure on 5090 (damaged checkpoint). Extending N-scaling curve to N=16 for Qwen3-8B-FT on CoNLL-2003.\"}, \"exp_fewnerd_n16_s456_v2\": {\"status\": \"RUNNING\", \"hypothesis\": \"FewNERD N=16 (seed=456, v2 rerun): data lost in previous run. Extending N-scaling curve to N=16 for Qwen3-8B-FT, critical for F1(N)=a-b*N^(-c) scaling law. Third seed for 3-seed statistical power.\"}, \"exp_frontier_sc_gpt55_fewnerd_v2\": {\"status\": \"RUNNING\", \"hypothesis\": \"Frontier model GPT-5.5 on FewNERD SC (200 instances, N=8, T=1.0): if correlation-selection gap persists in frontier models, the finding is fundamental and not a model capability limitation. Previous attempt failed due to API credit exhaustion.\"}, \"exp_e2_pretrained_fewnerd\": {\"status\": \"RUNNING\", \"hypothesis\": \"E2 pre-trained baseline: Qwen2.5-7B-Instruct (unfinetuned) on FewNERD SC pipeline N=8 T=1.0. Tests whether correlation-selection gap exists without task-specific fine-tuning. If gap persists → phenomenon is model-intrinsic, not fine-tuning artifact.\"}, \"exp_e2_pretrained_conll\": {\"status\": \"RUNNING\", \"hypothesis\": \"E2 pre-trained baseline: Qwen2.5-7B-Instruct (unfinetuned) on CoNLL SC pipeline N=8 T=1.0. Cross-dataset validation of pre-trained baseline. Together with FewNERD baseline, shows whether fine-tuning modulates the gap magnitude.\"}, \"exp_fewnerd_mf4_v2_s42\": {\"status\": \"RUNNING\", \"hypothesis\": \"MF4 pipeline fix v2: FewNERD N=8 T=1.0 seed=42 using run_mvp_pilot.py (greedy_f1/micro-F1). Replaces exp_021 which used incompatible greedy_macro_f1. 3-seed statistical power.\"}, \"exp_frontier_sc_deepseek\": {\"status\": \"RUNNING\", \"hypothesis\": \"Frontier model DeepSeek Chat on FewNERD SC (200 inst, N=8, T=1.0): 4-family cross-validation of correlation-selection gap universality.\"}, \"exp_frontier_sc_gemini25pro\": {\"status\": \"RUNNING\", \"hypothesis\": \"Frontier model Gemini 2.5 Pro on FewNERD SC (200 inst, N=8, T=1.0): 4-family cross-validation. If correlation-selection gap persists across GPT + Claude + Gemini + DeepSeek, the finding is universal.\"}}, \"count\": 10, \"total\": 14, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6716}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 30_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I can see that `exp_fewnerd_mf4_v2_s42` is still RUNNING. This is the seed=42 counterpart.
+
+Let me also find the best FewNERD T=1.0 reference in the DONE experiments. From the DONE list:
+- exp_14b_inference_fewnerd: fewnerd_n8 had greedy_f1=0.7984, oracle_f1=0.8791, rho_SJ_full=0.324, rho_advantage=0.083
+
+For comparison with this experiment (seed=123):
+
+
+- greedy_f1: 0.7883 (slightly lower than the 14B baseline)
+- oracle_f1: 0.8891 (better than the 14B baseline)
+- rho_SJ_full: 0.3070 (slightly lower)
+- rho_advantage: 0.1482 (notably higher than the 14B baseline)
+
+Now I need to update the registry with these results. The experiment already exists with RUNNING status, so I'm updating its fields rather than creating a new entry. When I filtered by exp_id, I got no results, but the RUNNING filter shows exp_fewnerd_mf4 is there.
+
+Looking more carefully, the full experiment ID is exp_fewnerd_mf4_v2_s123, and my filter didn't find it — it might already be in a different state or I need to adjust how I'm querying. Let me try updating it directly since the tool creates the experiment if it doesn't exist. I need to set the hypothesis, metrics, and mark the conclusion as success.
+
+The greedy_f1 score of 0.7883 falls within the expected range for FewNERD, all metrics are present, and structural_beats_surface is true with a solid rho_advantage of 0.148. Even though the system verdict is MARGINAL, the performance criteria are met, so I'll set the conclusion to success and mark the status as DONE with the checkpoint and log paths.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "17a8fad4-60e8-42aa-aa9b-470382fc9e0a",
+  "uuid": "c8db990f-15f1-4161-bb4e-2425488e4b41",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ku8HxA4skwWLAUqDX8yTgt",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1267,
+      "cache_read_input_tokens": 36051,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1267
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 31_
+
+数据齐全，开始更新 registry。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "17a8fad4-60e8-42aa-aa9b-470382fc9e0a",
+  "uuid": "82b58c9e-10b7-42ff-9680-55d553db9b37",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ku8HxA4skwWLAUqDX8yTgt",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1267,
+      "cache_read_input_tokens": 36051,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1267
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01RvBfQKWAo5yrm3w5TfKMgZ`</summary>
+
+```json
+{
+  "exp_id": "exp_fewnerd_mf4_v2_s123",
+  "field": "hypothesis",
+  "value": "MF4 pipeline fix v2: FewNERD N=8 T=1.0 seed=123 using run_mvp_pilot.py (greedy_f1/micro-F1)",
+  "project": "struct_self_consist_ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "17a8fad4-60e8-42aa-aa9b-470382fc9e0a",
+  "uuid": "f2177b4d-2c64-40eb-b7b2-bd7bdef20045",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ku8HxA4skwWLAUqDX8yTgt",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1267,
+      "cache_read_input_tokens": 36051,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1267
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-21T07:41:08.994Z_
+
+<details><summary>↩ Tool result · `toolu_01RvBfQKWAo5yrm3w5TfKMgZ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_fewnerd_mf4_v2_s123\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-21T05:33:25.463Z\", \"updated_at\": \"2026-05-21T07:41:07.336Z\", \"hypothesis\": \"MF4 pipeline fix v2: FewNERD N=8 T=1.0 seed=123 using run_mvp_pilot.py (greedy_f1/micro-F1)\", \"spec\": {\"command\": \"python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-fewnerd-exp021-merged --data_dir data/fewnerd/ --dataset fewnerd --subtask ner --n_samples 8 --temperature 1.0 --seed 123 --collect_logprobs --output_dir output/fewnerd_mf4v2_seed123/\", \"server\": \"autodl-5090-b\", \"gpu\": \"cuda:1\", \"pid\": 320302, \"log_path\": \"~/runs/struct_self_consist_ie/exp_fewnerd_mf4_v2_s123.log\", \"submitted_at\": \"2026-05-21T05:33:36.193Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/fewnerd/test.json\", \"data_count\": 37648, \"model_name\": \"qwen3-8b-fewnerd-exp021-merged\", \"seed\": 123}, \"reproduce\": {\"finished_at\": \"2026-05-21T07:38:22.503Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-21T07:38:30.204681+00:00\"}]}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.8931}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "17a8fad4-60e8-42aa-aa9b-470382fc9e0a",
+  "uuid": "7e0c1e49-2ead-4df6-b93a-4918f9147fcc",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_fewnerd_mf4_v2_s123\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T05:33:25.463Z\\\", \\\"updated_at\\\": \\\"2026-05-21T07:41:07.336Z\\\", \\\"hypothesis\\\": \\\"MF4 pipeline fix v2: FewNERD N=8 T=1.0 seed=123 using run_mvp_pilot.py (greedy_f1/micro-F1)\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-fewnerd-exp021-merged --data_dir data/fewnerd/ --dataset fewnerd --subtask ner --n_samples 8 --temperature 1.0 --seed 123 --collect_logprobs --output_dir output/fewnerd_mf4v2_seed123/\\\", \\\"server\\\": \\\"autodl-5090-b\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"pid\\\": 320302, \\\"log_path\\\": \\\"~/runs/struct_self_consist_ie/exp_fewnerd_mf4_v2_s123.log\\\", \\\"submitted_at\\\": \\\"2026-05-21T05:33:36.193Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"data/fewnerd/test.json\\\", \\\"data_count\\\": 37648, \\\"model_name\\\": \\\"qwen3-8b-fewnerd-exp021-merged\\\", \\\"seed\\\": 123}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-21T07:38:22.503Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-21T07:38:30.204681+00:00\\\"}]}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.8931}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp_fewnerd_mf4_v2_s123\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-21T05:33:25.463Z\", \"updated_at\": \"2026-05-21T07:41:07.336Z\", \"hypothesis\": \"MF4 pipeline fix v2: FewNERD N=8 T=1.0 seed=123 using run_mvp_pilot.py (greedy_f1/micro-F1)\", \"spec\": {\"command\": \"python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-fewnerd-exp021-merged --data_dir data/fewnerd/ --dataset fewnerd --subtask ner --n_samples 8 --temperature 1.0 --seed 123 --collect_logprobs --output_dir output/fewnerd_mf4v2_seed123/\", \"server\": \"autodl-5090-b\", \"gpu\": \"cuda:1\", \"pid\": 320302, \"log_path\": \"~/runs/struct_self_consist_ie/exp_fewnerd_mf4_v2_s123.log\", \"submitted_at\": \"2026-05-21T05:33:36.193Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/fewnerd/test.json\", \"data_count\": 37648, \"model_name\": \"qwen3-8b-fewnerd-exp021-merged\", \"seed\": 123}, \"reproduce\": {\"finished_at\": \"2026-05-21T07:38:22.503Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-21T07:38:30.204681+00:00\"}]}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.8931}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 34_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good, the experiment already exists with status ANALYZING. Let me set metrics, conclusion, and status.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "17a8fad4-60e8-42aa-aa9b-470382fc9e0a",
+  "uuid": "1f61550d-6d2f-4caf-934b-9c2ee5c86603",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Gnzo9ERA98VEVPHzJQAQmW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1548,
+      "cache_read_input_tokens": 37318,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1548
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 35_
+
+Experiment 已存在（status=ANALYZING）。更新 metrics、conclusion、status。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "17a8fad4-60e8-42aa-aa9b-470382fc9e0a",
+  "uuid": "8297fe1c-74d6-4c36-ad49-cddfce826373",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Gnzo9ERA98VEVPHzJQAQmW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1548,
+      "cache_read_input_tokens": 37318,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1548
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01GiFFUu3ofQDFCJapt1qvZY`</summary>
+
+```json
+{
+  "exp_id": "exp_fewnerd_mf4_v2_s123",
+  "field": "metrics",
+  "value": {
+    "greedy_f1": 0.7883,
+    "oracle_f1": 0.8891,
+    "oracle_headroom": 0.1009,
+    "fleiss_kappa_mean": 0.3483,
+    "soft_jaccard_mean": 0.6689,
+    "rho_SJ_full": 0.307,
+    "rho_kappa_full": 0.1588,
+    "rho_SJ_cond": 0.1966,
+    "rho_kappa_cond": 0.0031,
+    "rho_advantage_full": 0.1482,
+    "rho_advantage_cond": 0.1935,
+    "structural_beats_surface": true,
+    "sample_f1_mean": 0.6364,
+    "sample_f1_std": 0.3819,
+    "sample_f1_pct_zero": 20.49,
+    "n_instances": 37648,
+    "n_valid_full": 32565,
+    "n_valid_cond": 28685,
+    "n_gold_empty_filtered": 5083,
+    "n_greedy_f1_zero_filtered": 3880,
+    "logprob_rho_full": 0.2193,
+    "logprob_tau_full": 0.1641,
+    "logprob_auroc_full": 0.6056,
+    "logprob_rho_cond": 0.1818,
+    "logprob_tau_cond": 0.1369,
+    "logprob_auroc_cond": 0.5892,
+    "verdict": "MARGINAL"
+  },
+  "project": "struct_self_consist_ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "17a8fad4-60e8-42aa-aa9b-470382fc9e0a",
+  "uuid": "80eb184d-c151-49ca-99e7-42b081facd86",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Gnzo9ERA98VEVPHzJQAQmW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1548,
+      "cache_read_input_tokens": 37318,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1548
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-21T07:41:19.921Z_
+
+<details><summary>↩ Tool result · `toolu_01GiFFUu3ofQDFCJapt1qvZY`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_fewnerd_mf4_v2_s123\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-21T05:33:25.463Z\", \"updated_at\": \"2026-05-21T07:41:19.448Z\", \"hypothesis\": \"MF4 pipeline fix v2: FewNERD N=8 T=1.0 seed=123 using run_mvp_pilot.py (greedy_f1/micro-F1). Replaces exp_021 which used incompatible greedy_macro_f1. 3-seed statistical power.\", \"spec\": {\"command\": \"python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-fewnerd-exp021-merged --data_dir data/fewnerd/ --dataset fewnerd --subtask ner --n_samples 8 --temperature 1.0 --seed 123 --collect_logprobs --output_dir output/fewnerd_mf4v2_seed123/\", \"server\": \"autodl-5090-b\", \"gpu\": \"cuda:1\", \"pid\": 320302, \"log_path\": \"~/runs/struct_self_consist_ie/exp_fewnerd_mf4_v2_s123.log\", \"submitted_at\": \"2026-05-21T05:33:36.193Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/fewnerd/test.json\", \"data_count\": 37648, \"model_name\": \"qwen3-8b-fewnerd-exp021-merged\", \"seed\": 123}, \"reproduce\": {\"finished_at\": \"2026-05-21T07:38:22.503Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-21T07:38:30.204681+00:00\"}]}, \"metrics\": {\"greedy_f1\": 0.7883, \"oracle_f1\": 0.8891, \"oracle_headroom\": 0.1009, \"fleiss_kappa_mean\": 0.3483, \"soft_jaccard_mean\": 0.6689, \"rho_SJ_full\": 0.307, \"rho_kappa_full\": 0.1588, \"rho_SJ_cond\": 0.1966, \"rho_kappa_cond\": 0.0031, \"rho_advantage_full\": 0.1482, \"rho_advantage_cond\": 0.1935, \"structural_beats_surface\": true, \"sample_f1_mean\": 0.6364, \"sample_f1_std\": 0.3819, \"sample_f1_pct_zero\": 20.49, \"n_instances\": 37648, \"n_valid_full\": 32565, \"n_valid_cond\": 28685, \"n_gold_empty_filtered\": 5083, \"n_greedy_f1_zero_filtered\": 3880, \"logprob_rho_full\": 0.2193, \"logprob_tau_full\": 0.1641, \"logprob_auroc_full\": 0.6056, \"logprob_rho_cond\": 0.1818, \"logprob_tau_cond\": 0.1369, \"logprob_auroc_cond\": 0.5892, \"verdict\": \"MARGINAL\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.2249}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "17a8fad4-60e8-42aa-aa9b-470382fc9e0a",
+  "uuid": "df11a0f9-7844-44e2-87d4-275d264aaf35",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_fewnerd_mf4_v2_s123\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T05:33:25.463Z\\\", \\\"updated_at\\\": \\\"2026-05-21T07:41:19.448Z\\\", \\\"hypothesis\\\": \\\"MF4 pipeline fix v2: FewNERD N=8 T=1.0 seed=123 using run_mvp_pilot.py (greedy_f1/micro-F1). Replaces exp_021 which used incompatible greedy_macro_f1. 3-seed statistical power.\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-fewnerd-exp021-merged --data_dir data/fewnerd/ --dataset fewnerd --subtask ner --n_samples 8 --temperature 1.0 --seed 123 --collect_logprobs --output_dir output/fewnerd_mf4v2_seed123/\\\", \\\"server\\\": \\\"autodl-5090-b\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"pid\\\": 320302, \\\"log_path\\\": \\\"~/runs/struct_self_consist_ie/exp_fewnerd_mf4_v2_s123.log\\\", \\\"submitted_at\\\": \\\"2026-05-21T05:33:36.193Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"data/fewnerd/test.json\\\", \\\"data_count\\\": 37648, \\\"model_name\\\": \\\"qwen3-8b-fewnerd-exp021-merged\\\", \\\"seed\\\": 123}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-21T07:38:22.503Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-21T07:38:30.204681+00:00\\\"}]}, \\\"metrics\\\": {\\\"greedy_f1\\\": 0.7883, \\\"oracle_f1\\\": 0.8891, \\\"oracle_headroom\\\": 0.1009, \\\"fleiss_kappa_mean\\\": 0.3483, \\\"soft_jaccard_mean\\\": 0.6689, \\\"rho_SJ_full\\\": 0.307, \\\"rho_kappa_full\\\": 0.1588, \\\"rho_SJ_cond\\\": 0.1966, \\\"rho_kappa_cond\\\": 0.0031, \\\"rho_advantage_full\\\": 0.1482, \\\"rho_advantage_cond\\\": 0.1935, \\\"structural_beats_surface\\\": true, \\\"sample_f1_mean\\\": 0.6364, \\\"sample_f1_std\\\": 0.3819, \\\"sample_f1_pct_zero\\\": 20.49, \\\"n_instances\\\": 37648, \\\"n_valid_full\\\": 32565, \\\"n_valid_cond\\\": 28685, \\\"n_gold_empty_filtered\\\": 5083, \\\"n_greedy_f1_zero_filtered\\\": 3880, \\\"logprob_rho_full\\\": 0.2193, \\\"logprob_tau_full\\\": 0.1641, \\\"logprob_auroc_full\\\": 0.6056, \\\"logprob_rho_cond\\\": 0.1818, \\\"logprob_tau_cond\\\": 0.1369, \\\"logprob_auroc_cond\\\": 0.5892, \\\"verdict\\\": \\\"MARGINAL\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.2249}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp_fewnerd_mf4_v2_s123\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-21T05:33:25.463Z\", \"updated_at\": \"2026-05-21T07:41:19.448Z\", \"hypothesis\": \"MF4 pipeline fix v2: FewNERD N=8 T=1.0 seed=123 using run_mvp_pilot.py (greedy_f1/micro-F1). Replaces exp_021 which used incompatible greedy_macro_f1. 3-seed statistical power.\", \"spec\": {\"command\": \"python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-fewnerd-exp021-merged --data_dir data/fewnerd/ --dataset fewnerd --subtask ner --n_samples 8 --temperature 1.0 --seed 123 --collect_logprobs --output_dir output/fewnerd_mf4v2_seed123/\", \"server\": \"autodl-5090-b\", \"gpu\": \"cuda:1\", \"pid\": 320302, \"log_path\": \"~/runs/struct_self_consist_ie/exp_fewnerd_mf4_v2_s123.log\", \"submitted_at\": \"2026-05-21T05:33:36.193Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/fewnerd/test.json\", \"data_count\": 37648, \"model_name\": \"qwen3-8b-fewnerd-exp021-merged\", \"seed\": 123}, \"reproduce\": {\"finished_at\": \"2026-05-21T07:38:22.503Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-21T07:38:30.204681+00:00\"}]}, \"metrics\": {\"greedy_f1\": 0.7883, \"oracle_f1\": 0.8891, \"oracle_headroom\": 0.1009, \"fleiss_kappa_mean\": 0.3483, \"soft_jaccard_mean\": 0.6689, \"rho_SJ_full\": 0.307, \"rho_kappa_full\": 0.1588, \"rho_SJ_cond\": 0.1966, \"rho_kappa_cond\": 0.0031, \"rho_advantage_full\": 0.1482, \"rho_advantage_cond\": 0.1935, \"structural_beats_surface\": true, \"sample_f1_mean\": 0.6364, \"sample_f1_std\": 0.3819, \"sample_f1_pct_zero\": 20.49, \"n_instances\": 37648, \"n_valid_full\": 32565, \"n_valid_cond\": 28685, \"n_gold_empty_filtered\": 5083, \"n_greedy_f1_zero_filtered\": 3880, \"logprob_rho_full\": 0.2193, \"logprob_tau_full\": 0.1641, \"logprob_auroc_full\": 0.6056, \"logprob_rho_cond\": 0.1818, \"logprob_tau_cond\": 0.1369, \"logprob_auroc_cond\": 0.5892, \"verdict\": \"MARGINAL\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.2249}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01Xbik7aMFuiMLjmmtKFjt5q`</summary>
+
+```json
+{
+  "exp_id": "exp_fewnerd_mf4_v2_s123",
+  "field": "conclusion",
+  "value": "success",
+  "project": "struct_self_consist_ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "17a8fad4-60e8-42aa-aa9b-470382fc9e0a",
+  "uuid": "110f837f-05e1-4a80-baee-40e34d84e639",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0137NrWqQzvggi27aNXjx52r",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1588,
+      "cache_read_input_tokens": 38866,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1588
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-21T07:41:24.635Z_
+
+<details><summary>↩ Tool result · `toolu_01Xbik7aMFuiMLjmmtKFjt5q`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_fewnerd_mf4_v2_s123\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-21T05:33:25.463Z\", \"updated_at\": \"2026-05-21T07:41:23.878Z\", \"hypothesis\": \"MF4 pipeline fix v2: FewNERD N=8 T=1.0 seed=123 using run_mvp_pilot.py (greedy_f1/micro-F1). Replaces exp_021 which used incompatible greedy_macro_f1. 3-seed statistical power.\", \"spec\": {\"command\": \"python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-fewnerd-exp021-merged --data_dir data/fewnerd/ --dataset fewnerd --subtask ner --n_samples 8 --temperature 1.0 --seed 123 --collect_logprobs --output_dir output/fewnerd_mf4v2_seed123/\", \"server\": \"autodl-5090-b\", \"gpu\": \"cuda:1\", \"pid\": 320302, \"log_path\": \"~/runs/struct_self_consist_ie/exp_fewnerd_mf4_v2_s123.log\", \"submitted_at\": \"2026-05-21T05:33:36.193Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/fewnerd/test.json\", \"data_count\": 37648, \"model_name\": \"qwen3-8b-fewnerd-exp021-merged\", \"seed\": 123}, \"reproduce\": {\"finished_at\": \"2026-05-21T07:38:22.503Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-21T07:38:30.204681+00:00\"}]}, \"metrics\": {\"greedy_f1\": 0.7883, \"oracle_f1\": 0.8891, \"oracle_headroom\": 0.1009, \"fleiss_kappa_mean\": 0.3483, \"soft_jaccard_mean\": 0.6689, \"rho_SJ_full\": 0.307, \"rho_kappa_full\": 0.1588, \"rho_SJ_cond\": 0.1966, \"rho_kappa_cond\": 0.0031, \"rho_advantage_full\": 0.1482, \"rho_advantage_cond\": 0.1935, \"structural_beats_surface\": true, \"sample_f1_mean\": 0.6364, \"sample_f1_std\": 0.3819, \"sample_f1_pct_zero\": 20.49, \"n_instances\": 37648, \"n_valid_full\": 32565, \"n_valid_cond\": 28685, \"n_gold_empty_filtered\": 5083, \"n_greedy_f1_zero_filtered\": 3880, \"logprob_rho_full\": 0.2193, \"logprob_tau_full\": 0.1641, \"logprob_auroc_full\": 0.6056, \"logprob_rho_cond\": 0.1818, \"logprob_tau_cond\": 0.1369, \"logprob_auroc_cond\": 0.5892, \"verdict\": \"MARGINAL\"}, \"conclusion\": \"success\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.8266}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "17a8fad4-60e8-42aa-aa9b-470382fc9e0a",
+  "uuid": "f6965fec-b40a-4e20-9435-95aa8e5a001e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_fewnerd_mf4_v2_s123\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T05:33:25.463Z\\\", \\\"updated_at\\\": \\\"2026-05-21T07:41:23.878Z\\\", \\\"hypothesis\\\": \\\"MF4 pipeline fix v2: FewNERD N=8 T=1.0 seed=123 using run_mvp_pilot.py (greedy_f1/micro-F1). Replaces exp_021 which used incompatible greedy_macro_f1. 3-seed statistical power.\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-fewnerd-exp021-merged --data_dir data/fewnerd/ --dataset fewnerd --subtask ner --n_samples 8 --temperature 1.0 --seed 123 --collect_logprobs --output_dir output/fewnerd_mf4v2_seed123/\\\", \\\"server\\\": \\\"autodl-5090-b\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"pid\\\": 320302, \\\"log_path\\\": \\\"~/runs/struct_self_consist_ie/exp_fewnerd_mf4_v2_s123.log\\\", \\\"submitted_at\\\": \\\"2026-05-21T05:33:36.193Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"data/fewnerd/test.json\\\", \\\"data_count\\\": 37648, \\\"model_name\\\": \\\"qwen3-8b-fewnerd-exp021-merged\\\", \\\"seed\\\": 123}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-21T07:38:22.503Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-21T07:38:30.204681+00:00\\\"}]}, \\\"metrics\\\": {\\\"greedy_f1\\\": 0.7883, \\\"oracle_f1\\\": 0.8891, \\\"oracle_headroom\\\": 0.1009, \\\"fleiss_kappa_mean\\\": 0.3483, \\\"soft_jaccard_mean\\\": 0.6689, \\\"rho_SJ_full\\\": 0.307, \\\"rho_kappa_full\\\": 0.1588, \\\"rho_SJ_cond\\\": 0.1966, \\\"rho_kappa_cond\\\": 0.0031, \\\"rho_advantage_full\\\": 0.1482, \\\"rho_advantage_cond\\\": 0.1935, \\\"structural_beats_surface\\\": true, \\\"sample_f1_mean\\\": 0.6364, \\\"sample_f1_std\\\": 0.3819, \\\"sample_f1_pct_zero\\\": 20.49, \\\"n_instances\\\": 37648, \\\"n_valid_full\\\": 32565, \\\"n_valid_cond\\\": 28685, \\\"n_gold_empty_filtered\\\": 5083, \\\"n_greedy_f1_zero_filtered\\\": 3880, \\\"logprob_rho_full\\\": 0.2193, \\\"logprob_tau_full\\\": 0.1641, \\\"logprob_auroc_full\\\": 0.6056, \\\"logprob_rho_cond\\\": 0.1818, \\\"logprob_tau_cond\\\": 0.1369, \\\"logprob_auroc_cond\\\": 0.5892, \\\"verdict\\\": \\\"MARGINAL\\\"}, \\\"conclusion\\\": \\\"success\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.8266}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp_fewnerd_mf4_v2_s123\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-21T05:33:25.463Z\", \"updated_at\": \"2026-05-21T07:41:23.878Z\", \"hypothesis\": \"MF4 pipeline fix v2: FewNERD N=8 T=1.0 seed=123 using run_mvp_pilot.py (greedy_f1/micro-F1). Replaces exp_021 which used incompatible greedy_macro_f1. 3-seed statistical power.\", \"spec\": {\"command\": \"python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-fewnerd-exp021-merged --data_dir data/fewnerd/ --dataset fewnerd --subtask ner --n_samples 8 --temperature 1.0 --seed 123 --collect_logprobs --output_dir output/fewnerd_mf4v2_seed123/\", \"server\": \"autodl-5090-b\", \"gpu\": \"cuda:1\", \"pid\": 320302, \"log_path\": \"~/runs/struct_self_consist_ie/exp_fewnerd_mf4_v2_s123.log\", \"submitted_at\": \"2026-05-21T05:33:36.193Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/fewnerd/test.json\", \"data_count\": 37648, \"model_name\": \"qwen3-8b-fewnerd-exp021-merged\", \"seed\": 123}, \"reproduce\": {\"finished_at\": \"2026-05-21T07:38:22.503Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-21T07:38:30.204681+00:00\"}]}, \"metrics\": {\"greedy_f1\": 0.7883, \"oracle_f1\": 0.8891, \"oracle_headroom\": 0.1009, \"fleiss_kappa_mean\": 0.3483, \"soft_jaccard_mean\": 0.6689, \"rho_SJ_full\": 0.307, \"rho_kappa_full\": 0.1588, \"rho_SJ_cond\": 0.1966, \"rho_kappa_cond\": 0.0031, \"rho_advantage_full\": 0.1482, \"rho_advantage_cond\": 0.1935, \"structural_beats_surface\": true, \"sample_f1_mean\": 0.6364, \"sample_f1_std\": 0.3819, \"sample_f1_pct_zero\": 20.49, \"n_instances\": 37648, \"n_valid_full\": 32565, \"n_valid_cond\": 28685, \"n_gold_empty_filtered\": 5083, \"n_greedy_f1_zero_filtered\": 3880, \"logprob_rho_full\": 0.2193, \"logprob_tau_full\": 0.1641, \"logprob_auroc_full\": 0.6056, \"logprob_rho_cond\": 0.1818, \"logprob_tau_cond\": 0.1369, \"logprob_auroc_cond\": 0.5892, \"verdict\": \"MARGINAL\"}, \"conclusion\": \"success\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.8266}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01EFeaiw7jkoAQcwPnswNHTc`</summary>
+
+```json
+{
+  "exp_id": "exp_fewnerd_mf4_v2_s123",
+  "field": "status",
+  "value": "DONE",
+  "project": "struct_self_consist_ie",
+  "spec": {
+    "checkpoint_path": "output/fewnerd_mf4v2_seed123/",
+    "log_path": "~/runs/struct_self_consist_ie/exp_fewnerd_mf4_v2_s123.log"
+  }
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "17a8fad4-60e8-42aa-aa9b-470382fc9e0a",
+  "uuid": "d0ba4073-bdc6-4911-b6ec-aa6145eeb509",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01G3EnYt7bRBZt79A27sc56y",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1162,
+      "cache_read_input_tokens": 40454,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1162
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-21T07:41:31.735Z_
+
+<details><summary>↩ Tool result · `toolu_01EFeaiw7jkoAQcwPnswNHTc`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_fewnerd_mf4_v2_s123\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T05:33:25.463Z\", \"updated_at\": \"2026-05-21T07:41:29.072Z\", \"hypothesis\": \"MF4 pipeline fix v2: FewNERD N=8 T=1.0 seed=123 using run_mvp_pilot.py (greedy_f1/micro-F1). Replaces exp_021 which used incompatible greedy_macro_f1. 3-seed statistical power.\", \"spec\": {\"command\": \"python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-fewnerd-exp021-merged --data_dir data/fewnerd/ --dataset fewnerd --subtask ner --n_samples 8 --temperature 1.0 --seed 123 --collect_logprobs --output_dir output/fewnerd_mf4v2_seed123/\", \"server\": \"autodl-5090-b\", \"gpu\": \"cuda:1\", \"pid\": 320302, \"log_path\": \"~/runs/struct_self_consist_ie/exp_fewnerd_mf4_v2_s123.log\", \"submitted_at\": \"2026-05-21T05:33:36.193Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/fewnerd/test.json\", \"data_count\": 37648, \"model_name\": \"qwen3-8b-fewnerd-exp021-merged\", \"seed\": 123, \"checkpoint_path\": \"output/fewnerd_mf4v2_seed123/\", \"wall_clock_seconds\": 7672.9, \"gpu_hours\": 2.13}, \"reproduce\": {\"finished_at\": \"2026-05-21T07:38:22.503Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-21T07:38:30.204681+00:00\"}]}, \"metrics\": {\"greedy_f1\": 0.7883, \"oracle_f1\": 0.8891, \"oracle_headroom\": 0.1009, \"fleiss_kappa_mean\": 0.3483, \"soft_jaccard_mean\": 0.6689, \"rho_SJ_full\": 0.307, \"rho_kappa_full\": 0.1588, \"rho_SJ_cond\": 0.1966, \"rho_kappa_cond\": 0.0031, \"rho_advantage_full\": 0.1482, \"rho_advantage_cond\": 0.1935, \"structural_beats_surface\": true, \"sample_f1_mean\": 0.6364, \"sample_f1_std\": 0.3819, \"sample_f1_pct_zero\": 20.49, \"n_instances\": 37648, \"n_valid_full\": 32565, \"n_valid_cond\": 28685, \"n_gold_empty_filtered\": 5083, \"n_greedy_f1_zero_filtered\": 3880, \"logprob_rho_full\": 0.2193, \"logprob_tau_full\": 0.1641, \"logprob_auroc_full\": 0.6056, \"logprob_rho_cond\": 0.1818, \"logprob_tau_cond\": 0.1369, \"logprob_auroc_cond\": 0.5892, \"verdict\": \"MARGINAL\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-21T07:41:29.072Z\"}, \"hint\": \"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.3782}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "17a8fad4-60e8-42aa-aa9b-470382fc9e0a",
+  "uuid": "d97656ce-7f35-421c-bef2-92bab05de5e3",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_fewnerd_mf4_v2_s123\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T05:33:25.463Z\\\", \\\"updated_at\\\": \\\"2026-05-21T07:41:29.072Z\\\", \\\"hypothesis\\\": \\\"MF4 pipeline fix v2: FewNERD N=8 T=1.0 seed=123 using run_mvp_pilot.py (greedy_f1/micro-F1). Replaces exp_021 which used incompatible greedy_macro_f1. 3-seed statistical power.\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-fewnerd-exp021-merged --data_dir data/fewnerd/ --dataset fewnerd --subtask ner --n_samples 8 --temperature 1.0 --seed 123 --collect_logprobs --output_dir output/fewnerd_mf4v2_seed123/\\\", \\\"server\\\": \\\"autodl-5090-b\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"pid\\\": 320302, \\\"log_path\\\": \\\"~/runs/struct_self_consist_ie/exp_fewnerd_mf4_v2_s123.log\\\", \\\"submitted_at\\\": \\\"2026-05-21T05:33:36.193Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"data/fewnerd/test.json\\\", \\\"data_count\\\": 37648, \\\"model_name\\\": \\\"qwen3-8b-fewnerd-exp021-merged\\\", \\\"seed\\\": 123, \\\"checkpoint_path\\\": \\\"output/fewnerd_mf4v2_seed123/\\\", \\\"wall_clock_seconds\\\": 7672.9, \\\"gpu_hours\\\": 2.13}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-21T07:38:22.503Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-21T07:38:30.204681+00:00\\\"}]}, \\\"metrics\\\": {\\\"greedy_f1\\\": 0.7883, \\\"oracle_f1\\\": 0.8891, \\\"oracle_headroom\\\": 0.1009, \\\"fleiss_kappa_mean\\\": 0.3483, \\\"soft_jaccard_mean\\\": 0.6689, \\\"rho_SJ_full\\\": 0.307, \\\"rho_kappa_full\\\": 0.1588, \\\"rho_SJ_cond\\\": 0.1966, \\\"rho_kappa_cond\\\": 0.0031, \\\"rho_advantage_full\\\": 0.1482, \\\"rho_advantage_cond\\\": 0.1935, \\\"structural_beats_surface\\\": true, \\\"sample_f1_mean\\\": 0.6364, \\\"sample_f1_std\\\": 0.3819, \\\"sample_f1_pct_zero\\\": 20.49, \\\"n_instances\\\": 37648, \\\"n_valid_full\\\": 32565, \\\"n_valid_cond\\\": 28685, \\\"n_gold_empty_filtered\\\": 5083, \\\"n_greedy_f1_zero_filtered\\\": 3880, \\\"logprob_rho_full\\\": 0.2193, \\\"logprob_tau_full\\\": 0.1641, \\\"logprob_auroc_full\\\": 0.6056, \\\"logprob_rho_cond\\\": 0.1818, \\\"logprob_tau_cond\\\": 0.1369, \\\"logprob_auroc_cond\\\": 0.5892, \\\"verdict\\\": \\\"MARGINAL\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-21T07:41:29.072Z\\\"}, \\\"hint\\\": \\\"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.3782}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp_fewnerd_mf4_v2_s123\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T05:33:25.463Z\", \"updated_at\": \"2026-05-21T07:41:29.072Z\", \"hypothesis\": \"MF4 pipeline fix v2: FewNERD N=8 T=1.0 seed=123 using run_mvp_pilot.py (greedy_f1/micro-F1). Replaces exp_021 which used incompatible greedy_macro_f1. 3-seed statistical power.\", \"spec\": {\"command\": \"python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-fewnerd-exp021-merged --data_dir data/fewnerd/ --dataset fewnerd --subtask ner --n_samples 8 --temperature 1.0 --seed 123 --collect_logprobs --output_dir output/fewnerd_mf4v2_seed123/\", \"server\": \"autodl-5090-b\", \"gpu\": \"cuda:1\", \"pid\": 320302, \"log_path\": \"~/runs/struct_self_consist_ie/exp_fewnerd_mf4_v2_s123.log\", \"submitted_at\": \"2026-05-21T05:33:36.193Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/fewnerd/test.json\", \"data_count\": 37648, \"model_name\": \"qwen3-8b-fewnerd-exp021-merged\", \"seed\": 123, \"checkpoint_path\": \"output/fewnerd_mf4v2_seed123/\", \"wall_clock_seconds\": 7672.9, \"gpu_hours\": 2.13}, \"reproduce\": {\"finished_at\": \"2026-05-21T07:38:22.503Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-21T07:38:30.204681+00:00\"}]}, \"metrics\": {\"greedy_f1\": 0.7883, \"oracle_f1\": 0.8891, \"oracle_headroom\": 0.1009, \"fleiss_kappa_mean\": 0.3483, \"soft_jaccard_mean\": 0.6689, \"rho_SJ_full\": 0.307, \"rho_kappa_full\": 0.1588, \"rho_SJ_cond\": 0.1966, \"rho_kappa_cond\": 0.0031, \"rho_advantage_full\": 0.1482, \"rho_advantage_cond\": 0.1935, \"structural_beats_surface\": true, \"sample_f1_mean\": 0.6364, \"sample_f1_std\": 0.3819, \"sample_f1_pct_zero\": 20.49, \"n_instances\": 37648, \"n_valid_full\": 32565, \"n_valid_cond\": 28685, \"n_gold_empty_filtered\": 5083, \"n_greedy_f1_zero_filtered\": 3880, \"logprob_rho_full\": 0.2193, \"logprob_tau_full\": 0.1641, \"logprob_auroc_full\": 0.6056, \"logprob_rho_cond\": 0.1818, \"logprob_tau_cond\": 0.1369, \"logprob_auroc_cond\": 0.5892, \"verdict\": \"MARGINAL\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-21T07:41:29.072Z\"}, \"hint\": \"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.3782}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 42_
+
+Registry 已更新为 DONE/success。
+
+## 实验结果汇总：exp_fewnerd_mf4_v2_s123
+
+### 核心指标
+
+| 指标 | 值 |
+|------|-----|
+| greedy_f1 (micro-F1) | **0.7883** |
+| oracle_f1 | **0.8891** |
+| oracle_headroom | **+0.1009** |
+| fleiss_kappa_mean | 0.3483 |
+| soft_jaccard_mean | 0.6689 |
+| sample_f1_mean | 0.6364 |
+| sample_f1_std | 0.3819 |
+| sample_f1_pct_zero | 20.49% |
+
+### 相关性指标
+
+| 指标 | Full | Conditional |
+|------|------|-------------|
+| ρ(SJ, F1) | **+0.3070** | +0.1966 |
+| ρ(κ, F1) | +0.1588 | +0.0031 (n.s.) |
+| rho_advantage | **+0.1482** | +0.1935 |
+| n | 32565 | 28685 |
+
+### Logprob baseline
+
+| 指标 | Full | Conditional |
+|------|------|-------------|
+| ρ | +0.2193 | +0.1818 |
+| τ | +0.1641 | +0.1369 |
+| AUROC | 0.6056 | 0.5892 |
+
+### Verdict: **MARGINAL** → Conclusion: **success**
+
+### 与已有 FewNERD 数据对比
+
+| 指标 | 本实验 (MF4v2 s123) | 14B N=8 (exp_14b) | T=0.8 s456 |
+|------|---------------------|-------------------|------------|
+| greedy_f1 | 0.7883 | 0.7984 | 0.788 |
+| oracle_f1 | 0.8891 | 0.8791 | 0.877 |
+| oracle_headroom | +0.1009 | +0.081 | +0.088 |
+| rho_SJ_full | 0.307 | 0.324 | 0.328 |
+| rho_advantage | 0.148 | 0.083 | 0.126 |
+
+### 判定理由
+
+1. greedy_f1=0.7883 在 FewNERD 正常范围内（0.70-0.80）
+2. structural_beats_surface=true，rho_advantage=+0.148 是所有 FewNERD 实验中最高之一
+3. 所有指标完整，无 NaN/异常
+4. pct_zero=20.5% 偏高但未超 50% 阈值
+
+### 注意事项
+
+- **rho_kappa_cond=0.0031 (p=0.60)**：conditional 条件下 Fleiss kappa 完全失效，soft Jaccard 优势极大
+- **seed=42 仍在 RUNNING**，完成后可做 2-seed 对比
+- verdict=MARGINAL 而非 PASS，因 rho_SJ_full=0.307 未达 PASS 阈值（通常 ≥0.35）
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "17a8fad4-60e8-42aa-aa9b-470382fc9e0a",
+  "uuid": "75d64fd2-8731-48eb-8988-c3e3a2804708",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JyPirteuJuftPcMgagKGcd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1342,
+      "cache_read_input_tokens": 41616,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1342
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 43_
+
+Registry 已更新为 DONE/success。
+
+## 实验结果汇总：exp_fewnerd_mf4_v2_s123
+
+### 核心指标
+
+| 指标 | 值 |
+|------|-----|
+| greedy_f1 (micro-F1) | **0.7883** |
+| oracle_f1 | **0.8891** |
+| oracle_headroom | **+0.1009** |
+| fleiss_kappa_mean | 0.3483 |
+| soft_jaccard_mean | 0.6689 |
+| sample_f1_mean | 0.6364 |
+| sample_f1_std | 0.3819 |
+| sample_f1_pct_zero | 20.49% |
+
+### 相关性指标
+
+| 指标 | Full | Conditional |
+|------|------|-------------|
+| ρ(SJ, F1) | **+0.3070** | +0.1966 |
+| ρ(κ, F1) | +0.1588 | +0.0031 (n.s.) |
+| rho_advantage | **+0.1482** | +0.1935 |
+| n | 32565 | 28685 |
+
+### Logprob baseline
+
+| 指标 | Full | Conditional |
+|------|------|-------------|
+| ρ | +0.2193 | +0.1818 |
+| τ | +0.1641 | +0.1369 |
+| AUROC | 0.6056 | 0.5892 |
+
+### Verdict: **MARGINAL** → Conclusion: **success**
+
+### 与已有 FewNERD 数据对比
+
+| 指标 | 本实验 (MF4v2 s123) | 14B N=8 (exp_14b) | T=0.8 s456 |
+|------|---------------------|-------------------|------------|
+| greedy_f1 | 0.7883 | 0.7984 | 0.788 |
+| oracle_f1 | 0.8891 | 0.8791 | 0.877 |
+| oracle_headroom | +0.1009 | +0.081 | +0.088 |
+| rho_SJ_full | 0.307 | 0.324 | 0.328 |
+| rho_advantage | 0.148 | 0.083 | 0.126 |
+
+### 判定理由
+
+1. greedy_f1=0.7883 在 FewNERD 正常范围内（0.70-0.80）
+2. structural_beats_surface=true，rho_advantage=+0.148 是所有 FewNERD 实验中最高之一
+3. 所有指标完整，无 NaN/异常
+4. pct_zero=20.5% 偏高但未超 50% 阈值
+
+### 注意事项
+
+- **rho_kappa_cond=0.0031 (p=0.60)**：conditional 条件下 Fleiss kappa 完全失效，soft Jaccard 优势极大
+- **seed=42 仍在 RUNNING**，完成后可做 2-seed 对比
+- verdict=MARGINAL 而非 PASS，因 rho_SJ_full=0.307 未达 PASS 阈值（通常 ≥0.35）
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 105162,
+  "duration_api_ms": 87508,
+  "num_turns": 14,
+  "stop_reason": "end_turn",
+  "session_id": "17a8fad4-60e8-42aa-aa9b-470382fc9e0a",
+  "total_cost_usd": 0.49247975,
+  "usage": {
+    "input_tokens": 15,
+    "cache_creation_input_tokens": 31117,
+    "cache_read_input_tokens": 353477,
+    "output_tokens": 4767,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 31117,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 896,
+        "cache_read_input_tokens": 41616,
+        "cache_creation_input_tokens": 1342,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 1342
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1870,
+      "outputTokens": 28,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.00201,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 15,
+      "outputTokens": 4767,
+      "cacheReadInputTokens": 353477,
+      "cacheCreationInputTokens": 31117,
+      "webSearchRequests": 0,
+      "costUSD": 0.49046975,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "cba92cdd-16c2-4f0a-908d-3e5ea6e5750a"
+}
+```
+
+</details>
+
+---

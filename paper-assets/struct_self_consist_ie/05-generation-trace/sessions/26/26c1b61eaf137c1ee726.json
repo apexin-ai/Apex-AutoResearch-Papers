@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "26c1b61eaf137c1ee726",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "paper e5 hyperparam tables",
+  "task_key": "worker_paper_e5_hyperparam_tables_20260521T111617",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_paper_e5_hyperparam_tables_20260521T111617.log",
+    "occurrence": 1,
+    "bytes": 728374,
+    "sha256": "7f44000f62bb356365693b8fa9289598b5faed0d65ae6f4fccbfdba64db34c77"
+  },
+  "statistics": {
+    "messages": 85,
+    "user_turns": 1,
+    "tool_calls": 25,
+    "roles": {
+      "log": 1,
+      "system": 22,
+      "record": 2,
+      "assistant": 8,
+      "tool_call": 25,
+      "tool_result": 25,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 13,
+      "chunks": [
+        {
+          "path": "26c1b61eaf137c1ee726-part-0001.json",
+          "message_count": 13
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 72,
+      "chunks": [
+        {
+          "path": "26c1b61eaf137c1ee726-part-0001.json",
+          "message_count": 52
+        },
+        {
+          "path": "26c1b61eaf137c1ee726-part-0002.json",
+          "message_count": 20
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/paper-e5-hyperparam-tables.md"
+}

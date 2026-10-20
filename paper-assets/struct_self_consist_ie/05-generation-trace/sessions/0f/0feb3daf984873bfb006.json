@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0feb3daf984873bfb006",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "gpu scierc n16 s42 5090c",
+  "task_key": "worker_gpu_scierc_n16_s42_5090c_20260521T113131",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_gpu_scierc_n16_s42_5090c_20260521T113131_result.json",
+    "occurrence": 1,
+    "bytes": 394,
+    "sha256": "11f8aff9baa5996f7083994a9466b811b19568cce5142eb8e0845403947f20bb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**cuda:1 不空闲，停止提交。**\n\n当前状态：\n- **GPU 1**: 92% 利用率，30145MiB / 32607MiB 已占用\n- **进程**: `VLLM::EngineCore` (PID 311995) 正在 cuda:1 上运行，占用 30136MiB\n\ncuda:1 上有 vLLM 引擎在跑，无法启动 SciERC N=16 实验。请确认：\n1. 该 vLLM 进程是否可以终止？\n2. 或者改用其他 GPU / 其他服务器？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/gpu-scierc-n16-s42-5090c.md"
+}

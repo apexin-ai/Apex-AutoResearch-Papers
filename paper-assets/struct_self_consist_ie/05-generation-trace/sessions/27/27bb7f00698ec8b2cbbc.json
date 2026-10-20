@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "27bb7f00698ec8b2cbbc",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "code exp 028 postprocess fix",
+  "task_key": "worker_code_exp_028_postprocess_fix_20260517T132737",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_exp_028_postprocess_fix_20260517T132737_result.json",
+    "occurrence": 1,
+    "bytes": 547,
+    "sha256": "b2534cbbc44e07ce53b63146f6b24243aaf3f6f9be0482e0360ef6a0c88de71a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两处修改完成，验证通过。\n\n**修复 1: `03_analyze.py`** — `EXP021_REF` 改为从 `output/exp_027_fewnerd_n16/paired_n8_baseline.json` 的 `n8` 字段动态加载，文件不存在时 fallback 到硬编码值并打印 WARNING。参考文件中的精确值：\n- `degeneracy_rate_pct`: 11.08%（旧硬编码 12.0%）\n- `greedy_f1`: 0.7478\n- `lp_sel_f1`: 0.7614\n- `lp_delta_pp`: 1.37\n\n**修复 2: `02_inference.sh`** — 第 10 行加入 `export CUDA_VISIBLE_DEVICES=0`（在 `cd` 之后、变量定义之前）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-028-postprocess-fix.md"
+}

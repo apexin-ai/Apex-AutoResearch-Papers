@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "26570ef2209871ac6095",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ssh 7b status and 5090b inference launch",
+  "task_key": "worker_ssh_7b-status-and-5090b-inference-launch_20260520T022051",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_7b-status-and-5090b-inference-launch_20260520T022051_result.json",
+    "occurrence": 1,
+    "bytes": 1360,
+    "sha256": "eba1bbdb806a661ff69ef995e497b3862639203bde9fd6ebc3204d96f0150814"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态总结\n\n### 5090-c: 7B Pipeline 正常运行中\n\n- **PID 71837** 存活，运行 14h52m\n- **训练已完成**，merged model 已导出到 `checkpoints/qwen25-7b-fewnerd-merged/`（14.2GB，4 个 safetensors，时间戳 10:13）\n- **Inference 进行中**：seed 42，5% 完成（15288/301184 prompts），速度 ~56 it/s\n  - 命令：`python code/run_mvp_pilot.py --model_path checkpoints/qwen25-7b-fewnerd-merged --n_samples 8 --seed 42 --collect_logprobs --output_dir output/fewnerd_7b/qwen25_7b_n8_seed42`\n  - vLLM 单 GPU（GPU 2，29.8GB），预计 seed 42 剩余 ~85 分钟\n  - Pipeline 脚本应会自动继续 seed 123、456，总计还需 ~4-5 小时\n- **14B 训练**同时在 GPU 0-1 上运行（`train_config_qwen25_14b_fewnerd_s42.yaml`，双卡 torchrun）\n- **GPU 3 空闲**\n\n### 5090-b: 模型下载完成\n\n- PID 160848 已结束\n- `/root/autodl-tmp/.hf_cache/Qwen2.5-7B-Instruct/` 完整（15GB，4 个 safetensors）\n\n### 判断\n\nPipeline 在 5090-c 上已经进入 inference 阶段，按指令**不在 5090-b 上重复启动**。但 5090-c 只用单 GPU 跑 inference，3 个 seed 串行预计需要 4-5 小时。如果想加速，可以考虑在 5090-b 上并行跑 seed 123 和 456（不会与 5090-c 的 seed 42 重复），但这需要先把 merged model rsync 过去。是否需要这样做？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-7b-status-and-5090b-inference-launch.md"
+}

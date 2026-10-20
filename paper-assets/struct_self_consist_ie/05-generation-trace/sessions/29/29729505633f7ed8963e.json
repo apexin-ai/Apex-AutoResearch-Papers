@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "29729505633f7ed8963e",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "audit maintext numbers",
+  "task_key": "worker_audit_maintext-numbers_20260524T042759",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_audit_maintext-numbers_20260524T042759.log",
+    "occurrence": 1,
+    "bytes": 991584,
+    "sha256": "890f0dafd65e349544026425b5ac9c10b32a97835501492c2237b9778a95fb21"
+  },
+  "statistics": {
+    "messages": 72,
+    "user_turns": 0,
+    "tool_calls": 26,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 16,
+      "tool_call": 26,
+      "tool_result": 26,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 72,
+      "chunks": [
+        {
+          "path": "29729505633f7ed8963e-part-0001.json",
+          "message_count": 34
+        },
+        {
+          "path": "29729505633f7ed8963e-part-0002.json",
+          "message_count": 38
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/audit-maintext-numbers.md"
+}

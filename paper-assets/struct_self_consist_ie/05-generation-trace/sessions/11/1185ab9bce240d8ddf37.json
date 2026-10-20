@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1185ab9bce240d8ddf37",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis d141 data fix rerun v2",
+  "task_key": "worker_analysis_d141_data_fix_rerun_v2_20260518T144046",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_d141_data_fix_rerun_v2_20260518T144046_result.json",
+    "occurrence": 1,
+    "bytes": 923,
+    "sha256": "7e051da4032d2bf7dc9320e07054b731dc53e86d968ab44f8da9a86a110e8cda"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。报告已写入 `artifacts/d141_data_fix_rerun_v2_report.md`。\n\n### 执行摘要\n\n**修改内容：**\n- `code/evaluation.py` 和 `analysis_d141_scatter_plot.py` 的 entity matching 从 `(text, type)` 改回 `(start, end, type)`\n- `analysis_d141_conditional_decomp.py` 已经正确，无需修改\n- 数据路径、gold filter、N=8 均已正确就位\n\n**关键结果：**\n\n| | SciERC | CoNLL | FewNERD |\n|---|---|---|---|\n| **Favorable Δ** | **+2.52 pp** | **-1.88 pp** | **+0.69 pp** |\n| **Best merge F1** | 0.6596 (k=3) | 0.9032 (k=3) | 0.7435 (k=2) |\n| **Gap recovery** | +11.9% | -9.0% | -3.6% |\n\n**CoNLL Favorable bucket 确认为负值** (-1.88 pp, CI [-2.93, -0.85])，span-based matching 下 LP selection 在 CoNLL 上即使在 favorable 条件下也无法改善 greedy。Entity merge 在所有数据集上均未突破 oracle ceiling，仅 SciERC 回收了 11.9% 的 gap。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-d141-data-fix-rerun-v2.md"
+}

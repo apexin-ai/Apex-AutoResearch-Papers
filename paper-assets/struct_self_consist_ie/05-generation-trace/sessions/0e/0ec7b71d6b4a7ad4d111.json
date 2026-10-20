@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0ec7b71d6b4a7ad4d111",
+  "project": "struct_self_consist_ie",
+  "kind": "history",
+  "title": "agent / loop_17_1779404521.md",
+  "task_key": "loop_17_1779404521",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/agent/loop_17_1779404521.md",
+    "occurrence": 1,
+    "bytes": 4511,
+    "sha256": "4e014f617748aa78fe6bae727aa394f56dd0fae956bdc1bc35c1d05f7b77aa54"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 17\nreason: idle_timeout\nupdated: '2026-05-21T21:40:23+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单: autodl-5090 cuda:0-3, autodl-5090-c cuda:0-3（共 8 卡），不得使用其他服务器/GPU\n- EMNLP 2026 DDL: **2026-05-25**（距今 ~4 天），严格 8 页正文限制\n- v4 叙事方向已锁定 (D228): MV 表述为 \"fails to improve\"，不是 \"universally hurts\"——Paper Agent 的 patch 必须遵守此叙事\n- MV 定义已统一 (D227): strict > N/2 + 4-tuple match，α_crit 公式用 F₁^gr/2，不得回退旧定义\n- 目标校准 (D225): 3.5-4.0 (Borderline Conference → Conference)，不追 4.5 Award\n- FewNERD MF4v2 数据必须从当前服务器重新生成（原始数据随 autodl-5090-b 丢失），不要假设旧路径有数据\n- submit_training_job 的 command 必须自带环境激活（如 `source /root/miniconda3/bin/activate && python ...`）\n\n### 2. 🖥️ 基础设施快照\n- **autodl-5090**: 工作目录 `/root/autodl-tmp/struct_self_consist_ie`，Python: `/root/miniconda3/bin/python`（conda base）\n- **autodl-5090-c**: 同上路径和 Python 环境\n- 模型路径: `/root/autodl-tmp/struct_self_consist_ie/checkpoints/` 下各 merged 模型\n- HF cache: `/root/autodl-tmp/.hf_cache`\n- 活跃进程:\n  - exp_fewnerd_mf4v2_s456_v3: PID 357658, autodl-5090-c:cuda:2（FewNERD seed=456 数据重生成）\n  - exp_fewnerd_5epoch_s456: PID 353730, autodl-5090-c:cuda:0（5-epoch epoch confound 第三种子）\n- Cron: exp_e2_pretrained_fewnerd_s42_v2 仍在监控（pid=e2_fewnerd_s42）\n- Worker 池: 当前 0 个 running worker\n\n### 3. 📊 当前状态\n- **Paper Agent 已派发** v4 comprehensive patch（叙事 + 数值 + α_crit 表 + strict justification），尚未回调\n- **RUNNING (2)**: exp_fewnerd_mf4v2_s456_v3 (5090-c:cuda:2), exp_fewnerd_5epoch_s456 (5090-c:cuda:0)\n- **PREPARING (2 关键)**: exp_fewnerd_mf4v2_s123_v2 (5090:cuda:2), exp_fewnerd_mf4v2_s42_v2 (5090:cuda:1)——这两个是 FewNERD 3-seed MV 统一重算的剩余种子\n- **QUEUED (3)**: exp_fewnerd_mf4_s456/s123/s42——MF4 pipeline fix，等 GPU\n- **PREPARING (10+)**: 大量 B2/DGEC/Pareto 等后续实验，DDL 前大概率不会跑\n- 实验总量: 175 success / 54 negative / 12 failed / 278 total\n- v4 三项 blocker 已全部就绪（CoNLL 3-seed, SciERC 3-seed, FewNERD 3-seed artifact 数据）\n- Round 27 审稿修复 (C1-C3, W1-W7, M1-M3, R54) 全部完成\n- **GPU 利用率低**: 5090 有 4 卡但只有 2 个 PREPARING（未实际运行），5090-c 只用了 2/4 卡——需要立即推进 PREPARING → RUNNING\n\n### 4. 📋 待办（条件触发式）\n- Paper Agent v4 patch 回调 → 检查编译 ≤ 8 页 → 送 Round 29 审稿\n- exp_fewnerd_mf4v2_s456_v3 完成 → 与 s123/s42 数据汇总 → number verification patch（更新论文中 FewNERD v4 数值）\n- exp_fewnerd_5epoch_s456 完成 → 汇总 3-seed epoch confound 分析 → 确认 epoch count 非 confound → 更新 report.md\n- exp_fewnerd_mf4v2_s123_v2 / s42_v2 仍在 PREPARING → spawn Worker 提交到 5090:cuda:1/cuda:2（或确认已有 Worker 在执行）\n- 5090:cuda:0 和 cuda:3 空闲 → 分配给 QUEUED 的 MF4 实验或其他高优先级任务\n- 5090-c:cuda:1 和 cuda:3 空闲 → 找可跑的实验填上（E2 pretrained 系列或 N=16 残余）\n- DDL 前最后 check: 论文 8 页限制 + Limitations 段 + ARR checklist（在 OpenReview form 填写，不在 PDF 中）\n\n### 5. 🎯 战略上下文\n- **核心论文方向**: Self-Consistency for NER 的 Correlation-Selection Gap 诊断与分析。Agreement 信号与 correctness 相关，但 MV 无法有效利用这种相关性来提升 selection——这是核心发现\n- **关键决策链**: D227 (MV 统一定义) → D228 (叙事修正 \"fails to improve\") → D233 (pretrained vs finetuned narrative refined)\n- **最容易判断错的事**:\n  1. report.md 说 \"autodl-5090: 空闲 cuda:0-3\" 但实际有 PREPARING 实验分配了 cuda:1/cuda:2，不要重复分配\n  2. FewNERD MF4v2 有 v2 和 v3 两批重跑，v3 是修正 model path 后的版本，v2 是旧的（部分 killed/failed）——只关注 v3\n  3. exp_e2_pretrained_fewnerd_s42_v2 在 cron 中仍显示 running，但 registry 里找不到——可能是 cron 残留，需要 reconcile 确认\n  4. 大量 PREPARING 实验（B2/DGEC/Pareto 等）是远期规划，DDL sprint 期间优先级低于论文 patch 和数据完整性验证\n  5. Paper Agent 是关键路径——v4 patch 完成后才能提交 Round 29 审稿，务必跟踪其回调\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-17-1779404521.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "15de7814d9818dd7eec3",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "check mvp pilot 004 completion",
+  "task_key": "worker_check_mvp_pilot_004_completion_20260514T090432",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_check_mvp_pilot_004_completion_20260514T090432_result.json",
+    "occurrence": 1,
+    "bytes": 2044,
+    "sha256": "81a9516959e5b8116bcd8bae96cf5d768d1f5c51bc8de35ab5d587d013e22052"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## mvp_pilot_004 结果报告\n\n**Verdict: FAIL**\n\n---\n\n### NER\n\n| 指标 | 值 |\n|------|-----|\n| Greedy F1 | 0.6671 |\n| Oracle F1 | 0.7756 |\n| Headroom | +0.1085 |\n| Fleiss κ mean | 0.4048 |\n| Soft Jaccard mean | 0.7008 |\n| Sample F1 mean/std | 0.6084 / 0.3174 |\n| Sample F1=0 (%) | 12.19% |\n| Gold-empty filtered | 22 |\n| All-samples-F1=0 filtered | 21 |\n\n| 相关性 | ρ | p-value | n |\n|--------|------|---------|-----|\n| Full ρ(κ,F1) | +0.2590 | 1.475e-09 | 529 |\n| Full ρ(SJ,F1) | **+0.3825** | 7.075e-20 | 529 |\n| Cond ρ(κ,F1) | +0.2352 | 8.162e-08 | 508 |\n| Cond ρ(SJ,F1) | **+0.3762** | 1.602e-18 | 508 |\n\n- SJ > κ (full): **YES** (delta=+0.1235)\n- SJ > κ (cond): **YES** (delta=+0.1410)\n\n---\n\n### RE\n\n| 指标 | 值 |\n|------|-----|\n| Greedy F1 | 0.4208 |\n| Oracle F1 | 0.5882 |\n| Headroom | +0.1674 |\n| Fleiss κ mean | 0.2996 |\n| Soft Jaccard mean | 0.6114 |\n| Sample F1 mean/std | 0.3612 / 0.3830 |\n| Sample F1=0 (%) | **44.30%** |\n| Gold-empty filtered | 154 |\n| All-samples-F1=0 filtered | 84 |\n\n| 相关性 | ρ | p-value | n |\n|--------|------|---------|-----|\n| Full ρ(κ,F1) | +0.2782 | 1.724e-08 | 397 |\n| Full ρ(SJ,F1) | +0.2441 | 8.550e-07 | 397 |\n| Cond ρ(κ,F1) | +0.3067 | 3.052e-08 | 313 |\n| Cond ρ(SJ,F1) | +0.3161 | 1.080e-08 | 313 |\n\n- SJ > κ (full): **NO** (delta=-0.0341)\n- SJ > κ (cond): YES (delta=+0.0094, 几乎无差异)\n\n---\n\n### 失败原因分析\n\n1. **RE full ρ(SJ,F1) = 0.2441，远低于 0.40 阈值**——Gate 1 关键条件未通过\n2. **RE 中 SJ 未胜过 κ（full）**——κ 反而更高（0.2782 vs 0.2441）\n3. **RE 44.3% 样本 F1=0**——极高的零分比例严重稀释相关性信号\n4. RE conditional 下 SJ 仅微弱胜出 κ（+0.0094），无实际意义\n\nNER 方面结果积极（SJ 一致性优势明显），但 RE 拖累了整体 verdict。核心问题是 RE 质量仍太低——近半数实例的采样结果全为零分。\n\nRegistry 已更新为 ANALYZING，cron 已删除。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-mvp-pilot-004-completion.md"
+}

@@ -1,0 +1,5474 @@
+# analysis exp qwen25 72b fewshot
+
+**When Self-Consistency Fails for NER: Degeneracy, Signal Collapse, and the Correlation-Selection Gap** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 115
+- **Recorded user turns:** 0
+- **Tool calls:** 41
+- **Original source:** `logs/workers/worker_analysis_exp_qwen25_72b_fewshot_20260520T004942.log`
+- **Structured JSON:** [`e1ab402397340fc0ea30.json`](../../sessions/e1/e1ab402397340fc0ea30.json)
+
+## Before a recorded user message
+
+115 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "session_id": "4dae7b17-8c7d-4862-9526-33c4e4911f2c",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__append_idea",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__read_project_file",
+    "mcp__agent-ml-research__read_registry",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__save_project_file",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only",
+    "mcp__agent-ml-research__update_registry"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "592b3dde-d04e-4bdf-827c-d0d4dd95feda",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed_warning",
+    "resetsAt": 1779253200,
+    "rateLimitType": "seven_day",
+    "utilization": 0.75,
+    "isUsingOverage": false,
+    "surpassedThreshold": 0.75
+  },
+  "uuid": "7aba8499-9204-445d-b272-1264613350ec",
+  "session_id": "4dae7b17-8c7d-4862-9526-33c4e4911f2c"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by checking the experiment logs and output files on the server. I'll need to use the MCP tools for SSH access. Let me first load the necessary tool schemas.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4dae7b17-8c7d-4862-9526-33c4e4911f2c",
+  "uuid": "9161be50-c612-40c8-94ae-5202fd7978bd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MTGtp1aQZb2ypYgjSmDoZc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12912,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12912
+      },
+      "output_tokens": 19,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01Dj3qCLaFBMEjwMhHsVWcDA`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__register_artifact",
+  "max_results": 8
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4dae7b17-8c7d-4862-9526-33c4e4911f2c",
+  "uuid": "78707aff-560e-4a6d-9062-0eae10afcbfa",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MTGtp1aQZb2ypYgjSmDoZc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12912,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12912
+      },
+      "output_tokens": 19,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-20T00:49:53.505Z_
+
+<details><summary>↩ Tool result · `toolu_01Dj3qCLaFBMEjwMhHsVWcDA`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_project_file"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__save_project_file"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__update_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__detect_image"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__register_artifact"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4dae7b17-8c7d-4862-9526-33c4e4911f2c",
+  "uuid": "1c30952b-5380-4ce0-83fb-0bc9f2c544e9",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__save_project_file",
+      "mcp__agent-ml-research__update_registry",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__detect_image",
+      "mcp__agent-ml-research__register_artifact"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__register_artifact",
+    "total_deferred_tools": 29
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7_
+
+开始检查实验状态和输出文件。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4dae7b17-8c7d-4862-9526-33c4e4911f2c",
+  "uuid": "891822ce-7867-481f-a6e3-4118f151ec59",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01G2hCSiwZYKKe71A8SbofUi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2974,
+      "cache_read_input_tokens": 24753,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2974
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_013rfKFMY71DxwgQA6jTSWtV`</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "command": "tail -100 /root/runs/struct_self_consist_ie/exp_qwen25_72b_fewshot.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4dae7b17-8c7d-4862-9526-33c4e4911f2c",
+  "uuid": "cc0b9f71-e3c7-4ddd-9ff9-5eba9b68b708",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01G2hCSiwZYKKe71A8SbofUi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2974,
+      "cache_read_input_tokens": 24753,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2974
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01WERNNDcrwwsqJbYBnzn6VR`</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "command": "ls -la /root/autodl-tmp/struct_self_consist_ie/output/72b_fewshot/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4dae7b17-8c7d-4862-9526-33c4e4911f2c",
+  "uuid": "3b1d102e-90a0-442c-9e2f-385479063e07",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01G2hCSiwZYKKe71A8SbofUi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2974,
+      "cache_read_input_tokens": 24753,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2974
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_017B2mki8HRSLUqk2ZSjncy4`</summary>
+
+```json
+{
+  "project": "struct_self_consist_ie",
+  "filters": {
+    "exp_id": "exp_qwen25_72b_fewshot"
+  },
+  "fields": [
+    "*"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4dae7b17-8c7d-4862-9526-33c4e4911f2c",
+  "uuid": "c9050e13-f16c-499b-8768-09715fd2a96e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01G2hCSiwZYKKe71A8SbofUi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2974,
+      "cache_read_input_tokens": 24753,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2974
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-20T00:50:26.744Z_
+
+<details><summary>↩ Tool result · `toolu_013rfKFMY71DxwgQA6jTSWtV`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"(Worker_TP0 pid=131575) INFO 05-20 00:26:26 [gpu_worker.py:490] In v0.19, CUDA graph memory profiling will be enabled by default (VLLM_MEMORY_PROFILER_ESTIMATE_CUDAGRAPHS=1), which more accurately accounts for CUDA graph memory during KV cache allocation. To try it now, set VLLM_MEMORY_PROFILER_ESTIMATE_CUDAGRAPHS=1 and increase --gpu-memory-utilization from 0.9000 to 0.9463 to maintain the same effective KV cache size.\\n(EngineCore pid=131569) INFO 05-20 00:26:26 [kv_cache_utils.py:1316] GPU KV cache size: 230,800 tokens\\n(EngineCore pid=131569) INFO 05-20 00:26:26 [kv_cache_utils.py:1321] Maximum concurrency for 4,096 tokens per request: 56.35x\\n(Worker_TP0 pid=131575) \\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):   0%|          | 0/51 [00:00<?, ?it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):   2%|▏         | 1/51 [00:00<00:11,  4.33it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):   4%|▍         | 2/51 [00:00<00:10,  4.73it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):   6%|▌         | 3/51 [00:00<00:09,  4.89it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):   8%|▊         | 4/51 [00:00<00:09,  5.01it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  10%|▉         | 5/51 [00:01<00:08,  5.15it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  12%|█▏        | 6/51 [00:01<00:08,  5.23it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  14%|█▎        | 7/51 [00:01<00:08,  5.31it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  16%|█▌        | 8/51 [00:01<00:07,  5.40it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  18%|█▊        | 9/51 [00:01<00:07,  5.55it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  20%|█▉        | 10/51 [00:01<00:07,  5.66it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  22%|██▏       | 11/51 [00:02<00:06,  5.77it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  24%|██▎       | 12/51 [00:02<00:06,  5.91it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  25%|██▌       | 13/51 [00:02<00:06,  6.12it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  27%|██▋       | 14/51 [00:02<00:05,  6.20it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  29%|██▉       | 15/51 [00:02<00:05,  6.32it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  31%|███▏      | 16/51 [00:02<00:05,  6.40it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  33%|███▎      | 17/51 [00:02<00:05,  6.57it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  35%|███▌      | 18/51 [00:03<00:04,  6.67it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  37%|███▋      | 19/51 [00:03<00:04,  6.79it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  39%|███▉      | 20/51 [00:03<00:04,  6.89it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  41%|████      | 21/51 [00:03<00:04,  6.99it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  43%|████▎     | 22/51 [00:03<00:04,  7.07it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  45%|████▌     | 23/51 [00:03<00:03,  7.11it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  47%|████▋     | 24/51 [00:03<00:03,  7.22it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  49%|████▉     | 25/51 [00:04<00:03,  7.39it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  51%|█████     | 26/51 [00:04<00:03,  7.44it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  53%|█████▎    | 27/51 [00:04<00:03,  7.55it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  55%|█████▍    | 28/51 [00:04<00:03,  7.56it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  57%|█████▋    | 29/51 [00:04<00:02,  7.68it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  59%|█████▉    | 30/51 [00:04<00:02,  7.70it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  61%|██████    | 31/51 [00:0\\n\\n... [截断: 输出过长，省略 6649021 字符] ...\\n\\noks/s, output: 790.36 toks/s]\\rProcessed prompts: 100%|█████████▉| 37604/37648 [1:17:37<00:01, 24.46it/s, est. speed input: 13542.21 toks/s, output: 790.55 toks/s]\\rProcessed prompts: 100%|█████████▉| 37609/37648 [1:17:37<00:01, 28.49it/s, est. speed input: 13543.69 toks/s, output: 790.79 toks/s]\\rProcessed prompts: 100%|█████████▉| 37613/37648 [1:17:38<00:01, 22.81it/s, est. speed input: 13544.36 toks/s, output: 790.91 toks/s]\\rProcessed prompts: 100%|█████████▉| 37616/37648 [1:17:38<00:01, 20.00it/s, est. speed input: 13544.84 toks/s, output: 791.01 toks/s]\\rProcessed prompts: 100%|█████████▉| 37619/37648 [1:17:38<00:01, 21.10it/s, est. speed input: 13545.59 toks/s, output: 791.11 toks/s]\\rProcessed prompts: 100%|█████████▉| 37622/37648 [1:17:38<00:01, 21.33it/s, est. speed input: 13546.30 toks/s, output: 791.26 toks/s]\\rProcessed prompts: 100%|█████████▉| 37626/37648 [1:17:38<00:01, 21.08it/s, est. speed input: 13547.18 toks/s, output: 791.42 toks/s]\\rProcessed prompts: 100%|█████████▉| 37629/37648 [1:17:38<00:01, 18.10it/s, est. speed input: 13547.60 toks/s, output: 791.53 toks/s]\\rProcessed prompts: 100%|█████████▉| 37632/37648 [1:17:39<00:00, 20.18it/s, est. speed input: 13548.41 toks/s, output: 791.64 toks/s]\\rProcessed prompts: 100%|█████████▉| 37635/37648 [1:17:39<00:00, 16.29it/s, est. speed input: 13548.71 toks/s, output: 791.76 toks/s]\\rProcessed prompts: 100%|█████████▉| 37638/37648 [1:17:39<00:00, 17.66it/s, est. speed input: 13549.42 toks/s, output: 791.89 toks/s]\\rProcessed prompts: 100%|█████████▉| 37640/37648 [1:17:39<00:00, 12.95it/s, est. speed input: 13549.26 toks/s, output: 791.94 toks/s]\\rProcessed prompts: 100%|█████████▉| 37642/37648 [1:17:40<00:00,  8.42it/s, est. speed input: 13548.52 toks/s, output: 791.97 toks/s]\\rProcessed prompts: 100%|█████████▉| 37644/37648 [1:17:41<00:01,  3.98it/s, est. speed input: 13545.50 toks/s, output: 791.89 toks/s]\\rProcessed prompts: 100%|█████████▉| 37645/37648 [1:17:42<00:01,  2.92it/s, est. speed input: 13543.40 toks/s, output: 791.84 toks/s]\\rProcessed prompts: 100%|█████████▉| 37646/37648 [1:17:42<00:00,  2.80it/s, est. speed input: 13542.53 toks/s, output: 791.87 toks/s]\\rProcessed prompts: 100%|█████████▉| 37647/37648 [1:17:44<00:00,  1.57it/s, est. speed input: 13537.90 toks/s, output: 791.83 toks/s]\\rProcessed prompts: 100%|██████████| 37648/37648 [1:17:44<00:00,  1.57it/s, est. speed input: 13538.25 toks/s, output: 791.98 toks/s]\\rProcessed prompts: 100%|██████████| 37648/37648 [1:17:44<00:00,  8.07it/s, est. speed input: 13538.25 toks/s, output: 791.98 toks/s]\\n(EngineCore pid=131569) INFO 05-20 08:47:26 [core.py:1201] Shutdown initiated (timeout=0)\\n(EngineCore pid=131569) INFO 05-20 08:47:26 [core.py:1224] Shutdown complete\\n(Worker_TP0 pid=131575) INFO 05-20 08:47:26 [multiproc_executor.py:759] Parent process exited, terminating worker queues\\n(Worker_TP1 pid=131576) INFO 05-20 08:47:26 [multiproc_executor.py:759] Parent process exited, terminating worker queues\\n(Worker_TP3 pid=131578) INFO 05-20 08:47:26 [multiproc_executor.py:759] Parent process exited, terminating worker queues\\n(Worker_TP2 pid=131577) INFO 05-20 08:47:26 [multiproc_executor.py:759] Parent process exited, terminating worker queues\\n(Worker_TP0 pid=131575) INFO 05-20 08:47:26 [multiproc_executor.py:854] WorkerProc shutting down.\\n(Worker_TP1 pid=131576) INFO 05-20 08:47:26 [multiproc_executor.py:854] WorkerProc shutting down.\\n(Worker_TP2 pid=131577) INFO 05-20 08:47:26 [multiproc_executor.py:854] WorkerProc shutting down.\\n(Worker_TP3 pid=131578) INFO 05-20 08:47:26 [multiproc_executor.py:854] WorkerProc shutting down.\\n[fewnerd] Greedy done in 4803.3s\\n[fewnerd] Parse rate: 301184/301184 = 100.0%\\n[fewnerd] Total time: 27826.8s\\nSaved 37648 instances to output/72b_fewshot/fewnerd/samples.jsonl\\n\\n============================================================\\nSummary:\\n  scierc: 551 instances, parse_rate=100.0%\\n  conll2003: 3453 instances, parse_rate=100.0%\\n  fewnerd: 37648 instances, parse_rate=100.0%\\nDone.\\nEXIT_CODE=0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 28.22}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4dae7b17-8c7d-4862-9526-33c4e4911f2c",
+  "uuid": "16da14fd-2839-4f42-8408-6abb32d33cb1",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"(Worker_TP0 pid=131575) INFO 05-20 00:26:26 [gpu_worker.py:490] In v0.19, CUDA graph memory profiling will be enabled by default (VLLM_MEMORY_PROFILER_ESTIMATE_CUDAGRAPHS=1), which more accurately accounts for CUDA graph memory during KV cache allocation. To try it now, set VLLM_MEMORY_PROFILER_ESTIMATE_CUDAGRAPHS=1 and increase --gpu-memory-utilization from 0.9000 to 0.9463 to maintain the same effective KV cache size.\\\\n(EngineCore pid=131569) INFO 05-20 00:26:26 [kv_cache_utils.py:1316] GPU KV cache size: 230,800 tokens\\\\n(EngineCore pid=131569) INFO 05-20 00:26:26 [kv_cache_utils.py:1321] Maximum concurrency for 4,096 tokens per request: 56.35x\\\\n(Worker_TP0 pid=131575) \\\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):   0%|          | 0/51 [00:00<?, ?it/s]\\\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):   2%|▏         | 1/51 [00:00<00:11,  4.33it/s]\\\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):   4%|▍         | 2/51 [00:00<00:10,  4.73it/s]\\\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):   6%|▌         | 3/51 [00:00<00:09,  4.89it/s]\\\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):   8%|▊         | 4/51 [00:00<00:09,  5.01it/s]\\\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  10%|▉         | 5/51 [00:01<00:08,  5.15it/s]\\\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  12%|█▏        | 6/51 [00:01<00:08,  5.23it/s]\\\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  14%|█▎        | 7/51 [00:01<00:08,  5.31it/s]\\\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  16%|█▌        | 8/51 [00:01<00:07,  5.40it/s]\\\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  18%|█▊        | 9/51 [00:01<00:07,  5.55it/s]\\\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  20%|█▉        | 10/51 [00:01<00:07,  5.66it/s]\\\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  22%|██▏       | 11/51 [00:02<00:06,  5.77it/s]\\\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  24%|██▎       | 12/51 [00:02<00:06,  5.91it/s]\\\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  25%|██▌       | 13/51 [00:02<00:06,  6.12it/s]\\\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  27%|██▋       | 14/51 [00:02<00:05,  6.20it/s]\\\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  29%|██▉       | 15/51 [00:02<00:05,  6.32it/s]\\\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  31%|███▏      | 16/51 [00:02<00:05,  6.40it/s]\\\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  33%|███▎      | 17/51 [00:02<00:05,  6.57it/s]\\\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  35%|███▌      | 18/51 [00:03<00:04,  6.67it/s]\\\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  37%|███▋      | 19/51 [00:03<00:04,  6.79it/s]\\\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  39%|███▉      | 20/51 [00:03<00:04,  6.89it/s]\\\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  41%|████      | 21/51 [00:03<00:04,  6.99it/s]\\\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  43%|████▎     | 22/51 [00:03<00:04,  7.07it/s]\\\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  45%|████▌     | 23/51 [00:03<00:03,  7.11it/s]\\\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  47%|████▋     | 24/51 [00:03<00:03,  7.22it/s]\\\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  49%|████▉     | 25/51 [00:04<00:03,  7.39it/s]\\\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  51%|█████     | 26/51 [00:04<00:03,  7.44it/s]\\\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  53%|█████▎    | 27/51 [00:04<00:03,  7.55it/s]\\\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  55%|█████▍    | 28/51 [00:04<00:03,  7.56it/s]\\\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  57%|█████▋    | 29/51 [00:04<00:02,  7.68it/s]\\\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  59%|█████▉    | 30/51 [00:04<00:02,  7.70it/s]\\\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  61%|██████    | 31/51 [00:0\\\\n\\\\n... [截断: 输出过长，省略 6649021 字符] ...\\\\n\\\\noks/s, output: 790.36 toks/s]\\\\rProcessed prompts: 100%|█████████▉| 37604/37648 [1:17:37<00:01, 24.46it/s, est. speed input: 13542.21 toks/s, output: 790.55 toks/s]\\\\rProcessed prompts: 100%|█████████▉| 37609/37648 [1:17:37<00:01, 28.49it/s, est. speed input: 13543.69 toks/s, output: 790.79 toks/s]\\\\rProcessed prompts: 100%|█████████▉| 37613/37648 [1:17:38<00:01, 22.81it/s, est. speed input: 13544.36 toks/s, output: 790.91 toks/s]\\\\rProcessed prompts: 100%|█████████▉| 37616/37648 [1:17:38<00:01, 20.00it/s, est. speed input: 13544.84 toks/s, output: 791.01 toks/s]\\\\rProcessed prompts: 100%|█████████▉| 37619/37648 [1:17:38<00:01, 21.10it/s, est. speed input: 13545.59 toks/s, output: 791.11 toks/s]\\\\rProcessed prompts: 100%|█████████▉| 37622/37648 [1:17:38<00:01, 21.33it/s, est. speed input: 13546.30 toks/s, output: 791.26 toks/s]\\\\rProcessed prompts: 100%|█████████▉| 37626/37648 [1:17:38<00:01, 21.08it/s, est. speed input: 13547.18 toks/s, output: 791.42 toks/s]\\\\rProcessed prompts: 100%|█████████▉| 37629/37648 [1:17:38<00:01, 18.10it/s, est. speed input: 13547.60 toks/s, output: 791.53 toks/s]\\\\rProcessed prompts: 100%|█████████▉| 37632/37648 [1:17:39<00:00, 20.18it/s, est. speed input: 13548.41 toks/s, output: 791.64 toks/s]\\\\rProcessed prompts: 100%|█████████▉| 37635/37648 [1:17:39<00:00, 16.29it/s, est. speed input: 13548.71 toks/s, output: 791.76 toks/s]\\\\rProcessed prompts: 100%|█████████▉| 37638/37648 [1:17:39<00:00, 17.66it/s, est. speed input: 13549.42 toks/s, output: 791.89 toks/s]\\\\rProcessed prompts: 100%|█████████▉| 37640/37648 [1:17:39<00:00, 12.95it/s, est. speed input: 13549.26 toks/s, output: 791.94 toks/s]\\\\rProcessed prompts: 100%|█████████▉| 37642/37648 [1:17:40<00:00,  8.42it/s, est. speed input: 13548.52 toks/s, output: 791.97 toks/s]\\\\rProcessed prompts: 100%|█████████▉| 37644/37648 [1:17:41<00:01,  3.98it/s, est. speed input: 13545.50 toks/s, output: 791.89 toks/s]\\\\rProcessed prompts: 100%|█████████▉| 37645/37648 [1:17:42<00:01,  2.92it/s, est. speed input: 13543.40 toks/s, output: 791.84 toks/s]\\\\rProcessed prompts: 100%|█████████▉| 37646/37648 [1:17:42<00:00,  2.80it/s, est. speed input: 13542.53 toks/s, output: 791.87 toks/s]\\\\rProcessed prompts: 100%|█████████▉| 37647/37648 [1:17:44<00:00,  1.57it/s, est. speed input: 13537.90 toks/s, output: 791.83 toks/s]\\\\rProcessed prompts: 100%|██████████| 37648/37648 [1:17:44<00:00,  1.57it/s, est. speed input: 13538.25 toks/s, output: 791.98 toks/s]\\\\rProcessed prompts: 100%|██████████| 37648/37648 [1:17:44<00:00,  8.07it/s, est. speed input: 13538.25 toks/s, output: 791.98 toks/s]\\\\n(EngineCore pid=131569) INFO 05-20 08:47:26 [core.py:1201] Shutdown initiated (timeout=0)\\\\n(EngineCore pid=131569) INFO 05-20 08:47:26 [core.py:1224] Shutdown complete\\\\n(Worker_TP0 pid=131575) INFO 05-20 08:47:26 [multiproc_executor.py:759] Parent process exited, terminating worker queues\\\\n(Worker_TP1 pid=131576) INFO 05-20 08:47:26 [multiproc_executor.py:759] Parent process exited, terminating worker queues\\\\n(Worker_TP3 pid=131578) INFO 05-20 08:47:26 [multiproc_executor.py:759] Parent process exited, terminating worker queues\\\\n(Worker_TP2 pid=131577) INFO 05-20 08:47:26 [multiproc_executor.py:759] Parent process exited, terminating worker queues\\\\n(Worker_TP0 pid=131575) INFO 05-20 08:47:26 [multiproc_executor.py:854] WorkerProc shutting down.\\\\n(Worker_TP1 pid=131576) INFO 05-20 08:47:26 [multiproc_executor.py:854] WorkerProc shutting down.\\\\n(Worker_TP2 pid=131577) INFO 05-20 08:47:26 [multiproc_executor.py:854] WorkerProc shutting down.\\\\n(Worker_TP3 pid=131578) INFO 05-20 08:47:26 [multiproc_executor.py:854] WorkerProc shutting down.\\\\n[fewnerd] Greedy done in 4803.3s\\\\n[fewnerd] Parse rate: 301184/301184 = 100.0%\\\\n[fewnerd] Total time: 27826.8s\\\\nSaved 37648 instances to output/72b_fewshot/fewnerd/samples.jsonl\\\\n\\\\n============================================================\\\\nSummary:\\\\n  scierc: 551 instances, parse_rate=100.0%\\\\n  conll2003: 3453 instances, parse_rate=100.0%\\\\n  fewnerd: 37648 instances, parse_rate=100.0%\\\\nDone.\\\\nEXIT_CODE=0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 28.22}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"(Worker_TP0 pid=131575) INFO 05-20 00:26:26 [gpu_worker.py:490] In v0.19, CUDA graph memory profiling will be enabled by default (VLLM_MEMORY_PROFILER_ESTIMATE_CUDAGRAPHS=1), which more accurately accounts for CUDA graph memory during KV cache allocation. To try it now, set VLLM_MEMORY_PROFILER_ESTIMATE_CUDAGRAPHS=1 and increase --gpu-memory-utilization from 0.9000 to 0.9463 to maintain the same effective KV cache size.\\n(EngineCore pid=131569) INFO 05-20 00:26:26 [kv_cache_utils.py:1316] GPU KV cache size: 230,800 tokens\\n(EngineCore pid=131569) INFO 05-20 00:26:26 [kv_cache_utils.py:1321] Maximum concurrency for 4,096 tokens per request: 56.35x\\n(Worker_TP0 pid=131575) \\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):   0%|          | 0/51 [00:00<?, ?it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):   2%|▏         | 1/51 [00:00<00:11,  4.33it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):   4%|▍         | 2/51 [00:00<00:10,  4.73it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):   6%|▌         | 3/51 [00:00<00:09,  4.89it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):   8%|▊         | 4/51 [00:00<00:09,  5.01it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  10%|▉         | 5/51 [00:01<00:08,  5.15it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  12%|█▏        | 6/51 [00:01<00:08,  5.23it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  14%|█▎        | 7/51 [00:01<00:08,  5.31it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  16%|█▌        | 8/51 [00:01<00:07,  5.40it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  18%|█▊        | 9/51 [00:01<00:07,  5.55it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  20%|█▉        | 10/51 [00:01<00:07,  5.66it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  22%|██▏       | 11/51 [00:02<00:06,  5.77it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  24%|██▎       | 12/51 [00:02<00:06,  5.91it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  25%|██▌       | 13/51 [00:02<00:06,  6.12it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  27%|██▋       | 14/51 [00:02<00:05,  6.20it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  29%|██▉       | 15/51 [00:02<00:05,  6.32it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  31%|███▏      | 16/51 [00:02<00:05,  6.40it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  33%|███▎      | 17/51 [00:02<00:05,  6.57it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  35%|███▌      | 18/51 [00:03<00:04,  6.67it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  37%|███▋      | 19/51 [00:03<00:04,  6.79it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  39%|███▉      | 20/51 [00:03<00:04,  6.89it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  41%|████      | 21/51 [00:03<00:04,  6.99it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  43%|████▎     | 22/51 [00:03<00:04,  7.07it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  45%|████▌     | 23/51 [00:03<00:03,  7.11it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  47%|████▋     | 24/51 [00:03<00:03,  7.22it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  49%|████▉     | 25/51 [00:04<00:03,  7.39it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  51%|█████     | 26/51 [00:04<00:03,  7.44it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  53%|█████▎    | 27/51 [00:04<00:03,  7.55it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  55%|█████▍    | 28/51 [00:04<00:03,  7.56it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  57%|█████▋    | 29/51 [00:04<00:02,  7.68it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  59%|█████▉    | 30/51 [00:04<00:02,  7.70it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  61%|██████    | 31/51 [00:0\\n\\n... [截断: 输出过长，省略 6649021 字符] ...\\n\\noks/s, output: 790.36 toks/s]\\rProcessed prompts: 100%|█████████▉| 37604/37648 [1:17:37<00:01, 24.46it/s, est. speed input: 13542.21 toks/s, output: 790.55 toks/s]\\rProcessed prompts: 100%|█████████▉| 37609/37648 [1:17:37<00:01, 28.49it/s, est. speed input: 13543.69 toks/s, output: 790.79 toks/s]\\rProcessed prompts: 100%|█████████▉| 37613/37648 [1:17:38<00:01, 22.81it/s, est. speed input: 13544.36 toks/s, output: 790.91 toks/s]\\rProcessed prompts: 100%|█████████▉| 37616/37648 [1:17:38<00:01, 20.00it/s, est. speed input: 13544.84 toks/s, output: 791.01 toks/s]\\rProcessed prompts: 100%|█████████▉| 37619/37648 [1:17:38<00:01, 21.10it/s, est. speed input: 13545.59 toks/s, output: 791.11 toks/s]\\rProcessed prompts: 100%|█████████▉| 37622/37648 [1:17:38<00:01, 21.33it/s, est. speed input: 13546.30 toks/s, output: 791.26 toks/s]\\rProcessed prompts: 100%|█████████▉| 37626/37648 [1:17:38<00:01, 21.08it/s, est. speed input: 13547.18 toks/s, output: 791.42 toks/s]\\rProcessed prompts: 100%|█████████▉| 37629/37648 [1:17:38<00:01, 18.10it/s, est. speed input: 13547.60 toks/s, output: 791.53 toks/s]\\rProcessed prompts: 100%|█████████▉| 37632/37648 [1:17:39<00:00, 20.18it/s, est. speed input: 13548.41 toks/s, output: 791.64 toks/s]\\rProcessed prompts: 100%|█████████▉| 37635/37648 [1:17:39<00:00, 16.29it/s, est. speed input: 13548.71 toks/s, output: 791.76 toks/s]\\rProcessed prompts: 100%|█████████▉| 37638/37648 [1:17:39<00:00, 17.66it/s, est. speed input: 13549.42 toks/s, output: 791.89 toks/s]\\rProcessed prompts: 100%|█████████▉| 37640/37648 [1:17:39<00:00, 12.95it/s, est. speed input: 13549.26 toks/s, output: 791.94 toks/s]\\rProcessed prompts: 100%|█████████▉| 37642/37648 [1:17:40<00:00,  8.42it/s, est. speed input: 13548.52 toks/s, output: 791.97 toks/s]\\rProcessed prompts: 100%|█████████▉| 37644/37648 [1:17:41<00:01,  3.98it/s, est. speed input: 13545.50 toks/s, output: 791.89 toks/s]\\rProcessed prompts: 100%|█████████▉| 37645/37648 [1:17:42<00:01,  2.92it/s, est. speed input: 13543.40 toks/s, output: 791.84 toks/s]\\rProcessed prompts: 100%|█████████▉| 37646/37648 [1:17:42<00:00,  2.80it/s, est. speed input: 13542.53 toks/s, output: 791.87 toks/s]\\rProcessed prompts: 100%|█████████▉| 37647/37648 [1:17:44<00:00,  1.57it/s, est. speed input: 13537.90 toks/s, output: 791.83 toks/s]\\rProcessed prompts: 100%|██████████| 37648/37648 [1:17:44<00:00,  1.57it/s, est. speed input: 13538.25 toks/s, output: 791.98 toks/s]\\rProcessed prompts: 100%|██████████| 37648/37648 [1:17:44<00:00,  8.07it/s, est. speed input: 13538.25 toks/s, output: 791.98 toks/s]\\n(EngineCore pid=131569) INFO 05-20 08:47:26 [core.py:1201] Shutdown initiated (timeout=0)\\n(EngineCore pid=131569) INFO 05-20 08:47:26 [core.py:1224] Shutdown complete\\n(Worker_TP0 pid=131575) INFO 05-20 08:47:26 [multiproc_executor.py:759] Parent process exited, terminating worker queues\\n(Worker_TP1 pid=131576) INFO 05-20 08:47:26 [multiproc_executor.py:759] Parent process exited, terminating worker queues\\n(Worker_TP3 pid=131578) INFO 05-20 08:47:26 [multiproc_executor.py:759] Parent process exited, terminating worker queues\\n(Worker_TP2 pid=131577) INFO 05-20 08:47:26 [multiproc_executor.py:759] Parent process exited, terminating worker queues\\n(Worker_TP0 pid=131575) INFO 05-20 08:47:26 [multiproc_executor.py:854] WorkerProc shutting down.\\n(Worker_TP1 pid=131576) INFO 05-20 08:47:26 [multiproc_executor.py:854] WorkerProc shutting down.\\n(Worker_TP2 pid=131577) INFO 05-20 08:47:26 [multiproc_executor.py:854] WorkerProc shutting down.\\n(Worker_TP3 pid=131578) INFO 05-20 08:47:26 [multiproc_executor.py:854] WorkerProc shutting down.\\n[fewnerd] Greedy done in 4803.3s\\n[fewnerd] Parse rate: 301184/301184 = 100.0%\\n[fewnerd] Total time: 27826.8s\\nSaved 37648 instances to output/72b_fewshot/fewnerd/samples.jsonl\\n\\n============================================================\\nSummary:\\n  scierc: 551 instances, parse_rate=100.0%\\n  conll2003: 3453 instances, parse_rate=100.0%\\n  fewnerd: 37648 instances, parse_rate=100.0%\\nDone.\\nEXIT_CODE=0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 28.22}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-20T00:50:27.065Z_
+
+<details><summary>↩ Tool result · `toolu_01WERNNDcrwwsqJbYBnzn6VR`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 4\\ndrwxr-xr-x  5 root root   68 May 20 08:47 .\\ndrwxr-xr-x 14 root root 4096 May 20 06:50 ..\\ndrwxr-xr-x  2 root root   35 May 20 01:03 conll2003\\ndrwxr-xr-x  2 root root   35 May 20 08:47 fewnerd\\ndrwxr-xr-x  2 root root   35 May 20 00:34 scierc\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4dae7b17-8c7d-4862-9526-33c4e4911f2c",
+  "uuid": "42f24d8d-cb27-45cf-8ea9-7500b33bad82",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 4\\\\ndrwxr-xr-x  5 root root   68 May 20 08:47 .\\\\ndrwxr-xr-x 14 root root 4096 May 20 06:50 ..\\\\ndrwxr-xr-x  2 root root   35 May 20 01:03 conll2003\\\\ndrwxr-xr-x  2 root root   35 May 20 08:47 fewnerd\\\\ndrwxr-xr-x  2 root root   35 May 20 00:34 scierc\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 4\\ndrwxr-xr-x  5 root root   68 May 20 08:47 .\\ndrwxr-xr-x 14 root root 4096 May 20 06:50 ..\\ndrwxr-xr-x  2 root root   35 May 20 01:03 conll2003\\ndrwxr-xr-x  2 root root   35 May 20 08:47 fewnerd\\ndrwxr-xr-x  2 root root   35 May 20 00:34 scierc\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-20T00:50:27.814Z_
+
+<details><summary>↩ Tool result · `toolu_017B2mki8HRSLUqk2ZSjncy4`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7347}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4dae7b17-8c7d-4862-9526-33c4e4911f2c",
+  "uuid": "0ff34869-d863-4783-b17a-ccbf3591fdef",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.7347}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7347}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 14_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The experiment completed successfully:
+- All 3 datasets processed: scierc (551), conll2003 (3453), fewnerd (37648)
+- Parse rate: 100% for all
+- EXIT_CODE=0
+- FewNERD inference is done (samples.jsonl saved)
+
+The registry doesn't have this experiment. Let me check the output files and look for any existing signal computations.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4dae7b17-8c7d-4862-9526-33c4e4911f2c",
+  "uuid": "acf251cd-50ff-4ce4-a647-d11fa5abced8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01M22MvBHCm1Ww7yaaJSNq4x",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4681,
+      "cache_read_input_tokens": 27727,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4681
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 15_
+
+实验正常完成（EXIT_CODE=0），三个数据集全部 100% parse rate。FewNERD 推理已完成。接下来检查输出文件和已有 signal 计算。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4dae7b17-8c7d-4862-9526-33c4e4911f2c",
+  "uuid": "5c6ca32b-4c02-4ea9-99c0-8bfc949ca6c3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01M22MvBHCm1Ww7yaaJSNq4x",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4681,
+      "cache_read_input_tokens": 27727,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4681
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01RGAKYkMDo7hY55zcTmdhsR`</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "command": "ls -la /root/autodl-tmp/struct_self_consist_ie/output/72b_fewshot/fewnerd/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4dae7b17-8c7d-4862-9526-33c4e4911f2c",
+  "uuid": "7e169991-69e5-4aa2-8945-b532d94e654a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01M22MvBHCm1Ww7yaaJSNq4x",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4681,
+      "cache_read_input_tokens": 27727,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4681
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-20T00:50:35.131Z_
+
+<details><summary>↩ Tool result · `toolu_01RGAKYkMDo7hY55zcTmdhsR`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 139900\\ndrwxr-xr-x 2 root root        35 May 20 08:47 .\\ndrwxr-xr-x 5 root root        68 May 20 08:47 ..\\n-rw-r--r-- 1 root root 143253918 May 20 08:47 samples.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4dae7b17-8c7d-4862-9526-33c4e4911f2c",
+  "uuid": "254bb770-c442-4593-8b44-3a087d5e095c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 139900\\\\ndrwxr-xr-x 2 root root        35 May 20 08:47 .\\\\ndrwxr-xr-x 5 root root        68 May 20 08:47 ..\\\\n-rw-r--r-- 1 root root 143253918 May 20 08:47 samples.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 139900\\ndrwxr-xr-x 2 root root        35 May 20 08:47 .\\ndrwxr-xr-x 5 root root        68 May 20 08:47 ..\\n-rw-r--r-- 1 root root 143253918 May 20 08:47 samples.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01PwYVXSEGgd1DtyLsH39y7E`</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "command": "ls -la /root/autodl-tmp/struct_self_consist_ie/output/72b_fewshot/scierc/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4dae7b17-8c7d-4862-9526-33c4e4911f2c",
+  "uuid": "5702a89a-23dd-4b34-b2bb-1188c4d58053",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01M22MvBHCm1Ww7yaaJSNq4x",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4681,
+      "cache_read_input_tokens": 27727,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4681
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-20T00:50:36.201Z_
+
+<details><summary>↩ Tool result · `toolu_01PwYVXSEGgd1DtyLsH39y7E`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 2720\\ndrwxr-xr-x 2 root root      35 May 20 00:34 .\\ndrwxr-xr-x 5 root root      68 May 20 08:47 ..\\n-rw-r--r-- 1 root root 2785101 May 20 00:34 samples.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4dae7b17-8c7d-4862-9526-33c4e4911f2c",
+  "uuid": "5b435d78-910e-477b-b5f0-e442c5693410",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 2720\\\\ndrwxr-xr-x 2 root root      35 May 20 00:34 .\\\\ndrwxr-xr-x 5 root root      68 May 20 08:47 ..\\\\n-rw-r--r-- 1 root root 2785101 May 20 00:34 samples.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 2720\\ndrwxr-xr-x 2 root root      35 May 20 00:34 .\\ndrwxr-xr-x 5 root root      68 May 20 08:47 ..\\n-rw-r--r-- 1 root root 2785101 May 20 00:34 samples.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01VwT1JYP7omxsTe8Aa2A3Cy`</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "command": "ls -la /root/autodl-tmp/struct_self_consist_ie/output/72b_fewshot/conll2003/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4dae7b17-8c7d-4862-9526-33c4e4911f2c",
+  "uuid": "354a86d0-d799-4cfc-9595-5ecc138ca305",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01M22MvBHCm1Ww7yaaJSNq4x",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4681,
+      "cache_read_input_tokens": 27727,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4681
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-20T00:50:37.064Z_
+
+<details><summary>↩ Tool result · `toolu_01VwT1JYP7omxsTe8Aa2A3Cy`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 9424\\ndrwxr-xr-x 2 root root      35 May 20 01:03 .\\ndrwxr-xr-x 5 root root      68 May 20 08:47 ..\\n-rw-r--r-- 1 root root 9648679 May 20 01:03 samples.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4dae7b17-8c7d-4862-9526-33c4e4911f2c",
+  "uuid": "dfe8c5d4-909b-4312-a772-83e759d49b3c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 9424\\\\ndrwxr-xr-x 2 root root      35 May 20 01:03 .\\\\ndrwxr-xr-x 5 root root      68 May 20 08:47 ..\\\\n-rw-r--r-- 1 root root 9648679 May 20 01:03 samples.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 9424\\ndrwxr-xr-x 2 root root      35 May 20 01:03 .\\ndrwxr-xr-x 5 root root      68 May 20 08:47 ..\\n-rw-r--r-- 1 root root 9648679 May 20 01:03 samples.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01XLVPenAh6m5uZLTU4mLD2U`</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "command": "find /root/autodl-tmp/struct_self_consist_ie/output/72b_fewshot/ -name \"*.json\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4dae7b17-8c7d-4862-9526-33c4e4911f2c",
+  "uuid": "c328723c-9978-48e0-800d-1a300c2e9d7d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01M22MvBHCm1Ww7yaaJSNq4x",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4681,
+      "cache_read_input_tokens": 27727,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4681
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-20T00:50:37.936Z_
+
+<details><summary>↩ Tool result · `toolu_01XLVPenAh6m5uZLTU4mLD2U`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4dae7b17-8c7d-4862-9526-33c4e4911f2c",
+  "uuid": "dfd1321a-3c01-4398-866f-279dca3fa624",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 24_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Only samples.jsonl files exist in each directory — no signal JSON files yet. I need to:
+1. Check what compute_signals.py expects
+2. Run signal computation for all 3 datasets (FewNERD is the key missing one, but let me check if SciERC and CoNLL signals exist elsewhere)
+3. Run construction pipeline
+
+Let me first check the compute_signals.py script to understand its interface, and also check if there are any signal JSONs elsewhere.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4dae7b17-8c7d-4862-9526-33c4e4911f2c",
+  "uuid": "61514e67-20d9-433a-b746-212ac2f6cff0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01E1KkPVqdZj3r6vD8J6AVhe",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1444,
+      "cache_read_input_tokens": 32408,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1444
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 25_
+
+只有 samples.jsonl，没有 signal JSON。需要检查脚本接口后运行 signal 计算。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4dae7b17-8c7d-4862-9526-33c4e4911f2c",
+  "uuid": "1469c2d9-2bdc-4431-bdab-7e81b67e16cb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01E1KkPVqdZj3r6vD8J6AVhe",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1444,
+      "cache_read_input_tokens": 32408,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1444
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01RZYZ2gYKBnv8ZTCn2H8YRX`</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "command": "find /root/autodl-tmp/struct_self_consist_ie/ -name \"*signal*\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4dae7b17-8c7d-4862-9526-33c4e4911f2c",
+  "uuid": "cee46146-c2c6-45e7-ba9d-cf2866e2f7a3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01E1KkPVqdZj3r6vD8J6AVhe",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1444,
+      "cache_read_input_tokens": 32408,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1444
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01QELx5zeatiYpn2ZXZ89mSC`</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "command": "head -50 /root/autodl-tmp/struct_self_consist_ie/code/compute_signals.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4dae7b17-8c7d-4862-9526-33c4e4911f2c",
+  "uuid": "8dac13c9-522d-47ef-ab29-127f1fa8f88d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01E1KkPVqdZj3r6vD8J6AVhe",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1444,
+      "cache_read_input_tokens": 32408,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1444
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_011zLAjbJ5XvgdWjvFx79wQ4`</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "command": "find /root/autodl-tmp/struct_self_consist_ie/ -name \"*bootstrap*\" -o -name \"*construction*\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4dae7b17-8c7d-4862-9526-33c4e4911f2c",
+  "uuid": "0b8f4d04-783b-4b6e-8717-0c30e4d4b696",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01E1KkPVqdZj3r6vD8J6AVhe",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1444,
+      "cache_read_input_tokens": 32408,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1444
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-20T00:51:04.065Z_
+
+<details><summary>↩ Tool result · `toolu_01RZYZ2gYKBnv8ZTCn2H8YRX`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp017_5signal.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_3seed_5signal.py\\n/root/autodl-tmp/struct_self_consist_ie/code/eval_n16_5signal.py\\n/root/autodl-tmp/struct_self_consist_ie/code/eval_n8_5signal.py\\n/root/autodl-tmp/struct_self_consist_ie/code/eval_s456_5signal.py\\n/root/autodl-tmp/struct_self_consist_ie/code/exp001_3seed_all_signals.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp012_rerun_5signal.py\\n/root/autodl-tmp/struct_self_consist_ie/code/wnut17_full_signal_analysis.py\\n/root/autodl-tmp/struct_self_consist_ie/code/exp018_5signal_analysis.py\\n/root/autodl-tmp/struct_self_consist_ie/code/eval_seed42_r1024_5signal.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_ood_signals.py\\n/root/autodl-tmp/struct_self_consist_ie/code/exp017_full_signal_analysis.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp026_temp_5signal.py\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_scierc_seed456/full_signal_analysis.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_conll_seed123/full_signal_analysis.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_conll_seed456/full_signal_analysis.json\\n/root/autodl-tmp/struct_self_consist_ie/output/72b_zeroshot/full_signal_report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/72b_fewshot_signals/scierc/full_signal_report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/72b_fewshot_signals/conll2003/full_signal_report.json\\n/root/autodl-tmp/struct_self_consist_ie/artifacts/compute_signals.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4dae7b17-8c7d-4862-9526-33c4e4911f2c",
+  "uuid": "45ecdbc3-d31f-4507-9ba2-f9ca67c029c6",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp017_5signal.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_3seed_5signal.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/eval_n16_5signal.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/eval_n8_5signal.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/eval_s456_5signal.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/exp001_3seed_all_signals.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp012_rerun_5signal.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/wnut17_full_signal_analysis.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/exp018_5signal_analysis.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/eval_seed42_r1024_5signal.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_ood_signals.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/exp017_full_signal_analysis.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp026_temp_5signal.py\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_scierc_seed456/full_signal_analysis.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_conll_seed123/full_signal_analysis.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_conll_seed456/full_signal_analysis.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/72b_zeroshot/full_signal_report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/72b_fewshot_signals/scierc/full_signal_report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/72b_fewshot_signals/conll2003/full_signal_report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/artifacts/compute_signals.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp017_5signal.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_3seed_5signal.py\\n/root/autodl-tmp/struct_self_consist_ie/code/eval_n16_5signal.py\\n/root/autodl-tmp/struct_self_consist_ie/code/eval_n8_5signal.py\\n/root/autodl-tmp/struct_self_consist_ie/code/eval_s456_5signal.py\\n/root/autodl-tmp/struct_self_consist_ie/code/exp001_3seed_all_signals.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp012_rerun_5signal.py\\n/root/autodl-tmp/struct_self_consist_ie/code/wnut17_full_signal_analysis.py\\n/root/autodl-tmp/struct_self_consist_ie/code/exp018_5signal_analysis.py\\n/root/autodl-tmp/struct_self_consist_ie/code/eval_seed42_r1024_5signal.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_ood_signals.py\\n/root/autodl-tmp/struct_self_consist_ie/code/exp017_full_signal_analysis.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp026_temp_5signal.py\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_scierc_seed456/full_signal_analysis.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_conll_seed123/full_signal_analysis.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_conll_seed456/full_signal_analysis.json\\n/root/autodl-tmp/struct_self_consist_ie/output/72b_zeroshot/full_signal_report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/72b_fewshot_signals/scierc/full_signal_report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/72b_fewshot_signals/conll2003/full_signal_report.json\\n/root/autodl-tmp/struct_self_consist_ie/artifacts/compute_signals.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-20T00:51:04.435Z_
+
+<details><summary>↩ Tool result · `toolu_01QELx5zeatiYpn2ZXZ89mSC`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"head: cannot open '/root/autodl-tmp/struct_self_consist_ie/code/compute_signals.py' for reading: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4dae7b17-8c7d-4862-9526-33c4e4911f2c",
+  "uuid": "97418215-b2f7-43c5-b144-162577ea71e6",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"head: cannot open '/root/autodl-tmp/struct_self_consist_ie/code/compute_signals.py' for reading: No such file or directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"head: cannot open '/root/autodl-tmp/struct_self_consist_ie/code/compute_signals.py' for reading: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.36}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-20T00:51:04.803Z_
+
+<details><summary>↩ Tool result · `toolu_011zLAjbJ5XvgdWjvFx79wQ4`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/code/n8_bootstrap_ci.py\\n/root/autodl-tmp/struct_self_consist_ie/code/fk_bootstrap_ci.py\\n/root/autodl-tmp/struct_self_consist_ie/code/fk_bootstrap_per_instance.py\\n/root/autodl-tmp/struct_self_consist_ie/code/fk_bootstrap_test.py\\n/root/autodl-tmp/struct_self_consist_ie/code/paired_bootstrap_construction.py\\n/root/autodl-tmp/struct_self_consist_ie/output/72b_zeroshot/scierc/paired_bootstrap_result.json\\n/root/autodl-tmp/struct_self_consist_ie/output/72b_fewshot_signals/scierc/scierc_paired_bootstrap_result.json\\n/root/autodl-tmp/struct_self_consist_ie/output/72b_fewshot_signals/conll2003/conll2003_paired_bootstrap_result.json\\n/root/autodl-tmp/struct_self_consist_ie/artifacts/bootstrap_construction.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4dae7b17-8c7d-4862-9526-33c4e4911f2c",
+  "uuid": "a0422a04-bc65-4403-a40a-82c6b44da8af",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/code/n8_bootstrap_ci.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/fk_bootstrap_ci.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/fk_bootstrap_per_instance.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/fk_bootstrap_test.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/paired_bootstrap_construction.py\\\\n/root/autodl-tmp/struct_self_consist_ie/output/72b_zeroshot/scierc/paired_bootstrap_result.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/72b_fewshot_signals/scierc/scierc_paired_bootstrap_result.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/72b_fewshot_signals/conll2003/conll2003_paired_bootstrap_result.json\\\\n/root/autodl-tmp/struct_self_consist_ie/artifacts/bootstrap_construction.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/code/n8_bootstrap_ci.py\\n/root/autodl-tmp/struct_self_consist_ie/code/fk_bootstrap_ci.py\\n/root/autodl-tmp/struct_self_consist_ie/code/fk_bootstrap_per_instance.py\\n/root/autodl-tmp/struct_self_consist_ie/code/fk_bootstrap_test.py\\n/root/autodl-tmp/struct_self_consist_ie/code/paired_bootstrap_construction.py\\n/root/autodl-tmp/struct_self_consist_ie/output/72b_zeroshot/scierc/paired_bootstrap_result.json\\n/root/autodl-tmp/struct_self_consist_ie/output/72b_fewshot_signals/scierc/scierc_paired_bootstrap_result.json\\n/root/autodl-tmp/struct_self_consist_ie/output/72b_fewshot_signals/conll2003/conll2003_paired_bootstrap_result.json\\n/root/autodl-tmp/struct_self_consist_ie/artifacts/bootstrap_construction.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 32_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I see that:
+1. There's no `compute_signals.py` in `code/` but there is one in `artifacts/`
+2. SciERC and CoNLL few-shot signal reports already exist at `output/72b_fewshot_signals/`
+3. FewNERD signal is missing
+4. `paired_bootstrap_construction.py` exists in `code/`
+5. There are already paired bootstrap results for SciERC and CoNLL few-shot
+
+Let me check the existing signal reports and the scripts to understand the interface.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4dae7b17-8c7d-4862-9526-33c4e4911f2c",
+  "uuid": "d3837d05-9a07-4f3c-9f4a-fa89352e1e22",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MLKT98Cnc1bLx3U8gbmyrX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1795,
+      "cache_read_input_tokens": 33852,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1795
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 33_
+
+SciERC 和 CoNLL 的 few-shot signals 已存在于 `output/72b_fewshot_signals/`，FewNERD 缺失。检查已有结果和脚本接口。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4dae7b17-8c7d-4862-9526-33c4e4911f2c",
+  "uuid": "04347b18-306b-4ef1-b945-62ccce26389f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MLKT98Cnc1bLx3U8gbmyrX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1795,
+      "cache_read_input_tokens": 33852,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1795
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01TJm192FB3ZMV5Jc1Nyv4Rf`</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/72b_fewshot_signals/scierc/full_signal_report.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4dae7b17-8c7d-4862-9526-33c4e4911f2c",
+  "uuid": "c575f619-040d-4459-bece-73f1e6cc45b9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MLKT98Cnc1bLx3U8gbmyrX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1795,
+      "cache_read_input_tokens": 33852,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1795
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-20T00:51:12.316Z_
+
+<details><summary>↩ Tool result · `toolu_01TJm192FB3ZMV5Jc1Nyv4Rf`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"scierc\\\": {\\n    \\\"name\\\": \\\"scierc\\\",\\n    \\\"n_instances\\\": 529,\\n    \\\"n_samples\\\": 8,\\n    \\\"signals\\\": {\\n      \\\"SJ\\\": {\\n        \\\"rho\\\": 0.29329163662663027\\n      },\\n      \\\"FK\\\": {\\n        \\\"rho\\\": 0.3010684888544646\\n      },\\n      \\\"LP\\\": {\\n        \\\"rho\\\": 0.06027582188572302\\n      },\\n      \\\"EM\\\": {\\n        \\\"rho\\\": 0.2054891113947109\\n      },\\n      \\\"VC\\\": {\\n        \\\"rho\\\": 0.2578493806429398\\n      }\\n    },\\n    \\\"baselines\\\": {\\n      \\\"greedy\\\": {\\n        \\\"mean\\\": 0.46146453840215657,\\n        \\\"ci_lo\\\": 0.4347084232717503,\\n        \\\"ci_hi\\\": 0.4871786793336888\\n      },\\n      \\\"lp_selection\\\": {\\n        \\\"mean\\\": 0.44788919289617896,\\n        \\\"ci_lo\\\": 0.42297656659660443,\\n        \\\"ci_hi\\\": 0.47239215265433726\\n      },\\n      \\\"majority_vote\\\": {\\n        \\\"mean\\\": 0.4552882110538065,\\n        \\\"ci_lo\\\": 0.42999127526537734,\\n        \\\"ci_hi\\\": 0.4808550407794264\\n      },\\n      \\\"oracle\\\": {\\n        \\\"mean\\\": 0.6044266482994188,\\n        \\\"ci_lo\\\": 0.5814665852945625,\\n        \\\"ci_hi\\\": 0.62740604281247\\n      },\\n      \\\"consensus_theta2n\\\": {\\n        \\\"mean\\\": 0.44749545211659014,\\n        \\\"ci_lo\\\": 0.42497915338179987,\\n        \\\"ci_hi\\\": 0.46995082738672783\\n      },\\n      \\\"consensus_lp_weighted\\\": {\\n        \\\"mean\\\": 0.4606649546630643,\\n        \\\"ci_lo\\\": 0.4358086410543877,\\n        \\\"ci_hi\\\": 0.48635787128225694\\n      }\\n    },\\n    \\\"consensus_variants\\\": {\\n      \\\"high=0.5_medium=0.1\\\": {\\n        \\\"mean\\\": 0.4398718841606867,\\n        \\\"ci_lo\\\": 0.4163787210369317,\\n        \\\"ci_hi\\\": 0.4641643319910324\\n      },\\n      \\\"high=0.6_medium=0.2\\\": {\\n        \\\"mean\\\": 0.45555589406084235,\\n        \\\"ci_lo\\\": 0.4312805335934437,\\n        \\\"ci_hi\\\": 0.48100252324371084\\n      },\\n      \\\"high=0.7_medium=0.3\\\": {\\n        \\\"mean\\\": 0.45548676276464556,\\n        \\\"ci_lo\\\": 0.4300701976032788,\\n        \\\"ci_hi\\\": 0.4816781831904705\\n      }\\n    },\\n    \\\"degeneracy_rate\\\": 0.166351606805293,\\n    \\\"degeneracy_count\\\": 88,\\n    \\\"degeneracy_set_count\\\": 32,\\n    \\\"lp_selection_delta\\\": -0.01357534550597761,\\n    \\\"model_size\\\": \\\"72\\\",\\n    \\\"regime\\\": \\\"fs\\\"\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4dae7b17-8c7d-4862-9526-33c4e4911f2c",
+  "uuid": "df9eaca6-03a1-4cbd-8a28-c4d7401579db",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"scierc\\\\\\\": {\\\\n    \\\\\\\"name\\\\\\\": \\\\\\\"scierc\\\\\\\",\\\\n    \\\\\\\"n_instances\\\\\\\": 529,\\\\n    \\\\\\\"n_samples\\\\\\\": 8,\\\\n    \\\\\\\"signals\\\\\\\": {\\\\n      \\\\\\\"SJ\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.29329163662663027\\\\n      },\\\\n      \\\\\\\"FK\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.3010684888544646\\\\n      },\\\\n      \\\\\\\"LP\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.06027582188572302\\\\n      },\\\\n      \\\\\\\"EM\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.2054891113947109\\\\n      },\\\\n      \\\\\\\"VC\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.2578493806429398\\\\n      }\\\\n    },\\\\n    \\\\\\\"baselines\\\\\\\": {\\\\n      \\\\\\\"greedy\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.46146453840215657,\\\\n        \\\\\\\"ci_lo\\\\\\\": 0.4347084232717503,\\\\n        \\\\\\\"ci_hi\\\\\\\": 0.4871786793336888\\\\n      },\\\\n      \\\\\\\"lp_selection\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.44788919289617896,\\\\n        \\\\\\\"ci_lo\\\\\\\": 0.42297656659660443,\\\\n        \\\\\\\"ci_hi\\\\\\\": 0.47239215265433726\\\\n      },\\\\n      \\\\\\\"majority_vote\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.4552882110538065,\\\\n        \\\\\\\"ci_lo\\\\\\\": 0.42999127526537734,\\\\n        \\\\\\\"ci_hi\\\\\\\": 0.4808550407794264\\\\n      },\\\\n      \\\\\\\"oracle\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.6044266482994188,\\\\n        \\\\\\\"ci_lo\\\\\\\": 0.5814665852945625,\\\\n        \\\\\\\"ci_hi\\\\\\\": 0.62740604281247\\\\n      },\\\\n      \\\\\\\"consensus_theta2n\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.44749545211659014,\\\\n        \\\\\\\"ci_lo\\\\\\\": 0.42497915338179987,\\\\n        \\\\\\\"ci_hi\\\\\\\": 0.46995082738672783\\\\n      },\\\\n      \\\\\\\"consensus_lp_weighted\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.4606649546630643,\\\\n        \\\\\\\"ci_lo\\\\\\\": 0.4358086410543877,\\\\n        \\\\\\\"ci_hi\\\\\\\": 0.48635787128225694\\\\n      }\\\\n    },\\\\n    \\\\\\\"consensus_variants\\\\\\\": {\\\\n      \\\\\\\"high=0.5_medium=0.1\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.4398718841606867,\\\\n        \\\\\\\"ci_lo\\\\\\\": 0.4163787210369317,\\\\n        \\\\\\\"ci_hi\\\\\\\": 0.4641643319910324\\\\n      },\\\\n      \\\\\\\"high=0.6_medium=0.2\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.45555589406084235,\\\\n        \\\\\\\"ci_lo\\\\\\\": 0.4312805335934437,\\\\n        \\\\\\\"ci_hi\\\\\\\": 0.48100252324371084\\\\n      },\\\\n      \\\\\\\"high=0.7_medium=0.3\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.45548676276464556,\\\\n        \\\\\\\"ci_lo\\\\\\\": 0.4300701976032788,\\\\n        \\\\\\\"ci_hi\\\\\\\": 0.4816781831904705\\\\n      }\\\\n    },\\\\n    \\\\\\\"degeneracy_rate\\\\\\\": 0.166351606805293,\\\\n    \\\\\\\"degeneracy_count\\\\\\\": 88,\\\\n    \\\\\\\"degeneracy_set_count\\\\\\\": 32,\\\\n    \\\\\\\"lp_selection_delta\\\\\\\": -0.01357534550597761,\\\\n    \\\\\\\"model_size\\\\\\\": \\\\\\\"72\\\\\\\",\\\\n    \\\\\\\"regime\\\\\\\": \\\\\\\"fs\\\\\\\"\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"scierc\\\": {\\n    \\\"name\\\": \\\"scierc\\\",\\n    \\\"n_instances\\\": 529,\\n    \\\"n_samples\\\": 8,\\n    \\\"signals\\\": {\\n      \\\"SJ\\\": {\\n        \\\"rho\\\": 0.29329163662663027\\n      },\\n      \\\"FK\\\": {\\n        \\\"rho\\\": 0.3010684888544646\\n      },\\n      \\\"LP\\\": {\\n        \\\"rho\\\": 0.06027582188572302\\n      },\\n      \\\"EM\\\": {\\n        \\\"rho\\\": 0.2054891113947109\\n      },\\n      \\\"VC\\\": {\\n        \\\"rho\\\": 0.2578493806429398\\n      }\\n    },\\n    \\\"baselines\\\": {\\n      \\\"greedy\\\": {\\n        \\\"mean\\\": 0.46146453840215657,\\n        \\\"ci_lo\\\": 0.4347084232717503,\\n        \\\"ci_hi\\\": 0.4871786793336888\\n      },\\n      \\\"lp_selection\\\": {\\n        \\\"mean\\\": 0.44788919289617896,\\n        \\\"ci_lo\\\": 0.42297656659660443,\\n        \\\"ci_hi\\\": 0.47239215265433726\\n      },\\n      \\\"majority_vote\\\": {\\n        \\\"mean\\\": 0.4552882110538065,\\n        \\\"ci_lo\\\": 0.42999127526537734,\\n        \\\"ci_hi\\\": 0.4808550407794264\\n      },\\n      \\\"oracle\\\": {\\n        \\\"mean\\\": 0.6044266482994188,\\n        \\\"ci_lo\\\": 0.5814665852945625,\\n        \\\"ci_hi\\\": 0.62740604281247\\n      },\\n      \\\"consensus_theta2n\\\": {\\n        \\\"mean\\\": 0.44749545211659014,\\n        \\\"ci_lo\\\": 0.42497915338179987,\\n        \\\"ci_hi\\\": 0.46995082738672783\\n      },\\n      \\\"consensus_lp_weighted\\\": {\\n        \\\"mean\\\": 0.4606649546630643,\\n        \\\"ci_lo\\\": 0.4358086410543877,\\n        \\\"ci_hi\\\": 0.48635787128225694\\n      }\\n    },\\n    \\\"consensus_variants\\\": {\\n      \\\"high=0.5_medium=0.1\\\": {\\n        \\\"mean\\\": 0.4398718841606867,\\n        \\\"ci_lo\\\": 0.4163787210369317,\\n        \\\"ci_hi\\\": 0.4641643319910324\\n      },\\n      \\\"high=0.6_medium=0.2\\\": {\\n        \\\"mean\\\": 0.45555589406084235,\\n        \\\"ci_lo\\\": 0.4312805335934437,\\n        \\\"ci_hi\\\": 0.48100252324371084\\n      },\\n      \\\"high=0.7_medium=0.3\\\": {\\n        \\\"mean\\\": 0.45548676276464556,\\n        \\\"ci_lo\\\": 0.4300701976032788,\\n        \\\"ci_hi\\\": 0.4816781831904705\\n      }\\n    },\\n    \\\"degeneracy_rate\\\": 0.166351606805293,\\n    \\\"degeneracy_count\\\": 88,\\n    \\\"degeneracy_set_count\\\": 32,\\n    \\\"lp_selection_delta\\\": -0.01357534550597761,\\n    \\\"model_size\\\": \\\"72\\\",\\n    \\\"regime\\\": \\\"fs\\\"\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01VPvtS7QW6Qj5VGu3p7DbGh`</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/72b_fewshot_signals/conll2003/full_signal_report.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4dae7b17-8c7d-4862-9526-33c4e4911f2c",
+  "uuid": "355ed076-114e-4fb1-8cd0-b0a36f200ddc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MLKT98Cnc1bLx3U8gbmyrX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1795,
+      "cache_read_input_tokens": 33852,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1795
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-20T00:51:13.138Z_
+
+<details><summary>↩ Tool result · `toolu_01VPvtS7QW6Qj5VGu3p7DbGh`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"conll\\\": {\\n    \\\"name\\\": \\\"conll\\\",\\n    \\\"n_instances\\\": 2756,\\n    \\\"n_samples\\\": 8,\\n    \\\"signals\\\": {\\n      \\\"SJ\\\": {\\n        \\\"rho\\\": 0.441758432978281\\n      },\\n      \\\"FK\\\": {\\n        \\\"rho\\\": 0.4508204940873203\\n      },\\n      \\\"LP\\\": {\\n        \\\"rho\\\": 0.10603090944237105\\n      },\\n      \\\"EM\\\": {\\n        \\\"rho\\\": 0.4027710183091927\\n      },\\n      \\\"VC\\\": {\\n        \\\"rho\\\": 0.4255488206935679\\n      }\\n    },\\n    \\\"baselines\\\": {\\n      \\\"greedy\\\": {\\n        \\\"mean\\\": 0.7449576104910294,\\n        \\\"ci_lo\\\": 0.7306649761838441,\\n        \\\"ci_hi\\\": 0.7593339765060662\\n      },\\n      \\\"lp_selection\\\": {\\n        \\\"mean\\\": 0.7473685538022954,\\n        \\\"ci_lo\\\": 0.7336554557623948,\\n        \\\"ci_hi\\\": 0.7614729069776447\\n      },\\n      \\\"majority_vote\\\": {\\n        \\\"mean\\\": 0.7427829302898389,\\n        \\\"ci_lo\\\": 0.7288397197306327,\\n        \\\"ci_hi\\\": 0.7564712109191478\\n      },\\n      \\\"oracle\\\": {\\n        \\\"mean\\\": 0.7958385663420529,\\n        \\\"ci_lo\\\": 0.7827460599531022,\\n        \\\"ci_hi\\\": 0.8090547404135938\\n      },\\n      \\\"consensus_theta2n\\\": {\\n        \\\"mean\\\": 0.7399691673796225,\\n        \\\"ci_lo\\\": 0.7262815080184964,\\n        \\\"ci_hi\\\": 0.7539540858139382\\n      },\\n      \\\"consensus_lp_weighted\\\": {\\n        \\\"mean\\\": 0.7452931349059022,\\n        \\\"ci_lo\\\": 0.7315013707961716,\\n        \\\"ci_hi\\\": 0.7590211930618345\\n      }\\n    },\\n    \\\"consensus_variants\\\": {\\n      \\\"high=0.5_medium=0.1\\\": {\\n        \\\"mean\\\": 0.7434944522264676,\\n        \\\"ci_lo\\\": 0.7295606977961946,\\n        \\\"ci_hi\\\": 0.757217690509546\\n      },\\n      \\\"high=0.6_medium=0.2\\\": {\\n        \\\"mean\\\": 0.7445556225392173,\\n        \\\"ci_lo\\\": 0.7307561339891256,\\n        \\\"ci_hi\\\": 0.758526063138134\\n      },\\n      \\\"high=0.7_medium=0.3\\\": {\\n        \\\"mean\\\": 0.7458466509411389,\\n        \\\"ci_lo\\\": 0.7319443889703992,\\n        \\\"ci_hi\\\": 0.7597850318104791\\n      }\\n    },\\n    \\\"degeneracy_rate\\\": 0.7002902757619739,\\n    \\\"degeneracy_count\\\": 1930,\\n    \\\"degeneracy_set_count\\\": 1699,\\n    \\\"lp_selection_delta\\\": 0.0024109433112660117,\\n    \\\"model_size\\\": \\\"72\\\",\\n    \\\"regime\\\": \\\"fs\\\"\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4dae7b17-8c7d-4862-9526-33c4e4911f2c",
+  "uuid": "7d20a18c-0388-4c65-bc20-15d94874ff21",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"conll\\\\\\\": {\\\\n    \\\\\\\"name\\\\\\\": \\\\\\\"conll\\\\\\\",\\\\n    \\\\\\\"n_instances\\\\\\\": 2756,\\\\n    \\\\\\\"n_samples\\\\\\\": 8,\\\\n    \\\\\\\"signals\\\\\\\": {\\\\n      \\\\\\\"SJ\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.441758432978281\\\\n      },\\\\n      \\\\\\\"FK\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.4508204940873203\\\\n      },\\\\n      \\\\\\\"LP\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.10603090944237105\\\\n      },\\\\n      \\\\\\\"EM\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.4027710183091927\\\\n      },\\\\n      \\\\\\\"VC\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.4255488206935679\\\\n      }\\\\n    },\\\\n    \\\\\\\"baselines\\\\\\\": {\\\\n      \\\\\\\"greedy\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.7449576104910294,\\\\n        \\\\\\\"ci_lo\\\\\\\": 0.7306649761838441,\\\\n        \\\\\\\"ci_hi\\\\\\\": 0.7593339765060662\\\\n      },\\\\n      \\\\\\\"lp_selection\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.7473685538022954,\\\\n        \\\\\\\"ci_lo\\\\\\\": 0.7336554557623948,\\\\n        \\\\\\\"ci_hi\\\\\\\": 0.7614729069776447\\\\n      },\\\\n      \\\\\\\"majority_vote\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.7427829302898389,\\\\n        \\\\\\\"ci_lo\\\\\\\": 0.7288397197306327,\\\\n        \\\\\\\"ci_hi\\\\\\\": 0.7564712109191478\\\\n      },\\\\n      \\\\\\\"oracle\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.7958385663420529,\\\\n        \\\\\\\"ci_lo\\\\\\\": 0.7827460599531022,\\\\n        \\\\\\\"ci_hi\\\\\\\": 0.8090547404135938\\\\n      },\\\\n      \\\\\\\"consensus_theta2n\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.7399691673796225,\\\\n        \\\\\\\"ci_lo\\\\\\\": 0.7262815080184964,\\\\n        \\\\\\\"ci_hi\\\\\\\": 0.7539540858139382\\\\n      },\\\\n      \\\\\\\"consensus_lp_weighted\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.7452931349059022,\\\\n        \\\\\\\"ci_lo\\\\\\\": 0.7315013707961716,\\\\n        \\\\\\\"ci_hi\\\\\\\": 0.7590211930618345\\\\n      }\\\\n    },\\\\n    \\\\\\\"consensus_variants\\\\\\\": {\\\\n      \\\\\\\"high=0.5_medium=0.1\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.7434944522264676,\\\\n        \\\\\\\"ci_lo\\\\\\\": 0.7295606977961946,\\\\n        \\\\\\\"ci_hi\\\\\\\": 0.757217690509546\\\\n      },\\\\n      \\\\\\\"high=0.6_medium=0.2\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.7445556225392173,\\\\n        \\\\\\\"ci_lo\\\\\\\": 0.7307561339891256,\\\\n        \\\\\\\"ci_hi\\\\\\\": 0.758526063138134\\\\n      },\\\\n      \\\\\\\"high=0.7_medium=0.3\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.7458466509411389,\\\\n        \\\\\\\"ci_lo\\\\\\\": 0.7319443889703992,\\\\n        \\\\\\\"ci_hi\\\\\\\": 0.7597850318104791\\\\n      }\\\\n    },\\\\n    \\\\\\\"degeneracy_rate\\\\\\\": 0.7002902757619739,\\\\n    \\\\\\\"degeneracy_count\\\\\\\": 1930,\\\\n    \\\\\\\"degeneracy_set_count\\\\\\\": 1699,\\\\n    \\\\\\\"lp_selection_delta\\\\\\\": 0.0024109433112660117,\\\\n    \\\\\\\"model_size\\\\\\\": \\\\\\\"72\\\\\\\",\\\\n    \\\\\\\"regime\\\\\\\": \\\\\\\"fs\\\\\\\"\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"conll\\\": {\\n    \\\"name\\\": \\\"conll\\\",\\n    \\\"n_instances\\\": 2756,\\n    \\\"n_samples\\\": 8,\\n    \\\"signals\\\": {\\n      \\\"SJ\\\": {\\n        \\\"rho\\\": 0.441758432978281\\n      },\\n      \\\"FK\\\": {\\n        \\\"rho\\\": 0.4508204940873203\\n      },\\n      \\\"LP\\\": {\\n        \\\"rho\\\": 0.10603090944237105\\n      },\\n      \\\"EM\\\": {\\n        \\\"rho\\\": 0.4027710183091927\\n      },\\n      \\\"VC\\\": {\\n        \\\"rho\\\": 0.4255488206935679\\n      }\\n    },\\n    \\\"baselines\\\": {\\n      \\\"greedy\\\": {\\n        \\\"mean\\\": 0.7449576104910294,\\n        \\\"ci_lo\\\": 0.7306649761838441,\\n        \\\"ci_hi\\\": 0.7593339765060662\\n      },\\n      \\\"lp_selection\\\": {\\n        \\\"mean\\\": 0.7473685538022954,\\n        \\\"ci_lo\\\": 0.7336554557623948,\\n        \\\"ci_hi\\\": 0.7614729069776447\\n      },\\n      \\\"majority_vote\\\": {\\n        \\\"mean\\\": 0.7427829302898389,\\n        \\\"ci_lo\\\": 0.7288397197306327,\\n        \\\"ci_hi\\\": 0.7564712109191478\\n      },\\n      \\\"oracle\\\": {\\n        \\\"mean\\\": 0.7958385663420529,\\n        \\\"ci_lo\\\": 0.7827460599531022,\\n        \\\"ci_hi\\\": 0.8090547404135938\\n      },\\n      \\\"consensus_theta2n\\\": {\\n        \\\"mean\\\": 0.7399691673796225,\\n        \\\"ci_lo\\\": 0.7262815080184964,\\n        \\\"ci_hi\\\": 0.7539540858139382\\n      },\\n      \\\"consensus_lp_weighted\\\": {\\n        \\\"mean\\\": 0.7452931349059022,\\n        \\\"ci_lo\\\": 0.7315013707961716,\\n        \\\"ci_hi\\\": 0.7590211930618345\\n      }\\n    },\\n    \\\"consensus_variants\\\": {\\n      \\\"high=0.5_medium=0.1\\\": {\\n        \\\"mean\\\": 0.7434944522264676,\\n        \\\"ci_lo\\\": 0.7295606977961946,\\n        \\\"ci_hi\\\": 0.757217690509546\\n      },\\n      \\\"high=0.6_medium=0.2\\\": {\\n        \\\"mean\\\": 0.7445556225392173,\\n        \\\"ci_lo\\\": 0.7307561339891256,\\n        \\\"ci_hi\\\": 0.758526063138134\\n      },\\n      \\\"high=0.7_medium=0.3\\\": {\\n        \\\"mean\\\": 0.7458466509411389,\\n        \\\"ci_lo\\\": 0.7319443889703992,\\n        \\\"ci_hi\\\": 0.7597850318104791\\n      }\\n    },\\n    \\\"degeneracy_rate\\\": 0.7002902757619739,\\n    \\\"degeneracy_count\\\": 1930,\\n    \\\"degeneracy_set_count\\\": 1699,\\n    \\\"lp_selection_delta\\\": 0.0024109433112660117,\\n    \\\"model_size\\\": \\\"72\\\",\\n    \\\"regime\\\": \\\"fs\\\"\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Vz4YTbcxgxLFt93tc86gcz`</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "command": "head -80 /root/autodl-tmp/struct_self_consist_ie/artifacts/compute_signals.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4dae7b17-8c7d-4862-9526-33c4e4911f2c",
+  "uuid": "bc5a9a33-566c-4915-a743-35b5015a0448",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MLKT98Cnc1bLx3U8gbmyrX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1795,
+      "cache_read_input_tokens": 33852,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1795
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-20T00:51:14.082Z_
+
+<details><summary>↩ Tool result · `toolu_01Vz4YTbcxgxLFt93tc86gcz`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Compute 5 confidence signals + entity construction pipeline for NER.\\n\\nSignals: LP (Log Probability), SJ (Soft Jaccard), FK (Fleiss Kappa),\\n         VC (Vote Count), EM (Exact Match Rate)\\nConstruction: greedy, LP selection, majority vote, consensus θ=2/N,\\n              LP-weighted construction (high=0.5, medium=2/N), oracle\\n\\nUsage:\\n    # Process all datasets under a model output directory\\n    python compute_signals.py --input-dir /path/to/output/72b_zeroshot\\n\\n    # Process specific dataset with model metadata\\n    python compute_signals.py --input-dir /path/to/output/7b_ft \\\\\\n        --dataset scierc --model-size 7 --regime ft\\n\\n    # Custom output directory\\n    python compute_signals.py --input-dir /path/to/output/72b_zeroshot \\\\\\n        --output-dir /path/to/results\\n\\nExpected input: &lt;input-dir>/&lt;dataset>/samples.jsonl  (or &lt;input-dir>/samples.jsonl)\\nOutput: full_signal_report.json + &lt;dataset>_per_instance.json per dataset\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport math\\nimport os\\nimport statistics\\nimport sys\\nfrom collections import Counter, defaultdict\\n\\nimport numpy as np\\nfrom scipy.stats import spearmanr\\n\\nCODE_DIR = os.environ.get(\\n    \\\"STRUCT_CODE_DIR\\\",\\n    \\\"/root/autodl-tmp/struct_self_consist_ie/code\\\",\\n)\\nif os.path.isdir(CODE_DIR):\\n    sys.path.insert(0, CODE_DIR)\\n\\ntry:\\n    from consistency import fleiss_kappa_surface, structural_consistency_soft_jaccard\\n    HAS_CONSISTENCY = True\\nexcept ImportError:\\n    HAS_CONSISTENCY = False\\n    print(\\\"WARNING: consistency module not found; SJ/FK signals will be skipped\\\")\\n\\n\\n# ---------------------------------------------------------------------------\\n# Core metrics\\n# ---------------------------------------------------------------------------\\n\\ndef compute_entity_f1(pred_entities, gold_entities):\\n    pred = {(e[\\\"start\\\"], e[\\\"end\\\"], e[\\\"type\\\"]) for e in pred_entities}\\n    gold = {(e[\\\"start\\\"], e[\\\"end\\\"], e[\\\"type\\\"]) for e in gold_entities}\\n    if not gold and not pred:\\n        return 1.0\\n    if not gold or not pred:\\n        return 0.0\\n    tp = len(pred & gold)\\n    if tp == 0:\\n        return 0.0\\n    p = tp / len(pred)\\n    r = tp / len(gold)\\n    return 2 * p * r / (p + r)\\n\\n\\ndef compute_degeneracy_f1(inst):\\n    \\\"\\\"\\\"Constant-F1 degeneracy: all N samples have identical F1 against gold.\\\"\\\"\\\"\\n    gold_ents = inst[\\\"gold\\\"][\\\"entities\\\"]\\n    f1s = [compute_entity_f1(s.get(\\\"entities\\\", []), gold_ents)\\n           for s in inst[\\\"samples\\\"]]\\n    return len(set(round(f, 10) for f in f1s)) <= 1\\n\\n\\ndef compute_degeneracy_set(inst):\\n    \\\"\\\"\\\"Entity-set degeneracy: all N samples produce identical entity sets.\\\"\\\"\\\"\\n    key_sets = set()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4dae7b17-8c7d-4862-9526-33c4e4911f2c",
+  "uuid": "d1dfb790-7cca-45f3-8c5d-3fddfd314040",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"Compute 5 confidence signals + entity construction pipeline for NER.\\\\n\\\\nSignals: LP (Log Probability), SJ (Soft Jaccard), FK (Fleiss Kappa),\\\\n         VC (Vote Count), EM (Exact Match Rate)\\\\nConstruction: greedy, LP selection, majority vote, consensus θ=2/N,\\\\n              LP-weighted construction (high=0.5, medium=2/N), oracle\\\\n\\\\nUsage:\\\\n    # Process all datasets under a model output directory\\\\n    python compute_signals.py --input-dir /path/to/output/72b_zeroshot\\\\n\\\\n    # Process specific dataset with model metadata\\\\n    python compute_signals.py --input-dir /path/to/output/7b_ft \\\\\\\\\\\\n        --dataset scierc --model-size 7 --regime ft\\\\n\\\\n    # Custom output directory\\\\n    python compute_signals.py --input-dir /path/to/output/72b_zeroshot \\\\\\\\\\\\n        --output-dir /path/to/results\\\\n\\\\nExpected input: &lt;input-dir>/&lt;dataset>/samples.jsonl  (or &lt;input-dir>/samples.jsonl)\\\\nOutput: full_signal_report.json + &lt;dataset>_per_instance.json per dataset\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport math\\\\nimport os\\\\nimport statistics\\\\nimport sys\\\\nfrom collections import Counter, defaultdict\\\\n\\\\nimport numpy as np\\\\nfrom scipy.stats import spearmanr\\\\n\\\\nCODE_DIR = os.environ.get(\\\\n    \\\\\\\"STRUCT_CODE_DIR\\\\\\\",\\\\n    \\\\\\\"/root/autodl-tmp/struct_self_consist_ie/code\\\\\\\",\\\\n)\\\\nif os.path.isdir(CODE_DIR):\\\\n    sys.path.insert(0, CODE_DIR)\\\\n\\\\ntry:\\\\n    from consistency import fleiss_kappa_surface, structural_consistency_soft_jaccard\\\\n    HAS_CONSISTENCY = True\\\\nexcept ImportError:\\\\n    HAS_CONSISTENCY = False\\\\n    print(\\\\\\\"WARNING: consistency module not found; SJ/FK signals will be skipped\\\\\\\")\\\\n\\\\n\\\\n# ---------------------------------------------------------------------------\\\\n# Core metrics\\\\n# ---------------------------------------------------------------------------\\\\n\\\\ndef compute_entity_f1(pred_entities, gold_entities):\\\\n    pred = {(e[\\\\\\\"start\\\\\\\"], e[\\\\\\\"end\\\\\\\"], e[\\\\\\\"type\\\\\\\"]) for e in pred_entities}\\\\n    gold = {(e[\\\\\\\"start\\\\\\\"], e[\\\\\\\"end\\\\\\\"], e[\\\\\\\"type\\\\\\\"]) for e in gold_entities}\\\\n    if not gold and not pred:\\\\n        return 1.0\\\\n    if not gold or not pred:\\\\n        return 0.0\\\\n    tp = len(pred & gold)\\\\n    if tp == 0:\\\\n        return 0.0\\\\n    p = tp / len(pred)\\\\n    r = tp / len(gold)\\\\n    return 2 * p * r / (p + r)\\\\n\\\\n\\\\ndef compute_degeneracy_f1(inst):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Constant-F1 degeneracy: all N samples have identical F1 against gold.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    gold_ents = inst[\\\\\\\"gold\\\\\\\"][\\\\\\\"entities\\\\\\\"]\\\\n    f1s = [compute_entity_f1(s.get(\\\\\\\"entities\\\\\\\", []), gold_ents)\\\\n           for s in inst[\\\\\\\"samples\\\\\\\"]]\\\\n    return len(set(round(f, 10) for f in f1s)) <= 1\\\\n\\\\n\\\\ndef compute_degeneracy_set(inst):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Entity-set degeneracy: all N samples produce identical entity sets.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    key_sets = set()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Compute 5 confidence signals + entity construction pipeline for NER.\\n\\nSignals: LP (Log Probability), SJ (Soft Jaccard), FK (Fleiss Kappa),\\n         VC (Vote Count), EM (Exact Match Rate)\\nConstruction: greedy, LP selection, majority vote, consensus θ=2/N,\\n              LP-weighted construction (high=0.5, medium=2/N), oracle\\n\\nUsage:\\n    # Process all datasets under a model output directory\\n    python compute_signals.py --input-dir /path/to/output/72b_zeroshot\\n\\n    # Process specific dataset with model metadata\\n    python compute_signals.py --input-dir /path/to/output/7b_ft \\\\\\n        --dataset scierc --model-size 7 --regime ft\\n\\n    # Custom output directory\\n    python compute_signals.py --input-dir /path/to/output/72b_zeroshot \\\\\\n        --output-dir /path/to/results\\n\\nExpected input: &lt;input-dir>/&lt;dataset>/samples.jsonl  (or &lt;input-dir>/samples.jsonl)\\nOutput: full_signal_report.json + &lt;dataset>_per_instance.json per dataset\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport math\\nimport os\\nimport statistics\\nimport sys\\nfrom collections import Counter, defaultdict\\n\\nimport numpy as np\\nfrom scipy.stats import spearmanr\\n\\nCODE_DIR = os.environ.get(\\n    \\\"STRUCT_CODE_DIR\\\",\\n    \\\"/root/autodl-tmp/struct_self_consist_ie/code\\\",\\n)\\nif os.path.isdir(CODE_DIR):\\n    sys.path.insert(0, CODE_DIR)\\n\\ntry:\\n    from consistency import fleiss_kappa_surface, structural_consistency_soft_jaccard\\n    HAS_CONSISTENCY = True\\nexcept ImportError:\\n    HAS_CONSISTENCY = False\\n    print(\\\"WARNING: consistency module not found; SJ/FK signals will be skipped\\\")\\n\\n\\n# ---------------------------------------------------------------------------\\n# Core metrics\\n# ---------------------------------------------------------------------------\\n\\ndef compute_entity_f1(pred_entities, gold_entities):\\n    pred = {(e[\\\"start\\\"], e[\\\"end\\\"], e[\\\"type\\\"]) for e in pred_entities}\\n    gold = {(e[\\\"start\\\"], e[\\\"end\\\"], e[\\\"type\\\"]) for e in gold_entities}\\n    if not gold and not pred:\\n        return 1.0\\n    if not gold or not pred:\\n        return 0.0\\n    tp = len(pred & gold)\\n    if tp == 0:\\n        return 0.0\\n    p = tp / len(pred)\\n    r = tp / len(gold)\\n    return 2 * p * r / (p + r)\\n\\n\\ndef compute_degeneracy_f1(inst):\\n    \\\"\\\"\\\"Constant-F1 degeneracy: all N samples have identical F1 against gold.\\\"\\\"\\\"\\n    gold_ents = inst[\\\"gold\\\"][\\\"entities\\\"]\\n    f1s = [compute_entity_f1(s.get(\\\"entities\\\", []), gold_ents)\\n           for s in inst[\\\"samples\\\"]]\\n    return len(set(round(f, 10) for f in f1s)) <= 1\\n\\n\\ndef compute_degeneracy_set(inst):\\n    \\\"\\\"\\\"Entity-set degeneracy: all N samples produce identical entity sets.\\\"\\\"\\\"\\n    key_sets = set()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01AABnhHrPAgEWJ4JGJkBULo`</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/72b_fewshot_signals/scierc/scierc_paired_bootstrap_result.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4dae7b17-8c7d-4862-9526-33c4e4911f2c",
+  "uuid": "77f3246c-9bde-4311-aede-ebad3f41f8d5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MLKT98Cnc1bLx3U8gbmyrX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1795,
+      "cache_read_input_tokens": 33852,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1795
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-20T00:51:15.555Z_
+
+<details><summary>↩ Tool result · `toolu_01AABnhHrPAgEWJ4JGJkBULo`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"test\\\": \\\"paired_bootstrap\\\",\\n  \\\"label\\\": \\\"scierc\\\",\\n  \\\"n_instances\\\": 529,\\n  \\\"B\\\": 10000,\\n  \\\"greedy_f1\\\": 0.46146453840215657,\\n  \\\"construction_f1\\\": 0.4606649546630643,\\n  \\\"observed_diff\\\": -0.0007995837390922457,\\n  \\\"ci_95\\\": [\\n    -0.012014623687591553,\\n    0.01076065291566237\\n  ],\\n  \\\"p_value\\\": 0.5435,\\n  \\\"cohens_d\\\": -0.005916294917846262,\\n  \\\"instance_positive\\\": 82,\\n  \\\"instance_negative\\\": 84,\\n  \\\"instance_tied\\\": 363,\\n  \\\"n_degenerate\\\": 32,\\n  \\\"n_nondegenerate\\\": 497,\\n  \\\"nondegen_greedy_f1\\\": 0.44708660443066883,\\n  \\\"nondegen_construction_f1\\\": 0.44623553843875774,\\n  \\\"nondegen_diff\\\": -0.000851065991911093,\\n  \\\"nondegen_ci_95\\\": [\\n    -0.012848625776191171,\\n    0.011662755978651348\\n  ],\\n  \\\"nondegen_p_value\\\": 0.5431\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4dae7b17-8c7d-4862-9526-33c4e4911f2c",
+  "uuid": "f265f47c-57fe-436b-81c4-f3b8d366b9b6",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"test\\\\\\\": \\\\\\\"paired_bootstrap\\\\\\\",\\\\n  \\\\\\\"label\\\\\\\": \\\\\\\"scierc\\\\\\\",\\\\n  \\\\\\\"n_instances\\\\\\\": 529,\\\\n  \\\\\\\"B\\\\\\\": 10000,\\\\n  \\\\\\\"greedy_f1\\\\\\\": 0.46146453840215657,\\\\n  \\\\\\\"construction_f1\\\\\\\": 0.4606649546630643,\\\\n  \\\\\\\"observed_diff\\\\\\\": -0.0007995837390922457,\\\\n  \\\\\\\"ci_95\\\\\\\": [\\\\n    -0.012014623687591553,\\\\n    0.01076065291566237\\\\n  ],\\\\n  \\\\\\\"p_value\\\\\\\": 0.5435,\\\\n  \\\\\\\"cohens_d\\\\\\\": -0.005916294917846262,\\\\n  \\\\\\\"instance_positive\\\\\\\": 82,\\\\n  \\\\\\\"instance_negative\\\\\\\": 84,\\\\n  \\\\\\\"instance_tied\\\\\\\": 363,\\\\n  \\\\\\\"n_degenerate\\\\\\\": 32,\\\\n  \\\\\\\"n_nondegenerate\\\\\\\": 497,\\\\n  \\\\\\\"nondegen_greedy_f1\\\\\\\": 0.44708660443066883,\\\\n  \\\\\\\"nondegen_construction_f1\\\\\\\": 0.44623553843875774,\\\\n  \\\\\\\"nondegen_diff\\\\\\\": -0.000851065991911093,\\\\n  \\\\\\\"nondegen_ci_95\\\\\\\": [\\\\n    -0.012848625776191171,\\\\n    0.011662755978651348\\\\n  ],\\\\n  \\\\\\\"nondegen_p_value\\\\\\\": 0.5431\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"test\\\": \\\"paired_bootstrap\\\",\\n  \\\"label\\\": \\\"scierc\\\",\\n  \\\"n_instances\\\": 529,\\n  \\\"B\\\": 10000,\\n  \\\"greedy_f1\\\": 0.46146453840215657,\\n  \\\"construction_f1\\\": 0.4606649546630643,\\n  \\\"observed_diff\\\": -0.0007995837390922457,\\n  \\\"ci_95\\\": [\\n    -0.012014623687591553,\\n    0.01076065291566237\\n  ],\\n  \\\"p_value\\\": 0.5435,\\n  \\\"cohens_d\\\": -0.005916294917846262,\\n  \\\"instance_positive\\\": 82,\\n  \\\"instance_negative\\\": 84,\\n  \\\"instance_tied\\\": 363,\\n  \\\"n_degenerate\\\": 32,\\n  \\\"n_nondegenerate\\\": 497,\\n  \\\"nondegen_greedy_f1\\\": 0.44708660443066883,\\n  \\\"nondegen_construction_f1\\\": 0.44623553843875774,\\n  \\\"nondegen_diff\\\": -0.000851065991911093,\\n  \\\"nondegen_ci_95\\\": [\\n    -0.012848625776191171,\\n    0.011662755978651348\\n  ],\\n  \\\"nondegen_p_value\\\": 0.5431\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01RuBtqZp14qQnYHqKJC1pCj`</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/72b_fewshot_signals/conll2003/conll2003_paired_bootstrap_result.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4dae7b17-8c7d-4862-9526-33c4e4911f2c",
+  "uuid": "29ad95db-aa84-4a1b-8921-fc9bb0752493",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MLKT98Cnc1bLx3U8gbmyrX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1795,
+      "cache_read_input_tokens": 33852,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1795
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-20T00:51:15.975Z_
+
+<details><summary>↩ Tool result · `toolu_01RuBtqZp14qQnYHqKJC1pCj`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"test\\\": \\\"paired_bootstrap\\\",\\n  \\\"label\\\": \\\"conll2003\\\",\\n  \\\"n_instances\\\": 2756,\\n  \\\"B\\\": 10000,\\n  \\\"greedy_f1\\\": 0.7449576104910294,\\n  \\\"construction_f1\\\": 0.7452931349059022,\\n  \\\"observed_diff\\\": 0.0003355244148729638,\\n  \\\"ci_95\\\": [\\n    -0.0028623397313526523,\\n    0.003495680898836378\\n  ],\\n  \\\"p_value\\\": 0.4174,\\n  \\\"cohens_d\\\": 0.003989782247432285,\\n  \\\"instance_positive\\\": 88,\\n  \\\"instance_negative\\\": 69,\\n  \\\"instance_tied\\\": 2599,\\n  \\\"n_degenerate\\\": 1699,\\n  \\\"n_nondegenerate\\\": 1057,\\n  \\\"nondegen_greedy_f1\\\": 0.5955843719184328,\\n  \\\"nondegen_construction_f1\\\": 0.5964592113577799,\\n  \\\"nondegen_diff\\\": 0.0008748394393470749,\\n  \\\"nondegen_ci_95\\\": [\\n    -0.007181006983444515,\\n    0.009089506290603833\\n  ],\\n  \\\"nondegen_p_value\\\": 0.4111\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.34}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4dae7b17-8c7d-4862-9526-33c4e4911f2c",
+  "uuid": "2297d967-227f-4726-8b2c-6e6ee9eb15af",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"test\\\\\\\": \\\\\\\"paired_bootstrap\\\\\\\",\\\\n  \\\\\\\"label\\\\\\\": \\\\\\\"conll2003\\\\\\\",\\\\n  \\\\\\\"n_instances\\\\\\\": 2756,\\\\n  \\\\\\\"B\\\\\\\": 10000,\\\\n  \\\\\\\"greedy_f1\\\\\\\": 0.7449576104910294,\\\\n  \\\\\\\"construction_f1\\\\\\\": 0.7452931349059022,\\\\n  \\\\\\\"observed_diff\\\\\\\": 0.0003355244148729638,\\\\n  \\\\\\\"ci_95\\\\\\\": [\\\\n    -0.0028623397313526523,\\\\n    0.003495680898836378\\\\n  ],\\\\n  \\\\\\\"p_value\\\\\\\": 0.4174,\\\\n  \\\\\\\"cohens_d\\\\\\\": 0.003989782247432285,\\\\n  \\\\\\\"instance_positive\\\\\\\": 88,\\\\n  \\\\\\\"instance_negative\\\\\\\": 69,\\\\n  \\\\\\\"instance_tied\\\\\\\": 2599,\\\\n  \\\\\\\"n_degenerate\\\\\\\": 1699,\\\\n  \\\\\\\"n_nondegenerate\\\\\\\": 1057,\\\\n  \\\\\\\"nondegen_greedy_f1\\\\\\\": 0.5955843719184328,\\\\n  \\\\\\\"nondegen_construction_f1\\\\\\\": 0.5964592113577799,\\\\n  \\\\\\\"nondegen_diff\\\\\\\": 0.0008748394393470749,\\\\n  \\\\\\\"nondegen_ci_95\\\\\\\": [\\\\n    -0.007181006983444515,\\\\n    0.009089506290603833\\\\n  ],\\\\n  \\\\\\\"nondegen_p_value\\\\\\\": 0.4111\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.34}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"test\\\": \\\"paired_bootstrap\\\",\\n  \\\"label\\\": \\\"conll2003\\\",\\n  \\\"n_instances\\\": 2756,\\n  \\\"B\\\": 10000,\\n  \\\"greedy_f1\\\": 0.7449576104910294,\\n  \\\"construction_f1\\\": 0.7452931349059022,\\n  \\\"observed_diff\\\": 0.0003355244148729638,\\n  \\\"ci_95\\\": [\\n    -0.0028623397313526523,\\n    0.003495680898836378\\n  ],\\n  \\\"p_value\\\": 0.4174,\\n  \\\"cohens_d\\\": 0.003989782247432285,\\n  \\\"instance_positive\\\": 88,\\n  \\\"instance_negative\\\": 69,\\n  \\\"instance_tied\\\": 2599,\\n  \\\"n_degenerate\\\": 1699,\\n  \\\"n_nondegenerate\\\": 1057,\\n  \\\"nondegen_greedy_f1\\\": 0.5955843719184328,\\n  \\\"nondegen_construction_f1\\\": 0.5964592113577799,\\n  \\\"nondegen_diff\\\": 0.0008748394393470749,\\n  \\\"nondegen_ci_95\\\": [\\n    -0.007181006983444515,\\n    0.009089506290603833\\n  ],\\n  \\\"nondegen_p_value\\\": 0.4111\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.34}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 44_
+
+<details><summary>Logged reasoning block</summary>
+
+````text
+Now I have the SciERC and CoNLL few-shot results. I need to:
+
+1. Run compute_signals.py for FewNERD
+2. Run paired_bootstrap_construction.py for FewNERD
+
+The compute_signals.py is in `artifacts/` not `code/`. Let me check the script's help and the paired_bootstrap_construction.py interface, then run for FewNERD.
+
+Looking at the usage:
+```
+python compute_signals.py --input-dir /path/to/output/72b_zeroshot
+```
+
+It can process all datasets or specific ones. 
+
+FewNERD is quite large with over 37,000 instances, so I should expect this to take some time. Let me verify the compute_signals.py location and check the paired_bootstrap script's interface before proceeding.
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4dae7b17-8c7d-4862-9526-33c4e4911f2c",
+  "uuid": "df3685f9-2e1e-4c4c-be4e-401997b500fd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MbcteVBuv2NKdyGerPxcxd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5653,
+      "cache_read_input_tokens": 35647,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5653
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 45_
+
+已有 SciERC/CoNLL 的 signal 和 bootstrap 结果。FewNERD 缺失。现在运行 FewNERD 的 signal 计算。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4dae7b17-8c7d-4862-9526-33c4e4911f2c",
+  "uuid": "cf9f3994-fefc-4609-ba47-a54176999aa4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MbcteVBuv2NKdyGerPxcxd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5653,
+      "cache_read_input_tokens": 35647,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5653
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01PDWbmrCD6ErsnWurLXuBo5`</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "command": "head -30 /root/autodl-tmp/struct_self_consist_ie/code/paired_bootstrap_construction.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4dae7b17-8c7d-4862-9526-33c4e4911f2c",
+  "uuid": "8ef55eaa-42b3-402c-a48f-18ebe2be09e5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MbcteVBuv2NKdyGerPxcxd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5653,
+      "cache_read_input_tokens": 35647,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5653
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-20T00:51:25.825Z_
+
+<details><summary>↩ Tool result · `toolu_01PDWbmrCD6ErsnWurLXuBo5`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Paired bootstrap test: greedy F1 vs LP-weighted construction F1 (72B ZS SciERC).\\\"\\\"\\\"\\nimport json\\nimport os\\nimport sys\\nimport statistics\\nimport numpy as np\\nfrom collections import Counter, defaultdict\\n\\nsys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))\\n\\nDATA_PATH = \\\"/root/autodl-tmp/struct_self_consist_ie/output/72b_zeroshot/scierc/samples.jsonl\\\"\\nB = 10000\\nSEED = 42\\n\\n\\ndef compute_entity_f1(pred_entities, gold_entities):\\n    pred = {(e[\\\"start\\\"], e[\\\"end\\\"], e[\\\"type\\\"]) for e in pred_entities}\\n    gold = {(e[\\\"start\\\"], e[\\\"end\\\"], e[\\\"type\\\"]) for e in gold_entities}\\n    if not gold and not pred:\\n        return 1.0\\n    if not gold or not pred:\\n        return 0.0\\n    tp = len(pred & gold)\\n    if tp == 0:\\n        return 0.0\\n    p = tp / len(pred)\\n    r = tp / len(gold)\\n    return 2 * p * r / (p + r)\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4dae7b17-8c7d-4862-9526-33c4e4911f2c",
+  "uuid": "bb5aad5c-3a57-4efb-b9a4-9e2da53a6fe7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"Paired bootstrap test: greedy F1 vs LP-weighted construction F1 (72B ZS SciERC).\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport json\\\\nimport os\\\\nimport sys\\\\nimport statistics\\\\nimport numpy as np\\\\nfrom collections import Counter, defaultdict\\\\n\\\\nsys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))\\\\n\\\\nDATA_PATH = \\\\\\\"/root/autodl-tmp/struct_self_consist_ie/output/72b_zeroshot/scierc/samples.jsonl\\\\\\\"\\\\nB = 10000\\\\nSEED = 42\\\\n\\\\n\\\\ndef compute_entity_f1(pred_entities, gold_entities):\\\\n    pred = {(e[\\\\\\\"start\\\\\\\"], e[\\\\\\\"end\\\\\\\"], e[\\\\\\\"type\\\\\\\"]) for e in pred_entities}\\\\n    gold = {(e[\\\\\\\"start\\\\\\\"], e[\\\\\\\"end\\\\\\\"], e[\\\\\\\"type\\\\\\\"]) for e in gold_entities}\\\\n    if not gold and not pred:\\\\n        return 1.0\\\\n    if not gold or not pred:\\\\n        return 0.0\\\\n    tp = len(pred & gold)\\\\n    if tp == 0:\\\\n        return 0.0\\\\n    p = tp / len(pred)\\\\n    r = tp / len(gold)\\\\n    return 2 * p * r / (p + r)\\\\n\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Paired bootstrap test: greedy F1 vs LP-weighted construction F1 (72B ZS SciERC).\\\"\\\"\\\"\\nimport json\\nimport os\\nimport sys\\nimport statistics\\nimport numpy as np\\nfrom collections import Counter, defaultdict\\n\\nsys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))\\n\\nDATA_PATH = \\\"/root/autodl-tmp/struct_self_consist_ie/output/72b_zeroshot/scierc/samples.jsonl\\\"\\nB = 10000\\nSEED = 42\\n\\n\\ndef compute_entity_f1(pred_entities, gold_entities):\\n    pred = {(e[\\\"start\\\"], e[\\\"end\\\"], e[\\\"type\\\"]) for e in pred_entities}\\n    gold = {(e[\\\"start\\\"], e[\\\"end\\\"], e[\\\"type\\\"]) for e in gold_entities}\\n    if not gold and not pred:\\n        return 1.0\\n    if not gold or not pred:\\n        return 0.0\\n    tp = len(pred & gold)\\n    if tp == 0:\\n        return 0.0\\n    p = tp / len(pred)\\n    r = tp / len(gold)\\n    return 2 * p * r / (p + r)\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01MhLTdg9aijCBJo9zNnMQSq`</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "command": "ls /root/autodl-tmp/struct_self_consist_ie/artifacts/compute_signals.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4dae7b17-8c7d-4862-9526-33c4e4911f2c",
+  "uuid": "7665bd4c-8189-4a43-ba2d-ec8385b8ef04",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MbcteVBuv2NKdyGerPxcxd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5653,
+      "cache_read_input_tokens": 35647,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5653
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-20T00:51:26.499Z_
+
+<details><summary>↩ Tool result · `toolu_01MhLTdg9aijCBJo9zNnMQSq`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/artifacts/compute_signals.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4dae7b17-8c7d-4862-9526-33c4e4911f2c",
+  "uuid": "ef584d5c-a5eb-49bd-81f0-4f513ab8b554",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/artifacts/compute_signals.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/artifacts/compute_signals.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 50_
+
+<details><summary>Logged reasoning block</summary>
+
+````text
+The `paired_bootstrap_construction.py` has a hardcoded DATA_PATH. I need to check how it was adapted for the few-shot runs. Let me look more at the script. But first, let me run compute_signals.py for FewNERD. The script in artifacts/ can process a dataset directory.
+
+Looking at the usage in compute_signals.py:
+```
+python compute_signals.py --input-dir /path/to/output/72b_zeroshot
+```
+
+It auto-discovers datasets in subdirectories. The output goes to either the same dir or a custom output dir.
+
+
+I should run compute_signals for FewNERD directly. With 37648 instances it might take a while, but signal computation should be much faster than the inference step. Let me figure out the right command to target just FewNERD and see if I can run it with a timeout first before resorting to nohup.
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4dae7b17-8c7d-4862-9526-33c4e4911f2c",
+  "uuid": "6d8d3073-b032-49bb-b667-4cc896d9a278",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MSh1s7HypYQmC6CgHqGyoV",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1101,
+      "cache_read_input_tokens": 41300,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1101
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 51_
+
+运行 FewNERD signal 计算。37k 实例可能需要几分钟，用 nohup 后台执行。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4dae7b17-8c7d-4862-9526-33c4e4911f2c",
+  "uuid": "397bf312-d92c-4596-a007-db0059b179ce",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MSh1s7HypYQmC6CgHqGyoV",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1101,
+      "cache_read_input_tokens": 41300,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1101
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 52_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01C1FmFzsbGeBxsuDXXZFmVN`</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && mkdir -p output/72b_fewshot_signals/fewnerd && nohup python artifacts/compute_signals.py --input-dir output/72b_fewshot --dataset fewnerd --model-size 72 --regime fs --output-dir output/72b_fewshot_signals/fewnerd > /tmp/fewnerd_signals.log 2>&1 & echo \"PID=$!\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4dae7b17-8c7d-4862-9526-33c4e4911f2c",
+  "uuid": "3126f337-ce54-4234-854b-c9bbcc26dd2d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MSh1s7HypYQmC6CgHqGyoV",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1101,
+      "cache_read_input_tokens": 41300,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1101
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 53 · 2026-05-20T00:52:05.335Z_
+
+<details><summary>↩ Tool result · `toolu_01C1FmFzsbGeBxsuDXXZFmVN`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"PID=158438\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 21.67}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4dae7b17-8c7d-4862-9526-33c4e4911f2c",
+  "uuid": "aed50269-cc2e-4a4c-b444-057359de871d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"PID=158438\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 21.67}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"PID=158438\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 21.67}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 54_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01V5Ud74xNvVwgLqNPn7gH7H`</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "command": "tail -20 /tmp/fewnerd_signals.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4dae7b17-8c7d-4862-9526-33c4e4911f2c",
+  "uuid": "22814876-ed9b-43f5-9a95-794ddcf24994",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01M4EUqoNt292fPpPjwpQt9X",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 819,
+      "cache_read_input_tokens": 42401,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 819
+      },
+      "output_tokens": 65,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 55 · 2026-05-20T00:52:07.752Z_
+
+<details><summary>↩ Tool result · `toolu_01V5Ud74xNvVwgLqNPn7gH7H`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  Signal correlations (Spearman rho vs greedy F1):\\n    LP  : rho=0.1614\\n    SJ  : rho=0.3451\\n    FK  : rho=0.3272\\n    VC  : rho=0.4099\\n    EM  : rho=0.3023\\n\\n  Entity F1 (mean [95% CI]):\\n    Greedy                    0.6189  [0.6151, 0.6228]\\n    LP Selection              0.6176  [0.6137, 0.6215]\\n    Majority Vote             0.6195  [0.6156, 0.6234]\\n    Consensus theta=2/N       0.6048  [0.6012, 0.6084]\\n    Consensus LP-wt           0.6191  [0.6152, 0.6229]\\n    Oracle                    0.7017  [0.6981, 0.7053]\\n\\n  Degeneracy (constant-F1): 14718/32565 (45.2%)\\n  Degeneracy (entity-set):  10764/32565 (33.1%)\\n\\nReport saved to output/72b_fewshot_signals/fewnerd/full_signal_report.json\\nPer-instance data: output/72b_fewshot_signals/fewnerd/fewnerd_per_instance.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4dae7b17-8c7d-4862-9526-33c4e4911f2c",
+  "uuid": "eabc1b9d-1fe7-408d-adaf-404e2477d4ed",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  Signal correlations (Spearman rho vs greedy F1):\\\\n    LP  : rho=0.1614\\\\n    SJ  : rho=0.3451\\\\n    FK  : rho=0.3272\\\\n    VC  : rho=0.4099\\\\n    EM  : rho=0.3023\\\\n\\\\n  Entity F1 (mean [95% CI]):\\\\n    Greedy                    0.6189  [0.6151, 0.6228]\\\\n    LP Selection              0.6176  [0.6137, 0.6215]\\\\n    Majority Vote             0.6195  [0.6156, 0.6234]\\\\n    Consensus theta=2/N       0.6048  [0.6012, 0.6084]\\\\n    Consensus LP-wt           0.6191  [0.6152, 0.6229]\\\\n    Oracle                    0.7017  [0.6981, 0.7053]\\\\n\\\\n  Degeneracy (constant-F1): 14718/32565 (45.2%)\\\\n  Degeneracy (entity-set):  10764/32565 (33.1%)\\\\n\\\\nReport saved to output/72b_fewshot_signals/fewnerd/full_signal_report.json\\\\nPer-instance data: output/72b_fewshot_signals/fewnerd/fewnerd_per_instance.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"  Signal correlations (Spearman rho vs greedy F1):\\n    LP  : rho=0.1614\\n    SJ  : rho=0.3451\\n    FK  : rho=0.3272\\n    VC  : rho=0.4099\\n    EM  : rho=0.3023\\n\\n  Entity F1 (mean [95% CI]):\\n    Greedy                    0.6189  [0.6151, 0.6228]\\n    LP Selection              0.6176  [0.6137, 0.6215]\\n    Majority Vote             0.6195  [0.6156, 0.6234]\\n    Consensus theta=2/N       0.6048  [0.6012, 0.6084]\\n    Consensus LP-wt           0.6191  [0.6152, 0.6229]\\n    Oracle                    0.7017  [0.6981, 0.7053]\\n\\n  Degeneracy (constant-F1): 14718/32565 (45.2%)\\n  Degeneracy (entity-set):  10764/32565 (33.1%)\\n\\nReport saved to output/72b_fewshot_signals/fewnerd/full_signal_report.json\\nPer-instance data: output/72b_fewshot_signals/fewnerd/fewnerd_per_instance.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 56_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+FewNERD signal computation is done. Let me get the full JSON report and then run the paired bootstrap.
+
+Key FewNERD FS results:
+- LP ρ = 0.1614
+- SJ ρ = 0.3451
+- FK ρ = 0.3272
+- VC ρ = 0.4099
+- EM ρ = 0.3023
+- Greedy F1 = 0.6189
+
+
+- Oracle F1 = 0.7017
+- Degeneracy at 45.2% constant-F1 performance
+- LP-weighted construction achieves 0.6191 F1, slightly underperforming greedy by 0.0013
+
+Now I need to load the full signal report JSON and execute the paired bootstrap analysis.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4dae7b17-8c7d-4862-9526-33c4e4911f2c",
+  "uuid": "899aa564-7dcb-4b2e-b30b-9ae1f4236edc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KRH9tpzdkKfqAcPkiB4RVg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 555,
+      "cache_read_input_tokens": 43220,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 555
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 57_
+
+FewNERD signal 计算完成。读取完整 JSON 并运行 paired bootstrap。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4dae7b17-8c7d-4862-9526-33c4e4911f2c",
+  "uuid": "634bf947-21bd-4d12-9aaa-198d2ed813b8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KRH9tpzdkKfqAcPkiB4RVg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 555,
+      "cache_read_input_tokens": 43220,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 555
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 58_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_014YMChNcpLY4ffgkerBo36N`</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/72b_fewshot_signals/fewnerd/full_signal_report.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4dae7b17-8c7d-4862-9526-33c4e4911f2c",
+  "uuid": "a2a692ce-37bd-405a-b37a-e530857305d8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KRH9tpzdkKfqAcPkiB4RVg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 555,
+      "cache_read_input_tokens": 43220,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 555
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 59 · 2026-05-20T00:52:14.388Z_
+
+<details><summary>↩ Tool result · `toolu_014YMChNcpLY4ffgkerBo36N`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"fewnerd\\\": {\\n    \\\"name\\\": \\\"fewnerd\\\",\\n    \\\"n_instances\\\": 32565,\\n    \\\"n_samples\\\": 8,\\n    \\\"signals\\\": {\\n      \\\"SJ\\\": {\\n        \\\"rho\\\": 0.3451092769673854\\n      },\\n      \\\"FK\\\": {\\n        \\\"rho\\\": 0.3271947629842062\\n      },\\n      \\\"LP\\\": {\\n        \\\"rho\\\": 0.16136921647005784\\n      },\\n      \\\"EM\\\": {\\n        \\\"rho\\\": 0.30229933641791606\\n      },\\n      \\\"VC\\\": {\\n        \\\"rho\\\": 0.40986865494620944\\n      }\\n    },\\n    \\\"baselines\\\": {\\n      \\\"greedy\\\": {\\n        \\\"mean\\\": 0.6189441226866342,\\n        \\\"ci_lo\\\": 0.6151169949987665,\\n        \\\"ci_hi\\\": 0.6227964477839321\\n      },\\n      \\\"lp_selection\\\": {\\n        \\\"mean\\\": 0.6175547900813741,\\n        \\\"ci_lo\\\": 0.6137432571506182,\\n        \\\"ci_hi\\\": 0.6214547084899013\\n      },\\n      \\\"majority_vote\\\": {\\n        \\\"mean\\\": 0.6195343471083695,\\n        \\\"ci_lo\\\": 0.615595064455849,\\n        \\\"ci_hi\\\": 0.6234043749451192\\n      },\\n      \\\"oracle\\\": {\\n        \\\"mean\\\": 0.7016824848704548,\\n        \\\"ci_lo\\\": 0.698134708727528,\\n        \\\"ci_hi\\\": 0.7052974280410977\\n      },\\n      \\\"consensus_theta2n\\\": {\\n        \\\"mean\\\": 0.6047837129259926,\\n        \\\"ci_lo\\\": 0.601152035412434,\\n        \\\"ci_hi\\\": 0.6084062323843024\\n      },\\n      \\\"consensus_lp_weighted\\\": {\\n        \\\"mean\\\": 0.619098022361867,\\n        \\\"ci_lo\\\": 0.6152362893366947,\\n        \\\"ci_hi\\\": 0.6228771210839811\\n      }\\n    },\\n    \\\"consensus_variants\\\": {\\n      \\\"high=0.5_medium=0.1\\\": {\\n        \\\"mean\\\": 0.6068922147885816,\\n        \\\"ci_lo\\\": 0.6032214695605966,\\n        \\\"ci_hi\\\": 0.6106739052957241\\n      },\\n      \\\"high=0.6_medium=0.2\\\": {\\n        \\\"mean\\\": 0.6161219637020433,\\n        \\\"ci_lo\\\": 0.6123714359632515,\\n        \\\"ci_hi\\\": 0.619942334781649\\n      },\\n      \\\"high=0.7_medium=0.3\\\": {\\n        \\\"mean\\\": 0.6181793157388954,\\n        \\\"ci_lo\\\": 0.6142885286180274,\\n        \\\"ci_hi\\\": 0.6219992557182255\\n      }\\n    },\\n    \\\"degeneracy_rate\\\": 0.45195762321510824,\\n    \\\"degeneracy_count\\\": 14718,\\n    \\\"degeneracy_set_count\\\": 10764,\\n    \\\"lp_selection_delta\\\": -0.0013893326052600852,\\n    \\\"model_size\\\": \\\"72\\\",\\n    \\\"regime\\\": \\\"fs\\\"\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4dae7b17-8c7d-4862-9526-33c4e4911f2c",
+  "uuid": "4e3ed4c6-fb96-4da4-8261-bc02aa142ab1",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"fewnerd\\\\\\\": {\\\\n    \\\\\\\"name\\\\\\\": \\\\\\\"fewnerd\\\\\\\",\\\\n    \\\\\\\"n_instances\\\\\\\": 32565,\\\\n    \\\\\\\"n_samples\\\\\\\": 8,\\\\n    \\\\\\\"signals\\\\\\\": {\\\\n      \\\\\\\"SJ\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.3451092769673854\\\\n      },\\\\n      \\\\\\\"FK\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.3271947629842062\\\\n      },\\\\n      \\\\\\\"LP\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.16136921647005784\\\\n      },\\\\n      \\\\\\\"EM\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.30229933641791606\\\\n      },\\\\n      \\\\\\\"VC\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.40986865494620944\\\\n      }\\\\n    },\\\\n    \\\\\\\"baselines\\\\\\\": {\\\\n      \\\\\\\"greedy\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.6189441226866342,\\\\n        \\\\\\\"ci_lo\\\\\\\": 0.6151169949987665,\\\\n        \\\\\\\"ci_hi\\\\\\\": 0.6227964477839321\\\\n      },\\\\n      \\\\\\\"lp_selection\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.6175547900813741,\\\\n        \\\\\\\"ci_lo\\\\\\\": 0.6137432571506182,\\\\n        \\\\\\\"ci_hi\\\\\\\": 0.6214547084899013\\\\n      },\\\\n      \\\\\\\"majority_vote\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.6195343471083695,\\\\n        \\\\\\\"ci_lo\\\\\\\": 0.615595064455849,\\\\n        \\\\\\\"ci_hi\\\\\\\": 0.6234043749451192\\\\n      },\\\\n      \\\\\\\"oracle\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.7016824848704548,\\\\n        \\\\\\\"ci_lo\\\\\\\": 0.698134708727528,\\\\n        \\\\\\\"ci_hi\\\\\\\": 0.7052974280410977\\\\n      },\\\\n      \\\\\\\"consensus_theta2n\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.6047837129259926,\\\\n        \\\\\\\"ci_lo\\\\\\\": 0.601152035412434,\\\\n        \\\\\\\"ci_hi\\\\\\\": 0.6084062323843024\\\\n      },\\\\n      \\\\\\\"consensus_lp_weighted\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.619098022361867,\\\\n        \\\\\\\"ci_lo\\\\\\\": 0.6152362893366947,\\\\n        \\\\\\\"ci_hi\\\\\\\": 0.6228771210839811\\\\n      }\\\\n    },\\\\n    \\\\\\\"consensus_variants\\\\\\\": {\\\\n      \\\\\\\"high=0.5_medium=0.1\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.6068922147885816,\\\\n        \\\\\\\"ci_lo\\\\\\\": 0.6032214695605966,\\\\n        \\\\\\\"ci_hi\\\\\\\": 0.6106739052957241\\\\n      },\\\\n      \\\\\\\"high=0.6_medium=0.2\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.6161219637020433,\\\\n        \\\\\\\"ci_lo\\\\\\\": 0.6123714359632515,\\\\n        \\\\\\\"ci_hi\\\\\\\": 0.619942334781649\\\\n      },\\\\n      \\\\\\\"high=0.7_medium=0.3\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.6181793157388954,\\\\n        \\\\\\\"ci_lo\\\\\\\": 0.6142885286180274,\\\\n        \\\\\\\"ci_hi\\\\\\\": 0.6219992557182255\\\\n      }\\\\n    },\\\\n    \\\\\\\"degeneracy_rate\\\\\\\": 0.45195762321510824,\\\\n    \\\\\\\"degeneracy_count\\\\\\\": 14718,\\\\n    \\\\\\\"degeneracy_set_count\\\\\\\": 10764,\\\\n    \\\\\\\"lp_selection_delta\\\\\\\": -0.0013893326052600852,\\\\n    \\\\\\\"model_size\\\\\\\": \\\\\\\"72\\\\\\\",\\\\n    \\\\\\\"regime\\\\\\\": \\\\\\\"fs\\\\\\\"\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"fewnerd\\\": {\\n    \\\"name\\\": \\\"fewnerd\\\",\\n    \\\"n_instances\\\": 32565,\\n    \\\"n_samples\\\": 8,\\n    \\\"signals\\\": {\\n      \\\"SJ\\\": {\\n        \\\"rho\\\": 0.3451092769673854\\n      },\\n      \\\"FK\\\": {\\n        \\\"rho\\\": 0.3271947629842062\\n      },\\n      \\\"LP\\\": {\\n        \\\"rho\\\": 0.16136921647005784\\n      },\\n      \\\"EM\\\": {\\n        \\\"rho\\\": 0.30229933641791606\\n      },\\n      \\\"VC\\\": {\\n        \\\"rho\\\": 0.40986865494620944\\n      }\\n    },\\n    \\\"baselines\\\": {\\n      \\\"greedy\\\": {\\n        \\\"mean\\\": 0.6189441226866342,\\n        \\\"ci_lo\\\": 0.6151169949987665,\\n        \\\"ci_hi\\\": 0.6227964477839321\\n      },\\n      \\\"lp_selection\\\": {\\n        \\\"mean\\\": 0.6175547900813741,\\n        \\\"ci_lo\\\": 0.6137432571506182,\\n        \\\"ci_hi\\\": 0.6214547084899013\\n      },\\n      \\\"majority_vote\\\": {\\n        \\\"mean\\\": 0.6195343471083695,\\n        \\\"ci_lo\\\": 0.615595064455849,\\n        \\\"ci_hi\\\": 0.6234043749451192\\n      },\\n      \\\"oracle\\\": {\\n        \\\"mean\\\": 0.7016824848704548,\\n        \\\"ci_lo\\\": 0.698134708727528,\\n        \\\"ci_hi\\\": 0.7052974280410977\\n      },\\n      \\\"consensus_theta2n\\\": {\\n        \\\"mean\\\": 0.6047837129259926,\\n        \\\"ci_lo\\\": 0.601152035412434,\\n        \\\"ci_hi\\\": 0.6084062323843024\\n      },\\n      \\\"consensus_lp_weighted\\\": {\\n        \\\"mean\\\": 0.619098022361867,\\n        \\\"ci_lo\\\": 0.6152362893366947,\\n        \\\"ci_hi\\\": 0.6228771210839811\\n      }\\n    },\\n    \\\"consensus_variants\\\": {\\n      \\\"high=0.5_medium=0.1\\\": {\\n        \\\"mean\\\": 0.6068922147885816,\\n        \\\"ci_lo\\\": 0.6032214695605966,\\n        \\\"ci_hi\\\": 0.6106739052957241\\n      },\\n      \\\"high=0.6_medium=0.2\\\": {\\n        \\\"mean\\\": 0.6161219637020433,\\n        \\\"ci_lo\\\": 0.6123714359632515,\\n        \\\"ci_hi\\\": 0.619942334781649\\n      },\\n      \\\"high=0.7_medium=0.3\\\": {\\n        \\\"mean\\\": 0.6181793157388954,\\n        \\\"ci_lo\\\": 0.6142885286180274,\\n        \\\"ci_hi\\\": 0.6219992557182255\\n      }\\n    },\\n    \\\"degeneracy_rate\\\": 0.45195762321510824,\\n    \\\"degeneracy_count\\\": 14718,\\n    \\\"degeneracy_set_count\\\": 10764,\\n    \\\"lp_selection_delta\\\": -0.0013893326052600852,\\n    \\\"model_size\\\": \\\"72\\\",\\n    \\\"regime\\\": \\\"fs\\\"\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 60_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I need to run the paired bootstrap construction for FewNERD. The `paired_bootstrap_construction.py` in `code/` has a hardcoded path. Let me check if `artifacts/bootstrap_construction.py` is more generic.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4dae7b17-8c7d-4862-9526-33c4e4911f2c",
+  "uuid": "5039bd26-a16a-4d36-a069-274b9365ae2f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Wugxc8FEzoRqYKD6nKPprs",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1626,
+      "cache_read_input_tokens": 43775,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1626
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 61_
+
+Now run paired bootstrap for FewNERD. Let me check the artifacts version of the bootstrap script.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4dae7b17-8c7d-4862-9526-33c4e4911f2c",
+  "uuid": "b63872f4-d3c1-433b-bdfa-7fee2576c66b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Wugxc8FEzoRqYKD6nKPprs",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1626,
+      "cache_read_input_tokens": 43775,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1626
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 62_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_017m8qfwPnUwBtgG4gzpmoAm`</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "command": "head -60 /root/autodl-tmp/struct_self_consist_ie/artifacts/bootstrap_construction.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4dae7b17-8c7d-4862-9526-33c4e4911f2c",
+  "uuid": "592ba456-7723-444d-8a3e-ab77356b50fa",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Wugxc8FEzoRqYKD6nKPprs",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1626,
+      "cache_read_input_tokens": 43775,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1626
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 63 · 2026-05-20T00:52:21.885Z_
+
+<details><summary>↩ Tool result · `toolu_017m8qfwPnUwBtgG4gzpmoAm`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Paired bootstrap test: greedy F1 vs LP-weighted construction F1.\\n\\nReplicates the methodology from the 72B ZS SciERC bootstrap analysis:\\n- B=10000 bootstrap iterations\\n- 95% CI on the paired difference\\n- One-sided p-value (H0: construction <= greedy)\\n- Cohen's d effect size\\n- Degeneracy-stratified breakdown\\n\\nUsage:\\n    # Single dataset\\n    python bootstrap_construction.py \\\\\\n        --input-dir /path/to/output/72b_zeroshot --dataset scierc\\n\\n    # All datasets under a model directory\\n    python bootstrap_construction.py \\\\\\n        --input-dir /path/to/output/72b_zeroshot\\n\\n    # Use pre-computed per-instance data (from compute_signals.py)\\n    python bootstrap_construction.py \\\\\\n        --per-instance /path/to/scierc_per_instance.json --dataset scierc\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport os\\nimport statistics\\nimport sys\\nfrom collections import Counter, defaultdict\\n\\nimport numpy as np\\n\\nB = 10000\\nSEED = 42\\n\\n\\n# ---------------------------------------------------------------------------\\n# Core metrics (self-contained, no external imports needed)\\n# ---------------------------------------------------------------------------\\n\\ndef compute_entity_f1(pred_entities, gold_entities):\\n    pred = {(e[\\\"start\\\"], e[\\\"end\\\"], e[\\\"type\\\"]) for e in pred_entities}\\n    gold = {(e[\\\"start\\\"], e[\\\"end\\\"], e[\\\"type\\\"]) for e in gold_entities}\\n    if not gold and not pred:\\n        return 1.0\\n    if not gold or not pred:\\n        return 0.0\\n    tp = len(pred & gold)\\n    if tp == 0:\\n        return 0.0\\n    p = tp / len(pred)\\n    r = tp / len(gold)\\n    return 2 * p * r / (p + r)\\n\\n\\ndef consensus_construct(inst, high_thresh=0.5, medium_thresh=0.25):\\n    \\\"\\\"\\\"LP-weighted entity construction (same as compute_signals.py).\\\"\\\"\\\"\\n    samples = inst[\\\"samples\\\"]\\n    N = len(samples)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4dae7b17-8c7d-4862-9526-33c4e4911f2c",
+  "uuid": "4e6e8bf6-b084-4f3c-806f-003acd611f90",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"Paired bootstrap test: greedy F1 vs LP-weighted construction F1.\\\\n\\\\nReplicates the methodology from the 72B ZS SciERC bootstrap analysis:\\\\n- B=10000 bootstrap iterations\\\\n- 95% CI on the paired difference\\\\n- One-sided p-value (H0: construction <= greedy)\\\\n- Cohen's d effect size\\\\n- Degeneracy-stratified breakdown\\\\n\\\\nUsage:\\\\n    # Single dataset\\\\n    python bootstrap_construction.py \\\\\\\\\\\\n        --input-dir /path/to/output/72b_zeroshot --dataset scierc\\\\n\\\\n    # All datasets under a model directory\\\\n    python bootstrap_construction.py \\\\\\\\\\\\n        --input-dir /path/to/output/72b_zeroshot\\\\n\\\\n    # Use pre-computed per-instance data (from compute_signals.py)\\\\n    python bootstrap_construction.py \\\\\\\\\\\\n        --per-instance /path/to/scierc_per_instance.json --dataset scierc\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport os\\\\nimport statistics\\\\nimport sys\\\\nfrom collections import Counter, defaultdict\\\\n\\\\nimport numpy as np\\\\n\\\\nB = 10000\\\\nSEED = 42\\\\n\\\\n\\\\n# ---------------------------------------------------------------------------\\\\n# Core metrics (self-contained, no external imports needed)\\\\n# ---------------------------------------------------------------------------\\\\n\\\\ndef compute_entity_f1(pred_entities, gold_entities):\\\\n    pred = {(e[\\\\\\\"start\\\\\\\"], e[\\\\\\\"end\\\\\\\"], e[\\\\\\\"type\\\\\\\"]) for e in pred_entities}\\\\n    gold = {(e[\\\\\\\"start\\\\\\\"], e[\\\\\\\"end\\\\\\\"], e[\\\\\\\"type\\\\\\\"]) for e in gold_entities}\\\\n    if not gold and not pred:\\\\n        return 1.0\\\\n    if not gold or not pred:\\\\n        return 0.0\\\\n    tp = len(pred & gold)\\\\n    if tp == 0:\\\\n        return 0.0\\\\n    p = tp / len(pred)\\\\n    r = tp / len(gold)\\\\n    return 2 * p * r / (p + r)\\\\n\\\\n\\\\ndef consensus_construct(inst, high_thresh=0.5, medium_thresh=0.25):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"LP-weighted entity construction (same as compute_signals.py).\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    samples = inst[\\\\\\\"samples\\\\\\\"]\\\\n    N = len(samples)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Paired bootstrap test: greedy F1 vs LP-weighted construction F1.\\n\\nReplicates the methodology from the 72B ZS SciERC bootstrap analysis:\\n- B=10000 bootstrap iterations\\n- 95% CI on the paired difference\\n- One-sided p-value (H0: construction <= greedy)\\n- Cohen's d effect size\\n- Degeneracy-stratified breakdown\\n\\nUsage:\\n    # Single dataset\\n    python bootstrap_construction.py \\\\\\n        --input-dir /path/to/output/72b_zeroshot --dataset scierc\\n\\n    # All datasets under a model directory\\n    python bootstrap_construction.py \\\\\\n        --input-dir /path/to/output/72b_zeroshot\\n\\n    # Use pre-computed per-instance data (from compute_signals.py)\\n    python bootstrap_construction.py \\\\\\n        --per-instance /path/to/scierc_per_instance.json --dataset scierc\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport os\\nimport statistics\\nimport sys\\nfrom collections import Counter, defaultdict\\n\\nimport numpy as np\\n\\nB = 10000\\nSEED = 42\\n\\n\\n# ---------------------------------------------------------------------------\\n# Core metrics (self-contained, no external imports needed)\\n# ---------------------------------------------------------------------------\\n\\ndef compute_entity_f1(pred_entities, gold_entities):\\n    pred = {(e[\\\"start\\\"], e[\\\"end\\\"], e[\\\"type\\\"]) for e in pred_entities}\\n    gold = {(e[\\\"start\\\"], e[\\\"end\\\"], e[\\\"type\\\"]) for e in gold_entities}\\n    if not gold and not pred:\\n        return 1.0\\n    if not gold or not pred:\\n        return 0.0\\n    tp = len(pred & gold)\\n    if tp == 0:\\n        return 0.0\\n    p = tp / len(pred)\\n    r = tp / len(gold)\\n    return 2 * p * r / (p + r)\\n\\n\\ndef consensus_construct(inst, high_thresh=0.5, medium_thresh=0.25):\\n    \\\"\\\"\\\"LP-weighted entity construction (same as compute_signals.py).\\\"\\\"\\\"\\n    samples = inst[\\\"samples\\\"]\\n    N = len(samples)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 64_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The bootstrap script can use `--per-instance` data from compute_signals.py, or `--input-dir` with raw samples. The per-instance data was saved to `output/72b_fewshot_signals/fewnerd/fewnerd_per_instance.json`.
+
+Let me run the bootstrap with the per-instance data since it's precomputed.
+
+Actually, 37k instances with 10k bootstrap iterations could take a while. Let me use nohup.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4dae7b17-8c7d-4862-9526-33c4e4911f2c",
+  "uuid": "d034d147-12cd-401f-967a-ba0300b429fa",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SoVm8uJNsUq5NVhdnfQPgb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1040,
+      "cache_read_input_tokens": 45401,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1040
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01Vec6ytAVNVjLcQgVvBpfTv`</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && nohup python artifacts/bootstrap_construction.py --per-instance output/72b_fewshot_signals/fewnerd/fewnerd_per_instance.json --dataset fewnerd --output-dir output/72b_fewshot_signals/fewnerd > /tmp/fewnerd_bootstrap.log 2>&1 & echo \"PID=$!\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4dae7b17-8c7d-4862-9526-33c4e4911f2c",
+  "uuid": "40456a73-9926-4df7-a34d-ed65d90f4cf9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SoVm8uJNsUq5NVhdnfQPgb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1040,
+      "cache_read_input_tokens": 45401,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1040
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-20T00:52:31.929Z_
+
+<details><summary>↩ Tool result · `toolu_01Vec6ytAVNVjLcQgVvBpfTv`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"PID=158597\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.72}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4dae7b17-8c7d-4862-9526-33c4e4911f2c",
+  "uuid": "f3993dbc-f6a5-4ec1-ad9b-47b4e189964f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"PID=158597\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.72}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"PID=158597\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.72}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01KbbrY1A72kkKLSrn16GNSi`</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "command": "ps -p 158597 -o pid= 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4dae7b17-8c7d-4862-9526-33c4e4911f2c",
+  "uuid": "ed1127bb-d3d2-4873-a7f8-457948680349",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QQs7zsooQhqmteMpMXKc2c",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 429,
+      "cache_read_input_tokens": 46441,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 429
+      },
+      "output_tokens": 62,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 68 · 2026-05-20T00:52:37.840Z_
+
+<details><summary>↩ Tool result · `toolu_01KbbrY1A72kkKLSrn16GNSi`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4dae7b17-8c7d-4862-9526-33c4e4911f2c",
+  "uuid": "fe9b0f00-6557-4d39-9a05-ebec3c73875b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 69_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_013qsWRaYL6zugPUVTE2AYCy`</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "command": "tail -20 /tmp/fewnerd_bootstrap.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4dae7b17-8c7d-4862-9526-33c4e4911f2c",
+  "uuid": "3c81a26a-4d37-4a61-bf55-52b46c8d1c6a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013p17wyUiYgE8sgee14AKGk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 212,
+      "cache_read_input_tokens": 46870,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 212
+      },
+      "output_tokens": 65,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-20T00:52:40.645Z_
+
+<details><summary>↩ Tool result · `toolu_013qsWRaYL6zugPUVTE2AYCy`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Positive (construction > greedy): 2752 (8.5%)\\nNegative (construction < greedy): 2371 (7.3%)\\nTied:                             27442 (84.3%)\\n\\n=== Degeneracy ===\\nDegenerate instances: 10764 (33.1%)\\nNon-degenerate:       21801 (66.9%)\\n\\n  Non-degen greedy F1:       0.5670\\n  Non-degen construction F1: 0.5672\\n  Non-degen diff:            +0.0002 (+0.02pp)\\n  Non-degen 95% CI:          [-0.0016, +0.0020]\\n  Non-degen p-value:         0.4009\\n  Non-degen positive/negative/tied: 2748/2369/16684\\n\\n  Degen greedy F1:       0.7241\\n  Degen construction F1: 0.7242\\n  Degen diff:            +0.0000\\n\\nResult saved to output/72b_fewshot_signals/fewnerd/fewnerd_paired_bootstrap_result.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4dae7b17-8c7d-4862-9526-33c4e4911f2c",
+  "uuid": "0b5a61de-7664-4f83-b42f-f9706fd4c6c7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Positive (construction > greedy): 2752 (8.5%)\\\\nNegative (construction < greedy): 2371 (7.3%)\\\\nTied:                             27442 (84.3%)\\\\n\\\\n=== Degeneracy ===\\\\nDegenerate instances: 10764 (33.1%)\\\\nNon-degenerate:       21801 (66.9%)\\\\n\\\\n  Non-degen greedy F1:       0.5670\\\\n  Non-degen construction F1: 0.5672\\\\n  Non-degen diff:            +0.0002 (+0.02pp)\\\\n  Non-degen 95% CI:          [-0.0016, +0.0020]\\\\n  Non-degen p-value:         0.4009\\\\n  Non-degen positive/negative/tied: 2748/2369/16684\\\\n\\\\n  Degen greedy F1:       0.7241\\\\n  Degen construction F1: 0.7242\\\\n  Degen diff:            +0.0000\\\\n\\\\nResult saved to output/72b_fewshot_signals/fewnerd/fewnerd_paired_bootstrap_result.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Positive (construction > greedy): 2752 (8.5%)\\nNegative (construction < greedy): 2371 (7.3%)\\nTied:                             27442 (84.3%)\\n\\n=== Degeneracy ===\\nDegenerate instances: 10764 (33.1%)\\nNon-degenerate:       21801 (66.9%)\\n\\n  Non-degen greedy F1:       0.5670\\n  Non-degen construction F1: 0.5672\\n  Non-degen diff:            +0.0002 (+0.02pp)\\n  Non-degen 95% CI:          [-0.0016, +0.0020]\\n  Non-degen p-value:         0.4009\\n  Non-degen positive/negative/tied: 2748/2369/16684\\n\\n  Degen greedy F1:       0.7241\\n  Degen construction F1: 0.7242\\n  Degen diff:            +0.0000\\n\\nResult saved to output/72b_fewshot_signals/fewnerd/fewnerd_paired_bootstrap_result.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 71_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_019TbqsNKVu5vHcV4LeDBknN`</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/72b_fewshot_signals/fewnerd/fewnerd_paired_bootstrap_result.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4dae7b17-8c7d-4862-9526-33c4e4911f2c",
+  "uuid": "65a7ed52-9612-45ed-9f48-0389e18edcd2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FArYRaVSvuSgymzcrGMQix",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 490,
+      "cache_read_input_tokens": 47082,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 490
+      },
+      "output_tokens": 65,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 72 · 2026-05-20T00:52:43.360Z_
+
+<details><summary>↩ Tool result · `toolu_019TbqsNKVu5vHcV4LeDBknN`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"test\\\": \\\"paired_bootstrap\\\",\\n  \\\"label\\\": \\\"fewnerd\\\",\\n  \\\"n_instances\\\": 32565,\\n  \\\"B\\\": 10000,\\n  \\\"greedy_f1\\\": 0.6189441226866342,\\n  \\\"construction_f1\\\": 0.619098022361867,\\n  \\\"observed_diff\\\": 0.00015389967523281585,\\n  \\\"ci_95\\\": [\\n    -0.001093078631790869,\\n    0.001422214834522984\\n  ],\\n  \\\"p_value\\\": 0.4005,\\n  \\\"cohens_d\\\": 0.0013569685207515765,\\n  \\\"instance_positive\\\": 2752,\\n  \\\"instance_negative\\\": 2371,\\n  \\\"instance_tied\\\": 27442,\\n  \\\"n_degenerate\\\": 10764,\\n  \\\"n_nondegenerate\\\": 21801,\\n  \\\"nondegen_greedy_f1\\\": 0.5670150475695028,\\n  \\\"nondegen_construction_f1\\\": 0.5672214022899722,\\n  \\\"nondegen_diff\\\": 0.00020635472046937053,\\n  \\\"nondegen_ci_95\\\": [\\n    -0.0016219601941738723,\\n    0.0020425383759928284\\n  ],\\n  \\\"nondegen_p_value\\\": 0.4009\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4dae7b17-8c7d-4862-9526-33c4e4911f2c",
+  "uuid": "fa09fe1d-5e6e-4e19-b195-2a3c189b7ab8",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"test\\\\\\\": \\\\\\\"paired_bootstrap\\\\\\\",\\\\n  \\\\\\\"label\\\\\\\": \\\\\\\"fewnerd\\\\\\\",\\\\n  \\\\\\\"n_instances\\\\\\\": 32565,\\\\n  \\\\\\\"B\\\\\\\": 10000,\\\\n  \\\\\\\"greedy_f1\\\\\\\": 0.6189441226866342,\\\\n  \\\\\\\"construction_f1\\\\\\\": 0.619098022361867,\\\\n  \\\\\\\"observed_diff\\\\\\\": 0.00015389967523281585,\\\\n  \\\\\\\"ci_95\\\\\\\": [\\\\n    -0.001093078631790869,\\\\n    0.001422214834522984\\\\n  ],\\\\n  \\\\\\\"p_value\\\\\\\": 0.4005,\\\\n  \\\\\\\"cohens_d\\\\\\\": 0.0013569685207515765,\\\\n  \\\\\\\"instance_positive\\\\\\\": 2752,\\\\n  \\\\\\\"instance_negative\\\\\\\": 2371,\\\\n  \\\\\\\"instance_tied\\\\\\\": 27442,\\\\n  \\\\\\\"n_degenerate\\\\\\\": 10764,\\\\n  \\\\\\\"n_nondegenerate\\\\\\\": 21801,\\\\n  \\\\\\\"nondegen_greedy_f1\\\\\\\": 0.5670150475695028,\\\\n  \\\\\\\"nondegen_construction_f1\\\\\\\": 0.5672214022899722,\\\\n  \\\\\\\"nondegen_diff\\\\\\\": 0.00020635472046937053,\\\\n  \\\\\\\"nondegen_ci_95\\\\\\\": [\\\\n    -0.0016219601941738723,\\\\n    0.0020425383759928284\\\\n  ],\\\\n  \\\\\\\"nondegen_p_value\\\\\\\": 0.4009\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"test\\\": \\\"paired_bootstrap\\\",\\n  \\\"label\\\": \\\"fewnerd\\\",\\n  \\\"n_instances\\\": 32565,\\n  \\\"B\\\": 10000,\\n  \\\"greedy_f1\\\": 0.6189441226866342,\\n  \\\"construction_f1\\\": 0.619098022361867,\\n  \\\"observed_diff\\\": 0.00015389967523281585,\\n  \\\"ci_95\\\": [\\n    -0.001093078631790869,\\n    0.001422214834522984\\n  ],\\n  \\\"p_value\\\": 0.4005,\\n  \\\"cohens_d\\\": 0.0013569685207515765,\\n  \\\"instance_positive\\\": 2752,\\n  \\\"instance_negative\\\": 2371,\\n  \\\"instance_tied\\\": 27442,\\n  \\\"n_degenerate\\\": 10764,\\n  \\\"n_nondegenerate\\\": 21801,\\n  \\\"nondegen_greedy_f1\\\": 0.5670150475695028,\\n  \\\"nondegen_construction_f1\\\": 0.5672214022899722,\\n  \\\"nondegen_diff\\\": 0.00020635472046937053,\\n  \\\"nondegen_ci_95\\\": [\\n    -0.0016219601941738723,\\n    0.0020425383759928284\\n  ],\\n  \\\"nondegen_p_value\\\": 0.4009\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 73_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+All data is collected. Let me also read the zero-shot data from the 72b_zeroshot signal report for FewNERD, so I can make the comparison. Let me check the ZS data.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4dae7b17-8c7d-4862-9526-33c4e4911f2c",
+  "uuid": "4e9d0330-b665-439d-b9f2-f21880e6d3c3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LcYF21RjvafhDDHpv7rQJJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 675,
+      "cache_read_input_tokens": 47572,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 675
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 74_
+
+所有 FewNERD 数据已完整。现在读取 ZS 数据以便对比。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4dae7b17-8c7d-4862-9526-33c4e4911f2c",
+  "uuid": "cf091828-6feb-47db-8b70-465f62e00402",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LcYF21RjvafhDDHpv7rQJJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 675,
+      "cache_read_input_tokens": 47572,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 675
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 75_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01KjCDG2JaVWmFbUS3Mo5BBR`</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/72b_zeroshot/full_signal_report.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4dae7b17-8c7d-4862-9526-33c4e4911f2c",
+  "uuid": "80f1cda5-a30a-4eae-9ed7-f540c6f44457",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LcYF21RjvafhDDHpv7rQJJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 675,
+      "cache_read_input_tokens": 47572,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 675
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 76 · 2026-05-20T00:52:50.166Z_
+
+<details><summary>↩ Tool result · `toolu_01KjCDG2JaVWmFbUS3Mo5BBR`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"scierc\\\": {\\n    \\\"name\\\": \\\"scierc\\\",\\n    \\\"n_instances\\\": 529,\\n    \\\"n_samples\\\": 8,\\n    \\\"signals\\\": {\\n      \\\"SJ\\\": {\\n        \\\"rho\\\": 0.21675186319295206\\n      },\\n      \\\"FK\\\": {\\n        \\\"rho\\\": 0.2268643208878706\\n      },\\n      \\\"LP\\\": {\\n        \\\"rho\\\": 0.08105629653698664\\n      },\\n      \\\"EM\\\": {\\n        \\\"rho\\\": 0.18119551565265815\\n      },\\n      \\\"VC\\\": {\\n        \\\"rho\\\": 0.2774474257594968\\n      }\\n    },\\n    \\\"baselines\\\": {\\n      \\\"greedy\\\": {\\n        \\\"mean\\\": 0.3993396070428207,\\n        \\\"ci_lo\\\": 0.37502776576500585,\\n        \\\"ci_hi\\\": 0.42486000661804063\\n      },\\n      \\\"lp_selection\\\": {\\n        \\\"mean\\\": 0.39836297485580263,\\n        \\\"ci_lo\\\": 0.3737535525620703,\\n        \\\"ci_hi\\\": 0.4225968895628631\\n      },\\n      \\\"majority_vote\\\": {\\n        \\\"mean\\\": 0.4132481984238029,\\n        \\\"ci_lo\\\": 0.38694121463497644,\\n        \\\"ci_hi\\\": 0.43869730298443865\\n      },\\n      \\\"oracle\\\": {\\n        \\\"mean\\\": 0.5488904605161693,\\n        \\\"ci_lo\\\": 0.5240391828293529,\\n        \\\"ci_hi\\\": 0.5739669278421642\\n      },\\n      \\\"consensus_theta2n\\\": {\\n        \\\"mean\\\": 0.3941296496146429,\\n        \\\"ci_lo\\\": 0.37087546121195103,\\n        \\\"ci_hi\\\": 0.4162955855512563\\n      },\\n      \\\"consensus_lp_weighted\\\": {\\n        \\\"mean\\\": 0.41463973897533335,\\n        \\\"ci_lo\\\": 0.389058094011947,\\n        \\\"ci_hi\\\": 0.4393016036683333\\n      }\\n    },\\n    \\\"consensus_variants\\\": {\\n      \\\"high=0.5_medium=0.1\\\": {\\n        \\\"mean\\\": 0.39422476137663975,\\n        \\\"ci_lo\\\": 0.3699544254853355,\\n        \\\"ci_hi\\\": 0.4168598469711323\\n      },\\n      \\\"high=0.6_medium=0.2\\\": {\\n        \\\"mean\\\": 0.40482014598440896,\\n        \\\"ci_lo\\\": 0.3800751783977868,\\n        \\\"ci_hi\\\": 0.4289704071951375\\n      },\\n      \\\"high=0.7_medium=0.3\\\": {\\n        \\\"mean\\\": 0.4041807908537587,\\n        \\\"ci_lo\\\": 0.3789660455066882,\\n        \\\"ci_hi\\\": 0.4291235124883518\\n      }\\n    },\\n    \\\"degeneracy_rate\\\": 0.20982986767485823,\\n    \\\"degeneracy_count\\\": 111,\\n    \\\"lp_selection_delta\\\": -0.000976632187018045\\n  },\\n  \\\"conll2003\\\": {\\n    \\\"name\\\": \\\"conll2003\\\",\\n    \\\"n_instances\\\": 2756,\\n    \\\"n_samples\\\": 8,\\n    \\\"signals\\\": {\\n      \\\"SJ\\\": {\\n        \\\"rho\\\": 0.30354061421753875\\n      },\\n      \\\"FK\\\": {\\n        \\\"rho\\\": 0.301887682793874\\n      },\\n      \\\"LP\\\": {\\n        \\\"rho\\\": -0.002157580062126836\\n      },\\n      \\\"EM\\\": {\\n        \\\"rho\\\": 0.2814097853058494\\n      },\\n      \\\"VC\\\": {\\n        \\\"rho\\\": 0.2966588513527752\\n      }\\n    },\\n    \\\"baselines\\\": {\\n      \\\"greedy\\\": {\\n        \\\"mean\\\": 0.7119536566539222,\\n        \\\"ci_lo\\\": 0.697258360251101,\\n        \\\"ci_hi\\\": 0.7270525119037152\\n      },\\n      \\\"lp_selection\\\": {\\n        \\\"mean\\\": 0.708038723230326,\\n        \\\"ci_lo\\\": 0.6938763800051895,\\n        \\\"ci_hi\\\": 0.7230017861592681\\n      },\\n      \\\"majority_vote\\\": {\\n        \\\"mean\\\": 0.7034165516271902,\\n        \\\"ci_lo\\\": 0.6885761129766483,\\n        \\\"ci_hi\\\": 0.718118226053764\\n      },\\n      \\\"oracle\\\": {\\n        \\\"mean\\\": 0.7650894811018455,\\n        \\\"ci_lo\\\": 0.7507759362657187,\\n        \\\"ci_hi\\\": 0.7792039849547808\\n      },\\n      \\\"consensus_theta2n\\\": {\\n        \\\"mean\\\": 0.7027692619428243,\\n        \\\"ci_lo\\\": 0.6887046437369796,\\n        \\\"ci_hi\\\": 0.7175057961115066\\n      },\\n      \\\"consensus_lp_weighted\\\": {\\n        \\\"mean\\\": 0.7082726789317058,\\n        \\\"ci_lo\\\": 0.6936909323750362,\\n        \\\"ci_hi\\\": 0.7230591888468175\\n      }\\n    },\\n    \\\"consensus_variants\\\": {\\n      \\\"high=0.5_medium=0.1\\\": {\\n        \\\"mean\\\": 0.7046208187462513,\\n        \\\"ci_lo\\\": 0.6903098076872617,\\n        \\\"ci_hi\\\": 0.7192922805098889\\n      },\\n      \\\"high=0.6_medium=0.2\\\": {\\n        \\\"mean\\\": 0.7073462347904576,\\n        \\\"ci_lo\\\": 0.6926564367812286,\\n        \\\"ci_hi\\\": 0.7219813980574267\\n      },\\n      \\\"high=0.7_medium=0.3\\\": {\\n        \\\"mean\\\": 0.7088965336492425,\\n        \\\"ci_lo\\\": 0.6944601050831575,\\n        \\\"ci_hi\\\": 0.7236702644433051\\n      }\\n    },\\n    \\\"degeneracy_rate\\\": 0.6770682148040639,\\n    \\\"degeneracy_count\\\": 1866,\\n    \\\"lp_selection_delta\\\": -0.0039149334235961675\\n  },\\n  \\\"fewnerd\\\": {\\n    \\\"name\\\": \\\"fewnerd\\\",\\n    \\\"n_instances\\\": 32565,\\n    \\\"n_samples\\\": 8,\\n    \\\"signals\\\": {\\n      \\\"SJ\\\": {\\n        \\\"rho\\\": 0.34458535131552215\\n      },\\n      \\\"FK\\\": {\\n        \\\"rho\\\": 0.3214981815561391\\n      },\\n      \\\"LP\\\": {\\n        \\\"rho\\\": 0.1190661194782326\\n      },\\n      \\\"EM\\\": {\\n        \\\"rho\\\": 0.3032735994368043\\n      },\\n      \\\"VC\\\": {\\n        \\\"rho\\\": 0.41573956765672404\\n      }\\n    },\\n    \\\"baselines\\\": {\\n      \\\"greedy\\\": {\\n        \\\"mean\\\": 0.6281144921130637,\\n        \\\"ci_lo\\\": 0.624305155971246,\\n        \\\"ci_hi\\\": 0.6319131122432518\\n      },\\n      \\\"lp_selection\\\": {\\n        \\\"mean\\\": 0.6240712650267002,\\n        \\\"ci_lo\\\": 0.6202262524544926,\\n        \\\"ci_hi\\\": 0.6279340116183065\\n      },\\n      \\\"majority_vote\\\": {\\n        \\\"mean\\\": 0.6262174429479246,\\n        \\\"ci_lo\\\": 0.6222225446856605,\\n        \\\"ci_hi\\\": 0.6301205104101103\\n      },\\n      \\\"oracle\\\": {\\n        \\\"mean\\\": 0.7071900470107275,\\n        \\\"ci_lo\\\": 0.7035371661179176,\\n        \\\"ci_hi\\\": 0.7107625013114649\\n      },\\n      \\\"consensus_theta2n\\\": {\\n        \\\"mean\\\": 0.6111626607442919,\\n        \\\"ci_lo\\\": 0.6074785195116174,\\n        \\\"ci_hi\\\": 0.6147581689953509\\n      },\\n      \\\"consensus_lp_weighted\\\": {\\n        \\\"mean\\\": 0.626111507645607,\\n        \\\"ci_lo\\\": 0.6222559649507461,\\n        \\\"ci_hi\\\": 0.6300348192551413\\n      }\\n    },\\n    \\\"consensus_variants\\\": {\\n      \\\"high=0.5_medium=0.1\\\": {\\n        \\\"mean\\\": 0.6136367053699407,\\n        \\\"ci_lo\\\": 0.6098874542147631,\\n        \\\"ci_hi\\\": 0.6174653265450104\\n      },\\n      \\\"high=0.6_medium=0.2\\\": {\\n        \\\"mean\\\": 0.6231523493805349,\\n        \\\"ci_lo\\\": 0.6193175350941537,\\n        \\\"ci_hi\\\": 0.6270278326693803\\n      },\\n      \\\"high=0.7_medium=0.3\\\": {\\n        \\\"mean\\\": 0.6255796349350382,\\n        \\\"ci_lo\\\": 0.6216297163810414,\\n        \\\"ci_hi\\\": 0.6294899504242083\\n      }\\n    },\\n    \\\"degeneracy_rate\\\": 0.4622140334715185,\\n    \\\"degeneracy_count\\\": 15052,\\n    \\\"lp_selection_delta\\\": -0.00404322708636351\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4dae7b17-8c7d-4862-9526-33c4e4911f2c",
+  "uuid": "5d47a2cc-473d-41c8-95ba-7503b8888398",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"scierc\\\\\\\": {\\\\n    \\\\\\\"name\\\\\\\": \\\\\\\"scierc\\\\\\\",\\\\n    \\\\\\\"n_instances\\\\\\\": 529,\\\\n    \\\\\\\"n_samples\\\\\\\": 8,\\\\n    \\\\\\\"signals\\\\\\\": {\\\\n      \\\\\\\"SJ\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.21675186319295206\\\\n      },\\\\n      \\\\\\\"FK\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.2268643208878706\\\\n      },\\\\n      \\\\\\\"LP\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.08105629653698664\\\\n      },\\\\n      \\\\\\\"EM\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.18119551565265815\\\\n      },\\\\n      \\\\\\\"VC\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.2774474257594968\\\\n      }\\\\n    },\\\\n    \\\\\\\"baselines\\\\\\\": {\\\\n      \\\\\\\"greedy\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.3993396070428207,\\\\n        \\\\\\\"ci_lo\\\\\\\": 0.37502776576500585,\\\\n        \\\\\\\"ci_hi\\\\\\\": 0.42486000661804063\\\\n      },\\\\n      \\\\\\\"lp_selection\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.39836297485580263,\\\\n        \\\\\\\"ci_lo\\\\\\\": 0.3737535525620703,\\\\n        \\\\\\\"ci_hi\\\\\\\": 0.4225968895628631\\\\n      },\\\\n      \\\\\\\"majority_vote\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.4132481984238029,\\\\n        \\\\\\\"ci_lo\\\\\\\": 0.38694121463497644,\\\\n        \\\\\\\"ci_hi\\\\\\\": 0.43869730298443865\\\\n      },\\\\n      \\\\\\\"oracle\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.5488904605161693,\\\\n        \\\\\\\"ci_lo\\\\\\\": 0.5240391828293529,\\\\n        \\\\\\\"ci_hi\\\\\\\": 0.5739669278421642\\\\n      },\\\\n      \\\\\\\"consensus_theta2n\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.3941296496146429,\\\\n        \\\\\\\"ci_lo\\\\\\\": 0.37087546121195103,\\\\n        \\\\\\\"ci_hi\\\\\\\": 0.4162955855512563\\\\n      },\\\\n      \\\\\\\"consensus_lp_weighted\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.41463973897533335,\\\\n        \\\\\\\"ci_lo\\\\\\\": 0.389058094011947,\\\\n        \\\\\\\"ci_hi\\\\\\\": 0.4393016036683333\\\\n      }\\\\n    },\\\\n    \\\\\\\"consensus_variants\\\\\\\": {\\\\n      \\\\\\\"high=0.5_medium=0.1\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.39422476137663975,\\\\n        \\\\\\\"ci_lo\\\\\\\": 0.3699544254853355,\\\\n        \\\\\\\"ci_hi\\\\\\\": 0.4168598469711323\\\\n      },\\\\n      \\\\\\\"high=0.6_medium=0.2\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.40482014598440896,\\\\n        \\\\\\\"ci_lo\\\\\\\": 0.3800751783977868,\\\\n        \\\\\\\"ci_hi\\\\\\\": 0.4289704071951375\\\\n      },\\\\n      \\\\\\\"high=0.7_medium=0.3\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.4041807908537587,\\\\n        \\\\\\\"ci_lo\\\\\\\": 0.3789660455066882,\\\\n        \\\\\\\"ci_hi\\\\\\\": 0.4291235124883518\\\\n      }\\\\n    },\\\\n    \\\\\\\"degeneracy_rate\\\\\\\": 0.20982986767485823,\\\\n    \\\\\\\"degeneracy_count\\\\\\\": 111,\\\\n    \\\\\\\"lp_selection_delta\\\\\\\": -0.000976632187018045\\\\n  },\\\\n  \\\\\\\"conll2003\\\\\\\": {\\\\n    \\\\\\\"name\\\\\\\": \\\\\\\"conll2003\\\\\\\",\\\\n    \\\\\\\"n_instances\\\\\\\": 2756,\\\\n    \\\\\\\"n_samples\\\\\\\": 8,\\\\n    \\\\\\\"signals\\\\\\\": {\\\\n      \\\\\\\"SJ\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.30354061421753875\\\\n      },\\\\n      \\\\\\\"FK\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.301887682793874\\\\n      },\\\\n      \\\\\\\"LP\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": -0.002157580062126836\\\\n      },\\\\n      \\\\\\\"EM\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.2814097853058494\\\\n      },\\\\n      \\\\\\\"VC\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.2966588513527752\\\\n      }\\\\n    },\\\\n    \\\\\\\"baselines\\\\\\\": {\\\\n      \\\\\\\"greedy\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.7119536566539222,\\\\n        \\\\\\\"ci_lo\\\\\\\": 0.697258360251101,\\\\n        \\\\\\\"ci_hi\\\\\\\": 0.7270525119037152\\\\n      },\\\\n      \\\\\\\"lp_selection\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.708038723230326,\\\\n        \\\\\\\"ci_lo\\\\\\\": 0.6938763800051895,\\\\n        \\\\\\\"ci_hi\\\\\\\": 0.7230017861592681\\\\n      },\\\\n      \\\\\\\"majority_vote\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.7034165516271902,\\\\n        \\\\\\\"ci_lo\\\\\\\": 0.6885761129766483,\\\\n        \\\\\\\"ci_hi\\\\\\\": 0.718118226053764\\\\n      },\\\\n      \\\\\\\"oracle\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.7650894811018455,\\\\n        \\\\\\\"ci_lo\\\\\\\": 0.7507759362657187,\\\\n        \\\\\\\"ci_hi\\\\\\\": 0.7792039849547808\\\\n      },\\\\n      \\\\\\\"consensus_theta2n\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.7027692619428243,\\\\n        \\\\\\\"ci_lo\\\\\\\": 0.6887046437369796,\\\\n        \\\\\\\"ci_hi\\\\\\\": 0.7175057961115066\\\\n      },\\\\n      \\\\\\\"consensus_lp_weighted\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.7082726789317058,\\\\n        \\\\\\\"ci_lo\\\\\\\": 0.6936909323750362,\\\\n        \\\\\\\"ci_hi\\\\\\\": 0.7230591888468175\\\\n      }\\\\n    },\\\\n    \\\\\\\"consensus_variants\\\\\\\": {\\\\n      \\\\\\\"high=0.5_medium=0.1\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.7046208187462513,\\\\n        \\\\\\\"ci_lo\\\\\\\": 0.6903098076872617,\\\\n        \\\\\\\"ci_hi\\\\\\\": 0.7192922805098889\\\\n      },\\\\n      \\\\\\\"high=0.6_medium=0.2\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.7073462347904576,\\\\n        \\\\\\\"ci_lo\\\\\\\": 0.6926564367812286,\\\\n        \\\\\\\"ci_hi\\\\\\\": 0.7219813980574267\\\\n      },\\\\n      \\\\\\\"high=0.7_medium=0.3\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.7088965336492425,\\\\n        \\\\\\\"ci_lo\\\\\\\": 0.6944601050831575,\\\\n        \\\\\\\"ci_hi\\\\\\\": 0.7236702644433051\\\\n      }\\\\n    },\\\\n    \\\\\\\"degeneracy_rate\\\\\\\": 0.6770682148040639,\\\\n    \\\\\\\"degeneracy_count\\\\\\\": 1866,\\\\n    \\\\\\\"lp_selection_delta\\\\\\\": -0.0039149334235961675\\\\n  },\\\\n  \\\\\\\"fewnerd\\\\\\\": {\\\\n    \\\\\\\"name\\\\\\\": \\\\\\\"fewnerd\\\\\\\",\\\\n    \\\\\\\"n_instances\\\\\\\": 32565,\\\\n    \\\\\\\"n_samples\\\\\\\": 8,\\\\n    \\\\\\\"signals\\\\\\\": {\\\\n      \\\\\\\"SJ\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.34458535131552215\\\\n      },\\\\n      \\\\\\\"FK\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.3214981815561391\\\\n      },\\\\n      \\\\\\\"LP\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.1190661194782326\\\\n      },\\\\n      \\\\\\\"EM\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.3032735994368043\\\\n      },\\\\n      \\\\\\\"VC\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.41573956765672404\\\\n      }\\\\n    },\\\\n    \\\\\\\"baselines\\\\\\\": {\\\\n      \\\\\\\"greedy\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.6281144921130637,\\\\n        \\\\\\\"ci_lo\\\\\\\": 0.624305155971246,\\\\n        \\\\\\\"ci_hi\\\\\\\": 0.6319131122432518\\\\n      },\\\\n      \\\\\\\"lp_selection\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.6240712650267002,\\\\n        \\\\\\\"ci_lo\\\\\\\": 0.6202262524544926,\\\\n        \\\\\\\"ci_hi\\\\\\\": 0.6279340116183065\\\\n      },\\\\n      \\\\\\\"majority_vote\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.6262174429479246,\\\\n        \\\\\\\"ci_lo\\\\\\\": 0.6222225446856605,\\\\n        \\\\\\\"ci_hi\\\\\\\": 0.6301205104101103\\\\n      },\\\\n      \\\\\\\"oracle\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.7071900470107275,\\\\n        \\\\\\\"ci_lo\\\\\\\": 0.7035371661179176,\\\\n        \\\\\\\"ci_hi\\\\\\\": 0.7107625013114649\\\\n      },\\\\n      \\\\\\\"consensus_theta2n\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.6111626607442919,\\\\n        \\\\\\\"ci_lo\\\\\\\": 0.6074785195116174,\\\\n        \\\\\\\"ci_hi\\\\\\\": 0.6147581689953509\\\\n      },\\\\n      \\\\\\\"consensus_lp_weighted\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.626111507645607,\\\\n        \\\\\\\"ci_lo\\\\\\\": 0.6222559649507461,\\\\n        \\\\\\\"ci_hi\\\\\\\": 0.6300348192551413\\\\n      }\\\\n    },\\\\n    \\\\\\\"consensus_variants\\\\\\\": {\\\\n      \\\\\\\"high=0.5_medium=0.1\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.6136367053699407,\\\\n        \\\\\\\"ci_lo\\\\\\\": 0.6098874542147631,\\\\n        \\\\\\\"ci_hi\\\\\\\": 0.6174653265450104\\\\n      },\\\\n      \\\\\\\"high=0.6_medium=0.2\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.6231523493805349,\\\\n        \\\\\\\"ci_lo\\\\\\\": 0.6193175350941537,\\\\n        \\\\\\\"ci_hi\\\\\\\": 0.6270278326693803\\\\n      },\\\\n      \\\\\\\"high=0.7_medium=0.3\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.6255796349350382,\\\\n        \\\\\\\"ci_lo\\\\\\\": 0.6216297163810414,\\\\n        \\\\\\\"ci_hi\\\\\\\": 0.6294899504242083\\\\n      }\\\\n    },\\\\n    \\\\\\\"degeneracy_rate\\\\\\\": 0.4622140334715185,\\\\n    \\\\\\\"degeneracy_count\\\\\\\": 15052,\\\\n    \\\\\\\"lp_selection_delta\\\\\\\": -0.00404322708636351\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"scierc\\\": {\\n    \\\"name\\\": \\\"scierc\\\",\\n    \\\"n_instances\\\": 529,\\n    \\\"n_samples\\\": 8,\\n    \\\"signals\\\": {\\n      \\\"SJ\\\": {\\n        \\\"rho\\\": 0.21675186319295206\\n      },\\n      \\\"FK\\\": {\\n        \\\"rho\\\": 0.2268643208878706\\n      },\\n      \\\"LP\\\": {\\n        \\\"rho\\\": 0.08105629653698664\\n      },\\n      \\\"EM\\\": {\\n        \\\"rho\\\": 0.18119551565265815\\n      },\\n      \\\"VC\\\": {\\n        \\\"rho\\\": 0.2774474257594968\\n      }\\n    },\\n    \\\"baselines\\\": {\\n      \\\"greedy\\\": {\\n        \\\"mean\\\": 0.3993396070428207,\\n        \\\"ci_lo\\\": 0.37502776576500585,\\n        \\\"ci_hi\\\": 0.42486000661804063\\n      },\\n      \\\"lp_selection\\\": {\\n        \\\"mean\\\": 0.39836297485580263,\\n        \\\"ci_lo\\\": 0.3737535525620703,\\n        \\\"ci_hi\\\": 0.4225968895628631\\n      },\\n      \\\"majority_vote\\\": {\\n        \\\"mean\\\": 0.4132481984238029,\\n        \\\"ci_lo\\\": 0.38694121463497644,\\n        \\\"ci_hi\\\": 0.43869730298443865\\n      },\\n      \\\"oracle\\\": {\\n        \\\"mean\\\": 0.5488904605161693,\\n        \\\"ci_lo\\\": 0.5240391828293529,\\n        \\\"ci_hi\\\": 0.5739669278421642\\n      },\\n      \\\"consensus_theta2n\\\": {\\n        \\\"mean\\\": 0.3941296496146429,\\n        \\\"ci_lo\\\": 0.37087546121195103,\\n        \\\"ci_hi\\\": 0.4162955855512563\\n      },\\n      \\\"consensus_lp_weighted\\\": {\\n        \\\"mean\\\": 0.41463973897533335,\\n        \\\"ci_lo\\\": 0.389058094011947,\\n        \\\"ci_hi\\\": 0.4393016036683333\\n      }\\n    },\\n    \\\"consensus_variants\\\": {\\n      \\\"high=0.5_medium=0.1\\\": {\\n        \\\"mean\\\": 0.39422476137663975,\\n        \\\"ci_lo\\\": 0.3699544254853355,\\n        \\\"ci_hi\\\": 0.4168598469711323\\n      },\\n      \\\"high=0.6_medium=0.2\\\": {\\n        \\\"mean\\\": 0.40482014598440896,\\n        \\\"ci_lo\\\": 0.3800751783977868,\\n        \\\"ci_hi\\\": 0.4289704071951375\\n      },\\n      \\\"high=0.7_medium=0.3\\\": {\\n        \\\"mean\\\": 0.4041807908537587,\\n        \\\"ci_lo\\\": 0.3789660455066882,\\n        \\\"ci_hi\\\": 0.4291235124883518\\n      }\\n    },\\n    \\\"degeneracy_rate\\\": 0.20982986767485823,\\n    \\\"degeneracy_count\\\": 111,\\n    \\\"lp_selection_delta\\\": -0.000976632187018045\\n  },\\n  \\\"conll2003\\\": {\\n    \\\"name\\\": \\\"conll2003\\\",\\n    \\\"n_instances\\\": 2756,\\n    \\\"n_samples\\\": 8,\\n    \\\"signals\\\": {\\n      \\\"SJ\\\": {\\n        \\\"rho\\\": 0.30354061421753875\\n      },\\n      \\\"FK\\\": {\\n        \\\"rho\\\": 0.301887682793874\\n      },\\n      \\\"LP\\\": {\\n        \\\"rho\\\": -0.002157580062126836\\n      },\\n      \\\"EM\\\": {\\n        \\\"rho\\\": 0.2814097853058494\\n      },\\n      \\\"VC\\\": {\\n        \\\"rho\\\": 0.2966588513527752\\n      }\\n    },\\n    \\\"baselines\\\": {\\n      \\\"greedy\\\": {\\n        \\\"mean\\\": 0.7119536566539222,\\n        \\\"ci_lo\\\": 0.697258360251101,\\n        \\\"ci_hi\\\": 0.7270525119037152\\n      },\\n      \\\"lp_selection\\\": {\\n        \\\"mean\\\": 0.708038723230326,\\n        \\\"ci_lo\\\": 0.6938763800051895,\\n        \\\"ci_hi\\\": 0.7230017861592681\\n      },\\n      \\\"majority_vote\\\": {\\n        \\\"mean\\\": 0.7034165516271902,\\n        \\\"ci_lo\\\": 0.6885761129766483,\\n        \\\"ci_hi\\\": 0.718118226053764\\n      },\\n      \\\"oracle\\\": {\\n        \\\"mean\\\": 0.7650894811018455,\\n        \\\"ci_lo\\\": 0.7507759362657187,\\n        \\\"ci_hi\\\": 0.7792039849547808\\n      },\\n      \\\"consensus_theta2n\\\": {\\n        \\\"mean\\\": 0.7027692619428243,\\n        \\\"ci_lo\\\": 0.6887046437369796,\\n        \\\"ci_hi\\\": 0.7175057961115066\\n      },\\n      \\\"consensus_lp_weighted\\\": {\\n        \\\"mean\\\": 0.7082726789317058,\\n        \\\"ci_lo\\\": 0.6936909323750362,\\n        \\\"ci_hi\\\": 0.7230591888468175\\n      }\\n    },\\n    \\\"consensus_variants\\\": {\\n      \\\"high=0.5_medium=0.1\\\": {\\n        \\\"mean\\\": 0.7046208187462513,\\n        \\\"ci_lo\\\": 0.6903098076872617,\\n        \\\"ci_hi\\\": 0.7192922805098889\\n      },\\n      \\\"high=0.6_medium=0.2\\\": {\\n        \\\"mean\\\": 0.7073462347904576,\\n        \\\"ci_lo\\\": 0.6926564367812286,\\n        \\\"ci_hi\\\": 0.7219813980574267\\n      },\\n      \\\"high=0.7_medium=0.3\\\": {\\n        \\\"mean\\\": 0.7088965336492425,\\n        \\\"ci_lo\\\": 0.6944601050831575,\\n        \\\"ci_hi\\\": 0.7236702644433051\\n      }\\n    },\\n    \\\"degeneracy_rate\\\": 0.6770682148040639,\\n    \\\"degeneracy_count\\\": 1866,\\n    \\\"lp_selection_delta\\\": -0.0039149334235961675\\n  },\\n  \\\"fewnerd\\\": {\\n    \\\"name\\\": \\\"fewnerd\\\",\\n    \\\"n_instances\\\": 32565,\\n    \\\"n_samples\\\": 8,\\n    \\\"signals\\\": {\\n      \\\"SJ\\\": {\\n        \\\"rho\\\": 0.34458535131552215\\n      },\\n      \\\"FK\\\": {\\n        \\\"rho\\\": 0.3214981815561391\\n      },\\n      \\\"LP\\\": {\\n        \\\"rho\\\": 0.1190661194782326\\n      },\\n      \\\"EM\\\": {\\n        \\\"rho\\\": 0.3032735994368043\\n      },\\n      \\\"VC\\\": {\\n        \\\"rho\\\": 0.41573956765672404\\n      }\\n    },\\n    \\\"baselines\\\": {\\n      \\\"greedy\\\": {\\n        \\\"mean\\\": 0.6281144921130637,\\n        \\\"ci_lo\\\": 0.624305155971246,\\n        \\\"ci_hi\\\": 0.6319131122432518\\n      },\\n      \\\"lp_selection\\\": {\\n        \\\"mean\\\": 0.6240712650267002,\\n        \\\"ci_lo\\\": 0.6202262524544926,\\n        \\\"ci_hi\\\": 0.6279340116183065\\n      },\\n      \\\"majority_vote\\\": {\\n        \\\"mean\\\": 0.6262174429479246,\\n        \\\"ci_lo\\\": 0.6222225446856605,\\n        \\\"ci_hi\\\": 0.6301205104101103\\n      },\\n      \\\"oracle\\\": {\\n        \\\"mean\\\": 0.7071900470107275,\\n        \\\"ci_lo\\\": 0.7035371661179176,\\n        \\\"ci_hi\\\": 0.7107625013114649\\n      },\\n      \\\"consensus_theta2n\\\": {\\n        \\\"mean\\\": 0.6111626607442919,\\n        \\\"ci_lo\\\": 0.6074785195116174,\\n        \\\"ci_hi\\\": 0.6147581689953509\\n      },\\n      \\\"consensus_lp_weighted\\\": {\\n        \\\"mean\\\": 0.626111507645607,\\n        \\\"ci_lo\\\": 0.6222559649507461,\\n        \\\"ci_hi\\\": 0.6300348192551413\\n      }\\n    },\\n    \\\"consensus_variants\\\": {\\n      \\\"high=0.5_medium=0.1\\\": {\\n        \\\"mean\\\": 0.6136367053699407,\\n        \\\"ci_lo\\\": 0.6098874542147631,\\n        \\\"ci_hi\\\": 0.6174653265450104\\n      },\\n      \\\"high=0.6_medium=0.2\\\": {\\n        \\\"mean\\\": 0.6231523493805349,\\n        \\\"ci_lo\\\": 0.6193175350941537,\\n        \\\"ci_hi\\\": 0.6270278326693803\\n      },\\n      \\\"high=0.7_medium=0.3\\\": {\\n        \\\"mean\\\": 0.6255796349350382,\\n        \\\"ci_lo\\\": 0.6216297163810414,\\n        \\\"ci_hi\\\": 0.6294899504242083\\n      }\\n    },\\n    \\\"degeneracy_rate\\\": 0.4622140334715185,\\n    \\\"degeneracy_count\\\": 15052,\\n    \\\"lp_selection_delta\\\": -0.00404322708636351\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 77_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me also get the ZS bootstrap results for the comparison. Let me check what's available.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4dae7b17-8c7d-4862-9526-33c4e4911f2c",
+  "uuid": "1108f4a7-d279-4de6-bd29-fc0aa3aa96a6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018QFLkjW9E2Ghd7FVCbL8Sx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3617,
+      "cache_read_input_tokens": 48247,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3617
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 78_
+
+Now let me get the ZS bootstrap results for a complete comparison.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4dae7b17-8c7d-4862-9526-33c4e4911f2c",
+  "uuid": "e0211ed0-a867-4268-bee1-2c87e73a88a1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018QFLkjW9E2Ghd7FVCbL8Sx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3617,
+      "cache_read_input_tokens": 48247,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3617
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 79_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01WzUpR6j1WJBkK5RfdXVPxs`</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/72b_zeroshot/scierc/paired_bootstrap_result.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4dae7b17-8c7d-4862-9526-33c4e4911f2c",
+  "uuid": "5bb5b138-f7e7-4384-b7ba-3598f35026a9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018QFLkjW9E2Ghd7FVCbL8Sx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3617,
+      "cache_read_input_tokens": 48247,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3617
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 80 · 2026-05-20T00:52:56.695Z_
+
+<details><summary>↩ Tool result · `toolu_01WzUpR6j1WJBkK5RfdXVPxs`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"test\\\": \\\"paired_bootstrap\\\",\\n  \\\"dataset\\\": \\\"scierc_72b_zs\\\",\\n  \\\"n_instances\\\": 529,\\n  \\\"n_samples\\\": 8,\\n  \\\"B\\\": 10000,\\n  \\\"greedy_f1\\\": 0.3993396070428207,\\n  \\\"construction_f1\\\": 0.41463973897533335,\\n  \\\"observed_diff\\\": 0.015300131932512673,\\n  \\\"ci_95\\\": [\\n    0.002528572469081756,\\n    0.028233994960893658\\n  ],\\n  \\\"p_value\\\": 0.0082,\\n  \\\"cohens_d\\\": 0.10265036835468083,\\n  \\\"instance_positive\\\": 119,\\n  \\\"instance_negative\\\": 72,\\n  \\\"instance_tied\\\": 338,\\n  \\\"n_degenerate\\\": 38,\\n  \\\"n_nondegenerate\\\": 491,\\n  \\\"nondegen_greedy_f1\\\": 0.3933967311258554,\\n  \\\"nondegen_construction_f1\\\": 0.40988098732198414,\\n  \\\"nondegen_diff\\\": 0.016484256196128755,\\n  \\\"nondegen_ci_95\\\": [\\n    0.0031366171865752526,\\n    0.030598604169947162\\n  ],\\n  \\\"nondegen_p_value\\\": 0.0069\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4dae7b17-8c7d-4862-9526-33c4e4911f2c",
+  "uuid": "46ee7231-468c-4e06-ae66-61946e44ce3d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"test\\\\\\\": \\\\\\\"paired_bootstrap\\\\\\\",\\\\n  \\\\\\\"dataset\\\\\\\": \\\\\\\"scierc_72b_zs\\\\\\\",\\\\n  \\\\\\\"n_instances\\\\\\\": 529,\\\\n  \\\\\\\"n_samples\\\\\\\": 8,\\\\n  \\\\\\\"B\\\\\\\": 10000,\\\\n  \\\\\\\"greedy_f1\\\\\\\": 0.3993396070428207,\\\\n  \\\\\\\"construction_f1\\\\\\\": 0.41463973897533335,\\\\n  \\\\\\\"observed_diff\\\\\\\": 0.015300131932512673,\\\\n  \\\\\\\"ci_95\\\\\\\": [\\\\n    0.002528572469081756,\\\\n    0.028233994960893658\\\\n  ],\\\\n  \\\\\\\"p_value\\\\\\\": 0.0082,\\\\n  \\\\\\\"cohens_d\\\\\\\": 0.10265036835468083,\\\\n  \\\\\\\"instance_positive\\\\\\\": 119,\\\\n  \\\\\\\"instance_negative\\\\\\\": 72,\\\\n  \\\\\\\"instance_tied\\\\\\\": 338,\\\\n  \\\\\\\"n_degenerate\\\\\\\": 38,\\\\n  \\\\\\\"n_nondegenerate\\\\\\\": 491,\\\\n  \\\\\\\"nondegen_greedy_f1\\\\\\\": 0.3933967311258554,\\\\n  \\\\\\\"nondegen_construction_f1\\\\\\\": 0.40988098732198414,\\\\n  \\\\\\\"nondegen_diff\\\\\\\": 0.016484256196128755,\\\\n  \\\\\\\"nondegen_ci_95\\\\\\\": [\\\\n    0.0031366171865752526,\\\\n    0.030598604169947162\\\\n  ],\\\\n  \\\\\\\"nondegen_p_value\\\\\\\": 0.0069\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"test\\\": \\\"paired_bootstrap\\\",\\n  \\\"dataset\\\": \\\"scierc_72b_zs\\\",\\n  \\\"n_instances\\\": 529,\\n  \\\"n_samples\\\": 8,\\n  \\\"B\\\": 10000,\\n  \\\"greedy_f1\\\": 0.3993396070428207,\\n  \\\"construction_f1\\\": 0.41463973897533335,\\n  \\\"observed_diff\\\": 0.015300131932512673,\\n  \\\"ci_95\\\": [\\n    0.002528572469081756,\\n    0.028233994960893658\\n  ],\\n  \\\"p_value\\\": 0.0082,\\n  \\\"cohens_d\\\": 0.10265036835468083,\\n  \\\"instance_positive\\\": 119,\\n  \\\"instance_negative\\\": 72,\\n  \\\"instance_tied\\\": 338,\\n  \\\"n_degenerate\\\": 38,\\n  \\\"n_nondegenerate\\\": 491,\\n  \\\"nondegen_greedy_f1\\\": 0.3933967311258554,\\n  \\\"nondegen_construction_f1\\\": 0.40988098732198414,\\n  \\\"nondegen_diff\\\": 0.016484256196128755,\\n  \\\"nondegen_ci_95\\\": [\\n    0.0031366171865752526,\\n    0.030598604169947162\\n  ],\\n  \\\"nondegen_p_value\\\": 0.0069\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 81_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_014xGK8tQqPqQyXsSiTb1AW6`</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "command": "find /root/autodl-tmp/struct_self_consist_ie/output/72b_zeroshot -name \"*bootstrap*\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4dae7b17-8c7d-4862-9526-33c4e4911f2c",
+  "uuid": "54785dfd-f43a-41e6-b51a-cd2656e986a2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018QFLkjW9E2Ghd7FVCbL8Sx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3617,
+      "cache_read_input_tokens": 48247,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3617
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 82 · 2026-05-20T00:52:57.179Z_
+
+<details><summary>↩ Tool result · `toolu_014xGK8tQqPqQyXsSiTb1AW6`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/output/72b_zeroshot/scierc/paired_bootstrap_result.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4dae7b17-8c7d-4862-9526-33c4e4911f2c",
+  "uuid": "3c57274e-9fba-4f8c-a7ac-0a00a73a66d3",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/72b_zeroshot/scierc/paired_bootstrap_result.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/output/72b_zeroshot/scierc/paired_bootstrap_result.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 83_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Only SciERC ZS has bootstrap results. The ZS bootstrap for CoNLL and FewNERD don't have bootstrap result files. Let me check the memory.md for the ZS data we were given.
+
+From the task description:
+- SciERC ZS: degen=21.0%, LP ρ=0.081, Greedy=0.399, LP Δ=+1.53pp (p=0.008)
+- FewNERD ZS: degen=46.2%, LP ρ=0.119, Greedy=0.628, LP Δ=-0.20pp
+
+
+- CoNLL ZS: degen=67.7%, LP ρ=-0.002, Greedy=0.712, LP Δ=-0.37pp
+
+Now I'm looking at the actual data with more detailed metrics including oracle scores and additional correlation coefficients for SciERC.
+
+Compiling the full results table... Now I'm looking at the performance metrics across the other datasets—CoNLL and FewNERD show similar patterns where the LP-weighted construction stays close to the greedy baseline with minimal statistical significance, while the zero-shot SciERC results reveal much lower correlation scores across all ranking methods. Now I'm looking at the FewNERD zero-shot results and seeing how they fit into the broader pattern. Across these datasets, I'm noticing that the dual-gating hypothesis—where construction only succeeds when both signal quality and low degeneracy align—seems to hold in some cases but breaks down in others, particularly when comparing the zero-shot and few-shot scenarios. Looking at the dual-gating hypothesis more carefully—SciERC ZS has moderate signal with low degeneracy and works, but FewNERD FS has decent signal with moderate degeneracy yet fails, and SciERC FS has the lowest degeneracy but weakest signal and also doesn't work, so the pattern doesn't cleanly support needing both conditions. but even with both conditions present in FewNERD FS, the improvement stays negligible. The real success case—SciERC ZS—seems to require a specific convergence: low degeneracy enabling output diversity, a meaningful LP signal, and a weak enough greedy baseline to leave room for construction to actually help.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4dae7b17-8c7d-4862-9526-33c4e4911f2c",
+  "uuid": "e45fdb90-a2ce-4ac1-b4e2-f375c7865d99",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JDFqSdE5BG9KVPY2dLbrK5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1022,
+      "cache_read_input_tokens": 51864,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1022
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 84_
+
+所有数据已收集。现在整合 ZS vs FS 完整对比。
+
+先从 ZS report 提取 SJ/FK/VC/EM 的确切值（任务描述中未给全）。
+
+现在编制完整分析报告并保存。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4dae7b17-8c7d-4862-9526-33c4e4911f2c",
+  "uuid": "398adc87-8f1a-4547-8cac-8215181f3885",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JDFqSdE5BG9KVPY2dLbrK5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1022,
+      "cache_read_input_tokens": 51864,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1022
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 85_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__save_project_file · `toolu_014cHBkoVuNoxKqL7khxTLZr`</summary>
+
+```json
+{
+  "project": "struct_self_consist_ie",
+  "file": "memory.md",
+  "content": "# Memory\n\n## exp_qwen25_72b_fewshot 完整结果（2026-05-20）\n\n实验于 2026-05-20 08:47 完成。模型：Qwen2.5-72B-Instruct-AWQ, 3-shot, N=8 samples, seed=42。\n\n### ZS vs FS 完整对比表\n\n| Dataset  | Regime | N inst | Degen% | LP ρ   | SJ ρ  | FK ρ  | VC ρ  | EM ρ  | Greedy F1 | Oracle F1 | LP-wt F1 | LP Δ (pp) | p-value |\n|----------|--------|--------|--------|--------|-------|-------|-------|-------|-----------|-----------|----------|-----------|---------|\n| SciERC   | ZS     | 529    | 21.0%  | 0.081  | 0.217 | 0.227 | 0.277 | 0.181 | 0.399     | 0.549     | 0.415    | +1.53     | 0.008** |\n| SciERC   | FS     | 529    | 16.6%  | 0.060  | 0.293 | 0.301 | 0.258 | 0.205 | 0.461     | 0.604     | 0.461    | -0.08     | 0.544   |\n| CoNLL    | ZS     | 2756   | 67.7%  | -0.002 | 0.304 | 0.302 | 0.297 | 0.281 | 0.712     | 0.765     | 0.708    | -0.37     | n/a     |\n| CoNLL    | FS     | 2756   | 70.0%  | 0.106  | 0.442 | 0.451 | 0.426 | 0.403 | 0.745     | 0.796     | 0.745    | +0.03     | 0.417   |\n| FewNERD  | ZS     | 32565  | 46.2%  | 0.119  | 0.345 | 0.321 | 0.416 | 0.303 | 0.628     | 0.707     | 0.626    | -0.20     | n/a     |\n| FewNERD  | FS     | 32565  | 45.2%  | 0.161  | 0.345 | 0.327 | 0.410 | 0.302 | 0.619     | 0.702     | 0.619    | +0.02     | 0.401   |\n\n### FewNERD FS Bootstrap 详情\n- observed_diff: +0.000154 (+0.02pp)\n- 95% CI: [-0.0011, +0.0014]\n- p-value: 0.4005 (n.s.)\n- Cohen's d: 0.0014\n- Instance positive/negative/tied: 2752/2371/27442 (8.5%/7.3%/84.3%)\n- Non-degen diff: +0.0002 (+0.02pp), p=0.4009\n\n### FS 效果总结\nFew-shot 对基础 NER 性能提升显著：\n- SciERC: F1 0.399→0.461 (+6.2pp)\n- CoNLL: F1 0.712→0.745 (+3.3pp)\n- FewNERD: F1 0.628→0.619 (-0.9pp, 略降)\n\n但 LP-weighted construction 在所有 FS 条件下均不显著：\n- SciERC FS: Δ=-0.08pp (p=0.544)\n- CoNLL FS: Δ=+0.03pp (p=0.417)\n- FewNERD FS: Δ=+0.02pp (p=0.401)\n\n### Dual-gating hypothesis 评估\n\nConstruction 仅在 SciERC ZS 一个条件下显著（+1.53pp, p=0.008）。\n6 个条件中 5 个 n.s.，包括 FewNERD FS（LP ρ=0.161 为全局最高，degen=45.2% 中等）。\n\n**FewNERD FS 是对 dual-gating 的关键检验**：\n- LP ρ = 0.161（六条件中最高）→ signal gate 通过\n- Degen = 45.2%（中等）→ diversity gate 部分通过\n- 结果：Δ=+0.02pp (n.s.)\n\n**结论**：Dual-gating necessary-but-not-sufficient。即使信号质量和多样性条件都满足，construction 仍无效。可能原因：\n1. LP 信号的 ρ 量级本身太弱（即使最高也只有 0.161），无法可靠区分样本质量\n2. 84.3% tied instances 表明绝大多数实例的 8 个样本 F1 相同，construction 无从选择\n3. 非退化实例中，construction vs greedy 的差异仍不显著（nondegen p=0.401）\n\n**LP 信号在 FS 条件下改善但仍不足以驱动有效 construction。Dual-gating 是 construction 成功的必要条件但非充分条件。**\n\n### Signal 质量 ZS→FS 变化趋势\n| Signal | SciERC ZS→FS | CoNLL ZS→FS | FewNERD ZS→FS |\n|--------|-------------|-------------|---------------|\n| LP ρ   | 0.081→0.060 ↓ | -0.002→0.106 ↑ | 0.119→0.161 ↑ |\n| SJ ρ   | 0.217→0.293 ↑ | 0.304→0.442 ↑ | 0.345→0.345 = |\n| FK ρ   | 0.227→0.301 ↑ | 0.302→0.451 ↑ | 0.321→0.327 ↑ |\n| VC ρ   | 0.277→0.258 ↓ | 0.297→0.426 ↑ | 0.416→0.410 ↓ |\n| EM ρ   | 0.181→0.205 ↑ | 0.281→0.403 ↑ | 0.303→0.302 = |\n\nFS 对 CoNLL 所有 signal 大幅提升（SJ +0.14, FK +0.15），但对 FewNERD/SciERC signal 变化有限。\n\n### 文件路径\n- SciERC signals: output/72b_fewshot_signals/scierc/full_signal_report.json\n- CoNLL signals: output/72b_fewshot_signals/conll2003/full_signal_report.json\n- FewNERD signals: output/72b_fewshot_signals/fewnerd/full_signal_report.json\n- SciERC bootstrap: output/72b_fewshot_signals/scierc/scierc_paired_bootstrap_result.json\n- CoNLL bootstrap: output/72b_fewshot_signals/conll2003/conll2003_paired_bootstrap_result.json\n- FewNERD bootstrap: output/72b_fewshot_signals/fewnerd/fewnerd_paired_bootstrap_result.json\n- ZS report: output/72b_zeroshot/full_signal_report.json\n- ZS bootstrap (SciERC): output/72b_zeroshot/scierc/paired_bootstrap_result.json\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4dae7b17-8c7d-4862-9526-33c4e4911f2c",
+  "uuid": "4e5a5aa0-4d8f-4da2-bb1e-9881e6cb862a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JDFqSdE5BG9KVPY2dLbrK5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1022,
+      "cache_read_input_tokens": 51864,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1022
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 86 · 2026-05-20T00:54:07.659Z_
+
+<details><summary>↩ Tool result · `toolu_014cHBkoVuNoxKqL7khxTLZr`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/memory.md\", \"saved\": true}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4dae7b17-8c7d-4862-9526-33c4e4911f2c",
+  "uuid": "047fc6ac-b77b-404c-9cf4-06b7decfada6",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/memory.md\\\", \\\"saved\\\": true}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/memory.md\", \"saved\": true}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 87_
+
+更新 registry。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4dae7b17-8c7d-4862-9526-33c4e4911f2c",
+  "uuid": "715c232f-d5fb-46f9-a820-dceb9fb564f7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CHaSVKinyEAZg5AUucM4TL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4634,
+      "cache_read_input_tokens": 52886,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4634
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 88_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_016sQKx4fAxJHtDXikuFcLL4`</summary>
+
+```json
+{
+  "exp_id": "exp_qwen25_72b_fewshot",
+  "field": "status",
+  "value": "DONE",
+  "project": "struct_self_consist_ie",
+  "spec": {
+    "command": "python code/run_fewshot_ner.py --model Qwen/Qwen2.5-72B-Instruct-AWQ --shots 3 --n-samples 8 --seed 42 --datasets scierc,conll2003,fewnerd --output-dir output/72b_fewshot",
+    "server": "autodl-5090-b",
+    "data_path": "SciERC + CoNLL-2003 + FewNERD test sets",
+    "data_count": 35874,
+    "model_name": "Qwen2.5-72B-Instruct-AWQ",
+    "seed": 42,
+    "checkpoint_source": "Qwen/Qwen2.5-72B-Instruct-AWQ (HF)",
+    "eval_data": "SciERC(529) + CoNLL(2756) + FewNERD(32565)"
+  }
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4dae7b17-8c7d-4862-9526-33c4e4911f2c",
+  "uuid": "001dafce-b2c4-42d8-a7b6-b9a165c634b4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CHaSVKinyEAZg5AUucM4TL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4634,
+      "cache_read_input_tokens": 52886,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4634
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 89 · 2026-05-20T00:54:16.805Z_
+
+<details><summary>↩ Tool result · `toolu_016sQKx4fAxJHtDXikuFcLL4`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Cannot transition to DONE without a 'conclusion' field. Set conclusion first.\", \"metadata\": {\"elapsed_seconds\": 0.4847}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4dae7b17-8c7d-4862-9526-33c4e4911f2c",
+  "uuid": "1c646e16-9a08-4a65-80f1-5c0d2c1c90cd",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Cannot transition to DONE without a 'conclusion' field. Set conclusion first.\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4847}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Cannot transition to DONE without a 'conclusion' field. Set conclusion first.\", \"metadata\": {\"elapsed_seconds\": 0.4847}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 90_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01JYBS2yf33XFDuTDFrjocR2`</summary>
+
+```json
+{
+  "exp_id": "exp_qwen25_72b_fewshot",
+  "field": "hypothesis",
+  "value": "Few-shot prompting improves base NER F1 and LP signal quality, enabling LP-weighted construction to outperform greedy selection via dual-gating (sufficient LP ρ + low degeneracy).",
+  "project": "struct_self_consist_ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4dae7b17-8c7d-4862-9526-33c4e4911f2c",
+  "uuid": "48ac50a5-554e-4f31-bb66-fc46b4aff45e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CPMsWC4U6j8DUV4qKxzEvc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 445,
+      "cache_read_input_tokens": 57520,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 445
+      },
+      "output_tokens": 70,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 91 · 2026-05-20T00:54:22.272Z_
+
+<details><summary>↩ Tool result · `toolu_01JYBS2yf33XFDuTDFrjocR2`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_qwen25_72b_fewshot\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-19T15:59:44.340Z\", \"updated_at\": \"2026-05-20T00:54:21.943Z\", \"hypothesis\": \"Few-shot prompting improves base NER F1 and LP signal quality, enabling LP-weighted construction to outperform greedy selection via dual-gating (sufficient LP ρ + low degeneracy).\", \"parent\": \"exp_qwen25_72b_zeroshot\", \"server\": \"autodl-5090-b\", \"gpu\": \"cuda:0,cuda:1,cuda:2,cuda:3\", \"account\": \"root\", \"reproduce\": {\"server\": \"autodl-5090-b\", \"gpu\": \"cuda:0,cuda:1,cuda:2,cuda:3\", \"started_at\": \"2026-05-19T16:22:20.071Z\", \"finished_at\": \"2026-05-20T00:47:36.445Z\", \"training_hours\": 8.42}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && CUDA_VISIBLE_DEVICES=0,1,2,3 python code/fewshot_inference_72b.py --datasets scierc conll2003 fewnerd --output-dir output/72b_fewshot --seed 42\\\"\", \"server\": \"autodl-5090-b\", \"gpu\": [\"cuda:0\", \"cuda:1\", \"cuda:2\", \"cuda:3\"], \"pid\": 131293, \"log_path\": \"~/runs/struct_self_consist_ie/exp_qwen25_72b_fewshot.log\", \"submitted_at\": \"2026-05-19T16:25:57.711Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/{scierc,conll2003,fewnerd}\", \"data_count\": 41652, \"model_name\": \"Qwen2.5-72B-Instruct-AWQ\", \"seed\": 42, \"gpu_ids\": [\"cuda:0\", \"cuda:1\", \"cuda:2\", \"cuda:3\"], \"checkpoint_source\": \"Qwen2.5-72B-Instruct-AWQ (base model, no fine-tuning)\", \"eval_data\": \"SciERC + CoNLL-2003 + FewNERD test sets\"}, \"metrics\": {\"scierc\": {\"lp_rho\": 0.06, \"sj_rho\": 0.293, \"vc_rho\": 0.258, \"degen\": 16.6, \"construction_lp_delta\": -0.08, \"greedy_f1\": 0.461, \"oracle_f1\": 0.604}, \"conll\": {\"lp_rho\": 0.106, \"sj_rho\": 0.442, \"vc_rho\": 0.426, \"degen\": 70, \"construction_lp_delta\": 0.03, \"greedy_f1\": 0.745, \"oracle_f1\": 0.796}, \"fewnerd\": \"pipeline pending (~00:45 UTC)\", \"eta\": \"FewNERD greedy pass completing, signal pipeline next\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T00:47:43.131229+00:00\"}]}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.798}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4dae7b17-8c7d-4862-9526-33c4e4911f2c",
+  "uuid": "8a0f7bb3-36c5-4907-bdac-c9e0e3046d5d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_qwen25_72b_fewshot\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T15:59:44.340Z\\\", \\\"updated_at\\\": \\\"2026-05-20T00:54:21.943Z\\\", \\\"hypothesis\\\": \\\"Few-shot prompting improves base NER F1 and LP signal quality, enabling LP-weighted construction to outperform greedy selection via dual-gating (sufficient LP ρ + low degeneracy).\\\", \\\"parent\\\": \\\"exp_qwen25_72b_zeroshot\\\", \\\"server\\\": \\\"autodl-5090-b\\\", \\\"gpu\\\": \\\"cuda:0,cuda:1,cuda:2,cuda:3\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"autodl-5090-b\\\", \\\"gpu\\\": \\\"cuda:0,cuda:1,cuda:2,cuda:3\\\", \\\"started_at\\\": \\\"2026-05-19T16:22:20.071Z\\\", \\\"finished_at\\\": \\\"2026-05-20T00:47:36.445Z\\\", \\\"training_hours\\\": 8.42}, \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && CUDA_VISIBLE_DEVICES=0,1,2,3 python code/fewshot_inference_72b.py --datasets scierc conll2003 fewnerd --output-dir output/72b_fewshot --seed 42\\\\\\\"\\\", \\\"server\\\": \\\"autodl-5090-b\\\", \\\"gpu\\\": [\\\"cuda:0\\\", \\\"cuda:1\\\", \\\"cuda:2\\\", \\\"cuda:3\\\"], \\\"pid\\\": 131293, \\\"log_path\\\": \\\"~/runs/struct_self_consist_ie/exp_qwen25_72b_fewshot.log\\\", \\\"submitted_at\\\": \\\"2026-05-19T16:25:57.711Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"data/{scierc,conll2003,fewnerd}\\\", \\\"data_count\\\": 41652, \\\"model_name\\\": \\\"Qwen2.5-72B-Instruct-AWQ\\\", \\\"seed\\\": 42, \\\"gpu_ids\\\": [\\\"cuda:0\\\", \\\"cuda:1\\\", \\\"cuda:2\\\", \\\"cuda:3\\\"], \\\"checkpoint_source\\\": \\\"Qwen2.5-72B-Instruct-AWQ (base model, no fine-tuning)\\\", \\\"eval_data\\\": \\\"SciERC + CoNLL-2003 + FewNERD test sets\\\"}, \\\"metrics\\\": {\\\"scierc\\\": {\\\"lp_rho\\\": 0.06, \\\"sj_rho\\\": 0.293, \\\"vc_rho\\\": 0.258, \\\"degen\\\": 16.6, \\\"construction_lp_delta\\\": -0.08, \\\"greedy_f1\\\": 0.461, \\\"oracle_f1\\\": 0.604}, \\\"conll\\\": {\\\"lp_rho\\\": 0.106, \\\"sj_rho\\\": 0.442, \\\"vc_rho\\\": 0.426, \\\"degen\\\": 70, \\\"construction_lp_delta\\\": 0.03, \\\"greedy_f1\\\": 0.745, \\\"oracle_f1\\\": 0.796}, \\\"fewnerd\\\": \\\"pipeline pending (~00:45 UTC)\\\", \\\"eta\\\": \\\"FewNERD greedy pass completing, signal pipeline next\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-20T00:47:43.131229+00:00\\\"}]}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.798}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp_qwen25_72b_fewshot\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-19T15:59:44.340Z\", \"updated_at\": \"2026-05-20T00:54:21.943Z\", \"hypothesis\": \"Few-shot prompting improves base NER F1 and LP signal quality, enabling LP-weighted construction to outperform greedy selection via dual-gating (sufficient LP ρ + low degeneracy).\", \"parent\": \"exp_qwen25_72b_zeroshot\", \"server\": \"autodl-5090-b\", \"gpu\": \"cuda:0,cuda:1,cuda:2,cuda:3\", \"account\": \"root\", \"reproduce\": {\"server\": \"autodl-5090-b\", \"gpu\": \"cuda:0,cuda:1,cuda:2,cuda:3\", \"started_at\": \"2026-05-19T16:22:20.071Z\", \"finished_at\": \"2026-05-20T00:47:36.445Z\", \"training_hours\": 8.42}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && CUDA_VISIBLE_DEVICES=0,1,2,3 python code/fewshot_inference_72b.py --datasets scierc conll2003 fewnerd --output-dir output/72b_fewshot --seed 42\\\"\", \"server\": \"autodl-5090-b\", \"gpu\": [\"cuda:0\", \"cuda:1\", \"cuda:2\", \"cuda:3\"], \"pid\": 131293, \"log_path\": \"~/runs/struct_self_consist_ie/exp_qwen25_72b_fewshot.log\", \"submitted_at\": \"2026-05-19T16:25:57.711Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/{scierc,conll2003,fewnerd}\", \"data_count\": 41652, \"model_name\": \"Qwen2.5-72B-Instruct-AWQ\", \"seed\": 42, \"gpu_ids\": [\"cuda:0\", \"cuda:1\", \"cuda:2\", \"cuda:3\"], \"checkpoint_source\": \"Qwen2.5-72B-Instruct-AWQ (base model, no fine-tuning)\", \"eval_data\": \"SciERC + CoNLL-2003 + FewNERD test sets\"}, \"metrics\": {\"scierc\": {\"lp_rho\": 0.06, \"sj_rho\": 0.293, \"vc_rho\": 0.258, \"degen\": 16.6, \"construction_lp_delta\": -0.08, \"greedy_f1\": 0.461, \"oracle_f1\": 0.604}, \"conll\": {\"lp_rho\": 0.106, \"sj_rho\": 0.442, \"vc_rho\": 0.426, \"degen\": 70, \"construction_lp_delta\": 0.03, \"greedy_f1\": 0.745, \"oracle_f1\": 0.796}, \"fewnerd\": \"pipeline pending (~00:45 UTC)\", \"eta\": \"FewNERD greedy pass completing, signal pipeline next\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T00:47:43.131229+00:00\"}]}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.798}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 92_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01JaV6e9uvQgEHC1SgDQkcZT`</summary>
+
+```json
+{
+  "exp_id": "exp_qwen25_72b_fewshot",
+  "field": "metrics",
+  "value": {
+    "scierc": {
+      "lp_rho": 0.06,
+      "sj_rho": 0.293,
+      "fk_rho": 0.301,
+      "vc_rho": 0.258,
+      "em_rho": 0.205,
+      "degen_pct": 16.6,
+      "greedy_f1": 0.461,
+      "oracle_f1": 0.604,
+      "construction_f1": 0.461,
+      "construction_delta_pp": -0.08,
+      "bootstrap_p": 0.544
+    },
+    "conll": {
+      "lp_rho": 0.106,
+      "sj_rho": 0.442,
+      "fk_rho": 0.451,
+      "vc_rho": 0.426,
+      "em_rho": 0.403,
+      "degen_pct": 70,
+      "greedy_f1": 0.745,
+      "oracle_f1": 0.796,
+      "construction_f1": 0.745,
+      "construction_delta_pp": 0.03,
+      "bootstrap_p": 0.417
+    },
+    "fewnerd": {
+      "lp_rho": 0.161,
+      "sj_rho": 0.345,
+      "fk_rho": 0.327,
+      "vc_rho": 0.41,
+      "em_rho": 0.302,
+      "degen_pct": 45.2,
+      "greedy_f1": 0.619,
+      "oracle_f1": 0.702,
+      "construction_f1": 0.619,
+      "construction_delta_pp": 0.02,
+      "bootstrap_p": 0.401
+    }
+  },
+  "project": "struct_self_consist_ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4dae7b17-8c7d-4862-9526-33c4e4911f2c",
+  "uuid": "1da10f2f-8826-4cac-b13b-06abf26e662c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UZpyENgfAqYSBqrccN5UGH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1243,
+      "cache_read_input_tokens": 57965,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1243
+      },
+      "output_tokens": 54,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 93 · 2026-05-20T00:54:30.887Z_
+
+<details><summary>↩ Tool result · `toolu_01JaV6e9uvQgEHC1SgDQkcZT`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_qwen25_72b_fewshot\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-19T15:59:44.340Z\", \"updated_at\": \"2026-05-20T00:54:30.274Z\", \"hypothesis\": \"Few-shot prompting improves base NER F1 and LP signal quality, enabling LP-weighted construction to outperform greedy selection via dual-gating (sufficient LP ρ + low degeneracy).\", \"parent\": \"exp_qwen25_72b_zeroshot\", \"server\": \"autodl-5090-b\", \"gpu\": \"cuda:0,cuda:1,cuda:2,cuda:3\", \"account\": \"root\", \"reproduce\": {\"server\": \"autodl-5090-b\", \"gpu\": \"cuda:0,cuda:1,cuda:2,cuda:3\", \"started_at\": \"2026-05-19T16:22:20.071Z\", \"finished_at\": \"2026-05-20T00:47:36.445Z\", \"training_hours\": 8.42}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && CUDA_VISIBLE_DEVICES=0,1,2,3 python code/fewshot_inference_72b.py --datasets scierc conll2003 fewnerd --output-dir output/72b_fewshot --seed 42\\\"\", \"server\": \"autodl-5090-b\", \"gpu\": [\"cuda:0\", \"cuda:1\", \"cuda:2\", \"cuda:3\"], \"pid\": 131293, \"log_path\": \"~/runs/struct_self_consist_ie/exp_qwen25_72b_fewshot.log\", \"submitted_at\": \"2026-05-19T16:25:57.711Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/{scierc,conll2003,fewnerd}\", \"data_count\": 41652, \"model_name\": \"Qwen2.5-72B-Instruct-AWQ\", \"seed\": 42, \"gpu_ids\": [\"cuda:0\", \"cuda:1\", \"cuda:2\", \"cuda:3\"], \"checkpoint_source\": \"Qwen2.5-72B-Instruct-AWQ (base model, no fine-tuning)\", \"eval_data\": \"SciERC + CoNLL-2003 + FewNERD test sets\"}, \"metrics\": {\"scierc\": {\"lp_rho\": 0.06, \"sj_rho\": 0.293, \"fk_rho\": 0.301, \"vc_rho\": 0.258, \"em_rho\": 0.205, \"degen_pct\": 16.6, \"greedy_f1\": 0.461, \"oracle_f1\": 0.604, \"construction_f1\": 0.461, \"construction_delta_pp\": -0.08, \"bootstrap_p\": 0.544}, \"conll\": {\"lp_rho\": 0.106, \"sj_rho\": 0.442, \"fk_rho\": 0.451, \"vc_rho\": 0.426, \"em_rho\": 0.403, \"degen_pct\": 70, \"greedy_f1\": 0.745, \"oracle_f1\": 0.796, \"construction_f1\": 0.745, \"construction_delta_pp\": 0.03, \"bootstrap_p\": 0.417}, \"fewnerd\": {\"lp_rho\": 0.161, \"sj_rho\": 0.345, \"fk_rho\": 0.327, \"vc_rho\": 0.41, \"em_rho\": 0.302, \"degen_pct\": 45.2, \"greedy_f1\": 0.619, \"oracle_f1\": 0.702, \"construction_f1\": 0.619, \"construction_delta_pp\": 0.02, \"bootstrap_p\": 0.401}}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T00:47:43.131229+00:00\"}]}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.2963}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4dae7b17-8c7d-4862-9526-33c4e4911f2c",
+  "uuid": "94060e26-3b6c-43e8-a525-17c2626dd60c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_qwen25_72b_fewshot\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T15:59:44.340Z\\\", \\\"updated_at\\\": \\\"2026-05-20T00:54:30.274Z\\\", \\\"hypothesis\\\": \\\"Few-shot prompting improves base NER F1 and LP signal quality, enabling LP-weighted construction to outperform greedy selection via dual-gating (sufficient LP ρ + low degeneracy).\\\", \\\"parent\\\": \\\"exp_qwen25_72b_zeroshot\\\", \\\"server\\\": \\\"autodl-5090-b\\\", \\\"gpu\\\": \\\"cuda:0,cuda:1,cuda:2,cuda:3\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"autodl-5090-b\\\", \\\"gpu\\\": \\\"cuda:0,cuda:1,cuda:2,cuda:3\\\", \\\"started_at\\\": \\\"2026-05-19T16:22:20.071Z\\\", \\\"finished_at\\\": \\\"2026-05-20T00:47:36.445Z\\\", \\\"training_hours\\\": 8.42}, \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && CUDA_VISIBLE_DEVICES=0,1,2,3 python code/fewshot_inference_72b.py --datasets scierc conll2003 fewnerd --output-dir output/72b_fewshot --seed 42\\\\\\\"\\\", \\\"server\\\": \\\"autodl-5090-b\\\", \\\"gpu\\\": [\\\"cuda:0\\\", \\\"cuda:1\\\", \\\"cuda:2\\\", \\\"cuda:3\\\"], \\\"pid\\\": 131293, \\\"log_path\\\": \\\"~/runs/struct_self_consist_ie/exp_qwen25_72b_fewshot.log\\\", \\\"submitted_at\\\": \\\"2026-05-19T16:25:57.711Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"data/{scierc,conll2003,fewnerd}\\\", \\\"data_count\\\": 41652, \\\"model_name\\\": \\\"Qwen2.5-72B-Instruct-AWQ\\\", \\\"seed\\\": 42, \\\"gpu_ids\\\": [\\\"cuda:0\\\", \\\"cuda:1\\\", \\\"cuda:2\\\", \\\"cuda:3\\\"], \\\"checkpoint_source\\\": \\\"Qwen2.5-72B-Instruct-AWQ (base model, no fine-tuning)\\\", \\\"eval_data\\\": \\\"SciERC + CoNLL-2003 + FewNERD test sets\\\"}, \\\"metrics\\\": {\\\"scierc\\\": {\\\"lp_rho\\\": 0.06, \\\"sj_rho\\\": 0.293, \\\"fk_rho\\\": 0.301, \\\"vc_rho\\\": 0.258, \\\"em_rho\\\": 0.205, \\\"degen_pct\\\": 16.6, \\\"greedy_f1\\\": 0.461, \\\"oracle_f1\\\": 0.604, \\\"construction_f1\\\": 0.461, \\\"construction_delta_pp\\\": -0.08, \\\"bootstrap_p\\\": 0.544}, \\\"conll\\\": {\\\"lp_rho\\\": 0.106, \\\"sj_rho\\\": 0.442, \\\"fk_rho\\\": 0.451, \\\"vc_rho\\\": 0.426, \\\"em_rho\\\": 0.403, \\\"degen_pct\\\": 70, \\\"greedy_f1\\\": 0.745, \\\"oracle_f1\\\": 0.796, \\\"construction_f1\\\": 0.745, \\\"construction_delta_pp\\\": 0.03, \\\"bootstrap_p\\\": 0.417}, \\\"fewnerd\\\": {\\\"lp_rho\\\": 0.161, \\\"sj_rho\\\": 0.345, \\\"fk_rho\\\": 0.327, \\\"vc_rho\\\": 0.41, \\\"em_rho\\\": 0.302, \\\"degen_pct\\\": 45.2, \\\"greedy_f1\\\": 0.619, \\\"oracle_f1\\\": 0.702, \\\"construction_f1\\\": 0.619, \\\"construction_delta_pp\\\": 0.02, \\\"bootstrap_p\\\": 0.401}}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-20T00:47:43.131229+00:00\\\"}]}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.2963}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp_qwen25_72b_fewshot\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-19T15:59:44.340Z\", \"updated_at\": \"2026-05-20T00:54:30.274Z\", \"hypothesis\": \"Few-shot prompting improves base NER F1 and LP signal quality, enabling LP-weighted construction to outperform greedy selection via dual-gating (sufficient LP ρ + low degeneracy).\", \"parent\": \"exp_qwen25_72b_zeroshot\", \"server\": \"autodl-5090-b\", \"gpu\": \"cuda:0,cuda:1,cuda:2,cuda:3\", \"account\": \"root\", \"reproduce\": {\"server\": \"autodl-5090-b\", \"gpu\": \"cuda:0,cuda:1,cuda:2,cuda:3\", \"started_at\": \"2026-05-19T16:22:20.071Z\", \"finished_at\": \"2026-05-20T00:47:36.445Z\", \"training_hours\": 8.42}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && CUDA_VISIBLE_DEVICES=0,1,2,3 python code/fewshot_inference_72b.py --datasets scierc conll2003 fewnerd --output-dir output/72b_fewshot --seed 42\\\"\", \"server\": \"autodl-5090-b\", \"gpu\": [\"cuda:0\", \"cuda:1\", \"cuda:2\", \"cuda:3\"], \"pid\": 131293, \"log_path\": \"~/runs/struct_self_consist_ie/exp_qwen25_72b_fewshot.log\", \"submitted_at\": \"2026-05-19T16:25:57.711Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/{scierc,conll2003,fewnerd}\", \"data_count\": 41652, \"model_name\": \"Qwen2.5-72B-Instruct-AWQ\", \"seed\": 42, \"gpu_ids\": [\"cuda:0\", \"cuda:1\", \"cuda:2\", \"cuda:3\"], \"checkpoint_source\": \"Qwen2.5-72B-Instruct-AWQ (base model, no fine-tuning)\", \"eval_data\": \"SciERC + CoNLL-2003 + FewNERD test sets\"}, \"metrics\": {\"scierc\": {\"lp_rho\": 0.06, \"sj_rho\": 0.293, \"fk_rho\": 0.301, \"vc_rho\": 0.258, \"em_rho\": 0.205, \"degen_pct\": 16.6, \"greedy_f1\": 0.461, \"oracle_f1\": 0.604, \"construction_f1\": 0.461, \"construction_delta_pp\": -0.08, \"bootstrap_p\": 0.544}, \"conll\": {\"lp_rho\": 0.106, \"sj_rho\": 0.442, \"fk_rho\": 0.451, \"vc_rho\": 0.426, \"em_rho\": 0.403, \"degen_pct\": 70, \"greedy_f1\": 0.745, \"oracle_f1\": 0.796, \"construction_f1\": 0.745, \"construction_delta_pp\": 0.03, \"bootstrap_p\": 0.417}, \"fewnerd\": {\"lp_rho\": 0.161, \"sj_rho\": 0.345, \"fk_rho\": 0.327, \"vc_rho\": 0.41, \"em_rho\": 0.302, \"degen_pct\": 45.2, \"greedy_f1\": 0.619, \"oracle_f1\": 0.702, \"construction_f1\": 0.619, \"construction_delta_pp\": 0.02, \"bootstrap_p\": 0.401}}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T00:47:43.131229+00:00\"}]}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.2963}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 94_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01SBkyTCWcVKtS36uSHbZLEv`</summary>
+
+```json
+{
+  "exp_id": "exp_qwen25_72b_fewshot",
+  "field": "conclusion",
+  "value": "NEGATIVE. Few-shot improves greedy NER F1 (SciERC +6.2pp, CoNLL +3.3pp) and LP signal quality (CoNLL LP ρ: -0.002→0.106, FewNERD: 0.119→0.161), but LP-weighted construction fails to outperform greedy in ALL 3 FS conditions (SciERC Δ=-0.08pp p=0.544, CoNLL Δ=+0.03pp p=0.417, FewNERD Δ=+0.02pp p=0.401). FewNERD FS is the critical test: highest LP ρ (0.161) + moderate degen (45.2%) yet construction is flat. 84.3% of instances are tied (greedy=construction). Dual-gating is necessary but not sufficient — even with both gates met, LP ρ magnitude (~0.16 max) is too weak for reliable sample discrimination.",
+  "project": "struct_self_consist_ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4dae7b17-8c7d-4862-9526-33c4e4911f2c",
+  "uuid": "c1e4d095-f19c-4867-bcc8-9a423536ee0f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FwoAAEiG55QuSaEmD9eEgu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1799,
+      "cache_read_input_tokens": 59208,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1799
+      },
+      "output_tokens": 50,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 95 · 2026-05-20T00:54:41.383Z_
+
+<details><summary>↩ Tool result · `toolu_01SBkyTCWcVKtS36uSHbZLEv`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Invalid conclusion 'NEGATIVE. Few-shot improves greedy NER F1 (SciERC +6.2pp, CoNLL +3.3pp) and LP signal quality (CoNLL LP ρ: -0.002→0.106, FewNERD: 0.119→0.161), but LP-weighted construction fails to outperform greedy in ALL 3 FS conditions (SciERC Δ=-0.08pp p=0.544, CoNLL Δ=+0.03pp p=0.417, FewNERD Δ=+0.02pp p=0.401). FewNERD FS is the critical test: highest LP ρ (0.161) + moderate degen (45.2%) yet construction is flat. 84.3% of instances are tied (greedy=construction). Dual-gating is necessary but not sufficient — even with both gates met, LP ρ magnitude (~0.16 max) is too weak for reliable sample discrimination.'. Valid: ['failed', 'killed', 'negative', 'success']\", \"metadata\": {\"elapsed_seconds\": 0.4608}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4dae7b17-8c7d-4862-9526-33c4e4911f2c",
+  "uuid": "42fc6be6-595b-4bf6-b9be-93f0a7edfa3f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid conclusion 'NEGATIVE. Few-shot improves greedy NER F1 (SciERC +6.2pp, CoNLL +3.3pp) and LP signal quality (CoNLL LP ρ: -0.002→0.106, FewNERD: 0.119→0.161), but LP-weighted construction fails to outperform greedy in ALL 3 FS conditions (SciERC Δ=-0.08pp p=0.544, CoNLL Δ=+0.03pp p=0.417, FewNERD Δ=+0.02pp p=0.401). FewNERD FS is the critical test: highest LP ρ (0.161) + moderate degen (45.2%) yet construction is flat. 84.3% of instances are tied (greedy=construction). Dual-gating is necessary but not sufficient — even with both gates met, LP ρ magnitude (~0.16 max) is too weak for reliable sample discrimination.'. Valid: ['failed', 'killed', 'negative', 'success']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4608}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Invalid conclusion 'NEGATIVE. Few-shot improves greedy NER F1 (SciERC +6.2pp, CoNLL +3.3pp) and LP signal quality (CoNLL LP ρ: -0.002→0.106, FewNERD: 0.119→0.161), but LP-weighted construction fails to outperform greedy in ALL 3 FS conditions (SciERC Δ=-0.08pp p=0.544, CoNLL Δ=+0.03pp p=0.417, FewNERD Δ=+0.02pp p=0.401). FewNERD FS is the critical test: highest LP ρ (0.161) + moderate degen (45.2%) yet construction is flat. 84.3% of instances are tied (greedy=construction). Dual-gating is necessary but not sufficient — even with both gates met, LP ρ magnitude (~0.16 max) is too weak for reliable sample discrimination.'. Valid: ['failed', 'killed', 'negative', 'success']\", \"metadata\": {\"elapsed_seconds\": 0.4608}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 96_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01N5kG2D18x6cxMza8Q7DzVA`</summary>
+
+```json
+{
+  "exp_id": "exp_qwen25_72b_fewshot",
+  "field": "conclusion",
+  "value": "negative",
+  "project": "struct_self_consist_ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4dae7b17-8c7d-4862-9526-33c4e4911f2c",
+  "uuid": "20ad2e76-bf21-478c-8109-724084c8e331",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XXTNJsnHXv4PvKR2Gcr4w7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 679,
+      "cache_read_input_tokens": 61007,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 679
+      },
+      "output_tokens": 73,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 97 · 2026-05-20T00:54:44.544Z_
+
+<details><summary>↩ Tool result · `toolu_01N5kG2D18x6cxMza8Q7DzVA`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_qwen25_72b_fewshot\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-19T15:59:44.340Z\", \"updated_at\": \"2026-05-20T00:54:44.231Z\", \"hypothesis\": \"Few-shot prompting improves base NER F1 and LP signal quality, enabling LP-weighted construction to outperform greedy selection via dual-gating (sufficient LP ρ + low degeneracy).\", \"parent\": \"exp_qwen25_72b_zeroshot\", \"server\": \"autodl-5090-b\", \"gpu\": \"cuda:0,cuda:1,cuda:2,cuda:3\", \"account\": \"root\", \"reproduce\": {\"server\": \"autodl-5090-b\", \"gpu\": \"cuda:0,cuda:1,cuda:2,cuda:3\", \"started_at\": \"2026-05-19T16:22:20.071Z\", \"finished_at\": \"2026-05-20T00:47:36.445Z\", \"training_hours\": 8.42}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && CUDA_VISIBLE_DEVICES=0,1,2,3 python code/fewshot_inference_72b.py --datasets scierc conll2003 fewnerd --output-dir output/72b_fewshot --seed 42\\\"\", \"server\": \"autodl-5090-b\", \"gpu\": [\"cuda:0\", \"cuda:1\", \"cuda:2\", \"cuda:3\"], \"pid\": 131293, \"log_path\": \"~/runs/struct_self_consist_ie/exp_qwen25_72b_fewshot.log\", \"submitted_at\": \"2026-05-19T16:25:57.711Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/{scierc,conll2003,fewnerd}\", \"data_count\": 41652, \"model_name\": \"Qwen2.5-72B-Instruct-AWQ\", \"seed\": 42, \"gpu_ids\": [\"cuda:0\", \"cuda:1\", \"cuda:2\", \"cuda:3\"], \"checkpoint_source\": \"Qwen2.5-72B-Instruct-AWQ (base model, no fine-tuning)\", \"eval_data\": \"SciERC + CoNLL-2003 + FewNERD test sets\"}, \"metrics\": {\"scierc\": {\"lp_rho\": 0.06, \"sj_rho\": 0.293, \"fk_rho\": 0.301, \"vc_rho\": 0.258, \"em_rho\": 0.205, \"degen_pct\": 16.6, \"greedy_f1\": 0.461, \"oracle_f1\": 0.604, \"construction_f1\": 0.461, \"construction_delta_pp\": -0.08, \"bootstrap_p\": 0.544}, \"conll\": {\"lp_rho\": 0.106, \"sj_rho\": 0.442, \"fk_rho\": 0.451, \"vc_rho\": 0.426, \"em_rho\": 0.403, \"degen_pct\": 70, \"greedy_f1\": 0.745, \"oracle_f1\": 0.796, \"construction_f1\": 0.745, \"construction_delta_pp\": 0.03, \"bootstrap_p\": 0.417}, \"fewnerd\": {\"lp_rho\": 0.161, \"sj_rho\": 0.345, \"fk_rho\": 0.327, \"vc_rho\": 0.41, \"em_rho\": 0.302, \"degen_pct\": 45.2, \"greedy_f1\": 0.619, \"oracle_f1\": 0.702, \"construction_f1\": 0.619, \"construction_delta_pp\": 0.02, \"bootstrap_p\": 0.401}}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T00:47:43.131229+00:00\"}]}, \"conclusion\": \"negative\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7834}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4dae7b17-8c7d-4862-9526-33c4e4911f2c",
+  "uuid": "4301a872-34c0-42da-b9e3-c4cce57c7fbf",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_qwen25_72b_fewshot\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T15:59:44.340Z\\\", \\\"updated_at\\\": \\\"2026-05-20T00:54:44.231Z\\\", \\\"hypothesis\\\": \\\"Few-shot prompting improves base NER F1 and LP signal quality, enabling LP-weighted construction to outperform greedy selection via dual-gating (sufficient LP ρ + low degeneracy).\\\", \\\"parent\\\": \\\"exp_qwen25_72b_zeroshot\\\", \\\"server\\\": \\\"autodl-5090-b\\\", \\\"gpu\\\": \\\"cuda:0,cuda:1,cuda:2,cuda:3\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"autodl-5090-b\\\", \\\"gpu\\\": \\\"cuda:0,cuda:1,cuda:2,cuda:3\\\", \\\"started_at\\\": \\\"2026-05-19T16:22:20.071Z\\\", \\\"finished_at\\\": \\\"2026-05-20T00:47:36.445Z\\\", \\\"training_hours\\\": 8.42}, \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && CUDA_VISIBLE_DEVICES=0,1,2,3 python code/fewshot_inference_72b.py --datasets scierc conll2003 fewnerd --output-dir output/72b_fewshot --seed 42\\\\\\\"\\\", \\\"server\\\": \\\"autodl-5090-b\\\", \\\"gpu\\\": [\\\"cuda:0\\\", \\\"cuda:1\\\", \\\"cuda:2\\\", \\\"cuda:3\\\"], \\\"pid\\\": 131293, \\\"log_path\\\": \\\"~/runs/struct_self_consist_ie/exp_qwen25_72b_fewshot.log\\\", \\\"submitted_at\\\": \\\"2026-05-19T16:25:57.711Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"data/{scierc,conll2003,fewnerd}\\\", \\\"data_count\\\": 41652, \\\"model_name\\\": \\\"Qwen2.5-72B-Instruct-AWQ\\\", \\\"seed\\\": 42, \\\"gpu_ids\\\": [\\\"cuda:0\\\", \\\"cuda:1\\\", \\\"cuda:2\\\", \\\"cuda:3\\\"], \\\"checkpoint_source\\\": \\\"Qwen2.5-72B-Instruct-AWQ (base model, no fine-tuning)\\\", \\\"eval_data\\\": \\\"SciERC + CoNLL-2003 + FewNERD test sets\\\"}, \\\"metrics\\\": {\\\"scierc\\\": {\\\"lp_rho\\\": 0.06, \\\"sj_rho\\\": 0.293, \\\"fk_rho\\\": 0.301, \\\"vc_rho\\\": 0.258, \\\"em_rho\\\": 0.205, \\\"degen_pct\\\": 16.6, \\\"greedy_f1\\\": 0.461, \\\"oracle_f1\\\": 0.604, \\\"construction_f1\\\": 0.461, \\\"construction_delta_pp\\\": -0.08, \\\"bootstrap_p\\\": 0.544}, \\\"conll\\\": {\\\"lp_rho\\\": 0.106, \\\"sj_rho\\\": 0.442, \\\"fk_rho\\\": 0.451, \\\"vc_rho\\\": 0.426, \\\"em_rho\\\": 0.403, \\\"degen_pct\\\": 70, \\\"greedy_f1\\\": 0.745, \\\"oracle_f1\\\": 0.796, \\\"construction_f1\\\": 0.745, \\\"construction_delta_pp\\\": 0.03, \\\"bootstrap_p\\\": 0.417}, \\\"fewnerd\\\": {\\\"lp_rho\\\": 0.161, \\\"sj_rho\\\": 0.345, \\\"fk_rho\\\": 0.327, \\\"vc_rho\\\": 0.41, \\\"em_rho\\\": 0.302, \\\"degen_pct\\\": 45.2, \\\"greedy_f1\\\": 0.619, \\\"oracle_f1\\\": 0.702, \\\"construction_f1\\\": 0.619, \\\"construction_delta_pp\\\": 0.02, \\\"bootstrap_p\\\": 0.401}}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-20T00:47:43.131229+00:00\\\"}]}, \\\"conclusion\\\": \\\"negative\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.7834}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp_qwen25_72b_fewshot\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-19T15:59:44.340Z\", \"updated_at\": \"2026-05-20T00:54:44.231Z\", \"hypothesis\": \"Few-shot prompting improves base NER F1 and LP signal quality, enabling LP-weighted construction to outperform greedy selection via dual-gating (sufficient LP ρ + low degeneracy).\", \"parent\": \"exp_qwen25_72b_zeroshot\", \"server\": \"autodl-5090-b\", \"gpu\": \"cuda:0,cuda:1,cuda:2,cuda:3\", \"account\": \"root\", \"reproduce\": {\"server\": \"autodl-5090-b\", \"gpu\": \"cuda:0,cuda:1,cuda:2,cuda:3\", \"started_at\": \"2026-05-19T16:22:20.071Z\", \"finished_at\": \"2026-05-20T00:47:36.445Z\", \"training_hours\": 8.42}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && CUDA_VISIBLE_DEVICES=0,1,2,3 python code/fewshot_inference_72b.py --datasets scierc conll2003 fewnerd --output-dir output/72b_fewshot --seed 42\\\"\", \"server\": \"autodl-5090-b\", \"gpu\": [\"cuda:0\", \"cuda:1\", \"cuda:2\", \"cuda:3\"], \"pid\": 131293, \"log_path\": \"~/runs/struct_self_consist_ie/exp_qwen25_72b_fewshot.log\", \"submitted_at\": \"2026-05-19T16:25:57.711Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/{scierc,conll2003,fewnerd}\", \"data_count\": 41652, \"model_name\": \"Qwen2.5-72B-Instruct-AWQ\", \"seed\": 42, \"gpu_ids\": [\"cuda:0\", \"cuda:1\", \"cuda:2\", \"cuda:3\"], \"checkpoint_source\": \"Qwen2.5-72B-Instruct-AWQ (base model, no fine-tuning)\", \"eval_data\": \"SciERC + CoNLL-2003 + FewNERD test sets\"}, \"metrics\": {\"scierc\": {\"lp_rho\": 0.06, \"sj_rho\": 0.293, \"fk_rho\": 0.301, \"vc_rho\": 0.258, \"em_rho\": 0.205, \"degen_pct\": 16.6, \"greedy_f1\": 0.461, \"oracle_f1\": 0.604, \"construction_f1\": 0.461, \"construction_delta_pp\": -0.08, \"bootstrap_p\": 0.544}, \"conll\": {\"lp_rho\": 0.106, \"sj_rho\": 0.442, \"fk_rho\": 0.451, \"vc_rho\": 0.426, \"em_rho\": 0.403, \"degen_pct\": 70, \"greedy_f1\": 0.745, \"oracle_f1\": 0.796, \"construction_f1\": 0.745, \"construction_delta_pp\": 0.03, \"bootstrap_p\": 0.417}, \"fewnerd\": {\"lp_rho\": 0.161, \"sj_rho\": 0.345, \"fk_rho\": 0.327, \"vc_rho\": 0.41, \"em_rho\": 0.302, \"degen_pct\": 45.2, \"greedy_f1\": 0.619, \"oracle_f1\": 0.702, \"construction_f1\": 0.619, \"construction_delta_pp\": 0.02, \"bootstrap_p\": 0.401}}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T00:47:43.131229+00:00\"}]}, \"conclusion\": \"negative\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7834}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 98_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_0157EvndEqGw6FBLFuwZMhky`</summary>
+
+```json
+{
+  "exp_id": "exp_qwen25_72b_fewshot",
+  "field": "checkpoint_path",
+  "value": "output/72b_fewshot/ + output/72b_fewshot_signals/",
+  "project": "struct_self_consist_ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4dae7b17-8c7d-4862-9526-33c4e4911f2c",
+  "uuid": "d404e6c6-8129-452a-9b2b-6772cbcaf111",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0128o8PezZFHvyCDqwW3cyWc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1415,
+      "cache_read_input_tokens": 61686,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1415
+      },
+      "output_tokens": 50,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 99 · 2026-05-20T00:54:53.580Z_
+
+<details><summary>↩ Tool result · `toolu_0157EvndEqGw6FBLFuwZMhky`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_qwen25_72b_fewshot\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-19T15:59:44.340Z\", \"updated_at\": \"2026-05-20T00:54:53.227Z\", \"hypothesis\": \"Few-shot prompting improves base NER F1 and LP signal quality, enabling LP-weighted construction to outperform greedy selection via dual-gating (sufficient LP ρ + low degeneracy).\", \"parent\": \"exp_qwen25_72b_zeroshot\", \"server\": \"autodl-5090-b\", \"gpu\": \"cuda:0,cuda:1,cuda:2,cuda:3\", \"account\": \"root\", \"reproduce\": {\"server\": \"autodl-5090-b\", \"gpu\": \"cuda:0,cuda:1,cuda:2,cuda:3\", \"started_at\": \"2026-05-19T16:22:20.071Z\", \"finished_at\": \"2026-05-20T00:47:36.445Z\", \"training_hours\": 8.42}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && CUDA_VISIBLE_DEVICES=0,1,2,3 python code/fewshot_inference_72b.py --datasets scierc conll2003 fewnerd --output-dir output/72b_fewshot --seed 42\\\"\", \"server\": \"autodl-5090-b\", \"gpu\": [\"cuda:0\", \"cuda:1\", \"cuda:2\", \"cuda:3\"], \"pid\": 131293, \"log_path\": \"~/runs/struct_self_consist_ie/exp_qwen25_72b_fewshot.log\", \"submitted_at\": \"2026-05-19T16:25:57.711Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/{scierc,conll2003,fewnerd}\", \"data_count\": 41652, \"model_name\": \"Qwen2.5-72B-Instruct-AWQ\", \"seed\": 42, \"gpu_ids\": [\"cuda:0\", \"cuda:1\", \"cuda:2\", \"cuda:3\"], \"checkpoint_source\": \"Qwen2.5-72B-Instruct-AWQ (base model, no fine-tuning)\", \"eval_data\": \"SciERC + CoNLL-2003 + FewNERD test sets\"}, \"metrics\": {\"scierc\": {\"lp_rho\": 0.06, \"sj_rho\": 0.293, \"fk_rho\": 0.301, \"vc_rho\": 0.258, \"em_rho\": 0.205, \"degen_pct\": 16.6, \"greedy_f1\": 0.461, \"oracle_f1\": 0.604, \"construction_f1\": 0.461, \"construction_delta_pp\": -0.08, \"bootstrap_p\": 0.544}, \"conll\": {\"lp_rho\": 0.106, \"sj_rho\": 0.442, \"fk_rho\": 0.451, \"vc_rho\": 0.426, \"em_rho\": 0.403, \"degen_pct\": 70, \"greedy_f1\": 0.745, \"oracle_f1\": 0.796, \"construction_f1\": 0.745, \"construction_delta_pp\": 0.03, \"bootstrap_p\": 0.417}, \"fewnerd\": {\"lp_rho\": 0.161, \"sj_rho\": 0.345, \"fk_rho\": 0.327, \"vc_rho\": 0.41, \"em_rho\": 0.302, \"degen_pct\": 45.2, \"greedy_f1\": 0.619, \"oracle_f1\": 0.702, \"construction_f1\": 0.619, \"construction_delta_pp\": 0.02, \"bootstrap_p\": 0.401}}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T00:47:43.131229+00:00\"}]}, \"conclusion\": \"negative\", \"checkpoint_path\": \"output/72b_fewshot/ + output/72b_fewshot_signals/\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.8094}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4dae7b17-8c7d-4862-9526-33c4e4911f2c",
+  "uuid": "7c417d6f-6ea7-4a11-b307-2ed5d510b08e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_qwen25_72b_fewshot\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T15:59:44.340Z\\\", \\\"updated_at\\\": \\\"2026-05-20T00:54:53.227Z\\\", \\\"hypothesis\\\": \\\"Few-shot prompting improves base NER F1 and LP signal quality, enabling LP-weighted construction to outperform greedy selection via dual-gating (sufficient LP ρ + low degeneracy).\\\", \\\"parent\\\": \\\"exp_qwen25_72b_zeroshot\\\", \\\"server\\\": \\\"autodl-5090-b\\\", \\\"gpu\\\": \\\"cuda:0,cuda:1,cuda:2,cuda:3\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"autodl-5090-b\\\", \\\"gpu\\\": \\\"cuda:0,cuda:1,cuda:2,cuda:3\\\", \\\"started_at\\\": \\\"2026-05-19T16:22:20.071Z\\\", \\\"finished_at\\\": \\\"2026-05-20T00:47:36.445Z\\\", \\\"training_hours\\\": 8.42}, \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && CUDA_VISIBLE_DEVICES=0,1,2,3 python code/fewshot_inference_72b.py --datasets scierc conll2003 fewnerd --output-dir output/72b_fewshot --seed 42\\\\\\\"\\\", \\\"server\\\": \\\"autodl-5090-b\\\", \\\"gpu\\\": [\\\"cuda:0\\\", \\\"cuda:1\\\", \\\"cuda:2\\\", \\\"cuda:3\\\"], \\\"pid\\\": 131293, \\\"log_path\\\": \\\"~/runs/struct_self_consist_ie/exp_qwen25_72b_fewshot.log\\\", \\\"submitted_at\\\": \\\"2026-05-19T16:25:57.711Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"data/{scierc,conll2003,fewnerd}\\\", \\\"data_count\\\": 41652, \\\"model_name\\\": \\\"Qwen2.5-72B-Instruct-AWQ\\\", \\\"seed\\\": 42, \\\"gpu_ids\\\": [\\\"cuda:0\\\", \\\"cuda:1\\\", \\\"cuda:2\\\", \\\"cuda:3\\\"], \\\"checkpoint_source\\\": \\\"Qwen2.5-72B-Instruct-AWQ (base model, no fine-tuning)\\\", \\\"eval_data\\\": \\\"SciERC + CoNLL-2003 + FewNERD test sets\\\"}, \\\"metrics\\\": {\\\"scierc\\\": {\\\"lp_rho\\\": 0.06, \\\"sj_rho\\\": 0.293, \\\"fk_rho\\\": 0.301, \\\"vc_rho\\\": 0.258, \\\"em_rho\\\": 0.205, \\\"degen_pct\\\": 16.6, \\\"greedy_f1\\\": 0.461, \\\"oracle_f1\\\": 0.604, \\\"construction_f1\\\": 0.461, \\\"construction_delta_pp\\\": -0.08, \\\"bootstrap_p\\\": 0.544}, \\\"conll\\\": {\\\"lp_rho\\\": 0.106, \\\"sj_rho\\\": 0.442, \\\"fk_rho\\\": 0.451, \\\"vc_rho\\\": 0.426, \\\"em_rho\\\": 0.403, \\\"degen_pct\\\": 70, \\\"greedy_f1\\\": 0.745, \\\"oracle_f1\\\": 0.796, \\\"construction_f1\\\": 0.745, \\\"construction_delta_pp\\\": 0.03, \\\"bootstrap_p\\\": 0.417}, \\\"fewnerd\\\": {\\\"lp_rho\\\": 0.161, \\\"sj_rho\\\": 0.345, \\\"fk_rho\\\": 0.327, \\\"vc_rho\\\": 0.41, \\\"em_rho\\\": 0.302, \\\"degen_pct\\\": 45.2, \\\"greedy_f1\\\": 0.619, \\\"oracle_f1\\\": 0.702, \\\"construction_f1\\\": 0.619, \\\"construction_delta_pp\\\": 0.02, \\\"bootstrap_p\\\": 0.401}}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-20T00:47:43.131229+00:00\\\"}]}, \\\"conclusion\\\": \\\"negative\\\", \\\"checkpoint_path\\\": \\\"output/72b_fewshot/ + output/72b_fewshot_signals/\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.8094}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp_qwen25_72b_fewshot\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-19T15:59:44.340Z\", \"updated_at\": \"2026-05-20T00:54:53.227Z\", \"hypothesis\": \"Few-shot prompting improves base NER F1 and LP signal quality, enabling LP-weighted construction to outperform greedy selection via dual-gating (sufficient LP ρ + low degeneracy).\", \"parent\": \"exp_qwen25_72b_zeroshot\", \"server\": \"autodl-5090-b\", \"gpu\": \"cuda:0,cuda:1,cuda:2,cuda:3\", \"account\": \"root\", \"reproduce\": {\"server\": \"autodl-5090-b\", \"gpu\": \"cuda:0,cuda:1,cuda:2,cuda:3\", \"started_at\": \"2026-05-19T16:22:20.071Z\", \"finished_at\": \"2026-05-20T00:47:36.445Z\", \"training_hours\": 8.42}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && CUDA_VISIBLE_DEVICES=0,1,2,3 python code/fewshot_inference_72b.py --datasets scierc conll2003 fewnerd --output-dir output/72b_fewshot --seed 42\\\"\", \"server\": \"autodl-5090-b\", \"gpu\": [\"cuda:0\", \"cuda:1\", \"cuda:2\", \"cuda:3\"], \"pid\": 131293, \"log_path\": \"~/runs/struct_self_consist_ie/exp_qwen25_72b_fewshot.log\", \"submitted_at\": \"2026-05-19T16:25:57.711Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/{scierc,conll2003,fewnerd}\", \"data_count\": 41652, \"model_name\": \"Qwen2.5-72B-Instruct-AWQ\", \"seed\": 42, \"gpu_ids\": [\"cuda:0\", \"cuda:1\", \"cuda:2\", \"cuda:3\"], \"checkpoint_source\": \"Qwen2.5-72B-Instruct-AWQ (base model, no fine-tuning)\", \"eval_data\": \"SciERC + CoNLL-2003 + FewNERD test sets\"}, \"metrics\": {\"scierc\": {\"lp_rho\": 0.06, \"sj_rho\": 0.293, \"fk_rho\": 0.301, \"vc_rho\": 0.258, \"em_rho\": 0.205, \"degen_pct\": 16.6, \"greedy_f1\": 0.461, \"oracle_f1\": 0.604, \"construction_f1\": 0.461, \"construction_delta_pp\": -0.08, \"bootstrap_p\": 0.544}, \"conll\": {\"lp_rho\": 0.106, \"sj_rho\": 0.442, \"fk_rho\": 0.451, \"vc_rho\": 0.426, \"em_rho\": 0.403, \"degen_pct\": 70, \"greedy_f1\": 0.745, \"oracle_f1\": 0.796, \"construction_f1\": 0.745, \"construction_delta_pp\": 0.03, \"bootstrap_p\": 0.417}, \"fewnerd\": {\"lp_rho\": 0.161, \"sj_rho\": 0.345, \"fk_rho\": 0.327, \"vc_rho\": 0.41, \"em_rho\": 0.302, \"degen_pct\": 45.2, \"greedy_f1\": 0.619, \"oracle_f1\": 0.702, \"construction_f1\": 0.619, \"construction_delta_pp\": 0.02, \"bootstrap_p\": 0.401}}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T00:47:43.131229+00:00\"}]}, \"conclusion\": \"negative\", \"checkpoint_path\": \"output/72b_fewshot/ + output/72b_fewshot_signals/\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.8094}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 100_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01UACWCnJY4nbLUDRY9xkAjp`</summary>
+
+```json
+{
+  "exp_id": "exp_qwen25_72b_fewshot",
+  "field": "log_path",
+  "value": "~/runs/struct_self_consist_ie/exp_qwen25_72b_fewshot.log",
+  "project": "struct_self_consist_ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4dae7b17-8c7d-4862-9526-33c4e4911f2c",
+  "uuid": "083640e2-1231-4c77-911d-9b972063f934",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0128o8PezZFHvyCDqwW3cyWc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1415,
+      "cache_read_input_tokens": 61686,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1415
+      },
+      "output_tokens": 50,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 101 · 2026-05-20T00:54:54.885Z_
+
+<details><summary>↩ Tool result · `toolu_01UACWCnJY4nbLUDRY9xkAjp`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_qwen25_72b_fewshot\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-19T15:59:44.340Z\", \"updated_at\": \"2026-05-20T00:54:54.576Z\", \"hypothesis\": \"Few-shot prompting improves base NER F1 and LP signal quality, enabling LP-weighted construction to outperform greedy selection via dual-gating (sufficient LP ρ + low degeneracy).\", \"parent\": \"exp_qwen25_72b_zeroshot\", \"server\": \"autodl-5090-b\", \"gpu\": \"cuda:0,cuda:1,cuda:2,cuda:3\", \"account\": \"root\", \"reproduce\": {\"server\": \"autodl-5090-b\", \"gpu\": \"cuda:0,cuda:1,cuda:2,cuda:3\", \"started_at\": \"2026-05-19T16:22:20.071Z\", \"finished_at\": \"2026-05-20T00:47:36.445Z\", \"training_hours\": 8.42}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && CUDA_VISIBLE_DEVICES=0,1,2,3 python code/fewshot_inference_72b.py --datasets scierc conll2003 fewnerd --output-dir output/72b_fewshot --seed 42\\\"\", \"server\": \"autodl-5090-b\", \"gpu\": [\"cuda:0\", \"cuda:1\", \"cuda:2\", \"cuda:3\"], \"pid\": 131293, \"log_path\": \"~/runs/struct_self_consist_ie/exp_qwen25_72b_fewshot.log\", \"submitted_at\": \"2026-05-19T16:25:57.711Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/{scierc,conll2003,fewnerd}\", \"data_count\": 41652, \"model_name\": \"Qwen2.5-72B-Instruct-AWQ\", \"seed\": 42, \"gpu_ids\": [\"cuda:0\", \"cuda:1\", \"cuda:2\", \"cuda:3\"], \"checkpoint_source\": \"Qwen2.5-72B-Instruct-AWQ (base model, no fine-tuning)\", \"eval_data\": \"SciERC + CoNLL-2003 + FewNERD test sets\"}, \"metrics\": {\"scierc\": {\"lp_rho\": 0.06, \"sj_rho\": 0.293, \"fk_rho\": 0.301, \"vc_rho\": 0.258, \"em_rho\": 0.205, \"degen_pct\": 16.6, \"greedy_f1\": 0.461, \"oracle_f1\": 0.604, \"construction_f1\": 0.461, \"construction_delta_pp\": -0.08, \"bootstrap_p\": 0.544}, \"conll\": {\"lp_rho\": 0.106, \"sj_rho\": 0.442, \"fk_rho\": 0.451, \"vc_rho\": 0.426, \"em_rho\": 0.403, \"degen_pct\": 70, \"greedy_f1\": 0.745, \"oracle_f1\": 0.796, \"construction_f1\": 0.745, \"construction_delta_pp\": 0.03, \"bootstrap_p\": 0.417}, \"fewnerd\": {\"lp_rho\": 0.161, \"sj_rho\": 0.345, \"fk_rho\": 0.327, \"vc_rho\": 0.41, \"em_rho\": 0.302, \"degen_pct\": 45.2, \"greedy_f1\": 0.619, \"oracle_f1\": 0.702, \"construction_f1\": 0.619, \"construction_delta_pp\": 0.02, \"bootstrap_p\": 0.401}}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T00:47:43.131229+00:00\"}]}, \"conclusion\": \"negative\", \"checkpoint_path\": \"output/72b_fewshot/ + output/72b_fewshot_signals/\", \"log_path\": \"~/runs/struct_self_consist_ie/exp_qwen25_72b_fewshot.log\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7824}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4dae7b17-8c7d-4862-9526-33c4e4911f2c",
+  "uuid": "2001c6d7-57f0-47a3-9732-1d98c3a26502",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_qwen25_72b_fewshot\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T15:59:44.340Z\\\", \\\"updated_at\\\": \\\"2026-05-20T00:54:54.576Z\\\", \\\"hypothesis\\\": \\\"Few-shot prompting improves base NER F1 and LP signal quality, enabling LP-weighted construction to outperform greedy selection via dual-gating (sufficient LP ρ + low degeneracy).\\\", \\\"parent\\\": \\\"exp_qwen25_72b_zeroshot\\\", \\\"server\\\": \\\"autodl-5090-b\\\", \\\"gpu\\\": \\\"cuda:0,cuda:1,cuda:2,cuda:3\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"autodl-5090-b\\\", \\\"gpu\\\": \\\"cuda:0,cuda:1,cuda:2,cuda:3\\\", \\\"started_at\\\": \\\"2026-05-19T16:22:20.071Z\\\", \\\"finished_at\\\": \\\"2026-05-20T00:47:36.445Z\\\", \\\"training_hours\\\": 8.42}, \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && CUDA_VISIBLE_DEVICES=0,1,2,3 python code/fewshot_inference_72b.py --datasets scierc conll2003 fewnerd --output-dir output/72b_fewshot --seed 42\\\\\\\"\\\", \\\"server\\\": \\\"autodl-5090-b\\\", \\\"gpu\\\": [\\\"cuda:0\\\", \\\"cuda:1\\\", \\\"cuda:2\\\", \\\"cuda:3\\\"], \\\"pid\\\": 131293, \\\"log_path\\\": \\\"~/runs/struct_self_consist_ie/exp_qwen25_72b_fewshot.log\\\", \\\"submitted_at\\\": \\\"2026-05-19T16:25:57.711Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"data/{scierc,conll2003,fewnerd}\\\", \\\"data_count\\\": 41652, \\\"model_name\\\": \\\"Qwen2.5-72B-Instruct-AWQ\\\", \\\"seed\\\": 42, \\\"gpu_ids\\\": [\\\"cuda:0\\\", \\\"cuda:1\\\", \\\"cuda:2\\\", \\\"cuda:3\\\"], \\\"checkpoint_source\\\": \\\"Qwen2.5-72B-Instruct-AWQ (base model, no fine-tuning)\\\", \\\"eval_data\\\": \\\"SciERC + CoNLL-2003 + FewNERD test sets\\\"}, \\\"metrics\\\": {\\\"scierc\\\": {\\\"lp_rho\\\": 0.06, \\\"sj_rho\\\": 0.293, \\\"fk_rho\\\": 0.301, \\\"vc_rho\\\": 0.258, \\\"em_rho\\\": 0.205, \\\"degen_pct\\\": 16.6, \\\"greedy_f1\\\": 0.461, \\\"oracle_f1\\\": 0.604, \\\"construction_f1\\\": 0.461, \\\"construction_delta_pp\\\": -0.08, \\\"bootstrap_p\\\": 0.544}, \\\"conll\\\": {\\\"lp_rho\\\": 0.106, \\\"sj_rho\\\": 0.442, \\\"fk_rho\\\": 0.451, \\\"vc_rho\\\": 0.426, \\\"em_rho\\\": 0.403, \\\"degen_pct\\\": 70, \\\"greedy_f1\\\": 0.745, \\\"oracle_f1\\\": 0.796, \\\"construction_f1\\\": 0.745, \\\"construction_delta_pp\\\": 0.03, \\\"bootstrap_p\\\": 0.417}, \\\"fewnerd\\\": {\\\"lp_rho\\\": 0.161, \\\"sj_rho\\\": 0.345, \\\"fk_rho\\\": 0.327, \\\"vc_rho\\\": 0.41, \\\"em_rho\\\": 0.302, \\\"degen_pct\\\": 45.2, \\\"greedy_f1\\\": 0.619, \\\"oracle_f1\\\": 0.702, \\\"construction_f1\\\": 0.619, \\\"construction_delta_pp\\\": 0.02, \\\"bootstrap_p\\\": 0.401}}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-20T00:47:43.131229+00:00\\\"}]}, \\\"conclusion\\\": \\\"negative\\\", \\\"checkpoint_path\\\": \\\"output/72b_fewshot/ + output/72b_fewshot_signals/\\\", \\\"log_path\\\": \\\"~/runs/struct_self_consist_ie/exp_qwen25_72b_fewshot.log\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.7824}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp_qwen25_72b_fewshot\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-19T15:59:44.340Z\", \"updated_at\": \"2026-05-20T00:54:54.576Z\", \"hypothesis\": \"Few-shot prompting improves base NER F1 and LP signal quality, enabling LP-weighted construction to outperform greedy selection via dual-gating (sufficient LP ρ + low degeneracy).\", \"parent\": \"exp_qwen25_72b_zeroshot\", \"server\": \"autodl-5090-b\", \"gpu\": \"cuda:0,cuda:1,cuda:2,cuda:3\", \"account\": \"root\", \"reproduce\": {\"server\": \"autodl-5090-b\", \"gpu\": \"cuda:0,cuda:1,cuda:2,cuda:3\", \"started_at\": \"2026-05-19T16:22:20.071Z\", \"finished_at\": \"2026-05-20T00:47:36.445Z\", \"training_hours\": 8.42}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && CUDA_VISIBLE_DEVICES=0,1,2,3 python code/fewshot_inference_72b.py --datasets scierc conll2003 fewnerd --output-dir output/72b_fewshot --seed 42\\\"\", \"server\": \"autodl-5090-b\", \"gpu\": [\"cuda:0\", \"cuda:1\", \"cuda:2\", \"cuda:3\"], \"pid\": 131293, \"log_path\": \"~/runs/struct_self_consist_ie/exp_qwen25_72b_fewshot.log\", \"submitted_at\": \"2026-05-19T16:25:57.711Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/{scierc,conll2003,fewnerd}\", \"data_count\": 41652, \"model_name\": \"Qwen2.5-72B-Instruct-AWQ\", \"seed\": 42, \"gpu_ids\": [\"cuda:0\", \"cuda:1\", \"cuda:2\", \"cuda:3\"], \"checkpoint_source\": \"Qwen2.5-72B-Instruct-AWQ (base model, no fine-tuning)\", \"eval_data\": \"SciERC + CoNLL-2003 + FewNERD test sets\"}, \"metrics\": {\"scierc\": {\"lp_rho\": 0.06, \"sj_rho\": 0.293, \"fk_rho\": 0.301, \"vc_rho\": 0.258, \"em_rho\": 0.205, \"degen_pct\": 16.6, \"greedy_f1\": 0.461, \"oracle_f1\": 0.604, \"construction_f1\": 0.461, \"construction_delta_pp\": -0.08, \"bootstrap_p\": 0.544}, \"conll\": {\"lp_rho\": 0.106, \"sj_rho\": 0.442, \"fk_rho\": 0.451, \"vc_rho\": 0.426, \"em_rho\": 0.403, \"degen_pct\": 70, \"greedy_f1\": 0.745, \"oracle_f1\": 0.796, \"construction_f1\": 0.745, \"construction_delta_pp\": 0.03, \"bootstrap_p\": 0.417}, \"fewnerd\": {\"lp_rho\": 0.161, \"sj_rho\": 0.345, \"fk_rho\": 0.327, \"vc_rho\": 0.41, \"em_rho\": 0.302, \"degen_pct\": 45.2, \"greedy_f1\": 0.619, \"oracle_f1\": 0.702, \"construction_f1\": 0.619, \"construction_delta_pp\": 0.02, \"bootstrap_p\": 0.401}}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T00:47:43.131229+00:00\"}]}, \"conclusion\": \"negative\", \"checkpoint_path\": \"output/72b_fewshot/ + output/72b_fewshot_signals/\", \"log_path\": \"~/runs/struct_self_consist_ie/exp_qwen25_72b_fewshot.log\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7824}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 102_
+
+Now transition to DONE.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4dae7b17-8c7d-4862-9526-33c4e4911f2c",
+  "uuid": "536589ce-28f5-4092-b7c4-8eaa2ef80506",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GzARj5uwsqTErxJiYSnbiY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3012,
+      "cache_read_input_tokens": 63101,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3012
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 103_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_011QbgZD1KY2B2cEPX5dEVCd`</summary>
+
+```json
+{
+  "exp_id": "exp_qwen25_72b_fewshot",
+  "field": "status",
+  "value": "DONE",
+  "project": "struct_self_consist_ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4dae7b17-8c7d-4862-9526-33c4e4911f2c",
+  "uuid": "be481573-17a9-494e-9f94-6d234dcd877a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GzARj5uwsqTErxJiYSnbiY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3012,
+      "cache_read_input_tokens": 63101,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3012
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 104 · 2026-05-20T00:55:00.725Z_
+
+<details><summary>↩ Tool result · `toolu_011QbgZD1KY2B2cEPX5dEVCd`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_qwen25_72b_fewshot\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T15:59:44.340Z\", \"updated_at\": \"2026-05-20T00:54:59.032Z\", \"hypothesis\": \"Few-shot prompting improves base NER F1 and LP signal quality, enabling LP-weighted construction to outperform greedy selection via dual-gating (sufficient LP ρ + low degeneracy).\", \"parent\": \"exp_qwen25_72b_zeroshot\", \"server\": \"autodl-5090-b\", \"gpu\": \"cuda:0,cuda:1,cuda:2,cuda:3\", \"account\": \"root\", \"reproduce\": {\"server\": \"autodl-5090-b\", \"gpu\": \"cuda:0,cuda:1,cuda:2,cuda:3\", \"started_at\": \"2026-05-19T16:22:20.071Z\", \"finished_at\": \"2026-05-20T00:47:36.445Z\", \"training_hours\": 8.42}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && CUDA_VISIBLE_DEVICES=0,1,2,3 python code/fewshot_inference_72b.py --datasets scierc conll2003 fewnerd --output-dir output/72b_fewshot --seed 42\\\"\", \"server\": \"autodl-5090-b\", \"gpu\": [\"cuda:0\", \"cuda:1\", \"cuda:2\", \"cuda:3\"], \"pid\": 131293, \"log_path\": \"~/runs/struct_self_consist_ie/exp_qwen25_72b_fewshot.log\", \"submitted_at\": \"2026-05-19T16:25:57.711Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/{scierc,conll2003,fewnerd}\", \"data_count\": 41652, \"model_name\": \"Qwen2.5-72B-Instruct-AWQ\", \"seed\": 42, \"gpu_ids\": [\"cuda:0\", \"cuda:1\", \"cuda:2\", \"cuda:3\"], \"checkpoint_source\": \"Qwen2.5-72B-Instruct-AWQ (base model, no fine-tuning)\", \"eval_data\": \"SciERC + CoNLL-2003 + FewNERD test sets\", \"wall_clock_seconds\": 30541.3, \"gpu_hours\": 33.93}, \"metrics\": {\"scierc\": {\"lp_rho\": 0.06, \"sj_rho\": 0.293, \"fk_rho\": 0.301, \"vc_rho\": 0.258, \"em_rho\": 0.205, \"degen_pct\": 16.6, \"greedy_f1\": 0.461, \"oracle_f1\": 0.604, \"construction_f1\": 0.461, \"construction_delta_pp\": -0.08, \"bootstrap_p\": 0.544}, \"conll\": {\"lp_rho\": 0.106, \"sj_rho\": 0.442, \"fk_rho\": 0.451, \"vc_rho\": 0.426, \"em_rho\": 0.403, \"degen_pct\": 70, \"greedy_f1\": 0.745, \"oracle_f1\": 0.796, \"construction_f1\": 0.745, \"construction_delta_pp\": 0.03, \"bootstrap_p\": 0.417}, \"fewnerd\": {\"lp_rho\": 0.161, \"sj_rho\": 0.345, \"fk_rho\": 0.327, \"vc_rho\": 0.41, \"em_rho\": 0.302, \"degen_pct\": 45.2, \"greedy_f1\": 0.619, \"oracle_f1\": 0.702, \"construction_f1\": 0.619, \"construction_delta_pp\": 0.02, \"bootstrap_p\": 0.401}}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T00:47:43.131229+00:00\"}]}, \"conclusion\": \"negative\", \"checkpoint_path\": \"output/72b_fewshot/ + output/72b_fewshot_signals/\", \"log_path\": \"~/runs/struct_self_consist_ie/exp_qwen25_72b_fewshot.log\", \"completed_at\": \"2026-05-20T00:54:59.032Z\"}, \"hint\": \"💡 建议将本次教训写入 memory.md（什么不 work、为什么）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.1527}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4dae7b17-8c7d-4862-9526-33c4e4911f2c",
+  "uuid": "32fd6c5d-3de1-4f7d-bd11-bb76ab53a20a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_qwen25_72b_fewshot\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T15:59:44.340Z\\\", \\\"updated_at\\\": \\\"2026-05-20T00:54:59.032Z\\\", \\\"hypothesis\\\": \\\"Few-shot prompting improves base NER F1 and LP signal quality, enabling LP-weighted construction to outperform greedy selection via dual-gating (sufficient LP ρ + low degeneracy).\\\", \\\"parent\\\": \\\"exp_qwen25_72b_zeroshot\\\", \\\"server\\\": \\\"autodl-5090-b\\\", \\\"gpu\\\": \\\"cuda:0,cuda:1,cuda:2,cuda:3\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"autodl-5090-b\\\", \\\"gpu\\\": \\\"cuda:0,cuda:1,cuda:2,cuda:3\\\", \\\"started_at\\\": \\\"2026-05-19T16:22:20.071Z\\\", \\\"finished_at\\\": \\\"2026-05-20T00:47:36.445Z\\\", \\\"training_hours\\\": 8.42}, \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && CUDA_VISIBLE_DEVICES=0,1,2,3 python code/fewshot_inference_72b.py --datasets scierc conll2003 fewnerd --output-dir output/72b_fewshot --seed 42\\\\\\\"\\\", \\\"server\\\": \\\"autodl-5090-b\\\", \\\"gpu\\\": [\\\"cuda:0\\\", \\\"cuda:1\\\", \\\"cuda:2\\\", \\\"cuda:3\\\"], \\\"pid\\\": 131293, \\\"log_path\\\": \\\"~/runs/struct_self_consist_ie/exp_qwen25_72b_fewshot.log\\\", \\\"submitted_at\\\": \\\"2026-05-19T16:25:57.711Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"data/{scierc,conll2003,fewnerd}\\\", \\\"data_count\\\": 41652, \\\"model_name\\\": \\\"Qwen2.5-72B-Instruct-AWQ\\\", \\\"seed\\\": 42, \\\"gpu_ids\\\": [\\\"cuda:0\\\", \\\"cuda:1\\\", \\\"cuda:2\\\", \\\"cuda:3\\\"], \\\"checkpoint_source\\\": \\\"Qwen2.5-72B-Instruct-AWQ (base model, no fine-tuning)\\\", \\\"eval_data\\\": \\\"SciERC + CoNLL-2003 + FewNERD test sets\\\", \\\"wall_clock_seconds\\\": 30541.3, \\\"gpu_hours\\\": 33.93}, \\\"metrics\\\": {\\\"scierc\\\": {\\\"lp_rho\\\": 0.06, \\\"sj_rho\\\": 0.293, \\\"fk_rho\\\": 0.301, \\\"vc_rho\\\": 0.258, \\\"em_rho\\\": 0.205, \\\"degen_pct\\\": 16.6, \\\"greedy_f1\\\": 0.461, \\\"oracle_f1\\\": 0.604, \\\"construction_f1\\\": 0.461, \\\"construction_delta_pp\\\": -0.08, \\\"bootstrap_p\\\": 0.544}, \\\"conll\\\": {\\\"lp_rho\\\": 0.106, \\\"sj_rho\\\": 0.442, \\\"fk_rho\\\": 0.451, \\\"vc_rho\\\": 0.426, \\\"em_rho\\\": 0.403, \\\"degen_pct\\\": 70, \\\"greedy_f1\\\": 0.745, \\\"oracle_f1\\\": 0.796, \\\"construction_f1\\\": 0.745, \\\"construction_delta_pp\\\": 0.03, \\\"bootstrap_p\\\": 0.417}, \\\"fewnerd\\\": {\\\"lp_rho\\\": 0.161, \\\"sj_rho\\\": 0.345, \\\"fk_rho\\\": 0.327, \\\"vc_rho\\\": 0.41, \\\"em_rho\\\": 0.302, \\\"degen_pct\\\": 45.2, \\\"greedy_f1\\\": 0.619, \\\"oracle_f1\\\": 0.702, \\\"construction_f1\\\": 0.619, \\\"construction_delta_pp\\\": 0.02, \\\"bootstrap_p\\\": 0.401}}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-20T00:47:43.131229+00:00\\\"}]}, \\\"conclusion\\\": \\\"negative\\\", \\\"checkpoint_path\\\": \\\"output/72b_fewshot/ + output/72b_fewshot_signals/\\\", \\\"log_path\\\": \\\"~/runs/struct_self_consist_ie/exp_qwen25_72b_fewshot.log\\\", \\\"completed_at\\\": \\\"2026-05-20T00:54:59.032Z\\\"}, \\\"hint\\\": \\\"💡 建议将本次教训写入 memory.md（什么不 work、为什么）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.1527}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp_qwen25_72b_fewshot\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T15:59:44.340Z\", \"updated_at\": \"2026-05-20T00:54:59.032Z\", \"hypothesis\": \"Few-shot prompting improves base NER F1 and LP signal quality, enabling LP-weighted construction to outperform greedy selection via dual-gating (sufficient LP ρ + low degeneracy).\", \"parent\": \"exp_qwen25_72b_zeroshot\", \"server\": \"autodl-5090-b\", \"gpu\": \"cuda:0,cuda:1,cuda:2,cuda:3\", \"account\": \"root\", \"reproduce\": {\"server\": \"autodl-5090-b\", \"gpu\": \"cuda:0,cuda:1,cuda:2,cuda:3\", \"started_at\": \"2026-05-19T16:22:20.071Z\", \"finished_at\": \"2026-05-20T00:47:36.445Z\", \"training_hours\": 8.42}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && CUDA_VISIBLE_DEVICES=0,1,2,3 python code/fewshot_inference_72b.py --datasets scierc conll2003 fewnerd --output-dir output/72b_fewshot --seed 42\\\"\", \"server\": \"autodl-5090-b\", \"gpu\": [\"cuda:0\", \"cuda:1\", \"cuda:2\", \"cuda:3\"], \"pid\": 131293, \"log_path\": \"~/runs/struct_self_consist_ie/exp_qwen25_72b_fewshot.log\", \"submitted_at\": \"2026-05-19T16:25:57.711Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/{scierc,conll2003,fewnerd}\", \"data_count\": 41652, \"model_name\": \"Qwen2.5-72B-Instruct-AWQ\", \"seed\": 42, \"gpu_ids\": [\"cuda:0\", \"cuda:1\", \"cuda:2\", \"cuda:3\"], \"checkpoint_source\": \"Qwen2.5-72B-Instruct-AWQ (base model, no fine-tuning)\", \"eval_data\": \"SciERC + CoNLL-2003 + FewNERD test sets\", \"wall_clock_seconds\": 30541.3, \"gpu_hours\": 33.93}, \"metrics\": {\"scierc\": {\"lp_rho\": 0.06, \"sj_rho\": 0.293, \"fk_rho\": 0.301, \"vc_rho\": 0.258, \"em_rho\": 0.205, \"degen_pct\": 16.6, \"greedy_f1\": 0.461, \"oracle_f1\": 0.604, \"construction_f1\": 0.461, \"construction_delta_pp\": -0.08, \"bootstrap_p\": 0.544}, \"conll\": {\"lp_rho\": 0.106, \"sj_rho\": 0.442, \"fk_rho\": 0.451, \"vc_rho\": 0.426, \"em_rho\": 0.403, \"degen_pct\": 70, \"greedy_f1\": 0.745, \"oracle_f1\": 0.796, \"construction_f1\": 0.745, \"construction_delta_pp\": 0.03, \"bootstrap_p\": 0.417}, \"fewnerd\": {\"lp_rho\": 0.161, \"sj_rho\": 0.345, \"fk_rho\": 0.327, \"vc_rho\": 0.41, \"em_rho\": 0.302, \"degen_pct\": 45.2, \"greedy_f1\": 0.619, \"oracle_f1\": 0.702, \"construction_f1\": 0.619, \"construction_delta_pp\": 0.02, \"bootstrap_p\": 0.401}}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T00:47:43.131229+00:00\"}]}, \"conclusion\": \"negative\", \"checkpoint_path\": \"output/72b_fewshot/ + output/72b_fewshot_signals/\", \"log_path\": \"~/runs/struct_self_consist_ie/exp_qwen25_72b_fewshot.log\", \"completed_at\": \"2026-05-20T00:54:59.032Z\"}, \"hint\": \"💡 建议将本次教训写入 memory.md（什么不 work、为什么）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.1527}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 105_
+
+注册分析产出。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4dae7b17-8c7d-4862-9526-33c4e4911f2c",
+  "uuid": "78c6d4bb-3844-4d9c-97c7-8bfa0cb75216",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011mJAztxhGbjxBYdS5p2YuN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1672,
+      "cache_read_input_tokens": 66113,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1672
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 106_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact · `toolu_0193L3a5NmFQ8aS2cauHc1Cc`</summary>
+
+```json
+{
+  "name": "72b_fewshot_fewnerd_signal_report",
+  "type": "data",
+  "description": "FewNERD few-shot 5-signal analysis (LP/SJ/FK/VC/EM) + construction baselines for Qwen2.5-72B 3-shot",
+  "project": "struct_self_consist_ie",
+  "exp_id": "exp_qwen25_72b_fewshot",
+  "source_path": "/root/autodl-tmp/struct_self_consist_ie/output/72b_fewshot_signals/fewnerd/full_signal_report.json",
+  "tags": [
+    "fewnerd",
+    "fewshot",
+    "72b",
+    "signals"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4dae7b17-8c7d-4862-9526-33c4e4911f2c",
+  "uuid": "0cb2c1ef-e274-4c1b-977f-fd102c60b1a4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011mJAztxhGbjxBYdS5p2YuN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1672,
+      "cache_read_input_tokens": 66113,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1672
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 107 · 2026-05-20T00:55:07.408Z_
+
+<details><summary>↩ Tool result · `toolu_0193L3a5NmFQ8aS2cauHc1Cc`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"source_path not found: /root/autodl-tmp/struct_self_consist_ie/output/72b_fewshot_signals/fewnerd/full_signal_report.json\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4dae7b17-8c7d-4862-9526-33c4e4911f2c",
+  "uuid": "b717da0d-4d59-4096-8159-4356b8bce5e2",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"source_path not found: /root/autodl-tmp/struct_self_consist_ie/output/72b_fewshot_signals/fewnerd/full_signal_report.json\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"source_path not found: /root/autodl-tmp/struct_self_consist_ie/output/72b_fewshot_signals/fewnerd/full_signal_report.json\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 108_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact · `toolu_01WPCsMt5YfHtSGavsNHHoUh`</summary>
+
+```json
+{
+  "name": "72b_fewshot_fewnerd_bootstrap",
+  "type": "data",
+  "description": "FewNERD few-shot paired bootstrap result: greedy vs LP-weighted construction (n.s., p=0.401)",
+  "project": "struct_self_consist_ie",
+  "exp_id": "exp_qwen25_72b_fewshot",
+  "source_path": "/root/autodl-tmp/struct_self_consist_ie/output/72b_fewshot_signals/fewnerd/fewnerd_paired_bootstrap_result.json",
+  "tags": [
+    "fewnerd",
+    "fewshot",
+    "72b",
+    "bootstrap"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4dae7b17-8c7d-4862-9526-33c4e4911f2c",
+  "uuid": "185f8e02-3f6a-4d65-af42-eddb9d081b4e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011mJAztxhGbjxBYdS5p2YuN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1672,
+      "cache_read_input_tokens": 66113,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1672
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 109 · 2026-05-20T00:55:10.029Z_
+
+<details><summary>↩ Tool result · `toolu_01WPCsMt5YfHtSGavsNHHoUh`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"source_path not found: /root/autodl-tmp/struct_self_consist_ie/output/72b_fewshot_signals/fewnerd/fewnerd_paired_bootstrap_result.json\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4dae7b17-8c7d-4862-9526-33c4e4911f2c",
+  "uuid": "90f73967-ebba-4150-ba71-c2e87f6169db",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"source_path not found: /root/autodl-tmp/struct_self_consist_ie/output/72b_fewshot_signals/fewnerd/fewnerd_paired_bootstrap_result.json\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"source_path not found: /root/autodl-tmp/struct_self_consist_ie/output/72b_fewshot_signals/fewnerd/fewnerd_paired_bootstrap_result.json\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 110_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The source_path is on the remote server, not local. I need to use `content` parameter instead, passing the JSON content directly.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4dae7b17-8c7d-4862-9526-33c4e4911f2c",
+  "uuid": "7ed07fe2-9acb-4047-ae80-279d18400017",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DwbkNCyqzUJs8Apt5S5xB3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 798,
+      "cache_read_input_tokens": 67785,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 798
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 111_
+
+Source paths are remote. Let me register with content instead.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4dae7b17-8c7d-4862-9526-33c4e4911f2c",
+  "uuid": "739deae9-f4d1-43fe-95eb-09c1989da25e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DwbkNCyqzUJs8Apt5S5xB3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 798,
+      "cache_read_input_tokens": 67785,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 798
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 112_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact · `toolu_01BPkXvzXd3a6jWeRU1fBVJm`</summary>
+
+```json
+{
+  "name": "72b_fewshot_zs_vs_fs_comparison",
+  "type": "report",
+  "description": "Complete ZS vs FS comparison across 3 datasets (SciERC/CoNLL/FewNERD) for Qwen2.5-72B: signal correlations, construction deltas, bootstrap p-values, dual-gating analysis",
+  "project": "struct_self_consist_ie",
+  "exp_id": "exp_qwen25_72b_fewshot",
+  "content": "# ZS vs FS Complete Comparison — Qwen2.5-72B-Instruct-AWQ\n\n## Full Results Table\n\n| Dataset  | Regime | N     | Degen% | LP ρ   | SJ ρ  | FK ρ  | VC ρ  | EM ρ  | Greedy F1 | Oracle F1 | LP-wt F1 | Δ (pp)  | p       |\n|----------|--------|-------|--------|--------|-------|-------|-------|-------|-----------|-----------|----------|---------|---------|\n| SciERC   | ZS     | 529   | 21.0%  | 0.081  | 0.217 | 0.227 | 0.277 | 0.181 | 0.399     | 0.549     | 0.415    | +1.53   | 0.008** |\n| SciERC   | FS     | 529   | 16.6%  | 0.060  | 0.293 | 0.301 | 0.258 | 0.205 | 0.461     | 0.604     | 0.461    | -0.08   | 0.544   |\n| CoNLL    | ZS     | 2756  | 67.7%  | -0.002 | 0.304 | 0.302 | 0.297 | 0.281 | 0.712     | 0.765     | 0.708    | -0.37   | —       |\n| CoNLL    | FS     | 2756  | 70.0%  | 0.106  | 0.442 | 0.451 | 0.426 | 0.403 | 0.745     | 0.796     | 0.745    | +0.03   | 0.417   |\n| FewNERD  | ZS     | 32565 | 46.2%  | 0.119  | 0.345 | 0.321 | 0.416 | 0.303 | 0.628     | 0.707     | 0.626    | -0.20   | —       |\n| FewNERD  | FS     | 32565 | 45.2%  | 0.161  | 0.345 | 0.327 | 0.410 | 0.302 | 0.619     | 0.702     | 0.619    | +0.02   | 0.401   |\n\n## FewNERD FS Bootstrap Details\n- Observed diff: +0.000154 (+0.02pp)\n- 95% CI: [-0.0011, +0.0014]\n- p-value: 0.4005 (n.s.)\n- Cohen's d: 0.0014 (negligible)\n- Instance breakdown: 8.5% positive / 7.3% negative / 84.3% tied\n- Non-degenerate subset: Δ=+0.02pp, p=0.4009 (also n.s.)\n\n## Signal Quality ZS→FS Trends\n| Signal | SciERC      | CoNLL             | FewNERD        |\n|--------|-------------|-------------------|----------------|\n| LP ρ   | 0.081→0.060 ↓ | -0.002→0.106 ↑↑ | 0.119→0.161 ↑ |\n| SJ ρ   | 0.217→0.293 ↑ | 0.304→0.442 ↑↑  | 0.345→0.345 = |\n| FK ρ   | 0.227→0.301 ↑ | 0.302→0.451 ↑↑  | 0.321→0.327 ↑ |\n| VC ρ   | 0.277→0.258 ↓ | 0.297→0.426 ↑↑  | 0.416→0.410 ↓ |\n\n## Dual-Gating Hypothesis Verdict\n\n**NEGATIVE.** FewNERD FS provides the strongest test case: LP ρ=0.161 (highest across all 6 conditions) + degen=45.2% (moderate). Both gates nominally satisfied, yet construction Δ=+0.02pp (n.s., p=0.401).\n\nLP-weighted construction succeeded only in SciERC ZS (+1.53pp, p=0.008). In all other 5 conditions, the effect is indistinguishable from zero. Dual-gating is necessary but insufficient — LP signal magnitude (~0.16 max) appears too weak for reliable per-instance sample discrimination.\n",
+  "content_filename": "zs_vs_fs_comparison.md",
+  "tags": [
+    "comparison",
+    "zs-vs-fs",
+    "72b",
+    "dual-gating"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4dae7b17-8c7d-4862-9526-33c4e4911f2c",
+  "uuid": "054c7190-e73b-483a-ac4f-e3101996a95c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DwbkNCyqzUJs8Apt5S5xB3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 798,
+      "cache_read_input_tokens": 67785,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 798
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 113 · 2026-05-20T00:55:38.837Z_
+
+<details><summary>↩ Tool result · `toolu_01BPkXvzXd3a6jWeRU1fBVJm`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260520_138735\", \"name\": \"72b_fewshot_zs_vs_fs_comparison\", \"type\": \"report\", \"description\": \"Complete ZS vs FS comparison across 3 datasets (SciERC/CoNLL/FewNERD) for Qwen2.5-72B: signal correlations, construction deltas, bootstrap p-values, dual-gating analysis\", \"path\": \"projects/struct_self_consist_ie/artifacts/exp_qwen25_72b_fewshot/report/zs_vs_fs_comparison.md\", \"url\": null, \"project\": \"struct_self_consist_ie\", \"exp_id\": \"exp_qwen25_72b_fewshot\", \"skill\": \"\", \"created_at\": \"2026-05-20T00:55:38.414218+00:00\", \"tags\": [\"comparison\", \"zs-vs-fs\", \"72b\", \"dual-gating\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4dae7b17-8c7d-4862-9526-33c4e4911f2c",
+  "uuid": "ca18b891-2acb-4a29-b31b-5cb6cdecabc3",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260520_138735\\\", \\\"name\\\": \\\"72b_fewshot_zs_vs_fs_comparison\\\", \\\"type\\\": \\\"report\\\", \\\"description\\\": \\\"Complete ZS vs FS comparison across 3 datasets (SciERC/CoNLL/FewNERD) for Qwen2.5-72B: signal correlations, construction deltas, bootstrap p-values, dual-gating analysis\\\", \\\"path\\\": \\\"projects/struct_self_consist_ie/artifacts/exp_qwen25_72b_fewshot/report/zs_vs_fs_comparison.md\\\", \\\"url\\\": null, \\\"project\\\": \\\"struct_self_consist_ie\\\", \\\"exp_id\\\": \\\"exp_qwen25_72b_fewshot\\\", \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-20T00:55:38.414218+00:00\\\", \\\"tags\\\": [\\\"comparison\\\", \\\"zs-vs-fs\\\", \\\"72b\\\", \\\"dual-gating\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260520_138735\", \"name\": \"72b_fewshot_zs_vs_fs_comparison\", \"type\": \"report\", \"description\": \"Complete ZS vs FS comparison across 3 datasets (SciERC/CoNLL/FewNERD) for Qwen2.5-72B: signal correlations, construction deltas, bootstrap p-values, dual-gating analysis\", \"path\": \"projects/struct_self_consist_ie/artifacts/exp_qwen25_72b_fewshot/report/zs_vs_fs_comparison.md\", \"url\": null, \"project\": \"struct_self_consist_ie\", \"exp_id\": \"exp_qwen25_72b_fewshot\", \"skill\": \"\", \"created_at\": \"2026-05-20T00:55:38.414218+00:00\", \"tags\": [\"comparison\", \"zs-vs-fs\", \"72b\", \"dual-gating\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 114_
+
+实验分析完成。完整结果：
+
+## ZS vs FS 对比表（Qwen2.5-72B, N=8）
+
+| Dataset  | Regime | Degen% | LP ρ   | SJ ρ  | VC ρ  | Greedy F1 | Oracle F1 | LP-wt Δ (pp) | p       |
+|----------|--------|--------|--------|-------|-------|-----------|-----------|-------------|---------|
+| SciERC   | ZS     | 21.0%  | 0.081  | 0.217 | 0.277 | 0.399     | 0.549     | **+1.53**   | **0.008** |
+| SciERC   | FS     | 16.6%  | 0.060  | 0.293 | 0.258 | 0.461     | 0.604     | -0.08       | 0.544   |
+| CoNLL    | ZS     | 67.7%  | -0.002 | 0.304 | 0.297 | 0.712     | 0.765     | -0.37       | —       |
+| CoNLL    | FS     | 70.0%  | 0.106  | 0.442 | 0.426 | 0.745     | 0.796     | +0.03       | 0.417   |
+| FewNERD  | ZS     | 46.2%  | 0.119  | 0.345 | 0.416 | 0.628     | 0.707     | -0.20       | —       |
+| **FewNERD** | **FS** | **45.2%** | **0.161** | 0.345 | 0.410 | 0.619 | 0.702 | **+0.02** | **0.401** |
+
+## 关键发现
+
+**FewNERD FS construction 无效**：Δ=+0.02pp, p=0.401, Cohen's d=0.001, 84.3% tied instances。
+
+**Dual-gating 不成立**：FewNERD FS 拥有全局最高 LP ρ (0.161) + 中等 degen (45.2%)，两个 gate 都通过，但 construction 仍然 flat。6 个条件中仅 SciERC ZS 一个显著。
+
+**根因**：LP 信号量级太弱（ρ_max=0.161），无法在实例级别可靠区分样本质量。Dual-gating 是必要条件但非充分条件。
+
+Registry 已更新为 DONE/negative，memory.md 和 artifact 已保存。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4dae7b17-8c7d-4862-9526-33c4e4911f2c",
+  "uuid": "0199b0f7-77b3-4c1c-a0b4-d5b8202648b7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EQm7TPCw9rPKykEr2D1EVp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1893,
+      "cache_read_input_tokens": 68583,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1893
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 115_
+
+实验分析完成。完整结果：
+
+## ZS vs FS 对比表（Qwen2.5-72B, N=8）
+
+| Dataset  | Regime | Degen% | LP ρ   | SJ ρ  | VC ρ  | Greedy F1 | Oracle F1 | LP-wt Δ (pp) | p       |
+|----------|--------|--------|--------|-------|-------|-----------|-----------|-------------|---------|
+| SciERC   | ZS     | 21.0%  | 0.081  | 0.217 | 0.277 | 0.399     | 0.549     | **+1.53**   | **0.008** |
+| SciERC   | FS     | 16.6%  | 0.060  | 0.293 | 0.258 | 0.461     | 0.604     | -0.08       | 0.544   |
+| CoNLL    | ZS     | 67.7%  | -0.002 | 0.304 | 0.297 | 0.712     | 0.765     | -0.37       | —       |
+| CoNLL    | FS     | 70.0%  | 0.106  | 0.442 | 0.426 | 0.745     | 0.796     | +0.03       | 0.417   |
+| FewNERD  | ZS     | 46.2%  | 0.119  | 0.345 | 0.416 | 0.628     | 0.707     | -0.20       | —       |
+| **FewNERD** | **FS** | **45.2%** | **0.161** | 0.345 | 0.410 | 0.619 | 0.702 | **+0.02** | **0.401** |
+
+## 关键发现
+
+**FewNERD FS construction 无效**：Δ=+0.02pp, p=0.401, Cohen's d=0.001, 84.3% tied instances。
+
+**Dual-gating 不成立**：FewNERD FS 拥有全局最高 LP ρ (0.161) + 中等 degen (45.2%)，两个 gate 都通过，但 construction 仍然 flat。6 个条件中仅 SciERC ZS 一个显著。
+
+**根因**：LP 信号量级太弱（ρ_max=0.161），无法在实例级别可靠区分样本质量。Dual-gating 是必要条件但非充分条件。
+
+Registry 已更新为 DONE/negative，memory.md 和 artifact 已保存。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 365410,
+  "duration_api_ms": 303788,
+  "num_turns": 42,
+  "stop_reason": "end_turn",
+  "session_id": "4dae7b17-8c7d-4862-9526-33c4e4911f2c",
+  "total_cost_usd": 1.39125225,
+  "usage": {
+    "input_tokens": 31,
+    "cache_creation_input_tokens": 58635,
+    "cache_read_input_tokens": 1286255,
+    "output_tokens": 15167,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 58635,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 718,
+        "cache_read_input_tokens": 68583,
+        "cache_creation_input_tokens": 1893,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 1893
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 2216,
+      "outputTokens": 22,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.002326,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 31,
+      "outputTokens": 15167,
+      "cacheReadInputTokens": 1286255,
+      "cacheCreationInputTokens": 58635,
+      "webSearchRequests": 0,
+      "costUSD": 1.38892625,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "c57699b9-0b40-4241-84e8-99a24cb95d78"
+}
+```
+
+</details>
+
+---

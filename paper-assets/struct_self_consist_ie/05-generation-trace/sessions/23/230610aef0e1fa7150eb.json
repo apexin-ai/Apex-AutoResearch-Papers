@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "230610aef0e1fa7150eb",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "paper writing experiments",
+  "task_key": "worker_paper_writing_experiments_20260514T191638",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_paper_writing_experiments_20260514T191638_result.json",
+    "occurrence": 1,
+    "bytes": 1060,
+    "sha256": "9656d5ae5bd153945e94f61d195a3ebdd64845dfae62d7133a4b676f6bef2087"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "文件已写入 `docs/paper/sections/experiments.tex`，包含：\n\n- **§5.1 Experimental Setup** — 数据集 (SciERC/CoNLL/WNUT-17)、模型 (Qwen3-8B + LLaMA-3.1-8B)、采样配置、5 个信号定义、实现细节\n- **§5.2 Quality Estimation Results + Table 1** — 5 信号 × 4 任务-模型组合的 ρ 和 AUROC；分析 structural dominance、signal ranking shift、cross-model stability、logprob paradox、oracle headroom\n- **§5.3 Correlation-Selection Gap + Table 2** — SciERC best-of-N selection；NER 无信号超越 greedy、RE 仅 logprob 成功 (+2.3 pp)；quality estimation ≠ output selection 的解释\n- **§5.4 Task Complexity and Signal Robustness + Table 3** — 难度梯度 (CoNLL→SciERC→WNUT-17)、Fisher z-test、per-relation diagnostic、capability stratification、WNUT-17 method boundary、temperature/N-scaling robustness、cross-model transfer、LOO circularity、conditional filtering、binary vs ranking 分析\n\n所有数字来自提供的 registry 数据，FORBIDDEN 用语已验证清零。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-experiments.md"
+}

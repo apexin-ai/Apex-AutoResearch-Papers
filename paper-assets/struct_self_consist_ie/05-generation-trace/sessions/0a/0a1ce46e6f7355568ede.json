@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0a1ce46e6f7355568ede",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "code scp scatter and degen",
+  "task_key": "worker_code_scp_scatter_and_degen_20260518T224855",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_scp_scatter_and_degen_20260518T224855_result.json",
+    "occurrence": 1,
+    "bytes": 754,
+    "sha256": "5c3367578f09d41412af8c5e956bd2e1348e489346440beeeda123094d4b4df2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n### Part A: Scatter Plot\n本地文件已就位：`artifacts/fig_degeneracy_lp_scatter_v2.pdf` (23704 bytes，与远端一致)\n\n### Part B: 4 个 degen% 值\n\n| 实验 | n_degen / n_total | degen% |\n|------|-------------------|--------|\n| rank=8 SciERC | 38 / 529 | **7.18%** |\n| N=32 SciERC | 38 / 529 | **7.18%** |\n| N=16 SciERC seed42 | 64 / 529 | **12.10%** |\n| FewNERD N=8 seed42 | 4479 / 32565 | **13.75%** |\n\n结果已保存到远端 `output/supplement_degen_results.json`。\n\n注意：N=16 SciERC seed42 使用的是 `exp001_n16_seed42`（旧版本），其 degen% (12.10%) 与 scatter_v2_data.json 中 base SciERC seed42 的 17.77%（来自 `exp_001_seed42_v2`）不同，是不同的推理运行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-scp-scatter-and-degen.md"
+}

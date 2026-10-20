@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1f652c7ef3e057dce6ab",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis exp 015 metrics expansion",
+  "task_key": "worker_analysis_exp_015_metrics_expansion_20260514T114050",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_exp_015_metrics_expansion_20260514T114050_result.json",
+    "occurrence": 1,
+    "bytes": 990,
+    "sha256": "4f0f40365a2814fbf679599e15c3004dca1033019f7e7f793c4a0eb861e33978"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。产出：\n\n**脚本**: `artifacts/analyze_exp015_metrics_expansion.py` — 已注册为 artifact (`art_20260514_a315ab`)\n\n**exp_015_metrics_expansion** 已在 registry 中注册 (QUEUED)\n\n**脚本功能**:\n- 加载 pilot_004 的 `samples.jsonl`，尝试从 exp-012 目录加载 logprob 数据\n- 计算 5 类信号：`soft_jaccard`, `fleiss_kappa`, `exact_match`, `voting_confidence`, `logprob`（如可用）\n- 对 NER 和 RE 分别计算 6 项指标：Spearman ρ, Kendall τ, AUROC, calibration bins (10 bin), LOO-SJ, bootstrap 95% CI (1000 resamples)\n- 输出 4 个 JSON 文件到 `output/exp015_metrics_expansion/`：\n  - `ner_full_metrics.json`, `re_full_metrics.json`\n  - `calibration_data.json`\n  - `bootstrap_ci.json`\n  - `loo_sj_comparison.json`\n\n**服务器运行命令**:\n```bash\ncd /root/autodl-tmp/struct_self_consist_ie\npython code/analyze_exp015_metrics_expansion.py\n```\n\n需要先将脚本同步到服务器的 `code/` 目录。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-015-metrics-expansion.md"
+}

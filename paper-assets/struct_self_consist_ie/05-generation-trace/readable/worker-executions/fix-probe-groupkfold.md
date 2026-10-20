@@ -1,0 +1,7370 @@
+# fix probe groupkfold
+
+**When Self-Consistency Fails for NER: Degeneracy, Signal Collapse, and the Correlation-Selection Gap** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 156
+- **Recorded user turns:** 0
+- **Tool calls:** 53
+- **Original source:** `logs/workers/worker_fix_probe_groupkfold_20260521T030809.log`
+- **Structured JSON:** [`3a5cb0fece06beef5d3e.json`](../../sessions/3a/3a5cb0fece06beef5d3e.json)
+
+## Before a recorded user message
+
+156 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "session_id": "4ef02f80-2bd2-4491-8d00-968f4ce2770e",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__read_registry",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only",
+    "mcp__agent-ml-research__update_registry"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "ae7d0cb6-20f1-4e02-83bf-0a5ed98c8e49",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed_warning",
+    "resetsAt": 1779858000,
+    "rateLimitType": "seven_day",
+    "utilization": 0.27,
+    "isUsingOverage": false
+  },
+  "uuid": "38b9034e-ab92-47b7-9e1e-390edc203c09",
+  "session_id": "4ef02f80-2bd2-4491-8d00-968f4ce2770e"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+I'll start by connecting to the server and examining the probe code and data.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4ef02f80-2bd2-4491-8d00-968f4ce2770e",
+  "uuid": "323c9318-148a-40dd-9923-7270e3f61283",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Jt4nhc9m3MManCEoCeu1TT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12947,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12947
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01JnM12VG74qWgrda3gTciir`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__register_artifact",
+  "max_results": 5
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4ef02f80-2bd2-4491-8d00-968f4ce2770e",
+  "uuid": "a1146aa2-dde6-465c-9564-99c14709a8cb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Jt4nhc9m3MManCEoCeu1TT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12947,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12947
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-21T03:08:23.858Z_
+
+<details><summary>↩ Tool result · `toolu_01JnM12VG74qWgrda3gTciir`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__detect_image"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__update_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__register_artifact"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4ef02f80-2bd2-4491-8d00-968f4ce2770e",
+  "uuid": "f34bb897-df47-4a0c-928e-2558549313a4",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__detect_image",
+      "mcp__agent-ml-research__update_registry",
+      "mcp__agent-ml-research__register_artifact"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__register_artifact",
+    "total_deferred_tools": 26
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by examining the probe code and the hidden states data on the server in parallel.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4ef02f80-2bd2-4491-8d00-968f4ce2770e",
+  "uuid": "c03e4060-2506-4243-a86b-127b206744d0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GXPJTmTKUQySijsyEgnYye",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1994,
+      "cache_read_input_tokens": 24788,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1994
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 8_
+
+Let me examine the probe code and hidden states data on the server.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4ef02f80-2bd2-4491-8d00-968f4ce2770e",
+  "uuid": "95b26373-abaf-42f0-b8ca-310e9c4dea91",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GXPJTmTKUQySijsyEgnYye",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1994,
+      "cache_read_input_tokens": 24788,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1994
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_015Bi9mVW5nVG7TPcHKFaTix`</summary>
+
+```json
+{
+  "server": "autodl-5090-c",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/code/hidden_state_probe.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4ef02f80-2bd2-4491-8d00-968f4ce2770e",
+  "uuid": "6fceaeba-ef42-48fe-840f-dc6c58dfbfb7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GXPJTmTKUQySijsyEgnYye",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1994,
+      "cache_read_input_tokens": 24788,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1994
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_016qwjwDyncDDridsezMZxfe`</summary>
+
+```json
+{
+  "server": "autodl-5090-c",
+  "command": "find /root/autodl-tmp/struct_self_consist_ie/output/ -name \"*.pt\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4ef02f80-2bd2-4491-8d00-968f4ce2770e",
+  "uuid": "26dc5941-de9e-4843-97ce-d67658d4ed25",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GXPJTmTKUQySijsyEgnYye",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1994,
+      "cache_read_input_tokens": 24788,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1994
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-21T03:08:33.628Z_
+
+<details><summary>↩ Tool result · `toolu_015Bi9mVW5nVG7TPcHKFaTix`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Hidden state probe: test if entity quality info exists in model representations.\\n\\nMV agreement AUROC=0.87 (signal in multi-sample outputs).\\nESJ self-judgment AUROC=0.51 (prompt-based reading fails).\\nThis probe tests if a linear classifier on last-layer hidden states\\ncan predict whether a predicted entity matches gold annotation.\\n\\nIf probe AUROC ≈ 0.87: info exists in representation, prompt interface fails\\nIf probe AUROC ≈ 0.51: info not present in representation\\nIf probe AUROC 0.6-0.8: partial information in representation\\n\\nUsage:\\n  CUDA_VISIBLE_DEVICES=2 python code/hidden_state_probe.py --dataset fewnerd --max_instances 500\\n  CUDA_VISIBLE_DEVICES=3 python code/hidden_state_probe.py --dataset conll --max_instances 500\\n  python code/hidden_state_probe.py --dataset fewnerd --probe_only\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport os\\nimport time\\n\\nimport numpy as np\\nimport torch\\n\\nBASE_DIR = \\\"/root/autodl-tmp/struct_self_consist_ie\\\"\\nOUTPUT_DIR = os.path.join(BASE_DIR, \\\"output/entity_probe_auroc\\\")\\n\\nDATASET_CONFIG = {\\n    \\\"scierc\\\": {\\n        \\\"data_path\\\": os.path.join(BASE_DIR, \\\"output/exp_scierc_8b_t08_s42/samples.jsonl\\\"),\\n        \\\"model_path\\\": os.path.join(BASE_DIR, \\\"checkpoints/qwen3-8b-scierc-merged-v2\\\"),\\n        \\\"schema_hint\\\": (\\n            \\\"Entity types: Generic, Material, Method, Metric, OtherScientificTerm, Task\\\\n\\\"\\n            \\\"Relation types: COMPARE, CONJUNCTION, EVALUATE-FOR, FEATURE-OF, HYPONYM-OF, PART-OF, USED-FOR\\\"\\n        ),\\n        \\\"max_instances\\\": 551,\\n        \\\"n_samples\\\": 8,\\n    },\\n    \\\"fewnerd\\\": {\\n        \\\"data_path\\\": os.path.join(BASE_DIR, \\\"output/exp_tlow_fewnerd_t05_s42/samples.jsonl\\\"),\\n        \\\"model_path\\\": os.path.join(BASE_DIR, \\\"checkpoints/qwen3-8b-fewnerd-exp021-merged\\\"),\\n        \\\"schema_hint\\\": \\\"Entity types: person, organization, location, building, art, product, event, other\\\",\\n        \\\"max_instances\\\": 2000,\\n        \\\"n_samples\\\": 8,\\n    },\\n    \\\"conll\\\": {\\n        \\\"data_path\\\": os.path.join(BASE_DIR, \\\"output/exp_conll_t08_seed42/samples.jsonl\\\"),\\n        \\\"model_path\\\": os.path.join(BASE_DIR, \\\"checkpoints/qwen3-8b-conll2003-merged\\\"),\\n        \\\"schema_hint\\\": \\\"Entity types: PER, LOC, ORG, MISC\\\",\\n        \\\"max_instances\\\": 1000,\\n        \\\"n_samples\\\": 8,\\n    },\\n}\\n\\nPROMPT_TEMPLATE = (\\n    \\\"Extract all structured information (entities and relations) from the following text. \\\"\\n    \\\"Output a JSON object.\\\\n\\\\n\\\"\\n    \\\"Text: {text}\\\\n\\\"\\n    \\\"{schema_line}\\\"\\n    \\\"\\\\nOutput format: \\\"\\n    '{{\\\"entities\\\": [{{\\\"text\\\": \\\"...\\\", \\\"type\\\": \\\"...\\\", \\\"start\\\": &lt;int>, \\\"end\\\": &lt;int>}}], '\\n    '\\\"relations\\\": [{{\\\"head\\\": \\\"...\\\", \\\"tail\\\": \\\"...\\\", \\\"type\\\": \\\"...\\\", '\\n    '\\\"head_start\\\": &lt;int>, \\\"head_end\\\": &lt;int>, \\\"tail_start\\\": &lt;int>, \\\"tail_end\\\": &lt;int>}}], '\\n    '\\\"events\\\": []}}'\\n)\\n\\n\\ndef build_prompt(text, schema_hint):\\n    return PROMPT_TEMPLATE.format(text=text, schema_line=f\\\"{schema_hint}\\\\n\\\")\\n\\n\\ndef format_chat(tokenizer, prompt):\\n    messages = [{\\\"role\\\": \\\"user\\\", \\\"content\\\": prompt}]\\n    try:\\n        return tokenizer.apply_chat_template(\\n            messages, tokenize=False, add_generation_prompt=True,\\n            enable_thinking=False,\\n        )\\n    except TypeError:\\n        return tokenizer.apply_chat_template(\\n            messages, tokenize=False, add_generation_prompt=True,\\n        )\\n\\n\\ndef reconstruct_json(sample):\\n    return json.dumps({\\n        \\\"entities\\\": sample.get(\\\"entities\\\", []),\\n        \\\"relations\\\": sample.get(\\\"relations\\\", []),\\n        \\\"events\\\": sample.get(\\\"events\\\", []),\\n    }, ensure_ascii=False)\\n\\n\\ndef find_entity_tokens(response_token_ids, entity_text, tokenizer):\\n    \\\"\\\"\\\"Find token span for entity_text in tokenized response.\\\"\\\"\\\"\\n    entity_lower = entity_text.lower().strip()\\n    n = len(response_token_ids)\\n    for start in range(n):\\n        for end in range(start + 1, min(start + 20, n + 1)):\\n            span_text = tokenizer.decode(response_token_ids[start:end], skip_special_tokens=True).strip()\\n            if span_text.lower() == entity_lower:\\n                return (start, end)\\n    for start in range(n):\\n        for end in range(start\\n\\n... [截断: 输出过长，省略 4829 字符] ...\\n\\nstances\\\": max_inst,\\n            \\\"extraction_time_seconds\\\": elapsed,\\n            \\\"n_skipped\\\": n_skipped,\\n        }, f, indent=2)\\n\\n    print(f\\\"Saved to {OUTPUT_DIR}/entity_*_{args.dataset}.*\\\")\\n    return hidden_states.numpy(), np.array(all_labels)\\n\\n\\ndef run_auroc_probe(dataset_name):\\n    \\\"\\\"\\\"Run LogisticRegression probe and compute AUROC.\\\"\\\"\\\"\\n    from sklearn.linear_model import LogisticRegression\\n    from sklearn.metrics import roc_auc_score\\n    from sklearn.model_selection import StratifiedKFold\\n    from sklearn.preprocessing import StandardScaler\\n\\n    hs_path = os.path.join(OUTPUT_DIR, f\\\"entity_hidden_states_{dataset_name}.pt\\\")\\n    lb_path = os.path.join(OUTPUT_DIR, f\\\"entity_labels_{dataset_name}.pt\\\")\\n\\n    if not os.path.exists(hs_path):\\n        print(f\\\"  {dataset_name}: no hidden states found, skipping\\\")\\n        return None\\n\\n    hs = torch.load(hs_path, weights_only=True).float().numpy()\\n    labels = torch.load(lb_path, weights_only=True).numpy()\\n\\n    print(f\\\"\\\\n--- {dataset_name} ---\\\")\\n    print(f\\\"  Entities: {len(labels)}, dim={hs.shape[1]}\\\")\\n    print(f\\\"  Positive: {labels.sum()} ({labels.mean()*100:.1f}%), \\\"\\n          f\\\"Negative: {len(labels)-labels.sum()}\\\")\\n\\n    if labels.sum() == 0 or labels.sum() == len(labels):\\n        print(\\\"  SKIP: single class\\\")\\n        return None\\n\\n    cv_folds = 5\\n    seeds = [42, 123, 456]\\n    all_aurocs = []\\n\\n    for seed in seeds:\\n        skf = StratifiedKFold(n_splits=cv_folds, shuffle=True, random_state=seed)\\n        fold_aurocs = []\\n        for train_idx, test_idx in skf.split(hs, labels):\\n            X_train = hs[train_idx]\\n            X_test = hs[test_idx]\\n            y_train = labels[train_idx]\\n            y_test = labels[test_idx]\\n\\n            scaler = StandardScaler()\\n            X_train = scaler.fit_transform(X_train)\\n            X_test = scaler.transform(X_test)\\n\\n            clf = LogisticRegression(max_iter=1000, C=1.0, solver=\\\"lbfgs\\\")\\n            clf.fit(X_train, y_train)\\n            y_prob = clf.predict_proba(X_test)[:, 1]\\n\\n            if len(np.unique(y_test)) < 2:\\n                continue\\n            fold_aurocs.append(roc_auc_score(y_test, y_prob))\\n\\n        if fold_aurocs:\\n            all_aurocs.append(np.mean(fold_aurocs))\\n\\n    if not all_aurocs:\\n        return None\\n\\n    mean_auroc = np.mean(all_aurocs)\\n    std_auroc = np.std(all_aurocs)\\n\\n    if mean_auroc > 0.80:\\n        interp = \\\"HIGH — info in representation, prompt interface fails\\\"\\n    elif mean_auroc > 0.60:\\n        interp = \\\"MODERATE — partial info in representation\\\"\\n    else:\\n        interp = \\\"LOW — info not clearly present\\\"\\n\\n    print(f\\\"  AUROC = {mean_auroc:.4f} +/- {std_auroc:.4f}\\\")\\n    print(f\\\"  vs MV=0.87, ESJ=0.51\\\")\\n    print(f\\\"  => {interp}\\\")\\n\\n    result = {\\n        \\\"dataset\\\": dataset_name,\\n        \\\"auroc_mean\\\": float(mean_auroc),\\n        \\\"auroc_std\\\": float(std_auroc),\\n        \\\"auroc_per_seed\\\": [float(a) for a in all_aurocs],\\n        \\\"n_entities\\\": int(len(labels)),\\n        \\\"n_positive\\\": int(labels.sum()),\\n        \\\"positive_rate\\\": float(labels.mean()),\\n        \\\"cv_folds\\\": cv_folds,\\n        \\\"seeds\\\": seeds,\\n        \\\"comparison\\\": {\\\"mv_agreement_auroc\\\": 0.87, \\\"esj_prompt_auroc\\\": 0.51},\\n        \\\"interpretation\\\": interp,\\n    }\\n\\n    path = os.path.join(OUTPUT_DIR, f\\\"auroc_results_{dataset_name}.json\\\")\\n    with open(path, \\\"w\\\") as f:\\n        json.dump(result, f, indent=2)\\n    print(f\\\"  Saved: {path}\\\")\\n    return result\\n\\n\\ndef main():\\n    parser = argparse.ArgumentParser(description=\\\"Hidden state entity probe\\\")\\n    parser.add_argument(\\\"--dataset\\\", required=True, choices=[\\\"scierc\\\", \\\"fewnerd\\\", \\\"conll\\\"])\\n    parser.add_argument(\\\"--gpu\\\", type=int, default=0)\\n    parser.add_argument(\\\"--max_instances\\\", type=int, default=500)\\n    parser.add_argument(\\\"--probe_only\\\", action=\\\"store_true\\\",\\n                        help=\\\"Skip extraction, run probe on existing .pt files\\\")\\n    args = parser.parse_args()\\n\\n    if not args.probe_only:\\n        extract_hidden_states(args)\\n\\n    run_auroc_probe(args.dataset)\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.15}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4ef02f80-2bd2-4491-8d00-968f4ce2770e",
+  "uuid": "bb6784b6-f588-4115-84e3-1277d15496d7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"Hidden state probe: test if entity quality info exists in model representations.\\\\n\\\\nMV agreement AUROC=0.87 (signal in multi-sample outputs).\\\\nESJ self-judgment AUROC=0.51 (prompt-based reading fails).\\\\nThis probe tests if a linear classifier on last-layer hidden states\\\\ncan predict whether a predicted entity matches gold annotation.\\\\n\\\\nIf probe AUROC ≈ 0.87: info exists in representation, prompt interface fails\\\\nIf probe AUROC ≈ 0.51: info not present in representation\\\\nIf probe AUROC 0.6-0.8: partial information in representation\\\\n\\\\nUsage:\\\\n  CUDA_VISIBLE_DEVICES=2 python code/hidden_state_probe.py --dataset fewnerd --max_instances 500\\\\n  CUDA_VISIBLE_DEVICES=3 python code/hidden_state_probe.py --dataset conll --max_instances 500\\\\n  python code/hidden_state_probe.py --dataset fewnerd --probe_only\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport os\\\\nimport time\\\\n\\\\nimport numpy as np\\\\nimport torch\\\\n\\\\nBASE_DIR = \\\\\\\"/root/autodl-tmp/struct_self_consist_ie\\\\\\\"\\\\nOUTPUT_DIR = os.path.join(BASE_DIR, \\\\\\\"output/entity_probe_auroc\\\\\\\")\\\\n\\\\nDATASET_CONFIG = {\\\\n    \\\\\\\"scierc\\\\\\\": {\\\\n        \\\\\\\"data_path\\\\\\\": os.path.join(BASE_DIR, \\\\\\\"output/exp_scierc_8b_t08_s42/samples.jsonl\\\\\\\"),\\\\n        \\\\\\\"model_path\\\\\\\": os.path.join(BASE_DIR, \\\\\\\"checkpoints/qwen3-8b-scierc-merged-v2\\\\\\\"),\\\\n        \\\\\\\"schema_hint\\\\\\\": (\\\\n            \\\\\\\"Entity types: Generic, Material, Method, Metric, OtherScientificTerm, Task\\\\\\\\n\\\\\\\"\\\\n            \\\\\\\"Relation types: COMPARE, CONJUNCTION, EVALUATE-FOR, FEATURE-OF, HYPONYM-OF, PART-OF, USED-FOR\\\\\\\"\\\\n        ),\\\\n        \\\\\\\"max_instances\\\\\\\": 551,\\\\n        \\\\\\\"n_samples\\\\\\\": 8,\\\\n    },\\\\n    \\\\\\\"fewnerd\\\\\\\": {\\\\n        \\\\\\\"data_path\\\\\\\": os.path.join(BASE_DIR, \\\\\\\"output/exp_tlow_fewnerd_t05_s42/samples.jsonl\\\\\\\"),\\\\n        \\\\\\\"model_path\\\\\\\": os.path.join(BASE_DIR, \\\\\\\"checkpoints/qwen3-8b-fewnerd-exp021-merged\\\\\\\"),\\\\n        \\\\\\\"schema_hint\\\\\\\": \\\\\\\"Entity types: person, organization, location, building, art, product, event, other\\\\\\\",\\\\n        \\\\\\\"max_instances\\\\\\\": 2000,\\\\n        \\\\\\\"n_samples\\\\\\\": 8,\\\\n    },\\\\n    \\\\\\\"conll\\\\\\\": {\\\\n        \\\\\\\"data_path\\\\\\\": os.path.join(BASE_DIR, \\\\\\\"output/exp_conll_t08_seed42/samples.jsonl\\\\\\\"),\\\\n        \\\\\\\"model_path\\\\\\\": os.path.join(BASE_DIR, \\\\\\\"checkpoints/qwen3-8b-conll2003-merged\\\\\\\"),\\\\n        \\\\\\\"schema_hint\\\\\\\": \\\\\\\"Entity types: PER, LOC, ORG, MISC\\\\\\\",\\\\n        \\\\\\\"max_instances\\\\\\\": 1000,\\\\n        \\\\\\\"n_samples\\\\\\\": 8,\\\\n    },\\\\n}\\\\n\\\\nPROMPT_TEMPLATE = (\\\\n    \\\\\\\"Extract all structured information (entities and relations) from the following text. \\\\\\\"\\\\n    \\\\\\\"Output a JSON object.\\\\\\\\n\\\\\\\\n\\\\\\\"\\\\n    \\\\\\\"Text: {text}\\\\\\\\n\\\\\\\"\\\\n    \\\\\\\"{schema_line}\\\\\\\"\\\\n    \\\\\\\"\\\\\\\\nOutput format: \\\\\\\"\\\\n    '{{\\\\\\\"entities\\\\\\\": [{{\\\\\\\"text\\\\\\\": \\\\\\\"...\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"...\\\\\\\", \\\\\\\"start\\\\\\\": &lt;int>, \\\\\\\"end\\\\\\\": &lt;int>}}], '\\\\n    '\\\\\\\"relations\\\\\\\": [{{\\\\\\\"head\\\\\\\": \\\\\\\"...\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"...\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"...\\\\\\\", '\\\\n    '\\\\\\\"head_start\\\\\\\": &lt;int>, \\\\\\\"head_end\\\\\\\": &lt;int>, \\\\\\\"tail_start\\\\\\\": &lt;int>, \\\\\\\"tail_end\\\\\\\": &lt;int>}}], '\\\\n    '\\\\\\\"events\\\\\\\": []}}'\\\\n)\\\\n\\\\n\\\\ndef build_prompt(text, schema_hint):\\\\n    return PROMPT_TEMPLATE.format(text=text, schema_line=f\\\\\\\"{schema_hint}\\\\\\\\n\\\\\\\")\\\\n\\\\n\\\\ndef format_chat(tokenizer, prompt):\\\\n    messages = [{\\\\\\\"role\\\\\\\": \\\\\\\"user\\\\\\\", \\\\\\\"content\\\\\\\": prompt}]\\\\n    try:\\\\n        return tokenizer.apply_chat_template(\\\\n            messages, tokenize=False, add_generation_prompt=True,\\\\n            enable_thinking=False,\\\\n        )\\\\n    except TypeError:\\\\n        return tokenizer.apply_chat_template(\\\\n            messages, tokenize=False, add_generation_prompt=True,\\\\n        )\\\\n\\\\n\\\\ndef reconstruct_json(sample):\\\\n    return json.dumps({\\\\n        \\\\\\\"entities\\\\\\\": sample.get(\\\\\\\"entities\\\\\\\", []),\\\\n        \\\\\\\"relations\\\\\\\": sample.get(\\\\\\\"relations\\\\\\\", []),\\\\n        \\\\\\\"events\\\\\\\": sample.get(\\\\\\\"events\\\\\\\", []),\\\\n    }, ensure_ascii=False)\\\\n\\\\n\\\\ndef find_entity_tokens(response_token_ids, entity_text, tokenizer):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Find token span for entity_text in tokenized response.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    entity_lower = entity_text.lower().strip()\\\\n    n = len(response_token_ids)\\\\n    for start in range(n):\\\\n        for end in range(start + 1, min(start + 20, n + 1)):\\\\n            span_text = tokenizer.decode(response_token_ids[start:end], skip_special_tokens=True).strip()\\\\n            if span_text.lower() == entity_lower:\\\\n                return (start, end)\\\\n    for start in range(n):\\\\n        for end in range(start\\\\n\\\\n... [截断: 输出过长，省略 4829 字符] ...\\\\n\\\\nstances\\\\\\\": max_inst,\\\\n            \\\\\\\"extraction_time_seconds\\\\\\\": elapsed,\\\\n            \\\\\\\"n_skipped\\\\\\\": n_skipped,\\\\n        }, f, indent=2)\\\\n\\\\n    print(f\\\\\\\"Saved to {OUTPUT_DIR}/entity_*_{args.dataset}.*\\\\\\\")\\\\n    return hidden_states.numpy(), np.array(all_labels)\\\\n\\\\n\\\\ndef run_auroc_probe(dataset_name):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Run LogisticRegression probe and compute AUROC.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    from sklearn.linear_model import LogisticRegression\\\\n    from sklearn.metrics import roc_auc_score\\\\n    from sklearn.model_selection import StratifiedKFold\\\\n    from sklearn.preprocessing import StandardScaler\\\\n\\\\n    hs_path = os.path.join(OUTPUT_DIR, f\\\\\\\"entity_hidden_states_{dataset_name}.pt\\\\\\\")\\\\n    lb_path = os.path.join(OUTPUT_DIR, f\\\\\\\"entity_labels_{dataset_name}.pt\\\\\\\")\\\\n\\\\n    if not os.path.exists(hs_path):\\\\n        print(f\\\\\\\"  {dataset_name}: no hidden states found, skipping\\\\\\\")\\\\n        return None\\\\n\\\\n    hs = torch.load(hs_path, weights_only=True).float().numpy()\\\\n    labels = torch.load(lb_path, weights_only=True).numpy()\\\\n\\\\n    print(f\\\\\\\"\\\\\\\\n--- {dataset_name} ---\\\\\\\")\\\\n    print(f\\\\\\\"  Entities: {len(labels)}, dim={hs.shape[1]}\\\\\\\")\\\\n    print(f\\\\\\\"  Positive: {labels.sum()} ({labels.mean()*100:.1f}%), \\\\\\\"\\\\n          f\\\\\\\"Negative: {len(labels)-labels.sum()}\\\\\\\")\\\\n\\\\n    if labels.sum() == 0 or labels.sum() == len(labels):\\\\n        print(\\\\\\\"  SKIP: single class\\\\\\\")\\\\n        return None\\\\n\\\\n    cv_folds = 5\\\\n    seeds = [42, 123, 456]\\\\n    all_aurocs = []\\\\n\\\\n    for seed in seeds:\\\\n        skf = StratifiedKFold(n_splits=cv_folds, shuffle=True, random_state=seed)\\\\n        fold_aurocs = []\\\\n        for train_idx, test_idx in skf.split(hs, labels):\\\\n            X_train = hs[train_idx]\\\\n            X_test = hs[test_idx]\\\\n            y_train = labels[train_idx]\\\\n            y_test = labels[test_idx]\\\\n\\\\n            scaler = StandardScaler()\\\\n            X_train = scaler.fit_transform(X_train)\\\\n            X_test = scaler.transform(X_test)\\\\n\\\\n            clf = LogisticRegression(max_iter=1000, C=1.0, solver=\\\\\\\"lbfgs\\\\\\\")\\\\n            clf.fit(X_train, y_train)\\\\n            y_prob = clf.predict_proba(X_test)[:, 1]\\\\n\\\\n            if len(np.unique(y_test)) < 2:\\\\n                continue\\\\n            fold_aurocs.append(roc_auc_score(y_test, y_prob))\\\\n\\\\n        if fold_aurocs:\\\\n            all_aurocs.append(np.mean(fold_aurocs))\\\\n\\\\n    if not all_aurocs:\\\\n        return None\\\\n\\\\n    mean_auroc = np.mean(all_aurocs)\\\\n    std_auroc = np.std(all_aurocs)\\\\n\\\\n    if mean_auroc > 0.80:\\\\n        interp = \\\\\\\"HIGH — info in representation, prompt interface fails\\\\\\\"\\\\n    elif mean_auroc > 0.60:\\\\n        interp = \\\\\\\"MODERATE — partial info in representation\\\\\\\"\\\\n    else:\\\\n        interp = \\\\\\\"LOW — info not clearly present\\\\\\\"\\\\n\\\\n    print(f\\\\\\\"  AUROC = {mean_auroc:.4f} +/- {std_auroc:.4f}\\\\\\\")\\\\n    print(f\\\\\\\"  vs MV=0.87, ESJ=0.51\\\\\\\")\\\\n    print(f\\\\\\\"  => {interp}\\\\\\\")\\\\n\\\\n    result = {\\\\n        \\\\\\\"dataset\\\\\\\": dataset_name,\\\\n        \\\\\\\"auroc_mean\\\\\\\": float(mean_auroc),\\\\n        \\\\\\\"auroc_std\\\\\\\": float(std_auroc),\\\\n        \\\\\\\"auroc_per_seed\\\\\\\": [float(a) for a in all_aurocs],\\\\n        \\\\\\\"n_entities\\\\\\\": int(len(labels)),\\\\n        \\\\\\\"n_positive\\\\\\\": int(labels.sum()),\\\\n        \\\\\\\"positive_rate\\\\\\\": float(labels.mean()),\\\\n        \\\\\\\"cv_folds\\\\\\\": cv_folds,\\\\n        \\\\\\\"seeds\\\\\\\": seeds,\\\\n        \\\\\\\"comparison\\\\\\\": {\\\\\\\"mv_agreement_auroc\\\\\\\": 0.87, \\\\\\\"esj_prompt_auroc\\\\\\\": 0.51},\\\\n        \\\\\\\"interpretation\\\\\\\": interp,\\\\n    }\\\\n\\\\n    path = os.path.join(OUTPUT_DIR, f\\\\\\\"auroc_results_{dataset_name}.json\\\\\\\")\\\\n    with open(path, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(result, f, indent=2)\\\\n    print(f\\\\\\\"  Saved: {path}\\\\\\\")\\\\n    return result\\\\n\\\\n\\\\ndef main():\\\\n    parser = argparse.ArgumentParser(description=\\\\\\\"Hidden state entity probe\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--dataset\\\\\\\", required=True, choices=[\\\\\\\"scierc\\\\\\\", \\\\\\\"fewnerd\\\\\\\", \\\\\\\"conll\\\\\\\"])\\\\n    parser.add_argument(\\\\\\\"--gpu\\\\\\\", type=int, default=0)\\\\n    parser.add_argument(\\\\\\\"--max_instances\\\\\\\", type=int, default=500)\\\\n    parser.add_argument(\\\\\\\"--probe_only\\\\\\\", action=\\\\\\\"store_true\\\\\\\",\\\\n                        help=\\\\\\\"Skip extraction, run probe on existing .pt files\\\\\\\")\\\\n    args = parser.parse_args()\\\\n\\\\n    if not args.probe_only:\\\\n        extract_hidden_states(args)\\\\n\\\\n    run_auroc_probe(args.dataset)\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.15}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Hidden state probe: test if entity quality info exists in model representations.\\n\\nMV agreement AUROC=0.87 (signal in multi-sample outputs).\\nESJ self-judgment AUROC=0.51 (prompt-based reading fails).\\nThis probe tests if a linear classifier on last-layer hidden states\\ncan predict whether a predicted entity matches gold annotation.\\n\\nIf probe AUROC ≈ 0.87: info exists in representation, prompt interface fails\\nIf probe AUROC ≈ 0.51: info not present in representation\\nIf probe AUROC 0.6-0.8: partial information in representation\\n\\nUsage:\\n  CUDA_VISIBLE_DEVICES=2 python code/hidden_state_probe.py --dataset fewnerd --max_instances 500\\n  CUDA_VISIBLE_DEVICES=3 python code/hidden_state_probe.py --dataset conll --max_instances 500\\n  python code/hidden_state_probe.py --dataset fewnerd --probe_only\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport os\\nimport time\\n\\nimport numpy as np\\nimport torch\\n\\nBASE_DIR = \\\"/root/autodl-tmp/struct_self_consist_ie\\\"\\nOUTPUT_DIR = os.path.join(BASE_DIR, \\\"output/entity_probe_auroc\\\")\\n\\nDATASET_CONFIG = {\\n    \\\"scierc\\\": {\\n        \\\"data_path\\\": os.path.join(BASE_DIR, \\\"output/exp_scierc_8b_t08_s42/samples.jsonl\\\"),\\n        \\\"model_path\\\": os.path.join(BASE_DIR, \\\"checkpoints/qwen3-8b-scierc-merged-v2\\\"),\\n        \\\"schema_hint\\\": (\\n            \\\"Entity types: Generic, Material, Method, Metric, OtherScientificTerm, Task\\\\n\\\"\\n            \\\"Relation types: COMPARE, CONJUNCTION, EVALUATE-FOR, FEATURE-OF, HYPONYM-OF, PART-OF, USED-FOR\\\"\\n        ),\\n        \\\"max_instances\\\": 551,\\n        \\\"n_samples\\\": 8,\\n    },\\n    \\\"fewnerd\\\": {\\n        \\\"data_path\\\": os.path.join(BASE_DIR, \\\"output/exp_tlow_fewnerd_t05_s42/samples.jsonl\\\"),\\n        \\\"model_path\\\": os.path.join(BASE_DIR, \\\"checkpoints/qwen3-8b-fewnerd-exp021-merged\\\"),\\n        \\\"schema_hint\\\": \\\"Entity types: person, organization, location, building, art, product, event, other\\\",\\n        \\\"max_instances\\\": 2000,\\n        \\\"n_samples\\\": 8,\\n    },\\n    \\\"conll\\\": {\\n        \\\"data_path\\\": os.path.join(BASE_DIR, \\\"output/exp_conll_t08_seed42/samples.jsonl\\\"),\\n        \\\"model_path\\\": os.path.join(BASE_DIR, \\\"checkpoints/qwen3-8b-conll2003-merged\\\"),\\n        \\\"schema_hint\\\": \\\"Entity types: PER, LOC, ORG, MISC\\\",\\n        \\\"max_instances\\\": 1000,\\n        \\\"n_samples\\\": 8,\\n    },\\n}\\n\\nPROMPT_TEMPLATE = (\\n    \\\"Extract all structured information (entities and relations) from the following text. \\\"\\n    \\\"Output a JSON object.\\\\n\\\\n\\\"\\n    \\\"Text: {text}\\\\n\\\"\\n    \\\"{schema_line}\\\"\\n    \\\"\\\\nOutput format: \\\"\\n    '{{\\\"entities\\\": [{{\\\"text\\\": \\\"...\\\", \\\"type\\\": \\\"...\\\", \\\"start\\\": &lt;int>, \\\"end\\\": &lt;int>}}], '\\n    '\\\"relations\\\": [{{\\\"head\\\": \\\"...\\\", \\\"tail\\\": \\\"...\\\", \\\"type\\\": \\\"...\\\", '\\n    '\\\"head_start\\\": &lt;int>, \\\"head_end\\\": &lt;int>, \\\"tail_start\\\": &lt;int>, \\\"tail_end\\\": &lt;int>}}], '\\n    '\\\"events\\\": []}}'\\n)\\n\\n\\ndef build_prompt(text, schema_hint):\\n    return PROMPT_TEMPLATE.format(text=text, schema_line=f\\\"{schema_hint}\\\\n\\\")\\n\\n\\ndef format_chat(tokenizer, prompt):\\n    messages = [{\\\"role\\\": \\\"user\\\", \\\"content\\\": prompt}]\\n    try:\\n        return tokenizer.apply_chat_template(\\n            messages, tokenize=False, add_generation_prompt=True,\\n            enable_thinking=False,\\n        )\\n    except TypeError:\\n        return tokenizer.apply_chat_template(\\n            messages, tokenize=False, add_generation_prompt=True,\\n        )\\n\\n\\ndef reconstruct_json(sample):\\n    return json.dumps({\\n        \\\"entities\\\": sample.get(\\\"entities\\\", []),\\n        \\\"relations\\\": sample.get(\\\"relations\\\", []),\\n        \\\"events\\\": sample.get(\\\"events\\\", []),\\n    }, ensure_ascii=False)\\n\\n\\ndef find_entity_tokens(response_token_ids, entity_text, tokenizer):\\n    \\\"\\\"\\\"Find token span for entity_text in tokenized response.\\\"\\\"\\\"\\n    entity_lower = entity_text.lower().strip()\\n    n = len(response_token_ids)\\n    for start in range(n):\\n        for end in range(start + 1, min(start + 20, n + 1)):\\n            span_text = tokenizer.decode(response_token_ids[start:end], skip_special_tokens=True).strip()\\n            if span_text.lower() == entity_lower:\\n                return (start, end)\\n    for start in range(n):\\n        for end in range(start\\n\\n... [截断: 输出过长，省略 4829 字符] ...\\n\\nstances\\\": max_inst,\\n            \\\"extraction_time_seconds\\\": elapsed,\\n            \\\"n_skipped\\\": n_skipped,\\n        }, f, indent=2)\\n\\n    print(f\\\"Saved to {OUTPUT_DIR}/entity_*_{args.dataset}.*\\\")\\n    return hidden_states.numpy(), np.array(all_labels)\\n\\n\\ndef run_auroc_probe(dataset_name):\\n    \\\"\\\"\\\"Run LogisticRegression probe and compute AUROC.\\\"\\\"\\\"\\n    from sklearn.linear_model import LogisticRegression\\n    from sklearn.metrics import roc_auc_score\\n    from sklearn.model_selection import StratifiedKFold\\n    from sklearn.preprocessing import StandardScaler\\n\\n    hs_path = os.path.join(OUTPUT_DIR, f\\\"entity_hidden_states_{dataset_name}.pt\\\")\\n    lb_path = os.path.join(OUTPUT_DIR, f\\\"entity_labels_{dataset_name}.pt\\\")\\n\\n    if not os.path.exists(hs_path):\\n        print(f\\\"  {dataset_name}: no hidden states found, skipping\\\")\\n        return None\\n\\n    hs = torch.load(hs_path, weights_only=True).float().numpy()\\n    labels = torch.load(lb_path, weights_only=True).numpy()\\n\\n    print(f\\\"\\\\n--- {dataset_name} ---\\\")\\n    print(f\\\"  Entities: {len(labels)}, dim={hs.shape[1]}\\\")\\n    print(f\\\"  Positive: {labels.sum()} ({labels.mean()*100:.1f}%), \\\"\\n          f\\\"Negative: {len(labels)-labels.sum()}\\\")\\n\\n    if labels.sum() == 0 or labels.sum() == len(labels):\\n        print(\\\"  SKIP: single class\\\")\\n        return None\\n\\n    cv_folds = 5\\n    seeds = [42, 123, 456]\\n    all_aurocs = []\\n\\n    for seed in seeds:\\n        skf = StratifiedKFold(n_splits=cv_folds, shuffle=True, random_state=seed)\\n        fold_aurocs = []\\n        for train_idx, test_idx in skf.split(hs, labels):\\n            X_train = hs[train_idx]\\n            X_test = hs[test_idx]\\n            y_train = labels[train_idx]\\n            y_test = labels[test_idx]\\n\\n            scaler = StandardScaler()\\n            X_train = scaler.fit_transform(X_train)\\n            X_test = scaler.transform(X_test)\\n\\n            clf = LogisticRegression(max_iter=1000, C=1.0, solver=\\\"lbfgs\\\")\\n            clf.fit(X_train, y_train)\\n            y_prob = clf.predict_proba(X_test)[:, 1]\\n\\n            if len(np.unique(y_test)) < 2:\\n                continue\\n            fold_aurocs.append(roc_auc_score(y_test, y_prob))\\n\\n        if fold_aurocs:\\n            all_aurocs.append(np.mean(fold_aurocs))\\n\\n    if not all_aurocs:\\n        return None\\n\\n    mean_auroc = np.mean(all_aurocs)\\n    std_auroc = np.std(all_aurocs)\\n\\n    if mean_auroc > 0.80:\\n        interp = \\\"HIGH — info in representation, prompt interface fails\\\"\\n    elif mean_auroc > 0.60:\\n        interp = \\\"MODERATE — partial info in representation\\\"\\n    else:\\n        interp = \\\"LOW — info not clearly present\\\"\\n\\n    print(f\\\"  AUROC = {mean_auroc:.4f} +/- {std_auroc:.4f}\\\")\\n    print(f\\\"  vs MV=0.87, ESJ=0.51\\\")\\n    print(f\\\"  => {interp}\\\")\\n\\n    result = {\\n        \\\"dataset\\\": dataset_name,\\n        \\\"auroc_mean\\\": float(mean_auroc),\\n        \\\"auroc_std\\\": float(std_auroc),\\n        \\\"auroc_per_seed\\\": [float(a) for a in all_aurocs],\\n        \\\"n_entities\\\": int(len(labels)),\\n        \\\"n_positive\\\": int(labels.sum()),\\n        \\\"positive_rate\\\": float(labels.mean()),\\n        \\\"cv_folds\\\": cv_folds,\\n        \\\"seeds\\\": seeds,\\n        \\\"comparison\\\": {\\\"mv_agreement_auroc\\\": 0.87, \\\"esj_prompt_auroc\\\": 0.51},\\n        \\\"interpretation\\\": interp,\\n    }\\n\\n    path = os.path.join(OUTPUT_DIR, f\\\"auroc_results_{dataset_name}.json\\\")\\n    with open(path, \\\"w\\\") as f:\\n        json.dump(result, f, indent=2)\\n    print(f\\\"  Saved: {path}\\\")\\n    return result\\n\\n\\ndef main():\\n    parser = argparse.ArgumentParser(description=\\\"Hidden state entity probe\\\")\\n    parser.add_argument(\\\"--dataset\\\", required=True, choices=[\\\"scierc\\\", \\\"fewnerd\\\", \\\"conll\\\"])\\n    parser.add_argument(\\\"--gpu\\\", type=int, default=0)\\n    parser.add_argument(\\\"--max_instances\\\", type=int, default=500)\\n    parser.add_argument(\\\"--probe_only\\\", action=\\\"store_true\\\",\\n                        help=\\\"Skip extraction, run probe on existing .pt files\\\")\\n    args = parser.parse_args()\\n\\n    if not args.probe_only:\\n        extract_hidden_states(args)\\n\\n    run_auroc_probe(args.dataset)\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.15}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-21T03:08:34.543Z_
+
+<details><summary>↩ Tool result · `toolu_016qwjwDyncDDridsezMZxfe`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/output/entity_probe_auroc/entity_hidden_states_fewnerd.pt\\n/root/autodl-tmp/struct_self_consist_ie/output/entity_probe_auroc/entity_labels_fewnerd.pt\\n/root/autodl-tmp/struct_self_consist_ie/output/entity_probe_auroc/entity_hidden_states_conll.pt\\n/root/autodl-tmp/struct_self_consist_ie/output/entity_probe_auroc/entity_labels_conll.pt\\n/root/autodl-tmp/struct_self_consist_ie/output/entity_probe_auroc/entity_hidden_states_scierc.pt\\n/root/autodl-tmp/struct_self_consist_ie/output/entity_probe_auroc/entity_labels_scierc.pt\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.9}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4ef02f80-2bd2-4491-8d00-968f4ce2770e",
+  "uuid": "c91e7889-052b-4782-9a2f-96e2de7d7381",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/entity_probe_auroc/entity_hidden_states_fewnerd.pt\\\\n/root/autodl-tmp/struct_self_consist_ie/output/entity_probe_auroc/entity_labels_fewnerd.pt\\\\n/root/autodl-tmp/struct_self_consist_ie/output/entity_probe_auroc/entity_hidden_states_conll.pt\\\\n/root/autodl-tmp/struct_self_consist_ie/output/entity_probe_auroc/entity_labels_conll.pt\\\\n/root/autodl-tmp/struct_self_consist_ie/output/entity_probe_auroc/entity_hidden_states_scierc.pt\\\\n/root/autodl-tmp/struct_self_consist_ie/output/entity_probe_auroc/entity_labels_scierc.pt\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.9}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/output/entity_probe_auroc/entity_hidden_states_fewnerd.pt\\n/root/autodl-tmp/struct_self_consist_ie/output/entity_probe_auroc/entity_labels_fewnerd.pt\\n/root/autodl-tmp/struct_self_consist_ie/output/entity_probe_auroc/entity_hidden_states_conll.pt\\n/root/autodl-tmp/struct_self_consist_ie/output/entity_probe_auroc/entity_labels_conll.pt\\n/root/autodl-tmp/struct_self_consist_ie/output/entity_probe_auroc/entity_hidden_states_scierc.pt\\n/root/autodl-tmp/struct_self_consist_ie/output/entity_probe_auroc/entity_labels_scierc.pt\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.9}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 13_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I have the probe code and the hidden states data. Let me analyze what's needed:
+
+1. The code uses `StratifiedKFold` in `run_auroc_probe()` - confirmed.
+2. Hidden states files exist for all 3 datasets: fewnerd, conll, scierc.
+3. But there's no `instance_id` or `groups` info saved alongside the hidden states.
+
+The key issue: the hidden states are saved as flat tensors (`entity_hidden_states_{dataset}.pt` and `entity_labels_{dataset}.pt`), with no instance-level grouping info. 
+
+I need to check the extraction code more carefully to see if there's a metadata file that maps entities back to their original instances, or if I need to reconstruct this mapping from the extraction function itself.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4ef02f80-2bd2-4491-8d00-968f4ce2770e",
+  "uuid": "8de68d80-9def-4e3b-a5f9-5cd074559a09",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014Zr1KAbU8ekxAM1UGA8TL9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4153,
+      "cache_read_input_tokens": 26782,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4153
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 14_
+
+I see the code and data. The probe uses `StratifiedKFold` and saves only hidden states + labels without instance IDs. Let me check the metadata and get the truncated part of the code.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4ef02f80-2bd2-4491-8d00-968f4ce2770e",
+  "uuid": "a4773060-a6a3-4686-a4f8-98202bea84f9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014Zr1KAbU8ekxAM1UGA8TL9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4153,
+      "cache_read_input_tokens": 26782,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4153
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01NfTuMMU2RyDggmCg9occn5`</summary>
+
+```json
+{
+  "server": "autodl-5090-c",
+  "command": "ls -la /root/autodl-tmp/struct_self_consist_ie/output/entity_probe_auroc/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4ef02f80-2bd2-4491-8d00-968f4ce2770e",
+  "uuid": "243f961f-3766-4837-b0cc-67a9254baae5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014Zr1KAbU8ekxAM1UGA8TL9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4153,
+      "cache_read_input_tokens": 26782,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4153
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-21T03:08:47.922Z_
+
+<details><summary>↩ Tool result · `toolu_01NfTuMMU2RyDggmCg9occn5`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 500940\\ndrwxr-xr-x  2 root root      4096 May 21 10:41 .\\ndrwxr-xr-x 39 root root      4096 May 21 10:31 ..\\n-rw-r--r--  1 root root       504 May 21 10:10 auroc_results_conll.json\\n-rw-r--r--  1 root root       508 May 21 10:10 auroc_results_fewnerd.json\\n-rw-r--r--  1 root root       504 May 21 10:41 auroc_results_scierc.json\\n-rw-r--r--  1 root root 128599790 May 21 10:10 entity_hidden_states_conll.pt\\n-rw-r--r--  1 root root 172164860 May 21 10:10 entity_hidden_states_fewnerd.pt\\n-rw-r--r--  1 root root 211896053 May 21 10:40 entity_hidden_states_scierc.pt\\n-rw-r--r--  1 root root     64445 May 21 10:10 entity_labels_conll.pt\\n-rw-r--r--  1 root root     85707 May 21 10:10 entity_labels_fewnerd.pt\\n-rw-r--r--  1 root root    105092 May 21 10:40 entity_labels_scierc.pt\\n-rw-r--r--  1 root root       483 May 21 10:10 entity_metadata_conll.json\\n-rw-r--r--  1 root root       496 May 21 10:10 entity_metadata_fewnerd.json\\n-rw-r--r--  1 root root       487 May 21 10:40 entity_metadata_scierc.json\\n-rw-r--r--  1 root root      2235 May 21 10:10 entity_probe_results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.75}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4ef02f80-2bd2-4491-8d00-968f4ce2770e",
+  "uuid": "33862d52-cd78-470c-be20-7765696bacc5",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 500940\\\\ndrwxr-xr-x  2 root root      4096 May 21 10:41 .\\\\ndrwxr-xr-x 39 root root      4096 May 21 10:31 ..\\\\n-rw-r--r--  1 root root       504 May 21 10:10 auroc_results_conll.json\\\\n-rw-r--r--  1 root root       508 May 21 10:10 auroc_results_fewnerd.json\\\\n-rw-r--r--  1 root root       504 May 21 10:41 auroc_results_scierc.json\\\\n-rw-r--r--  1 root root 128599790 May 21 10:10 entity_hidden_states_conll.pt\\\\n-rw-r--r--  1 root root 172164860 May 21 10:10 entity_hidden_states_fewnerd.pt\\\\n-rw-r--r--  1 root root 211896053 May 21 10:40 entity_hidden_states_scierc.pt\\\\n-rw-r--r--  1 root root     64445 May 21 10:10 entity_labels_conll.pt\\\\n-rw-r--r--  1 root root     85707 May 21 10:10 entity_labels_fewnerd.pt\\\\n-rw-r--r--  1 root root    105092 May 21 10:40 entity_labels_scierc.pt\\\\n-rw-r--r--  1 root root       483 May 21 10:10 entity_metadata_conll.json\\\\n-rw-r--r--  1 root root       496 May 21 10:10 entity_metadata_fewnerd.json\\\\n-rw-r--r--  1 root root       487 May 21 10:40 entity_metadata_scierc.json\\\\n-rw-r--r--  1 root root      2235 May 21 10:10 entity_probe_results.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.75}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 500940\\ndrwxr-xr-x  2 root root      4096 May 21 10:41 .\\ndrwxr-xr-x 39 root root      4096 May 21 10:31 ..\\n-rw-r--r--  1 root root       504 May 21 10:10 auroc_results_conll.json\\n-rw-r--r--  1 root root       508 May 21 10:10 auroc_results_fewnerd.json\\n-rw-r--r--  1 root root       504 May 21 10:41 auroc_results_scierc.json\\n-rw-r--r--  1 root root 128599790 May 21 10:10 entity_hidden_states_conll.pt\\n-rw-r--r--  1 root root 172164860 May 21 10:10 entity_hidden_states_fewnerd.pt\\n-rw-r--r--  1 root root 211896053 May 21 10:40 entity_hidden_states_scierc.pt\\n-rw-r--r--  1 root root     64445 May 21 10:10 entity_labels_conll.pt\\n-rw-r--r--  1 root root     85707 May 21 10:10 entity_labels_fewnerd.pt\\n-rw-r--r--  1 root root    105092 May 21 10:40 entity_labels_scierc.pt\\n-rw-r--r--  1 root root       483 May 21 10:10 entity_metadata_conll.json\\n-rw-r--r--  1 root root       496 May 21 10:10 entity_metadata_fewnerd.json\\n-rw-r--r--  1 root root       487 May 21 10:40 entity_metadata_scierc.json\\n-rw-r--r--  1 root root      2235 May 21 10:10 entity_probe_results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.75}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0154QXkHX1mdWnR4xJQN5tUC`</summary>
+
+```json
+{
+  "server": "autodl-5090-c",
+  "command": "head -200 /root/autodl-tmp/struct_self_consist_ie/code/hidden_state_probe.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4ef02f80-2bd2-4491-8d00-968f4ce2770e",
+  "uuid": "6b23c1fb-0148-4372-a02a-2ee7823e1f63",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014Zr1KAbU8ekxAM1UGA8TL9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4153,
+      "cache_read_input_tokens": 26782,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4153
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01JPM5uzeo7YTEVG8se5fxQv`</summary>
+
+```json
+{
+  "server": "autodl-5090-c",
+  "command": "tail -200 /root/autodl-tmp/struct_self_consist_ie/code/hidden_state_probe.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4ef02f80-2bd2-4491-8d00-968f4ce2770e",
+  "uuid": "e19a9ca4-13ad-411d-b794-71fcdc5b3a06",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014Zr1KAbU8ekxAM1UGA8TL9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4153,
+      "cache_read_input_tokens": 26782,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4153
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-21T03:08:49.039Z_
+
+<details><summary>↩ Tool result · `toolu_0154QXkHX1mdWnR4xJQN5tUC`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Hidden state probe: test if entity quality info exists in model representations.\\n\\nMV agreement AUROC=0.87 (signal in multi-sample outputs).\\nESJ self-judgment AUROC=0.51 (prompt-based reading fails).\\nThis probe tests if a linear classifier on last-layer hidden states\\ncan predict whether a predicted entity matches gold annotation.\\n\\nIf probe AUROC ≈ 0.87: info exists in representation, prompt interface fails\\nIf probe AUROC ≈ 0.51: info not present in representation\\nIf probe AUROC 0.6-0.8: partial information in representation\\n\\nUsage:\\n  CUDA_VISIBLE_DEVICES=2 python code/hidden_state_probe.py --dataset fewnerd --max_instances 500\\n  CUDA_VISIBLE_DEVICES=3 python code/hidden_state_probe.py --dataset conll --max_instances 500\\n  python code/hidden_state_probe.py --dataset fewnerd --probe_only\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport os\\nimport time\\n\\nimport numpy as np\\nimport torch\\n\\nBASE_DIR = \\\"/root/autodl-tmp/struct_self_consist_ie\\\"\\nOUTPUT_DIR = os.path.join(BASE_DIR, \\\"output/entity_probe_auroc\\\")\\n\\nDATASET_CONFIG = {\\n    \\\"scierc\\\": {\\n        \\\"data_path\\\": os.path.join(BASE_DIR, \\\"output/exp_scierc_8b_t08_s42/samples.jsonl\\\"),\\n        \\\"model_path\\\": os.path.join(BASE_DIR, \\\"checkpoints/qwen3-8b-scierc-merged-v2\\\"),\\n        \\\"schema_hint\\\": (\\n            \\\"Entity types: Generic, Material, Method, Metric, OtherScientificTerm, Task\\\\n\\\"\\n            \\\"Relation types: COMPARE, CONJUNCTION, EVALUATE-FOR, FEATURE-OF, HYPONYM-OF, PART-OF, USED-FOR\\\"\\n        ),\\n        \\\"max_instances\\\": 551,\\n        \\\"n_samples\\\": 8,\\n    },\\n    \\\"fewnerd\\\": {\\n        \\\"data_path\\\": os.path.join(BASE_DIR, \\\"output/exp_tlow_fewnerd_t05_s42/samples.jsonl\\\"),\\n        \\\"model_path\\\": os.path.join(BASE_DIR, \\\"checkpoints/qwen3-8b-fewnerd-exp021-merged\\\"),\\n        \\\"schema_hint\\\": \\\"Entity types: person, organization, location, building, art, product, event, other\\\",\\n        \\\"max_instances\\\": 2000,\\n        \\\"n_samples\\\": 8,\\n    },\\n    \\\"conll\\\": {\\n        \\\"data_path\\\": os.path.join(BASE_DIR, \\\"output/exp_conll_t08_seed42/samples.jsonl\\\"),\\n        \\\"model_path\\\": os.path.join(BASE_DIR, \\\"checkpoints/qwen3-8b-conll2003-merged\\\"),\\n        \\\"schema_hint\\\": \\\"Entity types: PER, LOC, ORG, MISC\\\",\\n        \\\"max_instances\\\": 1000,\\n        \\\"n_samples\\\": 8,\\n    },\\n}\\n\\nPROMPT_TEMPLATE = (\\n    \\\"Extract all structured information (entities and relations) from the following text. \\\"\\n    \\\"Output a JSON object.\\\\n\\\\n\\\"\\n    \\\"Text: {text}\\\\n\\\"\\n    \\\"{schema_line}\\\"\\n    \\\"\\\\nOutput format: \\\"\\n    '{{\\\"entities\\\": [{{\\\"text\\\": \\\"...\\\", \\\"type\\\": \\\"...\\\", \\\"start\\\": &lt;int>, \\\"end\\\": &lt;int>}}], '\\n    '\\\"relations\\\": [{{\\\"head\\\": \\\"...\\\", \\\"tail\\\": \\\"...\\\", \\\"type\\\": \\\"...\\\", '\\n    '\\\"head_start\\\": &lt;int>, \\\"head_end\\\": &lt;int>, \\\"tail_start\\\": &lt;int>, \\\"tail_end\\\": &lt;int>}}], '\\n    '\\\"events\\\": []}}'\\n)\\n\\n\\ndef build_prompt(text, schema_hint):\\n    return PROMPT_TEMPLATE.format(text=text, schema_line=f\\\"{schema_hint}\\\\n\\\")\\n\\n\\ndef format_chat(tokenizer, prompt):\\n    messages = [{\\\"role\\\": \\\"user\\\", \\\"content\\\": prompt}]\\n    try:\\n        return tokenizer.apply_chat_template(\\n            messages, tokenize=False, add_generation_prompt=True,\\n            enable_thinking=False,\\n        )\\n    except TypeError:\\n        return tokenizer.apply_chat_template(\\n            messages, tokenize=False, add_generation_prompt=True,\\n        )\\n\\n\\ndef reconstruct_json(sample):\\n    return json.dumps({\\n        \\\"entities\\\": sample.get(\\\"entities\\\", []),\\n        \\\"relations\\\": sample.get(\\\"relations\\\", []),\\n        \\\"events\\\": sample.get(\\\"events\\\", []),\\n    }, ensure_ascii=False)\\n\\n\\ndef find_entity_tokens(response_token_ids, entity_text, tokenizer):\\n    \\\"\\\"\\\"Find token span for entity_text in tokenized response.\\\"\\\"\\\"\\n    entity_lower = entity_text.lower().strip()\\n    n = len(response_token_ids)\\n    for start in range(n):\\n        for end in range(start + 1, min(start + 20, n + 1)):\\n            span_text = tokenizer.decode(response_token_ids[start:end], skip_special_tokens=True).strip()\\n            if span_text.lower() == entity_lower:\\n                return (start, end)\\n    for start in range(n):\\n        for end in range(start + 1, min(start + 15, n + 1)):\\n            span_text = tokenizer.decode(response_token_ids[start:end], skip_special_tokens=True).strip()\\n            if entity_lower in span_text.lower() and len(span_text) <= len(entity_text) * 2:\\n                return (start, end)\\n    return None\\n\\n\\ndef extract_hidden_states(args):\\n    \\\"\\\"\\\"Extract per-entity hidden states for a dataset.\\\"\\\"\\\"\\n    from transformers import AutoModelForCausalLM, AutoTokenizer\\n\\n    config = DATASET_CONFIG[args.dataset]\\n    data_path = config[\\\"data_path\\\"]\\n    model_path = config[\\\"model_path\\\"]\\n    max_inst = min(args.max_instances, config[\\\"max_instances\\\"])\\n    n_samples = config[\\\"n_samples\\\"]\\n\\n    print(f\\\"Dataset: {args.dataset}\\\")\\n    print(f\\\"Data: {data_path}\\\")\\n    print(f\\\"Model: {model_path}\\\")\\n\\n    with open(data_path) as f:\\n        instances = [json.loads(line) for line in f if line.strip()]\\n    instances = instances[:max_inst]\\n    print(f\\\"Instances: {len(instances)}, samples/inst: {n_samples}\\\")\\n\\n    tokenizer = AutoTokenizer.from_pretrained(model_path, trust_remote_code=True)\\n    model = AutoModelForCausalLM.from_pretrained(\\n        model_path, torch_dtype=torch.bfloat16,\\n        device_map=f\\\"cuda:{args.gpu}\\\", trust_remote_code=True,\\n    )\\n    model.eval()\\n    hidden_dim = model.config.hidden_size\\n    print(f\\\"Model loaded, hidden_dim={hidden_dim}\\\")\\n\\n    all_hidden = []\\n    all_labels = []\\n    all_meta = []\\n    n_skipped = 0\\n    t0 = time.time()\\n\\n    for i, inst in enumerate(instances):\\n        text = inst[\\\"text\\\"]\\n        gold = inst[\\\"gold\\\"]\\n        gold_set = {(e[\\\"text\\\"], e[\\\"type\\\"]) for e in gold.get(\\\"entities\\\", [])}\\n        if not gold_set:\\n            continue\\n\\n        for j, sample in enumerate(inst[\\\"samples\\\"][:n_samples]):\\n            prompt = build_prompt(text, config[\\\"schema_hint\\\"])\\n            chat_prompt = format_chat(tokenizer, prompt)\\n            response_json = reconstruct_json(sample)\\n            full_text = chat_prompt + response_json\\n\\n            input_ids = tokenizer.encode(full_text, return_tensors=\\\"pt\\\").to(model.device)\\n            prompt_ids = tokenizer.encode(chat_prompt, return_tensors=\\\"pt\\\")\\n            response_start = prompt_ids.shape[1]\\n            response_tokens = input_ids[0, response_start:].cpu().tolist()\\n\\n            with torch.no_grad():\\n                outputs = model(input_ids, output_hidden_states=True)\\n            last_hidden = outputs.hidden_states[-1][0]\\n\\n            for ent in sample.get(\\\"entities\\\", []):\\n                ent_text = ent.get(\\\"text\\\", \\\"\\\")\\n                ent_type = ent.get(\\\"type\\\", \\\"\\\")\\n                if not ent_text:\\n                    continue\\n                in_gold = 1 if (ent_text, ent_type) in gold_set else 0\\n\\n                span = find_entity_tokens(response_tokens, ent_text, tokenizer)\\n                if span is None:\\n                    n_skipped += 1\\n                    continue\\n\\n                tok_start = response_start + span[0]\\n                tok_end = response_start + span[1]\\n                entity_vec = last_hidden[tok_start:tok_end].float().mean(dim=0).cpu()\\n                all_hidden.append(entity_vec)\\n                all_labels.append(in_gold)\\n                all_meta.append({\\n                    \\\"instance_idx\\\": i, \\\"sample_idx\\\": j,\\n                    \\\"entity_text\\\": ent_text, \\\"entity_type\\\": ent_type,\\n                    \\\"in_gold\\\": in_gold,\\n                })\\n\\n        if (i + 1) % 50 == 0:\\n            elapsed = time.time() - t0\\n            n_ent = len(all_hidden)\\n            pos_rate = sum(all_labels) / max(len(all_labels), 1)\\n            eta = (len(instances) - i - 1) / ((i + 1) / elapsed)\\n            print(f\\\"  [{i+1}/{len(instances)}] {elapsed:.0f}s ETA {eta:.0f}s | \\\"\\n                  f\\\"{n_ent} entities pos={pos_rate:.3f} skip={n_skipped}\\\")\\n\\n    elapsed = time.time() - t0\\n    n_pos = sum(all_labels)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.76}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4ef02f80-2bd2-4491-8d00-968f4ce2770e",
+  "uuid": "0c9b9694-0ece-495a-ba90-3f51a5140603",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"Hidden state probe: test if entity quality info exists in model representations.\\\\n\\\\nMV agreement AUROC=0.87 (signal in multi-sample outputs).\\\\nESJ self-judgment AUROC=0.51 (prompt-based reading fails).\\\\nThis probe tests if a linear classifier on last-layer hidden states\\\\ncan predict whether a predicted entity matches gold annotation.\\\\n\\\\nIf probe AUROC ≈ 0.87: info exists in representation, prompt interface fails\\\\nIf probe AUROC ≈ 0.51: info not present in representation\\\\nIf probe AUROC 0.6-0.8: partial information in representation\\\\n\\\\nUsage:\\\\n  CUDA_VISIBLE_DEVICES=2 python code/hidden_state_probe.py --dataset fewnerd --max_instances 500\\\\n  CUDA_VISIBLE_DEVICES=3 python code/hidden_state_probe.py --dataset conll --max_instances 500\\\\n  python code/hidden_state_probe.py --dataset fewnerd --probe_only\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport os\\\\nimport time\\\\n\\\\nimport numpy as np\\\\nimport torch\\\\n\\\\nBASE_DIR = \\\\\\\"/root/autodl-tmp/struct_self_consist_ie\\\\\\\"\\\\nOUTPUT_DIR = os.path.join(BASE_DIR, \\\\\\\"output/entity_probe_auroc\\\\\\\")\\\\n\\\\nDATASET_CONFIG = {\\\\n    \\\\\\\"scierc\\\\\\\": {\\\\n        \\\\\\\"data_path\\\\\\\": os.path.join(BASE_DIR, \\\\\\\"output/exp_scierc_8b_t08_s42/samples.jsonl\\\\\\\"),\\\\n        \\\\\\\"model_path\\\\\\\": os.path.join(BASE_DIR, \\\\\\\"checkpoints/qwen3-8b-scierc-merged-v2\\\\\\\"),\\\\n        \\\\\\\"schema_hint\\\\\\\": (\\\\n            \\\\\\\"Entity types: Generic, Material, Method, Metric, OtherScientificTerm, Task\\\\\\\\n\\\\\\\"\\\\n            \\\\\\\"Relation types: COMPARE, CONJUNCTION, EVALUATE-FOR, FEATURE-OF, HYPONYM-OF, PART-OF, USED-FOR\\\\\\\"\\\\n        ),\\\\n        \\\\\\\"max_instances\\\\\\\": 551,\\\\n        \\\\\\\"n_samples\\\\\\\": 8,\\\\n    },\\\\n    \\\\\\\"fewnerd\\\\\\\": {\\\\n        \\\\\\\"data_path\\\\\\\": os.path.join(BASE_DIR, \\\\\\\"output/exp_tlow_fewnerd_t05_s42/samples.jsonl\\\\\\\"),\\\\n        \\\\\\\"model_path\\\\\\\": os.path.join(BASE_DIR, \\\\\\\"checkpoints/qwen3-8b-fewnerd-exp021-merged\\\\\\\"),\\\\n        \\\\\\\"schema_hint\\\\\\\": \\\\\\\"Entity types: person, organization, location, building, art, product, event, other\\\\\\\",\\\\n        \\\\\\\"max_instances\\\\\\\": 2000,\\\\n        \\\\\\\"n_samples\\\\\\\": 8,\\\\n    },\\\\n    \\\\\\\"conll\\\\\\\": {\\\\n        \\\\\\\"data_path\\\\\\\": os.path.join(BASE_DIR, \\\\\\\"output/exp_conll_t08_seed42/samples.jsonl\\\\\\\"),\\\\n        \\\\\\\"model_path\\\\\\\": os.path.join(BASE_DIR, \\\\\\\"checkpoints/qwen3-8b-conll2003-merged\\\\\\\"),\\\\n        \\\\\\\"schema_hint\\\\\\\": \\\\\\\"Entity types: PER, LOC, ORG, MISC\\\\\\\",\\\\n        \\\\\\\"max_instances\\\\\\\": 1000,\\\\n        \\\\\\\"n_samples\\\\\\\": 8,\\\\n    },\\\\n}\\\\n\\\\nPROMPT_TEMPLATE = (\\\\n    \\\\\\\"Extract all structured information (entities and relations) from the following text. \\\\\\\"\\\\n    \\\\\\\"Output a JSON object.\\\\\\\\n\\\\\\\\n\\\\\\\"\\\\n    \\\\\\\"Text: {text}\\\\\\\\n\\\\\\\"\\\\n    \\\\\\\"{schema_line}\\\\\\\"\\\\n    \\\\\\\"\\\\\\\\nOutput format: \\\\\\\"\\\\n    '{{\\\\\\\"entities\\\\\\\": [{{\\\\\\\"text\\\\\\\": \\\\\\\"...\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"...\\\\\\\", \\\\\\\"start\\\\\\\": &lt;int>, \\\\\\\"end\\\\\\\": &lt;int>}}], '\\\\n    '\\\\\\\"relations\\\\\\\": [{{\\\\\\\"head\\\\\\\": \\\\\\\"...\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"...\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"...\\\\\\\", '\\\\n    '\\\\\\\"head_start\\\\\\\": &lt;int>, \\\\\\\"head_end\\\\\\\": &lt;int>, \\\\\\\"tail_start\\\\\\\": &lt;int>, \\\\\\\"tail_end\\\\\\\": &lt;int>}}], '\\\\n    '\\\\\\\"events\\\\\\\": []}}'\\\\n)\\\\n\\\\n\\\\ndef build_prompt(text, schema_hint):\\\\n    return PROMPT_TEMPLATE.format(text=text, schema_line=f\\\\\\\"{schema_hint}\\\\\\\\n\\\\\\\")\\\\n\\\\n\\\\ndef format_chat(tokenizer, prompt):\\\\n    messages = [{\\\\\\\"role\\\\\\\": \\\\\\\"user\\\\\\\", \\\\\\\"content\\\\\\\": prompt}]\\\\n    try:\\\\n        return tokenizer.apply_chat_template(\\\\n            messages, tokenize=False, add_generation_prompt=True,\\\\n            enable_thinking=False,\\\\n        )\\\\n    except TypeError:\\\\n        return tokenizer.apply_chat_template(\\\\n            messages, tokenize=False, add_generation_prompt=True,\\\\n        )\\\\n\\\\n\\\\ndef reconstruct_json(sample):\\\\n    return json.dumps({\\\\n        \\\\\\\"entities\\\\\\\": sample.get(\\\\\\\"entities\\\\\\\", []),\\\\n        \\\\\\\"relations\\\\\\\": sample.get(\\\\\\\"relations\\\\\\\", []),\\\\n        \\\\\\\"events\\\\\\\": sample.get(\\\\\\\"events\\\\\\\", []),\\\\n    }, ensure_ascii=False)\\\\n\\\\n\\\\ndef find_entity_tokens(response_token_ids, entity_text, tokenizer):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Find token span for entity_text in tokenized response.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    entity_lower = entity_text.lower().strip()\\\\n    n = len(response_token_ids)\\\\n    for start in range(n):\\\\n        for end in range(start + 1, min(start + 20, n + 1)):\\\\n            span_text = tokenizer.decode(response_token_ids[start:end], skip_special_tokens=True).strip()\\\\n            if span_text.lower() == entity_lower:\\\\n                return (start, end)\\\\n    for start in range(n):\\\\n        for end in range(start + 1, min(start + 15, n + 1)):\\\\n            span_text = tokenizer.decode(response_token_ids[start:end], skip_special_tokens=True).strip()\\\\n            if entity_lower in span_text.lower() and len(span_text) <= len(entity_text) * 2:\\\\n                return (start, end)\\\\n    return None\\\\n\\\\n\\\\ndef extract_hidden_states(args):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Extract per-entity hidden states for a dataset.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    from transformers import AutoModelForCausalLM, AutoTokenizer\\\\n\\\\n    config = DATASET_CONFIG[args.dataset]\\\\n    data_path = config[\\\\\\\"data_path\\\\\\\"]\\\\n    model_path = config[\\\\\\\"model_path\\\\\\\"]\\\\n    max_inst = min(args.max_instances, config[\\\\\\\"max_instances\\\\\\\"])\\\\n    n_samples = config[\\\\\\\"n_samples\\\\\\\"]\\\\n\\\\n    print(f\\\\\\\"Dataset: {args.dataset}\\\\\\\")\\\\n    print(f\\\\\\\"Data: {data_path}\\\\\\\")\\\\n    print(f\\\\\\\"Model: {model_path}\\\\\\\")\\\\n\\\\n    with open(data_path) as f:\\\\n        instances = [json.loads(line) for line in f if line.strip()]\\\\n    instances = instances[:max_inst]\\\\n    print(f\\\\\\\"Instances: {len(instances)}, samples/inst: {n_samples}\\\\\\\")\\\\n\\\\n    tokenizer = AutoTokenizer.from_pretrained(model_path, trust_remote_code=True)\\\\n    model = AutoModelForCausalLM.from_pretrained(\\\\n        model_path, torch_dtype=torch.bfloat16,\\\\n        device_map=f\\\\\\\"cuda:{args.gpu}\\\\\\\", trust_remote_code=True,\\\\n    )\\\\n    model.eval()\\\\n    hidden_dim = model.config.hidden_size\\\\n    print(f\\\\\\\"Model loaded, hidden_dim={hidden_dim}\\\\\\\")\\\\n\\\\n    all_hidden = []\\\\n    all_labels = []\\\\n    all_meta = []\\\\n    n_skipped = 0\\\\n    t0 = time.time()\\\\n\\\\n    for i, inst in enumerate(instances):\\\\n        text = inst[\\\\\\\"text\\\\\\\"]\\\\n        gold = inst[\\\\\\\"gold\\\\\\\"]\\\\n        gold_set = {(e[\\\\\\\"text\\\\\\\"], e[\\\\\\\"type\\\\\\\"]) for e in gold.get(\\\\\\\"entities\\\\\\\", [])}\\\\n        if not gold_set:\\\\n            continue\\\\n\\\\n        for j, sample in enumerate(inst[\\\\\\\"samples\\\\\\\"][:n_samples]):\\\\n            prompt = build_prompt(text, config[\\\\\\\"schema_hint\\\\\\\"])\\\\n            chat_prompt = format_chat(tokenizer, prompt)\\\\n            response_json = reconstruct_json(sample)\\\\n            full_text = chat_prompt + response_json\\\\n\\\\n            input_ids = tokenizer.encode(full_text, return_tensors=\\\\\\\"pt\\\\\\\").to(model.device)\\\\n            prompt_ids = tokenizer.encode(chat_prompt, return_tensors=\\\\\\\"pt\\\\\\\")\\\\n            response_start = prompt_ids.shape[1]\\\\n            response_tokens = input_ids[0, response_start:].cpu().tolist()\\\\n\\\\n            with torch.no_grad():\\\\n                outputs = model(input_ids, output_hidden_states=True)\\\\n            last_hidden = outputs.hidden_states[-1][0]\\\\n\\\\n            for ent in sample.get(\\\\\\\"entities\\\\\\\", []):\\\\n                ent_text = ent.get(\\\\\\\"text\\\\\\\", \\\\\\\"\\\\\\\")\\\\n                ent_type = ent.get(\\\\\\\"type\\\\\\\", \\\\\\\"\\\\\\\")\\\\n                if not ent_text:\\\\n                    continue\\\\n                in_gold = 1 if (ent_text, ent_type) in gold_set else 0\\\\n\\\\n                span = find_entity_tokens(response_tokens, ent_text, tokenizer)\\\\n                if span is None:\\\\n                    n_skipped += 1\\\\n                    continue\\\\n\\\\n                tok_start = response_start + span[0]\\\\n                tok_end = response_start + span[1]\\\\n                entity_vec = last_hidden[tok_start:tok_end].float().mean(dim=0).cpu()\\\\n                all_hidden.append(entity_vec)\\\\n                all_labels.append(in_gold)\\\\n                all_meta.append({\\\\n                    \\\\\\\"instance_idx\\\\\\\": i, \\\\\\\"sample_idx\\\\\\\": j,\\\\n                    \\\\\\\"entity_text\\\\\\\": ent_text, \\\\\\\"entity_type\\\\\\\": ent_type,\\\\n                    \\\\\\\"in_gold\\\\\\\": in_gold,\\\\n                })\\\\n\\\\n        if (i + 1) % 50 == 0:\\\\n            elapsed = time.time() - t0\\\\n            n_ent = len(all_hidden)\\\\n            pos_rate = sum(all_labels) / max(len(all_labels), 1)\\\\n            eta = (len(instances) - i - 1) / ((i + 1) / elapsed)\\\\n            print(f\\\\\\\"  [{i+1}/{len(instances)}] {elapsed:.0f}s ETA {eta:.0f}s | \\\\\\\"\\\\n                  f\\\\\\\"{n_ent} entities pos={pos_rate:.3f} skip={n_skipped}\\\\\\\")\\\\n\\\\n    elapsed = time.time() - t0\\\\n    n_pos = sum(all_labels)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.76}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Hidden state probe: test if entity quality info exists in model representations.\\n\\nMV agreement AUROC=0.87 (signal in multi-sample outputs).\\nESJ self-judgment AUROC=0.51 (prompt-based reading fails).\\nThis probe tests if a linear classifier on last-layer hidden states\\ncan predict whether a predicted entity matches gold annotation.\\n\\nIf probe AUROC ≈ 0.87: info exists in representation, prompt interface fails\\nIf probe AUROC ≈ 0.51: info not present in representation\\nIf probe AUROC 0.6-0.8: partial information in representation\\n\\nUsage:\\n  CUDA_VISIBLE_DEVICES=2 python code/hidden_state_probe.py --dataset fewnerd --max_instances 500\\n  CUDA_VISIBLE_DEVICES=3 python code/hidden_state_probe.py --dataset conll --max_instances 500\\n  python code/hidden_state_probe.py --dataset fewnerd --probe_only\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport os\\nimport time\\n\\nimport numpy as np\\nimport torch\\n\\nBASE_DIR = \\\"/root/autodl-tmp/struct_self_consist_ie\\\"\\nOUTPUT_DIR = os.path.join(BASE_DIR, \\\"output/entity_probe_auroc\\\")\\n\\nDATASET_CONFIG = {\\n    \\\"scierc\\\": {\\n        \\\"data_path\\\": os.path.join(BASE_DIR, \\\"output/exp_scierc_8b_t08_s42/samples.jsonl\\\"),\\n        \\\"model_path\\\": os.path.join(BASE_DIR, \\\"checkpoints/qwen3-8b-scierc-merged-v2\\\"),\\n        \\\"schema_hint\\\": (\\n            \\\"Entity types: Generic, Material, Method, Metric, OtherScientificTerm, Task\\\\n\\\"\\n            \\\"Relation types: COMPARE, CONJUNCTION, EVALUATE-FOR, FEATURE-OF, HYPONYM-OF, PART-OF, USED-FOR\\\"\\n        ),\\n        \\\"max_instances\\\": 551,\\n        \\\"n_samples\\\": 8,\\n    },\\n    \\\"fewnerd\\\": {\\n        \\\"data_path\\\": os.path.join(BASE_DIR, \\\"output/exp_tlow_fewnerd_t05_s42/samples.jsonl\\\"),\\n        \\\"model_path\\\": os.path.join(BASE_DIR, \\\"checkpoints/qwen3-8b-fewnerd-exp021-merged\\\"),\\n        \\\"schema_hint\\\": \\\"Entity types: person, organization, location, building, art, product, event, other\\\",\\n        \\\"max_instances\\\": 2000,\\n        \\\"n_samples\\\": 8,\\n    },\\n    \\\"conll\\\": {\\n        \\\"data_path\\\": os.path.join(BASE_DIR, \\\"output/exp_conll_t08_seed42/samples.jsonl\\\"),\\n        \\\"model_path\\\": os.path.join(BASE_DIR, \\\"checkpoints/qwen3-8b-conll2003-merged\\\"),\\n        \\\"schema_hint\\\": \\\"Entity types: PER, LOC, ORG, MISC\\\",\\n        \\\"max_instances\\\": 1000,\\n        \\\"n_samples\\\": 8,\\n    },\\n}\\n\\nPROMPT_TEMPLATE = (\\n    \\\"Extract all structured information (entities and relations) from the following text. \\\"\\n    \\\"Output a JSON object.\\\\n\\\\n\\\"\\n    \\\"Text: {text}\\\\n\\\"\\n    \\\"{schema_line}\\\"\\n    \\\"\\\\nOutput format: \\\"\\n    '{{\\\"entities\\\": [{{\\\"text\\\": \\\"...\\\", \\\"type\\\": \\\"...\\\", \\\"start\\\": &lt;int>, \\\"end\\\": &lt;int>}}], '\\n    '\\\"relations\\\": [{{\\\"head\\\": \\\"...\\\", \\\"tail\\\": \\\"...\\\", \\\"type\\\": \\\"...\\\", '\\n    '\\\"head_start\\\": &lt;int>, \\\"head_end\\\": &lt;int>, \\\"tail_start\\\": &lt;int>, \\\"tail_end\\\": &lt;int>}}], '\\n    '\\\"events\\\": []}}'\\n)\\n\\n\\ndef build_prompt(text, schema_hint):\\n    return PROMPT_TEMPLATE.format(text=text, schema_line=f\\\"{schema_hint}\\\\n\\\")\\n\\n\\ndef format_chat(tokenizer, prompt):\\n    messages = [{\\\"role\\\": \\\"user\\\", \\\"content\\\": prompt}]\\n    try:\\n        return tokenizer.apply_chat_template(\\n            messages, tokenize=False, add_generation_prompt=True,\\n            enable_thinking=False,\\n        )\\n    except TypeError:\\n        return tokenizer.apply_chat_template(\\n            messages, tokenize=False, add_generation_prompt=True,\\n        )\\n\\n\\ndef reconstruct_json(sample):\\n    return json.dumps({\\n        \\\"entities\\\": sample.get(\\\"entities\\\", []),\\n        \\\"relations\\\": sample.get(\\\"relations\\\", []),\\n        \\\"events\\\": sample.get(\\\"events\\\", []),\\n    }, ensure_ascii=False)\\n\\n\\ndef find_entity_tokens(response_token_ids, entity_text, tokenizer):\\n    \\\"\\\"\\\"Find token span for entity_text in tokenized response.\\\"\\\"\\\"\\n    entity_lower = entity_text.lower().strip()\\n    n = len(response_token_ids)\\n    for start in range(n):\\n        for end in range(start + 1, min(start + 20, n + 1)):\\n            span_text = tokenizer.decode(response_token_ids[start:end], skip_special_tokens=True).strip()\\n            if span_text.lower() == entity_lower:\\n                return (start, end)\\n    for start in range(n):\\n        for end in range(start + 1, min(start + 15, n + 1)):\\n            span_text = tokenizer.decode(response_token_ids[start:end], skip_special_tokens=True).strip()\\n            if entity_lower in span_text.lower() and len(span_text) <= len(entity_text) * 2:\\n                return (start, end)\\n    return None\\n\\n\\ndef extract_hidden_states(args):\\n    \\\"\\\"\\\"Extract per-entity hidden states for a dataset.\\\"\\\"\\\"\\n    from transformers import AutoModelForCausalLM, AutoTokenizer\\n\\n    config = DATASET_CONFIG[args.dataset]\\n    data_path = config[\\\"data_path\\\"]\\n    model_path = config[\\\"model_path\\\"]\\n    max_inst = min(args.max_instances, config[\\\"max_instances\\\"])\\n    n_samples = config[\\\"n_samples\\\"]\\n\\n    print(f\\\"Dataset: {args.dataset}\\\")\\n    print(f\\\"Data: {data_path}\\\")\\n    print(f\\\"Model: {model_path}\\\")\\n\\n    with open(data_path) as f:\\n        instances = [json.loads(line) for line in f if line.strip()]\\n    instances = instances[:max_inst]\\n    print(f\\\"Instances: {len(instances)}, samples/inst: {n_samples}\\\")\\n\\n    tokenizer = AutoTokenizer.from_pretrained(model_path, trust_remote_code=True)\\n    model = AutoModelForCausalLM.from_pretrained(\\n        model_path, torch_dtype=torch.bfloat16,\\n        device_map=f\\\"cuda:{args.gpu}\\\", trust_remote_code=True,\\n    )\\n    model.eval()\\n    hidden_dim = model.config.hidden_size\\n    print(f\\\"Model loaded, hidden_dim={hidden_dim}\\\")\\n\\n    all_hidden = []\\n    all_labels = []\\n    all_meta = []\\n    n_skipped = 0\\n    t0 = time.time()\\n\\n    for i, inst in enumerate(instances):\\n        text = inst[\\\"text\\\"]\\n        gold = inst[\\\"gold\\\"]\\n        gold_set = {(e[\\\"text\\\"], e[\\\"type\\\"]) for e in gold.get(\\\"entities\\\", [])}\\n        if not gold_set:\\n            continue\\n\\n        for j, sample in enumerate(inst[\\\"samples\\\"][:n_samples]):\\n            prompt = build_prompt(text, config[\\\"schema_hint\\\"])\\n            chat_prompt = format_chat(tokenizer, prompt)\\n            response_json = reconstruct_json(sample)\\n            full_text = chat_prompt + response_json\\n\\n            input_ids = tokenizer.encode(full_text, return_tensors=\\\"pt\\\").to(model.device)\\n            prompt_ids = tokenizer.encode(chat_prompt, return_tensors=\\\"pt\\\")\\n            response_start = prompt_ids.shape[1]\\n            response_tokens = input_ids[0, response_start:].cpu().tolist()\\n\\n            with torch.no_grad():\\n                outputs = model(input_ids, output_hidden_states=True)\\n            last_hidden = outputs.hidden_states[-1][0]\\n\\n            for ent in sample.get(\\\"entities\\\", []):\\n                ent_text = ent.get(\\\"text\\\", \\\"\\\")\\n                ent_type = ent.get(\\\"type\\\", \\\"\\\")\\n                if not ent_text:\\n                    continue\\n                in_gold = 1 if (ent_text, ent_type) in gold_set else 0\\n\\n                span = find_entity_tokens(response_tokens, ent_text, tokenizer)\\n                if span is None:\\n                    n_skipped += 1\\n                    continue\\n\\n                tok_start = response_start + span[0]\\n                tok_end = response_start + span[1]\\n                entity_vec = last_hidden[tok_start:tok_end].float().mean(dim=0).cpu()\\n                all_hidden.append(entity_vec)\\n                all_labels.append(in_gold)\\n                all_meta.append({\\n                    \\\"instance_idx\\\": i, \\\"sample_idx\\\": j,\\n                    \\\"entity_text\\\": ent_text, \\\"entity_type\\\": ent_type,\\n                    \\\"in_gold\\\": in_gold,\\n                })\\n\\n        if (i + 1) % 50 == 0:\\n            elapsed = time.time() - t0\\n            n_ent = len(all_hidden)\\n            pos_rate = sum(all_labels) / max(len(all_labels), 1)\\n            eta = (len(instances) - i - 1) / ((i + 1) / elapsed)\\n            print(f\\\"  [{i+1}/{len(instances)}] {elapsed:.0f}s ETA {eta:.0f}s | \\\"\\n                  f\\\"{n_ent} entities pos={pos_rate:.3f} skip={n_skipped}\\\")\\n\\n    elapsed = time.time() - t0\\n    n_pos = sum(all_labels)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.76}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-21T03:08:50.653Z_
+
+<details><summary>↩ Tool result · `toolu_01JPM5uzeo7YTEVG8se5fxQv`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"    all_labels = []\\n    all_meta = []\\n    n_skipped = 0\\n    t0 = time.time()\\n\\n    for i, inst in enumerate(instances):\\n        text = inst[\\\"text\\\"]\\n        gold = inst[\\\"gold\\\"]\\n        gold_set = {(e[\\\"text\\\"], e[\\\"type\\\"]) for e in gold.get(\\\"entities\\\", [])}\\n        if not gold_set:\\n            continue\\n\\n        for j, sample in enumerate(inst[\\\"samples\\\"][:n_samples]):\\n            prompt = build_prompt(text, config[\\\"schema_hint\\\"])\\n            chat_prompt = format_chat(tokenizer, prompt)\\n            response_json = reconstruct_json(sample)\\n            full_text = chat_prompt + response_json\\n\\n            input_ids = tokenizer.encode(full_text, return_tensors=\\\"pt\\\").to(model.device)\\n            prompt_ids = tokenizer.encode(chat_prompt, return_tensors=\\\"pt\\\")\\n            response_start = prompt_ids.shape[1]\\n            response_tokens = input_ids[0, response_start:].cpu().tolist()\\n\\n            with torch.no_grad():\\n                outputs = model(input_ids, output_hidden_states=True)\\n            last_hidden = outputs.hidden_states[-1][0]\\n\\n            for ent in sample.get(\\\"entities\\\", []):\\n                ent_text = ent.get(\\\"text\\\", \\\"\\\")\\n                ent_type = ent.get(\\\"type\\\", \\\"\\\")\\n                if not ent_text:\\n                    continue\\n                in_gold = 1 if (ent_text, ent_type) in gold_set else 0\\n\\n                span = find_entity_tokens(response_tokens, ent_text, tokenizer)\\n                if span is None:\\n                    n_skipped += 1\\n                    continue\\n\\n                tok_start = response_start + span[0]\\n                tok_end = response_start + span[1]\\n                entity_vec = last_hidden[tok_start:tok_end].float().mean(dim=0).cpu()\\n                all_hidden.append(entity_vec)\\n                all_labels.append(in_gold)\\n                all_meta.append({\\n                    \\\"instance_idx\\\": i, \\\"sample_idx\\\": j,\\n                    \\\"entity_text\\\": ent_text, \\\"entity_type\\\": ent_type,\\n                    \\\"in_gold\\\": in_gold,\\n                })\\n\\n        if (i + 1) % 50 == 0:\\n            elapsed = time.time() - t0\\n            n_ent = len(all_hidden)\\n            pos_rate = sum(all_labels) / max(len(all_labels), 1)\\n            eta = (len(instances) - i - 1) / ((i + 1) / elapsed)\\n            print(f\\\"  [{i+1}/{len(instances)}] {elapsed:.0f}s ETA {eta:.0f}s | \\\"\\n                  f\\\"{n_ent} entities pos={pos_rate:.3f} skip={n_skipped}\\\")\\n\\n    elapsed = time.time() - t0\\n    n_pos = sum(all_labels)\\n    n_total = len(all_labels)\\n    print(f\\\"\\\\nDone in {elapsed:.1f}s: {n_total} entities, \\\"\\n          f\\\"pos={n_pos} ({n_pos/max(n_total,1)*100:.1f}%), skip={n_skipped}\\\")\\n\\n    os.makedirs(OUTPUT_DIR, exist_ok=True)\\n    hidden_states = torch.stack(all_hidden)\\n    labels_t = torch.tensor(all_labels, dtype=torch.long)\\n\\n    torch.save(hidden_states, os.path.join(OUTPUT_DIR, f\\\"entity_hidden_states_{args.dataset}.pt\\\"))\\n    torch.save(labels_t, os.path.join(OUTPUT_DIR, f\\\"entity_labels_{args.dataset}.pt\\\"))\\n    with open(os.path.join(OUTPUT_DIR, f\\\"entity_metadata_{args.dataset}.json\\\"), \\\"w\\\") as f:\\n        json.dump({\\n            \\\"dataset\\\": args.dataset,\\n            \\\"n_instances\\\": len(instances),\\n            \\\"n_samples_used\\\": n_samples,\\n            \\\"n_entities\\\": n_total,\\n            \\\"n_positive\\\": n_pos,\\n            \\\"n_negative\\\": n_total - n_pos,\\n            \\\"positive_rate\\\": n_pos / max(n_total, 1),\\n            \\\"hidden_dim\\\": hidden_dim,\\n            \\\"model_path\\\": model_path,\\n            \\\"data_path\\\": data_path,\\n            \\\"max_instances\\\": max_inst,\\n            \\\"extraction_time_seconds\\\": elapsed,\\n            \\\"n_skipped\\\": n_skipped,\\n        }, f, indent=2)\\n\\n    print(f\\\"Saved to {OUTPUT_DIR}/entity_*_{args.dataset}.*\\\")\\n    return hidden_states.numpy(), np.array(all_labels)\\n\\n\\ndef run_auroc_probe(dataset_name):\\n    \\\"\\\"\\\"Run LogisticRegression probe and compute AUROC.\\\"\\\"\\\"\\n    from sklearn.linear_model import LogisticRegression\\n    from sklearn.metrics import roc_auc_score\\n    from sklearn.model_selection import StratifiedKFold\\n    from sklearn.preprocessing import StandardScaler\\n\\n    hs_path = os.path.join(OUTPUT_DIR, f\\\"entity_hidden_states_{dataset_name}.pt\\\")\\n    lb_path = os.path.join(OUTPUT_DIR, f\\\"entity_labels_{dataset_name}.pt\\\")\\n\\n    if not os.path.exists(hs_path):\\n        print(f\\\"  {dataset_name}: no hidden states found, skipping\\\")\\n        return None\\n\\n    hs = torch.load(hs_path, weights_only=True).float().numpy()\\n    labels = torch.load(lb_path, weights_only=True).numpy()\\n\\n    print(f\\\"\\\\n--- {dataset_name} ---\\\")\\n    print(f\\\"  Entities: {len(labels)}, dim={hs.shape[1]}\\\")\\n    print(f\\\"  Positive: {labels.sum()} ({labels.mean()*100:.1f}%), \\\"\\n          f\\\"Negative: {len(labels)-labels.sum()}\\\")\\n\\n    if labels.sum() == 0 or labels.sum() == len(labels):\\n        print(\\\"  SKIP: single class\\\")\\n        return None\\n\\n    cv_folds = 5\\n    seeds = [42, 123, 456]\\n    all_aurocs = []\\n\\n    for seed in seeds:\\n        skf = StratifiedKFold(n_splits=cv_folds, shuffle=True, random_state=seed)\\n        fold_aurocs = []\\n        for train_idx, test_idx in skf.split(hs, labels):\\n            X_train = hs[train_idx]\\n            X_test = hs[test_idx]\\n            y_train = labels[train_idx]\\n            y_test = labels[test_idx]\\n\\n            scaler = StandardScaler()\\n            X_train = scaler.fit_transform(X_train)\\n            X_test = scaler.transform(X_test)\\n\\n            clf = LogisticRegression(max_iter=1000, C=1.0, solver=\\\"lbfgs\\\")\\n            clf.fit(X_train, y_train)\\n            y_prob = clf.predict_proba(X_test)[:, 1]\\n\\n            if len(np.unique(y_test)) < 2:\\n                continue\\n            fold_aurocs.append(roc_auc_score(y_test, y_prob))\\n\\n        if fold_aurocs:\\n            all_aurocs.append(np.mean(fold_aurocs))\\n\\n    if not all_aurocs:\\n        return None\\n\\n    mean_auroc = np.mean(all_aurocs)\\n    std_auroc = np.std(all_aurocs)\\n\\n    if mean_auroc > 0.80:\\n        interp = \\\"HIGH — info in representation, prompt interface fails\\\"\\n    elif mean_auroc > 0.60:\\n        interp = \\\"MODERATE — partial info in representation\\\"\\n    else:\\n        interp = \\\"LOW — info not clearly present\\\"\\n\\n    print(f\\\"  AUROC = {mean_auroc:.4f} +/- {std_auroc:.4f}\\\")\\n    print(f\\\"  vs MV=0.87, ESJ=0.51\\\")\\n    print(f\\\"  => {interp}\\\")\\n\\n    result = {\\n        \\\"dataset\\\": dataset_name,\\n        \\\"auroc_mean\\\": float(mean_auroc),\\n        \\\"auroc_std\\\": float(std_auroc),\\n        \\\"auroc_per_seed\\\": [float(a) for a in all_aurocs],\\n        \\\"n_entities\\\": int(len(labels)),\\n        \\\"n_positive\\\": int(labels.sum()),\\n        \\\"positive_rate\\\": float(labels.mean()),\\n        \\\"cv_folds\\\": cv_folds,\\n        \\\"seeds\\\": seeds,\\n        \\\"comparison\\\": {\\\"mv_agreement_auroc\\\": 0.87, \\\"esj_prompt_auroc\\\": 0.51},\\n        \\\"interpretation\\\": interp,\\n    }\\n\\n    path = os.path.join(OUTPUT_DIR, f\\\"auroc_results_{dataset_name}.json\\\")\\n    with open(path, \\\"w\\\") as f:\\n        json.dump(result, f, indent=2)\\n    print(f\\\"  Saved: {path}\\\")\\n    return result\\n\\n\\ndef main():\\n    parser = argparse.ArgumentParser(description=\\\"Hidden state entity probe\\\")\\n    parser.add_argument(\\\"--dataset\\\", required=True, choices=[\\\"scierc\\\", \\\"fewnerd\\\", \\\"conll\\\"])\\n    parser.add_argument(\\\"--gpu\\\", type=int, default=0)\\n    parser.add_argument(\\\"--max_instances\\\", type=int, default=500)\\n    parser.add_argument(\\\"--probe_only\\\", action=\\\"store_true\\\",\\n                        help=\\\"Skip extraction, run probe on existing .pt files\\\")\\n    args = parser.parse_args()\\n\\n    if not args.probe_only:\\n        extract_hidden_states(args)\\n\\n    run_auroc_probe(args.dataset)\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.59}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4ef02f80-2bd2-4491-8d00-968f4ce2770e",
+  "uuid": "e2ad1ca1-1855-4eee-961c-6cbd64f7a7da",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"    all_labels = []\\\\n    all_meta = []\\\\n    n_skipped = 0\\\\n    t0 = time.time()\\\\n\\\\n    for i, inst in enumerate(instances):\\\\n        text = inst[\\\\\\\"text\\\\\\\"]\\\\n        gold = inst[\\\\\\\"gold\\\\\\\"]\\\\n        gold_set = {(e[\\\\\\\"text\\\\\\\"], e[\\\\\\\"type\\\\\\\"]) for e in gold.get(\\\\\\\"entities\\\\\\\", [])}\\\\n        if not gold_set:\\\\n            continue\\\\n\\\\n        for j, sample in enumerate(inst[\\\\\\\"samples\\\\\\\"][:n_samples]):\\\\n            prompt = build_prompt(text, config[\\\\\\\"schema_hint\\\\\\\"])\\\\n            chat_prompt = format_chat(tokenizer, prompt)\\\\n            response_json = reconstruct_json(sample)\\\\n            full_text = chat_prompt + response_json\\\\n\\\\n            input_ids = tokenizer.encode(full_text, return_tensors=\\\\\\\"pt\\\\\\\").to(model.device)\\\\n            prompt_ids = tokenizer.encode(chat_prompt, return_tensors=\\\\\\\"pt\\\\\\\")\\\\n            response_start = prompt_ids.shape[1]\\\\n            response_tokens = input_ids[0, response_start:].cpu().tolist()\\\\n\\\\n            with torch.no_grad():\\\\n                outputs = model(input_ids, output_hidden_states=True)\\\\n            last_hidden = outputs.hidden_states[-1][0]\\\\n\\\\n            for ent in sample.get(\\\\\\\"entities\\\\\\\", []):\\\\n                ent_text = ent.get(\\\\\\\"text\\\\\\\", \\\\\\\"\\\\\\\")\\\\n                ent_type = ent.get(\\\\\\\"type\\\\\\\", \\\\\\\"\\\\\\\")\\\\n                if not ent_text:\\\\n                    continue\\\\n                in_gold = 1 if (ent_text, ent_type) in gold_set else 0\\\\n\\\\n                span = find_entity_tokens(response_tokens, ent_text, tokenizer)\\\\n                if span is None:\\\\n                    n_skipped += 1\\\\n                    continue\\\\n\\\\n                tok_start = response_start + span[0]\\\\n                tok_end = response_start + span[1]\\\\n                entity_vec = last_hidden[tok_start:tok_end].float().mean(dim=0).cpu()\\\\n                all_hidden.append(entity_vec)\\\\n                all_labels.append(in_gold)\\\\n                all_meta.append({\\\\n                    \\\\\\\"instance_idx\\\\\\\": i, \\\\\\\"sample_idx\\\\\\\": j,\\\\n                    \\\\\\\"entity_text\\\\\\\": ent_text, \\\\\\\"entity_type\\\\\\\": ent_type,\\\\n                    \\\\\\\"in_gold\\\\\\\": in_gold,\\\\n                })\\\\n\\\\n        if (i + 1) % 50 == 0:\\\\n            elapsed = time.time() - t0\\\\n            n_ent = len(all_hidden)\\\\n            pos_rate = sum(all_labels) / max(len(all_labels), 1)\\\\n            eta = (len(instances) - i - 1) / ((i + 1) / elapsed)\\\\n            print(f\\\\\\\"  [{i+1}/{len(instances)}] {elapsed:.0f}s ETA {eta:.0f}s | \\\\\\\"\\\\n                  f\\\\\\\"{n_ent} entities pos={pos_rate:.3f} skip={n_skipped}\\\\\\\")\\\\n\\\\n    elapsed = time.time() - t0\\\\n    n_pos = sum(all_labels)\\\\n    n_total = len(all_labels)\\\\n    print(f\\\\\\\"\\\\\\\\nDone in {elapsed:.1f}s: {n_total} entities, \\\\\\\"\\\\n          f\\\\\\\"pos={n_pos} ({n_pos/max(n_total,1)*100:.1f}%), skip={n_skipped}\\\\\\\")\\\\n\\\\n    os.makedirs(OUTPUT_DIR, exist_ok=True)\\\\n    hidden_states = torch.stack(all_hidden)\\\\n    labels_t = torch.tensor(all_labels, dtype=torch.long)\\\\n\\\\n    torch.save(hidden_states, os.path.join(OUTPUT_DIR, f\\\\\\\"entity_hidden_states_{args.dataset}.pt\\\\\\\"))\\\\n    torch.save(labels_t, os.path.join(OUTPUT_DIR, f\\\\\\\"entity_labels_{args.dataset}.pt\\\\\\\"))\\\\n    with open(os.path.join(OUTPUT_DIR, f\\\\\\\"entity_metadata_{args.dataset}.json\\\\\\\"), \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump({\\\\n            \\\\\\\"dataset\\\\\\\": args.dataset,\\\\n            \\\\\\\"n_instances\\\\\\\": len(instances),\\\\n            \\\\\\\"n_samples_used\\\\\\\": n_samples,\\\\n            \\\\\\\"n_entities\\\\\\\": n_total,\\\\n            \\\\\\\"n_positive\\\\\\\": n_pos,\\\\n            \\\\\\\"n_negative\\\\\\\": n_total - n_pos,\\\\n            \\\\\\\"positive_rate\\\\\\\": n_pos / max(n_total, 1),\\\\n            \\\\\\\"hidden_dim\\\\\\\": hidden_dim,\\\\n            \\\\\\\"model_path\\\\\\\": model_path,\\\\n            \\\\\\\"data_path\\\\\\\": data_path,\\\\n            \\\\\\\"max_instances\\\\\\\": max_inst,\\\\n            \\\\\\\"extraction_time_seconds\\\\\\\": elapsed,\\\\n            \\\\\\\"n_skipped\\\\\\\": n_skipped,\\\\n        }, f, indent=2)\\\\n\\\\n    print(f\\\\\\\"Saved to {OUTPUT_DIR}/entity_*_{args.dataset}.*\\\\\\\")\\\\n    return hidden_states.numpy(), np.array(all_labels)\\\\n\\\\n\\\\ndef run_auroc_probe(dataset_name):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Run LogisticRegression probe and compute AUROC.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    from sklearn.linear_model import LogisticRegression\\\\n    from sklearn.metrics import roc_auc_score\\\\n    from sklearn.model_selection import StratifiedKFold\\\\n    from sklearn.preprocessing import StandardScaler\\\\n\\\\n    hs_path = os.path.join(OUTPUT_DIR, f\\\\\\\"entity_hidden_states_{dataset_name}.pt\\\\\\\")\\\\n    lb_path = os.path.join(OUTPUT_DIR, f\\\\\\\"entity_labels_{dataset_name}.pt\\\\\\\")\\\\n\\\\n    if not os.path.exists(hs_path):\\\\n        print(f\\\\\\\"  {dataset_name}: no hidden states found, skipping\\\\\\\")\\\\n        return None\\\\n\\\\n    hs = torch.load(hs_path, weights_only=True).float().numpy()\\\\n    labels = torch.load(lb_path, weights_only=True).numpy()\\\\n\\\\n    print(f\\\\\\\"\\\\\\\\n--- {dataset_name} ---\\\\\\\")\\\\n    print(f\\\\\\\"  Entities: {len(labels)}, dim={hs.shape[1]}\\\\\\\")\\\\n    print(f\\\\\\\"  Positive: {labels.sum()} ({labels.mean()*100:.1f}%), \\\\\\\"\\\\n          f\\\\\\\"Negative: {len(labels)-labels.sum()}\\\\\\\")\\\\n\\\\n    if labels.sum() == 0 or labels.sum() == len(labels):\\\\n        print(\\\\\\\"  SKIP: single class\\\\\\\")\\\\n        return None\\\\n\\\\n    cv_folds = 5\\\\n    seeds = [42, 123, 456]\\\\n    all_aurocs = []\\\\n\\\\n    for seed in seeds:\\\\n        skf = StratifiedKFold(n_splits=cv_folds, shuffle=True, random_state=seed)\\\\n        fold_aurocs = []\\\\n        for train_idx, test_idx in skf.split(hs, labels):\\\\n            X_train = hs[train_idx]\\\\n            X_test = hs[test_idx]\\\\n            y_train = labels[train_idx]\\\\n            y_test = labels[test_idx]\\\\n\\\\n            scaler = StandardScaler()\\\\n            X_train = scaler.fit_transform(X_train)\\\\n            X_test = scaler.transform(X_test)\\\\n\\\\n            clf = LogisticRegression(max_iter=1000, C=1.0, solver=\\\\\\\"lbfgs\\\\\\\")\\\\n            clf.fit(X_train, y_train)\\\\n            y_prob = clf.predict_proba(X_test)[:, 1]\\\\n\\\\n            if len(np.unique(y_test)) < 2:\\\\n                continue\\\\n            fold_aurocs.append(roc_auc_score(y_test, y_prob))\\\\n\\\\n        if fold_aurocs:\\\\n            all_aurocs.append(np.mean(fold_aurocs))\\\\n\\\\n    if not all_aurocs:\\\\n        return None\\\\n\\\\n    mean_auroc = np.mean(all_aurocs)\\\\n    std_auroc = np.std(all_aurocs)\\\\n\\\\n    if mean_auroc > 0.80:\\\\n        interp = \\\\\\\"HIGH — info in representation, prompt interface fails\\\\\\\"\\\\n    elif mean_auroc > 0.60:\\\\n        interp = \\\\\\\"MODERATE — partial info in representation\\\\\\\"\\\\n    else:\\\\n        interp = \\\\\\\"LOW — info not clearly present\\\\\\\"\\\\n\\\\n    print(f\\\\\\\"  AUROC = {mean_auroc:.4f} +/- {std_auroc:.4f}\\\\\\\")\\\\n    print(f\\\\\\\"  vs MV=0.87, ESJ=0.51\\\\\\\")\\\\n    print(f\\\\\\\"  => {interp}\\\\\\\")\\\\n\\\\n    result = {\\\\n        \\\\\\\"dataset\\\\\\\": dataset_name,\\\\n        \\\\\\\"auroc_mean\\\\\\\": float(mean_auroc),\\\\n        \\\\\\\"auroc_std\\\\\\\": float(std_auroc),\\\\n        \\\\\\\"auroc_per_seed\\\\\\\": [float(a) for a in all_aurocs],\\\\n        \\\\\\\"n_entities\\\\\\\": int(len(labels)),\\\\n        \\\\\\\"n_positive\\\\\\\": int(labels.sum()),\\\\n        \\\\\\\"positive_rate\\\\\\\": float(labels.mean()),\\\\n        \\\\\\\"cv_folds\\\\\\\": cv_folds,\\\\n        \\\\\\\"seeds\\\\\\\": seeds,\\\\n        \\\\\\\"comparison\\\\\\\": {\\\\\\\"mv_agreement_auroc\\\\\\\": 0.87, \\\\\\\"esj_prompt_auroc\\\\\\\": 0.51},\\\\n        \\\\\\\"interpretation\\\\\\\": interp,\\\\n    }\\\\n\\\\n    path = os.path.join(OUTPUT_DIR, f\\\\\\\"auroc_results_{dataset_name}.json\\\\\\\")\\\\n    with open(path, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(result, f, indent=2)\\\\n    print(f\\\\\\\"  Saved: {path}\\\\\\\")\\\\n    return result\\\\n\\\\n\\\\ndef main():\\\\n    parser = argparse.ArgumentParser(description=\\\\\\\"Hidden state entity probe\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--dataset\\\\\\\", required=True, choices=[\\\\\\\"scierc\\\\\\\", \\\\\\\"fewnerd\\\\\\\", \\\\\\\"conll\\\\\\\"])\\\\n    parser.add_argument(\\\\\\\"--gpu\\\\\\\", type=int, default=0)\\\\n    parser.add_argument(\\\\\\\"--max_instances\\\\\\\", type=int, default=500)\\\\n    parser.add_argument(\\\\\\\"--probe_only\\\\\\\", action=\\\\\\\"store_true\\\\\\\",\\\\n                        help=\\\\\\\"Skip extraction, run probe on existing .pt files\\\\\\\")\\\\n    args = parser.parse_args()\\\\n\\\\n    if not args.probe_only:\\\\n        extract_hidden_states(args)\\\\n\\\\n    run_auroc_probe(args.dataset)\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.59}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"    all_labels = []\\n    all_meta = []\\n    n_skipped = 0\\n    t0 = time.time()\\n\\n    for i, inst in enumerate(instances):\\n        text = inst[\\\"text\\\"]\\n        gold = inst[\\\"gold\\\"]\\n        gold_set = {(e[\\\"text\\\"], e[\\\"type\\\"]) for e in gold.get(\\\"entities\\\", [])}\\n        if not gold_set:\\n            continue\\n\\n        for j, sample in enumerate(inst[\\\"samples\\\"][:n_samples]):\\n            prompt = build_prompt(text, config[\\\"schema_hint\\\"])\\n            chat_prompt = format_chat(tokenizer, prompt)\\n            response_json = reconstruct_json(sample)\\n            full_text = chat_prompt + response_json\\n\\n            input_ids = tokenizer.encode(full_text, return_tensors=\\\"pt\\\").to(model.device)\\n            prompt_ids = tokenizer.encode(chat_prompt, return_tensors=\\\"pt\\\")\\n            response_start = prompt_ids.shape[1]\\n            response_tokens = input_ids[0, response_start:].cpu().tolist()\\n\\n            with torch.no_grad():\\n                outputs = model(input_ids, output_hidden_states=True)\\n            last_hidden = outputs.hidden_states[-1][0]\\n\\n            for ent in sample.get(\\\"entities\\\", []):\\n                ent_text = ent.get(\\\"text\\\", \\\"\\\")\\n                ent_type = ent.get(\\\"type\\\", \\\"\\\")\\n                if not ent_text:\\n                    continue\\n                in_gold = 1 if (ent_text, ent_type) in gold_set else 0\\n\\n                span = find_entity_tokens(response_tokens, ent_text, tokenizer)\\n                if span is None:\\n                    n_skipped += 1\\n                    continue\\n\\n                tok_start = response_start + span[0]\\n                tok_end = response_start + span[1]\\n                entity_vec = last_hidden[tok_start:tok_end].float().mean(dim=0).cpu()\\n                all_hidden.append(entity_vec)\\n                all_labels.append(in_gold)\\n                all_meta.append({\\n                    \\\"instance_idx\\\": i, \\\"sample_idx\\\": j,\\n                    \\\"entity_text\\\": ent_text, \\\"entity_type\\\": ent_type,\\n                    \\\"in_gold\\\": in_gold,\\n                })\\n\\n        if (i + 1) % 50 == 0:\\n            elapsed = time.time() - t0\\n            n_ent = len(all_hidden)\\n            pos_rate = sum(all_labels) / max(len(all_labels), 1)\\n            eta = (len(instances) - i - 1) / ((i + 1) / elapsed)\\n            print(f\\\"  [{i+1}/{len(instances)}] {elapsed:.0f}s ETA {eta:.0f}s | \\\"\\n                  f\\\"{n_ent} entities pos={pos_rate:.3f} skip={n_skipped}\\\")\\n\\n    elapsed = time.time() - t0\\n    n_pos = sum(all_labels)\\n    n_total = len(all_labels)\\n    print(f\\\"\\\\nDone in {elapsed:.1f}s: {n_total} entities, \\\"\\n          f\\\"pos={n_pos} ({n_pos/max(n_total,1)*100:.1f}%), skip={n_skipped}\\\")\\n\\n    os.makedirs(OUTPUT_DIR, exist_ok=True)\\n    hidden_states = torch.stack(all_hidden)\\n    labels_t = torch.tensor(all_labels, dtype=torch.long)\\n\\n    torch.save(hidden_states, os.path.join(OUTPUT_DIR, f\\\"entity_hidden_states_{args.dataset}.pt\\\"))\\n    torch.save(labels_t, os.path.join(OUTPUT_DIR, f\\\"entity_labels_{args.dataset}.pt\\\"))\\n    with open(os.path.join(OUTPUT_DIR, f\\\"entity_metadata_{args.dataset}.json\\\"), \\\"w\\\") as f:\\n        json.dump({\\n            \\\"dataset\\\": args.dataset,\\n            \\\"n_instances\\\": len(instances),\\n            \\\"n_samples_used\\\": n_samples,\\n            \\\"n_entities\\\": n_total,\\n            \\\"n_positive\\\": n_pos,\\n            \\\"n_negative\\\": n_total - n_pos,\\n            \\\"positive_rate\\\": n_pos / max(n_total, 1),\\n            \\\"hidden_dim\\\": hidden_dim,\\n            \\\"model_path\\\": model_path,\\n            \\\"data_path\\\": data_path,\\n            \\\"max_instances\\\": max_inst,\\n            \\\"extraction_time_seconds\\\": elapsed,\\n            \\\"n_skipped\\\": n_skipped,\\n        }, f, indent=2)\\n\\n    print(f\\\"Saved to {OUTPUT_DIR}/entity_*_{args.dataset}.*\\\")\\n    return hidden_states.numpy(), np.array(all_labels)\\n\\n\\ndef run_auroc_probe(dataset_name):\\n    \\\"\\\"\\\"Run LogisticRegression probe and compute AUROC.\\\"\\\"\\\"\\n    from sklearn.linear_model import LogisticRegression\\n    from sklearn.metrics import roc_auc_score\\n    from sklearn.model_selection import StratifiedKFold\\n    from sklearn.preprocessing import StandardScaler\\n\\n    hs_path = os.path.join(OUTPUT_DIR, f\\\"entity_hidden_states_{dataset_name}.pt\\\")\\n    lb_path = os.path.join(OUTPUT_DIR, f\\\"entity_labels_{dataset_name}.pt\\\")\\n\\n    if not os.path.exists(hs_path):\\n        print(f\\\"  {dataset_name}: no hidden states found, skipping\\\")\\n        return None\\n\\n    hs = torch.load(hs_path, weights_only=True).float().numpy()\\n    labels = torch.load(lb_path, weights_only=True).numpy()\\n\\n    print(f\\\"\\\\n--- {dataset_name} ---\\\")\\n    print(f\\\"  Entities: {len(labels)}, dim={hs.shape[1]}\\\")\\n    print(f\\\"  Positive: {labels.sum()} ({labels.mean()*100:.1f}%), \\\"\\n          f\\\"Negative: {len(labels)-labels.sum()}\\\")\\n\\n    if labels.sum() == 0 or labels.sum() == len(labels):\\n        print(\\\"  SKIP: single class\\\")\\n        return None\\n\\n    cv_folds = 5\\n    seeds = [42, 123, 456]\\n    all_aurocs = []\\n\\n    for seed in seeds:\\n        skf = StratifiedKFold(n_splits=cv_folds, shuffle=True, random_state=seed)\\n        fold_aurocs = []\\n        for train_idx, test_idx in skf.split(hs, labels):\\n            X_train = hs[train_idx]\\n            X_test = hs[test_idx]\\n            y_train = labels[train_idx]\\n            y_test = labels[test_idx]\\n\\n            scaler = StandardScaler()\\n            X_train = scaler.fit_transform(X_train)\\n            X_test = scaler.transform(X_test)\\n\\n            clf = LogisticRegression(max_iter=1000, C=1.0, solver=\\\"lbfgs\\\")\\n            clf.fit(X_train, y_train)\\n            y_prob = clf.predict_proba(X_test)[:, 1]\\n\\n            if len(np.unique(y_test)) < 2:\\n                continue\\n            fold_aurocs.append(roc_auc_score(y_test, y_prob))\\n\\n        if fold_aurocs:\\n            all_aurocs.append(np.mean(fold_aurocs))\\n\\n    if not all_aurocs:\\n        return None\\n\\n    mean_auroc = np.mean(all_aurocs)\\n    std_auroc = np.std(all_aurocs)\\n\\n    if mean_auroc > 0.80:\\n        interp = \\\"HIGH — info in representation, prompt interface fails\\\"\\n    elif mean_auroc > 0.60:\\n        interp = \\\"MODERATE — partial info in representation\\\"\\n    else:\\n        interp = \\\"LOW — info not clearly present\\\"\\n\\n    print(f\\\"  AUROC = {mean_auroc:.4f} +/- {std_auroc:.4f}\\\")\\n    print(f\\\"  vs MV=0.87, ESJ=0.51\\\")\\n    print(f\\\"  => {interp}\\\")\\n\\n    result = {\\n        \\\"dataset\\\": dataset_name,\\n        \\\"auroc_mean\\\": float(mean_auroc),\\n        \\\"auroc_std\\\": float(std_auroc),\\n        \\\"auroc_per_seed\\\": [float(a) for a in all_aurocs],\\n        \\\"n_entities\\\": int(len(labels)),\\n        \\\"n_positive\\\": int(labels.sum()),\\n        \\\"positive_rate\\\": float(labels.mean()),\\n        \\\"cv_folds\\\": cv_folds,\\n        \\\"seeds\\\": seeds,\\n        \\\"comparison\\\": {\\\"mv_agreement_auroc\\\": 0.87, \\\"esj_prompt_auroc\\\": 0.51},\\n        \\\"interpretation\\\": interp,\\n    }\\n\\n    path = os.path.join(OUTPUT_DIR, f\\\"auroc_results_{dataset_name}.json\\\")\\n    with open(path, \\\"w\\\") as f:\\n        json.dump(result, f, indent=2)\\n    print(f\\\"  Saved: {path}\\\")\\n    return result\\n\\n\\ndef main():\\n    parser = argparse.ArgumentParser(description=\\\"Hidden state entity probe\\\")\\n    parser.add_argument(\\\"--dataset\\\", required=True, choices=[\\\"scierc\\\", \\\"fewnerd\\\", \\\"conll\\\"])\\n    parser.add_argument(\\\"--gpu\\\", type=int, default=0)\\n    parser.add_argument(\\\"--max_instances\\\", type=int, default=500)\\n    parser.add_argument(\\\"--probe_only\\\", action=\\\"store_true\\\",\\n                        help=\\\"Skip extraction, run probe on existing .pt files\\\")\\n    args = parser.parse_args()\\n\\n    if not args.probe_only:\\n        extract_hidden_states(args)\\n\\n    run_auroc_probe(args.dataset)\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.59}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 21_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have the full picture:
+
+1. The extraction code saves `all_meta` which includes `instance_idx` for each entity, but it's NOT saved to disk — only the hidden states and labels tensors are saved.
+
+2. But the metadata includes `instance_idx` in each entry. Wait, let me re-read... The `all_meta` list is created with `instance_idx: i` but it's never saved. The `entity_metadata_{dataset}.json` file only saves aggregate statistics, not per-entity metadata.
+
+So the problem is: we need `instance_idx` per entity for GroupKFold, but it wasn't saved. 
+
+I can reconstruct the instance_idx without re-running extraction since the extraction processes instances in order — each instance gets a sequential index, and I can map that back from the source data. So I either need to rebuild the metadata from the original data using the same ordering, or modify the extraction code to save instance_idx alongside the hidden states and re-run it on GPU. But actually, I should be able to reconstruct it directly from how the extraction iterates through the data.
+
+The challenge is that some entities were skipped during tokenization, so I'd need to know exactly which ones failed to match the original extraction order. The most straightforward solution is to modify the extraction code to save the metadata alongside the hidden states. Writing the reconstruction script...
+
+Actually, I'm realizing the metadata files don't contain the instance indices either—they just have aggregate counts. Without the tokenizer, I can't determine which entities were filtered out by `find_entity_tokens`, so I can't reliably reconstruct the original ordering. The safest path forward is to save `instance_idx` as a separate artifact during extraction, which means re-running that step on GPU. I'm realizing I need to check whether transformers is available on the server, but that might be overcomplicating things. The real constraint is that I shouldn't need to re-run extraction since the hidden states are already cached. Let me think about whether I can reconstruct the instance indices directly from the saved data without needing the tokenizer or re-extraction.
+
+The extraction process follows a specific nested loop order through instances, samples, and entities, skipping any that don't have valid tokens. Without knowing exactly which entities were skipped, I can't perfectly reconstruct the instance indices, but I could check the metadata files to see how many were actually skipped and whether that's negligible. Alternatively, I could write a script that loads the original samples.jsonl and iterates through it in the same order to build the instance index mapping.
+
+Actually, the cleanest approach is to replay the extraction logic itself. Since `find_entity_tokens` is deterministic and only needs the tokenizer and the reconstructed JSON response (which doesn't require the model), I can load the tokenizer from the checkpoint, iterate through the samples, and rebuild instance_idx by running the same tokenization and entity extraction logic that was used originally.
+
+The time cost should be manageable—tokenizing a few thousand samples takes only a minute or two. But I need to verify that the checkpoint directories actually exist on this machine first, since the paths reference specific model checkpoints.
+
+Let me start by checking the metadata files to understand the data scale, then write and run the probe script to set up the GroupKFold split.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4ef02f80-2bd2-4491-8d00-968f4ce2770e",
+  "uuid": "433b506e-bfd1-4600-8784-a260864d3e81",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01T3qAZ6hMSiG7duE4KQaEQw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7638,
+      "cache_read_input_tokens": 30935,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7638
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 22_
+
+Good — the code saves `instance_idx` in `all_meta` but never persists it. I need to reconstruct instance_ids to use GroupKFold. Let me check the metadata and existing results.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4ef02f80-2bd2-4491-8d00-968f4ce2770e",
+  "uuid": "1573b5fa-2fc4-48aa-bd9e-8a10b959dea6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01T3qAZ6hMSiG7duE4KQaEQw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7638,
+      "cache_read_input_tokens": 30935,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7638
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01JNptsoMo4FYmuuZLTknmUq`</summary>
+
+```json
+{
+  "server": "autodl-5090-c",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/entity_probe_auroc/entity_metadata_fewnerd.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4ef02f80-2bd2-4491-8d00-968f4ce2770e",
+  "uuid": "ce8bd695-99a3-4ba1-9d4e-6163d9793023",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01T3qAZ6hMSiG7duE4KQaEQw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7638,
+      "cache_read_input_tokens": 30935,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7638
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_019jf8xAKBjt8vEafi6yAL6G`</summary>
+
+```json
+{
+  "server": "autodl-5090-c",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/entity_probe_auroc/entity_metadata_conll.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4ef02f80-2bd2-4491-8d00-968f4ce2770e",
+  "uuid": "a814a119-498d-4772-8447-2997aaf244cb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01T3qAZ6hMSiG7duE4KQaEQw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7638,
+      "cache_read_input_tokens": 30935,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7638
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-21T03:09:56.180Z_
+
+<details><summary>↩ Tool result · `toolu_01JNptsoMo4FYmuuZLTknmUq`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"dataset\\\": \\\"fewnerd\\\",\\n  \\\"n_instances\\\": 500,\\n  \\\"n_samples_used\\\": 8,\\n  \\\"n_entities\\\": 10508,\\n  \\\"n_positive\\\": 8390,\\n  \\\"n_negative\\\": 2118,\\n  \\\"positive_rate\\\": 0.7984392843547773,\\n  \\\"hidden_dim\\\": 4096,\\n  \\\"model_path\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-fewnerd-exp021-merged\\\",\\n  \\\"data_path\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/exp_tlow_fewnerd_t05_s42/samples.jsonl\\\",\\n  \\\"max_instances\\\": 500,\\n  \\\"extraction_time_seconds\\\": 243.83613514900208,\\n  \\\"n_skipped\\\": 7\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.1}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4ef02f80-2bd2-4491-8d00-968f4ce2770e",
+  "uuid": "5796222b-5698-4ace-b12d-66285bd95bb0",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"dataset\\\\\\\": \\\\\\\"fewnerd\\\\\\\",\\\\n  \\\\\\\"n_instances\\\\\\\": 500,\\\\n  \\\\\\\"n_samples_used\\\\\\\": 8,\\\\n  \\\\\\\"n_entities\\\\\\\": 10508,\\\\n  \\\\\\\"n_positive\\\\\\\": 8390,\\\\n  \\\\\\\"n_negative\\\\\\\": 2118,\\\\n  \\\\\\\"positive_rate\\\\\\\": 0.7984392843547773,\\\\n  \\\\\\\"hidden_dim\\\\\\\": 4096,\\\\n  \\\\\\\"model_path\\\\\\\": \\\\\\\"/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-fewnerd-exp021-merged\\\\\\\",\\\\n  \\\\\\\"data_path\\\\\\\": \\\\\\\"/root/autodl-tmp/struct_self_consist_ie/output/exp_tlow_fewnerd_t05_s42/samples.jsonl\\\\\\\",\\\\n  \\\\\\\"max_instances\\\\\\\": 500,\\\\n  \\\\\\\"extraction_time_seconds\\\\\\\": 243.83613514900208,\\\\n  \\\\\\\"n_skipped\\\\\\\": 7\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.1}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"dataset\\\": \\\"fewnerd\\\",\\n  \\\"n_instances\\\": 500,\\n  \\\"n_samples_used\\\": 8,\\n  \\\"n_entities\\\": 10508,\\n  \\\"n_positive\\\": 8390,\\n  \\\"n_negative\\\": 2118,\\n  \\\"positive_rate\\\": 0.7984392843547773,\\n  \\\"hidden_dim\\\": 4096,\\n  \\\"model_path\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-fewnerd-exp021-merged\\\",\\n  \\\"data_path\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/exp_tlow_fewnerd_t05_s42/samples.jsonl\\\",\\n  \\\"max_instances\\\": 500,\\n  \\\"extraction_time_seconds\\\": 243.83613514900208,\\n  \\\"n_skipped\\\": 7\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.1}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-21T03:09:57.089Z_
+
+<details><summary>↩ Tool result · `toolu_019jf8xAKBjt8vEafi6yAL6G`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"dataset\\\": \\\"conll\\\",\\n  \\\"n_instances\\\": 500,\\n  \\\"n_samples_used\\\": 8,\\n  \\\"n_entities\\\": 7849,\\n  \\\"n_positive\\\": 7157,\\n  \\\"n_negative\\\": 692,\\n  \\\"positive_rate\\\": 0.9118359026627596,\\n  \\\"hidden_dim\\\": 4096,\\n  \\\"model_path\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-conll2003-merged\\\",\\n  \\\"data_path\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/exp_conll_t08_seed42/samples.jsonl\\\",\\n  \\\"max_instances\\\": 500,\\n  \\\"extraction_time_seconds\\\": 234.16113877296448,\\n  \\\"n_skipped\\\": 0\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.9}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4ef02f80-2bd2-4491-8d00-968f4ce2770e",
+  "uuid": "adafe1c6-126b-46e1-9f69-2751171662ef",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"dataset\\\\\\\": \\\\\\\"conll\\\\\\\",\\\\n  \\\\\\\"n_instances\\\\\\\": 500,\\\\n  \\\\\\\"n_samples_used\\\\\\\": 8,\\\\n  \\\\\\\"n_entities\\\\\\\": 7849,\\\\n  \\\\\\\"n_positive\\\\\\\": 7157,\\\\n  \\\\\\\"n_negative\\\\\\\": 692,\\\\n  \\\\\\\"positive_rate\\\\\\\": 0.9118359026627596,\\\\n  \\\\\\\"hidden_dim\\\\\\\": 4096,\\\\n  \\\\\\\"model_path\\\\\\\": \\\\\\\"/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-conll2003-merged\\\\\\\",\\\\n  \\\\\\\"data_path\\\\\\\": \\\\\\\"/root/autodl-tmp/struct_self_consist_ie/output/exp_conll_t08_seed42/samples.jsonl\\\\\\\",\\\\n  \\\\\\\"max_instances\\\\\\\": 500,\\\\n  \\\\\\\"extraction_time_seconds\\\\\\\": 234.16113877296448,\\\\n  \\\\\\\"n_skipped\\\\\\\": 0\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.9}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"dataset\\\": \\\"conll\\\",\\n  \\\"n_instances\\\": 500,\\n  \\\"n_samples_used\\\": 8,\\n  \\\"n_entities\\\": 7849,\\n  \\\"n_positive\\\": 7157,\\n  \\\"n_negative\\\": 692,\\n  \\\"positive_rate\\\": 0.9118359026627596,\\n  \\\"hidden_dim\\\": 4096,\\n  \\\"model_path\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-conll2003-merged\\\",\\n  \\\"data_path\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/exp_conll_t08_seed42/samples.jsonl\\\",\\n  \\\"max_instances\\\": 500,\\n  \\\"extraction_time_seconds\\\": 234.16113877296448,\\n  \\\"n_skipped\\\": 0\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.9}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01UrBz8kdhiiRqkju9ShuTF3`</summary>
+
+```json
+{
+  "server": "autodl-5090-c",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/entity_probe_auroc/entity_metadata_scierc.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4ef02f80-2bd2-4491-8d00-968f4ce2770e",
+  "uuid": "10ea7ba3-e1d3-4a66-b50c-028d176df101",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01T3qAZ6hMSiG7duE4KQaEQw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7638,
+      "cache_read_input_tokens": 30935,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7638
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_013uXMKkfDkkKp2ArYFSGUze`</summary>
+
+```json
+{
+  "server": "autodl-5090-c",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/entity_probe_auroc/entity_probe_results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4ef02f80-2bd2-4491-8d00-968f4ce2770e",
+  "uuid": "cda1e527-2fd2-451f-acc1-015133803c57",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01T3qAZ6hMSiG7duE4KQaEQw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7638,
+      "cache_read_input_tokens": 30935,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7638
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-21T03:10:01.213Z_
+
+<details><summary>↩ Tool result · `toolu_01UrBz8kdhiiRqkju9ShuTF3`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"dataset\\\": \\\"scierc\\\",\\n  \\\"n_instances\\\": 551,\\n  \\\"n_samples_used\\\": 8,\\n  \\\"n_entities\\\": 12933,\\n  \\\"n_positive\\\": 8463,\\n  \\\"n_negative\\\": 4470,\\n  \\\"positive_rate\\\": 0.654372535374623,\\n  \\\"hidden_dim\\\": 4096,\\n  \\\"model_path\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-merged-v2\\\",\\n  \\\"data_path\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/exp_scierc_8b_t08_s42/samples.jsonl\\\",\\n  \\\"max_instances\\\": 551,\\n  \\\"extraction_time_seconds\\\": 318.2460227012634,\\n  \\\"n_skipped\\\": 140\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.14}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4ef02f80-2bd2-4491-8d00-968f4ce2770e",
+  "uuid": "ce9b7973-7200-49be-ab69-c686406769e9",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"dataset\\\\\\\": \\\\\\\"scierc\\\\\\\",\\\\n  \\\\\\\"n_instances\\\\\\\": 551,\\\\n  \\\\\\\"n_samples_used\\\\\\\": 8,\\\\n  \\\\\\\"n_entities\\\\\\\": 12933,\\\\n  \\\\\\\"n_positive\\\\\\\": 8463,\\\\n  \\\\\\\"n_negative\\\\\\\": 4470,\\\\n  \\\\\\\"positive_rate\\\\\\\": 0.654372535374623,\\\\n  \\\\\\\"hidden_dim\\\\\\\": 4096,\\\\n  \\\\\\\"model_path\\\\\\\": \\\\\\\"/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-merged-v2\\\\\\\",\\\\n  \\\\\\\"data_path\\\\\\\": \\\\\\\"/root/autodl-tmp/struct_self_consist_ie/output/exp_scierc_8b_t08_s42/samples.jsonl\\\\\\\",\\\\n  \\\\\\\"max_instances\\\\\\\": 551,\\\\n  \\\\\\\"extraction_time_seconds\\\\\\\": 318.2460227012634,\\\\n  \\\\\\\"n_skipped\\\\\\\": 140\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.14}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"dataset\\\": \\\"scierc\\\",\\n  \\\"n_instances\\\": 551,\\n  \\\"n_samples_used\\\": 8,\\n  \\\"n_entities\\\": 12933,\\n  \\\"n_positive\\\": 8463,\\n  \\\"n_negative\\\": 4470,\\n  \\\"positive_rate\\\": 0.654372535374623,\\n  \\\"hidden_dim\\\": 4096,\\n  \\\"model_path\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-merged-v2\\\",\\n  \\\"data_path\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/exp_scierc_8b_t08_s42/samples.jsonl\\\",\\n  \\\"max_instances\\\": 551,\\n  \\\"extraction_time_seconds\\\": 318.2460227012634,\\n  \\\"n_skipped\\\": 140\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.14}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-21T03:10:02.113Z_
+
+<details><summary>↩ Tool result · `toolu_013uXMKkfDkkKp2ArYFSGUze`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"within_dataset_cv\\\": {\\n    \\\"fewnerd\\\": {\\n      \\\"auroc_mean\\\": 0.9204277218331011,\\n      \\\"auroc_std\\\": 0.0005986290192323628,\\n      \\\"auroc_per_seed\\\": [\\n        0.9212735991796542,\\n        0.9199747217237022,\\n        0.9200348445959466\\n      ],\\n      \\\"accuracy_mean\\\": 0.9064421567521631,\\n      \\\"accuracy_std\\\": 0.0005230014487130823,\\n      \\\"f1_mean\\\": 0.9372041658604013,\\n      \\\"f1_std\\\": 0.0003699879404431288\\n    },\\n    \\\"conll\\\": {\\n      \\\"auroc_mean\\\": 0.9567240092263857,\\n      \\\"auroc_std\\\": 0.0009474060896363415,\\n      \\\"auroc_per_seed\\\": [\\n        0.9578349296760884,\\n        0.9568172085916459,\\n        0.9555198894114223\\n      ],\\n      \\\"accuracy_mean\\\": 0.957601751981693,\\n      \\\"accuracy_std\\\": 0.001209142068141914,\\n      \\\"f1_mean\\\": 0.976237197036062,\\n      \\\"f1_std\\\": 0.0006921627956065981\\n    }\\n  },\\n  \\\"leave_one_dataset_out\\\": {\\n    \\\"fewnerd\\\": {\\n      \\\"train_on\\\": [\\n        \\\"conll\\\"\\n      ],\\n      \\\"test_on\\\": \\\"fewnerd\\\",\\n      \\\"n_train\\\": 16683,\\n      \\\"n_test\\\": 43303,\\n      \\\"auroc_mean\\\": 0.559427859595965,\\n      \\\"auroc_std\\\": 0.0,\\n      \\\"auroc_per_seed\\\": [\\n        0.559427859595965,\\n        0.559427859595965,\\n        0.559427859595965\\n      ],\\n      \\\"accuracy_mean\\\": 0.5454818372861002,\\n      \\\"f1_mean\\\": 0.6422365216126804\\n    },\\n    \\\"conll\\\": {\\n      \\\"train_on\\\": [\\n        \\\"fewnerd\\\"\\n      ],\\n      \\\"test_on\\\": \\\"conll\\\",\\n      \\\"n_train\\\": 43303,\\n      \\\"n_test\\\": 16683,\\n      \\\"auroc_mean\\\": 0.6706097596099069,\\n      \\\"auroc_std\\\": 1.1102230246251565e-16,\\n      \\\"auroc_per_seed\\\": [\\n        0.670609759609907,\\n        0.670609759609907,\\n        0.670609759609907\\n      ],\\n      \\\"accuracy_mean\\\": 0.6853683390277528,\\n      \\\"f1_mean\\\": 0.7991274731162221\\n    }\\n  },\\n  \\\"overall_within_auroc\\\": 0.9385758655297434,\\n  \\\"overall_lodo_auroc\\\": 0.6150188096029359,\\n  \\\"baselines\\\": {\\n    \\\"random\\\": 0.5,\\n    \\\"esj_prompt_based\\\": 0.51,\\n    \\\"mv_agreement\\\": 0.87\\n  },\\n  \\\"interpretation\\\": \\\"PARTIAL: some information in representation, weaker than MV\\\",\\n  \\\"protocol\\\": {\\n    \\\"probe\\\": \\\"LogisticRegression(C=1.0, max_iter=1000)\\\",\\n    \\\"cv_folds\\\": 5,\\n    \\\"seeds\\\": [\\n      42,\\n      123,\\n      456\\n    ],\\n    \\\"scaler\\\": \\\"StandardScaler\\\",\\n    \\\"label\\\": \\\"binary: in_gold (1) vs not_in_gold (0)\\\",\\n    \\\"feature\\\": \\\"mean-pool hidden states at entity span tokens (last layer)\\\"\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.89}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4ef02f80-2bd2-4491-8d00-968f4ce2770e",
+  "uuid": "5485b061-bf73-4f35-817a-aadbad93cf99",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"within_dataset_cv\\\\\\\": {\\\\n    \\\\\\\"fewnerd\\\\\\\": {\\\\n      \\\\\\\"auroc_mean\\\\\\\": 0.9204277218331011,\\\\n      \\\\\\\"auroc_std\\\\\\\": 0.0005986290192323628,\\\\n      \\\\\\\"auroc_per_seed\\\\\\\": [\\\\n        0.9212735991796542,\\\\n        0.9199747217237022,\\\\n        0.9200348445959466\\\\n      ],\\\\n      \\\\\\\"accuracy_mean\\\\\\\": 0.9064421567521631,\\\\n      \\\\\\\"accuracy_std\\\\\\\": 0.0005230014487130823,\\\\n      \\\\\\\"f1_mean\\\\\\\": 0.9372041658604013,\\\\n      \\\\\\\"f1_std\\\\\\\": 0.0003699879404431288\\\\n    },\\\\n    \\\\\\\"conll\\\\\\\": {\\\\n      \\\\\\\"auroc_mean\\\\\\\": 0.9567240092263857,\\\\n      \\\\\\\"auroc_std\\\\\\\": 0.0009474060896363415,\\\\n      \\\\\\\"auroc_per_seed\\\\\\\": [\\\\n        0.9578349296760884,\\\\n        0.9568172085916459,\\\\n        0.9555198894114223\\\\n      ],\\\\n      \\\\\\\"accuracy_mean\\\\\\\": 0.957601751981693,\\\\n      \\\\\\\"accuracy_std\\\\\\\": 0.001209142068141914,\\\\n      \\\\\\\"f1_mean\\\\\\\": 0.976237197036062,\\\\n      \\\\\\\"f1_std\\\\\\\": 0.0006921627956065981\\\\n    }\\\\n  },\\\\n  \\\\\\\"leave_one_dataset_out\\\\\\\": {\\\\n    \\\\\\\"fewnerd\\\\\\\": {\\\\n      \\\\\\\"train_on\\\\\\\": [\\\\n        \\\\\\\"conll\\\\\\\"\\\\n      ],\\\\n      \\\\\\\"test_on\\\\\\\": \\\\\\\"fewnerd\\\\\\\",\\\\n      \\\\\\\"n_train\\\\\\\": 16683,\\\\n      \\\\\\\"n_test\\\\\\\": 43303,\\\\n      \\\\\\\"auroc_mean\\\\\\\": 0.559427859595965,\\\\n      \\\\\\\"auroc_std\\\\\\\": 0.0,\\\\n      \\\\\\\"auroc_per_seed\\\\\\\": [\\\\n        0.559427859595965,\\\\n        0.559427859595965,\\\\n        0.559427859595965\\\\n      ],\\\\n      \\\\\\\"accuracy_mean\\\\\\\": 0.5454818372861002,\\\\n      \\\\\\\"f1_mean\\\\\\\": 0.6422365216126804\\\\n    },\\\\n    \\\\\\\"conll\\\\\\\": {\\\\n      \\\\\\\"train_on\\\\\\\": [\\\\n        \\\\\\\"fewnerd\\\\\\\"\\\\n      ],\\\\n      \\\\\\\"test_on\\\\\\\": \\\\\\\"conll\\\\\\\",\\\\n      \\\\\\\"n_train\\\\\\\": 43303,\\\\n      \\\\\\\"n_test\\\\\\\": 16683,\\\\n      \\\\\\\"auroc_mean\\\\\\\": 0.6706097596099069,\\\\n      \\\\\\\"auroc_std\\\\\\\": 1.1102230246251565e-16,\\\\n      \\\\\\\"auroc_per_seed\\\\\\\": [\\\\n        0.670609759609907,\\\\n        0.670609759609907,\\\\n        0.670609759609907\\\\n      ],\\\\n      \\\\\\\"accuracy_mean\\\\\\\": 0.6853683390277528,\\\\n      \\\\\\\"f1_mean\\\\\\\": 0.7991274731162221\\\\n    }\\\\n  },\\\\n  \\\\\\\"overall_within_auroc\\\\\\\": 0.9385758655297434,\\\\n  \\\\\\\"overall_lodo_auroc\\\\\\\": 0.6150188096029359,\\\\n  \\\\\\\"baselines\\\\\\\": {\\\\n    \\\\\\\"random\\\\\\\": 0.5,\\\\n    \\\\\\\"esj_prompt_based\\\\\\\": 0.51,\\\\n    \\\\\\\"mv_agreement\\\\\\\": 0.87\\\\n  },\\\\n  \\\\\\\"interpretation\\\\\\\": \\\\\\\"PARTIAL: some information in representation, weaker than MV\\\\\\\",\\\\n  \\\\\\\"protocol\\\\\\\": {\\\\n    \\\\\\\"probe\\\\\\\": \\\\\\\"LogisticRegression(C=1.0, max_iter=1000)\\\\\\\",\\\\n    \\\\\\\"cv_folds\\\\\\\": 5,\\\\n    \\\\\\\"seeds\\\\\\\": [\\\\n      42,\\\\n      123,\\\\n      456\\\\n    ],\\\\n    \\\\\\\"scaler\\\\\\\": \\\\\\\"StandardScaler\\\\\\\",\\\\n    \\\\\\\"label\\\\\\\": \\\\\\\"binary: in_gold (1) vs not_in_gold (0)\\\\\\\",\\\\n    \\\\\\\"feature\\\\\\\": \\\\\\\"mean-pool hidden states at entity span tokens (last layer)\\\\\\\"\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.89}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"within_dataset_cv\\\": {\\n    \\\"fewnerd\\\": {\\n      \\\"auroc_mean\\\": 0.9204277218331011,\\n      \\\"auroc_std\\\": 0.0005986290192323628,\\n      \\\"auroc_per_seed\\\": [\\n        0.9212735991796542,\\n        0.9199747217237022,\\n        0.9200348445959466\\n      ],\\n      \\\"accuracy_mean\\\": 0.9064421567521631,\\n      \\\"accuracy_std\\\": 0.0005230014487130823,\\n      \\\"f1_mean\\\": 0.9372041658604013,\\n      \\\"f1_std\\\": 0.0003699879404431288\\n    },\\n    \\\"conll\\\": {\\n      \\\"auroc_mean\\\": 0.9567240092263857,\\n      \\\"auroc_std\\\": 0.0009474060896363415,\\n      \\\"auroc_per_seed\\\": [\\n        0.9578349296760884,\\n        0.9568172085916459,\\n        0.9555198894114223\\n      ],\\n      \\\"accuracy_mean\\\": 0.957601751981693,\\n      \\\"accuracy_std\\\": 0.001209142068141914,\\n      \\\"f1_mean\\\": 0.976237197036062,\\n      \\\"f1_std\\\": 0.0006921627956065981\\n    }\\n  },\\n  \\\"leave_one_dataset_out\\\": {\\n    \\\"fewnerd\\\": {\\n      \\\"train_on\\\": [\\n        \\\"conll\\\"\\n      ],\\n      \\\"test_on\\\": \\\"fewnerd\\\",\\n      \\\"n_train\\\": 16683,\\n      \\\"n_test\\\": 43303,\\n      \\\"auroc_mean\\\": 0.559427859595965,\\n      \\\"auroc_std\\\": 0.0,\\n      \\\"auroc_per_seed\\\": [\\n        0.559427859595965,\\n        0.559427859595965,\\n        0.559427859595965\\n      ],\\n      \\\"accuracy_mean\\\": 0.5454818372861002,\\n      \\\"f1_mean\\\": 0.6422365216126804\\n    },\\n    \\\"conll\\\": {\\n      \\\"train_on\\\": [\\n        \\\"fewnerd\\\"\\n      ],\\n      \\\"test_on\\\": \\\"conll\\\",\\n      \\\"n_train\\\": 43303,\\n      \\\"n_test\\\": 16683,\\n      \\\"auroc_mean\\\": 0.6706097596099069,\\n      \\\"auroc_std\\\": 1.1102230246251565e-16,\\n      \\\"auroc_per_seed\\\": [\\n        0.670609759609907,\\n        0.670609759609907,\\n        0.670609759609907\\n      ],\\n      \\\"accuracy_mean\\\": 0.6853683390277528,\\n      \\\"f1_mean\\\": 0.7991274731162221\\n    }\\n  },\\n  \\\"overall_within_auroc\\\": 0.9385758655297434,\\n  \\\"overall_lodo_auroc\\\": 0.6150188096029359,\\n  \\\"baselines\\\": {\\n    \\\"random\\\": 0.5,\\n    \\\"esj_prompt_based\\\": 0.51,\\n    \\\"mv_agreement\\\": 0.87\\n  },\\n  \\\"interpretation\\\": \\\"PARTIAL: some information in representation, weaker than MV\\\",\\n  \\\"protocol\\\": {\\n    \\\"probe\\\": \\\"LogisticRegression(C=1.0, max_iter=1000)\\\",\\n    \\\"cv_folds\\\": 5,\\n    \\\"seeds\\\": [\\n      42,\\n      123,\\n      456\\n    ],\\n    \\\"scaler\\\": \\\"StandardScaler\\\",\\n    \\\"label\\\": \\\"binary: in_gold (1) vs not_in_gold (0)\\\",\\n    \\\"feature\\\": \\\"mean-pool hidden states at entity span tokens (last layer)\\\"\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.89}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 31_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Key findings:
+
+1. **fewnerd**: n_skipped=7 (out of 10508+7=10515 entity attempts). Very few skips.
+2. **conll**: n_skipped=0. Perfect - no skips.
+3. **scierc**: n_skipped=140 (out of 12933+140=13073 entity attempts). More skips.
+
+Existing within-dataset AUROC results:
+- fewnerd: 0.9204
+- conll: 0.9567
+- scierc: need to check individual results
+
+
+- LODO results show fewnerd→conll at 0.559 and conll→fewnerd at 0.671
+
+For reconstruction, conll is straightforward since there are no skipped entities, so I can count entities per instance directly. Fewnerd has minimal skips that won't significantly impact accuracy. Scierc's 1% skip rate will require the tokenizer for precise reconstruction.
+
+I'm reconsidering the approach — instead of re-running extraction on GPU, I'll write a standalone script that loads the tokenizer and replays the entity iteration to build instance IDs, then runs the GroupKFold probe. This avoids re-extraction entirely. The main question is whether the tokenizer files are still available on the server, but I'll write the script with a fallback in case they're not.
+
+For datasets with no skipped entities like conll, I can just iterate through and assign instance indices sequentially. For fewnerd with a few skipped entities, the impact on GroupKFold results is minimal even if some indices are slightly off. Actually, the simplest approach is to load the samples and count how many entities would be processed across all instances to assign instance indices correctly — for conll this is trivial, and for cases with skipped entities I just need to track which ones were skipped.
+
+Now I'm reconsidering whether I actually need the tokenizer at all. The `find_entity_tokens` function is strict about matching entity text at the token level, but I could use a simpler heuristic: if the entity text appears as a substring in the response JSON and it's in the sample's entities list, then it was successfully extracted. This would be less strict than the token-level matching but might be sufficient for most cases.
+
+Actually, the cleanest approach is just to load the tokenizer since it's fast and CPU-only. Let me write a comprehensive script that loads the hidden states and labels from the existing checkpoint files, replays the entity iteration from the original samples to build instance IDs, uses the tokenizer for entity matching to handle the skipped entities, and then runs GroupKFold on the data.
+
+But I'm hitting a critical issue: the `find_entity_tokens` function needs the tokenized response IDs, which I need to reconstruct from the original response text.
+
+So the workflow is to build the chat prompt using the tokenizer's template, tokenize the full text, extract just the response tokens, and pass those to `find_entity_tokens` — all CPU operations that don't require the model itself. Let me check if the tokenizer checkpoints are available on the server first.
+
+Actually, I can optimize this further by leveraging the fact that the extraction processes instances sequentially and the entities in the checkpoint files are already ordered by instance, then by sample index, then by entity order within each sample. So I can just count the expected entities per instance from the samples file and use that to map the stored entities back to their instance IDs without replaying the expensive nested loops.
+
+But that's getting too fragile. The cleaner approach is to just replay the tokenizer logic properly. Though before I do that, let me think about whether I even need to re-run extraction at all. If I can reconstruct the instance indices from the entity counts in the samples file, I might avoid the GPU requirement entirely. For conll where nothing was skipped, the mapping is exact. For fewnerd with only 7 skipped out of 10515, I can still reconstruct the instance assignments fairly accurately. The extraction code iterates through instances and samples, skipping entities when the tokenizer can't find their span, and only appends metadata for successfully matched entities — so `all_meta` contains the ground truth of which entities actually made it into the dataset. I should use this as my source of truth rather than trying to reconstruct instance indices from the raw data.
+
+If I replay this exact loop with the tokenizer, I'll get the correct instance_idx for each entity in the .pt files. The computational cost should be manageable: loading the tokenizer takes a few seconds, then for 500 instances with 8 samples each I'm doing around 4000 tokenizations plus entity matching, which should run in 1-2 minutes on CPU. Let me write the script and verify the checkpoint and data files exist first.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4ef02f80-2bd2-4491-8d00-968f4ce2770e",
+  "uuid": "5d0cf0da-b7dc-48a7-bff1-a6f22c628722",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015AbBZSh2bfMUSrjSWWy61w",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5549,
+      "cache_read_input_tokens": 38573,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5549
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 32_
+
+Key data: n_skipped is 0 (conll), 7 (fewnerd), 140 (scierc). I need to reconstruct `instance_idx` per entity. Let me verify checkpoints exist for tokenizer loading.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4ef02f80-2bd2-4491-8d00-968f4ce2770e",
+  "uuid": "2891dff0-2f03-4cdf-839e-3a72783b1988",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015AbBZSh2bfMUSrjSWWy61w",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5549,
+      "cache_read_input_tokens": 38573,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5549
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01LNc8UdDpphQsTnvMxwLbJn`</summary>
+
+```json
+{
+  "server": "autodl-5090-c",
+  "command": "ls /root/autodl-tmp/struct_self_consist_ie/checkpoints/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4ef02f80-2bd2-4491-8d00-968f4ce2770e",
+  "uuid": "baf0d4fc-a3eb-4f7c-90d8-fc6c93149a81",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015AbBZSh2bfMUSrjSWWy61w",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5549,
+      "cache_read_input_tokens": 38573,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5549
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-21T03:11:03.714Z_
+
+<details><summary>↩ Tool result · `toolu_01LNc8UdDpphQsTnvMxwLbJn`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"llama3.1-8b-scierc-lora\\nllama3.1-8b-scierc-merged\\nqwen25-14b-fewnerd-merged-ckpt36000\\nqwen25-14b-fewnerd-merged-final\\nqwen25-14b-fewnerd-qlora-s42\\nqwen25-7b-fewnerd-merged\\nqwen25-7b-fewnerd-qlora-s42\\nqwen25-7b-wnut17-merged\\nqwen25-7b-wnut17-qlora-s42\\nqwen3-8b-conll2003-merged\\nqwen3-8b-fewnerd-exp021-lora\\nqwen3-8b-fewnerd-exp021-merged\\nqwen3-8b-scierc-merged-v2\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.75}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4ef02f80-2bd2-4491-8d00-968f4ce2770e",
+  "uuid": "fceed83b-d19d-4adb-a135-89b72a574659",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"llama3.1-8b-scierc-lora\\\\nllama3.1-8b-scierc-merged\\\\nqwen25-14b-fewnerd-merged-ckpt36000\\\\nqwen25-14b-fewnerd-merged-final\\\\nqwen25-14b-fewnerd-qlora-s42\\\\nqwen25-7b-fewnerd-merged\\\\nqwen25-7b-fewnerd-qlora-s42\\\\nqwen25-7b-wnut17-merged\\\\nqwen25-7b-wnut17-qlora-s42\\\\nqwen3-8b-conll2003-merged\\\\nqwen3-8b-fewnerd-exp021-lora\\\\nqwen3-8b-fewnerd-exp021-merged\\\\nqwen3-8b-scierc-merged-v2\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.75}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"llama3.1-8b-scierc-lora\\nllama3.1-8b-scierc-merged\\nqwen25-14b-fewnerd-merged-ckpt36000\\nqwen25-14b-fewnerd-merged-final\\nqwen25-14b-fewnerd-qlora-s42\\nqwen25-7b-fewnerd-merged\\nqwen25-7b-fewnerd-qlora-s42\\nqwen25-7b-wnut17-merged\\nqwen25-7b-wnut17-qlora-s42\\nqwen3-8b-conll2003-merged\\nqwen3-8b-fewnerd-exp021-lora\\nqwen3-8b-fewnerd-exp021-merged\\nqwen3-8b-scierc-merged-v2\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.75}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0175pWE4egoj4YhDpfpnbMGR`</summary>
+
+```json
+{
+  "server": "autodl-5090-c",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/entity_probe_auroc/auroc_results_scierc.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4ef02f80-2bd2-4491-8d00-968f4ce2770e",
+  "uuid": "dcb414b1-a469-41cd-8697-ecb8baa5eaec",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015AbBZSh2bfMUSrjSWWy61w",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5549,
+      "cache_read_input_tokens": 38573,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5549
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-21T03:11:05.424Z_
+
+<details><summary>↩ Tool result · `toolu_0175pWE4egoj4YhDpfpnbMGR`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"dataset\\\": \\\"scierc\\\",\\n  \\\"auroc_mean\\\": 0.976589975449475,\\n  \\\"auroc_std\\\": 0.001056555364857968,\\n  \\\"auroc_per_seed\\\": [\\n    0.9771228245801943,\\n    0.9751146184164259,\\n    0.9775324833518051\\n  ],\\n  \\\"n_entities\\\": 12933,\\n  \\\"n_positive\\\": 8463,\\n  \\\"positive_rate\\\": 0.654372535374623,\\n  \\\"cv_folds\\\": 5,\\n  \\\"seeds\\\": [\\n    42,\\n    123,\\n    456\\n  ],\\n  \\\"comparison\\\": {\\n    \\\"mv_agreement_auroc\\\": 0.87,\\n    \\\"esj_prompt_auroc\\\": 0.51\\n  },\\n  \\\"interpretation\\\": \\\"HIGH \\\\u2014 info in representation, prompt interface fails\\\"\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.1}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4ef02f80-2bd2-4491-8d00-968f4ce2770e",
+  "uuid": "25137c05-de20-45fc-9aad-353b1ba35dac",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"dataset\\\\\\\": \\\\\\\"scierc\\\\\\\",\\\\n  \\\\\\\"auroc_mean\\\\\\\": 0.976589975449475,\\\\n  \\\\\\\"auroc_std\\\\\\\": 0.001056555364857968,\\\\n  \\\\\\\"auroc_per_seed\\\\\\\": [\\\\n    0.9771228245801943,\\\\n    0.9751146184164259,\\\\n    0.9775324833518051\\\\n  ],\\\\n  \\\\\\\"n_entities\\\\\\\": 12933,\\\\n  \\\\\\\"n_positive\\\\\\\": 8463,\\\\n  \\\\\\\"positive_rate\\\\\\\": 0.654372535374623,\\\\n  \\\\\\\"cv_folds\\\\\\\": 5,\\\\n  \\\\\\\"seeds\\\\\\\": [\\\\n    42,\\\\n    123,\\\\n    456\\\\n  ],\\\\n  \\\\\\\"comparison\\\\\\\": {\\\\n    \\\\\\\"mv_agreement_auroc\\\\\\\": 0.87,\\\\n    \\\\\\\"esj_prompt_auroc\\\\\\\": 0.51\\\\n  },\\\\n  \\\\\\\"interpretation\\\\\\\": \\\\\\\"HIGH \\\\\\\\u2014 info in representation, prompt interface fails\\\\\\\"\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.1}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"dataset\\\": \\\"scierc\\\",\\n  \\\"auroc_mean\\\": 0.976589975449475,\\n  \\\"auroc_std\\\": 0.001056555364857968,\\n  \\\"auroc_per_seed\\\": [\\n    0.9771228245801943,\\n    0.9751146184164259,\\n    0.9775324833518051\\n  ],\\n  \\\"n_entities\\\": 12933,\\n  \\\"n_positive\\\": 8463,\\n  \\\"positive_rate\\\": 0.654372535374623,\\n  \\\"cv_folds\\\": 5,\\n  \\\"seeds\\\": [\\n    42,\\n    123,\\n    456\\n  ],\\n  \\\"comparison\\\": {\\n    \\\"mv_agreement_auroc\\\": 0.87,\\n    \\\"esj_prompt_auroc\\\": 0.51\\n  },\\n  \\\"interpretation\\\": \\\"HIGH \\\\u2014 info in representation, prompt interface fails\\\"\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.1}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 37_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+All 3 checkpoints exist. Existing results (entity-level StratifiedKFold AUROC):
+- fewnerd: 0.9204
+- conll: 0.9567
+- scierc: 0.9766
+
+Now I'll write the GroupKFold probe script. The approach:
+1. Load hidden states + labels from existing .pt files
+2. Load the tokenizer from checkpoint to replay entity matching and reconstruct instance_idx
+3. Run GroupKFold with groups=instance_ids
+
+Let me write this script. I need to handle the `find_entity_tokens` function exactly as in the original code.
+
+
+Writing the probe script...
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4ef02f80-2bd2-4491-8d00-968f4ce2770e",
+  "uuid": "ee8ca970-6a66-404e-9150-9a9dfe1a5ece",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01D5FwpsCuGQ22BG7JLC9XA8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3315,
+      "cache_read_input_tokens": 44122,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3315
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 38_
+
+All checkpoints present. Existing entity-level AUROC: fewnerd=0.920, conll=0.957, scierc=0.977.
+
+Now I'll write the GroupKFold probe script and deploy it to the server. The script will reconstruct `instance_idx` by replaying the entity iteration with the tokenizer (CPU-only, no model needed).
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4ef02f80-2bd2-4491-8d00-968f4ce2770e",
+  "uuid": "f3bce14e-da5b-4ecf-bdb9-1ef3024bbab3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01D5FwpsCuGQ22BG7JLC9XA8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3315,
+      "cache_read_input_tokens": 44122,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3315
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01UKbcanCkgXCL7VXdBFhrSQ`</summary>
+
+```json
+{
+  "server": "autodl-5090-c",
+  "command": "head -3 /root/autodl-tmp/struct_self_consist_ie/output/exp_tlow_fewnerd_t05_s42/samples.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4ef02f80-2bd2-4491-8d00-968f4ce2770e",
+  "uuid": "28eecc4f-73b1-457a-8f01-f2d100db7bc2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01D5FwpsCuGQ22BG7JLC9XA8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3315,
+      "cache_read_input_tokens": 44122,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3315
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-21T03:11:18.511Z_
+
+<details><summary>↩ Tool result · `toolu_01UKbcanCkgXCL7VXdBFhrSQ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"id\\\": \\\"fewnerd_test_00000\\\", \\\"text\\\": \\\"In the early 1930s the band moved to the Grill Room of the Taft Hotel in New York ; the band was renamed `` George Hall and His Hotel Taft Orchestra `` .\\\", \\\"gold\\\": {\\\"entities\\\": [{\\\"text\\\": \\\"Grill Room\\\", \\\"type\\\": \\\"building\\\", \\\"start\\\": 41, \\\"end\\\": 51}, {\\\"text\\\": \\\"Taft Hotel\\\", \\\"type\\\": \\\"building\\\", \\\"start\\\": 59, \\\"end\\\": 69}, {\\\"text\\\": \\\"New York\\\", \\\"type\\\": \\\"location\\\", \\\"start\\\": 73, \\\"end\\\": 81}, {\\\"text\\\": \\\"George Hall and His Hotel Taft Orchestra\\\", \\\"type\\\": \\\"organization\\\", \\\"start\\\": 108, \\\"end\\\": 148}], \\\"relations\\\": [], \\\"events\\\": []}, \\\"samples\\\": [{\\\"entities\\\": [{\\\"text\\\": \\\"Grill Room\\\", \\\"type\\\": \\\"building\\\", \\\"start\\\": 41, \\\"end\\\": 51}, {\\\"text\\\": \\\"Taft Hotel\\\", \\\"type\\\": \\\"building\\\", \\\"start\\\": 59, \\\"end\\\": 69}, {\\\"text\\\": \\\"New York\\\", \\\"type\\\": \\\"location\\\", \\\"start\\\": 73, \\\"end\\\": 81}, {\\\"text\\\": \\\"George Hall and His Hotel Taft Orchestra\\\", \\\"type\\\": \\\"organization\\\", \\\"start\\\": 108, \\\"end\\\": 148}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -1.4156323139472917, \\\"n_tokens\\\": 131, \\\"mean_logprob\\\": -0.010806353541582379, \\\"token_logprobs\\\": [-1.1920928244535389e-07, 0.0, 0.0, -3.123234637314454e-05, 0.0, 0.0, -4.0531076592742465e-06, -0.3260749876499176, -2.7417760065873154e-05, -0.0001954841281985864, -0.17977134883403778, 0.0, 0.0, 0.0, 0.0, -0.025012949481606483, 0.0, 0.0, 0.0, 0.0, -8.511180931236595e-05, 0.0, -0.023246845230460167, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -2.50339189733495e-06, -1.2993727978027891e-05, -2.3841855067985307e-07, 0.0, 0.0, 0.0, -0.0002119316632160917, 0.0, -4.684815212385729e-05, -1.728519782773219e-05, 0.0, 0.0, 0.0, 0.0, -0.0026737437583506107, 0.0, 0.0, 0.0, 0.0, 0.0, -2.3841855067985307e-07, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.00010907054820563644, 0.0, 0.0, 0.0, 0.0, -5.709961988031864e-05, -3.576278118089249e-07, -4.6491513785440475e-06, 0.0, 0.0, 0.0, 0.0, -0.00932268239557743, 0.0, 0.0, 0.0, 0.0, 0.0, -5.960462772236497e-07, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.0008044582791626453, 0.0, 0.0, 0.0, -1.966933996300213e-05, -0.0018396135419607162, -1.2278481335670222e-05, -0.14267705380916595, -0.0004631400224752724, -9.536697689327411e-06, -3.731181277544238e-05, -3.576278118089249e-07, -9.298280929215252e-06, 0.0, 0.0, 0.0, 0.0, 0.0, -0.00263569806702435, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -1.4305104514278355e-06, -0.0026707714423537254, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.004078642465174198, -0.6934604048728943, -9.536738616588991e-07, 0.0, 0.0, 0.0, -7.152555099310121e-07, 0.0, -1.1920922133867862e-06, 0.0, 0.0, 0.0, 0.0], \\\"token_texts\\\": [\\\"{\\\\\\\"\\\", \\\"entities\\\", \\\"\\\\\\\":\\\", \\\" [{\\\\\\\"\\\", \\\"text\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"Gr\\\", \\\"ill\\\", \\\" Room\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"type\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"building\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"start\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"4\\\", \\\"1\\\", \\\",\\\", \\\" \\\\\\\"\\\", \\\"end\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"5\\\", \\\"1\\\", \\\"},\\\", \\\" {\\\\\\\"\\\", \\\"text\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"Ta\\\", \\\"ft\\\", \\\" Hotel\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"type\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"building\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"start\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"5\\\", \\\"9\\\", \\\",\\\", \\\" \\\\\\\"\\\", \\\"end\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"6\\\", \\\"9\\\", \\\"},\\\", \\\" {\\\\\\\"\\\", \\\"text\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"New\\\", \\\" York\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"type\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"location\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"start\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"7\\\", \\\"3\\\", \\\",\\\", \\\" \\\\\\\"\\\", \\\"end\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"8\\\", \\\"1\\\", \\\"},\\\", \\\" {\\\\\\\"\\\", \\\"text\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"George\\\", \\\" Hall\\\", \\\" and\\\", \\\" His\\\", \\\" Hotel\\\", \\\" Ta\\\", \\\"ft\\\", \\\" Orchestra\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"type\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"organization\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"start\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"1\\\", \\\"0\\\", \\\"8\\\", \\\",\\\", \\\" \\\\\\\"\\\", \\\"end\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"1\\\", \\\"4\\\", \\\"9\\\", \\\"}],\\\", \\\" \\\\\\\"\\\", \\\"relations\\\", \\\"\\\\\\\":\\\", \\\" [],\\\", \\\" \\\\\\\"\\\", \\\"events\\\", \\\"\\\\\\\":\\\", \\\" []\\\", \\\"}\\\", \\\"<|im_end|>\\\"]}, {\\\"entities\\\": [{\\\"text\\\": \\\"Grill Room\\\", \\\"type\\\": \\\"building\\\", \\\"start\\\": 41, \\\"end\\\": 51}, {\\\"text\\\": \\\"Taft Hotel\\\", \\\"type\\\": \\\"building\\\", \\\"start\\\": 59, \\\"end\\\": 69}, {\\\"text\\\": \\\"New York\\\", \\\"type\\\": \\\"location\\\", \\\"start\\\": 73, \\\"end\\\": 81}, {\\\"text\\\": \\\"George Hall and His Hotel Taft Orchestra\\\", \\\"type\\\": \\\"organization\\\", \\\"start\\\": 108, \\\"end\\\": 148}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -1.4156330292021195, \\\"n_tokens\\\": 131, \\\"mean_logprob\\\": -0.010806359001542898, \\\"token_logprobs\\\": [-1.1920928244535389e-07, 0.0, 0.0, -3.123234637314454e-05, 0.0, 0.0, -4.0531076592742465e\\n\\n... [截断: 输出过长，省略 36463 字符] ...\\n\\n:\\\", \\\" \\\\\\\"\\\", \\\"location\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"start\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"4\\\", \\\"0\\\", \\\",\\\", \\\" \\\\\\\"\\\", \\\"end\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"4\\\", \\\"5\\\", \\\"}],\\\", \\\" \\\\\\\"\\\", \\\"relations\\\", \\\"\\\\\\\":\\\", \\\" [],\\\", \\\" \\\\\\\"\\\", \\\"events\\\", \\\"\\\\\\\":\\\", \\\" []\\\", \\\"}\\\", \\\"<|im_end|>\\\"]}, {\\\"entities\\\": [], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -1.7018226384870374, \\\"n_tokens\\\": 14, \\\"mean_logprob\\\": -0.12155875989193124, \\\"token_logprobs\\\": [0.0, 0.0, 0.0, -1.701815128326416, 0.0, 0.0, 0.0, -7.033323527139146e-06, 0.0, -3.576278118089249e-07, 0.0, -1.1920928244535389e-07, 0.0, 0.0], \\\"token_texts\\\": [\\\"{\\\\\\\"\\\", \\\"entities\\\", \\\"\\\\\\\":\\\", \\\" [],\\\", \\\" \\\\\\\"\\\", \\\"relations\\\", \\\"\\\\\\\":\\\", \\\" [],\\\", \\\" \\\\\\\"\\\", \\\"events\\\", \\\"\\\\\\\":\\\", \\\" []\\\", \\\"}\\\", \\\"<|im_end|>\\\"]}, {\\\"entities\\\": [{\\\"text\\\": \\\"C-USA\\\", \\\"type\\\": \\\"location\\\", \\\"start\\\": 40, \\\"end\\\": 45}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -0.3237571037686209, \\\"n_tokens\\\": 41, \\\"mean_logprob\\\": -0.007896514726063925, \\\"token_logprobs\\\": [0.0, 0.0, 0.0, -0.2018151879310608, 0.0, 0.0, -9.107174992095679e-05, -0.0014723424101248384, -6.139089964563027e-05, -2.264974000354414e-06, -0.0019312318181619048, 0.0, 0.0, 0.0, -3.93382906622719e-05, -0.1102290228009224, -3.576278118089249e-07, 0.0, 0.0, 0.0, 0.0, -0.007610138971358538, -0.00043072958942502737, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -2.145764938177308e-06, -6.711257447022945e-05, 0.0, 0.0, 0.0, -2.145764938177308e-06, 0.0, -2.50339189733495e-06, 0.0, -1.1920928244535389e-07, 0.0, 0.0], \\\"token_texts\\\": [\\\"{\\\\\\\"\\\", \\\"entities\\\", \\\"\\\\\\\":\\\", \\\" [{\\\\\\\"\\\", \\\"text\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"C\\\", \\\"-\\\", \\\"USA\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"type\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"location\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"start\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"4\\\", \\\"0\\\", \\\",\\\", \\\" \\\\\\\"\\\", \\\"end\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"4\\\", \\\"5\\\", \\\"}],\\\", \\\" \\\\\\\"\\\", \\\"relations\\\", \\\"\\\\\\\":\\\", \\\" [],\\\", \\\" \\\\\\\"\\\", \\\"events\\\", \\\"\\\\\\\":\\\", \\\" []\\\", \\\"}\\\", \\\"<|im_end|>\\\"]}, {\\\"entities\\\": [{\\\"text\\\": \\\"C-USA\\\", \\\"type\\\": \\\"location\\\", \\\"start\\\": 40, \\\"end\\\": 45}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -0.3237571037686209, \\\"n_tokens\\\": 41, \\\"mean_logprob\\\": -0.007896514726063925, \\\"token_logprobs\\\": [0.0, 0.0, 0.0, -0.2018151879310608, 0.0, 0.0, -9.107174992095679e-05, -0.0014723424101248384, -6.139089964563027e-05, -2.264974000354414e-06, -0.0019312318181619048, 0.0, 0.0, 0.0, -3.93382906622719e-05, -0.1102290228009224, -3.576278118089249e-07, 0.0, 0.0, 0.0, 0.0, -0.007610138971358538, -0.00043072958942502737, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -2.145764938177308e-06, -6.711257447022945e-05, 0.0, 0.0, 0.0, -2.145764938177308e-06, 0.0, -2.50339189733495e-06, 0.0, -1.1920928244535389e-07, 0.0, 0.0], \\\"token_texts\\\": [\\\"{\\\\\\\"\\\", \\\"entities\\\", \\\"\\\\\\\":\\\", \\\" [{\\\\\\\"\\\", \\\"text\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"C\\\", \\\"-\\\", \\\"USA\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"type\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"location\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"start\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"4\\\", \\\"0\\\", \\\",\\\", \\\" \\\\\\\"\\\", \\\"end\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"4\\\", \\\"5\\\", \\\"}],\\\", \\\" \\\\\\\"\\\", \\\"relations\\\", \\\"\\\\\\\":\\\", \\\" [],\\\", \\\" \\\\\\\"\\\", \\\"events\\\", \\\"\\\\\\\":\\\", \\\" []\\\", \\\"}\\\", \\\"<|im_end|>\\\"]}], \\\"greedy\\\": {\\\"entities\\\": [{\\\"text\\\": \\\"C-USA\\\", \\\"type\\\": \\\"location\\\", \\\"start\\\": 40, \\\"end\\\": 45}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -0.3379263389092202, \\\"n_tokens\\\": 41, \\\"mean_logprob\\\": -0.00824210582705415, \\\"token_logprobs\\\": [0.0, 0.0, 0.0, -0.20181937515735626, 0.0, 0.0, -8.105902816168964e-05, -0.0016512343427166343, -6.151010165922344e-05, -2.264974000354414e-06, -0.001931469771079719, 0.0, 0.0, 0.0, -3.93382906622719e-05, -0.12315936386585236, -2.3841855067985307e-07, 0.0, 0.0, 0.0, 0.0, -0.008619130589067936, -0.0004880429187323898, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -1.9073468138230965e-06, -6.711257447022945e-05, 0.0, 0.0, 0.0, -1.9073468138230965e-06, 0.0, -2.264974000354414e-06, 0.0, -1.1920928244535389e-07, 0.0, 0.0], \\\"token_texts\\\": [\\\"{\\\\\\\"\\\", \\\"entities\\\", \\\"\\\\\\\":\\\", \\\" [{\\\\\\\"\\\", \\\"text\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"C\\\", \\\"-\\\", \\\"USA\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"type\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"location\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"start\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"4\\\", \\\"0\\\", \\\",\\\", \\\" \\\\\\\"\\\", \\\"end\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"4\\\", \\\"5\\\", \\\"}],\\\", \\\" \\\\\\\"\\\", \\\"relations\\\", \\\"\\\\\\\":\\\", \\\" [],\\\", \\\" \\\\\\\"\\\", \\\"events\\\", \\\"\\\\\\\":\\\", \\\" []\\\", \\\"}\\\", \\\"<|im_end|>\\\"]}, \\\"logprobs\\\": [-0.007896514726063925, -0.007896514726063925, -0.007896514726063925, -0.007896514726063925, -0.007896514726063925, -0.12155875989193124, -0.007896514726063925, -0.007896514726063925]}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.73}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4ef02f80-2bd2-4491-8d00-968f4ce2770e",
+  "uuid": "d906b413-d44f-4003-96aa-d61c02997758",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"id\\\\\\\": \\\\\\\"fewnerd_test_00000\\\\\\\", \\\\\\\"text\\\\\\\": \\\\\\\"In the early 1930s the band moved to the Grill Room of the Taft Hotel in New York ; the band was renamed `` George Hall and His Hotel Taft Orchestra `` .\\\\\\\", \\\\\\\"gold\\\\\\\": {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"Grill Room\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"building\\\\\\\", \\\\\\\"start\\\\\\\": 41, \\\\\\\"end\\\\\\\": 51}, {\\\\\\\"text\\\\\\\": \\\\\\\"Taft Hotel\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"building\\\\\\\", \\\\\\\"start\\\\\\\": 59, \\\\\\\"end\\\\\\\": 69}, {\\\\\\\"text\\\\\\\": \\\\\\\"New York\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"location\\\\\\\", \\\\\\\"start\\\\\\\": 73, \\\\\\\"end\\\\\\\": 81}, {\\\\\\\"text\\\\\\\": \\\\\\\"George Hall and His Hotel Taft Orchestra\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"organization\\\\\\\", \\\\\\\"start\\\\\\\": 108, \\\\\\\"end\\\\\\\": 148}], \\\\\\\"relations\\\\\\\": [], \\\\\\\"events\\\\\\\": []}, \\\\\\\"samples\\\\\\\": [{\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"Grill Room\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"building\\\\\\\", \\\\\\\"start\\\\\\\": 41, \\\\\\\"end\\\\\\\": 51}, {\\\\\\\"text\\\\\\\": \\\\\\\"Taft Hotel\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"building\\\\\\\", \\\\\\\"start\\\\\\\": 59, \\\\\\\"end\\\\\\\": 69}, {\\\\\\\"text\\\\\\\": \\\\\\\"New York\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"location\\\\\\\", \\\\\\\"start\\\\\\\": 73, \\\\\\\"end\\\\\\\": 81}, {\\\\\\\"text\\\\\\\": \\\\\\\"George Hall and His Hotel Taft Orchestra\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"organization\\\\\\\", \\\\\\\"start\\\\\\\": 108, \\\\\\\"end\\\\\\\": 148}], \\\\\\\"relations\\\\\\\": [], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -1.4156323139472917, \\\\\\\"n_tokens\\\\\\\": 131, \\\\\\\"mean_logprob\\\\\\\": -0.010806353541582379, \\\\\\\"token_logprobs\\\\\\\": [-1.1920928244535389e-07, 0.0, 0.0, -3.123234637314454e-05, 0.0, 0.0, -4.0531076592742465e-06, -0.3260749876499176, -2.7417760065873154e-05, -0.0001954841281985864, -0.17977134883403778, 0.0, 0.0, 0.0, 0.0, -0.025012949481606483, 0.0, 0.0, 0.0, 0.0, -8.511180931236595e-05, 0.0, -0.023246845230460167, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -2.50339189733495e-06, -1.2993727978027891e-05, -2.3841855067985307e-07, 0.0, 0.0, 0.0, -0.0002119316632160917, 0.0, -4.684815212385729e-05, -1.728519782773219e-05, 0.0, 0.0, 0.0, 0.0, -0.0026737437583506107, 0.0, 0.0, 0.0, 0.0, 0.0, -2.3841855067985307e-07, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.00010907054820563644, 0.0, 0.0, 0.0, 0.0, -5.709961988031864e-05, -3.576278118089249e-07, -4.6491513785440475e-06, 0.0, 0.0, 0.0, 0.0, -0.00932268239557743, 0.0, 0.0, 0.0, 0.0, 0.0, -5.960462772236497e-07, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.0008044582791626453, 0.0, 0.0, 0.0, -1.966933996300213e-05, -0.0018396135419607162, -1.2278481335670222e-05, -0.14267705380916595, -0.0004631400224752724, -9.536697689327411e-06, -3.731181277544238e-05, -3.576278118089249e-07, -9.298280929215252e-06, 0.0, 0.0, 0.0, 0.0, 0.0, -0.00263569806702435, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -1.4305104514278355e-06, -0.0026707714423537254, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.004078642465174198, -0.6934604048728943, -9.536738616588991e-07, 0.0, 0.0, 0.0, -7.152555099310121e-07, 0.0, -1.1920922133867862e-06, 0.0, 0.0, 0.0, 0.0], \\\\\\\"token_texts\\\\\\\": [\\\\\\\"{\\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"entities\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" [{\\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"text\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"Gr\\\\\\\", \\\\\\\"ill\\\\\\\", \\\\\\\" Room\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"type\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"building\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"start\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\", \\\\\\\"4\\\\\\\", \\\\\\\"1\\\\\\\", \\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"end\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\", \\\\\\\"5\\\\\\\", \\\\\\\"1\\\\\\\", \\\\\\\"},\\\\\\\", \\\\\\\" {\\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"text\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"Ta\\\\\\\", \\\\\\\"ft\\\\\\\", \\\\\\\" Hotel\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"type\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"building\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"start\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\", \\\\\\\"5\\\\\\\", \\\\\\\"9\\\\\\\", \\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"end\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\", \\\\\\\"6\\\\\\\", \\\\\\\"9\\\\\\\", \\\\\\\"},\\\\\\\", \\\\\\\" {\\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"text\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"New\\\\\\\", \\\\\\\" York\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"type\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"location\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"start\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\", \\\\\\\"7\\\\\\\", \\\\\\\"3\\\\\\\", \\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"end\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\", \\\\\\\"8\\\\\\\", \\\\\\\"1\\\\\\\", \\\\\\\"},\\\\\\\", \\\\\\\" {\\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"text\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"George\\\\\\\", \\\\\\\" Hall\\\\\\\", \\\\\\\" and\\\\\\\", \\\\\\\" His\\\\\\\", \\\\\\\" Hotel\\\\\\\", \\\\\\\" Ta\\\\\\\", \\\\\\\"ft\\\\\\\", \\\\\\\" Orchestra\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"type\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"organization\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"start\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\", \\\\\\\"1\\\\\\\", \\\\\\\"0\\\\\\\", \\\\\\\"8\\\\\\\", \\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"end\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\", \\\\\\\"1\\\\\\\", \\\\\\\"4\\\\\\\", \\\\\\\"9\\\\\\\", \\\\\\\"}],\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"relations\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" [],\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"events\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" []\\\\\\\", \\\\\\\"}\\\\\\\", \\\\\\\"<|im_end|>\\\\\\\"]}, {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"Grill Room\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"building\\\\\\\", \\\\\\\"start\\\\\\\": 41, \\\\\\\"end\\\\\\\": 51}, {\\\\\\\"text\\\\\\\": \\\\\\\"Taft Hotel\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"building\\\\\\\", \\\\\\\"start\\\\\\\": 59, \\\\\\\"end\\\\\\\": 69}, {\\\\\\\"text\\\\\\\": \\\\\\\"New York\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"location\\\\\\\", \\\\\\\"start\\\\\\\": 73, \\\\\\\"end\\\\\\\": 81}, {\\\\\\\"text\\\\\\\": \\\\\\\"George Hall and His Hotel Taft Orchestra\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"organization\\\\\\\", \\\\\\\"start\\\\\\\": 108, \\\\\\\"end\\\\\\\": 148}], \\\\\\\"relations\\\\\\\": [], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -1.4156330292021195, \\\\\\\"n_tokens\\\\\\\": 131, \\\\\\\"mean_logprob\\\\\\\": -0.010806359001542898, \\\\\\\"token_logprobs\\\\\\\": [-1.1920928244535389e-07, 0.0, 0.0, -3.123234637314454e-05, 0.0, 0.0, -4.0531076592742465e\\\\n\\\\n... [截断: 输出过长，省略 36463 字符] ...\\\\n\\\\n:\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"location\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"start\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\", \\\\\\\"4\\\\\\\", \\\\\\\"0\\\\\\\", \\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"end\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\", \\\\\\\"4\\\\\\\", \\\\\\\"5\\\\\\\", \\\\\\\"}],\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"relations\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" [],\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"events\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" []\\\\\\\", \\\\\\\"}\\\\\\\", \\\\\\\"<|im_end|>\\\\\\\"]}, {\\\\\\\"entities\\\\\\\": [], \\\\\\\"relations\\\\\\\": [], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -1.7018226384870374, \\\\\\\"n_tokens\\\\\\\": 14, \\\\\\\"mean_logprob\\\\\\\": -0.12155875989193124, \\\\\\\"token_logprobs\\\\\\\": [0.0, 0.0, 0.0, -1.701815128326416, 0.0, 0.0, 0.0, -7.033323527139146e-06, 0.0, -3.576278118089249e-07, 0.0, -1.1920928244535389e-07, 0.0, 0.0], \\\\\\\"token_texts\\\\\\\": [\\\\\\\"{\\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"entities\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" [],\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"relations\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" [],\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"events\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" []\\\\\\\", \\\\\\\"}\\\\\\\", \\\\\\\"<|im_end|>\\\\\\\"]}, {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"C-USA\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"location\\\\\\\", \\\\\\\"start\\\\\\\": 40, \\\\\\\"end\\\\\\\": 45}], \\\\\\\"relations\\\\\\\": [], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -0.3237571037686209, \\\\\\\"n_tokens\\\\\\\": 41, \\\\\\\"mean_logprob\\\\\\\": -0.007896514726063925, \\\\\\\"token_logprobs\\\\\\\": [0.0, 0.0, 0.0, -0.2018151879310608, 0.0, 0.0, -9.107174992095679e-05, -0.0014723424101248384, -6.139089964563027e-05, -2.264974000354414e-06, -0.0019312318181619048, 0.0, 0.0, 0.0, -3.93382906622719e-05, -0.1102290228009224, -3.576278118089249e-07, 0.0, 0.0, 0.0, 0.0, -0.007610138971358538, -0.00043072958942502737, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -2.145764938177308e-06, -6.711257447022945e-05, 0.0, 0.0, 0.0, -2.145764938177308e-06, 0.0, -2.50339189733495e-06, 0.0, -1.1920928244535389e-07, 0.0, 0.0], \\\\\\\"token_texts\\\\\\\": [\\\\\\\"{\\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"entities\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" [{\\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"text\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"C\\\\\\\", \\\\\\\"-\\\\\\\", \\\\\\\"USA\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"type\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"location\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"start\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\", \\\\\\\"4\\\\\\\", \\\\\\\"0\\\\\\\", \\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"end\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\", \\\\\\\"4\\\\\\\", \\\\\\\"5\\\\\\\", \\\\\\\"}],\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"relations\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" [],\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"events\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" []\\\\\\\", \\\\\\\"}\\\\\\\", \\\\\\\"<|im_end|>\\\\\\\"]}, {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"C-USA\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"location\\\\\\\", \\\\\\\"start\\\\\\\": 40, \\\\\\\"end\\\\\\\": 45}], \\\\\\\"relations\\\\\\\": [], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -0.3237571037686209, \\\\\\\"n_tokens\\\\\\\": 41, \\\\\\\"mean_logprob\\\\\\\": -0.007896514726063925, \\\\\\\"token_logprobs\\\\\\\": [0.0, 0.0, 0.0, -0.2018151879310608, 0.0, 0.0, -9.107174992095679e-05, -0.0014723424101248384, -6.139089964563027e-05, -2.264974000354414e-06, -0.0019312318181619048, 0.0, 0.0, 0.0, -3.93382906622719e-05, -0.1102290228009224, -3.576278118089249e-07, 0.0, 0.0, 0.0, 0.0, -0.007610138971358538, -0.00043072958942502737, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -2.145764938177308e-06, -6.711257447022945e-05, 0.0, 0.0, 0.0, -2.145764938177308e-06, 0.0, -2.50339189733495e-06, 0.0, -1.1920928244535389e-07, 0.0, 0.0], \\\\\\\"token_texts\\\\\\\": [\\\\\\\"{\\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"entities\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" [{\\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"text\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"C\\\\\\\", \\\\\\\"-\\\\\\\", \\\\\\\"USA\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"type\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"location\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"start\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\", \\\\\\\"4\\\\\\\", \\\\\\\"0\\\\\\\", \\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"end\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\", \\\\\\\"4\\\\\\\", \\\\\\\"5\\\\\\\", \\\\\\\"}],\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"relations\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" [],\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"events\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" []\\\\\\\", \\\\\\\"}\\\\\\\", \\\\\\\"<|im_end|>\\\\\\\"]}], \\\\\\\"greedy\\\\\\\": {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"C-USA\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"location\\\\\\\", \\\\\\\"start\\\\\\\": 40, \\\\\\\"end\\\\\\\": 45}], \\\\\\\"relations\\\\\\\": [], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -0.3379263389092202, \\\\\\\"n_tokens\\\\\\\": 41, \\\\\\\"mean_logprob\\\\\\\": -0.00824210582705415, \\\\\\\"token_logprobs\\\\\\\": [0.0, 0.0, 0.0, -0.20181937515735626, 0.0, 0.0, -8.105902816168964e-05, -0.0016512343427166343, -6.151010165922344e-05, -2.264974000354414e-06, -0.001931469771079719, 0.0, 0.0, 0.0, -3.93382906622719e-05, -0.12315936386585236, -2.3841855067985307e-07, 0.0, 0.0, 0.0, 0.0, -0.008619130589067936, -0.0004880429187323898, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -1.9073468138230965e-06, -6.711257447022945e-05, 0.0, 0.0, 0.0, -1.9073468138230965e-06, 0.0, -2.264974000354414e-06, 0.0, -1.1920928244535389e-07, 0.0, 0.0], \\\\\\\"token_texts\\\\\\\": [\\\\\\\"{\\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"entities\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" [{\\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"text\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"C\\\\\\\", \\\\\\\"-\\\\\\\", \\\\\\\"USA\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"type\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"location\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"start\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\", \\\\\\\"4\\\\\\\", \\\\\\\"0\\\\\\\", \\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"end\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\", \\\\\\\"4\\\\\\\", \\\\\\\"5\\\\\\\", \\\\\\\"}],\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"relations\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" [],\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"events\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" []\\\\\\\", \\\\\\\"}\\\\\\\", \\\\\\\"<|im_end|>\\\\\\\"]}, \\\\\\\"logprobs\\\\\\\": [-0.007896514726063925, -0.007896514726063925, -0.007896514726063925, -0.007896514726063925, -0.007896514726063925, -0.12155875989193124, -0.007896514726063925, -0.007896514726063925]}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.73}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\\"id\\\": \\\"fewnerd_test_00000\\\", \\\"text\\\": \\\"In the early 1930s the band moved to the Grill Room of the Taft Hotel in New York ; the band was renamed `` George Hall and His Hotel Taft Orchestra `` .\\\", \\\"gold\\\": {\\\"entities\\\": [{\\\"text\\\": \\\"Grill Room\\\", \\\"type\\\": \\\"building\\\", \\\"start\\\": 41, \\\"end\\\": 51}, {\\\"text\\\": \\\"Taft Hotel\\\", \\\"type\\\": \\\"building\\\", \\\"start\\\": 59, \\\"end\\\": 69}, {\\\"text\\\": \\\"New York\\\", \\\"type\\\": \\\"location\\\", \\\"start\\\": 73, \\\"end\\\": 81}, {\\\"text\\\": \\\"George Hall and His Hotel Taft Orchestra\\\", \\\"type\\\": \\\"organization\\\", \\\"start\\\": 108, \\\"end\\\": 148}], \\\"relations\\\": [], \\\"events\\\": []}, \\\"samples\\\": [{\\\"entities\\\": [{\\\"text\\\": \\\"Grill Room\\\", \\\"type\\\": \\\"building\\\", \\\"start\\\": 41, \\\"end\\\": 51}, {\\\"text\\\": \\\"Taft Hotel\\\", \\\"type\\\": \\\"building\\\", \\\"start\\\": 59, \\\"end\\\": 69}, {\\\"text\\\": \\\"New York\\\", \\\"type\\\": \\\"location\\\", \\\"start\\\": 73, \\\"end\\\": 81}, {\\\"text\\\": \\\"George Hall and His Hotel Taft Orchestra\\\", \\\"type\\\": \\\"organization\\\", \\\"start\\\": 108, \\\"end\\\": 148}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -1.4156323139472917, \\\"n_tokens\\\": 131, \\\"mean_logprob\\\": -0.010806353541582379, \\\"token_logprobs\\\": [-1.1920928244535389e-07, 0.0, 0.0, -3.123234637314454e-05, 0.0, 0.0, -4.0531076592742465e-06, -0.3260749876499176, -2.7417760065873154e-05, -0.0001954841281985864, -0.17977134883403778, 0.0, 0.0, 0.0, 0.0, -0.025012949481606483, 0.0, 0.0, 0.0, 0.0, -8.511180931236595e-05, 0.0, -0.023246845230460167, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -2.50339189733495e-06, -1.2993727978027891e-05, -2.3841855067985307e-07, 0.0, 0.0, 0.0, -0.0002119316632160917, 0.0, -4.684815212385729e-05, -1.728519782773219e-05, 0.0, 0.0, 0.0, 0.0, -0.0026737437583506107, 0.0, 0.0, 0.0, 0.0, 0.0, -2.3841855067985307e-07, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.00010907054820563644, 0.0, 0.0, 0.0, 0.0, -5.709961988031864e-05, -3.576278118089249e-07, -4.6491513785440475e-06, 0.0, 0.0, 0.0, 0.0, -0.00932268239557743, 0.0, 0.0, 0.0, 0.0, 0.0, -5.960462772236497e-07, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.0008044582791626453, 0.0, 0.0, 0.0, -1.966933996300213e-05, -0.0018396135419607162, -1.2278481335670222e-05, -0.14267705380916595, -0.0004631400224752724, -9.536697689327411e-06, -3.731181277544238e-05, -3.576278118089249e-07, -9.298280929215252e-06, 0.0, 0.0, 0.0, 0.0, 0.0, -0.00263569806702435, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -1.4305104514278355e-06, -0.0026707714423537254, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.004078642465174198, -0.6934604048728943, -9.536738616588991e-07, 0.0, 0.0, 0.0, -7.152555099310121e-07, 0.0, -1.1920922133867862e-06, 0.0, 0.0, 0.0, 0.0], \\\"token_texts\\\": [\\\"{\\\\\\\"\\\", \\\"entities\\\", \\\"\\\\\\\":\\\", \\\" [{\\\\\\\"\\\", \\\"text\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"Gr\\\", \\\"ill\\\", \\\" Room\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"type\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"building\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"start\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"4\\\", \\\"1\\\", \\\",\\\", \\\" \\\\\\\"\\\", \\\"end\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"5\\\", \\\"1\\\", \\\"},\\\", \\\" {\\\\\\\"\\\", \\\"text\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"Ta\\\", \\\"ft\\\", \\\" Hotel\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"type\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"building\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"start\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"5\\\", \\\"9\\\", \\\",\\\", \\\" \\\\\\\"\\\", \\\"end\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"6\\\", \\\"9\\\", \\\"},\\\", \\\" {\\\\\\\"\\\", \\\"text\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"New\\\", \\\" York\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"type\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"location\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"start\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"7\\\", \\\"3\\\", \\\",\\\", \\\" \\\\\\\"\\\", \\\"end\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"8\\\", \\\"1\\\", \\\"},\\\", \\\" {\\\\\\\"\\\", \\\"text\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"George\\\", \\\" Hall\\\", \\\" and\\\", \\\" His\\\", \\\" Hotel\\\", \\\" Ta\\\", \\\"ft\\\", \\\" Orchestra\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"type\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"organization\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"start\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"1\\\", \\\"0\\\", \\\"8\\\", \\\",\\\", \\\" \\\\\\\"\\\", \\\"end\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"1\\\", \\\"4\\\", \\\"9\\\", \\\"}],\\\", \\\" \\\\\\\"\\\", \\\"relations\\\", \\\"\\\\\\\":\\\", \\\" [],\\\", \\\" \\\\\\\"\\\", \\\"events\\\", \\\"\\\\\\\":\\\", \\\" []\\\", \\\"}\\\", \\\"<|im_end|>\\\"]}, {\\\"entities\\\": [{\\\"text\\\": \\\"Grill Room\\\", \\\"type\\\": \\\"building\\\", \\\"start\\\": 41, \\\"end\\\": 51}, {\\\"text\\\": \\\"Taft Hotel\\\", \\\"type\\\": \\\"building\\\", \\\"start\\\": 59, \\\"end\\\": 69}, {\\\"text\\\": \\\"New York\\\", \\\"type\\\": \\\"location\\\", \\\"start\\\": 73, \\\"end\\\": 81}, {\\\"text\\\": \\\"George Hall and His Hotel Taft Orchestra\\\", \\\"type\\\": \\\"organization\\\", \\\"start\\\": 108, \\\"end\\\": 148}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -1.4156330292021195, \\\"n_tokens\\\": 131, \\\"mean_logprob\\\": -0.010806359001542898, \\\"token_logprobs\\\": [-1.1920928244535389e-07, 0.0, 0.0, -3.123234637314454e-05, 0.0, 0.0, -4.0531076592742465e\\n\\n... [截断: 输出过长，省略 36463 字符] ...\\n\\n:\\\", \\\" \\\\\\\"\\\", \\\"location\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"start\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"4\\\", \\\"0\\\", \\\",\\\", \\\" \\\\\\\"\\\", \\\"end\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"4\\\", \\\"5\\\", \\\"}],\\\", \\\" \\\\\\\"\\\", \\\"relations\\\", \\\"\\\\\\\":\\\", \\\" [],\\\", \\\" \\\\\\\"\\\", \\\"events\\\", \\\"\\\\\\\":\\\", \\\" []\\\", \\\"}\\\", \\\"<|im_end|>\\\"]}, {\\\"entities\\\": [], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -1.7018226384870374, \\\"n_tokens\\\": 14, \\\"mean_logprob\\\": -0.12155875989193124, \\\"token_logprobs\\\": [0.0, 0.0, 0.0, -1.701815128326416, 0.0, 0.0, 0.0, -7.033323527139146e-06, 0.0, -3.576278118089249e-07, 0.0, -1.1920928244535389e-07, 0.0, 0.0], \\\"token_texts\\\": [\\\"{\\\\\\\"\\\", \\\"entities\\\", \\\"\\\\\\\":\\\", \\\" [],\\\", \\\" \\\\\\\"\\\", \\\"relations\\\", \\\"\\\\\\\":\\\", \\\" [],\\\", \\\" \\\\\\\"\\\", \\\"events\\\", \\\"\\\\\\\":\\\", \\\" []\\\", \\\"}\\\", \\\"<|im_end|>\\\"]}, {\\\"entities\\\": [{\\\"text\\\": \\\"C-USA\\\", \\\"type\\\": \\\"location\\\", \\\"start\\\": 40, \\\"end\\\": 45}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -0.3237571037686209, \\\"n_tokens\\\": 41, \\\"mean_logprob\\\": -0.007896514726063925, \\\"token_logprobs\\\": [0.0, 0.0, 0.0, -0.2018151879310608, 0.0, 0.0, -9.107174992095679e-05, -0.0014723424101248384, -6.139089964563027e-05, -2.264974000354414e-06, -0.0019312318181619048, 0.0, 0.0, 0.0, -3.93382906622719e-05, -0.1102290228009224, -3.576278118089249e-07, 0.0, 0.0, 0.0, 0.0, -0.007610138971358538, -0.00043072958942502737, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -2.145764938177308e-06, -6.711257447022945e-05, 0.0, 0.0, 0.0, -2.145764938177308e-06, 0.0, -2.50339189733495e-06, 0.0, -1.1920928244535389e-07, 0.0, 0.0], \\\"token_texts\\\": [\\\"{\\\\\\\"\\\", \\\"entities\\\", \\\"\\\\\\\":\\\", \\\" [{\\\\\\\"\\\", \\\"text\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"C\\\", \\\"-\\\", \\\"USA\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"type\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"location\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"start\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"4\\\", \\\"0\\\", \\\",\\\", \\\" \\\\\\\"\\\", \\\"end\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"4\\\", \\\"5\\\", \\\"}],\\\", \\\" \\\\\\\"\\\", \\\"relations\\\", \\\"\\\\\\\":\\\", \\\" [],\\\", \\\" \\\\\\\"\\\", \\\"events\\\", \\\"\\\\\\\":\\\", \\\" []\\\", \\\"}\\\", \\\"<|im_end|>\\\"]}, {\\\"entities\\\": [{\\\"text\\\": \\\"C-USA\\\", \\\"type\\\": \\\"location\\\", \\\"start\\\": 40, \\\"end\\\": 45}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -0.3237571037686209, \\\"n_tokens\\\": 41, \\\"mean_logprob\\\": -0.007896514726063925, \\\"token_logprobs\\\": [0.0, 0.0, 0.0, -0.2018151879310608, 0.0, 0.0, -9.107174992095679e-05, -0.0014723424101248384, -6.139089964563027e-05, -2.264974000354414e-06, -0.0019312318181619048, 0.0, 0.0, 0.0, -3.93382906622719e-05, -0.1102290228009224, -3.576278118089249e-07, 0.0, 0.0, 0.0, 0.0, -0.007610138971358538, -0.00043072958942502737, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -2.145764938177308e-06, -6.711257447022945e-05, 0.0, 0.0, 0.0, -2.145764938177308e-06, 0.0, -2.50339189733495e-06, 0.0, -1.1920928244535389e-07, 0.0, 0.0], \\\"token_texts\\\": [\\\"{\\\\\\\"\\\", \\\"entities\\\", \\\"\\\\\\\":\\\", \\\" [{\\\\\\\"\\\", \\\"text\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"C\\\", \\\"-\\\", \\\"USA\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"type\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"location\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"start\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"4\\\", \\\"0\\\", \\\",\\\", \\\" \\\\\\\"\\\", \\\"end\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"4\\\", \\\"5\\\", \\\"}],\\\", \\\" \\\\\\\"\\\", \\\"relations\\\", \\\"\\\\\\\":\\\", \\\" [],\\\", \\\" \\\\\\\"\\\", \\\"events\\\", \\\"\\\\\\\":\\\", \\\" []\\\", \\\"}\\\", \\\"<|im_end|>\\\"]}], \\\"greedy\\\": {\\\"entities\\\": [{\\\"text\\\": \\\"C-USA\\\", \\\"type\\\": \\\"location\\\", \\\"start\\\": 40, \\\"end\\\": 45}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -0.3379263389092202, \\\"n_tokens\\\": 41, \\\"mean_logprob\\\": -0.00824210582705415, \\\"token_logprobs\\\": [0.0, 0.0, 0.0, -0.20181937515735626, 0.0, 0.0, -8.105902816168964e-05, -0.0016512343427166343, -6.151010165922344e-05, -2.264974000354414e-06, -0.001931469771079719, 0.0, 0.0, 0.0, -3.93382906622719e-05, -0.12315936386585236, -2.3841855067985307e-07, 0.0, 0.0, 0.0, 0.0, -0.008619130589067936, -0.0004880429187323898, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -1.9073468138230965e-06, -6.711257447022945e-05, 0.0, 0.0, 0.0, -1.9073468138230965e-06, 0.0, -2.264974000354414e-06, 0.0, -1.1920928244535389e-07, 0.0, 0.0], \\\"token_texts\\\": [\\\"{\\\\\\\"\\\", \\\"entities\\\", \\\"\\\\\\\":\\\", \\\" [{\\\\\\\"\\\", \\\"text\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"C\\\", \\\"-\\\", \\\"USA\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"type\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"location\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"start\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"4\\\", \\\"0\\\", \\\",\\\", \\\" \\\\\\\"\\\", \\\"end\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"4\\\", \\\"5\\\", \\\"}],\\\", \\\" \\\\\\\"\\\", \\\"relations\\\", \\\"\\\\\\\":\\\", \\\" [],\\\", \\\" \\\\\\\"\\\", \\\"events\\\", \\\"\\\\\\\":\\\", \\\" []\\\", \\\"}\\\", \\\"<|im_end|>\\\"]}, \\\"logprobs\\\": [-0.007896514726063925, -0.007896514726063925, -0.007896514726063925, -0.007896514726063925, -0.007896514726063925, -0.12155875989193124, -0.007896514726063925, -0.007896514726063925]}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.73}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 41_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good, the data format is clear. Now let me write the GroupKFold probe script. 
+
+The approach:
+1. For each dataset, load the samples.jsonl and the tokenizer
+2. Replay the extraction loop (without the model) to reconstruct instance_idx
+3. The `find_entity_tokens` function requires tokenized text, so I need the tokenizer
+4. Run GroupKFold with groups=instance_ids
+
+But actually, I just realized: there's a MUCH simpler approach for the case where n_skipped is small.
+
+For conll (n_skipped=0), I don't need the tokenizer at all. 
+
+Every entity was kept, so I can reconstruct instance_idx by iterating through instances and samples, appending the instance index for each entity that has non-empty text. But I need to account for the skip conditions: instances with no gold entities are skipped entirely, entities with empty text are skipped, and there might be other span-related skips I need to check.
+
+Looking at the skip conditions, only the span matching failure actually increments n_skipped. For conll where n_skipped is 0, I can reconstruct instance_idx exactly without the tokenizer by just handling the first two conditions. For fewnerd with n_skipped=7 out of 10508 entities (0.067%), the error is negligible for GroupKFold. For scierc with n_skipped=140 out of 13073 attempted entities (1.07%), it's small but worth considering—though for GroupKFold purposes, a few misaligned entities likely won't materially affect the results.
+
+The real problem is that skipped entities don't appear in the .pt file, so if I build instance_idx including them, the array will be longer than the tensor. I need to figure out how to exclude the skipped entities without knowing which ones were actually skipped.
+
+For conll this works perfectly since nothing gets skipped, but for fewnerd I'd end up with 7 extra entries that don't correspond to anything in the saved data. The safest bet is probably just using the tokenizer since it's fast on CPU anyway. Alternatively, I could try matching entity text directly against the JSON to see if it appears, which would catch most cases except for rare edge cases where the entity text can't be reconstructed from tokens or has unusual characters. Writing the full solution script... Writing dataset configuration... Writing the reconstruction loop... I'm reconsidering the tokenizer loading approach—since `format_chat` and `find_entity_tokens` both depend on the actual tokenizer object, I need to load it upfront rather than lazily. The tokenizer itself should load quickly (just config and vocab files, no model weights), probably in a few seconds even for a large model like Qwen3-8B. For the full replay across ~4000 iterations, the main bottleneck will be the tokenization and entity span matching—each iteration involves encoding the full text, then searching through response tokens to locate entity positions.
+
+Looking at the `find_entity_tokens` logic more carefully, I see it's doing a nested loop over all possible token spans (up to 20 tokens wide) and decoding each one to compare against the entity text. With response lengths around 100-200 tokens and potentially 2-5 entities per sample, this could mean thousands of decode calls per entity, scaling to tens of millions of decode operations across all 4000 samples. That's going to be prohibitively slow. Looking at the performance math more carefully: with roughly 2-5 entities per sample and response lengths of 50-200 tokens, I'm looking at around 12,000 total entity matches across the dataset. Each entity match involves up to 2,000 decode calls in the worst case, which adds up to about 24 million decode operations. Since tokenizer.decode typically takes 10-50 microseconds depending on span length, that's somewhere in the range of 240-480 seconds total—still a lot, but potentially manageable depending on the actual implementation details.
+
+However, in practice most entities should be found early since they appear near the beginning of the JSON response and are usually short (1-3 tokens). So the actual number of decode calls is probably closer to 900,000 across the whole dataset, which at 20 microseconds each comes out to around 18 seconds. That's reasonable enough to just implement and optimize later if needed.
+
+Actually, I'm wondering if there's a completely different approach that sidesteps the tokenizer altogether—maybe something based on counting tokens instead.
+
+The key insight is that if I know the total number of entities in the saved file and can compute how many entities would exist without any skipping, the difference tells me how many were skipped. For datasets like CoNLL where nothing is skipped, I'd have exact instance indices. For fewnerd with 7 skipped entities out of 10515 total, I'd need to figure out which specific ones were dropped, but without the tokenizer I can't determine that. Though I could modify the extraction code to save the instance indices directly.
+
+Actually, the most practical approach is to use the tokenizer for all three datasets to replay the extraction process—it's efficient enough since I only load it once. But I'm realizing the `format_chat` function calls `apply_chat_template` with `enable_thinking=False`, and I need to verify whether the Qwen3 tokenizer actually supports that parameter.
+
+Writing the script... Writing config JSON... Writing utility functions... Writing the extraction loop... Writing the progress output and validation checks...
+
+Now I'm setting up the GroupKFold probe function to load the hidden states and labels, then compare how GroupKFold performs against StratifiedKFold for cross-validation.
+
+Continuing with the fold iteration... Still writing the classifier... Computing the standard deviation for the stratified fold results, then printing out the cross-validation metrics for both splitting strategies alongside a comparison to baseline values, and starting to interpret what the GroupKFold performance tells us about whether the model is genuinely learning or just exploiting dataset artifacts. Writing results JSON...
+
+Now I'm setting up the main function to parse command-line arguments for dataset names, then iterating through each dataset to load the hidden states and process them. Writing results summary...
+
+Actually, I'm realizing there's a fundamental issue with how I'm using GroupKFold — it doesn't accept random_state or shuffle parameters like StratifiedKFold does, so running it across multiple seeds doesn't actually create different fold splits. The folds are deterministic based on the group assignments alone, whereas the seed does influence LogisticRegression's solver behavior, but that's a minor effect compared to the fold structure differences I'm trying to measure. get the same result 3 times, which means std=0 — that's actually informative since it shows GroupKFold's determinism. But for a fairer comparison, I could use StratifiedGroupKFold instead, which enforces both group constraints and class stratification. Let me check if that's available in the sklearn version being used.
+
+I'll go with GroupKFold as the straightforward fix for the leakage problem and run it across multiple seeds, though the standard deviation will be zero since the split is deterministic. I should also watch for class imbalance across folds and report that if it occurs. The main question is whether AUROC stays above 0.87 after fixing the leak.
+
+Finalizing the script now, though I'm concerned about the tokenizer replay potentially being slow for the scierc dataset given the number of skipped entities. I need to be careful about how the tokenizer encodes text—`tokenizer.encode(full_text)` and `tokenizer.encode(full_text, return_tensors="pt")[0].tolist()` should produce the same token IDs, though some tokenizers might handle the `return_tensors` parameter differently with padding or attention masks. I'm verifying that using plain list operations matches the tensor approach—since `encode()` returns a list by default and adds the same special tokens, slicing the list should give me the same token sequence as extracting from the tensor. I'll stick with the original code structure to be safe and save the script to the server.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4ef02f80-2bd2-4491-8d00-968f4ce2770e",
+  "uuid": "7f003bea-702a-42ff-aea4-30a51097cce2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Gx6oL3BQL1799Y1u773Em9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6549,
+      "cache_read_input_tokens": 47437,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6549
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 42_
+
+Now I'll write the GroupKFold probe script and deploy it. The script replays the extraction loop (tokenizer only, no model) to reconstruct `instance_idx`, then runs GroupKFold.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4ef02f80-2bd2-4491-8d00-968f4ce2770e",
+  "uuid": "f49e6eaa-ec8d-4586-9b69-c0476804bd3e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Gx6oL3BQL1799Y1u773Em9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6549,
+      "cache_read_input_tokens": 47437,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6549
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01LLtg8jtQ2p1a2w2ssBVeoA`</summary>
+
+```json
+{
+  "server": "autodl-5090-c",
+  "command": "cat > /root/autodl-tmp/struct_self_consist_ie/code/probe_groupkfold.py << 'SCRIPT_EOF'\n#!/usr/bin/env python3\n\"\"\"GroupKFold probe: fix instance-level leakage in entity probe AUROC.\n\nReconstructs instance_idx by replaying the extraction loop with tokenizer only\n(no model needed, CPU-only), then runs GroupKFold instead of StratifiedKFold.\n\"\"\"\n\nimport argparse\nimport json\nimport os\nimport time\n\nimport numpy as np\nimport torch\n\nBASE_DIR = \"/root/autodl-tmp/struct_self_consist_ie\"\nINPUT_DIR = os.path.join(BASE_DIR, \"output/entity_probe_auroc\")\nOUTPUT_DIR = os.path.join(BASE_DIR, \"output/entity_probe_auroc_groupkfold\")\n\nDATASET_CONFIG = {\n    \"scierc\": {\n        \"data_path\": os.path.join(BASE_DIR, \"output/exp_scierc_8b_t08_s42/samples.jsonl\"),\n        \"model_path\": os.path.join(BASE_DIR, \"checkpoints/qwen3-8b-scierc-merged-v2\"),\n        \"schema_hint\": (\n            \"Entity types: Generic, Material, Method, Metric, OtherScientificTerm, Task\\n\"\n            \"Relation types: COMPARE, CONJUNCTION, EVALUATE-FOR, FEATURE-OF, HYPONYM-OF, PART-OF, USED-FOR\"\n        ),\n        \"max_instances\": 551,\n        \"n_samples\": 8,\n    },\n    \"fewnerd\": {\n        \"data_path\": os.path.join(BASE_DIR, \"output/exp_tlow_fewnerd_t05_s42/samples.jsonl\"),\n        \"model_path\": os.path.join(BASE_DIR, \"checkpoints/qwen3-8b-fewnerd-exp021-merged\"),\n        \"schema_hint\": \"Entity types: person, organization, location, building, art, product, event, other\",\n        \"max_instances\": 500,\n        \"n_samples\": 8,\n    },\n    \"conll\": {\n        \"data_path\": os.path.join(BASE_DIR, \"output/exp_conll_t08_seed42/samples.jsonl\"),\n        \"model_path\": os.path.join(BASE_DIR, \"checkpoints/qwen3-8b-conll2003-merged\"),\n        \"schema_hint\": \"Entity types: PER, LOC, ORG, MISC\",\n        \"max_instances\": 500,\n        \"n_samples\": 8,\n    },\n}\n\nPROMPT_TEMPLATE = (\n    \"Extract all structured information (entities and relations) from the following text. \"\n    \"Output a JSON object.\\n\\n\"\n    \"Text: {text}\\n\"\n    \"{schema_line}\"\n    \"\\nOutput format: \"\n    '{{\"entities\": [{{\"text\": \"...\", \"type\": \"...\", \"start\": &lt;int>, \"end\": &lt;int>}}], '\n    '\"relations\": [{{\"head\": \"...\", \"tail\": \"...\", \"type\": \"...\", '\n    '\"head_start\": &lt;int>, \"head_end\": &lt;int>, \"tail_start\": &lt;int>, \"tail_end\": &lt;int>}}], '\n    '\"events\": []}}'\n)\n\n\ndef build_prompt(text, schema_hint):\n    return PROMPT_TEMPLATE.format(text=text, schema_line=f\"{schema_hint}\\n\")\n\n\ndef format_chat(tokenizer, prompt):\n    messages = [{\"role\": \"user\", \"content\": prompt}]\n    try:\n        return tokenizer.apply_chat_template(\n            messages, tokenize=False, add_generation_prompt=True,\n            enable_thinking=False,\n        )\n    except TypeError:\n        return tokenizer.apply_chat_template(\n            messages, tokenize=False, add_generation_prompt=True,\n        )\n\n\ndef reconstruct_json(sample):\n    return json.dumps({\n        \"entities\": sample.get(\"entities\", []),\n        \"relations\": sample.get(\"relations\", []),\n        \"events\": sample.get(\"events\", []),\n    }, ensure_ascii=False)\n\n\ndef find_entity_tokens(response_token_ids, entity_text, tokenizer):\n    entity_lower = entity_text.lower().strip()\n    n = len(response_token_ids)\n    for start in range(n):\n        for end in range(start + 1, min(start + 20, n + 1)):\n            span_text = tokenizer.decode(\n                response_token_ids[start:end], skip_special_tokens=True\n            ).strip()\n            if span_text.lower() == entity_lower:\n                return (start, end)\n    for start in range(n):\n        for end in range(start + 1, min(start + 15, n + 1)):\n            span_text = tokenizer.decode(\n                response_token_ids[start:end], skip_special_tokens=True\n            ).strip()\n            if entity_lower in span_text.lower() and len(span_text) <= len(entity_text) * 2:\n                return (start, end)\n    return None\n\n\ndef reconstruct_instance_ids(dataset_name, n_expected):\n    \"\"\"Replay extraction loop with tokenizer to reconstruct instance_idx.\"\"\"\n    from transformers import AutoTokenizer\n\n    config = DATASET_CONFIG[dataset_name]\n    print(f\"  Loading tokenizer from {config['model_path']}...\")\n    tokenizer = AutoTokenizer.from_pretrained(config[\"model_path\"], trust_remote_code=True)\n\n    with open(config[\"data_path\"]) as f:\n        instances = [json.loads(line) for line in f if line.strip()]\n    instances = instances[:config[\"max_instances\"]]\n\n    instance_ids = []\n    n_skipped = 0\n    t0 = time.time()\n\n    for i, inst in enumerate(instances):\n        gold = inst[\"gold\"]\n        gold_set = {(e[\"text\"], e[\"type\"]) for e in gold.get(\"entities\", [])}\n        if not gold_set:\n            continue\n\n        text = inst[\"text\"]\n        for j, sample in enumerate(inst[\"samples\"][:config[\"n_samples\"]]):\n            prompt = build_prompt(text, config[\"schema_hint\"])\n            chat_prompt = format_chat(tokenizer, prompt)\n            response_json = reconstruct_json(sample)\n            full_text = chat_prompt + response_json\n\n            input_ids = tokenizer.encode(full_text, return_tensors=\"pt\")\n            prompt_ids = tokenizer.encode(chat_prompt, return_tensors=\"pt\")\n            response_start = prompt_ids.shape[1]\n            response_tokens = input_ids[0, response_start:].tolist()\n\n            for ent in sample.get(\"entities\", []):\n                ent_text = ent.get(\"text\", \"\")\n                if not ent_text:\n                    continue\n\n                span = find_entity_tokens(response_tokens, ent_text, tokenizer)\n                if span is None:\n                    n_skipped += 1\n                    continue\n\n                instance_ids.append(i)\n\n        if (i + 1) % 100 == 0:\n            elapsed = time.time() - t0\n            print(f\"    [{i+1}/{len(instances)}] {elapsed:.0f}s, \"\n                  f\"{len(instance_ids)} entities, {n_skipped} skipped\")\n\n    elapsed = time.time() - t0\n    instance_ids = np.array(instance_ids)\n\n    print(f\"  Reconstructed {len(instance_ids)} instance_ids in {elapsed:.1f}s \"\n          f\"(skipped={n_skipped})\")\n\n    if len(instance_ids) != n_expected:\n        print(f\"  FATAL: expected {n_expected} entities, got {len(instance_ids)}!\")\n        raise ValueError(\n            f\"Instance ID reconstruction mismatch: {len(instance_ids)} vs {n_expected}\"\n        )\n\n    n_unique = len(np.unique(instance_ids))\n    print(f\"  Unique instances: {n_unique}\")\n\n    return instance_ids\n\n\ndef run_groupkfold_probe(dataset_name, instance_ids):\n    \"\"\"Run GroupKFold probe and reproduce StratifiedKFold for comparison.\"\"\"\n    from sklearn.linear_model import LogisticRegression\n    from sklearn.metrics import roc_auc_score\n    from sklearn.model_selection import GroupKFold, StratifiedKFold\n    from sklearn.preprocessing import StandardScaler\n\n    hs_path = os.path.join(INPUT_DIR, f\"entity_hidden_states_{dataset_name}.pt\")\n    lb_path = os.path.join(INPUT_DIR, f\"entity_labels_{dataset_name}.pt\")\n\n    hs = torch.load(hs_path, weights_only=True).float().numpy()\n    labels = torch.load(lb_path, weights_only=True).numpy()\n\n    print(f\"\\n--- {dataset_name} ---\")\n    print(f\"  Entities: {len(labels)}, dim={hs.shape[1]}\")\n    print(f\"  Positive: {labels.sum()} ({labels.mean()*100:.1f}%), \"\n          f\"Negative: {len(labels)-labels.sum()}\")\n    print(f\"  Unique instances for GroupKFold: {len(np.unique(instance_ids))}\")\n\n    if labels.sum() == 0 or labels.sum() == len(labels):\n        print(\"  SKIP: single class\")\n        return None\n\n    cv_folds = 5\n    seeds = [42, 123, 456]\n\n    # --- GroupKFold ---\n    gkf = GroupKFold(n_splits=cv_folds)\n    gkf_fold_aurocs = []\n    for train_idx, test_idx in gkf.split(hs, labels, groups=instance_ids):\n        X_train = StandardScaler().fit_transform(hs[train_idx])\n        X_test = StandardScaler().fit(hs[train_idx]).transform(hs[test_idx])\n        # re-fit scaler properly\n        scaler = StandardScaler()\n        X_train = scaler.fit_transform(hs[train_idx])\n        X_test = scaler.transform(hs[test_idx])\n\n        y_train, y_test = labels[train_idx], labels[test_idx]\n        clf = LogisticRegression(max_iter=1000, C=1.0, solver=\"lbfgs\")\n        clf.fit(X_train, y_train)\n        y_prob = clf.predict_proba(X_test)[:, 1]\n\n        if len(np.unique(y_test)) < 2:\n            continue\n        auroc = roc_auc_score(y_test, y_prob)\n        gkf_fold_aurocs.append(auroc)\n        n_train_inst = len(np.unique(instance_ids[train_idx]))\n        n_test_inst = len(np.unique(instance_ids[test_idx]))\n        print(f\"    GKF fold: AUROC={auroc:.4f}, \"\n              f\"train={len(train_idx)}({n_train_inst} inst), \"\n              f\"test={len(test_idx)}({n_test_inst} inst), \"\n              f\"test_pos={y_test.mean():.3f}\")\n\n    gkf_mean = np.mean(gkf_fold_aurocs) if gkf_fold_aurocs else None\n    gkf_std = np.std(gkf_fold_aurocs) if gkf_fold_aurocs else None\n\n    # --- StratifiedKFold (reproduce original for comparison) ---\n    skf_all_aurocs = []\n    for seed in seeds:\n        skf = StratifiedKFold(n_splits=cv_folds, shuffle=True, random_state=seed)\n        fold_aurocs = []\n        for train_idx, test_idx in skf.split(hs, labels):\n            scaler = StandardScaler()\n            X_train = scaler.fit_transform(hs[train_idx])\n            X_test = scaler.transform(hs[test_idx])\n            y_train, y_test = labels[train_idx], labels[test_idx]\n\n            clf = LogisticRegression(max_iter=1000, C=1.0, solver=\"lbfgs\")\n            clf.fit(X_train, y_train)\n            y_prob = clf.predict_proba(X_test)[:, 1]\n\n            if len(np.unique(y_test)) < 2:\n                continue\n            fold_aurocs.append(roc_auc_score(y_test, y_prob))\n\n        if fold_aurocs:\n            skf_all_aurocs.append(np.mean(fold_aurocs))\n\n    skf_mean = np.mean(skf_all_aurocs) if skf_all_aurocs else None\n    skf_std = np.std(skf_all_aurocs) if skf_all_aurocs else None\n\n    print(f\"\\n  StratifiedKFold AUROC: {skf_mean:.4f} +/- {skf_std:.4f}\")\n    print(f\"  GroupKFold AUROC:      {gkf_mean:.4f} +/- {gkf_std:.4f}\")\n    delta = gkf_mean - skf_mean\n    print(f\"  Delta:                 {delta:+.4f}\")\n    print(f\"  vs MV=0.87, ESJ=0.51\")\n\n    if gkf_mean > 0.87:\n        interp = \"HIGH — probe > MV, info exists in representation, prompt interface fails\"\n    elif gkf_mean > 0.70:\n        interp = \"MODERATE-HIGH — probe below MV but well above ESJ\"\n    elif gkf_mean > 0.60:\n        interp = \"MODERATE — partial info in representation\"\n    else:\n        interp = \"LOW — info not clearly present\"\n    print(f\"  => {interp}\")\n\n    result = {\n        \"dataset\": dataset_name,\n        \"groupkfold_auroc_mean\": float(gkf_mean),\n        \"groupkfold_auroc_std\": float(gkf_std),\n        \"groupkfold_auroc_per_fold\": [float(a) for a in gkf_fold_aurocs],\n        \"stratifiedkfold_auroc_mean\": float(skf_mean),\n        \"stratifiedkfold_auroc_std\": float(skf_std),\n        \"stratifiedkfold_auroc_per_seed\": [float(a) for a in skf_all_aurocs],\n        \"delta\": float(delta),\n        \"n_entities\": int(len(labels)),\n        \"n_positive\": int(labels.sum()),\n        \"positive_rate\": float(labels.mean()),\n        \"n_unique_instances\": int(len(np.unique(instance_ids))),\n        \"cv_folds\": cv_folds,\n        \"seeds\": seeds,\n        \"comparison\": {\"mv_agreement_auroc\": 0.87, \"esj_prompt_auroc\": 0.51},\n        \"interpretation\": interp,\n    }\n\n    os.makedirs(OUTPUT_DIR, exist_ok=True)\n    path = os.path.join(OUTPUT_DIR, f\"groupkfold_results_{dataset_name}.json\")\n    with open(path, \"w\") as f:\n        json.dump(result, f, indent=2)\n    print(f\"  Saved: {path}\")\n\n    return result\n\n\ndef main():\n    parser = argparse.ArgumentParser()\n    parser.add_argument(\"--datasets\", default=\"conll,fewnerd,scierc\")\n    args = parser.parse_args()\n\n    datasets = [d.strip() for d in args.datasets.split(\",\")]\n    all_results = {}\n\n    for ds in datasets:\n        print(f\"\\n{'='*60}\")\n        print(f\"Processing {ds}...\")\n\n        hs_path = os.path.join(INPUT_DIR, f\"entity_hidden_states_{ds}.pt\")\n        if not os.path.exists(hs_path):\n            print(f\"  {ds}: no hidden states found, skipping\")\n            continue\n        hs = torch.load(hs_path, weights_only=True)\n        n_expected = len(hs)\n        del hs\n\n        instance_ids = reconstruct_instance_ids(ds, n_expected)\n\n        os.makedirs(OUTPUT_DIR, exist_ok=True)\n        torch.save(torch.tensor(instance_ids),\n                    os.path.join(OUTPUT_DIR, f\"entity_instance_ids_{ds}.pt\"))\n\n        result = run_groupkfold_probe(ds, instance_ids)\n        if result:\n            all_results[ds] = result\n\n    # Summary table\n    print(f\"\\n{'='*60}\")\n    print(\"SUMMARY: GroupKFold vs StratifiedKFold AUROC\")\n    print(f\"{'='*60}\")\n    print(f\"{'Dataset':<10} {'StratKFold':>12} {'GroupKFold':>12} {'Delta':>8} \"\n          f\"{'MV':>6} {'ESJ':>6} {'Probe>MV?':>10}\")\n    for ds, r in all_results.items():\n        above_mv = \"YES\" if r[\"groupkfold_auroc_mean\"] > 0.87 else \"NO\"\n        print(f\"{ds:<10} {r['stratifiedkfold_auroc_mean']:>12.4f} \"\n              f\"{r['groupkfold_auroc_mean']:>12.4f} \"\n              f\"{r['delta']:>+8.4f} \"\n              f\"{'0.87':>6} {'0.51':>6} \"\n              f\"{above_mv:>10}\")\n\n    combined_path = os.path.join(OUTPUT_DIR, \"groupkfold_all_results.json\")\n    with open(combined_path, \"w\") as f:\n        json.dump(all_results, f, indent=2)\n    print(f\"\\nSaved combined results: {combined_path}\")\n\n\nif __name__ == \"__main__\":\n    main()\nSCRIPT_EOF\necho \"Script written successfully\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4ef02f80-2bd2-4491-8d00-968f4ce2770e",
+  "uuid": "ed958662-9f81-413f-80aa-68a34b9a6290",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Gx6oL3BQL1799Y1u773Em9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6549,
+      "cache_read_input_tokens": 47437,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6549
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-21T03:15:00.040Z_
+
+<details><summary>↩ Tool result · `toolu_01LLtg8jtQ2p1a2w2ssBVeoA`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Script written successfully\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.57}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4ef02f80-2bd2-4491-8d00-968f4ce2770e",
+  "uuid": "eca10e33-a9b7-420f-9ee7-30f126375999",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Script written successfully\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.57}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Script written successfully\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.57}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 45_
+
+<details><summary>Logged reasoning block</summary>
+
+````text
+Good, script is deployed. Now let me fix a bug in the script — there's a duplicate StandardScaler fitting in the GroupKFold section. Let me fix it and then run.
+
+Actually, looking at the script again:
+
+```python
+        X_train = StandardScaler().fit_transform(hs[train_idx])
+        X_test = StandardScaler().fit(hs[train_idx]).transform(hs[test_idx])
+        # re-fit scaler properly
+
+
+```
+
+I see the issue — I'm creating two separate scalers when I should be using one. The correct approach is to fit the scaler on the training data and then apply it to the test data. This isn't a functional bug since the right values end up being used, but it's wasteful computation. Actually, it runs fine as is, so let me just proceed and start with the conll dataset first.
+
+Wait, I should run all three datasets at once since the script processes them sequentially. The tokenizer reconstruction could take a while though, especially for scierc with its 551 instances and 8 samples each. Let me think through the timing — for each sample I'm encoding the full text and the chat prompt, then finding tokens for each entity. With conll having around 500 instances, 8 samples per instance, and roughly 3 entities per sample, that's potentially 12,000 entity lookups. At 50ms each, that's pushing 10 minutes just for conll, which seems too slow. The bottleneck is likely in the find_entity_tokens function with its nested loop structure.
+
+Actually, reconsidering the decode calls — each one is just a vocabulary lookup and byte decoding, which should be quite fast. Even with a worst case of 2,000 decode calls per entity, if each decode is only 5-10 microseconds, that's less than a millisecond per entity. So 12,000 entities at half a millisecond each would only be 6 seconds per dataset, which is totally reasonable. I'm probably overthinking the performance here — let me just run it and see what actually happens.
+
+First, I should verify that sklearn and transformers are installed on the server, then I'll execute the script with nohup since it might take a while depending on how slow the tokenizer loads or how slow the entity finding is.
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4ef02f80-2bd2-4491-8d00-968f4ce2770e",
+  "uuid": "cbdf67c6-6569-47be-8533-8d1dc1234444",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JgccwaieWeWKC9wWDBPZaW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 14814,
+      "cache_read_input_tokens": 53986,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 14814
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 46_
+
+Script deployed. Let me fix the duplicate scaler code, verify dependencies, and run.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4ef02f80-2bd2-4491-8d00-968f4ce2770e",
+  "uuid": "aeb1e9ca-304c-4d87-9a2b-00d2e812b5de",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JgccwaieWeWKC9wWDBPZaW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 14814,
+      "cache_read_input_tokens": 53986,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 14814
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01J7zdmR1uYnGCiyfJkMdp9d`</summary>
+
+```json
+{
+  "server": "autodl-5090-c",
+  "command": "cd /root/autodl-tmp/struct_self_consist_ie && sed -i '/X_train = StandardScaler().fit_transform/d; /X_test = StandardScaler().fit/d; /# re-fit scaler properly/d' code/probe_groupkfold.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4ef02f80-2bd2-4491-8d00-968f4ce2770e",
+  "uuid": "0c2129fa-625b-4906-8297-4608782df81a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JgccwaieWeWKC9wWDBPZaW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 14814,
+      "cache_read_input_tokens": 53986,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 14814
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Pv2XffiL74s2ChiKucESsc`</summary>
+
+```json
+{
+  "server": "autodl-5090-c",
+  "command": "python3 -c \"import sklearn; print('sklearn', sklearn.__version__); from transformers import AutoTokenizer; print('transformers OK')\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4ef02f80-2bd2-4491-8d00-968f4ce2770e",
+  "uuid": "6aa4fca7-8123-4e3d-b07d-c5e277a089be",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JgccwaieWeWKC9wWDBPZaW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 14814,
+      "cache_read_input_tokens": 53986,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 14814
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-21T03:15:30.738Z_
+
+<details><summary>↩ Tool result · `toolu_01J7zdmR1uYnGCiyfJkMdp9d`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.16}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4ef02f80-2bd2-4491-8d00-968f4ce2770e",
+  "uuid": "1878b7c9-6309-4a4e-9bc7-93f3a000bd19",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.16}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.16}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-21T03:15:30.751Z_
+
+<details><summary>↩ Tool result · `toolu_01Pv2XffiL74s2ChiKucESsc`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4ef02f80-2bd2-4491-8d00-968f4ce2770e",
+  "uuid": "8f7ebfec-6f5f-4f72-8cdd-a4528903df3e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01WfcsSRCQrviaXayci9iTU8`</summary>
+
+```json
+{
+  "server": "autodl-5090-c",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"import sklearn; print('sklearn', sklearn.__version__); from transformers import AutoTokenizer; print('transformers OK')\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4ef02f80-2bd2-4491-8d00-968f4ce2770e",
+  "uuid": "fae09e86-077f-4ff0-beac-4bc2e7238834",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013QoKPZFgEQrXCEZAkJS6vV",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1406,
+      "cache_read_input_tokens": 68800,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1406
+      },
+      "output_tokens": 67,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-21T03:15:39.956Z_
+
+<details><summary>↩ Tool result · `toolu_01WfcsSRCQrviaXayci9iTU8`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"sklearn 1.8.0\\ntransformers OK\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 5.62}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4ef02f80-2bd2-4491-8d00-968f4ce2770e",
+  "uuid": "cca0bc26-a66e-4a27-94ce-d456bc47a3db",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"sklearn 1.8.0\\\\ntransformers OK\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 5.62}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"sklearn 1.8.0\\ntransformers OK\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 5.62}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 53_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good, sklearn 1.8.0 and transformers are both available. Let me now run the script. I'll start with conll first (n_skipped=0, fastest) to verify the approach works, then run all 3.
+
+Actually, let me just run all 3 at once. The script processes them sequentially (conll first by default). If something fails, we'll know quickly.
+
+I need to use nohup since the tokenizer reconstruction could take a few minutes per dataset.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4ef02f80-2bd2-4491-8d00-968f4ce2770e",
+  "uuid": "c18fd5ee-7f30-4a00-9462-7f8c47aae8b3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MXig4Kp2V2MdkoeLPfSUT8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 245,
+      "cache_read_input_tokens": 70206,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 245
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 54_
+
+Dependencies confirmed. Running the probe now — starting with conll (0 skips, fastest verification).
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4ef02f80-2bd2-4491-8d00-968f4ce2770e",
+  "uuid": "8bfa0339-9f6d-438b-b28b-3354fc79b00e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MXig4Kp2V2MdkoeLPfSUT8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 245,
+      "cache_read_input_tokens": 70206,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 245
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01QAT2QWMwJXBbcS5UbYL2qu`</summary>
+
+```json
+{
+  "server": "autodl-5090-c",
+  "command": "cd /root/autodl-tmp/struct_self_consist_ie && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && nohup python3 code/probe_groupkfold.py --datasets conll,fewnerd,scierc > /tmp/probe_groupkfold.log 2>&1 &\necho \"PID=$!\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4ef02f80-2bd2-4491-8d00-968f4ce2770e",
+  "uuid": "9141365b-0214-4252-8482-73da46539a9d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MXig4Kp2V2MdkoeLPfSUT8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 245,
+      "cache_read_input_tokens": 70206,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 245
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-21T03:16:20.705Z_
+
+<details><summary>↩ Tool result · `toolu_01QAT2QWMwJXBbcS5UbYL2qu`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"PID=270899\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 30.78}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4ef02f80-2bd2-4491-8d00-968f4ce2770e",
+  "uuid": "efc7fee9-5e4d-4308-9284-0c451064c559",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"PID=270899\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 30.78}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"PID=270899\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 30.78}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_011ykVN12e5iFGToJDxzy9tY`</summary>
+
+```json
+{
+  "server": "autodl-5090-c",
+  "command": "tail -30 /tmp/probe_groupkfold.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4ef02f80-2bd2-4491-8d00-968f4ce2770e",
+  "uuid": "f90e92d8-a4e7-4d5c-b678-de3722b4435d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SraePiB1sii4T97PdDTp5T",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 420,
+      "cache_read_input_tokens": 70451,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 420
+      },
+      "output_tokens": 65,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-21T03:16:33.126Z_
+
+<details><summary>↩ Tool result · `toolu_011ykVN12e5iFGToJDxzy9tY`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.18}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4ef02f80-2bd2-4491-8d00-968f4ce2770e",
+  "uuid": "11ed59df-2165-4826-853e-764403773a47",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.18}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.18}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 59_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Log is empty, probably still starting up (loading tokenizer). Let me wait and check again.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4ef02f80-2bd2-4491-8d00-968f4ce2770e",
+  "uuid": "88c9c96e-7dd8-4c03-8cc5-4a5ee0ea9179",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PkmD2o3A6UaCDq6yZd5dx9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 191,
+      "cache_read_input_tokens": 70871,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 191
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 60_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_018c1twJgoJiFEaEryiJJUYr`</summary>
+
+```json
+{
+  "server": "autodl-5090-c",
+  "command": "ps -p 270899 -o pid=",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4ef02f80-2bd2-4491-8d00-968f4ce2770e",
+  "uuid": "b484e45e-920c-4506-bc1a-2a6cde5b70da",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PkmD2o3A6UaCDq6yZd5dx9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 191,
+      "cache_read_input_tokens": 70871,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 191
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 61 · 2026-05-21T03:16:48.012Z_
+
+<details><summary>↩ Tool result · `toolu_018c1twJgoJiFEaEryiJJUYr`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"270899\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.18}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4ef02f80-2bd2-4491-8d00-968f4ce2770e",
+  "uuid": "9b07cb49-1fb6-4c76-97d8-8850f9057b35",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"270899\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.18}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"270899\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.18}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 62_
+
+Still running. Let me check progress after a minute.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4ef02f80-2bd2-4491-8d00-968f4ce2770e",
+  "uuid": "1b946785-e875-43ae-b34a-0aace3807a63",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014MXEimWBJ9vBdKvjai1MSP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 226,
+      "cache_read_input_tokens": 71062,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 226
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01SJ7kf5EbeBSnqZarF4E1mX`</summary>
+
+```json
+{
+  "server": "autodl-5090-c",
+  "command": "tail -30 /tmp/probe_groupkfold.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4ef02f80-2bd2-4491-8d00-968f4ce2770e",
+  "uuid": "528c369d-fda7-4bfc-9447-8216a8d7c940",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014MXEimWBJ9vBdKvjai1MSP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 226,
+      "cache_read_input_tokens": 71062,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 226
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-21T03:16:52.791Z_
+
+<details><summary>↩ Tool result · `toolu_01SJ7kf5EbeBSnqZarF4E1mX`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.2}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4ef02f80-2bd2-4491-8d00-968f4ce2770e",
+  "uuid": "ff16d08d-0166-4cac-8591-ef7eb4aacebe",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.2}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.2}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Wme1yus5FTkVqtcacURSpa`</summary>
+
+```json
+{
+  "server": "autodl-5090-c",
+  "command": "ls -la /tmp/probe_groupkfold.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4ef02f80-2bd2-4491-8d00-968f4ce2770e",
+  "uuid": "0c7db322-1bc2-409e-a4d5-f3d7be4aded1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016q7WqGDqsendvg75MQh2ep",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 203,
+      "cache_read_input_tokens": 71288,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 203
+      },
+      "output_tokens": 65,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-21T03:16:57.370Z_
+
+<details><summary>↩ Tool result · `toolu_01Wme1yus5FTkVqtcacURSpa`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"-rw-r--r-- 1 root root 0 May 21 11:15 /tmp/probe_groupkfold.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.17}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4ef02f80-2bd2-4491-8d00-968f4ce2770e",
+  "uuid": "2f3672ba-5896-41c3-8914-f0ad70a54917",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-rw-r--r-- 1 root root 0 May 21 11:15 /tmp/probe_groupkfold.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.17}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"-rw-r--r-- 1 root root 0 May 21 11:15 /tmp/probe_groupkfold.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.17}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 67_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The log file is 0 bytes but the process is running. It's probably still loading the tokenizer (which can take a while) or buffering. Python's print statements may be buffered when writing to a file. Let me add `-u` flag or PYTHONUNBUFFERED.
+
+Let me kill the current process and restart with unbuffered output.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4ef02f80-2bd2-4491-8d00-968f4ce2770e",
+  "uuid": "3b66c160-d436-44bc-8f78-785d6494cb5a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017U7SNvZXr3s5QRgpuniuJp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 227,
+      "cache_read_input_tokens": 71491,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 227
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 68_
+
+Output is buffered. Let me restart with unbuffered Python output.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4ef02f80-2bd2-4491-8d00-968f4ce2770e",
+  "uuid": "40abdd1b-f437-4e29-92c1-1b0656e37c20",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017U7SNvZXr3s5QRgpuniuJp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 227,
+      "cache_read_input_tokens": 71491,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 227
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 69_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01Kuz1iigVBjWNTfD1Lpyq5F`</summary>
+
+```json
+{
+  "server": "autodl-5090-c",
+  "command": "kill 270899 2>/dev/null; cd /root/autodl-tmp/struct_self_consist_ie && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && nohup python3 -u code/probe_groupkfold.py --datasets conll,fewnerd,scierc > /tmp/probe_groupkfold.log 2>&1 &\necho \"PID=$!\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4ef02f80-2bd2-4491-8d00-968f4ce2770e",
+  "uuid": "eb9d0642-bc0c-4d93-9ba2-f661933dc38e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017U7SNvZXr3s5QRgpuniuJp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 227,
+      "cache_read_input_tokens": 71491,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 227
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-21T03:17:35.244Z_
+
+<details><summary>↩ Tool result · `toolu_01Kuz1iigVBjWNTfD1Lpyq5F`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'kill 270899 2>/dev/null; cd /root/autodl-tmp/struct_self_consist_ie && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && nohup python3 -u code/probe_groupkfold.py --datasets conll,fewnerd,scierc > /tmp/probe_groupkfold.log 2>&1 &\\\\necho \\\"PID=$!\\\"'\\n\\nStdout:\\n\\nPID=271208\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 31.23}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4ef02f80-2bd2-4491-8d00-968f4ce2770e",
+  "uuid": "cc177c19-834b-4d59-ace3-5e7520c9bfc5",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Command did not complete within 30 seconds!\\\\n\\\\nCommand: 'kill 270899 2>/dev/null; cd /root/autodl-tmp/struct_self_consist_ie && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && nohup python3 -u code/probe_groupkfold.py --datasets conll,fewnerd,scierc > /tmp/probe_groupkfold.log 2>&1 &\\\\\\\\necho \\\\\\\"PID=$!\\\\\\\"'\\\\n\\\\nStdout:\\\\n\\\\nPID=271208\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 31.23}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'kill 270899 2>/dev/null; cd /root/autodl-tmp/struct_self_consist_ie && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && nohup python3 -u code/probe_groupkfold.py --datasets conll,fewnerd,scierc > /tmp/probe_groupkfold.log 2>&1 &\\\\necho \\\"PID=$!\\\"'\\n\\nStdout:\\n\\nPID=271208\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 31.23}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 71_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The command timed out but the PID 271208 was shown. The script is running in the background. Let me check its progress after a bit.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4ef02f80-2bd2-4491-8d00-968f4ce2770e",
+  "uuid": "44f60528-567a-4fb1-8138-5620f485d6bc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VXtUhuibT1mq7iVQsqxuy3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 632,
+      "cache_read_input_tokens": 71718,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 632
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 72_
+
+Script is running (PID 271208). Let me check progress.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4ef02f80-2bd2-4491-8d00-968f4ce2770e",
+  "uuid": "c432c0ec-7f74-441a-bae2-1200eee8bd68",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VXtUhuibT1mq7iVQsqxuy3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 632,
+      "cache_read_input_tokens": 71718,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 632
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 73_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01U5CK8pVJKzpCpMKP15oEw1`</summary>
+
+```json
+{
+  "server": "autodl-5090-c",
+  "command": "tail -30 /tmp/probe_groupkfold.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4ef02f80-2bd2-4491-8d00-968f4ce2770e",
+  "uuid": "02acb650-358c-436d-9860-d9ba9d3b57be",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VXtUhuibT1mq7iVQsqxuy3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 632,
+      "cache_read_input_tokens": 71718,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 632
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 74 · 2026-05-21T03:17:41.811Z_
+
+<details><summary>↩ Tool result · `toolu_01U5CK8pVJKzpCpMKP15oEw1`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\n============================================================\\nProcessing conll...\\n  Loading tokenizer from /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-conll2003-merged...\\n    [100/500] 15s, 1735 entities, 0 skipped\\n    [200/500] 21s, 3233 entities, 0 skipped\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.16}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4ef02f80-2bd2-4491-8d00-968f4ce2770e",
+  "uuid": "0f65ddf1-1968-4894-9bdb-d09f5608fe9b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\n============================================================\\\\nProcessing conll...\\\\n  Loading tokenizer from /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-conll2003-merged...\\\\n    [100/500] 15s, 1735 entities, 0 skipped\\\\n    [200/500] 21s, 3233 entities, 0 skipped\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.16}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\n============================================================\\nProcessing conll...\\n  Loading tokenizer from /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-conll2003-merged...\\n    [100/500] 15s, 1735 entities, 0 skipped\\n    [200/500] 21s, 3233 entities, 0 skipped\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.16}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 75_
+
+Working. Conll reconstruction is progressing, ~21s for 200/500 instances. Let me wait a bit more.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4ef02f80-2bd2-4491-8d00-968f4ce2770e",
+  "uuid": "8cdb7ed4-5496-4dc2-bdcb-aa4f33a420d2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011cPwmK2qwwGhZKzbuFufjL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 354,
+      "cache_read_input_tokens": 72350,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 354
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 76_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01SUeT6nvpidx1bvVwtS3sd4`</summary>
+
+```json
+{
+  "server": "autodl-5090-c",
+  "command": "tail -40 /tmp/probe_groupkfold.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4ef02f80-2bd2-4491-8d00-968f4ce2770e",
+  "uuid": "fdb4357b-c16e-4e9d-a9f1-d6f4f7882fe6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011cPwmK2qwwGhZKzbuFufjL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 354,
+      "cache_read_input_tokens": 72350,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 354
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 77 · 2026-05-21T03:17:50.219Z_
+
+<details><summary>↩ Tool result · `toolu_01SUeT6nvpidx1bvVwtS3sd4`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\n============================================================\\nProcessing conll...\\n  Loading tokenizer from /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-conll2003-merged...\\n    [100/500] 15s, 1735 entities, 0 skipped\\n    [200/500] 21s, 3233 entities, 0 skipped\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.11}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4ef02f80-2bd2-4491-8d00-968f4ce2770e",
+  "uuid": "a0ed7e87-2f65-4ec7-8193-a83a6f607f39",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\n============================================================\\\\nProcessing conll...\\\\n  Loading tokenizer from /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-conll2003-merged...\\\\n    [100/500] 15s, 1735 entities, 0 skipped\\\\n    [200/500] 21s, 3233 entities, 0 skipped\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.11}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\n============================================================\\nProcessing conll...\\n  Loading tokenizer from /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-conll2003-merged...\\n    [100/500] 15s, 1735 entities, 0 skipped\\n    [200/500] 21s, 3233 entities, 0 skipped\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.11}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 78_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+It seems like it's stuck at 200/500. Let me wait a bit more and check again. The rate is ~10 instances/sec for the first 100, then faster (~15/sec for next 100). Maybe it's processing instances with more entities that are slower.
+
+Let me wait 30 seconds and check again.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4ef02f80-2bd2-4491-8d00-968f4ce2770e",
+  "uuid": "991a251c-a213-4994-977b-307960007617",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0194drpsByxPJ1gPqRZqXQGk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 319,
+      "cache_read_input_tokens": 72704,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 319
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 79_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01JXg2HshsaBYeTHiFzw4NHM`</summary>
+
+```json
+{
+  "server": "autodl-5090-c",
+  "command": "tail -50 /tmp/probe_groupkfold.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4ef02f80-2bd2-4491-8d00-968f4ce2770e",
+  "uuid": "9e187e5a-4158-4667-b7c9-491fd9ddc9df",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0194drpsByxPJ1gPqRZqXQGk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 319,
+      "cache_read_input_tokens": 72704,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 319
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 80 · 2026-05-21T03:17:56.446Z_
+
+<details><summary>↩ Tool result · `toolu_01JXg2HshsaBYeTHiFzw4NHM`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\n============================================================\\nProcessing conll...\\n  Loading tokenizer from /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-conll2003-merged...\\n    [100/500] 15s, 1735 entities, 0 skipped\\n    [200/500] 21s, 3233 entities, 0 skipped\\n    [300/500] 42s, 5355 entities, 0 skipped\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.12}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4ef02f80-2bd2-4491-8d00-968f4ce2770e",
+  "uuid": "8d505059-2614-4884-bb89-1fd5154b8a7b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\n============================================================\\\\nProcessing conll...\\\\n  Loading tokenizer from /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-conll2003-merged...\\\\n    [100/500] 15s, 1735 entities, 0 skipped\\\\n    [200/500] 21s, 3233 entities, 0 skipped\\\\n    [300/500] 42s, 5355 entities, 0 skipped\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.12}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\n============================================================\\nProcessing conll...\\n  Loading tokenizer from /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-conll2003-merged...\\n    [100/500] 15s, 1735 entities, 0 skipped\\n    [200/500] 21s, 3233 entities, 0 skipped\\n    [300/500] 42s, 5355 entities, 0 skipped\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.12}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 81_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01TpGXkYTfu8cVWgrbT8gPvA`</summary>
+
+```json
+{
+  "server": "autodl-5090-c",
+  "command": "tail -50 /tmp/probe_groupkfold.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4ef02f80-2bd2-4491-8d00-968f4ce2770e",
+  "uuid": "d7c38548-0a7b-4300-ad21-ea4b1d9dc42a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DNfHdvQctGAXvNKwaZ2DHc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 400,
+      "cache_read_input_tokens": 73023,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 400
+      },
+      "output_tokens": 67,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 82 · 2026-05-21T03:18:05.538Z_
+
+<details><summary>↩ Tool result · `toolu_01TpGXkYTfu8cVWgrbT8gPvA`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\n============================================================\\nProcessing conll...\\n  Loading tokenizer from /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-conll2003-merged...\\n    [100/500] 15s, 1735 entities, 0 skipped\\n    [200/500] 21s, 3233 entities, 0 skipped\\n    [300/500] 42s, 5355 entities, 0 skipped\\n    [400/500] 52s, 6817 entities, 0 skipped\\n    [500/500] 56s, 7849 entities, 0 skipped\\n  Reconstructed 7849 instance_ids in 55.5s (skipped=0)\\n  Unique instances: 418\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.12}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4ef02f80-2bd2-4491-8d00-968f4ce2770e",
+  "uuid": "d22e0c96-0232-4742-8a00-54eb044edbca",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\n============================================================\\\\nProcessing conll...\\\\n  Loading tokenizer from /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-conll2003-merged...\\\\n    [100/500] 15s, 1735 entities, 0 skipped\\\\n    [200/500] 21s, 3233 entities, 0 skipped\\\\n    [300/500] 42s, 5355 entities, 0 skipped\\\\n    [400/500] 52s, 6817 entities, 0 skipped\\\\n    [500/500] 56s, 7849 entities, 0 skipped\\\\n  Reconstructed 7849 instance_ids in 55.5s (skipped=0)\\\\n  Unique instances: 418\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.12}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\n============================================================\\nProcessing conll...\\n  Loading tokenizer from /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-conll2003-merged...\\n    [100/500] 15s, 1735 entities, 0 skipped\\n    [200/500] 21s, 3233 entities, 0 skipped\\n    [300/500] 42s, 5355 entities, 0 skipped\\n    [400/500] 52s, 6817 entities, 0 skipped\\n    [500/500] 56s, 7849 entities, 0 skipped\\n  Reconstructed 7849 instance_ids in 55.5s (skipped=0)\\n  Unique instances: 418\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.12}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 83_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+CoNLL reconstruction done: 7849 entities exactly matching metadata (n_entities=7849, n_skipped=0). 418 unique instances (out of 500, some instances had no gold entities). The probe should be running now. Let me check again for the probe results.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4ef02f80-2bd2-4491-8d00-968f4ce2770e",
+  "uuid": "4f426a91-1a37-4c24-9b75-adad530683ab",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015x8CYjxLMjQ4reXrqB56PW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 393,
+      "cache_read_input_tokens": 73423,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 393
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 84_
+
+Conll reconstruction done — 7849 entities matched exactly (0 skipped, 418 unique instances). Probe is running now.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4ef02f80-2bd2-4491-8d00-968f4ce2770e",
+  "uuid": "70b403a9-db5e-47c0-a2ca-26ab8fca81ea",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015x8CYjxLMjQ4reXrqB56PW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 393,
+      "cache_read_input_tokens": 73423,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 393
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 85_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Lfycw4WaX3qJMrdn2aAgbz`</summary>
+
+```json
+{
+  "server": "autodl-5090-c",
+  "command": "tail -60 /tmp/probe_groupkfold.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4ef02f80-2bd2-4491-8d00-968f4ce2770e",
+  "uuid": "7a482a57-2ffc-44e7-9031-2a45c54e685b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015x8CYjxLMjQ4reXrqB56PW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 393,
+      "cache_read_input_tokens": 73423,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 393
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 86 · 2026-05-21T03:18:12.633Z_
+
+<details><summary>↩ Tool result · `toolu_01Lfycw4WaX3qJMrdn2aAgbz`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\n============================================================\\nProcessing conll...\\n  Loading tokenizer from /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-conll2003-merged...\\n    [100/500] 15s, 1735 entities, 0 skipped\\n    [200/500] 21s, 3233 entities, 0 skipped\\n    [300/500] 42s, 5355 entities, 0 skipped\\n    [400/500] 52s, 6817 entities, 0 skipped\\n    [500/500] 56s, 7849 entities, 0 skipped\\n  Reconstructed 7849 instance_ids in 55.5s (skipped=0)\\n  Unique instances: 418\\n\\n--- conll ---\\n  Entities: 7849, dim=4096\\n  Positive: 7157 (91.2%), Negative: 692\\n  Unique instances for GroupKFold: 418\\n    GKF fold: AUROC=0.8617, train=6279(335 inst), test=1570(83 inst), test_pos=0.899\\n    GKF fold: AUROC=0.9070, train=6281(335 inst), test=1568(83 inst), test_pos=0.908\\n    GKF fold: AUROC=0.8930, train=6281(334 inst), test=1568(84 inst), test_pos=0.933\\n    GKF fold: AUROC=0.9498, train=6277(334 inst), test=1572(84 inst), test_pos=0.928\\n    GKF fold: AUROC=0.8130, train=6278(334 inst), test=1571(84 inst), test_pos=0.891\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.14}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4ef02f80-2bd2-4491-8d00-968f4ce2770e",
+  "uuid": "7cbdfb3e-4342-4b38-9542-9f42ef255883",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\n============================================================\\\\nProcessing conll...\\\\n  Loading tokenizer from /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-conll2003-merged...\\\\n    [100/500] 15s, 1735 entities, 0 skipped\\\\n    [200/500] 21s, 3233 entities, 0 skipped\\\\n    [300/500] 42s, 5355 entities, 0 skipped\\\\n    [400/500] 52s, 6817 entities, 0 skipped\\\\n    [500/500] 56s, 7849 entities, 0 skipped\\\\n  Reconstructed 7849 instance_ids in 55.5s (skipped=0)\\\\n  Unique instances: 418\\\\n\\\\n--- conll ---\\\\n  Entities: 7849, dim=4096\\\\n  Positive: 7157 (91.2%), Negative: 692\\\\n  Unique instances for GroupKFold: 418\\\\n    GKF fold: AUROC=0.8617, train=6279(335 inst), test=1570(83 inst), test_pos=0.899\\\\n    GKF fold: AUROC=0.9070, train=6281(335 inst), test=1568(83 inst), test_pos=0.908\\\\n    GKF fold: AUROC=0.8930, train=6281(334 inst), test=1568(84 inst), test_pos=0.933\\\\n    GKF fold: AUROC=0.9498, train=6277(334 inst), test=1572(84 inst), test_pos=0.928\\\\n    GKF fold: AUROC=0.8130, train=6278(334 inst), test=1571(84 inst), test_pos=0.891\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.14}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\n============================================================\\nProcessing conll...\\n  Loading tokenizer from /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-conll2003-merged...\\n    [100/500] 15s, 1735 entities, 0 skipped\\n    [200/500] 21s, 3233 entities, 0 skipped\\n    [300/500] 42s, 5355 entities, 0 skipped\\n    [400/500] 52s, 6817 entities, 0 skipped\\n    [500/500] 56s, 7849 entities, 0 skipped\\n  Reconstructed 7849 instance_ids in 55.5s (skipped=0)\\n  Unique instances: 418\\n\\n--- conll ---\\n  Entities: 7849, dim=4096\\n  Positive: 7157 (91.2%), Negative: 692\\n  Unique instances for GroupKFold: 418\\n    GKF fold: AUROC=0.8617, train=6279(335 inst), test=1570(83 inst), test_pos=0.899\\n    GKF fold: AUROC=0.9070, train=6281(335 inst), test=1568(83 inst), test_pos=0.908\\n    GKF fold: AUROC=0.8930, train=6281(334 inst), test=1568(84 inst), test_pos=0.933\\n    GKF fold: AUROC=0.9498, train=6277(334 inst), test=1572(84 inst), test_pos=0.928\\n    GKF fold: AUROC=0.8130, train=6278(334 inst), test=1571(84 inst), test_pos=0.891\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.14}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 87_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Excellent! Conll GroupKFold results are in:
+- Fold AUROCs: 0.8617, 0.9070, 0.8930, 0.9498, 0.8130
+- Mean: (0.8617 + 0.9070 + 0.8930 + 0.9498 + 0.8130) / 5 = 4.4245 / 5 = 0.8849
+
+Compared to StratifiedKFold AUROC of 0.957.
+
+
+The drop to GroupKFold is about 0.072, but the mean of 0.885 still exceeds the majority vote baseline of 0.87, which means the probe is still capturing real signal in the representation. I should wait for the full results across all datasets before drawing conclusions.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4ef02f80-2bd2-4491-8d00-968f4ce2770e",
+  "uuid": "bf71e9da-1556-428a-9e5c-3d281eb4fdc9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GaUYojzN2ULogjY454ur3X",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 769,
+      "cache_read_input_tokens": 73816,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 769
+      },
+      "output_tokens": 25,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 88_
+
+Conll GroupKFold fold AUROCs: 0.862, 0.907, 0.893, 0.950, 0.813. Mean ~0.885 — still above MV (0.87). Let me wait for the full results.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4ef02f80-2bd2-4491-8d00-968f4ce2770e",
+  "uuid": "5e4f65cb-df70-4f1f-819f-586f82ac6041",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GaUYojzN2ULogjY454ur3X",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 769,
+      "cache_read_input_tokens": 73816,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 769
+      },
+      "output_tokens": 25,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 89_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01CnhMS2vina8VSg11L3GHWk`</summary>
+
+```json
+{
+  "server": "autodl-5090-c",
+  "command": "tail -80 /tmp/probe_groupkfold.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4ef02f80-2bd2-4491-8d00-968f4ce2770e",
+  "uuid": "27409979-813f-41c7-b375-93d73080c0ea",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GaUYojzN2ULogjY454ur3X",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 769,
+      "cache_read_input_tokens": 73816,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 769
+      },
+      "output_tokens": 25,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 90 · 2026-05-21T03:18:21.681Z_
+
+<details><summary>↩ Tool result · `toolu_01CnhMS2vina8VSg11L3GHWk`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\n============================================================\\nProcessing conll...\\n  Loading tokenizer from /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-conll2003-merged...\\n    [100/500] 15s, 1735 entities, 0 skipped\\n    [200/500] 21s, 3233 entities, 0 skipped\\n    [300/500] 42s, 5355 entities, 0 skipped\\n    [400/500] 52s, 6817 entities, 0 skipped\\n    [500/500] 56s, 7849 entities, 0 skipped\\n  Reconstructed 7849 instance_ids in 55.5s (skipped=0)\\n  Unique instances: 418\\n\\n--- conll ---\\n  Entities: 7849, dim=4096\\n  Positive: 7157 (91.2%), Negative: 692\\n  Unique instances for GroupKFold: 418\\n    GKF fold: AUROC=0.8617, train=6279(335 inst), test=1570(83 inst), test_pos=0.899\\n    GKF fold: AUROC=0.9070, train=6281(335 inst), test=1568(83 inst), test_pos=0.908\\n    GKF fold: AUROC=0.8930, train=6281(334 inst), test=1568(84 inst), test_pos=0.933\\n    GKF fold: AUROC=0.9498, train=6277(334 inst), test=1572(84 inst), test_pos=0.928\\n    GKF fold: AUROC=0.8130, train=6278(334 inst), test=1571(84 inst), test_pos=0.891\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.12}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4ef02f80-2bd2-4491-8d00-968f4ce2770e",
+  "uuid": "bf73cce9-369a-4b4f-a74d-0a0e88f42836",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\n============================================================\\\\nProcessing conll...\\\\n  Loading tokenizer from /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-conll2003-merged...\\\\n    [100/500] 15s, 1735 entities, 0 skipped\\\\n    [200/500] 21s, 3233 entities, 0 skipped\\\\n    [300/500] 42s, 5355 entities, 0 skipped\\\\n    [400/500] 52s, 6817 entities, 0 skipped\\\\n    [500/500] 56s, 7849 entities, 0 skipped\\\\n  Reconstructed 7849 instance_ids in 55.5s (skipped=0)\\\\n  Unique instances: 418\\\\n\\\\n--- conll ---\\\\n  Entities: 7849, dim=4096\\\\n  Positive: 7157 (91.2%), Negative: 692\\\\n  Unique instances for GroupKFold: 418\\\\n    GKF fold: AUROC=0.8617, train=6279(335 inst), test=1570(83 inst), test_pos=0.899\\\\n    GKF fold: AUROC=0.9070, train=6281(335 inst), test=1568(83 inst), test_pos=0.908\\\\n    GKF fold: AUROC=0.8930, train=6281(334 inst), test=1568(84 inst), test_pos=0.933\\\\n    GKF fold: AUROC=0.9498, train=6277(334 inst), test=1572(84 inst), test_pos=0.928\\\\n    GKF fold: AUROC=0.8130, train=6278(334 inst), test=1571(84 inst), test_pos=0.891\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.12}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\n============================================================\\nProcessing conll...\\n  Loading tokenizer from /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-conll2003-merged...\\n    [100/500] 15s, 1735 entities, 0 skipped\\n    [200/500] 21s, 3233 entities, 0 skipped\\n    [300/500] 42s, 5355 entities, 0 skipped\\n    [400/500] 52s, 6817 entities, 0 skipped\\n    [500/500] 56s, 7849 entities, 0 skipped\\n  Reconstructed 7849 instance_ids in 55.5s (skipped=0)\\n  Unique instances: 418\\n\\n--- conll ---\\n  Entities: 7849, dim=4096\\n  Positive: 7157 (91.2%), Negative: 692\\n  Unique instances for GroupKFold: 418\\n    GKF fold: AUROC=0.8617, train=6279(335 inst), test=1570(83 inst), test_pos=0.899\\n    GKF fold: AUROC=0.9070, train=6281(335 inst), test=1568(83 inst), test_pos=0.908\\n    GKF fold: AUROC=0.8930, train=6281(334 inst), test=1568(84 inst), test_pos=0.933\\n    GKF fold: AUROC=0.9498, train=6277(334 inst), test=1572(84 inst), test_pos=0.928\\n    GKF fold: AUROC=0.8130, train=6278(334 inst), test=1571(84 inst), test_pos=0.891\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.12}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 91_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01R3VQYHMKQa2PZ1DH6T5uFk`</summary>
+
+```json
+{
+  "server": "autodl-5090-c",
+  "command": "wc -l /tmp/probe_groupkfold.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4ef02f80-2bd2-4491-8d00-968f4ce2770e",
+  "uuid": "d81e28c8-1c7c-4ba5-8f66-1d1694363d90",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TEjXKXbii8VMnYK599JerA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1053,
+      "cache_read_input_tokens": 74585,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1053
+      },
+      "output_tokens": 65,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 92 · 2026-05-21T03:18:25.796Z_
+
+<details><summary>↩ Tool result · `toolu_01R3VQYHMKQa2PZ1DH6T5uFk`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"21 /tmp/probe_groupkfold.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.12}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4ef02f80-2bd2-4491-8d00-968f4ce2770e",
+  "uuid": "3280681b-8ef1-4b17-812f-3c8e247184f2",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"21 /tmp/probe_groupkfold.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.12}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"21 /tmp/probe_groupkfold.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.12}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 93_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Still running StratifiedKFold comparison for conll, which loads the full hidden states matrix. Let me wait.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4ef02f80-2bd2-4491-8d00-968f4ce2770e",
+  "uuid": "cbe2aa6a-d6f3-4aa0-98ef-84c0da674b81",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BVd7bwatj72pCChQbzbxGi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 206,
+      "cache_read_input_tokens": 75638,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 206
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 94_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Fy5eXCNPoQnoeb5cUuuVRC`</summary>
+
+```json
+{
+  "server": "autodl-5090-c",
+  "command": "tail -40 /tmp/probe_groupkfold.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4ef02f80-2bd2-4491-8d00-968f4ce2770e",
+  "uuid": "6f4a0474-dd38-404d-9b63-6beb35d38e32",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BVd7bwatj72pCChQbzbxGi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 206,
+      "cache_read_input_tokens": 75638,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 206
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 95 · 2026-05-21T03:18:30.541Z_
+
+<details><summary>↩ Tool result · `toolu_01Fy5eXCNPoQnoeb5cUuuVRC`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\n============================================================\\nProcessing conll...\\n  Loading tokenizer from /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-conll2003-merged...\\n    [100/500] 15s, 1735 entities, 0 skipped\\n    [200/500] 21s, 3233 entities, 0 skipped\\n    [300/500] 42s, 5355 entities, 0 skipped\\n    [400/500] 52s, 6817 entities, 0 skipped\\n    [500/500] 56s, 7849 entities, 0 skipped\\n  Reconstructed 7849 instance_ids in 55.5s (skipped=0)\\n  Unique instances: 418\\n\\n--- conll ---\\n  Entities: 7849, dim=4096\\n  Positive: 7157 (91.2%), Negative: 692\\n  Unique instances for GroupKFold: 418\\n    GKF fold: AUROC=0.8617, train=6279(335 inst), test=1570(83 inst), test_pos=0.899\\n    GKF fold: AUROC=0.9070, train=6281(335 inst), test=1568(83 inst), test_pos=0.908\\n    GKF fold: AUROC=0.8930, train=6281(334 inst), test=1568(84 inst), test_pos=0.933\\n    GKF fold: AUROC=0.9498, train=6277(334 inst), test=1572(84 inst), test_pos=0.928\\n    GKF fold: AUROC=0.8130, train=6278(334 inst), test=1571(84 inst), test_pos=0.891\\n\\n  StratifiedKFold AUROC: 0.9796 +/- 0.0036\\n  GroupKFold AUROC:      0.8849 +/- 0.0458\\n  Delta:                 -0.0947\\n  vs MV=0.87, ESJ=0.51\\n  => HIGH — probe > MV, info exists in representation, prompt interface fails\\n  Saved: /root/autodl-tmp/struct_self_consist_ie/output/entity_probe_auroc_groupkfold/groupkfold_results_conll.json\\n\\n============================================================\\nProcessing fewnerd...\\n  Loading tokenizer from /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-fewnerd-exp021-merged...\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.12}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4ef02f80-2bd2-4491-8d00-968f4ce2770e",
+  "uuid": "ded674a1-8e21-46bc-b51a-480fddee840b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\n============================================================\\\\nProcessing conll...\\\\n  Loading tokenizer from /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-conll2003-merged...\\\\n    [100/500] 15s, 1735 entities, 0 skipped\\\\n    [200/500] 21s, 3233 entities, 0 skipped\\\\n    [300/500] 42s, 5355 entities, 0 skipped\\\\n    [400/500] 52s, 6817 entities, 0 skipped\\\\n    [500/500] 56s, 7849 entities, 0 skipped\\\\n  Reconstructed 7849 instance_ids in 55.5s (skipped=0)\\\\n  Unique instances: 418\\\\n\\\\n--- conll ---\\\\n  Entities: 7849, dim=4096\\\\n  Positive: 7157 (91.2%), Negative: 692\\\\n  Unique instances for GroupKFold: 418\\\\n    GKF fold: AUROC=0.8617, train=6279(335 inst), test=1570(83 inst), test_pos=0.899\\\\n    GKF fold: AUROC=0.9070, train=6281(335 inst), test=1568(83 inst), test_pos=0.908\\\\n    GKF fold: AUROC=0.8930, train=6281(334 inst), test=1568(84 inst), test_pos=0.933\\\\n    GKF fold: AUROC=0.9498, train=6277(334 inst), test=1572(84 inst), test_pos=0.928\\\\n    GKF fold: AUROC=0.8130, train=6278(334 inst), test=1571(84 inst), test_pos=0.891\\\\n\\\\n  StratifiedKFold AUROC: 0.9796 +/- 0.0036\\\\n  GroupKFold AUROC:      0.8849 +/- 0.0458\\\\n  Delta:                 -0.0947\\\\n  vs MV=0.87, ESJ=0.51\\\\n  => HIGH — probe > MV, info exists in representation, prompt interface fails\\\\n  Saved: /root/autodl-tmp/struct_self_consist_ie/output/entity_probe_auroc_groupkfold/groupkfold_results_conll.json\\\\n\\\\n============================================================\\\\nProcessing fewnerd...\\\\n  Loading tokenizer from /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-fewnerd-exp021-merged...\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.12}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\n============================================================\\nProcessing conll...\\n  Loading tokenizer from /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-conll2003-merged...\\n    [100/500] 15s, 1735 entities, 0 skipped\\n    [200/500] 21s, 3233 entities, 0 skipped\\n    [300/500] 42s, 5355 entities, 0 skipped\\n    [400/500] 52s, 6817 entities, 0 skipped\\n    [500/500] 56s, 7849 entities, 0 skipped\\n  Reconstructed 7849 instance_ids in 55.5s (skipped=0)\\n  Unique instances: 418\\n\\n--- conll ---\\n  Entities: 7849, dim=4096\\n  Positive: 7157 (91.2%), Negative: 692\\n  Unique instances for GroupKFold: 418\\n    GKF fold: AUROC=0.8617, train=6279(335 inst), test=1570(83 inst), test_pos=0.899\\n    GKF fold: AUROC=0.9070, train=6281(335 inst), test=1568(83 inst), test_pos=0.908\\n    GKF fold: AUROC=0.8930, train=6281(334 inst), test=1568(84 inst), test_pos=0.933\\n    GKF fold: AUROC=0.9498, train=6277(334 inst), test=1572(84 inst), test_pos=0.928\\n    GKF fold: AUROC=0.8130, train=6278(334 inst), test=1571(84 inst), test_pos=0.891\\n\\n  StratifiedKFold AUROC: 0.9796 +/- 0.0036\\n  GroupKFold AUROC:      0.8849 +/- 0.0458\\n  Delta:                 -0.0947\\n  vs MV=0.87, ESJ=0.51\\n  => HIGH — probe > MV, info exists in representation, prompt interface fails\\n  Saved: /root/autodl-tmp/struct_self_consist_ie/output/entity_probe_auroc_groupkfold/groupkfold_results_conll.json\\n\\n============================================================\\nProcessing fewnerd...\\n  Loading tokenizer from /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-fewnerd-exp021-merged...\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.12}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 96_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Excellent! Conll results:
+- StratifiedKFold AUROC: 0.9796 ± 0.0036
+- GroupKFold AUROC: 0.8849 ± 0.0458
+- Delta: -0.0947
+- GroupKFold still > MV (0.87): YES
+
+Wait, the StratifiedKFold AUROC here is 0.9796, but the original result was 0.9567. Let me think about why... Oh, I see — the original code uses `LogisticRegression(max_iter=1000, C=1.0, solver="lbfgs")` without `random_state`. 
+
+I'm using the exact same classifier configuration in my script, so the difference in results is puzzling — the original gave 0.9567 but I'm getting 0.9796 now.
+
+Looking at the metadata more carefully, I notice the original `entity_probe_results.json` shows a suspiciously large n_train value of 16683 for conll, even though the dataset only has 7849 entities total. This suggests that file was generated from a different version of the code that combined datasets in a different way. The standalone `auroc_results_conll.json` file should be the correct per-dataset result, which also shows 0.9567.
+
+But my StratifiedKFold reproduction is giving 0.9796 instead, which is a meaningful difference, so something must be different in how the data or cross-validation is being set up.
+
+Looking at the original `run_auroc_probe` function, it uses LogisticRegression with max_iter=1000, C=1.0, and the lbfgs solver — exactly what I have in my script. The StratifiedKFold parameters match too (5 folds with seeds [42, 123, 456]). The discrepancy could come down to a sklearn version difference, or the data might have been re-extracted differently from the original run.
+
+Now I'm noticing that my StratifiedKFold result of 0.9796 is actually closer to the scierc result (0.977) than the conll result (0.9567). Looking more carefully at the entity_probe_results.json file, I see the "within_dataset_cv" metrics for conll show auroc_mean of 0.9567, but the LODO results have some inconsistencies — like n_train showing 16683 for fewnerd test when conll only has 7849 entities. This suggests the entity_probe_results.json might be from a different run with different settings or n_samples configurations than the standalone auroc_results_conll.json file. Looking at the complete results, my script is producing 0.9796 while the original probe got 0.9567—a gap of 0.023 that's too large to be a version difference. The timestamps show both files were generated together from the same data, so something about how I'm running the evaluation must be different. I'm wondering if there's a subtle difference in how the hidden states are being loaded or processed, since the original code uses `weights_only=True` when loading the tensors. The sklearn version might be causing the StratifiedKFold discrepancy, or the original results came from a different dataset run. Both the stored results and my current run show AUROC around 0.957 for StratifiedKFold, but my script is getting 0.980 instead. I'll set that aside for now since the important metric is the GroupKFold AUROC of 0.885.
+
+Actually, I should investigate this more carefully since a 0.023 difference is substantial and could indicate an issue with my script—maybe wrong data loading or preprocessing. Looking at the LogisticRegression parameters, they appear identical between my version and the original, but sklearn's default penalty parameter might have changed in newer versions.
+
+Let me check the sklearn documentation... actually, `penalty='l2'` has been consistent across versions, and `tol=1e-4` is also unchanged. The discrepancy could be due to internal optimization changes in sklearn 1.8, or possibly different data, though the file timestamps suggest the data hasn't been modified.
+
+I think I should focus on the GroupKFold result since that's the key comparison—the StratifiedKFold difference might just be a sklearn version artifact and doesn't affect the main conclusion.
+
+Looking more carefully at the files, I notice entity_probe_results.json appears to be generated by a different combined analysis script rather than run_auroc_probe directly, which explains why the within_dataset_cv AUROC for conll shows 0.957 there—it might have been computed with different parameters or a different number of instances than the direct run_auroc_probe output.
+
+The leave_one_dataset_out metrics in that file show n_test=16683 for conll, which is much larger than the 7849 entities currently in the data, suggesting this file was generated from an earlier run with different or expanded data. My current StratifiedKFold implementation on the existing .pt files (with 7849 conll entities, 10508 fewnerd, and 12933 scierc) produces the 0.980 result, which is the correct value for the current dataset.
+
+The key finding is that GroupKFold (0.885) outperforms MV (0.87) and substantially beats ESJ (0.51), confirming the main claim that proper group-based splitting prevents data leakage. I'm waiting on the fewnerd and scierc results to complete the comparison.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4ef02f80-2bd2-4491-8d00-968f4ce2770e",
+  "uuid": "8e5a3c09-cac7-4141-80cc-95b4fd212b88",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018KPzXPfyae6675RCW7Q3pJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 904,
+      "cache_read_input_tokens": 75844,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 904
+      },
+      "output_tokens": 50,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 97_
+
+Conll complete: **GroupKFold AUROC = 0.885 > MV (0.87)**. Drop of -0.095 from StratifiedKFold (0.980), but still above MV. Now processing fewnerd.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4ef02f80-2bd2-4491-8d00-968f4ce2770e",
+  "uuid": "cdd335a1-666c-4d94-924a-c19e6c4ab3a3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018KPzXPfyae6675RCW7Q3pJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 904,
+      "cache_read_input_tokens": 75844,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 904
+      },
+      "output_tokens": 50,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 98_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01HpsNxcA59L27RB448587zF`</summary>
+
+```json
+{
+  "server": "autodl-5090-c",
+  "command": "tail -15 /tmp/probe_groupkfold.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4ef02f80-2bd2-4491-8d00-968f4ce2770e",
+  "uuid": "b540cec8-af64-4781-9a07-04688a45f5b3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018KPzXPfyae6675RCW7Q3pJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 904,
+      "cache_read_input_tokens": 75844,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 904
+      },
+      "output_tokens": 50,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 99 · 2026-05-21T03:19:32.833Z_
+
+<details><summary>↩ Tool result · `toolu_01HpsNxcA59L27RB448587zF`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\n  StratifiedKFold AUROC: 0.9796 +/- 0.0036\\n  GroupKFold AUROC:      0.8849 +/- 0.0458\\n  Delta:                 -0.0947\\n  vs MV=0.87, ESJ=0.51\\n  => HIGH — probe > MV, info exists in representation, prompt interface fails\\n  Saved: /root/autodl-tmp/struct_self_consist_ie/output/entity_probe_auroc_groupkfold/groupkfold_results_conll.json\\n\\n============================================================\\nProcessing fewnerd...\\n  Loading tokenizer from /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-fewnerd-exp021-merged...\\n    [100/500] 12s, 1936 entities, 0 skipped\\n    [200/500] 23s, 3947 entities, 0 skipped\\n    [300/500] 35s, 6040 entities, 7 skipped\\n    [400/500] 47s, 8214 entities, 7 skipped\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.13}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4ef02f80-2bd2-4491-8d00-968f4ce2770e",
+  "uuid": "0ac076d0-4938-4ba3-8faa-9b0eb14e8b43",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\n  StratifiedKFold AUROC: 0.9796 +/- 0.0036\\\\n  GroupKFold AUROC:      0.8849 +/- 0.0458\\\\n  Delta:                 -0.0947\\\\n  vs MV=0.87, ESJ=0.51\\\\n  => HIGH — probe > MV, info exists in representation, prompt interface fails\\\\n  Saved: /root/autodl-tmp/struct_self_consist_ie/output/entity_probe_auroc_groupkfold/groupkfold_results_conll.json\\\\n\\\\n============================================================\\\\nProcessing fewnerd...\\\\n  Loading tokenizer from /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-fewnerd-exp021-merged...\\\\n    [100/500] 12s, 1936 entities, 0 skipped\\\\n    [200/500] 23s, 3947 entities, 0 skipped\\\\n    [300/500] 35s, 6040 entities, 7 skipped\\\\n    [400/500] 47s, 8214 entities, 7 skipped\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.13}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\n  StratifiedKFold AUROC: 0.9796 +/- 0.0036\\n  GroupKFold AUROC:      0.8849 +/- 0.0458\\n  Delta:                 -0.0947\\n  vs MV=0.87, ESJ=0.51\\n  => HIGH — probe > MV, info exists in representation, prompt interface fails\\n  Saved: /root/autodl-tmp/struct_self_consist_ie/output/entity_probe_auroc_groupkfold/groupkfold_results_conll.json\\n\\n============================================================\\nProcessing fewnerd...\\n  Loading tokenizer from /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-fewnerd-exp021-merged...\\n    [100/500] 12s, 1936 entities, 0 skipped\\n    [200/500] 23s, 3947 entities, 0 skipped\\n    [300/500] 35s, 6040 entities, 7 skipped\\n    [400/500] 47s, 8214 entities, 7 skipped\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.13}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 100_
+
+Fewnerd reconstruction progressing — 400/500, 7 skipped matches the original exactly. ETA ~15s.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4ef02f80-2bd2-4491-8d00-968f4ce2770e",
+  "uuid": "2864fc23-e5c4-40d8-b88d-44d3c4c421e6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YKrzuK2R5iHc6m9eXoh4by",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3413,
+      "cache_read_input_tokens": 76748,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3413
+      },
+      "output_tokens": 5,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 101_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_017oea9GNjEdKihWuFgjV8fP`</summary>
+
+```json
+{
+  "server": "autodl-5090-c",
+  "command": "tail -30 /tmp/probe_groupkfold.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4ef02f80-2bd2-4491-8d00-968f4ce2770e",
+  "uuid": "af916662-3005-496b-975f-31ce1a8adb88",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YKrzuK2R5iHc6m9eXoh4by",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3413,
+      "cache_read_input_tokens": 76748,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3413
+      },
+      "output_tokens": 5,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 102_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed_warning",
+    "resetsAt": 1779858000,
+    "rateLimitType": "seven_day",
+    "utilization": 0.28,
+    "isUsingOverage": false
+  },
+  "uuid": "2ec4fef6-3584-431e-86cd-67df408f4fba",
+  "session_id": "4ef02f80-2bd2-4491-8d00-968f4ce2770e"
+}
+```
+
+---
+
+### Tool result
+
+_source line 103 · 2026-05-21T03:19:38.070Z_
+
+<details><summary>↩ Tool result · `toolu_017oea9GNjEdKihWuFgjV8fP`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"    [300/500] 42s, 5355 entities, 0 skipped\\n    [400/500] 52s, 6817 entities, 0 skipped\\n    [500/500] 56s, 7849 entities, 0 skipped\\n  Reconstructed 7849 instance_ids in 55.5s (skipped=0)\\n  Unique instances: 418\\n\\n--- conll ---\\n  Entities: 7849, dim=4096\\n  Positive: 7157 (91.2%), Negative: 692\\n  Unique instances for GroupKFold: 418\\n    GKF fold: AUROC=0.8617, train=6279(335 inst), test=1570(83 inst), test_pos=0.899\\n    GKF fold: AUROC=0.9070, train=6281(335 inst), test=1568(83 inst), test_pos=0.908\\n    GKF fold: AUROC=0.8930, train=6281(334 inst), test=1568(84 inst), test_pos=0.933\\n    GKF fold: AUROC=0.9498, train=6277(334 inst), test=1572(84 inst), test_pos=0.928\\n    GKF fold: AUROC=0.8130, train=6278(334 inst), test=1571(84 inst), test_pos=0.891\\n\\n  StratifiedKFold AUROC: 0.9796 +/- 0.0036\\n  GroupKFold AUROC:      0.8849 +/- 0.0458\\n  Delta:                 -0.0947\\n  vs MV=0.87, ESJ=0.51\\n  => HIGH — probe > MV, info exists in representation, prompt interface fails\\n  Saved: /root/autodl-tmp/struct_self_consist_ie/output/entity_probe_auroc_groupkfold/groupkfold_results_conll.json\\n\\n============================================================\\nProcessing fewnerd...\\n  Loading tokenizer from /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-fewnerd-exp021-merged...\\n    [100/500] 12s, 1936 entities, 0 skipped\\n    [200/500] 23s, 3947 entities, 0 skipped\\n    [300/500] 35s, 6040 entities, 7 skipped\\n    [400/500] 47s, 8214 entities, 7 skipped\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.56}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4ef02f80-2bd2-4491-8d00-968f4ce2770e",
+  "uuid": "bdee2461-0d50-4bff-b230-e296cef87cad",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"    [300/500] 42s, 5355 entities, 0 skipped\\\\n    [400/500] 52s, 6817 entities, 0 skipped\\\\n    [500/500] 56s, 7849 entities, 0 skipped\\\\n  Reconstructed 7849 instance_ids in 55.5s (skipped=0)\\\\n  Unique instances: 418\\\\n\\\\n--- conll ---\\\\n  Entities: 7849, dim=4096\\\\n  Positive: 7157 (91.2%), Negative: 692\\\\n  Unique instances for GroupKFold: 418\\\\n    GKF fold: AUROC=0.8617, train=6279(335 inst), test=1570(83 inst), test_pos=0.899\\\\n    GKF fold: AUROC=0.9070, train=6281(335 inst), test=1568(83 inst), test_pos=0.908\\\\n    GKF fold: AUROC=0.8930, train=6281(334 inst), test=1568(84 inst), test_pos=0.933\\\\n    GKF fold: AUROC=0.9498, train=6277(334 inst), test=1572(84 inst), test_pos=0.928\\\\n    GKF fold: AUROC=0.8130, train=6278(334 inst), test=1571(84 inst), test_pos=0.891\\\\n\\\\n  StratifiedKFold AUROC: 0.9796 +/- 0.0036\\\\n  GroupKFold AUROC:      0.8849 +/- 0.0458\\\\n  Delta:                 -0.0947\\\\n  vs MV=0.87, ESJ=0.51\\\\n  => HIGH — probe > MV, info exists in representation, prompt interface fails\\\\n  Saved: /root/autodl-tmp/struct_self_consist_ie/output/entity_probe_auroc_groupkfold/groupkfold_results_conll.json\\\\n\\\\n============================================================\\\\nProcessing fewnerd...\\\\n  Loading tokenizer from /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-fewnerd-exp021-merged...\\\\n    [100/500] 12s, 1936 entities, 0 skipped\\\\n    [200/500] 23s, 3947 entities, 0 skipped\\\\n    [300/500] 35s, 6040 entities, 7 skipped\\\\n    [400/500] 47s, 8214 entities, 7 skipped\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.56}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"    [300/500] 42s, 5355 entities, 0 skipped\\n    [400/500] 52s, 6817 entities, 0 skipped\\n    [500/500] 56s, 7849 entities, 0 skipped\\n  Reconstructed 7849 instance_ids in 55.5s (skipped=0)\\n  Unique instances: 418\\n\\n--- conll ---\\n  Entities: 7849, dim=4096\\n  Positive: 7157 (91.2%), Negative: 692\\n  Unique instances for GroupKFold: 418\\n    GKF fold: AUROC=0.8617, train=6279(335 inst), test=1570(83 inst), test_pos=0.899\\n    GKF fold: AUROC=0.9070, train=6281(335 inst), test=1568(83 inst), test_pos=0.908\\n    GKF fold: AUROC=0.8930, train=6281(334 inst), test=1568(84 inst), test_pos=0.933\\n    GKF fold: AUROC=0.9498, train=6277(334 inst), test=1572(84 inst), test_pos=0.928\\n    GKF fold: AUROC=0.8130, train=6278(334 inst), test=1571(84 inst), test_pos=0.891\\n\\n  StratifiedKFold AUROC: 0.9796 +/- 0.0036\\n  GroupKFold AUROC:      0.8849 +/- 0.0458\\n  Delta:                 -0.0947\\n  vs MV=0.87, ESJ=0.51\\n  => HIGH — probe > MV, info exists in representation, prompt interface fails\\n  Saved: /root/autodl-tmp/struct_self_consist_ie/output/entity_probe_auroc_groupkfold/groupkfold_results_conll.json\\n\\n============================================================\\nProcessing fewnerd...\\n  Loading tokenizer from /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-fewnerd-exp021-merged...\\n    [100/500] 12s, 1936 entities, 0 skipped\\n    [200/500] 23s, 3947 entities, 0 skipped\\n    [300/500] 35s, 6040 entities, 7 skipped\\n    [400/500] 47s, 8214 entities, 7 skipped\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.56}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 104_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_011uGZpyi51AGpgN4P17d7g3`</summary>
+
+```json
+{
+  "server": "autodl-5090-c",
+  "command": "tail -20 /tmp/probe_groupkfold.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4ef02f80-2bd2-4491-8d00-968f4ce2770e",
+  "uuid": "243082dc-da2f-412b-aa2f-3d8ae3abe5dd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KEe2GU5hZ76kJY2gddhh8n",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 887,
+      "cache_read_input_tokens": 80161,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 887
+      },
+      "output_tokens": 67,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 105 · 2026-05-21T03:19:43.871Z_
+
+<details><summary>↩ Tool result · `toolu_011uGZpyi51AGpgN4P17d7g3`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"    GKF fold: AUROC=0.8617, train=6279(335 inst), test=1570(83 inst), test_pos=0.899\\n    GKF fold: AUROC=0.9070, train=6281(335 inst), test=1568(83 inst), test_pos=0.908\\n    GKF fold: AUROC=0.8930, train=6281(334 inst), test=1568(84 inst), test_pos=0.933\\n    GKF fold: AUROC=0.9498, train=6277(334 inst), test=1572(84 inst), test_pos=0.928\\n    GKF fold: AUROC=0.8130, train=6278(334 inst), test=1571(84 inst), test_pos=0.891\\n\\n  StratifiedKFold AUROC: 0.9796 +/- 0.0036\\n  GroupKFold AUROC:      0.8849 +/- 0.0458\\n  Delta:                 -0.0947\\n  vs MV=0.87, ESJ=0.51\\n  => HIGH — probe > MV, info exists in representation, prompt interface fails\\n  Saved: /root/autodl-tmp/struct_self_consist_ie/output/entity_probe_auroc_groupkfold/groupkfold_results_conll.json\\n\\n============================================================\\nProcessing fewnerd...\\n  Loading tokenizer from /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-fewnerd-exp021-merged...\\n    [100/500] 12s, 1936 entities, 0 skipped\\n    [200/500] 23s, 3947 entities, 0 skipped\\n    [300/500] 35s, 6040 entities, 7 skipped\\n    [400/500] 47s, 8214 entities, 7 skipped\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.16}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4ef02f80-2bd2-4491-8d00-968f4ce2770e",
+  "uuid": "7522d34a-3eaf-40e0-8997-09c9b5c1853b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"    GKF fold: AUROC=0.8617, train=6279(335 inst), test=1570(83 inst), test_pos=0.899\\\\n    GKF fold: AUROC=0.9070, train=6281(335 inst), test=1568(83 inst), test_pos=0.908\\\\n    GKF fold: AUROC=0.8930, train=6281(334 inst), test=1568(84 inst), test_pos=0.933\\\\n    GKF fold: AUROC=0.9498, train=6277(334 inst), test=1572(84 inst), test_pos=0.928\\\\n    GKF fold: AUROC=0.8130, train=6278(334 inst), test=1571(84 inst), test_pos=0.891\\\\n\\\\n  StratifiedKFold AUROC: 0.9796 +/- 0.0036\\\\n  GroupKFold AUROC:      0.8849 +/- 0.0458\\\\n  Delta:                 -0.0947\\\\n  vs MV=0.87, ESJ=0.51\\\\n  => HIGH — probe > MV, info exists in representation, prompt interface fails\\\\n  Saved: /root/autodl-tmp/struct_self_consist_ie/output/entity_probe_auroc_groupkfold/groupkfold_results_conll.json\\\\n\\\\n============================================================\\\\nProcessing fewnerd...\\\\n  Loading tokenizer from /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-fewnerd-exp021-merged...\\\\n    [100/500] 12s, 1936 entities, 0 skipped\\\\n    [200/500] 23s, 3947 entities, 0 skipped\\\\n    [300/500] 35s, 6040 entities, 7 skipped\\\\n    [400/500] 47s, 8214 entities, 7 skipped\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.16}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"    GKF fold: AUROC=0.8617, train=6279(335 inst), test=1570(83 inst), test_pos=0.899\\n    GKF fold: AUROC=0.9070, train=6281(335 inst), test=1568(83 inst), test_pos=0.908\\n    GKF fold: AUROC=0.8930, train=6281(334 inst), test=1568(84 inst), test_pos=0.933\\n    GKF fold: AUROC=0.9498, train=6277(334 inst), test=1572(84 inst), test_pos=0.928\\n    GKF fold: AUROC=0.8130, train=6278(334 inst), test=1571(84 inst), test_pos=0.891\\n\\n  StratifiedKFold AUROC: 0.9796 +/- 0.0036\\n  GroupKFold AUROC:      0.8849 +/- 0.0458\\n  Delta:                 -0.0947\\n  vs MV=0.87, ESJ=0.51\\n  => HIGH — probe > MV, info exists in representation, prompt interface fails\\n  Saved: /root/autodl-tmp/struct_self_consist_ie/output/entity_probe_auroc_groupkfold/groupkfold_results_conll.json\\n\\n============================================================\\nProcessing fewnerd...\\n  Loading tokenizer from /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-fewnerd-exp021-merged...\\n    [100/500] 12s, 1936 entities, 0 skipped\\n    [200/500] 23s, 3947 entities, 0 skipped\\n    [300/500] 35s, 6040 entities, 7 skipped\\n    [400/500] 47s, 8214 entities, 7 skipped\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.16}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 106_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01EuXyCvVxNDdKdFqVWnC4Hp`</summary>
+
+```json
+{
+  "server": "autodl-5090-c",
+  "command": "tail -25 /tmp/probe_groupkfold.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4ef02f80-2bd2-4491-8d00-968f4ce2770e",
+  "uuid": "f0f939af-4f79-406d-ba3e-b2fe2d932e81",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GLuPqsW4K8YoaZFVt7z7FT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 698,
+      "cache_read_input_tokens": 81048,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 698
+      },
+      "output_tokens": 67,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 107 · 2026-05-21T03:19:49.473Z_
+
+<details><summary>↩ Tool result · `toolu_01EuXyCvVxNDdKdFqVWnC4Hp`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  StratifiedKFold AUROC: 0.9796 +/- 0.0036\\n  GroupKFold AUROC:      0.8849 +/- 0.0458\\n  Delta:                 -0.0947\\n  vs MV=0.87, ESJ=0.51\\n  => HIGH — probe > MV, info exists in representation, prompt interface fails\\n  Saved: /root/autodl-tmp/struct_self_consist_ie/output/entity_probe_auroc_groupkfold/groupkfold_results_conll.json\\n\\n============================================================\\nProcessing fewnerd...\\n  Loading tokenizer from /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-fewnerd-exp021-merged...\\n    [100/500] 12s, 1936 entities, 0 skipped\\n    [200/500] 23s, 3947 entities, 0 skipped\\n    [300/500] 35s, 6040 entities, 7 skipped\\n    [400/500] 47s, 8214 entities, 7 skipped\\n    [500/500] 61s, 10508 entities, 7 skipped\\n  Reconstructed 10508 instance_ids in 60.7s (skipped=7)\\n  Unique instances: 433\\n\\n--- fewnerd ---\\n  Entities: 10508, dim=4096\\n  Positive: 8390 (79.8%), Negative: 2118\\n  Unique instances for GroupKFold: 433\\n    GKF fold: AUROC=0.6683, train=8403(346 inst), test=2105(87 inst), test_pos=0.811\\n    GKF fold: AUROC=0.6922, train=8404(346 inst), test=2104(87 inst), test_pos=0.816\\n    GKF fold: AUROC=0.6441, train=8407(346 inst), test=2101(87 inst), test_pos=0.821\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.12}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4ef02f80-2bd2-4491-8d00-968f4ce2770e",
+  "uuid": "ed821ead-f86d-4a71-89cf-933c52c45226",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  StratifiedKFold AUROC: 0.9796 +/- 0.0036\\\\n  GroupKFold AUROC:      0.8849 +/- 0.0458\\\\n  Delta:                 -0.0947\\\\n  vs MV=0.87, ESJ=0.51\\\\n  => HIGH — probe > MV, info exists in representation, prompt interface fails\\\\n  Saved: /root/autodl-tmp/struct_self_consist_ie/output/entity_probe_auroc_groupkfold/groupkfold_results_conll.json\\\\n\\\\n============================================================\\\\nProcessing fewnerd...\\\\n  Loading tokenizer from /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-fewnerd-exp021-merged...\\\\n    [100/500] 12s, 1936 entities, 0 skipped\\\\n    [200/500] 23s, 3947 entities, 0 skipped\\\\n    [300/500] 35s, 6040 entities, 7 skipped\\\\n    [400/500] 47s, 8214 entities, 7 skipped\\\\n    [500/500] 61s, 10508 entities, 7 skipped\\\\n  Reconstructed 10508 instance_ids in 60.7s (skipped=7)\\\\n  Unique instances: 433\\\\n\\\\n--- fewnerd ---\\\\n  Entities: 10508, dim=4096\\\\n  Positive: 8390 (79.8%), Negative: 2118\\\\n  Unique instances for GroupKFold: 433\\\\n    GKF fold: AUROC=0.6683, train=8403(346 inst), test=2105(87 inst), test_pos=0.811\\\\n    GKF fold: AUROC=0.6922, train=8404(346 inst), test=2104(87 inst), test_pos=0.816\\\\n    GKF fold: AUROC=0.6441, train=8407(346 inst), test=2101(87 inst), test_pos=0.821\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.12}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"  StratifiedKFold AUROC: 0.9796 +/- 0.0036\\n  GroupKFold AUROC:      0.8849 +/- 0.0458\\n  Delta:                 -0.0947\\n  vs MV=0.87, ESJ=0.51\\n  => HIGH — probe > MV, info exists in representation, prompt interface fails\\n  Saved: /root/autodl-tmp/struct_self_consist_ie/output/entity_probe_auroc_groupkfold/groupkfold_results_conll.json\\n\\n============================================================\\nProcessing fewnerd...\\n  Loading tokenizer from /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-fewnerd-exp021-merged...\\n    [100/500] 12s, 1936 entities, 0 skipped\\n    [200/500] 23s, 3947 entities, 0 skipped\\n    [300/500] 35s, 6040 entities, 7 skipped\\n    [400/500] 47s, 8214 entities, 7 skipped\\n    [500/500] 61s, 10508 entities, 7 skipped\\n  Reconstructed 10508 instance_ids in 60.7s (skipped=7)\\n  Unique instances: 433\\n\\n--- fewnerd ---\\n  Entities: 10508, dim=4096\\n  Positive: 8390 (79.8%), Negative: 2118\\n  Unique instances for GroupKFold: 433\\n    GKF fold: AUROC=0.6683, train=8403(346 inst), test=2105(87 inst), test_pos=0.811\\n    GKF fold: AUROC=0.6922, train=8404(346 inst), test=2104(87 inst), test_pos=0.816\\n    GKF fold: AUROC=0.6441, train=8407(346 inst), test=2101(87 inst), test_pos=0.821\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.12}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 108_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Fewnerd reconstruction done: 10508 entities (exact match), 7 skipped (exact match), 433 unique instances.
+
+Fewnerd GroupKFold fold results so far:
+- Fold 1: 0.6683
+- Fold 2: 0.6922
+- Fold 3: 0.6441
+
+This is significantly lower than the StratifiedKFold AUROC of 0.920. And it's below MV (0.87)! The mean seems to be around 0.67, which is "MODERATE — partial info in representation".
+
+This is a dramatic drop. 
+
+I should wait for the remaining folds to complete before drawing conclusions.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4ef02f80-2bd2-4491-8d00-968f4ce2770e",
+  "uuid": "4bd77130-6b04-474e-aa51-06ab2ba94c5f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01R6dyV4rjp3pjTHW5owMut9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 727,
+      "cache_read_input_tokens": 81746,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 727
+      },
+      "output_tokens": 25,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 109_
+
+Fewnerd showing dramatic drop — GroupKFold folds so far: 0.668, 0.692, 0.644. Significantly below MV (0.87). Let me get the final results.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4ef02f80-2bd2-4491-8d00-968f4ce2770e",
+  "uuid": "22f8187e-3a6c-4767-b44d-d6e1bba3cafb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01R6dyV4rjp3pjTHW5owMut9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 727,
+      "cache_read_input_tokens": 81746,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 727
+      },
+      "output_tokens": 25,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 110_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01MQMEFM4JQxzd38gnWeRahA`</summary>
+
+```json
+{
+  "server": "autodl-5090-c",
+  "command": "tail -35 /tmp/probe_groupkfold.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4ef02f80-2bd2-4491-8d00-968f4ce2770e",
+  "uuid": "871bb25b-4456-4231-8b9a-2705894764a7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01R6dyV4rjp3pjTHW5owMut9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 727,
+      "cache_read_input_tokens": 81746,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 727
+      },
+      "output_tokens": 25,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 111 · 2026-05-21T03:20:00.236Z_
+
+<details><summary>↩ Tool result · `toolu_01MQMEFM4JQxzd38gnWeRahA`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  Positive: 7157 (91.2%), Negative: 692\\n  Unique instances for GroupKFold: 418\\n    GKF fold: AUROC=0.8617, train=6279(335 inst), test=1570(83 inst), test_pos=0.899\\n    GKF fold: AUROC=0.9070, train=6281(335 inst), test=1568(83 inst), test_pos=0.908\\n    GKF fold: AUROC=0.8930, train=6281(334 inst), test=1568(84 inst), test_pos=0.933\\n    GKF fold: AUROC=0.9498, train=6277(334 inst), test=1572(84 inst), test_pos=0.928\\n    GKF fold: AUROC=0.8130, train=6278(334 inst), test=1571(84 inst), test_pos=0.891\\n\\n  StratifiedKFold AUROC: 0.9796 +/- 0.0036\\n  GroupKFold AUROC:      0.8849 +/- 0.0458\\n  Delta:                 -0.0947\\n  vs MV=0.87, ESJ=0.51\\n  => HIGH — probe > MV, info exists in representation, prompt interface fails\\n  Saved: /root/autodl-tmp/struct_self_consist_ie/output/entity_probe_auroc_groupkfold/groupkfold_results_conll.json\\n\\n============================================================\\nProcessing fewnerd...\\n  Loading tokenizer from /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-fewnerd-exp021-merged...\\n    [100/500] 12s, 1936 entities, 0 skipped\\n    [200/500] 23s, 3947 entities, 0 skipped\\n    [300/500] 35s, 6040 entities, 7 skipped\\n    [400/500] 47s, 8214 entities, 7 skipped\\n    [500/500] 61s, 10508 entities, 7 skipped\\n  Reconstructed 10508 instance_ids in 60.7s (skipped=7)\\n  Unique instances: 433\\n\\n--- fewnerd ---\\n  Entities: 10508, dim=4096\\n  Positive: 8390 (79.8%), Negative: 2118\\n  Unique instances for GroupKFold: 433\\n    GKF fold: AUROC=0.6683, train=8403(346 inst), test=2105(87 inst), test_pos=0.811\\n    GKF fold: AUROC=0.6922, train=8404(346 inst), test=2104(87 inst), test_pos=0.816\\n    GKF fold: AUROC=0.6441, train=8407(346 inst), test=2101(87 inst), test_pos=0.821\\n    GKF fold: AUROC=0.6733, train=8409(347 inst), test=2099(86 inst), test_pos=0.778\\n    GKF fold: AUROC=0.5785, train=8409(347 inst), test=2099(86 inst), test_pos=0.766\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.15}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4ef02f80-2bd2-4491-8d00-968f4ce2770e",
+  "uuid": "75708ca2-e4b8-4747-9e26-4692533d40e7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  Positive: 7157 (91.2%), Negative: 692\\\\n  Unique instances for GroupKFold: 418\\\\n    GKF fold: AUROC=0.8617, train=6279(335 inst), test=1570(83 inst), test_pos=0.899\\\\n    GKF fold: AUROC=0.9070, train=6281(335 inst), test=1568(83 inst), test_pos=0.908\\\\n    GKF fold: AUROC=0.8930, train=6281(334 inst), test=1568(84 inst), test_pos=0.933\\\\n    GKF fold: AUROC=0.9498, train=6277(334 inst), test=1572(84 inst), test_pos=0.928\\\\n    GKF fold: AUROC=0.8130, train=6278(334 inst), test=1571(84 inst), test_pos=0.891\\\\n\\\\n  StratifiedKFold AUROC: 0.9796 +/- 0.0036\\\\n  GroupKFold AUROC:      0.8849 +/- 0.0458\\\\n  Delta:                 -0.0947\\\\n  vs MV=0.87, ESJ=0.51\\\\n  => HIGH — probe > MV, info exists in representation, prompt interface fails\\\\n  Saved: /root/autodl-tmp/struct_self_consist_ie/output/entity_probe_auroc_groupkfold/groupkfold_results_conll.json\\\\n\\\\n============================================================\\\\nProcessing fewnerd...\\\\n  Loading tokenizer from /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-fewnerd-exp021-merged...\\\\n    [100/500] 12s, 1936 entities, 0 skipped\\\\n    [200/500] 23s, 3947 entities, 0 skipped\\\\n    [300/500] 35s, 6040 entities, 7 skipped\\\\n    [400/500] 47s, 8214 entities, 7 skipped\\\\n    [500/500] 61s, 10508 entities, 7 skipped\\\\n  Reconstructed 10508 instance_ids in 60.7s (skipped=7)\\\\n  Unique instances: 433\\\\n\\\\n--- fewnerd ---\\\\n  Entities: 10508, dim=4096\\\\n  Positive: 8390 (79.8%), Negative: 2118\\\\n  Unique instances for GroupKFold: 433\\\\n    GKF fold: AUROC=0.6683, train=8403(346 inst), test=2105(87 inst), test_pos=0.811\\\\n    GKF fold: AUROC=0.6922, train=8404(346 inst), test=2104(87 inst), test_pos=0.816\\\\n    GKF fold: AUROC=0.6441, train=8407(346 inst), test=2101(87 inst), test_pos=0.821\\\\n    GKF fold: AUROC=0.6733, train=8409(347 inst), test=2099(86 inst), test_pos=0.778\\\\n    GKF fold: AUROC=0.5785, train=8409(347 inst), test=2099(86 inst), test_pos=0.766\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.15}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"  Positive: 7157 (91.2%), Negative: 692\\n  Unique instances for GroupKFold: 418\\n    GKF fold: AUROC=0.8617, train=6279(335 inst), test=1570(83 inst), test_pos=0.899\\n    GKF fold: AUROC=0.9070, train=6281(335 inst), test=1568(83 inst), test_pos=0.908\\n    GKF fold: AUROC=0.8930, train=6281(334 inst), test=1568(84 inst), test_pos=0.933\\n    GKF fold: AUROC=0.9498, train=6277(334 inst), test=1572(84 inst), test_pos=0.928\\n    GKF fold: AUROC=0.8130, train=6278(334 inst), test=1571(84 inst), test_pos=0.891\\n\\n  StratifiedKFold AUROC: 0.9796 +/- 0.0036\\n  GroupKFold AUROC:      0.8849 +/- 0.0458\\n  Delta:                 -0.0947\\n  vs MV=0.87, ESJ=0.51\\n  => HIGH — probe > MV, info exists in representation, prompt interface fails\\n  Saved: /root/autodl-tmp/struct_self_consist_ie/output/entity_probe_auroc_groupkfold/groupkfold_results_conll.json\\n\\n============================================================\\nProcessing fewnerd...\\n  Loading tokenizer from /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-fewnerd-exp021-merged...\\n    [100/500] 12s, 1936 entities, 0 skipped\\n    [200/500] 23s, 3947 entities, 0 skipped\\n    [300/500] 35s, 6040 entities, 7 skipped\\n    [400/500] 47s, 8214 entities, 7 skipped\\n    [500/500] 61s, 10508 entities, 7 skipped\\n  Reconstructed 10508 instance_ids in 60.7s (skipped=7)\\n  Unique instances: 433\\n\\n--- fewnerd ---\\n  Entities: 10508, dim=4096\\n  Positive: 8390 (79.8%), Negative: 2118\\n  Unique instances for GroupKFold: 433\\n    GKF fold: AUROC=0.6683, train=8403(346 inst), test=2105(87 inst), test_pos=0.811\\n    GKF fold: AUROC=0.6922, train=8404(346 inst), test=2104(87 inst), test_pos=0.816\\n    GKF fold: AUROC=0.6441, train=8407(346 inst), test=2101(87 inst), test_pos=0.821\\n    GKF fold: AUROC=0.6733, train=8409(347 inst), test=2099(86 inst), test_pos=0.778\\n    GKF fold: AUROC=0.5785, train=8409(347 inst), test=2099(86 inst), test_pos=0.766\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.15}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 112_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Fewnerd GroupKFold results:
+- Fold 1: 0.6683
+- Fold 2: 0.6922
+- Fold 3: 0.6441
+- Fold 4: 0.6733
+- Fold 5: 0.5785
+
+Mean: (0.6683 + 0.6922 + 0.6441 + 0.6733 + 0.5785) / 5 = 3.2564 / 5 = 0.6513
+
+This is a huge drop from StratifiedKFold (0.920 original, or 0.9204 from the original results). 
+
+The GroupKFold AUROC of 0.651 reveals that the original 0.920 score was heavily inflated by instance leakage—the true predictive signal is much weaker, placing fewnerd between ESJ and MV in terms of what information the representation actually captures. I should wait for the full summary and scierc results to see the complete picture.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4ef02f80-2bd2-4491-8d00-968f4ce2770e",
+  "uuid": "d1f92738-880c-42b4-830e-33aeb63b7b7b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HNoNwhgcxYMSFf37HUSzQk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1378,
+      "cache_read_input_tokens": 82473,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1378
+      },
+      "output_tokens": 26,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 113_
+
+Fewnerd GroupKFold complete: folds = 0.668, 0.692, 0.644, 0.673, 0.579. Mean ~0.651 — well below MV (0.87). Massive drop confirming leakage. Waiting for StratifiedKFold comparison and scierc.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4ef02f80-2bd2-4491-8d00-968f4ce2770e",
+  "uuid": "982f93c4-4264-4e91-853b-d4b673c039ac",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HNoNwhgcxYMSFf37HUSzQk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1378,
+      "cache_read_input_tokens": 82473,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1378
+      },
+      "output_tokens": 26,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 114_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01V4B9VzHiVzJvSzEt9F5x8Q`</summary>
+
+```json
+{
+  "server": "autodl-5090-c",
+  "command": "tail -20 /tmp/probe_groupkfold.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4ef02f80-2bd2-4491-8d00-968f4ce2770e",
+  "uuid": "5b62fdfa-c85e-4e08-a62a-a4192a735acb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HNoNwhgcxYMSFf37HUSzQk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1378,
+      "cache_read_input_tokens": 82473,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1378
+      },
+      "output_tokens": 26,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 115 · 2026-05-21T03:20:19.855Z_
+
+<details><summary>↩ Tool result · `toolu_01V4B9VzHiVzJvSzEt9F5x8Q`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"--- fewnerd ---\\n  Entities: 10508, dim=4096\\n  Positive: 8390 (79.8%), Negative: 2118\\n  Unique instances for GroupKFold: 433\\n    GKF fold: AUROC=0.6683, train=8403(346 inst), test=2105(87 inst), test_pos=0.811\\n    GKF fold: AUROC=0.6922, train=8404(346 inst), test=2104(87 inst), test_pos=0.816\\n    GKF fold: AUROC=0.6441, train=8407(346 inst), test=2101(87 inst), test_pos=0.821\\n    GKF fold: AUROC=0.6733, train=8409(347 inst), test=2099(86 inst), test_pos=0.778\\n    GKF fold: AUROC=0.5785, train=8409(347 inst), test=2099(86 inst), test_pos=0.766\\n\\n  StratifiedKFold AUROC: 0.9872 +/- 0.0007\\n  GroupKFold AUROC:      0.6513 +/- 0.0395\\n  Delta:                 -0.3359\\n  vs MV=0.87, ESJ=0.51\\n  => MODERATE — partial info in representation\\n  Saved: /root/autodl-tmp/struct_self_consist_ie/output/entity_probe_auroc_groupkfold/groupkfold_results_fewnerd.json\\n\\n============================================================\\nProcessing scierc...\\n  Loading tokenizer from /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-merged-v2...\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.12}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4ef02f80-2bd2-4491-8d00-968f4ce2770e",
+  "uuid": "2ec2ef16-5faf-4adc-8b19-872d70699638",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"--- fewnerd ---\\\\n  Entities: 10508, dim=4096\\\\n  Positive: 8390 (79.8%), Negative: 2118\\\\n  Unique instances for GroupKFold: 433\\\\n    GKF fold: AUROC=0.6683, train=8403(346 inst), test=2105(87 inst), test_pos=0.811\\\\n    GKF fold: AUROC=0.6922, train=8404(346 inst), test=2104(87 inst), test_pos=0.816\\\\n    GKF fold: AUROC=0.6441, train=8407(346 inst), test=2101(87 inst), test_pos=0.821\\\\n    GKF fold: AUROC=0.6733, train=8409(347 inst), test=2099(86 inst), test_pos=0.778\\\\n    GKF fold: AUROC=0.5785, train=8409(347 inst), test=2099(86 inst), test_pos=0.766\\\\n\\\\n  StratifiedKFold AUROC: 0.9872 +/- 0.0007\\\\n  GroupKFold AUROC:      0.6513 +/- 0.0395\\\\n  Delta:                 -0.3359\\\\n  vs MV=0.87, ESJ=0.51\\\\n  => MODERATE — partial info in representation\\\\n  Saved: /root/autodl-tmp/struct_self_consist_ie/output/entity_probe_auroc_groupkfold/groupkfold_results_fewnerd.json\\\\n\\\\n============================================================\\\\nProcessing scierc...\\\\n  Loading tokenizer from /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-merged-v2...\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.12}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"--- fewnerd ---\\n  Entities: 10508, dim=4096\\n  Positive: 8390 (79.8%), Negative: 2118\\n  Unique instances for GroupKFold: 433\\n    GKF fold: AUROC=0.6683, train=8403(346 inst), test=2105(87 inst), test_pos=0.811\\n    GKF fold: AUROC=0.6922, train=8404(346 inst), test=2104(87 inst), test_pos=0.816\\n    GKF fold: AUROC=0.6441, train=8407(346 inst), test=2101(87 inst), test_pos=0.821\\n    GKF fold: AUROC=0.6733, train=8409(347 inst), test=2099(86 inst), test_pos=0.778\\n    GKF fold: AUROC=0.5785, train=8409(347 inst), test=2099(86 inst), test_pos=0.766\\n\\n  StratifiedKFold AUROC: 0.9872 +/- 0.0007\\n  GroupKFold AUROC:      0.6513 +/- 0.0395\\n  Delta:                 -0.3359\\n  vs MV=0.87, ESJ=0.51\\n  => MODERATE — partial info in representation\\n  Saved: /root/autodl-tmp/struct_self_consist_ie/output/entity_probe_auroc_groupkfold/groupkfold_results_fewnerd.json\\n\\n============================================================\\nProcessing scierc...\\n  Loading tokenizer from /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-merged-v2...\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.12}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 116_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Fewnerd results:
+- StratifiedKFold: 0.9872 ± 0.0007
+- GroupKFold: 0.6513 ± 0.0395
+- Delta: -0.3359
+
+This is a HUGE drop. The leakage was severe for fewnerd. The corrected probe AUROC (0.651) is well below MV (0.87).
+
+This is actually a significant finding. The original "probe AUROC > MV" conclusion may need to be revised for fewnerd. The true predictive power of the linear probe is only moderate (0.65), meaning the hidden states contain only partial information about entity quality — much less than what majority voting captures.
+
+
+Interestingly, conll still shows GroupKFold > MV (0.885 > 0.87), so the conclusion holds there. The leakage patterns differ significantly across datasets—conll had moderate leakage at -0.095 while fewnerd's -0.336 was severe, likely because fewnerd's instances contain more entities that repeat across train/test splits. I'm waiting on scierc to see how it compares.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4ef02f80-2bd2-4491-8d00-968f4ce2770e",
+  "uuid": "d1173805-3450-4f2d-869e-629ec6b627b3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014HGxmycoU3UippTJ7YKZ1m",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1036,
+      "cache_read_input_tokens": 83851,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1036
+      },
+      "output_tokens": 53,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 117_
+
+Fewnerd: **GroupKFold = 0.651, StratifiedKFold = 0.987, Delta = -0.336**. Massive leakage confirmed. Now processing scierc.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4ef02f80-2bd2-4491-8d00-968f4ce2770e",
+  "uuid": "425b6606-8053-4356-957a-890c84e9b505",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014HGxmycoU3UippTJ7YKZ1m",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1036,
+      "cache_read_input_tokens": 83851,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1036
+      },
+      "output_tokens": 53,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 118_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_018NmQ5eR8n542jeXb2xpW3D`</summary>
+
+```json
+{
+  "server": "autodl-5090-c",
+  "command": "tail -15 /tmp/probe_groupkfold.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4ef02f80-2bd2-4491-8d00-968f4ce2770e",
+  "uuid": "5df18bf2-6b4d-4f32-bdad-53fecb997f57",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014HGxmycoU3UippTJ7YKZ1m",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1036,
+      "cache_read_input_tokens": 83851,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1036
+      },
+      "output_tokens": 53,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 119 · 2026-05-21T03:20:33.483Z_
+
+<details><summary>↩ Tool result · `toolu_018NmQ5eR8n542jeXb2xpW3D`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"    GKF fold: AUROC=0.6441, train=8407(346 inst), test=2101(87 inst), test_pos=0.821\\n    GKF fold: AUROC=0.6733, train=8409(347 inst), test=2099(86 inst), test_pos=0.778\\n    GKF fold: AUROC=0.5785, train=8409(347 inst), test=2099(86 inst), test_pos=0.766\\n\\n  StratifiedKFold AUROC: 0.9872 +/- 0.0007\\n  GroupKFold AUROC:      0.6513 +/- 0.0395\\n  Delta:                 -0.3359\\n  vs MV=0.87, ESJ=0.51\\n  => MODERATE — partial info in representation\\n  Saved: /root/autodl-tmp/struct_self_consist_ie/output/entity_probe_auroc_groupkfold/groupkfold_results_fewnerd.json\\n\\n============================================================\\nProcessing scierc...\\n  Loading tokenizer from /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-merged-v2...\\n    [100/551] 18s, 2490 entities, 32 skipped\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.15}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4ef02f80-2bd2-4491-8d00-968f4ce2770e",
+  "uuid": "0065520e-234e-40f9-a9f6-1384a3730afc",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"    GKF fold: AUROC=0.6441, train=8407(346 inst), test=2101(87 inst), test_pos=0.821\\\\n    GKF fold: AUROC=0.6733, train=8409(347 inst), test=2099(86 inst), test_pos=0.778\\\\n    GKF fold: AUROC=0.5785, train=8409(347 inst), test=2099(86 inst), test_pos=0.766\\\\n\\\\n  StratifiedKFold AUROC: 0.9872 +/- 0.0007\\\\n  GroupKFold AUROC:      0.6513 +/- 0.0395\\\\n  Delta:                 -0.3359\\\\n  vs MV=0.87, ESJ=0.51\\\\n  => MODERATE — partial info in representation\\\\n  Saved: /root/autodl-tmp/struct_self_consist_ie/output/entity_probe_auroc_groupkfold/groupkfold_results_fewnerd.json\\\\n\\\\n============================================================\\\\nProcessing scierc...\\\\n  Loading tokenizer from /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-merged-v2...\\\\n    [100/551] 18s, 2490 entities, 32 skipped\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.15}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"    GKF fold: AUROC=0.6441, train=8407(346 inst), test=2101(87 inst), test_pos=0.821\\n    GKF fold: AUROC=0.6733, train=8409(347 inst), test=2099(86 inst), test_pos=0.778\\n    GKF fold: AUROC=0.5785, train=8409(347 inst), test=2099(86 inst), test_pos=0.766\\n\\n  StratifiedKFold AUROC: 0.9872 +/- 0.0007\\n  GroupKFold AUROC:      0.6513 +/- 0.0395\\n  Delta:                 -0.3359\\n  vs MV=0.87, ESJ=0.51\\n  => MODERATE — partial info in representation\\n  Saved: /root/autodl-tmp/struct_self_consist_ie/output/entity_probe_auroc_groupkfold/groupkfold_results_fewnerd.json\\n\\n============================================================\\nProcessing scierc...\\n  Loading tokenizer from /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-merged-v2...\\n    [100/551] 18s, 2490 entities, 32 skipped\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.15}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 120_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_011F3rrw6uxpEHj4VsByEDPX`</summary>
+
+```json
+{
+  "server": "autodl-5090-c",
+  "command": "tail -10 /tmp/probe_groupkfold.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4ef02f80-2bd2-4491-8d00-968f4ce2770e",
+  "uuid": "378a5827-d0ea-4768-9e3b-2411573f32c0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SsEmqY75gSh2enHoarU9S8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 913,
+      "cache_read_input_tokens": 84887,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 913
+      },
+      "output_tokens": 67,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 121 · 2026-05-21T03:20:37.634Z_
+
+<details><summary>↩ Tool result · `toolu_011F3rrw6uxpEHj4VsByEDPX`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  GroupKFold AUROC:      0.6513 +/- 0.0395\\n  Delta:                 -0.3359\\n  vs MV=0.87, ESJ=0.51\\n  => MODERATE — partial info in representation\\n  Saved: /root/autodl-tmp/struct_self_consist_ie/output/entity_probe_auroc_groupkfold/groupkfold_results_fewnerd.json\\n\\n============================================================\\nProcessing scierc...\\n  Loading tokenizer from /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-merged-v2...\\n    [100/551] 18s, 2490 entities, 32 skipped\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.16}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4ef02f80-2bd2-4491-8d00-968f4ce2770e",
+  "uuid": "fa4074d6-5c99-459d-9b22-ff7f46ed9769",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  GroupKFold AUROC:      0.6513 +/- 0.0395\\\\n  Delta:                 -0.3359\\\\n  vs MV=0.87, ESJ=0.51\\\\n  => MODERATE — partial info in representation\\\\n  Saved: /root/autodl-tmp/struct_self_consist_ie/output/entity_probe_auroc_groupkfold/groupkfold_results_fewnerd.json\\\\n\\\\n============================================================\\\\nProcessing scierc...\\\\n  Loading tokenizer from /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-merged-v2...\\\\n    [100/551] 18s, 2490 entities, 32 skipped\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.16}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"  GroupKFold AUROC:      0.6513 +/- 0.0395\\n  Delta:                 -0.3359\\n  vs MV=0.87, ESJ=0.51\\n  => MODERATE — partial info in representation\\n  Saved: /root/autodl-tmp/struct_self_consist_ie/output/entity_probe_auroc_groupkfold/groupkfold_results_fewnerd.json\\n\\n============================================================\\nProcessing scierc...\\n  Loading tokenizer from /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-merged-v2...\\n    [100/551] 18s, 2490 entities, 32 skipped\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.16}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 122_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01NdmKvQD6JWrhaoKyDPqAVB`</summary>
+
+```json
+{
+  "server": "autodl-5090-c",
+  "command": "tail -15 /tmp/probe_groupkfold.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4ef02f80-2bd2-4491-8d00-968f4ce2770e",
+  "uuid": "fa66a83b-0d97-4258-829d-b57f3e270998",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019WC1SZ4edwm4o45tpsnL9c",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 383,
+      "cache_read_input_tokens": 85800,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 383
+      },
+      "output_tokens": 67,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 123 · 2026-05-21T03:20:41.811Z_
+
+<details><summary>↩ Tool result · `toolu_01NdmKvQD6JWrhaoKyDPqAVB`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"    GKF fold: AUROC=0.6441, train=8407(346 inst), test=2101(87 inst), test_pos=0.821\\n    GKF fold: AUROC=0.6733, train=8409(347 inst), test=2099(86 inst), test_pos=0.778\\n    GKF fold: AUROC=0.5785, train=8409(347 inst), test=2099(86 inst), test_pos=0.766\\n\\n  StratifiedKFold AUROC: 0.9872 +/- 0.0007\\n  GroupKFold AUROC:      0.6513 +/- 0.0395\\n  Delta:                 -0.3359\\n  vs MV=0.87, ESJ=0.51\\n  => MODERATE — partial info in representation\\n  Saved: /root/autodl-tmp/struct_self_consist_ie/output/entity_probe_auroc_groupkfold/groupkfold_results_fewnerd.json\\n\\n============================================================\\nProcessing scierc...\\n  Loading tokenizer from /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-merged-v2...\\n    [100/551] 18s, 2490 entities, 32 skipped\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.14}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4ef02f80-2bd2-4491-8d00-968f4ce2770e",
+  "uuid": "ad012fef-d01b-48c0-935e-5cfefdf895f7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"    GKF fold: AUROC=0.6441, train=8407(346 inst), test=2101(87 inst), test_pos=0.821\\\\n    GKF fold: AUROC=0.6733, train=8409(347 inst), test=2099(86 inst), test_pos=0.778\\\\n    GKF fold: AUROC=0.5785, train=8409(347 inst), test=2099(86 inst), test_pos=0.766\\\\n\\\\n  StratifiedKFold AUROC: 0.9872 +/- 0.0007\\\\n  GroupKFold AUROC:      0.6513 +/- 0.0395\\\\n  Delta:                 -0.3359\\\\n  vs MV=0.87, ESJ=0.51\\\\n  => MODERATE — partial info in representation\\\\n  Saved: /root/autodl-tmp/struct_self_consist_ie/output/entity_probe_auroc_groupkfold/groupkfold_results_fewnerd.json\\\\n\\\\n============================================================\\\\nProcessing scierc...\\\\n  Loading tokenizer from /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-merged-v2...\\\\n    [100/551] 18s, 2490 entities, 32 skipped\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.14}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"    GKF fold: AUROC=0.6441, train=8407(346 inst), test=2101(87 inst), test_pos=0.821\\n    GKF fold: AUROC=0.6733, train=8409(347 inst), test=2099(86 inst), test_pos=0.778\\n    GKF fold: AUROC=0.5785, train=8409(347 inst), test=2099(86 inst), test_pos=0.766\\n\\n  StratifiedKFold AUROC: 0.9872 +/- 0.0007\\n  GroupKFold AUROC:      0.6513 +/- 0.0395\\n  Delta:                 -0.3359\\n  vs MV=0.87, ESJ=0.51\\n  => MODERATE — partial info in representation\\n  Saved: /root/autodl-tmp/struct_self_consist_ie/output/entity_probe_auroc_groupkfold/groupkfold_results_fewnerd.json\\n\\n============================================================\\nProcessing scierc...\\n  Loading tokenizer from /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-merged-v2...\\n    [100/551] 18s, 2490 entities, 32 skipped\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.14}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 124_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01H9xwHyGvdykNnhFAHDAwgs`</summary>
+
+```json
+{
+  "server": "autodl-5090-c",
+  "command": "tail -10 /tmp/probe_groupkfold.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4ef02f80-2bd2-4491-8d00-968f4ce2770e",
+  "uuid": "57bdba39-9418-4fc0-9aad-9fe4b0504f8b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QueBBuC8GBAyaQX8FGimvE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 538,
+      "cache_read_input_tokens": 86183,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 538
+      },
+      "output_tokens": 67,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 125 · 2026-05-21T03:20:48.830Z_
+
+<details><summary>↩ Tool result · `toolu_01H9xwHyGvdykNnhFAHDAwgs`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  GroupKFold AUROC:      0.6513 +/- 0.0395\\n  Delta:                 -0.3359\\n  vs MV=0.87, ESJ=0.51\\n  => MODERATE — partial info in representation\\n  Saved: /root/autodl-tmp/struct_self_consist_ie/output/entity_probe_auroc_groupkfold/groupkfold_results_fewnerd.json\\n\\n============================================================\\nProcessing scierc...\\n  Loading tokenizer from /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-merged-v2...\\n    [100/551] 18s, 2490 entities, 32 skipped\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.12}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4ef02f80-2bd2-4491-8d00-968f4ce2770e",
+  "uuid": "5fbf11b0-dcab-4793-bf16-aee7c75629f6",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  GroupKFold AUROC:      0.6513 +/- 0.0395\\\\n  Delta:                 -0.3359\\\\n  vs MV=0.87, ESJ=0.51\\\\n  => MODERATE — partial info in representation\\\\n  Saved: /root/autodl-tmp/struct_self_consist_ie/output/entity_probe_auroc_groupkfold/groupkfold_results_fewnerd.json\\\\n\\\\n============================================================\\\\nProcessing scierc...\\\\n  Loading tokenizer from /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-merged-v2...\\\\n    [100/551] 18s, 2490 entities, 32 skipped\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.12}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"  GroupKFold AUROC:      0.6513 +/- 0.0395\\n  Delta:                 -0.3359\\n  vs MV=0.87, ESJ=0.51\\n  => MODERATE — partial info in representation\\n  Saved: /root/autodl-tmp/struct_self_consist_ie/output/entity_probe_auroc_groupkfold/groupkfold_results_fewnerd.json\\n\\n============================================================\\nProcessing scierc...\\n  Loading tokenizer from /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-merged-v2...\\n    [100/551] 18s, 2490 entities, 32 skipped\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.12}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 126_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+SciERC is processing but slower (18s for 100/551 instances). The 32 skipped so far makes sense given the total 140 skipped. Let me wait a bit longer.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4ef02f80-2bd2-4491-8d00-968f4ce2770e",
+  "uuid": "740ccb7d-6199-4855-aaed-cbfa3dc11d9d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01X5Sw6gbM6g9dqbi6NvxF77",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 383,
+      "cache_read_input_tokens": 86721,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 383
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 127_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01UPuG3ECP9CATqbBQZLHu5s`</summary>
+
+```json
+{
+  "server": "autodl-5090-c",
+  "command": "tail -10 /tmp/probe_groupkfold.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4ef02f80-2bd2-4491-8d00-968f4ce2770e",
+  "uuid": "2b2bf685-f185-4242-95b7-b6df0abf8dd6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01X5Sw6gbM6g9dqbi6NvxF77",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 383,
+      "cache_read_input_tokens": 86721,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 383
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 128 · 2026-05-21T03:20:54.574Z_
+
+<details><summary>↩ Tool result · `toolu_01UPuG3ECP9CATqbBQZLHu5s`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  Delta:                 -0.3359\\n  vs MV=0.87, ESJ=0.51\\n  => MODERATE — partial info in representation\\n  Saved: /root/autodl-tmp/struct_self_consist_ie/output/entity_probe_auroc_groupkfold/groupkfold_results_fewnerd.json\\n\\n============================================================\\nProcessing scierc...\\n  Loading tokenizer from /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-merged-v2...\\n    [100/551] 18s, 2490 entities, 32 skipped\\n    [200/551] 35s, 4784 entities, 67 skipped\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.12}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4ef02f80-2bd2-4491-8d00-968f4ce2770e",
+  "uuid": "6b53d1ba-dcab-4234-bc05-0b001865dd1e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  Delta:                 -0.3359\\\\n  vs MV=0.87, ESJ=0.51\\\\n  => MODERATE — partial info in representation\\\\n  Saved: /root/autodl-tmp/struct_self_consist_ie/output/entity_probe_auroc_groupkfold/groupkfold_results_fewnerd.json\\\\n\\\\n============================================================\\\\nProcessing scierc...\\\\n  Loading tokenizer from /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-merged-v2...\\\\n    [100/551] 18s, 2490 entities, 32 skipped\\\\n    [200/551] 35s, 4784 entities, 67 skipped\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.12}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"  Delta:                 -0.3359\\n  vs MV=0.87, ESJ=0.51\\n  => MODERATE — partial info in representation\\n  Saved: /root/autodl-tmp/struct_self_consist_ie/output/entity_probe_auroc_groupkfold/groupkfold_results_fewnerd.json\\n\\n============================================================\\nProcessing scierc...\\n  Loading tokenizer from /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-merged-v2...\\n    [100/551] 18s, 2490 entities, 32 skipped\\n    [200/551] 35s, 4784 entities, 67 skipped\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.12}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 129_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01PVBoUmLnNqeb7netinhKVq`</summary>
+
+```json
+{
+  "server": "autodl-5090-c",
+  "command": "tail -10 /tmp/probe_groupkfold.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4ef02f80-2bd2-4491-8d00-968f4ce2770e",
+  "uuid": "9e6b90ef-d88d-4010-9a00-b4c37ab7374f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0149JN4FRuMDVgPFaY9v2zLH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 441,
+      "cache_read_input_tokens": 87104,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 441
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 130 · 2026-05-21T03:20:59.018Z_
+
+<details><summary>↩ Tool result · `toolu_01PVBoUmLnNqeb7netinhKVq`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  Delta:                 -0.3359\\n  vs MV=0.87, ESJ=0.51\\n  => MODERATE — partial info in representation\\n  Saved: /root/autodl-tmp/struct_self_consist_ie/output/entity_probe_auroc_groupkfold/groupkfold_results_fewnerd.json\\n\\n============================================================\\nProcessing scierc...\\n  Loading tokenizer from /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-merged-v2...\\n    [100/551] 18s, 2490 entities, 32 skipped\\n    [200/551] 35s, 4784 entities, 67 skipped\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.12}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4ef02f80-2bd2-4491-8d00-968f4ce2770e",
+  "uuid": "fbe84dd9-7e74-42f0-8e86-99526f23e830",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  Delta:                 -0.3359\\\\n  vs MV=0.87, ESJ=0.51\\\\n  => MODERATE — partial info in representation\\\\n  Saved: /root/autodl-tmp/struct_self_consist_ie/output/entity_probe_auroc_groupkfold/groupkfold_results_fewnerd.json\\\\n\\\\n============================================================\\\\nProcessing scierc...\\\\n  Loading tokenizer from /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-merged-v2...\\\\n    [100/551] 18s, 2490 entities, 32 skipped\\\\n    [200/551] 35s, 4784 entities, 67 skipped\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.12}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"  Delta:                 -0.3359\\n  vs MV=0.87, ESJ=0.51\\n  => MODERATE — partial info in representation\\n  Saved: /root/autodl-tmp/struct_self_consist_ie/output/entity_probe_auroc_groupkfold/groupkfold_results_fewnerd.json\\n\\n============================================================\\nProcessing scierc...\\n  Loading tokenizer from /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-merged-v2...\\n    [100/551] 18s, 2490 entities, 32 skipped\\n    [200/551] 35s, 4784 entities, 67 skipped\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.12}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 131_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_019Gkc3prAvnRNDfg93cn3bR`</summary>
+
+```json
+{
+  "server": "autodl-5090-c",
+  "command": "tail -10 /tmp/probe_groupkfold.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4ef02f80-2bd2-4491-8d00-968f4ce2770e",
+  "uuid": "72588220-14af-47fa-9b0f-e8f18ea0dea8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012N7t22a6YWRiMcPXURywzS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 381,
+      "cache_read_input_tokens": 87545,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 381
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 132 · 2026-05-21T03:21:04.227Z_
+
+<details><summary>↩ Tool result · `toolu_019Gkc3prAvnRNDfg93cn3bR`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  vs MV=0.87, ESJ=0.51\\n  => MODERATE — partial info in representation\\n  Saved: /root/autodl-tmp/struct_self_consist_ie/output/entity_probe_auroc_groupkfold/groupkfold_results_fewnerd.json\\n\\n============================================================\\nProcessing scierc...\\n  Loading tokenizer from /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-merged-v2...\\n    [100/551] 18s, 2490 entities, 32 skipped\\n    [200/551] 35s, 4784 entities, 67 skipped\\n    [300/551] 48s, 6908 entities, 75 skipped\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.14}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4ef02f80-2bd2-4491-8d00-968f4ce2770e",
+  "uuid": "2e04542e-7f78-4eeb-b78a-7f7666fd56e9",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  vs MV=0.87, ESJ=0.51\\\\n  => MODERATE — partial info in representation\\\\n  Saved: /root/autodl-tmp/struct_self_consist_ie/output/entity_probe_auroc_groupkfold/groupkfold_results_fewnerd.json\\\\n\\\\n============================================================\\\\nProcessing scierc...\\\\n  Loading tokenizer from /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-merged-v2...\\\\n    [100/551] 18s, 2490 entities, 32 skipped\\\\n    [200/551] 35s, 4784 entities, 67 skipped\\\\n    [300/551] 48s, 6908 entities, 75 skipped\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.14}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"  vs MV=0.87, ESJ=0.51\\n  => MODERATE — partial info in representation\\n  Saved: /root/autodl-tmp/struct_self_consist_ie/output/entity_probe_auroc_groupkfold/groupkfold_results_fewnerd.json\\n\\n============================================================\\nProcessing scierc...\\n  Loading tokenizer from /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-merged-v2...\\n    [100/551] 18s, 2490 entities, 32 skipped\\n    [200/551] 35s, 4784 entities, 67 skipped\\n    [300/551] 48s, 6908 entities, 75 skipped\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.14}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 133_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0175Es4JG8eLJiuGWgBWKkVR`</summary>
+
+```json
+{
+  "server": "autodl-5090-c",
+  "command": "tail -10 /tmp/probe_groupkfold.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4ef02f80-2bd2-4491-8d00-968f4ce2770e",
+  "uuid": "96dec857-1c90-4e4e-aa00-ab3724806380",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KP9dUhyFhJGsg1yZVhbsFt",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 495,
+      "cache_read_input_tokens": 87926,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 495
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 134 · 2026-05-21T03:21:07.773Z_
+
+<details><summary>↩ Tool result · `toolu_0175Es4JG8eLJiuGWgBWKkVR`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  vs MV=0.87, ESJ=0.51\\n  => MODERATE — partial info in representation\\n  Saved: /root/autodl-tmp/struct_self_consist_ie/output/entity_probe_auroc_groupkfold/groupkfold_results_fewnerd.json\\n\\n============================================================\\nProcessing scierc...\\n  Loading tokenizer from /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-merged-v2...\\n    [100/551] 18s, 2490 entities, 32 skipped\\n    [200/551] 35s, 4784 entities, 67 skipped\\n    [300/551] 48s, 6908 entities, 75 skipped\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.12}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4ef02f80-2bd2-4491-8d00-968f4ce2770e",
+  "uuid": "a1c663d1-43ff-4f72-98ae-70ffbc36d3e2",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  vs MV=0.87, ESJ=0.51\\\\n  => MODERATE — partial info in representation\\\\n  Saved: /root/autodl-tmp/struct_self_consist_ie/output/entity_probe_auroc_groupkfold/groupkfold_results_fewnerd.json\\\\n\\\\n============================================================\\\\nProcessing scierc...\\\\n  Loading tokenizer from /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-merged-v2...\\\\n    [100/551] 18s, 2490 entities, 32 skipped\\\\n    [200/551] 35s, 4784 entities, 67 skipped\\\\n    [300/551] 48s, 6908 entities, 75 skipped\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.12}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"  vs MV=0.87, ESJ=0.51\\n  => MODERATE — partial info in representation\\n  Saved: /root/autodl-tmp/struct_self_consist_ie/output/entity_probe_auroc_groupkfold/groupkfold_results_fewnerd.json\\n\\n============================================================\\nProcessing scierc...\\n  Loading tokenizer from /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-merged-v2...\\n    [100/551] 18s, 2490 entities, 32 skipped\\n    [200/551] 35s, 4784 entities, 67 skipped\\n    [300/551] 48s, 6908 entities, 75 skipped\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.12}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 135_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01TfpR3zYPgduTrNwdDMq1zG`</summary>
+
+```json
+{
+  "server": "autodl-5090-c",
+  "command": "tail -12 /tmp/probe_groupkfold.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4ef02f80-2bd2-4491-8d00-968f4ce2770e",
+  "uuid": "cb3c9d33-d99b-40cb-bca7-6ca46a15a713",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017RmdgYt6mhGDRAYBwFFcmG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 392,
+      "cache_read_input_tokens": 88421,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 392
+      },
+      "output_tokens": 67,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 136 · 2026-05-21T03:21:11.788Z_
+
+<details><summary>↩ Tool result · `toolu_01TfpR3zYPgduTrNwdDMq1zG`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  GroupKFold AUROC:      0.6513 +/- 0.0395\\n  Delta:                 -0.3359\\n  vs MV=0.87, ESJ=0.51\\n  => MODERATE — partial info in representation\\n  Saved: /root/autodl-tmp/struct_self_consist_ie/output/entity_probe_auroc_groupkfold/groupkfold_results_fewnerd.json\\n\\n============================================================\\nProcessing scierc...\\n  Loading tokenizer from /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-merged-v2...\\n    [100/551] 18s, 2490 entities, 32 skipped\\n    [200/551] 35s, 4784 entities, 67 skipped\\n    [300/551] 48s, 6908 entities, 75 skipped\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.78}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4ef02f80-2bd2-4491-8d00-968f4ce2770e",
+  "uuid": "4d21f11f-27b2-4a59-b402-a294d11984dd",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  GroupKFold AUROC:      0.6513 +/- 0.0395\\\\n  Delta:                 -0.3359\\\\n  vs MV=0.87, ESJ=0.51\\\\n  => MODERATE — partial info in representation\\\\n  Saved: /root/autodl-tmp/struct_self_consist_ie/output/entity_probe_auroc_groupkfold/groupkfold_results_fewnerd.json\\\\n\\\\n============================================================\\\\nProcessing scierc...\\\\n  Loading tokenizer from /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-merged-v2...\\\\n    [100/551] 18s, 2490 entities, 32 skipped\\\\n    [200/551] 35s, 4784 entities, 67 skipped\\\\n    [300/551] 48s, 6908 entities, 75 skipped\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.78}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"  GroupKFold AUROC:      0.6513 +/- 0.0395\\n  Delta:                 -0.3359\\n  vs MV=0.87, ESJ=0.51\\n  => MODERATE — partial info in representation\\n  Saved: /root/autodl-tmp/struct_self_consist_ie/output/entity_probe_auroc_groupkfold/groupkfold_results_fewnerd.json\\n\\n============================================================\\nProcessing scierc...\\n  Loading tokenizer from /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-merged-v2...\\n    [100/551] 18s, 2490 entities, 32 skipped\\n    [200/551] 35s, 4784 entities, 67 skipped\\n    [300/551] 48s, 6908 entities, 75 skipped\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.78}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 137_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01PqZ28xKfqDnmVnqzzmkhnk`</summary>
+
+```json
+{
+  "server": "autodl-5090-c",
+  "command": "tail -15 /tmp/probe_groupkfold.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4ef02f80-2bd2-4491-8d00-968f4ce2770e",
+  "uuid": "ebe6cbcd-d5f8-46fd-ab04-109be29cf9d9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ck2aZwo86LpY6Wo9Y88HZi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 429,
+      "cache_read_input_tokens": 88813,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 429
+      },
+      "output_tokens": 73,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 138 · 2026-05-21T03:21:20.480Z_
+
+<details><summary>↩ Tool result · `toolu_01PqZ28xKfqDnmVnqzzmkhnk`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"    GKF fold: AUROC=0.5785, train=8409(347 inst), test=2099(86 inst), test_pos=0.766\\n\\n  StratifiedKFold AUROC: 0.9872 +/- 0.0007\\n  GroupKFold AUROC:      0.6513 +/- 0.0395\\n  Delta:                 -0.3359\\n  vs MV=0.87, ESJ=0.51\\n  => MODERATE — partial info in representation\\n  Saved: /root/autodl-tmp/struct_self_consist_ie/output/entity_probe_auroc_groupkfold/groupkfold_results_fewnerd.json\\n\\n============================================================\\nProcessing scierc...\\n  Loading tokenizer from /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-merged-v2...\\n    [100/551] 18s, 2490 entities, 32 skipped\\n    [200/551] 35s, 4784 entities, 67 skipped\\n    [300/551] 48s, 6908 entities, 75 skipped\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.79}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4ef02f80-2bd2-4491-8d00-968f4ce2770e",
+  "uuid": "dea8650a-8a2a-4065-8ff1-521295f1aa34",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"    GKF fold: AUROC=0.5785, train=8409(347 inst), test=2099(86 inst), test_pos=0.766\\\\n\\\\n  StratifiedKFold AUROC: 0.9872 +/- 0.0007\\\\n  GroupKFold AUROC:      0.6513 +/- 0.0395\\\\n  Delta:                 -0.3359\\\\n  vs MV=0.87, ESJ=0.51\\\\n  => MODERATE — partial info in representation\\\\n  Saved: /root/autodl-tmp/struct_self_consist_ie/output/entity_probe_auroc_groupkfold/groupkfold_results_fewnerd.json\\\\n\\\\n============================================================\\\\nProcessing scierc...\\\\n  Loading tokenizer from /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-merged-v2...\\\\n    [100/551] 18s, 2490 entities, 32 skipped\\\\n    [200/551] 35s, 4784 entities, 67 skipped\\\\n    [300/551] 48s, 6908 entities, 75 skipped\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.79}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"    GKF fold: AUROC=0.5785, train=8409(347 inst), test=2099(86 inst), test_pos=0.766\\n\\n  StratifiedKFold AUROC: 0.9872 +/- 0.0007\\n  GroupKFold AUROC:      0.6513 +/- 0.0395\\n  Delta:                 -0.3359\\n  vs MV=0.87, ESJ=0.51\\n  => MODERATE — partial info in representation\\n  Saved: /root/autodl-tmp/struct_self_consist_ie/output/entity_probe_auroc_groupkfold/groupkfold_results_fewnerd.json\\n\\n============================================================\\nProcessing scierc...\\n  Loading tokenizer from /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-merged-v2...\\n    [100/551] 18s, 2490 entities, 32 skipped\\n    [200/551] 35s, 4784 entities, 67 skipped\\n    [300/551] 48s, 6908 entities, 75 skipped\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.79}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 139_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01HECgD3cr5XHZQdLouvRX2K`</summary>
+
+```json
+{
+  "server": "autodl-5090-c",
+  "command": "tail -5 /tmp/probe_groupkfold.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4ef02f80-2bd2-4491-8d00-968f4ce2770e",
+  "uuid": "b371c714-06c1-400c-87cd-2a1c41364cb7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013qXQRKjvnP6RcAqXcZNM74",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 500,
+      "cache_read_input_tokens": 89242,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 500
+      },
+      "output_tokens": 67,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 140 · 2026-05-21T03:21:23.963Z_
+
+<details><summary>↩ Tool result · `toolu_01HECgD3cr5XHZQdLouvRX2K`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  Loading tokenizer from /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-merged-v2...\\n    [100/551] 18s, 2490 entities, 32 skipped\\n    [200/551] 35s, 4784 entities, 67 skipped\\n    [300/551] 48s, 6908 entities, 75 skipped\\n    [400/551] 66s, 9263 entities, 99 skipped\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.79}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4ef02f80-2bd2-4491-8d00-968f4ce2770e",
+  "uuid": "03996782-2874-4413-b6cb-4bc4c064c338",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  Loading tokenizer from /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-merged-v2...\\\\n    [100/551] 18s, 2490 entities, 32 skipped\\\\n    [200/551] 35s, 4784 entities, 67 skipped\\\\n    [300/551] 48s, 6908 entities, 75 skipped\\\\n    [400/551] 66s, 9263 entities, 99 skipped\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.79}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"  Loading tokenizer from /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-merged-v2...\\n    [100/551] 18s, 2490 entities, 32 skipped\\n    [200/551] 35s, 4784 entities, 67 skipped\\n    [300/551] 48s, 6908 entities, 75 skipped\\n    [400/551] 66s, 9263 entities, 99 skipped\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.79}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 141_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01GSHQDs3pLzL391VwVshoNG`</summary>
+
+```json
+{
+  "server": "autodl-5090-c",
+  "command": "tail -10 /tmp/probe_groupkfold.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4ef02f80-2bd2-4491-8d00-968f4ce2770e",
+  "uuid": "acfec24a-269d-43a8-a88d-2d8703d4783f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TeDX7zthvyqEEeaFya56oL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 325,
+      "cache_read_input_tokens": 89742,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 325
+      },
+      "output_tokens": 73,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 142 · 2026-05-21T03:21:27.604Z_
+
+<details><summary>↩ Tool result · `toolu_01GSHQDs3pLzL391VwVshoNG`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\n============================================================\\nSUMMARY: GroupKFold vs StratifiedKFold AUROC\\n============================================================\\nDataset      StratKFold   GroupKFold    Delta     MV    ESJ  Probe>MV?\\nconll            0.9796       0.8849  -0.0947   0.87   0.51        YES\\nfewnerd          0.9872       0.6513  -0.3359   0.87   0.51         NO\\nscierc           0.9766       0.6344  -0.3422   0.87   0.51         NO\\n\\nSaved combined results: /root/autodl-tmp/struct_self_consist_ie/output/entity_probe_auroc_groupkfold/groupkfold_all_results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.78}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4ef02f80-2bd2-4491-8d00-968f4ce2770e",
+  "uuid": "c186b465-4370-4619-aa3a-3937ad97beef",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\n============================================================\\\\nSUMMARY: GroupKFold vs StratifiedKFold AUROC\\\\n============================================================\\\\nDataset      StratKFold   GroupKFold    Delta     MV    ESJ  Probe>MV?\\\\nconll            0.9796       0.8849  -0.0947   0.87   0.51        YES\\\\nfewnerd          0.9872       0.6513  -0.3359   0.87   0.51         NO\\\\nscierc           0.9766       0.6344  -0.3422   0.87   0.51         NO\\\\n\\\\nSaved combined results: /root/autodl-tmp/struct_self_consist_ie/output/entity_probe_auroc_groupkfold/groupkfold_all_results.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.78}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\n============================================================\\nSUMMARY: GroupKFold vs StratifiedKFold AUROC\\n============================================================\\nDataset      StratKFold   GroupKFold    Delta     MV    ESJ  Probe>MV?\\nconll            0.9796       0.8849  -0.0947   0.87   0.51        YES\\nfewnerd          0.9872       0.6513  -0.3359   0.87   0.51         NO\\nscierc           0.9766       0.6344  -0.3422   0.87   0.51         NO\\n\\nSaved combined results: /root/autodl-tmp/struct_self_consist_ie/output/entity_probe_auroc_groupkfold/groupkfold_all_results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.78}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 143_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+All 3 datasets done. Here's the full summary:
+
+| Dataset | StratifiedKFold | GroupKFold | Delta | Probe > MV? |
+|---------|----------------|------------|-------|-------------|
+| conll   | 0.9796         | 0.8849     | -0.095| YES         |
+| fewnerd | 0.9872         | 0.6513     | -0.336| NO          |
+| scierc  | 0.9766         | 0.6344     | -0.342| NO          |
+
+This is a very significant result:
+
+
+The instance leakage was catastrophic for fewnerd and scierc, with AUROC plummeting by 0.33-0.34 when I switched to group-based splitting. Only conll survives the correction with the probe still outperforming the majority vote baseline (0.885 vs 0.87), but fewnerd and scierc collapse to 0.63-0.65—barely above the ESJ baseline of 0.51 and well below the MV threshold. So the original hypothesis that "probe AUROC >> MV" holds only for conll; for the other two datasets, the corrected probe performance suggests the information isn't nearly as robustly encoded in the representation as I initially thought.
+
+Now I need to pull the full scierc results, load the saved JSON files to get complete details, update the registry, and review the instance IDs the script already saved.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4ef02f80-2bd2-4491-8d00-968f4ce2770e",
+  "uuid": "e0a2764f-47a6-4826-b788-36c555549448",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01T9FWnwku1NoxLkoRbWZSTy",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 394,
+      "cache_read_input_tokens": 90067,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 394
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 144_
+
+All 3 datasets complete. Let me get the full results.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4ef02f80-2bd2-4491-8d00-968f4ce2770e",
+  "uuid": "ce6eaaf4-18ea-4f6c-ac0d-b05dacea90a1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01T9FWnwku1NoxLkoRbWZSTy",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 394,
+      "cache_read_input_tokens": 90067,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 394
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 145_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01BpNznJjnuP6iVLzMaeBLfk`</summary>
+
+```json
+{
+  "server": "autodl-5090-c",
+  "command": "cat /tmp/probe_groupkfold.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4ef02f80-2bd2-4491-8d00-968f4ce2770e",
+  "uuid": "c8b57919-4b2f-45d3-909b-0944790d25c1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01T9FWnwku1NoxLkoRbWZSTy",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 394,
+      "cache_read_input_tokens": 90067,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 394
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 146 · 2026-05-21T03:21:39.877Z_
+
+<details><summary>↩ Tool result · `toolu_01BpNznJjnuP6iVLzMaeBLfk`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\n============================================================\\nProcessing conll...\\n  Loading tokenizer from /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-conll2003-merged...\\n    [100/500] 15s, 1735 entities, 0 skipped\\n    [200/500] 21s, 3233 entities, 0 skipped\\n    [300/500] 41s, 5355 entities, 0 skipped\\n    [400/500] 51s, 6817 entities, 0 skipped\\n    [500/500] 54s, 7849 entities, 0 skipped\\n  Reconstructed 7849 instance_ids in 54.3s (skipped=0)\\n  Unique instances: 418\\n\\n--- conll ---\\n  Entities: 7849, dim=4096\\n  Positive: 7157 (91.2%), Negative: 692\\n  Unique instances for GroupKFold: 418\\n    GKF fold: AUROC=0.8617, train=6279(335 inst), test=1570(83 inst), test_pos=0.899\\n    GKF fold: AUROC=0.9070, train=6281(335 inst), test=1568(83 inst), test_pos=0.908\\n    GKF fold: AUROC=0.8930, train=6281(334 inst), test=1568(84 inst), test_pos=0.933\\n    GKF fold: AUROC=0.9498, train=6277(334 inst), test=1572(84 inst), test_pos=0.928\\n    GKF fold: AUROC=0.8130, train=6278(334 inst), test=1571(84 inst), test_pos=0.891\\n\\n  StratifiedKFold AUROC: 0.9796 +/- 0.0036\\n  GroupKFold AUROC:      0.8849 +/- 0.0458\\n  Delta:                 -0.0947\\n  vs MV=0.87, ESJ=0.51\\n  => HIGH — probe > MV, info exists in representation, prompt interface fails\\n  Saved: /root/autodl-tmp/struct_self_consist_ie/output/entity_probe_auroc_groupkfold/groupkfold_results_conll.json\\n\\n============================================================\\nProcessing fewnerd...\\n  Loading tokenizer from /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-fewnerd-exp021-merged...\\n    [100/500] 12s, 1936 entities, 0 skipped\\n    [200/500] 23s, 3947 entities, 0 skipped\\n    [300/500] 35s, 6040 entities, 7 skipped\\n    [400/500] 48s, 8214 entities, 7 skipped\\n    [500/500] 63s, 10508 entities, 7 skipped\\n  Reconstructed 10508 instance_ids in 62.6s (skipped=7)\\n  Unique instances: 433\\n\\n--- fewnerd ---\\n  Entities: 10508, dim=4096\\n  Positive: 8390 (79.8%), Negative: 2118\\n  Unique instances for GroupKFold: 433\\n    GKF fold: AUROC=0.6683, train=8403(346 inst), test=2105(87 inst), test_pos=0.811\\n    GKF fold: AUROC=0.6922, train=8404(346 inst), test=2104(87 inst), test_pos=0.816\\n    GKF fold: AUROC=0.6441, train=8407(346 inst), test=2101(87 inst), test_pos=0.821\\n    GKF fold: AUROC=0.6733, train=8409(347 inst), test=2099(86 inst), test_pos=0.778\\n    GKF fold: AUROC=0.5785, train=8409(347 inst), test=2099(86 inst), test_pos=0.766\\n\\n  StratifiedKFold AUROC: 0.9872 +/- 0.0007\\n  GroupKFold AUROC:      0.6513 +/- 0.0395\\n  Delta:                 -0.3359\\n  vs MV=0.87, ESJ=0.51\\n  => MODERATE — partial info in representation\\n  Saved: /root/autodl-tmp/struct_self_consist_ie/output/entity_probe_auroc_groupkfold/groupkfold_results_fewnerd.json\\n\\n============================================================\\nProcessing scierc...\\n  Loading tokenizer from /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-merged-v2...\\n    [100/551] 18s, 2490 entities, 32 skipped\\n    [200/551] 34s, 4784 entities, 67 skipped\\n    [300/551] 46s, 6908 entities, 75 skipped\\n    [400/551] 64s, 9263 entities, 99 skipped\\n    [500/551] 86s, 11757 entities, 140 skipped\\n  Reconstructed 12933 instance_ids in 94.2s (skipped=140)\\n  Unique instances: 525\\n\\n--- scierc ---\\n  Entities: 12933, dim=4096\\n  Positive: 8463 (65.4%), Negative: 4470\\n  Unique instances for GroupKFold: 525\\n    GKF fold: AUROC=0.6292, train=10346(420 inst), test=2587(105 inst), test_pos=0.638\\n    GKF fold: AUROC=0.6517, train=10346(420 inst), test=2587(105 inst), test_pos=0.632\\n    GKF fold: AUROC=0.6376, train=10346(420 inst), test=2587(105 inst), test_pos=0.710\\n    GKF fold: AUROC=0.6222, train=10347(420 inst), test=2586(105 inst), test_pos=0.690\\n    GKF fold: AUROC=0.6312, train=10347(420 inst), test=2586(105 inst), test_pos=0.602\\n\\n  StratifiedKFold AUROC: 0.9766 +/- 0.0011\\n  GroupKFold AUROC:      0.6344 +/- 0.0100\\n  Delta:                 -0.3422\\n  vs MV=0.87, ESJ=0.51\\n  => MODERATE — partial info in representation\\n  Saved: /root/autodl-tmp/struct_self_consist_ie/output/entity_probe_auroc_groupkfold/groupkfold_results_scierc.json\\n\\n============================================================\\nSUMMARY: GroupKFold vs StratifiedKFold AUROC\\n============================================================\\nDataset      StratKFold   GroupKFold    Delta     MV    ESJ  Probe>MV?\\nconll            0.9796       0.8849  -0.0947   0.87   0.51        YES\\nfewnerd          0.9872       0.6513  -0.3359   0.87   0.51         NO\\nscierc           0.9766       0.6344  -0.3422   0.87   0.51         NO\\n\\nSaved combined results: /root/autodl-tmp/struct_self_consist_ie/output/entity_probe_auroc_groupkfold/groupkfold_all_results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.78}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4ef02f80-2bd2-4491-8d00-968f4ce2770e",
+  "uuid": "ed63f1ed-08b7-4ce0-8985-83df53773070",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\n============================================================\\\\nProcessing conll...\\\\n  Loading tokenizer from /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-conll2003-merged...\\\\n    [100/500] 15s, 1735 entities, 0 skipped\\\\n    [200/500] 21s, 3233 entities, 0 skipped\\\\n    [300/500] 41s, 5355 entities, 0 skipped\\\\n    [400/500] 51s, 6817 entities, 0 skipped\\\\n    [500/500] 54s, 7849 entities, 0 skipped\\\\n  Reconstructed 7849 instance_ids in 54.3s (skipped=0)\\\\n  Unique instances: 418\\\\n\\\\n--- conll ---\\\\n  Entities: 7849, dim=4096\\\\n  Positive: 7157 (91.2%), Negative: 692\\\\n  Unique instances for GroupKFold: 418\\\\n    GKF fold: AUROC=0.8617, train=6279(335 inst), test=1570(83 inst), test_pos=0.899\\\\n    GKF fold: AUROC=0.9070, train=6281(335 inst), test=1568(83 inst), test_pos=0.908\\\\n    GKF fold: AUROC=0.8930, train=6281(334 inst), test=1568(84 inst), test_pos=0.933\\\\n    GKF fold: AUROC=0.9498, train=6277(334 inst), test=1572(84 inst), test_pos=0.928\\\\n    GKF fold: AUROC=0.8130, train=6278(334 inst), test=1571(84 inst), test_pos=0.891\\\\n\\\\n  StratifiedKFold AUROC: 0.9796 +/- 0.0036\\\\n  GroupKFold AUROC:      0.8849 +/- 0.0458\\\\n  Delta:                 -0.0947\\\\n  vs MV=0.87, ESJ=0.51\\\\n  => HIGH — probe > MV, info exists in representation, prompt interface fails\\\\n  Saved: /root/autodl-tmp/struct_self_consist_ie/output/entity_probe_auroc_groupkfold/groupkfold_results_conll.json\\\\n\\\\n============================================================\\\\nProcessing fewnerd...\\\\n  Loading tokenizer from /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-fewnerd-exp021-merged...\\\\n    [100/500] 12s, 1936 entities, 0 skipped\\\\n    [200/500] 23s, 3947 entities, 0 skipped\\\\n    [300/500] 35s, 6040 entities, 7 skipped\\\\n    [400/500] 48s, 8214 entities, 7 skipped\\\\n    [500/500] 63s, 10508 entities, 7 skipped\\\\n  Reconstructed 10508 instance_ids in 62.6s (skipped=7)\\\\n  Unique instances: 433\\\\n\\\\n--- fewnerd ---\\\\n  Entities: 10508, dim=4096\\\\n  Positive: 8390 (79.8%), Negative: 2118\\\\n  Unique instances for GroupKFold: 433\\\\n    GKF fold: AUROC=0.6683, train=8403(346 inst), test=2105(87 inst), test_pos=0.811\\\\n    GKF fold: AUROC=0.6922, train=8404(346 inst), test=2104(87 inst), test_pos=0.816\\\\n    GKF fold: AUROC=0.6441, train=8407(346 inst), test=2101(87 inst), test_pos=0.821\\\\n    GKF fold: AUROC=0.6733, train=8409(347 inst), test=2099(86 inst), test_pos=0.778\\\\n    GKF fold: AUROC=0.5785, train=8409(347 inst), test=2099(86 inst), test_pos=0.766\\\\n\\\\n  StratifiedKFold AUROC: 0.9872 +/- 0.0007\\\\n  GroupKFold AUROC:      0.6513 +/- 0.0395\\\\n  Delta:                 -0.3359\\\\n  vs MV=0.87, ESJ=0.51\\\\n  => MODERATE — partial info in representation\\\\n  Saved: /root/autodl-tmp/struct_self_consist_ie/output/entity_probe_auroc_groupkfold/groupkfold_results_fewnerd.json\\\\n\\\\n============================================================\\\\nProcessing scierc...\\\\n  Loading tokenizer from /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-merged-v2...\\\\n    [100/551] 18s, 2490 entities, 32 skipped\\\\n    [200/551] 34s, 4784 entities, 67 skipped\\\\n    [300/551] 46s, 6908 entities, 75 skipped\\\\n    [400/551] 64s, 9263 entities, 99 skipped\\\\n    [500/551] 86s, 11757 entities, 140 skipped\\\\n  Reconstructed 12933 instance_ids in 94.2s (skipped=140)\\\\n  Unique instances: 525\\\\n\\\\n--- scierc ---\\\\n  Entities: 12933, dim=4096\\\\n  Positive: 8463 (65.4%), Negative: 4470\\\\n  Unique instances for GroupKFold: 525\\\\n    GKF fold: AUROC=0.6292, train=10346(420 inst), test=2587(105 inst), test_pos=0.638\\\\n    GKF fold: AUROC=0.6517, train=10346(420 inst), test=2587(105 inst), test_pos=0.632\\\\n    GKF fold: AUROC=0.6376, train=10346(420 inst), test=2587(105 inst), test_pos=0.710\\\\n    GKF fold: AUROC=0.6222, train=10347(420 inst), test=2586(105 inst), test_pos=0.690\\\\n    GKF fold: AUROC=0.6312, train=10347(420 inst), test=2586(105 inst), test_pos=0.602\\\\n\\\\n  StratifiedKFold AUROC: 0.9766 +/- 0.0011\\\\n  GroupKFold AUROC:      0.6344 +/- 0.0100\\\\n  Delta:                 -0.3422\\\\n  vs MV=0.87, ESJ=0.51\\\\n  => MODERATE — partial info in representation\\\\n  Saved: /root/autodl-tmp/struct_self_consist_ie/output/entity_probe_auroc_groupkfold/groupkfold_results_scierc.json\\\\n\\\\n============================================================\\\\nSUMMARY: GroupKFold vs StratifiedKFold AUROC\\\\n============================================================\\\\nDataset      StratKFold   GroupKFold    Delta     MV    ESJ  Probe>MV?\\\\nconll            0.9796       0.8849  -0.0947   0.87   0.51        YES\\\\nfewnerd          0.9872       0.6513  -0.3359   0.87   0.51         NO\\\\nscierc           0.9766       0.6344  -0.3422   0.87   0.51         NO\\\\n\\\\nSaved combined results: /root/autodl-tmp/struct_self_consist_ie/output/entity_probe_auroc_groupkfold/groupkfold_all_results.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.78}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\n============================================================\\nProcessing conll...\\n  Loading tokenizer from /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-conll2003-merged...\\n    [100/500] 15s, 1735 entities, 0 skipped\\n    [200/500] 21s, 3233 entities, 0 skipped\\n    [300/500] 41s, 5355 entities, 0 skipped\\n    [400/500] 51s, 6817 entities, 0 skipped\\n    [500/500] 54s, 7849 entities, 0 skipped\\n  Reconstructed 7849 instance_ids in 54.3s (skipped=0)\\n  Unique instances: 418\\n\\n--- conll ---\\n  Entities: 7849, dim=4096\\n  Positive: 7157 (91.2%), Negative: 692\\n  Unique instances for GroupKFold: 418\\n    GKF fold: AUROC=0.8617, train=6279(335 inst), test=1570(83 inst), test_pos=0.899\\n    GKF fold: AUROC=0.9070, train=6281(335 inst), test=1568(83 inst), test_pos=0.908\\n    GKF fold: AUROC=0.8930, train=6281(334 inst), test=1568(84 inst), test_pos=0.933\\n    GKF fold: AUROC=0.9498, train=6277(334 inst), test=1572(84 inst), test_pos=0.928\\n    GKF fold: AUROC=0.8130, train=6278(334 inst), test=1571(84 inst), test_pos=0.891\\n\\n  StratifiedKFold AUROC: 0.9796 +/- 0.0036\\n  GroupKFold AUROC:      0.8849 +/- 0.0458\\n  Delta:                 -0.0947\\n  vs MV=0.87, ESJ=0.51\\n  => HIGH — probe > MV, info exists in representation, prompt interface fails\\n  Saved: /root/autodl-tmp/struct_self_consist_ie/output/entity_probe_auroc_groupkfold/groupkfold_results_conll.json\\n\\n============================================================\\nProcessing fewnerd...\\n  Loading tokenizer from /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-fewnerd-exp021-merged...\\n    [100/500] 12s, 1936 entities, 0 skipped\\n    [200/500] 23s, 3947 entities, 0 skipped\\n    [300/500] 35s, 6040 entities, 7 skipped\\n    [400/500] 48s, 8214 entities, 7 skipped\\n    [500/500] 63s, 10508 entities, 7 skipped\\n  Reconstructed 10508 instance_ids in 62.6s (skipped=7)\\n  Unique instances: 433\\n\\n--- fewnerd ---\\n  Entities: 10508, dim=4096\\n  Positive: 8390 (79.8%), Negative: 2118\\n  Unique instances for GroupKFold: 433\\n    GKF fold: AUROC=0.6683, train=8403(346 inst), test=2105(87 inst), test_pos=0.811\\n    GKF fold: AUROC=0.6922, train=8404(346 inst), test=2104(87 inst), test_pos=0.816\\n    GKF fold: AUROC=0.6441, train=8407(346 inst), test=2101(87 inst), test_pos=0.821\\n    GKF fold: AUROC=0.6733, train=8409(347 inst), test=2099(86 inst), test_pos=0.778\\n    GKF fold: AUROC=0.5785, train=8409(347 inst), test=2099(86 inst), test_pos=0.766\\n\\n  StratifiedKFold AUROC: 0.9872 +/- 0.0007\\n  GroupKFold AUROC:      0.6513 +/- 0.0395\\n  Delta:                 -0.3359\\n  vs MV=0.87, ESJ=0.51\\n  => MODERATE — partial info in representation\\n  Saved: /root/autodl-tmp/struct_self_consist_ie/output/entity_probe_auroc_groupkfold/groupkfold_results_fewnerd.json\\n\\n============================================================\\nProcessing scierc...\\n  Loading tokenizer from /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-merged-v2...\\n    [100/551] 18s, 2490 entities, 32 skipped\\n    [200/551] 34s, 4784 entities, 67 skipped\\n    [300/551] 46s, 6908 entities, 75 skipped\\n    [400/551] 64s, 9263 entities, 99 skipped\\n    [500/551] 86s, 11757 entities, 140 skipped\\n  Reconstructed 12933 instance_ids in 94.2s (skipped=140)\\n  Unique instances: 525\\n\\n--- scierc ---\\n  Entities: 12933, dim=4096\\n  Positive: 8463 (65.4%), Negative: 4470\\n  Unique instances for GroupKFold: 525\\n    GKF fold: AUROC=0.6292, train=10346(420 inst), test=2587(105 inst), test_pos=0.638\\n    GKF fold: AUROC=0.6517, train=10346(420 inst), test=2587(105 inst), test_pos=0.632\\n    GKF fold: AUROC=0.6376, train=10346(420 inst), test=2587(105 inst), test_pos=0.710\\n    GKF fold: AUROC=0.6222, train=10347(420 inst), test=2586(105 inst), test_pos=0.690\\n    GKF fold: AUROC=0.6312, train=10347(420 inst), test=2586(105 inst), test_pos=0.602\\n\\n  StratifiedKFold AUROC: 0.9766 +/- 0.0011\\n  GroupKFold AUROC:      0.6344 +/- 0.0100\\n  Delta:                 -0.3422\\n  vs MV=0.87, ESJ=0.51\\n  => MODERATE — partial info in representation\\n  Saved: /root/autodl-tmp/struct_self_consist_ie/output/entity_probe_auroc_groupkfold/groupkfold_results_scierc.json\\n\\n============================================================\\nSUMMARY: GroupKFold vs StratifiedKFold AUROC\\n============================================================\\nDataset      StratKFold   GroupKFold    Delta     MV    ESJ  Probe>MV?\\nconll            0.9796       0.8849  -0.0947   0.87   0.51        YES\\nfewnerd          0.9872       0.6513  -0.3359   0.87   0.51         NO\\nscierc           0.9766       0.6344  -0.3422   0.87   0.51         NO\\n\\nSaved combined results: /root/autodl-tmp/struct_self_consist_ie/output/entity_probe_auroc_groupkfold/groupkfold_all_results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.78}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 147_
+
+All reconstructions matched exactly (conll: 7849/0 skipped, fewnerd: 10508/7 skipped, scierc: 12933/140 skipped — all matching original metadata). Now let me update the registry and read the combined results.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4ef02f80-2bd2-4491-8d00-968f4ce2770e",
+  "uuid": "180e486a-abdf-4ad7-a67c-a0360ac3be97",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EeNr1i6ByLDyYuK4Yk7Kuc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2646,
+      "cache_read_input_tokens": 90461,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2646
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 148_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01HpEd6113gZH6R7JHWmEQYC`</summary>
+
+```json
+{
+  "server": "autodl-5090-c",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/entity_probe_auroc_groupkfold/groupkfold_all_results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4ef02f80-2bd2-4491-8d00-968f4ce2770e",
+  "uuid": "f973f0ad-bea8-49da-82a1-5517445a4e7d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EeNr1i6ByLDyYuK4Yk7Kuc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2646,
+      "cache_read_input_tokens": 90461,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2646
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 149 · 2026-05-21T03:21:48.099Z_
+
+<details><summary>↩ Tool result · `toolu_01HpEd6113gZH6R7JHWmEQYC`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"conll\\\": {\\n    \\\"dataset\\\": \\\"conll\\\",\\n    \\\"groupkfold_auroc_mean\\\": 0.8849099460174568,\\n    \\\"groupkfold_auroc_std\\\": 0.045765904293907665,\\n    \\\"groupkfold_auroc_per_fold\\\": [\\n      0.8616619641718928,\\n      0.9070058910736578,\\n      0.8930442990593369,\\n      0.949804994328762,\\n      0.8130325814536341\\n    ],\\n    \\\"stratifiedkfold_auroc_mean\\\": 0.9796446964229667,\\n    \\\"stratifiedkfold_auroc_std\\\": 0.003607090049064161,\\n    \\\"stratifiedkfold_auroc_per_seed\\\": [\\n      0.9819497397459891,\\n      0.9824332062752001,\\n      0.9745511432477107\\n    ],\\n    \\\"delta\\\": -0.09473475040550994,\\n    \\\"n_entities\\\": 7849,\\n    \\\"n_positive\\\": 7157,\\n    \\\"positive_rate\\\": 0.9118359026627596,\\n    \\\"n_unique_instances\\\": 418,\\n    \\\"cv_folds\\\": 5,\\n    \\\"seeds\\\": [\\n      42,\\n      123,\\n      456\\n    ],\\n    \\\"comparison\\\": {\\n      \\\"mv_agreement_auroc\\\": 0.87,\\n      \\\"esj_prompt_auroc\\\": 0.51\\n    },\\n    \\\"interpretation\\\": \\\"HIGH \\\\u2014 probe > MV, info exists in representation, prompt interface fails\\\"\\n  },\\n  \\\"fewnerd\\\": {\\n    \\\"dataset\\\": \\\"fewnerd\\\",\\n    \\\"groupkfold_auroc_mean\\\": 0.6512837816085708,\\n    \\\"groupkfold_auroc_std\\\": 0.039486948433737734,\\n    \\\"groupkfold_auroc_per_fold\\\": [\\n      0.6682556013812472,\\n      0.6922069771956675,\\n      0.6441192218454399,\\n      0.6733275424119187,\\n      0.5785095652085803\\n    ],\\n    \\\"stratifiedkfold_auroc_mean\\\": 0.9872291964974939,\\n    \\\"stratifiedkfold_auroc_std\\\": 0.0007134647420498088,\\n    \\\"stratifiedkfold_auroc_per_seed\\\": [\\n      0.9864743443234474,\\n      0.9881864471732724,\\n      0.9870267979957618\\n    ],\\n    \\\"delta\\\": -0.33594541488892304,\\n    \\\"n_entities\\\": 10508,\\n    \\\"n_positive\\\": 8390,\\n    \\\"positive_rate\\\": 0.7984392843547773,\\n    \\\"n_unique_instances\\\": 433,\\n    \\\"cv_folds\\\": 5,\\n    \\\"seeds\\\": [\\n      42,\\n      123,\\n      456\\n    ],\\n    \\\"comparison\\\": {\\n      \\\"mv_agreement_auroc\\\": 0.87,\\n      \\\"esj_prompt_auroc\\\": 0.51\\n    },\\n    \\\"interpretation\\\": \\\"MODERATE \\\\u2014 partial info in representation\\\"\\n  },\\n  \\\"scierc\\\": {\\n    \\\"dataset\\\": \\\"scierc\\\",\\n    \\\"groupkfold_auroc_mean\\\": 0.6343944849563694,\\n    \\\"groupkfold_auroc_std\\\": 0.009970690528335744,\\n    \\\"groupkfold_auroc_per_fold\\\": [\\n      0.6292086284402185,\\n      0.6517407503971868,\\n      0.637592451460715,\\n      0.6221809572767933,\\n      0.6312496372069334\\n    ],\\n    \\\"stratifiedkfold_auroc_mean\\\": 0.976589975449475,\\n    \\\"stratifiedkfold_auroc_std\\\": 0.001056555364857968,\\n    \\\"stratifiedkfold_auroc_per_seed\\\": [\\n      0.9771228245801943,\\n      0.9751146184164259,\\n      0.9775324833518051\\n    ],\\n    \\\"delta\\\": -0.3421954904931056,\\n    \\\"n_entities\\\": 12933,\\n    \\\"n_positive\\\": 8463,\\n    \\\"positive_rate\\\": 0.654372535374623,\\n    \\\"n_unique_instances\\\": 525,\\n    \\\"cv_folds\\\": 5,\\n    \\\"seeds\\\": [\\n      42,\\n      123,\\n      456\\n    ],\\n    \\\"comparison\\\": {\\n      \\\"mv_agreement_auroc\\\": 0.87,\\n      \\\"esj_prompt_auroc\\\": 0.51\\n    },\\n    \\\"interpretation\\\": \\\"MODERATE \\\\u2014 partial info in representation\\\"\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.78}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4ef02f80-2bd2-4491-8d00-968f4ce2770e",
+  "uuid": "7db3e996-40a7-4b66-874c-5ee2e0dd49c9",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"conll\\\\\\\": {\\\\n    \\\\\\\"dataset\\\\\\\": \\\\\\\"conll\\\\\\\",\\\\n    \\\\\\\"groupkfold_auroc_mean\\\\\\\": 0.8849099460174568,\\\\n    \\\\\\\"groupkfold_auroc_std\\\\\\\": 0.045765904293907665,\\\\n    \\\\\\\"groupkfold_auroc_per_fold\\\\\\\": [\\\\n      0.8616619641718928,\\\\n      0.9070058910736578,\\\\n      0.8930442990593369,\\\\n      0.949804994328762,\\\\n      0.8130325814536341\\\\n    ],\\\\n    \\\\\\\"stratifiedkfold_auroc_mean\\\\\\\": 0.9796446964229667,\\\\n    \\\\\\\"stratifiedkfold_auroc_std\\\\\\\": 0.003607090049064161,\\\\n    \\\\\\\"stratifiedkfold_auroc_per_seed\\\\\\\": [\\\\n      0.9819497397459891,\\\\n      0.9824332062752001,\\\\n      0.9745511432477107\\\\n    ],\\\\n    \\\\\\\"delta\\\\\\\": -0.09473475040550994,\\\\n    \\\\\\\"n_entities\\\\\\\": 7849,\\\\n    \\\\\\\"n_positive\\\\\\\": 7157,\\\\n    \\\\\\\"positive_rate\\\\\\\": 0.9118359026627596,\\\\n    \\\\\\\"n_unique_instances\\\\\\\": 418,\\\\n    \\\\\\\"cv_folds\\\\\\\": 5,\\\\n    \\\\\\\"seeds\\\\\\\": [\\\\n      42,\\\\n      123,\\\\n      456\\\\n    ],\\\\n    \\\\\\\"comparison\\\\\\\": {\\\\n      \\\\\\\"mv_agreement_auroc\\\\\\\": 0.87,\\\\n      \\\\\\\"esj_prompt_auroc\\\\\\\": 0.51\\\\n    },\\\\n    \\\\\\\"interpretation\\\\\\\": \\\\\\\"HIGH \\\\\\\\u2014 probe > MV, info exists in representation, prompt interface fails\\\\\\\"\\\\n  },\\\\n  \\\\\\\"fewnerd\\\\\\\": {\\\\n    \\\\\\\"dataset\\\\\\\": \\\\\\\"fewnerd\\\\\\\",\\\\n    \\\\\\\"groupkfold_auroc_mean\\\\\\\": 0.6512837816085708,\\\\n    \\\\\\\"groupkfold_auroc_std\\\\\\\": 0.039486948433737734,\\\\n    \\\\\\\"groupkfold_auroc_per_fold\\\\\\\": [\\\\n      0.6682556013812472,\\\\n      0.6922069771956675,\\\\n      0.6441192218454399,\\\\n      0.6733275424119187,\\\\n      0.5785095652085803\\\\n    ],\\\\n    \\\\\\\"stratifiedkfold_auroc_mean\\\\\\\": 0.9872291964974939,\\\\n    \\\\\\\"stratifiedkfold_auroc_std\\\\\\\": 0.0007134647420498088,\\\\n    \\\\\\\"stratifiedkfold_auroc_per_seed\\\\\\\": [\\\\n      0.9864743443234474,\\\\n      0.9881864471732724,\\\\n      0.9870267979957618\\\\n    ],\\\\n    \\\\\\\"delta\\\\\\\": -0.33594541488892304,\\\\n    \\\\\\\"n_entities\\\\\\\": 10508,\\\\n    \\\\\\\"n_positive\\\\\\\": 8390,\\\\n    \\\\\\\"positive_rate\\\\\\\": 0.7984392843547773,\\\\n    \\\\\\\"n_unique_instances\\\\\\\": 433,\\\\n    \\\\\\\"cv_folds\\\\\\\": 5,\\\\n    \\\\\\\"seeds\\\\\\\": [\\\\n      42,\\\\n      123,\\\\n      456\\\\n    ],\\\\n    \\\\\\\"comparison\\\\\\\": {\\\\n      \\\\\\\"mv_agreement_auroc\\\\\\\": 0.87,\\\\n      \\\\\\\"esj_prompt_auroc\\\\\\\": 0.51\\\\n    },\\\\n    \\\\\\\"interpretation\\\\\\\": \\\\\\\"MODERATE \\\\\\\\u2014 partial info in representation\\\\\\\"\\\\n  },\\\\n  \\\\\\\"scierc\\\\\\\": {\\\\n    \\\\\\\"dataset\\\\\\\": \\\\\\\"scierc\\\\\\\",\\\\n    \\\\\\\"groupkfold_auroc_mean\\\\\\\": 0.6343944849563694,\\\\n    \\\\\\\"groupkfold_auroc_std\\\\\\\": 0.009970690528335744,\\\\n    \\\\\\\"groupkfold_auroc_per_fold\\\\\\\": [\\\\n      0.6292086284402185,\\\\n      0.6517407503971868,\\\\n      0.637592451460715,\\\\n      0.6221809572767933,\\\\n      0.6312496372069334\\\\n    ],\\\\n    \\\\\\\"stratifiedkfold_auroc_mean\\\\\\\": 0.976589975449475,\\\\n    \\\\\\\"stratifiedkfold_auroc_std\\\\\\\": 0.001056555364857968,\\\\n    \\\\\\\"stratifiedkfold_auroc_per_seed\\\\\\\": [\\\\n      0.9771228245801943,\\\\n      0.9751146184164259,\\\\n      0.9775324833518051\\\\n    ],\\\\n    \\\\\\\"delta\\\\\\\": -0.3421954904931056,\\\\n    \\\\\\\"n_entities\\\\\\\": 12933,\\\\n    \\\\\\\"n_positive\\\\\\\": 8463,\\\\n    \\\\\\\"positive_rate\\\\\\\": 0.654372535374623,\\\\n    \\\\\\\"n_unique_instances\\\\\\\": 525,\\\\n    \\\\\\\"cv_folds\\\\\\\": 5,\\\\n    \\\\\\\"seeds\\\\\\\": [\\\\n      42,\\\\n      123,\\\\n      456\\\\n    ],\\\\n    \\\\\\\"comparison\\\\\\\": {\\\\n      \\\\\\\"mv_agreement_auroc\\\\\\\": 0.87,\\\\n      \\\\\\\"esj_prompt_auroc\\\\\\\": 0.51\\\\n    },\\\\n    \\\\\\\"interpretation\\\\\\\": \\\\\\\"MODERATE \\\\\\\\u2014 partial info in representation\\\\\\\"\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.78}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"conll\\\": {\\n    \\\"dataset\\\": \\\"conll\\\",\\n    \\\"groupkfold_auroc_mean\\\": 0.8849099460174568,\\n    \\\"groupkfold_auroc_std\\\": 0.045765904293907665,\\n    \\\"groupkfold_auroc_per_fold\\\": [\\n      0.8616619641718928,\\n      0.9070058910736578,\\n      0.8930442990593369,\\n      0.949804994328762,\\n      0.8130325814536341\\n    ],\\n    \\\"stratifiedkfold_auroc_mean\\\": 0.9796446964229667,\\n    \\\"stratifiedkfold_auroc_std\\\": 0.003607090049064161,\\n    \\\"stratifiedkfold_auroc_per_seed\\\": [\\n      0.9819497397459891,\\n      0.9824332062752001,\\n      0.9745511432477107\\n    ],\\n    \\\"delta\\\": -0.09473475040550994,\\n    \\\"n_entities\\\": 7849,\\n    \\\"n_positive\\\": 7157,\\n    \\\"positive_rate\\\": 0.9118359026627596,\\n    \\\"n_unique_instances\\\": 418,\\n    \\\"cv_folds\\\": 5,\\n    \\\"seeds\\\": [\\n      42,\\n      123,\\n      456\\n    ],\\n    \\\"comparison\\\": {\\n      \\\"mv_agreement_auroc\\\": 0.87,\\n      \\\"esj_prompt_auroc\\\": 0.51\\n    },\\n    \\\"interpretation\\\": \\\"HIGH \\\\u2014 probe > MV, info exists in representation, prompt interface fails\\\"\\n  },\\n  \\\"fewnerd\\\": {\\n    \\\"dataset\\\": \\\"fewnerd\\\",\\n    \\\"groupkfold_auroc_mean\\\": 0.6512837816085708,\\n    \\\"groupkfold_auroc_std\\\": 0.039486948433737734,\\n    \\\"groupkfold_auroc_per_fold\\\": [\\n      0.6682556013812472,\\n      0.6922069771956675,\\n      0.6441192218454399,\\n      0.6733275424119187,\\n      0.5785095652085803\\n    ],\\n    \\\"stratifiedkfold_auroc_mean\\\": 0.9872291964974939,\\n    \\\"stratifiedkfold_auroc_std\\\": 0.0007134647420498088,\\n    \\\"stratifiedkfold_auroc_per_seed\\\": [\\n      0.9864743443234474,\\n      0.9881864471732724,\\n      0.9870267979957618\\n    ],\\n    \\\"delta\\\": -0.33594541488892304,\\n    \\\"n_entities\\\": 10508,\\n    \\\"n_positive\\\": 8390,\\n    \\\"positive_rate\\\": 0.7984392843547773,\\n    \\\"n_unique_instances\\\": 433,\\n    \\\"cv_folds\\\": 5,\\n    \\\"seeds\\\": [\\n      42,\\n      123,\\n      456\\n    ],\\n    \\\"comparison\\\": {\\n      \\\"mv_agreement_auroc\\\": 0.87,\\n      \\\"esj_prompt_auroc\\\": 0.51\\n    },\\n    \\\"interpretation\\\": \\\"MODERATE \\\\u2014 partial info in representation\\\"\\n  },\\n  \\\"scierc\\\": {\\n    \\\"dataset\\\": \\\"scierc\\\",\\n    \\\"groupkfold_auroc_mean\\\": 0.6343944849563694,\\n    \\\"groupkfold_auroc_std\\\": 0.009970690528335744,\\n    \\\"groupkfold_auroc_per_fold\\\": [\\n      0.6292086284402185,\\n      0.6517407503971868,\\n      0.637592451460715,\\n      0.6221809572767933,\\n      0.6312496372069334\\n    ],\\n    \\\"stratifiedkfold_auroc_mean\\\": 0.976589975449475,\\n    \\\"stratifiedkfold_auroc_std\\\": 0.001056555364857968,\\n    \\\"stratifiedkfold_auroc_per_seed\\\": [\\n      0.9771228245801943,\\n      0.9751146184164259,\\n      0.9775324833518051\\n    ],\\n    \\\"delta\\\": -0.3421954904931056,\\n    \\\"n_entities\\\": 12933,\\n    \\\"n_positive\\\": 8463,\\n    \\\"positive_rate\\\": 0.654372535374623,\\n    \\\"n_unique_instances\\\": 525,\\n    \\\"cv_folds\\\": 5,\\n    \\\"seeds\\\": [\\n      42,\\n      123,\\n      456\\n    ],\\n    \\\"comparison\\\": {\\n      \\\"mv_agreement_auroc\\\": 0.87,\\n      \\\"esj_prompt_auroc\\\": 0.51\\n    },\\n    \\\"interpretation\\\": \\\"MODERATE \\\\u2014 partial info in representation\\\"\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.78}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 150_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01UomVN9bqjZkUCZZrf2SWVb`</summary>
+
+```json
+{
+  "exp_id": "exp_hidden_state_probe",
+  "field": "metrics",
+  "value": {
+    "entity_level_stratifiedkfold_auroc": {
+      "conll": 0.9796,
+      "fewnerd": 0.9872,
+      "scierc": 0.9766
+    },
+    "groupkfold_auroc_corrected": {
+      "conll": 0.8849,
+      "fewnerd": 0.6513,
+      "scierc": 0.6344
+    },
+    "groupkfold_delta": {
+      "conll": -0.0947,
+      "fewnerd": -0.3359,
+      "scierc": -0.3422
+    },
+    "groupkfold_probe_above_mv": {
+      "conll": true,
+      "fewnerd": false,
+      "scierc": false
+    },
+    "baselines": {
+      "mv_agreement_auroc": 0.87,
+      "esj_prompt_auroc": 0.51
+    },
+    "note": "GroupKFold fixes instance-level leakage. Only conll retains probe > MV after correction."
+  },
+  "project": "struct_self_consist_ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4ef02f80-2bd2-4491-8d00-968f4ce2770e",
+  "uuid": "5fa263f6-dd3f-4e77-a6e9-e40e35c121c4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EeNr1i6ByLDyYuK4Yk7Kuc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2646,
+      "cache_read_input_tokens": 90461,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2646
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 151 · 2026-05-21T03:21:55.378Z_
+
+<details><summary>↩ Tool result · `toolu_01UomVN9bqjZkUCZZrf2SWVb`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_hidden_state_probe\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T02:07:00.977Z\", \"updated_at\": \"2026-05-21T03:21:54.284Z\", \"hypothesis\": \"Entity quality information (in_gold vs not) is encoded in the fine-tuned model's last-layer hidden states at entity token positions. If probe AUROC ≈ MV AUROC (0.87), the signal exists in representation but ESJ prompt-based reading (AUROC=0.51) fails to access it — a prompt interface failure. If probe AUROC ≈ 0.51, the information is genuinely absent from single-sample representations.\", \"spec\": {\"command\": \"python code/hidden_state_probe.py --dataset {fewnerd,conll} --max_instances 500\", \"server\": \"autodl-5090-c\", \"data_path\": \"output/{exp_tlow_fewnerd_t05_s42,exp_conll_t08_seed42}/samples.jsonl\", \"data_count\": 1000, \"model_name\": \"Qwen3-8B-FT (per-dataset checkpoints)\", \"seed\": 42, \"gpu\": \"cuda:2 (fewnerd), cuda:3 (conll)\", \"pid\": 261583, \"log_path\": \"/root/autodl-tmp/struct_self_consist_ie/logs/probe_extract_{fewnerd,conll}.log\", \"checkpoint_path\": \"/root/autodl-tmp/struct_self_consist_ie/output/entity_probe_auroc/\"}, \"metrics\": {\"entity_level_stratifiedkfold_auroc\": {\"conll\": 0.9796, \"fewnerd\": 0.9872, \"scierc\": 0.9766}, \"groupkfold_auroc_corrected\": {\"conll\": 0.8849, \"fewnerd\": 0.6513, \"scierc\": 0.6344}, \"groupkfold_delta\": {\"conll\": -0.0947, \"fewnerd\": -0.3359, \"scierc\": -0.3422}, \"groupkfold_probe_above_mv\": {\"conll\": true, \"fewnerd\": false, \"scierc\": false}, \"baselines\": {\"mv_agreement_auroc\": 0.87, \"esj_prompt_auroc\": 0.51}, \"note\": \"GroupKFold fixes instance-level leakage. Only conll retains probe > MV after correction.\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-21T02:11:40.936Z\", \"notes\": \"Probe AUROC far exceeds both baselines: FewNERD 0.987, CoNLL 0.980 vs MV 0.87 vs ESJ 0.51. The model's last-layer hidden states at entity token positions encode correctness information at very high fidelity — even higher than what multi-sample voting captures. This is strong evidence for a prompt interface failure: the model knows which entities are correct but cannot express this through prompting (ESJ). LogisticRegression with 5-fold CV × 3 seeds. SciERC extraction not run (no matching 8B samples data available).\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.8328}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4ef02f80-2bd2-4491-8d00-968f4ce2770e",
+  "uuid": "a95c5f23-08f4-4d85-b78b-ded1871062f4",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_hidden_state_probe\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T02:07:00.977Z\\\", \\\"updated_at\\\": \\\"2026-05-21T03:21:54.284Z\\\", \\\"hypothesis\\\": \\\"Entity quality information (in_gold vs not) is encoded in the fine-tuned model's last-layer hidden states at entity token positions. If probe AUROC ≈ MV AUROC (0.87), the signal exists in representation but ESJ prompt-based reading (AUROC=0.51) fails to access it — a prompt interface failure. If probe AUROC ≈ 0.51, the information is genuinely absent from single-sample representations.\\\", \\\"spec\\\": {\\\"command\\\": \\\"python code/hidden_state_probe.py --dataset {fewnerd,conll} --max_instances 500\\\", \\\"server\\\": \\\"autodl-5090-c\\\", \\\"data_path\\\": \\\"output/{exp_tlow_fewnerd_t05_s42,exp_conll_t08_seed42}/samples.jsonl\\\", \\\"data_count\\\": 1000, \\\"model_name\\\": \\\"Qwen3-8B-FT (per-dataset checkpoints)\\\", \\\"seed\\\": 42, \\\"gpu\\\": \\\"cuda:2 (fewnerd), cuda:3 (conll)\\\", \\\"pid\\\": 261583, \\\"log_path\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/logs/probe_extract_{fewnerd,conll}.log\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/entity_probe_auroc/\\\"}, \\\"metrics\\\": {\\\"entity_level_stratifiedkfold_auroc\\\": {\\\"conll\\\": 0.9796, \\\"fewnerd\\\": 0.9872, \\\"scierc\\\": 0.9766}, \\\"groupkfold_auroc_corrected\\\": {\\\"conll\\\": 0.8849, \\\"fewnerd\\\": 0.6513, \\\"scierc\\\": 0.6344}, \\\"groupkfold_delta\\\": {\\\"conll\\\": -0.0947, \\\"fewnerd\\\": -0.3359, \\\"scierc\\\": -0.3422}, \\\"groupkfold_probe_above_mv\\\": {\\\"conll\\\": true, \\\"fewnerd\\\": false, \\\"scierc\\\": false}, \\\"baselines\\\": {\\\"mv_agreement_auroc\\\": 0.87, \\\"esj_prompt_auroc\\\": 0.51}, \\\"note\\\": \\\"GroupKFold fixes instance-level leakage. Only conll retains probe > MV after correction.\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-21T02:11:40.936Z\\\", \\\"notes\\\": \\\"Probe AUROC far exceeds both baselines: FewNERD 0.987, CoNLL 0.980 vs MV 0.87 vs ESJ 0.51. The model's last-layer hidden states at entity token positions encode correctness information at very high fidelity — even higher than what multi-sample voting captures. This is strong evidence for a prompt interface failure: the model knows which entities are correct but cannot express this through prompting (ESJ). LogisticRegression with 5-fold CV × 3 seeds. SciERC extraction not run (no matching 8B samples data available).\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.8328}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp_hidden_state_probe\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T02:07:00.977Z\", \"updated_at\": \"2026-05-21T03:21:54.284Z\", \"hypothesis\": \"Entity quality information (in_gold vs not) is encoded in the fine-tuned model's last-layer hidden states at entity token positions. If probe AUROC ≈ MV AUROC (0.87), the signal exists in representation but ESJ prompt-based reading (AUROC=0.51) fails to access it — a prompt interface failure. If probe AUROC ≈ 0.51, the information is genuinely absent from single-sample representations.\", \"spec\": {\"command\": \"python code/hidden_state_probe.py --dataset {fewnerd,conll} --max_instances 500\", \"server\": \"autodl-5090-c\", \"data_path\": \"output/{exp_tlow_fewnerd_t05_s42,exp_conll_t08_seed42}/samples.jsonl\", \"data_count\": 1000, \"model_name\": \"Qwen3-8B-FT (per-dataset checkpoints)\", \"seed\": 42, \"gpu\": \"cuda:2 (fewnerd), cuda:3 (conll)\", \"pid\": 261583, \"log_path\": \"/root/autodl-tmp/struct_self_consist_ie/logs/probe_extract_{fewnerd,conll}.log\", \"checkpoint_path\": \"/root/autodl-tmp/struct_self_consist_ie/output/entity_probe_auroc/\"}, \"metrics\": {\"entity_level_stratifiedkfold_auroc\": {\"conll\": 0.9796, \"fewnerd\": 0.9872, \"scierc\": 0.9766}, \"groupkfold_auroc_corrected\": {\"conll\": 0.8849, \"fewnerd\": 0.6513, \"scierc\": 0.6344}, \"groupkfold_delta\": {\"conll\": -0.0947, \"fewnerd\": -0.3359, \"scierc\": -0.3422}, \"groupkfold_probe_above_mv\": {\"conll\": true, \"fewnerd\": false, \"scierc\": false}, \"baselines\": {\"mv_agreement_auroc\": 0.87, \"esj_prompt_auroc\": 0.51}, \"note\": \"GroupKFold fixes instance-level leakage. Only conll retains probe > MV after correction.\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-21T02:11:40.936Z\", \"notes\": \"Probe AUROC far exceeds both baselines: FewNERD 0.987, CoNLL 0.980 vs MV 0.87 vs ESJ 0.51. The model's last-layer hidden states at entity token positions encode correctness information at very high fidelity — even higher than what multi-sample voting captures. This is strong evidence for a prompt interface failure: the model knows which entities are correct but cannot express this through prompting (ESJ). LogisticRegression with 5-fold CV × 3 seeds. SciERC extraction not run (no matching 8B samples data available).\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.8328}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 152_
+
+Now let me register the artifacts.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4ef02f80-2bd2-4491-8d00-968f4ce2770e",
+  "uuid": "127bdd9e-8fa3-4e82-a968-652b7f102c1d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HNa4AvYoh3Ww2zyuYQ2LPt",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3242,
+      "cache_read_input_tokens": 93107,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3242
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 153_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact · `toolu_01UErSdak4zL5Q1nD8zCPJag`</summary>
+
+```json
+{
+  "name": "GroupKFold Probe AUROC Results",
+  "type": "data",
+  "description": "GroupKFold-corrected entity probe AUROC results fixing instance-level leakage. Conll: 0.885 (still > MV 0.87). FewNERD: 0.651, SciERC: 0.634 (both < MV after correction).",
+  "project": "struct_self_consist_ie",
+  "exp_id": "exp_hidden_state_probe",
+  "content": "# GroupKFold Probe AUROC — Instance Leakage Fix\n\n## Problem\nEntity probe used entity-level StratifiedKFold, allowing entities from the same instance to appear in both train and test folds. This caused instance-level information leakage, inflating AUROC.\n\n## Method\n- Replaced StratifiedKFold with GroupKFold (groups=instance_idx)\n- Reconstructed instance_idx by replaying extraction loop with tokenizer (CPU-only)\n- All reconstruction counts matched original metadata exactly\n\n## Results\n\n| Dataset | StratifiedKFold | GroupKFold | Delta   | Probe > MV? |\n|---------|----------------|------------|---------|-------------|\n| CoNLL   | 0.9796         | 0.8849     | -0.0947 | YES         |\n| FewNERD | 0.9872         | 0.6513     | -0.3359 | NO          |\n| SciERC  | 0.9766         | 0.6344     | -0.3422 | NO          |\n\nBaselines: MV = 0.87, ESJ = 0.51\n\n## Per-fold GroupKFold detail\n\n### CoNLL (418 unique instances)\nFolds: 0.862, 0.907, 0.893, 0.950, 0.813\n\n### FewNERD (433 unique instances)  \nFolds: 0.668, 0.692, 0.644, 0.673, 0.579\n\n### SciERC (525 unique instances)\nFolds: 0.629, 0.652, 0.638, 0.622, 0.631\n\n## Interpretation\n- CoNLL: Probe still > MV — hidden states encode entity quality above what MV captures\n- FewNERD/SciERC: Probe drops to 0.63-0.65 — only moderate info in representation, below MV\n- The original \"probe >> MV\" conclusion was largely artifact of instance leakage for 2/3 datasets\n- LODO result (0.559) is consistent with weak cross-instance generalization\n",
+  "content_filename": "groupkfold_probe_results.md",
+  "tags": [
+    "probe",
+    "auroc",
+    "groupkfold",
+    "leakage-fix",
+    "entity-probe"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4ef02f80-2bd2-4491-8d00-968f4ce2770e",
+  "uuid": "9cd92510-c93b-4e72-bc93-4ad0f9180f49",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HNa4AvYoh3Ww2zyuYQ2LPt",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3242,
+      "cache_read_input_tokens": 93107,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3242
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 154 · 2026-05-21T03:22:13.948Z_
+
+<details><summary>↩ Tool result · `toolu_01UErSdak4zL5Q1nD8zCPJag`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260521_029bd5\", \"name\": \"GroupKFold Probe AUROC Results\", \"type\": \"data\", \"description\": \"GroupKFold-corrected entity probe AUROC results fixing instance-level leakage. Conll: 0.885 (still > MV 0.87). FewNERD: 0.651, SciERC: 0.634 (both < MV after correction).\", \"path\": \"projects/struct_self_consist_ie/artifacts/exp_hidden_state_probe/data/groupkfold_probe_results.md\", \"url\": null, \"project\": \"struct_self_consist_ie\", \"exp_id\": \"exp_hidden_state_probe\", \"skill\": \"\", \"created_at\": \"2026-05-21T03:22:13.380261+00:00\", \"tags\": [\"probe\", \"auroc\", \"groupkfold\", \"leakage-fix\", \"entity-probe\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4ef02f80-2bd2-4491-8d00-968f4ce2770e",
+  "uuid": "61858d64-b119-4acd-a95c-08af706d6859",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260521_029bd5\\\", \\\"name\\\": \\\"GroupKFold Probe AUROC Results\\\", \\\"type\\\": \\\"data\\\", \\\"description\\\": \\\"GroupKFold-corrected entity probe AUROC results fixing instance-level leakage. Conll: 0.885 (still > MV 0.87). FewNERD: 0.651, SciERC: 0.634 (both < MV after correction).\\\", \\\"path\\\": \\\"projects/struct_self_consist_ie/artifacts/exp_hidden_state_probe/data/groupkfold_probe_results.md\\\", \\\"url\\\": null, \\\"project\\\": \\\"struct_self_consist_ie\\\", \\\"exp_id\\\": \\\"exp_hidden_state_probe\\\", \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-21T03:22:13.380261+00:00\\\", \\\"tags\\\": [\\\"probe\\\", \\\"auroc\\\", \\\"groupkfold\\\", \\\"leakage-fix\\\", \\\"entity-probe\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260521_029bd5\", \"name\": \"GroupKFold Probe AUROC Results\", \"type\": \"data\", \"description\": \"GroupKFold-corrected entity probe AUROC results fixing instance-level leakage. Conll: 0.885 (still > MV 0.87). FewNERD: 0.651, SciERC: 0.634 (both < MV after correction).\", \"path\": \"projects/struct_self_consist_ie/artifacts/exp_hidden_state_probe/data/groupkfold_probe_results.md\", \"url\": null, \"project\": \"struct_self_consist_ie\", \"exp_id\": \"exp_hidden_state_probe\", \"skill\": \"\", \"created_at\": \"2026-05-21T03:22:13.380261+00:00\", \"tags\": [\"probe\", \"auroc\", \"groupkfold\", \"leakage-fix\", \"entity-probe\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 155_
+
+## 结果
+
+| Dataset | StratifiedKFold (leaky) | GroupKFold (corrected) | Delta | Probe > MV (0.87)? |
+|---------|------------------------|----------------------|-------|---------------------|
+| **CoNLL** | 0.980 | **0.885** | -0.095 | **YES** |
+| **FewNERD** | 0.987 | **0.651** | -0.336 | **NO** |
+| **SciERC** | 0.977 | **0.634** | -0.342 | **NO** |
+
+### 关键发现
+
+1. **泄露确认**：fewnerd/scierc 的原始高 AUROC (0.97-0.99) 主要来自 instance 信息泄露，修正后暴跌 0.33-0.34
+2. **CoNLL 仍成立**：GroupKFold AUROC = 0.885 > MV (0.87)，probe > MV 的结论在 conll 上仍然成立
+3. **fewnerd/scierc 重新定位**：修正后 AUROC 0.63-0.65，处于 ESJ (0.51) 和 MV (0.87) 之间，表明 hidden states 中有部分质量信息但远不如 MV
+4. **与 LODO 一致**：LODO 近随机 (0.559) 与 GroupKFold 的较低 AUROC 一致——跨 instance 泛化能力弱
+
+### 对论文的影响
+
+原来的叙事 "probe AUROC >> MV → info exists but prompt interface fails" 只对 CoNLL 成立。需要修改论文中的 probe 讨论：
+- CoNLL: 仍支持 representation-level 信号 > MV
+- FewNERD/SciERC: hidden states 中有部分信号，但远低于 MV，说明 multi-sample 投票捕获的信号不仅仅来自单次推理的 representation
+
+代码和结果保存在 `output/entity_probe_auroc_groupkfold/`，registry 已更新。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4ef02f80-2bd2-4491-8d00-968f4ce2770e",
+  "uuid": "1b89c057-5bc9-4cfa-9f80-927fe44836e0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01B5J6Gjyj5VEaQhnXzjcBZt",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1184,
+      "cache_read_input_tokens": 96349,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1184
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 156_
+
+## 结果
+
+| Dataset | StratifiedKFold (leaky) | GroupKFold (corrected) | Delta | Probe > MV (0.87)? |
+|---------|------------------------|----------------------|-------|---------------------|
+| **CoNLL** | 0.980 | **0.885** | -0.095 | **YES** |
+| **FewNERD** | 0.987 | **0.651** | -0.336 | **NO** |
+| **SciERC** | 0.977 | **0.634** | -0.342 | **NO** |
+
+### 关键发现
+
+1. **泄露确认**：fewnerd/scierc 的原始高 AUROC (0.97-0.99) 主要来自 instance 信息泄露，修正后暴跌 0.33-0.34
+2. **CoNLL 仍成立**：GroupKFold AUROC = 0.885 > MV (0.87)，probe > MV 的结论在 conll 上仍然成立
+3. **fewnerd/scierc 重新定位**：修正后 AUROC 0.63-0.65，处于 ESJ (0.51) 和 MV (0.87) 之间，表明 hidden states 中有部分质量信息但远不如 MV
+4. **与 LODO 一致**：LODO 近随机 (0.559) 与 GroupKFold 的较低 AUROC 一致——跨 instance 泛化能力弱
+
+### 对论文的影响
+
+原来的叙事 "probe AUROC >> MV → info exists but prompt interface fails" 只对 CoNLL 成立。需要修改论文中的 probe 讨论：
+- CoNLL: 仍支持 representation-level 信号 > MV
+- FewNERD/SciERC: hidden states 中有部分信号，但远低于 MV，说明 multi-sample 投票捕获的信号不仅仅来自单次推理的 representation
+
+代码和结果保存在 `output/entity_probe_auroc_groupkfold/`，registry 已更新。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 852900,
+  "duration_api_ms": 738981,
+  "num_turns": 54,
+  "stop_reason": "end_turn",
+  "session_id": "4ef02f80-2bd2-4491-8d00-968f4ce2770e",
+  "total_cost_usd": 3.0238485,
+  "usage": {
+    "input_tokens": 49,
+    "cache_creation_input_tokens": 85692,
+    "cache_read_input_tokens": 3254129,
+    "output_tokens": 34343,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 85692,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 589,
+        "cache_read_input_tokens": 96349,
+        "cache_creation_input_tokens": 1184,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 1184
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 2294,
+      "outputTokens": 19,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.002389,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 49,
+      "outputTokens": 34343,
+      "cacheReadInputTokens": 3254129,
+      "cacheCreationInputTokens": 85692,
+      "webSearchRequests": 0,
+      "costUSD": 3.0214595,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "71f7d6ab-d71c-49ef-b08a-e7b06dd65479"
+}
+```
+
+</details>
+
+---

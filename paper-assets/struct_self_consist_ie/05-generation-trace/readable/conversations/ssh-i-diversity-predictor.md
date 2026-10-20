@@ -1,0 +1,3305 @@
+# ssh i diversity predictor
+
+**When Self-Consistency Fails for NER: Degeneracy, Signal Collapse, and the Correlation-Selection Gap** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 111
+- **Recorded user turns:** 0
+- **Tool calls:** 55
+- **Original source:** `logs/chats/worker_ssh_i-diversity-predictor_20260520T101451.jsonl`
+- **Structured JSON:** [`e04b0e6f2bcf215716d5.json`](../../sessions/e0/e04b0e6f2bcf215716d5.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+111 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-20T10:20:12.564114+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__detect_image,mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__register_artifact",
+  "max_results": "4"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_i-diversity-predictor_20260520T101451",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__detect_image,mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__register_artifact",
+    "max_results": "4"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-20T10:20:12.564521+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_i-diversity-predictor_20260520T101451",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-20T10:20:12.564704+00:00_
+
+called mcp__agent-ml-research__detect_image
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__detect_image</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_i-diversity-predictor_20260520T101451",
+  "tool": "mcp__agent-ml-research__detect_image",
+  "tool_args": {
+    "server": "autodl-5090-b",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-20T10:20:12.564844+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "command": "ls /root/autodl-tmp/struct_self_consist_ie/artifacts/b5_cross_model/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_i-diversity-predictor_20260520T101451",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090-b",
+    "command": "ls /root/autodl-tmp/struct_self_consist_ie/artifacts/b5_cross_model/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-20T10:20:12.564980+00:00_
+
+{"result":"{\n  \"detected\": false,\n  \"status\": \"ssh_error\",\n  \"skip_base_setup\": false,\n  \"message\": \"SSH error: exit code 1\"\n}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_i-diversity-predictor_20260520T101451",
+  "tool": "mcp__agent-ml-research__detect_image",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6 · 2026-05-20T10:20:12.565167+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "command": "ls /root/autodl-tmp/struct_self_consist_ie/output/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_i-diversity-predictor_20260520T101451",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090-b",
+    "command": "ls /root/autodl-tmp/struct_self_consist_ie/output/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-20T10:20:12.565333+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/root/autodl-tmp/struct_self_consist_ie/artifacts/b5_cross_model/': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.37}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_i-diversity-predictor_20260520T101451",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-20T10:20:12.565474+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"72b_fewshot\\n72b_fewshot_signals\\n72b_zeroshot\\n72b_zeroshot_pilot\\nexp_021_fewnerd_full\\nexp_conll_seed123\\nexp_conll_seed456\\nexp_fewnerd_seed123\\nexp_fewnerd_seed456\\nexp_fewnerd_seed789\\nexp_scierc_seed456\\nexp_scierc_seed789\\nfewnerd_7b\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_i-diversity-predictor_20260520T101451",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-20T10:20:12.565633+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "command": "ls /root/autodl-tmp/struct_self_consist_ie/artifacts/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_i-diversity-predictor_20260520T101451",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090-b",
+    "command": "ls /root/autodl-tmp/struct_self_consist_ie/artifacts/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-20T10:20:12.565769+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"aggregate_seeds.py\\nb2_verifier\\nbootstrap_construction.py\\ncompute_signals.py\\ne1_signal_routing\\nformat_for_scaling.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_i-diversity-predictor_20260520T101451",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-20T10:20:12.565905+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "command": "find /root/autodl-tmp/struct_self_consist_ie/ -maxdepth 3 -name \"*cross*\" -o -name \"*b5*\" -o -name \"*diversity*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_i-diversity-predictor_20260520T101451",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090-b",
+    "command": "find /root/autodl-tmp/struct_self_consist_ie/ -maxdepth 3 -name \"*cross*\" -o -name \"*b5*\" -o -name \"*diversity*\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-20T10:20:12.566041+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/code/diversity_analysis.py\\n/root/autodl-tmp/struct_self_consist_ie/code/diversity_stratified_selection.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analysis_dgs_cross_model.py\\n/root/autodl-tmp/struct_self_consist_ie/artifacts/b2_verifier/cross_dataset_results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_i-diversity-predictor_20260520T101451",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-20T10:20:12.566202+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "command": "find /root/autodl-tmp/struct_self_consist_ie/ -maxdepth 3 -name \"*qwen*\" -o -name \"*llama*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_i-diversity-predictor_20260520T101451",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090-b",
+    "command": "find /root/autodl-tmp/struct_self_consist_ie/ -maxdepth 3 -name \"*qwen*\" -o -name \"*llama*\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-20T10:20:12.566374+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/code/convert_to_llamafactory.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp017_llama_conll_n16.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp017_llama_conll_n16_s123.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_llama3b_vs_8b.py\\n/root/autodl-tmp/struct_self_consist_ie/code/compute_within_lp_f1_llama.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_llama_fewnerd.py\\n/root/autodl-tmp/struct_self_consist_ie/code/run_llama_fewnerd_train_single_gpu.sh\\n/root/autodl-tmp/struct_self_consist_ie/export_config_llama.yaml\\n/root/autodl-tmp/struct_self_consist_ie/export_config_llama_conll2003.yaml\\n/root/autodl-tmp/struct_self_consist_ie/export_config_llama_fewnerd.yaml\\n/root/autodl-tmp/struct_self_consist_ie/train_config_llama.yaml\\n/root/autodl-tmp/struct_self_consist_ie/train_config_llama_conll2003.yaml\\n/root/autodl-tmp/struct_self_consist_ie/train_config_llama_conll2003_3ep.yaml\\n/root/autodl-tmp/struct_self_consist_ie/train_config_llama_fewnerd.yaml\\n/root/autodl-tmp/struct_self_consist_ie/train_config_llama_fewnerd_4gpu.yaml\\n/root/autodl-tmp/struct_self_consist_ie/train_config_scierc_llama3b.yaml\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-merged-v2\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-conll2003-merged\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-fewnerd-exp021-merged\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-lora-v2\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-conll2003-lora\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen25-7b-fewnerd-qlora-s42\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen25-7b-fewnerd-merged\\n/root/autodl-tmp/struct_self_consist_ie/output/fewnerd_7b/qwen25_7b_n8_seed123\\n/root/autodl-tmp/struct_self_consist_ie/output/fewnerd_7b/qwen25_7b_n8_seed456\\n/roo
+…[truncated 339 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_i-diversity-predictor_20260520T101451",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-20T10:20:12.566554+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "command": "find /root/autodl-tmp/struct_self_consist_ie/output/ -maxdepth 2 -type d -name \"*scierc*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_i-diversity-predictor_20260520T101451",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090-b",
+    "command": "find /root/autodl-tmp/struct_self_consist_ie/output/ -maxdepth 2 -type d -name \"*scierc*\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-20T10:20:12.566699+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/output/exp_scierc_seed456\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_scierc_seed789\\n/root/autodl-tmp/struct_self_consist_ie/output/72b_zeroshot_pilot/scierc\\n/root/autodl-tmp/struct_self_consist_ie/output/72b_zeroshot/scierc\\n/root/autodl-tmp/struct_self_consist_ie/output/72b_fewshot/scierc\\n/root/autodl-tmp/struct_self_consist_ie/output/72b_fewshot_signals/scierc\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.34}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_i-diversity-predictor_20260520T101451",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-20T10:20:12.566832+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "command": "ls /root/autodl-tmp/struct_self_consist_ie/output/exp_scierc_seed456/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_i-diversity-predictor_20260520T101451",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090-b",
+    "command": "ls /root/autodl-tmp/struct_self_consist_ie/output/exp_scierc_seed456/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-20T10:20:12.566963+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"full_signal_analysis.json\\nfull_signal_report.json\\nreport.json\\nsamples.jsonl\\nscierc_per_instance.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.34}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_i-diversity-predictor_20260520T101451",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-20T10:20:12.567086+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "command": "head -50 /root/autodl-tmp/struct_self_consist_ie/code/analysis_dgs_cross_model.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_i-diversity-predictor_20260520T101451",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090-b",
+    "command": "head -50 /root/autodl-tmp/struct_self_consist_ie/code/analysis_dgs_cross_model.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-20T10:20:12.567311+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Cross-model DGS validation: verify DGS is model-agnostic (e.g. LLaMA data).\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport os\\nimport sys\\nimport numpy as np\\n\\nsys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))\\nfrom evaluation import entity_strict_match\\n\\n\\ndef parse_args():\\n    p = argparse.ArgumentParser(\\n        description=\\\"Cross-model DGS validation (model-agnostic check)\\\"\\n    )\\n    p.add_argument(\\n        \\\"--datasets\\\", nargs=\\\"+\\\", required=True,\\n        help=\\\"name:path pairs, e.g. LLaMA-SciERC:/path/to/samples.jsonl\\\",\\n    )\\n    p.add_argument(\\n        \\\"--reference-results\\\", type=str, default=None,\\n        help=\\\"JSON from full_validation to compare against (optional)\\\",\\n    )\\n    p.add_argument(\\\"--n-samples\\\", type=int, default=8)\\n    p.add_argument(\\\"--n-bootstrap\\\", type=int, default=10000)\\n    p.add_argument(\\\"--n-permutations\\\", type=int, default=10000)\\n    p.add_argument(\\\"--seed\\\", type=int, default=42)\\n    p.add_argument(\\\"--output\\\", type=str, default=None, help=\\\"Output JSON path\\\")\\n    p.add_argument(\\\"--dry-run\\\", action=\\\"store_true\\\", help=\\\"Print config and exit\\\")\\n    return p.parse_args()\\n\\n\\ndef load_instances(path, n_samples=8):\\n    instances = []\\n    with open(path) as f:\\n        for line in f:\\n            inst = json.loads(line)\\n            inst[\\\"samples\\\"] = inst[\\\"samples\\\"][:n_samples]\\n            instances.append(inst)\\n    return instances\\n\\n\\ndef per_instance_entity_f1(pred_entities, gold_entities):\\n    tp, fp, fn = entity_strict_match(pred_entities, gold_entities)\\n    if tp + fp == 0 and tp + fn == 0:\\n        return 1.0\\n    if tp == 0:\\n        return 0.0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.33}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_i-diversity-predictor_20260520T101451",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-20T10:20:12.567493+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "command": "head -1 /root/autodl-tmp/struct_self_consist_ie/output/exp_scierc_seed456/samples.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_i-diversity-predictor_20260520T101451",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090-b",
+    "command": "head -1 /root/autodl-tmp/struct_self_consist_ie/output/exp_scierc_seed456/samples.jsonl",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-20T10:20:12.567881+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"id\\\": \\\"X96-1059_sent000\\\", \\\"text\\\": \\\"Recognition of proper nouns in Japanese text has been studied as a part of the more general problem of morphological analysis in Japanese text processing -LRB- -LSB- 1 -RSB- -LSB- 2 -RSB- -RRB- .\\\", \\\"gold\\\": {\\\"entities\\\": [{\\\"text\\\": \\\"Recognition of proper nouns\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 0, \\\"end\\\": 27}, {\\\"text\\\": \\\"proper nouns\\\", \\\"type\\\": \\\"OtherScientificTerm\\\", \\\"start\\\": 15, \\\"end\\\": 27}, {\\\"text\\\": \\\"Japanese text\\\", \\\"type\\\": \\\"Material\\\", \\\"start\\\": 31, \\\"end\\\": 44}, {\\\"text\\\": \\\"morphological analysis\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 103, \\\"end\\\": 125}, {\\\"text\\\": \\\"Japanese text processing\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 129, \\\"end\\\": 153}], \\\"relations\\\": [{\\\"head\\\": \\\"Recognition of proper nouns\\\", \\\"tail\\\": \\\"morphological analysis\\\", \\\"type\\\": \\\"PART-OF\\\", \\\"head_start\\\": 0, \\\"head_end\\\": 27, \\\"tail_start\\\": 103, \\\"tail_end\\\": 125}, {\\\"head\\\": \\\"proper nouns\\\", \\\"tail\\\": \\\"Japanese text\\\", \\\"type\\\": \\\"PART-OF\\\", \\\"head_start\\\": 15, \\\"head_end\\\": 27, \\\"tail_start\\\": 31, \\\"tail_end\\\": 44}, {\\\"head\\\": \\\"morphological analysis\\\", \\\"tail\\\": \\\"Japanese text processing\\\", \\\"type\\\": \\\"USED-FOR\\\", \\\"head_start\\\": 103, \\\"head_end\\\": 125, \\\"tail_start\\\": 129, \\\"tail_end\\\": 153}], \\\"events\\\": []}, \\\"samples\\\": [{\\\"entities\\\": [{\\\"text\\\": \\\"Recognition of proper nouns\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 0, \\\"end\\\": 27}, {\\\"text\\\": \\\"Japanese text\\\", \\\"type\\\": \\\"Material\\\", \\\"start\\\": 31, \\\"end\\\": 44}, {\\\"text\\\": \\\"morphological analysis in Japanese text processing\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 103, \\\"end\\\
+…[truncated 9657 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_i-diversity-predictor_20260520T101451",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-20T10:20:12.568052+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "command": "find /root/autodl-tmp/struct_self_consist_ie/output/ -name \"samples.jsonl\" -path \"*scierc*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_i-diversity-predictor_20260520T101451",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090-b",
+    "command": "find /root/autodl-tmp/struct_self_consist_ie/output/ -name \"samples.jsonl\" -path \"*scierc*\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-20T10:20:12.568247+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/output/exp_scierc_seed456/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_scierc_seed789/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/72b_zeroshot_pilot/scierc/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/72b_zeroshot/scierc/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/72b_fewshot/scierc/samples.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_i-diversity-predictor_20260520T101451",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-20T10:20:12.568393+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "command": "find /root/autodl-tmp/struct_self_consist_ie/output/ -name \"samples.jsonl\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_i-diversity-predictor_20260520T101451",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090-b",
+    "command": "find /root/autodl-tmp/struct_self_consist_ie/output/ -name \"samples.jsonl\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-20T10:20:12.568538+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/output/exp_scierc_seed456/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_conll_seed123/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_conll_seed456/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_fewnerd_seed123/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_fewnerd_seed456/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_fewnerd_seed789/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_scierc_seed789/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/72b_zeroshot_pilot/scierc/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/72b_zeroshot/scierc/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/72b_zeroshot/conll2003/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/72b_zeroshot/fewnerd/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/72b_fewshot/scierc/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/72b_fewshot/conll2003/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/72b_fewshot/fewnerd/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/fewnerd_7b/qwen25_7b_n8_seed123/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/fewnerd_7b/qwen25_7b_n8_seed456/samples.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_i-diversity-predictor_20260520T101451",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-20T10:20:12.568714+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "command": "find /root/autodl-tmp/struct_self_consist_ie/ -maxdepth 4 -name \"samples.jsonl\" -path \"*llama*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_i-diversity-predictor_20260520T101451",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090-b",
+    "command": "find /root/autodl-tmp/struct_self_consist_ie/ -maxdepth 4 -name \"samples.jsonl\" -path \"*llama*\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-20T10:20:12.568851+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.32}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_i-diversity-predictor_20260520T101451",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-20T10:20:12.568985+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "command": "find /root/autodl-tmp/struct_self_consist_ie/ -maxdepth 4 -type d -name \"*llama*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_i-diversity-predictor_20260520T101451",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090-b",
+    "command": "find /root/autodl-tmp/struct_self_consist_ie/ -maxdepth 4 -type d -name \"*llama*\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-20T10:20:12.569163+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "command": "head -100 /root/autodl-tmp/struct_self_consist_ie/code/analysis_dgs_cross_model.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_i-diversity-predictor_20260520T101451",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090-b",
+    "command": "head -100 /root/autodl-tmp/struct_self_consist_ie/code/analysis_dgs_cross_model.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-20T10:20:12.569306+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_i-diversity-predictor_20260520T101451",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-20T10:20:12.569482+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Cross-model DGS validation: verify DGS is model-agnostic (e.g. LLaMA data).\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport os\\nimport sys\\nimport numpy as np\\n\\nsys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))\\nfrom evaluation import entity_strict_match\\n\\n\\ndef parse_args():\\n    p = argparse.ArgumentParser(\\n        description=\\\"Cross-model DGS validation (model-agnostic check)\\\"\\n    )\\n    p.add_argument(\\n        \\\"--datasets\\\", nargs=\\\"+\\\", required=True,\\n        help=\\\"name:path pairs, e.g. LLaMA-SciERC:/path/to/samples.jsonl\\\",\\n    )\\n    p.add_argument(\\n        \\\"--reference-results\\\", type=str, default=None,\\n        help=\\\"JSON from full_validation to compare against (optional)\\\",\\n    )\\n    p.add_argument(\\\"--n-samples\\\", type=int, default=8)\\n    p.add_argument(\\\"--n-bootstrap\\\", type=int, default=10000)\\n    p.add_argument(\\\"--n-permutations\\\", type=int, default=10000)\\n    p.add_argument(\\\"--seed\\\", type=int, default=42)\\n    p.add_argument(\\\"--output\\\", type=str, default=None, help=\\\"Output JSON path\\\")\\n    p.add_argument(\\\"--dry-run\\\", action=\\\"store_true\\\", help=\\\"Print config and exit\\\")\\n    return p.parse_args()\\n\\n\\ndef load_instances(path, n_samples=8):\\n    instances = []\\n    with open(path) as f:\\n        for line in f:\\n            inst = json.loads(line)\\n            inst[\\\"samples\\\"] = inst[\\\"samples\\\"][:n_samples]\\n            instances.append(inst)\\n    return instances\\n\\n\\ndef per_instance_entity_f1(pred_entities, gold_entities):\\n    tp, fp, fn = entity_strict_match(pred_entities, gold_entities)\\n    if tp + fp == 0 and tp + fn == 0:\\n        return 1.0\\n    if tp == 0:\\n        return 0.0\\n    p = tp / (tp + fp)\\n    r = tp / (tp + fn)\\n    return 2 * p * r / (p + r)\\n\\n\\ndef micro_f1_from_entity
+…[truncated 1702 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_i-diversity-predictor_20260520T101451",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-20T10:20:12.569667+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "command": "ls /root/autodl-tmp/struct_self_consist_ie/checkpoints/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_i-diversity-predictor_20260520T101451",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090-b",
+    "command": "ls /root/autodl-tmp/struct_self_consist_ie/checkpoints/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-20T10:20:12.569813+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"qwen25-7b-fewnerd-merged\\nqwen25-7b-fewnerd-qlora-s42\\nqwen3-8b-conll2003-lora\\nqwen3-8b-conll2003-merged\\nqwen3-8b-fewnerd-exp021-merged\\nqwen3-8b-scierc-lora-v2\\nqwen3-8b-scierc-merged-v2\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_i-diversity-predictor_20260520T101451",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-20T10:20:12.569943+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "command": "head -5 /root/autodl-tmp/struct_self_consist_ie/output/exp_scierc_seed456/report.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_i-diversity-predictor_20260520T101451",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090-b",
+    "command": "head -5 /root/autodl-tmp/struct_self_consist_ie/output/exp_scierc_seed456/report.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-20T10:20:12.570077+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"dataset\\\": \\\"scierc\\\",\\n  \\\"subtask\\\": \\\"ner\\\",\\n  \\\"n_samples\\\": 8,\\n  \\\"temperature\\\": 1.0,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_i-diversity-predictor_20260520T101451",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-20T10:20:12.570226+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "command": "head -5 /root/autodl-tmp/struct_self_consist_ie/output/exp_scierc_seed789/report.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_i-diversity-predictor_20260520T101451",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090-b",
+    "command": "head -5 /root/autodl-tmp/struct_self_consist_ie/output/exp_scierc_seed789/report.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-20T10:20:12.570359+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"dataset\\\": \\\"scierc\\\",\\n  \\\"subtask\\\": \\\"ner\\\",\\n  \\\"n_samples\\\": 8,\\n  \\\"temperature\\\": 1.0,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_i-diversity-predictor_20260520T101451",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-20T10:20:12.570485+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "command": "python3 -c \"import json; r=json.load(open('/root/autodl-tmp/struct_self_consist_ie/output/exp_scierc_seed456/report.json')); print(json.dumps({k:v for k,v in r.items() if k in ['model','model_path','dataset','n_samples','seed','temperature']}, indent=2))\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_i-diversity-predictor_20260520T101451",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090-b",
+    "command": "python3 -c \"import json; r=json.load(open('/root/autodl-tmp/struct_self_consist_ie/output/exp_scierc_seed456/report.json')); print(json.dumps({k:v for k,v in r.items() if k in ['model','model_path','dataset','n_samples','seed','temperature']}, indent=2))\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-20T10:20:12.570611+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_i-diversity-predictor_20260520T101451",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-20T10:20:12.570733+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "command": "python3 -c \"import json; r=json.load(open('/root/autodl-tmp/struct_self_consist_ie/output/exp_scierc_seed789/report.json')); print(json.dumps({k:v for k,v in r.items() if k in ['model','model_path','dataset','n_samples','seed','temperature']}, indent=2))\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_i-diversity-predictor_20260520T101451",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090-b",
+    "command": "python3 -c \"import json; r=json.load(open('/root/autodl-tmp/struct_self_consist_ie/output/exp_scierc_seed789/report.json')); print(json.dumps({k:v for k,v in r.items() if k in ['model','model_path','dataset','n_samples','seed','temperature']}, indent=2))\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-20T10:20:12.570863+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_i-diversity-predictor_20260520T101451",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-20T10:20:12.570985+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "command": "python3 -c \"import json; r=json.load(open('/root/autodl-tmp/struct_self_consist_ie/output/exp_conll_seed123/report.json')); print(json.dumps({k:v for k,v in r.items() if k in ['model','model_path','dataset','n_samples','seed','temperature']}, indent=2))\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_i-diversity-predictor_20260520T101451",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090-b",
+    "command": "python3 -c \"import json; r=json.load(open('/root/autodl-tmp/struct_self_consist_ie/output/exp_conll_seed123/report.json')); print(json.dumps({k:v for k,v in r.items() if k in ['model','model_path','dataset','n_samples','seed','temperature']}, indent=2))\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-20T10:20:12.571160+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_i-diversity-predictor_20260520T101451",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-20T10:20:12.571346+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/exp_scierc_seed456/report.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_i-diversity-predictor_20260520T101451",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090-b",
+    "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/exp_scierc_seed456/report.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-20T10:20:12.571523+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"dataset\\\": \\\"scierc\\\",\\n  \\\"subtask\\\": \\\"ner\\\",\\n  \\\"n_samples\\\": 8,\\n  \\\"temperature\\\": 1.0,\\n  \\\"num_instances\\\": 551,\\n  \\\"use_train_format\\\": true,\\n  \\\"greedy_f1\\\": 0.6617254669433739,\\n  \\\"oracle_f1\\\": 0.7715221924337207,\\n  \\\"oracle_headroom\\\": 0.1097967254903468,\\n  \\\"fleiss_kappa_mean\\\": 0.38680005132788564,\\n  \\\"soft_jaccard_mean\\\": 0.6955254061455723,\\n  \\\"correlation_fleiss_vs_f1_full\\\": {\\n    \\\"rho\\\": 0.27944758016762505,\\n    \\\"p_value\\\": 6.034373889711672e-11,\\n    \\\"n\\\": 529\\n  },\\n  \\\"correlation_softjaccard_vs_f1_full\\\": {\\n    \\\"rho\\\": 0.3940671901667953,\\n    \\\"p_value\\\": 4.251143544711996e-21,\\n    \\\"n\\\": 529\\n  },\\n  \\\"correlation_fleiss_vs_f1_conditional\\\": {\\n    \\\"rho\\\": 0.19364491914571896,\\n    \\\"p_value\\\": 1.976645599424831e-05,\\n    \\\"n\\\": 479\\n  },\\n  \\\"correlation_softjaccard_vs_f1_conditional\\\": {\\n    \\\"rho\\\": 0.36039267446960344,\\n    \\\"p_value\\\": 3.8822739882888025e-16,\\n    \\\"n\\\": 479\\n  },\\n  \\\"n_gold_empty_filtered\\\": 22,\\n  \\\"n_greedy_f1_zero_filtered\\\": 50,\\n  \\\"structural_beats_surface\\\": true,\\n  \\\"rho_advantage\\\": 0.11461960999917026,\\n  \\\"sample_f1_mean\\\": 0.6059740935825112,\\n  \\\"sample_f1_std\\\": 0.3209751348404853,\\n  \\\"sample_f1_pct_zero\\\": 12.830812854442344,\\n  \\\"logprob_baseline\\\": {\\n    \\\"full\\\": {\\n      \\\"rho\\\": 0.2280013327560191,\\n      \\\"p_rho\\\": 1.1478446989462329e-07,\\n      \\\"tau\\\": 0.16511542637466592,\\n      \\\"p_tau\\\": 5.964354839393077e-08,\\n      \\\"auroc\\\": 0.5806376406131608,\\n      \\\"n\\\": 529\\n    },\\n    \\\"conditional\\\": {\\n      \\\"rho\\\": 0.18058803938538218,\\n      \\\"p_rho\\\": 7.04498335640139e-05,\\n      \\\"tau\\\": 0.1294904326870177,\\n      \\\"p_tau\\\": 5.676575275572102e-05,\\n      \\\"auroc\\\
+…[truncated 337 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_i-diversity-predictor_20260520T101451",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-20T10:20:12.571680+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/exp_conll_seed123/report.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_i-diversity-predictor_20260520T101451",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090-b",
+    "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/exp_conll_seed123/report.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-20T10:20:12.571854+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"dataset\\\": \\\"conll2003\\\",\\n  \\\"subtask\\\": \\\"ner\\\",\\n  \\\"n_samples\\\": 8,\\n  \\\"temperature\\\": 1.0,\\n  \\\"num_instances\\\": 3453,\\n  \\\"use_train_format\\\": true,\\n  \\\"greedy_f1\\\": 0.9073813708260106,\\n  \\\"oracle_f1\\\": 0.9527670074021853,\\n  \\\"oracle_headroom\\\": 0.04538563657617478,\\n  \\\"fleiss_kappa_mean\\\": 0.760830410174426,\\n  \\\"soft_jaccard_mean\\\": 0.8860239104805911,\\n  \\\"correlation_fleiss_vs_f1_full\\\": {\\n    \\\"rho\\\": 0.44624887371983624,\\n    \\\"p_value\\\": 5.3777773153920456e-135,\\n    \\\"n\\\": 2756\\n  },\\n  \\\"correlation_softjaccard_vs_f1_full\\\": {\\n    \\\"rho\\\": 0.46453116741551187,\\n    \\\"p_value\\\": 1.4070859092120178e-147,\\n    \\\"n\\\": 2756\\n  },\\n  \\\"correlation_fleiss_vs_f1_conditional\\\": {\\n    \\\"rho\\\": 0.3875773030149452,\\n    \\\"p_value\\\": 1.7601333525221243e-94,\\n    \\\"n\\\": 2615\\n  },\\n  \\\"correlation_softjaccard_vs_f1_conditional\\\": {\\n    \\\"rho\\\": 0.41338312756293827,\\n    \\\"p_value\\\": 1.7617991903278277e-108,\\n    \\\"n\\\": 2615\\n  },\\n  \\\"n_gold_empty_filtered\\\": 697,\\n  \\\"n_greedy_f1_zero_filtered\\\": 141,\\n  \\\"structural_beats_surface\\\": true,\\n  \\\"rho_advantage\\\": 0.018282293695675633,\\n  \\\"sample_f1_mean\\\": 0.8743425282966668,\\n  \\\"sample_f1_std\\\": 0.27947308147510674,\\n  \\\"sample_f1_pct_zero\\\": 7.05732946298984,\\n  \\\"logprob_baseline\\\": {\\n    \\\"full\\\": {\\n      \\\"rho\\\": 0.329449244724287,\\n      \\\"p_rho\\\": 9.020933089470057e-71,\\n      \\\"tau\\\": 0.2571722653760519,\\n      \\\"p_tau\\\": 7.335490775669086e-66,\\n      \\\"auroc\\\": 0.7630898468654187,\\n      \\\"n\\\": 2756\\n    },\\n    \\\"conditional\\\": {\\n      \\\"rho\\\": 0.37036460741789495,\\n      \\\"p_rho\\\": 8.128690985871372e-86,\\n      \\\"tau\\\": 0.2934596699502581,\\n      \\\"p_tau\\\": 1.5424986495243474e-79,\\n   
+…[truncated 349 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_i-diversity-predictor_20260520T101451",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-20T10:20:12.572042+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/code/diversity_analysis.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_i-diversity-predictor_20260520T101451",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090-b",
+    "command": "cat /root/autodl-tmp/struct_self_consist_ie/code/diversity_analysis.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-20T10:20:12.572277+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"import json\\nimport sys\\nimport os\\nimport numpy as np\\nfrom itertools import combinations\\nfrom collections import Counter\\n\\nsys.path.insert(0, '/root/autodl-tmp/struct_self_consist_ie/code')\\nfrom consistency import _ner_soft_jaccard_pair\\nfrom evaluation import per_instance_f1\\n\\nN = 8\\nOUTPUT_DIR = '/root/autodl-tmp/struct_self_consist_ie/output'\\n\\nCONFIGS = {\\n    'qwen_scierc_ner': f'{OUTPUT_DIR}/exp_012_rerun_1024/samples.jsonl',\\n    'llama_scierc_ner': f'{OUTPUT_DIR}/exp007_llama_inference/samples.jsonl',\\n    'qwen_conll_ner': f'{OUTPUT_DIR}/exp002_conll2003/samples.jsonl',\\n    'llama_conll_ner': f'{OUTPUT_DIR}/exp_017_llama_conll_infer/samples.jsonl',\\n    'wnut17_ner': f'{OUTPUT_DIR}/exp003_wnut17_eval/samples.jsonl',\\n}\\n\\ndef entities_to_frozenset(entities):\\n    return frozenset((e['text'], e['type'], e['start'], e['end']) for e in entities)\\n\\ndef analyze_dataset(path):\\n    instances = []\\n    with open(path) as f:\\n        for line in f:\\n            instances.append(json.loads(line))\\n\\n    valid = [inst for inst in instances if len(inst['gold'].get('entities', [])) > 0]\\n\\n    unique_counts = []\\n    logprob_stds = []\\n    f1_stds = []\\n    pairwise_sj_means = []\\n    has_logprobs = True\\n\\n    for inst in valid:\\n        samples = inst['samples'][:N]\\n        gold = inst['gold']\\n\\n        # (a) unique fraction\\n        entity_sets = [entities_to_frozenset(s.get('entities', [])) for s in samples]\\n        n_unique = len(set(entity_sets))\\n        unique_counts.append(n_unique)\\n\\n        # (b) logprob std\\n        logprobs = []\\n        for s in samples:\\n            lp = s.get('mean_logprob')\\n            if lp is not None:\\n                logprobs.append(lp)\\n        if len(logprobs) == N:\\n            logprob_stds.append(float(np.std(logprobs, ddof=0)))\\n        else:\\n            has_logprobs = False\\n\\n        # (c) F1 std\
+…[truncated 3285 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_i-diversity-predictor_20260520T101451",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-20T10:20:12.572449+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "command": "find /root/autodl-tmp/struct_self_consist_ie/ -maxdepth 3 -name \"*.json\" -path \"*cross*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_i-diversity-predictor_20260520T101451",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090-b",
+    "command": "find /root/autodl-tmp/struct_self_consist_ie/ -maxdepth 3 -name \"*.json\" -path \"*cross*\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-20T10:20:12.572589+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/artifacts/b2_verifier/cross_dataset_results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_i-diversity-predictor_20260520T101451",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-20T10:20:12.572751+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "command": "ls /root/autodl-tmp/struct_self_consist_ie/output/exp007_llama_inference/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_i-diversity-predictor_20260520T101451",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090-b",
+    "command": "ls /root/autodl-tmp/struct_self_consist_ie/output/exp007_llama_inference/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-20T10:20:12.572884+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/root/autodl-tmp/struct_self_consist_ie/output/exp007_llama_inference/': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_i-diversity-predictor_20260520T101451",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-20T10:20:12.573019+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "command": "ls /root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_i-diversity-predictor_20260520T101451",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090-b",
+    "command": "ls /root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-20T10:20:12.573214+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_i-diversity-predictor_20260520T101451",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-20T10:20:12.573357+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "command": "ls /root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_infer/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_i-diversity-predictor_20260520T101451",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090-b",
+    "command": "ls /root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_infer/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-20T10:20:12.573488+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_infer/': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_i-diversity-predictor_20260520T101451",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-20T10:20:12.573655+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "command": "find /root/autodl-tmp/ -maxdepth 4 -name \"samples.jsonl\" -path \"*llama*\" 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_i-diversity-predictor_20260520T101451",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090-b",
+    "command": "find /root/autodl-tmp/ -maxdepth 4 -name \"samples.jsonl\" -path \"*llama*\" 2>/dev/null",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-20T10:20:12.573787+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_i-diversity-predictor_20260520T101451",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61 · 2026-05-20T10:20:12.573914+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "command": "find /root/autodl-tmp/ -maxdepth 5 -type d -name \"*llama*\" 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_i-diversity-predictor_20260520T101451",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090-b",
+    "command": "find /root/autodl-tmp/ -maxdepth 5 -type d -name \"*llama*\" 2>/dev/null",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-20T10:20:12.574040+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_i-diversity-predictor_20260520T101451",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63 · 2026-05-20T10:20:12.574183+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "command": "ls /root/autodl-tmp/struct_self_consist_ie/output/72b_fewshot_signals/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_i-diversity-predictor_20260520T101451",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090-b",
+    "command": "ls /root/autodl-tmp/struct_self_consist_ie/output/72b_fewshot_signals/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-20T10:20:12.574325+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"conll2003\\nfewnerd\\nscierc\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_i-diversity-predictor_20260520T101451",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65 · 2026-05-20T10:20:12.574451+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "command": "find /root/autodl-tmp/ -maxdepth 4 -name \"samples.jsonl\" -path \"*llama*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_i-diversity-predictor_20260520T101451",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090-b",
+    "command": "find /root/autodl-tmp/ -maxdepth 4 -name \"samples.jsonl\" -path \"*llama*\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-20T10:20:12.574577+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_i-diversity-predictor_20260520T101451",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67 · 2026-05-20T10:20:12.574697+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "command": "find /root/autodl-tmp/ -maxdepth 5 -type d -name \"*llama*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_i-diversity-predictor_20260520T101451",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090-b",
+    "command": "find /root/autodl-tmp/ -maxdepth 5 -type d -name \"*llama*\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 68 · 2026-05-20T10:20:12.574823+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/.hf_cache/hub/models--meta-llama--Llama-3.1-8B-Instruct\\n/root/autodl-tmp/.hf_cache/llama3.1-8b-instruct\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.32}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_i-diversity-predictor_20260520T101451",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 69 · 2026-05-20T10:20:12.574946+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "command": "ls /root/autodl-tmp/struct_self_consist_ie/output/72b_fewshot_signals/scierc/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_i-diversity-predictor_20260520T101451",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090-b",
+    "command": "ls /root/autodl-tmp/struct_self_consist_ie/output/72b_fewshot_signals/scierc/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-20T10:20:12.575071+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"full_signal_report.json\\nscierc_paired_bootstrap_result.json\\nscierc_per_instance.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_i-diversity-predictor_20260520T101451",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 71 · 2026-05-20T10:20:12.575255+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "command": "head -1 /root/autodl-tmp/struct_self_consist_ie/output/72b_fewshot/scierc/samples.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_i-diversity-predictor_20260520T101451",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090-b",
+    "command": "head -1 /root/autodl-tmp/struct_self_consist_ie/output/72b_fewshot/scierc/samples.jsonl",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 72 · 2026-05-20T10:20:12.575500+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"id\\\": \\\"X96-1059_sent000\\\", \\\"text\\\": \\\"Recognition of proper nouns in Japanese text has been studied as a part of the more general problem of morphological analysis in Japanese text processing -LRB- -LSB- 1 -RSB- -LSB- 2 -RSB- -RRB- .\\\", \\\"gold\\\": {\\\"entities\\\": [{\\\"text\\\": \\\"Recognition of proper nouns\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 0, \\\"end\\\": 27}, {\\\"text\\\": \\\"proper nouns\\\", \\\"type\\\": \\\"OtherScientificTerm\\\", \\\"start\\\": 15, \\\"end\\\": 27}, {\\\"text\\\": \\\"Japanese text\\\", \\\"type\\\": \\\"Material\\\", \\\"start\\\": 31, \\\"end\\\": 44}, {\\\"text\\\": \\\"morphological analysis\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 103, \\\"end\\\": 125}, {\\\"text\\\": \\\"Japanese text processing\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 129, \\\"end\\\": 153}], \\\"relations\\\": [{\\\"head\\\": \\\"Recognition of proper nouns\\\", \\\"tail\\\": \\\"morphological analysis\\\", \\\"type\\\": \\\"PART-OF\\\", \\\"head_start\\\": 0, \\\"head_end\\\": 27, \\\"tail_start\\\": 103, \\\"tail_end\\\": 125}, {\\\"head\\\": \\\"proper nouns\\\", \\\"tail\\\": \\\"Japanese text\\\", \\\"type\\\": \\\"PART-OF\\\", \\\"head_start\\\": 15, \\\"head_end\\\": 27, \\\"tail_start\\\": 31, \\\"tail_end\\\": 44}, {\\\"head\\\": \\\"morphological analysis\\\", \\\"tail\\\": \\\"Japanese text processing\\\", \\\"type\\\": \\\"USED-FOR\\\", \\\"head_start\\\": 103, \\\"head_end\\\": 125, \\\"tail_start\\\": 129, \\\"tail_end\\\": 153}], \\\"events\\\": []}, \\\"samples\\\": [{\\\"entities\\\": [{\\\"text\\\": \\\"proper nouns\\\", \\\"type\\\": \\\"OtherScientificTerm\\\", \\\"start\\\": 15, \\\"end\\\": 27}, {\\\"text\\\": \\\"Japanese text\\\", \\\"type\\\": \\\"Generic\\\", \\\"start\\\": 31, \\\"end\\\": 44}, {\\\"text\\\": \\\"morphological analysis\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 103, \\\"end\\\": 125}, {\\\"text\\\": \\\"
+…[truncated 4848 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_i-diversity-predictor_20260520T101451",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 73 · 2026-05-20T10:20:12.575665+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "command": "wc -l /root/autodl-tmp/struct_self_consist_ie/output/72b_fewshot/scierc/samples.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_i-diversity-predictor_20260520T101451",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090-b",
+    "command": "wc -l /root/autodl-tmp/struct_self_consist_ie/output/72b_fewshot/scierc/samples.jsonl",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 74 · 2026-05-20T10:20:12.575802+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"551 /root/autodl-tmp/struct_self_consist_ie/output/72b_fewshot/scierc/samples.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.33}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_i-diversity-predictor_20260520T101451",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 75 · 2026-05-20T10:20:12.575932+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "command": "wc -l /root/autodl-tmp/struct_self_consist_ie/output/exp_scierc_seed456/samples.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_i-diversity-predictor_20260520T101451",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090-b",
+    "command": "wc -l /root/autodl-tmp/struct_self_consist_ie/output/exp_scierc_seed456/samples.jsonl",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 76 · 2026-05-20T10:20:12.576059+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"551 /root/autodl-tmp/struct_self_consist_ie/output/exp_scierc_seed456/samples.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.34}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_i-diversity-predictor_20260520T101451",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 77 · 2026-05-20T10:20:12.576248+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "command": "wc -l /root/autodl-tmp/struct_self_consist_ie/output/72b_fewshot/conll2003/samples.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_i-diversity-predictor_20260520T101451",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090-b",
+    "command": "wc -l /root/autodl-tmp/struct_self_consist_ie/output/72b_fewshot/conll2003/samples.jsonl",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 78 · 2026-05-20T10:20:12.576388+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"3453 /root/autodl-tmp/struct_self_consist_ie/output/72b_fewshot/conll2003/samples.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_i-diversity-predictor_20260520T101451",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 79 · 2026-05-20T10:20:12.576514+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "command": "wc -l /root/autodl-tmp/struct_self_consist_ie/output/exp_conll_seed123/samples.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_i-diversity-predictor_20260520T101451",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090-b",
+    "command": "wc -l /root/autodl-tmp/struct_self_consist_ie/output/exp_conll_seed123/samples.jsonl",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 80 · 2026-05-20T10:20:12.576642+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"3453 /root/autodl-tmp/struct_self_consist_ie/output/exp_conll_seed123/samples.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.32}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_i-diversity-predictor_20260520T101451",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 81 · 2026-05-20T10:20:12.576767+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/code/evaluation.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_i-diversity-predictor_20260520T101451",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090-b",
+    "command": "cat /root/autodl-tmp/struct_self_consist_ie/code/evaluation.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 82 · 2026-05-20T10:20:12.577029+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Evaluation module for structured self-consistency IE experiments.\\n\\nProvides strict-match NER/EAE evaluation, per-instance F1 computation,\\ncorrelation analysis, and summary report generation.\\n\\\"\\\"\\\"\\n\\nfrom __future__ import annotations\\n\\nimport statistics\\nfrom typing import Any\\n\\nfrom scipy.stats import kendalltau, spearmanr\\n\\n\\n# ---------------------------------------------------------------------------\\n# NER evaluation (strict match)\\n# ---------------------------------------------------------------------------\\n\\ndef entity_strict_match(\\n    pred_entities: list[dict],\\n    gold_entities: list[dict],\\n) -> tuple[int, int, int]:\\n    \\\"\\\"\\\"Compute strict entity match counts.\\n\\n    Strict match requires exact span (start, end) AND exact type.\\n\\n    Args:\\n        pred_entities: Predicted entity dicts with keys text, type, start, end.\\n        gold_entities: Gold entity dicts with the same schema.\\n\\n    Returns:\\n        (tp, fp, fn) counts.\\n    \\\"\\\"\\\"\\n    pred_set = {(e[\\\"start\\\"], e[\\\"end\\\"], e[\\\"type\\\"]) for e in pred_entities}\\n    gold_set = {(e[\\\"start\\\"], e[\\\"end\\\"], e[\\\"type\\\"]) for e in gold_entities}\\n    tp = len(pred_set & gold_set)\\n    fp = len(pred_set - gold_set)\\n    fn = len(gold_set - pred_set)\\n    return tp, fp, fn\\n\\n\\ndef compute_ner_f1(\\n    predictions: list[dict],\\n    golds: list[dict],\\n) -> dict[str, float]:\\n    \\\"\\\"\\\"Compute micro-averaged NER precision, recall, and F1.\\n\\n    Args:\\n        predictions: List of Extraction dicts (one per instance).\\n        golds: List of Extraction dicts (one per instance), aligned with predictions.\\n\\n    Returns:\\n        Dict with keys \\\"precision\\\", \\\"recall\\\", \\\"f1\\\".\\n    \\\"\\\"\\\"\\n    total_tp = total_fp = total_fn = 0\\n    for pred, gold in zip(predictions, golds):\\n        tp, fp, fn = entity_
+…[truncated 7193 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_i-diversity-predictor_20260520T101451",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 83 · 2026-05-20T10:20:12.577299+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "command": "head -120 /root/autodl-tmp/struct_self_consist_ie/code/consistency.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_i-diversity-predictor_20260520T101451",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090-b",
+    "command": "head -120 /root/autodl-tmp/struct_self_consist_ie/code/consistency.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 84 · 2026-05-20T10:20:12.577514+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Consistency metrics for structured information extraction with self-consistency.\\n\\nImplements three complementary consistency measures over N sampled extractions:\\n1. Fleiss' Kappa (surface matching) — treats N samples as N raters on entity presence\\n2. Structural soft Jaccard — span-level soft overlap with Hungarian matching\\n3. Oracle best-of-N — upper-bound F1 by selecting the best sample per instance\\n\\nKey dependencies: numpy, scipy (linear_sum_assignment).\\n\\\"\\\"\\\"\\n\\nfrom __future__ import annotations\\n\\nfrom itertools import combinations\\nfrom typing import TYPE_CHECKING\\n\\nimport numpy as np\\nfrom scipy.optimize import linear_sum_assignment\\n\\nif TYPE_CHECKING:\\n    pass\\n\\n# ---------------------------------------------------------------------------\\n# Type aliases (mirrors shared data format)\\n# ---------------------------------------------------------------------------\\nEntity = dict       # {\\\"text\\\", \\\"type\\\", \\\"start\\\", \\\"end\\\"}\\nRelation = dict     # {\\\"head\\\", \\\"tail\\\", \\\"type\\\", ...}\\nEvent = dict        # {\\\"trigger\\\": {...}, \\\"arguments\\\": [...]}\\nExtraction = dict   # {\\\"entities\\\", \\\"relations\\\", \\\"events\\\"}\\n\\n\\n# ===================================================================\\n# 1. Fleiss' Kappa — surface-level entity agreement\\n# ===================================================================\\n\\ndef _extract_surface_keys(sample: Extraction, subtask: str) -> set[tuple]:\\n    \\\"\\\"\\\"Extract surface-level keys from a sample for Fleiss' Kappa computation.\\\"\\\"\\\"\\n    if subtask == \\\"ner\\\":\\n        return {(e[\\\"text\\\"], e[\\\"type\\\"]) for e in sample.get(\\\"entities\\\", [])}\\n    elif subtask == \\\"re\\\":\\n        return {(r[\\\"head\\\"], r[\\\"tail\\\"], r[\\\"type\\\"]) for r in sample.get(\\\"relations\\\", [])}\\n    elif subtask == \\\"eae\\\":\\n   
+…[truncated 2868 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_i-diversity-predictor_20260520T101451",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 85 · 2026-05-20T10:20:12.577692+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "command": "grep -n \"majority\\|aggregate\\|construct\\|vote\" /root/autodl-tmp/struct_self_consist_ie/code/consistency.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_i-diversity-predictor_20260520T101451",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090-b",
+    "command": "grep -n \"majority\\|aggregate\\|construct\\|vote\" /root/autodl-tmp/struct_self_consist_ie/code/consistency.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 86 · 2026-05-20T10:20:12.577830+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_i-diversity-predictor_20260520T101451",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 87 · 2026-05-20T10:20:12.577966+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "command": "find /root/autodl-tmp/struct_self_consist_ie/code/ -name \"*.py\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_i-diversity-predictor_20260520T101451",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090-b",
+    "command": "find /root/autodl-tmp/struct_self_consist_ie/code/ -name \"*.py\" -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 88 · 2026-05-20T10:20:12.578195+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/code/data_utils.py\\n/root/autodl-tmp/struct_self_consist_ie/code/convert_to_llamafactory.py\\n/root/autodl-tmp/struct_self_consist_ie/code/evaluation.py\\n/root/autodl-tmp/struct_self_consist_ie/code/consistency.py\\n/root/autodl-tmp/struct_self_consist_ie/code/sampling.py\\n/root/autodl-tmp/struct_self_consist_ie/code/run_mvp_pilot.py\\n/root/autodl-tmp/struct_self_consist_ie/code/gate0_eval.py\\n/root/autodl-tmp/struct_self_consist_ie/code/gate0_diagnose.py\\n/root/autodl-tmp/struct_self_consist_ie/code/gate0_realign_eval.py\\n/root/autodl-tmp/struct_self_consist_ie/code/mvp_pilot.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_component_wise_re.py\\n/root/autodl-tmp/struct_self_consist_ie/code/convert_wnut17.py\\n/root/autodl-tmp/struct_self_consist_ie/code/convert_conll2003.py\\n/root/autodl-tmp/struct_self_consist_ie/code/extract_logprobs.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_logprob_baseline.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exact_match_voting.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_entity_voting.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp015_unified.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp004_re_diagnostic.py\\n/root/autodl-tmp/struct_self_consist_ie/code/exp001_postprocess.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp016_ensemble.py\\n/root/autodl-tmp/struct_self_consist_ie/code/diagnose_logprob_rho.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp002_conll2003.py\\n/root/autodl-tmp/struct_self_consist_ie/code/_backup_cond_fix/run_mvp_pilot.py\\n/root/autodl-tmp/struct_self_consist_ie/code/_backup_cond_fix/analyze_exp015_unified.py\\n/root/autodl-tmp/struct_self_consist_ie/code/_backup_cond_fix/analyze_exp004_re_diagnostic.py\\n/root/autodl-tmp/struct_self_consist_ie/code/_backup_cond_fix/analyze_component_wise_re.py\\n/root/a
+…[truncated 6423 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_i-diversity-predictor_20260520T101451",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 89 · 2026-05-20T10:20:12.578380+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "command": "head -80 /root/autodl-tmp/struct_self_consist_ie/code/entity_consensus.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_i-diversity-predictor_20260520T101451",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090-b",
+    "command": "head -80 /root/autodl-tmp/struct_self_consist_ie/code/entity_consensus.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 90 · 2026-05-20T10:20:12.578559+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Entity Consensus Construction evaluation.\\n\\nConstructs consensus entity sets from N samples using frequency-based\\nthresholds with LP-weighted decisions for medium-confidence entities.\\nEvaluates against gold using span-based (start, end, type) F1.\\n\\\"\\\"\\\"\\n\\nimport json\\nimport os\\nimport sys\\nimport statistics\\nfrom collections import Counter, defaultdict\\n\\nimport numpy as np\\n\\nsys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))\\nfrom evaluation import entity_strict_match\\n\\nBASE = \\\"/root/autodl-tmp/struct_self_consist_ie\\\"\\n\\nDATASETS = {\\n    \\\"SciERC\\\": {\\n        \\\"path\\\": f\\\"{BASE}/output/exp_012_rerun_1024/samples.jsonl\\\",\\n        \\\"gold_filter\\\": True,\\n    },\\n    \\\"CoNLL\\\": {\\n        \\\"path\\\": f\\\"{BASE}/output/exp_002_conll_n16_r1024/samples.jsonl\\\",\\n        \\\"gold_filter\\\": True,\\n    },\\n    \\\"FewNERD\\\": {\\n        \\\"path\\\": f\\\"{BASE}/output/exp_027_fewnerd_n16/samples.jsonl\\\",\\n        \\\"gold_filter\\\": True,\\n    },\\n}\\n\\nTHRESHOLDS = [\\n    {\\\"high\\\": 0.5, \\\"medium\\\": 0.1},\\n    {\\\"high\\\": 0.6, \\\"medium\\\": 0.2},\\n    {\\\"high\\\": 0.7, \\\"medium\\\": 0.3},\\n    {\\\"high\\\": 0.8, \\\"medium\\\": 0.4},\\n]\\n\\n\\ndef load_data(path, gold_filter=True):\\n    instances = []\\n    with open(path) as f:\\n        for line in f:\\n            obj = json.loads(line)\\n            if gold_filter and len(obj[\\\"gold\\\"][\\\"entities\\\"]) == 0:\\n                continue\\n            instances.append(obj)\\n    return instances\\n\\n\\ndef span_set(entities):\\n    return set((e[\\\"start\\\"], e[\\\"end\\\"], e[\\\"type\\\"]) for e in entities)\\n\\n\\ndef entity_f1(pred_entities, gold_entities):\\n    pred = span_set(pred_entities)\\n    gold = span_set(gold_entities)\\n    if len(pred) == 0 and len(gold) == 0:\\n        return 1.0
+…[truncated 600 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_i-diversity-predictor_20260520T101451",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 91 · 2026-05-20T10:20:12.578721+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "command": "head -60 /root/autodl-tmp/struct_self_consist_ie/code/analyze_entity_voting.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_i-diversity-predictor_20260520T101451",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090-b",
+    "command": "head -60 /root/autodl-tmp/struct_self_consist_ie/code/analyze_entity_voting.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 92 · 2026-05-20T10:20:12.578883+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"exp-014: Entity/relation majority voting as selection strategy + confidence signal.\\n\\nFor each instance's N=8 samples:\\n1. Count (text, type) frequency for NER, (head, tail, type) for RE\\n2. Majority voting: keep items appearing > N/2 times\\n3. Compute consensus F1 vs gold\\n4. Compare against greedy, oracle, SJ-selected strategies\\n5. Compute voting_confidence = mean(voting_rate of consensus items)\\n\\\"\\\"\\\"\\n\\nimport json\\nimport sys\\nfrom collections import Counter\\n\\nimport numpy as np\\nfrom scipy.stats import spearmanr, kendalltau\\n\\nsys.path.insert(0, '/root/autodl-tmp/struct_self_consist_ie/code')\\nfrom consistency import compute_all_consistency_scores\\nfrom evaluation import per_instance_f1, entity_strict_match, relation_strict_match\\n\\nDATA_PATH = \\\"/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_004/samples.jsonl\\\"\\n\\n\\ndef load_data(path):\\n    instances = []\\n    with open(path) as f:\\n        for line in f:\\n            if line.strip():\\n                instances.append(json.loads(line))\\n    return instances\\n\\n\\ndef auroc_simple(scores, labels):\\n    scores = np.array(scores, dtype=float)\\n    labels = np.array(labels, dtype=int)\\n    if len(set(labels)) < 2:\\n        return float('nan')\\n    pos = scores[labels == 1]\\n    neg = scores[labels == 0]\\n    n_pos, n_neg = len(pos), len(neg)\\n    if n_pos == 0 or n_neg == 0:\\n        return float('nan')\\n    count = 0.0\\n    for p in pos:\\n        count += np.sum(p > neg) + 0.5 * np.sum(p == neg)\\n    return count / (n_pos * n_neg)\\n\\n\\ndef majority_vote_entities(samples, threshold_frac=0.5):\\n    \\\"\\\"\\\"Build consensus entity set via majority voting.\\n    \\n    Returns:\\n        consensus_entities: list of entity dicts (with best representative span)\\n        voting_rates: dict mapping (text, type) -> fraction of samples containing it\\n    \\\"\\\"\\\"\\n    N = 
+…[truncated 218 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_i-diversity-predictor_20260520T101451",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 93 · 2026-05-20T10:20:12.579067+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "command": "tail -n +60 /root/autodl-tmp/struct_self_consist_ie/code/analyze_entity_voting.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_i-diversity-predictor_20260520T101451",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090-b",
+    "command": "tail -n +60 /root/autodl-tmp/struct_self_consist_ie/code/analyze_entity_voting.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 94 · 2026-05-20T10:20:12.579549+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"    # Count (text, type) occurrences and track spans\\n    counter = Counter()\\n    span_counter = {}  # (text, type) -> Counter of (start, end)\\n    span_to_entity = {}  # (text, type, start, end) -> entity dict\\n    \\n    for s in samples:\\n        for e in s.get(\\\"entities\\\", []):\\n            key = (e[\\\"text\\\"], e[\\\"type\\\"])\\n            counter[key] += 1\\n            if key not in span_counter:\\n                span_counter[key] = Counter()\\n            span = (e[\\\"start\\\"], e[\\\"end\\\"])\\n            span_counter[key][span] += 1\\n            span_to_entity[(key[0], key[1], span[0], span[1])] = e\\n    \\n    # Build consensus: items with count > threshold\\n    consensus = []\\n    voting_rates = {}\\n    for key, count in counter.items():\\n        rate = count / N\\n        voting_rates[key] = rate\\n        if count > threshold:\\n            # Pick most common span\\n            best_span = span_counter[key].most_common(1)[0][0]\\n            entity = span_to_entity[(key[0], key[1], best_span[0], best_span[1])]\\n            consensus.append(entity)\\n    \\n    return consensus, voting_rates\\n\\n\\ndef majority_vote_relations(samples, threshold_frac=0.5):\\n    \\\"\\\"\\\"Build consensus relation set via majority voting.\\\"\\\"\\\"\\n    N = len(samples)\\n    threshold = N * threshold_frac\\n    \\n    counter = Counter()\\n    span_counter = {}\\n    span_to_rel = {}\\n    \\n    for s in samples:\\n        for r in s.get(\\\"relations\\\", []):\\n            key = (r[\\\"head\\\"], r[\\\"tail\\\"], r[\\\"type\\\"])\\n            counter[key] += 1\\n            if key not in span_counter:\\n                span_counter[key] = Counter()\\n            span = (r[\\\"head_start\\\"], r[\\\"head_end\\\"], r[\\\"tail_start\\\"], r[\\\"tail_end\\\"])\\n            span_counter[key][span] += 1\\n            span_to_rel[(key[0], key[1], key[2]) + span] = r\\n    \\n    conse
+…[truncated 7225 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_i-diversity-predictor_20260520T101451",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 95 · 2026-05-20T10:20:12.579969+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "command": "cat << 'PYEOF' > /root/autodl-tmp/struct_self_consist_ie/code/i_diversity_predictor.py\n#!/usr/bin/env python3\n\"\"\"Cross-model diversity predictor: correlate inter-model output diversity with SC ΔF1.\"\"\"\n\nimport json\nimport os\nimport sys\nimport numpy as np\nfrom collections import Counter\nfrom itertools import combinations\n\nsys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))\nfrom evaluation import entity_strict_match\n\nBASE = \"/root/autodl-tmp/struct_self_consist_ie\"\nN = 8\n\nCONFIGS = {\n    \"scierc\": {\n        \"model_a\": {\"name\": \"Qwen3-8B-FT\", \"path\": f\"{BASE}/output/exp_scierc_seed456/samples.jsonl\"},\n        \"model_b\": {\"name\": \"Qwen2.5-72B-fewshot\", \"path\": f\"{BASE}/output/72b_fewshot/scierc/samples.jsonl\"},\n    },\n    \"conll2003\": {\n        \"model_a\": {\"name\": \"Qwen3-8B-FT\", \"path\": f\"{BASE}/output/exp_conll_seed123/samples.jsonl\"},\n        \"model_b\": {\"name\": \"Qwen2.5-72B-fewshot\", \"path\": f\"{BASE}/output/72b_fewshot/conll2003/samples.jsonl\"},\n    },\n}\n\n\ndef load_instances(path):\n    instances = {}\n    with open(path) as f:\n        for line in f:\n            inst = json.loads(line)\n            inst[\"samples\"] = inst[\"samples\"][:N]\n            instances[inst[\"id\"]] = inst\n    return instances\n\n\ndef span_key(e):\n    return (e[\"start\"], e[\"end\"], e[\"type\"])\n\n\ndef text_key(e):\n    return (e[\"text\"], e[\"type\"])\n\n\ndef entity_f1_from_sets(pred_set, gold_set):\n    if len(pred_set) == 0 and len(gold_set) == 0:\n        return 1.0\n    if len(pred_set) == 0 or len(gold_set) == 0:\n        return 0.0\n    tp = len(pred_set & gold_set)\n    if tp == 0:\n        return 0.0\n    p = tp / len(pred_set)\n    r = tp / len(gold_set)\n    return 2 * p * r / (p + r)\n\n\ndef majority_vote_spans(samples, threshold_frac=0.5):\n    \"\"\"Span-based majority voting: keep (start, end, type) appearing in > threshold fraction of samples.\"\"\"\n    n = len(samples)\n    threshold = n * threshold_frac\n    counter = Counter()\n    span_to_entity = {}\n    for s in samples:\n        seen = set()\n        for e in s.get(\"entities\", []):\n            k = span_key(e)\n            if k not in seen:\n                counter[k] += 1\n                seen.add(k)\n            span_to_entity[k] = e\n    consensus = []\n    for k, count in counter.items():\n        if count > threshold:\n            consensus.append(span_to_entity[k])\n    return consensus\n\n\n# ---- Diversity metrics ----\n\ndef entity_union_jaccard(samples_a, samples_b):\n    \"\"\"Jaccard between union of entity spans from model A and model B.\"\"\"\n    union_a = set()\n    for s in samples_a:\n        for e in s.get(\"entities\", []):\n            union_a.add(span_key(e))\n    union_b = set()\n    for s in samples_b:\n        for e in s.get(\"entities\", []):\n            union_b.add(span_key(e))\n    if len(union_a) == 0 and len(union_b) == 0:\n        return 1.0\n    intersection = union_a & union_b\n    union = union_a | union_b\n    return len(intersection) / len(union)\n\n\ndef entity_freq_distribution(samples):\n    \"\"\"Entity span frequency distribution across N samples, normalized.\"\"\"\n    counter = Counter()\n    for s in samples:\n        seen = set()\n        for e in s.get(\"entities\", []):\n            k = span_key(e)\n            if k not in seen:\n                counter[k] += 1\n                seen.add(k)\n    return counter\n\n\ndef jensen_shannon_divergence(counter_a, counter_b, n_samples):\n    \"\"\"Symmetric KL (JSD) between two entity frequency distributions.\"\"\"\n    all_keys = set(counter_a.keys()) | set(counter_b.keys())\n    if len(all_keys) == 0:\n        return 0.0\n    # Normalize to probability distributions\n    eps = 1e-10\n    p = np.array([counter_a.get(k, 0) / n_samples + eps for k in all_keys])\n    q = np.array([counter_b.get(k, 0) / n_samples + eps for k in all_keys])\n    p = p / p.sum()\n    q = q / q.sum()\n    m = 0.5 * (p + q)\n    kl_pm = np.sum(p * np.log(p / m))\n    kl_qm = np.sum(q * np.log(q / m))\n    return 0.5 * (kl_pm + kl_qm)\n\n\ndef pairwise_span_jaccard(entities_a, entities_b):\n    \"\"\"Jaccard between two individual sample entity sets.\"\"\"\n    set_a = set(span_key(e) for e in entities_a)\n    set_b = set(span_key(e) for e in entities_b)\n    if len(set_a) == 0 and len(set_b) == 0:\n        return 1.0\n    if len(set_a) == 0 or len(set_b) == 0:\n        return 0.0\n    return len(set_a & set_b) / len(set_a | set_b)\n\n\ndef within_model_diversity(samples):\n    \"\"\"1 - mean pairwise Jaccard within model's N samples.\"\"\"\n    n = len(samples)\n    if n <= 1:\n        return 0.0\n    jaccards = []\n    for i, j in combinations(range(n), 2):\n        jaccards.append(pairwise_span_jaccard(\n            samples[i].get(\"entities\", []),\n            samples[j].get(\"entities\", [])\n        ))\n    return 1.0 - np.mean(jaccards)\n\n\ndef cross_model_diversity(samples_a, samples_b):\n    \"\"\"1 - mean pairwise Jaccard between model A and model B samples.\"\"\"\n    jaccards = []\n    for sa in samples_a:\n        for sb in samples_b:\n            jaccards.append(pairwise_span_jaccard(\n                sa.get(\"entities\", []),\n                sb.get(\"entities\", [])\n            ))\n    return 1.0 - np.mean(jaccards)\n\n\ndef degeneracy_score(samples):\n    \"\"\"Fraction of samples that are exact duplicates of the most common output.\"\"\"\n    entity_sets = [frozenset(span_key(e) for e in s.get(\"entities\", [])) for s in samples]\n    if len(entity_sets) == 0:\n        return 1.0\n    counter = Counter(entity_sets)\n    most_common_count = counter.most_common(1)[0][1]\n    return most_common_count / len(entity_sets)\n\n\n# ---- Main analysis ----\n\ndef analyze_dataset(dataset_name, config):\n    print(f\"\\n{'='*60}\")\n    print(f\"  Dataset: {dataset_name}\")\n    print(f\"  Model A: {config['model_a']['name']}\")\n    print(f\"  Model B: {config['model_b']['name']}\")\n    print(f\"{'='*60}\")\n\n    data_a = load_instances(config[\"model_a\"][\"path\"])\n    data_b = load_instances(config[\"model_b\"][\"path\"])\n\n    common_ids = sorted(set(data_a.keys()) & set(data_b.keys()))\n    print(f\"  Common instances: {len(common_ids)} (A={len(data_a)}, B={len(data_b)})\")\n\n    per_instance = []\n    for iid in common_ids:\n        inst_a = data_a[iid]\n        inst_b = data_b[iid]\n        gold = inst_a[\"gold\"]\n        gold_entities = gold.get(\"entities\", [])\n\n        # Skip gold-empty instances\n        if len(gold_entities) == 0:\n            continue\n\n        samples_a = inst_a[\"samples\"]\n        samples_b = inst_b[\"samples\"]\n        gold_set = set(span_key(e) for e in gold_entities)\n\n        # 1. Entity union Jaccard\n        eu_jaccard = entity_union_jaccard(samples_a, samples_b)\n\n        # 2. Jensen-Shannon divergence\n        freq_a = entity_freq_distribution(samples_a)\n        freq_b = entity_freq_distribution(samples_b)\n        jsd = jensen_shannon_divergence(freq_a, freq_b, N)\n\n        # 3. Diversity metrics\n        div_within_a = within_model_diversity(samples_a)\n        div_within_b = within_model_diversity(samples_b)\n        div_cross = cross_model_diversity(samples_a, samples_b)\n\n        # 4. Degeneracy\n        degen_a = degeneracy_score(samples_a)\n        degen_b = degeneracy_score(samples_b)\n\n        # 5. SC constructions\n        # Single model: majority vote from 8 samples\n        vote_a = majority_vote_spans(samples_a)\n        vote_b = majority_vote_spans(samples_b)\n        f1_a = entity_f1_from_sets(set(span_key(e) for e in vote_a), gold_set)\n        f1_b = entity_f1_from_sets(set(span_key(e) for e in vote_b), gold_set)\n\n        # Mixed: 4 from A + 4 from B (use first 4 of each for determinism)\n        mixed_samples = samples_a[:4] + samples_b[:4]\n        vote_mixed = majority_vote_spans(mixed_samples)\n        f1_mixed = entity_f1_from_sets(set(span_key(e) for e in vote_mixed), gold_set)\n\n        # Also try random splits (multiple)\n        rng = np.random.RandomState(42)\n        mixed_f1s = []\n        for _ in range(10):\n            idx_a = rng.choice(N, 4, replace=False)\n            idx_b = rng.choice(N, 4, replace=False)\n            mix = [samples_a[i] for i in idx_a] + [samples_b[i] for i in idx_b]\n            v = majority_vote_spans(mix)\n            mixed_f1s.append(entity_f1_from_sets(set(span_key(e) for e in v), gold_set))\n        f1_mixed_avg = np.mean(mixed_f1s)\n\n        best_single = max(f1_a, f1_b)\n        delta_f1 = f1_mixed - best_single\n        delta_f1_avg = f1_mixed_avg - best_single\n\n        # Greedy F1 for base_f1\n        greedy_a = inst_a.get(\"greedy\", {})\n        greedy_b = inst_b.get(\"greedy\", {})\n        base_f1_a = entity_f1_from_sets(set(span_key(e) for e in greedy_a.get(\"entities\", [])), gold_set)\n        base_f1_b = entity_f1_from_sets(set(span_key(e) for e in greedy_b.get(\"entities\", [])), gold_set)\n\n        per_instance.append({\n            \"id\": iid,\n            \"n_gold\": len(gold_entities),\n            \"eu_jaccard\": eu_jaccard,\n            \"jsd\": jsd,\n            \"div_within_a\": div_within_a,\n            \"div_within_b\": div_within_b,\n            \"div_cross\": div_cross,\n            \"degen_a\": degen_a,\n            \"degen_b\": degen_b,\n            \"f1_vote_a\": f1_a,\n            \"f1_vote_b\": f1_b,\n            \"f1_mixed\": f1_mixed,\n            \"f1_mixed_avg\": f1_mixed_avg,\n            \"best_single_f1\": best_single,\n            \"delta_f1\": delta_f1,\n            \"delta_f1_avg\": delta_f1_avg,\n            \"base_f1_a\": base_f1_a,\n            \"base_f1_b\": base_f1_b,\n        })\n\n    print(f\"  Valid instances (gold non-empty): {len(per_instance)}\")\n\n    # ---- Correlation analysis ----\n    from scipy.stats import spearmanr\n\n    metrics = {}\n    arr = {k: np.array([r[k] for r in per_instance]) for k in [\n        \"eu_jaccard\", \"jsd\", \"div_within_a\", \"div_within_b\", \"div_cross\",\n        \"degen_a\", \"degen_b\", \"delta_f1\", \"delta_f1_avg\",\n        \"best_single_f1\", \"base_f1_a\", \"base_f1_b\",\n        \"f1_vote_a\", \"f1_vote_b\", \"f1_mixed\", \"f1_mixed_avg\",\n    ]}\n\n    # Spearman correlations\n    diversity_vars = [\"eu_jaccard\", \"jsd\", \"div_within_a\", \"div_within_b\", \"div_cross\"]\n    target_vars = [\"delta_f1\", \"delta_f1_avg\"]\n\n    correlations = {}\n    for div_var in diversity_vars:\n        for tgt in target_vars:\n            rho, p = spearmanr(arr[div_var], arr[tgt])\n            key = f\"{div_var}_vs_{tgt}\"\n            correlations[key] = {\"rho\": round(float(rho), 4), \"p_value\": float(p)}\n            if tgt == \"delta_f1\":\n                print(f\"  Spearman {div_var:>15s} vs ΔF1: ρ={rho:+.4f}  p={p:.2e}\")\n\n    # OLS regression: delta_f1 ~ diversity + base_f1 + degeneracy\n    try:\n        from numpy.linalg import lstsq\n        y = arr[\"delta_f1\"]\n        for div_var in [\"jsd\", \"div_cross\", \"eu_jaccard\"]:\n            X = np.column_stack([\n                arr[div_var],\n                arr[\"best_single_f1\"],\n                arr[\"degen_a\"],\n                np.ones(len(y)),\n            ])\n            beta, residuals, rank, sv = lstsq(X, y, rcond=None)\n            y_pred = X @ beta\n            ss_res = np.sum((y - y_pred) ** 2)\n            ss_tot = np.sum((y - y.mean()) ** 2)\n            r2 = 1 - ss_res / ss_tot if ss_tot > 0 else 0.0\n            correlations[f\"ols_{div_var}\"] = {\n                \"beta_div\": round(float(beta[0]), 6),\n                \"beta_base_f1\": round(float(beta[1]), 6),\n                \"beta_degen\": round(float(beta[2]), 6),\n                \"beta_intercept\": round(float(beta[3]), 6),\n                \"r_squared\": round(float(r2), 4),\n            }\n            print(f\"  OLS {div_var}: R²={r2:.4f}, β_div={beta[0]:+.4f}, β_base={beta[1]:+.4f}, β_degen={beta[2]:+.4f}\")\n    except Exception as e:\n        print(f\"  OLS failed: {e}\")\n\n    # Summary statistics\n    summary = {\n        \"n_instances\": len(per_instance),\n        \"model_a\": config[\"model_a\"][\"name\"],\n        \"model_b\": config[\"model_b\"][\"name\"],\n        \"vote_f1_a_mean\": round(float(arr[\"f1_vote_a\"].mean()), 4),\n        \"vote_f1_b_mean\": round(float(arr[\"f1_vote_b\"].mean()), 4),\n        \"mixed_f1_mean\": round(float(arr[\"f1_mixed\"].mean()), 4),\n        \"mixed_f1_avg_mean\": round(float(arr[\"f1_mixed_avg\"].mean()), 4),\n        \"delta_f1_mean\": round(float(arr[\"delta_f1\"].mean()), 4),\n        \"delta_f1_avg_mean\": round(float(arr[\"delta_f1_avg\"].mean()), 4),\n        \"delta_f1_positive_frac\": round(float((arr[\"delta_f1\"] > 0).mean()), 4),\n        \"eu_jaccard_mean\": round(float(arr[\"eu_jaccard\"].mean()), 4),\n        \"jsd_mean\": round(float(arr[\"jsd\"].mean()), 4),\n        \"div_cross_mean\": round(float(arr[\"div_cross\"].mean()), 4),\n        \"div_within_a_mean\": round(float(arr[\"div_within_a\"].mean()), 4),\n        \"div_within_b_mean\": round(float(arr[\"div_within_b\"].mean()), 4),\n    }\n\n    return {\n        \"summary\": summary,\n        \"correlations\": correlations,\n        \"per_instance\": per_instance,\n    }\n\n\ndef main():\n    results = {}\n    for dataset_name, config in CONFIGS.items():\n        if not os.path.exists(config[\"model_a\"][\"path\"]):\n            print(f\"Skipping {dataset_name}: model_a data not found\")\n            continue\n        if not os.path.exists(config[\"model_b\"][\"path\"]):\n            print(f\"Skipping {dataset_name}: model_b data not found\")\n            continue\n        results[dataset_name] = analyze_dataset(dataset_name, config)\n\n    # Save\n    out_dir = f\"{BASE}/artifacts/i_diversity_predictor\"\n    os.makedirs(out_dir, exist_ok=True)\n    out_path = f\"{out_dir}/diversity_correlation.json\"\n\n    # Save without per_instance for the main file (too large)\n    slim = {}\n    for ds, res in results.items():\n        slim[ds] = {\n            \"summary\": res[\"summary\"],\n            \"correlations\": res[\"correlations\"],\n        }\n    with open(out_path, \"w\") as f:\n        json.dump(slim, f, indent=2, ensure_ascii=False)\n    print(f\"\\nSaved to {out_path}\")\n\n    # Save full per-instance data separately\n    full_path = f\"{out_dir}/diversity_per_instance.json\"\n    with open(full_path, \"w\") as f:\n        json.dump({ds: res[\"per_instance\"] for ds, res in results.items()}, f, ensure_ascii=False)\n    print(f\"Per-instance data saved to {full_path}\")\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF\necho \"Script written OK\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_i-diversity-predictor_20260520T101451",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090-b",
+    "command": "cat << 'PYEOF' > /root/autodl-tmp/struct_self_consist_ie/code/i_diversity_predictor.py\n#!/usr/bin/env python3\n\"\"\"Cross-model diversity predictor: correlate inter-model output diversity with SC ΔF1.\"\"\"\n\nimport json\nimport os\nimport sys\nimport numpy as np\nfrom collections import Counter\nfrom itertools import combinations\n\nsys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))\nfrom evaluation import entity_strict_match\n\nBASE = \"/root/autodl-tmp/struct_self_consist_ie\"\nN = 8\n\nCONFIGS = {\n    \"scierc\": {\n        \"model_a\": {\"name\": \"Qwen3-8B-FT\", \"path\": f\"{BASE}/output/exp_scierc_seed456/samples.jsonl\"},\n        \"model_b\": {\"name\": \"Qwen2.5-72B-fewshot\", \"path\": f\"{BASE}/output/72b_fewshot/scierc/samples.jsonl\"},\n    },\n    \"conll2003\": {\n        \"model_a\": {\"name\": \"Qwen3-8B-FT\", \"path\": f\"{BASE}/output/exp_conll_seed123/samples.jsonl\"},\n        \"model_b\": {\"name\": \"Qwen2.5-72B-fewshot\", \"path\": f\"{BASE}/output/72b_fewshot/conll2003/samples.jsonl\"},\n    },\n}\n\n\ndef load_instances(path):\n    instances = {}\n    with open(path) as f:\n        for line in f:\n            inst = json.loads(line)\n            inst[\"samples\"] = inst[\"samples\"][:N]\n            instances[inst[\"id\"]] = inst\n    return instances\n\n\ndef span_key(e):\n    return (e[\"start\"], e[\"end\"], e[\"type\"])\n\n\ndef text_key(e):\n    return (e[\"text\"], e[\"type\"])\n\n\ndef entity_f1_from_sets(pred_set, gold_set):\n    if len(pred_set) == 0 and len(gold_set) == 0:\n        return 1.0\n    if len(pred_set) == 0 or len(gold_set) == 0:\n        return 0.0\n    tp = len(pred_set & gold_set)\n    if tp == 0:\n        return 0.0\n    p = tp / len(pred_set)\n    r = tp / len(gold_set)\n    return 2 * p * r / (p + r)\n\n\ndef majority_vote_spans(samples, threshold_frac=0.5):\n    \"\"\"Span-based majority voting: keep (start, end, type) appearing in > threshold fraction of samples.\"\"\"\n    n = len(samples)\n    threshold = n * threshold_frac\n    counter = Counter()\n    span_to_entity = {}\n    for s in samples:\n        seen = set()\n        for e in s.get(\"entities\", []):\n            k = span_key(e)\n            if k not in seen:\n                counter[k] += 1\n                seen.add(k)\n            span_to_entity[k] = e\n    consensus = []\n    for k, count in counter.items():\n        if count > threshold:\n            consensus.append(span_to_entity[k])\n    return consensus\n\n\n# ---- Diversity metrics ----\n\ndef entity_union_jaccard(samples_a, samples_b):\n    \"\"\"Jaccard between union of entity spans from model A and model B.\"\"\"\n    union_a = set()\n    for s in samples_a:\n        for e in s.get(\"entities\", []):\n            union_a.add(span_key(e))\n    union_b = set()\n    for s in samples_b:\n        for e in s.get(\"entities\", []):\n            union_b.add(span_key(e))\n    if len(union_a) == 0 and len(union_b) == 0:\n        return 1.0\n    intersection = union_a & union_b\n    union = union_a | union_b\n    return len(intersection) / len(union)\n\n\ndef entity_freq_distribution(samples):\n    \"\"\"Entity span frequency distribution across N samples, normalized.\"\"\"\n    counter = Counter()\n    for s in samples:\n        seen = set()\n        for e in s.get(\"entities\", []):\n            k = span_key(e)\n            if k not in seen:\n                counter[k] += 1\n                seen.add(k)\n    return counter\n\n\ndef jensen_shannon_divergence(counter_a, counter_b, n_samples):\n    \"\"\"Symmetric KL (JSD) between two entity frequency distributions.\"\"\"\n    all_keys = set(counter_a.keys()) | set(counter_b.keys())\n    if len(all_keys) == 0:\n        return 0.0\n    # Normalize to probability distributions\n    eps = 1e-10\n    p = np.array([counter_a.get(k, 0) / n_samples + eps for k in all_keys])\n    q = np.array([counter_b.get(k, 0) / n_samples + eps for k in all_keys])\n    p = p / p.sum()\n    q = q / q.sum()\n    m = 0.5 * (p + q)\n    kl_pm = np.sum(p * np.log(p / m))\n    kl_qm = np.sum(q * np.log(q / m))\n    return 0.5 * (kl_pm + kl_qm)\n\n\ndef pairwise_span_jaccard(entities_a, entities_b):\n    \"\"\"Jaccard between two individual sample entity sets.\"\"\"\n    set_a = set(span_key(e) for e in entities_a)\n    set_b = set(span_key(e) for e in entities_b)\n    if len(set_a) == 0 and len(set_b) == 0:\n        return 1.0\n    if len(set_a) == 0 or len(set_b) == 0:\n        return 0.0\n    return len(set_a & set_b) / len(set_a | set_b)\n\n\ndef within_model_diversity(samples):\n    \"\"\"1 - mean pairwise Jaccard within model's N samples.\"\"\"\n    n = len(samples)\n    if n <= 1:\n        return 0.0\n    jaccards = []\n    for i, j in combinations(range(n), 2):\n        jaccards.append(pairwise_span_jaccard(\n            samples[i].get(\"entities\", []),\n            samples[j].get(\"entities\", [])\n        ))\n    return 1.0 - np.mean(jaccards)\n\n\ndef cross_model_diversity(samples_a, samples_b):\n    \"\"\"1 - mean pairwise Jaccard between model A and model B samples.\"\"\"\n    jaccards = []\n    for sa in samples_a:\n        for sb in samples_b:\n            jaccards.append(pairwise_span_jaccard(\n                sa.get(\"entities\", []),\n                sb.get(\"entities\", [])\n            ))\n    return 1.0 - np.mean(jaccards)\n\n\ndef degeneracy_score(samples):\n    \"\"\"Fraction of samples that are exact duplicates of the most common output.\"\"\"\n    entity_sets = [frozenset(span_key(e) for e in s.get(\"entities\", [])) for s in samples]\n    if len(entity_sets) == 0:\n        return 1.0\n    counter = Counter(entity_sets)\n    most_common_count = counter.most_common(1)[0][1]\n    return most_common_count / len(entity_sets)\n\n\n# ---- Main analysis ----\n\ndef analyze_dataset(dataset_name, config):\n    print(f\"\\n{'='*60}\")\n    print(f\"  Dataset: {dataset_name}\")\n    print(f\"  Model A: {config['model_a']['name']}\")\n    print(f\"  Model B: {config['model_b']['name']}\")\n    print(f\"{'='*60}\")\n\n    data_a = load_instances(config[\"model_a\"][\"path\"])\n    data_b = load_instances(config[\"model_b\"][\"path\"])\n\n    common_ids = sorted(set(data_a.keys()) & set(data_b.keys()))\n    print(f\"  Common instances: {len(common_ids)} (A={len(data_a)}, B={len(data_b)})\")\n\n    per_instance = []\n    for iid in common_ids:\n        inst_a = data_a[iid]\n        inst_b = data_b[iid]\n        gold = inst_a[\"gold\"]\n        gold_entities = gold.get(\"entities\", [])\n\n        # Skip gold-empty instances\n        if len(gold_entities) == 0:\n            continue\n\n        samples_a = inst_a[\"samples\"]\n        samples_b = inst_b[\"samples\"]\n        gold_set = set(span_key(e) for e in gold_entities)\n\n        # 1. Entity union Jaccard\n        eu_jaccard = entity_union_jaccard(samples_a, samples_b)\n\n        # 2. Jensen-Shannon divergence\n        freq_a = entity_freq_distribution(samples_a)\n        freq_b = entity_freq_distribution(samples_b)\n        jsd = jensen_shannon_divergence(freq_a, freq_b, N)\n\n        # 3. Diversity metrics\n        div_within_a = within_model_diversity(samples_a)\n        div_within_b = within_model_diversity(samples_b)\n        div_cross = cross_model_diversity(samples_a, samples_b)\n\n        # 4. Degeneracy\n        degen_a = degeneracy_score(samples_a)\n        degen_b = degeneracy_score(samples_b)\n\n        # 5. SC constructions\n        # Single model: majority vote from 8 samples\n        vote_a = majority_vote_spans(samples_a)\n        vote_b = majority_vote_spans(samples_b)\n        f1_a = entity_f1_from_sets(set(span_key(e) for e in vote_a), gold_set)\n        f1_b = entity_f1_from_sets(set(span_key(e) for e in vote_b), gold_set)\n\n        # Mixed: 4 from A + 4 from B (use first 4 of each for determinism)\n        mixed_samples = samples_a[:4] + samples_b[:4]\n        vote_mixed = majority_vote_spans(mixed_samples)\n        f1_mixed = entity_f1_from_sets(set(span_key(e) for e in vote_mixed), gold_set)\n\n        # Also try random splits (multiple)\n        rng = np.random.RandomState(42)\n        mixed_f1s = []\n        for _ in range(10):\n            idx_a = rng.choice(N, 4, replace=False)\n            idx_b = rng.choice(N, 4, replace=False)\n            mix = [samples_a[i] for i in idx_a] + [samples_b[i] for i in idx_b]\n            v = majority_vote_spans(mix)\n            mixed_f1s.append(entity_f1_from_sets(set(span_key(e) for e in v), gold_set))\n        f1_mixed_avg = np.mean(mixed_f1s)\n\n        best_single = max(f1_a, f1_b)\n        delta_f1 = f1_mixed - best_single\n        delta_f1_avg = f1_mixed_avg - best_single\n\n        # Greedy F1 for base_f1\n        greedy_a = inst_a.get(\"greedy\", {})\n        greedy_b = inst_b.get(\"greedy\", {})\n        base_f1_a = entity_f1_from_sets(set(span_key(e) for e in greedy_a.get(\"entities\", [])), gold_set)\n        base_f1_b = entity_f1_from_sets(set(span_key(e) for e in greedy_b.get(\"entities\", [])), gold_set)\n\n        per_instance.append({\n            \"id\": iid,\n            \"n_gold\": len(gold_entities),\n            \"eu_jaccard\": eu_jaccard,\n            \"jsd\": jsd,\n            \"div_within_a\": div_within_a,\n            \"div_within_b\": div_within_b,\n            \"div_cross\": div_cross,\n            \"degen_a\": degen_a,\n            \"degen_b\": degen_b,\n            \"f1_vote_a\": f1_a,\n            \"f1_vote_b\": f1_b,\n            \"f1_mixed\": f1_mixed,\n            \"f1_mixed_avg\": f1_mixed_avg,\n            \"best_single_f1\": best_single,\n            \"delta_f1\": delta_f1,\n            \"delta_f1_avg\": delta_f1_avg,\n            \"base_f1_a\": base_f1_a,\n            \"base_f1_b\": base_f1_b,\n        })\n\n    print(f\"  Valid instances (gold non-empty): {len(per_instance)}\")\n\n    # ---- Correlation analysis ----\n    from scipy.stats import spearmanr\n\n    metrics = {}\n    arr = {k: np.array([r[k] for r in per_instance]) for k in [\n        \"eu_jaccard\", \"jsd\", \"div_within_a\", \"div_within_b\", \"div_cross\",\n        \"degen_a\", \"degen_b\", \"delta_f1\", \"delta_f1_avg\",\n        \"best_single_f1\", \"base_f1_a\", \"base_f1_b\",\n        \"f1_vote_a\", \"f1_vote_b\", \"f1_mixed\", \"f1_mixed_avg\",\n    ]}\n\n    # Spearman correlations\n    diversity_vars = [\"eu_jaccard\", \"jsd\", \"div_within_a\", \"div_within_b\", \"div_cross\"]\n    target_vars = [\"delta_f1\", \"delta_f1_avg\"]\n\n    correlations = {}\n    for div_var in diversity_vars:\n        for tgt in target_vars:\n            rho, p = spearmanr(arr[div_var], arr[tgt])\n            key = f\"{div_var}_vs_{tgt}\"\n            correlations[key] = {\"rho\": round(float(rho), 4), \"p_value\": float(p)}\n            if tgt == \"delta_f1\":\n                print(f\"  Spearman {div_var:>15s} vs ΔF1: ρ={rho:+.4f}  p={p:.2e}\")\n\n    # OLS regression: delta_f1 ~ diversity + base_f1 + degeneracy\n    try:\n        from numpy.linalg import lstsq\n        y = arr[\"delta_f1\"]\n        for div_var in [\"jsd\", \"div_cross\", \"eu_jaccard\"]:\n            X = np.column_stack([\n                arr[div_var],\n                arr[\"best_single_f1\"],\n                arr[\"degen_a\"],\n                np.ones(len(y)),\n            ])\n            beta, residuals, rank, sv = lstsq(X, y, rcond=None)\n            y_pred = X @ beta\n            ss_res = np.sum((y - y_pred) ** 2)\n            ss_tot = np.sum((y - y.mean()) ** 2)\n            r2 = 1 - ss_res / ss_tot if ss_tot > 0 else 0.0\n            correlations[f\"ols_{div_var}\"] = {\n                \"beta_div\": round(float(beta[0]), 6),\n                \"beta_base_f1\": round(float(beta[1]), 6),\n                \"beta_degen\": round(float(beta[2]), 6),\n                \"beta_intercept\": round(float(beta[3]), 6),\n                \"r_squared\": round(float(r2), 4),\n            }\n            print(f\"  OLS {div_var}: R²={r2:.4f}, β_div={beta[0]:+.4f}, β_base={beta[1]:+.4f}, β_degen={beta[2]:+.4f}\")\n    except Exception as e:\n        print(f\"  OLS failed: {e}\")\n\n    # Summary statistics\n    summary = {\n        \"n_instances\": len(per_instance),\n        \"model_a\": config[\"model_a\"][\"name\"],\n        \"model_b\": config[\"model_b\"][\"name\"],\n        \"vote_f1_a_mean\": round(float(arr[\"f1_vote_a\"].mean()), 4),\n        \"vote_f1_b_mean\": round(float(arr[\"f1_vote_b\"].mean()), 4),\n        \"mixed_f1_mean\": round(float(arr[\"f1_mixed\"].mean()), 4),\n        \"mixed_f1_avg_mean\": round(float(arr[\"f1_mixed_avg\"].mean()), 4),\n        \"delta_f1_mean\": round(float(arr[\"delta_f1\"].mean()), 4),\n        \"delta_f1_avg_mean\": round(float(arr[\"delta_f1_avg\"].mean()), 4),\n        \"delta_f1_positive_frac\": round(float((arr[\"delta_f1\"] > 0).mean()), 4),\n        \"eu_jaccard_mean\": round(float(arr[\"eu_jaccard\"].mean()), 4),\n        \"jsd_mean\": round(float(arr[\"jsd\"].mean()), 4),\n        \"div_cross_mean\": round(float(arr[\"div_cross\"].mean()), 4),\n        \"div_within_a_mean\": round(float(arr[\"div_within_a\"].mean()), 4),\n        \"div_within_b_mean\": round(float(arr[\"div_within_b\"].mean()), 4),\n    }\n\n    return {\n        \"summary\": summary,\n        \"correlations\": correlations,\n        \"per_instance\": per_instance,\n    }\n\n\ndef main():\n    results = {}\n    for dataset_name, config in CONFIGS.items():\n        if not os.path.exists(config[\"model_a\"][\"path\"]):\n            print(f\"Skipping {dataset_name}: model_a data not found\")\n            continue\n        if not os.path.exists(config[\"model_b\"][\"path\"]):\n            print(f\"Skipping {dataset_name}: model_b data not found\")\n            continue\n        results[dataset_name] = analyze_dataset(dataset_name, config)\n\n    # Save\n    out_dir = f\"{BASE}/artifacts/i_diversity_predictor\"\n    os.makedirs(out_dir, exist_ok=True)\n    out_path = f\"{out_dir}/diversity_correlation.json\"\n\n    # Save without per_instance for the main file (too large)\n    slim = {}\n    for ds, res in results.items():\n        slim[ds] = {\n            \"summary\": res[\"summary\"],\n            \"correlations\": res[\"correlations\"],\n        }\n    with open(out_path, \"w\") as f:\n        json.dump(slim, f, indent=2, ensure_ascii=False)\n    print(f\"\\nSaved to {out_path}\")\n\n    # Save full per-instance data separately\n    full_path = f\"{out_dir}/diversity_per_instance.json\"\n    with open(full_path, \"w\") as f:\n        json.dump({ds: res[\"per_instance\"] for ds, res in results.items()}, f, ensure_ascii=False)\n    print(f\"Per-instance data saved to {full_path}\")\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF\necho \"Script written OK\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 96 · 2026-05-20T10:20:12.580566+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Script written OK\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_i-diversity-predictor_20260520T101451",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 97 · 2026-05-20T10:20:12.580816+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "command": "cd /root/autodl-tmp/struct_self_consist_ie && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python code/i_diversity_predictor.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_i-diversity-predictor_20260520T101451",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090-b",
+    "command": "cd /root/autodl-tmp/struct_self_consist_ie && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python code/i_diversity_predictor.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 98 · 2026-05-20T10:20:12.581028+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\n============================================================\\n  Dataset: scierc\\n  Model A: Qwen3-8B-FT\\n  Model B: Qwen2.5-72B-fewshot\\n============================================================\\n  Common instances: 551 (A=551, B=551)\\n  Valid instances (gold non-empty): 529\\n  Spearman      eu_jaccard vs ΔF1: ρ=+0.1774  p=4.08e-05\\n  Spearman             jsd vs ΔF1: ρ=-0.3103  p=2.85e-13\\n  Spearman    div_within_a vs ΔF1: ρ=+0.0622  p=1.53e-01\\n  Spearman    div_within_b vs ΔF1: ρ=-0.0286  p=5.12e-01\\n  Spearman       div_cross vs ΔF1: ρ=-0.2952  p=4.23e-12\\n  OLS jsd: R²=0.2985, β_div=-0.8737, β_base=-0.3647, β_degen=+0.0194\\n  OLS div_cross: R²=0.2650, β_div=-0.6406, β_base=-0.3705, β_degen=-0.0985\\n  OLS eu_jaccard: R²=0.1368, β_div=+0.4240, β_base=-0.2813, β_degen=+0.0008\\n\\n============================================================\\n  Dataset: conll2003\\n  Model A: Qwen3-8B-FT\\n  Model B: Qwen2.5-72B-fewshot\\n============================================================\\n  Common instances: 3453 (A=3453, B=3453)\\n  Valid instances (gold non-empty): 2756\\n  Spearman      eu_jaccard vs ΔF1: ρ=+0.5756  p=6.10e-243\\n  Spearman             jsd vs ΔF1: ρ=-0.6149  p=2.26e-286\\n  Spearman    div_within_a vs ΔF1: ρ=+0.0670  p=4.32e-04\\n  Spearman    div_within_b vs ΔF1: ρ=-0.1798  p=1.90e-21\\n  Spearman       div_cross vs ΔF1: ρ=-0.6404  p=0.00e+00\\n  OLS jsd: R²=0.7435, β_div=-1.2938, β_base=-0.2285, β_degen=-0.2572\\n  OLS div_cross: R²=0.7305, β_div=-0.8425, β_base=-0.2950, β_degen=-0.5430\\n  OLS eu_jaccard: R²=0.5532, β_div=+0.7251, β_base=-0.2446, β_degen=-0.5276\\n\\nSaved to /root/autodl-tmp/struct_self_consist_ie/artifacts/i_diversity_predictor/diversity_correlation.json\\nPer-instance data saved to /root/autodl-tmp/struct_self_consist_ie/artifacts/i_diversity_predictor/diversity_per_instance.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\
+…[truncated 33 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_i-diversity-predictor_20260520T101451",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 99 · 2026-05-20T10:20:12.581316+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/artifacts/i_diversity_predictor/diversity_correlation.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_i-diversity-predictor_20260520T101451",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090-b",
+    "command": "cat /root/autodl-tmp/struct_self_consist_ie/artifacts/i_diversity_predictor/diversity_correlation.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 100 · 2026-05-20T10:20:12.581582+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"scierc\\\": {\\n    \\\"summary\\\": {\\n      \\\"n_instances\\\": 529,\\n      \\\"model_a\\\": \\\"Qwen3-8B-FT\\\",\\n      \\\"model_b\\\": \\\"Qwen2.5-72B-fewshot\\\",\\n      \\\"vote_f1_a_mean\\\": 0.6249,\\n      \\\"vote_f1_b_mean\\\": 0.4553,\\n      \\\"mixed_f1_mean\\\": 0.5441,\\n      \\\"mixed_f1_avg_mean\\\": 0.5418,\\n      \\\"delta_f1_mean\\\": -0.1481,\\n      \\\"delta_f1_avg_mean\\\": -0.1504,\\n      \\\"delta_f1_positive_frac\\\": 0.138,\\n      \\\"eu_jaccard_mean\\\": 0.345,\\n      \\\"jsd_mean\\\": 0.3071,\\n      \\\"div_cross_mean\\\": 0.6798,\\n      \\\"div_within_a_mean\\\": 0.3328,\\n      \\\"div_within_b_mean\\\": 0.4079\\n    },\\n    \\\"correlations\\\": {\\n      \\\"eu_jaccard_vs_delta_f1\\\": {\\n        \\\"rho\\\": 0.1774,\\n        \\\"p_value\\\": 4.0845658888998855e-05\\n      },\\n      \\\"eu_jaccard_vs_delta_f1_avg\\\": {\\n        \\\"rho\\\": 0.1393,\\n        \\\"p_value\\\": 0.0013177230839678488\\n      },\\n      \\\"jsd_vs_delta_f1\\\": {\\n        \\\"rho\\\": -0.3103,\\n        \\\"p_value\\\": 2.852381213858864e-13\\n      },\\n      \\\"jsd_vs_delta_f1_avg\\\": {\\n        \\\"rho\\\": -0.3144,\\n        \\\"p_value\\\": 1.3358971557770975e-13\\n      },\\n      \\\"div_within_a_vs_delta_f1\\\": {\\n        \\\"rho\\\": 0.0622,\\n        \\\"p_value\\\": 0.15282375619849858\\n      },\\n      \\\"div_within_a_vs_delta_f1_avg\\\": {\\n        \\\"rho\\\": 0.0434,\\n        \\\"p_value\\\": 0.31880199197716624\\n      },\\n      \\\"div_within_b_vs_delta_f1\\\": {\\n        \\\"rho\\\": -0.0286,\\n        \\\"p_value\\\": 0.5115561752951354\\n      },\\n      \\\"div_within_b_vs_delta_f1_avg\\\": {\\n        \\\"rho\\\": -0.0297,\\n        \\\"p_value\\\": 0.4961406996135759\\n      },\\n      \\\"div_cross_vs_delta_f1\\\": {\\n        \\\"rho\\\": -0.2952,\\n        \\\"p_value\\\": 4.226016166871713e-12\\n      },\\n      \\\"div_cross_vs_de
+…[truncated 3738 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_i-diversity-predictor_20260520T101451",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 101 · 2026-05-20T10:20:12.581777+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "i_diversity_predictor",
+  "type": "data",
+  "description": "Cross-model diversity predictor: Qwen3-8B-FT vs Qwen2.5-72B-fewshot output divergence (JSD, entity Jaccard, cross-model diversity) correlated with SC ΔF1 on SciERC (n=529) and CoNLL (n=2756). Key: JSD→ΔF1 ρ=-0.31 (SciERC), ρ=-0.61 (CoNLL); OLS R²=0.30/0.74.",
+  "project": "struct_self_consist_ie",
+  "source_path": "/root/autodl-tmp/struct_self_consist_ie/artifacts/i_diversity_predictor/diversity_correlation.json",
+  "tags": "['diversity', 'cross-model', 'correlation', 'sc-delta-f1', 'scierc', 'conll']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_i-diversity-predictor_20260520T101451",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "i_diversity_predictor",
+    "type": "data",
+    "description": "Cross-model diversity predictor: Qwen3-8B-FT vs Qwen2.5-72B-fewshot output divergence (JSD, entity Jaccard, cross-model diversity) correlated with SC ΔF1 on SciERC (n=529) and CoNLL (n=2756). Key: JSD→ΔF1 ρ=-0.31 (SciERC), ρ=-0.61 (CoNLL); OLS R²=0.30/0.74.",
+    "project": "struct_self_consist_ie",
+    "source_path": "/root/autodl-tmp/struct_self_consist_ie/artifacts/i_diversity_predictor/diversity_correlation.json",
+    "tags": "['diversity', 'cross-model', 'correlation', 'sc-delta-f1', 'scierc', 'conll']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 102 · 2026-05-20T10:20:12.581934+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"source_path not found: /root/autodl-tmp/struct_self_consist_ie/artifacts/i_diversity_predictor/diversity_correlation.json\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_i-diversity-predictor_20260520T101451",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 103 · 2026-05-20T10:20:12.582082+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/artifacts/i_diversity_predictor/diversity_correlation.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_i-diversity-predictor_20260520T101451",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090-b",
+    "command": "cat /root/autodl-tmp/struct_self_consist_ie/artifacts/i_diversity_predictor/diversity_correlation.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 104 · 2026-05-20T10:20:12.582349+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"scierc\\\": {\\n    \\\"summary\\\": {\\n      \\\"n_instances\\\": 529,\\n      \\\"model_a\\\": \\\"Qwen3-8B-FT\\\",\\n      \\\"model_b\\\": \\\"Qwen2.5-72B-fewshot\\\",\\n      \\\"vote_f1_a_mean\\\": 0.6249,\\n      \\\"vote_f1_b_mean\\\": 0.4553,\\n      \\\"mixed_f1_mean\\\": 0.5441,\\n      \\\"mixed_f1_avg_mean\\\": 0.5418,\\n      \\\"delta_f1_mean\\\": -0.1481,\\n      \\\"delta_f1_avg_mean\\\": -0.1504,\\n      \\\"delta_f1_positive_frac\\\": 0.138,\\n      \\\"eu_jaccard_mean\\\": 0.345,\\n      \\\"jsd_mean\\\": 0.3071,\\n      \\\"div_cross_mean\\\": 0.6798,\\n      \\\"div_within_a_mean\\\": 0.3328,\\n      \\\"div_within_b_mean\\\": 0.4079\\n    },\\n    \\\"correlations\\\": {\\n      \\\"eu_jaccard_vs_delta_f1\\\": {\\n        \\\"rho\\\": 0.1774,\\n        \\\"p_value\\\": 4.0845658888998855e-05\\n      },\\n      \\\"eu_jaccard_vs_delta_f1_avg\\\": {\\n        \\\"rho\\\": 0.1393,\\n        \\\"p_value\\\": 0.0013177230839678488\\n      },\\n      \\\"jsd_vs_delta_f1\\\": {\\n        \\\"rho\\\": -0.3103,\\n        \\\"p_value\\\": 2.852381213858864e-13\\n      },\\n      \\\"jsd_vs_delta_f1_avg\\\": {\\n        \\\"rho\\\": -0.3144,\\n        \\\"p_value\\\": 1.3358971557770975e-13\\n      },\\n      \\\"div_within_a_vs_delta_f1\\\": {\\n        \\\"rho\\\": 0.0622,\\n        \\\"p_value\\\": 0.15282375619849858\\n      },\\n      \\\"div_within_a_vs_delta_f1_avg\\\": {\\n        \\\"rho\\\": 0.0434,\\n        \\\"p_value\\\": 0.31880199197716624\\n      },\\n      \\\"div_within_b_vs_delta_f1\\\": {\\n        \\\"rho\\\": -0.0286,\\n        \\\"p_value\\\": 0.5115561752951354\\n      },\\n      \\\"div_within_b_vs_delta_f1_avg\\\": {\\n        \\\"rho\\\": -0.0297,\\n        \\\"p_value\\\": 0.4961406996135759\\n      },\\n      \\\"div_cross_vs_delta_f1\\\": {\\n        \\\"rho\\\": -0.2952,\\n        \\\"p_value\\\": 4.226016166871713e-12\\n      },\\n      \\\"div_cross_vs_de
+…[truncated 3738 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_i-diversity-predictor_20260520T101451",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 105 · 2026-05-20T10:20:12.582547+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "i_diversity_predictor",
+  "type": "data",
+  "description": "Cross-model diversity predictor: Qwen3-8B-FT vs Qwen2.5-72B-fewshot output divergence (JSD, entity Jaccard, cross-model diversity) correlated with SC ΔF1 on SciERC (n=529) and CoNLL (n=2756). Key: JSD→ΔF1 ρ=-0.31 (SciERC), ρ=-0.61 (CoNLL); OLS R²=0.30/0.74.",
+  "project": "struct_self_consist_ie",
+  "content": "{\"scierc\":{\"summary\":{\"n_instances\":529,\"model_a\":\"Qwen3-8B-FT\",\"model_b\":\"Qwen2.5-72B-fewshot\",\"vote_f1_a_mean\":0.6249,\"vote_f1_b_mean\":0.4553,\"mixed_f1_mean\":0.5441,\"mixed_f1_avg_mean\":0.5418,\"delta_f1_mean\":-0.1481,\"delta_f1_avg_mean\":-0.1504,\"delta_f1_positive_frac\":0.138,\"eu_jaccard_mean\":0.345,\"jsd_mean\":0.3071,\"div_cross_mean\":0.6798,\"div_within_a_mean\":0.3328,\"div_within_b_mean\":0.4079},\"correlations\":{\"eu_jaccard_vs_delta_f1\":{\"rho\":0.1774,\"p_value\":4.08e-05},\"jsd_vs_delta_f1\":{\"rho\":-0.3103,\"p_value\":2.85e-13},\"div_within_a_vs_delta_f1\":{\"rho\":0.0622,\"p_value\":0.153},\"div_within_b_vs_delta_f1\":{\"rho\":-0.0286,\"p_value\":0.512},\"div_cross_vs_delta_f1\":{\"rho\":-0.2952,\"p_value\":4.23e-12},\"ols_jsd\":{\"beta_div\":-0.8737,\"beta_base_f1\":-0.3647,\"beta_degen\":0.0194,\"r_squared\":0.2985},\"ols_div_cross\":{\"beta_div\":-0.6406,\"beta_base_f1\":-0.3706,\"beta_degen\":-0.0985,\"r_squared\":0.265},\"ols_eu_jaccard\":{\"beta_div\":0.424,\"beta_base_f1\":-0.2813,\"beta_degen\":0.0008,\"r_squared\":0.1368}}},\"conll2003\":{\"summary\":{\"n_instances\":2756,\"model_a\":\"Qwen3-8B-FT\",\"model_b\":\"Qwen2.5-72B-fewshot\",\"vote_f1_a_mean\":0.8945,\"vote_f1_b_mean\":0.7428,\"mixed_f1_mean\":0.777,\"mixed_f1_avg_mean\":0.7771,\"delta_f1_mean\":-0.1574,\"delta_f1_avg_mean\":-0.1573,\"delta_f1_positive_frac\":0.0174,\"eu_jaccard_mean\":0.6278,\"jsd_mean\":0.1614,\"div_cross_mean\":0.3267,\"div_within_a_mean\":0.1305,\"div_within_b_mean\":0.1123},\"correlations\":{\"eu_jaccard_vs_delta_f1\":{\"rho\":0.5756,\"p_value\":6.1e-243},\"jsd_vs_delta_f1\":{\"rho\":-0.6149,\"p_value\":2.26e-286},\"div_within_a_vs_delta_f1\":{\"rho\":0.067,\"p_value\":0.000432},\"div_within_b_vs_delta_f1\":{\"rho\":-0.1798,\"p_value\":1.9e-21},\"div_cross_vs_delta_f1\":{\"rho\":-0.6404,\"p_value\":0.0},\"ols_jsd\":{\"beta_div\":-1.2938,\"beta_base_f1\":-0.2285,\"beta_degen\":-0.2572,\"r_squared\":0.7435},\"ols_div_cross\":{\"beta_div\":-0.8425,\"beta_base_f1\":-0.295,\"beta_degen\":-0.543,\"r_squared\":0.7305},\"ols_eu_jaccard\":{\"beta_div\":0.7251,\"beta_base_f1\":-0.2447,\"beta_degen\":-0.5276,\"r_squared\":0.5532}}}}",
+  "content_filename": "diversity_correlation.json",
+  "tags": "['diversity', 'cross-model', 'correlation', 'sc-delta-f1', 'scierc', 'conll']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_i-diversity-predictor_20260520T101451",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "i_diversity_predictor",
+    "type": "data",
+    "description": "Cross-model diversity predictor: Qwen3-8B-FT vs Qwen2.5-72B-fewshot output divergence (JSD, entity Jaccard, cross-model diversity) correlated with SC ΔF1 on SciERC (n=529) and CoNLL (n=2756). Key: JSD→ΔF1 ρ=-0.31 (SciERC), ρ=-0.61 (CoNLL); OLS R²=0.30/0.74.",
+    "project": "struct_self_consist_ie",
+    "content": "{\"scierc\":{\"summary\":{\"n_instances\":529,\"model_a\":\"Qwen3-8B-FT\",\"model_b\":\"Qwen2.5-72B-fewshot\",\"vote_f1_a_mean\":0.6249,\"vote_f1_b_mean\":0.4553,\"mixed_f1_mean\":0.5441,\"mixed_f1_avg_mean\":0.5418,\"delta_f1_mean\":-0.1481,\"delta_f1_avg_mean\":-0.1504,\"delta_f1_positive_frac\":0.138,\"eu_jaccard_mean\":0.345,\"jsd_mean\":0.3071,\"div_cross_mean\":0.6798,\"div_within_a_mean\":0.3328,\"div_within_b_mean\":0.4079},\"correlations\":{\"eu_jaccard_vs_delta_f1\":{\"rho\":0.1774,\"p_value\":4.08e-05},\"jsd_vs_delta_f1\":{\"rho\":-0.3103,\"p_value\":2.85e-13},\"div_within_a_vs_delta_f1\":{\"rho\":0.0622,\"p_value\":0.153},\"div_within_b_vs_delta_f1\":{\"rho\":-0.0286,\"p_value\":0.512},\"div_cross_vs_delta_f1\":{\"rho\":-0.2952,\"p_value\":4.23e-12},\"ols_jsd\":{\"beta_div\":-0.8737,\"beta_base_f1\":-0.3647,\"beta_degen\":0.0194,\"r_squared\":0.2985},\"ols_div_cross\":{\"beta_div\":-0.6406,\"beta_base_f1\":-0.3706,\"beta_degen\":-0.0985,\"r_squared\":0.265},\"ols_eu_jaccard\":{\"beta_div\":0.424,\"beta_base_f1\":-0.2813,\"beta_degen\":0.0008,\"r_squared\":0.1368}}},\"conll2003\":{\"summary\":{\"n_instances\":2756,\"model_a\":\"Qwen3-8B-FT\",\"model_b\":\"Qwen2.5-72B-fewshot\",\"vote_f1_a_mean\":0.8945,\"vote_f1_b_mean\":0.7428,\"mixed_f1_mean\":0.777,\"mixed_f1_avg_mean\":0.7771,\"delta_f1_mean\":-0.1574,\"delta_f1_avg_mean\":-0.1573,\"delta_f1_positive_frac\":0.0174,\"eu_jaccard_mean\":0.6278,\"jsd_mean\":0.1614,\"div_cross_mean\":0.3267,\"div_within_a_mean\":0.1305,\"div_within_b_mean\":0.1123},\"correlations\":{\"eu_jaccard_vs_delta_f1\":{\"rho\":0.5756,\"p_value\":6.1e-243},\"jsd_vs_delta_f1\":{\"rho\":-0.6149,\"p_value\":2.26e-286},\"div_within_a_vs_delta_f1\":{\"rho\":0.067,\"p_value\":0.000432},\"div_within_b_vs_delta_f1\":{\"rho\":-0.1798,\"p_value\":1.9e-21},\"div_cross_vs_delta_f1\":{\"rho\":-0.6404,\"p_value\":0.0},\"ols_jsd\":{\"beta_div\":-1.2938,\"beta_base_f1\":-0.2285,\"beta_degen\":-0.2572,\"r_squared\":0.7435},\"ols_div_cross\":{\"beta_div\":-0.8425,\"beta_base_f1\":-0.295,\"beta_degen\":-0.543,\"r_squared\":0.7305},\"ols_eu_jaccard\":{\"beta_div\":0.7251,\"beta_base_f1\":-0.2447,\"beta_degen\":-0.5276,\"r_squared\":0.5532}}}}",
+    "content_filename": "diversity_correlation.json",
+    "tags": "['diversity', 'cross-model', 'correlation', 'sc-delta-f1', 'scierc', 'conll']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 106 · 2026-05-20T10:20:12.582718+00:00_
+
+Error executing tool register_artifact: 1 validation error for register_artifactArguments
+content
+  Input should be a valid string [type=string_type, input_value={'scierc': {'summary': {'... 'r_squared': 0.5532}}}}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/string_type
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_i-diversity-predictor_20260520T101451",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 107 · 2026-05-20T10:20:12.582875+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "i_diversity_predictor",
+  "type": "data",
+  "description": "Cross-model diversity predictor: Qwen3-8B-FT vs Qwen2.5-72B-fewshot output divergence (JSD, entity Jaccard, cross-model diversity) correlated with SC ΔF1 on SciERC (n=529) and CoNLL (n=2756). Key: JSD→ΔF1 ρ=-0.31 (SciERC), ρ=-0.61 (CoNLL); OLS R²=0.30/0.74.",
+  "project": "struct_self_consist_ie",
+  "content": "{\"scierc\":{\"summary\":{\"n_instances\":529,\"model_a\":\"Qwen3-8B-FT\",\"model_b\":\"Qwen2.5-72B-fewshot\",\"vote_f1_a_mean\":0.6249,\"vote_f1_b_mean\":0.4553,\"mixed_f1_mean\":0.5441,\"delta_f1_mean\":-0.1481,\"delta_f1_positive_frac\":0.138,\"eu_jaccard_mean\":0.345,\"jsd_mean\":0.3071,\"div_cross_mean\":0.6798},\"correlations\":{\"jsd_vs_delta_f1\":{\"rho\":-0.3103,\"p_value\":\"2.85e-13\"},\"div_cross_vs_delta_f1\":{\"rho\":-0.2952,\"p_value\":\"4.23e-12\"},\"eu_jaccard_vs_delta_f1\":{\"rho\":0.1774,\"p_value\":\"4.08e-05\"},\"ols_jsd\":{\"r_squared\":0.2985},\"ols_div_cross\":{\"r_squared\":0.265}}},\"conll2003\":{\"summary\":{\"n_instances\":2756,\"model_a\":\"Qwen3-8B-FT\",\"model_b\":\"Qwen2.5-72B-fewshot\",\"vote_f1_a_mean\":0.8945,\"vote_f1_b_mean\":0.7428,\"mixed_f1_mean\":0.777,\"delta_f1_mean\":-0.1574,\"delta_f1_positive_frac\":0.0174,\"eu_jaccard_mean\":0.6278,\"jsd_mean\":0.1614,\"div_cross_mean\":0.3267},\"correlations\":{\"jsd_vs_delta_f1\":{\"rho\":-0.6149,\"p_value\":\"2.26e-286\"},\"div_cross_vs_delta_f1\":{\"rho\":-0.6404,\"p_value\":\"0.0\"},\"eu_jaccard_vs_delta_f1\":{\"rho\":0.5756,\"p_value\":\"6.1e-243\"},\"ols_jsd\":{\"r_squared\":0.7435},\"ols_div_cross\":{\"r_squared\":0.7305}}}}",
+  "content_filename": "diversity_correlation.json",
+  "tags": "['diversity', 'cross-model', 'correlation', 'sc-delta-f1', 'scierc', 'conll']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_i-diversity-predictor_20260520T101451",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "i_diversity_predictor",
+    "type": "data",
+    "description": "Cross-model diversity predictor: Qwen3-8B-FT vs Qwen2.5-72B-fewshot output divergence (JSD, entity Jaccard, cross-model diversity) correlated with SC ΔF1 on SciERC (n=529) and CoNLL (n=2756). Key: JSD→ΔF1 ρ=-0.31 (SciERC), ρ=-0.61 (CoNLL); OLS R²=0.30/0.74.",
+    "project": "struct_self_consist_ie",
+    "content": "{\"scierc\":{\"summary\":{\"n_instances\":529,\"model_a\":\"Qwen3-8B-FT\",\"model_b\":\"Qwen2.5-72B-fewshot\",\"vote_f1_a_mean\":0.6249,\"vote_f1_b_mean\":0.4553,\"mixed_f1_mean\":0.5441,\"delta_f1_mean\":-0.1481,\"delta_f1_positive_frac\":0.138,\"eu_jaccard_mean\":0.345,\"jsd_mean\":0.3071,\"div_cross_mean\":0.6798},\"correlations\":{\"jsd_vs_delta_f1\":{\"rho\":-0.3103,\"p_value\":\"2.85e-13\"},\"div_cross_vs_delta_f1\":{\"rho\":-0.2952,\"p_value\":\"4.23e-12\"},\"eu_jaccard_vs_delta_f1\":{\"rho\":0.1774,\"p_value\":\"4.08e-05\"},\"ols_jsd\":{\"r_squared\":0.2985},\"ols_div_cross\":{\"r_squared\":0.265}}},\"conll2003\":{\"summary\":{\"n_instances\":2756,\"model_a\":\"Qwen3-8B-FT\",\"model_b\":\"Qwen2.5-72B-fewshot\",\"vote_f1_a_mean\":0.8945,\"vote_f1_b_mean\":0.7428,\"mixed_f1_mean\":0.777,\"delta_f1_mean\":-0.1574,\"delta_f1_positive_frac\":0.0174,\"eu_jaccard_mean\":0.6278,\"jsd_mean\":0.1614,\"div_cross_mean\":0.3267},\"correlations\":{\"jsd_vs_delta_f1\":{\"rho\":-0.6149,\"p_value\":\"2.26e-286\"},\"div_cross_vs_delta_f1\":{\"rho\":-0.6404,\"p_value\":\"0.0\"},\"eu_jaccard_vs_delta_f1\":{\"rho\":0.5756,\"p_value\":\"6.1e-243\"},\"ols_jsd\":{\"r_squared\":0.7435},\"ols_div_cross\":{\"r_squared\":0.7305}}}}",
+    "content_filename": "diversity_correlation.json",
+    "tags": "['diversity', 'cross-model', 'correlation', 'sc-delta-f1', 'scierc', 'conll']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 108 · 2026-05-20T10:20:12.583031+00:00_
+
+Error executing tool register_artifact: 1 validation error for register_artifactArguments
+content
+  Input should be a valid string [type=string_type, input_value={'scierc': {'summary': {'...{'r_squared': 0.7305}}}}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/string_type
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_i-diversity-predictor_20260520T101451",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 109 · 2026-05-20T10:20:12.583189+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "i_diversity_predictor",
+  "type": "data",
+  "description": "Cross-model diversity predictor: Qwen3-8B-FT vs Qwen2.5-72B-fewshot output divergence (JSD, entity Jaccard, cross-model diversity) correlated with SC ΔF1 on SciERC (n=529) and CoNLL (n=2756). Key findings: JSD→ΔF1 ρ=-0.31 (SciERC), ρ=-0.61 (CoNLL); OLS R²=0.30/0.74. Cross-model diversity strongly predicts whether mixing hurts.",
+  "project": "struct_self_consist_ie",
+  "url": "file:///root/autodl-tmp/struct_self_consist_ie/artifacts/i_diversity_predictor/diversity_correlation.json",
+  "tags": "['diversity', 'cross-model', 'correlation', 'sc-delta-f1', 'scierc', 'conll']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_i-diversity-predictor_20260520T101451",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "i_diversity_predictor",
+    "type": "data",
+    "description": "Cross-model diversity predictor: Qwen3-8B-FT vs Qwen2.5-72B-fewshot output divergence (JSD, entity Jaccard, cross-model diversity) correlated with SC ΔF1 on SciERC (n=529) and CoNLL (n=2756). Key findings: JSD→ΔF1 ρ=-0.31 (SciERC), ρ=-0.61 (CoNLL); OLS R²=0.30/0.74. Cross-model diversity strongly predicts whether mixing hurts.",
+    "project": "struct_self_consist_ie",
+    "url": "file:///root/autodl-tmp/struct_self_consist_ie/artifacts/i_diversity_predictor/diversity_correlation.json",
+    "tags": "['diversity', 'cross-model', 'correlation', 'sc-delta-f1', 'scierc', 'conll']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 110 · 2026-05-20T10:20:12.583359+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260520_766a1d\", \"name\": \"i_diversity_predictor\", \"type\": \"data\", \"description\": \"Cross-model diversity predictor: Qwen3-8B-FT vs Qwen2.5-72B-fewshot output divergence (JSD, entity Jaccard, cross-model diversity) correlated with SC ΔF1 on SciERC (n=529) and CoNLL (n=2756). Key findings: JSD→ΔF1 ρ=-0.31 (SciERC), ρ=-0.61 (CoNLL); OLS R²=0.30/0.74. Cross-model diversity strongly predicts whether mixing hurts.\", \"path\": null, \"url\": \"file:///root/autodl-tmp/struct_self_consist_ie/artifacts/i_diversity_predictor/diversity_correlation.json\", \"project\": \"struct_self_consist_ie\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-20T10:20:00.174106+00:00\", \"tags\": [\"diversity\", \"cross-model\", \"correlation\", \"sc-delta-f1\", \"scierc\", \"conll\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_i-diversity-predictor_20260520T101451",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 111 · 2026-05-20T10:20:12.583553+00:00_
+
+完成。结果摘要：
+
+**模型配对**: Qwen3-8B-FT vs Qwen2.5-72B-fewshot（原始 LLaMA FT 数据已不存在，改用此对）
+
+**SciERC** (n=529):
+| 指标 | Spearman ρ vs ΔF1 | p-value |
+|------|-------------------|---------|
+| JSD | -0.310 | 2.9e-13 |
+| Cross-model div | -0.295 | 4.2e-12 |
+| EU Jaccard | +0.177 | 4.1e-05 |
+| Within-A div | +0.062 | n.s. |
+| Within-B div | -0.029 | n.s. |
+
+OLS: JSD R²=0.30, div_cross R²=0.27
+
+**CoNLL** (n=2756):
+| 指标 | Spearman ρ vs ΔF1 | p-value |
+|------|-------------------|---------|
+| JSD | -0.615 | ~0 |
+| Cross-model div | -0.640 | ~0 |
+| EU Jaccard | +0.576 | ~0 |
+
+OLS: JSD R²=0.74, div_cross R²=0.73
+
+**核心发现**: Cross-model 输出分歧（JSD、cross-model diversity）强预测 SC 混合构造的 ΔF1。模型间越不一致，混合 majority vote 越伤害性能。Within-model diversity 不显著。CoNLL 上效应远强于 SciERC（R² 0.74 vs 0.30），因为 CoNLL 任务更规范、模型间一致性差异更结构化。
+
+产出路径:
+- `artifacts/i_diversity_predictor/diversity_correlation.json`
+- `artifacts/i_diversity_predictor/diversity_per_instance.json`
+- `code/i_diversity_predictor.py`
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_ssh_i-diversity-predictor_20260520T101451"
+}
+```
+
+</details>
+
+---

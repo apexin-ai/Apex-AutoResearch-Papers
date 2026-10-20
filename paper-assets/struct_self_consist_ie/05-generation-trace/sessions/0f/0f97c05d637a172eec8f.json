@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0f97c05d637a172eec8f",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis exp freeform ablation",
+  "task_key": "worker_analysis_exp_freeform_ablation_20260515T095741",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_exp_freeform_ablation_20260515T095741_result.json",
+    "occurrence": 1,
+    "bytes": 709,
+    "sha256": "1061f54f6849efe2d0ed932c52a17d8b54e7d0334d4e4cfbb843fe1bd6289fb8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成，报告已注册为 `art_20260515_b80d82`。核心结论：\n\n**Score compression 假设未被证实。** Free-form LP variance 与 constrained 几乎一致（std ratio 0.97x, range ratio 0.96x, tied fraction 仅降 2pp）。Logprob 压缩是模型/任务的固有特性，非 constrained decoding 导致。\n\n其他发现：\n- **QE 信号在 free-form 下普遍改善**：NER 全部 5 个信号 ρ 上升（FK 最大 +0.053），RE 4/5 上升（VC 例外 -0.026）\n- **RE 的 LP selection 从失败变成功**：constrained 下 -0.0068，free-form 下 +0.0169\n- **Parse rate 99.95%**：549/551 instances 全部 8/8 valid，constrained decoding 对格式合规不是必要的"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-freeform-ablation.md"
+}

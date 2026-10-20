@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "1dac022fe27561437f98",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "analysis exp 028 postprocess",
+  "task_key": "worker_analysis_exp_028_postprocess_20260517T200801",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_exp_028_postprocess_20260517T200801.log",
+    "occurrence": 1,
+    "bytes": 731761,
+    "sha256": "33cc04dd22a3624305cda1ab60b8bd76660ea7014d4172e9f19ecedfc5a30db3"
+  },
+  "statistics": {
+    "messages": 444,
+    "user_turns": 0,
+    "tool_calls": 187,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 66,
+      "tool_call": 187,
+      "tool_result": 187,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 444,
+      "chunks": [
+        {
+          "path": "1dac022fe27561437f98-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "1dac022fe27561437f98-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "1dac022fe27561437f98-part-0003.json",
+          "message_count": 84
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-exp-028-postprocess.md"
+}

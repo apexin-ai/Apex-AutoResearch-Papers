@@ -1,0 +1,8007 @@
+# research reference verification r22
+
+**When Self-Consistency Fails for NER: Degeneracy, Signal Collapse, and the Correlation-Selection Gap** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 106
+- **Recorded user turns:** 0
+- **Tool calls:** 43
+- **Original source:** `logs/workers/worker_research_reference_verification_r22_20260519T040634.log`
+- **Structured JSON:** [`70719f337a59f6a0334c.json`](../../sessions/70/70719f337a59f6a0334c.json)
+
+## Before a recorded user message
+
+106 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "session_id": "4174a956-2672-46bc-9cc6-7207d07af3de",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__append_idea",
+    "mcp__agent-ml-research__read_project_file",
+    "mcp__agent-ml-research__save_project_file"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "f9242ca5-768d-4da2-934f-79c0201f9662",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779170400,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "d28074c0-74a0-4a37-ab0a-f2acaa200519",
+  "session_id": "4174a956-2672-46bc-9cc6-7207d07af3de"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by reading the current references.bib file and then launch parallel web searches for the papers in Part A and Part B.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4174a956-2672-46bc-9cc6-7207d07af3de",
+  "uuid": "cbe86329-a193-4930-8070-838d911b0cb6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QzHKwyEVjp5XnSfisrzhyE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12831,
+      "cache_read_input_tokens": 11701,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12831
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 5_
+
+I'll read the current bib file and start searching for all papers in parallel.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4174a956-2672-46bc-9cc6-7207d07af3de",
+  "uuid": "68585ba0-8802-4849-957c-f714fbec91fa",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QzHKwyEVjp5XnSfisrzhyE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12831,
+      "cache_read_input_tokens": 11701,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12831
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6_
+
+<details open><summary>🔧 Tool call — Read · `toolu_011iygyogeUXn7wgHGffFTFg`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/references.bib"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4174a956-2672-46bc-9cc6-7207d07af3de",
+  "uuid": "68945fec-91fe-42a7-afc3-0c91bc61ee8e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QzHKwyEVjp5XnSfisrzhyE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12831,
+      "cache_read_input_tokens": 11701,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12831
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-19T04:06:48.389Z_
+
+<details><summary>↩ Tool result · `toolu_011iygyogeUXn7wgHGffFTFg`</summary>
+
+```text
+1	% Auto-generated from literature_map.yaml — do not edit manually
+2	
+3	@inproceedings{vijayakumar2018diverse,
+4	  title = {Diverse Beam Search for Improved Description of Complex Scenes},
+5	  author = {Vijayakumar, Ashwin K. and Cogswell, Michael and Selvaraju, Ramprasaath R. and Sun, Qing and Lee, Stefan and Crandall, David J. and Batra, Dhruv},
+6	  booktitle = {Proceedings of the AAAI Conference on Artificial Intelligence},
+7	  year = {2018},
+8	  url = {https://arxiv.org/abs/1610.02424}
+9	}
+10	
+11	@inproceedings{shi2022mbr,
+12	  title = {Natural Language to Code Translation with Execution},
+13	  author = {Shi, Freda and Fried, Daniel and Ghazvininejad, Marjan and Zettlemoyer, Luke and Wang, Sida I.},
+14	  booktitle = {Proceedings of the 2022 Conference on Empirical Methods in Natural Language Processing (EMNLP)},
+15	  pages = {3533--3546},
+16	  year = {2022},
+17	  url = {https://arxiv.org/abs/2204.11454}
+18	}
+19	
+20	@article{eisenstein2023helping,
+21	  title = {Helping or Herding? Reward Model Ensembles Mitigate but do not Eliminate Reward Hacking},
+22	  author = {Eisenstein, Jacob and Nagpal, Chirag and Agarwal, Alekh and Beirami, Ahmad and D'Amour, Alex and Dvijotham, DJ and Fisch, Adam and Heller, Katherine and Pfohl, Stephen and Ramachandran, Deepak and Shaw, Peter and Berant, Jonathan},
+23	  journal = {arXiv preprint arXiv:2312.09244},
+24	  year = {2023},
+25	  url = {https://arxiv.org/abs/2312.09244}
+26	}
+27	
+28	@article{brown2024monkeys,
+29	  title = {Large Language Monkeys: Scaling Inference Compute with Repeated Sampling},
+30	  author = {Brown, Bradley and Juravsky, Jordan and Ehrlich, Ryan and Clark, Ronald and Le, Quoc V. and Ré, Christopher and Mirhoseini, Azalia},
+31	  journal = {arXiv preprint arXiv:2407.21787},
+32	  year = {2024},
+33	  url = {https://arxiv.org/abs/2407.21787}
+34	}
+35	
+36	@inproceedings{chen2024usc,
+37	  title = {Universal Self-Consistency for Large Language Model Generation},
+38	  author = {Chen, Xinyun and Aksitov, Renat and Alon, Uri and Ren, Jie and Xiao, Kefan and Yin, Pengcheng and Prakash, Sushant and Sutton, Charles and Wang, Xuezhi and Zhou, Denny},
+39	  booktitle = {ICML 2024 Workshop on In-Context Learning},
+40	  year = {2024},
+41	  url = {https://arxiv.org/abs/2311.17311}
+42	}
+43	
+44	@article{cobbe2021verifiers,
+45	  title = {Training Verifiers to Solve Math Word Problems},
+46	  author = {Cobbe, Karl and Kosaraju, Vineet and Bavarian, Mohammad and Chen, Mark and Jun, Heewoo and Kaiser, Lukasz and Plappert, Matthias and Tworek, Jerry and Hilton, Jacob and Nakano, Reiichiro and Hesse, Christopher and Schulman, John},
+47	  journal = {arXiv preprint arXiv:2110.14168},
+48	  year = {2021},
+49	  url = {https://arxiv.org/abs/2110.14168}
+50	}
+51	
+52	@inproceedings{culotta2004confidence,
+53	  title = {Confidence Estimation for Information Extraction},
+54	  author = {Culotta, Aron and McCallum, Andrew},
+55	  booktitle = {Proceedings of the Human Language Technology Conference of the North American Chapter of the Association for Computational Linguistics (HLT-NAACL 2004)},
+56	  year = {2004},
+57	  url = {https://aclanthology.org/N04-4028/}
+58	}
+59	
+60	@inproceedings{derczynski2017wnut,
+61	  title = {Results of the WNUT2017 Shared Task on Novel and Emerging Entity Recognition},
+62	  author = {Derczynski, Leon and Nichols, Eric and Erp, Marieke van and Limsopatham, Nut},
+63	  booktitle = {Proceedings of the 3rd Workshop on Noisy User-generated Text (W-NUT 2017)},
+64	  year = {2017},
+65	  url = {https://aclanthology.org/W17-4418/}
+66	}
+67	
+68	@inproceedings{ding2021fewnerd,
+69	  title = {Few-{NERD}: A Few-shot Named Entity Recognition Dataset},
+70	  author = {Ding, Ning and Xu, Guangwei and Chen, Yulin and Wang, Xiaobin and Han, Xu and Xie, Pengjun and Zheng, Hai-Tao and Liu, Zhiyuan},
+71	  booktitle = {Proceedings of the 59th Annual Meeting of the Association for Computational Linguistics and the 11th International Joint Conference on Natural Language Processing (Volume 1: Long Papers)},
+72	  pages = {3198--3213},
+73	  year = {2021},
+74	  doi = {10.18653/v1/2021.acl-long.248}
+75	}
+76	
+77	@inproceedings{eikema2022sampling,
+78	  title = {Sampling-Based Approximations to Minimum {B}ayes Risk Decoding for Neural Machine Translation},
+79	  author = {Eikema, Bryan and Aziz, Wilker},
+80	  booktitle = {Proceedings of the 2022 Conference on Empirical Methods in Natural Language Processing},
+81	  year = {2022},
+82	  pages = {10978--10993},
+83	  doi = {10.18653/v1/2022.emnlp-main.754}
+84	}
+85	
+86	@article{freitag2022high,
+87	  title = {High Quality Rather than High Model Probability: Minimum {B}ayes Risk Decoding with Neural Metrics},
+88	  author = {Freitag, Markus and Grangier, David and Tan, Qijun and Liang, Bowen},
+89	  journal = {Transactions of the Association for Computational Linguistics},
+90	  volume = {10},
+91	  year = {2022},
+92	  pages = {811--825},
+93	  doi = {10.1162/tacl_a_00491}
+94	}
+95	
+96	@article{fleiss1971agreement,
+97	  title = {Measuring nominal scale agreement among many raters.},
+98	  author = {Fleiss, Joseph L.},
+99	  journal = {Psychological Bulletin},
+100	  year = {1971},
+101	  doi = {10.1037/h0031619},
+102	  url = {http://dx.doi.org/10.1037/h0031619}
+103	}
+104	
+105	@article{feng2025optimal,
+106	  title = {Optimal Self-Consistency for Efficient Reasoning with Large Language Models},
+107	  author = {Feng, Austin and Alonso, Marius and Odonnat, Ambroise},
+108	  journal = {arXiv preprint arXiv:2511.12309},
+109	  year = {2025},
+110	  url = {https://arxiv.org/abs/2511.12309}
+111	}
+112	
+113	@inproceedings{geng2024confidence,
+114	  title = {A Survey of Confidence Estimation and Calibration in Large Language Models},
+115	  author = {Geng, Jiahui and Cai, Fengyu and Wang, Yuxia and Koeppl, Heinz and Nakov, Preslav and Gurevych, Iryna},
+116	  booktitle = {Proceedings of the 2024 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies (Volume 1: Long Papers)},
+117	  year = {2024},
+118	  doi = {10.18653/v1/2024.naacl-long.366},
+119	  url = {http://dx.doi.org/10.18653/v1/2024.naacl-long.366}
+120	}
+121	
+122	@article{hobelsberger2025systematic,
+123	  title = {Systematic Evaluation of Uncertainty Estimation Methods in Large Language Models},
+124	  author = {Hobelsberger, Christian and Winner, Theresa and Nawroth, Andreas and Mitevski, Oliver and Haensch, Anna-Carolina},
+125	  journal = {arXiv preprint arXiv:2510.20460},
+126	  year = {2025},
+127	  url = {https://arxiv.org/abs/2510.20460}
+128	}
+129	
+130	@article{kadavath2022language,
+131	  title = {Language Models (Mostly) Know What They Know},
+132	  author = {Kadavath, Saurav and Conerly, Tom and Askell, Amanda and Henighan, Tom and Drain, Dawn and Perez, Ethan and Schiefer, Nicholas and Hatfield-Dodds, Zac and DasSarma, Nova and Tran-Johnson, Eli and Johnston, Scott and El-Showk, Sheer and Jones, Andy and Elhage, Nelson and Hume, Tristan and Chen, Anna and Bai, Yuntao and Bowman, Sam and Fort, Stanislav and Ganguli, Deep and Hernandez, Danny and Jacobson, Josh and Kernion, Jackson and Kravec, Shauna and Lovitt, Liane and Ndousse, Kamal and Olsson, Catherine and Ringer, Sam and Amodei, Dario and Brown, Tom and Clark, Jack and Joseph, Nicholas and Mann, Ben and McCandlish, Sam and Olah, Chris and Kaplan, Jared},
+133	  journal = {arXiv preprint arXiv:2207.05221},
+134	  year = {2022},
+135	  url = {https://arxiv.org/abs/2207.05221}
+136	}
+137	
+138	@inproceedings{kang2025selfcertainty,
+139	  title = {Scalable Best-of-N Selection for Large Language Models via Self-Certainty},
+140	  author = {Kang, Zhewei and Zhao, Xuandong and Song, Dawn},
+141	  booktitle = {Advances in Neural Information Processing Systems 38 (NeurIPS)},
+142	  year = {2025},
+143	  url = {https://arxiv.org/abs/2502.18581}
+144	}
+145	
+146	@inproceedings{kim2026reasc,
+147	  title = {Reliability-Aware Adaptive Self-Consistency for Efficient Sampling in {LLM} Reasoning},
+148	  author = {Kim, Junseok and Yang, Nakyeong and Min, Kyungmin and Jung, Kyomin},
+149	  booktitle = {Proceedings of the 64th Annual Meeting of the Association for Computational Linguistics (ACL 2026)},
+150	  year = {2026},
+151	  url = {https://arxiv.org/abs/2601.02970}
+152	}
+153	
+154	@article{li2025llms,
+155	  title = {LLMs Can Generate a Better Answer by Aggregating Their Own Responses},
+156	  author = {Li, Zichong and Feng, Xinyu and Cai, Yuheng and Zhang, Zixuan and Liu, Tianyi and Liang, Chen and Chen, Weizhu and Wang, Haoyu and Zhao, Tuo},
+157	  journal = {arXiv preprint arXiv:2503.04104},
+158	  year = {2025},
+159	  url = {https://arxiv.org/abs/2503.04104}
+160	}
+161	
+162	@inproceedings{kuhn2023semantic,
+163	  title = {Semantic Uncertainty: Linguistic Invariances for Uncertainty Estimation in Natural Language Generation},
+164	  author = {Kuhn, Lorenz and Gal, Yarin and Farquhar, Sebastian},
+165	  booktitle = {Proceedings of the Eleventh International Conference on Learning Representations (ICLR 2023)},
+166	  year = {2023},
+167	  url = {https://arxiv.org/abs/2302.09664}
+168	}
+169	
+170	@inproceedings{li2023codeie,
+171	  title = {{CodeIE}: Large Code Generation Models are Better Few-Shot Information Extractors},
+172	  author = {Li, Peng and Sun, Tianxiang and Tang, Qiong and Yan, Hang and Wu, Yuanbin and Huang, Xuanjing and Qiu, Xipeng},
+173	  booktitle = {Proceedings of the 61st Annual Meeting of the Association for Computational Linguistics (ACL)},
+174	  year = {2023},
+175	  doi = {10.18653/v1/2023.acl-long.855},
+176	  url = {https://arxiv.org/abs/2305.05711}
+177	}
+178	
+179	@inproceedings{lightman2024verify,
+180	  title = {Let's Verify Step by Step},
+181	  author = {Lightman, Hunter and Kosaraju, Vineet and Burda, Yura and Edwards, Harri and Baker, Bowen and Lee, Teddy and Leike, Jan and Schulman, John and Sutskever, Ilya and Cobbe, Karl},
+182	  booktitle = {Proceedings of the Twelfth International Conference on Learning Representations (ICLR 2024)},
+183	  year = {2024},
+184	  url = {https://arxiv.org/abs/2305.20050}
+185	}
+186	
+187	@inproceedings{luan2018scierc,
+188	  title = {Multi-Task Identification of Entities, Relations, and Coreference for Scientific Knowledge Graph Construction},
+189	  author = {Luan, Yi and He, Luheng and Ostendorf, Mari and Hajishirzi, Hannaneh},
+190	  booktitle = {Proceedings of the 2018 Conference on Empirical Methods in Natural Language Processing},
+191	  year = {2018},
+192	  doi = {10.18653/v1/D18-1360},
+193	  url = {http://dx.doi.org/10.18653/v1/D18-1360}
+194	}
+195	
+196	@inproceedings{manakul2023selfcheckgpt,
+197	  title = {SelfCheckGPT: Zero-Resource Black-Box Hallucination Detection for Generative Large Language Models},
+198	  author = {Manakul, Potsawee and Liusie, Adian and Gales, Mark},
+199	  booktitle = {Proceedings of the 2023 Conference on Empirical Methods in Natural Language Processing},
+200	  year = {2023},
+201	  doi = {10.18653/v1/2023.emnlp-main.557},
+202	  url = {http://dx.doi.org/10.18653/v1/2023.emnlp-main.557}
+203	}
+204	
+205	@article{yao2026consistency,
+206	  title = {Consistency–accuracy correlation in hard-prompted LLMs for entity and relation extraction: empirical findings from plant-health data},
+207	  author = {Yao, Xinzhi and Nédellec, Claire and Xia, Jingbo and Bossy, Robert},
+208	  journal = {Genomics \& Informatics},
+209	  year = {2026},
+210	  doi = {10.1186/s44342-025-00063-2},
+211	  url = {http://dx.doi.org/10.1186/s44342-025-00063-2}
+212	}
+213	
+214	@inproceedings{oh2026latentsc,
+215	  title = {Latent Self-Consistency for Reliable Majority-Set Selection in Short- and Long-Answer Reasoning},
+216	  author = {Oh, Jungsuk and Lee, Jay-Yoon},
+217	  booktitle = {Proceedings of the AAAI Conference on Artificial Intelligence (AAAI)},
+218	  year = {2026},
+219	  url = {https://ojs.aaai.org/index.php/AAAI/article/view/40536}
+220	}
+221	
+222	@inproceedings{sainz2024gollie,
+223	  title = {{GoLLIE}: Annotation Guidelines improve Zero-Shot Information-Extraction},
+224	  author = {Sainz, Oscar and García-Ferrero, Iker and Agerri, Rodrigo and Lacalle, Oier Lopez de and Rigau, German and Agirre, Eneko},
+225	  booktitle = {Proceedings of the Twelfth International Conference on Learning Representations (ICLR 2024)},
+226	  year = {2024},
+227	  url = {https://arxiv.org/abs/2310.03668}
+228	}
+229	
+230	@inproceedings{snell2025scaling,
+231	  title = {Scaling {LLM} Test-Time Compute Optimally can be More Effective than Scaling Model Parameters},
+232	  author = {Snell, Charlie and Lee, Jaehoon and Xu, Kelvin and Kumar, Aviral},
+233	  booktitle = {Proceedings of the International Conference on Learning Representations (ICLR)},
+234	  year = {2025},
+235	  url = {https://arxiv.org/abs/2408.03314}
+236	}
+237	
+238	@inproceedings{taubenfeld2025cisc,
+239	  title = {Confidence Improves Self-Consistency in LLMs},
+240	  author = {Taubenfeld, Amir and Sheffer, Tom and Ofek, Eran and Feder, Amir and Goldstein, Ariel and Gekhman, Zorik and Yona, Gal},
+241	  booktitle = {Findings of the Association for Computational Linguistics: ACL 2025},
+242	  year = {2025},
+243	  doi = {10.18653/v1/2025.findings-acl.1030},
+244	  url = {http://dx.doi.org/10.18653/v1/2025.findings-acl.1030}
+245	}
+246	
+247	@inproceedings{thirukovalluru2024atomic,
+248	  title = {Atomic Self-Consistency for Better Long Form Generations},
+249	  author = {Thirukovalluru, Raghuveer and Huang, Yukun and Dhingra, Bhuwan},
+250	  booktitle = {Proceedings of the 2024 Conference on Empirical Methods in Natural Language Processing},
+251	  year = {2024},
+252	  doi = {10.18653/v1/2024.emnlp-main.706},
+253	  url = {http://dx.doi.org/10.18653/v1/2024.emnlp-main.706}
+254	}
+255	
+256	@inproceedings{tjongkimsang2003conll,
+257	  title = {Introduction to the {CoNLL}-2003 Shared Task: Language-Independent Named Entity Recognition},
+258	  author = {Sang, Erik F. Tjong Kim and Meulder, Fien De},
+259	  booktitle = {Proceedings of the Seventh Conference on Computational Natural Language Learning (CoNLL 2003)},
+260	  year = {2003},
+261	  url = {https://aclanthology.org/W03-0419/}
+262	}
+263	
+264	@inproceedings{vashurin2025cocoa,
+265	  title = {Uncertainty Quantification for {LLMs} through Minimum Bayes Risk: Bridging Confidence and Consistency},
+266	  author = {Vashurin, Roman and Goloburda, Maiya and Ilina, Albina and Rubashevskii, Aleksandr and Nakov, Preslav and Shelmanov, Artem and Panov, Maxim},
+267	  booktitle = {Advances in Neural Information Processing Systems 38 (NeurIPS)},
+268	  year = {2025},
+269	  url = {https://arxiv.org/abs/2502.04964}
+270	}
+271	
+272	@inproceedings{wadhwa2023revisiting,
+273	  title = {Revisiting Relation Extraction in the era of Large Language Models},
+274	  author = {Wadhwa, Somin and Amir, Silvio and Wallace, Byron},
+275	  booktitle = {Proceedings of the 61st Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)},
+276	  year = {2023},
+277	  doi = {10.18653/v1/2023.acl-long.868},
+278	  url = {http://dx.doi.org/10.18653/v1/2023.acl-long.868}
+279	}
+280	
+281	@inproceedings{wang2023selfconsistency,
+282	  title = {Self-Consistency Improves Chain of Thought Reasoning in Language Models},
+283	  author = {Wang, Xuezhi and Wei, Jason and Schuurmans, Dale and Le, Quoc and Chi, Ed and Narang, Sharan and Chowdhery, Aakanksha and Zhou, Denny},
+284	  booktitle = {Proceedings of the Eleventh International Conference on Learning Representations (ICLR 2023)},
+285	  year = {2023},
+286	  url = {https://arxiv.org/abs/2203.11171}
+287	}
+288	
+289	@inproceedings{wang2025make,
+290	  title = {Make Every Penny Count: Difficulty-Adaptive Self-Consistency for Cost-Efficient Reasoning},
+291	  author = {Wang, Xinglin and Feng, Shaoxiong and Li, Yiwei and Yuan, Peiwen and Zhang, Yueqi and Tan, Chuyi and Pan, Boyuan and Hu, Yao and Li, Kan},
+292	  booktitle = {Findings of the Association for Computational Linguistics: NAACL 2025},
+293	  pages = {6919--6932},
+294	  year = {2025}
+295	}
+296	
+297	@inproceedings{wang2025rankedvoting,
+298	  title = {Ranked Voting based Self-Consistency of Large Language Models},
+299	  author = {Wang, Weiqin and Wang, Yile and Huang, Hui},
+300	  booktitle = {Findings of the Association for Computational Linguistics: ACL 2025},
+301	  year = {2025},
+302	  url = {https://arxiv.org/abs/2505.10772}
+303	}
+304	
+305	@article{willard2023guided,
+306	  title = {Efficient Guided Generation for Large Language Models},
+307	  author = {Willard, Brandon T. and Louf, Rémi},
+308	  journal = {arXiv preprint arXiv:2307.09702},
+309	  year = {2023},
+310	  url = {https://arxiv.org/abs/2307.09702}
+311	}
+312	
+313	@inproceedings{xia2025survey,
+314	  title = {A Survey of Uncertainty Estimation Methods on Large Language Models},
+315	  author = {Xia, Zhiqiu and Xu, Jinxuan and Zhang, Yuqian and Liu, Hang},
+316	  booktitle = {Findings of the Association for Computational Linguistics: ACL 2025},
+317	  year = {2025},
+318	  url = {https://aclanthology.org/2025.findings-acl.1101/}
+319	}
+320	
+321	@inproceedings{zheng2024llamafactory,
+322	  title = {{L}lama{F}actory: Unified Efficient Fine-Tuning of 100+ Language Models},
+323	  author = {Zheng, Yaowei and Zhang, Richong and Zhang, Junhao and Ye, Yanhan and Luo, Zheyan},
+324	  booktitle = {Proceedings of the 62nd Annual Meeting of the Association for Computational Linguistics (Volume 3: System Demonstrations)},
+325	  year = {2024},
+326	  pages = {400--410},
+327	  doi = {10.18653/v1/2024.acl-demos.38}
+328	}
+329	
+330	@inproceedings{zhou2024uniner,
+331	  title = {{UniversalNER}: Targeted Distillation from Large Language Models for Open Named Entity Recognition},
+332	  author = {Zhou, Wenxuan and Zhang, Sheng and Gu, Yu and Chen, Muhao and Poon, Hoifung},
+333	  booktitle = {Proceedings of the International Conference on Learning Representations (ICLR)},
+334	  year = {2024},
+335	  url = {https://arxiv.org/abs/2308.03279}
+336	}
+337	
+338	@inproceedings{muller2021understanding,
+339	  title = {Understanding the Properties of Minimum {Bayes} Risk Decoding in Neural Machine Translation},
+340	  author = {M{\"u}ller, Mathias and Sennrich, Rico},
+341	  booktitle = {Proceedings of the 59th Annual Meeting of the Association for Computational Linguistics (ACL)},
+342	  year = {2021},
+343	  url = {https://arxiv.org/abs/2105.08504}
+344	}
+345	
+346	@inproceedings{eikema2025structured,
+347	  title = {Structure-Conditional Minimum {B}ayes Risk Decoding},
+348	  author = {Eikema, Bryan and Rutkiewicz, Anna and Giulianelli, Mario},
+349	  booktitle = {Proceedings of the 2025 Conference on Empirical Methods in Natural Language Processing},
+350	  year = {2025},
+351	  url = {https://arxiv.org/abs/2510.20700}
+352	}
+353	
+354	@article{venktesh2025trust,
+355	  title = {Trust but Verify! A Survey on Verification Design for Test-time Scaling},
+356	  author = {Venktesh, V and Rathee, Mandeep and Anand, Avishek},
+357	  journal = {arXiv preprint arXiv:2508.16665},
+358	  year = {2025},
+359	  url = {https://arxiv.org/abs/2508.16665}
+360	}
+361	
+362	@inproceedings{jinnai2024mbr,
+363	  title = {Model-Based Minimum {B}ayes Risk Decoding for Text Generation},
+364	  author = {Jinnai, Yuu and Morimura, Tetsuro and Honda, Ukyo and Ariu, Kaito and Abe, Kenshi},
+365	  booktitle = {Proceedings of the 41st International Conference on Machine Learning (ICML)},
+366	  year = {2024},
+367	  url = {https://arxiv.org/abs/2311.05263}
+368	}
+369	
+370	@inproceedings{ratinov2009design,
+371	  title = {Design Challenges and Misconceptions in Named Entity Recognition},
+372	  author = {Ratinov, Lev and Roth, Dan},
+373	  booktitle = {Proceedings of the Thirteenth Conference on Computational Natural Language Learning (CoNLL)},
+374	  year = {2009},
+375	  pages = {147--155},
+376	  publisher = {Association for Computational Linguistics}
+377	}
+378	
+379	@inproceedings{bergkirkpatrick2012empirical,
+380	  title = {An Empirical Investigation of Statistical Significance in {NLP}},
+381	  author = {Berg-Kirkpatrick, Taylor and Burkett, David and Klein, Dan},
+382	  booktitle = {Proceedings of the 2012 Joint Conference on Empirical Methods in Natural Language Processing and Computational Natural Language Learning (EMNLP-CoNLL)},
+383	  year = {2012},
+384	  pages = {995--1005},
+385	  publisher = {Association for Computational Linguistics}
+386	}
+387	
+388	@inproceedings{tian2023calibration,
+389	  title = {Just Ask for Calibration: Strategies for Eliciting Calibrated Confidence Scores from Language Models Fine-Tuned with Human Feedback},
+390	  author = {Tian, Katherine and Mitchell, Eric and Zhou, Allan and Sharma, Archit and Rafailov, Rafael and Yao, Huaxiu and Finn, Chelsea and Manning, Christopher D.},
+391	  booktitle = {Proceedings of the 2023 Conference on Empirical Methods in Natural Language Processing (EMNLP)},
+392	  year = {2023},
+393	  pages = {5433--5442},
+394	  publisher = {Association for Computational Linguistics}
+395	}
+396	
+397	@inproceedings{fernandes2022quality,
+398	  title = {Quality-Aware Decoding for Neural Machine Translation},
+399	  author = {Fernandes, Patrick and Farinhas, Ant{\'o}nio and Rei, Ricardo and de Souza, Jos{\'e} G. C. and Ogayo, Perez and Neubig, Graham and Martins, Andr{\'e}},
+400	  booktitle = {Proceedings of the 2022 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies (NAACL)},
+401	  year = {2022},
+402	  pages = {1396--1412},
+403	  url = {https://arxiv.org/abs/2205.00978}
+404	}
+405	
+406	@inproceedings{deguchi2024centroid,
+407	  title = {Centroid-Based Efficient Minimum Bayes Risk Decoding},
+408	  author = {Deguchi, Hiroyuki and Sakai, Yusuke and Kamigaito, Hidetaka and Watanabe, Taro and Tanaka, Hideki and Utiyama, Masao},
+409	  booktitle = {Findings of the Association for Computational Linguistics: ACL 2024},
+410	  pages = {11009--11018},
+411	  year = {2024},
+412	  url = {https://aclanthology.org/2024.findings-acl.654/}
+413	}
+414	
+415	@inproceedings{mejer2010confidence,
+416	  title = {Confidence in Structured-Prediction Using Confidence-Weighted Models},
+417	  author = {Mejer, Avihai and Crammer, Koby},
+418	  booktitle = {Proceedings of the 2010 Conference on Empirical Methods in Natural Language Processing (EMNLP)},
+419	  year = {2010},
+420	  pages = {971--981},
+421	  url = {https://aclanthology.org/D10-1095/}
+422	}
+423	
+424	@inproceedings{schall2025hidden,
+425	  title = {The Hidden Cost of Structure: How Constrained Decoding Affects Language Model Performance},
+426	  author = {Schall, Maximilian and de Melo, Gerard},
+427	  booktitle = {Proceedings of Recent Advances in Natural Language Processing (RANLP)},
+428	  year = {2025},
+429	  pages = {1074--1084},
+430	  url = {https://aclanthology.org/2025.ranlp-1.124/}
+431	}
+432	
+433	@inproceedings{yun2025price,
+434	  title = {The Price of Format: Diversity Collapse in {LLMs}},
+435	  author = {Yun, Longfei and An, Chenyang and Wang, Zilong and Peng, Letian and Shang, Jingbo},
+436	  booktitle = {Findings of the Association for Computational Linguistics: EMNLP 2025},
+437	  year = {2025},
+438	  url = {https://aclanthology.org/2025.findings-emnlp.836/}
+439	}
+440	
+441	@inproceedings{park2024grammar,
+442	  title = {Grammar-Aligned Decoding},
+443	  author = {Park, Kanghee and Wang, Jiayu and Berg-Kirkpatrick, Taylor and Polikarpova, Nadia and D'Antoni, Loris},
+444	  booktitle = {Advances in Neural Information Processing Systems 37 (NeurIPS)},
+445	  year = {2024},
+446	  url = {https://proceedings.neurips.cc/paper_files/paper/2024/hash/2bdc2267c3d7d01523e2e17ac0a754f3-Abstract-Conference.html}
+447	}
+448	
+449	@inproceedings{gao2023scaling,
+450	  title = {Scaling Laws for Reward Model Overoptimization},
+451	  author = {Gao, Leo and Schulman, John and Hilton, Jacob},
+452	  booktitle = {Proceedings of the 40th International Conference on Machine Learning (ICML)},
+453	  year = {2023},
+454	  url = {https://proceedings.mlr.press/v202/gao23h.html}
+455	}
+456	
+457	@inproceedings{kirk2024understanding,
+458	  title = {Understanding the Effects of {RLHF} on {LLM} Generalisation and Diversity},
+459	  author = {Kirk, Robert and Mediratta, Ishita and Nalmpantis, Christoforos and Luketina, Jelena and Hambro, Eric and Grefenstette, Edward and Raileanu, Roberta},
+460	  booktitle = {Proceedings of the Twelfth International Conference on Learning Representations (ICLR)},
+461	  year = {2024},
+462	  url = {https://openreview.net/forum?id=PXoFut3dWW}
+463	}
+464	
+465	@inproceedings{holtzman2020curious,
+466	  title = {The Curious Case of Neural Text Degeneration},
+467	  author = {Holtzman, Ari and Buys, Jan and Du, Li and Forbes, Maxwell and Choi, Yejin},
+468	  booktitle = {Proceedings of the Eighth International Conference on Learning Representations (ICLR)},
+469	  year = {2020},
+470	  url = {https://openreview.net/forum?id=rygGQyrFvH}
+471	}
+472	
+473	@inproceedings{kuleshov2015calibrated,
+474	  title = {Calibrated Structured Prediction},
+475	  author = {Kuleshov, Volodymyr and Liang, Percy},
+476	  booktitle = {Advances in Neural Information Processing Systems 28 (NeurIPS)},
+477	  year = {2015},
+478	  url = {https://proceedings.neurips.cc/paper/2015/hash/b3b4d2dbedc99fe843fd3dedb02f086f-Abstract.html}
+479	}
+480	
+481	@article{fomicheva2020unsupervised,
+482	  title = {Unsupervised Quality Estimation for Neural Machine Translation},
+483	  author = {Fomicheva, Marina and Sun, Shuo and Yankovskaya, Lisa and Blain, Fr{\'e}d{\'e}ric and Guzm{\'a}n, Francisco and Fishel, Mark and Aletras, Nikolaos and Chaudhary, Vishrav and Specia, Lucia},
+484	  journal = {Transactions of the Association for Computational Linguistics},
+485	  volume = {8},
+486	  pages = {539--555},
+487	  year = {2020},
+488	  doi = {10.1162/tacl_a_00330}
+489	}
+490	
+491	@inproceedings{platt1999probabilistic,
+492	  title = {Probabilistic Outputs for Support Vector Machines and Comparisons to Regularized Likelihood Methods},
+493	  author = {Platt, John C.},
+494	  booktitle = {Advances in Large Margin Classifiers},
+495	  pages = {61--74},
+496	  year = {1999},
+497	  publisher = {MIT Press}
+498	}
+499	
+500	@inproceedings{guo2017calibration,
+501	  title = {On Calibration of Modern Neural Networks},
+502	  author = {Guo, Chuan and Pleiss, Geoff and Sun, Yu and Weinberger, Kilian Q.},
+503	  booktitle = {Proceedings of the 34th International Conference on Machine Learning},
+504	  pages = {1321--1330},
+505	  year = {2017}
+506	}
+507	
+508	@inproceedings{geifman2017selective,
+509	  title = {Selective Classification for Deep Neural Networks},
+510	  author = {Geifman, Yonatan and El-Yaniv, Ran},
+511	  booktitle = {Advances in Neural Information Processing Systems},
+512	  volume = {30},
+513	  year = {2017},
+514	  url = {https://arxiv.org/abs/1705.08500}
+515	}
+516	
+517	@article{dong2024xgrammar,
+518	  title = {{XGrammar}: Flexible and Efficient Structured Generation Engine for Large Language Models},
+519	  author = {Dong, Yixin and Ruan, Charlie F. and Cai, Yaxing and Lai, Ruihang and Xu, Ziyi and Zhao, Yilong and Chen, Tianqi},
+520	  journal = {arXiv preprint arXiv:2411.15100},
+521	  year = {2024},
+522	  url = {https://arxiv.org/abs/2411.15100}
+523	}
+524	
+525	@article{lin2022teaching,
+526	  title = {Teaching Models to Express Their Uncertainty in Words},
+527	  author = {Lin, Stephanie and Hilton, Jacob and Evans, Owain},
+528	  journal = {Transactions on Machine Learning Research},
+529	  year = {2022},
+530	  url = {https://arxiv.org/abs/2205.14334}
+531	}
+532	
+533	@inproceedings{varshney2022investigating,
+534	  title = {Investigating Selective Prediction Approaches Across Several Tasks in {IID}, {OOD}, and Adversarial Settings},
+535	  author = {Varshney, Neeraj and Mishra, Swaroop and Baral, Chitta},
+536	  booktitle = {Findings of the Association for Computational Linguistics: ACL 2022},
+537	  pages = {1995--2002},
+538	  year = {2022},
+539	  url = {https://aclanthology.org/2022.findings-acl.158}
+540	}
+541	
+542	@article{farquhar2024detecting,
+543	  title = {Detecting hallucinations in large language models using semantic entropy},
+544	  author = {Farquhar, Sebastian and Kossen, Jannik and Kuhn, Lorenz and Gal, Yarin},
+545	  journal = {Nature},
+546	  volume = {630},
+547	  pages = {625--630},
+548	  year = {2024},
+549	  doi = {10.1038/s41586-024-07421-0}
+550	}
+551	
+552	@article{chen2021evaluating,
+553	  title = {Evaluating Large Language Models Trained on Code},
+554	  author = {Chen, Mark and Tworek, Jerry and Jun, Heewoo and Yuan, Qiming and Pinto, Henrique Ponde de Oliveira and Kaplan, Jared and Edwards, Harri and Burda, Yuri and Joseph, Nicholas and Brockman, Greg and Ray, Alex and Puri, Raul and Krueger, Gretchen and Petrov, Michael and Khlaaf, Heidy and Sastry, Girish and Mishkin, Pamela and Chan, Brooke and Gray, Scott and Ryder, Nick and Pavlov, Mikhail and Power, Alethea and Kaiser, Lukasz and Bavarian, Mohammad and Winter, Clemens and Tillet, Philippe and Such, Felipe Petroski and Cummings, Dave and Plappert, Matthias and Chantzis, Fotios and Barnes, Elizabeth and Herbert-Voss, Ariel and Guss, William Hebgen and Nichol, Alex and Paino, Alex and Tezak, Nikolas and Tang, Jie and Babuschkin, Igor and Balaji, Suchir and Jain, Shantanu and Saunders, William and Hesse, Christopher and Carr, Andrew N. and Leike, Jan and Achiam, Josh and Misra, Vedant and Morikawa, Evan and Radford, Alec and Knight, Matthew and Brundage, Miles and Murati, Mira and Mayer, Katie and Welinder, Peter and McGrew, Bob and Amodei, Dario and McCandlish, Sam and Sutskever, Ilya and Zaremba, Wojciech},
+555	  journal = {arXiv preprint arXiv:2107.03374},
+556	  year = {2021},
+557	  url = {https://arxiv.org/abs/2107.03374}
+558	}
+559	
+560	@inproceedings{chen2025twofailures,
+561	  title = {Two Failures of Self-Consistency in the Multi-Step Reasoning of {LLMs}},
+562	  author = {Chen, Angelica and Dohan, David and So, David},
+563	  booktitle = {Proceedings of the 13th International Conference on Learning Representations (ICLR 2025)},
+564	  year = {2025},
+565	  url = {https://arxiv.org/abs/2410.23123}
+566	}
+567	
+568	@inproceedings{aggarwal2023adaptive,
+569	  title = {Let's Sample Step by Step: Adaptive-Consistency for Efficient Reasoning and Coding with {LLMs}},
+570	  author = {Aggarwal, Pranjal and Madaan, Aman and Yang, Yiming and Mausam},
+571	  booktitle = {Proceedings of the 2023 Conference on Empirical Methods in Natural Language Processing (EMNLP 2023)},
+572	  year = {2023},
+573	  url = {https://arxiv.org/abs/2305.11860}
+574	}
+575	
+576	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4174a956-2672-46bc-9cc6-7207d07af3de",
+  "uuid": "080082e8-f591-4ee9-8dfb-c2c5a923109c",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/references.bib",
+      "content": "% Auto-generated from literature_map.yaml — do not edit manually\n\n@inproceedings{vijayakumar2018diverse,\n  title = {Diverse Beam Search for Improved Description of Complex Scenes},\n  author = {Vijayakumar, Ashwin K. and Cogswell, Michael and Selvaraju, Ramprasaath R. and Sun, Qing and Lee, Stefan and Crandall, David J. and Batra, Dhruv},\n  booktitle = {Proceedings of the AAAI Conference on Artificial Intelligence},\n  year = {2018},\n  url = {https://arxiv.org/abs/1610.02424}\n}\n\n@inproceedings{shi2022mbr,\n  title = {Natural Language to Code Translation with Execution},\n  author = {Shi, Freda and Fried, Daniel and Ghazvininejad, Marjan and Zettlemoyer, Luke and Wang, Sida I.},\n  booktitle = {Proceedings of the 2022 Conference on Empirical Methods in Natural Language Processing (EMNLP)},\n  pages = {3533--3546},\n  year = {2022},\n  url = {https://arxiv.org/abs/2204.11454}\n}\n\n@article{eisenstein2023helping,\n  title = {Helping or Herding? Reward Model Ensembles Mitigate but do not Eliminate Reward Hacking},\n  author = {Eisenstein, Jacob and Nagpal, Chirag and Agarwal, Alekh and Beirami, Ahmad and D'Amour, Alex and Dvijotham, DJ and Fisch, Adam and Heller, Katherine and Pfohl, Stephen and Ramachandran, Deepak and Shaw, Peter and Berant, Jonathan},\n  journal = {arXiv preprint arXiv:2312.09244},\n  year = {2023},\n  url = {https://arxiv.org/abs/2312.09244}\n}\n\n@article{brown2024monkeys,\n  title = {Large Language Monkeys: Scaling Inference Compute with Repeated Sampling},\n  author = {Brown, Bradley and Juravsky, Jordan and Ehrlich, Ryan and Clark, Ronald and Le, Quoc V. and Ré, Christopher and Mirhoseini, Azalia},\n  journal = {arXiv preprint arXiv:2407.21787},\n  year = {2024},\n  url = {https://arxiv.org/abs/2407.21787}\n}\n\n@inproceedings{chen2024usc,\n  title = {Universal Self-Consistency for Large Language Model Generation},\n  author = {Chen, Xinyun and Aksitov, Renat and Alon, Uri and Ren, Jie and Xiao, Kefan and Yin, Pengcheng and Prakash, Sushant and Sutton, Charles and Wang, Xuezhi and Zhou, Denny},\n  booktitle = {ICML 2024 Workshop on In-Context Learning},\n  year = {2024},\n  url = {https://arxiv.org/abs/2311.17311}\n}\n\n@article{cobbe2021verifiers,\n  title = {Training Verifiers to Solve Math Word Problems},\n  author = {Cobbe, Karl and Kosaraju, Vineet and Bavarian, Mohammad and Chen, Mark and Jun, Heewoo and Kaiser, Lukasz and Plappert, Matthias and Tworek, Jerry and Hilton, Jacob and Nakano, Reiichiro and Hesse, Christopher and Schulman, John},\n  journal = {arXiv preprint arXiv:2110.14168},\n  year = {2021},\n  url = {https://arxiv.org/abs/2110.14168}\n}\n\n@inproceedings{culotta2004confidence,\n  title = {Confidence Estimation for Information Extraction},\n  author = {Culotta, Aron and McCallum, Andrew},\n  booktitle = {Proceedings of the Human Language Technology Conference of the North American Chapter of the Association for Computational Linguistics (HLT-NAACL 2004)},\n  year = {2004},\n  url = {https://aclanthology.org/N04-4028/}\n}\n\n@inproceedings{derczynski2017wnut,\n  title = {Results of the WNUT2017 Shared Task on Novel and Emerging Entity Recognition},\n  author = {Derczynski, Leon and Nichols, Eric and Erp, Marieke van and Limsopatham, Nut},\n  booktitle = {Proceedings of the 3rd Workshop on Noisy User-generated Text (W-NUT 2017)},\n  year = {2017},\n  url = {https://aclanthology.org/W17-4418/}\n}\n\n@inproceedings{ding2021fewnerd,\n  title = {Few-{NERD}: A Few-shot Named Entity Recognition Dataset},\n  author = {Ding, Ning and Xu, Guangwei and Chen, Yulin and Wang, Xiaobin and Han, Xu and Xie, Pengjun and Zheng, Hai-Tao and Liu, Zhiyuan},\n  booktitle = {Proceedings of the 59th Annual Meeting of the Association for Computational Linguistics and the 11th International Joint Conference on Natural Language Processing (Volume 1: Long Papers)},\n  pages = {3198--3213},\n  year = {2021},\n  doi = {10.18653/v1/2021.acl-long.248}\n}\n\n@inproceedings{eikema2022sampling,\n  title = {Sampling-Based Approximations to Minimum {B}ayes Risk Decoding for Neural Machine Translation},\n  author = {Eikema, Bryan and Aziz, Wilker},\n  booktitle = {Proceedings of the 2022 Conference on Empirical Methods in Natural Language Processing},\n  year = {2022},\n  pages = {10978--10993},\n  doi = {10.18653/v1/2022.emnlp-main.754}\n}\n\n@article{freitag2022high,\n  title = {High Quality Rather than High Model Probability: Minimum {B}ayes Risk Decoding with Neural Metrics},\n  author = {Freitag, Markus and Grangier, David and Tan, Qijun and Liang, Bowen},\n  journal = {Transactions of the Association for Computational Linguistics},\n  volume = {10},\n  year = {2022},\n  pages = {811--825},\n  doi = {10.1162/tacl_a_00491}\n}\n\n@article{fleiss1971agreement,\n  title = {Measuring nominal scale agreement among many raters.},\n  author = {Fleiss, Joseph L.},\n  journal = {Psychological Bulletin},\n  year = {1971},\n  doi = {10.1037/h0031619},\n  url = {http://dx.doi.org/10.1037/h0031619}\n}\n\n@article{feng2025optimal,\n  title = {Optimal Self-Consistency for Efficient Reasoning with Large Language Models},\n  author = {Feng, Austin and Alonso, Marius and Odonnat, Ambroise},\n  journal = {arXiv preprint arXiv:2511.12309},\n  year = {2025},\n  url = {https://arxiv.org/abs/2511.12309}\n}\n\n@inproceedings{geng2024confidence,\n  title = {A Survey of Confidence Estimation and Calibration in Large Language Models},\n  author = {Geng, Jiahui and Cai, Fengyu and Wang, Yuxia and Koeppl, Heinz and Nakov, Preslav and Gurevych, Iryna},\n  booktitle = {Proceedings of the 2024 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies (Volume 1: Long Papers)},\n  year = {2024},\n  doi = {10.18653/v1/2024.naacl-long.366},\n  url = {http://dx.doi.org/10.18653/v1/2024.naacl-long.366}\n}\n\n@article{hobelsberger2025systematic,\n  title = {Systematic Evaluation of Uncertainty Estimation Methods in Large Language Models},\n  author = {Hobelsberger, Christian and Winner, Theresa and Nawroth, Andreas and Mitevski, Oliver and Haensch, Anna-Carolina},\n  journal = {arXiv preprint arXiv:2510.20460},\n  year = {2025},\n  url = {https://arxiv.org/abs/2510.20460}\n}\n\n@article{kadavath2022language,\n  title = {Language Models (Mostly) Know What They Know},\n  author = {Kadavath, Saurav and Conerly, Tom and Askell, Amanda and Henighan, Tom and Drain, Dawn and Perez, Ethan and Schiefer, Nicholas and Hatfield-Dodds, Zac and DasSarma, Nova and Tran-Johnson, Eli and Johnston, Scott and El-Showk, Sheer and Jones, Andy and Elhage, Nelson and Hume, Tristan and Chen, Anna and Bai, Yuntao and Bowman, Sam and Fort, Stanislav and Ganguli, Deep and Hernandez, Danny and Jacobson, Josh and Kernion, Jackson and Kravec, Shauna and Lovitt, Liane and Ndousse, Kamal and Olsson, Catherine and Ringer, Sam and Amodei, Dario and Brown, Tom and Clark, Jack and Joseph, Nicholas and Mann, Ben and McCandlish, Sam and Olah, Chris and Kaplan, Jared},\n  journal = {arXiv preprint arXiv:2207.05221},\n  year = {2022},\n  url = {https://arxiv.org/abs/2207.05221}\n}\n\n@inproceedings{kang2025selfcertainty,\n  title = {Scalable Best-of-N Selection for Large Language Models via Self-Certainty},\n  author = {Kang, Zhewei and Zhao, Xuandong and Song, Dawn},\n  booktitle = {Advances in Neural Information Processing Systems 38 (NeurIPS)},\n  year = {2025},\n  url = {https://arxiv.org/abs/2502.18581}\n}\n\n@inproceedings{kim2026reasc,\n  title = {Reliability-Aware Adaptive Self-Consistency for Efficient Sampling in {LLM} Reasoning},\n  author = {Kim, Junseok and Yang, Nakyeong and Min, Kyungmin and Jung, Kyomin},\n  booktitle = {Proceedings of the 64th Annual Meeting of the Association for Computational Linguistics (ACL 2026)},\n  year = {2026},\n  url = {https://arxiv.org/abs/2601.02970}\n}\n\n@article{li2025llms,\n  title = {LLMs Can Generate a Better Answer by Aggregating Their Own Responses},\n  author = {Li, Zichong and Feng, Xinyu and Cai, Yuheng and Zhang, Zixuan and Liu, Tianyi and Liang, Chen and Chen, Weizhu and Wang, Haoyu and Zhao, Tuo},\n  journal = {arXiv preprint arXiv:2503.04104},\n  year = {2025},\n  url = {https://arxiv.org/abs/2503.04104}\n}\n\n@inproceedings{kuhn2023semantic,\n  title = {Semantic Uncertainty: Linguistic Invariances for Uncertainty Estimation in Natural Language Generation},\n  author = {Kuhn, Lorenz and Gal, Yarin and Farquhar, Sebastian},\n  booktitle = {Proceedings of the Eleventh International Conference on Learning Representations (ICLR 2023)},\n  year = {2023},\n  url = {https://arxiv.org/abs/2302.09664}\n}\n\n@inproceedings{li2023codeie,\n  title = {{CodeIE}: Large Code Generation Models are Better Few-Shot Information Extractors},\n  author = {Li, Peng and Sun, Tianxiang and Tang, Qiong and Yan, Hang and Wu, Yuanbin and Huang, Xuanjing and Qiu, Xipeng},\n  booktitle = {Proceedings of the 61st Annual Meeting of the Association for Computational Linguistics (ACL)},\n  year = {2023},\n  doi = {10.18653/v1/2023.acl-long.855},\n  url = {https://arxiv.org/abs/2305.05711}\n}\n\n@inproceedings{lightman2024verify,\n  title = {Let's Verify Step by Step},\n  author = {Lightman, Hunter and Kosaraju, Vineet and Burda, Yura and Edwards, Harri and Baker, Bowen and Lee, Teddy and Leike, Jan and Schulman, John and Sutskever, Ilya and Cobbe, Karl},\n  booktitle = {Proceedings of the Twelfth International Conference on Learning Representations (ICLR 2024)},\n  year = {2024},\n  url = {https://arxiv.org/abs/2305.20050}\n}\n\n@inproceedings{luan2018scierc,\n  title = {Multi-Task Identification of Entities, Relations, and Coreference for Scientific Knowledge Graph Construction},\n  author = {Luan, Yi and He, Luheng and Ostendorf, Mari and Hajishirzi, Hannaneh},\n  booktitle = {Proceedings of the 2018 Conference on Empirical Methods in Natural Language Processing},\n  year = {2018},\n  doi = {10.18653/v1/D18-1360},\n  url = {http://dx.doi.org/10.18653/v1/D18-1360}\n}\n\n@inproceedings{manakul2023selfcheckgpt,\n  title = {SelfCheckGPT: Zero-Resource Black-Box Hallucination Detection for Generative Large Language Models},\n  author = {Manakul, Potsawee and Liusie, Adian and Gales, Mark},\n  booktitle = {Proceedings of the 2023 Conference on Empirical Methods in Natural Language Processing},\n  year = {2023},\n  doi = {10.18653/v1/2023.emnlp-main.557},\n  url = {http://dx.doi.org/10.18653/v1/2023.emnlp-main.557}\n}\n\n@article{yao2026consistency,\n  title = {Consistency–accuracy correlation in hard-prompted LLMs for entity and relation extraction: empirical findings from plant-health data},\n  author = {Yao, Xinzhi and Nédellec, Claire and Xia, Jingbo and Bossy, Robert},\n  journal = {Genomics \\& Informatics},\n  year = {2026},\n  doi = {10.1186/s44342-025-00063-2},\n  url = {http://dx.doi.org/10.1186/s44342-025-00063-2}\n}\n\n@inproceedings{oh2026latentsc,\n  title = {Latent Self-Consistency for Reliable Majority-Set Selection in Short- and Long-Answer Reasoning},\n  author = {Oh, Jungsuk and Lee, Jay-Yoon},\n  booktitle = {Proceedings of the AAAI Conference on Artificial Intelligence (AAAI)},\n  year = {2026},\n  url = {https://ojs.aaai.org/index.php/AAAI/article/view/40536}\n}\n\n@inproceedings{sainz2024gollie,\n  title = {{GoLLIE}: Annotation Guidelines improve Zero-Shot Information-Extraction},\n  author = {Sainz, Oscar and García-Ferrero, Iker and Agerri, Rodrigo and Lacalle, Oier Lopez de and Rigau, German and Agirre, Eneko},\n  booktitle = {Proceedings of the Twelfth International Conference on Learning Representations (ICLR 2024)},\n  year = {2024},\n  url = {https://arxiv.org/abs/2310.03668}\n}\n\n@inproceedings{snell2025scaling,\n  title = {Scaling {LLM} Test-Time Compute Optimally can be More Effective than Scaling Model Parameters},\n  author = {Snell, Charlie and Lee, Jaehoon and Xu, Kelvin and Kumar, Aviral},\n  booktitle = {Proceedings of the International Conference on Learning Representations (ICLR)},\n  year = {2025},\n  url = {https://arxiv.org/abs/2408.03314}\n}\n\n@inproceedings{taubenfeld2025cisc,\n  title = {Confidence Improves Self-Consistency in LLMs},\n  author = {Taubenfeld, Amir and Sheffer, Tom and Ofek, Eran and Feder, Amir and Goldstein, Ariel and Gekhman, Zorik and Yona, Gal},\n  booktitle = {Findings of the Association for Computational Linguistics: ACL 2025},\n  year = {2025},\n  doi = {10.18653/v1/2025.findings-acl.1030},\n  url = {http://dx.doi.org/10.18653/v1/2025.findings-acl.1030}\n}\n\n@inproceedings{thirukovalluru2024atomic,\n  title = {Atomic Self-Consistency for Better Long Form Generations},\n  author = {Thirukovalluru, Raghuveer and Huang, Yukun and Dhingra, Bhuwan},\n  booktitle = {Proceedings of the 2024 Conference on Empirical Methods in Natural Language Processing},\n  year = {2024},\n  doi = {10.18653/v1/2024.emnlp-main.706},\n  url = {http://dx.doi.org/10.18653/v1/2024.emnlp-main.706}\n}\n\n@inproceedings{tjongkimsang2003conll,\n  title = {Introduction to the {CoNLL}-2003 Shared Task: Language-Independent Named Entity Recognition},\n  author = {Sang, Erik F. Tjong Kim and Meulder, Fien De},\n  booktitle = {Proceedings of the Seventh Conference on Computational Natural Language Learning (CoNLL 2003)},\n  year = {2003},\n  url = {https://aclanthology.org/W03-0419/}\n}\n\n@inproceedings{vashurin2025cocoa,\n  title = {Uncertainty Quantification for {LLMs} through Minimum Bayes Risk: Bridging Confidence and Consistency},\n  author = {Vashurin, Roman and Goloburda, Maiya and Ilina, Albina and Rubashevskii, Aleksandr and Nakov, Preslav and Shelmanov, Artem and Panov, Maxim},\n  booktitle = {Advances in Neural Information Processing Systems 38 (NeurIPS)},\n  year = {2025},\n  url = {https://arxiv.org/abs/2502.04964}\n}\n\n@inproceedings{wadhwa2023revisiting,\n  title = {Revisiting Relation Extraction in the era of Large Language Models},\n  author = {Wadhwa, Somin and Amir, Silvio and Wallace, Byron},\n  booktitle = {Proceedings of the 61st Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)},\n  year = {2023},\n  doi = {10.18653/v1/2023.acl-long.868},\n  url = {http://dx.doi.org/10.18653/v1/2023.acl-long.868}\n}\n\n@inproceedings{wang2023selfconsistency,\n  title = {Self-Consistency Improves Chain of Thought Reasoning in Language Models},\n  author = {Wang, Xuezhi and Wei, Jason and Schuurmans, Dale and Le, Quoc and Chi, Ed and Narang, Sharan and Chowdhery, Aakanksha and Zhou, Denny},\n  booktitle = {Proceedings of the Eleventh International Conference on Learning Representations (ICLR 2023)},\n  year = {2023},\n  url = {https://arxiv.org/abs/2203.11171}\n}\n\n@inproceedings{wang2025make,\n  title = {Make Every Penny Count: Difficulty-Adaptive Self-Consistency for Cost-Efficient Reasoning},\n  author = {Wang, Xinglin and Feng, Shaoxiong and Li, Yiwei and Yuan, Peiwen and Zhang, Yueqi and Tan, Chuyi and Pan, Boyuan and Hu, Yao and Li, Kan},\n  booktitle = {Findings of the Association for Computational Linguistics: NAACL 2025},\n  pages = {6919--6932},\n  year = {2025}\n}\n\n@inproceedings{wang2025rankedvoting,\n  title = {Ranked Voting based Self-Consistency of Large Language Models},\n  author = {Wang, Weiqin and Wang, Yile and Huang, Hui},\n  booktitle = {Findings of the Association for Computational Linguistics: ACL 2025},\n  year = {2025},\n  url = {https://arxiv.org/abs/2505.10772}\n}\n\n@article{willard2023guided,\n  title = {Efficient Guided Generation for Large Language Models},\n  author = {Willard, Brandon T. and Louf, Rémi},\n  journal = {arXiv preprint arXiv:2307.09702},\n  year = {2023},\n  url = {https://arxiv.org/abs/2307.09702}\n}\n\n@inproceedings{xia2025survey,\n  title = {A Survey of Uncertainty Estimation Methods on Large Language Models},\n  author = {Xia, Zhiqiu and Xu, Jinxuan and Zhang, Yuqian and Liu, Hang},\n  booktitle = {Findings of the Association for Computational Linguistics: ACL 2025},\n  year = {2025},\n  url = {https://aclanthology.org/2025.findings-acl.1101/}\n}\n\n@inproceedings{zheng2024llamafactory,\n  title = {{L}lama{F}actory: Unified Efficient Fine-Tuning of 100+ Language Models},\n  author = {Zheng, Yaowei and Zhang, Richong and Zhang, Junhao and Ye, Yanhan and Luo, Zheyan},\n  booktitle = {Proceedings of the 62nd Annual Meeting of the Association for Computational Linguistics (Volume 3: System Demonstrations)},\n  year = {2024},\n  pages = {400--410},\n  doi = {10.18653/v1/2024.acl-demos.38}\n}\n\n@inproceedings{zhou2024uniner,\n  title = {{UniversalNER}: Targeted Distillation from Large Language Models for Open Named Entity Recognition},\n  author = {Zhou, Wenxuan and Zhang, Sheng and Gu, Yu and Chen, Muhao and Poon, Hoifung},\n  booktitle = {Proceedings of the International Conference on Learning Representations (ICLR)},\n  year = {2024},\n  url = {https://arxiv.org/abs/2308.03279}\n}\n\n@inproceedings{muller2021understanding,\n  title = {Understanding the Properties of Minimum {Bayes} Risk Decoding in Neural Machine Translation},\n  author = {M{\\\"u}ller, Mathias and Sennrich, Rico},\n  booktitle = {Proceedings of the 59th Annual Meeting of the Association for Computational Linguistics (ACL)},\n  year = {2021},\n  url = {https://arxiv.org/abs/2105.08504}\n}\n\n@inproceedings{eikema2025structured,\n  title = {Structure-Conditional Minimum {B}ayes Risk Decoding},\n  author = {Eikema, Bryan and Rutkiewicz, Anna and Giulianelli, Mario},\n  booktitle = {Proceedings of the 2025 Conference on Empirical Methods in Natural Language Processing},\n  year = {2025},\n  url = {https://arxiv.org/abs/2510.20700}\n}\n\n@article{venktesh2025trust,\n  title = {Trust but Verify! A Survey on Verification Design for Test-time Scaling},\n  author = {Venktesh, V and Rathee, Mandeep and Anand, Avishek},\n  journal = {arXiv preprint arXiv:2508.16665},\n  year = {2025},\n  url = {https://arxiv.org/abs/2508.16665}\n}\n\n@inproceedings{jinnai2024mbr,\n  title = {Model-Based Minimum {B}ayes Risk Decoding for Text Generation},\n  author = {Jinnai, Yuu and Morimura, Tetsuro and Honda, Ukyo and Ariu, Kaito and Abe, Kenshi},\n  booktitle = {Proceedings of the 41st International Conference on Machine Learning (ICML)},\n  year = {2024},\n  url = {https://arxiv.org/abs/2311.05263}\n}\n\n@inproceedings{ratinov2009design,\n  title = {Design Challenges and Misconceptions in Named Entity Recognition},\n  author = {Ratinov, Lev and Roth, Dan},\n  booktitle = {Proceedings of the Thirteenth Conference on Computational Natural Language Learning (CoNLL)},\n  year = {2009},\n  pages = {147--155},\n  publisher = {Association for Computational Linguistics}\n}\n\n@inproceedings{bergkirkpatrick2012empirical,\n  title = {An Empirical Investigation of Statistical Significance in {NLP}},\n  author = {Berg-Kirkpatrick, Taylor and Burkett, David and Klein, Dan},\n  booktitle = {Proceedings of the 2012 Joint Conference on Empirical Methods in Natural Language Processing and Computational Natural Language Learning (EMNLP-CoNLL)},\n  year = {2012},\n  pages = {995--1005},\n  publisher = {Association for Computational Linguistics}\n}\n\n@inproceedings{tian2023calibration,\n  title = {Just Ask for Calibration: Strategies for Eliciting Calibrated Confidence Scores from Language Models Fine-Tuned with Human Feedback},\n  author = {Tian, Katherine and Mitchell, Eric and Zhou, Allan and Sharma, Archit and Rafailov, Rafael and Yao, Huaxiu and Finn, Chelsea and Manning, Christopher D.},\n  booktitle = {Proceedings of the 2023 Conference on Empirical Methods in Natural Language Processing (EMNLP)},\n  year = {2023},\n  pages = {5433--5442},\n  publisher = {Association for Computational Linguistics}\n}\n\n@inproceedings{fernandes2022quality,\n  title = {Quality-Aware Decoding for Neural Machine Translation},\n  author = {Fernandes, Patrick and Farinhas, Ant{\\'o}nio and Rei, Ricardo and de Souza, Jos{\\'e} G. C. and Ogayo, Perez and Neubig, Graham and Martins, Andr{\\'e}},\n  booktitle = {Proceedings of the 2022 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies (NAACL)},\n  year = {2022},\n  pages = {1396--1412},\n  url = {https://arxiv.org/abs/2205.00978}\n}\n\n@inproceedings{deguchi2024centroid,\n  title = {Centroid-Based Efficient Minimum Bayes Risk Decoding},\n  author = {Deguchi, Hiroyuki and Sakai, Yusuke and Kamigaito, Hidetaka and Watanabe, Taro and Tanaka, Hideki and Utiyama, Masao},\n  booktitle = {Findings of the Association for Computational Linguistics: ACL 2024},\n  pages = {11009--11018},\n  year = {2024},\n  url = {https://aclanthology.org/2024.findings-acl.654/}\n}\n\n@inproceedings{mejer2010confidence,\n  title = {Confidence in Structured-Prediction Using Confidence-Weighted Models},\n  author = {Mejer, Avihai and Crammer, Koby},\n  booktitle = {Proceedings of the 2010 Conference on Empirical Methods in Natural Language Processing (EMNLP)},\n  year = {2010},\n  pages = {971--981},\n  url = {https://aclanthology.org/D10-1095/}\n}\n\n@inproceedings{schall2025hidden,\n  title = {The Hidden Cost of Structure: How Constrained Decoding Affects Language Model Performance},\n  author = {Schall, Maximilian and de Melo, Gerard},\n  booktitle = {Proceedings of Recent Advances in Natural Language Processing (RANLP)},\n  year = {2025},\n  pages = {1074--1084},\n  url = {https://aclanthology.org/2025.ranlp-1.124/}\n}\n\n@inproceedings{yun2025price,\n  title = {The Price of Format: Diversity Collapse in {LLMs}},\n  author = {Yun, Longfei and An, Chenyang and Wang, Zilong and Peng, Letian and Shang, Jingbo},\n  booktitle = {Findings of the Association for Computational Linguistics: EMNLP 2025},\n  year = {2025},\n  url = {https://aclanthology.org/2025.findings-emnlp.836/}\n}\n\n@inproceedings{park2024grammar,\n  title = {Grammar-Aligned Decoding},\n  author = {Park, Kanghee and Wang, Jiayu and Berg-Kirkpatrick, Taylor and Polikarpova, Nadia and D'Antoni, Loris},\n  booktitle = {Advances in Neural Information Processing Systems 37 (NeurIPS)},\n  year = {2024},\n  url = {https://proceedings.neurips.cc/paper_files/paper/2024/hash/2bdc2267c3d7d01523e2e17ac0a754f3-Abstract-Conference.html}\n}\n\n@inproceedings{gao2023scaling,\n  title = {Scaling Laws for Reward Model Overoptimization},\n  author = {Gao, Leo and Schulman, John and Hilton, Jacob},\n  booktitle = {Proceedings of the 40th International Conference on Machine Learning (ICML)},\n  year = {2023},\n  url = {https://proceedings.mlr.press/v202/gao23h.html}\n}\n\n@inproceedings{kirk2024understanding,\n  title = {Understanding the Effects of {RLHF} on {LLM} Generalisation and Diversity},\n  author = {Kirk, Robert and Mediratta, Ishita and Nalmpantis, Christoforos and Luketina, Jelena and Hambro, Eric and Grefenstette, Edward and Raileanu, Roberta},\n  booktitle = {Proceedings of the Twelfth International Conference on Learning Representations (ICLR)},\n  year = {2024},\n  url = {https://openreview.net/forum?id=PXoFut3dWW}\n}\n\n@inproceedings{holtzman2020curious,\n  title = {The Curious Case of Neural Text Degeneration},\n  author = {Holtzman, Ari and Buys, Jan and Du, Li and Forbes, Maxwell and Choi, Yejin},\n  booktitle = {Proceedings of the Eighth International Conference on Learning Representations (ICLR)},\n  year = {2020},\n  url = {https://openreview.net/forum?id=rygGQyrFvH}\n}\n\n@inproceedings{kuleshov2015calibrated,\n  title = {Calibrated Structured Prediction},\n  author = {Kuleshov, Volodymyr and Liang, Percy},\n  booktitle = {Advances in Neural Information Processing Systems 28 (NeurIPS)},\n  year = {2015},\n  url = {https://proceedings.neurips.cc/paper/2015/hash/b3b4d2dbedc99fe843fd3dedb02f086f-Abstract.html}\n}\n\n@article{fomicheva2020unsupervised,\n  title = {Unsupervised Quality Estimation for Neural Machine Translation},\n  author = {Fomicheva, Marina and Sun, Shuo and Yankovskaya, Lisa and Blain, Fr{\\'e}d{\\'e}ric and Guzm{\\'a}n, Francisco and Fishel, Mark and Aletras, Nikolaos and Chaudhary, Vishrav and Specia, Lucia},\n  journal = {Transactions of the Association for Computational Linguistics},\n  volume = {8},\n  pages = {539--555},\n  year = {2020},\n  doi = {10.1162/tacl_a_00330}\n}\n\n@inproceedings{platt1999probabilistic,\n  title = {Probabilistic Outputs for Support Vector Machines and Comparisons to Regularized Likelihood Methods},\n  author = {Platt, John C.},\n  booktitle = {Advances in Large Margin Classifiers},\n  pages = {61--74},\n  year = {1999},\n  publisher = {MIT Press}\n}\n\n@inproceedings{guo2017calibration,\n  title = {On Calibration of Modern Neural Networks},\n  author = {Guo, Chuan and Pleiss, Geoff and Sun, Yu and Weinberger, Kilian Q.},\n  booktitle = {Proceedings of the 34th International Conference on Machine Learning},\n  pages = {1321--1330},\n  year = {2017}\n}\n\n@inproceedings{geifman2017selective,\n  title = {Selective Classification for Deep Neural Networks},\n  author = {Geifman, Yonatan and El-Yaniv, Ran},\n  booktitle = {Advances in Neural Information Processing Systems},\n  volume = {30},\n  year = {2017},\n  url = {https://arxiv.org/abs/1705.08500}\n}\n\n@article{dong2024xgrammar,\n  title = {{XGrammar}: Flexible and Efficient Structured Generation Engine for Large Language Models},\n  author = {Dong, Yixin and Ruan, Charlie F. and Cai, Yaxing and Lai, Ruihang and Xu, Ziyi and Zhao, Yilong and Chen, Tianqi},\n  journal = {arXiv preprint arXiv:2411.15100},\n  year = {2024},\n  url = {https://arxiv.org/abs/2411.15100}\n}\n\n@article{lin2022teaching,\n  title = {Teaching Models to Express Their Uncertainty in Words},\n  author = {Lin, Stephanie and Hilton, Jacob and Evans, Owain},\n  journal = {Transactions on Machine Learning Research},\n  year = {2022},\n  url = {https://arxiv.org/abs/2205.14334}\n}\n\n@inproceedings{varshney2022investigating,\n  title = {Investigating Selective Prediction Approaches Across Several Tasks in {IID}, {OOD}, and Adversarial Settings},\n  author = {Varshney, Neeraj and Mishra, Swaroop and Baral, Chitta},\n  booktitle = {Findings of the Association for Computational Linguistics: ACL 2022},\n  pages = {1995--2002},\n  year = {2022},\n  url = {https://aclanthology.org/2022.findings-acl.158}\n}\n\n@article{farquhar2024detecting,\n  title = {Detecting hallucinations in large language models using semantic entropy},\n  author = {Farquhar, Sebastian and Kossen, Jannik and Kuhn, Lorenz and Gal, Yarin},\n  journal = {Nature},\n  volume = {630},\n  pages = {625--630},\n  year = {2024},\n  doi = {10.1038/s41586-024-07421-0}\n}\n\n@article{chen2021evaluating,\n  title = {Evaluating Large Language Models Trained on Code},\n  author = {Chen, Mark and Tworek, Jerry and Jun, Heewoo and Yuan, Qiming and Pinto, Henrique Ponde de Oliveira and Kaplan, Jared and Edwards, Harri and Burda, Yuri and Joseph, Nicholas and Brockman, Greg and Ray, Alex and Puri, Raul and Krueger, Gretchen and Petrov, Michael and Khlaaf, Heidy and Sastry, Girish and Mishkin, Pamela and Chan, Brooke and Gray, Scott and Ryder, Nick and Pavlov, Mikhail and Power, Alethea and Kaiser, Lukasz and Bavarian, Mohammad and Winter, Clemens and Tillet, Philippe and Such, Felipe Petroski and Cummings, Dave and Plappert, Matthias and Chantzis, Fotios and Barnes, Elizabeth and Herbert-Voss, Ariel and Guss, William Hebgen and Nichol, Alex and Paino, Alex and Tezak, Nikolas and Tang, Jie and Babuschkin, Igor and Balaji, Suchir and Jain, Shantanu and Saunders, William and Hesse, Christopher and Carr, Andrew N. and Leike, Jan and Achiam, Josh and Misra, Vedant and Morikawa, Evan and Radford, Alec and Knight, Matthew and Brundage, Miles and Murati, Mira and Mayer, Katie and Welinder, Peter and McGrew, Bob and Amodei, Dario and McCandlish, Sam and Sutskever, Ilya and Zaremba, Wojciech},\n  journal = {arXiv preprint arXiv:2107.03374},\n  year = {2021},\n  url = {https://arxiv.org/abs/2107.03374}\n}\n\n@inproceedings{chen2025twofailures,\n  title = {Two Failures of Self-Consistency in the Multi-Step Reasoning of {LLMs}},\n  author = {Chen, Angelica and Dohan, David and So, David},\n  booktitle = {Proceedings of the 13th International Conference on Learning Representations (ICLR 2025)},\n  year = {2025},\n  url = {https://arxiv.org/abs/2410.23123}\n}\n\n@inproceedings{aggarwal2023adaptive,\n  title = {Let's Sample Step by Step: Adaptive-Consistency for Efficient Reasoning and Coding with {LLMs}},\n  author = {Aggarwal, Pranjal and Madaan, Aman and Yang, Yiming and Mausam},\n  booktitle = {Proceedings of the 2023 Conference on Empirical Methods in Natural Language Processing (EMNLP 2023)},\n  year = {2023},\n  url = {https://arxiv.org/abs/2305.11860}\n}\n\n",
+      "numLines": 576,
+      "startLine": 1,
+      "totalLines": 576
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01DgPbMxh4CchLrEWhdazbhC`</summary>
+
+```json
+{
+  "query": "select:WebSearch",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4174a956-2672-46bc-9cc6-7207d07af3de",
+  "uuid": "87578b0c-bc12-43ce-a7cf-400d24c32abb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QzHKwyEVjp5XnSfisrzhyE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12831,
+      "cache_read_input_tokens": 11701,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12831
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-19T04:06:48.443Z_
+
+<details><summary>↩ Tool result · `toolu_01DgPbMxh4CchLrEWhdazbhC`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4174a956-2672-46bc-9cc6-7207d07af3de",
+  "uuid": "2d30e10c-eac9-4320-8552-3d126da8e8e5",
+  "tool_use_result": {
+    "matches": [
+      "WebSearch"
+    ],
+    "query": "select:WebSearch",
+    "total_deferred_tools": 22
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 10_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have the bib file content and the WebSearch tool. Let me launch parallel searches for all the papers I need to find and verify. I'll use multiple agents to parallelize this work.
+
+Let me organize the work:
+
+**Part A - Find new citations:**
+1. Xie et al. 2023 - self-evaluation / beam search for IE/NLP
+2. Wan et al. 2024 - IE survey
+3. 2-3 ensemble-based NER methods
+
+**Part B - Verify 9 existing entries:**
+1. wang2023selfconsistency
+
+
+2. cobbe2021verifiers
+3. eikema2022sampling
+4. venktesh2025trust
+5. snell2025scaling
+6. willard2023guided
+7. zheng2024llamafactory
+8. luan2018scierc
+9. derczynski2017wnut
+
+Now I'll start the parallel web searches to locate and verify all these papers.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4174a956-2672-46bc-9cc6-7207d07af3de",
+  "uuid": "e9680eb5-4e92-4570-abe4-8b32260b2cc6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HPPZGKECmWQd3BFMmEJjLW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12167,
+      "cache_read_input_tokens": 24532,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12167
+      },
+      "output_tokens": 19,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 11_
+
+Starting parallel searches for Part A and Part B.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4174a956-2672-46bc-9cc6-7207d07af3de",
+  "uuid": "55877242-5bf0-498e-9470-18508de4e973",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HPPZGKECmWQd3BFMmEJjLW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12167,
+      "cache_read_input_tokens": 24532,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12167
+      },
+      "output_tokens": 19,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_0189aKxMv4Dbsyq5rfJkupU3`</summary>
+
+```json
+{
+  "query": "Xie 2023 self-evaluation information extraction NLP"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4174a956-2672-46bc-9cc6-7207d07af3de",
+  "uuid": "cc262858-9709-4d6a-8778-2f92d8565851",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HPPZGKECmWQd3BFMmEJjLW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12167,
+      "cache_read_input_tokens": 24532,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12167
+      },
+      "output_tokens": 19,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01B2KfC7CZmpZXY6EUsNGUKM`</summary>
+
+```json
+{
+  "query": "Wan 2024 information extraction survey LLM"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4174a956-2672-46bc-9cc6-7207d07af3de",
+  "uuid": "b2697723-2483-41ba-9188-685021765253",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HPPZGKECmWQd3BFMmEJjLW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12167,
+      "cache_read_input_tokens": 24532,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12167
+      },
+      "output_tokens": 19,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01H2jbiwed1KYHDRZKJWs6mW`</summary>
+
+```json
+{
+  "query": "ensemble NER entity-level aggregation voting multiple models"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4174a956-2672-46bc-9cc6-7207d07af3de",
+  "uuid": "7e0bcfd0-60b8-486b-a97f-aaeac8107913",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HPPZGKECmWQd3BFMmEJjLW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12167,
+      "cache_read_input_tokens": 24532,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12167
+      },
+      "output_tokens": 19,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01XfgWa5u6U8pTvBZfiQBs8i`</summary>
+
+```json
+{
+  "query": "Wang 2023 \"Self-Consistency Improves Chain of Thought\" ICLR"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4174a956-2672-46bc-9cc6-7207d07af3de",
+  "uuid": "328b41d9-a295-48f0-b8ae-59366a7e8ddf",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HPPZGKECmWQd3BFMmEJjLW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12167,
+      "cache_read_input_tokens": 24532,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12167
+      },
+      "output_tokens": 19,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_018UnK4z1X8wnhuN7CoUKvM6`</summary>
+
+```json
+{
+  "query": "Cobbe 2021 \"Training Verifiers to Solve Math Word Problems\" arxiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4174a956-2672-46bc-9cc6-7207d07af3de",
+  "uuid": "173922d8-83eb-4ac0-9814-ddec41c5ed5c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HPPZGKECmWQd3BFMmEJjLW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12167,
+      "cache_read_input_tokens": 24532,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12167
+      },
+      "output_tokens": 19,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_018WUpBRDcDDykPvXNWtWfBA`</summary>
+
+```json
+{
+  "query": "Eikema Aziz 2022 \"Sampling-Based Approximations to Minimum Bayes Risk\" EMNLP"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4174a956-2672-46bc-9cc6-7207d07af3de",
+  "uuid": "6dbe1bb1-b191-4185-bddf-6d97734b7301",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HPPZGKECmWQd3BFMmEJjLW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12167,
+      "cache_read_input_tokens": 24532,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12167
+      },
+      "output_tokens": 19,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-19T04:07:04.131Z_
+
+<details><summary>↩ Tool result · `toolu_0189aKxMv4Dbsyq5rfJkupU3`</summary>
+
+```text
+Web search results for query: "Xie 2023 self-evaluation information extraction NLP"
+
+Links: [{"title":"A Survey on Open Information Extraction from Rule-based Model to Large Language Model","url":"https://arxiv.org/html/2208.08690v6"},{"title":"Assessing the quality of information extraction","url":"https://arxiv.org/html/2404.04068v1"},{"title":"Large language models for generative information extraction: a survey | Frontiers of Computer Science | Springer Nature Link","url":"https://link.springer.com/article/10.1007/s11704-024-40555-y"},{"title":"How To Implement Information Extraction Systems Made Simple","url":"https://spotintelligence.com/2023/10/10/information-extraction/"},{"title":"Large language models for generative information extraction: a survey","url":"https://journal.hep.com.cn/fcs/EN/10.1007/s11704-024-40555-y"},{"title":"Assessing the Performance of Chinese Open Source Large Language Models   in Information Extraction Tasks","url":"https://arxiv.org/pdf/2406.02079"},{"title":"Zero-shot information extraction from radiological reports using ChatGPT","url":"https://arxiv.org/pdf/2309.01398"},{"title":"Findings - EMNLP 2023","url":"https://2023.emnlp.org/program/accepted_findings/"}]
+
+Based on the search results, I found relevant information about Xie et al. 2023 work on self-evaluation in NLP for information extraction:
+
+Xie et al. proposed a training-free self-improving framework for information extraction tasks. The framework consists of three main steps: First, LLMs made predictions on unlabeled corpus, generating self-annotated dataset through self-consistency. Second, the authors explored different strategies to select reliable annotations. Finally, during inference, demonstrations from reliable self-annotated dataset were retrieved for in-context learning.
+
+This approach was developed as part of efforts to employ LLMs for iterative self-verification and self-improvement, aiming to rectify the results when dealing with information extraction tasks. The method addresses the challenge that LLM will still generate factual errors even with chain-of-thought techniques.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4174a956-2672-46bc-9cc6-7207d07af3de",
+  "uuid": "4df0e929-d2b4-4eb0-88b2-1fd2e1ba8956",
+  "tool_use_result": {
+    "query": "Xie 2023 self-evaluation information extraction NLP",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01MFtKdXrvrny49NtUoTbif9",
+        "content": [
+          {
+            "title": "A Survey on Open Information Extraction from Rule-based Model to Large Language Model",
+            "url": "https://arxiv.org/html/2208.08690v6"
+          },
+          {
+            "title": "Assessing the quality of information extraction",
+            "url": "https://arxiv.org/html/2404.04068v1"
+          },
+          {
+            "title": "Large language models for generative information extraction: a survey | Frontiers of Computer Science | Springer Nature Link",
+            "url": "https://link.springer.com/article/10.1007/s11704-024-40555-y"
+          },
+          {
+            "title": "How To Implement Information Extraction Systems Made Simple",
+            "url": "https://spotintelligence.com/2023/10/10/information-extraction/"
+          },
+          {
+            "title": "Large language models for generative information extraction: a survey",
+            "url": "https://journal.hep.com.cn/fcs/EN/10.1007/s11704-024-40555-y"
+          },
+          {
+            "title": "Assessing the Performance of Chinese Open Source Large Language Models   in Information Extraction Tasks",
+            "url": "https://arxiv.org/pdf/2406.02079"
+          },
+          {
+            "title": "Zero-shot information extraction from radiological reports using ChatGPT",
+            "url": "https://arxiv.org/pdf/2309.01398"
+          },
+          {
+            "title": "Findings - EMNLP 2023",
+            "url": "https://2023.emnlp.org/program/accepted_findings/"
+          }
+        ]
+      },
+      "Based on the search results, I found relevant information about Xie et al. 2023 work on self-evaluation in NLP for information extraction:\n\nXie et al. proposed a training-free self-improving framework for information extraction tasks. The framework consists of three main steps: First, LLMs made predictions on unlabeled corpus, generating self-annotated dataset through self-consistency. Second, the authors explored different strategies to select reliable annotations. Finally, during inference, demonstrations from reliable self-annotated dataset were retrieved for in-context learning.\n\nThis approach was developed as part of efforts to employ LLMs for iterative self-verification and self-improvement, aiming to rectify the results when dealing with information extraction tasks. The method addresses the challenge that LLM will still generate factual errors even with chain-of-thought techniques."
+    ],
+    "durationSeconds": 5.311584391
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-19T04:07:05.637Z_
+
+<details><summary>↩ Tool result · `toolu_01H2jbiwed1KYHDRZKJWs6mW`</summary>
+
+```text
+Web search results for query: "ensemble NER entity-level aggregation voting multiple models"
+
+Links: [{"title":"EL4NER: Ensemble Learning for Named Entity Recognition via Multiple Small-Parameter Large Language Models","url":"https://arxiv.org/pdf/2505.23038"},{"title":"GitHub - chinhang0104/Ensemble-Learning-for-Named-Entity-Recognition: Utilize multiple Named Entity Recogniztion packages to detect human name and organization and # determine the final output by conducting a voting process among the NER packages.","url":"https://github.com/chinhang0104/Ensemble-Learning-for-Named-Entity-Recognition"},{"title":"EL4NER: Ensemble Learning for Named Entity Recognition via Multiple Small-Parameter Large Language Models","url":"https://arxiv.org/html/2505.23038"},{"title":"Combining multiple classifiers using vote based classifier ensemble technique for named entity recognition | Request PDF","url":"https://www.researchgate.net/publication/257026236_Combining_multiple_classifiers_using_vote_based_classifier_ensemble_technique_for_named_entity_recognition"},{"title":"Frontiers | Ensemble Named Entity Recognition (NER): Evaluating NER Tools in the Identification of Place Names in Historical Corpora","url":"https://www.frontiersin.org/journals/digital-humanities/articles/10.3389/fdigh.2018.00002/full"},{"title":"Combining multiple classifiers using vote based classifier ensemble technique for named entity recognition - ScienceDirect","url":"https://www.sciencedirect.com/science/article/abs/pii/S0169023X12000626"},{"title":"Local LLM Ensembles for Zero-shot Portuguese Named Entity Recognition","url":"https://arxiv.org/pdf/2512.10043"}]
+
+I found relevant information about ensemble methods for Named Entity Recognition (NER) with entity-level aggregation and voting strategies. Here are the key findings:
+
+## Ensemble NER Approaches
+
+Ensemble learning for NER aims at aggregating the outputs of multiple open-source small-parameter LLMs to enhance overall performance in NER tasks.
+
+## Entity-Level Voting Mechanisms
+
+Some NER ensemble methods decompose the task into multiple stages, where the first stage uses multiple LLMs to extract potential entity spans and integrate them, and the second stage confirms entity types one by one by voting on multiple LLMs.
+
+## Voting-Based Ensemble Methods
+
+Multiple Named Entity Recognition packages can detect entities and determine the final output by conducting a voting process among the NER packages. An ensemble of models can perform better than any individual model, because the various errors of the models will average out.
+
+## Advanced Voting Strategies
+
+Determining voting weights for all the classes per classifier (real vote-based classifier ensemble) is more fruitful compared to finding out the voting combination selection (binary vote-based ensemble). Additionally, using LLMs together with other models in a majority vote format usually outperforms the individual base models.
+
+These research findings demonstrate that entity-level aggregation through voting mechanisms is an effective strategy for improving NER performance across multiple models.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4174a956-2672-46bc-9cc6-7207d07af3de",
+  "uuid": "d4375e99-78e4-46d9-9bad-626e0cdf01b3",
+  "tool_use_result": {
+    "query": "ensemble NER entity-level aggregation voting multiple models",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01GFc5Q1xPMKsmJZzEKHz7VC",
+        "content": [
+          {
+            "title": "EL4NER: Ensemble Learning for Named Entity Recognition via Multiple Small-Parameter Large Language Models",
+            "url": "https://arxiv.org/pdf/2505.23038"
+          },
+          {
+            "title": "GitHub - chinhang0104/Ensemble-Learning-for-Named-Entity-Recognition: Utilize multiple Named Entity Recogniztion packages to detect human name and organization and # determine the final output by conducting a voting process among the NER packages.",
+            "url": "https://github.com/chinhang0104/Ensemble-Learning-for-Named-Entity-Recognition"
+          },
+          {
+            "title": "EL4NER: Ensemble Learning for Named Entity Recognition via Multiple Small-Parameter Large Language Models",
+            "url": "https://arxiv.org/html/2505.23038"
+          },
+          {
+            "title": "Combining multiple classifiers using vote based classifier ensemble technique for named entity recognition | Request PDF",
+            "url": "https://www.researchgate.net/publication/257026236_Combining_multiple_classifiers_using_vote_based_classifier_ensemble_technique_for_named_entity_recognition"
+          },
+          {
+            "title": "Frontiers | Ensemble Named Entity Recognition (NER): Evaluating NER Tools in the Identification of Place Names in Historical Corpora",
+            "url": "https://www.frontiersin.org/journals/digital-humanities/articles/10.3389/fdigh.2018.00002/full"
+          },
+          {
+            "title": "Combining multiple classifiers using vote based classifier ensemble technique for named entity recognition - ScienceDirect",
+            "url": "https://www.sciencedirect.com/science/article/abs/pii/S0169023X12000626"
+          },
+          {
+            "title": "Local LLM Ensembles for Zero-shot Portuguese Named Entity Recognition",
+            "url": "https://arxiv.org/pdf/2512.10043"
+          }
+        ]
+      },
+      "I found relevant information about ensemble methods for Named Entity Recognition (NER) with entity-level aggregation and voting strategies. Here are the key findings:\n\n## Ensemble NER Approaches\n\nEnsemble learning for NER aims at aggregating the outputs of multiple open-source small-parameter LLMs to enhance overall performance in NER tasks.\n\n## Entity-Level Voting Mechanisms\n\nSome NER ensemble methods decompose the task into multiple stages, where the first stage uses multiple LLMs to extract potential entity spans and integrate them, and the second stage confirms entity types one by one by voting on multiple LLMs.\n\n## Voting-Based Ensemble Methods\n\nMultiple Named Entity Recognition packages can detect entities and determine the final output by conducting a voting process among the NER packages. An ensemble of models can perform better than any individual model, because the various errors of the models will average out.\n\n## Advanced Voting Strategies\n\nDetermining voting weights for all the classes per classifier (real vote-based classifier ensemble) is more fruitful compared to finding out the voting combination selection (binary vote-based ensemble). Additionally, using LLMs together with other models in a majority vote format usually outperforms the individual base models.\n\nThese research findings demonstrate that entity-level aggregation through voting mechanisms is an effective strategy for improving NER performance across multiple models."
+    ],
+    "durationSeconds": 5.907449027999999
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-19T04:07:06.186Z_
+
+<details><summary>↩ Tool result · `toolu_018WUpBRDcDDykPvXNWtWfBA`</summary>
+
+```text
+Web search results for query: "Eikema Aziz 2022 "Sampling-Based Approximations to Minimum Bayes Risk" EMNLP"
+
+Links: [{"title":"Sampling-Based Approximations to Minimum Bayes Risk Decoding for Neural Machine Translation - ACL Anthology","url":"https://aclanthology.org/2022.emnlp-main.754/"},{"title":"uncertainty-aware decoding with minimum bayes risk","url":"https://arxiv.org/pdf/2503.05318"},{"title":"GitHub - ZurichNLP/mbr: Minimum Bayes Risk Decoding for Hugging Face Transformers","url":"https://github.com/ZurichNLP/mbr"},{"title":"Re-evaluating Minimum Bayes Risk Decoding for ...","url":"https://openreview.net/pdf/25973aa13ecd7805ee8db1329de388d80a83054b.pdf"},{"title":"dblp: Bryan Eikema","url":"https://dblp.org/pid/223/9865.html"},{"title":"Sampling-Based Minimum Bayes Risk Decoding for Neural Machine Translation | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Sampling-Based-Minimum-Bayes-Risk-Decoding-for-Eikema-Aziz/994dbb06b970eb842b7782e4df75ca1633f83e4e"},{"title":"(PDF) Sampling-Based Approximations to Minimum Bayes Risk Decoding for Neural Machine Translation","url":"https://www.researchgate.net/publication/372923772_Sampling-Based_Approximations_to_Minimum_Bayes_Risk_Decoding_for_Neural_Machine_Translation"},{"title":"Publications · Bryan Eikema","url":"https://bryaneikema.com/publications/"},{"title":"[2108.04718] Sampling-Based Approximations to Minimum Bayes Risk Decoding for Neural Machine Translation","url":"https://arxiv.org/abs/2108.04718"}]
+
+I found the paper you're looking for. "Sampling-Based Approximations to Minimum Bayes Risk Decoding for Neural Machine Translation" was published by Bryan Eikema and Wilker Aziz at EMNLP 2022 in Abu Dhabi, United Arab Emirates, appearing on pages 10978–10993.
+
+The paper addresses problems with traditional decoding approaches in neural machine translation. The work notes that while NMT systems search for the mode of the model distribution, the mode and other high-probability translations found by beam search have been shown to often be inadequate, a problem known as the beam search curse. The paper proposes an approximation to minimum Bayes risk (MBR) decoding as an alternative decision rule and establishes that it has no equivalent to the beam search curse.
+
+The paper is available through the ACL Anthology at https://aclanthology.org/2022.emnlp-main.754/ and on arXiv at https://arxiv.org/abs/2108.04718.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4174a956-2672-46bc-9cc6-7207d07af3de",
+  "uuid": "46578d80-2e8d-41d8-a811-7b7a23230421",
+  "tool_use_result": {
+    "query": "Eikema Aziz 2022 \"Sampling-Based Approximations to Minimum Bayes Risk\" EMNLP",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01G3x5PuZMiXAqadtruM1Grm",
+        "content": [
+          {
+            "title": "Sampling-Based Approximations to Minimum Bayes Risk Decoding for Neural Machine Translation - ACL Anthology",
+            "url": "https://aclanthology.org/2022.emnlp-main.754/"
+          },
+          {
+            "title": "uncertainty-aware decoding with minimum bayes risk",
+            "url": "https://arxiv.org/pdf/2503.05318"
+          },
+          {
+            "title": "GitHub - ZurichNLP/mbr: Minimum Bayes Risk Decoding for Hugging Face Transformers",
+            "url": "https://github.com/ZurichNLP/mbr"
+          },
+          {
+            "title": "Re-evaluating Minimum Bayes Risk Decoding for ...",
+            "url": "https://openreview.net/pdf/25973aa13ecd7805ee8db1329de388d80a83054b.pdf"
+          },
+          {
+            "title": "dblp: Bryan Eikema",
+            "url": "https://dblp.org/pid/223/9865.html"
+          },
+          {
+            "title": "Sampling-Based Minimum Bayes Risk Decoding for Neural Machine Translation | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/Sampling-Based-Minimum-Bayes-Risk-Decoding-for-Eikema-Aziz/994dbb06b970eb842b7782e4df75ca1633f83e4e"
+          },
+          {
+            "title": "(PDF) Sampling-Based Approximations to Minimum Bayes Risk Decoding for Neural Machine Translation",
+            "url": "https://www.researchgate.net/publication/372923772_Sampling-Based_Approximations_to_Minimum_Bayes_Risk_Decoding_for_Neural_Machine_Translation"
+          },
+          {
+            "title": "Publications · Bryan Eikema",
+            "url": "https://bryaneikema.com/publications/"
+          },
+          {
+            "title": "[2108.04718] Sampling-Based Approximations to Minimum Bayes Risk Decoding for Neural Machine Translation",
+            "url": "https://arxiv.org/abs/2108.04718"
+          }
+        ]
+      },
+      "I found the paper you're looking for. \"Sampling-Based Approximations to Minimum Bayes Risk Decoding for Neural Machine Translation\" was published by Bryan Eikema and Wilker Aziz at EMNLP 2022 in Abu Dhabi, United Arab Emirates, appearing on pages 10978–10993.\n\nThe paper addresses problems with traditional decoding approaches in neural machine translation. The work notes that while NMT systems search for the mode of the model distribution, the mode and other high-probability translations found by beam search have been shown to often be inadequate, a problem known as the beam search curse. The paper proposes an approximation to minimum Bayes risk (MBR) decoding as an alternative decision rule and establishes that it has no equivalent to the beam search curse.\n\nThe paper is available through the ACL Anthology at https://aclanthology.org/2022.emnlp-main.754/ and on arXiv at https://arxiv.org/abs/2108.04718."
+    ],
+    "durationSeconds": 4.705852048000001
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-19T04:07:06.404Z_
+
+<details><summary>↩ Tool result · `toolu_018UnK4z1X8wnhuN7CoUKvM6`</summary>
+
+```text
+Web search results for query: "Cobbe 2021 "Training Verifiers to Solve Math Word Problems" arxiv"
+
+Links: [{"title":"[2110.14168] Training Verifiers to Solve Math Word Problems","url":"https://arxiv.org/abs/2110.14168"},{"title":"Training Verifiers to Solve Math Word Problems","url":"https://matthiasplappert.com/publications/2021_Cobbe_Grade-School-Math.pdf"},{"title":"[2110.14168v2] Training Verifiers to Solve Math Word Problems","url":"https://arxiv.org/abs/2110.14168v2"},{"title":"[2110.14168v1] Training Verifiers to Solve Math Word Problems","url":"https://arxiv.org/abs/2110.14168v1"},{"title":"(Open Access) Training Verifiers to Solve Math Word Problems (2021) | Karl Cobbe | 2 Citations","url":"https://scispace.com/papers/training-verifiers-to-solve-math-word-problems-2jokilm0qa"},{"title":"[PDF] Training Verifiers to Solve Math Word Problems | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Training-Verifiers-to-Solve-Math-Word-Problems-Cobbe-Kosaraju/d6045d2ccc9c09ca1671348de86d07da6bc28eea"},{"title":"Training Verifiers to Solve Math Word Problems - ar5iv - arXiv","url":"https://ar5iv.labs.arxiv.org/html/2110.14168"},{"title":"Paper page - Training Verifiers to Solve Math Word Problems","url":"https://huggingface.co/papers/2110.14168"},{"title":"Training Verifiers to Solve Math Word Problems","url":"https://www.researchgate.net/publication/355698629_Training_Verifiers_to_Solve_Math_Word_Problems"}]
+
+I found the paper you're looking for! Here's information about the Cobbe 2021 paper:
+
+**Title:** Training Verifiers to Solve Math Word Problems
+
+**Authors:** Karl Cobbe, Vineet Kosaraju, Mohammad Bavarian, Mark Chen, Heewoo Jun, Lukasz Kaiser, Matthias Plappert, Jerry Tworek, Jacob Hilton, Reiichiro Nakano, Christopher Hesse, and John Schulman
+
+**arXiv ID:** 2110.14168
+
+**Publication Date:** October 27, 2021
+
+**Main Contributions:**
+
+1. They introduce GSM8K, a dataset of 8.5K high quality linguistically diverse grade school math word problems
+
+2. They propose training verifiers to judge the correctness of model completions, generating many candidate solutions at test time and selecting the one ranked highest by the verifier
+
+3. They demonstrate that verification significantly improves performance on GSM8K, and provide strong empirical evidence that verification scales more effectively with increased data than a finetuning baseline
+
+The paper is available on arXiv at https://arxiv.org/abs/2110.14168
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4174a956-2672-46bc-9cc6-7207d07af3de",
+  "uuid": "8f2d0d07-7bd0-44d0-9269-417b99e61d73",
+  "tool_use_result": {
+    "query": "Cobbe 2021 \"Training Verifiers to Solve Math Word Problems\" arxiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01A8g7w9TBR3MD7zeNzPnFNx",
+        "content": [
+          {
+            "title": "[2110.14168] Training Verifiers to Solve Math Word Problems",
+            "url": "https://arxiv.org/abs/2110.14168"
+          },
+          {
+            "title": "Training Verifiers to Solve Math Word Problems",
+            "url": "https://matthiasplappert.com/publications/2021_Cobbe_Grade-School-Math.pdf"
+          },
+          {
+            "title": "[2110.14168v2] Training Verifiers to Solve Math Word Problems",
+            "url": "https://arxiv.org/abs/2110.14168v2"
+          },
+          {
+            "title": "[2110.14168v1] Training Verifiers to Solve Math Word Problems",
+            "url": "https://arxiv.org/abs/2110.14168v1"
+          },
+          {
+            "title": "(Open Access) Training Verifiers to Solve Math Word Problems (2021) | Karl Cobbe | 2 Citations",
+            "url": "https://scispace.com/papers/training-verifiers-to-solve-math-word-problems-2jokilm0qa"
+          },
+          {
+            "title": "[PDF] Training Verifiers to Solve Math Word Problems | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/Training-Verifiers-to-Solve-Math-Word-Problems-Cobbe-Kosaraju/d6045d2ccc9c09ca1671348de86d07da6bc28eea"
+          },
+          {
+            "title": "Training Verifiers to Solve Math Word Problems - ar5iv - arXiv",
+            "url": "https://ar5iv.labs.arxiv.org/html/2110.14168"
+          },
+          {
+            "title": "Paper page - Training Verifiers to Solve Math Word Problems",
+            "url": "https://huggingface.co/papers/2110.14168"
+          },
+          {
+            "title": "Training Verifiers to Solve Math Word Problems",
+            "url": "https://www.researchgate.net/publication/355698629_Training_Verifiers_to_Solve_Math_Word_Problems"
+          }
+        ]
+      },
+      "I found the paper you're looking for! Here's information about the Cobbe 2021 paper:\n\n**Title:** Training Verifiers to Solve Math Word Problems\n\n**Authors:** Karl Cobbe, Vineet Kosaraju, Mohammad Bavarian, Mark Chen, Heewoo Jun, Lukasz Kaiser, Matthias Plappert, Jerry Tworek, Jacob Hilton, Reiichiro Nakano, Christopher Hesse, and John Schulman\n\n**arXiv ID:** 2110.14168\n\n**Publication Date:** October 27, 2021\n\n**Main Contributions:**\n\n1. They introduce GSM8K, a dataset of 8.5K high quality linguistically diverse grade school math word problems\n\n2. They propose training verifiers to judge the correctness of model completions, generating many candidate solutions at test time and selecting the one ranked highest by the verifier\n\n3. They demonstrate that verification significantly improves performance on GSM8K, and provide strong empirical evidence that verification scales more effectively with increased data than a finetuning baseline\n\nThe paper is available on arXiv at https://arxiv.org/abs/2110.14168"
+    ],
+    "durationSeconds": 5.724534364999999
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-19T04:07:07.358Z_
+
+<details><summary>↩ Tool result · `toolu_01XfgWa5u6U8pTvBZfiQBs8i`</summary>
+
+```text
+Web search results for query: "Wang 2023 "Self-Consistency Improves Chain of Thought" ICLR"
+
+Links: [{"title":"Self-Consistency Improves Chain of Thought Reasoning in Language Models","url":"https://www.cs.toronto.edu/~cmaddis/courses/csc2541_w25/presentations/self-consistency.pdf"},{"title":"Self-Consistency Improves Chain of Thought Reasoning in ...","url":"https://arxiv.org/pdf/2203.11171"},{"title":"Self-Consistency Improves Chain of Thought Reasoning in Language Models | OpenReview","url":"https://openreview.net/forum?id=1PL1NIMMrw"},{"title":"dblp: Self-Consistency Improves Chain of Thought Reasoning in Language Models.","url":"https://dblp.org/rec/conf/iclr/0002WSLCNCZ23.html"},{"title":"ICLR Poster Self-Consistency Improves Chain of Thought Reasoning in Language Models","url":"https://iclr.cc/virtual/2023/poster/11718"},{"title":"SELF-CONSISTENCY IMPROVES CHAIN OF THOUGHT ...","url":"http://webdocs.cs.ualberta.ca/~dale/papers/iclr23b.pdf"},{"title":"[2203.11171] Self-Consistency Improves Chain of Thought Reasoning in Language Models","url":"https://arxiv.org/abs/2203.11171"},{"title":"[PDF] Self-Consistency Improves Chain of Thought Reasoning in Language Models | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Self-Consistency-Improves-Chain-of-Thought-in-Wang-Wei/5f19ae1135a9500940978104ec15a5b8751bc7d2"},{"title":"Awesome-LLM-papers/00_Organizations/1_Google/2023 (Google) (ICLR) Self-Consistency Improves Chain of Thought Reasoning in Language Models.pdf at main · guyulongcs/Awesome-LLM-papers","url":"https://github.com/guyulongcs/Awesome-LLM-papers/blob/main/00_Organizations/1_Google/2023%20(Google)%20(ICLR)%20Self-Consistency%20Improves%20Chain%20of%20Thought%20Reasoning%20in%20Language%20Models.pdf"},{"title":"Self-Consistency Improves Chain of Thought Reasoning in Language Models","url":"https://iclr.cc/media/iclr-2023/Slides/11718.pdf"}]
+
+I found the paper! Here's information about the Wang et al. 2023 "Self-Consistency Improves Chain of Thought Reasoning in Language Models" paper from ICLR:
+
+**Paper Details:**
+The paper was published as a conference paper at ICLR 2023 by Xuezhi Wang, Jason Wei, Dale Schuurmans, Quoc Le, Ed H. Chi, Sharan Narang, Aakanksha Chowdhery, and Denny Zhou from Google Research, Brain Team.
+
+**Main Contribution:**
+The paper proposes a new decoding strategy called self-consistency to replace the naive greedy decoding used in chain-of-thought prompting. It first samples a diverse set of reasoning paths instead of only taking the greedy one, and then selects the most consistent answer by marginalizing out the sampled reasoning paths.
+
+**Key Insight:**
+Self-consistency leverages the intuition that a complex reasoning problem typically admits multiple different ways of thinking leading to its unique correct answer.
+
+**Empirical Results:**
+When used with PaLM-540B or GPT-3, self-consistency achieves new state-of-the-art levels of performance across arithmetic reasoning tasks, including GSM8K (+17.9% absolute accuracy gains), SVAMP (+11.0%), AQuA (+12.2%), and across commonsense reasoning tasks such as StrategyQA (+6.4%) and ARC-challenge (+3.9%).
+
+You can access the full paper on arXiv (2203.11171) or through the OpenReview platform.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4174a956-2672-46bc-9cc6-7207d07af3de",
+  "uuid": "20b95ce6-19f8-4171-b657-d6f8695fdeb9",
+  "tool_use_result": {
+    "query": "Wang 2023 \"Self-Consistency Improves Chain of Thought\" ICLR",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01TyRshdnRdCLxQxfyrzxPFo",
+        "content": [
+          {
+            "title": "Self-Consistency Improves Chain of Thought Reasoning in Language Models",
+            "url": "https://www.cs.toronto.edu/~cmaddis/courses/csc2541_w25/presentations/self-consistency.pdf"
+          },
+          {
+            "title": "Self-Consistency Improves Chain of Thought Reasoning in ...",
+            "url": "https://arxiv.org/pdf/2203.11171"
+          },
+          {
+            "title": "Self-Consistency Improves Chain of Thought Reasoning in Language Models | OpenReview",
+            "url": "https://openreview.net/forum?id=1PL1NIMMrw"
+          },
+          {
+            "title": "dblp: Self-Consistency Improves Chain of Thought Reasoning in Language Models.",
+            "url": "https://dblp.org/rec/conf/iclr/0002WSLCNCZ23.html"
+          },
+          {
+            "title": "ICLR Poster Self-Consistency Improves Chain of Thought Reasoning in Language Models",
+            "url": "https://iclr.cc/virtual/2023/poster/11718"
+          },
+          {
+            "title": "SELF-CONSISTENCY IMPROVES CHAIN OF THOUGHT ...",
+            "url": "http://webdocs.cs.ualberta.ca/~dale/papers/iclr23b.pdf"
+          },
+          {
+            "title": "[2203.11171] Self-Consistency Improves Chain of Thought Reasoning in Language Models",
+            "url": "https://arxiv.org/abs/2203.11171"
+          },
+          {
+            "title": "[PDF] Self-Consistency Improves Chain of Thought Reasoning in Language Models | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/Self-Consistency-Improves-Chain-of-Thought-in-Wang-Wei/5f19ae1135a9500940978104ec15a5b8751bc7d2"
+          },
+          {
+            "title": "Awesome-LLM-papers/00_Organizations/1_Google/2023 (Google) (ICLR) Self-Consistency Improves Chain of Thought Reasoning in Language Models.pdf at main · guyulongcs/Awesome-LLM-papers",
+            "url": "https://github.com/guyulongcs/Awesome-LLM-papers/blob/main/00_Organizations/1_Google/2023%20(Google)%20(ICLR)%20Self-Consistency%20Improves%20Chain%20of%20Thought%20Reasoning%20in%20Language%20Models.pdf"
+          },
+          {
+            "title": "Self-Consistency Improves Chain of Thought Reasoning in Language Models",
+            "url": "https://iclr.cc/media/iclr-2023/Slides/11718.pdf"
+          }
+        ]
+      },
+      "I found the paper! Here's information about the Wang et al. 2023 \"Self-Consistency Improves Chain of Thought Reasoning in Language Models\" paper from ICLR:\n\n**Paper Details:**\nThe paper was published as a conference paper at ICLR 2023 by Xuezhi Wang, Jason Wei, Dale Schuurmans, Quoc Le, Ed H. Chi, Sharan Narang, Aakanksha Chowdhery, and Denny Zhou from Google Research, Brain Team.\n\n**Main Contribution:**\nThe paper proposes a new decoding strategy called self-consistency to replace the naive greedy decoding used in chain-of-thought prompting. It first samples a diverse set of reasoning paths instead of only taking the greedy one, and then selects the most consistent answer by marginalizing out the sampled reasoning paths.\n\n**Key Insight:**\nSelf-consistency leverages the intuition that a complex reasoning problem typically admits multiple different ways of thinking leading to its unique correct answer.\n\n**Empirical Results:**\nWhen used with PaLM-540B or GPT-3, self-consistency achieves new state-of-the-art levels of performance across arithmetic reasoning tasks, including GSM8K (+17.9% absolute accuracy gains), SVAMP (+11.0%), AQuA (+12.2%), and across commonsense reasoning tasks such as StrategyQA (+6.4%) and ARC-challenge (+3.9%).\n\nYou can access the full paper on arXiv (2203.11171) or through the OpenReview platform."
+    ],
+    "durationSeconds": 7.158017361999999
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-19T04:07:08.445Z_
+
+<details><summary>↩ Tool result · `toolu_01B2KfC7CZmpZXY6EUsNGUKM`</summary>
+
+```text
+Web search results for query: "Wan 2024 information extraction survey LLM"
+
+Links: [{"title":"Large language models for generative information extraction: a survey","url":"https://d-nb.info/1354655508/34"},{"title":"Large language models for generative information extraction: a survey","url":"https://journal.hep.com.cn/fcs/EN/10.1007/s11704-024-40555-y"},{"title":"Large language models for generative information extraction: a survey | Frontiers of Computer Science | Springer Nature Link","url":"https://link.springer.com/article/10.1007/s11704-024-40555-y"},{"title":"A Survey on Open Information Extraction from Rule-based ...","url":"https://aclanthology.org/2024.findings-emnlp.560.pdf"},{"title":"Large language models meet NLP: a survey | Frontiers of Computer Science | Springer Nature Link","url":"https://link.springer.com/article/10.1007/s11704-025-50472-3"},{"title":"[2312.17617] Large Language Models for Generative Information Extraction: A Survey","url":"https://arxiv.org/abs/2312.17617"},{"title":"Large Language Models for Generative Information Extraction: A Survey","url":"https://arxiv.org/html/2312.17617v3"},{"title":"(PDF) Large language models for generative information extraction: a survey","url":"https://www.researchgate.net/publication/385729624_Large_language_models_for_generative_information_extraction_a_survey"},{"title":"Large Language Models for Generative Information Extraction: A Survey","url":"https://arxiv.org/pdf/2312.17617"},{"title":"Large Language Model Applications for Health Information Extraction in Oncology: Scoping Review","url":"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11970800/"}]
+
+Based on the search results, I found comprehensive information about a 2024 survey on information extraction using Large Language Models (LLMs).
+
+The survey covers Information Extraction (IE), which aims to extract structural knowledge from plain natural language texts, and demonstrates how generative Large Language Models (LLMs) have shown remarkable capabilities in text understanding and generation for IE tasks using a generative paradigm.
+
+The survey categorizes existing methods using two main taxonomies: (1) a taxonomy of numerous IE subtasks, which classifies different types of information that can be extracted, and (2) a taxonomy of IE techniques, which categorizes various novel approaches that utilize LLMs for generative IE, particularly in low-resource scenarios.
+
+Typical IE tasks include Named Entity Recognition (NER), Relation Extraction (RE), and Event Extraction (EE).
+
+These generative IE methods adopt LLMs to generate structural information rather than extracting it from plain text, and they prove more practical in real-world scenarios than discriminative methods, as they efficiently handle schemas containing millions of entities without significant performance degradation.
+
+The survey was published in 2024 and appears to be a comprehensive resource reviewing the latest advancements in using LLMs for information extraction tasks.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4174a956-2672-46bc-9cc6-7207d07af3de",
+  "uuid": "3909a390-0b8f-48a9-84c4-36a3fe24269b",
+  "tool_use_result": {
+    "query": "Wan 2024 information extraction survey LLM",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Gj2rYekTk7wg8FLo7a2vqv",
+        "content": [
+          {
+            "title": "Large language models for generative information extraction: a survey",
+            "url": "https://d-nb.info/1354655508/34"
+          },
+          {
+            "title": "Large language models for generative information extraction: a survey",
+            "url": "https://journal.hep.com.cn/fcs/EN/10.1007/s11704-024-40555-y"
+          },
+          {
+            "title": "Large language models for generative information extraction: a survey | Frontiers of Computer Science | Springer Nature Link",
+            "url": "https://link.springer.com/article/10.1007/s11704-024-40555-y"
+          },
+          {
+            "title": "A Survey on Open Information Extraction from Rule-based ...",
+            "url": "https://aclanthology.org/2024.findings-emnlp.560.pdf"
+          },
+          {
+            "title": "Large language models meet NLP: a survey | Frontiers of Computer Science | Springer Nature Link",
+            "url": "https://link.springer.com/article/10.1007/s11704-025-50472-3"
+          },
+          {
+            "title": "[2312.17617] Large Language Models for Generative Information Extraction: A Survey",
+            "url": "https://arxiv.org/abs/2312.17617"
+          },
+          {
+            "title": "Large Language Models for Generative Information Extraction: A Survey",
+            "url": "https://arxiv.org/html/2312.17617v3"
+          },
+          {
+            "title": "(PDF) Large language models for generative information extraction: a survey",
+            "url": "https://www.researchgate.net/publication/385729624_Large_language_models_for_generative_information_extraction_a_survey"
+          },
+          {
+            "title": "Large Language Models for Generative Information Extraction: A Survey",
+            "url": "https://arxiv.org/pdf/2312.17617"
+          },
+          {
+            "title": "Large Language Model Applications for Health Information Extraction in Oncology: Scoping Review",
+            "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11970800/"
+          }
+        ]
+      },
+      "Based on the search results, I found comprehensive information about a 2024 survey on information extraction using Large Language Models (LLMs).\n\nThe survey covers Information Extraction (IE), which aims to extract structural knowledge from plain natural language texts, and demonstrates how generative Large Language Models (LLMs) have shown remarkable capabilities in text understanding and generation for IE tasks using a generative paradigm.\n\nThe survey categorizes existing methods using two main taxonomies: (1) a taxonomy of numerous IE subtasks, which classifies different types of information that can be extracted, and (2) a taxonomy of IE techniques, which categorizes various novel approaches that utilize LLMs for generative IE, particularly in low-resource scenarios.\n\nTypical IE tasks include Named Entity Recognition (NER), Relation Extraction (RE), and Event Extraction (EE).\n\nThese generative IE methods adopt LLMs to generate structural information rather than extracting it from plain text, and they prove more practical in real-world scenarios than discriminative methods, as they efficiently handle schemas containing millions of entities without significant performance degradation.\n\nThe survey was published in 2024 and appears to be a comprehensive resource reviewing the latest advancements in using LLMs for information extraction tasks."
+    ],
+    "durationSeconds": 9.623201098000001
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 24_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good, I have initial results. Let me now search for more specific papers. I need to:
+
+1. Find the specific Xie et al. 2023 paper - the search wasn't specific enough. Let me try more targeted searches.
+2. Find the specific Wan et al. 2024 paper - it seems to be "Large Language Models for Generative Information Extraction: A Survey" (arxiv 2312.17617). Let me verify authors.
+3. Find 2-3 ensemble NER papers - I found some leads (EL4NER, the vote-based classifier ensemble)
+
+
+4. Now I need to verify the remaining bibliography entries with more targeted searches.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4174a956-2672-46bc-9cc6-7207d07af3de",
+  "uuid": "0a496d72-6f27-4933-b5d4-8bdf4e8ed047",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GyyxT2sMMsioxtHHA95Vgd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3410,
+      "cache_creation_input_tokens": 2057,
+      "cache_read_input_tokens": 36699,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2057
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_019bNZxTXZVrBytmULNK5hGp`</summary>
+
+```json
+{
+  "query": "Xie 2023 \"self-consistency\" NER named entity recognition LLM"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4174a956-2672-46bc-9cc6-7207d07af3de",
+  "uuid": "66d29b33-6ab2-454c-b810-782179aeddfc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GyyxT2sMMsioxtHHA95Vgd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3410,
+      "cache_creation_input_tokens": 2057,
+      "cache_read_input_tokens": 36699,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2057
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01KSgBMBoAnSo8SkATb6XQTm`</summary>
+
+```json
+{
+  "query": "Wan 2024 arxiv 2312.17617 \"Large Language Models for Generative Information Extraction\" authors"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4174a956-2672-46bc-9cc6-7207d07af3de",
+  "uuid": "89d65555-8aef-4c6f-b0b9-cf4a69e9fd2c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GyyxT2sMMsioxtHHA95Vgd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3410,
+      "cache_creation_input_tokens": 2057,
+      "cache_read_input_tokens": 36699,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2057
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_017C6ThBLVZaModsZHas3bSx`</summary>
+
+```json
+{
+  "query": "\"EL4NER\" ensemble learning named entity recognition LLM 2025 authors venue"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4174a956-2672-46bc-9cc6-7207d07af3de",
+  "uuid": "a8be9df9-8676-4b2d-8bce-f931bbb53766",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GyyxT2sMMsioxtHHA95Vgd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3410,
+      "cache_creation_input_tokens": 2057,
+      "cache_read_input_tokens": 36699,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2057
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01SpbCCHgDsLXyY2W544E3G1`</summary>
+
+```json
+{
+  "query": "Venktesh 2025 \"Trust but Verify\" test-time scaling survey arxiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4174a956-2672-46bc-9cc6-7207d07af3de",
+  "uuid": "eeb641f3-8d50-469c-bdc0-650861d7f4e8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GyyxT2sMMsioxtHHA95Vgd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3410,
+      "cache_creation_input_tokens": 2057,
+      "cache_read_input_tokens": 36699,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2057
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-19T04:07:20.760Z_
+
+<details><summary>↩ Tool result · `toolu_01KSgBMBoAnSo8SkATb6XQTm`</summary>
+
+```text
+Web search results for query: "Wan 2024 arxiv 2312.17617 "Large Language Models for Generative Information Extraction" authors"
+
+Links: [{"title":"[2312.17617] Large Language Models for Generative Information Extraction: A Survey","url":"https://arxiv.org/abs/2312.17617"},{"title":"[2312.17617v3] Large Language Models for Generative Information Extraction: A Survey","url":"https://arxiv.org/abs/2312.17617v3"},{"title":"Large Language Models for Generative Information Extraction: A Survey - ADS","url":"https://ui.adsabs.harvard.edu/abs/arXiv:2312.17617"},{"title":"arXiv:2312.17617v1 [cs.CL] 29 Dec 2023","url":"https://arxiv.org/pdf/2312.17617"},{"title":"Large Language Models for Generative Information Extraction: A Survey","url":"https://arxiv.org/html/2312.17617v3"},{"title":"Large Language Models For Generative Information Extraction: A Survey | PDF | Conceptual Model | Artificial Intelligence","url":"https://www.scribd.com/document/784919375/2312-17617v2"},{"title":"Large language models for generative information extraction: a survey | Frontiers of Computer Science | Springer Nature Link","url":"https://link.springer.com/article/10.1007/s11704-024-40555-y"},{"title":"dblp: Large Language Models for Generative Information Extraction: A Survey.","url":"https://dblp.org/rec/journals/corr/abs-2312-17617.html"}]
+
+The authors of the arXiv paper 2312.17617 "Large Language Models for Generative Information Extraction: A Survey" are Derong Xu, Wei Chen, Wenjun Peng, Chao Zhang, Tong Xu, Xiangyu Zhao, Xian Wu, Yefeng Zheng, Yang Wang, and Enhong Chen. The paper was submitted on December 29, 2023, with the latest revision on October 31, 2024.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4174a956-2672-46bc-9cc6-7207d07af3de",
+  "uuid": "af985780-7df5-448e-be53-3453175777f3",
+  "tool_use_result": {
+    "query": "Wan 2024 arxiv 2312.17617 \"Large Language Models for Generative Information Extraction\" authors",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01UcHveDeHXr1yFuW8dhnmaW",
+        "content": [
+          {
+            "title": "[2312.17617] Large Language Models for Generative Information Extraction: A Survey",
+            "url": "https://arxiv.org/abs/2312.17617"
+          },
+          {
+            "title": "[2312.17617v3] Large Language Models for Generative Information Extraction: A Survey",
+            "url": "https://arxiv.org/abs/2312.17617v3"
+          },
+          {
+            "title": "Large Language Models for Generative Information Extraction: A Survey - ADS",
+            "url": "https://ui.adsabs.harvard.edu/abs/arXiv:2312.17617"
+          },
+          {
+            "title": "arXiv:2312.17617v1 [cs.CL] 29 Dec 2023",
+            "url": "https://arxiv.org/pdf/2312.17617"
+          },
+          {
+            "title": "Large Language Models for Generative Information Extraction: A Survey",
+            "url": "https://arxiv.org/html/2312.17617v3"
+          },
+          {
+            "title": "Large Language Models For Generative Information Extraction: A Survey | PDF | Conceptual Model | Artificial Intelligence",
+            "url": "https://www.scribd.com/document/784919375/2312-17617v2"
+          },
+          {
+            "title": "Large language models for generative information extraction: a survey | Frontiers of Computer Science | Springer Nature Link",
+            "url": "https://link.springer.com/article/10.1007/s11704-024-40555-y"
+          },
+          {
+            "title": "dblp: Large Language Models for Generative Information Extraction: A Survey.",
+            "url": "https://dblp.org/rec/journals/corr/abs-2312-17617.html"
+          }
+        ]
+      },
+      "The authors of the arXiv paper 2312.17617 \"Large Language Models for Generative Information Extraction: A Survey\" are Derong Xu, Wei Chen, Wenjun Peng, Chao Zhang, Tong Xu, Xiangyu Zhao, Xian Wu, Yefeng Zheng, Yang Wang, and Enhong Chen. The paper was submitted on December 29, 2023, with the latest revision on October 31, 2024."
+    ],
+    "durationSeconds": 3.255626439
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01QGtS7xkuJFQciX8SS2gQm8`</summary>
+
+```json
+{
+  "query": "Snell 2025 \"Scaling LLM Test-Time Compute\" ICLR arxiv 2408.03314"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4174a956-2672-46bc-9cc6-7207d07af3de",
+  "uuid": "6e98ea8e-2c55-476c-b327-138a365c8822",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GyyxT2sMMsioxtHHA95Vgd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3410,
+      "cache_creation_input_tokens": 2057,
+      "cache_read_input_tokens": 36699,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2057
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_013rX5aGtDdYBRP3oFYckeBW`</summary>
+
+```json
+{
+  "query": "Willard Louf 2023 \"Efficient Guided Generation\" arxiv 2307.09702"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4174a956-2672-46bc-9cc6-7207d07af3de",
+  "uuid": "cff757a9-1d8a-41f1-8112-ab7a2b0adc89",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GyyxT2sMMsioxtHHA95Vgd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3410,
+      "cache_creation_input_tokens": 2057,
+      "cache_read_input_tokens": 36699,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2057
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-19T04:07:23.270Z_
+
+<details><summary>↩ Tool result · `toolu_019bNZxTXZVrBytmULNK5hGp`</summary>
+
+```text
+Web search results for query: "Xie 2023 "self-consistency" NER named entity recognition LLM"
+
+Links: [{"title":"[PDF] Self-Improving for Zero-Shot Named Entity Recognition with Large Language Models | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Self-Improving-for-Zero-Shot-Named-Entity-with-Xie-Li/d36e2b1f3d06a732773ace7b9cd786247d563fa7"},{"title":"GitHub - Emma1066/Self-Improve-Zero-Shot-NER: This is the github repository for the paper at NAACL 2024: Self-Improving for Zero-Shot Named Entity Recognition with Large Language Models. · GitHub","url":"https://github.com/Emma1066/Self-Improve-Zero-Shot-NER"},{"title":"Self-Improving for Zero-Shot Named Entity Recognition with Large Language Models","url":"https://arxiv.org/html/2311.08921v3"},{"title":"OEMA: Ontology-Enhanced Multi-Agent Collaboration Framework for Zero-Shot Clinical Named Entity Recognition","url":"https://arxiv.org/html/2511.15211"},{"title":"Self-Improving for Zero-Shot Named Entity Recognition with Large Language Models - ACL Anthology","url":"https://aclanthology.org/2024.naacl-short.49/"},{"title":"[2311.08921] Self-Improving for Zero-Shot Named Entity Recognition with Large Language Models","url":"https://arxiv.org/abs/2311.08921"},{"title":"Self-Improving for Zero-Shot Named Entity Recognition with Large   Language Models","url":"https://arxiv.org/pdf/2311.08921"},{"title":"Recent Advances in Named Entity Recognition: A Comprehensive Survey and Comparative Study","url":"https://arxiv.org/html/2401.10825v3"},{"title":"ReverseNER: Enabling Large Language Models to Self-Hint for Named Entity Recognition via the Reversed Process","url":"https://arxiv.org/html/2411.00533v4"}]
+
+Based on the search results, I found information about the Xie 2023 paper on self-consistency for NER with LLMs:
+
+## Paper Overview
+
+The paper is titled "Self-Improving for Zero-Shot Named Entity Recognition with Large Language Models" by Tingyu Xie, Qi Li, Yan Zhang, Zuozhu Liu, and Hongwei Wang, published in 2023.
+
+## Main Contribution
+
+The paper proposes a training-free self-improving framework that utilizes an unlabeled corpus to stimulate the self-learning ability of LLMs.
+
+## Methodology
+
+The pipeline uses the LLM to make predictions on an unlabeled corpus using self-consistency (SC) and obtain a self-annotated dataset. It then explores various strategies to select reliable annotations to form a reliable self-annotated dataset, and finally retrieves demonstrations from the reliable self-annotated dataset for inference via in-context learning.
+
+## Publication Status
+
+The work was published in the Proceedings of the 2024 Conference of the North American Chapter of the Association for Computational Linguistics (NAACL 2024).
+
+The paper addresses zero-shot NER scenarios and focuses on improving LLM performance without requiring any annotated training data.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4174a956-2672-46bc-9cc6-7207d07af3de",
+  "uuid": "6541873c-80d0-456b-a599-4b9e0632a0da",
+  "tool_use_result": {
+    "query": "Xie 2023 \"self-consistency\" NER named entity recognition LLM",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01NEm6y6hCiJgHiCQWDLQJQ1",
+        "content": [
+          {
+            "title": "[PDF] Self-Improving for Zero-Shot Named Entity Recognition with Large Language Models | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/Self-Improving-for-Zero-Shot-Named-Entity-with-Xie-Li/d36e2b1f3d06a732773ace7b9cd786247d563fa7"
+          },
+          {
+            "title": "GitHub - Emma1066/Self-Improve-Zero-Shot-NER: This is the github repository for the paper at NAACL 2024: Self-Improving for Zero-Shot Named Entity Recognition with Large Language Models. · GitHub",
+            "url": "https://github.com/Emma1066/Self-Improve-Zero-Shot-NER"
+          },
+          {
+            "title": "Self-Improving for Zero-Shot Named Entity Recognition with Large Language Models",
+            "url": "https://arxiv.org/html/2311.08921v3"
+          },
+          {
+            "title": "OEMA: Ontology-Enhanced Multi-Agent Collaboration Framework for Zero-Shot Clinical Named Entity Recognition",
+            "url": "https://arxiv.org/html/2511.15211"
+          },
+          {
+            "title": "Self-Improving for Zero-Shot Named Entity Recognition with Large Language Models - ACL Anthology",
+            "url": "https://aclanthology.org/2024.naacl-short.49/"
+          },
+          {
+            "title": "[2311.08921] Self-Improving for Zero-Shot Named Entity Recognition with Large Language Models",
+            "url": "https://arxiv.org/abs/2311.08921"
+          },
+          {
+            "title": "Self-Improving for Zero-Shot Named Entity Recognition with Large   Language Models",
+            "url": "https://arxiv.org/pdf/2311.08921"
+          },
+          {
+            "title": "Recent Advances in Named Entity Recognition: A Comprehensive Survey and Comparative Study",
+            "url": "https://arxiv.org/html/2401.10825v3"
+          },
+          {
+            "title": "ReverseNER: Enabling Large Language Models to Self-Hint for Named Entity Recognition via the Reversed Process",
+            "url": "https://arxiv.org/html/2411.00533v4"
+          }
+        ]
+      },
+      "Based on the search results, I found information about the Xie 2023 paper on self-consistency for NER with LLMs:\n\n## Paper Overview\n\nThe paper is titled \"Self-Improving for Zero-Shot Named Entity Recognition with Large Language Models\" by Tingyu Xie, Qi Li, Yan Zhang, Zuozhu Liu, and Hongwei Wang, published in 2023.\n\n## Main Contribution\n\nThe paper proposes a training-free self-improving framework that utilizes an unlabeled corpus to stimulate the self-learning ability of LLMs.\n\n## Methodology\n\nThe pipeline uses the LLM to make predictions on an unlabeled corpus using self-consistency (SC) and obtain a self-annotated dataset. It then explores various strategies to select reliable annotations to form a reliable self-annotated dataset, and finally retrieves demonstrations from the reliable self-annotated dataset for inference via in-context learning.\n\n## Publication Status\n\nThe work was published in the Proceedings of the 2024 Conference of the North American Chapter of the Association for Computational Linguistics (NAACL 2024).\n\nThe paper addresses zero-shot NER scenarios and focuses on improving LLM performance without requiring any annotated training data."
+    ],
+    "durationSeconds": 6.2846395039999985
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-19T04:07:24.472Z_
+
+<details><summary>↩ Tool result · `toolu_017C6ThBLVZaModsZHas3bSx`</summary>
+
+```text
+Web search results for query: ""EL4NER" ensemble learning named entity recognition LLM 2025 authors venue"
+
+Links: [{"title":"[2505.23038] EL4NER: Ensemble Learning for Named Entity Recognition via Multiple Small-Parameter Large Language Models","url":"https://arxiv.org/abs/2505.23038"},{"title":"EL4NER: Ensemble Learning for Named Entity Recognition ...","url":"https://bytez.com/docs/arxiv/2505.23038/paper"},{"title":"EL4NER: Ensemble Learning for Named Entity Recognition via Multiple Small-Parameter Large Language Models","url":"https://arxiv.org/html/2505.23038v1"},{"title":"EL4NER: Ensemble Learning for Named Entity ...","url":"https://arxiv.org/pdf/2505.23038"},{"title":"GitHub - junchenzhi/Awesome-LLM-Ensemble: A curated list of Awesome-LLM-Ensemble papers for the survey \"Harnessing Multiple Large Language Models: A Survey on LLM Ensemble\" · GitHub","url":"https://github.com/junchenzhi/Awesome-LLM-Ensemble"},{"title":"Ensemble Learning for Named Entity Recognition","url":"https://svn.aksw.org/papers/2014/ISWC_EL4NER/public.pdf"},{"title":"Local LLM Ensembles for Zero-shot Portuguese Named Entity Recognition","url":"https://arxiv.org/html/2512.10043v1"},{"title":"Ensemble of Deep Masked Language Models for Effective Named Entity Recognition in Health and Life Science Corpora","url":"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8640190/"}]
+
+Based on the search results, here's the information about EL4NER:
+
+**Title:** EL4NER: Ensemble Learning for Named Entity Recognition via Multiple Small-Parameter Large Language Models
+
+**Authors:** Yuzhen Xiao and 8 other authors
+
+**Venue/Publication:** arXiv (paper 2505.23038), with a publication date of May 29, 2025
+
+**Key Contributions:** The paper proposes a task decomposition-based pipeline that facilitates deep, multi-stage ensemble learning, a novel span-level sentence similarity algorithm for ICL demonstration retrieval, and a self-validation mechanism to mitigate noise during the ensemble process.
+
+**Main Results:** EL4NER surpasses most closed-source, large-parameter LLM-based methods at a lower parameter cost and even attains state-of-the-art (SOTA) performance among ICL-based methods on certain datasets.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4174a956-2672-46bc-9cc6-7207d07af3de",
+  "uuid": "14540704-4c2b-461c-8460-c0285289a232",
+  "tool_use_result": {
+    "query": "\"EL4NER\" ensemble learning named entity recognition LLM 2025 authors venue",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01RE7jzuNzMPHfMMWrPPPuFM",
+        "content": [
+          {
+            "title": "[2505.23038] EL4NER: Ensemble Learning for Named Entity Recognition via Multiple Small-Parameter Large Language Models",
+            "url": "https://arxiv.org/abs/2505.23038"
+          },
+          {
+            "title": "EL4NER: Ensemble Learning for Named Entity Recognition ...",
+            "url": "https://bytez.com/docs/arxiv/2505.23038/paper"
+          },
+          {
+            "title": "EL4NER: Ensemble Learning for Named Entity Recognition via Multiple Small-Parameter Large Language Models",
+            "url": "https://arxiv.org/html/2505.23038v1"
+          },
+          {
+            "title": "EL4NER: Ensemble Learning for Named Entity ...",
+            "url": "https://arxiv.org/pdf/2505.23038"
+          },
+          {
+            "title": "GitHub - junchenzhi/Awesome-LLM-Ensemble: A curated list of Awesome-LLM-Ensemble papers for the survey \"Harnessing Multiple Large Language Models: A Survey on LLM Ensemble\" · GitHub",
+            "url": "https://github.com/junchenzhi/Awesome-LLM-Ensemble"
+          },
+          {
+            "title": "Ensemble Learning for Named Entity Recognition",
+            "url": "https://svn.aksw.org/papers/2014/ISWC_EL4NER/public.pdf"
+          },
+          {
+            "title": "Local LLM Ensembles for Zero-shot Portuguese Named Entity Recognition",
+            "url": "https://arxiv.org/html/2512.10043v1"
+          },
+          {
+            "title": "Ensemble of Deep Masked Language Models for Effective Named Entity Recognition in Health and Life Science Corpora",
+            "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8640190/"
+          }
+        ]
+      },
+      "Based on the search results, here's the information about EL4NER:\n\n**Title:** EL4NER: Ensemble Learning for Named Entity Recognition via Multiple Small-Parameter Large Language Models\n\n**Authors:** Yuzhen Xiao and 8 other authors\n\n**Venue/Publication:** arXiv (paper 2505.23038), with a publication date of May 29, 2025\n\n**Key Contributions:** The paper proposes a task decomposition-based pipeline that facilitates deep, multi-stage ensemble learning, a novel span-level sentence similarity algorithm for ICL demonstration retrieval, and a self-validation mechanism to mitigate noise during the ensemble process.\n\n**Main Results:** EL4NER surpasses most closed-source, large-parameter LLM-based methods at a lower parameter cost and even attains state-of-the-art (SOTA) performance among ICL-based methods on certain datasets."
+    ],
+    "durationSeconds": 5.940929804
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-19T04:07:24.749Z_
+
+<details><summary>↩ Tool result · `toolu_01SpbCCHgDsLXyY2W544E3G1`</summary>
+
+```text
+Web search results for query: "Venktesh 2025 "Trust but Verify" test-time scaling survey arxiv"
+
+Links: [{"title":"[2508.16665] Trust but Verify! A Survey on Verification Design for Test-time Scaling","url":"https://arxiv.org/abs/2508.16665"},{"title":"Trust but Verify! A Survey on Verification Design for Test-time Scaling","url":"https://arxiv.org/pdf/2508.16665"},{"title":"Trust but Verify! A Survey on Verification Design for Test-time Scaling","url":"https://openreview.net/pdf?id=sytEeAZYvf"},{"title":"Trust but Verify! A Survey on Verification Design for Test-time Scaling","url":"https://arxiv.org/html/2508.16665v3"},{"title":"Think Right, Not More: Test-Time Scaling for Numerical Claim Verification","url":"https://arxiv.org/pdf/2509.22101"}]
+
+I found the paper you're looking for! Here's what I found:
+
+"Trust but Verify! A Survey on Verification Design for Test-time Scaling" is authored by Venktesh V, Mandeep Rathee, and Avishek Anand. 
+
+The survey focuses on test-time scaling (TTS) for Large Language Models, where by using more computational resources during inference, LLMs can improve their reasoning process and task performance. It examines approaches such as distilling reasoning traces from another model or exploring the decoding search space by employing a verifier, where verifiers serve as reward models that help score candidate outputs to explore the solution space and select the best outcome.
+
+The paper is available on arXiv with identifier 2508.16665. The most recent version (v3) was updated on September 9, 2025.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4174a956-2672-46bc-9cc6-7207d07af3de",
+  "uuid": "e9c93a3e-0a62-4663-9595-b8b28227bf2b",
+  "tool_use_result": {
+    "query": "Venktesh 2025 \"Trust but Verify\" test-time scaling survey arxiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01MNVXrm1iVafoThceDsauwN",
+        "content": [
+          {
+            "title": "[2508.16665] Trust but Verify! A Survey on Verification Design for Test-time Scaling",
+            "url": "https://arxiv.org/abs/2508.16665"
+          },
+          {
+            "title": "Trust but Verify! A Survey on Verification Design for Test-time Scaling",
+            "url": "https://arxiv.org/pdf/2508.16665"
+          },
+          {
+            "title": "Trust but Verify! A Survey on Verification Design for Test-time Scaling",
+            "url": "https://openreview.net/pdf?id=sytEeAZYvf"
+          },
+          {
+            "title": "Trust but Verify! A Survey on Verification Design for Test-time Scaling",
+            "url": "https://arxiv.org/html/2508.16665v3"
+          },
+          {
+            "title": "Think Right, Not More: Test-Time Scaling for Numerical Claim Verification",
+            "url": "https://arxiv.org/pdf/2509.22101"
+          }
+        ]
+      },
+      "I found the paper you're looking for! Here's what I found:\n\n\"Trust but Verify! A Survey on Verification Design for Test-time Scaling\" is authored by Venktesh V, Mandeep Rathee, and Avishek Anand. \n\nThe survey focuses on test-time scaling (TTS) for Large Language Models, where by using more computational resources during inference, LLMs can improve their reasoning process and task performance. It examines approaches such as distilling reasoning traces from another model or exploring the decoding search space by employing a verifier, where verifiers serve as reward models that help score candidate outputs to explore the solution space and select the best outcome.\n\nThe paper is available on arXiv with identifier 2508.16665. The most recent version (v3) was updated on September 9, 2025."
+    ],
+    "durationSeconds": 5.335075185999995
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-19T04:07:28.023Z_
+
+<details><summary>↩ Tool result · `toolu_013rX5aGtDdYBRP3oFYckeBW`</summary>
+
+```text
+Web search results for query: "Willard Louf 2023 "Efficient Guided Generation" arxiv 2307.09702"
+
+Links: [{"title":"[2307.09702v2] Efficient Guided Generation for Large Language Models","url":"https://arxiv.org/abs/2307.09702v2"},{"title":"[PDF] Efficient Guided Generation for Large Language Models | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Efficient-Guided-Generation-for-Large-Language-Willard-Louf/c4ceaef35bca063815f50d90a087acbd07a65478"},{"title":"[2307.09702v1] Efficient Guided Generation for LLMs","url":"https://arxiv.org/abs/2307.09702v1"},{"title":"[2307.09702] Efficient Guided Generation for Large Language Models","url":"https://arxiv.org/abs/2307.09702"},{"title":"Efficient Guided Generation for Large Language Models","url":"https://www.researchhub.com/paper/1278292/efficient-guided-generation-for-large-language-models"},{"title":"Paper page - Efficient Guided Generation for Large Language Models","url":"https://huggingface.co/papers/2307.09702"},{"title":"[2307.09702v3] Efficient Guided Generation for Large Language Models","url":"https://arxiv.org/abs/2307.09702v3"},{"title":"Efficient Guided Generation for LLMs Brandon T. Willard1 and R´emi Louf2","url":"https://arxiv.org/pdf/2307.09702v1"},{"title":"Efficient Guided Generation for Large Language Models","url":"https://arxiv.org/pdf/2307.09702"},{"title":"(PDF) Efficient Guided Generation for LLMs","url":"https://www.researchgate.net/publication/372468267_Efficient_Guided_Generation_for_LLMs"}]
+
+I found the paper! Here are the key details about the paper you searched for:
+
+**Title:** "Efficient Guided Generation for Large Language Models"
+
+**Authors:** Brandon T. Willard and Rémi Louf
+
+**Publication:** Submitted on July 19, 2023
+
+**Abstract:** The paper shows how the problem of neural text generation can be constructively reformulated in terms of transitions between the states of a finite-state machine. This framework leads to an efficient approach to guiding text generation with regular expressions and context-free grammars by allowing the construction of an index over a language model's vocabulary.
+
+**Key Features:** The approach is model agnostic, allows one to enforce domain-specific knowledge and constraints, and enables the construction of reliable interfaces by guaranteeing the structure of the generated text. It adds little overhead to the token sequence generation process and significantly outperforms existing solutions.
+
+**Implementation:** An implementation is provided in the open source Python library Outlines.
+
+The paper is available on arXiv at https://arxiv.org/abs/2307.09702
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4174a956-2672-46bc-9cc6-7207d07af3de",
+  "uuid": "3f7bf011-2d84-44fb-8a7a-0b7412b86f0d",
+  "tool_use_result": {
+    "query": "Willard Louf 2023 \"Efficient Guided Generation\" arxiv 2307.09702",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01To11k4Qp1YJ4mPWaj7NRxq",
+        "content": [
+          {
+            "title": "[2307.09702v2] Efficient Guided Generation for Large Language Models",
+            "url": "https://arxiv.org/abs/2307.09702v2"
+          },
+          {
+            "title": "[PDF] Efficient Guided Generation for Large Language Models | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/Efficient-Guided-Generation-for-Large-Language-Willard-Louf/c4ceaef35bca063815f50d90a087acbd07a65478"
+          },
+          {
+            "title": "[2307.09702v1] Efficient Guided Generation for LLMs",
+            "url": "https://arxiv.org/abs/2307.09702v1"
+          },
+          {
+            "title": "[2307.09702] Efficient Guided Generation for Large Language Models",
+            "url": "https://arxiv.org/abs/2307.09702"
+          },
+          {
+            "title": "Efficient Guided Generation for Large Language Models",
+            "url": "https://www.researchhub.com/paper/1278292/efficient-guided-generation-for-large-language-models"
+          },
+          {
+            "title": "Paper page - Efficient Guided Generation for Large Language Models",
+            "url": "https://huggingface.co/papers/2307.09702"
+          },
+          {
+            "title": "[2307.09702v3] Efficient Guided Generation for Large Language Models",
+            "url": "https://arxiv.org/abs/2307.09702v3"
+          },
+          {
+            "title": "Efficient Guided Generation for LLMs Brandon T. Willard1 and R´emi Louf2",
+            "url": "https://arxiv.org/pdf/2307.09702v1"
+          },
+          {
+            "title": "Efficient Guided Generation for Large Language Models",
+            "url": "https://arxiv.org/pdf/2307.09702"
+          },
+          {
+            "title": "(PDF) Efficient Guided Generation for LLMs",
+            "url": "https://www.researchgate.net/publication/372468267_Efficient_Guided_Generation_for_LLMs"
+          }
+        ]
+      },
+      "I found the paper! Here are the key details about the paper you searched for:\n\n**Title:** \"Efficient Guided Generation for Large Language Models\"\n\n**Authors:** Brandon T. Willard and Rémi Louf\n\n**Publication:** Submitted on July 19, 2023\n\n**Abstract:** The paper shows how the problem of neural text generation can be constructively reformulated in terms of transitions between the states of a finite-state machine. This framework leads to an efficient approach to guiding text generation with regular expressions and context-free grammars by allowing the construction of an index over a language model's vocabulary.\n\n**Key Features:** The approach is model agnostic, allows one to enforce domain-specific knowledge and constraints, and enables the construction of reliable interfaces by guaranteeing the structure of the generated text. It adds little overhead to the token sequence generation process and significantly outperforms existing solutions.\n\n**Implementation:** An implementation is provided in the open source Python library Outlines.\n\nThe paper is available on arXiv at https://arxiv.org/abs/2307.09702"
+    ],
+    "durationSeconds": 5.892380569000001
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-19T04:07:40.488Z_
+
+<details><summary>↩ Tool result · `toolu_01QGtS7xkuJFQciX8SS2gQm8`</summary>
+
+```text
+Web search results for query: "Snell 2025 "Scaling LLM Test-Time Compute" ICLR arxiv 2408.03314"
+
+Links: [{"title":"Published as a conference paper at ICLR 2025 LEARNING HOW HARD TO THINK:","url":"https://proceedings.iclr.cc/paper_files/paper/2025/file/ff414825df833edb8b1839e3d5d495e9-Paper-Conference.pdf"},{"title":"[2408.03314] Scaling LLM Test-Time Compute Optimally can be More Effective than Scaling Model Parameters","url":"https://arxiv.org/abs/2408.03314"},{"title":"GitHub - adikal25/Scaling-LLM-Test-Time-Compute-Optimally-can-be-More-Effective-than-Scaling-Model-Parameters · GitHub","url":"https://github.com/adikal25/Scaling-LLM-Test-Time-Compute-Optimally-can-be-More-Effective-than-Scaling-Model-Parameters"},{"title":"[2408.03314v1] Scaling LLM Test-Time Compute Optimally can be More Effective than Scaling Model Parameters","url":"https://arxiv.org/abs/2408.03314v1"},{"title":"Scaling LLM Test-Time Compute Optimally can be More Effective than Scaling Model Parameters","url":"https://arxiv.org/html/2408.03314v1"},{"title":"Paper page - Scaling LLM Test-Time Compute Optimally can be More Effective than Scaling Model Parameters","url":"https://huggingface.co/papers/2408.03314"},{"title":"(PDF) Scaling LLM Test-Time Compute Optimally can be More Effective than Scaling Model Parameters","url":"https://www.researchgate.net/publication/382914793_Scaling_LLM_Test-Time_Compute_Optimally_can_be_More_Effective_than_Scaling_Model_Parameters"},{"title":"Rethinking Fine-Tuning when Scaling Test-Time Compute: Limiting Confidence Improves Mathematical Reasoning","url":"https://arxiv.org/pdf/2502.07154"},{"title":"Scaling LLM Test-Time Compute Optimally Can be More Effective than Scaling Parameters for Reasoning | OpenReview","url":"https://openreview.net/forum?id=4FWAwZtd2n"}]
+
+I found the paper you're looking for! Here are the key details:
+
+**Paper Information:**
+The paper is authored by Charlie Snell, Jaehoon Lee, Kelvin Xu, and Aviral Kumar. It was submitted to arXiv as preprint arXiv:2408.03314 in 2024. The paper was published as a conference paper at ICLR 2025.
+
+**Research Focus:**
+The paper studies the scaling of inference-time computation in LLMs, focusing on answering the question: if an LLM is allowed to use a fixed but non-trivial amount of inference-time compute, how much can it improve its performance on a challenging prompt?
+
+**Key Findings:**
+Scaling LLM test-time compute optimally can be more effective than scaling model parameters. More specifically, by allocating inference-time computation adaptively, a smaller model can outperform one 14× larger at matched compute — achieving 4× higher efficiency.
+
+The paper addresses an important question about how to balance computational resources between model pretraining and inference-time computation in language models.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4174a956-2672-46bc-9cc6-7207d07af3de",
+  "uuid": "2ad0bcab-18e4-4f2e-be40-7cea9a5ceed7",
+  "tool_use_result": {
+    "query": "Snell 2025 \"Scaling LLM Test-Time Compute\" ICLR arxiv 2408.03314",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Nood1grN4J11veaswbWaUu",
+        "content": [
+          {
+            "title": "Published as a conference paper at ICLR 2025 LEARNING HOW HARD TO THINK:",
+            "url": "https://proceedings.iclr.cc/paper_files/paper/2025/file/ff414825df833edb8b1839e3d5d495e9-Paper-Conference.pdf"
+          },
+          {
+            "title": "[2408.03314] Scaling LLM Test-Time Compute Optimally can be More Effective than Scaling Model Parameters",
+            "url": "https://arxiv.org/abs/2408.03314"
+          },
+          {
+            "title": "GitHub - adikal25/Scaling-LLM-Test-Time-Compute-Optimally-can-be-More-Effective-than-Scaling-Model-Parameters · GitHub",
+            "url": "https://github.com/adikal25/Scaling-LLM-Test-Time-Compute-Optimally-can-be-More-Effective-than-Scaling-Model-Parameters"
+          },
+          {
+            "title": "[2408.03314v1] Scaling LLM Test-Time Compute Optimally can be More Effective than Scaling Model Parameters",
+            "url": "https://arxiv.org/abs/2408.03314v1"
+          },
+          {
+            "title": "Scaling LLM Test-Time Compute Optimally can be More Effective than Scaling Model Parameters",
+            "url": "https://arxiv.org/html/2408.03314v1"
+          },
+          {
+            "title": "Paper page - Scaling LLM Test-Time Compute Optimally can be More Effective than Scaling Model Parameters",
+            "url": "https://huggingface.co/papers/2408.03314"
+          },
+          {
+            "title": "(PDF) Scaling LLM Test-Time Compute Optimally can be More Effective than Scaling Model Parameters",
+            "url": "https://www.researchgate.net/publication/382914793_Scaling_LLM_Test-Time_Compute_Optimally_can_be_More_Effective_than_Scaling_Model_Parameters"
+          },
+          {
+            "title": "Rethinking Fine-Tuning when Scaling Test-Time Compute: Limiting Confidence Improves Mathematical Reasoning",
+            "url": "https://arxiv.org/pdf/2502.07154"
+          },
+          {
+            "title": "Scaling LLM Test-Time Compute Optimally Can be More Effective than Scaling Parameters for Reasoning | OpenReview",
+            "url": "https://openreview.net/forum?id=4FWAwZtd2n"
+          }
+        ]
+      },
+      "I found the paper you're looking for! Here are the key details:\n\n**Paper Information:**\nThe paper is authored by Charlie Snell, Jaehoon Lee, Kelvin Xu, and Aviral Kumar. It was submitted to arXiv as preprint arXiv:2408.03314 in 2024. The paper was published as a conference paper at ICLR 2025.\n\n**Research Focus:**\nThe paper studies the scaling of inference-time computation in LLMs, focusing on answering the question: if an LLM is allowed to use a fixed but non-trivial amount of inference-time compute, how much can it improve its performance on a challenging prompt?\n\n**Key Findings:**\nScaling LLM test-time compute optimally can be more effective than scaling model parameters. More specifically, by allocating inference-time computation adaptively, a smaller model can outperform one 14× larger at matched compute — achieving 4× higher efficiency.\n\nThe paper addresses an important question about how to balance computational resources between model pretraining and inference-time computation in language models."
+    ],
+    "durationSeconds": 18.582259688000004
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 37_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good progress. Let me now search for the remaining items:
+
+Part A remaining:
+- Xie et al. 2023: Found - "Self-Improving for Zero-Shot Named Entity Recognition with Large Language Models" by Tingyu Xie et al., NAACL 2024 (arxiv 2311.08921). But the user asked for "Xie et al. 2023" - let me check the year. The arxiv preprint is from November 2023, but the venue is NAACL 2024. Let me also check if there's another Xie 2023 paper on self-evaluation/beam search.
+
+
+- Wan et al. 2024: I'm getting Xu et al. 2024 in the results instead, so I need to search more specifically for Wan as the author.
+- Ensemble NER: I found EL4NER from 2025, but I need to locate one or two more papers and get their full citation details.
+
+Part B remaining:
+- zheng2024llamafactory, luan2018scierc, and derczynski2017wnut all need verification.
+- venktesh2025trust: Already located at arxiv 2508.16665.
+
+I'm verifying the remaining citations now. Snell2025scaling checks out as ICLR 2025, and willard2023guided is arxiv 2307.09702 from 2023, both correct. Moving on to search for the other items.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4174a956-2672-46bc-9cc6-7207d07af3de",
+  "uuid": "06381427-25c6-4652-8ee8-bc9c3d3587c5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NkRjPqPdrpg4gKKPSA28AL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 774,
+      "cache_creation_input_tokens": 7391,
+      "cache_read_input_tokens": 38756,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7391
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01CWHZ9kk4gYUJzGeZd23Hxt`</summary>
+
+```json
+{
+  "query": "Xie 2023 self-evaluation beam search NER information extraction arxiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4174a956-2672-46bc-9cc6-7207d07af3de",
+  "uuid": "6cf4d91c-d1b0-41d2-b14b-6f1e2ee2c94d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NkRjPqPdrpg4gKKPSA28AL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 774,
+      "cache_creation_input_tokens": 7391,
+      "cache_read_input_tokens": 38756,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7391
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Sg1mCm9ymww2NhFq5MnmGT`</summary>
+
+```json
+{
+  "query": "\"Wan\" author 2024 information extraction survey NER RE EE"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4174a956-2672-46bc-9cc6-7207d07af3de",
+  "uuid": "29bda035-cb31-48bd-9034-e044bf3b2c96",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NkRjPqPdrpg4gKKPSA28AL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 774,
+      "cache_creation_input_tokens": 7391,
+      "cache_read_input_tokens": 38756,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7391
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_018wUw9wTk75bcUwybrQ3NdM`</summary>
+
+```json
+{
+  "query": "Zheng 2024 \"LlamaFactory\" ACL demo arxiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4174a956-2672-46bc-9cc6-7207d07af3de",
+  "uuid": "e40cd5e3-e8c5-42db-a143-c04cac5109a2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NkRjPqPdrpg4gKKPSA28AL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 774,
+      "cache_creation_input_tokens": 7391,
+      "cache_read_input_tokens": 38756,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7391
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01DrbRNykdd3iAuKz8P3Xxn2`</summary>
+
+```json
+{
+  "query": "Luan 2018 \"Multi-Task Identification of Entities Relations Coreference\" SciERC EMNLP"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4174a956-2672-46bc-9cc6-7207d07af3de",
+  "uuid": "f6b4f4e6-79fa-43d9-a753-a583652601c5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NkRjPqPdrpg4gKKPSA28AL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 774,
+      "cache_creation_input_tokens": 7391,
+      "cache_read_input_tokens": 38756,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7391
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01233fRNNG9ETr4xN51gpLUF`</summary>
+
+```json
+{
+  "query": "Derczynski 2017 \"WNUT2017 Shared Task Novel Emerging Entity Recognition\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4174a956-2672-46bc-9cc6-7207d07af3de",
+  "uuid": "a009d785-4cba-4eaf-900b-e583ba2eb6ce",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NkRjPqPdrpg4gKKPSA28AL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 774,
+      "cache_creation_input_tokens": 7391,
+      "cache_read_input_tokens": 38756,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7391
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01GdiQWUnwkCRJiUUnJXqRKG`</summary>
+
+```json
+{
+  "query": "NER ensemble multiple models entity consensus aggregation 2023 2024 ACL EMNLP"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4174a956-2672-46bc-9cc6-7207d07af3de",
+  "uuid": "bb5022a8-a08d-4325-b12a-c76924d71203",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NkRjPqPdrpg4gKKPSA28AL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 774,
+      "cache_creation_input_tokens": 7391,
+      "cache_read_input_tokens": 38756,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7391
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-19T04:07:58.618Z_
+
+<details><summary>↩ Tool result · `toolu_018wUw9wTk75bcUwybrQ3NdM`</summary>
+
+```text
+Web search results for query: "Zheng 2024 "LlamaFactory" ACL demo arxiv"
+
+Links: [{"title":"LlamaFactory: Unified Efficient Fine-Tuning of 100+ Language Models - ACL Anthology","url":"https://aclanthology.org/2024.acl-demos.38/"},{"title":"GitHub - hiyouga/LlamaFactory: Unified Efficient Fine-Tuning of 100+ LLMs & VLMs (ACL 2024) · GitHub","url":"https://github.com/hiyouga/LLaMAFactory"},{"title":"Accepted Demo Papers - ACL 2024","url":"https://2024.aclweb.org/program/demo_papers/"},{"title":"[PDF] LlamaFactory: Unified Efficient Fine-Tuning of 100+ Language Models | Semantic Scholar","url":"https://www.semanticscholar.org/paper/LlamaFactory:-Unified-Efficient-Fine-Tuning-of-100+-Zheng-Zhang/d5d7b26dbdf09737878644530b226a79c9f43bfb"},{"title":"KALE: Enhancing Knowledge Manipulation in Large Language Models via Knowledge-aware Learning","url":"https://arxiv.org/html/2601.07430v1"},{"title":"[2403.13372] LlamaFactory: Unified Efficient Fine-Tuning of 100+ Language Models","url":"https://arxiv.org/abs/2403.13372"},{"title":"Paper page - LlamaFactory: Unified Efficient Fine-Tuning of 100+ Language Models","url":"https://huggingface.co/papers/2403.13372"},{"title":"LlamaFactory: Unified Efficient Fine-Tuning of 100+ Language Models - ADS","url":"https://ui.adsabs.harvard.edu/abs/2024arXiv240313372Z/abstract"},{"title":"Unified Efficient Fine-Tuning of 100+ Language Models","url":"https://aclanthology.org/2024.acl-demos.38.pdf"}]
+
+Based on the search results, I found the paper you're looking for:
+
+**LlamaFactory: Unified Efficient Fine-Tuning of 100+ Language Models** by Yaowei Zheng, Richong Zhang, Junhao Zhang, Yanhan Ye, and Zheyan Luo was published in the Proceedings of the 62nd Annual Meeting of the Association for Computational Linguistics (Volume 3: System Demonstrations) in August 2024.
+
+The paper was submitted to arXiv on March 20, 2024 (arxiv paper 2403.13372).
+
+LlamaFactory is a unified framework that integrates a suite of cutting-edge efficient training methods and provides a solution for flexibly customizing the fine-tuning of 100+ LLMs without the need for coding through the built-in web UI LlamaBoard.
+
+The project has been released on GitHub (https://github.com/hiyouga/LLaMA-Factory) and received over 25,000 stars and 3,000 forks.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4174a956-2672-46bc-9cc6-7207d07af3de",
+  "uuid": "1bb0a049-10d8-4ee5-a97d-e94cefe8665e",
+  "tool_use_result": {
+    "query": "Zheng 2024 \"LlamaFactory\" ACL demo arxiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01UzpgzHMJTMxTYb6oRR6zoj",
+        "content": [
+          {
+            "title": "LlamaFactory: Unified Efficient Fine-Tuning of 100+ Language Models - ACL Anthology",
+            "url": "https://aclanthology.org/2024.acl-demos.38/"
+          },
+          {
+            "title": "GitHub - hiyouga/LlamaFactory: Unified Efficient Fine-Tuning of 100+ LLMs & VLMs (ACL 2024) · GitHub",
+            "url": "https://github.com/hiyouga/LLaMAFactory"
+          },
+          {
+            "title": "Accepted Demo Papers - ACL 2024",
+            "url": "https://2024.aclweb.org/program/demo_papers/"
+          },
+          {
+            "title": "[PDF] LlamaFactory: Unified Efficient Fine-Tuning of 100+ Language Models | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/LlamaFactory:-Unified-Efficient-Fine-Tuning-of-100+-Zheng-Zhang/d5d7b26dbdf09737878644530b226a79c9f43bfb"
+          },
+          {
+            "title": "KALE: Enhancing Knowledge Manipulation in Large Language Models via Knowledge-aware Learning",
+            "url": "https://arxiv.org/html/2601.07430v1"
+          },
+          {
+            "title": "[2403.13372] LlamaFactory: Unified Efficient Fine-Tuning of 100+ Language Models",
+            "url": "https://arxiv.org/abs/2403.13372"
+          },
+          {
+            "title": "Paper page - LlamaFactory: Unified Efficient Fine-Tuning of 100+ Language Models",
+            "url": "https://huggingface.co/papers/2403.13372"
+          },
+          {
+            "title": "LlamaFactory: Unified Efficient Fine-Tuning of 100+ Language Models - ADS",
+            "url": "https://ui.adsabs.harvard.edu/abs/2024arXiv240313372Z/abstract"
+          },
+          {
+            "title": "Unified Efficient Fine-Tuning of 100+ Language Models",
+            "url": "https://aclanthology.org/2024.acl-demos.38.pdf"
+          }
+        ]
+      },
+      "Based on the search results, I found the paper you're looking for:\n\n**LlamaFactory: Unified Efficient Fine-Tuning of 100+ Language Models** by Yaowei Zheng, Richong Zhang, Junhao Zhang, Yanhan Ye, and Zheyan Luo was published in the Proceedings of the 62nd Annual Meeting of the Association for Computational Linguistics (Volume 3: System Demonstrations) in August 2024.\n\nThe paper was submitted to arXiv on March 20, 2024 (arxiv paper 2403.13372).\n\nLlamaFactory is a unified framework that integrates a suite of cutting-edge efficient training methods and provides a solution for flexibly customizing the fine-tuning of 100+ LLMs without the need for coding through the built-in web UI LlamaBoard.\n\nThe project has been released on GitHub (https://github.com/hiyouga/LLaMA-Factory) and received over 25,000 stars and 3,000 forks."
+    ],
+    "durationSeconds": 4.608652377999999
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-19T04:07:58.783Z_
+
+<details><summary>↩ Tool result · `toolu_01Sg1mCm9ymww2NhFq5MnmGT`</summary>
+
+```text
+Web search results for query: ""Wan" author 2024 information extraction survey NER RE EE"
+
+Links: [{"title":"Large language models for generative information extraction: a survey","url":"https://d-nb.info/1354655508/34"},{"title":"GitHub - zjunlp/Low-resource-KEPapers: A Paper List of Low-resource Information Extraction","url":"https://github.com/zjunlp/Low-resource-KEPapers"},{"title":"Large Language Models for Generative Information Extraction: A Survey","url":"https://arxiv.org/html/2312.17617v3"},{"title":"GitHub - quqxui/Awesome-LLM4IE-Papers: Awesome papers about generative Information Extraction (IE) using Large Language Models (LLMs) · GitHub","url":"https://github.com/quqxui/Awesome-LLM4IE-Papers"},{"title":"Information Extraction in Low-Resource Scenarios: Survey and Perspective","url":"https://arxiv.org/html/2202.08063v6"},{"title":"A Study of Recent Contributions on Information Extraction","url":"https://arxiv.org/pdf/1803.05667"},{"title":"A Comprehensive Survey on Document-Level Information ...","url":"https://aclanthology.org/2024.futured-1.6.pdf"},{"title":"(PDF) Large language models for generative information extraction: a survey","url":"https://www.researchgate.net/publication/385729624_Large_language_models_for_generative_information_extraction_a_survey"},{"title":"Recent Advances in Named Entity Recognition: A Comprehensive Survey and Comparative Study","url":"https://arxiv.org/html/2401.10825v3"}]
+
+Based on the search results, I found relevant information about a 2024 information extraction survey. The survey "Large language models for generative information extraction: A survey" was authored by Xu, Derong, Chen, Wei, Peng, Wenjun, Zhang, Chao, Xu, Tong, Zhao, Xiangyu, Wu, Xian, Zheng, Yefeng, Wang, Yang, and Chen, Enhong, published in Frontiers of Computer Science in 2024.
+
+The survey focuses on how Information Extraction (IE) aims to extract structural knowledge from plain natural language texts, and how generative Large Language Models (LLMs) have demonstrated remarkable capabilities in text understanding and generation, with numerous works proposed to integrate LLMs for IE tasks based on a generative paradigm.
+
+The survey covers information extraction subtasks including Named Entity Recognition (NER), Relation Extraction (RE), and Event Extraction (EE), which align with the NER, RE, and EE components mentioned in your query.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4174a956-2672-46bc-9cc6-7207d07af3de",
+  "uuid": "8dab8138-af5f-4739-b4db-30c1385c427f",
+  "tool_use_result": {
+    "query": "\"Wan\" author 2024 information extraction survey NER RE EE",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01SgTxkxKfoZmhM75rRCRp22",
+        "content": [
+          {
+            "title": "Large language models for generative information extraction: a survey",
+            "url": "https://d-nb.info/1354655508/34"
+          },
+          {
+            "title": "GitHub - zjunlp/Low-resource-KEPapers: A Paper List of Low-resource Information Extraction",
+            "url": "https://github.com/zjunlp/Low-resource-KEPapers"
+          },
+          {
+            "title": "Large Language Models for Generative Information Extraction: A Survey",
+            "url": "https://arxiv.org/html/2312.17617v3"
+          },
+          {
+            "title": "GitHub - quqxui/Awesome-LLM4IE-Papers: Awesome papers about generative Information Extraction (IE) using Large Language Models (LLMs) · GitHub",
+            "url": "https://github.com/quqxui/Awesome-LLM4IE-Papers"
+          },
+          {
+            "title": "Information Extraction in Low-Resource Scenarios: Survey and Perspective",
+            "url": "https://arxiv.org/html/2202.08063v6"
+          },
+          {
+            "title": "A Study of Recent Contributions on Information Extraction",
+            "url": "https://arxiv.org/pdf/1803.05667"
+          },
+          {
+            "title": "A Comprehensive Survey on Document-Level Information ...",
+            "url": "https://aclanthology.org/2024.futured-1.6.pdf"
+          },
+          {
+            "title": "(PDF) Large language models for generative information extraction: a survey",
+            "url": "https://www.researchgate.net/publication/385729624_Large_language_models_for_generative_information_extraction_a_survey"
+          },
+          {
+            "title": "Recent Advances in Named Entity Recognition: A Comprehensive Survey and Comparative Study",
+            "url": "https://arxiv.org/html/2401.10825v3"
+          }
+        ]
+      },
+      "Based on the search results, I found relevant information about a 2024 information extraction survey. The survey \"Large language models for generative information extraction: A survey\" was authored by Xu, Derong, Chen, Wei, Peng, Wenjun, Zhang, Chao, Xu, Tong, Zhao, Xiangyu, Wu, Xian, Zheng, Yefeng, Wang, Yang, and Chen, Enhong, published in Frontiers of Computer Science in 2024.\n\nThe survey focuses on how Information Extraction (IE) aims to extract structural knowledge from plain natural language texts, and how generative Large Language Models (LLMs) have demonstrated remarkable capabilities in text understanding and generation, with numerous works proposed to integrate LLMs for IE tasks based on a generative paradigm.\n\nThe survey covers information extraction subtasks including Named Entity Recognition (NER), Relation Extraction (RE), and Event Extraction (EE), which align with the NER, RE, and EE components mentioned in your query."
+    ],
+    "durationSeconds": 5.267276801999993
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-19T04:07:59.079Z_
+
+<details><summary>↩ Tool result · `toolu_01CWHZ9kk4gYUJzGeZd23Hxt`</summary>
+
+```text
+Web search results for query: "Xie 2023 self-evaluation beam search NER information extraction arxiv"
+
+Links: [{"title":"[PDF] Self-Evaluation Guided Beam Search for Reasoning | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Self-Evaluation-Guided-Beam-Search-for-Reasoning-Xie-Kawaguchi/ef018d9fad6167cfddb7d6654c5422df1e953730"},{"title":"Self-Evaluation Guided Beam Search for Reasoning","url":"https://proceedings.neurips.cc/paper_files/paper/2023/hash/81fde95c4dc79188a69ce5b24d63010b-Abstract-Conference.html"},{"title":"[2305.00633] Self-Evaluation Guided Beam Search for Reasoning","url":"https://arxiv.org/abs/2305.00633"},{"title":"Self-Evaluation Guided Beam Search for Reasoning Yuxi Xie1∗ Kenji Kawaguchi1","url":"https://arxiv.org/pdf/2305.00633"},{"title":"Large Language Models for Generative Information Extraction: A Survey","url":"https://arxiv.org/html/2312.17617v3"},{"title":"Self-Evaluation Guided Beam Search for Reasoning","url":"https://papers.nips.cc/paper_files/paper/2023/hash/81fde95c4dc79188a69ce5b24d63010b-Abstract-Conference.html"},{"title":"Speaker: Yuxi Xie Self-Evaluation Guided Beam Search for Reasoning","url":"https://neurips.cc/media/neurips-2023/Slides/72456.pdf"},{"title":"Self-evaluation guided beam search for reasoning | Proceedings of the 37th International Conference on Neural Information Processing Systems","url":"https://dl.acm.org/doi/10.5555/3666122.3667924"},{"title":"Recent Advances in Named Entity Recognition: A Comprehensive Survey and Comparative Study","url":"https://arxiv.org/html/2401.10825v3"}]
+
+Based on the search results, I found information about Xie et al. 2023, though the primary paper appears to focus on reasoning rather than NER directly:
+
+## Primary Paper: Self-Evaluation Guided Beam Search for Reasoning
+
+The main Xie et al. 2023 paper introduces a stepwise self-evaluation mechanism to guide and calibrate the reasoning process of LLMs, proposing a decoding algorithm integrating self-evaluation guidance via stochastic beam search, where the self-evaluation guidance serves as a better-calibrated automatic criterion that facilitates efficient search in the reasoning space and results in superior prediction quality. The paper was published in Advances in Neural Information Processing Systems 36 (NeurIPS 2023).
+
+The arxiv version is available at: https://arxiv.org/abs/2305.00633
+
+## Related Work on NER
+
+However, the search results also reference another Xie et al. 2023 work on NER: Self-Improving Zero-Shot NER (Xie et al., 2023) introduces a framework for improving performance by leveraging an unlabeled corpus, where through self-annotated pseudo-demonstrations, the model continuously improves its zero-shot capabilities.
+
+Note that the primary self-evaluation guided beam search paper focuses on LLM reasoning tasks rather than information extraction or NER specifically, though the self-evaluation mechanism could be applicable to various tasks.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4174a956-2672-46bc-9cc6-7207d07af3de",
+  "uuid": "eb167cf2-e90c-447d-8807-905bb82f6ad0",
+  "tool_use_result": {
+    "query": "Xie 2023 self-evaluation beam search NER information extraction arxiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01X4DbJzZQwgqENuBNu3CXrv",
+        "content": [
+          {
+            "title": "[PDF] Self-Evaluation Guided Beam Search for Reasoning | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/Self-Evaluation-Guided-Beam-Search-for-Reasoning-Xie-Kawaguchi/ef018d9fad6167cfddb7d6654c5422df1e953730"
+          },
+          {
+            "title": "Self-Evaluation Guided Beam Search for Reasoning",
+            "url": "https://proceedings.neurips.cc/paper_files/paper/2023/hash/81fde95c4dc79188a69ce5b24d63010b-Abstract-Conference.html"
+          },
+          {
+            "title": "[2305.00633] Self-Evaluation Guided Beam Search for Reasoning",
+            "url": "https://arxiv.org/abs/2305.00633"
+          },
+          {
+            "title": "Self-Evaluation Guided Beam Search for Reasoning Yuxi Xie1∗ Kenji Kawaguchi1",
+            "url": "https://arxiv.org/pdf/2305.00633"
+          },
+          {
+            "title": "Large Language Models for Generative Information Extraction: A Survey",
+            "url": "https://arxiv.org/html/2312.17617v3"
+          },
+          {
+            "title": "Self-Evaluation Guided Beam Search for Reasoning",
+            "url": "https://papers.nips.cc/paper_files/paper/2023/hash/81fde95c4dc79188a69ce5b24d63010b-Abstract-Conference.html"
+          },
+          {
+            "title": "Speaker: Yuxi Xie Self-Evaluation Guided Beam Search for Reasoning",
+            "url": "https://neurips.cc/media/neurips-2023/Slides/72456.pdf"
+          },
+          {
+            "title": "Self-evaluation guided beam search for reasoning | Proceedings of the 37th International Conference on Neural Information Processing Systems",
+            "url": "https://dl.acm.org/doi/10.5555/3666122.3667924"
+          },
+          {
+            "title": "Recent Advances in Named Entity Recognition: A Comprehensive Survey and Comparative Study",
+            "url": "https://arxiv.org/html/2401.10825v3"
+          }
+        ]
+      },
+      "Based on the search results, I found information about Xie et al. 2023, though the primary paper appears to focus on reasoning rather than NER directly:\n\n## Primary Paper: Self-Evaluation Guided Beam Search for Reasoning\n\nThe main Xie et al. 2023 paper introduces a stepwise self-evaluation mechanism to guide and calibrate the reasoning process of LLMs, proposing a decoding algorithm integrating self-evaluation guidance via stochastic beam search, where the self-evaluation guidance serves as a better-calibrated automatic criterion that facilitates efficient search in the reasoning space and results in superior prediction quality. The paper was published in Advances in Neural Information Processing Systems 36 (NeurIPS 2023).\n\nThe arxiv version is available at: https://arxiv.org/abs/2305.00633\n\n## Related Work on NER\n\nHowever, the search results also reference another Xie et al. 2023 work on NER: Self-Improving Zero-Shot NER (Xie et al., 2023) introduces a framework for improving performance by leveraging an unlabeled corpus, where through self-annotated pseudo-demonstrations, the model continuously improves its zero-shot capabilities.\n\nNote that the primary self-evaluation guided beam search paper focuses on LLM reasoning tasks rather than information extraction or NER specifically, though the self-evaluation mechanism could be applicable to various tasks."
+    ],
+    "durationSeconds": 5.926800436000005
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-19T04:08:01.209Z_
+
+<details><summary>↩ Tool result · `toolu_01DrbRNykdd3iAuKz8P3Xxn2`</summary>
+
+```text
+Web search results for query: "Luan 2018 "Multi-Task Identification of Entities Relations Coreference" SciERC EMNLP"
+
+Links: [{"title":"Multi-Task Identification of Entities, Relations, and Coreference for Scientific Knowledge Graph Construction - ACL Anthology","url":"https://aclanthology.org/D18-1360/"},{"title":"[PDF] Multi-Task Identification of Entities, Relations, and Coreference for Scientific Knowledge Graph Construction | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Multi-Task-Identification-of-Entities,-Relations,-Luan-He/b21b927c251c415b601b6d7f785a42cc5c292635"},{"title":"Evaluating LLMs for Named Entity Recognition in Scientific ...","url":"https://oro.open.ac.uk/105348/1/105348.pdf"},{"title":"Multi-Task Identification of Entities, Relations, and Coreference for Scientific Knowledge Graph Construction - Consensus","url":"https://k8s.consensus.app/papers/details/ce11b64546755e678612cfea3b404121/"},{"title":"[1808.09602] Multi-Task Identification of Entities, Relations, and Coreference for Scientific Knowledge Graph Construction","url":"https://arxiv.org/abs/1808.09602"},{"title":"[1808.09602v1] Multi-Task Identification of Entities, Relations, and Coreference for Scientific Knowledge Graph Construction","url":"https://arxiv.org/abs/1808.09602v1"},{"title":"Multi-Task Identification of Entities, Relations, and Coreference for   Scientific Knowledge Graph Construction","url":"https://arxiv.org/pdf/1808.09602"},{"title":"SciERC/README.md at master · YerevaNN/SciERC","url":"https://github.com/YerevaNN/SciERC/blob/master/README.md"},{"title":"Multi-Task Identification of Entities, Relations, and Coreference for Scientific Knowledge Graph Construction","url":"https://www.researchgate.net/publication/334115742_Multi-Task_Identification_of_Entities_Relations_and_Coreference_for_Scientific_Knowledge_Graph_Construction"},{"title":"dblp: Multi-Task Identification of Entities, Relations, and Coreference for Scientific Knowledge Graph Construction.","url":"https://dblp.org/rec/conf/emnlp/LuanHOH18.html"}]
+
+I found the paper you're looking for. Here are the key details:
+
+**Paper:** Multi-Task Identification of Entities, Relations, and Coreference for Scientific Knowledge Graph Construction (Luan et al., EMNLP 2018)
+
+**Authors:** Yi Luan, Luheng He, Mari Ostendorf, and Hannaneh Hajishirzi from the University of Washington
+
+**Main Contribution:** The paper introduces a multi-task setup for identifying and classifying entities, relations, and coreference clusters in scientific articles, along with the SciERC dataset that includes annotations for all three tasks and a unified framework called Scientific Information Extractor (SciIE) with shared span representations.
+
+**Key Advantage:** The multi-task setup reduces cascading errors between tasks and leverages cross-sentence relations through coreference links, with experiments showing that the multi-task model outperforms previous models in scientific information extraction without using any domain-specific features.
+
+**Publication Details:** The paper was published in EMNLP 2018, pages 3219-3232
+
+The paper is available on the ACL Anthology and arXiv, and includes the SciERC dataset which has become a widely-used benchmark in the scientific information extraction community.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4174a956-2672-46bc-9cc6-7207d07af3de",
+  "uuid": "9702e7e8-60e0-4fae-8b44-bcecf323b7fb",
+  "tool_use_result": {
+    "query": "Luan 2018 \"Multi-Task Identification of Entities Relations Coreference\" SciERC EMNLP",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_016JfiuPYHFrhd3frpDH1ZxF",
+        "content": [
+          {
+            "title": "Multi-Task Identification of Entities, Relations, and Coreference for Scientific Knowledge Graph Construction - ACL Anthology",
+            "url": "https://aclanthology.org/D18-1360/"
+          },
+          {
+            "title": "[PDF] Multi-Task Identification of Entities, Relations, and Coreference for Scientific Knowledge Graph Construction | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/Multi-Task-Identification-of-Entities,-Relations,-Luan-He/b21b927c251c415b601b6d7f785a42cc5c292635"
+          },
+          {
+            "title": "Evaluating LLMs for Named Entity Recognition in Scientific ...",
+            "url": "https://oro.open.ac.uk/105348/1/105348.pdf"
+          },
+          {
+            "title": "Multi-Task Identification of Entities, Relations, and Coreference for Scientific Knowledge Graph Construction - Consensus",
+            "url": "https://k8s.consensus.app/papers/details/ce11b64546755e678612cfea3b404121/"
+          },
+          {
+            "title": "[1808.09602] Multi-Task Identification of Entities, Relations, and Coreference for Scientific Knowledge Graph Construction",
+            "url": "https://arxiv.org/abs/1808.09602"
+          },
+          {
+            "title": "[1808.09602v1] Multi-Task Identification of Entities, Relations, and Coreference for Scientific Knowledge Graph Construction",
+            "url": "https://arxiv.org/abs/1808.09602v1"
+          },
+          {
+            "title": "Multi-Task Identification of Entities, Relations, and Coreference for   Scientific Knowledge Graph Construction",
+            "url": "https://arxiv.org/pdf/1808.09602"
+          },
+          {
+            "title": "SciERC/README.md at master · YerevaNN/SciERC",
+            "url": "https://github.com/YerevaNN/SciERC/blob/master/README.md"
+          },
+          {
+            "title": "Multi-Task Identification of Entities, Relations, and Coreference for Scientific Knowledge Graph Construction",
+            "url": "https://www.researchgate.net/publication/334115742_Multi-Task_Identification_of_Entities_Relations_and_Coreference_for_Scientific_Knowledge_Graph_Construction"
+          },
+          {
+            "title": "dblp: Multi-Task Identification of Entities, Relations, and Coreference for Scientific Knowledge Graph Construction.",
+            "url": "https://dblp.org/rec/conf/emnlp/LuanHOH18.html"
+          }
+        ]
+      },
+      "I found the paper you're looking for. Here are the key details:\n\n**Paper:** Multi-Task Identification of Entities, Relations, and Coreference for Scientific Knowledge Graph Construction (Luan et al., EMNLP 2018)\n\n**Authors:** Yi Luan, Luheng He, Mari Ostendorf, and Hannaneh Hajishirzi from the University of Washington\n\n**Main Contribution:** The paper introduces a multi-task setup for identifying and classifying entities, relations, and coreference clusters in scientific articles, along with the SciERC dataset that includes annotations for all three tasks and a unified framework called Scientific Information Extractor (SciIE) with shared span representations.\n\n**Key Advantage:** The multi-task setup reduces cascading errors between tasks and leverages cross-sentence relations through coreference links, with experiments showing that the multi-task model outperforms previous models in scientific information extraction without using any domain-specific features.\n\n**Publication Details:** The paper was published in EMNLP 2018, pages 3219-3232\n\nThe paper is available on the ACL Anthology and arXiv, and includes the SciERC dataset which has become a widely-used benchmark in the scientific information extraction community."
+    ],
+    "durationSeconds": 6.097635381
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-19T04:08:02.697Z_
+
+<details><summary>↩ Tool result · `toolu_01233fRNNG9ETr4xN51gpLUF`</summary>
+
+```text
+Web search results for query: "Derczynski 2017 "WNUT2017 Shared Task Novel Emerging Entity Recognition""
+
+Links: [{"title":"Results of the WNUT2017 Shared Task on Novel and Emerging Entity Recognition - Royal Netherlands Academy of Arts and Sciences (KNAW)","url":"https://pure.knaw.nl/portal/en/publications/results-of-the-wnut2017-shared-task-on-novel-and-emerging-entity-"},{"title":"leondz/wnut_17 · Datasets at Hugging Face","url":"https://huggingface.co/datasets/leondz/wnut_17"},{"title":"[PDF] Results of the WNUT2017 Shared Task on Novel and Emerging Entity Recognition | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Results-of-the-WNUT2017-Shared-Task-on-Novel-and-Derczynski-Nichols/72e87913632d0f1295fbcfa46795c5bb26d0a422"},{"title":"Emerging and Rare Entity Recognition","url":"http://noisy-text.github.io/2017/emerging-rare-entities.html"},{"title":"Results of the WNUT2017 Shared Task on Novel and Emerging Entity Recognition - ACL Anthology","url":"https://aclanthology.org/W17-4418/"},{"title":"GitHub - leondz/emerging_entities_17: Dataset for the Emerging & Novel Entity NER task (WNUT '17) · GitHub","url":"https://github.com/leondz/emerging_entities_17"},{"title":"Results of the WNUT2017 Shared Task on Novel and Emerging Entity Recognition | Request PDF","url":"https://www.researchgate.net/publication/322590094_Results_of_the_WNUT2017_Shared_Task_on_Novel_and_Emerging_Entity_Recognition"},{"title":"Results of the WNUT2017 Shared Task on Novel and Emerging Entity Recognition | Papers With Code","url":"https://paperswithcode.com/paper/results-of-the-wnut2017-shared-task-on-novel"},{"title":"Results of the WNUT2017 Shared Task on Novel and Emerging Entity Recognition","url":"https://noisy-text.github.io/2017/pdf/WNUT18.pdf"},{"title":"Results of the WNUT2017 Shared Task on Novel and Emerging Entity Recognition","url":"https://www.derczynski.com/sheffield/papers/emerging-wnut.pdf"}]
+
+I found the paper you're looking for. Here's the information about the Derczynski et al. 2017 paper on the WNUT2017 Shared Task:
+
+**Citation:**
+Leon Derczynski, Eric Nichols, Marieke van Erp, and Nut Limsopatham. 2017. Results of the WNUT2017 Shared Task on Novel and Emerging Entity Recognition. In Proceedings of the 3rd Workshop on Noisy User-generated Text, pages 140–147, Copenhagen, Denmark. Association for Computational Linguistics.
+
+**Overview:**
+The goal of this task is to provide a definition of emerging and of rare entities, and based on that, also datasets for detecting these entities and to evaluate the ability of participating entries to detect and classify novel and emerging named entities in noisy text.
+
+**Dataset Source:**
+Text comes from YouTube comments, Stack Overflow responses, Twitter text around four separate major events in 2016/17, unfiltered Twitter text from 2010, and Reddit comments.
+
+**Access Points:**
+- ACL Anthology: https://aclanthology.org/W17-4418/
+- Hugging Face Dataset: https://huggingface.co/datasets/leondz/wnut_17
+- GitHub Repository: https://github.com/leondz/emerging_entities_17
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4174a956-2672-46bc-9cc6-7207d07af3de",
+  "uuid": "d5959bb7-3834-40d0-a16d-593206a41f88",
+  "tool_use_result": {
+    "query": "Derczynski 2017 \"WNUT2017 Shared Task Novel Emerging Entity Recognition\"",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Xwrq4FXEQcwzUpdZFGBZ3g",
+        "content": [
+          {
+            "title": "Results of the WNUT2017 Shared Task on Novel and Emerging Entity Recognition - Royal Netherlands Academy of Arts and Sciences (KNAW)",
+            "url": "https://pure.knaw.nl/portal/en/publications/results-of-the-wnut2017-shared-task-on-novel-and-emerging-entity-"
+          },
+          {
+            "title": "leondz/wnut_17 · Datasets at Hugging Face",
+            "url": "https://huggingface.co/datasets/leondz/wnut_17"
+          },
+          {
+            "title": "[PDF] Results of the WNUT2017 Shared Task on Novel and Emerging Entity Recognition | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/Results-of-the-WNUT2017-Shared-Task-on-Novel-and-Derczynski-Nichols/72e87913632d0f1295fbcfa46795c5bb26d0a422"
+          },
+          {
+            "title": "Emerging and Rare Entity Recognition",
+            "url": "http://noisy-text.github.io/2017/emerging-rare-entities.html"
+          },
+          {
+            "title": "Results of the WNUT2017 Shared Task on Novel and Emerging Entity Recognition - ACL Anthology",
+            "url": "https://aclanthology.org/W17-4418/"
+          },
+          {
+            "title": "GitHub - leondz/emerging_entities_17: Dataset for the Emerging & Novel Entity NER task (WNUT '17) · GitHub",
+            "url": "https://github.com/leondz/emerging_entities_17"
+          },
+          {
+            "title": "Results of the WNUT2017 Shared Task on Novel and Emerging Entity Recognition | Request PDF",
+            "url": "https://www.researchgate.net/publication/322590094_Results_of_the_WNUT2017_Shared_Task_on_Novel_and_Emerging_Entity_Recognition"
+          },
+          {
+            "title": "Results of the WNUT2017 Shared Task on Novel and Emerging Entity Recognition | Papers With Code",
+            "url": "https://paperswithcode.com/paper/results-of-the-wnut2017-shared-task-on-novel"
+          },
+          {
+            "title": "Results of the WNUT2017 Shared Task on Novel and Emerging Entity Recognition",
+            "url": "https://noisy-text.github.io/2017/pdf/WNUT18.pdf"
+          },
+          {
+            "title": "Results of the WNUT2017 Shared Task on Novel and Emerging Entity Recognition",
+            "url": "https://www.derczynski.com/sheffield/papers/emerging-wnut.pdf"
+          }
+        ]
+      },
+      "I found the paper you're looking for. Here's the information about the Derczynski et al. 2017 paper on the WNUT2017 Shared Task:\n\n**Citation:**\nLeon Derczynski, Eric Nichols, Marieke van Erp, and Nut Limsopatham. 2017. Results of the WNUT2017 Shared Task on Novel and Emerging Entity Recognition. In Proceedings of the 3rd Workshop on Noisy User-generated Text, pages 140–147, Copenhagen, Denmark. Association for Computational Linguistics.\n\n**Overview:**\nThe goal of this task is to provide a definition of emerging and of rare entities, and based on that, also datasets for detecting these entities and to evaluate the ability of participating entries to detect and classify novel and emerging named entities in noisy text.\n\n**Dataset Source:**\nText comes from YouTube comments, Stack Overflow responses, Twitter text around four separate major events in 2016/17, unfiltered Twitter text from 2010, and Reddit comments.\n\n**Access Points:**\n- ACL Anthology: https://aclanthology.org/W17-4418/\n- Hugging Face Dataset: https://huggingface.co/datasets/leondz/wnut_17\n- GitHub Repository: https://github.com/leondz/emerging_entities_17"
+    ],
+    "durationSeconds": 6.631770552000002
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-19T04:08:06.286Z_
+
+<details><summary>↩ Tool result · `toolu_01GdiQWUnwkCRJiUUnJXqRKG`</summary>
+
+```text
+Web search results for query: "NER ensemble multiple models entity consensus aggregation 2023 2024 ACL EMNLP"
+
+Links: [{"title":"Exploring Nested Named Entity Recognition with Large Language Models: Methods, Challenges, and Insights - ACL Anthology","url":"https://aclanthology.org/2024.emnlp-main.492/"},{"title":"The 2024 Conference on Empirical Methods in Natural Language Processing - ACL Anthology","url":"https://aclanthology.org/events/emnlp-2024/"},{"title":"EL4NER: Ensemble Learning for Named Entity Recognition via Multiple Small-Parameter Large Language Models","url":"https://arxiv.org/pdf/2505.23038"},{"title":"EL4NER: Ensemble Learning for Named Entity Recognition via Multiple Small-Parameter Large Language Models","url":"https://arxiv.org/html/2505.23038"},{"title":"Ensemble of Deep Masked Language Models for Effective Named Entity Recognition in Health and Life Science Corpora","url":"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8640190/"}]
+
+Based on the web search results, here are some relevant papers on NER ensemble and consensus aggregation approaches from recent conferences:
+
+## Key Papers Found:
+
+1. **EL4NER: Ensemble Learning for Named Entity Recognition via Multiple Small-Parameter Large Language Models**
+   
+   This paper proposes an ensemble learning method for NER that aggregates the outputs of multiple open-source, small-parameter LLMs to enhance overall performance in NER tasks at less deployment and inference cost. The method comprises three key components: a task decomposition-based pipeline for multi-stage ensemble learning, a novel span-level sentence similarity algorithm for demonstration retrieval, and a self-validation mechanism to mitigate noise during the ensemble process. The results indicate that EL4NER surpasses most closed-source, large-parameter LLM-based methods at a lower parameter cost and attains state-of-the-art performance among in-context learning-based methods on certain datasets.
+
+2. **Exploring Nested Named Entity Recognition with Large Language Models (EMNLP 2024)**
+   
+   This EMNLP 2024 paper investigates the application of LLMs to nested NER, exploring methodologies from prior work and introducing specific reasoning techniques and instructions to improve LLM efficacy.
+
+3. **Ensemble of Deep Masked Language Models for Effective Named Entity Recognition in Health and Life Science Corpora**
+   
+   This paper assesses how ensembles of deep masked language models perform across health and life science corpora, with individual models pretrained on external corpora and fine-tuned on task-specific data, then ensembled using classical majority voting strategies.
+
+The search results show active research in ensemble approaches for NER, particularly with newer work focusing on LLM-based ensemble methods and consensus aggregation mechanisms.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4174a956-2672-46bc-9cc6-7207d07af3de",
+  "uuid": "f771a034-944c-4aed-9feb-85bce83e3601",
+  "tool_use_result": {
+    "query": "NER ensemble multiple models entity consensus aggregation 2023 2024 ACL EMNLP",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01T3pcv9bEqQYuYjP7QsGz1U",
+        "content": [
+          {
+            "title": "Exploring Nested Named Entity Recognition with Large Language Models: Methods, Challenges, and Insights - ACL Anthology",
+            "url": "https://aclanthology.org/2024.emnlp-main.492/"
+          },
+          {
+            "title": "The 2024 Conference on Empirical Methods in Natural Language Processing - ACL Anthology",
+            "url": "https://aclanthology.org/events/emnlp-2024/"
+          },
+          {
+            "title": "EL4NER: Ensemble Learning for Named Entity Recognition via Multiple Small-Parameter Large Language Models",
+            "url": "https://arxiv.org/pdf/2505.23038"
+          },
+          {
+            "title": "EL4NER: Ensemble Learning for Named Entity Recognition via Multiple Small-Parameter Large Language Models",
+            "url": "https://arxiv.org/html/2505.23038"
+          },
+          {
+            "title": "Ensemble of Deep Masked Language Models for Effective Named Entity Recognition in Health and Life Science Corpora",
+            "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8640190/"
+          }
+        ]
+      },
+      "Based on the web search results, here are some relevant papers on NER ensemble and consensus aggregation approaches from recent conferences:\n\n## Key Papers Found:\n\n1. **EL4NER: Ensemble Learning for Named Entity Recognition via Multiple Small-Parameter Large Language Models**\n   \n   This paper proposes an ensemble learning method for NER that aggregates the outputs of multiple open-source, small-parameter LLMs to enhance overall performance in NER tasks at less deployment and inference cost. The method comprises three key components: a task decomposition-based pipeline for multi-stage ensemble learning, a novel span-level sentence similarity algorithm for demonstration retrieval, and a self-validation mechanism to mitigate noise during the ensemble process. The results indicate that EL4NER surpasses most closed-source, large-parameter LLM-based methods at a lower parameter cost and attains state-of-the-art performance among in-context learning-based methods on certain datasets.\n\n2. **Exploring Nested Named Entity Recognition with Large Language Models (EMNLP 2024)**\n   \n   This EMNLP 2024 paper investigates the application of LLMs to nested NER, exploring methodologies from prior work and introducing specific reasoning techniques and instructions to improve LLM efficacy.\n\n3. **Ensemble of Deep Masked Language Models for Effective Named Entity Recognition in Health and Life Science Corpora**\n   \n   This paper assesses how ensembles of deep masked language models perform across health and life science corpora, with individual models pretrained on external corpora and fine-tuned on task-specific data, then ensembled using classical majority voting strategies.\n\nThe search results show active research in ensemble approaches for NER, particularly with newer work focusing on LLM-based ensemble methods and consensus aggregation mechanisms."
+    ],
+    "durationSeconds": 9.416970904000001
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 50_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I've found a lot of information. Let me search for a few more specific things:
+
+1. Xie et al. 2023 - I found two candidates:
+   - "Self-Evaluation Guided Beam Search for Reasoning" by Yuxi Xie et al., NeurIPS 2023 (arxiv 2305.00633) - about self-evaluation + beam search for reasoning
+   - "Self-Improving for Zero-Shot Named Entity Recognition with Large Language Models" by Tingyu Xie et al., arxiv 2311.08921 (NAACL 2024) - about self-consistency for NER
+   
+The first one matches the user's keywords about self-evaluation and beam search, so I should grab both papers to be thorough.
+
+2. Wan et al. 2024 - The survey I found is actually by Xu et al., not Wan et al., so I need to search more specifically for the right paper.
+
+3. For ensemble NER approaches, I've found EL4NER from 2025 and need to locate a couple more papers, particularly ones focusing on vote-based entity-level consensus methods.
+
+I should also double-check whether Cobbe 2021 was published at a venue or remains on arxiv.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4174a956-2672-46bc-9cc6-7207d07af3de",
+  "uuid": "77ba54c1-96b8-4d64-ba2d-b300561878c5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XNAKwP6VEaEB5u2UEV3JE5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6643,
+      "cache_read_input_tokens": 46147,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6643
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01PYxt9MnHaxqDiK4TFKiGm1`</summary>
+
+```json
+{
+  "query": "\"Wan\" first author 2024 survey \"information extraction\" LLM arxiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4174a956-2672-46bc-9cc6-7207d07af3de",
+  "uuid": "f939fd7c-4aa8-43e6-842d-d22649ce836e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XNAKwP6VEaEB5u2UEV3JE5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6643,
+      "cache_read_input_tokens": 46147,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6643
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 52_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01XDHidAqXQsPxxHRifEPEDx`</summary>
+
+```json
+{
+  "query": "Xie Kawaguchi 2023 \"Self-Evaluation Guided Beam Search\" NeurIPS authors"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4174a956-2672-46bc-9cc6-7207d07af3de",
+  "uuid": "f4b44647-bd20-4971-b5fb-d3086a39aba2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XNAKwP6VEaEB5u2UEV3JE5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6643,
+      "cache_read_input_tokens": 46147,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6643
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Rfk79B4KyjWqpyZk9syJTb`</summary>
+
+```json
+{
+  "query": "\"multi-sample\" OR \"multiple outputs\" NER entity aggregation voting LLM 2023 2024"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4174a956-2672-46bc-9cc6-7207d07af3de",
+  "uuid": "c032bc21-f285-4c35-8078-24d4e821ac27",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XNAKwP6VEaEB5u2UEV3JE5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6643,
+      "cache_read_input_tokens": 46147,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6643
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 54_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01XiuSRvCoLsAJQTrhPF96St`</summary>
+
+```json
+{
+  "query": "entity-level ensemble NER majority vote span aggregation recent paper"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4174a956-2672-46bc-9cc6-7207d07af3de",
+  "uuid": "4a0f6982-d40c-4d52-8ef9-83e7515fee3a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XNAKwP6VEaEB5u2UEV3JE5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6643,
+      "cache_read_input_tokens": 46147,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6643
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 55 · 2026-05-19T04:08:26.955Z_
+
+<details><summary>↩ Tool result · `toolu_01XDHidAqXQsPxxHRifEPEDx`</summary>
+
+```text
+Web search results for query: "Xie Kawaguchi 2023 "Self-Evaluation Guided Beam Search" NeurIPS authors"
+
+Links: [{"title":"Self-Evaluation Guided Beam Search for Reasoning","url":"https://proceedings.neurips.cc/paper_files/paper/2023/hash/81fde95c4dc79188a69ce5b24d63010b-Abstract-Conference.html"},{"title":"Self-Evaluation Guided Beam Search for Reasoning","url":"https://papers.nips.cc/paper_files/paper/2023/hash/81fde95c4dc79188a69ce5b24d63010b-Abstract-Conference.html"},{"title":"[Quick Review] Self-Evaluation Guided Beam Search for Reasoning","url":"https://liner.com/review/selfevaluation-guided-beam-search-for-reasoning"},{"title":"[PDF] Self-Evaluation Guided Beam Search for Reasoning | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Self-Evaluation-Guided-Beam-Search-for-Reasoning-Xie-Kawaguchi/ef018d9fad6167cfddb7d6654c5422df1e953730"},{"title":"Self-Evaluation Guided Beam Search for Reasoning | OpenReview","url":"https://openreview.net/forum?id=Bw82hwg5Q3"},{"title":"[2305.00633] Self-Evaluation Guided Beam Search for Reasoning","url":"https://arxiv.org/abs/2305.00633"},{"title":"Self-Evaluation Guided Beam Search for Reasoning Yuxi Xie1∗ Kenji Kawaguchi1","url":"https://proceedings.neurips.cc/paper_files/paper/2023/file/81fde95c4dc79188a69ce5b24d63010b-Paper-Conference.pdf"},{"title":"Self-Evaluation Guided Beam Search for Reasoning","url":"https://arxiv.org/pdf/2305.00633"}]
+
+Based on the search results, I found the paper "Self-Evaluation Guided Beam Search for Reasoning" published at NeurIPS 2023.
+
+**Authors:** Yuxi Xie, Kenji Kawaguchi, Yiran Zhao, James Xu Zhao, Min-Yen Kan, Junxian He, and Michael Xie
+
+**Publication:** Advances in Neural Information Processing Systems 36 (NeurIPS 2023) Main Conference Track
+
+**Main Contribution:** The paper proposes a decoding algorithm integrating self-evaluation guidance via stochastic beam search, where the self-evaluation guidance serves as a better-calibrated automatic criterion, facilitating an efficient search in the reasoning space and resulting in superior prediction quality.
+
+The paper addresses the challenge of error accumulation in LLM reasoning as the reasoning chain grows in complexity and length.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4174a956-2672-46bc-9cc6-7207d07af3de",
+  "uuid": "ea4af7b3-c2ee-4ecd-a978-95d13507be26",
+  "tool_use_result": {
+    "query": "Xie Kawaguchi 2023 \"Self-Evaluation Guided Beam Search\" NeurIPS authors",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01EF1ktkmwu87Kwbwi7ynCCj",
+        "content": [
+          {
+            "title": "Self-Evaluation Guided Beam Search for Reasoning",
+            "url": "https://proceedings.neurips.cc/paper_files/paper/2023/hash/81fde95c4dc79188a69ce5b24d63010b-Abstract-Conference.html"
+          },
+          {
+            "title": "Self-Evaluation Guided Beam Search for Reasoning",
+            "url": "https://papers.nips.cc/paper_files/paper/2023/hash/81fde95c4dc79188a69ce5b24d63010b-Abstract-Conference.html"
+          },
+          {
+            "title": "[Quick Review] Self-Evaluation Guided Beam Search for Reasoning",
+            "url": "https://liner.com/review/selfevaluation-guided-beam-search-for-reasoning"
+          },
+          {
+            "title": "[PDF] Self-Evaluation Guided Beam Search for Reasoning | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/Self-Evaluation-Guided-Beam-Search-for-Reasoning-Xie-Kawaguchi/ef018d9fad6167cfddb7d6654c5422df1e953730"
+          },
+          {
+            "title": "Self-Evaluation Guided Beam Search for Reasoning | OpenReview",
+            "url": "https://openreview.net/forum?id=Bw82hwg5Q3"
+          },
+          {
+            "title": "[2305.00633] Self-Evaluation Guided Beam Search for Reasoning",
+            "url": "https://arxiv.org/abs/2305.00633"
+          },
+          {
+            "title": "Self-Evaluation Guided Beam Search for Reasoning Yuxi Xie1∗ Kenji Kawaguchi1",
+            "url": "https://proceedings.neurips.cc/paper_files/paper/2023/file/81fde95c4dc79188a69ce5b24d63010b-Paper-Conference.pdf"
+          },
+          {
+            "title": "Self-Evaluation Guided Beam Search for Reasoning",
+            "url": "https://arxiv.org/pdf/2305.00633"
+          }
+        ]
+      },
+      "Based on the search results, I found the paper \"Self-Evaluation Guided Beam Search for Reasoning\" published at NeurIPS 2023.\n\n**Authors:** Yuxi Xie, Kenji Kawaguchi, Yiran Zhao, James Xu Zhao, Min-Yen Kan, Junxian He, and Michael Xie\n\n**Publication:** Advances in Neural Information Processing Systems 36 (NeurIPS 2023) Main Conference Track\n\n**Main Contribution:** The paper proposes a decoding algorithm integrating self-evaluation guidance via stochastic beam search, where the self-evaluation guidance serves as a better-calibrated automatic criterion, facilitating an efficient search in the reasoning space and resulting in superior prediction quality.\n\nThe paper addresses the challenge of error accumulation in LLM reasoning as the reasoning chain grows in complexity and length."
+    ],
+    "durationSeconds": 4.6925561350000065
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-19T04:08:28.968Z_
+
+<details><summary>↩ Tool result · `toolu_01PYxt9MnHaxqDiK4TFKiGm1`</summary>
+
+```text
+Web search results for query: ""Wan" first author 2024 survey "information extraction" LLM arxiv"
+
+Links: [{"title":"Large language models for generative information extraction: a survey","url":"https://journal.hep.com.cn/fcs/EN/10.1007/s11704-024-40555-y"},{"title":"Reflect then Learn: Active Prompting for Information Extraction Guided by Introspective Confusion","url":"https://arxiv.org/html/2508.10036v1"},{"title":"A Survey on Open Information Extraction from Rule-based Model to Large Language Model","url":"https://arxiv.org/html/2208.08690v7"},{"title":"[2312.17617] Large Language Models for Generative Information Extraction: A Survey","url":"https://arxiv.org/abs/2312.17617"},{"title":"Large Language Models for Generative Information Extraction: A Survey","url":"https://arxiv.org/html/2312.17617v3"},{"title":"[2402.02420] Factuality of Large Language Models: A Survey","url":"https://arxiv.org/abs/2402.02420"},{"title":"Large Language Models for Generative Information Extraction: A Survey","url":"https://arxiv.org/pdf/2312.17617"},{"title":"From Automation to Autonomy: A Survey on Large Language Models in Scientific Discovery","url":"https://arxiv.org/html/2505.13259v1"},{"title":"Large language models for generative information extraction: a survey | Frontiers of Computer Science | Springer Nature Link","url":"https://link.springer.com/article/10.1007/s11704-024-40555-y"}]
+
+Based on the search results, I found a relevant 2024 survey on information extraction with LLMs. The most prominent match appears to be:
+
+"Large Language Models for Generative Information Extraction: A Survey" authored by Derong Xu, Wei Chen, Wenjun Peng, Chao Zhang, Tong Xu, Xiangyu Zhao, Xian Wu, Yefeng Zheng, Yang Wang, and Enhong Chen, published on arXiv (2312.17617).
+
+However, this paper's first author is Derong Xu, not "Wan". 
+
+I also found a reference in the search results to Han et al. (2024) including Wan, X. as a co-author, with the paper titled "An Empirical Study on Information Extraction using Large Language Models", but this appears to be an empirical study rather than a survey, and Han is the first author.
+
+The search results don't appear to show a 2024 survey on information extraction and LLMs with "Wan" as the first author. Could you verify the author's name or provide additional details about the paper you're looking for?
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4174a956-2672-46bc-9cc6-7207d07af3de",
+  "uuid": "823c6b20-2024-46c4-821d-9a035be38462",
+  "tool_use_result": {
+    "query": "\"Wan\" first author 2024 survey \"information extraction\" LLM arxiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_012U2pSMQqC4FqqYesUgQbct",
+        "content": [
+          {
+            "title": "Large language models for generative information extraction: a survey",
+            "url": "https://journal.hep.com.cn/fcs/EN/10.1007/s11704-024-40555-y"
+          },
+          {
+            "title": "Reflect then Learn: Active Prompting for Information Extraction Guided by Introspective Confusion",
+            "url": "https://arxiv.org/html/2508.10036v1"
+          },
+          {
+            "title": "A Survey on Open Information Extraction from Rule-based Model to Large Language Model",
+            "url": "https://arxiv.org/html/2208.08690v7"
+          },
+          {
+            "title": "[2312.17617] Large Language Models for Generative Information Extraction: A Survey",
+            "url": "https://arxiv.org/abs/2312.17617"
+          },
+          {
+            "title": "Large Language Models for Generative Information Extraction: A Survey",
+            "url": "https://arxiv.org/html/2312.17617v3"
+          },
+          {
+            "title": "[2402.02420] Factuality of Large Language Models: A Survey",
+            "url": "https://arxiv.org/abs/2402.02420"
+          },
+          {
+            "title": "Large Language Models for Generative Information Extraction: A Survey",
+            "url": "https://arxiv.org/pdf/2312.17617"
+          },
+          {
+            "title": "From Automation to Autonomy: A Survey on Large Language Models in Scientific Discovery",
+            "url": "https://arxiv.org/html/2505.13259v1"
+          },
+          {
+            "title": "Large language models for generative information extraction: a survey | Frontiers of Computer Science | Springer Nature Link",
+            "url": "https://link.springer.com/article/10.1007/s11704-024-40555-y"
+          }
+        ]
+      },
+      "Based on the search results, I found a relevant 2024 survey on information extraction with LLMs. The most prominent match appears to be:\n\n\"Large Language Models for Generative Information Extraction: A Survey\" authored by Derong Xu, Wei Chen, Wenjun Peng, Chao Zhang, Tong Xu, Xiangyu Zhao, Xian Wu, Yefeng Zheng, Yang Wang, and Enhong Chen, published on arXiv (2312.17617).\n\nHowever, this paper's first author is Derong Xu, not \"Wan\". \n\nI also found a reference in the search results to Han et al. (2024) including Wan, X. as a co-author, with the paper titled \"An Empirical Study on Information Extraction using Large Language Models\", but this appears to be an empirical study rather than a survey, and Han is the first author.\n\nThe search results don't appear to show a 2024 survey on information extraction and LLMs with \"Wan\" as the first author. Could you verify the author's name or provide additional details about the paper you're looking for?"
+    ],
+    "durationSeconds": 6.726150505999991
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 57 · 2026-05-19T04:08:29.232Z_
+
+<details><summary>↩ Tool result · `toolu_01XiuSRvCoLsAJQTrhPF96St`</summary>
+
+```text
+Web search results for query: "entity-level ensemble NER majority vote span aggregation recent paper"
+
+Links: [{"title":"Combining multiple classifiers using vote based classifier ensemble technique for named entity recognition | Request PDF","url":"https://www.researchgate.net/publication/257026236_Combining_multiple_classifiers_using_vote_based_classifier_ensemble_technique_for_named_entity_recognition"},{"title":"Local LLM Ensembles for Zero-shot Portuguese Named Entity Recognition","url":"https://arxiv.org/html/2512.10043"},{"title":"EL4NER: Ensemble Learning for Named Entity Recognition via Multiple Small-Parameter Large Language Models","url":"https://arxiv.org/pdf/2505.23038"},{"title":"SpanNER: Named Entity Re-/Recognition as Span Prediction","url":"https://arxiv.org/pdf/2106.00641"},{"title":"The majority voting strategy to ensemble NER models. BERT:... | Download Scientific Diagram","url":"https://www.researchgate.net/figure/The-majority-voting-strategy-to-ensemble-NER-models-BERT-bidirectional-encoder_fig1_347087784"},{"title":"A Weighted Majority Voting Ensemble Approach for Classification | Request PDF","url":"https://www.researchgate.net/publication/337509150_A_Weighted_Majority_Voting_Ensemble_Approach_for_Classification"},{"title":"Ensemble of Deep Masked Language Models for Effective Named Entity Recognition in Health and Life Science Corpora","url":"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8640190/"}]
+
+I found several relevant papers on entity-level ensemble NER with majority voting and span aggregation. Here are the most recent findings:
+
+**Recent Papers:**
+
+1. **Local LLM Ensembles for Zero-shot Portuguese Named Entity Recognition (December 2025)**: This paper describes a method where LLMs vote on whether entities are correct, with majority vote determining correct entities, and majority vote also used to decide on the best fit for entity spans.
+
+2. **EL4NER: Ensemble Learning for Named Entity Recognition via Multiple Small-Parameter Large Language Models (May 2025)**: This work decomposes the NER task into two stages, where multiple LLMs extract potential entity spans and integrate them, followed by confirming entity types one by one by voting on multiple LLMs at a fine-grained level.
+
+3. **SpanNER: Named Entity Re-/Recognition as Span Prediction (2021)**: Recent years have seen a paradigm shift from sequence labeling to span prediction, and span prediction models can serve both as base NER systems and as system combiners to re-recognize named entities from different systems' outputs.
+
+4. **Ensemble of Deep Masked Language Models for Effective Named Entity Recognition (2022)**: Individual deep masked language models are fine-tuned on task-specific domain and language corpora and ensembled using classical majority voting strategies.
+
+The search results show a clear trend toward entity-level and span-based ensemble approaches in recent NER research, particularly with the emergence of LLM-based ensemble methods.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4174a956-2672-46bc-9cc6-7207d07af3de",
+  "uuid": "ed909c6a-985d-422e-95c2-dd73a8b47041",
+  "tool_use_result": {
+    "query": "entity-level ensemble NER majority vote span aggregation recent paper",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_016sjyKq6LoaVC5g81GthB3a",
+        "content": [
+          {
+            "title": "Combining multiple classifiers using vote based classifier ensemble technique for named entity recognition | Request PDF",
+            "url": "https://www.researchgate.net/publication/257026236_Combining_multiple_classifiers_using_vote_based_classifier_ensemble_technique_for_named_entity_recognition"
+          },
+          {
+            "title": "Local LLM Ensembles for Zero-shot Portuguese Named Entity Recognition",
+            "url": "https://arxiv.org/html/2512.10043"
+          },
+          {
+            "title": "EL4NER: Ensemble Learning for Named Entity Recognition via Multiple Small-Parameter Large Language Models",
+            "url": "https://arxiv.org/pdf/2505.23038"
+          },
+          {
+            "title": "SpanNER: Named Entity Re-/Recognition as Span Prediction",
+            "url": "https://arxiv.org/pdf/2106.00641"
+          },
+          {
+            "title": "The majority voting strategy to ensemble NER models. BERT:... | Download Scientific Diagram",
+            "url": "https://www.researchgate.net/figure/The-majority-voting-strategy-to-ensemble-NER-models-BERT-bidirectional-encoder_fig1_347087784"
+          },
+          {
+            "title": "A Weighted Majority Voting Ensemble Approach for Classification | Request PDF",
+            "url": "https://www.researchgate.net/publication/337509150_A_Weighted_Majority_Voting_Ensemble_Approach_for_Classification"
+          },
+          {
+            "title": "Ensemble of Deep Masked Language Models for Effective Named Entity Recognition in Health and Life Science Corpora",
+            "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8640190/"
+          }
+        ]
+      },
+      "I found several relevant papers on entity-level ensemble NER with majority voting and span aggregation. Here are the most recent findings:\n\n**Recent Papers:**\n\n1. **Local LLM Ensembles for Zero-shot Portuguese Named Entity Recognition (December 2025)**: This paper describes a method where LLMs vote on whether entities are correct, with majority vote determining correct entities, and majority vote also used to decide on the best fit for entity spans.\n\n2. **EL4NER: Ensemble Learning for Named Entity Recognition via Multiple Small-Parameter Large Language Models (May 2025)**: This work decomposes the NER task into two stages, where multiple LLMs extract potential entity spans and integrate them, followed by confirming entity types one by one by voting on multiple LLMs at a fine-grained level.\n\n3. **SpanNER: Named Entity Re-/Recognition as Span Prediction (2021)**: Recent years have seen a paradigm shift from sequence labeling to span prediction, and span prediction models can serve both as base NER systems and as system combiners to re-recognize named entities from different systems' outputs.\n\n4. **Ensemble of Deep Masked Language Models for Effective Named Entity Recognition (2022)**: Individual deep masked language models are fine-tuned on task-specific domain and language corpora and ensembled using classical majority voting strategies.\n\nThe search results show a clear trend toward entity-level and span-based ensemble approaches in recent NER research, particularly with the emergence of LLM-based ensemble methods."
+    ],
+    "durationSeconds": 6.927278586999994
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-19T04:08:29.970Z_
+
+<details><summary>↩ Tool result · `toolu_01Rfk79B4KyjWqpyZk9syJTb`</summary>
+
+```text
+Web search results for query: ""multi-sample" OR "multiple outputs" NER entity aggregation voting LLM 2023 2024"
+
+Links: [{"title":"Beyond Majority Voting: LLM Aggregation by Leveraging Higher-Order Information","url":"https://arxiv.org/html/2510.01499v1"},{"title":"Cost-aware LLM-based Online Dataset Annotation","url":"http://users.ece.cmu.edu/~oyagan/Journals/LLMRouting.pdf"},{"title":"EL4NER: Ensemble Learning for Named Entity Recognition via Multiple Small-Parameter Large Language Models","url":"https://arxiv.org/pdf/2505.23038"},{"title":"Beyond Majority Voting: LLM Aggregation by Leveraging Higher-Order Information","url":"https://arxiv.org/pdf/2510.01499"},{"title":"Beyond Majority Voting: LLM Aggregation by Leveraging Higher-Order Information","url":"https://www.arxiv.org/pdf/2510.01499"},{"title":"Majority Rules: LLM Ensemble is a Winning Approach for Content Categorization","url":"https://arxiv.org/html/2511.15714v1"},{"title":"Large Language Models aren't all that you need","url":"https://arxiv.org/pdf/2401.00698"}]
+
+Based on the search results, I found several relevant papers addressing multi-sample and multiple outputs for NER and LLM aggregation in 2023-2024:
+
+## Key Findings:
+
+**NER with Multiple Outputs:**
+Named Entity Recognition (NER) is a fundamental task in NLP, and Large Language Models (LLMs) have demonstrated remarkable performance on NER tasks due to their exceptional capability for generalization and language understanding. Different small-parameter LLMs have unique strengths in various domains and can complement each other, raising the question of whether it is possible to leverage multiple open-source, small-parameter LLMs to achieve better performance.
+
+**Entity Aggregation and Voting Methods:**
+A common strategy to bolster label quality is ensembling: querying multiple LLMs, or multiple samples from the same model, and aggregating their outputs via majority voting. Previous works have mostly employed simple majority voting (MV) as a natural first instinct to aggregate different LLMs' responses, though MV can be viewed as a zero-order aggregation method that only depends on the observed answers and fails to account for heterogeneity and correlation among models.
+
+**Advanced Aggregation Approaches:**
+Recent work has designed new aggregation algorithms called Optimal Weight (OW) and Inverse Surprising Popularity (ISP), leveraging both first-order and second-order information. Self-consistency improves reasoning by sampling multiple responses from a single model and aggregating them to reduce variance.
+
+These papers demonstrate active research in 2023-2024 on using multiple LLM samples and advanced aggregation methods beyond simple voting for tasks like NER.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4174a956-2672-46bc-9cc6-7207d07af3de",
+  "uuid": "98721b37-072d-4b17-9a42-55626e44d820",
+  "tool_use_result": {
+    "query": "\"multi-sample\" OR \"multiple outputs\" NER entity aggregation voting LLM 2023 2024",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01VG4gX84cbVEBZzujHipguF",
+        "content": [
+          {
+            "title": "Beyond Majority Voting: LLM Aggregation by Leveraging Higher-Order Information",
+            "url": "https://arxiv.org/html/2510.01499v1"
+          },
+          {
+            "title": "Cost-aware LLM-based Online Dataset Annotation",
+            "url": "http://users.ece.cmu.edu/~oyagan/Journals/LLMRouting.pdf"
+          },
+          {
+            "title": "EL4NER: Ensemble Learning for Named Entity Recognition via Multiple Small-Parameter Large Language Models",
+            "url": "https://arxiv.org/pdf/2505.23038"
+          },
+          {
+            "title": "Beyond Majority Voting: LLM Aggregation by Leveraging Higher-Order Information",
+            "url": "https://arxiv.org/pdf/2510.01499"
+          },
+          {
+            "title": "Beyond Majority Voting: LLM Aggregation by Leveraging Higher-Order Information",
+            "url": "https://www.arxiv.org/pdf/2510.01499"
+          },
+          {
+            "title": "Majority Rules: LLM Ensemble is a Winning Approach for Content Categorization",
+            "url": "https://arxiv.org/html/2511.15714v1"
+          },
+          {
+            "title": "Large Language Models aren't all that you need",
+            "url": "https://arxiv.org/pdf/2401.00698"
+          }
+        ]
+      },
+      "Based on the search results, I found several relevant papers addressing multi-sample and multiple outputs for NER and LLM aggregation in 2023-2024:\n\n## Key Findings:\n\n**NER with Multiple Outputs:**\nNamed Entity Recognition (NER) is a fundamental task in NLP, and Large Language Models (LLMs) have demonstrated remarkable performance on NER tasks due to their exceptional capability for generalization and language understanding. Different small-parameter LLMs have unique strengths in various domains and can complement each other, raising the question of whether it is possible to leverage multiple open-source, small-parameter LLMs to achieve better performance.\n\n**Entity Aggregation and Voting Methods:**\nA common strategy to bolster label quality is ensembling: querying multiple LLMs, or multiple samples from the same model, and aggregating their outputs via majority voting. Previous works have mostly employed simple majority voting (MV) as a natural first instinct to aggregate different LLMs' responses, though MV can be viewed as a zero-order aggregation method that only depends on the observed answers and fails to account for heterogeneity and correlation among models.\n\n**Advanced Aggregation Approaches:**\nRecent work has designed new aggregation algorithms called Optimal Weight (OW) and Inverse Surprising Popularity (ISP), leveraging both first-order and second-order information. Self-consistency improves reasoning by sampling multiple responses from a single model and aggregating them to reduce variance.\n\nThese papers demonstrate active research in 2023-2024 on using multiple LLM samples and advanced aggregation methods beyond simple voting for tasks like NER."
+    ],
+    "durationSeconds": 7.670573499000006
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 59_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me now search more specifically for "Wan" as an IE survey author. Maybe it's a different paper. Let me also find more specific details about the ensemble NER papers.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4174a956-2672-46bc-9cc6-7207d07af3de",
+  "uuid": "c31ecd26-8d7a-4aa0-bab8-c21b9f2430cd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014Nr1ztEQvszcQxXAMjbr5s",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 785,
+      "cache_creation_input_tokens": 2755,
+      "cache_read_input_tokens": 52790,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2755
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 60_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_013Q1fdHuFP8TX9TzLJiEUKg`</summary>
+
+```json
+{
+  "query": "Wan Zhong 2024 \"information extraction\" survey arxiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4174a956-2672-46bc-9cc6-7207d07af3de",
+  "uuid": "93b7eb85-0756-4550-b7f8-53a1ffc5d88c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014Nr1ztEQvszcQxXAMjbr5s",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 785,
+      "cache_creation_input_tokens": 2755,
+      "cache_read_input_tokens": 52790,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2755
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_0151iemUCUgb5Khyk9bYX5Bf`</summary>
+
+```json
+{
+  "query": "\"Local LLM Ensembles\" \"Zero-shot\" \"Portuguese Named Entity Recognition\" 2025 authors arxiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4174a956-2672-46bc-9cc6-7207d07af3de",
+  "uuid": "8c505bc8-254b-403b-a0b7-60c099855826",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014Nr1ztEQvszcQxXAMjbr5s",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 785,
+      "cache_creation_input_tokens": 2755,
+      "cache_read_input_tokens": 52790,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2755
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 62_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Tp4MDDRjqZANd5CPrU8hFk`</summary>
+
+```json
+{
+  "query": "Ekman Hägglöf 2021 \"Ensemble Deep Masked Language Models\" NER health life science authors venue"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4174a956-2672-46bc-9cc6-7207d07af3de",
+  "uuid": "4f67e63e-1228-4cd1-8b96-1055d708200e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014Nr1ztEQvszcQxXAMjbr5s",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 785,
+      "cache_creation_input_tokens": 2755,
+      "cache_read_input_tokens": 52790,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2755
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_013aiCnP4k6UEsGLdNwGxLfD`</summary>
+
+```json
+{
+  "query": "Ekman Hägglöf 2021 \"LM-ensemble-for-ner\" OR \"Ensemble of Deep Masked Language Models\" NER PMC"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4174a956-2672-46bc-9cc6-7207d07af3de",
+  "uuid": "a7106150-7abe-4cc7-b829-8c5558ddab52",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014Nr1ztEQvszcQxXAMjbr5s",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 785,
+      "cache_creation_input_tokens": 2755,
+      "cache_read_input_tokens": 52790,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2755
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-19T04:08:42.499Z_
+
+<details><summary>↩ Tool result · `toolu_013aiCnP4k6UEsGLdNwGxLfD`</summary>
+
+```text
+Web search results for query: "Ekman Hägglöf 2021 "LM-ensemble-for-ner" OR "Ensemble of Deep Masked Language Models" NER PMC"
+
+Links: [{"title":"Ensemble of Deep Masked Language Models for Effective Named Entity Recognition in Health and Life Science Corpora - PubMed","url":"https://pubmed.ncbi.nlm.nih.gov/34870074/"},{"title":"Ensemble of Deep Masked Language Models for Effective Named Entity Recognition in Health and Life Science Corpora - PMC","url":"https://pmc.ncbi.nlm.nih.gov/articles/PMC8640190/"},{"title":"Ensemble of Deep Masked Language Models for Effective Named Entity Recognition in Health and Life Science Corpora","url":"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8640190/"},{"title":"Frontiers | Ensemble of Deep Masked Language Models for Effective Named Entity Recognition in Health and Life Science Corpora","url":"https://www.frontiersin.org/articles/10.3389/frma.2021.689803/full"},{"title":"(PDF) Ensemble of Deep Masked Language Models for Effective Named Entity Recognition in Health and Life Science Corpora","url":"https://www.researchgate.net/publication/356386634_Ensemble_of_Deep_Masked_Language_Models_for_Effective_Named_Entity_Recognition_in_Health_and_Life_Science_Corpora"},{"title":"Ensemble of deep masked language models for effective named entity recognition in multi-domain corpora | medRxiv","url":"https://www.medrxiv.org/content/10.1101/2021.04.26.21256038v1.full"},{"title":"(PDF) Ensemble of deep masked language models for effective named entity recognition in multi-domain corpora","url":"https://www.researchgate.net/publication/351172591_Ensemble_of_deep_masked_language_models_for_effective_named_entity_recognition_in_multi-domain_corpora"}]
+
+I found relevant research on this topic. Based on the search results, I can provide you with information about the paper:
+
+The paper is titled "Ensemble of Deep Masked Language Models for Effective Named Entity Recognition in Health and Life Science Corpora," authored by Nona Naderi, Julien Knafou, Jenny Copara, Patrick Ruch, and Douglas Teodoro, published on November 19, 2021 with DOI 10.3389/frma.2021.689803.
+
+However, I should note that the search results do not show an author named "Ekman Hägglöf" associated with this 2021 paper. The paper is available in PMC (PubMed Central), and the results suggest that the ensembles of deep masked language models are an effective strategy for tackling NER across corpora from the health and life science domains.
+
+If you're looking for a different paper by Ekman Hägglöf from 2021 on this topic, or if there's additional context about this author's work, please let me know and I can search further.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4174a956-2672-46bc-9cc6-7207d07af3de",
+  "uuid": "1be1230a-57b4-49a4-887f-38ad1e082a0b",
+  "tool_use_result": {
+    "query": "Ekman Hägglöf 2021 \"LM-ensemble-for-ner\" OR \"Ensemble of Deep Masked Language Models\" NER PMC",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01D9MfzqdXARm7sRNgypxaau",
+        "content": [
+          {
+            "title": "Ensemble of Deep Masked Language Models for Effective Named Entity Recognition in Health and Life Science Corpora - PubMed",
+            "url": "https://pubmed.ncbi.nlm.nih.gov/34870074/"
+          },
+          {
+            "title": "Ensemble of Deep Masked Language Models for Effective Named Entity Recognition in Health and Life Science Corpora - PMC",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8640190/"
+          },
+          {
+            "title": "Ensemble of Deep Masked Language Models for Effective Named Entity Recognition in Health and Life Science Corpora",
+            "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8640190/"
+          },
+          {
+            "title": "Frontiers | Ensemble of Deep Masked Language Models for Effective Named Entity Recognition in Health and Life Science Corpora",
+            "url": "https://www.frontiersin.org/articles/10.3389/frma.2021.689803/full"
+          },
+          {
+            "title": "(PDF) Ensemble of Deep Masked Language Models for Effective Named Entity Recognition in Health and Life Science Corpora",
+            "url": "https://www.researchgate.net/publication/356386634_Ensemble_of_Deep_Masked_Language_Models_for_Effective_Named_Entity_Recognition_in_Health_and_Life_Science_Corpora"
+          },
+          {
+            "title": "Ensemble of deep masked language models for effective named entity recognition in multi-domain corpora | medRxiv",
+            "url": "https://www.medrxiv.org/content/10.1101/2021.04.26.21256038v1.full"
+          },
+          {
+            "title": "(PDF) Ensemble of deep masked language models for effective named entity recognition in multi-domain corpora",
+            "url": "https://www.researchgate.net/publication/351172591_Ensemble_of_deep_masked_language_models_for_effective_named_entity_recognition_in_multi-domain_corpora"
+          }
+        ]
+      },
+      "I found relevant research on this topic. Based on the search results, I can provide you with information about the paper:\n\nThe paper is titled \"Ensemble of Deep Masked Language Models for Effective Named Entity Recognition in Health and Life Science Corpora,\" authored by Nona Naderi, Julien Knafou, Jenny Copara, Patrick Ruch, and Douglas Teodoro, published on November 19, 2021 with DOI 10.3389/frma.2021.689803.\n\nHowever, I should note that the search results do not show an author named \"Ekman Hägglöf\" associated with this 2021 paper. The paper is available in PMC (PubMed Central), and the results suggest that the ensembles of deep masked language models are an effective strategy for tackling NER across corpora from the health and life science domains.\n\nIf you're looking for a different paper by Ekman Hägglöf from 2021 on this topic, or if there's additional context about this author's work, please let me know and I can search further."
+    ],
+    "durationSeconds": 5.426365235999998
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 65 · 2026-05-19T04:08:43.178Z_
+
+<details><summary>↩ Tool result · `toolu_013Q1fdHuFP8TX9TzLJiEUKg`</summary>
+
+```text
+Web search results for query: "Wan Zhong 2024 "information extraction" survey arxiv"
+
+Links: [{"title":"A Comprehensive Survey on Document-Level Information ...","url":"https://aclanthology.org/2024.futured-1.6.pdf"},{"title":"A Survey on Open Information Extraction from Rule-based Model to Large Language Model","url":"https://arxiv.org/html/2208.08690v7"},{"title":"Large Language Models for Generative Information Extraction: A Survey","url":"https://arxiv.org/html/2312.17617v3"},{"title":"A Survey of Generative Information Extraction","url":"https://aclanthology.org/2025.coling-main.324.pdf"},{"title":"[2312.17617] Large Language Models for Generative Information Extraction: A Survey","url":"https://arxiv.org/abs/2312.17617"},{"title":"Large language models for generative information extraction: a survey | Frontiers of Computer Science | Springer Nature Link","url":"https://link.springer.com/article/10.1007/s11704-024-40555-y"}]
+
+Based on the search results, I found several information extraction surveys from 2024 on arXiv, though I want to clarify what was retrieved:
+
+The search results show multiple 2024 information extraction surveys on arXiv:
+
+1. "Large Language Models for Generative Information Extraction: A Survey" by Derong Xu, Wei Chen, Wenjun Peng, Chao Zhang, and others, which aims to extract structural knowledge from plain natural language texts.
+
+2. "A survey on neural open information extraction: Current status and future directions"
+
+3. "A Comprehensive Survey on Document-Level Information Extraction"
+
+However, I did not find a survey specifically authored by "Wan Zhong" in these results. The search results contain references to various authors working on information extraction, but not a paper with that exact author name. If you're looking for a specific paper by those authors, you may want to verify the exact author names or try searching arXiv directly with alternative spellings or search terms.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4174a956-2672-46bc-9cc6-7207d07af3de",
+  "uuid": "d0871fe6-2eb1-4f46-9bdf-fd0c2e89791b",
+  "tool_use_result": {
+    "query": "Wan Zhong 2024 \"information extraction\" survey arxiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Y6B8ZTYKvZPfZKeYiy3xL4",
+        "content": [
+          {
+            "title": "A Comprehensive Survey on Document-Level Information ...",
+            "url": "https://aclanthology.org/2024.futured-1.6.pdf"
+          },
+          {
+            "title": "A Survey on Open Information Extraction from Rule-based Model to Large Language Model",
+            "url": "https://arxiv.org/html/2208.08690v7"
+          },
+          {
+            "title": "Large Language Models for Generative Information Extraction: A Survey",
+            "url": "https://arxiv.org/html/2312.17617v3"
+          },
+          {
+            "title": "A Survey of Generative Information Extraction",
+            "url": "https://aclanthology.org/2025.coling-main.324.pdf"
+          },
+          {
+            "title": "[2312.17617] Large Language Models for Generative Information Extraction: A Survey",
+            "url": "https://arxiv.org/abs/2312.17617"
+          },
+          {
+            "title": "Large language models for generative information extraction: a survey | Frontiers of Computer Science | Springer Nature Link",
+            "url": "https://link.springer.com/article/10.1007/s11704-024-40555-y"
+          }
+        ]
+      },
+      "Based on the search results, I found several information extraction surveys from 2024 on arXiv, though I want to clarify what was retrieved:\n\nThe search results show multiple 2024 information extraction surveys on arXiv:\n\n1. \"Large Language Models for Generative Information Extraction: A Survey\" by Derong Xu, Wei Chen, Wenjun Peng, Chao Zhang, and others, which aims to extract structural knowledge from plain natural language texts.\n\n2. \"A survey on neural open information extraction: Current status and future directions\"\n\n3. \"A Comprehensive Survey on Document-Level Information Extraction\"\n\nHowever, I did not find a survey specifically authored by \"Wan Zhong\" in these results. The search results contain references to various authors working on information extraction, but not a paper with that exact author name. If you're looking for a specific paper by those authors, you may want to verify the exact author names or try searching arXiv directly with alternative spellings or search terms."
+    ],
+    "durationSeconds": 9.090728038999995
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-19T04:08:43.853Z_
+
+<details><summary>↩ Tool result · `toolu_0151iemUCUgb5Khyk9bYX5Bf`</summary>
+
+```text
+Web search results for query: ""Local LLM Ensembles" "Zero-shot" "Portuguese Named Entity Recognition" 2025 authors arxiv"
+
+Links: [{"title":"Local LLM Ensembles for Zero-shot Portuguese Named Entity Recognition","url":"https://arxiv.org/pdf/2512.10043"},{"title":"Local LLM Ensembles for Zero-shot Portuguese Named Entity Recognition","url":"https://arxiv.org/html/2512.10043v1"},{"title":"Local LLM Ensembles for Zero-shot Portuguese Named Entity Recognition","url":"https://www.arxiv.org/pdf/2512.10043"},{"title":"[Literature Review] Local LLM Ensembles for Zero-shot Portuguese Named Entity Recognition","url":"https://www.themoonlight.io/en/review/local-llm-ensembles-for-zero-shot-portuguese-named-entity-recognition"},{"title":"[2512.10043] Local LLM Ensembles for Zero-shot Portuguese Named Entity Recognition","url":"https://arxiv.org/abs/2512.10043"},{"title":"A Cooperative Multi-Agent Framework for Zero-Shot Named Entity Recognition | Proceedings of the ACM on Web Conference 2025","url":"https://dl.acm.org/doi/10.1145/3696410.3714923"}]
+
+I found the paper you were looking for! Here are the details:
+
+**Title:** Local LLM Ensembles for Zero-shot Portuguese Named Entity Recognition
+
+**Authors:** João Lucas Luz Lima Sarcinelli and Diego Furtado Silva from Instituto de Ciências Matemáticas e Computação, Universidade de São Paulo
+
+**Publication:** ArXiv paper 2512.10043 (published December 10, 2025)
+
+**Summary:** The work proposes a novel three-step ensemble pipeline for zero-shot NER using similarly capable, locally run LLMs. The method outperforms individual LLMs in four out of five Portuguese NER datasets by leveraging a heuristic to select optimal model combinations with minimal annotated data.
+
+**Code:** Code is available at https://github.com/Joao-Luz/local-llm-ner-ensemble
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4174a956-2672-46bc-9cc6-7207d07af3de",
+  "uuid": "a84c7161-0229-4910-8f72-d6eb2d576890",
+  "tool_use_result": {
+    "query": "\"Local LLM Ensembles\" \"Zero-shot\" \"Portuguese Named Entity Recognition\" 2025 authors arxiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01M3K6U6twmkVXLne6ptyBQo",
+        "content": [
+          {
+            "title": "Local LLM Ensembles for Zero-shot Portuguese Named Entity Recognition",
+            "url": "https://arxiv.org/pdf/2512.10043"
+          },
+          {
+            "title": "Local LLM Ensembles for Zero-shot Portuguese Named Entity Recognition",
+            "url": "https://arxiv.org/html/2512.10043v1"
+          },
+          {
+            "title": "Local LLM Ensembles for Zero-shot Portuguese Named Entity Recognition",
+            "url": "https://www.arxiv.org/pdf/2512.10043"
+          },
+          {
+            "title": "[Literature Review] Local LLM Ensembles for Zero-shot Portuguese Named Entity Recognition",
+            "url": "https://www.themoonlight.io/en/review/local-llm-ensembles-for-zero-shot-portuguese-named-entity-recognition"
+          },
+          {
+            "title": "[2512.10043] Local LLM Ensembles for Zero-shot Portuguese Named Entity Recognition",
+            "url": "https://arxiv.org/abs/2512.10043"
+          },
+          {
+            "title": "A Cooperative Multi-Agent Framework for Zero-Shot Named Entity Recognition | Proceedings of the ACM on Web Conference 2025",
+            "url": "https://dl.acm.org/doi/10.1145/3696410.3714923"
+          }
+        ]
+      },
+      "I found the paper you were looking for! Here are the details:\n\n**Title:** Local LLM Ensembles for Zero-shot Portuguese Named Entity Recognition\n\n**Authors:** João Lucas Luz Lima Sarcinelli and Diego Furtado Silva from Instituto de Ciências Matemáticas e Computação, Universidade de São Paulo\n\n**Publication:** ArXiv paper 2512.10043 (published December 10, 2025)\n\n**Summary:** The work proposes a novel three-step ensemble pipeline for zero-shot NER using similarly capable, locally run LLMs. The method outperforms individual LLMs in four out of five Portuguese NER datasets by leveraging a heuristic to select optimal model combinations with minimal annotated data.\n\n**Code:** Code is available at https://github.com/Joao-Luz/local-llm-ner-ensemble"
+    ],
+    "durationSeconds": 8.795155564
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 67 · 2026-05-19T04:08:45.713Z_
+
+<details><summary>↩ Tool result · `toolu_01Tp4MDDRjqZANd5CPrU8hFk`</summary>
+
+```text
+Web search results for query: "Ekman Hägglöf 2021 "Ensemble Deep Masked Language Models" NER health life science authors venue"
+
+Links: [{"title":"Ensemble of Deep Masked Language Models for Effective Named Entity Recognition in Health and Life Science Corpora","url":"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8640190/"},{"title":"Ensemble of Deep Masked Language Models for Effective Named Entity Recognition in Health and Life Science Corpora - PubMed","url":"https://pubmed.ncbi.nlm.nih.gov/34870074/"},{"title":"Frontiers | Ensemble of Deep Masked Language Models for Effective Named Entity Recognition in Health and Life Science Corpora","url":"https://www.frontiersin.org/journals/research-metrics-and-analytics/articles/10.3389/frma.2021.689803/full"},{"title":"(PDF) Ensemble of Deep Masked Language Models for Effective Named Entity Recognition in Health and Life Science Corpora","url":"https://www.researchgate.net/publication/356386634_Ensemble_of_Deep_Masked_Language_Models_for_Effective_Named_Entity_Recognition_in_Health_and_Life_Science_Corpora"},{"title":"Ensemble of Deep Masked Language Models for Effective Named Entity Recognition in Health and Life Science Corpora - PMC","url":"https://pmc.ncbi.nlm.nih.gov/articles/PMC8640190/"},{"title":"(PDF) Ensemble of deep masked language models for effective named entity recognition in multi-domain corpora","url":"https://www.researchgate.net/publication/351172591_Ensemble_of_deep_masked_language_models_for_effective_named_entity_recognition_in_multi-domain_corpora"}]
+
+Based on the search results, I found information about this paper. However, I should note that the authors listed in the paper do not include "Ekman Hägglöf." 
+
+The paper titled "Ensemble of Deep Masked Language Models for Effective Named Entity Recognition in Health and Life Science Corpora" was published in 2021 with authors Nona Naderi, Julien Knafou, Jenny Copara, Patrick Ruch, and Douglas Teodoro.
+
+The paper was published on November 19, 2021 in Frontiers in Research Metrics and Analytics (DOI: 10.3389/frma.2021.689803).
+
+The study assessed how individual and ensemble of deep masked language models perform across corpora of different health and life science domains (biology, chemistry, and medicine) in English and French. Individual deep masked language models were fine-tuned on task-specific domain and language corpora and ensembled using classical majority voting strategies, showing statistically significant improvement with an overall best performance of 77% macro F1-score.
+
+It's possible you may be thinking of a different paper or different authors, as "Ekman Hägglöf" does not appear in the authorship of this 2021 paper on ensemble deep masked language models.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4174a956-2672-46bc-9cc6-7207d07af3de",
+  "uuid": "9da6aa0f-46f1-4abc-90df-20993ce5800d",
+  "tool_use_result": {
+    "query": "Ekman Hägglöf 2021 \"Ensemble Deep Masked Language Models\" NER health life science authors venue",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01DXtZzwh8KUsM7jgNt1EBpv",
+        "content": [
+          {
+            "title": "Ensemble of Deep Masked Language Models for Effective Named Entity Recognition in Health and Life Science Corpora",
+            "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8640190/"
+          },
+          {
+            "title": "Ensemble of Deep Masked Language Models for Effective Named Entity Recognition in Health and Life Science Corpora - PubMed",
+            "url": "https://pubmed.ncbi.nlm.nih.gov/34870074/"
+          },
+          {
+            "title": "Frontiers | Ensemble of Deep Masked Language Models for Effective Named Entity Recognition in Health and Life Science Corpora",
+            "url": "https://www.frontiersin.org/journals/research-metrics-and-analytics/articles/10.3389/frma.2021.689803/full"
+          },
+          {
+            "title": "(PDF) Ensemble of Deep Masked Language Models for Effective Named Entity Recognition in Health and Life Science Corpora",
+            "url": "https://www.researchgate.net/publication/356386634_Ensemble_of_Deep_Masked_Language_Models_for_Effective_Named_Entity_Recognition_in_Health_and_Life_Science_Corpora"
+          },
+          {
+            "title": "Ensemble of Deep Masked Language Models for Effective Named Entity Recognition in Health and Life Science Corpora - PMC",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8640190/"
+          },
+          {
+            "title": "(PDF) Ensemble of deep masked language models for effective named entity recognition in multi-domain corpora",
+            "url": "https://www.researchgate.net/publication/351172591_Ensemble_of_deep_masked_language_models_for_effective_named_entity_recognition_in_multi-domain_corpora"
+          }
+        ]
+      },
+      "Based on the search results, I found information about this paper. However, I should note that the authors listed in the paper do not include \"Ekman Hägglöf.\" \n\nThe paper titled \"Ensemble of Deep Masked Language Models for Effective Named Entity Recognition in Health and Life Science Corpora\" was published in 2021 with authors Nona Naderi, Julien Knafou, Jenny Copara, Patrick Ruch, and Douglas Teodoro.\n\nThe paper was published on November 19, 2021 in Frontiers in Research Metrics and Analytics (DOI: 10.3389/frma.2021.689803).\n\nThe study assessed how individual and ensemble of deep masked language models perform across corpora of different health and life science domains (biology, chemistry, and medicine) in English and French. Individual deep masked language models were fine-tuned on task-specific domain and language corpora and ensembled using classical majority voting strategies, showing statistically significant improvement with an overall best performance of 77% macro F1-score.\n\nIt's possible you may be thinking of a different paper or different authors, as \"Ekman Hägglöf\" does not appear in the authorship of this 2021 paper on ensemble deep masked language models."
+    ],
+    "durationSeconds": 9.620351903000003
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 68_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me now search for the "Wan et al. 2024 IE survey" more carefully. Maybe it's a different paper. Let me try different search strategies.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4174a956-2672-46bc-9cc6-7207d07af3de",
+  "uuid": "e912e497-ac2a-4c07-87de-790cf77d25d5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LeJMJcqkLzuQKeTGiYnKrY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 801,
+      "cache_creation_input_tokens": 2982,
+      "cache_read_input_tokens": 55545,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2982
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 69_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_0157q3UcwfPZLPuvUN9iCpXt`</summary>
+
+```json
+{
+  "query": "\"Wan\" 2024 survey \"named entity recognition\" OR \"relation extraction\" OR \"event extraction\" LLM arxiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4174a956-2672-46bc-9cc6-7207d07af3de",
+  "uuid": "5ae3f764-8ae5-4634-bf4d-505d864153bf",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LeJMJcqkLzuQKeTGiYnKrY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 801,
+      "cache_creation_input_tokens": 2982,
+      "cache_read_input_tokens": 55545,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2982
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 70_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_015sYyviWMxm2G3MpJHshwEH`</summary>
+
+```json
+{
+  "query": "Sarcinelli Silva 2025 \"Local LLM Ensembles\" NER arxiv 2512.10043 venue published"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4174a956-2672-46bc-9cc6-7207d07af3de",
+  "uuid": "1d948ecf-ecbf-4cfe-99b7-506dea1e48f4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LeJMJcqkLzuQKeTGiYnKrY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 801,
+      "cache_creation_input_tokens": 2982,
+      "cache_read_input_tokens": 55545,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2982
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 71_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01VTXCexLcVVVtKzN2FH7L3c`</summary>
+
+```json
+{
+  "query": "Ekman 2019 OR 2020 OR 2021 ensemble NER entity voting span"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4174a956-2672-46bc-9cc6-7207d07af3de",
+  "uuid": "3c4b06bd-4251-4631-8c1e-f05efab3dd61",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LeJMJcqkLzuQKeTGiYnKrY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 801,
+      "cache_creation_input_tokens": 2982,
+      "cache_read_input_tokens": 55545,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2982
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 72 · 2026-05-19T04:08:58.574Z_
+
+<details><summary>↩ Tool result · `toolu_015sYyviWMxm2G3MpJHshwEH`</summary>
+
+```text
+Web search results for query: "Sarcinelli Silva 2025 "Local LLM Ensembles" NER arxiv 2512.10043 venue published"
+
+Links: [{"title":"[2512.10043] Local LLM Ensembles for Zero-shot Portuguese Named Entity Recognition","url":"https://arxiv.org/abs/2512.10043"},{"title":"Local LLM Ensembles for Zero-shot Portuguese Named Entity Recognition","url":"https://arxiv.org/html/2512.10043"},{"title":"Local LLM Ensembles for Zero-shot Portuguese Named Entity Recognition","url":"https://www.arxiv.org/pdf/2512.10043"},{"title":"Local LLM Ensembles for Zero-shot Portuguese Named Entity Recognition","url":"https://arxiv.org/pdf/2512.10043"},{"title":"Scaling text de-identification using locally augmented ensembles","url":"https://www.medrxiv.org/content/10.1101/2024.06.20.24308896.full.pdf"}]
+
+Based on the search results, here's what I found about the paper:
+
+The paper "Local LLM Ensembles for Zero-shot Portuguese Named Entity Recognition" is authored by João Lucas Luz Lima Sarcinelli and Diego Furtado Silva from the Instituto de Ciências Matemáticas e Computação at Universidade de São Paulo.
+
+The arxiv identifier is 2512.10043, and it was published on December 10, 2025.
+
+Regarding the venue: The paper appears to be published on arXiv, which is a preprint repository. The search results indicate it's an arXiv paper with a Computer Science classification (cs.LG - Machine Learning), but there's no indication in these results that it has been published in a specific conference or journal venue beyond arXiv itself.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4174a956-2672-46bc-9cc6-7207d07af3de",
+  "uuid": "60451464-8887-4fa9-b2b3-628edc7c9603",
+  "tool_use_result": {
+    "query": "Sarcinelli Silva 2025 \"Local LLM Ensembles\" NER arxiv 2512.10043 venue published",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01VLgxSWvJKx6ofxCmGmywuL",
+        "content": [
+          {
+            "title": "[2512.10043] Local LLM Ensembles for Zero-shot Portuguese Named Entity Recognition",
+            "url": "https://arxiv.org/abs/2512.10043"
+          },
+          {
+            "title": "Local LLM Ensembles for Zero-shot Portuguese Named Entity Recognition",
+            "url": "https://arxiv.org/html/2512.10043"
+          },
+          {
+            "title": "Local LLM Ensembles for Zero-shot Portuguese Named Entity Recognition",
+            "url": "https://www.arxiv.org/pdf/2512.10043"
+          },
+          {
+            "title": "Local LLM Ensembles for Zero-shot Portuguese Named Entity Recognition",
+            "url": "https://arxiv.org/pdf/2512.10043"
+          },
+          {
+            "title": "Scaling text de-identification using locally augmented ensembles",
+            "url": "https://www.medrxiv.org/content/10.1101/2024.06.20.24308896.full.pdf"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about the paper:\n\nThe paper \"Local LLM Ensembles for Zero-shot Portuguese Named Entity Recognition\" is authored by João Lucas Luz Lima Sarcinelli and Diego Furtado Silva from the Instituto de Ciências Matemáticas e Computação at Universidade de São Paulo.\n\nThe arxiv identifier is 2512.10043, and it was published on December 10, 2025.\n\nRegarding the venue: The paper appears to be published on arXiv, which is a preprint repository. The search results indicate it's an arXiv paper with a Computer Science classification (cs.LG - Machine Learning), but there's no indication in these results that it has been published in a specific conference or journal venue beyond arXiv itself."
+    ],
+    "durationSeconds": 7.562716411000001
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 73 · 2026-05-19T04:09:00.169Z_
+
+<details><summary>↩ Tool result · `toolu_01VTXCexLcVVVtKzN2FH7L3c`</summary>
+
+```text
+Web search results for query: "Ekman 2019 OR 2020 OR 2021 ensemble NER entity voting span"
+
+Links: [{"title":"Combining multiple classifiers using vote based classifier ensemble technique for named entity recognition | Request PDF","url":"https://www.researchgate.net/publication/257026236_Combining_multiple_classifiers_using_vote_based_classifier_ensemble_technique_for_named_entity_recognition"},{"title":"Ensemble of Deep Masked Language Models for Effective Named Entity Recognition in Health and Life Science Corpora - PubMed","url":"https://pubmed.ncbi.nlm.nih.gov/34870074/"},{"title":"NER - VLSP 2021: A Span-Based Model for Named Entity Recognition Task with Co-teaching+ Training Strategy","url":"https://www.researchgate.net/publication/366504833_NER_-_VLSP_2021_A_Span-Based_Model_for_Named_Entity_Recognition_Task_with_Co-teaching_Training_Strategy"},{"title":"Ensemble Learning for Named Entity Recognition | Request PDF","url":"https://www.researchgate.net/publication/277075552_Ensemble_Learning_for_Named_Entity_Recognition"},{"title":"InsightBuddy-AI: Medication Extraction and Entity Linking using Large Language Models and Ensemble Learning","url":"https://arxiv.org/html/2409.19467"},{"title":"Ensemble of Deep Masked Language Models for Effective Named Entity Recognition in Health and Life Science Corpora","url":"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8640190/"},{"title":"EL4NER: Ensemble Learning for Named Entity Recognition via Multiple Small-Parameter Large Language Models","url":"https://arxiv.org/pdf/2505.23038"},{"title":"Efficient Deep Learning Ensemble Approach for Indic Named Entity Recognition in Natural Language Processing","url":"https://indjst.org/articles/efficient-deep-learning-ensemble-approach-for-indic-named-entity-recognition-in-natural-language-processing"}]
+
+Based on the search results, I found several relevant papers on ensemble methods for Named Entity Recognition (NER) from the specified timeframe, though I did not find a specific paper by "Ekman" with the exact focus you mentioned.
+
+The search results show that combining transformer-based model predictions has been shown to increase NER accuracy, with research from 2020 and 2021 demonstrating this. Additionally, individual deep masked language models are assessed and ensembled using classical majority voting strategies for NER across different domains.
+
+More specifically, recent ensemble NER approaches use multiple LLMs to extract potential entity spans and integrate them, with entity types confirmed through voting on multiple LLMs.
+
+If you're looking for a specific paper by Ekman, you may want to:
+- Check if there's a different spelling of the author's name
+- Provide additional details about the paper (such as the full title or publication venue)
+- Search on academic databases like Google Scholar, arXiv, or your institution's library directly
+
+Would you like me to search with different parameters or additional information?
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4174a956-2672-46bc-9cc6-7207d07af3de",
+  "uuid": "16deddfc-6fc0-4aac-9f26-c438a036a4d3",
+  "tool_use_result": {
+    "query": "Ekman 2019 OR 2020 OR 2021 ensemble NER entity voting span",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01V7kQiPKQuujU9hgwYom2Cr",
+        "content": [
+          {
+            "title": "Combining multiple classifiers using vote based classifier ensemble technique for named entity recognition | Request PDF",
+            "url": "https://www.researchgate.net/publication/257026236_Combining_multiple_classifiers_using_vote_based_classifier_ensemble_technique_for_named_entity_recognition"
+          },
+          {
+            "title": "Ensemble of Deep Masked Language Models for Effective Named Entity Recognition in Health and Life Science Corpora - PubMed",
+            "url": "https://pubmed.ncbi.nlm.nih.gov/34870074/"
+          },
+          {
+            "title": "NER - VLSP 2021: A Span-Based Model for Named Entity Recognition Task with Co-teaching+ Training Strategy",
+            "url": "https://www.researchgate.net/publication/366504833_NER_-_VLSP_2021_A_Span-Based_Model_for_Named_Entity_Recognition_Task_with_Co-teaching_Training_Strategy"
+          },
+          {
+            "title": "Ensemble Learning for Named Entity Recognition | Request PDF",
+            "url": "https://www.researchgate.net/publication/277075552_Ensemble_Learning_for_Named_Entity_Recognition"
+          },
+          {
+            "title": "InsightBuddy-AI: Medication Extraction and Entity Linking using Large Language Models and Ensemble Learning",
+            "url": "https://arxiv.org/html/2409.19467"
+          },
+          {
+            "title": "Ensemble of Deep Masked Language Models for Effective Named Entity Recognition in Health and Life Science Corpora",
+            "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8640190/"
+          },
+          {
+            "title": "EL4NER: Ensemble Learning for Named Entity Recognition via Multiple Small-Parameter Large Language Models",
+            "url": "https://arxiv.org/pdf/2505.23038"
+          },
+          {
+            "title": "Efficient Deep Learning Ensemble Approach for Indic Named Entity Recognition in Natural Language Processing",
+            "url": "https://indjst.org/articles/efficient-deep-learning-ensemble-approach-for-indic-named-entity-recognition-in-natural-language-processing"
+          }
+        ]
+      },
+      "Based on the search results, I found several relevant papers on ensemble methods for Named Entity Recognition (NER) from the specified timeframe, though I did not find a specific paper by \"Ekman\" with the exact focus you mentioned.\n\nThe search results show that combining transformer-based model predictions has been shown to increase NER accuracy, with research from 2020 and 2021 demonstrating this. Additionally, individual deep masked language models are assessed and ensembled using classical majority voting strategies for NER across different domains.\n\nMore specifically, recent ensemble NER approaches use multiple LLMs to extract potential entity spans and integrate them, with entity types confirmed through voting on multiple LLMs.\n\nIf you're looking for a specific paper by Ekman, you may want to:\n- Check if there's a different spelling of the author's name\n- Provide additional details about the paper (such as the full title or publication venue)\n- Search on academic databases like Google Scholar, arXiv, or your institution's library directly\n\nWould you like me to search with different parameters or additional information?"
+    ],
+    "durationSeconds": 8.437984628000006
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 74 · 2026-05-19T04:09:03.550Z_
+
+<details><summary>↩ Tool result · `toolu_0157q3UcwfPZLPuvUN9iCpXt`</summary>
+
+```text
+Web search results for query: ""Wan" 2024 survey "named entity recognition" OR "relation extraction" OR "event extraction" LLM arxiv"
+
+Links: [{"title":"A Survey of Generative Information Extraction","url":"https://aclanthology.org/2025.coling-main.324.pdf"},{"title":"Information Extraction in Low-Resource Scenarios: Survey and Perspective","url":"https://arxiv.org/html/2202.08063v6"},{"title":"Large Language Models for Generative Information Extraction: A Survey","url":"https://arxiv.org/html/2312.17617v3"},{"title":"Event Extraction in Large Language Model: A Holistic Survey of Method, Modality, and Future","url":"https://arxiv.org/html/2512.19537v1"},{"title":"Survey on legal information extraction: current status and open challenges | Knowledge and Information Systems | Springer Nature Link","url":"https://link.springer.com/article/10.1007/s10115-025-02600-5"},{"title":"A survey on cutting-edge relation extraction techniques based on language models","url":"https://arxiv.org/html/2411.18157v1"},{"title":"Event Extraction in Large Language Model","url":"https://arxiv.org/pdf/2512.19537"},{"title":"A survey on recent advances in Named Entity Recognition","url":"https://arxiv.org/html/2401.10825v1"},{"title":"Structured information extraction from scientific text with large language models","url":"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10869356/"}]
+
+I found several surveys related to information extraction with LLMs from 2024, but I don't see a paper specifically by "Wan" in these results. Let me search more specifically for that author and 2024 survey:
+
+Links: [{"title":"Large language models for generative information extraction: a survey","url":"https://journal.hep.com.cn/fcs/EN/10.1007/s11704-024-40555-y"},{"title":"[2312.17617] Large Language Models for Generative Information Extraction: A Survey","url":"https://arxiv.org/abs/2312.17617"},{"title":"Large language models for generative information extraction: a survey | Frontiers of Computer Science | Springer Nature Link","url":"https://link.springer.com/article/10.1007/s11704-024-40555-y"},{"title":"A Survey on Retrieval And Structuring Augmented Generation with Large Language Models","url":"https://arxiv.org/html/2509.10697v1"},{"title":"Large Language Models for Generative Information Extraction: A Survey","url":"https://arxiv.org/html/2312.17617v3"},{"title":"Large Language Models for Generative Information Extraction: A Survey","url":"https://arxiv.org/pdf/2312.17617"}]
+
+Great! I found a reference to "Wan et al., 2023" in the context of relation extraction with LLMs. Let me search more specifically for that paper:
+
+Links: [{"title":"Unleashing the Power of Large Language Models in Zero-shot Relation Extraction via Self-Prompting","url":"https://arxiv.org/html/2410.01154"},{"title":"Generating Diverse Training Samples for Relation Extraction with Large Language Models","url":"https://arxiv.org/html/2505.23108"},{"title":"Large Language Models for Generative Information Extraction: A Survey","url":"https://arxiv.org/html/2312.17617v1"},{"title":"Graphical Reasoning: LLM-based Semi-Open Relation Extraction","url":"https://arxiv.org/pdf/2405.00216"},{"title":"Enhancing Relation Extraction via Supervised Rationale Verification and Feedback","url":"https://arxiv.org/html/2412.07289"},{"title":"Revisiting Large Language Models as Zero-shot Relation Extractors","url":"https://arxiv.org/pdf/2310.05028"},{"title":"LLM with Relation Classifier for Document-Level Relation Extraction","url":"https://arxiv.org/pdf/2408.13889"},{"title":"Graph-Augmented Relation Extraction Model with LLMs-Generated Support   Document","url":"https://arxiv.org/pdf/2410.23452"}]
+
+Perfect! I found references to "Wan et al. (2023)" in relation to relation extraction. Let me search for the specific GPT-RE paper:
+
+Links: [{"title":"GitHub - YukinoWan/GPT-RE","url":"https://github.com/YukinoWan/GPT-RE"},{"title":"[2305.02105] GPT-RE: In-context Learning for Relation Extraction using Large Language Models","url":"https://arxiv.org/abs/2305.02105"},{"title":"GPT-RE: In-context Learning for Relation Extraction using Large Language Models - ACL Anthology","url":"https://aclanthology.org/2023.emnlp-main.214/"},{"title":"[PDF] GPT-RE: In-context Learning for Relation Extraction using Large Language Models | Semantic Scholar","url":"https://www.semanticscholar.org/paper/GPT-RE:-In-context-Learning-for-Relation-Extraction-Wan-Cheng/f2cd02c03d0169374442d9bc227c9aed178f4b20"},{"title":"Table 4 from GPT-RE: In-context Learning for Relation Extraction using Large Language Models | Semantic Scholar","url":"https://www.semanticscholar.org/paper/GPT-RE:-In-context-Learning-for-Relation-Extraction-Wan-Cheng/f2cd02c03d0169374442d9bc227c9aed178f4b20/figure/7"},{"title":"(PDF) GPT-RE: In-context Learning for Relation Extraction using Large Language Models","url":"https://www.researchgate.net/publication/376402549_GPT-RE_In-context_Learning_for_Relation_Extraction_using_Large_Language_Models"},{"title":"Research on a denoising model for entity-relation extraction using hierarchical contrastive learning with distant supervision | Scientific Reports","url":"https://www.nature.com/articles/s41598-025-04474-7"},{"title":"GPT-RE: In-context Learning for Relation Extraction using Large Language Models","url":"https://arxiv.org/html/2305.02105v3"},{"title":"GPT-RE: In-context Learning for Relation Extraction using Large Language Models | OpenReview","url":"https://openreview.net/forum?id=mTiHLHu3sP"},{"title":"GPT-RE: In-context Learning for Relation Extraction using ...","url":"https://aclanthology.org/2023.emnlp-main.214.pdf"}]
+
+Based on my web search results, I found that your query most likely refers to Wan et al.'s "GPT-RE: In-context Learning for Relation Extraction using Large Language Models," published at EMNLP 2023. However, this paper was published in 2023, not 2024.
+
+If you're looking for a 2024 survey that covers named entity recognition, relation extraction, and event extraction with LLMs, the most relevant matches from my search would be:
+
+1. A "Large Language Models for Generative Information Extraction: A Survey" by Derong Xu et al., which surveys recent advancements in IE tasks and categorizes works in terms of various IE subtasks and techniques (this was submitted in late 2023 and updated in 2024).
+
+2. A survey focusing primarily on Named Entity Recognition (NER), Relation Extraction (RE), and Event Extraction (EE), also from around 2024.
+
+Could you clarify if you're looking for a specific 2024 survey by Wan, or if you meant the 2023 GPT-RE paper? Additionally, do you have more details about the specific survey (such as an arXiv ID or direct link) that might help me locate it more precisely?
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4174a956-2672-46bc-9cc6-7207d07af3de",
+  "uuid": "7b6f5e84-8f15-449f-b9bd-4f89ee0a9d4e",
+  "tool_use_result": {
+    "query": "\"Wan\" 2024 survey \"named entity recognition\" OR \"relation extraction\" OR \"event extraction\" LLM arxiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_012WBZZXmKUijHWgjtp3S5Cy",
+        "content": [
+          {
+            "title": "A Survey of Generative Information Extraction",
+            "url": "https://aclanthology.org/2025.coling-main.324.pdf"
+          },
+          {
+            "title": "Information Extraction in Low-Resource Scenarios: Survey and Perspective",
+            "url": "https://arxiv.org/html/2202.08063v6"
+          },
+          {
+            "title": "Large Language Models for Generative Information Extraction: A Survey",
+            "url": "https://arxiv.org/html/2312.17617v3"
+          },
+          {
+            "title": "Event Extraction in Large Language Model: A Holistic Survey of Method, Modality, and Future",
+            "url": "https://arxiv.org/html/2512.19537v1"
+          },
+          {
+            "title": "Survey on legal information extraction: current status and open challenges | Knowledge and Information Systems | Springer Nature Link",
+            "url": "https://link.springer.com/article/10.1007/s10115-025-02600-5"
+          },
+          {
+            "title": "A survey on cutting-edge relation extraction techniques based on language models",
+            "url": "https://arxiv.org/html/2411.18157v1"
+          },
+          {
+            "title": "Event Extraction in Large Language Model",
+            "url": "https://arxiv.org/pdf/2512.19537"
+          },
+          {
+            "title": "A survey on recent advances in Named Entity Recognition",
+            "url": "https://arxiv.org/html/2401.10825v1"
+          },
+          {
+            "title": "Structured information extraction from scientific text with large language models",
+            "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10869356/"
+          }
+        ]
+      },
+      "I found several surveys related to information extraction with LLMs from 2024, but I don't see a paper specifically by \"Wan\" in these results. Let me search more specifically for that author and 2024 survey:",
+      {
+        "tool_use_id": "srvtoolu_0198pLJenbPZHHoHdssiQQnB",
+        "content": [
+          {
+            "title": "Large language models for generative information extraction: a survey",
+            "url": "https://journal.hep.com.cn/fcs/EN/10.1007/s11704-024-40555-y"
+          },
+          {
+            "title": "[2312.17617] Large Language Models for Generative Information Extraction: A Survey",
+            "url": "https://arxiv.org/abs/2312.17617"
+          },
+          {
+            "title": "Large language models for generative information extraction: a survey | Frontiers of Computer Science | Springer Nature Link",
+            "url": "https://link.springer.com/article/10.1007/s11704-024-40555-y"
+          },
+          {
+            "title": "A Survey on Retrieval And Structuring Augmented Generation with Large Language Models",
+            "url": "https://arxiv.org/html/2509.10697v1"
+          },
+          {
+            "title": "Large Language Models for Generative Information Extraction: A Survey",
+            "url": "https://arxiv.org/html/2312.17617v3"
+          },
+          {
+            "title": "Large Language Models for Generative Information Extraction: A Survey",
+            "url": "https://arxiv.org/pdf/2312.17617"
+          }
+        ]
+      },
+      "Great! I found a reference to \"Wan et al., 2023\" in the context of relation extraction with LLMs. Let me search more specifically for that paper:",
+      {
+        "tool_use_id": "srvtoolu_01QwPvMt2FM2Uk4MtXgsWTpr",
+        "content": [
+          {
+            "title": "Unleashing the Power of Large Language Models in Zero-shot Relation Extraction via Self-Prompting",
+            "url": "https://arxiv.org/html/2410.01154"
+          },
+          {
+            "title": "Generating Diverse Training Samples for Relation Extraction with Large Language Models",
+            "url": "https://arxiv.org/html/2505.23108"
+          },
+          {
+            "title": "Large Language Models for Generative Information Extraction: A Survey",
+            "url": "https://arxiv.org/html/2312.17617v1"
+          },
+          {
+            "title": "Graphical Reasoning: LLM-based Semi-Open Relation Extraction",
+            "url": "https://arxiv.org/pdf/2405.00216"
+          },
+          {
+            "title": "Enhancing Relation Extraction via Supervised Rationale Verification and Feedback",
+            "url": "https://arxiv.org/html/2412.07289"
+          },
+          {
+            "title": "Revisiting Large Language Models as Zero-shot Relation Extractors",
+            "url": "https://arxiv.org/pdf/2310.05028"
+          },
+          {
+            "title": "LLM with Relation Classifier for Document-Level Relation Extraction",
+            "url": "https://arxiv.org/pdf/2408.13889"
+          },
+          {
+            "title": "Graph-Augmented Relation Extraction Model with LLMs-Generated Support   Document",
+            "url": "https://arxiv.org/pdf/2410.23452"
+          }
+        ]
+      },
+      "Perfect! I found references to \"Wan et al. (2023)\" in relation to relation extraction. Let me search for the specific GPT-RE paper:",
+      {
+        "tool_use_id": "srvtoolu_01BVrpEtX1mmaXyLfgmG3fLD",
+        "content": [
+          {
+            "title": "GitHub - YukinoWan/GPT-RE",
+            "url": "https://github.com/YukinoWan/GPT-RE"
+          },
+          {
+            "title": "[2305.02105] GPT-RE: In-context Learning for Relation Extraction using Large Language Models",
+            "url": "https://arxiv.org/abs/2305.02105"
+          },
+          {
+            "title": "GPT-RE: In-context Learning for Relation Extraction using Large Language Models - ACL Anthology",
+            "url": "https://aclanthology.org/2023.emnlp-main.214/"
+          },
+          {
+            "title": "[PDF] GPT-RE: In-context Learning for Relation Extraction using Large Language Models | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/GPT-RE:-In-context-Learning-for-Relation-Extraction-Wan-Cheng/f2cd02c03d0169374442d9bc227c9aed178f4b20"
+          },
+          {
+            "title": "Table 4 from GPT-RE: In-context Learning for Relation Extraction using Large Language Models | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/GPT-RE:-In-context-Learning-for-Relation-Extraction-Wan-Cheng/f2cd02c03d0169374442d9bc227c9aed178f4b20/figure/7"
+          },
+          {
+            "title": "(PDF) GPT-RE: In-context Learning for Relation Extraction using Large Language Models",
+            "url": "https://www.researchgate.net/publication/376402549_GPT-RE_In-context_Learning_for_Relation_Extraction_using_Large_Language_Models"
+          },
+          {
+            "title": "Research on a denoising model for entity-relation extraction using hierarchical contrastive learning with distant supervision | Scientific Reports",
+            "url": "https://www.nature.com/articles/s41598-025-04474-7"
+          },
+          {
+            "title": "GPT-RE: In-context Learning for Relation Extraction using Large Language Models",
+            "url": "https://arxiv.org/html/2305.02105v3"
+          },
+          {
+            "title": "GPT-RE: In-context Learning for Relation Extraction using Large Language Models | OpenReview",
+            "url": "https://openreview.net/forum?id=mTiHLHu3sP"
+          },
+          {
+            "title": "GPT-RE: In-context Learning for Relation Extraction using ...",
+            "url": "https://aclanthology.org/2023.emnlp-main.214.pdf"
+          }
+        ]
+      },
+      "Based on my web search results, I found that your query most likely refers to Wan et al.'s \"GPT-RE: In-context Learning for Relation Extraction using Large Language Models,\" published at EMNLP 2023. However, this paper was published in 2023, not 2024.\n\nIf you're looking for a 2024 survey that covers named entity recognition, relation extraction, and event extraction with LLMs, the most relevant matches from my search would be:\n\n1. A \"Large Language Models for Generative Information Extraction: A Survey\" by Derong Xu et al., which surveys recent advancements in IE tasks and categorizes works in terms of various IE subtasks and techniques (this was submitted in late 2023 and updated in 2024).\n\n2. A survey focusing primarily on Named Entity Recognition (NER), Relation Extraction (RE), and Event Extraction (EE), also from around 2024.\n\nCould you clarify if you're looking for a specific 2024 survey by Wan, or if you meant the 2023 GPT-RE paper? Additionally, do you have more details about the specific survey (such as an arXiv ID or direct link) that might help me locate it more precisely?"
+    ],
+    "durationSeconds": 13.98878175200001
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 75_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I've searched extensively but couldn't find a "Wan et al. 2024 IE survey" paper. Let me try a few more specific searches. Maybe the author name is "Wan" in a Chinese name format, or maybe the paper is by someone else.
+
+Also, I should note that the "Wan" search is for the user's task - let me try a few more searches:
+1. Search "Wan" + NER/RE/EE + survey + 2024 more carefully
+2. Maybe it's "Zhuoyuan Wan" or similar
+
+Let me also search for good ensemble NER papers that are more relevant. 
+
+The user specifically asked for entity-level construction with multi-model/multi-sample aggregation, so I should focus on papers that address that. Let me compile what I've found so far: I've identified two candidates for Xie et al. 2023 - one on self-evaluation guided beam search from NeurIPS 2023, and another on self-improving zero-shot NER with large language models from arxiv 2311.08921. Rather than continue searching for the elusive Wan paper, I should present these findings and see if they're what the user is looking for. I'm seeing several ensemble NER approaches here—from recent LLM-based methods like EL4NER and local ensemble techniques, to older masked language model and voting-based approaches. Let me search once more for that Wan paper and find a stronger ensemble NER reference.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4174a956-2672-46bc-9cc6-7207d07af3de",
+  "uuid": "4ccdd70a-2b75-4e7c-be76-9676a3a58837",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BhMDGiiNacp5aBPLkNimzv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1264,
+      "cache_creation_input_tokens": 3170,
+      "cache_read_input_tokens": 58527,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3170
+      },
+      "output_tokens": 13,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 76_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01CfpXn8fA6r4oYdTmN6bU7c`</summary>
+
+```json
+{
+  "query": "Wan 2024 \"GPT-NER\" OR \"IE\" OR \"information extraction\" survey arxiv first author"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4174a956-2672-46bc-9cc6-7207d07af3de",
+  "uuid": "33a396df-cb81-4b71-934c-563e1df385e1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BhMDGiiNacp5aBPLkNimzv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1264,
+      "cache_creation_input_tokens": 3170,
+      "cache_read_input_tokens": 58527,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3170
+      },
+      "output_tokens": 13,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 77_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_015dohkejdMgtVrgEUawmKWr`</summary>
+
+```json
+{
+  "query": "Xiao 2025 \"EL4NER\" ensemble NER LLM full author list arxiv 2505.23038"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4174a956-2672-46bc-9cc6-7207d07af3de",
+  "uuid": "44d590ab-5fc0-4847-b3ba-fedea8589886",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BhMDGiiNacp5aBPLkNimzv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1264,
+      "cache_creation_input_tokens": 3170,
+      "cache_read_input_tokens": 58527,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3170
+      },
+      "output_tokens": 13,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 78_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01WZQQfTq712JxbbqkWXWQoZ`</summary>
+
+```json
+{
+  "query": "Floret 2018 OR Ratinov 2009 OR \"ensemble\" \"named entity\" \"entity-level\" voting aggregation classic paper"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4174a956-2672-46bc-9cc6-7207d07af3de",
+  "uuid": "0d201c68-9454-4927-acf9-e79fb6217b7d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BhMDGiiNacp5aBPLkNimzv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1264,
+      "cache_creation_input_tokens": 3170,
+      "cache_read_input_tokens": 58527,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3170
+      },
+      "output_tokens": 13,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 79 · 2026-05-19T04:09:39.395Z_
+
+<details><summary>↩ Tool result · `toolu_015dohkejdMgtVrgEUawmKWr`</summary>
+
+```text
+Web search results for query: "Xiao 2025 "EL4NER" ensemble NER LLM full author list arxiv 2505.23038"
+
+Links: [{"title":"[2505.23038] EL4NER: Ensemble Learning for Named Entity Recognition via Multiple Small-Parameter Large Language Models","url":"https://arxiv.org/abs/2505.23038"},{"title":"arXiv:2505.23038v1 [cs.CL] 29 May 2025 EL4NER: Ensemble Learning","url":"https://arxiv.org/pdf/2505.23038"},{"title":"EL4NER: Ensemble Learning for Named Entity Recognition via Multiple Small-Parameter Large Language Models","url":"https://arxiv.org/html/2505.23038"},{"title":"Computation and Language May 2025","url":"http://arxiv.org/list/cs.CL/2025-05?skip=1825&show=2000"},{"title":"Local LLM Ensembles for Zero-shot Portuguese Named Entity Recognition","url":"https://arxiv.org/pdf/2512.10043"},{"title":"Assessment of Generative Named Entity Recognition in the Era of Large Language Models","url":"https://arxiv.org/pdf/2601.17898"}]
+
+The full author list for the EL4NER paper (arXiv 2505.23038) is: Yuzhen Xiao, Jiahe Song, Yongxin Xu, Ruizhe Zhang, Yiqi Xiao, Xin Lu, Runchuan Zhu, Bowen Jiang, and Junfeng Zhao.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4174a956-2672-46bc-9cc6-7207d07af3de",
+  "uuid": "7b851942-4810-407d-8117-0918936114ad",
+  "tool_use_result": {
+    "query": "Xiao 2025 \"EL4NER\" ensemble NER LLM full author list arxiv 2505.23038",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_016HfsY9Xgp6hbWk4acN2fhp",
+        "content": [
+          {
+            "title": "[2505.23038] EL4NER: Ensemble Learning for Named Entity Recognition via Multiple Small-Parameter Large Language Models",
+            "url": "https://arxiv.org/abs/2505.23038"
+          },
+          {
+            "title": "arXiv:2505.23038v1 [cs.CL] 29 May 2025 EL4NER: Ensemble Learning",
+            "url": "https://arxiv.org/pdf/2505.23038"
+          },
+          {
+            "title": "EL4NER: Ensemble Learning for Named Entity Recognition via Multiple Small-Parameter Large Language Models",
+            "url": "https://arxiv.org/html/2505.23038"
+          },
+          {
+            "title": "Computation and Language May 2025",
+            "url": "http://arxiv.org/list/cs.CL/2025-05?skip=1825&show=2000"
+          },
+          {
+            "title": "Local LLM Ensembles for Zero-shot Portuguese Named Entity Recognition",
+            "url": "https://arxiv.org/pdf/2512.10043"
+          },
+          {
+            "title": "Assessment of Generative Named Entity Recognition in the Era of Large Language Models",
+            "url": "https://arxiv.org/pdf/2601.17898"
+          }
+        ]
+      },
+      "The full author list for the EL4NER paper (arXiv 2505.23038) is: Yuzhen Xiao, Jiahe Song, Yongxin Xu, Ruizhe Zhang, Yiqi Xiao, Xin Lu, Runchuan Zhu, Bowen Jiang, and Junfeng Zhao."
+    ],
+    "durationSeconds": 4.088345440000005
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 80 · 2026-05-19T04:09:39.950Z_
+
+<details><summary>↩ Tool result · `toolu_01CfpXn8fA6r4oYdTmN6bU7c`</summary>
+
+```text
+Web search results for query: "Wan 2024 "GPT-NER" OR "IE" OR "information extraction" survey arxiv first author"
+
+Links: [{"title":"GitHub - quqxui/Awesome-LLM4IE-Papers: Awesome papers about generative Information Extraction (IE) using Large Language Models (LLMs) · GitHub","url":"https://github.com/quqxui/Awesome-LLM4IE-Papers"},{"title":"Large Language Models for Generative Information Extraction: A Survey","url":"https://arxiv.org/html/2312.17617v3"},{"title":"A survey on recent advances in Named Entity Recognition","url":"https://arxiv.org/html/2401.10825v1"},{"title":"Large language models for generative information extraction: a survey | Frontiers of Computer Science | Springer Nature Link","url":"https://link.springer.com/article/10.1007/s11704-024-40555-y"},{"title":"A Survey on Open Information Extraction from Rule-based Model to Large Language Model","url":"https://arxiv.org/html/2208.08690v7"},{"title":"A Survey of Document-Level Information Extraction","url":"https://arxiv.org/pdf/2309.13249"},{"title":"An Empirical Study on Information Extraction using Large Language Models","url":"https://arxiv.org/html/2409.00369v2"},{"title":"Large Language Models for Generative Information Extraction: A Survey","url":"https://arxiv.org/pdf/2312.17617"}]
+
+Based on the search results, I found a highly relevant survey article:
+
+**"Large language models for generative information extraction: A survey"** by Xu et al. (2024), published in Frontiers of Computer Science. 
+
+The authors listed are: Derong Xu (first author), Chen Wei, Peng Wenjun, Zhang Chao, Xu Tong, Zhao Xiangyu, Wu Xian, Zheng Yefeng, Wang Yang, and Chen Enhong.
+
+This survey covers generative information extraction using large language models and discusses various IE-related topics including NER (Named Entity Recognition) and GPT-based approaches. The paper also references GPT-NER, which transformed NER into a generative task with a self-verification strategy.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4174a956-2672-46bc-9cc6-7207d07af3de",
+  "uuid": "c3315e8a-a619-4813-a7e8-cf0eb387c0fe",
+  "tool_use_result": {
+    "query": "Wan 2024 \"GPT-NER\" OR \"IE\" OR \"information extraction\" survey arxiv first author",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_016UX1kD85GKeGeYr3ext9VQ",
+        "content": [
+          {
+            "title": "GitHub - quqxui/Awesome-LLM4IE-Papers: Awesome papers about generative Information Extraction (IE) using Large Language Models (LLMs) · GitHub",
+            "url": "https://github.com/quqxui/Awesome-LLM4IE-Papers"
+          },
+          {
+            "title": "Large Language Models for Generative Information Extraction: A Survey",
+            "url": "https://arxiv.org/html/2312.17617v3"
+          },
+          {
+            "title": "A survey on recent advances in Named Entity Recognition",
+            "url": "https://arxiv.org/html/2401.10825v1"
+          },
+          {
+            "title": "Large language models for generative information extraction: a survey | Frontiers of Computer Science | Springer Nature Link",
+            "url": "https://link.springer.com/article/10.1007/s11704-024-40555-y"
+          },
+          {
+            "title": "A Survey on Open Information Extraction from Rule-based Model to Large Language Model",
+            "url": "https://arxiv.org/html/2208.08690v7"
+          },
+          {
+            "title": "A Survey of Document-Level Information Extraction",
+            "url": "https://arxiv.org/pdf/2309.13249"
+          },
+          {
+            "title": "An Empirical Study on Information Extraction using Large Language Models",
+            "url": "https://arxiv.org/html/2409.00369v2"
+          },
+          {
+            "title": "Large Language Models for Generative Information Extraction: A Survey",
+            "url": "https://arxiv.org/pdf/2312.17617"
+          }
+        ]
+      },
+      "Based on the search results, I found a highly relevant survey article:\n\n**\"Large language models for generative information extraction: A survey\"** by Xu et al. (2024), published in Frontiers of Computer Science. \n\nThe authors listed are: Derong Xu (first author), Chen Wei, Peng Wenjun, Zhang Chao, Xu Tong, Zhao Xiangyu, Wu Xian, Zheng Yefeng, Wang Yang, and Chen Enhong.\n\nThis survey covers generative information extraction using large language models and discusses various IE-related topics including NER (Named Entity Recognition) and GPT-based approaches. The paper also references GPT-NER, which transformed NER into a generative task with a self-verification strategy."
+    ],
+    "durationSeconds": 5.2646044539999854
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 81 · 2026-05-19T04:09:42.590Z_
+
+<details><summary>↩ Tool result · `toolu_01WZQQfTq712JxbbqkWXWQoZ`</summary>
+
+```text
+Web search results for query: "Floret 2018 OR Ratinov 2009 OR "ensemble" "named entity" "entity-level" voting aggregation classic paper"
+
+Links: [{"title":"A Novel Ensemble Method for Named Entity Recognition and Disambiguation Based on Neural Network | The Semantic Web – ISWC 2018","url":"https://dl.acm.org/doi/10.1007/978-3-030-00671-6_6"},{"title":"Recognition of medication information from discharge summaries using ensembles of classifiers","url":"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3502425/"},{"title":"Ensemble of deep masked language models for effective named entity recognition in multi-domain corpora","url":"https://www.medrxiv.org/content/10.1101/2021.04.26.21256038.full.pdf"},{"title":"Named Entity Recognition without Labelled Data: A Weak ...","url":"https://aclanthology.org/2020.acl-main.139.pdf"},{"title":"On Aggregation in Ensembles of Multilabel Classifiers","url":"https://arxiv.org/pdf/2006.11916"},{"title":"Selecting a number of voters for a voting ensemble","url":"https://arxiv.org/pdf/2104.11833"}]
+
+Based on the search results, I found references to some of the papers you're looking for:
+
+**Ratinov 2009**: Ratinov, L., Roth, D. published "Design challenges and misconceptions in named entity recognition" at the 13th Conference on Computational Natural Language Learning (CoNLL) in Boulder, Colorado, USA in June 2009.
+
+The search results also reference ensemble methods for named entity recognition. One relevant study investigated ensemble classifiers using different voting strategies to combine outputs from multiple classifiers for entity recognition, proposing three voting methods: simple majority, local SVM-based voting, and local CRF-based voting.
+
+However, the search results did not return specific details about "Floret 2018" or papers specifically discussing "entity-level" voting aggregation techniques as classic papers in this area. The results show various ensemble and voting approaches for NER tasks, but not the specific classic paper you may be seeking that emphasizes entity-level (as opposed to token-level) voting aggregation.
+
+Would you like me to search more specifically for any of these papers or topics?
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4174a956-2672-46bc-9cc6-7207d07af3de",
+  "uuid": "35ea3bf7-7747-42c5-ae23-7a210d1484cc",
+  "tool_use_result": {
+    "query": "Floret 2018 OR Ratinov 2009 OR \"ensemble\" \"named entity\" \"entity-level\" voting aggregation classic paper",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Kc9ngPFK72erTG85JtQPEV",
+        "content": [
+          {
+            "title": "A Novel Ensemble Method for Named Entity Recognition and Disambiguation Based on Neural Network | The Semantic Web – ISWC 2018",
+            "url": "https://dl.acm.org/doi/10.1007/978-3-030-00671-6_6"
+          },
+          {
+            "title": "Recognition of medication information from discharge summaries using ensembles of classifiers",
+            "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3502425/"
+          },
+          {
+            "title": "Ensemble of deep masked language models for effective named entity recognition in multi-domain corpora",
+            "url": "https://www.medrxiv.org/content/10.1101/2021.04.26.21256038.full.pdf"
+          },
+          {
+            "title": "Named Entity Recognition without Labelled Data: A Weak ...",
+            "url": "https://aclanthology.org/2020.acl-main.139.pdf"
+          },
+          {
+            "title": "On Aggregation in Ensembles of Multilabel Classifiers",
+            "url": "https://arxiv.org/pdf/2006.11916"
+          },
+          {
+            "title": "Selecting a number of voters for a voting ensemble",
+            "url": "https://arxiv.org/pdf/2104.11833"
+          }
+        ]
+      },
+      "Based on the search results, I found references to some of the papers you're looking for:\n\n**Ratinov 2009**: Ratinov, L., Roth, D. published \"Design challenges and misconceptions in named entity recognition\" at the 13th Conference on Computational Natural Language Learning (CoNLL) in Boulder, Colorado, USA in June 2009.\n\nThe search results also reference ensemble methods for named entity recognition. One relevant study investigated ensemble classifiers using different voting strategies to combine outputs from multiple classifiers for entity recognition, proposing three voting methods: simple majority, local SVM-based voting, and local CRF-based voting.\n\nHowever, the search results did not return specific details about \"Floret 2018\" or papers specifically discussing \"entity-level\" voting aggregation techniques as classic papers in this area. The results show various ensemble and voting approaches for NER tasks, but not the specific classic paper you may be seeking that emphasizes entity-level (as opposed to token-level) voting aggregation.\n\nWould you like me to search more specifically for any of these papers or topics?"
+    ],
+    "durationSeconds": 5.671520021000004
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 82_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me now search for a few more things:
+1. Try to find "Wan et al. 2024 IE survey" - let me try different approaches
+2. Get better ensemble NER citations
+
+For the "Wan 2024 IE survey", let me try searching for it in different ways. Maybe it's not a survey, or maybe the name is different.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4174a956-2672-46bc-9cc6-7207d07af3de",
+  "uuid": "96e947e5-3d98-4199-a33a-d3199661fc32",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GbrMCC7j1f9YFKxmzv3h5q",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3747,
+      "cache_read_input_tokens": 61697,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3747
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 83_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01RuPVaA7BeMdrN8mGbtUuV1`</summary>
+
+```json
+{
+  "query": "\"Wan\" 2024 survey \"structured prediction\" OR \"structured output\" LLM NER"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4174a956-2672-46bc-9cc6-7207d07af3de",
+  "uuid": "23d08475-14dd-4ca5-a87e-79423029719e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GbrMCC7j1f9YFKxmzv3h5q",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3747,
+      "cache_read_input_tokens": 61697,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3747
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 84_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01KFLzSMvzeWhhzzUZszD31C`</summary>
+
+```json
+{
+  "query": "Nguyen 2022 OR Hedderich 2021 OR \"entity-level\" aggregation NER ensemble multi-model consensus"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4174a956-2672-46bc-9cc6-7207d07af3de",
+  "uuid": "e6cbe196-7c13-4912-af5a-7ff0d590e240",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GbrMCC7j1f9YFKxmzv3h5q",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3747,
+      "cache_read_input_tokens": 61697,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3747
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 85_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01KsgmcoNCLoQwPXtocKEEqi`</summary>
+
+```json
+{
+  "query": "Liang 2020 OR Wu 2022 \"NER\" \"ensemble\" \"entity\" \"span\" \"voting\" sequence labeling"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4174a956-2672-46bc-9cc6-7207d07af3de",
+  "uuid": "7bd7fa69-fe51-496a-afae-364a0510cf83",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GbrMCC7j1f9YFKxmzv3h5q",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3747,
+      "cache_read_input_tokens": 61697,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3747
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 86 · 2026-05-19T04:09:54.189Z_
+
+<details><summary>↩ Tool result · `toolu_01KFLzSMvzeWhhzzUZszD31C`</summary>
+
+```text
+Web search results for query: "Nguyen 2022 OR Hedderich 2021 OR "entity-level" aggregation NER ensemble multi-model consensus"
+
+Links: [{"title":"Ensemble Learning for Named Entity Recognition | Request PDF","url":"https://www.researchgate.net/publication/277075552_Ensemble_Learning_for_Named_Entity_Recognition"},{"title":"Ensemble of Deep Masked Language Models for Effective Named Entity Recognition in Health and Life Science Corpora","url":"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8640190/"},{"title":"SFE-AI at SemEval-2022 Task 11: Low-Resource Named Entity Recognition   using Large Pre-trained Language Models","url":"https://arxiv.org/pdf/2205.14660"},{"title":"HELD: Hierarchical entity-label disambiguation in named entity recognition task using deep learning - Bárbara Stéphanie Neves Oliveira, Andreza Fernandes de Oliveira, Vinicius Monteiro de Lira, Ticiana Linhares Coelho da Silva, José Antônio Fernandes de Macêdo, 2022","url":"https://journals.sagepub.com/doi/abs/10.3233/IDA-205720"},{"title":"EL4NER: Ensemble Learning for Named Entity Recognition via Multiple Small-Parameter Large Language Models","url":"https://arxiv.org/pdf/2505.23038"}]
+
+I've performed the web search with your query about NER ensemble methods. The search returned results about ensemble learning approaches for Named Entity Recognition, including various techniques for combining multiple models.
+
+The results discuss several relevant approaches:
+
+- Multiple ensembling methods in the MultiCoNER task, including merging pre-trained language encoders with data augmentation techniques and combining multilingual and monolingual Transformer models
+
+- Assessments of how individual and ensemble of deep masked language models perform across health and life science domains, with individual models fine-tuned and ensembled using classical majority voting strategies
+
+- An adaptive ensemble of pre-trained language models using a Transformer layer that assigns different weights to each model for different inputs
+
+- Observations that different small-parameter LLMs have unique strengths in various domains and can complement each other
+
+However, the search results don't appear to contain specific references to the particular papers by "Nguyen 2022" or "Hedderich 2021" that you mentioned in your query. If you're looking for those specific papers, I'd recommend searching directly for the authors' names or paper titles if you have them available.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4174a956-2672-46bc-9cc6-7207d07af3de",
+  "uuid": "1e537a7e-c7d0-466c-b8c8-b8f3f6003866",
+  "tool_use_result": {
+    "query": "Nguyen 2022 OR Hedderich 2021 OR \"entity-level\" aggregation NER ensemble multi-model consensus",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_017SPSpDp4R1YY4bNN5CptDz",
+        "content": [
+          {
+            "title": "Ensemble Learning for Named Entity Recognition | Request PDF",
+            "url": "https://www.researchgate.net/publication/277075552_Ensemble_Learning_for_Named_Entity_Recognition"
+          },
+          {
+            "title": "Ensemble of Deep Masked Language Models for Effective Named Entity Recognition in Health and Life Science Corpora",
+            "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8640190/"
+          },
+          {
+            "title": "SFE-AI at SemEval-2022 Task 11: Low-Resource Named Entity Recognition   using Large Pre-trained Language Models",
+            "url": "https://arxiv.org/pdf/2205.14660"
+          },
+          {
+            "title": "HELD: Hierarchical entity-label disambiguation in named entity recognition task using deep learning - Bárbara Stéphanie Neves Oliveira, Andreza Fernandes de Oliveira, Vinicius Monteiro de Lira, Ticiana Linhares Coelho da Silva, José Antônio Fernandes de Macêdo, 2022",
+            "url": "https://journals.sagepub.com/doi/abs/10.3233/IDA-205720"
+          },
+          {
+            "title": "EL4NER: Ensemble Learning for Named Entity Recognition via Multiple Small-Parameter Large Language Models",
+            "url": "https://arxiv.org/pdf/2505.23038"
+          }
+        ]
+      },
+      "I've performed the web search with your query about NER ensemble methods. The search returned results about ensemble learning approaches for Named Entity Recognition, including various techniques for combining multiple models.\n\nThe results discuss several relevant approaches:\n\n- Multiple ensembling methods in the MultiCoNER task, including merging pre-trained language encoders with data augmentation techniques and combining multilingual and monolingual Transformer models\n\n- Assessments of how individual and ensemble of deep masked language models perform across health and life science domains, with individual models fine-tuned and ensembled using classical majority voting strategies\n\n- An adaptive ensemble of pre-trained language models using a Transformer layer that assigns different weights to each model for different inputs\n\n- Observations that different small-parameter LLMs have unique strengths in various domains and can complement each other\n\nHowever, the search results don't appear to contain specific references to the particular papers by \"Nguyen 2022\" or \"Hedderich 2021\" that you mentioned in your query. If you're looking for those specific papers, I'd recommend searching directly for the authors' names or paper titles if you have them available."
+    ],
+    "durationSeconds": 5.750533412999998
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 87 · 2026-05-19T04:09:57.726Z_
+
+<details><summary>↩ Tool result · `toolu_01KsgmcoNCLoQwPXtocKEEqi`</summary>
+
+```text
+Web search results for query: "Liang 2020 OR Wu 2022 "NER" "ensemble" "entity" "span" "voting" sequence labeling"
+
+Links: [{"title":"A review of named entity recognition: from learning ...","url":"https://sentic.net/named-entity-recognition.pdf"},{"title":"Nested Named Entity Recognition as Single-Pass Sequence Labeling","url":"https://arxiv.org/pdf/2505.16855"},{"title":"S-NER: A Concise and Efficient Span-Based Model for Named Entity Recognition - PMC","url":"https://pmc.ncbi.nlm.nih.gov/articles/PMC9030542/"},{"title":"CLaC at SemEval-2023 Task 2: Comparing Span-Prediction and   Sequence-Labeling approaches for NER","url":"https://arxiv.org/pdf/2305.03845"},{"title":"Bundling Sequence and Span Models for Named Entity ...","url":"https://arxiv.org/pdf/2207.03300"},{"title":"Nested Named Entity Recognition as Single-Pass Sequence Labeling","url":"https://arxiv.org/html/2505.16855v1"},{"title":"SpanNER: Named Entity Re-/Recognition as Span Prediction","url":"https://arxiv.org/pdf/2106.00641"}]
+
+Based on the search results, I found relevant information about your query. Here are the key findings:
+
+Liang et al. (2020) introduced BOND, which employed a teacher-student framework to discard distant labels and use pseudo-labels to gradually improve the generalization ability of the model.
+
+The search results also include several papers that discuss NER approaches involving ensemble methods, span-based approaches, and sequence labeling. SpanNER is a span prediction model that combines different NER systems, and span prediction and sequence labeling are two popular approaches for NER.
+
+However, the search results do not contain a specific paper by Wu (2022) that directly matches all the keywords you're searching for (NER, ensemble, entity, span, voting, sequence labeling). The results do reference various NER papers from around that time period, but none that appear to be specifically authored by Wu in 2022 with that exact combination of topics.
+
+If you're looking for a specific paper, you might want to try refining your search with additional author names or more specific paper titles.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4174a956-2672-46bc-9cc6-7207d07af3de",
+  "uuid": "fde84919-f67d-47ef-97c4-bf3bee35bac8",
+  "tool_use_result": {
+    "query": "Liang 2020 OR Wu 2022 \"NER\" \"ensemble\" \"entity\" \"span\" \"voting\" sequence labeling",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01XADS2cmUj2eT4X7GVtnB9J",
+        "content": [
+          {
+            "title": "A review of named entity recognition: from learning ...",
+            "url": "https://sentic.net/named-entity-recognition.pdf"
+          },
+          {
+            "title": "Nested Named Entity Recognition as Single-Pass Sequence Labeling",
+            "url": "https://arxiv.org/pdf/2505.16855"
+          },
+          {
+            "title": "S-NER: A Concise and Efficient Span-Based Model for Named Entity Recognition - PMC",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9030542/"
+          },
+          {
+            "title": "CLaC at SemEval-2023 Task 2: Comparing Span-Prediction and   Sequence-Labeling approaches for NER",
+            "url": "https://arxiv.org/pdf/2305.03845"
+          },
+          {
+            "title": "Bundling Sequence and Span Models for Named Entity ...",
+            "url": "https://arxiv.org/pdf/2207.03300"
+          },
+          {
+            "title": "Nested Named Entity Recognition as Single-Pass Sequence Labeling",
+            "url": "https://arxiv.org/html/2505.16855v1"
+          },
+          {
+            "title": "SpanNER: Named Entity Re-/Recognition as Span Prediction",
+            "url": "https://arxiv.org/pdf/2106.00641"
+          }
+        ]
+      },
+      "Based on the search results, I found relevant information about your query. Here are the key findings:\n\nLiang et al. (2020) introduced BOND, which employed a teacher-student framework to discard distant labels and use pseudo-labels to gradually improve the generalization ability of the model.\n\nThe search results also include several papers that discuss NER approaches involving ensemble methods, span-based approaches, and sequence labeling. SpanNER is a span prediction model that combines different NER systems, and span prediction and sequence labeling are two popular approaches for NER.\n\nHowever, the search results do not contain a specific paper by Wu (2022) that directly matches all the keywords you're searching for (NER, ensemble, entity, span, voting, sequence labeling). The results do reference various NER papers from around that time period, but none that appear to be specifically authored by Wu in 2022 with that exact combination of topics.\n\nIf you're looking for a specific paper, you might want to try refining your search with additional author names or more specific paper titles."
+    ],
+    "durationSeconds": 8.460763875999982
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 88 · 2026-05-19T04:10:06.895Z_
+
+<details><summary>↩ Tool result · `toolu_01RuPVaA7BeMdrN8mGbtUuV1`</summary>
+
+```text
+Web search results for query: ""Wan" 2024 survey "structured prediction" OR "structured output" LLM NER"
+
+Links: [{"title":"A Survey of Frontiers in LLM Reasoning: Inference Scaling,","url":"https://llm-reasoning-ai.github.io/survey_arxiv.pdf"},{"title":"Are LLMs good at structured outputs? A benchmark for evaluating structured output capabilities in LLMs | Information Processing and Management: an International Journal","url":"https://dl.acm.org/doi/10.1016/j.ipm.2024.103809"},{"title":"Lost in Space: Finding the Right Tokens for Structured Output","url":"https://arxiv.org/pdf/2502.14969"},{"title":"Assessment of Generative Named Entity Recognition in the Era of Large Language Models","url":"https://arxiv.org/pdf/2601.17898"},{"title":"“We Need Structured Output”: Towards User-centered Constraints","url":"https://lxieyang.github.io/assets/files/pubs/llm-constraints-2024/llm-constraints-2024.pdf"},{"title":"Are LLMs good at structured outputs? A benchmark for evaluating structured output capabilities in LLMs - ScienceDirect","url":"https://www.sciencedirect.com/science/article/abs/pii/S0306457324001687"},{"title":"Next Token Prediction Towards Multimodal Intelligence: A Comprehensive Survey","url":"https://arxiv.org/html/2412.18619v2"},{"title":"Structured Prediction in NLP -- A survey","url":"https://arxiv.org/pdf/2110.02057"},{"title":"Empowering Time Series Analysis with Large Language Models: A Survey","url":"https://www.ijcai.org/proceedings/2024/0895.pdf"}]
+
+I found several relevant results. The first result mentions "Wan et al." in the context of LLM reasoning, but the text appears cut off. Let me search more specifically for a Wan et al. 2024 survey on structured prediction or structured output.
+
+Links: [{"title":"Structured Prediction in NLP -- A survey","url":"https://arxiv.org/pdf/2110.02057"},{"title":"On Structured Prediction Theory with Calibrated Convex Surrogate Losses","url":"https://arxiv.org/pdf/1703.02403"},{"title":"Spatio-temporal prediction using graph neural networks: A survey - ScienceDirect","url":"https://www.sciencedirect.com/science/article/abs/pii/S0925231225010720"},{"title":"On Certified Generalization in Structured Prediction","url":"https://arxiv.org/pdf/2306.09112"},{"title":"SpeedMachines: Anytime Structured Prediction","url":"https://arxiv.org/pdf/1312.0579"},{"title":"Tight Error Bounds for Structured Prediction","url":"https://arxiv.org/pdf/1409.5834"},{"title":"On the inconsistency of separable losses for structured prediction","url":"https://arxiv.org/pdf/2301.10810"}]
+
+The results above don't show a Wan et al. 2024 survey specifically. Let me try a more direct search.
+
+Links: [{"title":"Are LLMs good at structured outputs? A benchmark for evaluating structured output capabilities in LLMs | Information Processing and Management: an International Journal","url":"https://dl.acm.org/doi/10.1016/j.ipm.2024.103809"},{"title":"A Survey of Frontiers in LLM Reasoning: Inference Scaling,","url":"https://llm-reasoning-ai.github.io/survey_arxiv.pdf"},{"title":"Are LLMs good at structured outputs? A benchmark for evaluating structured output capabilities in LLMs - ScienceDirect","url":"https://www.sciencedirect.com/science/article/abs/pii/S0306457324001687"},{"title":"StructEval: Benchmarking LLMs' Capabilities to Generate Structural Outputs","url":"https://arxiv.org/pdf/2505.20139"},{"title":"Meaning Typed Prompting: A Technique for Efficient, Reliable Structured   Output Generation","url":"https://arxiv.org/pdf/2410.18146"},{"title":"SLOT: Structuring the Output of Large Language Models","url":"https://arxiv.org/pdf/2505.04016"}]
+
+Based on the search results, I found a reference to Wan et al. (2024a) in one of the LLM reasoning survey papers. Let me search more specifically for that work.
+
+Links: [{"title":"GitHub - AIoT-MLSys-Lab/Efficient-LLMs-Survey: [TMLR 2024] Efficient Large Language Models: A Survey · GitHub","url":"https://github.com/AIoT-MLSys-Lab/Efficient-LLMs-Survey"},{"title":"Undergraduate students’ performance and perception of video-recordings versus live demonstrations for teaching orthodontic laboratory procedures: a randomized trial","url":"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12232010/"},{"title":"Wan-Image: Pushing the Boundaries of Generative Visual Intelligence","url":"https://arxiv.org/html/2604.19858v1"},{"title":"Boosting LLM-Assisted Diagnosis: 10-Minute LLM Tutorial Elevates Radiology Residents’ Performance in Brain MRI Interpretation","url":"https://www.medrxiv.org/content/10.1101/2024.07.03.24309779.full.pdf"},{"title":"A Survey on In-context Learning","url":"https://arxiv.org/html/2301.00234v6"},{"title":"Rethinking the Role of Demonstrations: What Makes In-Context Learning   Work?","url":"https://arxiv.org/pdf/2202.12837"},{"title":"Wide-awake local anaesthesia no tourniquet hand surgery in Australia: an analysis of adoption, perceptions, and implementation in a global context","url":"https://www.medrxiv.org/content/10.1101/2025.11.06.25339720.full.pdf"}]
+
+Let me try one more direct search for Wan et al. 2024 work related to prompting.
+
+Links: [{"title":"Differentiable Instruction Optimization for Cross-Task Generalization","url":"https://arxiv.org/pdf/2306.10098"},{"title":"DynamixSFT: Dynamic Mixture Optimization of Instruction Tuning Collections","url":"https://arxiv.org/html/2508.12116v1"},{"title":"A Survey of Automatic Prompt Optimization with Instruction-focused Heuristic-based Search Algorithm","url":"https://arxiv.org/html/2502.18746v2"},{"title":"Analyzing LLM Instruction Optimization for Tabular Fact Verification","url":"https://arxiv.org/pdf/2602.17937"},{"title":"arXiv:2505.14116v1 [cs.CL] 20 May 2025","url":"https://arxiv.org/pdf/2505.14116"},{"title":"InstOptima: Evolutionary Multi-objective Instruction Optimization via   Large Language Model-based Instruction Operators","url":"https://arxiv.org/pdf/2310.17630"}]
+
+Based on my search results, I found a reference to Wan et al.'s work on jointly optimizing examples and instructions, and I also found Wan et al. (2023) work on instructions and language models. However, I was not able to find a complete 2024 survey by Wan et al. specifically focused on "structured prediction" OR "structured output" for LLMs and NER through my searches.
+
+The search results did reveal several relevant 2024 works in the broader area of LLM structured outputs and capabilities, including:
+
+1. Research emphasizing the need to develop suitable evaluation benchmarks for LLMs
+2. Work defining structured output in LLMs as model-generated content conforming to a predefined, machine-readable format
+3. Recent studies exploring output formats and their impact on NER performance
+
+If you're looking for a specific Wan et al. 2024 survey on structured prediction or structured output for LLMs, you may want to check arXiv directly or provide additional context about where you encountered this reference, as my search did not locate the complete survey matching all the keywords you specified.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4174a956-2672-46bc-9cc6-7207d07af3de",
+  "uuid": "1931ba41-fa19-43ba-9fda-152ec35c7358",
+  "tool_use_result": {
+    "query": "\"Wan\" 2024 survey \"structured prediction\" OR \"structured output\" LLM NER",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01FKAKdA3XViU1vffVCqR9Xj",
+        "content": [
+          {
+            "title": "A Survey of Frontiers in LLM Reasoning: Inference Scaling,",
+            "url": "https://llm-reasoning-ai.github.io/survey_arxiv.pdf"
+          },
+          {
+            "title": "Are LLMs good at structured outputs? A benchmark for evaluating structured output capabilities in LLMs | Information Processing and Management: an International Journal",
+            "url": "https://dl.acm.org/doi/10.1016/j.ipm.2024.103809"
+          },
+          {
+            "title": "Lost in Space: Finding the Right Tokens for Structured Output",
+            "url": "https://arxiv.org/pdf/2502.14969"
+          },
+          {
+            "title": "Assessment of Generative Named Entity Recognition in the Era of Large Language Models",
+            "url": "https://arxiv.org/pdf/2601.17898"
+          },
+          {
+            "title": "“We Need Structured Output”: Towards User-centered Constraints",
+            "url": "https://lxieyang.github.io/assets/files/pubs/llm-constraints-2024/llm-constraints-2024.pdf"
+          },
+          {
+            "title": "Are LLMs good at structured outputs? A benchmark for evaluating structured output capabilities in LLMs - ScienceDirect",
+            "url": "https://www.sciencedirect.com/science/article/abs/pii/S0306457324001687"
+          },
+          {
+            "title": "Next Token Prediction Towards Multimodal Intelligence: A Comprehensive Survey",
+            "url": "https://arxiv.org/html/2412.18619v2"
+          },
+          {
+            "title": "Structured Prediction in NLP -- A survey",
+            "url": "https://arxiv.org/pdf/2110.02057"
+          },
+          {
+            "title": "Empowering Time Series Analysis with Large Language Models: A Survey",
+            "url": "https://www.ijcai.org/proceedings/2024/0895.pdf"
+          }
+        ]
+      },
+      "I found several relevant results. The first result mentions \"Wan et al.\" in the context of LLM reasoning, but the text appears cut off. Let me search more specifically for a Wan et al. 2024 survey on structured prediction or structured output.",
+      {
+        "tool_use_id": "srvtoolu_017GaWVnvxuDcYLVLmRkpNp1",
+        "content": [
+          {
+            "title": "Structured Prediction in NLP -- A survey",
+            "url": "https://arxiv.org/pdf/2110.02057"
+          },
+          {
+            "title": "On Structured Prediction Theory with Calibrated Convex Surrogate Losses",
+            "url": "https://arxiv.org/pdf/1703.02403"
+          },
+          {
+            "title": "Spatio-temporal prediction using graph neural networks: A survey - ScienceDirect",
+            "url": "https://www.sciencedirect.com/science/article/abs/pii/S0925231225010720"
+          },
+          {
+            "title": "On Certified Generalization in Structured Prediction",
+            "url": "https://arxiv.org/pdf/2306.09112"
+          },
+          {
+            "title": "SpeedMachines: Anytime Structured Prediction",
+            "url": "https://arxiv.org/pdf/1312.0579"
+          },
+          {
+            "title": "Tight Error Bounds for Structured Prediction",
+            "url": "https://arxiv.org/pdf/1409.5834"
+          },
+          {
+            "title": "On the inconsistency of separable losses for structured prediction",
+            "url": "https://arxiv.org/pdf/2301.10810"
+          }
+        ]
+      },
+      "The results above don't show a Wan et al. 2024 survey specifically. Let me try a more direct search.",
+      {
+        "tool_use_id": "srvtoolu_01JGXn5uW74MMNdvAvL2eMLU",
+        "content": [
+          {
+            "title": "Are LLMs good at structured outputs? A benchmark for evaluating structured output capabilities in LLMs | Information Processing and Management: an International Journal",
+            "url": "https://dl.acm.org/doi/10.1016/j.ipm.2024.103809"
+          },
+          {
+            "title": "A Survey of Frontiers in LLM Reasoning: Inference Scaling,",
+            "url": "https://llm-reasoning-ai.github.io/survey_arxiv.pdf"
+          },
+          {
+            "title": "Are LLMs good at structured outputs? A benchmark for evaluating structured output capabilities in LLMs - ScienceDirect",
+            "url": "https://www.sciencedirect.com/science/article/abs/pii/S0306457324001687"
+          },
+          {
+            "title": "StructEval: Benchmarking LLMs' Capabilities to Generate Structural Outputs",
+            "url": "https://arxiv.org/pdf/2505.20139"
+          },
+          {
+            "title": "Meaning Typed Prompting: A Technique for Efficient, Reliable Structured   Output Generation",
+            "url": "https://arxiv.org/pdf/2410.18146"
+          },
+          {
+            "title": "SLOT: Structuring the Output of Large Language Models",
+            "url": "https://arxiv.org/pdf/2505.04016"
+          }
+        ]
+      },
+      "Based on the search results, I found a reference to Wan et al. (2024a) in one of the LLM reasoning survey papers. Let me search more specifically for that work.",
+      {
+        "tool_use_id": "srvtoolu_013iQmbb5dFrAPaSzSdcWoGw",
+        "content": [
+          {
+            "title": "GitHub - AIoT-MLSys-Lab/Efficient-LLMs-Survey: [TMLR 2024] Efficient Large Language Models: A Survey · GitHub",
+            "url": "https://github.com/AIoT-MLSys-Lab/Efficient-LLMs-Survey"
+          },
+          {
+            "title": "Undergraduate students’ performance and perception of video-recordings versus live demonstrations for teaching orthodontic laboratory procedures: a randomized trial",
+            "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12232010/"
+          },
+          {
+            "title": "Wan-Image: Pushing the Boundaries of Generative Visual Intelligence",
+            "url": "https://arxiv.org/html/2604.19858v1"
+          },
+          {
+            "title": "Boosting LLM-Assisted Diagnosis: 10-Minute LLM Tutorial Elevates Radiology Residents’ Performance in Brain MRI Interpretation",
+            "url": "https://www.medrxiv.org/content/10.1101/2024.07.03.24309779.full.pdf"
+          },
+          {
+            "title": "A Survey on In-context Learning",
+            "url": "https://arxiv.org/html/2301.00234v6"
+          },
+          {
+            "title": "Rethinking the Role of Demonstrations: What Makes In-Context Learning   Work?",
+            "url": "https://arxiv.org/pdf/2202.12837"
+          },
+          {
+            "title": "Wide-awake local anaesthesia no tourniquet hand surgery in Australia: an analysis of adoption, perceptions, and implementation in a global context",
+            "url": "https://www.medrxiv.org/content/10.1101/2025.11.06.25339720.full.pdf"
+          }
+        ]
+      },
+      "Let me try one more direct search for Wan et al. 2024 work related to prompting.",
+      {
+        "tool_use_id": "srvtoolu_01DfgHsQY1a6tFxD67WbX1N8",
+        "content": [
+          {
+            "title": "Differentiable Instruction Optimization for Cross-Task Generalization",
+            "url": "https://arxiv.org/pdf/2306.10098"
+          },
+          {
+            "title": "DynamixSFT: Dynamic Mixture Optimization of Instruction Tuning Collections",
+            "url": "https://arxiv.org/html/2508.12116v1"
+          },
+          {
+            "title": "A Survey of Automatic Prompt Optimization with Instruction-focused Heuristic-based Search Algorithm",
+            "url": "https://arxiv.org/html/2502.18746v2"
+          },
+          {
+            "title": "Analyzing LLM Instruction Optimization for Tabular Fact Verification",
+            "url": "https://arxiv.org/pdf/2602.17937"
+          },
+          {
+            "title": "arXiv:2505.14116v1 [cs.CL] 20 May 2025",
+            "url": "https://arxiv.org/pdf/2505.14116"
+          },
+          {
+            "title": "InstOptima: Evolutionary Multi-objective Instruction Optimization via   Large Language Model-based Instruction Operators",
+            "url": "https://arxiv.org/pdf/2310.17630"
+          }
+        ]
+      },
+      "Based on my search results, I found a reference to Wan et al.'s work on jointly optimizing examples and instructions, and I also found Wan et al. (2023) work on instructions and language models. However, I was not able to find a complete 2024 survey by Wan et al. specifically focused on \"structured prediction\" OR \"structured output\" for LLMs and NER through my searches.\n\nThe search results did reveal several relevant 2024 works in the broader area of LLM structured outputs and capabilities, including:\n\n1. Research emphasizing the need to develop suitable evaluation benchmarks for LLMs\n2. Work defining structured output in LLMs as model-generated content conforming to a predefined, machine-readable format\n3. Recent studies exploring output formats and their impact on NER performance\n\nIf you're looking for a specific Wan et al. 2024 survey on structured prediction or structured output for LLMs, you may want to check arXiv directly or provide additional context about where you encountered this reference, as my search did not locate the complete survey matching all the keywords you specified."
+    ],
+    "durationSeconds": 19.402612818000023
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 89_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I've searched extensively for "Wan et al. 2024 IE survey" and couldn't find it. Let me try one more specific search with different approaches. Maybe the user's reference is slightly off, or it could be a less well-known paper.
+
+Let me also look for better ensemble NER papers. I should find 2-3 good papers that are specifically about entity-level aggregation from multi-sample/multi-model outputs. Let me try:
+
+1. One more search for "Wan 2024" with broader terms
+
+
+2. Now searching for ensemble NER papers that focus on combining predictions across multiple models or samples.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4174a956-2672-46bc-9cc6-7207d07af3de",
+  "uuid": "1ca085ee-8294-4c0a-8f39-92f7e0c989d0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TPh8erzNtMYPCzFhabyxbB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1262,
+      "cache_creation_input_tokens": 2383,
+      "cache_read_input_tokens": 65444,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2383
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 90_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01JzMkCRqQzWsKfNx6cTqk9W`</summary>
+
+```json
+{
+  "query": "\"Wan\" author 2024 NER LLM \"in-context learning\" survey OR benchmark arxiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4174a956-2672-46bc-9cc6-7207d07af3de",
+  "uuid": "b5b7464e-9678-4ee3-8bb7-0a8012b69745",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TPh8erzNtMYPCzFhabyxbB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1262,
+      "cache_creation_input_tokens": 2383,
+      "cache_read_input_tokens": 65444,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2383
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 91_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01FbAY9fc9nakTBVdH2QHCgo`</summary>
+
+```json
+{
+  "query": "Xiao Song 2025 \"EL4NER\" entity span ensemble voting NER pipeline two-stage"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4174a956-2672-46bc-9cc6-7207d07af3de",
+  "uuid": "d07cc772-daf4-45d1-b2ae-86261b6bd833",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TPh8erzNtMYPCzFhabyxbB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1262,
+      "cache_creation_input_tokens": 2383,
+      "cache_read_input_tokens": 65444,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2383
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 92_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_013tg9hHg3KpZ1DazjR7CnNi`</summary>
+
+```json
+{
+  "query": "Naderi Knafou Copara Ruch Teodoro 2021 \"ensemble\" NER \"masked language models\" Frontiers venue"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4174a956-2672-46bc-9cc6-7207d07af3de",
+  "uuid": "afa30410-3dc2-4665-885b-d7bec3ef416e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TPh8erzNtMYPCzFhabyxbB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1262,
+      "cache_creation_input_tokens": 2383,
+      "cache_read_input_tokens": 65444,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2383
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 93 · 2026-05-19T04:10:18.386Z_
+
+<details><summary>↩ Tool result · `toolu_01JzMkCRqQzWsKfNx6cTqk9W`</summary>
+
+```text
+Web search results for query: ""Wan" author 2024 NER LLM "in-context learning" survey OR benchmark arxiv"
+
+Links: [{"title":"Large language models for generative information extraction: a survey | Frontiers of Computer Science | Springer Nature Link","url":"https://link.springer.com/article/10.1007/s11704-024-40555-y"},{"title":"Recent Advances in Named Entity Recognition: A Comprehensive Survey and Comparative Study","url":"https://arxiv.org/html/2401.10825v3"},{"title":"Randomly Sampled Language Reasoning Problems Elucidate Limitations of In-Context Learning","url":"https://arxiv.org/pdf/2501.02825"},{"title":"A Multi-Agent LLM Framework for Multi-Domain Low-Resource In-Context NER via Knowledge Retrieval, Disambiguation and Reflective Analysis","url":"https://arxiv.org/pdf/2511.19083"},{"title":"The Mystery of In-Context Learning: A Comprehensive Survey on   Interpretation and Analysis","url":"https://arxiv.org/pdf/2311.00237"},{"title":"A Survey on In-context Learning","url":"https://arxiv.org/pdf/2301.00234"},{"title":"Learning vs Retrieval: The Role of In-Context Examples in Regression   with Large Language Models","url":"https://arxiv.org/pdf/2409.04318"}]
+
+Based on the search results, I found a relevant reference to an author named Wan who worked on in-context learning for NER. Wan S. (along with Bölücü N. and Rybinski M.) authored a work titled "Impact of sample selection on in-context learning for entity extraction from scientific writing," which was published in the Proceedings of the Findings of the Association for Computational Linguistics: EMNLP 2023.
+
+However, this publication appears to be from EMNLP 2023 rather than a 2024 arxiv paper, and it doesn't appear to be a full survey or benchmark paper based on the search results. If you're looking for a specific 2024 arxiv survey or benchmark paper by an author with the surname "Wan" focused on NER and in-context learning with LLMs, the search results may not have captured it, or the paper might use different keywords. Would you like me to perform another search with different terms?
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4174a956-2672-46bc-9cc6-7207d07af3de",
+  "uuid": "742f6024-115f-4ae6-ad56-6997c04e95bc",
+  "tool_use_result": {
+    "query": "\"Wan\" author 2024 NER LLM \"in-context learning\" survey OR benchmark arxiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01SvJdMXyZ6vho4sY5opaa15",
+        "content": [
+          {
+            "title": "Large language models for generative information extraction: a survey | Frontiers of Computer Science | Springer Nature Link",
+            "url": "https://link.springer.com/article/10.1007/s11704-024-40555-y"
+          },
+          {
+            "title": "Recent Advances in Named Entity Recognition: A Comprehensive Survey and Comparative Study",
+            "url": "https://arxiv.org/html/2401.10825v3"
+          },
+          {
+            "title": "Randomly Sampled Language Reasoning Problems Elucidate Limitations of In-Context Learning",
+            "url": "https://arxiv.org/pdf/2501.02825"
+          },
+          {
+            "title": "A Multi-Agent LLM Framework for Multi-Domain Low-Resource In-Context NER via Knowledge Retrieval, Disambiguation and Reflective Analysis",
+            "url": "https://arxiv.org/pdf/2511.19083"
+          },
+          {
+            "title": "The Mystery of In-Context Learning: A Comprehensive Survey on   Interpretation and Analysis",
+            "url": "https://arxiv.org/pdf/2311.00237"
+          },
+          {
+            "title": "A Survey on In-context Learning",
+            "url": "https://arxiv.org/pdf/2301.00234"
+          },
+          {
+            "title": "Learning vs Retrieval: The Role of In-Context Examples in Regression   with Large Language Models",
+            "url": "https://arxiv.org/pdf/2409.04318"
+          }
+        ]
+      },
+      "Based on the search results, I found a relevant reference to an author named Wan who worked on in-context learning for NER. Wan S. (along with Bölücü N. and Rybinski M.) authored a work titled \"Impact of sample selection on in-context learning for entity extraction from scientific writing,\" which was published in the Proceedings of the Findings of the Association for Computational Linguistics: EMNLP 2023.\n\nHowever, this publication appears to be from EMNLP 2023 rather than a 2024 arxiv paper, and it doesn't appear to be a full survey or benchmark paper based on the search results. If you're looking for a specific 2024 arxiv survey or benchmark paper by an author with the surname \"Wan\" focused on NER and in-context learning with LLMs, the search results may not have captured it, or the paper might use different keywords. Would you like me to perform another search with different terms?"
+    ],
+    "durationSeconds": 4.798608408
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 94 · 2026-05-19T04:10:20.985Z_
+
+<details><summary>↩ Tool result · `toolu_01FbAY9fc9nakTBVdH2QHCgo`</summary>
+
+```text
+Web search results for query: "Xiao Song 2025 "EL4NER" entity span ensemble voting NER pipeline two-stage"
+
+Links: [{"title":"arXiv:2505.23038v1 [cs.CL] 29 May 2025 EL4NER: Ensemble Learning","url":"https://arxiv.org/pdf/2505.23038"},{"title":"EL4NER: Ensemble Learning for Named Entity Recognition via Multiple Small-Parameter Large Language Models","url":"https://arxiv.org/html/2505.23038v1"},{"title":"[2505.23038] EL4NER: Ensemble Learning for Named Entity Recognition via Multiple Small-Parameter Large Language Models","url":"https://arxiv.org/abs/2505.23038"},{"title":"Local LLM Ensembles for Zero-shot Portuguese Named Entity Recognition","url":"https://arxiv.org/html/2512.10043v1"},{"title":"Local LLM Ensembles for Zero-shot Portuguese Named Entity Recognition","url":"https://arxiv.org/pdf/2512.10043"}]
+
+I found the research you're looking for! EL4NER is a paper by Yuzhen Xiao and 8 other authors published on May 29, 2025.
+
+The method comprises a task decomposition-based pipeline that facilitates deep, multi-stage ensemble learning. More specifically, it introduces a novel span-level sentence similarity algorithm to establish an ICL demonstration retrieval mechanism better suited for NER tasks, and incorporates a self-validation mechanism to mitigate the noise introduced during the ensemble process.
+
+The key innovation is that the parameter efficiency demonstrates the feasibility of employing open-source, small-parameter LLMs within the ICL paradigm for NER tasks. EL4NER surpasses most closed-source, large-parameter LLM-based methods at a lower parameter cost and even attains state-of-the-art (SOTA) performance among ICL-based methods on certain datasets.
+
+The paper is available on arXiv (2505.23038) and presents an ensemble learning approach using multiple small-parameter LLMs for Named Entity Recognition tasks.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4174a956-2672-46bc-9cc6-7207d07af3de",
+  "uuid": "f303037b-56e5-4ce4-8f56-a6eb1c4d9067",
+  "tool_use_result": {
+    "query": "Xiao Song 2025 \"EL4NER\" entity span ensemble voting NER pipeline two-stage",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01JWCvYZ5J7dGp3QZkei9dPo",
+        "content": [
+          {
+            "title": "arXiv:2505.23038v1 [cs.CL] 29 May 2025 EL4NER: Ensemble Learning",
+            "url": "https://arxiv.org/pdf/2505.23038"
+          },
+          {
+            "title": "EL4NER: Ensemble Learning for Named Entity Recognition via Multiple Small-Parameter Large Language Models",
+            "url": "https://arxiv.org/html/2505.23038v1"
+          },
+          {
+            "title": "[2505.23038] EL4NER: Ensemble Learning for Named Entity Recognition via Multiple Small-Parameter Large Language Models",
+            "url": "https://arxiv.org/abs/2505.23038"
+          },
+          {
+            "title": "Local LLM Ensembles for Zero-shot Portuguese Named Entity Recognition",
+            "url": "https://arxiv.org/html/2512.10043v1"
+          },
+          {
+            "title": "Local LLM Ensembles for Zero-shot Portuguese Named Entity Recognition",
+            "url": "https://arxiv.org/pdf/2512.10043"
+          }
+        ]
+      },
+      "I found the research you're looking for! EL4NER is a paper by Yuzhen Xiao and 8 other authors published on May 29, 2025.\n\nThe method comprises a task decomposition-based pipeline that facilitates deep, multi-stage ensemble learning. More specifically, it introduces a novel span-level sentence similarity algorithm to establish an ICL demonstration retrieval mechanism better suited for NER tasks, and incorporates a self-validation mechanism to mitigate the noise introduced during the ensemble process.\n\nThe key innovation is that the parameter efficiency demonstrates the feasibility of employing open-source, small-parameter LLMs within the ICL paradigm for NER tasks. EL4NER surpasses most closed-source, large-parameter LLM-based methods at a lower parameter cost and even attains state-of-the-art (SOTA) performance among ICL-based methods on certain datasets.\n\nThe paper is available on arXiv (2505.23038) and presents an ensemble learning approach using multiple small-parameter LLMs for Named Entity Recognition tasks."
+    ],
+    "durationSeconds": 6.316805969000008
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 95 · 2026-05-19T04:10:22.926Z_
+
+<details><summary>↩ Tool result · `toolu_013tg9hHg3KpZ1DazjR7CnNi`</summary>
+
+```text
+Web search results for query: "Naderi Knafou Copara Ruch Teodoro 2021 "ensemble" NER "masked language models" Frontiers venue"
+
+Links: [{"title":"(PDF) Ensemble of Deep Masked Language Models for Effective Named Entity Recognition in Health and Life Science Corpora","url":"https://www.researchgate.net/publication/356386634_Ensemble_of_Deep_Masked_Language_Models_for_Effective_Named_Entity_Recognition_in_Health_and_Life_Science_Corpora"},{"title":"[PDF] Ensemble of deep masked language models for effective named entity recognition in multi-domain corpora | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Ensemble-of-deep-masked-language-models-for-named-Naderi-Knafou/9f37e84c69073a8476898185c01a9df4945ecb65"},{"title":"Frontiers | Ensemble of Deep Masked Language Models for Effective Named Entity Recognition in Health and Life Science Corpora","url":"https://www.frontiersin.org/journals/research-metrics-and-analytics/articles/10.3389/frma.2021.689803/full"},{"title":"Ensemble of Deep Masked Language Models for Effective Named Entity Recognition in Health and Life Science Corpora - PMC","url":"https://pmc.ncbi.nlm.nih.gov/articles/PMC8640190/"},{"title":"(PDF) Named entity recognition in chemical patents using ensemble of contextual language models","url":"https://www.researchgate.net/publication/343228947_Named_entity_recognition_in_chemical_patents_using_ensemble_of_contextual_language_models"},{"title":"Ensemble of deep masked language models for effective named entity recognition in multi-domain corpora | fatcat!","url":"https://www.fatcat.wiki/release/7d77kts3rjau3pngq3pyfus5yu"},{"title":"Ensemble of deep masked language models for effective named entity recognition in multi-domain corpora | medRxiv","url":"https://www.medrxiv.org/content/10.1101/2021.04.26.21256038v1.full"},{"title":"Ensemble of Deep Masked Language Models for Effective Named Entity Recognition in Health and Life Science Corpora - PubMed","url":"https://pubmed.ncbi.nlm.nih.gov/34870074/"},{"title":"[PDF] Contextualized French Language Models for Biomedical Named Entity Recognition | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Contextualized-French-Language-Models-for-Named-Copara-Knafou/2fc12f2f3378e0aeab24df396f78ee8b59956973"}]
+
+I found the paper you're looking for! The paper "Ensemble of Deep Masked Language Models for Effective Named Entity Recognition in Health and Life Science Corpora" was authored by Nona Naderi, Julien Knafou, Jenny Copara, Patrick Ruch, and Douglas Teodoro, and it was published in 2021 in Frontiers in Research Metrics and Analytics (doi: 10.3389/frma.2021.689803).
+
+The paper assesses how individual and ensemble of deep masked language models perform across corpora of different health and life science domains—biology, chemistry, and medicine—available in different languages (English and French). Results showed statistically significant improvement of the ensemble models over baselines based on individual models in multiple domains and languages, with the ensemble model achieving an overall performance of 79.2% macro F1-score, a 4.6 percentage point increase upon the baseline.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4174a956-2672-46bc-9cc6-7207d07af3de",
+  "uuid": "00d00da4-a8fd-416c-b00a-d02e2b74b30f",
+  "tool_use_result": {
+    "query": "Naderi Knafou Copara Ruch Teodoro 2021 \"ensemble\" NER \"masked language models\" Frontiers venue",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_017WvevxfhrbrM3P8dq2ukis",
+        "content": [
+          {
+            "title": "(PDF) Ensemble of Deep Masked Language Models for Effective Named Entity Recognition in Health and Life Science Corpora",
+            "url": "https://www.researchgate.net/publication/356386634_Ensemble_of_Deep_Masked_Language_Models_for_Effective_Named_Entity_Recognition_in_Health_and_Life_Science_Corpora"
+          },
+          {
+            "title": "[PDF] Ensemble of deep masked language models for effective named entity recognition in multi-domain corpora | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/Ensemble-of-deep-masked-language-models-for-named-Naderi-Knafou/9f37e84c69073a8476898185c01a9df4945ecb65"
+          },
+          {
+            "title": "Frontiers | Ensemble of Deep Masked Language Models for Effective Named Entity Recognition in Health and Life Science Corpora",
+            "url": "https://www.frontiersin.org/journals/research-metrics-and-analytics/articles/10.3389/frma.2021.689803/full"
+          },
+          {
+            "title": "Ensemble of Deep Masked Language Models for Effective Named Entity Recognition in Health and Life Science Corpora - PMC",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8640190/"
+          },
+          {
+            "title": "(PDF) Named entity recognition in chemical patents using ensemble of contextual language models",
+            "url": "https://www.researchgate.net/publication/343228947_Named_entity_recognition_in_chemical_patents_using_ensemble_of_contextual_language_models"
+          },
+          {
+            "title": "Ensemble of deep masked language models for effective named entity recognition in multi-domain corpora | fatcat!",
+            "url": "https://www.fatcat.wiki/release/7d77kts3rjau3pngq3pyfus5yu"
+          },
+          {
+            "title": "Ensemble of deep masked language models for effective named entity recognition in multi-domain corpora | medRxiv",
+            "url": "https://www.medrxiv.org/content/10.1101/2021.04.26.21256038v1.full"
+          },
+          {
+            "title": "Ensemble of Deep Masked Language Models for Effective Named Entity Recognition in Health and Life Science Corpora - PubMed",
+            "url": "https://pubmed.ncbi.nlm.nih.gov/34870074/"
+          },
+          {
+            "title": "[PDF] Contextualized French Language Models for Biomedical Named Entity Recognition | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/Contextualized-French-Language-Models-for-Named-Copara-Knafou/2fc12f2f3378e0aeab24df396f78ee8b59956973"
+          }
+        ]
+      },
+      "I found the paper you're looking for! The paper \"Ensemble of Deep Masked Language Models for Effective Named Entity Recognition in Health and Life Science Corpora\" was authored by Nona Naderi, Julien Knafou, Jenny Copara, Patrick Ruch, and Douglas Teodoro, and it was published in 2021 in Frontiers in Research Metrics and Analytics (doi: 10.3389/frma.2021.689803).\n\nThe paper assesses how individual and ensemble of deep masked language models perform across corpora of different health and life science domains—biology, chemistry, and medicine—available in different languages (English and French). Results showed statistically significant improvement of the ensemble models over baselines based on individual models in multiple domains and languages, with the ensemble model achieving an overall performance of 79.2% macro F1-score, a 4.6 percentage point increase upon the baseline."
+    ],
+    "durationSeconds": 7.096141508999979
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 96_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me compile my findings and check what I still need:
+
+**Part A:**
+
+1. **Xie et al. 2023** - I found two papers matching the description:
+   - **Option 1**: "Self-Evaluation Guided Beam Search for Reasoning" by Yuxi Xie, Kenji Kawaguchi, Yiran Zhao, James Xu Zhao, Min-Yen Kan, Junxian He, Michael Xie. NeurIPS 2023. arxiv:2305.00633. This matches "self-evaluation" and "beam search" keywords.
+   - **Option 2**: "Self-Improving for Zero-Shot Named Entity Recognition with Large Language Models" by Tingyu Xie et al. arxiv:2311.08921, NAACL 2024. This matches "NER" and "self-consistency" keywords.
+   
+   Both papers could fit depending on whether the user is looking for reasoning methods or NLP-specific approaches. Since the project focuses on IE/NER, Option 2 seems more directly applicable, though Option 1 aligns better with the 2023 publication year they specified. I'll present both options and let them clarify which one they meant.
+
+2. **Wan et al. 2024** -  I couldn't locate a survey paper with Wan as the first author. The closest matches are the Xu et al. 2024 generative IE survey and a Wan et al. 2023 GPT-RE paper from EMNLP, but neither fits the exact description. I'll flag this and suggest the alternatives.
+
+3. **Ensemble NER papers** - I found EL4NER by Xiao et al. 2025, which uses a two-stage ensemble approach with entity-level voting across multiple small-parameter LLMs, and I'm still searching for additional ensemble NER papers to complete this section.
+
+Now I'm verifying the Part B citations. The wang2023selfconsistency reference checks out as ICLR 2023 with matching title and authors. For cobbe2021verifiers, it's correctly formatted as an arxiv preprint from 2021, though the paper was later published elsewhere.
+
+The eikema2022sampling entry is accurate for EMNLP 2022 with the correct page numbers and DOI. For venktesh2025trust, I'm checking the arxiv ID 2508.16665 which corresponds to August 2025—this is in the past relative to the current date of May 2026, so the year 2025 in the bib entry is correct.
+
+snell2025scaling was published at ICLR 2025 according to the search results, and the bib entry correctly lists it as a conference proceeding. For willard2023guided, the arxiv preprint 2307.09702 from July 2023 matches the bib entry, though I'm wondering if this paper was also published at a conference venue like an ICML workshop.
+
+Continuing through the remaining entries: zheng2024llamafactory matches perfectly as an ACL 2024 System Demonstrations paper, and luan2018scierc is correctly listed as an EMNLP 2018 conference proceeding.
+
+For derczynski2017wnut, the bib entry properly identifies it as the W-NUT 2017 workshop proceedings, which aligns with the conference information. Now I need to dig deeper into cobbe2021verifiers to determine if it was ever published at a conference venue.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4174a956-2672-46bc-9cc6-7207d07af3de",
+  "uuid": "090844c5-a01b-44a9-9107-20735865571e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MHxHXnGKE9xnWmui9d3Yb6",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3697,
+      "cache_read_input_tokens": 67827,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3697
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 97_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Hj9S26BoQt7TuDrn1FqzJF`</summary>
+
+```json
+{
+  "query": "Cobbe 2021 \"Training Verifiers to Solve Math Word Problems\" published venue conference journal GSM8K"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4174a956-2672-46bc-9cc6-7207d07af3de",
+  "uuid": "4ebf5093-9cb5-4b18-977a-0a7c78c3707d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MHxHXnGKE9xnWmui9d3Yb6",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3697,
+      "cache_read_input_tokens": 67827,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3697
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 98_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_017ibsZSQdn8NRt7gNPmJirs`</summary>
+
+```json
+{
+  "query": "Willard Louf \"Efficient Guided Generation\" 2023 2024 published conference workshop ICML NeurIPS"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4174a956-2672-46bc-9cc6-7207d07af3de",
+  "uuid": "e4b36cca-7ae4-482e-b1ab-ad22a28b1222",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MHxHXnGKE9xnWmui9d3Yb6",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3697,
+      "cache_read_input_tokens": 67827,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3697
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 99 · 2026-05-19T04:11:09.402Z_
+
+<details><summary>↩ Tool result · `toolu_017ibsZSQdn8NRt7gNPmJirs`</summary>
+
+```text
+Web search results for query: "Willard Louf "Efficient Guided Generation" 2023 2024 published conference workshop ICML NeurIPS"
+
+Links: [{"title":"Efficient Guided Generation for Large Language Models","url":"https://www.researchhub.com/paper/1278292/efficient-guided-generation-for-large-language-models"},{"title":"[PDF] Efficient Guided Generation for Large Language Models | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Efficient-Guided-Generation-for-Large-Language-Willard-Louf/c4ceaef35bca063815f50d90a087acbd07a65478"},{"title":"Paper page - Efficient Guided Generation for Large Language Models","url":"https://huggingface.co/papers/2307.09702"},{"title":"[2307.09702] Efficient Guided Generation for Large Language Models","url":"https://arxiv.org/abs/2307.09702"},{"title":"Efficient Guided Generation for LLMs Brandon T. Willard1 and R´emi Louf2","url":"https://arxiv.org/pdf/2307.09702v1"},{"title":"[NLG] Outlines — Efficient Guided Generation for Large Language Models (Willard & Louf 2023) | by Youngrok Song | Medium","url":"https://id2thomas.medium.com/nlg-outlines-efficient-guided-generation-for-large-language-models-willard-louf-2023-3c9463543901"},{"title":"(PDF) Efficient Guided Generation for LLMs","url":"https://www.researchgate.net/publication/372468267_Efficient_Guided_Generation_for_LLMs"},{"title":"SGLang: Efficient Execution of Structured Language Model Programs","url":"https://proceedings.neurips.cc/paper_files/paper/2024/file/724be4472168f31ba1c9ac630f15dec8-Paper-Conference.pdf"},{"title":"Efficient Guided Generation for Large Language Models","url":"https://arxiv.org/pdf/2307.09702"}]
+
+Based on the search results, I found information about the "Efficient Guided Generation for Large Language Models" paper:
+
+**Paper Details:**
+
+The paper "Efficient Guided Generation for Large Language Models" was authored by Brandon T. Willard and Rémi Louf. It was published on arXiv on August 19, 2023 with the identifier 2307.09702.
+
+**Main Contribution:**
+
+The paper shows how the problem of neural text generation can be reformulated in terms of transitions between states of a finite-state machine, leading to an efficient approach to guiding text generation with regular expressions and context-free grammars. The approach is model agnostic, allows one to enforce domain-specific knowledge and constraints, and enables the construction of reliable interfaces by guaranteeing the structure of the generated text.
+
+**Implementation:**
+
+An implementation is provided in the open source Python library Outlines.
+
+**Note on Conference Publication:**
+
+Based on the search results, this paper appears to have been published on arXiv as a preprint in 2023 rather than at a specific conference like ICML or NeurIPS. The paper has been widely cited and referenced in subsequent conference papers (such as NeurIPS 2024), but I did not find evidence in these search results that it was published as a conference paper itself at ICML or NeurIPS.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4174a956-2672-46bc-9cc6-7207d07af3de",
+  "uuid": "155c97ae-e1d6-404b-8fd7-e01d16c22edf",
+  "tool_use_result": {
+    "query": "Willard Louf \"Efficient Guided Generation\" 2023 2024 published conference workshop ICML NeurIPS",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01WPNtD8T3s1SKzMWbnMc6Qh",
+        "content": [
+          {
+            "title": "Efficient Guided Generation for Large Language Models",
+            "url": "https://www.researchhub.com/paper/1278292/efficient-guided-generation-for-large-language-models"
+          },
+          {
+            "title": "[PDF] Efficient Guided Generation for Large Language Models | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/Efficient-Guided-Generation-for-Large-Language-Willard-Louf/c4ceaef35bca063815f50d90a087acbd07a65478"
+          },
+          {
+            "title": "Paper page - Efficient Guided Generation for Large Language Models",
+            "url": "https://huggingface.co/papers/2307.09702"
+          },
+          {
+            "title": "[2307.09702] Efficient Guided Generation for Large Language Models",
+            "url": "https://arxiv.org/abs/2307.09702"
+          },
+          {
+            "title": "Efficient Guided Generation for LLMs Brandon T. Willard1 and R´emi Louf2",
+            "url": "https://arxiv.org/pdf/2307.09702v1"
+          },
+          {
+            "title": "[NLG] Outlines — Efficient Guided Generation for Large Language Models (Willard & Louf 2023) | by Youngrok Song | Medium",
+            "url": "https://id2thomas.medium.com/nlg-outlines-efficient-guided-generation-for-large-language-models-willard-louf-2023-3c9463543901"
+          },
+          {
+            "title": "(PDF) Efficient Guided Generation for LLMs",
+            "url": "https://www.researchgate.net/publication/372468267_Efficient_Guided_Generation_for_LLMs"
+          },
+          {
+            "title": "SGLang: Efficient Execution of Structured Language Model Programs",
+            "url": "https://proceedings.neurips.cc/paper_files/paper/2024/file/724be4472168f31ba1c9ac630f15dec8-Paper-Conference.pdf"
+          },
+          {
+            "title": "Efficient Guided Generation for Large Language Models",
+            "url": "https://arxiv.org/pdf/2307.09702"
+          }
+        ]
+      },
+      "Based on the search results, I found information about the \"Efficient Guided Generation for Large Language Models\" paper:\n\n**Paper Details:**\n\nThe paper \"Efficient Guided Generation for Large Language Models\" was authored by Brandon T. Willard and Rémi Louf. It was published on arXiv on August 19, 2023 with the identifier 2307.09702.\n\n**Main Contribution:**\n\nThe paper shows how the problem of neural text generation can be reformulated in terms of transitions between states of a finite-state machine, leading to an efficient approach to guiding text generation with regular expressions and context-free grammars. The approach is model agnostic, allows one to enforce domain-specific knowledge and constraints, and enables the construction of reliable interfaces by guaranteeing the structure of the generated text.\n\n**Implementation:**\n\nAn implementation is provided in the open source Python library Outlines.\n\n**Note on Conference Publication:**\n\nBased on the search results, this paper appears to have been published on arXiv as a preprint in 2023 rather than at a specific conference like ICML or NeurIPS. The paper has been widely cited and referenced in subsequent conference papers (such as NeurIPS 2024), but I did not find evidence in these search results that it was published as a conference paper itself at ICML or NeurIPS."
+    ],
+    "durationSeconds": 6.025704222000029
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 100 · 2026-05-19T04:11:09.537Z_
+
+<details><summary>↩ Tool result · `toolu_01Hj9S26BoQt7TuDrn1FqzJF`</summary>
+
+```text
+Web search results for query: "Cobbe 2021 "Training Verifiers to Solve Math Word Problems" published venue conference journal GSM8K"
+
+Links: [{"title":"openai/gsm8k · Datasets at Hugging Face","url":"https://paperswithcode.com/dataset/gsm8k"},{"title":"(Open Access) Training Verifiers to Solve Math Word Problems (2021) | Karl Cobbe | 2 Citations","url":"https://scispace.com/papers/training-verifiers-to-solve-math-word-problems-2jokilm0qa"},{"title":"[2110.14168] Training Verifiers to Solve Math Word Problems","url":"https://arxiv.org/abs/2110.14168"},{"title":"GitHub - openai/grade-school-math · GitHub","url":"https://github.com/openai/grade-school-math"},{"title":"[PDF] Training Verifiers to Solve Math Word Problems | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Training-Verifiers-to-Solve-Math-Word-Problems-Cobbe-Kosaraju/d6045d2ccc9c09ca1671348de86d07da6bc28eea"},{"title":"Paper page - Training Verifiers to Solve Math Word Problems","url":"https://huggingface.co/papers/2110.14168"},{"title":"Training Verifiers to Solve Math Word Problems, Karl Cobbe+, arXiv'21 · Issue #1618 · AkihikoWatanabe/paper_notes","url":"https://github.com/AkihikoWatanabe/paper_notes/issues/1618"},{"title":"Training Verifiers to Solve Math Word Problems","url":"https://arxiv.org/pdf/2110.14168"},{"title":"Training Verifiers to Solve Math Word Problems - ar5iv - arXiv","url":"https://ar5iv.labs.arxiv.org/html/2110.14168"},{"title":"Training Verifiers to Solve Math Word Problems","url":"https://www.researchgate.net/publication/355698629_Training_Verifiers_to_Solve_Math_Word_Problems"}]
+
+Based on the search results, here is the information about the Cobbe 2021 paper:
+
+**Paper Title:** "Training Verifiers to Solve Math Word Problems"
+
+**Authors:** Karl Cobbe, Vineet Kosaraju, Mohammad Bavarian, Mark Chen, Heewoo Jun, Lukasz Kaiser, Matthias Plappert, Jerry Tworek, Jacob Hilton, Reiichiro Nakano, Christopher Hesse, and John Schulman
+
+**Published Venue:** arXiv preprint arXiv:2110.14168
+
+**Year:** 2021
+
+**Submission Date:** October 27, 2021
+
+**Content:** The paper introduces GSM8K, a dataset of 8.5K high quality linguistically diverse grade school math word problems, and proposes training verifiers to judge the correctness of model completions. The authors demonstrate that verification significantly improves performance on GSM8K, and provide strong empirical evidence that verification scales more effectively with increased data than a finetuning baseline.
+
+Note: This paper was published as an arXiv preprint rather than in a traditional conference or journal.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4174a956-2672-46bc-9cc6-7207d07af3de",
+  "uuid": "6aa70d3d-d533-4551-9613-a9bd7f68c9f8",
+  "tool_use_result": {
+    "query": "Cobbe 2021 \"Training Verifiers to Solve Math Word Problems\" published venue conference journal GSM8K",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01JbsuXd4eGm1fvL5aQhWfsi",
+        "content": [
+          {
+            "title": "openai/gsm8k · Datasets at Hugging Face",
+            "url": "https://paperswithcode.com/dataset/gsm8k"
+          },
+          {
+            "title": "(Open Access) Training Verifiers to Solve Math Word Problems (2021) | Karl Cobbe | 2 Citations",
+            "url": "https://scispace.com/papers/training-verifiers-to-solve-math-word-problems-2jokilm0qa"
+          },
+          {
+            "title": "[2110.14168] Training Verifiers to Solve Math Word Problems",
+            "url": "https://arxiv.org/abs/2110.14168"
+          },
+          {
+            "title": "GitHub - openai/grade-school-math · GitHub",
+            "url": "https://github.com/openai/grade-school-math"
+          },
+          {
+            "title": "[PDF] Training Verifiers to Solve Math Word Problems | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/Training-Verifiers-to-Solve-Math-Word-Problems-Cobbe-Kosaraju/d6045d2ccc9c09ca1671348de86d07da6bc28eea"
+          },
+          {
+            "title": "Paper page - Training Verifiers to Solve Math Word Problems",
+            "url": "https://huggingface.co/papers/2110.14168"
+          },
+          {
+            "title": "Training Verifiers to Solve Math Word Problems, Karl Cobbe+, arXiv'21 · Issue #1618 · AkihikoWatanabe/paper_notes",
+            "url": "https://github.com/AkihikoWatanabe/paper_notes/issues/1618"
+          },
+          {
+            "title": "Training Verifiers to Solve Math Word Problems",
+            "url": "https://arxiv.org/pdf/2110.14168"
+          },
+          {
+            "title": "Training Verifiers to Solve Math Word Problems - ar5iv - arXiv",
+            "url": "https://ar5iv.labs.arxiv.org/html/2110.14168"
+          },
+          {
+            "title": "Training Verifiers to Solve Math Word Problems",
+            "url": "https://www.researchgate.net/publication/355698629_Training_Verifiers_to_Solve_Math_Word_Problems"
+          }
+        ]
+      },
+      "Based on the search results, here is the information about the Cobbe 2021 paper:\n\n**Paper Title:** \"Training Verifiers to Solve Math Word Problems\"\n\n**Authors:** Karl Cobbe, Vineet Kosaraju, Mohammad Bavarian, Mark Chen, Heewoo Jun, Lukasz Kaiser, Matthias Plappert, Jerry Tworek, Jacob Hilton, Reiichiro Nakano, Christopher Hesse, and John Schulman\n\n**Published Venue:** arXiv preprint arXiv:2110.14168\n\n**Year:** 2021\n\n**Submission Date:** October 27, 2021\n\n**Content:** The paper introduces GSM8K, a dataset of 8.5K high quality linguistically diverse grade school math word problems, and proposes training verifiers to judge the correctness of model completions. The authors demonstrate that verification significantly improves performance on GSM8K, and provide strong empirical evidence that verification scales more effectively with increased data than a finetuning baseline.\n\nNote: This paper was published as an arXiv preprint rather than in a traditional conference or journal."
+    ],
+    "durationSeconds": 6.166157540999993
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 101_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have all the information I need. Let me compile everything and write the bib entries for Part A, then report Part B.
+
+**Part A findings:**
+
+1. **Xie et al. 2023** - Two candidates found:
+   - "Self-Evaluation Guided Beam Search for Reasoning" - Yuxi Xie et al., NeurIPS 2023 (matches "self-evaluation" + "beam search" keywords)
+   - "Self-Improving for Zero-Shot Named Entity Recognition with Large Language Models" - Tingyu Xie et al., arxiv 2311.08921 / NAACL 2024 (matches "NER" + "self-consistency" keywords)
+   
+   I'll present both options since either could be what they're looking for.
+
+2. **Wan et al. 2024 IE survey** - This specific reference doesn't appear to exist, but I found some related work: Xu et al. 2024 published a survey on "Large Language Models for Generative Information Extraction" in Frontiers of Computer Science, and there's also Wan et al. 2023 on "GPT-RE: In-context Learning for Relation Extraction" from EMNLP. I'll note that the exact reference wasn't found and suggest these alternatives instead.
+
+3. **Ensemble NER papers**
+
+Now I'm verifying the references in Part B. I've confirmed several papers: Wang et al. 2023 on self-consistency appeared at ICLR, Cobbe et al. 2021 on verifiers is an arXiv preprint, Eikema et al. 2022 was published at EMNLP, and Venktesh et al. 2025 is a recent arXiv preprint. I'm continuing through the remaining citations to check their accuracy.
+
+Generating BibTeX entries... I'm second-guessing the author list—the official NeurIPS page shows six authors without Michael Xie, but my search results included him. Let me verify against the actual paper to make sure I have the correct names. I've got the complete author list from the NeurIPS proceedings and Semantic Scholar: Yuxi Xie, Kenji Kawaguchi, Yiran Zhao, James Xu Zhao, Min-Yen Kan, and Junxian He. Now I'm formatting the citation for the self-improving NER paper with the correct metadata and arXiv link.
+
+Compiling the bibtex entries for the ensemble NER papers—I have EL4NER with its multiple small-parameter LLM approach, the Sarcinelli & Silva work on Portuguese NER, and Naderi et al.'s ensemble of masked language models for biomedical text.
+
+I couldn't locate the Wan et al. 2024 paper despite searching multiple times, so I'll note that in my report and suggest relevant alternatives instead. Let me finalize the bibliography entries and prepare my response to the user. I'm considering whether to include both Xie papers since they align with different search strategies the user might have used, though the singular "Xie et al. 2023" suggests they're looking for one specific paper—likely the NeurIPS 2023 self-evaluation beam search work given the combination of keywords, though the NAACL 2024 NER paper is also relevant to their IE and self-consistency focus. Now I'm compiling the bibliography entries for these papers—the NeurIPS 2023 self-evaluation paper as the primary reference, the NAACL 2024 self-improving NER work, and a few others on related topics. I should verify the exact details for the NeurIPS paper before finalizing the citations, since I want to make sure the title and authors are accurate. I'm cross-referencing the author list across multiple sources to make sure I have it right. The paper shows Yuxi Xie and Kenji Kawaguchi consistently, but I also found Yiran Zhao, James Xu Zhao, Min-Yen Kan, Junxian He, and Michael Xie listed in my earlier search results. Let me verify this against the DBLP entry to confirm the complete and accurate author list. I'm second-guessing whether Michael Xie should be included in the author list, so I'll stick with the six confirmed authors from the NeurIPS proceedings and arxiv sources: Yuxi Xie, Kenji Kawaguchi, Yiran Zhao, James Xu Zhao, Min-Yen Kan, and Junxian He. The search results consistently point to these names across multiple sources, so that's what I'll go with.
+
+For the NAACL 2024 paper on zero-shot named entity recognition, the ACL Anthology has the complete information: Tingyu Xie, Qi Li, Yan Zhang, Zuozhu Liu, and Hongwei Wang as authors, published in the short papers track with the direct link to the proceedings.
+
+Now I'll generate the BibTeX entries and compile the final output.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4174a956-2672-46bc-9cc6-7207d07af3de",
+  "uuid": "e2f9b03b-24ff-425f-b083-ea0d9e49f409",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013mqi5Ti8smxZcEoRm99KLr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 874,
+      "cache_creation_input_tokens": 2543,
+      "cache_read_input_tokens": 71524,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2543
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 102_
+
+Now I have all the information needed. Let me add the new BibTeX entries and compile the report.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4174a956-2672-46bc-9cc6-7207d07af3de",
+  "uuid": "7be658c6-72b8-4fcd-bc4c-7f42c03276ba",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013mqi5Ti8smxZcEoRm99KLr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 874,
+      "cache_creation_input_tokens": 2543,
+      "cache_read_input_tokens": 71524,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2543
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 103_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01D5udBfUnBEkYy7r3Bc9m9V`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/references.bib",
+  "old_string": "@inproceedings{aggarwal2023adaptive,\n  title = {Let's Sample Step by Step: Adaptive-Consistency for Efficient Reasoning and Coding with {LLMs}},\n  author = {Aggarwal, Pranjal and Madaan, Aman and Yang, Yiming and Mausam},\n  booktitle = {Proceedings of the 2023 Conference on Empirical Methods in Natural Language Processing (EMNLP 2023)},\n  year = {2023},\n  url = {https://arxiv.org/abs/2305.11860}\n}",
+  "new_string": "@inproceedings{aggarwal2023adaptive,\n  title = {Let's Sample Step by Step: Adaptive-Consistency for Efficient Reasoning and Coding with {LLMs}},\n  author = {Aggarwal, Pranjal and Madaan, Aman and Yang, Yiming and Mausam},\n  booktitle = {Proceedings of the 2023 Conference on Empirical Methods in Natural Language Processing (EMNLP 2023)},\n  year = {2023},\n  url = {https://arxiv.org/abs/2305.11860}\n}\n\n@inproceedings{xie2023selfevaluation,\n  title = {Self-Evaluation Guided Beam Search for Reasoning},\n  author = {Xie, Yuxi and Kawaguchi, Kenji and Zhao, Yiran and Zhao, James Xu and Kan, Min-Yen and He, Junxian},\n  booktitle = {Advances in Neural Information Processing Systems 36 (NeurIPS)},\n  year = {2023},\n  url = {https://arxiv.org/abs/2305.00633}\n}\n\n@inproceedings{xie2024selfimproving,\n  title = {Self-Improving for Zero-Shot Named Entity Recognition with Large Language Models},\n  author = {Xie, Tingyu and Li, Qi and Zhang, Yan and Liu, Zuozhu and Wang, Hongwei},\n  booktitle = {Proceedings of the 2024 Conference of the North American Chapter of the Association for Computational Linguistics (NAACL)},\n  year = {2024},\n  url = {https://arxiv.org/abs/2311.08921}\n}\n\n@article{xiao2025el4ner,\n  title = {{EL4NER}: Ensemble Learning for Named Entity Recognition via Multiple Small-Parameter Large Language Models},\n  author = {Xiao, Yuzhen and Song, Jiahe and Xu, Yongxin and Zhang, Ruizhe and Xiao, Yiqi and Lu, Xin and Zhu, Runchuan and Jiang, Bowen and Zhao, Junfeng},\n  journal = {arXiv preprint arXiv:2505.23038},\n  year = {2025},\n  url = {https://arxiv.org/abs/2505.23038}\n}\n\n@article{sarcinelli2025local,\n  title = {Local {LLM} Ensembles for Zero-shot Portuguese Named Entity Recognition},\n  author = {Sarcinelli, Jo{\\~a}o Lucas Luz Lima and Silva, Diego Furtado},\n  journal = {arXiv preprint arXiv:2512.10043},\n  year = {2025},\n  url = {https://arxiv.org/abs/2512.10043}\n}\n\n@article{naderi2021ensemble,\n  title = {Ensemble of Deep Masked Language Models for Effective Named Entity Recognition in Health and Life Science Corpora},\n  author = {Naderi, Nona and Knafou, Julien and Copara, Jenny and Ruch, Patrick and Teodoro, Douglas},\n  journal = {Frontiers in Research Metrics and Analytics},\n  volume = {6},\n  year = {2021},\n  doi = {10.3389/frma.2021.689803}\n}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4174a956-2672-46bc-9cc6-7207d07af3de",
+  "uuid": "4a9e7612-c569-4e3a-953e-97f399d260f1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013mqi5Ti8smxZcEoRm99KLr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 874,
+      "cache_creation_input_tokens": 2543,
+      "cache_read_input_tokens": 71524,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2543
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 104 · 2026-05-19T04:12:39.394Z_
+
+<details><summary>↩ Tool result · `toolu_01D5udBfUnBEkYy7r3Bc9m9V`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/references.bib has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4174a956-2672-46bc-9cc6-7207d07af3de",
+  "uuid": "d2f6dd93-02c5-4d6b-ab92-aee36704af21",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/references.bib",
+    "oldString": "@inproceedings{aggarwal2023adaptive,\n  title = {Let's Sample Step by Step: Adaptive-Consistency for Efficient Reasoning and Coding with {LLMs}},\n  author = {Aggarwal, Pranjal and Madaan, Aman and Yang, Yiming and Mausam},\n  booktitle = {Proceedings of the 2023 Conference on Empirical Methods in Natural Language Processing (EMNLP 2023)},\n  year = {2023},\n  url = {https://arxiv.org/abs/2305.11860}\n}",
+    "newString": "@inproceedings{aggarwal2023adaptive,\n  title = {Let's Sample Step by Step: Adaptive-Consistency for Efficient Reasoning and Coding with {LLMs}},\n  author = {Aggarwal, Pranjal and Madaan, Aman and Yang, Yiming and Mausam},\n  booktitle = {Proceedings of the 2023 Conference on Empirical Methods in Natural Language Processing (EMNLP 2023)},\n  year = {2023},\n  url = {https://arxiv.org/abs/2305.11860}\n}\n\n@inproceedings{xie2023selfevaluation,\n  title = {Self-Evaluation Guided Beam Search for Reasoning},\n  author = {Xie, Yuxi and Kawaguchi, Kenji and Zhao, Yiran and Zhao, James Xu and Kan, Min-Yen and He, Junxian},\n  booktitle = {Advances in Neural Information Processing Systems 36 (NeurIPS)},\n  year = {2023},\n  url = {https://arxiv.org/abs/2305.00633}\n}\n\n@inproceedings{xie2024selfimproving,\n  title = {Self-Improving for Zero-Shot Named Entity Recognition with Large Language Models},\n  author = {Xie, Tingyu and Li, Qi and Zhang, Yan and Liu, Zuozhu and Wang, Hongwei},\n  booktitle = {Proceedings of the 2024 Conference of the North American Chapter of the Association for Computational Linguistics (NAACL)},\n  year = {2024},\n  url = {https://arxiv.org/abs/2311.08921}\n}\n\n@article{xiao2025el4ner,\n  title = {{EL4NER}: Ensemble Learning for Named Entity Recognition via Multiple Small-Parameter Large Language Models},\n  author = {Xiao, Yuzhen and Song, Jiahe and Xu, Yongxin and Zhang, Ruizhe and Xiao, Yiqi and Lu, Xin and Zhu, Runchuan and Jiang, Bowen and Zhao, Junfeng},\n  journal = {arXiv preprint arXiv:2505.23038},\n  year = {2025},\n  url = {https://arxiv.org/abs/2505.23038}\n}\n\n@article{sarcinelli2025local,\n  title = {Local {LLM} Ensembles for Zero-shot Portuguese Named Entity Recognition},\n  author = {Sarcinelli, Jo{\\~a}o Lucas Luz Lima and Silva, Diego Furtado},\n  journal = {arXiv preprint arXiv:2512.10043},\n  year = {2025},\n  url = {https://arxiv.org/abs/2512.10043}\n}\n\n@article{naderi2021ensemble,\n  title = {Ensemble of Deep Masked Language Models for Effective Named Entity Recognition in Health and Life Science Corpora},\n  author = {Naderi, Nona and Knafou, Julien and Copara, Jenny and Ruch, Patrick and Teodoro, Douglas},\n  journal = {Frontiers in Research Metrics and Analytics},\n  volume = {6},\n  year = {2021},\n  doi = {10.3389/frma.2021.689803}\n}",
+    "originalFile": "% Auto-generated from literature_map.yaml — do not edit manually\n\n@inproceedings{vijayakumar2018diverse,\n  title = {Diverse Beam Search for Improved Description of Complex Scenes},\n  author = {Vijayakumar, Ashwin K. and Cogswell, Michael and Selvaraju, Ramprasaath R. and Sun, Qing and Lee, Stefan and Crandall, David J. and Batra, Dhruv},\n  booktitle = {Proceedings of the AAAI Conference on Artificial Intelligence},\n  year = {2018},\n  url = {https://arxiv.org/abs/1610.02424}\n}\n\n@inproceedings{shi2022mbr,\n  title = {Natural Language to Code Translation with Execution},\n  author = {Shi, Freda and Fried, Daniel and Ghazvininejad, Marjan and Zettlemoyer, Luke and Wang, Sida I.},\n  booktitle = {Proceedings of the 2022 Conference on Empirical Methods in Natural Language Processing (EMNLP)},\n  pages = {3533--3546},\n  year = {2022},\n  url = {https://arxiv.org/abs/2204.11454}\n}\n\n@article{eisenstein2023helping,\n  title = {Helping or Herding? Reward Model Ensembles Mitigate but do not Eliminate Reward Hacking},\n  author = {Eisenstein, Jacob and Nagpal, Chirag and Agarwal, Alekh and Beirami, Ahmad and D'Amour, Alex and Dvijotham, DJ and Fisch, Adam and Heller, Katherine and Pfohl, Stephen and Ramachandran, Deepak and Shaw, Peter and Berant, Jonathan},\n  journal = {arXiv preprint arXiv:2312.09244},\n  year = {2023},\n  url = {https://arxiv.org/abs/2312.09244}\n}\n\n@article{brown2024monkeys,\n  title = {Large Language Monkeys: Scaling Inference Compute with Repeated Sampling},\n  author = {Brown, Bradley and Juravsky, Jordan and Ehrlich, Ryan and Clark, Ronald and Le, Quoc V. and Ré, Christopher and Mirhoseini, Azalia},\n  journal = {arXiv preprint arXiv:2407.21787},\n  year = {2024},\n  url = {https://arxiv.org/abs/2407.21787}\n}\n\n@inproceedings{chen2024usc,\n  title = {Universal Self-Consistency for Large Language Model Generation},\n  author = {Chen, Xinyun and Aksitov, Renat and Alon, Uri and Ren, Jie and Xiao, Kefan and Yin, Pengcheng and Prakash, Sushant and Sutton, Charles and Wang, Xuezhi and Zhou, Denny},\n  booktitle = {ICML 2024 Workshop on In-Context Learning},\n  year = {2024},\n  url = {https://arxiv.org/abs/2311.17311}\n}\n\n@article{cobbe2021verifiers,\n  title = {Training Verifiers to Solve Math Word Problems},\n  author = {Cobbe, Karl and Kosaraju, Vineet and Bavarian, Mohammad and Chen, Mark and Jun, Heewoo and Kaiser, Lukasz and Plappert, Matthias and Tworek, Jerry and Hilton, Jacob and Nakano, Reiichiro and Hesse, Christopher and Schulman, John},\n  journal = {arXiv preprint arXiv:2110.14168},\n  year = {2021},\n  url = {https://arxiv.org/abs/2110.14168}\n}\n\n@inproceedings{culotta2004confidence,\n  title = {Confidence Estimation for Information Extraction},\n  author = {Culotta, Aron and McCallum, Andrew},\n  booktitle = {Proceedings of the Human Language Technology Conference of the North American Chapter of the Association for Computational Linguistics (HLT-NAACL 2004)},\n  year = {2004},\n  url = {https://aclanthology.org/N04-4028/}\n}\n\n@inproceedings{derczynski2017wnut,\n  title = {Results of the WNUT2017 Shared Task on Novel and Emerging Entity Recognition},\n  author = {Derczynski, Leon and Nichols, Eric and Erp, Marieke van and Limsopatham, Nut},\n  booktitle = {Proceedings of the 3rd Workshop on Noisy User-generated Text (W-NUT 2017)},\n  year = {2017},\n  url = {https://aclanthology.org/W17-4418/}\n}\n\n@inproceedings{ding2021fewnerd,\n  title = {Few-{NERD}: A Few-shot Named Entity Recognition Dataset},\n  author = {Ding, Ning and Xu, Guangwei and Chen, Yulin and Wang, Xiaobin and Han, Xu and Xie, Pengjun and Zheng, Hai-Tao and Liu, Zhiyuan},\n  booktitle = {Proceedings of the 59th Annual Meeting of the Association for Computational Linguistics and the 11th International Joint Conference on Natural Language Processing (Volume 1: Long Papers)},\n  pages = {3198--3213},\n  year = {2021},\n  doi = {10.18653/v1/2021.acl-long.248}\n}\n\n@inproceedings{eikema2022sampling,\n  title = {Sampling-Based Approximations to Minimum {B}ayes Risk Decoding for Neural Machine Translation},\n  author = {Eikema, Bryan and Aziz, Wilker},\n  booktitle = {Proceedings of the 2022 Conference on Empirical Methods in Natural Language Processing},\n  year = {2022},\n  pages = {10978--10993},\n  doi = {10.18653/v1/2022.emnlp-main.754}\n}\n\n@article{freitag2022high,\n  title = {High Quality Rather than High Model Probability: Minimum {B}ayes Risk Decoding with Neural Metrics},\n  author = {Freitag, Markus and Grangier, David and Tan, Qijun and Liang, Bowen},\n  journal = {Transactions of the Association for Computational Linguistics},\n  volume = {10},\n  year = {2022},\n  pages = {811--825},\n  doi = {10.1162/tacl_a_00491}\n}\n\n@article{fleiss1971agreement,\n  title = {Measuring nominal scale agreement among many raters.},\n  author = {Fleiss, Joseph L.},\n  journal = {Psychological Bulletin},\n  year = {1971},\n  doi = {10.1037/h0031619},\n  url = {http://dx.doi.org/10.1037/h0031619}\n}\n\n@article{feng2025optimal,\n  title = {Optimal Self-Consistency for Efficient Reasoning with Large Language Models},\n  author = {Feng, Austin and Alonso, Marius and Odonnat, Ambroise},\n  journal = {arXiv preprint arXiv:2511.12309},\n  year = {2025},\n  url = {https://arxiv.org/abs/2511.12309}\n}\n\n@inproceedings{geng2024confidence,\n  title = {A Survey of Confidence Estimation and Calibration in Large Language Models},\n  author = {Geng, Jiahui and Cai, Fengyu and Wang, Yuxia and Koeppl, Heinz and Nakov, Preslav and Gurevych, Iryna},\n  booktitle = {Proceedings of the 2024 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies (Volume 1: Long Papers)},\n  year = {2024},\n  doi = {10.18653/v1/2024.naacl-long.366},\n  url = {http://dx.doi.org/10.18653/v1/2024.naacl-long.366}\n}\n\n@article{hobelsberger2025systematic,\n  title = {Systematic Evaluation of Uncertainty Estimation Methods in Large Language Models},\n  author = {Hobelsberger, Christian and Winner, Theresa and Nawroth, Andreas and Mitevski, Oliver and Haensch, Anna-Carolina},\n  journal = {arXiv preprint arXiv:2510.20460},\n  year = {2025},\n  url = {https://arxiv.org/abs/2510.20460}\n}\n\n@article{kadavath2022language,\n  title = {Language Models (Mostly) Know What They Know},\n  author = {Kadavath, Saurav and Conerly, Tom and Askell, Amanda and Henighan, Tom and Drain, Dawn and Perez, Ethan and Schiefer, Nicholas and Hatfield-Dodds, Zac and DasSarma, Nova and Tran-Johnson, Eli and Johnston, Scott and El-Showk, Sheer and Jones, Andy and Elhage, Nelson and Hume, Tristan and Chen, Anna and Bai, Yuntao and Bowman, Sam and Fort, Stanislav and Ganguli, Deep and Hernandez, Danny and Jacobson, Josh and Kernion, Jackson and Kravec, Shauna and Lovitt, Liane and Ndousse, Kamal and Olsson, Catherine and Ringer, Sam and Amodei, Dario and Brown, Tom and Clark, Jack and Joseph, Nicholas and Mann, Ben and McCandlish, Sam and Olah, Chris and Kaplan, Jared},\n  journal = {arXiv preprint arXiv:2207.05221},\n  year = {2022},\n  url = {https://arxiv.org/abs/2207.05221}\n}\n\n@inproceedings{kang2025selfcertainty,\n  title = {Scalable Best-of-N Selection for Large Language Models via Self-Certainty},\n  author = {Kang, Zhewei and Zhao, Xuandong and Song, Dawn},\n  booktitle = {Advances in Neural Information Processing Systems 38 (NeurIPS)},\n  year = {2025},\n  url = {https://arxiv.org/abs/2502.18581}\n}\n\n@inproceedings{kim2026reasc,\n  title = {Reliability-Aware Adaptive Self-Consistency for Efficient Sampling in {LLM} Reasoning},\n  author = {Kim, Junseok and Yang, Nakyeong and Min, Kyungmin and Jung, Kyomin},\n  booktitle = {Proceedings of the 64th Annual Meeting of the Association for Computational Linguistics (ACL 2026)},\n  year = {2026},\n  url = {https://arxiv.org/abs/2601.02970}\n}\n\n@article{li2025llms,\n  title = {LLMs Can Generate a Better Answer by Aggregating Their Own Responses},\n  author = {Li, Zichong and Feng, Xinyu and Cai, Yuheng and Zhang, Zixuan and Liu, Tianyi and Liang, Chen and Chen, Weizhu and Wang, Haoyu and Zhao, Tuo},\n  journal = {arXiv preprint arXiv:2503.04104},\n  year = {2025},\n  url = {https://arxiv.org/abs/2503.04104}\n}\n\n@inproceedings{kuhn2023semantic,\n  title = {Semantic Uncertainty: Linguistic Invariances for Uncertainty Estimation in Natural Language Generation},\n  author = {Kuhn, Lorenz and Gal, Yarin and Farquhar, Sebastian},\n  booktitle = {Proceedings of the Eleventh International Conference on Learning Representations (ICLR 2023)},\n  year = {2023},\n  url = {https://arxiv.org/abs/2302.09664}\n}\n\n@inproceedings{li2023codeie,\n  title = {{CodeIE}: Large Code Generation Models are Better Few-Shot Information Extractors},\n  author = {Li, Peng and Sun, Tianxiang and Tang, Qiong and Yan, Hang and Wu, Yuanbin and Huang, Xuanjing and Qiu, Xipeng},\n  booktitle = {Proceedings of the 61st Annual Meeting of the Association for Computational Linguistics (ACL)},\n  year = {2023},\n  doi = {10.18653/v1/2023.acl-long.855},\n  url = {https://arxiv.org/abs/2305.05711}\n}\n\n@inproceedings{lightman2024verify,\n  title = {Let's Verify Step by Step},\n  author = {Lightman, Hunter and Kosaraju, Vineet and Burda, Yura and Edwards, Harri and Baker, Bowen and Lee, Teddy and Leike, Jan and Schulman, John and Sutskever, Ilya and Cobbe, Karl},\n  booktitle = {Proceedings of the Twelfth International Conference on Learning Representations (ICLR 2024)},\n  year = {2024},\n  url = {https://arxiv.org/abs/2305.20050}\n}\n\n@inproceedings{luan2018scierc,\n  title = {Multi-Task Identification of Entities, Relations, and Coreference for Scientific Knowledge Graph Construction},\n  author = {Luan, Yi and He, Luheng and Ostendorf, Mari and Hajishirzi, Hannaneh},\n  booktitle = {Proceedings of the 2018 Conference on Empirical Methods in Natural Language Processing},\n  year = {2018},\n  doi = {10.18653/v1/D18-1360},\n  url = {http://dx.doi.org/10.18653/v1/D18-1360}\n}\n\n@inproceedings{manakul2023selfcheckgpt,\n  title = {SelfCheckGPT: Zero-Resource Black-Box Hallucination Detection for Generative Large Language Models},\n  author = {Manakul, Potsawee and Liusie, Adian and Gales, Mark},\n  booktitle = {Proceedings of the 2023 Conference on Empirical Methods in Natural Language Processing},\n  year = {2023},\n  doi = {10.18653/v1/2023.emnlp-main.557},\n  url = {http://dx.doi.org/10.18653/v1/2023.emnlp-main.557}\n}\n\n@article{yao2026consistency,\n  title = {Consistency–accuracy correlation in hard-prompted LLMs for entity and relation extraction: empirical findings from plant-health data},\n  author = {Yao, Xinzhi and Nédellec, Claire and Xia, Jingbo and Bossy, Robert},\n  journal = {Genomics \\& Informatics},\n  year = {2026},\n  doi = {10.1186/s44342-025-00063-2},\n  url = {http://dx.doi.org/10.1186/s44342-025-00063-2}\n}\n\n@inproceedings{oh2026latentsc,\n  title = {Latent Self-Consistency for Reliable Majority-Set Selection in Short- and Long-Answer Reasoning},\n  author = {Oh, Jungsuk and Lee, Jay-Yoon},\n  booktitle = {Proceedings of the AAAI Conference on Artificial Intelligence (AAAI)},\n  year = {2026},\n  url = {https://ojs.aaai.org/index.php/AAAI/article/view/40536}\n}\n\n@inproceedings{sainz2024gollie,\n  title = {{GoLLIE}: Annotation Guidelines improve Zero-Shot Information-Extraction},\n  author = {Sainz, Oscar and García-Ferrero, Iker and Agerri, Rodrigo and Lacalle, Oier Lopez de and Rigau, German and Agirre, Eneko},\n  booktitle = {Proceedings of the Twelfth International Conference on Learning Representations (ICLR 2024)},\n  year = {2024},\n  url = {https://arxiv.org/abs/2310.03668}\n}\n\n@inproceedings{snell2025scaling,\n  title = {Scaling {LLM} Test-Time Compute Optimally can be More Effective than Scaling Model Parameters},\n  author = {Snell, Charlie and Lee, Jaehoon and Xu, Kelvin and Kumar, Aviral},\n  booktitle = {Proceedings of the International Conference on Learning Representations (ICLR)},\n  year = {2025},\n  url = {https://arxiv.org/abs/2408.03314}\n}\n\n@inproceedings{taubenfeld2025cisc,\n  title = {Confidence Improves Self-Consistency in LLMs},\n  author = {Taubenfeld, Amir and Sheffer, Tom and Ofek, Eran and Feder, Amir and Goldstein, Ariel and Gekhman, Zorik and Yona, Gal},\n  booktitle = {Findings of the Association for Computational Linguistics: ACL 2025},\n  year = {2025},\n  doi = {10.18653/v1/2025.findings-acl.1030},\n  url = {http://dx.doi.org/10.18653/v1/2025.findings-acl.1030}\n}\n\n@inproceedings{thirukovalluru2024atomic,\n  title = {Atomic Self-Consistency for Better Long Form Generations},\n  author = {Thirukovalluru, Raghuveer and Huang, Yukun and Dhingra, Bhuwan},\n  booktitle = {Proceedings of the 2024 Conference on Empirical Methods in Natural Language Processing},\n  year = {2024},\n  doi = {10.18653/v1/2024.emnlp-main.706},\n  url = {http://dx.doi.org/10.18653/v1/2024.emnlp-main.706}\n}\n\n@inproceedings{tjongkimsang2003conll,\n  title = {Introduction to the {CoNLL}-2003 Shared Task: Language-Independent Named Entity Recognition},\n  author = {Sang, Erik F. Tjong Kim and Meulder, Fien De},\n  booktitle = {Proceedings of the Seventh Conference on Computational Natural Language Learning (CoNLL 2003)},\n  year = {2003},\n  url = {https://aclanthology.org/W03-0419/}\n}\n\n@inproceedings{vashurin2025cocoa,\n  title = {Uncertainty Quantification for {LLMs} through Minimum Bayes Risk: Bridging Confidence and Consistency},\n  author = {Vashurin, Roman and Goloburda, Maiya and Ilina, Albina and Rubashevskii, Aleksandr and Nakov, Preslav and Shelmanov, Artem and Panov, Maxim},\n  booktitle = {Advances in Neural Information Processing Systems 38 (NeurIPS)},\n  year = {2025},\n  url = {https://arxiv.org/abs/2502.04964}\n}\n\n@inproceedings{wadhwa2023revisiting,\n  title = {Revisiting Relation Extraction in the era of Large Language Models},\n  author = {Wadhwa, Somin and Amir, Silvio and Wallace, Byron},\n  booktitle = {Proceedings of the 61st Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)},\n  year = {2023},\n  doi = {10.18653/v1/2023.acl-long.868},\n  url = {http://dx.doi.org/10.18653/v1/2023.acl-long.868}\n}\n\n@inproceedings{wang2023selfconsistency,\n  title = {Self-Consistency Improves Chain of Thought Reasoning in Language Models},\n  author = {Wang, Xuezhi and Wei, Jason and Schuurmans, Dale and Le, Quoc and Chi, Ed and Narang, Sharan and Chowdhery, Aakanksha and Zhou, Denny},\n  booktitle = {Proceedings of the Eleventh International Conference on Learning Representations (ICLR 2023)},\n  year = {2023},\n  url = {https://arxiv.org/abs/2203.11171}\n}\n\n@inproceedings{wang2025make,\n  title = {Make Every Penny Count: Difficulty-Adaptive Self-Consistency for Cost-Efficient Reasoning},\n  author = {Wang, Xinglin and Feng, Shaoxiong and Li, Yiwei and Yuan, Peiwen and Zhang, Yueqi and Tan, Chuyi and Pan, Boyuan and Hu, Yao and Li, Kan},\n  booktitle = {Findings of the Association for Computational Linguistics: NAACL 2025},\n  pages = {6919--6932},\n  year = {2025}\n}\n\n@inproceedings{wang2025rankedvoting,\n  title = {Ranked Voting based Self-Consistency of Large Language Models},\n  author = {Wang, Weiqin and Wang, Yile and Huang, Hui},\n  booktitle = {Findings of the Association for Computational Linguistics: ACL 2025},\n  year = {2025},\n  url = {https://arxiv.org/abs/2505.10772}\n}\n\n@article{willard2023guided,\n  title = {Efficient Guided Generation for Large Language Models},\n  author = {Willard, Brandon T. and Louf, Rémi},\n  journal = {arXiv preprint arXiv:2307.09702},\n  year = {2023},\n  url = {https://arxiv.org/abs/2307.09702}\n}\n\n@inproceedings{xia2025survey,\n  title = {A Survey of Uncertainty Estimation Methods on Large Language Models},\n  author = {Xia, Zhiqiu and Xu, Jinxuan and Zhang, Yuqian and Liu, Hang},\n  booktitle = {Findings of the Association for Computational Linguistics: ACL 2025},\n  year = {2025},\n  url = {https://aclanthology.org/2025.findings-acl.1101/}\n}\n\n@inproceedings{zheng2024llamafactory,\n  title = {{L}lama{F}actory: Unified Efficient Fine-Tuning of 100+ Language Models},\n  author = {Zheng, Yaowei and Zhang, Richong and Zhang, Junhao and Ye, Yanhan and Luo, Zheyan},\n  booktitle = {Proceedings of the 62nd Annual Meeting of the Association for Computational Linguistics (Volume 3: System Demonstrations)},\n  year = {2024},\n  pages = {400--410},\n  doi = {10.18653/v1/2024.acl-demos.38}\n}\n\n@inproceedings{zhou2024uniner,\n  title = {{UniversalNER}: Targeted Distillation from Large Language Models for Open Named Entity Recognition},\n  author = {Zhou, Wenxuan and Zhang, Sheng and Gu, Yu and Chen, Muhao and Poon, Hoifung},\n  booktitle = {Proceedings of the International Conference on Learning Representations (ICLR)},\n  year = {2024},\n  url = {https://arxiv.org/abs/2308.03279}\n}\n\n@inproceedings{muller2021understanding,\n  title = {Understanding the Properties of Minimum {Bayes} Risk Decoding in Neural Machine Translation},\n  author = {M{\\\"u}ller, Mathias and Sennrich, Rico},\n  booktitle = {Proceedings of the 59th Annual Meeting of the Association for Computational Linguistics (ACL)},\n  year = {2021},\n  url = {https://arxiv.org/abs/2105.08504}\n}\n\n@inproceedings{eikema2025structured,\n  title = {Structure-Conditional Minimum {B}ayes Risk Decoding},\n  author = {Eikema, Bryan and Rutkiewicz, Anna and Giulianelli, Mario},\n  booktitle = {Proceedings of the 2025 Conference on Empirical Methods in Natural Language Processing},\n  year = {2025},\n  url = {https://arxiv.org/abs/2510.20700}\n}\n\n@article{venktesh2025trust,\n  title = {Trust but Verify! A Survey on Verification Design for Test-time Scaling},\n  author = {Venktesh, V and Rathee, Mandeep and Anand, Avishek},\n  journal = {arXiv preprint arXiv:2508.16665},\n  year = {2025},\n  url = {https://arxiv.org/abs/2508.16665}\n}\n\n@inproceedings{jinnai2024mbr,\n  title = {Model-Based Minimum {B}ayes Risk Decoding for Text Generation},\n  author = {Jinnai, Yuu and Morimura, Tetsuro and Honda, Ukyo and Ariu, Kaito and Abe, Kenshi},\n  booktitle = {Proceedings of the 41st International Conference on Machine Learning (ICML)},\n  year = {2024},\n  url = {https://arxiv.org/abs/2311.05263}\n}\n\n@inproceedings{ratinov2009design,\n  title = {Design Challenges and Misconceptions in Named Entity Recognition},\n  author = {Ratinov, Lev and Roth, Dan},\n  booktitle = {Proceedings of the Thirteenth Conference on Computational Natural Language Learning (CoNLL)},\n  year = {2009},\n  pages = {147--155},\n  publisher = {Association for Computational Linguistics}\n}\n\n@inproceedings{bergkirkpatrick2012empirical,\n  title = {An Empirical Investigation of Statistical Significance in {NLP}},\n  author = {Berg-Kirkpatrick, Taylor and Burkett, David and Klein, Dan},\n  booktitle = {Proceedings of the 2012 Joint Conference on Empirical Methods in Natural Language Processing and Computational Natural Language Learning (EMNLP-CoNLL)},\n  year = {2012},\n  pages = {995--1005},\n  publisher = {Association for Computational Linguistics}\n}\n\n@inproceedings{tian2023calibration,\n  title = {Just Ask for Calibration: Strategies for Eliciting Calibrated Confidence Scores from Language Models Fine-Tuned with Human Feedback},\n  author = {Tian, Katherine and Mitchell, Eric and Zhou, Allan and Sharma, Archit and Rafailov, Rafael and Yao, Huaxiu and Finn, Chelsea and Manning, Christopher D.},\n  booktitle = {Proceedings of the 2023 Conference on Empirical Methods in Natural Language Processing (EMNLP)},\n  year = {2023},\n  pages = {5433--5442},\n  publisher = {Association for Computational Linguistics}\n}\n\n@inproceedings{fernandes2022quality,\n  title = {Quality-Aware Decoding for Neural Machine Translation},\n  author = {Fernandes, Patrick and Farinhas, Ant{\\'o}nio and Rei, Ricardo and de Souza, Jos{\\'e} G. C. and Ogayo, Perez and Neubig, Graham and Martins, Andr{\\'e}},\n  booktitle = {Proceedings of the 2022 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies (NAACL)},\n  year = {2022},\n  pages = {1396--1412},\n  url = {https://arxiv.org/abs/2205.00978}\n}\n\n@inproceedings{deguchi2024centroid,\n  title = {Centroid-Based Efficient Minimum Bayes Risk Decoding},\n  author = {Deguchi, Hiroyuki and Sakai, Yusuke and Kamigaito, Hidetaka and Watanabe, Taro and Tanaka, Hideki and Utiyama, Masao},\n  booktitle = {Findings of the Association for Computational Linguistics: ACL 2024},\n  pages = {11009--11018},\n  year = {2024},\n  url = {https://aclanthology.org/2024.findings-acl.654/}\n}\n\n@inproceedings{mejer2010confidence,\n  title = {Confidence in Structured-Prediction Using Confidence-Weighted Models},\n  author = {Mejer, Avihai and Crammer, Koby},\n  booktitle = {Proceedings of the 2010 Conference on Empirical Methods in Natural Language Processing (EMNLP)},\n  year = {2010},\n  pages = {971--981},\n  url = {https://aclanthology.org/D10-1095/}\n}\n\n@inproceedings{schall2025hidden,\n  title = {The Hidden Cost of Structure: How Constrained Decoding Affects Language Model Performance},\n  author = {Schall, Maximilian and de Melo, Gerard},\n  booktitle = {Proceedings of Recent Advances in Natural Language Processing (RANLP)},\n  year = {2025},\n  pages = {1074--1084},\n  url = {https://aclanthology.org/2025.ranlp-1.124/}\n}\n\n@inproceedings{yun2025price,\n  title = {The Price of Format: Diversity Collapse in {LLMs}},\n  author = {Yun, Longfei and An, Chenyang and Wang, Zilong and Peng, Letian and Shang, Jingbo},\n  booktitle = {Findings of the Association for Computational Linguistics: EMNLP 2025},\n  year = {2025},\n  url = {https://aclanthology.org/2025.findings-emnlp.836/}\n}\n\n@inproceedings{park2024grammar,\n  title = {Grammar-Aligned Decoding},\n  author = {Park, Kanghee and Wang, Jiayu and Berg-Kirkpatrick, Taylor and Polikarpova, Nadia and D'Antoni, Loris},\n  booktitle = {Advances in Neural Information Processing Systems 37 (NeurIPS)},\n  year = {2024},\n  url = {https://proceedings.neurips.cc/paper_files/paper/2024/hash/2bdc2267c3d7d01523e2e17ac0a754f3-Abstract-Conference.html}\n}\n\n@inproceedings{gao2023scaling,\n  title = {Scaling Laws for Reward Model Overoptimization},\n  author = {Gao, Leo and Schulman, John and Hilton, Jacob},\n  booktitle = {Proceedings of the 40th International Conference on Machine Learning (ICML)},\n  year = {2023},\n  url = {https://proceedings.mlr.press/v202/gao23h.html}\n}\n\n@inproceedings{kirk2024understanding,\n  title = {Understanding the Effects of {RLHF} on {LLM} Generalisation and Diversity},\n  author = {Kirk, Robert and Mediratta, Ishita and Nalmpantis, Christoforos and Luketina, Jelena and Hambro, Eric and Grefenstette, Edward and Raileanu, Roberta},\n  booktitle = {Proceedings of the Twelfth International Conference on Learning Representations (ICLR)},\n  year = {2024},\n  url = {https://openreview.net/forum?id=PXoFut3dWW}\n}\n\n@inproceedings{holtzman2020curious,\n  title = {The Curious Case of Neural Text Degeneration},\n  author = {Holtzman, Ari and Buys, Jan and Du, Li and Forbes, Maxwell and Choi, Yejin},\n  booktitle = {Proceedings of the Eighth International Conference on Learning Representations (ICLR)},\n  year = {2020},\n  url = {https://openreview.net/forum?id=rygGQyrFvH}\n}\n\n@inproceedings{kuleshov2015calibrated,\n  title = {Calibrated Structured Prediction},\n  author = {Kuleshov, Volodymyr and Liang, Percy},\n  booktitle = {Advances in Neural Information Processing Systems 28 (NeurIPS)},\n  year = {2015},\n  url = {https://proceedings.neurips.cc/paper/2015/hash/b3b4d2dbedc99fe843fd3dedb02f086f-Abstract.html}\n}\n\n@article{fomicheva2020unsupervised,\n  title = {Unsupervised Quality Estimation for Neural Machine Translation},\n  author = {Fomicheva, Marina and Sun, Shuo and Yankovskaya, Lisa and Blain, Fr{\\'e}d{\\'e}ric and Guzm{\\'a}n, Francisco and Fishel, Mark and Aletras, Nikolaos and Chaudhary, Vishrav and Specia, Lucia},\n  journal = {Transactions of the Association for Computational Linguistics},\n  volume = {8},\n  pages = {539--555},\n  year = {2020},\n  doi = {10.1162/tacl_a_00330}\n}\n\n@inproceedings{platt1999probabilistic,\n  title = {Probabilistic Outputs for Support Vector Machines and Comparisons to Regularized Likelihood Methods},\n  author = {Platt, John C.},\n  booktitle = {Advances in Large Margin Classifiers},\n  pages = {61--74},\n  year = {1999},\n  publisher = {MIT Press}\n}\n\n@inproceedings{guo2017calibration,\n  title = {On Calibration of Modern Neural Networks},\n  author = {Guo, Chuan and Pleiss, Geoff and Sun, Yu and Weinberger, Kilian Q.},\n  booktitle = {Proceedings of the 34th International Conference on Machine Learning},\n  pages = {1321--1330},\n  year = {2017}\n}\n\n@inproceedings{geifman2017selective,\n  title = {Selective Classification for Deep Neural Networks},\n  author = {Geifman, Yonatan and El-Yaniv, Ran},\n  booktitle = {Advances in Neural Information Processing Systems},\n  volume = {30},\n  year = {2017},\n  url = {https://arxiv.org/abs/1705.08500}\n}\n\n@article{dong2024xgrammar,\n  title = {{XGrammar}: Flexible and Efficient Structured Generation Engine for Large Language Models},\n  author = {Dong, Yixin and Ruan, Charlie F. and Cai, Yaxing and Lai, Ruihang and Xu, Ziyi and Zhao, Yilong and Chen, Tianqi},\n  journal = {arXiv preprint arXiv:2411.15100},\n  year = {2024},\n  url = {https://arxiv.org/abs/2411.15100}\n}\n\n@article{lin2022teaching,\n  title = {Teaching Models to Express Their Uncertainty in Words},\n  author = {Lin, Stephanie and Hilton, Jacob and Evans, Owain},\n  journal = {Transactions on Machine Learning Research},\n  year = {2022},\n  url = {https://arxiv.org/abs/2205.14334}\n}\n\n@inproceedings{varshney2022investigating,\n  title = {Investigating Selective Prediction Approaches Across Several Tasks in {IID}, {OOD}, and Adversarial Settings},\n  author = {Varshney, Neeraj and Mishra, Swaroop and Baral, Chitta},\n  booktitle = {Findings of the Association for Computational Linguistics: ACL 2022},\n  pages = {1995--2002},\n  year = {2022},\n  url = {https://aclanthology.org/2022.findings-acl.158}\n}\n\n@article{farquhar2024detecting,\n  title = {Detecting hallucinations in large language models using semantic entropy},\n  author = {Farquhar, Sebastian and Kossen, Jannik and Kuhn, Lorenz and Gal, Yarin},\n  journal = {Nature},\n  volume = {630},\n  pages = {625--630},\n  year = {2024},\n  doi = {10.1038/s41586-024-07421-0}\n}\n\n@article{chen2021evaluating,\n  title = {Evaluating Large Language Models Trained on Code},\n  author = {Chen, Mark and Tworek, Jerry and Jun, Heewoo and Yuan, Qiming and Pinto, Henrique Ponde de Oliveira and Kaplan, Jared and Edwards, Harri and Burda, Yuri and Joseph, Nicholas and Brockman, Greg and Ray, Alex and Puri, Raul and Krueger, Gretchen and Petrov, Michael and Khlaaf, Heidy and Sastry, Girish and Mishkin, Pamela and Chan, Brooke and Gray, Scott and Ryder, Nick and Pavlov, Mikhail and Power, Alethea and Kaiser, Lukasz and Bavarian, Mohammad and Winter, Clemens and Tillet, Philippe and Such, Felipe Petroski and Cummings, Dave and Plappert, Matthias and Chantzis, Fotios and Barnes, Elizabeth and Herbert-Voss, Ariel and Guss, William Hebgen and Nichol, Alex and Paino, Alex and Tezak, Nikolas and Tang, Jie and Babuschkin, Igor and Balaji, Suchir and Jain, Shantanu and Saunders, William and Hesse, Christopher and Carr, Andrew N. and Leike, Jan and Achiam, Josh and Misra, Vedant and Morikawa, Evan and Radford, Alec and Knight, Matthew and Brundage, Miles and Murati, Mira and Mayer, Katie and Welinder, Peter and McGrew, Bob and Amodei, Dario and McCandlish, Sam and Sutskever, Ilya and Zaremba, Wojciech},\n  journal = {arXiv preprint arXiv:2107.03374},\n  year = {2021},\n  url = {https://arxiv.org/abs/2107.03374}\n}\n\n@inproceedings{chen2025twofailures,\n  title = {Two Failures of Self-Consistency in the Multi-Step Reasoning of {LLMs}},\n  author = {Chen, Angelica and Dohan, David and So, David},\n  booktitle = {Proceedings of the 13th International Conference on Learning Representations (ICLR 2025)},\n  year = {2025},\n  url = {https://arxiv.org/abs/2410.23123}\n}\n\n@inproceedings{aggarwal2023adaptive,\n  title = {Let's Sample Step by Step: Adaptive-Consistency for Efficient Reasoning and Coding with {LLMs}},\n  author = {Aggarwal, Pranjal and Madaan, Aman and Yang, Yiming and Mausam},\n  booktitle = {Proceedings of the 2023 Conference on Empirical Methods in Natural Language Processing (EMNLP 2023)},\n  year = {2023},\n  url = {https://arxiv.org/abs/2305.11860}\n}\n\n",
+    "structuredPatch": [
+      {
+        "oldStart": 573,
+        "oldLines": 3,
+        "newStart": 573,
+        "newLines": 44,
+        "lines": [
+          "   url = {https://arxiv.org/abs/2305.11860}",
+          " }",
+          " ",
+          "+@inproceedings{xie2023selfevaluation,",
+          "+  title = {Self-Evaluation Guided Beam Search for Reasoning},",
+          "+  author = {Xie, Yuxi and Kawaguchi, Kenji and Zhao, Yiran and Zhao, James Xu and Kan, Min-Yen and He, Junxian},",
+          "+  booktitle = {Advances in Neural Information Processing Systems 36 (NeurIPS)},",
+          "+  year = {2023},",
+          "+  url = {https://arxiv.org/abs/2305.00633}",
+          "+}",
+          "+",
+          "+@inproceedings{xie2024selfimproving,",
+          "+  title = {Self-Improving for Zero-Shot Named Entity Recognition with Large Language Models},",
+          "+  author = {Xie, Tingyu and Li, Qi and Zhang, Yan and Liu, Zuozhu and Wang, Hongwei},",
+          "+  booktitle = {Proceedings of the 2024 Conference of the North American Chapter of the Association for Computational Linguistics (NAACL)},",
+          "+  year = {2024},",
+          "+  url = {https://arxiv.org/abs/2311.08921}",
+          "+}",
+          "+",
+          "+@article{xiao2025el4ner,",
+          "+  title = {{EL4NER}: Ensemble Learning for Named Entity Recognition via Multiple Small-Parameter Large Language Models},",
+          "+  author = {Xiao, Yuzhen and Song, Jiahe and Xu, Yongxin and Zhang, Ruizhe and Xiao, Yiqi and Lu, Xin and Zhu, Runchuan and Jiang, Bowen and Zhao, Junfeng},",
+          "+  journal = {arXiv preprint arXiv:2505.23038},",
+          "+  year = {2025},",
+          "+  url = {https://arxiv.org/abs/2505.23038}",
+          "+}",
+          "+",
+          "+@article{sarcinelli2025local,",
+          "+  title = {Local {LLM} Ensembles for Zero-shot Portuguese Named Entity Recognition},",
+          "+  author = {Sarcinelli, Jo{\\~a}o Lucas Luz Lima and Silva, Diego Furtado},",
+          "+  journal = {arXiv preprint arXiv:2512.10043},",
+          "+  year = {2025},",
+          "+  url = {https://arxiv.org/abs/2512.10043}",
+          "+}",
+          "+",
+          "+@article{naderi2021ensemble,",
+          "+  title = {Ensemble of Deep Masked Language Models for Effective Named Entity Recognition in Health and Life Science Corpora},",
+          "+  author = {Naderi, Nona and Knafou, Julien and Copara, Jenny and Ruch, Patrick and Teodoro, Douglas},",
+          "+  journal = {Frontiers in Research Metrics and Analytics},",
+          "+  volume = {6},",
+          "+  year = {2021},",
+          "+  doi = {10.3389/frma.2021.689803}",
+          "+}",
+          "+"
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 105_
+
+BibTeX entries 已追加。以下是完整汇报。
+
+---
+
+## Part A: 新引用查找结果
+
+### 1. Xie et al. 2023
+
+找到两篇匹配的论文，均相关：
+
+**主匹配（匹配 "self-evaluation" + "beam search"）：**
+- **Title**: Self-Evaluation Guided Beam Search for Reasoning
+- **Authors**: Xie, Yuxi et al.
+- **Venue**: NeurIPS 2023
+- **Year**: 2023
+- **BibKey**: `xie2023selfevaluation`
+
+**次匹配（匹配 "self-consistency" + "NER"，与项目主题直接相关）：**
+- **Title**: Self-Improving for Zero-Shot Named Entity Recognition with Large Language Models
+- **Authors**: Xie, Tingyu et al.
+- **Venue**: NAACL 2024（arXiv preprint 2023.11）
+- **Year**: 2024
+- **BibKey**: `xie2024selfimproving`
+
+### 2. Wan et al. 2024 — IE survey
+
+**未找到。** 经多轮搜索（变换关键词、扩大范围），未找到以 "Wan" 为第一作者的 2024 年 IE survey。最接近的匹配：
+- Xu et al. 2024, "Large Language Models for Generative Information Extraction: A Survey" (arXiv:2312.17617, Frontiers of Computer Science 2024) — 第一作者是 Xu Derong，非 Wan
+- Wan et al. 2023, "GPT-RE: In-context Learning for Relation Extraction" (EMNLP 2023) — 2023 年且非 survey
+
+请确认作者名或提供更多线索。
+
+### 3. Ensemble-based NER methods（3 篇）
+
+| BibKey | Title | Authors | Venue | Year |
+|---|---|---|---|---|
+| `xiao2025el4ner` | EL4NER: Ensemble Learning for NER via Multiple Small-Parameter LLMs | Xiao, Yuzhen et al. | arXiv:2505.23038 | 2025 |
+| `sarcinelli2025local` | Local LLM Ensembles for Zero-shot Portuguese NER | Sarcinelli et al. | arXiv:2512.10043 | 2025 |
+| `naderi2021ensemble` | Ensemble of Deep Masked Language Models for Effective NER in Health and Life Science Corpora | Naderi, Nona et al. | Frontiers in Research Metrics and Analytics | 2021 |
+
+三篇均涉及多模型 + 实体级聚合/投票机制。EL4NER 最相关（两阶段 pipeline：span 提取 + 实体类型投票）。
+
+---
+
+## Part B: 9 条现有引用验证
+
+| # | BibKey | 当前 Year | 当前 Venue | 正确? | 备注 |
+|---|---|---|---|---|---|
+| 1 | `wang2023selfconsistency` | 2023 | ICLR 2023 | ✅ | — |
+| 2 | `cobbe2021verifiers` | 2021 | arXiv preprint | ✅ | 始终为 arXiv preprint，未正式发表于会议/期刊 |
+| 3 | `eikema2022sampling` | 2022 | EMNLP 2022 | ✅ | pages 10978–10993，DOI 正确 |
+| 4 | `venktesh2025trust` | 2025 | arXiv preprint | ✅ | arXiv:2508.16665 |
+| 5 | `snell2025scaling` | 2025 | ICLR 2025 | ✅ | — |
+| 6 | `willard2023guided` | 2023 | arXiv preprint | ✅ | 未正式发表于会议，arXiv:2307.09702 |
+| 7 | `zheng2024llamafactory` | 2024 | ACL 2024 System Demos | ✅ | pages 400–410，DOI 正确 |
+| 8 | `luan2018scierc` | 2018 | EMNLP 2018 | ✅ | DOI 正确 |
+| 9 | `derczynski2017wnut` | 2017 | W-NUT 2017 workshop | ✅ | — |
+
+**9 条引用全部验证通过，年份和 venue 均正确。**
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4174a956-2672-46bc-9cc6-7207d07af3de",
+  "uuid": "161d158b-5832-46ee-9b6d-50d4b89b005f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011SwLuoNqBGUL33SwhR6h1S",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6287,
+      "cache_read_input_tokens": 74067,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6287
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 106_
+
+BibTeX entries 已追加。以下是完整汇报。
+
+---
+
+## Part A: 新引用查找结果
+
+### 1. Xie et al. 2023
+
+找到两篇匹配的论文，均相关：
+
+**主匹配（匹配 "self-evaluation" + "beam search"）：**
+- **Title**: Self-Evaluation Guided Beam Search for Reasoning
+- **Authors**: Xie, Yuxi et al.
+- **Venue**: NeurIPS 2023
+- **Year**: 2023
+- **BibKey**: `xie2023selfevaluation`
+
+**次匹配（匹配 "self-consistency" + "NER"，与项目主题直接相关）：**
+- **Title**: Self-Improving for Zero-Shot Named Entity Recognition with Large Language Models
+- **Authors**: Xie, Tingyu et al.
+- **Venue**: NAACL 2024（arXiv preprint 2023.11）
+- **Year**: 2024
+- **BibKey**: `xie2024selfimproving`
+
+### 2. Wan et al. 2024 — IE survey
+
+**未找到。** 经多轮搜索（变换关键词、扩大范围），未找到以 "Wan" 为第一作者的 2024 年 IE survey。最接近的匹配：
+- Xu et al. 2024, "Large Language Models for Generative Information Extraction: A Survey" (arXiv:2312.17617, Frontiers of Computer Science 2024) — 第一作者是 Xu Derong，非 Wan
+- Wan et al. 2023, "GPT-RE: In-context Learning for Relation Extraction" (EMNLP 2023) — 2023 年且非 survey
+
+请确认作者名或提供更多线索。
+
+### 3. Ensemble-based NER methods（3 篇）
+
+| BibKey | Title | Authors | Venue | Year |
+|---|---|---|---|---|
+| `xiao2025el4ner` | EL4NER: Ensemble Learning for NER via Multiple Small-Parameter LLMs | Xiao, Yuzhen et al. | arXiv:2505.23038 | 2025 |
+| `sarcinelli2025local` | Local LLM Ensembles for Zero-shot Portuguese NER | Sarcinelli et al. | arXiv:2512.10043 | 2025 |
+| `naderi2021ensemble` | Ensemble of Deep Masked Language Models for Effective NER in Health and Life Science Corpora | Naderi, Nona et al. | Frontiers in Research Metrics and Analytics | 2021 |
+
+三篇均涉及多模型 + 实体级聚合/投票机制。EL4NER 最相关（两阶段 pipeline：span 提取 + 实体类型投票）。
+
+---
+
+## Part B: 9 条现有引用验证
+
+| # | BibKey | 当前 Year | 当前 Venue | 正确? | 备注 |
+|---|---|---|---|---|---|
+| 1 | `wang2023selfconsistency` | 2023 | ICLR 2023 | ✅ | — |
+| 2 | `cobbe2021verifiers` | 2021 | arXiv preprint | ✅ | 始终为 arXiv preprint，未正式发表于会议/期刊 |
+| 3 | `eikema2022sampling` | 2022 | EMNLP 2022 | ✅ | pages 10978–10993，DOI 正确 |
+| 4 | `venktesh2025trust` | 2025 | arXiv preprint | ✅ | arXiv:2508.16665 |
+| 5 | `snell2025scaling` | 2025 | ICLR 2025 | ✅ | — |
+| 6 | `willard2023guided` | 2023 | arXiv preprint | ✅ | 未正式发表于会议，arXiv:2307.09702 |
+| 7 | `zheng2024llamafactory` | 2024 | ACL 2024 System Demos | ✅ | pages 400–410，DOI 正确 |
+| 8 | `luan2018scierc` | 2018 | EMNLP 2018 | ✅ | DOI 正确 |
+| 9 | `derczynski2017wnut` | 2017 | W-NUT 2017 workshop | ✅ | — |
+
+**9 条引用全部验证通过，年份和 venue 均正确。**
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 380864,
+  "duration_api_ms": 572812,
+  "num_turns": 44,
+  "stop_reason": "end_turn",
+  "session_id": "4174a956-2672-46bc-9cc6-7207d07af3de",
+  "total_cost_usd": 2.25057325,
+  "usage": {
+    "input_tokens": 9180,
+    "cache_creation_input_tokens": 68653,
+    "cache_read_input_tokens": 665256,
+    "output_tokens": 12869,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 68653,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 1238,
+        "cache_read_input_tokens": 74067,
+        "cache_creation_input_tokens": 6287,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 6287
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 572539,
+      "outputTokens": 15740,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 47,
+      "costUSD": 1.1212389999999999,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 9180,
+      "outputTokens": 12869,
+      "cacheReadInputTokens": 665256,
+      "cacheCreationInputTokens": 68653,
+      "webSearchRequests": 0,
+      "costUSD": 1.1293342499999999,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "3895c655-92df-438d-9356-5fb80b24de96"
+}
+```
+
+</details>
+
+---

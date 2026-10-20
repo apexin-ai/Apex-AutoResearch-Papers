@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "2499ef0fbd41b18d921e",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "audit table data source",
+  "task_key": "worker_audit_table_data_source_20260518T034305",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_audit_table_data_source_20260518T034305.log",
+    "occurrence": 1,
+    "bytes": 3528688,
+    "sha256": "2a4cfc0ff5c69c205866ca40d3df94a1cf48db7807c79ad0382251f71015660b"
+  },
+  "statistics": {
+    "messages": 186,
+    "user_turns": 0,
+    "tool_calls": 71,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 40,
+      "tool_call": 71,
+      "tool_result": 71,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 186,
+      "chunks": [
+        {
+          "path": "2499ef0fbd41b18d921e-part-0001.json",
+          "message_count": 110
+        },
+        {
+          "path": "2499ef0fbd41b18d921e-part-0002.json",
+          "message_count": 76
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/audit-table-data-source.md"
+}

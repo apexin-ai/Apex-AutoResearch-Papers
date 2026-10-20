@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "185cb8e7b8481f7ac0a5",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ssh kill orphan and verify 5090",
+  "task_key": "worker_ssh_kill_orphan_and_verify_5090_20260522T110552",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_kill_orphan_and_verify_5090_20260522T110552_result.json",
+    "occurrence": 1,
+    "bytes": 484,
+    "sha256": "1b2b708189a27ea3e90e6c92c8b6a40c51429e9876d6a4c27f2fa7706f506aa7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\nGPU 释放: 4/4 卡空闲 (均 0% util, 2 MiB used)\nSciERC model: OK (checkpoints/qwen3-8b-scierc-merged-v2/)\nSciERC data: OK (data/scierc/processed_data/test.json)\nFewNERD model: OK (checkpoints/qwen3-8b-fewnerd-exp021-merged/)\nFewNERD data: OK (data/fewnerd/test.json)\n可提交: SciERC 推理, FewNERD MF4 s123 推理\n```\n\n注：原始 4 个 PID 已 kill，但各自有 VLLM::EngineCore 子进程残留，用 SIGKILL 清理后 4 张 5090 全部释放。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-kill-orphan-and-verify-5090.md"
+}

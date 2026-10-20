@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1fd624a2c3526e28ada8",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "cleanup rename deprecated summary",
+  "task_key": "worker_cleanup_rename_deprecated_summary_20260515T063724",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_cleanup_rename_deprecated_summary_20260515T063724_result.json",
+    "occurrence": 1,
+    "bytes": 199,
+    "sha256": "ee2b6fa573e97446a12be460e3f03730ffe0f9b70cbc40e5132cf12070c09839"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "旧文件已重命名为 `llama_scierc_3seed_summary_DEPRECATED_preD066.json`。目录下没有其他 `llama_scierc_3seed_summary*` 文件（即原始的 fresh 版本尚未生成）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/cleanup-rename-deprecated-summary.md"
+}

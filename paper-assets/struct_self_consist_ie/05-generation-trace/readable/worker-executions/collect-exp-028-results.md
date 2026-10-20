@@ -1,0 +1,1442 @@
+# collect exp 028 results
+
+**When Self-Consistency Fails for NER: Degeneracy, Signal Collapse, and the Correlation-Selection Gap** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 30
+- **Recorded user turns:** 0
+- **Tool calls:** 10
+- **Original source:** `logs/workers/worker_collect_exp_028_results_20260517T202458.log`
+- **Structured JSON:** [`9f4265c29a0dcb5910d2.json`](../../sessions/9f/9f4265c29a0dcb5910d2.json)
+
+## Before a recorded user message
+
+30 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "session_id": "a68db7df-78fa-4769-af7b-ae416f15e440",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__append_idea",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__read_project_file",
+    "mcp__agent-ml-research__save_project_file",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "5009604c-8063-46c4-944c-e43f597d28df",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779060600,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "7362c746-7656-45bf-9b87-30efbd16bfd3",
+  "session_id": "a68db7df-78fa-4769-af7b-ae416f15e440"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to collect results from exp_028 post-processing on the remote server. Let me execute the SSH commands to gather the data.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a68db7df-78fa-4769-af7b-ae416f15e440",
+  "uuid": "e40fd16e-7c97-4ce0-8e41-748cd8f0dfef",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AuhBbejXXrAYrqG2AG7zcX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13065,
+      "cache_read_input_tokens": 11701,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13065
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01LRT3voZp4xieeUBSLFVB9C`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__save_project_file",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a68db7df-78fa-4769-af7b-ae416f15e440",
+  "uuid": "e5a4434b-05b5-4205-a796-1757064874d0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AuhBbejXXrAYrqG2AG7zcX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13065,
+      "cache_read_input_tokens": 11701,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13065
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-17T20:25:12.023Z_
+
+<details><summary>↩ Tool result · `toolu_01LRT3voZp4xieeUBSLFVB9C`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__save_project_file"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a68db7df-78fa-4769-af7b-ae416f15e440",
+  "uuid": "bdf32a71-2cc3-4272-ac1c-7f14469fd136",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__save_project_file"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__save_project_file",
+    "total_deferred_tools": 26
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me execute the SSH commands to collect the exp_028 results.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a68db7df-78fa-4769-af7b-ae416f15e440",
+  "uuid": "3aee21a3-889c-47c3-af70-61f62a3842f4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RgwfopWhPDKhqshV7mTkYs",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 656,
+      "cache_read_input_tokens": 24766,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 656
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01WvpncSrjFpAeWa3mQB9Lv4`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "echo \"=== POSTPROCESS LOG ===\"\ncat /root/autodl-tmp/struct_self_consist_ie/logs/exp_028_postprocess.log 2>/dev/null || echo \"LOG NOT FOUND\"\n\necho \"\"\necho \"=== RECENT OUTPUT FILES ===\"\nls -lht /root/autodl-tmp/struct_self_consist_ie/output/ 2>/dev/null | head -30\n\necho \"\"\necho \"=== FIND EXP028 FILES ===\"\nfind /root/autodl-tmp/struct_self_consist_ie/output/ -name \"*5epoch*\" -o -name \"*exp028*\" -o -name \"*exp_028*\" 2>/dev/null",
+  "account": "root",
+  "warn": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a68db7df-78fa-4769-af7b-ae416f15e440",
+  "uuid": "35202efe-996a-4dbd-afbc-1c08bd5b095f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RgwfopWhPDKhqshV7mTkYs",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 656,
+      "cache_read_input_tokens": 24766,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 656
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-17T20:25:19.521Z_
+
+<details><summary>↩ Tool result · `toolu_01WvpncSrjFpAeWa3mQB9Lv4`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"=== POSTPROCESS LOG ===\\n============================================\\n  exp_028 Post-Processing Pipeline\\n  5-epoch LoRA Few-NERD convergence test\\n============================================\\n\\n=== Step 1: Merge LoRA ===\\nMerging LoRA adapter to full model...\\n  Base model: /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B\\n  Adapter: checkpoints/qwen3-8b-fewnerd-5epoch-lora/\\n  Output: checkpoints/qwen3-8b-fewnerd-5epoch-merged/\\n[INFO|tokenization_utils_base.py:2093] 2026-05-18 04:18:20,364 >> loading file vocab.json\\n[INFO|tokenization_utils_base.py:2093] 2026-05-18 04:18:20,364 >> loading file merges.txt\\n[INFO|tokenization_utils_base.py:2093] 2026-05-18 04:18:20,364 >> loading file tokenizer.json\\n[INFO|tokenization_utils_base.py:2093] 2026-05-18 04:18:20,364 >> loading file added_tokens.json\\n[INFO|tokenization_utils_base.py:2093] 2026-05-18 04:18:20,364 >> loading file special_tokens_map.json\\n[INFO|tokenization_utils_base.py:2093] 2026-05-18 04:18:20,364 >> loading file tokenizer_config.json\\n[INFO|tokenization_utils_base.py:2093] 2026-05-18 04:18:20,364 >> loading file chat_template.jinja\\n[INFO|tokenization_utils_base.py:2364] 2026-05-18 04:18:20,655 >> Special tokens have been added in the vocabulary, make sure the associated word embeddings are fine-tuned or trained.\\n[INFO|configuration_utils.py:763] 2026-05-18 04:18:20,656 >> loading configuration file /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/config.json\\n[INFO|configuration_utils.py:839] 2026-05-18 04:18:20,657 >> Model config Qwen3Config {\\n  \\\"architectures\\\": [\\n    \\\"Qwen3ForCausalLM\\\"\\n  ],\\n  \\\"attention_bias\\\": false,\\n  \\\"attention_dropout\\\": 0.0,\\n  \\\"bos_token_id\\\": 151643,\\n  \\\"dtype\\\": \\\"bfloat16\\\",\\n  \\\"eos_token_id\\\": 151645,\\n  \\\"head_dim\\\": 128,\\n  \\\"hidden_act\\\": \\\"silu\\\",\\n  \\\"hidden_size\\\": 4096,\\n  \\\"initializer_range\\\": 0.02,\\n  \\\"intermediate_size\\\": 12288,\\n  \\\"layer_types\\\": [\\n    \\\"full_attention\\\",\\n    \\\"full_attention\\\",\\n    \\\"full_attention\\\",\\n    \\\"full_attention\\\",\\n    \\\"full_attention\\\",\\n    \\\"full_attention\\\",\\n    \\\"full_attention\\\",\\n    \\\"full_attention\\\",\\n    \\\"full_attention\\\",\\n    \\\"full_attention\\\",\\n    \\\"full_attention\\\",\\n    \\\"full_attention\\\",\\n    \\\"full_attention\\\",\\n    \\\"full_attention\\\",\\n    \\\"full_attention\\\",\\n    \\\"full_attention\\\",\\n    \\\"full_attention\\\",\\n    \\\"full_attention\\\",\\n    \\\"full_attention\\\",\\n    \\\"full_attention\\\",\\n    \\\"full_attention\\\",\\n    \\\"full_attention\\\",\\n    \\\"full_attention\\\",\\n    \\\"full_attention\\\",\\n    \\\"full_attention\\\",\\n    \\\"full_attention\\\",\\n    \\\"full_attention\\\",\\n    \\\"full_attention\\\",\\n    \\\"full_attention\\\",\\n    \\\"full_attention\\\",\\n    \\\"full_attention\\\",\\n    \\\"full_attention\\\",\\n    \\\"full_attention\\\",\\n    \\\"full_attention\\\",\\n    \\\"full_attention\\\",\\n    \\\"full_attention\\\"\\n  ],\\n  \\\"max_position_embeddings\\\": 40960,\\n  \\\"max_window_layers\\\": 36,\\n  \\\"model_type\\\": \\\"qwen3\\\",\\n  \\\"num_attention_heads\\\": 32,\\n  \\\"num_hidden_layers\\\": 36,\\n  \\\"num_key_value_heads\\\": 8,\\n  \\\"rms_norm_eps\\\": 1e-06,\\n  \\\"rope_scaling\\\": null,\\n  \\\"rope_theta\\\": 1000000,\\n  \\\"sliding_window\\\": null,\\n  \\\"tie_word_embeddings\\\": false,\\n  \\\"transformers_version\\\": \\\"4.57.1\\\",\\n  \\\"use_cache\\\": true,\\n  \\\"use_sliding_window\\\": false,\\n  \\\"vocab_size\\\": 151936\\n}\\n\\n[INFO|tokenization_utils_base.py:2093] 2026-05-18 04:18:20,658 >> loading file vocab.json\\n[INFO|tokenization_utils_base.py:2093] 2026-05-18 04:18:20,658 >> loading file merges.txt\\n[INFO|tokenization_utils_base.py:2093] 2026-05-18 04:18:20,658 >> loading file tokenizer.json\\n[INFO|tokenization_utils_base.py:2093] 2026-05-18 04:18:20,658 >> loading file added_tokens.json\\n[INFO|tokenization_utils_base.py:2093] 2026-05-18 04:18:20,658 >> loading file special_tokens_map.json\\n[INFO|tokenization_utils_base.py:2093] 2026-05-18 04:18:20,658 >> loading file tokenizer_config.json\\n[INFO|tokenization_utils_base.py:2093] 2026-05-18 04:18:20,658 >> loading file chat_template.jinja\\n[INFO|tokenization_utils_base.py:2364] 2026-05-18 04:18:20,949 >> Special tokens have been added in the vocabulary, make sure the associated word embeddings are fine-tuned or trained.\\n[WARNING|2026-05-18 04:18:20] llamafactory.data.template:148 >> You are using reasoning template, pl\\n\\n... [截断: 输出过长，省略 544214 字符] ...\\n\\n LP Selection F1 (best-of-N by logprob) ---\\n  LP selection F1: 0.7835\\n  LP selection delta: +0.62pp\\n\\n--- 3. All 5 Signals: Spearman rho & AUROC ---\\n  Processed 500/4351\\n  Processed 1000/4351\\n  Processed 1500/4351\\n  Processed 2000/4351\\n  Processed 2500/4351\\n  Processed 3000/4351\\n  Processed 3500/4351\\n  Processed 4000/4351\\n\\n  Signal |   AUROC | rho (global) |  Sel F1 |    Delta\\n  -------+---------+--------------+---------+---------\\n  LP     |  0.5234 |       0.4495 | 0.7835 | +0.62pp\\n  SJ     |  0.4988 |       0.3777 | 0.7697 | -0.77pp\\n  FK     |  0.4985 |       0.3892 | 0.7693 | -0.80pp\\n  EM     |  0.4951 |       0.3893 | 0.7663 | -1.10pp\\n  VC     |  0.5006 |       0.3585 | 0.7576 | -1.97pp\\n\\n--- 4. Within-instance rho(LP, F1) ---\\n  Valid instances: 2988/4351 (68.7%)\\n  Mean rho: 0.4066\\n  Median rho: 0.6151\\n  Std: 0.5506\\n\\n--- 5. LP Range ---\\n  Mean LP range: 0.051383\\n  Std LP range: 0.067323\\n  Median LP range: 0.031774\\n\\n--- 6. Comparison: 3-epoch (exp-021) vs 5-epoch (exp-028) ---\\n\\n  Metric                    |  3-epoch (exp-021) |  5-epoch (exp-028) |    Delta\\n  --------------------------+--------------------+--------------------+---------\\n  Degeneracy (CF1) %        |              11.1% |              31.3% |  +20.2pp\\n  Greedy F1                 |             0.7478 |             0.7773 |  +2.95pp\\n  LP sel F1                 |             0.7614 |             0.7835 |  +2.21pp\\n  LP sel delta (pp)         |              +1.37 |              +0.62 |    -0.75\\n  SJ rho                    |                N/A |             0.3777 |         \\n  LP range mean             |                N/A |           0.051383 |         \\n\\n--- 7. Conclusion ---\\n  Verdict: NEGATIVE\\n  5-epoch degeneracy > 20% (significantly higher than 3-epoch). Few-NERD low degeneracy may be due to under-convergence. Paper narrative needs revision.\\n\\nResults saved to /root/autodl-tmp/struct_self_consist_ie/output/exp_028_fewnerd_5epoch/analysis_results.json\\n\\n============================================\\n  All done. Results at:\\n  output/exp_028_fewnerd_5epoch/analysis_results.json\\n============================================\\n\\n=== RECENT OUTPUT FILES ===\\ntotal 7.6M\\ndrwxr-xr-x 2 root root    91 May 18 04:24 exp_028_fewnerd_5epoch\\n-rw-r--r-- 1 root root   24K May 17 22:20 calibration_baseline_results.json\\n-rw-r--r-- 1 root root  4.7K May 17 22:19 adalp_analysis_results.json\\ndrwxr-xr-x 2 root root   130 May 17 19:41 exp_017_llama_conll_infer\\n-rw-r--r-- 1 root root  3.6K May 17 17:58 exp_026_T_ablation_summary.json\\n-rw-r--r-- 1 root root   96K May 17 17:46 exp_026_T12_run.log\\ndrwxr-xr-x 2 root root    58 May 17 17:46 exp_026_T12\\n-rw-r--r-- 1 root root   97K May 17 17:46 exp_026_T08_run.log\\ndrwxr-xr-x 2 root root    58 May 17 17:46 exp_026_T08\\n-rw-r--r-- 1 root root  101K May 17 17:45 exp_026_T05_run.log\\ndrwxr-xr-x 2 root root    58 May 17 17:45 exp_026_T05\\ndrwxr-xr-x 2 root root  4.0K May 17 17:38 figures\\ndrwxr-xr-x 2 root root   125 May 17 16:37 r17_analyses\\ndrwxr-xr-x 6 root root   170 May 17 13:48 exp_027_fewnerd_n16\\ndrwxr-xr-x 2 root root  4.0K May 17 12:52 exp_012_rerun_1024\\ndrwxr-xr-x 2 root root   146 May 17 12:42 exp_002_conll_n16_r1024\\ndrwxr-xr-x 6 root root  4.0K May 17 07:00 exp_021_inference\\ndrwxr-xr-x 5 root root  4.0K May 17 04:33 exp_021_fewnerd_full\\ndrwxr-xr-x 2 root root    82 May 17 01:17 exp_020_pilot\\ndrwxr-xr-x 2 root root  4.0K May 17 00:10 exp_025_n32\\ndrwxr-xr-x 2 root root   140 May 16 22:41 exp_025_n_ablation\\n-rw-r--r-- 1 root root  113K May 16 21:53 exp_025_n32.log\\ndrwxr-xr-x 2 root root    88 May 16 21:44 exp_027_mlp_verifier\\n-rw-r--r-- 1 root root   96K May 16 21:22 exp_026_t12.log\\ndrwxr-xr-x 2 root root    58 May 16 21:22 exp_026_t12\\n-rw-r--r-- 1 root root   98K May 16 21:01 exp_026_t08.log\\ndrwxr-xr-x 2 root root    58 May 16 21:01 exp_026_t08\\n-rw-r--r-- 1 root root   96K May 16 20:23 exp_026_t05.log\\ndrwxr-xr-x 2 root root    58 May 16 20:23 exp_026_t05\\n\\n=== FIND EXP028 FILES ===\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_028_fewnerd_5epoch\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a68db7df-78fa-4769-af7b-ae416f15e440",
+  "uuid": "fa73c04d-43b2-4b85-adc3-bc3007cac9f5",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"=== POSTPROCESS LOG ===\\\\n============================================\\\\n  exp_028 Post-Processing Pipeline\\\\n  5-epoch LoRA Few-NERD convergence test\\\\n============================================\\\\n\\\\n=== Step 1: Merge LoRA ===\\\\nMerging LoRA adapter to full model...\\\\n  Base model: /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B\\\\n  Adapter: checkpoints/qwen3-8b-fewnerd-5epoch-lora/\\\\n  Output: checkpoints/qwen3-8b-fewnerd-5epoch-merged/\\\\n[INFO|tokenization_utils_base.py:2093] 2026-05-18 04:18:20,364 >> loading file vocab.json\\\\n[INFO|tokenization_utils_base.py:2093] 2026-05-18 04:18:20,364 >> loading file merges.txt\\\\n[INFO|tokenization_utils_base.py:2093] 2026-05-18 04:18:20,364 >> loading file tokenizer.json\\\\n[INFO|tokenization_utils_base.py:2093] 2026-05-18 04:18:20,364 >> loading file added_tokens.json\\\\n[INFO|tokenization_utils_base.py:2093] 2026-05-18 04:18:20,364 >> loading file special_tokens_map.json\\\\n[INFO|tokenization_utils_base.py:2093] 2026-05-18 04:18:20,364 >> loading file tokenizer_config.json\\\\n[INFO|tokenization_utils_base.py:2093] 2026-05-18 04:18:20,364 >> loading file chat_template.jinja\\\\n[INFO|tokenization_utils_base.py:2364] 2026-05-18 04:18:20,655 >> Special tokens have been added in the vocabulary, make sure the associated word embeddings are fine-tuned or trained.\\\\n[INFO|configuration_utils.py:763] 2026-05-18 04:18:20,656 >> loading configuration file /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/config.json\\\\n[INFO|configuration_utils.py:839] 2026-05-18 04:18:20,657 >> Model config Qwen3Config {\\\\n  \\\\\\\"architectures\\\\\\\": [\\\\n    \\\\\\\"Qwen3ForCausalLM\\\\\\\"\\\\n  ],\\\\n  \\\\\\\"attention_bias\\\\\\\": false,\\\\n  \\\\\\\"attention_dropout\\\\\\\": 0.0,\\\\n  \\\\\\\"bos_token_id\\\\\\\": 151643,\\\\n  \\\\\\\"dtype\\\\\\\": \\\\\\\"bfloat16\\\\\\\",\\\\n  \\\\\\\"eos_token_id\\\\\\\": 151645,\\\\n  \\\\\\\"head_dim\\\\\\\": 128,\\\\n  \\\\\\\"hidden_act\\\\\\\": \\\\\\\"silu\\\\\\\",\\\\n  \\\\\\\"hidden_size\\\\\\\": 4096,\\\\n  \\\\\\\"initializer_range\\\\\\\": 0.02,\\\\n  \\\\\\\"intermediate_size\\\\\\\": 12288,\\\\n  \\\\\\\"layer_types\\\\\\\": [\\\\n    \\\\\\\"full_attention\\\\\\\",\\\\n    \\\\\\\"full_attention\\\\\\\",\\\\n    \\\\\\\"full_attention\\\\\\\",\\\\n    \\\\\\\"full_attention\\\\\\\",\\\\n    \\\\\\\"full_attention\\\\\\\",\\\\n    \\\\\\\"full_attention\\\\\\\",\\\\n    \\\\\\\"full_attention\\\\\\\",\\\\n    \\\\\\\"full_attention\\\\\\\",\\\\n    \\\\\\\"full_attention\\\\\\\",\\\\n    \\\\\\\"full_attention\\\\\\\",\\\\n    \\\\\\\"full_attention\\\\\\\",\\\\n    \\\\\\\"full_attention\\\\\\\",\\\\n    \\\\\\\"full_attention\\\\\\\",\\\\n    \\\\\\\"full_attention\\\\\\\",\\\\n    \\\\\\\"full_attention\\\\\\\",\\\\n    \\\\\\\"full_attention\\\\\\\",\\\\n    \\\\\\\"full_attention\\\\\\\",\\\\n    \\\\\\\"full_attention\\\\\\\",\\\\n    \\\\\\\"full_attention\\\\\\\",\\\\n    \\\\\\\"full_attention\\\\\\\",\\\\n    \\\\\\\"full_attention\\\\\\\",\\\\n    \\\\\\\"full_attention\\\\\\\",\\\\n    \\\\\\\"full_attention\\\\\\\",\\\\n    \\\\\\\"full_attention\\\\\\\",\\\\n    \\\\\\\"full_attention\\\\\\\",\\\\n    \\\\\\\"full_attention\\\\\\\",\\\\n    \\\\\\\"full_attention\\\\\\\",\\\\n    \\\\\\\"full_attention\\\\\\\",\\\\n    \\\\\\\"full_attention\\\\\\\",\\\\n    \\\\\\\"full_attention\\\\\\\",\\\\n    \\\\\\\"full_attention\\\\\\\",\\\\n    \\\\\\\"full_attention\\\\\\\",\\\\n    \\\\\\\"full_attention\\\\\\\",\\\\n    \\\\\\\"full_attention\\\\\\\",\\\\n    \\\\\\\"full_attention\\\\\\\",\\\\n    \\\\\\\"full_attention\\\\\\\"\\\\n  ],\\\\n  \\\\\\\"max_position_embeddings\\\\\\\": 40960,\\\\n  \\\\\\\"max_window_layers\\\\\\\": 36,\\\\n  \\\\\\\"model_type\\\\\\\": \\\\\\\"qwen3\\\\\\\",\\\\n  \\\\\\\"num_attention_heads\\\\\\\": 32,\\\\n  \\\\\\\"num_hidden_layers\\\\\\\": 36,\\\\n  \\\\\\\"num_key_value_heads\\\\\\\": 8,\\\\n  \\\\\\\"rms_norm_eps\\\\\\\": 1e-06,\\\\n  \\\\\\\"rope_scaling\\\\\\\": null,\\\\n  \\\\\\\"rope_theta\\\\\\\": 1000000,\\\\n  \\\\\\\"sliding_window\\\\\\\": null,\\\\n  \\\\\\\"tie_word_embeddings\\\\\\\": false,\\\\n  \\\\\\\"transformers_version\\\\\\\": \\\\\\\"4.57.1\\\\\\\",\\\\n  \\\\\\\"use_cache\\\\\\\": true,\\\\n  \\\\\\\"use_sliding_window\\\\\\\": false,\\\\n  \\\\\\\"vocab_size\\\\\\\": 151936\\\\n}\\\\n\\\\n[INFO|tokenization_utils_base.py:2093] 2026-05-18 04:18:20,658 >> loading file vocab.json\\\\n[INFO|tokenization_utils_base.py:2093] 2026-05-18 04:18:20,658 >> loading file merges.txt\\\\n[INFO|tokenization_utils_base.py:2093] 2026-05-18 04:18:20,658 >> loading file tokenizer.json\\\\n[INFO|tokenization_utils_base.py:2093] 2026-05-18 04:18:20,658 >> loading file added_tokens.json\\\\n[INFO|tokenization_utils_base.py:2093] 2026-05-18 04:18:20,658 >> loading file special_tokens_map.json\\\\n[INFO|tokenization_utils_base.py:2093] 2026-05-18 04:18:20,658 >> loading file tokenizer_config.json\\\\n[INFO|tokenization_utils_base.py:2093] 2026-05-18 04:18:20,658 >> loading file chat_template.jinja\\\\n[INFO|tokenization_utils_base.py:2364] 2026-05-18 04:18:20,949 >> Special tokens have been added in the vocabulary, make sure the associated word embeddings are fine-tuned or trained.\\\\n[WARNING|2026-05-18 04:18:20] llamafactory.data.template:148 >> You are using reasoning template, pl\\\\n\\\\n... [截断: 输出过长，省略 544214 字符] ...\\\\n\\\\n LP Selection F1 (best-of-N by logprob) ---\\\\n  LP selection F1: 0.7835\\\\n  LP selection delta: +0.62pp\\\\n\\\\n--- 3. All 5 Signals: Spearman rho & AUROC ---\\\\n  Processed 500/4351\\\\n  Processed 1000/4351\\\\n  Processed 1500/4351\\\\n  Processed 2000/4351\\\\n  Processed 2500/4351\\\\n  Processed 3000/4351\\\\n  Processed 3500/4351\\\\n  Processed 4000/4351\\\\n\\\\n  Signal |   AUROC | rho (global) |  Sel F1 |    Delta\\\\n  -------+---------+--------------+---------+---------\\\\n  LP     |  0.5234 |       0.4495 | 0.7835 | +0.62pp\\\\n  SJ     |  0.4988 |       0.3777 | 0.7697 | -0.77pp\\\\n  FK     |  0.4985 |       0.3892 | 0.7693 | -0.80pp\\\\n  EM     |  0.4951 |       0.3893 | 0.7663 | -1.10pp\\\\n  VC     |  0.5006 |       0.3585 | 0.7576 | -1.97pp\\\\n\\\\n--- 4. Within-instance rho(LP, F1) ---\\\\n  Valid instances: 2988/4351 (68.7%)\\\\n  Mean rho: 0.4066\\\\n  Median rho: 0.6151\\\\n  Std: 0.5506\\\\n\\\\n--- 5. LP Range ---\\\\n  Mean LP range: 0.051383\\\\n  Std LP range: 0.067323\\\\n  Median LP range: 0.031774\\\\n\\\\n--- 6. Comparison: 3-epoch (exp-021) vs 5-epoch (exp-028) ---\\\\n\\\\n  Metric                    |  3-epoch (exp-021) |  5-epoch (exp-028) |    Delta\\\\n  --------------------------+--------------------+--------------------+---------\\\\n  Degeneracy (CF1) %        |              11.1% |              31.3% |  +20.2pp\\\\n  Greedy F1                 |             0.7478 |             0.7773 |  +2.95pp\\\\n  LP sel F1                 |             0.7614 |             0.7835 |  +2.21pp\\\\n  LP sel delta (pp)         |              +1.37 |              +0.62 |    -0.75\\\\n  SJ rho                    |                N/A |             0.3777 |         \\\\n  LP range mean             |                N/A |           0.051383 |         \\\\n\\\\n--- 7. Conclusion ---\\\\n  Verdict: NEGATIVE\\\\n  5-epoch degeneracy > 20% (significantly higher than 3-epoch). Few-NERD low degeneracy may be due to under-convergence. Paper narrative needs revision.\\\\n\\\\nResults saved to /root/autodl-tmp/struct_self_consist_ie/output/exp_028_fewnerd_5epoch/analysis_results.json\\\\n\\\\n============================================\\\\n  All done. Results at:\\\\n  output/exp_028_fewnerd_5epoch/analysis_results.json\\\\n============================================\\\\n\\\\n=== RECENT OUTPUT FILES ===\\\\ntotal 7.6M\\\\ndrwxr-xr-x 2 root root    91 May 18 04:24 exp_028_fewnerd_5epoch\\\\n-rw-r--r-- 1 root root   24K May 17 22:20 calibration_baseline_results.json\\\\n-rw-r--r-- 1 root root  4.7K May 17 22:19 adalp_analysis_results.json\\\\ndrwxr-xr-x 2 root root   130 May 17 19:41 exp_017_llama_conll_infer\\\\n-rw-r--r-- 1 root root  3.6K May 17 17:58 exp_026_T_ablation_summary.json\\\\n-rw-r--r-- 1 root root   96K May 17 17:46 exp_026_T12_run.log\\\\ndrwxr-xr-x 2 root root    58 May 17 17:46 exp_026_T12\\\\n-rw-r--r-- 1 root root   97K May 17 17:46 exp_026_T08_run.log\\\\ndrwxr-xr-x 2 root root    58 May 17 17:46 exp_026_T08\\\\n-rw-r--r-- 1 root root  101K May 17 17:45 exp_026_T05_run.log\\\\ndrwxr-xr-x 2 root root    58 May 17 17:45 exp_026_T05\\\\ndrwxr-xr-x 2 root root  4.0K May 17 17:38 figures\\\\ndrwxr-xr-x 2 root root   125 May 17 16:37 r17_analyses\\\\ndrwxr-xr-x 6 root root   170 May 17 13:48 exp_027_fewnerd_n16\\\\ndrwxr-xr-x 2 root root  4.0K May 17 12:52 exp_012_rerun_1024\\\\ndrwxr-xr-x 2 root root   146 May 17 12:42 exp_002_conll_n16_r1024\\\\ndrwxr-xr-x 6 root root  4.0K May 17 07:00 exp_021_inference\\\\ndrwxr-xr-x 5 root root  4.0K May 17 04:33 exp_021_fewnerd_full\\\\ndrwxr-xr-x 2 root root    82 May 17 01:17 exp_020_pilot\\\\ndrwxr-xr-x 2 root root  4.0K May 17 00:10 exp_025_n32\\\\ndrwxr-xr-x 2 root root   140 May 16 22:41 exp_025_n_ablation\\\\n-rw-r--r-- 1 root root  113K May 16 21:53 exp_025_n32.log\\\\ndrwxr-xr-x 2 root root    88 May 16 21:44 exp_027_mlp_verifier\\\\n-rw-r--r-- 1 root root   96K May 16 21:22 exp_026_t12.log\\\\ndrwxr-xr-x 2 root root    58 May 16 21:22 exp_026_t12\\\\n-rw-r--r-- 1 root root   98K May 16 21:01 exp_026_t08.log\\\\ndrwxr-xr-x 2 root root    58 May 16 21:01 exp_026_t08\\\\n-rw-r--r-- 1 root root   96K May 16 20:23 exp_026_t05.log\\\\ndrwxr-xr-x 2 root root    58 May 16 20:23 exp_026_t05\\\\n\\\\n=== FIND EXP028 FILES ===\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_028_fewnerd_5epoch\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"=== POSTPROCESS LOG ===\\n============================================\\n  exp_028 Post-Processing Pipeline\\n  5-epoch LoRA Few-NERD convergence test\\n============================================\\n\\n=== Step 1: Merge LoRA ===\\nMerging LoRA adapter to full model...\\n  Base model: /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B\\n  Adapter: checkpoints/qwen3-8b-fewnerd-5epoch-lora/\\n  Output: checkpoints/qwen3-8b-fewnerd-5epoch-merged/\\n[INFO|tokenization_utils_base.py:2093] 2026-05-18 04:18:20,364 >> loading file vocab.json\\n[INFO|tokenization_utils_base.py:2093] 2026-05-18 04:18:20,364 >> loading file merges.txt\\n[INFO|tokenization_utils_base.py:2093] 2026-05-18 04:18:20,364 >> loading file tokenizer.json\\n[INFO|tokenization_utils_base.py:2093] 2026-05-18 04:18:20,364 >> loading file added_tokens.json\\n[INFO|tokenization_utils_base.py:2093] 2026-05-18 04:18:20,364 >> loading file special_tokens_map.json\\n[INFO|tokenization_utils_base.py:2093] 2026-05-18 04:18:20,364 >> loading file tokenizer_config.json\\n[INFO|tokenization_utils_base.py:2093] 2026-05-18 04:18:20,364 >> loading file chat_template.jinja\\n[INFO|tokenization_utils_base.py:2364] 2026-05-18 04:18:20,655 >> Special tokens have been added in the vocabulary, make sure the associated word embeddings are fine-tuned or trained.\\n[INFO|configuration_utils.py:763] 2026-05-18 04:18:20,656 >> loading configuration file /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/config.json\\n[INFO|configuration_utils.py:839] 2026-05-18 04:18:20,657 >> Model config Qwen3Config {\\n  \\\"architectures\\\": [\\n    \\\"Qwen3ForCausalLM\\\"\\n  ],\\n  \\\"attention_bias\\\": false,\\n  \\\"attention_dropout\\\": 0.0,\\n  \\\"bos_token_id\\\": 151643,\\n  \\\"dtype\\\": \\\"bfloat16\\\",\\n  \\\"eos_token_id\\\": 151645,\\n  \\\"head_dim\\\": 128,\\n  \\\"hidden_act\\\": \\\"silu\\\",\\n  \\\"hidden_size\\\": 4096,\\n  \\\"initializer_range\\\": 0.02,\\n  \\\"intermediate_size\\\": 12288,\\n  \\\"layer_types\\\": [\\n    \\\"full_attention\\\",\\n    \\\"full_attention\\\",\\n    \\\"full_attention\\\",\\n    \\\"full_attention\\\",\\n    \\\"full_attention\\\",\\n    \\\"full_attention\\\",\\n    \\\"full_attention\\\",\\n    \\\"full_attention\\\",\\n    \\\"full_attention\\\",\\n    \\\"full_attention\\\",\\n    \\\"full_attention\\\",\\n    \\\"full_attention\\\",\\n    \\\"full_attention\\\",\\n    \\\"full_attention\\\",\\n    \\\"full_attention\\\",\\n    \\\"full_attention\\\",\\n    \\\"full_attention\\\",\\n    \\\"full_attention\\\",\\n    \\\"full_attention\\\",\\n    \\\"full_attention\\\",\\n    \\\"full_attention\\\",\\n    \\\"full_attention\\\",\\n    \\\"full_attention\\\",\\n    \\\"full_attention\\\",\\n    \\\"full_attention\\\",\\n    \\\"full_attention\\\",\\n    \\\"full_attention\\\",\\n    \\\"full_attention\\\",\\n    \\\"full_attention\\\",\\n    \\\"full_attention\\\",\\n    \\\"full_attention\\\",\\n    \\\"full_attention\\\",\\n    \\\"full_attention\\\",\\n    \\\"full_attention\\\",\\n    \\\"full_attention\\\",\\n    \\\"full_attention\\\"\\n  ],\\n  \\\"max_position_embeddings\\\": 40960,\\n  \\\"max_window_layers\\\": 36,\\n  \\\"model_type\\\": \\\"qwen3\\\",\\n  \\\"num_attention_heads\\\": 32,\\n  \\\"num_hidden_layers\\\": 36,\\n  \\\"num_key_value_heads\\\": 8,\\n  \\\"rms_norm_eps\\\": 1e-06,\\n  \\\"rope_scaling\\\": null,\\n  \\\"rope_theta\\\": 1000000,\\n  \\\"sliding_window\\\": null,\\n  \\\"tie_word_embeddings\\\": false,\\n  \\\"transformers_version\\\": \\\"4.57.1\\\",\\n  \\\"use_cache\\\": true,\\n  \\\"use_sliding_window\\\": false,\\n  \\\"vocab_size\\\": 151936\\n}\\n\\n[INFO|tokenization_utils_base.py:2093] 2026-05-18 04:18:20,658 >> loading file vocab.json\\n[INFO|tokenization_utils_base.py:2093] 2026-05-18 04:18:20,658 >> loading file merges.txt\\n[INFO|tokenization_utils_base.py:2093] 2026-05-18 04:18:20,658 >> loading file tokenizer.json\\n[INFO|tokenization_utils_base.py:2093] 2026-05-18 04:18:20,658 >> loading file added_tokens.json\\n[INFO|tokenization_utils_base.py:2093] 2026-05-18 04:18:20,658 >> loading file special_tokens_map.json\\n[INFO|tokenization_utils_base.py:2093] 2026-05-18 04:18:20,658 >> loading file tokenizer_config.json\\n[INFO|tokenization_utils_base.py:2093] 2026-05-18 04:18:20,658 >> loading file chat_template.jinja\\n[INFO|tokenization_utils_base.py:2364] 2026-05-18 04:18:20,949 >> Special tokens have been added in the vocabulary, make sure the associated word embeddings are fine-tuned or trained.\\n[WARNING|2026-05-18 04:18:20] llamafactory.data.template:148 >> You are using reasoning template, pl\\n\\n... [截断: 输出过长，省略 544214 字符] ...\\n\\n LP Selection F1 (best-of-N by logprob) ---\\n  LP selection F1: 0.7835\\n  LP selection delta: +0.62pp\\n\\n--- 3. All 5 Signals: Spearman rho & AUROC ---\\n  Processed 500/4351\\n  Processed 1000/4351\\n  Processed 1500/4351\\n  Processed 2000/4351\\n  Processed 2500/4351\\n  Processed 3000/4351\\n  Processed 3500/4351\\n  Processed 4000/4351\\n\\n  Signal |   AUROC | rho (global) |  Sel F1 |    Delta\\n  -------+---------+--------------+---------+---------\\n  LP     |  0.5234 |       0.4495 | 0.7835 | +0.62pp\\n  SJ     |  0.4988 |       0.3777 | 0.7697 | -0.77pp\\n  FK     |  0.4985 |       0.3892 | 0.7693 | -0.80pp\\n  EM     |  0.4951 |       0.3893 | 0.7663 | -1.10pp\\n  VC     |  0.5006 |       0.3585 | 0.7576 | -1.97pp\\n\\n--- 4. Within-instance rho(LP, F1) ---\\n  Valid instances: 2988/4351 (68.7%)\\n  Mean rho: 0.4066\\n  Median rho: 0.6151\\n  Std: 0.5506\\n\\n--- 5. LP Range ---\\n  Mean LP range: 0.051383\\n  Std LP range: 0.067323\\n  Median LP range: 0.031774\\n\\n--- 6. Comparison: 3-epoch (exp-021) vs 5-epoch (exp-028) ---\\n\\n  Metric                    |  3-epoch (exp-021) |  5-epoch (exp-028) |    Delta\\n  --------------------------+--------------------+--------------------+---------\\n  Degeneracy (CF1) %        |              11.1% |              31.3% |  +20.2pp\\n  Greedy F1                 |             0.7478 |             0.7773 |  +2.95pp\\n  LP sel F1                 |             0.7614 |             0.7835 |  +2.21pp\\n  LP sel delta (pp)         |              +1.37 |              +0.62 |    -0.75\\n  SJ rho                    |                N/A |             0.3777 |         \\n  LP range mean             |                N/A |           0.051383 |         \\n\\n--- 7. Conclusion ---\\n  Verdict: NEGATIVE\\n  5-epoch degeneracy > 20% (significantly higher than 3-epoch). Few-NERD low degeneracy may be due to under-convergence. Paper narrative needs revision.\\n\\nResults saved to /root/autodl-tmp/struct_self_consist_ie/output/exp_028_fewnerd_5epoch/analysis_results.json\\n\\n============================================\\n  All done. Results at:\\n  output/exp_028_fewnerd_5epoch/analysis_results.json\\n============================================\\n\\n=== RECENT OUTPUT FILES ===\\ntotal 7.6M\\ndrwxr-xr-x 2 root root    91 May 18 04:24 exp_028_fewnerd_5epoch\\n-rw-r--r-- 1 root root   24K May 17 22:20 calibration_baseline_results.json\\n-rw-r--r-- 1 root root  4.7K May 17 22:19 adalp_analysis_results.json\\ndrwxr-xr-x 2 root root   130 May 17 19:41 exp_017_llama_conll_infer\\n-rw-r--r-- 1 root root  3.6K May 17 17:58 exp_026_T_ablation_summary.json\\n-rw-r--r-- 1 root root   96K May 17 17:46 exp_026_T12_run.log\\ndrwxr-xr-x 2 root root    58 May 17 17:46 exp_026_T12\\n-rw-r--r-- 1 root root   97K May 17 17:46 exp_026_T08_run.log\\ndrwxr-xr-x 2 root root    58 May 17 17:46 exp_026_T08\\n-rw-r--r-- 1 root root  101K May 17 17:45 exp_026_T05_run.log\\ndrwxr-xr-x 2 root root    58 May 17 17:45 exp_026_T05\\ndrwxr-xr-x 2 root root  4.0K May 17 17:38 figures\\ndrwxr-xr-x 2 root root   125 May 17 16:37 r17_analyses\\ndrwxr-xr-x 6 root root   170 May 17 13:48 exp_027_fewnerd_n16\\ndrwxr-xr-x 2 root root  4.0K May 17 12:52 exp_012_rerun_1024\\ndrwxr-xr-x 2 root root   146 May 17 12:42 exp_002_conll_n16_r1024\\ndrwxr-xr-x 6 root root  4.0K May 17 07:00 exp_021_inference\\ndrwxr-xr-x 5 root root  4.0K May 17 04:33 exp_021_fewnerd_full\\ndrwxr-xr-x 2 root root    82 May 17 01:17 exp_020_pilot\\ndrwxr-xr-x 2 root root  4.0K May 17 00:10 exp_025_n32\\ndrwxr-xr-x 2 root root   140 May 16 22:41 exp_025_n_ablation\\n-rw-r--r-- 1 root root  113K May 16 21:53 exp_025_n32.log\\ndrwxr-xr-x 2 root root    88 May 16 21:44 exp_027_mlp_verifier\\n-rw-r--r-- 1 root root   96K May 16 21:22 exp_026_t12.log\\ndrwxr-xr-x 2 root root    58 May 16 21:22 exp_026_t12\\n-rw-r--r-- 1 root root   98K May 16 21:01 exp_026_t08.log\\ndrwxr-xr-x 2 root root    58 May 16 21:01 exp_026_t08\\n-rw-r--r-- 1 root root   96K May 16 20:23 exp_026_t05.log\\ndrwxr-xr-x 2 root root    58 May 16 20:23 exp_026_t05\\n\\n=== FIND EXP028 FILES ===\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_028_fewnerd_5epoch\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01EHpxTouwJSa2245VcvvE1x`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "find /root/autodl-tmp/struct_self_consist_ie/output/ -newer /root/autodl-tmp/struct_self_consist_ie/logs/exp_028_4gpu_train.log -type f \\( -name \"*.json\" -o -name \"*.txt\" -o -name \"*.csv\" \\) 2>/dev/null | grep -v \".safetensors\" | grep -v \".pt\" | head -20",
+  "account": "root",
+  "warn": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a68db7df-78fa-4769-af7b-ae416f15e440",
+  "uuid": "ca41c011-559e-4bda-9c3a-b570e59145f7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RgwfopWhPDKhqshV7mTkYs",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 656,
+      "cache_read_input_tokens": 24766,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 656
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-17T20:25:20.050Z_
+
+<details><summary>↩ Tool result · `toolu_01EHpxTouwJSa2245VcvvE1x`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/output/exp_028_fewnerd_5epoch/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_028_fewnerd_5epoch/analysis_results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a68db7df-78fa-4769-af7b-ae416f15e440",
+  "uuid": "44bcfe2e-e921-4ae3-aeec-d2b5cc02fbd7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/exp_028_fewnerd_5epoch/report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_028_fewnerd_5epoch/analysis_results.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/output/exp_028_fewnerd_5epoch/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_028_fewnerd_5epoch/analysis_results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_015C6DDQ1eagAc2qcC8Lazfj`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/scripts/exp_028_postprocess/run_all.sh 2>/dev/null || echo \"SCRIPT NOT FOUND\"",
+  "account": "root",
+  "warn": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a68db7df-78fa-4769-af7b-ae416f15e440",
+  "uuid": "7e4a1cff-c1b8-4d5a-847e-39802f635731",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RgwfopWhPDKhqshV7mTkYs",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 656,
+      "cache_read_input_tokens": 24766,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 656
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-17T20:25:20.981Z_
+
+<details><summary>↩ Tool result · `toolu_015C6DDQ1eagAc2qcC8Lazfj`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/bin/bash\\n# Master script: merge -> inference -> analysis\\nset -e\\n\\nsource /root/miniconda3/bin/activate\\ncd /root/autodl-tmp/struct_self_consist_ie\\n\\necho \\\"============================================\\\"\\necho \\\"  exp_028 Post-Processing Pipeline\\\"\\necho \\\"  5-epoch LoRA Few-NERD convergence test\\\"\\necho \\\"============================================\\\"\\necho \\\"\\\"\\n\\necho \\\"=== Step 1: Merge LoRA ===\\\"\\nbash scripts/exp_028_postprocess/01_merge_lora.sh\\necho \\\"\\\"\\n\\necho \\\"=== Step 2: Inference (N=8, T=1.0, logprobs) ===\\\"\\nbash scripts/exp_028_postprocess/02_inference.sh\\necho \\\"\\\"\\n\\necho \\\"=== Step 3: Analysis ===\\\"\\npython scripts/exp_028_postprocess/03_analyze.py\\necho \\\"\\\"\\n\\necho \\\"============================================\\\"\\necho \\\"  All done. Results at:\\\"\\necho \\\"  output/exp_028_fewnerd_5epoch/analysis_results.json\\\"\\necho \\\"============================================\\\"\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.34}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a68db7df-78fa-4769-af7b-ae416f15e440",
+  "uuid": "f5abb9db-e155-4310-b41e-d76eb262fb06",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/bin/bash\\\\n# Master script: merge -> inference -> analysis\\\\nset -e\\\\n\\\\nsource /root/miniconda3/bin/activate\\\\ncd /root/autodl-tmp/struct_self_consist_ie\\\\n\\\\necho \\\\\\\"============================================\\\\\\\"\\\\necho \\\\\\\"  exp_028 Post-Processing Pipeline\\\\\\\"\\\\necho \\\\\\\"  5-epoch LoRA Few-NERD convergence test\\\\\\\"\\\\necho \\\\\\\"============================================\\\\\\\"\\\\necho \\\\\\\"\\\\\\\"\\\\n\\\\necho \\\\\\\"=== Step 1: Merge LoRA ===\\\\\\\"\\\\nbash scripts/exp_028_postprocess/01_merge_lora.sh\\\\necho \\\\\\\"\\\\\\\"\\\\n\\\\necho \\\\\\\"=== Step 2: Inference (N=8, T=1.0, logprobs) ===\\\\\\\"\\\\nbash scripts/exp_028_postprocess/02_inference.sh\\\\necho \\\\\\\"\\\\\\\"\\\\n\\\\necho \\\\\\\"=== Step 3: Analysis ===\\\\\\\"\\\\npython scripts/exp_028_postprocess/03_analyze.py\\\\necho \\\\\\\"\\\\\\\"\\\\n\\\\necho \\\\\\\"============================================\\\\\\\"\\\\necho \\\\\\\"  All done. Results at:\\\\\\\"\\\\necho \\\\\\\"  output/exp_028_fewnerd_5epoch/analysis_results.json\\\\\\\"\\\\necho \\\\\\\"============================================\\\\\\\"\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.34}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"#!/bin/bash\\n# Master script: merge -> inference -> analysis\\nset -e\\n\\nsource /root/miniconda3/bin/activate\\ncd /root/autodl-tmp/struct_self_consist_ie\\n\\necho \\\"============================================\\\"\\necho \\\"  exp_028 Post-Processing Pipeline\\\"\\necho \\\"  5-epoch LoRA Few-NERD convergence test\\\"\\necho \\\"============================================\\\"\\necho \\\"\\\"\\n\\necho \\\"=== Step 1: Merge LoRA ===\\\"\\nbash scripts/exp_028_postprocess/01_merge_lora.sh\\necho \\\"\\\"\\n\\necho \\\"=== Step 2: Inference (N=8, T=1.0, logprobs) ===\\\"\\nbash scripts/exp_028_postprocess/02_inference.sh\\necho \\\"\\\"\\n\\necho \\\"=== Step 3: Analysis ===\\\"\\npython scripts/exp_028_postprocess/03_analyze.py\\necho \\\"\\\"\\n\\necho \\\"============================================\\\"\\necho \\\"  All done. Results at:\\\"\\necho \\\"  output/exp_028_fewnerd_5epoch/analysis_results.json\\\"\\necho \\\"============================================\\\"\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.34}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_015JvyTu8nyvbbEEjSTwQaC7`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "echo \"=== CHECKPOINTS ===\"\nls -lh /root/autodl-tmp/struct_self_consist_ie/checkpoints/ 2>/dev/null | grep -i \"5epoch\\|exp028\\|exp_028\"\n\necho \"\"\necho \"=== FEWNERD OUTPUT ===\"\nls -lh /root/autodl-tmp/struct_self_consist_ie/output/fewnerd* 2>/dev/null || echo \"no fewnerd files\"\n\necho \"\"\necho \"=== INFERENCE OUTPUT ===\"\nls -lh /root/autodl-tmp/struct_self_consist_ie/output/inference* 2>/dev/null || echo \"no inference files\"\n\necho \"\"\necho \"=== PROCESSES ===\"\nps aux | grep -E \"(run_all|python|merge|inference|analyze)\" | grep -v grep | head -10",
+  "account": "root",
+  "warn": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a68db7df-78fa-4769-af7b-ae416f15e440",
+  "uuid": "fb8c95b0-46ae-4154-8e68-2d3861b31332",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RgwfopWhPDKhqshV7mTkYs",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 656,
+      "cache_read_input_tokens": 24766,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 656
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-17T20:25:23.767Z_
+
+<details><summary>↩ Tool result · `toolu_015JvyTu8nyvbbEEjSTwQaC7`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"=== CHECKPOINTS ===\\ndrwxr-xr-x 5 root root 4.0K May 18 04:04 qwen3-8b-fewnerd-5epoch-lora\\ndrwxr-xr-x 2 root root 4.0K May 18 04:06 qwen3-8b-fewnerd-5epoch-merged\\n\\n=== FEWNERD OUTPUT ===\\nno fewnerd files\\n\\n=== INFERENCE OUTPUT ===\\nno inference files\\n\\n=== PROCESSES ===\\nroot        935  0.0  0.0 4147828 70804 ?       Sl   May14   1:49 /root/miniconda3/bin/python /root/miniconda3/bin/tensorboard --host 0.0.0.0 --port 6007 --logdir /root/tf-logs\\nroot        939  0.0  0.0 191560 96316 ?        S    May14   0:01 /root/miniconda3/bin/python /root/miniconda3/bin/jupyter-lab --allow-root --config=/init/jupyter/jupyter_config.py\\nroot       1050  0.0  0.0 28341068 10600 ?      Sl   May14   4:33 /root/miniconda3/lib/python3.12/site-packages/tensorboard_data_server/bin/server --logdir=/root/tf-logs --reload=5 --samples-per-plugin= --port=0 --port-file=/tmp/tensorboard_data_server_n2g13yqg/port --die-after-stdin --error-file=/tmp/tensorboard_data_server_n2g13yqg/startup_error\\nroot     174588  0.0  0.0  11360  6584 ?        Ss   May15   0:03 tmux new-session -d -s exp_001_n16_seed456 source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-scierc-merged-v2 --data_dir data/scierc/processed_data --dataset scierc --subtask joint --n_samples 16 --temperature 1.0 --seed 456 --output_dir output/exp001_n16_seed456 --collect_logprobs 2>&1 | tee output/exp001_n16_seed456_run.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a68db7df-78fa-4769-af7b-ae416f15e440",
+  "uuid": "3cc534db-3cf0-45dd-a451-743772dc467e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"=== CHECKPOINTS ===\\\\ndrwxr-xr-x 5 root root 4.0K May 18 04:04 qwen3-8b-fewnerd-5epoch-lora\\\\ndrwxr-xr-x 2 root root 4.0K May 18 04:06 qwen3-8b-fewnerd-5epoch-merged\\\\n\\\\n=== FEWNERD OUTPUT ===\\\\nno fewnerd files\\\\n\\\\n=== INFERENCE OUTPUT ===\\\\nno inference files\\\\n\\\\n=== PROCESSES ===\\\\nroot        935  0.0  0.0 4147828 70804 ?       Sl   May14   1:49 /root/miniconda3/bin/python /root/miniconda3/bin/tensorboard --host 0.0.0.0 --port 6007 --logdir /root/tf-logs\\\\nroot        939  0.0  0.0 191560 96316 ?        S    May14   0:01 /root/miniconda3/bin/python /root/miniconda3/bin/jupyter-lab --allow-root --config=/init/jupyter/jupyter_config.py\\\\nroot       1050  0.0  0.0 28341068 10600 ?      Sl   May14   4:33 /root/miniconda3/lib/python3.12/site-packages/tensorboard_data_server/bin/server --logdir=/root/tf-logs --reload=5 --samples-per-plugin= --port=0 --port-file=/tmp/tensorboard_data_server_n2g13yqg/port --die-after-stdin --error-file=/tmp/tensorboard_data_server_n2g13yqg/startup_error\\\\nroot     174588  0.0  0.0  11360  6584 ?        Ss   May15   0:03 tmux new-session -d -s exp_001_n16_seed456 source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-scierc-merged-v2 --data_dir data/scierc/processed_data --dataset scierc --subtask joint --n_samples 16 --temperature 1.0 --seed 456 --output_dir output/exp001_n16_seed456 --collect_logprobs 2>&1 | tee output/exp001_n16_seed456_run.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"=== CHECKPOINTS ===\\ndrwxr-xr-x 5 root root 4.0K May 18 04:04 qwen3-8b-fewnerd-5epoch-lora\\ndrwxr-xr-x 2 root root 4.0K May 18 04:06 qwen3-8b-fewnerd-5epoch-merged\\n\\n=== FEWNERD OUTPUT ===\\nno fewnerd files\\n\\n=== INFERENCE OUTPUT ===\\nno inference files\\n\\n=== PROCESSES ===\\nroot        935  0.0  0.0 4147828 70804 ?       Sl   May14   1:49 /root/miniconda3/bin/python /root/miniconda3/bin/tensorboard --host 0.0.0.0 --port 6007 --logdir /root/tf-logs\\nroot        939  0.0  0.0 191560 96316 ?        S    May14   0:01 /root/miniconda3/bin/python /root/miniconda3/bin/jupyter-lab --allow-root --config=/init/jupyter/jupyter_config.py\\nroot       1050  0.0  0.0 28341068 10600 ?      Sl   May14   4:33 /root/miniconda3/lib/python3.12/site-packages/tensorboard_data_server/bin/server --logdir=/root/tf-logs --reload=5 --samples-per-plugin= --port=0 --port-file=/tmp/tensorboard_data_server_n2g13yqg/port --die-after-stdin --error-file=/tmp/tensorboard_data_server_n2g13yqg/startup_error\\nroot     174588  0.0  0.0  11360  6584 ?        Ss   May15   0:03 tmux new-session -d -s exp_001_n16_seed456 source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-scierc-merged-v2 --data_dir data/scierc/processed_data --dataset scierc --subtask joint --n_samples 16 --temperature 1.0 --seed 456 --output_dir output/exp001_n16_seed456 --collect_logprobs 2>&1 | tee output/exp001_n16_seed456_run.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 16_
+
+后处理已完成。现在读取分析结果 JSON 文件。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a68db7df-78fa-4769-af7b-ae416f15e440",
+  "uuid": "b9acd6c2-4df0-446a-ab36-779364cb094e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EVc3g2E4THnWpsLWxv7Crm",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6311,
+      "cache_read_input_tokens": 25422,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6311
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01XggWMGFpsA7XH6XUHcAPcy`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/exp_028_fewnerd_5epoch/analysis_results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a68db7df-78fa-4769-af7b-ae416f15e440",
+  "uuid": "b46c8a1a-4f0f-4a53-8e07-7a34c830ae31",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EVc3g2E4THnWpsLWxv7Crm",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6311,
+      "cache_read_input_tokens": 25422,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6311
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-17T20:25:30.132Z_
+
+<details><summary>↩ Tool result · `toolu_01XggWMGFpsA7XH6XUHcAPcy`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"experiment\\\": \\\"exp_028\\\",\\n  \\\"description\\\": \\\"5-epoch LoRA Few-NERD convergence test\\\",\\n  \\\"n_total\\\": 5000,\\n  \\\"n_gold_filtered\\\": 4351,\\n  \\\"n_samples\\\": 8,\\n  \\\"degeneracy\\\": {\\n    \\\"definition\\\": \\\"Constant F1 gold-filtered\\\",\\n    \\\"constant_f1_count\\\": 1363,\\n    \\\"gold_filtered_total\\\": 4351,\\n    \\\"rate_pct\\\": 31.3261\\n  },\\n  \\\"basic\\\": {\\n    \\\"greedy_macro_f1\\\": 0.7773,\\n    \\\"oracle_macro_f1\\\": 0.8723,\\n    \\\"headroom_pp\\\": 9.4951\\n  },\\n  \\\"lp_selection\\\": {\\n    \\\"f1\\\": 0.7835,\\n    \\\"delta_pp\\\": 0.624\\n  },\\n  \\\"qe_signals\\\": {\\n    \\\"LP\\\": {\\n      \\\"auroc\\\": 0.5234,\\n      \\\"spearman_global\\\": 0.4495,\\n      \\\"spearman_global_p\\\": 1.7125934832907853e-215,\\n      \\\"selection_f1\\\": 0.7835,\\n      \\\"selection_delta_pp\\\": 0.624\\n    },\\n    \\\"SJ\\\": {\\n      \\\"auroc\\\": 0.4988,\\n      \\\"spearman_global\\\": 0.3777,\\n      \\\"spearman_global_p\\\": 1.3286968677895683e-147,\\n      \\\"selection_f1\\\": 0.7697,\\n      \\\"selection_delta_pp\\\": -0.765\\n    },\\n    \\\"FK\\\": {\\n      \\\"auroc\\\": 0.4985,\\n      \\\"spearman_global\\\": 0.3892,\\n      \\\"spearman_global_p\\\": 2.1665434359108506e-157,\\n      \\\"selection_f1\\\": 0.7693,\\n      \\\"selection_delta_pp\\\": -0.8013\\n    },\\n    \\\"EM\\\": {\\n      \\\"auroc\\\": 0.4951,\\n      \\\"spearman_global\\\": 0.3893,\\n      \\\"spearman_global_p\\\": 1.8311530979550825e-157,\\n      \\\"selection_f1\\\": 0.7663,\\n      \\\"selection_delta_pp\\\": -1.1008\\n    },\\n    \\\"VC\\\": {\\n      \\\"auroc\\\": 0.5006,\\n      \\\"spearman_global\\\": 0.3585,\\n      \\\"spearman_global_p\\\": 4.2828883428321765e-132,\\n      \\\"selection_f1\\\": 0.7576,\\n      \\\"selection_delta_pp\\\": -1.973\\n    }\\n  },\\n  \\\"within_instance_rho\\\": {\\n    \\\"mean\\\": 0.4066,\\n    \\\"median\\\": 0.6151,\\n    \\\"std\\\": 0.5506,\\n    \\\"valid_count\\\": 2988,\\n    \\\"valid_pct\\\": 68.67\\n  },\\n  \\\"lp_range\\\": {\\n    \\\"mean\\\": 0.051383,\\n    \\\"std\\\": 0.067323,\\n    \\\"median\\\": 0.031774\\n  },\\n  \\\"comparison_exp021\\\": {\\n    \\\"exp021_ref\\\": {\\n      \\\"degeneracy_cf1_pct\\\": 11.08,\\n      \\\"greedy_f1\\\": 0.7478,\\n      \\\"lp_sel_f1\\\": 0.7614,\\n      \\\"lp_sel_delta_pp\\\": 1.37\\n    },\\n    \\\"degeneracy_delta_pp\\\": 20.2461,\\n    \\\"greedy_f1_delta\\\": 0.0295,\\n    \\\"lp_sel_delta_delta\\\": -0.746\\n  },\\n  \\\"conclusion\\\": {\\n    \\\"verdict\\\": \\\"NEGATIVE\\\",\\n    \\\"message\\\": \\\"5-epoch degeneracy > 20% (significantly higher than 3-epoch). Few-NERD low degeneracy may be due to under-convergence. Paper narrative needs revision.\\\"\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.34}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a68db7df-78fa-4769-af7b-ae416f15e440",
+  "uuid": "a81c573b-6591-4f8c-8e31-a2a0fb37bf25",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"experiment\\\\\\\": \\\\\\\"exp_028\\\\\\\",\\\\n  \\\\\\\"description\\\\\\\": \\\\\\\"5-epoch LoRA Few-NERD convergence test\\\\\\\",\\\\n  \\\\\\\"n_total\\\\\\\": 5000,\\\\n  \\\\\\\"n_gold_filtered\\\\\\\": 4351,\\\\n  \\\\\\\"n_samples\\\\\\\": 8,\\\\n  \\\\\\\"degeneracy\\\\\\\": {\\\\n    \\\\\\\"definition\\\\\\\": \\\\\\\"Constant F1 gold-filtered\\\\\\\",\\\\n    \\\\\\\"constant_f1_count\\\\\\\": 1363,\\\\n    \\\\\\\"gold_filtered_total\\\\\\\": 4351,\\\\n    \\\\\\\"rate_pct\\\\\\\": 31.3261\\\\n  },\\\\n  \\\\\\\"basic\\\\\\\": {\\\\n    \\\\\\\"greedy_macro_f1\\\\\\\": 0.7773,\\\\n    \\\\\\\"oracle_macro_f1\\\\\\\": 0.8723,\\\\n    \\\\\\\"headroom_pp\\\\\\\": 9.4951\\\\n  },\\\\n  \\\\\\\"lp_selection\\\\\\\": {\\\\n    \\\\\\\"f1\\\\\\\": 0.7835,\\\\n    \\\\\\\"delta_pp\\\\\\\": 0.624\\\\n  },\\\\n  \\\\\\\"qe_signals\\\\\\\": {\\\\n    \\\\\\\"LP\\\\\\\": {\\\\n      \\\\\\\"auroc\\\\\\\": 0.5234,\\\\n      \\\\\\\"spearman_global\\\\\\\": 0.4495,\\\\n      \\\\\\\"spearman_global_p\\\\\\\": 1.7125934832907853e-215,\\\\n      \\\\\\\"selection_f1\\\\\\\": 0.7835,\\\\n      \\\\\\\"selection_delta_pp\\\\\\\": 0.624\\\\n    },\\\\n    \\\\\\\"SJ\\\\\\\": {\\\\n      \\\\\\\"auroc\\\\\\\": 0.4988,\\\\n      \\\\\\\"spearman_global\\\\\\\": 0.3777,\\\\n      \\\\\\\"spearman_global_p\\\\\\\": 1.3286968677895683e-147,\\\\n      \\\\\\\"selection_f1\\\\\\\": 0.7697,\\\\n      \\\\\\\"selection_delta_pp\\\\\\\": -0.765\\\\n    },\\\\n    \\\\\\\"FK\\\\\\\": {\\\\n      \\\\\\\"auroc\\\\\\\": 0.4985,\\\\n      \\\\\\\"spearman_global\\\\\\\": 0.3892,\\\\n      \\\\\\\"spearman_global_p\\\\\\\": 2.1665434359108506e-157,\\\\n      \\\\\\\"selection_f1\\\\\\\": 0.7693,\\\\n      \\\\\\\"selection_delta_pp\\\\\\\": -0.8013\\\\n    },\\\\n    \\\\\\\"EM\\\\\\\": {\\\\n      \\\\\\\"auroc\\\\\\\": 0.4951,\\\\n      \\\\\\\"spearman_global\\\\\\\": 0.3893,\\\\n      \\\\\\\"spearman_global_p\\\\\\\": 1.8311530979550825e-157,\\\\n      \\\\\\\"selection_f1\\\\\\\": 0.7663,\\\\n      \\\\\\\"selection_delta_pp\\\\\\\": -1.1008\\\\n    },\\\\n    \\\\\\\"VC\\\\\\\": {\\\\n      \\\\\\\"auroc\\\\\\\": 0.5006,\\\\n      \\\\\\\"spearman_global\\\\\\\": 0.3585,\\\\n      \\\\\\\"spearman_global_p\\\\\\\": 4.2828883428321765e-132,\\\\n      \\\\\\\"selection_f1\\\\\\\": 0.7576,\\\\n      \\\\\\\"selection_delta_pp\\\\\\\": -1.973\\\\n    }\\\\n  },\\\\n  \\\\\\\"within_instance_rho\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.4066,\\\\n    \\\\\\\"median\\\\\\\": 0.6151,\\\\n    \\\\\\\"std\\\\\\\": 0.5506,\\\\n    \\\\\\\"valid_count\\\\\\\": 2988,\\\\n    \\\\\\\"valid_pct\\\\\\\": 68.67\\\\n  },\\\\n  \\\\\\\"lp_range\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.051383,\\\\n    \\\\\\\"std\\\\\\\": 0.067323,\\\\n    \\\\\\\"median\\\\\\\": 0.031774\\\\n  },\\\\n  \\\\\\\"comparison_exp021\\\\\\\": {\\\\n    \\\\\\\"exp021_ref\\\\\\\": {\\\\n      \\\\\\\"degeneracy_cf1_pct\\\\\\\": 11.08,\\\\n      \\\\\\\"greedy_f1\\\\\\\": 0.7478,\\\\n      \\\\\\\"lp_sel_f1\\\\\\\": 0.7614,\\\\n      \\\\\\\"lp_sel_delta_pp\\\\\\\": 1.37\\\\n    },\\\\n    \\\\\\\"degeneracy_delta_pp\\\\\\\": 20.2461,\\\\n    \\\\\\\"greedy_f1_delta\\\\\\\": 0.0295,\\\\n    \\\\\\\"lp_sel_delta_delta\\\\\\\": -0.746\\\\n  },\\\\n  \\\\\\\"conclusion\\\\\\\": {\\\\n    \\\\\\\"verdict\\\\\\\": \\\\\\\"NEGATIVE\\\\\\\",\\\\n    \\\\\\\"message\\\\\\\": \\\\\\\"5-epoch degeneracy > 20% (significantly higher than 3-epoch). Few-NERD low degeneracy may be due to under-convergence. Paper narrative needs revision.\\\\\\\"\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.34}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"experiment\\\": \\\"exp_028\\\",\\n  \\\"description\\\": \\\"5-epoch LoRA Few-NERD convergence test\\\",\\n  \\\"n_total\\\": 5000,\\n  \\\"n_gold_filtered\\\": 4351,\\n  \\\"n_samples\\\": 8,\\n  \\\"degeneracy\\\": {\\n    \\\"definition\\\": \\\"Constant F1 gold-filtered\\\",\\n    \\\"constant_f1_count\\\": 1363,\\n    \\\"gold_filtered_total\\\": 4351,\\n    \\\"rate_pct\\\": 31.3261\\n  },\\n  \\\"basic\\\": {\\n    \\\"greedy_macro_f1\\\": 0.7773,\\n    \\\"oracle_macro_f1\\\": 0.8723,\\n    \\\"headroom_pp\\\": 9.4951\\n  },\\n  \\\"lp_selection\\\": {\\n    \\\"f1\\\": 0.7835,\\n    \\\"delta_pp\\\": 0.624\\n  },\\n  \\\"qe_signals\\\": {\\n    \\\"LP\\\": {\\n      \\\"auroc\\\": 0.5234,\\n      \\\"spearman_global\\\": 0.4495,\\n      \\\"spearman_global_p\\\": 1.7125934832907853e-215,\\n      \\\"selection_f1\\\": 0.7835,\\n      \\\"selection_delta_pp\\\": 0.624\\n    },\\n    \\\"SJ\\\": {\\n      \\\"auroc\\\": 0.4988,\\n      \\\"spearman_global\\\": 0.3777,\\n      \\\"spearman_global_p\\\": 1.3286968677895683e-147,\\n      \\\"selection_f1\\\": 0.7697,\\n      \\\"selection_delta_pp\\\": -0.765\\n    },\\n    \\\"FK\\\": {\\n      \\\"auroc\\\": 0.4985,\\n      \\\"spearman_global\\\": 0.3892,\\n      \\\"spearman_global_p\\\": 2.1665434359108506e-157,\\n      \\\"selection_f1\\\": 0.7693,\\n      \\\"selection_delta_pp\\\": -0.8013\\n    },\\n    \\\"EM\\\": {\\n      \\\"auroc\\\": 0.4951,\\n      \\\"spearman_global\\\": 0.3893,\\n      \\\"spearman_global_p\\\": 1.8311530979550825e-157,\\n      \\\"selection_f1\\\": 0.7663,\\n      \\\"selection_delta_pp\\\": -1.1008\\n    },\\n    \\\"VC\\\": {\\n      \\\"auroc\\\": 0.5006,\\n      \\\"spearman_global\\\": 0.3585,\\n      \\\"spearman_global_p\\\": 4.2828883428321765e-132,\\n      \\\"selection_f1\\\": 0.7576,\\n      \\\"selection_delta_pp\\\": -1.973\\n    }\\n  },\\n  \\\"within_instance_rho\\\": {\\n    \\\"mean\\\": 0.4066,\\n    \\\"median\\\": 0.6151,\\n    \\\"std\\\": 0.5506,\\n    \\\"valid_count\\\": 2988,\\n    \\\"valid_pct\\\": 68.67\\n  },\\n  \\\"lp_range\\\": {\\n    \\\"mean\\\": 0.051383,\\n    \\\"std\\\": 0.067323,\\n    \\\"median\\\": 0.031774\\n  },\\n  \\\"comparison_exp021\\\": {\\n    \\\"exp021_ref\\\": {\\n      \\\"degeneracy_cf1_pct\\\": 11.08,\\n      \\\"greedy_f1\\\": 0.7478,\\n      \\\"lp_sel_f1\\\": 0.7614,\\n      \\\"lp_sel_delta_pp\\\": 1.37\\n    },\\n    \\\"degeneracy_delta_pp\\\": 20.2461,\\n    \\\"greedy_f1_delta\\\": 0.0295,\\n    \\\"lp_sel_delta_delta\\\": -0.746\\n  },\\n  \\\"conclusion\\\": {\\n    \\\"verdict\\\": \\\"NEGATIVE\\\",\\n    \\\"message\\\": \\\"5-epoch degeneracy > 20% (significantly higher than 3-epoch). Few-NERD low degeneracy may be due to under-convergence. Paper narrative needs revision.\\\"\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.34}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01H2cmdj57FLXsurQpfb8YNU`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/exp_028_fewnerd_5epoch/report.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a68db7df-78fa-4769-af7b-ae416f15e440",
+  "uuid": "67cc3c8f-c414-43e1-9de2-3c41ec5c7d18",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EVc3g2E4THnWpsLWxv7Crm",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6311,
+      "cache_read_input_tokens": 25422,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6311
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-17T20:25:30.856Z_
+
+<details><summary>↩ Tool result · `toolu_01H2cmdj57FLXsurQpfb8YNU`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"dataset\\\": \\\"fewnerd\\\",\\n  \\\"subtask\\\": \\\"ner\\\",\\n  \\\"n_samples\\\": 8,\\n  \\\"temperature\\\": 1.0,\\n  \\\"num_instances\\\": 5000,\\n  \\\"use_train_format\\\": true,\\n  \\\"greedy_f1\\\": 0.793936595875654,\\n  \\\"oracle_f1\\\": 0.8769640582171949,\\n  \\\"oracle_headroom\\\": 0.0830274623415409,\\n  \\\"fleiss_kappa_mean\\\": 0.5284480540041862,\\n  \\\"soft_jaccard_mean\\\": 0.8069775849042183,\\n  \\\"correlation_fleiss_vs_f1_full\\\": {\\n    \\\"rho\\\": 0.27599856322762106,\\n    \\\"p_value\\\": 6.5347014978233074e-77,\\n    \\\"n\\\": 4351\\n  },\\n  \\\"correlation_softjaccard_vs_f1_full\\\": {\\n    \\\"rho\\\": 0.37159277795184004,\\n    \\\"p_value\\\": 1.5262517791082772e-142,\\n    \\\"n\\\": 4351\\n  },\\n  \\\"correlation_fleiss_vs_f1_conditional\\\": {\\n    \\\"rho\\\": 0.22658234022281037,\\n    \\\"p_value\\\": 2.7334019242325535e-47,\\n    \\\"n\\\": 3961\\n  },\\n  \\\"correlation_softjaccard_vs_f1_conditional\\\": {\\n    \\\"rho\\\": 0.34841246465035325,\\n    \\\"p_value\\\": 2.011316752141572e-113,\\n    \\\"n\\\": 3961\\n  },\\n  \\\"n_gold_empty_filtered\\\": 649,\\n  \\\"n_greedy_f1_zero_filtered\\\": 390,\\n  \\\"structural_beats_surface\\\": true,\\n  \\\"rho_advantage\\\": 0.09559421472421897,\\n  \\\"sample_f1_mean\\\": 0.7268646427606067,\\n  \\\"sample_f1_std\\\": 0.3415519651917791,\\n  \\\"sample_f1_pct_zero\\\": 12.290278096989198,\\n  \\\"logprob_baseline\\\": {\\n    \\\"full\\\": {\\n      \\\"rho\\\": 0.331903956739943,\\n      \\\"p_rho\\\": 2.184910264019734e-112,\\n      \\\"tau\\\": 0.2532734562117372,\\n      \\\"p_tau\\\": 3.215908564766335e-113,\\n      \\\"auroc\\\": 0.6805606729028969,\\n      \\\"n\\\": 4351\\n    },\\n    \\\"conditional\\\": {\\n      \\\"rho\\\": 0.30689697221443324,\\n      \\\"p_rho\\\": 3.7503543065699646e-87,\\n      \\\"tau\\\": 0.23445593997427064,\\n      \\\"p_tau\\\": 6.712488666206571e-87,\\n      \\\"auroc\\\": 0.670860104660067,\\n      \\\"n\\\": 3961\\n    }\\n  },\\n  \\\"verdict\\\": \\\"MARGINAL\\\",\\n  \\\"verdict_note\\\": \\\"MVP verdict on single subtask; final pass requires at least one of NER/RE/EAE to meet threshold\\\"\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.34}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a68db7df-78fa-4769-af7b-ae416f15e440",
+  "uuid": "efb28ee7-5e7a-4d77-a9ad-39bbc871260c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"dataset\\\\\\\": \\\\\\\"fewnerd\\\\\\\",\\\\n  \\\\\\\"subtask\\\\\\\": \\\\\\\"ner\\\\\\\",\\\\n  \\\\\\\"n_samples\\\\\\\": 8,\\\\n  \\\\\\\"temperature\\\\\\\": 1.0,\\\\n  \\\\\\\"num_instances\\\\\\\": 5000,\\\\n  \\\\\\\"use_train_format\\\\\\\": true,\\\\n  \\\\\\\"greedy_f1\\\\\\\": 0.793936595875654,\\\\n  \\\\\\\"oracle_f1\\\\\\\": 0.8769640582171949,\\\\n  \\\\\\\"oracle_headroom\\\\\\\": 0.0830274623415409,\\\\n  \\\\\\\"fleiss_kappa_mean\\\\\\\": 0.5284480540041862,\\\\n  \\\\\\\"soft_jaccard_mean\\\\\\\": 0.8069775849042183,\\\\n  \\\\\\\"correlation_fleiss_vs_f1_full\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.27599856322762106,\\\\n    \\\\\\\"p_value\\\\\\\": 6.5347014978233074e-77,\\\\n    \\\\\\\"n\\\\\\\": 4351\\\\n  },\\\\n  \\\\\\\"correlation_softjaccard_vs_f1_full\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.37159277795184004,\\\\n    \\\\\\\"p_value\\\\\\\": 1.5262517791082772e-142,\\\\n    \\\\\\\"n\\\\\\\": 4351\\\\n  },\\\\n  \\\\\\\"correlation_fleiss_vs_f1_conditional\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.22658234022281037,\\\\n    \\\\\\\"p_value\\\\\\\": 2.7334019242325535e-47,\\\\n    \\\\\\\"n\\\\\\\": 3961\\\\n  },\\\\n  \\\\\\\"correlation_softjaccard_vs_f1_conditional\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.34841246465035325,\\\\n    \\\\\\\"p_value\\\\\\\": 2.011316752141572e-113,\\\\n    \\\\\\\"n\\\\\\\": 3961\\\\n  },\\\\n  \\\\\\\"n_gold_empty_filtered\\\\\\\": 649,\\\\n  \\\\\\\"n_greedy_f1_zero_filtered\\\\\\\": 390,\\\\n  \\\\\\\"structural_beats_surface\\\\\\\": true,\\\\n  \\\\\\\"rho_advantage\\\\\\\": 0.09559421472421897,\\\\n  \\\\\\\"sample_f1_mean\\\\\\\": 0.7268646427606067,\\\\n  \\\\\\\"sample_f1_std\\\\\\\": 0.3415519651917791,\\\\n  \\\\\\\"sample_f1_pct_zero\\\\\\\": 12.290278096989198,\\\\n  \\\\\\\"logprob_baseline\\\\\\\": {\\\\n    \\\\\\\"full\\\\\\\": {\\\\n      \\\\\\\"rho\\\\\\\": 0.331903956739943,\\\\n      \\\\\\\"p_rho\\\\\\\": 2.184910264019734e-112,\\\\n      \\\\\\\"tau\\\\\\\": 0.2532734562117372,\\\\n      \\\\\\\"p_tau\\\\\\\": 3.215908564766335e-113,\\\\n      \\\\\\\"auroc\\\\\\\": 0.6805606729028969,\\\\n      \\\\\\\"n\\\\\\\": 4351\\\\n    },\\\\n    \\\\\\\"conditional\\\\\\\": {\\\\n      \\\\\\\"rho\\\\\\\": 0.30689697221443324,\\\\n      \\\\\\\"p_rho\\\\\\\": 3.7503543065699646e-87,\\\\n      \\\\\\\"tau\\\\\\\": 0.23445593997427064,\\\\n      \\\\\\\"p_tau\\\\\\\": 6.712488666206571e-87,\\\\n      \\\\\\\"auroc\\\\\\\": 0.670860104660067,\\\\n      \\\\\\\"n\\\\\\\": 3961\\\\n    }\\\\n  },\\\\n  \\\\\\\"verdict\\\\\\\": \\\\\\\"MARGINAL\\\\\\\",\\\\n  \\\\\\\"verdict_note\\\\\\\": \\\\\\\"MVP verdict on single subtask; final pass requires at least one of NER/RE/EAE to meet threshold\\\\\\\"\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.34}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"dataset\\\": \\\"fewnerd\\\",\\n  \\\"subtask\\\": \\\"ner\\\",\\n  \\\"n_samples\\\": 8,\\n  \\\"temperature\\\": 1.0,\\n  \\\"num_instances\\\": 5000,\\n  \\\"use_train_format\\\": true,\\n  \\\"greedy_f1\\\": 0.793936595875654,\\n  \\\"oracle_f1\\\": 0.8769640582171949,\\n  \\\"oracle_headroom\\\": 0.0830274623415409,\\n  \\\"fleiss_kappa_mean\\\": 0.5284480540041862,\\n  \\\"soft_jaccard_mean\\\": 0.8069775849042183,\\n  \\\"correlation_fleiss_vs_f1_full\\\": {\\n    \\\"rho\\\": 0.27599856322762106,\\n    \\\"p_value\\\": 6.5347014978233074e-77,\\n    \\\"n\\\": 4351\\n  },\\n  \\\"correlation_softjaccard_vs_f1_full\\\": {\\n    \\\"rho\\\": 0.37159277795184004,\\n    \\\"p_value\\\": 1.5262517791082772e-142,\\n    \\\"n\\\": 4351\\n  },\\n  \\\"correlation_fleiss_vs_f1_conditional\\\": {\\n    \\\"rho\\\": 0.22658234022281037,\\n    \\\"p_value\\\": 2.7334019242325535e-47,\\n    \\\"n\\\": 3961\\n  },\\n  \\\"correlation_softjaccard_vs_f1_conditional\\\": {\\n    \\\"rho\\\": 0.34841246465035325,\\n    \\\"p_value\\\": 2.011316752141572e-113,\\n    \\\"n\\\": 3961\\n  },\\n  \\\"n_gold_empty_filtered\\\": 649,\\n  \\\"n_greedy_f1_zero_filtered\\\": 390,\\n  \\\"structural_beats_surface\\\": true,\\n  \\\"rho_advantage\\\": 0.09559421472421897,\\n  \\\"sample_f1_mean\\\": 0.7268646427606067,\\n  \\\"sample_f1_std\\\": 0.3415519651917791,\\n  \\\"sample_f1_pct_zero\\\": 12.290278096989198,\\n  \\\"logprob_baseline\\\": {\\n    \\\"full\\\": {\\n      \\\"rho\\\": 0.331903956739943,\\n      \\\"p_rho\\\": 2.184910264019734e-112,\\n      \\\"tau\\\": 0.2532734562117372,\\n      \\\"p_tau\\\": 3.215908564766335e-113,\\n      \\\"auroc\\\": 0.6805606729028969,\\n      \\\"n\\\": 4351\\n    },\\n    \\\"conditional\\\": {\\n      \\\"rho\\\": 0.30689697221443324,\\n      \\\"p_rho\\\": 3.7503543065699646e-87,\\n      \\\"tau\\\": 0.23445593997427064,\\n      \\\"p_tau\\\": 6.712488666206571e-87,\\n      \\\"auroc\\\": 0.670860104660067,\\n      \\\"n\\\": 3961\\n    }\\n  },\\n  \\\"verdict\\\": \\\"MARGINAL\\\",\\n  \\\"verdict_note\\\": \\\"MVP verdict on single subtask; final pass requires at least one of NER/RE/EAE to meet threshold\\\"\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.34}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 21_
+
+数据全部收集完成。现在读取当前 memory.md 以便追加。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a68db7df-78fa-4769-af7b-ae416f15e440",
+  "uuid": "aeeea1f1-05f3-41dc-b530-13bd55a241dd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FseWNxEFjmT5haAysmMFFe",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2931,
+      "cache_read_input_tokens": 31733,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2931
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01Lv6deUdRXJqRtTqJx57Wnr`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_project_file",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a68db7df-78fa-4769-af7b-ae416f15e440",
+  "uuid": "a276193c-0da1-42c3-87b5-81626d0c8461",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FseWNxEFjmT5haAysmMFFe",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2931,
+      "cache_read_input_tokens": 31733,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2931
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-17T20:25:35.810Z_
+
+<details><summary>↩ Tool result · `toolu_01Lv6deUdRXJqRtTqJx57Wnr`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_project_file"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a68db7df-78fa-4769-af7b-ae416f15e440",
+  "uuid": "5b41c42a-7ee4-41ff-9dba-cc01fab09b8a",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__read_project_file"
+    ],
+    "query": "select:mcp__agent-ml-research__read_project_file",
+    "total_deferred_tools": 26
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_01BCg1itnGRrEqTAtWeiB2oJ`</summary>
+
+```json
+{
+  "project": "struct_self_consist_ie",
+  "file": "memory.md",
+  "max_chars": 0
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a68db7df-78fa-4769-af7b-ae416f15e440",
+  "uuid": "77365014-4e74-46de-9cfd-027d3af222f7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CAfWELD5YNAcApAf9NVfHK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 561,
+      "cache_read_input_tokens": 34664,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 561
+      },
+      "output_tokens": 5,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-17T20:25:39.800Z_
+
+<details><summary>↩ Tool result · `toolu_01BCg1itnGRrEqTAtWeiB2oJ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/memory.md\", \"content\": \"# 项目记忆\\n\\n## 易混淆指标辨析（2026-05-17）\\n\\n**ρ=-0.881 (p=0.004)** = KeySet degeneracy vs **oracle headroom**（论文 L171 / appendix:1121）\\n**ρ=-0.381 (p=0.352)** = KeySet degeneracy vs **LP Δ**（selection improvement）\\n\\n这是两个不同的 y 轴变量。论文中的 ρ=-0.881 是正确的，已被 Reviewer 确认。不要再混淆。\\n\\n## SciERC LP Δ 两个版本（2026-05-17）\\n\\n- **+0.42pp** = full-set (n=551)，论文全文统一使用此值\\n- **+0.62pp** = gold-filtered (n=529)\\n\\nFigure 3 和正文保持一致用 full-set +0.42。\\n\\n## Cross-model Degeneracy 规律（2026-05-17）\\n\\nDegeneracy 由 **model capability × task difficulty** 共同决定：\\n- Stronger model + easy task → 极端 degen（LLaMA-CoNLL 89.2%）\\n- Weaker model + hard task → low degen（Qwen3-SciERC 17.8%）\\n- CoNLL 是 high-degen regime 不论 backbone（Qwen3 47.4%, LLaMA 89.2%）\\n\\nLLaMA on CoNLL headroom 仅 1.84pp（greedy 0.9242, oracle 0.9426），使得 selection 评估无意义。但 structural signals 的 QE diagnostic ρ≈0.43 仍显著优于 LP ρ=0.31，证明诊断价值是 model-agnostic 的。\\n\\nLP range median=0.0002 at 89% degen — LP 在极端 degen 下完全无法区分 samples。\\n\\n## 文献调研：一致性 ≠ 正确性（2026-05-16）\\n\\n### 调研背景\\nFew-NERD（8类粗粒度NER）上，结构一致性信号（SJ/FK/EM/VC）的 global ρ 为负或近零，selection delta 全为负。根因：模型存在 systematic bias（类型语义重叠 → 8 samples 一致但全错），暴露 self-consistency 的根本假设缺陷。\\n\\n### 最相关论文（5篇）\\n\\n#### 1. Self-Consistency Falls Short! The Adverse Effects of Positional Bias on Long-Context Problems\\n- **Authors**: Adam Byerly, Daniel Khashabi\\n- **Year/Venue**: 2024, TACL (arXiv: 2411.01101)\\n- **关系**: **最强验证**。正式证明当 errors correlated 时，self-consistency 放大而非纠正错误\\n- **Key insight**: 长上下文任务中，positional bias 导致所有 samples 产生相关错误，违反 self-consistency 的核心假设（error independence）。Self-consistency 不仅无效，反而 actively degrades performance。实验覆盖 GPT-4o、LLaMA-3.3-70B、Qwen-2.5-72B\\n- **与我们的平行关系**: 他们的 \\\"positional bias → correlated errors\\\" 对应我们的 \\\"type semantic overlap → systematic misclassification\\\"。机制不同但失败模式完全相同\\n\\n#### 2. Consistency–Accuracy Correlation in Hard-Prompted LLMs for Entity and Relation Extraction\\n- **Venue**: PMC (PMC12888769), 2025\\n- **关系**: **IE 领域直接验证**\\n- **Key insight**: 在 EPOP 语料（植物健康数据，实体+关系抽取）上测试 GPT/DeepSeek/Qwen/Kimi 四个模型，发现 high consistency does NOT strongly correlate with high accuracy。相关性是 model-dependent 且随 task complexity 变化。在 relational IE 中，consistency alone 不应被用作 prediction quality 的 proxy\\n- **与我们的关系**: 直接在 IE 任务上验证了我们在 NER 上的发现——一致性不等于正确性\\n\\n#### 3. Beyond Majority Voting: SCOPE (Subgroup-specific Confidence-weighted Pseudo-label Estimation)\\n- **Year/Venue**: 2024, arXiv: 2512.15146\\n- **关系**: **提出解决方案**\\n- **Key insight**: Majority voting 的问题：(1) 所有 votes 权重相同，忽略 confidence；(2) binary voting 无法捕获 fine-grained signals；(3) confirmation bias——模型强化自身错误。SCOPE 用 step-wise confidence 加权替代简单 frequency count，并通过 dynamic subgroup partitioning 平衡 quality 与 diversity\\n- **可借鉴**: confidence weighting + subgroup partitioning 思路可用于我们的结构一致性信号设计\\n\\n#### 4. Diversified Sampling Improves Scaling LLM Inference\\n- **Year**: 2025, arXiv: 2502.11027\\n- **关系**: **互补——从 sampling 端解决 correlated errors**\\n- **Key insight**: 同一 prompt 反复 sampling 导致输出 \\\"trapped\\\" 在 local cluster 中。通过 diversified prompts（role perturbation、instruction variation、jabberwocky perturbation）可以打破 error correlation，提升 coverage。在 reasoning/math/code 任务上显著提升\\n- **可借鉴**: 如果我们在 NER 中使用多样化 prompt 策略（不同 instruction 模板、不同 few-shot examples、不同 entity type 描述），可能减少 systematic bias 导致的 correlated errors\\n\\n#### 5. The Hidden Strength of Disagreement: Consensus-Diversity Tradeoff in Adaptive Multi-Agent Systems\\n- **Authors**: Wu & Ito\\n- **Year/Venue**: 2025, EMNLP (arXiv: 2502.16565)\\n- **关系**: **理论框架**\\n- **Key insight**: 显式 consensus（voting/prompting）有 premature homogenization 风险。隐式 consensus（agents 独立决策但共享信息）保留了 diversity，在动态环境中优于显式 voting。形式化了 consensus-diversity tradeoff\\n- **与我们的关系**: 我们的结构一致性信号是显式 consensus measure，当模型有 systematic bias 时导致 premature homogenization（全部 samples 一致地错）\\n\\n### 补充相关工作\\n\\n#### 6. Don't Always Pick the Highest-Performing Model: Information Theoretic View of LLM Ensemble Selection\\n- **Year**: 2026, arXiv: 2602.08003\\n- 用 Gaussian-copula 建模 correlated errors，证明 ensemble 存在 information-theoretic error floor\\n\\n#### 7. Wang et al. 2023 Self-Consistency (ICLR 2023, arXiv: 2203.11171)\\n- 原文假设 diverse reasoning paths → correct answer 更可能被多数路径选中\\n- **未显式讨论** systematic bias 导致所有路径收敛到同一错误答案的 failure mode\\n\\n#### 8. LLM-TOPLA: Efficient LLM Ensemble by Maximising Diversity\\n- **Year/Venue**: 2024, EMNLP Findings\\n- 用 focal diversity metric 选择互补性强的 ensemble 成员，减少 error correlation\\n\\n### 核心结论\\n\\n#### Q1: 有没有人正式分析过 self-consistency 在什么条件下失败？\\n**有。** Byerly & Khashabi (2024, TACL) 是最系统的分析，证明 positional bias 导致 correlated errors 时 self-consistency 失败。但他们聚焦 long-context + positional bias，没有覆盖 structured prediction 中 semantic overlap 导致的 systematic bias。\\n\\n#### Q2: \\\"Correlated failures\\\" 如何破坏 voting-based 方法？\\n多篇论文从不同角度论证：error correlation 违反了 voting 的 independence 假设。当 errors correlated，增加 samples 不能提升 accuracy（有 information-theoretic floor），甚至可能 amplify errors。\\n\\n#### Q3: 有没有人提出过针对 systematic bias 的改进？\\n- **Confidence weighting** (SCOPE): 用 confidence 加权替代 equal voting\\n- **Diversified sampling**: 用不同 prompt 变体打破 local cluster\\n- **Subgroup partitioning**: 将 samples 分组，组间保持 diversity\\n- **Cross-model probing**: 用不同模型交叉验证（但成本高）\\n\\n#### Q4: 结构化预测中 self-consistency 的特殊挑战？\\nConsistency-accuracy correlation 论文（PMC12888769）在 IE 任务上直接验证了一致性≠正确性。但目前 **没有** 专门针对 NER/结构化预测中 self-consistency failure modes 的系统性研究——这是我们的 contribution gap。\\n\\n### 对我们下一步的启示\\n\\n1. **论文 framing**: 我们的发现（结构一致性在 systematic bias 下失败）有文献支撑但 **在 structured IE 领域是新的**。Byerly & Khashabi 做了 long-context，我们做 structured prediction，互补\\n2. **可借鉴技术**：\\n   - Confidence-weighted consistency（替代 raw agreement）\\n   - Diversified prompting（不同 instruction/few-shot 模板减少 correlated errors）\\n   - Adaptive stopping（当 consistency 低时增加 samples，但当 consistency 高且可能是 systematic bias 时需要 different strategy）\\n3. **Discussion 要写的**: 引用 Byerly & Khashabi 说明这是 self-consistency 的 general failure mode，我们在 IE 领域首次系统性展示，并分析了结构化预测特有的原因（type semantic overlap、span boundary ambiguity）\\n\", \"total_chars\": 5855, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a68db7df-78fa-4769-af7b-ae416f15e440",
+  "uuid": "1fc5462d-4f8d-448b-a100-5dde8556584f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/memory.md\\\", \\\"content\\\": \\\"# 项目记忆\\\\n\\\\n## 易混淆指标辨析（2026-05-17）\\\\n\\\\n**ρ=-0.881 (p=0.004)** = KeySet degeneracy vs **oracle headroom**（论文 L171 / appendix:1121）\\\\n**ρ=-0.381 (p=0.352)** = KeySet degeneracy vs **LP Δ**（selection improvement）\\\\n\\\\n这是两个不同的 y 轴变量。论文中的 ρ=-0.881 是正确的，已被 Reviewer 确认。不要再混淆。\\\\n\\\\n## SciERC LP Δ 两个版本（2026-05-17）\\\\n\\\\n- **+0.42pp** = full-set (n=551)，论文全文统一使用此值\\\\n- **+0.62pp** = gold-filtered (n=529)\\\\n\\\\nFigure 3 和正文保持一致用 full-set +0.42。\\\\n\\\\n## Cross-model Degeneracy 规律（2026-05-17）\\\\n\\\\nDegeneracy 由 **model capability × task difficulty** 共同决定：\\\\n- Stronger model + easy task → 极端 degen（LLaMA-CoNLL 89.2%）\\\\n- Weaker model + hard task → low degen（Qwen3-SciERC 17.8%）\\\\n- CoNLL 是 high-degen regime 不论 backbone（Qwen3 47.4%, LLaMA 89.2%）\\\\n\\\\nLLaMA on CoNLL headroom 仅 1.84pp（greedy 0.9242, oracle 0.9426），使得 selection 评估无意义。但 structural signals 的 QE diagnostic ρ≈0.43 仍显著优于 LP ρ=0.31，证明诊断价值是 model-agnostic 的。\\\\n\\\\nLP range median=0.0002 at 89% degen — LP 在极端 degen 下完全无法区分 samples。\\\\n\\\\n## 文献调研：一致性 ≠ 正确性（2026-05-16）\\\\n\\\\n### 调研背景\\\\nFew-NERD（8类粗粒度NER）上，结构一致性信号（SJ/FK/EM/VC）的 global ρ 为负或近零，selection delta 全为负。根因：模型存在 systematic bias（类型语义重叠 → 8 samples 一致但全错），暴露 self-consistency 的根本假设缺陷。\\\\n\\\\n### 最相关论文（5篇）\\\\n\\\\n#### 1. Self-Consistency Falls Short! The Adverse Effects of Positional Bias on Long-Context Problems\\\\n- **Authors**: Adam Byerly, Daniel Khashabi\\\\n- **Year/Venue**: 2024, TACL (arXiv: 2411.01101)\\\\n- **关系**: **最强验证**。正式证明当 errors correlated 时，self-consistency 放大而非纠正错误\\\\n- **Key insight**: 长上下文任务中，positional bias 导致所有 samples 产生相关错误，违反 self-consistency 的核心假设（error independence）。Self-consistency 不仅无效，反而 actively degrades performance。实验覆盖 GPT-4o、LLaMA-3.3-70B、Qwen-2.5-72B\\\\n- **与我们的平行关系**: 他们的 \\\\\\\"positional bias → correlated errors\\\\\\\" 对应我们的 \\\\\\\"type semantic overlap → systematic misclassification\\\\\\\"。机制不同但失败模式完全相同\\\\n\\\\n#### 2. Consistency–Accuracy Correlation in Hard-Prompted LLMs for Entity and Relation Extraction\\\\n- **Venue**: PMC (PMC12888769), 2025\\\\n- **关系**: **IE 领域直接验证**\\\\n- **Key insight**: 在 EPOP 语料（植物健康数据，实体+关系抽取）上测试 GPT/DeepSeek/Qwen/Kimi 四个模型，发现 high consistency does NOT strongly correlate with high accuracy。相关性是 model-dependent 且随 task complexity 变化。在 relational IE 中，consistency alone 不应被用作 prediction quality 的 proxy\\\\n- **与我们的关系**: 直接在 IE 任务上验证了我们在 NER 上的发现——一致性不等于正确性\\\\n\\\\n#### 3. Beyond Majority Voting: SCOPE (Subgroup-specific Confidence-weighted Pseudo-label Estimation)\\\\n- **Year/Venue**: 2024, arXiv: 2512.15146\\\\n- **关系**: **提出解决方案**\\\\n- **Key insight**: Majority voting 的问题：(1) 所有 votes 权重相同，忽略 confidence；(2) binary voting 无法捕获 fine-grained signals；(3) confirmation bias——模型强化自身错误。SCOPE 用 step-wise confidence 加权替代简单 frequency count，并通过 dynamic subgroup partitioning 平衡 quality 与 diversity\\\\n- **可借鉴**: confidence weighting + subgroup partitioning 思路可用于我们的结构一致性信号设计\\\\n\\\\n#### 4. Diversified Sampling Improves Scaling LLM Inference\\\\n- **Year**: 2025, arXiv: 2502.11027\\\\n- **关系**: **互补——从 sampling 端解决 correlated errors**\\\\n- **Key insight**: 同一 prompt 反复 sampling 导致输出 \\\\\\\"trapped\\\\\\\" 在 local cluster 中。通过 diversified prompts（role perturbation、instruction variation、jabberwocky perturbation）可以打破 error correlation，提升 coverage。在 reasoning/math/code 任务上显著提升\\\\n- **可借鉴**: 如果我们在 NER 中使用多样化 prompt 策略（不同 instruction 模板、不同 few-shot examples、不同 entity type 描述），可能减少 systematic bias 导致的 correlated errors\\\\n\\\\n#### 5. The Hidden Strength of Disagreement: Consensus-Diversity Tradeoff in Adaptive Multi-Agent Systems\\\\n- **Authors**: Wu & Ito\\\\n- **Year/Venue**: 2025, EMNLP (arXiv: 2502.16565)\\\\n- **关系**: **理论框架**\\\\n- **Key insight**: 显式 consensus（voting/prompting）有 premature homogenization 风险。隐式 consensus（agents 独立决策但共享信息）保留了 diversity，在动态环境中优于显式 voting。形式化了 consensus-diversity tradeoff\\\\n- **与我们的关系**: 我们的结构一致性信号是显式 consensus measure，当模型有 systematic bias 时导致 premature homogenization（全部 samples 一致地错）\\\\n\\\\n### 补充相关工作\\\\n\\\\n#### 6. Don't Always Pick the Highest-Performing Model: Information Theoretic View of LLM Ensemble Selection\\\\n- **Year**: 2026, arXiv: 2602.08003\\\\n- 用 Gaussian-copula 建模 correlated errors，证明 ensemble 存在 information-theoretic error floor\\\\n\\\\n#### 7. Wang et al. 2023 Self-Consistency (ICLR 2023, arXiv: 2203.11171)\\\\n- 原文假设 diverse reasoning paths → correct answer 更可能被多数路径选中\\\\n- **未显式讨论** systematic bias 导致所有路径收敛到同一错误答案的 failure mode\\\\n\\\\n#### 8. LLM-TOPLA: Efficient LLM Ensemble by Maximising Diversity\\\\n- **Year/Venue**: 2024, EMNLP Findings\\\\n- 用 focal diversity metric 选择互补性强的 ensemble 成员，减少 error correlation\\\\n\\\\n### 核心结论\\\\n\\\\n#### Q1: 有没有人正式分析过 self-consistency 在什么条件下失败？\\\\n**有。** Byerly & Khashabi (2024, TACL) 是最系统的分析，证明 positional bias 导致 correlated errors 时 self-consistency 失败。但他们聚焦 long-context + positional bias，没有覆盖 structured prediction 中 semantic overlap 导致的 systematic bias。\\\\n\\\\n#### Q2: \\\\\\\"Correlated failures\\\\\\\" 如何破坏 voting-based 方法？\\\\n多篇论文从不同角度论证：error correlation 违反了 voting 的 independence 假设。当 errors correlated，增加 samples 不能提升 accuracy（有 information-theoretic floor），甚至可能 amplify errors。\\\\n\\\\n#### Q3: 有没有人提出过针对 systematic bias 的改进？\\\\n- **Confidence weighting** (SCOPE): 用 confidence 加权替代 equal voting\\\\n- **Diversified sampling**: 用不同 prompt 变体打破 local cluster\\\\n- **Subgroup partitioning**: 将 samples 分组，组间保持 diversity\\\\n- **Cross-model probing**: 用不同模型交叉验证（但成本高）\\\\n\\\\n#### Q4: 结构化预测中 self-consistency 的特殊挑战？\\\\nConsistency-accuracy correlation 论文（PMC12888769）在 IE 任务上直接验证了一致性≠正确性。但目前 **没有** 专门针对 NER/结构化预测中 self-consistency failure modes 的系统性研究——这是我们的 contribution gap。\\\\n\\\\n### 对我们下一步的启示\\\\n\\\\n1. **论文 framing**: 我们的发现（结构一致性在 systematic bias 下失败）有文献支撑但 **在 structured IE 领域是新的**。Byerly & Khashabi 做了 long-context，我们做 structured prediction，互补\\\\n2. **可借鉴技术**：\\\\n   - Confidence-weighted consistency（替代 raw agreement）\\\\n   - Diversified prompting（不同 instruction/few-shot 模板减少 correlated errors）\\\\n   - Adaptive stopping（当 consistency 低时增加 samples，但当 consistency 高且可能是 systematic bias 时需要 different strategy）\\\\n3. **Discussion 要写的**: 引用 Byerly & Khashabi 说明这是 self-consistency 的 general failure mode，我们在 IE 领域首次系统性展示，并分析了结构化预测特有的原因（type semantic overlap、span boundary ambiguity）\\\\n\\\", \\\"total_chars\\\": 5855, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/memory.md\", \"content\": \"# 项目记忆\\n\\n## 易混淆指标辨析（2026-05-17）\\n\\n**ρ=-0.881 (p=0.004)** = KeySet degeneracy vs **oracle headroom**（论文 L171 / appendix:1121）\\n**ρ=-0.381 (p=0.352)** = KeySet degeneracy vs **LP Δ**（selection improvement）\\n\\n这是两个不同的 y 轴变量。论文中的 ρ=-0.881 是正确的，已被 Reviewer 确认。不要再混淆。\\n\\n## SciERC LP Δ 两个版本（2026-05-17）\\n\\n- **+0.42pp** = full-set (n=551)，论文全文统一使用此值\\n- **+0.62pp** = gold-filtered (n=529)\\n\\nFigure 3 和正文保持一致用 full-set +0.42。\\n\\n## Cross-model Degeneracy 规律（2026-05-17）\\n\\nDegeneracy 由 **model capability × task difficulty** 共同决定：\\n- Stronger model + easy task → 极端 degen（LLaMA-CoNLL 89.2%）\\n- Weaker model + hard task → low degen（Qwen3-SciERC 17.8%）\\n- CoNLL 是 high-degen regime 不论 backbone（Qwen3 47.4%, LLaMA 89.2%）\\n\\nLLaMA on CoNLL headroom 仅 1.84pp（greedy 0.9242, oracle 0.9426），使得 selection 评估无意义。但 structural signals 的 QE diagnostic ρ≈0.43 仍显著优于 LP ρ=0.31，证明诊断价值是 model-agnostic 的。\\n\\nLP range median=0.0002 at 89% degen — LP 在极端 degen 下完全无法区分 samples。\\n\\n## 文献调研：一致性 ≠ 正确性（2026-05-16）\\n\\n### 调研背景\\nFew-NERD（8类粗粒度NER）上，结构一致性信号（SJ/FK/EM/VC）的 global ρ 为负或近零，selection delta 全为负。根因：模型存在 systematic bias（类型语义重叠 → 8 samples 一致但全错），暴露 self-consistency 的根本假设缺陷。\\n\\n### 最相关论文（5篇）\\n\\n#### 1. Self-Consistency Falls Short! The Adverse Effects of Positional Bias on Long-Context Problems\\n- **Authors**: Adam Byerly, Daniel Khashabi\\n- **Year/Venue**: 2024, TACL (arXiv: 2411.01101)\\n- **关系**: **最强验证**。正式证明当 errors correlated 时，self-consistency 放大而非纠正错误\\n- **Key insight**: 长上下文任务中，positional bias 导致所有 samples 产生相关错误，违反 self-consistency 的核心假设（error independence）。Self-consistency 不仅无效，反而 actively degrades performance。实验覆盖 GPT-4o、LLaMA-3.3-70B、Qwen-2.5-72B\\n- **与我们的平行关系**: 他们的 \\\"positional bias → correlated errors\\\" 对应我们的 \\\"type semantic overlap → systematic misclassification\\\"。机制不同但失败模式完全相同\\n\\n#### 2. Consistency–Accuracy Correlation in Hard-Prompted LLMs for Entity and Relation Extraction\\n- **Venue**: PMC (PMC12888769), 2025\\n- **关系**: **IE 领域直接验证**\\n- **Key insight**: 在 EPOP 语料（植物健康数据，实体+关系抽取）上测试 GPT/DeepSeek/Qwen/Kimi 四个模型，发现 high consistency does NOT strongly correlate with high accuracy。相关性是 model-dependent 且随 task complexity 变化。在 relational IE 中，consistency alone 不应被用作 prediction quality 的 proxy\\n- **与我们的关系**: 直接在 IE 任务上验证了我们在 NER 上的发现——一致性不等于正确性\\n\\n#### 3. Beyond Majority Voting: SCOPE (Subgroup-specific Confidence-weighted Pseudo-label Estimation)\\n- **Year/Venue**: 2024, arXiv: 2512.15146\\n- **关系**: **提出解决方案**\\n- **Key insight**: Majority voting 的问题：(1) 所有 votes 权重相同，忽略 confidence；(2) binary voting 无法捕获 fine-grained signals；(3) confirmation bias——模型强化自身错误。SCOPE 用 step-wise confidence 加权替代简单 frequency count，并通过 dynamic subgroup partitioning 平衡 quality 与 diversity\\n- **可借鉴**: confidence weighting + subgroup partitioning 思路可用于我们的结构一致性信号设计\\n\\n#### 4. Diversified Sampling Improves Scaling LLM Inference\\n- **Year**: 2025, arXiv: 2502.11027\\n- **关系**: **互补——从 sampling 端解决 correlated errors**\\n- **Key insight**: 同一 prompt 反复 sampling 导致输出 \\\"trapped\\\" 在 local cluster 中。通过 diversified prompts（role perturbation、instruction variation、jabberwocky perturbation）可以打破 error correlation，提升 coverage。在 reasoning/math/code 任务上显著提升\\n- **可借鉴**: 如果我们在 NER 中使用多样化 prompt 策略（不同 instruction 模板、不同 few-shot examples、不同 entity type 描述），可能减少 systematic bias 导致的 correlated errors\\n\\n#### 5. The Hidden Strength of Disagreement: Consensus-Diversity Tradeoff in Adaptive Multi-Agent Systems\\n- **Authors**: Wu & Ito\\n- **Year/Venue**: 2025, EMNLP (arXiv: 2502.16565)\\n- **关系**: **理论框架**\\n- **Key insight**: 显式 consensus（voting/prompting）有 premature homogenization 风险。隐式 consensus（agents 独立决策但共享信息）保留了 diversity，在动态环境中优于显式 voting。形式化了 consensus-diversity tradeoff\\n- **与我们的关系**: 我们的结构一致性信号是显式 consensus measure，当模型有 systematic bias 时导致 premature homogenization（全部 samples 一致地错）\\n\\n### 补充相关工作\\n\\n#### 6. Don't Always Pick the Highest-Performing Model: Information Theoretic View of LLM Ensemble Selection\\n- **Year**: 2026, arXiv: 2602.08003\\n- 用 Gaussian-copula 建模 correlated errors，证明 ensemble 存在 information-theoretic error floor\\n\\n#### 7. Wang et al. 2023 Self-Consistency (ICLR 2023, arXiv: 2203.11171)\\n- 原文假设 diverse reasoning paths → correct answer 更可能被多数路径选中\\n- **未显式讨论** systematic bias 导致所有路径收敛到同一错误答案的 failure mode\\n\\n#### 8. LLM-TOPLA: Efficient LLM Ensemble by Maximising Diversity\\n- **Year/Venue**: 2024, EMNLP Findings\\n- 用 focal diversity metric 选择互补性强的 ensemble 成员，减少 error correlation\\n\\n### 核心结论\\n\\n#### Q1: 有没有人正式分析过 self-consistency 在什么条件下失败？\\n**有。** Byerly & Khashabi (2024, TACL) 是最系统的分析，证明 positional bias 导致 correlated errors 时 self-consistency 失败。但他们聚焦 long-context + positional bias，没有覆盖 structured prediction 中 semantic overlap 导致的 systematic bias。\\n\\n#### Q2: \\\"Correlated failures\\\" 如何破坏 voting-based 方法？\\n多篇论文从不同角度论证：error correlation 违反了 voting 的 independence 假设。当 errors correlated，增加 samples 不能提升 accuracy（有 information-theoretic floor），甚至可能 amplify errors。\\n\\n#### Q3: 有没有人提出过针对 systematic bias 的改进？\\n- **Confidence weighting** (SCOPE): 用 confidence 加权替代 equal voting\\n- **Diversified sampling**: 用不同 prompt 变体打破 local cluster\\n- **Subgroup partitioning**: 将 samples 分组，组间保持 diversity\\n- **Cross-model probing**: 用不同模型交叉验证（但成本高）\\n\\n#### Q4: 结构化预测中 self-consistency 的特殊挑战？\\nConsistency-accuracy correlation 论文（PMC12888769）在 IE 任务上直接验证了一致性≠正确性。但目前 **没有** 专门针对 NER/结构化预测中 self-consistency failure modes 的系统性研究——这是我们的 contribution gap。\\n\\n### 对我们下一步的启示\\n\\n1. **论文 framing**: 我们的发现（结构一致性在 systematic bias 下失败）有文献支撑但 **在 structured IE 领域是新的**。Byerly & Khashabi 做了 long-context，我们做 structured prediction，互补\\n2. **可借鉴技术**：\\n   - Confidence-weighted consistency（替代 raw agreement）\\n   - Diversified prompting（不同 instruction/few-shot 模板减少 correlated errors）\\n   - Adaptive stopping（当 consistency 低时增加 samples，但当 consistency 高且可能是 systematic bias 时需要 different strategy）\\n3. **Discussion 要写的**: 引用 Byerly & Khashabi 说明这是 self-consistency 的 general failure mode，我们在 IE 领域首次系统性展示，并分析了结构化预测特有的原因（type semantic overlap、span boundary ambiguity）\\n\", \"total_chars\": 5855, \"truncated\": false}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 26_
+
+现在追加 exp_028 结果到 memory.md。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a68db7df-78fa-4769-af7b-ae416f15e440",
+  "uuid": "a3db6f33-63be-4e7c-9d18-e92498467994",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DcyeiTNxFQYYyRuwWzCEJF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3128,
+      "cache_read_input_tokens": 35225,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3128
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__save_project_file · `toolu_01SNqtEfXcYTd5nvRhWvMaRK`</summary>
+
+```json
+{
+  "project": "struct_self_consist_ie",
+  "file": "memory.md",
+  "content": "# 项目记忆\n\n## 易混淆指标辨析（2026-05-17）\n\n**ρ=-0.881 (p=0.004)** = KeySet degeneracy vs **oracle headroom**（论文 L171 / appendix:1121）\n**ρ=-0.381 (p=0.352)** = KeySet degeneracy vs **LP Δ**（selection improvement）\n\n这是两个不同的 y 轴变量。论文中的 ρ=-0.881 是正确的，已被 Reviewer 确认。不要再混淆。\n\n## SciERC LP Δ 两个版本（2026-05-17）\n\n- **+0.42pp** = full-set (n=551)，论文全文统一使用此值\n- **+0.62pp** = gold-filtered (n=529)\n\nFigure 3 和正文保持一致用 full-set +0.42。\n\n## Cross-model Degeneracy 规律（2026-05-17）\n\nDegeneracy 由 **model capability × task difficulty** 共同决定：\n- Stronger model + easy task → 极端 degen（LLaMA-CoNLL 89.2%）\n- Weaker model + hard task → low degen（Qwen3-SciERC 17.8%）\n- CoNLL 是 high-degen regime 不论 backbone（Qwen3 47.4%, LLaMA 89.2%）\n\nLLaMA on CoNLL headroom 仅 1.84pp（greedy 0.9242, oracle 0.9426），使得 selection 评估无意义。但 structural signals 的 QE diagnostic ρ≈0.43 仍显著优于 LP ρ=0.31，证明诊断价值是 model-agnostic 的。\n\nLP range median=0.0002 at 89% degen — LP 在极端 degen 下完全无法区分 samples。\n\n## exp_028 结果：5-epoch Few-NERD 收敛测试（2026-05-18）\n\n### 实验配置\n- Model: Qwen3-8B + LoRA, Few-NERD, 5 epochs (vs exp-021 3 epochs)\n- Inference: N=8, T=1.0, logprobs collected\n- Gold-filtered instances: 4351/5000\n\n### 核心结果\n\n| Metric | 3-epoch (exp-021) | 5-epoch (exp-028) | Delta |\n|--------|-------------------|-------------------|-------|\n| Degeneracy (CF1) % | 11.1% | **31.3%** | +20.2pp |\n| Greedy F1 | 0.7478 | 0.7773 | +2.95pp |\n| Oracle F1 | — | 0.8723 | — |\n| Headroom (pp) | — | 9.50pp | — |\n| LP sel F1 | 0.7614 | 0.7835 | +2.21pp |\n| LP sel delta (pp) | +1.37 | **+0.62** | -0.75 |\n\n### QE Signals (5-epoch)\n\n| Signal | AUROC | ρ (global) | Sel F1 | Delta |\n|--------|-------|------------|--------|-------|\n| LP | 0.5234 | **0.4495** | 0.7835 | +0.62pp |\n| SJ | 0.4988 | 0.3777 | 0.7697 | -0.77pp |\n| FK | 0.4985 | 0.3892 | 0.7693 | -0.80pp |\n| EM | 0.4951 | 0.3893 | 0.7663 | -1.10pp |\n| VC | 0.5006 | 0.3585 | 0.7576 | -1.97pp |\n\n### Within-instance LP-F1 correlation\n- Mean ρ: 0.4066, Median ρ: 0.6151, Std: 0.5506\n- Valid instances: 2988/4351 (68.7%)\n\n### LP Range\n- Mean: 0.0514, Std: 0.0673, Median: 0.0318\n\n### Report.json 补充（inference-level stats）\n- Greedy F1 (raw, pre-gold-filter): 0.7940\n- Oracle F1 (raw): 0.8770\n- FK mean: 0.5284, SJ mean: 0.8070\n- LP baseline ρ (full): 0.3319, AUROC: 0.6806\n- SJ vs F1 ρ (full): 0.3716\n- FK vs F1 ρ (full): 0.2760\n- Structural > Surface confirmed (ρ advantage = +0.096)\n- Sample F1 mean: 0.7269, std: 0.3416, pct_zero: 12.3%\n\n### 结论：NEGATIVE\n**5-epoch degeneracy 31.3% 远超 3-epoch 的 11.1%（+20.2pp）。** Few-NERD 的低 degeneracy 可能源于模型 under-convergence 而非数据集/任务本质特性。\n\n关键影响：\n1. LP selection delta 从 +1.37pp 降至 +0.62pp（更多 degenerate instances 压缩了 selection 空间）\n2. 结构信号（SJ/FK/EM/VC）在 5-epoch 上 selection delta 全为负，仅 LP 正\n3. 但 LP global ρ=0.4495 仍显著（p≈0），within-instance median ρ=0.6151 说明非 degenerate 实例上 LP 仍有区分力\n4. **论文叙事需修正**：不能以 Few-NERD low degeneracy 作为\"结构化任务天然适合 self-consistency\"的证据\n\n## 文献调研：一致性 ≠ 正确性（2026-05-16）\n\n### 调研背景\nFew-NERD（8类粗粒度NER）上，结构一致性信号（SJ/FK/EM/VC）的 global ρ 为负或近零，selection delta 全为负。根因：模型存在 systematic bias（类型语义重叠 → 8 samples 一致但全错），暴露 self-consistency 的根本假设缺陷。\n\n### 最相关论文（5篇）\n\n#### 1. Self-Consistency Falls Short! The Adverse Effects of Positional Bias on Long-Context Problems\n- **Authors**: Adam Byerly, Daniel Khashabi\n- **Year/Venue**: 2024, TACL (arXiv: 2411.01101)\n- **关系**: **最强验证**。正式证明当 errors correlated 时，self-consistency 放大而非纠正错误\n- **Key insight**: 长上下文任务中，positional bias 导致所有 samples 产生相关错误，违反 self-consistency 的核心假设（error independence）。Self-consistency 不仅无效，反而 actively degrades performance。实验覆盖 GPT-4o、LLaMA-3.3-70B、Qwen-2.5-72B\n- **与我们的平行关系**: 他们的 \"positional bias → correlated errors\" 对应我们的 \"type semantic overlap → systematic misclassification\"。机制不同但失败模式完全相同\n\n#### 2. Consistency–Accuracy Correlation in Hard-Prompted LLMs for Entity and Relation Extraction\n- **Venue**: PMC (PMC12888769), 2025\n- **关系**: **IE 领域直接验证**\n- **Key insight**: 在 EPOP 语料（植物健康数据，实体+关系抽取）上测试 GPT/DeepSeek/Qwen/Kimi 四个模型，发现 high consistency does NOT strongly correlate with high accuracy。相关性是 model-dependent 且随 task complexity 变化。在 relational IE 中，consistency alone 不应被用作 prediction quality 的 proxy\n- **与我们的关系**: 直接在 IE 任务上验证了我们在 NER 上的发现——一致性不等于正确性\n\n#### 3. Beyond Majority Voting: SCOPE (Subgroup-specific Confidence-weighted Pseudo-label Estimation)\n- **Year/Venue**: 2024, arXiv: 2512.15146\n- **关系**: **提出解决方案**\n- **Key insight**: Majority voting 的问题：(1) 所有 votes 权重相同，忽略 confidence；(2) binary voting 无法捕获 fine-grained signals；(3) confirmation bias——模型强化自身错误。SCOPE 用 step-wise confidence 加权替代简单 frequency count，并通过 dynamic subgroup partitioning 平衡 quality 与 diversity\n- **可借鉴**: confidence weighting + subgroup partitioning 思路可用于我们的结构一致性信号设计\n\n#### 4. Diversified Sampling Improves Scaling LLM Inference\n- **Year**: 2025, arXiv: 2502.11027\n- **关系**: **互补——从 sampling 端解决 correlated errors**\n- **Key insight**: 同一 prompt 反复 sampling 导致输出 \"trapped\" 在 local cluster 中。通过 diversified prompts（role perturbation、instruction variation、jabberwocky perturbation）可以打破 error correlation，提升 coverage。在 reasoning/math/code 任务上显著提升\n- **可借鉴**: 如果我们在 NER 中使用多样化 prompt 策略（不同 instruction 模板、不同 few-shot examples、不同 entity type 描述），可能减少 systematic bias 导致的 correlated errors\n\n#### 5. The Hidden Strength of Disagreement: Consensus-Diversity Tradeoff in Adaptive Multi-Agent Systems\n- **Authors**: Wu & Ito\n- **Year/Venue**: 2025, EMNLP (arXiv: 2502.16565)\n- **关系**: **理论框架**\n- **Key insight**: 显式 consensus（voting/prompting）有 premature homogenization 风险。隐式 consensus（agents 独立决策但共享信息）保留了 diversity，在动态环境中优于显式 voting。形式化了 consensus-diversity tradeoff\n- **与我们的关系**: 我们的结构一致性信号是显式 consensus measure，当模型有 systematic bias 时导致 premature homogenization（全部 samples 一致地错）\n\n### 补充相关工作\n\n#### 6. Don't Always Pick the Highest-Performing Model: Information Theoretic View of LLM Ensemble Selection\n- **Year**: 2026, arXiv: 2602.08003\n- 用 Gaussian-copula 建模 correlated errors，证明 ensemble 存在 information-theoretic error floor\n\n#### 7. Wang et al. 2023 Self-Consistency (ICLR 2023, arXiv: 2203.11171)\n- 原文假设 diverse reasoning paths → correct answer 更可能被多数路径选中\n- **未显式讨论** systematic bias 导致所有路径收敛到同一错误答案的 failure mode\n\n#### 8. LLM-TOPLA: Efficient LLM Ensemble by Maximising Diversity\n- **Year/Venue**: 2024, EMNLP Findings\n- 用 focal diversity metric 选择互补性强的 ensemble 成员，减少 error correlation\n\n### 核心结论\n\n#### Q1: 有没有人正式分析过 self-consistency 在什么条件下失败？\n**有。** Byerly & Khashabi (2024, TACL) 是最系统的分析，证明 positional bias 导致 correlated errors 时 self-consistency 失败。但他们聚焦 long-context + positional bias，没有覆盖 structured prediction 中 semantic overlap 导致的 systematic bias。\n\n#### Q2: \"Correlated failures\" 如何破坏 voting-based 方法？\n多篇论文从不同角度论证：error correlation 违反了 voting 的 independence 假设。当 errors correlated，增加 samples 不能提升 accuracy（有 information-theoretic floor），甚至可能 amplify errors。\n\n#### Q3: 有没有人提出过针对 systematic bias 的改进？\n- **Confidence weighting** (SCOPE): 用 confidence 加权替代 equal voting\n- **Diversified sampling**: 用不同 prompt 变体打破 local cluster\n- **Subgroup partitioning**: 将 samples 分组，组间保持 diversity\n- **Cross-model probing**: 用不同模型交叉验证（但成本高）\n\n#### Q4: 结构化预测中 self-consistency 的特殊挑战？\nConsistency-accuracy correlation 论文（PMC12888769）在 IE 任务上直接验证了一致性≠正确性。但目前 **没有** 专门针对 NER/结构化预测中 self-consistency failure modes 的系统性研究——这是我们的 contribution gap。\n\n### 对我们下一步的启示\n\n1. **论文 framing**: 我们的发现（结构一致性在 systematic bias 下失败）有文献支撑但 **在 structured IE 领域是新的**。Byerly & Khashabi 做了 long-context，我们做 structured prediction，互补\n2. **可借鉴技术**：\n   - Confidence-weighted consistency（替代 raw agreement）\n   - Diversified prompting（不同 instruction/few-shot 模板减少 correlated errors）\n   - Adaptive stopping（当 consistency 低时增加 samples，但当 consistency 高且可能是 systematic bias 时需要 different strategy）\n3. **Discussion 要写的**: 引用 Byerly & Khashabi 说明这是 self-consistency 的 general failure mode，我们在 IE 领域首次系统性展示，并分析了结构化预测特有的原因（type semantic overlap、span boundary ambiguity）\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a68db7df-78fa-4769-af7b-ae416f15e440",
+  "uuid": "ea251092-cee9-49f1-9080-b50ee33fd260",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DcyeiTNxFQYYyRuwWzCEJF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3128,
+      "cache_read_input_tokens": 35225,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3128
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-17T20:26:28.840Z_
+
+<details><summary>↩ Tool result · `toolu_01SNqtEfXcYTd5nvRhWvMaRK`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/memory.md\", \"saved\": true}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a68db7df-78fa-4769-af7b-ae416f15e440",
+  "uuid": "3726cf84-8396-4adc-885a-18f79399e398",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/memory.md\\\", \\\"saved\\\": true}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/memory.md\", \"saved\": true}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 29_
+
+exp_028 结果已收集并写入 memory.md。关键发现：
+
+**exp_028 5-epoch Few-NERD 结论：NEGATIVE**
+
+| Metric | 3-epoch (exp-021) | 5-epoch (exp-028) | Delta |
+|--------|-------------------|-------------------|-------|
+| Degeneracy (CF1) | 11.1% | **31.3%** | +20.2pp |
+| Greedy F1 | 0.7478 | 0.7773 | +2.95pp |
+| LP sel delta | +1.37pp | **+0.62pp** | -0.75 |
+| LP ρ (global) | — | 0.4495 | — |
+| SJ ρ (global) | — | 0.3777 | — |
+
+核心问题：5-epoch 训练使 degeneracy 从 11.1% 跃升至 31.3%。Few-NERD 之前的低 degeneracy 可能源于模型 under-convergence，而非任务本质特性。结构信号（SJ/FK/EM/VC）selection delta 全为负，仅 LP 仍为正（+0.62pp）。论文叙事需要修正。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a68db7df-78fa-4769-af7b-ae416f15e440",
+  "uuid": "d6974a1b-925f-4251-8208-d8e97f0700af",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XypwNkF5xipK2kMNNyhpy3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4032,
+      "cache_read_input_tokens": 38353,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4032
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 30_
+
+exp_028 结果已收集并写入 memory.md。关键发现：
+
+**exp_028 5-epoch Few-NERD 结论：NEGATIVE**
+
+| Metric | 3-epoch (exp-021) | 5-epoch (exp-028) | Delta |
+|--------|-------------------|-------------------|-------|
+| Degeneracy (CF1) | 11.1% | **31.3%** | +20.2pp |
+| Greedy F1 | 0.7478 | 0.7773 | +2.95pp |
+| LP sel delta | +1.37pp | **+0.62pp** | -0.75 |
+| LP ρ (global) | — | 0.4495 | — |
+| SJ ρ (global) | — | 0.3777 | — |
+
+核心问题：5-epoch 训练使 degeneracy 从 11.1% 跃升至 31.3%。Few-NERD 之前的低 degeneracy 可能源于模型 under-convergence，而非任务本质特性。结构信号（SJ/FK/EM/VC）selection delta 全为负，仅 LP 仍为正（+0.62pp）。论文叙事需要修正。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 89867,
+  "duration_api_ms": 90154,
+  "num_turns": 11,
+  "stop_reason": "end_turn",
+  "session_id": "a68db7df-78fa-4769-af7b-ae416f15e440",
+  "total_cost_usd": 0.44159699999999996,
+  "usage": {
+    "input_tokens": 13,
+    "cache_creation_input_tokens": 30684,
+    "cache_read_input_tokens": 201864,
+    "output_tokens": 5885,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 30684,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 332,
+        "cache_read_input_tokens": 38353,
+        "cache_creation_input_tokens": 4032,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 4032
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1615,
+      "outputTokens": 17,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.0017,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 13,
+      "outputTokens": 5885,
+      "cacheReadInputTokens": 201864,
+      "cacheCreationInputTokens": 30684,
+      "webSearchRequests": 0,
+      "costUSD": 0.43989700000000004,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "51f0ad96-f2ad-4df3-a4f8-95ff286e6bfa"
+}
+```
+
+</details>
+
+---

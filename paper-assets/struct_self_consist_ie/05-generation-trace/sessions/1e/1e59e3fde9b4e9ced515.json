@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1e59e3fde9b4e9ced515",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis exp 025 n ablation",
+  "task_key": "worker_analysis_exp_025_n_ablation_20260516T121619",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_exp_025_n_ablation_20260516T121619_result.json",
+    "occurrence": 1,
+    "bytes": 938,
+    "sha256": "e039d3d13ad33ae8c72c2f26fc71a382ecce8cc7c4b2d0a609fa84685e34e3ee"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果汇总：\n\n**Rank32 (ft_002_v2, N=16 source)**:\n| N | Degen% | Oracle_gap | Best signal | Best_Δ vs greedy |\n|---|--------|------------|-------------|------------------|\n| 2 | 53.0 | +4.0pp | LP | -1.67pp |\n| 4 | 30.7 | +9.7pp | LP | -0.30pp |\n| 8 | 18.7 | +13.9pp | LP | +0.15pp |\n| 16 | 11.5 | +17.5pp | FK | +0.27pp |\n\n**Rank8 (exp-023, N=8 source)**:\n| N | Degen% | Oracle_gap | Best signal | Best_Δ vs greedy |\n|---|--------|------------|-------------|------------------|\n| 2 | 38.2 | +2.2pp | LP | -4.48pp |\n| 4 | 15.7 | +10.3pp | LP | -2.22pp |\n| 8 | 7.2 | +16.0pp | LP | -0.47pp |\n\n关键发现：\n- LP 在所有 N 值下最鲁棒，是最先转正的信号\n- N=2 时 SJ=FK=EM（仅1对比较，退化为 binary）\n- rank32 需要 N≥8 才能 selection > greedy；rank8 在 N=8 时仍为负\n- 输出路径：`/root/autodl-tmp/struct_self_consist_ie/output/exp_025_n_ablation/`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-025-n-ablation.md"
+}

@@ -1,0 +1,4166 @@
+# code fig degen scatter redraw
+
+**When Self-Consistency Fails for NER: Degeneracy, Signal Collapse, and the Correlation-Selection Gap** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 87
+- **Recorded user turns:** 0
+- **Tool calls:** 33
+- **Original source:** `logs/workers/worker_code_fig_degen_scatter_redraw_20260518T212740.log`
+- **Structured JSON:** [`3b8daa06c0e192837251.json`](../../sessions/3b/3b8daa06c0e192837251.json)
+
+## Before a recorded user message
+
+87 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "session_id": "c57a4897-a320-475e-a0e7-20bfcb94129b",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "9d39ad47-b877-4cd3-813b-051a4c646099",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779157200,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "e764f3a2-8ae7-41b9-8ade-4dbfa8e5581d",
+  "session_id": "c57a4897-a320-475e-a0e7-20bfcb94129b"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by finding the relevant scripts and data on the remote server.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c57a4897-a320-475e-a0e7-20bfcb94129b",
+  "uuid": "098ae5ff-9baf-4b0e-af3f-ce1ad6247666",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012b3cenNSZTssfPi7e8ADQM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13361,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13361
+      },
+      "output_tokens": 21,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 5_
+
+I'll search for the scatter plot script and unified degeneracy data on the remote server.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c57a4897-a320-475e-a0e7-20bfcb94129b",
+  "uuid": "342ade91-6e39-458a-8fa1-ef1d22d56998",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012b3cenNSZTssfPi7e8ADQM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13361,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13361
+      },
+      "output_tokens": 21,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01KyHKCZJqvRp3q5WeDappM1`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c57a4897-a320-475e-a0e7-20bfcb94129b",
+  "uuid": "fe1f4e51-10da-486f-9b3c-2d551fde559c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012b3cenNSZTssfPi7e8ADQM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13361,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13361
+      },
+      "output_tokens": 21,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-18T21:27:53.067Z_
+
+<details><summary>↩ Tool result · `toolu_01KyHKCZJqvRp3q5WeDappM1`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c57a4897-a320-475e-a0e7-20bfcb94129b",
+  "uuid": "c4e6e6ce-8323-4525-8840-71c7c796c441",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__ssh_read_only"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 8_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me search for the scatter plot script and unified degeneracy data on the remote server.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c57a4897-a320-475e-a0e7-20bfcb94129b",
+  "uuid": "de5db572-1c9a-4655-a546-66d41be467a9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NLMy19avAiamFnqkRbTSrb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 721,
+      "cache_read_input_tokens": 25202,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 721
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01EuuJsXhLc6xYYQ5KNLpPdw`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "find /root/autodl-tmp/struct_self_consist_ie -name \"*scatter*\" -o -name \"*degen*lp*\" -o -name \"*fig*degen*\" 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c57a4897-a320-475e-a0e7-20bfcb94129b",
+  "uuid": "41668cf3-7ff0-4bcb-a06a-40bfb2d75e71",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NLMy19avAiamFnqkRbTSrb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 721,
+      "cache_read_input_tokens": 25202,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 721
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-18T21:27:57.092Z_
+
+<details><summary>↩ Tool result · `toolu_01EuuJsXhLc6xYYQ5KNLpPdw`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c57a4897-a320-475e-a0e7-20bfcb94129b",
+  "uuid": "f9d57320-a064-4c21-97e9-dd395ffe4bf9",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01BLDsNpeusD7WsuKrfkYxij`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "ls /root/autodl-tmp/struct_self_consist_ie/output/unified_degeneracy_audit/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c57a4897-a320-475e-a0e7-20bfcb94129b",
+  "uuid": "1a4a36b2-0b76-4e17-9da2-76571848f0fa",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NLMy19avAiamFnqkRbTSrb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 721,
+      "cache_read_input_tokens": 25202,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 721
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01QfSkn9W8DKctGEBxFTJMoo`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "find /root/autodl-tmp/struct_self_consist_ie -path \"*__pycache__\" -prune -o -name \"*.py\" -print 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c57a4897-a320-475e-a0e7-20bfcb94129b",
+  "uuid": "7f1d1d80-36eb-4a8c-bfa1-9223fdcc4fa3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NLMy19avAiamFnqkRbTSrb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 721,
+      "cache_read_input_tokens": 25202,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 721
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-18T21:27:59.078Z_
+
+<details><summary>↩ Tool result · `toolu_01BLDsNpeusD7WsuKrfkYxij`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"degeneracy_recalc_results.json\\nrun.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.98}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c57a4897-a320-475e-a0e7-20bfcb94129b",
+  "uuid": "056ab69b-1736-4fa3-97da-0458681d345a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"degeneracy_recalc_results.json\\\\nrun.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.98}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"degeneracy_recalc_results.json\\nrun.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.98}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-18T21:27:59.088Z_
+
+<details><summary>↩ Tool result · `toolu_01QfSkn9W8DKctGEBxFTJMoo`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c57a4897-a320-475e-a0e7-20bfcb94129b",
+  "uuid": "06305665-9673-4d77-84a9-c7fb22983557",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_016FTVgPnKjwLeZSPTGdBHBR`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "find /root/autodl-tmp/struct_self_consist_ie -name \"*scatter*\" -not -path \"*__pycache__*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c57a4897-a320-475e-a0e7-20bfcb94129b",
+  "uuid": "616a927c-cbc9-47f2-bebd-f24bb10923fc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FQEXQ9FjaWwL2dEXBHkVsq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 787,
+      "cache_read_input_tokens": 25923,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 787
+      },
+      "output_tokens": 63,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-18T21:28:03.131Z_
+
+<details><summary>↩ Tool result · `toolu_016FTVgPnKjwLeZSPTGdBHBR`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/output/figures/degeneracy_lp_scatter.pdf\\n/root/autodl-tmp/struct_self_consist_ie/output/figures/degeneracy_lp_scatter.png\\n/root/autodl-tmp/struct_self_consist_ie/output/figures/fig_degeneracy_lp_scatter.pdf\\n/root/autodl-tmp/struct_self_consist_ie/output/figures/fig_degeneracy_lp_scatter.png\\n/root/autodl-tmp/struct_self_consist_ie/output/d141_degeneracy_scatter\\n/root/autodl-tmp/struct_self_consist_ie/output/d141_degeneracy_scatter/scatter_plot.png\\n/root/autodl-tmp/struct_self_consist_ie/output/diagnostic_calibration/diagnostic_calibration_scatter.png\\n/root/autodl-tmp/struct_self_consist_ie/docs/paper/figures/fig_degeneracy_lp_scatter.pdf\\n/root/autodl-tmp/struct_self_consist_ie/docs/paper/figures/fig_degeneracy_lp_scatter.png\\n/root/autodl-tmp/struct_self_consist_ie/analysis_d141_scatter_plot.py\\n/root/autodl-tmp/struct_self_consist_ie/analysis_d141_scatter_plot.py.bak_d141v2\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c57a4897-a320-475e-a0e7-20bfcb94129b",
+  "uuid": "add3850e-8ae3-4b2f-9950-ccccd8820b2d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/figures/degeneracy_lp_scatter.pdf\\\\n/root/autodl-tmp/struct_self_consist_ie/output/figures/degeneracy_lp_scatter.png\\\\n/root/autodl-tmp/struct_self_consist_ie/output/figures/fig_degeneracy_lp_scatter.pdf\\\\n/root/autodl-tmp/struct_self_consist_ie/output/figures/fig_degeneracy_lp_scatter.png\\\\n/root/autodl-tmp/struct_self_consist_ie/output/d141_degeneracy_scatter\\\\n/root/autodl-tmp/struct_self_consist_ie/output/d141_degeneracy_scatter/scatter_plot.png\\\\n/root/autodl-tmp/struct_self_consist_ie/output/diagnostic_calibration/diagnostic_calibration_scatter.png\\\\n/root/autodl-tmp/struct_self_consist_ie/docs/paper/figures/fig_degeneracy_lp_scatter.pdf\\\\n/root/autodl-tmp/struct_self_consist_ie/docs/paper/figures/fig_degeneracy_lp_scatter.png\\\\n/root/autodl-tmp/struct_self_consist_ie/analysis_d141_scatter_plot.py\\\\n/root/autodl-tmp/struct_self_consist_ie/analysis_d141_scatter_plot.py.bak_d141v2\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/output/figures/degeneracy_lp_scatter.pdf\\n/root/autodl-tmp/struct_self_consist_ie/output/figures/degeneracy_lp_scatter.png\\n/root/autodl-tmp/struct_self_consist_ie/output/figures/fig_degeneracy_lp_scatter.pdf\\n/root/autodl-tmp/struct_self_consist_ie/output/figures/fig_degeneracy_lp_scatter.png\\n/root/autodl-tmp/struct_self_consist_ie/output/d141_degeneracy_scatter\\n/root/autodl-tmp/struct_self_consist_ie/output/d141_degeneracy_scatter/scatter_plot.png\\n/root/autodl-tmp/struct_self_consist_ie/output/diagnostic_calibration/diagnostic_calibration_scatter.png\\n/root/autodl-tmp/struct_self_consist_ie/docs/paper/figures/fig_degeneracy_lp_scatter.pdf\\n/root/autodl-tmp/struct_self_consist_ie/docs/paper/figures/fig_degeneracy_lp_scatter.png\\n/root/autodl-tmp/struct_self_consist_ie/analysis_d141_scatter_plot.py\\n/root/autodl-tmp/struct_self_consist_ie/analysis_d141_scatter_plot.py.bak_d141v2\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01AnTQq6c2VkoarU3wTtAVuW`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "find /root/autodl-tmp/struct_self_consist_ie -name \"*degen*\" -not -path \"*__pycache__*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c57a4897-a320-475e-a0e7-20bfcb94129b",
+  "uuid": "aea15052-fc33-46bb-9b7c-02e71f1542ac",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FQEXQ9FjaWwL2dEXBHkVsq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 787,
+      "cache_read_input_tokens": 25923,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 787
+      },
+      "output_tokens": 63,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-18T21:28:04.065Z_
+
+<details><summary>↩ Tool result · `toolu_01AnTQq6c2VkoarU3wTtAVuW`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/output/figures/plot_degeneracy_lp.py\\n/root/autodl-tmp/struct_self_consist_ie/output/figures/degeneracy_lp_scatter.pdf\\n/root/autodl-tmp/struct_self_consist_ie/output/figures/degeneracy_lp_scatter.png\\n/root/autodl-tmp/struct_self_consist_ie/output/figures/fig_degeneracy_lp_scatter.pdf\\n/root/autodl-tmp/struct_self_consist_ie/output/figures/fig_degeneracy_lp_scatter.png\\n/root/autodl-tmp/struct_self_consist_ie/output/figures/plot_degeneracy_lp.py.bak\\n/root/autodl-tmp/struct_self_consist_ie/output/d110_4b_degeneracy\\n/root/autodl-tmp/struct_self_consist_ie/output/d110_4b_degeneracy/analyze_4b_degeneracy.py\\n/root/autodl-tmp/struct_self_consist_ie/output/d141_degeneracy_scatter\\n/root/autodl-tmp/struct_self_consist_ie/output/unified_degeneracy_audit\\n/root/autodl-tmp/struct_self_consist_ie/output/unified_degeneracy_audit/degeneracy_recalc_results.json\\n/root/autodl-tmp/struct_self_consist_ie/code/exp026_degeneracy_rho.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analysis_degen_gated_selection.py\\n/root/autodl-tmp/struct_self_consist_ie/code/batch_recalc_degeneracy.py\\n/root/autodl-tmp/struct_self_consist_ie/docs/paper/figures/fig_degeneracy_lp_scatter.pdf\\n/root/autodl-tmp/struct_self_consist_ie/docs/paper/figures/fig_degeneracy_lp_scatter.png\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c57a4897-a320-475e-a0e7-20bfcb94129b",
+  "uuid": "f92a31b6-0aa7-4149-b53e-dbac65caa722",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/figures/plot_degeneracy_lp.py\\\\n/root/autodl-tmp/struct_self_consist_ie/output/figures/degeneracy_lp_scatter.pdf\\\\n/root/autodl-tmp/struct_self_consist_ie/output/figures/degeneracy_lp_scatter.png\\\\n/root/autodl-tmp/struct_self_consist_ie/output/figures/fig_degeneracy_lp_scatter.pdf\\\\n/root/autodl-tmp/struct_self_consist_ie/output/figures/fig_degeneracy_lp_scatter.png\\\\n/root/autodl-tmp/struct_self_consist_ie/output/figures/plot_degeneracy_lp.py.bak\\\\n/root/autodl-tmp/struct_self_consist_ie/output/d110_4b_degeneracy\\\\n/root/autodl-tmp/struct_self_consist_ie/output/d110_4b_degeneracy/analyze_4b_degeneracy.py\\\\n/root/autodl-tmp/struct_self_consist_ie/output/d141_degeneracy_scatter\\\\n/root/autodl-tmp/struct_self_consist_ie/output/unified_degeneracy_audit\\\\n/root/autodl-tmp/struct_self_consist_ie/output/unified_degeneracy_audit/degeneracy_recalc_results.json\\\\n/root/autodl-tmp/struct_self_consist_ie/code/exp026_degeneracy_rho.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analysis_degen_gated_selection.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/batch_recalc_degeneracy.py\\\\n/root/autodl-tmp/struct_self_consist_ie/docs/paper/figures/fig_degeneracy_lp_scatter.pdf\\\\n/root/autodl-tmp/struct_self_consist_ie/docs/paper/figures/fig_degeneracy_lp_scatter.png\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/output/figures/plot_degeneracy_lp.py\\n/root/autodl-tmp/struct_self_consist_ie/output/figures/degeneracy_lp_scatter.pdf\\n/root/autodl-tmp/struct_self_consist_ie/output/figures/degeneracy_lp_scatter.png\\n/root/autodl-tmp/struct_self_consist_ie/output/figures/fig_degeneracy_lp_scatter.pdf\\n/root/autodl-tmp/struct_self_consist_ie/output/figures/fig_degeneracy_lp_scatter.png\\n/root/autodl-tmp/struct_self_consist_ie/output/figures/plot_degeneracy_lp.py.bak\\n/root/autodl-tmp/struct_self_consist_ie/output/d110_4b_degeneracy\\n/root/autodl-tmp/struct_self_consist_ie/output/d110_4b_degeneracy/analyze_4b_degeneracy.py\\n/root/autodl-tmp/struct_self_consist_ie/output/d141_degeneracy_scatter\\n/root/autodl-tmp/struct_self_consist_ie/output/unified_degeneracy_audit\\n/root/autodl-tmp/struct_self_consist_ie/output/unified_degeneracy_audit/degeneracy_recalc_results.json\\n/root/autodl-tmp/struct_self_consist_ie/code/exp026_degeneracy_rho.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analysis_degen_gated_selection.py\\n/root/autodl-tmp/struct_self_consist_ie/code/batch_recalc_degeneracy.py\\n/root/autodl-tmp/struct_self_consist_ie/docs/paper/figures/fig_degeneracy_lp_scatter.pdf\\n/root/autodl-tmp/struct_self_consist_ie/docs/paper/figures/fig_degeneracy_lp_scatter.png\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01CfEfp8AKakDgbW3BYb769H`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "find /root/autodl-tmp/struct_self_consist_ie -name \"*.py\" -not -path \"*__pycache__*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c57a4897-a320-475e-a0e7-20bfcb94129b",
+  "uuid": "740eb80b-59e0-4cd7-9353-0a7d8199d5cd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FQEXQ9FjaWwL2dEXBHkVsq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 787,
+      "cache_read_input_tokens": 25923,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 787
+      },
+      "output_tokens": 63,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-18T21:28:04.913Z_
+
+<details><summary>↩ Tool result · `toolu_01CfEfp8AKakDgbW3BYb769H`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/data/wnut17/downsample_train.py\\n/root/autodl-tmp/struct_self_consist_ie/data/retacred_raw/C-GCN/train.py\\n/root/autodl-tmp/struct_self_consist_ie/data/retacred_raw/C-GCN/utils/category_maps.py\\n/root/autodl-tmp/struct_self_consist_ie/data/retacred_raw/C-GCN/utils/constant.py\\n/root/autodl-tmp/struct_self_consist_ie/data/retacred_raw/C-GCN/utils/scorer.py\\n/root/autodl-tmp/struct_self_consist_ie/data/retacred_raw/PALSTM/scorer.py\\n/root/autodl-tmp/struct_self_consist_ie/data/retacred_raw/PALSTM/train.py\\n/root/autodl-tmp/struct_self_consist_ie/data/retacred_raw/PALSTM/utils/category_maps.py\\n/root/autodl-tmp/struct_self_consist_ie/data/retacred_raw/PALSTM/utils/constant.py\\n/root/autodl-tmp/struct_self_consist_ie/data/retacred_raw/Re-TACRED/apply_patch.py\\n/root/autodl-tmp/struct_self_consist_ie/data/retacred_raw/SpanBERT/category_maps.py\\n/root/autodl-tmp/struct_self_consist_ie/data/retacred_raw/SpanBERT/run_tacred.py\\n/root/autodl-tmp/struct_self_consist_ie/data/retacred_raw/SpanBERT/scorer.py\\n/root/autodl-tmp/struct_self_consist_ie/output/exp010_selection_curves/plot_selection_curves.py\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round2/run_selection_f1.py\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round2/re_selection_bootstrap.py\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round2/re_selection_reconcile.py\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round2/recompute_re_selection.py\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round2/tost_equivalence.py\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round2/compute_3seed_summary.py\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round2/compute_llama_3seed_summary.py\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round2/compute_n8_seed123_rho.py\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round2/plot_selection_gap_n8.py\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round4/analyze_re_nonzero_selection.py\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round4/analyze_logprob_ties.py\\n/root/autodl-tmp/struct_self_consist_ie/output/n16_3seed_analysis.py\\n/root/autodl-tmp/struct_self_consist_ie/output/figures/plot_degeneracy_lp.py\\n/root/autodl-tmp/struct_self_consist_ie/output/analysis_round8/epsilon_sweep.py\\n/root/autodl-tmp/struct_self_consist_ie/output/analysis_round8/run_task2.py\\n/root/autodl-tmp/struct_self_consist_ie/output/analysis_round8/run_task3.py\\n/root/autodl-tmp/struct_self_consist_ie/output/analysis_round8/run_sj_union_conll.py\\n/root/autodl-tmp/struct_self_consist_ie/output/analysis_round8/run_epsilon_fine.py\\n/root/autodl-tmp/struct_self_consist_ie/output/d108_mbr_within_rho/analyze_within_rho.py\\n/root/autodl-tmp/struct_self_consist_ie/output/d108_lp_vc_combination/analyze_lp_vc.py\\n/root/autodl-tmp/struct_self_consist_ie/output/d108_q4q5/analyze_q4q5.py\\n/root/autodl-tmp/struct_self_consist_ie/output/d108_q4q5/analyze_q4q5_v2.py\\n/root/autodl-tmp/struct_self_consist_ie/output/d110_4b_degeneracy/analyze_4b_degeneracy.py\\n/root/autodl-tmp/struct_self_consist_ie/output/d112_hybrid_strategy/compute_hybrid.py\\n/root/autodl-tmp/struct_self_consist_ie/output/d112_table2_fix/fix_table2.py\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_022_3seed_analysis/analyze_3seed.py\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_019_trained_verifier/train_verifier.py\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_025_n_ablation/n_ablation.py\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_025_n_ablation/n_ablation_fixed.py\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_027_mlp_verifier/train_mlp_verifier.py\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_025_n32/analyze_n32.py\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_025_n32/fix_n32_greedy.py\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_025_n32/unified_n_ablation.py\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_025_n32/bootstrap_selection_test.py\\n/root/autodl-tmp/struct_self_consist\\n\\n... [截断: 输出过长，省略 10833 字符] ...\\n\\nity_token_lp_analysis.py\\n/root/autodl-tmp/struct_self_consist_ie/code/unified_metrics.py\\n/root/autodl-tmp/struct_self_consist_ie/code/regression_test_unified_metrics.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analysis_dgs_llama_conll.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_llama_scierc_seed123_5signal.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analysis_dgs_llama_conll_report.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_llama_scierc_seed456_5signal.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analysis_dgs_epoch_rank.py\\n/root/autodl-tmp/struct_self_consist_ie/code/batch_recalc_degeneracy.py\\n/root/autodl-tmp/struct_self_consist_ie/merge_lora.py\\n/root/autodl-tmp/struct_self_consist_ie/run_bootstrap_loo.py\\n/root/autodl-tmp/struct_self_consist_ie/run_loo_v2.py\\n/root/autodl-tmp/struct_self_consist_ie/patch_scripts.py\\n/root/autodl-tmp/struct_self_consist_ie/artifacts/figures/plot_all_figures.py\\n/root/autodl-tmp/struct_self_consist_ie/run_llama_conll_bootstrap.py\\n/root/autodl-tmp/struct_self_consist_ie/bootstrap_analysis.py\\n/root/autodl-tmp/struct_self_consist_ie/bootstrap_analysis2.py\\n/root/autodl-tmp/struct_self_consist_ie/scripts/c3_lp_range_cdf.py\\n/root/autodl-tmp/struct_self_consist_ie/scripts/analyze_lp_range_cdf_n529.py\\n/root/autodl-tmp/struct_self_consist_ie/scripts/epsilon_sweep.py\\n/root/autodl-tmp/struct_self_consist_ie/scripts/analyze_zero_f1.py\\n/root/autodl-tmp/struct_self_consist_ie/scripts/analyze_zero_f1_detail.py\\n/root/autodl-tmp/struct_self_consist_ie/scripts/paired_n8_baseline.py\\n/root/autodl-tmp/struct_self_consist_ie/scripts/exp_028_postprocess/03_analyze.py\\n/root/autodl-tmp/struct_self_consist_ie/scripts/calibration_baseline.py\\n/root/autodl-tmp/struct_self_consist_ie/scripts/adalp_analysis.py\\n/root/autodl-tmp/struct_self_consist_ie/scripts/compute_within_rho_exp021.py\\n/root/autodl-tmp/struct_self_consist_ie/scripts/exp_029a_postprocess/03_analyze.py\\n/root/autodl-tmp/struct_self_consist_ie/scripts/exp_029a_postprocess/03_analyze_fixed.py\\n/root/autodl-tmp/struct_self_consist_ie/scripts/exp_029b_postprocess/03_analyze.py\\n/root/autodl-tmp/struct_self_consist_ie/scripts/n_scaling_gf_maxlp.py\\n/root/autodl-tmp/struct_self_consist_ie/logprob_tie_analysis.py\\n/root/autodl-tmp/struct_self_consist_ie/logprob_tie_structural.py\\n/root/autodl-tmp/struct_self_consist_ie/run_freeform_inference.py\\n/root/autodl-tmp/struct_self_consist_ie/analyze_freeform_ablation.py\\n/root/autodl-tmp/struct_self_consist_ie/train_supervised_verifier.py\\n/root/autodl-tmp/struct_self_consist_ie/evaluate_verifier.py\\n/root/autodl-tmp/struct_self_consist_ie/deep_freeform_analysis.py\\n/root/autodl-tmp/struct_self_consist_ie/multiseed_flip_analysis.py\\n/root/autodl-tmp/struct_self_consist_ie/multiseed_flip_analysis_part2.py\\n/root/autodl-tmp/struct_self_consist_ie/compute_fk_excess.py\\n/root/autodl-tmp/struct_self_consist_ie/rho_audit.py\\n/root/autodl-tmp/struct_self_consist_ie/analysis_rho_unification/compute_full_unified_rho.py\\n/root/autodl-tmp/struct_self_consist_ie/compute_missing_n8.py\\n/root/autodl-tmp/struct_self_consist_ie/analysis_round8/epsilon_sweep.py\\n/root/autodl-tmp/struct_self_consist_ie/analysis_round8/fk_independence_instance_test.py\\n/root/autodl-tmp/struct_self_consist_ie/analysis_round8/tost_external_delta.py\\n/root/autodl-tmp/struct_self_consist_ie/merge_4b.py\\n/root/autodl-tmp/struct_self_consist_ie/merge_4b_ckpt4200.py\\n/root/autodl-tmp/struct_self_consist_ie/run_freeform_conll.py\\n/root/autodl-tmp/struct_self_consist_ie/analyze_freeform_conll.py\\n/root/autodl-tmp/struct_self_consist_ie/analyze_lp_compression.py\\n/root/autodl-tmp/struct_self_consist_ie/deberta_verifier_5fold.py\\n/root/autodl-tmp/struct_self_consist_ie/analysis_d141_entity_merge.py\\n/root/autodl-tmp/struct_self_consist_ie/analysis_d141_conditional_decomp.py\\n/root/autodl-tmp/struct_self_consist_ie/analysis_d141_scatter_plot.py\\n/root/autodl-tmp/struct_self_consist_ie/analysis_r21_q1_alignment.py\\n/root/autodl-tmp/struct_self_consist_ie/merge_conll.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c57a4897-a320-475e-a0e7-20bfcb94129b",
+  "uuid": "813e4d97-b622-4643-ac03-972773956d67",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/data/wnut17/downsample_train.py\\\\n/root/autodl-tmp/struct_self_consist_ie/data/retacred_raw/C-GCN/train.py\\\\n/root/autodl-tmp/struct_self_consist_ie/data/retacred_raw/C-GCN/utils/category_maps.py\\\\n/root/autodl-tmp/struct_self_consist_ie/data/retacred_raw/C-GCN/utils/constant.py\\\\n/root/autodl-tmp/struct_self_consist_ie/data/retacred_raw/C-GCN/utils/scorer.py\\\\n/root/autodl-tmp/struct_self_consist_ie/data/retacred_raw/PALSTM/scorer.py\\\\n/root/autodl-tmp/struct_self_consist_ie/data/retacred_raw/PALSTM/train.py\\\\n/root/autodl-tmp/struct_self_consist_ie/data/retacred_raw/PALSTM/utils/category_maps.py\\\\n/root/autodl-tmp/struct_self_consist_ie/data/retacred_raw/PALSTM/utils/constant.py\\\\n/root/autodl-tmp/struct_self_consist_ie/data/retacred_raw/Re-TACRED/apply_patch.py\\\\n/root/autodl-tmp/struct_self_consist_ie/data/retacred_raw/SpanBERT/category_maps.py\\\\n/root/autodl-tmp/struct_self_consist_ie/data/retacred_raw/SpanBERT/run_tacred.py\\\\n/root/autodl-tmp/struct_self_consist_ie/data/retacred_raw/SpanBERT/scorer.py\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp010_selection_curves/plot_selection_curves.py\\\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round2/run_selection_f1.py\\\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round2/re_selection_bootstrap.py\\\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round2/re_selection_reconcile.py\\\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round2/recompute_re_selection.py\\\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round2/tost_equivalence.py\\\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round2/compute_3seed_summary.py\\\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round2/compute_llama_3seed_summary.py\\\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round2/compute_n8_seed123_rho.py\\\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round2/plot_selection_gap_n8.py\\\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round4/analyze_re_nonzero_selection.py\\\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round4/analyze_logprob_ties.py\\\\n/root/autodl-tmp/struct_self_consist_ie/output/n16_3seed_analysis.py\\\\n/root/autodl-tmp/struct_self_consist_ie/output/figures/plot_degeneracy_lp.py\\\\n/root/autodl-tmp/struct_self_consist_ie/output/analysis_round8/epsilon_sweep.py\\\\n/root/autodl-tmp/struct_self_consist_ie/output/analysis_round8/run_task2.py\\\\n/root/autodl-tmp/struct_self_consist_ie/output/analysis_round8/run_task3.py\\\\n/root/autodl-tmp/struct_self_consist_ie/output/analysis_round8/run_sj_union_conll.py\\\\n/root/autodl-tmp/struct_self_consist_ie/output/analysis_round8/run_epsilon_fine.py\\\\n/root/autodl-tmp/struct_self_consist_ie/output/d108_mbr_within_rho/analyze_within_rho.py\\\\n/root/autodl-tmp/struct_self_consist_ie/output/d108_lp_vc_combination/analyze_lp_vc.py\\\\n/root/autodl-tmp/struct_self_consist_ie/output/d108_q4q5/analyze_q4q5.py\\\\n/root/autodl-tmp/struct_self_consist_ie/output/d108_q4q5/analyze_q4q5_v2.py\\\\n/root/autodl-tmp/struct_self_consist_ie/output/d110_4b_degeneracy/analyze_4b_degeneracy.py\\\\n/root/autodl-tmp/struct_self_consist_ie/output/d112_hybrid_strategy/compute_hybrid.py\\\\n/root/autodl-tmp/struct_self_consist_ie/output/d112_table2_fix/fix_table2.py\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_022_3seed_analysis/analyze_3seed.py\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_019_trained_verifier/train_verifier.py\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_025_n_ablation/n_ablation.py\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_025_n_ablation/n_ablation_fixed.py\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_027_mlp_verifier/train_mlp_verifier.py\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_025_n32/analyze_n32.py\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_025_n32/fix_n32_greedy.py\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_025_n32/unified_n_ablation.py\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_025_n32/bootstrap_selection_test.py\\\\n/root/autodl-tmp/struct_self_consist\\\\n\\\\n... [截断: 输出过长，省略 10833 字符] ...\\\\n\\\\nity_token_lp_analysis.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/unified_metrics.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/regression_test_unified_metrics.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analysis_dgs_llama_conll.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_llama_scierc_seed123_5signal.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analysis_dgs_llama_conll_report.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_llama_scierc_seed456_5signal.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analysis_dgs_epoch_rank.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/batch_recalc_degeneracy.py\\\\n/root/autodl-tmp/struct_self_consist_ie/merge_lora.py\\\\n/root/autodl-tmp/struct_self_consist_ie/run_bootstrap_loo.py\\\\n/root/autodl-tmp/struct_self_consist_ie/run_loo_v2.py\\\\n/root/autodl-tmp/struct_self_consist_ie/patch_scripts.py\\\\n/root/autodl-tmp/struct_self_consist_ie/artifacts/figures/plot_all_figures.py\\\\n/root/autodl-tmp/struct_self_consist_ie/run_llama_conll_bootstrap.py\\\\n/root/autodl-tmp/struct_self_consist_ie/bootstrap_analysis.py\\\\n/root/autodl-tmp/struct_self_consist_ie/bootstrap_analysis2.py\\\\n/root/autodl-tmp/struct_self_consist_ie/scripts/c3_lp_range_cdf.py\\\\n/root/autodl-tmp/struct_self_consist_ie/scripts/analyze_lp_range_cdf_n529.py\\\\n/root/autodl-tmp/struct_self_consist_ie/scripts/epsilon_sweep.py\\\\n/root/autodl-tmp/struct_self_consist_ie/scripts/analyze_zero_f1.py\\\\n/root/autodl-tmp/struct_self_consist_ie/scripts/analyze_zero_f1_detail.py\\\\n/root/autodl-tmp/struct_self_consist_ie/scripts/paired_n8_baseline.py\\\\n/root/autodl-tmp/struct_self_consist_ie/scripts/exp_028_postprocess/03_analyze.py\\\\n/root/autodl-tmp/struct_self_consist_ie/scripts/calibration_baseline.py\\\\n/root/autodl-tmp/struct_self_consist_ie/scripts/adalp_analysis.py\\\\n/root/autodl-tmp/struct_self_consist_ie/scripts/compute_within_rho_exp021.py\\\\n/root/autodl-tmp/struct_self_consist_ie/scripts/exp_029a_postprocess/03_analyze.py\\\\n/root/autodl-tmp/struct_self_consist_ie/scripts/exp_029a_postprocess/03_analyze_fixed.py\\\\n/root/autodl-tmp/struct_self_consist_ie/scripts/exp_029b_postprocess/03_analyze.py\\\\n/root/autodl-tmp/struct_self_consist_ie/scripts/n_scaling_gf_maxlp.py\\\\n/root/autodl-tmp/struct_self_consist_ie/logprob_tie_analysis.py\\\\n/root/autodl-tmp/struct_self_consist_ie/logprob_tie_structural.py\\\\n/root/autodl-tmp/struct_self_consist_ie/run_freeform_inference.py\\\\n/root/autodl-tmp/struct_self_consist_ie/analyze_freeform_ablation.py\\\\n/root/autodl-tmp/struct_self_consist_ie/train_supervised_verifier.py\\\\n/root/autodl-tmp/struct_self_consist_ie/evaluate_verifier.py\\\\n/root/autodl-tmp/struct_self_consist_ie/deep_freeform_analysis.py\\\\n/root/autodl-tmp/struct_self_consist_ie/multiseed_flip_analysis.py\\\\n/root/autodl-tmp/struct_self_consist_ie/multiseed_flip_analysis_part2.py\\\\n/root/autodl-tmp/struct_self_consist_ie/compute_fk_excess.py\\\\n/root/autodl-tmp/struct_self_consist_ie/rho_audit.py\\\\n/root/autodl-tmp/struct_self_consist_ie/analysis_rho_unification/compute_full_unified_rho.py\\\\n/root/autodl-tmp/struct_self_consist_ie/compute_missing_n8.py\\\\n/root/autodl-tmp/struct_self_consist_ie/analysis_round8/epsilon_sweep.py\\\\n/root/autodl-tmp/struct_self_consist_ie/analysis_round8/fk_independence_instance_test.py\\\\n/root/autodl-tmp/struct_self_consist_ie/analysis_round8/tost_external_delta.py\\\\n/root/autodl-tmp/struct_self_consist_ie/merge_4b.py\\\\n/root/autodl-tmp/struct_self_consist_ie/merge_4b_ckpt4200.py\\\\n/root/autodl-tmp/struct_self_consist_ie/run_freeform_conll.py\\\\n/root/autodl-tmp/struct_self_consist_ie/analyze_freeform_conll.py\\\\n/root/autodl-tmp/struct_self_consist_ie/analyze_lp_compression.py\\\\n/root/autodl-tmp/struct_self_consist_ie/deberta_verifier_5fold.py\\\\n/root/autodl-tmp/struct_self_consist_ie/analysis_d141_entity_merge.py\\\\n/root/autodl-tmp/struct_self_consist_ie/analysis_d141_conditional_decomp.py\\\\n/root/autodl-tmp/struct_self_consist_ie/analysis_d141_scatter_plot.py\\\\n/root/autodl-tmp/struct_self_consist_ie/analysis_r21_q1_alignment.py\\\\n/root/autodl-tmp/struct_self_consist_ie/merge_conll.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/data/wnut17/downsample_train.py\\n/root/autodl-tmp/struct_self_consist_ie/data/retacred_raw/C-GCN/train.py\\n/root/autodl-tmp/struct_self_consist_ie/data/retacred_raw/C-GCN/utils/category_maps.py\\n/root/autodl-tmp/struct_self_consist_ie/data/retacred_raw/C-GCN/utils/constant.py\\n/root/autodl-tmp/struct_self_consist_ie/data/retacred_raw/C-GCN/utils/scorer.py\\n/root/autodl-tmp/struct_self_consist_ie/data/retacred_raw/PALSTM/scorer.py\\n/root/autodl-tmp/struct_self_consist_ie/data/retacred_raw/PALSTM/train.py\\n/root/autodl-tmp/struct_self_consist_ie/data/retacred_raw/PALSTM/utils/category_maps.py\\n/root/autodl-tmp/struct_self_consist_ie/data/retacred_raw/PALSTM/utils/constant.py\\n/root/autodl-tmp/struct_self_consist_ie/data/retacred_raw/Re-TACRED/apply_patch.py\\n/root/autodl-tmp/struct_self_consist_ie/data/retacred_raw/SpanBERT/category_maps.py\\n/root/autodl-tmp/struct_self_consist_ie/data/retacred_raw/SpanBERT/run_tacred.py\\n/root/autodl-tmp/struct_self_consist_ie/data/retacred_raw/SpanBERT/scorer.py\\n/root/autodl-tmp/struct_self_consist_ie/output/exp010_selection_curves/plot_selection_curves.py\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round2/run_selection_f1.py\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round2/re_selection_bootstrap.py\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round2/re_selection_reconcile.py\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round2/recompute_re_selection.py\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round2/tost_equivalence.py\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round2/compute_3seed_summary.py\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round2/compute_llama_3seed_summary.py\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round2/compute_n8_seed123_rho.py\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round2/plot_selection_gap_n8.py\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round4/analyze_re_nonzero_selection.py\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round4/analyze_logprob_ties.py\\n/root/autodl-tmp/struct_self_consist_ie/output/n16_3seed_analysis.py\\n/root/autodl-tmp/struct_self_consist_ie/output/figures/plot_degeneracy_lp.py\\n/root/autodl-tmp/struct_self_consist_ie/output/analysis_round8/epsilon_sweep.py\\n/root/autodl-tmp/struct_self_consist_ie/output/analysis_round8/run_task2.py\\n/root/autodl-tmp/struct_self_consist_ie/output/analysis_round8/run_task3.py\\n/root/autodl-tmp/struct_self_consist_ie/output/analysis_round8/run_sj_union_conll.py\\n/root/autodl-tmp/struct_self_consist_ie/output/analysis_round8/run_epsilon_fine.py\\n/root/autodl-tmp/struct_self_consist_ie/output/d108_mbr_within_rho/analyze_within_rho.py\\n/root/autodl-tmp/struct_self_consist_ie/output/d108_lp_vc_combination/analyze_lp_vc.py\\n/root/autodl-tmp/struct_self_consist_ie/output/d108_q4q5/analyze_q4q5.py\\n/root/autodl-tmp/struct_self_consist_ie/output/d108_q4q5/analyze_q4q5_v2.py\\n/root/autodl-tmp/struct_self_consist_ie/output/d110_4b_degeneracy/analyze_4b_degeneracy.py\\n/root/autodl-tmp/struct_self_consist_ie/output/d112_hybrid_strategy/compute_hybrid.py\\n/root/autodl-tmp/struct_self_consist_ie/output/d112_table2_fix/fix_table2.py\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_022_3seed_analysis/analyze_3seed.py\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_019_trained_verifier/train_verifier.py\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_025_n_ablation/n_ablation.py\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_025_n_ablation/n_ablation_fixed.py\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_027_mlp_verifier/train_mlp_verifier.py\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_025_n32/analyze_n32.py\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_025_n32/fix_n32_greedy.py\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_025_n32/unified_n_ablation.py\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_025_n32/bootstrap_selection_test.py\\n/root/autodl-tmp/struct_self_consist\\n\\n... [截断: 输出过长，省略 10833 字符] ...\\n\\nity_token_lp_analysis.py\\n/root/autodl-tmp/struct_self_consist_ie/code/unified_metrics.py\\n/root/autodl-tmp/struct_self_consist_ie/code/regression_test_unified_metrics.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analysis_dgs_llama_conll.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_llama_scierc_seed123_5signal.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analysis_dgs_llama_conll_report.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_llama_scierc_seed456_5signal.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analysis_dgs_epoch_rank.py\\n/root/autodl-tmp/struct_self_consist_ie/code/batch_recalc_degeneracy.py\\n/root/autodl-tmp/struct_self_consist_ie/merge_lora.py\\n/root/autodl-tmp/struct_self_consist_ie/run_bootstrap_loo.py\\n/root/autodl-tmp/struct_self_consist_ie/run_loo_v2.py\\n/root/autodl-tmp/struct_self_consist_ie/patch_scripts.py\\n/root/autodl-tmp/struct_self_consist_ie/artifacts/figures/plot_all_figures.py\\n/root/autodl-tmp/struct_self_consist_ie/run_llama_conll_bootstrap.py\\n/root/autodl-tmp/struct_self_consist_ie/bootstrap_analysis.py\\n/root/autodl-tmp/struct_self_consist_ie/bootstrap_analysis2.py\\n/root/autodl-tmp/struct_self_consist_ie/scripts/c3_lp_range_cdf.py\\n/root/autodl-tmp/struct_self_consist_ie/scripts/analyze_lp_range_cdf_n529.py\\n/root/autodl-tmp/struct_self_consist_ie/scripts/epsilon_sweep.py\\n/root/autodl-tmp/struct_self_consist_ie/scripts/analyze_zero_f1.py\\n/root/autodl-tmp/struct_self_consist_ie/scripts/analyze_zero_f1_detail.py\\n/root/autodl-tmp/struct_self_consist_ie/scripts/paired_n8_baseline.py\\n/root/autodl-tmp/struct_self_consist_ie/scripts/exp_028_postprocess/03_analyze.py\\n/root/autodl-tmp/struct_self_consist_ie/scripts/calibration_baseline.py\\n/root/autodl-tmp/struct_self_consist_ie/scripts/adalp_analysis.py\\n/root/autodl-tmp/struct_self_consist_ie/scripts/compute_within_rho_exp021.py\\n/root/autodl-tmp/struct_self_consist_ie/scripts/exp_029a_postprocess/03_analyze.py\\n/root/autodl-tmp/struct_self_consist_ie/scripts/exp_029a_postprocess/03_analyze_fixed.py\\n/root/autodl-tmp/struct_self_consist_ie/scripts/exp_029b_postprocess/03_analyze.py\\n/root/autodl-tmp/struct_self_consist_ie/scripts/n_scaling_gf_maxlp.py\\n/root/autodl-tmp/struct_self_consist_ie/logprob_tie_analysis.py\\n/root/autodl-tmp/struct_self_consist_ie/logprob_tie_structural.py\\n/root/autodl-tmp/struct_self_consist_ie/run_freeform_inference.py\\n/root/autodl-tmp/struct_self_consist_ie/analyze_freeform_ablation.py\\n/root/autodl-tmp/struct_self_consist_ie/train_supervised_verifier.py\\n/root/autodl-tmp/struct_self_consist_ie/evaluate_verifier.py\\n/root/autodl-tmp/struct_self_consist_ie/deep_freeform_analysis.py\\n/root/autodl-tmp/struct_self_consist_ie/multiseed_flip_analysis.py\\n/root/autodl-tmp/struct_self_consist_ie/multiseed_flip_analysis_part2.py\\n/root/autodl-tmp/struct_self_consist_ie/compute_fk_excess.py\\n/root/autodl-tmp/struct_self_consist_ie/rho_audit.py\\n/root/autodl-tmp/struct_self_consist_ie/analysis_rho_unification/compute_full_unified_rho.py\\n/root/autodl-tmp/struct_self_consist_ie/compute_missing_n8.py\\n/root/autodl-tmp/struct_self_consist_ie/analysis_round8/epsilon_sweep.py\\n/root/autodl-tmp/struct_self_consist_ie/analysis_round8/fk_independence_instance_test.py\\n/root/autodl-tmp/struct_self_consist_ie/analysis_round8/tost_external_delta.py\\n/root/autodl-tmp/struct_self_consist_ie/merge_4b.py\\n/root/autodl-tmp/struct_self_consist_ie/merge_4b_ckpt4200.py\\n/root/autodl-tmp/struct_self_consist_ie/run_freeform_conll.py\\n/root/autodl-tmp/struct_self_consist_ie/analyze_freeform_conll.py\\n/root/autodl-tmp/struct_self_consist_ie/analyze_lp_compression.py\\n/root/autodl-tmp/struct_self_consist_ie/deberta_verifier_5fold.py\\n/root/autodl-tmp/struct_self_consist_ie/analysis_d141_entity_merge.py\\n/root/autodl-tmp/struct_self_consist_ie/analysis_d141_conditional_decomp.py\\n/root/autodl-tmp/struct_self_consist_ie/analysis_d141_scatter_plot.py\\n/root/autodl-tmp/struct_self_consist_ie/analysis_r21_q1_alignment.py\\n/root/autodl-tmp/struct_self_consist_ie/merge_conll.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01GDFJ24K9wpu6LmEcfgkNs4`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/unified_degeneracy_audit/degeneracy_recalc_results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c57a4897-a320-475e-a0e7-20bfcb94129b",
+  "uuid": "50dc6df8-c6f6-43f6-b85d-e6b6b4c65140",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FQEXQ9FjaWwL2dEXBHkVsq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 787,
+      "cache_read_input_tokens": 25923,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 787
+      },
+      "output_tokens": 63,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-18T21:28:05.614Z_
+
+<details><summary>↩ Tool result · `toolu_01GDFJ24K9wpu6LmEcfgkNs4`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[\\n  {\\n    \\\"label\\\": \\\"Qwen3-8B / SciERC / T=1.0 / seed=42\\\",\\n    \\\"dir\\\": \\\"exp_012_rerun_1024\\\",\\n    \\\"dataset\\\": \\\"scierc\\\",\\n    \\\"model\\\": \\\"Qwen3-8B\\\",\\n    \\\"T\\\": 1.0,\\n    \\\"seed\\\": 42,\\n    \\\"status\\\": \\\"OK\\\",\\n    \\\"n_instances\\\": 529,\\n    \\\"n_degenerate\\\": 94,\\n    \\\"degen_pct_unified\\\": 17.77,\\n    \\\"greedy_f1\\\": 64.39,\\n    \\\"old_sample_f1_pct_zero\\\": 12.59,\\n    \\\"delta\\\": 5.17\\n  },\\n  {\\n    \\\"label\\\": \\\"Qwen3-8B / SciERC / T=1.0 / seed=123\\\",\\n    \\\"dir\\\": \\\"exp_018_qwen_scierc_seed123\\\",\\n    \\\"dataset\\\": \\\"scierc\\\",\\n    \\\"model\\\": \\\"Qwen3-8B\\\",\\n    \\\"T\\\": 1.0,\\n    \\\"seed\\\": 123,\\n    \\\"status\\\": \\\"OK\\\",\\n    \\\"n_instances\\\": 529,\\n    \\\"n_degenerate\\\": 91,\\n    \\\"degen_pct_unified\\\": 17.2,\\n    \\\"greedy_f1\\\": 64.57,\\n    \\\"old_sample_f1_pct_zero\\\": 11.67,\\n    \\\"delta\\\": 5.53\\n  },\\n  {\\n    \\\"label\\\": \\\"Qwen3-8B / SciERC / T=1.0 / seed=456\\\",\\n    \\\"dir\\\": \\\"exp_018_qwen_scierc_seed456\\\",\\n    \\\"dataset\\\": \\\"scierc\\\",\\n    \\\"model\\\": \\\"Qwen3-8B\\\",\\n    \\\"T\\\": 1.0,\\n    \\\"seed\\\": 456,\\n    \\\"status\\\": \\\"OK\\\",\\n    \\\"n_instances\\\": 529,\\n    \\\"n_degenerate\\\": 108,\\n    \\\"degen_pct_unified\\\": 20.42,\\n    \\\"greedy_f1\\\": 64.78,\\n    \\\"old_sample_f1_pct_zero\\\": 13.26,\\n    \\\"delta\\\": 7.16\\n  },\\n  {\\n    \\\"label\\\": \\\"Qwen3-8B / CoNLL / T=1.0 N=16 / seed=42\\\",\\n    \\\"dir\\\": \\\"exp_002_conll_n16\\\",\\n    \\\"dataset\\\": \\\"conll2003\\\",\\n    \\\"model\\\": \\\"Qwen3-8B\\\",\\n    \\\"T\\\": 1.0,\\n    \\\"seed\\\": 42,\\n    \\\"N\\\": 16,\\n    \\\"status\\\": \\\"OK\\\",\\n    \\\"n_instances\\\": 2756,\\n    \\\"n_degenerate\\\": 1335,\\n    \\\"degen_pct_unified\\\": 48.44,\\n    \\\"greedy_f1\\\": 90.7,\\n    \\\"old_sample_f1_pct_zero\\\": 7.58,\\n    \\\"delta\\\": 40.86\\n  },\\n  {\\n    \\\"label\\\": \\\"Qwen3-8B / CoNLL / T=1.0 N=16 / seed=123\\\",\\n    \\\"dir\\\": \\\"exp_002_conll_n16_seed123\\\",\\n    \\\"dataset\\\": \\\"conll2003\\\",\\n    \\\"model\\\": \\\"Qwen3-8B\\\",\\n    \\\"T\\\": 1.0,\\n    \\\"seed\\\": 123,\\n    \\\"N\\\": 16,\\n    \\\"status\\\": \\\"OK\\\",\\n    \\\"n_instances\\\": 2756,\\n    \\\"n_degenerate\\\": 1298,\\n    \\\"degen_pct_unified\\\": 47.1,\\n    \\\"greedy_f1\\\": 90.65,\\n    \\\"old_sample_f1_pct_zero\\\": 7.54,\\n    \\\"delta\\\": 39.55\\n  },\\n  {\\n    \\\"label\\\": \\\"Qwen3-8B / CoNLL / T=1.0 N=16 / seed=456\\\",\\n    \\\"dir\\\": \\\"exp_002_conll_n16_seed456\\\",\\n    \\\"dataset\\\": \\\"conll2003\\\",\\n    \\\"model\\\": \\\"Qwen3-8B\\\",\\n    \\\"T\\\": 1.0,\\n    \\\"seed\\\": 456,\\n    \\\"N\\\": 16,\\n    \\\"status\\\": \\\"OK\\\",\\n    \\\"n_instances\\\": 2756,\\n    \\\"n_degenerate\\\": 1528,\\n    \\\"degen_pct_unified\\\": 55.44,\\n    \\\"greedy_f1\\\": 90.71,\\n    \\\"old_sample_f1_pct_zero\\\": 7.02,\\n    \\\"delta\\\": 48.42\\n  },\\n  {\\n    \\\"label\\\": \\\"Qwen3-8B / FewNERD / T=1.0 / seed=42\\\",\\n    \\\"dir\\\": \\\"exp_027_fewnerd_n16\\\",\\n    \\\"dataset\\\": \\\"fewnerd\\\",\\n    \\\"model\\\": \\\"Qwen3-8B\\\",\\n    \\\"T\\\": 1.0,\\n    \\\"seed\\\": 42,\\n    \\\"status\\\": \\\"OK\\\",\\n    \\\"n_instances\\\": 4351,\\n    \\\"n_degenerate\\\": 307,\\n    \\\"degen_pct_unified\\\": 7.06,\\n    \\\"greedy_f1\\\": 74.78,\\n    \\\"old_sample_f1_pct_zero\\\": null,\\n    \\\"delta\\\": null\\n  },\\n  {\\n    \\\"label\\\": \\\"Qwen3-8B / FewNERD / T=1.0 / seed=123\\\",\\n    \\\"dir\\\": \\\"exp_021_fewnerd_n8_seed123\\\",\\n    \\\"dataset\\\": \\\"fewnerd\\\",\\n    \\\"model\\\": \\\"Qwen3-8B\\\",\\n    \\\"T\\\": 1.0,\\n    \\\"seed\\\": 123,\\n    \\\"status\\\": \\\"OK\\\",\\n    \\\"n_instances\\\": 32565,\\n    \\\"n_degenerate\\\": 4272,\\n    \\\"degen_pct_unified\\\": 13.12,\\n    \\\"greedy_f1\\\": 74.8,\\n    \\\"old_sample_f1_pct_zero\\\": 20.39,\\n    \\\"delta\\\": -7.27\\n  },\\n  {\\n    \\\"label\\\": \\\"Qwen3-8B / FewNERD / T=1.0 / seed=456\\\",\\n    \\\"dir\\\": \\\"exp_021_fewnerd_n8_seed456\\\",\\n    \\\"dataset\\\": \\\"fewnerd\\\",\\n    \\\"model\\\": \\\"Qwen3-8B\\\",\\n    \\\"T\\\": 1.0,\\n    \\\"seed\\\": 456,\\n    \\\"status\\\": \\\"OK\\\",\\n    \\\"n_instances\\\": 32565,\\n    \\\"n_degenerate\\\": 3947,\\n    \\\"degen_pct_unified\\\": 12.12,\\n    \\\"greedy_f1\\\": 74.86,\\n    \\\"old_sample_f1_pct_zero\\\": 19.32,\\n    \\\"delta\\\": -7.2\\n  },\\n  {\\n    \\\"label\\\": \\\"LLaMA3.1-8B / SciERC / T=1.0 / seed=42\\\",\\n    \\\"dir\\\": \\\"exp_018_llama_scierc_seed42_r1024\\\",\\n    \\\"dataset\\\": \\\"scierc\\\",\\n    \\\"model\\\": \\\"LLaMA3.1-8B\\\",\\n    \\\"T\\\": 1.0,\\n    \\\"seed\\\": 42,\\n    \\\"status\\\": \\\"OK\\\",\\n    \\\"n_instances\\\": 529,\\n    \\\"n_degenerate\\\": 132,\\n    \\\"degen_pct_unified\\\": 24.95,\\n    \\\"greedy_f1\\\": 64.6,\\n    \\\"old_sample_f1_pct_zero\\\": 11.44,\\n    \\\"delta\\\": 13.52\\n  },\\n  {\\n    \\\"label\\\": \\\"LLaMA3.1-8B / SciERC / T=1.0 / seed=123\\\",\\n    \\\"dir\\\": \\\"exp_018_llama_scierc_seed123\\\",\\n    \\\"dataset\\\": \\\"scierc\\\",\\n    \\\"model\\\": \\\"LLaMA3.1-8B\\\",\\n    \\\"T\\\": 1.0,\\n    \\\"seed\\\": 123,\\n    \\\"status\\\": \\\"OK\\\",\\n    \\\"n_instances\\\": 529,\\n    \\\"n_degenerate\\\": 141,\\n    \\\"degen_pct_unified\\\": 26.65,\\n    \\\"greedy_f1\\\": 64.54,\\n    \\\"old_sample_f1_pct_zero\\\": 11.11,\\n    \\\"delta\\\": 15.55\\n  },\\n  {\\n    \\\"label\\\": \\\"LLaMA3.1-8B / SciERC / T=1.0 / seed=456\\\",\\n    \\\"dir\\\": \\\"exp_018_llama_scierc_seed456_r1024\\\",\\n    \\\"dataset\\\": \\\"scierc\\\",\\n    \\\"model\\\": \\\"LLaMA3.1-8B\\\",\\n    \\\"T\\\": 1.0,\\n    \\\"seed\\\": 456,\\n    \\\"status\\\": \\\"OK\\\",\\n    \\\"n_instances\\\": 529,\\n    \\\"n_degenerate\\\": 145,\\n    \\\"degen_pct_unified\\\": 27.41,\\n    \\\"greedy_f1\\\": 64.59,\\n    \\\"old_sample_f1_pct_zero\\\": 11.65,\\n    \\\"delta\\\": 15.76\\n  },\\n  {\\n    \\\"label\\\": \\\"LLaMA3.1-8B / CoNLL / T=1.0 N=16 / seed=42\\\",\\n    \\\"dir\\\": \\\"exp_017_llama_conll_n16_r1024\\\",\\n    \\\"dataset\\\": \\\"conll2003\\\",\\n    \\\"model\\\": \\\"LLaMA3.1-8B\\\",\\n    \\\"T\\\": 1.0,\\n    \\\"seed\\\": 42,\\n    \\\"N\\\": 16,\\n    \\\"status\\\": \\\"OK\\\",\\n    \\\"n_instances\\\": 2756,\\n    \\\"n_degenerate\\\": 2383,\\n    \\\"degen_pct_unified\\\": 86.47,\\n    \\\"greedy_f1\\\": 92.39,\\n    \\\"old_sample_f1_pct_zero\\\": 4.29,\\n    \\\"delta\\\": 82.17\\n  },\\n  {\\n    \\\"label\\\": \\\"LLaMA3.1-8B / CoNLL / T=1.0 N=16 / seed=123\\\",\\n    \\\"dir\\\": \\\"exp_017_llama_conll_n16_s123_r1024\\\",\\n    \\\"dataset\\\": \\\"conll2003\\\",\\n    \\\"model\\\": \\\"LLaMA3.1-8B\\\",\\n    \\\"T\\\": 1.0,\\n    \\\"seed\\\": 123,\\n    \\\"N\\\": 16,\\n    \\\"status\\\": \\\"OK\\\",\\n    \\\"n_instances\\\": 2756,\\n    \\\"n_degenerate\\\": 2380,\\n    \\\"degen_pct_unified\\\": 86.36,\\n    \\\"greedy_f1\\\": 92.38,\\n    \\\"old_sample_f1_pct_zero\\\": 4.3,\\n    \\\"delta\\\": 82.06\\n  },\\n  {\\n    \\\"label\\\": \\\"LLaMA3.1-8B / CoNLL / T=1.0 N=16 / seed=456\\\",\\n    \\\"dir\\\": \\\"exp_017_llama_conll_n16_s456_r1024\\\",\\n    \\\"dataset\\\": \\\"conll2003\\\",\\n    \\\"model\\\": \\\"LLaMA3.1-8B\\\",\\n    \\\"T\\\": 1.0,\\n    \\\"seed\\\": 456,\\n    \\\"N\\\": 16,\\n    \\\"status\\\": \\\"OK\\\",\\n    \\\"n_instances\\\": 2756,\\n    \\\"n_degenerate\\\": 2390,\\n    \\\"degen_pct_unified\\\": 86.72,\\n    \\\"greedy_f1\\\": 92.42,\\n    \\\"old_sample_f1_pct_zero\\\": 4.29,\\n    \\\"delta\\\": 82.43\\n  },\\n  {\\n    \\\"label\\\": \\\"Qwen3-8B / SciERC / T=0.5 / seed=42 (ablation)\\\",\\n    \\\"dir\\\": \\\"exp_026_t05\\\",\\n    \\\"dataset\\\": \\\"scierc\\\",\\n    \\\"model\\\": \\\"Qwen3-8B\\\",\\n    \\\"T\\\": 0.5,\\n    \\\"seed\\\": 42,\\n    \\\"status\\\": \\\"OK\\\",\\n    \\\"n_instances\\\": 529,\\n    \\\"n_degenerate\\\": 219,\\n    \\\"degen_pct_unified\\\": 41.4,\\n    \\\"greedy_f1\\\": 64.9,\\n    \\\"old_sample_f1_pct_zero\\\": 10.33,\\n    \\\"delta\\\": 31.07\\n  },\\n  {\\n    \\\"label\\\": \\\"Qwen3-8B / SciERC / T=0.8 / seed=42 (ablation)\\\",\\n    \\\"dir\\\": \\\"exp_026_t08\\\",\\n    \\\"dataset\\\": \\\"scierc\\\",\\n    \\\"model\\\": \\\"Qwen3-8B\\\",\\n    \\\"T\\\": 0.8,\\n    \\\"seed\\\": 42,\\n    \\\"status\\\": \\\"OK\\\",\\n    \\\"n_instances\\\": 529,\\n    \\\"n_degenerate\\\": 126,\\n    \\\"degen_pct_unified\\\": 23.82,\\n    \\\"greedy_f1\\\": 64.39,\\n    \\\"old_sample_f1_pct_zero\\\": 11.15,\\n    \\\"delta\\\": 12.67\\n  },\\n  {\\n    \\\"label\\\": \\\"Qwen3-8B / SciERC / T=1.2 / seed=42 (ablation)\\\",\\n    \\\"dir\\\": \\\"exp_026_t12\\\",\\n    \\\"dataset\\\": \\\"scierc\\\",\\n    \\\"model\\\": \\\"Qwen3-8B\\\",\\n    \\\"T\\\": 1.2,\\n    \\\"seed\\\": 42,\\n    \\\"status\\\": \\\"OK\\\",\\n    \\\"n_instances\\\": 529,\\n    \\\"n_degenerate\\\": 79,\\n    \\\"degen_pct_unified\\\": 14.93,\\n    \\\"greedy_f1\\\": 64.25,\\n    \\\"old_sample_f1_pct_zero\\\": 13.87,\\n    \\\"delta\\\": 1.06\\n  },\\n  {\\n    \\\"label\\\": \\\"Qwen3-4B / SciERC / T=1.0 / seed=42\\\",\\n    \\\"dir\\\": \\\"exp_qwen3_4b_scierc_scs_inference\\\",\\n    \\\"dataset\\\": \\\"scierc\\\",\\n    \\\"model\\\": \\\"Qwen3-4B\\\",\\n    \\\"T\\\": 1.0,\\n    \\\"seed\\\": 42,\\n    \\\"status\\\": \\\"OK\\\",\\n    \\\"n_instances\\\": 529,\\n    \\\"n_degenerate\\\": 55,\\n    \\\"degen_pct_unified\\\": 10.4,\\n    \\\"greedy_f1\\\": 66.22,\\n    \\\"old_sample_f1_pct_zero\\\": 11.37,\\n    \\\"delta\\\": -0.97\\n  },\\n  {\\n    \\\"label\\\": \\\"Qwen3-4B / CoNLL / T=1.0 / seed=42\\\",\\n    \\\"dir\\\": \\\"exp_qwen3_4b_conll_scs_inference_v2\\\",\\n    \\\"dataset\\\": \\\"conll2003\\\",\\n    \\\"model\\\": \\\"Qwen3-4B\\\",\\n    \\\"T\\\": 1.0,\\n    \\\"seed\\\": 42,\\n    \\\"status\\\": \\\"OK\\\",\\n    \\\"n_instances\\\": 2756,\\n    \\\"n_degenerate\\\": 2496,\\n    \\\"degen_pct_unified\\\": 90.57,\\n    \\\"greedy_f1\\\": 92.12,\\n    \\\"old_sample_f1_pct_zero\\\": 4.38,\\n    \\\"delta\\\": 86.19\\n  }\\n]\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c57a4897-a320-475e-a0e7-20bfcb94129b",
+  "uuid": "357382fa-3443-4e5c-bd29-ec579d05367a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[\\\\n  {\\\\n    \\\\\\\"label\\\\\\\": \\\\\\\"Qwen3-8B / SciERC / T=1.0 / seed=42\\\\\\\",\\\\n    \\\\\\\"dir\\\\\\\": \\\\\\\"exp_012_rerun_1024\\\\\\\",\\\\n    \\\\\\\"dataset\\\\\\\": \\\\\\\"scierc\\\\\\\",\\\\n    \\\\\\\"model\\\\\\\": \\\\\\\"Qwen3-8B\\\\\\\",\\\\n    \\\\\\\"T\\\\\\\": 1.0,\\\\n    \\\\\\\"seed\\\\\\\": 42,\\\\n    \\\\\\\"status\\\\\\\": \\\\\\\"OK\\\\\\\",\\\\n    \\\\\\\"n_instances\\\\\\\": 529,\\\\n    \\\\\\\"n_degenerate\\\\\\\": 94,\\\\n    \\\\\\\"degen_pct_unified\\\\\\\": 17.77,\\\\n    \\\\\\\"greedy_f1\\\\\\\": 64.39,\\\\n    \\\\\\\"old_sample_f1_pct_zero\\\\\\\": 12.59,\\\\n    \\\\\\\"delta\\\\\\\": 5.17\\\\n  },\\\\n  {\\\\n    \\\\\\\"label\\\\\\\": \\\\\\\"Qwen3-8B / SciERC / T=1.0 / seed=123\\\\\\\",\\\\n    \\\\\\\"dir\\\\\\\": \\\\\\\"exp_018_qwen_scierc_seed123\\\\\\\",\\\\n    \\\\\\\"dataset\\\\\\\": \\\\\\\"scierc\\\\\\\",\\\\n    \\\\\\\"model\\\\\\\": \\\\\\\"Qwen3-8B\\\\\\\",\\\\n    \\\\\\\"T\\\\\\\": 1.0,\\\\n    \\\\\\\"seed\\\\\\\": 123,\\\\n    \\\\\\\"status\\\\\\\": \\\\\\\"OK\\\\\\\",\\\\n    \\\\\\\"n_instances\\\\\\\": 529,\\\\n    \\\\\\\"n_degenerate\\\\\\\": 91,\\\\n    \\\\\\\"degen_pct_unified\\\\\\\": 17.2,\\\\n    \\\\\\\"greedy_f1\\\\\\\": 64.57,\\\\n    \\\\\\\"old_sample_f1_pct_zero\\\\\\\": 11.67,\\\\n    \\\\\\\"delta\\\\\\\": 5.53\\\\n  },\\\\n  {\\\\n    \\\\\\\"label\\\\\\\": \\\\\\\"Qwen3-8B / SciERC / T=1.0 / seed=456\\\\\\\",\\\\n    \\\\\\\"dir\\\\\\\": \\\\\\\"exp_018_qwen_scierc_seed456\\\\\\\",\\\\n    \\\\\\\"dataset\\\\\\\": \\\\\\\"scierc\\\\\\\",\\\\n    \\\\\\\"model\\\\\\\": \\\\\\\"Qwen3-8B\\\\\\\",\\\\n    \\\\\\\"T\\\\\\\": 1.0,\\\\n    \\\\\\\"seed\\\\\\\": 456,\\\\n    \\\\\\\"status\\\\\\\": \\\\\\\"OK\\\\\\\",\\\\n    \\\\\\\"n_instances\\\\\\\": 529,\\\\n    \\\\\\\"n_degenerate\\\\\\\": 108,\\\\n    \\\\\\\"degen_pct_unified\\\\\\\": 20.42,\\\\n    \\\\\\\"greedy_f1\\\\\\\": 64.78,\\\\n    \\\\\\\"old_sample_f1_pct_zero\\\\\\\": 13.26,\\\\n    \\\\\\\"delta\\\\\\\": 7.16\\\\n  },\\\\n  {\\\\n    \\\\\\\"label\\\\\\\": \\\\\\\"Qwen3-8B / CoNLL / T=1.0 N=16 / seed=42\\\\\\\",\\\\n    \\\\\\\"dir\\\\\\\": \\\\\\\"exp_002_conll_n16\\\\\\\",\\\\n    \\\\\\\"dataset\\\\\\\": \\\\\\\"conll2003\\\\\\\",\\\\n    \\\\\\\"model\\\\\\\": \\\\\\\"Qwen3-8B\\\\\\\",\\\\n    \\\\\\\"T\\\\\\\": 1.0,\\\\n    \\\\\\\"seed\\\\\\\": 42,\\\\n    \\\\\\\"N\\\\\\\": 16,\\\\n    \\\\\\\"status\\\\\\\": \\\\\\\"OK\\\\\\\",\\\\n    \\\\\\\"n_instances\\\\\\\": 2756,\\\\n    \\\\\\\"n_degenerate\\\\\\\": 1335,\\\\n    \\\\\\\"degen_pct_unified\\\\\\\": 48.44,\\\\n    \\\\\\\"greedy_f1\\\\\\\": 90.7,\\\\n    \\\\\\\"old_sample_f1_pct_zero\\\\\\\": 7.58,\\\\n    \\\\\\\"delta\\\\\\\": 40.86\\\\n  },\\\\n  {\\\\n    \\\\\\\"label\\\\\\\": \\\\\\\"Qwen3-8B / CoNLL / T=1.0 N=16 / seed=123\\\\\\\",\\\\n    \\\\\\\"dir\\\\\\\": \\\\\\\"exp_002_conll_n16_seed123\\\\\\\",\\\\n    \\\\\\\"dataset\\\\\\\": \\\\\\\"conll2003\\\\\\\",\\\\n    \\\\\\\"model\\\\\\\": \\\\\\\"Qwen3-8B\\\\\\\",\\\\n    \\\\\\\"T\\\\\\\": 1.0,\\\\n    \\\\\\\"seed\\\\\\\": 123,\\\\n    \\\\\\\"N\\\\\\\": 16,\\\\n    \\\\\\\"status\\\\\\\": \\\\\\\"OK\\\\\\\",\\\\n    \\\\\\\"n_instances\\\\\\\": 2756,\\\\n    \\\\\\\"n_degenerate\\\\\\\": 1298,\\\\n    \\\\\\\"degen_pct_unified\\\\\\\": 47.1,\\\\n    \\\\\\\"greedy_f1\\\\\\\": 90.65,\\\\n    \\\\\\\"old_sample_f1_pct_zero\\\\\\\": 7.54,\\\\n    \\\\\\\"delta\\\\\\\": 39.55\\\\n  },\\\\n  {\\\\n    \\\\\\\"label\\\\\\\": \\\\\\\"Qwen3-8B / CoNLL / T=1.0 N=16 / seed=456\\\\\\\",\\\\n    \\\\\\\"dir\\\\\\\": \\\\\\\"exp_002_conll_n16_seed456\\\\\\\",\\\\n    \\\\\\\"dataset\\\\\\\": \\\\\\\"conll2003\\\\\\\",\\\\n    \\\\\\\"model\\\\\\\": \\\\\\\"Qwen3-8B\\\\\\\",\\\\n    \\\\\\\"T\\\\\\\": 1.0,\\\\n    \\\\\\\"seed\\\\\\\": 456,\\\\n    \\\\\\\"N\\\\\\\": 16,\\\\n    \\\\\\\"status\\\\\\\": \\\\\\\"OK\\\\\\\",\\\\n    \\\\\\\"n_instances\\\\\\\": 2756,\\\\n    \\\\\\\"n_degenerate\\\\\\\": 1528,\\\\n    \\\\\\\"degen_pct_unified\\\\\\\": 55.44,\\\\n    \\\\\\\"greedy_f1\\\\\\\": 90.71,\\\\n    \\\\\\\"old_sample_f1_pct_zero\\\\\\\": 7.02,\\\\n    \\\\\\\"delta\\\\\\\": 48.42\\\\n  },\\\\n  {\\\\n    \\\\\\\"label\\\\\\\": \\\\\\\"Qwen3-8B / FewNERD / T=1.0 / seed=42\\\\\\\",\\\\n    \\\\\\\"dir\\\\\\\": \\\\\\\"exp_027_fewnerd_n16\\\\\\\",\\\\n    \\\\\\\"dataset\\\\\\\": \\\\\\\"fewnerd\\\\\\\",\\\\n    \\\\\\\"model\\\\\\\": \\\\\\\"Qwen3-8B\\\\\\\",\\\\n    \\\\\\\"T\\\\\\\": 1.0,\\\\n    \\\\\\\"seed\\\\\\\": 42,\\\\n    \\\\\\\"status\\\\\\\": \\\\\\\"OK\\\\\\\",\\\\n    \\\\\\\"n_instances\\\\\\\": 4351,\\\\n    \\\\\\\"n_degenerate\\\\\\\": 307,\\\\n    \\\\\\\"degen_pct_unified\\\\\\\": 7.06,\\\\n    \\\\\\\"greedy_f1\\\\\\\": 74.78,\\\\n    \\\\\\\"old_sample_f1_pct_zero\\\\\\\": null,\\\\n    \\\\\\\"delta\\\\\\\": null\\\\n  },\\\\n  {\\\\n    \\\\\\\"label\\\\\\\": \\\\\\\"Qwen3-8B / FewNERD / T=1.0 / seed=123\\\\\\\",\\\\n    \\\\\\\"dir\\\\\\\": \\\\\\\"exp_021_fewnerd_n8_seed123\\\\\\\",\\\\n    \\\\\\\"dataset\\\\\\\": \\\\\\\"fewnerd\\\\\\\",\\\\n    \\\\\\\"model\\\\\\\": \\\\\\\"Qwen3-8B\\\\\\\",\\\\n    \\\\\\\"T\\\\\\\": 1.0,\\\\n    \\\\\\\"seed\\\\\\\": 123,\\\\n    \\\\\\\"status\\\\\\\": \\\\\\\"OK\\\\\\\",\\\\n    \\\\\\\"n_instances\\\\\\\": 32565,\\\\n    \\\\\\\"n_degenerate\\\\\\\": 4272,\\\\n    \\\\\\\"degen_pct_unified\\\\\\\": 13.12,\\\\n    \\\\\\\"greedy_f1\\\\\\\": 74.8,\\\\n    \\\\\\\"old_sample_f1_pct_zero\\\\\\\": 20.39,\\\\n    \\\\\\\"delta\\\\\\\": -7.27\\\\n  },\\\\n  {\\\\n    \\\\\\\"label\\\\\\\": \\\\\\\"Qwen3-8B / FewNERD / T=1.0 / seed=456\\\\\\\",\\\\n    \\\\\\\"dir\\\\\\\": \\\\\\\"exp_021_fewnerd_n8_seed456\\\\\\\",\\\\n    \\\\\\\"dataset\\\\\\\": \\\\\\\"fewnerd\\\\\\\",\\\\n    \\\\\\\"model\\\\\\\": \\\\\\\"Qwen3-8B\\\\\\\",\\\\n    \\\\\\\"T\\\\\\\": 1.0,\\\\n    \\\\\\\"seed\\\\\\\": 456,\\\\n    \\\\\\\"status\\\\\\\": \\\\\\\"OK\\\\\\\",\\\\n    \\\\\\\"n_instances\\\\\\\": 32565,\\\\n    \\\\\\\"n_degenerate\\\\\\\": 3947,\\\\n    \\\\\\\"degen_pct_unified\\\\\\\": 12.12,\\\\n    \\\\\\\"greedy_f1\\\\\\\": 74.86,\\\\n    \\\\\\\"old_sample_f1_pct_zero\\\\\\\": 19.32,\\\\n    \\\\\\\"delta\\\\\\\": -7.2\\\\n  },\\\\n  {\\\\n    \\\\\\\"label\\\\\\\": \\\\\\\"LLaMA3.1-8B / SciERC / T=1.0 / seed=42\\\\\\\",\\\\n    \\\\\\\"dir\\\\\\\": \\\\\\\"exp_018_llama_scierc_seed42_r1024\\\\\\\",\\\\n    \\\\\\\"dataset\\\\\\\": \\\\\\\"scierc\\\\\\\",\\\\n    \\\\\\\"model\\\\\\\": \\\\\\\"LLaMA3.1-8B\\\\\\\",\\\\n    \\\\\\\"T\\\\\\\": 1.0,\\\\n    \\\\\\\"seed\\\\\\\": 42,\\\\n    \\\\\\\"status\\\\\\\": \\\\\\\"OK\\\\\\\",\\\\n    \\\\\\\"n_instances\\\\\\\": 529,\\\\n    \\\\\\\"n_degenerate\\\\\\\": 132,\\\\n    \\\\\\\"degen_pct_unified\\\\\\\": 24.95,\\\\n    \\\\\\\"greedy_f1\\\\\\\": 64.6,\\\\n    \\\\\\\"old_sample_f1_pct_zero\\\\\\\": 11.44,\\\\n    \\\\\\\"delta\\\\\\\": 13.52\\\\n  },\\\\n  {\\\\n    \\\\\\\"label\\\\\\\": \\\\\\\"LLaMA3.1-8B / SciERC / T=1.0 / seed=123\\\\\\\",\\\\n    \\\\\\\"dir\\\\\\\": \\\\\\\"exp_018_llama_scierc_seed123\\\\\\\",\\\\n    \\\\\\\"dataset\\\\\\\": \\\\\\\"scierc\\\\\\\",\\\\n    \\\\\\\"model\\\\\\\": \\\\\\\"LLaMA3.1-8B\\\\\\\",\\\\n    \\\\\\\"T\\\\\\\": 1.0,\\\\n    \\\\\\\"seed\\\\\\\": 123,\\\\n    \\\\\\\"status\\\\\\\": \\\\\\\"OK\\\\\\\",\\\\n    \\\\\\\"n_instances\\\\\\\": 529,\\\\n    \\\\\\\"n_degenerate\\\\\\\": 141,\\\\n    \\\\\\\"degen_pct_unified\\\\\\\": 26.65,\\\\n    \\\\\\\"greedy_f1\\\\\\\": 64.54,\\\\n    \\\\\\\"old_sample_f1_pct_zero\\\\\\\": 11.11,\\\\n    \\\\\\\"delta\\\\\\\": 15.55\\\\n  },\\\\n  {\\\\n    \\\\\\\"label\\\\\\\": \\\\\\\"LLaMA3.1-8B / SciERC / T=1.0 / seed=456\\\\\\\",\\\\n    \\\\\\\"dir\\\\\\\": \\\\\\\"exp_018_llama_scierc_seed456_r1024\\\\\\\",\\\\n    \\\\\\\"dataset\\\\\\\": \\\\\\\"scierc\\\\\\\",\\\\n    \\\\\\\"model\\\\\\\": \\\\\\\"LLaMA3.1-8B\\\\\\\",\\\\n    \\\\\\\"T\\\\\\\": 1.0,\\\\n    \\\\\\\"seed\\\\\\\": 456,\\\\n    \\\\\\\"status\\\\\\\": \\\\\\\"OK\\\\\\\",\\\\n    \\\\\\\"n_instances\\\\\\\": 529,\\\\n    \\\\\\\"n_degenerate\\\\\\\": 145,\\\\n    \\\\\\\"degen_pct_unified\\\\\\\": 27.41,\\\\n    \\\\\\\"greedy_f1\\\\\\\": 64.59,\\\\n    \\\\\\\"old_sample_f1_pct_zero\\\\\\\": 11.65,\\\\n    \\\\\\\"delta\\\\\\\": 15.76\\\\n  },\\\\n  {\\\\n    \\\\\\\"label\\\\\\\": \\\\\\\"LLaMA3.1-8B / CoNLL / T=1.0 N=16 / seed=42\\\\\\\",\\\\n    \\\\\\\"dir\\\\\\\": \\\\\\\"exp_017_llama_conll_n16_r1024\\\\\\\",\\\\n    \\\\\\\"dataset\\\\\\\": \\\\\\\"conll2003\\\\\\\",\\\\n    \\\\\\\"model\\\\\\\": \\\\\\\"LLaMA3.1-8B\\\\\\\",\\\\n    \\\\\\\"T\\\\\\\": 1.0,\\\\n    \\\\\\\"seed\\\\\\\": 42,\\\\n    \\\\\\\"N\\\\\\\": 16,\\\\n    \\\\\\\"status\\\\\\\": \\\\\\\"OK\\\\\\\",\\\\n    \\\\\\\"n_instances\\\\\\\": 2756,\\\\n    \\\\\\\"n_degenerate\\\\\\\": 2383,\\\\n    \\\\\\\"degen_pct_unified\\\\\\\": 86.47,\\\\n    \\\\\\\"greedy_f1\\\\\\\": 92.39,\\\\n    \\\\\\\"old_sample_f1_pct_zero\\\\\\\": 4.29,\\\\n    \\\\\\\"delta\\\\\\\": 82.17\\\\n  },\\\\n  {\\\\n    \\\\\\\"label\\\\\\\": \\\\\\\"LLaMA3.1-8B / CoNLL / T=1.0 N=16 / seed=123\\\\\\\",\\\\n    \\\\\\\"dir\\\\\\\": \\\\\\\"exp_017_llama_conll_n16_s123_r1024\\\\\\\",\\\\n    \\\\\\\"dataset\\\\\\\": \\\\\\\"conll2003\\\\\\\",\\\\n    \\\\\\\"model\\\\\\\": \\\\\\\"LLaMA3.1-8B\\\\\\\",\\\\n    \\\\\\\"T\\\\\\\": 1.0,\\\\n    \\\\\\\"seed\\\\\\\": 123,\\\\n    \\\\\\\"N\\\\\\\": 16,\\\\n    \\\\\\\"status\\\\\\\": \\\\\\\"OK\\\\\\\",\\\\n    \\\\\\\"n_instances\\\\\\\": 2756,\\\\n    \\\\\\\"n_degenerate\\\\\\\": 2380,\\\\n    \\\\\\\"degen_pct_unified\\\\\\\": 86.36,\\\\n    \\\\\\\"greedy_f1\\\\\\\": 92.38,\\\\n    \\\\\\\"old_sample_f1_pct_zero\\\\\\\": 4.3,\\\\n    \\\\\\\"delta\\\\\\\": 82.06\\\\n  },\\\\n  {\\\\n    \\\\\\\"label\\\\\\\": \\\\\\\"LLaMA3.1-8B / CoNLL / T=1.0 N=16 / seed=456\\\\\\\",\\\\n    \\\\\\\"dir\\\\\\\": \\\\\\\"exp_017_llama_conll_n16_s456_r1024\\\\\\\",\\\\n    \\\\\\\"dataset\\\\\\\": \\\\\\\"conll2003\\\\\\\",\\\\n    \\\\\\\"model\\\\\\\": \\\\\\\"LLaMA3.1-8B\\\\\\\",\\\\n    \\\\\\\"T\\\\\\\": 1.0,\\\\n    \\\\\\\"seed\\\\\\\": 456,\\\\n    \\\\\\\"N\\\\\\\": 16,\\\\n    \\\\\\\"status\\\\\\\": \\\\\\\"OK\\\\\\\",\\\\n    \\\\\\\"n_instances\\\\\\\": 2756,\\\\n    \\\\\\\"n_degenerate\\\\\\\": 2390,\\\\n    \\\\\\\"degen_pct_unified\\\\\\\": 86.72,\\\\n    \\\\\\\"greedy_f1\\\\\\\": 92.42,\\\\n    \\\\\\\"old_sample_f1_pct_zero\\\\\\\": 4.29,\\\\n    \\\\\\\"delta\\\\\\\": 82.43\\\\n  },\\\\n  {\\\\n    \\\\\\\"label\\\\\\\": \\\\\\\"Qwen3-8B / SciERC / T=0.5 / seed=42 (ablation)\\\\\\\",\\\\n    \\\\\\\"dir\\\\\\\": \\\\\\\"exp_026_t05\\\\\\\",\\\\n    \\\\\\\"dataset\\\\\\\": \\\\\\\"scierc\\\\\\\",\\\\n    \\\\\\\"model\\\\\\\": \\\\\\\"Qwen3-8B\\\\\\\",\\\\n    \\\\\\\"T\\\\\\\": 0.5,\\\\n    \\\\\\\"seed\\\\\\\": 42,\\\\n    \\\\\\\"status\\\\\\\": \\\\\\\"OK\\\\\\\",\\\\n    \\\\\\\"n_instances\\\\\\\": 529,\\\\n    \\\\\\\"n_degenerate\\\\\\\": 219,\\\\n    \\\\\\\"degen_pct_unified\\\\\\\": 41.4,\\\\n    \\\\\\\"greedy_f1\\\\\\\": 64.9,\\\\n    \\\\\\\"old_sample_f1_pct_zero\\\\\\\": 10.33,\\\\n    \\\\\\\"delta\\\\\\\": 31.07\\\\n  },\\\\n  {\\\\n    \\\\\\\"label\\\\\\\": \\\\\\\"Qwen3-8B / SciERC / T=0.8 / seed=42 (ablation)\\\\\\\",\\\\n    \\\\\\\"dir\\\\\\\": \\\\\\\"exp_026_t08\\\\\\\",\\\\n    \\\\\\\"dataset\\\\\\\": \\\\\\\"scierc\\\\\\\",\\\\n    \\\\\\\"model\\\\\\\": \\\\\\\"Qwen3-8B\\\\\\\",\\\\n    \\\\\\\"T\\\\\\\": 0.8,\\\\n    \\\\\\\"seed\\\\\\\": 42,\\\\n    \\\\\\\"status\\\\\\\": \\\\\\\"OK\\\\\\\",\\\\n    \\\\\\\"n_instances\\\\\\\": 529,\\\\n    \\\\\\\"n_degenerate\\\\\\\": 126,\\\\n    \\\\\\\"degen_pct_unified\\\\\\\": 23.82,\\\\n    \\\\\\\"greedy_f1\\\\\\\": 64.39,\\\\n    \\\\\\\"old_sample_f1_pct_zero\\\\\\\": 11.15,\\\\n    \\\\\\\"delta\\\\\\\": 12.67\\\\n  },\\\\n  {\\\\n    \\\\\\\"label\\\\\\\": \\\\\\\"Qwen3-8B / SciERC / T=1.2 / seed=42 (ablation)\\\\\\\",\\\\n    \\\\\\\"dir\\\\\\\": \\\\\\\"exp_026_t12\\\\\\\",\\\\n    \\\\\\\"dataset\\\\\\\": \\\\\\\"scierc\\\\\\\",\\\\n    \\\\\\\"model\\\\\\\": \\\\\\\"Qwen3-8B\\\\\\\",\\\\n    \\\\\\\"T\\\\\\\": 1.2,\\\\n    \\\\\\\"seed\\\\\\\": 42,\\\\n    \\\\\\\"status\\\\\\\": \\\\\\\"OK\\\\\\\",\\\\n    \\\\\\\"n_instances\\\\\\\": 529,\\\\n    \\\\\\\"n_degenerate\\\\\\\": 79,\\\\n    \\\\\\\"degen_pct_unified\\\\\\\": 14.93,\\\\n    \\\\\\\"greedy_f1\\\\\\\": 64.25,\\\\n    \\\\\\\"old_sample_f1_pct_zero\\\\\\\": 13.87,\\\\n    \\\\\\\"delta\\\\\\\": 1.06\\\\n  },\\\\n  {\\\\n    \\\\\\\"label\\\\\\\": \\\\\\\"Qwen3-4B / SciERC / T=1.0 / seed=42\\\\\\\",\\\\n    \\\\\\\"dir\\\\\\\": \\\\\\\"exp_qwen3_4b_scierc_scs_inference\\\\\\\",\\\\n    \\\\\\\"dataset\\\\\\\": \\\\\\\"scierc\\\\\\\",\\\\n    \\\\\\\"model\\\\\\\": \\\\\\\"Qwen3-4B\\\\\\\",\\\\n    \\\\\\\"T\\\\\\\": 1.0,\\\\n    \\\\\\\"seed\\\\\\\": 42,\\\\n    \\\\\\\"status\\\\\\\": \\\\\\\"OK\\\\\\\",\\\\n    \\\\\\\"n_instances\\\\\\\": 529,\\\\n    \\\\\\\"n_degenerate\\\\\\\": 55,\\\\n    \\\\\\\"degen_pct_unified\\\\\\\": 10.4,\\\\n    \\\\\\\"greedy_f1\\\\\\\": 66.22,\\\\n    \\\\\\\"old_sample_f1_pct_zero\\\\\\\": 11.37,\\\\n    \\\\\\\"delta\\\\\\\": -0.97\\\\n  },\\\\n  {\\\\n    \\\\\\\"label\\\\\\\": \\\\\\\"Qwen3-4B / CoNLL / T=1.0 / seed=42\\\\\\\",\\\\n    \\\\\\\"dir\\\\\\\": \\\\\\\"exp_qwen3_4b_conll_scs_inference_v2\\\\\\\",\\\\n    \\\\\\\"dataset\\\\\\\": \\\\\\\"conll2003\\\\\\\",\\\\n    \\\\\\\"model\\\\\\\": \\\\\\\"Qwen3-4B\\\\\\\",\\\\n    \\\\\\\"T\\\\\\\": 1.0,\\\\n    \\\\\\\"seed\\\\\\\": 42,\\\\n    \\\\\\\"status\\\\\\\": \\\\\\\"OK\\\\\\\",\\\\n    \\\\\\\"n_instances\\\\\\\": 2756,\\\\n    \\\\\\\"n_degenerate\\\\\\\": 2496,\\\\n    \\\\\\\"degen_pct_unified\\\\\\\": 90.57,\\\\n    \\\\\\\"greedy_f1\\\\\\\": 92.12,\\\\n    \\\\\\\"old_sample_f1_pct_zero\\\\\\\": 4.38,\\\\n    \\\\\\\"delta\\\\\\\": 86.19\\\\n  }\\\\n]\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"[\\n  {\\n    \\\"label\\\": \\\"Qwen3-8B / SciERC / T=1.0 / seed=42\\\",\\n    \\\"dir\\\": \\\"exp_012_rerun_1024\\\",\\n    \\\"dataset\\\": \\\"scierc\\\",\\n    \\\"model\\\": \\\"Qwen3-8B\\\",\\n    \\\"T\\\": 1.0,\\n    \\\"seed\\\": 42,\\n    \\\"status\\\": \\\"OK\\\",\\n    \\\"n_instances\\\": 529,\\n    \\\"n_degenerate\\\": 94,\\n    \\\"degen_pct_unified\\\": 17.77,\\n    \\\"greedy_f1\\\": 64.39,\\n    \\\"old_sample_f1_pct_zero\\\": 12.59,\\n    \\\"delta\\\": 5.17\\n  },\\n  {\\n    \\\"label\\\": \\\"Qwen3-8B / SciERC / T=1.0 / seed=123\\\",\\n    \\\"dir\\\": \\\"exp_018_qwen_scierc_seed123\\\",\\n    \\\"dataset\\\": \\\"scierc\\\",\\n    \\\"model\\\": \\\"Qwen3-8B\\\",\\n    \\\"T\\\": 1.0,\\n    \\\"seed\\\": 123,\\n    \\\"status\\\": \\\"OK\\\",\\n    \\\"n_instances\\\": 529,\\n    \\\"n_degenerate\\\": 91,\\n    \\\"degen_pct_unified\\\": 17.2,\\n    \\\"greedy_f1\\\": 64.57,\\n    \\\"old_sample_f1_pct_zero\\\": 11.67,\\n    \\\"delta\\\": 5.53\\n  },\\n  {\\n    \\\"label\\\": \\\"Qwen3-8B / SciERC / T=1.0 / seed=456\\\",\\n    \\\"dir\\\": \\\"exp_018_qwen_scierc_seed456\\\",\\n    \\\"dataset\\\": \\\"scierc\\\",\\n    \\\"model\\\": \\\"Qwen3-8B\\\",\\n    \\\"T\\\": 1.0,\\n    \\\"seed\\\": 456,\\n    \\\"status\\\": \\\"OK\\\",\\n    \\\"n_instances\\\": 529,\\n    \\\"n_degenerate\\\": 108,\\n    \\\"degen_pct_unified\\\": 20.42,\\n    \\\"greedy_f1\\\": 64.78,\\n    \\\"old_sample_f1_pct_zero\\\": 13.26,\\n    \\\"delta\\\": 7.16\\n  },\\n  {\\n    \\\"label\\\": \\\"Qwen3-8B / CoNLL / T=1.0 N=16 / seed=42\\\",\\n    \\\"dir\\\": \\\"exp_002_conll_n16\\\",\\n    \\\"dataset\\\": \\\"conll2003\\\",\\n    \\\"model\\\": \\\"Qwen3-8B\\\",\\n    \\\"T\\\": 1.0,\\n    \\\"seed\\\": 42,\\n    \\\"N\\\": 16,\\n    \\\"status\\\": \\\"OK\\\",\\n    \\\"n_instances\\\": 2756,\\n    \\\"n_degenerate\\\": 1335,\\n    \\\"degen_pct_unified\\\": 48.44,\\n    \\\"greedy_f1\\\": 90.7,\\n    \\\"old_sample_f1_pct_zero\\\": 7.58,\\n    \\\"delta\\\": 40.86\\n  },\\n  {\\n    \\\"label\\\": \\\"Qwen3-8B / CoNLL / T=1.0 N=16 / seed=123\\\",\\n    \\\"dir\\\": \\\"exp_002_conll_n16_seed123\\\",\\n    \\\"dataset\\\": \\\"conll2003\\\",\\n    \\\"model\\\": \\\"Qwen3-8B\\\",\\n    \\\"T\\\": 1.0,\\n    \\\"seed\\\": 123,\\n    \\\"N\\\": 16,\\n    \\\"status\\\": \\\"OK\\\",\\n    \\\"n_instances\\\": 2756,\\n    \\\"n_degenerate\\\": 1298,\\n    \\\"degen_pct_unified\\\": 47.1,\\n    \\\"greedy_f1\\\": 90.65,\\n    \\\"old_sample_f1_pct_zero\\\": 7.54,\\n    \\\"delta\\\": 39.55\\n  },\\n  {\\n    \\\"label\\\": \\\"Qwen3-8B / CoNLL / T=1.0 N=16 / seed=456\\\",\\n    \\\"dir\\\": \\\"exp_002_conll_n16_seed456\\\",\\n    \\\"dataset\\\": \\\"conll2003\\\",\\n    \\\"model\\\": \\\"Qwen3-8B\\\",\\n    \\\"T\\\": 1.0,\\n    \\\"seed\\\": 456,\\n    \\\"N\\\": 16,\\n    \\\"status\\\": \\\"OK\\\",\\n    \\\"n_instances\\\": 2756,\\n    \\\"n_degenerate\\\": 1528,\\n    \\\"degen_pct_unified\\\": 55.44,\\n    \\\"greedy_f1\\\": 90.71,\\n    \\\"old_sample_f1_pct_zero\\\": 7.02,\\n    \\\"delta\\\": 48.42\\n  },\\n  {\\n    \\\"label\\\": \\\"Qwen3-8B / FewNERD / T=1.0 / seed=42\\\",\\n    \\\"dir\\\": \\\"exp_027_fewnerd_n16\\\",\\n    \\\"dataset\\\": \\\"fewnerd\\\",\\n    \\\"model\\\": \\\"Qwen3-8B\\\",\\n    \\\"T\\\": 1.0,\\n    \\\"seed\\\": 42,\\n    \\\"status\\\": \\\"OK\\\",\\n    \\\"n_instances\\\": 4351,\\n    \\\"n_degenerate\\\": 307,\\n    \\\"degen_pct_unified\\\": 7.06,\\n    \\\"greedy_f1\\\": 74.78,\\n    \\\"old_sample_f1_pct_zero\\\": null,\\n    \\\"delta\\\": null\\n  },\\n  {\\n    \\\"label\\\": \\\"Qwen3-8B / FewNERD / T=1.0 / seed=123\\\",\\n    \\\"dir\\\": \\\"exp_021_fewnerd_n8_seed123\\\",\\n    \\\"dataset\\\": \\\"fewnerd\\\",\\n    \\\"model\\\": \\\"Qwen3-8B\\\",\\n    \\\"T\\\": 1.0,\\n    \\\"seed\\\": 123,\\n    \\\"status\\\": \\\"OK\\\",\\n    \\\"n_instances\\\": 32565,\\n    \\\"n_degenerate\\\": 4272,\\n    \\\"degen_pct_unified\\\": 13.12,\\n    \\\"greedy_f1\\\": 74.8,\\n    \\\"old_sample_f1_pct_zero\\\": 20.39,\\n    \\\"delta\\\": -7.27\\n  },\\n  {\\n    \\\"label\\\": \\\"Qwen3-8B / FewNERD / T=1.0 / seed=456\\\",\\n    \\\"dir\\\": \\\"exp_021_fewnerd_n8_seed456\\\",\\n    \\\"dataset\\\": \\\"fewnerd\\\",\\n    \\\"model\\\": \\\"Qwen3-8B\\\",\\n    \\\"T\\\": 1.0,\\n    \\\"seed\\\": 456,\\n    \\\"status\\\": \\\"OK\\\",\\n    \\\"n_instances\\\": 32565,\\n    \\\"n_degenerate\\\": 3947,\\n    \\\"degen_pct_unified\\\": 12.12,\\n    \\\"greedy_f1\\\": 74.86,\\n    \\\"old_sample_f1_pct_zero\\\": 19.32,\\n    \\\"delta\\\": -7.2\\n  },\\n  {\\n    \\\"label\\\": \\\"LLaMA3.1-8B / SciERC / T=1.0 / seed=42\\\",\\n    \\\"dir\\\": \\\"exp_018_llama_scierc_seed42_r1024\\\",\\n    \\\"dataset\\\": \\\"scierc\\\",\\n    \\\"model\\\": \\\"LLaMA3.1-8B\\\",\\n    \\\"T\\\": 1.0,\\n    \\\"seed\\\": 42,\\n    \\\"status\\\": \\\"OK\\\",\\n    \\\"n_instances\\\": 529,\\n    \\\"n_degenerate\\\": 132,\\n    \\\"degen_pct_unified\\\": 24.95,\\n    \\\"greedy_f1\\\": 64.6,\\n    \\\"old_sample_f1_pct_zero\\\": 11.44,\\n    \\\"delta\\\": 13.52\\n  },\\n  {\\n    \\\"label\\\": \\\"LLaMA3.1-8B / SciERC / T=1.0 / seed=123\\\",\\n    \\\"dir\\\": \\\"exp_018_llama_scierc_seed123\\\",\\n    \\\"dataset\\\": \\\"scierc\\\",\\n    \\\"model\\\": \\\"LLaMA3.1-8B\\\",\\n    \\\"T\\\": 1.0,\\n    \\\"seed\\\": 123,\\n    \\\"status\\\": \\\"OK\\\",\\n    \\\"n_instances\\\": 529,\\n    \\\"n_degenerate\\\": 141,\\n    \\\"degen_pct_unified\\\": 26.65,\\n    \\\"greedy_f1\\\": 64.54,\\n    \\\"old_sample_f1_pct_zero\\\": 11.11,\\n    \\\"delta\\\": 15.55\\n  },\\n  {\\n    \\\"label\\\": \\\"LLaMA3.1-8B / SciERC / T=1.0 / seed=456\\\",\\n    \\\"dir\\\": \\\"exp_018_llama_scierc_seed456_r1024\\\",\\n    \\\"dataset\\\": \\\"scierc\\\",\\n    \\\"model\\\": \\\"LLaMA3.1-8B\\\",\\n    \\\"T\\\": 1.0,\\n    \\\"seed\\\": 456,\\n    \\\"status\\\": \\\"OK\\\",\\n    \\\"n_instances\\\": 529,\\n    \\\"n_degenerate\\\": 145,\\n    \\\"degen_pct_unified\\\": 27.41,\\n    \\\"greedy_f1\\\": 64.59,\\n    \\\"old_sample_f1_pct_zero\\\": 11.65,\\n    \\\"delta\\\": 15.76\\n  },\\n  {\\n    \\\"label\\\": \\\"LLaMA3.1-8B / CoNLL / T=1.0 N=16 / seed=42\\\",\\n    \\\"dir\\\": \\\"exp_017_llama_conll_n16_r1024\\\",\\n    \\\"dataset\\\": \\\"conll2003\\\",\\n    \\\"model\\\": \\\"LLaMA3.1-8B\\\",\\n    \\\"T\\\": 1.0,\\n    \\\"seed\\\": 42,\\n    \\\"N\\\": 16,\\n    \\\"status\\\": \\\"OK\\\",\\n    \\\"n_instances\\\": 2756,\\n    \\\"n_degenerate\\\": 2383,\\n    \\\"degen_pct_unified\\\": 86.47,\\n    \\\"greedy_f1\\\": 92.39,\\n    \\\"old_sample_f1_pct_zero\\\": 4.29,\\n    \\\"delta\\\": 82.17\\n  },\\n  {\\n    \\\"label\\\": \\\"LLaMA3.1-8B / CoNLL / T=1.0 N=16 / seed=123\\\",\\n    \\\"dir\\\": \\\"exp_017_llama_conll_n16_s123_r1024\\\",\\n    \\\"dataset\\\": \\\"conll2003\\\",\\n    \\\"model\\\": \\\"LLaMA3.1-8B\\\",\\n    \\\"T\\\": 1.0,\\n    \\\"seed\\\": 123,\\n    \\\"N\\\": 16,\\n    \\\"status\\\": \\\"OK\\\",\\n    \\\"n_instances\\\": 2756,\\n    \\\"n_degenerate\\\": 2380,\\n    \\\"degen_pct_unified\\\": 86.36,\\n    \\\"greedy_f1\\\": 92.38,\\n    \\\"old_sample_f1_pct_zero\\\": 4.3,\\n    \\\"delta\\\": 82.06\\n  },\\n  {\\n    \\\"label\\\": \\\"LLaMA3.1-8B / CoNLL / T=1.0 N=16 / seed=456\\\",\\n    \\\"dir\\\": \\\"exp_017_llama_conll_n16_s456_r1024\\\",\\n    \\\"dataset\\\": \\\"conll2003\\\",\\n    \\\"model\\\": \\\"LLaMA3.1-8B\\\",\\n    \\\"T\\\": 1.0,\\n    \\\"seed\\\": 456,\\n    \\\"N\\\": 16,\\n    \\\"status\\\": \\\"OK\\\",\\n    \\\"n_instances\\\": 2756,\\n    \\\"n_degenerate\\\": 2390,\\n    \\\"degen_pct_unified\\\": 86.72,\\n    \\\"greedy_f1\\\": 92.42,\\n    \\\"old_sample_f1_pct_zero\\\": 4.29,\\n    \\\"delta\\\": 82.43\\n  },\\n  {\\n    \\\"label\\\": \\\"Qwen3-8B / SciERC / T=0.5 / seed=42 (ablation)\\\",\\n    \\\"dir\\\": \\\"exp_026_t05\\\",\\n    \\\"dataset\\\": \\\"scierc\\\",\\n    \\\"model\\\": \\\"Qwen3-8B\\\",\\n    \\\"T\\\": 0.5,\\n    \\\"seed\\\": 42,\\n    \\\"status\\\": \\\"OK\\\",\\n    \\\"n_instances\\\": 529,\\n    \\\"n_degenerate\\\": 219,\\n    \\\"degen_pct_unified\\\": 41.4,\\n    \\\"greedy_f1\\\": 64.9,\\n    \\\"old_sample_f1_pct_zero\\\": 10.33,\\n    \\\"delta\\\": 31.07\\n  },\\n  {\\n    \\\"label\\\": \\\"Qwen3-8B / SciERC / T=0.8 / seed=42 (ablation)\\\",\\n    \\\"dir\\\": \\\"exp_026_t08\\\",\\n    \\\"dataset\\\": \\\"scierc\\\",\\n    \\\"model\\\": \\\"Qwen3-8B\\\",\\n    \\\"T\\\": 0.8,\\n    \\\"seed\\\": 42,\\n    \\\"status\\\": \\\"OK\\\",\\n    \\\"n_instances\\\": 529,\\n    \\\"n_degenerate\\\": 126,\\n    \\\"degen_pct_unified\\\": 23.82,\\n    \\\"greedy_f1\\\": 64.39,\\n    \\\"old_sample_f1_pct_zero\\\": 11.15,\\n    \\\"delta\\\": 12.67\\n  },\\n  {\\n    \\\"label\\\": \\\"Qwen3-8B / SciERC / T=1.2 / seed=42 (ablation)\\\",\\n    \\\"dir\\\": \\\"exp_026_t12\\\",\\n    \\\"dataset\\\": \\\"scierc\\\",\\n    \\\"model\\\": \\\"Qwen3-8B\\\",\\n    \\\"T\\\": 1.2,\\n    \\\"seed\\\": 42,\\n    \\\"status\\\": \\\"OK\\\",\\n    \\\"n_instances\\\": 529,\\n    \\\"n_degenerate\\\": 79,\\n    \\\"degen_pct_unified\\\": 14.93,\\n    \\\"greedy_f1\\\": 64.25,\\n    \\\"old_sample_f1_pct_zero\\\": 13.87,\\n    \\\"delta\\\": 1.06\\n  },\\n  {\\n    \\\"label\\\": \\\"Qwen3-4B / SciERC / T=1.0 / seed=42\\\",\\n    \\\"dir\\\": \\\"exp_qwen3_4b_scierc_scs_inference\\\",\\n    \\\"dataset\\\": \\\"scierc\\\",\\n    \\\"model\\\": \\\"Qwen3-4B\\\",\\n    \\\"T\\\": 1.0,\\n    \\\"seed\\\": 42,\\n    \\\"status\\\": \\\"OK\\\",\\n    \\\"n_instances\\\": 529,\\n    \\\"n_degenerate\\\": 55,\\n    \\\"degen_pct_unified\\\": 10.4,\\n    \\\"greedy_f1\\\": 66.22,\\n    \\\"old_sample_f1_pct_zero\\\": 11.37,\\n    \\\"delta\\\": -0.97\\n  },\\n  {\\n    \\\"label\\\": \\\"Qwen3-4B / CoNLL / T=1.0 / seed=42\\\",\\n    \\\"dir\\\": \\\"exp_qwen3_4b_conll_scs_inference_v2\\\",\\n    \\\"dataset\\\": \\\"conll2003\\\",\\n    \\\"model\\\": \\\"Qwen3-4B\\\",\\n    \\\"T\\\": 1.0,\\n    \\\"seed\\\": 42,\\n    \\\"status\\\": \\\"OK\\\",\\n    \\\"n_instances\\\": 2756,\\n    \\\"n_degenerate\\\": 2496,\\n    \\\"degen_pct_unified\\\": 90.57,\\n    \\\"greedy_f1\\\": 92.12,\\n    \\\"old_sample_f1_pct_zero\\\": 4.38,\\n    \\\"delta\\\": 86.19\\n  }\\n]\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 23_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I have the unified degeneracy data. Now let me read the existing scatter plot scripts to understand the current implementation.
+
+Key files:
+1. `/root/autodl-tmp/struct_self_consist_ie/output/figures/plot_degeneracy_lp.py` - the main plot script
+2. `/root/autodl-tmp/struct_self_consist_ie/analysis_d141_scatter_plot.py` - another scatter plot script
+
+Let me also get the DGS selection results for LP delta values.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c57a4897-a320-475e-a0e7-20bfcb94129b",
+  "uuid": "622db8a5-9ddf-4661-b441-7cb896603023",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LeJgxzgScJKgRVUfKCC4QW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 10796,
+      "cache_read_input_tokens": 26710,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 10796
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 24_
+
+Found the existing plot script and unified data. Let me read the current plot script and find LP delta data.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c57a4897-a320-475e-a0e7-20bfcb94129b",
+  "uuid": "1b40617e-3991-4aeb-b7ed-bdcce38d6d6d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LeJgxzgScJKgRVUfKCC4QW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 10796,
+      "cache_read_input_tokens": 26710,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 10796
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01BuutXz5cbSUxLVanh5YM27`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/figures/plot_degeneracy_lp.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c57a4897-a320-475e-a0e7-20bfcb94129b",
+  "uuid": "be5432a9-6ec9-4d25-b958-7fd3a37cd030",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LeJgxzgScJKgRVUfKCC4QW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 10796,
+      "cache_read_input_tokens": 26710,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 10796
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-18T21:28:14.081Z_
+
+<details><summary>↩ Tool result · `toolu_01BuutXz5cbSUxLVanh5YM27`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"import matplotlib\\nmatplotlib.use('Agg')\\nimport matplotlib.pyplot as plt\\nimport numpy as np\\nfrom scipy.stats import spearmanr\\n\\nplt.rcParams.update({\\n    'font.family': 'serif',\\n    'font.size': 9,\\n    'axes.linewidth': 0.8,\\n    'xtick.major.width': 0.6,\\n    'ytick.major.width': 0.6,\\n    'lines.linewidth': 1.0,\\n})\\n\\n# Cross-dataset points (Qwen3-8B, N=8)\\n# X: Constant F1, gold-filtered degeneracy (updated 2026-05-18, D132)\\n# Y: LP selection delta (pp vs greedy)\\ncross_names = ['CoNLL', 'SciERC', 'Few-NERD']\\ncross_degen = [59.1, 17.8, 13.8]\\ncross_delta = [-1.05, 0.61, 1.36]\\n\\n# Per-type points (Few-NERD, per entity type)\\n# X: Original KeySet degeneracy (from per_type_lp_analysis.csv)\\n# Y: LP delta pp (from per_type_lp_analysis.csv)\\ntype_names = ['event', 'other', 'organization', 'building', 'product', 'location', 'person', 'art']\\ntype_degen = [5.97, 6.61, 6.74, 7.18, 8.17, 11.42, 13.42, 19.81]\\ntype_delta = [0.65, 4.73, 1.21, 0.23, 2.01, 0.53, 1.25, -0.17]\\n\\nfig, ax = plt.subplots(figsize=(5, 3.5))\\n\\nax.axhline(y=0, color='#999999', linestyle='--', linewidth=0.8, zorder=1)\\nax.text(62, 0.15, 'Greedy Baseline', fontsize=7, color='#999999',\\n        ha='right', va='bottom')\\n\\nax.scatter(type_degen, type_delta, marker='^', s=60, c='#E8851E',\\n           edgecolors='#C06A10', linewidths=0.5, zorder=3,\\n           label='Within Few-NERD (per entity type)')\\n\\nax.scatter(cross_degen, cross_delta, marker='o', s=120, c='#3274A1',\\n           edgecolors='#1F4F72', linewidths=0.7, zorder=4,\\n           label='Cross-dataset')\\n\\noffsets = {'CoNLL': (3, -8), 'SciERC': (3, 5), 'Few-NERD': (-8, 6)}\\nfor name, x, y in zip(cross_names, cross_degen, cross_delta):\\n    ox, oy = offsets[name]\\n    ax.annotate(name, (x, y), textcoords='offset points',\\n                xytext=(ox, oy), fontsize=8, fontweight='bold',\\n                color='#1F4F72')\\n\\nlabel_types = {'other': (4, 4), 'art': (3, -7), 'product': (4, 3)}\\nfor name, x, y in zip(type_names, type_degen, type_delta):\\n    if name in label_types:\\n        ox, oy = label_types[name]\\n        ax.annotate(name.capitalize(), (x, y), textcoords='offset points',\\n                    xytext=(ox, oy), fontsize=6.5, color='#C06A10',\\n                    fontstyle='italic')\\n\\nax.set_xlabel('Instance Degeneracy Rate (%)', fontsize=10)\\nax.set_ylabel('LP Selection $\\\\Delta$ (pp vs Greedy)', fontsize=10)\\nax.set_xlim(-2, 68)\\nax.set_ylim(-3, 5.5)\\n\\nax.legend(fontsize=7.5, loc='upper right', framealpha=0.9,\\n          edgecolor='#cccccc', fancybox=False)\\n\\nax.spines['top'].set_visible(False)\\nax.spines['right'].set_visible(False)\\n\\nplt.tight_layout()\\nplt.savefig('output/figures/fig_degeneracy_lp_scatter.pdf', dpi=300, bbox_inches='tight')\\nplt.savefig('output/figures/fig_degeneracy_lp_scatter.png', dpi=300, bbox_inches='tight')\\nprint(\\\"Figure saved.\\\")\\n\\n# Spearman correlations\\nall_x = cross_degen + type_degen\\nall_y = cross_delta + type_delta\\nrho, p = spearmanr(all_x, all_y)\\nprint(f\\\"11-point Spearman rho = {rho:.4f}, p = {p:.4f}\\\")\\n\\nrho8, p8 = spearmanr(type_degen, type_delta)\\nprint(f\\\"Per-type (n=8): rho = {rho8:.4f}, p = {p8:.4f}\\\")\\n\\nrho3, p3 = spearmanr(cross_degen, cross_delta)\\nprint(f\\\"Dataset-level (n=3): rho = {rho3:.4f}, p = {p3:.4f}\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c57a4897-a320-475e-a0e7-20bfcb94129b",
+  "uuid": "626d5e80-1888-4bcb-93c1-801d876f1dd0",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"import matplotlib\\\\nmatplotlib.use('Agg')\\\\nimport matplotlib.pyplot as plt\\\\nimport numpy as np\\\\nfrom scipy.stats import spearmanr\\\\n\\\\nplt.rcParams.update({\\\\n    'font.family': 'serif',\\\\n    'font.size': 9,\\\\n    'axes.linewidth': 0.8,\\\\n    'xtick.major.width': 0.6,\\\\n    'ytick.major.width': 0.6,\\\\n    'lines.linewidth': 1.0,\\\\n})\\\\n\\\\n# Cross-dataset points (Qwen3-8B, N=8)\\\\n# X: Constant F1, gold-filtered degeneracy (updated 2026-05-18, D132)\\\\n# Y: LP selection delta (pp vs greedy)\\\\ncross_names = ['CoNLL', 'SciERC', 'Few-NERD']\\\\ncross_degen = [59.1, 17.8, 13.8]\\\\ncross_delta = [-1.05, 0.61, 1.36]\\\\n\\\\n# Per-type points (Few-NERD, per entity type)\\\\n# X: Original KeySet degeneracy (from per_type_lp_analysis.csv)\\\\n# Y: LP delta pp (from per_type_lp_analysis.csv)\\\\ntype_names = ['event', 'other', 'organization', 'building', 'product', 'location', 'person', 'art']\\\\ntype_degen = [5.97, 6.61, 6.74, 7.18, 8.17, 11.42, 13.42, 19.81]\\\\ntype_delta = [0.65, 4.73, 1.21, 0.23, 2.01, 0.53, 1.25, -0.17]\\\\n\\\\nfig, ax = plt.subplots(figsize=(5, 3.5))\\\\n\\\\nax.axhline(y=0, color='#999999', linestyle='--', linewidth=0.8, zorder=1)\\\\nax.text(62, 0.15, 'Greedy Baseline', fontsize=7, color='#999999',\\\\n        ha='right', va='bottom')\\\\n\\\\nax.scatter(type_degen, type_delta, marker='^', s=60, c='#E8851E',\\\\n           edgecolors='#C06A10', linewidths=0.5, zorder=3,\\\\n           label='Within Few-NERD (per entity type)')\\\\n\\\\nax.scatter(cross_degen, cross_delta, marker='o', s=120, c='#3274A1',\\\\n           edgecolors='#1F4F72', linewidths=0.7, zorder=4,\\\\n           label='Cross-dataset')\\\\n\\\\noffsets = {'CoNLL': (3, -8), 'SciERC': (3, 5), 'Few-NERD': (-8, 6)}\\\\nfor name, x, y in zip(cross_names, cross_degen, cross_delta):\\\\n    ox, oy = offsets[name]\\\\n    ax.annotate(name, (x, y), textcoords='offset points',\\\\n                xytext=(ox, oy), fontsize=8, fontweight='bold',\\\\n                color='#1F4F72')\\\\n\\\\nlabel_types = {'other': (4, 4), 'art': (3, -7), 'product': (4, 3)}\\\\nfor name, x, y in zip(type_names, type_degen, type_delta):\\\\n    if name in label_types:\\\\n        ox, oy = label_types[name]\\\\n        ax.annotate(name.capitalize(), (x, y), textcoords='offset points',\\\\n                    xytext=(ox, oy), fontsize=6.5, color='#C06A10',\\\\n                    fontstyle='italic')\\\\n\\\\nax.set_xlabel('Instance Degeneracy Rate (%)', fontsize=10)\\\\nax.set_ylabel('LP Selection $\\\\\\\\Delta$ (pp vs Greedy)', fontsize=10)\\\\nax.set_xlim(-2, 68)\\\\nax.set_ylim(-3, 5.5)\\\\n\\\\nax.legend(fontsize=7.5, loc='upper right', framealpha=0.9,\\\\n          edgecolor='#cccccc', fancybox=False)\\\\n\\\\nax.spines['top'].set_visible(False)\\\\nax.spines['right'].set_visible(False)\\\\n\\\\nplt.tight_layout()\\\\nplt.savefig('output/figures/fig_degeneracy_lp_scatter.pdf', dpi=300, bbox_inches='tight')\\\\nplt.savefig('output/figures/fig_degeneracy_lp_scatter.png', dpi=300, bbox_inches='tight')\\\\nprint(\\\\\\\"Figure saved.\\\\\\\")\\\\n\\\\n# Spearman correlations\\\\nall_x = cross_degen + type_degen\\\\nall_y = cross_delta + type_delta\\\\nrho, p = spearmanr(all_x, all_y)\\\\nprint(f\\\\\\\"11-point Spearman rho = {rho:.4f}, p = {p:.4f}\\\\\\\")\\\\n\\\\nrho8, p8 = spearmanr(type_degen, type_delta)\\\\nprint(f\\\\\\\"Per-type (n=8): rho = {rho8:.4f}, p = {p8:.4f}\\\\\\\")\\\\n\\\\nrho3, p3 = spearmanr(cross_degen, cross_delta)\\\\nprint(f\\\\\\\"Dataset-level (n=3): rho = {rho3:.4f}, p = {p3:.4f}\\\\\\\")\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"import matplotlib\\nmatplotlib.use('Agg')\\nimport matplotlib.pyplot as plt\\nimport numpy as np\\nfrom scipy.stats import spearmanr\\n\\nplt.rcParams.update({\\n    'font.family': 'serif',\\n    'font.size': 9,\\n    'axes.linewidth': 0.8,\\n    'xtick.major.width': 0.6,\\n    'ytick.major.width': 0.6,\\n    'lines.linewidth': 1.0,\\n})\\n\\n# Cross-dataset points (Qwen3-8B, N=8)\\n# X: Constant F1, gold-filtered degeneracy (updated 2026-05-18, D132)\\n# Y: LP selection delta (pp vs greedy)\\ncross_names = ['CoNLL', 'SciERC', 'Few-NERD']\\ncross_degen = [59.1, 17.8, 13.8]\\ncross_delta = [-1.05, 0.61, 1.36]\\n\\n# Per-type points (Few-NERD, per entity type)\\n# X: Original KeySet degeneracy (from per_type_lp_analysis.csv)\\n# Y: LP delta pp (from per_type_lp_analysis.csv)\\ntype_names = ['event', 'other', 'organization', 'building', 'product', 'location', 'person', 'art']\\ntype_degen = [5.97, 6.61, 6.74, 7.18, 8.17, 11.42, 13.42, 19.81]\\ntype_delta = [0.65, 4.73, 1.21, 0.23, 2.01, 0.53, 1.25, -0.17]\\n\\nfig, ax = plt.subplots(figsize=(5, 3.5))\\n\\nax.axhline(y=0, color='#999999', linestyle='--', linewidth=0.8, zorder=1)\\nax.text(62, 0.15, 'Greedy Baseline', fontsize=7, color='#999999',\\n        ha='right', va='bottom')\\n\\nax.scatter(type_degen, type_delta, marker='^', s=60, c='#E8851E',\\n           edgecolors='#C06A10', linewidths=0.5, zorder=3,\\n           label='Within Few-NERD (per entity type)')\\n\\nax.scatter(cross_degen, cross_delta, marker='o', s=120, c='#3274A1',\\n           edgecolors='#1F4F72', linewidths=0.7, zorder=4,\\n           label='Cross-dataset')\\n\\noffsets = {'CoNLL': (3, -8), 'SciERC': (3, 5), 'Few-NERD': (-8, 6)}\\nfor name, x, y in zip(cross_names, cross_degen, cross_delta):\\n    ox, oy = offsets[name]\\n    ax.annotate(name, (x, y), textcoords='offset points',\\n                xytext=(ox, oy), fontsize=8, fontweight='bold',\\n                color='#1F4F72')\\n\\nlabel_types = {'other': (4, 4), 'art': (3, -7), 'product': (4, 3)}\\nfor name, x, y in zip(type_names, type_degen, type_delta):\\n    if name in label_types:\\n        ox, oy = label_types[name]\\n        ax.annotate(name.capitalize(), (x, y), textcoords='offset points',\\n                    xytext=(ox, oy), fontsize=6.5, color='#C06A10',\\n                    fontstyle='italic')\\n\\nax.set_xlabel('Instance Degeneracy Rate (%)', fontsize=10)\\nax.set_ylabel('LP Selection $\\\\Delta$ (pp vs Greedy)', fontsize=10)\\nax.set_xlim(-2, 68)\\nax.set_ylim(-3, 5.5)\\n\\nax.legend(fontsize=7.5, loc='upper right', framealpha=0.9,\\n          edgecolor='#cccccc', fancybox=False)\\n\\nax.spines['top'].set_visible(False)\\nax.spines['right'].set_visible(False)\\n\\nplt.tight_layout()\\nplt.savefig('output/figures/fig_degeneracy_lp_scatter.pdf', dpi=300, bbox_inches='tight')\\nplt.savefig('output/figures/fig_degeneracy_lp_scatter.png', dpi=300, bbox_inches='tight')\\nprint(\\\"Figure saved.\\\")\\n\\n# Spearman correlations\\nall_x = cross_degen + type_degen\\nall_y = cross_delta + type_delta\\nrho, p = spearmanr(all_x, all_y)\\nprint(f\\\"11-point Spearman rho = {rho:.4f}, p = {p:.4f}\\\")\\n\\nrho8, p8 = spearmanr(type_degen, type_delta)\\nprint(f\\\"Per-type (n=8): rho = {rho8:.4f}, p = {p8:.4f}\\\")\\n\\nrho3, p3 = spearmanr(cross_degen, cross_delta)\\nprint(f\\\"Dataset-level (n=3): rho = {rho3:.4f}, p = {p3:.4f}\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0198D52SeuDv2fq1Mf3FQPmJ`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/analysis_d141_scatter_plot.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c57a4897-a320-475e-a0e7-20bfcb94129b",
+  "uuid": "4707759c-c5d8-434a-b37f-539c160e322b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LeJgxzgScJKgRVUfKCC4QW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 10796,
+      "cache_read_input_tokens": 26710,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 10796
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-18T21:28:14.888Z_
+
+<details><summary>↩ Tool result · `toolu_0198D52SeuDv2fq1Mf3FQPmJ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"D141 Task 3: Degeneracy-Capability Scatter Plot\\nVisualizes model capability (greedy F1) vs degeneracy rate across experiments.\\n\\\"\\\"\\\"\\n\\nimport json\\nimport numpy as np\\nimport os\\n\\nBASE = \\\"/root/autodl-tmp/struct_self_consist_ie\\\"\\nOUT_DIR = os.path.join(BASE, \\\"output/d141_degeneracy_scatter\\\")\\nos.makedirs(OUT_DIR, exist_ok=True)\\n\\nDATA_SOURCES = [\\n    {\\\"label\\\": \\\"Qwen3-8B\\\\nSciERC 3ep\\\", \\\"model\\\": \\\"Qwen3-8B\\\", \\\"dataset\\\": \\\"SciERC\\\",\\n     \\\"samples_path\\\": \\\"output/exp_029a_scierc_3epoch/samples.jsonl\\\"},\\n    {\\\"label\\\": \\\"Qwen3-8B\\\\nSciERC 5ep\\\", \\\"model\\\": \\\"Qwen3-8B\\\", \\\"dataset\\\": \\\"SciERC\\\",\\n     \\\"samples_path\\\": \\\"output/exp_012_rerun_1024/samples.jsonl\\\"},\\n    {\\\"label\\\": \\\"Qwen3-8B\\\\nSciERC 10ep\\\", \\\"model\\\": \\\"Qwen3-8B\\\", \\\"dataset\\\": \\\"SciERC\\\",\\n     \\\"samples_path\\\": \\\"output/exp_029b_scierc_10epoch/samples.jsonl\\\"},\\n    {\\\"label\\\": \\\"Qwen3-8B\\\\nCoNLL\\\", \\\"model\\\": \\\"Qwen3-8B\\\", \\\"dataset\\\": \\\"CoNLL\\\",\\n     \\\"samples_path\\\": \\\"output/exp_002_conll_n16_r1024/samples.jsonl\\\"},\\n    {\\\"label\\\": \\\"Qwen3-8B\\\\nFewNERD\\\", \\\"model\\\": \\\"Qwen3-8B\\\", \\\"dataset\\\": \\\"FewNERD\\\",\\n     \\\"samples_path\\\": \\\"output/exp_027_fewnerd_n16/samples.jsonl\\\"},\\n    {\\\"label\\\": \\\"Qwen3-4B\\\\nSciERC\\\", \\\"model\\\": \\\"Qwen3-4B\\\", \\\"dataset\\\": \\\"SciERC\\\",\\n     \\\"samples_path\\\": \\\"output/exp_qwen3_4b_scierc_scs_inference/samples.jsonl\\\"},\\n    {\\\"label\\\": \\\"Qwen3-4B\\\\nCoNLL\\\", \\\"model\\\": \\\"Qwen3-4B\\\", \\\"dataset\\\": \\\"CoNLL\\\",\\n     \\\"samples_path\\\": \\\"output/exp_qwen3_4b_conll_scs_inference_v2/samples.jsonl\\\"},\\n    {\\\"label\\\": \\\"LLaMA-3B\\\\nSciERC\\\", \\\"model\\\": \\\"LLaMA-3B\\\", \\\"dataset\\\": \\\"SciERC\\\",\\n     \\\"samples_path\\\": \\\"output/exp_018_llama_scierc_seed42_r1024/samples.jsonl\\\"},\\n    {\\\"label\\\": \\\"LLaMA-3B\\\\nCoNLL\\\", \\\"model\\\": \\\"LLaMA-3B\\\", \\\"dataset\\\": \\\"CoNLL\\\",\\n     \\\"samples_path\\\": \\\"output/exp_017_llama_conll_n16_r1024/samples.jsonl\\\"},\\n    {\\\"label\\\": \\\"Qwen3-8B\\\\nFewNERD 5ep\\\", \\\"model\\\": \\\"Qwen3-8B\\\", \\\"dataset\\\": \\\"FewNERD\\\",\\n     \\\"samples_path\\\": \\\"output/exp_028_fewnerd_5epoch/samples.jsonl\\\"},\\n]\\n\\n\\ndef entity_f1(pred_entities, gold_entities):\\n    pred_set = {(e[\\\"start\\\"], e[\\\"end\\\"], e[\\\"type\\\"]) for e in pred_entities}\\n    gold_set = {(e[\\\"start\\\"], e[\\\"end\\\"], e[\\\"type\\\"]) for e in gold_entities}\\n    tp = len(pred_set & gold_set)\\n    fp = len(pred_set - gold_set)\\n    fn = len(gold_set - pred_set)\\n    if tp == 0:\\n        return 0.0\\n    p = tp / (tp + fp)\\n    r = tp / (tp + fn)\\n    return 2 * p * r / (p + r)\\n\\n\\ndef compute_from_samples(samples_path):\\n    greedy_f1s = []\\n    n_degenerate = 0\\n    n_total = 0\\n\\n    full_path = os.path.join(BASE, samples_path)\\n    with open(full_path) as f:\\n        for line in f:\\n            inst = json.loads(line)\\n            gold_ents = inst[\\\"gold\\\"].get(\\\"entities\\\", [])\\n            if len(gold_ents) == 0:\\n                continue\\n\\n            n_total += 1\\n            greedy = inst.get(\\\"greedy\\\")\\n            samples = inst[\\\"samples\\\"]\\n\\n            gf1 = entity_f1(greedy.get(\\\"entities\\\", []), gold_ents) if greedy else 0.0\\n            greedy_f1s.append(gf1)\\n\\n            sample_f1s = [entity_f1(s.get(\\\"entities\\\", []), gold_ents) for s in samples]\\n            unique_f1s = set(round(f, 8) for f in sample_f1s)\\n            if len(unique_f1s) <= 1:\\n                n_degenerate += 1\\n\\n    greedy_macro = float(np.mean(greedy_f1s)) if greedy_f1s else 0.0\\n    degen_rate = (n_degenerate / n_total * 100) if n_total > 0 else 0.0\\n\\n    return greedy_macro, degen_rate, n_total\\n\\n\\ndef main():\\n    data_points = []\\n\\n    for ds in DATA_SOURCES:\\n        sp = ds[\\\"samples_path\\\"]\\n        full_path = os.path.join(BASE, sp)\\n        if not os.path.exists(full_path):\\n            print(f\\\"WARNING: {full_path} not found, skipping {ds['label']}\\\")\\n            continue\\n\\n        print(f\\\"Computing: {ds['label'].replace(chr(10), ' ')} ({sp})...\\\")\\n        gf1, drate, n = compute_from_samples(sp)\\n        print(f\\\"  greedy_f1={gf1:.4f}, degeneracy={drate:.2f}%, n={n}\\\")\\n\\n        data_points.append({\\n            \\\"label\\\": ds[\\\"label\\\"],\\n            \\\"label_short\\\": ds[\\\"label\\\"].replace(\\\"\\\\n\\\", \\\" \\\"),\\n            \\\"model\\\": ds[\\\"model\\\"],\\n            \\\"dataset\\\": ds[\\\"dataset\\\"],\\n            \\\"greedy_f1\\\": round(gf1, 4),\\n            \\\"dege\\n\\n... [截断: 输出过长，省略 596 字符] ...\\n\\ntaset_colors = {\\\"SciERC\\\": \\\"#2196F3\\\", \\\"CoNLL\\\": \\\"#4CAF50\\\", \\\"FewNERD\\\": \\\"#FF9800\\\"}\\n    model_markers = {\\\"Qwen3-8B\\\": \\\"o\\\", \\\"Qwen3-4B\\\": \\\"s\\\", \\\"LLaMA-3B\\\": \\\"^\\\"}\\n\\n    for dp in data_points:\\n        color = dataset_colors.get(dp[\\\"dataset\\\"], \\\"gray\\\")\\n        marker = model_markers.get(dp[\\\"model\\\"], \\\"o\\\")\\n        ax.scatter(dp[\\\"greedy_f1\\\"], dp[\\\"degeneracy_pct\\\"],\\n                   c=color, marker=marker, s=120, zorder=5,\\n                   edgecolors=\\\"black\\\", linewidths=0.5)\\n\\n        offset_x, offset_y = 8, 4\\n        if dp[\\\"degeneracy_pct\\\"] > 80:\\n            offset_y = -12\\n        if dp[\\\"greedy_f1\\\"] > 0.9:\\n            offset_x = -8\\n            ha = \\\"right\\\"\\n        else:\\n            ha = \\\"left\\\"\\n\\n        ax.annotate(dp[\\\"label_short\\\"], (dp[\\\"greedy_f1\\\"], dp[\\\"degeneracy_pct\\\"]),\\n                    textcoords=\\\"offset points\\\", xytext=(offset_x, offset_y),\\n                    fontsize=7.5, ha=ha, va=\\\"bottom\\\")\\n\\n    if len(x) >= 3:\\n        z = np.polyfit(x, y, 1)\\n        xline = np.linspace(min(x) - 0.02, max(x) + 0.02, 100)\\n        yline = np.polyval(z, xline)\\n        ax.plot(xline, yline, \\\"--\\\", color=\\\"gray\\\", alpha=0.5, linewidth=1)\\n\\n    ax.set_xlabel(\\\"Greedy F1 (macro)\\\", fontsize=12)\\n    ax.set_ylabel(\\\"Degeneracy Rate (%)\\\", fontsize=12)\\n    ax.set_title(f\\\"Capability vs Degeneracy (Spearman $\\\\\\\\rho$={rho:.3f}, p={p_val:.3f})\\\", fontsize=13)\\n\\n    from matplotlib.lines import Line2D\\n    dataset_handles = [Line2D([0], [0], marker=\\\"o\\\", color=\\\"w\\\", markerfacecolor=c,\\n                              markersize=8, label=d, markeredgecolor=\\\"black\\\", markeredgewidth=0.5)\\n                       for d, c in dataset_colors.items()]\\n    model_handles = [Line2D([0], [0], marker=m, color=\\\"w\\\", markerfacecolor=\\\"gray\\\",\\n                            markersize=8, label=mod, markeredgecolor=\\\"black\\\", markeredgewidth=0.5)\\n                     for mod, m in model_markers.items()]\\n    ax.legend(handles=dataset_handles + model_handles, loc=\\\"upper left\\\",\\n              fontsize=9, framealpha=0.8)\\n\\n    ax.tick_params(labelsize=10)\\n    ax.spines[\\\"top\\\"].set_visible(False)\\n    ax.spines[\\\"right\\\"].set_visible(False)\\n\\n    plt.tight_layout()\\n    plt.savefig(os.path.join(OUT_DIR, \\\"scatter_plot.png\\\"), dpi=300, bbox_inches=\\\"tight\\\")\\n    print(f\\\"Scatter plot saved to {OUT_DIR}/scatter_plot.png\\\")\\n\\n    lines = [\\\"# D141 Task 3: Degeneracy-Capability Scatter Plot\\\\n\\\\n\\\"]\\n    lines.append(\\\"## Data Points\\\\n\\\\n\\\")\\n    lines.append(\\\"| Label | Model | Dataset | Greedy F1 | Degeneracy (%) | N |\\\\n\\\")\\n    lines.append(\\\"|-------|-------|---------|-----------|----------------|---|\\\\n\\\")\\n    for dp in sorted(data_points, key=lambda d: d[\\\"greedy_f1\\\"]):\\n        lines.append(f\\\"| {dp['label_short']} | {dp['model']} | {dp['dataset']} | {dp['greedy_f1']:.4f} | {dp['degeneracy_pct']:.2f} | {dp['n_instances']} |\\\\n\\\")\\n\\n    lines.append(f\\\"\\\\n## Correlation\\\\n\\\\n\\\")\\n    lines.append(f\\\"- Spearman rho = {rho:.4f}\\\\n\\\")\\n    lines.append(f\\\"- p-value = {p_val:.4f}\\\\n\\\")\\n    lines.append(f\\\"- N = {len(data_points)} data points\\\\n\\\\n\\\")\\n\\n    if rho > 0.3 and p_val < 0.05:\\n        verdict = \\\"Positive correlation supports the 'capability trap' hypothesis: higher-performing models (on a given dataset) tend to have higher degeneracy rates, reducing the headroom for LP selection to improve over greedy.\\\"\\n    elif rho > 0 and p_val < 0.05:\\n        verdict = \\\"Weak positive correlation. Some evidence for capability trap but not conclusive.\\\"\\n    elif p_val >= 0.05:\\n        verdict = \\\"No statistically significant correlation between capability and degeneracy.\\\"\\n    else:\\n        verdict = \\\"Unexpected negative correlation. Does not support capability trap hypothesis.\\\"\\n\\n    lines.append(f\\\"## Conclusion\\\\n\\\\n{verdict}\\\\n\\\")\\n\\n    with open(os.path.join(OUT_DIR, \\\"report.md\\\"), \\\"w\\\") as f:\\n        f.writelines(lines)\\n\\n    print(f\\\"Report saved to {OUT_DIR}/report.md\\\")\\n\\n    for dp in sorted(data_points, key=lambda d: d[\\\"greedy_f1\\\"]):\\n        print(f\\\"  {dp['label_short']:30s} F1={dp['greedy_f1']:.4f}  degen={dp['degeneracy_pct']:6.2f}%\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c57a4897-a320-475e-a0e7-20bfcb94129b",
+  "uuid": "3ca9a1f1-20c8-496d-ba91-4a97c63c4b28",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"D141 Task 3: Degeneracy-Capability Scatter Plot\\\\nVisualizes model capability (greedy F1) vs degeneracy rate across experiments.\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport json\\\\nimport numpy as np\\\\nimport os\\\\n\\\\nBASE = \\\\\\\"/root/autodl-tmp/struct_self_consist_ie\\\\\\\"\\\\nOUT_DIR = os.path.join(BASE, \\\\\\\"output/d141_degeneracy_scatter\\\\\\\")\\\\nos.makedirs(OUT_DIR, exist_ok=True)\\\\n\\\\nDATA_SOURCES = [\\\\n    {\\\\\\\"label\\\\\\\": \\\\\\\"Qwen3-8B\\\\\\\\nSciERC 3ep\\\\\\\", \\\\\\\"model\\\\\\\": \\\\\\\"Qwen3-8B\\\\\\\", \\\\\\\"dataset\\\\\\\": \\\\\\\"SciERC\\\\\\\",\\\\n     \\\\\\\"samples_path\\\\\\\": \\\\\\\"output/exp_029a_scierc_3epoch/samples.jsonl\\\\\\\"},\\\\n    {\\\\\\\"label\\\\\\\": \\\\\\\"Qwen3-8B\\\\\\\\nSciERC 5ep\\\\\\\", \\\\\\\"model\\\\\\\": \\\\\\\"Qwen3-8B\\\\\\\", \\\\\\\"dataset\\\\\\\": \\\\\\\"SciERC\\\\\\\",\\\\n     \\\\\\\"samples_path\\\\\\\": \\\\\\\"output/exp_012_rerun_1024/samples.jsonl\\\\\\\"},\\\\n    {\\\\\\\"label\\\\\\\": \\\\\\\"Qwen3-8B\\\\\\\\nSciERC 10ep\\\\\\\", \\\\\\\"model\\\\\\\": \\\\\\\"Qwen3-8B\\\\\\\", \\\\\\\"dataset\\\\\\\": \\\\\\\"SciERC\\\\\\\",\\\\n     \\\\\\\"samples_path\\\\\\\": \\\\\\\"output/exp_029b_scierc_10epoch/samples.jsonl\\\\\\\"},\\\\n    {\\\\\\\"label\\\\\\\": \\\\\\\"Qwen3-8B\\\\\\\\nCoNLL\\\\\\\", \\\\\\\"model\\\\\\\": \\\\\\\"Qwen3-8B\\\\\\\", \\\\\\\"dataset\\\\\\\": \\\\\\\"CoNLL\\\\\\\",\\\\n     \\\\\\\"samples_path\\\\\\\": \\\\\\\"output/exp_002_conll_n16_r1024/samples.jsonl\\\\\\\"},\\\\n    {\\\\\\\"label\\\\\\\": \\\\\\\"Qwen3-8B\\\\\\\\nFewNERD\\\\\\\", \\\\\\\"model\\\\\\\": \\\\\\\"Qwen3-8B\\\\\\\", \\\\\\\"dataset\\\\\\\": \\\\\\\"FewNERD\\\\\\\",\\\\n     \\\\\\\"samples_path\\\\\\\": \\\\\\\"output/exp_027_fewnerd_n16/samples.jsonl\\\\\\\"},\\\\n    {\\\\\\\"label\\\\\\\": \\\\\\\"Qwen3-4B\\\\\\\\nSciERC\\\\\\\", \\\\\\\"model\\\\\\\": \\\\\\\"Qwen3-4B\\\\\\\", \\\\\\\"dataset\\\\\\\": \\\\\\\"SciERC\\\\\\\",\\\\n     \\\\\\\"samples_path\\\\\\\": \\\\\\\"output/exp_qwen3_4b_scierc_scs_inference/samples.jsonl\\\\\\\"},\\\\n    {\\\\\\\"label\\\\\\\": \\\\\\\"Qwen3-4B\\\\\\\\nCoNLL\\\\\\\", \\\\\\\"model\\\\\\\": \\\\\\\"Qwen3-4B\\\\\\\", \\\\\\\"dataset\\\\\\\": \\\\\\\"CoNLL\\\\\\\",\\\\n     \\\\\\\"samples_path\\\\\\\": \\\\\\\"output/exp_qwen3_4b_conll_scs_inference_v2/samples.jsonl\\\\\\\"},\\\\n    {\\\\\\\"label\\\\\\\": \\\\\\\"LLaMA-3B\\\\\\\\nSciERC\\\\\\\", \\\\\\\"model\\\\\\\": \\\\\\\"LLaMA-3B\\\\\\\", \\\\\\\"dataset\\\\\\\": \\\\\\\"SciERC\\\\\\\",\\\\n     \\\\\\\"samples_path\\\\\\\": \\\\\\\"output/exp_018_llama_scierc_seed42_r1024/samples.jsonl\\\\\\\"},\\\\n    {\\\\\\\"label\\\\\\\": \\\\\\\"LLaMA-3B\\\\\\\\nCoNLL\\\\\\\", \\\\\\\"model\\\\\\\": \\\\\\\"LLaMA-3B\\\\\\\", \\\\\\\"dataset\\\\\\\": \\\\\\\"CoNLL\\\\\\\",\\\\n     \\\\\\\"samples_path\\\\\\\": \\\\\\\"output/exp_017_llama_conll_n16_r1024/samples.jsonl\\\\\\\"},\\\\n    {\\\\\\\"label\\\\\\\": \\\\\\\"Qwen3-8B\\\\\\\\nFewNERD 5ep\\\\\\\", \\\\\\\"model\\\\\\\": \\\\\\\"Qwen3-8B\\\\\\\", \\\\\\\"dataset\\\\\\\": \\\\\\\"FewNERD\\\\\\\",\\\\n     \\\\\\\"samples_path\\\\\\\": \\\\\\\"output/exp_028_fewnerd_5epoch/samples.jsonl\\\\\\\"},\\\\n]\\\\n\\\\n\\\\ndef entity_f1(pred_entities, gold_entities):\\\\n    pred_set = {(e[\\\\\\\"start\\\\\\\"], e[\\\\\\\"end\\\\\\\"], e[\\\\\\\"type\\\\\\\"]) for e in pred_entities}\\\\n    gold_set = {(e[\\\\\\\"start\\\\\\\"], e[\\\\\\\"end\\\\\\\"], e[\\\\\\\"type\\\\\\\"]) for e in gold_entities}\\\\n    tp = len(pred_set & gold_set)\\\\n    fp = len(pred_set - gold_set)\\\\n    fn = len(gold_set - pred_set)\\\\n    if tp == 0:\\\\n        return 0.0\\\\n    p = tp / (tp + fp)\\\\n    r = tp / (tp + fn)\\\\n    return 2 * p * r / (p + r)\\\\n\\\\n\\\\ndef compute_from_samples(samples_path):\\\\n    greedy_f1s = []\\\\n    n_degenerate = 0\\\\n    n_total = 0\\\\n\\\\n    full_path = os.path.join(BASE, samples_path)\\\\n    with open(full_path) as f:\\\\n        for line in f:\\\\n            inst = json.loads(line)\\\\n            gold_ents = inst[\\\\\\\"gold\\\\\\\"].get(\\\\\\\"entities\\\\\\\", [])\\\\n            if len(gold_ents) == 0:\\\\n                continue\\\\n\\\\n            n_total += 1\\\\n            greedy = inst.get(\\\\\\\"greedy\\\\\\\")\\\\n            samples = inst[\\\\\\\"samples\\\\\\\"]\\\\n\\\\n            gf1 = entity_f1(greedy.get(\\\\\\\"entities\\\\\\\", []), gold_ents) if greedy else 0.0\\\\n            greedy_f1s.append(gf1)\\\\n\\\\n            sample_f1s = [entity_f1(s.get(\\\\\\\"entities\\\\\\\", []), gold_ents) for s in samples]\\\\n            unique_f1s = set(round(f, 8) for f in sample_f1s)\\\\n            if len(unique_f1s) <= 1:\\\\n                n_degenerate += 1\\\\n\\\\n    greedy_macro = float(np.mean(greedy_f1s)) if greedy_f1s else 0.0\\\\n    degen_rate = (n_degenerate / n_total * 100) if n_total > 0 else 0.0\\\\n\\\\n    return greedy_macro, degen_rate, n_total\\\\n\\\\n\\\\ndef main():\\\\n    data_points = []\\\\n\\\\n    for ds in DATA_SOURCES:\\\\n        sp = ds[\\\\\\\"samples_path\\\\\\\"]\\\\n        full_path = os.path.join(BASE, sp)\\\\n        if not os.path.exists(full_path):\\\\n            print(f\\\\\\\"WARNING: {full_path} not found, skipping {ds['label']}\\\\\\\")\\\\n            continue\\\\n\\\\n        print(f\\\\\\\"Computing: {ds['label'].replace(chr(10), ' ')} ({sp})...\\\\\\\")\\\\n        gf1, drate, n = compute_from_samples(sp)\\\\n        print(f\\\\\\\"  greedy_f1={gf1:.4f}, degeneracy={drate:.2f}%, n={n}\\\\\\\")\\\\n\\\\n        data_points.append({\\\\n            \\\\\\\"label\\\\\\\": ds[\\\\\\\"label\\\\\\\"],\\\\n            \\\\\\\"label_short\\\\\\\": ds[\\\\\\\"label\\\\\\\"].replace(\\\\\\\"\\\\\\\\n\\\\\\\", \\\\\\\" \\\\\\\"),\\\\n            \\\\\\\"model\\\\\\\": ds[\\\\\\\"model\\\\\\\"],\\\\n            \\\\\\\"dataset\\\\\\\": ds[\\\\\\\"dataset\\\\\\\"],\\\\n            \\\\\\\"greedy_f1\\\\\\\": round(gf1, 4),\\\\n            \\\\\\\"dege\\\\n\\\\n... [截断: 输出过长，省略 596 字符] ...\\\\n\\\\ntaset_colors = {\\\\\\\"SciERC\\\\\\\": \\\\\\\"#2196F3\\\\\\\", \\\\\\\"CoNLL\\\\\\\": \\\\\\\"#4CAF50\\\\\\\", \\\\\\\"FewNERD\\\\\\\": \\\\\\\"#FF9800\\\\\\\"}\\\\n    model_markers = {\\\\\\\"Qwen3-8B\\\\\\\": \\\\\\\"o\\\\\\\", \\\\\\\"Qwen3-4B\\\\\\\": \\\\\\\"s\\\\\\\", \\\\\\\"LLaMA-3B\\\\\\\": \\\\\\\"^\\\\\\\"}\\\\n\\\\n    for dp in data_points:\\\\n        color = dataset_colors.get(dp[\\\\\\\"dataset\\\\\\\"], \\\\\\\"gray\\\\\\\")\\\\n        marker = model_markers.get(dp[\\\\\\\"model\\\\\\\"], \\\\\\\"o\\\\\\\")\\\\n        ax.scatter(dp[\\\\\\\"greedy_f1\\\\\\\"], dp[\\\\\\\"degeneracy_pct\\\\\\\"],\\\\n                   c=color, marker=marker, s=120, zorder=5,\\\\n                   edgecolors=\\\\\\\"black\\\\\\\", linewidths=0.5)\\\\n\\\\n        offset_x, offset_y = 8, 4\\\\n        if dp[\\\\\\\"degeneracy_pct\\\\\\\"] > 80:\\\\n            offset_y = -12\\\\n        if dp[\\\\\\\"greedy_f1\\\\\\\"] > 0.9:\\\\n            offset_x = -8\\\\n            ha = \\\\\\\"right\\\\\\\"\\\\n        else:\\\\n            ha = \\\\\\\"left\\\\\\\"\\\\n\\\\n        ax.annotate(dp[\\\\\\\"label_short\\\\\\\"], (dp[\\\\\\\"greedy_f1\\\\\\\"], dp[\\\\\\\"degeneracy_pct\\\\\\\"]),\\\\n                    textcoords=\\\\\\\"offset points\\\\\\\", xytext=(offset_x, offset_y),\\\\n                    fontsize=7.5, ha=ha, va=\\\\\\\"bottom\\\\\\\")\\\\n\\\\n    if len(x) >= 3:\\\\n        z = np.polyfit(x, y, 1)\\\\n        xline = np.linspace(min(x) - 0.02, max(x) + 0.02, 100)\\\\n        yline = np.polyval(z, xline)\\\\n        ax.plot(xline, yline, \\\\\\\"--\\\\\\\", color=\\\\\\\"gray\\\\\\\", alpha=0.5, linewidth=1)\\\\n\\\\n    ax.set_xlabel(\\\\\\\"Greedy F1 (macro)\\\\\\\", fontsize=12)\\\\n    ax.set_ylabel(\\\\\\\"Degeneracy Rate (%)\\\\\\\", fontsize=12)\\\\n    ax.set_title(f\\\\\\\"Capability vs Degeneracy (Spearman $\\\\\\\\\\\\\\\\rho$={rho:.3f}, p={p_val:.3f})\\\\\\\", fontsize=13)\\\\n\\\\n    from matplotlib.lines import Line2D\\\\n    dataset_handles = [Line2D([0], [0], marker=\\\\\\\"o\\\\\\\", color=\\\\\\\"w\\\\\\\", markerfacecolor=c,\\\\n                              markersize=8, label=d, markeredgecolor=\\\\\\\"black\\\\\\\", markeredgewidth=0.5)\\\\n                       for d, c in dataset_colors.items()]\\\\n    model_handles = [Line2D([0], [0], marker=m, color=\\\\\\\"w\\\\\\\", markerfacecolor=\\\\\\\"gray\\\\\\\",\\\\n                            markersize=8, label=mod, markeredgecolor=\\\\\\\"black\\\\\\\", markeredgewidth=0.5)\\\\n                     for mod, m in model_markers.items()]\\\\n    ax.legend(handles=dataset_handles + model_handles, loc=\\\\\\\"upper left\\\\\\\",\\\\n              fontsize=9, framealpha=0.8)\\\\n\\\\n    ax.tick_params(labelsize=10)\\\\n    ax.spines[\\\\\\\"top\\\\\\\"].set_visible(False)\\\\n    ax.spines[\\\\\\\"right\\\\\\\"].set_visible(False)\\\\n\\\\n    plt.tight_layout()\\\\n    plt.savefig(os.path.join(OUT_DIR, \\\\\\\"scatter_plot.png\\\\\\\"), dpi=300, bbox_inches=\\\\\\\"tight\\\\\\\")\\\\n    print(f\\\\\\\"Scatter plot saved to {OUT_DIR}/scatter_plot.png\\\\\\\")\\\\n\\\\n    lines = [\\\\\\\"# D141 Task 3: Degeneracy-Capability Scatter Plot\\\\\\\\n\\\\\\\\n\\\\\\\"]\\\\n    lines.append(\\\\\\\"## Data Points\\\\\\\\n\\\\\\\\n\\\\\\\")\\\\n    lines.append(\\\\\\\"| Label | Model | Dataset | Greedy F1 | Degeneracy (%) | N |\\\\\\\\n\\\\\\\")\\\\n    lines.append(\\\\\\\"|-------|-------|---------|-----------|----------------|---|\\\\\\\\n\\\\\\\")\\\\n    for dp in sorted(data_points, key=lambda d: d[\\\\\\\"greedy_f1\\\\\\\"]):\\\\n        lines.append(f\\\\\\\"| {dp['label_short']} | {dp['model']} | {dp['dataset']} | {dp['greedy_f1']:.4f} | {dp['degeneracy_pct']:.2f} | {dp['n_instances']} |\\\\\\\\n\\\\\\\")\\\\n\\\\n    lines.append(f\\\\\\\"\\\\\\\\n## Correlation\\\\\\\\n\\\\\\\\n\\\\\\\")\\\\n    lines.append(f\\\\\\\"- Spearman rho = {rho:.4f}\\\\\\\\n\\\\\\\")\\\\n    lines.append(f\\\\\\\"- p-value = {p_val:.4f}\\\\\\\\n\\\\\\\")\\\\n    lines.append(f\\\\\\\"- N = {len(data_points)} data points\\\\\\\\n\\\\\\\\n\\\\\\\")\\\\n\\\\n    if rho > 0.3 and p_val < 0.05:\\\\n        verdict = \\\\\\\"Positive correlation supports the 'capability trap' hypothesis: higher-performing models (on a given dataset) tend to have higher degeneracy rates, reducing the headroom for LP selection to improve over greedy.\\\\\\\"\\\\n    elif rho > 0 and p_val < 0.05:\\\\n        verdict = \\\\\\\"Weak positive correlation. Some evidence for capability trap but not conclusive.\\\\\\\"\\\\n    elif p_val >= 0.05:\\\\n        verdict = \\\\\\\"No statistically significant correlation between capability and degeneracy.\\\\\\\"\\\\n    else:\\\\n        verdict = \\\\\\\"Unexpected negative correlation. Does not support capability trap hypothesis.\\\\\\\"\\\\n\\\\n    lines.append(f\\\\\\\"## Conclusion\\\\\\\\n\\\\\\\\n{verdict}\\\\\\\\n\\\\\\\")\\\\n\\\\n    with open(os.path.join(OUT_DIR, \\\\\\\"report.md\\\\\\\"), \\\\\\\"w\\\\\\\") as f:\\\\n        f.writelines(lines)\\\\n\\\\n    print(f\\\\\\\"Report saved to {OUT_DIR}/report.md\\\\\\\")\\\\n\\\\n    for dp in sorted(data_points, key=lambda d: d[\\\\\\\"greedy_f1\\\\\\\"]):\\\\n        print(f\\\\\\\"  {dp['label_short']:30s} F1={dp['greedy_f1']:.4f}  degen={dp['degeneracy_pct']:6.2f}%\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"D141 Task 3: Degeneracy-Capability Scatter Plot\\nVisualizes model capability (greedy F1) vs degeneracy rate across experiments.\\n\\\"\\\"\\\"\\n\\nimport json\\nimport numpy as np\\nimport os\\n\\nBASE = \\\"/root/autodl-tmp/struct_self_consist_ie\\\"\\nOUT_DIR = os.path.join(BASE, \\\"output/d141_degeneracy_scatter\\\")\\nos.makedirs(OUT_DIR, exist_ok=True)\\n\\nDATA_SOURCES = [\\n    {\\\"label\\\": \\\"Qwen3-8B\\\\nSciERC 3ep\\\", \\\"model\\\": \\\"Qwen3-8B\\\", \\\"dataset\\\": \\\"SciERC\\\",\\n     \\\"samples_path\\\": \\\"output/exp_029a_scierc_3epoch/samples.jsonl\\\"},\\n    {\\\"label\\\": \\\"Qwen3-8B\\\\nSciERC 5ep\\\", \\\"model\\\": \\\"Qwen3-8B\\\", \\\"dataset\\\": \\\"SciERC\\\",\\n     \\\"samples_path\\\": \\\"output/exp_012_rerun_1024/samples.jsonl\\\"},\\n    {\\\"label\\\": \\\"Qwen3-8B\\\\nSciERC 10ep\\\", \\\"model\\\": \\\"Qwen3-8B\\\", \\\"dataset\\\": \\\"SciERC\\\",\\n     \\\"samples_path\\\": \\\"output/exp_029b_scierc_10epoch/samples.jsonl\\\"},\\n    {\\\"label\\\": \\\"Qwen3-8B\\\\nCoNLL\\\", \\\"model\\\": \\\"Qwen3-8B\\\", \\\"dataset\\\": \\\"CoNLL\\\",\\n     \\\"samples_path\\\": \\\"output/exp_002_conll_n16_r1024/samples.jsonl\\\"},\\n    {\\\"label\\\": \\\"Qwen3-8B\\\\nFewNERD\\\", \\\"model\\\": \\\"Qwen3-8B\\\", \\\"dataset\\\": \\\"FewNERD\\\",\\n     \\\"samples_path\\\": \\\"output/exp_027_fewnerd_n16/samples.jsonl\\\"},\\n    {\\\"label\\\": \\\"Qwen3-4B\\\\nSciERC\\\", \\\"model\\\": \\\"Qwen3-4B\\\", \\\"dataset\\\": \\\"SciERC\\\",\\n     \\\"samples_path\\\": \\\"output/exp_qwen3_4b_scierc_scs_inference/samples.jsonl\\\"},\\n    {\\\"label\\\": \\\"Qwen3-4B\\\\nCoNLL\\\", \\\"model\\\": \\\"Qwen3-4B\\\", \\\"dataset\\\": \\\"CoNLL\\\",\\n     \\\"samples_path\\\": \\\"output/exp_qwen3_4b_conll_scs_inference_v2/samples.jsonl\\\"},\\n    {\\\"label\\\": \\\"LLaMA-3B\\\\nSciERC\\\", \\\"model\\\": \\\"LLaMA-3B\\\", \\\"dataset\\\": \\\"SciERC\\\",\\n     \\\"samples_path\\\": \\\"output/exp_018_llama_scierc_seed42_r1024/samples.jsonl\\\"},\\n    {\\\"label\\\": \\\"LLaMA-3B\\\\nCoNLL\\\", \\\"model\\\": \\\"LLaMA-3B\\\", \\\"dataset\\\": \\\"CoNLL\\\",\\n     \\\"samples_path\\\": \\\"output/exp_017_llama_conll_n16_r1024/samples.jsonl\\\"},\\n    {\\\"label\\\": \\\"Qwen3-8B\\\\nFewNERD 5ep\\\", \\\"model\\\": \\\"Qwen3-8B\\\", \\\"dataset\\\": \\\"FewNERD\\\",\\n     \\\"samples_path\\\": \\\"output/exp_028_fewnerd_5epoch/samples.jsonl\\\"},\\n]\\n\\n\\ndef entity_f1(pred_entities, gold_entities):\\n    pred_set = {(e[\\\"start\\\"], e[\\\"end\\\"], e[\\\"type\\\"]) for e in pred_entities}\\n    gold_set = {(e[\\\"start\\\"], e[\\\"end\\\"], e[\\\"type\\\"]) for e in gold_entities}\\n    tp = len(pred_set & gold_set)\\n    fp = len(pred_set - gold_set)\\n    fn = len(gold_set - pred_set)\\n    if tp == 0:\\n        return 0.0\\n    p = tp / (tp + fp)\\n    r = tp / (tp + fn)\\n    return 2 * p * r / (p + r)\\n\\n\\ndef compute_from_samples(samples_path):\\n    greedy_f1s = []\\n    n_degenerate = 0\\n    n_total = 0\\n\\n    full_path = os.path.join(BASE, samples_path)\\n    with open(full_path) as f:\\n        for line in f:\\n            inst = json.loads(line)\\n            gold_ents = inst[\\\"gold\\\"].get(\\\"entities\\\", [])\\n            if len(gold_ents) == 0:\\n                continue\\n\\n            n_total += 1\\n            greedy = inst.get(\\\"greedy\\\")\\n            samples = inst[\\\"samples\\\"]\\n\\n            gf1 = entity_f1(greedy.get(\\\"entities\\\", []), gold_ents) if greedy else 0.0\\n            greedy_f1s.append(gf1)\\n\\n            sample_f1s = [entity_f1(s.get(\\\"entities\\\", []), gold_ents) for s in samples]\\n            unique_f1s = set(round(f, 8) for f in sample_f1s)\\n            if len(unique_f1s) <= 1:\\n                n_degenerate += 1\\n\\n    greedy_macro = float(np.mean(greedy_f1s)) if greedy_f1s else 0.0\\n    degen_rate = (n_degenerate / n_total * 100) if n_total > 0 else 0.0\\n\\n    return greedy_macro, degen_rate, n_total\\n\\n\\ndef main():\\n    data_points = []\\n\\n    for ds in DATA_SOURCES:\\n        sp = ds[\\\"samples_path\\\"]\\n        full_path = os.path.join(BASE, sp)\\n        if not os.path.exists(full_path):\\n            print(f\\\"WARNING: {full_path} not found, skipping {ds['label']}\\\")\\n            continue\\n\\n        print(f\\\"Computing: {ds['label'].replace(chr(10), ' ')} ({sp})...\\\")\\n        gf1, drate, n = compute_from_samples(sp)\\n        print(f\\\"  greedy_f1={gf1:.4f}, degeneracy={drate:.2f}%, n={n}\\\")\\n\\n        data_points.append({\\n            \\\"label\\\": ds[\\\"label\\\"],\\n            \\\"label_short\\\": ds[\\\"label\\\"].replace(\\\"\\\\n\\\", \\\" \\\"),\\n            \\\"model\\\": ds[\\\"model\\\"],\\n            \\\"dataset\\\": ds[\\\"dataset\\\"],\\n            \\\"greedy_f1\\\": round(gf1, 4),\\n            \\\"dege\\n\\n... [截断: 输出过长，省略 596 字符] ...\\n\\ntaset_colors = {\\\"SciERC\\\": \\\"#2196F3\\\", \\\"CoNLL\\\": \\\"#4CAF50\\\", \\\"FewNERD\\\": \\\"#FF9800\\\"}\\n    model_markers = {\\\"Qwen3-8B\\\": \\\"o\\\", \\\"Qwen3-4B\\\": \\\"s\\\", \\\"LLaMA-3B\\\": \\\"^\\\"}\\n\\n    for dp in data_points:\\n        color = dataset_colors.get(dp[\\\"dataset\\\"], \\\"gray\\\")\\n        marker = model_markers.get(dp[\\\"model\\\"], \\\"o\\\")\\n        ax.scatter(dp[\\\"greedy_f1\\\"], dp[\\\"degeneracy_pct\\\"],\\n                   c=color, marker=marker, s=120, zorder=5,\\n                   edgecolors=\\\"black\\\", linewidths=0.5)\\n\\n        offset_x, offset_y = 8, 4\\n        if dp[\\\"degeneracy_pct\\\"] > 80:\\n            offset_y = -12\\n        if dp[\\\"greedy_f1\\\"] > 0.9:\\n            offset_x = -8\\n            ha = \\\"right\\\"\\n        else:\\n            ha = \\\"left\\\"\\n\\n        ax.annotate(dp[\\\"label_short\\\"], (dp[\\\"greedy_f1\\\"], dp[\\\"degeneracy_pct\\\"]),\\n                    textcoords=\\\"offset points\\\", xytext=(offset_x, offset_y),\\n                    fontsize=7.5, ha=ha, va=\\\"bottom\\\")\\n\\n    if len(x) >= 3:\\n        z = np.polyfit(x, y, 1)\\n        xline = np.linspace(min(x) - 0.02, max(x) + 0.02, 100)\\n        yline = np.polyval(z, xline)\\n        ax.plot(xline, yline, \\\"--\\\", color=\\\"gray\\\", alpha=0.5, linewidth=1)\\n\\n    ax.set_xlabel(\\\"Greedy F1 (macro)\\\", fontsize=12)\\n    ax.set_ylabel(\\\"Degeneracy Rate (%)\\\", fontsize=12)\\n    ax.set_title(f\\\"Capability vs Degeneracy (Spearman $\\\\\\\\rho$={rho:.3f}, p={p_val:.3f})\\\", fontsize=13)\\n\\n    from matplotlib.lines import Line2D\\n    dataset_handles = [Line2D([0], [0], marker=\\\"o\\\", color=\\\"w\\\", markerfacecolor=c,\\n                              markersize=8, label=d, markeredgecolor=\\\"black\\\", markeredgewidth=0.5)\\n                       for d, c in dataset_colors.items()]\\n    model_handles = [Line2D([0], [0], marker=m, color=\\\"w\\\", markerfacecolor=\\\"gray\\\",\\n                            markersize=8, label=mod, markeredgecolor=\\\"black\\\", markeredgewidth=0.5)\\n                     for mod, m in model_markers.items()]\\n    ax.legend(handles=dataset_handles + model_handles, loc=\\\"upper left\\\",\\n              fontsize=9, framealpha=0.8)\\n\\n    ax.tick_params(labelsize=10)\\n    ax.spines[\\\"top\\\"].set_visible(False)\\n    ax.spines[\\\"right\\\"].set_visible(False)\\n\\n    plt.tight_layout()\\n    plt.savefig(os.path.join(OUT_DIR, \\\"scatter_plot.png\\\"), dpi=300, bbox_inches=\\\"tight\\\")\\n    print(f\\\"Scatter plot saved to {OUT_DIR}/scatter_plot.png\\\")\\n\\n    lines = [\\\"# D141 Task 3: Degeneracy-Capability Scatter Plot\\\\n\\\\n\\\"]\\n    lines.append(\\\"## Data Points\\\\n\\\\n\\\")\\n    lines.append(\\\"| Label | Model | Dataset | Greedy F1 | Degeneracy (%) | N |\\\\n\\\")\\n    lines.append(\\\"|-------|-------|---------|-----------|----------------|---|\\\\n\\\")\\n    for dp in sorted(data_points, key=lambda d: d[\\\"greedy_f1\\\"]):\\n        lines.append(f\\\"| {dp['label_short']} | {dp['model']} | {dp['dataset']} | {dp['greedy_f1']:.4f} | {dp['degeneracy_pct']:.2f} | {dp['n_instances']} |\\\\n\\\")\\n\\n    lines.append(f\\\"\\\\n## Correlation\\\\n\\\\n\\\")\\n    lines.append(f\\\"- Spearman rho = {rho:.4f}\\\\n\\\")\\n    lines.append(f\\\"- p-value = {p_val:.4f}\\\\n\\\")\\n    lines.append(f\\\"- N = {len(data_points)} data points\\\\n\\\\n\\\")\\n\\n    if rho > 0.3 and p_val < 0.05:\\n        verdict = \\\"Positive correlation supports the 'capability trap' hypothesis: higher-performing models (on a given dataset) tend to have higher degeneracy rates, reducing the headroom for LP selection to improve over greedy.\\\"\\n    elif rho > 0 and p_val < 0.05:\\n        verdict = \\\"Weak positive correlation. Some evidence for capability trap but not conclusive.\\\"\\n    elif p_val >= 0.05:\\n        verdict = \\\"No statistically significant correlation between capability and degeneracy.\\\"\\n    else:\\n        verdict = \\\"Unexpected negative correlation. Does not support capability trap hypothesis.\\\"\\n\\n    lines.append(f\\\"## Conclusion\\\\n\\\\n{verdict}\\\\n\\\")\\n\\n    with open(os.path.join(OUT_DIR, \\\"report.md\\\"), \\\"w\\\") as f:\\n        f.writelines(lines)\\n\\n    print(f\\\"Report saved to {OUT_DIR}/report.md\\\")\\n\\n    for dp in sorted(data_points, key=lambda d: d[\\\"greedy_f1\\\"]):\\n        print(f\\\"  {dp['label_short']:30s} F1={dp['greedy_f1']:.4f}  degen={dp['degeneracy_pct']:6.2f}%\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01EcpdgoxFVHKqnv7q6mYDvo`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "find /root/autodl-tmp/struct_self_consist_ie -name \"*dgs_selection*\" -not -path \"*__pycache__*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c57a4897-a320-475e-a0e7-20bfcb94129b",
+  "uuid": "b6d82608-80ce-4d14-a8ad-f577ec16bec8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LeJgxzgScJKgRVUfKCC4QW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 10796,
+      "cache_read_input_tokens": 26710,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 10796
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-18T21:28:15.604Z_
+
+<details><summary>↩ Tool result · `toolu_01EcpdgoxFVHKqnv7q6mYDvo`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/output/dgs_selection_results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c57a4897-a320-475e-a0e7-20bfcb94129b",
+  "uuid": "5bab5d09-31ba-4128-809c-8d042265d986",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/dgs_selection_results.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/output/dgs_selection_results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 31_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have the existing plot script at `output/figures/plot_degeneracy_lp.py`. The key data to update:
+
+Current cross-dataset data:
+- CoNLL: degen=59.1, delta=-1.05
+- SciERC: degen=17.8, delta=0.61
+- Few-NERD: degen=13.8, delta=1.36
+
+I need to:
+1. Read the DGS selection results for LP deltas
+2. Get the unified degeneracy rates from the JSON I already read
+
+
+3. Update the per-type data too if needed
+
+Looking at the unified degeneracy audit results, I'm seeing SciERC at 17.77% and CoNLL at 48.44% for seed=42, which align with the task values, but the Few-NERD unified data shows 7.06% while the task mentions waiting for reanalysis.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c57a4897-a320-475e-a0e7-20bfcb94129b",
+  "uuid": "254a5184-16b7-45a7-ad4d-160776f941e3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Amf1EoPCap3Czw8VBnNJtG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6457,
+      "cache_read_input_tokens": 37506,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6457
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 32_
+
+Let me get the LP delta data from DGS selection results and check the per-type data.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c57a4897-a320-475e-a0e7-20bfcb94129b",
+  "uuid": "3cc2bd7c-8784-4ead-88ce-57f41b0f8742",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Amf1EoPCap3Czw8VBnNJtG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6457,
+      "cache_read_input_tokens": 37506,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6457
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_017rJjengTNSE3qs66SH8G3n`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/dgs_selection_results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c57a4897-a320-475e-a0e7-20bfcb94129b",
+  "uuid": "ba5c0f45-e1a6-4d89-bd16-837c51c1f9f7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Amf1EoPCap3Czw8VBnNJtG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6457,
+      "cache_read_input_tokens": 37506,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6457
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-18T21:28:26.847Z_
+
+<details><summary>↩ Tool result · `toolu_017rJjengTNSE3qs66SH8G3n`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"metadata\\\": {\\n    \\\"gold_filter\\\": true,\\n    \\\"description\\\": \\\"DGS selection with gold_filter=True (instances with empty gold entities excluded)\\\",\\n    \\\"n_samples\\\": 8,\\n    \\\"n_bootstrap\\\": 10000,\\n    \\\"seed\\\": 42\\n  },\\n  \\\"datasets\\\": {\\n    \\\"SciERC\\\": {\\n      \\\"n_instances_total\\\": 551,\\n      \\\"n_instances_used\\\": 529,\\n      \\\"n_gold_nonempty\\\": 529,\\n      \\\"n_filtered_out\\\": 22,\\n      \\\"n_degenerate\\\": 94,\\n      \\\"n_nondegenerate\\\": 435,\\n      \\\"degen_pct\\\": 17.8,\\n      \\\"greedy\\\": {\\n        \\\"mean\\\": 0.6439219990259687,\\n        \\\"ci_lo\\\": 0.6180475688982305,\\n        \\\"ci_hi\\\": 0.6692473667898999\\n      },\\n      \\\"lp_all\\\": {\\n        \\\"mean\\\": 0.6500718843902431,\\n        \\\"ci_lo\\\": 0.6245690161179985,\\n        \\\"ci_hi\\\": 0.6749655320154598\\n      },\\n      \\\"gated\\\": {\\n        \\\"mean\\\": 0.6513321238357378,\\n        \\\"ci_lo\\\": 0.6259400720731756,\\n        \\\"ci_hi\\\": 0.6760374227376341\\n      },\\n      \\\"oracle\\\": {\\n        \\\"mean\\\": 0.7758023559647044,\\n        \\\"ci_lo\\\": 0.7540692550589138,\\n        \\\"ci_hi\\\": 0.7968803038023543\\n      },\\n      \\\"delta_gated_minus_greedy\\\": {\\n        \\\"delta\\\": 0.007410124809768981,\\n        \\\"ci_lo\\\": -0.006005775609912112,\\n        \\\"ci_hi\\\": 0.021087603106951347\\n      },\\n      \\\"delta_gated_minus_lp\\\": {\\n        \\\"delta\\\": 0.001260239445494644,\\n        \\\"ci_lo\\\": 0.0,\\n        \\\"ci_hi\\\": 0.003780718336483968\\n      },\\n      \\\"degenerate\\\": {\\n        \\\"greedy_eq_gated\\\": {\\n          \\\"mean\\\": 0.6269503546099291,\\n          \\\"ci_lo\\\": 0.5495187436676798,\\n          \\\"ci_hi\\\": 0.7041033434650456\\n        },\\n        \\\"oracle\\\": {\\n          \\\"mean\\\": 0.6198581560283687,\\n          \\\"ci_lo\\\": 0.5410334346504558,\\n          \\\"ci_hi\\\": 0.6986575481256332\\n        }\\n      },\\n      \\\"nondegenerate\\\": {\\n        \\\"greedy\\\": {\\n          \\\"mean\\\": 0.6475894348308142,\\n          \\\"ci_lo\\\": 0.620131375648617,\\n          \\\"ci_hi\\\": 0.6734620041516592\\n        },\\n        \\\"lp\\\": {\\n          \\\"mean\\\": 0.6566008279902803,\\n          \\\"ci_lo\\\": 0.6303757248686256,\\n          \\\"ci_hi\\\": 0.6817474396987582\\n        },\\n        \\\"oracle\\\": {\\n          \\\"mean\\\": 0.8095006428474988,\\n          \\\"ci_lo\\\": 0.7911555299182074,\\n          \\\"ci_hi\\\": 0.8275444508913068\\n        },\\n        \\\"delta_lp_minus_greedy\\\": {\\n          \\\"delta\\\": 0.009011393159466185,\\n          \\\"ci_lo\\\": -0.007261465527185651,\\n          \\\"ci_hi\\\": 0.025726625564353678\\n        }\\n      }\\n    },\\n    \\\"CoNLL\\\": {\\n      \\\"n_instances_total\\\": 3453,\\n      \\\"n_instances_used\\\": 2756,\\n      \\\"n_gold_nonempty\\\": 2756,\\n      \\\"n_filtered_out\\\": 697,\\n      \\\"n_degenerate\\\": 1597,\\n      \\\"n_nondegenerate\\\": 1159,\\n      \\\"degen_pct\\\": 57.9,\\n      \\\"greedy\\\": {\\n        \\\"mean\\\": 0.9069619201150406,\\n        \\\"ci_lo\\\": 0.8976105091489706,\\n        \\\"ci_hi\\\": 0.9158281466155198\\n      },\\n      \\\"lp_all\\\": {\\n        \\\"mean\\\": 0.8988964753682902,\\n        \\\"ci_lo\\\": 0.8891507200010481,\\n        \\\"ci_hi\\\": 0.9082347494759536\\n      },\\n      \\\"gated\\\": {\\n        \\\"mean\\\": 0.8988964753682902,\\n        \\\"ci_lo\\\": 0.8891507200010481,\\n        \\\"ci_hi\\\": 0.9082347494759536\\n      },\\n      \\\"oracle\\\": {\\n        \\\"mean\\\": 0.949353771212531,\\n        \\\"ci_lo\\\": 0.9423720882485339,\\n        \\\"ci_hi\\\": 0.9560346860483805\\n      },\\n      \\\"delta_gated_minus_greedy\\\": {\\n        \\\"delta\\\": -0.008065444746750326,\\n        \\\"ci_lo\\\": -0.012166299734814534,\\n        \\\"ci_hi\\\": -0.004030409600075724\\n      },\\n      \\\"delta_gated_minus_lp\\\": {\\n        \\\"delta\\\": 0.0,\\n        \\\"ci_lo\\\": 0.0,\\n        \\\"ci_hi\\\": 0.0\\n      },\\n      \\\"degenerate\\\": {\\n        \\\"greedy_eq_gated\\\": {\\n          \\\"mean\\\": 0.940057243250731,\\n          \\\"ci_lo\\\": 0.9288666561991545,\\n          \\\"ci_hi\\\": 0.9506016282472136\\n        },\\n        \\\"oracle\\\": {\\n          \\\"mean\\\": 0.940057243250731,\\n          \\\"ci_lo\\\": 0.9288666561991545,\\n          \\\"ci_hi\\\": 0.9506016282472136\\n        }\\n      },\\n      \\\"nondegenerate\\\": {\\n        \\\"greedy\\\": {\\n          \\\"mean\\\": 0.8613594774509357,\\n          \\\"ci_lo\\\": 0.8459971961697587,\\n          \\\"ci_hi\\\": 0.8762339089345129\\n        },\\n        \\\"lp\\\": {\\n          \\\"mean\\\": 0.8421805596579728,\\n          \\\"ci_lo\\\": 0.8254881516212278,\\n          \\\"ci_hi\\\": 0.8584610989429592\\n        },\\n        \\\"oracle\\\": {\\n          \\\"mean\\\": 0.9621635685852614,\\n          \\\"ci_lo\\\": 0.9556284155013596,\\n          \\\"ci_hi\\\": 0.9683883582809243\\n        },\\n        \\\"delta_lp_minus_greedy\\\": {\\n          \\\"delta\\\": -0.01917891779296281,\\n          \\\"ci_lo\\\": -0.02912571770956429,\\n          \\\"ci_hi\\\": -0.009395115104168794\\n        }\\n      }\\n    },\\n    \\\"FewNERD\\\": {\\n      \\\"n_instances_total\\\": 5000,\\n      \\\"n_instances_used\\\": 4351,\\n      \\\"n_gold_nonempty\\\": 4351,\\n      \\\"n_filtered_out\\\": 649,\\n      \\\"n_degenerate\\\": 628,\\n      \\\"n_nondegenerate\\\": 3723,\\n      \\\"degen_pct\\\": 14.4,\\n      \\\"greedy\\\": {\\n        \\\"mean\\\": 0.7477663070201398,\\n        \\\"ci_lo\\\": 0.7376824753342498,\\n        \\\"ci_hi\\\": 0.7577496181566021\\n      },\\n      \\\"lp_all\\\": {\\n        \\\"mean\\\": 0.7610104776596449,\\n        \\\"ci_lo\\\": 0.751328598983156,\\n        \\\"ci_hi\\\": 0.7705865958797642\\n      },\\n      \\\"gated\\\": {\\n        \\\"mean\\\": 0.7615007864009306,\\n        \\\"ci_lo\\\": 0.751851049270596,\\n        \\\"ci_hi\\\": 0.7710724639351165\\n      },\\n      \\\"oracle\\\": {\\n        \\\"mean\\\": 0.8686362822259415,\\n        \\\"ci_lo\\\": 0.8611912164650312,\\n        \\\"ci_hi\\\": 0.8760774335388887\\n      },\\n      \\\"delta_gated_minus_greedy\\\": {\\n        \\\"delta\\\": 0.0137344793807907,\\n        \\\"ci_lo\\\": 0.009064152285593874,\\n        \\\"ci_hi\\\": 0.01859054438245411\\n      },\\n      \\\"delta_gated_minus_lp\\\": {\\n        \\\"delta\\\": 0.0004903087412855282,\\n        \\\"ci_lo\\\": 0.0,\\n        \\\"ci_hi\\\": 0.001164483260553184\\n      },\\n      \\\"degenerate\\\": {\\n        \\\"greedy_eq_gated\\\": {\\n          \\\"mean\\\": 0.61392395643988,\\n          \\\"ci_lo\\\": 0.5779530359944373,\\n          \\\"ci_hi\\\": 0.6495821499802391\\n        },\\n        \\\"oracle\\\": {\\n          \\\"mean\\\": 0.6105269288390307,\\n          \\\"ci_lo\\\": 0.5741190338324097,\\n          \\\"ci_hi\\\": 0.6463354232462513\\n        }\\n      },\\n      \\\"nondegenerate\\\": {\\n        \\\"greedy\\\": {\\n          \\\"mean\\\": 0.7703429914586042,\\n          \\\"ci_lo\\\": 0.7605861606761448,\\n          \\\"ci_hi\\\": 0.7802629638250165\\n        },\\n        \\\"lp\\\": {\\n          \\\"mean\\\": 0.7863942189057759,\\n          \\\"ci_lo\\\": 0.7769910400376006,\\n          \\\"ci_hi\\\": 0.7958581018621237\\n        },\\n        \\\"oracle\\\": {\\n          \\\"mean\\\": 0.912174470226742,\\n          \\\"ci_lo\\\": 0.906996572561567,\\n          \\\"ci_hi\\\": 0.9173121794181169\\n        },\\n        \\\"delta_lp_minus_greedy\\\": {\\n          \\\"delta\\\": 0.016051227447171728,\\n          \\\"ci_lo\\\": 0.010505115208972904,\\n          \\\"ci_hi\\\": 0.021602010824394058\\n        }\\n      }\\n    }\\n  },\\n  \\\"summary\\\": [\\n    {\\n      \\\"dataset\\\": \\\"SciERC\\\",\\n      \\\"n_total\\\": 551,\\n      \\\"n_used\\\": 529,\\n      \\\"n_filtered\\\": 22,\\n      \\\"degen_pct\\\": 17.8,\\n      \\\"greedy_f1\\\": 0.6439,\\n      \\\"lp_f1\\\": 0.6501,\\n      \\\"gated_f1\\\": 0.6513,\\n      \\\"oracle_f1\\\": 0.7758,\\n      \\\"gated_minus_greedy_pp\\\": 0.74,\\n      \\\"gated_minus_lp_pp\\\": 0.13\\n    },\\n    {\\n      \\\"dataset\\\": \\\"CoNLL\\\",\\n      \\\"n_total\\\": 3453,\\n      \\\"n_used\\\": 2756,\\n      \\\"n_filtered\\\": 697,\\n      \\\"degen_pct\\\": 57.9,\\n      \\\"greedy_f1\\\": 0.907,\\n      \\\"lp_f1\\\": 0.8989,\\n      \\\"gated_f1\\\": 0.8989,\\n      \\\"oracle_f1\\\": 0.9494,\\n      \\\"gated_minus_greedy_pp\\\": -0.81,\\n      \\\"gated_minus_lp_pp\\\": 0.0\\n    },\\n    {\\n      \\\"dataset\\\": \\\"FewNERD\\\",\\n      \\\"n_total\\\": 5000,\\n      \\\"n_used\\\": 4351,\\n      \\\"n_filtered\\\": 649,\\n      \\\"degen_pct\\\": 14.4,\\n      \\\"greedy_f1\\\": 0.7478,\\n      \\\"lp_f1\\\": 0.761,\\n      \\\"gated_f1\\\": 0.7615,\\n      \\\"oracle_f1\\\": 0.8686,\\n      \\\"gated_minus_greedy_pp\\\": 1.37,\\n      \\\"gated_minus_lp_pp\\\": 0.05\\n    }\\n  ]\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c57a4897-a320-475e-a0e7-20bfcb94129b",
+  "uuid": "7a7c09bb-04c8-4748-a30e-ecf3ea99674f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"metadata\\\\\\\": {\\\\n    \\\\\\\"gold_filter\\\\\\\": true,\\\\n    \\\\\\\"description\\\\\\\": \\\\\\\"DGS selection with gold_filter=True (instances with empty gold entities excluded)\\\\\\\",\\\\n    \\\\\\\"n_samples\\\\\\\": 8,\\\\n    \\\\\\\"n_bootstrap\\\\\\\": 10000,\\\\n    \\\\\\\"seed\\\\\\\": 42\\\\n  },\\\\n  \\\\\\\"datasets\\\\\\\": {\\\\n    \\\\\\\"SciERC\\\\\\\": {\\\\n      \\\\\\\"n_instances_total\\\\\\\": 551,\\\\n      \\\\\\\"n_instances_used\\\\\\\": 529,\\\\n      \\\\\\\"n_gold_nonempty\\\\\\\": 529,\\\\n      \\\\\\\"n_filtered_out\\\\\\\": 22,\\\\n      \\\\\\\"n_degenerate\\\\\\\": 94,\\\\n      \\\\\\\"n_nondegenerate\\\\\\\": 435,\\\\n      \\\\\\\"degen_pct\\\\\\\": 17.8,\\\\n      \\\\\\\"greedy\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.6439219990259687,\\\\n        \\\\\\\"ci_lo\\\\\\\": 0.6180475688982305,\\\\n        \\\\\\\"ci_hi\\\\\\\": 0.6692473667898999\\\\n      },\\\\n      \\\\\\\"lp_all\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.6500718843902431,\\\\n        \\\\\\\"ci_lo\\\\\\\": 0.6245690161179985,\\\\n        \\\\\\\"ci_hi\\\\\\\": 0.6749655320154598\\\\n      },\\\\n      \\\\\\\"gated\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.6513321238357378,\\\\n        \\\\\\\"ci_lo\\\\\\\": 0.6259400720731756,\\\\n        \\\\\\\"ci_hi\\\\\\\": 0.6760374227376341\\\\n      },\\\\n      \\\\\\\"oracle\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.7758023559647044,\\\\n        \\\\\\\"ci_lo\\\\\\\": 0.7540692550589138,\\\\n        \\\\\\\"ci_hi\\\\\\\": 0.7968803038023543\\\\n      },\\\\n      \\\\\\\"delta_gated_minus_greedy\\\\\\\": {\\\\n        \\\\\\\"delta\\\\\\\": 0.007410124809768981,\\\\n        \\\\\\\"ci_lo\\\\\\\": -0.006005775609912112,\\\\n        \\\\\\\"ci_hi\\\\\\\": 0.021087603106951347\\\\n      },\\\\n      \\\\\\\"delta_gated_minus_lp\\\\\\\": {\\\\n        \\\\\\\"delta\\\\\\\": 0.001260239445494644,\\\\n        \\\\\\\"ci_lo\\\\\\\": 0.0,\\\\n        \\\\\\\"ci_hi\\\\\\\": 0.003780718336483968\\\\n      },\\\\n      \\\\\\\"degenerate\\\\\\\": {\\\\n        \\\\\\\"greedy_eq_gated\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 0.6269503546099291,\\\\n          \\\\\\\"ci_lo\\\\\\\": 0.5495187436676798,\\\\n          \\\\\\\"ci_hi\\\\\\\": 0.7041033434650456\\\\n        },\\\\n        \\\\\\\"oracle\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 0.6198581560283687,\\\\n          \\\\\\\"ci_lo\\\\\\\": 0.5410334346504558,\\\\n          \\\\\\\"ci_hi\\\\\\\": 0.6986575481256332\\\\n        }\\\\n      },\\\\n      \\\\\\\"nondegenerate\\\\\\\": {\\\\n        \\\\\\\"greedy\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 0.6475894348308142,\\\\n          \\\\\\\"ci_lo\\\\\\\": 0.620131375648617,\\\\n          \\\\\\\"ci_hi\\\\\\\": 0.6734620041516592\\\\n        },\\\\n        \\\\\\\"lp\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 0.6566008279902803,\\\\n          \\\\\\\"ci_lo\\\\\\\": 0.6303757248686256,\\\\n          \\\\\\\"ci_hi\\\\\\\": 0.6817474396987582\\\\n        },\\\\n        \\\\\\\"oracle\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 0.8095006428474988,\\\\n          \\\\\\\"ci_lo\\\\\\\": 0.7911555299182074,\\\\n          \\\\\\\"ci_hi\\\\\\\": 0.8275444508913068\\\\n        },\\\\n        \\\\\\\"delta_lp_minus_greedy\\\\\\\": {\\\\n          \\\\\\\"delta\\\\\\\": 0.009011393159466185,\\\\n          \\\\\\\"ci_lo\\\\\\\": -0.007261465527185651,\\\\n          \\\\\\\"ci_hi\\\\\\\": 0.025726625564353678\\\\n        }\\\\n      }\\\\n    },\\\\n    \\\\\\\"CoNLL\\\\\\\": {\\\\n      \\\\\\\"n_instances_total\\\\\\\": 3453,\\\\n      \\\\\\\"n_instances_used\\\\\\\": 2756,\\\\n      \\\\\\\"n_gold_nonempty\\\\\\\": 2756,\\\\n      \\\\\\\"n_filtered_out\\\\\\\": 697,\\\\n      \\\\\\\"n_degenerate\\\\\\\": 1597,\\\\n      \\\\\\\"n_nondegenerate\\\\\\\": 1159,\\\\n      \\\\\\\"degen_pct\\\\\\\": 57.9,\\\\n      \\\\\\\"greedy\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.9069619201150406,\\\\n        \\\\\\\"ci_lo\\\\\\\": 0.8976105091489706,\\\\n        \\\\\\\"ci_hi\\\\\\\": 0.9158281466155198\\\\n      },\\\\n      \\\\\\\"lp_all\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.8988964753682902,\\\\n        \\\\\\\"ci_lo\\\\\\\": 0.8891507200010481,\\\\n        \\\\\\\"ci_hi\\\\\\\": 0.9082347494759536\\\\n      },\\\\n      \\\\\\\"gated\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.8988964753682902,\\\\n        \\\\\\\"ci_lo\\\\\\\": 0.8891507200010481,\\\\n        \\\\\\\"ci_hi\\\\\\\": 0.9082347494759536\\\\n      },\\\\n      \\\\\\\"oracle\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.949353771212531,\\\\n        \\\\\\\"ci_lo\\\\\\\": 0.9423720882485339,\\\\n        \\\\\\\"ci_hi\\\\\\\": 0.9560346860483805\\\\n      },\\\\n      \\\\\\\"delta_gated_minus_greedy\\\\\\\": {\\\\n        \\\\\\\"delta\\\\\\\": -0.008065444746750326,\\\\n        \\\\\\\"ci_lo\\\\\\\": -0.012166299734814534,\\\\n        \\\\\\\"ci_hi\\\\\\\": -0.004030409600075724\\\\n      },\\\\n      \\\\\\\"delta_gated_minus_lp\\\\\\\": {\\\\n        \\\\\\\"delta\\\\\\\": 0.0,\\\\n        \\\\\\\"ci_lo\\\\\\\": 0.0,\\\\n        \\\\\\\"ci_hi\\\\\\\": 0.0\\\\n      },\\\\n      \\\\\\\"degenerate\\\\\\\": {\\\\n        \\\\\\\"greedy_eq_gated\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 0.940057243250731,\\\\n          \\\\\\\"ci_lo\\\\\\\": 0.9288666561991545,\\\\n          \\\\\\\"ci_hi\\\\\\\": 0.9506016282472136\\\\n        },\\\\n        \\\\\\\"oracle\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 0.940057243250731,\\\\n          \\\\\\\"ci_lo\\\\\\\": 0.9288666561991545,\\\\n          \\\\\\\"ci_hi\\\\\\\": 0.9506016282472136\\\\n        }\\\\n      },\\\\n      \\\\\\\"nondegenerate\\\\\\\": {\\\\n        \\\\\\\"greedy\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 0.8613594774509357,\\\\n          \\\\\\\"ci_lo\\\\\\\": 0.8459971961697587,\\\\n          \\\\\\\"ci_hi\\\\\\\": 0.8762339089345129\\\\n        },\\\\n        \\\\\\\"lp\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 0.8421805596579728,\\\\n          \\\\\\\"ci_lo\\\\\\\": 0.8254881516212278,\\\\n          \\\\\\\"ci_hi\\\\\\\": 0.8584610989429592\\\\n        },\\\\n        \\\\\\\"oracle\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 0.9621635685852614,\\\\n          \\\\\\\"ci_lo\\\\\\\": 0.9556284155013596,\\\\n          \\\\\\\"ci_hi\\\\\\\": 0.9683883582809243\\\\n        },\\\\n        \\\\\\\"delta_lp_minus_greedy\\\\\\\": {\\\\n          \\\\\\\"delta\\\\\\\": -0.01917891779296281,\\\\n          \\\\\\\"ci_lo\\\\\\\": -0.02912571770956429,\\\\n          \\\\\\\"ci_hi\\\\\\\": -0.009395115104168794\\\\n        }\\\\n      }\\\\n    },\\\\n    \\\\\\\"FewNERD\\\\\\\": {\\\\n      \\\\\\\"n_instances_total\\\\\\\": 5000,\\\\n      \\\\\\\"n_instances_used\\\\\\\": 4351,\\\\n      \\\\\\\"n_gold_nonempty\\\\\\\": 4351,\\\\n      \\\\\\\"n_filtered_out\\\\\\\": 649,\\\\n      \\\\\\\"n_degenerate\\\\\\\": 628,\\\\n      \\\\\\\"n_nondegenerate\\\\\\\": 3723,\\\\n      \\\\\\\"degen_pct\\\\\\\": 14.4,\\\\n      \\\\\\\"greedy\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.7477663070201398,\\\\n        \\\\\\\"ci_lo\\\\\\\": 0.7376824753342498,\\\\n        \\\\\\\"ci_hi\\\\\\\": 0.7577496181566021\\\\n      },\\\\n      \\\\\\\"lp_all\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.7610104776596449,\\\\n        \\\\\\\"ci_lo\\\\\\\": 0.751328598983156,\\\\n        \\\\\\\"ci_hi\\\\\\\": 0.7705865958797642\\\\n      },\\\\n      \\\\\\\"gated\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.7615007864009306,\\\\n        \\\\\\\"ci_lo\\\\\\\": 0.751851049270596,\\\\n        \\\\\\\"ci_hi\\\\\\\": 0.7710724639351165\\\\n      },\\\\n      \\\\\\\"oracle\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.8686362822259415,\\\\n        \\\\\\\"ci_lo\\\\\\\": 0.8611912164650312,\\\\n        \\\\\\\"ci_hi\\\\\\\": 0.8760774335388887\\\\n      },\\\\n      \\\\\\\"delta_gated_minus_greedy\\\\\\\": {\\\\n        \\\\\\\"delta\\\\\\\": 0.0137344793807907,\\\\n        \\\\\\\"ci_lo\\\\\\\": 0.009064152285593874,\\\\n        \\\\\\\"ci_hi\\\\\\\": 0.01859054438245411\\\\n      },\\\\n      \\\\\\\"delta_gated_minus_lp\\\\\\\": {\\\\n        \\\\\\\"delta\\\\\\\": 0.0004903087412855282,\\\\n        \\\\\\\"ci_lo\\\\\\\": 0.0,\\\\n        \\\\\\\"ci_hi\\\\\\\": 0.001164483260553184\\\\n      },\\\\n      \\\\\\\"degenerate\\\\\\\": {\\\\n        \\\\\\\"greedy_eq_gated\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 0.61392395643988,\\\\n          \\\\\\\"ci_lo\\\\\\\": 0.5779530359944373,\\\\n          \\\\\\\"ci_hi\\\\\\\": 0.6495821499802391\\\\n        },\\\\n        \\\\\\\"oracle\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 0.6105269288390307,\\\\n          \\\\\\\"ci_lo\\\\\\\": 0.5741190338324097,\\\\n          \\\\\\\"ci_hi\\\\\\\": 0.6463354232462513\\\\n        }\\\\n      },\\\\n      \\\\\\\"nondegenerate\\\\\\\": {\\\\n        \\\\\\\"greedy\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 0.7703429914586042,\\\\n          \\\\\\\"ci_lo\\\\\\\": 0.7605861606761448,\\\\n          \\\\\\\"ci_hi\\\\\\\": 0.7802629638250165\\\\n        },\\\\n        \\\\\\\"lp\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 0.7863942189057759,\\\\n          \\\\\\\"ci_lo\\\\\\\": 0.7769910400376006,\\\\n          \\\\\\\"ci_hi\\\\\\\": 0.7958581018621237\\\\n        },\\\\n        \\\\\\\"oracle\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 0.912174470226742,\\\\n          \\\\\\\"ci_lo\\\\\\\": 0.906996572561567,\\\\n          \\\\\\\"ci_hi\\\\\\\": 0.9173121794181169\\\\n        },\\\\n        \\\\\\\"delta_lp_minus_greedy\\\\\\\": {\\\\n          \\\\\\\"delta\\\\\\\": 0.016051227447171728,\\\\n          \\\\\\\"ci_lo\\\\\\\": 0.010505115208972904,\\\\n          \\\\\\\"ci_hi\\\\\\\": 0.021602010824394058\\\\n        }\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"summary\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"dataset\\\\\\\": \\\\\\\"SciERC\\\\\\\",\\\\n      \\\\\\\"n_total\\\\\\\": 551,\\\\n      \\\\\\\"n_used\\\\\\\": 529,\\\\n      \\\\\\\"n_filtered\\\\\\\": 22,\\\\n      \\\\\\\"degen_pct\\\\\\\": 17.8,\\\\n      \\\\\\\"greedy_f1\\\\\\\": 0.6439,\\\\n      \\\\\\\"lp_f1\\\\\\\": 0.6501,\\\\n      \\\\\\\"gated_f1\\\\\\\": 0.6513,\\\\n      \\\\\\\"oracle_f1\\\\\\\": 0.7758,\\\\n      \\\\\\\"gated_minus_greedy_pp\\\\\\\": 0.74,\\\\n      \\\\\\\"gated_minus_lp_pp\\\\\\\": 0.13\\\\n    },\\\\n    {\\\\n      \\\\\\\"dataset\\\\\\\": \\\\\\\"CoNLL\\\\\\\",\\\\n      \\\\\\\"n_total\\\\\\\": 3453,\\\\n      \\\\\\\"n_used\\\\\\\": 2756,\\\\n      \\\\\\\"n_filtered\\\\\\\": 697,\\\\n      \\\\\\\"degen_pct\\\\\\\": 57.9,\\\\n      \\\\\\\"greedy_f1\\\\\\\": 0.907,\\\\n      \\\\\\\"lp_f1\\\\\\\": 0.8989,\\\\n      \\\\\\\"gated_f1\\\\\\\": 0.8989,\\\\n      \\\\\\\"oracle_f1\\\\\\\": 0.9494,\\\\n      \\\\\\\"gated_minus_greedy_pp\\\\\\\": -0.81,\\\\n      \\\\\\\"gated_minus_lp_pp\\\\\\\": 0.0\\\\n    },\\\\n    {\\\\n      \\\\\\\"dataset\\\\\\\": \\\\\\\"FewNERD\\\\\\\",\\\\n      \\\\\\\"n_total\\\\\\\": 5000,\\\\n      \\\\\\\"n_used\\\\\\\": 4351,\\\\n      \\\\\\\"n_filtered\\\\\\\": 649,\\\\n      \\\\\\\"degen_pct\\\\\\\": 14.4,\\\\n      \\\\\\\"greedy_f1\\\\\\\": 0.7478,\\\\n      \\\\\\\"lp_f1\\\\\\\": 0.761,\\\\n      \\\\\\\"gated_f1\\\\\\\": 0.7615,\\\\n      \\\\\\\"oracle_f1\\\\\\\": 0.8686,\\\\n      \\\\\\\"gated_minus_greedy_pp\\\\\\\": 1.37,\\\\n      \\\\\\\"gated_minus_lp_pp\\\\\\\": 0.05\\\\n    }\\\\n  ]\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"metadata\\\": {\\n    \\\"gold_filter\\\": true,\\n    \\\"description\\\": \\\"DGS selection with gold_filter=True (instances with empty gold entities excluded)\\\",\\n    \\\"n_samples\\\": 8,\\n    \\\"n_bootstrap\\\": 10000,\\n    \\\"seed\\\": 42\\n  },\\n  \\\"datasets\\\": {\\n    \\\"SciERC\\\": {\\n      \\\"n_instances_total\\\": 551,\\n      \\\"n_instances_used\\\": 529,\\n      \\\"n_gold_nonempty\\\": 529,\\n      \\\"n_filtered_out\\\": 22,\\n      \\\"n_degenerate\\\": 94,\\n      \\\"n_nondegenerate\\\": 435,\\n      \\\"degen_pct\\\": 17.8,\\n      \\\"greedy\\\": {\\n        \\\"mean\\\": 0.6439219990259687,\\n        \\\"ci_lo\\\": 0.6180475688982305,\\n        \\\"ci_hi\\\": 0.6692473667898999\\n      },\\n      \\\"lp_all\\\": {\\n        \\\"mean\\\": 0.6500718843902431,\\n        \\\"ci_lo\\\": 0.6245690161179985,\\n        \\\"ci_hi\\\": 0.6749655320154598\\n      },\\n      \\\"gated\\\": {\\n        \\\"mean\\\": 0.6513321238357378,\\n        \\\"ci_lo\\\": 0.6259400720731756,\\n        \\\"ci_hi\\\": 0.6760374227376341\\n      },\\n      \\\"oracle\\\": {\\n        \\\"mean\\\": 0.7758023559647044,\\n        \\\"ci_lo\\\": 0.7540692550589138,\\n        \\\"ci_hi\\\": 0.7968803038023543\\n      },\\n      \\\"delta_gated_minus_greedy\\\": {\\n        \\\"delta\\\": 0.007410124809768981,\\n        \\\"ci_lo\\\": -0.006005775609912112,\\n        \\\"ci_hi\\\": 0.021087603106951347\\n      },\\n      \\\"delta_gated_minus_lp\\\": {\\n        \\\"delta\\\": 0.001260239445494644,\\n        \\\"ci_lo\\\": 0.0,\\n        \\\"ci_hi\\\": 0.003780718336483968\\n      },\\n      \\\"degenerate\\\": {\\n        \\\"greedy_eq_gated\\\": {\\n          \\\"mean\\\": 0.6269503546099291,\\n          \\\"ci_lo\\\": 0.5495187436676798,\\n          \\\"ci_hi\\\": 0.7041033434650456\\n        },\\n        \\\"oracle\\\": {\\n          \\\"mean\\\": 0.6198581560283687,\\n          \\\"ci_lo\\\": 0.5410334346504558,\\n          \\\"ci_hi\\\": 0.6986575481256332\\n        }\\n      },\\n      \\\"nondegenerate\\\": {\\n        \\\"greedy\\\": {\\n          \\\"mean\\\": 0.6475894348308142,\\n          \\\"ci_lo\\\": 0.620131375648617,\\n          \\\"ci_hi\\\": 0.6734620041516592\\n        },\\n        \\\"lp\\\": {\\n          \\\"mean\\\": 0.6566008279902803,\\n          \\\"ci_lo\\\": 0.6303757248686256,\\n          \\\"ci_hi\\\": 0.6817474396987582\\n        },\\n        \\\"oracle\\\": {\\n          \\\"mean\\\": 0.8095006428474988,\\n          \\\"ci_lo\\\": 0.7911555299182074,\\n          \\\"ci_hi\\\": 0.8275444508913068\\n        },\\n        \\\"delta_lp_minus_greedy\\\": {\\n          \\\"delta\\\": 0.009011393159466185,\\n          \\\"ci_lo\\\": -0.007261465527185651,\\n          \\\"ci_hi\\\": 0.025726625564353678\\n        }\\n      }\\n    },\\n    \\\"CoNLL\\\": {\\n      \\\"n_instances_total\\\": 3453,\\n      \\\"n_instances_used\\\": 2756,\\n      \\\"n_gold_nonempty\\\": 2756,\\n      \\\"n_filtered_out\\\": 697,\\n      \\\"n_degenerate\\\": 1597,\\n      \\\"n_nondegenerate\\\": 1159,\\n      \\\"degen_pct\\\": 57.9,\\n      \\\"greedy\\\": {\\n        \\\"mean\\\": 0.9069619201150406,\\n        \\\"ci_lo\\\": 0.8976105091489706,\\n        \\\"ci_hi\\\": 0.9158281466155198\\n      },\\n      \\\"lp_all\\\": {\\n        \\\"mean\\\": 0.8988964753682902,\\n        \\\"ci_lo\\\": 0.8891507200010481,\\n        \\\"ci_hi\\\": 0.9082347494759536\\n      },\\n      \\\"gated\\\": {\\n        \\\"mean\\\": 0.8988964753682902,\\n        \\\"ci_lo\\\": 0.8891507200010481,\\n        \\\"ci_hi\\\": 0.9082347494759536\\n      },\\n      \\\"oracle\\\": {\\n        \\\"mean\\\": 0.949353771212531,\\n        \\\"ci_lo\\\": 0.9423720882485339,\\n        \\\"ci_hi\\\": 0.9560346860483805\\n      },\\n      \\\"delta_gated_minus_greedy\\\": {\\n        \\\"delta\\\": -0.008065444746750326,\\n        \\\"ci_lo\\\": -0.012166299734814534,\\n        \\\"ci_hi\\\": -0.004030409600075724\\n      },\\n      \\\"delta_gated_minus_lp\\\": {\\n        \\\"delta\\\": 0.0,\\n        \\\"ci_lo\\\": 0.0,\\n        \\\"ci_hi\\\": 0.0\\n      },\\n      \\\"degenerate\\\": {\\n        \\\"greedy_eq_gated\\\": {\\n          \\\"mean\\\": 0.940057243250731,\\n          \\\"ci_lo\\\": 0.9288666561991545,\\n          \\\"ci_hi\\\": 0.9506016282472136\\n        },\\n        \\\"oracle\\\": {\\n          \\\"mean\\\": 0.940057243250731,\\n          \\\"ci_lo\\\": 0.9288666561991545,\\n          \\\"ci_hi\\\": 0.9506016282472136\\n        }\\n      },\\n      \\\"nondegenerate\\\": {\\n        \\\"greedy\\\": {\\n          \\\"mean\\\": 0.8613594774509357,\\n          \\\"ci_lo\\\": 0.8459971961697587,\\n          \\\"ci_hi\\\": 0.8762339089345129\\n        },\\n        \\\"lp\\\": {\\n          \\\"mean\\\": 0.8421805596579728,\\n          \\\"ci_lo\\\": 0.8254881516212278,\\n          \\\"ci_hi\\\": 0.8584610989429592\\n        },\\n        \\\"oracle\\\": {\\n          \\\"mean\\\": 0.9621635685852614,\\n          \\\"ci_lo\\\": 0.9556284155013596,\\n          \\\"ci_hi\\\": 0.9683883582809243\\n        },\\n        \\\"delta_lp_minus_greedy\\\": {\\n          \\\"delta\\\": -0.01917891779296281,\\n          \\\"ci_lo\\\": -0.02912571770956429,\\n          \\\"ci_hi\\\": -0.009395115104168794\\n        }\\n      }\\n    },\\n    \\\"FewNERD\\\": {\\n      \\\"n_instances_total\\\": 5000,\\n      \\\"n_instances_used\\\": 4351,\\n      \\\"n_gold_nonempty\\\": 4351,\\n      \\\"n_filtered_out\\\": 649,\\n      \\\"n_degenerate\\\": 628,\\n      \\\"n_nondegenerate\\\": 3723,\\n      \\\"degen_pct\\\": 14.4,\\n      \\\"greedy\\\": {\\n        \\\"mean\\\": 0.7477663070201398,\\n        \\\"ci_lo\\\": 0.7376824753342498,\\n        \\\"ci_hi\\\": 0.7577496181566021\\n      },\\n      \\\"lp_all\\\": {\\n        \\\"mean\\\": 0.7610104776596449,\\n        \\\"ci_lo\\\": 0.751328598983156,\\n        \\\"ci_hi\\\": 0.7705865958797642\\n      },\\n      \\\"gated\\\": {\\n        \\\"mean\\\": 0.7615007864009306,\\n        \\\"ci_lo\\\": 0.751851049270596,\\n        \\\"ci_hi\\\": 0.7710724639351165\\n      },\\n      \\\"oracle\\\": {\\n        \\\"mean\\\": 0.8686362822259415,\\n        \\\"ci_lo\\\": 0.8611912164650312,\\n        \\\"ci_hi\\\": 0.8760774335388887\\n      },\\n      \\\"delta_gated_minus_greedy\\\": {\\n        \\\"delta\\\": 0.0137344793807907,\\n        \\\"ci_lo\\\": 0.009064152285593874,\\n        \\\"ci_hi\\\": 0.01859054438245411\\n      },\\n      \\\"delta_gated_minus_lp\\\": {\\n        \\\"delta\\\": 0.0004903087412855282,\\n        \\\"ci_lo\\\": 0.0,\\n        \\\"ci_hi\\\": 0.001164483260553184\\n      },\\n      \\\"degenerate\\\": {\\n        \\\"greedy_eq_gated\\\": {\\n          \\\"mean\\\": 0.61392395643988,\\n          \\\"ci_lo\\\": 0.5779530359944373,\\n          \\\"ci_hi\\\": 0.6495821499802391\\n        },\\n        \\\"oracle\\\": {\\n          \\\"mean\\\": 0.6105269288390307,\\n          \\\"ci_lo\\\": 0.5741190338324097,\\n          \\\"ci_hi\\\": 0.6463354232462513\\n        }\\n      },\\n      \\\"nondegenerate\\\": {\\n        \\\"greedy\\\": {\\n          \\\"mean\\\": 0.7703429914586042,\\n          \\\"ci_lo\\\": 0.7605861606761448,\\n          \\\"ci_hi\\\": 0.7802629638250165\\n        },\\n        \\\"lp\\\": {\\n          \\\"mean\\\": 0.7863942189057759,\\n          \\\"ci_lo\\\": 0.7769910400376006,\\n          \\\"ci_hi\\\": 0.7958581018621237\\n        },\\n        \\\"oracle\\\": {\\n          \\\"mean\\\": 0.912174470226742,\\n          \\\"ci_lo\\\": 0.906996572561567,\\n          \\\"ci_hi\\\": 0.9173121794181169\\n        },\\n        \\\"delta_lp_minus_greedy\\\": {\\n          \\\"delta\\\": 0.016051227447171728,\\n          \\\"ci_lo\\\": 0.010505115208972904,\\n          \\\"ci_hi\\\": 0.021602010824394058\\n        }\\n      }\\n    }\\n  },\\n  \\\"summary\\\": [\\n    {\\n      \\\"dataset\\\": \\\"SciERC\\\",\\n      \\\"n_total\\\": 551,\\n      \\\"n_used\\\": 529,\\n      \\\"n_filtered\\\": 22,\\n      \\\"degen_pct\\\": 17.8,\\n      \\\"greedy_f1\\\": 0.6439,\\n      \\\"lp_f1\\\": 0.6501,\\n      \\\"gated_f1\\\": 0.6513,\\n      \\\"oracle_f1\\\": 0.7758,\\n      \\\"gated_minus_greedy_pp\\\": 0.74,\\n      \\\"gated_minus_lp_pp\\\": 0.13\\n    },\\n    {\\n      \\\"dataset\\\": \\\"CoNLL\\\",\\n      \\\"n_total\\\": 3453,\\n      \\\"n_used\\\": 2756,\\n      \\\"n_filtered\\\": 697,\\n      \\\"degen_pct\\\": 57.9,\\n      \\\"greedy_f1\\\": 0.907,\\n      \\\"lp_f1\\\": 0.8989,\\n      \\\"gated_f1\\\": 0.8989,\\n      \\\"oracle_f1\\\": 0.9494,\\n      \\\"gated_minus_greedy_pp\\\": -0.81,\\n      \\\"gated_minus_lp_pp\\\": 0.0\\n    },\\n    {\\n      \\\"dataset\\\": \\\"FewNERD\\\",\\n      \\\"n_total\\\": 5000,\\n      \\\"n_used\\\": 4351,\\n      \\\"n_filtered\\\": 649,\\n      \\\"degen_pct\\\": 14.4,\\n      \\\"greedy_f1\\\": 0.7478,\\n      \\\"lp_f1\\\": 0.761,\\n      \\\"gated_f1\\\": 0.7615,\\n      \\\"oracle_f1\\\": 0.8686,\\n      \\\"gated_minus_greedy_pp\\\": 1.37,\\n      \\\"gated_minus_lp_pp\\\": 0.05\\n    }\\n  ]\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_011wQHjBwcZyv29fdz9ZQiDe`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "find /root/autodl-tmp/struct_self_consist_ie -name \"*per_type_lp*\" -not -path \"*__pycache__*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c57a4897-a320-475e-a0e7-20bfcb94129b",
+  "uuid": "83e24fca-d2ac-40d2-80f3-5db63d154197",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Amf1EoPCap3Czw8VBnNJtG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6457,
+      "cache_read_input_tokens": 37506,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6457
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-18T21:28:27.856Z_
+
+<details><summary>↩ Tool result · `toolu_011wQHjBwcZyv29fdz9ZQiDe`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/per_type_lp_analysis.csv\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/per_type_lp_table.tex\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n16_r1024/per_type_lp_analysis.csv\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n16_r1024/per_type_lp_table.tex\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_021_inference/per_type_lp_analysis.csv\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_021_inference/per_type_lp_table.tex\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_per_type_lp.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_per_type_lp_scierc.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c57a4897-a320-475e-a0e7-20bfcb94129b",
+  "uuid": "83419341-413b-4ab9-a303-d38e3e760dc5",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/per_type_lp_analysis.csv\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/per_type_lp_table.tex\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n16_r1024/per_type_lp_analysis.csv\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n16_r1024/per_type_lp_table.tex\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_021_inference/per_type_lp_analysis.csv\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_021_inference/per_type_lp_table.tex\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_per_type_lp.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_per_type_lp_scierc.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/per_type_lp_analysis.csv\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/per_type_lp_table.tex\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n16_r1024/per_type_lp_analysis.csv\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n16_r1024/per_type_lp_table.tex\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_021_inference/per_type_lp_analysis.csv\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_021_inference/per_type_lp_table.tex\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_per_type_lp.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_per_type_lp_scierc.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 37_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have all the data I need. Let me analyze:
+
+**DGS selection results (dgs_selection_results.json)**:
+The `degen_pct` in DGS is different from unified degeneracy audit. The DGS file has:
+- SciERC: degen_pct=17.8, gated_minus_greedy_pp=0.74
+- CoNLL: degen_pct=57.9, gated_minus_greedy_pp=-0.81
+- FewNERD: degen_pct=14.4, gated_minus_greedy_pp=1.37
+
+
+The DGS file uses a different degeneracy calculation with N=8 samples, whereas the unified audit shows CoNLL at 48.44% (seed=42). I need to use the unified constant-F1 gold-filtered definition for the x-axis, not the sample-based metric. I'm noticing a mismatch between the DGS configuration (which uses N=8 samples) and the unified audit that computed degeneracy across different N values for each experiment. The unified audit is my source of truth here, so I need to update the plot script to use the correct degeneracy rates—specifically, CoNLL should shift from around 59% to 48% based on the unified audit results. Now I'm working through what the LP deltas should be with these corrected values. Looking at the LP-only deltas I just computed, they're close to but not exactly matching the current script values of [-1.05, 0.61, 1.36]. The gated delta values align much better with what the task table shows, so it seems the script might be using outdated numbers from a previous run.
+
+For the per-type analysis, I need to check whether the existing FewNERD data was computed with the same unified degeneracy approach or if it used a different method like KeySet degeneracy. Let me examine the per-type CSV structure and see if there's already a unified analysis available, or if I need to regenerate it with the updated degeneracy rates. epoch ablation points (SciERC 3ep, 10ep) and LLaMA points
+
+Wait, looking at the existing plot, it has:
+1. Cross-dataset points: CoNLL, SciERC, Few-NERD (Qwen3-8B)
+2. Per-type points: Few-NERD entity types
+
+The task table mentions more points including epoch ablations and LLaMA. Let me think about what should actually be plotted.
+
+Actually, the task says the scattered plot specifically is "degeneracy vs LP delta". The current plot already has two series:
+1. Cross-dataset (3 points)
+2. Within Few-NERD per entity type (8 points)
+
+I think the main update needed is:
+1. Update cross-dataset degeneracy to unified values
+2. Update LP deltas to match DGS results
+3. Possibly update per-type degeneracy too
+
+Now I'm looking at the unified degeneracy rates and comparing them against what's currently plotted. SciERC is staying around 17.8%, but CoNLL drops significantly from 59.1% to 48.4%, and Few-NERD changes from 13.8% to 7.1% with the unified audit. There's a discrepancy though—the DGS result shows Few-NERD at 14.4% using a different sample size and degeneracy definition, so I need to figure out which values to actually use.
+
+The task specifies using unified constant-F1 gold-filtered degeneracy, so I should pull from the unified audit: SciERC at 17.77%, CoNLL at 48.44%, and Few-NERD at 7.06%. For the LP deltas, the DGS results align with what the task table shows—SciERC gains 0.74pp, CoNLL loses 0.81pp, and Few-NERD gains 1.37pp.
+
+Now I'm checking the per-type Few-NERD data to see if that also needs updating with unified degeneracy values, though the task primarily focuses on the scatter plot. The per-type analysis file might not have unified degeneracy computed yet, so I'll prioritize what the task explicitly asks for.
+
+Looking at the data table, I can see the unified degeneracy rates across different datasets and models—SciERC at various epochs, CoNLL, FewNERD, and LLaMA variants—along with their corresponding LP Delta values, though some entries still need to be reanalyzed or computed. Looking at the GS results to extract the LP delta values for the missing data points, particularly for the LLaMA experiments across different datasets.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c57a4897-a320-475e-a0e7-20bfcb94129b",
+  "uuid": "1c19dd3f-8559-45ef-b482-68347a6c8c5c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LDLR8cwYfnRkxhXPJz2jYS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5313,
+      "cache_read_input_tokens": 43963,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5313
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 38_
+
+Now let me get the per-type FewNERD data and check for epoch/LLaMA LP deltas.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c57a4897-a320-475e-a0e7-20bfcb94129b",
+  "uuid": "2a76d52e-fce8-4fcb-97bc-0164d9167ab2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LDLR8cwYfnRkxhXPJz2jYS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5313,
+      "cache_read_input_tokens": 43963,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5313
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01WwJB5ds2dnz9SABNEciP3e`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/exp_021_inference/per_type_lp_analysis.csv",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c57a4897-a320-475e-a0e7-20bfcb94129b",
+  "uuid": "1fdee905-ed17-4f9e-a5b6-084ddbd5489d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LDLR8cwYfnRkxhXPJz2jYS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5313,
+      "cache_read_input_tokens": 43963,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5313
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-18T21:29:19.572Z_
+
+<details><summary>↩ Tool result · `toolu_01WwJB5ds2dnz9SABNEciP3e`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"type,n_instances,degeneracy_rate,greedy_f1,lp_sel_f1,lp_delta_pp,lp_rho,oracle_f1,headroom_pp\\r\\nevent,1306,0.05972434915773354,0.6551339073016501,0.6616361178894867,0.6502210587836621,0.4565009364147397,0.816545094632082,16.141118733043193\\r\\nother,3433,0.06612292455578211,0.6374051033890412,0.6847030612525028,4.729795786346158,0.4913764856241942,0.8313619108256985,19.395680743665732\\r\\norganization,6647,0.06739882653828795,0.7203167727049137,0.7324315858779609,1.211481317304719,0.5085331400228096,0.8535636189718241,13.324684626691042\\r\\nbuilding,1587,0.07183364839319471,0.7023874270361101,0.7046809340406991,0.22935070045889683,0.4776340302818146,0.8513871161258935,14.899968908978334\\r\\nproduct,2276,0.08172231985940245,0.6563902029804073,0.676468790633814,2.0078587653406754,0.48276184204532546,0.8141237260605452,15.773352308013788\\r\\nlocation,8023,0.11417175620092235,0.7925874131045431,0.797864103755345,0.5276690650801941,0.5197959076324555,0.8953004737367691,10.271306063222607\\r\\nperson,8016,0.1342315369261477,0.822022567661955,0.834542107238335,1.2519539576379968,0.5436472317546069,0.9141805995608239,9.215803189886884\\r\\nart,1277,0.1981205951448708,0.7556519658258094,0.7539795228199109,-0.16724430058985273,0.4511850705431738,0.8477654227570787,9.211345693126926\\r\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c57a4897-a320-475e-a0e7-20bfcb94129b",
+  "uuid": "3e6186e0-2fe4-4655-aaaa-3fd16b57da47",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"type,n_instances,degeneracy_rate,greedy_f1,lp_sel_f1,lp_delta_pp,lp_rho,oracle_f1,headroom_pp\\\\r\\\\nevent,1306,0.05972434915773354,0.6551339073016501,0.6616361178894867,0.6502210587836621,0.4565009364147397,0.816545094632082,16.141118733043193\\\\r\\\\nother,3433,0.06612292455578211,0.6374051033890412,0.6847030612525028,4.729795786346158,0.4913764856241942,0.8313619108256985,19.395680743665732\\\\r\\\\norganization,6647,0.06739882653828795,0.7203167727049137,0.7324315858779609,1.211481317304719,0.5085331400228096,0.8535636189718241,13.324684626691042\\\\r\\\\nbuilding,1587,0.07183364839319471,0.7023874270361101,0.7046809340406991,0.22935070045889683,0.4776340302818146,0.8513871161258935,14.899968908978334\\\\r\\\\nproduct,2276,0.08172231985940245,0.6563902029804073,0.676468790633814,2.0078587653406754,0.48276184204532546,0.8141237260605452,15.773352308013788\\\\r\\\\nlocation,8023,0.11417175620092235,0.7925874131045431,0.797864103755345,0.5276690650801941,0.5197959076324555,0.8953004737367691,10.271306063222607\\\\r\\\\nperson,8016,0.1342315369261477,0.822022567661955,0.834542107238335,1.2519539576379968,0.5436472317546069,0.9141805995608239,9.215803189886884\\\\r\\\\nart,1277,0.1981205951448708,0.7556519658258094,0.7539795228199109,-0.16724430058985273,0.4511850705431738,0.8477654227570787,9.211345693126926\\\\r\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"type,n_instances,degeneracy_rate,greedy_f1,lp_sel_f1,lp_delta_pp,lp_rho,oracle_f1,headroom_pp\\r\\nevent,1306,0.05972434915773354,0.6551339073016501,0.6616361178894867,0.6502210587836621,0.4565009364147397,0.816545094632082,16.141118733043193\\r\\nother,3433,0.06612292455578211,0.6374051033890412,0.6847030612525028,4.729795786346158,0.4913764856241942,0.8313619108256985,19.395680743665732\\r\\norganization,6647,0.06739882653828795,0.7203167727049137,0.7324315858779609,1.211481317304719,0.5085331400228096,0.8535636189718241,13.324684626691042\\r\\nbuilding,1587,0.07183364839319471,0.7023874270361101,0.7046809340406991,0.22935070045889683,0.4776340302818146,0.8513871161258935,14.899968908978334\\r\\nproduct,2276,0.08172231985940245,0.6563902029804073,0.676468790633814,2.0078587653406754,0.48276184204532546,0.8141237260605452,15.773352308013788\\r\\nlocation,8023,0.11417175620092235,0.7925874131045431,0.797864103755345,0.5276690650801941,0.5197959076324555,0.8953004737367691,10.271306063222607\\r\\nperson,8016,0.1342315369261477,0.822022567661955,0.834542107238335,1.2519539576379968,0.5436472317546069,0.9141805995608239,9.215803189886884\\r\\nart,1277,0.1981205951448708,0.7556519658258094,0.7539795228199109,-0.16724430058985273,0.4511850705431738,0.8477654227570787,9.211345693126926\\r\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Mdxn2F8FBDDPEXappyQpTy`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "find /root/autodl-tmp/struct_self_consist_ie -name \"*epoch_rank*\" -not -path \"*__pycache__*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c57a4897-a320-475e-a0e7-20bfcb94129b",
+  "uuid": "464e8b39-fe1d-4038-b2ba-f652957d8554",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LDLR8cwYfnRkxhXPJz2jYS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5313,
+      "cache_read_input_tokens": 43963,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5313
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-18T21:29:20.545Z_
+
+<details><summary>↩ Tool result · `toolu_01Mdxn2F8FBDDPEXappyQpTy`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/output/dgs_epoch_rank_analysis.json\\n/root/autodl-tmp/struct_self_consist_ie/code/analysis_dgs_epoch_rank.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c57a4897-a320-475e-a0e7-20bfcb94129b",
+  "uuid": "eec70aa4-d06e-4424-bbb8-94027531c934",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/dgs_epoch_rank_analysis.json\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analysis_dgs_epoch_rank.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/output/dgs_epoch_rank_analysis.json\\n/root/autodl-tmp/struct_self_consist_ie/code/analysis_dgs_epoch_rank.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01D8qT9k2WU2v1myj4WNtvZ8`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "find /root/autodl-tmp/struct_self_consist_ie -name \"*dgs*llama*\" -not -path \"*__pycache__*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c57a4897-a320-475e-a0e7-20bfcb94129b",
+  "uuid": "9e745642-5c8a-4cf8-81ea-9b2c43f8dc0e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LDLR8cwYfnRkxhXPJz2jYS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5313,
+      "cache_read_input_tokens": 43963,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5313
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-18T21:29:21.261Z_
+
+<details><summary>↩ Tool result · `toolu_01D8qT9k2WU2v1myj4WNtvZ8`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/code/analysis_dgs_llama_conll.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analysis_dgs_llama_conll_report.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c57a4897-a320-475e-a0e7-20bfcb94129b",
+  "uuid": "2b8ac057-4b88-4f06-b95b-d5fbd1b6a192",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/code/analysis_dgs_llama_conll.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analysis_dgs_llama_conll_report.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/code/analysis_dgs_llama_conll.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analysis_dgs_llama_conll_report.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_019ovAyKeFjoSWLri8EZMBee`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/dgs_epoch_rank_analysis.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c57a4897-a320-475e-a0e7-20bfcb94129b",
+  "uuid": "0d63f905-d3d6-4d42-a2ee-7c705fcd9c89",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BkQh6CjtLMcnnndCyj4G6F",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4116,
+      "cache_read_input_tokens": 49276,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4116
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-18T21:29:25.072Z_
+
+<details><summary>↩ Tool result · `toolu_019ovAyKeFjoSWLri8EZMBee`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"metadata\\\": {\\n    \\\"description\\\": \\\"DGS analysis: epoch (3/5/10) and rank (8 vs default) comparison\\\",\\n    \\\"gold_filter\\\": true,\\n    \\\"n_samples\\\": 8,\\n    \\\"n_bootstrap\\\": 10000\\n  },\\n  \\\"results\\\": {\\n    \\\"SciERC-3ep\\\": {\\n      \\\"name\\\": \\\"SciERC-3ep\\\",\\n      \\\"n_total\\\": 551,\\n      \\\"n_used\\\": 529,\\n      \\\"n_filtered\\\": 22,\\n      \\\"n_degen\\\": 34,\\n      \\\"degen_pct\\\": 6.4,\\n      \\\"greedy\\\": {\\n        \\\"mean\\\": 0.6501041516275586,\\n        \\\"ci_lo\\\": 0.6251563835796016,\\n        \\\"ci_hi\\\": 0.6747775748720929\\n      },\\n      \\\"lp_all\\\": {\\n        \\\"mean\\\": 0.6382902017117518,\\n        \\\"ci_lo\\\": 0.6128473972991931,\\n        \\\"ci_hi\\\": 0.6634235959377737\\n      },\\n      \\\"gated\\\": {\\n        \\\"mean\\\": 0.6382902017117518,\\n        \\\"ci_lo\\\": 0.6128473972991931,\\n        \\\"ci_hi\\\": 0.6634235959377737\\n      },\\n      \\\"oracle\\\": {\\n        \\\"mean\\\": 0.7997893571395184,\\n        \\\"ci_lo\\\": 0.779715548052032,\\n        \\\"ci_hi\\\": 0.8194802312727365\\n      },\\n      \\\"delta_gated_minus_greedy\\\": {\\n        \\\"delta\\\": -0.011813949915806865,\\n        \\\"ci_lo\\\": -0.0306668441829121,\\n        \\\"ci_hi\\\": 0.007183262701443427\\n      },\\n      \\\"nondegen_delta_lp_minus_greedy\\\": {\\n        \\\"delta\\\": -0.012625413142347108,\\n        \\\"ci_lo\\\": -0.0329410178518913,\\n        \\\"ci_hi\\\": 0.008194656073443829\\n      }\\n    },\\n    \\\"SciERC-5ep\\\": {\\n      \\\"name\\\": \\\"SciERC-5ep\\\",\\n      \\\"n_total\\\": 551,\\n      \\\"n_used\\\": 529,\\n      \\\"n_filtered\\\": 22,\\n      \\\"n_degen\\\": 94,\\n      \\\"degen_pct\\\": 17.8,\\n      \\\"greedy\\\": {\\n        \\\"mean\\\": 0.6439219990259687,\\n        \\\"ci_lo\\\": 0.6180475688982305,\\n        \\\"ci_hi\\\": 0.6692473667898999\\n      },\\n      \\\"lp_all\\\": {\\n        \\\"mean\\\": 0.6500718843902431,\\n        \\\"ci_lo\\\": 0.6245690161179985,\\n        \\\"ci_hi\\\": 0.6749655320154598\\n      },\\n      \\\"gated\\\": {\\n        \\\"mean\\\": 0.6513321238357378,\\n        \\\"ci_lo\\\": 0.6259400720731756,\\n        \\\"ci_hi\\\": 0.6760374227376341\\n      },\\n      \\\"oracle\\\": {\\n        \\\"mean\\\": 0.7758023559647044,\\n        \\\"ci_lo\\\": 0.7540692550589138,\\n        \\\"ci_hi\\\": 0.7968803038023543\\n      },\\n      \\\"delta_gated_minus_greedy\\\": {\\n        \\\"delta\\\": 0.007410124809769103,\\n        \\\"ci_lo\\\": -0.006005775609912112,\\n        \\\"ci_hi\\\": 0.021087603106951347\\n      },\\n      \\\"nondegen_delta_lp_minus_greedy\\\": {\\n        \\\"delta\\\": 0.009011393159466086,\\n        \\\"ci_lo\\\": -0.007261465527185651,\\n        \\\"ci_hi\\\": 0.025726625564353678\\n      }\\n    },\\n    \\\"SciERC-10ep\\\": {\\n      \\\"name\\\": \\\"SciERC-10ep\\\",\\n      \\\"n_total\\\": 551,\\n      \\\"n_used\\\": 529,\\n      \\\"n_filtered\\\": 22,\\n      \\\"n_degen\\\": 253,\\n      \\\"degen_pct\\\": 47.8,\\n      \\\"greedy\\\": {\\n        \\\"mean\\\": 0.646724360248768,\\n        \\\"ci_lo\\\": 0.620883550145198,\\n        \\\"ci_hi\\\": 0.6732010060932556\\n      },\\n      \\\"lp_all\\\": {\\n        \\\"mean\\\": 0.6566541647437899,\\n        \\\"ci_lo\\\": 0.6312548948265617,\\n        \\\"ci_hi\\\": 0.6821544592032749\\n      },\\n      \\\"gated\\\": {\\n        \\\"mean\\\": 0.6566541647437899,\\n        \\\"ci_lo\\\": 0.6312548948265617,\\n        \\\"ci_hi\\\": 0.6821544592032749\\n      },\\n      \\\"oracle\\\": {\\n        \\\"mean\\\": 0.7331011554268532,\\n        \\\"ci_lo\\\": 0.7087644347818928,\\n        \\\"ci_hi\\\": 0.7566646645791536\\n      },\\n      \\\"delta_gated_minus_greedy\\\": {\\n        \\\"delta\\\": 0.009929804495021899,\\n        \\\"ci_lo\\\": 0.0017841694117685103,\\n        \\\"ci_hi\\\": 0.018312563303111595\\n      },\\n      \\\"nondegen_delta_lp_minus_greedy\\\": {\\n        \\\"delta\\\": 0.019032125282125167,\\n        \\\"ci_lo\\\": 0.0038307907873126323,\\n        \\\"ci_hi\\\": 0.035241067306284624\\n      }\\n    },\\n    \\\"SciERC-rank8\\\": {\\n      \\\"name\\\": \\\"SciERC-rank8\\\",\\n      \\\"n_total\\\": 551,\\n      \\\"n_used\\\": 529,\\n      \\\"n_filtered\\\": 22,\\n      \\\"n_degen\\\": 38,\\n      \\\"degen_pct\\\": 7.2,\\n      \\\"greedy\\\": {\\n        \\\"mean\\\": 0.6397455621463182,\\n        \\\"ci_lo\\\": 0.6134272994386416,\\n        \\\"ci_hi\\\": 0.6651531308431119\\n      },\\n      \\\"lp_all\\\": {\\n        \\\"mean\\\": 0.6350108853055589,\\n        \\\"ci_lo\\\": 0.6092235112083884,\\n        \\\"ci_hi\\\": 0.6601465614336736\\n      },\\n      \\\"gated\\\": {\\n        \\\"mean\\\": 0.6350108853055589,\\n        \\\"ci_lo\\\": 0.6092235112083884,\\n        \\\"ci_hi\\\": 0.6601465614336736\\n      },\\n      \\\"oracle\\\": {\\n        \\\"mean\\\": 0.7998047654558273,\\n        \\\"ci_lo\\\": 0.7798831954953382,\\n        \\\"ci_hi\\\": 0.8189023030788849\\n      },\\n      \\\"delta_gated_minus_greedy\\\": {\\n        \\\"delta\\\": -0.004734676840759233,\\n        \\\"ci_lo\\\": -0.023819711059786752,\\n        \\\"ci_hi\\\": 0.014682848873330379\\n      },\\n      \\\"nondegen_delta_lp_minus_greedy\\\": {\\n        \\\"delta\\\": -0.005101108042284586,\\n        \\\"ci_lo\\\": -0.025197053455709217,\\n        \\\"ci_hi\\\": 0.015268827920079886\\n      }\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c57a4897-a320-475e-a0e7-20bfcb94129b",
+  "uuid": "e40e3c94-2716-469c-a6c6-d7c6553505e1",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"metadata\\\\\\\": {\\\\n    \\\\\\\"description\\\\\\\": \\\\\\\"DGS analysis: epoch (3/5/10) and rank (8 vs default) comparison\\\\\\\",\\\\n    \\\\\\\"gold_filter\\\\\\\": true,\\\\n    \\\\\\\"n_samples\\\\\\\": 8,\\\\n    \\\\\\\"n_bootstrap\\\\\\\": 10000\\\\n  },\\\\n  \\\\\\\"results\\\\\\\": {\\\\n    \\\\\\\"SciERC-3ep\\\\\\\": {\\\\n      \\\\\\\"name\\\\\\\": \\\\\\\"SciERC-3ep\\\\\\\",\\\\n      \\\\\\\"n_total\\\\\\\": 551,\\\\n      \\\\\\\"n_used\\\\\\\": 529,\\\\n      \\\\\\\"n_filtered\\\\\\\": 22,\\\\n      \\\\\\\"n_degen\\\\\\\": 34,\\\\n      \\\\\\\"degen_pct\\\\\\\": 6.4,\\\\n      \\\\\\\"greedy\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.6501041516275586,\\\\n        \\\\\\\"ci_lo\\\\\\\": 0.6251563835796016,\\\\n        \\\\\\\"ci_hi\\\\\\\": 0.6747775748720929\\\\n      },\\\\n      \\\\\\\"lp_all\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.6382902017117518,\\\\n        \\\\\\\"ci_lo\\\\\\\": 0.6128473972991931,\\\\n        \\\\\\\"ci_hi\\\\\\\": 0.6634235959377737\\\\n      },\\\\n      \\\\\\\"gated\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.6382902017117518,\\\\n        \\\\\\\"ci_lo\\\\\\\": 0.6128473972991931,\\\\n        \\\\\\\"ci_hi\\\\\\\": 0.6634235959377737\\\\n      },\\\\n      \\\\\\\"oracle\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.7997893571395184,\\\\n        \\\\\\\"ci_lo\\\\\\\": 0.779715548052032,\\\\n        \\\\\\\"ci_hi\\\\\\\": 0.8194802312727365\\\\n      },\\\\n      \\\\\\\"delta_gated_minus_greedy\\\\\\\": {\\\\n        \\\\\\\"delta\\\\\\\": -0.011813949915806865,\\\\n        \\\\\\\"ci_lo\\\\\\\": -0.0306668441829121,\\\\n        \\\\\\\"ci_hi\\\\\\\": 0.007183262701443427\\\\n      },\\\\n      \\\\\\\"nondegen_delta_lp_minus_greedy\\\\\\\": {\\\\n        \\\\\\\"delta\\\\\\\": -0.012625413142347108,\\\\n        \\\\\\\"ci_lo\\\\\\\": -0.0329410178518913,\\\\n        \\\\\\\"ci_hi\\\\\\\": 0.008194656073443829\\\\n      }\\\\n    },\\\\n    \\\\\\\"SciERC-5ep\\\\\\\": {\\\\n      \\\\\\\"name\\\\\\\": \\\\\\\"SciERC-5ep\\\\\\\",\\\\n      \\\\\\\"n_total\\\\\\\": 551,\\\\n      \\\\\\\"n_used\\\\\\\": 529,\\\\n      \\\\\\\"n_filtered\\\\\\\": 22,\\\\n      \\\\\\\"n_degen\\\\\\\": 94,\\\\n      \\\\\\\"degen_pct\\\\\\\": 17.8,\\\\n      \\\\\\\"greedy\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.6439219990259687,\\\\n        \\\\\\\"ci_lo\\\\\\\": 0.6180475688982305,\\\\n        \\\\\\\"ci_hi\\\\\\\": 0.6692473667898999\\\\n      },\\\\n      \\\\\\\"lp_all\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.6500718843902431,\\\\n        \\\\\\\"ci_lo\\\\\\\": 0.6245690161179985,\\\\n        \\\\\\\"ci_hi\\\\\\\": 0.6749655320154598\\\\n      },\\\\n      \\\\\\\"gated\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.6513321238357378,\\\\n        \\\\\\\"ci_lo\\\\\\\": 0.6259400720731756,\\\\n        \\\\\\\"ci_hi\\\\\\\": 0.6760374227376341\\\\n      },\\\\n      \\\\\\\"oracle\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.7758023559647044,\\\\n        \\\\\\\"ci_lo\\\\\\\": 0.7540692550589138,\\\\n        \\\\\\\"ci_hi\\\\\\\": 0.7968803038023543\\\\n      },\\\\n      \\\\\\\"delta_gated_minus_greedy\\\\\\\": {\\\\n        \\\\\\\"delta\\\\\\\": 0.007410124809769103,\\\\n        \\\\\\\"ci_lo\\\\\\\": -0.006005775609912112,\\\\n        \\\\\\\"ci_hi\\\\\\\": 0.021087603106951347\\\\n      },\\\\n      \\\\\\\"nondegen_delta_lp_minus_greedy\\\\\\\": {\\\\n        \\\\\\\"delta\\\\\\\": 0.009011393159466086,\\\\n        \\\\\\\"ci_lo\\\\\\\": -0.007261465527185651,\\\\n        \\\\\\\"ci_hi\\\\\\\": 0.025726625564353678\\\\n      }\\\\n    },\\\\n    \\\\\\\"SciERC-10ep\\\\\\\": {\\\\n      \\\\\\\"name\\\\\\\": \\\\\\\"SciERC-10ep\\\\\\\",\\\\n      \\\\\\\"n_total\\\\\\\": 551,\\\\n      \\\\\\\"n_used\\\\\\\": 529,\\\\n      \\\\\\\"n_filtered\\\\\\\": 22,\\\\n      \\\\\\\"n_degen\\\\\\\": 253,\\\\n      \\\\\\\"degen_pct\\\\\\\": 47.8,\\\\n      \\\\\\\"greedy\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.646724360248768,\\\\n        \\\\\\\"ci_lo\\\\\\\": 0.620883550145198,\\\\n        \\\\\\\"ci_hi\\\\\\\": 0.6732010060932556\\\\n      },\\\\n      \\\\\\\"lp_all\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.6566541647437899,\\\\n        \\\\\\\"ci_lo\\\\\\\": 0.6312548948265617,\\\\n        \\\\\\\"ci_hi\\\\\\\": 0.6821544592032749\\\\n      },\\\\n      \\\\\\\"gated\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.6566541647437899,\\\\n        \\\\\\\"ci_lo\\\\\\\": 0.6312548948265617,\\\\n        \\\\\\\"ci_hi\\\\\\\": 0.6821544592032749\\\\n      },\\\\n      \\\\\\\"oracle\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.7331011554268532,\\\\n        \\\\\\\"ci_lo\\\\\\\": 0.7087644347818928,\\\\n        \\\\\\\"ci_hi\\\\\\\": 0.7566646645791536\\\\n      },\\\\n      \\\\\\\"delta_gated_minus_greedy\\\\\\\": {\\\\n        \\\\\\\"delta\\\\\\\": 0.009929804495021899,\\\\n        \\\\\\\"ci_lo\\\\\\\": 0.0017841694117685103,\\\\n        \\\\\\\"ci_hi\\\\\\\": 0.018312563303111595\\\\n      },\\\\n      \\\\\\\"nondegen_delta_lp_minus_greedy\\\\\\\": {\\\\n        \\\\\\\"delta\\\\\\\": 0.019032125282125167,\\\\n        \\\\\\\"ci_lo\\\\\\\": 0.0038307907873126323,\\\\n        \\\\\\\"ci_hi\\\\\\\": 0.035241067306284624\\\\n      }\\\\n    },\\\\n    \\\\\\\"SciERC-rank8\\\\\\\": {\\\\n      \\\\\\\"name\\\\\\\": \\\\\\\"SciERC-rank8\\\\\\\",\\\\n      \\\\\\\"n_total\\\\\\\": 551,\\\\n      \\\\\\\"n_used\\\\\\\": 529,\\\\n      \\\\\\\"n_filtered\\\\\\\": 22,\\\\n      \\\\\\\"n_degen\\\\\\\": 38,\\\\n      \\\\\\\"degen_pct\\\\\\\": 7.2,\\\\n      \\\\\\\"greedy\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.6397455621463182,\\\\n        \\\\\\\"ci_lo\\\\\\\": 0.6134272994386416,\\\\n        \\\\\\\"ci_hi\\\\\\\": 0.6651531308431119\\\\n      },\\\\n      \\\\\\\"lp_all\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.6350108853055589,\\\\n        \\\\\\\"ci_lo\\\\\\\": 0.6092235112083884,\\\\n        \\\\\\\"ci_hi\\\\\\\": 0.6601465614336736\\\\n      },\\\\n      \\\\\\\"gated\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.6350108853055589,\\\\n        \\\\\\\"ci_lo\\\\\\\": 0.6092235112083884,\\\\n        \\\\\\\"ci_hi\\\\\\\": 0.6601465614336736\\\\n      },\\\\n      \\\\\\\"oracle\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.7998047654558273,\\\\n        \\\\\\\"ci_lo\\\\\\\": 0.7798831954953382,\\\\n        \\\\\\\"ci_hi\\\\\\\": 0.8189023030788849\\\\n      },\\\\n      \\\\\\\"delta_gated_minus_greedy\\\\\\\": {\\\\n        \\\\\\\"delta\\\\\\\": -0.004734676840759233,\\\\n        \\\\\\\"ci_lo\\\\\\\": -0.023819711059786752,\\\\n        \\\\\\\"ci_hi\\\\\\\": 0.014682848873330379\\\\n      },\\\\n      \\\\\\\"nondegen_delta_lp_minus_greedy\\\\\\\": {\\\\n        \\\\\\\"delta\\\\\\\": -0.005101108042284586,\\\\n        \\\\\\\"ci_lo\\\\\\\": -0.025197053455709217,\\\\n        \\\\\\\"ci_hi\\\\\\\": 0.015268827920079886\\\\n      }\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"metadata\\\": {\\n    \\\"description\\\": \\\"DGS analysis: epoch (3/5/10) and rank (8 vs default) comparison\\\",\\n    \\\"gold_filter\\\": true,\\n    \\\"n_samples\\\": 8,\\n    \\\"n_bootstrap\\\": 10000\\n  },\\n  \\\"results\\\": {\\n    \\\"SciERC-3ep\\\": {\\n      \\\"name\\\": \\\"SciERC-3ep\\\",\\n      \\\"n_total\\\": 551,\\n      \\\"n_used\\\": 529,\\n      \\\"n_filtered\\\": 22,\\n      \\\"n_degen\\\": 34,\\n      \\\"degen_pct\\\": 6.4,\\n      \\\"greedy\\\": {\\n        \\\"mean\\\": 0.6501041516275586,\\n        \\\"ci_lo\\\": 0.6251563835796016,\\n        \\\"ci_hi\\\": 0.6747775748720929\\n      },\\n      \\\"lp_all\\\": {\\n        \\\"mean\\\": 0.6382902017117518,\\n        \\\"ci_lo\\\": 0.6128473972991931,\\n        \\\"ci_hi\\\": 0.6634235959377737\\n      },\\n      \\\"gated\\\": {\\n        \\\"mean\\\": 0.6382902017117518,\\n        \\\"ci_lo\\\": 0.6128473972991931,\\n        \\\"ci_hi\\\": 0.6634235959377737\\n      },\\n      \\\"oracle\\\": {\\n        \\\"mean\\\": 0.7997893571395184,\\n        \\\"ci_lo\\\": 0.779715548052032,\\n        \\\"ci_hi\\\": 0.8194802312727365\\n      },\\n      \\\"delta_gated_minus_greedy\\\": {\\n        \\\"delta\\\": -0.011813949915806865,\\n        \\\"ci_lo\\\": -0.0306668441829121,\\n        \\\"ci_hi\\\": 0.007183262701443427\\n      },\\n      \\\"nondegen_delta_lp_minus_greedy\\\": {\\n        \\\"delta\\\": -0.012625413142347108,\\n        \\\"ci_lo\\\": -0.0329410178518913,\\n        \\\"ci_hi\\\": 0.008194656073443829\\n      }\\n    },\\n    \\\"SciERC-5ep\\\": {\\n      \\\"name\\\": \\\"SciERC-5ep\\\",\\n      \\\"n_total\\\": 551,\\n      \\\"n_used\\\": 529,\\n      \\\"n_filtered\\\": 22,\\n      \\\"n_degen\\\": 94,\\n      \\\"degen_pct\\\": 17.8,\\n      \\\"greedy\\\": {\\n        \\\"mean\\\": 0.6439219990259687,\\n        \\\"ci_lo\\\": 0.6180475688982305,\\n        \\\"ci_hi\\\": 0.6692473667898999\\n      },\\n      \\\"lp_all\\\": {\\n        \\\"mean\\\": 0.6500718843902431,\\n        \\\"ci_lo\\\": 0.6245690161179985,\\n        \\\"ci_hi\\\": 0.6749655320154598\\n      },\\n      \\\"gated\\\": {\\n        \\\"mean\\\": 0.6513321238357378,\\n        \\\"ci_lo\\\": 0.6259400720731756,\\n        \\\"ci_hi\\\": 0.6760374227376341\\n      },\\n      \\\"oracle\\\": {\\n        \\\"mean\\\": 0.7758023559647044,\\n        \\\"ci_lo\\\": 0.7540692550589138,\\n        \\\"ci_hi\\\": 0.7968803038023543\\n      },\\n      \\\"delta_gated_minus_greedy\\\": {\\n        \\\"delta\\\": 0.007410124809769103,\\n        \\\"ci_lo\\\": -0.006005775609912112,\\n        \\\"ci_hi\\\": 0.021087603106951347\\n      },\\n      \\\"nondegen_delta_lp_minus_greedy\\\": {\\n        \\\"delta\\\": 0.009011393159466086,\\n        \\\"ci_lo\\\": -0.007261465527185651,\\n        \\\"ci_hi\\\": 0.025726625564353678\\n      }\\n    },\\n    \\\"SciERC-10ep\\\": {\\n      \\\"name\\\": \\\"SciERC-10ep\\\",\\n      \\\"n_total\\\": 551,\\n      \\\"n_used\\\": 529,\\n      \\\"n_filtered\\\": 22,\\n      \\\"n_degen\\\": 253,\\n      \\\"degen_pct\\\": 47.8,\\n      \\\"greedy\\\": {\\n        \\\"mean\\\": 0.646724360248768,\\n        \\\"ci_lo\\\": 0.620883550145198,\\n        \\\"ci_hi\\\": 0.6732010060932556\\n      },\\n      \\\"lp_all\\\": {\\n        \\\"mean\\\": 0.6566541647437899,\\n        \\\"ci_lo\\\": 0.6312548948265617,\\n        \\\"ci_hi\\\": 0.6821544592032749\\n      },\\n      \\\"gated\\\": {\\n        \\\"mean\\\": 0.6566541647437899,\\n        \\\"ci_lo\\\": 0.6312548948265617,\\n        \\\"ci_hi\\\": 0.6821544592032749\\n      },\\n      \\\"oracle\\\": {\\n        \\\"mean\\\": 0.7331011554268532,\\n        \\\"ci_lo\\\": 0.7087644347818928,\\n        \\\"ci_hi\\\": 0.7566646645791536\\n      },\\n      \\\"delta_gated_minus_greedy\\\": {\\n        \\\"delta\\\": 0.009929804495021899,\\n        \\\"ci_lo\\\": 0.0017841694117685103,\\n        \\\"ci_hi\\\": 0.018312563303111595\\n      },\\n      \\\"nondegen_delta_lp_minus_greedy\\\": {\\n        \\\"delta\\\": 0.019032125282125167,\\n        \\\"ci_lo\\\": 0.0038307907873126323,\\n        \\\"ci_hi\\\": 0.035241067306284624\\n      }\\n    },\\n    \\\"SciERC-rank8\\\": {\\n      \\\"name\\\": \\\"SciERC-rank8\\\",\\n      \\\"n_total\\\": 551,\\n      \\\"n_used\\\": 529,\\n      \\\"n_filtered\\\": 22,\\n      \\\"n_degen\\\": 38,\\n      \\\"degen_pct\\\": 7.2,\\n      \\\"greedy\\\": {\\n        \\\"mean\\\": 0.6397455621463182,\\n        \\\"ci_lo\\\": 0.6134272994386416,\\n        \\\"ci_hi\\\": 0.6651531308431119\\n      },\\n      \\\"lp_all\\\": {\\n        \\\"mean\\\": 0.6350108853055589,\\n        \\\"ci_lo\\\": 0.6092235112083884,\\n        \\\"ci_hi\\\": 0.6601465614336736\\n      },\\n      \\\"gated\\\": {\\n        \\\"mean\\\": 0.6350108853055589,\\n        \\\"ci_lo\\\": 0.6092235112083884,\\n        \\\"ci_hi\\\": 0.6601465614336736\\n      },\\n      \\\"oracle\\\": {\\n        \\\"mean\\\": 0.7998047654558273,\\n        \\\"ci_lo\\\": 0.7798831954953382,\\n        \\\"ci_hi\\\": 0.8189023030788849\\n      },\\n      \\\"delta_gated_minus_greedy\\\": {\\n        \\\"delta\\\": -0.004734676840759233,\\n        \\\"ci_lo\\\": -0.023819711059786752,\\n        \\\"ci_hi\\\": 0.014682848873330379\\n      },\\n      \\\"nondegen_delta_lp_minus_greedy\\\": {\\n        \\\"delta\\\": -0.005101108042284586,\\n        \\\"ci_lo\\\": -0.025197053455709217,\\n        \\\"ci_hi\\\": 0.015268827920079886\\n      }\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01MFUhTYKFwfze24eVdrUckA`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "find /root/autodl-tmp/struct_self_consist_ie -name \"*dgs*llama*result*\" -not -path \"*__pycache__*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c57a4897-a320-475e-a0e7-20bfcb94129b",
+  "uuid": "ff31d3fb-052a-446b-8bb8-afa8b844e1a5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BkQh6CjtLMcnnndCyj4G6F",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4116,
+      "cache_read_input_tokens": 49276,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4116
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-18T21:29:25.598Z_
+
+<details><summary>↩ Tool result · `toolu_01MFUhTYKFwfze24eVdrUckA`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c57a4897-a320-475e-a0e7-20bfcb94129b",
+  "uuid": "5e45246f-1774-4c69-aca6-22ffb5d6c16e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 49_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I need to find the LLaMA DGS selection results. Let me search for them.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c57a4897-a320-475e-a0e7-20bfcb94129b",
+  "uuid": "585e38a3-9225-4ea0-9d92-49c42e4034ea",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014yshfMBUGTM1o7eLUms7FM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3043,
+      "cache_read_input_tokens": 53392,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3043
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 50_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01465hJ1xw32dXWRhAymkKZs`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "find /root/autodl-tmp/struct_self_consist_ie/output -name \"*llama*selection*\" -not -path \"*__pycache__*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c57a4897-a320-475e-a0e7-20bfcb94129b",
+  "uuid": "c2f53a4d-5f61-4935-a155-cb689872c72b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014yshfMBUGTM1o7eLUms7FM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3043,
+      "cache_read_input_tokens": 53392,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3043
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-18T21:29:30.111Z_
+
+<details><summary>↩ Tool result · `toolu_01465hJ1xw32dXWRhAymkKZs`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c57a4897-a320-475e-a0e7-20bfcb94129b",
+  "uuid": "342e82c4-5d0b-4afd-9559-532b033dd23c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 52_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0189wV2UqnbKmQgmxHAQz4bP`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "find /root/autodl-tmp/struct_self_consist_ie/output -name \"*llama*dgs*\" -not -path \"*__pycache__*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c57a4897-a320-475e-a0e7-20bfcb94129b",
+  "uuid": "d8152207-96fc-49a8-86a9-6491307005ab",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014yshfMBUGTM1o7eLUms7FM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3043,
+      "cache_read_input_tokens": 53392,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3043
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 53 · 2026-05-18T21:29:30.750Z_
+
+<details><summary>↩ Tool result · `toolu_0189wV2UqnbKmQgmxHAQz4bP`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c57a4897-a320-475e-a0e7-20bfcb94129b",
+  "uuid": "d450fa2f-0ffc-4ae0-8a7a-e230c0561878",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 54_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01FMAZPpJfQjxzEZ5ofviodc`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "find /root/autodl-tmp/struct_self_consist_ie/output -name \"*llama*\" -name \"*.json\" -not -path \"*__pycache__*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c57a4897-a320-475e-a0e7-20bfcb94129b",
+  "uuid": "2d00b580-f7e3-4e5e-8872-5f8f72975c1d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01E76GFJw7bdGaLhdBDwTp3b",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 611,
+      "cache_read_input_tokens": 56435,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 611
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 55 · 2026-05-18T21:29:34.319Z_
+
+<details><summary>↩ Tool result · `toolu_01FMAZPpJfQjxzEZ5ofviodc`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/output/bootstrap_ci_nscaling/llama_conll_result.json\\n/root/autodl-tmp/struct_self_consist_ie/output/llama_conll_n16_3seed_5signal_summary.json\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round2/selection_f1_llama_scierc_n8.json\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round2/selection_f1_llama_scierc_n16.json\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round2/selection_f1_llama_conll_n8.json\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round2/llama_scierc_3seed_fresh_summary.json\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round2/llama_scierc_3seed_summary_DEPRECATED_preD066.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c57a4897-a320-475e-a0e7-20bfcb94129b",
+  "uuid": "8d68ca78-7ff9-4419-b02f-5eeeddbf25b1",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/bootstrap_ci_nscaling/llama_conll_result.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/llama_conll_n16_3seed_5signal_summary.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round2/selection_f1_llama_scierc_n8.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round2/selection_f1_llama_scierc_n16.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round2/selection_f1_llama_conll_n8.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round2/llama_scierc_3seed_fresh_summary.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round2/llama_scierc_3seed_summary_DEPRECATED_preD066.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/output/bootstrap_ci_nscaling/llama_conll_result.json\\n/root/autodl-tmp/struct_self_consist_ie/output/llama_conll_n16_3seed_5signal_summary.json\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round2/selection_f1_llama_scierc_n8.json\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round2/selection_f1_llama_scierc_n16.json\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round2/selection_f1_llama_conll_n8.json\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round2/llama_scierc_3seed_fresh_summary.json\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round2/llama_scierc_3seed_summary_DEPRECATED_preD066.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 56_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_012KkQP8yNUm3MykuHE8un7D`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/review_round2/selection_f1_llama_scierc_n8.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c57a4897-a320-475e-a0e7-20bfcb94129b",
+  "uuid": "41616995-a7e5-4e14-9b89-bc97038d8152",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01G5irjedShQLy6D6KZhGWBe",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 499,
+      "cache_read_input_tokens": 57046,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 499
+      },
+      "output_tokens": 71,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 57 · 2026-05-18T21:29:38.240Z_
+
+<details><summary>↩ Tool result · `toolu_012KkQP8yNUm3MykuHE8un7D`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"config\\\": \\\"llama_scierc_n8\\\",\\n  \\\"n_instances\\\": 529,\\n  \\\"n_samples_per_instance\\\": 8,\\n  \\\"greedy_f1\\\": 0.646018,\\n  \\\"oracle_f1\\\": 0.778041,\\n  \\\"signals\\\": {\\n    \\\"soft_jaccard\\\": {\\n      \\\"selection_f1\\\": 0.643292,\\n      \\\"delta_vs_greedy\\\": -0.002726,\\n      \\\"bootstrap_p\\\": 0.619,\\n      \\\"ci_lower\\\": -0.013478,\\n      \\\"ci_upper\\\": 0.007899,\\n      \\\"cohens_d\\\": -0.021393,\\n      \\\"sign_test_wins\\\": 42,\\n      \\\"sign_test_losses\\\": 42,\\n      \\\"sign_test_ties\\\": 445\\n    },\\n    \\\"fleiss_kappa\\\": {\\n      \\\"selection_f1\\\": 0.638592,\\n      \\\"delta_vs_greedy\\\": -0.007426,\\n      \\\"bootstrap_p\\\": 0.3708,\\n      \\\"ci_lower\\\": -0.023663,\\n      \\\"ci_upper\\\": 0.009394,\\n      \\\"cohens_d\\\": -0.039096,\\n      \\\"sign_test_wins\\\": 78,\\n      \\\"sign_test_losses\\\": 86,\\n      \\\"sign_test_ties\\\": 365\\n    },\\n    \\\"exact_match\\\": {\\n      \\\"selection_f1\\\": 0.634297,\\n      \\\"delta_vs_greedy\\\": -0.011721,\\n      \\\"bootstrap_p\\\": 0.0876,\\n      \\\"ci_lower\\\": -0.025176,\\n      \\\"ci_upper\\\": 0.001599,\\n      \\\"cohens_d\\\": -0.073142,\\n      \\\"sign_test_wins\\\": 45,\\n      \\\"sign_test_losses\\\": 56,\\n      \\\"sign_test_ties\\\": 428\\n    },\\n    \\\"logprob\\\": {\\n      \\\"selection_f1\\\": 0.651777,\\n      \\\"delta_vs_greedy\\\": 0.005759,\\n      \\\"bootstrap_p\\\": 0.3858,\\n      \\\"ci_lower\\\": -0.007085,\\n      \\\"ci_upper\\\": 0.018377,\\n      \\\"cohens_d\\\": 0.038311,\\n      \\\"sign_test_wins\\\": 53,\\n      \\\"sign_test_losses\\\": 49,\\n      \\\"sign_test_ties\\\": 427\\n    },\\n    \\\"voting_conf\\\": {\\n      \\\"selection_f1\\\": 0.633156,\\n      \\\"delta_vs_greedy\\\": -0.012862,\\n      \\\"bootstrap_p\\\": 0.0296,\\n      \\\"ci_lower\\\": -0.02523,\\n      \\\"ci_upper\\\": -0.001244,\\n      \\\"cohens_d\\\": -0.090084,\\n      \\\"sign_test_wins\\\": 56,\\n      \\\"sign_test_losses\\\": 50,\\n      \\\"sign_test_ties\\\": 423\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c57a4897-a320-475e-a0e7-20bfcb94129b",
+  "uuid": "e8fdec34-233c-4adf-80fb-ce7eb749e7b1",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"config\\\\\\\": \\\\\\\"llama_scierc_n8\\\\\\\",\\\\n  \\\\\\\"n_instances\\\\\\\": 529,\\\\n  \\\\\\\"n_samples_per_instance\\\\\\\": 8,\\\\n  \\\\\\\"greedy_f1\\\\\\\": 0.646018,\\\\n  \\\\\\\"oracle_f1\\\\\\\": 0.778041,\\\\n  \\\\\\\"signals\\\\\\\": {\\\\n    \\\\\\\"soft_jaccard\\\\\\\": {\\\\n      \\\\\\\"selection_f1\\\\\\\": 0.643292,\\\\n      \\\\\\\"delta_vs_greedy\\\\\\\": -0.002726,\\\\n      \\\\\\\"bootstrap_p\\\\\\\": 0.619,\\\\n      \\\\\\\"ci_lower\\\\\\\": -0.013478,\\\\n      \\\\\\\"ci_upper\\\\\\\": 0.007899,\\\\n      \\\\\\\"cohens_d\\\\\\\": -0.021393,\\\\n      \\\\\\\"sign_test_wins\\\\\\\": 42,\\\\n      \\\\\\\"sign_test_losses\\\\\\\": 42,\\\\n      \\\\\\\"sign_test_ties\\\\\\\": 445\\\\n    },\\\\n    \\\\\\\"fleiss_kappa\\\\\\\": {\\\\n      \\\\\\\"selection_f1\\\\\\\": 0.638592,\\\\n      \\\\\\\"delta_vs_greedy\\\\\\\": -0.007426,\\\\n      \\\\\\\"bootstrap_p\\\\\\\": 0.3708,\\\\n      \\\\\\\"ci_lower\\\\\\\": -0.023663,\\\\n      \\\\\\\"ci_upper\\\\\\\": 0.009394,\\\\n      \\\\\\\"cohens_d\\\\\\\": -0.039096,\\\\n      \\\\\\\"sign_test_wins\\\\\\\": 78,\\\\n      \\\\\\\"sign_test_losses\\\\\\\": 86,\\\\n      \\\\\\\"sign_test_ties\\\\\\\": 365\\\\n    },\\\\n    \\\\\\\"exact_match\\\\\\\": {\\\\n      \\\\\\\"selection_f1\\\\\\\": 0.634297,\\\\n      \\\\\\\"delta_vs_greedy\\\\\\\": -0.011721,\\\\n      \\\\\\\"bootstrap_p\\\\\\\": 0.0876,\\\\n      \\\\\\\"ci_lower\\\\\\\": -0.025176,\\\\n      \\\\\\\"ci_upper\\\\\\\": 0.001599,\\\\n      \\\\\\\"cohens_d\\\\\\\": -0.073142,\\\\n      \\\\\\\"sign_test_wins\\\\\\\": 45,\\\\n      \\\\\\\"sign_test_losses\\\\\\\": 56,\\\\n      \\\\\\\"sign_test_ties\\\\\\\": 428\\\\n    },\\\\n    \\\\\\\"logprob\\\\\\\": {\\\\n      \\\\\\\"selection_f1\\\\\\\": 0.651777,\\\\n      \\\\\\\"delta_vs_greedy\\\\\\\": 0.005759,\\\\n      \\\\\\\"bootstrap_p\\\\\\\": 0.3858,\\\\n      \\\\\\\"ci_lower\\\\\\\": -0.007085,\\\\n      \\\\\\\"ci_upper\\\\\\\": 0.018377,\\\\n      \\\\\\\"cohens_d\\\\\\\": 0.038311,\\\\n      \\\\\\\"sign_test_wins\\\\\\\": 53,\\\\n      \\\\\\\"sign_test_losses\\\\\\\": 49,\\\\n      \\\\\\\"sign_test_ties\\\\\\\": 427\\\\n    },\\\\n    \\\\\\\"voting_conf\\\\\\\": {\\\\n      \\\\\\\"selection_f1\\\\\\\": 0.633156,\\\\n      \\\\\\\"delta_vs_greedy\\\\\\\": -0.012862,\\\\n      \\\\\\\"bootstrap_p\\\\\\\": 0.0296,\\\\n      \\\\\\\"ci_lower\\\\\\\": -0.02523,\\\\n      \\\\\\\"ci_upper\\\\\\\": -0.001244,\\\\n      \\\\\\\"cohens_d\\\\\\\": -0.090084,\\\\n      \\\\\\\"sign_test_wins\\\\\\\": 56,\\\\n      \\\\\\\"sign_test_losses\\\\\\\": 50,\\\\n      \\\\\\\"sign_test_ties\\\\\\\": 423\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"config\\\": \\\"llama_scierc_n8\\\",\\n  \\\"n_instances\\\": 529,\\n  \\\"n_samples_per_instance\\\": 8,\\n  \\\"greedy_f1\\\": 0.646018,\\n  \\\"oracle_f1\\\": 0.778041,\\n  \\\"signals\\\": {\\n    \\\"soft_jaccard\\\": {\\n      \\\"selection_f1\\\": 0.643292,\\n      \\\"delta_vs_greedy\\\": -0.002726,\\n      \\\"bootstrap_p\\\": 0.619,\\n      \\\"ci_lower\\\": -0.013478,\\n      \\\"ci_upper\\\": 0.007899,\\n      \\\"cohens_d\\\": -0.021393,\\n      \\\"sign_test_wins\\\": 42,\\n      \\\"sign_test_losses\\\": 42,\\n      \\\"sign_test_ties\\\": 445\\n    },\\n    \\\"fleiss_kappa\\\": {\\n      \\\"selection_f1\\\": 0.638592,\\n      \\\"delta_vs_greedy\\\": -0.007426,\\n      \\\"bootstrap_p\\\": 0.3708,\\n      \\\"ci_lower\\\": -0.023663,\\n      \\\"ci_upper\\\": 0.009394,\\n      \\\"cohens_d\\\": -0.039096,\\n      \\\"sign_test_wins\\\": 78,\\n      \\\"sign_test_losses\\\": 86,\\n      \\\"sign_test_ties\\\": 365\\n    },\\n    \\\"exact_match\\\": {\\n      \\\"selection_f1\\\": 0.634297,\\n      \\\"delta_vs_greedy\\\": -0.011721,\\n      \\\"bootstrap_p\\\": 0.0876,\\n      \\\"ci_lower\\\": -0.025176,\\n      \\\"ci_upper\\\": 0.001599,\\n      \\\"cohens_d\\\": -0.073142,\\n      \\\"sign_test_wins\\\": 45,\\n      \\\"sign_test_losses\\\": 56,\\n      \\\"sign_test_ties\\\": 428\\n    },\\n    \\\"logprob\\\": {\\n      \\\"selection_f1\\\": 0.651777,\\n      \\\"delta_vs_greedy\\\": 0.005759,\\n      \\\"bootstrap_p\\\": 0.3858,\\n      \\\"ci_lower\\\": -0.007085,\\n      \\\"ci_upper\\\": 0.018377,\\n      \\\"cohens_d\\\": 0.038311,\\n      \\\"sign_test_wins\\\": 53,\\n      \\\"sign_test_losses\\\": 49,\\n      \\\"sign_test_ties\\\": 427\\n    },\\n    \\\"voting_conf\\\": {\\n      \\\"selection_f1\\\": 0.633156,\\n      \\\"delta_vs_greedy\\\": -0.012862,\\n      \\\"bootstrap_p\\\": 0.0296,\\n      \\\"ci_lower\\\": -0.02523,\\n      \\\"ci_upper\\\": -0.001244,\\n      \\\"cohens_d\\\": -0.090084,\\n      \\\"sign_test_wins\\\": 56,\\n      \\\"sign_test_losses\\\": 50,\\n      \\\"sign_test_ties\\\": 423\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 58_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01GHeoQJq5hHTazprdedGLkR`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/review_round2/selection_f1_llama_conll_n8.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c57a4897-a320-475e-a0e7-20bfcb94129b",
+  "uuid": "1787a68b-67d9-43f4-9fdc-67574a7fa2dc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01G5irjedShQLy6D6KZhGWBe",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 499,
+      "cache_read_input_tokens": 57046,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 499
+      },
+      "output_tokens": 71,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 59 · 2026-05-18T21:29:38.808Z_
+
+<details><summary>↩ Tool result · `toolu_01GHeoQJq5hHTazprdedGLkR`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"config\\\": \\\"llama_conll_n8\\\",\\n  \\\"n_instances\\\": 2756,\\n  \\\"n_samples_per_instance\\\": 8,\\n  \\\"greedy_f1\\\": 0.924189,\\n  \\\"oracle_f1\\\": 0.94258,\\n  \\\"signals\\\": {\\n    \\\"soft_jaccard\\\": {\\n      \\\"selection_f1\\\": 0.923744,\\n      \\\"delta_vs_greedy\\\": -0.000445,\\n      \\\"bootstrap_p\\\": 0.5432,\\n      \\\"ci_lower\\\": -0.002014,\\n      \\\"ci_upper\\\": 0.001099,\\n      \\\"cohens_d\\\": -0.010774,\\n      \\\"sign_test_wins\\\": 9,\\n      \\\"sign_test_losses\\\": 15,\\n      \\\"sign_test_ties\\\": 2732\\n    },\\n    \\\"fleiss_kappa\\\": {\\n      \\\"selection_f1\\\": 0.924473,\\n      \\\"delta_vs_greedy\\\": 0.000284,\\n      \\\"bootstrap_p\\\": 0.825,\\n      \\\"ci_lower\\\": -0.001957,\\n      \\\"ci_upper\\\": 0.00253,\\n      \\\"cohens_d\\\": 0.004643,\\n      \\\"sign_test_wins\\\": 29,\\n      \\\"sign_test_losses\\\": 29,\\n      \\\"sign_test_ties\\\": 2698\\n    },\\n    \\\"exact_match\\\": {\\n      \\\"selection_f1\\\": 0.924381,\\n      \\\"delta_vs_greedy\\\": 0.000192,\\n      \\\"bootstrap_p\\\": 0.8218,\\n      \\\"ci_lower\\\": -0.001197,\\n      \\\"ci_upper\\\": 0.001656,\\n      \\\"cohens_d\\\": 0.005043,\\n      \\\"sign_test_wins\\\": 12,\\n      \\\"sign_test_losses\\\": 14,\\n      \\\"sign_test_ties\\\": 2730\\n    },\\n    \\\"logprob\\\": {\\n      \\\"selection_f1\\\": 0.924439,\\n      \\\"delta_vs_greedy\\\": 0.00025,\\n      \\\"bootstrap_p\\\": 0.7608,\\n      \\\"ci_lower\\\": -0.001365,\\n      \\\"ci_upper\\\": 0.001855,\\n      \\\"cohens_d\\\": 0.005851,\\n      \\\"sign_test_wins\\\": 8,\\n      \\\"sign_test_losses\\\": 5,\\n      \\\"sign_test_ties\\\": 2743\\n    },\\n    \\\"voting_conf\\\": {\\n      \\\"selection_f1\\\": 0.92331,\\n      \\\"delta_vs_greedy\\\": -0.000879,\\n      \\\"bootstrap_p\\\": 0.2726,\\n      \\\"ci_lower\\\": -0.00254,\\n      \\\"ci_upper\\\": 0.000633,\\n      \\\"cohens_d\\\": -0.020541,\\n      \\\"sign_test_wins\\\": 11,\\n      \\\"sign_test_losses\\\": 15,\\n      \\\"sign_test_ties\\\": 2730\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c57a4897-a320-475e-a0e7-20bfcb94129b",
+  "uuid": "aa27af6a-a76d-44b3-ae09-d5e848c42fd4",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"config\\\\\\\": \\\\\\\"llama_conll_n8\\\\\\\",\\\\n  \\\\\\\"n_instances\\\\\\\": 2756,\\\\n  \\\\\\\"n_samples_per_instance\\\\\\\": 8,\\\\n  \\\\\\\"greedy_f1\\\\\\\": 0.924189,\\\\n  \\\\\\\"oracle_f1\\\\\\\": 0.94258,\\\\n  \\\\\\\"signals\\\\\\\": {\\\\n    \\\\\\\"soft_jaccard\\\\\\\": {\\\\n      \\\\\\\"selection_f1\\\\\\\": 0.923744,\\\\n      \\\\\\\"delta_vs_greedy\\\\\\\": -0.000445,\\\\n      \\\\\\\"bootstrap_p\\\\\\\": 0.5432,\\\\n      \\\\\\\"ci_lower\\\\\\\": -0.002014,\\\\n      \\\\\\\"ci_upper\\\\\\\": 0.001099,\\\\n      \\\\\\\"cohens_d\\\\\\\": -0.010774,\\\\n      \\\\\\\"sign_test_wins\\\\\\\": 9,\\\\n      \\\\\\\"sign_test_losses\\\\\\\": 15,\\\\n      \\\\\\\"sign_test_ties\\\\\\\": 2732\\\\n    },\\\\n    \\\\\\\"fleiss_kappa\\\\\\\": {\\\\n      \\\\\\\"selection_f1\\\\\\\": 0.924473,\\\\n      \\\\\\\"delta_vs_greedy\\\\\\\": 0.000284,\\\\n      \\\\\\\"bootstrap_p\\\\\\\": 0.825,\\\\n      \\\\\\\"ci_lower\\\\\\\": -0.001957,\\\\n      \\\\\\\"ci_upper\\\\\\\": 0.00253,\\\\n      \\\\\\\"cohens_d\\\\\\\": 0.004643,\\\\n      \\\\\\\"sign_test_wins\\\\\\\": 29,\\\\n      \\\\\\\"sign_test_losses\\\\\\\": 29,\\\\n      \\\\\\\"sign_test_ties\\\\\\\": 2698\\\\n    },\\\\n    \\\\\\\"exact_match\\\\\\\": {\\\\n      \\\\\\\"selection_f1\\\\\\\": 0.924381,\\\\n      \\\\\\\"delta_vs_greedy\\\\\\\": 0.000192,\\\\n      \\\\\\\"bootstrap_p\\\\\\\": 0.8218,\\\\n      \\\\\\\"ci_lower\\\\\\\": -0.001197,\\\\n      \\\\\\\"ci_upper\\\\\\\": 0.001656,\\\\n      \\\\\\\"cohens_d\\\\\\\": 0.005043,\\\\n      \\\\\\\"sign_test_wins\\\\\\\": 12,\\\\n      \\\\\\\"sign_test_losses\\\\\\\": 14,\\\\n      \\\\\\\"sign_test_ties\\\\\\\": 2730\\\\n    },\\\\n    \\\\\\\"logprob\\\\\\\": {\\\\n      \\\\\\\"selection_f1\\\\\\\": 0.924439,\\\\n      \\\\\\\"delta_vs_greedy\\\\\\\": 0.00025,\\\\n      \\\\\\\"bootstrap_p\\\\\\\": 0.7608,\\\\n      \\\\\\\"ci_lower\\\\\\\": -0.001365,\\\\n      \\\\\\\"ci_upper\\\\\\\": 0.001855,\\\\n      \\\\\\\"cohens_d\\\\\\\": 0.005851,\\\\n      \\\\\\\"sign_test_wins\\\\\\\": 8,\\\\n      \\\\\\\"sign_test_losses\\\\\\\": 5,\\\\n      \\\\\\\"sign_test_ties\\\\\\\": 2743\\\\n    },\\\\n    \\\\\\\"voting_conf\\\\\\\": {\\\\n      \\\\\\\"selection_f1\\\\\\\": 0.92331,\\\\n      \\\\\\\"delta_vs_greedy\\\\\\\": -0.000879,\\\\n      \\\\\\\"bootstrap_p\\\\\\\": 0.2726,\\\\n      \\\\\\\"ci_lower\\\\\\\": -0.00254,\\\\n      \\\\\\\"ci_upper\\\\\\\": 0.000633,\\\\n      \\\\\\\"cohens_d\\\\\\\": -0.020541,\\\\n      \\\\\\\"sign_test_wins\\\\\\\": 11,\\\\n      \\\\\\\"sign_test_losses\\\\\\\": 15,\\\\n      \\\\\\\"sign_test_ties\\\\\\\": 2730\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"config\\\": \\\"llama_conll_n8\\\",\\n  \\\"n_instances\\\": 2756,\\n  \\\"n_samples_per_instance\\\": 8,\\n  \\\"greedy_f1\\\": 0.924189,\\n  \\\"oracle_f1\\\": 0.94258,\\n  \\\"signals\\\": {\\n    \\\"soft_jaccard\\\": {\\n      \\\"selection_f1\\\": 0.923744,\\n      \\\"delta_vs_greedy\\\": -0.000445,\\n      \\\"bootstrap_p\\\": 0.5432,\\n      \\\"ci_lower\\\": -0.002014,\\n      \\\"ci_upper\\\": 0.001099,\\n      \\\"cohens_d\\\": -0.010774,\\n      \\\"sign_test_wins\\\": 9,\\n      \\\"sign_test_losses\\\": 15,\\n      \\\"sign_test_ties\\\": 2732\\n    },\\n    \\\"fleiss_kappa\\\": {\\n      \\\"selection_f1\\\": 0.924473,\\n      \\\"delta_vs_greedy\\\": 0.000284,\\n      \\\"bootstrap_p\\\": 0.825,\\n      \\\"ci_lower\\\": -0.001957,\\n      \\\"ci_upper\\\": 0.00253,\\n      \\\"cohens_d\\\": 0.004643,\\n      \\\"sign_test_wins\\\": 29,\\n      \\\"sign_test_losses\\\": 29,\\n      \\\"sign_test_ties\\\": 2698\\n    },\\n    \\\"exact_match\\\": {\\n      \\\"selection_f1\\\": 0.924381,\\n      \\\"delta_vs_greedy\\\": 0.000192,\\n      \\\"bootstrap_p\\\": 0.8218,\\n      \\\"ci_lower\\\": -0.001197,\\n      \\\"ci_upper\\\": 0.001656,\\n      \\\"cohens_d\\\": 0.005043,\\n      \\\"sign_test_wins\\\": 12,\\n      \\\"sign_test_losses\\\": 14,\\n      \\\"sign_test_ties\\\": 2730\\n    },\\n    \\\"logprob\\\": {\\n      \\\"selection_f1\\\": 0.924439,\\n      \\\"delta_vs_greedy\\\": 0.00025,\\n      \\\"bootstrap_p\\\": 0.7608,\\n      \\\"ci_lower\\\": -0.001365,\\n      \\\"ci_upper\\\": 0.001855,\\n      \\\"cohens_d\\\": 0.005851,\\n      \\\"sign_test_wins\\\": 8,\\n      \\\"sign_test_losses\\\": 5,\\n      \\\"sign_test_ties\\\": 2743\\n    },\\n    \\\"voting_conf\\\": {\\n      \\\"selection_f1\\\": 0.92331,\\n      \\\"delta_vs_greedy\\\": -0.000879,\\n      \\\"bootstrap_p\\\": 0.2726,\\n      \\\"ci_lower\\\": -0.00254,\\n      \\\"ci_upper\\\": 0.000633,\\n      \\\"cohens_d\\\": -0.020541,\\n      \\\"sign_test_wins\\\": 11,\\n      \\\"sign_test_losses\\\": 15,\\n      \\\"sign_test_ties\\\": 2730\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 60_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have all the data. Let me summarize what I know:
+
+**Cross-dataset points (Qwen3-8B, main experiments):**
+From unified audit and DGS selection:
+- SciERC 5ep: degen_unified=17.8%, gated_delta=+0.74pp
+- CoNLL: degen_unified=48.4%, gated_delta=-0.81pp  (was 59.1% in old plot)
+- FewNERD: degen_unified=7.06%, gated_delta=+1.37pp (was 13.8% in old plot)
+
+
+- CoNLL shows different degeneracy rates depending on the method: the unified audit gives 48.4% using the experiment's native sample size of 16, while DGS computes 57.9% using its own definition with N=8 samples.
+- The task specifies using the unified audit values, so I'll go with 48.44% for CoNLL.
+- Now looking at the per-type breakdown for FewNERD, where event types show 5.97% degeneracy with a +0.65 percentage point lift, and other types are at 6.61%.
+- The rest of the entity types range from organization at 6.74% up to person at 13.42%, with art being the highest outlier at 19.81%.
+- I need to check whether these per-type values are already using the unified degeneracy definition or if they're from a different calculation method.
+- The LP deltas across types vary significantly, from as low as 0.23pp for building up to 4.73pp for event, which suggests different stability patterns depending on entity type.
+
+Now I'm checking whether the per-type degeneracy should also be recalculated using the unified definition, or if I should keep the existing CSV values since the task is primarily focused on updating the cross-dataset metrics. Looking at the DGS data more carefully, I need to distinguish between the LP-only deltas (applied uniformly) and the gated deltas (which account for the degeneracy gate). The LP-only values are slightly different from what's currently plotted—SciERC and FewNERD are around 0.62pp and 1.32pp respectively—so I should verify which metric the Y-axis is actually meant to represent before updating the figure. Looking at the task requirements more carefully, I need to update the existing scatter plot with the unified degeneracy rates for the three cross-dataset points, but I should also check whether epoch ablation and LLaMA data points have LP delta values available to potentially add them. Let me focus on the core update first—replacing the cross-dataset coordinates with the new unified values—and then determine what additional points can be included based on available data. Looking at the LLaMA results more carefully, I realize the LP deltas I found are only for the logprob signal itself, not the gated DGS approach. The degeneracy metrics weren't actually computed for LLaMA's selection results since those files just contain raw signal deltas. I need to check if there are any DGS analysis files for LLaMA—searching through the code listing shows analysis scripts exist, but no corresponding JSON results, so the LP delta comparison for LLaMA would need to be calculated separately.
+
+For now, I should prioritize updating the cross-dataset degeneracy values to use the unified metric, add the epoch ablation points from SciERC since I have both degeneracy and LP delta data for those, and note that LLaMA points still need DGS computation. Since the current plot is already in the paper with its 3 cross-dataset and 8 per-type points, I'll be conservative and focus on updating just the cross-dataset values to match the DGS approach while keeping the overall structure intact.
+
+For the per-type degeneracy, I need to verify whether the existing values from the per-type analysis CSV were computed using the unified constant-F1 definition or a different approach. The per-type data came from FewNERD analysis, but without checking the analysis script directly, I can't be certain which degeneracy definition was applied, so I should investigate that before deciding whether to recompute those values. I'm realizing the per-type degeneracy values come from a different experiment with different parameters, so they won't align with the unified cross-dataset numbers anyway. I'll focus on updating the cross-dataset degeneracy points to the unified values and leave the per-type data unchanged, then move forward with modifying the plot script to reflect these new numbers.
+
+Updating the plot script... I'm positioning the cross-dataset labels with specific offsets—CoNLL to the right with a downward shift, SciERC to the right with upward adjustment, and Few-NERD to the left since it moved further left. Now I need to verify which delta calculation the task actually wants: checking against the task table, it looks like the deltas should use the gated minus greedy approach, which matches all three datasets' expected values.
+
+There's a consistency issue though—the cross-dataset plot uses gated delta while the per-type data uses pure LP selection delta without degeneracy gating. For non-degenerate instances they're equivalent, but they're technically different metrics.
+
+For now I'll just update the data as requested and keep the per-type values consistent with their source, then write the script to regenerate the plot. I'm also noticing the per-type LP delta values in the CSV don't quite match what's currently plotted, so I need to verify those numbers.
+
+Now I'm checking which FewNERD configuration to use for the unified degeneracy metric—the task specifies "unified_metrics constant-F1 gold-filtered," and I need to determine whether that's the N=16 seed=42 version (7.06%) or one of the N=8 variants from the other experiments.
+
+Looking at the cross-dataset setup, DGS actually samples N=8 from whatever experiments are available, so the degeneracy rates are computed on 8 samples, whereas the unified audit used all available samples in each experiment—that's the key difference causing the mismatch I'm seeing. I'm noticing the inconsistency in sample sizes across datasets—SciERC uses N=8 while CoNLL and FewNERD use N=16, which makes direct comparison tricky since degeneracy rates depend on N. But since the task explicitly asks for unified degeneracy values, I'll stick with those and compile the final cross-dataset results with the DGS gated deltas.
+
+Now I need to recalculate the label offsets for the plot since the x-positions have shifted significantly—CoNLL moved from 59.1 to 48.4, and FewNERD from 13.8 to 7.1—so I'm adjusting the text placement to keep labels readable without overlapping the data points. The cross-dataset point at 7.1% will likely overlap with the per-type degeneracy cluster, which could be visually confusing, but the definitions might differ anyway so I'll proceed with the requested updates. I need to refine the script comment to reflect the unified audit approach and then write out the full updated script to execute.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c57a4897-a320-475e-a0e7-20bfcb94129b",
+  "uuid": "99a1cd50-2364-4527-9ed6-cad4cbf00c57",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011yTioHmwZHmh8a4xXPanNu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2512,
+      "cache_read_input_tokens": 57545,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2512
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 61_
+
+Now I have all the data. Let me summarize and write the updated script.
+
+**Unified degeneracy rates (from audit):**
+- SciERC: 17.8% (unchanged)
+- CoNLL: 48.4% (was 59.1%)
+- FewNERD: 7.1% (was 13.8%)
+
+**LP gated deltas (from DGS):**
+- SciERC: +0.74pp (was +0.61)
+- CoNLL: -0.81pp (was -1.05)
+- FewNERD: +1.37pp (was +1.36)
+
+Writing the updated plot script.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c57a4897-a320-475e-a0e7-20bfcb94129b",
+  "uuid": "4bca48e9-3752-42b7-8208-29dab0ecc666",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011yTioHmwZHmh8a4xXPanNu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2512,
+      "cache_read_input_tokens": 57545,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2512
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 62_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01D14F8bjvXCcYaiaLJPhnTm`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat > /root/autodl-tmp/struct_self_consist_ie/output/figures/plot_degeneracy_lp.py << 'PYEOF'\nimport matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nimport numpy as np\nfrom scipy.stats import spearmanr\n\nplt.rcParams.update({\n    'font.family': 'serif',\n    'font.size': 9,\n    'axes.linewidth': 0.8,\n    'xtick.major.width': 0.6,\n    'ytick.major.width': 0.6,\n    'lines.linewidth': 1.0,\n})\n\n# Cross-dataset points (Qwen3-8B, seed=42)\n# X: Unified constant-F1 gold-filtered degeneracy (from unified_degeneracy_audit)\n# Y: DGS gated selection delta (pp vs greedy, from dgs_selection_results.json)\ncross_names = ['CoNLL', 'SciERC', 'Few-NERD']\ncross_degen = [48.4, 17.8, 7.1]\ncross_delta = [-0.81, 0.74, 1.37]\n\n# Per-type points (Few-NERD, per entity type)\n# X: degeneracy rate (from per_type_lp_analysis.csv, exp_021_inference)\n# Y: LP delta pp (from per_type_lp_analysis.csv)\ntype_names = ['event', 'other', 'organization', 'building', 'product', 'location', 'person', 'art']\ntype_degen = [5.97, 6.61, 6.74, 7.18, 8.17, 11.42, 13.42, 19.81]\ntype_delta = [0.65, 4.73, 1.21, 0.23, 2.01, 0.53, 1.25, -0.17]\n\nfig, ax = plt.subplots(figsize=(5, 3.5))\n\nax.axhline(y=0, color='#999999', linestyle='--', linewidth=0.8, zorder=1)\nax.text(52, 0.15, 'Greedy Baseline', fontsize=7, color='#999999',\n        ha='right', va='bottom')\n\nax.scatter(type_degen, type_delta, marker='^', s=60, c='#E8851E',\n           edgecolors='#C06A10', linewidths=0.5, zorder=3,\n           label='Within Few-NERD (per entity type)')\n\nax.scatter(cross_degen, cross_delta, marker='o', s=120, c='#3274A1',\n           edgecolors='#1F4F72', linewidths=0.7, zorder=4,\n           label='Cross-dataset')\n\noffsets = {'CoNLL': (3, -8), 'SciERC': (3, 5), 'Few-NERD': (4, 6)}\nfor name, x, y in zip(cross_names, cross_degen, cross_delta):\n    ox, oy = offsets[name]\n    ax.annotate(name, (x, y), textcoords='offset points',\n                xytext=(ox, oy), fontsize=8, fontweight='bold',\n                color='#1F4F72')\n\nlabel_types = {'other': (4, 4), 'art': (3, -7), 'product': (4, 3)}\nfor name, x, y in zip(type_names, type_degen, type_delta):\n    if name in label_types:\n        ox, oy = label_types[name]\n        ax.annotate(name.capitalize(), (x, y), textcoords='offset points',\n                    xytext=(ox, oy), fontsize=6.5, color='#C06A10',\n                    fontstyle='italic')\n\nax.set_xlabel('Instance Degeneracy Rate (%)', fontsize=10)\nax.set_ylabel('LP Selection $\\Delta$ (pp vs Greedy)', fontsize=10)\nax.set_xlim(-2, 56)\nax.set_ylim(-3, 5.5)\n\nax.legend(fontsize=7.5, loc='upper right', framealpha=0.9,\n          edgecolor='#cccccc', fancybox=False)\n\nax.spines['top'].set_visible(False)\nax.spines['right'].set_visible(False)\n\nplt.tight_layout()\nplt.savefig('output/figures/fig_degeneracy_lp_scatter.pdf', dpi=300, bbox_inches='tight')\nplt.savefig('output/figures/fig_degeneracy_lp_scatter.png', dpi=300, bbox_inches='tight')\nprint(\"Figure saved.\")\n\n# Spearman correlations\nall_x = cross_degen + type_degen\nall_y = cross_delta + type_delta\nrho, p = spearmanr(all_x, all_y)\nprint(f\"11-point Spearman rho = {rho:.4f}, p = {p:.4f}\")\n\nrho8, p8 = spearmanr(type_degen, type_delta)\nprint(f\"Per-type (n=8): rho = {rho8:.4f}, p = {p8:.4f}\")\n\nrho3, p3 = spearmanr(cross_degen, cross_delta)\nprint(f\"Dataset-level (n=3): rho = {rho3:.4f}, p = {p3:.4f}\")\nPYEOF\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c57a4897-a320-475e-a0e7-20bfcb94129b",
+  "uuid": "6f044859-56e1-49f9-821a-3fc6464e8690",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011yTioHmwZHmh8a4xXPanNu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2512,
+      "cache_read_input_tokens": 57545,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2512
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 63 · 2026-05-18T21:31:52.132Z_
+
+<details><summary>↩ Tool result · `toolu_01D14F8bjvXCcYaiaLJPhnTm`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c57a4897-a320-475e-a0e7-20bfcb94129b",
+  "uuid": "fede8891-227d-44e8-9c87-97ce4d71e853",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 64_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_011zznvJUpwuX5bSNHaEad4e`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cd /root/autodl-tmp/struct_self_consist_ie && python output/figures/plot_degeneracy_lp.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c57a4897-a320-475e-a0e7-20bfcb94129b",
+  "uuid": "4af50ba9-5ba5-49f4-9edc-f102a8c29828",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WPrZGyyDfsKhNFxHjhVr2B",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7457,
+      "cache_read_input_tokens": 60057,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7457
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 65 · 2026-05-18T21:31:55.870Z_
+
+<details><summary>↩ Tool result · `toolu_011zznvJUpwuX5bSNHaEad4e`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'cd /root/autodl-tmp/struct_self_consist_ie && python output/figures/plot_degeneracy_lp.py'\\n\\nExit code: 127\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\nbash: line 1: python: command not found\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.38}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c57a4897-a320-475e-a0e7-20bfcb94129b",
+  "uuid": "73474dc3-e18d-4b86-bce5-e9222c57fb1c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'cd /root/autodl-tmp/struct_self_consist_ie && python output/figures/plot_degeneracy_lp.py'\\\\n\\\\nExit code: 127\\\\n\\\\nStdout:\\\\n\\\\n\\\\n\\\\nStderr:\\\\n\\\\nbash: line 1: python: command not found\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'cd /root/autodl-tmp/struct_self_consist_ie && python output/figures/plot_degeneracy_lp.py'\\n\\nExit code: 127\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\nbash: line 1: python: command not found\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.38}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 66_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_017myDJsc31jdGEu9FufLDCE`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cd /root/autodl-tmp/struct_self_consist_ie && python3 output/figures/plot_degeneracy_lp.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c57a4897-a320-475e-a0e7-20bfcb94129b",
+  "uuid": "d89f078f-2595-4c0f-94a2-2fe953fb8382",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Nf29VAhDn6DJjeJMWKZ2Ck",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 278,
+      "cache_read_input_tokens": 67514,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 278
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 67 · 2026-05-18T21:32:00.964Z_
+
+<details><summary>↩ Tool result · `toolu_017myDJsc31jdGEu9FufLDCE`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'cd /root/autodl-tmp/struct_self_consist_ie && python3 output/figures/plot_degeneracy_lp.py'\\n\\nExit code: 127\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\nbash: line 1: python3: command not found\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.84}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c57a4897-a320-475e-a0e7-20bfcb94129b",
+  "uuid": "ceaa4e07-d1ac-4fd2-b54b-a5025e827084",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'cd /root/autodl-tmp/struct_self_consist_ie && python3 output/figures/plot_degeneracy_lp.py'\\\\n\\\\nExit code: 127\\\\n\\\\nStdout:\\\\n\\\\n\\\\n\\\\nStderr:\\\\n\\\\nbash: line 1: python3: command not found\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.84}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'cd /root/autodl-tmp/struct_self_consist_ie && python3 output/figures/plot_degeneracy_lp.py'\\n\\nExit code: 127\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\nbash: line 1: python3: command not found\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.84}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 68_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Li7bUFBpLz1EyfUcPUTi9p`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "ls /root/miniconda3/bin/python*",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c57a4897-a320-475e-a0e7-20bfcb94129b",
+  "uuid": "3e2b43c4-2077-45fe-9cbf-e34ad15eed94",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NTvyrXMGxLWvDiKbMnXm9Q",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 283,
+      "cache_read_input_tokens": 67792,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 283
+      },
+      "output_tokens": 61,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 69_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_014b7RdPQ5VXt5TnpVfeYAmU`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "find /root -name \"python3*\" -type f -maxdepth 5",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c57a4897-a320-475e-a0e7-20bfcb94129b",
+  "uuid": "c6459f53-7ea9-40aa-9668-240ac4b1f29c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NTvyrXMGxLWvDiKbMnXm9Q",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 283,
+      "cache_read_input_tokens": 67792,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 283
+      },
+      "output_tokens": 61,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-18T21:32:05.441Z_
+
+<details><summary>↩ Tool result · `toolu_01Li7bUFBpLz1EyfUcPUTi9p`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/miniconda3/bin/python\\n/root/miniconda3/bin/python3\\n/root/miniconda3/bin/python3-config\\n/root/miniconda3/bin/python3.1\\n/root/miniconda3/bin/python3.12\\n/root/miniconda3/bin/python3.12-config\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.73}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c57a4897-a320-475e-a0e7-20bfcb94129b",
+  "uuid": "e58ba054-b796-4d92-8442-229c8c1fe37e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/miniconda3/bin/python\\\\n/root/miniconda3/bin/python3\\\\n/root/miniconda3/bin/python3-config\\\\n/root/miniconda3/bin/python3.1\\\\n/root/miniconda3/bin/python3.12\\\\n/root/miniconda3/bin/python3.12-config\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.73}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/miniconda3/bin/python\\n/root/miniconda3/bin/python3\\n/root/miniconda3/bin/python3-config\\n/root/miniconda3/bin/python3.1\\n/root/miniconda3/bin/python3.12\\n/root/miniconda3/bin/python3.12-config\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.73}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 71 · 2026-05-18T21:32:05.891Z_
+
+<details><summary>↩ Tool result · `toolu_014b7RdPQ5VXt5TnpVfeYAmU`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/miniconda3/bin/python3.12\\n/root/miniconda3/bin/python3.12-config\\n/root/miniconda3/pkgs/python-3.12.3-h996f2a0_1/bin/python3.12\\n/root/miniconda3/pkgs/python-3.12.3-h996f2a0_1/bin/python3.12-config\\n/root/miniconda3/share/man/man1/python3.12.1\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c57a4897-a320-475e-a0e7-20bfcb94129b",
+  "uuid": "1deef546-9768-4fe9-b0e4-668218def6d2",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/miniconda3/bin/python3.12\\\\n/root/miniconda3/bin/python3.12-config\\\\n/root/miniconda3/pkgs/python-3.12.3-h996f2a0_1/bin/python3.12\\\\n/root/miniconda3/pkgs/python-3.12.3-h996f2a0_1/bin/python3.12-config\\\\n/root/miniconda3/share/man/man1/python3.12.1\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/miniconda3/bin/python3.12\\n/root/miniconda3/bin/python3.12-config\\n/root/miniconda3/pkgs/python-3.12.3-h996f2a0_1/bin/python3.12\\n/root/miniconda3/pkgs/python-3.12.3-h996f2a0_1/bin/python3.12-config\\n/root/miniconda3/share/man/man1/python3.12.1\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 72_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_013v3Xebjm6BMLfvLzJeVdx8`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cd /root/autodl-tmp/struct_self_consist_ie && /root/miniconda3/bin/python output/figures/plot_degeneracy_lp.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c57a4897-a320-475e-a0e7-20bfcb94129b",
+  "uuid": "9a2d702e-258f-426f-a6c0-b7899961ed5c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Qyeh6Htt5DMWSF2XRTqmef",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 649,
+      "cache_read_input_tokens": 68075,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 649
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 73 · 2026-05-18T21:32:11.131Z_
+
+<details><summary>↩ Tool result · `toolu_013v3Xebjm6BMLfvLzJeVdx8`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Figure saved.\\n11-point Spearman rho = -0.5455, p = 0.0827\\nPer-type (n=8): rho = -0.3810, p = 0.3518\\nDataset-level (n=3): rho = -1.0000, p = 0.0000\\n\", \"stderr\": \"/root/autodl-tmp/struct_self_consist_ie/output/figures/plot_degeneracy_lp.py:60: SyntaxWarning: invalid escape sequence '\\\\D'\\n  ax.set_ylabel('LP Selection $\\\\Delta$ (pp vs Greedy)', fontsize=10)\\n\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.71}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c57a4897-a320-475e-a0e7-20bfcb94129b",
+  "uuid": "c1cc84c0-860e-4d1e-a555-17a25ecf02bb",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Figure saved.\\\\n11-point Spearman rho = -0.5455, p = 0.0827\\\\nPer-type (n=8): rho = -0.3810, p = 0.3518\\\\nDataset-level (n=3): rho = -1.0000, p = 0.0000\\\\n\\\", \\\"stderr\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/figures/plot_degeneracy_lp.py:60: SyntaxWarning: invalid escape sequence '\\\\\\\\D'\\\\n  ax.set_ylabel('LP Selection $\\\\\\\\Delta$ (pp vs Greedy)', fontsize=10)\\\\n\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.71}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Figure saved.\\n11-point Spearman rho = -0.5455, p = 0.0827\\nPer-type (n=8): rho = -0.3810, p = 0.3518\\nDataset-level (n=3): rho = -1.0000, p = 0.0000\\n\", \"stderr\": \"/root/autodl-tmp/struct_self_consist_ie/output/figures/plot_degeneracy_lp.py:60: SyntaxWarning: invalid escape sequence '\\\\D'\\n  ax.set_ylabel('LP Selection $\\\\Delta$ (pp vs Greedy)', fontsize=10)\\n\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.71}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 74_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The figure was generated. Let me now verify the output files and copy to the docs/paper/figures directory.
+
+Correlation results:
+- 11-point Spearman rho = -0.5455, p = 0.0827
+- Per-type (n=8): rho = -0.3810, p = 0.3518
+- Dataset-level (n=3): rho = -1.0000, p = 0.0000
+
+The dataset-level correlation is perfectly negative: higher degeneracy → lower LP delta. This makes sense: CoNLL has highest degeneracy (48.4%) and negative LP delta (-0.81pp), while FewNERD has lowest degeneracy (7.1%) and highest LP delta (+1.37pp).
+
+
+The Spearman coefficient shifted from before, so I'm verifying the files were created correctly and copying them to the figures directory.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c57a4897-a320-475e-a0e7-20bfcb94129b",
+  "uuid": "c1d7d195-896e-4f96-8af0-bb900a83f373",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015Qty54uQFHnXPrsAGfPEp5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 478,
+      "cache_read_input_tokens": 68724,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 478
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 75_
+
+Figure generated. Now let me verify and copy to the paper figures directory.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c57a4897-a320-475e-a0e7-20bfcb94129b",
+  "uuid": "a15f413b-1a15-4411-a96d-e071a3986215",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015Qty54uQFHnXPrsAGfPEp5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 478,
+      "cache_read_input_tokens": 68724,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 478
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 76_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Kujq6748RH8ZiqV79ui3Jp`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "ls -la /root/autodl-tmp/struct_self_consist_ie/output/figures/fig_degeneracy_lp_scatter.pdf /root/autodl-tmp/struct_self_consist_ie/output/figures/fig_degeneracy_lp_scatter.png",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c57a4897-a320-475e-a0e7-20bfcb94129b",
+  "uuid": "2de73eff-fef5-4559-9b47-5c65db666453",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015Qty54uQFHnXPrsAGfPEp5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 478,
+      "cache_read_input_tokens": 68724,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 478
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 77 · 2026-05-18T21:32:19.459Z_
+
+<details><summary>↩ Tool result · `toolu_01Kujq6748RH8ZiqV79ui3Jp`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"-rw-r--r-- 1 root root  31225 May 19 05:32 /root/autodl-tmp/struct_self_consist_ie/output/figures/fig_degeneracy_lp_scatter.pdf\\n-rw-r--r-- 1 root root 104791 May 19 05:32 /root/autodl-tmp/struct_self_consist_ie/output/figures/fig_degeneracy_lp_scatter.png\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c57a4897-a320-475e-a0e7-20bfcb94129b",
+  "uuid": "1b657e0a-a8c5-42bd-820e-b3c400f2d2c7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-rw-r--r-- 1 root root  31225 May 19 05:32 /root/autodl-tmp/struct_self_consist_ie/output/figures/fig_degeneracy_lp_scatter.pdf\\\\n-rw-r--r-- 1 root root 104791 May 19 05:32 /root/autodl-tmp/struct_self_consist_ie/output/figures/fig_degeneracy_lp_scatter.png\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"-rw-r--r-- 1 root root  31225 May 19 05:32 /root/autodl-tmp/struct_self_consist_ie/output/figures/fig_degeneracy_lp_scatter.pdf\\n-rw-r--r-- 1 root root 104791 May 19 05:32 /root/autodl-tmp/struct_self_consist_ie/output/figures/fig_degeneracy_lp_scatter.png\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 78_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01SZTbfWsT12qB8847u3btsM`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cp /root/autodl-tmp/struct_self_consist_ie/output/figures/fig_degeneracy_lp_scatter.pdf /root/autodl-tmp/struct_self_consist_ie/docs/paper/figures/fig_degeneracy_lp_scatter.pdf && cp /root/autodl-tmp/struct_self_consist_ie/output/figures/fig_degeneracy_lp_scatter.png /root/autodl-tmp/struct_self_consist_ie/docs/paper/figures/fig_degeneracy_lp_scatter.png",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c57a4897-a320-475e-a0e7-20bfcb94129b",
+  "uuid": "6a9ff194-4c82-430a-8ef7-6825e271cfc5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014Z1T3mYfjsW1nfqf4xHDPP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 613,
+      "cache_read_input_tokens": 69202,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 613
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 79 · 2026-05-18T21:32:23.664Z_
+
+<details><summary>↩ Tool result · `toolu_01SZTbfWsT12qB8847u3btsM`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c57a4897-a320-475e-a0e7-20bfcb94129b",
+  "uuid": "4b4e3bc9-50fb-479e-a1a8-ce7a79ff0e7b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 80_
+
+Let me also download the PNG to verify visually.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c57a4897-a320-475e-a0e7-20bfcb94129b",
+  "uuid": "7c452495-7488-48d7-b2d7-c17dd963e9d8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0153JgjNghzwE6NCZ3om1Jpk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 307,
+      "cache_read_input_tokens": 69815,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 307
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 81_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_0141BbWJD1cg5sRumxyyxAzc`</summary>
+
+```json
+{
+  "command": "scp autodl-5090:/root/autodl-tmp/struct_self_consist_ie/output/figures/fig_degeneracy_lp_scatter.png /tmp/fig_degeneracy_lp_scatter.png 2>&1",
+  "timeout": 30000
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c57a4897-a320-475e-a0e7-20bfcb94129b",
+  "uuid": "02bfeb87-7c34-4030-a244-21f49093205e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0153JgjNghzwE6NCZ3om1Jpk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 307,
+      "cache_read_input_tokens": 69815,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 307
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 82 · 2026-05-18T21:32:28.886Z_
+
+<details><summary>↩ Tool result · `toolu_0141BbWJD1cg5sRumxyyxAzc`</summary>
+
+```text
+Warning: Permanently added '[connect.bjb1.seetacloud.com]:21071' (ED25519) to the list of known hosts.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c57a4897-a320-475e-a0e7-20bfcb94129b",
+  "uuid": "7b55c55b-0d20-4323-861d-26f1e2d38386",
+  "tool_use_result": {
+    "stdout": "Warning: Permanently added '[connect.bjb1.seetacloud.com]:21071' (ED25519) to the list of known hosts.",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 83_
+
+<details open><summary>🔧 Tool call — Read · `toolu_0111V6VjqwzbBSmnf6e5u3VJ`</summary>
+
+```json
+{
+  "file_path": "/tmp/fig_degeneracy_lp_scatter.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c57a4897-a320-475e-a0e7-20bfcb94129b",
+  "uuid": "e05145a0-c2da-4de1-bb65-d5a40a1cf58f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016SHEFniiLQLVLJ3gwfEwJq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 184,
+      "cache_read_input_tokens": 70122,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 184
+      },
+      "output_tokens": 58,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 84 · 2026-05-18T21:32:31.651Z_
+
+<details><summary>↩ Tool result · `toolu_0111V6VjqwzbBSmnf6e5u3VJ`</summary>
+
+````text
+```json
+{
+  "type": "image",
+  "source": {
+    "type": "base64",
+    "data": "[ATTACHMENT_DATA_REDACTED]",
+    "media_type": "image/png"
+  }
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c57a4897-a320-475e-a0e7-20bfcb94129b",
+  "uuid": "8cc04d90-5bfa-4c04-8f4b-568471429d63",
+  "tool_use_result": {
+    "type": "image",
+    "file": {
+      "base64": "[ATTACHMENT_DATA_REDACTED]",
+      "type": "image/png",
+      "originalSize": 104791,
+      "dimensions": {
+        "originalWidth": 1467,
+        "originalHeight": 1025,
+        "displayWidth": 1467,
+        "displayHeight": 1025
+      }
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 85_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The figure looks good. The cross-dataset points now use the unified degeneracy rates:
+- CoNLL at ~48.4% (moved from ~59% to ~48%)
+- SciERC at ~17.8% (unchanged)
+- Few-NERD at ~7.1% (moved from ~13.8% to ~7.1%)
+
+The layout is clean, labels are readable, all fonts are >= 7pt. The negative correlation between degeneracy and LP delta is clearly visible.
+
+One issue: the Few-NERD label overlaps slightly with the "Product" per-type point. 
+
+The overlap looks acceptable visually, so I'll move forward with summarizing the complete data point coordinates and finalizing the results.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c57a4897-a320-475e-a0e7-20bfcb94129b",
+  "uuid": "88f66ebe-919d-4b25-96f0-0916ee718bf1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EBhdfgSALrBvftRzacjv9U",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1644,
+      "cache_read_input_tokens": 70306,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1644
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 86_
+
+Figure verified visually. The plot looks clean with CoNLL now correctly at 48.4% (was 59.1%).
+
+## 产出总结
+
+### 1. 数据源
+- 退化率: `output/unified_degeneracy_audit/degeneracy_recalc_results.json` (unified constant-F1 gold-filtered)
+- LP Delta: `output/dgs_selection_results.json` (gated_minus_greedy_pp)
+- Per-type: `output/exp_021_inference/per_type_lp_analysis.csv`
+
+### 2. PDF 路径
+- `output/figures/fig_degeneracy_lp_scatter.pdf`
+- `docs/paper/figures/fig_degeneracy_lp_scatter.pdf` (已复制)
+
+### 3. 所有数据点坐标
+
+**Cross-dataset (Qwen3-8B):**
+
+| 数据集 | 退化率(unified) | LP Delta (pp) |
+|--------|----------------|---------------|
+| CoNLL | 48.4% | -0.81 |
+| SciERC | 17.8% | +0.74 |
+| Few-NERD | 7.1% | +1.37 |
+
+**Per-type (Few-NERD entity types, unchanged):**
+
+| Type | 退化率 | LP Delta (pp) |
+|------|--------|---------------|
+| event | 5.97% | +0.65 |
+| other | 6.61% | +4.73 |
+| organization | 6.74% | +1.21 |
+| building | 7.18% | +0.23 |
+| product | 8.17% | +2.01 |
+| location | 11.42% | +0.53 |
+| person | 13.42% | +1.25 |
+| art | 19.81% | -0.17 |
+
+**Spearman correlations (updated):**
+- 11-point: rho = -0.5455, p = 0.0827
+- Dataset-level (n=3): rho = -1.0000 (perfect negative)
+- Per-type (n=8): rho = -0.3810, p = 0.3518
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c57a4897-a320-475e-a0e7-20bfcb94129b",
+  "uuid": "17fce1d0-2a47-456c-82a6-5ea033ff016b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EBhdfgSALrBvftRzacjv9U",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1644,
+      "cache_read_input_tokens": 70306,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1644
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 87_
+
+Figure verified visually. The plot looks clean with CoNLL now correctly at 48.4% (was 59.1%).
+
+## 产出总结
+
+### 1. 数据源
+- 退化率: `output/unified_degeneracy_audit/degeneracy_recalc_results.json` (unified constant-F1 gold-filtered)
+- LP Delta: `output/dgs_selection_results.json` (gated_minus_greedy_pp)
+- Per-type: `output/exp_021_inference/per_type_lp_analysis.csv`
+
+### 2. PDF 路径
+- `output/figures/fig_degeneracy_lp_scatter.pdf`
+- `docs/paper/figures/fig_degeneracy_lp_scatter.pdf` (已复制)
+
+### 3. 所有数据点坐标
+
+**Cross-dataset (Qwen3-8B):**
+
+| 数据集 | 退化率(unified) | LP Delta (pp) |
+|--------|----------------|---------------|
+| CoNLL | 48.4% | -0.81 |
+| SciERC | 17.8% | +0.74 |
+| Few-NERD | 7.1% | +1.37 |
+
+**Per-type (Few-NERD entity types, unchanged):**
+
+| Type | 退化率 | LP Delta (pp) |
+|------|--------|---------------|
+| event | 5.97% | +0.65 |
+| other | 6.61% | +4.73 |
+| organization | 6.74% | +1.21 |
+| building | 7.18% | +0.23 |
+| product | 8.17% | +2.01 |
+| location | 11.42% | +0.53 |
+| person | 13.42% | +1.25 |
+| art | 19.81% | -0.17 |
+
+**Spearman correlations (updated):**
+- 11-point: rho = -0.5455, p = 0.0827
+- Dataset-level (n=3): rho = -1.0000 (perfect negative)
+- Per-type (n=8): rho = -0.3810, p = 0.3518
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 302092,
+  "duration_api_ms": 294883,
+  "num_turns": 34,
+  "stop_reason": "end_turn",
+  "session_id": "c57a4897-a320-475e-a0e7-20bfcb94129b",
+  "total_cost_usd": 1.3054582499999998,
+  "usage": {
+    "input_tokens": 24,
+    "cache_creation_input_tokens": 60109,
+    "cache_read_input_tokens": 1056446,
+    "output_tokens": 15975,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 60109,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 867,
+        "cache_read_input_tokens": 70306,
+        "cache_creation_input_tokens": 1644,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 1644
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1949,
+      "outputTokens": 22,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.002059,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 24,
+      "outputTokens": 15975,
+      "cacheReadInputTokens": 1056446,
+      "cacheCreationInputTokens": 60109,
+      "webSearchRequests": 0,
+      "costUSD": 1.30339925,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "2084ec71-8006-47a4-a2a4-6fd4ffa4098e"
+}
+```
+
+</details>
+
+---

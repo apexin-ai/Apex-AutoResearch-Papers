@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "20a4f8ce853797006136",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ssh pretrained pertype mv analysis",
+  "task_key": "worker_ssh_pretrained_pertype_mv_analysis_20260521T215145",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_pretrained_pertype_mv_analysis_20260521T215145_result.json",
+    "occurrence": 1,
+    "bytes": 2067,
+    "sha256": "2e1717b36e1342a322b30621d407a2807985c88a1cf2c61abe39cb0aace5a4d5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Pretrained FewNERD Per-Type MV Analysis (θ=0.5 strict)\n\n### 3-seed average\n| Entity Type | n_inst | greedy_f1 | MV F1 | MV Δ (pp) |\n|-------------|--------|-----------|-------|-----------|\n| person | 8,016 | 0.6374±0.0003 | 0.6792±0.0046 | **+4.17±0.43** |\n| organization | 6,647 | 0.5247±0.0007 | 0.5562±0.0059 | **+3.15±0.54** |\n| location | 8,023 | 0.5650±0.0008 | 0.5898±0.0007 | **+2.47±0.01** |\n| event | 1,306 | 0.4277±0.0008 | 0.4510±0.0021 | **+2.34±0.28** |\n| building | 1,587 | 0.4379±0.0017 | 0.4577±0.0021 | **+1.98±0.04** |\n| product | 2,276 | 0.4932±0.0017 | 0.5110±0.0008 | **+1.78±0.24** |\n| art | 1,277 | 0.4224±0.0009 | 0.4297±0.0073 | **+0.73±0.70** |\n| other | 3,433 | 0.3761±0.0014 | 0.3717±0.0029 | −0.45±0.32 |\n\nPearson r(greedy_f1, MV_delta): **r=0.8620, p=0.0059**\n\n### Pretrained vs Finetuned 对比\n| Entity Type | Pretrained MV Δ | Finetuned MV Δ | Direction |\n|-------------|----------------|----------------|-----------|\n| person | +4.17pp | −0.67pp | **FLIP** |\n| organization | +3.15pp | −2.65pp | **FLIP** |\n| location | +2.47pp | −1.52pp | **FLIP** |\n| event | +2.34pp | −3.17pp | **FLIP** |\n| building | +1.98pp | −3.90pp | **FLIP** |\n| product | +1.78pp | −3.38pp | **FLIP** |\n| art | +0.73pp | −1.51pp | **FLIP** |\n| other | −0.45pp | −3.02pp | SAME |\n\n**7/8 types flip**: pretrained MV positive (SC helps), finetuned MV negative (SC hurts). Only \"other\"（异质性最高的 catch-all 类别，greedy F1 最低）在两种设定下均为负。Pretrained 中 greedy F1 越高的 type 从 MV 中获益越多（r=0.86），说明 SC 放大了模型已有能力。\n\nFinetuned reference (θ=0.5, exp_021 seed=42):\nperson: −0.67pp, art: −1.51pp, location: −1.52pp, organization: −2.65pp,\nother: −3.02pp, event: −3.17pp, product: −3.38pp, building: −3.90pp\n\nJSON 已保存至 `autodl-5090:output/pretrained_fewnerd_per_type_mv_analysis.json`，artifact 写入 `artifacts/pretrained_fewnerd_per_type_mv_analysis.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-pretrained-pertype-mv-analysis.md"
+}

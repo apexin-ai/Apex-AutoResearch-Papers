@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "17a6418dee0263a3461d",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "gpu 5090 launch 3exp",
+  "task_key": "worker_gpu_5090_launch_3exp_20260521T065726",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_gpu_5090_launch_3exp_20260521T065726_result.json",
+    "occurrence": 1,
+    "bytes": 913,
+    "sha256": "bafa41c5afa4a10a25787064f7fb7aa77b10e214fc86fb491da0112a4779589c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 更新完毕。汇总：\n\n### GPU 状态 & 启动结果\n\n| GPU | 状态 | 实验 | 备注 |\n|-----|------|------|------|\n| cuda:0 | **占用** | VLLM PID 3308 (30170MiB) | 无法启动 exp_fewnerd_mf4_v2_s456 |\n| cuda:1 | **占用** | VLLM PID 3470 (30080MiB) | 无法启动（原计划 exp_e2_pretrained_fewnerd） |\n| cuda:2 | **已启动** | exp_e2_pretrained_conll (PID 7939) | Qwen2.5-7B-Instruct base, CoNLL, 模型加载中 |\n| cuda:3 | **已启动** | exp_e2_pretrained_fewnerd (PID 8406) | Qwen2.5-7B-Instruct base, FewNERD, 21% 进度 |\n\n### 关键发现\n- **模型路径修正**: 实际路径是 `.../Qwen2___5-7B-Instruct`（ModelScope 用 `___` 替代 `.`），之前 registry 中的路径 `Qwen2.5-7B-Instruct` 可能导致了上次启动失败\n- **exp_fewnerd_mf4_v2_s456** 无法启动 — cuda:0 被 VLLM 占用，需等 VLLM 释放或手动 kill 后再启动"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/gpu-5090-launch-3exp.md"
+}

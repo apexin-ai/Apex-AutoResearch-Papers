@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "01a6f7366cf3fdc3b911",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "exp llama fewnerd train v2",
+  "task_key": "worker_exp_llama_fewnerd_train_v2_20260518T092917",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_exp_llama_fewnerd_train_v2_20260518T092917_result.json",
+    "occurrence": 1,
+    "bytes": 486,
+    "sha256": "e3605d0bb1938c7c8e606706e66e786638e2f8ccc0fc62d48be3693ec83c7557"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已启动，监控已设置。\n\n**总结：**\n- LLaMA 3.1-8B Few-NERD LoRA 训练在 `autodl-5090` GPU 1 上运行中\n- 使用已有配置 `train_config_llama_fewnerd.yaml`（单 GPU，无 accelerate/torchrun）\n- 131,767 条训练数据，24,708 步，~1.65s/step，预计约 11 小时完成\n- 日志: `logs/llama_fewnerd_train.log`\n- Checkpoint 输出: `checkpoints/llama3.1-8b-fewnerd-lora/`\n- Cron 每 30 分钟自动检查进度（job ID: `bedeb783`）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-llama-fewnerd-train-v2.md"
+}

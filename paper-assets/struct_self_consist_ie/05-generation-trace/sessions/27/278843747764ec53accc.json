@@ -1,0 +1,1607 @@
+{
+  "schema_version": "1.0",
+  "id": "278843747764ec53accc",
+  "project": "struct_self_consist_ie",
+  "kind": "conversation",
+  "title": "review r9 data integrity",
+  "task_key": "worker_review_r9_data_integrity_20260516T010154",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/worker_review_r9_data_integrity_20260516T010154.jsonl",
+    "occurrence": 1,
+    "bytes": 84675,
+    "sha256": "395c0d0a0fa15648379976fb9d6bd5dcff3b08b9986acdc61d518a5114de9958"
+  },
+  "statistics": {
+    "messages": 80,
+    "user_turns": 0,
+    "tool_calls": 40,
+    "roles": {
+      "tool_call": 40,
+      "tool_result": 40
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-16T01:10:39.085795+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_r9_data_integrity_20260516T010154",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/*.tex",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-16T01:10:39.086232+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "artifacts/dream_reports/dream_20260514T093336/best/paper.tex\nartifacts/dream_reports/dream_20260514T093336/median/paper.tex\nartifacts/dream_reports/dream_20260514T093336/worst/paper.tex\nartifacts/dream_reports/dream_20260514T105303/best/paper.tex\nartifacts/dream_reports/dream_20260514T105303/median/paper.tex\nartifacts/dream_reports/dream_20260514T105303/worst/paper.tex\nartifacts/_project/paper/introduction.tex\nartifacts/_project/paper/related_work.tex\nartifacts/_project/paper/discussion.tex\nartifacts/dream_reports/dream_20260514T203201/best/paper.tex\nartifacts/_project/paper/abstract.tex\nartifacts/_project/paper/conclusion.tex\nartifacts/_project/paper/limitations.tex\nartifacts/dream_reports/dream_20260514T203201/median/paper.tex\nartifacts/dream_reports/dream_20260514T203201/worst/paper.tex\nartifacts/bootstrap_ci_tables.tex\nartifacts/dream_reports/dream_20260515T092545/best/paper.tex\nartifacts/dream_reports/dream_20260515T092545/median/paper.tex\nartifacts/dream_reports/dream_20260515T092545/worst/paper.tex\nartifacts/_project/paper/freeform_ablation_appendix_table.tex\nartifacts/freeform_ablation_appendix_table.tex\nartifacts/_project/paper/n_scaling_appendix_tables.tex\nartifacts/_project/paper/n_scaling_appendix_tables_44b000.tex\nartifacts/n_scaling_appendix_tables.tex\nartifacts/_project/paper/experiments.tex\ndocs/paper/main.tex\ndocs/paper/sections/abstract.tex\ndocs/paper/sections/introduction.tex\ndocs/paper/sections/related_work.tex\ndocs/paper/sections/method.tex\ndocs/paper/sections/limitations.tex\ndocs/paper/sections/conclusion.tex\ndocs/paper/sections/appendix.tex\ndocs/paper/sections/discussion.tex\ndocs/paper/sections/experiments.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_r9_data_integrity_20260516T010154",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-16T01:10:39.086425+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_r9_data_integrity_20260516T010154",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "artifacts/analysis_unified_rho*.json",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-16T01:10:39.086563+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "artifacts/analysis_unified_rho.json\nartifacts/analysis_unified_rho_full.json"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_r9_data_integrity_20260516T010154",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-16T01:10:39.086692+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_r9_data_integrity_20260516T010154",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "artifacts/*.json",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-16T01:10:39.086821+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "artifacts/bootstrap_ci_summary.json\nartifacts/analysis_scierc_n16_3seed_selection_f1.json\nartifacts/analysis_lp_range_cdf.json\nartifacts/analysis_lp_range_cdf_n16_3seed.json\nartifacts/analysis_fk_bootstrap_ci_full.json\nartifacts/analysis_unified_rho.json\nartifacts/analysis_scierc_re_n16_3seed_selection_f1.json\nartifacts/analysis_unified_rho_full.json\nartifacts/freeform_3seed_summary.json"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_r9_data_integrity_20260516T010154",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-16T01:10:39.086947+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_r9_data_integrity_20260516T010154",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-16T01:10:39.087191+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Experiments}\n2\t\\label{sec:experiments}\n3\t\n4\t\\subsection{Experimental Setup}\n5\t\\label{sec:setup}\n6\t\n7\t\\paragraph{Datasets.}\n8\tWe evaluate on three English IE benchmarks spanning a difficulty gradient.\n9\t\\textbf{SciERC} \\cite{luan2018scierc} contains 551 test instances annotated for joint NER (6 types) and RE (7 types).\n10\t\\textbf{CoNLL-2003} \\cite{tjongkimsang2003conll} provides 3{,}453 test sentences with 4 entity types, where models achieve ${\\approx}$91\\% micro F1.\n11\t\\textbf{WNUT-17} \\cite{derczynski2017wnut} consists of 1{,}287 social media instances with emerging entities, used to probe method boundaries (52\\% zero F1).\n12\t\n13\t\\paragraph{Models and sampling.}\n14\tBoth \\textbf{Qwen3-8B} and \\textbf{LLaMA-3.1-8B-Instruct} are fine-tuned with LoRA (rank$=$32, $\\alpha{=}64$) for 5 epochs using LLaMA Factory \\cite{zheng2024llamafactory} under identical training procedures.\n15\tQwen3-8B's SciERC checkpoint has a minor train--test mismatch (empty thinking tokens); a quantitative analysis rules out this confound (Appendix~\\ref{app:thinking_token}).\n16\tWe draw $N{=}8$ samples at $T{=}1.0$ (primary), with $N{=}16$ for scaling experiments.\\footnote{$N{=}16$ with 3 seeds verifies scaling and ranking stability ($\\sigma{\\leq}0.026$; Table~\\ref{tab:multiseed}); gains beyond $N{=}8$ are sublinear (Appendix~\\ref{app:n_scaling}).}\n17\tInference uses vLLM with constrained decoding \\cite{willard2023guided}.\n18\t\n19\t%% ============================================================\n20\t\\subsection{Quality Estimation Results}\n21\t\\label{sec:qe_results}\n22\t\n23\t\\begin{table*}[t]\n24\t\\centering\n25\t\\small\n26\t\\caption{Quality estimation ($\\rho$ and AUROC; $N{=}8$, seed${=}42$). Best in \\textbf{bold}. RE: preliminary. $N{=}16$ in Table~\\ref{tab:robustness}.}\n27\t\\label{tab:quality_estimation}\n28\t\\begin{tabular}{ll cc cc cc cc}\n29\t\\toprule\n30\t& & \\multicolumn{2}{c}{\\textbf{SciERC NER}} & \\multicolumn{2}{c}{\\textbf{SciERC RE}} & \\multicolumn{2}{c}{\\textbf{CoNLL (Qwen)}} & \\multicolumn{2}{c}\n…[truncated 5939 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_r9_data_integrity_20260516T010154",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-16T01:10:39.087421+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_r9_data_integrity_20260516T010154",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-16T01:10:39.087954+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Notation}\\label{app:notation}\n2\t\n3\tTable~\\ref{tab:notation} summarizes the notation used throughout the paper.\n4\t\n5\t\\begin{table}[h]\n6\t\\centering\n7\t\\small\n8\t\\begin{tabular}{cl}\n9\t\\toprule\n10\tSymbol & Meaning \\\\\n11\t\\midrule\n12\t$\\mathcal{M}$ & Language model \\\\\n13\t$x$ & Input instance \\\\\n14\t$y_i$ & $i$-th stochastic sample \\\\\n15\t$N$ & Number of samples \\\\\n16\t$T$ & Sampling temperature \\\\\n17\t$c(\\cdot)$ & Confidence signal \\\\\n18\tSJ & Soft Jaccard similarity \\\\\n19\tFK & Fleiss' $\\kappa$ \\\\\n20\tEM & Exact-match voting rate \\\\\n21\tVC ($c_{\\mathrm{vc}}$) & Entity voting confidence \\\\\n22\tLP ($c_{\\mathrm{lp}}$) & Log-probability (mean token log-likelihood) \\\\\n23\t\\bottomrule\n24\t\\end{tabular}\n25\t\\caption{Notation used throughout the paper.}\n26\t\\label{tab:notation}\n27\t\\end{table}\n28\t\n29\t\\section{Robustness Analysis}\\label{app:robustness}\n30\t\n31\tWe exclude instances with empty gold annotations from all correlation analyses (CoNLL: 697/3{,}453 instances, 20.2\\%; SciERC: 22/551, 4.0\\%).\n32\tFor these instances, F1 is trivially zero regardless of prediction quality, and consistency signals reflect agreement on the empty set rather than extraction quality---including them inflates or deflates Spearman $\\rho$ depending on signal behavior at the boundary.\n33\t\n34\t\\begin{table}[t]\n35\t\\centering\n36\t\\small\n37\t\\caption{Signal robustness across configurations (Spearman $\\rho$). Top: temperature on Qwen SciERC. Middle: sample size on Qwen SciERC. Bottom: transfer across model families (both 8B) (LLaMA CoNLL $N{=}16$, 3-seed mean $\\pm\\sigma$). $^\\dagger$Mean over 3 seeds ($\\sigma{=}0.013$; individual: 0.398, 0.423, 0.410). $\\sigma$ computed as sample standard deviation.}\n38\t\\label{tab:robustness}\n39\t\\begin{tabular}{llcc}\n40\t\\toprule\n41\t& & NER $\\rho$ & RE $\\rho$ \\\\\n42\t\\midrule\n43\t\\multicolumn{4}{l}{\\textit{Temperature} (Qwen SciERC, $N{=}8$)} \\\\\n44\t\\quad SJ & $T{=}0.7$ & 0.364 & 0.234 \\\\\n45\t\\quad SJ & $T{=}1.0$ & 0.360 & 0.250 \\\\\n46\t\\quad FK & $T{=}0.7$ & 0.289 & 0.184 \\\\\n47\t\\quad FK & \n…[truncated 61168 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_r9_data_integrity_20260516T010154",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-16T01:10:39.088161+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_r9_data_integrity_20260516T010154",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/analysis_unified_rho.json"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-16T01:10:39.088346+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t{\n2\t  \"audit_date\": \"2026-05-15\",\n3\t  \"pipeline\": \"unified (gold-filtered, consistency.py FK/SJ, evaluation.py per_instance_f1)\",\n4\t  \"filter\": \"exclude instances where len(gold.entities) == 0\",\n5\t  \"experiments\": {\n6\t    \"exp_017_llama_conll_n16_r1024\": {\n7\t      \"description\": \"LLaMA CoNLL seed42 n16 r1024\",\n8\t      \"n_total\": 3453,\n9\t      \"n_gold_empty\": 697,\n10\t      \"n_valid\": 2756,\n11\t      \"n_conditional\": 2641,\n12\t      \"old_registry_rho_fk\": 0.8095,\n13\t      \"old_registry_rho_sj\": 0.1815,\n14\t      \"unified_full\": {\n15\t        \"rho_fk\": 0.4752,\n16\t        \"rho_sj\": 0.4836,\n17\t        \"rho_vc\": 0.4746,\n18\t        \"rho_em\": 0.4818,\n19\t        \"rho_lp\": 0.3136,\n20\t        \"auroc_fk\": 0.7467,\n21\t        \"auroc_sj\": 0.7496,\n22\t        \"auroc_vc\": 0.7529,\n23\t        \"auroc_em\": 0.7508,\n24\t        \"auroc_lp\": 0.7661,\n25\t        \"median_f1\": 1.0\n26\t      },\n27\t      \"unified_conditional\": {\n28\t        \"rho_fk\": 0.4767,\n29\t        \"rho_sj\": 0.4856\n30\t      }\n31\t    },\n32\t    \"exp_017_llama_conll_n16_s456_r1024\": {\n33\t      \"description\": \"LLaMA CoNLL seed456 n16 r1024\",\n34\t      \"n_total\": 3453,\n35\t      \"n_gold_empty\": 697,\n36\t      \"n_valid\": 2756,\n37\t      \"n_conditional\": 2642,\n38\t      \"old_registry_rho_fk\": 0.8085,\n39\t      \"old_registry_rho_sj\": 0.1895,\n40\t      \"unified_full\": {\n41\t        \"rho_fk\": 0.469,\n42\t        \"rho_sj\": 0.4734,\n43\t        \"rho_vc\": 0.4722,\n44\t        \"rho_em\": 0.4752,\n45\t        \"rho_lp\": 0.3099,\n46\t        \"auroc_fk\": 0.7408,\n47\t        \"auroc_sj\": 0.7428,\n48\t        \"auroc_vc\": 0.7495,\n49\t        \"auroc_em\": 0.7444,\n50\t        \"auroc_lp\": 0.7628,\n51\t        \"median_f1\": 1.0\n52\t      },\n53\t      \"unified_conditional\": {\n54\t        \"rho_fk\": 0.4694,\n55\t        \"rho_sj\": 0.4728\n56\t      }\n57\t    },\n58\t    \"exp_001_n16_seed456\": {\n59\t      \"description\": \"Qwen SciERC seed456 joint n16\",\n60\t      \"n_total\": 551,\n61\t      \"n_gold_empty\": 22,\n62\t      \"n_valid\": 529,\n63\t      \"n_conditional\": 478,\n64\t      \"old_registry_rho_fk\": 0.3448,\n\n…[truncated 1122 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_r9_data_integrity_20260516T010154",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-16T01:10:39.088501+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_r9_data_integrity_20260516T010154",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/analysis_unified_rho_full.json"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-16T01:10:39.088705+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t{\n2\t  \"metadata\": {\n3\t    \"pipeline\": \"unified_gold_filtered\",\n4\t    \"date\": \"2026-05-15\",\n5\t    \"fk_empty_fix\": true,\n6\t    \"gold_filter\": \"exclude instances where len(gold.entities)==0\",\n7\t    \"conll_n_valid\": 2756,\n8\t    \"scierc_n_valid\": 529,\n9\t    \"data_fix_d093\": {\n10\t      \"date\": \"2026-05-15\",\n11\t      \"reason\": \"D093: LLaMA SciERC N=8 entries replaced with exp_018 clean rerun data. Old values from exp_007 pipeline had contaminated VC/EM rho and all AUROC values.\",\n12\t      \"source\": \"multi_seed_stability_table.md (compute_llama_3seed_summary.py)\",\n13\t      \"affected_entries\": [\n14\t        \"llama_scierc_n8_seed42\",\n15\t        \"llama_scierc_n8_seed123\",\n16\t        \"llama_scierc_n8_seed456 (added)\"\n17\t      ],\n18\t      \"three_seed_mean\": {\n19\t        \"SJ\": 0.325,\n20\t        \"FK\": 0.256,\n21\t        \"VC\": 0.384,\n22\t        \"EM\": 0.279,\n23\t        \"LP\": 0.162\n24\t      }\n25\t    }\n26\t  },\n27\t  \"results\": {\n28\t    \"llama_conll_n16_seed42\": {\n29\t      \"n_instances\": 2756,\n30\t      \"n_total\": 3453,\n31\t      \"n_gold_empty\": 697,\n32\t      \"VC\": 0.4746,\n33\t      \"SJ\": 0.4836,\n34\t      \"FK\": 0.4752,\n35\t      \"EM\": 0.4818,\n36\t      \"LP\": 0.3136,\n37\t      \"auroc_VC\": 0.7529,\n38\t      \"auroc_SJ\": 0.7496,\n39\t      \"auroc_FK\": 0.7467,\n40\t      \"auroc_EM\": 0.7508,\n41\t      \"auroc_LP\": 0.7661\n42\t    },\n43\t    \"llama_conll_n16_seed123\": {\n44\t      \"n_instances\": 2756,\n45\t      \"n_total\": 3453,\n46\t      \"n_gold_empty\": 697,\n47\t      \"VC\": 0.4633,\n48\t      \"SJ\": 0.4662,\n49\t      \"FK\": 0.4573,\n50\t      \"EM\": 0.4632,\n51\t      \"LP\": 0.308,\n52\t      \"auroc_VC\": 0.7444,\n53\t      \"auroc_SJ\": 0.7391,\n54\t      \"auroc_FK\": 0.7358,\n55\t      \"auroc_EM\": 0.7395,\n56\t      \"auroc_LP\": 0.7611\n57\t    },\n58\t    \"llama_conll_n16_seed456\": {\n59\t      \"n_instances\": 2756,\n60\t      \"n_total\": 3453,\n61\t      \"n_gold_empty\": 697,\n62\t      \"VC\": 0.4722,\n63\t      \"SJ\": 0.4734,\n64\t      \"FK\": 0.469,\n65\t      \"EM\": 0.4752,\n66\t      \"LP\": 0.3099,\n67\t      \"auroc_VC\": 0.7495,\n68\t      \"auroc_SJ\": 0.7428,\n69\t\n…[truncated 5161 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_r9_data_integrity_20260516T010154",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-16T01:10:39.088922+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_r9_data_integrity_20260516T010154",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/freeform_ablation_appendix_table.tex"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-16T01:10:39.089191+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t% Requires: \\usepackage{booktabs, multirow}\n2\t\\begin{table*}[t]\n3\t\\centering\n4\t\\caption{Comparison of constrained vs.\\ free-form decoding on SciERC (Qwen3-8B, $N{=}8$, $T{=}1.0$, seed=42).}\n5\t\\label{tab:freeform-ablation}\n6\t\n7\t%% ---- Panel A: Logprob Distribution ----\n8\t\\vspace{2pt}\n9\t{\\small\\textsc{Panel A: Logprob Distribution}}\n10\t\\vspace{2pt}\n11\t\n12\t\\begin{tabular}{lccc}\n13\t\\toprule\n14\tMetric & Constrained & Free-form & $\\Delta$ \\\\\n15\t\\midrule\n16\tMean LP std        & 0.0206 & 0.0199 & $-$0.0007 \\\\\n17\tMean LP range      & 0.0623 & 0.0599 & $-$0.0024 \\\\\n18\tTied fraction ($\\varepsilon{=}0.05$) & 59.7\\% & 57.7\\% & $-$2.0\\,pp \\\\\n19\t\\bottomrule\n20\t\\end{tabular}\n21\t\n22\t\\vspace{8pt}\n23\t\n24\t%% ---- Panel B: Selection F1 ----\n25\t{\\small\\textsc{Panel B: Selection F1}}\n26\t\\vspace{2pt}\n27\t\n28\t\\begin{tabular}{llccc}\n29\t\\toprule\n30\tTask & Method & Constrained & Free-form & $\\Delta$ \\\\\n31\t\\midrule\n32\t\\multirow{3}{*}{NER}\n33\t  & Greedy        & 0.6182 & 0.6204 & \\textbf{+0.0022} \\\\\n34\t  & LP-selected   & 0.6241 & 0.6222 & $-$0.0019 \\\\\n35\t  & Selection gap & +0.0059 & +0.0018 & $-$0.0041 \\\\\n36\t\\midrule\n37\t\\multirow{3}{*}{RE}\n38\t  & Greedy        & 0.2913 & 0.2880 & $-$0.0033 \\\\\n39\t  & LP-selected   & 0.2845 & 0.3050 & \\textbf{+0.0205} \\\\\n40\t  & Selection gap & $-$0.0068 & +0.0169 & \\textbf{+0.0237} \\\\\n41\t\\bottomrule\n42\t\\end{tabular}\n43\t\n44\t\\vspace{8pt}\n45\t\n46\t%% ---- Panel C: QE Signal Quality (Spearman ρ) ----\n47\t{\\small\\textsc{Panel C: QE Signal Quality (Spearman $\\rho$)}}\n48\t\\vspace{2pt}\n49\t\n50\t\\begin{tabular}{l ccc ccc}\n51\t\\toprule\n52\t & \\multicolumn{3}{c}{NER ($n{=}529$)} & \\multicolumn{3}{c}{RE ($n{=}397$)} \\\\\n53\t\\cmidrule(lr){2-4} \\cmidrule(lr){5-7}\n54\tSignal & Constr. & Free & $\\Delta$ & Constr. & Free & $\\Delta$ \\\\\n55\t\\midrule\n56\tSJ & 0.3599 & 0.3774 & \\textbf{+0.0175} & 0.2503 & 0.2728 & \\textbf{+0.0225} \\\\\n57\tFK & 0.2665 & 0.3197 & \\textbf{+0.0532} & 0.2752 & 0.3145 & \\textbf{+0.0393} \\\\\n58\tLP & 0.2052 & 0.2129 & \\textbf{+0.0077} & 0.2662 & 0.3042 & \\textbf{+0.0379}\n…[truncated 577 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_r9_data_integrity_20260516T010154",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-16T01:10:39.089385+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_r9_data_integrity_20260516T010154",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/n_scaling_appendix_tables.tex"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-16T01:10:39.089553+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t% N-scaling appendix tables for Structured Self-Consistency paper\n2\t% Requires: booktabs package\n3\t\n4\t%%% Table 1: N=8 vs N=16 Comparison (Spearman ρ)\n5\t\\begin{table}[t]\n6\t\\centering\n7\t\\caption{Effect of sample pool size on signal quality (Qwen3-8B, SciERC, 3-seed mean Spearman $\\rho$).}\n8\t\\label{tab:n-scaling}\n9\t\\small\n10\t\\begin{tabular}{l ccc ccc}\n11\t\\toprule\n12\t & \\multicolumn{3}{c}{\\textbf{NER} $\\rho$} & \\multicolumn{3}{c}{\\textbf{RE} $\\rho$} \\\\\n13\t\\cmidrule(lr){2-4} \\cmidrule(lr){5-7}\n14\tSignal & $N\\!=\\!8$ & $N\\!=\\!16$ & $\\Delta$ & $N\\!=\\!8$ & $N\\!=\\!16$ & $\\Delta$ \\\\\n15\t\\midrule\n16\tSJ & 0.3641 & 0.4105 & \\textbf{+0.0464} & 0.2485 & 0.2758 & \\textbf{+0.0273} \\\\\n17\tFK & 0.2536 & 0.2833 & \\textbf{+0.0297} & 0.2903 & 0.2964 & \\textbf{+0.0061} \\\\\n18\tVC & 0.3861 & 0.4092 & \\textbf{+0.0231} & 0.3088 & 0.3738 & \\textbf{+0.0650} \\\\\n19\tLP & 0.2167 & 0.2393 & \\textbf{+0.0226} & 0.2970 & 0.3100 & \\textbf{+0.0130} \\\\\n20\tEM & 0.3071 & 0.3395 & \\textbf{+0.0324} & 0.1353 & 0.1506 & \\textbf{+0.0153} \\\\\n21\t\\midrule\n22\tMean & 0.3055 & 0.3364 & \\textbf{+0.0308} & 0.2560 & 0.2813 & \\textbf{+0.0253} \\\\\n23\t\\bottomrule\n24\t\\end{tabular}\n25\t\\end{table}\n26\t\n27\t%%% Table 2: Cross-seed Signal Ranking Stability (Kendall's W)\n28\t\\begin{table}[t]\n29\t\\centering\n30\t\\caption{Cross-seed signal ranking stability (Kendall's $W$, 3 seeds).}\n31\t\\label{tab:ranking-stability}\n32\t\\small\n33\t\\begin{tabular}{ll cc l}\n34\t\\toprule\n35\tModel & Task & $N$ & Kendall's $W$ & Consensus ranking \\\\\n36\t\\midrule\n37\tQwen  & NER & 8  & 1.000 & VC $>$ SJ $>$ EM $>$ FK $>$ LP \\\\\n38\tQwen  & NER & 16 & 0.956 & SJ $\\approx$ VC $>$ EM $>$ FK $>$ LP \\\\\n39\tQwen  & RE  & 8  & 0.822 & VC $>$ LP $>$ FK $>$ SJ $>$ EM \\\\\n40\tQwen  & RE  & 16 & 0.956 & VC $>$ LP $>$ FK $>$ SJ $>$ EM \\\\\n41\tLLaMA & NER & 8  & 1.000 & VC $>$ SJ $>$ EM $>$ FK $>$ LP \\\\\n42\t\\bottomrule\n43\t\\end{tabular}\n44\t\\end{table}\n45\t\n46\t%%% Table 3: Per-signal Cross-seed σ Comparison\n47\t\\begin{table}[t]\n48\t\\centering\n49\t\\caption{Cross-seed standard deviation ($\\sigma\n…[truncated 717 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_r9_data_integrity_20260516T010154",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-16T01:10:39.089705+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_r9_data_integrity_20260516T010154",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/bootstrap_ci_tables.tex"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-16T01:10:39.089851+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t% Bootstrap CI for N-scaling (N=8 vs N=16), B=10000\n2\t% voting_conf regenerated 2026-05-15 after majority-filter bug fix\n3\t\\begin{table}[t]\n4\t\\centering\n5\t\\caption{Spearman $\\rho$ between consistency signals and instance-level F1 (N=16 samples). Bootstrap 95\\% CI for $\\Delta\\rho = \\rho_{16} - \\rho_8$ shown in brackets (B=10{,}000).}\n6\t\\label{tab:bootstrap_nscaling}\n7\t\\small\n8\t\\begin{tabular}{lcccc}\n9\t\\toprule\n10\tSignal & Qwen/CoNLL & Qwen/SciERC & LLaMA/CoNLL & LLaMA/SciERC \\\\\n11\t\\midrule\n12\t\\textrm{SJ} & $0.450$ [-0.014, +0.035] & $0.428$ [+0.004, +0.128] & $0.464$ [-0.004, +0.071] & $0.379$ [-0.042, +0.065] \\\\\n13\t\\textrm{FK} & $0.393$ [-0.041, +0.019] & $0.281$ [-0.041, +0.127] & $0.457$ [-0.009, +0.068] & $0.308$ [-0.103, +0.052] \\\\\n14\t\\textrm{EM} & $0.461$ [-0.015, +0.032] & $0.341$ [-0.049, +0.065] & $0.462$ [-0.006, +0.067] & $0.328$ [-0.045, +0.058] \\\\\n15\t\\textrm{VC} & $0.429$ [-0.025, +0.026] & $0.441$ [-0.023, +0.114] & $0.455$ [-0.008, +0.069] & $0.452$ [-0.046, +0.076] \\\\\n16\t\\textrm{LP} & $0.315$ [-0.015, +0.012] & $0.219$ [-0.059, +0.033] & $0.306$ [-0.012, +0.010] & $0.204$ [-0.020, +0.068] \\\\\n17\t\\bottomrule\n18\t\\end{tabular}\n19\t\\end{table}\n20\t\n21\t% 3-Seed robustness: mean rho +/- sd\n22\t\\begin{table}[t]\n23\t\\centering\n24\t\\caption{3-seed robustness of consistency signals (Spearman $\\rho$, mean $\\pm$ sd).}\n25\t\\label{tab:3seed_robustness}\n26\t\\small\n27\t\\begin{tabular}{llccccc}\n28\t\\toprule\n29\tSetting & Eval & \\textrm{SJ} & \\textrm{FK} & \\textrm{EM} & \\textrm{VC} & \\textrm{LP} \\\\\n30\t\\midrule\n31\tQwen/SciERC & Full & $0.412 \\pm 0.025$ & $0.260 \\pm 0.032$ & $0.329 \\pm 0.011$ & $0.422 \\pm 0.017$ & $0.234 \\pm 0.016$ \\\\\n32\tQwen/SciERC & Cond & $0.365 \\pm 0.014$ & $0.176 \\pm 0.019$ & $0.408 \\pm 0.006$ & $0.346 \\pm 0.007$ & $0.167 \\pm 0.009$ \\\\\n33\t\\midrule\n34\tLLaMA/CoNLL & Full & $0.463 \\pm 0.007$ & $0.455 \\pm 0.006$ & $0.460 \\pm 0.008$ & $0.458 \\pm 0.003$ & $0.310 \\pm 0.005$ \\\\\n35\tLLaMA/CoNLL & Cond & $0.461 \\pm 0.010$ & $0.451 \\pm 0.009$ & $0.462 \\pm 0.011$ & $0.40\n…[truncated 86 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_r9_data_integrity_20260516T010154",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-16T01:10:39.090001+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_r9_data_integrity_20260516T010154",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/analysis_fk_bootstrap_ci_full.json"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-16T01:10:39.090166+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t{\n2\t  \"task\": \"W3 FK bootstrap CI\",\n3\t  \"method\": \"10000-iteration bootstrap CI + permutation test\",\n4\t  \"data_sources\": [\"exp_001_n16 (seed42/123/456)\", \"exp_002_conll_n16\"],\n5\t  \"results\": {\n6\t    \"scierc_ner_qwen_n529\": {\n7\t      \"SJ_minus_FK\": {\n8\t        \"seed42\": {\"delta\": 0.147, \"CI\": [0.07, 0.22], \"p\": 0.002},\n9\t        \"seed123\": {\"delta\": 0.149, \"CI\": [0.08, 0.22], \"p\": 0.001},\n10\t        \"seed456\": {\"delta\": 0.160, \"CI\": [0.08, 0.24], \"p\": 0.001}\n11\t      },\n12\t      \"VC_minus_FK\": {\n13\t        \"seed42\": {\"delta\": 0.160, \"CI\": [0.06, 0.26], \"p\": 0.001},\n14\t        \"seed123\": {\"delta\": 0.138, \"CI\": [0.04, 0.23], \"p\": 0.003},\n15\t        \"seed456\": {\"delta\": 0.188, \"CI\": [0.08, 0.29], \"p\": 0.0005}\n16\t      },\n17\t      \"EM_minus_FK\": {\n18\t        \"seed42\": {\"delta\": 0.054, \"CI\": [-0.04, 0.15], \"p\": 0.15},\n19\t        \"seed123\": {\"delta\": 0.062, \"CI\": [-0.03, 0.16], \"p\": 0.12},\n20\t        \"seed456\": {\"delta\": 0.093, \"CI\": [-0.01, 0.19], \"p\": 0.048}\n21\t      }\n22\t    },\n23\t    \"conll_ner_qwen_n2756\": {\n24\t      \"SJ_minus_FK\": {\"delta\": 0.056, \"CI\": [0.04, 0.07], \"p\": 0.0005},\n25\t      \"VC_minus_FK\": {\"delta\": 0.022, \"CI\": [-0.00, 0.05], \"p\": 0.040},\n26\t      \"EM_minus_FK\": {\"delta\": 0.071, \"CI\": [0.05, 0.09], \"p\": 0.0005}\n27\t    }\n28\t  },\n29\t  \"key_findings\": [\n30\t    \"SJ and VC significantly outperform FK on SciERC NER across all 3 seeds (p<0.003)\",\n31\t    \"EM vs FK borderline on SciERC but highly significant on CoNLL (p<0.001)\",\n32\t    \"Bootstrap CI and permutation test mutually consistent\"\n33\t  ]\n34\t}\n35\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_r9_data_integrity_20260516T010154",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-16T01:10:39.090318+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_r9_data_integrity_20260516T010154",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/freeform_3seed_summary.json"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-16T01:10:39.090515+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t{\n2\t  \"experiment\": \"freeform_ablation_3seed\",\n3\t  \"dataset\": \"SciERC\",\n4\t  \"model\": \"Qwen3-8B (LoRA merged, scierc-v2)\",\n5\t  \"n_instances\": 551,\n6\t  \"n_samples_per_instance\": 8,\n7\t  \"temperature\": 1.0,\n8\t  \"seeds\": [\n9\t    123,\n10\t    456,\n11\t    789\n12\t  ],\n13\t  \"n_gold_filtered\": {\n14\t    \"ner\": 529,\n15\t    \"re\": 397\n16\t  },\n17\t  \"freeform_qe\": {\n18\t    \"ner\": {\n19\t      \"SJ\": {\n20\t        \"rho_mean\": 0.3856,\n21\t        \"rho_std\": 0.0078,\n22\t        \"auroc_mean\": 0.7303,\n23\t        \"auroc_std\": 0.0208,\n24\t        \"rho_per_seed\": [\n25\t          0.3842,\n26\t          0.3785,\n27\t          0.394\n28\t        ],\n29\t        \"auroc_per_seed\": [\n30\t          0.7487,\n31\t          0.7078,\n32\t          0.7345\n33\t        ]\n34\t      },\n35\t      \"FK\": {\n36\t        \"rho_mean\": 0.3075,\n37\t        \"rho_std\": 0.0194,\n38\t        \"auroc_mean\": 0.7717,\n39\t        \"auroc_std\": 0.0204,\n40\t        \"rho_per_seed\": [\n41\t          0.324,\n42\t          0.2862,\n43\t          0.3123\n44\t        ],\n45\t        \"auroc_per_seed\": [\n46\t          0.766,\n47\t          0.7548,\n48\t          0.7944\n49\t        ]\n50\t      },\n51\t      \"LP\": {\n52\t        \"rho_mean\": 0.2305,\n53\t        \"rho_std\": 0.0152,\n54\t        \"auroc_mean\": 0.6839,\n55\t        \"auroc_std\": 0.0157,\n56\t        \"rho_per_seed\": [\n57\t          0.2173,\n58\t          0.2271,\n59\t          0.2471\n60\t        ],\n61\t        \"auroc_per_seed\": [\n62\t          0.7017,\n63\t          0.6721,\n64\t          0.6778\n65\t        ]\n66\t      },\n67\t      \"EM\": {\n68\t        \"rho_mean\": 0.3224,\n69\t        \"rho_std\": 0.0039,\n70\t        \"auroc_mean\": 0.5101,\n71\t        \"auroc_std\": 0.0279,\n72\t        \"rho_per_seed\": [\n73\t          0.3269,\n74\t          0.32,\n75\t          0.3204\n76\t        ],\n77\t        \"auroc_per_seed\": [\n78\t          0.5253,\n79\t          0.4779,\n80\t          0.527\n81\t        ]\n82\t      },\n83\t      \"VC\": {\n84\t        \"rho_mean\": 0.4151,\n85\t        \"rho_std\": 0.0065,\n86\t        \"auroc_mean\": 0.7748,\n87\t        \"auroc_std\": 0.0223,\n88\t        \"rho_per_seed\": [\n\n…[truncated 4903 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_r9_data_integrity_20260516T010154",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-16T01:10:39.090669+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_r9_data_integrity_20260516T010154",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/analysis_scierc_n16_3seed_selection_f1.json"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-16T01:10:39.090999+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t{\n2\t  \"qwen_scierc_ner_n16\": {\n3\t    \"aggregated\": {\n4\t      \"seeds\": [\n5\t        42,\n6\t        123,\n7\t        456\n8\t      ],\n9\t      \"n_instances\": 551,\n10\t      \"n_samples\": 16,\n11\t      \"greedy_f1\": {\n12\t        \"mean\": 0.61838,\n13\t        \"std\": 0.00014,\n14\t        \"per_seed\": {\n15\t          \"42\": 0.61846,\n16\t          \"123\": 0.61846,\n17\t          \"456\": 0.61821\n18\t        }\n19\t      },\n20\t      \"random_f1\": {\n21\t        \"mean\": 0.58473,\n22\t        \"std\": 0.00137,\n23\t        \"per_seed\": {\n24\t          \"42\": 0.58532,\n25\t          \"123\": 0.58316,\n26\t          \"456\": 0.58571\n27\t        }\n28\t      },\n29\t      \"oracle_f1\": {\n30\t        \"mean\": 0.7871,\n31\t        \"std\": 0.00276,\n32\t        \"per_seed\": {\n33\t          \"42\": 0.78666,\n34\t          \"123\": 0.78459,\n35\t          \"456\": 0.79006\n36\t        }\n37\t      },\n38\t      \"signal_selection_f1\": {\n39\t        \"VC\": {\n40\t          \"mean\": 0.58746,\n41\t          \"std\": 0.0053,\n42\t          \"per_seed\": {\n43\t            \"42\": 0.58525,\n44\t            \"123\": 0.58363,\n45\t            \"456\": 0.5935\n46\t          },\n47\t          \"delta_vs_greedy_mean\": -0.03092,\n48\t          \"delta_vs_greedy_std\": 0.00544,\n49\t          \"vs_greedy_p_per_seed\": {\n50\t            \"42\": 0.9997,\n51\t            \"123\": 1.0,\n52\t            \"456\": 0.9947\n53\t          },\n54\t          \"vs_greedy_p_combined_fisher\": 1.0,\n55\t          \"vs_greedy_ci95_per_seed\": {\n56\t            \"42\": [\n57\t              -0.05178,\n58\t              -0.01422\n59\t            ],\n60\t            \"123\": [\n61\t              -0.05277,\n62\t              -0.0168\n63\t            ],\n64\t            \"456\": [\n65\t              -0.04292,\n66\t              -0.00588\n67\t            ]\n68\t          }\n69\t        },\n70\t        \"SJ\": {\n71\t          \"mean\": 0.61786,\n72\t          \"std\": 0.00228,\n73\t          \"per_seed\": {\n74\t            \"42\": 0.62041,\n75\t            \"123\": 0.61718,\n76\t            \"456\": 0.616\n77\t          },\n78\t          \"delta_vs_greedy_mean\": -0.00051,\n79\t          \"delta_vs_greedy_std\": 0.0021\n…[truncated 22128 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_r9_data_integrity_20260516T010154",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-16T01:10:39.091192+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_r9_data_integrity_20260516T010154",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__read_project_file",
+              "max_results": "3"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-16T01:10:39.091336+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_r9_data_integrity_20260516T010154",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-16T01:10:39.091488+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_r9_data_integrity_20260516T010154",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "cat /root/autodl-tmp/struct_self_consist_ie/analysis_round8/epsilon_sweep.csv",
+              "account": "root"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-16T01:10:39.091626+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"epsilon,tied_fraction,non_tied_n,non_tied_selection_delta_pp,non_tied_p\\\\r\\\\n0.01,0.011342155009451797,523,0.5806161933144278,0.2098\\\\r\\\\n0.02,0.13610586011342155,457,0.8344208672436246,0.1461\\\\r\\\\n0.03,0.31758034026465026,361,1.306603522670005,0.0787\\\\r\\\\n0.05,0.6030245746691871,210,2.857859072144787,0.0035\\\\r\\\\n0.1,0.8393194706994329,85,3.686274509803922,0.034\\\\r\\\\n0.15,0.9319470699432892,36,4.1534391534391535,0.1139\\\\r\\\\n0.2,0.9640831758034026,19,4.586466165413535,0.1343\\\\r\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.95}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_r9_data_integrity_20260516T010154",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-16T01:10:39.091754+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_r9_data_integrity_20260516T010154",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "cat /root/autodl-tmp/struct_self_consist_ie/exp_scale_qwen3_4b_conll/scale_ablation_report.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-16T01:10:39.091880+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"cat: /root/autodl-tmp/struct_self_consist_ie/exp_scale_qwen3_4b_conll/scale_ablation_report.json: No such file or directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_r9_data_integrity_20260516T010154",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-16T01:10:39.092008+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_r9_data_integrity_20260516T010154",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "cat /root/autodl-tmp/struct_self_consist_ie/exp_scale_qwen3_4b_scierc/scale_ablation_report.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-16T01:10:39.092149+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"cat: /root/autodl-tmp/struct_self_consist_ie/exp_scale_qwen3_4b_scierc/scale_ablation_report.json: No such file or directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_r9_data_integrity_20260516T010154",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-16T01:10:39.092277+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_r9_data_integrity_20260516T010154",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "ls /root/autodl-tmp/struct_self_consist_ie/analysis_round8/",
+              "account": "root"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-16T01:10:39.092403+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"analysis_fk_tost_round8.md\\\\nepsilon_sweep.csv\\\\nepsilon_sweep.py\\\\nfk_independence_instance_test.json\\\\nfk_independence_instance_test.py\\\\ntost_external_delta.json\\\\ntost_external_delta.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_r9_data_integrity_20260516T010154",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-16T01:10:39.092540+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_r9_data_integrity_20260516T010154",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "find /root/autodl-tmp/struct_self_consist_ie/ -name \"scale_ablation*\" -type f",
+              "account": "root"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-16T01:10:39.092666+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/exp_scale_qwen3_4b_conll/scale_ablation_report.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.34}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_r9_data_integrity_20260516T010154",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-16T01:10:39.092819+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_r9_data_integrity_20260516T010154",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "find /root/autodl-tmp/struct_self_consist_ie/ -path \"*4b*\" -name \"*.json\" -type f",
+              "account": "root"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-16T01:10:39.093029+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_r9_data_integrity_20260516T010154",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "cat /root/autodl-tmp/struct_self_consist_ie/analysis_round8/fk_independence_instance_test.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-16T01:10:39.093314+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-4b-conll2003-lora/checkpoint-3600/adapter_config.json\\\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-4b-conll2003-lora/checkpoint-3600/tokenizer_config.json\\\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-4b-conll2003-lora/checkpoint-3600/special_tokens_map.json\\\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-4b-conll2003-lora/checkpoint-3600/added_tokens.json\\\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-4b-conll2003-lora/checkpoint-3600/vocab.json\\\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-4b-conll2003-lora/checkpoint-3600/tokenizer.json\\\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-4b-conll2003-lora/checkpoint-3600/trainer_state.json\\\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-4b-conll2003-lora/checkpoint-3800/adapter_config.json\\\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-4b-conll2003-lora/checkpoint-3800/tokenizer_config.json\\\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-4b-conll2003-lora/checkpoint-3800/special_tokens_map.json\\\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-4b-conll2003-lora/checkpoint-3800/added_tokens.json\\\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-4b-conll2003-lora/checkpoint-3800/vocab.json\\\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-4b-conll2003-lora/checkpoint-3800/tokenizer.json\\\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-4b-conll2003-lora/checkpoint-3800/trainer_state.json\\\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-4b-conll2003-lora/checkpoint-4000/adapter_config.json\\\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-4b-conll2003-lora/checkpoint-4000/tokenizer_config.json\\\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-4b-conll2003-lora/checkpoint-4000/special_tokens_map.json\\\\n/root/autodl-tmp/struc\n…[truncated 6356 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_r9_data_integrity_20260516T010154",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-16T01:10:39.093565+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"qwen_scierc_ner\\\\\\\": {\\\\n    \\\\\\\"n_instances\\\\\\\": 529,\\\\n    \\\\\\\"n_samples_per_instance\\\\\\\": 8,\\\\n    \\\\\\\"fk_mean\\\\\\\": 0.401547,\\\\n    \\\\\\\"fk_std\\\\\\\": 0.29995,\\\\n    \\\\\\\"fk_median\\\\\\\": 0.369089,\\\\n    \\\\\\\"fk_iqr\\\\\\\": [\\\\n      0.205727,\\\\n      0.542857\\\\n    ],\\\\n    \\\\\\\"bootstrap_95ci\\\\\\\": [\\\\n      0.375848,\\\\n      0.427557\\\\n    ],\\\\n    \\\\\\\"fk_f1_spearman_rho\\\\\\\": 0.266511,\\\\n    \\\\\\\"fk_f1_spearman_p\\\\\\\": 4.716829112137585e-10,\\\\n    \\\\\\\"permutation_test\\\\\\\": {\\\\n      \\\\\\\"real_fk_mean\\\\\\\": 0.401547,\\\\n      \\\\\\\"null_fk_mean\\\\\\\": -0.140602,\\\\n      \\\\\\\"null_fk_std\\\\\\\": 0.000218,\\\\n      \\\\\\\"p_value\\\\\\\": 0.0,\\\\n      \\\\\\\"n_permutations\\\\\\\": 5000,\\\\n      \\\\\\\"effect_size_d\\\\\\\": 2490.07\\\\n    },\\\\n    \\\\\\\"split_half\\\\\\\": {\\\\n      \\\\\\\"mean_r\\\\\\\": 0.394699,\\\\n      \\\\\\\"std_r\\\\\\\": 0.02605,\\\\n      \\\\\\\"n_splits\\\\\\\": 100\\\\n    },\\\\n    \\\\\\\"ttest_one_sided\\\\\\\": {\\\\n      \\\\\\\"t_stat\\\\\\\": 30.7613,\\\\n      \\\\\\\"p_value\\\\\\\": 4.049585083641733e-120,\\\\n      \\\\\\\"n\\\\\\\": 529\\\\n    },\\\\n    \\\\\\\"wilcoxon\\\\\\\": {\\\\n      \\\\\\\"W\\\\\\\": 137670.0,\\\\n      \\\\\\\"p_value\\\\\\\": 1.3461217669338056e-82\\\\n    }\\\\n  },\\\\n  \\\\\\\"llama_conll_ner\\\\\\\": {\\\\n    \\\\\\\"n_instances\\\\\\\": 2756,\\\\n    \\\\\\\"n_samples_per_instance\\\\\\\": 8,\\\\n    \\\\\\\"fk_mean\\\\\\\": 0.927397,\\\\n    \\\\\\\"fk_std\\\\\\\": 0.215516,\\\\n    \\\\\\\"fk_median\\\\\\\": 1.0,\\\\n    \\\\\\\"fk_iqr\\\\\\\": [\\\\n      1.0,\\\\n      1.0\\\\n    ],\\\\n    \\\\\\\"bootstrap_95ci\\\\\\\": [\\\\n      0.91936,\\\\n      0.93538\\\\n    ],\\\\n    \\\\\\\"fk_f1_spearman_rho\\\\\\\": 0.427669,\\\\n    \\\\\\\"fk_f1_spearman_p\\\\\\\": 5.659809172786799e-123,\\\\n    \\\\\\\"permutation_test\\\\\\\": {\\\\n      \\\\\\\"real_fk_mean\\\\\\\": 0.927397,\\\\n      \\\\\\\"null_fk_mean\\\\\\\": -0.14156,\\\\n      \\\\\\\"null_fk_std\\\\\\\": 7.6e-05,\\\\n      \\\\\\\"p_value\\\\\\\": 0.0,\\\\n      \\\\\\\"n_permutations\\\\\\\": 5000,\\\\n      \\\\\\\"effect_size_d\\\\\\\": 14121.04\\\\n    },\\\\n    \\\\\\\"split_half\\\\\\\": {\\\\n      \\\\\\\"mean_r\\\\\\\": 0.578152,\\\\n      \\\\\\\"std_r\\\\\\\": 0.016864,\\\\n      \\\\\\\"n_splits\\\\\\\": 100\\\\n\n…[truncated 2201 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_r9_data_integrity_20260516T010154",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-16T01:10:39.093734+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_r9_data_integrity_20260516T010154",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/exp_scale_qwen3_4b_conll/scale_ablation_report.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-16T01:10:39.093927+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"qwen3_8b_conll\\\\\\\": {\\\\n    \\\\\\\"n_total\\\\\\\": 3453,\\\\n    \\\\\\\"n_valid\\\\\\\": 2756,\\\\n    \\\\\\\"n_conditional\\\\\\\": 2617,\\\\n    \\\\\\\"greedy_f1\\\\\\\": 0.9079,\\\\n    \\\\\\\"oracle_f1\\\\\\\": 0.9483,\\\\n    \\\\\\\"lp_tied_count\\\\\\\": 694,\\\\n    \\\\\\\"lp_tied_pct\\\\\\\": 25.2,\\\\n    \\\\\\\"full\\\\\\\": {\\\\n      \\\\\\\"n\\\\\\\": 2756,\\\\n      \\\\\\\"SJ\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.4357,\\\\n        \\\\\\\"auroc\\\\\\\": 0.8008\\\\n      },\\\\n      \\\\\\\"FK\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.3998,\\\\n        \\\\\\\"auroc\\\\\\\": 0.7741\\\\n      },\\\\n      \\\\\\\"LP\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.3157,\\\\n        \\\\\\\"auroc\\\\\\\": 0.7532\\\\n      },\\\\n      \\\\\\\"EM\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.4507,\\\\n        \\\\\\\"auroc\\\\\\\": 0.8156\\\\n      },\\\\n      \\\\\\\"Voting\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.4237,\\\\n        \\\\\\\"auroc\\\\\\\": 0.7889\\\\n      },\\\\n      \\\\\\\"greedy_f1_mean\\\\\\\": 0.9079\\\\n    },\\\\n    \\\\\\\"conditional\\\\\\\": {\\\\n      \\\\\\\"n\\\\\\\": 2617,\\\\n      \\\\\\\"SJ\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.3994,\\\\n        \\\\\\\"auroc\\\\\\\": 0.8061\\\\n      },\\\\n      \\\\\\\"FK\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.3521,\\\\n        \\\\\\\"auroc\\\\\\\": 0.7699\\\\n      },\\\\n      \\\\\\\"LP\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.3671,\\\\n        \\\\\\\"auroc\\\\\\\": 0.8185\\\\n      },\\\\n      \\\\\\\"EM\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.4449,\\\\n        \\\\\\\"auroc\\\\\\\": 0.842\\\\n      },\\\\n      \\\\\\\"Voting\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.3521,\\\\n        \\\\\\\"auroc\\\\\\\": 0.7697\\\\n      },\\\\n      \\\\\\\"greedy_f1_mean\\\\\\\": 0.9561\\\\n    },\\\\n    \\\\\\\"model\\\\\\\": \\\\\\\"Qwen3-8B\\\\\\\"\\\\n  },\\\\n  \\\\\\\"qwen3_4b_conll\\\\\\\": {\\\\n    \\\\\\\"n_total\\\\\\\": 3453,\\\\n    \\\\\\\"n_valid\\\\\\\": 2756,\\\\n    \\\\\\\"n_conditional\\\\\\\": 2640,\\\\n    \\\\\\\"greedy_f1\\\\\\\": 0.9208,\\\\n    \\\\\\\"oracle_f1\\\\\\\": 0.9384,\\\\n    \\\\\\\"lp_tied_count\\\\\\\": 1971,\\\\n    \\\\\\\"lp_tied_pct\\\\\\\": 71.5,\\\\n    \\\\\\\"full\\\\\\\": {\\\\n      \\\\\\\"n\\\\\\\": 2756,\\\\n      \\\\\\\"SJ\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.4324,\\\\n        \\\\\\\"auroc\\\\\\\": 0.6931\\\\n      },\\\\n      \\\\\\\"FK\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.4244,\\\\n        \\\\\\\"auroc\\\\\\\":\n…[truncated 1094 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_r9_data_integrity_20260516T010154",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-16T01:10:39.094083+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_r9_data_integrity_20260516T010154",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "find /root/autodl-tmp/struct_self_consist_ie/output/ -name \"scale_ablation*\" -type f",
+              "account": "root"
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-16T01:10:39.094289+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/exp_scale_qwen3_4b_conll/scale_ablation_report.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_r9_data_integrity_20260516T010154",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-16T01:10:39.094444+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_r9_data_integrity_20260516T010154",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/exp_qwen3_4b_scierc_scs_inference/report.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-16T01:10:39.094680+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"dataset\\\\\\\": \\\\\\\"scierc\\\\\\\",\\\\n  \\\\\\\"subtask\\\\\\\": \\\\\\\"joint\\\\\\\",\\\\n  \\\\\\\"n_samples\\\\\\\": 8,\\\\n  \\\\\\\"temperature\\\\\\\": 1.0,\\\\n  \\\\\\\"num_instances\\\\\\\": 551,\\\\n  \\\\\\\"use_train_format\\\\\\\": true,\\\\n  \\\\\\\"ner_greedy_f1\\\\\\\": 0.6611617312072894,\\\\n  \\\\\\\"ner_oracle_f1\\\\\\\": 0.7839488223320733,\\\\n  \\\\\\\"ner_oracle_headroom\\\\\\\": 0.12278709112478392,\\\\n  \\\\\\\"ner_fleiss_kappa_mean\\\\\\\": 0.3627662026254509,\\\\n  \\\\\\\"ner_soft_jaccard_mean\\\\\\\": 0.6417319480071191,\\\\n  \\\\\\\"ner_correlation_fleiss_vs_f1_full\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.325825924958949,\\\\n    \\\\\\\"p_value\\\\\\\": 1.5059643082856944e-14,\\\\n    \\\\\\\"n\\\\\\\": 529\\\\n  },\\\\n  \\\\\\\"ner_correlation_softjaccard_vs_f1_full\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.42206691768705,\\\\n    \\\\\\\"p_value\\\\\\\": 2.8900364123236118e-24,\\\\n    \\\\\\\"n\\\\\\\": 529\\\\n  },\\\\n  \\\\\\\"ner_correlation_fleiss_vs_f1_conditional\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.28139474856764607,\\\\n    \\\\\\\"p_value\\\\\\\": 2.0895265978043796e-10,\\\\n    \\\\\\\"n\\\\\\\": 492\\\\n  },\\\\n  \\\\\\\"ner_correlation_softjaccard_vs_f1_conditional\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.3807880496255638,\\\\n    \\\\\\\"p_value\\\\\\\": 2.007402504563935e-18,\\\\n    \\\\\\\"n\\\\\\\": 492\\\\n  },\\\\n  \\\\\\\"ner_n_gold_empty_filtered\\\\\\\": 22,\\\\n  \\\\\\\"ner_n_greedy_f1_zero_filtered\\\\\\\": 37,\\\\n  \\\\\\\"ner_structural_beats_surface\\\\\\\": true,\\\\n  \\\\\\\"ner_rho_advantage\\\\\\\": 0.096240992728101,\\\\n  \\\\\\\"ner_sample_f1_mean\\\\\\\": 0.5991348774074003,\\\\n  \\\\\\\"ner_sample_f1_std\\\\\\\": 0.3115358106123299,\\\\n  \\\\\\\"ner_sample_f1_pct_zero\\\\\\\": 11.36578449905482,\\\\n  \\\\\\\"ner_logprob_baseline\\\\\\\": {\\\\n    \\\\\\\"full\\\\\\\": {\\\\n      \\\\\\\"rho\\\\\\\": 0.2800331541140455,\\\\n      \\\\\\\"p_rho\\\\\\\": 5.483886459901985e-11,\\\\n      \\\\\\\"tau\\\\\\\": 0.20027883487619444,\\\\n      \\\\\\\"p_tau\\\\\\\": 5.0020767023235506e-11,\\\\n      \\\\\\\"auroc\\\\\\\": 0.6439186264608282,\\\\n      \\\\\\\"n\\\\\\\": 529\\\\n    },\\\\n    \\\\\\\"conditional\\\\\\\": {\\\\n      \\\\\\\"rho\\\\\\\": 0.22082506121957016,\\\\n      \\\\\\\"p_rho\\\\\\\": 7.54139592711259e-07,\\\\n      \\\\\\\"tau\\\\\\\": 0.15850227072478087,\\\\\n…[truncated 2335 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_r9_data_integrity_20260516T010154",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-16T01:10:39.094836+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_r9_data_integrity_20260516T010154",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/selection_f1_4b_results.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-16T01:10:39.095041+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"qwen3_4b_conll_ner\\\\\\\": {\\\\n    \\\\\\\"n_instances\\\\\\\": 2756,\\\\n    \\\\\\\"n_samples_per_instance\\\\\\\": 8,\\\\n    \\\\\\\"greedy_f1\\\\\\\": 0.92125,\\\\n    \\\\\\\"random_f1\\\\\\\": 0.91832,\\\\n    \\\\\\\"oracle_f1\\\\\\\": 0.93824,\\\\n    \\\\\\\"VC\\\\\\\": {\\\\n      \\\\\\\"selection_f1\\\\\\\": 0.92328,\\\\n      \\\\\\\"delta_vs_greedy\\\\\\\": 0.00203,\\\\n      \\\\\\\"bootstrap_p\\\\\\\": 0.0758,\\\\n      \\\\\\\"bootstrap_ci95\\\\\\\": [\\\\n        -0.00076,\\\\n        0.00489\\\\n      ]\\\\n    },\\\\n    \\\\\\\"SJ\\\\\\\": {\\\\n      \\\\\\\"selection_f1\\\\\\\": 0.92197,\\\\n      \\\\\\\"delta_vs_greedy\\\\\\\": 0.00072,\\\\n      \\\\\\\"bootstrap_p\\\\\\\": 0.2562,\\\\n      \\\\\\\"bootstrap_ci95\\\\\\\": [\\\\n        -0.0015,\\\\n        0.00302\\\\n      ]\\\\n    },\\\\n    \\\\\\\"FK\\\\\\\": {\\\\n      \\\\\\\"selection_f1\\\\\\\": 0.9215,\\\\n      \\\\\\\"delta_vs_greedy\\\\\\\": 0.00025,\\\\n      \\\\\\\"bootstrap_p\\\\\\\": 0.4105,\\\\n      \\\\\\\"bootstrap_ci95\\\\\\\": [\\\\n        -0.00191,\\\\n        0.00246\\\\n      ]\\\\n    },\\\\n    \\\\\\\"EM\\\\\\\": {\\\\n      \\\\\\\"selection_f1\\\\\\\": 0.92196,\\\\n      \\\\\\\"delta_vs_greedy\\\\\\\": 0.00071,\\\\n      \\\\\\\"bootstrap_p\\\\\\\": 0.2545,\\\\n      \\\\\\\"bootstrap_ci95\\\\\\\": [\\\\n        -0.00149,\\\\n        0.00296\\\\n      ]\\\\n    },\\\\n    \\\\\\\"LP\\\\\\\": {\\\\n      \\\\\\\"selection_f1\\\\\\\": 0.92214,\\\\n      \\\\\\\"delta_vs_greedy\\\\\\\": 0.00089,\\\\n      \\\\\\\"bootstrap_p\\\\\\\": 0.0932,\\\\n      \\\\\\\"bootstrap_ci95\\\\\\\": [\\\\n        -0.00038,\\\\n        0.00237\\\\n      ]\\\\n    }\\\\n  },\\\\n  \\\\\\\"qwen3_4b_scierc_ner\\\\\\\": {\\\\n    \\\\\\\"n_instances\\\\\\\": 529,\\\\n    \\\\\\\"n_samples_per_instance\\\\\\\": 8,\\\\n    \\\\\\\"greedy_f1\\\\\\\": 0.66224,\\\\n    \\\\\\\"random_f1\\\\\\\": 0.59913,\\\\n    \\\\\\\"oracle_f1\\\\\\\": 0.79249,\\\\n    \\\\\\\"VC\\\\\\\": {\\\\n      \\\\\\\"selection_f1\\\\\\\": 0.62825,\\\\n      \\\\\\\"delta_vs_greedy\\\\\\\": -0.03399,\\\\n      \\\\\\\"bootstrap_p\\\\\\\": 0.9999,\\\\n      \\\\\\\"bootstrap_ci95\\\\\\\": [\\\\n        -0.0523,\\\\n        -0.01552\\\\n      ]\\\\n    },\\\\n    \\\\\\\"SJ\\\\\\\": {\\\\n      \\\\\\\"selection_f1\\\\\\\": 0.64733,\\\\n      \\\\\\\"delta_vs_greedy\\\\\\\": -0.01491,\\\\n      \\\\\\\"bootstrap_p\\\\\\\": 0.9749,\\\\n  \n…[truncated 2251 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_r9_data_integrity_20260516T010154",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-16T01:10:39.095218+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_r9_data_integrity_20260516T010154",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/analysis_scierc_re_n16_3seed_selection_f1.json"
+            }
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-16T01:10:39.095439+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t{\n2\t  \"qwen_scierc_re_n16\": {\n3\t    \"aggregated\": {\n4\t      \"seeds\": [42, 123, 456],\n5\t      \"n_instances\": 551,\n6\t      \"n_samples\": 16,\n7\t      \"greedy_f1\": {\n8\t        \"mean\": 0.29144,\n9\t        \"std\": 0.00016,\n10\t        \"per_seed\": {\n11\t          \"42\": 0.29153,\n12\t          \"123\": 0.29153,\n13\t          \"456\": 0.29125\n14\t        }\n15\t      },\n16\t      \"random_f1\": {\n17\t        \"mean\": 0.26242,\n18\t        \"std\": 0.00143,\n19\t        \"per_seed\": {\n20\t          \"42\": 0.2619,\n21\t          \"123\": 0.26133,\n22\t          \"456\": 0.26404\n23\t        }\n24\t      },\n25\t      \"oracle_f1\": {\n26\t        \"mean\": 0.46279,\n27\t        \"std\": 0.00627,\n28\t        \"per_seed\": {\n29\t          \"42\": 0.46299,\n30\t          \"123\": 0.46896,\n31\t          \"456\": 0.45642\n32\t        }\n33\t      },\n34\t      \"signal_selection_f1\": {\n35\t        \"VC\": {\n36\t          \"mean\": 0.28369,\n37\t          \"std\": 0.00161,\n38\t          \"per_seed\": {\n39\t            \"42\": 0.28191,\n40\t            \"123\": 0.28414,\n41\t            \"456\": 0.28503\n42\t          },\n43\t          \"delta_vs_greedy_mean\": -0.00774,\n44\t          \"delta_vs_greedy_std\": 0.00173,\n45\t          \"vs_greedy_p_per_seed\": {\n46\t            \"42\": 0.856,\n47\t            \"123\": 0.8027,\n48\t            \"456\": 0.7664\n49\t          },\n50\t          \"vs_greedy_p_combined_fisher\": 0.97261,\n51\t          \"vs_greedy_ci95_per_seed\": {\n52\t            \"42\": [-0.02729, 0.00845],\n53\t            \"123\": [-0.0242, 0.00974],\n54\t            \"456\": [-0.02271, 0.01061]\n55\t          }\n56\t        },\n57\t        \"SJ\": {\n58\t          \"mean\": 0.28122,\n59\t          \"std\": 0.00505,\n60\t          \"per_seed\": {\n61\t            \"42\": 0.27571,\n62\t            \"123\": 0.28231,\n63\t            \"456\": 0.28563\n64\t          },\n65\t          \"delta_vs_greedy_mean\": -0.01022,\n66\t          \"delta_vs_greedy_std\": 0.00518,\n67\t          \"vs_greedy_p_per_seed\": {\n68\t            \"42\": 0.9809,\n69\t            \"123\": 0.9013,\n70\t            \"456\": 0.7781\n71\t          },\n72\t          \"vs_greedy_p_combined_fisher\": 0\n…[truncated 7744 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_r9_data_integrity_20260516T010154",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-16T01:10:39.095600+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_r9_data_integrity_20260516T010154",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/analysis_lp_range_cdf.json"
+            }
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-16T01:10:39.095728+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File content (69697 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file."
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_r9_data_integrity_20260516T010154",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-16T01:10:39.095898+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_r9_data_integrity_20260516T010154",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/exp_qwen3_4b_conll_scs_inference_v2/report.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-16T01:10:39.096071+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"dataset\\\\\\\": \\\\\\\"conll2003\\\\\\\",\\\\n  \\\\\\\"subtask\\\\\\\": \\\\\\\"ner\\\\\\\",\\\\n  \\\\\\\"n_samples\\\\\\\": 8,\\\\n  \\\\\\\"temperature\\\\\\\": 1.0,\\\\n  \\\\\\\"num_instances\\\\\\\": 3453,\\\\n  \\\\\\\"use_train_format\\\\\\\": true,\\\\n  \\\\\\\"greedy_f1\\\\\\\": 0.92340275326509,\\\\n  \\\\\\\"oracle_f1\\\\\\\": 0.9403985187797567,\\\\n  \\\\\\\"oracle_headroom\\\\\\\": 0.01699576551466664,\\\\n  \\\\\\\"fleiss_kappa_mean\\\\\\\": 0.9342818559086602,\\\\n  \\\\\\\"soft_jaccard_mean\\\\\\\": 0.9748228201588379,\\\\n  \\\\\\\"correlation_fleiss_vs_f1_full\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.4181163421891748,\\\\n    \\\\\\\"p_value\\\\\\\": 4.431055585876661e-117,\\\\n    \\\\\\\"n\\\\\\\": 2756\\\\n  },\\\\n  \\\\\\\"correlation_softjaccard_vs_f1_full\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.4216523996064672,\\\\n    \\\\\\\"p_value\\\\\\\": 3.068659337454799e-119,\\\\n    \\\\\\\"n\\\\\\\": 2756\\\\n  },\\\\n  \\\\\\\"correlation_fleiss_vs_f1_conditional\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.4537767289784424,\\\\n    \\\\\\\"p_value\\\\\\\": 2.566930923437062e-134,\\\\n    \\\\\\\"n\\\\\\\": 2641\\\\n  },\\\\n  \\\\\\\"correlation_softjaccard_vs_f1_conditional\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.4590247713350013,\\\\n    \\\\\\\"p_value\\\\\\\": 8.649043243264728e-138,\\\\n    \\\\\\\"n\\\\\\\": 2641\\\\n  },\\\\n  \\\\\\\"n_gold_empty_filtered\\\\\\\": 697,\\\\n  \\\\\\\"n_greedy_f1_zero_filtered\\\\\\\": 115,\\\\n  \\\\\\\"structural_beats_surface\\\\\\\": true,\\\\n  \\\\\\\"rho_advantage\\\\\\\": 0.003536057417292404,\\\\n  \\\\\\\"sample_f1_mean\\\\\\\": 0.9183192688649836,\\\\n  \\\\\\\"sample_f1_std\\\\\\\": 0.2301141019984235,\\\\n  \\\\\\\"sample_f1_pct_zero\\\\\\\": 4.376814223512337,\\\\n  \\\\\\\"logprob_baseline\\\\\\\": {\\\\n    \\\\\\\"full\\\\\\\": {\\\\n      \\\\\\\"rho\\\\\\\": 0.33134857322416716,\\\\n      \\\\\\\"p_rho\\\\\\\": 1.288942038617803e-71,\\\\n      \\\\\\\"tau\\\\\\\": 0.2615476800056602,\\\\n      \\\\\\\"p_tau\\\\\\\": 2.3584005690788482e-67,\\\\n      \\\\\\\"auroc\\\\\\\": 0.7761070419189873,\\\\n      \\\\\\\"n\\\\\\\": 2756\\\\n    },\\\\n    \\\\\\\"conditional\\\\\\\": {\\\\n      \\\\\\\"rho\\\\\\\": 0.3486729246332634,\\\\n      \\\\\\\"p_rho\\\\\\\": 2.3299439307115813e-76,\\\\n      \\\\\\\"tau\\\\\\\": 0.27868915974402253,\\\\n      \\\\\\\"p_tau\\\\\\\": 5.086417187432997e-72,\\\\n      \\\n…[truncated 349 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_r9_data_integrity_20260516T010154",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-16T01:10:39.096250+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_r9_data_integrity_20260516T010154",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/exp_qwen3_4b_conll_scs_inference/report.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": "2026-05-16T01:10:39.096424+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"dataset\\\\\\\": \\\\\\\"conll2003\\\\\\\",\\\\n  \\\\\\\"subtask\\\\\\\": \\\\\\\"ner\\\\\\\",\\\\n  \\\\\\\"n_samples\\\\\\\": 8,\\\\n  \\\\\\\"temperature\\\\\\\": 1.0,\\\\n  \\\\\\\"num_instances\\\\\\\": 3453,\\\\n  \\\\\\\"use_train_format\\\\\\\": true,\\\\n  \\\\\\\"greedy_f1\\\\\\\": 0.9250992501102779,\\\\n  \\\\\\\"oracle_f1\\\\\\\": 0.940751190266267,\\\\n  \\\\\\\"oracle_headroom\\\\\\\": 0.01565194015598903,\\\\n  \\\\\\\"fleiss_kappa_mean\\\\\\\": 0.9348788173144941,\\\\n  \\\\\\\"soft_jaccard_mean\\\\\\\": 0.9753488800330674,\\\\n  \\\\\\\"correlation_fleiss_vs_f1_full\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.39608813300452556,\\\\n    \\\\\\\"p_value\\\\\\\": 3.379525819428661e-104,\\\\n    \\\\\\\"n\\\\\\\": 2756\\\\n  },\\\\n  \\\\\\\"correlation_softjaccard_vs_f1_full\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.4045211720675786,\\\\n    \\\\\\\"p_value\\\\\\\": 5.147077732660057e-109,\\\\n    \\\\\\\"n\\\\\\\": 2756\\\\n  },\\\\n  \\\\\\\"correlation_fleiss_vs_f1_conditional\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.42000244983302043,\\\\n    \\\\\\\"p_value\\\\\\\": 1.6856451463192235e-113,\\\\n    \\\\\\\"n\\\\\\\": 2644\\\\n  },\\\\n  \\\\\\\"correlation_softjaccard_vs_f1_conditional\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.43062531784731295,\\\\n    \\\\\\\"p_value\\\\\\\": 7.705406878941218e-120,\\\\n    \\\\\\\"n\\\\\\\": 2644\\\\n  },\\\\n  \\\\\\\"n_gold_empty_filtered\\\\\\\": 697,\\\\n  \\\\\\\"n_greedy_f1_zero_filtered\\\\\\\": 112,\\\\n  \\\\\\\"structural_beats_surface\\\\\\\": true,\\\\n  \\\\\\\"rho_advantage\\\\\\\": 0.008433039063053038,\\\\n  \\\\\\\"sample_f1_mean\\\\\\\": 0.9195602272485823,\\\\n  \\\\\\\"sample_f1_std\\\\\\\": 0.22910912321259058,\\\\n  \\\\\\\"sample_f1_pct_zero\\\\\\\": 4.35867198838897,\\\\n  \\\\\\\"logprob_baseline\\\\\\\": {\\\\n    \\\\\\\"full\\\\\\\": {\\\\n      \\\\\\\"rho\\\\\\\": 0.3185549459869156,\\\\n      \\\\\\\"p_rho\\\\\\\": 4.862812710162509e-66,\\\\n      \\\\\\\"tau\\\\\\\": 0.2516979645724018,\\\\n      \\\\\\\"p_tau\\\\\\\": 2.065665929483731e-62,\\\\n      \\\\\\\"auroc\\\\\\\": 0.768853514542622,\\\\n      \\\\\\\"n\\\\\\\": 2756\\\\n    },\\\\n    \\\\\\\"conditional\\\\\\\": {\\\\n      \\\\\\\"rho\\\\\\\": 0.3377555940952428,\\\\n      \\\\\\\"p_rho\\\\\\\": 1.478960613738992e-71,\\\\n      \\\\\\\"tau\\\\\\\": 0.26998373228285816,\\\\n      \\\\\\\"p_tau\\\\\\\": 1.0658194697231724e-67,\\\\n     \n…[truncated 351 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_r9_data_integrity_20260516T010154",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-16T01:10:39.096659+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_r9_data_integrity_20260516T010154",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "artifacts/*selection*",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie"
+            }
+          },
+          "id": "event-000059"
+        },
+        {
+          "source_line": 60,
+          "timestamp": "2026-05-16T01:10:39.096848+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "artifacts/re_nonzero_selection_analysis.md\nartifacts/analysis_scierc_n16_3seed_selection_f1.json\nartifacts/analysis_scierc_re_n16_3seed_selection_f1.json\nartifacts/fig_selection_gap.png"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_r9_data_integrity_20260516T010154",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000060"
+        },
+        {
+          "source_line": 61,
+          "timestamp": "2026-05-16T01:10:39.097009+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_r9_data_integrity_20260516T010154",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "find /root/autodl-tmp/struct_self_consist_ie/output/ -name \"*selection*\" -type f",
+              "account": "root"
+            }
+          },
+          "id": "event-000061"
+        },
+        {
+          "source_line": 62,
+          "timestamp": "2026-05-16T01:10:39.097210+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/exp016_signal_ensemble/selection_f1_comparison.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp016_signal_ensemble/selection_f1_full.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp010_selection_curves/figures/fig_selection_curves.pdf\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp010_selection_curves/figures/fig_selection_curves.png\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp010_selection_curves/plot_selection_curves.py\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_016_v2/selection_f1_comparison.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_016_rerun_1024/selection_f1_comparison.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_016_rerun_1024/selection_f1_full.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round2/run_selection_f1.py\\\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round2/selection_f1_llama_scierc_n8.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round2/selection_f1_llama_scierc_n16.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round2/selection_f1_qwen_conll_n8.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round2/selection_f1_llama_conll_n8.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round2/selection_f1_4configs_summary.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round2/re_selection_bootstrap.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round2/re_selection_bootstrap.py\\\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round2/re_selection_reconcile.py\\\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round2/recompute_re_selection.py\\\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round2/re_selection_recompute.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round2/diversity_stratified_selection.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output\n…[truncated 1283 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_r9_data_integrity_20260516T010154",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000062"
+        },
+        {
+          "source_line": 63,
+          "timestamp": "2026-05-16T01:10:39.097384+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_r9_data_integrity_20260516T010154",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "find /root/autodl-tmp/struct_self_consist_ie/ -name \"selection_analysis*\" -type f",
+              "account": "root"
+            }
+          },
+          "id": "event-000063"
+        },
+        {
+          "source_line": 64,
+          "timestamp": "2026-05-16T01:10:39.097524+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_r9_data_integrity_20260516T010154",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000064"
+        },
+        {
+          "source_line": 65,
+          "timestamp": "2026-05-16T01:10:39.097650+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_r9_data_integrity_20260516T010154",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/review_round2/selection_f1_table2.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000065"
+        },
+        {
+          "source_line": 66,
+          "timestamp": "2026-05-16T01:10:39.097854+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"seeds\\\\\\\": [\\\\n    42,\\\\n    123\\\\n  ],\\\\n  \\\\\\\"subtask\\\\\\\": \\\\\\\"ner\\\\\\\",\\\\n  \\\\\\\"methods\\\\\\\": {\\\\n    \\\\\\\"Greedy\\\\\\\": {\\\\n      \\\\\\\"per_seed\\\\\\\": {\\\\n        \\\\\\\"42\\\\\\\": 0.6439219990259687,\\\\n        \\\\\\\"123\\\\\\\": 0.6457455273145254\\\\n      },\\\\n      \\\\\\\"mean\\\\\\\": 0.644833763170247,\\\\n      \\\\\\\"std\\\\\\\": 0.00128942921852394\\\\n    },\\\\n    \\\\\\\"Random\\\\\\\": {\\\\n      \\\\\\\"per_seed\\\\\\\": {\\\\n        \\\\\\\"42\\\\\\\": 0.6077394535406134,\\\\n        \\\\\\\"123\\\\\\\": 0.6125472312176403\\\\n      },\\\\n      \\\\\\\"mean\\\\\\\": 0.6101433423791269,\\\\n      \\\\\\\"std\\\\\\\": 0.0033996121978630226,\\\\n      \\\\\\\"delta_vs_greedy\\\\\\\": -0.03469042079112006\\\\n    },\\\\n    \\\\\\\"LP\\\\\\\": {\\\\n      \\\\\\\"per_seed\\\\\\\": {\\\\n        \\\\\\\"42\\\\\\\": 0.6500718843902431,\\\\n        \\\\\\\"123\\\\\\\": 0.6436180382499742\\\\n      },\\\\n      \\\\\\\"mean\\\\\\\": 0.6468449613201086,\\\\n      \\\\\\\"std\\\\\\\": 0.00456355837051876,\\\\n      \\\\\\\"delta_vs_greedy\\\\\\\": 0.002011198149861615,\\\\n      \\\\\\\"per_seed_p\\\\\\\": {\\\\n        \\\\\\\"42\\\\\\\": 0.5425074179193997,\\\\n        \\\\\\\"123\\\\\\\": 0.15233780606025285\\\\n      },\\\\n      \\\\\\\"combined_p\\\\\\\": 0.28869407141823045,\\\\n      \\\\\\\"per_seed_wins\\\\\\\": {\\\\n        \\\\\\\"42\\\\\\\": 62,\\\\n        \\\\\\\"123\\\\\\\": 47\\\\n      },\\\\n      \\\\\\\"per_seed_losses\\\\\\\": {\\\\n        \\\\\\\"42\\\\\\\": 70,\\\\n        \\\\\\\"123\\\\\\\": 63\\\\n      },\\\\n      \\\\\\\"per_seed_ties\\\\\\\": {\\\\n        \\\\\\\"42\\\\\\\": 398,\\\\n        \\\\\\\"123\\\\\\\": 419\\\\n      }\\\\n    },\\\\n    \\\\\\\"SJ\\\\\\\": {\\\\n      \\\\\\\"per_seed\\\\\\\": {\\\\n        \\\\\\\"42\\\\\\\": 0.6450050009215592,\\\\n        \\\\\\\"123\\\\\\\": 0.6474774323740186\\\\n      },\\\\n      \\\\\\\"mean\\\\\\\": 0.6462412166477889,\\\\n      \\\\\\\"std\\\\\\\": 0.0017482730460529079,\\\\n      \\\\\\\"delta_vs_greedy\\\\\\\": 0.0014074534775418979,\\\\n      \\\\\\\"per_seed_p\\\\\\\": {\\\\n        \\\\\\\"42\\\\\\\": 0.5657001139736343,\\\\n        \\\\\\\"123\\\\\\\": 0.5507089135982713\\\\n      },\\\\n      \\\\\\\"combined_p\\\\\\\": 0.6748619732918099,\\\\n      \\\\\\\"per_seed_wins\\\\\\\": {\\\\n        \\\\\\\"42\\\\\\\": 58,\\\\n        \\\\\\\"123\\\\\\\": 54\\\\n \n…[truncated 2895 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_r9_data_integrity_20260516T010154",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000066"
+        },
+        {
+          "source_line": 67,
+          "timestamp": "2026-05-16T01:10:39.098007+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_r9_data_integrity_20260516T010154",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/multiseed_selection_f1.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000067"
+        },
+        {
+          "source_line": 68,
+          "timestamp": "2026-05-16T01:10:39.098344+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"qwen_scierc_ner_n16\\\\\\\": {\\\\n    \\\\\\\"seeds\\\\\\\": [\\\\n      42,\\\\n      123,\\\\n      456\\\\n    ],\\\\n    \\\\\\\"n_instances\\\\\\\": 529,\\\\n    \\\\\\\"n_samples_per_instance\\\\\\\": 16,\\\\n    \\\\\\\"greedy_f1\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.6441,\\\\n      \\\\\\\"std\\\\\\\": 0.00015,\\\\n      \\\\\\\"per_seed\\\\\\\": [\\\\n        0.64418,\\\\n        0.64418,\\\\n        0.64392\\\\n      ]\\\\n    },\\\\n    \\\\\\\"random_f1\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.60955,\\\\n      \\\\\\\"std\\\\\\\": 0.00079,\\\\n      \\\\\\\"per_seed\\\\\\\": [\\\\n        0.6101,\\\\n        0.60865,\\\\n        0.6099\\\\n      ]\\\\n    },\\\\n    \\\\\\\"oracle_f1\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.81983,\\\\n      \\\\\\\"std\\\\\\\": 0.00288,\\\\n      \\\\\\\"per_seed\\\\\\\": [\\\\n        0.81937,\\\\n        0.81722,\\\\n        0.82291\\\\n      ]\\\\n    },\\\\n    \\\\\\\"signal_selection_f1\\\\\\\": {\\\\n      \\\\\\\"VC\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.61189,\\\\n        \\\\\\\"std\\\\\\\": 0.00552,\\\\n        \\\\\\\"per_seed\\\\\\\": [\\\\n          0.60959,\\\\n          0.6079,\\\\n          0.61819\\\\n        ],\\\\n        \\\\\\\"delta_vs_greedy_mean\\\\\\\": -0.0322,\\\\n        \\\\\\\"delta_vs_greedy_std\\\\\\\": 0.00566,\\\\n        \\\\\\\"vs_greedy_p_per_seed\\\\\\\": [\\\\n          0.9998,\\\\n          1.0,\\\\n          0.9959\\\\n        ],\\\\n        \\\\\\\"vs_greedy_p_combined_fisher\\\\\\\": 1.0,\\\\n        \\\\\\\"vs_greedy_ci95_per_seed\\\\\\\": [\\\\n          [\\\\n            -0.05402,\\\\n            -0.01532\\\\n          ],\\\\n          [\\\\n            -0.05502,\\\\n            -0.0178\\\\n          ],\\\\n          [\\\\n            -0.04474,\\\\n            -0.00673\\\\n          ]\\\\n        ]\\\\n      },\\\\n      \\\\\\\"SJ\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.64356,\\\\n        \\\\\\\"std\\\\\\\": 0.00238,\\\\n        \\\\\\\"per_seed\\\\\\\": [\\\\n          0.64621,\\\\n          0.64285,\\\\n          0.64162\\\\n        ],\\\\n        \\\\\\\"delta_vs_greedy_mean\\\\\\\": -0.00053,\\\\n        \\\\\\\"delta_vs_greedy_std\\\\\\\": 0.00227,\\\\n        \\\\\\\"vs_greedy_p_per_seed\\\\\\\": [\\\\n          0.3723,\\\\n          0.5814,\\\\n          0.6457\\\\n        ],\\\\n      \n…[truncated 7824 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_r9_data_integrity_20260516T010154",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000068"
+        },
+        {
+          "source_line": 69,
+          "timestamp": "2026-05-16T01:10:39.098661+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_r9_data_integrity_20260516T010154",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/review_round2/selection_f1_4configs_summary.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000069"
+        },
+        {
+          "source_line": 70,
+          "timestamp": "2026-05-16T01:10:39.098945+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[\\\\n  {\\\\n    \\\\\\\"config\\\\\\\": \\\\\\\"llama_scierc_n8\\\\\\\",\\\\n    \\\\\\\"n_instances\\\\\\\": 529,\\\\n    \\\\\\\"n_samples_per_instance\\\\\\\": 8,\\\\n    \\\\\\\"greedy_f1\\\\\\\": 0.646018,\\\\n    \\\\\\\"oracle_f1\\\\\\\": 0.778041,\\\\n    \\\\\\\"signals\\\\\\\": {\\\\n      \\\\\\\"soft_jaccard\\\\\\\": {\\\\n        \\\\\\\"selection_f1\\\\\\\": 0.643292,\\\\n        \\\\\\\"delta_vs_greedy\\\\\\\": -0.002726,\\\\n        \\\\\\\"bootstrap_p\\\\\\\": 0.619,\\\\n        \\\\\\\"ci_lower\\\\\\\": -0.013478,\\\\n        \\\\\\\"ci_upper\\\\\\\": 0.007899,\\\\n        \\\\\\\"cohens_d\\\\\\\": -0.021393,\\\\n        \\\\\\\"sign_test_wins\\\\\\\": 42,\\\\n        \\\\\\\"sign_test_losses\\\\\\\": 42,\\\\n        \\\\\\\"sign_test_ties\\\\\\\": 445\\\\n      },\\\\n      \\\\\\\"fleiss_kappa\\\\\\\": {\\\\n        \\\\\\\"selection_f1\\\\\\\": 0.638592,\\\\n        \\\\\\\"delta_vs_greedy\\\\\\\": -0.007426,\\\\n        \\\\\\\"bootstrap_p\\\\\\\": 0.3708,\\\\n        \\\\\\\"ci_lower\\\\\\\": -0.023663,\\\\n        \\\\\\\"ci_upper\\\\\\\": 0.009394,\\\\n        \\\\\\\"cohens_d\\\\\\\": -0.039096,\\\\n        \\\\\\\"sign_test_wins\\\\\\\": 78,\\\\n        \\\\\\\"sign_test_losses\\\\\\\": 86,\\\\n        \\\\\\\"sign_test_ties\\\\\\\": 365\\\\n      },\\\\n      \\\\\\\"exact_match\\\\\\\": {\\\\n        \\\\\\\"selection_f1\\\\\\\": 0.634297,\\\\n        \\\\\\\"delta_vs_greedy\\\\\\\": -0.011721,\\\\n        \\\\\\\"bootstrap_p\\\\\\\": 0.0876,\\\\n        \\\\\\\"ci_lower\\\\\\\": -0.025176,\\\\n        \\\\\\\"ci_upper\\\\\\\": 0.001599,\\\\n        \\\\\\\"cohens_d\\\\\\\": -0.073142,\\\\n        \\\\\\\"sign_test_wins\\\\\\\": 45,\\\\n        \\\\\\\"sign_test_losses\\\\\\\": 56,\\\\n        \\\\\\\"sign_test_ties\\\\\\\": 428\\\\n      },\\\\n      \\\\\\\"logprob\\\\\\\": {\\\\n        \\\\\\\"selection_f1\\\\\\\": 0.651777,\\\\n        \\\\\\\"delta_vs_greedy\\\\\\\": 0.005759,\\\\n        \\\\\\\"bootstrap_p\\\\\\\": 0.3858,\\\\n        \\\\\\\"ci_lower\\\\\\\": -0.007085,\\\\n        \\\\\\\"ci_upper\\\\\\\": 0.018377,\\\\n        \\\\\\\"cohens_d\\\\\\\": 0.038311,\\\\n        \\\\\\\"sign_test_wins\\\\\\\": 53,\\\\n        \\\\\\\"sign_test_losses\\\\\\\": 49,\\\\n        \\\\\\\"sign_test_ties\\\\\\\": 427\\\\n      },\\\\n      \\\\\\\"voting_conf\\\\\\\": {\\\\n        \\\\\\\"selection_f1\\\\\\\": 0.633156,\\\\n        \\\\\\\"delta_vs_greedy\\\\\\\": -0.012862,\\\\n \n…[truncated 7097 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_r9_data_integrity_20260516T010154",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000070"
+        },
+        {
+          "source_line": 71,
+          "timestamp": "2026-05-16T01:10:39.099112+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_r9_data_integrity_20260516T010154",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/review_round2/re_selection_recompute.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000071"
+        },
+        {
+          "source_line": 72,
+          "timestamp": "2026-05-16T01:10:39.099325+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"full_set\\\\\\\": {\\\\n    \\\\\\\"n\\\\\\\": 397,\\\\n    \\\\\\\"greedy_f1\\\\\\\": 0.404231,\\\\n    \\\\\\\"oracle_f1\\\\\\\": 0.585005,\\\\n    \\\\\\\"random_f1\\\\\\\": 0.354435,\\\\n    \\\\\\\"signals\\\\\\\": {\\\\n      \\\\\\\"sj\\\\\\\": {\\\\n        \\\\\\\"selection_f1\\\\\\\": 0.385474,\\\\n        \\\\\\\"delta_vs_greedy\\\\\\\": -0.018758\\\\n      },\\\\n      \\\\\\\"fk\\\\\\\": {\\\\n        \\\\\\\"selection_f1\\\\\\\": 0.387153,\\\\n        \\\\\\\"delta_vs_greedy\\\\\\\": -0.017078\\\\n      },\\\\n      \\\\\\\"em\\\\\\\": {\\\\n        \\\\\\\"selection_f1\\\\\\\": 0.371834,\\\\n        \\\\\\\"delta_vs_greedy\\\\\\\": -0.032397\\\\n      },\\\\n      \\\\\\\"voting_conf\\\\\\\": {\\\\n        \\\\\\\"selection_f1\\\\\\\": 0.394368,\\\\n        \\\\\\\"delta_vs_greedy\\\\\\\": -0.009864\\\\n      },\\\\n      \\\\\\\"logprob\\\\\\\": {\\\\n        \\\\\\\"selection_f1\\\\\\\": 0.394803,\\\\n        \\\\\\\"delta_vs_greedy\\\\\\\": -0.009428\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"conditional_set\\\\\\\": {\\\\n    \\\\\\\"n\\\\\\\": 238,\\\\n    \\\\\\\"greedy_f1\\\\\\\": 0.674285,\\\\n    \\\\\\\"oracle_f1\\\\\\\": 0.757393,\\\\n    \\\\\\\"random_f1\\\\\\\": 0.535712,\\\\n    \\\\\\\"signals\\\\\\\": {\\\\n      \\\\\\\"sj\\\\\\\": {\\\\n        \\\\\\\"selection_f1\\\\\\\": 0.60352,\\\\n        \\\\\\\"delta_vs_greedy\\\\\\\": -0.070765\\\\n      },\\\\n      \\\\\\\"fk\\\\\\\": {\\\\n        \\\\\\\"selection_f1\\\\\\\": 0.606321,\\\\n        \\\\\\\"delta_vs_greedy\\\\\\\": -0.067964\\\\n      },\\\\n      \\\\\\\"em\\\\\\\": {\\\\n        \\\\\\\"selection_f1\\\\\\\": 0.582849,\\\\n        \\\\\\\"delta_vs_greedy\\\\\\\": -0.091436\\\\n      },\\\\n      \\\\\\\"voting_conf\\\\\\\": {\\\\n        \\\\\\\"selection_f1\\\\\\\": 0.597908,\\\\n        \\\\\\\"delta_vs_greedy\\\\\\\": -0.076377\\\\n      },\\\\n      \\\\\\\"logprob\\\\\\\": {\\\\n        \\\\\\\"selection_f1\\\\\\\": 0.599474,\\\\n        \\\\\\\"delta_vs_greedy\\\\\\\": -0.074811\\\\n      }\\\\n    },\\\\n    \\\\\\\"filter\\\\\\\": \\\\\\\"greedy_f1 > 0\\\\\\\"\\\\n  },\\\\n  \\\\\\\"unfiltered\\\\\\\": {\\\\n    \\\\\\\"n\\\\\\\": 551,\\\\n    \\\\\\\"greedy_f1\\\\\\\": 0.291252,\\\\n    \\\\\\\"oracle_f1\\\\\\\": 0.421501,\\\\n    \\\\\\\"random_f1\\\\\\\": 0.255373,\\\\n    \\\\\\\"signals\\\\\\\": {\\\\n      \\\\\\\"sj\\\\\\\": {\\\\n        \\\\\\\"selection_f1\\\\\\\": 0.277737,\\\\n        \\\\\\\"delta_vs_greedy\\\\\\\": -0.013\n…[truncated 1400 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_r9_data_integrity_20260516T010154",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000072"
+        },
+        {
+          "source_line": 73,
+          "timestamp": "2026-05-16T01:10:39.099488+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_r9_data_integrity_20260516T010154",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "find /root/autodl-tmp/struct_self_consist_ie/ -name \"sj_normalizer*\" -type f",
+              "account": "root"
+            }
+          },
+          "id": "event-000073"
+        },
+        {
+          "source_line": 74,
+          "timestamp": "2026-05-16T01:10:39.099623+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/analysis_round8/sj_normalizer_ablation.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_r9_data_integrity_20260516T010154",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000074"
+        },
+        {
+          "source_line": 75,
+          "timestamp": "2026-05-16T01:10:39.099750+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_r9_data_integrity_20260516T010154",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/analysis_round8/sj_normalizer_ablation.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000075"
+        },
+        {
+          "source_line": 76,
+          "timestamp": "2026-05-16T01:10:39.099889+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"sj_max\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.359891,\\\\n    \\\\\\\"p_value\\\\\\\": 1.2752281196882738e-17,\\\\n    \\\\\\\"auroc\\\\\\\": 0.717989,\\\\n    \\\\\\\"mean_sj\\\\\\\": 0.702619,\\\\n    \\\\\\\"std_sj\\\\\\\": 0.195577\\\\n  },\\\\n  \\\\\\\"sj_union\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.364979,\\\\n    \\\\\\\"p_value\\\\\\\": 4.108560671720043e-18,\\\\n    \\\\\\\"auroc\\\\\\\": 0.715449,\\\\n    \\\\\\\"mean_sj\\\\\\\": 0.691848,\\\\n    \\\\\\\"std_sj\\\\\\\": 0.197742\\\\n  },\\\\n  \\\\\\\"n_valid\\\\\\\": 529,\\\\n  \\\\\\\"note\\\\\\\": \\\\\\\"SJ_max uses max(|ga|,|gb|) per type; SJ_union uses generalized Jaccard = matched_sim/(|A|+|B|-matched_sim). Both computed on NER entities from exp_012_rerun_1024 (Qwen SciERC N=8 seed42).\\\\\\\"\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_r9_data_integrity_20260516T010154",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000076"
+        },
+        {
+          "source_line": 77,
+          "timestamp": "2026-05-16T01:10:39.100061+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_r9_data_integrity_20260516T010154",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/review_round8/r7c1_re_multiseed_selection.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000077"
+        },
+        {
+          "source_line": 78,
+          "timestamp": "2026-05-16T01:10:39.100477+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"task\\\\\\\": \\\\\\\"R7-C1: RE Multi-seed Selection F1\\\\\\\",\\\\n  \\\\\\\"data_availability\\\\\\\": {\\\\n    \\\\\\\"seed_42\\\\\\\": \\\\\\\"EXISTS - output/exp_008_re_n16_v2/samples.jsonl\\\\\\\",\\\\n    \\\\\\\"seed_123\\\\\\\": \\\\\\\"EXISTS - output/exp_re_scierc_seed123/samples.jsonl (551 instances, joint subtask with RE)\\\\\\\",\\\\n    \\\\\\\"seed_456\\\\\\\": \\\\\\\"EXISTS - output/exp_re_scierc_seed456/samples.jsonl (551 instances, joint subtask with RE)\\\\\\\"\\\\n  },\\\\n  \\\\\\\"results\\\\\\\": {\\\\n    \\\\\\\"greedy_f1\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.29144,\\\\n      \\\\\\\"std\\\\\\\": 0.00016,\\\\n      \\\\\\\"per_seed\\\\\\\": {\\\\n        \\\\\\\"42\\\\\\\": 0.29153,\\\\n        \\\\\\\"123\\\\\\\": 0.29153,\\\\n        \\\\\\\"456\\\\\\\": 0.29125\\\\n      }\\\\n    },\\\\n    \\\\\\\"random_f1\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.26242,\\\\n      \\\\\\\"std\\\\\\\": 0.00143,\\\\n      \\\\\\\"per_seed\\\\\\\": {\\\\n        \\\\\\\"42\\\\\\\": 0.2619,\\\\n        \\\\\\\"123\\\\\\\": 0.26133,\\\\n        \\\\\\\"456\\\\\\\": 0.26404\\\\n      }\\\\n    },\\\\n    \\\\\\\"oracle_f1\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.46279,\\\\n      \\\\\\\"std\\\\\\\": 0.00627,\\\\n      \\\\\\\"per_seed\\\\\\\": {\\\\n        \\\\\\\"42\\\\\\\": 0.46299,\\\\n        \\\\\\\"123\\\\\\\": 0.46896,\\\\n        \\\\\\\"456\\\\\\\": 0.45642\\\\n      }\\\\n    },\\\\n    \\\\\\\"signal_selection_f1\\\\\\\": {\\\\n      \\\\\\\"VC\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.28369,\\\\n        \\\\\\\"std\\\\\\\": 0.00161,\\\\n        \\\\\\\"per_seed\\\\\\\": {\\\\n          \\\\\\\"42\\\\\\\": 0.28191,\\\\n          \\\\\\\"123\\\\\\\": 0.28414,\\\\n          \\\\\\\"456\\\\\\\": 0.28503\\\\n        },\\\\n        \\\\\\\"delta_vs_greedy_mean\\\\\\\": -0.00774,\\\\n        \\\\\\\"delta_vs_greedy_std\\\\\\\": 0.00173,\\\\n        \\\\\\\"vs_greedy_p_per_seed\\\\\\\": {\\\\n          \\\\\\\"42\\\\\\\": 0.856,\\\\n          \\\\\\\"123\\\\\\\": 0.8027,\\\\n          \\\\\\\"456\\\\\\\": 0.7664\\\\n        },\\\\n        \\\\\\\"vs_greedy_p_combined_fisher\\\\\\\": 0.97261,\\\\n        \\\\\\\"vs_greedy_ci95_per_seed\\\\\\\": {\\\\n          \\\\\\\"42\\\\\\\": [\\\\n            -0.02729,\\\\n            0.00845\\\\n          ],\\\\n          \\\\\\\"123\\\\\\\": [\\\\n            -0.0242,\\\\n            0.00974\\\\n          ],\\\\n          \\\\\n…[truncated 8083 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_r9_data_integrity_20260516T010154",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000078"
+        },
+        {
+          "source_line": 79,
+          "timestamp": "2026-05-16T01:10:39.100675+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_r9_data_integrity_20260516T010154",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "find /root/autodl-tmp/struct_self_consist_ie/output/ -name \"*re_selection*\" -o -name \"*re_cond*\" -type f",
+              "account": "root"
+            }
+          },
+          "id": "event-000079"
+        },
+        {
+          "source_line": 80,
+          "timestamp": "2026-05-16T01:10:39.100824+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/review_round2/re_selection_bootstrap.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round2/re_selection_bootstrap.py\\\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round2/re_selection_reconcile.py\\\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round2/recompute_re_selection.py\\\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round2/re_selection_recompute.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round2/re_conditional_analysis.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_r9_data_integrity_20260516T010154",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000080"
+        }
+      ],
+      "message_count": 80
+    }
+  ],
+  "readable_path": "readable/conversations/review-r9-data-integrity.md"
+}

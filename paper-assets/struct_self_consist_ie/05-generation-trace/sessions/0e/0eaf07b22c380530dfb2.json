@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0eaf07b22c380530dfb2",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ssh pretrained fewnerd s42 mv",
+  "task_key": "worker_ssh_pretrained_fewnerd_s42_mv_20260521T182914",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_pretrained_fewnerd_s42_mv_20260521T182914_result.json",
+    "occurrence": 1,
+    "bytes": 1085,
+    "sha256": "317be2ac37a614d49e0dd95cfc60faa4c17bb6557d6362660251d2539447e210"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果（gold-nonempty instances, n=32565）：\n\n| 指标 | Pretrained (本次) | Finetuned 3-epoch (参考) |\n|------|-------------------|--------------------------|\n| greedy_f1 | **0.5384** | ~0.789 |\n| mv_strict_f1 (>N/2) | **0.5788** | ~0.766 |\n| mv_incl_f1 (≥N/2) | **0.5667** | — |\n| oracle_f1 | **0.6508** | — |\n| Δ_SC strict | **+4.03pp** | **-2.74pp** |\n| degeneracy | **12.2%** | ~13% |\n| α_crit_eff (strict) | **0.3065** | — |\n\n关键发现：\n- **Pretrained MV Δ = +4.03pp（正向提升）** vs Finetuned MV Δ = -2.74pp（负向退化），方向完全相反。MV 在 pretrained 模型上显著有效。\n- Degeneracy 率几乎相同（12.2% vs ~13%），说明故事不是单纯的 \"finetuning 增加了 degeneracy\"，而更可能是 finetuning 改变了错误的相关性结构（degenerate samples 的 quality 或 diversity 性质不同）。\n\n注意：report.json 中 greedy_f1=0.5121、oracle_f1=0.6175 包含了 5083 个 gold-empty 实例，recompute 脚本过滤了这些。需确认与 finetuned 对比时口径一致。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-pretrained-fewnerd-s42-mv.md"
+}

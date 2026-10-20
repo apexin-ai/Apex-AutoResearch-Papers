@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "083f5e81734ef2a51b95",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis d112 q5 hybrid strategy",
+  "task_key": "worker_analysis_d112_q5_hybrid_strategy_20260516T092356",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_d112_q5_hybrid_strategy_20260516T092356_result.json",
+    "occurrence": 1,
+    "bytes": 773,
+    "sha256": "ec2db29ed48b45b200b322241d77a2e68806b215b7987c6be37c389744c30dc8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果保存于 `/root/autodl-tmp/struct_self_consist_ie/output/d112_hybrid_strategy/`。\n\n**核心结论：**\n\n| Dataset | %Degen | Greedy | MBR-SJ | **Hybrid** | Hybrid Δ(greedy) |\n|---------|--------|--------|--------|------------|------------------|\n| SciERC NER (N=8) | 21.1% | 0.6182 | 0.6188 | **0.6200** | **+0.0018** |\n| CoNLL NER (N=16) | 58.0% | 0.7239 | 0.7215 | 0.7215 | -0.0024 |\n| SciERC RE (N=16) | 45.7% | 0.2904 | 0.2847 | 0.2847 | -0.0057 |\n\nHybrid 策略（degenerate 用 greedy，non-degenerate 用 MBR-SJ）仅在 SciERC NER 上微弱优于 greedy (+0.18pp)。CoNLL/RE 的 degenerate 比例高（58%/46%），且在 non-degenerate instances 上 MBR 选择并未超过 greedy，导致 hybrid 反而略低于 greedy。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-d112-q5-hybrid-strategy.md"
+}

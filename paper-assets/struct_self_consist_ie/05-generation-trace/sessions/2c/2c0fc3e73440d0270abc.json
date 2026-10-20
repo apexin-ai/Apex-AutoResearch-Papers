@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2c0fc3e73440d0270abc",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "exp exp 026 t05",
+  "task_key": "worker_exp_exp_026_t05_20260516T121629",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_exp_exp_026_t05_20260516T121629_result.json",
+    "occurrence": 1,
+    "bytes": 355,
+    "sha256": "de023624050339ad93ce590391d2518af6b5fe84f62ba53eb575f298b0b8ef51"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n- **exp_026_t05** 已在 autodl-5090 cuda:0 上启动（PID 297577）\n- 模型: `qwen3-8b-scierc-merged-v2`, T=0.5, n_samples=8, max_tokens=1024, collect_logprobs\n- 551 test instances × (8 stochastic + 1 greedy) = 4408+551 prompts，正在生成中\n- 输出目录: `output/exp_026_t05/`\n- Registry: exp_026_t05 → RUNNING"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-exp-026-t05.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "20f57b3395de956feb62",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis em exact match freq",
+  "task_key": "worker_analysis_em_exact_match_freq_20260515T044235",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_em_exact_match_freq_20260515T044235_result.json",
+    "occurrence": 1,
+    "bytes": 748,
+    "sha256": "9d219aaf6befc56484ef170e37e8eaa23a8f0e3472d144ea573c5efd9ac89fbb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果已保存到 `review_round2/em_exact_match_freq.json`。\n\nEM pair 频率远非 \"negligible\"：\n\n| Config | N | Mean EM% | Inst w/ EM% | Global EM% |\n|--------|---|----------|-------------|------------|\n| qwen_scierc | 529 | 42.45% | 96.8% | 42.4% |\n| llama_scierc | 529 | 49.26% | 98.9% | 49.3% |\n| qwen_conll | 2756 | 78.35% | 99.6% | 78.3% |\n| llama_conll | 2756 | 94.90% | 100.0% | 94.9% |\n| wnut17 | 689 | 77.43% | 100.0% | 77.4% |\n\nEM pairs 实际非常频繁，几乎所有 instance 都存在至少一对 exact match。CoNLL/WNUT 上 EM rate 尤其高（77-95%），SciERC 上也有 42-49%。论文中 \"probability of exact match negligible\" 的说法需要修正——reviewer 的质疑是有道理的。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-em-exact-match-freq.md"
+}

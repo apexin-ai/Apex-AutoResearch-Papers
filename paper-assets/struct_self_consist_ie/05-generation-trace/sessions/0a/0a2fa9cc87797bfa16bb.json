@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0a2fa9cc87797bfa16bb",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "writing d070 d071 paper revision",
+  "task_key": "worker_writing_d070_d071_paper_revision_20260515T093414",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_writing_d070_d071_paper_revision_20260515T093414_result.json",
+    "occurrence": 1,
+    "bytes": 2398,
+    "sha256": "6d29f82746cf2262d434e0815b6616ef586285b256f67b834d1f9dd863d06a8d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修订完成。以下是 21 项修改的完整清单：\n\n### Must-Fix (3/3)\n| 项目 | 修改内容 |\n|------|---------|\n| MF-1 | Abstract/Intro/Discussion 重构为两层叙事：Layer 1 (定义性，1-2句) + Layer 2 (LP compression 实证核心) |\n| MF-2 | Contributions 重排为 C1=regime-specific bottleneck, C2=QE framework, C3=task complexity；删除 \"first\" claim |\n| MF-3 | TOST δ* breakpoint 数据填入 appendix (NER 1.28-3.38pp, RE 2.86-6.53pp)；effect size + bootstrap CI 为主证据 |\n\n### Should-Fix (9/9)\n| 项目 | 修改内容 |\n|------|---------|\n| SF-1 | Introduction + Discussion 各加显式 constrained decoding regime scope 声明 |\n| SF-2 | §4.1 替换 PENDING：确认 enable_thinking=True，空 thinking block 参与 loss，<0.3% token 占比 |\n| SF-3 | Discussion/Conclusion 中所有 RE 结论标注 (preliminary, single benchmark) |\n| SF-4 | Appendix \"Cross-model transfer\" → \"Transfer across model families\" |\n| SF-5 | Abstract 精简为问题-发现-意义三段式，移除 ρ/AUROC 具体数字 |\n| SF-6 | Discussion \"exact match\" → \"EM\" 缩写统一 |\n| SF-7 | Method VC 脚注：Eq.6 无阈值为正式定义，报告 Δρ (NER +0.127, RE +0.019) |\n| SF-8 | Eikema et al. 2025 已在 Discussion MBR 段落引用讨论 ✓ |\n| SF-9 | Nédellec 增量贡献以 \"extends in three directions\" 定位，WNUT-17 non-obvious findings 突出 |\n\n### Minor (9/9)\n| 项目 | 修改内容 |\n|------|---------|\n| 1 | Figure 1 caption 已精简 ✓ |\n| 2 | N=16 行已在 appendix，主文脚注指向 ✓ |\n| 3 | FK excess agreement 加 one-sample t-test p<0.05 说明 |\n| 4 | Semantic entropy 脚注已无具体数字 ✓ |\n| 5 | he2024uncertainty 引用上下文修正为 \"uncertainty transmission across label sequences\" |\n| 6 | Ethics Statement 已含 CoNLL-2003 Reuters license ✓ |\n| 7 | Notation Table 已含 LP ✓ |\n| 8 | 5 处 bib 条目核实通过 (ye2025uncertainty 未在论文中引用；其余 4 项正确) |\n| 9 | N=8 single seed (seed=42) 注明，引用 3-seed stability (σ≤0.025) |\n\n### D071 Narrative\n- **Free-form ablation**: Discussion 新增 \"Toward mechanistic confirmation\" 段落，标注 [Planned experiment]\n- **Constrained decoding bottleneck**: Abstract 末句 + Conclusion 均以此为主要结论\n- **3 个 computation artifacts** 数据全部整合到论文"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/writing-d070-d071-paper-revision.md"
+}

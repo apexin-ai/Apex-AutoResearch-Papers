@@ -1,0 +1,72 @@
+{
+  "schema_version": "1.0",
+  "id": "005830bf9872f2db888d",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "code logprob script and truncation check",
+  "task_key": "worker_code_logprob_script_and_truncation_check_20260514T113358",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_logprob_script_and_truncation_check_20260514T113358.log",
+    "occurrence": 1,
+    "bytes": 893626,
+    "sha256": "3e545e92d5a0a092ae23a96bec67ad8ed1b666a3d7e13bba16cd30c3bfe45ae5"
+  },
+  "statistics": {
+    "messages": 313,
+    "user_turns": 2,
+    "tool_calls": 106,
+    "roles": {
+      "log": 1,
+      "system": 69,
+      "record": 1,
+      "assistant": 27,
+      "tool_call": 106,
+      "user": 2,
+      "tool_result": 106,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 7,
+      "chunks": [
+        {
+          "path": "005830bf9872f2db888d-part-0001.json",
+          "message_count": 7
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 33,
+      "chunks": [
+        {
+          "path": "005830bf9872f2db888d-part-0001.json",
+          "message_count": 33
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 273,
+      "chunks": [
+        {
+          "path": "005830bf9872f2db888d-part-0001.json",
+          "message_count": 140
+        },
+        {
+          "path": "005830bf9872f2db888d-part-0002.json",
+          "message_count": 133
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-logprob-script-and-truncation-check.md"
+}

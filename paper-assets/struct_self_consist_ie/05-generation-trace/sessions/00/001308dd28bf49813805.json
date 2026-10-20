@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "001308dd28bf49813805",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "paper integrate review data",
+  "task_key": "worker_paper_integrate_review_data_20260515T031735",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_paper_integrate_review_data_20260515T031735_result.json",
+    "occurrence": 1,
+    "bytes": 1935,
+    "sha256": "a1c30d61a842eb9503c975ae4bb563f7ef35ef38a2d6799276f5f24156c73d98"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Good — the file ends cleanly. Let me now do the verification checklist.\n\n**Data verification** (all numbers traced to task data):\n\nData 1 (Bootstrap CI):\n- Individual ρ values (+0.379, +0.360, +0.295, +0.267, +0.205) match existing Table 1 and task data\n- CIs ([+0.299,+0.456], [+0.277,+0.437], [+0.212,+0.371], [+0.176,+0.354], [+0.119,+0.291]) match task data rounded to 3dp\n- Pairwise Δρ (+0.155, +0.019, -0.065) and CIs match task data rounded to 3dp\n- Significance flags (Yes, No, Yes†) match task data\n\nData 2 (Selection F1):\n- All 4 configs × 7 columns verified against task data (3dp rounding, round-half-up)\n\nData 3 (WNUT-17):\n- All 5 signals × 5 columns verified; p-values rounded appropriately\n- Logprob negative ρ (-0.410) mentioned in experiments.tex line 79\n\n**Cross-reference verification**:\n- `\\ref{tab:bootstrap_signal_ci}` → `\\label{tab:bootstrap_signal_ci}` (appendix line 202)\n- `\\ref{app:bootstrap_signal}` → `\\label{app:bootstrap_signal}` (appendix line 191)\n- `\\ref{tab:wnut}` → `\\label{tab:wnut}` (appendix line 147, pre-existing)\n- `\\ref{tab:cross_selection}` → `\\label{tab:cross_selection}` (appendix line 170, label preserved)\n\n**Consistency check**:\n- \"all six tested configurations\" (experiments.tex line 130) = 4 in extended table + 2 in Table 2 (Qwen SciERC NER/RE)\n- WNUT conditional ρ ≤ 0.35 bound (experiments.tex line 80) still holds with logprob conditional ρ = 0.350\n- No existing correct data was modified\n\nSummary of changes:\n- **experiments.tex**: Added bootstrap CI appendix reference (line 66), added logprob negative ρ on WNUT-17 (line 79)\n- **appendix.tex**: Updated WNUT table with full p-values and correct n=689 (lines 143-159), replaced compact cross-selection table with detailed per-signal F1 table* (lines 161-181), added new Bootstrap CI section with individual CIs and pairwise Δρ table (lines 191-229)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-integrate-review-data.md"
+}

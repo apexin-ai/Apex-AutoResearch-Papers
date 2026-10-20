@@ -1,0 +1,4462 @@
+# code registry degen update
+
+**When Self-Consistency Fails for NER: Degeneracy, Signal Collapse, and the Correlation-Selection Gap** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 78
+- **Recorded user turns:** 0
+- **Tool calls:** 30
+- **Original source:** `logs/workers/worker_code_registry_degen_update_20260518T204527.log`
+- **Structured JSON:** [`6ba4f9ebb5b656678af3.json`](../../sessions/6b/6ba4f9ebb5b656678af3.json)
+
+## Before a recorded user message
+
+78 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "session_id": "685b1bf8-4822-4d28-8b85-9f3abe1bd865",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__read_registry",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only",
+    "mcp__agent-ml-research__update_registry"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "c8f766b8-7f6b-47c1-bb3b-5d6f92eaa8c0",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779151800,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "4f56e5f3-6375-4ed6-bf8b-92d4f41db9b9",
+  "session_id": "685b1bf8-4822-4d28-8b85-9f3abe1bd865"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by reading the degeneracy recalculation results from the remote server, and also read the current registry to understand what needs to be updated.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "685b1bf8-4822-4d28-8b85-9f3abe1bd865",
+  "uuid": "3ae5d54d-a461-42cb-b3a5-f171fdbc1e25",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ss4M5AjsfXBkGXyCdktHFK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13268,
+      "cache_read_input_tokens": 11701,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13268
+      },
+      "output_tokens": 28,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 5_
+
+先读取远程服务器上的 unified degeneracy 数据。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "685b1bf8-4822-4d28-8b85-9f3abe1bd865",
+  "uuid": "345dd4a7-b81c-43c7-b48e-b982b1848d6d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ss4M5AjsfXBkGXyCdktHFK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13268,
+      "cache_read_input_tokens": 11701,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13268
+      },
+      "output_tokens": 28,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01TW4ZbHbTd8kKJcjy9yuuhr`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__update_registry",
+  "max_results": 3
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "685b1bf8-4822-4d28-8b85-9f3abe1bd865",
+  "uuid": "3b474a64-c65c-42fd-a2e9-02fcae105db5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ss4M5AjsfXBkGXyCdktHFK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13268,
+      "cache_read_input_tokens": 11701,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13268
+      },
+      "output_tokens": 28,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-18T20:45:45.000Z_
+
+<details><summary>↩ Tool result · `toolu_01TW4ZbHbTd8kKJcjy9yuuhr`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__update_registry"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "685b1bf8-4822-4d28-8b85-9f3abe1bd865",
+  "uuid": "33cfbec7-6f55-453f-a759-fca8c62cb2a3",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__update_registry"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__update_registry",
+    "total_deferred_tools": 26
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_013o1L7xfcyfLSGxV66zchRC`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/unified_degeneracy_audit/degeneracy_recalc_results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "685b1bf8-4822-4d28-8b85-9f3abe1bd865",
+  "uuid": "736ac484-cbfc-42dc-9b96-0f5c7f89705f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01R4xaK4onahvMU1F54SJPhA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1333,
+      "cache_read_input_tokens": 24969,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1333
+      },
+      "output_tokens": 70,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01KUm7h2BwLPvLEVF5LYXx4r`</summary>
+
+```json
+{
+  "project": "struct_self_consist_ie",
+  "limit": 0,
+  "fields": [
+    "exp_id",
+    "metrics",
+    "status"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "685b1bf8-4822-4d28-8b85-9f3abe1bd865",
+  "uuid": "3a9c09ff-cb91-4016-bec1-045362bfef33",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01R4xaK4onahvMU1F54SJPhA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1333,
+      "cache_read_input_tokens": 24969,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1333
+      },
+      "output_tokens": 70,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-18T20:45:49.132Z_
+
+<details><summary>↩ Tool result · `toolu_013o1L7xfcyfLSGxV66zchRC`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[\\n  {\\n    \\\"label\\\": \\\"Qwen3-8B / SciERC / T=1.0 / seed=42\\\",\\n    \\\"dir\\\": \\\"exp_012_rerun_1024\\\",\\n    \\\"dataset\\\": \\\"scierc\\\",\\n    \\\"model\\\": \\\"Qwen3-8B\\\",\\n    \\\"T\\\": 1.0,\\n    \\\"seed\\\": 42,\\n    \\\"status\\\": \\\"OK\\\",\\n    \\\"n_instances\\\": 529,\\n    \\\"n_degenerate\\\": 94,\\n    \\\"degen_pct_unified\\\": 17.77,\\n    \\\"greedy_f1\\\": 64.39,\\n    \\\"old_sample_f1_pct_zero\\\": 12.59,\\n    \\\"delta\\\": 5.17\\n  },\\n  {\\n    \\\"label\\\": \\\"Qwen3-8B / SciERC / T=1.0 / seed=123\\\",\\n    \\\"dir\\\": \\\"exp_018_qwen_scierc_seed123\\\",\\n    \\\"dataset\\\": \\\"scierc\\\",\\n    \\\"model\\\": \\\"Qwen3-8B\\\",\\n    \\\"T\\\": 1.0,\\n    \\\"seed\\\": 123,\\n    \\\"status\\\": \\\"OK\\\",\\n    \\\"n_instances\\\": 529,\\n    \\\"n_degenerate\\\": 91,\\n    \\\"degen_pct_unified\\\": 17.2,\\n    \\\"greedy_f1\\\": 64.57,\\n    \\\"old_sample_f1_pct_zero\\\": 11.67,\\n    \\\"delta\\\": 5.53\\n  },\\n  {\\n    \\\"label\\\": \\\"Qwen3-8B / SciERC / T=1.0 / seed=456\\\",\\n    \\\"dir\\\": \\\"exp_018_qwen_scierc_seed456\\\",\\n    \\\"dataset\\\": \\\"scierc\\\",\\n    \\\"model\\\": \\\"Qwen3-8B\\\",\\n    \\\"T\\\": 1.0,\\n    \\\"seed\\\": 456,\\n    \\\"status\\\": \\\"OK\\\",\\n    \\\"n_instances\\\": 529,\\n    \\\"n_degenerate\\\": 108,\\n    \\\"degen_pct_unified\\\": 20.42,\\n    \\\"greedy_f1\\\": 64.78,\\n    \\\"old_sample_f1_pct_zero\\\": 13.26,\\n    \\\"delta\\\": 7.16\\n  },\\n  {\\n    \\\"label\\\": \\\"Qwen3-8B / CoNLL / T=1.0 N=16 / seed=42\\\",\\n    \\\"dir\\\": \\\"exp_002_conll_n16\\\",\\n    \\\"dataset\\\": \\\"conll2003\\\",\\n    \\\"model\\\": \\\"Qwen3-8B\\\",\\n    \\\"T\\\": 1.0,\\n    \\\"seed\\\": 42,\\n    \\\"N\\\": 16,\\n    \\\"status\\\": \\\"OK\\\",\\n    \\\"n_instances\\\": 2756,\\n    \\\"n_degenerate\\\": 1335,\\n    \\\"degen_pct_unified\\\": 48.44,\\n    \\\"greedy_f1\\\": 90.7,\\n    \\\"old_sample_f1_pct_zero\\\": 7.58,\\n    \\\"delta\\\": 40.86\\n  },\\n  {\\n    \\\"label\\\": \\\"Qwen3-8B / CoNLL / T=1.0 N=16 / seed=123\\\",\\n    \\\"dir\\\": \\\"exp_002_conll_n16_seed123\\\",\\n    \\\"dataset\\\": \\\"conll2003\\\",\\n    \\\"model\\\": \\\"Qwen3-8B\\\",\\n    \\\"T\\\": 1.0,\\n    \\\"seed\\\": 123,\\n    \\\"N\\\": 16,\\n    \\\"status\\\": \\\"OK\\\",\\n    \\\"n_instances\\\": 2756,\\n    \\\"n_degenerate\\\": 1298,\\n    \\\"degen_pct_unified\\\": 47.1,\\n    \\\"greedy_f1\\\": 90.65,\\n    \\\"old_sample_f1_pct_zero\\\": 7.54,\\n    \\\"delta\\\": 39.55\\n  },\\n  {\\n    \\\"label\\\": \\\"Qwen3-8B / CoNLL / T=1.0 N=16 / seed=456\\\",\\n    \\\"dir\\\": \\\"exp_002_conll_n16_seed456\\\",\\n    \\\"dataset\\\": \\\"conll2003\\\",\\n    \\\"model\\\": \\\"Qwen3-8B\\\",\\n    \\\"T\\\": 1.0,\\n    \\\"seed\\\": 456,\\n    \\\"N\\\": 16,\\n    \\\"status\\\": \\\"OK\\\",\\n    \\\"n_instances\\\": 2756,\\n    \\\"n_degenerate\\\": 1528,\\n    \\\"degen_pct_unified\\\": 55.44,\\n    \\\"greedy_f1\\\": 90.71,\\n    \\\"old_sample_f1_pct_zero\\\": 7.02,\\n    \\\"delta\\\": 48.42\\n  },\\n  {\\n    \\\"label\\\": \\\"Qwen3-8B / FewNERD / T=1.0 / seed=42\\\",\\n    \\\"dir\\\": \\\"exp_027_fewnerd_n16\\\",\\n    \\\"dataset\\\": \\\"fewnerd\\\",\\n    \\\"model\\\": \\\"Qwen3-8B\\\",\\n    \\\"T\\\": 1.0,\\n    \\\"seed\\\": 42,\\n    \\\"status\\\": \\\"OK\\\",\\n    \\\"n_instances\\\": 4351,\\n    \\\"n_degenerate\\\": 307,\\n    \\\"degen_pct_unified\\\": 7.06,\\n    \\\"greedy_f1\\\": 74.78,\\n    \\\"old_sample_f1_pct_zero\\\": null,\\n    \\\"delta\\\": null\\n  },\\n  {\\n    \\\"label\\\": \\\"Qwen3-8B / FewNERD / T=1.0 / seed=123\\\",\\n    \\\"dir\\\": \\\"exp_021_fewnerd_n8_seed123\\\",\\n    \\\"dataset\\\": \\\"fewnerd\\\",\\n    \\\"model\\\": \\\"Qwen3-8B\\\",\\n    \\\"T\\\": 1.0,\\n    \\\"seed\\\": 123,\\n    \\\"status\\\": \\\"OK\\\",\\n    \\\"n_instances\\\": 32565,\\n    \\\"n_degenerate\\\": 4272,\\n    \\\"degen_pct_unified\\\": 13.12,\\n    \\\"greedy_f1\\\": 74.8,\\n    \\\"old_sample_f1_pct_zero\\\": 20.39,\\n    \\\"delta\\\": -7.27\\n  },\\n  {\\n    \\\"label\\\": \\\"Qwen3-8B / FewNERD / T=1.0 / seed=456\\\",\\n    \\\"dir\\\": \\\"exp_021_fewnerd_n8_seed456\\\",\\n    \\\"dataset\\\": \\\"fewnerd\\\",\\n    \\\"model\\\": \\\"Qwen3-8B\\\",\\n    \\\"T\\\": 1.0,\\n    \\\"seed\\\": 456,\\n    \\\"status\\\": \\\"OK\\\",\\n    \\\"n_instances\\\": 32565,\\n    \\\"n_degenerate\\\": 3947,\\n    \\\"degen_pct_unified\\\": 12.12,\\n    \\\"greedy_f1\\\": 74.86,\\n    \\\"old_sample_f1_pct_zero\\\": 19.32,\\n    \\\"delta\\\": -7.2\\n  },\\n  {\\n    \\\"label\\\": \\\"LLaMA3.1-8B / SciERC / T=1.0 / seed=42\\\",\\n    \\\"dir\\\": \\\"exp_018_llama_scierc_seed42_r1024\\\",\\n    \\\"dataset\\\": \\\"scierc\\\",\\n    \\\"model\\\": \\\"LLaMA3.1-8B\\\",\\n    \\\"T\\\": 1.0,\\n    \\\"seed\\\": 42,\\n    \\\"status\\\": \\\"OK\\\",\\n    \\\"n_instances\\\": 529,\\n    \\\"n_degenerate\\\": 132,\\n    \\\"degen_pct_unified\\\": 24.95,\\n    \\\"greedy_f1\\\": 64.6,\\n    \\\"old_sample_f1_pct_zero\\\": 11.44,\\n    \\\"delta\\\": 13.52\\n  },\\n  {\\n    \\\"label\\\": \\\"LLaMA3.1-8B / SciERC / T=1.0 / seed=123\\\",\\n    \\\"dir\\\": \\\"exp_018_llama_scierc_seed123\\\",\\n    \\\"dataset\\\": \\\"scierc\\\",\\n    \\\"model\\\": \\\"LLaMA3.1-8B\\\",\\n    \\\"T\\\": 1.0,\\n    \\\"seed\\\": 123,\\n    \\\"status\\\": \\\"OK\\\",\\n    \\\"n_instances\\\": 529,\\n    \\\"n_degenerate\\\": 141,\\n    \\\"degen_pct_unified\\\": 26.65,\\n    \\\"greedy_f1\\\": 64.54,\\n    \\\"old_sample_f1_pct_zero\\\": 11.11,\\n    \\\"delta\\\": 15.55\\n  },\\n  {\\n    \\\"label\\\": \\\"LLaMA3.1-8B / SciERC / T=1.0 / seed=456\\\",\\n    \\\"dir\\\": \\\"exp_018_llama_scierc_seed456_r1024\\\",\\n    \\\"dataset\\\": \\\"scierc\\\",\\n    \\\"model\\\": \\\"LLaMA3.1-8B\\\",\\n    \\\"T\\\": 1.0,\\n    \\\"seed\\\": 456,\\n    \\\"status\\\": \\\"OK\\\",\\n    \\\"n_instances\\\": 529,\\n    \\\"n_degenerate\\\": 145,\\n    \\\"degen_pct_unified\\\": 27.41,\\n    \\\"greedy_f1\\\": 64.59,\\n    \\\"old_sample_f1_pct_zero\\\": 11.65,\\n    \\\"delta\\\": 15.76\\n  },\\n  {\\n    \\\"label\\\": \\\"LLaMA3.1-8B / CoNLL / T=1.0 N=16 / seed=42\\\",\\n    \\\"dir\\\": \\\"exp_017_llama_conll_n16_r1024\\\",\\n    \\\"dataset\\\": \\\"conll2003\\\",\\n    \\\"model\\\": \\\"LLaMA3.1-8B\\\",\\n    \\\"T\\\": 1.0,\\n    \\\"seed\\\": 42,\\n    \\\"N\\\": 16,\\n    \\\"status\\\": \\\"OK\\\",\\n    \\\"n_instances\\\": 2756,\\n    \\\"n_degenerate\\\": 2383,\\n    \\\"degen_pct_unified\\\": 86.47,\\n    \\\"greedy_f1\\\": 92.39,\\n    \\\"old_sample_f1_pct_zero\\\": 4.29,\\n    \\\"delta\\\": 82.17\\n  },\\n  {\\n    \\\"label\\\": \\\"LLaMA3.1-8B / CoNLL / T=1.0 N=16 / seed=123\\\",\\n    \\\"dir\\\": \\\"exp_017_llama_conll_n16_s123_r1024\\\",\\n    \\\"dataset\\\": \\\"conll2003\\\",\\n    \\\"model\\\": \\\"LLaMA3.1-8B\\\",\\n    \\\"T\\\": 1.0,\\n    \\\"seed\\\": 123,\\n    \\\"N\\\": 16,\\n    \\\"status\\\": \\\"OK\\\",\\n    \\\"n_instances\\\": 2756,\\n    \\\"n_degenerate\\\": 2380,\\n    \\\"degen_pct_unified\\\": 86.36,\\n    \\\"greedy_f1\\\": 92.38,\\n    \\\"old_sample_f1_pct_zero\\\": 4.3,\\n    \\\"delta\\\": 82.06\\n  },\\n  {\\n    \\\"label\\\": \\\"LLaMA3.1-8B / CoNLL / T=1.0 N=16 / seed=456\\\",\\n    \\\"dir\\\": \\\"exp_017_llama_conll_n16_s456_r1024\\\",\\n    \\\"dataset\\\": \\\"conll2003\\\",\\n    \\\"model\\\": \\\"LLaMA3.1-8B\\\",\\n    \\\"T\\\": 1.0,\\n    \\\"seed\\\": 456,\\n    \\\"N\\\": 16,\\n    \\\"status\\\": \\\"OK\\\",\\n    \\\"n_instances\\\": 2756,\\n    \\\"n_degenerate\\\": 2390,\\n    \\\"degen_pct_unified\\\": 86.72,\\n    \\\"greedy_f1\\\": 92.42,\\n    \\\"old_sample_f1_pct_zero\\\": 4.29,\\n    \\\"delta\\\": 82.43\\n  },\\n  {\\n    \\\"label\\\": \\\"Qwen3-8B / SciERC / T=0.5 / seed=42 (ablation)\\\",\\n    \\\"dir\\\": \\\"exp_026_t05\\\",\\n    \\\"dataset\\\": \\\"scierc\\\",\\n    \\\"model\\\": \\\"Qwen3-8B\\\",\\n    \\\"T\\\": 0.5,\\n    \\\"seed\\\": 42,\\n    \\\"status\\\": \\\"OK\\\",\\n    \\\"n_instances\\\": 529,\\n    \\\"n_degenerate\\\": 219,\\n    \\\"degen_pct_unified\\\": 41.4,\\n    \\\"greedy_f1\\\": 64.9,\\n    \\\"old_sample_f1_pct_zero\\\": 10.33,\\n    \\\"delta\\\": 31.07\\n  },\\n  {\\n    \\\"label\\\": \\\"Qwen3-8B / SciERC / T=0.8 / seed=42 (ablation)\\\",\\n    \\\"dir\\\": \\\"exp_026_t08\\\",\\n    \\\"dataset\\\": \\\"scierc\\\",\\n    \\\"model\\\": \\\"Qwen3-8B\\\",\\n    \\\"T\\\": 0.8,\\n    \\\"seed\\\": 42,\\n    \\\"status\\\": \\\"OK\\\",\\n    \\\"n_instances\\\": 529,\\n    \\\"n_degenerate\\\": 126,\\n    \\\"degen_pct_unified\\\": 23.82,\\n    \\\"greedy_f1\\\": 64.39,\\n    \\\"old_sample_f1_pct_zero\\\": 11.15,\\n    \\\"delta\\\": 12.67\\n  },\\n  {\\n    \\\"label\\\": \\\"Qwen3-8B / SciERC / T=1.2 / seed=42 (ablation)\\\",\\n    \\\"dir\\\": \\\"exp_026_t12\\\",\\n    \\\"dataset\\\": \\\"scierc\\\",\\n    \\\"model\\\": \\\"Qwen3-8B\\\",\\n    \\\"T\\\": 1.2,\\n    \\\"seed\\\": 42,\\n    \\\"status\\\": \\\"OK\\\",\\n    \\\"n_instances\\\": 529,\\n    \\\"n_degenerate\\\": 79,\\n    \\\"degen_pct_unified\\\": 14.93,\\n    \\\"greedy_f1\\\": 64.25,\\n    \\\"old_sample_f1_pct_zero\\\": 13.87,\\n    \\\"delta\\\": 1.06\\n  },\\n  {\\n    \\\"label\\\": \\\"Qwen3-4B / SciERC / T=1.0 / seed=42\\\",\\n    \\\"dir\\\": \\\"exp_qwen3_4b_scierc_scs_inference\\\",\\n    \\\"dataset\\\": \\\"scierc\\\",\\n    \\\"model\\\": \\\"Qwen3-4B\\\",\\n    \\\"T\\\": 1.0,\\n    \\\"seed\\\": 42,\\n    \\\"status\\\": \\\"OK\\\",\\n    \\\"n_instances\\\": 529,\\n    \\\"n_degenerate\\\": 55,\\n    \\\"degen_pct_unified\\\": 10.4,\\n    \\\"greedy_f1\\\": 66.22,\\n    \\\"old_sample_f1_pct_zero\\\": 11.37,\\n    \\\"delta\\\": -0.97\\n  },\\n  {\\n    \\\"label\\\": \\\"Qwen3-4B / CoNLL / T=1.0 / seed=42\\\",\\n    \\\"dir\\\": \\\"exp_qwen3_4b_conll_scs_inference_v2\\\",\\n    \\\"dataset\\\": \\\"conll2003\\\",\\n    \\\"model\\\": \\\"Qwen3-4B\\\",\\n    \\\"T\\\": 1.0,\\n    \\\"seed\\\": 42,\\n    \\\"status\\\": \\\"OK\\\",\\n    \\\"n_instances\\\": 2756,\\n    \\\"n_degenerate\\\": 2496,\\n    \\\"degen_pct_unified\\\": 90.57,\\n    \\\"greedy_f1\\\": 92.12,\\n    \\\"old_sample_f1_pct_zero\\\": 4.38,\\n    \\\"delta\\\": 86.19\\n  }\\n]\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.98}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "685b1bf8-4822-4d28-8b85-9f3abe1bd865",
+  "uuid": "f871df1b-7b41-4581-90cb-1e9d27f87718",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[\\\\n  {\\\\n    \\\\\\\"label\\\\\\\": \\\\\\\"Qwen3-8B / SciERC / T=1.0 / seed=42\\\\\\\",\\\\n    \\\\\\\"dir\\\\\\\": \\\\\\\"exp_012_rerun_1024\\\\\\\",\\\\n    \\\\\\\"dataset\\\\\\\": \\\\\\\"scierc\\\\\\\",\\\\n    \\\\\\\"model\\\\\\\": \\\\\\\"Qwen3-8B\\\\\\\",\\\\n    \\\\\\\"T\\\\\\\": 1.0,\\\\n    \\\\\\\"seed\\\\\\\": 42,\\\\n    \\\\\\\"status\\\\\\\": \\\\\\\"OK\\\\\\\",\\\\n    \\\\\\\"n_instances\\\\\\\": 529,\\\\n    \\\\\\\"n_degenerate\\\\\\\": 94,\\\\n    \\\\\\\"degen_pct_unified\\\\\\\": 17.77,\\\\n    \\\\\\\"greedy_f1\\\\\\\": 64.39,\\\\n    \\\\\\\"old_sample_f1_pct_zero\\\\\\\": 12.59,\\\\n    \\\\\\\"delta\\\\\\\": 5.17\\\\n  },\\\\n  {\\\\n    \\\\\\\"label\\\\\\\": \\\\\\\"Qwen3-8B / SciERC / T=1.0 / seed=123\\\\\\\",\\\\n    \\\\\\\"dir\\\\\\\": \\\\\\\"exp_018_qwen_scierc_seed123\\\\\\\",\\\\n    \\\\\\\"dataset\\\\\\\": \\\\\\\"scierc\\\\\\\",\\\\n    \\\\\\\"model\\\\\\\": \\\\\\\"Qwen3-8B\\\\\\\",\\\\n    \\\\\\\"T\\\\\\\": 1.0,\\\\n    \\\\\\\"seed\\\\\\\": 123,\\\\n    \\\\\\\"status\\\\\\\": \\\\\\\"OK\\\\\\\",\\\\n    \\\\\\\"n_instances\\\\\\\": 529,\\\\n    \\\\\\\"n_degenerate\\\\\\\": 91,\\\\n    \\\\\\\"degen_pct_unified\\\\\\\": 17.2,\\\\n    \\\\\\\"greedy_f1\\\\\\\": 64.57,\\\\n    \\\\\\\"old_sample_f1_pct_zero\\\\\\\": 11.67,\\\\n    \\\\\\\"delta\\\\\\\": 5.53\\\\n  },\\\\n  {\\\\n    \\\\\\\"label\\\\\\\": \\\\\\\"Qwen3-8B / SciERC / T=1.0 / seed=456\\\\\\\",\\\\n    \\\\\\\"dir\\\\\\\": \\\\\\\"exp_018_qwen_scierc_seed456\\\\\\\",\\\\n    \\\\\\\"dataset\\\\\\\": \\\\\\\"scierc\\\\\\\",\\\\n    \\\\\\\"model\\\\\\\": \\\\\\\"Qwen3-8B\\\\\\\",\\\\n    \\\\\\\"T\\\\\\\": 1.0,\\\\n    \\\\\\\"seed\\\\\\\": 456,\\\\n    \\\\\\\"status\\\\\\\": \\\\\\\"OK\\\\\\\",\\\\n    \\\\\\\"n_instances\\\\\\\": 529,\\\\n    \\\\\\\"n_degenerate\\\\\\\": 108,\\\\n    \\\\\\\"degen_pct_unified\\\\\\\": 20.42,\\\\n    \\\\\\\"greedy_f1\\\\\\\": 64.78,\\\\n    \\\\\\\"old_sample_f1_pct_zero\\\\\\\": 13.26,\\\\n    \\\\\\\"delta\\\\\\\": 7.16\\\\n  },\\\\n  {\\\\n    \\\\\\\"label\\\\\\\": \\\\\\\"Qwen3-8B / CoNLL / T=1.0 N=16 / seed=42\\\\\\\",\\\\n    \\\\\\\"dir\\\\\\\": \\\\\\\"exp_002_conll_n16\\\\\\\",\\\\n    \\\\\\\"dataset\\\\\\\": \\\\\\\"conll2003\\\\\\\",\\\\n    \\\\\\\"model\\\\\\\": \\\\\\\"Qwen3-8B\\\\\\\",\\\\n    \\\\\\\"T\\\\\\\": 1.0,\\\\n    \\\\\\\"seed\\\\\\\": 42,\\\\n    \\\\\\\"N\\\\\\\": 16,\\\\n    \\\\\\\"status\\\\\\\": \\\\\\\"OK\\\\\\\",\\\\n    \\\\\\\"n_instances\\\\\\\": 2756,\\\\n    \\\\\\\"n_degenerate\\\\\\\": 1335,\\\\n    \\\\\\\"degen_pct_unified\\\\\\\": 48.44,\\\\n    \\\\\\\"greedy_f1\\\\\\\": 90.7,\\\\n    \\\\\\\"old_sample_f1_pct_zero\\\\\\\": 7.58,\\\\n    \\\\\\\"delta\\\\\\\": 40.86\\\\n  },\\\\n  {\\\\n    \\\\\\\"label\\\\\\\": \\\\\\\"Qwen3-8B / CoNLL / T=1.0 N=16 / seed=123\\\\\\\",\\\\n    \\\\\\\"dir\\\\\\\": \\\\\\\"exp_002_conll_n16_seed123\\\\\\\",\\\\n    \\\\\\\"dataset\\\\\\\": \\\\\\\"conll2003\\\\\\\",\\\\n    \\\\\\\"model\\\\\\\": \\\\\\\"Qwen3-8B\\\\\\\",\\\\n    \\\\\\\"T\\\\\\\": 1.0,\\\\n    \\\\\\\"seed\\\\\\\": 123,\\\\n    \\\\\\\"N\\\\\\\": 16,\\\\n    \\\\\\\"status\\\\\\\": \\\\\\\"OK\\\\\\\",\\\\n    \\\\\\\"n_instances\\\\\\\": 2756,\\\\n    \\\\\\\"n_degenerate\\\\\\\": 1298,\\\\n    \\\\\\\"degen_pct_unified\\\\\\\": 47.1,\\\\n    \\\\\\\"greedy_f1\\\\\\\": 90.65,\\\\n    \\\\\\\"old_sample_f1_pct_zero\\\\\\\": 7.54,\\\\n    \\\\\\\"delta\\\\\\\": 39.55\\\\n  },\\\\n  {\\\\n    \\\\\\\"label\\\\\\\": \\\\\\\"Qwen3-8B / CoNLL / T=1.0 N=16 / seed=456\\\\\\\",\\\\n    \\\\\\\"dir\\\\\\\": \\\\\\\"exp_002_conll_n16_seed456\\\\\\\",\\\\n    \\\\\\\"dataset\\\\\\\": \\\\\\\"conll2003\\\\\\\",\\\\n    \\\\\\\"model\\\\\\\": \\\\\\\"Qwen3-8B\\\\\\\",\\\\n    \\\\\\\"T\\\\\\\": 1.0,\\\\n    \\\\\\\"seed\\\\\\\": 456,\\\\n    \\\\\\\"N\\\\\\\": 16,\\\\n    \\\\\\\"status\\\\\\\": \\\\\\\"OK\\\\\\\",\\\\n    \\\\\\\"n_instances\\\\\\\": 2756,\\\\n    \\\\\\\"n_degenerate\\\\\\\": 1528,\\\\n    \\\\\\\"degen_pct_unified\\\\\\\": 55.44,\\\\n    \\\\\\\"greedy_f1\\\\\\\": 90.71,\\\\n    \\\\\\\"old_sample_f1_pct_zero\\\\\\\": 7.02,\\\\n    \\\\\\\"delta\\\\\\\": 48.42\\\\n  },\\\\n  {\\\\n    \\\\\\\"label\\\\\\\": \\\\\\\"Qwen3-8B / FewNERD / T=1.0 / seed=42\\\\\\\",\\\\n    \\\\\\\"dir\\\\\\\": \\\\\\\"exp_027_fewnerd_n16\\\\\\\",\\\\n    \\\\\\\"dataset\\\\\\\": \\\\\\\"fewnerd\\\\\\\",\\\\n    \\\\\\\"model\\\\\\\": \\\\\\\"Qwen3-8B\\\\\\\",\\\\n    \\\\\\\"T\\\\\\\": 1.0,\\\\n    \\\\\\\"seed\\\\\\\": 42,\\\\n    \\\\\\\"status\\\\\\\": \\\\\\\"OK\\\\\\\",\\\\n    \\\\\\\"n_instances\\\\\\\": 4351,\\\\n    \\\\\\\"n_degenerate\\\\\\\": 307,\\\\n    \\\\\\\"degen_pct_unified\\\\\\\": 7.06,\\\\n    \\\\\\\"greedy_f1\\\\\\\": 74.78,\\\\n    \\\\\\\"old_sample_f1_pct_zero\\\\\\\": null,\\\\n    \\\\\\\"delta\\\\\\\": null\\\\n  },\\\\n  {\\\\n    \\\\\\\"label\\\\\\\": \\\\\\\"Qwen3-8B / FewNERD / T=1.0 / seed=123\\\\\\\",\\\\n    \\\\\\\"dir\\\\\\\": \\\\\\\"exp_021_fewnerd_n8_seed123\\\\\\\",\\\\n    \\\\\\\"dataset\\\\\\\": \\\\\\\"fewnerd\\\\\\\",\\\\n    \\\\\\\"model\\\\\\\": \\\\\\\"Qwen3-8B\\\\\\\",\\\\n    \\\\\\\"T\\\\\\\": 1.0,\\\\n    \\\\\\\"seed\\\\\\\": 123,\\\\n    \\\\\\\"status\\\\\\\": \\\\\\\"OK\\\\\\\",\\\\n    \\\\\\\"n_instances\\\\\\\": 32565,\\\\n    \\\\\\\"n_degenerate\\\\\\\": 4272,\\\\n    \\\\\\\"degen_pct_unified\\\\\\\": 13.12,\\\\n    \\\\\\\"greedy_f1\\\\\\\": 74.8,\\\\n    \\\\\\\"old_sample_f1_pct_zero\\\\\\\": 20.39,\\\\n    \\\\\\\"delta\\\\\\\": -7.27\\\\n  },\\\\n  {\\\\n    \\\\\\\"label\\\\\\\": \\\\\\\"Qwen3-8B / FewNERD / T=1.0 / seed=456\\\\\\\",\\\\n    \\\\\\\"dir\\\\\\\": \\\\\\\"exp_021_fewnerd_n8_seed456\\\\\\\",\\\\n    \\\\\\\"dataset\\\\\\\": \\\\\\\"fewnerd\\\\\\\",\\\\n    \\\\\\\"model\\\\\\\": \\\\\\\"Qwen3-8B\\\\\\\",\\\\n    \\\\\\\"T\\\\\\\": 1.0,\\\\n    \\\\\\\"seed\\\\\\\": 456,\\\\n    \\\\\\\"status\\\\\\\": \\\\\\\"OK\\\\\\\",\\\\n    \\\\\\\"n_instances\\\\\\\": 32565,\\\\n    \\\\\\\"n_degenerate\\\\\\\": 3947,\\\\n    \\\\\\\"degen_pct_unified\\\\\\\": 12.12,\\\\n    \\\\\\\"greedy_f1\\\\\\\": 74.86,\\\\n    \\\\\\\"old_sample_f1_pct_zero\\\\\\\": 19.32,\\\\n    \\\\\\\"delta\\\\\\\": -7.2\\\\n  },\\\\n  {\\\\n    \\\\\\\"label\\\\\\\": \\\\\\\"LLaMA3.1-8B / SciERC / T=1.0 / seed=42\\\\\\\",\\\\n    \\\\\\\"dir\\\\\\\": \\\\\\\"exp_018_llama_scierc_seed42_r1024\\\\\\\",\\\\n    \\\\\\\"dataset\\\\\\\": \\\\\\\"scierc\\\\\\\",\\\\n    \\\\\\\"model\\\\\\\": \\\\\\\"LLaMA3.1-8B\\\\\\\",\\\\n    \\\\\\\"T\\\\\\\": 1.0,\\\\n    \\\\\\\"seed\\\\\\\": 42,\\\\n    \\\\\\\"status\\\\\\\": \\\\\\\"OK\\\\\\\",\\\\n    \\\\\\\"n_instances\\\\\\\": 529,\\\\n    \\\\\\\"n_degenerate\\\\\\\": 132,\\\\n    \\\\\\\"degen_pct_unified\\\\\\\": 24.95,\\\\n    \\\\\\\"greedy_f1\\\\\\\": 64.6,\\\\n    \\\\\\\"old_sample_f1_pct_zero\\\\\\\": 11.44,\\\\n    \\\\\\\"delta\\\\\\\": 13.52\\\\n  },\\\\n  {\\\\n    \\\\\\\"label\\\\\\\": \\\\\\\"LLaMA3.1-8B / SciERC / T=1.0 / seed=123\\\\\\\",\\\\n    \\\\\\\"dir\\\\\\\": \\\\\\\"exp_018_llama_scierc_seed123\\\\\\\",\\\\n    \\\\\\\"dataset\\\\\\\": \\\\\\\"scierc\\\\\\\",\\\\n    \\\\\\\"model\\\\\\\": \\\\\\\"LLaMA3.1-8B\\\\\\\",\\\\n    \\\\\\\"T\\\\\\\": 1.0,\\\\n    \\\\\\\"seed\\\\\\\": 123,\\\\n    \\\\\\\"status\\\\\\\": \\\\\\\"OK\\\\\\\",\\\\n    \\\\\\\"n_instances\\\\\\\": 529,\\\\n    \\\\\\\"n_degenerate\\\\\\\": 141,\\\\n    \\\\\\\"degen_pct_unified\\\\\\\": 26.65,\\\\n    \\\\\\\"greedy_f1\\\\\\\": 64.54,\\\\n    \\\\\\\"old_sample_f1_pct_zero\\\\\\\": 11.11,\\\\n    \\\\\\\"delta\\\\\\\": 15.55\\\\n  },\\\\n  {\\\\n    \\\\\\\"label\\\\\\\": \\\\\\\"LLaMA3.1-8B / SciERC / T=1.0 / seed=456\\\\\\\",\\\\n    \\\\\\\"dir\\\\\\\": \\\\\\\"exp_018_llama_scierc_seed456_r1024\\\\\\\",\\\\n    \\\\\\\"dataset\\\\\\\": \\\\\\\"scierc\\\\\\\",\\\\n    \\\\\\\"model\\\\\\\": \\\\\\\"LLaMA3.1-8B\\\\\\\",\\\\n    \\\\\\\"T\\\\\\\": 1.0,\\\\n    \\\\\\\"seed\\\\\\\": 456,\\\\n    \\\\\\\"status\\\\\\\": \\\\\\\"OK\\\\\\\",\\\\n    \\\\\\\"n_instances\\\\\\\": 529,\\\\n    \\\\\\\"n_degenerate\\\\\\\": 145,\\\\n    \\\\\\\"degen_pct_unified\\\\\\\": 27.41,\\\\n    \\\\\\\"greedy_f1\\\\\\\": 64.59,\\\\n    \\\\\\\"old_sample_f1_pct_zero\\\\\\\": 11.65,\\\\n    \\\\\\\"delta\\\\\\\": 15.76\\\\n  },\\\\n  {\\\\n    \\\\\\\"label\\\\\\\": \\\\\\\"LLaMA3.1-8B / CoNLL / T=1.0 N=16 / seed=42\\\\\\\",\\\\n    \\\\\\\"dir\\\\\\\": \\\\\\\"exp_017_llama_conll_n16_r1024\\\\\\\",\\\\n    \\\\\\\"dataset\\\\\\\": \\\\\\\"conll2003\\\\\\\",\\\\n    \\\\\\\"model\\\\\\\": \\\\\\\"LLaMA3.1-8B\\\\\\\",\\\\n    \\\\\\\"T\\\\\\\": 1.0,\\\\n    \\\\\\\"seed\\\\\\\": 42,\\\\n    \\\\\\\"N\\\\\\\": 16,\\\\n    \\\\\\\"status\\\\\\\": \\\\\\\"OK\\\\\\\",\\\\n    \\\\\\\"n_instances\\\\\\\": 2756,\\\\n    \\\\\\\"n_degenerate\\\\\\\": 2383,\\\\n    \\\\\\\"degen_pct_unified\\\\\\\": 86.47,\\\\n    \\\\\\\"greedy_f1\\\\\\\": 92.39,\\\\n    \\\\\\\"old_sample_f1_pct_zero\\\\\\\": 4.29,\\\\n    \\\\\\\"delta\\\\\\\": 82.17\\\\n  },\\\\n  {\\\\n    \\\\\\\"label\\\\\\\": \\\\\\\"LLaMA3.1-8B / CoNLL / T=1.0 N=16 / seed=123\\\\\\\",\\\\n    \\\\\\\"dir\\\\\\\": \\\\\\\"exp_017_llama_conll_n16_s123_r1024\\\\\\\",\\\\n    \\\\\\\"dataset\\\\\\\": \\\\\\\"conll2003\\\\\\\",\\\\n    \\\\\\\"model\\\\\\\": \\\\\\\"LLaMA3.1-8B\\\\\\\",\\\\n    \\\\\\\"T\\\\\\\": 1.0,\\\\n    \\\\\\\"seed\\\\\\\": 123,\\\\n    \\\\\\\"N\\\\\\\": 16,\\\\n    \\\\\\\"status\\\\\\\": \\\\\\\"OK\\\\\\\",\\\\n    \\\\\\\"n_instances\\\\\\\": 2756,\\\\n    \\\\\\\"n_degenerate\\\\\\\": 2380,\\\\n    \\\\\\\"degen_pct_unified\\\\\\\": 86.36,\\\\n    \\\\\\\"greedy_f1\\\\\\\": 92.38,\\\\n    \\\\\\\"old_sample_f1_pct_zero\\\\\\\": 4.3,\\\\n    \\\\\\\"delta\\\\\\\": 82.06\\\\n  },\\\\n  {\\\\n    \\\\\\\"label\\\\\\\": \\\\\\\"LLaMA3.1-8B / CoNLL / T=1.0 N=16 / seed=456\\\\\\\",\\\\n    \\\\\\\"dir\\\\\\\": \\\\\\\"exp_017_llama_conll_n16_s456_r1024\\\\\\\",\\\\n    \\\\\\\"dataset\\\\\\\": \\\\\\\"conll2003\\\\\\\",\\\\n    \\\\\\\"model\\\\\\\": \\\\\\\"LLaMA3.1-8B\\\\\\\",\\\\n    \\\\\\\"T\\\\\\\": 1.0,\\\\n    \\\\\\\"seed\\\\\\\": 456,\\\\n    \\\\\\\"N\\\\\\\": 16,\\\\n    \\\\\\\"status\\\\\\\": \\\\\\\"OK\\\\\\\",\\\\n    \\\\\\\"n_instances\\\\\\\": 2756,\\\\n    \\\\\\\"n_degenerate\\\\\\\": 2390,\\\\n    \\\\\\\"degen_pct_unified\\\\\\\": 86.72,\\\\n    \\\\\\\"greedy_f1\\\\\\\": 92.42,\\\\n    \\\\\\\"old_sample_f1_pct_zero\\\\\\\": 4.29,\\\\n    \\\\\\\"delta\\\\\\\": 82.43\\\\n  },\\\\n  {\\\\n    \\\\\\\"label\\\\\\\": \\\\\\\"Qwen3-8B / SciERC / T=0.5 / seed=42 (ablation)\\\\\\\",\\\\n    \\\\\\\"dir\\\\\\\": \\\\\\\"exp_026_t05\\\\\\\",\\\\n    \\\\\\\"dataset\\\\\\\": \\\\\\\"scierc\\\\\\\",\\\\n    \\\\\\\"model\\\\\\\": \\\\\\\"Qwen3-8B\\\\\\\",\\\\n    \\\\\\\"T\\\\\\\": 0.5,\\\\n    \\\\\\\"seed\\\\\\\": 42,\\\\n    \\\\\\\"status\\\\\\\": \\\\\\\"OK\\\\\\\",\\\\n    \\\\\\\"n_instances\\\\\\\": 529,\\\\n    \\\\\\\"n_degenerate\\\\\\\": 219,\\\\n    \\\\\\\"degen_pct_unified\\\\\\\": 41.4,\\\\n    \\\\\\\"greedy_f1\\\\\\\": 64.9,\\\\n    \\\\\\\"old_sample_f1_pct_zero\\\\\\\": 10.33,\\\\n    \\\\\\\"delta\\\\\\\": 31.07\\\\n  },\\\\n  {\\\\n    \\\\\\\"label\\\\\\\": \\\\\\\"Qwen3-8B / SciERC / T=0.8 / seed=42 (ablation)\\\\\\\",\\\\n    \\\\\\\"dir\\\\\\\": \\\\\\\"exp_026_t08\\\\\\\",\\\\n    \\\\\\\"dataset\\\\\\\": \\\\\\\"scierc\\\\\\\",\\\\n    \\\\\\\"model\\\\\\\": \\\\\\\"Qwen3-8B\\\\\\\",\\\\n    \\\\\\\"T\\\\\\\": 0.8,\\\\n    \\\\\\\"seed\\\\\\\": 42,\\\\n    \\\\\\\"status\\\\\\\": \\\\\\\"OK\\\\\\\",\\\\n    \\\\\\\"n_instances\\\\\\\": 529,\\\\n    \\\\\\\"n_degenerate\\\\\\\": 126,\\\\n    \\\\\\\"degen_pct_unified\\\\\\\": 23.82,\\\\n    \\\\\\\"greedy_f1\\\\\\\": 64.39,\\\\n    \\\\\\\"old_sample_f1_pct_zero\\\\\\\": 11.15,\\\\n    \\\\\\\"delta\\\\\\\": 12.67\\\\n  },\\\\n  {\\\\n    \\\\\\\"label\\\\\\\": \\\\\\\"Qwen3-8B / SciERC / T=1.2 / seed=42 (ablation)\\\\\\\",\\\\n    \\\\\\\"dir\\\\\\\": \\\\\\\"exp_026_t12\\\\\\\",\\\\n    \\\\\\\"dataset\\\\\\\": \\\\\\\"scierc\\\\\\\",\\\\n    \\\\\\\"model\\\\\\\": \\\\\\\"Qwen3-8B\\\\\\\",\\\\n    \\\\\\\"T\\\\\\\": 1.2,\\\\n    \\\\\\\"seed\\\\\\\": 42,\\\\n    \\\\\\\"status\\\\\\\": \\\\\\\"OK\\\\\\\",\\\\n    \\\\\\\"n_instances\\\\\\\": 529,\\\\n    \\\\\\\"n_degenerate\\\\\\\": 79,\\\\n    \\\\\\\"degen_pct_unified\\\\\\\": 14.93,\\\\n    \\\\\\\"greedy_f1\\\\\\\": 64.25,\\\\n    \\\\\\\"old_sample_f1_pct_zero\\\\\\\": 13.87,\\\\n    \\\\\\\"delta\\\\\\\": 1.06\\\\n  },\\\\n  {\\\\n    \\\\\\\"label\\\\\\\": \\\\\\\"Qwen3-4B / SciERC / T=1.0 / seed=42\\\\\\\",\\\\n    \\\\\\\"dir\\\\\\\": \\\\\\\"exp_qwen3_4b_scierc_scs_inference\\\\\\\",\\\\n    \\\\\\\"dataset\\\\\\\": \\\\\\\"scierc\\\\\\\",\\\\n    \\\\\\\"model\\\\\\\": \\\\\\\"Qwen3-4B\\\\\\\",\\\\n    \\\\\\\"T\\\\\\\": 1.0,\\\\n    \\\\\\\"seed\\\\\\\": 42,\\\\n    \\\\\\\"status\\\\\\\": \\\\\\\"OK\\\\\\\",\\\\n    \\\\\\\"n_instances\\\\\\\": 529,\\\\n    \\\\\\\"n_degenerate\\\\\\\": 55,\\\\n    \\\\\\\"degen_pct_unified\\\\\\\": 10.4,\\\\n    \\\\\\\"greedy_f1\\\\\\\": 66.22,\\\\n    \\\\\\\"old_sample_f1_pct_zero\\\\\\\": 11.37,\\\\n    \\\\\\\"delta\\\\\\\": -0.97\\\\n  },\\\\n  {\\\\n    \\\\\\\"label\\\\\\\": \\\\\\\"Qwen3-4B / CoNLL / T=1.0 / seed=42\\\\\\\",\\\\n    \\\\\\\"dir\\\\\\\": \\\\\\\"exp_qwen3_4b_conll_scs_inference_v2\\\\\\\",\\\\n    \\\\\\\"dataset\\\\\\\": \\\\\\\"conll2003\\\\\\\",\\\\n    \\\\\\\"model\\\\\\\": \\\\\\\"Qwen3-4B\\\\\\\",\\\\n    \\\\\\\"T\\\\\\\": 1.0,\\\\n    \\\\\\\"seed\\\\\\\": 42,\\\\n    \\\\\\\"status\\\\\\\": \\\\\\\"OK\\\\\\\",\\\\n    \\\\\\\"n_instances\\\\\\\": 2756,\\\\n    \\\\\\\"n_degenerate\\\\\\\": 2496,\\\\n    \\\\\\\"degen_pct_unified\\\\\\\": 90.57,\\\\n    \\\\\\\"greedy_f1\\\\\\\": 92.12,\\\\n    \\\\\\\"old_sample_f1_pct_zero\\\\\\\": 4.38,\\\\n    \\\\\\\"delta\\\\\\\": 86.19\\\\n  }\\\\n]\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.98}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"[\\n  {\\n    \\\"label\\\": \\\"Qwen3-8B / SciERC / T=1.0 / seed=42\\\",\\n    \\\"dir\\\": \\\"exp_012_rerun_1024\\\",\\n    \\\"dataset\\\": \\\"scierc\\\",\\n    \\\"model\\\": \\\"Qwen3-8B\\\",\\n    \\\"T\\\": 1.0,\\n    \\\"seed\\\": 42,\\n    \\\"status\\\": \\\"OK\\\",\\n    \\\"n_instances\\\": 529,\\n    \\\"n_degenerate\\\": 94,\\n    \\\"degen_pct_unified\\\": 17.77,\\n    \\\"greedy_f1\\\": 64.39,\\n    \\\"old_sample_f1_pct_zero\\\": 12.59,\\n    \\\"delta\\\": 5.17\\n  },\\n  {\\n    \\\"label\\\": \\\"Qwen3-8B / SciERC / T=1.0 / seed=123\\\",\\n    \\\"dir\\\": \\\"exp_018_qwen_scierc_seed123\\\",\\n    \\\"dataset\\\": \\\"scierc\\\",\\n    \\\"model\\\": \\\"Qwen3-8B\\\",\\n    \\\"T\\\": 1.0,\\n    \\\"seed\\\": 123,\\n    \\\"status\\\": \\\"OK\\\",\\n    \\\"n_instances\\\": 529,\\n    \\\"n_degenerate\\\": 91,\\n    \\\"degen_pct_unified\\\": 17.2,\\n    \\\"greedy_f1\\\": 64.57,\\n    \\\"old_sample_f1_pct_zero\\\": 11.67,\\n    \\\"delta\\\": 5.53\\n  },\\n  {\\n    \\\"label\\\": \\\"Qwen3-8B / SciERC / T=1.0 / seed=456\\\",\\n    \\\"dir\\\": \\\"exp_018_qwen_scierc_seed456\\\",\\n    \\\"dataset\\\": \\\"scierc\\\",\\n    \\\"model\\\": \\\"Qwen3-8B\\\",\\n    \\\"T\\\": 1.0,\\n    \\\"seed\\\": 456,\\n    \\\"status\\\": \\\"OK\\\",\\n    \\\"n_instances\\\": 529,\\n    \\\"n_degenerate\\\": 108,\\n    \\\"degen_pct_unified\\\": 20.42,\\n    \\\"greedy_f1\\\": 64.78,\\n    \\\"old_sample_f1_pct_zero\\\": 13.26,\\n    \\\"delta\\\": 7.16\\n  },\\n  {\\n    \\\"label\\\": \\\"Qwen3-8B / CoNLL / T=1.0 N=16 / seed=42\\\",\\n    \\\"dir\\\": \\\"exp_002_conll_n16\\\",\\n    \\\"dataset\\\": \\\"conll2003\\\",\\n    \\\"model\\\": \\\"Qwen3-8B\\\",\\n    \\\"T\\\": 1.0,\\n    \\\"seed\\\": 42,\\n    \\\"N\\\": 16,\\n    \\\"status\\\": \\\"OK\\\",\\n    \\\"n_instances\\\": 2756,\\n    \\\"n_degenerate\\\": 1335,\\n    \\\"degen_pct_unified\\\": 48.44,\\n    \\\"greedy_f1\\\": 90.7,\\n    \\\"old_sample_f1_pct_zero\\\": 7.58,\\n    \\\"delta\\\": 40.86\\n  },\\n  {\\n    \\\"label\\\": \\\"Qwen3-8B / CoNLL / T=1.0 N=16 / seed=123\\\",\\n    \\\"dir\\\": \\\"exp_002_conll_n16_seed123\\\",\\n    \\\"dataset\\\": \\\"conll2003\\\",\\n    \\\"model\\\": \\\"Qwen3-8B\\\",\\n    \\\"T\\\": 1.0,\\n    \\\"seed\\\": 123,\\n    \\\"N\\\": 16,\\n    \\\"status\\\": \\\"OK\\\",\\n    \\\"n_instances\\\": 2756,\\n    \\\"n_degenerate\\\": 1298,\\n    \\\"degen_pct_unified\\\": 47.1,\\n    \\\"greedy_f1\\\": 90.65,\\n    \\\"old_sample_f1_pct_zero\\\": 7.54,\\n    \\\"delta\\\": 39.55\\n  },\\n  {\\n    \\\"label\\\": \\\"Qwen3-8B / CoNLL / T=1.0 N=16 / seed=456\\\",\\n    \\\"dir\\\": \\\"exp_002_conll_n16_seed456\\\",\\n    \\\"dataset\\\": \\\"conll2003\\\",\\n    \\\"model\\\": \\\"Qwen3-8B\\\",\\n    \\\"T\\\": 1.0,\\n    \\\"seed\\\": 456,\\n    \\\"N\\\": 16,\\n    \\\"status\\\": \\\"OK\\\",\\n    \\\"n_instances\\\": 2756,\\n    \\\"n_degenerate\\\": 1528,\\n    \\\"degen_pct_unified\\\": 55.44,\\n    \\\"greedy_f1\\\": 90.71,\\n    \\\"old_sample_f1_pct_zero\\\": 7.02,\\n    \\\"delta\\\": 48.42\\n  },\\n  {\\n    \\\"label\\\": \\\"Qwen3-8B / FewNERD / T=1.0 / seed=42\\\",\\n    \\\"dir\\\": \\\"exp_027_fewnerd_n16\\\",\\n    \\\"dataset\\\": \\\"fewnerd\\\",\\n    \\\"model\\\": \\\"Qwen3-8B\\\",\\n    \\\"T\\\": 1.0,\\n    \\\"seed\\\": 42,\\n    \\\"status\\\": \\\"OK\\\",\\n    \\\"n_instances\\\": 4351,\\n    \\\"n_degenerate\\\": 307,\\n    \\\"degen_pct_unified\\\": 7.06,\\n    \\\"greedy_f1\\\": 74.78,\\n    \\\"old_sample_f1_pct_zero\\\": null,\\n    \\\"delta\\\": null\\n  },\\n  {\\n    \\\"label\\\": \\\"Qwen3-8B / FewNERD / T=1.0 / seed=123\\\",\\n    \\\"dir\\\": \\\"exp_021_fewnerd_n8_seed123\\\",\\n    \\\"dataset\\\": \\\"fewnerd\\\",\\n    \\\"model\\\": \\\"Qwen3-8B\\\",\\n    \\\"T\\\": 1.0,\\n    \\\"seed\\\": 123,\\n    \\\"status\\\": \\\"OK\\\",\\n    \\\"n_instances\\\": 32565,\\n    \\\"n_degenerate\\\": 4272,\\n    \\\"degen_pct_unified\\\": 13.12,\\n    \\\"greedy_f1\\\": 74.8,\\n    \\\"old_sample_f1_pct_zero\\\": 20.39,\\n    \\\"delta\\\": -7.27\\n  },\\n  {\\n    \\\"label\\\": \\\"Qwen3-8B / FewNERD / T=1.0 / seed=456\\\",\\n    \\\"dir\\\": \\\"exp_021_fewnerd_n8_seed456\\\",\\n    \\\"dataset\\\": \\\"fewnerd\\\",\\n    \\\"model\\\": \\\"Qwen3-8B\\\",\\n    \\\"T\\\": 1.0,\\n    \\\"seed\\\": 456,\\n    \\\"status\\\": \\\"OK\\\",\\n    \\\"n_instances\\\": 32565,\\n    \\\"n_degenerate\\\": 3947,\\n    \\\"degen_pct_unified\\\": 12.12,\\n    \\\"greedy_f1\\\": 74.86,\\n    \\\"old_sample_f1_pct_zero\\\": 19.32,\\n    \\\"delta\\\": -7.2\\n  },\\n  {\\n    \\\"label\\\": \\\"LLaMA3.1-8B / SciERC / T=1.0 / seed=42\\\",\\n    \\\"dir\\\": \\\"exp_018_llama_scierc_seed42_r1024\\\",\\n    \\\"dataset\\\": \\\"scierc\\\",\\n    \\\"model\\\": \\\"LLaMA3.1-8B\\\",\\n    \\\"T\\\": 1.0,\\n    \\\"seed\\\": 42,\\n    \\\"status\\\": \\\"OK\\\",\\n    \\\"n_instances\\\": 529,\\n    \\\"n_degenerate\\\": 132,\\n    \\\"degen_pct_unified\\\": 24.95,\\n    \\\"greedy_f1\\\": 64.6,\\n    \\\"old_sample_f1_pct_zero\\\": 11.44,\\n    \\\"delta\\\": 13.52\\n  },\\n  {\\n    \\\"label\\\": \\\"LLaMA3.1-8B / SciERC / T=1.0 / seed=123\\\",\\n    \\\"dir\\\": \\\"exp_018_llama_scierc_seed123\\\",\\n    \\\"dataset\\\": \\\"scierc\\\",\\n    \\\"model\\\": \\\"LLaMA3.1-8B\\\",\\n    \\\"T\\\": 1.0,\\n    \\\"seed\\\": 123,\\n    \\\"status\\\": \\\"OK\\\",\\n    \\\"n_instances\\\": 529,\\n    \\\"n_degenerate\\\": 141,\\n    \\\"degen_pct_unified\\\": 26.65,\\n    \\\"greedy_f1\\\": 64.54,\\n    \\\"old_sample_f1_pct_zero\\\": 11.11,\\n    \\\"delta\\\": 15.55\\n  },\\n  {\\n    \\\"label\\\": \\\"LLaMA3.1-8B / SciERC / T=1.0 / seed=456\\\",\\n    \\\"dir\\\": \\\"exp_018_llama_scierc_seed456_r1024\\\",\\n    \\\"dataset\\\": \\\"scierc\\\",\\n    \\\"model\\\": \\\"LLaMA3.1-8B\\\",\\n    \\\"T\\\": 1.0,\\n    \\\"seed\\\": 456,\\n    \\\"status\\\": \\\"OK\\\",\\n    \\\"n_instances\\\": 529,\\n    \\\"n_degenerate\\\": 145,\\n    \\\"degen_pct_unified\\\": 27.41,\\n    \\\"greedy_f1\\\": 64.59,\\n    \\\"old_sample_f1_pct_zero\\\": 11.65,\\n    \\\"delta\\\": 15.76\\n  },\\n  {\\n    \\\"label\\\": \\\"LLaMA3.1-8B / CoNLL / T=1.0 N=16 / seed=42\\\",\\n    \\\"dir\\\": \\\"exp_017_llama_conll_n16_r1024\\\",\\n    \\\"dataset\\\": \\\"conll2003\\\",\\n    \\\"model\\\": \\\"LLaMA3.1-8B\\\",\\n    \\\"T\\\": 1.0,\\n    \\\"seed\\\": 42,\\n    \\\"N\\\": 16,\\n    \\\"status\\\": \\\"OK\\\",\\n    \\\"n_instances\\\": 2756,\\n    \\\"n_degenerate\\\": 2383,\\n    \\\"degen_pct_unified\\\": 86.47,\\n    \\\"greedy_f1\\\": 92.39,\\n    \\\"old_sample_f1_pct_zero\\\": 4.29,\\n    \\\"delta\\\": 82.17\\n  },\\n  {\\n    \\\"label\\\": \\\"LLaMA3.1-8B / CoNLL / T=1.0 N=16 / seed=123\\\",\\n    \\\"dir\\\": \\\"exp_017_llama_conll_n16_s123_r1024\\\",\\n    \\\"dataset\\\": \\\"conll2003\\\",\\n    \\\"model\\\": \\\"LLaMA3.1-8B\\\",\\n    \\\"T\\\": 1.0,\\n    \\\"seed\\\": 123,\\n    \\\"N\\\": 16,\\n    \\\"status\\\": \\\"OK\\\",\\n    \\\"n_instances\\\": 2756,\\n    \\\"n_degenerate\\\": 2380,\\n    \\\"degen_pct_unified\\\": 86.36,\\n    \\\"greedy_f1\\\": 92.38,\\n    \\\"old_sample_f1_pct_zero\\\": 4.3,\\n    \\\"delta\\\": 82.06\\n  },\\n  {\\n    \\\"label\\\": \\\"LLaMA3.1-8B / CoNLL / T=1.0 N=16 / seed=456\\\",\\n    \\\"dir\\\": \\\"exp_017_llama_conll_n16_s456_r1024\\\",\\n    \\\"dataset\\\": \\\"conll2003\\\",\\n    \\\"model\\\": \\\"LLaMA3.1-8B\\\",\\n    \\\"T\\\": 1.0,\\n    \\\"seed\\\": 456,\\n    \\\"N\\\": 16,\\n    \\\"status\\\": \\\"OK\\\",\\n    \\\"n_instances\\\": 2756,\\n    \\\"n_degenerate\\\": 2390,\\n    \\\"degen_pct_unified\\\": 86.72,\\n    \\\"greedy_f1\\\": 92.42,\\n    \\\"old_sample_f1_pct_zero\\\": 4.29,\\n    \\\"delta\\\": 82.43\\n  },\\n  {\\n    \\\"label\\\": \\\"Qwen3-8B / SciERC / T=0.5 / seed=42 (ablation)\\\",\\n    \\\"dir\\\": \\\"exp_026_t05\\\",\\n    \\\"dataset\\\": \\\"scierc\\\",\\n    \\\"model\\\": \\\"Qwen3-8B\\\",\\n    \\\"T\\\": 0.5,\\n    \\\"seed\\\": 42,\\n    \\\"status\\\": \\\"OK\\\",\\n    \\\"n_instances\\\": 529,\\n    \\\"n_degenerate\\\": 219,\\n    \\\"degen_pct_unified\\\": 41.4,\\n    \\\"greedy_f1\\\": 64.9,\\n    \\\"old_sample_f1_pct_zero\\\": 10.33,\\n    \\\"delta\\\": 31.07\\n  },\\n  {\\n    \\\"label\\\": \\\"Qwen3-8B / SciERC / T=0.8 / seed=42 (ablation)\\\",\\n    \\\"dir\\\": \\\"exp_026_t08\\\",\\n    \\\"dataset\\\": \\\"scierc\\\",\\n    \\\"model\\\": \\\"Qwen3-8B\\\",\\n    \\\"T\\\": 0.8,\\n    \\\"seed\\\": 42,\\n    \\\"status\\\": \\\"OK\\\",\\n    \\\"n_instances\\\": 529,\\n    \\\"n_degenerate\\\": 126,\\n    \\\"degen_pct_unified\\\": 23.82,\\n    \\\"greedy_f1\\\": 64.39,\\n    \\\"old_sample_f1_pct_zero\\\": 11.15,\\n    \\\"delta\\\": 12.67\\n  },\\n  {\\n    \\\"label\\\": \\\"Qwen3-8B / SciERC / T=1.2 / seed=42 (ablation)\\\",\\n    \\\"dir\\\": \\\"exp_026_t12\\\",\\n    \\\"dataset\\\": \\\"scierc\\\",\\n    \\\"model\\\": \\\"Qwen3-8B\\\",\\n    \\\"T\\\": 1.2,\\n    \\\"seed\\\": 42,\\n    \\\"status\\\": \\\"OK\\\",\\n    \\\"n_instances\\\": 529,\\n    \\\"n_degenerate\\\": 79,\\n    \\\"degen_pct_unified\\\": 14.93,\\n    \\\"greedy_f1\\\": 64.25,\\n    \\\"old_sample_f1_pct_zero\\\": 13.87,\\n    \\\"delta\\\": 1.06\\n  },\\n  {\\n    \\\"label\\\": \\\"Qwen3-4B / SciERC / T=1.0 / seed=42\\\",\\n    \\\"dir\\\": \\\"exp_qwen3_4b_scierc_scs_inference\\\",\\n    \\\"dataset\\\": \\\"scierc\\\",\\n    \\\"model\\\": \\\"Qwen3-4B\\\",\\n    \\\"T\\\": 1.0,\\n    \\\"seed\\\": 42,\\n    \\\"status\\\": \\\"OK\\\",\\n    \\\"n_instances\\\": 529,\\n    \\\"n_degenerate\\\": 55,\\n    \\\"degen_pct_unified\\\": 10.4,\\n    \\\"greedy_f1\\\": 66.22,\\n    \\\"old_sample_f1_pct_zero\\\": 11.37,\\n    \\\"delta\\\": -0.97\\n  },\\n  {\\n    \\\"label\\\": \\\"Qwen3-4B / CoNLL / T=1.0 / seed=42\\\",\\n    \\\"dir\\\": \\\"exp_qwen3_4b_conll_scs_inference_v2\\\",\\n    \\\"dataset\\\": \\\"conll2003\\\",\\n    \\\"model\\\": \\\"Qwen3-4B\\\",\\n    \\\"T\\\": 1.0,\\n    \\\"seed\\\": 42,\\n    \\\"status\\\": \\\"OK\\\",\\n    \\\"n_instances\\\": 2756,\\n    \\\"n_degenerate\\\": 2496,\\n    \\\"degen_pct_unified\\\": 90.57,\\n    \\\"greedy_f1\\\": 92.12,\\n    \\\"old_sample_f1_pct_zero\\\": 4.38,\\n    \\\"delta\\\": 86.19\\n  }\\n]\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.98}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-18T20:45:49.956Z_
+
+<details><summary>↩ Tool result · `toolu_01KUm7h2BwLPvLEVF5LYXx4r`</summary>
+
+```text
+Error: result (70,750 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie/685b1bf8-4822-4d28-8b85-9f3abe1bd865/tool-results/mcp-agent-ml-research-read_registry-1779137149937.txt.
+Format: JSON with schema: {result: string}
+Use offset and limit parameters to read specific portions of the file, search within it for specific content, and jq to make structured queries.
+REQUIREMENTS FOR SUMMARIZATION/ANALYSIS/REVIEW:
+- You MUST read the content from the file at /home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie/685b1bf8-4822-4d28-8b85-9f3abe1bd865/tool-results/mcp-agent-ml-research-read_registry-1779137149937.txt in sequential chunks until 100% of the content has been read.
+- If you receive truncation warnings when reading the file, reduce the chunk size until you have read 100% of the content without truncation.
+- Before producing ANY summary or analysis, you MUST explicitly describe what portion of the content you have read. ***If you did not read the entire content, you MUST explicitly state this.***
+
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "685b1bf8-4822-4d28-8b85-9f3abe1bd865",
+  "uuid": "748f20f9-427a-4d1f-96cd-03adf506d6ac",
+  "tool_use_result": {
+    "content": "Error: result (70,750 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie/685b1bf8-4822-4d28-8b85-9f3abe1bd865/tool-results/mcp-agent-ml-research-read_registry-1779137149937.txt.\nFormat: JSON with schema: {result: string}\nUse offset and limit parameters to read specific portions of the file, search within it for specific content, and jq to make structured queries.\nREQUIREMENTS FOR SUMMARIZATION/ANALYSIS/REVIEW:\n- You MUST read the content from the file at /home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie/685b1bf8-4822-4d28-8b85-9f3abe1bd865/tool-results/mcp-agent-ml-research-read_registry-1779137149937.txt in sequential chunks until 100% of the content has been read.\n- If you receive truncation warnings when reading the file, reduce the chunk size until you have read 100% of the content without truncation.\n- Before producing ANY summary or analysis, you MUST explicitly describe what portion of the content you have read. ***If you did not read the entire content, you MUST explicitly state this.***\n",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"exp_030_conll_t12\": {\"status\": \"PREPARING\"}, \"exp_031_fewnerd_t12\": {\"status\": \"PREPARING\"}, \"exp_epoch_dgs_analysis\": {\"status\": \"DONE\"}, \"exp_diagnostic_calibration\": {\"status\": \"DONE\"}, \"exp_adaptive_temperature\": {\"status\": \"DONE\"}, \"exp_entity_consensus\": {\"status\": \"DONE\"}, \"exp_ccs_selection\": {\"status\": \"DONE\"}, \"exp_029b\": {\"status\": \"DONE\", \"metrics\": {\"greedy_f1\": 0.6467, \"degen_rate\": 0.478, \"dgs_f1\": 0.6567, \"dgs_delta_pp\": 0.99, \"oracle_headroom_pp\": 8.64, \"note\": \"unified_metrics.py canonical numbers (post-fix)\"}}, \"exp_029a\": {\"status\": \"DONE\", \"metrics\": {\"greedy_f1\": 0.6501, \"degen_rate\": 0.064, \"dgs_f1\": 0.6383, \"dgs_delta_pp\": -1.18, \"oracle_headroom_pp\": 14.97, \"note\": \"unified_metrics.py canonical numbers (post-fix)\"}}, \"exp_llama_scierc_seed456\": {\"status\": \"DONE\", \"metrics\": {\"greedy_f1\": 0.6457, \"oracle_f1\": 0.7574, \"headroom\": 0.1117, \"dgs_f1\": 0.6454, \"degen_pct\": 27.6, \"rho_SJ_full\": 0.3663, \"rho_FK_full\": 0.3115, \"rho_logprob_full\": 0.1911, \"rho_EM_full\": 0.3088, \"rho_vc_full\": 0.4135, \"auroc_SJ_full\": 0.7061, \"auroc_EM_full\": 0.7538, \"n_valid\": 529, \"n_conditional\": 478}}, \"exp_007_llama_scierc_seed123\": {\"status\": \"DONE\", \"metrics\": {\"greedy_f1\": 0.6454, \"oracle_f1\": 0.7657, \"headroom\": 0.1204, \"degen_pct\": 26.7, \"dgs_delta_pp\": -0.38, \"rho_SJ_full\": 0.3552, \"rho_voting_conf_full\": 0.4193, \"auroc_SJ_full\": 0.7092, \"auroc_EM_full\": 0.7468}}, \"exp_017_llama_conll\": {\"status\": \"DONE\", \"metrics\": {\"degeneracy_cf1_gold_filtered\": 0.894, \"n_constant_f1\": 2465, \"n_gold_filtered\": 2756, \"n_total\": 3453, \"greedy_f1\": 0.9239, \"oracle_f1\": 0.9451, \"random_f1\": 0.9207, \"headroom_pp\": 2.11, \"dgs_f1\": 0.9254, \"dgs_delta_pp\": 0.14, \"dgs_nondegen_lp_delta_pp\": 1.37, \"selection_f1\": {\"SJ\": {\"f1\": 0.9237, \"delta_pp\": -0.04}, \"FK\": {\"f1\": 0.924, \"delta_pp\": -0.02}, \"VC\": {\"f1\": 0.925, \"delta_pp\": 0.08}, \"EM\": {\"f1\": 0.9244, \"delta_pp\": 0.02}, \"LP\": {\"f1\": 0.9244, \"delta_pp\": 0.02}}, \"qe_rho_full_3seed\": {\"SJ\": {\"mean\": 0.4631, \"sd\": 0.0074}, \"FK\": {\"mean\": 0.4546, \"sd\": 0.0061}, \"EM\": {\"mean\": 0.4603, \"sd\": 0.0078}, \"VC\": {\"mean\": 0.4579, \"sd\": 0.003}, \"LP\": {\"mean\": 0.3099, \"sd\": 0.0055}}, \"qe_auroc_full_3seed\": {\"SJ\": {\"mean\": 0.736, \"sd\": 0.0064}, \"FK\": {\"mean\": 0.732, \"sd\": 0.0063}, \"EM\": {\"mean\": 0.7355, \"sd\": 0.0069}, \"VC\": {\"mean\": 0.7394, \"sd\": 0.0041}, \"LP\": {\"mean\": 0.7629, \"sd\": 0.0044}}, \"lp_range\": {\"mean\": 0.0198, \"std\": 0.0315, \"median\": 0.0002}}}, \"exp_017_llama_conll_finetune\": {\"status\": \"DONE\", \"metrics\": {\"degeneracy_rate\": 0.853, \"greedy_f1\": 0.928, \"oracle_f1\": 0.951, \"headroom\": 0.023, \"selection_f1\": 0.934, \"full_rho_SJ\": 0.45, \"full_rho_FK\": 0.443, \"full_rho_VC\": 0.437, \"full_rho_EM\": 0.448, \"full_rho_LP\": 0.273, \"full_AUROC_SJ\": 0.752, \"full_AUROC_EM\": 0.753, \"full_AUROC_LP\": 0.739, \"cond_rho_SJ\": 0.454, \"cond_rho_EM\": 0.458, \"cond_rho_LP\": 0.311, \"cond_AUROC_EM\": 0.783, \"cond_AUROC_LP\": 0.804}}, \"exp_028_entity_token_lp\": {\"status\": \"DONE\", \"metrics\": {\"greedy_f1\": 0.643, \"oracle_f1\": 0.7845, \"full_lp_global_rho\": 0.2971, \"entity_text_type_lp_global_rho\": 0.4401, \"full_lp_selection_f1\": 0.6465, \"entity_text_type_lp_selection_f1\": 0.6357, \"dilution_ratio\": 0.32, \"full_lp_within_range_median\": 0.0402, \"entity_text_type_within_range_median\": 0.1346, \"schema_only_within_range_median\": 0.0089}}, \"dgs_pilot\": {\"status\": \"PENDING\"}, \"mbr_pilot\": {\"status\": \"PENDING\"}, \"exp_026_t12_scierc\": {\"status\": \"DONE\"}, \"exp_026_t08_scierc\": {\"status\": \"DONE\"}, \"exp_026_t05_scierc\": {\"status\": \"DONE\"}, \"hidden_state_probe_conll_v2\": {\"status\": \"PREPARING\"}, \"hidden_state_probe_conll_full\": {\"status\": \"PREPARING\"}, \"exp_llama_fewnerd_lora\": {\"status\": \"RUNNING\"}, \"exp_027_mlp_verifier\": {\"status\": \"DONE\", \"metrics\": {\"lr_auroc\": 0.6522, \"mlp_auroc\": 0.6381, \"rf_auroc\": 0.5868, \"mlp_15feat_auroc\": 0.6341, \"lr_sel_f1\": 0.6406, \"mlp_sel_f1\": 0.6278, \"greedy_f1\": 0.6441, \"oracle_f1\": 0.8231, \"best_single_signal_auroc\": 0.6476, \"feature_bottleneck_confirmed\": true}}, \"exp_028_fewnerd_5epoch\": {\"status\": \"DONE\", \"metrics\": {\"degeneracy_cf1_gold\": 0.3133, \"greedy_f1\": 0.7773, \"lp_sel_delta_pp\": 0.624, \"lp_sel_f1\": 0.7835, \"oracle_f1\": 0.8723, \"within_instance_rho_mean\": 0.4066, \"within_instance_rho_median\": 0.6151}}, \"exp_028\": {\"status\": \"DONE\", \"metrics\": {\"degeneracy_cf1_gold\": 0.313, \"greedy_f1\": 0.7773, \"lp_sel_f1\": 0.7835, \"lp_sel_delta_pp\": 0.62, \"oracle_f1\": 0.8723, \"within_instance_rho\": 0.4066, \"train_loss\": 0.0189, \"eval_loss\": 0.0311}}, \"exp_024_claim_audit\": {\"status\": \"DONE\", \"metrics\": {\"consistent\": 97, \"errors\": 1, \"warnings\": 5, \"old_residuals_found\": 0}}, \"exp_026_T12\": {\"status\": \"DONE\", \"metrics\": {\"degeneracy_rate\": 0.1248, \"degeneracy_definition\": \"constant_f1_gold_filtered\", \"lp_range_mean\": 0.075, \"lp_range_std\": 0.059, \"within_instance_rho_mean\": 0.2245, \"within_instance_rho_median\": 0.3152, \"within_instance_rho_valid_pct\": 0.875, \"greedy_f1\": 0.62, \"oracle_f1\": 0.758, \"lp_sel_f1\": 0.621, \"sj_sel_f1\": 0.597, \"em_sel_f1\": 0.596, \"vc_sel_f1\": 0.582, \"sj_rho\": 0.384, \"fk_rho\": 0.386, \"lp_rho\": 0.182, \"vc_rho\": 0.342, \"sj_auroc\": 0.683, \"lp_auroc\": 0.566}}, \"exp_026_T08\": {\"status\": \"DONE\", \"metrics\": {\"degeneracy_rate\": 0.2722, \"degeneracy_definition\": \"constant_f1_gold_filtered\", \"lp_range_mean\": 0.043, \"lp_range_std\": 0.042, \"within_instance_rho_mean\": 0.1701, \"within_instance_rho_median\": 0.2635, \"within_instance_rho_valid_pct\": 0.728, \"greedy_f1\": 0.616, \"oracle_f1\": 0.737, \"lp_sel_f1\": 0.627, \"sj_sel_f1\": 0.619, \"em_sel_f1\": 0.611, \"vc_sel_f1\": 0.603, \"sj_rho\": 0.378, \"fk_rho\": 0.34, \"lp_rho\": 0.212, \"vc_rho\": 0.352, \"sj_auroc\": 0.662, \"lp_auroc\": 0.571}}, \"exp_026_T05\": {\"status\": \"DONE\", \"metrics\": {\"degeneracy_rate\": 0.4026, \"degeneracy_definition\": \"constant_f1_gold_filtered\", \"lp_range_mean\": 0.022, \"lp_range_std\": 0.021, \"within_instance_rho_mean\": 0.1306, \"within_instance_rho_median\": 0.2182, \"within_instance_rho_valid_pct\": 0.597, \"greedy_f1\": 0.617, \"oracle_f1\": 0.71, \"lp_sel_f1\": 0.622, \"sj_sel_f1\": 0.622, \"em_sel_f1\": 0.619, \"vc_sel_f1\": 0.61, \"sj_rho\": 0.333, \"fk_rho\": 0.341, \"lp_rho\": 0.208, \"vc_rho\": 0.353, \"sj_auroc\": 0.644, \"lp_auroc\": 0.577}}, \"exp_027_fewnerd_n16\": {\"status\": \"DONE\", \"metrics\": {\"LP_delta_pp\": 1.88, \"LP_delta_95CI\": [1.41, 2.37], \"degeneracy_rate\": 0.045, \"greedy_f1\": 0.7478, \"lp_sel_f1\": 0.7666, \"oracle_f1\": 0.902, \"headroom_pp\": 15.42, \"all_8_types_positive\": true, \"n_instances\": 5000, \"N_samples\": 16, \"bootstrap_p\": \"<0.001\"}}, \"exp_016_rerun_1024_bootstrap\": {\"status\": \"DONE\", \"metrics\": {\"bootstrap_ci_95\": [-0.03, 0.042], \"permutation_p\": 0.39, \"cohen_d\": 0.038, \"sign_test_win_rate\": 0.466, \"ner_logprob_vs_greedy_delta\": 0.006, \"conclusion_summary\": \"NER selection: no signal significantly outperforms greedy; RE: same conclusion\"}}, \"exp_verbalized_confidence\": {\"status\": \"DONE\", \"metrics\": {\"scierc\": {\"VerbConf_rho\": 0.2965, \"VerbConf_auroc\": 0.6811, \"VerbConf_sel_f1\": 0.6195, \"VerbConf_delta\": -0.0245, \"best_existing_rho\": 0.3792, \"VerbConf_mean\": 8.58, \"VerbConf_std\": 1.15, \"parse_fail_rate\": 0.0026}, \"conll\": {\"VerbConf_rho\": 0.3366, \"VerbConf_auroc\": 0.7469, \"VerbConf_sel_f1\": 0.8886, \"VerbConf_delta\": -0.0193, \"best_existing_rho\": 0.4507, \"VerbConf_mean\": 9.24, \"VerbConf_std\": 1.32, \"parse_fail_rate\": 0}}}, \"exp_entity_token_lp\": {\"status\": \"DONE\", \"metrics\": {\"scierc_ner\": {\"greedy_f1\": 0.643, \"full_lp_sel_f1\": 0.6465, \"entity_lp_sel_f1\": 0.6262, \"oracle_f1\": 0.7845, \"entity_lp_delta_vs_full_lp\": -0.0203}, \"conll_ner\": {\"greedy_f1\": 0.9065, \"full_lp_sel_f1\": 0.8989, \"entity_lp_sel_f1\": 0.8659, \"oracle_f1\": 0.948, \"entity_lp_delta_vs_full_lp\": -0.033}, \"finding\": \"entity-token LP strictly worse than full-sequence LP; CoNLL entity tokens saturated (79.4% tied), SciERC entity tokens too sparse (5.3% of total)\"}}, \"exp_freeform_ablation\": {\"status\": \"DONE\", \"metrics\": {\"lp_std_ratio_free_vs_constrained\": 0.97, \"lp_range_ratio\": 0.96, \"tied_fraction_constrained\": 0.597, \"tied_fraction_freeform\": 0.577, \"ner_selection_gap_constrained\": 0.0059, \"ner_selection_gap_freeform\": 0.0018, \"re_selection_gap_constrained\": -0.0068, \"re_selection_gap_freeform\": 0.0169, \"parse_rate\": 0.9995, \"ner_vc_rho_constrained\": 0.3792, \"ner_vc_rho_freeform\": 0.4089}}, \"exp_008_re_n16\": {\"status\": \"DONE\", \"metrics\": {\"ner\": {\"greedy_f1\": 0.6635, \"oracle_f1\": 0.8208, \"headroom\": 0.1572, \"rho_sj_full\": 0.377, \"rho_fk_full\": 0.2508, \"rho_logprob_full\": 0.3153, \"rho_sj_cond\": 0.3598, \"rho_fk_cond\": 0.2251, \"rho_logprob_cond\": 0.2927, \"sj_beats_fk\": true, \"rho_advantage\": 0.1262}, \"re\": {\"greedy_f1\": 0.4339, \"oracle_f1\": 0.6658, \"headroom\": 0.2319, \"rho_sj_full\": 0.2966, \"rho_fk_full\": 0.2871, \"rho_logprob_full\": 0.2986, \"rho_sj_cond\": 0.3975, \"rho_fk_cond\": 0.3774, \"rho_logprob_cond\": 0.2745, \"sj_beats_fk\": true, \"rho_advantage\": 0.0095}, \"verdict\": \"FAIL\"}}, \"exp_001_ner_n16_seed123\": {\"status\": \"DONE\", \"metrics\": {\"ner\": {\"greedy_f1\": 0.663, \"oracle_f1\": 0.809, \"headroom\": 0.146, \"rho_sj\": 0.423, \"rho_fk\": 0.29, \"rho_logprob\": 0.239, \"rho_sj_cond\": 0.423, \"rho_fk_cond\": 0.26}, \"re\": {\"greedy_f1\": 0.419, \"oracle_f1\": 0.625, \"headroom\": 0.206, \"rho_sj\": 0.267, \"rho_fk\": 0.315, \"rho_sj_cond\": 0.364, \"rho_fk_cond\": 0.331}, \"verdict\": \"FAIL\", \"verdict_note\": \"RE rho_sj=0.267 < 0.40; RE >30% samples F1=0\", \"n_instances\": 551, \"seed\": 123, \"N\": 16, \"T\": 1}}, \"exp_007_ner_multi_model\": {\"status\": \"DONE\", \"metrics\": {\"epoch\": 5, \"train_loss\": 0.0767, \"eval_loss\": 0.1049, \"train_runtime_sec\": 1494.5, \"train_samples_per_second\": 6.226, \"checkpoints\": [\"checkpoint-400\", \"checkpoint-500\", \"checkpoint-585\"], \"base_model\": \"Meta-Llama-3.1-8B-Instruct\", \"lora_r\": 32, \"lora_alpha\": 64, \"note\": \"EXIT_CODE=129 (SIGHUP) but training completed all 5 epochs before signal. Checkpoint fully intact.\"}}, \"exp_003_ner_wnut17\": {\"status\": \"DONE\", \"metrics\": {\"ner\": {\"greedy_f1\": 0.525, \"oracle_f1\": 0.664, \"headroom\": 0.139, \"rho_sj_full\": 0.082, \"rho_fk_full\": 0.124, \"rho_logprob_full\": -0.414, \"rho_sj_cond\": 0.275, \"rho_fk_cond\": 0.164, \"rho_logprob_cond\": 0.352, \"sj_beats_logprob_cond\": false}, \"n_instances\": 1287, \"n_gold_empty\": 598, \"sample_f1_mean\": 0.401, \"sample_f1_pct_zero\": 53.7, \"N\": 16, \"T\": 1, \"seed\": 42, \"verdict\": \"FAIL\", \"verdict_note\": \">30% samples F1=0; structural rho weak; logprob baseline stronger\"}}, \"exp_001_seed456_t10_full\": {\"status\": \"DONE\", \"metrics\": {\"ner\": {\"rho_sj\": 0.414, \"rho_fk\": 0.298}, \"re\": {\"rho_sj\": 0.268, \"rho_fk\": 0.26}, \"n_instances\": 551, \"N\": 16, \"T\": 1, \"seed\": 456, \"source\": \"reviewer_verified_report_json\"}}, \"exp_001_seed123_t10_full\": {\"status\": \"DONE\", \"metrics\": {\"ner\": {\"rho_sj\": 0.417, \"rho_fk\": 0.283}, \"re\": {\"rho_sj\": 0.265, \"rho_fk\": 0.315}, \"n_instances\": 551, \"N\": 16, \"T\": 1, \"seed\": 123, \"source\": \"reviewer_verified_report_json\"}}, \"exp_008_re_n16_t10_full\": {\"status\": \"DONE\", \"metrics\": {\"ner\": {\"rho_sj\": 0.444}, \"re\": {\"rho_sj\": 0.248}, \"n_instances\": 551, \"N\": 16, \"T\": 1, \"seed\": 42, \"mode\": \"RE-only\", \"source\": \"director_corrected\"}}, \"exp_007_llama_inference\": {\"status\": \"DONE\", \"metrics\": {\"ner\": {\"greedy_f1\": 0.66, \"oracle_f1\": 0.781, \"headroom\": 0.121, \"rho_fk\": 0.327, \"rho_sj\": 0.363, \"rho_fk_cond\": 0.226, \"rho_sj_cond\": 0.311, \"rho_logprob\": 0.183, \"rho_logprob_cond\": 0.109, \"structural_beats_surface\": true, \"sample_f1_pct_zero\": 11.6}, \"re\": {\"greedy_f1\": 0.434, \"oracle_f1\": 0.568, \"headroom\": 0.135, \"rho_fk\": 0.305, \"rho_sj\": 0.299, \"rho_fk_cond\": 0.259, \"rho_sj_cond\": 0.405, \"rho_logprob\": 0.288, \"rho_logprob_cond\": 0.092, \"structural_beats_surface\": false, \"sample_f1_pct_zero\": 41.2}, \"n_instances\": 551, \"N\": 8, \"T\": 1, \"seed\": 42, \"model\": \"LLaMA-3.1-8B-Instruct\", \"verdict\": \"FAIL\", \"verdict_note\": \"RE rho_sj_full=0.299 < 0.40; >30% RE samples F1=0\"}}, \"exp_003_wnut17_eval\": {\"status\": \"DONE\", \"metrics\": {\"greedy_f1\": 0.523, \"oracle_f1\": 0.664, \"headroom\": 0.141, \"rho_fk\": 0.125, \"rho_sj\": 0.089, \"rho_fk_cond\": 0.169, \"rho_sj_cond\": 0.288, \"rho_logprob_full\": -0.409, \"rho_logprob_cond\": 0.35, \"structural_beats_surface\": false, \"sample_f1_pct_zero\": 53.7, \"n_instances\": 1287, \"N\": 16, \"T\": 1, \"seed\": 42, \"model\": \"Qwen3-8B\", \"n_gold_empty_filtered\": 598, \"verdict\": \"FAIL\", \"verdict_note\": \"structural_beats_surface=false; >50% samples F1=0\"}}, \"exp_010_selection_curves\": {\"status\": \"DONE\", \"metrics\": {\"scierc_ner\": {\"n_instances\": 551, \"greedy_f1\": 0.618, \"N16\": {\"oracle\": 0.787, \"SJ\": 0.62, \"FK\": 0.621, \"logprob\": 0.621, \"voting_conf\": 0.585, \"EM\": 0.606, \"random\": 0.595}, \"N8\": {\"oracle\": 0.752, \"SJ\": 0.614, \"FK\": 0.614, \"logprob\": 0.619, \"voting_conf\": 0.591, \"EM\": 0.603, \"random\": 0.589}, \"N4\": {\"oracle\": 0.714, \"SJ\": 0.607, \"FK\": 0.608, \"logprob\": 0.616, \"voting_conf\": 0.594, \"EM\": 0.6, \"random\": 0.587}}, \"scierc_re\": {\"n_instances\": 397, \"greedy_f1\": 0.403, \"N16\": {\"oracle\": 0.631, \"SJ\": 0.397, \"FK\": 0.396, \"logprob\": 0.41, \"voting_conf\": 0.408, \"EM\": 0.381, \"random\": 0.364}, \"N8\": {\"oracle\": 0.583, \"SJ\": 0.393, \"FK\": 0.394, \"logprob\": 0.413, \"voting_conf\": 0.398, \"EM\": 0.381, \"random\": 0.363}}, \"conll_ner\": {\"n_instances\": 3453, \"greedy_f1\": 0.725, \"N8\": {\"oracle\": 0.757, \"SJ\": 0.718, \"FK\": 0.717, \"logprob\": 0.716, \"voting_conf\": 0.714, \"EM\": 0.716, \"random\": 0.69}, \"N4\": {\"oracle\": 0.746, \"SJ\": 0.714, \"FK\": 0.714, \"logprob\": 0.715, \"voting_conf\": 0.714, \"EM\": 0.712, \"random\": 0.692}}}}, \"exp_007_llama_seed456\": {\"status\": \"DONE\", \"metrics\": {\"verdict\": \"FAIL\", \"ner\": {\"greedy_f1\": 0.6597, \"oracle_f1\": 0.7575, \"oracle_headroom\": 0.0978, \"fleiss_kappa\": 0.4543, \"soft_jaccard\": 0.7491, \"rho_kappa_f1\": 0.3115, \"rho_sj_f1\": 0.3663, \"structural_gt_surface\": true}, \"re\": {\"greedy_f1\": 0.4334, \"oracle_f1\": 0.5789, \"oracle_headroom\": 0.1455, \"fleiss_kappa\": 0.3791, \"soft_jaccard\": 0.6782, \"rho_kappa_f1\": 0.3013, \"rho_sj_f1\": 0.287, \"structural_gt_surface\": false}, \"logprob_ner\": {\"rho\": 0.1911, \"auroc\": 0.5989}, \"logprob_re\": {\"rho\": 0.3246, \"auroc\": 0.6678}, \"fail_reason\": \"RE rho_sj=0.2870 < 0.40 threshold; >30% samples F1=0\"}}, \"exp_007_llama_seed123\": {\"status\": \"DONE\", \"metrics\": {\"verdict\": \"FAIL\", \"ner\": {\"greedy_f1\": 0.6605, \"oracle_f1\": 0.7703, \"headroom\": 0.1098, \"fleiss_kappa\": 0.4553, \"soft_jaccard\": 0.7525, \"rho_kappa_f1\": 0.2143, \"rho_sj_f1\": 0.3371, \"structural_gt_surface\": true}, \"re\": {\"greedy_f1\": 0.433, \"oracle_f1\": 0.5719, \"headroom\": 0.1389, \"fleiss_kappa\": 0.3851, \"soft_jaccard\": 0.6911, \"rho_kappa_f1\": 0.2844, \"rho_sj_f1\": 0.268, \"structural_gt_surface\": false}, \"fail_reasons\": [\"RE rho_sj=0.2680 < 0.40 threshold\", \">30% samples F1=0 (RE: 41.0%)\", \"RE structural not > surface (delta=-0.0165)\"]}}, \"exp_008_re_seed123\": {\"status\": \"DONE\", \"metrics\": {\"greedy_f1\": 0.4229, \"oracle_f1\": 0.6244, \"oracle_headroom\": 0.2015, \"fleiss_kappa_mean\": 0.3455, \"soft_jaccard_mean\": 0.6126, \"sample_f1_mean\": 0.3594, \"sample_f1_std\": 0.3793, \"sample_f1_zero_pct\": 44.1, \"structural_gt_surface\": false, \"rho_kappa_f1_full\": 0.3174, \"rho_sj_f1_full\": 0.2835, \"rho_kappa_f1_cond\": 0.0766, \"rho_sj_f1_cond\": 0.2877, \"logprob_auroc_full\": 0.6499, \"logprob_auroc_cond\": 0.5265, \"verdict\": \"FAIL\"}}, \"exp_001_seed42_v2\": {\"status\": \"DONE\", \"metrics\": {\"sj_rho_full\": 0.428, \"sj_rho_cond\": 0.369, \"structural_minus_surface\": 0.147, \"conclusion_note\": \"NER seed42 robustness confirmed, structural>surface +0.147\"}}, \"exp_001_seed123_v2\": {\"status\": \"DONE\", \"metrics\": {\"sj_rho_full\": 0.424, \"sj_rho_cond\": 0.376, \"structural_minus_surface\": 0.149, \"conclusion_note\": \"NER seed123 robustness confirmed, structural>surface +0.149\"}}, \"exp_008_re_n16_v2\": {\"status\": \"DONE\", \"metrics\": {\"sj_rho_full\": 0.281, \"sj_rho_cond\": 0.308, \"f1_zero_pct\": 44.3, \"conclusion_note\": \"RE N=16 v2 negative: SJ weak, 44.3% F1=0\"}}, \"exp_005_v2\": {\"status\": \"DONE\"}, \"exp_006_v2\": {\"status\": \"DONE\", \"metrics\": {\"NER_SciERC_s42\": {\"greedy\": 0.618, \"oracle\": 0.787, \"SJ\": 0.62, \"logprob\": 0.621, \"FK\": 0.621, \"EM\": 0.606, \"voting_conf\": 0.585, \"random\": 0.586}, \"NER_SciERC_s123\": {\"greedy\": 0.618, \"oracle\": 0.785, \"SJ\": 0.617, \"logprob\": 0.618, \"FK\": 0.621, \"EM\": 0.613, \"voting_conf\": 0.584, \"random\": 0.583}, \"NER_CoNLL\": {\"greedy\": 0.725, \"oracle\": 0.757, \"SJ\": 0.718, \"logprob\": 0.716, \"FK\": 0.717, \"EM\": 0.716, \"voting_conf\": 0.714, \"random\": 0.692}, \"RE_SciERC\": {\"greedy\": 0.403, \"oracle\": 0.631, \"SJ\": 0.397, \"logprob\": 0.41, \"FK\": 0.396, \"EM\": 0.381, \"voting_conf\": 0.408, \"random\": 0.364}}}, \"exp_004_v2\": {\"status\": \"DONE\"}, \"exp_009_v2\": {\"status\": \"DONE\", \"metrics\": {\"ner_seed42_global\": {\"sj_rho\": 0.431, \"fk_rho\": 0.325, \"logprob_rho\": 0.203, \"voting_conf_rho\": 0.475, \"em_rho\": 0.292}, \"ner_seed123_global\": {\"sj_rho\": 0.422, \"fk_rho\": 0.315, \"logprob_rho\": 0.226, \"voting_conf_rho\": 0.438, \"em_rho\": 0.299}, \"re_seed42_global\": {\"sj_rho\": 0.063, \"fk_rho\": 0.226, \"logprob_rho\": 0.4, \"voting_conf_rho\": 0.22, \"em_rho\": -0.132}, \"ner_seed_stability_max_delta\": 0.037, \"independent_proxies\": [\"sent_len\", \"ent_count\", \"type_diversity\"], \"inverted_u_ner\": \"not confirmed (ρ stable across independent proxies)\", \"inverted_u_re\": \"monotonic increase with complexity, not inverted-U\"}}, \"exp_016_v2\": {\"status\": \"DONE\", \"metrics\": {\"ner_conditional\": {\"n\": 529, \"best_single_signal_rho\": {\"soft_jaccard\": 0.4412}, \"best_combo_rho\": {\"sj+vc_a0.55\": 0.4552}, \"ensemble_auroc\": 0.7141, \"best_single_auroc\": {\"soft_jaccard\": 0.7166}, \"selection_f1\": {\"greedy\": 0.6442, \"logprob_best\": 0.6505, \"ensemble_best\": 0.6475, \"sj_best\": 0.6471, \"oracle\": 0.8442}}, \"re_conditional\": {\"n\": 397, \"best_single_signal_rho\": {\"voting_confidence\": 0.3849}, \"best_combo_rho\": {\"logprob+vc_a0.25\": 0.3936}, \"ensemble_auroc\": 0.6916, \"best_single_auroc\": {\"voting_confidence\": 0.7023}, \"selection_f1\": {\"greedy\": 0.403, \"logprob_best\": 0.4097, \"ensemble_best\": 0.4227, \"oracle\": 0.6306}}, \"re_full\": {\"ensemble_auroc\": 0.8608, \"best_single_auroc\": {\"voting_confidence\": 0.8248}}}}, \"exp_001_seed456_v2\": {\"status\": \"DONE\"}, \"exp_017_llama_conll_infer\": {\"status\": \"DONE\", \"metrics\": {\"greedy_f1\": 0.9266, \"oracle_f1\": 0.9443, \"oracle_headroom\": 0.0177, \"n_instances\": 3453, \"n_valid\": 2756, \"n_conditional\": 2642, \"N\": 8, \"full\": {\"SJ_rho\": 0.4314, \"FK_rho\": 0.4277, \"logprob_rho\": 0.3072, \"EM_rho\": 0.4306, \"voting_conf_rho\": 0.4256, \"SJ_AUROC\": 0.7039, \"FK_AUROC\": 0.7026, \"logprob_AUROC\": 0.761, \"EM_AUROC\": 0.7046, \"voting_conf_AUROC\": 0.7088, \"SJ_ECE\": 0.1137, \"FK_ECE\": 0.1053, \"logprob_ECE\": 0.129, \"EM_ECE\": 0.1094, \"voting_conf_ECE\": 0.0949}, \"conditional\": {\"SJ_rho\": 0.4356, \"FK_rho\": 0.431, \"logprob_rho\": 0.3282, \"EM_rho\": 0.4403, \"voting_conf_rho\": 0.3743, \"SJ_AUROC\": 0.7225, \"FK_AUROC\": 0.7208, \"logprob_AUROC\": 0.8102, \"EM_AUROC\": 0.7257, \"voting_conf_AUROC\": 0.6989, \"SJ_ECE\": 0.0829, \"FK_ECE\": 0.0796, \"logprob_ECE\": 0.0922, \"EM_ECE\": 0.0754, \"voting_conf_ECE\": 0.0784}}}, \"exp_003_wnut17_v2\": {\"status\": \"DONE\"}, \"exp_001_seed456_v2_ner\": {\"status\": \"DONE\", \"metrics\": {\"full\": {\"SJ\": {\"rho\": 0.384, \"auroc\": 0.711}, \"FK\": {\"rho\": 0.223, \"auroc\": 0.577}, \"logprob\": {\"rho\": 0.232, \"auroc\": 0.594}, \"EM\": {\"rho\": 0.316, \"auroc\": 0.768}, \"voting_conf\": {\"rho\": 0.411, \"auroc\": 0.712}}, \"conditional\": {\"SJ\": {\"rho\": 0.349, \"auroc\": 0.699}, \"FK\": {\"rho\": 0.157, \"auroc\": 0.561}, \"logprob\": {\"rho\": 0.171, \"auroc\": 0.576}, \"EM\": {\"rho\": 0.406, \"auroc\": 0.78}, \"voting_conf\": {\"rho\": 0.346, \"auroc\": 0.694}}, \"3seed_mean_SJ_rho_full\": 0.412, \"3seed_sd_SJ_rho_full\": 0.025, \"structural_beats_surface\": true, \"verdict\": \"MARGINAL\"}}, \"exp_009_v2_re_rerun\": {\"status\": \"DONE\"}, \"exp_002_conll_n16\": {\"status\": \"DONE\", \"metrics\": {\"N\": 16, \"dataset\": \"conll2003\", \"subtask\": \"ner\", \"n_instances\": 3453, \"n_valid\": 2756, \"n_conditional\": 2614, \"greedy_f1\": 0.907, \"full\": {\"SJ_rho\": 0.4496, \"FK_rho\": 0.3928, \"logprob_rho\": 0.3146, \"EM_rho\": 0.4627, \"voting_conf_rho\": 0.4286, \"SJ_AUROC\": 0.8264, \"FK_AUROC\": 0.7821, \"logprob_AUROC\": 0.7531, \"EM_AUROC\": 0.8409, \"voting_conf_AUROC\": 0.8071, \"SJ_ECE\": 0.0747, \"FK_ECE\": 0.1786, \"logprob_ECE\": 0.2031, \"EM_ECE\": 0.0786, \"voting_conf_ECE\": 0.529}, \"conditional\": {\"SJ_rho\": 0.4208, \"FK_rho\": 0.3494, \"logprob_rho\": 0.3756, \"EM_rho\": 0.4658, \"voting_conf_rho\": 0.3654, \"SJ_AUROC\": 0.8405, \"FK_AUROC\": 0.7819, \"logprob_AUROC\": 0.8259, \"EM_AUROC\": 0.8781, \"voting_conf_AUROC\": 0.7951, \"SJ_ECE\": 0.0982, \"FK_ECE\": 0.1899, \"logprob_ECE\": 0.2504, \"EM_ECE\": 0.0997, \"voting_conf_ECE\": 0.6096}, \"n8_vs_n16_delta_rho_full\": {\"SJ\": 0.0139, \"FK\": -0.007, \"logprob\": -0.0011, \"EM\": 0.012, \"voting_conf\": 0.0049}}}, \"exp_007_llama_n16\": {\"status\": \"DONE\", \"metrics\": {\"N\": 16, \"dataset\": \"scierc\", \"subtask\": \"ner\", \"n_instances\": 551, \"n_valid\": 529, \"n_conditional\": 478, \"greedy_f1\": 0.645, \"full\": {\"SJ_rho\": 0.3791, \"FK_rho\": 0.3081, \"logprob_rho\": 0.2041, \"EM_rho\": 0.3159, \"voting_conf_rho\": 0.4515, \"SJ_AUROC\": 0.717, \"FK_AUROC\": 0.6581, \"logprob_AUROC\": 0.5656, \"EM_AUROC\": 0.7686, \"voting_conf_AUROC\": 0.7266, \"SJ_ECE\": 0.1019, \"FK_ECE\": 0.1556, \"logprob_ECE\": 0.084, \"EM_ECE\": 0.1761, \"voting_conf_ECE\": 0.1365}, \"conditional\": {\"SJ_rho\": 0.3222, \"FK_rho\": 0.2182, \"logprob_rho\": 0.1286, \"EM_rho\": 0.3563, \"voting_conf_rho\": 0.3356, \"SJ_AUROC\": 0.7014, \"FK_AUROC\": 0.6392, \"logprob_AUROC\": 0.545, \"EM_AUROC\": 0.7708, \"voting_conf_AUROC\": 0.6988, \"SJ_ECE\": 0.1466, \"FK_ECE\": 0.1853, \"logprob_ECE\": 0.1141, \"EM_ECE\": 0.1887, \"voting_conf_ECE\": 0.2634}, \"n8_vs_n16_delta_rho_full\": {\"SJ\": 0.0161, \"FK\": -0.0185, \"logprob\": 0.0214, \"EM\": 0.0007, \"voting_conf\": 0.0184}}}, \"exp_017_llama_conll_n16\": {\"status\": \"DONE\", \"metrics\": {\"greedy_f1\": 0.9243, \"oracle_f1\": 0.9487, \"oracle_headroom\": 0.0244, \"n_instances\": 3453, \"n_valid\": 2756, \"n_conditional\": 2642, \"structural_beats_surface\": true, \"full\": {\"SJ_rho\": 0.4642, \"SJ_AUROC\": 0.7391, \"SJ_ECE\": 0.1131, \"FK_rho\": 0.4566, \"FK_AUROC\": 0.736, \"FK_ECE\": 0.1071, \"logprob_rho\": 0.3058, \"logprob_AUROC\": 0.7594, \"logprob_ECE\": 0.1288, \"EM_rho\": 0.4613, \"EM_AUROC\": 0.7391, \"EM_ECE\": 0.1084, \"voting_conf_rho\": 0.4554, \"voting_conf_AUROC\": 0.7406, \"voting_conf_ECE\": 0.0844}, \"conditional\": {\"SJ_rho\": 0.4597, \"SJ_AUROC\": 0.7565, \"SJ_ECE\": 0.0846, \"FK_rho\": 0.4515, \"FK_AUROC\": 0.753, \"FK_ECE\": 0.0813, \"logprob_rho\": 0.3193, \"logprob_AUROC\": 0.8023, \"logprob_ECE\": 0.0921, \"EM_rho\": 0.4618, \"EM_AUROC\": 0.7589, \"EM_ECE\": 0.0757, \"voting_conf_rho\": 0.3978, \"voting_conf_AUROC\": 0.7287, \"voting_conf_ECE\": 0.0742}, \"best_of_n\": {\"greedy\": 0.9243, \"random_avg\": 0.9213, \"sj_best\": 0.9259, \"logprob_best\": 0.925, \"voting_conf_best\": 0.9268, \"oracle\": 0.9487}, \"n8_vs_n16_delta\": {\"full_SJ_rho_delta\": 0.0328, \"full_FK_rho_delta\": 0.0289, \"full_logprob_rho_delta\": -0.0014, \"full_EM_rho_delta\": 0.0307, \"full_voting_conf_rho_delta\": 0.0298, \"cond_SJ_rho_delta\": 0.0241, \"cond_FK_rho_delta\": 0.0205, \"cond_logprob_rho_delta\": -0.0089, \"cond_EM_rho_delta\": 0.0215, \"cond_voting_conf_rho_delta\": 0.0235}}}, \"exp_015_v2\": {\"status\": \"DONE\", \"metrics\": {\"scierc_ner_avg\": {\"sj_auroc\": 0.7394, \"fk_auroc\": 0.6172, \"em_auroc\": 0.7873, \"voting_auroc\": 0.7367, \"logprob_auroc\": 0.5918}, \"scierc_re_avg\": {\"sj_auroc\": 0.6746, \"fk_auroc\": 0.5939, \"em_auroc\": 0.715, \"voting_auroc\": 0.7234, \"logprob_auroc\": 0.5849}}}, \"exp_001_n16_seed456\": {\"status\": \"DONE\", \"metrics\": {\"instance_count\": 551, \"n_valid\": 529, \"n_gold_empty\": 22, \"parse_rate\": 1, \"ner_greedy_f1\": 0.6617, \"ner_oracle_f1\": 0.8075, \"re_greedy_f1\": 0.4215, \"re_oracle_f1\": 0.4748, \"rho_sj_ner\": 0.4098, \"rho_fk_ner\": 0.2723, \"rho_vc_ner\": 0.4449, \"rho_em_ner\": 0.3363, \"rho_lp_ner\": 0.2415, \"rho_sj_re\": 0.2835, \"rho_fk_re\": 0.2929, \"auroc_sj_ner\": 0.6823, \"auroc_fk_ner\": 0.6179, \"auroc_vc_ner\": 0.6981, \"auroc_em_ner\": 0.649, \"auroc_lp_ner\": 0.5885, \"rho_note\": \"CORRECTED 2026-05-15: old values (rho_fk=0.3448,rho_sj=0.4134) included 22 gold-empty instances. Now uses gold-filtered pipeline (n=529).\"}}, \"exp_018_qwen_scierc_seed123\": {\"status\": \"DONE\"}, \"exp_018_qwen_scierc_seed456\": {\"status\": \"DONE\"}, \"exp_018_llama_scierc_seed123\": {\"status\": \"DONE\"}, \"exp_018_llama_scierc_seed456_r1024\": {\"status\": \"DONE\", \"metrics\": {\"ner_greedy_f1\": 0.6597, \"ner_oracle_f1\": 0.7683, \"ner_oracle_headroom\": 0.1086, \"ner_cond_rho_fk\": 0.1472, \"ner_cond_rho_sj\": 0.2718, \"ner_cond_rho_logprob\": 0.083, \"ner_logprob_auroc_cond\": 0.5485, \"re_greedy_f1\": 0.4338, \"re_oracle_f1\": 0.5834, \"re_oracle_headroom\": 0.1496, \"re_cond_rho_fk\": 0.2107, \"re_cond_rho_sj\": 0.3898, \"re_cond_rho_logprob\": 0.1252, \"re_logprob_auroc_cond\": 0.6119, \"ner_structural_beats_logprob\": true, \"re_structural_beats_logprob\": true}}, \"exp_018_llama_scierc_seed42_r1024\": {\"status\": \"DONE\", \"metrics\": {\"ner\": {\"full\": {\"SJ\": {\"rho\": 0.3096, \"tau\": 0.2288, \"auroc\": 0.6683}, \"FK\": {\"rho\": 0.2352, \"tau\": 0.1759, \"auroc\": 0.6069}, \"logprob\": {\"rho\": 0.1503, \"tau\": 0.1087, \"auroc\": 0.5318}, \"EM\": {\"rho\": 0.2587, \"tau\": 0.1966, \"auroc\": 0.7174}, \"voting_conf\": {\"rho\": 0.4053, \"tau\": 0.3042, \"auroc\": 0.6967}}, \"conditional\": {\"SJ\": {\"rho\": 0.2718, \"tau\": null, \"auroc\": 0.6565}, \"FK\": {\"rho\": 0.1472, \"tau\": null, \"auroc\": 0.5866}, \"logprob\": {\"rho\": 0.081, \"tau\": null, \"auroc\": 0.5129}, \"EM\": {\"rho\": 0.3165, \"tau\": null, \"auroc\": 0.7244}, \"voting_conf\": {\"rho\": 0.3078, \"tau\": null, \"auroc\": 0.6714}}, \"greedy_f1\": 0.6607, \"oracle_f1\": 0.7781, \"n_full\": 529, \"n_cond\": 478}, \"re\": {\"full\": {\"SJ\": {\"rho\": 0.2748, \"tau\": 0.2102, \"auroc\": 0.7244}, \"FK\": {\"rho\": 0.3027, \"tau\": 0.2337, \"auroc\": 0.691}, \"logprob\": {\"rho\": 0.3163, \"tau\": 0.233, \"auroc\": 0.6313}, \"EM\": {\"rho\": 0.1681, \"tau\": 0.1275, \"auroc\": 0.7697}, \"voting_conf\": {\"rho\": 0.384, \"tau\": 0.2965, \"auroc\": 0.7337}}, \"conditional\": {\"SJ\": {\"rho\": 0.3461, \"tau\": null, \"auroc\": 0.7233}, \"FK\": {\"rho\": 0.1969, \"tau\": null, \"auroc\": 0.6684}, \"logprob\": {\"rho\": 0.0888, \"tau\": null, \"auroc\": 0.5556}, \"EM\": {\"rho\": 0.4969, \"tau\": null, \"auroc\": 0.819}, \"voting_conf\": {\"rho\": 0.3433, \"tau\": null, \"auroc\": 0.7003}}, \"greedy_f1\": 0.4319, \"oracle_f1\": 0.5775, \"n_full\": 397, \"n_cond\": 251}}}, \"exp_017_llama_conll_n16_r1024\": {\"status\": \"DONE\", \"metrics\": {\"instance_count\": 3453, \"n_valid\": 2756, \"n_gold_empty\": 697, \"parse_rate\": 1, \"ner_greedy_f1\": 0.9265, \"ner_oracle_f1\": 0.9499, \"rho_fk_ner\": 0.4752, \"rho_sj_ner\": 0.4836, \"rho_vc_ner\": 0.4746, \"rho_em_ner\": 0.4818, \"rho_lp_ner\": 0.3136, \"auroc_fk_ner\": 0.7467, \"auroc_sj_ner\": 0.7496, \"auroc_vc_ner\": 0.7529, \"auroc_em_ner\": 0.7508, \"auroc_lp_ner\": 0.7661, \"auroc_note\": \"median F1=1.0, AUROC uses >=median threshold\", \"rho_note\": \"CORRECTED 2026-05-15: old values (rho_fk=0.8095,rho_sj=0.1815) were inflated/deflated by 697 gold-empty instances. Now uses gold-filtered pipeline (n=2756).\"}}, \"exp_017_llama_conll_n16_s456_r1024\": {\"status\": \"DONE\", \"metrics\": {\"instance_count\": 3453, \"n_valid\": 2756, \"n_gold_empty\": 697, \"parse_rate\": 1, \"ner_greedy_f1\": 0.9265, \"ner_oracle_f1\": 0.9499, \"rho_fk_ner\": 0.469, \"rho_sj_ner\": 0.4734, \"rho_vc_ner\": 0.4722, \"rho_em_ner\": 0.4752, \"rho_lp_ner\": 0.3099, \"auroc_fk_ner\": 0.7408, \"auroc_sj_ner\": 0.7428, \"auroc_vc_ner\": 0.7495, \"auroc_em_ner\": 0.7444, \"auroc_lp_ner\": 0.7628, \"auroc_note\": \"median F1=1.0, AUROC uses >=median threshold\", \"rho_note\": \"CORRECTED 2026-05-15: old values (rho_fk=0.8085,rho_sj=0.1895) were inflated/deflated by 697 gold-empty instances. Now uses gold-filtered pipeline (n=2756).\"}}, \"exp_017_llama_conll_n16_s123_r1024\": {\"status\": \"DONE\"}, \"exp_011_ood_scierc_to_conll\": {\"status\": \"DONE\", \"metrics\": {\"greedy_ner_f1\": 0.522, \"rho_vc\": 0.469, \"rho_sj\": 0.378, \"rho_em\": 0.3, \"rho_fk\": 0.285, \"rho_lp\": 0.246}}, \"exp_qwen3_4b_conll_scs_inference\": {\"status\": \"DONE\", \"metrics\": {\"greedy_f1\": 0.9251, \"oracle_f1\": 0.9408, \"oracle_headroom_pp\": 1.57, \"SJ_rho_full\": 0.4045, \"SJ_rho_cond\": 0.4306, \"FK_rho_full\": 0.3961, \"FK_rho_cond\": 0.42, \"LP_rho_full\": 0.3186, \"LP_rho_cond\": 0.3378, \"LP_auroc_full\": 0.7689, \"LP_auroc_cond\": 0.8153, \"fleiss_kappa_mean\": 0.9349, \"soft_jaccard_mean\": 0.9754, \"structural_beats_surface\": true, \"rho_advantage_pp\": 0.84, \"n_instances\": 3453, \"n_gold_empty_filtered\": 697, \"n_greedy_f1_zero_filtered\": 112, \"verdict\": \"MARGINAL\"}}, \"exp_qwen3_4b_scierc_finetune_v4\": {\"status\": \"DONE\", \"metrics\": {\"total_steps\": 585, \"completed_steps\": 585, \"best_checkpoint\": \"checkpoint-400\", \"best_eval_loss\": 0.0898, \"epochs\": 5}}, \"exp_011_ood_conll_to_scierc\": {\"status\": \"DONE\", \"metrics\": {\"greedy_ner_f1\": 0.009, \"greedy_re_f1\": 0.001, \"avg_structural_rho\": -0.05, \"verdict\": \"FAIL\", \"reason\": \"schema_incompatibility\", \"direction\": \"CoNLL_model_to_SciERC_data\", \"sample_f1_pct_zero_ner\": 98.06, \"rho_sj_ner\": -0.186, \"rho_fk_ner\": -0.069, \"note\": \"Schema incompatibility (CoNLL PER/ORG/LOC/MISC vs SciERC Task/Method/Material) causes catastrophic failure. Cannot evaluate confidence signals.\"}}, \"exp_freeform_seed789_v3\": {\"status\": \"DONE\", \"metrics\": {\"n_instances\": 551, \"n_samples\": 8, \"parse_rate_pct\": 100, \"elapsed_seconds\": 229.7, \"freeform_ner_selection_gap\": 0.0028, \"freeform_re_selection_gap\": 0.0219, \"freeform_lp_std\": 0.0183, \"freeform_lp_range\": 0.054908, \"freeform_tied_pct\": 59, \"re_lp_flip_positive\": true, \"variance_ratio_std\": 0.89, \"variance_ratio_range\": 0.88}}, \"exp_freeform_seed789\": {\"status\": \"DONE\", \"metrics\": {\"inference\": {\"n_instances\": 551, \"n_samples\": 8, \"total_samples\": 4408, \"total_parsed\": 4408, \"parse_rate_pct\": 100, \"elapsed_seconds\": 227.5}, \"freeform\": {\"selection_ner\": {\"greedy\": 0.6205, \"selected\": 0.6232, \"gap\": 0.0027}, \"selection_re\": {\"greedy\": 0.2909, \"selected\": 0.31, \"gap\": 0.0191}, \"logprob_variance\": {\"mean_std\": 0.0183, \"mean_range\": 0.054908, \"tied_pct\": 59}, \"qe_ner\": {\"n\": 529, \"SJ\": {\"rho\": 0.393995, \"auroc\": 0.734474}, \"FK\": {\"rho\": 0.312292, \"auroc\": 0.794384}, \"LP\": {\"rho\": 0.247096, \"auroc\": 0.677824}, \"EM\": {\"rho\": 0.320383, \"auroc\": 0.527033}, \"VC\": {\"rho\": 0.420625, \"auroc\": 0.768111}}, \"qe_re\": {\"n\": 397, \"SJ\": {\"rho\": 0.201746, \"auroc\": 0.574388}, \"FK\": {\"rho\": 0.2202, \"auroc\": 0.633014}, \"LP\": {\"rho\": 0.295765, \"auroc\": 0.687067}, \"EM\": {\"rho\": 0.103633, \"auroc\": 0.474737}, \"VC\": {\"rho\": 0.306868, \"auroc\": 0.642197}}}, \"constrained_ref\": {\"selection_ner\": {\"greedy\": 0.6182, \"selected\": 0.6241, \"gap\": 0.0059}, \"selection_re\": {\"greedy\": 0.2913, \"selected\": 0.2845, \"gap\": -0.0068}, \"logprob_variance\": {\"mean_std\": 0.020589, \"mean_range\": 0.062305, \"tied_pct\": 59.7}}, \"comparison\": {\"variance_ratio_std\": 0.89, \"variance_ratio_range\": 0.88, \"tied_reduction_pp\": 0.7}}}, \"exp_freeform_seed456\": {\"status\": \"DONE\", \"metrics\": {\"inference\": {\"n_instances\": 551, \"n_samples\": 8, \"total_samples\": 4408, \"total_parsed\": 4407, \"parse_rate_pct\": 99.98, \"elapsed_seconds\": 232.4}, \"freeform\": {\"selection_ner\": {\"greedy\": 0.6198, \"selected\": 0.6205, \"gap\": 0.0007}, \"selection_re\": {\"greedy\": 0.2908, \"selected\": 0.3108, \"gap\": 0.02}, \"logprob_variance\": {\"mean_std\": 0.018631, \"mean_range\": 0.056792, \"tied_pct\": 58.4}, \"qe_ner\": {\"n\": 529, \"SJ\": {\"rho\": 0.378498, \"auroc\": 0.707769}, \"FK\": {\"rho\": 0.286163, \"auroc\": 0.754779}, \"LP\": {\"rho\": 0.227089, \"auroc\": 0.672081}, \"EM\": {\"rho\": 0.319997, \"auroc\": 0.47789}, \"VC\": {\"rho\": 0.416853, \"auroc\": 0.756543}}, \"qe_re\": {\"n\": 397, \"SJ\": {\"rho\": 0.211331, \"auroc\": 0.572335}, \"FK\": {\"rho\": 0.259074, \"auroc\": 0.652998}, \"LP\": {\"rho\": 0.306382, \"auroc\": 0.70134}, \"EM\": {\"rho\": 0.1043, \"auroc\": 0.461641}, \"VC\": {\"rho\": 0.301507, \"auroc\": 0.628873}}}, \"constrained_ref\": {\"selection_ner\": {\"greedy\": 0.6182, \"selected\": 0.6241, \"gap\": 0.0059}, \"selection_re\": {\"greedy\": 0.2913, \"selected\": 0.2845, \"gap\": -0.0068}, \"logprob_variance\": {\"mean_std\": 0.020589, \"mean_range\": 0.062305, \"tied_pct\": 59.7}}, \"comparison\": {\"variance_ratio_std\": 0.9, \"variance_ratio_range\": 0.91, \"tied_reduction_pp\": 1.3}}}, \"exp_freeform_seed123\": {\"status\": \"DONE\", \"metrics\": {\"inference\": {\"n_instances\": 551, \"n_samples\": 8, \"total_samples\": 4408, \"total_parsed\": 4406, \"parse_rate_pct\": 99.95, \"elapsed_seconds\": 228.1}, \"freeform\": {\"selection_ner\": {\"greedy\": 0.6194, \"selected\": 0.6222, \"gap\": 0.0028}, \"selection_re\": {\"greedy\": 0.2874, \"selected\": 0.305, \"gap\": 0.0176}, \"logprob_variance\": {\"mean_std\": 0.019881, \"mean_range\": 0.059864, \"tied_pct\": 57.7}, \"qe_ner\": {\"n\": 529, \"SJ\": {\"rho\": 0.384214, \"auroc\": 0.748728}, \"FK\": {\"rho\": 0.323956, \"auroc\": 0.766039}, \"logprob\": {\"rho\": 0.217297, \"auroc\": 0.701657}, \"EM\": {\"rho\": 0.326887, \"auroc\": 0.52533}, \"voting_conf\": {\"rho\": 0.407893, \"auroc\": 0.799676}}, \"qe_re\": {\"n\": 397, \"SJ\": {\"rho\": 0.272776, \"auroc\": 0.614056}, \"FK\": {\"rho\": 0.314429, \"auroc\": 0.678534}, \"logprob\": {\"rho\": 0.309673, \"auroc\": 0.70414}, \"EM\": {\"rho\": 0.137216, \"auroc\": 0.487342}, \"voting_conf\": {\"rho\": 0.316667, \"auroc\": 0.647442}}}, \"constrained_ref\": {\"selection_ner\": {\"greedy\": 0.6182, \"selected\": 0.6241, \"gap\": 0.0059}, \"selection_re\": {\"greedy\": 0.2913, \"selected\": 0.2845, \"gap\": -0.0068}}, \"comparison\": {\"variance_ratio_std\": 0.97, \"variance_ratio_range\": 0.96, \"tied_reduction_pp\": 2}}}, \"exp_009_capability_stratification\": {\"status\": \"DONE\", \"metrics\": {\"scierc_ner\": {\"n\": 551, \"sj_rho_overall\": 0.398, \"by_greedy_f1\": {\"hard_0_25_sj_rho\": 0.159, \"med_low_sj_rho\": 0.139, \"med_high_sj_rho\": 0.09, \"easy_sj_rho\": 0.23}, \"by_sent_len\": {\"Q1_sj_rho\": 0.461, \"Q2_sj_rho\": 0.401, \"Q3_sj_rho\": 0.296, \"Q4_sj_rho\": 0.382}, \"by_ent_count\": {\"0_sj_rho\": 0.689, \"1_2_sj_rho\": 0.415, \"3_5_sj_rho\": 0.353, \"6plus_sj_rho\": 0.547}}, \"scierc_re\": {\"n\": 551, \"by_greedy_f1\": {\"hard_0_25_sj_rho\": -0.043, \"easy_sj_rho\": 0.21}, \"by_sent_len\": {\"Q1_sj_rho\": 0.447, \"Q4_sj_rho\": 0.54}, \"by_rel_count\": {\"0_sj_rho\": 0.62, \"1_2_sj_rho\": 0.275, \"6plus_sj_rho\": 0.527}}, \"conll_ner\": {\"n\": 3453, \"by_sent_len\": {\"Q1_sj_rho\": 0.334, \"Q3_sj_rho\": 0.518}}, \"proxy_independence\": {\"scierc_ner_f1_vs_slen\": -0.021, \"scierc_ner_f1_vs_ecnt\": 0.007, \"scierc_re_f1_vs_slen\": -0.147}}}, \"exp_023_lora_rank8\": {\"status\": \"DONE\", \"metrics\": {\"train_loss\": 0.1018, \"eval_loss\": 0.0776, \"train_runtime\": \"28m45s\", \"ner_full\": {\"n\": 529, \"greedy_f1\": 0.6397, \"oracle_f1\": 0.7998, \"oracle_headroom\": 0.1601, \"degeneracy_rate\": 0.072, \"SJ_rho\": 0.3649, \"FK_rho\": 0.2838, \"VC_rho\": 0.394, \"EM_rho\": 0.2562, \"LP_rho\": 0.2105, \"SJ_auroc\": 0.689, \"FK_auroc\": 0.6002, \"VC_auroc\": 0.6886, \"EM_auroc\": 0.7265, \"LP_auroc\": 0.6054, \"sel_SJ\": 0.6306, \"sel_FK\": 0.6265, \"sel_VC\": 0.5919, \"sel_EM\": 0.6073, \"sel_LP\": 0.635}, \"ner_cond\": {\"n\": 477, \"SJ_rho\": 0.3056, \"FK_rho\": 0.1452, \"VC_rho\": 0.3191, \"EM_rho\": 0.3558, \"LP_rho\": 0.169}, \"re_full\": {\"n\": 397, \"greedy_f1\": 0.3712, \"oracle_f1\": 0.609, \"oracle_headroom\": 0.2378, \"degeneracy_rate\": 0.217, \"SJ_rho\": 0.2244, \"FK_rho\": 0.3448, \"VC_rho\": 0.3617, \"EM_rho\": 0.068, \"LP_rho\": 0.2737, \"SJ_auroc\": 0.7092, \"FK_auroc\": 0.6469, \"VC_auroc\": 0.7533, \"EM_auroc\": 0.7306, \"LP_auroc\": 0.6325, \"sel_SJ\": 0.3584, \"sel_FK\": 0.3498, \"sel_VC\": 0.3715, \"sel_EM\": 0.3291, \"sel_LP\": 0.3606}, \"re_cond\": {\"n\": 242, \"SJ_rho\": 0.3601, \"FK_rho\": 0.2343, \"VC_rho\": 0.3703, \"EM_rho\": 0.4613, \"LP_rho\": 0.1809}}}, \"exp_022_seed789\": {\"status\": \"DONE\"}, \"exp_026_t05\": {\"status\": \"DONE\", \"metrics\": {\"temperature\": 0.5, \"task\": \"T-ablation\"}}, \"exp_026_t08\": {\"status\": \"DONE\", \"metrics\": {\"temperature\": 0.8, \"task\": \"T-ablation\"}}, \"exp_026_t12\": {\"status\": \"DONE\", \"metrics\": {\"temperature\": 1.2, \"task\": \"T-ablation\"}}, \"exp_025_n32\": {\"status\": \"DONE\", \"metrics\": {\"n_samples\": 32, \"degeneracy_pct\": 4, \"lp_range\": 0.0781, \"oracle_f1\": 0.8412, \"greedy_f1\": 0.6615, \"oracle_gap\": 0.1797, \"selection_f1_lp_delta\": 0.54, \"selection_f1_sj_delta\": 0.16, \"selection_f1_fk_delta\": 0.6, \"selection_f1_em_delta\": 0.68, \"selection_f1_vc_delta\": -5.21, \"best_signal\": \"EM\", \"best_delta\": 0.68, \"metric_space\": \"micro_f1_filtered_529inst\", \"note\": \"corrected via n_ablation_fixed.py, greedy from inst['greedy'] field\"}}, \"exp_021_fewnerd_full\": {\"status\": \"DONE\", \"metrics\": {\"total_steps\": 6177, \"train_loss\": 0.048, \"eval_loss\": 0.0275, \"train_runtime\": \"3h57m\", \"epochs\": 3, \"final_checkpoint\": \"output/exp_021_fewnerd_full/checkpoint-6177\", \"adapter_path\": \"output/exp_021_fewnerd_full/adapter_model.safetensors\", \"inference_instances\": 37648, \"inference_filtered\": 32565, \"inference_n_samples\": 8, \"greedy_macro_f1\": 0.7478, \"oracle_macro_f1\": 0.8719, \"headroom\": 0.124, \"zero_f1_rate\": 0.119, \"degeneracy_rate\": 0.101, \"lp_within_range_mean\": 0.0879, \"lp_within_range_median\": 0.0662, \"lp_global_rho\": 0.4215, \"lp_cond_rho\": 0.4225, \"sj_global_rho\": 0.3002, \"sj_cond_rho\": 0.2937, \"fk_global_rho\": 0.3132, \"fk_cond_rho\": 0.3093, \"em_global_rho\": 0.2871, \"em_cond_rho\": 0.271, \"vc_global_rho\": 0.3858, \"vc_cond_rho\": 0.3234, \"lp_selection_delta_pp\": 1.36, \"vc_selection_delta_pp\": -1.79, \"sj_selection_delta_pp\": -2.14, \"fk_selection_delta_pp\": -2.26, \"em_selection_delta_pp\": -3.85, \"lp_bootstrap_ci_95_pp\": [1.18, 1.53], \"lp_sample_auroc\": 0.5782, \"vc_sample_auroc\": 0.5354, \"fk_sample_auroc\": 0.521, \"sj_sample_auroc\": 0.5197, \"em_sample_auroc\": 0.5137, \"scenario\": \"A_partial\", \"note\": \"Full analysis (gold-filtered n=32565). Prior simplified analysis used unfiltered data with different metrics.\"}}, \"exp_015_metrics_expansion\": {\"status\": \"DONE\", \"metrics\": {\"data_source\": \"exp_012_logprob/samples_with_logprobs.jsonl\", \"config\": \"N=8, T=1.0, seed=42, model=qwen3-8b-scierc-merged-v2\", \"ner\": {\"n_valid\": 529, \"n_cond\": 501, \"voting_rho_full\": 0.5018, \"voting_rho_cond\": 0.4497, \"voting_auroc\": 0.7279, \"voting_tau\": 0.3766, \"sj_rho_full\": 0.3565, \"sj_rho_cond\": 0.412, \"sj_auroc\": 0.6656, \"sj_tau\": 0.2658, \"em_rho_full\": 0.2566, \"em_rho_cond\": 0.3427, \"em_auroc\": 0.623, \"em_tau\": 0.1924, \"fk_rho_full\": 0.2651, \"fk_rho_cond\": 0.306, \"fk_auroc\": 0.6243, \"fk_tau\": 0.2027, \"logprob_rho_full\": 0.1396, \"logprob_rho_cond\": 0.1627, \"logprob_auroc\": 0.5585, \"logprob_tau\": 0.1006}, \"re\": {\"n_valid\": 397, \"n_cond\": 296, \"voting_rho_full\": 0.4217, \"voting_rho_cond\": 0.463, \"voting_auroc\": 0.7162, \"voting_tau\": 0.327, \"sj_rho_full\": 0.2112, \"sj_rho_cond\": 0.3683, \"sj_auroc\": 0.5816, \"sj_tau\": 0.1619, \"em_rho_full\": 0.1002, \"em_rho_cond\": 0.3607, \"em_auroc\": 0.5036, \"em_tau\": 0.0839, \"fk_rho_full\": 0.2528, \"fk_rho_cond\": 0.3168, \"fk_auroc\": 0.6308, \"fk_tau\": 0.1967, \"logprob_rho_full\": 0.2467, \"logprob_rho_cond\": 0.1457, \"logprob_auroc\": 0.6354, \"logprob_tau\": 0.1808}, \"diagnosis\": \"Unified 5-signal evaluation on single data source. Voting leads NER full (ρ=0.502), SJ retains strength in NER cond (ρ=0.412). All structural signals beat logprob on NER. RE: voting leads both full and cond.\"}}, \"exp_012_rerun_1024\": {\"status\": \"DONE\", \"metrics\": {\"ner_full\": {\"n\": 529, \"SJ\": {\"rho\": 0.3599, \"tau\": 0.2646, \"AUROC\": 0.6917, \"ECE\": 0.4531, \"rho_ci95\": [0.2732, 0.4389], \"AUROC_ci95\": [0.6304, 0.7406]}, \"FK\": {\"rho\": 0.2665, \"tau\": 0.1974, \"AUROC\": 0.629, \"ECE\": 0.4512, \"rho_ci95\": [0.1743, 0.3486], \"AUROC_ci95\": [0.5612, 0.6882]}, \"logprob\": {\"rho\": 0.2052, \"tau\": 0.1478, \"AUROC\": 0.5783, \"ECE\": 0.7064, \"rho_ci95\": [0.1171, 0.2904], \"AUROC_ci95\": [0.5179, 0.6387]}, \"EM\": {\"rho\": 0.2945, \"tau\": 0.2208, \"AUROC\": 0.7493, \"ECE\": 0.3526, \"rho_ci95\": [0.2094, 0.37], \"AUROC_ci95\": [0.7002, 0.7928]}, \"voting_conf\": {\"rho\": 0.3792, \"tau\": 0.2805, \"AUROC\": 0.6841, \"ECE\": 0.3807, \"rho_ci95\": [0.2972, 0.4486], \"AUROC_ci95\": [0.6249, 0.7366]}}, \"ner_cond\": {\"n\": 477, \"SJ\": {\"rho\": 0.3113, \"tau\": 0.2257, \"AUROC\": 0.6772, \"ECE\": 0.4416, \"rho_ci95\": [0.2353, 0.3959], \"AUROC_ci95\": [0.621, 0.7337]}, \"FK\": {\"rho\": 0.1761, \"tau\": 0.1284, \"AUROC\": 0.6078, \"ECE\": 0.4389, \"rho_ci95\": [0.0839, 0.2665], \"AUROC_ci95\": [0.5442, 0.6709]}, \"logprob\": {\"rho\": 0.1538, \"tau\": 0.1111, \"AUROC\": 0.5633, \"ECE\": 0.6803, \"rho_ci95\": [0.0637, 0.2424], \"AUROC_ci95\": [0.5032, 0.6232]}, \"EM\": {\"rho\": 0.3596, \"tau\": 0.2735, \"AUROC\": 0.7556, \"ECE\": 0.3257, \"rho_ci95\": [0.2819, 0.4408], \"AUROC_ci95\": [0.7011, 0.8107]}, \"voting_conf\": {\"rho\": 0.3, \"tau\": 0.2189, \"AUROC\": 0.6618, \"ECE\": 0.3746, \"rho_ci95\": [0.2168, 0.3836], \"AUROC_ci95\": [0.6004, 0.7201]}}, \"re_full\": {\"n\": 397, \"SJ\": {\"rho\": 0.2503, \"tau\": 0.1878, \"AUROC\": 0.6702, \"ECE\": 0.3865}, \"FK\": {\"rho\": 0.2752, \"tau\": 0.2117, \"AUROC\": 0.6089, \"ECE\": 0.4405}, \"logprob\": {\"rho\": 0.2662, \"tau\": 0.1951, \"AUROC\": 0.6005, \"ECE\": 0.7694}, \"EM\": {\"rho\": 0.1344, \"tau\": 0.1081, \"AUROC\": 0.7059, \"ECE\": 0.3548}, \"voting_conf\": {\"rho\": 0.3498, \"tau\": 0.2663, \"AUROC\": 0.6935, \"ECE\": 0.2724}}, \"re_cond\": {\"n\": 238, \"SJ\": {\"rho\": 0.2457, \"tau\": 0.1811, \"AUROC\": 0.6463, \"ECE\": 0.2941}, \"FK\": {\"rho\": 0.1139, \"tau\": 0.0876, \"AUROC\": 0.551, \"ECE\": 0.3424}, \"logprob\": {\"rho\": 0.0112, \"tau\": 0.0051, \"AUROC\": 0.5186, \"ECE\": 0.6464}, \"EM\": {\"rho\": 0.4165, \"tau\": 0.3256, \"AUROC\": 0.7515, \"ECE\": 0.2232}, \"voting_conf\": {\"rho\": 0.2409, \"tau\": 0.178, \"AUROC\": 0.642, \"ECE\": 0.207}}, \"delta_vs_512_ner_full_rho\": {\"SJ\": 0.0034, \"FK\": 0.0014, \"EM\": 0.0379, \"voting_conf\": -0.1226, \"logprob\": 0.0656}, \"provenance_note\": \"exp_015_v2 scierc_n8_logprob used exp_012_logprob (max_tokens=512 truncated data). voting_conf was inflated 0.502→0.379, logprob was suppressed 0.140→0.205.\"}}, \"exp_020_fewnerd_smoke\": {\"status\": \"DONE\", \"metrics\": {\"final_loss\": 0.031, \"total_steps\": 8236, \"training_time\": \"5h54m\", \"pilot_greedy_f1\": 0.8037, \"pilot_instances\": 200, \"merged_model_path\": \"checkpoints/qwen3-8b-fewnerd-merged\"}}, \"exp_vc_lp_cascade_selection\": {\"status\": \"DONE\"}, \"exp_tacred_re_benchmark\": {\"status\": \"DONE\"}, \"exp_vc_quartile_analysis\": {\"status\": \"DONE\", \"metrics\": {\"scierc_ner\": {\"Q1_lp_delta\": 0.016, \"Q2_lp_delta\": -0.006, \"Q3_lp_delta\": 0.02, \"Q4_lp_delta\": -0.004, \"Q4_mean_vc\": 0.921, \"Q1_headroom\": 0.169, \"Q4_headroom\": 0.048, \"overall_lp_delta\": 0.006, \"n\": 529}, \"scierc_re\": {\"Q1_lp_delta\": -0.036, \"Q2_lp_delta\": -0.021, \"Q3_lp_delta\": -0.022, \"Q4_lp_delta\": 0.04, \"Q4_mean_vc\": 0.894, \"Q1_headroom\": 0.211, \"Q4_headroom\": 0.145, \"overall_lp_delta\": -0.009, \"n\": 397}, \"conll_ner\": {\"Q1_lp_delta\": -0.037, \"Q2_lp_delta\": -0.005, \"Q3_lp_delta\": 0, \"Q4_lp_delta\": 0, \"overall_lp_delta\": -0.01, \"n\": 2756, \"note\": \"Q3/Q4 degenerate (VC=1.0, all samples identical)\"}, \"conclusion\": \"VC stratification does not solve LP compression for NER. RE Q4 is only exception (+0.040).\"}}, \"exp_llama3b_scierc_ablation\": {\"status\": \"DONE\", \"metrics\": {\"ner_full\": {\"SJ_rho\": 0.3754, \"FK_rho\": 0.2676, \"LP_rho\": 0.2662, \"EM_rho\": 0.3341, \"VC_rho\": 0.4602, \"SJ_auroc\": 0.7383, \"FK_auroc\": 0.6714, \"LP_auroc\": 0.633, \"EM_auroc\": 0.7763, \"VC_auroc\": 0.7429, \"n\": 529}, \"ner_cond\": {\"SJ_rho\": 0.3445, \"FK_rho\": 0.2125, \"LP_rho\": 0.2099, \"EM_rho\": 0.3952, \"VC_rho\": 0.3815, \"SJ_auroc\": 0.7292, \"FK_auroc\": 0.66, \"LP_auroc\": 0.6156, \"EM_auroc\": 0.7822, \"VC_auroc\": 0.7222, \"n\": 476}, \"greedy_f1\": 0.6267, \"oracle_f1\": 0.763, \"oracle_headroom\": 0.1363, \"selection_f1_SJ\": 0.6328, \"selection_f1_VC\": 0.6113, \"selection_f1_FK\": 0.6295, \"selection_f1_EM\": 0.6174, \"selection_f1_LP\": 0.6279, \"n_gold_empty\": 22, \"structural_beats_surface\": true, \"rho_advantage_SJ_over_FK\": 0.1078}}, \"exp_qwen3_4b_conll_scs_inference_v2\": {\"status\": \"DONE\", \"metrics\": {\"greedy_f1\": 0.9234, \"oracle_f1\": 0.9404, \"oracle_headroom_pp\": 1.7, \"SJ_rho_full\": 0.4217, \"SJ_rho_cond\": 0.459, \"FK_rho_full\": 0.4181, \"FK_rho_cond\": 0.4538, \"LP_rho_full\": 0.3313, \"LP_rho_cond\": 0.3487, \"LP_auroc_full\": 0.7761, \"LP_auroc_cond\": 0.8209, \"n_instances\": 3453, \"verdict\": \"MARGINAL\"}}, \"exp_freeform_conll_4seed\": {\"status\": \"DONE\", \"metrics\": {\"greedy_f1\": \"0.9035±0.0004\", \"oracle_f1\": \"0.9460±0.0023\", \"lp_range_median\": \"0.0581±0.0072\", \"rho_sj\": \"0.4606±0.0188\", \"rho_fk\": \"0.4372±0.0209\", \"rho_em\": \"0.4714±0.0168\", \"rho_vc\": \"0.4606±0.0138\", \"rho_lp\": \"0.3262±0.0120\", \"sel_f1_sj\": \"0.8994±0.0014\", \"sel_f1_vc\": \"0.9006±0.0026\", \"sel_f1_lp\": \"0.8958±0.0009\", \"seeds\": [42, 123, 456, 789], \"n_samples\": 8, \"temperature\": 1, \"instances\": 2756, \"gold_empty_filtered\": 697}}, \"exp_qwen3_4b_conll_merge_inference_v2\": {\"status\": \"DONE\"}, \"exp_qwen3_4b_scierc_scs_inference\": {\"status\": \"DONE\", \"metrics\": {\"ner_greedy_f1\": 0.6612, \"ner_oracle_f1\": 0.7839, \"ner_headroom_pp\": 12.28, \"ner_SJ_rho\": 0.4221, \"ner_FK_rho\": 0.3258, \"ner_LP_rho\": 0.28, \"re_greedy_f1\": 0.4136, \"re_oracle_f1\": 0.5846, \"re_headroom_pp\": 17.1, \"re_SJ_rho\": 0.2673, \"re_FK_rho\": 0.3593, \"re_LP_rho\": 0.3512, \"re_sample_f1_pct_zero\": 0.476, \"re_LP_rho_cond\": 0.1135, \"re_LP_rho_cond_p\": 0.074}}, \"exp_qwen3_4b_scierc_merge_inference\": {\"status\": \"DONE\"}, \"exp_qwen3_4b_scierc_finetune_v3\": {\"status\": \"DONE\"}, \"exp_qwen3_4b_conll_finetune_resume\": {\"status\": \"DONE\", \"metrics\": {\"train_loss\": 0.001136, \"eval_loss\": 0.0225, \"best_global_step\": 4200, \"best_metric_eval_loss\": 0.0225, \"total_steps\": 4390, \"epochs\": 5, \"train_runtime_sec\": 1185.8, \"train_samples_per_second\": 59.2, \"resumed_from_step\": 3800}}, \"exp_qwen3_4b_scierc_finetune_v2\": {\"status\": \"DONE\"}, \"exp_qwen3_4b_conll_finetune\": {\"status\": \"DONE\", \"metrics\": {\"final_loss\": 0.0086, \"total_steps_completed\": 3920, \"total_steps_target\": 4390, \"epochs_completed\": 4.46, \"epochs_target\": 5, \"best_checkpoint\": \"checkpoint-3800\", \"note\": \"Training stopped at 89.3% completion (no error log found). Using checkpoint-3800 (loss ~0.01) for merge.\"}}, \"exp_freeform_seed789_v2\": {\"status\": \"DONE\"}, \"exp_qwen3_4b_scierc_finetune\": {\"status\": \"DONE\"}, \"exp_lp_t07_scierc\": {\"status\": \"DONE\"}, \"exp_lp_scierc_t07\": {\"status\": \"DONE\", \"metrics\": {\"ner_greedy_f1\": 0.662, \"ner_oracle_f1\": 0.764, \"ner_headroom_pp\": 10.2, \"ner_rho_sj_full\": 0.365, \"ner_rho_sj_cond\": 0.363, \"ner_rho_fk_full\": 0.289, \"ner_rho_fk_cond\": 0.255, \"lp_rho_full\": 0.249, \"lp_rho_cond\": 0.185, \"ner_rho_advantage\": 0.076, \"zero_f1_pct\": 11, \"full_n\": 529, \"cond_n\": 477, \"verdict\": \"success_supports_LP_compression_claim\"}}, \"exp_re_scierc_seed456\": {\"status\": \"DONE\", \"metrics\": {\"ner_greedy_f1\": 0.664, \"ner_oracle_f1\": 0.775, \"ner_headroom_pp\": 11.1, \"ner_rho_sj_cond\": 0.283, \"ner_rho_fk_cond\": 0.145, \"re_greedy_f1\": 0.417, \"re_oracle_f1\": 0.581, \"re_headroom_pp\": 16.3, \"re_rho_sj_cond\": 0.315, \"re_rho_fk_cond\": 0.123, \"re_zero_f1_pct\": 45.3, \"verdict\": \"FAIL_re_rho_sj_below_040\"}}, \"exp_re_scierc_seed123\": {\"status\": \"DONE\", \"metrics\": {\"ner_greedy_f1\": 0.663, \"ner_oracle_f1\": 0.786, \"ner_headroom_pp\": 12.3, \"ner_rho_sj_cond\": 0.404, \"ner_rho_fk_cond\": 0.182, \"re_greedy_f1\": 0.42, \"re_oracle_f1\": 0.593, \"re_headroom_pp\": 17.3, \"re_rho_sj_cond\": 0.277, \"re_rho_fk_cond\": 0.063, \"re_zero_f1_pct\": 43.6, \"verdict\": \"FAIL_re_rho_sj_below_040\"}}, \"exp_017_llama_conll_n8_t07\": {\"status\": \"DONE\", \"metrics\": {\"n_valid\": 2756, \"greedy_f1\": 0.9242, \"oracle_f1\": 0.9391, \"lp_range_median\": 1.1e-05, \"lp_tied_fraction_005\": 0.9579, \"signals\": {\"SJ\": {\"rho\": 0.3934, \"auroc\": 0.6506}, \"FK\": {\"rho\": 0.3879, \"auroc\": 0.6488}, \"VC\": {\"rho\": 0.375, \"auroc\": 0.6551}, \"EM\": {\"rho\": 0.3888, \"auroc\": 0.6494}, \"LP\": {\"rho\": 0.2951, \"auroc\": 0.7509}}, \"selection_f1\": {\"SJ\": 0.9247, \"FK\": 0.9254, \"VC\": 0.9264, \"EM\": 0.9255, \"LP\": 0.9248}}}, \"exp008_re_n16\": {\"status\": \"DONE\"}, \"exp001_seed456\": {\"status\": \"DONE\"}, \"exp001_seed123\": {\"status\": \"DONE\"}, \"exp_001_n16_seed456_full\": {\"status\": \"DONE\"}, \"exp_001_n16_seed123_full\": {\"status\": \"DONE\"}, \"exp_007_ner_llama\": {\"status\": \"DONE\"}, \"exp_002_merge_conll2003\": {\"status\": \"DONE\"}, \"exp_019_supervised_verifier\": {\"status\": \"DONE\"}, \"exp_018_llama_scierc_seed456\": {\"status\": \"DONE\"}, \"exp_002_conll_n16_r1024\": {\"status\": \"DONE\"}, \"exp_007_llama_n16_r1024\": {\"status\": \"DONE\"}, \"exp_001_seed123_v2_r1024\": {\"status\": \"DONE\"}, \"exp_001_seed456_v2_ner_r1024\": {\"status\": \"DONE\"}, \"exp_001_seed42_v2_r1024\": {\"status\": \"DONE\", \"metrics\": {\"greedy_f1\": 0.6647, \"oracle_f1\": 0.8106, \"softjaccard_rho_full\": 0.3928, \"fleiss_rho_full\": 0.2489, \"logprob_rho_full\": 0.2136, \"softjaccard_rho_cond\": 0.3455, \"fleiss_rho_cond\": 0.163, \"logprob_rho_cond\": 0.1624, \"verdict\": \"MARGINAL\"}}, \"exp_017_llama_conll_n16_s456\": {\"status\": \"DONE\", \"metrics\": {\"greedy_f1\": 0.9243, \"oracle_f1\": 0.9488, \"oracle_headroom\": 0.0245, \"n_instances\": 3453, \"n_valid\": 2756, \"n_conditional\": 2642, \"structural_beats_surface\": true, \"full\": {\"SJ_rho\": 0.4552, \"SJ_AUROC\": 0.7288, \"SJ_ECE\": 0.1134, \"FK_rho\": 0.4478, \"FK_AUROC\": 0.7248, \"FK_ECE\": 0.109, \"logprob_rho\": 0.3078, \"logprob_AUROC\": 0.7612, \"logprob_ECE\": 0.1289, \"EM_rho\": 0.452, \"EM_AUROC\": 0.7275, \"EM_ECE\": 0.1082, \"voting_conf_rho\": 0.4571, \"voting_conf_AUROC\": 0.7348, \"voting_conf_ECE\": 0.0863}, \"conditional\": {\"SJ_rho\": 0.4505, \"SJ_AUROC\": 0.7449, \"SJ_ECE\": 0.0826, \"FK_rho\": 0.4422, \"FK_AUROC\": 0.7401, \"FK_ECE\": 0.0835, \"logprob_rho\": 0.3242, \"logprob_AUROC\": 0.8067, \"logprob_ECE\": 0.0921, \"EM_rho\": 0.451, \"EM_AUROC\": 0.745, \"EM_ECE\": 0.0756, \"voting_conf_rho\": 0.3962, \"voting_conf_AUROC\": 0.7202, \"voting_conf_ECE\": 0.0746}, \"best_of_n\": {\"greedy\": 0.9243, \"random_avg\": 0.9215, \"sj_best\": 0.9243, \"logprob_best\": 0.9243, \"voting_conf_best\": 0.9243, \"oracle\": 0.9488}, \"n8_vs_n16_delta\": {\"full_SJ_rho_delta\": 0.0238, \"full_FK_rho_delta\": 0.0201, \"full_logprob_rho_delta\": 0.0006, \"full_EM_rho_delta\": 0.0214, \"full_voting_conf_rho_delta\": 0.0315, \"cond_SJ_rho_delta\": 0.0149, \"cond_FK_rho_delta\": 0.0112, \"cond_logprob_rho_delta\": -0.004, \"cond_EM_rho_delta\": 0.0107, \"cond_voting_conf_rho_delta\": 0.0219}}}, \"exp_017_llama_conll_n16_s123\": {\"status\": \"DONE\", \"metrics\": {\"greedy_f1\": 0.9266, \"oracle_f1\": 0.9497, \"oracle_headroom\": 0.0231, \"n_instances\": 3453, \"n_valid\": 2756, \"n_conditional\": 2642, \"structural_beats_surface\": true, \"full\": {\"SJ_rho\": 0.4698, \"SJ_AUROC\": 0.7402, \"SJ_ECE\": 0.1135, \"FK_rho\": 0.4594, \"FK_AUROC\": 0.7351, \"FK_ECE\": 0.1114, \"logprob_rho\": 0.3161, \"logprob_AUROC\": 0.768, \"logprob_ECE\": 0.129, \"EM_rho\": 0.4676, \"EM_AUROC\": 0.7399, \"EM_ECE\": 0.1082, \"voting_conf_rho\": 0.4612, \"voting_conf_AUROC\": 0.7429, \"voting_conf_ECE\": 0.0832}, \"conditional\": {\"SJ_rho\": 0.4712, \"SJ_AUROC\": 0.7609, \"SJ_ECE\": 0.0828, \"FK_rho\": 0.4595, \"FK_AUROC\": 0.7547, \"FK_ECE\": 0.0858, \"logprob_rho\": 0.3314, \"logprob_AUROC\": 0.8134, \"logprob_ECE\": 0.0922, \"EM_rho\": 0.4732, \"EM_AUROC\": 0.7626, \"EM_ECE\": 0.075, \"voting_conf_rho\": 0.4086, \"voting_conf_AUROC\": 0.7338, \"voting_conf_ECE\": 0.0706}, \"best_of_n\": {\"greedy\": 0.9242, \"random_avg\": 0.9216, \"sj_best\": 0.9247, \"logprob_best\": 0.9253, \"voting_conf_best\": 0.9255, \"oracle\": 0.9486}, \"n8_vs_n16_delta\": {\"full_SJ_rho_delta\": 0.0384, \"full_FK_rho_delta\": 0.0317, \"full_logprob_rho_delta\": 0.0089, \"full_SJ_AUROC_delta\": 0.0363, \"full_FK_AUROC_delta\": 0.0325, \"full_logprob_AUROC_delta\": 0.007, \"cond_SJ_rho_delta\": 0.0356, \"cond_FK_rho_delta\": 0.0285, \"cond_logprob_rho_delta\": 0.0032}}}, \"exp_008_re_n16_full\": {\"status\": \"DONE\"}, \"exp_001_n16_seed123\": {\"status\": \"DONE\", \"metrics\": {\"ner\": {\"greedy_f1\": 0.655, \"oracle_f1\": 0.8028, \"headroom\": 0.1478, \"rho_sj_full\": 0.4076, \"rho_fk_full\": 0.2799, \"rho_logprob_full\": 0.3189, \"rho_sj_cond\": 0.4271, \"rho_fk_cond\": 0.2743, \"rho_logprob_cond\": 0.2835, \"sj_beats_fk\": true, \"rho_advantage\": 0.1277}, \"re\": {\"greedy_f1\": 0.4243, \"oracle_f1\": 0.6771, \"headroom\": 0.2528, \"rho_sj_full\": 0.2943, \"rho_fk_full\": 0.2657, \"rho_logprob_full\": 0.3005, \"rho_sj_cond\": 0.4003, \"rho_fk_cond\": 0.313, \"rho_logprob_cond\": 0.2317, \"sj_beats_fk\": true, \"rho_advantage\": 0.0286}, \"verdict\": \"FAIL\"}}, \"exp_016_signal_ensemble\": {\"status\": \"DONE\", \"metrics\": {\"sj_logprob_pearson_ner\": 0.57, \"sj_logprob_pearson_re\": 0.42, \"best_linear_ner\": {\"combo\": \"SJ+voting_conf\", \"alpha\": 0.3, \"rho\": 0.489}, \"best_linear_re\": {\"combo\": \"voting_conf+logprob\", \"alpha\": 0.6, \"rho\": 0.429}, \"ensemble_ner_auroc\": 0.735, \"ensemble_re_auroc\": 0.719, \"best_single_ner_auroc\": 0.7, \"best_single_re_auroc\": 0.721, \"ensemble_ner_delta\": 0.035, \"selection_f1_ner\": {\"greedy\": 0.609, \"logprob\": 0.609, \"sj\": 0.604, \"ensemble\": 0.604, \"voting\": 0.596, \"random\": 0.58, \"oracle\": 0.769}, \"selection_f1_re\": {\"logprob\": 0.397, \"greedy\": 0.374, \"sj\": 0.368, \"ensemble\": 0.367, \"voting\": 0.338, \"random\": 0.338, \"oracle\": 0.561}, \"diagnosis\": \"SJ+voting_conf linear combo boosts NER ρ to 0.489 (+23%). RE: logprob-best is ONLY method beating greedy (0.397 vs 0.374). Ensemble AUROC +0.035 on NER. Oracle gap still huge.\"}}, \"exp_001_ner_n16_scierc\": {\"status\": \"DONE\", \"metrics\": {\"n_instances\": 551, \"ner_n\": 529, \"re_n\": 397, \"N\": 16, \"T\": 1, \"seed\": 42, \"full_test_set\": true, \"ner_voting_conf_rho\": 0.399, \"ner_sj_rho\": 0.398, \"ner_em_rho\": 0.339, \"ner_fk_rho\": 0.288, \"ner_logprob_rho\": 0.237, \"ner_voting_conf_auroc\": 0.704, \"ner_sj_auroc\": 0.697, \"ner_cond_em_rho\": 0.414, \"ner_cond_sj_rho\": 0.349, \"ner_cond_vc_rho\": 0.34, \"re_voting_conf_rho\": 0.38, \"re_logprob_rho\": 0.293, \"re_fk_rho\": 0.281, \"re_sj_rho\": 0.277, \"re_em_rho\": 0.148, \"re_voting_conf_auroc\": 0.699, \"re_cond_em_rho\": 0.475, \"re_cond_sj_rho\": 0.318, \"re_cond_vc_rho\": 0.35, \"re_cond_em_auroc\": 0.742, \"diagnosis\": \"551 instances T=1.0: voting_conf best on full set (NER 0.399, RE 0.380). EM SURPRISE best on conditional set (NER cond 0.414, RE cond 0.475). RE full FAIL (SJ 0.277 < 0.40). Previous N-scaling 'breakthrough' was artifact of 200 instances + T=0.7.\"}}, \"exp_002\": {\"status\": \"DONE\", \"metrics\": {\"sj_rho_full\": 0.4357, \"sj_tau_full\": 0.3851, \"sj_auroc_full\": 0.8008, \"sj_rho_cond\": 0.4511, \"fk_rho_full\": 0.3998, \"fk_tau_full\": 0.3568, \"fk_auroc_full\": 0.7741, \"fk_rho_cond\": 0.4064, \"logprob_rho_full\": 0.3157, \"logprob_tau_full\": 0.2469, \"logprob_auroc_full\": 0.7532, \"logprob_rho_cond\": 0.3562, \"em_rho_full\": 0.4507, \"em_tau_full\": 0.4002, \"em_auroc_full\": 0.8156, \"em_rho_cond\": 0.4799, \"ev_rho_full\": 0.4237, \"ev_tau_full\": 0.3777, \"ev_auroc_full\": 0.7889, \"ev_rho_cond\": 0.4127, \"greedy_f1\": 0.9123, \"oracle_f1\": 0.9543, \"voting_f1\": 0.9141, \"oracle_headroom\": 0.042, \"sj_vs_logprob_delta_rho\": 0.12, \"sj_vs_logprob_ci_low\": 0.0881, \"sj_vs_logprob_ci_high\": 0.154, \"sj_vs_logprob_significant\": true, \"n_instances\": 3453, \"n_valid\": 2756, \"n_samples\": 8, \"temperature\": 1}}, \"exp_002_ner_conll2003\": {\"status\": \"DONE\"}, \"exp_004_re_diagnostic\": {\"status\": \"DONE\", \"metrics\": {\"per_relation_type\": {\"HYPONYM-OF\": {\"n\": 36, \"rho_sj\": 0.545, \"rho_fk\": 0.646, \"rho_vc\": 0.628, \"mean_f1\": 0.513}, \"CONJUNCTION\": {\"n\": 86, \"rho_sj\": 0.383, \"rho_fk\": 0.35, \"rho_vc\": 0.484, \"mean_f1\": 0.48}, \"USED-FOR\": {\"n\": 299, \"rho_sj\": 0.236, \"rho_fk\": 0.255, \"rho_vc\": 0.286, \"mean_f1\": 0.422}, \"PART-OF\": {\"n\": 44, \"rho_sj\": 0.239, \"rho_fk\": 0.348, \"rho_vc\": 0.283, \"mean_f1\": 0.297}, \"EVALUATE-FOR\": {\"n\": 62, \"rho_sj\": 0.172, \"rho_fk\": 0.255, \"rho_vc\": 0.226, \"mean_f1\": 0.365}, \"COMPARE\": {\"n\": 35, \"rho_sj\": 0.168, \"rho_fk\": 0.184, \"rho_vc\": 0.18, \"mean_f1\": 0.453}, \"FEATURE-OF\": {\"n\": 50, \"rho_sj\": 0.004, \"rho_fk\": 0.052, \"rho_vc\": 0.014, \"mean_f1\": 0.254}}, \"error_propagation\": {\"total_fn\": 553, \"tail_error_pct\": 21.9, \"full_error_pct\": 21.7, \"head_error_pct\": 17.7, \"head_tail_error_pct\": 15.9, \"type_error_pct\": 8.3, \"worst_consistency\": \"head_type_error (sj=0.411)\", \"best_consistency\": \"head_error (sj=0.613)\"}, \"threshold_sensitivity\": {\"thr_0.00_rho_sj\": 0.3161, \"thr_0.00_rho_vc\": 0.3841, \"thr_0.00_n\": 313, \"thr_0.05_rho_sj\": 0.2682, \"thr_0.05_rho_vc\": 0.2364, \"thr_0.05_n\": 239}, \"bootstrap_ci_95\": {\"ner_sj\": [0.2946, 0.4586], \"ner_voting_conf\": [0.3048, 0.4656], \"re_sj\": [0.1422, 0.3391], \"re_voting_conf\": [0.1818, 0.3721], \"re_cond_sj\": [0.2161, 0.4102], \"re_cond_voting_conf\": [0.2825, 0.474]}, \"fisher_z_ner_vs_re\": {\"sj_z\": 2.31, \"sj_p\": 0.0209, \"sj_significant\": true, \"fk_z\": -0.31, \"fk_p\": 0.756, \"fk_significant\": false, \"voting_z\": 1.914, \"voting_p\": 0.0556, \"voting_significant\": false}, \"diagnosis\": \"FEATURE-OF is near-zero rho across all signals (n=50, F1=0.254). HYPONYM-OF strongest (rho_fk=0.646). Entity span errors (head+tail) account for 55.5% of RE FN. NER rho_sj significantly > RE rho_sj (p=0.021). Voting_conf is best RE signal in conditional set (rho=0.384).\"}}, \"exp_005\": {\"status\": \"DONE\"}, \"exp_014_entity_majority_voting\": {\"status\": \"DONE\", \"metrics\": {\"ner_full_rho\": 0.3915, \"ner_full_p\": 8.1e-21, \"ner_full_tau\": 0.2906, \"ner_full_auroc\": 0.7039, \"re_full_rho\": 0.3403, \"re_full_p\": 3.21e-12, \"re_full_tau\": 0.256, \"re_full_auroc\": 0.6668, \"ner_voting_f1\": 0.6246, \"ner_greedy_f1\": 0.6483, \"ner_oracle_f1\": 0.7793, \"re_voting_f1\": 0.3577, \"re_greedy_f1\": 0.4022, \"re_oracle_f1\": 0.5886, \"diagnosis\": \"Voting confidence BEATS SJ on both NER (rho 0.392 vs 0.383) and RE (0.340 vs 0.244). But voting as selection strategy LOSES to greedy.\"}}, \"exp_013_exact_match_voting\": {\"status\": \"DONE\", \"metrics\": {\"ner_full_rho\": 0.2941, \"ner_full_p\": 5.12e-12, \"ner_full_tau\": 0.2181, \"ner_full_auroc\": 0.6398, \"re_full_rho\": 0.1562, \"re_full_p\": 0.0018, \"re_full_tau\": 0.1185, \"re_full_auroc\": 0.5863, \"diagnosis\": \"EM between SJ and FK on NER, weakest on RE. Too coarse-grained.\"}}, \"exp_012_logprob_baseline\": {\"status\": \"DONE\", \"metrics\": {\"ner_full_rho_sj\": 0.3565, \"ner_full_rho_fk\": 0.2651, \"ner_full_rho_logprob\": 0.1396, \"ner_full_rho_greedy_logprob\": 0.1615, \"ner_full_tau_sj\": 0.2658, \"ner_full_tau_logprob\": 0.1006, \"ner_full_auroc_sj\": 0.6892, \"ner_full_auroc_fk\": 0.6292, \"ner_full_auroc_logprob\": 0.5907, \"ner_full_n\": 529, \"ner_sj_vs_logprob_delta\": 0.2169, \"re_full_rho_sj\": 0.2112, \"re_full_rho_fk\": 0.2528, \"re_full_rho_logprob\": 0.2467, \"re_full_auroc_sj\": 0.5916, \"re_full_auroc_fk\": 0.6262, \"re_full_auroc_logprob\": 0.6186, \"re_full_n\": 397, \"re_cond_rho_sj\": 0.3683, \"re_cond_rho_fk\": 0.3168, \"re_cond_rho_logprob\": 0.1457, \"re_cond_auroc_sj\": 0.6839, \"re_cond_auroc_logprob\": 0.5487, \"re_cond_n\": 296, \"diagnosis\": \"NER: SJ crushes logprob (rho +0.217). RE full: logprob slightly ahead. RE cond: SJ crushes logprob (rho +0.223). SJ unique value CONFIRMED.\"}}, \"mvp_pilot_005\": {\"status\": \"DONE\", \"metrics\": {\"ner_greedy_f1\": 0.6619, \"ner_oracle_f1\": 0.7585, \"ner_headroom\": 0.0966, \"ner_fleiss_kappa_mean\": 0.4722, \"ner_soft_jaccard_mean\": 0.7757, \"ner_full_rho_sj\": 0.3875, \"ner_full_rho_fk\": 0.3211, \"ner_full_n\": 529, \"ner_cond_rho_sj\": 0.3868, \"ner_cond_rho_fk\": 0.305, \"ner_cond_n\": 504, \"ner_sj_beats_fk_full\": true, \"ner_sj_beats_fk_cond\": true, \"ner_rho_advantage\": 0.0664, \"ner_sample_f1_mean\": 0.6243, \"ner_sample_f1_std\": 0.3131, \"ner_sample_f1_pct_zero\": 11.2, \"ner_gold_empty_filtered\": 22, \"ner_all_zero_filtered\": 25, \"re_greedy_f1\": 0.4219, \"re_oracle_f1\": 0.5532, \"re_headroom\": 0.1313, \"re_fleiss_kappa_mean\": 0.3829, \"re_soft_jaccard_mean\": 0.687, \"re_full_rho_sj\": 0.2343, \"re_full_rho_fk\": 0.1835, \"re_full_n\": 397, \"re_cond_rho_sj\": 0.3716, \"re_cond_rho_fk\": 0.2533, \"re_cond_n\": 301, \"re_sj_beats_fk_full\": true, \"re_sj_beats_fk_cond\": true, \"re_rho_advantage\": 0.0508, \"re_sample_f1_mean\": 0.3782, \"re_sample_f1_std\": 0.3845, \"re_sample_f1_pct_zero\": 42.4, \"re_gold_empty_filtered\": 154, \"re_all_zero_filtered\": 96, \"parse_failures\": 0, \"verdict\": \"FAIL\", \"verdict_note\": \"RE full rho_sj=0.234 < 0.40; RE cond rho_sj=0.372 passes conditional but not full threshold\"}}, \"e1_component_wise_re_sj\": {\"status\": \"DONE\", \"metrics\": {\"full_head_sj_rho\": 0.21, \"full_tail_sj_rho\": 0.201, \"full_type_match_rho\": 0.201, \"full_multiplicative_rho\": 0.244, \"full_additive_rho\": 0.243, \"full_fleiss_kappa_rho\": 0.278, \"cond_head_sj_rho\": 0.27, \"cond_tail_sj_rho\": 0.259, \"cond_type_match_rho\": 0.252, \"cond_multiplicative_rho\": 0.316, \"cond_additive_rho\": 0.306, \"cond_fleiss_kappa_rho\": 0.307, \"n_full\": 397, \"n_conditional\": 313, \"diagnosis\": \"head_sj rho=0.210 FAR from NER rho=0.383. Multiplicative penalty hypothesis REJECTED. Problem is fundamental: span-level SJ lacks discriminative power for RE.\"}}, \"mvp_pilot_004\": {\"status\": \"DONE\", \"metrics\": {\"ner_greedy_f1\": 0.6671, \"ner_oracle_f1\": 0.7756, \"ner_headroom\": 0.1085, \"ner_fleiss_kappa_mean\": 0.4048, \"ner_soft_jaccard_mean\": 0.7008, \"ner_full_rho_fk\": 0.259, \"ner_full_rho_sj\": 0.3825, \"ner_full_n\": 529, \"ner_cond_rho_fk\": 0.2352, \"ner_cond_rho_sj\": 0.3762, \"ner_cond_n\": 508, \"ner_sj_beats_fk_full\": true, \"ner_sj_beats_fk_cond\": true, \"ner_sample_f1_mean\": 0.6084, \"ner_sample_f1_std\": 0.3174, \"ner_sample_f1_pct_zero\": 12.19, \"ner_gold_empty_filtered\": 22, \"ner_all_zero_filtered\": 21, \"re_greedy_f1\": 0.4208, \"re_oracle_f1\": 0.5882, \"re_headroom\": 0.1674, \"re_fleiss_kappa_mean\": 0.2996, \"re_soft_jaccard_mean\": 0.6114, \"re_full_rho_fk\": 0.2782, \"re_full_rho_sj\": 0.2441, \"re_full_n\": 397, \"re_cond_rho_fk\": 0.3067, \"re_cond_rho_sj\": 0.3161, \"re_cond_n\": 313, \"re_sj_beats_fk_full\": false, \"re_sj_beats_fk_cond\": true, \"re_sample_f1_mean\": 0.3612, \"re_sample_f1_std\": 0.383, \"re_sample_f1_pct_zero\": 44.3, \"re_gold_empty_filtered\": 154, \"re_all_zero_filtered\": 84, \"parse_failures\": 0, \"verdict\": \"FAIL\"}}, \"ft_002_v2\": {\"status\": \"DONE\", \"metrics\": {\"epoch\": 5, \"train_loss\": 0.0806, \"eval_loss\": 0.089, \"train_runtime\": \"28m41s\", \"train_samples_per_second\": 5.407, \"train_steps_per_second\": 0.34, \"total_steps\": 585, \"checkpoints\": [\"checkpoint-400\", \"checkpoint-500\", \"checkpoint-585\"], \"gate0_final_ner_f1\": 0.6615, \"gate0_final_re_f1\": 0.4177, \"gate0_final_parse_failures\": 0, \"gate0_final_ner_pass\": true, \"gate0_final_re_pass\": true, \"gate0_final_pass\": true, \"gate0_ckpt400_ner_f1\": 0.6475, \"gate0_ckpt400_re_f1\": 0.3793, \"gate0_ckpt400_parse_failures\": 0, \"gate0_ckpt400_verdict\": \"FAIL\", \"gate0_ckpt400_re_sample_f1_pct_zero\": 58.8, \"gate0_ckpt400_warning\": \">30% samples F1=0\"}}, \"mvp_pilot_002\": {\"status\": \"DONE\"}, \"ft_002\": {\"status\": \"DONE\", \"metrics\": {\"last_step\": 70, \"total_steps\": 585, \"progress_pct\": 11.97, \"last_loss\": 0.1134, \"last_lr\": 0.00019982, \"elapsed\": \"3m32s\", \"failure_reason\": \"OOM at step 73, batch_size=4 too large for 32GB RTX 5090\"}}, \"ft_001\": {\"status\": \"DONE\", \"metrics\": {\"train_loss\": 0.1099, \"eval_loss\": 0.0771, \"gate0_ner_f1_strict\": 0.1143, \"gate0_re_f1_strict\": 0.0125, \"gate0_ner_f1_text\": 0.606, \"gate0_re_f1_text\": 0.3392, \"gate0_offset_accuracy\": 0.1665, \"gate0_parse_failures\": 43, \"gate0_pass\": false, \"gate0_realigned_ner_f1\": 0.6045, \"gate0_realigned_re_f1\": 0.338, \"gate0_realigned_entity_offset_accuracy\": 1, \"gate0_realigned_relation_offset_accuracy\": 1, \"gate0_realigned_ner_pass\": true, \"gate0_realigned_re_pass\": false, \"gate0_realigned_pass\": false, \"gate0_ner_f1_delta_realign\": 0.4901, \"gate0_re_f1_delta_realign\": 0.3255, \"verdict_note\": \"partial: NER PASS (60.4%) / RE FAIL (33.8% < 40%)\"}}, \"mvp_pilot_003\": {\"status\": \"DONE\", \"metrics\": {\"ner_greedy_f1\": 0.6362, \"ner_oracle_f1\": 0.792, \"ner_headroom\": 0.1559, \"ner_fleiss_kappa_mean\": 0.2488, \"ner_soft_jaccard_mean\": 0.5066, \"ner_full_rho_sj\": 0.3808, \"ner_full_rho_fk\": 0.3362, \"ner_full_p_sj\": 1.07e-19, \"ner_full_p_fk\": 1.93e-15, \"ner_full_n\": 529, \"ner_cond_rho_sj\": 0.3836, \"ner_cond_rho_fk\": 0.3187, \"ner_cond_p_sj\": 1.83e-19, \"ner_cond_p_fk\": 1.33e-13, \"ner_cond_n\": 514, \"ner_sj_beats_fk_full\": true, \"ner_sj_beats_fk_cond\": true, \"ner_rho_advantage\": 0.0446, \"ner_sample_f1_mean\": 0.5153, \"ner_sample_f1_std\": 0.3334, \"ner_sample_f1_pct_zero\": 19.9, \"ner_gold_empty_filtered\": 22, \"ner_all_zero_filtered\": 15, \"re_greedy_f1\": 0.3774, \"re_oracle_f1\": 0.5939, \"re_headroom\": 0.2165, \"re_fleiss_kappa_mean\": 0.0879, \"re_soft_jaccard_mean\": 0.3958, \"re_full_rho_sj\": 0.2367, \"re_full_rho_fk\": 0.2221, \"re_full_p_sj\": 1.85e-06, \"re_full_p_fk\": 7.92e-06, \"re_full_n\": 397, \"re_cond_rho_sj\": 0.3004, \"re_cond_rho_fk\": 0.2374, \"re_cond_p_sj\": 2.25e-08, \"re_cond_p_fk\": 1.19e-05, \"re_cond_n\": 333, \"re_sj_beats_fk_full\": true, \"re_sj_beats_fk_cond\": true, \"re_rho_advantage\": 0.0146, \"re_sample_f1_mean\": 0.1977, \"re_sample_f1_std\": 0.3251, \"re_sample_f1_pct_zero\": 67.6, \"re_gold_empty_filtered\": 154, \"re_all_zero_filtered\": 64, \"parse_failures_stochastic\": 0, \"parse_failures_greedy\": 0, \"total_stochastic_samples\": 4408, \"total_greedy\": 551, \"verdict\": \"FAIL\", \"verdict_reason\": \"RE full rho_sj=0.2367 < 0.40 threshold; strong signal exists but below PASS bar\"}}, \"mvp_pilot_001\": {\"status\": \"DONE\", \"metrics\": {\"ner_greedy_f1\": 0.611, \"ner_oracle_f1\": 0.78, \"ner_headroom\": 0.169, \"ner_fleiss_kappa_mean\": 0.2449, \"ner_soft_jaccard_mean\": 0.5041, \"ner_full_rho_sj\": 0.3616, \"ner_full_rho_fk\": 0.3515, \"ner_full_n\": 529, \"ner_cond_rho_sj\": 0.3688, \"ner_cond_rho_fk\": 0.3569, \"ner_cond_n\": 510, \"ner_sj_beats_fk_full\": true, \"ner_sj_beats_fk_cond\": true, \"ner_sample_f1_pct_zero\": 20.4, \"ner_gold_empty_filtered\": 22, \"ner_all_zero_filtered\": 19, \"re_greedy_f1\": 0.355, \"re_oracle_f1\": 0.572, \"re_headroom\": 0.217, \"re_fleiss_kappa_mean\": 0.0681, \"re_soft_jaccard_mean\": 0.3635, \"re_full_rho_sj\": 0.2535, \"re_full_rho_fk\": 0.2885, \"re_full_n\": 397, \"re_cond_rho_sj\": 0.3515, \"re_cond_rho_fk\": 0.3107, \"re_cond_n\": 320, \"re_sj_beats_fk_full\": false, \"re_sj_beats_fk_cond\": true, \"re_sample_f1_pct_zero\": 58.3, \"re_gold_empty_filtered\": 154, \"re_all_zero_filtered\": 77, \"parse_failures_stochastic\": 164, \"parse_failures_greedy\": 29, \"total_stochastic_samples\": 4408, \"total_greedy\": 551, \"verdict\": \"FAIL\", \"verdict_reason\": \"RE full rho_sj=0.2535 < 0.40; SJ does not beat FK on RE full set\"}}}, \"count\": 148, \"total\": 148, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4153}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I have the degeneracy recalculation results. Now I need to read the registry data. Let me parse the JSON first and then read the registry data from the file.
+
+The recalc results are:
+
+1. Qwen3-8B / SciERC / T=1.0 / seed=42 → dir: exp_012_rerun_1024, degen_pct_unified: 17.77, old: 12.59
+
+
+2. Qwen3-8B / SciERC / T=1.0 / seed=123 → dir: exp_018_qwen_scierc_seed123, degen_pct_unified: 17.20, old: 11.67
+3. Qwen3-8B / SciERC / T=1.0 / seed=456 → dir: exp_018_qwen_scierc_seed456, degen_pct_unified: 20.42, old: 13.26
+4. Qwen3-8B / CoNLL / T=1.0 N=16 / seed=42 → dir: exp_002_con
+
+I'm seeing the degeneracy percentages across different seeds for SciERC are fairly consistent around 17-20%, while the older metrics were lower. Let me continue pulling the rest of the results. Looking at the performance metrics across different model and dataset combinations, I'm seeing a wide range of degeneration percentages—from as low as 7% on FewNERD to as high as 86% on CoNLL with LLaMA, suggesting the dataset and model choice significantly impact performance degradation. Now I'm looking at the performance metrics across these experiments, and I need to pull the current data from the registry to get the full picture for each one.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "685b1bf8-4822-4d28-8b85-9f3abe1bd865",
+  "uuid": "46061b57-e7ca-4681-84ad-e32fd420fc8d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017bVBnD3AbaYb585og6YfN9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6389,
+      "cache_read_input_tokens": 26302,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6389
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 13_
+
+数据已获取。现在用 jq 从 registry 结果中提取需要更新的实验的 metrics。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "685b1bf8-4822-4d28-8b85-9f3abe1bd865",
+  "uuid": "e1369169-0b5e-4499-a415-10c86cae222f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017bVBnD3AbaYb585og6YfN9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6389,
+      "cache_read_input_tokens": 26302,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6389
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01EDzYn9f6kVtCvfCaDYYbKW`</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie/685b1bf8-4822-4d28-8b85-9f3abe1bd865/tool-results/mcp-agent-ml-research-read_registry-1779137149937.txt | python3 -c \"\nimport json, sys\ndata = json.loads(sys.stdin.read())\nresult = json.loads(data['result'])\n# Target exp_ids from the recalc data\ntargets = [\n    'exp_012_rerun_1024', 'exp_018_qwen_scierc_seed123', 'exp_018_qwen_scierc_seed456',\n    'exp_002_conll_n16', 'exp_002_conll_n16_seed123', 'exp_002_conll_n16_seed456',\n    'exp_027_fewnerd_n16', 'exp_021_fewnerd_n8_seed123', 'exp_021_fewnerd_n8_seed456',\n    'exp_018_llama_scierc_seed42_r1024', 'exp_018_llama_scierc_seed123', 'exp_018_llama_scierc_seed456_r1024',\n    'exp_017_llama_conll_n16_r1024', 'exp_017_llama_conll_n16_s123_r1024', 'exp_017_llama_conll_n16_s456_r1024',\n    'exp_026_t05', 'exp_026_T05', 'exp_026_t08', 'exp_026_T08', 'exp_026_t12', 'exp_026_T12',\n    'exp_029a', 'exp_029b',\n    'exp_qwen3_4b_scierc_scs_inference', 'exp_qwen3_4b_conll_scs_inference', 'exp_qwen3_4b_conll_scs_inference_v2',\n    'exp_021_fewnerd_full',\n    'exp_007_llama_scierc_seed123', 'exp_llama_scierc_seed456'\n]\nfor exp in result:\n    if exp.get('exp_id') in targets:\n        print(json.dumps({'exp_id': exp['exp_id'], 'metrics': exp.get('metrics'), 'status': exp.get('status')}))\n\"\n",
+  "description": "Extract target experiments from registry"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "685b1bf8-4822-4d28-8b85-9f3abe1bd865",
+  "uuid": "1c2bce6e-844d-4295-bade-4ffa334fbf85",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017bVBnD3AbaYb585og6YfN9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6389,
+      "cache_read_input_tokens": 26302,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6389
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-18T20:46:13.600Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01EDzYn9f6kVtCvfCaDYYbKW`</summary>
+
+```text
+Exit code 1
+Traceback (most recent call last):
+  File "&lt;string>", line 19, in &lt;module>
+    if exp.get('exp_id') in targets:
+       ^^^^^^^
+AttributeError: 'str' object has no attribute 'get'
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "685b1bf8-4822-4d28-8b85-9f3abe1bd865",
+  "uuid": "18fde56e-a56a-478e-b5d4-58b99843de6a",
+  "tool_use_result": "Error: Exit code 1\nTraceback (most recent call last):\n  File \"&lt;string>\", line 19, in &lt;module>\n    if exp.get('exp_id') in targets:\n       ^^^^^^^\nAttributeError: 'str' object has no attribute 'get'"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01RHiWKCJ1rGjZBTtvNwPTod`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie/685b1bf8-4822-4d28-8b85-9f3abe1bd865/tool-results/mcp-agent-ml-research-read_registry-1779137149937.txt",
+  "limit": 20
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "685b1bf8-4822-4d28-8b85-9f3abe1bd865",
+  "uuid": "b16c91f1-390f-4be7-8db5-0da9c4f2b082",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TTHR7WAsWeTMNNR71NiHL9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2232,
+      "cache_read_input_tokens": 32691,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2232
+      },
+      "output_tokens": 65,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-18T20:46:17.571Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01RHiWKCJ1rGjZBTtvNwPTod`</summary>
+
+```text
+File content (37102 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "685b1bf8-4822-4d28-8b85-9f3abe1bd865",
+  "uuid": "606caf9e-fca5-4729-9b19-4005be0646ca",
+  "tool_use_result": "Error: File content (37102 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file."
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18_
+
+<details open><summary>🔧 Tool call — Read · `toolu_014r3R4AUbGHNoJBCKzDp8QV`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie/685b1bf8-4822-4d28-8b85-9f3abe1bd865/tool-results/mcp-agent-ml-research-read_registry-1779137149937.txt",
+  "limit": 5
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "685b1bf8-4822-4d28-8b85-9f3abe1bd865",
+  "uuid": "613556e5-f378-4565-8ab3-0a7734084a45",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0121dsk3TMVLB7zowrUYavTZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 222,
+      "cache_read_input_tokens": 34923,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 222
+      },
+      "output_tokens": 65,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-18T20:46:21.267Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_014r3R4AUbGHNoJBCKzDp8QV`</summary>
+
+```text
+File content (37102 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "685b1bf8-4822-4d28-8b85-9f3abe1bd865",
+  "uuid": "970c7c1c-e18b-4054-9784-f20f467287ba",
+  "tool_use_result": "Error: File content (37102 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file."
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_011h1sYAcu33AfzcCsyyozRw`</summary>
+
+```json
+{
+  "command": "head -c 500 /home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie/685b1bf8-4822-4d28-8b85-9f3abe1bd865/tool-results/mcp-agent-ml-research-read_registry-1779137149937.txt",
+  "description": "Check registry file structure"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "685b1bf8-4822-4d28-8b85-9f3abe1bd865",
+  "uuid": "e9d0ec40-abe1-4f4b-8d08-5e2ac2f2b41b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0171Gs6RSgUCAvHuiRYpuVZN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 222,
+      "cache_read_input_tokens": 35145,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 222
+      },
+      "output_tokens": 66,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-18T20:46:24.578Z_
+
+<details><summary>↩ Tool result · `toolu_011h1sYAcu33AfzcCsyyozRw`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"exp_030_conll_t12\": {\"status\": \"PREPARING\"}, \"exp_031_fewnerd_t12\": {\"status\": \"PREPARING\"}, \"exp_epoch_dgs_analysis\": {\"status\": \"DONE\"}, \"exp_diagnostic_calibration\": {\"status\": \"DONE\"}, \"exp_adaptive_temperature\": {\"status\": \"DONE\"}, \"exp_entity_consensus\": {\"status\": \"DONE\"}, \"exp_ccs_selection\": {\"status\": \"DONE\"}, \"exp_029b\": {\"status\": \"DONE\", \"metrics\": {\"greedy_f1\": 0.6467, \
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "685b1bf8-4822-4d28-8b85-9f3abe1bd865",
+  "uuid": "109e5134-9943-4ad3-9e79-b84092c5afb1",
+  "tool_use_result": {
+    "stdout": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp_030_conll_t12\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"exp_031_fewnerd_t12\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"exp_epoch_dgs_analysis\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_diagnostic_calibration\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_adaptive_temperature\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_entity_consensus\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_ccs_selection\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_029b\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"greedy_f1\\\": 0.6467, \\",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01KHtCA4Midea7CnWmBe9Zac`</summary>
+
+```json
+{
+  "command": "python3 -c \"\nimport json\n\nwith open('/home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie/685b1bf8-4822-4d28-8b85-9f3abe1bd865/tool-results/mcp-agent-ml-research-read_registry-1779137149937.txt') as f:\n    raw = json.load(f)\nresult = json.loads(raw['result'])\nexperiments = result['data']['experiments']\n\ntargets = [\n    'exp_012_rerun_1024', 'exp_018_qwen_scierc_seed123', 'exp_018_qwen_scierc_seed456',\n    'exp_002_conll_n16', 'exp_002_conll_n16_seed123', 'exp_002_conll_n16_seed456',\n    'exp_027_fewnerd_n16', 'exp_021_fewnerd_n8_seed123', 'exp_021_fewnerd_n8_seed456',\n    'exp_018_llama_scierc_seed42_r1024', 'exp_018_llama_scierc_seed123', 'exp_018_llama_scierc_seed456_r1024',\n    'exp_017_llama_conll_n16_r1024', 'exp_017_llama_conll_n16_s123_r1024', 'exp_017_llama_conll_n16_s456_r1024',\n    'exp_026_t05', 'exp_026_T05', 'exp_026_t08', 'exp_026_T08', 'exp_026_t12', 'exp_026_T12',\n    'exp_029a', 'exp_029b',\n    'exp_qwen3_4b_scierc_scs_inference', 'exp_qwen3_4b_conll_scs_inference', 'exp_qwen3_4b_conll_scs_inference_v2',\n    'exp_021_fewnerd_full', 'exp_007_llama_scierc_seed123', 'exp_llama_scierc_seed456'\n]\n\nfor eid in targets:\n    if eid in experiments:\n        m = experiments[eid].get('metrics')\n        print(json.dumps({'exp_id': eid, 'metrics': m}))\n    else:\n        print(f'NOT_FOUND: {eid}')\n\"\n",
+  "description": "Extract target experiment metrics from registry"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "685b1bf8-4822-4d28-8b85-9f3abe1bd865",
+  "uuid": "231b3317-c12f-4033-bd85-e343e398442b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013oDf9bdFheWFPaShGXTpcJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 378,
+      "cache_read_input_tokens": 35367,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 378
+      },
+      "output_tokens": 63,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-18T20:46:32.222Z_
+
+<details><summary>↩ Tool result · `toolu_01KHtCA4Midea7CnWmBe9Zac`</summary>
+
+```text
+{"exp_id": "exp_012_rerun_1024", "metrics": {"ner_full": {"n": 529, "SJ": {"rho": 0.3599, "tau": 0.2646, "AUROC": 0.6917, "ECE": 0.4531, "rho_ci95": [0.2732, 0.4389], "AUROC_ci95": [0.6304, 0.7406]}, "FK": {"rho": 0.2665, "tau": 0.1974, "AUROC": 0.629, "ECE": 0.4512, "rho_ci95": [0.1743, 0.3486], "AUROC_ci95": [0.5612, 0.6882]}, "logprob": {"rho": 0.2052, "tau": 0.1478, "AUROC": 0.5783, "ECE": 0.7064, "rho_ci95": [0.1171, 0.2904], "AUROC_ci95": [0.5179, 0.6387]}, "EM": {"rho": 0.2945, "tau": 0.2208, "AUROC": 0.7493, "ECE": 0.3526, "rho_ci95": [0.2094, 0.37], "AUROC_ci95": [0.7002, 0.7928]}, "voting_conf": {"rho": 0.3792, "tau": 0.2805, "AUROC": 0.6841, "ECE": 0.3807, "rho_ci95": [0.2972, 0.4486], "AUROC_ci95": [0.6249, 0.7366]}}, "ner_cond": {"n": 477, "SJ": {"rho": 0.3113, "tau": 0.2257, "AUROC": 0.6772, "ECE": 0.4416, "rho_ci95": [0.2353, 0.3959], "AUROC_ci95": [0.621, 0.7337]}, "FK": {"rho": 0.1761, "tau": 0.1284, "AUROC": 0.6078, "ECE": 0.4389, "rho_ci95": [0.0839, 0.2665], "AUROC_ci95": [0.5442, 0.6709]}, "logprob": {"rho": 0.1538, "tau": 0.1111, "AUROC": 0.5633, "ECE": 0.6803, "rho_ci95": [0.0637, 0.2424], "AUROC_ci95": [0.5032, 0.6232]}, "EM": {"rho": 0.3596, "tau": 0.2735, "AUROC": 0.7556, "ECE": 0.3257, "rho_ci95": [0.2819, 0.4408], "AUROC_ci95": [0.7011, 0.8107]}, "voting_conf": {"rho": 0.3, "tau": 0.2189, "AUROC": 0.6618, "ECE": 0.3746, "rho_ci95": [0.2168, 0.3836], "AUROC_ci95": [0.6004, 0.7201]}}, "re_full": {"n": 397, "SJ": {"rho": 0.2503, "tau": 0.1878, "AUROC": 0.6702, "ECE": 0.3865}, "FK": {"rho": 0.2752, "tau": 0.2117, "AUROC": 0.6089, "ECE": 0.4405}, "logprob": {"rho": 0.2662, "tau": 0.1951, "AUROC": 0.6005, "ECE": 0.7694}, "EM": {"rho": 0.1344, "tau": 0.1081, "AUROC": 0.7059, "ECE": 0.3548}, "voting_conf": {"rho": 0.3498, "tau": 0.2663, "AUROC": 0.6935, "ECE": 0.2724}}, "re_cond": {"n": 238, "SJ": {"rho": 0.2457, "tau": 0.1811, "AUROC": 0.6463, "ECE": 0.2941}, "FK": {"rho": 0.1139, "tau": 0.0876, "AUROC": 0.551, "ECE": 0.3424}, "logprob": {"rho": 0.0112, "tau": 0.0051, "AUROC": 0.5186, "ECE": 0.6464}, "EM": {"rho": 0.4165, "tau": 0.3256, "AUROC": 0.7515, "ECE": 0.2232}, "voting_conf": {"rho": 0.2409, "tau": 0.178, "AUROC": 0.642, "ECE": 0.207}}, "delta_vs_512_ner_full_rho": {"SJ": 0.0034, "FK": 0.0014, "EM": 0.0379, "voting_conf": -0.1226, "logprob": 0.0656}, "provenance_note": "exp_015_v2 scierc_n8_logprob used exp_012_logprob (max_tokens=512 truncated data). voting_conf was inflated 0.502\u21920.379, logprob was suppressed 0.140\u21920.205."}}
+{"exp_id": "exp_018_qwen_scierc_seed123", "metrics": null}
+{"exp_id": "exp_018_qwen_scierc_seed456", "metrics": null}
+{"exp_id": "exp_002_conll_n16", "metrics": {"N": 16, "dataset": "conll2003", "subtask": "ner", "n_instances": 3453, "n_valid": 2756, "n_conditional": 2614, "greedy_f1": 0.907, "full": {"SJ_rho": 0.4496, "FK_rho": 0.3928, "logprob_rho": 0.3146, "EM_rho": 0.4627, "voting_conf_rho": 0.4286, "SJ_AUROC": 0.8264, "FK_AUROC": 0.7821, "logprob_AUROC": 0.7531, "EM_AUROC": 0.8409, "voting_conf_AUROC": 0.8071, "SJ_ECE": 0.0747, "FK_ECE": 0.1786, "logprob_ECE": 0.2031, "EM_ECE": 0.0786, "voting_conf_ECE": 0.529}, "conditional": {"SJ_rho": 0.4208, "FK_rho": 0.3494, "logprob_rho": 0.3756, "EM_rho": 0.4658, "voting_conf_rho": 0.3654, "SJ_AUROC": 0.8405, "FK_AUROC": 0.7819, "logprob_AUROC": 0.8259, "EM_AUROC": 0.8781, "voting_conf_AUROC": 0.7951, "SJ_ECE": 0.0982, "FK_ECE": 0.1899, "logprob_ECE": 0.2504, "EM_ECE": 0.0997, "voting_conf_ECE": 0.6096}, "n8_vs_n16_delta_rho_full": {"SJ": 0.0139, "FK": -0.007, "logprob": -0.0011, "EM": 0.012, "voting_conf": 0.0049}}}
+NOT_FOUND: exp_002_conll_n16_seed123
+NOT_FOUND: exp_002_conll_n16_seed456
+{"exp_id": "exp_027_fewnerd_n16", "metrics": {"LP_delta_pp": 1.88, "LP_delta_95CI": [1.41, 2.37], "degeneracy_rate": 0.045, "greedy_f1": 0.7478, "lp_sel_f1": 0.7666, "oracle_f1": 0.902, "headroom_pp": 15.42, "all_8_types_positive": true, "n_instances": 5000, "N_samples": 16, "bootstrap_p": "<0.001"}}
+NOT_FOUND: exp_021_fewnerd_n8_seed123
+NOT_FOUND: exp_021_fewnerd_n8_seed456
+{"exp_id": "exp_018_llama_scierc_seed42_r1024", "metrics": {"ner": {"full": {"SJ": {"rho": 0.3096, "tau": 0.2288, "auroc": 0.6683}, "FK": {"rho": 0.2352, "tau": 0.1759, "auroc": 0.6069}, "logprob": {"rho": 0.1503, "tau": 0.1087, "auroc": 0.5318}, "EM": {"rho": 0.2587, "tau": 0.1966, "auroc": 0.7174}, "voting_conf": {"rho": 0.4053, "tau": 0.3042, "auroc": 0.6967}}, "conditional": {"SJ": {"rho": 0.2718, "tau": null, "auroc": 0.6565}, "FK": {"rho": 0.1472, "tau": null, "auroc": 0.5866}, "logprob": {"rho": 0.081, "tau": null, "auroc": 0.5129}, "EM": {"rho": 0.3165, "tau": null, "auroc": 0.7244}, "voting_conf": {"rho": 0.3078, "tau": null, "auroc": 0.6714}}, "greedy_f1": 0.6607, "oracle_f1": 0.7781, "n_full": 529, "n_cond": 478}, "re": {"full": {"SJ": {"rho": 0.2748, "tau": 0.2102, "auroc": 0.7244}, "FK": {"rho": 0.3027, "tau": 0.2337, "auroc": 0.691}, "logprob": {"rho": 0.3163, "tau": 0.233, "auroc": 0.6313}, "EM": {"rho": 0.1681, "tau": 0.1275, "auroc": 0.7697}, "voting_conf": {"rho": 0.384, "tau": 0.2965, "auroc": 0.7337}}, "conditional": {"SJ": {"rho": 0.3461, "tau": null, "auroc": 0.7233}, "FK": {"rho": 0.1969, "tau": null, "auroc": 0.6684}, "logprob": {"rho": 0.0888, "tau": null, "auroc": 0.5556}, "EM": {"rho": 0.4969, "tau": null, "auroc": 0.819}, "voting_conf": {"rho": 0.3433, "tau": null, "auroc": 0.7003}}, "greedy_f1": 0.4319, "oracle_f1": 0.5775, "n_full": 397, "n_cond": 251}}}
+{"exp_id": "exp_018_llama_scierc_seed123", "metrics": null}
+{"exp_id": "exp_018_llama_scierc_seed456_r1024", "metrics": {"ner_greedy_f1": 0.6597, "ner_oracle_f1": 0.7683, "ner_oracle_headroom": 0.1086, "ner_cond_rho_fk": 0.1472, "ner_cond_rho_sj": 0.2718, "ner_cond_rho_logprob": 0.083, "ner_logprob_auroc_cond": 0.5485, "re_greedy_f1": 0.4338, "re_oracle_f1": 0.5834, "re_oracle_headroom": 0.1496, "re_cond_rho_fk": 0.2107, "re_cond_rho_sj": 0.3898, "re_cond_rho_logprob": 0.1252, "re_logprob_auroc_cond": 0.6119, "ner_structural_beats_logprob": true, "re_structural_beats_logprob": true}}
+{"exp_id": "exp_017_llama_conll_n16_r1024", "metrics": {"instance_count": 3453, "n_valid": 2756, "n_gold_empty": 697, "parse_rate": 1, "ner_greedy_f1": 0.9265, "ner_oracle_f1": 0.9499, "rho_fk_ner": 0.4752, "rho_sj_ner": 0.4836, "rho_vc_ner": 0.4746, "rho_em_ner": 0.4818, "rho_lp_ner": 0.3136, "auroc_fk_ner": 0.7467, "auroc_sj_ner": 0.7496, "auroc_vc_ner": 0.7529, "auroc_em_ner": 0.7508, "auroc_lp_ner": 0.7661, "auroc_note": "median F1=1.0, AUROC uses >=median threshold", "rho_note": "CORRECTED 2026-05-15: old values (rho_fk=0.8095,rho_sj=0.1815) were inflated/deflated by 697 gold-empty instances. Now uses gold-filtered pipeline (n=2756)."}}
+{"exp_id": "exp_017_llama_conll_n16_s123_r1024", "metrics": null}
+{"exp_id": "exp_017_llama_conll_n16_s456_r1024", "metrics": {"instance_count": 3453, "n_valid": 2756, "n_gold_empty": 697, "parse_rate": 1, "ner_greedy_f1": 0.9265, "ner_oracle_f1": 0.9499, "rho_fk_ner": 0.469, "rho_sj_ner": 0.4734, "rho_vc_ner": 0.4722, "rho_em_ner": 0.4752, "rho_lp_ner": 0.3099, "auroc_fk_ner": 0.7408, "auroc_sj_ner": 0.7428, "auroc_vc_ner": 0.7495, "auroc_em_ner": 0.7444, "auroc_lp_ner": 0.7628, "auroc_note": "median F1=1.0, AUROC uses >=median threshold", "rho_note": "CORRECTED 2026-05-15: old values (rho_fk=0.8085,rho_sj=0.1895) were inflated/deflated by 697 gold-empty instances. Now uses gold-filtered pipeline (n=2756)."}}
+{"exp_id": "exp_026_t05", "metrics": {"temperature": 0.5, "task": "T-ablation"}}
+{"exp_id": "exp_026_T05", "metrics": {"degeneracy_rate": 0.4026, "degeneracy_definition": "constant_f1_gold_filtered", "lp_range_mean": 0.022, "lp_range_std": 0.021, "within_instance_rho_mean": 0.1306, "within_instance_rho_median": 0.2182, "within_instance_rho_valid_pct": 0.597, "greedy_f1": 0.617, "oracle_f1": 0.71, "lp_sel_f1": 0.622, "sj_sel_f1": 0.622, "em_sel_f1": 0.619, "vc_sel_f1": 0.61, "sj_rho": 0.333, "fk_rho": 0.341, "lp_rho": 0.208, "vc_rho": 0.353, "sj_auroc": 0.644, "lp_auroc": 0.577}}
+{"exp_id": "exp_026_t08", "metrics": {"temperature": 0.8, "task": "T-ablation"}}
+{"exp_id": "exp_026_T08", "metrics": {"degeneracy_rate": 0.2722, "degeneracy_definition": "constant_f1_gold_filtered", "lp_range_mean": 0.043, "lp_range_std": 0.042, "within_instance_rho_mean": 0.1701, "within_instance_rho_median": 0.2635, "within_instance_rho_valid_pct": 0.728, "greedy_f1": 0.616, "oracle_f1": 0.737, "lp_sel_f1": 0.627, "sj_sel_f1": 0.619, "em_sel_f1": 0.611, "vc_sel_f1": 0.603, "sj_rho": 0.378, "fk_rho": 0.34, "lp_rho": 0.212, "vc_rho": 0.352, "sj_auroc": 0.662, "lp_auroc": 0.571}}
+{"exp_id": "exp_026_t12", "metrics": {"temperature": 1.2, "task": "T-ablation"}}
+{"exp_id": "exp_026_T12", "metrics": {"degeneracy_rate": 0.1248, "degeneracy_definition": "constant_f1_gold_filtered", "lp_range_mean": 0.075, "lp_range_std": 0.059, "within_instance_rho_mean": 0.2245, "within_instance_rho_median": 0.3152, "within_instance_rho_valid_pct": 0.875, "greedy_f1": 0.62, "oracle_f1": 0.758, "lp_sel_f1": 0.621, "sj_sel_f1": 0.597, "em_sel_f1": 0.596, "vc_sel_f1": 0.582, "sj_rho": 0.384, "fk_rho": 0.386, "lp_rho": 0.182, "vc_rho": 0.342, "sj_auroc": 0.683, "lp_auroc": 0.566}}
+{"exp_id": "exp_029a", "metrics": {"greedy_f1": 0.6501, "degen_rate": 0.064, "dgs_f1": 0.6383, "dgs_delta_pp": -1.18, "oracle_headroom_pp": 14.97, "note": "unified_metrics.py canonical numbers (post-fix)"}}
+{"exp_id": "exp_029b", "metrics": {"greedy_f1": 0.6467, "degen_rate": 0.478, "dgs_f1": 0.6567, "dgs_delta_pp": 0.99, "oracle_headroom_pp": 8.64, "note": "unified_metrics.py canonical numbers (post-fix)"}}
+{"exp_id": "exp_qwen3_4b_scierc_scs_inference", "metrics": {"ner_greedy_f1": 0.6612, "ner_oracle_f1": 0.7839, "ner_headroom_pp": 12.28, "ner_SJ_rho": 0.4221, "ner_FK_rho": 0.3258, "ner_LP_rho": 0.28, "re_greedy_f1": 0.4136, "re_oracle_f1": 0.5846, "re_headroom_pp": 17.1, "re_SJ_rho": 0.2673, "re_FK_rho": 0.3593, "re_LP_rho": 0.3512, "re_sample_f1_pct_zero": 0.476, "re_LP_rho_cond": 0.1135, "re_LP_rho_cond_p": 0.074}}
+{"exp_id": "exp_qwen3_4b_conll_scs_inference", "metrics": {"greedy_f1": 0.9251, "oracle_f1": 0.9408, "oracle_headroom_pp": 1.57, "SJ_rho_full": 0.4045, "SJ_rho_cond": 0.4306, "FK_rho_full": 0.3961, "FK_rho_cond": 0.42, "LP_rho_full": 0.3186, "LP_rho_cond": 0.3378, "LP_auroc_full": 0.7689, "LP_auroc_cond": 0.8153, "fleiss_kappa_mean": 0.9349, "soft_jaccard_mean": 0.9754, "structural_beats_surface": true, "rho_advantage_pp": 0.84, "n_instances": 3453, "n_gold_empty_filtered": 697, "n_greedy_f1_zero_filtered": 112, "verdict": "MARGINAL"}}
+{"exp_id": "exp_qwen3_4b_conll_scs_inference_v2", "metrics": {"greedy_f1": 0.9234, "oracle_f1": 0.9404, "oracle_headroom_pp": 1.7, "SJ_rho_full": 0.4217, "SJ_rho_cond": 0.459, "FK_rho_full": 0.4181, "FK_rho_cond": 0.4538, "LP_rho_full": 0.3313, "LP_rho_cond": 0.3487, "LP_auroc_full": 0.7761, "LP_auroc_cond": 0.8209, "n_instances": 3453, "verdict": "MARGINAL"}}
+{"exp_id": "exp_021_fewnerd_full", "metrics": {"total_steps": 6177, "train_loss": 0.048, "eval_loss": 0.0275, "train_runtime": "3h57m", "epochs": 3, "final_checkpoint": "output/exp_021_fewnerd_full/checkpoint-6177", "adapter_path": "output/exp_021_fewnerd_full/adapter_model.safetensors", "inference_instances": 37648, "inference_filtered": 32565, "inference_n_samples": 8, "greedy_macro_f1": 0.7478, "oracle_macro_f1": 0.8719, "headroom": 0.124, "zero_f1_rate": 0.119, "degeneracy_rate": 0.101, "lp_within_range_mean": 0.0879, "lp_within_range_median": 0.0662, "lp_global_rho": 0.4215, "lp_cond_rho": 0.4225, "sj_global_rho": 0.3002, "sj_cond_rho": 0.2937, "fk_global_rho": 0.3132, "fk_cond_rho": 0.3093, "em_global_rho": 0.2871, "em_cond_rho": 0.271, "vc_global_rho": 0.3858, "vc_cond_rho": 0.3234, "lp_selection_delta_pp": 1.36, "vc_selection_delta_pp": -1.79, "sj_selection_delta_pp": -2.14, "fk_selection_delta_pp": -2.26, "em_selection_delta_pp": -3.85, "lp_bootstrap_ci_95_pp": [1.18, 1.53], "lp_sample_auroc": 0.5782, "vc_sample_auroc": 0.5354, "fk_sample_auroc": 0.521, "sj_sample_auroc": 0.5197, "em_sample_auroc": 0.5137, "scenario": "A_partial", "note": "Full analysis (gold-filtered n=32565). Prior simplified analysis used unfiltered data with different metrics."}}
+{"exp_id": "exp_007_llama_scierc_seed123", "metrics": {"greedy_f1": 0.6454, "oracle_f1": 0.7657, "headroom": 0.1204, "degen_pct": 26.7, "dgs_delta_pp": -0.38, "rho_SJ_full": 0.3552, "rho_voting_conf_full": 0.4193, "auroc_SJ_full": 0.7092, "auroc_EM_full": 0.7468}}
+{"exp_id": "exp_llama_scierc_seed456", "metrics": {"greedy_f1": 0.6457, "oracle_f1": 0.7574, "headroom": 0.1117, "dgs_f1": 0.6454, "degen_pct": 27.6, "rho_SJ_full": 0.3663, "rho_FK_full": 0.3115, "rho_logprob_full": 0.1911, "rho_EM_full": 0.3088, "rho_vc_full": 0.4135, "auroc_SJ_full": 0.7061, "auroc_EM_full": 0.7538, "n_valid": 529, "n_conditional": 478}}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "685b1bf8-4822-4d28-8b85-9f3abe1bd865",
+  "uuid": "25ba4cdf-740f-4c33-9088-340319d95fa8",
+  "tool_use_result": {
+    "stdout": "{\"exp_id\": \"exp_012_rerun_1024\", \"metrics\": {\"ner_full\": {\"n\": 529, \"SJ\": {\"rho\": 0.3599, \"tau\": 0.2646, \"AUROC\": 0.6917, \"ECE\": 0.4531, \"rho_ci95\": [0.2732, 0.4389], \"AUROC_ci95\": [0.6304, 0.7406]}, \"FK\": {\"rho\": 0.2665, \"tau\": 0.1974, \"AUROC\": 0.629, \"ECE\": 0.4512, \"rho_ci95\": [0.1743, 0.3486], \"AUROC_ci95\": [0.5612, 0.6882]}, \"logprob\": {\"rho\": 0.2052, \"tau\": 0.1478, \"AUROC\": 0.5783, \"ECE\": 0.7064, \"rho_ci95\": [0.1171, 0.2904], \"AUROC_ci95\": [0.5179, 0.6387]}, \"EM\": {\"rho\": 0.2945, \"tau\": 0.2208, \"AUROC\": 0.7493, \"ECE\": 0.3526, \"rho_ci95\": [0.2094, 0.37], \"AUROC_ci95\": [0.7002, 0.7928]}, \"voting_conf\": {\"rho\": 0.3792, \"tau\": 0.2805, \"AUROC\": 0.6841, \"ECE\": 0.3807, \"rho_ci95\": [0.2972, 0.4486], \"AUROC_ci95\": [0.6249, 0.7366]}}, \"ner_cond\": {\"n\": 477, \"SJ\": {\"rho\": 0.3113, \"tau\": 0.2257, \"AUROC\": 0.6772, \"ECE\": 0.4416, \"rho_ci95\": [0.2353, 0.3959], \"AUROC_ci95\": [0.621, 0.7337]}, \"FK\": {\"rho\": 0.1761, \"tau\": 0.1284, \"AUROC\": 0.6078, \"ECE\": 0.4389, \"rho_ci95\": [0.0839, 0.2665], \"AUROC_ci95\": [0.5442, 0.6709]}, \"logprob\": {\"rho\": 0.1538, \"tau\": 0.1111, \"AUROC\": 0.5633, \"ECE\": 0.6803, \"rho_ci95\": [0.0637, 0.2424], \"AUROC_ci95\": [0.5032, 0.6232]}, \"EM\": {\"rho\": 0.3596, \"tau\": 0.2735, \"AUROC\": 0.7556, \"ECE\": 0.3257, \"rho_ci95\": [0.2819, 0.4408], \"AUROC_ci95\": [0.7011, 0.8107]}, \"voting_conf\": {\"rho\": 0.3, \"tau\": 0.2189, \"AUROC\": 0.6618, \"ECE\": 0.3746, \"rho_ci95\": [0.2168, 0.3836], \"AUROC_ci95\": [0.6004, 0.7201]}}, \"re_full\": {\"n\": 397, \"SJ\": {\"rho\": 0.2503, \"tau\": 0.1878, \"AUROC\": 0.6702, \"ECE\": 0.3865}, \"FK\": {\"rho\": 0.2752, \"tau\": 0.2117, \"AUROC\": 0.6089, \"ECE\": 0.4405}, \"logprob\": {\"rho\": 0.2662, \"tau\": 0.1951, \"AUROC\": 0.6005, \"ECE\": 0.7694}, \"EM\": {\"rho\": 0.1344, \"tau\": 0.1081, \"AUROC\": 0.7059, \"ECE\": 0.3548}, \"voting_conf\": {\"rho\": 0.3498, \"tau\": 0.2663, \"AUROC\": 0.6935, \"ECE\": 0.2724}}, \"re_cond\": {\"n\": 238, \"SJ\": {\"rho\": 0.2457, \"tau\": 0.1811, \"AUROC\": 0.6463, \"ECE\": 0.2941}, \"FK\": {\"rho\": 0.1139, \"tau\": 0.0876, \"AUROC\": 0.551, \"ECE\": 0.3424}, \"logprob\": {\"rho\": 0.0112, \"tau\": 0.0051, \"AUROC\": 0.5186, \"ECE\": 0.6464}, \"EM\": {\"rho\": 0.4165, \"tau\": 0.3256, \"AUROC\": 0.7515, \"ECE\": 0.2232}, \"voting_conf\": {\"rho\": 0.2409, \"tau\": 0.178, \"AUROC\": 0.642, \"ECE\": 0.207}}, \"delta_vs_512_ner_full_rho\": {\"SJ\": 0.0034, \"FK\": 0.0014, \"EM\": 0.0379, \"voting_conf\": -0.1226, \"logprob\": 0.0656}, \"provenance_note\": \"exp_015_v2 scierc_n8_logprob used exp_012_logprob (max_tokens=512 truncated data). voting_conf was inflated 0.502\\u21920.379, logprob was suppressed 0.140\\u21920.205.\"}}\n{\"exp_id\": \"exp_018_qwen_scierc_seed123\", \"metrics\": null}\n{\"exp_id\": \"exp_018_qwen_scierc_seed456\", \"metrics\": null}\n{\"exp_id\": \"exp_002_conll_n16\", \"metrics\": {\"N\": 16, \"dataset\": \"conll2003\", \"subtask\": \"ner\", \"n_instances\": 3453, \"n_valid\": 2756, \"n_conditional\": 2614, \"greedy_f1\": 0.907, \"full\": {\"SJ_rho\": 0.4496, \"FK_rho\": 0.3928, \"logprob_rho\": 0.3146, \"EM_rho\": 0.4627, \"voting_conf_rho\": 0.4286, \"SJ_AUROC\": 0.8264, \"FK_AUROC\": 0.7821, \"logprob_AUROC\": 0.7531, \"EM_AUROC\": 0.8409, \"voting_conf_AUROC\": 0.8071, \"SJ_ECE\": 0.0747, \"FK_ECE\": 0.1786, \"logprob_ECE\": 0.2031, \"EM_ECE\": 0.0786, \"voting_conf_ECE\": 0.529}, \"conditional\": {\"SJ_rho\": 0.4208, \"FK_rho\": 0.3494, \"logprob_rho\": 0.3756, \"EM_rho\": 0.4658, \"voting_conf_rho\": 0.3654, \"SJ_AUROC\": 0.8405, \"FK_AUROC\": 0.7819, \"logprob_AUROC\": 0.8259, \"EM_AUROC\": 0.8781, \"voting_conf_AUROC\": 0.7951, \"SJ_ECE\": 0.0982, \"FK_ECE\": 0.1899, \"logprob_ECE\": 0.2504, \"EM_ECE\": 0.0997, \"voting_conf_ECE\": 0.6096}, \"n8_vs_n16_delta_rho_full\": {\"SJ\": 0.0139, \"FK\": -0.007, \"logprob\": -0.0011, \"EM\": 0.012, \"voting_conf\": 0.0049}}}\nNOT_FOUND: exp_002_conll_n16_seed123\nNOT_FOUND: exp_002_conll_n16_seed456\n{\"exp_id\": \"exp_027_fewnerd_n16\", \"metrics\": {\"LP_delta_pp\": 1.88, \"LP_delta_95CI\": [1.41, 2.37], \"degeneracy_rate\": 0.045, \"greedy_f1\": 0.7478, \"lp_sel_f1\": 0.7666, \"oracle_f1\": 0.902, \"headroom_pp\": 15.42, \"all_8_types_positive\": true, \"n_instances\": 5000, \"N_samples\": 16, \"bootstrap_p\": \"<0.001\"}}\nNOT_FOUND: exp_021_fewnerd_n8_seed123\nNOT_FOUND: exp_021_fewnerd_n8_seed456\n{\"exp_id\": \"exp_018_llama_scierc_seed42_r1024\", \"metrics\": {\"ner\": {\"full\": {\"SJ\": {\"rho\": 0.3096, \"tau\": 0.2288, \"auroc\": 0.6683}, \"FK\": {\"rho\": 0.2352, \"tau\": 0.1759, \"auroc\": 0.6069}, \"logprob\": {\"rho\": 0.1503, \"tau\": 0.1087, \"auroc\": 0.5318}, \"EM\": {\"rho\": 0.2587, \"tau\": 0.1966, \"auroc\": 0.7174}, \"voting_conf\": {\"rho\": 0.4053, \"tau\": 0.3042, \"auroc\": 0.6967}}, \"conditional\": {\"SJ\": {\"rho\": 0.2718, \"tau\": null, \"auroc\": 0.6565}, \"FK\": {\"rho\": 0.1472, \"tau\": null, \"auroc\": 0.5866}, \"logprob\": {\"rho\": 0.081, \"tau\": null, \"auroc\": 0.5129}, \"EM\": {\"rho\": 0.3165, \"tau\": null, \"auroc\": 0.7244}, \"voting_conf\": {\"rho\": 0.3078, \"tau\": null, \"auroc\": 0.6714}}, \"greedy_f1\": 0.6607, \"oracle_f1\": 0.7781, \"n_full\": 529, \"n_cond\": 478}, \"re\": {\"full\": {\"SJ\": {\"rho\": 0.2748, \"tau\": 0.2102, \"auroc\": 0.7244}, \"FK\": {\"rho\": 0.3027, \"tau\": 0.2337, \"auroc\": 0.691}, \"logprob\": {\"rho\": 0.3163, \"tau\": 0.233, \"auroc\": 0.6313}, \"EM\": {\"rho\": 0.1681, \"tau\": 0.1275, \"auroc\": 0.7697}, \"voting_conf\": {\"rho\": 0.384, \"tau\": 0.2965, \"auroc\": 0.7337}}, \"conditional\": {\"SJ\": {\"rho\": 0.3461, \"tau\": null, \"auroc\": 0.7233}, \"FK\": {\"rho\": 0.1969, \"tau\": null, \"auroc\": 0.6684}, \"logprob\": {\"rho\": 0.0888, \"tau\": null, \"auroc\": 0.5556}, \"EM\": {\"rho\": 0.4969, \"tau\": null, \"auroc\": 0.819}, \"voting_conf\": {\"rho\": 0.3433, \"tau\": null, \"auroc\": 0.7003}}, \"greedy_f1\": 0.4319, \"oracle_f1\": 0.5775, \"n_full\": 397, \"n_cond\": 251}}}\n{\"exp_id\": \"exp_018_llama_scierc_seed123\", \"metrics\": null}\n{\"exp_id\": \"exp_018_llama_scierc_seed456_r1024\", \"metrics\": {\"ner_greedy_f1\": 0.6597, \"ner_oracle_f1\": 0.7683, \"ner_oracle_headroom\": 0.1086, \"ner_cond_rho_fk\": 0.1472, \"ner_cond_rho_sj\": 0.2718, \"ner_cond_rho_logprob\": 0.083, \"ner_logprob_auroc_cond\": 0.5485, \"re_greedy_f1\": 0.4338, \"re_oracle_f1\": 0.5834, \"re_oracle_headroom\": 0.1496, \"re_cond_rho_fk\": 0.2107, \"re_cond_rho_sj\": 0.3898, \"re_cond_rho_logprob\": 0.1252, \"re_logprob_auroc_cond\": 0.6119, \"ner_structural_beats_logprob\": true, \"re_structural_beats_logprob\": true}}\n{\"exp_id\": \"exp_017_llama_conll_n16_r1024\", \"metrics\": {\"instance_count\": 3453, \"n_valid\": 2756, \"n_gold_empty\": 697, \"parse_rate\": 1, \"ner_greedy_f1\": 0.9265, \"ner_oracle_f1\": 0.9499, \"rho_fk_ner\": 0.4752, \"rho_sj_ner\": 0.4836, \"rho_vc_ner\": 0.4746, \"rho_em_ner\": 0.4818, \"rho_lp_ner\": 0.3136, \"auroc_fk_ner\": 0.7467, \"auroc_sj_ner\": 0.7496, \"auroc_vc_ner\": 0.7529, \"auroc_em_ner\": 0.7508, \"auroc_lp_ner\": 0.7661, \"auroc_note\": \"median F1=1.0, AUROC uses >=median threshold\", \"rho_note\": \"CORRECTED 2026-05-15: old values (rho_fk=0.8095,rho_sj=0.1815) were inflated/deflated by 697 gold-empty instances. Now uses gold-filtered pipeline (n=2756).\"}}\n{\"exp_id\": \"exp_017_llama_conll_n16_s123_r1024\", \"metrics\": null}\n{\"exp_id\": \"exp_017_llama_conll_n16_s456_r1024\", \"metrics\": {\"instance_count\": 3453, \"n_valid\": 2756, \"n_gold_empty\": 697, \"parse_rate\": 1, \"ner_greedy_f1\": 0.9265, \"ner_oracle_f1\": 0.9499, \"rho_fk_ner\": 0.469, \"rho_sj_ner\": 0.4734, \"rho_vc_ner\": 0.4722, \"rho_em_ner\": 0.4752, \"rho_lp_ner\": 0.3099, \"auroc_fk_ner\": 0.7408, \"auroc_sj_ner\": 0.7428, \"auroc_vc_ner\": 0.7495, \"auroc_em_ner\": 0.7444, \"auroc_lp_ner\": 0.7628, \"auroc_note\": \"median F1=1.0, AUROC uses >=median threshold\", \"rho_note\": \"CORRECTED 2026-05-15: old values (rho_fk=0.8085,rho_sj=0.1895) were inflated/deflated by 697 gold-empty instances. Now uses gold-filtered pipeline (n=2756).\"}}\n{\"exp_id\": \"exp_026_t05\", \"metrics\": {\"temperature\": 0.5, \"task\": \"T-ablation\"}}\n{\"exp_id\": \"exp_026_T05\", \"metrics\": {\"degeneracy_rate\": 0.4026, \"degeneracy_definition\": \"constant_f1_gold_filtered\", \"lp_range_mean\": 0.022, \"lp_range_std\": 0.021, \"within_instance_rho_mean\": 0.1306, \"within_instance_rho_median\": 0.2182, \"within_instance_rho_valid_pct\": 0.597, \"greedy_f1\": 0.617, \"oracle_f1\": 0.71, \"lp_sel_f1\": 0.622, \"sj_sel_f1\": 0.622, \"em_sel_f1\": 0.619, \"vc_sel_f1\": 0.61, \"sj_rho\": 0.333, \"fk_rho\": 0.341, \"lp_rho\": 0.208, \"vc_rho\": 0.353, \"sj_auroc\": 0.644, \"lp_auroc\": 0.577}}\n{\"exp_id\": \"exp_026_t08\", \"metrics\": {\"temperature\": 0.8, \"task\": \"T-ablation\"}}\n{\"exp_id\": \"exp_026_T08\", \"metrics\": {\"degeneracy_rate\": 0.2722, \"degeneracy_definition\": \"constant_f1_gold_filtered\", \"lp_range_mean\": 0.043, \"lp_range_std\": 0.042, \"within_instance_rho_mean\": 0.1701, \"within_instance_rho_median\": 0.2635, \"within_instance_rho_valid_pct\": 0.728, \"greedy_f1\": 0.616, \"oracle_f1\": 0.737, \"lp_sel_f1\": 0.627, \"sj_sel_f1\": 0.619, \"em_sel_f1\": 0.611, \"vc_sel_f1\": 0.603, \"sj_rho\": 0.378, \"fk_rho\": 0.34, \"lp_rho\": 0.212, \"vc_rho\": 0.352, \"sj_auroc\": 0.662, \"lp_auroc\": 0.571}}\n{\"exp_id\": \"exp_026_t12\", \"metrics\": {\"temperature\": 1.2, \"task\": \"T-ablation\"}}\n{\"exp_id\": \"exp_026_T12\", \"metrics\": {\"degeneracy_rate\": 0.1248, \"degeneracy_definition\": \"constant_f1_gold_filtered\", \"lp_range_mean\": 0.075, \"lp_range_std\": 0.059, \"within_instance_rho_mean\": 0.2245, \"within_instance_rho_median\": 0.3152, \"within_instance_rho_valid_pct\": 0.875, \"greedy_f1\": 0.62, \"oracle_f1\": 0.758, \"lp_sel_f1\": 0.621, \"sj_sel_f1\": 0.597, \"em_sel_f1\": 0.596, \"vc_sel_f1\": 0.582, \"sj_rho\": 0.384, \"fk_rho\": 0.386, \"lp_rho\": 0.182, \"vc_rho\": 0.342, \"sj_auroc\": 0.683, \"lp_auroc\": 0.566}}\n{\"exp_id\": \"exp_029a\", \"metrics\": {\"greedy_f1\": 0.6501, \"degen_rate\": 0.064, \"dgs_f1\": 0.6383, \"dgs_delta_pp\": -1.18, \"oracle_headroom_pp\": 14.97, \"note\": \"unified_metrics.py canonical numbers (post-fix)\"}}\n{\"exp_id\": \"exp_029b\", \"metrics\": {\"greedy_f1\": 0.6467, \"degen_rate\": 0.478, \"dgs_f1\": 0.6567, \"dgs_delta_pp\": 0.99, \"oracle_headroom_pp\": 8.64, \"note\": \"unified_metrics.py canonical numbers (post-fix)\"}}\n{\"exp_id\": \"exp_qwen3_4b_scierc_scs_inference\", \"metrics\": {\"ner_greedy_f1\": 0.6612, \"ner_oracle_f1\": 0.7839, \"ner_headroom_pp\": 12.28, \"ner_SJ_rho\": 0.4221, \"ner_FK_rho\": 0.3258, \"ner_LP_rho\": 0.28, \"re_greedy_f1\": 0.4136, \"re_oracle_f1\": 0.5846, \"re_headroom_pp\": 17.1, \"re_SJ_rho\": 0.2673, \"re_FK_rho\": 0.3593, \"re_LP_rho\": 0.3512, \"re_sample_f1_pct_zero\": 0.476, \"re_LP_rho_cond\": 0.1135, \"re_LP_rho_cond_p\": 0.074}}\n{\"exp_id\": \"exp_qwen3_4b_conll_scs_inference\", \"metrics\": {\"greedy_f1\": 0.9251, \"oracle_f1\": 0.9408, \"oracle_headroom_pp\": 1.57, \"SJ_rho_full\": 0.4045, \"SJ_rho_cond\": 0.4306, \"FK_rho_full\": 0.3961, \"FK_rho_cond\": 0.42, \"LP_rho_full\": 0.3186, \"LP_rho_cond\": 0.3378, \"LP_auroc_full\": 0.7689, \"LP_auroc_cond\": 0.8153, \"fleiss_kappa_mean\": 0.9349, \"soft_jaccard_mean\": 0.9754, \"structural_beats_surface\": true, \"rho_advantage_pp\": 0.84, \"n_instances\": 3453, \"n_gold_empty_filtered\": 697, \"n_greedy_f1_zero_filtered\": 112, \"verdict\": \"MARGINAL\"}}\n{\"exp_id\": \"exp_qwen3_4b_conll_scs_inference_v2\", \"metrics\": {\"greedy_f1\": 0.9234, \"oracle_f1\": 0.9404, \"oracle_headroom_pp\": 1.7, \"SJ_rho_full\": 0.4217, \"SJ_rho_cond\": 0.459, \"FK_rho_full\": 0.4181, \"FK_rho_cond\": 0.4538, \"LP_rho_full\": 0.3313, \"LP_rho_cond\": 0.3487, \"LP_auroc_full\": 0.7761, \"LP_auroc_cond\": 0.8209, \"n_instances\": 3453, \"verdict\": \"MARGINAL\"}}\n{\"exp_id\": \"exp_021_fewnerd_full\", \"metrics\": {\"total_steps\": 6177, \"train_loss\": 0.048, \"eval_loss\": 0.0275, \"train_runtime\": \"3h57m\", \"epochs\": 3, \"final_checkpoint\": \"output/exp_021_fewnerd_full/checkpoint-6177\", \"adapter_path\": \"output/exp_021_fewnerd_full/adapter_model.safetensors\", \"inference_instances\": 37648, \"inference_filtered\": 32565, \"inference_n_samples\": 8, \"greedy_macro_f1\": 0.7478, \"oracle_macro_f1\": 0.8719, \"headroom\": 0.124, \"zero_f1_rate\": 0.119, \"degeneracy_rate\": 0.101, \"lp_within_range_mean\": 0.0879, \"lp_within_range_median\": 0.0662, \"lp_global_rho\": 0.4215, \"lp_cond_rho\": 0.4225, \"sj_global_rho\": 0.3002, \"sj_cond_rho\": 0.2937, \"fk_global_rho\": 0.3132, \"fk_cond_rho\": 0.3093, \"em_global_rho\": 0.2871, \"em_cond_rho\": 0.271, \"vc_global_rho\": 0.3858, \"vc_cond_rho\": 0.3234, \"lp_selection_delta_pp\": 1.36, \"vc_selection_delta_pp\": -1.79, \"sj_selection_delta_pp\": -2.14, \"fk_selection_delta_pp\": -2.26, \"em_selection_delta_pp\": -3.85, \"lp_bootstrap_ci_95_pp\": [1.18, 1.53], \"lp_sample_auroc\": 0.5782, \"vc_sample_auroc\": 0.5354, \"fk_sample_auroc\": 0.521, \"sj_sample_auroc\": 0.5197, \"em_sample_auroc\": 0.5137, \"scenario\": \"A_partial\", \"note\": \"Full analysis (gold-filtered n=32565). Prior simplified analysis used unfiltered data with different metrics.\"}}\n{\"exp_id\": \"exp_007_llama_scierc_seed123\", \"metrics\": {\"greedy_f1\": 0.6454, \"oracle_f1\": 0.7657, \"headroom\": 0.1204, \"degen_pct\": 26.7, \"dgs_delta_pp\": -0.38, \"rho_SJ_full\": 0.3552, \"rho_voting_conf_full\": 0.4193, \"auroc_SJ_full\": 0.7092, \"auroc_EM_full\": 0.7468}}\n{\"exp_id\": \"exp_llama_scierc_seed456\", \"metrics\": {\"greedy_f1\": 0.6457, \"oracle_f1\": 0.7574, \"headroom\": 0.1117, \"dgs_f1\": 0.6454, \"degen_pct\": 27.6, \"rho_SJ_full\": 0.3663, \"rho_FK_full\": 0.3115, \"rho_logprob_full\": 0.1911, \"rho_EM_full\": 0.3088, \"rho_vc_full\": 0.4135, \"auroc_SJ_full\": 0.7061, \"auroc_EM_full\": 0.7538, \"n_valid\": 529, \"n_conditional\": 478}}",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 24_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have all the data I need. Let me map the recalc results to registry exp_ids and prepare the updates.
+
+From the recalc JSON, I have these entries with their `degen_pct_unified` values:
+
+1. exp_012_rerun_1024 (Qwen3-8B SciERC seed=42): 17.77% → registry has complex metrics, no degen_rate field
+2. exp_018_qwen_scierc_seed123 (Qwen3-8B SciERC seed=123): 17.20% → metrics: null
+
+
+3. exp_018_qwen_scierc_seed456 (Qwen3-8B SciERC seed=456): 20.42% → metrics: null
+4. exp_002_conll_n16 (Qwen3-8B CoNLL seed=42): 48.44% → has complex metrics, no degen_rate
+5. exp_002_conll_n16_seed123 and seed456 aren't in the recalc results
+6. exp_027_fewnerd_n16 (Qwen3-8B FewNERD seed=42): 7.something percent with a degeneracy_rate of 0.045
+7. exp_021_fewnerd_n8 variants with seed123 and seed456 are also missing
+8. Moving to the LLaMA experiments: SciERC with seed=42 shows 24.95%, seed=123 shows 26.65%, and seed=456 shows 27.41%, though the degeneracy rates vary in what's available
+9. The CoNLL LLaMA run with seed=42 is at 86 percent
+
+, seed=123 at 86.36%, and seed=456 at 86.72%
+10. For the temperature ablation experiments, T=0.5 shows 41.40%, T=0.8 shows 23.82%, and I'm noting the metrics structure for these runs
+11. I need to update the existing degeneracy rates for the T=0.5, T=0.8, and T=1.2 variants with their recalculated values
+12. For exp_029a and exp_029b, they're not appearing in the recalculation data, so I should skip those entries
+13. The 4B model experiments (SciERC and CoNLL) have metrics but no degeneracy rates to update
+14. For exp_021_fewnerd_full, there's a mismatch—the registry has the full training run, but the recalculation data references specific seed variants that don't exist in the registry, so I need to clarify which experiments actually need updating Wait, let me re-examine. The recalc JSON has entries for:
+- FewNERD seed=42 → dir: exp_027_fewnerd_n16 → degen 7.06%
+- FewNERD seed=123 → dir: exp_021_fewnerd_n8_seed123 → degen 13.12%
+- FewNERD seed=456 → dir: exp_021_fewnerd_n8_seed456 → degen 12.12%
+
+But in registry, exp_021_fewnerd_n8_seed123 and exp_021_fewnerd_n8_seed456 don't exist. Only exp_021_fewnerd_full exists. Similarly, the CoNLL experiments with seed=123 and seed=456 aren't in the registry either.
+
+For the T-ablation, I notice there are both lowercase and uppercase versions in the registry—exp_026_t05 versus exp_026_T05. The uppercase ones have the full metrics including degeneracy rates, while the lowercase ones only have temperature and task info. I should be updating the uppercase versions since they contain the detailed data.
+
+Comparing the values: exp_026_T05 currently shows 0.4026 but recalc gives 41.40% (0.4140), exp_026_T08 is 0.2722 versus 23.82% (0.2382), and exp_026_T12 is 0.1248 versus 14.93% (0.1493). There's a discrepancy I need to resolve.
+
+Looking at the registry, all the degeneracy_rate values are stored as fractions (0.xxx format), while the recalc JSON uses percentages. I need to convert the percentages to fractions for consistency.
+
+I notice that exp_029a and exp_029b aren't in the recalc JSON, so I can't update those. For the rest, I need to handle two cases: experiments with existing metrics where I'll merge in the degen_rate, and those with null metrics where I'll create a minimal metrics object.
+
+Looking at the experiments to update, most have existing complex metrics that need the degen_rate added—exp_012_rerun_1024 gets 0.1, exp_002_conll_n16 gets 0.4844, exp_027_fewnerd_n16 needs its degeneracy_rate updated from 0.045 to 0.0706, and several of the llama experiments get their respective degen_rate values merged in. I'm also seeing exp_026_T05 in the list that needs updating.
+
+Continuing through the remaining experiments, I need to update degeneracy_rate values for exp_026_T08 and exp_026_T12, add degen_rate to the qwen3 experiments, and convert the older degen_pct format to the new degen_rate format for exp_007_llama_scierc_seed123 and exp_llama_scierc_seed456.
+
+For exp_021_fewnerd_full, there's a discrepancy—it shows degeneracy_rate: 0.101 but doesn't appear in the recalculation map. The FewNERD entries in the recalc actually reference exp_021_fewnerd_n8_seed123/456 which don't exist in the registry yet.
+
+I also need to create new entries for four experiments that currently have null metrics: exp_018_qwen_scierc_seed123 and seed456, plus exp_018_llama_scierc_seed123 and exp_017_llama_conll_n16_s123_r1024, each with their calculated degen_rate values. There's also exp_002_conll_n16_seed that I can't find in the registry.
+
+Looking at the missing experiments, I see exp_002_conll_n16_seed123 and seed456 for Qwen CoNLL, and the FewNERD variants with their respective degeneracy percentages. I'm also noticing the lowercase exp_026_t05, exp_026_t08, and exp_026_t12 entries have minimal metrics while their uppercase versions are complete—I should update both sets with the degeneracy rates.
+
+For exp_029a and exp_029b, they already have degen_rate values in the registry, so I can't verify them against the recalc data. Now I need to figure out the update strategy: since the update_registry function overwrites the entire metrics object when field="metrics", I'll need to merge the new degen_rate and degen_rate_source with all existing metric fields to avoid losing data. Let me prepare these updates systematically in batches, making sure I'm using the correct field naming convention. I need to standardize on "degen_rate" since that's what the task specifies, so I'll replace any existing "degeneracy_rate" fields when I build the full metrics objects for each experiment. Now I'm organizing the update calls systematically—starting with experiments that already have metrics (where I'll need to merge in the new field) and then handling the ones with null metrics. For experiments like exp_012_rerun_1024 that have massive nested metric objects, I'll need to preserve the entire structure while adding the degen_rate field, which means carefully constructing each update call. I need to add the degen_rate and degen_rate_source fields to the existing metrics dictionaries for the experiments that already have metrics data. Let me organize this by grouping the null-metrics experiments together for one batch, then handle the ones with existing metrics in separate batches to keep the calls manageable. I should also make sure I'm tracking which experiments still need to be updated. Continuing through the rest of batch 1, converting the remaining percentages to decimal form for the experiments with various seeds and configurations. Now I'm filling in the missing degradation rates for the temperature ablation experiments and the Qwen CoNLL inference run, then I need to verify whether there are existing Qwen seed experiments in the registry before proceeding with the batch updates.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "685b1bf8-4822-4d28-8b85-9f3abe1bd865",
+  "uuid": "6d038b09-9e3f-420e-b380-0bd3381fcb8f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UJzeWsKjXCrW4GU1iA7xny",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7764,
+      "cache_read_input_tokens": 35745,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7764
+      },
+      "output_tokens": 11,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 25_
+
+已获取所有数据。现在开始逐批更新 registry。先处理 metrics 为 null 的 4 个实验。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "685b1bf8-4822-4d28-8b85-9f3abe1bd865",
+  "uuid": "9edaaaf8-cad5-4d93-a349-b8c7f2181af6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UJzeWsKjXCrW4GU1iA7xny",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7764,
+      "cache_read_input_tokens": 35745,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7764
+      },
+      "output_tokens": 11,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_019MNucospDy8hbRqjdSUcog`</summary>
+
+```json
+{
+  "exp_id": "exp_018_qwen_scierc_seed123",
+  "field": "metrics",
+  "value": {
+    "degen_rate": 0.172,
+    "degen_rate_source": "unified_metrics_constant_f1_gold_filtered"
+  },
+  "project": "struct_self_consist_ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "685b1bf8-4822-4d28-8b85-9f3abe1bd865",
+  "uuid": "c5e92c57-49b2-400e-bf11-53429232e78d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UJzeWsKjXCrW4GU1iA7xny",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7764,
+      "cache_read_input_tokens": 35745,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7764
+      },
+      "output_tokens": 11,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-18T20:47:49.617Z_
+
+<details><summary>↩ Tool result · `toolu_019MNucospDy8hbRqjdSUcog`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_018_qwen_scierc_seed123\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T06:07:12.747Z\", \"updated_at\": \"2026-05-18T20:47:49.306Z\", \"spec\": {\"hypothesis\": \"Multi-seed robustness: Qwen SciERC N=8 seed=123, max_tokens=1024. Verify signal stability across seeds.\", \"command\": \"python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-scierc-merged-v2 --data_dir data/scierc/processed_data --dataset scierc --subtask joint --seed 123 --n_samples 8 --temperature 1.0 --max_tokens 1024 --output_dir output/exp_018_qwen_scierc_seed123\", \"server\": \"autodl-5090\", \"seed\": 123, \"model_name\": \"Qwen3-8B-SciERC-merged-v2\", \"data_path\": \"data/scierc/processed_data\", \"data_count\": 551, \"checkpoint_path\": \"output/exp_018_qwen_scierc_seed123/\", \"log_path\": \"output/exp_018_qwen_scierc_seed123.log\", \"samples_md5\": \"866a59581dea56f4633149f0b18a31ae\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T06:08:02.954Z\", \"hypothesis\": \"Qwen SciERC seed=123: multi-seed Qwen validation. Part of 3-seed protocol (seed42=exp_012_rerun_1024, seed123, seed456) for statistical significance of signal rankings.\", \"metrics\": {\"degen_rate\": 0.172, \"degen_rate_source\": \"unified_metrics_constant_f1_gold_filtered\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7106}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "685b1bf8-4822-4d28-8b85-9f3abe1bd865",
+  "uuid": "cb5be5d5-1663-49fb-a3eb-ef5169d32e9d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_018_qwen_scierc_seed123\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T06:07:12.747Z\\\", \\\"updated_at\\\": \\\"2026-05-18T20:47:49.306Z\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"Multi-seed robustness: Qwen SciERC N=8 seed=123, max_tokens=1024. Verify signal stability across seeds.\\\", \\\"command\\\": \\\"python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-scierc-merged-v2 --data_dir data/scierc/processed_data --dataset scierc --subtask joint --seed 123 --n_samples 8 --temperature 1.0 --max_tokens 1024 --output_dir output/exp_018_qwen_scierc_seed123\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"seed\\\": 123, \\\"model_name\\\": \\\"Qwen3-8B-SciERC-merged-v2\\\", \\\"data_path\\\": \\\"data/scierc/processed_data\\\", \\\"data_count\\\": 551, \\\"checkpoint_path\\\": \\\"output/exp_018_qwen_scierc_seed123/\\\", \\\"log_path\\\": \\\"output/exp_018_qwen_scierc_seed123.log\\\", \\\"samples_md5\\\": \\\"866a59581dea56f4633149f0b18a31ae\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-15T06:08:02.954Z\\\", \\\"hypothesis\\\": \\\"Qwen SciERC seed=123: multi-seed Qwen validation. Part of 3-seed protocol (seed42=exp_012_rerun_1024, seed123, seed456) for statistical significance of signal rankings.\\\", \\\"metrics\\\": {\\\"degen_rate\\\": 0.172, \\\"degen_rate_source\\\": \\\"unified_metrics_constant_f1_gold_filtered\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.7106}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp_018_qwen_scierc_seed123\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T06:07:12.747Z\", \"updated_at\": \"2026-05-18T20:47:49.306Z\", \"spec\": {\"hypothesis\": \"Multi-seed robustness: Qwen SciERC N=8 seed=123, max_tokens=1024. Verify signal stability across seeds.\", \"command\": \"python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-scierc-merged-v2 --data_dir data/scierc/processed_data --dataset scierc --subtask joint --seed 123 --n_samples 8 --temperature 1.0 --max_tokens 1024 --output_dir output/exp_018_qwen_scierc_seed123\", \"server\": \"autodl-5090\", \"seed\": 123, \"model_name\": \"Qwen3-8B-SciERC-merged-v2\", \"data_path\": \"data/scierc/processed_data\", \"data_count\": 551, \"checkpoint_path\": \"output/exp_018_qwen_scierc_seed123/\", \"log_path\": \"output/exp_018_qwen_scierc_seed123.log\", \"samples_md5\": \"866a59581dea56f4633149f0b18a31ae\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T06:08:02.954Z\", \"hypothesis\": \"Qwen SciERC seed=123: multi-seed Qwen validation. Part of 3-seed protocol (seed42=exp_012_rerun_1024, seed123, seed456) for statistical significance of signal rankings.\", \"metrics\": {\"degen_rate\": 0.172, \"degen_rate_source\": \"unified_metrics_constant_f1_gold_filtered\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7106}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01TNVMEYAhpUsSRiVVwiD2hn`</summary>
+
+```json
+{
+  "exp_id": "exp_018_qwen_scierc_seed456",
+  "field": "metrics",
+  "value": {
+    "degen_rate": 0.2042,
+    "degen_rate_source": "unified_metrics_constant_f1_gold_filtered"
+  },
+  "project": "struct_self_consist_ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "685b1bf8-4822-4d28-8b85-9f3abe1bd865",
+  "uuid": "4d21d0c5-83f4-435f-8d4b-01e99465d533",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UJzeWsKjXCrW4GU1iA7xny",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7764,
+      "cache_read_input_tokens": 35745,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7764
+      },
+      "output_tokens": 11,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-18T20:47:50.308Z_
+
+<details><summary>↩ Tool result · `toolu_01TNVMEYAhpUsSRiVVwiD2hn`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_018_qwen_scierc_seed456\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T06:07:13.570Z\", \"updated_at\": \"2026-05-18T20:47:50.032Z\", \"spec\": {\"hypothesis\": \"Multi-seed robustness: Qwen SciERC N=8 seed=456, max_tokens=1024. Verify signal stability across seeds.\", \"command\": \"python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-scierc-merged-v2 --data_dir data/scierc/processed_data --dataset scierc --subtask joint --seed 456 --n_samples 8 --temperature 1.0 --max_tokens 1024 --output_dir output/exp_018_qwen_scierc_seed456\", \"server\": \"autodl-5090\", \"seed\": 456, \"model_name\": \"Qwen3-8B-SciERC-merged-v2\", \"data_path\": \"data/scierc/processed_data\", \"data_count\": 551, \"checkpoint_path\": \"output/exp_018_qwen_scierc_seed456/\", \"log_path\": \"output/exp_018_qwen_scierc_seed456/run.log\", \"samples_md5\": \"46d0de47ad7693c07e7df3a77c90c3be\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T06:08:03.898Z\", \"hypothesis\": \"Qwen SciERC seed=456: multi-seed Qwen validation. Part of 3-seed protocol (seed42=exp_012_rerun_1024, seed123, seed456) for statistical significance of signal rankings.\", \"metrics\": {\"degen_rate\": 0.2042, \"degen_rate_source\": \"unified_metrics_constant_f1_gold_filtered\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6567}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "685b1bf8-4822-4d28-8b85-9f3abe1bd865",
+  "uuid": "139d6c04-5b66-4e91-9c05-32c438128128",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_018_qwen_scierc_seed456\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T06:07:13.570Z\\\", \\\"updated_at\\\": \\\"2026-05-18T20:47:50.032Z\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"Multi-seed robustness: Qwen SciERC N=8 seed=456, max_tokens=1024. Verify signal stability across seeds.\\\", \\\"command\\\": \\\"python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-scierc-merged-v2 --data_dir data/scierc/processed_data --dataset scierc --subtask joint --seed 456 --n_samples 8 --temperature 1.0 --max_tokens 1024 --output_dir output/exp_018_qwen_scierc_seed456\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"seed\\\": 456, \\\"model_name\\\": \\\"Qwen3-8B-SciERC-merged-v2\\\", \\\"data_path\\\": \\\"data/scierc/processed_data\\\", \\\"data_count\\\": 551, \\\"checkpoint_path\\\": \\\"output/exp_018_qwen_scierc_seed456/\\\", \\\"log_path\\\": \\\"output/exp_018_qwen_scierc_seed456/run.log\\\", \\\"samples_md5\\\": \\\"46d0de47ad7693c07e7df3a77c90c3be\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-15T06:08:03.898Z\\\", \\\"hypothesis\\\": \\\"Qwen SciERC seed=456: multi-seed Qwen validation. Part of 3-seed protocol (seed42=exp_012_rerun_1024, seed123, seed456) for statistical significance of signal rankings.\\\", \\\"metrics\\\": {\\\"degen_rate\\\": 0.2042, \\\"degen_rate_source\\\": \\\"unified_metrics_constant_f1_gold_filtered\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6567}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp_018_qwen_scierc_seed456\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T06:07:13.570Z\", \"updated_at\": \"2026-05-18T20:47:50.032Z\", \"spec\": {\"hypothesis\": \"Multi-seed robustness: Qwen SciERC N=8 seed=456, max_tokens=1024. Verify signal stability across seeds.\", \"command\": \"python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-scierc-merged-v2 --data_dir data/scierc/processed_data --dataset scierc --subtask joint --seed 456 --n_samples 8 --temperature 1.0 --max_tokens 1024 --output_dir output/exp_018_qwen_scierc_seed456\", \"server\": \"autodl-5090\", \"seed\": 456, \"model_name\": \"Qwen3-8B-SciERC-merged-v2\", \"data_path\": \"data/scierc/processed_data\", \"data_count\": 551, \"checkpoint_path\": \"output/exp_018_qwen_scierc_seed456/\", \"log_path\": \"output/exp_018_qwen_scierc_seed456/run.log\", \"samples_md5\": \"46d0de47ad7693c07e7df3a77c90c3be\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T06:08:03.898Z\", \"hypothesis\": \"Qwen SciERC seed=456: multi-seed Qwen validation. Part of 3-seed protocol (seed42=exp_012_rerun_1024, seed123, seed456) for statistical significance of signal rankings.\", \"metrics\": {\"degen_rate\": 0.2042, \"degen_rate_source\": \"unified_metrics_constant_f1_gold_filtered\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6567}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01HPL5mjwxiRwjS7L3bAVTDL`</summary>
+
+```json
+{
+  "exp_id": "exp_018_llama_scierc_seed123",
+  "field": "metrics",
+  "value": {
+    "degen_rate": 0.2665,
+    "degen_rate_source": "unified_metrics_constant_f1_gold_filtered"
+  },
+  "project": "struct_self_consist_ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "685b1bf8-4822-4d28-8b85-9f3abe1bd865",
+  "uuid": "6742a3d3-7cf1-485d-a4d0-2dfdc8a0aad9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UJzeWsKjXCrW4GU1iA7xny",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7764,
+      "cache_read_input_tokens": 35745,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7764
+      },
+      "output_tokens": 11,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-18T20:47:51.705Z_
+
+<details><summary>↩ Tool result · `toolu_01HPL5mjwxiRwjS7L3bAVTDL`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_018_llama_scierc_seed123\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T06:07:14.370Z\", \"updated_at\": \"2026-05-18T20:47:51.435Z\", \"spec\": {\"hypothesis\": \"Multi-seed robustness: LLaMA SciERC N=8 seed=123, max_tokens=1024. Verify signal stability across seeds.\", \"command\": \"python code/run_mvp_pilot.py --model_path checkpoints/llama3.1-8b-scierc-merged --data_dir data/scierc/processed_data --dataset scierc --subtask joint --seed 123 --n_samples 8 --temperature 1.0 --max_tokens 1024 --output_dir output/exp_018_llama_scierc_seed123\", \"server\": \"autodl-5090\", \"seed\": 123, \"model_name\": \"LLaMA-3.1-8B-SciERC-merged\", \"data_path\": \"data/scierc/processed_data\", \"data_count\": 551, \"checkpoint_path\": \"output/exp_018_llama_scierc_seed123/\", \"log_path\": \"output/exp_018_llama_scierc_seed123.log\", \"samples_md5\": \"072eeca68236d46b4c5c84b945209abc\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T06:08:04.855Z\", \"hypothesis\": \"LLaMA SciERC seed=123: multi-seed cross-model validation. Complements seed42 for LLaMA 3-seed protocol on SciERC NER+RE signal rankings.\", \"metrics\": {\"degen_rate\": 0.2665, \"degen_rate_source\": \"unified_metrics_constant_f1_gold_filtered\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6574}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "685b1bf8-4822-4d28-8b85-9f3abe1bd865",
+  "uuid": "99d386ce-6851-4f71-a973-ca3feac6895e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_018_llama_scierc_seed123\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T06:07:14.370Z\\\", \\\"updated_at\\\": \\\"2026-05-18T20:47:51.435Z\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"Multi-seed robustness: LLaMA SciERC N=8 seed=123, max_tokens=1024. Verify signal stability across seeds.\\\", \\\"command\\\": \\\"python code/run_mvp_pilot.py --model_path checkpoints/llama3.1-8b-scierc-merged --data_dir data/scierc/processed_data --dataset scierc --subtask joint --seed 123 --n_samples 8 --temperature 1.0 --max_tokens 1024 --output_dir output/exp_018_llama_scierc_seed123\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"seed\\\": 123, \\\"model_name\\\": \\\"LLaMA-3.1-8B-SciERC-merged\\\", \\\"data_path\\\": \\\"data/scierc/processed_data\\\", \\\"data_count\\\": 551, \\\"checkpoint_path\\\": \\\"output/exp_018_llama_scierc_seed123/\\\", \\\"log_path\\\": \\\"output/exp_018_llama_scierc_seed123.log\\\", \\\"samples_md5\\\": \\\"072eeca68236d46b4c5c84b945209abc\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-15T06:08:04.855Z\\\", \\\"hypothesis\\\": \\\"LLaMA SciERC seed=123: multi-seed cross-model validation. Complements seed42 for LLaMA 3-seed protocol on SciERC NER+RE signal rankings.\\\", \\\"metrics\\\": {\\\"degen_rate\\\": 0.2665, \\\"degen_rate_source\\\": \\\"unified_metrics_constant_f1_gold_filtered\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6574}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp_018_llama_scierc_seed123\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T06:07:14.370Z\", \"updated_at\": \"2026-05-18T20:47:51.435Z\", \"spec\": {\"hypothesis\": \"Multi-seed robustness: LLaMA SciERC N=8 seed=123, max_tokens=1024. Verify signal stability across seeds.\", \"command\": \"python code/run_mvp_pilot.py --model_path checkpoints/llama3.1-8b-scierc-merged --data_dir data/scierc/processed_data --dataset scierc --subtask joint --seed 123 --n_samples 8 --temperature 1.0 --max_tokens 1024 --output_dir output/exp_018_llama_scierc_seed123\", \"server\": \"autodl-5090\", \"seed\": 123, \"model_name\": \"LLaMA-3.1-8B-SciERC-merged\", \"data_path\": \"data/scierc/processed_data\", \"data_count\": 551, \"checkpoint_path\": \"output/exp_018_llama_scierc_seed123/\", \"log_path\": \"output/exp_018_llama_scierc_seed123.log\", \"samples_md5\": \"072eeca68236d46b4c5c84b945209abc\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T06:08:04.855Z\", \"hypothesis\": \"LLaMA SciERC seed=123: multi-seed cross-model validation. Complements seed42 for LLaMA 3-seed protocol on SciERC NER+RE signal rankings.\", \"metrics\": {\"degen_rate\": 0.2665, \"degen_rate_source\": \"unified_metrics_constant_f1_gold_filtered\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6574}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_018QhtTWZ23EsMWuek6nen9v`</summary>
+
+```json
+{
+  "exp_id": "exp_017_llama_conll_n16_s123_r1024",
+  "field": "metrics",
+  "value": {
+    "degen_rate": 0.8636,
+    "degen_rate_source": "unified_metrics_constant_f1_gold_filtered"
+  },
+  "project": "struct_self_consist_ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "685b1bf8-4822-4d28-8b85-9f3abe1bd865",
+  "uuid": "3aad15ab-c5cf-49c1-8ac8-d64f301349e0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UJzeWsKjXCrW4GU1iA7xny",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7764,
+      "cache_read_input_tokens": 35745,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7764
+      },
+      "output_tokens": 11,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-18T20:47:52.391Z_
+
+<details><summary>↩ Tool result · `toolu_018QhtTWZ23EsMWuek6nen9v`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_017_llama_conll_n16_s123_r1024\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T22:17:02.953Z\", \"updated_at\": \"2026-05-18T20:47:52.122Z\", \"spec\": {\"hypothesis\": \"D054 rerun: max_tokens=1024. Verify truncation impact on LLaMA CoNLL N=16 seed123.\", \"parent\": \"exp_017_llama_conll_n16_s123\", \"model_name\": \"llama3.1-8b-conll2003-merged\", \"dataset\": \"CoNLL-2003\", \"seed\": 123, \"server\": \"autodl-5090\", \"command\": \"python code/run_mvp_pilot.py --model_path checkpoints/llama3.1-8b-conll2003-merged --data_dir data/conll2003 --dataset conll2003 --subtask ner --n_samples 16 --temperature 1.0 --seed 123 --num_test 9999 --max_tokens 1024 --collect_logprobs --output_dir output/exp_017_llama_conll_n16_s123_r1024\", \"data_path\": \"data/conll2003\", \"data_count\": 3453}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T01:20:51.219Z\", \"notes\": \"Output exists on autodl-5090. Registry status corrected from killed to success.\", \"hypothesis\": \"LLaMA CoNLL N=16 seed=123 (max_tokens=1024 rerun): cross-model multi-seed validation. Confirms structural>surface ordering is stable across seeds for LLaMA on CoNLL after gold-filtering correction.\", \"metrics\": {\"degen_rate\": 0.8636, \"degen_rate_source\": \"unified_metrics_constant_f1_gold_filtered\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6698}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "685b1bf8-4822-4d28-8b85-9f3abe1bd865",
+  "uuid": "031b94b1-c6a6-4892-ba7b-68e411e71c3a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_017_llama_conll_n16_s123_r1024\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T22:17:02.953Z\\\", \\\"updated_at\\\": \\\"2026-05-18T20:47:52.122Z\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"D054 rerun: max_tokens=1024. Verify truncation impact on LLaMA CoNLL N=16 seed123.\\\", \\\"parent\\\": \\\"exp_017_llama_conll_n16_s123\\\", \\\"model_name\\\": \\\"llama3.1-8b-conll2003-merged\\\", \\\"dataset\\\": \\\"CoNLL-2003\\\", \\\"seed\\\": 123, \\\"server\\\": \\\"autodl-5090\\\", \\\"command\\\": \\\"python code/run_mvp_pilot.py --model_path checkpoints/llama3.1-8b-conll2003-merged --data_dir data/conll2003 --dataset conll2003 --subtask ner --n_samples 16 --temperature 1.0 --seed 123 --num_test 9999 --max_tokens 1024 --collect_logprobs --output_dir output/exp_017_llama_conll_n16_s123_r1024\\\", \\\"data_path\\\": \\\"data/conll2003\\\", \\\"data_count\\\": 3453}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-15T01:20:51.219Z\\\", \\\"notes\\\": \\\"Output exists on autodl-5090. Registry status corrected from killed to success.\\\", \\\"hypothesis\\\": \\\"LLaMA CoNLL N=16 seed=123 (max_tokens=1024 rerun): cross-model multi-seed validation. Confirms structural>surface ordering is stable across seeds for LLaMA on CoNLL after gold-filtering correction.\\\", \\\"metrics\\\": {\\\"degen_rate\\\": 0.8636, \\\"degen_rate_source\\\": \\\"unified_metrics_constant_f1_gold_filtered\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6698}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp_017_llama_conll_n16_s123_r1024\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T22:17:02.953Z\", \"updated_at\": \"2026-05-18T20:47:52.122Z\", \"spec\": {\"hypothesis\": \"D054 rerun: max_tokens=1024. Verify truncation impact on LLaMA CoNLL N=16 seed123.\", \"parent\": \"exp_017_llama_conll_n16_s123\", \"model_name\": \"llama3.1-8b-conll2003-merged\", \"dataset\": \"CoNLL-2003\", \"seed\": 123, \"server\": \"autodl-5090\", \"command\": \"python code/run_mvp_pilot.py --model_path checkpoints/llama3.1-8b-conll2003-merged --data_dir data/conll2003 --dataset conll2003 --subtask ner --n_samples 16 --temperature 1.0 --seed 123 --num_test 9999 --max_tokens 1024 --collect_logprobs --output_dir output/exp_017_llama_conll_n16_s123_r1024\", \"data_path\": \"data/conll2003\", \"data_count\": 3453}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T01:20:51.219Z\", \"notes\": \"Output exists on autodl-5090. Registry status corrected from killed to success.\", \"hypothesis\": \"LLaMA CoNLL N=16 seed=123 (max_tokens=1024 rerun): cross-model multi-seed validation. Confirms structural>surface ordering is stable across seeds for LLaMA on CoNLL after gold-filtering correction.\", \"metrics\": {\"degen_rate\": 0.8636, \"degen_rate_source\": \"unified_metrics_constant_f1_gold_filtered\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6698}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 34_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good, those 4 null-metrics experiments are done. Now let me handle the ones with existing metrics that need merging. I'll do them in batches.
+
+Let me prepare the merged metrics for each experiment. I'll need to add degen_rate and degen_rate_source to their existing metrics.
+
+For exp_012_rerun_1024, the metrics are very complex. Let me build the merged value.
+
+Actually, I need to be more careful. For the T-ablation experiments (exp_026_T05, T08, T12), they already have "degeneracy_rate" and "degeneracy_definition" fields. I should replace those with "degen_rate" and "degen_rate_source".
+ 
+Now I'm working through the T-ablation experiments in batch 2, replacing their existing degeneracy_rate fields with the new degen_rate format while keeping their other metrics intact. After that I'll move on to the simpler metrics experiments and then tackle the complex ones like exp_012_rerun_1024. Looking at the performance metrics across these experiments, I'm seeing the completion of the first dataset's statistics along with some structural changes needed—removing the degeneracy fields and replacing them with a consolidated degen_rate value. The second experiment shows similar patterns with slightly different performance characteristics across the selection methods. Now I'm looking at the performance metrics for experiment 026 across different temperature settings, comparing how the selection methods and correlation measures perform at T12 versus T05 and T08, with the degeneracy rates varying significantly across these configurations.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "685b1bf8-4822-4d28-8b85-9f3abe1bd865",
+  "uuid": "4827d11c-a51b-4354-bfcc-b796a9a824f1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KptXKQ2cEHNyW2nUUiKhpb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8051,
+      "cache_read_input_tokens": 43509,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8051
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 35_
+
+4 个 null-metrics 实验已更新。现在处理 T 消融实验（6 个：大小写各 3）。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "685b1bf8-4822-4d28-8b85-9f3abe1bd865",
+  "uuid": "00bc85db-e36e-4729-918d-853b781b4d9e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KptXKQ2cEHNyW2nUUiKhpb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8051,
+      "cache_read_input_tokens": 43509,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8051
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01UwuCXTexu1uw9hzf5PbzHG`</summary>
+
+```json
+{
+  "exp_id": "exp_026_T05",
+  "field": "metrics",
+  "value": {
+    "degen_rate": 0.414,
+    "degen_rate_source": "unified_metrics_constant_f1_gold_filtered",
+    "lp_range_mean": 0.022,
+    "lp_range_std": 0.021,
+    "within_instance_rho_mean": 0.1306,
+    "within_instance_rho_median": 0.2182,
+    "within_instance_rho_valid_pct": 0.597,
+    "greedy_f1": 0.617,
+    "oracle_f1": 0.71,
+    "lp_sel_f1": 0.622,
+    "sj_sel_f1": 0.622,
+    "em_sel_f1": 0.619,
+    "vc_sel_f1": 0.61,
+    "sj_rho": 0.333,
+    "fk_rho": 0.341,
+    "lp_rho": 0.208,
+    "vc_rho": 0.353,
+    "sj_auroc": 0.644,
+    "lp_auroc": 0.577
+  },
+  "project": "struct_self_consist_ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "685b1bf8-4822-4d28-8b85-9f3abe1bd865",
+  "uuid": "d36b457e-c341-4a4b-a173-737870ed47cf",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KptXKQ2cEHNyW2nUUiKhpb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8051,
+      "cache_read_input_tokens": 43509,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8051
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-18T20:48:16.560Z_
+
+<details><summary>↩ Tool result · `toolu_01UwuCXTexu1uw9hzf5PbzHG`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_026_T05\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T09:38:28.066Z\", \"updated_at\": \"2026-05-18T20:48:16.286Z\", \"hypothesis\": \"T=0.5 will increase degeneracy rate (more deterministic outputs) and compress LP range on SciERC, reducing selection headroom. Maps the low-temperature end of the degeneracy-temperature frontier, validating that degeneracy is regime-dependent on sampling temperature.\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/bin/activate && cd /root/autodl-tmp/struct_self_consist_ie && python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-scierc-merged-v2 --data_dir data/scierc/processed_data --dataset scierc --subtask joint --n_samples 8 --temperature 0.5 --seed 42 --output_dir output/exp_026_T05/ --num_test 9999 --collect_logprobs 2>&1 | tee output/exp_026_T05_run.log\\\"\", \"server\": \"autodl-5090\", \"gpu\": [\"cuda:1\"], \"pid\": \"380188\", \"log_path\": \"output/exp_026_T05_run.log\", \"submitted_at\": \"2026-05-17T09:40:51.787Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_path\": \"output/exp_026_T05/\", \"wall_clock_seconds\": 1158.3, \"gpu_hours\": 0.32}, \"server\": \"autodl-5090\", \"gpu\": \"cuda:1\", \"pid\": \"380188\", \"log_path\": \"~/runs/struct_self_consist_ie/exp_026_T05.log\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/bin/activate && cd /root/autodl-tmp/struct_self_consist_ie && python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-scierc-merged-v2 --data_dir data/scierc/processed_data --dataset scierc --subtask joint --n_samples 8 --temperature 0.5 --seed 42 --output_dir output/exp_026_T05/ --num_test 9999 --collect_logprobs 2>&1 | tee output/exp_026_T05_run.log\\\"\", \"finished_at\": \"2026-05-17T09:47:31.332Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-17T09:47:35.127151+00:00\"}]}, \"conclusion\": \"success\", \"metrics\": {\"degen_rate\": 0.414, \"degen_rate_source\": \"unified_metrics_constant_f1_gold_filtered\", \"lp_range_mean\": 0.022, \"lp_range_std\": 0.021, \"within_instance_rho_mean\": 0.1306, \"within_instance_rho_median\": 0.2182, \"within_instance_rho_valid_pct\": 0.597, \"greedy_f1\": 0.617, \"oracle_f1\": 0.71, \"lp_sel_f1\": 0.622, \"sj_sel_f1\": 0.622, \"em_sel_f1\": 0.619, \"vc_sel_f1\": 0.61, \"sj_rho\": 0.333, \"fk_rho\": 0.341, \"lp_rho\": 0.208, \"vc_rho\": 0.353, \"sj_auroc\": 0.644, \"lp_auroc\": 0.577}, \"completed_at\": \"2026-05-17T10:00:10.083Z\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6682}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "685b1bf8-4822-4d28-8b85-9f3abe1bd865",
+  "uuid": "de1cfe90-811f-43de-b7ab-ba2abef3e7d7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_026_T05\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T09:38:28.066Z\\\", \\\"updated_at\\\": \\\"2026-05-18T20:48:16.286Z\\\", \\\"hypothesis\\\": \\\"T=0.5 will increase degeneracy rate (more deterministic outputs) and compress LP range on SciERC, reducing selection headroom. Maps the low-temperature end of the degeneracy-temperature frontier, validating that degeneracy is regime-dependent on sampling temperature.\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/bin/activate && cd /root/autodl-tmp/struct_self_consist_ie && python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-scierc-merged-v2 --data_dir data/scierc/processed_data --dataset scierc --subtask joint --n_samples 8 --temperature 0.5 --seed 42 --output_dir output/exp_026_T05/ --num_test 9999 --collect_logprobs 2>&1 | tee output/exp_026_T05_run.log\\\\\\\"\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"380188\\\", \\\"log_path\\\": \\\"output/exp_026_T05_run.log\\\", \\\"submitted_at\\\": \\\"2026-05-17T09:40:51.787Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"checkpoint_path\\\": \\\"output/exp_026_T05/\\\", \\\"wall_clock_seconds\\\": 1158.3, \\\"gpu_hours\\\": 0.32}, \\\"server\\\": \\\"autodl-5090\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"pid\\\": \\\"380188\\\", \\\"log_path\\\": \\\"~/runs/struct_self_consist_ie/exp_026_T05.log\\\", \\\"reproduce\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/bin/activate && cd /root/autodl-tmp/struct_self_consist_ie && python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-scierc-merged-v2 --data_dir data/scierc/processed_data --dataset scierc --subtask joint --n_samples 8 --temperature 0.5 --seed 42 --output_dir output/exp_026_T05/ --num_test 9999 --collect_logprobs 2>&1 | tee output/exp_026_T05_run.log\\\\\\\"\\\", \\\"finished_at\\\": \\\"2026-05-17T09:47:31.332Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-17T09:47:35.127151+00:00\\\"}]}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"degen_rate\\\": 0.414, \\\"degen_rate_source\\\": \\\"unified_metrics_constant_f1_gold_filtered\\\", \\\"lp_range_mean\\\": 0.022, \\\"lp_range_std\\\": 0.021, \\\"within_instance_rho_mean\\\": 0.1306, \\\"within_instance_rho_median\\\": 0.2182, \\\"within_instance_rho_valid_pct\\\": 0.597, \\\"greedy_f1\\\": 0.617, \\\"oracle_f1\\\": 0.71, \\\"lp_sel_f1\\\": 0.622, \\\"sj_sel_f1\\\": 0.622, \\\"em_sel_f1\\\": 0.619, \\\"vc_sel_f1\\\": 0.61, \\\"sj_rho\\\": 0.333, \\\"fk_rho\\\": 0.341, \\\"lp_rho\\\": 0.208, \\\"vc_rho\\\": 0.353, \\\"sj_auroc\\\": 0.644, \\\"lp_auroc\\\": 0.577}, \\\"completed_at\\\": \\\"2026-05-17T10:00:10.083Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6682}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp_026_T05\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T09:38:28.066Z\", \"updated_at\": \"2026-05-18T20:48:16.286Z\", \"hypothesis\": \"T=0.5 will increase degeneracy rate (more deterministic outputs) and compress LP range on SciERC, reducing selection headroom. Maps the low-temperature end of the degeneracy-temperature frontier, validating that degeneracy is regime-dependent on sampling temperature.\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/bin/activate && cd /root/autodl-tmp/struct_self_consist_ie && python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-scierc-merged-v2 --data_dir data/scierc/processed_data --dataset scierc --subtask joint --n_samples 8 --temperature 0.5 --seed 42 --output_dir output/exp_026_T05/ --num_test 9999 --collect_logprobs 2>&1 | tee output/exp_026_T05_run.log\\\"\", \"server\": \"autodl-5090\", \"gpu\": [\"cuda:1\"], \"pid\": \"380188\", \"log_path\": \"output/exp_026_T05_run.log\", \"submitted_at\": \"2026-05-17T09:40:51.787Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_path\": \"output/exp_026_T05/\", \"wall_clock_seconds\": 1158.3, \"gpu_hours\": 0.32}, \"server\": \"autodl-5090\", \"gpu\": \"cuda:1\", \"pid\": \"380188\", \"log_path\": \"~/runs/struct_self_consist_ie/exp_026_T05.log\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/bin/activate && cd /root/autodl-tmp/struct_self_consist_ie && python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-scierc-merged-v2 --data_dir data/scierc/processed_data --dataset scierc --subtask joint --n_samples 8 --temperature 0.5 --seed 42 --output_dir output/exp_026_T05/ --num_test 9999 --collect_logprobs 2>&1 | tee output/exp_026_T05_run.log\\\"\", \"finished_at\": \"2026-05-17T09:47:31.332Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-17T09:47:35.127151+00:00\"}]}, \"conclusion\": \"success\", \"metrics\": {\"degen_rate\": 0.414, \"degen_rate_source\": \"unified_metrics_constant_f1_gold_filtered\", \"lp_range_mean\": 0.022, \"lp_range_std\": 0.021, \"within_instance_rho_mean\": 0.1306, \"within_instance_rho_median\": 0.2182, \"within_instance_rho_valid_pct\": 0.597, \"greedy_f1\": 0.617, \"oracle_f1\": 0.71, \"lp_sel_f1\": 0.622, \"sj_sel_f1\": 0.622, \"em_sel_f1\": 0.619, \"vc_sel_f1\": 0.61, \"sj_rho\": 0.333, \"fk_rho\": 0.341, \"lp_rho\": 0.208, \"vc_rho\": 0.353, \"sj_auroc\": 0.644, \"lp_auroc\": 0.577}, \"completed_at\": \"2026-05-17T10:00:10.083Z\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6682}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_015BCL2LoQx314u2uP9AZyuL`</summary>
+
+```json
+{
+  "exp_id": "exp_026_T08",
+  "field": "metrics",
+  "value": {
+    "degen_rate": 0.2382,
+    "degen_rate_source": "unified_metrics_constant_f1_gold_filtered",
+    "lp_range_mean": 0.043,
+    "lp_range_std": 0.042,
+    "within_instance_rho_mean": 0.1701,
+    "within_instance_rho_median": 0.2635,
+    "within_instance_rho_valid_pct": 0.728,
+    "greedy_f1": 0.616,
+    "oracle_f1": 0.737,
+    "lp_sel_f1": 0.627,
+    "sj_sel_f1": 0.619,
+    "em_sel_f1": 0.611,
+    "vc_sel_f1": 0.603,
+    "sj_rho": 0.378,
+    "fk_rho": 0.34,
+    "lp_rho": 0.212,
+    "vc_rho": 0.352,
+    "sj_auroc": 0.662,
+    "lp_auroc": 0.571
+  },
+  "project": "struct_self_consist_ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "685b1bf8-4822-4d28-8b85-9f3abe1bd865",
+  "uuid": "a477127e-9f22-4f80-8812-8f0dee133330",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KptXKQ2cEHNyW2nUUiKhpb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8051,
+      "cache_read_input_tokens": 43509,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8051
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_014LVgDgZSQzmuYdTYkwkxr5`</summary>
+
+```json
+{
+  "exp_id": "exp_026_T12",
+  "field": "metrics",
+  "value": {
+    "degen_rate": 0.1493,
+    "degen_rate_source": "unified_metrics_constant_f1_gold_filtered",
+    "lp_range_mean": 0.075,
+    "lp_range_std": 0.059,
+    "within_instance_rho_mean": 0.2245,
+    "within_instance_rho_median": 0.3152,
+    "within_instance_rho_valid_pct": 0.875,
+    "greedy_f1": 0.62,
+    "oracle_f1": 0.758,
+    "lp_sel_f1": 0.621,
+    "sj_sel_f1": 0.597,
+    "em_sel_f1": 0.596,
+    "vc_sel_f1": 0.582,
+    "sj_rho": 0.384,
+    "fk_rho": 0.386,
+    "lp_rho": 0.182,
+    "vc_rho": 0.342,
+    "sj_auroc": 0.683,
+    "lp_auroc": 0.566
+  },
+  "project": "struct_self_consist_ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "685b1bf8-4822-4d28-8b85-9f3abe1bd865",
+  "uuid": "618c40d8-aa56-4e14-93ad-0eef30397cd6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KptXKQ2cEHNyW2nUUiKhpb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8051,
+      "cache_read_input_tokens": 43509,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8051
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-18T20:48:22.253Z_
+
+<details><summary>↩ Tool result · `toolu_015BCL2LoQx314u2uP9AZyuL`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_026_T08\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T09:38:29.602Z\", \"updated_at\": \"2026-05-18T20:48:21.975Z\", \"hypothesis\": \"T=0.8 will show intermediate degeneracy between T=0.5 and T=1.0, establishing a monotonic degeneracy-temperature relationship. If LP selection improves at T=0.8 vs T=1.0, it identifies the optimal operating point for the selection mechanism.\", \"server\": \"autodl-5090\", \"gpu\": \"cuda:2\", \"account\": \"root\", \"reproduce\": {\"server\": \"autodl-5090\", \"gpu\": \"cuda:2\", \"started_at\": \"2026-05-17T09:39:50.780Z\", \"command\": \"bash -c \\\"source /root/miniconda3/bin/activate && cd /root/autodl-tmp/struct_self_consist_ie && python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-scierc-merged-v2 --data_dir data/scierc/processed_data --dataset scierc --subtask joint --n_samples 8 --temperature 0.8 --seed 42 --output_dir output/exp_026_T08/ --num_test 9999 --collect_logprobs 2>&1 | tee output/exp_026_T08_run.log\\\"\", \"finished_at\": \"2026-05-17T09:47:56.543Z\", \"training_hours\": 0.13}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/bin/activate && cd /root/autodl-tmp/struct_self_consist_ie && python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-scierc-merged-v2 --data_dir data/scierc/processed_data --dataset scierc --subtask joint --n_samples 8 --temperature 0.8 --seed 42 --output_dir output/exp_026_T08/ --num_test 9999 --collect_logprobs 2>&1 | tee output/exp_026_T08_run.log\\\"\", \"server\": \"autodl-5090\", \"gpu\": [\"cuda:2\"], \"pid\": \"380680\", \"log_path\": \"output/exp_026_T08_run.log\", \"submitted_at\": \"2026-05-17T09:41:20.812Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_path\": \"output/exp_026_T08/\", \"wall_clock_seconds\": 1131.4, \"gpu_hours\": 0.31}, \"pid\": \"380680\", \"log_path\": \"~/runs/struct_self_consist_ie/exp_026_T08.log\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-17T09:48:02.635244+00:00\"}]}, \"conclusion\": \"success\", \"metrics\": {\"degen_rate\": 0.2382, \"degen_rate_source\": \"unified_metrics_constant_f1_gold_filtered\", \"lp_range_mean\": 0.043, \"lp_range_std\": 0.042, \"within_instance_rho_mean\": 0.1701, \"within_instance_rho_median\": 0.2635, \"within_instance_rho_valid_pct\": 0.728, \"greedy_f1\": 0.616, \"oracle_f1\": 0.737, \"lp_sel_f1\": 0.627, \"sj_sel_f1\": 0.619, \"em_sel_f1\": 0.611, \"vc_sel_f1\": 0.603, \"sj_rho\": 0.378, \"fk_rho\": 0.34, \"lp_rho\": 0.212, \"vc_rho\": 0.352, \"sj_auroc\": 0.662, \"lp_auroc\": 0.571}, \"completed_at\": \"2026-05-17T10:00:12.248Z\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7697}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "685b1bf8-4822-4d28-8b85-9f3abe1bd865",
+  "uuid": "f404121f-cc60-4307-8113-c4b76a59cc26",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_026_T08\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T09:38:29.602Z\\\", \\\"updated_at\\\": \\\"2026-05-18T20:48:21.975Z\\\", \\\"hypothesis\\\": \\\"T=0.8 will show intermediate degeneracy between T=0.5 and T=1.0, establishing a monotonic degeneracy-temperature relationship. If LP selection improves at T=0.8 vs T=1.0, it identifies the optimal operating point for the selection mechanism.\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"gpu\\\": \\\"cuda:2\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"autodl-5090\\\", \\\"gpu\\\": \\\"cuda:2\\\", \\\"started_at\\\": \\\"2026-05-17T09:39:50.780Z\\\", \\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/bin/activate && cd /root/autodl-tmp/struct_self_consist_ie && python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-scierc-merged-v2 --data_dir data/scierc/processed_data --dataset scierc --subtask joint --n_samples 8 --temperature 0.8 --seed 42 --output_dir output/exp_026_T08/ --num_test 9999 --collect_logprobs 2>&1 | tee output/exp_026_T08_run.log\\\\\\\"\\\", \\\"finished_at\\\": \\\"2026-05-17T09:47:56.543Z\\\", \\\"training_hours\\\": 0.13}, \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/bin/activate && cd /root/autodl-tmp/struct_self_consist_ie && python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-scierc-merged-v2 --data_dir data/scierc/processed_data --dataset scierc --subtask joint --n_samples 8 --temperature 0.8 --seed 42 --output_dir output/exp_026_T08/ --num_test 9999 --collect_logprobs 2>&1 | tee output/exp_026_T08_run.log\\\\\\\"\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"380680\\\", \\\"log_path\\\": \\\"output/exp_026_T08_run.log\\\", \\\"submitted_at\\\": \\\"2026-05-17T09:41:20.812Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"checkpoint_path\\\": \\\"output/exp_026_T08/\\\", \\\"wall_clock_seconds\\\": 1131.4, \\\"gpu_hours\\\": 0.31}, \\\"pid\\\": \\\"380680\\\", \\\"log_path\\\": \\\"~/runs/struct_self_consist_ie/exp_026_T08.log\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-17T09:48:02.635244+00:00\\\"}]}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"degen_rate\\\": 0.2382, \\\"degen_rate_source\\\": \\\"unified_metrics_constant_f1_gold_filtered\\\", \\\"lp_range_mean\\\": 0.043, \\\"lp_range_std\\\": 0.042, \\\"within_instance_rho_mean\\\": 0.1701, \\\"within_instance_rho_median\\\": 0.2635, \\\"within_instance_rho_valid_pct\\\": 0.728, \\\"greedy_f1\\\": 0.616, \\\"oracle_f1\\\": 0.737, \\\"lp_sel_f1\\\": 0.627, \\\"sj_sel_f1\\\": 0.619, \\\"em_sel_f1\\\": 0.611, \\\"vc_sel_f1\\\": 0.603, \\\"sj_rho\\\": 0.378, \\\"fk_rho\\\": 0.34, \\\"lp_rho\\\": 0.212, \\\"vc_rho\\\": 0.352, \\\"sj_auroc\\\": 0.662, \\\"lp_auroc\\\": 0.571}, \\\"completed_at\\\": \\\"2026-05-17T10:00:12.248Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.7697}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp_026_T08\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T09:38:29.602Z\", \"updated_at\": \"2026-05-18T20:48:21.975Z\", \"hypothesis\": \"T=0.8 will show intermediate degeneracy between T=0.5 and T=1.0, establishing a monotonic degeneracy-temperature relationship. If LP selection improves at T=0.8 vs T=1.0, it identifies the optimal operating point for the selection mechanism.\", \"server\": \"autodl-5090\", \"gpu\": \"cuda:2\", \"account\": \"root\", \"reproduce\": {\"server\": \"autodl-5090\", \"gpu\": \"cuda:2\", \"started_at\": \"2026-05-17T09:39:50.780Z\", \"command\": \"bash -c \\\"source /root/miniconda3/bin/activate && cd /root/autodl-tmp/struct_self_consist_ie && python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-scierc-merged-v2 --data_dir data/scierc/processed_data --dataset scierc --subtask joint --n_samples 8 --temperature 0.8 --seed 42 --output_dir output/exp_026_T08/ --num_test 9999 --collect_logprobs 2>&1 | tee output/exp_026_T08_run.log\\\"\", \"finished_at\": \"2026-05-17T09:47:56.543Z\", \"training_hours\": 0.13}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/bin/activate && cd /root/autodl-tmp/struct_self_consist_ie && python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-scierc-merged-v2 --data_dir data/scierc/processed_data --dataset scierc --subtask joint --n_samples 8 --temperature 0.8 --seed 42 --output_dir output/exp_026_T08/ --num_test 9999 --collect_logprobs 2>&1 | tee output/exp_026_T08_run.log\\\"\", \"server\": \"autodl-5090\", \"gpu\": [\"cuda:2\"], \"pid\": \"380680\", \"log_path\": \"output/exp_026_T08_run.log\", \"submitted_at\": \"2026-05-17T09:41:20.812Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_path\": \"output/exp_026_T08/\", \"wall_clock_seconds\": 1131.4, \"gpu_hours\": 0.31}, \"pid\": \"380680\", \"log_path\": \"~/runs/struct_self_consist_ie/exp_026_T08.log\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-17T09:48:02.635244+00:00\"}]}, \"conclusion\": \"success\", \"metrics\": {\"degen_rate\": 0.2382, \"degen_rate_source\": \"unified_metrics_constant_f1_gold_filtered\", \"lp_range_mean\": 0.043, \"lp_range_std\": 0.042, \"within_instance_rho_mean\": 0.1701, \"within_instance_rho_median\": 0.2635, \"within_instance_rho_valid_pct\": 0.728, \"greedy_f1\": 0.616, \"oracle_f1\": 0.737, \"lp_sel_f1\": 0.627, \"sj_sel_f1\": 0.619, \"em_sel_f1\": 0.611, \"vc_sel_f1\": 0.603, \"sj_rho\": 0.378, \"fk_rho\": 0.34, \"lp_rho\": 0.212, \"vc_rho\": 0.352, \"sj_auroc\": 0.662, \"lp_auroc\": 0.571}, \"completed_at\": \"2026-05-17T10:00:12.248Z\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7697}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01Sf3yuoALLuvcojcyV8gCkx`</summary>
+
+```json
+{
+  "exp_id": "exp_026_t05",
+  "field": "metrics",
+  "value": {
+    "temperature": 0.5,
+    "task": "T-ablation",
+    "degen_rate": 0.414,
+    "degen_rate_source": "unified_metrics_constant_f1_gold_filtered"
+  },
+  "project": "struct_self_consist_ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "685b1bf8-4822-4d28-8b85-9f3abe1bd865",
+  "uuid": "6a8a9266-03aa-4cc7-abd5-0a039672290d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KptXKQ2cEHNyW2nUUiKhpb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8051,
+      "cache_read_input_tokens": 43509,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8051
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-18T20:48:22.946Z_
+
+<details><summary>↩ Tool result · `toolu_014LVgDgZSQzmuYdTYkwkxr5`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_026_T12\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T09:38:31.060Z\", \"updated_at\": \"2026-05-18T20:48:22.668Z\", \"hypothesis\": \"T=1.2 will decrease degeneracy rate and expand LP range vs T=1.0, but may degrade generation quality (lower greedy F1). Tests whether reducing degeneracy via higher T recovers selection headroom or if quality degradation offsets the benefit.\", \"server\": \"autodl-5090\", \"gpu\": \"cuda:3\", \"account\": \"root\", \"reproduce\": {\"server\": \"autodl-5090\", \"gpu\": \"cuda:3\", \"started_at\": \"2026-05-17T09:39:51.733Z\", \"command\": \"bash -c \\\"source /root/miniconda3/bin/activate && cd /root/autodl-tmp/struct_self_consist_ie && python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-scierc-merged-v2 --data_dir data/scierc/processed_data --dataset scierc --subtask joint --n_samples 8 --temperature 1.2 --seed 42 --output_dir output/exp_026_T12/ --num_test 9999 --collect_logprobs 2>&1 | tee output/exp_026_T12_run.log\\\"\", \"finished_at\": \"2026-05-17T09:48:04.019Z\", \"training_hours\": 0.14}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/bin/activate && cd /root/autodl-tmp/struct_self_consist_ie && python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-scierc-merged-v2 --data_dir data/scierc/processed_data --dataset scierc --subtask joint --n_samples 8 --temperature 1.2 --seed 42 --output_dir output/exp_026_T12/ --num_test 9999 --collect_logprobs 2>&1 | tee output/exp_026_T12_run.log\\\"\", \"server\": \"autodl-5090\", \"gpu\": [\"cuda:3\"], \"pid\": \"381369\", \"log_path\": \"output/exp_026_T12_run.log\", \"submitted_at\": \"2026-05-17T09:41:39.393Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_path\": \"output/exp_026_T12/\", \"wall_clock_seconds\": 1114.4, \"gpu_hours\": 0.31}, \"pid\": \"381369\", \"log_path\": \"~/runs/struct_self_consist_ie/exp_026_T12.log\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-17T09:48:08.312470+00:00\"}]}, \"conclusion\": \"success\", \"metrics\": {\"degen_rate\": 0.1493, \"degen_rate_source\": \"unified_metrics_constant_f1_gold_filtered\", \"lp_range_mean\": 0.075, \"lp_range_std\": 0.059, \"within_instance_rho_mean\": 0.2245, \"within_instance_rho_median\": 0.3152, \"within_instance_rho_valid_pct\": 0.875, \"greedy_f1\": 0.62, \"oracle_f1\": 0.758, \"lp_sel_f1\": 0.621, \"sj_sel_f1\": 0.597, \"em_sel_f1\": 0.596, \"vc_sel_f1\": 0.582, \"sj_rho\": 0.384, \"fk_rho\": 0.386, \"lp_rho\": 0.182, \"vc_rho\": 0.342, \"sj_auroc\": 0.683, \"lp_auroc\": 0.566}, \"completed_at\": \"2026-05-17T10:00:13.771Z\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6826}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "685b1bf8-4822-4d28-8b85-9f3abe1bd865",
+  "uuid": "54e437f2-44df-4ef0-a6a9-73bdd6725e6e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_026_T12\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T09:38:31.060Z\\\", \\\"updated_at\\\": \\\"2026-05-18T20:48:22.668Z\\\", \\\"hypothesis\\\": \\\"T=1.2 will decrease degeneracy rate and expand LP range vs T=1.0, but may degrade generation quality (lower greedy F1). Tests whether reducing degeneracy via higher T recovers selection headroom or if quality degradation offsets the benefit.\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"autodl-5090\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"started_at\\\": \\\"2026-05-17T09:39:51.733Z\\\", \\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/bin/activate && cd /root/autodl-tmp/struct_self_consist_ie && python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-scierc-merged-v2 --data_dir data/scierc/processed_data --dataset scierc --subtask joint --n_samples 8 --temperature 1.2 --seed 42 --output_dir output/exp_026_T12/ --num_test 9999 --collect_logprobs 2>&1 | tee output/exp_026_T12_run.log\\\\\\\"\\\", \\\"finished_at\\\": \\\"2026-05-17T09:48:04.019Z\\\", \\\"training_hours\\\": 0.14}, \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/bin/activate && cd /root/autodl-tmp/struct_self_consist_ie && python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-scierc-merged-v2 --data_dir data/scierc/processed_data --dataset scierc --subtask joint --n_samples 8 --temperature 1.2 --seed 42 --output_dir output/exp_026_T12/ --num_test 9999 --collect_logprobs 2>&1 | tee output/exp_026_T12_run.log\\\\\\\"\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"381369\\\", \\\"log_path\\\": \\\"output/exp_026_T12_run.log\\\", \\\"submitted_at\\\": \\\"2026-05-17T09:41:39.393Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"checkpoint_path\\\": \\\"output/exp_026_T12/\\\", \\\"wall_clock_seconds\\\": 1114.4, \\\"gpu_hours\\\": 0.31}, \\\"pid\\\": \\\"381369\\\", \\\"log_path\\\": \\\"~/runs/struct_self_consist_ie/exp_026_T12.log\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-17T09:48:08.312470+00:00\\\"}]}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"degen_rate\\\": 0.1493, \\\"degen_rate_source\\\": \\\"unified_metrics_constant_f1_gold_filtered\\\", \\\"lp_range_mean\\\": 0.075, \\\"lp_range_std\\\": 0.059, \\\"within_instance_rho_mean\\\": 0.2245, \\\"within_instance_rho_median\\\": 0.3152, \\\"within_instance_rho_valid_pct\\\": 0.875, \\\"greedy_f1\\\": 0.62, \\\"oracle_f1\\\": 0.758, \\\"lp_sel_f1\\\": 0.621, \\\"sj_sel_f1\\\": 0.597, \\\"em_sel_f1\\\": 0.596, \\\"vc_sel_f1\\\": 0.582, \\\"sj_rho\\\": 0.384, \\\"fk_rho\\\": 0.386, \\\"lp_rho\\\": 0.182, \\\"vc_rho\\\": 0.342, \\\"sj_auroc\\\": 0.683, \\\"lp_auroc\\\": 0.566}, \\\"completed_at\\\": \\\"2026-05-17T10:00:13.771Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6826}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp_026_T12\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T09:38:31.060Z\", \"updated_at\": \"2026-05-18T20:48:22.668Z\", \"hypothesis\": \"T=1.2 will decrease degeneracy rate and expand LP range vs T=1.0, but may degrade generation quality (lower greedy F1). Tests whether reducing degeneracy via higher T recovers selection headroom or if quality degradation offsets the benefit.\", \"server\": \"autodl-5090\", \"gpu\": \"cuda:3\", \"account\": \"root\", \"reproduce\": {\"server\": \"autodl-5090\", \"gpu\": \"cuda:3\", \"started_at\": \"2026-05-17T09:39:51.733Z\", \"command\": \"bash -c \\\"source /root/miniconda3/bin/activate && cd /root/autodl-tmp/struct_self_consist_ie && python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-scierc-merged-v2 --data_dir data/scierc/processed_data --dataset scierc --subtask joint --n_samples 8 --temperature 1.2 --seed 42 --output_dir output/exp_026_T12/ --num_test 9999 --collect_logprobs 2>&1 | tee output/exp_026_T12_run.log\\\"\", \"finished_at\": \"2026-05-17T09:48:04.019Z\", \"training_hours\": 0.14}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/bin/activate && cd /root/autodl-tmp/struct_self_consist_ie && python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-scierc-merged-v2 --data_dir data/scierc/processed_data --dataset scierc --subtask joint --n_samples 8 --temperature 1.2 --seed 42 --output_dir output/exp_026_T12/ --num_test 9999 --collect_logprobs 2>&1 | tee output/exp_026_T12_run.log\\\"\", \"server\": \"autodl-5090\", \"gpu\": [\"cuda:3\"], \"pid\": \"381369\", \"log_path\": \"output/exp_026_T12_run.log\", \"submitted_at\": \"2026-05-17T09:41:39.393Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_path\": \"output/exp_026_T12/\", \"wall_clock_seconds\": 1114.4, \"gpu_hours\": 0.31}, \"pid\": \"381369\", \"log_path\": \"~/runs/struct_self_consist_ie/exp_026_T12.log\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-17T09:48:08.312470+00:00\"}]}, \"conclusion\": \"success\", \"metrics\": {\"degen_rate\": 0.1493, \"degen_rate_source\": \"unified_metrics_constant_f1_gold_filtered\", \"lp_range_mean\": 0.075, \"lp_range_std\": 0.059, \"within_instance_rho_mean\": 0.2245, \"within_instance_rho_median\": 0.3152, \"within_instance_rho_valid_pct\": 0.875, \"greedy_f1\": 0.62, \"oracle_f1\": 0.758, \"lp_sel_f1\": 0.621, \"sj_sel_f1\": 0.597, \"em_sel_f1\": 0.596, \"vc_sel_f1\": 0.582, \"sj_rho\": 0.384, \"fk_rho\": 0.386, \"lp_rho\": 0.182, \"vc_rho\": 0.342, \"sj_auroc\": 0.683, \"lp_auroc\": 0.566}, \"completed_at\": \"2026-05-17T10:00:13.771Z\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6826}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-18T20:48:23.606Z_
+
+<details><summary>↩ Tool result · `toolu_01Sf3yuoALLuvcojcyV8gCkx`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_026_t05\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-16T12:19:35.753Z\", \"updated_at\": \"2026-05-18T20:48:23.339Z\", \"spec\": {\"checkpoint_path\": \"checkpoints/qwen3-8b-scierc-merged-v2\", \"log_path\": \"output/exp_026_t05/run.log\"}, \"conclusion\": \"success\", \"metrics\": {\"temperature\": 0.5, \"task\": \"T-ablation\", \"degen_rate\": 0.414, \"degen_rate_source\": \"unified_metrics_constant_f1_gold_filtered\"}, \"completed_at\": \"2026-05-16T14:26:34.808Z\", \"hypothesis\": \"Temperature T=0.5 ablation on SciERC: extreme low temperature expected to maximally compress LP scores and increase degeneracy, providing upper-bound evidence for LP compression as model-intrinsic phenomenon.\", \"parent\": \"exp_012_rerun_1024\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6524}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "685b1bf8-4822-4d28-8b85-9f3abe1bd865",
+  "uuid": "7d7e1b4e-ebf8-45bf-bf3c-caca7ed7c0a4",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_026_t05\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T12:19:35.753Z\\\", \\\"updated_at\\\": \\\"2026-05-18T20:48:23.339Z\\\", \\\"spec\\\": {\\\"checkpoint_path\\\": \\\"checkpoints/qwen3-8b-scierc-merged-v2\\\", \\\"log_path\\\": \\\"output/exp_026_t05/run.log\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"temperature\\\": 0.5, \\\"task\\\": \\\"T-ablation\\\", \\\"degen_rate\\\": 0.414, \\\"degen_rate_source\\\": \\\"unified_metrics_constant_f1_gold_filtered\\\"}, \\\"completed_at\\\": \\\"2026-05-16T14:26:34.808Z\\\", \\\"hypothesis\\\": \\\"Temperature T=0.5 ablation on SciERC: extreme low temperature expected to maximally compress LP scores and increase degeneracy, providing upper-bound evidence for LP compression as model-intrinsic phenomenon.\\\", \\\"parent\\\": \\\"exp_012_rerun_1024\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6524}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp_026_t05\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-16T12:19:35.753Z\", \"updated_at\": \"2026-05-18T20:48:23.339Z\", \"spec\": {\"checkpoint_path\": \"checkpoints/qwen3-8b-scierc-merged-v2\", \"log_path\": \"output/exp_026_t05/run.log\"}, \"conclusion\": \"success\", \"metrics\": {\"temperature\": 0.5, \"task\": \"T-ablation\", \"degen_rate\": 0.414, \"degen_rate_source\": \"unified_metrics_constant_f1_gold_filtered\"}, \"completed_at\": \"2026-05-16T14:26:34.808Z\", \"hypothesis\": \"Temperature T=0.5 ablation on SciERC: extreme low temperature expected to maximally compress LP scores and increase degeneracy, providing upper-bound evidence for LP compression as model-intrinsic phenomenon.\", \"parent\": \"exp_012_rerun_1024\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6524}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01PVtLNfRtkHfRnZVguZRrML`</summary>
+
+```json
+{
+  "exp_id": "exp_026_t08",
+  "field": "metrics",
+  "value": {
+    "temperature": 0.8,
+    "task": "T-ablation",
+    "degen_rate": 0.2382,
+    "degen_rate_source": "unified_metrics_constant_f1_gold_filtered"
+  },
+  "project": "struct_self_consist_ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "685b1bf8-4822-4d28-8b85-9f3abe1bd865",
+  "uuid": "1f7c63c7-5e20-4dde-a802-d009f25eeefd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KptXKQ2cEHNyW2nUUiKhpb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8051,
+      "cache_read_input_tokens": 43509,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8051
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-18T20:48:24.383Z_
+
+<details><summary>↩ Tool result · `toolu_01PVtLNfRtkHfRnZVguZRrML`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_026_t08\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-16T12:57:46.027Z\", \"updated_at\": \"2026-05-18T20:48:24.112Z\", \"spec\": {\"checkpoint_path\": \"checkpoints/qwen3-8b-scierc-merged-v2\", \"log_path\": \"output/exp_026_t08/run.log\"}, \"conclusion\": \"success\", \"metrics\": {\"temperature\": 0.8, \"task\": \"T-ablation\", \"degen_rate\": 0.2382, \"degen_rate_source\": \"unified_metrics_constant_f1_gold_filtered\"}, \"completed_at\": \"2026-05-16T14:26:36.243Z\", \"hypothesis\": \"Temperature T=0.8 ablation on SciERC: test if lower temperature increases LP compression (narrower range) while structural signals remain robust, supporting the claim that LP compression is intrinsic rather than temperature-driven.\", \"parent\": \"exp_012_rerun_1024\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.673}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "685b1bf8-4822-4d28-8b85-9f3abe1bd865",
+  "uuid": "1825bf77-2227-44c7-888d-bda0a2604d59",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_026_t08\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T12:57:46.027Z\\\", \\\"updated_at\\\": \\\"2026-05-18T20:48:24.112Z\\\", \\\"spec\\\": {\\\"checkpoint_path\\\": \\\"checkpoints/qwen3-8b-scierc-merged-v2\\\", \\\"log_path\\\": \\\"output/exp_026_t08/run.log\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"temperature\\\": 0.8, \\\"task\\\": \\\"T-ablation\\\", \\\"degen_rate\\\": 0.2382, \\\"degen_rate_source\\\": \\\"unified_metrics_constant_f1_gold_filtered\\\"}, \\\"completed_at\\\": \\\"2026-05-16T14:26:36.243Z\\\", \\\"hypothesis\\\": \\\"Temperature T=0.8 ablation on SciERC: test if lower temperature increases LP compression (narrower range) while structural signals remain robust, supporting the claim that LP compression is intrinsic rather than temperature-driven.\\\", \\\"parent\\\": \\\"exp_012_rerun_1024\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.673}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp_026_t08\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-16T12:57:46.027Z\", \"updated_at\": \"2026-05-18T20:48:24.112Z\", \"spec\": {\"checkpoint_path\": \"checkpoints/qwen3-8b-scierc-merged-v2\", \"log_path\": \"output/exp_026_t08/run.log\"}, \"conclusion\": \"success\", \"metrics\": {\"temperature\": 0.8, \"task\": \"T-ablation\", \"degen_rate\": 0.2382, \"degen_rate_source\": \"unified_metrics_constant_f1_gold_filtered\"}, \"completed_at\": \"2026-05-16T14:26:36.243Z\", \"hypothesis\": \"Temperature T=0.8 ablation on SciERC: test if lower temperature increases LP compression (narrower range) while structural signals remain robust, supporting the claim that LP compression is intrinsic rather than temperature-driven.\", \"parent\": \"exp_012_rerun_1024\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.673}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01WQT3DjCp4LawGoVJPkXkFj`</summary>
+
+```json
+{
+  "exp_id": "exp_026_t12",
+  "field": "metrics",
+  "value": {
+    "temperature": 1.2,
+    "task": "T-ablation",
+    "degen_rate": 0.1493,
+    "degen_rate_source": "unified_metrics_constant_f1_gold_filtered"
+  },
+  "project": "struct_self_consist_ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "685b1bf8-4822-4d28-8b85-9f3abe1bd865",
+  "uuid": "563e8ade-d43d-4d1b-ba80-0d9c7fe24ceb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KptXKQ2cEHNyW2nUUiKhpb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8051,
+      "cache_read_input_tokens": 43509,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8051
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-18T20:48:25.241Z_
+
+<details><summary>↩ Tool result · `toolu_01WQT3DjCp4LawGoVJPkXkFj`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_026_t12\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-16T13:18:18.780Z\", \"updated_at\": \"2026-05-18T20:48:24.965Z\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=3 python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-scierc-merged-v2 --data_dir data/scierc/processed_data --dataset scierc --n_samples 8 --temperature 1.2 --seed 42 --max_tokens 1024 --collect_logprobs --output_dir output/exp_026_t12\", \"server\": \"autodl-5090\", \"data_path\": \"data/scierc/processed_data\", \"data_count\": 551, \"model_name\": \"qwen3-8b-scierc-merged-v2\", \"seed\": 42, \"log_path\": \"output/exp_026_t12.log\", \"checkpoint_path\": \"checkpoints/qwen3-8b-scierc-merged-v2\"}, \"conclusion\": \"success\", \"metrics\": {\"temperature\": 1.2, \"task\": \"T-ablation\", \"degen_rate\": 0.1493, \"degen_rate_source\": \"unified_metrics_constant_f1_gold_filtered\"}, \"completed_at\": \"2026-05-16T14:26:37.648Z\", \"hypothesis\": \"Temperature T=1.2 ablation on SciERC: test if higher temperature increases sample diversity (lower degeneracy) and LP discriminative range, potentially improving LP selection while maintaining structural signal effectiveness.\", \"parent\": \"exp_012_rerun_1024\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7674}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "685b1bf8-4822-4d28-8b85-9f3abe1bd865",
+  "uuid": "5bee93a7-4b37-4101-a0e9-85dad09a3cf3",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_026_t12\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T13:18:18.780Z\\\", \\\"updated_at\\\": \\\"2026-05-18T20:48:24.965Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=3 python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-scierc-merged-v2 --data_dir data/scierc/processed_data --dataset scierc --n_samples 8 --temperature 1.2 --seed 42 --max_tokens 1024 --collect_logprobs --output_dir output/exp_026_t12\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"data_path\\\": \\\"data/scierc/processed_data\\\", \\\"data_count\\\": 551, \\\"model_name\\\": \\\"qwen3-8b-scierc-merged-v2\\\", \\\"seed\\\": 42, \\\"log_path\\\": \\\"output/exp_026_t12.log\\\", \\\"checkpoint_path\\\": \\\"checkpoints/qwen3-8b-scierc-merged-v2\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"temperature\\\": 1.2, \\\"task\\\": \\\"T-ablation\\\", \\\"degen_rate\\\": 0.1493, \\\"degen_rate_source\\\": \\\"unified_metrics_constant_f1_gold_filtered\\\"}, \\\"completed_at\\\": \\\"2026-05-16T14:26:37.648Z\\\", \\\"hypothesis\\\": \\\"Temperature T=1.2 ablation on SciERC: test if higher temperature increases sample diversity (lower degeneracy) and LP discriminative range, potentially improving LP selection while maintaining structural signal effectiveness.\\\", \\\"parent\\\": \\\"exp_012_rerun_1024\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.7674}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp_026_t12\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-16T13:18:18.780Z\", \"updated_at\": \"2026-05-18T20:48:24.965Z\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=3 python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-scierc-merged-v2 --data_dir data/scierc/processed_data --dataset scierc --n_samples 8 --temperature 1.2 --seed 42 --max_tokens 1024 --collect_logprobs --output_dir output/exp_026_t12\", \"server\": \"autodl-5090\", \"data_path\": \"data/scierc/processed_data\", \"data_count\": 551, \"model_name\": \"qwen3-8b-scierc-merged-v2\", \"seed\": 42, \"log_path\": \"output/exp_026_t12.log\", \"checkpoint_path\": \"checkpoints/qwen3-8b-scierc-merged-v2\"}, \"conclusion\": \"success\", \"metrics\": {\"temperature\": 1.2, \"task\": \"T-ablation\", \"degen_rate\": 0.1493, \"degen_rate_source\": \"unified_metrics_constant_f1_gold_filtered\"}, \"completed_at\": \"2026-05-16T14:26:37.648Z\", \"hypothesis\": \"Temperature T=1.2 ablation on SciERC: test if higher temperature increases sample diversity (lower degeneracy) and LP discriminative range, potentially improving LP selection while maintaining structural signal effectiveness.\", \"parent\": \"exp_012_rerun_1024\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7674}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 48_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good, T-ablation done. Now let me handle the remaining experiments with existing metrics.
+
+Next batch:
+- exp_027_fewnerd_n16: existing metrics, update degeneracy_rate 0.045 → degen_rate 0.0706
+- exp_029a: existing metrics with degen_rate 0.064 → not in recalc JSON, skip
+- exp_029b: existing metrics with degen_rate 0.478 → not in recalc JSON, skip
+- exp_qwen3_4b_scierc_scs_inference: add degen_rate 0.104
+
+
+- exp_qwen3_4b_conll_scs_inference_v2 and exp_qwen3_4b_conll_scs_inference: both need degen_rate 0.9057 added
+- exp_007_llama_scierc_seed123 and exp_llama_scierc_seed456: converting degen_pct to degen_rate with values 0.2665 and 0.2741 respectively
+- exp_021_fewnerd_full: not in recalc, skip
+
+Moving on to the more complex ones now.
+
+For the remaining experiments, I'm adding degen_rate values: exp_012_rerun_1024 gets 0.1777, exp_002_conll_n16 gets 0.4844, the llama_scierc variants with r1024 get 0.2495 and 0.2741, and the llama_conll_n16 variants get 0.8647 and 0.8672 respectively.
+
+Starting with the simpler cases first—exp_027_fewnerd_n16, the 4B models, and llama seed aliases—then I'll handle exp_027_fewnerd_n16's current metrics.
+
+Now I'm looking at the specific metric values for exp_027_fewnerd_n16 and exp_qwen3_4b_scierc_scs_inference to update their degeneracy_rate fields. Now I'm looking at the performance metrics for the Qwen 3.4B model on the CoNLL dataset with SCS inference. The greedy F1 is quite high at 0.9234, with an oracle F1 of 0.9404 and minimal headroom of just 1.7 percentage points, suggesting the model is performing near its ceiling. I need to add the degeneration rate of 0.9057 to this metrics set. Now I'm looking at the metrics for the other seed runs, updating the degeneration rate calculations and checking the correlation coefficients across different evaluation methods.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "685b1bf8-4822-4d28-8b85-9f3abe1bd865",
+  "uuid": "fcc8b79c-e8b2-43b8-bc0b-6f59cec6a88b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BfwzxrcWGNTxSLdAjRkJGY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8025,
+      "cache_read_input_tokens": 51560,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8025
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 49_
+
+T 消融 6 个实验已更新。现在处理 FewNERD、4B 模型和 LLaMA seed 别名实验。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "685b1bf8-4822-4d28-8b85-9f3abe1bd865",
+  "uuid": "cd2a6d85-b500-40e3-8ed6-4a0791fb0b2a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BfwzxrcWGNTxSLdAjRkJGY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8025,
+      "cache_read_input_tokens": 51560,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8025
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 50_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01DtP2gRfWtxMjKeSBnRASMX`</summary>
+
+```json
+{
+  "exp_id": "exp_027_fewnerd_n16",
+  "field": "metrics",
+  "value": {
+    "LP_delta_pp": 1.88,
+    "LP_delta_95CI": [
+      1.41,
+      2.37
+    ],
+    "degen_rate": 0.0706,
+    "degen_rate_source": "unified_metrics_constant_f1_gold_filtered",
+    "greedy_f1": 0.7478,
+    "lp_sel_f1": 0.7666,
+    "oracle_f1": 0.902,
+    "headroom_pp": 15.42,
+    "all_8_types_positive": true,
+    "n_instances": 5000,
+    "N_samples": 16,
+    "bootstrap_p": "<0.001"
+  },
+  "project": "struct_self_consist_ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "685b1bf8-4822-4d28-8b85-9f3abe1bd865",
+  "uuid": "c905a9c2-f184-483c-b52f-b71e71069221",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BfwzxrcWGNTxSLdAjRkJGY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8025,
+      "cache_read_input_tokens": 51560,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8025
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-18T20:48:58.794Z_
+
+<details><summary>↩ Tool result · `toolu_01DtP2gRfWtxMjKeSBnRASMX`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_027_fewnerd_n16\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T05:28:57.036Z\", \"updated_at\": \"2026-05-18T20:48:58.455Z\", \"spec\": {\"hypothesis\": \"LP selection scales with N in low-degeneracy regime: N=16 should yield LP Δ > +2pp (vs N=8 +1.36pp) on Few-NERD (10% degen), because more samples increase oracle headroom while LP ranking remains effective.\", \"parent\": \"exp_021_fewnerd_full\", \"model_name\": \"qwen3-8b-fewnerd-exp021-merged\", \"data_path\": \"data/fewnerd_n16_subset/test.json\", \"data_count\": 5000, \"seed\": 42, \"server\": \"autodl-5090\", \"gpu\": \"cuda:0,cuda:1,cuda:2,cuda:3\", \"command\": \"python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-fewnerd-exp021-merged --data_dir data/fewnerd_n16_subset --dataset fewnerd --subtask ner --n_samples 16 --temperature 1.0 --seed 42 --collect_logprobs --start_index {0,1250,2500,3750} --end_index {1250,2500,3750,5000} --output_dir output/exp_027_fewnerd_n16/shard_{0-3}\", \"checkpoint_path\": \"output/exp_027_fewnerd_n16/sampled_results.jsonl\", \"log_path\": \"output/exp_027_fewnerd_n16/\"}, \"conclusion\": \"success\", \"metrics\": {\"LP_delta_pp\": 1.88, \"LP_delta_95CI\": [1.41, 2.37], \"degen_rate\": 0.0706, \"degen_rate_source\": \"unified_metrics_constant_f1_gold_filtered\", \"greedy_f1\": 0.7478, \"lp_sel_f1\": 0.7666, \"oracle_f1\": 0.902, \"headroom_pp\": 15.42, \"all_8_types_positive\": true, \"n_instances\": 5000, \"N_samples\": 16, \"bootstrap_p\": \"<0.001\"}, \"hypothesis\": \"LP selection scales with N in low-degeneracy regime: N=16 should yield LP Δ > +2pp (vs N=8 +1.36pp) on Few-NERD (10% degen), because more samples increase oracle headroom while LP ranking remains effective.\", \"completed_at\": \"2026-05-17T05:46:48.460Z\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7459}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "685b1bf8-4822-4d28-8b85-9f3abe1bd865",
+  "uuid": "1ce2420d-ee5f-4ab7-aeeb-4d1daaa8e149",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_027_fewnerd_n16\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T05:28:57.036Z\\\", \\\"updated_at\\\": \\\"2026-05-18T20:48:58.455Z\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"LP selection scales with N in low-degeneracy regime: N=16 should yield LP Δ > +2pp (vs N=8 +1.36pp) on Few-NERD (10% degen), because more samples increase oracle headroom while LP ranking remains effective.\\\", \\\"parent\\\": \\\"exp_021_fewnerd_full\\\", \\\"model_name\\\": \\\"qwen3-8b-fewnerd-exp021-merged\\\", \\\"data_path\\\": \\\"data/fewnerd_n16_subset/test.json\\\", \\\"data_count\\\": 5000, \\\"seed\\\": 42, \\\"server\\\": \\\"autodl-5090\\\", \\\"gpu\\\": \\\"cuda:0,cuda:1,cuda:2,cuda:3\\\", \\\"command\\\": \\\"python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-fewnerd-exp021-merged --data_dir data/fewnerd_n16_subset --dataset fewnerd --subtask ner --n_samples 16 --temperature 1.0 --seed 42 --collect_logprobs --start_index {0,1250,2500,3750} --end_index {1250,2500,3750,5000} --output_dir output/exp_027_fewnerd_n16/shard_{0-3}\\\", \\\"checkpoint_path\\\": \\\"output/exp_027_fewnerd_n16/sampled_results.jsonl\\\", \\\"log_path\\\": \\\"output/exp_027_fewnerd_n16/\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"LP_delta_pp\\\": 1.88, \\\"LP_delta_95CI\\\": [1.41, 2.37], \\\"degen_rate\\\": 0.0706, \\\"degen_rate_source\\\": \\\"unified_metrics_constant_f1_gold_filtered\\\", \\\"greedy_f1\\\": 0.7478, \\\"lp_sel_f1\\\": 0.7666, \\\"oracle_f1\\\": 0.902, \\\"headroom_pp\\\": 15.42, \\\"all_8_types_positive\\\": true, \\\"n_instances\\\": 5000, \\\"N_samples\\\": 16, \\\"bootstrap_p\\\": \\\"<0.001\\\"}, \\\"hypothesis\\\": \\\"LP selection scales with N in low-degeneracy regime: N=16 should yield LP Δ > +2pp (vs N=8 +1.36pp) on Few-NERD (10% degen), because more samples increase oracle headroom while LP ranking remains effective.\\\", \\\"completed_at\\\": \\\"2026-05-17T05:46:48.460Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.7459}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp_027_fewnerd_n16\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T05:28:57.036Z\", \"updated_at\": \"2026-05-18T20:48:58.455Z\", \"spec\": {\"hypothesis\": \"LP selection scales with N in low-degeneracy regime: N=16 should yield LP Δ > +2pp (vs N=8 +1.36pp) on Few-NERD (10% degen), because more samples increase oracle headroom while LP ranking remains effective.\", \"parent\": \"exp_021_fewnerd_full\", \"model_name\": \"qwen3-8b-fewnerd-exp021-merged\", \"data_path\": \"data/fewnerd_n16_subset/test.json\", \"data_count\": 5000, \"seed\": 42, \"server\": \"autodl-5090\", \"gpu\": \"cuda:0,cuda:1,cuda:2,cuda:3\", \"command\": \"python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-fewnerd-exp021-merged --data_dir data/fewnerd_n16_subset --dataset fewnerd --subtask ner --n_samples 16 --temperature 1.0 --seed 42 --collect_logprobs --start_index {0,1250,2500,3750} --end_index {1250,2500,3750,5000} --output_dir output/exp_027_fewnerd_n16/shard_{0-3}\", \"checkpoint_path\": \"output/exp_027_fewnerd_n16/sampled_results.jsonl\", \"log_path\": \"output/exp_027_fewnerd_n16/\"}, \"conclusion\": \"success\", \"metrics\": {\"LP_delta_pp\": 1.88, \"LP_delta_95CI\": [1.41, 2.37], \"degen_rate\": 0.0706, \"degen_rate_source\": \"unified_metrics_constant_f1_gold_filtered\", \"greedy_f1\": 0.7478, \"lp_sel_f1\": 0.7666, \"oracle_f1\": 0.902, \"headroom_pp\": 15.42, \"all_8_types_positive\": true, \"n_instances\": 5000, \"N_samples\": 16, \"bootstrap_p\": \"<0.001\"}, \"hypothesis\": \"LP selection scales with N in low-degeneracy regime: N=16 should yield LP Δ > +2pp (vs N=8 +1.36pp) on Few-NERD (10% degen), because more samples increase oracle headroom while LP ranking remains effective.\", \"completed_at\": \"2026-05-17T05:46:48.460Z\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7459}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 52_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01BjJtpLxAWcm2RnQHc2PfU3`</summary>
+
+```json
+{
+  "exp_id": "exp_qwen3_4b_scierc_scs_inference",
+  "field": "metrics",
+  "value": {
+    "ner_greedy_f1": 0.6612,
+    "ner_oracle_f1": 0.7839,
+    "ner_headroom_pp": 12.28,
+    "ner_SJ_rho": 0.4221,
+    "ner_FK_rho": 0.3258,
+    "ner_LP_rho": 0.28,
+    "re_greedy_f1": 0.4136,
+    "re_oracle_f1": 0.5846,
+    "re_headroom_pp": 17.1,
+    "re_SJ_rho": 0.2673,
+    "re_FK_rho": 0.3593,
+    "re_LP_rho": 0.3512,
+    "re_sample_f1_pct_zero": 0.476,
+    "re_LP_rho_cond": 0.1135,
+    "re_LP_rho_cond_p": 0.074,
+    "degen_rate": 0.104,
+    "degen_rate_source": "unified_metrics_constant_f1_gold_filtered"
+  },
+  "project": "struct_self_consist_ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "685b1bf8-4822-4d28-8b85-9f3abe1bd865",
+  "uuid": "ed0ed99c-e05e-42ce-9b3b-503889ad24fd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BfwzxrcWGNTxSLdAjRkJGY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8025,
+      "cache_read_input_tokens": 51560,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8025
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 53 · 2026-05-18T20:49:01.568Z_
+
+<details><summary>↩ Tool result · `toolu_01BjJtpLxAWcm2RnQHc2PfU3`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_qwen3_4b_scierc_scs_inference\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T19:45:33.384Z\", \"updated_at\": \"2026-05-18T20:49:01.260Z\", \"hypothesis\": \"SciERC 4B SCS inference after v4 finetune merge. Complete 2x2 scale matrix (4B SciERC cell). Cross-scale + cross-task evidence for correlation-selection gap.\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=2 PYTHONPATH=code python code/run_mvp_pilot.py --model_path checkpoints/qwen3-4b-scierc-merged --data_dir data/scierc/processed_data --dataset scierc --subtask joint --n_samples 8 --temperature 1.0 --seed 42 --num_test 9999 --max_tokens 1024 --collect_logprobs --output_dir output/exp_qwen3_4b_scierc_scs_inference\", \"server\": \"autodl-5090\", \"data_path\": \"data/scierc/processed_data\", \"data_count\": 551, \"model_name\": \"qwen3-4b-scierc-merged (checkpoint-400)\", \"seed\": 42, \"checkpoint_source\": \"checkpoints/qwen3-4b-scierc-merged\", \"eval_data\": \"scierc test set\"}, \"metrics\": {\"ner_greedy_f1\": 0.6612, \"ner_oracle_f1\": 0.7839, \"ner_headroom_pp\": 12.28, \"ner_SJ_rho\": 0.4221, \"ner_FK_rho\": 0.3258, \"ner_LP_rho\": 0.28, \"re_greedy_f1\": 0.4136, \"re_oracle_f1\": 0.5846, \"re_headroom_pp\": 17.1, \"re_SJ_rho\": 0.2673, \"re_FK_rho\": 0.3593, \"re_LP_rho\": 0.3512, \"re_sample_f1_pct_zero\": 0.476, \"re_LP_rho_cond\": 0.1135, \"re_LP_rho_cond_p\": 0.074, \"degen_rate\": 0.104, \"degen_rate_source\": \"unified_metrics_constant_f1_gold_filtered\"}, \"checkpoint_path\": \"checkpoints/qwen3-4b-scierc-merged/\", \"log_path\": \"/tmp/exp_qwen3_4b_scierc_scs_inference.log\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T20:00:03.730Z\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.693}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "685b1bf8-4822-4d28-8b85-9f3abe1bd865",
+  "uuid": "b58d3586-d769-4358-8f39-9984eef99df2",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_qwen3_4b_scierc_scs_inference\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T19:45:33.384Z\\\", \\\"updated_at\\\": \\\"2026-05-18T20:49:01.260Z\\\", \\\"hypothesis\\\": \\\"SciERC 4B SCS inference after v4 finetune merge. Complete 2x2 scale matrix (4B SciERC cell). Cross-scale + cross-task evidence for correlation-selection gap.\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=2 PYTHONPATH=code python code/run_mvp_pilot.py --model_path checkpoints/qwen3-4b-scierc-merged --data_dir data/scierc/processed_data --dataset scierc --subtask joint --n_samples 8 --temperature 1.0 --seed 42 --num_test 9999 --max_tokens 1024 --collect_logprobs --output_dir output/exp_qwen3_4b_scierc_scs_inference\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"data_path\\\": \\\"data/scierc/processed_data\\\", \\\"data_count\\\": 551, \\\"model_name\\\": \\\"qwen3-4b-scierc-merged (checkpoint-400)\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"checkpoints/qwen3-4b-scierc-merged\\\", \\\"eval_data\\\": \\\"scierc test set\\\"}, \\\"metrics\\\": {\\\"ner_greedy_f1\\\": 0.6612, \\\"ner_oracle_f1\\\": 0.7839, \\\"ner_headroom_pp\\\": 12.28, \\\"ner_SJ_rho\\\": 0.4221, \\\"ner_FK_rho\\\": 0.3258, \\\"ner_LP_rho\\\": 0.28, \\\"re_greedy_f1\\\": 0.4136, \\\"re_oracle_f1\\\": 0.5846, \\\"re_headroom_pp\\\": 17.1, \\\"re_SJ_rho\\\": 0.2673, \\\"re_FK_rho\\\": 0.3593, \\\"re_LP_rho\\\": 0.3512, \\\"re_sample_f1_pct_zero\\\": 0.476, \\\"re_LP_rho_cond\\\": 0.1135, \\\"re_LP_rho_cond_p\\\": 0.074, \\\"degen_rate\\\": 0.104, \\\"degen_rate_source\\\": \\\"unified_metrics_constant_f1_gold_filtered\\\"}, \\\"checkpoint_path\\\": \\\"checkpoints/qwen3-4b-scierc-merged/\\\", \\\"log_path\\\": \\\"/tmp/exp_qwen3_4b_scierc_scs_inference.log\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-15T20:00:03.730Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.693}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp_qwen3_4b_scierc_scs_inference\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T19:45:33.384Z\", \"updated_at\": \"2026-05-18T20:49:01.260Z\", \"hypothesis\": \"SciERC 4B SCS inference after v4 finetune merge. Complete 2x2 scale matrix (4B SciERC cell). Cross-scale + cross-task evidence for correlation-selection gap.\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=2 PYTHONPATH=code python code/run_mvp_pilot.py --model_path checkpoints/qwen3-4b-scierc-merged --data_dir data/scierc/processed_data --dataset scierc --subtask joint --n_samples 8 --temperature 1.0 --seed 42 --num_test 9999 --max_tokens 1024 --collect_logprobs --output_dir output/exp_qwen3_4b_scierc_scs_inference\", \"server\": \"autodl-5090\", \"data_path\": \"data/scierc/processed_data\", \"data_count\": 551, \"model_name\": \"qwen3-4b-scierc-merged (checkpoint-400)\", \"seed\": 42, \"checkpoint_source\": \"checkpoints/qwen3-4b-scierc-merged\", \"eval_data\": \"scierc test set\"}, \"metrics\": {\"ner_greedy_f1\": 0.6612, \"ner_oracle_f1\": 0.7839, \"ner_headroom_pp\": 12.28, \"ner_SJ_rho\": 0.4221, \"ner_FK_rho\": 0.3258, \"ner_LP_rho\": 0.28, \"re_greedy_f1\": 0.4136, \"re_oracle_f1\": 0.5846, \"re_headroom_pp\": 17.1, \"re_SJ_rho\": 0.2673, \"re_FK_rho\": 0.3593, \"re_LP_rho\": 0.3512, \"re_sample_f1_pct_zero\": 0.476, \"re_LP_rho_cond\": 0.1135, \"re_LP_rho_cond_p\": 0.074, \"degen_rate\": 0.104, \"degen_rate_source\": \"unified_metrics_constant_f1_gold_filtered\"}, \"checkpoint_path\": \"checkpoints/qwen3-4b-scierc-merged/\", \"log_path\": \"/tmp/exp_qwen3_4b_scierc_scs_inference.log\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T20:00:03.730Z\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.693}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 54_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01Fmk4pcojPC3Uhj1P185z5z`</summary>
+
+```json
+{
+  "exp_id": "exp_qwen3_4b_conll_scs_inference_v2",
+  "field": "metrics",
+  "value": {
+    "greedy_f1": 0.9234,
+    "oracle_f1": 0.9404,
+    "oracle_headroom_pp": 1.7,
+    "SJ_rho_full": 0.4217,
+    "SJ_rho_cond": 0.459,
+    "FK_rho_full": 0.4181,
+    "FK_rho_cond": 0.4538,
+    "LP_rho_full": 0.3313,
+    "LP_rho_cond": 0.3487,
+    "LP_auroc_full": 0.7761,
+    "LP_auroc_cond": 0.8209,
+    "n_instances": 3453,
+    "verdict": "MARGINAL",
+    "degen_rate": 0.9057,
+    "degen_rate_source": "unified_metrics_constant_f1_gold_filtered"
+  },
+  "project": "struct_self_consist_ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "685b1bf8-4822-4d28-8b85-9f3abe1bd865",
+  "uuid": "499045a9-d730-458c-97a7-a108414eb9d0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BfwzxrcWGNTxSLdAjRkJGY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8025,
+      "cache_read_input_tokens": 51560,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8025
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 55 · 2026-05-18T20:49:03.984Z_
+
+<details><summary>↩ Tool result · `toolu_01Fmk4pcojPC3Uhj1P185z5z`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_qwen3_4b_conll_scs_inference_v2\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T19:41:33.501Z\", \"updated_at\": \"2026-05-18T20:49:03.705Z\", \"hypothesis\": \"CoNLL 4B SCS inference with best checkpoint-4200 (from resume training). Scale ablation: cross-scale evidence for correlation-selection gap. Compare vs v1 (ckpt-3800 baseline: greedy_f1=0.9251, SJ_rho=0.4045).\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=1 python code/run_mvp_pilot.py --model_path checkpoints/qwen3-4b-conll2003-merged-ckpt4200 --data_dir data/conll2003 --dataset conll2003 --subtask ner --n_samples 8 --temperature 1.0 --seed 42 --num_test 9999 --max_tokens 1024 --collect_logprobs --output_dir output/exp_qwen3_4b_conll_scs_inference_v2\", \"server\": \"autodl-5090\", \"data_path\": \"data/conll2003\", \"data_count\": 3453, \"model_name\": \"Qwen3-4B (LoRA checkpoint-4200 merged)\", \"seed\": 42, \"checkpoint_source\": \"checkpoints/qwen3-4b-conll2003-lora/checkpoint-4200\", \"gpu\": [\"cuda:1\"], \"checkpoint_path\": \"checkpoints/qwen3-4b-conll2003-merged-ckpt4200\", \"log_path\": \"/tmp/infer_4b_conll_v2.log\", \"account\": \"root\", \"backend\": \"tmux\", \"tmux_session\": \"exp_4b_conll_scs_v2\"}, \"metrics\": {\"greedy_f1\": 0.9234, \"oracle_f1\": 0.9404, \"oracle_headroom_pp\": 1.7, \"SJ_rho_full\": 0.4217, \"SJ_rho_cond\": 0.459, \"FK_rho_full\": 0.4181, \"FK_rho_cond\": 0.4538, \"LP_rho_full\": 0.3313, \"LP_rho_cond\": 0.3487, \"LP_auroc_full\": 0.7761, \"LP_auroc_cond\": 0.8209, \"n_instances\": 3453, \"verdict\": \"MARGINAL\", \"degen_rate\": 0.9057, \"degen_rate_source\": \"unified_metrics_constant_f1_gold_filtered\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T19:54:14.575Z\", \"notes\": \"Gold-filter audit (2026-05-16): CONSISTENT. _full metrics (SJ_rho=0.4217, FK_rho=0.4181) are computed on gold-filtered set (n=2756), same as 8B Table 1 values. _full does NOT mean all 3453 instances — it means gold-nonempty instances. _cond further excludes greedy-F1=0 (n=2641). Confirmed via run_mvp_pilot.py source code and report.json n values.\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7005}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "685b1bf8-4822-4d28-8b85-9f3abe1bd865",
+  "uuid": "493f97e4-5f72-4c7d-9c59-45af223ec0d2",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_qwen3_4b_conll_scs_inference_v2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T19:41:33.501Z\\\", \\\"updated_at\\\": \\\"2026-05-18T20:49:03.705Z\\\", \\\"hypothesis\\\": \\\"CoNLL 4B SCS inference with best checkpoint-4200 (from resume training). Scale ablation: cross-scale evidence for correlation-selection gap. Compare vs v1 (ckpt-3800 baseline: greedy_f1=0.9251, SJ_rho=0.4045).\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=1 python code/run_mvp_pilot.py --model_path checkpoints/qwen3-4b-conll2003-merged-ckpt4200 --data_dir data/conll2003 --dataset conll2003 --subtask ner --n_samples 8 --temperature 1.0 --seed 42 --num_test 9999 --max_tokens 1024 --collect_logprobs --output_dir output/exp_qwen3_4b_conll_scs_inference_v2\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"data_path\\\": \\\"data/conll2003\\\", \\\"data_count\\\": 3453, \\\"model_name\\\": \\\"Qwen3-4B (LoRA checkpoint-4200 merged)\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"checkpoints/qwen3-4b-conll2003-lora/checkpoint-4200\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"checkpoint_path\\\": \\\"checkpoints/qwen3-4b-conll2003-merged-ckpt4200\\\", \\\"log_path\\\": \\\"/tmp/infer_4b_conll_v2.log\\\", \\\"account\\\": \\\"root\\\", \\\"backend\\\": \\\"tmux\\\", \\\"tmux_session\\\": \\\"exp_4b_conll_scs_v2\\\"}, \\\"metrics\\\": {\\\"greedy_f1\\\": 0.9234, \\\"oracle_f1\\\": 0.9404, \\\"oracle_headroom_pp\\\": 1.7, \\\"SJ_rho_full\\\": 0.4217, \\\"SJ_rho_cond\\\": 0.459, \\\"FK_rho_full\\\": 0.4181, \\\"FK_rho_cond\\\": 0.4538, \\\"LP_rho_full\\\": 0.3313, \\\"LP_rho_cond\\\": 0.3487, \\\"LP_auroc_full\\\": 0.7761, \\\"LP_auroc_cond\\\": 0.8209, \\\"n_instances\\\": 3453, \\\"verdict\\\": \\\"MARGINAL\\\", \\\"degen_rate\\\": 0.9057, \\\"degen_rate_source\\\": \\\"unified_metrics_constant_f1_gold_filtered\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-15T19:54:14.575Z\\\", \\\"notes\\\": \\\"Gold-filter audit (2026-05-16): CONSISTENT. _full metrics (SJ_rho=0.4217, FK_rho=0.4181) are computed on gold-filtered set (n=2756), same as 8B Table 1 values. _full does NOT mean all 3453 instances — it means gold-nonempty instances. _cond further excludes greedy-F1=0 (n=2641). Confirmed via run_mvp_pilot.py source code and report.json n values.\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.7005}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp_qwen3_4b_conll_scs_inference_v2\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T19:41:33.501Z\", \"updated_at\": \"2026-05-18T20:49:03.705Z\", \"hypothesis\": \"CoNLL 4B SCS inference with best checkpoint-4200 (from resume training). Scale ablation: cross-scale evidence for correlation-selection gap. Compare vs v1 (ckpt-3800 baseline: greedy_f1=0.9251, SJ_rho=0.4045).\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=1 python code/run_mvp_pilot.py --model_path checkpoints/qwen3-4b-conll2003-merged-ckpt4200 --data_dir data/conll2003 --dataset conll2003 --subtask ner --n_samples 8 --temperature 1.0 --seed 42 --num_test 9999 --max_tokens 1024 --collect_logprobs --output_dir output/exp_qwen3_4b_conll_scs_inference_v2\", \"server\": \"autodl-5090\", \"data_path\": \"data/conll2003\", \"data_count\": 3453, \"model_name\": \"Qwen3-4B (LoRA checkpoint-4200 merged)\", \"seed\": 42, \"checkpoint_source\": \"checkpoints/qwen3-4b-conll2003-lora/checkpoint-4200\", \"gpu\": [\"cuda:1\"], \"checkpoint_path\": \"checkpoints/qwen3-4b-conll2003-merged-ckpt4200\", \"log_path\": \"/tmp/infer_4b_conll_v2.log\", \"account\": \"root\", \"backend\": \"tmux\", \"tmux_session\": \"exp_4b_conll_scs_v2\"}, \"metrics\": {\"greedy_f1\": 0.9234, \"oracle_f1\": 0.9404, \"oracle_headroom_pp\": 1.7, \"SJ_rho_full\": 0.4217, \"SJ_rho_cond\": 0.459, \"FK_rho_full\": 0.4181, \"FK_rho_cond\": 0.4538, \"LP_rho_full\": 0.3313, \"LP_rho_cond\": 0.3487, \"LP_auroc_full\": 0.7761, \"LP_auroc_cond\": 0.8209, \"n_instances\": 3453, \"verdict\": \"MARGINAL\", \"degen_rate\": 0.9057, \"degen_rate_source\": \"unified_metrics_constant_f1_gold_filtered\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T19:54:14.575Z\", \"notes\": \"Gold-filter audit (2026-05-16): CONSISTENT. _full metrics (SJ_rho=0.4217, FK_rho=0.4181) are computed on gold-filtered set (n=2756), same as 8B Table 1 values. _full does NOT mean all 3453 instances — it means gold-nonempty instances. _cond further excludes greedy-F1=0 (n=2641). Confirmed via run_mvp_pilot.py source code and report.json n values.\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7005}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 56_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_011JbS8nQSWYmvPqGqt8axNX`</summary>
+
+```json
+{
+  "exp_id": "exp_qwen3_4b_conll_scs_inference",
+  "field": "metrics",
+  "value": {
+    "greedy_f1": 0.9251,
+    "oracle_f1": 0.9408,
+    "oracle_headroom_pp": 1.57,
+    "SJ_rho_full": 0.4045,
+    "SJ_rho_cond": 0.4306,
+    "FK_rho_full": 0.3961,
+    "FK_rho_cond": 0.42,
+    "LP_rho_full": 0.3186,
+    "LP_rho_cond": 0.3378,
+    "LP_auroc_full": 0.7689,
+    "LP_auroc_cond": 0.8153,
+    "fleiss_kappa_mean": 0.9349,
+    "soft_jaccard_mean": 0.9754,
+    "structural_beats_surface": true,
+    "rho_advantage_pp": 0.84,
+    "n_instances": 3453,
+    "n_gold_empty_filtered": 697,
+    "n_greedy_f1_zero_filtered": 112,
+    "verdict": "MARGINAL",
+    "degen_rate": 0.9057,
+    "degen_rate_source": "unified_metrics_constant_f1_gold_filtered"
+  },
+  "project": "struct_self_consist_ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "685b1bf8-4822-4d28-8b85-9f3abe1bd865",
+  "uuid": "0b559e14-40ea-491b-a849-db2a6c08a3a9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BfwzxrcWGNTxSLdAjRkJGY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8025,
+      "cache_read_input_tokens": 51560,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8025
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 57 · 2026-05-18T20:49:07.188Z_
+
+<details><summary>↩ Tool result · `toolu_011JbS8nQSWYmvPqGqt8axNX`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_qwen3_4b_conll_scs_inference\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T19:08:28.512Z\", \"updated_at\": \"2026-05-18T20:49:06.922Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && PYTHONPATH=code python code/run_mvp_pilot.py --model_path checkpoints/qwen3-4b-conll2003-merged --data_dir data/conll2003 --dataset conll2003 --subtask ner --n_samples 8 --temperature 1.0 --seed 42 --num_test 9999 --max_tokens 1024 --collect_logprobs --output_dir output/exp_qwen3_4b_conll_scs_inference\\\"\", \"server\": \"autodl-5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"222184\", \"log_path\": \"/root/autodl-tmp/struct_self_consist_ie/output/exp_qwen3_4b_conll_scs_inference/report.json\", \"submitted_at\": \"2026-05-15T19:10:19.757Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_path\": \"/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-4b-conll2003-merged\", \"wall_clock_seconds\": 523.8, \"gpu_hours\": 0.15}, \"metrics\": {\"greedy_f1\": 0.9251, \"oracle_f1\": 0.9408, \"oracle_headroom_pp\": 1.57, \"SJ_rho_full\": 0.4045, \"SJ_rho_cond\": 0.4306, \"FK_rho_full\": 0.3961, \"FK_rho_cond\": 0.42, \"LP_rho_full\": 0.3186, \"LP_rho_cond\": 0.3378, \"LP_auroc_full\": 0.7689, \"LP_auroc_cond\": 0.8153, \"fleiss_kappa_mean\": 0.9349, \"soft_jaccard_mean\": 0.9754, \"structural_beats_surface\": true, \"rho_advantage_pp\": 0.84, \"n_instances\": 3453, \"n_gold_empty_filtered\": 697, \"n_greedy_f1_zero_filtered\": 112, \"verdict\": \"MARGINAL\", \"degen_rate\": 0.9057, \"degen_rate_source\": \"unified_metrics_constant_f1_gold_filtered\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T19:19:03.585Z\", \"notes\": \"4B CoNLL SCS inference completed. SJ>FK>LP ordering preserved at 4B scale (rho 0.405>0.396>0.319). Greedy F1=0.925 outperforms 8B (0.907), but SJ rho is lower (0.405 vs 0.450 at 8B N=16). Structural beats surface confirmed (+0.84pp). Verdict MARGINAL due to small oracle headroom (1.57pp) — the model is already very good at CoNLL, leaving little room for selection improvement.\", \"hypothesis\": \"CoNLL 4B SCS inference (checkpoint-3800): cross-scale evidence for correlation-selection gap. Tests if structural>surface ranking and LP compression hold at smaller model scale on high-degeneracy dataset.\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6446}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "685b1bf8-4822-4d28-8b85-9f3abe1bd865",
+  "uuid": "2d4457a1-03d2-4432-a0c9-c6cd5a2886f7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_qwen3_4b_conll_scs_inference\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T19:08:28.512Z\\\", \\\"updated_at\\\": \\\"2026-05-18T20:49:06.922Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && PYTHONPATH=code python code/run_mvp_pilot.py --model_path checkpoints/qwen3-4b-conll2003-merged --data_dir data/conll2003 --dataset conll2003 --subtask ner --n_samples 8 --temperature 1.0 --seed 42 --num_test 9999 --max_tokens 1024 --collect_logprobs --output_dir output/exp_qwen3_4b_conll_scs_inference\\\\\\\"\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"222184\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/exp_qwen3_4b_conll_scs_inference/report.json\\\", \\\"submitted_at\\\": \\\"2026-05-15T19:10:19.757Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-4b-conll2003-merged\\\", \\\"wall_clock_seconds\\\": 523.8, \\\"gpu_hours\\\": 0.15}, \\\"metrics\\\": {\\\"greedy_f1\\\": 0.9251, \\\"oracle_f1\\\": 0.9408, \\\"oracle_headroom_pp\\\": 1.57, \\\"SJ_rho_full\\\": 0.4045, \\\"SJ_rho_cond\\\": 0.4306, \\\"FK_rho_full\\\": 0.3961, \\\"FK_rho_cond\\\": 0.42, \\\"LP_rho_full\\\": 0.3186, \\\"LP_rho_cond\\\": 0.3378, \\\"LP_auroc_full\\\": 0.7689, \\\"LP_auroc_cond\\\": 0.8153, \\\"fleiss_kappa_mean\\\": 0.9349, \\\"soft_jaccard_mean\\\": 0.9754, \\\"structural_beats_surface\\\": true, \\\"rho_advantage_pp\\\": 0.84, \\\"n_instances\\\": 3453, \\\"n_gold_empty_filtered\\\": 697, \\\"n_greedy_f1_zero_filtered\\\": 112, \\\"verdict\\\": \\\"MARGINAL\\\", \\\"degen_rate\\\": 0.9057, \\\"degen_rate_source\\\": \\\"unified_metrics_constant_f1_gold_filtered\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-15T19:19:03.585Z\\\", \\\"notes\\\": \\\"4B CoNLL SCS inference completed. SJ>FK>LP ordering preserved at 4B scale (rho 0.405>0.396>0.319). Greedy F1=0.925 outperforms 8B (0.907), but SJ rho is lower (0.405 vs 0.450 at 8B N=16). Structural beats surface confirmed (+0.84pp). Verdict MARGINAL due to small oracle headroom (1.57pp) — the model is already very good at CoNLL, leaving little room for selection improvement.\\\", \\\"hypothesis\\\": \\\"CoNLL 4B SCS inference (checkpoint-3800): cross-scale evidence for correlation-selection gap. Tests if structural>surface ranking and LP compression hold at smaller model scale on high-degeneracy dataset.\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6446}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp_qwen3_4b_conll_scs_inference\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T19:08:28.512Z\", \"updated_at\": \"2026-05-18T20:49:06.922Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && PYTHONPATH=code python code/run_mvp_pilot.py --model_path checkpoints/qwen3-4b-conll2003-merged --data_dir data/conll2003 --dataset conll2003 --subtask ner --n_samples 8 --temperature 1.0 --seed 42 --num_test 9999 --max_tokens 1024 --collect_logprobs --output_dir output/exp_qwen3_4b_conll_scs_inference\\\"\", \"server\": \"autodl-5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"222184\", \"log_path\": \"/root/autodl-tmp/struct_self_consist_ie/output/exp_qwen3_4b_conll_scs_inference/report.json\", \"submitted_at\": \"2026-05-15T19:10:19.757Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_path\": \"/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-4b-conll2003-merged\", \"wall_clock_seconds\": 523.8, \"gpu_hours\": 0.15}, \"metrics\": {\"greedy_f1\": 0.9251, \"oracle_f1\": 0.9408, \"oracle_headroom_pp\": 1.57, \"SJ_rho_full\": 0.4045, \"SJ_rho_cond\": 0.4306, \"FK_rho_full\": 0.3961, \"FK_rho_cond\": 0.42, \"LP_rho_full\": 0.3186, \"LP_rho_cond\": 0.3378, \"LP_auroc_full\": 0.7689, \"LP_auroc_cond\": 0.8153, \"fleiss_kappa_mean\": 0.9349, \"soft_jaccard_mean\": 0.9754, \"structural_beats_surface\": true, \"rho_advantage_pp\": 0.84, \"n_instances\": 3453, \"n_gold_empty_filtered\": 697, \"n_greedy_f1_zero_filtered\": 112, \"verdict\": \"MARGINAL\", \"degen_rate\": 0.9057, \"degen_rate_source\": \"unified_metrics_constant_f1_gold_filtered\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T19:19:03.585Z\", \"notes\": \"4B CoNLL SCS inference completed. SJ>FK>LP ordering preserved at 4B scale (rho 0.405>0.396>0.319). Greedy F1=0.925 outperforms 8B (0.907), but SJ rho is lower (0.405 vs 0.450 at 8B N=16). Structural beats surface confirmed (+0.84pp). Verdict MARGINAL due to small oracle headroom (1.57pp) — the model is already very good at CoNLL, leaving little room for selection improvement.\", \"hypothesis\": \"CoNLL 4B SCS inference (checkpoint-3800): cross-scale evidence for correlation-selection gap. Tests if structural>surface ranking and LP compression hold at smaller model scale on high-degeneracy dataset.\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6446}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 58_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01JYAoRZXL1YTqpdAXN1DdxC`</summary>
+
+```json
+{
+  "exp_id": "exp_007_llama_scierc_seed123",
+  "field": "metrics",
+  "value": {
+    "greedy_f1": 0.6454,
+    "oracle_f1": 0.7657,
+    "headroom": 0.1204,
+    "degen_rate": 0.2665,
+    "degen_rate_source": "unified_metrics_constant_f1_gold_filtered",
+    "dgs_delta_pp": -0.38,
+    "rho_SJ_full": 0.3552,
+    "rho_voting_conf_full": 0.4193,
+    "auroc_SJ_full": 0.7092,
+    "auroc_EM_full": 0.7468
+  },
+  "project": "struct_self_consist_ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "685b1bf8-4822-4d28-8b85-9f3abe1bd865",
+  "uuid": "70f1e24b-8b71-480f-9441-8942cb44e17e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BfwzxrcWGNTxSLdAjRkJGY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8025,
+      "cache_read_input_tokens": 51560,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8025
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 59 · 2026-05-18T20:49:09.202Z_
+
+<details><summary>↩ Tool result · `toolu_01JYAoRZXL1YTqpdAXN1DdxC`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_007_llama_scierc_seed123\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T19:10:26.278Z\", \"updated_at\": \"2026-05-18T20:49:08.934Z\", \"name\": \"LLaMA-3.1-8B SciERC NER inference seed=123\", \"hypothesis\": \"Structural consistency signals (SJ, FK) correlate with entity F1 for LLaMA-8B on SciERC at seed=123, and DGS selection improves over greedy baseline\", \"spec\": {\"command\": \"python3 code/run_mvp_pilot.py --model_path checkpoints/llama3.1-8b-scierc-merged --data_dir data/scierc/processed_data --dataset scierc --subtask joint --n_samples 8 --temperature 1.0 --seed 123 --num_test 9999 --collect_logprobs --output_dir output/exp_018_llama_scierc_seed123\", \"server\": \"autodl-5090\", \"data_path\": \"data/scierc/processed_data\", \"data_count\": 551, \"model_name\": \"LLaMA-3.1-8B-Instruct (SciERC LoRA fine-tuned)\", \"seed\": 123, \"checkpoint_source\": \"checkpoints/llama3.1-8b-scierc-merged\", \"checkpoint_path\": \"checkpoints/llama3.1-8b-scierc-lora\", \"log_path\": \"output/exp_018_llama_scierc_seed123/report.json\"}, \"conclusion\": \"negative\", \"completed_at\": \"2026-05-18T19:11:30.781Z\", \"metrics\": {\"greedy_f1\": 0.6454, \"oracle_f1\": 0.7657, \"headroom\": 0.1204, \"degen_rate\": 0.2665, \"degen_rate_source\": \"unified_metrics_constant_f1_gold_filtered\", \"dgs_delta_pp\": -0.38, \"rho_SJ_full\": 0.3552, \"rho_voting_conf_full\": 0.4193, \"auroc_SJ_full\": 0.7092, \"auroc_EM_full\": 0.7468}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.651}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "685b1bf8-4822-4d28-8b85-9f3abe1bd865",
+  "uuid": "9578b3d9-bf58-4c5c-b850-65700ead7b63",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_007_llama_scierc_seed123\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-18T19:10:26.278Z\\\", \\\"updated_at\\\": \\\"2026-05-18T20:49:08.934Z\\\", \\\"name\\\": \\\"LLaMA-3.1-8B SciERC NER inference seed=123\\\", \\\"hypothesis\\\": \\\"Structural consistency signals (SJ, FK) correlate with entity F1 for LLaMA-8B on SciERC at seed=123, and DGS selection improves over greedy baseline\\\", \\\"spec\\\": {\\\"command\\\": \\\"python3 code/run_mvp_pilot.py --model_path checkpoints/llama3.1-8b-scierc-merged --data_dir data/scierc/processed_data --dataset scierc --subtask joint --n_samples 8 --temperature 1.0 --seed 123 --num_test 9999 --collect_logprobs --output_dir output/exp_018_llama_scierc_seed123\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"data_path\\\": \\\"data/scierc/processed_data\\\", \\\"data_count\\\": 551, \\\"model_name\\\": \\\"LLaMA-3.1-8B-Instruct (SciERC LoRA fine-tuned)\\\", \\\"seed\\\": 123, \\\"checkpoint_source\\\": \\\"checkpoints/llama3.1-8b-scierc-merged\\\", \\\"checkpoint_path\\\": \\\"checkpoints/llama3.1-8b-scierc-lora\\\", \\\"log_path\\\": \\\"output/exp_018_llama_scierc_seed123/report.json\\\"}, \\\"conclusion\\\": \\\"negative\\\", \\\"completed_at\\\": \\\"2026-05-18T19:11:30.781Z\\\", \\\"metrics\\\": {\\\"greedy_f1\\\": 0.6454, \\\"oracle_f1\\\": 0.7657, \\\"headroom\\\": 0.1204, \\\"degen_rate\\\": 0.2665, \\\"degen_rate_source\\\": \\\"unified_metrics_constant_f1_gold_filtered\\\", \\\"dgs_delta_pp\\\": -0.38, \\\"rho_SJ_full\\\": 0.3552, \\\"rho_voting_conf_full\\\": 0.4193, \\\"auroc_SJ_full\\\": 0.7092, \\\"auroc_EM_full\\\": 0.7468}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.651}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp_007_llama_scierc_seed123\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T19:10:26.278Z\", \"updated_at\": \"2026-05-18T20:49:08.934Z\", \"name\": \"LLaMA-3.1-8B SciERC NER inference seed=123\", \"hypothesis\": \"Structural consistency signals (SJ, FK) correlate with entity F1 for LLaMA-8B on SciERC at seed=123, and DGS selection improves over greedy baseline\", \"spec\": {\"command\": \"python3 code/run_mvp_pilot.py --model_path checkpoints/llama3.1-8b-scierc-merged --data_dir data/scierc/processed_data --dataset scierc --subtask joint --n_samples 8 --temperature 1.0 --seed 123 --num_test 9999 --collect_logprobs --output_dir output/exp_018_llama_scierc_seed123\", \"server\": \"autodl-5090\", \"data_path\": \"data/scierc/processed_data\", \"data_count\": 551, \"model_name\": \"LLaMA-3.1-8B-Instruct (SciERC LoRA fine-tuned)\", \"seed\": 123, \"checkpoint_source\": \"checkpoints/llama3.1-8b-scierc-merged\", \"checkpoint_path\": \"checkpoints/llama3.1-8b-scierc-lora\", \"log_path\": \"output/exp_018_llama_scierc_seed123/report.json\"}, \"conclusion\": \"negative\", \"completed_at\": \"2026-05-18T19:11:30.781Z\", \"metrics\": {\"greedy_f1\": 0.6454, \"oracle_f1\": 0.7657, \"headroom\": 0.1204, \"degen_rate\": 0.2665, \"degen_rate_source\": \"unified_metrics_constant_f1_gold_filtered\", \"dgs_delta_pp\": -0.38, \"rho_SJ_full\": 0.3552, \"rho_voting_conf_full\": 0.4193, \"auroc_SJ_full\": 0.7092, \"auroc_EM_full\": 0.7468}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.651}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 60_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_016DaATc2xiVrbL4S8GydGij`</summary>
+
+```json
+{
+  "exp_id": "exp_llama_scierc_seed456",
+  "field": "metrics",
+  "value": {
+    "greedy_f1": 0.6457,
+    "oracle_f1": 0.7574,
+    "headroom": 0.1117,
+    "dgs_f1": 0.6454,
+    "degen_rate": 0.2741,
+    "degen_rate_source": "unified_metrics_constant_f1_gold_filtered",
+    "rho_SJ_full": 0.3663,
+    "rho_FK_full": 0.3115,
+    "rho_logprob_full": 0.1911,
+    "rho_EM_full": 0.3088,
+    "rho_vc_full": 0.4135,
+    "auroc_SJ_full": 0.7061,
+    "auroc_EM_full": 0.7538,
+    "n_valid": 529,
+    "n_conditional": 478
+  },
+  "project": "struct_self_consist_ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "685b1bf8-4822-4d28-8b85-9f3abe1bd865",
+  "uuid": "c290d745-5b05-43f4-990f-82282d5d88a3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BfwzxrcWGNTxSLdAjRkJGY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8025,
+      "cache_read_input_tokens": 51560,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8025
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 61 · 2026-05-18T20:49:11.050Z_
+
+<details><summary>↩ Tool result · `toolu_016DaATc2xiVrbL4S8GydGij`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_llama_scierc_seed456\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T19:15:27.504Z\", \"updated_at\": \"2026-05-18T20:49:10.758Z\", \"hypothesis\": \"LLaMA-3.1-8B on SciERC with seed=456 will show consistent 5-signal ranking patterns (SJ/FK > logprob) and DGS selection gains comparable to seed=42 and seed=123, confirming cross-seed stability.\", \"spec\": {\"command\": \"python3 code/analyze_llama_scierc_seed456_5signal.py\", \"server\": \"autodl-5090\", \"data_path\": \"output/exp_018_llama_scierc_seed456/samples.jsonl\", \"data_count\": 551, \"model_name\": \"LLaMA-3.1-8B-Instruct\", \"seed\": 456, \"checkpoint_source\": \"same as seed123\", \"eval_data\": \"SciERC test (551 instances)\", \"checkpoint_path\": \"output/exp_018_llama_scierc_seed456/5signal_dgs_report.json\", \"log_path\": \"output/exp_018_llama_scierc_seed456/run.log\"}, \"metrics\": {\"greedy_f1\": 0.6457, \"oracle_f1\": 0.7574, \"headroom\": 0.1117, \"dgs_f1\": 0.6454, \"degen_rate\": 0.2741, \"degen_rate_source\": \"unified_metrics_constant_f1_gold_filtered\", \"rho_SJ_full\": 0.3663, \"rho_FK_full\": 0.3115, \"rho_logprob_full\": 0.1911, \"rho_EM_full\": 0.3088, \"rho_vc_full\": 0.4135, \"auroc_SJ_full\": 0.7061, \"auroc_EM_full\": 0.7538, \"n_valid\": 529, \"n_conditional\": 478}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-18T19:16:00.973Z\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6931}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "685b1bf8-4822-4d28-8b85-9f3abe1bd865",
+  "uuid": "f66287f5-7e17-4022-8df9-e916573fd362",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_llama_scierc_seed456\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-18T19:15:27.504Z\\\", \\\"updated_at\\\": \\\"2026-05-18T20:49:10.758Z\\\", \\\"hypothesis\\\": \\\"LLaMA-3.1-8B on SciERC with seed=456 will show consistent 5-signal ranking patterns (SJ/FK > logprob) and DGS selection gains comparable to seed=42 and seed=123, confirming cross-seed stability.\\\", \\\"spec\\\": {\\\"command\\\": \\\"python3 code/analyze_llama_scierc_seed456_5signal.py\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"data_path\\\": \\\"output/exp_018_llama_scierc_seed456/samples.jsonl\\\", \\\"data_count\\\": 551, \\\"model_name\\\": \\\"LLaMA-3.1-8B-Instruct\\\", \\\"seed\\\": 456, \\\"checkpoint_source\\\": \\\"same as seed123\\\", \\\"eval_data\\\": \\\"SciERC test (551 instances)\\\", \\\"checkpoint_path\\\": \\\"output/exp_018_llama_scierc_seed456/5signal_dgs_report.json\\\", \\\"log_path\\\": \\\"output/exp_018_llama_scierc_seed456/run.log\\\"}, \\\"metrics\\\": {\\\"greedy_f1\\\": 0.6457, \\\"oracle_f1\\\": 0.7574, \\\"headroom\\\": 0.1117, \\\"dgs_f1\\\": 0.6454, \\\"degen_rate\\\": 0.2741, \\\"degen_rate_source\\\": \\\"unified_metrics_constant_f1_gold_filtered\\\", \\\"rho_SJ_full\\\": 0.3663, \\\"rho_FK_full\\\": 0.3115, \\\"rho_logprob_full\\\": 0.1911, \\\"rho_EM_full\\\": 0.3088, \\\"rho_vc_full\\\": 0.4135, \\\"auroc_SJ_full\\\": 0.7061, \\\"auroc_EM_full\\\": 0.7538, \\\"n_valid\\\": 529, \\\"n_conditional\\\": 478}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-18T19:16:00.973Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6931}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp_llama_scierc_seed456\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T19:15:27.504Z\", \"updated_at\": \"2026-05-18T20:49:10.758Z\", \"hypothesis\": \"LLaMA-3.1-8B on SciERC with seed=456 will show consistent 5-signal ranking patterns (SJ/FK > logprob) and DGS selection gains comparable to seed=42 and seed=123, confirming cross-seed stability.\", \"spec\": {\"command\": \"python3 code/analyze_llama_scierc_seed456_5signal.py\", \"server\": \"autodl-5090\", \"data_path\": \"output/exp_018_llama_scierc_seed456/samples.jsonl\", \"data_count\": 551, \"model_name\": \"LLaMA-3.1-8B-Instruct\", \"seed\": 456, \"checkpoint_source\": \"same as seed123\", \"eval_data\": \"SciERC test (551 instances)\", \"checkpoint_path\": \"output/exp_018_llama_scierc_seed456/5signal_dgs_report.json\", \"log_path\": \"output/exp_018_llama_scierc_seed456/run.log\"}, \"metrics\": {\"greedy_f1\": 0.6457, \"oracle_f1\": 0.7574, \"headroom\": 0.1117, \"dgs_f1\": 0.6454, \"degen_rate\": 0.2741, \"degen_rate_source\": \"unified_metrics_constant_f1_gold_filtered\", \"rho_SJ_full\": 0.3663, \"rho_FK_full\": 0.3115, \"rho_logprob_full\": 0.1911, \"rho_EM_full\": 0.3088, \"rho_vc_full\": 0.4135, \"auroc_SJ_full\": 0.7061, \"auroc_EM_full\": 0.7538, \"n_valid\": 529, \"n_conditional\": 478}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-18T19:16:00.973Z\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6931}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 62_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good. Now the remaining complex-metrics experiments:
+
+1. exp_012_rerun_1024: very large metrics object, add degen_rate: 0.1777
+2. exp_002_conll_n16: large metrics, add degen_rate: 0.4844
+3. exp_018_llama_scierc_seed42_r1024: large metrics, add degen_rate: 0.2495
+4. exp_018_llama_scierc_seed456_r1024: add degen_rate: 0.2741
+
+
+5. exp_017_llama_conll_n16_r1024: add degen_rate: 0.8647
+6. exp_017_llama_conll_n16_s456_r1024: add degen_rate: 0.8672
+
+The exp_012_rerun_1024 case is particularly complex since its metrics contain nested structures across multiple evaluation types (ner_full, ner_cond, re_full, re_cond, delta_vs_512, provenance_note), so I'll need to preserve the entire object when adding the degen_rate value. Let me work through each one methodically.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "685b1bf8-4822-4d28-8b85-9f3abe1bd865",
+  "uuid": "f7eda9c3-0dc3-4f63-8a03-82c9ddfcf4ea",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018EwhhUAnmixfUsnpndUaSz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9028,
+      "cache_read_input_tokens": 59585,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9028
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 63_
+
+16 个已完成。现在处理最后 6 个有复杂 metrics 的实验。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "685b1bf8-4822-4d28-8b85-9f3abe1bd865",
+  "uuid": "271beeb0-d46f-42cb-8c67-5f4b739ceb59",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018EwhhUAnmixfUsnpndUaSz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9028,
+      "cache_read_input_tokens": 59585,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9028
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 64_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01GH88KmV91cRboHbaPkaTDv`</summary>
+
+```json
+{
+  "exp_id": "exp_012_rerun_1024",
+  "field": "metrics",
+  "value": {
+    "degen_rate": 0.1777,
+    "degen_rate_source": "unified_metrics_constant_f1_gold_filtered",
+    "ner_full": {
+      "n": 529,
+      "SJ": {
+        "rho": 0.3599,
+        "tau": 0.2646,
+        "AUROC": 0.6917,
+        "ECE": 0.4531,
+        "rho_ci95": [
+          0.2732,
+          0.4389
+        ],
+        "AUROC_ci95": [
+          0.6304,
+          0.7406
+        ]
+      },
+      "FK": {
+        "rho": 0.2665,
+        "tau": 0.1974,
+        "AUROC": 0.629,
+        "ECE": 0.4512,
+        "rho_ci95": [
+          0.1743,
+          0.3486
+        ],
+        "AUROC_ci95": [
+          0.5612,
+          0.6882
+        ]
+      },
+      "logprob": {
+        "rho": 0.2052,
+        "tau": 0.1478,
+        "AUROC": 0.5783,
+        "ECE": 0.7064,
+        "rho_ci95": [
+          0.1171,
+          0.2904
+        ],
+        "AUROC_ci95": [
+          0.5179,
+          0.6387
+        ]
+      },
+      "EM": {
+        "rho": 0.2945,
+        "tau": 0.2208,
+        "AUROC": 0.7493,
+        "ECE": 0.3526,
+        "rho_ci95": [
+          0.2094,
+          0.37
+        ],
+        "AUROC_ci95": [
+          0.7002,
+          0.7928
+        ]
+      },
+      "voting_conf": {
+        "rho": 0.3792,
+        "tau": 0.2805,
+        "AUROC": 0.6841,
+        "ECE": 0.3807,
+        "rho_ci95": [
+          0.2972,
+          0.4486
+        ],
+        "AUROC_ci95": [
+          0.6249,
+          0.7366
+        ]
+      }
+    },
+    "ner_cond": {
+      "n": 477,
+      "SJ": {
+        "rho": 0.3113,
+        "tau": 0.2257,
+        "AUROC": 0.6772,
+        "ECE": 0.4416,
+        "rho_ci95": [
+          0.2353,
+          0.3959
+        ],
+        "AUROC_ci95": [
+          0.621,
+          0.7337
+        ]
+      },
+      "FK": {
+        "rho": 0.1761,
+        "tau": 0.1284,
+        "AUROC": 0.6078,
+        "ECE": 0.4389,
+        "rho_ci95": [
+          0.0839,
+          0.2665
+        ],
+        "AUROC_ci95": [
+          0.5442,
+          0.6709
+        ]
+      },
+      "logprob": {
+        "rho": 0.1538,
+        "tau": 0.1111,
+        "AUROC": 0.5633,
+        "ECE": 0.6803,
+        "rho_ci95": [
+          0.0637,
+          0.2424
+        ],
+        "AUROC_ci95": [
+          0.5032,
+          0.6232
+        ]
+      },
+      "EM": {
+        "rho": 0.3596,
+        "tau": 0.2735,
+        "AUROC": 0.7556,
+        "ECE": 0.3257,
+        "rho_ci95": [
+          0.2819,
+          0.4408
+        ],
+        "AUROC_ci95": [
+          0.7011,
+          0.8107
+        ]
+      },
+      "voting_conf": {
+        "rho": 0.3,
+        "tau": 0.2189,
+        "AUROC": 0.6618,
+        "ECE": 0.3746,
+        "rho_ci95": [
+          0.2168,
+          0.3836
+        ],
+        "AUROC_ci95": [
+          0.6004,
+          0.7201
+        ]
+      }
+    },
+    "re_full": {
+      "n": 397,
+      "SJ": {
+        "rho": 0.2503,
+        "tau": 0.1878,
+        "AUROC": 0.6702,
+        "ECE": 0.3865
+      },
+      "FK": {
+        "rho": 0.2752,
+        "tau": 0.2117,
+        "AUROC": 0.6089,
+        "ECE": 0.4405
+      },
+      "logprob": {
+        "rho": 0.2662,
+        "tau": 0.1951,
+        "AUROC": 0.6005,
+        "ECE": 0.7694
+      },
+      "EM": {
+        "rho": 0.1344,
+        "tau": 0.1081,
+        "AUROC": 0.7059,
+        "ECE": 0.3548
+      },
+      "voting_conf": {
+        "rho": 0.3498,
+        "tau": 0.2663,
+        "AUROC": 0.6935,
+        "ECE": 0.2724
+      }
+    },
+    "re_cond": {
+      "n": 238,
+      "SJ": {
+        "rho": 0.2457,
+        "tau": 0.1811,
+        "AUROC": 0.6463,
+        "ECE": 0.2941
+      },
+      "FK": {
+        "rho": 0.1139,
+        "tau": 0.0876,
+        "AUROC": 0.551,
+        "ECE": 0.3424
+      },
+      "logprob": {
+        "rho": 0.0112,
+        "tau": 0.0051,
+        "AUROC": 0.5186,
+        "ECE": 0.6464
+      },
+      "EM": {
+        "rho": 0.4165,
+        "tau": 0.3256,
+        "AUROC": 0.7515,
+        "ECE": 0.2232
+      },
+      "voting_conf": {
+        "rho": 0.2409,
+        "tau": 0.178,
+        "AUROC": 0.642,
+        "ECE": 0.207
+      }
+    },
+    "delta_vs_512_ner_full_rho": {
+      "SJ": 0.0034,
+      "FK": 0.0014,
+      "EM": 0.0379,
+      "voting_conf": -0.1226,
+      "logprob": 0.0656
+    },
+    "provenance_note": "exp_015_v2 scierc_n8_logprob used exp_012_logprob (max_tokens=512 truncated data). voting_conf was inflated 0.502→0.379, logprob was suppressed 0.140→0.205."
+  },
+  "project": "struct_self_consist_ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "685b1bf8-4822-4d28-8b85-9f3abe1bd865",
+  "uuid": "b0960a7c-1731-4855-bdbb-44b80c1d1a9b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018EwhhUAnmixfUsnpndUaSz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9028,
+      "cache_read_input_tokens": 59585,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9028
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 65 · 2026-05-18T20:49:42.658Z_
+
+<details><summary>↩ Tool result · `toolu_01GH88KmV91cRboHbaPkaTDv`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_012_rerun_1024\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T22:11:33.777Z\", \"updated_at\": \"2026-05-18T20:49:42.395Z\", \"spec\": {\"hypothesis\": \"Verify if max_tokens=512 truncation inflated Table 1 N=8 SciERC signal values. Rerun with max_tokens=1024 for clean comparison.\", \"model_name\": \"qwen3-8b-scierc-merged-v2\", \"dataset\": \"SciERC\", \"parent\": \"exp_012_logprob_baseline\", \"data_count\": 551, \"seed\": 42, \"server\": \"autodl-5090\", \"command\": \"CUDA_VISIBLE_DEVICES=0 python3 code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-scierc-merged-v2 --data_dir data/scierc/processed_data --dataset scierc --subtask joint --n_samples 8 --temperature 1.0 --max_tokens 1024 --seed 42 --num_test 9999 --collect_logprobs --output_dir output/exp_012_rerun_1024\", \"checkpoint_path\": \"output/exp_012_rerun_1024/\", \"log_path\": \"output/exp_012_rerun_1024/run.log\", \"data_path\": \"data/scierc/processed_data\"}, \"conclusion\": \"success\", \"metrics\": {\"degen_rate\": 0.1777, \"degen_rate_source\": \"unified_metrics_constant_f1_gold_filtered\", \"ner_full\": {\"n\": 529, \"SJ\": {\"rho\": 0.3599, \"tau\": 0.2646, \"AUROC\": 0.6917, \"ECE\": 0.4531, \"rho_ci95\": [0.2732, 0.4389], \"AUROC_ci95\": [0.6304, 0.7406]}, \"FK\": {\"rho\": 0.2665, \"tau\": 0.1974, \"AUROC\": 0.629, \"ECE\": 0.4512, \"rho_ci95\": [0.1743, 0.3486], \"AUROC_ci95\": [0.5612, 0.6882]}, \"logprob\": {\"rho\": 0.2052, \"tau\": 0.1478, \"AUROC\": 0.5783, \"ECE\": 0.7064, \"rho_ci95\": [0.1171, 0.2904], \"AUROC_ci95\": [0.5179, 0.6387]}, \"EM\": {\"rho\": 0.2945, \"tau\": 0.2208, \"AUROC\": 0.7493, \"ECE\": 0.3526, \"rho_ci95\": [0.2094, 0.37], \"AUROC_ci95\": [0.7002, 0.7928]}, \"voting_conf\": {\"rho\": 0.3792, \"tau\": 0.2805, \"AUROC\": 0.6841, \"ECE\": 0.3807, \"rho_ci95\": [0.2972, 0.4486], \"AUROC_ci95\": [0.6249, 0.7366]}}, \"ner_cond\": {\"n\": 477, \"SJ\": {\"rho\": 0.3113, \"tau\": 0.2257, \"AUROC\": 0.6772, \"ECE\": 0.4416, \"rho_ci95\": [0.2353, 0.3959], \"AUROC_ci95\": [0.621, 0.7337]}, \"FK\": {\"rho\": 0.1761, \"tau\": 0.1284, \"AUROC\": 0.6078, \"ECE\": 0.4389, \"rho_ci95\": [0.0839, 0.2665], \"AUROC_ci95\": [0.5442, 0.6709]}, \"logprob\": {\"rho\": 0.1538, \"tau\": 0.1111, \"AUROC\": 0.5633, \"ECE\": 0.6803, \"rho_ci95\": [0.0637, 0.2424], \"AUROC_ci95\": [0.5032, 0.6232]}, \"EM\": {\"rho\": 0.3596, \"tau\": 0.2735, \"AUROC\": 0.7556, \"ECE\": 0.3257, \"rho_ci95\": [0.2819, 0.4408], \"AUROC_ci95\": [0.7011, 0.8107]}, \"voting_conf\": {\"rho\": 0.3, \"tau\": 0.2189, \"AUROC\": 0.6618, \"ECE\": 0.3746, \"rho_ci95\": [0.2168, 0.3836], \"AUROC_ci95\": [0.6004, 0.7201]}}, \"re_full\": {\"n\": 397, \"SJ\": {\"rho\": 0.2503, \"tau\": 0.1878, \"AUROC\": 0.6702, \"ECE\": 0.3865}, \"FK\": {\"rho\": 0.2752, \"tau\": 0.2117, \"AUROC\": 0.6089, \"ECE\": 0.4405}, \"logprob\": {\"rho\": 0.2662, \"tau\": 0.1951, \"AUROC\": 0.6005, \"ECE\": 0.7694}, \"EM\": {\"rho\": 0.1344, \"tau\": 0.1081, \"AUROC\": 0.7059, \"ECE\": 0.3548}, \"voting_conf\": {\"rho\": 0.3498, \"tau\": 0.2663, \"AUROC\": 0.6935, \"ECE\": 0.2724}}, \"re_cond\": {\"n\": 238, \"SJ\": {\"rho\": 0.2457, \"tau\": 0.1811, \"AUROC\": 0.6463, \"ECE\": 0.2941}, \"FK\": {\"rho\": 0.1139, \"tau\": 0.0876, \"AUROC\": 0.551, \"ECE\": 0.3424}, \"logprob\": {\"rho\": 0.0112, \"tau\": 0.0051, \"AUROC\": 0.5186, \"ECE\": 0.6464}, \"EM\": {\"rho\": 0.4165, \"tau\": 0.3256, \"AUROC\": 0.7515, \"ECE\": 0.2232}, \"voting_conf\": {\"rho\": 0.2409, \"tau\": 0.178, \"AUROC\": 0.642, \"ECE\": 0.207}}, \"delta_vs_512_ner_full_rho\": {\"SJ\": 0.0034, \"FK\": 0.0014, \"EM\": 0.0379, \"voting_conf\": -0.1226, \"logprob\": 0.0656}, \"provenance_note\": \"exp_015_v2 scierc_n8_logprob used exp_012_logprob (max_tokens=512 truncated data). voting_conf was inflated 0.502→0.379, logprob was suppressed 0.140→0.205.\"}, \"completed_at\": \"2026-05-14T23:10:33.075Z\", \"hypothesis\": \"Canonical SciERC baseline with max_tokens=1024: Qwen3-8B ft_002_v2, N=8, T=1.0, seed=42, joint NER+RE. Establishes ground-truth ρ rankings and selection F1 for all 5 signals under correct generation length.\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6454}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "685b1bf8-4822-4d28-8b85-9f3abe1bd865",
+  "uuid": "d8778c47-0dda-4616-a8bd-1201b9ea97e7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_012_rerun_1024\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T22:11:33.777Z\\\", \\\"updated_at\\\": \\\"2026-05-18T20:49:42.395Z\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"Verify if max_tokens=512 truncation inflated Table 1 N=8 SciERC signal values. Rerun with max_tokens=1024 for clean comparison.\\\", \\\"model_name\\\": \\\"qwen3-8b-scierc-merged-v2\\\", \\\"dataset\\\": \\\"SciERC\\\", \\\"parent\\\": \\\"exp_012_logprob_baseline\\\", \\\"data_count\\\": 551, \\\"seed\\\": 42, \\\"server\\\": \\\"autodl-5090\\\", \\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=0 python3 code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-scierc-merged-v2 --data_dir data/scierc/processed_data --dataset scierc --subtask joint --n_samples 8 --temperature 1.0 --max_tokens 1024 --seed 42 --num_test 9999 --collect_logprobs --output_dir output/exp_012_rerun_1024\\\", \\\"checkpoint_path\\\": \\\"output/exp_012_rerun_1024/\\\", \\\"log_path\\\": \\\"output/exp_012_rerun_1024/run.log\\\", \\\"data_path\\\": \\\"data/scierc/processed_data\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"degen_rate\\\": 0.1777, \\\"degen_rate_source\\\": \\\"unified_metrics_constant_f1_gold_filtered\\\", \\\"ner_full\\\": {\\\"n\\\": 529, \\\"SJ\\\": {\\\"rho\\\": 0.3599, \\\"tau\\\": 0.2646, \\\"AUROC\\\": 0.6917, \\\"ECE\\\": 0.4531, \\\"rho_ci95\\\": [0.2732, 0.4389], \\\"AUROC_ci95\\\": [0.6304, 0.7406]}, \\\"FK\\\": {\\\"rho\\\": 0.2665, \\\"tau\\\": 0.1974, \\\"AUROC\\\": 0.629, \\\"ECE\\\": 0.4512, \\\"rho_ci95\\\": [0.1743, 0.3486], \\\"AUROC_ci95\\\": [0.5612, 0.6882]}, \\\"logprob\\\": {\\\"rho\\\": 0.2052, \\\"tau\\\": 0.1478, \\\"AUROC\\\": 0.5783, \\\"ECE\\\": 0.7064, \\\"rho_ci95\\\": [0.1171, 0.2904], \\\"AUROC_ci95\\\": [0.5179, 0.6387]}, \\\"EM\\\": {\\\"rho\\\": 0.2945, \\\"tau\\\": 0.2208, \\\"AUROC\\\": 0.7493, \\\"ECE\\\": 0.3526, \\\"rho_ci95\\\": [0.2094, 0.37], \\\"AUROC_ci95\\\": [0.7002, 0.7928]}, \\\"voting_conf\\\": {\\\"rho\\\": 0.3792, \\\"tau\\\": 0.2805, \\\"AUROC\\\": 0.6841, \\\"ECE\\\": 0.3807, \\\"rho_ci95\\\": [0.2972, 0.4486], \\\"AUROC_ci95\\\": [0.6249, 0.7366]}}, \\\"ner_cond\\\": {\\\"n\\\": 477, \\\"SJ\\\": {\\\"rho\\\": 0.3113, \\\"tau\\\": 0.2257, \\\"AUROC\\\": 0.6772, \\\"ECE\\\": 0.4416, \\\"rho_ci95\\\": [0.2353, 0.3959], \\\"AUROC_ci95\\\": [0.621, 0.7337]}, \\\"FK\\\": {\\\"rho\\\": 0.1761, \\\"tau\\\": 0.1284, \\\"AUROC\\\": 0.6078, \\\"ECE\\\": 0.4389, \\\"rho_ci95\\\": [0.0839, 0.2665], \\\"AUROC_ci95\\\": [0.5442, 0.6709]}, \\\"logprob\\\": {\\\"rho\\\": 0.1538, \\\"tau\\\": 0.1111, \\\"AUROC\\\": 0.5633, \\\"ECE\\\": 0.6803, \\\"rho_ci95\\\": [0.0637, 0.2424], \\\"AUROC_ci95\\\": [0.5032, 0.6232]}, \\\"EM\\\": {\\\"rho\\\": 0.3596, \\\"tau\\\": 0.2735, \\\"AUROC\\\": 0.7556, \\\"ECE\\\": 0.3257, \\\"rho_ci95\\\": [0.2819, 0.4408], \\\"AUROC_ci95\\\": [0.7011, 0.8107]}, \\\"voting_conf\\\": {\\\"rho\\\": 0.3, \\\"tau\\\": 0.2189, \\\"AUROC\\\": 0.6618, \\\"ECE\\\": 0.3746, \\\"rho_ci95\\\": [0.2168, 0.3836], \\\"AUROC_ci95\\\": [0.6004, 0.7201]}}, \\\"re_full\\\": {\\\"n\\\": 397, \\\"SJ\\\": {\\\"rho\\\": 0.2503, \\\"tau\\\": 0.1878, \\\"AUROC\\\": 0.6702, \\\"ECE\\\": 0.3865}, \\\"FK\\\": {\\\"rho\\\": 0.2752, \\\"tau\\\": 0.2117, \\\"AUROC\\\": 0.6089, \\\"ECE\\\": 0.4405}, \\\"logprob\\\": {\\\"rho\\\": 0.2662, \\\"tau\\\": 0.1951, \\\"AUROC\\\": 0.6005, \\\"ECE\\\": 0.7694}, \\\"EM\\\": {\\\"rho\\\": 0.1344, \\\"tau\\\": 0.1081, \\\"AUROC\\\": 0.7059, \\\"ECE\\\": 0.3548}, \\\"voting_conf\\\": {\\\"rho\\\": 0.3498, \\\"tau\\\": 0.2663, \\\"AUROC\\\": 0.6935, \\\"ECE\\\": 0.2724}}, \\\"re_cond\\\": {\\\"n\\\": 238, \\\"SJ\\\": {\\\"rho\\\": 0.2457, \\\"tau\\\": 0.1811, \\\"AUROC\\\": 0.6463, \\\"ECE\\\": 0.2941}, \\\"FK\\\": {\\\"rho\\\": 0.1139, \\\"tau\\\": 0.0876, \\\"AUROC\\\": 0.551, \\\"ECE\\\": 0.3424}, \\\"logprob\\\": {\\\"rho\\\": 0.0112, \\\"tau\\\": 0.0051, \\\"AUROC\\\": 0.5186, \\\"ECE\\\": 0.6464}, \\\"EM\\\": {\\\"rho\\\": 0.4165, \\\"tau\\\": 0.3256, \\\"AUROC\\\": 0.7515, \\\"ECE\\\": 0.2232}, \\\"voting_conf\\\": {\\\"rho\\\": 0.2409, \\\"tau\\\": 0.178, \\\"AUROC\\\": 0.642, \\\"ECE\\\": 0.207}}, \\\"delta_vs_512_ner_full_rho\\\": {\\\"SJ\\\": 0.0034, \\\"FK\\\": 0.0014, \\\"EM\\\": 0.0379, \\\"voting_conf\\\": -0.1226, \\\"logprob\\\": 0.0656}, \\\"provenance_note\\\": \\\"exp_015_v2 scierc_n8_logprob used exp_012_logprob (max_tokens=512 truncated data). voting_conf was inflated 0.502→0.379, logprob was suppressed 0.140→0.205.\\\"}, \\\"completed_at\\\": \\\"2026-05-14T23:10:33.075Z\\\", \\\"hypothesis\\\": \\\"Canonical SciERC baseline with max_tokens=1024: Qwen3-8B ft_002_v2, N=8, T=1.0, seed=42, joint NER+RE. Establishes ground-truth ρ rankings and selection F1 for all 5 signals under correct generation length.\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6454}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp_012_rerun_1024\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T22:11:33.777Z\", \"updated_at\": \"2026-05-18T20:49:42.395Z\", \"spec\": {\"hypothesis\": \"Verify if max_tokens=512 truncation inflated Table 1 N=8 SciERC signal values. Rerun with max_tokens=1024 for clean comparison.\", \"model_name\": \"qwen3-8b-scierc-merged-v2\", \"dataset\": \"SciERC\", \"parent\": \"exp_012_logprob_baseline\", \"data_count\": 551, \"seed\": 42, \"server\": \"autodl-5090\", \"command\": \"CUDA_VISIBLE_DEVICES=0 python3 code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-scierc-merged-v2 --data_dir data/scierc/processed_data --dataset scierc --subtask joint --n_samples 8 --temperature 1.0 --max_tokens 1024 --seed 42 --num_test 9999 --collect_logprobs --output_dir output/exp_012_rerun_1024\", \"checkpoint_path\": \"output/exp_012_rerun_1024/\", \"log_path\": \"output/exp_012_rerun_1024/run.log\", \"data_path\": \"data/scierc/processed_data\"}, \"conclusion\": \"success\", \"metrics\": {\"degen_rate\": 0.1777, \"degen_rate_source\": \"unified_metrics_constant_f1_gold_filtered\", \"ner_full\": {\"n\": 529, \"SJ\": {\"rho\": 0.3599, \"tau\": 0.2646, \"AUROC\": 0.6917, \"ECE\": 0.4531, \"rho_ci95\": [0.2732, 0.4389], \"AUROC_ci95\": [0.6304, 0.7406]}, \"FK\": {\"rho\": 0.2665, \"tau\": 0.1974, \"AUROC\": 0.629, \"ECE\": 0.4512, \"rho_ci95\": [0.1743, 0.3486], \"AUROC_ci95\": [0.5612, 0.6882]}, \"logprob\": {\"rho\": 0.2052, \"tau\": 0.1478, \"AUROC\": 0.5783, \"ECE\": 0.7064, \"rho_ci95\": [0.1171, 0.2904], \"AUROC_ci95\": [0.5179, 0.6387]}, \"EM\": {\"rho\": 0.2945, \"tau\": 0.2208, \"AUROC\": 0.7493, \"ECE\": 0.3526, \"rho_ci95\": [0.2094, 0.37], \"AUROC_ci95\": [0.7002, 0.7928]}, \"voting_conf\": {\"rho\": 0.3792, \"tau\": 0.2805, \"AUROC\": 0.6841, \"ECE\": 0.3807, \"rho_ci95\": [0.2972, 0.4486], \"AUROC_ci95\": [0.6249, 0.7366]}}, \"ner_cond\": {\"n\": 477, \"SJ\": {\"rho\": 0.3113, \"tau\": 0.2257, \"AUROC\": 0.6772, \"ECE\": 0.4416, \"rho_ci95\": [0.2353, 0.3959], \"AUROC_ci95\": [0.621, 0.7337]}, \"FK\": {\"rho\": 0.1761, \"tau\": 0.1284, \"AUROC\": 0.6078, \"ECE\": 0.4389, \"rho_ci95\": [0.0839, 0.2665], \"AUROC_ci95\": [0.5442, 0.6709]}, \"logprob\": {\"rho\": 0.1538, \"tau\": 0.1111, \"AUROC\": 0.5633, \"ECE\": 0.6803, \"rho_ci95\": [0.0637, 0.2424], \"AUROC_ci95\": [0.5032, 0.6232]}, \"EM\": {\"rho\": 0.3596, \"tau\": 0.2735, \"AUROC\": 0.7556, \"ECE\": 0.3257, \"rho_ci95\": [0.2819, 0.4408], \"AUROC_ci95\": [0.7011, 0.8107]}, \"voting_conf\": {\"rho\": 0.3, \"tau\": 0.2189, \"AUROC\": 0.6618, \"ECE\": 0.3746, \"rho_ci95\": [0.2168, 0.3836], \"AUROC_ci95\": [0.6004, 0.7201]}}, \"re_full\": {\"n\": 397, \"SJ\": {\"rho\": 0.2503, \"tau\": 0.1878, \"AUROC\": 0.6702, \"ECE\": 0.3865}, \"FK\": {\"rho\": 0.2752, \"tau\": 0.2117, \"AUROC\": 0.6089, \"ECE\": 0.4405}, \"logprob\": {\"rho\": 0.2662, \"tau\": 0.1951, \"AUROC\": 0.6005, \"ECE\": 0.7694}, \"EM\": {\"rho\": 0.1344, \"tau\": 0.1081, \"AUROC\": 0.7059, \"ECE\": 0.3548}, \"voting_conf\": {\"rho\": 0.3498, \"tau\": 0.2663, \"AUROC\": 0.6935, \"ECE\": 0.2724}}, \"re_cond\": {\"n\": 238, \"SJ\": {\"rho\": 0.2457, \"tau\": 0.1811, \"AUROC\": 0.6463, \"ECE\": 0.2941}, \"FK\": {\"rho\": 0.1139, \"tau\": 0.0876, \"AUROC\": 0.551, \"ECE\": 0.3424}, \"logprob\": {\"rho\": 0.0112, \"tau\": 0.0051, \"AUROC\": 0.5186, \"ECE\": 0.6464}, \"EM\": {\"rho\": 0.4165, \"tau\": 0.3256, \"AUROC\": 0.7515, \"ECE\": 0.2232}, \"voting_conf\": {\"rho\": 0.2409, \"tau\": 0.178, \"AUROC\": 0.642, \"ECE\": 0.207}}, \"delta_vs_512_ner_full_rho\": {\"SJ\": 0.0034, \"FK\": 0.0014, \"EM\": 0.0379, \"voting_conf\": -0.1226, \"logprob\": 0.0656}, \"provenance_note\": \"exp_015_v2 scierc_n8_logprob used exp_012_logprob (max_tokens=512 truncated data). voting_conf was inflated 0.502→0.379, logprob was suppressed 0.140→0.205.\"}, \"completed_at\": \"2026-05-14T23:10:33.075Z\", \"hypothesis\": \"Canonical SciERC baseline with max_tokens=1024: Qwen3-8B ft_002_v2, N=8, T=1.0, seed=42, joint NER+RE. Establishes ground-truth ρ rankings and selection F1 for all 5 signals under correct generation length.\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6454}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 66_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01Av916tAkwPd7mSRSbsiW8n`</summary>
+
+```json
+{
+  "exp_id": "exp_002_conll_n16",
+  "field": "metrics",
+  "value": {
+    "degen_rate": 0.4844,
+    "degen_rate_source": "unified_metrics_constant_f1_gold_filtered",
+    "N": 16,
+    "dataset": "conll2003",
+    "subtask": "ner",
+    "n_instances": 3453,
+    "n_valid": 2756,
+    "n_conditional": 2614,
+    "greedy_f1": 0.907,
+    "full": {
+      "SJ_rho": 0.4496,
+      "FK_rho": 0.3928,
+      "logprob_rho": 0.3146,
+      "EM_rho": 0.4627,
+      "voting_conf_rho": 0.4286,
+      "SJ_AUROC": 0.8264,
+      "FK_AUROC": 0.7821,
+      "logprob_AUROC": 0.7531,
+      "EM_AUROC": 0.8409,
+      "voting_conf_AUROC": 0.8071,
+      "SJ_ECE": 0.0747,
+      "FK_ECE": 0.1786,
+      "logprob_ECE": 0.2031,
+      "EM_ECE": 0.0786,
+      "voting_conf_ECE": 0.529
+    },
+    "conditional": {
+      "SJ_rho": 0.4208,
+      "FK_rho": 0.3494,
+      "logprob_rho": 0.3756,
+      "EM_rho": 0.4658,
+      "voting_conf_rho": 0.3654,
+      "SJ_AUROC": 0.8405,
+      "FK_AUROC": 0.7819,
+      "logprob_AUROC": 0.8259,
+      "EM_AUROC": 0.8781,
+      "voting_conf_AUROC": 0.7951,
+      "SJ_ECE": 0.0982,
+      "FK_ECE": 0.1899,
+      "logprob_ECE": 0.2504,
+      "EM_ECE": 0.0997,
+      "voting_conf_ECE": 0.6096
+    },
+    "n8_vs_n16_delta_rho_full": {
+      "SJ": 0.0139,
+      "FK": -0.007,
+      "logprob": -0.0011,
+      "EM": 0.012,
+      "voting_conf": 0.0049
+    }
+  },
+  "project": "struct_self_consist_ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "685b1bf8-4822-4d28-8b85-9f3abe1bd865",
+  "uuid": "1855f29d-afc9-4bd2-9a2d-2bf99054bcc5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018EwhhUAnmixfUsnpndUaSz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9028,
+      "cache_read_input_tokens": 59585,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9028
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 67 · 2026-05-18T20:49:50.664Z_
+
+<details><summary>↩ Tool result · `toolu_01Av916tAkwPd7mSRSbsiW8n`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_002_conll_n16\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T18:12:16.041Z\", \"updated_at\": \"2026-05-18T20:49:50.398Z\", \"spec\": {\"hypothesis\": \"Qwen CoNLL-2003 N=16: cross-dataset N-scaling comparison with SciERC N=16\", \"plan_id\": \"exp-002\", \"parent\": \"exp_002_ner_conll2003\", \"command\": \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && CUDA_VISIBLE_DEVICES=0 PYTHONPATH=code python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-conll2003-merged --data_dir data/conll2003 --dataset conll2003 --subtask ner --n_samples 16 --temperature 1.0 --seed 42 --num_test 9999 --collect_logprobs --output_dir output/exp_002_conll_n16\", \"server\": \"autodl-5090\", \"data_path\": \"data/conll2003\", \"data_count\": 3453, \"model_name\": \"qwen3-8b-conll2003-merged\", \"seed\": 42}, \"conclusion\": \"success\", \"metrics\": {\"degen_rate\": 0.4844, \"degen_rate_source\": \"unified_metrics_constant_f1_gold_filtered\", \"N\": 16, \"dataset\": \"conll2003\", \"subtask\": \"ner\", \"n_instances\": 3453, \"n_valid\": 2756, \"n_conditional\": 2614, \"greedy_f1\": 0.907, \"full\": {\"SJ_rho\": 0.4496, \"FK_rho\": 0.3928, \"logprob_rho\": 0.3146, \"EM_rho\": 0.4627, \"voting_conf_rho\": 0.4286, \"SJ_AUROC\": 0.8264, \"FK_AUROC\": 0.7821, \"logprob_AUROC\": 0.7531, \"EM_AUROC\": 0.8409, \"voting_conf_AUROC\": 0.8071, \"SJ_ECE\": 0.0747, \"FK_ECE\": 0.1786, \"logprob_ECE\": 0.2031, \"EM_ECE\": 0.0786, \"voting_conf_ECE\": 0.529}, \"conditional\": {\"SJ_rho\": 0.4208, \"FK_rho\": 0.3494, \"logprob_rho\": 0.3756, \"EM_rho\": 0.4658, \"voting_conf_rho\": 0.3654, \"SJ_AUROC\": 0.8405, \"FK_AUROC\": 0.7819, \"logprob_AUROC\": 0.8259, \"EM_AUROC\": 0.8781, \"voting_conf_AUROC\": 0.7951, \"SJ_ECE\": 0.0982, \"FK_ECE\": 0.1899, \"logprob_ECE\": 0.2504, \"EM_ECE\": 0.0997, \"voting_conf_ECE\": 0.6096}, \"n8_vs_n16_delta_rho_full\": {\"SJ\": 0.0139, \"FK\": -0.007, \"logprob\": -0.0011, \"EM\": 0.012, \"voting_conf\": 0.0049}}, \"checkpoint_path\": \"output/exp_002_conll_n16/samples.jsonl\", \"log_path\": \"output/exp_002_conll_n16.log\", \"completed_at\": \"2026-05-14T18:58:40.473Z\", \"hypothesis\": \"CoNLL N=16 NER: cross-dataset validation on high-performance NER dataset. Tests if structural signals retain advantage when base model performance is already high (greedy F1 > 0.9).\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6517}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "685b1bf8-4822-4d28-8b85-9f3abe1bd865",
+  "uuid": "47515df8-f575-47ce-9682-042d6482b60e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_002_conll_n16\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T18:12:16.041Z\\\", \\\"updated_at\\\": \\\"2026-05-18T20:49:50.398Z\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"Qwen CoNLL-2003 N=16: cross-dataset N-scaling comparison with SciERC N=16\\\", \\\"plan_id\\\": \\\"exp-002\\\", \\\"parent\\\": \\\"exp_002_ner_conll2003\\\", \\\"command\\\": \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && CUDA_VISIBLE_DEVICES=0 PYTHONPATH=code python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-conll2003-merged --data_dir data/conll2003 --dataset conll2003 --subtask ner --n_samples 16 --temperature 1.0 --seed 42 --num_test 9999 --collect_logprobs --output_dir output/exp_002_conll_n16\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"data_path\\\": \\\"data/conll2003\\\", \\\"data_count\\\": 3453, \\\"model_name\\\": \\\"qwen3-8b-conll2003-merged\\\", \\\"seed\\\": 42}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"degen_rate\\\": 0.4844, \\\"degen_rate_source\\\": \\\"unified_metrics_constant_f1_gold_filtered\\\", \\\"N\\\": 16, \\\"dataset\\\": \\\"conll2003\\\", \\\"subtask\\\": \\\"ner\\\", \\\"n_instances\\\": 3453, \\\"n_valid\\\": 2756, \\\"n_conditional\\\": 2614, \\\"greedy_f1\\\": 0.907, \\\"full\\\": {\\\"SJ_rho\\\": 0.4496, \\\"FK_rho\\\": 0.3928, \\\"logprob_rho\\\": 0.3146, \\\"EM_rho\\\": 0.4627, \\\"voting_conf_rho\\\": 0.4286, \\\"SJ_AUROC\\\": 0.8264, \\\"FK_AUROC\\\": 0.7821, \\\"logprob_AUROC\\\": 0.7531, \\\"EM_AUROC\\\": 0.8409, \\\"voting_conf_AUROC\\\": 0.8071, \\\"SJ_ECE\\\": 0.0747, \\\"FK_ECE\\\": 0.1786, \\\"logprob_ECE\\\": 0.2031, \\\"EM_ECE\\\": 0.0786, \\\"voting_conf_ECE\\\": 0.529}, \\\"conditional\\\": {\\\"SJ_rho\\\": 0.4208, \\\"FK_rho\\\": 0.3494, \\\"logprob_rho\\\": 0.3756, \\\"EM_rho\\\": 0.4658, \\\"voting_conf_rho\\\": 0.3654, \\\"SJ_AUROC\\\": 0.8405, \\\"FK_AUROC\\\": 0.7819, \\\"logprob_AUROC\\\": 0.8259, \\\"EM_AUROC\\\": 0.8781, \\\"voting_conf_AUROC\\\": 0.7951, \\\"SJ_ECE\\\": 0.0982, \\\"FK_ECE\\\": 0.1899, \\\"logprob_ECE\\\": 0.2504, \\\"EM_ECE\\\": 0.0997, \\\"voting_conf_ECE\\\": 0.6096}, \\\"n8_vs_n16_delta_rho_full\\\": {\\\"SJ\\\": 0.0139, \\\"FK\\\": -0.007, \\\"logprob\\\": -0.0011, \\\"EM\\\": 0.012, \\\"voting_conf\\\": 0.0049}}, \\\"checkpoint_path\\\": \\\"output/exp_002_conll_n16/samples.jsonl\\\", \\\"log_path\\\": \\\"output/exp_002_conll_n16.log\\\", \\\"completed_at\\\": \\\"2026-05-14T18:58:40.473Z\\\", \\\"hypothesis\\\": \\\"CoNLL N=16 NER: cross-dataset validation on high-performance NER dataset. Tests if structural signals retain advantage when base model performance is already high (greedy F1 > 0.9).\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6517}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp_002_conll_n16\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T18:12:16.041Z\", \"updated_at\": \"2026-05-18T20:49:50.398Z\", \"spec\": {\"hypothesis\": \"Qwen CoNLL-2003 N=16: cross-dataset N-scaling comparison with SciERC N=16\", \"plan_id\": \"exp-002\", \"parent\": \"exp_002_ner_conll2003\", \"command\": \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && CUDA_VISIBLE_DEVICES=0 PYTHONPATH=code python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-conll2003-merged --data_dir data/conll2003 --dataset conll2003 --subtask ner --n_samples 16 --temperature 1.0 --seed 42 --num_test 9999 --collect_logprobs --output_dir output/exp_002_conll_n16\", \"server\": \"autodl-5090\", \"data_path\": \"data/conll2003\", \"data_count\": 3453, \"model_name\": \"qwen3-8b-conll2003-merged\", \"seed\": 42}, \"conclusion\": \"success\", \"metrics\": {\"degen_rate\": 0.4844, \"degen_rate_source\": \"unified_metrics_constant_f1_gold_filtered\", \"N\": 16, \"dataset\": \"conll2003\", \"subtask\": \"ner\", \"n_instances\": 3453, \"n_valid\": 2756, \"n_conditional\": 2614, \"greedy_f1\": 0.907, \"full\": {\"SJ_rho\": 0.4496, \"FK_rho\": 0.3928, \"logprob_rho\": 0.3146, \"EM_rho\": 0.4627, \"voting_conf_rho\": 0.4286, \"SJ_AUROC\": 0.8264, \"FK_AUROC\": 0.7821, \"logprob_AUROC\": 0.7531, \"EM_AUROC\": 0.8409, \"voting_conf_AUROC\": 0.8071, \"SJ_ECE\": 0.0747, \"FK_ECE\": 0.1786, \"logprob_ECE\": 0.2031, \"EM_ECE\": 0.0786, \"voting_conf_ECE\": 0.529}, \"conditional\": {\"SJ_rho\": 0.4208, \"FK_rho\": 0.3494, \"logprob_rho\": 0.3756, \"EM_rho\": 0.4658, \"voting_conf_rho\": 0.3654, \"SJ_AUROC\": 0.8405, \"FK_AUROC\": 0.7819, \"logprob_AUROC\": 0.8259, \"EM_AUROC\": 0.8781, \"voting_conf_AUROC\": 0.7951, \"SJ_ECE\": 0.0982, \"FK_ECE\": 0.1899, \"logprob_ECE\": 0.2504, \"EM_ECE\": 0.0997, \"voting_conf_ECE\": 0.6096}, \"n8_vs_n16_delta_rho_full\": {\"SJ\": 0.0139, \"FK\": -0.007, \"logprob\": -0.0011, \"EM\": 0.012, \"voting_conf\": 0.0049}}, \"checkpoint_path\": \"output/exp_002_conll_n16/samples.jsonl\", \"log_path\": \"output/exp_002_conll_n16.log\", \"completed_at\": \"2026-05-14T18:58:40.473Z\", \"hypothesis\": \"CoNLL N=16 NER: cross-dataset validation on high-performance NER dataset. Tests if structural signals retain advantage when base model performance is already high (greedy F1 > 0.9).\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6517}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 68_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01QhEqo2CfRSz3j8Y9oNBzRY`</summary>
+
+```json
+{
+  "exp_id": "exp_018_llama_scierc_seed42_r1024",
+  "field": "metrics",
+  "value": {
+    "degen_rate": 0.2495,
+    "degen_rate_source": "unified_metrics_constant_f1_gold_filtered",
+    "ner": {
+      "full": {
+        "SJ": {
+          "rho": 0.3096,
+          "tau": 0.2288,
+          "auroc": 0.6683
+        },
+        "FK": {
+          "rho": 0.2352,
+          "tau": 0.1759,
+          "auroc": 0.6069
+        },
+        "logprob": {
+          "rho": 0.1503,
+          "tau": 0.1087,
+          "auroc": 0.5318
+        },
+        "EM": {
+          "rho": 0.2587,
+          "tau": 0.1966,
+          "auroc": 0.7174
+        },
+        "voting_conf": {
+          "rho": 0.4053,
+          "tau": 0.3042,
+          "auroc": 0.6967
+        }
+      },
+      "conditional": {
+        "SJ": {
+          "rho": 0.2718,
+          "tau": null,
+          "auroc": 0.6565
+        },
+        "FK": {
+          "rho": 0.1472,
+          "tau": null,
+          "auroc": 0.5866
+        },
+        "logprob": {
+          "rho": 0.081,
+          "tau": null,
+          "auroc": 0.5129
+        },
+        "EM": {
+          "rho": 0.3165,
+          "tau": null,
+          "auroc": 0.7244
+        },
+        "voting_conf": {
+          "rho": 0.3078,
+          "tau": null,
+          "auroc": 0.6714
+        }
+      },
+      "greedy_f1": 0.6607,
+      "oracle_f1": 0.7781,
+      "n_full": 529,
+      "n_cond": 478
+    },
+    "re": {
+      "full": {
+        "SJ": {
+          "rho": 0.2748,
+          "tau": 0.2102,
+          "auroc": 0.7244
+        },
+        "FK": {
+          "rho": 0.3027,
+          "tau": 0.2337,
+          "auroc": 0.691
+        },
+        "logprob": {
+          "rho": 0.3163,
+          "tau": 0.233,
+          "auroc": 0.6313
+        },
+        "EM": {
+          "rho": 0.1681,
+          "tau": 0.1275,
+          "auroc": 0.7697
+        },
+        "voting_conf": {
+          "rho": 0.384,
+          "tau": 0.2965,
+          "auroc": 0.7337
+        }
+      },
+      "conditional": {
+        "SJ": {
+          "rho": 0.3461,
+          "tau": null,
+          "auroc": 0.7233
+        },
+        "FK": {
+          "rho": 0.1969,
+          "tau": null,
+          "auroc": 0.6684
+        },
+        "logprob": {
+          "rho": 0.0888,
+          "tau": null,
+          "auroc": 0.5556
+        },
+        "EM": {
+          "rho": 0.4969,
+          "tau": null,
+          "auroc": 0.819
+        },
+        "voting_conf": {
+          "rho": 0.3433,
+          "tau": null,
+          "auroc": 0.7003
+        }
+      },
+      "greedy_f1": 0.4319,
+      "oracle_f1": 0.5775,
+      "n_full": 397,
+      "n_cond": 251
+    }
+  },
+  "project": "struct_self_consist_ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "685b1bf8-4822-4d28-8b85-9f3abe1bd865",
+  "uuid": "a6b99796-7ba5-4d73-a607-95a47bfe5daf",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018EwhhUAnmixfUsnpndUaSz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9028,
+      "cache_read_input_tokens": 59585,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9028
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 69 · 2026-05-18T20:50:00.608Z_
+
+<details><summary>↩ Tool result · `toolu_01QhEqo2CfRSz3j8Y9oNBzRY`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_018_llama_scierc_seed42_r1024\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T06:09:57.155Z\", \"updated_at\": \"2026-05-18T20:50:00.335Z\", \"spec\": {\"hypothesis\": \"D066 fresh rerun: LLaMA SciERC seed=42 with explicit max_tokens=1024. Replaces exp_007_llama_inference for clean 3-seed comparison.\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && PYTHONPATH=code python code/run_mvp_pilot.py --model_path checkpoints/llama3.1-8b-scierc-merged --data_dir data/scierc/processed_data --dataset scierc --subtask joint --n_samples 8 --temperature 1.0 --seed 42 --max_tokens 1024 --num_test 9999 --collect_logprobs --output_dir output/exp_018_llama_scierc_seed42_r1024\\\"\", \"server\": \"autodl-5090\", \"seed\": 42, \"model_name\": \"LLaMA-3.1-8B-SciERC-merged\", \"model_path\": \"checkpoints/llama3.1-8b-scierc-merged\", \"dataset\": \"SciERC\", \"subtask\": \"joint\", \"data_path\": \"data/scierc/processed_data\", \"data_count\": 551, \"N\": 8, \"T\": 1, \"max_tokens\": 1024, \"is_new_inference\": true, \"checkpoint_path\": \"output/exp_018_llama_scierc_seed42_r1024/\", \"log_path\": \"~/runs/struct_self_consist_ie/exp_018_llama_scierc_seed42_r1024.log\"}, \"server\": \"autodl-5090\", \"gpu\": \"cuda:0\", \"pid\": \"156809\", \"log_path\": \"~/runs/struct_self_consist_ie/exp_018_llama_scierc_seed42_r1024.log\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && PYTHONPATH=code python code/run_mvp_pilot.py --model_path checkpoints/llama3.1-8b-scierc-merged --data_dir data/scierc/processed_data --dataset scierc --subtask joint --n_samples 8 --temperature 1.0 --seed 42 --max_tokens 1024 --num_test 9999 --collect_logprobs --output_dir output/exp_018_llama_scierc_seed42_r1024\\\"\", \"finished_at\": \"2026-05-15T06:15:47.963Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T06:15:50.613872+00:00\"}]}, \"metrics\": {\"degen_rate\": 0.2495, \"degen_rate_source\": \"unified_metrics_constant_f1_gold_filtered\", \"ner\": {\"full\": {\"SJ\": {\"rho\": 0.3096, \"tau\": 0.2288, \"auroc\": 0.6683}, \"FK\": {\"rho\": 0.2352, \"tau\": 0.1759, \"auroc\": 0.6069}, \"logprob\": {\"rho\": 0.1503, \"tau\": 0.1087, \"auroc\": 0.5318}, \"EM\": {\"rho\": 0.2587, \"tau\": 0.1966, \"auroc\": 0.7174}, \"voting_conf\": {\"rho\": 0.4053, \"tau\": 0.3042, \"auroc\": 0.6967}}, \"conditional\": {\"SJ\": {\"rho\": 0.2718, \"tau\": null, \"auroc\": 0.6565}, \"FK\": {\"rho\": 0.1472, \"tau\": null, \"auroc\": 0.5866}, \"logprob\": {\"rho\": 0.081, \"tau\": null, \"auroc\": 0.5129}, \"EM\": {\"rho\": 0.3165, \"tau\": null, \"auroc\": 0.7244}, \"voting_conf\": {\"rho\": 0.3078, \"tau\": null, \"auroc\": 0.6714}}, \"greedy_f1\": 0.6607, \"oracle_f1\": 0.7781, \"n_full\": 529, \"n_cond\": 478}, \"re\": {\"full\": {\"SJ\": {\"rho\": 0.2748, \"tau\": 0.2102, \"auroc\": 0.7244}, \"FK\": {\"rho\": 0.3027, \"tau\": 0.2337, \"auroc\": 0.691}, \"logprob\": {\"rho\": 0.3163, \"tau\": 0.233, \"auroc\": 0.6313}, \"EM\": {\"rho\": 0.1681, \"tau\": 0.1275, \"auroc\": 0.7697}, \"voting_conf\": {\"rho\": 0.384, \"tau\": 0.2965, \"auroc\": 0.7337}}, \"conditional\": {\"SJ\": {\"rho\": 0.3461, \"tau\": null, \"auroc\": 0.7233}, \"FK\": {\"rho\": 0.1969, \"tau\": null, \"auroc\": 0.6684}, \"logprob\": {\"rho\": 0.0888, \"tau\": null, \"auroc\": 0.5556}, \"EM\": {\"rho\": 0.4969, \"tau\": null, \"auroc\": 0.819}, \"voting_conf\": {\"rho\": 0.3433, \"tau\": null, \"auroc\": 0.7003}}, \"greedy_f1\": 0.4319, \"oracle_f1\": 0.5775, \"n_full\": 397, \"n_cond\": 251}}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T06:21:47.660Z\", \"hypothesis\": \"LLaMA SciERC seed=42 (max_tokens=1024): cross-model validation on SciERC. Establishes LLaMA NER signal rankings on same dataset as Qwen for direct model-family comparison.\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7002}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "685b1bf8-4822-4d28-8b85-9f3abe1bd865",
+  "uuid": "94b33a6a-48bf-457b-9c69-2152f250e32c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_018_llama_scierc_seed42_r1024\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T06:09:57.155Z\\\", \\\"updated_at\\\": \\\"2026-05-18T20:50:00.335Z\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"D066 fresh rerun: LLaMA SciERC seed=42 with explicit max_tokens=1024. Replaces exp_007_llama_inference for clean 3-seed comparison.\\\", \\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && PYTHONPATH=code python code/run_mvp_pilot.py --model_path checkpoints/llama3.1-8b-scierc-merged --data_dir data/scierc/processed_data --dataset scierc --subtask joint --n_samples 8 --temperature 1.0 --seed 42 --max_tokens 1024 --num_test 9999 --collect_logprobs --output_dir output/exp_018_llama_scierc_seed42_r1024\\\\\\\"\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"seed\\\": 42, \\\"model_name\\\": \\\"LLaMA-3.1-8B-SciERC-merged\\\", \\\"model_path\\\": \\\"checkpoints/llama3.1-8b-scierc-merged\\\", \\\"dataset\\\": \\\"SciERC\\\", \\\"subtask\\\": \\\"joint\\\", \\\"data_path\\\": \\\"data/scierc/processed_data\\\", \\\"data_count\\\": 551, \\\"N\\\": 8, \\\"T\\\": 1, \\\"max_tokens\\\": 1024, \\\"is_new_inference\\\": true, \\\"checkpoint_path\\\": \\\"output/exp_018_llama_scierc_seed42_r1024/\\\", \\\"log_path\\\": \\\"~/runs/struct_self_consist_ie/exp_018_llama_scierc_seed42_r1024.log\\\"}, \\\"server\\\": \\\"autodl-5090\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"pid\\\": \\\"156809\\\", \\\"log_path\\\": \\\"~/runs/struct_self_consist_ie/exp_018_llama_scierc_seed42_r1024.log\\\", \\\"reproduce\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && PYTHONPATH=code python code/run_mvp_pilot.py --model_path checkpoints/llama3.1-8b-scierc-merged --data_dir data/scierc/processed_data --dataset scierc --subtask joint --n_samples 8 --temperature 1.0 --seed 42 --max_tokens 1024 --num_test 9999 --collect_logprobs --output_dir output/exp_018_llama_scierc_seed42_r1024\\\\\\\"\\\", \\\"finished_at\\\": \\\"2026-05-15T06:15:47.963Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T06:15:50.613872+00:00\\\"}]}, \\\"metrics\\\": {\\\"degen_rate\\\": 0.2495, \\\"degen_rate_source\\\": \\\"unified_metrics_constant_f1_gold_filtered\\\", \\\"ner\\\": {\\\"full\\\": {\\\"SJ\\\": {\\\"rho\\\": 0.3096, \\\"tau\\\": 0.2288, \\\"auroc\\\": 0.6683}, \\\"FK\\\": {\\\"rho\\\": 0.2352, \\\"tau\\\": 0.1759, \\\"auroc\\\": 0.6069}, \\\"logprob\\\": {\\\"rho\\\": 0.1503, \\\"tau\\\": 0.1087, \\\"auroc\\\": 0.5318}, \\\"EM\\\": {\\\"rho\\\": 0.2587, \\\"tau\\\": 0.1966, \\\"auroc\\\": 0.7174}, \\\"voting_conf\\\": {\\\"rho\\\": 0.4053, \\\"tau\\\": 0.3042, \\\"auroc\\\": 0.6967}}, \\\"conditional\\\": {\\\"SJ\\\": {\\\"rho\\\": 0.2718, \\\"tau\\\": null, \\\"auroc\\\": 0.6565}, \\\"FK\\\": {\\\"rho\\\": 0.1472, \\\"tau\\\": null, \\\"auroc\\\": 0.5866}, \\\"logprob\\\": {\\\"rho\\\": 0.081, \\\"tau\\\": null, \\\"auroc\\\": 0.5129}, \\\"EM\\\": {\\\"rho\\\": 0.3165, \\\"tau\\\": null, \\\"auroc\\\": 0.7244}, \\\"voting_conf\\\": {\\\"rho\\\": 0.3078, \\\"tau\\\": null, \\\"auroc\\\": 0.6714}}, \\\"greedy_f1\\\": 0.6607, \\\"oracle_f1\\\": 0.7781, \\\"n_full\\\": 529, \\\"n_cond\\\": 478}, \\\"re\\\": {\\\"full\\\": {\\\"SJ\\\": {\\\"rho\\\": 0.2748, \\\"tau\\\": 0.2102, \\\"auroc\\\": 0.7244}, \\\"FK\\\": {\\\"rho\\\": 0.3027, \\\"tau\\\": 0.2337, \\\"auroc\\\": 0.691}, \\\"logprob\\\": {\\\"rho\\\": 0.3163, \\\"tau\\\": 0.233, \\\"auroc\\\": 0.6313}, \\\"EM\\\": {\\\"rho\\\": 0.1681, \\\"tau\\\": 0.1275, \\\"auroc\\\": 0.7697}, \\\"voting_conf\\\": {\\\"rho\\\": 0.384, \\\"tau\\\": 0.2965, \\\"auroc\\\": 0.7337}}, \\\"conditional\\\": {\\\"SJ\\\": {\\\"rho\\\": 0.3461, \\\"tau\\\": null, \\\"auroc\\\": 0.7233}, \\\"FK\\\": {\\\"rho\\\": 0.1969, \\\"tau\\\": null, \\\"auroc\\\": 0.6684}, \\\"logprob\\\": {\\\"rho\\\": 0.0888, \\\"tau\\\": null, \\\"auroc\\\": 0.5556}, \\\"EM\\\": {\\\"rho\\\": 0.4969, \\\"tau\\\": null, \\\"auroc\\\": 0.819}, \\\"voting_conf\\\": {\\\"rho\\\": 0.3433, \\\"tau\\\": null, \\\"auroc\\\": 0.7003}}, \\\"greedy_f1\\\": 0.4319, \\\"oracle_f1\\\": 0.5775, \\\"n_full\\\": 397, \\\"n_cond\\\": 251}}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-15T06:21:47.660Z\\\", \\\"hypothesis\\\": \\\"LLaMA SciERC seed=42 (max_tokens=1024): cross-model validation on SciERC. Establishes LLaMA NER signal rankings on same dataset as Qwen for direct model-family comparison.\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.7002}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp_018_llama_scierc_seed42_r1024\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T06:09:57.155Z\", \"updated_at\": \"2026-05-18T20:50:00.335Z\", \"spec\": {\"hypothesis\": \"D066 fresh rerun: LLaMA SciERC seed=42 with explicit max_tokens=1024. Replaces exp_007_llama_inference for clean 3-seed comparison.\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && PYTHONPATH=code python code/run_mvp_pilot.py --model_path checkpoints/llama3.1-8b-scierc-merged --data_dir data/scierc/processed_data --dataset scierc --subtask joint --n_samples 8 --temperature 1.0 --seed 42 --max_tokens 1024 --num_test 9999 --collect_logprobs --output_dir output/exp_018_llama_scierc_seed42_r1024\\\"\", \"server\": \"autodl-5090\", \"seed\": 42, \"model_name\": \"LLaMA-3.1-8B-SciERC-merged\", \"model_path\": \"checkpoints/llama3.1-8b-scierc-merged\", \"dataset\": \"SciERC\", \"subtask\": \"joint\", \"data_path\": \"data/scierc/processed_data\", \"data_count\": 551, \"N\": 8, \"T\": 1, \"max_tokens\": 1024, \"is_new_inference\": true, \"checkpoint_path\": \"output/exp_018_llama_scierc_seed42_r1024/\", \"log_path\": \"~/runs/struct_self_consist_ie/exp_018_llama_scierc_seed42_r1024.log\"}, \"server\": \"autodl-5090\", \"gpu\": \"cuda:0\", \"pid\": \"156809\", \"log_path\": \"~/runs/struct_self_consist_ie/exp_018_llama_scierc_seed42_r1024.log\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && PYTHONPATH=code python code/run_mvp_pilot.py --model_path checkpoints/llama3.1-8b-scierc-merged --data_dir data/scierc/processed_data --dataset scierc --subtask joint --n_samples 8 --temperature 1.0 --seed 42 --max_tokens 1024 --num_test 9999 --collect_logprobs --output_dir output/exp_018_llama_scierc_seed42_r1024\\\"\", \"finished_at\": \"2026-05-15T06:15:47.963Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T06:15:50.613872+00:00\"}]}, \"metrics\": {\"degen_rate\": 0.2495, \"degen_rate_source\": \"unified_metrics_constant_f1_gold_filtered\", \"ner\": {\"full\": {\"SJ\": {\"rho\": 0.3096, \"tau\": 0.2288, \"auroc\": 0.6683}, \"FK\": {\"rho\": 0.2352, \"tau\": 0.1759, \"auroc\": 0.6069}, \"logprob\": {\"rho\": 0.1503, \"tau\": 0.1087, \"auroc\": 0.5318}, \"EM\": {\"rho\": 0.2587, \"tau\": 0.1966, \"auroc\": 0.7174}, \"voting_conf\": {\"rho\": 0.4053, \"tau\": 0.3042, \"auroc\": 0.6967}}, \"conditional\": {\"SJ\": {\"rho\": 0.2718, \"tau\": null, \"auroc\": 0.6565}, \"FK\": {\"rho\": 0.1472, \"tau\": null, \"auroc\": 0.5866}, \"logprob\": {\"rho\": 0.081, \"tau\": null, \"auroc\": 0.5129}, \"EM\": {\"rho\": 0.3165, \"tau\": null, \"auroc\": 0.7244}, \"voting_conf\": {\"rho\": 0.3078, \"tau\": null, \"auroc\": 0.6714}}, \"greedy_f1\": 0.6607, \"oracle_f1\": 0.7781, \"n_full\": 529, \"n_cond\": 478}, \"re\": {\"full\": {\"SJ\": {\"rho\": 0.2748, \"tau\": 0.2102, \"auroc\": 0.7244}, \"FK\": {\"rho\": 0.3027, \"tau\": 0.2337, \"auroc\": 0.691}, \"logprob\": {\"rho\": 0.3163, \"tau\": 0.233, \"auroc\": 0.6313}, \"EM\": {\"rho\": 0.1681, \"tau\": 0.1275, \"auroc\": 0.7697}, \"voting_conf\": {\"rho\": 0.384, \"tau\": 0.2965, \"auroc\": 0.7337}}, \"conditional\": {\"SJ\": {\"rho\": 0.3461, \"tau\": null, \"auroc\": 0.7233}, \"FK\": {\"rho\": 0.1969, \"tau\": null, \"auroc\": 0.6684}, \"logprob\": {\"rho\": 0.0888, \"tau\": null, \"auroc\": 0.5556}, \"EM\": {\"rho\": 0.4969, \"tau\": null, \"auroc\": 0.819}, \"voting_conf\": {\"rho\": 0.3433, \"tau\": null, \"auroc\": 0.7003}}, \"greedy_f1\": 0.4319, \"oracle_f1\": 0.5775, \"n_full\": 397, \"n_cond\": 251}}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T06:21:47.660Z\", \"hypothesis\": \"LLaMA SciERC seed=42 (max_tokens=1024): cross-model validation on SciERC. Establishes LLaMA NER signal rankings on same dataset as Qwen for direct model-family comparison.\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7002}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 70_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01RFCCAT2pRxwEjR84wg9a5n`</summary>
+
+```json
+{
+  "exp_id": "exp_018_llama_scierc_seed456_r1024",
+  "field": "metrics",
+  "value": {
+    "degen_rate": 0.2741,
+    "degen_rate_source": "unified_metrics_constant_f1_gold_filtered",
+    "ner_greedy_f1": 0.6597,
+    "ner_oracle_f1": 0.7683,
+    "ner_oracle_headroom": 0.1086,
+    "ner_cond_rho_fk": 0.1472,
+    "ner_cond_rho_sj": 0.2718,
+    "ner_cond_rho_logprob": 0.083,
+    "ner_logprob_auroc_cond": 0.5485,
+    "re_greedy_f1": 0.4338,
+    "re_oracle_f1": 0.5834,
+    "re_oracle_headroom": 0.1496,
+    "re_cond_rho_fk": 0.2107,
+    "re_cond_rho_sj": 0.3898,
+    "re_cond_rho_logprob": 0.1252,
+    "re_logprob_auroc_cond": 0.6119,
+    "ner_structural_beats_logprob": true,
+    "re_structural_beats_logprob": true
+  },
+  "project": "struct_self_consist_ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "685b1bf8-4822-4d28-8b85-9f3abe1bd865",
+  "uuid": "459e2d92-67ca-4bbc-ae75-74c4754fed7e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018EwhhUAnmixfUsnpndUaSz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9028,
+      "cache_read_input_tokens": 59585,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9028
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 71 · 2026-05-18T20:50:05.258Z_
+
+<details><summary>↩ Tool result · `toolu_01RFCCAT2pRxwEjR84wg9a5n`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_018_llama_scierc_seed456_r1024\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T06:12:43.492Z\", \"updated_at\": \"2026-05-18T20:50:04.988Z\", \"spec\": {\"hypothesis\": \"D066 fresh rerun: LLaMA SciERC seed=456 with explicit max_tokens=1024. Replaces exp_007 re-analysis for clean 3-seed comparison.\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && PYTHONPATH=code python code/run_mvp_pilot.py --model_path checkpoints/llama3.1-8b-scierc-merged --data_dir data/scierc/processed_data --dataset scierc --subtask joint --n_samples 8 --temperature 1.0 --seed 456 --max_tokens 1024 --num_test 9999 --collect_logprobs --output_dir output/exp_018_llama_scierc_seed456_r1024\\\"\", \"server\": \"autodl-5090\", \"seed\": 456, \"model_name\": \"LLaMA-3.1-8B-SciERC-merged\", \"model_path\": \"checkpoints/llama3.1-8b-scierc-merged\", \"dataset\": \"SciERC\", \"subtask\": \"joint\", \"data_path\": \"data/scierc/processed_data\", \"data_count\": 551, \"N\": 8, \"T\": 1, \"max_tokens\": 1024, \"is_new_inference\": true, \"checkpoint_path\": \"output/exp_018_llama_scierc_seed456_r1024/\", \"log_path\": \"~/runs/struct_self_consist_ie/exp_018_llama_scierc_seed456_r1024.log\"}, \"server\": \"autodl-5090\", \"gpu\": \"cuda:1\", \"pid\": \"157584\", \"log_path\": \"~/runs/struct_self_consist_ie/exp_018_llama_scierc_seed456_r1024.log\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && PYTHONPATH=code python code/run_mvp_pilot.py --model_path checkpoints/llama3.1-8b-scierc-merged --data_dir data/scierc/processed_data --dataset scierc --subtask joint --n_samples 8 --temperature 1.0 --seed 456 --max_tokens 1024 --num_test 9999 --collect_logprobs --output_dir output/exp_018_llama_scierc_seed456_r1024\\\"\", \"finished_at\": \"2026-05-15T06:18:22.307Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T06:18:24.880896+00:00\"}]}, \"checkpoint_path\": \"/root/autodl-tmp/struct_self_consist_ie/output/exp_018_llama_scierc_seed456_r1024\", \"metrics\": {\"degen_rate\": 0.2741, \"degen_rate_source\": \"unified_metrics_constant_f1_gold_filtered\", \"ner_greedy_f1\": 0.6597, \"ner_oracle_f1\": 0.7683, \"ner_oracle_headroom\": 0.1086, \"ner_cond_rho_fk\": 0.1472, \"ner_cond_rho_sj\": 0.2718, \"ner_cond_rho_logprob\": 0.083, \"ner_logprob_auroc_cond\": 0.5485, \"re_greedy_f1\": 0.4338, \"re_oracle_f1\": 0.5834, \"re_oracle_headroom\": 0.1496, \"re_cond_rho_fk\": 0.2107, \"re_cond_rho_sj\": 0.3898, \"re_cond_rho_logprob\": 0.1252, \"re_logprob_auroc_cond\": 0.6119, \"ner_structural_beats_logprob\": true, \"re_structural_beats_logprob\": true}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T06:21:45.350Z\", \"hypothesis\": \"LLaMA SciERC seed=456 (max_tokens=1024): multi-seed cross-model validation. Complements seed42 for LLaMA 3-seed protocol on SciERC NER+RE signal rankings.\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6548}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "685b1bf8-4822-4d28-8b85-9f3abe1bd865",
+  "uuid": "645a85c0-f0a7-4361-9d23-fff8d0fb8bf7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_018_llama_scierc_seed456_r1024\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T06:12:43.492Z\\\", \\\"updated_at\\\": \\\"2026-05-18T20:50:04.988Z\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"D066 fresh rerun: LLaMA SciERC seed=456 with explicit max_tokens=1024. Replaces exp_007 re-analysis for clean 3-seed comparison.\\\", \\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && PYTHONPATH=code python code/run_mvp_pilot.py --model_path checkpoints/llama3.1-8b-scierc-merged --data_dir data/scierc/processed_data --dataset scierc --subtask joint --n_samples 8 --temperature 1.0 --seed 456 --max_tokens 1024 --num_test 9999 --collect_logprobs --output_dir output/exp_018_llama_scierc_seed456_r1024\\\\\\\"\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"seed\\\": 456, \\\"model_name\\\": \\\"LLaMA-3.1-8B-SciERC-merged\\\", \\\"model_path\\\": \\\"checkpoints/llama3.1-8b-scierc-merged\\\", \\\"dataset\\\": \\\"SciERC\\\", \\\"subtask\\\": \\\"joint\\\", \\\"data_path\\\": \\\"data/scierc/processed_data\\\", \\\"data_count\\\": 551, \\\"N\\\": 8, \\\"T\\\": 1, \\\"max_tokens\\\": 1024, \\\"is_new_inference\\\": true, \\\"checkpoint_path\\\": \\\"output/exp_018_llama_scierc_seed456_r1024/\\\", \\\"log_path\\\": \\\"~/runs/struct_self_consist_ie/exp_018_llama_scierc_seed456_r1024.log\\\"}, \\\"server\\\": \\\"autodl-5090\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"pid\\\": \\\"157584\\\", \\\"log_path\\\": \\\"~/runs/struct_self_consist_ie/exp_018_llama_scierc_seed456_r1024.log\\\", \\\"reproduce\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && PYTHONPATH=code python code/run_mvp_pilot.py --model_path checkpoints/llama3.1-8b-scierc-merged --data_dir data/scierc/processed_data --dataset scierc --subtask joint --n_samples 8 --temperature 1.0 --seed 456 --max_tokens 1024 --num_test 9999 --collect_logprobs --output_dir output/exp_018_llama_scierc_seed456_r1024\\\\\\\"\\\", \\\"finished_at\\\": \\\"2026-05-15T06:18:22.307Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T06:18:24.880896+00:00\\\"}]}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/exp_018_llama_scierc_seed456_r1024\\\", \\\"metrics\\\": {\\\"degen_rate\\\": 0.2741, \\\"degen_rate_source\\\": \\\"unified_metrics_constant_f1_gold_filtered\\\", \\\"ner_greedy_f1\\\": 0.6597, \\\"ner_oracle_f1\\\": 0.7683, \\\"ner_oracle_headroom\\\": 0.1086, \\\"ner_cond_rho_fk\\\": 0.1472, \\\"ner_cond_rho_sj\\\": 0.2718, \\\"ner_cond_rho_logprob\\\": 0.083, \\\"ner_logprob_auroc_cond\\\": 0.5485, \\\"re_greedy_f1\\\": 0.4338, \\\"re_oracle_f1\\\": 0.5834, \\\"re_oracle_headroom\\\": 0.1496, \\\"re_cond_rho_fk\\\": 0.2107, \\\"re_cond_rho_sj\\\": 0.3898, \\\"re_cond_rho_logprob\\\": 0.1252, \\\"re_logprob_auroc_cond\\\": 0.6119, \\\"ner_structural_beats_logprob\\\": true, \\\"re_structural_beats_logprob\\\": true}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-15T06:21:45.350Z\\\", \\\"hypothesis\\\": \\\"LLaMA SciERC seed=456 (max_tokens=1024): multi-seed cross-model validation. Complements seed42 for LLaMA 3-seed protocol on SciERC NER+RE signal rankings.\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6548}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp_018_llama_scierc_seed456_r1024\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T06:12:43.492Z\", \"updated_at\": \"2026-05-18T20:50:04.988Z\", \"spec\": {\"hypothesis\": \"D066 fresh rerun: LLaMA SciERC seed=456 with explicit max_tokens=1024. Replaces exp_007 re-analysis for clean 3-seed comparison.\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && PYTHONPATH=code python code/run_mvp_pilot.py --model_path checkpoints/llama3.1-8b-scierc-merged --data_dir data/scierc/processed_data --dataset scierc --subtask joint --n_samples 8 --temperature 1.0 --seed 456 --max_tokens 1024 --num_test 9999 --collect_logprobs --output_dir output/exp_018_llama_scierc_seed456_r1024\\\"\", \"server\": \"autodl-5090\", \"seed\": 456, \"model_name\": \"LLaMA-3.1-8B-SciERC-merged\", \"model_path\": \"checkpoints/llama3.1-8b-scierc-merged\", \"dataset\": \"SciERC\", \"subtask\": \"joint\", \"data_path\": \"data/scierc/processed_data\", \"data_count\": 551, \"N\": 8, \"T\": 1, \"max_tokens\": 1024, \"is_new_inference\": true, \"checkpoint_path\": \"output/exp_018_llama_scierc_seed456_r1024/\", \"log_path\": \"~/runs/struct_self_consist_ie/exp_018_llama_scierc_seed456_r1024.log\"}, \"server\": \"autodl-5090\", \"gpu\": \"cuda:1\", \"pid\": \"157584\", \"log_path\": \"~/runs/struct_self_consist_ie/exp_018_llama_scierc_seed456_r1024.log\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && PYTHONPATH=code python code/run_mvp_pilot.py --model_path checkpoints/llama3.1-8b-scierc-merged --data_dir data/scierc/processed_data --dataset scierc --subtask joint --n_samples 8 --temperature 1.0 --seed 456 --max_tokens 1024 --num_test 9999 --collect_logprobs --output_dir output/exp_018_llama_scierc_seed456_r1024\\\"\", \"finished_at\": \"2026-05-15T06:18:22.307Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T06:18:24.880896+00:00\"}]}, \"checkpoint_path\": \"/root/autodl-tmp/struct_self_consist_ie/output/exp_018_llama_scierc_seed456_r1024\", \"metrics\": {\"degen_rate\": 0.2741, \"degen_rate_source\": \"unified_metrics_constant_f1_gold_filtered\", \"ner_greedy_f1\": 0.6597, \"ner_oracle_f1\": 0.7683, \"ner_oracle_headroom\": 0.1086, \"ner_cond_rho_fk\": 0.1472, \"ner_cond_rho_sj\": 0.2718, \"ner_cond_rho_logprob\": 0.083, \"ner_logprob_auroc_cond\": 0.5485, \"re_greedy_f1\": 0.4338, \"re_oracle_f1\": 0.5834, \"re_oracle_headroom\": 0.1496, \"re_cond_rho_fk\": 0.2107, \"re_cond_rho_sj\": 0.3898, \"re_cond_rho_logprob\": 0.1252, \"re_logprob_auroc_cond\": 0.6119, \"ner_structural_beats_logprob\": true, \"re_structural_beats_logprob\": true}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T06:21:45.350Z\", \"hypothesis\": \"LLaMA SciERC seed=456 (max_tokens=1024): multi-seed cross-model validation. Complements seed42 for LLaMA 3-seed protocol on SciERC NER+RE signal rankings.\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6548}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 72_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01FDHLMtGMVcC9VTegM9AMqz`</summary>
+
+```json
+{
+  "exp_id": "exp_017_llama_conll_n16_r1024",
+  "field": "metrics",
+  "value": {
+    "degen_rate": 0.8647,
+    "degen_rate_source": "unified_metrics_constant_f1_gold_filtered",
+    "instance_count": 3453,
+    "n_valid": 2756,
+    "n_gold_empty": 697,
+    "parse_rate": 1,
+    "ner_greedy_f1": 0.9265,
+    "ner_oracle_f1": 0.9499,
+    "rho_fk_ner": 0.4752,
+    "rho_sj_ner": 0.4836,
+    "rho_vc_ner": 0.4746,
+    "rho_em_ner": 0.4818,
+    "rho_lp_ner": 0.3136,
+    "auroc_fk_ner": 0.7467,
+    "auroc_sj_ner": 0.7496,
+    "auroc_vc_ner": 0.7529,
+    "auroc_em_ner": 0.7508,
+    "auroc_lp_ner": 0.7661,
+    "auroc_note": "median F1=1.0, AUROC uses >=median threshold",
+    "rho_note": "CORRECTED 2026-05-15: old values (rho_fk=0.8095,rho_sj=0.1815) were inflated/deflated by 697 gold-empty instances. Now uses gold-filtered pipeline (n=2756)."
+  },
+  "project": "struct_self_consist_ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "685b1bf8-4822-4d28-8b85-9f3abe1bd865",
+  "uuid": "eeb906d4-e1fb-496d-a60b-3e826b8ef838",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018EwhhUAnmixfUsnpndUaSz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9028,
+      "cache_read_input_tokens": 59585,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9028
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 73 · 2026-05-18T20:50:12.183Z_
+
+<details><summary>↩ Tool result · `toolu_01FDHLMtGMVcC9VTegM9AMqz`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_017_llama_conll_n16_r1024\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T22:17:01.036Z\", \"updated_at\": \"2026-05-18T20:50:11.906Z\", \"spec\": {\"hypothesis\": \"D054 rerun: max_tokens=1024. Verify truncation impact on LLaMA CoNLL N=16 seed42.\", \"parent\": \"exp_017_llama_conll_n16\", \"model_name\": \"llama3.1-8b-conll2003-merged\", \"dataset\": \"CoNLL-2003\", \"seed\": 42, \"server\": \"autodl-5090\", \"command\": \"python code/run_mvp_pilot.py --model_path checkpoints/llama3.1-8b-conll2003-merged --data_dir data/conll2003 --dataset conll2003 --subtask ner --n_samples 16 --temperature 1.0 --seed 42 --num_test 9999 --max_tokens 1024 --collect_logprobs --output_dir output/exp_017_llama_conll_n16_r1024\", \"gpu\": \"cuda:1\", \"pid\": \"175734\", \"data_path\": \"data/conll2003\", \"data_count\": 3453, \"tmux_session\": \"exp_017_llama_conll_n16_r1024\"}, \"conclusion\": \"success\", \"metrics\": {\"degen_rate\": 0.8647, \"degen_rate_source\": \"unified_metrics_constant_f1_gold_filtered\", \"instance_count\": 3453, \"n_valid\": 2756, \"n_gold_empty\": 697, \"parse_rate\": 1, \"ner_greedy_f1\": 0.9265, \"ner_oracle_f1\": 0.9499, \"rho_fk_ner\": 0.4752, \"rho_sj_ner\": 0.4836, \"rho_vc_ner\": 0.4746, \"rho_em_ner\": 0.4818, \"rho_lp_ner\": 0.3136, \"auroc_fk_ner\": 0.7467, \"auroc_sj_ner\": 0.7496, \"auroc_vc_ner\": 0.7529, \"auroc_em_ner\": 0.7508, \"auroc_lp_ner\": 0.7661, \"auroc_note\": \"median F1=1.0, AUROC uses >=median threshold\", \"rho_note\": \"CORRECTED 2026-05-15: old values (rho_fk=0.8095,rho_sj=0.1815) were inflated/deflated by 697 gold-empty instances. Now uses gold-filtered pipeline (n=2756).\"}, \"checkpoint_path\": \"N/A (inference-only)\", \"log_path\": \"output/exp_017_llama_conll_n16_r1024_run.log\", \"completed_at\": \"2026-05-15T11:45:23.213Z\", \"hypothesis\": \"LLaMA CoNLL N=16 seed=42 (max_tokens=1024 rerun): cross-model baseline on CoNLL. Establishes LLaMA signal rankings after gold-filtering correction (fixes inflated FK ρ from gold-empty instances).\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6637}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "685b1bf8-4822-4d28-8b85-9f3abe1bd865",
+  "uuid": "0c7561a0-7282-4d56-823e-a1c828d60577",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_017_llama_conll_n16_r1024\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T22:17:01.036Z\\\", \\\"updated_at\\\": \\\"2026-05-18T20:50:11.906Z\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"D054 rerun: max_tokens=1024. Verify truncation impact on LLaMA CoNLL N=16 seed42.\\\", \\\"parent\\\": \\\"exp_017_llama_conll_n16\\\", \\\"model_name\\\": \\\"llama3.1-8b-conll2003-merged\\\", \\\"dataset\\\": \\\"CoNLL-2003\\\", \\\"seed\\\": 42, \\\"server\\\": \\\"autodl-5090\\\", \\\"command\\\": \\\"python code/run_mvp_pilot.py --model_path checkpoints/llama3.1-8b-conll2003-merged --data_dir data/conll2003 --dataset conll2003 --subtask ner --n_samples 16 --temperature 1.0 --seed 42 --num_test 9999 --max_tokens 1024 --collect_logprobs --output_dir output/exp_017_llama_conll_n16_r1024\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"pid\\\": \\\"175734\\\", \\\"data_path\\\": \\\"data/conll2003\\\", \\\"data_count\\\": 3453, \\\"tmux_session\\\": \\\"exp_017_llama_conll_n16_r1024\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"degen_rate\\\": 0.8647, \\\"degen_rate_source\\\": \\\"unified_metrics_constant_f1_gold_filtered\\\", \\\"instance_count\\\": 3453, \\\"n_valid\\\": 2756, \\\"n_gold_empty\\\": 697, \\\"parse_rate\\\": 1, \\\"ner_greedy_f1\\\": 0.9265, \\\"ner_oracle_f1\\\": 0.9499, \\\"rho_fk_ner\\\": 0.4752, \\\"rho_sj_ner\\\": 0.4836, \\\"rho_vc_ner\\\": 0.4746, \\\"rho_em_ner\\\": 0.4818, \\\"rho_lp_ner\\\": 0.3136, \\\"auroc_fk_ner\\\": 0.7467, \\\"auroc_sj_ner\\\": 0.7496, \\\"auroc_vc_ner\\\": 0.7529, \\\"auroc_em_ner\\\": 0.7508, \\\"auroc_lp_ner\\\": 0.7661, \\\"auroc_note\\\": \\\"median F1=1.0, AUROC uses >=median threshold\\\", \\\"rho_note\\\": \\\"CORRECTED 2026-05-15: old values (rho_fk=0.8095,rho_sj=0.1815) were inflated/deflated by 697 gold-empty instances. Now uses gold-filtered pipeline (n=2756).\\\"}, \\\"checkpoint_path\\\": \\\"N/A (inference-only)\\\", \\\"log_path\\\": \\\"output/exp_017_llama_conll_n16_r1024_run.log\\\", \\\"completed_at\\\": \\\"2026-05-15T11:45:23.213Z\\\", \\\"hypothesis\\\": \\\"LLaMA CoNLL N=16 seed=42 (max_tokens=1024 rerun): cross-model baseline on CoNLL. Establishes LLaMA signal rankings after gold-filtering correction (fixes inflated FK ρ from gold-empty instances).\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6637}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp_017_llama_conll_n16_r1024\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T22:17:01.036Z\", \"updated_at\": \"2026-05-18T20:50:11.906Z\", \"spec\": {\"hypothesis\": \"D054 rerun: max_tokens=1024. Verify truncation impact on LLaMA CoNLL N=16 seed42.\", \"parent\": \"exp_017_llama_conll_n16\", \"model_name\": \"llama3.1-8b-conll2003-merged\", \"dataset\": \"CoNLL-2003\", \"seed\": 42, \"server\": \"autodl-5090\", \"command\": \"python code/run_mvp_pilot.py --model_path checkpoints/llama3.1-8b-conll2003-merged --data_dir data/conll2003 --dataset conll2003 --subtask ner --n_samples 16 --temperature 1.0 --seed 42 --num_test 9999 --max_tokens 1024 --collect_logprobs --output_dir output/exp_017_llama_conll_n16_r1024\", \"gpu\": \"cuda:1\", \"pid\": \"175734\", \"data_path\": \"data/conll2003\", \"data_count\": 3453, \"tmux_session\": \"exp_017_llama_conll_n16_r1024\"}, \"conclusion\": \"success\", \"metrics\": {\"degen_rate\": 0.8647, \"degen_rate_source\": \"unified_metrics_constant_f1_gold_filtered\", \"instance_count\": 3453, \"n_valid\": 2756, \"n_gold_empty\": 697, \"parse_rate\": 1, \"ner_greedy_f1\": 0.9265, \"ner_oracle_f1\": 0.9499, \"rho_fk_ner\": 0.4752, \"rho_sj_ner\": 0.4836, \"rho_vc_ner\": 0.4746, \"rho_em_ner\": 0.4818, \"rho_lp_ner\": 0.3136, \"auroc_fk_ner\": 0.7467, \"auroc_sj_ner\": 0.7496, \"auroc_vc_ner\": 0.7529, \"auroc_em_ner\": 0.7508, \"auroc_lp_ner\": 0.7661, \"auroc_note\": \"median F1=1.0, AUROC uses >=median threshold\", \"rho_note\": \"CORRECTED 2026-05-15: old values (rho_fk=0.8095,rho_sj=0.1815) were inflated/deflated by 697 gold-empty instances. Now uses gold-filtered pipeline (n=2756).\"}, \"checkpoint_path\": \"N/A (inference-only)\", \"log_path\": \"output/exp_017_llama_conll_n16_r1024_run.log\", \"completed_at\": \"2026-05-15T11:45:23.213Z\", \"hypothesis\": \"LLaMA CoNLL N=16 seed=42 (max_tokens=1024 rerun): cross-model baseline on CoNLL. Establishes LLaMA signal rankings after gold-filtering correction (fixes inflated FK ρ from gold-empty instances).\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6637}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 74_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01BfqAZZM1nAgt93ZnFnQUyF`</summary>
+
+```json
+{
+  "exp_id": "exp_017_llama_conll_n16_s456_r1024",
+  "field": "metrics",
+  "value": {
+    "degen_rate": 0.8672,
+    "degen_rate_source": "unified_metrics_constant_f1_gold_filtered",
+    "instance_count": 3453,
+    "n_valid": 2756,
+    "n_gold_empty": 697,
+    "parse_rate": 1,
+    "ner_greedy_f1": 0.9265,
+    "ner_oracle_f1": 0.9499,
+    "rho_fk_ner": 0.469,
+    "rho_sj_ner": 0.4734,
+    "rho_vc_ner": 0.4722,
+    "rho_em_ner": 0.4752,
+    "rho_lp_ner": 0.3099,
+    "auroc_fk_ner": 0.7408,
+    "auroc_sj_ner": 0.7428,
+    "auroc_vc_ner": 0.7495,
+    "auroc_em_ner": 0.7444,
+    "auroc_lp_ner": 0.7628,
+    "auroc_note": "median F1=1.0, AUROC uses >=median threshold",
+    "rho_note": "CORRECTED 2026-05-15: old values (rho_fk=0.8085,rho_sj=0.1895) were inflated/deflated by 697 gold-empty instances. Now uses gold-filtered pipeline (n=2756)."
+  },
+  "project": "struct_self_consist_ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "685b1bf8-4822-4d28-8b85-9f3abe1bd865",
+  "uuid": "48ddb0d8-e9ea-4910-b790-da63c5840fcf",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018EwhhUAnmixfUsnpndUaSz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9028,
+      "cache_read_input_tokens": 59585,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9028
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 75 · 2026-05-18T20:50:15.313Z_
+
+<details><summary>↩ Tool result · `toolu_01BfqAZZM1nAgt93ZnFnQUyF`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_017_llama_conll_n16_s456_r1024\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T22:17:04.572Z\", \"updated_at\": \"2026-05-18T20:50:15.047Z\", \"spec\": {\"hypothesis\": \"D054 rerun: max_tokens=1024. Verify truncation impact on LLaMA CoNLL N=16 seed456.\", \"parent\": \"exp_017_llama_conll_n16_s456\", \"model_name\": \"llama3.1-8b-conll2003-merged\", \"dataset\": \"CoNLL-2003\", \"seed\": 456, \"server\": \"autodl-5090\", \"command\": \"python code/run_mvp_pilot.py --model_path checkpoints/llama3.1-8b-conll2003-merged --data_dir data/conll2003 --dataset conll2003 --subtask ner --n_samples 16 --temperature 1.0 --seed 456 --num_test 9999 --max_tokens 1024 --collect_logprobs --output_dir output/exp_017_llama_conll_n16_s456_r1024\", \"gpu\": \"cuda:2\", \"pid\": \"175870\", \"data_path\": \"data/conll2003\", \"data_count\": 3453, \"tmux_session\": \"exp_017_llama_conll_n16_s456_r1024\"}, \"conclusion\": \"success\", \"metrics\": {\"degen_rate\": 0.8672, \"degen_rate_source\": \"unified_metrics_constant_f1_gold_filtered\", \"instance_count\": 3453, \"n_valid\": 2756, \"n_gold_empty\": 697, \"parse_rate\": 1, \"ner_greedy_f1\": 0.9265, \"ner_oracle_f1\": 0.9499, \"rho_fk_ner\": 0.469, \"rho_sj_ner\": 0.4734, \"rho_vc_ner\": 0.4722, \"rho_em_ner\": 0.4752, \"rho_lp_ner\": 0.3099, \"auroc_fk_ner\": 0.7408, \"auroc_sj_ner\": 0.7428, \"auroc_vc_ner\": 0.7495, \"auroc_em_ner\": 0.7444, \"auroc_lp_ner\": 0.7628, \"auroc_note\": \"median F1=1.0, AUROC uses >=median threshold\", \"rho_note\": \"CORRECTED 2026-05-15: old values (rho_fk=0.8085,rho_sj=0.1895) were inflated/deflated by 697 gold-empty instances. Now uses gold-filtered pipeline (n=2756).\"}, \"checkpoint_path\": \"N/A (inference-only)\", \"log_path\": \"output/exp_017_llama_conll_n16_s456_r1024_run.log\", \"completed_at\": \"2026-05-15T11:45:25.899Z\", \"hypothesis\": \"LLaMA CoNLL N=16 seed=456 (max_tokens=1024 rerun): cross-model multi-seed validation. Confirms structural>surface ordering is stable across seeds for LLaMA on CoNLL after gold-filtering correction.\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6599}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "685b1bf8-4822-4d28-8b85-9f3abe1bd865",
+  "uuid": "757664bb-0289-4646-95e8-826787bba476",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_017_llama_conll_n16_s456_r1024\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T22:17:04.572Z\\\", \\\"updated_at\\\": \\\"2026-05-18T20:50:15.047Z\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"D054 rerun: max_tokens=1024. Verify truncation impact on LLaMA CoNLL N=16 seed456.\\\", \\\"parent\\\": \\\"exp_017_llama_conll_n16_s456\\\", \\\"model_name\\\": \\\"llama3.1-8b-conll2003-merged\\\", \\\"dataset\\\": \\\"CoNLL-2003\\\", \\\"seed\\\": 456, \\\"server\\\": \\\"autodl-5090\\\", \\\"command\\\": \\\"python code/run_mvp_pilot.py --model_path checkpoints/llama3.1-8b-conll2003-merged --data_dir data/conll2003 --dataset conll2003 --subtask ner --n_samples 16 --temperature 1.0 --seed 456 --num_test 9999 --max_tokens 1024 --collect_logprobs --output_dir output/exp_017_llama_conll_n16_s456_r1024\\\", \\\"gpu\\\": \\\"cuda:2\\\", \\\"pid\\\": \\\"175870\\\", \\\"data_path\\\": \\\"data/conll2003\\\", \\\"data_count\\\": 3453, \\\"tmux_session\\\": \\\"exp_017_llama_conll_n16_s456_r1024\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"degen_rate\\\": 0.8672, \\\"degen_rate_source\\\": \\\"unified_metrics_constant_f1_gold_filtered\\\", \\\"instance_count\\\": 3453, \\\"n_valid\\\": 2756, \\\"n_gold_empty\\\": 697, \\\"parse_rate\\\": 1, \\\"ner_greedy_f1\\\": 0.9265, \\\"ner_oracle_f1\\\": 0.9499, \\\"rho_fk_ner\\\": 0.469, \\\"rho_sj_ner\\\": 0.4734, \\\"rho_vc_ner\\\": 0.4722, \\\"rho_em_ner\\\": 0.4752, \\\"rho_lp_ner\\\": 0.3099, \\\"auroc_fk_ner\\\": 0.7408, \\\"auroc_sj_ner\\\": 0.7428, \\\"auroc_vc_ner\\\": 0.7495, \\\"auroc_em_ner\\\": 0.7444, \\\"auroc_lp_ner\\\": 0.7628, \\\"auroc_note\\\": \\\"median F1=1.0, AUROC uses >=median threshold\\\", \\\"rho_note\\\": \\\"CORRECTED 2026-05-15: old values (rho_fk=0.8085,rho_sj=0.1895) were inflated/deflated by 697 gold-empty instances. Now uses gold-filtered pipeline (n=2756).\\\"}, \\\"checkpoint_path\\\": \\\"N/A (inference-only)\\\", \\\"log_path\\\": \\\"output/exp_017_llama_conll_n16_s456_r1024_run.log\\\", \\\"completed_at\\\": \\\"2026-05-15T11:45:25.899Z\\\", \\\"hypothesis\\\": \\\"LLaMA CoNLL N=16 seed=456 (max_tokens=1024 rerun): cross-model multi-seed validation. Confirms structural>surface ordering is stable across seeds for LLaMA on CoNLL after gold-filtering correction.\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6599}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp_017_llama_conll_n16_s456_r1024\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T22:17:04.572Z\", \"updated_at\": \"2026-05-18T20:50:15.047Z\", \"spec\": {\"hypothesis\": \"D054 rerun: max_tokens=1024. Verify truncation impact on LLaMA CoNLL N=16 seed456.\", \"parent\": \"exp_017_llama_conll_n16_s456\", \"model_name\": \"llama3.1-8b-conll2003-merged\", \"dataset\": \"CoNLL-2003\", \"seed\": 456, \"server\": \"autodl-5090\", \"command\": \"python code/run_mvp_pilot.py --model_path checkpoints/llama3.1-8b-conll2003-merged --data_dir data/conll2003 --dataset conll2003 --subtask ner --n_samples 16 --temperature 1.0 --seed 456 --num_test 9999 --max_tokens 1024 --collect_logprobs --output_dir output/exp_017_llama_conll_n16_s456_r1024\", \"gpu\": \"cuda:2\", \"pid\": \"175870\", \"data_path\": \"data/conll2003\", \"data_count\": 3453, \"tmux_session\": \"exp_017_llama_conll_n16_s456_r1024\"}, \"conclusion\": \"success\", \"metrics\": {\"degen_rate\": 0.8672, \"degen_rate_source\": \"unified_metrics_constant_f1_gold_filtered\", \"instance_count\": 3453, \"n_valid\": 2756, \"n_gold_empty\": 697, \"parse_rate\": 1, \"ner_greedy_f1\": 0.9265, \"ner_oracle_f1\": 0.9499, \"rho_fk_ner\": 0.469, \"rho_sj_ner\": 0.4734, \"rho_vc_ner\": 0.4722, \"rho_em_ner\": 0.4752, \"rho_lp_ner\": 0.3099, \"auroc_fk_ner\": 0.7408, \"auroc_sj_ner\": 0.7428, \"auroc_vc_ner\": 0.7495, \"auroc_em_ner\": 0.7444, \"auroc_lp_ner\": 0.7628, \"auroc_note\": \"median F1=1.0, AUROC uses >=median threshold\", \"rho_note\": \"CORRECTED 2026-05-15: old values (rho_fk=0.8085,rho_sj=0.1895) were inflated/deflated by 697 gold-empty instances. Now uses gold-filtered pipeline (n=2756).\"}, \"checkpoint_path\": \"N/A (inference-only)\", \"log_path\": \"output/exp_017_llama_conll_n16_s456_r1024_run.log\", \"completed_at\": \"2026-05-15T11:45:25.899Z\", \"hypothesis\": \"LLaMA CoNLL N=16 seed=456 (max_tokens=1024 rerun): cross-model multi-seed validation. Confirms structural>surface ordering is stable across seeds for LLaMA on CoNLL after gold-filtering correction.\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6599}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 76_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+All 22 experiments have been updated. Now let me compile the summary.
+
+Let me also note:
+- exp_029a and exp_029b: Not in the recalc JSON, so cannot verify. They already have degen_rate values (0.064 and 0.478).
+- 4 experiments from recalc JSON not found in registry: exp_002_conll_n16_seed123, exp_002_conll_n16_seed456, exp_021_fewnerd_n8_seed123, exp_021_fewnerd_n8_seed456
+
+Let me compile the full update report.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "685b1bf8-4822-4d28-8b85-9f3abe1bd865",
+  "uuid": "a5d29431-8bf8-46bc-a8fe-a5ab993f82a3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014djfFqFeTKNh7b33bWsJbR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 13916,
+      "cache_read_input_tokens": 68613,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13916
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 77_
+
+全部 22 个实验更新完成。汇报如下：
+
+## 更新汇总（22 个实验）
+
+### Qwen3-8B SciERC T=1.0
+| exp_id | seed | 旧值 | 新值 (unified) |
+|--------|------|------|----------------|
+| exp_012_rerun_1024 | 42 | 无(12.59% sample_f1) | **17.77%** |
+| exp_018_qwen_scierc_seed123 | 123 | null(11.67%) | **17.20%** |
+| exp_018_qwen_scierc_seed456 | 456 | null(13.26%) | **20.42%** |
+
+### Qwen3-8B CoNLL T=1.0 N=16
+| exp_id | seed | 旧值 | 新值 |
+|--------|------|------|------|
+| exp_002_conll_n16 | 42 | 无(7.58%) | **48.44%** |
+
+### LLaMA3.1-8B SciERC T=1.0
+| exp_id | seed | 旧值 | 新值 |
+|--------|------|------|------|
+| exp_018_llama_scierc_seed42_r1024 | 42 | 无(11.44%) | **24.95%** |
+| exp_018_llama_scierc_seed123 | 123 | null(11.11%) | **26.65%** |
+| exp_018_llama_scierc_seed456_r1024 | 456 | 无(11.65%) | **27.41%** |
+| exp_007_llama_scierc_seed123 | 123 | degen_pct=26.7 | **26.65%** |
+| exp_llama_scierc_seed456 | 456 | degen_pct=27.6 | **27.41%** |
+
+### LLaMA3.1-8B CoNLL T=1.0 N=16
+| exp_id | seed | 旧值 | 新值 |
+|--------|------|------|------|
+| exp_017_llama_conll_n16_r1024 | 42 | 无(4.29%) | **86.47%** |
+| exp_017_llama_conll_n16_s123_r1024 | 123 | null(4.30%) | **86.36%** |
+| exp_017_llama_conll_n16_s456_r1024 | 456 | 无(4.29%) | **86.72%** |
+
+### T 消融 (SciERC, Qwen3-8B)
+| exp_id | T | 旧值 | 新值 |
+|--------|---|------|------|
+| exp_026_T05 / exp_026_t05 | 0.5 | 40.26% | **41.40%** |
+| exp_026_T08 / exp_026_t08 | 0.8 | 27.22% | **23.82%** |
+| exp_026_T12 / exp_026_t12 | 1.2 | 12.48% | **14.93%** |
+
+### 4B 模型
+| exp_id | dataset | 旧值 | 新值 |
+|--------|---------|------|------|
+| exp_qwen3_4b_scierc_scs_inference | SciERC | 无(11.37%) | **10.40%** |
+| exp_qwen3_4b_conll_scs_inference | CoNLL | 无(4.38%) | **90.57%** |
+| exp_qwen3_4b_conll_scs_inference_v2 | CoNLL | 无 | **90.57%** |
+
+### FewNERD
+| exp_id | seed | 旧值 | 新值 |
+|--------|------|------|------|
+| exp_027_fewnerd_n16 | 42 | 4.5% | **7.06%** |
+
+### 未处理项
+- **exp_029a / exp_029b**（epoch 消融）：不在 recalc JSON 中，无法用 unified 数字替换。当前值 degen_rate=6.4% / 47.8% 保持不变。
+- **Registry 中不存在**（recalc 有但 registry 无）：exp_002_conll_n16_seed123 (47.10%)、exp_002_conll_n16_seed456 (55.44%)、exp_021_fewnerd_n8_seed123 (13.12%)、exp_021_fewnerd_n8_seed456 (12.12%)
+
+所有已更新实验的字段名统一为 `degen_rate`（fraction），来源标注为 `degen_rate_source: "unified_metrics_constant_f1_gold_filtered"`。旧的 `degeneracy_rate` / `degen_pct` / `sample_f1_pct_zero` 字段已被替换清除。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "685b1bf8-4822-4d28-8b85-9f3abe1bd865",
+  "uuid": "58b9607d-cc80-49d0-a55f-fe1ed902caf8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014djfFqFeTKNh7b33bWsJbR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 13916,
+      "cache_read_input_tokens": 68613,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13916
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 78_
+
+全部 22 个实验更新完成。汇报如下：
+
+## 更新汇总（22 个实验）
+
+### Qwen3-8B SciERC T=1.0
+| exp_id | seed | 旧值 | 新值 (unified) |
+|--------|------|------|----------------|
+| exp_012_rerun_1024 | 42 | 无(12.59% sample_f1) | **17.77%** |
+| exp_018_qwen_scierc_seed123 | 123 | null(11.67%) | **17.20%** |
+| exp_018_qwen_scierc_seed456 | 456 | null(13.26%) | **20.42%** |
+
+### Qwen3-8B CoNLL T=1.0 N=16
+| exp_id | seed | 旧值 | 新值 |
+|--------|------|------|------|
+| exp_002_conll_n16 | 42 | 无(7.58%) | **48.44%** |
+
+### LLaMA3.1-8B SciERC T=1.0
+| exp_id | seed | 旧值 | 新值 |
+|--------|------|------|------|
+| exp_018_llama_scierc_seed42_r1024 | 42 | 无(11.44%) | **24.95%** |
+| exp_018_llama_scierc_seed123 | 123 | null(11.11%) | **26.65%** |
+| exp_018_llama_scierc_seed456_r1024 | 456 | 无(11.65%) | **27.41%** |
+| exp_007_llama_scierc_seed123 | 123 | degen_pct=26.7 | **26.65%** |
+| exp_llama_scierc_seed456 | 456 | degen_pct=27.6 | **27.41%** |
+
+### LLaMA3.1-8B CoNLL T=1.0 N=16
+| exp_id | seed | 旧值 | 新值 |
+|--------|------|------|------|
+| exp_017_llama_conll_n16_r1024 | 42 | 无(4.29%) | **86.47%** |
+| exp_017_llama_conll_n16_s123_r1024 | 123 | null(4.30%) | **86.36%** |
+| exp_017_llama_conll_n16_s456_r1024 | 456 | 无(4.29%) | **86.72%** |
+
+### T 消融 (SciERC, Qwen3-8B)
+| exp_id | T | 旧值 | 新值 |
+|--------|---|------|------|
+| exp_026_T05 / exp_026_t05 | 0.5 | 40.26% | **41.40%** |
+| exp_026_T08 / exp_026_t08 | 0.8 | 27.22% | **23.82%** |
+| exp_026_T12 / exp_026_t12 | 1.2 | 12.48% | **14.93%** |
+
+### 4B 模型
+| exp_id | dataset | 旧值 | 新值 |
+|--------|---------|------|------|
+| exp_qwen3_4b_scierc_scs_inference | SciERC | 无(11.37%) | **10.40%** |
+| exp_qwen3_4b_conll_scs_inference | CoNLL | 无(4.38%) | **90.57%** |
+| exp_qwen3_4b_conll_scs_inference_v2 | CoNLL | 无 | **90.57%** |
+
+### FewNERD
+| exp_id | seed | 旧值 | 新值 |
+|--------|------|------|------|
+| exp_027_fewnerd_n16 | 42 | 4.5% | **7.06%** |
+
+### 未处理项
+- **exp_029a / exp_029b**（epoch 消融）：不在 recalc JSON 中，无法用 unified 数字替换。当前值 degen_rate=6.4% / 47.8% 保持不变。
+- **Registry 中不存在**（recalc 有但 registry 无）：exp_002_conll_n16_seed123 (47.10%)、exp_002_conll_n16_seed456 (55.44%)、exp_021_fewnerd_n8_seed123 (13.12%)、exp_021_fewnerd_n8_seed456 (12.12%)
+
+所有已更新实验的字段名统一为 `degen_rate`（fraction），来源标注为 `degen_rate_source: "unified_metrics_constant_f1_gold_filtered"`。旧的 `degeneracy_rate` / `degen_pct` / `sample_f1_pct_zero` 字段已被替换清除。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 304604,
+  "duration_api_ms": 301115,
+  "num_turns": 31,
+  "stop_reason": "end_turn",
+  "session_id": "685b1bf8-4822-4d28-8b85-9f3abe1bd865",
+  "total_cost_usd": 1.2381710000000001,
+  "usage": {
+    "input_tokens": 16,
+    "cache_creation_input_tokens": 70828,
+    "cache_read_input_tokens": 460110,
+    "output_tokens": 22538,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 70828,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 1498,
+        "cache_read_input_tokens": 68613,
+        "cache_creation_input_tokens": 13916,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 13916
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1826,
+      "outputTokens": 17,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001911,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 16,
+      "outputTokens": 22538,
+      "cacheReadInputTokens": 460110,
+      "cacheCreationInputTokens": 70828,
+      "webSearchRequests": 0,
+      "costUSD": 1.23626,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "2e7d59cc-6e48-461b-9935-36f51fa2849c"
+}
+```
+
+</details>
+
+---

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1b6257700ddbd374d395",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "data bootstrap ci summary",
+  "task_key": "worker_data_bootstrap_ci_summary_20260514T210533",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_data_bootstrap_ci_summary_20260514T210533_result.json",
+    "occurrence": 1,
+    "bytes": 859,
+    "sha256": "fae1fbcbfd646b923bd56d3d63979a593883c0defc6950ec455e33bf2c465f49"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成。汇总 JSON 保存在 `artifacts/data/bootstrap_ci_summary.json` 并已注册。\n\n**数据覆盖:**\n\n| 数据集 | 信号 | full | cond | 备注 |\n|--------|------|------|------|------|\n| Qwen SciERC 3-seed | SJ/FK/logprob | ✓ | ✓ | EM/voting_conf 缺失（exp_001 未生成 all_signals_report） |\n| LLaMA CoNLL 3-seed | 5 signals | ✓ | ✓ | 含 per-seed CI95 和 AUROC |\n| N-scaling bootstrap (B=10000) | 5 signals | Qwen_CoNLL, Qwen_SciERC, LLaMA_SciERC | — | LLaMA_CoNLL 未做 N-scaling bootstrap |\n| 单信号 bootstrap (B=1000) | SJ/FK/voting_conf | NER + RE (full + cond) | — | 来自 exp004_re_diagnostic |\n\n**缺失项:**\n- Qwen SciERC 3-seed 的 EM 和 voting_conf（需对 exp_001 补跑 all_signals 分析）\n- LLaMA CoNLL 的 N-scaling bootstrap（bootstrap_ci_nscaling 中未包含此配置）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/data-bootstrap-ci-summary.md"
+}

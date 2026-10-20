@@ -1,0 +1,82 @@
+# analysis n scaling fix critical
+
+**When Self-Consistency Fails for NER: Degeneracy, Signal Collapse, and the Correlation-Selection Gap** · Task result records
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 1
+- **Recorded user turns:** 0
+- **Tool calls:** 0
+- **Original source:** `logs/workers/worker_analysis_n_scaling_fix_critical_20260516T143220_result.json`
+- **Structured JSON:** [`7a23e5e928dae5d42b54.json`](../../sessions/7a/7a23e5e928dae5d42b54.json)
+
+## Before a recorded user message
+
+1 recorded events
+
+### Task result
+
+_source line 1_
+
+Analysis complete. Here's the full report:
+
+---
+
+## 1. Bug 诊断
+
+**两个 bug 来源不同：**
+
+### Bug A: N=32 — `analyze_n32.py` (严重)
+`output/exp_025_n32/analyze_n32.py` line 97:
+```python
+greedy = samples[0]  # first sample as greedy proxy
+```
+使用了 **第一个 temperature-sampled output** 作为 greedy proxy，而非 `inst["greedy"]` 字段（真实 greedy decoding）。同时没有过滤 gold entities 为空的 22 个 instance（在全部 551 个上计算）。
+
+结果：greedy_f1 = 0.5880（samples[0] 在未过滤数据的 macro F1），而非正确值 ~0.6615。
+
+### Bug B: N=2/4/8/16 — `n_ablation.py`（轻微）
+n_ablation.py 正确使用了 `inst.get("greedy")` 和 gold filter，但计算的是 **macro F1**（per-instance F1 的平均）而非 **micro F1**（aggregate TP/FP/FN）。Greedy = 0.6442 (macro) vs report.json 0.6621 (micro)。由于 selection 也用相同的 macro 方式计算，**deltas 在 macro 空间内部一致**，但与论文报告的 micro F1 基准不可比。
+
+---
+
+## 2. N=2~16 回溯
+
+旧的 Greedy_F1=0.6442 是正确的 **macro-averaged per-instance F1**，不是计算错误，只是度量方式不同于 report.json 的 micro F1。deltas 在 macro 空间有效，但量级与 micro 空间有差异。
+
+---
+
+## 3. 修正后完整表格（micro F1, filtered gold>0, 529 instances）
+
+| Regime | N | Degen% | LP_range | Oracle_F1 | Greedy_F1 | Oracle_gap | LP_Δ | SJ_Δ | FK_Δ | EM_Δ | VC_Δ | Best_Δ |
+|--------|---|--------|----------|-----------|-----------|------------|------|------|------|------|------|--------|
+| rank32 |  2 | 42.9 | 0.0113 | 0.6996 | 0.6651 | 0.0345 | -1.55 | -3.28 | -3.28 | -3.28 | -3.95 | -1.55 |
+| rank32 |  4 | 22.2 | 0.0258 | 0.7497 | 0.6651 | 0.0846 | -0.30 | -1.23 | -1.26 | -1.87 | -3.26 | -0.30 |
+| rank32 |  8 | 12.3 | 0.0408 | 0.7868 | 0.6651 | 0.1218 | +0.03 | -0.42 | -0.47 | -0.90 | -3.68 | +0.03 |
+| rank32 | 16 |  7.6 | 0.0536 | 0.8179 | 0.6651 | 0.1529 | -0.16 | +0.10 | +0.06 | -0.96 | -4.07 | +0.10 |
+| rank32 | 32 |  4.0 | 0.0781 | 0.8412 | 0.6615 | 0.1797 | +0.54 | +0.16 | +0.60 | +0.68 | -5.21 | +0.68 |
+| rank8  |  2 | 24.6 | 0.0164 | 0.6740 | 0.6588 | 0.0152 | -4.92 | -7.82 | -7.82 | -7.82 | -8.86 | -4.92 |
+| rank8  |  4 |  8.3 | 0.0379 | 0.7463 | 0.6588 | 0.0874 | -2.81 | -2.88 | -3.02 | -5.75 | -6.10 | -2.81 |
+| rank8  |  8 |  2.6 | 0.0564 | 0.7982 | 0.6588 | 0.1394 | -1.32 | -0.65 | -1.12 | -2.67 | -6.00 | -0.65 |
+
+Note: Greedy 值与 report.json 有 ~0.3pp 差异（0.6651 vs 0.6621），因为过滤了 22 个 gold-empty instances。Deltas 不受影响（greedy 和 selection 在同一 instance set 上计算）。
+
+---
+
+## 4. 结论
+
+**修正后 N=32 有正 selection delta**（EM +0.68pp, FK +0.60pp, LP +0.54pp），虽然比 bug 版的 +3.5pp 小得多。
+
+**转折点在 degeneracy < 5%、LP_range > 0.05**：
+- N=32 (degen=4.0%, LP_range=0.08): 4/5 信号正 delta ✓
+- N=16 (degen=7.6%, LP_range=0.05): 仅 SJ/FK 微正 (+0.10/+0.06pp, 噪声级别)
+- N≤8 rank32: 仅 LP 在 N=8 接近零 (+0.03pp)
+- rank8 全部为负: 样本多样性不足
+
+**原始叙事需修正**：不是"selection 完全失败"，而是"selection 需要 N≥32 才有明确正 delta（~0.5-0.7pp），N=16 是临界点"。
+
+修正版脚本已保存为 `output/exp_025_n_ablation/n_ablation_fixed.py`，结果保存为 `results_fixed.json`。
+
+---

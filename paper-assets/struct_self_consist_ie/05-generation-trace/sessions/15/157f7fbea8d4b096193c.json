@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "157f7fbea8d4b096193c",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "verify kill after n8",
+  "task_key": "worker_verify_kill_after_n8_20260520T205629",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_verify_kill_after_n8_20260520T205629_result.json",
+    "occurrence": 1,
+    "bytes": 1047,
+    "sha256": "e4c925d8e111200b38b2cb2dddaf09d7d8fda990d9f8ee44281db04efb033079"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部信息收集完毕。\n\n## 结论\n\n**PID 230885（VLLM::EngineCore）**：存活，状态 Rl（运行中）。\n\n**kill_after_n8 监控（PID 224789）**：存活，正在运行。脚本 `/root/autodl-tmp/kill_after_n8.sh` 每 15 秒检查日志中是否出现 `=== FewNERD N=8 finished`，触发后会：\n- kill 编排脚本 PID 200995（`bash run_14b_fewnerd.sh`，仍存活）\n- pkill 所有 `run_mvp_pilot.py.*fewnerd` 和 `VLLM::EngineCore` 进程\n\n监控逻辑正确，目标 PID 200995 也仍存活，无需重新部署。\n\n**当前推理进度**：\n| 数据集 | N=1 | N=2 | N=4 | N=8 | N=16 |\n|--------|-----|-----|-----|-----|------|\n| SciERC | done | done | done | done | done |\n| CoNLL2003 | done | done | done | done | done |\n| FewNERD | done | done | **39% 进行中** | 未开始 | 将被 kill |\n\nFewNERD N=4 于 04:09 开始，当前处理 14543/37648（39%），速度约 8-12 it/s，预计还需约 40 分钟完成 N=4。N=8 完成后监控脚本将自动终止进程，阻止 N=16 运行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/verify-kill-after-n8.md"
+}

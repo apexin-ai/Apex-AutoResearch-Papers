@@ -1,0 +1,2959 @@
+# analysis 3seed llama scierc
+
+**When Self-Consistency Fails for NER: Degeneracy, Signal Collapse, and the Correlation-Selection Gap** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 62
+- **Recorded user turns:** 0
+- **Tool calls:** 19
+- **Original source:** `logs/workers/worker_analysis_3seed_llama_scierc_20260515T060020.log`
+- **Structured JSON:** [`53e7c74b9151ba2d1d16.json`](../../sessions/53/53e7c74b9151ba2d1d16.json)
+
+## Before a recorded user message
+
+62 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "session_id": "ad442358-e23d-4a59-9717-0b89a1275c0d",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "e4a7cc3f-3a00-4b1a-a8e5-5709194c5583",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1778837400,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "7f34bc83-76c8-43fc-a77e-34ce3068826b",
+  "session_id": "ad442358-e23d-4a59-9717-0b89a1275c0d"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+I'll find the LLaMA SciERC report.json files and extract the signal metrics across 3 seeds.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ad442358-e23d-4a59-9717-0b89a1275c0d",
+  "uuid": "fdaf6ff4-7d15-4a17-9446-8853610c966f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MWzPhBvt9EugoiK2Zjo4wu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12204,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12204
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01DgmnHyZzwkKsWWFgJkrTbu`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ad442358-e23d-4a59-9717-0b89a1275c0d",
+  "uuid": "ca093c59-04bc-45a6-bcd3-e34ac3016b8f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MWzPhBvt9EugoiK2Zjo4wu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12204,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12204
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-15T06:00:31.213Z_
+
+<details><summary>↩ Tool result · `toolu_01DgmnHyZzwkKsWWFgJkrTbu`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ad442358-e23d-4a59-9717-0b89a1275c0d",
+  "uuid": "59a1ef87-f48b-4d60-a905-2677ab21d1a8",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__ssh_execute"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by finding all LLaMA SciERC experiment directories and report.json files on the server.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ad442358-e23d-4a59-9717-0b89a1275c0d",
+  "uuid": "c414c03c-d05c-4b5c-a37e-cd45fe648ad1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013bwE575a6XdHdE21nnoUsq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 699,
+      "cache_read_input_tokens": 24045,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 699
+      },
+      "output_tokens": 25,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Urj3QcfGscGWAGPyGijMQb`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "find /root/autodl-tmp/struct_self_consist_ie/output/ -path \"*llama*\" -name \"report.json\" 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ad442358-e23d-4a59-9717-0b89a1275c0d",
+  "uuid": "d9e3aae7-87bb-4a41-b5ac-ad016ea94734",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013bwE575a6XdHdE21nnoUsq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 699,
+      "cache_read_input_tokens": 24045,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 699
+      },
+      "output_tokens": 25,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-15T06:00:35.493Z_
+
+<details><summary>↩ Tool result · `toolu_01Urj3QcfGscGWAGPyGijMQb`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ad442358-e23d-4a59-9717-0b89a1275c0d",
+  "uuid": "9472c176-d96b-41e7-b5ea-762cffeddfe9",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 10_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The `2>/dev/null` redirect uses `>` which is blocked. Let me try without it.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ad442358-e23d-4a59-9717-0b89a1275c0d",
+  "uuid": "de7880a5-4a08-4f9b-a1b8-10c46d48a862",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LkBSniKMk2Tqt35wz81D2W",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 274,
+      "cache_read_input_tokens": 24744,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 274
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_011tg58cSfpXYHqbjxrW7eLt`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "find /root/autodl-tmp/struct_self_consist_ie/output/ -path \"*llama*\" -name \"report.json\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ad442358-e23d-4a59-9717-0b89a1275c0d",
+  "uuid": "508c4bb7-c729-4107-b35f-197c7cb14f55",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LkBSniKMk2Tqt35wz81D2W",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 274,
+      "cache_read_input_tokens": 24744,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 274
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-15T06:00:39.872Z_
+
+<details><summary>↩ Tool result · `toolu_011tg58cSfpXYHqbjxrW7eLt`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/output/exp007_llama_dryrun/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp007_llama_inference/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_007_llama_seed123/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_007_llama_seed456/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_infer/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_007_llama_n16/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16_s123/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16_s456/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16_s123_r1024/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_007_llama_n16_r1024/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_018_llama_scierc_seed456/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_018_llama_scierc_seed123/report.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.0}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ad442358-e23d-4a59-9717-0b89a1275c0d",
+  "uuid": "30d4dd25-ae5d-4a92-a522-86556f2ec936",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/exp007_llama_dryrun/report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp007_llama_inference/report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_007_llama_seed123/report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_007_llama_seed456/report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_infer/report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_007_llama_n16/report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16/report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16_s123/report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16_s456/report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16_s123_r1024/report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_007_llama_n16_r1024/report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_018_llama_scierc_seed456/report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_018_llama_scierc_seed123/report.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.0}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/output/exp007_llama_dryrun/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp007_llama_inference/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_007_llama_seed123/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_007_llama_seed456/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_infer/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_007_llama_n16/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16_s123/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16_s456/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16_s123_r1024/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_007_llama_n16_r1024/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_018_llama_scierc_seed456/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_018_llama_scierc_seed123/report.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.0}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 13_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+So the LLaMA SciERC files are:
+- seed 123: /root/autodl-tmp/struct_self_consist_ie/output/exp_018_llama_scierc_seed123/report.json
+- seed 456: /root/autodl-tmp/struct_self_consist_ie/output/exp_018_llama_scierc_seed456/report.json
+
+For seed 42, there's no explicit "seed42" directory. Candidates:
+- exp007_llama_dryrun - probably a test run
+
+
+- exp007_llama_inference - likely the default seed 42 run
+- exp_007_llama_seed123 and exp_007_llama_seed456 - older naming convention
+- exp_007_llama_n16 - a variant
+
+I'm thinking exp007_llama_inference is probably the seed 42 experiment since it's the default, but I should check the configs to verify which one actually corresponds to seed 42.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ad442358-e23d-4a59-9717-0b89a1275c0d",
+  "uuid": "7d6ae52b-6583-428f-b82c-4c3b85b8d3d0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016fjoYBM2JyMCPK7VCpX1mu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 712,
+      "cache_read_input_tokens": 25018,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 712
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 14_
+
+Found the files. Seed 42 is likely `exp007_llama_inference` (default seed). Let me verify and read all three report.json files.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ad442358-e23d-4a59-9717-0b89a1275c0d",
+  "uuid": "9d9792aa-9e65-44a4-8ed8-4beac036b16b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016fjoYBM2JyMCPK7VCpX1mu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 712,
+      "cache_read_input_tokens": 25018,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 712
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01PbhEaoMyzZaz1WeVkWrcQa`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "head -5 /root/autodl-tmp/struct_self_consist_ie/output/exp007_llama_inference/report.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ad442358-e23d-4a59-9717-0b89a1275c0d",
+  "uuid": "74eb9b56-773b-4223-b6f9-03601fd289e2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016fjoYBM2JyMCPK7VCpX1mu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 712,
+      "cache_read_input_tokens": 25018,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 712
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01G3NCX68DizqmvVzK1poS9x`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "grep -l \"seed\" /root/autodl-tmp/struct_self_consist_ie/output/exp007_llama_inference/report.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ad442358-e23d-4a59-9717-0b89a1275c0d",
+  "uuid": "ac6bf055-9c7c-439c-a8a1-19b3fbb9a7dd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016fjoYBM2JyMCPK7VCpX1mu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 712,
+      "cache_read_input_tokens": 25018,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 712
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Pd3Xdvrpv9ixVhc2BwWRBR`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "grep \"seed\" /root/autodl-tmp/struct_self_consist_ie/output/exp007_llama_inference/report.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ad442358-e23d-4a59-9717-0b89a1275c0d",
+  "uuid": "11f42e3d-cac5-4899-95ca-3393ef5e66de",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016fjoYBM2JyMCPK7VCpX1mu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 712,
+      "cache_read_input_tokens": 25018,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 712
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-15T06:00:53.450Z_
+
+<details><summary>↩ Tool result · `toolu_01PbhEaoMyzZaz1WeVkWrcQa`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"dataset\\\": \\\"scierc\\\",\\n  \\\"subtask\\\": \\\"joint\\\",\\n  \\\"n_samples\\\": 8,\\n  \\\"temperature\\\": 1.0,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ad442358-e23d-4a59-9717-0b89a1275c0d",
+  "uuid": "9809bf61-7459-4774-be13-a23633450d7b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"dataset\\\\\\\": \\\\\\\"scierc\\\\\\\",\\\\n  \\\\\\\"subtask\\\\\\\": \\\\\\\"joint\\\\\\\",\\\\n  \\\\\\\"n_samples\\\\\\\": 8,\\\\n  \\\\\\\"temperature\\\\\\\": 1.0,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"dataset\\\": \\\"scierc\\\",\\n  \\\"subtask\\\": \\\"joint\\\",\\n  \\\"n_samples\\\": 8,\\n  \\\"temperature\\\": 1.0,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-15T06:00:53.878Z_
+
+<details><summary>↩ Tool result · `toolu_01G3NCX68DizqmvVzK1poS9x`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.42}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ad442358-e23d-4a59-9717-0b89a1275c0d",
+  "uuid": "2b4f947e-2557-4d7c-8e0e-59c24af9b3ac",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.42}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-15T06:00:54.299Z_
+
+<details><summary>↩ Tool result · `toolu_01Pd3Xdvrpv9ixVhc2BwWRBR`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.41}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ad442358-e23d-4a59-9717-0b89a1275c0d",
+  "uuid": "316ffc7a-d55e-4567-a740-90e9564d6fcc",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.41}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 21_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The report.json in exp007_llama_inference doesn't contain "seed" in its content, meaning it might be the default run with seed 42. Let me check the config or the report more fully to confirm. Let me also check if there's a config.json in that directory.
+
+Actually, let me just read all three report.json files using a Python script to extract the signals. First, let me understand the structure by reading one report.json fully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ad442358-e23d-4a59-9717-0b89a1275c0d",
+  "uuid": "88f90e74-bbd9-42aa-8ddf-d604f34ea23f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NowWjg6EvxEfEucQ4E7T9Q",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1190,
+      "cache_read_input_tokens": 25730,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1190
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_013CBsYEtfsTgsEPbS9hsaZa`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "python3 -c \"import json; d=json.load(open('/root/autodl-tmp/struct_self_consist_ie/output/exp007_llama_inference/report.json')); print(json.dumps(list(d.keys())))\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ad442358-e23d-4a59-9717-0b89a1275c0d",
+  "uuid": "ee6b89b3-874d-4825-a8ff-497f097af11f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NowWjg6EvxEfEucQ4E7T9Q",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1190,
+      "cache_read_input_tokens": 25730,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1190
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-15T06:01:01.549Z_
+
+<details><summary>↩ Tool result · `toolu_013CBsYEtfsTgsEPbS9hsaZa`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ad442358-e23d-4a59-9717-0b89a1275c0d",
+  "uuid": "9d119600-9e60-4d87-8e20-02c80b14d8d4",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01WyVnBiYktMtEwLczquvWNs`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "grep \"seed\" /root/autodl-tmp/struct_self_consist_ie/output/exp007_llama_inference/config.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ad442358-e23d-4a59-9717-0b89a1275c0d",
+  "uuid": "97dfb066-8c6e-441f-ba78-c2575d3fba76",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NowWjg6EvxEfEucQ4E7T9Q",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1190,
+      "cache_read_input_tokens": 25730,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1190
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-15T06:01:02.601Z_
+
+<details><summary>↩ Tool result · `toolu_01WyVnBiYktMtEwLczquvWNs`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"grep: /root/autodl-tmp/struct_self_consist_ie/output/exp007_llama_inference/config.json: No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ad442358-e23d-4a59-9717-0b89a1275c0d",
+  "uuid": "f6948e53-bd29-48dc-93a6-1b2ef3ce03e9",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"grep: /root/autodl-tmp/struct_self_consist_ie/output/exp007_llama_inference/config.json: No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"grep: /root/autodl-tmp/struct_self_consist_ie/output/exp007_llama_inference/config.json: No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 26_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Can't use semicolons in ssh_read_only. Let me use ssh_execute for the Python one-liner, or use a different approach. Actually, let me just cat the full report.json to understand its structure.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ad442358-e23d-4a59-9717-0b89a1275c0d",
+  "uuid": "01865d83-1d06-454e-9bf8-1dada9ba7b06",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016mbMMrogHWDVEmpKbpAzFf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 765,
+      "cache_read_input_tokens": 26920,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 765
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01SCTEWQnG6rEPvqCApvq47L`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/exp007_llama_inference/report.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ad442358-e23d-4a59-9717-0b89a1275c0d",
+  "uuid": "6a4ffb51-266e-4139-ace8-93aed294439c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016mbMMrogHWDVEmpKbpAzFf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 765,
+      "cache_read_input_tokens": 26920,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 765
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-15T06:01:06.896Z_
+
+<details><summary>↩ Tool result · `toolu_01SCTEWQnG6rEPvqCApvq47L`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"dataset\\\": \\\"scierc\\\",\\n  \\\"subtask\\\": \\\"joint\\\",\\n  \\\"n_samples\\\": 8,\\n  \\\"temperature\\\": 1.0,\\n  \\\"num_instances\\\": 551,\\n  \\\"use_train_format\\\": true,\\n  \\\"ner_greedy_f1\\\": 0.6600660066006601,\\n  \\\"ner_oracle_f1\\\": 0.78125,\\n  \\\"ner_oracle_headroom\\\": 0.12118399339933994,\\n  \\\"ner_fleiss_kappa_mean\\\": 0.4510513011561818,\\n  \\\"ner_soft_jaccard_mean\\\": 0.7408883358968755,\\n  \\\"ner_correlation_fleiss_vs_f1_full\\\": {\\n    \\\"rho\\\": 0.3266279055775236,\\n    \\\"p_value\\\": 1.287570740649135e-14,\\n    \\\"n\\\": 529\\n  },\\n  \\\"ner_correlation_softjaccard_vs_f1_full\\\": {\\n    \\\"rho\\\": 0.3629896359075142,\\n    \\\"p_value\\\": 6.413176314947488e-18,\\n    \\\"n\\\": 529\\n  },\\n  \\\"ner_correlation_fleiss_vs_f1_conditional\\\": {\\n    \\\"rho\\\": 0.22592580608127938,\\n    \\\"p_value\\\": 6.000276463748115e-07,\\n    \\\"n\\\": 478\\n  },\\n  \\\"ner_correlation_softjaccard_vs_f1_conditional\\\": {\\n    \\\"rho\\\": 0.3114126635780279,\\n    \\\"p_value\\\": 3.2938800700438393e-12,\\n    \\\"n\\\": 478\\n  },\\n  \\\"ner_n_gold_empty_filtered\\\": 22,\\n  \\\"ner_n_greedy_f1_zero_filtered\\\": 51,\\n  \\\"ner_structural_beats_surface\\\": true,\\n  \\\"ner_rho_advantage\\\": 0.03636173032999063,\\n  \\\"ner_sample_f1_mean\\\": 0.6176804918520697,\\n  \\\"ner_sample_f1_std\\\": 0.3177836539653145,\\n  \\\"ner_sample_f1_pct_zero\\\": 11.554820415879018,\\n  \\\"ner_logprob_baseline\\\": {\\n    \\\"full\\\": {\\n      \\\"rho\\\": 0.18273959393160216,\\n      \\\"p_rho\\\": 2.3501690317650754e-05,\\n      \\\"tau\\\": 0.13260890525611846,\\n      \\\"p_tau\\\": 1.3265671631743454e-05,\\n      \\\"auroc\\\": 0.5963785889482037,\\n      \\\"n\\\": 529\\n    },\\n    \\\"conditional\\\": {\\n      \\\"rho\\\": 0.10888087959384411,\\n      \\\"p_rho\\\": 0.01724994426000704,\\n      \\\"tau\\\": 0.0787998816842279,\\n      \\\"p_tau\\\": 0.014314426509718762,\\n      \\\"auroc\\\": 0.5722063689361181,\\n      \\\"n\\\": 478\\n    }\\n  },\\n  \\\"re_greedy_f1\\\": 0.4335378323108385,\\n  \\\"re_oracle_f1\\\": 0.5683341928829293,\\n  \\\"re_oracle_headroom\\\": 0.13479636057209082,\\n  \\\"re_fleiss_kappa_mean\\\": 0.367801111477099,\\n  \\\"re_soft_jaccard_mean\\\": 0.6827705480184734,\\n  \\\"re_correlation_fleiss_vs_f1_full\\\": {\\n    \\\"rho\\\": 0.3048384148589098,\\n    \\\"p_value\\\": 5.541120728974193e-10,\\n    \\\"n\\\": 397\\n  },\\n  \\\"re_correlation_softjaccard_vs_f1_full\\\": {\\n    \\\"rho\\\": 0.29848624118510075,\\n    \\\"p_value\\\": 1.2999365531668975e-09,\\n    \\\"n\\\": 397\\n  },\\n  \\\"re_correlation_fleiss_vs_f1_conditional\\\": {\\n    \\\"rho\\\": 0.25936937478426414,\\n    \\\"p_value\\\": 2.747640222169708e-05,\\n    \\\"n\\\": 255\\n  },\\n  \\\"re_correlation_softjaccard_vs_f1_conditional\\\": {\\n    \\\"rho\\\": 0.40525113681118985,\\n    \\\"p_value\\\": 1.690550213300834e-11,\\n    \\\"n\\\": 255\\n  },\\n  \\\"re_n_gold_empty_filtered\\\": 154,\\n  \\\"re_n_greedy_f1_zero_filtered\\\": 142,\\n  \\\"re_structural_beats_surface\\\": false,\\n  \\\"re_rho_advantage\\\": -0.006352173673809025,\\n  \\\"re_sample_f1_mean\\\": 0.38527399542125684,\\n  \\\"re_sample_f1_std\\\": 0.3864754205596665,\\n  \\\"re_sample_f1_pct_zero\\\": 41.15239294710327,\\n  \\\"re_logprob_baseline\\\": {\\n    \\\"full\\\": {\\n      \\\"rho\\\": 0.28844331291249065,\\n      \\\"p_rho\\\": 4.8002658411912986e-09,\\n      \\\"tau\\\": 0.21253763515856647,\\n      \\\"p_tau\\\": 4.810610114692204e-09,\\n      \\\"auroc\\\": 0.6432861651226712,\\n      \\\"n\\\": 397\\n    },\\n    \\\"conditional\\\": {\\n      \\\"rho\\\": 0.09191262368805807,\\n      \\\"p_rho\\\": 0.14329898742211025,\\n      \\\"tau\\\": 0.06321802901705909,\\n      \\\"p_tau\\\": 0.1586194824514866,\\n      \\\"auroc\\\": 0.5989168732872243,\\n      \\\"n\\\": 255\\n    }\\n  },\\n  \\\"verdict\\\": \\\"FAIL\\\",\\n  \\\"verdict_note\\\": \\\"Joint mode: verdict requires RE ρ_sj ≥ 0.40 AND ρ_sj > ρ_fk AND any subtask headroom ≥ 2pp\\\",\\n  \\\"warning\\\": \\\"⚠️ >30% samples F1=0, recommend re-running at T=0.7\\\"\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ad442358-e23d-4a59-9717-0b89a1275c0d",
+  "uuid": "12322c8e-10ad-42a1-8e2f-1b6c61e78d6b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"dataset\\\\\\\": \\\\\\\"scierc\\\\\\\",\\\\n  \\\\\\\"subtask\\\\\\\": \\\\\\\"joint\\\\\\\",\\\\n  \\\\\\\"n_samples\\\\\\\": 8,\\\\n  \\\\\\\"temperature\\\\\\\": 1.0,\\\\n  \\\\\\\"num_instances\\\\\\\": 551,\\\\n  \\\\\\\"use_train_format\\\\\\\": true,\\\\n  \\\\\\\"ner_greedy_f1\\\\\\\": 0.6600660066006601,\\\\n  \\\\\\\"ner_oracle_f1\\\\\\\": 0.78125,\\\\n  \\\\\\\"ner_oracle_headroom\\\\\\\": 0.12118399339933994,\\\\n  \\\\\\\"ner_fleiss_kappa_mean\\\\\\\": 0.4510513011561818,\\\\n  \\\\\\\"ner_soft_jaccard_mean\\\\\\\": 0.7408883358968755,\\\\n  \\\\\\\"ner_correlation_fleiss_vs_f1_full\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.3266279055775236,\\\\n    \\\\\\\"p_value\\\\\\\": 1.287570740649135e-14,\\\\n    \\\\\\\"n\\\\\\\": 529\\\\n  },\\\\n  \\\\\\\"ner_correlation_softjaccard_vs_f1_full\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.3629896359075142,\\\\n    \\\\\\\"p_value\\\\\\\": 6.413176314947488e-18,\\\\n    \\\\\\\"n\\\\\\\": 529\\\\n  },\\\\n  \\\\\\\"ner_correlation_fleiss_vs_f1_conditional\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.22592580608127938,\\\\n    \\\\\\\"p_value\\\\\\\": 6.000276463748115e-07,\\\\n    \\\\\\\"n\\\\\\\": 478\\\\n  },\\\\n  \\\\\\\"ner_correlation_softjaccard_vs_f1_conditional\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.3114126635780279,\\\\n    \\\\\\\"p_value\\\\\\\": 3.2938800700438393e-12,\\\\n    \\\\\\\"n\\\\\\\": 478\\\\n  },\\\\n  \\\\\\\"ner_n_gold_empty_filtered\\\\\\\": 22,\\\\n  \\\\\\\"ner_n_greedy_f1_zero_filtered\\\\\\\": 51,\\\\n  \\\\\\\"ner_structural_beats_surface\\\\\\\": true,\\\\n  \\\\\\\"ner_rho_advantage\\\\\\\": 0.03636173032999063,\\\\n  \\\\\\\"ner_sample_f1_mean\\\\\\\": 0.6176804918520697,\\\\n  \\\\\\\"ner_sample_f1_std\\\\\\\": 0.3177836539653145,\\\\n  \\\\\\\"ner_sample_f1_pct_zero\\\\\\\": 11.554820415879018,\\\\n  \\\\\\\"ner_logprob_baseline\\\\\\\": {\\\\n    \\\\\\\"full\\\\\\\": {\\\\n      \\\\\\\"rho\\\\\\\": 0.18273959393160216,\\\\n      \\\\\\\"p_rho\\\\\\\": 2.3501690317650754e-05,\\\\n      \\\\\\\"tau\\\\\\\": 0.13260890525611846,\\\\n      \\\\\\\"p_tau\\\\\\\": 1.3265671631743454e-05,\\\\n      \\\\\\\"auroc\\\\\\\": 0.5963785889482037,\\\\n      \\\\\\\"n\\\\\\\": 529\\\\n    },\\\\n    \\\\\\\"conditional\\\\\\\": {\\\\n      \\\\\\\"rho\\\\\\\": 0.10888087959384411,\\\\n      \\\\\\\"p_rho\\\\\\\": 0.01724994426000704,\\\\n      \\\\\\\"tau\\\\\\\": 0.0787998816842279,\\\\n      \\\\\\\"p_tau\\\\\\\": 0.014314426509718762,\\\\n      \\\\\\\"auroc\\\\\\\": 0.5722063689361181,\\\\n      \\\\\\\"n\\\\\\\": 478\\\\n    }\\\\n  },\\\\n  \\\\\\\"re_greedy_f1\\\\\\\": 0.4335378323108385,\\\\n  \\\\\\\"re_oracle_f1\\\\\\\": 0.5683341928829293,\\\\n  \\\\\\\"re_oracle_headroom\\\\\\\": 0.13479636057209082,\\\\n  \\\\\\\"re_fleiss_kappa_mean\\\\\\\": 0.367801111477099,\\\\n  \\\\\\\"re_soft_jaccard_mean\\\\\\\": 0.6827705480184734,\\\\n  \\\\\\\"re_correlation_fleiss_vs_f1_full\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.3048384148589098,\\\\n    \\\\\\\"p_value\\\\\\\": 5.541120728974193e-10,\\\\n    \\\\\\\"n\\\\\\\": 397\\\\n  },\\\\n  \\\\\\\"re_correlation_softjaccard_vs_f1_full\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.29848624118510075,\\\\n    \\\\\\\"p_value\\\\\\\": 1.2999365531668975e-09,\\\\n    \\\\\\\"n\\\\\\\": 397\\\\n  },\\\\n  \\\\\\\"re_correlation_fleiss_vs_f1_conditional\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.25936937478426414,\\\\n    \\\\\\\"p_value\\\\\\\": 2.747640222169708e-05,\\\\n    \\\\\\\"n\\\\\\\": 255\\\\n  },\\\\n  \\\\\\\"re_correlation_softjaccard_vs_f1_conditional\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.40525113681118985,\\\\n    \\\\\\\"p_value\\\\\\\": 1.690550213300834e-11,\\\\n    \\\\\\\"n\\\\\\\": 255\\\\n  },\\\\n  \\\\\\\"re_n_gold_empty_filtered\\\\\\\": 154,\\\\n  \\\\\\\"re_n_greedy_f1_zero_filtered\\\\\\\": 142,\\\\n  \\\\\\\"re_structural_beats_surface\\\\\\\": false,\\\\n  \\\\\\\"re_rho_advantage\\\\\\\": -0.006352173673809025,\\\\n  \\\\\\\"re_sample_f1_mean\\\\\\\": 0.38527399542125684,\\\\n  \\\\\\\"re_sample_f1_std\\\\\\\": 0.3864754205596665,\\\\n  \\\\\\\"re_sample_f1_pct_zero\\\\\\\": 41.15239294710327,\\\\n  \\\\\\\"re_logprob_baseline\\\\\\\": {\\\\n    \\\\\\\"full\\\\\\\": {\\\\n      \\\\\\\"rho\\\\\\\": 0.28844331291249065,\\\\n      \\\\\\\"p_rho\\\\\\\": 4.8002658411912986e-09,\\\\n      \\\\\\\"tau\\\\\\\": 0.21253763515856647,\\\\n      \\\\\\\"p_tau\\\\\\\": 4.810610114692204e-09,\\\\n      \\\\\\\"auroc\\\\\\\": 0.6432861651226712,\\\\n      \\\\\\\"n\\\\\\\": 397\\\\n    },\\\\n    \\\\\\\"conditional\\\\\\\": {\\\\n      \\\\\\\"rho\\\\\\\": 0.09191262368805807,\\\\n      \\\\\\\"p_rho\\\\\\\": 0.14329898742211025,\\\\n      \\\\\\\"tau\\\\\\\": 0.06321802901705909,\\\\n      \\\\\\\"p_tau\\\\\\\": 0.1586194824514866,\\\\n      \\\\\\\"auroc\\\\\\\": 0.5989168732872243,\\\\n      \\\\\\\"n\\\\\\\": 255\\\\n    }\\\\n  },\\\\n  \\\\\\\"verdict\\\\\\\": \\\\\\\"FAIL\\\\\\\",\\\\n  \\\\\\\"verdict_note\\\\\\\": \\\\\\\"Joint mode: verdict requires RE ρ_sj ≥ 0.40 AND ρ_sj > ρ_fk AND any subtask headroom ≥ 2pp\\\\\\\",\\\\n  \\\\\\\"warning\\\\\\\": \\\\\\\"⚠️ >30% samples F1=0, recommend re-running at T=0.7\\\\\\\"\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"dataset\\\": \\\"scierc\\\",\\n  \\\"subtask\\\": \\\"joint\\\",\\n  \\\"n_samples\\\": 8,\\n  \\\"temperature\\\": 1.0,\\n  \\\"num_instances\\\": 551,\\n  \\\"use_train_format\\\": true,\\n  \\\"ner_greedy_f1\\\": 0.6600660066006601,\\n  \\\"ner_oracle_f1\\\": 0.78125,\\n  \\\"ner_oracle_headroom\\\": 0.12118399339933994,\\n  \\\"ner_fleiss_kappa_mean\\\": 0.4510513011561818,\\n  \\\"ner_soft_jaccard_mean\\\": 0.7408883358968755,\\n  \\\"ner_correlation_fleiss_vs_f1_full\\\": {\\n    \\\"rho\\\": 0.3266279055775236,\\n    \\\"p_value\\\": 1.287570740649135e-14,\\n    \\\"n\\\": 529\\n  },\\n  \\\"ner_correlation_softjaccard_vs_f1_full\\\": {\\n    \\\"rho\\\": 0.3629896359075142,\\n    \\\"p_value\\\": 6.413176314947488e-18,\\n    \\\"n\\\": 529\\n  },\\n  \\\"ner_correlation_fleiss_vs_f1_conditional\\\": {\\n    \\\"rho\\\": 0.22592580608127938,\\n    \\\"p_value\\\": 6.000276463748115e-07,\\n    \\\"n\\\": 478\\n  },\\n  \\\"ner_correlation_softjaccard_vs_f1_conditional\\\": {\\n    \\\"rho\\\": 0.3114126635780279,\\n    \\\"p_value\\\": 3.2938800700438393e-12,\\n    \\\"n\\\": 478\\n  },\\n  \\\"ner_n_gold_empty_filtered\\\": 22,\\n  \\\"ner_n_greedy_f1_zero_filtered\\\": 51,\\n  \\\"ner_structural_beats_surface\\\": true,\\n  \\\"ner_rho_advantage\\\": 0.03636173032999063,\\n  \\\"ner_sample_f1_mean\\\": 0.6176804918520697,\\n  \\\"ner_sample_f1_std\\\": 0.3177836539653145,\\n  \\\"ner_sample_f1_pct_zero\\\": 11.554820415879018,\\n  \\\"ner_logprob_baseline\\\": {\\n    \\\"full\\\": {\\n      \\\"rho\\\": 0.18273959393160216,\\n      \\\"p_rho\\\": 2.3501690317650754e-05,\\n      \\\"tau\\\": 0.13260890525611846,\\n      \\\"p_tau\\\": 1.3265671631743454e-05,\\n      \\\"auroc\\\": 0.5963785889482037,\\n      \\\"n\\\": 529\\n    },\\n    \\\"conditional\\\": {\\n      \\\"rho\\\": 0.10888087959384411,\\n      \\\"p_rho\\\": 0.01724994426000704,\\n      \\\"tau\\\": 0.0787998816842279,\\n      \\\"p_tau\\\": 0.014314426509718762,\\n      \\\"auroc\\\": 0.5722063689361181,\\n      \\\"n\\\": 478\\n    }\\n  },\\n  \\\"re_greedy_f1\\\": 0.4335378323108385,\\n  \\\"re_oracle_f1\\\": 0.5683341928829293,\\n  \\\"re_oracle_headroom\\\": 0.13479636057209082,\\n  \\\"re_fleiss_kappa_mean\\\": 0.367801111477099,\\n  \\\"re_soft_jaccard_mean\\\": 0.6827705480184734,\\n  \\\"re_correlation_fleiss_vs_f1_full\\\": {\\n    \\\"rho\\\": 0.3048384148589098,\\n    \\\"p_value\\\": 5.541120728974193e-10,\\n    \\\"n\\\": 397\\n  },\\n  \\\"re_correlation_softjaccard_vs_f1_full\\\": {\\n    \\\"rho\\\": 0.29848624118510075,\\n    \\\"p_value\\\": 1.2999365531668975e-09,\\n    \\\"n\\\": 397\\n  },\\n  \\\"re_correlation_fleiss_vs_f1_conditional\\\": {\\n    \\\"rho\\\": 0.25936937478426414,\\n    \\\"p_value\\\": 2.747640222169708e-05,\\n    \\\"n\\\": 255\\n  },\\n  \\\"re_correlation_softjaccard_vs_f1_conditional\\\": {\\n    \\\"rho\\\": 0.40525113681118985,\\n    \\\"p_value\\\": 1.690550213300834e-11,\\n    \\\"n\\\": 255\\n  },\\n  \\\"re_n_gold_empty_filtered\\\": 154,\\n  \\\"re_n_greedy_f1_zero_filtered\\\": 142,\\n  \\\"re_structural_beats_surface\\\": false,\\n  \\\"re_rho_advantage\\\": -0.006352173673809025,\\n  \\\"re_sample_f1_mean\\\": 0.38527399542125684,\\n  \\\"re_sample_f1_std\\\": 0.3864754205596665,\\n  \\\"re_sample_f1_pct_zero\\\": 41.15239294710327,\\n  \\\"re_logprob_baseline\\\": {\\n    \\\"full\\\": {\\n      \\\"rho\\\": 0.28844331291249065,\\n      \\\"p_rho\\\": 4.8002658411912986e-09,\\n      \\\"tau\\\": 0.21253763515856647,\\n      \\\"p_tau\\\": 4.810610114692204e-09,\\n      \\\"auroc\\\": 0.6432861651226712,\\n      \\\"n\\\": 397\\n    },\\n    \\\"conditional\\\": {\\n      \\\"rho\\\": 0.09191262368805807,\\n      \\\"p_rho\\\": 0.14329898742211025,\\n      \\\"tau\\\": 0.06321802901705909,\\n      \\\"p_tau\\\": 0.1586194824514866,\\n      \\\"auroc\\\": 0.5989168732872243,\\n      \\\"n\\\": 255\\n    }\\n  },\\n  \\\"verdict\\\": \\\"FAIL\\\",\\n  \\\"verdict_note\\\": \\\"Joint mode: verdict requires RE ρ_sj ≥ 0.40 AND ρ_sj > ρ_fk AND any subtask headroom ≥ 2pp\\\",\\n  \\\"warning\\\": \\\"⚠️ >30% samples F1=0, recommend re-running at T=0.7\\\"\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 29_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I can see the structure. The report.json has a flat structure with keys like:
+- `ner_correlation_fleiss_vs_f1_full` → `rho`
+- `ner_correlation_softjaccard_vs_f1_full` → `rho`
+- `ner_logprob_baseline` → `full` → `rho`, `auroc`
+
+But I don't see explicit "exact_match" or "voting_confidence" signals. Let me check the Qwen report to understand what signals were extracted. Actually, let me check the Qwen summary to see what format was used.
+
+
+I notice the report only contains fleiss_kappa, soft_jaccard, and logprob—missing exact_match and voting_confidence that were supposed to be part of the five signals. Let me look at the Qwen summary and the seed 123 report to see if there's a different format or if these signals were computed differently.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ad442358-e23d-4a59-9717-0b89a1275c0d",
+  "uuid": "ebabd4bf-4d7b-48e8-8c0f-8962f123223f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XaDoJ99gB9DdWx4Bkd5onb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2380,
+      "cache_read_input_tokens": 27685,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2380
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 30_
+
+This report has the old format. Let me check seed 123/456 which may have more signals, and also the Qwen summary for reference.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ad442358-e23d-4a59-9717-0b89a1275c0d",
+  "uuid": "747cadcd-e8b4-4616-8e90-3eaa156eba18",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XaDoJ99gB9DdWx4Bkd5onb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2380,
+      "cache_read_input_tokens": 27685,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2380
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01EpmJVxgykaxq5EkMdgDfFS`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/exp_018_llama_scierc_seed123/report.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ad442358-e23d-4a59-9717-0b89a1275c0d",
+  "uuid": "cc02e367-e036-49fe-8f11-3965b8a5db06",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XaDoJ99gB9DdWx4Bkd5onb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2380,
+      "cache_read_input_tokens": 27685,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2380
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-15T06:01:19.594Z_
+
+<details><summary>↩ Tool result · `toolu_01EpmJVxgykaxq5EkMdgDfFS`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"dataset\\\": \\\"scierc\\\",\\n  \\\"subtask\\\": \\\"joint\\\",\\n  \\\"n_samples\\\": 8,\\n  \\\"temperature\\\": 1.0,\\n  \\\"num_instances\\\": 551,\\n  \\\"use_train_format\\\": true,\\n  \\\"ner_greedy_f1\\\": 0.658273381294964,\\n  \\\"ner_oracle_f1\\\": 0.7689088191330344,\\n  \\\"ner_oracle_headroom\\\": 0.1106354378380704,\\n  \\\"ner_fleiss_kappa_mean\\\": 0.4772335832768353,\\n  \\\"ner_soft_jaccard_mean\\\": 0.75236263744864,\\n  \\\"ner_correlation_fleiss_vs_f1_full\\\": {\\n    \\\"rho\\\": 0.2896734882773988,\\n    \\\"p_value\\\": 1.0989705204024647e-11,\\n    \\\"n\\\": 529\\n  },\\n  \\\"ner_correlation_softjaccard_vs_f1_full\\\": {\\n    \\\"rho\\\": 0.3551721931536368,\\n    \\\"p_value\\\": 3.5797535416046176e-17,\\n    \\\"n\\\": 529\\n  },\\n  \\\"ner_correlation_fleiss_vs_f1_conditional\\\": {\\n    \\\"rho\\\": 0.1764397752078601,\\n    \\\"p_value\\\": 0.00010360917369488266,\\n    \\\"n\\\": 479\\n  },\\n  \\\"ner_correlation_softjaccard_vs_f1_conditional\\\": {\\n    \\\"rho\\\": 0.2881673771019473,\\n    \\\"p_value\\\": 1.299672054600507e-10,\\n    \\\"n\\\": 479\\n  },\\n  \\\"ner_n_gold_empty_filtered\\\": 22,\\n  \\\"ner_n_greedy_f1_zero_filtered\\\": 50,\\n  \\\"ner_structural_beats_surface\\\": true,\\n  \\\"ner_rho_advantage\\\": 0.06549870487623799,\\n  \\\"ner_sample_f1_mean\\\": 0.6213315841095781,\\n  \\\"ner_sample_f1_std\\\": 0.31276832223861145,\\n  \\\"ner_sample_f1_pct_zero\\\": 11.10586011342155,\\n  \\\"ner_logprob_baseline\\\": {\\n    \\\"full\\\": {\\n      \\\"rho\\\": 0.19699831476845336,\\n      \\\"p_rho\\\": 4.993686886777443e-06,\\n      \\\"tau\\\": 0.1415693838029883,\\n      \\\"p_tau\\\": 3.2887399288184925e-06,\\n      \\\"auroc\\\": 0.5839402346685163,\\n      \\\"n\\\": 529\\n    },\\n    \\\"conditional\\\": {\\n      \\\"rho\\\": 0.11748650160727847,\\n      \\\"p_rho\\\": 0.010067051503902484,\\n      \\\"tau\\\": 0.08397602458624057,\\n      \\\"p_tau\\\": 0.008944955302586178,\\n      \\\"auroc\\\": 0.5557589706036197,\\n      \\\"n\\\": 479\\n    }\\n  },\\n  \\\"re_greedy_f1\\\": 0.4317718940936864,\\n  \\\"re_oracle_f1\\\": 0.5803108808290154,\\n  \\\"re_oracle_headroom\\\": 0.148538986735329,\\n  \\\"re_fleiss_kappa_mean\\\": 0.3599626999093812,\\n  \\\"re_soft_jaccard_mean\\\": 0.6758866358307039,\\n  \\\"re_correlation_fleiss_vs_f1_full\\\": {\\n    \\\"rho\\\": 0.25546324581586716,\\n    \\\"p_value\\\": 2.47103386353029e-07,\\n    \\\"n\\\": 397\\n  },\\n  \\\"re_correlation_softjaccard_vs_f1_full\\\": {\\n    \\\"rho\\\": 0.24615842054540021,\\n    \\\"p_value\\\": 6.841078669399912e-07,\\n    \\\"n\\\": 397\\n  },\\n  \\\"re_correlation_fleiss_vs_f1_conditional\\\": {\\n    \\\"rho\\\": 0.18803520725826953,\\n    \\\"p_value\\\": 0.00257091551843303,\\n    \\\"n\\\": 255\\n  },\\n  \\\"re_correlation_softjaccard_vs_f1_conditional\\\": {\\n    \\\"rho\\\": 0.3438043160560637,\\n    \\\"p_value\\\": 1.741704227393649e-08,\\n    \\\"n\\\": 255\\n  },\\n  \\\"re_n_gold_empty_filtered\\\": 154,\\n  \\\"re_n_greedy_f1_zero_filtered\\\": 142,\\n  \\\"re_structural_beats_surface\\\": false,\\n  \\\"re_rho_advantage\\\": -0.009304825270466943,\\n  \\\"re_sample_f1_mean\\\": 0.39039902206609167,\\n  \\\"re_sample_f1_std\\\": 0.3884341255154615,\\n  \\\"re_sample_f1_pct_zero\\\": 41.0264483627204,\\n  \\\"re_logprob_baseline\\\": {\\n    \\\"full\\\": {\\n      \\\"rho\\\": 0.3053623787080569,\\n      \\\"p_rho\\\": 5.159997485100229e-10,\\n      \\\"tau\\\": 0.22334175774479423,\\n      \\\"p_tau\\\": 7.617426865154851e-10,\\n      \\\"auroc\\\": 0.6543859649122807,\\n      \\\"n\\\": 397\\n    },\\n    \\\"conditional\\\": {\\n      \\\"rho\\\": 0.11757849658088665,\\n      \\\"p_rho\\\": 0.06081175353521194,\\n      \\\"tau\\\": 0.08313306407253442,\\n      \\\"p_tau\\\": 0.06369269510085557,\\n      \\\"auroc\\\": 0.6002870938274827,\\n      \\\"n\\\": 255\\n    }\\n  },\\n  \\\"verdict\\\": \\\"FAIL\\\",\\n  \\\"verdict_note\\\": \\\"Joint mode: verdict requires RE ρ_sj ≥ 0.40 AND ρ_sj > ρ_fk AND any subtask headroom ≥ 2pp\\\",\\n  \\\"warning\\\": \\\"⚠️ >30% samples F1=0, recommend re-running at T=0.7\\\"\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ad442358-e23d-4a59-9717-0b89a1275c0d",
+  "uuid": "16d88e00-7ac7-4633-bff8-d82127a55b44",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"dataset\\\\\\\": \\\\\\\"scierc\\\\\\\",\\\\n  \\\\\\\"subtask\\\\\\\": \\\\\\\"joint\\\\\\\",\\\\n  \\\\\\\"n_samples\\\\\\\": 8,\\\\n  \\\\\\\"temperature\\\\\\\": 1.0,\\\\n  \\\\\\\"num_instances\\\\\\\": 551,\\\\n  \\\\\\\"use_train_format\\\\\\\": true,\\\\n  \\\\\\\"ner_greedy_f1\\\\\\\": 0.658273381294964,\\\\n  \\\\\\\"ner_oracle_f1\\\\\\\": 0.7689088191330344,\\\\n  \\\\\\\"ner_oracle_headroom\\\\\\\": 0.1106354378380704,\\\\n  \\\\\\\"ner_fleiss_kappa_mean\\\\\\\": 0.4772335832768353,\\\\n  \\\\\\\"ner_soft_jaccard_mean\\\\\\\": 0.75236263744864,\\\\n  \\\\\\\"ner_correlation_fleiss_vs_f1_full\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.2896734882773988,\\\\n    \\\\\\\"p_value\\\\\\\": 1.0989705204024647e-11,\\\\n    \\\\\\\"n\\\\\\\": 529\\\\n  },\\\\n  \\\\\\\"ner_correlation_softjaccard_vs_f1_full\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.3551721931536368,\\\\n    \\\\\\\"p_value\\\\\\\": 3.5797535416046176e-17,\\\\n    \\\\\\\"n\\\\\\\": 529\\\\n  },\\\\n  \\\\\\\"ner_correlation_fleiss_vs_f1_conditional\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.1764397752078601,\\\\n    \\\\\\\"p_value\\\\\\\": 0.00010360917369488266,\\\\n    \\\\\\\"n\\\\\\\": 479\\\\n  },\\\\n  \\\\\\\"ner_correlation_softjaccard_vs_f1_conditional\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.2881673771019473,\\\\n    \\\\\\\"p_value\\\\\\\": 1.299672054600507e-10,\\\\n    \\\\\\\"n\\\\\\\": 479\\\\n  },\\\\n  \\\\\\\"ner_n_gold_empty_filtered\\\\\\\": 22,\\\\n  \\\\\\\"ner_n_greedy_f1_zero_filtered\\\\\\\": 50,\\\\n  \\\\\\\"ner_structural_beats_surface\\\\\\\": true,\\\\n  \\\\\\\"ner_rho_advantage\\\\\\\": 0.06549870487623799,\\\\n  \\\\\\\"ner_sample_f1_mean\\\\\\\": 0.6213315841095781,\\\\n  \\\\\\\"ner_sample_f1_std\\\\\\\": 0.31276832223861145,\\\\n  \\\\\\\"ner_sample_f1_pct_zero\\\\\\\": 11.10586011342155,\\\\n  \\\\\\\"ner_logprob_baseline\\\\\\\": {\\\\n    \\\\\\\"full\\\\\\\": {\\\\n      \\\\\\\"rho\\\\\\\": 0.19699831476845336,\\\\n      \\\\\\\"p_rho\\\\\\\": 4.993686886777443e-06,\\\\n      \\\\\\\"tau\\\\\\\": 0.1415693838029883,\\\\n      \\\\\\\"p_tau\\\\\\\": 3.2887399288184925e-06,\\\\n      \\\\\\\"auroc\\\\\\\": 0.5839402346685163,\\\\n      \\\\\\\"n\\\\\\\": 529\\\\n    },\\\\n    \\\\\\\"conditional\\\\\\\": {\\\\n      \\\\\\\"rho\\\\\\\": 0.11748650160727847,\\\\n      \\\\\\\"p_rho\\\\\\\": 0.010067051503902484,\\\\n      \\\\\\\"tau\\\\\\\": 0.08397602458624057,\\\\n      \\\\\\\"p_tau\\\\\\\": 0.008944955302586178,\\\\n      \\\\\\\"auroc\\\\\\\": 0.5557589706036197,\\\\n      \\\\\\\"n\\\\\\\": 479\\\\n    }\\\\n  },\\\\n  \\\\\\\"re_greedy_f1\\\\\\\": 0.4317718940936864,\\\\n  \\\\\\\"re_oracle_f1\\\\\\\": 0.5803108808290154,\\\\n  \\\\\\\"re_oracle_headroom\\\\\\\": 0.148538986735329,\\\\n  \\\\\\\"re_fleiss_kappa_mean\\\\\\\": 0.3599626999093812,\\\\n  \\\\\\\"re_soft_jaccard_mean\\\\\\\": 0.6758866358307039,\\\\n  \\\\\\\"re_correlation_fleiss_vs_f1_full\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.25546324581586716,\\\\n    \\\\\\\"p_value\\\\\\\": 2.47103386353029e-07,\\\\n    \\\\\\\"n\\\\\\\": 397\\\\n  },\\\\n  \\\\\\\"re_correlation_softjaccard_vs_f1_full\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.24615842054540021,\\\\n    \\\\\\\"p_value\\\\\\\": 6.841078669399912e-07,\\\\n    \\\\\\\"n\\\\\\\": 397\\\\n  },\\\\n  \\\\\\\"re_correlation_fleiss_vs_f1_conditional\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.18803520725826953,\\\\n    \\\\\\\"p_value\\\\\\\": 0.00257091551843303,\\\\n    \\\\\\\"n\\\\\\\": 255\\\\n  },\\\\n  \\\\\\\"re_correlation_softjaccard_vs_f1_conditional\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.3438043160560637,\\\\n    \\\\\\\"p_value\\\\\\\": 1.741704227393649e-08,\\\\n    \\\\\\\"n\\\\\\\": 255\\\\n  },\\\\n  \\\\\\\"re_n_gold_empty_filtered\\\\\\\": 154,\\\\n  \\\\\\\"re_n_greedy_f1_zero_filtered\\\\\\\": 142,\\\\n  \\\\\\\"re_structural_beats_surface\\\\\\\": false,\\\\n  \\\\\\\"re_rho_advantage\\\\\\\": -0.009304825270466943,\\\\n  \\\\\\\"re_sample_f1_mean\\\\\\\": 0.39039902206609167,\\\\n  \\\\\\\"re_sample_f1_std\\\\\\\": 0.3884341255154615,\\\\n  \\\\\\\"re_sample_f1_pct_zero\\\\\\\": 41.0264483627204,\\\\n  \\\\\\\"re_logprob_baseline\\\\\\\": {\\\\n    \\\\\\\"full\\\\\\\": {\\\\n      \\\\\\\"rho\\\\\\\": 0.3053623787080569,\\\\n      \\\\\\\"p_rho\\\\\\\": 5.159997485100229e-10,\\\\n      \\\\\\\"tau\\\\\\\": 0.22334175774479423,\\\\n      \\\\\\\"p_tau\\\\\\\": 7.617426865154851e-10,\\\\n      \\\\\\\"auroc\\\\\\\": 0.6543859649122807,\\\\n      \\\\\\\"n\\\\\\\": 397\\\\n    },\\\\n    \\\\\\\"conditional\\\\\\\": {\\\\n      \\\\\\\"rho\\\\\\\": 0.11757849658088665,\\\\n      \\\\\\\"p_rho\\\\\\\": 0.06081175353521194,\\\\n      \\\\\\\"tau\\\\\\\": 0.08313306407253442,\\\\n      \\\\\\\"p_tau\\\\\\\": 0.06369269510085557,\\\\n      \\\\\\\"auroc\\\\\\\": 0.6002870938274827,\\\\n      \\\\\\\"n\\\\\\\": 255\\\\n    }\\\\n  },\\\\n  \\\\\\\"verdict\\\\\\\": \\\\\\\"FAIL\\\\\\\",\\\\n  \\\\\\\"verdict_note\\\\\\\": \\\\\\\"Joint mode: verdict requires RE ρ_sj ≥ 0.40 AND ρ_sj > ρ_fk AND any subtask headroom ≥ 2pp\\\\\\\",\\\\n  \\\\\\\"warning\\\\\\\": \\\\\\\"⚠️ >30% samples F1=0, recommend re-running at T=0.7\\\\\\\"\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"dataset\\\": \\\"scierc\\\",\\n  \\\"subtask\\\": \\\"joint\\\",\\n  \\\"n_samples\\\": 8,\\n  \\\"temperature\\\": 1.0,\\n  \\\"num_instances\\\": 551,\\n  \\\"use_train_format\\\": true,\\n  \\\"ner_greedy_f1\\\": 0.658273381294964,\\n  \\\"ner_oracle_f1\\\": 0.7689088191330344,\\n  \\\"ner_oracle_headroom\\\": 0.1106354378380704,\\n  \\\"ner_fleiss_kappa_mean\\\": 0.4772335832768353,\\n  \\\"ner_soft_jaccard_mean\\\": 0.75236263744864,\\n  \\\"ner_correlation_fleiss_vs_f1_full\\\": {\\n    \\\"rho\\\": 0.2896734882773988,\\n    \\\"p_value\\\": 1.0989705204024647e-11,\\n    \\\"n\\\": 529\\n  },\\n  \\\"ner_correlation_softjaccard_vs_f1_full\\\": {\\n    \\\"rho\\\": 0.3551721931536368,\\n    \\\"p_value\\\": 3.5797535416046176e-17,\\n    \\\"n\\\": 529\\n  },\\n  \\\"ner_correlation_fleiss_vs_f1_conditional\\\": {\\n    \\\"rho\\\": 0.1764397752078601,\\n    \\\"p_value\\\": 0.00010360917369488266,\\n    \\\"n\\\": 479\\n  },\\n  \\\"ner_correlation_softjaccard_vs_f1_conditional\\\": {\\n    \\\"rho\\\": 0.2881673771019473,\\n    \\\"p_value\\\": 1.299672054600507e-10,\\n    \\\"n\\\": 479\\n  },\\n  \\\"ner_n_gold_empty_filtered\\\": 22,\\n  \\\"ner_n_greedy_f1_zero_filtered\\\": 50,\\n  \\\"ner_structural_beats_surface\\\": true,\\n  \\\"ner_rho_advantage\\\": 0.06549870487623799,\\n  \\\"ner_sample_f1_mean\\\": 0.6213315841095781,\\n  \\\"ner_sample_f1_std\\\": 0.31276832223861145,\\n  \\\"ner_sample_f1_pct_zero\\\": 11.10586011342155,\\n  \\\"ner_logprob_baseline\\\": {\\n    \\\"full\\\": {\\n      \\\"rho\\\": 0.19699831476845336,\\n      \\\"p_rho\\\": 4.993686886777443e-06,\\n      \\\"tau\\\": 0.1415693838029883,\\n      \\\"p_tau\\\": 3.2887399288184925e-06,\\n      \\\"auroc\\\": 0.5839402346685163,\\n      \\\"n\\\": 529\\n    },\\n    \\\"conditional\\\": {\\n      \\\"rho\\\": 0.11748650160727847,\\n      \\\"p_rho\\\": 0.010067051503902484,\\n      \\\"tau\\\": 0.08397602458624057,\\n      \\\"p_tau\\\": 0.008944955302586178,\\n      \\\"auroc\\\": 0.5557589706036197,\\n      \\\"n\\\": 479\\n    }\\n  },\\n  \\\"re_greedy_f1\\\": 0.4317718940936864,\\n  \\\"re_oracle_f1\\\": 0.5803108808290154,\\n  \\\"re_oracle_headroom\\\": 0.148538986735329,\\n  \\\"re_fleiss_kappa_mean\\\": 0.3599626999093812,\\n  \\\"re_soft_jaccard_mean\\\": 0.6758866358307039,\\n  \\\"re_correlation_fleiss_vs_f1_full\\\": {\\n    \\\"rho\\\": 0.25546324581586716,\\n    \\\"p_value\\\": 2.47103386353029e-07,\\n    \\\"n\\\": 397\\n  },\\n  \\\"re_correlation_softjaccard_vs_f1_full\\\": {\\n    \\\"rho\\\": 0.24615842054540021,\\n    \\\"p_value\\\": 6.841078669399912e-07,\\n    \\\"n\\\": 397\\n  },\\n  \\\"re_correlation_fleiss_vs_f1_conditional\\\": {\\n    \\\"rho\\\": 0.18803520725826953,\\n    \\\"p_value\\\": 0.00257091551843303,\\n    \\\"n\\\": 255\\n  },\\n  \\\"re_correlation_softjaccard_vs_f1_conditional\\\": {\\n    \\\"rho\\\": 0.3438043160560637,\\n    \\\"p_value\\\": 1.741704227393649e-08,\\n    \\\"n\\\": 255\\n  },\\n  \\\"re_n_gold_empty_filtered\\\": 154,\\n  \\\"re_n_greedy_f1_zero_filtered\\\": 142,\\n  \\\"re_structural_beats_surface\\\": false,\\n  \\\"re_rho_advantage\\\": -0.009304825270466943,\\n  \\\"re_sample_f1_mean\\\": 0.39039902206609167,\\n  \\\"re_sample_f1_std\\\": 0.3884341255154615,\\n  \\\"re_sample_f1_pct_zero\\\": 41.0264483627204,\\n  \\\"re_logprob_baseline\\\": {\\n    \\\"full\\\": {\\n      \\\"rho\\\": 0.3053623787080569,\\n      \\\"p_rho\\\": 5.159997485100229e-10,\\n      \\\"tau\\\": 0.22334175774479423,\\n      \\\"p_tau\\\": 7.617426865154851e-10,\\n      \\\"auroc\\\": 0.6543859649122807,\\n      \\\"n\\\": 397\\n    },\\n    \\\"conditional\\\": {\\n      \\\"rho\\\": 0.11757849658088665,\\n      \\\"p_rho\\\": 0.06081175353521194,\\n      \\\"tau\\\": 0.08313306407253442,\\n      \\\"p_tau\\\": 0.06369269510085557,\\n      \\\"auroc\\\": 0.6002870938274827,\\n      \\\"n\\\": 255\\n    }\\n  },\\n  \\\"verdict\\\": \\\"FAIL\\\",\\n  \\\"verdict_note\\\": \\\"Joint mode: verdict requires RE ρ_sj ≥ 0.40 AND ρ_sj > ρ_fk AND any subtask headroom ≥ 2pp\\\",\\n  \\\"warning\\\": \\\"⚠️ >30% samples F1=0, recommend re-running at T=0.7\\\"\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01DZrnBvUfiqfkh4MCdKYQUg`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/review_round2/qwen_scierc_3seed_summary.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ad442358-e23d-4a59-9717-0b89a1275c0d",
+  "uuid": "ca773708-552e-4e36-ac8a-9a5896a68bdd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XaDoJ99gB9DdWx4Bkd5onb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2380,
+      "cache_read_input_tokens": 27685,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2380
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-15T06:01:20.460Z_
+
+<details><summary>↩ Tool result · `toolu_01DZrnBvUfiqfkh4MCdKYQUg`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"model\\\": \\\"qwen\\\",\\n  \\\"dataset\\\": \\\"scierc\\\",\\n  \\\"seeds\\\": [\\n    42,\\n    123,\\n    456\\n  ],\\n  \\\"ner\\\": {\\n    \\\"soft_jaccard\\\": {\\n      \\\"rho_per_seed\\\": [\\n        0.3599,\\n        0.3878,\\n        0.3445\\n      ],\\n      \\\"rho_mean\\\": 0.3641,\\n      \\\"rho_std\\\": 0.0179,\\n      \\\"auroc_per_seed\\\": [\\n        0.6715,\\n        0.6919,\\n        0.6888\\n      ],\\n      \\\"auroc_mean\\\": 0.6841,\\n      \\\"auroc_std\\\": 0.009\\n    },\\n    \\\"fleiss_kappa\\\": {\\n      \\\"rho_per_seed\\\": [\\n        0.2665,\\n        0.2628,\\n        0.2314\\n      ],\\n      \\\"rho_mean\\\": 0.2536,\\n      \\\"rho_std\\\": 0.0157,\\n      \\\"auroc_per_seed\\\": [\\n        0.6154,\\n        0.63,\\n        0.6078\\n      ],\\n      \\\"auroc_mean\\\": 0.6177,\\n      \\\"auroc_std\\\": 0.0092\\n    },\\n    \\\"exact_match\\\": {\\n      \\\"rho_per_seed\\\": [\\n        0.299,\\n        0.3052,\\n        0.3172\\n      ],\\n      \\\"rho_mean\\\": 0.3071,\\n      \\\"rho_std\\\": 0.0076,\\n      \\\"auroc_per_seed\\\": [\\n        0.6518,\\n        0.6549,\\n        0.675\\n      ],\\n      \\\"auroc_mean\\\": 0.6606,\\n      \\\"auroc_std\\\": 0.0103\\n    },\\n    \\\"log_probability\\\": {\\n      \\\"rho_per_seed\\\": [\\n        0.2052,\\n        0.2341,\\n        0.2107\\n      ],\\n      \\\"rho_mean\\\": 0.2167,\\n      \\\"rho_std\\\": 0.0125,\\n      \\\"auroc_per_seed\\\": [\\n        0.6116,\\n        0.6132,\\n        0.6153\\n      ],\\n      \\\"auroc_mean\\\": 0.6134,\\n      \\\"auroc_std\\\": 0.0015\\n    },\\n    \\\"voting_confidence\\\": {\\n      \\\"rho_per_seed\\\": [\\n        0.3701,\\n        0.4123,\\n        0.3758\\n      ],\\n      \\\"rho_mean\\\": 0.3861,\\n      \\\"rho_std\\\": 0.0187,\\n      \\\"auroc_per_seed\\\": [\\n        0.6834,\\n        0.7065,\\n        0.7004\\n      ],\\n      \\\"auroc_mean\\\": 0.6968,\\n      \\\"auroc_std\\\": 0.0098\\n    }\\n  },\\n  \\\"re\\\": {\\n    \\\"soft_jaccard\\\": {\\n      \\\"rho_per_seed\\\": [\\n        0.2503,\\n        0.2486,\\n        0.2466\\n      ],\\n      \\\"rho_mean\\\": 0.2485,\\n      \\\"rho_std\\\": 0.0015,\\n      \\\"auroc_per_seed\\\": [\\n        0.6346,\\n        0.623,\\n        0.6235\\n      ],\\n      \\\"auroc_mean\\\": 0.627,\\n      \\\"auroc_std\\\": 0.0054\\n    },\\n    \\\"fleiss_kappa\\\": {\\n      \\\"rho_per_seed\\\": [\\n        0.2752,\\n        0.2908,\\n        0.3049\\n      ],\\n      \\\"rho_mean\\\": 0.2903,\\n      \\\"rho_std\\\": 0.0121,\\n      \\\"auroc_per_seed\\\": [\\n        0.6449,\\n        0.6512,\\n        0.6518\\n      ],\\n      \\\"auroc_mean\\\": 0.6493,\\n      \\\"auroc_std\\\": 0.0031\\n    },\\n    \\\"exact_match\\\": {\\n      \\\"rho_per_seed\\\": [\\n        0.1369,\\n        0.1153,\\n        0.1537\\n      ],\\n      \\\"rho_mean\\\": 0.1353,\\n      \\\"rho_std\\\": 0.0157,\\n      \\\"auroc_per_seed\\\": [\\n        0.5726,\\n        0.5444,\\n        0.5704\\n      ],\\n      \\\"auroc_mean\\\": 0.5625,\\n      \\\"auroc_std\\\": 0.0128\\n    },\\n    \\\"log_probability\\\": {\\n      \\\"rho_per_seed\\\": [\\n        0.2662,\\n        0.3143,\\n        0.3105\\n      ],\\n      \\\"rho_mean\\\": 0.297,\\n      \\\"rho_std\\\": 0.0218,\\n      \\\"auroc_per_seed\\\": [\\n        0.6205,\\n        0.6605,\\n        0.6602\\n      ],\\n      \\\"auroc_mean\\\": 0.6471,\\n      \\\"auroc_std\\\": 0.0188\\n    },\\n    \\\"voting_confidence\\\": {\\n      \\\"rho_per_seed\\\": [\\n        0.306,\\n        0.3399,\\n        0.2804\\n      ],\\n      \\\"rho_mean\\\": 0.3088,\\n      \\\"rho_std\\\": 0.0244,\\n      \\\"auroc_per_seed\\\": [\\n        0.6577,\\n        0.6699,\\n        0.6466\\n      ],\\n      \\\"auroc_mean\\\": 0.6581,\\n      \\\"auroc_std\\\": 0.0095\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ad442358-e23d-4a59-9717-0b89a1275c0d",
+  "uuid": "fb188a95-ccf6-41b6-8655-b9005ce43843",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"model\\\\\\\": \\\\\\\"qwen\\\\\\\",\\\\n  \\\\\\\"dataset\\\\\\\": \\\\\\\"scierc\\\\\\\",\\\\n  \\\\\\\"seeds\\\\\\\": [\\\\n    42,\\\\n    123,\\\\n    456\\\\n  ],\\\\n  \\\\\\\"ner\\\\\\\": {\\\\n    \\\\\\\"soft_jaccard\\\\\\\": {\\\\n      \\\\\\\"rho_per_seed\\\\\\\": [\\\\n        0.3599,\\\\n        0.3878,\\\\n        0.3445\\\\n      ],\\\\n      \\\\\\\"rho_mean\\\\\\\": 0.3641,\\\\n      \\\\\\\"rho_std\\\\\\\": 0.0179,\\\\n      \\\\\\\"auroc_per_seed\\\\\\\": [\\\\n        0.6715,\\\\n        0.6919,\\\\n        0.6888\\\\n      ],\\\\n      \\\\\\\"auroc_mean\\\\\\\": 0.6841,\\\\n      \\\\\\\"auroc_std\\\\\\\": 0.009\\\\n    },\\\\n    \\\\\\\"fleiss_kappa\\\\\\\": {\\\\n      \\\\\\\"rho_per_seed\\\\\\\": [\\\\n        0.2665,\\\\n        0.2628,\\\\n        0.2314\\\\n      ],\\\\n      \\\\\\\"rho_mean\\\\\\\": 0.2536,\\\\n      \\\\\\\"rho_std\\\\\\\": 0.0157,\\\\n      \\\\\\\"auroc_per_seed\\\\\\\": [\\\\n        0.6154,\\\\n        0.63,\\\\n        0.6078\\\\n      ],\\\\n      \\\\\\\"auroc_mean\\\\\\\": 0.6177,\\\\n      \\\\\\\"auroc_std\\\\\\\": 0.0092\\\\n    },\\\\n    \\\\\\\"exact_match\\\\\\\": {\\\\n      \\\\\\\"rho_per_seed\\\\\\\": [\\\\n        0.299,\\\\n        0.3052,\\\\n        0.3172\\\\n      ],\\\\n      \\\\\\\"rho_mean\\\\\\\": 0.3071,\\\\n      \\\\\\\"rho_std\\\\\\\": 0.0076,\\\\n      \\\\\\\"auroc_per_seed\\\\\\\": [\\\\n        0.6518,\\\\n        0.6549,\\\\n        0.675\\\\n      ],\\\\n      \\\\\\\"auroc_mean\\\\\\\": 0.6606,\\\\n      \\\\\\\"auroc_std\\\\\\\": 0.0103\\\\n    },\\\\n    \\\\\\\"log_probability\\\\\\\": {\\\\n      \\\\\\\"rho_per_seed\\\\\\\": [\\\\n        0.2052,\\\\n        0.2341,\\\\n        0.2107\\\\n      ],\\\\n      \\\\\\\"rho_mean\\\\\\\": 0.2167,\\\\n      \\\\\\\"rho_std\\\\\\\": 0.0125,\\\\n      \\\\\\\"auroc_per_seed\\\\\\\": [\\\\n        0.6116,\\\\n        0.6132,\\\\n        0.6153\\\\n      ],\\\\n      \\\\\\\"auroc_mean\\\\\\\": 0.6134,\\\\n      \\\\\\\"auroc_std\\\\\\\": 0.0015\\\\n    },\\\\n    \\\\\\\"voting_confidence\\\\\\\": {\\\\n      \\\\\\\"rho_per_seed\\\\\\\": [\\\\n        0.3701,\\\\n        0.4123,\\\\n        0.3758\\\\n      ],\\\\n      \\\\\\\"rho_mean\\\\\\\": 0.3861,\\\\n      \\\\\\\"rho_std\\\\\\\": 0.0187,\\\\n      \\\\\\\"auroc_per_seed\\\\\\\": [\\\\n        0.6834,\\\\n        0.7065,\\\\n        0.7004\\\\n      ],\\\\n      \\\\\\\"auroc_mean\\\\\\\": 0.6968,\\\\n      \\\\\\\"auroc_std\\\\\\\": 0.0098\\\\n    }\\\\n  },\\\\n  \\\\\\\"re\\\\\\\": {\\\\n    \\\\\\\"soft_jaccard\\\\\\\": {\\\\n      \\\\\\\"rho_per_seed\\\\\\\": [\\\\n        0.2503,\\\\n        0.2486,\\\\n        0.2466\\\\n      ],\\\\n      \\\\\\\"rho_mean\\\\\\\": 0.2485,\\\\n      \\\\\\\"rho_std\\\\\\\": 0.0015,\\\\n      \\\\\\\"auroc_per_seed\\\\\\\": [\\\\n        0.6346,\\\\n        0.623,\\\\n        0.6235\\\\n      ],\\\\n      \\\\\\\"auroc_mean\\\\\\\": 0.627,\\\\n      \\\\\\\"auroc_std\\\\\\\": 0.0054\\\\n    },\\\\n    \\\\\\\"fleiss_kappa\\\\\\\": {\\\\n      \\\\\\\"rho_per_seed\\\\\\\": [\\\\n        0.2752,\\\\n        0.2908,\\\\n        0.3049\\\\n      ],\\\\n      \\\\\\\"rho_mean\\\\\\\": 0.2903,\\\\n      \\\\\\\"rho_std\\\\\\\": 0.0121,\\\\n      \\\\\\\"auroc_per_seed\\\\\\\": [\\\\n        0.6449,\\\\n        0.6512,\\\\n        0.6518\\\\n      ],\\\\n      \\\\\\\"auroc_mean\\\\\\\": 0.6493,\\\\n      \\\\\\\"auroc_std\\\\\\\": 0.0031\\\\n    },\\\\n    \\\\\\\"exact_match\\\\\\\": {\\\\n      \\\\\\\"rho_per_seed\\\\\\\": [\\\\n        0.1369,\\\\n        0.1153,\\\\n        0.1537\\\\n      ],\\\\n      \\\\\\\"rho_mean\\\\\\\": 0.1353,\\\\n      \\\\\\\"rho_std\\\\\\\": 0.0157,\\\\n      \\\\\\\"auroc_per_seed\\\\\\\": [\\\\n        0.5726,\\\\n        0.5444,\\\\n        0.5704\\\\n      ],\\\\n      \\\\\\\"auroc_mean\\\\\\\": 0.5625,\\\\n      \\\\\\\"auroc_std\\\\\\\": 0.0128\\\\n    },\\\\n    \\\\\\\"log_probability\\\\\\\": {\\\\n      \\\\\\\"rho_per_seed\\\\\\\": [\\\\n        0.2662,\\\\n        0.3143,\\\\n        0.3105\\\\n      ],\\\\n      \\\\\\\"rho_mean\\\\\\\": 0.297,\\\\n      \\\\\\\"rho_std\\\\\\\": 0.0218,\\\\n      \\\\\\\"auroc_per_seed\\\\\\\": [\\\\n        0.6205,\\\\n        0.6605,\\\\n        0.6602\\\\n      ],\\\\n      \\\\\\\"auroc_mean\\\\\\\": 0.6471,\\\\n      \\\\\\\"auroc_std\\\\\\\": 0.0188\\\\n    },\\\\n    \\\\\\\"voting_confidence\\\\\\\": {\\\\n      \\\\\\\"rho_per_seed\\\\\\\": [\\\\n        0.306,\\\\n        0.3399,\\\\n        0.2804\\\\n      ],\\\\n      \\\\\\\"rho_mean\\\\\\\": 0.3088,\\\\n      \\\\\\\"rho_std\\\\\\\": 0.0244,\\\\n      \\\\\\\"auroc_per_seed\\\\\\\": [\\\\n        0.6577,\\\\n        0.6699,\\\\n        0.6466\\\\n      ],\\\\n      \\\\\\\"auroc_mean\\\\\\\": 0.6581,\\\\n      \\\\\\\"auroc_std\\\\\\\": 0.0095\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"model\\\": \\\"qwen\\\",\\n  \\\"dataset\\\": \\\"scierc\\\",\\n  \\\"seeds\\\": [\\n    42,\\n    123,\\n    456\\n  ],\\n  \\\"ner\\\": {\\n    \\\"soft_jaccard\\\": {\\n      \\\"rho_per_seed\\\": [\\n        0.3599,\\n        0.3878,\\n        0.3445\\n      ],\\n      \\\"rho_mean\\\": 0.3641,\\n      \\\"rho_std\\\": 0.0179,\\n      \\\"auroc_per_seed\\\": [\\n        0.6715,\\n        0.6919,\\n        0.6888\\n      ],\\n      \\\"auroc_mean\\\": 0.6841,\\n      \\\"auroc_std\\\": 0.009\\n    },\\n    \\\"fleiss_kappa\\\": {\\n      \\\"rho_per_seed\\\": [\\n        0.2665,\\n        0.2628,\\n        0.2314\\n      ],\\n      \\\"rho_mean\\\": 0.2536,\\n      \\\"rho_std\\\": 0.0157,\\n      \\\"auroc_per_seed\\\": [\\n        0.6154,\\n        0.63,\\n        0.6078\\n      ],\\n      \\\"auroc_mean\\\": 0.6177,\\n      \\\"auroc_std\\\": 0.0092\\n    },\\n    \\\"exact_match\\\": {\\n      \\\"rho_per_seed\\\": [\\n        0.299,\\n        0.3052,\\n        0.3172\\n      ],\\n      \\\"rho_mean\\\": 0.3071,\\n      \\\"rho_std\\\": 0.0076,\\n      \\\"auroc_per_seed\\\": [\\n        0.6518,\\n        0.6549,\\n        0.675\\n      ],\\n      \\\"auroc_mean\\\": 0.6606,\\n      \\\"auroc_std\\\": 0.0103\\n    },\\n    \\\"log_probability\\\": {\\n      \\\"rho_per_seed\\\": [\\n        0.2052,\\n        0.2341,\\n        0.2107\\n      ],\\n      \\\"rho_mean\\\": 0.2167,\\n      \\\"rho_std\\\": 0.0125,\\n      \\\"auroc_per_seed\\\": [\\n        0.6116,\\n        0.6132,\\n        0.6153\\n      ],\\n      \\\"auroc_mean\\\": 0.6134,\\n      \\\"auroc_std\\\": 0.0015\\n    },\\n    \\\"voting_confidence\\\": {\\n      \\\"rho_per_seed\\\": [\\n        0.3701,\\n        0.4123,\\n        0.3758\\n      ],\\n      \\\"rho_mean\\\": 0.3861,\\n      \\\"rho_std\\\": 0.0187,\\n      \\\"auroc_per_seed\\\": [\\n        0.6834,\\n        0.7065,\\n        0.7004\\n      ],\\n      \\\"auroc_mean\\\": 0.6968,\\n      \\\"auroc_std\\\": 0.0098\\n    }\\n  },\\n  \\\"re\\\": {\\n    \\\"soft_jaccard\\\": {\\n      \\\"rho_per_seed\\\": [\\n        0.2503,\\n        0.2486,\\n        0.2466\\n      ],\\n      \\\"rho_mean\\\": 0.2485,\\n      \\\"rho_std\\\": 0.0015,\\n      \\\"auroc_per_seed\\\": [\\n        0.6346,\\n        0.623,\\n        0.6235\\n      ],\\n      \\\"auroc_mean\\\": 0.627,\\n      \\\"auroc_std\\\": 0.0054\\n    },\\n    \\\"fleiss_kappa\\\": {\\n      \\\"rho_per_seed\\\": [\\n        0.2752,\\n        0.2908,\\n        0.3049\\n      ],\\n      \\\"rho_mean\\\": 0.2903,\\n      \\\"rho_std\\\": 0.0121,\\n      \\\"auroc_per_seed\\\": [\\n        0.6449,\\n        0.6512,\\n        0.6518\\n      ],\\n      \\\"auroc_mean\\\": 0.6493,\\n      \\\"auroc_std\\\": 0.0031\\n    },\\n    \\\"exact_match\\\": {\\n      \\\"rho_per_seed\\\": [\\n        0.1369,\\n        0.1153,\\n        0.1537\\n      ],\\n      \\\"rho_mean\\\": 0.1353,\\n      \\\"rho_std\\\": 0.0157,\\n      \\\"auroc_per_seed\\\": [\\n        0.5726,\\n        0.5444,\\n        0.5704\\n      ],\\n      \\\"auroc_mean\\\": 0.5625,\\n      \\\"auroc_std\\\": 0.0128\\n    },\\n    \\\"log_probability\\\": {\\n      \\\"rho_per_seed\\\": [\\n        0.2662,\\n        0.3143,\\n        0.3105\\n      ],\\n      \\\"rho_mean\\\": 0.297,\\n      \\\"rho_std\\\": 0.0218,\\n      \\\"auroc_per_seed\\\": [\\n        0.6205,\\n        0.6605,\\n        0.6602\\n      ],\\n      \\\"auroc_mean\\\": 0.6471,\\n      \\\"auroc_std\\\": 0.0188\\n    },\\n    \\\"voting_confidence\\\": {\\n      \\\"rho_per_seed\\\": [\\n        0.306,\\n        0.3399,\\n        0.2804\\n      ],\\n      \\\"rho_mean\\\": 0.3088,\\n      \\\"rho_std\\\": 0.0244,\\n      \\\"auroc_per_seed\\\": [\\n        0.6577,\\n        0.6699,\\n        0.6466\\n      ],\\n      \\\"auroc_mean\\\": 0.6581,\\n      \\\"auroc_std\\\": 0.0095\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 35_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I can see the Qwen summary format. It includes 5 signals: soft_jaccard, fleiss_kappa, exact_match, log_probability, voting_confidence.
+
+But the LLaMA report.json only has 3 signals directly in the report:
+- fleiss_kappa: `ner_correlation_fleiss_vs_f1_full` → rho
+- soft_jaccard: `ner_correlation_softjaccard_vs_f1_full` → rho
+- log_probability: `ner_logprob_baseline` → `full` → rho, auroc
+
+
+I'm noticing that the LLaMA report is missing exact_match and voting_confidence entirely, and it's also missing AUROC values for fleiss_kappa and soft_jaccard. Those AUROC metrics in the Qwen summary must have been computed separately, so I should look for additional analysis files or outputs in these directories that might contain the missing signals.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ad442358-e23d-4a59-9717-0b89a1275c0d",
+  "uuid": "efce6da8-878a-44c2-bc6d-9d40b1ab446e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PgqiCcqn9ixuFEQdEFdCtg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4752,
+      "cache_read_input_tokens": 30065,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4752
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 36_
+
+The LLaMA report.json only has 3 of the 5 signals. Let me check if there are additional analysis files with exact_match and voting_confidence data.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ad442358-e23d-4a59-9717-0b89a1275c0d",
+  "uuid": "0e4dd107-704a-477d-88ba-24a344093be7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PgqiCcqn9ixuFEQdEFdCtg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4752,
+      "cache_read_input_tokens": 30065,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4752
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0151DcnXkSrs5jbCoCSbXLEQ`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "ls /root/autodl-tmp/struct_self_consist_ie/output/exp_018_llama_scierc_seed123/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ad442358-e23d-4a59-9717-0b89a1275c0d",
+  "uuid": "cb0f6562-933a-4505-b144-41f5e919058b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PgqiCcqn9ixuFEQdEFdCtg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4752,
+      "cache_read_input_tokens": 30065,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4752
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-15T06:01:34.144Z_
+
+<details><summary>↩ Tool result · `toolu_0151DcnXkSrs5jbCoCSbXLEQ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"report.json\\nsamples.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ad442358-e23d-4a59-9717-0b89a1275c0d",
+  "uuid": "575339f3-1fb9-4bc7-8beb-87325a96fecd",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"report.json\\\\nsamples.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"report.json\\nsamples.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01TmY24CCupptzxvVgsfhF6t`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "ls /root/autodl-tmp/struct_self_consist_ie/output/exp007_llama_inference/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ad442358-e23d-4a59-9717-0b89a1275c0d",
+  "uuid": "5c5c49a5-88e4-416d-b25a-774a4225a5d8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PgqiCcqn9ixuFEQdEFdCtg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4752,
+      "cache_read_input_tokens": 30065,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4752
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-15T06:01:34.792Z_
+
+<details><summary>↩ Tool result · `toolu_01TmY24CCupptzxvVgsfhF6t`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"report.json\\nsamples.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ad442358-e23d-4a59-9717-0b89a1275c0d",
+  "uuid": "67fcc077-377f-404f-9180-31d2110154b0",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"report.json\\\\nsamples.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"report.json\\nsamples.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 41_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Each directory only has report.json and samples.jsonl. The 5-signal analysis must be computed from samples.jsonl. Let me check how the Qwen analysis was done — there should be a script that computes the signals from the raw samples.
+
+Let me look for analysis scripts in the project.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ad442358-e23d-4a59-9717-0b89a1275c0d",
+  "uuid": "8fffd664-ab84-4d33-9d9f-ef0043911486",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BLiN4dyQ1CTSwcn9Xh1RgP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 856,
+      "cache_read_input_tokens": 34817,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 856
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 42_
+
+Only report.json + samples.jsonl in each directory. The missing signals need to be computed from samples.jsonl. Let me find the analysis script used for the Qwen analysis.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ad442358-e23d-4a59-9717-0b89a1275c0d",
+  "uuid": "80025f1e-b1c6-421b-8200-045b080f4235",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BLiN4dyQ1CTSwcn9Xh1RgP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 856,
+      "cache_read_input_tokens": 34817,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 856
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0173QsYMQ5kCcf6gLddZVM2p`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "find /root/autodl-tmp/struct_self_consist_ie/ -name \"*.py\" -path \"*review*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ad442358-e23d-4a59-9717-0b89a1275c0d",
+  "uuid": "2636ba02-179c-4a52-8908-dcaf01b60aa9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BLiN4dyQ1CTSwcn9Xh1RgP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 856,
+      "cache_read_input_tokens": 34817,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 856
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-15T06:01:45.465Z_
+
+<details><summary>↩ Tool result · `toolu_0173QsYMQ5kCcf6gLddZVM2p`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/output/review_round2/run_selection_f1.py\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round2/re_selection_bootstrap.py\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round2/re_selection_reconcile.py\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round2/recompute_re_selection.py\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round2/tost_equivalence.py\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round2/compute_3seed_summary.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ad442358-e23d-4a59-9717-0b89a1275c0d",
+  "uuid": "935f0761-e909-4477-a29f-c20710fcb61e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/review_round2/run_selection_f1.py\\\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round2/re_selection_bootstrap.py\\\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round2/re_selection_reconcile.py\\\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round2/recompute_re_selection.py\\\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round2/tost_equivalence.py\\\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round2/compute_3seed_summary.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/output/review_round2/run_selection_f1.py\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round2/re_selection_bootstrap.py\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round2/re_selection_reconcile.py\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round2/recompute_re_selection.py\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round2/tost_equivalence.py\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round2/compute_3seed_summary.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01DfPeRmGhMzWmWyKSCxQTpm`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "find /root/autodl-tmp/struct_self_consist_ie/ -name \"*3seed*\" -o -name \"*signal*\" -o -name \"*analyze*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ad442358-e23d-4a59-9717-0b89a1275c0d",
+  "uuid": "32a1b8b1-eafa-4a8e-aae2-dc9c6755a498",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BLiN4dyQ1CTSwcn9Xh1RgP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 856,
+      "cache_read_input_tokens": 34817,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 856
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-15T06:01:46.201Z_
+
+<details><summary>↩ Tool result · `toolu_01DfPeRmGhMzWmWyKSCxQTpm`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/output/exp016_signal_ensemble\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed42_200only_backup/exp001_all_signals_report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed42/exp001_all_signals_report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp002_conll2003/exp002_5signal_report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed42_v2/all_signals_report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed42_v2/re_all_signals_report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed123_v2/all_signals_report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed123_v2/re_all_signals_report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed456_v2_ner/all_signals_report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_infer/all_signals_report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/n16_5signal_results.json\\n/root/autodl-tmp/struct_self_consist_ie/output/n8_5signal_results.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16/all_signals_report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16_s123/all_signals_report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16_s456/all_signals_report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/llama_conll_n16_3seed_5signal_summary.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/auroc_5signal.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/all_signals_5signal.json\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round2/wnut17_full_signal_analysis.json\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round2/compute_3seed_summary.py\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round2/qwen_scierc_3seed_summary.json\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_component_wise_re.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_logprob_baseline.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exact_match_voting.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_entity_voting.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp015_unified.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp004_re_diagnostic.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp016_ensemble.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp002_conll2003.py\\n/root/autodl-tmp/struct_self_consist_ie/code/_backup_cond_fix/analyze_exp015_unified.py\\n/root/autodl-tmp/struct_self_consist_ie/code/_backup_cond_fix/analyze_exp004_re_diagnostic.py\\n/root/autodl-tmp/struct_self_consist_ie/code/_backup_cond_fix/analyze_component_wise_re.py\\n/root/autodl-tmp/struct_self_consist_ie/code/_backup_cond_fix/analyze_logprob_baseline.py\\n/root/autodl-tmp/struct_self_consist_ie/code/_backup_cond_fix/analyze_exp002_conll2003.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp005_v2_temperature.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp004_v2_re_diagnostic.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp015_v2_metrics.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp017_5signal.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_3seed_5signal.py\\n/root/autodl-tmp/struct_self_consist_ie/code/eval_n16_5signal.py\\n/root/autodl-tmp/struct_self_consist_ie/code/eval_n8_5signal.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp017_llama_conll_n16.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp017_llama_conll_n16_s123.py\\n/root/autodl-tmp/struct_self_consist_ie/code/eval_s456_5signal.py\\n/root/autodl-tmp/struct_self_consist_ie/code/exp001_3seed_all_signals.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp012_rerun_5signal.py\\n/root/autodl-tmp/struct_self_consist_ie/code/wnut17_full_signal_analysis.py\\n/root/autodl-tmp/struct_self_consist_ie/figures/paper/fig_signal_heatmap.pdf\\n/root/autodl-tmp/struct_self_consist_ie/figures/paper/fig_signal_heatmap.png\\n/root/autodl-tmp/struct_self_consist_ie/artifacts/figures/fig_signal_heatmap.pdf\\n/root/autodl-tmp/struct_self_consist_ie/artifacts/figures/fig_signal_heatmap.png\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ad442358-e23d-4a59-9717-0b89a1275c0d",
+  "uuid": "00b0ddac-26a1-4185-afaa-261ab7858d8b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/exp016_signal_ensemble\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed42_200only_backup/exp001_all_signals_report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed42/exp001_all_signals_report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp002_conll2003/exp002_5signal_report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed42_v2/all_signals_report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed42_v2/re_all_signals_report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed123_v2/all_signals_report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed123_v2/re_all_signals_report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed456_v2_ner/all_signals_report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_infer/all_signals_report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/n16_5signal_results.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/n8_5signal_results.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16/all_signals_report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16_s123/all_signals_report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16_s456/all_signals_report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/llama_conll_n16_3seed_5signal_summary.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/auroc_5signal.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/all_signals_5signal.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round2/wnut17_full_signal_analysis.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round2/compute_3seed_summary.py\\\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round2/qwen_scierc_3seed_summary.json\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_component_wise_re.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_logprob_baseline.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exact_match_voting.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_entity_voting.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp015_unified.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp004_re_diagnostic.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp016_ensemble.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp002_conll2003.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/_backup_cond_fix/analyze_exp015_unified.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/_backup_cond_fix/analyze_exp004_re_diagnostic.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/_backup_cond_fix/analyze_component_wise_re.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/_backup_cond_fix/analyze_logprob_baseline.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/_backup_cond_fix/analyze_exp002_conll2003.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp005_v2_temperature.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp004_v2_re_diagnostic.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp015_v2_metrics.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp017_5signal.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_3seed_5signal.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/eval_n16_5signal.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/eval_n8_5signal.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp017_llama_conll_n16.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp017_llama_conll_n16_s123.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/eval_s456_5signal.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/exp001_3seed_all_signals.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp012_rerun_5signal.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/wnut17_full_signal_analysis.py\\\\n/root/autodl-tmp/struct_self_consist_ie/figures/paper/fig_signal_heatmap.pdf\\\\n/root/autodl-tmp/struct_self_consist_ie/figures/paper/fig_signal_heatmap.png\\\\n/root/autodl-tmp/struct_self_consist_ie/artifacts/figures/fig_signal_heatmap.pdf\\\\n/root/autodl-tmp/struct_self_consist_ie/artifacts/figures/fig_signal_heatmap.png\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/output/exp016_signal_ensemble\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed42_200only_backup/exp001_all_signals_report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed42/exp001_all_signals_report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp002_conll2003/exp002_5signal_report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed42_v2/all_signals_report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed42_v2/re_all_signals_report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed123_v2/all_signals_report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed123_v2/re_all_signals_report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed456_v2_ner/all_signals_report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_infer/all_signals_report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/n16_5signal_results.json\\n/root/autodl-tmp/struct_self_consist_ie/output/n8_5signal_results.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16/all_signals_report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16_s123/all_signals_report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16_s456/all_signals_report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/llama_conll_n16_3seed_5signal_summary.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/auroc_5signal.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/all_signals_5signal.json\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round2/wnut17_full_signal_analysis.json\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round2/compute_3seed_summary.py\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round2/qwen_scierc_3seed_summary.json\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_component_wise_re.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_logprob_baseline.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exact_match_voting.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_entity_voting.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp015_unified.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp004_re_diagnostic.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp016_ensemble.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp002_conll2003.py\\n/root/autodl-tmp/struct_self_consist_ie/code/_backup_cond_fix/analyze_exp015_unified.py\\n/root/autodl-tmp/struct_self_consist_ie/code/_backup_cond_fix/analyze_exp004_re_diagnostic.py\\n/root/autodl-tmp/struct_self_consist_ie/code/_backup_cond_fix/analyze_component_wise_re.py\\n/root/autodl-tmp/struct_self_consist_ie/code/_backup_cond_fix/analyze_logprob_baseline.py\\n/root/autodl-tmp/struct_self_consist_ie/code/_backup_cond_fix/analyze_exp002_conll2003.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp005_v2_temperature.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp004_v2_re_diagnostic.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp015_v2_metrics.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp017_5signal.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_3seed_5signal.py\\n/root/autodl-tmp/struct_self_consist_ie/code/eval_n16_5signal.py\\n/root/autodl-tmp/struct_self_consist_ie/code/eval_n8_5signal.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp017_llama_conll_n16.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp017_llama_conll_n16_s123.py\\n/root/autodl-tmp/struct_self_consist_ie/code/eval_s456_5signal.py\\n/root/autodl-tmp/struct_self_consist_ie/code/exp001_3seed_all_signals.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp012_rerun_5signal.py\\n/root/autodl-tmp/struct_self_consist_ie/code/wnut17_full_signal_analysis.py\\n/root/autodl-tmp/struct_self_consist_ie/figures/paper/fig_signal_heatmap.pdf\\n/root/autodl-tmp/struct_self_consist_ie/figures/paper/fig_signal_heatmap.png\\n/root/autodl-tmp/struct_self_consist_ie/artifacts/figures/fig_signal_heatmap.pdf\\n/root/autodl-tmp/struct_self_consist_ie/artifacts/figures/fig_signal_heatmap.png\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 47_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+There's `compute_3seed_summary.py` which was likely used for the Qwen analysis. Let me read it to understand the approach, and also check if there's an `all_signals_report.json` for the LLaMA SciERC experiments (there doesn't seem to be one).
+
+I also see `analyze_3seed_5signal.py` and `analyze_exp017_5signal.py` which might be relevant. The `compute_3seed_summary.py` is in the review_round2 directory which is where the qwen summary was saved.
+
+Let me read `compute_3seed_summary.py` to understand the approach.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ad442358-e23d-4a59-9717-0b89a1275c0d",
+  "uuid": "6c04f220-2ff6-419b-af89-c66fec94bade",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01G1Nh4usfeBAUVjV2ZEvf9Q",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2609,
+      "cache_read_input_tokens": 35673,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2609
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 48_
+
+Found `compute_3seed_summary.py`. Let me read it and also check if all_signals_report exists for LLaMA SciERC.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ad442358-e23d-4a59-9717-0b89a1275c0d",
+  "uuid": "4af755ce-e7be-4c8c-802d-c50d5f3a7fc5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01G1Nh4usfeBAUVjV2ZEvf9Q",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2609,
+      "cache_read_input_tokens": 35673,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2609
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01R1HxHWBCKub4RSevrKKDbu`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/review_round2/compute_3seed_summary.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ad442358-e23d-4a59-9717-0b89a1275c0d",
+  "uuid": "c52b215a-911e-4093-ae6a-ab6086c406e9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01G1Nh4usfeBAUVjV2ZEvf9Q",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2609,
+      "cache_read_input_tokens": 35673,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2609
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-15T06:01:54.958Z_
+
+<details><summary>↩ Tool result · `toolu_01R1HxHWBCKub4RSevrKKDbu`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"import json\\nimport sys\\nimport numpy as np\\nfrom itertools import combinations\\nfrom scipy.stats import spearmanr\\n\\nsys.path.insert(0, \\\"/root/autodl-tmp/struct_self_consist_ie/code\\\")\\nfrom consistency import fleiss_kappa_surface, structural_consistency_soft_jaccard\\nfrom evaluation import per_instance_f1, compute_auroc\\n\\nSEED_DIRS = {\\n    42: \\\"/root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024\\\",\\n    123: \\\"/root/autodl-tmp/struct_self_consist_ie/output/exp_018_qwen_scierc_seed123\\\",\\n    456: \\\"/root/autodl-tmp/struct_self_consist_ie/output/exp_018_qwen_scierc_seed456\\\",\\n}\\n\\ndef load_instances(path):\\n    with open(f\\\"{path}/samples.jsonl\\\") as f:\\n        return [json.loads(line) for line in f]\\n\\ndef surface_keys_ner(sample):\\n    return frozenset((e[\\\"text\\\"], e[\\\"type\\\"]) for e in sample.get(\\\"entities\\\", []))\\n\\ndef surface_keys_re(sample):\\n    return frozenset((r[\\\"head\\\"], r[\\\"tail\\\"], r[\\\"type\\\"]) for r in sample.get(\\\"relations\\\", []))\\n\\ndef compute_exact_match(samples, subtask):\\n    n = len(samples)\\n    if n <= 1:\\n        return 1.0\\n    key_fn = surface_keys_ner if subtask == \\\"ner\\\" else surface_keys_re\\n    key_sets = [key_fn(s) for s in samples]\\n    matches = sum(1 for i, j in combinations(range(n), 2) if key_sets[i] == key_sets[j])\\n    total = n * (n - 1) // 2\\n    return matches / total\\n\\ndef compute_voting_confidence(samples, subtask):\\n    n = len(samples)\\n    if n == 0:\\n        return 0.0\\n    key_fn = surface_keys_ner if subtask == \\\"ner\\\" else surface_keys_re\\n    sample_keys = [key_fn(s) for s in samples]\\n    all_items = set().union(*sample_keys)\\n    if not all_items:\\n        return 1.0\\n    return float(np.mean([sum(1 for sk in sample_keys if item in sk) / n for item in all_items]))\\n\\ndef compute_signals(instances, subtask):\\n    sj, fk, em, lp, vc, f1 = [], [], [], [], [], []\\n    field = \\\"entities\\\" if subtask == \\\"ner\\\" else \\\"relations\\\"\\n\\n    for inst in instances:\\n        if len(inst[\\\"gold\\\"].get(field, [])) == 0:\\n            continue\\n        samples = inst[\\\"samples\\\"]\\n        greedy = inst[\\\"greedy\\\"]\\n        gold = inst[\\\"gold\\\"]\\n\\n        f1.append(per_instance_f1(greedy, gold, subtask=subtask))\\n        sj.append(structural_consistency_soft_jaccard(samples, subtask=subtask))\\n        fk.append(fleiss_kappa_surface(samples, subtask=subtask))\\n        em.append(compute_exact_match(samples, subtask))\\n        lp.append(float(np.mean(inst[\\\"logprobs\\\"])))\\n        vc.append(compute_voting_confidence(samples, subtask))\\n\\n    return {\\\"sj\\\": sj, \\\"fk\\\": fk, \\\"em\\\": em, \\\"lp\\\": lp, \\\"vc\\\": vc, \\\"f1\\\": f1}\\n\\ndef main():\\n    results = {\\\"model\\\": \\\"qwen\\\", \\\"dataset\\\": \\\"scierc\\\", \\\"seeds\\\": [42, 123, 456], \\\"ner\\\": {}, \\\"re\\\": {}}\\n    sig_map = {\\\"sj\\\": \\\"soft_jaccard\\\", \\\"fk\\\": \\\"fleiss_kappa\\\", \\\"em\\\": \\\"exact_match\\\",\\n               \\\"lp\\\": \\\"log_probability\\\", \\\"vc\\\": \\\"voting_confidence\\\"}\\n\\n    for subtask in [\\\"ner\\\", \\\"re\\\"]:\\n        seed_data = {}\\n        for seed, path in SEED_DIRS.items():\\n            seed_data[seed] = compute_signals(load_instances(path), subtask)\\n\\n        for sk, sname in sig_map.items():\\n            rhos, aurocs = [], []\\n            for seed in [42, 123, 456]:\\n                d = seed_data[seed]\\n                rho, _ = spearmanr(d[sk], d[\\\"f1\\\"])\\n                rhos.append(round(float(rho), 4))\\n                aurocs.append(round(compute_auroc(d[sk], d[\\\"f1\\\"]), 4))\\n\\n            results[subtask][sname] = {\\n                \\\"rho_per_seed\\\": rhos,\\n                \\\"rho_mean\\\": round(float(np.mean(rhos)), 4),\\n                \\\"rho_std\\\": round(float(np.std(rhos)), 4),\\n                \\\"auroc_per_seed\\\": aurocs,\\n                \\\"auroc_mean\\\": round(float(np.mean(aurocs)), 4),\\n                \\\"auroc_std\\\": round(float(np.std(aurocs)), 4),\\n            }\\n\\n    out = \\\"/root/autodl-tmp/struct_self_consist_ie/output/review_round2/qwen_scierc_3seed_summary.json\\\"\\n    with open(out, \\\"w\\\") as f:\\n        json.dump(results, f, indent=2)\\n    print(f\\\"Saved to {out}\\\")\\n\\n    # Sanity check seed 42 NER vs report.json\\n    instances = load_instances(SEED_DIRS[42])\\n    s = compute_signals(instances, \\\"ner\\\")\\n    rho_sj, _ = spearmanr(s[\\\"sj\\\"], s[\\\"f1\\\"])\\n    rho_fk, _ = spearmanr(s[\\\"fk\\\"], s[\\\"f1\\\"])\\n    rho_lp, _ = spearmanr(s[\\\"lp\\\"], s[\\\"f1\\\"])\\n    auroc_lp = compute_auroc(s[\\\"lp\\\"], s[\\\"f1\\\"])\\n    print(f\\\"\\\\n--- Sanity check: seed 42 NER (N={len(s['f1'])}) ---\\\")\\n    print(f\\\"  SJ ρ: {rho_sj:.4f} (report: 0.3599)\\\")\\n    print(f\\\"  FK ρ: {rho_fk:.4f} (report: 0.2665)\\\")\\n    print(f\\\"  LP ρ: {rho_lp:.4f} (report: 0.2052)\\\")\\n    print(f\\\"  LP AUROC: {auroc_lp:.4f} (report: 0.6116)\\\")\\n\\n    for subtask in [\\\"ner\\\", \\\"re\\\"]:\\n        print(f\\\"\\\\n{'='*70}\\\")\\n        print(f\\\"  {subtask.upper()} — Qwen/SciERC 3-seed (42, 123, 456)\\\")\\n        print(f\\\"{'='*70}\\\")\\n        print(f\\\"{'Signal':<22} {'Spearman ρ':>18} {'AUROC':>18}\\\")\\n        print(f\\\"{'-'*22} {'-'*18} {'-'*18}\\\")\\n        for sname in sig_map.values():\\n            d = results[subtask][sname]\\n            print(f\\\"{sname:<22} {d['rho_mean']:.4f} ± {d['rho_std']:.4f}   {d['auroc_mean']:.4f} ± {d['auroc_std']:.4f}\\\")\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ad442358-e23d-4a59-9717-0b89a1275c0d",
+  "uuid": "27775463-25a9-4bfb-8c93-2959de2dd203",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"import json\\\\nimport sys\\\\nimport numpy as np\\\\nfrom itertools import combinations\\\\nfrom scipy.stats import spearmanr\\\\n\\\\nsys.path.insert(0, \\\\\\\"/root/autodl-tmp/struct_self_consist_ie/code\\\\\\\")\\\\nfrom consistency import fleiss_kappa_surface, structural_consistency_soft_jaccard\\\\nfrom evaluation import per_instance_f1, compute_auroc\\\\n\\\\nSEED_DIRS = {\\\\n    42: \\\\\\\"/root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024\\\\\\\",\\\\n    123: \\\\\\\"/root/autodl-tmp/struct_self_consist_ie/output/exp_018_qwen_scierc_seed123\\\\\\\",\\\\n    456: \\\\\\\"/root/autodl-tmp/struct_self_consist_ie/output/exp_018_qwen_scierc_seed456\\\\\\\",\\\\n}\\\\n\\\\ndef load_instances(path):\\\\n    with open(f\\\\\\\"{path}/samples.jsonl\\\\\\\") as f:\\\\n        return [json.loads(line) for line in f]\\\\n\\\\ndef surface_keys_ner(sample):\\\\n    return frozenset((e[\\\\\\\"text\\\\\\\"], e[\\\\\\\"type\\\\\\\"]) for e in sample.get(\\\\\\\"entities\\\\\\\", []))\\\\n\\\\ndef surface_keys_re(sample):\\\\n    return frozenset((r[\\\\\\\"head\\\\\\\"], r[\\\\\\\"tail\\\\\\\"], r[\\\\\\\"type\\\\\\\"]) for r in sample.get(\\\\\\\"relations\\\\\\\", []))\\\\n\\\\ndef compute_exact_match(samples, subtask):\\\\n    n = len(samples)\\\\n    if n <= 1:\\\\n        return 1.0\\\\n    key_fn = surface_keys_ner if subtask == \\\\\\\"ner\\\\\\\" else surface_keys_re\\\\n    key_sets = [key_fn(s) for s in samples]\\\\n    matches = sum(1 for i, j in combinations(range(n), 2) if key_sets[i] == key_sets[j])\\\\n    total = n * (n - 1) // 2\\\\n    return matches / total\\\\n\\\\ndef compute_voting_confidence(samples, subtask):\\\\n    n = len(samples)\\\\n    if n == 0:\\\\n        return 0.0\\\\n    key_fn = surface_keys_ner if subtask == \\\\\\\"ner\\\\\\\" else surface_keys_re\\\\n    sample_keys = [key_fn(s) for s in samples]\\\\n    all_items = set().union(*sample_keys)\\\\n    if not all_items:\\\\n        return 1.0\\\\n    return float(np.mean([sum(1 for sk in sample_keys if item in sk) / n for item in all_items]))\\\\n\\\\ndef compute_signals(instances, subtask):\\\\n    sj, fk, em, lp, vc, f1 = [], [], [], [], [], []\\\\n    field = \\\\\\\"entities\\\\\\\" if subtask == \\\\\\\"ner\\\\\\\" else \\\\\\\"relations\\\\\\\"\\\\n\\\\n    for inst in instances:\\\\n        if len(inst[\\\\\\\"gold\\\\\\\"].get(field, [])) == 0:\\\\n            continue\\\\n        samples = inst[\\\\\\\"samples\\\\\\\"]\\\\n        greedy = inst[\\\\\\\"greedy\\\\\\\"]\\\\n        gold = inst[\\\\\\\"gold\\\\\\\"]\\\\n\\\\n        f1.append(per_instance_f1(greedy, gold, subtask=subtask))\\\\n        sj.append(structural_consistency_soft_jaccard(samples, subtask=subtask))\\\\n        fk.append(fleiss_kappa_surface(samples, subtask=subtask))\\\\n        em.append(compute_exact_match(samples, subtask))\\\\n        lp.append(float(np.mean(inst[\\\\\\\"logprobs\\\\\\\"])))\\\\n        vc.append(compute_voting_confidence(samples, subtask))\\\\n\\\\n    return {\\\\\\\"sj\\\\\\\": sj, \\\\\\\"fk\\\\\\\": fk, \\\\\\\"em\\\\\\\": em, \\\\\\\"lp\\\\\\\": lp, \\\\\\\"vc\\\\\\\": vc, \\\\\\\"f1\\\\\\\": f1}\\\\n\\\\ndef main():\\\\n    results = {\\\\\\\"model\\\\\\\": \\\\\\\"qwen\\\\\\\", \\\\\\\"dataset\\\\\\\": \\\\\\\"scierc\\\\\\\", \\\\\\\"seeds\\\\\\\": [42, 123, 456], \\\\\\\"ner\\\\\\\": {}, \\\\\\\"re\\\\\\\": {}}\\\\n    sig_map = {\\\\\\\"sj\\\\\\\": \\\\\\\"soft_jaccard\\\\\\\", \\\\\\\"fk\\\\\\\": \\\\\\\"fleiss_kappa\\\\\\\", \\\\\\\"em\\\\\\\": \\\\\\\"exact_match\\\\\\\",\\\\n               \\\\\\\"lp\\\\\\\": \\\\\\\"log_probability\\\\\\\", \\\\\\\"vc\\\\\\\": \\\\\\\"voting_confidence\\\\\\\"}\\\\n\\\\n    for subtask in [\\\\\\\"ner\\\\\\\", \\\\\\\"re\\\\\\\"]:\\\\n        seed_data = {}\\\\n        for seed, path in SEED_DIRS.items():\\\\n            seed_data[seed] = compute_signals(load_instances(path), subtask)\\\\n\\\\n        for sk, sname in sig_map.items():\\\\n            rhos, aurocs = [], []\\\\n            for seed in [42, 123, 456]:\\\\n                d = seed_data[seed]\\\\n                rho, _ = spearmanr(d[sk], d[\\\\\\\"f1\\\\\\\"])\\\\n                rhos.append(round(float(rho), 4))\\\\n                aurocs.append(round(compute_auroc(d[sk], d[\\\\\\\"f1\\\\\\\"]), 4))\\\\n\\\\n            results[subtask][sname] = {\\\\n                \\\\\\\"rho_per_seed\\\\\\\": rhos,\\\\n                \\\\\\\"rho_mean\\\\\\\": round(float(np.mean(rhos)), 4),\\\\n                \\\\\\\"rho_std\\\\\\\": round(float(np.std(rhos)), 4),\\\\n                \\\\\\\"auroc_per_seed\\\\\\\": aurocs,\\\\n                \\\\\\\"auroc_mean\\\\\\\": round(float(np.mean(aurocs)), 4),\\\\n                \\\\\\\"auroc_std\\\\\\\": round(float(np.std(aurocs)), 4),\\\\n            }\\\\n\\\\n    out = \\\\\\\"/root/autodl-tmp/struct_self_consist_ie/output/review_round2/qwen_scierc_3seed_summary.json\\\\\\\"\\\\n    with open(out, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(results, f, indent=2)\\\\n    print(f\\\\\\\"Saved to {out}\\\\\\\")\\\\n\\\\n    # Sanity check seed 42 NER vs report.json\\\\n    instances = load_instances(SEED_DIRS[42])\\\\n    s = compute_signals(instances, \\\\\\\"ner\\\\\\\")\\\\n    rho_sj, _ = spearmanr(s[\\\\\\\"sj\\\\\\\"], s[\\\\\\\"f1\\\\\\\"])\\\\n    rho_fk, _ = spearmanr(s[\\\\\\\"fk\\\\\\\"], s[\\\\\\\"f1\\\\\\\"])\\\\n    rho_lp, _ = spearmanr(s[\\\\\\\"lp\\\\\\\"], s[\\\\\\\"f1\\\\\\\"])\\\\n    auroc_lp = compute_auroc(s[\\\\\\\"lp\\\\\\\"], s[\\\\\\\"f1\\\\\\\"])\\\\n    print(f\\\\\\\"\\\\\\\\n--- Sanity check: seed 42 NER (N={len(s['f1'])}) ---\\\\\\\")\\\\n    print(f\\\\\\\"  SJ ρ: {rho_sj:.4f} (report: 0.3599)\\\\\\\")\\\\n    print(f\\\\\\\"  FK ρ: {rho_fk:.4f} (report: 0.2665)\\\\\\\")\\\\n    print(f\\\\\\\"  LP ρ: {rho_lp:.4f} (report: 0.2052)\\\\\\\")\\\\n    print(f\\\\\\\"  LP AUROC: {auroc_lp:.4f} (report: 0.6116)\\\\\\\")\\\\n\\\\n    for subtask in [\\\\\\\"ner\\\\\\\", \\\\\\\"re\\\\\\\"]:\\\\n        print(f\\\\\\\"\\\\\\\\n{'='*70}\\\\\\\")\\\\n        print(f\\\\\\\"  {subtask.upper()} — Qwen/SciERC 3-seed (42, 123, 456)\\\\\\\")\\\\n        print(f\\\\\\\"{'='*70}\\\\\\\")\\\\n        print(f\\\\\\\"{'Signal':<22} {'Spearman ρ':>18} {'AUROC':>18}\\\\\\\")\\\\n        print(f\\\\\\\"{'-'*22} {'-'*18} {'-'*18}\\\\\\\")\\\\n        for sname in sig_map.values():\\\\n            d = results[subtask][sname]\\\\n            print(f\\\\\\\"{sname:<22} {d['rho_mean']:.4f} ± {d['rho_std']:.4f}   {d['auroc_mean']:.4f} ± {d['auroc_std']:.4f}\\\\\\\")\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"import json\\nimport sys\\nimport numpy as np\\nfrom itertools import combinations\\nfrom scipy.stats import spearmanr\\n\\nsys.path.insert(0, \\\"/root/autodl-tmp/struct_self_consist_ie/code\\\")\\nfrom consistency import fleiss_kappa_surface, structural_consistency_soft_jaccard\\nfrom evaluation import per_instance_f1, compute_auroc\\n\\nSEED_DIRS = {\\n    42: \\\"/root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024\\\",\\n    123: \\\"/root/autodl-tmp/struct_self_consist_ie/output/exp_018_qwen_scierc_seed123\\\",\\n    456: \\\"/root/autodl-tmp/struct_self_consist_ie/output/exp_018_qwen_scierc_seed456\\\",\\n}\\n\\ndef load_instances(path):\\n    with open(f\\\"{path}/samples.jsonl\\\") as f:\\n        return [json.loads(line) for line in f]\\n\\ndef surface_keys_ner(sample):\\n    return frozenset((e[\\\"text\\\"], e[\\\"type\\\"]) for e in sample.get(\\\"entities\\\", []))\\n\\ndef surface_keys_re(sample):\\n    return frozenset((r[\\\"head\\\"], r[\\\"tail\\\"], r[\\\"type\\\"]) for r in sample.get(\\\"relations\\\", []))\\n\\ndef compute_exact_match(samples, subtask):\\n    n = len(samples)\\n    if n <= 1:\\n        return 1.0\\n    key_fn = surface_keys_ner if subtask == \\\"ner\\\" else surface_keys_re\\n    key_sets = [key_fn(s) for s in samples]\\n    matches = sum(1 for i, j in combinations(range(n), 2) if key_sets[i] == key_sets[j])\\n    total = n * (n - 1) // 2\\n    return matches / total\\n\\ndef compute_voting_confidence(samples, subtask):\\n    n = len(samples)\\n    if n == 0:\\n        return 0.0\\n    key_fn = surface_keys_ner if subtask == \\\"ner\\\" else surface_keys_re\\n    sample_keys = [key_fn(s) for s in samples]\\n    all_items = set().union(*sample_keys)\\n    if not all_items:\\n        return 1.0\\n    return float(np.mean([sum(1 for sk in sample_keys if item in sk) / n for item in all_items]))\\n\\ndef compute_signals(instances, subtask):\\n    sj, fk, em, lp, vc, f1 = [], [], [], [], [], []\\n    field = \\\"entities\\\" if subtask == \\\"ner\\\" else \\\"relations\\\"\\n\\n    for inst in instances:\\n        if len(inst[\\\"gold\\\"].get(field, [])) == 0:\\n            continue\\n        samples = inst[\\\"samples\\\"]\\n        greedy = inst[\\\"greedy\\\"]\\n        gold = inst[\\\"gold\\\"]\\n\\n        f1.append(per_instance_f1(greedy, gold, subtask=subtask))\\n        sj.append(structural_consistency_soft_jaccard(samples, subtask=subtask))\\n        fk.append(fleiss_kappa_surface(samples, subtask=subtask))\\n        em.append(compute_exact_match(samples, subtask))\\n        lp.append(float(np.mean(inst[\\\"logprobs\\\"])))\\n        vc.append(compute_voting_confidence(samples, subtask))\\n\\n    return {\\\"sj\\\": sj, \\\"fk\\\": fk, \\\"em\\\": em, \\\"lp\\\": lp, \\\"vc\\\": vc, \\\"f1\\\": f1}\\n\\ndef main():\\n    results = {\\\"model\\\": \\\"qwen\\\", \\\"dataset\\\": \\\"scierc\\\", \\\"seeds\\\": [42, 123, 456], \\\"ner\\\": {}, \\\"re\\\": {}}\\n    sig_map = {\\\"sj\\\": \\\"soft_jaccard\\\", \\\"fk\\\": \\\"fleiss_kappa\\\", \\\"em\\\": \\\"exact_match\\\",\\n               \\\"lp\\\": \\\"log_probability\\\", \\\"vc\\\": \\\"voting_confidence\\\"}\\n\\n    for subtask in [\\\"ner\\\", \\\"re\\\"]:\\n        seed_data = {}\\n        for seed, path in SEED_DIRS.items():\\n            seed_data[seed] = compute_signals(load_instances(path), subtask)\\n\\n        for sk, sname in sig_map.items():\\n            rhos, aurocs = [], []\\n            for seed in [42, 123, 456]:\\n                d = seed_data[seed]\\n                rho, _ = spearmanr(d[sk], d[\\\"f1\\\"])\\n                rhos.append(round(float(rho), 4))\\n                aurocs.append(round(compute_auroc(d[sk], d[\\\"f1\\\"]), 4))\\n\\n            results[subtask][sname] = {\\n                \\\"rho_per_seed\\\": rhos,\\n                \\\"rho_mean\\\": round(float(np.mean(rhos)), 4),\\n                \\\"rho_std\\\": round(float(np.std(rhos)), 4),\\n                \\\"auroc_per_seed\\\": aurocs,\\n                \\\"auroc_mean\\\": round(float(np.mean(aurocs)), 4),\\n                \\\"auroc_std\\\": round(float(np.std(aurocs)), 4),\\n            }\\n\\n    out = \\\"/root/autodl-tmp/struct_self_consist_ie/output/review_round2/qwen_scierc_3seed_summary.json\\\"\\n    with open(out, \\\"w\\\") as f:\\n        json.dump(results, f, indent=2)\\n    print(f\\\"Saved to {out}\\\")\\n\\n    # Sanity check seed 42 NER vs report.json\\n    instances = load_instances(SEED_DIRS[42])\\n    s = compute_signals(instances, \\\"ner\\\")\\n    rho_sj, _ = spearmanr(s[\\\"sj\\\"], s[\\\"f1\\\"])\\n    rho_fk, _ = spearmanr(s[\\\"fk\\\"], s[\\\"f1\\\"])\\n    rho_lp, _ = spearmanr(s[\\\"lp\\\"], s[\\\"f1\\\"])\\n    auroc_lp = compute_auroc(s[\\\"lp\\\"], s[\\\"f1\\\"])\\n    print(f\\\"\\\\n--- Sanity check: seed 42 NER (N={len(s['f1'])}) ---\\\")\\n    print(f\\\"  SJ ρ: {rho_sj:.4f} (report: 0.3599)\\\")\\n    print(f\\\"  FK ρ: {rho_fk:.4f} (report: 0.2665)\\\")\\n    print(f\\\"  LP ρ: {rho_lp:.4f} (report: 0.2052)\\\")\\n    print(f\\\"  LP AUROC: {auroc_lp:.4f} (report: 0.6116)\\\")\\n\\n    for subtask in [\\\"ner\\\", \\\"re\\\"]:\\n        print(f\\\"\\\\n{'='*70}\\\")\\n        print(f\\\"  {subtask.upper()} — Qwen/SciERC 3-seed (42, 123, 456)\\\")\\n        print(f\\\"{'='*70}\\\")\\n        print(f\\\"{'Signal':<22} {'Spearman ρ':>18} {'AUROC':>18}\\\")\\n        print(f\\\"{'-'*22} {'-'*18} {'-'*18}\\\")\\n        for sname in sig_map.values():\\n            d = results[subtask][sname]\\n            print(f\\\"{sname:<22} {d['rho_mean']:.4f} ± {d['rho_std']:.4f}   {d['auroc_mean']:.4f} ± {d['auroc_std']:.4f}\\\")\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 51_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have the compute_3seed_summary.py. I need to adapt it for LLaMA. The seed directories for LLaMA are:
+- seed 42: `/root/autodl-tmp/struct_self_consist_ie/output/exp007_llama_inference/`
+- seed 123: `/root/autodl-tmp/struct_self_consist_ie/output/exp_018_llama_scierc_seed123/`
+- seed 456: `/root/autodl-tmp/struct_self_consist_ie/output/exp_018_llama_scierc_seed456/`
+
+
+I should verify that exp007_llama_inference corresponds to seed 42 by checking the report.json and samples.jsonl files, since the naming convention differs from the explicit seed labels in the exp_018 experiments. I need to adapt the script to work with the LLaMA directories instead—updating the seed directories, changing the model type to "llama", and adjusting the output filename to llama_scierc_3seed_summary.json. Let me also verify that the seed 456 report exists and is properly formatted before running it.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ad442358-e23d-4a59-9717-0b89a1275c0d",
+  "uuid": "1c485592-5bcb-4225-a578-5a1a0ea76f9d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FboRroquDME4Q3agSAs9QR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2749,
+      "cache_read_input_tokens": 38282,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2749
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 52_
+
+I have the script. Now I'll adapt it for LLaMA and run it. Let me also verify seed 456 exists.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ad442358-e23d-4a59-9717-0b89a1275c0d",
+  "uuid": "f5dfa27f-f150-4f61-ab28-7a5ddcd0c3fb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FboRroquDME4Q3agSAs9QR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2749,
+      "cache_read_input_tokens": 38282,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2749
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01DGEAYouYZDGw3oNQsaZkYx`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "head -6 /root/autodl-tmp/struct_self_consist_ie/output/exp_018_llama_scierc_seed456/report.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ad442358-e23d-4a59-9717-0b89a1275c0d",
+  "uuid": "fecd0eaf-9432-4012-b013-8479ed6f415a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FboRroquDME4Q3agSAs9QR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2749,
+      "cache_read_input_tokens": 38282,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2749
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-15T06:02:15.244Z_
+
+<details><summary>↩ Tool result · `toolu_01DGEAYouYZDGw3oNQsaZkYx`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"dataset\\\": \\\"scierc\\\",\\n  \\\"subtask\\\": \\\"joint\\\",\\n  \\\"n_samples\\\": 8,\\n  \\\"temperature\\\": 1.0,\\n  \\\"num_instances\\\": 551,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ad442358-e23d-4a59-9717-0b89a1275c0d",
+  "uuid": "03f1f6d4-50c3-4d02-8e46-8e65ffd09957",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"dataset\\\\\\\": \\\\\\\"scierc\\\\\\\",\\\\n  \\\\\\\"subtask\\\\\\\": \\\\\\\"joint\\\\\\\",\\\\n  \\\\\\\"n_samples\\\\\\\": 8,\\\\n  \\\\\\\"temperature\\\\\\\": 1.0,\\\\n  \\\\\\\"num_instances\\\\\\\": 551,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"dataset\\\": \\\"scierc\\\",\\n  \\\"subtask\\\": \\\"joint\\\",\\n  \\\"n_samples\\\": 8,\\n  \\\"temperature\\\": 1.0,\\n  \\\"num_instances\\\": 551,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01XhMjJEHLVtkXFgo12cpjvA`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "wc -l /root/autodl-tmp/struct_self_consist_ie/output/exp007_llama_inference/samples.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ad442358-e23d-4a59-9717-0b89a1275c0d",
+  "uuid": "fcfa1a51-8e5f-41c3-94e2-81026cad6f73",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FboRroquDME4Q3agSAs9QR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2749,
+      "cache_read_input_tokens": 38282,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2749
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-15T06:02:16.039Z_
+
+<details><summary>↩ Tool result · `toolu_01XhMjJEHLVtkXFgo12cpjvA`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"551 /root/autodl-tmp/struct_self_consist_ie/output/exp007_llama_inference/samples.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.34}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ad442358-e23d-4a59-9717-0b89a1275c0d",
+  "uuid": "c9482520-0850-489a-833a-0614c5e73d9f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"551 /root/autodl-tmp/struct_self_consist_ie/output/exp007_llama_inference/samples.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.34}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"551 /root/autodl-tmp/struct_self_consist_ie/output/exp007_llama_inference/samples.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.34}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 57_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+All three directories have 551 instances, SciERC, n_samples=8. Now I'll create the adapted script and run it.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ad442358-e23d-4a59-9717-0b89a1275c0d",
+  "uuid": "34022b98-c467-40ce-abe3-731b5a3fcb66",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LnExRZdtimYEABsxxZYVKn",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1268,
+      "cache_read_input_tokens": 41031,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1268
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 58_
+
+All three seeds confirmed with 551 instances, SciERC, n_samples=8. Now I'll run the adapted script.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ad442358-e23d-4a59-9717-0b89a1275c0d",
+  "uuid": "c241fab8-f432-410b-8e78-92221f1de793",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LnExRZdtimYEABsxxZYVKn",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1268,
+      "cache_read_input_tokens": 41031,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1268
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_018tKAAZbugn6K5mseqYXZGf`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cat > /root/autodl-tmp/struct_self_consist_ie/output/review_round2/compute_llama_3seed_summary.py << 'PYEOF'\nimport json\nimport sys\nimport numpy as np\nfrom itertools import combinations\nfrom scipy.stats import spearmanr\n\nsys.path.insert(0, \"/root/autodl-tmp/struct_self_consist_ie/code\")\nfrom consistency import fleiss_kappa_surface, structural_consistency_soft_jaccard\nfrom evaluation import per_instance_f1, compute_auroc\n\nSEED_DIRS = {\n    42: \"/root/autodl-tmp/struct_self_consist_ie/output/exp007_llama_inference\",\n    123: \"/root/autodl-tmp/struct_self_consist_ie/output/exp_018_llama_scierc_seed123\",\n    456: \"/root/autodl-tmp/struct_self_consist_ie/output/exp_018_llama_scierc_seed456\",\n}\n\ndef load_instances(path):\n    with open(f\"{path}/samples.jsonl\") as f:\n        return [json.loads(line) for line in f]\n\ndef surface_keys_ner(sample):\n    return frozenset((e[\"text\"], e[\"type\"]) for e in sample.get(\"entities\", []))\n\ndef surface_keys_re(sample):\n    return frozenset((r[\"head\"], r[\"tail\"], r[\"type\"]) for r in sample.get(\"relations\", []))\n\ndef compute_exact_match(samples, subtask):\n    n = len(samples)\n    if n <= 1:\n        return 1.0\n    key_fn = surface_keys_ner if subtask == \"ner\" else surface_keys_re\n    key_sets = [key_fn(s) for s in samples]\n    matches = sum(1 for i, j in combinations(range(n), 2) if key_sets[i] == key_sets[j])\n    total = n * (n - 1) // 2\n    return matches / total\n\ndef compute_voting_confidence(samples, subtask):\n    n = len(samples)\n    if n == 0:\n        return 0.0\n    key_fn = surface_keys_ner if subtask == \"ner\" else surface_keys_re\n    sample_keys = [key_fn(s) for s in samples]\n    all_items = set().union(*sample_keys)\n    if not all_items:\n        return 1.0\n    return float(np.mean([sum(1 for sk in sample_keys if item in sk) / n for item in all_items]))\n\ndef compute_signals(instances, subtask):\n    sj, fk, em, lp, vc, f1 = [], [], [], [], [], []\n    field = \"entities\" if subtask == \"ner\" else \"relations\"\n\n    for inst in instances:\n        if len(inst[\"gold\"].get(field, [])) == 0:\n            continue\n        samples = inst[\"samples\"]\n        greedy = inst[\"greedy\"]\n        gold = inst[\"gold\"]\n\n        f1.append(per_instance_f1(greedy, gold, subtask=subtask))\n        sj.append(structural_consistency_soft_jaccard(samples, subtask=subtask))\n        fk.append(fleiss_kappa_surface(samples, subtask=subtask))\n        em.append(compute_exact_match(samples, subtask))\n        lp.append(float(np.mean(inst[\"logprobs\"])))\n        vc.append(compute_voting_confidence(samples, subtask))\n\n    return {\"sj\": sj, \"fk\": fk, \"em\": em, \"lp\": lp, \"vc\": vc, \"f1\": f1}\n\ndef main():\n    results = {\"model\": \"llama\", \"dataset\": \"scierc\", \"seeds\": [42, 123, 456], \"ner\": {}, \"re\": {}}\n    sig_map = {\"sj\": \"soft_jaccard\", \"fk\": \"fleiss_kappa\", \"em\": \"exact_match\",\n               \"lp\": \"log_probability\", \"vc\": \"voting_confidence\"}\n\n    for subtask in [\"ner\", \"re\"]:\n        seed_data = {}\n        for seed, path in SEED_DIRS.items():\n            seed_data[seed] = compute_signals(load_instances(path), subtask)\n\n        for sk, sname in sig_map.items():\n            rhos, aurocs = [], []\n            for seed in [42, 123, 456]:\n                d = seed_data[seed]\n                rho, _ = spearmanr(d[sk], d[\"f1\"])\n                rhos.append(round(float(rho), 4))\n                aurocs.append(round(compute_auroc(d[sk], d[\"f1\"]), 4))\n\n            results[subtask][sname] = {\n                \"rho_per_seed\": rhos,\n                \"rho_mean\": round(float(np.mean(rhos)), 4),\n                \"rho_std\": round(float(np.std(rhos)), 4),\n                \"auroc_per_seed\": aurocs,\n                \"auroc_mean\": round(float(np.mean(aurocs)), 4),\n                \"auroc_std\": round(float(np.std(aurocs)), 4),\n            }\n\n    out = \"/root/autodl-tmp/struct_self_consist_ie/output/review_round2/llama_scierc_3seed_summary.json\"\n    with open(out, \"w\") as f:\n        json.dump(results, f, indent=2)\n    print(f\"Saved to {out}\")\n\n    # Sanity check seed 42 NER vs report.json\n    instances = load_instances(SEED_DIRS[42])\n    s = compute_signals(instances, \"ner\")\n    rho_sj, _ = spearmanr(s[\"sj\"], s[\"f1\"])\n    rho_fk, _ = spearmanr(s[\"fk\"], s[\"f1\"])\n    rho_lp, _ = spearmanr(s[\"lp\"], s[\"f1\"])\n    auroc_lp = compute_auroc(s[\"lp\"], s[\"f1\"])\n    print(f\"\\n--- Sanity check: seed 42 NER (N={len(s['f1'])}) ---\")\n    print(f\"  SJ ρ: {rho_sj:.4f} (report: 0.3630)\")\n    print(f\"  FK ρ: {rho_fk:.4f} (report: 0.3266)\")\n    print(f\"  LP ρ: {rho_lp:.4f} (report: 0.1827)\")\n    print(f\"  LP AUROC: {auroc_lp:.4f} (report: 0.5964)\")\n\n    for subtask in [\"ner\", \"re\"]:\n        print(f\"\\n{'='*70}\")\n        print(f\"  {subtask.upper()} — LLaMA/SciERC 3-seed (42, 123, 456)\")\n        print(f\"{'='*70}\")\n        print(f\"{'Signal':<22} {'Spearman ρ':>18} {'AUROC':>18}\")\n        print(f\"{'-'*22} {'-'*18} {'-'*18}\")\n        for sname in sig_map.values():\n            d = results[subtask][sname]\n            print(f\"{sname:<22} {d['rho_mean']:.4f} ± {d['rho_std']:.4f}   {d['auroc_mean']:.4f} ± {d['auroc_std']:.4f}\")\n\nif __name__ == \"__main__\":\n    main()\nPYEOF\npython3 /root/autodl-tmp/struct_self_consist_ie/output/review_round2/compute_llama_3seed_summary.py",
+  "account": "root",
+  "warn": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ad442358-e23d-4a59-9717-0b89a1275c0d",
+  "uuid": "057f6a89-3cb8-433d-bf8b-de972aef4cab",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LnExRZdtimYEABsxxZYVKn",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1268,
+      "cache_read_input_tokens": 41031,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1268
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-15T06:02:51.716Z_
+
+<details><summary>↩ Tool result · `toolu_018tKAAZbugn6K5mseqYXZGf`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Saved to /root/autodl-tmp/struct_self_consist_ie/output/review_round2/llama_scierc_3seed_summary.json\\n\\n--- Sanity check: seed 42 NER (N=529) ---\\n  SJ ρ: 0.3630 (report: 0.3630)\\n  FK ρ: 0.3266 (report: 0.3266)\\n  LP ρ: 0.1827 (report: 0.1827)\\n  LP AUROC: 0.5964 (report: 0.5964)\\n\\n======================================================================\\n  NER — LLaMA/SciERC 3-seed (42, 123, 456)\\n======================================================================\\nSignal                         Spearman ρ              AUROC\\n---------------------- ------------------ ------------------\\nsoft_jaccard           0.3615 ± 0.0047   0.6715 ± 0.0024\\nfleiss_kappa           0.3093 ± 0.0151   0.6391 ± 0.0065\\nexact_match            0.3117 ± 0.0122   0.6477 ± 0.0047\\nlog_probability        0.1903 ± 0.0059   0.5931 ± 0.0066\\nvoting_confidence      0.4023 ± 0.0122   0.6940 ± 0.0067\\n\\n======================================================================\\n  RE — LLaMA/SciERC 3-seed (42, 123, 456)\\n======================================================================\\nSignal                         Spearman ρ              AUROC\\n---------------------- ------------------ ------------------\\nsoft_jaccard           0.2772 ± 0.0224   0.6565 ± 0.0137\\nfleiss_kappa           0.2872 ± 0.0225   0.6492 ± 0.0141\\nexact_match            0.1860 ± 0.0186   0.6108 ± 0.0107\\nlog_probability        0.3061 ± 0.0148   0.6552 ± 0.0100\\nvoting_confidence      0.3301 ± 0.0122   0.6804 ± 0.0071\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.69}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ad442358-e23d-4a59-9717-0b89a1275c0d",
+  "uuid": "7f5b1f15-3a74-432c-8ddc-54eb73c6990c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Saved to /root/autodl-tmp/struct_self_consist_ie/output/review_round2/llama_scierc_3seed_summary.json\\\\n\\\\n--- Sanity check: seed 42 NER (N=529) ---\\\\n  SJ ρ: 0.3630 (report: 0.3630)\\\\n  FK ρ: 0.3266 (report: 0.3266)\\\\n  LP ρ: 0.1827 (report: 0.1827)\\\\n  LP AUROC: 0.5964 (report: 0.5964)\\\\n\\\\n======================================================================\\\\n  NER — LLaMA/SciERC 3-seed (42, 123, 456)\\\\n======================================================================\\\\nSignal                         Spearman ρ              AUROC\\\\n---------------------- ------------------ ------------------\\\\nsoft_jaccard           0.3615 ± 0.0047   0.6715 ± 0.0024\\\\nfleiss_kappa           0.3093 ± 0.0151   0.6391 ± 0.0065\\\\nexact_match            0.3117 ± 0.0122   0.6477 ± 0.0047\\\\nlog_probability        0.1903 ± 0.0059   0.5931 ± 0.0066\\\\nvoting_confidence      0.4023 ± 0.0122   0.6940 ± 0.0067\\\\n\\\\n======================================================================\\\\n  RE — LLaMA/SciERC 3-seed (42, 123, 456)\\\\n======================================================================\\\\nSignal                         Spearman ρ              AUROC\\\\n---------------------- ------------------ ------------------\\\\nsoft_jaccard           0.2772 ± 0.0224   0.6565 ± 0.0137\\\\nfleiss_kappa           0.2872 ± 0.0225   0.6492 ± 0.0141\\\\nexact_match            0.1860 ± 0.0186   0.6108 ± 0.0107\\\\nlog_probability        0.3061 ± 0.0148   0.6552 ± 0.0100\\\\nvoting_confidence      0.3301 ± 0.0122   0.6804 ± 0.0071\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.69}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Saved to /root/autodl-tmp/struct_self_consist_ie/output/review_round2/llama_scierc_3seed_summary.json\\n\\n--- Sanity check: seed 42 NER (N=529) ---\\n  SJ ρ: 0.3630 (report: 0.3630)\\n  FK ρ: 0.3266 (report: 0.3266)\\n  LP ρ: 0.1827 (report: 0.1827)\\n  LP AUROC: 0.5964 (report: 0.5964)\\n\\n======================================================================\\n  NER — LLaMA/SciERC 3-seed (42, 123, 456)\\n======================================================================\\nSignal                         Spearman ρ              AUROC\\n---------------------- ------------------ ------------------\\nsoft_jaccard           0.3615 ± 0.0047   0.6715 ± 0.0024\\nfleiss_kappa           0.3093 ± 0.0151   0.6391 ± 0.0065\\nexact_match            0.3117 ± 0.0122   0.6477 ± 0.0047\\nlog_probability        0.1903 ± 0.0059   0.5931 ± 0.0066\\nvoting_confidence      0.4023 ± 0.0122   0.6940 ± 0.0067\\n\\n======================================================================\\n  RE — LLaMA/SciERC 3-seed (42, 123, 456)\\n======================================================================\\nSignal                         Spearman ρ              AUROC\\n---------------------- ------------------ ------------------\\nsoft_jaccard           0.2772 ± 0.0224   0.6565 ± 0.0137\\nfleiss_kappa           0.2872 ± 0.0225   0.6492 ± 0.0141\\nexact_match            0.1860 ± 0.0186   0.6108 ± 0.0107\\nlog_probability        0.3061 ± 0.0148   0.6552 ± 0.0100\\nvoting_confidence      0.3301 ± 0.0122   0.6804 ± 0.0071\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.69}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 61_
+
+Sanity check 完全匹配 report.json（SJ ρ=0.3630, FK ρ=0.3266, LP ρ=0.1827, LP AUROC=0.5964）。
+
+结果：
+
+### NER — LLaMA/SciERC 3-seed (42, 123, 456)
+
+| Signal | Spearman ρ | AUROC |
+|---|---|---|
+| Voting Confidence | 0.4023 ± 0.0122 | 0.6940 ± 0.0067 |
+| Soft Jaccard | 0.3615 ± 0.0047 | 0.6715 ± 0.0024 |
+| Exact Match | 0.3117 ± 0.0122 | 0.6477 ± 0.0047 |
+| Fleiss' Kappa | 0.3093 ± 0.0151 | 0.6391 ± 0.0065 |
+| Log-probability | 0.1903 ± 0.0059 | 0.5931 ± 0.0066 |
+
+### RE — LLaMA/SciERC 3-seed (42, 123, 456)
+
+| Signal | Spearman ρ | AUROC |
+|---|---|---|
+| Voting Confidence | 0.3301 ± 0.0122 | 0.6804 ± 0.0071 |
+| Log-probability | 0.3061 ± 0.0148 | 0.6552 ± 0.0100 |
+| Fleiss' Kappa | 0.2872 ± 0.0225 | 0.6492 ± 0.0141 |
+| Soft Jaccard | 0.2772 ± 0.0224 | 0.6565 ± 0.0137 |
+| Exact Match | 0.1860 ± 0.0186 | 0.6108 ± 0.0107 |
+
+JSON 已保存到 `output/review_round2/llama_scierc_3seed_summary.json`。各 seed 间标准差很小（σ ≤ 0.02），信号排序稳定——NER 端 Voting Confidence 最强（ρ=0.40），RE 端同样 Voting Confidence 领先（ρ=0.33）。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ad442358-e23d-4a59-9717-0b89a1275c0d",
+  "uuid": "f14c10f4-b45a-489e-8114-c92e28a174d8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JQ685ALxHZkQscPW2dtknu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2866,
+      "cache_read_input_tokens": 42299,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2866
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 62_
+
+Sanity check 完全匹配 report.json（SJ ρ=0.3630, FK ρ=0.3266, LP ρ=0.1827, LP AUROC=0.5964）。
+
+结果：
+
+### NER — LLaMA/SciERC 3-seed (42, 123, 456)
+
+| Signal | Spearman ρ | AUROC |
+|---|---|---|
+| Voting Confidence | 0.4023 ± 0.0122 | 0.6940 ± 0.0067 |
+| Soft Jaccard | 0.3615 ± 0.0047 | 0.6715 ± 0.0024 |
+| Exact Match | 0.3117 ± 0.0122 | 0.6477 ± 0.0047 |
+| Fleiss' Kappa | 0.3093 ± 0.0151 | 0.6391 ± 0.0065 |
+| Log-probability | 0.1903 ± 0.0059 | 0.5931 ± 0.0066 |
+
+### RE — LLaMA/SciERC 3-seed (42, 123, 456)
+
+| Signal | Spearman ρ | AUROC |
+|---|---|---|
+| Voting Confidence | 0.3301 ± 0.0122 | 0.6804 ± 0.0071 |
+| Log-probability | 0.3061 ± 0.0148 | 0.6552 ± 0.0100 |
+| Fleiss' Kappa | 0.2872 ± 0.0225 | 0.6492 ± 0.0141 |
+| Soft Jaccard | 0.2772 ± 0.0224 | 0.6565 ± 0.0137 |
+| Exact Match | 0.1860 ± 0.0186 | 0.6108 ± 0.0107 |
+
+JSON 已保存到 `output/review_round2/llama_scierc_3seed_summary.json`。各 seed 间标准差很小（σ ≤ 0.02），信号排序稳定——NER 端 Voting Confidence 最强（ρ=0.40），RE 端同样 Voting Confidence 领先（ρ=0.33）。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 155167,
+  "duration_api_ms": 149642,
+  "num_turns": 20,
+  "stop_reason": "end_turn",
+  "session_id": "ad442358-e23d-4a59-9717-0b89a1275c0d",
+  "total_cost_usd": 0.5931029999999999,
+  "usage": {
+    "input_tokens": 17,
+    "cache_creation_input_tokens": 33324,
+    "cache_read_input_tokens": 388150,
+    "output_tokens": 7540,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 33324,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 638,
+        "cache_read_input_tokens": 42299,
+        "cache_creation_input_tokens": 2866,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 2866
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 2048,
+      "outputTokens": 24,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.002168,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 17,
+      "outputTokens": 7540,
+      "cacheReadInputTokens": 388150,
+      "cacheCreationInputTokens": 33324,
+      "webSearchRequests": 0,
+      "costUSD": 0.590935,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "1e769146-8868-41b7-9fd2-a72396bb20d4"
+}
+```
+
+</details>
+
+---

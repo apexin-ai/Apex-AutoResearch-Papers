@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "139ca6d7d91930d40c5f",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "paper tex fix scierc",
+  "task_key": "worker_paper_tex-fix-scierc_20260525T202104",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_paper_tex-fix-scierc_20260525T202104_result.json",
+    "occurrence": 1,
+    "bytes": 1550,
+    "sha256": "e023b3257039b680f8d5bcf3a54a9958d1dad4ad167a10567c8e529f577d5eb6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "经过全面检查，**编译版本（docs/paper/sections/）中所有 SciERC NER 数据已经是正确值，不需要修改。**\n\n具体核查结果：\n\n### Table 数据\n- `tab:quality_estimation` 只存在于 `artifacts/_project/paper/experiments.tex`（旧版残留，不参与编译）和 `_archived/experiments_OLD.tex`（已归档，已有正确值）\n- 编译版本使用 `tab:multiseed`（appendix.tex L723），多 seed 均值与单 seed 值一致方向\n\n### 正文引用（experiments_main.tex）\n- L31: `VC $\\rho{=}0.379$, SJ $0.360$) over LP ($0.205$)` — 已正确\n\n### abstract.tex\n- 无 SciERC NER 的具体 ρ/AUROC 数值（仅提 \"AUROC up to $0.82$\"，这是 CoNLL EM）\n\n### introduction.tex\n- 无 .50 或 .73 的 SciERC NER 引用\n- fig_overview caption 写明 \"AUROC from CoNLL EM; ρ from Few-NERD\"\n\n### conclusion.tex / discussion.tex\n- 无 SciERC NER 具体 ρ/AUROC 值\n\n### single_signal.tex\n- fig_selection_gap caption L34: \"$\\rho$ up to 0.38\" — 已正确\n\n### 旧值搜索\n- `.502` — 仅在 appendix RE 高复杂度子集（SJ $\\rho{=}0.502$），非 SciERC NER QE\n- `.728` — 仅在 appendix 温度消融表（不同上下文）\n- `.559` — 仅在 mechanistic probing 跨数据集 AUROC（LODO），非 QE\n\n### 结论\n**artifacts/_project/paper/experiments.tex** 仍有旧值（.502、.728 等），但根据约束 C001 禁止修改该文件（旧版残留，不参与编译）。编译版本 docs/paper/sections/ 已全部更新完毕，无需任何改动。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-tex-fix-scierc.md"
+}

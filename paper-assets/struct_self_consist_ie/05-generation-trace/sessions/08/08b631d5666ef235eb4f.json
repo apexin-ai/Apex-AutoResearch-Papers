@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "08b631d5666ef235eb4f",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "code scierc 4b merge inference v2",
+  "task_key": "worker_code_scierc_4b_merge_inference_v2_20260515T194913",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_scierc_4b_merge_inference_v2_20260515T194913_result.json",
+    "occurrence": 1,
+    "bytes": 885,
+    "sha256": "41ed4f364c5090853b27d83e2b69c1fc9dd46a8d3ffde6b0dba8f01768f0bc8e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总：\n\n**GPU 诊断结果**\n| GPU | 状态 | 进程 |\n|-----|------|------|\n| cuda:0 | 空闲 | v4 finetune 已完成 |\n| cuda:1 | 运行中 | CoNLL inference (exp_qwen3_4b_conll_scs_inference_v2) |\n| cuda:2 | 运行中 | **SciERC SCS inference** (刚启动) |\n| cuda:3 | 空闲 | — |\n\n**已执行操作**\n1. **Kill PID 231733** — cuda:2 上重复的 CoNLL inference 已清除\n2. **v4 finetune 确认完成** — 585/585 步，best checkpoint = checkpoint-400 (eval_loss=0.0898)\n3. **Merge 完成** — `checkpoints/qwen3-4b-scierc-merged/` (5 shards, ~7.5GB)\n4. **SCS inference 已启动** — PID 234209 在 cuda:2，4408 prompts (551 samples × 8)，处理中 (~12 it/s)，预计 ~6 分钟完成\n5. **Registry** — `exp_qwen3_4b_scierc_scs_inference` 状态 RUNNING\n\n日志位置：`/tmp/exp_qwen3_4b_scierc_scs_inference.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-scierc-4b-merge-inference-v2.md"
+}

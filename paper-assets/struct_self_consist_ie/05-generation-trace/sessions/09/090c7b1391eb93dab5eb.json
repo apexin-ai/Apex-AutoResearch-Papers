@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "090c7b1391eb93dab5eb",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "code exp 019 supervised verifier",
+  "task_key": "worker_code_exp_019_supervised_verifier_20260515T100946",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_exp_019_supervised_verifier_20260515T100946_result.json",
+    "occurrence": 1,
+    "bytes": 1605,
+    "sha256": "b8841126b2ad5e2d3c4862b5ede9efd793b1a14b68ea0fde1d4c566885d33be7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实际上训练脚本不需要改——运行时在命令行设 `HF_HUB_OFFLINE=1` 即可。现在所有验证已通过：\n\n**总结:**\n\n1. **`train_supervised_verifier.py`** 已部署到 `autodl-5090:/root/autodl-tmp/struct_self_consist_ie/`\n   - 5-fold GroupKFold CV（无 instance 泄露，每 fold ~110/440 val/train instances）\n   - DeBERTa-v3-large 回归模型（435M params, ~1.7GB GPU）\n   - 输入: `[CLS] sentence [SEP] Entities: ... Relations: ... [SEP]`\n   - 标签: per-sample strict-match F1\n   - 训练完成后输出 OOF predictions JSON + 快速 selection F1 摘要\n\n2. **`evaluate_verifier.py`** 已部署\n   - 计算 6 种方法的 selection F1 + Spearman ρ + AUROC\n   - Supervised Verifier / LP / SJ / FK(LOO) / EM / VC\n   - Greedy / Oracle / Random baselines\n\n3. **验证通过:**\n   - `--help` 正常\n   - 数据加载: 551 instances × 8 = 4408 samples, NER F1 mean=0.5835\n   - Fold 划分: 5 fold 无泄露, ~110 val instances each\n   - Forward pass: token shape [4, 107], loss=0.5254, GPU 1.7GB\n\n4. **DeBERTa-v3-large 已缓存**在 `/root/autodl-tmp/.hf_cache/`\n\n**运行命令（待审批后执行）:**\n```bash\ncd /root/autodl-tmp/struct_self_consist_ie\nexport HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1\n# NER\npython train_supervised_verifier.py --data_path output/exp_012_rerun_1024/samples.jsonl --subtask ner --output_dir output/exp_019_supervised_verifier\n# RE\npython train_supervised_verifier.py --data_path output/exp_012_rerun_1024/samples.jsonl --subtask re --output_dir output/exp_019_supervised_verifier\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-019-supervised-verifier.md"
+}

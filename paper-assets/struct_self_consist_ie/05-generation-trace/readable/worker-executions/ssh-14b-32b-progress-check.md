@@ -1,0 +1,2055 @@
+# ssh 14b 32b progress check
+
+**When Self-Consistency Fails for NER: Degeneracy, Signal Collapse, and the Correlation-Selection Gap** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 43
+- **Recorded user turns:** 0
+- **Tool calls:** 15
+- **Original source:** `logs/workers/worker_ssh_14b-32b-progress-check_20260519T234338.log`
+- **Structured JSON:** [`d90ff5edaacdb50f12f4.json`](../../sessions/d9/d90ff5edaacdb50f12f4.json)
+
+## Before a recorded user message
+
+43 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "session_id": "e1197bdb-5364-4125-a0d2-987d8f35aa98",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "6793df53-00b7-4399-80ac-0970adfdb368",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779246000,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "9ef42a38-9d8a-4ccd-a770-1649c9818537",
+  "session_id": "e1197bdb-5364-4125-a0d2-987d8f35aa98"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to check the training progress of two QLoRA experiments on two different servers. Let me load the SSH tools and check both servers.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e1197bdb-5364-4125-a0d2-987d8f35aa98",
+  "uuid": "7d26cce3-b8a9-40d1-baab-e441b6eead78",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FrwZd8knPYFoGiEFScxTid",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12120,
+      "cache_read_input_tokens": 11701,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12120
+      },
+      "output_tokens": 24,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_014YjyAzaruagkicYYFWhFXR`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e1197bdb-5364-4125-a0d2-987d8f35aa98",
+  "uuid": "d3e435b3-a40d-44de-ac04-3a83eede416a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FrwZd8knPYFoGiEFScxTid",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12120,
+      "cache_read_input_tokens": 11701,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12120
+      },
+      "output_tokens": 24,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-19T23:43:48.773Z_
+
+<details><summary>↩ Tool result · `toolu_014YjyAzaruagkicYYFWhFXR`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e1197bdb-5364-4125-a0d2-987d8f35aa98",
+  "uuid": "ec89dfa8-e837-4497-9088-e520f93ee471",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me check both servers in parallel.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e1197bdb-5364-4125-a0d2-987d8f35aa98",
+  "uuid": "65385994-85fc-4097-b6d2-212ce289a0b0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01H7rphoDj2z1ZxzURtx9Bdf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 472,
+      "cache_read_input_tokens": 23821,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 472
+      },
+      "output_tokens": 25,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 8_
+
+Checking both servers in parallel.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e1197bdb-5364-4125-a0d2-987d8f35aa98",
+  "uuid": "c6c81e13-d22a-4d11-add3-a0114f64b0bd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01H7rphoDj2z1ZxzURtx9Bdf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 472,
+      "cache_read_input_tokens": 23821,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 472
+      },
+      "output_tokens": 25,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0132ytjNXGVoiih4JWJZ1Ec1`</summary>
+
+```json
+{
+  "server": "autodl-5090-c",
+  "command": "ps -p 56773 -o pid,etime,args --no-headers 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e1197bdb-5364-4125-a0d2-987d8f35aa98",
+  "uuid": "db7e1a83-b8c9-4ff6-b876-17f82f26835c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01H7rphoDj2z1ZxzURtx9Bdf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 472,
+      "cache_read_input_tokens": 23821,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 472
+      },
+      "output_tokens": 25,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-19T23:43:53.154Z_
+
+<details><summary>↩ Tool result · `toolu_0132ytjNXGVoiih4JWJZ1Ec1`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e1197bdb-5364-4125-a0d2-987d8f35aa98",
+  "uuid": "d633a60c-4eaa-4007-b850-32c833fa83e6",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01AxZ7QoCp4ctzE4ntzNCeen`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "ps -p 804438 -o pid,etime,args --no-headers 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e1197bdb-5364-4125-a0d2-987d8f35aa98",
+  "uuid": "6d55d7f5-5cba-4dce-9165-41b3835e4b3d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01H7rphoDj2z1ZxzURtx9Bdf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 472,
+      "cache_read_input_tokens": 23821,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 472
+      },
+      "output_tokens": 25,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-19T23:43:53.754Z_
+
+<details><summary>↩ Tool result · `toolu_01AxZ7QoCp4ctzE4ntzNCeen`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e1197bdb-5364-4125-a0d2-987d8f35aa98",
+  "uuid": "a4fa7bb1-74ad-4abe-a57b-14767bce1347",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 13_
+
+The `--no-headers` flag has a `--` that's being blocked. Let me adjust the commands.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e1197bdb-5364-4125-a0d2-987d8f35aa98",
+  "uuid": "d4332796-3e68-46f5-8f99-1d80815ce153",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PMqbdUwkzjPpxrWQdjBaxG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 516,
+      "cache_read_input_tokens": 24293,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 516
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01MHFrzFit79hwhg4XAzFDU9`</summary>
+
+```json
+{
+  "server": "autodl-5090-c",
+  "command": "ps -p 56773 -o pid,etime,args",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e1197bdb-5364-4125-a0d2-987d8f35aa98",
+  "uuid": "24dbc4bd-7159-4030-8f5d-80dd704aed57",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PMqbdUwkzjPpxrWQdjBaxG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 516,
+      "cache_read_input_tokens": 24293,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 516
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0164hJfgpWizV5qUTVpmGXrD`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "ps -p 804438 -o pid,etime,args",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e1197bdb-5364-4125-a0d2-987d8f35aa98",
+  "uuid": "17748cb5-7fcc-42f7-973c-4efd7ab56f90",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PMqbdUwkzjPpxrWQdjBaxG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 516,
+      "cache_read_input_tokens": 24293,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 516
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-19T23:44:00.571Z_
+
+<details><summary>↩ Tool result · `toolu_01MHFrzFit79hwhg4XAzFDU9`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"   PID     ELAPSED COMMAND\\n 56773    15:38:06 /root/miniconda3/bin/python /root/miniconda3/bin/llamafactory-cli train train_config_qwen25_14b_fewnerd_s42.yaml\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.73}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e1197bdb-5364-4125-a0d2-987d8f35aa98",
+  "uuid": "ffea6871-0af5-4492-b988-b086226453d0",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"   PID     ELAPSED COMMAND\\\\n 56773    15:38:06 /root/miniconda3/bin/python /root/miniconda3/bin/llamafactory-cli train train_config_qwen25_14b_fewnerd_s42.yaml\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.73}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"   PID     ELAPSED COMMAND\\n 56773    15:38:06 /root/miniconda3/bin/python /root/miniconda3/bin/llamafactory-cli train train_config_qwen25_14b_fewnerd_s42.yaml\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.73}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-19T23:44:01.624Z_
+
+<details><summary>↩ Tool result · `toolu_0164hJfgpWizV5qUTVpmGXrD`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"   PID     ELAPSED COMMAND\\n804438    14:08:57 /root/miniconda3/bin/python /root/miniconda3/bin/llamafactory-cli train /root/autodl-tmp/struct_self_consist_ie/train_config_qwen25_32b_fewnerd_s42.yaml\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.04}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e1197bdb-5364-4125-a0d2-987d8f35aa98",
+  "uuid": "b60b92f9-7d84-450f-ae68-b95959fa838a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"   PID     ELAPSED COMMAND\\\\n804438    14:08:57 /root/miniconda3/bin/python /root/miniconda3/bin/llamafactory-cli train /root/autodl-tmp/struct_self_consist_ie/train_config_qwen25_32b_fewnerd_s42.yaml\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.04}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"   PID     ELAPSED COMMAND\\n804438    14:08:57 /root/miniconda3/bin/python /root/miniconda3/bin/llamafactory-cli train /root/autodl-tmp/struct_self_consist_ie/train_config_qwen25_32b_fewnerd_s42.yaml\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.04}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 18_
+
+Both processes are running. Now let me get the training logs and GPU status.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e1197bdb-5364-4125-a0d2-987d8f35aa98",
+  "uuid": "a628dd48-7c43-4e51-8fa1-ffe2ba8bbd6c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Fn4ysdN7sr61yDceNmZSsj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 600,
+      "cache_read_input_tokens": 24809,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 600
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01QRqUmGxuP8NLpBpddTKsjx`</summary>
+
+```json
+{
+  "server": "autodl-5090-c",
+  "command": "tail -20 /root/autodl-tmp/struct_self_consist_ie/logs/exp_qwen25_14b_fewnerd_s42.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e1197bdb-5364-4125-a0d2-987d8f35aa98",
+  "uuid": "d30d7db2-6625-4c42-8f9b-bb02e0a48fe3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Fn4ysdN7sr61yDceNmZSsj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 600,
+      "cache_read_input_tokens": 24809,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 600
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01TjVsjLKavUYZrZ7NF3uvtZ`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "tail -20 /root/autodl-tmp/struct_self_consist_ie/logs/exp_qwen25_32b_fewnerd_s42.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e1197bdb-5364-4125-a0d2-987d8f35aa98",
+  "uuid": "bf10339f-d74c-49d4-a8c8-e4b32e762f87",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Fn4ysdN7sr61yDceNmZSsj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 600,
+      "cache_read_input_tokens": 24809,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 600
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-19T23:44:06.802Z_
+
+<details><summary>↩ Tool result · `toolu_01QRqUmGxuP8NLpBpddTKsjx`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"tail: cannot open '/root/autodl-tmp/struct_self_consist_ie/logs/exp_qwen25_14b_fewnerd_s42.log' for reading: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 1.33}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e1197bdb-5364-4125-a0d2-987d8f35aa98",
+  "uuid": "c575dd1b-40a9-4679-bd9e-fdea15f28656",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"tail: cannot open '/root/autodl-tmp/struct_self_consist_ie/logs/exp_qwen25_14b_fewnerd_s42.log' for reading: No such file or directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.33}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"tail: cannot open '/root/autodl-tmp/struct_self_consist_ie/logs/exp_qwen25_14b_fewnerd_s42.log' for reading: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 1.33}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-19T23:44:07.166Z_
+
+<details><summary>↩ Tool result · `toolu_01TjVsjLKavUYZrZ7NF3uvtZ`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"tail: cannot open '/root/autodl-tmp/struct_self_consist_ie/logs/exp_qwen25_32b_fewnerd_s42.log' for reading: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e1197bdb-5364-4125-a0d2-987d8f35aa98",
+  "uuid": "47c7c17e-4b2a-41a5-ae5b-b2490421c44d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"tail: cannot open '/root/autodl-tmp/struct_self_consist_ie/logs/exp_qwen25_32b_fewnerd_s42.log' for reading: No such file or directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"tail: cannot open '/root/autodl-tmp/struct_self_consist_ie/logs/exp_qwen25_32b_fewnerd_s42.log' for reading: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_015o1JfH2vT8ekiXgCaXASwF`</summary>
+
+```json
+{
+  "server": "autodl-5090-c",
+  "command": "nvidia-smi --query-gpu=index,utilization.gpu,memory.used,memory.total --format=csv,noheader",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e1197bdb-5364-4125-a0d2-987d8f35aa98",
+  "uuid": "7b7c4f18-814a-4830-8f47-19aefb4d84b3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Fn4ysdN7sr61yDceNmZSsj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 600,
+      "cache_read_input_tokens": 24809,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 600
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-19T23:44:08.889Z_
+
+<details><summary>↩ Tool result · `toolu_015o1JfH2vT8ekiXgCaXASwF`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"0, 95 %, 25885 MiB, 32607 MiB\\n1, 96 %, 25827 MiB, 32607 MiB\\n2, 74 %, 18159 MiB, 32607 MiB\\n3, 89 %, 18041 MiB, 32607 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.47}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e1197bdb-5364-4125-a0d2-987d8f35aa98",
+  "uuid": "ddcb5b64-cef0-4d13-9005-94ee7145528a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 95 %, 25885 MiB, 32607 MiB\\\\n1, 96 %, 25827 MiB, 32607 MiB\\\\n2, 74 %, 18159 MiB, 32607 MiB\\\\n3, 89 %, 18041 MiB, 32607 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.47}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"0, 95 %, 25885 MiB, 32607 MiB\\n1, 96 %, 25827 MiB, 32607 MiB\\n2, 74 %, 18159 MiB, 32607 MiB\\n3, 89 %, 18041 MiB, 32607 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.47}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01EqvRUwuV5XMsuExFH3DxMd`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "nvidia-smi --query-gpu=index,utilization.gpu,memory.used,memory.total --format=csv,noheader",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e1197bdb-5364-4125-a0d2-987d8f35aa98",
+  "uuid": "8ab07e23-0b06-4a60-8371-a05ec99a7b00",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Fn4ysdN7sr61yDceNmZSsj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 600,
+      "cache_read_input_tokens": 24809,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 600
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-19T23:44:11.346Z_
+
+<details><summary>↩ Tool result · `toolu_01EqvRUwuV5XMsuExFH3DxMd`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"0, 100 %, 30542 MiB, 32607 MiB\\n1, 93 %, 30538 MiB, 32607 MiB\\n2, 100 %, 30526 MiB, 32607 MiB\\n3, 100 %, 30062 MiB, 32607 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.47}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e1197bdb-5364-4125-a0d2-987d8f35aa98",
+  "uuid": "af2ef49f-eab8-4e7d-ac34-1bb7197d52c6",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 100 %, 30542 MiB, 32607 MiB\\\\n1, 93 %, 30538 MiB, 32607 MiB\\\\n2, 100 %, 30526 MiB, 32607 MiB\\\\n3, 100 %, 30062 MiB, 32607 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.47}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"0, 100 %, 30542 MiB, 32607 MiB\\n1, 93 %, 30538 MiB, 32607 MiB\\n2, 100 %, 30526 MiB, 32607 MiB\\n3, 100 %, 30062 MiB, 32607 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.47}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 27_
+
+Log files not at expected path. Let me find them.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e1197bdb-5364-4125-a0d2-987d8f35aa98",
+  "uuid": "54def826-578e-43b8-b87e-f5a43fccce4c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011jb2FiENiFjxZFCLQXJ2F7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1320,
+      "cache_read_input_tokens": 25409,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1320
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_016BZDYPtsZZuPcb6G7m8VR4`</summary>
+
+```json
+{
+  "server": "autodl-5090-c",
+  "command": "find /root/autodl-tmp/struct_self_consist_ie -name \"*.log\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e1197bdb-5364-4125-a0d2-987d8f35aa98",
+  "uuid": "8feb4885-1172-4995-9b79-a26492eaa87c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011jb2FiENiFjxZFCLQXJ2F7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1320,
+      "cache_read_input_tokens": 25409,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1320
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_018czgEQPgwzk713CJug128v`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "find /root/autodl-tmp/struct_self_consist_ie -name \"*.log\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e1197bdb-5364-4125-a0d2-987d8f35aa98",
+  "uuid": "99408eb5-88ca-45ba-8366-2b0d139f988f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011jb2FiENiFjxZFCLQXJ2F7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1320,
+      "cache_read_input_tokens": 25409,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1320
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-19T23:44:16.493Z_
+
+<details><summary>↩ Tool result · `toolu_016BZDYPtsZZuPcb6G7m8VR4`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/output/exp_fewnerd_seed789.log\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_scierc_seed789_5090c.log\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_conll_seed789.log\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_scierc_t12_seed456.log\\n/root/autodl-tmp/struct_self_consist_ie/logs/train_14b_s42.log\\n/root/autodl-tmp/struct_self_consist_ie/logs/exp_wnut17_7b_pipeline.log\\n/root/autodl-tmp/struct_self_consist_ie/logs/train_qwen25_7b_wnut17_s42.log\\n/root/autodl-tmp/struct_self_consist_ie/logs/export_qwen25_7b_wnut17.log\\n/root/autodl-tmp/struct_self_consist_ie/logs/pipeline_qwen25_7b_fewnerd.log\\n/root/autodl-tmp/struct_self_consist_ie/logs/train_qwen25_7b_fewnerd_s42.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.34}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e1197bdb-5364-4125-a0d2-987d8f35aa98",
+  "uuid": "5279759e-d522-4daf-834a-7c8e353170a5",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/exp_fewnerd_seed789.log\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_scierc_seed789_5090c.log\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_conll_seed789.log\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_scierc_t12_seed456.log\\\\n/root/autodl-tmp/struct_self_consist_ie/logs/train_14b_s42.log\\\\n/root/autodl-tmp/struct_self_consist_ie/logs/exp_wnut17_7b_pipeline.log\\\\n/root/autodl-tmp/struct_self_consist_ie/logs/train_qwen25_7b_wnut17_s42.log\\\\n/root/autodl-tmp/struct_self_consist_ie/logs/export_qwen25_7b_wnut17.log\\\\n/root/autodl-tmp/struct_self_consist_ie/logs/pipeline_qwen25_7b_fewnerd.log\\\\n/root/autodl-tmp/struct_self_consist_ie/logs/train_qwen25_7b_fewnerd_s42.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.34}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/output/exp_fewnerd_seed789.log\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_scierc_seed789_5090c.log\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_conll_seed789.log\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_scierc_t12_seed456.log\\n/root/autodl-tmp/struct_self_consist_ie/logs/train_14b_s42.log\\n/root/autodl-tmp/struct_self_consist_ie/logs/exp_wnut17_7b_pipeline.log\\n/root/autodl-tmp/struct_self_consist_ie/logs/train_qwen25_7b_wnut17_s42.log\\n/root/autodl-tmp/struct_self_consist_ie/logs/export_qwen25_7b_wnut17.log\\n/root/autodl-tmp/struct_self_consist_ie/logs/pipeline_qwen25_7b_fewnerd.log\\n/root/autodl-tmp/struct_self_consist_ie/logs/train_qwen25_7b_fewnerd_s42.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.34}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_016w5ryJ2YqkhD1dz6QsUSVQ`</summary>
+
+```json
+{
+  "server": "autodl-5090-c",
+  "command": "ls /root/autodl-tmp/struct_self_consist_ie/output/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e1197bdb-5364-4125-a0d2-987d8f35aa98",
+  "uuid": "1740df09-ef9b-450a-a56a-e9904ef7a69f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011jb2FiENiFjxZFCLQXJ2F7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1320,
+      "cache_read_input_tokens": 25409,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1320
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-19T23:44:16.926Z_
+
+<details><summary>↩ Tool result · `toolu_018czgEQPgwzk713CJug128v`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/checkpoints/ft_001_train.log\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/wnut17_train.log\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/exp017_train.log\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/fewnerd_train.log\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/llama_fewnerd_train.log\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/llama_fewnerd_train_4gpu.log\\n/root/autodl-tmp/struct_self_consist_ie/logs/train_conll2003.log\\n/root/autodl-tmp/struct_self_consist_ie/logs/train_wnut17.log\\n/root/autodl-tmp/struct_self_consist_ie/logs/exp_freeform_ablation.log\\n/root/autodl-tmp/struct_self_consist_ie/logs/exp023_rank8_train.log\\n/root/autodl-tmp/struct_self_consist_ie/logs/exp_028_train.log\\n/root/autodl-tmp/struct_self_consist_ie/logs/exp_028_4gpu_train.log\\n/root/autodl-tmp/struct_self_consist_ie/logs/exp_028_postprocess.log\\n/root/autodl-tmp/struct_self_consist_ie/logs/exp_028_inference.log\\n/root/autodl-tmp/struct_self_consist_ie/logs/exp_029a_train.log\\n/root/autodl-tmp/struct_self_consist_ie/logs/exp_029b_train.log\\n/root/autodl-tmp/struct_self_consist_ie/logs/exp_029a_inference.log\\n/root/autodl-tmp/struct_self_consist_ie/logs/llama_fewnerd_train.log\\n/root/autodl-tmp/struct_self_consist_ie/logs/llama_fewnerd_inference.log\\n/root/autodl-tmp/struct_self_consist_ie/logs/train_qwen25_32b_fewnerd_s42.log\\n/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_001.log\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed42_v2_r1024/run.log\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed123_v2_r1024/run.log\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed42_200only_backup/run.log\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed42_run.log\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed123_200only/run.log\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed456_200only/run.log\\n/root/autodl-tmp/struct_self_consist_ie/output/exp008_re_n16_200only/run.log\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed123_run.log\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_seed456_t10_full.log\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_seed123_t10_full.log\\n/root/autodl-tmp/struct_self_consist_ie/output/exp008_re_n16_t10_full.log\\n/root/autodl-tmp/struct_self_consist_ie/output/exp003_wnut17_pilot.log\\n/root/autodl-tmp/struct_self_consist_ie/output/exp003_wnut17_eval.log\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed42_v2/run.log\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed123_v2/run.log\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_008_re_n16_v2/run.log\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_007_llama_seed123/run.log\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_007_llama_seed456/run.log\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_008_re_seed123/run.log\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_006_v2_run.log\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_009_v2_run.log\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed456_v2/run.log\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed456_v2_ner.log\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_003_wnut17_v2_infer/run.log\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_infer.log\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n16.log\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_007_llama_n16.log\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16_s123.log\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16_s456.log\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/run.log\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n16_r1024/run.log\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed456_v2_ner_r1024/run.log\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16_s123_r1024/run.log\\n/root/autodl-tmp/struct_self_consist_ie/out\\n\\n... [截断: 输出过长，省略 2037 字符] ...\\n\\n2/run.log\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_027_fewnerd_n16/shard_3/run.log\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_026_T05_run.log\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_026_T08_run.log\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_026_T12_run.log\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_027v2_mlp_verifier/run.log\\n/root/autodl-tmp/struct_self_consist_ie/output/deberta_verifier/scierc_train.log\\n/root/autodl-tmp/struct_self_consist_ie/output/deberta_verifier/fewnerd_train.log\\n/root/autodl-tmp/struct_self_consist_ie/output/deberta_verifier_5fold/run.log\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_021_fewnerd_n8_seed123_run.log\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_021_fewnerd_n8_seed456_run.log\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed456.log\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed123_run.log\\n/root/autodl-tmp/struct_self_consist_ie/output/token_lp_aggregator_scierc.log\\n/root/autodl-tmp/struct_self_consist_ie/output/hidden_state_probe/extract.log\\n/root/autodl-tmp/struct_self_consist_ie/output/hidden_state_probe/probe.log\\n/root/autodl-tmp/struct_self_consist_ie/output/hidden_state_probe/probe_v2.log\\n/root/autodl-tmp/struct_self_consist_ie/output/hidden_state_probe/probe_texttype.log\\n/root/autodl-tmp/struct_self_consist_ie/output/hidden_state_probe/probe_run3.log\\n/root/autodl-tmp/struct_self_consist_ie/output/hidden_state_probe/probe_final.log\\n/root/autodl-tmp/struct_self_consist_ie/output/hidden_state_probe/probe_run4.log\\n/root/autodl-tmp/struct_self_consist_ie/output/token_lp_aggregator_scierc_v2.log\\n/root/autodl-tmp/struct_self_consist_ie/output/token_lp_aggregator_fewnerd.log\\n/root/autodl-tmp/struct_self_consist_ie/output/token_lp_aggregator_scierc_3ep.log\\n/root/autodl-tmp/struct_self_consist_ie/output/hidden_state_probe_fewnerd/extract.log\\n/root/autodl-tmp/struct_self_consist_ie/output/hidden_state_probe_fewnerd/probe.log\\n/root/autodl-tmp/struct_self_consist_ie/output/hidden_state_probe_exp016_run.log\\n/root/autodl-tmp/struct_self_consist_ie/output/d140_oracle_gated/run.log\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_027_mlp_v2/run.log\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_027_mlp_v2/run_recheck.log\\n/root/autodl-tmp/struct_self_consist_ie/output/merge_conll.log\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_030_conll_t12.log\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_031_fewnerd_t12.log\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_pipeline.log\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n16_seed123.log\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n16_seed456.log\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_026_t12_seed123.log\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_026_t05_seed123.log\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_026_t08_seed123.log\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_026_t05_seed456.log\\n/root/autodl-tmp/struct_self_consist_ie/output/unified_degeneracy_audit/run.log\\n/root/autodl-tmp/struct_self_consist_ie/output/unified_oracle_audit/audit_run.log\\n/root/autodl-tmp/struct_self_consist_ie/output/fewnerd_seed789_merged/run.log\\n/root/autodl-tmp/struct_self_consist_ie/output/debug_sj_variance.log\\n/root/autodl-tmp/struct_self_consist_ie/output/analyze_s789_rerun.log\\n/root/autodl-tmp/struct_self_consist_ie/output/prescriptive_analysis/gated_run.log\\n/root/autodl-tmp/struct_self_consist_ie/output/entity_construction_fair_n8/multiseed_run.log\\n/root/autodl-tmp/struct_self_consist_ie/output/dev_set_lp_probe/run.log\\n/root/autodl-tmp/struct_self_consist_ie/output/supervised_verifier_upgrade.log\\n/root/autodl-tmp/struct_self_consist_ie/ft_002_train.log\\n/root/autodl-tmp/struct_self_consist_ie/mvp_pilot.log\\n/root/autodl-tmp/struct_self_consist_ie/ft_002v2_train.log\\n/root/autodl-tmp/struct_self_consist_ie/mvp_pilot_003.log\\n/root/autodl-tmp/struct_self_consist_ie/mvp_pilot_004.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e1197bdb-5364-4125-a0d2-987d8f35aa98",
+  "uuid": "6a87af36-66a8-4698-9576-e8ccfcb4caa9",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/checkpoints/ft_001_train.log\\\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/wnut17_train.log\\\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/exp017_train.log\\\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/fewnerd_train.log\\\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/llama_fewnerd_train.log\\\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/llama_fewnerd_train_4gpu.log\\\\n/root/autodl-tmp/struct_self_consist_ie/logs/train_conll2003.log\\\\n/root/autodl-tmp/struct_self_consist_ie/logs/train_wnut17.log\\\\n/root/autodl-tmp/struct_self_consist_ie/logs/exp_freeform_ablation.log\\\\n/root/autodl-tmp/struct_self_consist_ie/logs/exp023_rank8_train.log\\\\n/root/autodl-tmp/struct_self_consist_ie/logs/exp_028_train.log\\\\n/root/autodl-tmp/struct_self_consist_ie/logs/exp_028_4gpu_train.log\\\\n/root/autodl-tmp/struct_self_consist_ie/logs/exp_028_postprocess.log\\\\n/root/autodl-tmp/struct_self_consist_ie/logs/exp_028_inference.log\\\\n/root/autodl-tmp/struct_self_consist_ie/logs/exp_029a_train.log\\\\n/root/autodl-tmp/struct_self_consist_ie/logs/exp_029b_train.log\\\\n/root/autodl-tmp/struct_self_consist_ie/logs/exp_029a_inference.log\\\\n/root/autodl-tmp/struct_self_consist_ie/logs/llama_fewnerd_train.log\\\\n/root/autodl-tmp/struct_self_consist_ie/logs/llama_fewnerd_inference.log\\\\n/root/autodl-tmp/struct_self_consist_ie/logs/train_qwen25_32b_fewnerd_s42.log\\\\n/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_001.log\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed42_v2_r1024/run.log\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed123_v2_r1024/run.log\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed42_200only_backup/run.log\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed42_run.log\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed123_200only/run.log\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed456_200only/run.log\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp008_re_n16_200only/run.log\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed123_run.log\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_seed456_t10_full.log\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_seed123_t10_full.log\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp008_re_n16_t10_full.log\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp003_wnut17_pilot.log\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp003_wnut17_eval.log\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed42_v2/run.log\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed123_v2/run.log\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_008_re_n16_v2/run.log\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_007_llama_seed123/run.log\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_007_llama_seed456/run.log\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_008_re_seed123/run.log\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_006_v2_run.log\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_009_v2_run.log\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed456_v2/run.log\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed456_v2_ner.log\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_003_wnut17_v2_infer/run.log\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_infer.log\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n16.log\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_007_llama_n16.log\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16_s123.log\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16_s456.log\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/run.log\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n16_r1024/run.log\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed456_v2_ner_r1024/run.log\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16_s123_r1024/run.log\\\\n/root/autodl-tmp/struct_self_consist_ie/out\\\\n\\\\n... [截断: 输出过长，省略 2037 字符] ...\\\\n\\\\n2/run.log\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_027_fewnerd_n16/shard_3/run.log\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_026_T05_run.log\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_026_T08_run.log\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_026_T12_run.log\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_027v2_mlp_verifier/run.log\\\\n/root/autodl-tmp/struct_self_consist_ie/output/deberta_verifier/scierc_train.log\\\\n/root/autodl-tmp/struct_self_consist_ie/output/deberta_verifier/fewnerd_train.log\\\\n/root/autodl-tmp/struct_self_consist_ie/output/deberta_verifier_5fold/run.log\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_021_fewnerd_n8_seed123_run.log\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_021_fewnerd_n8_seed456_run.log\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed456.log\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed123_run.log\\\\n/root/autodl-tmp/struct_self_consist_ie/output/token_lp_aggregator_scierc.log\\\\n/root/autodl-tmp/struct_self_consist_ie/output/hidden_state_probe/extract.log\\\\n/root/autodl-tmp/struct_self_consist_ie/output/hidden_state_probe/probe.log\\\\n/root/autodl-tmp/struct_self_consist_ie/output/hidden_state_probe/probe_v2.log\\\\n/root/autodl-tmp/struct_self_consist_ie/output/hidden_state_probe/probe_texttype.log\\\\n/root/autodl-tmp/struct_self_consist_ie/output/hidden_state_probe/probe_run3.log\\\\n/root/autodl-tmp/struct_self_consist_ie/output/hidden_state_probe/probe_final.log\\\\n/root/autodl-tmp/struct_self_consist_ie/output/hidden_state_probe/probe_run4.log\\\\n/root/autodl-tmp/struct_self_consist_ie/output/token_lp_aggregator_scierc_v2.log\\\\n/root/autodl-tmp/struct_self_consist_ie/output/token_lp_aggregator_fewnerd.log\\\\n/root/autodl-tmp/struct_self_consist_ie/output/token_lp_aggregator_scierc_3ep.log\\\\n/root/autodl-tmp/struct_self_consist_ie/output/hidden_state_probe_fewnerd/extract.log\\\\n/root/autodl-tmp/struct_self_consist_ie/output/hidden_state_probe_fewnerd/probe.log\\\\n/root/autodl-tmp/struct_self_consist_ie/output/hidden_state_probe_exp016_run.log\\\\n/root/autodl-tmp/struct_self_consist_ie/output/d140_oracle_gated/run.log\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_027_mlp_v2/run.log\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_027_mlp_v2/run_recheck.log\\\\n/root/autodl-tmp/struct_self_consist_ie/output/merge_conll.log\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_030_conll_t12.log\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_031_fewnerd_t12.log\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_pipeline.log\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n16_seed123.log\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n16_seed456.log\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_026_t12_seed123.log\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_026_t05_seed123.log\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_026_t08_seed123.log\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_026_t05_seed456.log\\\\n/root/autodl-tmp/struct_self_consist_ie/output/unified_degeneracy_audit/run.log\\\\n/root/autodl-tmp/struct_self_consist_ie/output/unified_oracle_audit/audit_run.log\\\\n/root/autodl-tmp/struct_self_consist_ie/output/fewnerd_seed789_merged/run.log\\\\n/root/autodl-tmp/struct_self_consist_ie/output/debug_sj_variance.log\\\\n/root/autodl-tmp/struct_self_consist_ie/output/analyze_s789_rerun.log\\\\n/root/autodl-tmp/struct_self_consist_ie/output/prescriptive_analysis/gated_run.log\\\\n/root/autodl-tmp/struct_self_consist_ie/output/entity_construction_fair_n8/multiseed_run.log\\\\n/root/autodl-tmp/struct_self_consist_ie/output/dev_set_lp_probe/run.log\\\\n/root/autodl-tmp/struct_self_consist_ie/output/supervised_verifier_upgrade.log\\\\n/root/autodl-tmp/struct_self_consist_ie/ft_002_train.log\\\\n/root/autodl-tmp/struct_self_consist_ie/mvp_pilot.log\\\\n/root/autodl-tmp/struct_self_consist_ie/ft_002v2_train.log\\\\n/root/autodl-tmp/struct_self_consist_ie/mvp_pilot_003.log\\\\n/root/autodl-tmp/struct_self_consist_ie/mvp_pilot_004.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/checkpoints/ft_001_train.log\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/wnut17_train.log\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/exp017_train.log\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/fewnerd_train.log\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/llama_fewnerd_train.log\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/llama_fewnerd_train_4gpu.log\\n/root/autodl-tmp/struct_self_consist_ie/logs/train_conll2003.log\\n/root/autodl-tmp/struct_self_consist_ie/logs/train_wnut17.log\\n/root/autodl-tmp/struct_self_consist_ie/logs/exp_freeform_ablation.log\\n/root/autodl-tmp/struct_self_consist_ie/logs/exp023_rank8_train.log\\n/root/autodl-tmp/struct_self_consist_ie/logs/exp_028_train.log\\n/root/autodl-tmp/struct_self_consist_ie/logs/exp_028_4gpu_train.log\\n/root/autodl-tmp/struct_self_consist_ie/logs/exp_028_postprocess.log\\n/root/autodl-tmp/struct_self_consist_ie/logs/exp_028_inference.log\\n/root/autodl-tmp/struct_self_consist_ie/logs/exp_029a_train.log\\n/root/autodl-tmp/struct_self_consist_ie/logs/exp_029b_train.log\\n/root/autodl-tmp/struct_self_consist_ie/logs/exp_029a_inference.log\\n/root/autodl-tmp/struct_self_consist_ie/logs/llama_fewnerd_train.log\\n/root/autodl-tmp/struct_self_consist_ie/logs/llama_fewnerd_inference.log\\n/root/autodl-tmp/struct_self_consist_ie/logs/train_qwen25_32b_fewnerd_s42.log\\n/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_001.log\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed42_v2_r1024/run.log\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed123_v2_r1024/run.log\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed42_200only_backup/run.log\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed42_run.log\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed123_200only/run.log\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed456_200only/run.log\\n/root/autodl-tmp/struct_self_consist_ie/output/exp008_re_n16_200only/run.log\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed123_run.log\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_seed456_t10_full.log\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_seed123_t10_full.log\\n/root/autodl-tmp/struct_self_consist_ie/output/exp008_re_n16_t10_full.log\\n/root/autodl-tmp/struct_self_consist_ie/output/exp003_wnut17_pilot.log\\n/root/autodl-tmp/struct_self_consist_ie/output/exp003_wnut17_eval.log\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed42_v2/run.log\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed123_v2/run.log\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_008_re_n16_v2/run.log\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_007_llama_seed123/run.log\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_007_llama_seed456/run.log\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_008_re_seed123/run.log\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_006_v2_run.log\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_009_v2_run.log\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed456_v2/run.log\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed456_v2_ner.log\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_003_wnut17_v2_infer/run.log\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_infer.log\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n16.log\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_007_llama_n16.log\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16_s123.log\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16_s456.log\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/run.log\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n16_r1024/run.log\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed456_v2_ner_r1024/run.log\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16_s123_r1024/run.log\\n/root/autodl-tmp/struct_self_consist_ie/out\\n\\n... [截断: 输出过长，省略 2037 字符] ...\\n\\n2/run.log\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_027_fewnerd_n16/shard_3/run.log\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_026_T05_run.log\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_026_T08_run.log\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_026_T12_run.log\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_027v2_mlp_verifier/run.log\\n/root/autodl-tmp/struct_self_consist_ie/output/deberta_verifier/scierc_train.log\\n/root/autodl-tmp/struct_self_consist_ie/output/deberta_verifier/fewnerd_train.log\\n/root/autodl-tmp/struct_self_consist_ie/output/deberta_verifier_5fold/run.log\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_021_fewnerd_n8_seed123_run.log\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_021_fewnerd_n8_seed456_run.log\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed456.log\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed123_run.log\\n/root/autodl-tmp/struct_self_consist_ie/output/token_lp_aggregator_scierc.log\\n/root/autodl-tmp/struct_self_consist_ie/output/hidden_state_probe/extract.log\\n/root/autodl-tmp/struct_self_consist_ie/output/hidden_state_probe/probe.log\\n/root/autodl-tmp/struct_self_consist_ie/output/hidden_state_probe/probe_v2.log\\n/root/autodl-tmp/struct_self_consist_ie/output/hidden_state_probe/probe_texttype.log\\n/root/autodl-tmp/struct_self_consist_ie/output/hidden_state_probe/probe_run3.log\\n/root/autodl-tmp/struct_self_consist_ie/output/hidden_state_probe/probe_final.log\\n/root/autodl-tmp/struct_self_consist_ie/output/hidden_state_probe/probe_run4.log\\n/root/autodl-tmp/struct_self_consist_ie/output/token_lp_aggregator_scierc_v2.log\\n/root/autodl-tmp/struct_self_consist_ie/output/token_lp_aggregator_fewnerd.log\\n/root/autodl-tmp/struct_self_consist_ie/output/token_lp_aggregator_scierc_3ep.log\\n/root/autodl-tmp/struct_self_consist_ie/output/hidden_state_probe_fewnerd/extract.log\\n/root/autodl-tmp/struct_self_consist_ie/output/hidden_state_probe_fewnerd/probe.log\\n/root/autodl-tmp/struct_self_consist_ie/output/hidden_state_probe_exp016_run.log\\n/root/autodl-tmp/struct_self_consist_ie/output/d140_oracle_gated/run.log\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_027_mlp_v2/run.log\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_027_mlp_v2/run_recheck.log\\n/root/autodl-tmp/struct_self_consist_ie/output/merge_conll.log\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_030_conll_t12.log\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_031_fewnerd_t12.log\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_pipeline.log\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n16_seed123.log\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n16_seed456.log\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_026_t12_seed123.log\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_026_t05_seed123.log\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_026_t08_seed123.log\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_026_t05_seed456.log\\n/root/autodl-tmp/struct_self_consist_ie/output/unified_degeneracy_audit/run.log\\n/root/autodl-tmp/struct_self_consist_ie/output/unified_oracle_audit/audit_run.log\\n/root/autodl-tmp/struct_self_consist_ie/output/fewnerd_seed789_merged/run.log\\n/root/autodl-tmp/struct_self_consist_ie/output/debug_sj_variance.log\\n/root/autodl-tmp/struct_self_consist_ie/output/analyze_s789_rerun.log\\n/root/autodl-tmp/struct_self_consist_ie/output/prescriptive_analysis/gated_run.log\\n/root/autodl-tmp/struct_self_consist_ie/output/entity_construction_fair_n8/multiseed_run.log\\n/root/autodl-tmp/struct_self_consist_ie/output/dev_set_lp_probe/run.log\\n/root/autodl-tmp/struct_self_consist_ie/output/supervised_verifier_upgrade.log\\n/root/autodl-tmp/struct_self_consist_ie/ft_002_train.log\\n/root/autodl-tmp/struct_self_consist_ie/mvp_pilot.log\\n/root/autodl-tmp/struct_self_consist_ie/ft_002v2_train.log\\n/root/autodl-tmp/struct_self_consist_ie/mvp_pilot_003.log\\n/root/autodl-tmp/struct_self_consist_ie/mvp_pilot_004.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01TMWwwmUz9CGtTyZWbv4sbw`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "ls /root/autodl-tmp/struct_self_consist_ie/output/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e1197bdb-5364-4125-a0d2-987d8f35aa98",
+  "uuid": "d6351901-6912-4470-8e95-e9b085976316",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011jb2FiENiFjxZFCLQXJ2F7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1320,
+      "cache_read_input_tokens": 25409,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1320
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-19T23:44:18.350Z_
+
+<details><summary>↩ Tool result · `toolu_016w5ryJ2YqkhD1dz6QsUSVQ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"7b_ft_signals\\nexp_conll_seed789\\nexp_conll_seed789.log\\nexp_fewnerd_seed456\\nexp_fewnerd_seed789\\nexp_fewnerd_seed789.log\\nexp_llama_scierc_seed123\\nexp_scierc_seed789_5090c\\nexp_scierc_seed789_5090c.log\\nexp_scierc_t12_seed456\\nexp_scierc_t12_seed456.log\\nfewnerd_7b\\nwnut17\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.41}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e1197bdb-5364-4125-a0d2-987d8f35aa98",
+  "uuid": "ffc24a2e-6d3e-4943-b454-9d13cde56127",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"7b_ft_signals\\\\nexp_conll_seed789\\\\nexp_conll_seed789.log\\\\nexp_fewnerd_seed456\\\\nexp_fewnerd_seed789\\\\nexp_fewnerd_seed789.log\\\\nexp_llama_scierc_seed123\\\\nexp_scierc_seed789_5090c\\\\nexp_scierc_seed789_5090c.log\\\\nexp_scierc_t12_seed456\\\\nexp_scierc_t12_seed456.log\\\\nfewnerd_7b\\\\nwnut17\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.41}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"7b_ft_signals\\nexp_conll_seed789\\nexp_conll_seed789.log\\nexp_fewnerd_seed456\\nexp_fewnerd_seed789\\nexp_fewnerd_seed789.log\\nexp_llama_scierc_seed123\\nexp_scierc_seed789_5090c\\nexp_scierc_seed789_5090c.log\\nexp_scierc_t12_seed456\\nexp_scierc_t12_seed456.log\\nfewnerd_7b\\nwnut17\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.41}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-19T23:44:18.729Z_
+
+<details><summary>↩ Tool result · `toolu_01TMWwwmUz9CGtTyZWbv4sbw`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"adalp_analysis_results.json\\nadaptive_temperature_results.json\\nanalysis_epsilon_sweep\\nanalysis_fk_bootstrap_ci.json\\nanalysis_fk_bootstrap_per_instance.json\\nanalysis_lp_range_cdf.json\\nanalysis_lp_range_cdf_n16_3seed.json\\nanalysis_mbr_selection.json\\nanalysis_multiseed_selection_f1.json\\nanalysis_round8\\nanalysis_scierc_n16_3seed_selection_f1.json\\nanalysis_scierc_n16_3seed_selection_f1_merged.json\\nanalysis_scierc_re_n16_3seed_selection_f1.json\\nanalysis_unified_rho_full.json\\nanalyze_s789_rerun.log\\nbootstrap_ci_nscaling\\nbootstrap_ci_summary.json\\nbootstrap_ci_tables.tex\\ncalibration_baseline_results.json\\nccs_selection_report.md\\nccs_selection_results.json\\nclaim_audit\\nconditional_filter_diagnosis.json\\nconstruction_variants\\nd108_greedy_f1\\nd108_lp_vc_combination\\nd108_mbr_within_rho\\nd108_q4q5\\nd110_4b_degeneracy\\nd112_disk_cleanup\\nd112_hybrid_strategy\\nd112_mf3_random_single\\nd112_table2_fix\\nd114_auroc_investigation\\nd140_oracle_gated\\nd141_conditional_decomp\\nd141_degeneracy_scatter\\nd141_entity_merge\\ndals_analysis.json\\ndals_cross_model.json\\ndals_hardening_results.json\\ndeberta_verifier\\ndeberta_verifier_5fold\\ndebug_sj_variance.log\\ndebug_sj_variance_results.json\\ndecomposition_regression\\ndev_set_lp_probe\\ndgs_epoch_rank_analysis.json\\ndgs_selection_results.json\\ndiagnostic_calibration\\ndiagnostic_calibration_results.json\\nentity_consensus_report.md\\nentity_consensus_results.json\\nentity_construction\\nentity_construction_fair\\nentity_construction_fair_log.txt\\nentity_construction_fair_n8\\nentity_construction_fair_n8_log.txt\\nentity_token_lp_full\\nepoch_scierc_textbased_rho.json\\nexp001_n16_seed123\\nexp001_n16_seed123_200only\\nexp001_n16_seed123_200only_backup\\nexp001_n16_seed123_full\\nexp001_n16_seed123_run.log\\nexp001_n16_seed42\\nexp001_n16_seed42_200only_backup\\nexp001_n16_seed42_run.log\\nexp001_n16_seed456\\nexp001_n16_seed456_200only\\nexp001_n16_seed456_run.log\\nexp001_seed123_t10_full\\nexp001_seed123_t10_full.log\\nexp001_seed456_t10_full\\nexp001_seed456_t10_full.log\\nexp002_conll2003\\nexp003_wnut17_dryrun\\nexp003_wnut17_eval\\nexp003_wnut17_eval.log\\nexp003_wnut17_pilot\\nexp003_wnut17_pilot.log\\nexp004_re_diagnostic\\nexp004v2_re_diagnostic\\nexp007_llama_dryrun\\nexp007_llama_inference\\nexp008_re_n16\\nexp008_re_n16_200only\\nexp008_re_n16_t10_full\\nexp008_re_n16_t10_full.log\\nexp009_stratification_results.json\\nexp010_selection_curves\\nexp016_signal_ensemble\\nexp018_3seed_5signal_results.json\\nexp_001_seed123_v2\\nexp_001_seed123_v2_r1024\\nexp_001_seed42_v2\\nexp_001_seed42_v2_r1024\\nexp_001_seed456_v2\\nexp_001_seed456_v2_ner\\nexp_001_seed456_v2_ner.log\\nexp_001_seed456_v2_ner_r1024\\nexp_002_conll_n16\\nexp_002_conll_n16.log\\nexp_002_conll_n16_r1024\\nexp_002_conll_n16_seed123\\nexp_002_conll_n16_seed123.log\\nexp_002_conll_n16_seed456\\nexp_002_conll_n16_seed456.log\\nexp_002_conll_n8_seed123\\nexp_002_conll_n8_seed123_run.log\\nexp_002_conll_n8_seed456\\nexp_002_conll_n8_seed456.log\\nexp_003_wnut17_v2_infer\\nexp_005_v2_temperature\\nexp_006_v2\\nexp_006_v2_run.log\\nexp_007_llama_n16\\nexp_007_llama_n16.log\\nexp_007_llama_n16_r1024\\nexp_007_llama_scierc_seed123\\nexp_007_llama_seed123\\nexp_007_llama_seed456\\nexp_008_re_n16_v2\\nexp_008_re_seed123\\nexp_009_v2\\nexp_009_v2_re_rerun\\nexp_009_v2_run.log\\nexp_011_ood_analysis\\nexp_011_ood_conll_to_scierc\\nexp_011_ood_scierc_to_conll\\nexp_011_ood_scierc_to_conll_run.log\\nexp_012_logprob\\nexp_012_rerun_1024\\nexp_015_unified\\nexp_015_v2\\nexp_016_rerun_1024\\nexp_016_v2\\nexp_017_llama_conll\\nexp_017_llama_conll_infer\\nexp_017_llama_conll_infer.log\\nexp_017_llama_conll_n16\\nexp_017_llama_conll_n16_r1024\\nexp_017_llama_conll_n16_r1024_run.log\\nexp_017_llama_conll_n16_s123\\nexp_017_llama_conll_n16_s123.log\\nexp_017_llama_conll_n16_s123_r1024\\nexp_017_llama_conll_n16_s456\\nexp_017_llama_conll_n16_s456.log\\nexp_017_llama_conll_n16_s456_r1024\\nexp_017_llama_conll_n16_s456_r1024_run.log\\nexp_017_llama_conll_n8_t07\\nexp_017_llama_conll_pipeline.log\\nexp_018_llama_scierc_seed123\\nexp_018_llama_scierc_seed123.log\\nexp_018_llama_scierc_seed42_r1024\\nexp_018_llama_scierc_seed456\\nexp_018_llama_scierc_seed456_r1024\\nexp_018_qwen_scierc_seed123\\nexp_018_qwen_scierc_seed123.log\\nexp_018_qwen_scierc_seed456\\nexp_019_trained_verifier\\nexp_020_pilot\\nexp_021_fewnerd_full\\nexp_021_fewnerd_n8_seed123\\nexp_021_fewnerd_n8_seed123_run.log\\nexp_021_fewnerd_n8_seed456\\nexp_021_fewnerd_n8_seed456_run.log\\nexp_021_fewnerd_n8_seed789_shard0\\nexp_021_fewnerd_n8_seed789_shard1\\nexp_021_fewnerd_n8_seed789_shard2\\nexp_021_inference\\nexp_022_3seed_analysis\\nexp_022_seed789\\nexp_023_rank8_inference\\nexp_025_n32\\nexp_025_n32.log\\nexp_025_n_ablation\\nexp_026_T05\\nexp_026_T05_run.log\\nexp_026_T08\\nexp_026_T08_run.log\\nexp_026_T12\\nexp_026_T12_run.log\\nexp_026_T_ablation_summary.json\\nexp_026_t05\\nexp_026_t05.log\\nexp_026_t05_seed123\\nexp_026_t05_seed123.log\\nexp_026_t05_seed456\\nexp_026_t05_seed456.log\\nexp_026_t08\\nexp_026_t08.log\\nexp_026_t08_seed123\\nexp_026_t08_seed123.log\\nexp_026_t08_seed456\\nexp_026_t10_seed123\\nexp_026_t10_seed42\\nexp_026_t10_seed456\\nexp_026_t12\\nexp_026_t12.log\\nexp_026_t12_seed123\\nexp_026_t12_seed123.log\\nexp_026_t12_seed456\\nexp_027_fewnerd_n16\\nexp_027_mlp_v2\\nexp_027_mlp_verifier\\nexp_027v2_mlp_verifier\\nexp_028_entity_token_lp\\nexp_028_fewnerd_5epoch\\nexp_029a_scierc_3epoch\\nexp_029b_scierc_10epoch\\nexp_030_conll_t12\\nexp_030_conll_t12.log\\nexp_031_fewnerd_t12\\nexp_031_fewnerd_t12.log\\nexp_entity_token_lp\\nexp_entity_token_lp_conll_run.log\\nexp_entity_token_lp_pilot\\nexp_entity_token_lp_pilot_run.log\\nexp_entity_token_lp_scierc_run.log\\nexp_entity_token_lp_smoke\\nexp_lp_scierc_t07\\nexp_qwen3_4b_conll_merge_inference_v2\\nexp_qwen3_4b_conll_scs_inference\\nexp_qwen3_4b_conll_scs_inference_v2\\nexp_qwen3_4b_scierc_scs_inference\\nexp_re_scierc_seed123\\nexp_re_scierc_seed456\\nexp_scale_qwen3_4b_conll\\nf1_audit_results.json\\nfewnerd_dals_multiseed_results.json\\nfewnerd_multiseed_unified_v2.json\\nfewnerd_seed789_merged\\nfigures\\ngate0_all_predictions.jsonl\\ngate0_ft002v2\\ngate0_ft002v2_ckpt400\\ngate0_realigned_predictions.jsonl\\ngate0_realigned_results.json\\ngate0_results.json\\ngate0_samples.json\\ngating_bootstrap\\nhidden_state_probe\\nhidden_state_probe_exp016\\nhidden_state_probe_exp016_run.log\\nhidden_state_probe_fewnerd\\nllama_conll_n16_3seed_5signal_summary.json\\nllama_fewnerd_3seed_summary\\nllama_fewnerd_s123\\nllama_fewnerd_s42\\nllama_fewnerd_s456\\nlogprob_diagnosis\\nloo_sj_cross_dataset\\nlp_rank_comparison.py\\nlp_rank_comparison_results.json\\nmbr_selection_results.json\\nmerge_conll.log\\nmultiseed_selection_f1.json\\nmvp_pilot_001\\nmvp_pilot_001.log\\nmvp_pilot_003\\nmvp_pilot_004\\nmvp_pilot_005\\nn16_3seed_5signal_results.json\\nn16_3seed_analysis.py\\nn16_5signal_results.json\\nn8_5signal_results.json\\nn_scaling_gf_maxlp.json\\npaper_f1_audit\\npaper_f1_audit_script.py\\nprescriptive_analysis\\nr17_analyses\\nr21_q1_alignment\\nr21_w5_lp_rho_audit\\nrecompute_tab_fewnerd_results.json\\nreview_round2\\nreview_round4\\nreview_round8\\nreview_round9_experiments\\nrho_audit_results.json\\nscatter_v2_data.json\\nselection_f1_4b_results.json\\nstatistical_hardening\\nsupervised_verifier_upgrade\\nsupervised_verifier_upgrade.log\\nsupplement_degen_results.json\\ntask1_within_rho.py\\ntask2_dals_cross_model.py\\ntask3_llama_n16_check.py\\ntoken_lp_aggregator\\ntoken_lp_aggregator_fewnerd.log\\ntoken_lp_aggregator_scierc.log\\ntoken_lp_aggregator_scierc_3ep.log\\ntoken_lp_aggregator_scierc_v2.log\\nunified_degeneracy_audit\\nunified_metrics_regression\\nunified_oracle_audit\\nunified_tab_fewnerd_maxlp.json\\nvc_quartile_analysis.json\\nwithin_instance_rho_table.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e1197bdb-5364-4125-a0d2-987d8f35aa98",
+  "uuid": "617fc722-f040-4f1e-818b-ffa1fbd35bf5",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"adalp_analysis_results.json\\\\nadaptive_temperature_results.json\\\\nanalysis_epsilon_sweep\\\\nanalysis_fk_bootstrap_ci.json\\\\nanalysis_fk_bootstrap_per_instance.json\\\\nanalysis_lp_range_cdf.json\\\\nanalysis_lp_range_cdf_n16_3seed.json\\\\nanalysis_mbr_selection.json\\\\nanalysis_multiseed_selection_f1.json\\\\nanalysis_round8\\\\nanalysis_scierc_n16_3seed_selection_f1.json\\\\nanalysis_scierc_n16_3seed_selection_f1_merged.json\\\\nanalysis_scierc_re_n16_3seed_selection_f1.json\\\\nanalysis_unified_rho_full.json\\\\nanalyze_s789_rerun.log\\\\nbootstrap_ci_nscaling\\\\nbootstrap_ci_summary.json\\\\nbootstrap_ci_tables.tex\\\\ncalibration_baseline_results.json\\\\nccs_selection_report.md\\\\nccs_selection_results.json\\\\nclaim_audit\\\\nconditional_filter_diagnosis.json\\\\nconstruction_variants\\\\nd108_greedy_f1\\\\nd108_lp_vc_combination\\\\nd108_mbr_within_rho\\\\nd108_q4q5\\\\nd110_4b_degeneracy\\\\nd112_disk_cleanup\\\\nd112_hybrid_strategy\\\\nd112_mf3_random_single\\\\nd112_table2_fix\\\\nd114_auroc_investigation\\\\nd140_oracle_gated\\\\nd141_conditional_decomp\\\\nd141_degeneracy_scatter\\\\nd141_entity_merge\\\\ndals_analysis.json\\\\ndals_cross_model.json\\\\ndals_hardening_results.json\\\\ndeberta_verifier\\\\ndeberta_verifier_5fold\\\\ndebug_sj_variance.log\\\\ndebug_sj_variance_results.json\\\\ndecomposition_regression\\\\ndev_set_lp_probe\\\\ndgs_epoch_rank_analysis.json\\\\ndgs_selection_results.json\\\\ndiagnostic_calibration\\\\ndiagnostic_calibration_results.json\\\\nentity_consensus_report.md\\\\nentity_consensus_results.json\\\\nentity_construction\\\\nentity_construction_fair\\\\nentity_construction_fair_log.txt\\\\nentity_construction_fair_n8\\\\nentity_construction_fair_n8_log.txt\\\\nentity_token_lp_full\\\\nepoch_scierc_textbased_rho.json\\\\nexp001_n16_seed123\\\\nexp001_n16_seed123_200only\\\\nexp001_n16_seed123_200only_backup\\\\nexp001_n16_seed123_full\\\\nexp001_n16_seed123_run.log\\\\nexp001_n16_seed42\\\\nexp001_n16_seed42_200only_backup\\\\nexp001_n16_seed42_run.log\\\\nexp001_n16_seed456\\\\nexp001_n16_seed456_200only\\\\nexp001_n16_seed456_run.log\\\\nexp001_seed123_t10_full\\\\nexp001_seed123_t10_full.log\\\\nexp001_seed456_t10_full\\\\nexp001_seed456_t10_full.log\\\\nexp002_conll2003\\\\nexp003_wnut17_dryrun\\\\nexp003_wnut17_eval\\\\nexp003_wnut17_eval.log\\\\nexp003_wnut17_pilot\\\\nexp003_wnut17_pilot.log\\\\nexp004_re_diagnostic\\\\nexp004v2_re_diagnostic\\\\nexp007_llama_dryrun\\\\nexp007_llama_inference\\\\nexp008_re_n16\\\\nexp008_re_n16_200only\\\\nexp008_re_n16_t10_full\\\\nexp008_re_n16_t10_full.log\\\\nexp009_stratification_results.json\\\\nexp010_selection_curves\\\\nexp016_signal_ensemble\\\\nexp018_3seed_5signal_results.json\\\\nexp_001_seed123_v2\\\\nexp_001_seed123_v2_r1024\\\\nexp_001_seed42_v2\\\\nexp_001_seed42_v2_r1024\\\\nexp_001_seed456_v2\\\\nexp_001_seed456_v2_ner\\\\nexp_001_seed456_v2_ner.log\\\\nexp_001_seed456_v2_ner_r1024\\\\nexp_002_conll_n16\\\\nexp_002_conll_n16.log\\\\nexp_002_conll_n16_r1024\\\\nexp_002_conll_n16_seed123\\\\nexp_002_conll_n16_seed123.log\\\\nexp_002_conll_n16_seed456\\\\nexp_002_conll_n16_seed456.log\\\\nexp_002_conll_n8_seed123\\\\nexp_002_conll_n8_seed123_run.log\\\\nexp_002_conll_n8_seed456\\\\nexp_002_conll_n8_seed456.log\\\\nexp_003_wnut17_v2_infer\\\\nexp_005_v2_temperature\\\\nexp_006_v2\\\\nexp_006_v2_run.log\\\\nexp_007_llama_n16\\\\nexp_007_llama_n16.log\\\\nexp_007_llama_n16_r1024\\\\nexp_007_llama_scierc_seed123\\\\nexp_007_llama_seed123\\\\nexp_007_llama_seed456\\\\nexp_008_re_n16_v2\\\\nexp_008_re_seed123\\\\nexp_009_v2\\\\nexp_009_v2_re_rerun\\\\nexp_009_v2_run.log\\\\nexp_011_ood_analysis\\\\nexp_011_ood_conll_to_scierc\\\\nexp_011_ood_scierc_to_conll\\\\nexp_011_ood_scierc_to_conll_run.log\\\\nexp_012_logprob\\\\nexp_012_rerun_1024\\\\nexp_015_unified\\\\nexp_015_v2\\\\nexp_016_rerun_1024\\\\nexp_016_v2\\\\nexp_017_llama_conll\\\\nexp_017_llama_conll_infer\\\\nexp_017_llama_conll_infer.log\\\\nexp_017_llama_conll_n16\\\\nexp_017_llama_conll_n16_r1024\\\\nexp_017_llama_conll_n16_r1024_run.log\\\\nexp_017_llama_conll_n16_s123\\\\nexp_017_llama_conll_n16_s123.log\\\\nexp_017_llama_conll_n16_s123_r1024\\\\nexp_017_llama_conll_n16_s456\\\\nexp_017_llama_conll_n16_s456.log\\\\nexp_017_llama_conll_n16_s456_r1024\\\\nexp_017_llama_conll_n16_s456_r1024_run.log\\\\nexp_017_llama_conll_n8_t07\\\\nexp_017_llama_conll_pipeline.log\\\\nexp_018_llama_scierc_seed123\\\\nexp_018_llama_scierc_seed123.log\\\\nexp_018_llama_scierc_seed42_r1024\\\\nexp_018_llama_scierc_seed456\\\\nexp_018_llama_scierc_seed456_r1024\\\\nexp_018_qwen_scierc_seed123\\\\nexp_018_qwen_scierc_seed123.log\\\\nexp_018_qwen_scierc_seed456\\\\nexp_019_trained_verifier\\\\nexp_020_pilot\\\\nexp_021_fewnerd_full\\\\nexp_021_fewnerd_n8_seed123\\\\nexp_021_fewnerd_n8_seed123_run.log\\\\nexp_021_fewnerd_n8_seed456\\\\nexp_021_fewnerd_n8_seed456_run.log\\\\nexp_021_fewnerd_n8_seed789_shard0\\\\nexp_021_fewnerd_n8_seed789_shard1\\\\nexp_021_fewnerd_n8_seed789_shard2\\\\nexp_021_inference\\\\nexp_022_3seed_analysis\\\\nexp_022_seed789\\\\nexp_023_rank8_inference\\\\nexp_025_n32\\\\nexp_025_n32.log\\\\nexp_025_n_ablation\\\\nexp_026_T05\\\\nexp_026_T05_run.log\\\\nexp_026_T08\\\\nexp_026_T08_run.log\\\\nexp_026_T12\\\\nexp_026_T12_run.log\\\\nexp_026_T_ablation_summary.json\\\\nexp_026_t05\\\\nexp_026_t05.log\\\\nexp_026_t05_seed123\\\\nexp_026_t05_seed123.log\\\\nexp_026_t05_seed456\\\\nexp_026_t05_seed456.log\\\\nexp_026_t08\\\\nexp_026_t08.log\\\\nexp_026_t08_seed123\\\\nexp_026_t08_seed123.log\\\\nexp_026_t08_seed456\\\\nexp_026_t10_seed123\\\\nexp_026_t10_seed42\\\\nexp_026_t10_seed456\\\\nexp_026_t12\\\\nexp_026_t12.log\\\\nexp_026_t12_seed123\\\\nexp_026_t12_seed123.log\\\\nexp_026_t12_seed456\\\\nexp_027_fewnerd_n16\\\\nexp_027_mlp_v2\\\\nexp_027_mlp_verifier\\\\nexp_027v2_mlp_verifier\\\\nexp_028_entity_token_lp\\\\nexp_028_fewnerd_5epoch\\\\nexp_029a_scierc_3epoch\\\\nexp_029b_scierc_10epoch\\\\nexp_030_conll_t12\\\\nexp_030_conll_t12.log\\\\nexp_031_fewnerd_t12\\\\nexp_031_fewnerd_t12.log\\\\nexp_entity_token_lp\\\\nexp_entity_token_lp_conll_run.log\\\\nexp_entity_token_lp_pilot\\\\nexp_entity_token_lp_pilot_run.log\\\\nexp_entity_token_lp_scierc_run.log\\\\nexp_entity_token_lp_smoke\\\\nexp_lp_scierc_t07\\\\nexp_qwen3_4b_conll_merge_inference_v2\\\\nexp_qwen3_4b_conll_scs_inference\\\\nexp_qwen3_4b_conll_scs_inference_v2\\\\nexp_qwen3_4b_scierc_scs_inference\\\\nexp_re_scierc_seed123\\\\nexp_re_scierc_seed456\\\\nexp_scale_qwen3_4b_conll\\\\nf1_audit_results.json\\\\nfewnerd_dals_multiseed_results.json\\\\nfewnerd_multiseed_unified_v2.json\\\\nfewnerd_seed789_merged\\\\nfigures\\\\ngate0_all_predictions.jsonl\\\\ngate0_ft002v2\\\\ngate0_ft002v2_ckpt400\\\\ngate0_realigned_predictions.jsonl\\\\ngate0_realigned_results.json\\\\ngate0_results.json\\\\ngate0_samples.json\\\\ngating_bootstrap\\\\nhidden_state_probe\\\\nhidden_state_probe_exp016\\\\nhidden_state_probe_exp016_run.log\\\\nhidden_state_probe_fewnerd\\\\nllama_conll_n16_3seed_5signal_summary.json\\\\nllama_fewnerd_3seed_summary\\\\nllama_fewnerd_s123\\\\nllama_fewnerd_s42\\\\nllama_fewnerd_s456\\\\nlogprob_diagnosis\\\\nloo_sj_cross_dataset\\\\nlp_rank_comparison.py\\\\nlp_rank_comparison_results.json\\\\nmbr_selection_results.json\\\\nmerge_conll.log\\\\nmultiseed_selection_f1.json\\\\nmvp_pilot_001\\\\nmvp_pilot_001.log\\\\nmvp_pilot_003\\\\nmvp_pilot_004\\\\nmvp_pilot_005\\\\nn16_3seed_5signal_results.json\\\\nn16_3seed_analysis.py\\\\nn16_5signal_results.json\\\\nn8_5signal_results.json\\\\nn_scaling_gf_maxlp.json\\\\npaper_f1_audit\\\\npaper_f1_audit_script.py\\\\nprescriptive_analysis\\\\nr17_analyses\\\\nr21_q1_alignment\\\\nr21_w5_lp_rho_audit\\\\nrecompute_tab_fewnerd_results.json\\\\nreview_round2\\\\nreview_round4\\\\nreview_round8\\\\nreview_round9_experiments\\\\nrho_audit_results.json\\\\nscatter_v2_data.json\\\\nselection_f1_4b_results.json\\\\nstatistical_hardening\\\\nsupervised_verifier_upgrade\\\\nsupervised_verifier_upgrade.log\\\\nsupplement_degen_results.json\\\\ntask1_within_rho.py\\\\ntask2_dals_cross_model.py\\\\ntask3_llama_n16_check.py\\\\ntoken_lp_aggregator\\\\ntoken_lp_aggregator_fewnerd.log\\\\ntoken_lp_aggregator_scierc.log\\\\ntoken_lp_aggregator_scierc_3ep.log\\\\ntoken_lp_aggregator_scierc_v2.log\\\\nunified_degeneracy_audit\\\\nunified_metrics_regression\\\\nunified_oracle_audit\\\\nunified_tab_fewnerd_maxlp.json\\\\nvc_quartile_analysis.json\\\\nwithin_instance_rho_table.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"adalp_analysis_results.json\\nadaptive_temperature_results.json\\nanalysis_epsilon_sweep\\nanalysis_fk_bootstrap_ci.json\\nanalysis_fk_bootstrap_per_instance.json\\nanalysis_lp_range_cdf.json\\nanalysis_lp_range_cdf_n16_3seed.json\\nanalysis_mbr_selection.json\\nanalysis_multiseed_selection_f1.json\\nanalysis_round8\\nanalysis_scierc_n16_3seed_selection_f1.json\\nanalysis_scierc_n16_3seed_selection_f1_merged.json\\nanalysis_scierc_re_n16_3seed_selection_f1.json\\nanalysis_unified_rho_full.json\\nanalyze_s789_rerun.log\\nbootstrap_ci_nscaling\\nbootstrap_ci_summary.json\\nbootstrap_ci_tables.tex\\ncalibration_baseline_results.json\\nccs_selection_report.md\\nccs_selection_results.json\\nclaim_audit\\nconditional_filter_diagnosis.json\\nconstruction_variants\\nd108_greedy_f1\\nd108_lp_vc_combination\\nd108_mbr_within_rho\\nd108_q4q5\\nd110_4b_degeneracy\\nd112_disk_cleanup\\nd112_hybrid_strategy\\nd112_mf3_random_single\\nd112_table2_fix\\nd114_auroc_investigation\\nd140_oracle_gated\\nd141_conditional_decomp\\nd141_degeneracy_scatter\\nd141_entity_merge\\ndals_analysis.json\\ndals_cross_model.json\\ndals_hardening_results.json\\ndeberta_verifier\\ndeberta_verifier_5fold\\ndebug_sj_variance.log\\ndebug_sj_variance_results.json\\ndecomposition_regression\\ndev_set_lp_probe\\ndgs_epoch_rank_analysis.json\\ndgs_selection_results.json\\ndiagnostic_calibration\\ndiagnostic_calibration_results.json\\nentity_consensus_report.md\\nentity_consensus_results.json\\nentity_construction\\nentity_construction_fair\\nentity_construction_fair_log.txt\\nentity_construction_fair_n8\\nentity_construction_fair_n8_log.txt\\nentity_token_lp_full\\nepoch_scierc_textbased_rho.json\\nexp001_n16_seed123\\nexp001_n16_seed123_200only\\nexp001_n16_seed123_200only_backup\\nexp001_n16_seed123_full\\nexp001_n16_seed123_run.log\\nexp001_n16_seed42\\nexp001_n16_seed42_200only_backup\\nexp001_n16_seed42_run.log\\nexp001_n16_seed456\\nexp001_n16_seed456_200only\\nexp001_n16_seed456_run.log\\nexp001_seed123_t10_full\\nexp001_seed123_t10_full.log\\nexp001_seed456_t10_full\\nexp001_seed456_t10_full.log\\nexp002_conll2003\\nexp003_wnut17_dryrun\\nexp003_wnut17_eval\\nexp003_wnut17_eval.log\\nexp003_wnut17_pilot\\nexp003_wnut17_pilot.log\\nexp004_re_diagnostic\\nexp004v2_re_diagnostic\\nexp007_llama_dryrun\\nexp007_llama_inference\\nexp008_re_n16\\nexp008_re_n16_200only\\nexp008_re_n16_t10_full\\nexp008_re_n16_t10_full.log\\nexp009_stratification_results.json\\nexp010_selection_curves\\nexp016_signal_ensemble\\nexp018_3seed_5signal_results.json\\nexp_001_seed123_v2\\nexp_001_seed123_v2_r1024\\nexp_001_seed42_v2\\nexp_001_seed42_v2_r1024\\nexp_001_seed456_v2\\nexp_001_seed456_v2_ner\\nexp_001_seed456_v2_ner.log\\nexp_001_seed456_v2_ner_r1024\\nexp_002_conll_n16\\nexp_002_conll_n16.log\\nexp_002_conll_n16_r1024\\nexp_002_conll_n16_seed123\\nexp_002_conll_n16_seed123.log\\nexp_002_conll_n16_seed456\\nexp_002_conll_n16_seed456.log\\nexp_002_conll_n8_seed123\\nexp_002_conll_n8_seed123_run.log\\nexp_002_conll_n8_seed456\\nexp_002_conll_n8_seed456.log\\nexp_003_wnut17_v2_infer\\nexp_005_v2_temperature\\nexp_006_v2\\nexp_006_v2_run.log\\nexp_007_llama_n16\\nexp_007_llama_n16.log\\nexp_007_llama_n16_r1024\\nexp_007_llama_scierc_seed123\\nexp_007_llama_seed123\\nexp_007_llama_seed456\\nexp_008_re_n16_v2\\nexp_008_re_seed123\\nexp_009_v2\\nexp_009_v2_re_rerun\\nexp_009_v2_run.log\\nexp_011_ood_analysis\\nexp_011_ood_conll_to_scierc\\nexp_011_ood_scierc_to_conll\\nexp_011_ood_scierc_to_conll_run.log\\nexp_012_logprob\\nexp_012_rerun_1024\\nexp_015_unified\\nexp_015_v2\\nexp_016_rerun_1024\\nexp_016_v2\\nexp_017_llama_conll\\nexp_017_llama_conll_infer\\nexp_017_llama_conll_infer.log\\nexp_017_llama_conll_n16\\nexp_017_llama_conll_n16_r1024\\nexp_017_llama_conll_n16_r1024_run.log\\nexp_017_llama_conll_n16_s123\\nexp_017_llama_conll_n16_s123.log\\nexp_017_llama_conll_n16_s123_r1024\\nexp_017_llama_conll_n16_s456\\nexp_017_llama_conll_n16_s456.log\\nexp_017_llama_conll_n16_s456_r1024\\nexp_017_llama_conll_n16_s456_r1024_run.log\\nexp_017_llama_conll_n8_t07\\nexp_017_llama_conll_pipeline.log\\nexp_018_llama_scierc_seed123\\nexp_018_llama_scierc_seed123.log\\nexp_018_llama_scierc_seed42_r1024\\nexp_018_llama_scierc_seed456\\nexp_018_llama_scierc_seed456_r1024\\nexp_018_qwen_scierc_seed123\\nexp_018_qwen_scierc_seed123.log\\nexp_018_qwen_scierc_seed456\\nexp_019_trained_verifier\\nexp_020_pilot\\nexp_021_fewnerd_full\\nexp_021_fewnerd_n8_seed123\\nexp_021_fewnerd_n8_seed123_run.log\\nexp_021_fewnerd_n8_seed456\\nexp_021_fewnerd_n8_seed456_run.log\\nexp_021_fewnerd_n8_seed789_shard0\\nexp_021_fewnerd_n8_seed789_shard1\\nexp_021_fewnerd_n8_seed789_shard2\\nexp_021_inference\\nexp_022_3seed_analysis\\nexp_022_seed789\\nexp_023_rank8_inference\\nexp_025_n32\\nexp_025_n32.log\\nexp_025_n_ablation\\nexp_026_T05\\nexp_026_T05_run.log\\nexp_026_T08\\nexp_026_T08_run.log\\nexp_026_T12\\nexp_026_T12_run.log\\nexp_026_T_ablation_summary.json\\nexp_026_t05\\nexp_026_t05.log\\nexp_026_t05_seed123\\nexp_026_t05_seed123.log\\nexp_026_t05_seed456\\nexp_026_t05_seed456.log\\nexp_026_t08\\nexp_026_t08.log\\nexp_026_t08_seed123\\nexp_026_t08_seed123.log\\nexp_026_t08_seed456\\nexp_026_t10_seed123\\nexp_026_t10_seed42\\nexp_026_t10_seed456\\nexp_026_t12\\nexp_026_t12.log\\nexp_026_t12_seed123\\nexp_026_t12_seed123.log\\nexp_026_t12_seed456\\nexp_027_fewnerd_n16\\nexp_027_mlp_v2\\nexp_027_mlp_verifier\\nexp_027v2_mlp_verifier\\nexp_028_entity_token_lp\\nexp_028_fewnerd_5epoch\\nexp_029a_scierc_3epoch\\nexp_029b_scierc_10epoch\\nexp_030_conll_t12\\nexp_030_conll_t12.log\\nexp_031_fewnerd_t12\\nexp_031_fewnerd_t12.log\\nexp_entity_token_lp\\nexp_entity_token_lp_conll_run.log\\nexp_entity_token_lp_pilot\\nexp_entity_token_lp_pilot_run.log\\nexp_entity_token_lp_scierc_run.log\\nexp_entity_token_lp_smoke\\nexp_lp_scierc_t07\\nexp_qwen3_4b_conll_merge_inference_v2\\nexp_qwen3_4b_conll_scs_inference\\nexp_qwen3_4b_conll_scs_inference_v2\\nexp_qwen3_4b_scierc_scs_inference\\nexp_re_scierc_seed123\\nexp_re_scierc_seed456\\nexp_scale_qwen3_4b_conll\\nf1_audit_results.json\\nfewnerd_dals_multiseed_results.json\\nfewnerd_multiseed_unified_v2.json\\nfewnerd_seed789_merged\\nfigures\\ngate0_all_predictions.jsonl\\ngate0_ft002v2\\ngate0_ft002v2_ckpt400\\ngate0_realigned_predictions.jsonl\\ngate0_realigned_results.json\\ngate0_results.json\\ngate0_samples.json\\ngating_bootstrap\\nhidden_state_probe\\nhidden_state_probe_exp016\\nhidden_state_probe_exp016_run.log\\nhidden_state_probe_fewnerd\\nllama_conll_n16_3seed_5signal_summary.json\\nllama_fewnerd_3seed_summary\\nllama_fewnerd_s123\\nllama_fewnerd_s42\\nllama_fewnerd_s456\\nlogprob_diagnosis\\nloo_sj_cross_dataset\\nlp_rank_comparison.py\\nlp_rank_comparison_results.json\\nmbr_selection_results.json\\nmerge_conll.log\\nmultiseed_selection_f1.json\\nmvp_pilot_001\\nmvp_pilot_001.log\\nmvp_pilot_003\\nmvp_pilot_004\\nmvp_pilot_005\\nn16_3seed_5signal_results.json\\nn16_3seed_analysis.py\\nn16_5signal_results.json\\nn8_5signal_results.json\\nn_scaling_gf_maxlp.json\\npaper_f1_audit\\npaper_f1_audit_script.py\\nprescriptive_analysis\\nr17_analyses\\nr21_q1_alignment\\nr21_w5_lp_rho_audit\\nrecompute_tab_fewnerd_results.json\\nreview_round2\\nreview_round4\\nreview_round8\\nreview_round9_experiments\\nrho_audit_results.json\\nscatter_v2_data.json\\nselection_f1_4b_results.json\\nstatistical_hardening\\nsupervised_verifier_upgrade\\nsupervised_verifier_upgrade.log\\nsupplement_degen_results.json\\ntask1_within_rho.py\\ntask2_dals_cross_model.py\\ntask3_llama_n16_check.py\\ntoken_lp_aggregator\\ntoken_lp_aggregator_fewnerd.log\\ntoken_lp_aggregator_scierc.log\\ntoken_lp_aggregator_scierc_3ep.log\\ntoken_lp_aggregator_scierc_v2.log\\nunified_degeneracy_audit\\nunified_metrics_regression\\nunified_oracle_audit\\nunified_tab_fewnerd_maxlp.json\\nvc_quartile_analysis.json\\nwithin_instance_rho_table.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 36_
+
+Found the log files. Let me read them now.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e1197bdb-5364-4125-a0d2-987d8f35aa98",
+  "uuid": "c1a9467e-173d-4832-9acd-8f16110390f9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NqLhkNYrrB9yrDjJou4Fz4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8411,
+      "cache_read_input_tokens": 26729,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8411
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01KntnEizFycEho93GkoJLMA`</summary>
+
+```json
+{
+  "server": "autodl-5090-c",
+  "command": "tail -20 /root/autodl-tmp/struct_self_consist_ie/logs/train_14b_s42.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e1197bdb-5364-4125-a0d2-987d8f35aa98",
+  "uuid": "af8720b5-3aff-4b71-bfe6-66dc7f91882e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NqLhkNYrrB9yrDjJou4Fz4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8411,
+      "cache_read_input_tokens": 26729,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8411
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Lx8UdpBqrqhRv6GGH9yC2y`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "tail -20 /root/autodl-tmp/struct_self_consist_ie/logs/train_qwen25_32b_fewnerd_s42.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e1197bdb-5364-4125-a0d2-987d8f35aa98",
+  "uuid": "581123b4-c50c-4d18-a3b7-ca0837c07f92",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NqLhkNYrrB9yrDjJou4Fz4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8411,
+      "cache_read_input_tokens": 26729,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8411
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-19T23:44:25.994Z_
+
+<details><summary>↩ Tool result · `toolu_01KntnEizFycEho93GkoJLMA`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\r 51%|█████     | 20850/41180 [15:02:51<11:51:14,  2.10s/it]\\r 51%|█████     | 20851/41180 [15:02:53<11:40:11,  2.07s/it]\\r 51%|█████     | 20852/41180 [15:02:55<11:35:59,  2.05s/it]\\r 51%|█████     | 20853/41180 [15:02:57<12:04:04,  2.14s/it]\\r 51%|█████     | 20854/41180 [15:02:59<11:54:25,  2.11s/it]\\r 51%|█████     | 20855/41180 [15:03:01<11:47:27,  2.09s/it]\\r 51%|█████     | 20856/41180 [15:03:04<12:56:51,  2.29s/it]\\r 51%|█████     | 20857/41180 [15:03:06<12:16:10,  2.17s/it]\\r 51%|█████     | 20858/41180 [15:03:08<12:01:25,  2.13s/it]\\r 51%|█████     | 20859/41180 [15:03:10<11:41:30,  2.07s/it]\\r 51%|█████     | 20860/41180 [15:03:12<11:56:46,  2.12s/it]\\r 51%|█████     | 20861/41180 [15:03:14<12:10:58,  2.16s/it]\\r 51%|█████     | 20862/41180 [15:03:17<12:38:32,  2.24s/it]\\r 51%|█████     | 20863/41180 [15:03:19<12:30:38,  2.22s/it]\\r 51%|████��     | 20864/41180 [15:03:21<12:24:28,  2.20s/it]\\r 51%|█████     | 20865/41180 [15:03:23<12:10:38,  2.16s/it]\\r 51%|█████     | 20866/41180 [15:03:25<11:48:31,  2.09s/it]\\r 51%|█████     | 20867/41180 [15:03:27<12:00:02,  2.13s/it]\\r 51%|█████     | 20868/41180 [15:03:29<11:40:43,  2.07s/it]\\r 51%|█████     | 20869/41180 [15:03:32<12:05:37,  2.14s/it]\\r 51%|█████     | 20870/41180 [15:03:34<12:09:46,  2.16s/it]\\r 51%|█████     | 20871/41180 [15:03:36<12:24:48,  2.20s/it]\\r 51%|█████     | 20872/41180 [15:03:39<12:54:13,  2.29s/it]\\r 51%|█████     | 20873/41180 [15:03:41<12:36:18,  2.23s/it]\\r 51%|█████     | 20874/41180 [15:03:43<12:31:39,  2.22s/it]\\r 51%|█████     | 20875/41180 [15:03:45<11:45:21,  2.08s/it]\\r 51%|█████     | 20876/41180 [15:03:47<11:31:20,  2.04s/it]\\r 51%|█████     | 20877/41180 [15:03:49<11:34:05,  2.05s/it]\\r 51%|█████     | 20878/41180 [15:03:51<11:50:56,  2.10s/it]\\r 51%|█████     | 20879/41180 [15:03:53<11:34:48,  2.05s/it]\\r 51%|█████     | 20880/41180 [15:03:55<11:28:07,  2.03s/it]\\r 51%|█████     | 20881/41180 [15:03:57<11:44:15,  2.08s/it]\\r 51%|█████     | 20882/41180 [15:03:59<11:35:21,  2.06s/it]\\r 51%|█████     | 20883/41180 [15:04:02<12:21:59,  2.19s/it]\\r 51%|█████     | 20884/41180 [15:04:04<12:31:34,  2.22s/it]\\r 51%|█████     | 20885/41180 [15:04:06<12:00:14,  2.13s/it]\\r 51%|█████     | 20886/41180 [15:04:08<12:22:54,  2.20s/it]\\r 51%|█████     | 20887/41180 [15:04:10<11:50:52,  2.10s/it]\\r 51%|█████     | 20888/41180 [15:04:12<12:00:17,  2.13s/it]\\r 51%|█████     | 20889/41180 [15:04:14<12:05:24,  2.15s/it]\\r 51%|█████     | 20890/41180 [15:04:17<12:21:30,  2.19s/it]\\r 51%|█████     | 20891/41180 [15:04:19<12:23:09,  2.20s/it]\\r 51%|█████     | 20892/41180 [15:04:21<12:04:25,  2.14s/it]\\r 51%|█████     | 20893/41180 [15:04:23<12:12:56,  2.17s/it]\\r 51%|█████     | 20894/41180 [15:04:25<11:28:27,  2.04s/it]\\r 51%|█████     | 20895/41180 [15:04:27<11:35:02,  2.06s/it]\\r 51%|█████     | 20896/41180 [15:04:29<11:49:52,  2.10s/it]\\r 51%|█████     | 20897/41180 [15:04:31<12:11:32,  2.16s/it]\\r 51%|█████     | 20898/41180 [15:04:34<12:14:43,  2.17s/it]\\r 51%|█████     | 20899/41180 [15:04:36<12:07:08,  2.15s/it]\\r 51%|█████     | 20900/41180 [15:04:38<12:09:26,  2.16s/it]\\r                                                           \\r{'loss': 0.031, 'grad_norm': 0.6738091707229614, 'learning_rate': 0.0001147796835899229, 'epoch': 2.54}\\n\\r 51%|█████     | 20900/41180 [15:04:38<12:09:26,  2.16s/it]\\r 51%|█████     | 20901/41180 [15:04:40<11:53:17,  2.11s/it]\\r 51%|█████     | 20902/41180 [15:04:42<11:35:50,  2.06s/it]\\r 51%|█████     | 20903/41180 [15:04:44<12:17:20,  2.18s/it]\\r 51%|█████     | 20904/41180 [15:04:47<12:18:31,  2.19s/it]\\r 51%|█████     | 20905/41180 [15:04:49<12:14:00,  2.17s/it]\\r 51%|█████     | 20906/41180 [15:04:51<11:58:25,  2.13s/it]\\r 51%|█████     | 20907/41180 [15:04:53<12:04:10,  2.14s/it]\\r 51%|█████     | 20908/41180 [15:04:55<11:54:09,  2.11s/it]\\r 51%|█████     | 20909/41180 [15:04:57<12:28:22,  2.22s/it]\\r 51%|█████     | 20910/41180 [15:05:00<13:14:52,  2.35s/it]\\r 51%|█████     | 20911/41180 [15:05:02<13:10:48,  2.34s/it]\\r 51%|█████     | 20912/41180 [15:05:05<13:04:53,  2.3\\n\\n... [截断: 输出过长，省略 53930 字符] ...\\n\\nit]\\r                                                           \\r{'loss': 0.0287, 'grad_norm': 0.34574639797210693, 'learning_rate': 0.00010762153027388352, 'epoch': 2.64}\\n\\r 53%|█████▎    | 21750/41180 [15:35:36<12:06:01,  2.24s/it]\\r 53%|█████▎    | 21751/41180 [15:35:38<11:51:54,  2.20s/it]\\r 53%|█████▎    | 21752/41180 [15:35:40<11:49:10,  2.19s/it]\\r 53%|█████▎    | 21753/41180 [15:35:42<11:51:59,  2.20s/it]\\r 53%|█████▎    | 21754/41180 [15:35:44<11:52:25,  2.20s/it]\\r 53%|█████▎    | 21755/41180 [15:35:47<12:18:53,  2.28s/it]\\r 53%|█████▎    | 21756/41180 [15:35:49<12:20:42,  2.29s/it]\\r 53%|█████▎    | 21757/41180 [15:35:53<15:31:53,  2.88s/it]\\r 53%|█████▎    | 21758/41180 [15:35:55<14:07:18,  2.62s/it]\\r 53%|█████▎    | 21759/41180 [15:35:58<13:42:55,  2.54s/it]\\r 53%|█████▎    | 21760/41180 [15:36:00<12:53:20,  2.39s/it]\\r 53%|█████▎    | 21761/41180 [15:36:02<12:20:56,  2.29s/it]\\r 53%|█████▎    | 21762/41180 [15:36:04<11:53:53,  2.21s/it]\\r 53%|███��█▎    | 21763/41180 [15:36:07<12:36:16,  2.34s/it]\\r 53%|█████▎    | 21764/41180 [15:36:09<11:54:33,  2.21s/it]\\r 53%|█████▎    | 21765/41180 [15:36:11<12:10:54,  2.26s/it]\\r 53%|█████▎    | 21766/41180 [15:36:13<11:47:11,  2.19s/it]\\r 53%|█████▎    | 21767/41180 [15:36:15<11:37:45,  2.16s/it]\\r 53%|█████▎    | 21768/41180 [15:36:17<11:01:02,  2.04s/it]\\r 53%|█████▎    | 21769/41180 [15:36:19<10:35:48,  1.97s/it]\\r 53%|█████▎    | 21770/41180 [15:36:21<11:01:14,  2.04s/it]\\r 53%|█████▎    | 21771/41180 [15:36:23<11:15:56,  2.09s/it]\\r 53%|█████▎    | 21772/41180 [15:36:25<11:11:37,  2.08s/it]\\r 53%|█████▎    | 21773/41180 [15:36:27<11:24:00,  2.11s/it]\\r 53%|█████▎    | 21774/41180 [15:36:30<11:49:06,  2.19s/it]\\r 53%|█████▎    | 21775/41180 [15:36:32<11:38:00,  2.16s/it]\\r 53%|█████▎    | 21776/41180 [15:36:34<11:25:51,  2.12s/it]\\r 53%|█████▎    | 21777/41180 [15:36:36<11:05:43,  2.06s/it]\\r 53%|█████▎    | 21778/41180 [15:36:38<10:53:31,  2.02s/it]\\r 53%|█████▎    | 21779/41180 [15:36:40<11:23:13,  2.11s/it]\\r 53%|█████▎    | 21780/41180 [15:36:42<10:54:57,  2.03s/it]\\r 53%|█████▎    | 21781/41180 [15:36:44<11:03:05,  2.05s/it]\\r 53%|█████▎    | 21782/41180 [15:36:46<11:02:10,  2.05s/it]\\r 53%|█████▎    | 21783/41180 [15:36:48<11:03:27,  2.05s/it]\\r 53%|█████▎    | 21784/41180 [15:36:51<12:33:11,  2.33s/it]\\r 53%|█████▎    | 21785/41180 [15:36:53<12:07:29,  2.25s/it]\\r 53%|█████▎    | 21786/41180 [15:36:55<11:39:05,  2.16s/it]\\r 53%|█████▎    | 21787/41180 [15:36:57<11:29:28,  2.13s/it]\\r 53%|█████▎    | 21788/41180 [15:36:59<11:05:30,  2.06s/it]\\r 53%|█████▎    | 21789/41180 [15:37:01<10:53:46,  2.02s/it]\\r 53%|█████▎    | 21790/41180 [15:37:03<11:07:50,  2.07s/it]\\r 53%|█████▎    | 21791/41180 [15:37:05<11:22:05,  2.11s/it]\\r 53%|█████▎    | 21792/41180 [15:37:08<11:41:57,  2.17s/it]\\r 53%|█████▎    | 21793/41180 [15:37:10<11:29:51,  2.13s/it]\\r 53%|█████▎    | 21794/41180 [15:37:12<11:31:22,  2.14s/it]\\r 53%|█████▎    | 21795/41180 [15:37:15<13:15:54,  2.46s/it]\\r 53%|█████▎    | 21796/41180 [15:37:17<12:23:04,  2.30s/it]\\r 53%|█████▎    | 21797/41180 [15:37:19<12:03:20,  2.24s/it]\\r 53%|█████▎    | 21798/41180 [15:37:21<12:01:05,  2.23s/it]\\r 53%|█████▎    | 21799/41180 [15:37:23<11:26:41,  2.13s/it]\\r 53%|█████▎    | 21800/41180 [15:37:25<11:31:22,  2.14s/it]\\r                                                           \\r{'loss': 0.0273, 'grad_norm': 0.45883092284202576, 'learning_rate': 0.00010719886649555749, 'epoch': 2.65}\\n\\r 53%|█████▎    | 21800/41180 [15:37:25<11:31:22,  2.14s/it]\\r 53%|█████▎    | 21801/41180 [15:37:28<12:02:36,  2.24s/it]\\r 53%|█████▎    | 21802/41180 [15:37:30<11:39:01,  2.16s/it]\\r 53%|█████▎    | 21803/41180 [15:37:32<11:52:41,  2.21s/it]\\r 53%|█████▎    | 21804/41180 [15:37:34<11:16:38,  2.10s/it]\\r 53%|█████▎    | 21805/41180 [15:37:36<11:30:28,  2.14s/it]\\r 53%|█████▎    | 21806/41180 [15:37:39<12:06:39,  2.25s/it]\\r 53%|█████▎    | 21807/41180 [15:37:41<12:04:31,  2.24s/it]\\r 53%|█████▎    | 21808/41180 [15:37:43<11:44:13,  2.18s/it]\\r 53%|█████▎    | 21809/41180 [15:37:45<11:46:28,  2.19s/it]\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.83}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e1197bdb-5364-4125-a0d2-987d8f35aa98",
+  "uuid": "fb4bff74-02c9-4e5c-aee9-d9751eee9796",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\r 51%|█████     | 20850/41180 [15:02:51<11:51:14,  2.10s/it]\\\\r 51%|█████     | 20851/41180 [15:02:53<11:40:11,  2.07s/it]\\\\r 51%|█████     | 20852/41180 [15:02:55<11:35:59,  2.05s/it]\\\\r 51%|█████     | 20853/41180 [15:02:57<12:04:04,  2.14s/it]\\\\r 51%|█████     | 20854/41180 [15:02:59<11:54:25,  2.11s/it]\\\\r 51%|█████     | 20855/41180 [15:03:01<11:47:27,  2.09s/it]\\\\r 51%|█████     | 20856/41180 [15:03:04<12:56:51,  2.29s/it]\\\\r 51%|█████     | 20857/41180 [15:03:06<12:16:10,  2.17s/it]\\\\r 51%|█████     | 20858/41180 [15:03:08<12:01:25,  2.13s/it]\\\\r 51%|█████     | 20859/41180 [15:03:10<11:41:30,  2.07s/it]\\\\r 51%|█████     | 20860/41180 [15:03:12<11:56:46,  2.12s/it]\\\\r 51%|█████     | 20861/41180 [15:03:14<12:10:58,  2.16s/it]\\\\r 51%|█████     | 20862/41180 [15:03:17<12:38:32,  2.24s/it]\\\\r 51%|█████     | 20863/41180 [15:03:19<12:30:38,  2.22s/it]\\\\r 51%|████��     | 20864/41180 [15:03:21<12:24:28,  2.20s/it]\\\\r 51%|█████     | 20865/41180 [15:03:23<12:10:38,  2.16s/it]\\\\r 51%|█████     | 20866/41180 [15:03:25<11:48:31,  2.09s/it]\\\\r 51%|█████     | 20867/41180 [15:03:27<12:00:02,  2.13s/it]\\\\r 51%|█████     | 20868/41180 [15:03:29<11:40:43,  2.07s/it]\\\\r 51%|█████     | 20869/41180 [15:03:32<12:05:37,  2.14s/it]\\\\r 51%|█████     | 20870/41180 [15:03:34<12:09:46,  2.16s/it]\\\\r 51%|█████     | 20871/41180 [15:03:36<12:24:48,  2.20s/it]\\\\r 51%|█████     | 20872/41180 [15:03:39<12:54:13,  2.29s/it]\\\\r 51%|█████     | 20873/41180 [15:03:41<12:36:18,  2.23s/it]\\\\r 51%|█████     | 20874/41180 [15:03:43<12:31:39,  2.22s/it]\\\\r 51%|█████     | 20875/41180 [15:03:45<11:45:21,  2.08s/it]\\\\r 51%|█████     | 20876/41180 [15:03:47<11:31:20,  2.04s/it]\\\\r 51%|█████     | 20877/41180 [15:03:49<11:34:05,  2.05s/it]\\\\r 51%|█████     | 20878/41180 [15:03:51<11:50:56,  2.10s/it]\\\\r 51%|█████     | 20879/41180 [15:03:53<11:34:48,  2.05s/it]\\\\r 51%|█████     | 20880/41180 [15:03:55<11:28:07,  2.03s/it]\\\\r 51%|█████     | 20881/41180 [15:03:57<11:44:15,  2.08s/it]\\\\r 51%|█████     | 20882/41180 [15:03:59<11:35:21,  2.06s/it]\\\\r 51%|█████     | 20883/41180 [15:04:02<12:21:59,  2.19s/it]\\\\r 51%|█████     | 20884/41180 [15:04:04<12:31:34,  2.22s/it]\\\\r 51%|█████     | 20885/41180 [15:04:06<12:00:14,  2.13s/it]\\\\r 51%|█████     | 20886/41180 [15:04:08<12:22:54,  2.20s/it]\\\\r 51%|█████     | 20887/41180 [15:04:10<11:50:52,  2.10s/it]\\\\r 51%|█████     | 20888/41180 [15:04:12<12:00:17,  2.13s/it]\\\\r 51%|█████     | 20889/41180 [15:04:14<12:05:24,  2.15s/it]\\\\r 51%|█████     | 20890/41180 [15:04:17<12:21:30,  2.19s/it]\\\\r 51%|█████     | 20891/41180 [15:04:19<12:23:09,  2.20s/it]\\\\r 51%|█████     | 20892/41180 [15:04:21<12:04:25,  2.14s/it]\\\\r 51%|█████     | 20893/41180 [15:04:23<12:12:56,  2.17s/it]\\\\r 51%|█████     | 20894/41180 [15:04:25<11:28:27,  2.04s/it]\\\\r 51%|█████     | 20895/41180 [15:04:27<11:35:02,  2.06s/it]\\\\r 51%|█████     | 20896/41180 [15:04:29<11:49:52,  2.10s/it]\\\\r 51%|█████     | 20897/41180 [15:04:31<12:11:32,  2.16s/it]\\\\r 51%|█████     | 20898/41180 [15:04:34<12:14:43,  2.17s/it]\\\\r 51%|█████     | 20899/41180 [15:04:36<12:07:08,  2.15s/it]\\\\r 51%|█████     | 20900/41180 [15:04:38<12:09:26,  2.16s/it]\\\\r                                                           \\\\r{'loss': 0.031, 'grad_norm': 0.6738091707229614, 'learning_rate': 0.0001147796835899229, 'epoch': 2.54}\\\\n\\\\r 51%|█████     | 20900/41180 [15:04:38<12:09:26,  2.16s/it]\\\\r 51%|█████     | 20901/41180 [15:04:40<11:53:17,  2.11s/it]\\\\r 51%|█████     | 20902/41180 [15:04:42<11:35:50,  2.06s/it]\\\\r 51%|█████     | 20903/41180 [15:04:44<12:17:20,  2.18s/it]\\\\r 51%|█████     | 20904/41180 [15:04:47<12:18:31,  2.19s/it]\\\\r 51%|█████     | 20905/41180 [15:04:49<12:14:00,  2.17s/it]\\\\r 51%|█████     | 20906/41180 [15:04:51<11:58:25,  2.13s/it]\\\\r 51%|█████     | 20907/41180 [15:04:53<12:04:10,  2.14s/it]\\\\r 51%|█████     | 20908/41180 [15:04:55<11:54:09,  2.11s/it]\\\\r 51%|█████     | 20909/41180 [15:04:57<12:28:22,  2.22s/it]\\\\r 51%|█████     | 20910/41180 [15:05:00<13:14:52,  2.35s/it]\\\\r 51%|█████     | 20911/41180 [15:05:02<13:10:48,  2.34s/it]\\\\r 51%|█████     | 20912/41180 [15:05:05<13:04:53,  2.3\\\\n\\\\n... [截断: 输出过长，省略 53930 字符] ...\\\\n\\\\nit]\\\\r                                                           \\\\r{'loss': 0.0287, 'grad_norm': 0.34574639797210693, 'learning_rate': 0.00010762153027388352, 'epoch': 2.64}\\\\n\\\\r 53%|█████▎    | 21750/41180 [15:35:36<12:06:01,  2.24s/it]\\\\r 53%|█████▎    | 21751/41180 [15:35:38<11:51:54,  2.20s/it]\\\\r 53%|█████▎    | 21752/41180 [15:35:40<11:49:10,  2.19s/it]\\\\r 53%|█████▎    | 21753/41180 [15:35:42<11:51:59,  2.20s/it]\\\\r 53%|█████▎    | 21754/41180 [15:35:44<11:52:25,  2.20s/it]\\\\r 53%|█████▎    | 21755/41180 [15:35:47<12:18:53,  2.28s/it]\\\\r 53%|█████▎    | 21756/41180 [15:35:49<12:20:42,  2.29s/it]\\\\r 53%|█████▎    | 21757/41180 [15:35:53<15:31:53,  2.88s/it]\\\\r 53%|█████▎    | 21758/41180 [15:35:55<14:07:18,  2.62s/it]\\\\r 53%|█████▎    | 21759/41180 [15:35:58<13:42:55,  2.54s/it]\\\\r 53%|█████▎    | 21760/41180 [15:36:00<12:53:20,  2.39s/it]\\\\r 53%|█████▎    | 21761/41180 [15:36:02<12:20:56,  2.29s/it]\\\\r 53%|█████▎    | 21762/41180 [15:36:04<11:53:53,  2.21s/it]\\\\r 53%|███��█▎    | 21763/41180 [15:36:07<12:36:16,  2.34s/it]\\\\r 53%|█████▎    | 21764/41180 [15:36:09<11:54:33,  2.21s/it]\\\\r 53%|█████▎    | 21765/41180 [15:36:11<12:10:54,  2.26s/it]\\\\r 53%|█████▎    | 21766/41180 [15:36:13<11:47:11,  2.19s/it]\\\\r 53%|█████▎    | 21767/41180 [15:36:15<11:37:45,  2.16s/it]\\\\r 53%|█████▎    | 21768/41180 [15:36:17<11:01:02,  2.04s/it]\\\\r 53%|█████▎    | 21769/41180 [15:36:19<10:35:48,  1.97s/it]\\\\r 53%|█████▎    | 21770/41180 [15:36:21<11:01:14,  2.04s/it]\\\\r 53%|█████▎    | 21771/41180 [15:36:23<11:15:56,  2.09s/it]\\\\r 53%|█████▎    | 21772/41180 [15:36:25<11:11:37,  2.08s/it]\\\\r 53%|█████▎    | 21773/41180 [15:36:27<11:24:00,  2.11s/it]\\\\r 53%|█████▎    | 21774/41180 [15:36:30<11:49:06,  2.19s/it]\\\\r 53%|█████▎    | 21775/41180 [15:36:32<11:38:00,  2.16s/it]\\\\r 53%|█████▎    | 21776/41180 [15:36:34<11:25:51,  2.12s/it]\\\\r 53%|█████▎    | 21777/41180 [15:36:36<11:05:43,  2.06s/it]\\\\r 53%|█████▎    | 21778/41180 [15:36:38<10:53:31,  2.02s/it]\\\\r 53%|█████▎    | 21779/41180 [15:36:40<11:23:13,  2.11s/it]\\\\r 53%|█████▎    | 21780/41180 [15:36:42<10:54:57,  2.03s/it]\\\\r 53%|█████▎    | 21781/41180 [15:36:44<11:03:05,  2.05s/it]\\\\r 53%|█████▎    | 21782/41180 [15:36:46<11:02:10,  2.05s/it]\\\\r 53%|█████▎    | 21783/41180 [15:36:48<11:03:27,  2.05s/it]\\\\r 53%|█████▎    | 21784/41180 [15:36:51<12:33:11,  2.33s/it]\\\\r 53%|█████▎    | 21785/41180 [15:36:53<12:07:29,  2.25s/it]\\\\r 53%|█████▎    | 21786/41180 [15:36:55<11:39:05,  2.16s/it]\\\\r 53%|█████▎    | 21787/41180 [15:36:57<11:29:28,  2.13s/it]\\\\r 53%|█████▎    | 21788/41180 [15:36:59<11:05:30,  2.06s/it]\\\\r 53%|█████▎    | 21789/41180 [15:37:01<10:53:46,  2.02s/it]\\\\r 53%|█████▎    | 21790/41180 [15:37:03<11:07:50,  2.07s/it]\\\\r 53%|█████▎    | 21791/41180 [15:37:05<11:22:05,  2.11s/it]\\\\r 53%|█████▎    | 21792/41180 [15:37:08<11:41:57,  2.17s/it]\\\\r 53%|█████▎    | 21793/41180 [15:37:10<11:29:51,  2.13s/it]\\\\r 53%|█████▎    | 21794/41180 [15:37:12<11:31:22,  2.14s/it]\\\\r 53%|█████▎    | 21795/41180 [15:37:15<13:15:54,  2.46s/it]\\\\r 53%|█████▎    | 21796/41180 [15:37:17<12:23:04,  2.30s/it]\\\\r 53%|█████▎    | 21797/41180 [15:37:19<12:03:20,  2.24s/it]\\\\r 53%|█████▎    | 21798/41180 [15:37:21<12:01:05,  2.23s/it]\\\\r 53%|█████▎    | 21799/41180 [15:37:23<11:26:41,  2.13s/it]\\\\r 53%|█████▎    | 21800/41180 [15:37:25<11:31:22,  2.14s/it]\\\\r                                                           \\\\r{'loss': 0.0273, 'grad_norm': 0.45883092284202576, 'learning_rate': 0.00010719886649555749, 'epoch': 2.65}\\\\n\\\\r 53%|█████▎    | 21800/41180 [15:37:25<11:31:22,  2.14s/it]\\\\r 53%|█████▎    | 21801/41180 [15:37:28<12:02:36,  2.24s/it]\\\\r 53%|█████▎    | 21802/41180 [15:37:30<11:39:01,  2.16s/it]\\\\r 53%|█████▎    | 21803/41180 [15:37:32<11:52:41,  2.21s/it]\\\\r 53%|█████▎    | 21804/41180 [15:37:34<11:16:38,  2.10s/it]\\\\r 53%|█████▎    | 21805/41180 [15:37:36<11:30:28,  2.14s/it]\\\\r 53%|█████▎    | 21806/41180 [15:37:39<12:06:39,  2.25s/it]\\\\r 53%|█████▎    | 21807/41180 [15:37:41<12:04:31,  2.24s/it]\\\\r 53%|█████▎    | 21808/41180 [15:37:43<11:44:13,  2.18s/it]\\\\r 53%|█████▎    | 21809/41180 [15:37:45<11:46:28,  2.19s/it]\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.83}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\r 51%|█████     | 20850/41180 [15:02:51<11:51:14,  2.10s/it]\\r 51%|█████     | 20851/41180 [15:02:53<11:40:11,  2.07s/it]\\r 51%|█████     | 20852/41180 [15:02:55<11:35:59,  2.05s/it]\\r 51%|█████     | 20853/41180 [15:02:57<12:04:04,  2.14s/it]\\r 51%|█████     | 20854/41180 [15:02:59<11:54:25,  2.11s/it]\\r 51%|█████     | 20855/41180 [15:03:01<11:47:27,  2.09s/it]\\r 51%|█████     | 20856/41180 [15:03:04<12:56:51,  2.29s/it]\\r 51%|█████     | 20857/41180 [15:03:06<12:16:10,  2.17s/it]\\r 51%|█████     | 20858/41180 [15:03:08<12:01:25,  2.13s/it]\\r 51%|█████     | 20859/41180 [15:03:10<11:41:30,  2.07s/it]\\r 51%|█████     | 20860/41180 [15:03:12<11:56:46,  2.12s/it]\\r 51%|█████     | 20861/41180 [15:03:14<12:10:58,  2.16s/it]\\r 51%|█████     | 20862/41180 [15:03:17<12:38:32,  2.24s/it]\\r 51%|█████     | 20863/41180 [15:03:19<12:30:38,  2.22s/it]\\r 51%|████��     | 20864/41180 [15:03:21<12:24:28,  2.20s/it]\\r 51%|█████     | 20865/41180 [15:03:23<12:10:38,  2.16s/it]\\r 51%|█████     | 20866/41180 [15:03:25<11:48:31,  2.09s/it]\\r 51%|█████     | 20867/41180 [15:03:27<12:00:02,  2.13s/it]\\r 51%|█████     | 20868/41180 [15:03:29<11:40:43,  2.07s/it]\\r 51%|█████     | 20869/41180 [15:03:32<12:05:37,  2.14s/it]\\r 51%|█████     | 20870/41180 [15:03:34<12:09:46,  2.16s/it]\\r 51%|█████     | 20871/41180 [15:03:36<12:24:48,  2.20s/it]\\r 51%|█████     | 20872/41180 [15:03:39<12:54:13,  2.29s/it]\\r 51%|█████     | 20873/41180 [15:03:41<12:36:18,  2.23s/it]\\r 51%|█████     | 20874/41180 [15:03:43<12:31:39,  2.22s/it]\\r 51%|█████     | 20875/41180 [15:03:45<11:45:21,  2.08s/it]\\r 51%|█████     | 20876/41180 [15:03:47<11:31:20,  2.04s/it]\\r 51%|█████     | 20877/41180 [15:03:49<11:34:05,  2.05s/it]\\r 51%|█████     | 20878/41180 [15:03:51<11:50:56,  2.10s/it]\\r 51%|█████     | 20879/41180 [15:03:53<11:34:48,  2.05s/it]\\r 51%|█████     | 20880/41180 [15:03:55<11:28:07,  2.03s/it]\\r 51%|█████     | 20881/41180 [15:03:57<11:44:15,  2.08s/it]\\r 51%|█████     | 20882/41180 [15:03:59<11:35:21,  2.06s/it]\\r 51%|█████     | 20883/41180 [15:04:02<12:21:59,  2.19s/it]\\r 51%|█████     | 20884/41180 [15:04:04<12:31:34,  2.22s/it]\\r 51%|█████     | 20885/41180 [15:04:06<12:00:14,  2.13s/it]\\r 51%|█████     | 20886/41180 [15:04:08<12:22:54,  2.20s/it]\\r 51%|█████     | 20887/41180 [15:04:10<11:50:52,  2.10s/it]\\r 51%|█████     | 20888/41180 [15:04:12<12:00:17,  2.13s/it]\\r 51%|█████     | 20889/41180 [15:04:14<12:05:24,  2.15s/it]\\r 51%|█████     | 20890/41180 [15:04:17<12:21:30,  2.19s/it]\\r 51%|█████     | 20891/41180 [15:04:19<12:23:09,  2.20s/it]\\r 51%|█████     | 20892/41180 [15:04:21<12:04:25,  2.14s/it]\\r 51%|█████     | 20893/41180 [15:04:23<12:12:56,  2.17s/it]\\r 51%|█████     | 20894/41180 [15:04:25<11:28:27,  2.04s/it]\\r 51%|█████     | 20895/41180 [15:04:27<11:35:02,  2.06s/it]\\r 51%|█████     | 20896/41180 [15:04:29<11:49:52,  2.10s/it]\\r 51%|█████     | 20897/41180 [15:04:31<12:11:32,  2.16s/it]\\r 51%|█████     | 20898/41180 [15:04:34<12:14:43,  2.17s/it]\\r 51%|█████     | 20899/41180 [15:04:36<12:07:08,  2.15s/it]\\r 51%|█████     | 20900/41180 [15:04:38<12:09:26,  2.16s/it]\\r                                                           \\r{'loss': 0.031, 'grad_norm': 0.6738091707229614, 'learning_rate': 0.0001147796835899229, 'epoch': 2.54}\\n\\r 51%|█████     | 20900/41180 [15:04:38<12:09:26,  2.16s/it]\\r 51%|█████     | 20901/41180 [15:04:40<11:53:17,  2.11s/it]\\r 51%|█████     | 20902/41180 [15:04:42<11:35:50,  2.06s/it]\\r 51%|█████     | 20903/41180 [15:04:44<12:17:20,  2.18s/it]\\r 51%|█████     | 20904/41180 [15:04:47<12:18:31,  2.19s/it]\\r 51%|█████     | 20905/41180 [15:04:49<12:14:00,  2.17s/it]\\r 51%|█████     | 20906/41180 [15:04:51<11:58:25,  2.13s/it]\\r 51%|█████     | 20907/41180 [15:04:53<12:04:10,  2.14s/it]\\r 51%|█████     | 20908/41180 [15:04:55<11:54:09,  2.11s/it]\\r 51%|█████     | 20909/41180 [15:04:57<12:28:22,  2.22s/it]\\r 51%|█████     | 20910/41180 [15:05:00<13:14:52,  2.35s/it]\\r 51%|█████     | 20911/41180 [15:05:02<13:10:48,  2.34s/it]\\r 51%|█████     | 20912/41180 [15:05:05<13:04:53,  2.3\\n\\n... [截断: 输出过长，省略 53930 字符] ...\\n\\nit]\\r                                                           \\r{'loss': 0.0287, 'grad_norm': 0.34574639797210693, 'learning_rate': 0.00010762153027388352, 'epoch': 2.64}\\n\\r 53%|█████▎    | 21750/41180 [15:35:36<12:06:01,  2.24s/it]\\r 53%|█████▎    | 21751/41180 [15:35:38<11:51:54,  2.20s/it]\\r 53%|█████▎    | 21752/41180 [15:35:40<11:49:10,  2.19s/it]\\r 53%|█████▎    | 21753/41180 [15:35:42<11:51:59,  2.20s/it]\\r 53%|█████▎    | 21754/41180 [15:35:44<11:52:25,  2.20s/it]\\r 53%|█████▎    | 21755/41180 [15:35:47<12:18:53,  2.28s/it]\\r 53%|█████▎    | 21756/41180 [15:35:49<12:20:42,  2.29s/it]\\r 53%|█████▎    | 21757/41180 [15:35:53<15:31:53,  2.88s/it]\\r 53%|█████▎    | 21758/41180 [15:35:55<14:07:18,  2.62s/it]\\r 53%|█████▎    | 21759/41180 [15:35:58<13:42:55,  2.54s/it]\\r 53%|█████▎    | 21760/41180 [15:36:00<12:53:20,  2.39s/it]\\r 53%|█████▎    | 21761/41180 [15:36:02<12:20:56,  2.29s/it]\\r 53%|█████▎    | 21762/41180 [15:36:04<11:53:53,  2.21s/it]\\r 53%|███��█▎    | 21763/41180 [15:36:07<12:36:16,  2.34s/it]\\r 53%|█████▎    | 21764/41180 [15:36:09<11:54:33,  2.21s/it]\\r 53%|█████▎    | 21765/41180 [15:36:11<12:10:54,  2.26s/it]\\r 53%|█████▎    | 21766/41180 [15:36:13<11:47:11,  2.19s/it]\\r 53%|█████▎    | 21767/41180 [15:36:15<11:37:45,  2.16s/it]\\r 53%|█████▎    | 21768/41180 [15:36:17<11:01:02,  2.04s/it]\\r 53%|█████▎    | 21769/41180 [15:36:19<10:35:48,  1.97s/it]\\r 53%|█████▎    | 21770/41180 [15:36:21<11:01:14,  2.04s/it]\\r 53%|█████▎    | 21771/41180 [15:36:23<11:15:56,  2.09s/it]\\r 53%|█████▎    | 21772/41180 [15:36:25<11:11:37,  2.08s/it]\\r 53%|█████▎    | 21773/41180 [15:36:27<11:24:00,  2.11s/it]\\r 53%|█████▎    | 21774/41180 [15:36:30<11:49:06,  2.19s/it]\\r 53%|█████▎    | 21775/41180 [15:36:32<11:38:00,  2.16s/it]\\r 53%|█████▎    | 21776/41180 [15:36:34<11:25:51,  2.12s/it]\\r 53%|█████▎    | 21777/41180 [15:36:36<11:05:43,  2.06s/it]\\r 53%|█████▎    | 21778/41180 [15:36:38<10:53:31,  2.02s/it]\\r 53%|█████▎    | 21779/41180 [15:36:40<11:23:13,  2.11s/it]\\r 53%|█████▎    | 21780/41180 [15:36:42<10:54:57,  2.03s/it]\\r 53%|█████▎    | 21781/41180 [15:36:44<11:03:05,  2.05s/it]\\r 53%|█████▎    | 21782/41180 [15:36:46<11:02:10,  2.05s/it]\\r 53%|█████▎    | 21783/41180 [15:36:48<11:03:27,  2.05s/it]\\r 53%|█████▎    | 21784/41180 [15:36:51<12:33:11,  2.33s/it]\\r 53%|█████▎    | 21785/41180 [15:36:53<12:07:29,  2.25s/it]\\r 53%|█████▎    | 21786/41180 [15:36:55<11:39:05,  2.16s/it]\\r 53%|█████▎    | 21787/41180 [15:36:57<11:29:28,  2.13s/it]\\r 53%|█████▎    | 21788/41180 [15:36:59<11:05:30,  2.06s/it]\\r 53%|█████▎    | 21789/41180 [15:37:01<10:53:46,  2.02s/it]\\r 53%|█████▎    | 21790/41180 [15:37:03<11:07:50,  2.07s/it]\\r 53%|█████▎    | 21791/41180 [15:37:05<11:22:05,  2.11s/it]\\r 53%|█████▎    | 21792/41180 [15:37:08<11:41:57,  2.17s/it]\\r 53%|█████▎    | 21793/41180 [15:37:10<11:29:51,  2.13s/it]\\r 53%|█████▎    | 21794/41180 [15:37:12<11:31:22,  2.14s/it]\\r 53%|█████▎    | 21795/41180 [15:37:15<13:15:54,  2.46s/it]\\r 53%|█████▎    | 21796/41180 [15:37:17<12:23:04,  2.30s/it]\\r 53%|█████▎    | 21797/41180 [15:37:19<12:03:20,  2.24s/it]\\r 53%|█████▎    | 21798/41180 [15:37:21<12:01:05,  2.23s/it]\\r 53%|█████▎    | 21799/41180 [15:37:23<11:26:41,  2.13s/it]\\r 53%|█████▎    | 21800/41180 [15:37:25<11:31:22,  2.14s/it]\\r                                                           \\r{'loss': 0.0273, 'grad_norm': 0.45883092284202576, 'learning_rate': 0.00010719886649555749, 'epoch': 2.65}\\n\\r 53%|█████▎    | 21800/41180 [15:37:25<11:31:22,  2.14s/it]\\r 53%|█████▎    | 21801/41180 [15:37:28<12:02:36,  2.24s/it]\\r 53%|█████▎    | 21802/41180 [15:37:30<11:39:01,  2.16s/it]\\r 53%|█████▎    | 21803/41180 [15:37:32<11:52:41,  2.21s/it]\\r 53%|█████▎    | 21804/41180 [15:37:34<11:16:38,  2.10s/it]\\r 53%|█████▎    | 21805/41180 [15:37:36<11:30:28,  2.14s/it]\\r 53%|█████▎    | 21806/41180 [15:37:39<12:06:39,  2.25s/it]\\r 53%|█████▎    | 21807/41180 [15:37:41<12:04:31,  2.24s/it]\\r 53%|█████▎    | 21808/41180 [15:37:43<11:44:13,  2.18s/it]\\r 53%|█████▎    | 21809/41180 [15:37:45<11:46:28,  2.19s/it]\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.83}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-19T23:44:26.398Z_
+
+<details><summary>↩ Tool result · `toolu_01Lx8UdpBqrqhRv6GGH9yC2y`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  \\\"tie_word_embeddings\\\": false,\\n  \\\"transformers_version\\\": \\\"4.57.1\\\",\\n  \\\"use_cache\\\": true,\\n  \\\"use_sliding_window\\\": false,\\n  \\\"vocab_size\\\": 152064\\n}\\n\\n[INFO|tokenization_utils_base.py:2421] 2026-05-20 07:29:59,249 >> chat template saved in /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen25-32b-fewnerd-qlora-s42/checkpoint-15000/chat_template.jinja\\n[INFO|tokenization_utils_base.py:2590] 2026-05-20 07:29:59,249 >> tokenizer config file saved in /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen25-32b-fewnerd-qlora-s42/checkpoint-15000/tokenizer_config.json\\n[INFO|tokenization_utils_base.py:2599] 2026-05-20 07:29:59,249 >> Special tokens file saved in /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen25-32b-fewnerd-qlora-s42/checkpoint-15000/special_tokens_map.json\\n/root/miniconda3/lib/python3.12/site-packages/torch/distributed/c10d_logger.py:83: UserWarning: barrier(): using the device under current context. You can specify `device_id` in `init_process_group` to mute this warning.\\n  return func(*args, **kwargs)\\n[INFO|trainer.py:4418] 2026-05-20 07:30:01,347 >> Deleting older checkpoint [/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen25-32b-fewnerd-qlora-s42/checkpoint-12000] due to args.save_total_limit\\n\\r 36%|███▋      | 15001/41180 [13:53:08<1840:25:53, 253.09s/it]\\r 36%|███▋      | 15002/41180 [13:53:11<1294:23:30, 178.00s/it]\\r 36%|███▋      | 15003/41180 [13:53:14<911:34:52, 125.37s/it] \\r 36%|███▋      | 15004/41180 [13:53:16<643:14:30, 88.47s/it] \\r 36%|███▋      | 15005/41180 [13:53:18<455:33:56, 62.66s/it]\\r 36%|███▋      | 15006/41180 [13:53:21<324:13:00, 44.59s/it]\\r 36%|███▋      | 15007/41180 [13:53:23<232:40:23, 32.00s/it]\\r 36%|███▋      | 15008/41180 [13:53:26<168:31:07, 23.18s/it]\\r 36%|███▋      | 15009/41180 [13:53:29<123:29:46, 16.99s/it]\\r 36%|███▋      | 15010/41180 [13:53:31<91:59:00, 12.65s/it] \\r 36%|███▋      | 15011/41180 [13:53:33<69:38:11,  9.58s/it]\\r 36%|███▋      | 15012/41180 [13:53:36<54:13:33,  7.46s/it]\\r 36%|███▋      | 15013/41180 [13:53:39<43:26:56,  5.98s/it]\\r 36%|███▋      | 15014/41180 [13:53:41<35:59:16,  4.95s/it]\\r 36%|███▋      | 15015/41180 [13:53:43<30:27:47,  4.19s/it]\\r 36%|███▋      | 15016/41180 [13:53:46<26:33:38,  3.65s/it]\\r 36%|███▋      | 15017/41180 [13:53:48<23:38:04,  3.25s/it]\\r 36%|███▋      | 15018/41180 [13:53:51<21:38:01,  2.98s/it]\\r 36%|███▋      | 15019/41180 [13:53:53<20:13:34,  2.78s/it]\\r 36%|███▋      | 15020/41180 [13:53:55<19:25:30,  2.67s/it]\\r 36%|███▋      | 15021/41180 [13:53:58<18:52:26,  2.60s/it]\\r 36%|███▋      | 15022/41180 [13:54:00<18:44:08,  2.58s/it]\\r 36%|███▋      | 15023/41180 [13:54:03<18:18:33,  2.52s/it]\\r 36%|███▋      | 15024/41180 [13:54:05<18:04:39,  2.49s/it]\\r 36%|███▋      | 15025/41180 [13:54:08<18:34:44,  2.56s/it]\\r 36%|███▋      | 15026/41180 [13:54:10<18:32:51,  2.55s/it]\\r 36%|███▋      | 15027/41180 [13:54:13<18:35:02,  2.56s/it]\\r 36%|███▋      | 15028/41180 [13:54:15<18:25:48,  2.54s/it]\\r 36%|███▋      | 15029/41180 [13:54:18<18:18:28,  2.52s/it]\\r 36%|███▋      | 15030/41180 [13:54:21<20:27:41,  2.82s/it]\\r 37%|███▋      | 15031/41180 [13:54:24<20:05:11,  2.77s/it]\\r 37%|███▋      | 15032/41180 [13:54:26<19:02:14,  2.62s/it]\\r 37%|███▋      | 15033/41180 [13:54:29<18:12:42,  2.51s/it]\\r 37%|███▋      | 15034/41180 [13:54:31<18:32:58,  2.55s/it]\\r 37%|███▋      | 15035/41180 [13:54:34<18:31:19,  2.55s/it]\\r 37%|███▋      | 15036/41180 [13:54:36<17:58:46,  2.48s/it]\\r 37%|███▋      | 15037/41180 [13:54:39<18:02:03,  2.48s/it]\\r 37%|███▋      | 15038/41180 [13:54:41<17:48:58,  2.45s/it]\\r 37%|███▋      | 15039/41180 [13:54:44<18:35:11,  2.56s/it]\\r 37%|███▋      | 15040/41180 [13:54:46<18:16:36,  2.52s/it]\\r 37%|███▋      | 15041/41180 [13:54:49<18:00:01,  2.48s/it]\\r 37%|███▋      | 15042/41180 [13:54:51<17:34:51,  2.42s/it]\\r 37%|███▋      | 15043/41180 [13:54:53<18:01:43,  2.48s/it]\\r 37%|███▋      | 15044/41180 [13:54:56<18:03:32,  2.49s/it]\\r 37%|███▋      | 15045/41180 [13:54:58<18:05:45,  2.49s/it]\\r 37%|███▋      | 15046/41180 [13:55:01\\n\\n... [截断: 输出过长，省略 15381 字符] ...\\n\\n██▋      | 15284/41180 [14:04:54<19:01:08,  2.64s/it]\\r 37%|███▋      | 15285/41180 [14:04:56<18:08:16,  2.52s/it]\\r 37%|███▋      | 15286/41180 [14:04:59<17:57:44,  2.50s/it]\\r 37%|███▋      | 15287/41180 [14:05:01<18:03:01,  2.51s/it]\\r 37%|███▋      | 15288/41180 [14:05:04<17:44:49,  2.47s/it]\\r 37%|███▋      | 15289/41180 [14:05:06<17:39:32,  2.46s/it]\\r 37%|███▋      | 15290/41180 [14:05:09<17:36:00,  2.45s/it]\\r 37%|███▋      | 15291/41180 [14:05:11<17:25:49,  2.42s/it]\\r 37%|███▋      | 15292/41180 [14:05:13<17:22:12,  2.42s/it]\\r 37%|███▋      | 15293/41180 [14:05:16<17:39:53,  2.46s/it]\\r 37%|███▋      | 15294/41180 [14:05:18<17:25:18,  2.42s/it]\\r 37%|███▋      | 15295/41180 [14:05:21<17:32:40,  2.44s/it]\\r 37%|███▋      | 15296/41180 [14:05:23<17:26:18,  2.43s/it]\\r 37%|███▋      | 15297/41180 [14:05:26<17:20:05,  2.41s/it]\\r 37%|███▋      | 15298/41180 [14:05:28<17:30:29,  2.44s/it]\\r 37%|███▋      | 15299/41180 [14:05:30<17:20:38,  2.41s/it]\\r 37%|███▋      | 15300/41180 [14:05:33<17:26:04,  2.43s/it]\\r                                                           \\r{'loss': 0.0528, 'grad_norm': 0.19264943897724152, 'learning_rate': 0.0001583497843235338, 'epoch': 1.86}\\n\\r 37%|███▋      | 15300/41180 [14:05:33<17:26:04,  2.43s/it]\\r 37%|███▋      | 15301/41180 [14:05:35<17:39:45,  2.46s/it]\\r 37%|███▋      | 15302/41180 [14:05:38<17:33:00,  2.44s/it]\\r 37%|███▋      | 15303/41180 [14:05:40<17:28:43,  2.43s/it]\\r 37%|███▋      | 15304/41180 [14:05:43<19:05:11,  2.66s/it]\\r 37%|███▋      | 15305/41180 [14:05:46<18:37:10,  2.59s/it]\\r 37%|███▋      | 15306/41180 [14:05:48<18:30:47,  2.58s/it]\\r 37%|███▋      | 15307/41180 [14:05:51<18:30:28,  2.58s/it]\\r 37%|███▋      | 15308/41180 [14:05:54<18:46:56,  2.61s/it]\\r 37%|███▋      | 15309/41180 [14:05:56<18:22:16,  2.56s/it]\\r 37%|███▋      | 15310/41180 [14:05:59<18:21:14,  2.55s/it]\\r 37%|███▋      | 15311/41180 [14:06:01<18:51:10,  2.62s/it]\\r 37%|███▋      | 15312/41180 [14:06:04<18:05:41,  2.52s/it]\\r 37%|███▋      | 15313/41180 [14:06:06<17:57:11,  2.50s/it]\\r 37%|███▋      | 15314/41180 [14:06:09<17:58:44,  2.50s/it]\\r 37%|███▋      | 15315/41180 [14:06:11<17:50:23,  2.48s/it]\\r 37%|███▋      | 15316/41180 [14:06:14<18:13:56,  2.54s/it]\\r 37%|███▋      | 15317/41180 [14:06:16<18:17:50,  2.55s/it]\\r 37%|███▋      | 15318/41180 [14:06:19<18:04:48,  2.52s/it]\\r 37%|███▋      | 15319/41180 [14:06:21<17:38:32,  2.46s/it]\\r 37%|███▋      | 15320/41180 [14:06:24<17:52:34,  2.49s/it]\\r 37%|███▋      | 15321/41180 [14:06:26<18:11:37,  2.53s/it]\\r 37%|███▋      | 15322/41180 [14:06:29<18:10:43,  2.53s/it]\\r 37%|███▋      | 15323/41180 [14:06:31<17:42:52,  2.47s/it]\\r 37%|███▋      | 15324/41180 [14:06:34<18:50:26,  2.62s/it]\\r 37%|███▋      | 15325/41180 [14:06:37<18:22:13,  2.56s/it]\\r 37%|███▋      | 15326/41180 [14:06:39<18:04:09,  2.52s/it]\\r 37%|███▋      | 15327/41180 [14:06:41<17:50:35,  2.48s/it]\\r 37%|███▋      | 15328/41180 [14:06:44<18:15:33,  2.54s/it]\\r 37%|███▋      | 15329/41180 [14:06:46<17:48:05,  2.48s/it]\\r 37%|███▋      | 15330/41180 [14:06:49<17:39:18,  2.46s/it]\\r 37%|███▋      | 15331/41180 [14:06:51<17:51:37,  2.49s/it]\\r 37%|███▋      | 15332/41180 [14:06:54<18:00:11,  2.51s/it]\\r 37%|███▋      | 15333/41180 [14:06:56<17:52:12,  2.49s/it]\\r 37%|███▋      | 15334/41180 [14:06:59<18:04:16,  2.52s/it]\\r 37%|███▋      | 15335/41180 [14:07:01<18:04:59,  2.52s/it]\\r 37%|███▋      | 15336/41180 [14:07:04<18:05:41,  2.52s/it]\\r 37%|███▋      | 15337/41180 [14:07:07<19:27:20,  2.71s/it]\\r 37%|███▋      | 15338/41180 [14:07:10<18:50:52,  2.63s/it]\\r 37%|███▋      | 15339/41180 [14:07:12<18:25:43,  2.57s/it]\\r 37%|███▋      | 15340/41180 [14:07:14<18:09:36,  2.53s/it]\\r 37%|███▋      | 15341/41180 [14:07:17<17:32:36,  2.44s/it]\\r 37%|███▋      | 15342/41180 [14:07:19<18:09:41,  2.53s/it]\\r 37%|███▋      | 15343/41180 [14:07:22<17:56:06,  2.50s/it]\\r 37%|███▋      | 15344/41180 [14:07:24<18:00:00,  2.51s/it]\\r 37%|███▋      | 15345/41180 [14:07:27<17:43:47,  2.47s/it]\\r 37%|███▋      | 15346/41180 [14:07:29<17:48:29,  2.48s/it]\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e1197bdb-5364-4125-a0d2-987d8f35aa98",
+  "uuid": "29a8b795-67f2-452d-a2b5-86c657de1307",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  \\\\\\\"tie_word_embeddings\\\\\\\": false,\\\\n  \\\\\\\"transformers_version\\\\\\\": \\\\\\\"4.57.1\\\\\\\",\\\\n  \\\\\\\"use_cache\\\\\\\": true,\\\\n  \\\\\\\"use_sliding_window\\\\\\\": false,\\\\n  \\\\\\\"vocab_size\\\\\\\": 152064\\\\n}\\\\n\\\\n[INFO|tokenization_utils_base.py:2421] 2026-05-20 07:29:59,249 >> chat template saved in /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen25-32b-fewnerd-qlora-s42/checkpoint-15000/chat_template.jinja\\\\n[INFO|tokenization_utils_base.py:2590] 2026-05-20 07:29:59,249 >> tokenizer config file saved in /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen25-32b-fewnerd-qlora-s42/checkpoint-15000/tokenizer_config.json\\\\n[INFO|tokenization_utils_base.py:2599] 2026-05-20 07:29:59,249 >> Special tokens file saved in /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen25-32b-fewnerd-qlora-s42/checkpoint-15000/special_tokens_map.json\\\\n/root/miniconda3/lib/python3.12/site-packages/torch/distributed/c10d_logger.py:83: UserWarning: barrier(): using the device under current context. You can specify `device_id` in `init_process_group` to mute this warning.\\\\n  return func(*args, **kwargs)\\\\n[INFO|trainer.py:4418] 2026-05-20 07:30:01,347 >> Deleting older checkpoint [/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen25-32b-fewnerd-qlora-s42/checkpoint-12000] due to args.save_total_limit\\\\n\\\\r 36%|███▋      | 15001/41180 [13:53:08<1840:25:53, 253.09s/it]\\\\r 36%|███▋      | 15002/41180 [13:53:11<1294:23:30, 178.00s/it]\\\\r 36%|███▋      | 15003/41180 [13:53:14<911:34:52, 125.37s/it] \\\\r 36%|███▋      | 15004/41180 [13:53:16<643:14:30, 88.47s/it] \\\\r 36%|███▋      | 15005/41180 [13:53:18<455:33:56, 62.66s/it]\\\\r 36%|███▋      | 15006/41180 [13:53:21<324:13:00, 44.59s/it]\\\\r 36%|███▋      | 15007/41180 [13:53:23<232:40:23, 32.00s/it]\\\\r 36%|███▋      | 15008/41180 [13:53:26<168:31:07, 23.18s/it]\\\\r 36%|███▋      | 15009/41180 [13:53:29<123:29:46, 16.99s/it]\\\\r 36%|███▋      | 15010/41180 [13:53:31<91:59:00, 12.65s/it] \\\\r 36%|███▋      | 15011/41180 [13:53:33<69:38:11,  9.58s/it]\\\\r 36%|███▋      | 15012/41180 [13:53:36<54:13:33,  7.46s/it]\\\\r 36%|███▋      | 15013/41180 [13:53:39<43:26:56,  5.98s/it]\\\\r 36%|███▋      | 15014/41180 [13:53:41<35:59:16,  4.95s/it]\\\\r 36%|███▋      | 15015/41180 [13:53:43<30:27:47,  4.19s/it]\\\\r 36%|███▋      | 15016/41180 [13:53:46<26:33:38,  3.65s/it]\\\\r 36%|███▋      | 15017/41180 [13:53:48<23:38:04,  3.25s/it]\\\\r 36%|███▋      | 15018/41180 [13:53:51<21:38:01,  2.98s/it]\\\\r 36%|███▋      | 15019/41180 [13:53:53<20:13:34,  2.78s/it]\\\\r 36%|███▋      | 15020/41180 [13:53:55<19:25:30,  2.67s/it]\\\\r 36%|███▋      | 15021/41180 [13:53:58<18:52:26,  2.60s/it]\\\\r 36%|███▋      | 15022/41180 [13:54:00<18:44:08,  2.58s/it]\\\\r 36%|███▋      | 15023/41180 [13:54:03<18:18:33,  2.52s/it]\\\\r 36%|███▋      | 15024/41180 [13:54:05<18:04:39,  2.49s/it]\\\\r 36%|███▋      | 15025/41180 [13:54:08<18:34:44,  2.56s/it]\\\\r 36%|███▋      | 15026/41180 [13:54:10<18:32:51,  2.55s/it]\\\\r 36%|███▋      | 15027/41180 [13:54:13<18:35:02,  2.56s/it]\\\\r 36%|███▋      | 15028/41180 [13:54:15<18:25:48,  2.54s/it]\\\\r 36%|███▋      | 15029/41180 [13:54:18<18:18:28,  2.52s/it]\\\\r 36%|███▋      | 15030/41180 [13:54:21<20:27:41,  2.82s/it]\\\\r 37%|███▋      | 15031/41180 [13:54:24<20:05:11,  2.77s/it]\\\\r 37%|███▋      | 15032/41180 [13:54:26<19:02:14,  2.62s/it]\\\\r 37%|███▋      | 15033/41180 [13:54:29<18:12:42,  2.51s/it]\\\\r 37%|███▋      | 15034/41180 [13:54:31<18:32:58,  2.55s/it]\\\\r 37%|███▋      | 15035/41180 [13:54:34<18:31:19,  2.55s/it]\\\\r 37%|███▋      | 15036/41180 [13:54:36<17:58:46,  2.48s/it]\\\\r 37%|███▋      | 15037/41180 [13:54:39<18:02:03,  2.48s/it]\\\\r 37%|███▋      | 15038/41180 [13:54:41<17:48:58,  2.45s/it]\\\\r 37%|███▋      | 15039/41180 [13:54:44<18:35:11,  2.56s/it]\\\\r 37%|███▋      | 15040/41180 [13:54:46<18:16:36,  2.52s/it]\\\\r 37%|███▋      | 15041/41180 [13:54:49<18:00:01,  2.48s/it]\\\\r 37%|███▋      | 15042/41180 [13:54:51<17:34:51,  2.42s/it]\\\\r 37%|███▋      | 15043/41180 [13:54:53<18:01:43,  2.48s/it]\\\\r 37%|███▋      | 15044/41180 [13:54:56<18:03:32,  2.49s/it]\\\\r 37%|███▋      | 15045/41180 [13:54:58<18:05:45,  2.49s/it]\\\\r 37%|███▋      | 15046/41180 [13:55:01\\\\n\\\\n... [截断: 输出过长，省略 15381 字符] ...\\\\n\\\\n██▋      | 15284/41180 [14:04:54<19:01:08,  2.64s/it]\\\\r 37%|███▋      | 15285/41180 [14:04:56<18:08:16,  2.52s/it]\\\\r 37%|███▋      | 15286/41180 [14:04:59<17:57:44,  2.50s/it]\\\\r 37%|███▋      | 15287/41180 [14:05:01<18:03:01,  2.51s/it]\\\\r 37%|███▋      | 15288/41180 [14:05:04<17:44:49,  2.47s/it]\\\\r 37%|███▋      | 15289/41180 [14:05:06<17:39:32,  2.46s/it]\\\\r 37%|███▋      | 15290/41180 [14:05:09<17:36:00,  2.45s/it]\\\\r 37%|███▋      | 15291/41180 [14:05:11<17:25:49,  2.42s/it]\\\\r 37%|███▋      | 15292/41180 [14:05:13<17:22:12,  2.42s/it]\\\\r 37%|███▋      | 15293/41180 [14:05:16<17:39:53,  2.46s/it]\\\\r 37%|███▋      | 15294/41180 [14:05:18<17:25:18,  2.42s/it]\\\\r 37%|███▋      | 15295/41180 [14:05:21<17:32:40,  2.44s/it]\\\\r 37%|███▋      | 15296/41180 [14:05:23<17:26:18,  2.43s/it]\\\\r 37%|███▋      | 15297/41180 [14:05:26<17:20:05,  2.41s/it]\\\\r 37%|███▋      | 15298/41180 [14:05:28<17:30:29,  2.44s/it]\\\\r 37%|███▋      | 15299/41180 [14:05:30<17:20:38,  2.41s/it]\\\\r 37%|███▋      | 15300/41180 [14:05:33<17:26:04,  2.43s/it]\\\\r                                                           \\\\r{'loss': 0.0528, 'grad_norm': 0.19264943897724152, 'learning_rate': 0.0001583497843235338, 'epoch': 1.86}\\\\n\\\\r 37%|███▋      | 15300/41180 [14:05:33<17:26:04,  2.43s/it]\\\\r 37%|███▋      | 15301/41180 [14:05:35<17:39:45,  2.46s/it]\\\\r 37%|███▋      | 15302/41180 [14:05:38<17:33:00,  2.44s/it]\\\\r 37%|███▋      | 15303/41180 [14:05:40<17:28:43,  2.43s/it]\\\\r 37%|███▋      | 15304/41180 [14:05:43<19:05:11,  2.66s/it]\\\\r 37%|███▋      | 15305/41180 [14:05:46<18:37:10,  2.59s/it]\\\\r 37%|███▋      | 15306/41180 [14:05:48<18:30:47,  2.58s/it]\\\\r 37%|███▋      | 15307/41180 [14:05:51<18:30:28,  2.58s/it]\\\\r 37%|███▋      | 15308/41180 [14:05:54<18:46:56,  2.61s/it]\\\\r 37%|███▋      | 15309/41180 [14:05:56<18:22:16,  2.56s/it]\\\\r 37%|███▋      | 15310/41180 [14:05:59<18:21:14,  2.55s/it]\\\\r 37%|███▋      | 15311/41180 [14:06:01<18:51:10,  2.62s/it]\\\\r 37%|███▋      | 15312/41180 [14:06:04<18:05:41,  2.52s/it]\\\\r 37%|███▋      | 15313/41180 [14:06:06<17:57:11,  2.50s/it]\\\\r 37%|███▋      | 15314/41180 [14:06:09<17:58:44,  2.50s/it]\\\\r 37%|███▋      | 15315/41180 [14:06:11<17:50:23,  2.48s/it]\\\\r 37%|███▋      | 15316/41180 [14:06:14<18:13:56,  2.54s/it]\\\\r 37%|███▋      | 15317/41180 [14:06:16<18:17:50,  2.55s/it]\\\\r 37%|███▋      | 15318/41180 [14:06:19<18:04:48,  2.52s/it]\\\\r 37%|███▋      | 15319/41180 [14:06:21<17:38:32,  2.46s/it]\\\\r 37%|███▋      | 15320/41180 [14:06:24<17:52:34,  2.49s/it]\\\\r 37%|███▋      | 15321/41180 [14:06:26<18:11:37,  2.53s/it]\\\\r 37%|███▋      | 15322/41180 [14:06:29<18:10:43,  2.53s/it]\\\\r 37%|███▋      | 15323/41180 [14:06:31<17:42:52,  2.47s/it]\\\\r 37%|███▋      | 15324/41180 [14:06:34<18:50:26,  2.62s/it]\\\\r 37%|███▋      | 15325/41180 [14:06:37<18:22:13,  2.56s/it]\\\\r 37%|███▋      | 15326/41180 [14:06:39<18:04:09,  2.52s/it]\\\\r 37%|███▋      | 15327/41180 [14:06:41<17:50:35,  2.48s/it]\\\\r 37%|███▋      | 15328/41180 [14:06:44<18:15:33,  2.54s/it]\\\\r 37%|███▋      | 15329/41180 [14:06:46<17:48:05,  2.48s/it]\\\\r 37%|███▋      | 15330/41180 [14:06:49<17:39:18,  2.46s/it]\\\\r 37%|███▋      | 15331/41180 [14:06:51<17:51:37,  2.49s/it]\\\\r 37%|███▋      | 15332/41180 [14:06:54<18:00:11,  2.51s/it]\\\\r 37%|███▋      | 15333/41180 [14:06:56<17:52:12,  2.49s/it]\\\\r 37%|███▋      | 15334/41180 [14:06:59<18:04:16,  2.52s/it]\\\\r 37%|███▋      | 15335/41180 [14:07:01<18:04:59,  2.52s/it]\\\\r 37%|███▋      | 15336/41180 [14:07:04<18:05:41,  2.52s/it]\\\\r 37%|███▋      | 15337/41180 [14:07:07<19:27:20,  2.71s/it]\\\\r 37%|███▋      | 15338/41180 [14:07:10<18:50:52,  2.63s/it]\\\\r 37%|███▋      | 15339/41180 [14:07:12<18:25:43,  2.57s/it]\\\\r 37%|███▋      | 15340/41180 [14:07:14<18:09:36,  2.53s/it]\\\\r 37%|███▋      | 15341/41180 [14:07:17<17:32:36,  2.44s/it]\\\\r 37%|███▋      | 15342/41180 [14:07:19<18:09:41,  2.53s/it]\\\\r 37%|███▋      | 15343/41180 [14:07:22<17:56:06,  2.50s/it]\\\\r 37%|███▋      | 15344/41180 [14:07:24<18:00:00,  2.51s/it]\\\\r 37%|███▋      | 15345/41180 [14:07:27<17:43:47,  2.47s/it]\\\\r 37%|███▋      | 15346/41180 [14:07:29<17:48:29,  2.48s/it]\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"  \\\"tie_word_embeddings\\\": false,\\n  \\\"transformers_version\\\": \\\"4.57.1\\\",\\n  \\\"use_cache\\\": true,\\n  \\\"use_sliding_window\\\": false,\\n  \\\"vocab_size\\\": 152064\\n}\\n\\n[INFO|tokenization_utils_base.py:2421] 2026-05-20 07:29:59,249 >> chat template saved in /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen25-32b-fewnerd-qlora-s42/checkpoint-15000/chat_template.jinja\\n[INFO|tokenization_utils_base.py:2590] 2026-05-20 07:29:59,249 >> tokenizer config file saved in /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen25-32b-fewnerd-qlora-s42/checkpoint-15000/tokenizer_config.json\\n[INFO|tokenization_utils_base.py:2599] 2026-05-20 07:29:59,249 >> Special tokens file saved in /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen25-32b-fewnerd-qlora-s42/checkpoint-15000/special_tokens_map.json\\n/root/miniconda3/lib/python3.12/site-packages/torch/distributed/c10d_logger.py:83: UserWarning: barrier(): using the device under current context. You can specify `device_id` in `init_process_group` to mute this warning.\\n  return func(*args, **kwargs)\\n[INFO|trainer.py:4418] 2026-05-20 07:30:01,347 >> Deleting older checkpoint [/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen25-32b-fewnerd-qlora-s42/checkpoint-12000] due to args.save_total_limit\\n\\r 36%|███▋      | 15001/41180 [13:53:08<1840:25:53, 253.09s/it]\\r 36%|███▋      | 15002/41180 [13:53:11<1294:23:30, 178.00s/it]\\r 36%|███▋      | 15003/41180 [13:53:14<911:34:52, 125.37s/it] \\r 36%|███▋      | 15004/41180 [13:53:16<643:14:30, 88.47s/it] \\r 36%|███▋      | 15005/41180 [13:53:18<455:33:56, 62.66s/it]\\r 36%|███▋      | 15006/41180 [13:53:21<324:13:00, 44.59s/it]\\r 36%|███▋      | 15007/41180 [13:53:23<232:40:23, 32.00s/it]\\r 36%|███▋      | 15008/41180 [13:53:26<168:31:07, 23.18s/it]\\r 36%|███▋      | 15009/41180 [13:53:29<123:29:46, 16.99s/it]\\r 36%|███▋      | 15010/41180 [13:53:31<91:59:00, 12.65s/it] \\r 36%|███▋      | 15011/41180 [13:53:33<69:38:11,  9.58s/it]\\r 36%|███▋      | 15012/41180 [13:53:36<54:13:33,  7.46s/it]\\r 36%|███▋      | 15013/41180 [13:53:39<43:26:56,  5.98s/it]\\r 36%|███▋      | 15014/41180 [13:53:41<35:59:16,  4.95s/it]\\r 36%|███▋      | 15015/41180 [13:53:43<30:27:47,  4.19s/it]\\r 36%|███▋      | 15016/41180 [13:53:46<26:33:38,  3.65s/it]\\r 36%|███▋      | 15017/41180 [13:53:48<23:38:04,  3.25s/it]\\r 36%|███▋      | 15018/41180 [13:53:51<21:38:01,  2.98s/it]\\r 36%|███▋      | 15019/41180 [13:53:53<20:13:34,  2.78s/it]\\r 36%|███▋      | 15020/41180 [13:53:55<19:25:30,  2.67s/it]\\r 36%|███▋      | 15021/41180 [13:53:58<18:52:26,  2.60s/it]\\r 36%|███▋      | 15022/41180 [13:54:00<18:44:08,  2.58s/it]\\r 36%|███▋      | 15023/41180 [13:54:03<18:18:33,  2.52s/it]\\r 36%|███▋      | 15024/41180 [13:54:05<18:04:39,  2.49s/it]\\r 36%|███▋      | 15025/41180 [13:54:08<18:34:44,  2.56s/it]\\r 36%|███▋      | 15026/41180 [13:54:10<18:32:51,  2.55s/it]\\r 36%|███▋      | 15027/41180 [13:54:13<18:35:02,  2.56s/it]\\r 36%|███▋      | 15028/41180 [13:54:15<18:25:48,  2.54s/it]\\r 36%|███▋      | 15029/41180 [13:54:18<18:18:28,  2.52s/it]\\r 36%|███▋      | 15030/41180 [13:54:21<20:27:41,  2.82s/it]\\r 37%|███▋      | 15031/41180 [13:54:24<20:05:11,  2.77s/it]\\r 37%|███▋      | 15032/41180 [13:54:26<19:02:14,  2.62s/it]\\r 37%|███▋      | 15033/41180 [13:54:29<18:12:42,  2.51s/it]\\r 37%|███▋      | 15034/41180 [13:54:31<18:32:58,  2.55s/it]\\r 37%|███▋      | 15035/41180 [13:54:34<18:31:19,  2.55s/it]\\r 37%|███▋      | 15036/41180 [13:54:36<17:58:46,  2.48s/it]\\r 37%|███▋      | 15037/41180 [13:54:39<18:02:03,  2.48s/it]\\r 37%|███▋      | 15038/41180 [13:54:41<17:48:58,  2.45s/it]\\r 37%|███▋      | 15039/41180 [13:54:44<18:35:11,  2.56s/it]\\r 37%|███▋      | 15040/41180 [13:54:46<18:16:36,  2.52s/it]\\r 37%|███▋      | 15041/41180 [13:54:49<18:00:01,  2.48s/it]\\r 37%|███▋      | 15042/41180 [13:54:51<17:34:51,  2.42s/it]\\r 37%|███▋      | 15043/41180 [13:54:53<18:01:43,  2.48s/it]\\r 37%|███▋      | 15044/41180 [13:54:56<18:03:32,  2.49s/it]\\r 37%|███▋      | 15045/41180 [13:54:58<18:05:45,  2.49s/it]\\r 37%|███▋      | 15046/41180 [13:55:01\\n\\n... [截断: 输出过长，省略 15381 字符] ...\\n\\n██▋      | 15284/41180 [14:04:54<19:01:08,  2.64s/it]\\r 37%|███▋      | 15285/41180 [14:04:56<18:08:16,  2.52s/it]\\r 37%|███▋      | 15286/41180 [14:04:59<17:57:44,  2.50s/it]\\r 37%|███▋      | 15287/41180 [14:05:01<18:03:01,  2.51s/it]\\r 37%|███▋      | 15288/41180 [14:05:04<17:44:49,  2.47s/it]\\r 37%|███▋      | 15289/41180 [14:05:06<17:39:32,  2.46s/it]\\r 37%|███▋      | 15290/41180 [14:05:09<17:36:00,  2.45s/it]\\r 37%|███▋      | 15291/41180 [14:05:11<17:25:49,  2.42s/it]\\r 37%|███▋      | 15292/41180 [14:05:13<17:22:12,  2.42s/it]\\r 37%|███▋      | 15293/41180 [14:05:16<17:39:53,  2.46s/it]\\r 37%|███▋      | 15294/41180 [14:05:18<17:25:18,  2.42s/it]\\r 37%|███▋      | 15295/41180 [14:05:21<17:32:40,  2.44s/it]\\r 37%|███▋      | 15296/41180 [14:05:23<17:26:18,  2.43s/it]\\r 37%|███▋      | 15297/41180 [14:05:26<17:20:05,  2.41s/it]\\r 37%|███▋      | 15298/41180 [14:05:28<17:30:29,  2.44s/it]\\r 37%|███▋      | 15299/41180 [14:05:30<17:20:38,  2.41s/it]\\r 37%|███▋      | 15300/41180 [14:05:33<17:26:04,  2.43s/it]\\r                                                           \\r{'loss': 0.0528, 'grad_norm': 0.19264943897724152, 'learning_rate': 0.0001583497843235338, 'epoch': 1.86}\\n\\r 37%|███▋      | 15300/41180 [14:05:33<17:26:04,  2.43s/it]\\r 37%|███▋      | 15301/41180 [14:05:35<17:39:45,  2.46s/it]\\r 37%|███▋      | 15302/41180 [14:05:38<17:33:00,  2.44s/it]\\r 37%|███▋      | 15303/41180 [14:05:40<17:28:43,  2.43s/it]\\r 37%|███▋      | 15304/41180 [14:05:43<19:05:11,  2.66s/it]\\r 37%|███▋      | 15305/41180 [14:05:46<18:37:10,  2.59s/it]\\r 37%|███▋      | 15306/41180 [14:05:48<18:30:47,  2.58s/it]\\r 37%|███▋      | 15307/41180 [14:05:51<18:30:28,  2.58s/it]\\r 37%|███▋      | 15308/41180 [14:05:54<18:46:56,  2.61s/it]\\r 37%|███▋      | 15309/41180 [14:05:56<18:22:16,  2.56s/it]\\r 37%|███▋      | 15310/41180 [14:05:59<18:21:14,  2.55s/it]\\r 37%|███▋      | 15311/41180 [14:06:01<18:51:10,  2.62s/it]\\r 37%|███▋      | 15312/41180 [14:06:04<18:05:41,  2.52s/it]\\r 37%|███▋      | 15313/41180 [14:06:06<17:57:11,  2.50s/it]\\r 37%|███▋      | 15314/41180 [14:06:09<17:58:44,  2.50s/it]\\r 37%|███▋      | 15315/41180 [14:06:11<17:50:23,  2.48s/it]\\r 37%|███▋      | 15316/41180 [14:06:14<18:13:56,  2.54s/it]\\r 37%|███▋      | 15317/41180 [14:06:16<18:17:50,  2.55s/it]\\r 37%|███▋      | 15318/41180 [14:06:19<18:04:48,  2.52s/it]\\r 37%|███▋      | 15319/41180 [14:06:21<17:38:32,  2.46s/it]\\r 37%|███▋      | 15320/41180 [14:06:24<17:52:34,  2.49s/it]\\r 37%|███▋      | 15321/41180 [14:06:26<18:11:37,  2.53s/it]\\r 37%|███▋      | 15322/41180 [14:06:29<18:10:43,  2.53s/it]\\r 37%|███▋      | 15323/41180 [14:06:31<17:42:52,  2.47s/it]\\r 37%|███▋      | 15324/41180 [14:06:34<18:50:26,  2.62s/it]\\r 37%|███▋      | 15325/41180 [14:06:37<18:22:13,  2.56s/it]\\r 37%|███▋      | 15326/41180 [14:06:39<18:04:09,  2.52s/it]\\r 37%|███▋      | 15327/41180 [14:06:41<17:50:35,  2.48s/it]\\r 37%|███▋      | 15328/41180 [14:06:44<18:15:33,  2.54s/it]\\r 37%|███▋      | 15329/41180 [14:06:46<17:48:05,  2.48s/it]\\r 37%|███▋      | 15330/41180 [14:06:49<17:39:18,  2.46s/it]\\r 37%|███▋      | 15331/41180 [14:06:51<17:51:37,  2.49s/it]\\r 37%|███▋      | 15332/41180 [14:06:54<18:00:11,  2.51s/it]\\r 37%|███▋      | 15333/41180 [14:06:56<17:52:12,  2.49s/it]\\r 37%|███▋      | 15334/41180 [14:06:59<18:04:16,  2.52s/it]\\r 37%|███▋      | 15335/41180 [14:07:01<18:04:59,  2.52s/it]\\r 37%|███▋      | 15336/41180 [14:07:04<18:05:41,  2.52s/it]\\r 37%|███▋      | 15337/41180 [14:07:07<19:27:20,  2.71s/it]\\r 37%|███▋      | 15338/41180 [14:07:10<18:50:52,  2.63s/it]\\r 37%|███▋      | 15339/41180 [14:07:12<18:25:43,  2.57s/it]\\r 37%|███▋      | 15340/41180 [14:07:14<18:09:36,  2.53s/it]\\r 37%|███▋      | 15341/41180 [14:07:17<17:32:36,  2.44s/it]\\r 37%|███▋      | 15342/41180 [14:07:19<18:09:41,  2.53s/it]\\r 37%|███▋      | 15343/41180 [14:07:22<17:56:06,  2.50s/it]\\r 37%|███▋      | 15344/41180 [14:07:24<18:00:00,  2.51s/it]\\r 37%|███▋      | 15345/41180 [14:07:27<17:43:47,  2.47s/it]\\r 37%|███▋      | 15346/41180 [14:07:29<17:48:29,  2.48s/it]\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 41_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me analyze the data:
+
+**14B (autodl-5090-c):**
+- Current step: 21809 / 41180
+- Progress: 53% (up from ~48.8%)
+- Speed: ~2.19 s/it (averaging recent values)
+- Elapsed: 15:37:45 (about 15h 37m)
+- Latest loss: 0.0273 (at step 21800), epoch 2.65
+- Remaining steps: 41180 - 21809 = 19371
+
+
+- ETA: approximately 11h 46m remaining based on the tqdm progress indicator
+- Current server time estimate: around 2026-05-20 07:44 UTC, calculated from the checkpoint timestamp at step 15000 and elapsed time for the 32B model
+- For the 14B model at step 21809, I'm about 53% through with a speed of roughly 2.15 seconds per iteration
+
+, which puts completion around 2026-05-20 19:18 UTC
+- For the 32B model at step 15346, I'm at 37% completion with a speed of about 2.50 seconds per iteration, so it should finish around 2026-05-21 01:40 UTC
+- The 14B model is showing a loss of 0.0273 at step 21800 (epoch 2.65) while the 32B model has a loss of 0.0528 at step 15300 (epoch 1.86)
+
+Looking at GPU utilization, the autodl-5090-c machine running the 14B model has uneven usage across its four GPUs—GPU0 and GPU1 are maxed out at 95-96% while GPU2 is lower at 74% and GPU3 at 89%, with memory distributed as about 25.8GB on the first two and 18GB on the latter two. The autodl-5090 machine handling the 32B model is running all four GPUs at 93-100% utilization with each using around 30.5GB of memory.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e1197bdb-5364-4125-a0d2-987d8f35aa98",
+  "uuid": "846d6324-256c-4874-a2d3-5d35999a0341",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01W6mwxGYPnnbwi65HK2TAbk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 10444,
+      "cache_read_input_tokens": 35140,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 10444
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 42_
+
+## 训练进度汇总
+
+### 14B (autodl-5090-c, PID 56773) — RUNNING
+
+| 指标 | 值 |
+|------|-----|
+| 进度 | **21,809 / 41,180 (53.0%)** |
+| Epoch | 2.65 / 5.0 |
+| Loss | 0.0273 (step 21800) |
+| 速度 | ~2.15 s/it |
+| 剩余 | 19,371 steps × 2.15s ≈ **11h 34m** |
+| 更新 ETA | **~2026-05-20 19:20 UTC** |
+| GPU | GPU0 95% (25.9G), GPU1 96% (25.8G), GPU2 74% (18.2G), GPU3 89% (18.0G) |
+
+### 32B (autodl-5090, PID 804438) — RUNNING
+
+| 指标 | 值 |
+|------|-----|
+| 进度 | **15,346 / 41,180 (37.3%)** |
+| Epoch | 1.86 / 5.0 |
+| Loss | 0.0528 (step 15300) |
+| 速度 | ~2.50 s/it |
+| 剩余 | 25,834 steps × 2.50s ≈ **17h 56m** |
+| 更新 ETA | **~2026-05-21 01:40 UTC** |
+| GPU | GPU0-3 均 93-100%, 各 ~30.5G/32.6G |
+
+### 与上次对比
+
+- **14B**: 48.8% → 53.0%，速度稳定，ETA 从 05-20 14:00 推迟到 05-20 19:20 UTC（偏慢约 5h，可能之前估算过于乐观或 checkpoint 保存导致减速）
+- **32B**: 34.5% → 37.3%，刚保存了 checkpoint-15000（删除了旧的 checkpoint-12000），ETA 从 05-20 23:40 推迟到 05-21 01:40 UTC（推迟约 2h）
+- 两个实验 loss 均在正常下降，GPU 利用率健康
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e1197bdb-5364-4125-a0d2-987d8f35aa98",
+  "uuid": "1ea0ee0c-3051-4b61-a673-77ff83846322",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01W6mwxGYPnnbwi65HK2TAbk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 10444,
+      "cache_read_input_tokens": 35140,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 10444
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 43_
+
+## 训练进度汇总
+
+### 14B (autodl-5090-c, PID 56773) — RUNNING
+
+| 指标 | 值 |
+|------|-----|
+| 进度 | **21,809 / 41,180 (53.0%)** |
+| Epoch | 2.65 / 5.0 |
+| Loss | 0.0273 (step 21800) |
+| 速度 | ~2.15 s/it |
+| 剩余 | 19,371 steps × 2.15s ≈ **11h 34m** |
+| 更新 ETA | **~2026-05-20 19:20 UTC** |
+| GPU | GPU0 95% (25.9G), GPU1 96% (25.8G), GPU2 74% (18.2G), GPU3 89% (18.0G) |
+
+### 32B (autodl-5090, PID 804438) — RUNNING
+
+| 指标 | 值 |
+|------|-----|
+| 进度 | **15,346 / 41,180 (37.3%)** |
+| Epoch | 1.86 / 5.0 |
+| Loss | 0.0528 (step 15300) |
+| 速度 | ~2.50 s/it |
+| 剩余 | 25,834 steps × 2.50s ≈ **17h 56m** |
+| 更新 ETA | **~2026-05-21 01:40 UTC** |
+| GPU | GPU0-3 均 93-100%, 各 ~30.5G/32.6G |
+
+### 与上次对比
+
+- **14B**: 48.8% → 53.0%，速度稳定，ETA 从 05-20 14:00 推迟到 05-20 19:20 UTC（偏慢约 5h，可能之前估算过于乐观或 checkpoint 保存导致减速）
+- **32B**: 34.5% → 37.3%，刚保存了 checkpoint-15000（删除了旧的 checkpoint-12000），ETA 从 05-20 23:40 推迟到 05-21 01:40 UTC（推迟约 2h）
+- 两个实验 loss 均在正常下降，GPU 利用率健康
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 74645,
+  "duration_api_ms": 69181,
+  "num_turns": 16,
+  "stop_reason": "end_turn",
+  "session_id": "e1197bdb-5364-4125-a0d2-987d8f35aa98",
+  "total_cost_usd": 0.38221875,
+  "usage": {
+    "input_tokens": 11,
+    "cache_creation_input_tokens": 33883,
+    "cache_read_input_tokens": 171902,
+    "output_tokens": 3313,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 33883,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 1426,
+        "cache_read_input_tokens": 35140,
+        "cache_creation_input_tokens": 10444,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 10444
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1509,
+      "outputTokens": 22,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001619,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 11,
+      "outputTokens": 3313,
+      "cacheReadInputTokens": 171902,
+      "cacheCreationInputTokens": 33883,
+      "webSearchRequests": 0,
+      "costUSD": 0.38059974999999996,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "02cc6222-1f50-4abb-9ba6-2d83f04aa502"
+}
+```
+
+</details>
+
+---

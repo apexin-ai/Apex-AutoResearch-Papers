@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "15fa80fe83f27f4464a4",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "code d141 v2 critical fix",
+  "task_key": "worker_code_d141_v2_critical_fix_20260518T135557",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_d141_v2_critical_fix_20260518T135557_result.json",
+    "occurrence": 1,
+    "bytes": 1062,
+    "sha256": "601a2ec2a7d3af5519ee43974424cde8a326502d49fb0ea8f3ef6e4d9e6fe194"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总：\n\n**修复了 4 个问题：**\n- **CRITICAL 1**: `evaluation.py`、`conditional_decomp`、`scatter_plot` 三个文件的 entity matching 从 `(start, end, type)` 改为 `(text, type)`\n- **CRITICAL 2**: `conditional_decomp` 和 `scatter_plot` 的 CoNLL/FewNERD 数据源统一到 `exp_002_conll_n16_r1024` / `exp_027_fewnerd_n16`\n- **Gold filter**: entity merge 加了空 gold 跳过\n- **N=8**: CoNLL/FewNERD 从 N=16 截断到 N=8\n\n**关键结果变化（Entity Merge Gap Recovery）：**\n\n| Dataset | Greedy | Oracle | Best Merge | Gap Recovery |\n|---------|--------|--------|------------|--------------|\n| SciERC  | 0.6441 | 0.7758 | 0.6610 (k=3) | **12.8%** |\n| CoNLL   | 0.9077 | 0.9497 | 0.9063 (k=3) | **-3.3%** |\n| FewNERD | 0.7493 | 0.8701 | 0.7521 (k=2) | **2.3%** |\n\nMerge 在 text matching 下对 CoNLL 反而略低于 greedy，FewNERD 收益极小。所有 merge vs oracle 差异在三个数据集上均显著为负。\n\n完整报告已注册到 `artifacts/d141_v2_fix/d141_v2_fix_report.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-d141-v2-critical-fix.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2a760b7bc76698caa000",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis fig overview and vc rho",
+  "task_key": "worker_analysis_fig_overview_and_vc_rho_20260518T233414",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_fig_overview_and_vc_rho_20260518T233414_result.json",
+    "occurrence": 1,
+    "bytes": 969,
+    "sha256": "7aab5a926224901bfc843a96ad8d84f60dd3dfae38d5ead236a693afaa4570ca"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n### Check 1: fig_overview\n\n**不存在。** 项目中没有任何 `fig_overview` 文件或相关引用：\n- `docs/paper/figures/` 只有 `fig_selection_gap` 和 `fig_degeneracy_lp_scatter`\n- 所有 tex 文件中无 \"overview\" 引用\n- 全项目搜索无匹配\n\n**结论：fig_overview 不存在，无数据依赖，不受影响。**\n\n---\n\n### Check 2: FewNERD VC ρ_global\n\n来源确认：`fewnerd_multiseed_unified_v2.json`（unified 管道产出）\n\n| Seed | VC ρ_global |\n|------|------------|\n| seed42 | **0.3858** |\n| seed123 | 0.3633 |\n| seed456 | 0.3943 |\n| 3-seed mean | 0.3811 |\n| seed789 (独立文件，未入 unified_v2) | 0.2673 |\n\n- **ρ=0.39 对应 seed42 的 0.3858（四舍五入）**，来自 unified 管道，已确认\n- VC 基于 entity-level 投票一致性，不依赖 F1 函数，**不受 F1 迁移影响**\n- 注：cross_seed_summary 中未包含 VC ρ 的聚合值，只有 LP 相关指标"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-fig-overview-and-vc-rho.md"
+}

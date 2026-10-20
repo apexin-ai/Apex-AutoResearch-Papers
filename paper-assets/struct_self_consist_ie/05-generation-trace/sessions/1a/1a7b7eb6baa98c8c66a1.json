@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1a7b7eb6baa98c8c66a1",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "diagnose exp 007 llama seed123",
+  "task_key": "worker_diagnose_exp_007_llama_seed123_20260514T151905",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_exp_007_llama_seed123_20260514T151905_result.json",
+    "occurrence": 1,
+    "bytes": 732,
+    "sha256": "5f26be6efa36a5648a4b16238c461f536c7393f97d543eef0a101d957cdd3ff7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。\n\n**结论：negative（FAIL）** — 进程正常完成，无报错，但科学指标未达标。\n\n关键结果：\n\n| 指标 | NER | RE |\n|------|-----|-----|\n| Greedy F1 | 0.6605 | 0.4330 |\n| Oracle F1 | 0.7703 | 0.5719 |\n| ρ(SJ,F1) | +0.3371 | +0.2680 |\n| Structural > Surface | YES (+0.1228) | NO (-0.0165) |\n\n失败原因：\n- RE ρ_sj=0.268 远低于 ≥0.40 阈值\n- RE 41% samples F1=0（>30% 上限）\n- RE 子任务结构一致性未优于表面一致性\n\nNER 子任务表现尚可（structural > surface 成立），但 joint mode 要求 RE 也达标。报告建议降温到 T=0.7 重试。\n\n已完成：registry → DONE/negative + metrics 已写入，cron 已清除。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-exp-007-llama-seed123.md"
+}

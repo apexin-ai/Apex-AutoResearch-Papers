@@ -1,0 +1,92 @@
+{
+  "schema_version": "1.0",
+  "id": "25f564cfeac024b0cc9b",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "gpu exp 007 ner llama",
+  "task_key": "worker_gpu_exp_007_ner_llama_20260514T120341",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_gpu_exp_007_ner_llama_20260514T120341.log",
+    "occurrence": 1,
+    "bytes": 1770888,
+    "sha256": "3913553743c16f495618eff57c1ca4092479c4fd6e3cfb2c1beb8a8234cf139c"
+  },
+  "statistics": {
+    "messages": 1132,
+    "user_turns": 2,
+    "tool_calls": 429,
+    "roles": {
+      "log": 1,
+      "system": 7,
+      "record": 14,
+      "assistant": 249,
+      "tool_call": 429,
+      "tool_result": 429,
+      "user": 2,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 1
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 584,
+      "chunks": [
+        {
+          "path": "25f564cfeac024b0cc9b-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "25f564cfeac024b0cc9b-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "25f564cfeac024b0cc9b-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "25f564cfeac024b0cc9b-part-0004.json",
+          "message_count": 44
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 544,
+      "chunks": [
+        {
+          "path": "25f564cfeac024b0cc9b-part-0004.json",
+          "message_count": 136
+        },
+        {
+          "path": "25f564cfeac024b0cc9b-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "25f564cfeac024b0cc9b-part-0006.json",
+          "message_count": 180
+        },
+        {
+          "path": "25f564cfeac024b0cc9b-part-0007.json",
+          "message_count": 48
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 4,
+      "chunks": [
+        {
+          "path": "25f564cfeac024b0cc9b-part-0007.json",
+          "message_count": 4
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/gpu-exp-007-ner-llama.md"
+}

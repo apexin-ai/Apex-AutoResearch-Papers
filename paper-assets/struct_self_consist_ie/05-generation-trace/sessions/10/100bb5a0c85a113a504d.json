@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "100bb5a0c85a113a504d",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "research citation verification r26",
+  "task_key": "worker_research_citation-verification-r26_20260520T145252",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_research_citation-verification-r26_20260520T145252_result.json",
+    "occurrence": 1,
+    "bytes": 1397,
+    "sha256": "9b1b8ecdecfa6399cefa7c2486bc12bb5b383135aade782264e755008a814b95"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证完成。96 条 bib entry 全部检查，结果：\n\n**93 条验证通过，0 条 fabricated，3 条 mismatch，17 条 orphan。**\n\n### 3 条需修复的 mismatch\n\n| Key | 严重性 | 问题 |\n|-----|--------|------|\n| `chen2025twofailures` | **CRITICAL** | URL 指向完全无关的论文 (arXiv:2410.23123 = \"On Memorization of LLMs\")；authors 编造 (David Dohan/David So)；year 应为 2024；venue 应为 TMLR 而非 ICLR 2025；正确 arXiv: 2305.14279 |\n| `wen2025abstention` | HIGH | 9 个作者全部错误 (bib: Zhenting Wen 等 → 实际: Bingbing Wen, Jihan Yao, Shangbin Feng 等 7 人)；DOI 可能也错 |\n| `liu2025uqcc` | HIGH | 10 个作者中 9 个编造，仅第一作者 Xiaoou Liu 正确；实际只有 6 位作者 |\n\n### hobelsberger2025systematic: NOT fabricated\narXiv:2510.20460 确实存在，标题/作者/年份全部匹配。\n\n### 17 条 orphan entries (bib 中有但 tex 未引用)\n`venktesh2025trust`, `ho2023reasoning`, `min2022rethinking`, `suzgun2023crowd`, `stechly2024chain`, `setlur2025rewarding`, `kuleshov2018accurate`, `openai2024o1`, `ashok2023promptner`, `wang2025gptner`, `wei2023chatie`, `sagi2018ensemble`, `lakshminarayanan2017ensembles`, `welling2011sgld`, `deng2023rad`, `keraghel2024ner`, `xu2024llmie`\n\n产出已写入 `artifacts/r26_response/citation_verification.json` 并注册 (art_20260520_09f198)。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-citation-verification-r26.md"
+}

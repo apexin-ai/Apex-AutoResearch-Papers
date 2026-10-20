@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "03c234f057c1ef377c15",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "cpu update report md",
+  "task_key": "worker_cpu_update_report_md_20260521T112758",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_cpu_update_report_md_20260521T112758_result.json",
+    "occurrence": 1,
+    "bytes": 535,
+    "sha256": "5386eb1f0b0602c89aa13d4230e283b07dd5effd322714a4bebec66da0f53344"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "report.md 已更新。主要变更：\n\n- **运行中**: 3 → 8 项（新增 mf4v2_s42/s123、e2_pretrained x2、n16_s456_v2）\n- **近期结论**: 扩展为 12 项表格，含完整指标（CoNLL/SciERC 3-seed PASS/MARGINAL、frontier Gemini、E2 baselines）\n- **趋势**: 总数 255→279，补充 α_crit v3 三数据集 3-seed 完整状态\n- **资源状态**: 从\"全部空闲\"修正为实际占用（5090: 4/4, 5090-c: 3-4/4）\n- **告警**: 从 47 条历史告警精简为 4 条活跃告警 + 历史汇总"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/cpu-update-report-md.md"
+}

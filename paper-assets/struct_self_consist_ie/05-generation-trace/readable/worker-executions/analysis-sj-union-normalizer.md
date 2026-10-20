@@ -1,0 +1,3733 @@
+# analysis sj union normalizer
+
+**When Self-Consistency Fails for NER: Degeneracy, Signal Collapse, and the Correlation-Selection Gap** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 79
+- **Recorded user turns:** 0
+- **Tool calls:** 29
+- **Original source:** `logs/workers/worker_analysis_sj_union_normalizer_20260515T201939.log`
+- **Structured JSON:** [`9eccae943a482bdb4044.json`](../../sessions/9e/9eccae943a482bdb4044.json)
+
+## Before a recorded user message
+
+79 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "session_id": "33b63558-5bd9-4632-96ed-f3267a31fc22",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "75e6671d-63e0-4874-817a-548498e04119",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1778887800,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "5e18f65c-c1f6-4be8-8ca9-c2f6b7fc0dea",
+  "session_id": "33b63558-5bd9-4632-96ed-f3267a31fc22"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+I'll start by exploring the server to find the SJ implementation and available data.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "33b63558-5bd9-4632-96ed-f3267a31fc22",
+  "uuid": "9d0b4bdf-e9f4-4909-91cb-71f9d7e8ee4a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KsJbAkLMsrv1qNsLHj384S",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 11778,
+      "cache_read_input_tokens": 11701,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11778
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01RkAsX2TP4S5GuQCN1t9i5W`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+  "max_results": 3
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "33b63558-5bd9-4632-96ed-f3267a31fc22",
+  "uuid": "a63a3071-346c-41a6-bffb-6f419ff91d76",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KsJbAkLMsrv1qNsLHj384S",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 11778,
+      "cache_read_input_tokens": 11701,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11778
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-15T20:19:52.167Z_
+
+<details><summary>↩ Tool result · `toolu_01RkAsX2TP4S5GuQCN1t9i5W`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__detect_image"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "33b63558-5bd9-4632-96ed-f3267a31fc22",
+  "uuid": "dfb6baf2-f18b-43cd-a075-d830cf33eef5",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__detect_image"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by finding the SJ implementation code and listing available data directories in parallel.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "33b63558-5bd9-4632-96ed-f3267a31fc22",
+  "uuid": "37d40954-c884-457c-817c-7b9ab94d308e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MmLyoGwVCiq21FZH9o3Zq6",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 889,
+      "cache_read_input_tokens": 23479,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 889
+      },
+      "output_tokens": 33,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01AqgrFHToNTaSiuPCbBGLFi`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "grep -rn \"soft_jaccard\\|SoftJaccard\\|soft.jaccard\" /root/autodl-tmp/struct_self_consist_ie/code/ --include=\"*.py\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "33b63558-5bd9-4632-96ed-f3267a31fc22",
+  "uuid": "b260f905-9e10-4052-8e5e-85e0be320a44",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MmLyoGwVCiq21FZH9o3Zq6",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 889,
+      "cache_read_input_tokens": 23479,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 889
+      },
+      "output_tokens": 33,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-15T20:19:56.426Z_
+
+<details><summary>↩ Tool result · `toolu_01AqgrFHToNTaSiuPCbBGLFi`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "33b63558-5bd9-4632-96ed-f3267a31fc22",
+  "uuid": "e48d993e-e186-434c-8e71-5a0b86808667",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_014dT3Cs36Sd1KURqzQzUdiu`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "find /root/autodl-tmp/struct_self_consist_ie/output/ -name \"samples.jsonl\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "33b63558-5bd9-4632-96ed-f3267a31fc22",
+  "uuid": "676b4bd9-9c3d-4509-857c-82202d671046",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MmLyoGwVCiq21FZH9o3Zq6",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 889,
+      "cache_read_input_tokens": 23479,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 889
+      },
+      "output_tokens": 33,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01DCyunMG6m6LnCvk4sqaRJN`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "ls /root/autodl-tmp/struct_self_consist_ie/output/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "33b63558-5bd9-4632-96ed-f3267a31fc22",
+  "uuid": "540e9ac3-ce9a-4b47-80d4-d534e28dadd9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MmLyoGwVCiq21FZH9o3Zq6",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 889,
+      "cache_read_input_tokens": 23479,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 889
+      },
+      "output_tokens": 33,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-15T20:19:58.330Z_
+
+<details><summary>↩ Tool result · `toolu_014dT3Cs36Sd1KURqzQzUdiu`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_001/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_003/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/gate0_ft002v2/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/gate0_ft002v2_ckpt400/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_004/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_005/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed42_v2_r1024/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed42_200only_backup/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed42/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp002_conll2003/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed123_200only/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed456_200only/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp008_re_n16_200only/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed456/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp008_re_n16/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed123/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_seed456_t10_full/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_seed123_t10_full/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp008_re_n16_t10_full/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp003_wnut17_pilot/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp003_wnut17_dryrun/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp003_wnut17_eval/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp007_llama_dryrun/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp007_llama_inference/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed42_v2/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed123_v2/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_008_re_n16_v2/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_007_llama_seed123/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_007_llama_seed456/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_008_re_seed123/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed456_v2/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed456_v2_ner/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_003_wnut17_v2_infer/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_infer/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n16/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_007_llama_n16/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16_s123/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16_s456/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n16_r1024/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16_s123_r1024/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16_s456_r1024/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_007_llama_n16_r1024/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_018_qwen_scierc_seed456/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_018_llama_scierc_seed456/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_018_qwen_scierc_seed123/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_018_llama_scierc_seed123/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_018_llama_scierc_seed42_r1024/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_018_llama_scierc_seed456_r1024/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16_r1024/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_011_ood_scierc_to_conll/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_011_ood_conll_to_scierc/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n8_t07/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_lp_scierc_t07/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_re_scierc_seed123/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_re_scierc_seed456/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_qwen3_4b_conll_scs_inference/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_scale_qwen3_4b_conll/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_qwen3_4b_conll_scs_inference_v2/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_qwen3_4b_scierc_scs_inference/samples.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.97}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "33b63558-5bd9-4632-96ed-f3267a31fc22",
+  "uuid": "5533e902-c0c4-438a-9d21-a73bf60b2350",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_001/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_003/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/gate0_ft002v2/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/gate0_ft002v2_ckpt400/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_004/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_005/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed42_v2_r1024/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed42_200only_backup/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed42/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp002_conll2003/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed123_200only/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed456_200only/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp008_re_n16_200only/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed456/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp008_re_n16/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed123/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_seed456_t10_full/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_seed123_t10_full/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp008_re_n16_t10_full/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp003_wnut17_pilot/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp003_wnut17_dryrun/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp003_wnut17_eval/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp007_llama_dryrun/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp007_llama_inference/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed42_v2/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed123_v2/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_008_re_n16_v2/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_007_llama_seed123/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_007_llama_seed456/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_008_re_seed123/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed456_v2/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed456_v2_ner/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_003_wnut17_v2_infer/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_infer/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n16/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_007_llama_n16/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16_s123/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16_s456/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n16_r1024/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16_s123_r1024/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16_s456_r1024/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_007_llama_n16_r1024/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_018_qwen_scierc_seed456/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_018_llama_scierc_seed456/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_018_qwen_scierc_seed123/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_018_llama_scierc_seed123/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_018_llama_scierc_seed42_r1024/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_018_llama_scierc_seed456_r1024/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16_r1024/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_011_ood_scierc_to_conll/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_011_ood_conll_to_scierc/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n8_t07/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_lp_scierc_t07/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_re_scierc_seed123/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_re_scierc_seed456/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_qwen3_4b_conll_scs_inference/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_scale_qwen3_4b_conll/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_qwen3_4b_conll_scs_inference_v2/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_qwen3_4b_scierc_scs_inference/samples.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.97}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_001/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_003/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/gate0_ft002v2/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/gate0_ft002v2_ckpt400/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_004/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_005/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed42_v2_r1024/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed42_200only_backup/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed42/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp002_conll2003/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed123_200only/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed456_200only/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp008_re_n16_200only/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed456/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp008_re_n16/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed123/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_seed456_t10_full/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_seed123_t10_full/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp008_re_n16_t10_full/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp003_wnut17_pilot/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp003_wnut17_dryrun/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp003_wnut17_eval/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp007_llama_dryrun/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp007_llama_inference/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed42_v2/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed123_v2/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_008_re_n16_v2/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_007_llama_seed123/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_007_llama_seed456/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_008_re_seed123/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed456_v2/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed456_v2_ner/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_003_wnut17_v2_infer/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_infer/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n16/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_007_llama_n16/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16_s123/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16_s456/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n16_r1024/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16_s123_r1024/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16_s456_r1024/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_007_llama_n16_r1024/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_018_qwen_scierc_seed456/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_018_llama_scierc_seed456/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_018_qwen_scierc_seed123/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_018_llama_scierc_seed123/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_018_llama_scierc_seed42_r1024/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_018_llama_scierc_seed456_r1024/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16_r1024/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_011_ood_scierc_to_conll/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_011_ood_conll_to_scierc/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n8_t07/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_lp_scierc_t07/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_re_scierc_seed123/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_re_scierc_seed456/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_qwen3_4b_conll_scs_inference/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_scale_qwen3_4b_conll/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_qwen3_4b_conll_scs_inference_v2/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_qwen3_4b_scierc_scs_inference/samples.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.97}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-15T20:19:58.748Z_
+
+<details><summary>↩ Tool result · `toolu_01DCyunMG6m6LnCvk4sqaRJN`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"analysis_epsilon_sweep\\nanalysis_fk_bootstrap_ci.json\\nanalysis_fk_bootstrap_per_instance.json\\nanalysis_lp_range_cdf.json\\nanalysis_lp_range_cdf_n16_3seed.json\\nanalysis_multiseed_selection_f1.json\\nanalysis_round8\\nanalysis_scierc_n16_3seed_selection_f1.json\\nanalysis_scierc_n16_3seed_selection_f1_merged.json\\nanalysis_scierc_re_n16_3seed_selection_f1.json\\nanalysis_unified_rho_full.json\\nbootstrap_ci_nscaling\\nbootstrap_ci_summary.json\\nbootstrap_ci_tables.tex\\nconditional_filter_diagnosis.json\\nexp001_n16_seed123\\nexp001_n16_seed123_200only\\nexp001_n16_seed123_200only_backup\\nexp001_n16_seed123_full\\nexp001_n16_seed123_run.log\\nexp001_n16_seed42\\nexp001_n16_seed42_200only_backup\\nexp001_n16_seed42_run.log\\nexp001_n16_seed456\\nexp001_n16_seed456_200only\\nexp001_n16_seed456_run.log\\nexp001_seed123_t10_full\\nexp001_seed123_t10_full.log\\nexp001_seed456_t10_full\\nexp001_seed456_t10_full.log\\nexp002_conll2003\\nexp003_wnut17_dryrun\\nexp003_wnut17_eval\\nexp003_wnut17_eval.log\\nexp003_wnut17_pilot\\nexp003_wnut17_pilot.log\\nexp004_re_diagnostic\\nexp004v2_re_diagnostic\\nexp007_llama_dryrun\\nexp007_llama_inference\\nexp008_re_n16\\nexp008_re_n16_200only\\nexp008_re_n16_t10_full\\nexp008_re_n16_t10_full.log\\nexp009_stratification_results.json\\nexp010_selection_curves\\nexp016_signal_ensemble\\nexp018_3seed_5signal_results.json\\nexp_001_seed123_v2\\nexp_001_seed123_v2_r1024\\nexp_001_seed42_v2\\nexp_001_seed42_v2_r1024\\nexp_001_seed456_v2\\nexp_001_seed456_v2_ner\\nexp_001_seed456_v2_ner.log\\nexp_001_seed456_v2_ner_r1024\\nexp_002_conll_n16\\nexp_002_conll_n16.log\\nexp_002_conll_n16_r1024\\nexp_003_wnut17_v2_infer\\nexp_005_v2_temperature\\nexp_006_v2\\nexp_006_v2_run.log\\nexp_007_llama_n16\\nexp_007_llama_n16.log\\nexp_007_llama_n16_r1024\\nexp_007_llama_seed123\\nexp_007_llama_seed456\\nexp_008_re_n16_v2\\nexp_008_re_seed123\\nexp_009_v2\\nexp_009_v2_re_rerun\\nexp_009_v2_run.log\\nexp_011_ood_analysis\\nexp_011_ood_conll_to_scierc\\nexp_011_ood_scierc_to_conll\\nexp_011_ood_scierc_to_conll_run.log\\nexp_012_logprob\\nexp_012_rerun_1024\\nexp_015_unified\\nexp_015_v2\\nexp_016_rerun_1024\\nexp_016_v2\\nexp_017_llama_conll_infer\\nexp_017_llama_conll_infer.log\\nexp_017_llama_conll_n16\\nexp_017_llama_conll_n16_r1024\\nexp_017_llama_conll_n16_r1024_run.log\\nexp_017_llama_conll_n16_s123\\nexp_017_llama_conll_n16_s123.log\\nexp_017_llama_conll_n16_s123_r1024\\nexp_017_llama_conll_n16_s456\\nexp_017_llama_conll_n16_s456.log\\nexp_017_llama_conll_n16_s456_r1024\\nexp_017_llama_conll_n16_s456_r1024_run.log\\nexp_017_llama_conll_n8_t07\\nexp_018_llama_scierc_seed123\\nexp_018_llama_scierc_seed123.log\\nexp_018_llama_scierc_seed42_r1024\\nexp_018_llama_scierc_seed456\\nexp_018_llama_scierc_seed456_r1024\\nexp_018_qwen_scierc_seed123\\nexp_018_qwen_scierc_seed123.log\\nexp_018_qwen_scierc_seed456\\nexp_lp_scierc_t07\\nexp_qwen3_4b_conll_merge_inference_v2\\nexp_qwen3_4b_conll_scs_inference\\nexp_qwen3_4b_conll_scs_inference_v2\\nexp_qwen3_4b_scierc_scs_inference\\nexp_re_scierc_seed123\\nexp_re_scierc_seed456\\nexp_scale_qwen3_4b_conll\\nfigures\\ngate0_all_predictions.jsonl\\ngate0_ft002v2\\ngate0_ft002v2_ckpt400\\ngate0_realigned_predictions.jsonl\\ngate0_realigned_results.json\\ngate0_results.json\\ngate0_samples.json\\nllama_conll_n16_3seed_5signal_summary.json\\nlogprob_diagnosis\\nloo_sj_cross_dataset\\nmultiseed_selection_f1.json\\nmvp_pilot_001\\nmvp_pilot_001.log\\nmvp_pilot_003\\nmvp_pilot_004\\nmvp_pilot_005\\nn16_3seed_5signal_results.json\\nn16_3seed_analysis.py\\nn16_5signal_results.json\\nn8_5signal_results.json\\nreview_round2\\nreview_round4\\nrho_audit_results.json\\nselection_f1_4b_results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "33b63558-5bd9-4632-96ed-f3267a31fc22",
+  "uuid": "a5ad25f7-e713-434f-9dc4-b7aac3b54ead",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"analysis_epsilon_sweep\\\\nanalysis_fk_bootstrap_ci.json\\\\nanalysis_fk_bootstrap_per_instance.json\\\\nanalysis_lp_range_cdf.json\\\\nanalysis_lp_range_cdf_n16_3seed.json\\\\nanalysis_multiseed_selection_f1.json\\\\nanalysis_round8\\\\nanalysis_scierc_n16_3seed_selection_f1.json\\\\nanalysis_scierc_n16_3seed_selection_f1_merged.json\\\\nanalysis_scierc_re_n16_3seed_selection_f1.json\\\\nanalysis_unified_rho_full.json\\\\nbootstrap_ci_nscaling\\\\nbootstrap_ci_summary.json\\\\nbootstrap_ci_tables.tex\\\\nconditional_filter_diagnosis.json\\\\nexp001_n16_seed123\\\\nexp001_n16_seed123_200only\\\\nexp001_n16_seed123_200only_backup\\\\nexp001_n16_seed123_full\\\\nexp001_n16_seed123_run.log\\\\nexp001_n16_seed42\\\\nexp001_n16_seed42_200only_backup\\\\nexp001_n16_seed42_run.log\\\\nexp001_n16_seed456\\\\nexp001_n16_seed456_200only\\\\nexp001_n16_seed456_run.log\\\\nexp001_seed123_t10_full\\\\nexp001_seed123_t10_full.log\\\\nexp001_seed456_t10_full\\\\nexp001_seed456_t10_full.log\\\\nexp002_conll2003\\\\nexp003_wnut17_dryrun\\\\nexp003_wnut17_eval\\\\nexp003_wnut17_eval.log\\\\nexp003_wnut17_pilot\\\\nexp003_wnut17_pilot.log\\\\nexp004_re_diagnostic\\\\nexp004v2_re_diagnostic\\\\nexp007_llama_dryrun\\\\nexp007_llama_inference\\\\nexp008_re_n16\\\\nexp008_re_n16_200only\\\\nexp008_re_n16_t10_full\\\\nexp008_re_n16_t10_full.log\\\\nexp009_stratification_results.json\\\\nexp010_selection_curves\\\\nexp016_signal_ensemble\\\\nexp018_3seed_5signal_results.json\\\\nexp_001_seed123_v2\\\\nexp_001_seed123_v2_r1024\\\\nexp_001_seed42_v2\\\\nexp_001_seed42_v2_r1024\\\\nexp_001_seed456_v2\\\\nexp_001_seed456_v2_ner\\\\nexp_001_seed456_v2_ner.log\\\\nexp_001_seed456_v2_ner_r1024\\\\nexp_002_conll_n16\\\\nexp_002_conll_n16.log\\\\nexp_002_conll_n16_r1024\\\\nexp_003_wnut17_v2_infer\\\\nexp_005_v2_temperature\\\\nexp_006_v2\\\\nexp_006_v2_run.log\\\\nexp_007_llama_n16\\\\nexp_007_llama_n16.log\\\\nexp_007_llama_n16_r1024\\\\nexp_007_llama_seed123\\\\nexp_007_llama_seed456\\\\nexp_008_re_n16_v2\\\\nexp_008_re_seed123\\\\nexp_009_v2\\\\nexp_009_v2_re_rerun\\\\nexp_009_v2_run.log\\\\nexp_011_ood_analysis\\\\nexp_011_ood_conll_to_scierc\\\\nexp_011_ood_scierc_to_conll\\\\nexp_011_ood_scierc_to_conll_run.log\\\\nexp_012_logprob\\\\nexp_012_rerun_1024\\\\nexp_015_unified\\\\nexp_015_v2\\\\nexp_016_rerun_1024\\\\nexp_016_v2\\\\nexp_017_llama_conll_infer\\\\nexp_017_llama_conll_infer.log\\\\nexp_017_llama_conll_n16\\\\nexp_017_llama_conll_n16_r1024\\\\nexp_017_llama_conll_n16_r1024_run.log\\\\nexp_017_llama_conll_n16_s123\\\\nexp_017_llama_conll_n16_s123.log\\\\nexp_017_llama_conll_n16_s123_r1024\\\\nexp_017_llama_conll_n16_s456\\\\nexp_017_llama_conll_n16_s456.log\\\\nexp_017_llama_conll_n16_s456_r1024\\\\nexp_017_llama_conll_n16_s456_r1024_run.log\\\\nexp_017_llama_conll_n8_t07\\\\nexp_018_llama_scierc_seed123\\\\nexp_018_llama_scierc_seed123.log\\\\nexp_018_llama_scierc_seed42_r1024\\\\nexp_018_llama_scierc_seed456\\\\nexp_018_llama_scierc_seed456_r1024\\\\nexp_018_qwen_scierc_seed123\\\\nexp_018_qwen_scierc_seed123.log\\\\nexp_018_qwen_scierc_seed456\\\\nexp_lp_scierc_t07\\\\nexp_qwen3_4b_conll_merge_inference_v2\\\\nexp_qwen3_4b_conll_scs_inference\\\\nexp_qwen3_4b_conll_scs_inference_v2\\\\nexp_qwen3_4b_scierc_scs_inference\\\\nexp_re_scierc_seed123\\\\nexp_re_scierc_seed456\\\\nexp_scale_qwen3_4b_conll\\\\nfigures\\\\ngate0_all_predictions.jsonl\\\\ngate0_ft002v2\\\\ngate0_ft002v2_ckpt400\\\\ngate0_realigned_predictions.jsonl\\\\ngate0_realigned_results.json\\\\ngate0_results.json\\\\ngate0_samples.json\\\\nllama_conll_n16_3seed_5signal_summary.json\\\\nlogprob_diagnosis\\\\nloo_sj_cross_dataset\\\\nmultiseed_selection_f1.json\\\\nmvp_pilot_001\\\\nmvp_pilot_001.log\\\\nmvp_pilot_003\\\\nmvp_pilot_004\\\\nmvp_pilot_005\\\\nn16_3seed_5signal_results.json\\\\nn16_3seed_analysis.py\\\\nn16_5signal_results.json\\\\nn8_5signal_results.json\\\\nreview_round2\\\\nreview_round4\\\\nrho_audit_results.json\\\\nselection_f1_4b_results.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"analysis_epsilon_sweep\\nanalysis_fk_bootstrap_ci.json\\nanalysis_fk_bootstrap_per_instance.json\\nanalysis_lp_range_cdf.json\\nanalysis_lp_range_cdf_n16_3seed.json\\nanalysis_multiseed_selection_f1.json\\nanalysis_round8\\nanalysis_scierc_n16_3seed_selection_f1.json\\nanalysis_scierc_n16_3seed_selection_f1_merged.json\\nanalysis_scierc_re_n16_3seed_selection_f1.json\\nanalysis_unified_rho_full.json\\nbootstrap_ci_nscaling\\nbootstrap_ci_summary.json\\nbootstrap_ci_tables.tex\\nconditional_filter_diagnosis.json\\nexp001_n16_seed123\\nexp001_n16_seed123_200only\\nexp001_n16_seed123_200only_backup\\nexp001_n16_seed123_full\\nexp001_n16_seed123_run.log\\nexp001_n16_seed42\\nexp001_n16_seed42_200only_backup\\nexp001_n16_seed42_run.log\\nexp001_n16_seed456\\nexp001_n16_seed456_200only\\nexp001_n16_seed456_run.log\\nexp001_seed123_t10_full\\nexp001_seed123_t10_full.log\\nexp001_seed456_t10_full\\nexp001_seed456_t10_full.log\\nexp002_conll2003\\nexp003_wnut17_dryrun\\nexp003_wnut17_eval\\nexp003_wnut17_eval.log\\nexp003_wnut17_pilot\\nexp003_wnut17_pilot.log\\nexp004_re_diagnostic\\nexp004v2_re_diagnostic\\nexp007_llama_dryrun\\nexp007_llama_inference\\nexp008_re_n16\\nexp008_re_n16_200only\\nexp008_re_n16_t10_full\\nexp008_re_n16_t10_full.log\\nexp009_stratification_results.json\\nexp010_selection_curves\\nexp016_signal_ensemble\\nexp018_3seed_5signal_results.json\\nexp_001_seed123_v2\\nexp_001_seed123_v2_r1024\\nexp_001_seed42_v2\\nexp_001_seed42_v2_r1024\\nexp_001_seed456_v2\\nexp_001_seed456_v2_ner\\nexp_001_seed456_v2_ner.log\\nexp_001_seed456_v2_ner_r1024\\nexp_002_conll_n16\\nexp_002_conll_n16.log\\nexp_002_conll_n16_r1024\\nexp_003_wnut17_v2_infer\\nexp_005_v2_temperature\\nexp_006_v2\\nexp_006_v2_run.log\\nexp_007_llama_n16\\nexp_007_llama_n16.log\\nexp_007_llama_n16_r1024\\nexp_007_llama_seed123\\nexp_007_llama_seed456\\nexp_008_re_n16_v2\\nexp_008_re_seed123\\nexp_009_v2\\nexp_009_v2_re_rerun\\nexp_009_v2_run.log\\nexp_011_ood_analysis\\nexp_011_ood_conll_to_scierc\\nexp_011_ood_scierc_to_conll\\nexp_011_ood_scierc_to_conll_run.log\\nexp_012_logprob\\nexp_012_rerun_1024\\nexp_015_unified\\nexp_015_v2\\nexp_016_rerun_1024\\nexp_016_v2\\nexp_017_llama_conll_infer\\nexp_017_llama_conll_infer.log\\nexp_017_llama_conll_n16\\nexp_017_llama_conll_n16_r1024\\nexp_017_llama_conll_n16_r1024_run.log\\nexp_017_llama_conll_n16_s123\\nexp_017_llama_conll_n16_s123.log\\nexp_017_llama_conll_n16_s123_r1024\\nexp_017_llama_conll_n16_s456\\nexp_017_llama_conll_n16_s456.log\\nexp_017_llama_conll_n16_s456_r1024\\nexp_017_llama_conll_n16_s456_r1024_run.log\\nexp_017_llama_conll_n8_t07\\nexp_018_llama_scierc_seed123\\nexp_018_llama_scierc_seed123.log\\nexp_018_llama_scierc_seed42_r1024\\nexp_018_llama_scierc_seed456\\nexp_018_llama_scierc_seed456_r1024\\nexp_018_qwen_scierc_seed123\\nexp_018_qwen_scierc_seed123.log\\nexp_018_qwen_scierc_seed456\\nexp_lp_scierc_t07\\nexp_qwen3_4b_conll_merge_inference_v2\\nexp_qwen3_4b_conll_scs_inference\\nexp_qwen3_4b_conll_scs_inference_v2\\nexp_qwen3_4b_scierc_scs_inference\\nexp_re_scierc_seed123\\nexp_re_scierc_seed456\\nexp_scale_qwen3_4b_conll\\nfigures\\ngate0_all_predictions.jsonl\\ngate0_ft002v2\\ngate0_ft002v2_ckpt400\\ngate0_realigned_predictions.jsonl\\ngate0_realigned_results.json\\ngate0_results.json\\ngate0_samples.json\\nllama_conll_n16_3seed_5signal_summary.json\\nlogprob_diagnosis\\nloo_sj_cross_dataset\\nmultiseed_selection_f1.json\\nmvp_pilot_001\\nmvp_pilot_001.log\\nmvp_pilot_003\\nmvp_pilot_004\\nmvp_pilot_005\\nn16_3seed_5signal_results.json\\nn16_3seed_analysis.py\\nn16_5signal_results.json\\nn8_5signal_results.json\\nreview_round2\\nreview_round4\\nrho_audit_results.json\\nselection_f1_4b_results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 14_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The grep with `\|` was blocked by read_only. Let me search for the SJ code differently, and also look at sample data to understand the format.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "33b63558-5bd9-4632-96ed-f3267a31fc22",
+  "uuid": "e3634875-65b3-4cfa-92f2-dbd057b5f2ec",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CFb96q76oiDJC5PsWJLbYt",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4721,
+      "cache_read_input_tokens": 24368,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4721
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 15_
+
+Let me search for the SJ code and understand the data format.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "33b63558-5bd9-4632-96ed-f3267a31fc22",
+  "uuid": "092df197-529b-497c-aa69-189f44524108",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CFb96q76oiDJC5PsWJLbYt",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4721,
+      "cache_read_input_tokens": 24368,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4721
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01LPPH8nBnbK3rf2Lf9DdGU3`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "grep -rn \"soft_jaccard\" /root/autodl-tmp/struct_self_consist_ie/code/ --include=\"*.py\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "33b63558-5bd9-4632-96ed-f3267a31fc22",
+  "uuid": "f5507e4e-51a4-4d17-9018-1148a2b3409e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CFb96q76oiDJC5PsWJLbYt",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4721,
+      "cache_read_input_tokens": 24368,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4721
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-15T20:20:04.880Z_
+
+<details><summary>↩ Tool result · `toolu_01LPPH8nBnbK3rf2Lf9DdGU3`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/code/consistency.py:123:def _span_soft_jaccard(s1_start: int, s1_end: int, s2_start: int, s2_end: int) -> float:\\n/root/autodl-tmp/struct_self_consist_ie/code/consistency.py:134:def _ner_soft_jaccard_pair(entities_a: list[Entity], entities_b: list[Entity]) -> float:\\n/root/autodl-tmp/struct_self_consist_ie/code/consistency.py:186:                cost[i, j] = _span_soft_jaccard(ea[\\\"start\\\"], ea[\\\"end\\\"],\\n/root/autodl-tmp/struct_self_consist_ie/code/consistency.py:199:def _re_soft_jaccard_pair(relations_a: list[dict], relations_b: list[dict]) -> float:\\n/root/autodl-tmp/struct_self_consist_ie/code/consistency.py:214:            head_sj = _span_soft_jaccard(a[\\\"head_start\\\"], a[\\\"head_end\\\"],\\n/root/autodl-tmp/struct_self_consist_ie/code/consistency.py:216:            tail_sj = _span_soft_jaccard(a[\\\"tail_start\\\"], a[\\\"tail_end\\\"],\\n/root/autodl-tmp/struct_self_consist_ie/code/consistency.py:225:def _eae_soft_jaccard_pair(events_a: list[Event], events_b: list[Event]) -> float:\\n/root/autodl-tmp/struct_self_consist_ie/code/consistency.py:276:                cost[i, j] = _span_soft_jaccard(aa[\\\"start\\\"], aa[\\\"end\\\"],\\n/root/autodl-tmp/struct_self_consist_ie/code/consistency.py:288:def structural_consistency_soft_jaccard(\\n/root/autodl-tmp/struct_self_consist_ie/code/consistency.py:309:        pair_fn = _ner_soft_jaccard_pair\\n/root/autodl-tmp/struct_self_consist_ie/code/consistency.py:311:        pair_fn = _re_soft_jaccard_pair\\n/root/autodl-tmp/struct_self_consist_ie/code/consistency.py:313:        pair_fn = _eae_soft_jaccard_pair\\n/root/autodl-tmp/struct_self_consist_ie/code/consistency.py:385:                \\\"soft_jaccard\\\": [float, ...],\\n/root/autodl-tmp/struct_self_consist_ie/code/consistency.py:392:        \\\"soft_jaccard\\\": [],\\n/root/autodl-tmp/struct_self_consist_ie/code/consistency.py:402:        result[\\\"soft_jaccard\\\"].append(\\n/root/autodl-tmp/struct_self_consist_ie/code/consistency.py:403:            structural_consistency_soft_jaccard(samples, subtask=subtask)\\n/root/autodl-tmp/struct_self_consist_ie/code/run_mvp_pilot.py:80:    print(f\\\"  Soft Jaccard (mean):     {report[f'{p}soft_jaccard_mean']:.4f}\\\")\\n/root/autodl-tmp/struct_self_consist_ie/code/run_mvp_pilot.py:244:        filtered_sj = [s for s, m in zip(consistency[\\\"soft_jaccard\\\"], nonempty_mask) if m]\\n/root/autodl-tmp/struct_self_consist_ie/code/run_mvp_pilot.py:256:        cond_sj = [s for s, m in zip(consistency[\\\"soft_jaccard\\\"], cond_mask) if m]\\n/root/autodl-tmp/struct_self_consist_ie/code/run_mvp_pilot.py:269:            \\\"soft_jaccard_mean\\\": float(np.mean(consistency[\\\"soft_jaccard\\\"])),\\n/root/autodl-tmp/struct_self_consist_ie/code/mvp_pilot.py:147:        rho_sj_full, p_sj_full = spearman_correlation(consistency[\\\"soft_jaccard\\\"], greedy_f1s)\\n/root/autodl-tmp/struct_self_consist_ie/code/mvp_pilot.py:156:        cond_consistency_sj = [s for s, m in zip(consistency[\\\"soft_jaccard\\\"], conditional_mask) if m]\\n/root/autodl-tmp/struct_self_consist_ie/code/mvp_pilot.py:187:        print(f\\\"  Soft Jaccard (mean): {sum(consistency['soft_jaccard'])/len(consistency['soft_jaccard']):.4f}\\\")\\n/root/autodl-tmp/struct_self_consist_ie/code/mvp_pilot.py:205:        report[f\\\"{prefix}soft_jaccard_mean\\\"] = float(np.mean(consistency[\\\"soft_jaccard\\\"]))\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_component_wise_re.py:15:from consistency import _span_soft_jaccard, fleiss_kappa_surface, structural_consistency_soft_jaccard\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_component_wise_re.py:34:            head_sj_mat[i, j] = _span_soft_jaccard(\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_component_wise_re.py:36:            tail_sj_mat[i, j] = _span_soft_jaccard(\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_component_wise_re.py:40:    # Same cost as original _re_soft_jaccard_pair\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_component_wise_re.py:101:        original_sj.append(structural_consistency_soft_jaccard(inst['samples'], subtask='re'))\\n/root/aut\\n\\n... [截断: 输出过长，省略 27275 字符] ...\\n\\nair\\n/root/autodl-tmp/struct_self_consist_ie/code/exp018_5signal_analysis.py:104:        sj = cons[\\\"soft_jaccard\\\"]\\n/root/autodl-tmp/struct_self_consist_ie/code/eval_seed42_r1024_5signal.py:75:    sj = cons[\\\"soft_jaccard\\\"]\\n/root/autodl-tmp/struct_self_consist_ie/code/re_nonzero_selection.py:16:    structural_consistency_soft_jaccard,\\n/root/autodl-tmp/struct_self_consist_ie/code/re_nonzero_selection.py:17:    _re_soft_jaccard_pair,\\n/root/autodl-tmp/struct_self_consist_ie/code/re_nonzero_selection.py:83:                    sims.append(_re_soft_jaccard_pair(\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_ood_signals.py:11:from consistency import structural_consistency_soft_jaccard, fleiss_kappa_surface\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_ood_signals.py:81:        sj_vals.append(structural_consistency_soft_jaccard(samples, subtask=subtask_signal))\\n/root/autodl-tmp/struct_self_consist_ie/code/analysis_multiseed_selection_f1.py:19:    _ner_soft_jaccard_pair,\\n/root/autodl-tmp/struct_self_consist_ie/code/analysis_multiseed_selection_f1.py:20:    _re_soft_jaccard_pair,\\n/root/autodl-tmp/struct_self_consist_ie/code/analysis_multiseed_selection_f1.py:69:    pair_fn = _ner_soft_jaccard_pair if subtask == \\\"ner\\\" else _re_soft_jaccard_pair\\n/root/autodl-tmp/struct_self_consist_ie/code/fk_bootstrap_ci.py:10:from consistency import structural_consistency_soft_jaccard, fleiss_kappa_surface\\n/root/autodl-tmp/struct_self_consist_ie/code/fk_bootstrap_ci.py:96:        sj.append(structural_consistency_soft_jaccard(samples, subtask=subtask))\\n/root/autodl-tmp/struct_self_consist_ie/code/compute_selection_f1.py:24:    _ner_soft_jaccard_pair,\\n/root/autodl-tmp/struct_self_consist_ie/code/compute_selection_f1.py:25:    _re_soft_jaccard_pair,\\n/root/autodl-tmp/struct_self_consist_ie/code/compute_selection_f1.py:95:    pair_fn = _ner_soft_jaccard_pair if subtask == \\\"ner\\\" else _re_soft_jaccard_pair\\n/root/autodl-tmp/struct_self_consist_ie/code/fk_bootstrap_per_instance.py:10:from consistency import structural_consistency_soft_jaccard, fleiss_kappa_surface\\n/root/autodl-tmp/struct_self_consist_ie/code/fk_bootstrap_per_instance.py:135:        sj.append(structural_consistency_soft_jaccard(samples, subtask=subtask))\\n/root/autodl-tmp/struct_self_consist_ie/code/analysis_scierc_n16_selection.py:10:from consistency import _ner_soft_jaccard_pair, _extract_surface_keys\\n/root/autodl-tmp/struct_self_consist_ie/code/analysis_scierc_n16_selection.py:52:            s = _ner_soft_jaccard_pair(samples[i].get(field, []), samples[j].get(field, []))\\n/root/autodl-tmp/struct_self_consist_ie/code/analysis_scierc_re_n16_selection.py:10:from consistency import _re_soft_jaccard_pair, _extract_surface_keys\\n/root/autodl-tmp/struct_self_consist_ie/code/analysis_scierc_re_n16_selection.py:44:            s = _re_soft_jaccard_pair(samples[i].get(field, []), samples[j].get(field, []))\\n/root/autodl-tmp/struct_self_consist_ie/code/table2_selection_f1.py:15:    _ner_soft_jaccard_pair,\\n/root/autodl-tmp/struct_self_consist_ie/code/table2_selection_f1.py:41:            s = _ner_soft_jaccard_pair(\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp017_t07.py:14:from consistency import compute_all_consistency_scores, _ner_soft_jaccard_pair, _extract_surface_keys\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp017_t07.py:129:            s = _ner_soft_jaccard_pair(samples[i].get(field, []), samples[j].get(field, []))\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp017_t07.py:214:    sj_vals = consistency[\\\"soft_jaccard\\\"]\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_scale_ablation_4b.py:129:        sj = cons[\\\"soft_jaccard\\\"]\\n/root/autodl-tmp/struct_self_consist_ie/code/selection_f1_4b.py:17:    _ner_soft_jaccard_pair,\\n/root/autodl-tmp/struct_self_consist_ie/code/selection_f1_4b.py:18:    _re_soft_jaccard_pair,\\n/root/autodl-tmp/struct_self_consist_ie/code/selection_f1_4b.py:54:    pair_fn = _ner_soft_jaccard_pair if subtask == \\\"ner\\\" else _re_soft_jaccard_pair\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "33b63558-5bd9-4632-96ed-f3267a31fc22",
+  "uuid": "5611c0ae-7741-4caf-b0fb-5473aa70289f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/code/consistency.py:123:def _span_soft_jaccard(s1_start: int, s1_end: int, s2_start: int, s2_end: int) -> float:\\\\n/root/autodl-tmp/struct_self_consist_ie/code/consistency.py:134:def _ner_soft_jaccard_pair(entities_a: list[Entity], entities_b: list[Entity]) -> float:\\\\n/root/autodl-tmp/struct_self_consist_ie/code/consistency.py:186:                cost[i, j] = _span_soft_jaccard(ea[\\\\\\\"start\\\\\\\"], ea[\\\\\\\"end\\\\\\\"],\\\\n/root/autodl-tmp/struct_self_consist_ie/code/consistency.py:199:def _re_soft_jaccard_pair(relations_a: list[dict], relations_b: list[dict]) -> float:\\\\n/root/autodl-tmp/struct_self_consist_ie/code/consistency.py:214:            head_sj = _span_soft_jaccard(a[\\\\\\\"head_start\\\\\\\"], a[\\\\\\\"head_end\\\\\\\"],\\\\n/root/autodl-tmp/struct_self_consist_ie/code/consistency.py:216:            tail_sj = _span_soft_jaccard(a[\\\\\\\"tail_start\\\\\\\"], a[\\\\\\\"tail_end\\\\\\\"],\\\\n/root/autodl-tmp/struct_self_consist_ie/code/consistency.py:225:def _eae_soft_jaccard_pair(events_a: list[Event], events_b: list[Event]) -> float:\\\\n/root/autodl-tmp/struct_self_consist_ie/code/consistency.py:276:                cost[i, j] = _span_soft_jaccard(aa[\\\\\\\"start\\\\\\\"], aa[\\\\\\\"end\\\\\\\"],\\\\n/root/autodl-tmp/struct_self_consist_ie/code/consistency.py:288:def structural_consistency_soft_jaccard(\\\\n/root/autodl-tmp/struct_self_consist_ie/code/consistency.py:309:        pair_fn = _ner_soft_jaccard_pair\\\\n/root/autodl-tmp/struct_self_consist_ie/code/consistency.py:311:        pair_fn = _re_soft_jaccard_pair\\\\n/root/autodl-tmp/struct_self_consist_ie/code/consistency.py:313:        pair_fn = _eae_soft_jaccard_pair\\\\n/root/autodl-tmp/struct_self_consist_ie/code/consistency.py:385:                \\\\\\\"soft_jaccard\\\\\\\": [float, ...],\\\\n/root/autodl-tmp/struct_self_consist_ie/code/consistency.py:392:        \\\\\\\"soft_jaccard\\\\\\\": [],\\\\n/root/autodl-tmp/struct_self_consist_ie/code/consistency.py:402:        result[\\\\\\\"soft_jaccard\\\\\\\"].append(\\\\n/root/autodl-tmp/struct_self_consist_ie/code/consistency.py:403:            structural_consistency_soft_jaccard(samples, subtask=subtask)\\\\n/root/autodl-tmp/struct_self_consist_ie/code/run_mvp_pilot.py:80:    print(f\\\\\\\"  Soft Jaccard (mean):     {report[f'{p}soft_jaccard_mean']:.4f}\\\\\\\")\\\\n/root/autodl-tmp/struct_self_consist_ie/code/run_mvp_pilot.py:244:        filtered_sj = [s for s, m in zip(consistency[\\\\\\\"soft_jaccard\\\\\\\"], nonempty_mask) if m]\\\\n/root/autodl-tmp/struct_self_consist_ie/code/run_mvp_pilot.py:256:        cond_sj = [s for s, m in zip(consistency[\\\\\\\"soft_jaccard\\\\\\\"], cond_mask) if m]\\\\n/root/autodl-tmp/struct_self_consist_ie/code/run_mvp_pilot.py:269:            \\\\\\\"soft_jaccard_mean\\\\\\\": float(np.mean(consistency[\\\\\\\"soft_jaccard\\\\\\\"])),\\\\n/root/autodl-tmp/struct_self_consist_ie/code/mvp_pilot.py:147:        rho_sj_full, p_sj_full = spearman_correlation(consistency[\\\\\\\"soft_jaccard\\\\\\\"], greedy_f1s)\\\\n/root/autodl-tmp/struct_self_consist_ie/code/mvp_pilot.py:156:        cond_consistency_sj = [s for s, m in zip(consistency[\\\\\\\"soft_jaccard\\\\\\\"], conditional_mask) if m]\\\\n/root/autodl-tmp/struct_self_consist_ie/code/mvp_pilot.py:187:        print(f\\\\\\\"  Soft Jaccard (mean): {sum(consistency['soft_jaccard'])/len(consistency['soft_jaccard']):.4f}\\\\\\\")\\\\n/root/autodl-tmp/struct_self_consist_ie/code/mvp_pilot.py:205:        report[f\\\\\\\"{prefix}soft_jaccard_mean\\\\\\\"] = float(np.mean(consistency[\\\\\\\"soft_jaccard\\\\\\\"]))\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_component_wise_re.py:15:from consistency import _span_soft_jaccard, fleiss_kappa_surface, structural_consistency_soft_jaccard\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_component_wise_re.py:34:            head_sj_mat[i, j] = _span_soft_jaccard(\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_component_wise_re.py:36:            tail_sj_mat[i, j] = _span_soft_jaccard(\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_component_wise_re.py:40:    # Same cost as original _re_soft_jaccard_pair\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_component_wise_re.py:101:        original_sj.append(structural_consistency_soft_jaccard(inst['samples'], subtask='re'))\\\\n/root/aut\\\\n\\\\n... [截断: 输出过长，省略 27275 字符] ...\\\\n\\\\nair\\\\n/root/autodl-tmp/struct_self_consist_ie/code/exp018_5signal_analysis.py:104:        sj = cons[\\\\\\\"soft_jaccard\\\\\\\"]\\\\n/root/autodl-tmp/struct_self_consist_ie/code/eval_seed42_r1024_5signal.py:75:    sj = cons[\\\\\\\"soft_jaccard\\\\\\\"]\\\\n/root/autodl-tmp/struct_self_consist_ie/code/re_nonzero_selection.py:16:    structural_consistency_soft_jaccard,\\\\n/root/autodl-tmp/struct_self_consist_ie/code/re_nonzero_selection.py:17:    _re_soft_jaccard_pair,\\\\n/root/autodl-tmp/struct_self_consist_ie/code/re_nonzero_selection.py:83:                    sims.append(_re_soft_jaccard_pair(\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_ood_signals.py:11:from consistency import structural_consistency_soft_jaccard, fleiss_kappa_surface\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_ood_signals.py:81:        sj_vals.append(structural_consistency_soft_jaccard(samples, subtask=subtask_signal))\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analysis_multiseed_selection_f1.py:19:    _ner_soft_jaccard_pair,\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analysis_multiseed_selection_f1.py:20:    _re_soft_jaccard_pair,\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analysis_multiseed_selection_f1.py:69:    pair_fn = _ner_soft_jaccard_pair if subtask == \\\\\\\"ner\\\\\\\" else _re_soft_jaccard_pair\\\\n/root/autodl-tmp/struct_self_consist_ie/code/fk_bootstrap_ci.py:10:from consistency import structural_consistency_soft_jaccard, fleiss_kappa_surface\\\\n/root/autodl-tmp/struct_self_consist_ie/code/fk_bootstrap_ci.py:96:        sj.append(structural_consistency_soft_jaccard(samples, subtask=subtask))\\\\n/root/autodl-tmp/struct_self_consist_ie/code/compute_selection_f1.py:24:    _ner_soft_jaccard_pair,\\\\n/root/autodl-tmp/struct_self_consist_ie/code/compute_selection_f1.py:25:    _re_soft_jaccard_pair,\\\\n/root/autodl-tmp/struct_self_consist_ie/code/compute_selection_f1.py:95:    pair_fn = _ner_soft_jaccard_pair if subtask == \\\\\\\"ner\\\\\\\" else _re_soft_jaccard_pair\\\\n/root/autodl-tmp/struct_self_consist_ie/code/fk_bootstrap_per_instance.py:10:from consistency import structural_consistency_soft_jaccard, fleiss_kappa_surface\\\\n/root/autodl-tmp/struct_self_consist_ie/code/fk_bootstrap_per_instance.py:135:        sj.append(structural_consistency_soft_jaccard(samples, subtask=subtask))\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analysis_scierc_n16_selection.py:10:from consistency import _ner_soft_jaccard_pair, _extract_surface_keys\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analysis_scierc_n16_selection.py:52:            s = _ner_soft_jaccard_pair(samples[i].get(field, []), samples[j].get(field, []))\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analysis_scierc_re_n16_selection.py:10:from consistency import _re_soft_jaccard_pair, _extract_surface_keys\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analysis_scierc_re_n16_selection.py:44:            s = _re_soft_jaccard_pair(samples[i].get(field, []), samples[j].get(field, []))\\\\n/root/autodl-tmp/struct_self_consist_ie/code/table2_selection_f1.py:15:    _ner_soft_jaccard_pair,\\\\n/root/autodl-tmp/struct_self_consist_ie/code/table2_selection_f1.py:41:            s = _ner_soft_jaccard_pair(\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp017_t07.py:14:from consistency import compute_all_consistency_scores, _ner_soft_jaccard_pair, _extract_surface_keys\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp017_t07.py:129:            s = _ner_soft_jaccard_pair(samples[i].get(field, []), samples[j].get(field, []))\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp017_t07.py:214:    sj_vals = consistency[\\\\\\\"soft_jaccard\\\\\\\"]\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_scale_ablation_4b.py:129:        sj = cons[\\\\\\\"soft_jaccard\\\\\\\"]\\\\n/root/autodl-tmp/struct_self_consist_ie/code/selection_f1_4b.py:17:    _ner_soft_jaccard_pair,\\\\n/root/autodl-tmp/struct_self_consist_ie/code/selection_f1_4b.py:18:    _re_soft_jaccard_pair,\\\\n/root/autodl-tmp/struct_self_consist_ie/code/selection_f1_4b.py:54:    pair_fn = _ner_soft_jaccard_pair if subtask == \\\\\\\"ner\\\\\\\" else _re_soft_jaccard_pair\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/code/consistency.py:123:def _span_soft_jaccard(s1_start: int, s1_end: int, s2_start: int, s2_end: int) -> float:\\n/root/autodl-tmp/struct_self_consist_ie/code/consistency.py:134:def _ner_soft_jaccard_pair(entities_a: list[Entity], entities_b: list[Entity]) -> float:\\n/root/autodl-tmp/struct_self_consist_ie/code/consistency.py:186:                cost[i, j] = _span_soft_jaccard(ea[\\\"start\\\"], ea[\\\"end\\\"],\\n/root/autodl-tmp/struct_self_consist_ie/code/consistency.py:199:def _re_soft_jaccard_pair(relations_a: list[dict], relations_b: list[dict]) -> float:\\n/root/autodl-tmp/struct_self_consist_ie/code/consistency.py:214:            head_sj = _span_soft_jaccard(a[\\\"head_start\\\"], a[\\\"head_end\\\"],\\n/root/autodl-tmp/struct_self_consist_ie/code/consistency.py:216:            tail_sj = _span_soft_jaccard(a[\\\"tail_start\\\"], a[\\\"tail_end\\\"],\\n/root/autodl-tmp/struct_self_consist_ie/code/consistency.py:225:def _eae_soft_jaccard_pair(events_a: list[Event], events_b: list[Event]) -> float:\\n/root/autodl-tmp/struct_self_consist_ie/code/consistency.py:276:                cost[i, j] = _span_soft_jaccard(aa[\\\"start\\\"], aa[\\\"end\\\"],\\n/root/autodl-tmp/struct_self_consist_ie/code/consistency.py:288:def structural_consistency_soft_jaccard(\\n/root/autodl-tmp/struct_self_consist_ie/code/consistency.py:309:        pair_fn = _ner_soft_jaccard_pair\\n/root/autodl-tmp/struct_self_consist_ie/code/consistency.py:311:        pair_fn = _re_soft_jaccard_pair\\n/root/autodl-tmp/struct_self_consist_ie/code/consistency.py:313:        pair_fn = _eae_soft_jaccard_pair\\n/root/autodl-tmp/struct_self_consist_ie/code/consistency.py:385:                \\\"soft_jaccard\\\": [float, ...],\\n/root/autodl-tmp/struct_self_consist_ie/code/consistency.py:392:        \\\"soft_jaccard\\\": [],\\n/root/autodl-tmp/struct_self_consist_ie/code/consistency.py:402:        result[\\\"soft_jaccard\\\"].append(\\n/root/autodl-tmp/struct_self_consist_ie/code/consistency.py:403:            structural_consistency_soft_jaccard(samples, subtask=subtask)\\n/root/autodl-tmp/struct_self_consist_ie/code/run_mvp_pilot.py:80:    print(f\\\"  Soft Jaccard (mean):     {report[f'{p}soft_jaccard_mean']:.4f}\\\")\\n/root/autodl-tmp/struct_self_consist_ie/code/run_mvp_pilot.py:244:        filtered_sj = [s for s, m in zip(consistency[\\\"soft_jaccard\\\"], nonempty_mask) if m]\\n/root/autodl-tmp/struct_self_consist_ie/code/run_mvp_pilot.py:256:        cond_sj = [s for s, m in zip(consistency[\\\"soft_jaccard\\\"], cond_mask) if m]\\n/root/autodl-tmp/struct_self_consist_ie/code/run_mvp_pilot.py:269:            \\\"soft_jaccard_mean\\\": float(np.mean(consistency[\\\"soft_jaccard\\\"])),\\n/root/autodl-tmp/struct_self_consist_ie/code/mvp_pilot.py:147:        rho_sj_full, p_sj_full = spearman_correlation(consistency[\\\"soft_jaccard\\\"], greedy_f1s)\\n/root/autodl-tmp/struct_self_consist_ie/code/mvp_pilot.py:156:        cond_consistency_sj = [s for s, m in zip(consistency[\\\"soft_jaccard\\\"], conditional_mask) if m]\\n/root/autodl-tmp/struct_self_consist_ie/code/mvp_pilot.py:187:        print(f\\\"  Soft Jaccard (mean): {sum(consistency['soft_jaccard'])/len(consistency['soft_jaccard']):.4f}\\\")\\n/root/autodl-tmp/struct_self_consist_ie/code/mvp_pilot.py:205:        report[f\\\"{prefix}soft_jaccard_mean\\\"] = float(np.mean(consistency[\\\"soft_jaccard\\\"]))\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_component_wise_re.py:15:from consistency import _span_soft_jaccard, fleiss_kappa_surface, structural_consistency_soft_jaccard\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_component_wise_re.py:34:            head_sj_mat[i, j] = _span_soft_jaccard(\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_component_wise_re.py:36:            tail_sj_mat[i, j] = _span_soft_jaccard(\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_component_wise_re.py:40:    # Same cost as original _re_soft_jaccard_pair\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_component_wise_re.py:101:        original_sj.append(structural_consistency_soft_jaccard(inst['samples'], subtask='re'))\\n/root/aut\\n\\n... [截断: 输出过长，省略 27275 字符] ...\\n\\nair\\n/root/autodl-tmp/struct_self_consist_ie/code/exp018_5signal_analysis.py:104:        sj = cons[\\\"soft_jaccard\\\"]\\n/root/autodl-tmp/struct_self_consist_ie/code/eval_seed42_r1024_5signal.py:75:    sj = cons[\\\"soft_jaccard\\\"]\\n/root/autodl-tmp/struct_self_consist_ie/code/re_nonzero_selection.py:16:    structural_consistency_soft_jaccard,\\n/root/autodl-tmp/struct_self_consist_ie/code/re_nonzero_selection.py:17:    _re_soft_jaccard_pair,\\n/root/autodl-tmp/struct_self_consist_ie/code/re_nonzero_selection.py:83:                    sims.append(_re_soft_jaccard_pair(\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_ood_signals.py:11:from consistency import structural_consistency_soft_jaccard, fleiss_kappa_surface\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_ood_signals.py:81:        sj_vals.append(structural_consistency_soft_jaccard(samples, subtask=subtask_signal))\\n/root/autodl-tmp/struct_self_consist_ie/code/analysis_multiseed_selection_f1.py:19:    _ner_soft_jaccard_pair,\\n/root/autodl-tmp/struct_self_consist_ie/code/analysis_multiseed_selection_f1.py:20:    _re_soft_jaccard_pair,\\n/root/autodl-tmp/struct_self_consist_ie/code/analysis_multiseed_selection_f1.py:69:    pair_fn = _ner_soft_jaccard_pair if subtask == \\\"ner\\\" else _re_soft_jaccard_pair\\n/root/autodl-tmp/struct_self_consist_ie/code/fk_bootstrap_ci.py:10:from consistency import structural_consistency_soft_jaccard, fleiss_kappa_surface\\n/root/autodl-tmp/struct_self_consist_ie/code/fk_bootstrap_ci.py:96:        sj.append(structural_consistency_soft_jaccard(samples, subtask=subtask))\\n/root/autodl-tmp/struct_self_consist_ie/code/compute_selection_f1.py:24:    _ner_soft_jaccard_pair,\\n/root/autodl-tmp/struct_self_consist_ie/code/compute_selection_f1.py:25:    _re_soft_jaccard_pair,\\n/root/autodl-tmp/struct_self_consist_ie/code/compute_selection_f1.py:95:    pair_fn = _ner_soft_jaccard_pair if subtask == \\\"ner\\\" else _re_soft_jaccard_pair\\n/root/autodl-tmp/struct_self_consist_ie/code/fk_bootstrap_per_instance.py:10:from consistency import structural_consistency_soft_jaccard, fleiss_kappa_surface\\n/root/autodl-tmp/struct_self_consist_ie/code/fk_bootstrap_per_instance.py:135:        sj.append(structural_consistency_soft_jaccard(samples, subtask=subtask))\\n/root/autodl-tmp/struct_self_consist_ie/code/analysis_scierc_n16_selection.py:10:from consistency import _ner_soft_jaccard_pair, _extract_surface_keys\\n/root/autodl-tmp/struct_self_consist_ie/code/analysis_scierc_n16_selection.py:52:            s = _ner_soft_jaccard_pair(samples[i].get(field, []), samples[j].get(field, []))\\n/root/autodl-tmp/struct_self_consist_ie/code/analysis_scierc_re_n16_selection.py:10:from consistency import _re_soft_jaccard_pair, _extract_surface_keys\\n/root/autodl-tmp/struct_self_consist_ie/code/analysis_scierc_re_n16_selection.py:44:            s = _re_soft_jaccard_pair(samples[i].get(field, []), samples[j].get(field, []))\\n/root/autodl-tmp/struct_self_consist_ie/code/table2_selection_f1.py:15:    _ner_soft_jaccard_pair,\\n/root/autodl-tmp/struct_self_consist_ie/code/table2_selection_f1.py:41:            s = _ner_soft_jaccard_pair(\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp017_t07.py:14:from consistency import compute_all_consistency_scores, _ner_soft_jaccard_pair, _extract_surface_keys\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp017_t07.py:129:            s = _ner_soft_jaccard_pair(samples[i].get(field, []), samples[j].get(field, []))\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp017_t07.py:214:    sj_vals = consistency[\\\"soft_jaccard\\\"]\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_scale_ablation_4b.py:129:        sj = cons[\\\"soft_jaccard\\\"]\\n/root/autodl-tmp/struct_self_consist_ie/code/selection_f1_4b.py:17:    _ner_soft_jaccard_pair,\\n/root/autodl-tmp/struct_self_consist_ie/code/selection_f1_4b.py:18:    _re_soft_jaccard_pair,\\n/root/autodl-tmp/struct_self_consist_ie/code/selection_f1_4b.py:54:    pair_fn = _ner_soft_jaccard_pair if subtask == \\\"ner\\\" else _re_soft_jaccard_pair\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01X1PnbZdVrSjv2aEauVosD8`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "grep -rn \"SoftJaccard\" /root/autodl-tmp/struct_self_consist_ie/code/ --include=\"*.py\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "33b63558-5bd9-4632-96ed-f3267a31fc22",
+  "uuid": "b9dcb1d1-0751-40e1-bd30-a406c277da1e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CFb96q76oiDJC5PsWJLbYt",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4721,
+      "cache_read_input_tokens": 24368,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4721
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-15T20:20:05.686Z_
+
+<details><summary>↩ Tool result · `toolu_01X1PnbZdVrSjv2aEauVosD8`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "33b63558-5bd9-4632-96ed-f3267a31fc22",
+  "uuid": "6627561d-6aa0-471c-b90d-c4e120d7e4bc",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01RdM9sj4tbhj29QXjamM7GG`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "head -5 /root/autodl-tmp/struct_self_consist_ie/output/exp_qwen3_4b_conll_scs_inference_v2/samples.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "33b63558-5bd9-4632-96ed-f3267a31fc22",
+  "uuid": "5184af30-5c52-4a96-9312-29929cd28d3a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CFb96q76oiDJC5PsWJLbYt",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4721,
+      "cache_read_input_tokens": 24368,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4721
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-15T20:20:06.632Z_
+
+<details><summary>↩ Tool result · `toolu_01RdM9sj4tbhj29QXjamM7GG`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"id\\\": \\\"conll2003_test_00000\\\", \\\"text\\\": \\\"SOCCER - JAPAN GET LUCKY WIN , CHINA IN SURPRISE DEFEAT .\\\", \\\"gold\\\": {\\\"entities\\\": [{\\\"text\\\": \\\"JAPAN\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 9, \\\"end\\\": 14}, {\\\"text\\\": \\\"CHINA\\\", \\\"type\\\": \\\"PER\\\", \\\"start\\\": 31, \\\"end\\\": 36}], \\\"relations\\\": [], \\\"events\\\": []}, \\\"samples\\\": [{\\\"entities\\\": [{\\\"text\\\": \\\"JAPAN\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 9, \\\"end\\\": 14}, {\\\"text\\\": \\\"CHINA\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 31, \\\"end\\\": 36}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -0.23260687344568254, \\\"n_tokens\\\": 67, \\\"mean_logprob\\\": -0.0034717443797863067}, {\\\"entities\\\": [{\\\"text\\\": \\\"JAPAN\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 9, \\\"end\\\": 14}, {\\\"text\\\": \\\"CHINA\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 31, \\\"end\\\": 36}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -0.23260687344568254, \\\"n_tokens\\\": 67, \\\"mean_logprob\\\": -0.0034717443797863067}, {\\\"entities\\\": [{\\\"text\\\": \\\"JAPAN\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 9, \\\"end\\\": 14}, {\\\"text\\\": \\\"CHINA\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 31, \\\"end\\\": 36}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -0.23260687344568254, \\\"n_tokens\\\": 67, \\\"mean_logprob\\\": -0.0034717443797863067}, {\\\"entities\\\": [{\\\"text\\\": \\\"JAPAN\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 9, \\\"end\\\": 14}, {\\\"text\\\": \\\"CHINA\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 31, \\\"end\\\": 36}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -1.6076354032826643, \\\"n_tokens\\\": 67, \\\"mean_logprob\\\": -0.023994558257950212}, {\\\"entities\\\": [{\\\"text\\\": \\\"JAPAN\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 9, \\\"end\\\": 14}, {\\\"text\\\": \\\"CHINA\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 31, \\\"end\\\": 36}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -0.23260687344568254, \\\"n_tokens\\\": 67, \\\"mean_logprob\\\": -0.0034717443797863067}, {\\\"entities\\\": [{\\\"text\\\": \\\"JAPAN\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 9, \\\"end\\\": 14}, {\\\"text\\\": \\\"CHINA\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 31, \\\"end\\\": 36}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -0.23260687344568254, \\\"n_tokens\\\": 67, \\\"mean_logprob\\\": -0.0034717443797863067}, {\\\"entities\\\": [{\\\"text\\\": \\\"JAPAN\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 9, \\\"end\\\": 14}, {\\\"text\\\": \\\"CHINA\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 31, \\\"end\\\": 36}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -0.23260687344568254, \\\"n_tokens\\\": 67, \\\"mean_logprob\\\": -0.0034717443797863067}, {\\\"entities\\\": [{\\\"text\\\": \\\"JAPAN\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 9, \\\"end\\\": 14}, {\\\"text\\\": \\\"CHINA\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 31, \\\"end\\\": 36}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -0.23260687344568254, \\\"n_tokens\\\": 67, \\\"mean_logprob\\\": -0.0034717443797863067}], \\\"greedy\\\": {\\\"entities\\\": [{\\\"text\\\": \\\"JAPAN\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 9, \\\"end\\\": 14}, {\\\"text\\\": \\\"CHINA\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 31, \\\"end\\\": 36}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -0.23054086008286134, \\\"n_tokens\\\": 67, \\\"mean_logprob\\\": -0.003440908359445692}, \\\"logprobs\\\": [-0.0034717443797863067, -0.0034717443797863067, -0.0034717443797863067, -0.023994558257950212, -0.0034717443797863067, -0.0034717443797863067, -0.0034717443797863067, -0.0034717443797863067]}\\n{\\\"id\\\": \\\"conll2003_test_00001\\\", \\\"text\\\": \\\"Nadim Ladki\\\", \\\"gold\\\": {\\\"entities\\\": [{\\\"text\\\": \\\"Nadim Ladki\\\", \\\"type\\\": \\\"PER\\\", \\\"start\\\": 0, \\\"end\\\": 11}], \\\"relations\\\": [], \\\"events\\\": []}, \\\"samples\\\": [{\\\"entities\\\": [{\\\"text\\\": \\\"Nadim Ladki\\\", \\\"type\\\": \\\"PER\\\", \\\"start\\\": 0, \\\"end\\\": 11}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -0.0014102278503997923, \\\"n_tokens\\\": 42, \\\"mean_logprob\\\": -3.357685358094743e-05}, {\\\"entities\\\": [{\\\"text\\\": \\\"Nadim Ladki\\\", \\\"type\\\": \\\"PER\\\", \\\"start\\\": 0, \\\"end\\\": 11}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -0.0014102278503997923, \\\"n_tokens\\\": 42, \\\"mean_logprob\\\": -3.357685358094743e-05}, {\\\"entities\\\": [{\\\"text\\\": \\\"Nadim Ladki\\\", \\\"type\\\": \\\"PER\\\", \\\"start\\\": 0, \\\"end\\\": 11}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -0.0014102278503997923, \\\"n_tokens\\\": 42, \\\"mean_logprob\\\": -3.357685358094743e-05}, {\\\"entities\\\": [{\\\"text\\\": \\\"Nadim Ladki\\\", \\\"type\\\": \\\"PER\\\", \\\"start\\\": 0, \\\"end\\\": 11}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -0.0014102278503997923, \\\"n_tokens\\\": 42, \\\"mean_logprob\\\": -3.357685358094743e-05}, {\\\"entities\\\": [{\\\"text\\\": \\\"Nadim Ladki\\\", \\\"type\\\": \\\"PER\\\", \\\"start\\\": 0, \\\"end\\\": 11}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumul\\n\\n... [截断: 输出过长，省略 7010 字符] ...\\n\\n7284095710153, \\\"n_tokens\\\": 120, \\\"mean_logprob\\\": -0.008881070079758462}, {\\\"entities\\\": [{\\\"text\\\": \\\"Japan\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 0, \\\"end\\\": 5}, {\\\"text\\\": \\\"Asian Cup\\\", \\\"type\\\": \\\"MISC\\\", \\\"start\\\": 33, \\\"end\\\": 42}, {\\\"text\\\": \\\"Syria\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 78, \\\"end\\\": 83}, {\\\"text\\\": \\\"Group C\\\", \\\"type\\\": \\\"MISC\\\", \\\"start\\\": 89, \\\"end\\\": 96}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -2.2848691358221487, \\\"n_tokens\\\": 120, \\\"mean_logprob\\\": -0.01904057613185124}], \\\"greedy\\\": {\\\"entities\\\": [{\\\"text\\\": \\\"Japan\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 0, \\\"end\\\": 5}, {\\\"text\\\": \\\"Asian Cup\\\", \\\"type\\\": \\\"MISC\\\", \\\"start\\\": 33, \\\"end\\\": 42}, {\\\"text\\\": \\\"Syria\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 78, \\\"end\\\": 83}, {\\\"text\\\": \\\"Group C\\\", \\\"type\\\": \\\"MISC\\\", \\\"start\\\": 89, \\\"end\\\": 96}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -1.1004752211800763, \\\"n_tokens\\\": 120, \\\"mean_logprob\\\": -0.009170626843167303}, \\\"logprobs\\\": [-0.008881070079758462, -0.008881070079758462, -0.01904057613185124, -0.04050693459159772, -0.036904440818908854, -0.036904440818908854, -0.008881070079758462, -0.01904057613185124]}\\n{\\\"id\\\": \\\"conll2003_test_00004\\\", \\\"text\\\": \\\"But China saw their luck desert them in the second match of the group , crashing to a surprise 2-0 defeat to newcomers Uzbekistan .\\\", \\\"gold\\\": {\\\"entities\\\": [{\\\"text\\\": \\\"China\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 4, \\\"end\\\": 9}, {\\\"text\\\": \\\"Uzbekistan\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 119, \\\"end\\\": 129}], \\\"relations\\\": [], \\\"events\\\": []}, \\\"samples\\\": [{\\\"entities\\\": [{\\\"text\\\": \\\"China\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 4, \\\"end\\\": 9}, {\\\"text\\\": \\\"Uzbekistan\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 119, \\\"end\\\": 129}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -0.7667447922462003, \\\"n_tokens\\\": 67, \\\"mean_logprob\\\": -0.011443952123077616}, {\\\"entities\\\": [{\\\"text\\\": \\\"China\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 4, \\\"end\\\": 9}, {\\\"text\\\": \\\"Uzbekistan\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 119, \\\"end\\\": 129}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -2.2667371629666064, \\\"n_tokens\\\": 67, \\\"mean_logprob\\\": -0.03383189795472547}, {\\\"entities\\\": [{\\\"text\\\": \\\"China\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 4, \\\"end\\\": 9}, {\\\"text\\\": \\\"Uzbekistan\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 119, \\\"end\\\": 129}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -1.2667279839154375, \\\"n_tokens\\\": 67, \\\"mean_logprob\\\": -0.018906387819633396}, {\\\"entities\\\": [{\\\"text\\\": \\\"China\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 4, \\\"end\\\": 9}, {\\\"text\\\": \\\"Uzbekistan\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 119, \\\"end\\\": 129}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -3.9501229524133734, \\\"n_tokens\\\": 67, \\\"mean_logprob\\\": -0.05895705899124438}, {\\\"entities\\\": [{\\\"text\\\": \\\"China\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 4, \\\"end\\\": 9}, {\\\"text\\\": \\\"Uzbekistan\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 119, \\\"end\\\": 129}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -3.9501229524133734, \\\"n_tokens\\\": 67, \\\"mean_logprob\\\": -0.05895705899124438}, {\\\"entities\\\": [{\\\"text\\\": \\\"China\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 4, \\\"end\\\": 9}, {\\\"text\\\": \\\"Uzbekistan\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 119, \\\"end\\\": 129}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -0.7667447922462003, \\\"n_tokens\\\": 67, \\\"mean_logprob\\\": -0.011443952123077616}, {\\\"entities\\\": [{\\\"text\\\": \\\"China\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 4, \\\"end\\\": 9}, {\\\"text\\\": \\\"Uzbekistan\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 119, \\\"end\\\": 129}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -0.7667447922462003, \\\"n_tokens\\\": 67, \\\"mean_logprob\\\": -0.011443952123077616}, {\\\"entities\\\": [{\\\"text\\\": \\\"China\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 4, \\\"end\\\": 9}, {\\\"text\\\": \\\"Uzbekistan\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 119, \\\"end\\\": 129}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -3.9501229524133734, \\\"n_tokens\\\": 67, \\\"mean_logprob\\\": -0.05895705899124438}], \\\"greedy\\\": {\\\"entities\\\": [{\\\"text\\\": \\\"China\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 4, \\\"end\\\": 9}, {\\\"text\\\": \\\"Uzbekistan\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 119, \\\"end\\\": 129}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -0.786921977779464, \\\"n_tokens\\\": 67, \\\"mean_logprob\\\": -0.01174510414596215}, \\\"logprobs\\\": [-0.011443952123077616, -0.03383189795472547, -0.018906387819633396, -0.05895705899124438, -0.05895705899124438, -0.011443952123077616, -0.011443952123077616, -0.05895705899124438]}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "33b63558-5bd9-4632-96ed-f3267a31fc22",
+  "uuid": "581fdde4-6a04-4e49-914e-45b49748d01e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"id\\\\\\\": \\\\\\\"conll2003_test_00000\\\\\\\", \\\\\\\"text\\\\\\\": \\\\\\\"SOCCER - JAPAN GET LUCKY WIN , CHINA IN SURPRISE DEFEAT .\\\\\\\", \\\\\\\"gold\\\\\\\": {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"JAPAN\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\", \\\\\\\"start\\\\\\\": 9, \\\\\\\"end\\\\\\\": 14}, {\\\\\\\"text\\\\\\\": \\\\\\\"CHINA\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"PER\\\\\\\", \\\\\\\"start\\\\\\\": 31, \\\\\\\"end\\\\\\\": 36}], \\\\\\\"relations\\\\\\\": [], \\\\\\\"events\\\\\\\": []}, \\\\\\\"samples\\\\\\\": [{\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"JAPAN\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\", \\\\\\\"start\\\\\\\": 9, \\\\\\\"end\\\\\\\": 14}, {\\\\\\\"text\\\\\\\": \\\\\\\"CHINA\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\", \\\\\\\"start\\\\\\\": 31, \\\\\\\"end\\\\\\\": 36}], \\\\\\\"relations\\\\\\\": [], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -0.23260687344568254, \\\\\\\"n_tokens\\\\\\\": 67, \\\\\\\"mean_logprob\\\\\\\": -0.0034717443797863067}, {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"JAPAN\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\", \\\\\\\"start\\\\\\\": 9, \\\\\\\"end\\\\\\\": 14}, {\\\\\\\"text\\\\\\\": \\\\\\\"CHINA\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\", \\\\\\\"start\\\\\\\": 31, \\\\\\\"end\\\\\\\": 36}], \\\\\\\"relations\\\\\\\": [], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -0.23260687344568254, \\\\\\\"n_tokens\\\\\\\": 67, \\\\\\\"mean_logprob\\\\\\\": -0.0034717443797863067}, {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"JAPAN\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\", \\\\\\\"start\\\\\\\": 9, \\\\\\\"end\\\\\\\": 14}, {\\\\\\\"text\\\\\\\": \\\\\\\"CHINA\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\", \\\\\\\"start\\\\\\\": 31, \\\\\\\"end\\\\\\\": 36}], \\\\\\\"relations\\\\\\\": [], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -0.23260687344568254, \\\\\\\"n_tokens\\\\\\\": 67, \\\\\\\"mean_logprob\\\\\\\": -0.0034717443797863067}, {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"JAPAN\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\", \\\\\\\"start\\\\\\\": 9, \\\\\\\"end\\\\\\\": 14}, {\\\\\\\"text\\\\\\\": \\\\\\\"CHINA\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\", \\\\\\\"start\\\\\\\": 31, \\\\\\\"end\\\\\\\": 36}], \\\\\\\"relations\\\\\\\": [], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -1.6076354032826643, \\\\\\\"n_tokens\\\\\\\": 67, \\\\\\\"mean_logprob\\\\\\\": -0.023994558257950212}, {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"JAPAN\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\", \\\\\\\"start\\\\\\\": 9, \\\\\\\"end\\\\\\\": 14}, {\\\\\\\"text\\\\\\\": \\\\\\\"CHINA\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\", \\\\\\\"start\\\\\\\": 31, \\\\\\\"end\\\\\\\": 36}], \\\\\\\"relations\\\\\\\": [], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -0.23260687344568254, \\\\\\\"n_tokens\\\\\\\": 67, \\\\\\\"mean_logprob\\\\\\\": -0.0034717443797863067}, {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"JAPAN\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\", \\\\\\\"start\\\\\\\": 9, \\\\\\\"end\\\\\\\": 14}, {\\\\\\\"text\\\\\\\": \\\\\\\"CHINA\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\", \\\\\\\"start\\\\\\\": 31, \\\\\\\"end\\\\\\\": 36}], \\\\\\\"relations\\\\\\\": [], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -0.23260687344568254, \\\\\\\"n_tokens\\\\\\\": 67, \\\\\\\"mean_logprob\\\\\\\": -0.0034717443797863067}, {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"JAPAN\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\", \\\\\\\"start\\\\\\\": 9, \\\\\\\"end\\\\\\\": 14}, {\\\\\\\"text\\\\\\\": \\\\\\\"CHINA\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\", \\\\\\\"start\\\\\\\": 31, \\\\\\\"end\\\\\\\": 36}], \\\\\\\"relations\\\\\\\": [], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -0.23260687344568254, \\\\\\\"n_tokens\\\\\\\": 67, \\\\\\\"mean_logprob\\\\\\\": -0.0034717443797863067}, {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"JAPAN\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\", \\\\\\\"start\\\\\\\": 9, \\\\\\\"end\\\\\\\": 14}, {\\\\\\\"text\\\\\\\": \\\\\\\"CHINA\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\", \\\\\\\"start\\\\\\\": 31, \\\\\\\"end\\\\\\\": 36}], \\\\\\\"relations\\\\\\\": [], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -0.23260687344568254, \\\\\\\"n_tokens\\\\\\\": 67, \\\\\\\"mean_logprob\\\\\\\": -0.0034717443797863067}], \\\\\\\"greedy\\\\\\\": {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"JAPAN\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\", \\\\\\\"start\\\\\\\": 9, \\\\\\\"end\\\\\\\": 14}, {\\\\\\\"text\\\\\\\": \\\\\\\"CHINA\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\", \\\\\\\"start\\\\\\\": 31, \\\\\\\"end\\\\\\\": 36}], \\\\\\\"relations\\\\\\\": [], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -0.23054086008286134, \\\\\\\"n_tokens\\\\\\\": 67, \\\\\\\"mean_logprob\\\\\\\": -0.003440908359445692}, \\\\\\\"logprobs\\\\\\\": [-0.0034717443797863067, -0.0034717443797863067, -0.0034717443797863067, -0.023994558257950212, -0.0034717443797863067, -0.0034717443797863067, -0.0034717443797863067, -0.0034717443797863067]}\\\\n{\\\\\\\"id\\\\\\\": \\\\\\\"conll2003_test_00001\\\\\\\", \\\\\\\"text\\\\\\\": \\\\\\\"Nadim Ladki\\\\\\\", \\\\\\\"gold\\\\\\\": {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"Nadim Ladki\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"PER\\\\\\\", \\\\\\\"start\\\\\\\": 0, \\\\\\\"end\\\\\\\": 11}], \\\\\\\"relations\\\\\\\": [], \\\\\\\"events\\\\\\\": []}, \\\\\\\"samples\\\\\\\": [{\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"Nadim Ladki\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"PER\\\\\\\", \\\\\\\"start\\\\\\\": 0, \\\\\\\"end\\\\\\\": 11}], \\\\\\\"relations\\\\\\\": [], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -0.0014102278503997923, \\\\\\\"n_tokens\\\\\\\": 42, \\\\\\\"mean_logprob\\\\\\\": -3.357685358094743e-05}, {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"Nadim Ladki\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"PER\\\\\\\", \\\\\\\"start\\\\\\\": 0, \\\\\\\"end\\\\\\\": 11}], \\\\\\\"relations\\\\\\\": [], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -0.0014102278503997923, \\\\\\\"n_tokens\\\\\\\": 42, \\\\\\\"mean_logprob\\\\\\\": -3.357685358094743e-05}, {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"Nadim Ladki\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"PER\\\\\\\", \\\\\\\"start\\\\\\\": 0, \\\\\\\"end\\\\\\\": 11}], \\\\\\\"relations\\\\\\\": [], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -0.0014102278503997923, \\\\\\\"n_tokens\\\\\\\": 42, \\\\\\\"mean_logprob\\\\\\\": -3.357685358094743e-05}, {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"Nadim Ladki\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"PER\\\\\\\", \\\\\\\"start\\\\\\\": 0, \\\\\\\"end\\\\\\\": 11}], \\\\\\\"relations\\\\\\\": [], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -0.0014102278503997923, \\\\\\\"n_tokens\\\\\\\": 42, \\\\\\\"mean_logprob\\\\\\\": -3.357685358094743e-05}, {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"Nadim Ladki\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"PER\\\\\\\", \\\\\\\"start\\\\\\\": 0, \\\\\\\"end\\\\\\\": 11}], \\\\\\\"relations\\\\\\\": [], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumul\\\\n\\\\n... [截断: 输出过长，省略 7010 字符] ...\\\\n\\\\n7284095710153, \\\\\\\"n_tokens\\\\\\\": 120, \\\\\\\"mean_logprob\\\\\\\": -0.008881070079758462}, {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"Japan\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\", \\\\\\\"start\\\\\\\": 0, \\\\\\\"end\\\\\\\": 5}, {\\\\\\\"text\\\\\\\": \\\\\\\"Asian Cup\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"MISC\\\\\\\", \\\\\\\"start\\\\\\\": 33, \\\\\\\"end\\\\\\\": 42}, {\\\\\\\"text\\\\\\\": \\\\\\\"Syria\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\", \\\\\\\"start\\\\\\\": 78, \\\\\\\"end\\\\\\\": 83}, {\\\\\\\"text\\\\\\\": \\\\\\\"Group C\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"MISC\\\\\\\", \\\\\\\"start\\\\\\\": 89, \\\\\\\"end\\\\\\\": 96}], \\\\\\\"relations\\\\\\\": [], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -2.2848691358221487, \\\\\\\"n_tokens\\\\\\\": 120, \\\\\\\"mean_logprob\\\\\\\": -0.01904057613185124}], \\\\\\\"greedy\\\\\\\": {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"Japan\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\", \\\\\\\"start\\\\\\\": 0, \\\\\\\"end\\\\\\\": 5}, {\\\\\\\"text\\\\\\\": \\\\\\\"Asian Cup\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"MISC\\\\\\\", \\\\\\\"start\\\\\\\": 33, \\\\\\\"end\\\\\\\": 42}, {\\\\\\\"text\\\\\\\": \\\\\\\"Syria\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\", \\\\\\\"start\\\\\\\": 78, \\\\\\\"end\\\\\\\": 83}, {\\\\\\\"text\\\\\\\": \\\\\\\"Group C\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"MISC\\\\\\\", \\\\\\\"start\\\\\\\": 89, \\\\\\\"end\\\\\\\": 96}], \\\\\\\"relations\\\\\\\": [], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -1.1004752211800763, \\\\\\\"n_tokens\\\\\\\": 120, \\\\\\\"mean_logprob\\\\\\\": -0.009170626843167303}, \\\\\\\"logprobs\\\\\\\": [-0.008881070079758462, -0.008881070079758462, -0.01904057613185124, -0.04050693459159772, -0.036904440818908854, -0.036904440818908854, -0.008881070079758462, -0.01904057613185124]}\\\\n{\\\\\\\"id\\\\\\\": \\\\\\\"conll2003_test_00004\\\\\\\", \\\\\\\"text\\\\\\\": \\\\\\\"But China saw their luck desert them in the second match of the group , crashing to a surprise 2-0 defeat to newcomers Uzbekistan .\\\\\\\", \\\\\\\"gold\\\\\\\": {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"China\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\", \\\\\\\"start\\\\\\\": 4, \\\\\\\"end\\\\\\\": 9}, {\\\\\\\"text\\\\\\\": \\\\\\\"Uzbekistan\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\", \\\\\\\"start\\\\\\\": 119, \\\\\\\"end\\\\\\\": 129}], \\\\\\\"relations\\\\\\\": [], \\\\\\\"events\\\\\\\": []}, \\\\\\\"samples\\\\\\\": [{\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"China\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\", \\\\\\\"start\\\\\\\": 4, \\\\\\\"end\\\\\\\": 9}, {\\\\\\\"text\\\\\\\": \\\\\\\"Uzbekistan\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\", \\\\\\\"start\\\\\\\": 119, \\\\\\\"end\\\\\\\": 129}], \\\\\\\"relations\\\\\\\": [], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -0.7667447922462003, \\\\\\\"n_tokens\\\\\\\": 67, \\\\\\\"mean_logprob\\\\\\\": -0.011443952123077616}, {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"China\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\", \\\\\\\"start\\\\\\\": 4, \\\\\\\"end\\\\\\\": 9}, {\\\\\\\"text\\\\\\\": \\\\\\\"Uzbekistan\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\", \\\\\\\"start\\\\\\\": 119, \\\\\\\"end\\\\\\\": 129}], \\\\\\\"relations\\\\\\\": [], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -2.2667371629666064, \\\\\\\"n_tokens\\\\\\\": 67, \\\\\\\"mean_logprob\\\\\\\": -0.03383189795472547}, {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"China\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\", \\\\\\\"start\\\\\\\": 4, \\\\\\\"end\\\\\\\": 9}, {\\\\\\\"text\\\\\\\": \\\\\\\"Uzbekistan\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\", \\\\\\\"start\\\\\\\": 119, \\\\\\\"end\\\\\\\": 129}], \\\\\\\"relations\\\\\\\": [], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -1.2667279839154375, \\\\\\\"n_tokens\\\\\\\": 67, \\\\\\\"mean_logprob\\\\\\\": -0.018906387819633396}, {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"China\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\", \\\\\\\"start\\\\\\\": 4, \\\\\\\"end\\\\\\\": 9}, {\\\\\\\"text\\\\\\\": \\\\\\\"Uzbekistan\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\", \\\\\\\"start\\\\\\\": 119, \\\\\\\"end\\\\\\\": 129}], \\\\\\\"relations\\\\\\\": [], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -3.9501229524133734, \\\\\\\"n_tokens\\\\\\\": 67, \\\\\\\"mean_logprob\\\\\\\": -0.05895705899124438}, {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"China\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\", \\\\\\\"start\\\\\\\": 4, \\\\\\\"end\\\\\\\": 9}, {\\\\\\\"text\\\\\\\": \\\\\\\"Uzbekistan\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\", \\\\\\\"start\\\\\\\": 119, \\\\\\\"end\\\\\\\": 129}], \\\\\\\"relations\\\\\\\": [], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -3.9501229524133734, \\\\\\\"n_tokens\\\\\\\": 67, \\\\\\\"mean_logprob\\\\\\\": -0.05895705899124438}, {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"China\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\", \\\\\\\"start\\\\\\\": 4, \\\\\\\"end\\\\\\\": 9}, {\\\\\\\"text\\\\\\\": \\\\\\\"Uzbekistan\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\", \\\\\\\"start\\\\\\\": 119, \\\\\\\"end\\\\\\\": 129}], \\\\\\\"relations\\\\\\\": [], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -0.7667447922462003, \\\\\\\"n_tokens\\\\\\\": 67, \\\\\\\"mean_logprob\\\\\\\": -0.011443952123077616}, {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"China\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\", \\\\\\\"start\\\\\\\": 4, \\\\\\\"end\\\\\\\": 9}, {\\\\\\\"text\\\\\\\": \\\\\\\"Uzbekistan\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\", \\\\\\\"start\\\\\\\": 119, \\\\\\\"end\\\\\\\": 129}], \\\\\\\"relations\\\\\\\": [], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -0.7667447922462003, \\\\\\\"n_tokens\\\\\\\": 67, \\\\\\\"mean_logprob\\\\\\\": -0.011443952123077616}, {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"China\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\", \\\\\\\"start\\\\\\\": 4, \\\\\\\"end\\\\\\\": 9}, {\\\\\\\"text\\\\\\\": \\\\\\\"Uzbekistan\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\", \\\\\\\"start\\\\\\\": 119, \\\\\\\"end\\\\\\\": 129}], \\\\\\\"relations\\\\\\\": [], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -3.9501229524133734, \\\\\\\"n_tokens\\\\\\\": 67, \\\\\\\"mean_logprob\\\\\\\": -0.05895705899124438}], \\\\\\\"greedy\\\\\\\": {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"China\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\", \\\\\\\"start\\\\\\\": 4, \\\\\\\"end\\\\\\\": 9}, {\\\\\\\"text\\\\\\\": \\\\\\\"Uzbekistan\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\", \\\\\\\"start\\\\\\\": 119, \\\\\\\"end\\\\\\\": 129}], \\\\\\\"relations\\\\\\\": [], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -0.786921977779464, \\\\\\\"n_tokens\\\\\\\": 67, \\\\\\\"mean_logprob\\\\\\\": -0.01174510414596215}, \\\\\\\"logprobs\\\\\\\": [-0.011443952123077616, -0.03383189795472547, -0.018906387819633396, -0.05895705899124438, -0.05895705899124438, -0.011443952123077616, -0.011443952123077616, -0.05895705899124438]}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\\"id\\\": \\\"conll2003_test_00000\\\", \\\"text\\\": \\\"SOCCER - JAPAN GET LUCKY WIN , CHINA IN SURPRISE DEFEAT .\\\", \\\"gold\\\": {\\\"entities\\\": [{\\\"text\\\": \\\"JAPAN\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 9, \\\"end\\\": 14}, {\\\"text\\\": \\\"CHINA\\\", \\\"type\\\": \\\"PER\\\", \\\"start\\\": 31, \\\"end\\\": 36}], \\\"relations\\\": [], \\\"events\\\": []}, \\\"samples\\\": [{\\\"entities\\\": [{\\\"text\\\": \\\"JAPAN\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 9, \\\"end\\\": 14}, {\\\"text\\\": \\\"CHINA\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 31, \\\"end\\\": 36}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -0.23260687344568254, \\\"n_tokens\\\": 67, \\\"mean_logprob\\\": -0.0034717443797863067}, {\\\"entities\\\": [{\\\"text\\\": \\\"JAPAN\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 9, \\\"end\\\": 14}, {\\\"text\\\": \\\"CHINA\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 31, \\\"end\\\": 36}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -0.23260687344568254, \\\"n_tokens\\\": 67, \\\"mean_logprob\\\": -0.0034717443797863067}, {\\\"entities\\\": [{\\\"text\\\": \\\"JAPAN\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 9, \\\"end\\\": 14}, {\\\"text\\\": \\\"CHINA\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 31, \\\"end\\\": 36}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -0.23260687344568254, \\\"n_tokens\\\": 67, \\\"mean_logprob\\\": -0.0034717443797863067}, {\\\"entities\\\": [{\\\"text\\\": \\\"JAPAN\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 9, \\\"end\\\": 14}, {\\\"text\\\": \\\"CHINA\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 31, \\\"end\\\": 36}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -1.6076354032826643, \\\"n_tokens\\\": 67, \\\"mean_logprob\\\": -0.023994558257950212}, {\\\"entities\\\": [{\\\"text\\\": \\\"JAPAN\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 9, \\\"end\\\": 14}, {\\\"text\\\": \\\"CHINA\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 31, \\\"end\\\": 36}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -0.23260687344568254, \\\"n_tokens\\\": 67, \\\"mean_logprob\\\": -0.0034717443797863067}, {\\\"entities\\\": [{\\\"text\\\": \\\"JAPAN\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 9, \\\"end\\\": 14}, {\\\"text\\\": \\\"CHINA\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 31, \\\"end\\\": 36}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -0.23260687344568254, \\\"n_tokens\\\": 67, \\\"mean_logprob\\\": -0.0034717443797863067}, {\\\"entities\\\": [{\\\"text\\\": \\\"JAPAN\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 9, \\\"end\\\": 14}, {\\\"text\\\": \\\"CHINA\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 31, \\\"end\\\": 36}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -0.23260687344568254, \\\"n_tokens\\\": 67, \\\"mean_logprob\\\": -0.0034717443797863067}, {\\\"entities\\\": [{\\\"text\\\": \\\"JAPAN\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 9, \\\"end\\\": 14}, {\\\"text\\\": \\\"CHINA\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 31, \\\"end\\\": 36}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -0.23260687344568254, \\\"n_tokens\\\": 67, \\\"mean_logprob\\\": -0.0034717443797863067}], \\\"greedy\\\": {\\\"entities\\\": [{\\\"text\\\": \\\"JAPAN\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 9, \\\"end\\\": 14}, {\\\"text\\\": \\\"CHINA\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 31, \\\"end\\\": 36}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -0.23054086008286134, \\\"n_tokens\\\": 67, \\\"mean_logprob\\\": -0.003440908359445692}, \\\"logprobs\\\": [-0.0034717443797863067, -0.0034717443797863067, -0.0034717443797863067, -0.023994558257950212, -0.0034717443797863067, -0.0034717443797863067, -0.0034717443797863067, -0.0034717443797863067]}\\n{\\\"id\\\": \\\"conll2003_test_00001\\\", \\\"text\\\": \\\"Nadim Ladki\\\", \\\"gold\\\": {\\\"entities\\\": [{\\\"text\\\": \\\"Nadim Ladki\\\", \\\"type\\\": \\\"PER\\\", \\\"start\\\": 0, \\\"end\\\": 11}], \\\"relations\\\": [], \\\"events\\\": []}, \\\"samples\\\": [{\\\"entities\\\": [{\\\"text\\\": \\\"Nadim Ladki\\\", \\\"type\\\": \\\"PER\\\", \\\"start\\\": 0, \\\"end\\\": 11}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -0.0014102278503997923, \\\"n_tokens\\\": 42, \\\"mean_logprob\\\": -3.357685358094743e-05}, {\\\"entities\\\": [{\\\"text\\\": \\\"Nadim Ladki\\\", \\\"type\\\": \\\"PER\\\", \\\"start\\\": 0, \\\"end\\\": 11}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -0.0014102278503997923, \\\"n_tokens\\\": 42, \\\"mean_logprob\\\": -3.357685358094743e-05}, {\\\"entities\\\": [{\\\"text\\\": \\\"Nadim Ladki\\\", \\\"type\\\": \\\"PER\\\", \\\"start\\\": 0, \\\"end\\\": 11}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -0.0014102278503997923, \\\"n_tokens\\\": 42, \\\"mean_logprob\\\": -3.357685358094743e-05}, {\\\"entities\\\": [{\\\"text\\\": \\\"Nadim Ladki\\\", \\\"type\\\": \\\"PER\\\", \\\"start\\\": 0, \\\"end\\\": 11}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -0.0014102278503997923, \\\"n_tokens\\\": 42, \\\"mean_logprob\\\": -3.357685358094743e-05}, {\\\"entities\\\": [{\\\"text\\\": \\\"Nadim Ladki\\\", \\\"type\\\": \\\"PER\\\", \\\"start\\\": 0, \\\"end\\\": 11}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumul\\n\\n... [截断: 输出过长，省略 7010 字符] ...\\n\\n7284095710153, \\\"n_tokens\\\": 120, \\\"mean_logprob\\\": -0.008881070079758462}, {\\\"entities\\\": [{\\\"text\\\": \\\"Japan\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 0, \\\"end\\\": 5}, {\\\"text\\\": \\\"Asian Cup\\\", \\\"type\\\": \\\"MISC\\\", \\\"start\\\": 33, \\\"end\\\": 42}, {\\\"text\\\": \\\"Syria\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 78, \\\"end\\\": 83}, {\\\"text\\\": \\\"Group C\\\", \\\"type\\\": \\\"MISC\\\", \\\"start\\\": 89, \\\"end\\\": 96}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -2.2848691358221487, \\\"n_tokens\\\": 120, \\\"mean_logprob\\\": -0.01904057613185124}], \\\"greedy\\\": {\\\"entities\\\": [{\\\"text\\\": \\\"Japan\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 0, \\\"end\\\": 5}, {\\\"text\\\": \\\"Asian Cup\\\", \\\"type\\\": \\\"MISC\\\", \\\"start\\\": 33, \\\"end\\\": 42}, {\\\"text\\\": \\\"Syria\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 78, \\\"end\\\": 83}, {\\\"text\\\": \\\"Group C\\\", \\\"type\\\": \\\"MISC\\\", \\\"start\\\": 89, \\\"end\\\": 96}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -1.1004752211800763, \\\"n_tokens\\\": 120, \\\"mean_logprob\\\": -0.009170626843167303}, \\\"logprobs\\\": [-0.008881070079758462, -0.008881070079758462, -0.01904057613185124, -0.04050693459159772, -0.036904440818908854, -0.036904440818908854, -0.008881070079758462, -0.01904057613185124]}\\n{\\\"id\\\": \\\"conll2003_test_00004\\\", \\\"text\\\": \\\"But China saw their luck desert them in the second match of the group , crashing to a surprise 2-0 defeat to newcomers Uzbekistan .\\\", \\\"gold\\\": {\\\"entities\\\": [{\\\"text\\\": \\\"China\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 4, \\\"end\\\": 9}, {\\\"text\\\": \\\"Uzbekistan\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 119, \\\"end\\\": 129}], \\\"relations\\\": [], \\\"events\\\": []}, \\\"samples\\\": [{\\\"entities\\\": [{\\\"text\\\": \\\"China\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 4, \\\"end\\\": 9}, {\\\"text\\\": \\\"Uzbekistan\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 119, \\\"end\\\": 129}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -0.7667447922462003, \\\"n_tokens\\\": 67, \\\"mean_logprob\\\": -0.011443952123077616}, {\\\"entities\\\": [{\\\"text\\\": \\\"China\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 4, \\\"end\\\": 9}, {\\\"text\\\": \\\"Uzbekistan\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 119, \\\"end\\\": 129}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -2.2667371629666064, \\\"n_tokens\\\": 67, \\\"mean_logprob\\\": -0.03383189795472547}, {\\\"entities\\\": [{\\\"text\\\": \\\"China\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 4, \\\"end\\\": 9}, {\\\"text\\\": \\\"Uzbekistan\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 119, \\\"end\\\": 129}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -1.2667279839154375, \\\"n_tokens\\\": 67, \\\"mean_logprob\\\": -0.018906387819633396}, {\\\"entities\\\": [{\\\"text\\\": \\\"China\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 4, \\\"end\\\": 9}, {\\\"text\\\": \\\"Uzbekistan\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 119, \\\"end\\\": 129}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -3.9501229524133734, \\\"n_tokens\\\": 67, \\\"mean_logprob\\\": -0.05895705899124438}, {\\\"entities\\\": [{\\\"text\\\": \\\"China\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 4, \\\"end\\\": 9}, {\\\"text\\\": \\\"Uzbekistan\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 119, \\\"end\\\": 129}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -3.9501229524133734, \\\"n_tokens\\\": 67, \\\"mean_logprob\\\": -0.05895705899124438}, {\\\"entities\\\": [{\\\"text\\\": \\\"China\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 4, \\\"end\\\": 9}, {\\\"text\\\": \\\"Uzbekistan\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 119, \\\"end\\\": 129}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -0.7667447922462003, \\\"n_tokens\\\": 67, \\\"mean_logprob\\\": -0.011443952123077616}, {\\\"entities\\\": [{\\\"text\\\": \\\"China\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 4, \\\"end\\\": 9}, {\\\"text\\\": \\\"Uzbekistan\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 119, \\\"end\\\": 129}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -0.7667447922462003, \\\"n_tokens\\\": 67, \\\"mean_logprob\\\": -0.011443952123077616}, {\\\"entities\\\": [{\\\"text\\\": \\\"China\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 4, \\\"end\\\": 9}, {\\\"text\\\": \\\"Uzbekistan\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 119, \\\"end\\\": 129}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -3.9501229524133734, \\\"n_tokens\\\": 67, \\\"mean_logprob\\\": -0.05895705899124438}], \\\"greedy\\\": {\\\"entities\\\": [{\\\"text\\\": \\\"China\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 4, \\\"end\\\": 9}, {\\\"text\\\": \\\"Uzbekistan\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 119, \\\"end\\\": 129}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -0.786921977779464, \\\"n_tokens\\\": 67, \\\"mean_logprob\\\": -0.01174510414596215}, \\\"logprobs\\\": [-0.011443952123077616, -0.03383189795472547, -0.018906387819633396, -0.05895705899124438, -0.05895705899124438, -0.011443952123077616, -0.011443952123077616, -0.05895705899124438]}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 22_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I need to read the core SJ implementation to understand the normalizer. Let me read consistency.py around the key functions.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "33b63558-5bd9-4632-96ed-f3267a31fc22",
+  "uuid": "10e17c6d-99b9-4beb-a158-33153a8f9dcb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GtvwoKNiQ6JyNZcMMfxeq8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9288,
+      "cache_read_input_tokens": 29089,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9288
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 23_
+
+Now let me read the core SJ implementation to understand the normalizer.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "33b63558-5bd9-4632-96ed-f3267a31fc22",
+  "uuid": "59399813-ac5f-4e3a-b51a-95be53630a4d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GtvwoKNiQ6JyNZcMMfxeq8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9288,
+      "cache_read_input_tokens": 29089,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9288
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0128nFoxWczDfubTCvPcuAfW`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat -n /root/autodl-tmp/struct_self_consist_ie/code/consistency.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "33b63558-5bd9-4632-96ed-f3267a31fc22",
+  "uuid": "d52db471-b299-498f-8df8-f08e5226ddc7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GtvwoKNiQ6JyNZcMMfxeq8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9288,
+      "cache_read_input_tokens": 29089,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9288
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-15T20:20:12.591Z_
+
+<details><summary>↩ Tool result · `toolu_0128nFoxWczDfubTCvPcuAfW`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"     1\\t\\\"\\\"\\\"Consistency metrics for structured information extraction with self-consistency.\\n     2\\t\\n     3\\tImplements three complementary consistency measures over N sampled extractions:\\n     4\\t1. Fleiss' Kappa (surface matching) — treats N samples as N raters on entity presence\\n     5\\t2. Structural soft Jaccard — span-level soft overlap with Hungarian matching\\n     6\\t3. Oracle best-of-N — upper-bound F1 by selecting the best sample per instance\\n     7\\t\\n     8\\tKey dependencies: numpy, scipy (linear_sum_assignment).\\n     9\\t\\\"\\\"\\\"\\n    10\\t\\n    11\\tfrom __future__ import annotations\\n    12\\t\\n    13\\tfrom itertools import combinations\\n    14\\tfrom typing import TYPE_CHECKING\\n    15\\t\\n    16\\timport numpy as np\\n    17\\tfrom scipy.optimize import linear_sum_assignment\\n    18\\t\\n    19\\tif TYPE_CHECKING:\\n    20\\t    pass\\n    21\\t\\n    22\\t# ---------------------------------------------------------------------------\\n    23\\t# Type aliases (mirrors shared data format)\\n    24\\t# ---------------------------------------------------------------------------\\n    25\\tEntity = dict       # {\\\"text\\\", \\\"type\\\", \\\"start\\\", \\\"end\\\"}\\n    26\\tRelation = dict     # {\\\"head\\\", \\\"tail\\\", \\\"type\\\", ...}\\n    27\\tEvent = dict        # {\\\"trigger\\\": {...}, \\\"arguments\\\": [...]}\\n    28\\tExtraction = dict   # {\\\"entities\\\", \\\"relations\\\", \\\"events\\\"}\\n    29\\t\\n    30\\t\\n    31\\t# ===================================================================\\n    32\\t# 1. Fleiss' Kappa — surface-level entity agreement\\n    33\\t# ===================================================================\\n    34\\t\\n    35\\tdef _extract_surface_keys(sample: Extraction, subtask: str) -> set[tuple]:\\n    36\\t    \\\"\\\"\\\"Extract surface-level keys from a sample for Fleiss' Kappa computation.\\\"\\\"\\\"\\n    37\\t    if subtask == \\\"ner\\\":\\n    38\\t        return {(e[\\\"text\\\"], e[\\\"type\\\"]) for e in sample.get(\\\"entities\\\", [])}\\n    39\\t    elif subtask == \\\"re\\\":\\n    40\\t        return {(r[\\\"head\\\"], r[\\\"tail\\\"], r[\\\"type\\\"]) for r in sample.get(\\\"relations\\\", [])}\\n    41\\t    elif subtask == \\\"eae\\\":\\n    42\\t        keys: set[tuple] = set()\\n    43\\t        for ev in sample.get(\\\"events\\\", []):\\n    44\\t            t = ev.get(\\\"trigger\\\", {})\\n    45\\t            for arg in ev.get(\\\"arguments\\\", []):\\n    46\\t                keys.add((t.get(\\\"text\\\", \\\"\\\"), t.get(\\\"type\\\", \\\"\\\"), arg[\\\"role\\\"], arg[\\\"text\\\"]))\\n    47\\t        return keys\\n    48\\t    else:\\n    49\\t        raise ValueError(f\\\"Unknown subtask: {subtask}\\\")\\n    50\\t\\n    51\\t\\n    52\\tdef fleiss_kappa_surface(samples: list[Extraction], subtask: str = \\\"ner\\\") -> float:\\n    53\\t    \\\"\\\"\\\"Compute Fleiss' kappa treating N LLM samples as N raters on item presence.\\n    54\\t\\n    55\\t    Items are subtask-dependent surface keys:\\n    56\\t    - ner: (entity_text, entity_type)\\n    57\\t    - re: (head_text, tail_text, relation_type)\\n    58\\t    - eae: (trigger_text, trigger_type, role, argument_text)\\n    59\\t\\n    60\\t    Args:\\n    61\\t        samples: List of N extraction dicts.\\n    62\\t        subtask: \\\"ner\\\", \\\"re\\\", or \\\"eae\\\".\\n    63\\t\\n    64\\t    Returns:\\n    65\\t        Fleiss' kappa in [-1, 1].  Returns 1.0 for degenerate cases (<=1 unique\\n    66\\t        item, perfect agreement, or undefined P_e).\\n    67\\t    \\\"\\\"\\\"\\n    68\\t    n_raters = len(samples)\\n    69\\t    if n_raters <= 1:\\n    70\\t        return 1.0\\n    71\\t\\n    72\\t    # Collect unique keys and per-sample presence sets\\n    73\\t    entity_sets: list[set[tuple]] = []\\n    74\\t    all_keys: set[tuple] = set()\\n    75\\t    for sample in samples:\\n    76\\t        keys = _extract_surface_keys(sample, subtask)\\n    77\\t        entity_sets.append(keys)\\n    78\\t        all_keys |= keys\\n    79\\t\\n    80\\t    n_subjects = len(all_keys)\\n    81\\t    if n_subjects <= 0:\\n    82\\t        # All samples extracted nothing — perfect agreement on empty set\\n    83\\t        return 1.0\\n    84\\t\\n    85\\t    key_list = sorted(all_keys)\\n    86\\t\\n    87\\t    # Build rating matrix: n_subjects x 2 (categories: absent=0, present=1)\\n    88\\t    # n_ij = number of raters assigning subject i to category j\\n    89\\t    rating = np.zeros((n_subjects, 2), dtype=np.int64)\\n    90\\t    for es in \\n\\n... [截断: 输出过长，省略 8122 字符] ...\\n\\ns: N extraction dicts.\\n   299\\t        subtask: \\\"ner\\\" for entity consistency, \\\"eae\\\" for event-argument consistency.\\n   300\\t\\n   301\\t    Returns:\\n   302\\t        Mean pairwise soft Jaccard in [0, 1].\\n   303\\t    \\\"\\\"\\\"\\n   304\\t    n = len(samples)\\n   305\\t    if n <= 1:\\n   306\\t        return 1.0\\n   307\\t\\n   308\\t    if subtask == \\\"ner\\\":\\n   309\\t        pair_fn = _ner_soft_jaccard_pair\\n   310\\t    elif subtask == \\\"re\\\":\\n   311\\t        pair_fn = _re_soft_jaccard_pair\\n   312\\t    else:\\n   313\\t        pair_fn = _eae_soft_jaccard_pair\\n   314\\t\\n   315\\t    field = {\\\"ner\\\": \\\"entities\\\", \\\"re\\\": \\\"relations\\\", \\\"eae\\\": \\\"events\\\"}[subtask]\\n   316\\t\\n   317\\t    scores: list[float] = []\\n   318\\t    for i, j in combinations(range(n), 2):\\n   319\\t        score = pair_fn(\\n   320\\t            samples[i].get(field, []),\\n   321\\t            samples[j].get(field, []),\\n   322\\t        )\\n   323\\t        scores.append(score)\\n   324\\t\\n   325\\t    return float(np.mean(scores))\\n   326\\t\\n   327\\t\\n   328\\t# ===================================================================\\n   329\\t# 3. Oracle best-of-N\\n   330\\t# ===================================================================\\n   331\\t\\n   332\\tdef oracle_best_of_n(\\n   333\\t    samples: list[Extraction],\\n   334\\t    gold: Extraction,\\n   335\\t    subtask: str = \\\"ner\\\",\\n   336\\t) -> tuple[int, float]:\\n   337\\t    \\\"\\\"\\\"Select the sample with the highest F1 against the gold extraction.\\n   338\\t\\n   339\\t    Args:\\n   340\\t        samples: N extraction dicts.\\n   341\\t        gold: Gold-standard extraction.\\n   342\\t        subtask: Passed through to per_instance_f1.\\n   343\\t\\n   344\\t    Returns:\\n   345\\t        (best_index, best_f1). Returns (-1, 0.0) if samples is empty.\\n   346\\t    \\\"\\\"\\\"\\n   347\\t    if not samples:\\n   348\\t        return (-1, 0.0)\\n   349\\t\\n   350\\t    # Lazy import to avoid circular dependency with evaluation.py\\n   351\\t    from evaluation import per_instance_f1\\n   352\\t\\n   353\\t    best_idx = -1\\n   354\\t    best_f1 = -1.0\\n   355\\t\\n   356\\t    for idx, sample in enumerate(samples):\\n   357\\t        f1 = per_instance_f1(sample, gold, subtask=subtask)\\n   358\\t        if f1 > best_f1:\\n   359\\t            best_f1 = f1\\n   360\\t            best_idx = idx\\n   361\\t\\n   362\\t    return (best_idx, best_f1)\\n   363\\t\\n   364\\t\\n   365\\t# ===================================================================\\n   366\\t# Aggregate helper\\n   367\\t# ===================================================================\\n   368\\t\\n   369\\tdef compute_all_consistency_scores(\\n   370\\t    sampled_instances: list[dict],\\n   371\\t    subtask: str = \\\"ner\\\",\\n   372\\t) -> dict:\\n   373\\t    \\\"\\\"\\\"Compute all consistency metrics for a list of sampled instances.\\n   374\\t\\n   375\\t    Args:\\n   376\\t        sampled_instances: List of SampledInstance dicts, each with keys\\n   377\\t            \\\"id\\\", \\\"text\\\", \\\"gold\\\" (Extraction), \\\"samples\\\" (list[Extraction]).\\n   378\\t        subtask: \\\"ner\\\", \\\"re\\\", or \\\"eae\\\".\\n   379\\t\\n   380\\t    Returns:\\n   381\\t        Dict with per-instance score lists::\\n   382\\t\\n   383\\t            {\\n   384\\t                \\\"fleiss_kappa\\\": [float, ...],\\n   385\\t                \\\"soft_jaccard\\\": [float, ...],\\n   386\\t                \\\"oracle_f1\\\":    [float, ...],\\n   387\\t                \\\"oracle_indices\\\": [int, ...],\\n   388\\t            }\\n   389\\t    \\\"\\\"\\\"\\n   390\\t    result: dict[str, list] = {\\n   391\\t        \\\"fleiss_kappa\\\": [],\\n   392\\t        \\\"soft_jaccard\\\": [],\\n   393\\t        \\\"oracle_f1\\\": [],\\n   394\\t        \\\"oracle_indices\\\": [],\\n   395\\t    }\\n   396\\t\\n   397\\t    for inst in sampled_instances:\\n   398\\t        samples = inst[\\\"samples\\\"]\\n   399\\t        gold = inst[\\\"gold\\\"]\\n   400\\t\\n   401\\t        result[\\\"fleiss_kappa\\\"].append(fleiss_kappa_surface(samples, subtask=subtask))\\n   402\\t        result[\\\"soft_jaccard\\\"].append(\\n   403\\t            structural_consistency_soft_jaccard(samples, subtask=subtask)\\n   404\\t        )\\n   405\\t\\n   406\\t        best_idx, best_f1 = oracle_best_of_n(samples, gold, subtask=subtask)\\n   407\\t        result[\\\"oracle_f1\\\"].append(best_f1)\\n   408\\t        result[\\\"oracle_indices\\\"].append(best_idx)\\n   409\\t\\n   410\\t    return result\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "33b63558-5bd9-4632-96ed-f3267a31fc22",
+  "uuid": "030023a6-1742-4248-be51-d04db9c5c715",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"     1\\\\t\\\\\\\"\\\\\\\"\\\\\\\"Consistency metrics for structured information extraction with self-consistency.\\\\n     2\\\\t\\\\n     3\\\\tImplements three complementary consistency measures over N sampled extractions:\\\\n     4\\\\t1. Fleiss' Kappa (surface matching) — treats N samples as N raters on entity presence\\\\n     5\\\\t2. Structural soft Jaccard — span-level soft overlap with Hungarian matching\\\\n     6\\\\t3. Oracle best-of-N — upper-bound F1 by selecting the best sample per instance\\\\n     7\\\\t\\\\n     8\\\\tKey dependencies: numpy, scipy (linear_sum_assignment).\\\\n     9\\\\t\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    10\\\\t\\\\n    11\\\\tfrom __future__ import annotations\\\\n    12\\\\t\\\\n    13\\\\tfrom itertools import combinations\\\\n    14\\\\tfrom typing import TYPE_CHECKING\\\\n    15\\\\t\\\\n    16\\\\timport numpy as np\\\\n    17\\\\tfrom scipy.optimize import linear_sum_assignment\\\\n    18\\\\t\\\\n    19\\\\tif TYPE_CHECKING:\\\\n    20\\\\t    pass\\\\n    21\\\\t\\\\n    22\\\\t# ---------------------------------------------------------------------------\\\\n    23\\\\t# Type aliases (mirrors shared data format)\\\\n    24\\\\t# ---------------------------------------------------------------------------\\\\n    25\\\\tEntity = dict       # {\\\\\\\"text\\\\\\\", \\\\\\\"type\\\\\\\", \\\\\\\"start\\\\\\\", \\\\\\\"end\\\\\\\"}\\\\n    26\\\\tRelation = dict     # {\\\\\\\"head\\\\\\\", \\\\\\\"tail\\\\\\\", \\\\\\\"type\\\\\\\", ...}\\\\n    27\\\\tEvent = dict        # {\\\\\\\"trigger\\\\\\\": {...}, \\\\\\\"arguments\\\\\\\": [...]}\\\\n    28\\\\tExtraction = dict   # {\\\\\\\"entities\\\\\\\", \\\\\\\"relations\\\\\\\", \\\\\\\"events\\\\\\\"}\\\\n    29\\\\t\\\\n    30\\\\t\\\\n    31\\\\t# ===================================================================\\\\n    32\\\\t# 1. Fleiss' Kappa — surface-level entity agreement\\\\n    33\\\\t# ===================================================================\\\\n    34\\\\t\\\\n    35\\\\tdef _extract_surface_keys(sample: Extraction, subtask: str) -> set[tuple]:\\\\n    36\\\\t    \\\\\\\"\\\\\\\"\\\\\\\"Extract surface-level keys from a sample for Fleiss' Kappa computation.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    37\\\\t    if subtask == \\\\\\\"ner\\\\\\\":\\\\n    38\\\\t        return {(e[\\\\\\\"text\\\\\\\"], e[\\\\\\\"type\\\\\\\"]) for e in sample.get(\\\\\\\"entities\\\\\\\", [])}\\\\n    39\\\\t    elif subtask == \\\\\\\"re\\\\\\\":\\\\n    40\\\\t        return {(r[\\\\\\\"head\\\\\\\"], r[\\\\\\\"tail\\\\\\\"], r[\\\\\\\"type\\\\\\\"]) for r in sample.get(\\\\\\\"relations\\\\\\\", [])}\\\\n    41\\\\t    elif subtask == \\\\\\\"eae\\\\\\\":\\\\n    42\\\\t        keys: set[tuple] = set()\\\\n    43\\\\t        for ev in sample.get(\\\\\\\"events\\\\\\\", []):\\\\n    44\\\\t            t = ev.get(\\\\\\\"trigger\\\\\\\", {})\\\\n    45\\\\t            for arg in ev.get(\\\\\\\"arguments\\\\\\\", []):\\\\n    46\\\\t                keys.add((t.get(\\\\\\\"text\\\\\\\", \\\\\\\"\\\\\\\"), t.get(\\\\\\\"type\\\\\\\", \\\\\\\"\\\\\\\"), arg[\\\\\\\"role\\\\\\\"], arg[\\\\\\\"text\\\\\\\"]))\\\\n    47\\\\t        return keys\\\\n    48\\\\t    else:\\\\n    49\\\\t        raise ValueError(f\\\\\\\"Unknown subtask: {subtask}\\\\\\\")\\\\n    50\\\\t\\\\n    51\\\\t\\\\n    52\\\\tdef fleiss_kappa_surface(samples: list[Extraction], subtask: str = \\\\\\\"ner\\\\\\\") -> float:\\\\n    53\\\\t    \\\\\\\"\\\\\\\"\\\\\\\"Compute Fleiss' kappa treating N LLM samples as N raters on item presence.\\\\n    54\\\\t\\\\n    55\\\\t    Items are subtask-dependent surface keys:\\\\n    56\\\\t    - ner: (entity_text, entity_type)\\\\n    57\\\\t    - re: (head_text, tail_text, relation_type)\\\\n    58\\\\t    - eae: (trigger_text, trigger_type, role, argument_text)\\\\n    59\\\\t\\\\n    60\\\\t    Args:\\\\n    61\\\\t        samples: List of N extraction dicts.\\\\n    62\\\\t        subtask: \\\\\\\"ner\\\\\\\", \\\\\\\"re\\\\\\\", or \\\\\\\"eae\\\\\\\".\\\\n    63\\\\t\\\\n    64\\\\t    Returns:\\\\n    65\\\\t        Fleiss' kappa in [-1, 1].  Returns 1.0 for degenerate cases (<=1 unique\\\\n    66\\\\t        item, perfect agreement, or undefined P_e).\\\\n    67\\\\t    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    68\\\\t    n_raters = len(samples)\\\\n    69\\\\t    if n_raters <= 1:\\\\n    70\\\\t        return 1.0\\\\n    71\\\\t\\\\n    72\\\\t    # Collect unique keys and per-sample presence sets\\\\n    73\\\\t    entity_sets: list[set[tuple]] = []\\\\n    74\\\\t    all_keys: set[tuple] = set()\\\\n    75\\\\t    for sample in samples:\\\\n    76\\\\t        keys = _extract_surface_keys(sample, subtask)\\\\n    77\\\\t        entity_sets.append(keys)\\\\n    78\\\\t        all_keys |= keys\\\\n    79\\\\t\\\\n    80\\\\t    n_subjects = len(all_keys)\\\\n    81\\\\t    if n_subjects <= 0:\\\\n    82\\\\t        # All samples extracted nothing — perfect agreement on empty set\\\\n    83\\\\t        return 1.0\\\\n    84\\\\t\\\\n    85\\\\t    key_list = sorted(all_keys)\\\\n    86\\\\t\\\\n    87\\\\t    # Build rating matrix: n_subjects x 2 (categories: absent=0, present=1)\\\\n    88\\\\t    # n_ij = number of raters assigning subject i to category j\\\\n    89\\\\t    rating = np.zeros((n_subjects, 2), dtype=np.int64)\\\\n    90\\\\t    for es in \\\\n\\\\n... [截断: 输出过长，省略 8122 字符] ...\\\\n\\\\ns: N extraction dicts.\\\\n   299\\\\t        subtask: \\\\\\\"ner\\\\\\\" for entity consistency, \\\\\\\"eae\\\\\\\" for event-argument consistency.\\\\n   300\\\\t\\\\n   301\\\\t    Returns:\\\\n   302\\\\t        Mean pairwise soft Jaccard in [0, 1].\\\\n   303\\\\t    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n   304\\\\t    n = len(samples)\\\\n   305\\\\t    if n <= 1:\\\\n   306\\\\t        return 1.0\\\\n   307\\\\t\\\\n   308\\\\t    if subtask == \\\\\\\"ner\\\\\\\":\\\\n   309\\\\t        pair_fn = _ner_soft_jaccard_pair\\\\n   310\\\\t    elif subtask == \\\\\\\"re\\\\\\\":\\\\n   311\\\\t        pair_fn = _re_soft_jaccard_pair\\\\n   312\\\\t    else:\\\\n   313\\\\t        pair_fn = _eae_soft_jaccard_pair\\\\n   314\\\\t\\\\n   315\\\\t    field = {\\\\\\\"ner\\\\\\\": \\\\\\\"entities\\\\\\\", \\\\\\\"re\\\\\\\": \\\\\\\"relations\\\\\\\", \\\\\\\"eae\\\\\\\": \\\\\\\"events\\\\\\\"}[subtask]\\\\n   316\\\\t\\\\n   317\\\\t    scores: list[float] = []\\\\n   318\\\\t    for i, j in combinations(range(n), 2):\\\\n   319\\\\t        score = pair_fn(\\\\n   320\\\\t            samples[i].get(field, []),\\\\n   321\\\\t            samples[j].get(field, []),\\\\n   322\\\\t        )\\\\n   323\\\\t        scores.append(score)\\\\n   324\\\\t\\\\n   325\\\\t    return float(np.mean(scores))\\\\n   326\\\\t\\\\n   327\\\\t\\\\n   328\\\\t# ===================================================================\\\\n   329\\\\t# 3. Oracle best-of-N\\\\n   330\\\\t# ===================================================================\\\\n   331\\\\t\\\\n   332\\\\tdef oracle_best_of_n(\\\\n   333\\\\t    samples: list[Extraction],\\\\n   334\\\\t    gold: Extraction,\\\\n   335\\\\t    subtask: str = \\\\\\\"ner\\\\\\\",\\\\n   336\\\\t) -> tuple[int, float]:\\\\n   337\\\\t    \\\\\\\"\\\\\\\"\\\\\\\"Select the sample with the highest F1 against the gold extraction.\\\\n   338\\\\t\\\\n   339\\\\t    Args:\\\\n   340\\\\t        samples: N extraction dicts.\\\\n   341\\\\t        gold: Gold-standard extraction.\\\\n   342\\\\t        subtask: Passed through to per_instance_f1.\\\\n   343\\\\t\\\\n   344\\\\t    Returns:\\\\n   345\\\\t        (best_index, best_f1). Returns (-1, 0.0) if samples is empty.\\\\n   346\\\\t    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n   347\\\\t    if not samples:\\\\n   348\\\\t        return (-1, 0.0)\\\\n   349\\\\t\\\\n   350\\\\t    # Lazy import to avoid circular dependency with evaluation.py\\\\n   351\\\\t    from evaluation import per_instance_f1\\\\n   352\\\\t\\\\n   353\\\\t    best_idx = -1\\\\n   354\\\\t    best_f1 = -1.0\\\\n   355\\\\t\\\\n   356\\\\t    for idx, sample in enumerate(samples):\\\\n   357\\\\t        f1 = per_instance_f1(sample, gold, subtask=subtask)\\\\n   358\\\\t        if f1 > best_f1:\\\\n   359\\\\t            best_f1 = f1\\\\n   360\\\\t            best_idx = idx\\\\n   361\\\\t\\\\n   362\\\\t    return (best_idx, best_f1)\\\\n   363\\\\t\\\\n   364\\\\t\\\\n   365\\\\t# ===================================================================\\\\n   366\\\\t# Aggregate helper\\\\n   367\\\\t# ===================================================================\\\\n   368\\\\t\\\\n   369\\\\tdef compute_all_consistency_scores(\\\\n   370\\\\t    sampled_instances: list[dict],\\\\n   371\\\\t    subtask: str = \\\\\\\"ner\\\\\\\",\\\\n   372\\\\t) -> dict:\\\\n   373\\\\t    \\\\\\\"\\\\\\\"\\\\\\\"Compute all consistency metrics for a list of sampled instances.\\\\n   374\\\\t\\\\n   375\\\\t    Args:\\\\n   376\\\\t        sampled_instances: List of SampledInstance dicts, each with keys\\\\n   377\\\\t            \\\\\\\"id\\\\\\\", \\\\\\\"text\\\\\\\", \\\\\\\"gold\\\\\\\" (Extraction), \\\\\\\"samples\\\\\\\" (list[Extraction]).\\\\n   378\\\\t        subtask: \\\\\\\"ner\\\\\\\", \\\\\\\"re\\\\\\\", or \\\\\\\"eae\\\\\\\".\\\\n   379\\\\t\\\\n   380\\\\t    Returns:\\\\n   381\\\\t        Dict with per-instance score lists::\\\\n   382\\\\t\\\\n   383\\\\t            {\\\\n   384\\\\t                \\\\\\\"fleiss_kappa\\\\\\\": [float, ...],\\\\n   385\\\\t                \\\\\\\"soft_jaccard\\\\\\\": [float, ...],\\\\n   386\\\\t                \\\\\\\"oracle_f1\\\\\\\":    [float, ...],\\\\n   387\\\\t                \\\\\\\"oracle_indices\\\\\\\": [int, ...],\\\\n   388\\\\t            }\\\\n   389\\\\t    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n   390\\\\t    result: dict[str, list] = {\\\\n   391\\\\t        \\\\\\\"fleiss_kappa\\\\\\\": [],\\\\n   392\\\\t        \\\\\\\"soft_jaccard\\\\\\\": [],\\\\n   393\\\\t        \\\\\\\"oracle_f1\\\\\\\": [],\\\\n   394\\\\t        \\\\\\\"oracle_indices\\\\\\\": [],\\\\n   395\\\\t    }\\\\n   396\\\\t\\\\n   397\\\\t    for inst in sampled_instances:\\\\n   398\\\\t        samples = inst[\\\\\\\"samples\\\\\\\"]\\\\n   399\\\\t        gold = inst[\\\\\\\"gold\\\\\\\"]\\\\n   400\\\\t\\\\n   401\\\\t        result[\\\\\\\"fleiss_kappa\\\\\\\"].append(fleiss_kappa_surface(samples, subtask=subtask))\\\\n   402\\\\t        result[\\\\\\\"soft_jaccard\\\\\\\"].append(\\\\n   403\\\\t            structural_consistency_soft_jaccard(samples, subtask=subtask)\\\\n   404\\\\t        )\\\\n   405\\\\t\\\\n   406\\\\t        best_idx, best_f1 = oracle_best_of_n(samples, gold, subtask=subtask)\\\\n   407\\\\t        result[\\\\\\\"oracle_f1\\\\\\\"].append(best_f1)\\\\n   408\\\\t        result[\\\\\\\"oracle_indices\\\\\\\"].append(best_idx)\\\\n   409\\\\t\\\\n   410\\\\t    return result\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"     1\\t\\\"\\\"\\\"Consistency metrics for structured information extraction with self-consistency.\\n     2\\t\\n     3\\tImplements three complementary consistency measures over N sampled extractions:\\n     4\\t1. Fleiss' Kappa (surface matching) — treats N samples as N raters on entity presence\\n     5\\t2. Structural soft Jaccard — span-level soft overlap with Hungarian matching\\n     6\\t3. Oracle best-of-N — upper-bound F1 by selecting the best sample per instance\\n     7\\t\\n     8\\tKey dependencies: numpy, scipy (linear_sum_assignment).\\n     9\\t\\\"\\\"\\\"\\n    10\\t\\n    11\\tfrom __future__ import annotations\\n    12\\t\\n    13\\tfrom itertools import combinations\\n    14\\tfrom typing import TYPE_CHECKING\\n    15\\t\\n    16\\timport numpy as np\\n    17\\tfrom scipy.optimize import linear_sum_assignment\\n    18\\t\\n    19\\tif TYPE_CHECKING:\\n    20\\t    pass\\n    21\\t\\n    22\\t# ---------------------------------------------------------------------------\\n    23\\t# Type aliases (mirrors shared data format)\\n    24\\t# ---------------------------------------------------------------------------\\n    25\\tEntity = dict       # {\\\"text\\\", \\\"type\\\", \\\"start\\\", \\\"end\\\"}\\n    26\\tRelation = dict     # {\\\"head\\\", \\\"tail\\\", \\\"type\\\", ...}\\n    27\\tEvent = dict        # {\\\"trigger\\\": {...}, \\\"arguments\\\": [...]}\\n    28\\tExtraction = dict   # {\\\"entities\\\", \\\"relations\\\", \\\"events\\\"}\\n    29\\t\\n    30\\t\\n    31\\t# ===================================================================\\n    32\\t# 1. Fleiss' Kappa — surface-level entity agreement\\n    33\\t# ===================================================================\\n    34\\t\\n    35\\tdef _extract_surface_keys(sample: Extraction, subtask: str) -> set[tuple]:\\n    36\\t    \\\"\\\"\\\"Extract surface-level keys from a sample for Fleiss' Kappa computation.\\\"\\\"\\\"\\n    37\\t    if subtask == \\\"ner\\\":\\n    38\\t        return {(e[\\\"text\\\"], e[\\\"type\\\"]) for e in sample.get(\\\"entities\\\", [])}\\n    39\\t    elif subtask == \\\"re\\\":\\n    40\\t        return {(r[\\\"head\\\"], r[\\\"tail\\\"], r[\\\"type\\\"]) for r in sample.get(\\\"relations\\\", [])}\\n    41\\t    elif subtask == \\\"eae\\\":\\n    42\\t        keys: set[tuple] = set()\\n    43\\t        for ev in sample.get(\\\"events\\\", []):\\n    44\\t            t = ev.get(\\\"trigger\\\", {})\\n    45\\t            for arg in ev.get(\\\"arguments\\\", []):\\n    46\\t                keys.add((t.get(\\\"text\\\", \\\"\\\"), t.get(\\\"type\\\", \\\"\\\"), arg[\\\"role\\\"], arg[\\\"text\\\"]))\\n    47\\t        return keys\\n    48\\t    else:\\n    49\\t        raise ValueError(f\\\"Unknown subtask: {subtask}\\\")\\n    50\\t\\n    51\\t\\n    52\\tdef fleiss_kappa_surface(samples: list[Extraction], subtask: str = \\\"ner\\\") -> float:\\n    53\\t    \\\"\\\"\\\"Compute Fleiss' kappa treating N LLM samples as N raters on item presence.\\n    54\\t\\n    55\\t    Items are subtask-dependent surface keys:\\n    56\\t    - ner: (entity_text, entity_type)\\n    57\\t    - re: (head_text, tail_text, relation_type)\\n    58\\t    - eae: (trigger_text, trigger_type, role, argument_text)\\n    59\\t\\n    60\\t    Args:\\n    61\\t        samples: List of N extraction dicts.\\n    62\\t        subtask: \\\"ner\\\", \\\"re\\\", or \\\"eae\\\".\\n    63\\t\\n    64\\t    Returns:\\n    65\\t        Fleiss' kappa in [-1, 1].  Returns 1.0 for degenerate cases (<=1 unique\\n    66\\t        item, perfect agreement, or undefined P_e).\\n    67\\t    \\\"\\\"\\\"\\n    68\\t    n_raters = len(samples)\\n    69\\t    if n_raters <= 1:\\n    70\\t        return 1.0\\n    71\\t\\n    72\\t    # Collect unique keys and per-sample presence sets\\n    73\\t    entity_sets: list[set[tuple]] = []\\n    74\\t    all_keys: set[tuple] = set()\\n    75\\t    for sample in samples:\\n    76\\t        keys = _extract_surface_keys(sample, subtask)\\n    77\\t        entity_sets.append(keys)\\n    78\\t        all_keys |= keys\\n    79\\t\\n    80\\t    n_subjects = len(all_keys)\\n    81\\t    if n_subjects <= 0:\\n    82\\t        # All samples extracted nothing — perfect agreement on empty set\\n    83\\t        return 1.0\\n    84\\t\\n    85\\t    key_list = sorted(all_keys)\\n    86\\t\\n    87\\t    # Build rating matrix: n_subjects x 2 (categories: absent=0, present=1)\\n    88\\t    # n_ij = number of raters assigning subject i to category j\\n    89\\t    rating = np.zeros((n_subjects, 2), dtype=np.int64)\\n    90\\t    for es in \\n\\n... [截断: 输出过长，省略 8122 字符] ...\\n\\ns: N extraction dicts.\\n   299\\t        subtask: \\\"ner\\\" for entity consistency, \\\"eae\\\" for event-argument consistency.\\n   300\\t\\n   301\\t    Returns:\\n   302\\t        Mean pairwise soft Jaccard in [0, 1].\\n   303\\t    \\\"\\\"\\\"\\n   304\\t    n = len(samples)\\n   305\\t    if n <= 1:\\n   306\\t        return 1.0\\n   307\\t\\n   308\\t    if subtask == \\\"ner\\\":\\n   309\\t        pair_fn = _ner_soft_jaccard_pair\\n   310\\t    elif subtask == \\\"re\\\":\\n   311\\t        pair_fn = _re_soft_jaccard_pair\\n   312\\t    else:\\n   313\\t        pair_fn = _eae_soft_jaccard_pair\\n   314\\t\\n   315\\t    field = {\\\"ner\\\": \\\"entities\\\", \\\"re\\\": \\\"relations\\\", \\\"eae\\\": \\\"events\\\"}[subtask]\\n   316\\t\\n   317\\t    scores: list[float] = []\\n   318\\t    for i, j in combinations(range(n), 2):\\n   319\\t        score = pair_fn(\\n   320\\t            samples[i].get(field, []),\\n   321\\t            samples[j].get(field, []),\\n   322\\t        )\\n   323\\t        scores.append(score)\\n   324\\t\\n   325\\t    return float(np.mean(scores))\\n   326\\t\\n   327\\t\\n   328\\t# ===================================================================\\n   329\\t# 3. Oracle best-of-N\\n   330\\t# ===================================================================\\n   331\\t\\n   332\\tdef oracle_best_of_n(\\n   333\\t    samples: list[Extraction],\\n   334\\t    gold: Extraction,\\n   335\\t    subtask: str = \\\"ner\\\",\\n   336\\t) -> tuple[int, float]:\\n   337\\t    \\\"\\\"\\\"Select the sample with the highest F1 against the gold extraction.\\n   338\\t\\n   339\\t    Args:\\n   340\\t        samples: N extraction dicts.\\n   341\\t        gold: Gold-standard extraction.\\n   342\\t        subtask: Passed through to per_instance_f1.\\n   343\\t\\n   344\\t    Returns:\\n   345\\t        (best_index, best_f1). Returns (-1, 0.0) if samples is empty.\\n   346\\t    \\\"\\\"\\\"\\n   347\\t    if not samples:\\n   348\\t        return (-1, 0.0)\\n   349\\t\\n   350\\t    # Lazy import to avoid circular dependency with evaluation.py\\n   351\\t    from evaluation import per_instance_f1\\n   352\\t\\n   353\\t    best_idx = -1\\n   354\\t    best_f1 = -1.0\\n   355\\t\\n   356\\t    for idx, sample in enumerate(samples):\\n   357\\t        f1 = per_instance_f1(sample, gold, subtask=subtask)\\n   358\\t        if f1 > best_f1:\\n   359\\t            best_f1 = f1\\n   360\\t            best_idx = idx\\n   361\\t\\n   362\\t    return (best_idx, best_f1)\\n   363\\t\\n   364\\t\\n   365\\t# ===================================================================\\n   366\\t# Aggregate helper\\n   367\\t# ===================================================================\\n   368\\t\\n   369\\tdef compute_all_consistency_scores(\\n   370\\t    sampled_instances: list[dict],\\n   371\\t    subtask: str = \\\"ner\\\",\\n   372\\t) -> dict:\\n   373\\t    \\\"\\\"\\\"Compute all consistency metrics for a list of sampled instances.\\n   374\\t\\n   375\\t    Args:\\n   376\\t        sampled_instances: List of SampledInstance dicts, each with keys\\n   377\\t            \\\"id\\\", \\\"text\\\", \\\"gold\\\" (Extraction), \\\"samples\\\" (list[Extraction]).\\n   378\\t        subtask: \\\"ner\\\", \\\"re\\\", or \\\"eae\\\".\\n   379\\t\\n   380\\t    Returns:\\n   381\\t        Dict with per-instance score lists::\\n   382\\t\\n   383\\t            {\\n   384\\t                \\\"fleiss_kappa\\\": [float, ...],\\n   385\\t                \\\"soft_jaccard\\\": [float, ...],\\n   386\\t                \\\"oracle_f1\\\":    [float, ...],\\n   387\\t                \\\"oracle_indices\\\": [int, ...],\\n   388\\t            }\\n   389\\t    \\\"\\\"\\\"\\n   390\\t    result: dict[str, list] = {\\n   391\\t        \\\"fleiss_kappa\\\": [],\\n   392\\t        \\\"soft_jaccard\\\": [],\\n   393\\t        \\\"oracle_f1\\\": [],\\n   394\\t        \\\"oracle_indices\\\": [],\\n   395\\t    }\\n   396\\t\\n   397\\t    for inst in sampled_instances:\\n   398\\t        samples = inst[\\\"samples\\\"]\\n   399\\t        gold = inst[\\\"gold\\\"]\\n   400\\t\\n   401\\t        result[\\\"fleiss_kappa\\\"].append(fleiss_kappa_surface(samples, subtask=subtask))\\n   402\\t        result[\\\"soft_jaccard\\\"].append(\\n   403\\t            structural_consistency_soft_jaccard(samples, subtask=subtask)\\n   404\\t        )\\n   405\\t\\n   406\\t        best_idx, best_f1 = oracle_best_of_n(samples, gold, subtask=subtask)\\n   407\\t        result[\\\"oracle_f1\\\"].append(best_f1)\\n   408\\t        result[\\\"oracle_indices\\\"].append(best_idx)\\n   409\\t\\n   410\\t    return result\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0179PNuhHuZ4fURhU8YNbE7n`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "find /root/autodl-tmp/struct_self_consist_ie/output/ -name \"samples.jsonl\" -path \"*qwen3*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "33b63558-5bd9-4632-96ed-f3267a31fc22",
+  "uuid": "8bedda32-5757-4f5e-9356-ac0445038b5e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GtvwoKNiQ6JyNZcMMfxeq8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9288,
+      "cache_read_input_tokens": 29089,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9288
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-15T20:20:13.939Z_
+
+<details><summary>↩ Tool result · `toolu_0179PNuhHuZ4fURhU8YNbE7n`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/output/exp_qwen3_4b_conll_scs_inference/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_scale_qwen3_4b_conll/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_qwen3_4b_conll_scs_inference_v2/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_qwen3_4b_scierc_scs_inference/samples.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.34}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "33b63558-5bd9-4632-96ed-f3267a31fc22",
+  "uuid": "e9f30a38-850f-4700-b1cc-00738b9f49a9",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/exp_qwen3_4b_conll_scs_inference/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_scale_qwen3_4b_conll/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_qwen3_4b_conll_scs_inference_v2/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_qwen3_4b_scierc_scs_inference/samples.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.34}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/output/exp_qwen3_4b_conll_scs_inference/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_scale_qwen3_4b_conll/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_qwen3_4b_conll_scs_inference_v2/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_qwen3_4b_scierc_scs_inference/samples.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.34}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01SmRt1krSMARfk2HYPv3cFU`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "find /root/autodl-tmp/struct_self_consist_ie/output/ -name \"samples.jsonl\" -path \"*llama*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "33b63558-5bd9-4632-96ed-f3267a31fc22",
+  "uuid": "52050481-fa8d-4381-96d7-052d9bacc82d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GtvwoKNiQ6JyNZcMMfxeq8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9288,
+      "cache_read_input_tokens": 29089,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9288
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-15T20:20:14.544Z_
+
+<details><summary>↩ Tool result · `toolu_01SmRt1krSMARfk2HYPv3cFU`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/output/exp007_llama_dryrun/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp007_llama_inference/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_007_llama_seed123/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_007_llama_seed456/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_infer/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_007_llama_n16/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16_s123/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16_s456/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16_s123_r1024/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16_s456_r1024/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_007_llama_n16_r1024/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_018_llama_scierc_seed456/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_018_llama_scierc_seed123/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_018_llama_scierc_seed42_r1024/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_018_llama_scierc_seed456_r1024/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16_r1024/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n8_t07/samples.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.34}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "33b63558-5bd9-4632-96ed-f3267a31fc22",
+  "uuid": "85185aee-091b-4201-a497-c54c3c80fddd",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/exp007_llama_dryrun/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp007_llama_inference/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_007_llama_seed123/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_007_llama_seed456/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_infer/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_007_llama_n16/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16_s123/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16_s456/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16_s123_r1024/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16_s456_r1024/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_007_llama_n16_r1024/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_018_llama_scierc_seed456/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_018_llama_scierc_seed123/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_018_llama_scierc_seed42_r1024/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_018_llama_scierc_seed456_r1024/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16_r1024/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n8_t07/samples.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.34}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/output/exp007_llama_dryrun/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp007_llama_inference/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_007_llama_seed123/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_007_llama_seed456/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_infer/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_007_llama_n16/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16_s123/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16_s456/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16_s123_r1024/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16_s456_r1024/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_007_llama_n16_r1024/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_018_llama_scierc_seed456/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_018_llama_scierc_seed123/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_018_llama_scierc_seed42_r1024/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_018_llama_scierc_seed456_r1024/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16_r1024/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n8_t07/samples.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.34}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 30_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The output was truncated. I need to see the key functions: `_span_soft_jaccard` (lines 123+) and `_ner_soft_jaccard_pair` (lines 134+). Let me read those specific sections.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "33b63558-5bd9-4632-96ed-f3267a31fc22",
+  "uuid": "70bbb967-1ee8-4a89-a151-8e5b1416753a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Dabf4JQkANKXrjN2JRKQAn",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4965,
+      "cache_read_input_tokens": 38377,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4965
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 31_
+
+The output was truncated. Let me read the critical SJ functions.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "33b63558-5bd9-4632-96ed-f3267a31fc22",
+  "uuid": "709cd74e-a901-48c7-b0a6-3b561f6e30d7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Dabf4JQkANKXrjN2JRKQAn",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4965,
+      "cache_read_input_tokens": 38377,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4965
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_012WbXHhTyvvighJaZXMUkQf`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "head -230 /root/autodl-tmp/struct_self_consist_ie/code/consistency.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "33b63558-5bd9-4632-96ed-f3267a31fc22",
+  "uuid": "ed4bd5dd-d940-4072-b227-97053c759851",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Dabf4JQkANKXrjN2JRKQAn",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4965,
+      "cache_read_input_tokens": 38377,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4965
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-15T20:20:19.960Z_
+
+<details><summary>↩ Tool result · `toolu_012WbXHhTyvvighJaZXMUkQf`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Consistency metrics for structured information extraction with self-consistency.\\n\\nImplements three complementary consistency measures over N sampled extractions:\\n1. Fleiss' Kappa (surface matching) — treats N samples as N raters on entity presence\\n2. Structural soft Jaccard — span-level soft overlap with Hungarian matching\\n3. Oracle best-of-N — upper-bound F1 by selecting the best sample per instance\\n\\nKey dependencies: numpy, scipy (linear_sum_assignment).\\n\\\"\\\"\\\"\\n\\nfrom __future__ import annotations\\n\\nfrom itertools import combinations\\nfrom typing import TYPE_CHECKING\\n\\nimport numpy as np\\nfrom scipy.optimize import linear_sum_assignment\\n\\nif TYPE_CHECKING:\\n    pass\\n\\n# ---------------------------------------------------------------------------\\n# Type aliases (mirrors shared data format)\\n# ---------------------------------------------------------------------------\\nEntity = dict       # {\\\"text\\\", \\\"type\\\", \\\"start\\\", \\\"end\\\"}\\nRelation = dict     # {\\\"head\\\", \\\"tail\\\", \\\"type\\\", ...}\\nEvent = dict        # {\\\"trigger\\\": {...}, \\\"arguments\\\": [...]}\\nExtraction = dict   # {\\\"entities\\\", \\\"relations\\\", \\\"events\\\"}\\n\\n\\n# ===================================================================\\n# 1. Fleiss' Kappa — surface-level entity agreement\\n# ===================================================================\\n\\ndef _extract_surface_keys(sample: Extraction, subtask: str) -> set[tuple]:\\n    \\\"\\\"\\\"Extract surface-level keys from a sample for Fleiss' Kappa computation.\\\"\\\"\\\"\\n    if subtask == \\\"ner\\\":\\n        return {(e[\\\"text\\\"], e[\\\"type\\\"]) for e in sample.get(\\\"entities\\\", [])}\\n    elif subtask == \\\"re\\\":\\n        return {(r[\\\"head\\\"], r[\\\"tail\\\"], r[\\\"type\\\"]) for r in sample.get(\\\"relations\\\", [])}\\n    elif subtask == \\\"eae\\\":\\n        keys: set[tuple] = set()\\n        for ev in sample.get(\\\"events\\\", []):\\n            t = ev.get(\\\"trigger\\\", {})\\n            for arg in ev.get(\\\"arguments\\\", []):\\n                keys.add((t.get(\\\"text\\\", \\\"\\\"), t.get(\\\"type\\\", \\\"\\\"), arg[\\\"role\\\"], arg[\\\"text\\\"]))\\n        return keys\\n    else:\\n        raise ValueError(f\\\"Unknown subtask: {subtask}\\\")\\n\\n\\ndef fleiss_kappa_surface(samples: list[Extraction], subtask: str = \\\"ner\\\") -> float:\\n    \\\"\\\"\\\"Compute Fleiss' kappa treating N LLM samples as N raters on item presence.\\n\\n    Items are subtask-dependent surface keys:\\n    - ner: (entity_text, entity_type)\\n    - re: (head_text, tail_text, relation_type)\\n    - eae: (trigger_text, trigger_type, role, argument_text)\\n\\n    Args:\\n        samples: List of N extraction dicts.\\n        subtask: \\\"ner\\\", \\\"re\\\", or \\\"eae\\\".\\n\\n    Returns:\\n        Fleiss' kappa in [-1, 1].  Returns 1.0 for degenerate cases (<=1 unique\\n        item, perfect agreement, or undefined P_e).\\n    \\\"\\\"\\\"\\n    n_raters = len(samples)\\n    if n_raters <= 1:\\n        return 1.0\\n\\n    # Collect unique keys and per-sample presence sets\\n    entity_sets: list[set[tuple]] = []\\n    all_keys: set[tuple] = set()\\n    for sample in samples:\\n        keys = _extract_surface_keys(sample, subtask)\\n        entity_sets.append(keys)\\n        all_keys |= keys\\n\\n    n_subjects = len(all_keys)\\n    if n_subjects <= 0:\\n        # All samples extracted nothing — perfect agreement on empty set\\n        return 1.0\\n\\n    key_list = sorted(all_keys)\\n\\n    # Build rating matrix: n_subjects x 2 (categories: absent=0, present=1)\\n    # n_ij = number of raters assigning subject i to category j\\n    rating = np.zeros((n_subjects, 2), dtype=np.int64)\\n    for es in entity_sets:\\n        for idx, key in enumerate(key_list):\\n            if key in es:\\n                rating[idx, 1] += 1\\n            else:\\n                rating[idx, 0] += 1\\n\\n    n = n_raters\\n    k = 2  # number of categories\\n\\n    # Check perfect agreement: every subject has all votes in one category\\n    if np.all(np.max(rating, axis=1) == n):\\n        return 1.0\\n\\n    # P_i for each subject\\n    P_i = (np.sum(rating ** 2, axis=1) - n) / (n * (n - 1))\\n    P_bar = np.mean(P_i)\\n\\n    # P_e — expected agreement by chance\\n    p_j = np.sum(rating, axis=0) / (n_subjects * n)\\n    P_e = np.sum(p_j ** 2)\\n\\n    if abs(1.0 - P_e) < 1e-12:\\n\\n... [截断: 输出过长，省略 10 字符] ...\\n\\neturn 1.0\\n\\n    kappa = (P_bar - P_e) / (1.0 - P_e)\\n    return float(kappa)\\n\\n\\n# ===================================================================\\n# 2. Structural soft Jaccard consistency\\n# ===================================================================\\n\\ndef _span_soft_jaccard(s1_start: int, s1_end: int, s2_start: int, s2_end: int) -> float:\\n    \\\"\\\"\\\"Soft Jaccard between two character spans.\\\"\\\"\\\"\\n    overlap = max(0, min(s1_end, s2_end) - max(s1_start, s2_start))\\n    len1 = s1_end - s1_start\\n    len2 = s2_end - s2_start\\n    union = len1 + len2 - overlap\\n    if union <= 0:\\n        return 0.0\\n    return overlap / union\\n\\n\\ndef _ner_soft_jaccard_pair(entities_a: list[Entity], entities_b: list[Entity]) -> float:\\n    \\\"\\\"\\\"Compute type-aware soft Jaccard between two entity lists via Hungarian matching.\\n\\n    Groups entities by type, finds optimal alignment within each group using\\n    span-level soft Jaccard as the similarity, then computes a weighted average.\\n\\n    Args:\\n        entities_a: Entities from sample i.\\n        entities_b: Entities from sample j.\\n\\n    Returns:\\n        Weighted-average soft Jaccard across all type groups.\\n    \\\"\\\"\\\"\\n    if not entities_a and not entities_b:\\n        return 1.0\\n    if not entities_a or not entities_b:\\n        return 0.0\\n\\n    # Group by entity type\\n    types: set[str] = set()\\n    groups_a: dict[str, list[Entity]] = {}\\n    groups_b: dict[str, list[Entity]] = {}\\n\\n    for e in entities_a:\\n        t = e[\\\"type\\\"]\\n        types.add(t)\\n        groups_a.setdefault(t, []).append(e)\\n    for e in entities_b:\\n        t = e[\\\"type\\\"]\\n        types.add(t)\\n        groups_b.setdefault(t, []).append(e)\\n\\n    total_score = 0.0\\n    total_weight = 0\\n\\n    for t in types:\\n        ga = groups_a.get(t, [])\\n        gb = groups_b.get(t, [])\\n        denom = max(len(ga), len(gb))\\n        if denom == 0:\\n            continue\\n\\n        total_weight += denom\\n\\n        if not ga or not gb:\\n            # One side empty — all unmatched, contributes 0\\n            continue\\n\\n        # Cost matrix for Hungarian (we maximize similarity, so negate for min-cost)\\n        cost = np.zeros((len(ga), len(gb)), dtype=np.float64)\\n        for i, ea in enumerate(ga):\\n            for j, eb in enumerate(gb):\\n                cost[i, j] = _span_soft_jaccard(ea[\\\"start\\\"], ea[\\\"end\\\"],\\n                                                 eb[\\\"start\\\"], eb[\\\"end\\\"])\\n\\n        row_ind, col_ind = linear_sum_assignment(-cost)  # negate to maximize\\n        matched_sim = cost[row_ind, col_ind].sum()\\n        # Normalize by the larger set size to penalize unmatched spans\\n        total_score += matched_sim\\n\\n    if total_weight == 0:\\n        return 1.0\\n    return total_score / total_weight\\n\\n\\ndef _re_soft_jaccard_pair(relations_a: list[dict], relations_b: list[dict]) -> float:\\n    \\\"\\\"\\\"Soft Jaccard for relation extraction via Hungarian matching.\\n\\n    Relation similarity = head_span_sj * tail_span_sj * type_match.\\n    \\\"\\\"\\\"\\n    if not relations_a and not relations_b:\\n        return 1.0\\n    if not relations_a or not relations_b:\\n        return 0.0\\n\\n    cost = np.zeros((len(relations_a), len(relations_b)), dtype=np.float64)\\n    for i, a in enumerate(relations_a):\\n        for j, b in enumerate(relations_b):\\n            if a[\\\"type\\\"] != b[\\\"type\\\"]:\\n                continue\\n            head_sj = _span_soft_jaccard(a[\\\"head_start\\\"], a[\\\"head_end\\\"],\\n                                         b[\\\"head_start\\\"], b[\\\"head_end\\\"])\\n            tail_sj = _span_soft_jaccard(a[\\\"tail_start\\\"], a[\\\"tail_end\\\"],\\n                                         b[\\\"tail_start\\\"], b[\\\"tail_end\\\"])\\n            cost[i, j] = head_sj * tail_sj\\n\\n    row_ind, col_ind = linear_sum_assignment(-cost)\\n    matched_sim = cost[row_ind, col_ind].sum()\\n    return matched_sim / max(len(relations_a), len(relations_b))\\n\\n\\ndef _eae_soft_jaccard_pair(events_a: list[Event], events_b: list[Event]) -> float:\\n    \\\"\\\"\\\"Soft Jaccard for event argument extraction.\\n\\n    Groups arguments by (trigger_type, role) and applies Hungarian matching\\n    within each group.\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "33b63558-5bd9-4632-96ed-f3267a31fc22",
+  "uuid": "da3e27e1-c10e-4ec5-914e-63ed0533cbec",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Consistency metrics for structured information extraction with self-consistency.\\\\n\\\\nImplements three complementary consistency measures over N sampled extractions:\\\\n1. Fleiss' Kappa (surface matching) — treats N samples as N raters on entity presence\\\\n2. Structural soft Jaccard — span-level soft overlap with Hungarian matching\\\\n3. Oracle best-of-N — upper-bound F1 by selecting the best sample per instance\\\\n\\\\nKey dependencies: numpy, scipy (linear_sum_assignment).\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nfrom __future__ import annotations\\\\n\\\\nfrom itertools import combinations\\\\nfrom typing import TYPE_CHECKING\\\\n\\\\nimport numpy as np\\\\nfrom scipy.optimize import linear_sum_assignment\\\\n\\\\nif TYPE_CHECKING:\\\\n    pass\\\\n\\\\n# ---------------------------------------------------------------------------\\\\n# Type aliases (mirrors shared data format)\\\\n# ---------------------------------------------------------------------------\\\\nEntity = dict       # {\\\\\\\"text\\\\\\\", \\\\\\\"type\\\\\\\", \\\\\\\"start\\\\\\\", \\\\\\\"end\\\\\\\"}\\\\nRelation = dict     # {\\\\\\\"head\\\\\\\", \\\\\\\"tail\\\\\\\", \\\\\\\"type\\\\\\\", ...}\\\\nEvent = dict        # {\\\\\\\"trigger\\\\\\\": {...}, \\\\\\\"arguments\\\\\\\": [...]}\\\\nExtraction = dict   # {\\\\\\\"entities\\\\\\\", \\\\\\\"relations\\\\\\\", \\\\\\\"events\\\\\\\"}\\\\n\\\\n\\\\n# ===================================================================\\\\n# 1. Fleiss' Kappa — surface-level entity agreement\\\\n# ===================================================================\\\\n\\\\ndef _extract_surface_keys(sample: Extraction, subtask: str) -> set[tuple]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Extract surface-level keys from a sample for Fleiss' Kappa computation.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    if subtask == \\\\\\\"ner\\\\\\\":\\\\n        return {(e[\\\\\\\"text\\\\\\\"], e[\\\\\\\"type\\\\\\\"]) for e in sample.get(\\\\\\\"entities\\\\\\\", [])}\\\\n    elif subtask == \\\\\\\"re\\\\\\\":\\\\n        return {(r[\\\\\\\"head\\\\\\\"], r[\\\\\\\"tail\\\\\\\"], r[\\\\\\\"type\\\\\\\"]) for r in sample.get(\\\\\\\"relations\\\\\\\", [])}\\\\n    elif subtask == \\\\\\\"eae\\\\\\\":\\\\n        keys: set[tuple] = set()\\\\n        for ev in sample.get(\\\\\\\"events\\\\\\\", []):\\\\n            t = ev.get(\\\\\\\"trigger\\\\\\\", {})\\\\n            for arg in ev.get(\\\\\\\"arguments\\\\\\\", []):\\\\n                keys.add((t.get(\\\\\\\"text\\\\\\\", \\\\\\\"\\\\\\\"), t.get(\\\\\\\"type\\\\\\\", \\\\\\\"\\\\\\\"), arg[\\\\\\\"role\\\\\\\"], arg[\\\\\\\"text\\\\\\\"]))\\\\n        return keys\\\\n    else:\\\\n        raise ValueError(f\\\\\\\"Unknown subtask: {subtask}\\\\\\\")\\\\n\\\\n\\\\ndef fleiss_kappa_surface(samples: list[Extraction], subtask: str = \\\\\\\"ner\\\\\\\") -> float:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Compute Fleiss' kappa treating N LLM samples as N raters on item presence.\\\\n\\\\n    Items are subtask-dependent surface keys:\\\\n    - ner: (entity_text, entity_type)\\\\n    - re: (head_text, tail_text, relation_type)\\\\n    - eae: (trigger_text, trigger_type, role, argument_text)\\\\n\\\\n    Args:\\\\n        samples: List of N extraction dicts.\\\\n        subtask: \\\\\\\"ner\\\\\\\", \\\\\\\"re\\\\\\\", or \\\\\\\"eae\\\\\\\".\\\\n\\\\n    Returns:\\\\n        Fleiss' kappa in [-1, 1].  Returns 1.0 for degenerate cases (<=1 unique\\\\n        item, perfect agreement, or undefined P_e).\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    n_raters = len(samples)\\\\n    if n_raters <= 1:\\\\n        return 1.0\\\\n\\\\n    # Collect unique keys and per-sample presence sets\\\\n    entity_sets: list[set[tuple]] = []\\\\n    all_keys: set[tuple] = set()\\\\n    for sample in samples:\\\\n        keys = _extract_surface_keys(sample, subtask)\\\\n        entity_sets.append(keys)\\\\n        all_keys |= keys\\\\n\\\\n    n_subjects = len(all_keys)\\\\n    if n_subjects <= 0:\\\\n        # All samples extracted nothing — perfect agreement on empty set\\\\n        return 1.0\\\\n\\\\n    key_list = sorted(all_keys)\\\\n\\\\n    # Build rating matrix: n_subjects x 2 (categories: absent=0, present=1)\\\\n    # n_ij = number of raters assigning subject i to category j\\\\n    rating = np.zeros((n_subjects, 2), dtype=np.int64)\\\\n    for es in entity_sets:\\\\n        for idx, key in enumerate(key_list):\\\\n            if key in es:\\\\n                rating[idx, 1] += 1\\\\n            else:\\\\n                rating[idx, 0] += 1\\\\n\\\\n    n = n_raters\\\\n    k = 2  # number of categories\\\\n\\\\n    # Check perfect agreement: every subject has all votes in one category\\\\n    if np.all(np.max(rating, axis=1) == n):\\\\n        return 1.0\\\\n\\\\n    # P_i for each subject\\\\n    P_i = (np.sum(rating ** 2, axis=1) - n) / (n * (n - 1))\\\\n    P_bar = np.mean(P_i)\\\\n\\\\n    # P_e — expected agreement by chance\\\\n    p_j = np.sum(rating, axis=0) / (n_subjects * n)\\\\n    P_e = np.sum(p_j ** 2)\\\\n\\\\n    if abs(1.0 - P_e) < 1e-12:\\\\n\\\\n... [截断: 输出过长，省略 10 字符] ...\\\\n\\\\neturn 1.0\\\\n\\\\n    kappa = (P_bar - P_e) / (1.0 - P_e)\\\\n    return float(kappa)\\\\n\\\\n\\\\n# ===================================================================\\\\n# 2. Structural soft Jaccard consistency\\\\n# ===================================================================\\\\n\\\\ndef _span_soft_jaccard(s1_start: int, s1_end: int, s2_start: int, s2_end: int) -> float:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Soft Jaccard between two character spans.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    overlap = max(0, min(s1_end, s2_end) - max(s1_start, s2_start))\\\\n    len1 = s1_end - s1_start\\\\n    len2 = s2_end - s2_start\\\\n    union = len1 + len2 - overlap\\\\n    if union <= 0:\\\\n        return 0.0\\\\n    return overlap / union\\\\n\\\\n\\\\ndef _ner_soft_jaccard_pair(entities_a: list[Entity], entities_b: list[Entity]) -> float:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Compute type-aware soft Jaccard between two entity lists via Hungarian matching.\\\\n\\\\n    Groups entities by type, finds optimal alignment within each group using\\\\n    span-level soft Jaccard as the similarity, then computes a weighted average.\\\\n\\\\n    Args:\\\\n        entities_a: Entities from sample i.\\\\n        entities_b: Entities from sample j.\\\\n\\\\n    Returns:\\\\n        Weighted-average soft Jaccard across all type groups.\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    if not entities_a and not entities_b:\\\\n        return 1.0\\\\n    if not entities_a or not entities_b:\\\\n        return 0.0\\\\n\\\\n    # Group by entity type\\\\n    types: set[str] = set()\\\\n    groups_a: dict[str, list[Entity]] = {}\\\\n    groups_b: dict[str, list[Entity]] = {}\\\\n\\\\n    for e in entities_a:\\\\n        t = e[\\\\\\\"type\\\\\\\"]\\\\n        types.add(t)\\\\n        groups_a.setdefault(t, []).append(e)\\\\n    for e in entities_b:\\\\n        t = e[\\\\\\\"type\\\\\\\"]\\\\n        types.add(t)\\\\n        groups_b.setdefault(t, []).append(e)\\\\n\\\\n    total_score = 0.0\\\\n    total_weight = 0\\\\n\\\\n    for t in types:\\\\n        ga = groups_a.get(t, [])\\\\n        gb = groups_b.get(t, [])\\\\n        denom = max(len(ga), len(gb))\\\\n        if denom == 0:\\\\n            continue\\\\n\\\\n        total_weight += denom\\\\n\\\\n        if not ga or not gb:\\\\n            # One side empty — all unmatched, contributes 0\\\\n            continue\\\\n\\\\n        # Cost matrix for Hungarian (we maximize similarity, so negate for min-cost)\\\\n        cost = np.zeros((len(ga), len(gb)), dtype=np.float64)\\\\n        for i, ea in enumerate(ga):\\\\n            for j, eb in enumerate(gb):\\\\n                cost[i, j] = _span_soft_jaccard(ea[\\\\\\\"start\\\\\\\"], ea[\\\\\\\"end\\\\\\\"],\\\\n                                                 eb[\\\\\\\"start\\\\\\\"], eb[\\\\\\\"end\\\\\\\"])\\\\n\\\\n        row_ind, col_ind = linear_sum_assignment(-cost)  # negate to maximize\\\\n        matched_sim = cost[row_ind, col_ind].sum()\\\\n        # Normalize by the larger set size to penalize unmatched spans\\\\n        total_score += matched_sim\\\\n\\\\n    if total_weight == 0:\\\\n        return 1.0\\\\n    return total_score / total_weight\\\\n\\\\n\\\\ndef _re_soft_jaccard_pair(relations_a: list[dict], relations_b: list[dict]) -> float:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Soft Jaccard for relation extraction via Hungarian matching.\\\\n\\\\n    Relation similarity = head_span_sj * tail_span_sj * type_match.\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    if not relations_a and not relations_b:\\\\n        return 1.0\\\\n    if not relations_a or not relations_b:\\\\n        return 0.0\\\\n\\\\n    cost = np.zeros((len(relations_a), len(relations_b)), dtype=np.float64)\\\\n    for i, a in enumerate(relations_a):\\\\n        for j, b in enumerate(relations_b):\\\\n            if a[\\\\\\\"type\\\\\\\"] != b[\\\\\\\"type\\\\\\\"]:\\\\n                continue\\\\n            head_sj = _span_soft_jaccard(a[\\\\\\\"head_start\\\\\\\"], a[\\\\\\\"head_end\\\\\\\"],\\\\n                                         b[\\\\\\\"head_start\\\\\\\"], b[\\\\\\\"head_end\\\\\\\"])\\\\n            tail_sj = _span_soft_jaccard(a[\\\\\\\"tail_start\\\\\\\"], a[\\\\\\\"tail_end\\\\\\\"],\\\\n                                         b[\\\\\\\"tail_start\\\\\\\"], b[\\\\\\\"tail_end\\\\\\\"])\\\\n            cost[i, j] = head_sj * tail_sj\\\\n\\\\n    row_ind, col_ind = linear_sum_assignment(-cost)\\\\n    matched_sim = cost[row_ind, col_ind].sum()\\\\n    return matched_sim / max(len(relations_a), len(relations_b))\\\\n\\\\n\\\\ndef _eae_soft_jaccard_pair(events_a: list[Event], events_b: list[Event]) -> float:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Soft Jaccard for event argument extraction.\\\\n\\\\n    Groups arguments by (trigger_type, role) and applies Hungarian matching\\\\n    within each group.\\\\n\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Consistency metrics for structured information extraction with self-consistency.\\n\\nImplements three complementary consistency measures over N sampled extractions:\\n1. Fleiss' Kappa (surface matching) — treats N samples as N raters on entity presence\\n2. Structural soft Jaccard — span-level soft overlap with Hungarian matching\\n3. Oracle best-of-N — upper-bound F1 by selecting the best sample per instance\\n\\nKey dependencies: numpy, scipy (linear_sum_assignment).\\n\\\"\\\"\\\"\\n\\nfrom __future__ import annotations\\n\\nfrom itertools import combinations\\nfrom typing import TYPE_CHECKING\\n\\nimport numpy as np\\nfrom scipy.optimize import linear_sum_assignment\\n\\nif TYPE_CHECKING:\\n    pass\\n\\n# ---------------------------------------------------------------------------\\n# Type aliases (mirrors shared data format)\\n# ---------------------------------------------------------------------------\\nEntity = dict       # {\\\"text\\\", \\\"type\\\", \\\"start\\\", \\\"end\\\"}\\nRelation = dict     # {\\\"head\\\", \\\"tail\\\", \\\"type\\\", ...}\\nEvent = dict        # {\\\"trigger\\\": {...}, \\\"arguments\\\": [...]}\\nExtraction = dict   # {\\\"entities\\\", \\\"relations\\\", \\\"events\\\"}\\n\\n\\n# ===================================================================\\n# 1. Fleiss' Kappa — surface-level entity agreement\\n# ===================================================================\\n\\ndef _extract_surface_keys(sample: Extraction, subtask: str) -> set[tuple]:\\n    \\\"\\\"\\\"Extract surface-level keys from a sample for Fleiss' Kappa computation.\\\"\\\"\\\"\\n    if subtask == \\\"ner\\\":\\n        return {(e[\\\"text\\\"], e[\\\"type\\\"]) for e in sample.get(\\\"entities\\\", [])}\\n    elif subtask == \\\"re\\\":\\n        return {(r[\\\"head\\\"], r[\\\"tail\\\"], r[\\\"type\\\"]) for r in sample.get(\\\"relations\\\", [])}\\n    elif subtask == \\\"eae\\\":\\n        keys: set[tuple] = set()\\n        for ev in sample.get(\\\"events\\\", []):\\n            t = ev.get(\\\"trigger\\\", {})\\n            for arg in ev.get(\\\"arguments\\\", []):\\n                keys.add((t.get(\\\"text\\\", \\\"\\\"), t.get(\\\"type\\\", \\\"\\\"), arg[\\\"role\\\"], arg[\\\"text\\\"]))\\n        return keys\\n    else:\\n        raise ValueError(f\\\"Unknown subtask: {subtask}\\\")\\n\\n\\ndef fleiss_kappa_surface(samples: list[Extraction], subtask: str = \\\"ner\\\") -> float:\\n    \\\"\\\"\\\"Compute Fleiss' kappa treating N LLM samples as N raters on item presence.\\n\\n    Items are subtask-dependent surface keys:\\n    - ner: (entity_text, entity_type)\\n    - re: (head_text, tail_text, relation_type)\\n    - eae: (trigger_text, trigger_type, role, argument_text)\\n\\n    Args:\\n        samples: List of N extraction dicts.\\n        subtask: \\\"ner\\\", \\\"re\\\", or \\\"eae\\\".\\n\\n    Returns:\\n        Fleiss' kappa in [-1, 1].  Returns 1.0 for degenerate cases (<=1 unique\\n        item, perfect agreement, or undefined P_e).\\n    \\\"\\\"\\\"\\n    n_raters = len(samples)\\n    if n_raters <= 1:\\n        return 1.0\\n\\n    # Collect unique keys and per-sample presence sets\\n    entity_sets: list[set[tuple]] = []\\n    all_keys: set[tuple] = set()\\n    for sample in samples:\\n        keys = _extract_surface_keys(sample, subtask)\\n        entity_sets.append(keys)\\n        all_keys |= keys\\n\\n    n_subjects = len(all_keys)\\n    if n_subjects <= 0:\\n        # All samples extracted nothing — perfect agreement on empty set\\n        return 1.0\\n\\n    key_list = sorted(all_keys)\\n\\n    # Build rating matrix: n_subjects x 2 (categories: absent=0, present=1)\\n    # n_ij = number of raters assigning subject i to category j\\n    rating = np.zeros((n_subjects, 2), dtype=np.int64)\\n    for es in entity_sets:\\n        for idx, key in enumerate(key_list):\\n            if key in es:\\n                rating[idx, 1] += 1\\n            else:\\n                rating[idx, 0] += 1\\n\\n    n = n_raters\\n    k = 2  # number of categories\\n\\n    # Check perfect agreement: every subject has all votes in one category\\n    if np.all(np.max(rating, axis=1) == n):\\n        return 1.0\\n\\n    # P_i for each subject\\n    P_i = (np.sum(rating ** 2, axis=1) - n) / (n * (n - 1))\\n    P_bar = np.mean(P_i)\\n\\n    # P_e — expected agreement by chance\\n    p_j = np.sum(rating, axis=0) / (n_subjects * n)\\n    P_e = np.sum(p_j ** 2)\\n\\n    if abs(1.0 - P_e) < 1e-12:\\n\\n... [截断: 输出过长，省略 10 字符] ...\\n\\neturn 1.0\\n\\n    kappa = (P_bar - P_e) / (1.0 - P_e)\\n    return float(kappa)\\n\\n\\n# ===================================================================\\n# 2. Structural soft Jaccard consistency\\n# ===================================================================\\n\\ndef _span_soft_jaccard(s1_start: int, s1_end: int, s2_start: int, s2_end: int) -> float:\\n    \\\"\\\"\\\"Soft Jaccard between two character spans.\\\"\\\"\\\"\\n    overlap = max(0, min(s1_end, s2_end) - max(s1_start, s2_start))\\n    len1 = s1_end - s1_start\\n    len2 = s2_end - s2_start\\n    union = len1 + len2 - overlap\\n    if union <= 0:\\n        return 0.0\\n    return overlap / union\\n\\n\\ndef _ner_soft_jaccard_pair(entities_a: list[Entity], entities_b: list[Entity]) -> float:\\n    \\\"\\\"\\\"Compute type-aware soft Jaccard between two entity lists via Hungarian matching.\\n\\n    Groups entities by type, finds optimal alignment within each group using\\n    span-level soft Jaccard as the similarity, then computes a weighted average.\\n\\n    Args:\\n        entities_a: Entities from sample i.\\n        entities_b: Entities from sample j.\\n\\n    Returns:\\n        Weighted-average soft Jaccard across all type groups.\\n    \\\"\\\"\\\"\\n    if not entities_a and not entities_b:\\n        return 1.0\\n    if not entities_a or not entities_b:\\n        return 0.0\\n\\n    # Group by entity type\\n    types: set[str] = set()\\n    groups_a: dict[str, list[Entity]] = {}\\n    groups_b: dict[str, list[Entity]] = {}\\n\\n    for e in entities_a:\\n        t = e[\\\"type\\\"]\\n        types.add(t)\\n        groups_a.setdefault(t, []).append(e)\\n    for e in entities_b:\\n        t = e[\\\"type\\\"]\\n        types.add(t)\\n        groups_b.setdefault(t, []).append(e)\\n\\n    total_score = 0.0\\n    total_weight = 0\\n\\n    for t in types:\\n        ga = groups_a.get(t, [])\\n        gb = groups_b.get(t, [])\\n        denom = max(len(ga), len(gb))\\n        if denom == 0:\\n            continue\\n\\n        total_weight += denom\\n\\n        if not ga or not gb:\\n            # One side empty — all unmatched, contributes 0\\n            continue\\n\\n        # Cost matrix for Hungarian (we maximize similarity, so negate for min-cost)\\n        cost = np.zeros((len(ga), len(gb)), dtype=np.float64)\\n        for i, ea in enumerate(ga):\\n            for j, eb in enumerate(gb):\\n                cost[i, j] = _span_soft_jaccard(ea[\\\"start\\\"], ea[\\\"end\\\"],\\n                                                 eb[\\\"start\\\"], eb[\\\"end\\\"])\\n\\n        row_ind, col_ind = linear_sum_assignment(-cost)  # negate to maximize\\n        matched_sim = cost[row_ind, col_ind].sum()\\n        # Normalize by the larger set size to penalize unmatched spans\\n        total_score += matched_sim\\n\\n    if total_weight == 0:\\n        return 1.0\\n    return total_score / total_weight\\n\\n\\ndef _re_soft_jaccard_pair(relations_a: list[dict], relations_b: list[dict]) -> float:\\n    \\\"\\\"\\\"Soft Jaccard for relation extraction via Hungarian matching.\\n\\n    Relation similarity = head_span_sj * tail_span_sj * type_match.\\n    \\\"\\\"\\\"\\n    if not relations_a and not relations_b:\\n        return 1.0\\n    if not relations_a or not relations_b:\\n        return 0.0\\n\\n    cost = np.zeros((len(relations_a), len(relations_b)), dtype=np.float64)\\n    for i, a in enumerate(relations_a):\\n        for j, b in enumerate(relations_b):\\n            if a[\\\"type\\\"] != b[\\\"type\\\"]:\\n                continue\\n            head_sj = _span_soft_jaccard(a[\\\"head_start\\\"], a[\\\"head_end\\\"],\\n                                         b[\\\"head_start\\\"], b[\\\"head_end\\\"])\\n            tail_sj = _span_soft_jaccard(a[\\\"tail_start\\\"], a[\\\"tail_end\\\"],\\n                                         b[\\\"tail_start\\\"], b[\\\"tail_end\\\"])\\n            cost[i, j] = head_sj * tail_sj\\n\\n    row_ind, col_ind = linear_sum_assignment(-cost)\\n    matched_sim = cost[row_ind, col_ind].sum()\\n    return matched_sim / max(len(relations_a), len(relations_b))\\n\\n\\ndef _eae_soft_jaccard_pair(events_a: list[Event], events_b: list[Event]) -> float:\\n    \\\"\\\"\\\"Soft Jaccard for event argument extraction.\\n\\n    Groups arguments by (trigger_type, role) and applies Hungarian matching\\n    within each group.\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 34_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I understand the SJ implementation. The key points:
+
+1. `_span_soft_jaccard`: Uses `overlap / union` where `union = len1 + len2 - overlap` — this is actually the standard Jaccard on character spans.
+
+2. `_ner_soft_jaccard_pair`: This is the important one for NER:
+   - Groups entities by type
+   - For each type group: `denom = max(len(ga), len(gb))` — this is the **max normalizer**
+   - Does Hungarian matching on span SJ within each type group
+   - `total_score += matched_sim` (sum of matched span SJs)
+   - Returns `total_score / total_weight` where `total_weight` is the sum of max entity counts across all types
+
+So the max normalizer operates at the entity-list level: each type group's denominator is `max(|A_t|, |B_t|)`, and the final score normalizes by the sum across all types. For a union-based approach, I'd need the denominator to be something like `|A_t| + |B_t| - |matched pairs|`, but entities aren't token sets here, so that's trickier to define.
+
+Actually, I need to think through what the reviewer is really asking. They want `|g_i ∪ g_j|` as the normalizer instead of `max(|g_i|, |g_j|)`. In NER terms, g_i is the set of entities from one generation, so the max gives the larger count while the union gives the total unique entities across both. The challenge is that entities can have soft overlaps, so defining "union" in a soft Jaccard sense requires careful handling. Let me look at how the current code groups by type and applies the max denominator.
+
+For each entity type, the current approach uses the max of the two entity counts as the denominator, but if I use the union approach, I'd need to account for matched pairs — the denominator would be the total entities minus the overlap. But here's the thing: in Hungarian matching, the number of matched pairs equals the minimum of the two counts, so the union denominator actually simplifies to the same value as max. So these approaches might be mathematically equivalent. treating entities as discrete items where matched pairs are "the same item":
+- union = |A| + |B| - |matched| = max(|A|, |B|) when matched = min(|A|, |B|)
+
+That would mean the two normalizers are identical! But that can't be what the reviewer means.
+
+Let me reconsider. The reviewer probably means:
+- For two entity sets, treat each unique entity as an item
+- `|g_i ∪ g_j|` = total number of unique entities (counting each matched pair as 1, plus unmatched from both sides)
+- With Hungarian matching matching `min(|A|, |B|)` pairs: `|union| = min(|A|, |B|) + (|A| - min) + (|B| - min) = |A| + |B| - min(|A|, |B|) = max(|A|, |B|)`
+
+So they'd be the same unless the reviewer means something different. Let me think about this more carefully from a set-theoretic angle across the entire entity lists, not just per-type groups. The current approach groups by type and uses max(|g_i|, |g_j|) as the normalizer per type, then sums across types. But maybe the union approach should compute |entities_a| + |entities_b| - num_matched_pairs across all types instead. The key distinction might be whether I'm normalizing per-type or globally—using max per type versus a union calculation that accounts for matched pairs across the whole set. t min(|ga_t|, |gb_t|) (from Hungarian matching), while max(|g_i|, |g_j|) = max(sum_t |ga_t|, sum_t |gb_t|).
+
+These are NOT the same! Because:
+- sum_t max(|ga_t|, |gb_t|) ≠ max(sum_t |ga_t|, sum_t |gb_t|)
+
+Wait, let me re-read the code. The current code uses `total_weight = sum_t max(|ga_t|, |gb_t|)` as the denominator, not `max(sum_t |ga_t|, sum_t |gb_t|)`. So it's per-type max, summed.
+
+OK so:
+- Current: `sum_t matched_sim_t / sum_t max(|ga_t|, |gb_t|)`
+- Union: `sum_t matched_sim_t / sum_t (|ga_t| + |gb_t| - min(|ga_t|, |gb_t|))`
+
+But wait, `|ga_t| + |gb_t| - min(|ga_t|, |gb_t|) = max(|ga_t|, |gb_t|)`, so per-type they're actually equivalent. The union cardinality for each type equals the max cardinality when we have min(|ga_t|, |gb_t|) matched pairs. Maybe the reviewer is thinking about this differently—perhaps they mean a global max normalizer like `max(|g_i|, |g_j|)` versus a global union like `|g_i| + |g_j| - |matched|`. But the current code doesn't use global max; it uses per-type max summed. Let me re-check...
+
+Looking at the code again, `total_weight` is the sum across types of the maximum cardinality per type, and that gets divided into the total score. So the normalizer is `sum_t max(|ga_t|, |gb_t|)`.
+
+The reviewer seems to be suggesting a union-based approach where the normalizer would be `|g_i ∪ g_j|` instead. When I work through the math with per-type grouping, these turn out to be equivalent—the union size per type is just `max(|ga_t|, |gb_t|)` since Hungarian matching pairs up all items from the smaller set. Though I'm realizing that Hungarian matching doesn't guarantee every matched pair has non-zero similarity; some could be zero-similarity pairings just to satisfy the matching constraint. I'm realizing the union normalizer might just be `|ga_t| + |gb_t|` without subtracting matched pairs, which would count matched entities twice—but that would make it mathematically equivalent to the max normalizer in the Hungarian matching case, so maybe the reviewer has a different interpretation in mind.
+
+Let me think about this through the lens of the Jaccard index instead, where the union is properly defined as `|A| + |B| - |A ∩ B|`, and the intersection could represent either exact matches or soft matches above a similarity threshold. In the "soft" case with Hungarian matching:
+- Numerator (soft intersection) = sum of matched pair similarities = matched_sim
+- Denominator options:
+  1. `max(|A|, |B|)` — the current "max normalizer"
+  2. `|A| + |B| - matched_count` — if we define matched_count = min(|A|, |B|), this equals max(|A|, |B|)... same thing
+  3. `|A| + |B| - matched_sim` — treating the soft intersection as |A ∩ B|, so union = |A| + |B| - soft_intersection
+
+Option 3 would actually be different. If I define soft_union = |A| + |B| - matched_sim, then the union normalizer would be matched_sim / (|A| + |B| - matched_sim), which generally gives lower values than the max normalizer since the denominator is larger. The union approach treats matched_sim as the soft intersection, which makes sense mathematically since each pair's similarity is bounded by 1.
+
+Let me verify this interpretation by checking the existing soft Jaccard pair function to see which normalizer it uses.
+
+Confirmed—it uses the maximum of the two set sizes as the denominator. So for a union-based normalizer, I need to think through how to handle the per-type grouping. The total matched similarity stays the same, but the denominator changes from the sum of maximums to the union size, which is the sum of both sizes minus the overlap. I'm considering two approaches for how to define the union across type groups, and I need to figure out which one makes the most sense mathematically.
+
+The second option feels more principled—treating the soft intersection cardinality as the sum of individual Jaccard scores for matched pairs. This way the soft Jaccard formula becomes directly analogous to the standard Jaccard: intersection divided by union, where union is the sum of both set sizes minus the intersection. That's cleaner than the current approach of dividing by the maximum. Let me implement this interpretation and start writing the script.
+
+Now I need to map the data correctly. I'm trying to figure out which output directories correspond to each experiment configuration—CoNLL and SciERC datasets across both the 8B and 4B Qwen models with n=8 samples, plus the LLaMA 8B results. The directory naming isn't entirely clear, so I need to cross-reference the actual folder names to match them to the right configurations. I need to verify the sample counts across these experiment directories and check for any config files that specify which model was used, then I can write a script to analyze the data properly.
+
+Looking at the directory names more carefully, the ones explicitly labeled "qwen3_4b" are using Qwen3-4B, while the others likely use Qwen2.5-7B-Instruct. But the task specifies "8B Qwen3," so I need to find which directory contains that model's results.
+
+I should check the config files to identify which experiments use Qwen3-8B, and also verify whether the sample counts are n=8 or n=16 across the different experiment directories to ensure I'm comparing the right datasets.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "33b63558-5bd9-4632-96ed-f3267a31fc22",
+  "uuid": "449d91d4-d00c-4a8a-9d81-f204f2189d69",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Lhd4pBro9Fw1v1gqsxYE9p",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3270,
+      "cache_read_input_tokens": 43342,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3270
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Fe7j6vT9EAWcnWRcwwFVrk`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "python3 -c \"import json; d=json.loads(open('/root/autodl-tmp/struct_self_consist_ie/output/exp_qwen3_4b_conll_scs_inference_v2/samples.jsonl').readline()); print('n_samples:', len(d['samples']))\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "33b63558-5bd9-4632-96ed-f3267a31fc22",
+  "uuid": "3f38f610-2534-4123-8a74-ffd3a338c1ab",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Lhd4pBro9Fw1v1gqsxYE9p",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3270,
+      "cache_read_input_tokens": 43342,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3270
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-15T20:21:49.188Z_
+
+<details><summary>↩ Tool result · `toolu_01Fe7j6vT9EAWcnWRcwwFVrk`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "33b63558-5bd9-4632-96ed-f3267a31fc22",
+  "uuid": "cb7fc789-92e7-4e50-8df8-3413ac33a621",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01DDaewgECmZ29khpYgZf2yo`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "python3 -c \"import json; d=json.loads(open('/root/autodl-tmp/struct_self_consist_ie/output/exp002_conll2003/samples.jsonl').readline()); print('n_samples:', len(d['samples']))\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "33b63558-5bd9-4632-96ed-f3267a31fc22",
+  "uuid": "33b137bc-5edf-4d15-b239-43bc1e80bc3f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Lhd4pBro9Fw1v1gqsxYE9p",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3270,
+      "cache_read_input_tokens": 43342,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3270
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-15T20:21:50.126Z_
+
+<details><summary>↩ Tool result · `toolu_01DDaewgECmZ29khpYgZf2yo`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "33b63558-5bd9-4632-96ed-f3267a31fc22",
+  "uuid": "8bfd1008-b709-4f05-872d-becb8139c523",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01JBWeS28Sf1TTi59CSu5kgR`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "python3 -c \"import json; d=json.loads(open('/root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n16/samples.jsonl').readline()); print('n_samples:', len(d['samples']))\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "33b63558-5bd9-4632-96ed-f3267a31fc22",
+  "uuid": "216b91d0-2489-4d24-815e-3118e77e4a69",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Lhd4pBro9Fw1v1gqsxYE9p",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3270,
+      "cache_read_input_tokens": 43342,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3270
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-15T20:21:51.069Z_
+
+<details><summary>↩ Tool result · `toolu_01JBWeS28Sf1TTi59CSu5kgR`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "33b63558-5bd9-4632-96ed-f3267a31fc22",
+  "uuid": "77930274-fc61-4465-9a79-a9e951467d61",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 41_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The semicolons are blocked. Let me use python3 -c without semicolons, or use ssh_execute for the read.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "33b63558-5bd9-4632-96ed-f3267a31fc22",
+  "uuid": "cf33370d-6e5a-4234-ad81-71583cbca885",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Hh5M4SND9yCfDJzogqovjk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5691,
+      "cache_read_input_tokens": 46612,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5691
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0148bndPqg1d9CyC9hFmDiQi`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "head -1 /root/autodl-tmp/struct_self_consist_ie/output/exp_qwen3_4b_conll_scs_inference_v2/samples.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "33b63558-5bd9-4632-96ed-f3267a31fc22",
+  "uuid": "e4fadba4-07be-414a-858f-2b4b257498d8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Hh5M4SND9yCfDJzogqovjk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5691,
+      "cache_read_input_tokens": 46612,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5691
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-15T20:21:56.090Z_
+
+<details><summary>↩ Tool result · `toolu_0148bndPqg1d9CyC9hFmDiQi`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"id\\\": \\\"conll2003_test_00000\\\", \\\"text\\\": \\\"SOCCER - JAPAN GET LUCKY WIN , CHINA IN SURPRISE DEFEAT .\\\", \\\"gold\\\": {\\\"entities\\\": [{\\\"text\\\": \\\"JAPAN\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 9, \\\"end\\\": 14}, {\\\"text\\\": \\\"CHINA\\\", \\\"type\\\": \\\"PER\\\", \\\"start\\\": 31, \\\"end\\\": 36}], \\\"relations\\\": [], \\\"events\\\": []}, \\\"samples\\\": [{\\\"entities\\\": [{\\\"text\\\": \\\"JAPAN\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 9, \\\"end\\\": 14}, {\\\"text\\\": \\\"CHINA\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 31, \\\"end\\\": 36}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -0.23260687344568254, \\\"n_tokens\\\": 67, \\\"mean_logprob\\\": -0.0034717443797863067}, {\\\"entities\\\": [{\\\"text\\\": \\\"JAPAN\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 9, \\\"end\\\": 14}, {\\\"text\\\": \\\"CHINA\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 31, \\\"end\\\": 36}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -0.23260687344568254, \\\"n_tokens\\\": 67, \\\"mean_logprob\\\": -0.0034717443797863067}, {\\\"entities\\\": [{\\\"text\\\": \\\"JAPAN\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 9, \\\"end\\\": 14}, {\\\"text\\\": \\\"CHINA\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 31, \\\"end\\\": 36}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -0.23260687344568254, \\\"n_tokens\\\": 67, \\\"mean_logprob\\\": -0.0034717443797863067}, {\\\"entities\\\": [{\\\"text\\\": \\\"JAPAN\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 9, \\\"end\\\": 14}, {\\\"text\\\": \\\"CHINA\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 31, \\\"end\\\": 36}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -1.6076354032826643, \\\"n_tokens\\\": 67, \\\"mean_logprob\\\": -0.023994558257950212}, {\\\"entities\\\": [{\\\"text\\\": \\\"JAPAN\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 9, \\\"end\\\": 14}, {\\\"text\\\": \\\"CHINA\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 31, \\\"end\\\": 36}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -0.23260687344568254, \\\"n_tokens\\\": 67, \\\"mean_logprob\\\": -0.0034717443797863067}, {\\\"entities\\\": [{\\\"text\\\": \\\"JAPAN\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 9, \\\"end\\\": 14}, {\\\"text\\\": \\\"CHINA\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 31, \\\"end\\\": 36}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -0.23260687344568254, \\\"n_tokens\\\": 67, \\\"mean_logprob\\\": -0.0034717443797863067}, {\\\"entities\\\": [{\\\"text\\\": \\\"JAPAN\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 9, \\\"end\\\": 14}, {\\\"text\\\": \\\"CHINA\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 31, \\\"end\\\": 36}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -0.23260687344568254, \\\"n_tokens\\\": 67, \\\"mean_logprob\\\": -0.0034717443797863067}, {\\\"entities\\\": [{\\\"text\\\": \\\"JAPAN\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 9, \\\"end\\\": 14}, {\\\"text\\\": \\\"CHINA\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 31, \\\"end\\\": 36}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -0.23260687344568254, \\\"n_tokens\\\": 67, \\\"mean_logprob\\\": -0.0034717443797863067}], \\\"greedy\\\": {\\\"entities\\\": [{\\\"text\\\": \\\"JAPAN\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 9, \\\"end\\\": 14}, {\\\"text\\\": \\\"CHINA\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 31, \\\"end\\\": 36}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -0.23054086008286134, \\\"n_tokens\\\": 67, \\\"mean_logprob\\\": -0.003440908359445692}, \\\"logprobs\\\": [-0.0034717443797863067, -0.0034717443797863067, -0.0034717443797863067, -0.023994558257950212, -0.0034717443797863067, -0.0034717443797863067, -0.0034717443797863067, -0.0034717443797863067]}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "33b63558-5bd9-4632-96ed-f3267a31fc22",
+  "uuid": "75a75e3c-31d3-4a9d-80b9-db8b2fd98b35",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"id\\\\\\\": \\\\\\\"conll2003_test_00000\\\\\\\", \\\\\\\"text\\\\\\\": \\\\\\\"SOCCER - JAPAN GET LUCKY WIN , CHINA IN SURPRISE DEFEAT .\\\\\\\", \\\\\\\"gold\\\\\\\": {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"JAPAN\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\", \\\\\\\"start\\\\\\\": 9, \\\\\\\"end\\\\\\\": 14}, {\\\\\\\"text\\\\\\\": \\\\\\\"CHINA\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"PER\\\\\\\", \\\\\\\"start\\\\\\\": 31, \\\\\\\"end\\\\\\\": 36}], \\\\\\\"relations\\\\\\\": [], \\\\\\\"events\\\\\\\": []}, \\\\\\\"samples\\\\\\\": [{\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"JAPAN\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\", \\\\\\\"start\\\\\\\": 9, \\\\\\\"end\\\\\\\": 14}, {\\\\\\\"text\\\\\\\": \\\\\\\"CHINA\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\", \\\\\\\"start\\\\\\\": 31, \\\\\\\"end\\\\\\\": 36}], \\\\\\\"relations\\\\\\\": [], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -0.23260687344568254, \\\\\\\"n_tokens\\\\\\\": 67, \\\\\\\"mean_logprob\\\\\\\": -0.0034717443797863067}, {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"JAPAN\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\", \\\\\\\"start\\\\\\\": 9, \\\\\\\"end\\\\\\\": 14}, {\\\\\\\"text\\\\\\\": \\\\\\\"CHINA\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\", \\\\\\\"start\\\\\\\": 31, \\\\\\\"end\\\\\\\": 36}], \\\\\\\"relations\\\\\\\": [], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -0.23260687344568254, \\\\\\\"n_tokens\\\\\\\": 67, \\\\\\\"mean_logprob\\\\\\\": -0.0034717443797863067}, {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"JAPAN\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\", \\\\\\\"start\\\\\\\": 9, \\\\\\\"end\\\\\\\": 14}, {\\\\\\\"text\\\\\\\": \\\\\\\"CHINA\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\", \\\\\\\"start\\\\\\\": 31, \\\\\\\"end\\\\\\\": 36}], \\\\\\\"relations\\\\\\\": [], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -0.23260687344568254, \\\\\\\"n_tokens\\\\\\\": 67, \\\\\\\"mean_logprob\\\\\\\": -0.0034717443797863067}, {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"JAPAN\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\", \\\\\\\"start\\\\\\\": 9, \\\\\\\"end\\\\\\\": 14}, {\\\\\\\"text\\\\\\\": \\\\\\\"CHINA\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\", \\\\\\\"start\\\\\\\": 31, \\\\\\\"end\\\\\\\": 36}], \\\\\\\"relations\\\\\\\": [], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -1.6076354032826643, \\\\\\\"n_tokens\\\\\\\": 67, \\\\\\\"mean_logprob\\\\\\\": -0.023994558257950212}, {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"JAPAN\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\", \\\\\\\"start\\\\\\\": 9, \\\\\\\"end\\\\\\\": 14}, {\\\\\\\"text\\\\\\\": \\\\\\\"CHINA\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\", \\\\\\\"start\\\\\\\": 31, \\\\\\\"end\\\\\\\": 36}], \\\\\\\"relations\\\\\\\": [], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -0.23260687344568254, \\\\\\\"n_tokens\\\\\\\": 67, \\\\\\\"mean_logprob\\\\\\\": -0.0034717443797863067}, {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"JAPAN\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\", \\\\\\\"start\\\\\\\": 9, \\\\\\\"end\\\\\\\": 14}, {\\\\\\\"text\\\\\\\": \\\\\\\"CHINA\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\", \\\\\\\"start\\\\\\\": 31, \\\\\\\"end\\\\\\\": 36}], \\\\\\\"relations\\\\\\\": [], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -0.23260687344568254, \\\\\\\"n_tokens\\\\\\\": 67, \\\\\\\"mean_logprob\\\\\\\": -0.0034717443797863067}, {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"JAPAN\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\", \\\\\\\"start\\\\\\\": 9, \\\\\\\"end\\\\\\\": 14}, {\\\\\\\"text\\\\\\\": \\\\\\\"CHINA\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\", \\\\\\\"start\\\\\\\": 31, \\\\\\\"end\\\\\\\": 36}], \\\\\\\"relations\\\\\\\": [], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -0.23260687344568254, \\\\\\\"n_tokens\\\\\\\": 67, \\\\\\\"mean_logprob\\\\\\\": -0.0034717443797863067}, {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"JAPAN\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\", \\\\\\\"start\\\\\\\": 9, \\\\\\\"end\\\\\\\": 14}, {\\\\\\\"text\\\\\\\": \\\\\\\"CHINA\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\", \\\\\\\"start\\\\\\\": 31, \\\\\\\"end\\\\\\\": 36}], \\\\\\\"relations\\\\\\\": [], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -0.23260687344568254, \\\\\\\"n_tokens\\\\\\\": 67, \\\\\\\"mean_logprob\\\\\\\": -0.0034717443797863067}], \\\\\\\"greedy\\\\\\\": {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"JAPAN\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\", \\\\\\\"start\\\\\\\": 9, \\\\\\\"end\\\\\\\": 14}, {\\\\\\\"text\\\\\\\": \\\\\\\"CHINA\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\", \\\\\\\"start\\\\\\\": 31, \\\\\\\"end\\\\\\\": 36}], \\\\\\\"relations\\\\\\\": [], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -0.23054086008286134, \\\\\\\"n_tokens\\\\\\\": 67, \\\\\\\"mean_logprob\\\\\\\": -0.003440908359445692}, \\\\\\\"logprobs\\\\\\\": [-0.0034717443797863067, -0.0034717443797863067, -0.0034717443797863067, -0.023994558257950212, -0.0034717443797863067, -0.0034717443797863067, -0.0034717443797863067, -0.0034717443797863067]}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\\"id\\\": \\\"conll2003_test_00000\\\", \\\"text\\\": \\\"SOCCER - JAPAN GET LUCKY WIN , CHINA IN SURPRISE DEFEAT .\\\", \\\"gold\\\": {\\\"entities\\\": [{\\\"text\\\": \\\"JAPAN\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 9, \\\"end\\\": 14}, {\\\"text\\\": \\\"CHINA\\\", \\\"type\\\": \\\"PER\\\", \\\"start\\\": 31, \\\"end\\\": 36}], \\\"relations\\\": [], \\\"events\\\": []}, \\\"samples\\\": [{\\\"entities\\\": [{\\\"text\\\": \\\"JAPAN\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 9, \\\"end\\\": 14}, {\\\"text\\\": \\\"CHINA\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 31, \\\"end\\\": 36}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -0.23260687344568254, \\\"n_tokens\\\": 67, \\\"mean_logprob\\\": -0.0034717443797863067}, {\\\"entities\\\": [{\\\"text\\\": \\\"JAPAN\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 9, \\\"end\\\": 14}, {\\\"text\\\": \\\"CHINA\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 31, \\\"end\\\": 36}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -0.23260687344568254, \\\"n_tokens\\\": 67, \\\"mean_logprob\\\": -0.0034717443797863067}, {\\\"entities\\\": [{\\\"text\\\": \\\"JAPAN\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 9, \\\"end\\\": 14}, {\\\"text\\\": \\\"CHINA\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 31, \\\"end\\\": 36}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -0.23260687344568254, \\\"n_tokens\\\": 67, \\\"mean_logprob\\\": -0.0034717443797863067}, {\\\"entities\\\": [{\\\"text\\\": \\\"JAPAN\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 9, \\\"end\\\": 14}, {\\\"text\\\": \\\"CHINA\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 31, \\\"end\\\": 36}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -1.6076354032826643, \\\"n_tokens\\\": 67, \\\"mean_logprob\\\": -0.023994558257950212}, {\\\"entities\\\": [{\\\"text\\\": \\\"JAPAN\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 9, \\\"end\\\": 14}, {\\\"text\\\": \\\"CHINA\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 31, \\\"end\\\": 36}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -0.23260687344568254, \\\"n_tokens\\\": 67, \\\"mean_logprob\\\": -0.0034717443797863067}, {\\\"entities\\\": [{\\\"text\\\": \\\"JAPAN\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 9, \\\"end\\\": 14}, {\\\"text\\\": \\\"CHINA\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 31, \\\"end\\\": 36}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -0.23260687344568254, \\\"n_tokens\\\": 67, \\\"mean_logprob\\\": -0.0034717443797863067}, {\\\"entities\\\": [{\\\"text\\\": \\\"JAPAN\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 9, \\\"end\\\": 14}, {\\\"text\\\": \\\"CHINA\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 31, \\\"end\\\": 36}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -0.23260687344568254, \\\"n_tokens\\\": 67, \\\"mean_logprob\\\": -0.0034717443797863067}, {\\\"entities\\\": [{\\\"text\\\": \\\"JAPAN\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 9, \\\"end\\\": 14}, {\\\"text\\\": \\\"CHINA\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 31, \\\"end\\\": 36}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -0.23260687344568254, \\\"n_tokens\\\": 67, \\\"mean_logprob\\\": -0.0034717443797863067}], \\\"greedy\\\": {\\\"entities\\\": [{\\\"text\\\": \\\"JAPAN\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 9, \\\"end\\\": 14}, {\\\"text\\\": \\\"CHINA\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 31, \\\"end\\\": 36}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -0.23054086008286134, \\\"n_tokens\\\": 67, \\\"mean_logprob\\\": -0.003440908359445692}, \\\"logprobs\\\": [-0.0034717443797863067, -0.0034717443797863067, -0.0034717443797863067, -0.023994558257950212, -0.0034717443797863067, -0.0034717443797863067, -0.0034717443797863067, -0.0034717443797863067]}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0167pGA9DWLb8h2MvwPFuPp6`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "wc -l /root/autodl-tmp/struct_self_consist_ie/output/exp_qwen3_4b_conll_scs_inference_v2/samples.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "33b63558-5bd9-4632-96ed-f3267a31fc22",
+  "uuid": "3e0938eb-cbb5-4e46-bf12-cc7401cfc803",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Hh5M4SND9yCfDJzogqovjk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5691,
+      "cache_read_input_tokens": 46612,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5691
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-15T20:21:57.045Z_
+
+<details><summary>↩ Tool result · `toolu_0167pGA9DWLb8h2MvwPFuPp6`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"3453 /root/autodl-tmp/struct_self_consist_ie/output/exp_qwen3_4b_conll_scs_inference_v2/samples.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "33b63558-5bd9-4632-96ed-f3267a31fc22",
+  "uuid": "5d756b9b-2db1-4450-b756-025bf6829221",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"3453 /root/autodl-tmp/struct_self_consist_ie/output/exp_qwen3_4b_conll_scs_inference_v2/samples.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"3453 /root/autodl-tmp/struct_self_consist_ie/output/exp_qwen3_4b_conll_scs_inference_v2/samples.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_012m6Soz9T4yHzXgnMEr8vqf`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "wc -l /root/autodl-tmp/struct_self_consist_ie/output/exp002_conll2003/samples.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "33b63558-5bd9-4632-96ed-f3267a31fc22",
+  "uuid": "5964e54b-ba01-4b67-96d1-9fc7668b45eb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Hh5M4SND9yCfDJzogqovjk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5691,
+      "cache_read_input_tokens": 46612,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5691
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-15T20:21:58.045Z_
+
+<details><summary>↩ Tool result · `toolu_012m6Soz9T4yHzXgnMEr8vqf`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"3453 /root/autodl-tmp/struct_self_consist_ie/output/exp002_conll2003/samples.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "33b63558-5bd9-4632-96ed-f3267a31fc22",
+  "uuid": "9a2a0cf0-04e0-40e3-8119-a995fbd001d4",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"3453 /root/autodl-tmp/struct_self_consist_ie/output/exp002_conll2003/samples.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"3453 /root/autodl-tmp/struct_self_consist_ie/output/exp002_conll2003/samples.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01HwngzDiB7fqrnBYPyD3Bk2`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "wc -l /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n16/samples.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "33b63558-5bd9-4632-96ed-f3267a31fc22",
+  "uuid": "066aec66-4580-42b1-ba02-3645ff0c7a42",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Hh5M4SND9yCfDJzogqovjk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5691,
+      "cache_read_input_tokens": 46612,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5691
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-15T20:21:58.945Z_
+
+<details><summary>↩ Tool result · `toolu_01HwngzDiB7fqrnBYPyD3Bk2`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"3453 /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n16/samples.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.34}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "33b63558-5bd9-4632-96ed-f3267a31fc22",
+  "uuid": "32c484e0-6ee1-47b4-9ead-44ce7dc9c09a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"3453 /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n16/samples.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.34}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"3453 /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n16/samples.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.34}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 50_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_015wrDx3JtgZodGyJLayzy3Q`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "wc -l /root/autodl-tmp/struct_self_consist_ie/output/exp_qwen3_4b_scierc_scs_inference/samples.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "33b63558-5bd9-4632-96ed-f3267a31fc22",
+  "uuid": "6646a76a-635e-41d1-83ea-450db523480c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Hh5M4SND9yCfDJzogqovjk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5691,
+      "cache_read_input_tokens": 46612,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5691
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-15T20:21:59.924Z_
+
+<details><summary>↩ Tool result · `toolu_015wrDx3JtgZodGyJLayzy3Q`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"551 /root/autodl-tmp/struct_self_consist_ie/output/exp_qwen3_4b_scierc_scs_inference/samples.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.34}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "33b63558-5bd9-4632-96ed-f3267a31fc22",
+  "uuid": "d749af6c-6aea-487d-beb2-4b44b351ef93",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"551 /root/autodl-tmp/struct_self_consist_ie/output/exp_qwen3_4b_scierc_scs_inference/samples.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.34}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"551 /root/autodl-tmp/struct_self_consist_ie/output/exp_qwen3_4b_scierc_scs_inference/samples.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.34}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 52_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_019VLUMbAhtybVNrBYUcT3Vx`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "find /root/autodl-tmp/struct_self_consist_ie/output/ -name \"config.json\" -path \"*qwen*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "33b63558-5bd9-4632-96ed-f3267a31fc22",
+  "uuid": "638e9444-1cdb-4b2c-af82-1148429eccdd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Hh5M4SND9yCfDJzogqovjk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5691,
+      "cache_read_input_tokens": 46612,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5691
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 53 · 2026-05-15T20:22:00.913Z_
+
+<details><summary>↩ Tool result · `toolu_019VLUMbAhtybVNrBYUcT3Vx`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "33b63558-5bd9-4632-96ed-f3267a31fc22",
+  "uuid": "09d97e03-0fe0-4a44-bc4f-22cf95c76f67",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 54_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me figure out which directories to use for 8B Qwen3. Let me check the sample count in some of the other directories and also look for any config or notes files.
+
+From the data I have:
+- `exp_qwen3_4b_conll_scs_inference_v2` — 3453 lines (CoNLL test set), 8 samples per instance, Qwen3-4B
+- `exp_qwen3_4b_scierc_scs_inference` — 551 lines (SciERC test set), 8 samples, Qwen3-4B
+
+
+- `exp002_conll2003` — 3453 lines, need to verify the sample count
+- `exp_002_conll_n16` — 3453 lines, appears to use 16 samples
+
+I'm looking for Qwen3-8B experiments specifically, but the naming convention doesn't make it obvious. Let me check the sample counts in these directories and their SciERC equivalents to identify which ones correspond to the 8B model.
+
+The original experiments probably used Qwen2.5-7B, while the v2 variants might be a different pipeline iteration. Since the task explicitly mentions Qwen3, I need to find which directories actually ran with that model by checking the config files or existing analysis results.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "33b63558-5bd9-4632-96ed-f3267a31fc22",
+  "uuid": "1b8006ea-e663-40db-a7f8-e0215bc61e55",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BG65Dc4cdSHYUtP4cGquqH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3582,
+      "cache_read_input_tokens": 52303,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3582
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01T5CKGvSAfLqKSonGcs4VTQ`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "grep -rn \"exp_\" /root/autodl-tmp/struct_self_consist_ie/code/selection_f1_4b.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "33b63558-5bd9-4632-96ed-f3267a31fc22",
+  "uuid": "53f7943b-b217-4e8b-8f31-f453492dcacf",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BG65Dc4cdSHYUtP4cGquqH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3582,
+      "cache_read_input_tokens": 52303,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3582
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-15T20:22:13.898Z_
+
+<details><summary>↩ Tool result · `toolu_01T5CKGvSAfLqKSonGcs4VTQ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"27:        \\\"path\\\": f\\\"{BASE}/output/exp_qwen3_4b_conll_scs_inference_v2/samples.jsonl\\\",\\n31:        \\\"path\\\": f\\\"{BASE}/output/exp_qwen3_4b_scierc_scs_inference/samples.jsonl\\\",\\n35:        \\\"path\\\": f\\\"{BASE}/output/exp_qwen3_4b_scierc_scs_inference/samples.jsonl\\\",\\n200:    for exp_name, cfg in EXPERIMENTS.items():\\n204:        print(f\\\"  {exp_name} (subtask={subtask})\\\")\\n212:        all_results[exp_name] = result\\n234:    for exp_name, r in all_results.items():\\n239:        print(f\\\"\\\\n  {exp_name}:\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "33b63558-5bd9-4632-96ed-f3267a31fc22",
+  "uuid": "5a40b75c-41c6-43f0-a5ef-704716fe28df",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"27:        \\\\\\\"path\\\\\\\": f\\\\\\\"{BASE}/output/exp_qwen3_4b_conll_scs_inference_v2/samples.jsonl\\\\\\\",\\\\n31:        \\\\\\\"path\\\\\\\": f\\\\\\\"{BASE}/output/exp_qwen3_4b_scierc_scs_inference/samples.jsonl\\\\\\\",\\\\n35:        \\\\\\\"path\\\\\\\": f\\\\\\\"{BASE}/output/exp_qwen3_4b_scierc_scs_inference/samples.jsonl\\\\\\\",\\\\n200:    for exp_name, cfg in EXPERIMENTS.items():\\\\n204:        print(f\\\\\\\"  {exp_name} (subtask={subtask})\\\\\\\")\\\\n212:        all_results[exp_name] = result\\\\n234:    for exp_name, r in all_results.items():\\\\n239:        print(f\\\\\\\"\\\\\\\\n  {exp_name}:\\\\\\\")\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"27:        \\\"path\\\": f\\\"{BASE}/output/exp_qwen3_4b_conll_scs_inference_v2/samples.jsonl\\\",\\n31:        \\\"path\\\": f\\\"{BASE}/output/exp_qwen3_4b_scierc_scs_inference/samples.jsonl\\\",\\n35:        \\\"path\\\": f\\\"{BASE}/output/exp_qwen3_4b_scierc_scs_inference/samples.jsonl\\\",\\n200:    for exp_name, cfg in EXPERIMENTS.items():\\n204:        print(f\\\"  {exp_name} (subtask={subtask})\\\")\\n212:        all_results[exp_name] = result\\n234:    for exp_name, r in all_results.items():\\n239:        print(f\\\"\\\\n  {exp_name}:\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01LxhwSTzQTr3drAcTGamZeT`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "grep -rn \"exp_\" /root/autodl-tmp/struct_self_consist_ie/code/analyze_scale_ablation_4b.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "33b63558-5bd9-4632-96ed-f3267a31fc22",
+  "uuid": "1539a7a6-b364-4133-a8e3-e2d73e6b4a08",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BG65Dc4cdSHYUtP4cGquqH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3582,
+      "cache_read_input_tokens": 52303,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3582
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-15T20:22:14.809Z_
+
+<details><summary>↩ Tool result · `toolu_01LxhwSTzQTr3drAcTGamZeT`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"19:        \\\"path\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/exp_scale_qwen3_4b_conll/samples.jsonl\\\",\\n168:for exp_id, cfg in EXPERIMENTS.items():\\n169:    print(f\\\"Processing {exp_id} ({cfg['model']})...\\\")\\n172:    all_results[exp_id] = res\\n192:for exp_id in [\\\"qwen3_8b_conll\\\", \\\"qwen3_4b_conll\\\"]:\\n193:    r = all_results[exp_id]\\n197:for exp_id in [\\\"qwen3_8b_conll\\\", \\\"qwen3_4b_conll\\\"]:\\n198:    r = all_results[exp_id]\\n204:for exp_id in [\\\"qwen3_8b_conll\\\", \\\"qwen3_4b_conll\\\"]:\\n205:    r = all_results[exp_id]\\n209:out_path = \\\"/root/autodl-tmp/struct_self_consist_ie/output/exp_scale_qwen3_4b_conll/scale_ablation_report.json\\\"\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "33b63558-5bd9-4632-96ed-f3267a31fc22",
+  "uuid": "b6f25214-2465-450f-badc-01ea252b4e9c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"19:        \\\\\\\"path\\\\\\\": \\\\\\\"/root/autodl-tmp/struct_self_consist_ie/output/exp_scale_qwen3_4b_conll/samples.jsonl\\\\\\\",\\\\n168:for exp_id, cfg in EXPERIMENTS.items():\\\\n169:    print(f\\\\\\\"Processing {exp_id} ({cfg['model']})...\\\\\\\")\\\\n172:    all_results[exp_id] = res\\\\n192:for exp_id in [\\\\\\\"qwen3_8b_conll\\\\\\\", \\\\\\\"qwen3_4b_conll\\\\\\\"]:\\\\n193:    r = all_results[exp_id]\\\\n197:for exp_id in [\\\\\\\"qwen3_8b_conll\\\\\\\", \\\\\\\"qwen3_4b_conll\\\\\\\"]:\\\\n198:    r = all_results[exp_id]\\\\n204:for exp_id in [\\\\\\\"qwen3_8b_conll\\\\\\\", \\\\\\\"qwen3_4b_conll\\\\\\\"]:\\\\n205:    r = all_results[exp_id]\\\\n209:out_path = \\\\\\\"/root/autodl-tmp/struct_self_consist_ie/output/exp_scale_qwen3_4b_conll/scale_ablation_report.json\\\\\\\"\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"19:        \\\"path\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/exp_scale_qwen3_4b_conll/samples.jsonl\\\",\\n168:for exp_id, cfg in EXPERIMENTS.items():\\n169:    print(f\\\"Processing {exp_id} ({cfg['model']})...\\\")\\n172:    all_results[exp_id] = res\\n192:for exp_id in [\\\"qwen3_8b_conll\\\", \\\"qwen3_4b_conll\\\"]:\\n193:    r = all_results[exp_id]\\n197:for exp_id in [\\\"qwen3_8b_conll\\\", \\\"qwen3_4b_conll\\\"]:\\n198:    r = all_results[exp_id]\\n204:for exp_id in [\\\"qwen3_8b_conll\\\", \\\"qwen3_4b_conll\\\"]:\\n205:    r = all_results[exp_id]\\n209:out_path = \\\"/root/autodl-tmp/struct_self_consist_ie/output/exp_scale_qwen3_4b_conll/scale_ablation_report.json\\\"\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01RaUPbN6bSSKMhFBusYoQHU`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "grep -n \"Qwen\\|qwen\\|model\" /root/autodl-tmp/struct_self_consist_ie/output/exp_qwen3_4b_conll_scs_inference_v2/samples.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "33b63558-5bd9-4632-96ed-f3267a31fc22",
+  "uuid": "9a96893c-c772-4f1b-bce9-f6d5967077b4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BG65Dc4cdSHYUtP4cGquqH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3582,
+      "cache_read_input_tokens": 52303,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3582
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-15T20:22:15.414Z_
+
+<details><summary>↩ Tool result · `toolu_01RaUPbN6bSSKMhFBusYoQHU`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "33b63558-5bd9-4632-96ed-f3267a31fc22",
+  "uuid": "2637529a-f516-4864-b85e-b27924e20895",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 61_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me check the scale ablation script to find the 8B experiment mapping.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "33b63558-5bd9-4632-96ed-f3267a31fc22",
+  "uuid": "1ae5b2a7-865a-410e-b79e-cb371599dffb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0165XRSNotHo2h5kMUn9TQPE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1671,
+      "cache_read_input_tokens": 55885,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1671
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 62_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_011qW1RpQMPi6ZF6tsgccong`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "head -30 /root/autodl-tmp/struct_self_consist_ie/code/analyze_scale_ablation_4b.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "33b63558-5bd9-4632-96ed-f3267a31fc22",
+  "uuid": "b7f82812-052d-4872-b6c3-96aae81585b4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0165XRSNotHo2h5kMUn9TQPE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1671,
+      "cache_read_input_tokens": 55885,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1671
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 63 · 2026-05-15T20:22:21.477Z_
+
+<details><summary>↩ Tool result · `toolu_011qW1RpQMPi6ZF6tsgccong`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Scale ablation: Qwen3-4B vs 8B CoNLL NER — 5-signal comparison.\\\"\\\"\\\"\\nimport json, sys\\nimport numpy as np\\nfrom scipy.stats import spearmanr, rankdata\\nfrom collections import Counter\\n\\nsys.path.insert(0, '/root/autodl-tmp/struct_self_consist_ie/code')\\nfrom consistency import compute_all_consistency_scores\\nfrom evaluation import per_instance_f1\\n\\nEXPERIMENTS = {\\n    \\\"qwen3_8b_conll\\\": {\\n        \\\"path\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/exp002_conll2003/samples.jsonl\\\",\\n        \\\"subtask\\\": \\\"ner\\\",\\n        \\\"model\\\": \\\"Qwen3-8B\\\",\\n    },\\n    \\\"qwen3_4b_conll\\\": {\\n        \\\"path\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/exp_scale_qwen3_4b_conll/samples.jsonl\\\",\\n        \\\"subtask\\\": \\\"ner\\\",\\n        \\\"model\\\": \\\"Qwen3-4B\\\",\\n    },\\n}\\n\\ndef load_data(path):\\n    with open(path) as f:\\n        return [json.loads(line) for line in f if line.strip()]\\n\\ndef compute_exact_match_rate(samples, subtask):\\n    if subtask == \\\"ner\\\":\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.34}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "33b63558-5bd9-4632-96ed-f3267a31fc22",
+  "uuid": "59ac8bb2-7fb6-4ce5-91a2-af7adf1e0403",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"Scale ablation: Qwen3-4B vs 8B CoNLL NER — 5-signal comparison.\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport json, sys\\\\nimport numpy as np\\\\nfrom scipy.stats import spearmanr, rankdata\\\\nfrom collections import Counter\\\\n\\\\nsys.path.insert(0, '/root/autodl-tmp/struct_self_consist_ie/code')\\\\nfrom consistency import compute_all_consistency_scores\\\\nfrom evaluation import per_instance_f1\\\\n\\\\nEXPERIMENTS = {\\\\n    \\\\\\\"qwen3_8b_conll\\\\\\\": {\\\\n        \\\\\\\"path\\\\\\\": \\\\\\\"/root/autodl-tmp/struct_self_consist_ie/output/exp002_conll2003/samples.jsonl\\\\\\\",\\\\n        \\\\\\\"subtask\\\\\\\": \\\\\\\"ner\\\\\\\",\\\\n        \\\\\\\"model\\\\\\\": \\\\\\\"Qwen3-8B\\\\\\\",\\\\n    },\\\\n    \\\\\\\"qwen3_4b_conll\\\\\\\": {\\\\n        \\\\\\\"path\\\\\\\": \\\\\\\"/root/autodl-tmp/struct_self_consist_ie/output/exp_scale_qwen3_4b_conll/samples.jsonl\\\\\\\",\\\\n        \\\\\\\"subtask\\\\\\\": \\\\\\\"ner\\\\\\\",\\\\n        \\\\\\\"model\\\\\\\": \\\\\\\"Qwen3-4B\\\\\\\",\\\\n    },\\\\n}\\\\n\\\\ndef load_data(path):\\\\n    with open(path) as f:\\\\n        return [json.loads(line) for line in f if line.strip()]\\\\n\\\\ndef compute_exact_match_rate(samples, subtask):\\\\n    if subtask == \\\\\\\"ner\\\\\\\":\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.34}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Scale ablation: Qwen3-4B vs 8B CoNLL NER — 5-signal comparison.\\\"\\\"\\\"\\nimport json, sys\\nimport numpy as np\\nfrom scipy.stats import spearmanr, rankdata\\nfrom collections import Counter\\n\\nsys.path.insert(0, '/root/autodl-tmp/struct_self_consist_ie/code')\\nfrom consistency import compute_all_consistency_scores\\nfrom evaluation import per_instance_f1\\n\\nEXPERIMENTS = {\\n    \\\"qwen3_8b_conll\\\": {\\n        \\\"path\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/exp002_conll2003/samples.jsonl\\\",\\n        \\\"subtask\\\": \\\"ner\\\",\\n        \\\"model\\\": \\\"Qwen3-8B\\\",\\n    },\\n    \\\"qwen3_4b_conll\\\": {\\n        \\\"path\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/exp_scale_qwen3_4b_conll/samples.jsonl\\\",\\n        \\\"subtask\\\": \\\"ner\\\",\\n        \\\"model\\\": \\\"Qwen3-4B\\\",\\n    },\\n}\\n\\ndef load_data(path):\\n    with open(path) as f:\\n        return [json.loads(line) for line in f if line.strip()]\\n\\ndef compute_exact_match_rate(samples, subtask):\\n    if subtask == \\\"ner\\\":\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.34}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 64_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_011CS6yBc82R7zLBLDf2DymS`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/code/compute_selection_f1.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "33b63558-5bd9-4632-96ed-f3267a31fc22",
+  "uuid": "02c9a5c7-43fb-4980-b971-4925ff4e2eec",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0165XRSNotHo2h5kMUn9TQPE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1671,
+      "cache_read_input_tokens": 55885,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1671
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 65 · 2026-05-15T20:22:22.226Z_
+
+<details><summary>↩ Tool result · `toolu_011CS6yBc82R7zLBLDf2DymS`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Multi-seed Selection F1 for Table 3 (C2 critical).\\n\\nFor each instance's N samples, score with 5 signals (SJ/FK/VC/EM/LP),\\nselect the top-scoring sample, compute its F1 vs gold.\\nReports 3-seed mean±σ, per-seed bootstrap p-value vs greedy, and\\na combined bootstrap p-value across seeds.\\n\\nInput: samples.jsonl files from inference experiments.\\nOutput: JSON results + markdown report.\\nDepends: consistency.py, evaluation.py (same directory).\\n\\\"\\\"\\\"\\n\\nimport json\\nimport os\\nimport sys\\nimport time\\nfrom collections import Counter\\n\\nimport numpy as np\\n\\nsys.path.insert(0, '/root/autodl-tmp/struct_self_consist_ie/code')\\nfrom consistency import (\\n    _ner_soft_jaccard_pair,\\n    _re_soft_jaccard_pair,\\n    _extract_surface_keys,\\n)\\nfrom evaluation import per_instance_f1\\n\\nBASE = \\\"/root/autodl-tmp/struct_self_consist_ie\\\"\\n\\nEXPERIMENT_GROUPS = {\\n    # --- Qwen SciERC N=16 (v2 pipeline) ---\\n    \\\"qwen_scierc_ner_n16\\\": {\\n        \\\"subtask\\\": \\\"ner\\\",\\n        \\\"seeds\\\": {\\n            42: f\\\"{BASE}/output/exp_001_seed42_v2/samples.jsonl\\\",\\n            123: f\\\"{BASE}/output/exp_001_seed123_v2/samples.jsonl\\\",\\n            456: f\\\"{BASE}/output/exp_001_seed456_v2/samples.jsonl\\\",\\n        },\\n    },\\n    \\\"qwen_scierc_re_n16\\\": {\\n        \\\"subtask\\\": \\\"re\\\",\\n        \\\"seeds\\\": {\\n            42: f\\\"{BASE}/output/exp_001_seed42_v2/samples.jsonl\\\",\\n            123: f\\\"{BASE}/output/exp_001_seed123_v2/samples.jsonl\\\",\\n            456: f\\\"{BASE}/output/exp_001_seed456_v2/samples.jsonl\\\",\\n        },\\n    },\\n    # --- Qwen SciERC N=8 (r1024 logprobs) ---\\n    \\\"qwen_scierc_ner_n8\\\": {\\n        \\\"subtask\\\": \\\"ner\\\",\\n        \\\"seeds\\\": {\\n            42: f\\\"{BASE}/output/exp_012_rerun_1024/samples.jsonl\\\",\\n            123: f\\\"{BASE}/output/exp_018_qwen_scierc_seed123/samples.jsonl\\\",\\n            456: f\\\"{BASE}/output/exp_018_qwen_scierc_seed456/samples.jsonl\\\",\\n        },\\n    },\\n    # --- LLaMA SciERC N=8 ---\\n    \\\"llama_scierc_ner_n8\\\": {\\n        \\\"subtask\\\": \\\"ner\\\",\\n        \\\"seeds\\\": {\\n            42: f\\\"{BASE}/output/exp_018_llama_scierc_seed42_r1024/samples.jsonl\\\",\\n            123: f\\\"{BASE}/output/exp_018_llama_scierc_seed123/samples.jsonl\\\",\\n            456: f\\\"{BASE}/output/exp_018_llama_scierc_seed456_r1024/samples.jsonl\\\",\\n        },\\n    },\\n    # --- LLaMA CoNLL N=16 ---\\n    \\\"llama_conll_ner_n16\\\": {\\n        \\\"subtask\\\": \\\"ner\\\",\\n        \\\"seeds\\\": {\\n            42: f\\\"{BASE}/output/exp_017_llama_conll_n16_r1024/samples.jsonl\\\",\\n            123: f\\\"{BASE}/output/exp_017_llama_conll_n16_s123_r1024/samples.jsonl\\\",\\n            456: f\\\"{BASE}/output/exp_017_llama_conll_n16_s456_r1024/samples.jsonl\\\",\\n        },\\n    },\\n}\\n\\nN_BOOTSTRAP = 10000\\nBOOTSTRAP_SEED = 42\\nN_RANDOM_REPEATS = 50\\nSIGNALS = [\\\"VC\\\", \\\"SJ\\\", \\\"FK\\\", \\\"EM\\\", \\\"LP\\\"]\\n\\n\\ndef load_data(path):\\n    with open(path) as f:\\n        return [json.loads(line) for line in f if line.strip()]\\n\\n\\ndef compute_sample_sj_scores(instance, subtask):\\n    \\\"\\\"\\\"Pairwise soft Jaccard: mean similarity of each sample to all others.\\\"\\\"\\\"\\n    samples = instance[\\\"samples\\\"]\\n    N = len(samples)\\n    field = \\\"entities\\\" if subtask == \\\"ner\\\" else \\\"relations\\\"\\n    pair_fn = _ner_soft_jaccard_pair if subtask == \\\"ner\\\" else _re_soft_jaccard_pair\\n    matrix = np.zeros((N, N))\\n    for i in range(N):\\n        for j in range(i + 1, N):\\n            s = pair_fn(samples[i].get(field, []), samples[j].get(field, []))\\n            matrix[i][j] = s\\n            matrix[j][i] = s\\n    np.fill_diagonal(matrix, 1.0)\\n    return [float(np.mean([matrix[k][j] for j in range(N) if j != k])) for k in range(N)]\\n\\n\\ndef compute_sample_surface_scores(instance, subtask):\\n    \\\"\\\"\\\"Surface-key Jaccard (FK proxy) and key sets for VC/EM.\\\"\\\"\\\"\\n    samples = instance[\\\"samples\\\"]\\n    N = len(samples)\\n    key_sets = [frozenset(_extract_surface_keys(s, subtask)) for s in samples]\\n    matrix = np.zeros((N, N))\\n    for i in range(N):\\n        for j in range(i + 1, N):\\n            union = len(key_sets[i] | key_sets[j])\\n            inter = len(key_sets[i] & key_sets[j])\\n            s = inter / union if union > 0 else 1.0\\n            matrix[i][j] = \\n\\n... [截断: 输出过长，省略 6562 字符] ...\\n\\nN={N_samp})\\\")\\n        lines.append(\\\"\\\")\\n\\n        # Table header\\n        lines.append(f\\\"| Method | Mean F1 | ±σ | Δ greedy | p (Fisher) |\\\")\\n        lines.append(f\\\"|--------|--------:|---:|---------:|-----------:|\\\")\\n\\n        g = agg[\\\"greedy_f1\\\"]\\n        lines.append(f\\\"| Greedy | {g['mean']:.4f} | {g['std']:.4f} | — | — |\\\")\\n        r = agg[\\\"random_f1\\\"]\\n        lines.append(f\\\"| Random | {r['mean']:.4f} | {r['std']:.4f} | {r['mean']-g['mean']:+.4f} | — |\\\")\\n\\n        for sig in SIGNALS:\\n            sr = agg[\\\"signal_selection_f1\\\"][sig]\\n            p_fisher = sr[\\\"vs_greedy_p_combined_fisher\\\"]\\n            p_str = f\\\"{p_fisher:.4f}\\\"\\n            if p_fisher < 0.01:\\n                p_str = f\\\"**{p_fisher:.4f}**\\\"\\n            elif p_fisher < 0.05:\\n                p_str = f\\\"*{p_fisher:.4f}*\\\"\\n            lines.append(f\\\"| {sig} | {sr['mean']:.4f} | {sr['std']:.4f} | {sr['delta_vs_greedy_mean']:+.4f} | {p_str} |\\\")\\n\\n        o = agg[\\\"oracle_f1\\\"]\\n        lines.append(f\\\"| Oracle | {o['mean']:.4f} | {o['std']:.4f} | {o['mean']-g['mean']:+.4f} | — |\\\")\\n        lines.append(\\\"\\\")\\n\\n        # Per-seed detail\\n        lines.append(\\\"&lt;details>&lt;summary>Per-seed breakdown&lt;/summary>\\\")\\n        lines.append(\\\"\\\")\\n        for seed in agg[\\\"seeds\\\"]:\\n            lines.append(f\\\"**Seed {seed}:**\\\")\\n            lines.append(\\\"\\\")\\n            for sig in SIGNALS:\\n                sr = agg[\\\"signal_selection_f1\\\"][sig]\\n                idx = agg[\\\"seeds\\\"].index(seed)\\n                sf1 = sr[\\\"per_seed\\\"][idx]\\n                gf1 = agg[\\\"greedy_f1\\\"][\\\"per_seed\\\"][idx]\\n                p = sr[\\\"vs_greedy_p_per_seed\\\"][idx]\\n                ci = sr[\\\"vs_greedy_ci95_per_seed\\\"][idx]\\n                lines.append(f\\\"- {sig}: sel_F1={sf1:.4f}, Δ={sf1-gf1:+.4f}, p={p:.4f}, CI95=[{ci[0]:+.4f}, {ci[1]:+.4f}]\\\")\\n            lines.append(\\\"\\\")\\n        lines.append(\\\"&lt;/details>\\\")\\n        lines.append(\\\"\\\")\\n\\n    return \\\"\\\\n\\\".join(lines)\\n\\n\\ndef main():\\n    all_results = {}\\n\\n    for group_name, group_cfg in EXPERIMENT_GROUPS.items():\\n        subtask = group_cfg[\\\"subtask\\\"]\\n        seeds_cfg = group_cfg[\\\"seeds\\\"]\\n        seeds = sorted(seeds_cfg.keys())\\n\\n        print(f\\\"\\\\n{'='*60}\\\")\\n        print(f\\\"  {group_name} (subtask={subtask})\\\")\\n        print(f\\\"{'='*60}\\\")\\n\\n        seed_results = {}\\n        for seed in seeds:\\n            path = seeds_cfg[seed]\\n            if not os.path.exists(path):\\n                print(f\\\"  SKIP seed {seed}: {path} not found\\\")\\n                continue\\n            print(f\\\"  seed {seed}:\\\")\\n            seed_results[seed] = analyze_single_seed(path, subtask)\\n\\n        if len(seed_results) < 2:\\n            print(f\\\"  WARNING: only {len(seed_results)} seeds, skipping aggregation\\\")\\n            continue\\n\\n        agg = aggregate_seeds(seed_results, list(seed_results.keys()))\\n        all_results[group_name] = agg\\n\\n        # Print summary\\n        print(f\\\"\\\\n  {'Method':<10s}  {'Mean F1':>9s}  {'±σ':>7s}  {'Δ greedy':>9s}  {'p(Fisher)':>10s}\\\")\\n        print(f\\\"  {'-'*10}  {'-'*9}  {'-'*7}  {'-'*9}  {'-'*10}\\\")\\n        print(f\\\"  {'Greedy':<10s}  {agg['greedy_f1']['mean']:.5f}  {agg['greedy_f1']['std']:.5f}\\\")\\n        print(f\\\"  {'Random':<10s}  {agg['random_f1']['mean']:.5f}  {agg['random_f1']['std']:.5f}\\\")\\n        for sig in SIGNALS:\\n            sr = agg[\\\"signal_selection_f1\\\"][sig]\\n            print(f\\\"  {sig:<10s}  {sr['mean']:.5f}  {sr['std']:.5f}  {sr['delta_vs_greedy_mean']:+.5f}  {sr['vs_greedy_p_combined_fisher']:.5f}\\\")\\n        print(f\\\"  {'Oracle':<10s}  {agg['oracle_f1']['mean']:.5f}  {agg['oracle_f1']['std']:.5f}\\\")\\n\\n    # Save JSON\\n    out_json = f\\\"{BASE}/output/multiseed_selection_f1.json\\\"\\n    with open(out_json, \\\"w\\\") as f:\\n        json.dump(all_results, f, indent=2)\\n    print(f\\\"\\\\nSaved JSON: {out_json}\\\")\\n\\n    # Save report\\n    os.makedirs(f\\\"{BASE}/artifacts\\\", exist_ok=True)\\n    report = generate_report(all_results)\\n    out_md = f\\\"{BASE}/artifacts/multiseed_selection_f1_report.md\\\"\\n    with open(out_md, \\\"w\\\") as f:\\n        f.write(report)\\n    print(f\\\"Saved report: {out_md}\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "33b63558-5bd9-4632-96ed-f3267a31fc22",
+  "uuid": "6aa16dce-7a06-4bd0-bf93-6abac1b14332",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"Multi-seed Selection F1 for Table 3 (C2 critical).\\\\n\\\\nFor each instance's N samples, score with 5 signals (SJ/FK/VC/EM/LP),\\\\nselect the top-scoring sample, compute its F1 vs gold.\\\\nReports 3-seed mean±σ, per-seed bootstrap p-value vs greedy, and\\\\na combined bootstrap p-value across seeds.\\\\n\\\\nInput: samples.jsonl files from inference experiments.\\\\nOutput: JSON results + markdown report.\\\\nDepends: consistency.py, evaluation.py (same directory).\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport json\\\\nimport os\\\\nimport sys\\\\nimport time\\\\nfrom collections import Counter\\\\n\\\\nimport numpy as np\\\\n\\\\nsys.path.insert(0, '/root/autodl-tmp/struct_self_consist_ie/code')\\\\nfrom consistency import (\\\\n    _ner_soft_jaccard_pair,\\\\n    _re_soft_jaccard_pair,\\\\n    _extract_surface_keys,\\\\n)\\\\nfrom evaluation import per_instance_f1\\\\n\\\\nBASE = \\\\\\\"/root/autodl-tmp/struct_self_consist_ie\\\\\\\"\\\\n\\\\nEXPERIMENT_GROUPS = {\\\\n    # --- Qwen SciERC N=16 (v2 pipeline) ---\\\\n    \\\\\\\"qwen_scierc_ner_n16\\\\\\\": {\\\\n        \\\\\\\"subtask\\\\\\\": \\\\\\\"ner\\\\\\\",\\\\n        \\\\\\\"seeds\\\\\\\": {\\\\n            42: f\\\\\\\"{BASE}/output/exp_001_seed42_v2/samples.jsonl\\\\\\\",\\\\n            123: f\\\\\\\"{BASE}/output/exp_001_seed123_v2/samples.jsonl\\\\\\\",\\\\n            456: f\\\\\\\"{BASE}/output/exp_001_seed456_v2/samples.jsonl\\\\\\\",\\\\n        },\\\\n    },\\\\n    \\\\\\\"qwen_scierc_re_n16\\\\\\\": {\\\\n        \\\\\\\"subtask\\\\\\\": \\\\\\\"re\\\\\\\",\\\\n        \\\\\\\"seeds\\\\\\\": {\\\\n            42: f\\\\\\\"{BASE}/output/exp_001_seed42_v2/samples.jsonl\\\\\\\",\\\\n            123: f\\\\\\\"{BASE}/output/exp_001_seed123_v2/samples.jsonl\\\\\\\",\\\\n            456: f\\\\\\\"{BASE}/output/exp_001_seed456_v2/samples.jsonl\\\\\\\",\\\\n        },\\\\n    },\\\\n    # --- Qwen SciERC N=8 (r1024 logprobs) ---\\\\n    \\\\\\\"qwen_scierc_ner_n8\\\\\\\": {\\\\n        \\\\\\\"subtask\\\\\\\": \\\\\\\"ner\\\\\\\",\\\\n        \\\\\\\"seeds\\\\\\\": {\\\\n            42: f\\\\\\\"{BASE}/output/exp_012_rerun_1024/samples.jsonl\\\\\\\",\\\\n            123: f\\\\\\\"{BASE}/output/exp_018_qwen_scierc_seed123/samples.jsonl\\\\\\\",\\\\n            456: f\\\\\\\"{BASE}/output/exp_018_qwen_scierc_seed456/samples.jsonl\\\\\\\",\\\\n        },\\\\n    },\\\\n    # --- LLaMA SciERC N=8 ---\\\\n    \\\\\\\"llama_scierc_ner_n8\\\\\\\": {\\\\n        \\\\\\\"subtask\\\\\\\": \\\\\\\"ner\\\\\\\",\\\\n        \\\\\\\"seeds\\\\\\\": {\\\\n            42: f\\\\\\\"{BASE}/output/exp_018_llama_scierc_seed42_r1024/samples.jsonl\\\\\\\",\\\\n            123: f\\\\\\\"{BASE}/output/exp_018_llama_scierc_seed123/samples.jsonl\\\\\\\",\\\\n            456: f\\\\\\\"{BASE}/output/exp_018_llama_scierc_seed456_r1024/samples.jsonl\\\\\\\",\\\\n        },\\\\n    },\\\\n    # --- LLaMA CoNLL N=16 ---\\\\n    \\\\\\\"llama_conll_ner_n16\\\\\\\": {\\\\n        \\\\\\\"subtask\\\\\\\": \\\\\\\"ner\\\\\\\",\\\\n        \\\\\\\"seeds\\\\\\\": {\\\\n            42: f\\\\\\\"{BASE}/output/exp_017_llama_conll_n16_r1024/samples.jsonl\\\\\\\",\\\\n            123: f\\\\\\\"{BASE}/output/exp_017_llama_conll_n16_s123_r1024/samples.jsonl\\\\\\\",\\\\n            456: f\\\\\\\"{BASE}/output/exp_017_llama_conll_n16_s456_r1024/samples.jsonl\\\\\\\",\\\\n        },\\\\n    },\\\\n}\\\\n\\\\nN_BOOTSTRAP = 10000\\\\nBOOTSTRAP_SEED = 42\\\\nN_RANDOM_REPEATS = 50\\\\nSIGNALS = [\\\\\\\"VC\\\\\\\", \\\\\\\"SJ\\\\\\\", \\\\\\\"FK\\\\\\\", \\\\\\\"EM\\\\\\\", \\\\\\\"LP\\\\\\\"]\\\\n\\\\n\\\\ndef load_data(path):\\\\n    with open(path) as f:\\\\n        return [json.loads(line) for line in f if line.strip()]\\\\n\\\\n\\\\ndef compute_sample_sj_scores(instance, subtask):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Pairwise soft Jaccard: mean similarity of each sample to all others.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    samples = instance[\\\\\\\"samples\\\\\\\"]\\\\n    N = len(samples)\\\\n    field = \\\\\\\"entities\\\\\\\" if subtask == \\\\\\\"ner\\\\\\\" else \\\\\\\"relations\\\\\\\"\\\\n    pair_fn = _ner_soft_jaccard_pair if subtask == \\\\\\\"ner\\\\\\\" else _re_soft_jaccard_pair\\\\n    matrix = np.zeros((N, N))\\\\n    for i in range(N):\\\\n        for j in range(i + 1, N):\\\\n            s = pair_fn(samples[i].get(field, []), samples[j].get(field, []))\\\\n            matrix[i][j] = s\\\\n            matrix[j][i] = s\\\\n    np.fill_diagonal(matrix, 1.0)\\\\n    return [float(np.mean([matrix[k][j] for j in range(N) if j != k])) for k in range(N)]\\\\n\\\\n\\\\ndef compute_sample_surface_scores(instance, subtask):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Surface-key Jaccard (FK proxy) and key sets for VC/EM.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    samples = instance[\\\\\\\"samples\\\\\\\"]\\\\n    N = len(samples)\\\\n    key_sets = [frozenset(_extract_surface_keys(s, subtask)) for s in samples]\\\\n    matrix = np.zeros((N, N))\\\\n    for i in range(N):\\\\n        for j in range(i + 1, N):\\\\n            union = len(key_sets[i] | key_sets[j])\\\\n            inter = len(key_sets[i] & key_sets[j])\\\\n            s = inter / union if union > 0 else 1.0\\\\n            matrix[i][j] = \\\\n\\\\n... [截断: 输出过长，省略 6562 字符] ...\\\\n\\\\nN={N_samp})\\\\\\\")\\\\n        lines.append(\\\\\\\"\\\\\\\")\\\\n\\\\n        # Table header\\\\n        lines.append(f\\\\\\\"| Method | Mean F1 | ±σ | Δ greedy | p (Fisher) |\\\\\\\")\\\\n        lines.append(f\\\\\\\"|--------|--------:|---:|---------:|-----------:|\\\\\\\")\\\\n\\\\n        g = agg[\\\\\\\"greedy_f1\\\\\\\"]\\\\n        lines.append(f\\\\\\\"| Greedy | {g['mean']:.4f} | {g['std']:.4f} | — | — |\\\\\\\")\\\\n        r = agg[\\\\\\\"random_f1\\\\\\\"]\\\\n        lines.append(f\\\\\\\"| Random | {r['mean']:.4f} | {r['std']:.4f} | {r['mean']-g['mean']:+.4f} | — |\\\\\\\")\\\\n\\\\n        for sig in SIGNALS:\\\\n            sr = agg[\\\\\\\"signal_selection_f1\\\\\\\"][sig]\\\\n            p_fisher = sr[\\\\\\\"vs_greedy_p_combined_fisher\\\\\\\"]\\\\n            p_str = f\\\\\\\"{p_fisher:.4f}\\\\\\\"\\\\n            if p_fisher < 0.01:\\\\n                p_str = f\\\\\\\"**{p_fisher:.4f}**\\\\\\\"\\\\n            elif p_fisher < 0.05:\\\\n                p_str = f\\\\\\\"*{p_fisher:.4f}*\\\\\\\"\\\\n            lines.append(f\\\\\\\"| {sig} | {sr['mean']:.4f} | {sr['std']:.4f} | {sr['delta_vs_greedy_mean']:+.4f} | {p_str} |\\\\\\\")\\\\n\\\\n        o = agg[\\\\\\\"oracle_f1\\\\\\\"]\\\\n        lines.append(f\\\\\\\"| Oracle | {o['mean']:.4f} | {o['std']:.4f} | {o['mean']-g['mean']:+.4f} | — |\\\\\\\")\\\\n        lines.append(\\\\\\\"\\\\\\\")\\\\n\\\\n        # Per-seed detail\\\\n        lines.append(\\\\\\\"&lt;details>&lt;summary>Per-seed breakdown&lt;/summary>\\\\\\\")\\\\n        lines.append(\\\\\\\"\\\\\\\")\\\\n        for seed in agg[\\\\\\\"seeds\\\\\\\"]:\\\\n            lines.append(f\\\\\\\"**Seed {seed}:**\\\\\\\")\\\\n            lines.append(\\\\\\\"\\\\\\\")\\\\n            for sig in SIGNALS:\\\\n                sr = agg[\\\\\\\"signal_selection_f1\\\\\\\"][sig]\\\\n                idx = agg[\\\\\\\"seeds\\\\\\\"].index(seed)\\\\n                sf1 = sr[\\\\\\\"per_seed\\\\\\\"][idx]\\\\n                gf1 = agg[\\\\\\\"greedy_f1\\\\\\\"][\\\\\\\"per_seed\\\\\\\"][idx]\\\\n                p = sr[\\\\\\\"vs_greedy_p_per_seed\\\\\\\"][idx]\\\\n                ci = sr[\\\\\\\"vs_greedy_ci95_per_seed\\\\\\\"][idx]\\\\n                lines.append(f\\\\\\\"- {sig}: sel_F1={sf1:.4f}, Δ={sf1-gf1:+.4f}, p={p:.4f}, CI95=[{ci[0]:+.4f}, {ci[1]:+.4f}]\\\\\\\")\\\\n            lines.append(\\\\\\\"\\\\\\\")\\\\n        lines.append(\\\\\\\"&lt;/details>\\\\\\\")\\\\n        lines.append(\\\\\\\"\\\\\\\")\\\\n\\\\n    return \\\\\\\"\\\\\\\\n\\\\\\\".join(lines)\\\\n\\\\n\\\\ndef main():\\\\n    all_results = {}\\\\n\\\\n    for group_name, group_cfg in EXPERIMENT_GROUPS.items():\\\\n        subtask = group_cfg[\\\\\\\"subtask\\\\\\\"]\\\\n        seeds_cfg = group_cfg[\\\\\\\"seeds\\\\\\\"]\\\\n        seeds = sorted(seeds_cfg.keys())\\\\n\\\\n        print(f\\\\\\\"\\\\\\\\n{'='*60}\\\\\\\")\\\\n        print(f\\\\\\\"  {group_name} (subtask={subtask})\\\\\\\")\\\\n        print(f\\\\\\\"{'='*60}\\\\\\\")\\\\n\\\\n        seed_results = {}\\\\n        for seed in seeds:\\\\n            path = seeds_cfg[seed]\\\\n            if not os.path.exists(path):\\\\n                print(f\\\\\\\"  SKIP seed {seed}: {path} not found\\\\\\\")\\\\n                continue\\\\n            print(f\\\\\\\"  seed {seed}:\\\\\\\")\\\\n            seed_results[seed] = analyze_single_seed(path, subtask)\\\\n\\\\n        if len(seed_results) < 2:\\\\n            print(f\\\\\\\"  WARNING: only {len(seed_results)} seeds, skipping aggregation\\\\\\\")\\\\n            continue\\\\n\\\\n        agg = aggregate_seeds(seed_results, list(seed_results.keys()))\\\\n        all_results[group_name] = agg\\\\n\\\\n        # Print summary\\\\n        print(f\\\\\\\"\\\\\\\\n  {'Method':<10s}  {'Mean F1':>9s}  {'±σ':>7s}  {'Δ greedy':>9s}  {'p(Fisher)':>10s}\\\\\\\")\\\\n        print(f\\\\\\\"  {'-'*10}  {'-'*9}  {'-'*7}  {'-'*9}  {'-'*10}\\\\\\\")\\\\n        print(f\\\\\\\"  {'Greedy':<10s}  {agg['greedy_f1']['mean']:.5f}  {agg['greedy_f1']['std']:.5f}\\\\\\\")\\\\n        print(f\\\\\\\"  {'Random':<10s}  {agg['random_f1']['mean']:.5f}  {agg['random_f1']['std']:.5f}\\\\\\\")\\\\n        for sig in SIGNALS:\\\\n            sr = agg[\\\\\\\"signal_selection_f1\\\\\\\"][sig]\\\\n            print(f\\\\\\\"  {sig:<10s}  {sr['mean']:.5f}  {sr['std']:.5f}  {sr['delta_vs_greedy_mean']:+.5f}  {sr['vs_greedy_p_combined_fisher']:.5f}\\\\\\\")\\\\n        print(f\\\\\\\"  {'Oracle':<10s}  {agg['oracle_f1']['mean']:.5f}  {agg['oracle_f1']['std']:.5f}\\\\\\\")\\\\n\\\\n    # Save JSON\\\\n    out_json = f\\\\\\\"{BASE}/output/multiseed_selection_f1.json\\\\\\\"\\\\n    with open(out_json, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(all_results, f, indent=2)\\\\n    print(f\\\\\\\"\\\\\\\\nSaved JSON: {out_json}\\\\\\\")\\\\n\\\\n    # Save report\\\\n    os.makedirs(f\\\\\\\"{BASE}/artifacts\\\\\\\", exist_ok=True)\\\\n    report = generate_report(all_results)\\\\n    out_md = f\\\\\\\"{BASE}/artifacts/multiseed_selection_f1_report.md\\\\\\\"\\\\n    with open(out_md, \\\\\\\"w\\\\\\\") as f:\\\\n        f.write(report)\\\\n    print(f\\\\\\\"Saved report: {out_md}\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Multi-seed Selection F1 for Table 3 (C2 critical).\\n\\nFor each instance's N samples, score with 5 signals (SJ/FK/VC/EM/LP),\\nselect the top-scoring sample, compute its F1 vs gold.\\nReports 3-seed mean±σ, per-seed bootstrap p-value vs greedy, and\\na combined bootstrap p-value across seeds.\\n\\nInput: samples.jsonl files from inference experiments.\\nOutput: JSON results + markdown report.\\nDepends: consistency.py, evaluation.py (same directory).\\n\\\"\\\"\\\"\\n\\nimport json\\nimport os\\nimport sys\\nimport time\\nfrom collections import Counter\\n\\nimport numpy as np\\n\\nsys.path.insert(0, '/root/autodl-tmp/struct_self_consist_ie/code')\\nfrom consistency import (\\n    _ner_soft_jaccard_pair,\\n    _re_soft_jaccard_pair,\\n    _extract_surface_keys,\\n)\\nfrom evaluation import per_instance_f1\\n\\nBASE = \\\"/root/autodl-tmp/struct_self_consist_ie\\\"\\n\\nEXPERIMENT_GROUPS = {\\n    # --- Qwen SciERC N=16 (v2 pipeline) ---\\n    \\\"qwen_scierc_ner_n16\\\": {\\n        \\\"subtask\\\": \\\"ner\\\",\\n        \\\"seeds\\\": {\\n            42: f\\\"{BASE}/output/exp_001_seed42_v2/samples.jsonl\\\",\\n            123: f\\\"{BASE}/output/exp_001_seed123_v2/samples.jsonl\\\",\\n            456: f\\\"{BASE}/output/exp_001_seed456_v2/samples.jsonl\\\",\\n        },\\n    },\\n    \\\"qwen_scierc_re_n16\\\": {\\n        \\\"subtask\\\": \\\"re\\\",\\n        \\\"seeds\\\": {\\n            42: f\\\"{BASE}/output/exp_001_seed42_v2/samples.jsonl\\\",\\n            123: f\\\"{BASE}/output/exp_001_seed123_v2/samples.jsonl\\\",\\n            456: f\\\"{BASE}/output/exp_001_seed456_v2/samples.jsonl\\\",\\n        },\\n    },\\n    # --- Qwen SciERC N=8 (r1024 logprobs) ---\\n    \\\"qwen_scierc_ner_n8\\\": {\\n        \\\"subtask\\\": \\\"ner\\\",\\n        \\\"seeds\\\": {\\n            42: f\\\"{BASE}/output/exp_012_rerun_1024/samples.jsonl\\\",\\n            123: f\\\"{BASE}/output/exp_018_qwen_scierc_seed123/samples.jsonl\\\",\\n            456: f\\\"{BASE}/output/exp_018_qwen_scierc_seed456/samples.jsonl\\\",\\n        },\\n    },\\n    # --- LLaMA SciERC N=8 ---\\n    \\\"llama_scierc_ner_n8\\\": {\\n        \\\"subtask\\\": \\\"ner\\\",\\n        \\\"seeds\\\": {\\n            42: f\\\"{BASE}/output/exp_018_llama_scierc_seed42_r1024/samples.jsonl\\\",\\n            123: f\\\"{BASE}/output/exp_018_llama_scierc_seed123/samples.jsonl\\\",\\n            456: f\\\"{BASE}/output/exp_018_llama_scierc_seed456_r1024/samples.jsonl\\\",\\n        },\\n    },\\n    # --- LLaMA CoNLL N=16 ---\\n    \\\"llama_conll_ner_n16\\\": {\\n        \\\"subtask\\\": \\\"ner\\\",\\n        \\\"seeds\\\": {\\n            42: f\\\"{BASE}/output/exp_017_llama_conll_n16_r1024/samples.jsonl\\\",\\n            123: f\\\"{BASE}/output/exp_017_llama_conll_n16_s123_r1024/samples.jsonl\\\",\\n            456: f\\\"{BASE}/output/exp_017_llama_conll_n16_s456_r1024/samples.jsonl\\\",\\n        },\\n    },\\n}\\n\\nN_BOOTSTRAP = 10000\\nBOOTSTRAP_SEED = 42\\nN_RANDOM_REPEATS = 50\\nSIGNALS = [\\\"VC\\\", \\\"SJ\\\", \\\"FK\\\", \\\"EM\\\", \\\"LP\\\"]\\n\\n\\ndef load_data(path):\\n    with open(path) as f:\\n        return [json.loads(line) for line in f if line.strip()]\\n\\n\\ndef compute_sample_sj_scores(instance, subtask):\\n    \\\"\\\"\\\"Pairwise soft Jaccard: mean similarity of each sample to all others.\\\"\\\"\\\"\\n    samples = instance[\\\"samples\\\"]\\n    N = len(samples)\\n    field = \\\"entities\\\" if subtask == \\\"ner\\\" else \\\"relations\\\"\\n    pair_fn = _ner_soft_jaccard_pair if subtask == \\\"ner\\\" else _re_soft_jaccard_pair\\n    matrix = np.zeros((N, N))\\n    for i in range(N):\\n        for j in range(i + 1, N):\\n            s = pair_fn(samples[i].get(field, []), samples[j].get(field, []))\\n            matrix[i][j] = s\\n            matrix[j][i] = s\\n    np.fill_diagonal(matrix, 1.0)\\n    return [float(np.mean([matrix[k][j] for j in range(N) if j != k])) for k in range(N)]\\n\\n\\ndef compute_sample_surface_scores(instance, subtask):\\n    \\\"\\\"\\\"Surface-key Jaccard (FK proxy) and key sets for VC/EM.\\\"\\\"\\\"\\n    samples = instance[\\\"samples\\\"]\\n    N = len(samples)\\n    key_sets = [frozenset(_extract_surface_keys(s, subtask)) for s in samples]\\n    matrix = np.zeros((N, N))\\n    for i in range(N):\\n        for j in range(i + 1, N):\\n            union = len(key_sets[i] | key_sets[j])\\n            inter = len(key_sets[i] & key_sets[j])\\n            s = inter / union if union > 0 else 1.0\\n            matrix[i][j] = \\n\\n... [截断: 输出过长，省略 6562 字符] ...\\n\\nN={N_samp})\\\")\\n        lines.append(\\\"\\\")\\n\\n        # Table header\\n        lines.append(f\\\"| Method | Mean F1 | ±σ | Δ greedy | p (Fisher) |\\\")\\n        lines.append(f\\\"|--------|--------:|---:|---------:|-----------:|\\\")\\n\\n        g = agg[\\\"greedy_f1\\\"]\\n        lines.append(f\\\"| Greedy | {g['mean']:.4f} | {g['std']:.4f} | — | — |\\\")\\n        r = agg[\\\"random_f1\\\"]\\n        lines.append(f\\\"| Random | {r['mean']:.4f} | {r['std']:.4f} | {r['mean']-g['mean']:+.4f} | — |\\\")\\n\\n        for sig in SIGNALS:\\n            sr = agg[\\\"signal_selection_f1\\\"][sig]\\n            p_fisher = sr[\\\"vs_greedy_p_combined_fisher\\\"]\\n            p_str = f\\\"{p_fisher:.4f}\\\"\\n            if p_fisher < 0.01:\\n                p_str = f\\\"**{p_fisher:.4f}**\\\"\\n            elif p_fisher < 0.05:\\n                p_str = f\\\"*{p_fisher:.4f}*\\\"\\n            lines.append(f\\\"| {sig} | {sr['mean']:.4f} | {sr['std']:.4f} | {sr['delta_vs_greedy_mean']:+.4f} | {p_str} |\\\")\\n\\n        o = agg[\\\"oracle_f1\\\"]\\n        lines.append(f\\\"| Oracle | {o['mean']:.4f} | {o['std']:.4f} | {o['mean']-g['mean']:+.4f} | — |\\\")\\n        lines.append(\\\"\\\")\\n\\n        # Per-seed detail\\n        lines.append(\\\"&lt;details>&lt;summary>Per-seed breakdown&lt;/summary>\\\")\\n        lines.append(\\\"\\\")\\n        for seed in agg[\\\"seeds\\\"]:\\n            lines.append(f\\\"**Seed {seed}:**\\\")\\n            lines.append(\\\"\\\")\\n            for sig in SIGNALS:\\n                sr = agg[\\\"signal_selection_f1\\\"][sig]\\n                idx = agg[\\\"seeds\\\"].index(seed)\\n                sf1 = sr[\\\"per_seed\\\"][idx]\\n                gf1 = agg[\\\"greedy_f1\\\"][\\\"per_seed\\\"][idx]\\n                p = sr[\\\"vs_greedy_p_per_seed\\\"][idx]\\n                ci = sr[\\\"vs_greedy_ci95_per_seed\\\"][idx]\\n                lines.append(f\\\"- {sig}: sel_F1={sf1:.4f}, Δ={sf1-gf1:+.4f}, p={p:.4f}, CI95=[{ci[0]:+.4f}, {ci[1]:+.4f}]\\\")\\n            lines.append(\\\"\\\")\\n        lines.append(\\\"&lt;/details>\\\")\\n        lines.append(\\\"\\\")\\n\\n    return \\\"\\\\n\\\".join(lines)\\n\\n\\ndef main():\\n    all_results = {}\\n\\n    for group_name, group_cfg in EXPERIMENT_GROUPS.items():\\n        subtask = group_cfg[\\\"subtask\\\"]\\n        seeds_cfg = group_cfg[\\\"seeds\\\"]\\n        seeds = sorted(seeds_cfg.keys())\\n\\n        print(f\\\"\\\\n{'='*60}\\\")\\n        print(f\\\"  {group_name} (subtask={subtask})\\\")\\n        print(f\\\"{'='*60}\\\")\\n\\n        seed_results = {}\\n        for seed in seeds:\\n            path = seeds_cfg[seed]\\n            if not os.path.exists(path):\\n                print(f\\\"  SKIP seed {seed}: {path} not found\\\")\\n                continue\\n            print(f\\\"  seed {seed}:\\\")\\n            seed_results[seed] = analyze_single_seed(path, subtask)\\n\\n        if len(seed_results) < 2:\\n            print(f\\\"  WARNING: only {len(seed_results)} seeds, skipping aggregation\\\")\\n            continue\\n\\n        agg = aggregate_seeds(seed_results, list(seed_results.keys()))\\n        all_results[group_name] = agg\\n\\n        # Print summary\\n        print(f\\\"\\\\n  {'Method':<10s}  {'Mean F1':>9s}  {'±σ':>7s}  {'Δ greedy':>9s}  {'p(Fisher)':>10s}\\\")\\n        print(f\\\"  {'-'*10}  {'-'*9}  {'-'*7}  {'-'*9}  {'-'*10}\\\")\\n        print(f\\\"  {'Greedy':<10s}  {agg['greedy_f1']['mean']:.5f}  {agg['greedy_f1']['std']:.5f}\\\")\\n        print(f\\\"  {'Random':<10s}  {agg['random_f1']['mean']:.5f}  {agg['random_f1']['std']:.5f}\\\")\\n        for sig in SIGNALS:\\n            sr = agg[\\\"signal_selection_f1\\\"][sig]\\n            print(f\\\"  {sig:<10s}  {sr['mean']:.5f}  {sr['std']:.5f}  {sr['delta_vs_greedy_mean']:+.5f}  {sr['vs_greedy_p_combined_fisher']:.5f}\\\")\\n        print(f\\\"  {'Oracle':<10s}  {agg['oracle_f1']['mean']:.5f}  {agg['oracle_f1']['std']:.5f}\\\")\\n\\n    # Save JSON\\n    out_json = f\\\"{BASE}/output/multiseed_selection_f1.json\\\"\\n    with open(out_json, \\\"w\\\") as f:\\n        json.dump(all_results, f, indent=2)\\n    print(f\\\"\\\\nSaved JSON: {out_json}\\\")\\n\\n    # Save report\\n    os.makedirs(f\\\"{BASE}/artifacts\\\", exist_ok=True)\\n    report = generate_report(all_results)\\n    out_md = f\\\"{BASE}/artifacts/multiseed_selection_f1_report.md\\\"\\n    with open(out_md, \\\"w\\\") as f:\\n        f.write(report)\\n    print(f\\\"Saved report: {out_md}\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 66_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have the key information:
+
+Data mapping (from `analyze_scale_ablation_4b.py` and `compute_selection_f1.py`):
+
+**CoNLL NER, Qwen3-8B (n=8)**: `exp002_conll2003/samples.jsonl`
+**CoNLL NER, Qwen3-4B**: `exp_qwen3_4b_conll_scs_inference_v2/samples.jsonl`
+**SciERC NER, Qwen3-8B (n=8)**: `exp_012_rerun_1024/samples.jsonl` (seed42)
+
+
+**SciERC NER, Qwen3-4B**: `exp_qwen3_4b_scierc_scs_inference/samples.jsonl`
+**LLaMA 8B, CoNLL (n=16)**: `exp_017_llama_conll_n16_r1024/samples.jsonl`
+**LLaMA 8B, SciERC (n=8)**: `exp_018_llama_scierc_seed42_r1024/samples.jsonl`
+
+Now I'm looking at the SJ implementation in `consistency.py` to understand how the soft Jaccard overlap calculation works.
+
+The `_span_soft_jaccard` function computes overlap divided by union for character spans, and `_ner_soft_jaccard_pair` groups entities by type, applies Hungarian matching within each type, then normalizes by the max of the two entity counts. To switch to a union normalizer instead, I'd need to compute the union as the sum of both entity counts minus the matched pairs per type, which gives me `|ga_t| + |gb_t| - min(|ga_t|, |gb_t|)` for each type group.
+
+But there's a subtlety here: if I use the actual similarity scores of matched pairs as the intersection, the union becomes `|ga_t| + |gb_t| - matched_sim_t`, which is always at least as large as the max normalizer since the matched similarities are bounded by the minimum of the two counts. This means switching to a soft union would produce lower scores overall.
+
+The standard soft Jaccard formula applies this principle directly: intersection over union, where both are computed using similarity scores. Now I need to implement this comparison—I'll load the samples, compute both the current max-based Jaccard and the new union-based version for each instance, then calculate the greedy F1 scores and measure how the Spearman correlation changes between the two approaches. I should also check the evaluation module to understand how F1 is being computed.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "33b63558-5bd9-4632-96ed-f3267a31fc22",
+  "uuid": "5821525d-0d1b-49e9-a316-28e08014c6f1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01T3mz6RkRygwfXQBQ8JnTJe",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4647,
+      "cache_read_input_tokens": 57556,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4647
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 67_
+
+Now I have the full picture. Let me check the evaluation module for F1 computation, then write the analysis script.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "33b63558-5bd9-4632-96ed-f3267a31fc22",
+  "uuid": "30b7af08-1878-4f61-990d-dd4e59e3aad5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01T3mz6RkRygwfXQBQ8JnTJe",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4647,
+      "cache_read_input_tokens": 57556,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4647
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 68_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01LhcqK21ZxCY2t1bZBYEwGQ`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "head -80 /root/autodl-tmp/struct_self_consist_ie/code/evaluation.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "33b63558-5bd9-4632-96ed-f3267a31fc22",
+  "uuid": "05438c65-c0af-4daa-a2fd-1423be9c0f2c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01T3mz6RkRygwfXQBQ8JnTJe",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4647,
+      "cache_read_input_tokens": 57556,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4647
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 69 · 2026-05-15T20:22:44.546Z_
+
+<details><summary>↩ Tool result · `toolu_01LhcqK21ZxCY2t1bZBYEwGQ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Evaluation module for structured self-consistency IE experiments.\\n\\nProvides strict-match NER/EAE evaluation, per-instance F1 computation,\\ncorrelation analysis, and summary report generation.\\n\\\"\\\"\\\"\\n\\nfrom __future__ import annotations\\n\\nimport statistics\\nfrom typing import Any\\n\\nfrom scipy.stats import kendalltau, spearmanr\\n\\n\\n# ---------------------------------------------------------------------------\\n# NER evaluation (strict match)\\n# ---------------------------------------------------------------------------\\n\\ndef entity_strict_match(\\n    pred_entities: list[dict],\\n    gold_entities: list[dict],\\n) -> tuple[int, int, int]:\\n    \\\"\\\"\\\"Compute strict entity match counts.\\n\\n    Strict match requires exact span (start, end) AND exact type.\\n\\n    Args:\\n        pred_entities: Predicted entity dicts with keys text, type, start, end.\\n        gold_entities: Gold entity dicts with the same schema.\\n\\n    Returns:\\n        (tp, fp, fn) counts.\\n    \\\"\\\"\\\"\\n    pred_set = {(e[\\\"start\\\"], e[\\\"end\\\"], e[\\\"type\\\"]) for e in pred_entities}\\n    gold_set = {(e[\\\"start\\\"], e[\\\"end\\\"], e[\\\"type\\\"]) for e in gold_entities}\\n    tp = len(pred_set & gold_set)\\n    fp = len(pred_set - gold_set)\\n    fn = len(gold_set - pred_set)\\n    return tp, fp, fn\\n\\n\\ndef compute_ner_f1(\\n    predictions: list[dict],\\n    golds: list[dict],\\n) -> dict[str, float]:\\n    \\\"\\\"\\\"Compute micro-averaged NER precision, recall, and F1.\\n\\n    Args:\\n        predictions: List of Extraction dicts (one per instance).\\n        golds: List of Extraction dicts (one per instance), aligned with predictions.\\n\\n    Returns:\\n        Dict with keys \\\"precision\\\", \\\"recall\\\", \\\"f1\\\".\\n    \\\"\\\"\\\"\\n    total_tp = total_fp = total_fn = 0\\n    for pred, gold in zip(predictions, golds):\\n        tp, fp, fn = entity_strict_match(\\n            pred.get(\\\"entities\\\", []),\\n            gold.get(\\\"entities\\\", []),\\n        )\\n        total_tp += tp\\n        total_fp += fp\\n        total_fn += fn\\n    return _prf(total_tp, total_fp, total_fn)\\n\\n\\n# ---------------------------------------------------------------------------\\n# EAE evaluation (argument match)\\n# ---------------------------------------------------------------------------\\n\\ndef _event_argument_tuples(events: list[dict]) -> set[tuple]:\\n    \\\"\\\"\\\"Extract (trigger_start, trigger_end, trigger_type, role, arg_start, arg_end) tuples.\\\"\\\"\\\"\\n    tuples: set[tuple] = set()\\n    for event in events:\\n        trigger = event.get(\\\"trigger\\\", {})\\n        t_start = trigger.get(\\\"start\\\")\\n        t_end = trigger.get(\\\"end\\\")\\n        t_type = trigger.get(\\\"type\\\")\\n        for arg in event.get(\\\"arguments\\\", []):\\n            tuples.add((t_start, t_end, t_type, arg[\\\"role\\\"], arg[\\\"start\\\"], arg[\\\"end\\\"]))\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "33b63558-5bd9-4632-96ed-f3267a31fc22",
+  "uuid": "ec4648f5-c410-4fff-8047-eca405aa67bf",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Evaluation module for structured self-consistency IE experiments.\\\\n\\\\nProvides strict-match NER/EAE evaluation, per-instance F1 computation,\\\\ncorrelation analysis, and summary report generation.\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nfrom __future__ import annotations\\\\n\\\\nimport statistics\\\\nfrom typing import Any\\\\n\\\\nfrom scipy.stats import kendalltau, spearmanr\\\\n\\\\n\\\\n# ---------------------------------------------------------------------------\\\\n# NER evaluation (strict match)\\\\n# ---------------------------------------------------------------------------\\\\n\\\\ndef entity_strict_match(\\\\n    pred_entities: list[dict],\\\\n    gold_entities: list[dict],\\\\n) -> tuple[int, int, int]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Compute strict entity match counts.\\\\n\\\\n    Strict match requires exact span (start, end) AND exact type.\\\\n\\\\n    Args:\\\\n        pred_entities: Predicted entity dicts with keys text, type, start, end.\\\\n        gold_entities: Gold entity dicts with the same schema.\\\\n\\\\n    Returns:\\\\n        (tp, fp, fn) counts.\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    pred_set = {(e[\\\\\\\"start\\\\\\\"], e[\\\\\\\"end\\\\\\\"], e[\\\\\\\"type\\\\\\\"]) for e in pred_entities}\\\\n    gold_set = {(e[\\\\\\\"start\\\\\\\"], e[\\\\\\\"end\\\\\\\"], e[\\\\\\\"type\\\\\\\"]) for e in gold_entities}\\\\n    tp = len(pred_set & gold_set)\\\\n    fp = len(pred_set - gold_set)\\\\n    fn = len(gold_set - pred_set)\\\\n    return tp, fp, fn\\\\n\\\\n\\\\ndef compute_ner_f1(\\\\n    predictions: list[dict],\\\\n    golds: list[dict],\\\\n) -> dict[str, float]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Compute micro-averaged NER precision, recall, and F1.\\\\n\\\\n    Args:\\\\n        predictions: List of Extraction dicts (one per instance).\\\\n        golds: List of Extraction dicts (one per instance), aligned with predictions.\\\\n\\\\n    Returns:\\\\n        Dict with keys \\\\\\\"precision\\\\\\\", \\\\\\\"recall\\\\\\\", \\\\\\\"f1\\\\\\\".\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    total_tp = total_fp = total_fn = 0\\\\n    for pred, gold in zip(predictions, golds):\\\\n        tp, fp, fn = entity_strict_match(\\\\n            pred.get(\\\\\\\"entities\\\\\\\", []),\\\\n            gold.get(\\\\\\\"entities\\\\\\\", []),\\\\n        )\\\\n        total_tp += tp\\\\n        total_fp += fp\\\\n        total_fn += fn\\\\n    return _prf(total_tp, total_fp, total_fn)\\\\n\\\\n\\\\n# ---------------------------------------------------------------------------\\\\n# EAE evaluation (argument match)\\\\n# ---------------------------------------------------------------------------\\\\n\\\\ndef _event_argument_tuples(events: list[dict]) -> set[tuple]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Extract (trigger_start, trigger_end, trigger_type, role, arg_start, arg_end) tuples.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    tuples: set[tuple] = set()\\\\n    for event in events:\\\\n        trigger = event.get(\\\\\\\"trigger\\\\\\\", {})\\\\n        t_start = trigger.get(\\\\\\\"start\\\\\\\")\\\\n        t_end = trigger.get(\\\\\\\"end\\\\\\\")\\\\n        t_type = trigger.get(\\\\\\\"type\\\\\\\")\\\\n        for arg in event.get(\\\\\\\"arguments\\\\\\\", []):\\\\n            tuples.add((t_start, t_end, t_type, arg[\\\\\\\"role\\\\\\\"], arg[\\\\\\\"start\\\\\\\"], arg[\\\\\\\"end\\\\\\\"]))\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Evaluation module for structured self-consistency IE experiments.\\n\\nProvides strict-match NER/EAE evaluation, per-instance F1 computation,\\ncorrelation analysis, and summary report generation.\\n\\\"\\\"\\\"\\n\\nfrom __future__ import annotations\\n\\nimport statistics\\nfrom typing import Any\\n\\nfrom scipy.stats import kendalltau, spearmanr\\n\\n\\n# ---------------------------------------------------------------------------\\n# NER evaluation (strict match)\\n# ---------------------------------------------------------------------------\\n\\ndef entity_strict_match(\\n    pred_entities: list[dict],\\n    gold_entities: list[dict],\\n) -> tuple[int, int, int]:\\n    \\\"\\\"\\\"Compute strict entity match counts.\\n\\n    Strict match requires exact span (start, end) AND exact type.\\n\\n    Args:\\n        pred_entities: Predicted entity dicts with keys text, type, start, end.\\n        gold_entities: Gold entity dicts with the same schema.\\n\\n    Returns:\\n        (tp, fp, fn) counts.\\n    \\\"\\\"\\\"\\n    pred_set = {(e[\\\"start\\\"], e[\\\"end\\\"], e[\\\"type\\\"]) for e in pred_entities}\\n    gold_set = {(e[\\\"start\\\"], e[\\\"end\\\"], e[\\\"type\\\"]) for e in gold_entities}\\n    tp = len(pred_set & gold_set)\\n    fp = len(pred_set - gold_set)\\n    fn = len(gold_set - pred_set)\\n    return tp, fp, fn\\n\\n\\ndef compute_ner_f1(\\n    predictions: list[dict],\\n    golds: list[dict],\\n) -> dict[str, float]:\\n    \\\"\\\"\\\"Compute micro-averaged NER precision, recall, and F1.\\n\\n    Args:\\n        predictions: List of Extraction dicts (one per instance).\\n        golds: List of Extraction dicts (one per instance), aligned with predictions.\\n\\n    Returns:\\n        Dict with keys \\\"precision\\\", \\\"recall\\\", \\\"f1\\\".\\n    \\\"\\\"\\\"\\n    total_tp = total_fp = total_fn = 0\\n    for pred, gold in zip(predictions, golds):\\n        tp, fp, fn = entity_strict_match(\\n            pred.get(\\\"entities\\\", []),\\n            gold.get(\\\"entities\\\", []),\\n        )\\n        total_tp += tp\\n        total_fp += fp\\n        total_fn += fn\\n    return _prf(total_tp, total_fp, total_fn)\\n\\n\\n# ---------------------------------------------------------------------------\\n# EAE evaluation (argument match)\\n# ---------------------------------------------------------------------------\\n\\ndef _event_argument_tuples(events: list[dict]) -> set[tuple]:\\n    \\\"\\\"\\\"Extract (trigger_start, trigger_end, trigger_type, role, arg_start, arg_end) tuples.\\\"\\\"\\\"\\n    tuples: set[tuple] = set()\\n    for event in events:\\n        trigger = event.get(\\\"trigger\\\", {})\\n        t_start = trigger.get(\\\"start\\\")\\n        t_end = trigger.get(\\\"end\\\")\\n        t_type = trigger.get(\\\"type\\\")\\n        for arg in event.get(\\\"arguments\\\", []):\\n            tuples.add((t_start, t_end, t_type, arg[\\\"role\\\"], arg[\\\"start\\\"], arg[\\\"end\\\"]))\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 70_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01TX8r713YxssAhhGYY6PFmC`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "grep -n \"def per_instance_f1\" /root/autodl-tmp/struct_self_consist_ie/code/evaluation.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "33b63558-5bd9-4632-96ed-f3267a31fc22",
+  "uuid": "e34d8218-c05a-4722-8c1e-5108097702b4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Vy18yGc4om2NWXFLGnxmXY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2098,
+      "cache_read_input_tokens": 62203,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2098
+      },
+      "output_tokens": 68,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 71 · 2026-05-15T20:22:47.873Z_
+
+<details><summary>↩ Tool result · `toolu_01TX8r713YxssAhhGYY6PFmC`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"167:def per_instance_f1(\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "33b63558-5bd9-4632-96ed-f3267a31fc22",
+  "uuid": "2caca9b6-de38-4f2f-a086-3c3fc6b373da",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"167:def per_instance_f1(\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"167:def per_instance_f1(\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 72_
+
+Good. Now I have everything I need. Let me write the analysis script. Key findings from reading the code:
+
+- `_ner_soft_jaccard_pair`: denominator = `sum_t max(|ga_t|, |gb_t|)` (max normalizer)
+- Union normalizer: `sum_t (|ga_t| + |gb_t| - matched_sim_t)` — the soft Jaccard analog of `|A ∪ B| = |A| + |B| - |A ∩ B|`
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "33b63558-5bd9-4632-96ed-f3267a31fc22",
+  "uuid": "3a56598c-9033-48cb-94f3-687264ac8a10",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011kHxGmjp8EyMy7h4YaWoCj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 219,
+      "cache_read_input_tokens": 64301,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 219
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 73_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_011e1QxB4TvCmQB7EWXmFPUD`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat > /root/autodl-tmp/struct_self_consist_ie/code/r8w3_sj_normalizer_comparison.py << 'PYEOF'\n#!/usr/bin/env python3\n\"\"\"R8-W3: Compare SJ max normalizer vs union normalizer on Spearman rho.\"\"\"\nimport json\nimport sys\nimport numpy as np\nfrom itertools import combinations\nfrom scipy.stats import spearmanr\nfrom scipy.optimize import linear_sum_assignment\n\nsys.path.insert(0, '/root/autodl-tmp/struct_self_consist_ie/code')\nfrom evaluation import per_instance_f1\n\nBASE = \"/root/autodl-tmp/struct_self_consist_ie\"\n\nEXPERIMENTS = {\n    \"CoNLL NER | Qwen3-8B\": {\n        \"path\": f\"{BASE}/output/exp002_conll2003/samples.jsonl\",\n        \"subtask\": \"ner\",\n    },\n    \"CoNLL NER | Qwen3-4B\": {\n        \"path\": f\"{BASE}/output/exp_qwen3_4b_conll_scs_inference_v2/samples.jsonl\",\n        \"subtask\": \"ner\",\n    },\n    \"SciERC NER | Qwen3-8B\": {\n        \"path\": f\"{BASE}/output/exp_012_rerun_1024/samples.jsonl\",\n        \"subtask\": \"ner\",\n    },\n    \"SciERC NER | Qwen3-4B\": {\n        \"path\": f\"{BASE}/output/exp_qwen3_4b_scierc_scs_inference/samples.jsonl\",\n        \"subtask\": \"ner\",\n    },\n    \"CoNLL NER | LLaMA-8B\": {\n        \"path\": f\"{BASE}/output/exp_017_llama_conll_n16_r1024/samples.jsonl\",\n        \"subtask\": \"ner\",\n    },\n    \"SciERC NER | LLaMA-8B\": {\n        \"path\": f\"{BASE}/output/exp_018_llama_scierc_seed42_r1024/samples.jsonl\",\n        \"subtask\": \"ner\",\n    },\n}\n\n\ndef _span_soft_jaccard(s1_start, s1_end, s2_start, s2_end):\n    overlap = max(0, min(s1_end, s2_end) - max(s1_start, s2_start))\n    len1 = s1_end - s1_start\n    len2 = s2_end - s2_start\n    union = len1 + len2 - overlap\n    if union <= 0:\n        return 0.0\n    return overlap / union\n\n\ndef _ner_sj_pair_both(entities_a, entities_b):\n    \"\"\"Return (sj_max, sj_union) for a single pair of entity lists.\"\"\"\n    if not entities_a and not entities_b:\n        return 1.0, 1.0\n    if not entities_a or not entities_b:\n        return 0.0, 0.0\n\n    types = set()\n    groups_a, groups_b = {}, {}\n    for e in entities_a:\n        t = e[\"type\"]\n        types.add(t)\n        groups_a.setdefault(t, []).append(e)\n    for e in entities_b:\n        t = e[\"type\"]\n        types.add(t)\n        groups_b.setdefault(t, []).append(e)\n\n    total_matched_sim = 0.0\n    total_max_weight = 0\n    total_a_count = 0\n    total_b_count = 0\n\n    for t in types:\n        ga = groups_a.get(t, [])\n        gb = groups_b.get(t, [])\n        na, nb = len(ga), len(gb)\n        denom_max = max(na, nb)\n        if denom_max == 0:\n            continue\n\n        total_max_weight += denom_max\n        total_a_count += na\n        total_b_count += nb\n\n        if not ga or not gb:\n            continue\n\n        cost = np.zeros((na, nb), dtype=np.float64)\n        for i, ea in enumerate(ga):\n            for j, eb in enumerate(gb):\n                cost[i, j] = _span_soft_jaccard(ea[\"start\"], ea[\"end\"],\n                                                 eb[\"start\"], eb[\"end\"])\n\n        row_ind, col_ind = linear_sum_assignment(-cost)\n        matched_sim = cost[row_ind, col_ind].sum()\n        total_matched_sim += matched_sim\n\n    if total_max_weight == 0:\n        return 1.0, 1.0\n\n    sj_max = total_matched_sim / total_max_weight\n    # union = |A| + |B| - soft_intersection\n    union_denom = total_a_count + total_b_count - total_matched_sim\n    sj_union = total_matched_sim / union_denom if union_denom > 0 else 1.0\n\n    return sj_max, sj_union\n\n\ndef compute_instance_sj_scores(samples, subtask=\"ner\"):\n    \"\"\"Compute mean pairwise SJ_max and SJ_union for one instance.\"\"\"\n    n = len(samples)\n    if n <= 1:\n        return 1.0, 1.0\n\n    field = \"entities\"\n    max_scores, union_scores = [], []\n    for i, j in combinations(range(n), 2):\n        sj_max, sj_union = _ner_sj_pair_both(\n            samples[i].get(field, []),\n            samples[j].get(field, []),\n        )\n        max_scores.append(sj_max)\n        union_scores.append(sj_union)\n\n    return float(np.mean(max_scores)), float(np.mean(union_scores))\n\n\ndef load_data(path):\n    with open(path) as f:\n        return [json.loads(line) for line in f if line.strip()]\n\n\ndef analyze_experiment(path, subtask, max_samples=8):\n    data = load_data(path)\n    sj_max_list, sj_union_list, f1_list = [], [], []\n\n    for inst in data:\n        samples = inst[\"samples\"][:max_samples]\n        gold = inst[\"gold\"]\n\n        # Greedy F1\n        greedy = inst.get(\"greedy\", samples[0])\n        f1 = per_instance_f1(greedy, gold, subtask=subtask)\n\n        # SJ scores\n        sj_max, sj_union = compute_instance_sj_scores(samples, subtask)\n\n        sj_max_list.append(sj_max)\n        sj_union_list.append(sj_union)\n        f1_list.append(f1)\n\n    # Spearman rho\n    rho_max, p_max = spearmanr(sj_max_list, f1_list)\n    rho_union, p_union = spearmanr(sj_union_list, f1_list)\n\n    return {\n        \"n_instances\": len(data),\n        \"n_samples\": len(data[0][\"samples\"][:max_samples]),\n        \"rho_max\": rho_max,\n        \"p_max\": p_max,\n        \"rho_union\": rho_union,\n        \"p_union\": p_union,\n        \"delta_rho\": rho_max - rho_union,\n        \"mean_sj_max\": float(np.mean(sj_max_list)),\n        \"mean_sj_union\": float(np.mean(sj_union_list)),\n    }\n\n\ndef main():\n    print(\"## SJ Normalizer Comparison (R8-W3)\\n\")\n    print(\"| Dataset | Model | n | ρ(SJ_max) | ρ(SJ_union) | Δρ |\")\n    print(\"|---------|-------|---|-----------|-------------|-----|\")\n\n    all_results = {}\n    for name, cfg in EXPERIMENTS.items():\n        import os\n        if not os.path.exists(cfg[\"path\"]):\n            print(f\"| {name} | — | SKIP: file not found | | |\")\n            continue\n\n        result = analyze_experiment(cfg[\"path\"], cfg[\"subtask\"])\n        all_results[name] = result\n\n        dataset, model = name.split(\" | \")\n        print(f\"| {dataset} | {model} | {result['n_samples']} | \"\n              f\"{result['rho_max']:.4f} | {result['rho_union']:.4f} | \"\n              f\"{result['delta_rho']:+.4f} |\")\n\n    print()\n\n    # Check if all deltas are negligible\n    deltas = [r[\"delta_rho\"] for r in all_results.values()]\n    max_delta = max(abs(d) for d in deltas) if deltas else 0\n    if max_delta < 0.01:\n        print(f\"**Conclusion**: All |Δρ| < 0.01 (max = {max_delta:.4f}). \"\n              \"The choice of normalizer does not affect the ranking conclusion.\")\n    elif max_delta < 0.02:\n        print(f\"**Conclusion**: Max |Δρ| = {max_delta:.4f}. \"\n              \"Differences are minor and do not change the conclusion.\")\n    else:\n        print(f\"**Conclusion**: Max |Δρ| = {max_delta:.4f}. \"\n              \"Some non-trivial differences exist — further investigation recommended.\")\n\n    # Detailed stats\n    print(\"\\n### Detailed Statistics\\n\")\n    print(\"| Dataset | Model | mean(SJ_max) | mean(SJ_union) | ρ_max p-val | ρ_union p-val |\")\n    print(\"|---------|-------|-------------|----------------|-------------|---------------|\")\n    for name, r in all_results.items():\n        dataset, model = name.split(\" | \")\n        print(f\"| {dataset} | {model} | {r['mean_sj_max']:.4f} | \"\n              f\"{r['mean_sj_union']:.4f} | {r['p_max']:.2e} | {r['p_union']:.2e} |\")\n\n    # Save JSON\n    out_path = f\"{BASE}/output/review_round8/r8w3_sj_normalizer_comparison.json\"\n    os.makedirs(os.path.dirname(out_path), exist_ok=True)\n    with open(out_path, \"w\") as f:\n        json.dump(all_results, f, indent=2)\n    print(f\"\\nSaved: {out_path}\")\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF\necho \"Script written OK\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "33b63558-5bd9-4632-96ed-f3267a31fc22",
+  "uuid": "47a3dd89-72df-42f6-bc24-9c0ede0887d7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011kHxGmjp8EyMy7h4YaWoCj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 219,
+      "cache_read_input_tokens": 64301,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 219
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 74 · 2026-05-15T20:23:26.632Z_
+
+<details><summary>↩ Tool result · `toolu_011e1QxB4TvCmQB7EWXmFPUD`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Script written OK\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "33b63558-5bd9-4632-96ed-f3267a31fc22",
+  "uuid": "15523950-1425-4023-bc5f-04c274cbd4d5",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Script written OK\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Script written OK\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 75_
+
+Running the analysis.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "33b63558-5bd9-4632-96ed-f3267a31fc22",
+  "uuid": "cf2b49fc-7374-4882-9cd2-19af0c3582c7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BmugWv4sMmSo8WAaAs9BCb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3148,
+      "cache_read_input_tokens": 64520,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3148
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 76_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01YSUTdmKNvsyyrMrSbL9xhp`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python3 code/r8w3_sj_normalizer_comparison.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "33b63558-5bd9-4632-96ed-f3267a31fc22",
+  "uuid": "8bfec15c-9978-44b4-a5d0-79567ccadb70",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BmugWv4sMmSo8WAaAs9BCb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3148,
+      "cache_read_input_tokens": 64520,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3148
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 77 · 2026-05-15T20:23:34.578Z_
+
+<details><summary>↩ Tool result · `toolu_01YSUTdmKNvsyyrMrSbL9xhp`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"## SJ Normalizer Comparison (R8-W3)\\n\\n| Dataset | Model | n | ρ(SJ_max) | ρ(SJ_union) | Δρ |\\n|---------|-------|---|-----------|-------------|-----|\\n| CoNLL NER | Qwen3-8B | 8 | 0.1222 | 0.1223 | -0.0001 |\\n| CoNLL NER | Qwen3-4B | 8 | 0.1597 | 0.1593 | +0.0004 |\\n| SciERC NER | Qwen3-8B | 8 | 0.3658 | 0.3694 | -0.0036 |\\n| SciERC NER | Qwen3-4B | 8 | 0.4269 | 0.4263 | +0.0006 |\\n| CoNLL NER | LLaMA-8B | 8 | 0.1752 | 0.1752 | -0.0000 |\\n| SciERC NER | LLaMA-8B | 8 | 0.3013 | 0.3040 | -0.0027 |\\n\\n**Conclusion**: All |Δρ| < 0.01 (max = 0.0036). The choice of normalizer does not affect the ranking conclusion.\\n\\n### Detailed Statistics\\n\\n| Dataset | Model | mean(SJ_max) | mean(SJ_union) | ρ_max p-val | ρ_union p-val |\\n|---------|-------|-------------|----------------|-------------|---------------|\\n| CoNLL NER | Qwen3-8B | 0.8777 | 0.8745 | 5.80e-13 | 5.67e-13 |\\n| CoNLL NER | Qwen3-4B | 0.9748 | 0.9739 | 3.70e-21 | 4.60e-21 |\\n| SciERC NER | Qwen3-8B | 0.6963 | 0.6859 | 6.88e-19 | 2.97e-19 |\\n| SciERC NER | Qwen3-4B | 0.6417 | 0.6284 | 8.28e-26 | 9.84e-26 |\\n| CoNLL NER | LLaMA-8B | 0.9732 | 0.9724 | 3.43e-25 | 3.36e-25 |\\n| SciERC NER | LLaMA-8B | 0.7508 | 0.7413 | 4.98e-13 | 3.02e-13 |\\n\\nSaved: /root/autodl-tmp/struct_self_consist_ie/output/review_round8/r8w3_sj_normalizer_comparison.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 4.64}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "33b63558-5bd9-4632-96ed-f3267a31fc22",
+  "uuid": "fc0e7611-c1a9-43b6-9dbd-92300b51aa82",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"## SJ Normalizer Comparison (R8-W3)\\\\n\\\\n| Dataset | Model | n | ρ(SJ_max) | ρ(SJ_union) | Δρ |\\\\n|---------|-------|---|-----------|-------------|-----|\\\\n| CoNLL NER | Qwen3-8B | 8 | 0.1222 | 0.1223 | -0.0001 |\\\\n| CoNLL NER | Qwen3-4B | 8 | 0.1597 | 0.1593 | +0.0004 |\\\\n| SciERC NER | Qwen3-8B | 8 | 0.3658 | 0.3694 | -0.0036 |\\\\n| SciERC NER | Qwen3-4B | 8 | 0.4269 | 0.4263 | +0.0006 |\\\\n| CoNLL NER | LLaMA-8B | 8 | 0.1752 | 0.1752 | -0.0000 |\\\\n| SciERC NER | LLaMA-8B | 8 | 0.3013 | 0.3040 | -0.0027 |\\\\n\\\\n**Conclusion**: All |Δρ| < 0.01 (max = 0.0036). The choice of normalizer does not affect the ranking conclusion.\\\\n\\\\n### Detailed Statistics\\\\n\\\\n| Dataset | Model | mean(SJ_max) | mean(SJ_union) | ρ_max p-val | ρ_union p-val |\\\\n|---------|-------|-------------|----------------|-------------|---------------|\\\\n| CoNLL NER | Qwen3-8B | 0.8777 | 0.8745 | 5.80e-13 | 5.67e-13 |\\\\n| CoNLL NER | Qwen3-4B | 0.9748 | 0.9739 | 3.70e-21 | 4.60e-21 |\\\\n| SciERC NER | Qwen3-8B | 0.6963 | 0.6859 | 6.88e-19 | 2.97e-19 |\\\\n| SciERC NER | Qwen3-4B | 0.6417 | 0.6284 | 8.28e-26 | 9.84e-26 |\\\\n| CoNLL NER | LLaMA-8B | 0.9732 | 0.9724 | 3.43e-25 | 3.36e-25 |\\\\n| SciERC NER | LLaMA-8B | 0.7508 | 0.7413 | 4.98e-13 | 3.02e-13 |\\\\n\\\\nSaved: /root/autodl-tmp/struct_self_consist_ie/output/review_round8/r8w3_sj_normalizer_comparison.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 4.64}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"## SJ Normalizer Comparison (R8-W3)\\n\\n| Dataset | Model | n | ρ(SJ_max) | ρ(SJ_union) | Δρ |\\n|---------|-------|---|-----------|-------------|-----|\\n| CoNLL NER | Qwen3-8B | 8 | 0.1222 | 0.1223 | -0.0001 |\\n| CoNLL NER | Qwen3-4B | 8 | 0.1597 | 0.1593 | +0.0004 |\\n| SciERC NER | Qwen3-8B | 8 | 0.3658 | 0.3694 | -0.0036 |\\n| SciERC NER | Qwen3-4B | 8 | 0.4269 | 0.4263 | +0.0006 |\\n| CoNLL NER | LLaMA-8B | 8 | 0.1752 | 0.1752 | -0.0000 |\\n| SciERC NER | LLaMA-8B | 8 | 0.3013 | 0.3040 | -0.0027 |\\n\\n**Conclusion**: All |Δρ| < 0.01 (max = 0.0036). The choice of normalizer does not affect the ranking conclusion.\\n\\n### Detailed Statistics\\n\\n| Dataset | Model | mean(SJ_max) | mean(SJ_union) | ρ_max p-val | ρ_union p-val |\\n|---------|-------|-------------|----------------|-------------|---------------|\\n| CoNLL NER | Qwen3-8B | 0.8777 | 0.8745 | 5.80e-13 | 5.67e-13 |\\n| CoNLL NER | Qwen3-4B | 0.9748 | 0.9739 | 3.70e-21 | 4.60e-21 |\\n| SciERC NER | Qwen3-8B | 0.6963 | 0.6859 | 6.88e-19 | 2.97e-19 |\\n| SciERC NER | Qwen3-4B | 0.6417 | 0.6284 | 8.28e-26 | 9.84e-26 |\\n| CoNLL NER | LLaMA-8B | 0.9732 | 0.9724 | 3.43e-25 | 3.36e-25 |\\n| SciERC NER | LLaMA-8B | 0.7508 | 0.7413 | 4.98e-13 | 3.02e-13 |\\n\\nSaved: /root/autodl-tmp/struct_self_consist_ie/output/review_round8/r8w3_sj_normalizer_comparison.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 4.64}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 78_
+
+## SJ Normalizer Comparison (R8-W3)
+
+| Dataset | Model | n | ρ(SJ_max) | ρ(SJ_union) | Δρ |
+|---------|-------|---|-----------|-------------|-----|
+| CoNLL NER | Qwen3-8B | 8 | 0.1222 | 0.1223 | -0.0001 |
+| CoNLL NER | Qwen3-4B | 8 | 0.1597 | 0.1593 | +0.0004 |
+| SciERC NER | Qwen3-8B | 8 | 0.3658 | 0.3694 | -0.0036 |
+| SciERC NER | Qwen3-4B | 8 | 0.4269 | 0.4263 | +0.0006 |
+| CoNLL NER | LLaMA-8B | 8 | 0.1752 | 0.1752 | -0.0000 |
+| SciERC NER | LLaMA-8B | 8 | 0.3013 | 0.3040 | -0.0027 |
+
+**Conclusion**: All |Δρ| < 0.01 (max = 0.0036). The choice of normalizer does not affect the ranking conclusion.
+
+两种 normalizer 的 Spearman ρ 差异极小（最大 |Δρ| = 0.0036，出现在 SciERC/Qwen3-8B），6 组实验全部 < 0.004。结果和 JSON 已保存到 `output/review_round8/r8w3_sj_normalizer_comparison.json`。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "33b63558-5bd9-4632-96ed-f3267a31fc22",
+  "uuid": "948b312a-7165-48b2-afb9-9b33c68f1c14",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RwbHpiVRUoqHZuskFBU3rn",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1007,
+      "cache_read_input_tokens": 67668,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1007
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 79_
+
+## SJ Normalizer Comparison (R8-W3)
+
+| Dataset | Model | n | ρ(SJ_max) | ρ(SJ_union) | Δρ |
+|---------|-------|---|-----------|-------------|-----|
+| CoNLL NER | Qwen3-8B | 8 | 0.1222 | 0.1223 | -0.0001 |
+| CoNLL NER | Qwen3-4B | 8 | 0.1597 | 0.1593 | +0.0004 |
+| SciERC NER | Qwen3-8B | 8 | 0.3658 | 0.3694 | -0.0036 |
+| SciERC NER | Qwen3-4B | 8 | 0.4269 | 0.4263 | +0.0006 |
+| CoNLL NER | LLaMA-8B | 8 | 0.1752 | 0.1752 | -0.0000 |
+| SciERC NER | LLaMA-8B | 8 | 0.3013 | 0.3040 | -0.0027 |
+
+**Conclusion**: All |Δρ| < 0.01 (max = 0.0036). The choice of normalizer does not affect the ranking conclusion.
+
+两种 normalizer 的 Spearman ρ 差异极小（最大 |Δρ| = 0.0036，出现在 SciERC/Qwen3-8B），6 组实验全部 < 0.004。结果和 JSON 已保存到 `output/review_round8/r8w3_sj_normalizer_comparison.json`。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 233056,
+  "duration_api_ms": 226220,
+  "num_turns": 30,
+  "stop_reason": "end_turn",
+  "session_id": "33b63558-5bd9-4632-96ed-f3267a31fc22",
+  "total_cost_usd": 1.0190245,
+  "usage": {
+    "input_tokens": 17,
+    "cache_creation_input_tokens": 56974,
+    "cache_read_input_tokens": 641404,
+    "output_tokens": 13617,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 56974,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 456,
+        "cache_read_input_tokens": 67668,
+        "cache_creation_input_tokens": 1007,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 1007
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1630,
+      "outputTokens": 19,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001725,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 17,
+      "outputTokens": 13617,
+      "cacheReadInputTokens": 641404,
+      "cacheCreationInputTokens": 56974,
+      "webSearchRequests": 0,
+      "costUSD": 1.0172995,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "4ebcf1cf-0a3c-4ddd-8151-736ef0e0a17c"
+}
+```
+
+</details>
+
+---

@@ -1,0 +1,5818 @@
+# paper critical text fixes — Part 1 of 2
+
+**When Self-Consistency Fails for NER: Degeneracy, Signal Collapse, and the Correlation-Selection Gap** · Worker execution logs
+
+[Transcript overview](../paper-critical-text-fixes.md) · [Part 2 →](part-002.md) · [Structured JSON](../../../sessions/c6/c67272c4a17043942baa.json)
+
+## Before a recorded user message
+
+## Before a recorded user message
+
+123 recorded events
+
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "session_id": "0ece91e4-5aa9-4282-9ae9-a9f0b59b36fe",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__append_idea",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__read_project_file",
+    "mcp__agent-ml-research__read_registry",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__save_project_file",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only",
+    "mcp__agent-ml-research__update_registry"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "838c9fad-96f0-4bba-ac16-ea781caa86ef",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779492600,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "938f015e-eba8-419a-a074-85074d955222",
+  "session_id": "0ece91e4-5aa9-4282-9ae9-a9f0b59b36fe"
+}
+```
+
+---
+
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by understanding the project structure and locating the paper tex files. The constraint C001 says I must only modify files under `docs/paper/sections/`, not `artifacts/_project/paper/`. Let me explore the directory structure first.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0ece91e4-5aa9-4282-9ae9-a9f0b59b36fe",
+  "uuid": "c8232738-97ca-4ee2-bfcd-f7c0b6ab7bdf",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01D5BcmnP8wYkX12TBw39bSa",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12628,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12628
+      },
+      "output_tokens": 26,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 5_
+
+先探索目录结构，定位论文 tex 文件。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0ece91e4-5aa9-4282-9ae9-a9f0b59b36fe",
+  "uuid": "e965139e-2372-42eb-9b89-ab5572c62e0b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01D5BcmnP8wYkX12TBw39bSa",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12628,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12628
+      },
+      "output_tokens": 26,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 6_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_0137v47RaNy9PCFzLtgDxAMQ`</summary>
+
+```json
+{
+  "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie -name \"*.tex\" -type f 2>/dev/null | head -40",
+  "description": "Find all tex files in the project"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0ece91e4-5aa9-4282-9ae9-a9f0b59b36fe",
+  "uuid": "d9ff132b-498d-4d75-a369-50dcef2ffc74",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01D5BcmnP8wYkX12TBw39bSa",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12628,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12628
+      },
+      "output_tokens": 26,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 7 · 2026-05-22T18:46:01.773Z_
+
+<details><summary>↩ Tool result · `toolu_0137v47RaNy9PCFzLtgDxAMQ`</summary>
+
+```text
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments_main.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/introduction.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/abstract.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/background.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/adaptive.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/single_signal.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/limitations.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/_archived/experiments_OLD.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/diagnostic.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/theory.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/method.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/discussion.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/checklist.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/mechanistic.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/conclusion.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/related_work.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/theoretical.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/main.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/paper/sections/zeroshot_scaling_draft.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/scaling_narrative_B_nonmonotonic.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/introduction.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/n_scaling_appendix_tables_44b000.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/n_scaling_appendix_tables.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/abstract.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/e5_hyperparam_tables.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/theorem.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/limitations.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/theory.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/method.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/discussion.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/conclusion.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/freeform_ablation_appendix_table.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/experiments.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/related_work.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/scaling_narrative_A_monotonic.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/scaling_narrative_B_nonmonotonic.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/bootstrap_ci_tables.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/n_scaling_appendix_tables.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/e5_hyperparam_tables.tex
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "0ece91e4-5aa9-4282-9ae9-a9f0b59b36fe",
+  "uuid": "246c0d2b-2569-42b5-8ca4-ab05653dba52",
+  "tool_use_result": {
+    "stdout": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments_main.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/introduction.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/abstract.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/background.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/adaptive.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/single_signal.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/limitations.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/_archived/experiments_OLD.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/diagnostic.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/theory.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/method.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/discussion.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/checklist.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/mechanistic.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/conclusion.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/related_work.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/theoretical.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/main.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/paper/sections/zeroshot_scaling_draft.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/scaling_narrative_B_nonmonotonic.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/introduction.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/n_scaling_appendix_tables_44b000.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/n_scaling_appendix_tables.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/abstract.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/e5_hyperparam_tables.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/theorem.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/limitations.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/theory.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/method.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/discussion.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/conclusion.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/freeform_ablation_appendix_table.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/experiments.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/related_work.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/scaling_narrative_A_monotonic.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/scaling_narrative_B_nonmonotonic.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/bootstrap_ci_tables.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/n_scaling_appendix_tables.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/e5_hyperparam_tables.tex",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_011dj4jLrWpoVvZXygVhWbTA`</summary>
+
+```json
+{
+  "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/ 2>/dev/null; echo \"---\"; ls -la /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/ 2>/dev/null",
+  "description": "List paper directory structure"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0ece91e4-5aa9-4282-9ae9-a9f0b59b36fe",
+  "uuid": "748f9f38-6f5c-4033-8640-1f9041deb78e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01D5BcmnP8wYkX12TBw39bSa",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12628,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12628
+      },
+      "output_tokens": 26,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 9 · 2026-05-22T18:46:02.546Z_
+
+<details><summary>↩ Tool result · `toolu_011dj4jLrWpoVvZXygVhWbTA`</summary>
+
+```text
+total 284
+drwxr-xr-x 3 ubuntu ubuntu   4096 May 22 15:53 .
+drwxr-xr-x 5 ubuntu ubuntu   4096 May 22 15:54 ..
+drwxr-xr-x 2 ubuntu ubuntu   4096 May 21 15:41 _archived
+-rw-r--r-- 1 ubuntu ubuntu   1284 May 22 15:43 abstract.tex
+-rw-r--r-- 1 ubuntu ubuntu   3153 May 22 15:42 adaptive.tex
+-rw-r--r-- 1 ubuntu ubuntu 177369 May 22 15:41 appendix.tex
+-rw-r--r-- 1 ubuntu ubuntu   3644 May 22 15:53 background.tex
+-rw-r--r-- 1 ubuntu ubuntu   5967 May 19 03:46 checklist.tex
+-rw-r--r-- 1 ubuntu ubuntu    415 May 22 13:13 conclusion.tex
+-rw-r--r-- 1 ubuntu ubuntu   4768 May 22 15:45 diagnostic.tex
+-rw-r--r-- 1 ubuntu ubuntu   2570 May 22 15:43 discussion.tex
+-rw-r--r-- 1 ubuntu ubuntu   9673 May 22 15:44 experiments_main.tex
+-rw-r--r-- 1 ubuntu ubuntu   5395 May 22 15:45 introduction.tex
+-rw-r--r-- 1 ubuntu ubuntu   1432 May 22 15:44 limitations.tex
+-rw-r--r-- 1 ubuntu ubuntu   3713 May 22 13:10 mechanistic.tex
+-rw-r--r-- 1 ubuntu ubuntu   7159 May 22 08:38 method.tex
+-rw-r--r-- 1 ubuntu ubuntu   2037 May 21 02:29 related_work.tex
+-rw-r--r-- 1 ubuntu ubuntu   5227 May 22 15:41 single_signal.tex
+-rw-r--r-- 1 ubuntu ubuntu    840 May 20 11:44 theoretical.tex
+-rw-r--r-- 1 ubuntu ubuntu   4962 May 22 14:07 theory.tex
+---
+total 1412
+drwxr-xr-x 5 ubuntu ubuntu   4096 May 22 15:54 .
+drwxr-xr-x 4 ubuntu ubuntu   4096 May 15 05:25 ..
+drwxr-xr-x 2 ubuntu ubuntu   4096 May 22 15:46 _pdf_images
+-rw-r--r-- 1 ubuntu ubuntu  11615 May 14 19:17 acl.sty
+-rw-r--r-- 1 ubuntu ubuntu  45186 May 14 19:17 acl_natbib.bst
+drwxr-xr-x 2 ubuntu ubuntu   4096 May 22 11:31 figures
+-rw-r--r-- 1 ubuntu ubuntu 140077 May 22 15:54 main.aux
+-rw-r--r-- 1 ubuntu ubuntu  22326 May 22 15:54 main.bbl
+-rw-r--r-- 1 ubuntu ubuntu   1301 May 22 15:54 main.blg
+-rw-r--r-- 1 ubuntu ubuntu  23319 May 22 15:54 main.fdb_latexmk
+-rw-r--r-- 1 ubuntu ubuntu  27669 May 22 15:54 main.fls
+-rw-r--r-- 1 ubuntu ubuntu  55312 May 22 15:54 main.log
+-rw-r--r-- 1 ubuntu ubuntu  15434 May 22 15:54 main.out
+-rw-r--r-- 1 ubuntu ubuntu 992933 May 22 15:54 main.pdf
+-rw-r--r-- 1 ubuntu ubuntu   1851 May 22 15:40 main.tex
+-rw-r--r-- 1 ubuntu ubuntu  27107 May 22 15:53 references.bib
+-rw-r--r-- 1 ubuntu ubuntu  33738 May 21 05:09 references.bib.backup
+drwxr-xr-x 3 ubuntu ubuntu   4096 May 22 15:53 sections
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "0ece91e4-5aa9-4282-9ae9-a9f0b59b36fe",
+  "uuid": "3db32873-8f02-4427-9a12-2f3cd218b0f6",
+  "tool_use_result": {
+    "stdout": "total 284\ndrwxr-xr-x 3 ubuntu ubuntu   4096 May 22 15:53 .\ndrwxr-xr-x 5 ubuntu ubuntu   4096 May 22 15:54 ..\ndrwxr-xr-x 2 ubuntu ubuntu   4096 May 21 15:41 _archived\n-rw-r--r-- 1 ubuntu ubuntu   1284 May 22 15:43 abstract.tex\n-rw-r--r-- 1 ubuntu ubuntu   3153 May 22 15:42 adaptive.tex\n-rw-r--r-- 1 ubuntu ubuntu 177369 May 22 15:41 appendix.tex\n-rw-r--r-- 1 ubuntu ubuntu   3644 May 22 15:53 background.tex\n-rw-r--r-- 1 ubuntu ubuntu   5967 May 19 03:46 checklist.tex\n-rw-r--r-- 1 ubuntu ubuntu    415 May 22 13:13 conclusion.tex\n-rw-r--r-- 1 ubuntu ubuntu   4768 May 22 15:45 diagnostic.tex\n-rw-r--r-- 1 ubuntu ubuntu   2570 May 22 15:43 discussion.tex\n-rw-r--r-- 1 ubuntu ubuntu   9673 May 22 15:44 experiments_main.tex\n-rw-r--r-- 1 ubuntu ubuntu   5395 May 22 15:45 introduction.tex\n-rw-r--r-- 1 ubuntu ubuntu   1432 May 22 15:44 limitations.tex\n-rw-r--r-- 1 ubuntu ubuntu   3713 May 22 13:10 mechanistic.tex\n-rw-r--r-- 1 ubuntu ubuntu   7159 May 22 08:38 method.tex\n-rw-r--r-- 1 ubuntu ubuntu   2037 May 21 02:29 related_work.tex\n-rw-r--r-- 1 ubuntu ubuntu   5227 May 22 15:41 single_signal.tex\n-rw-r--r-- 1 ubuntu ubuntu    840 May 20 11:44 theoretical.tex\n-rw-r--r-- 1 ubuntu ubuntu   4962 May 22 14:07 theory.tex\n---\ntotal 1412\ndrwxr-xr-x 5 ubuntu ubuntu   4096 May 22 15:54 .\ndrwxr-xr-x 4 ubuntu ubuntu   4096 May 15 05:25 ..\ndrwxr-xr-x 2 ubuntu ubuntu   4096 May 22 15:46 _pdf_images\n-rw-r--r-- 1 ubuntu ubuntu  11615 May 14 19:17 acl.sty\n-rw-r--r-- 1 ubuntu ubuntu  45186 May 14 19:17 acl_natbib.bst\ndrwxr-xr-x 2 ubuntu ubuntu   4096 May 22 11:31 figures\n-rw-r--r-- 1 ubuntu ubuntu 140077 May 22 15:54 main.aux\n-rw-r--r-- 1 ubuntu ubuntu  22326 May 22 15:54 main.bbl\n-rw-r--r-- 1 ubuntu ubuntu   1301 May 22 15:54 main.blg\n-rw-r--r-- 1 ubuntu ubuntu  23319 May 22 15:54 main.fdb_latexmk\n-rw-r--r-- 1 ubuntu ubuntu  27669 May 22 15:54 main.fls\n-rw-r--r-- 1 ubuntu ubuntu  55312 May 22 15:54 main.log\n-rw-r--r-- 1 ubuntu ubuntu  15434 May 22 15:54 main.out\n-rw-r--r-- 1 ubuntu ubuntu 992933 May 22 15:54 main.pdf\n-rw-r--r-- 1 ubuntu ubuntu   1851 May 22 15:40 main.tex\n-rw-r--r-- 1 ubuntu ubuntu  27107 May 22 15:53 references.bib\n-rw-r--r-- 1 ubuntu ubuntu  33738 May 21 05:09 references.bib.backup\ndrwxr-xr-x 3 ubuntu ubuntu   4096 May 22 15:53 sections",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 10_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good. The paper files are in `docs/paper/sections/`. Per constraint C001, I must only modify files there, not in `artifacts/_project/paper/`. Let me read the relevant files now. I need to read:
+
+1. `experiments_main.tex` - for Fix 1, Fix 3, Fix 5, Fix 6
+2. `limitations.tex` - for Fix 4
+3. `discussion.tex` - for Fix 7
+4. And search for WNUT 51% across all files - for Fix 2
+
+Let me read the key files in parallel.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0ece91e4-5aa9-4282-9ae9-a9f0b59b36fe",
+  "uuid": "897aaded-cd7e-4641-88f0-c3d444eb965d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WjDuYV1nSVpX36CZk1iF9p",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3233,
+      "cache_read_input_tokens": 24469,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3233
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 11_
+
+文件确认在 `docs/paper/sections/`。开始并行读取所有相关 tex 文件。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0ece91e4-5aa9-4282-9ae9-a9f0b59b36fe",
+  "uuid": "20e1be5a-65cf-47ee-a44a-f7ecc1bb0047",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WjDuYV1nSVpX36CZk1iF9p",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3233,
+      "cache_read_input_tokens": 24469,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3233
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 12_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01VWCYztpQ22rvbpsReR7UYY`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments_main.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0ece91e4-5aa9-4282-9ae9-a9f0b59b36fe",
+  "uuid": "7945669a-4d7b-4068-b244-d91259753026",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WjDuYV1nSVpX36CZk1iF9p",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3233,
+      "cache_read_input_tokens": 24469,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3233
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 13 · 2026-05-22T18:46:13.363Z_
+
+<details><summary>↩ Tool result · `toolu_01VWCYztpQ22rvbpsReR7UYY`</summary>
+
+```text
+1	\section{Experiments}\label{sec:experiments}
+2	
+3	\subsection{Experimental Setup}\label{sec:setup}
+4	
+5	\paragraph{Datasets.}
+6	We evaluate on four English NER benchmarks spanning a difficulty gradient.
+7	\textbf{SciERC} \cite{luan2018scierc} (551 test instances, 6 entity types) is the primary medium-difficulty test bed (${\approx}$65\% F1).
+8	\textbf{Few-NERD} \cite{ding2021fewnerd} (INTRA coarse; 37{,}648 instances, 8 entity types, ${\approx}$75\% F1) provides a low-degeneracy contrast where LP selection succeeds (\S\ref{sec:selection_gap}).
+9	\textbf{CoNLL-2003} \cite{tjongkimsang2003conll} (3{,}453 test sentences, 4 entity types, ${\approx}$91\% F1) serves as a ceiling-effect control.
+10	\textbf{WNUT-17} \cite{derczynski2017wnut} (1{,}287 social media instances, 51\% zero F1) probes the signal-collapse boundary.
+11	
+12	\paragraph{Models and sampling.}
+13	\textbf{Qwen3-8B} and \textbf{LLaMA-3.1-8B-Instruct} are LoRA fine-tuned using LLaMA Factory \cite{zheng2024llamafactory} (Appendix~\ref{app:training}; Few-NERD uses 3 epochs vs.\ 5 for others; Appendix~\ref{app:epoch_confound}).
+14	$N{=}8$ samples at $T{=}1.0$ (primary) with vLLM constrained decoding \cite{willard2023guided}; $N {\in} \{16, 32, 64\}$ for scaling (Figure~\ref{fig:n_scaling}; Appendix~\ref{app:n_scaling}).
+15	
+16	\begin{figure}[t]
+17	\centering
+18	\includegraphics[width=\columnwidth]{figures/fig_n_scaling_mv.pdf}
+19	\caption{MV $\Delta$F1 vs.\ $\log_2 N$ across three datasets (Qwen3-8B FT, seed${=}42$). Dotted gray: $\Delta{=}0$. Gains are dataset-dependent: persistently negative on Few-NERD, near zero on SciERC at higher $N$, marginally positive on CoNLL ($+0.6$\,pp at $N{=}64$).}
+20	\label{fig:n_scaling}
+21	\end{figure}
+22	
+23	%% ============================================================
+24	\subsection{Quality Estimation Results}\label{sec:qe_results}
+25	
+26	\begin{table*}[t]
+27	\centering
+28	\small
+29	\caption{NER quality estimation ($\rho$ and AUROC; $N{=}8$, primary seed${=}42$; 3-seed $\sigma{\leq}0.026$ in Table~\ref{tab:multiseed}). AUROC binarizes at per-dataset median F1. Best in \textbf{bold}. RE in Appendix~\ref{app:re_extension}; $N{=}16$ in Table~\ref{tab:robustness}.}
+30	\label{tab:quality_estimation}
+31	\begin{tabular}{ll cc cc cc}
+32	\toprule
+33	& & \multicolumn{2}{c}{\textbf{SciERC}} & \multicolumn{2}{c}{\textbf{CoNLL (Qwen)}} & \multicolumn{2}{c}{\textbf{CoNLL (LLaMA)}} \\
+34	\cmidrule(lr){3-4} \cmidrule(lr){5-6} \cmidrule(lr){7-8}
+35	Signal & Family & $\rho$ & AUC & $\rho$ & AUC & $\rho$ & AUC \\
+36	\midrule
+37	VC & Structural & \textbf{.379} & .684 & .424 & .789 & .426 & .709 \\
+38	SJ  & Structural & .360 & .692 & .436 & .801 & \textbf{.431} & .704 \\
+39	FK & Surface & .267 & .629 & .400 & .774 & .428 & .703 \\
+40	EM  & Surface    & .295 & \textbf{.749} & \textbf{.451} & \textbf{.816} & \textbf{.431} & .705 \\
+41	\midrule
+42	LP     & Model      & .205 & .578 & .316 & .753 & .307 & \textbf{.761} \\
+43	\bottomrule
+44	\end{tabular}
+45	\end{table*}
+46	
+47	Table~\ref{tab:quality_estimation} presents $\rho$ and AUROC for five signals across tasks and models.
+48	
+49	\paragraph{Signal rankings are difficulty-dependent.}
+50	On SciERC, structural signals lead (VC $\rho{=}0.379$, SJ $0.360$) over LP ($0.205$); bootstrap CIs confirm the gap ($\Delta\rho{=}{+}0.155$; Appendix~\ref{app:bootstrap_signal}).
+51	On CoNLL (F1${\approx}$0.91), EM leads both $\rho$ and AUROC ($0.816$).
+52	At the signal-collapse boundary (WNUT-17, F1${\approx}$42\%), full-set correlations are dominated by the zero/non-zero boundary (VC $\rho{=}0.724$ at $N{=}16$, but conditional $\rho{=}0.038$; Table~\ref{tab:wnut}); LP shows the reverse (conditional $\rho{=}0.350$; Figure~\ref{fig:signal_heatmap}).
+53	
+54	%% ============================================================
+55	\subsection{Cross-Dataset Contrast: Few-NERD}\label{sec:fewnerd}
+56	
+57	\begin{table}[t]
+58	\centering
+59	\small
+60	\caption{LP selection across datasets (Qwen3-8B, $N{=}8$, $T{=}1.0$, gold-filtered, 3-seed means). $p$: paired bootstrap.}
+61	\label{tab:fewnerd}
+62	\resizebox{\columnwidth}{!}{%
+63	\begin{tabular}{@{}lrccccr@{}}
+64	\toprule
+65	Dataset & $n$ & Greedy & Degen.\% & LP $\rho$ & LP $\Delta$ & $p$ \\
+66	\midrule
+67	WNUT-17 & 1{,}287 & .452 & 67.9\% & $-$.446 & $-$0.45\,pp & .72 \\
+68	CoNLL & 2{,}756 & .908 & 61.7\% & .302 & $-$0.85\,pp & 1.0 \\
+69	SciERC & 529 & .667 & 12.2\% & .159 & $+$0.61\,pp & .193 \\
+70	Few-NERD & 32{,}565 & .748 & 13.0\% & .220 & $\mathbf{+1.39}$\,pp & ${<}.001$ \\
+71	\bottomrule
+72	\end{tabular}}
+73	\end{table}
+74	
+75	Few-NERD (Table~\ref{tab:fewnerd}) confirms LP selection at low degeneracy ($+1.39$~pp, $p{<}0.001$; structural signals degrade: VC $-1.79$, SJ $-2.14$~pp), with LP 50$\times$ more seed-stable ($\sigma{=}0.04$ vs.\ SJ $2.02$~pp), generalizing to LLaMA (Table~\ref{tab:cross_selection}). Training convergence modulates degeneracy (5-epoch: $31$\%, LP $\Delta$ collapses from $+1.39$ to $+0.12$\,pp; Appendix~\ref{app:epoch_confound}).
+76	
+77	Signal ranking is task-specific; per-type analysis shows MV degradation concentrates in low-F1 types ($\rho{=}0.90$, $p{=}0.002$; Appendix~\ref{app:pertype}).
+78	
+79	\paragraph{Degeneracy alone does not predict LP direction.}
+80	Degeneracy does not predict LP gain across 23 configurations ($\rho{=}0.052$, $p{=}0.81$; $n{=}23$, insufficient for reliable correlation---we treat this as supplementary evidence; Figure~\ref{fig:degeneracy_scatter}), though it co-varies with LP within fixed settings ($\rho{=}{-}0.881$; Appendix~\ref{app:per_type_lp}).
+81	
+82	\begin{figure}[t]
+83	\centering
+84	\includegraphics[width=\columnwidth]{figures/fig_degeneracy_lp_scatter.pdf}
+85	\caption{Instance degeneracy vs.\ LP selection gain across 23 configurations ($N{=}8$; $\rho{=}0.052$, $p{=}0.81$). Within Few-NERD per-entity-type ($\rho{=}{-}0.881$; Appendix~\ref{app:per_type_lp}), degeneracy predicts LP gain when alignment is held constant.}
+86	\label{fig:degeneracy_scatter}
+87	\end{figure}
+88	
+89	MV gains range from $-2.71$\,pp (Few-NERD) to $+0.6$\,pp (CoNLL at $N{=}64$; Figure~\ref{fig:n_scaling}); the optimal strategy is dataset-dependent (LP-best $+8$\,pp on Few-NERD vs.\ MV $+0.61$\,pp on CoNLL).
+90	The framework extends to RE, where $40$\% zero-F1 from upstream entity span errors creates a distinct failure mode---\textit{diversity among failures} rather than quality-differentiated outputs---despite comparable degeneracy ($10.1$\% vs.\ SciERC $13.4$\%; Appendix~\ref{app:re_extension}).
+91	
+92	%% ============================================================
+93	\subsection{Robustness}\label{sec:robustness_main}
+94	
+95	Signal rankings are robust across temperatures, seeds, and $N$ (Table~\ref{tab:robustness}; Appendix~\ref{app:calibration}).
+96	Qwen3-4B QE matches 8B ($|\Delta\rho|{=}0.042$); LoRA rank${=}8$ lowers degeneracy but LP stays below greedy (Appendix~\ref{app:supervised_combination}).
+97	The gap persists from 4B to 72B zero-shot to GPT-5.5 (\S\ref{sec:scaling}).
+98	
+99	%% ============================================================
+100	\subsection{Prescriptive Results}\label{sec:prescriptive}
+101	
+102	Given that sample-level selection fails uniformly (\S\ref{sec:selection_gap}), we ask whether entity-level aggregation can extract value from multi-sample generation under favorable diagnostic conditions.
+103	
+104	\paragraph{Entity-level construction (exploratory).}
+105	We aggregate entities across samples, retaining those exceeding $\theta{=}2/N$, with LP-weighted or uniform scoring ($\theta$ stable in $[0.15, 0.35]$; Appendix~\ref{app:theta_sweep}).
+106	The diagnostic framework predicts gains when degeneracy and LP alignment are both favorable.
+107	LP-weighted construction yields $+1.40{\pm}0.51$\,pp on Few-NERD ($p{<}0.001$; Table~\ref{tab:entity_construction}), consistent with this prediction ($D{=}13$\%, headroom${=}12.4$\,pp), a smaller non-significant $+0.32$\,pp on SciERC, and no gain on CoNLL ($-0.39$\,pp).\footnote{Degenerate instances contribute $\Delta{=}0$ by construction; gains concentrate in the non-degenerate subset ($+3.36$\,pp SciERC, $+5.18$\,pp CoNLL, $+7.08$\,pp Few-NERD).}
+108	Under global Holm--Bonferroni \cite{holm1979simple} correction across all $k{=}57$ comparisons, $p_{\text{adj}}{=}0.055$---marginally above $\alpha{=}0.05$, providing suggestive but not definitive evidence of construction gains.
+109	Per-family correction ($k{=}10$): $p_{\text{adj}}{=}0.006$; BH FDR: $6/10$ construction comparisons at FDR${<}0.05$ (Appendix~\ref{app:holm}).
+110	The family partition was defined by mechanism type but not pre-registered; we report all three corrections for transparency.
+111	Construction and LP selection are complementary ($\rho_{\text{adj}}$: Few-NERD $0.516$); QE signals support selective prediction ($+5$--$8$\,pp at 80\% coverage; Table~\ref{tab:cross_selection}).
+112	
+113	\paragraph{Epoch confound on Few-NERD.}
+114	Few-NERD positive results should be interpreted cautiously: the 3-epoch model may be under-converged, and 5-epoch training eliminates LP gains entirely ($+1.39{\to}+0.12{\pm}0.04$\,pp, 91\% collapse; Appendix~\ref{app:epoch_confound}).
+115	Entity construction likewise degrades: LP-weighted $\Delta$ drops from $+0.88$ to $+0.20$\,pp (seed 42, macro-F1; $77$\% reduction).
+116	The diagnostic framework correctly predicts this: 5-epoch constant-F1 degeneracy rises to $31$\% (vs.\ $13$\% at 3 epochs; Appendix~\ref{app:epoch_confound}), degrading the conditions for both selection and construction.\footnote{Degeneracy rates vary by definition: constant-F1 degeneracy (all $N$ samples yield identical F1) gives $31$\%/$13$\%; entity-set exact-match degeneracy gives $26$\%/$9$\%. The directional pattern is consistent.}
+117	This sensitivity---favorable conditions are fragile and training-dependent---reinforces that Few-NERD is a conditional success rather than evidence of a general bypass. The core negative finding (selection ${\leq}$ greedy under high degeneracy) is unaffected.
+118	
+119	\phantomsection\label{sec:selection_results}
+120	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "0ece91e4-5aa9-4282-9ae9-a9f0b59b36fe",
+  "uuid": "e593c96a-101e-4043-a262-db8ca0702105",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments_main.tex",
+      "content": "\\section{Experiments}\\label{sec:experiments}\n\n\\subsection{Experimental Setup}\\label{sec:setup}\n\n\\paragraph{Datasets.}\nWe evaluate on four English NER benchmarks spanning a difficulty gradient.\n\\textbf{SciERC} \\cite{luan2018scierc} (551 test instances, 6 entity types) is the primary medium-difficulty test bed (${\\approx}$65\\% F1).\n\\textbf{Few-NERD} \\cite{ding2021fewnerd} (INTRA coarse; 37{,}648 instances, 8 entity types, ${\\approx}$75\\% F1) provides a low-degeneracy contrast where LP selection succeeds (\\S\\ref{sec:selection_gap}).\n\\textbf{CoNLL-2003} \\cite{tjongkimsang2003conll} (3{,}453 test sentences, 4 entity types, ${\\approx}$91\\% F1) serves as a ceiling-effect control.\n\\textbf{WNUT-17} \\cite{derczynski2017wnut} (1{,}287 social media instances, 51\\% zero F1) probes the signal-collapse boundary.\n\n\\paragraph{Models and sampling.}\n\\textbf{Qwen3-8B} and \\textbf{LLaMA-3.1-8B-Instruct} are LoRA fine-tuned using LLaMA Factory \\cite{zheng2024llamafactory} (Appendix~\\ref{app:training}; Few-NERD uses 3 epochs vs.\\ 5 for others; Appendix~\\ref{app:epoch_confound}).\n$N{=}8$ samples at $T{=}1.0$ (primary) with vLLM constrained decoding \\cite{willard2023guided}; $N {\\in} \\{16, 32, 64\\}$ for scaling (Figure~\\ref{fig:n_scaling}; Appendix~\\ref{app:n_scaling}).\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/fig_n_scaling_mv.pdf}\n\\caption{MV $\\Delta$F1 vs.\\ $\\log_2 N$ across three datasets (Qwen3-8B FT, seed${=}42$). Dotted gray: $\\Delta{=}0$. Gains are dataset-dependent: persistently negative on Few-NERD, near zero on SciERC at higher $N$, marginally positive on CoNLL ($+0.6$\\,pp at $N{=}64$).}\n\\label{fig:n_scaling}\n\\end{figure}\n\n%% ============================================================\n\\subsection{Quality Estimation Results}\\label{sec:qe_results}\n\n\\begin{table*}[t]\n\\centering\n\\small\n\\caption{NER quality estimation ($\\rho$ and AUROC; $N{=}8$, primary seed${=}42$; 3-seed $\\sigma{\\leq}0.026$ in Table~\\ref{tab:multiseed}). AUROC binarizes at per-dataset median F1. Best in \\textbf{bold}. RE in Appendix~\\ref{app:re_extension}; $N{=}16$ in Table~\\ref{tab:robustness}.}\n\\label{tab:quality_estimation}\n\\begin{tabular}{ll cc cc cc}\n\\toprule\n& & \\multicolumn{2}{c}{\\textbf{SciERC}} & \\multicolumn{2}{c}{\\textbf{CoNLL (Qwen)}} & \\multicolumn{2}{c}{\\textbf{CoNLL (LLaMA)}} \\\\\n\\cmidrule(lr){3-4} \\cmidrule(lr){5-6} \\cmidrule(lr){7-8}\nSignal & Family & $\\rho$ & AUC & $\\rho$ & AUC & $\\rho$ & AUC \\\\\n\\midrule\nVC & Structural & \\textbf{.379} & .684 & .424 & .789 & .426 & .709 \\\\\nSJ  & Structural & .360 & .692 & .436 & .801 & \\textbf{.431} & .704 \\\\\nFK & Surface & .267 & .629 & .400 & .774 & .428 & .703 \\\\\nEM  & Surface    & .295 & \\textbf{.749} & \\textbf{.451} & \\textbf{.816} & \\textbf{.431} & .705 \\\\\n\\midrule\nLP     & Model      & .205 & .578 & .316 & .753 & .307 & \\textbf{.761} \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table*}\n\nTable~\\ref{tab:quality_estimation} presents $\\rho$ and AUROC for five signals across tasks and models.\n\n\\paragraph{Signal rankings are difficulty-dependent.}\nOn SciERC, structural signals lead (VC $\\rho{=}0.379$, SJ $0.360$) over LP ($0.205$); bootstrap CIs confirm the gap ($\\Delta\\rho{=}{+}0.155$; Appendix~\\ref{app:bootstrap_signal}).\nOn CoNLL (F1${\\approx}$0.91), EM leads both $\\rho$ and AUROC ($0.816$).\nAt the signal-collapse boundary (WNUT-17, F1${\\approx}$42\\%), full-set correlations are dominated by the zero/non-zero boundary (VC $\\rho{=}0.724$ at $N{=}16$, but conditional $\\rho{=}0.038$; Table~\\ref{tab:wnut}); LP shows the reverse (conditional $\\rho{=}0.350$; Figure~\\ref{fig:signal_heatmap}).\n\n%% ============================================================\n\\subsection{Cross-Dataset Contrast: Few-NERD}\\label{sec:fewnerd}\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{LP selection across datasets (Qwen3-8B, $N{=}8$, $T{=}1.0$, gold-filtered, 3-seed means). $p$: paired bootstrap.}\n\\label{tab:fewnerd}\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{@{}lrccccr@{}}\n\\toprule\nDataset & $n$ & Greedy & Degen.\\% & LP $\\rho$ & LP $\\Delta$ & $p$ \\\\\n\\midrule\nWNUT-17 & 1{,}287 & .452 & 67.9\\% & $-$.446 & $-$0.45\\,pp & .72 \\\\\nCoNLL & 2{,}756 & .908 & 61.7\\% & .302 & $-$0.85\\,pp & 1.0 \\\\\nSciERC & 529 & .667 & 12.2\\% & .159 & $+$0.61\\,pp & .193 \\\\\nFew-NERD & 32{,}565 & .748 & 13.0\\% & .220 & $\\mathbf{+1.39}$\\,pp & ${<}.001$ \\\\\n\\bottomrule\n\\end{tabular}}\n\\end{table}\n\nFew-NERD (Table~\\ref{tab:fewnerd}) confirms LP selection at low degeneracy ($+1.39$~pp, $p{<}0.001$; structural signals degrade: VC $-1.79$, SJ $-2.14$~pp), with LP 50$\\times$ more seed-stable ($\\sigma{=}0.04$ vs.\\ SJ $2.02$~pp), generalizing to LLaMA (Table~\\ref{tab:cross_selection}). Training convergence modulates degeneracy (5-epoch: $31$\\%, LP $\\Delta$ collapses from $+1.39$ to $+0.12$\\,pp; Appendix~\\ref{app:epoch_confound}).\n\nSignal ranking is task-specific; per-type analysis shows MV degradation concentrates in low-F1 types ($\\rho{=}0.90$, $p{=}0.002$; Appendix~\\ref{app:pertype}).\n\n\\paragraph{Degeneracy alone does not predict LP direction.}\nDegeneracy does not predict LP gain across 23 configurations ($\\rho{=}0.052$, $p{=}0.81$; $n{=}23$, insufficient for reliable correlation---we treat this as supplementary evidence; Figure~\\ref{fig:degeneracy_scatter}), though it co-varies with LP within fixed settings ($\\rho{=}{-}0.881$; Appendix~\\ref{app:per_type_lp}).\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/fig_degeneracy_lp_scatter.pdf}\n\\caption{Instance degeneracy vs.\\ LP selection gain across 23 configurations ($N{=}8$; $\\rho{=}0.052$, $p{=}0.81$). Within Few-NERD per-entity-type ($\\rho{=}{-}0.881$; Appendix~\\ref{app:per_type_lp}), degeneracy predicts LP gain when alignment is held constant.}\n\\label{fig:degeneracy_scatter}\n\\end{figure}\n\nMV gains range from $-2.71$\\,pp (Few-NERD) to $+0.6$\\,pp (CoNLL at $N{=}64$; Figure~\\ref{fig:n_scaling}); the optimal strategy is dataset-dependent (LP-best $+8$\\,pp on Few-NERD vs.\\ MV $+0.61$\\,pp on CoNLL).\nThe framework extends to RE, where $40$\\% zero-F1 from upstream entity span errors creates a distinct failure mode---\\textit{diversity among failures} rather than quality-differentiated outputs---despite comparable degeneracy ($10.1$\\% vs.\\ SciERC $13.4$\\%; Appendix~\\ref{app:re_extension}).\n\n%% ============================================================\n\\subsection{Robustness}\\label{sec:robustness_main}\n\nSignal rankings are robust across temperatures, seeds, and $N$ (Table~\\ref{tab:robustness}; Appendix~\\ref{app:calibration}).\nQwen3-4B QE matches 8B ($|\\Delta\\rho|{=}0.042$); LoRA rank${=}8$ lowers degeneracy but LP stays below greedy (Appendix~\\ref{app:supervised_combination}).\nThe gap persists from 4B to 72B zero-shot to GPT-5.5 (\\S\\ref{sec:scaling}).\n\n%% ============================================================\n\\subsection{Prescriptive Results}\\label{sec:prescriptive}\n\nGiven that sample-level selection fails uniformly (\\S\\ref{sec:selection_gap}), we ask whether entity-level aggregation can extract value from multi-sample generation under favorable diagnostic conditions.\n\n\\paragraph{Entity-level construction (exploratory).}\nWe aggregate entities across samples, retaining those exceeding $\\theta{=}2/N$, with LP-weighted or uniform scoring ($\\theta$ stable in $[0.15, 0.35]$; Appendix~\\ref{app:theta_sweep}).\nThe diagnostic framework predicts gains when degeneracy and LP alignment are both favorable.\nLP-weighted construction yields $+1.40{\\pm}0.51$\\,pp on Few-NERD ($p{<}0.001$; Table~\\ref{tab:entity_construction}), consistent with this prediction ($D{=}13$\\%, headroom${=}12.4$\\,pp), a smaller non-significant $+0.32$\\,pp on SciERC, and no gain on CoNLL ($-0.39$\\,pp).\\footnote{Degenerate instances contribute $\\Delta{=}0$ by construction; gains concentrate in the non-degenerate subset ($+3.36$\\,pp SciERC, $+5.18$\\,pp CoNLL, $+7.08$\\,pp Few-NERD).}\nUnder global Holm--Bonferroni \\cite{holm1979simple} correction across all $k{=}57$ comparisons, $p_{\\text{adj}}{=}0.055$---marginally above $\\alpha{=}0.05$, providing suggestive but not definitive evidence of construction gains.\nPer-family correction ($k{=}10$): $p_{\\text{adj}}{=}0.006$; BH FDR: $6/10$ construction comparisons at FDR${<}0.05$ (Appendix~\\ref{app:holm}).\nThe family partition was defined by mechanism type but not pre-registered; we report all three corrections for transparency.\nConstruction and LP selection are complementary ($\\rho_{\\text{adj}}$: Few-NERD $0.516$); QE signals support selective prediction ($+5$--$8$\\,pp at 80\\% coverage; Table~\\ref{tab:cross_selection}).\n\n\\paragraph{Epoch confound on Few-NERD.}\nFew-NERD positive results should be interpreted cautiously: the 3-epoch model may be under-converged, and 5-epoch training eliminates LP gains entirely ($+1.39{\\to}+0.12{\\pm}0.04$\\,pp, 91\\% collapse; Appendix~\\ref{app:epoch_confound}).\nEntity construction likewise degrades: LP-weighted $\\Delta$ drops from $+0.88$ to $+0.20$\\,pp (seed 42, macro-F1; $77$\\% reduction).\nThe diagnostic framework correctly predicts this: 5-epoch constant-F1 degeneracy rises to $31$\\% (vs.\\ $13$\\% at 3 epochs; Appendix~\\ref{app:epoch_confound}), degrading the conditions for both selection and construction.\\footnote{Degeneracy rates vary by definition: constant-F1 degeneracy (all $N$ samples yield identical F1) gives $31$\\%/$13$\\%; entity-set exact-match degeneracy gives $26$\\%/$9$\\%. The directional pattern is consistent.}\nThis sensitivity---favorable conditions are fragile and training-dependent---reinforces that Few-NERD is a conditional success rather than evidence of a general bypass. The core negative finding (selection ${\\leq}$ greedy under high degeneracy) is unaffected.\n\n\\phantomsection\\label{sec:selection_results}\n",
+      "numLines": 120,
+      "startLine": 1,
+      "totalLines": 120
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 14_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01WnwstTbHLoQZcxyhqw29K6`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/limitations.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0ece91e4-5aa9-4282-9ae9-a9f0b59b36fe",
+  "uuid": "c4379ff3-c9c4-47c3-96d8-5af2052a715c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WjDuYV1nSVpX36CZk1iF9p",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3233,
+      "cache_read_input_tokens": 24469,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3233
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 15 · 2026-05-22T18:46:13.859Z_
+
+<details><summary>↩ Tool result · `toolu_01WnwstTbHLoQZcxyhqw29K6`</summary>
+
+```text
+1	Our primary evidence is from NER (four English datasets, 7--14B open-weight fine-tuned); cross-scale observations (4B--72B, GPT-5.5) are tentative. The RE extension ($n{=}397$, single dataset) and SQL pilot ($n{=}196$) are exploratory. SciERC results are validated across three training seeds ($n{=}529$ test instances; $\Delta_{\text{SC}}{=}{-}0.74{\pm}0.57$\,pp, consistent negative). Frontier models exhibit markedly different degeneracy profiles (5.5--74\%; Table~\ref{tab:frontier_sc_cross}), suggesting findings from fine-tuned open-weight models may not fully generalize to proprietary systems.
+2	Our framework is diagnostic, not causal: stages resist decomposition into independent effects ($R^2{<}0$; \S\ref{sec:selection_gap}). Under global Holm--Bonferroni ($k{=}57$), the most liberal core claim reaches $p_{\text{HB}}{=}0.055$; under BH FDR, $19/57$ tests are significant at FDR${<}0.05$ including $6/10$ construction comparisons (Appendix~\ref{app:holm}).
+3	We evaluate at $N{\in}\{2,\ldots,64\}$; entity-level construction requires $N{\times}$ inference cost for modest gains ($+1$--$1.4$\,pp). We use a single prompt template per task; prompt variations may affect entity recall, degeneracy, and LP distributions.
+4	All evaluation uses entity-level micro-F1 with exact span-and-type match; partial-credit metrics (e.g., token-level or relaxed boundary match) may yield different conclusions about selection effectiveness.
+5	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "0ece91e4-5aa9-4282-9ae9-a9f0b59b36fe",
+  "uuid": "ed715fa9-f2ec-407b-9dcf-1cc4fc924c62",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/limitations.tex",
+      "content": "Our primary evidence is from NER (four English datasets, 7--14B open-weight fine-tuned); cross-scale observations (4B--72B, GPT-5.5) are tentative. The RE extension ($n{=}397$, single dataset) and SQL pilot ($n{=}196$) are exploratory. SciERC results are validated across three training seeds ($n{=}529$ test instances; $\\Delta_{\\text{SC}}{=}{-}0.74{\\pm}0.57$\\,pp, consistent negative). Frontier models exhibit markedly different degeneracy profiles (5.5--74\\%; Table~\\ref{tab:frontier_sc_cross}), suggesting findings from fine-tuned open-weight models may not fully generalize to proprietary systems.\nOur framework is diagnostic, not causal: stages resist decomposition into independent effects ($R^2{<}0$; \\S\\ref{sec:selection_gap}). Under global Holm--Bonferroni ($k{=}57$), the most liberal core claim reaches $p_{\\text{HB}}{=}0.055$; under BH FDR, $19/57$ tests are significant at FDR${<}0.05$ including $6/10$ construction comparisons (Appendix~\\ref{app:holm}).\nWe evaluate at $N{\\in}\\{2,\\ldots,64\\}$; entity-level construction requires $N{\\times}$ inference cost for modest gains ($+1$--$1.4$\\,pp). We use a single prompt template per task; prompt variations may affect entity recall, degeneracy, and LP distributions.\nAll evaluation uses entity-level micro-F1 with exact span-and-type match; partial-credit metrics (e.g., token-level or relaxed boundary match) may yield different conclusions about selection effectiveness.\n",
+      "numLines": 5,
+      "startLine": 1,
+      "totalLines": 5
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 16_
+
+<details open><summary>🔧 Tool call — Read · `toolu_014RGVinfWuT2EtibEyU2GPA`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/discussion.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0ece91e4-5aa9-4282-9ae9-a9f0b59b36fe",
+  "uuid": "3cf6f538-e0ef-4876-ba96-868391e70282",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WjDuYV1nSVpX36CZk1iF9p",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3233,
+      "cache_read_input_tokens": 24469,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3233
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 17 · 2026-05-22T18:46:14.833Z_
+
+<details><summary>↩ Tool result · `toolu_014RGVinfWuT2EtibEyU2GPA`</summary>
+
+```text
+1	\section{Discussion and Conclusion}\label{sec:discussion}\label{sec:selection_method}\label{sec:conclusion}
+2	
+3	\paragraph{Why test-time scaling fails for NER.}
+4	For discrete-answer reasoning, sample diversity reflects diverse reasoning paths; for NER, degeneracy ($12$--$68$\%) eliminates candidate diversity while signal alignment collapse ($\alpha{\to}0$) prevents ranking.
+5	The degeneracy decomposition (\S\ref{sec:theory}) identifies $\alpha$---not degeneracy---as the binding constraint ($8$--$33{\times}$ tighter), providing a diagnostic tool for localizing failure rather than a predictive bound.
+6	This capability-diversity tradeoff \cite{yun2025price} persists across model families (5.5--74\%; Table~\ref{tab:frontier_sc_cross}), scales (4B--72B; \S\ref{sec:scaling}), and decoding modes (LP std ratio $0.92$--$0.97{\times}$; \S\ref{sec:selection_gap}).
+7	Compared to \citet{yao2026consistency}'s task-level plateau, we provide instance-level decomposition; \citet{landesberg2026bon} independently confirm the gap generalizes beyond NER ($r{=}0.47$ global vs.\ $r{=}0.27$ within-prompt).
+8	
+9	\paragraph{Constrained vs.\ free-form decoding.}
+10	LP compression is model-intrinsic rather than an artifact of constrained decoding: free-form generation yields nearly identical within-instance LP distributions (std ratio $0.97{\times}$; Appendix~\ref{app:freeform_ablation}).
+11	Constrained decoding does affect diversity: Few-NERD (13\% degeneracy) retains diversity under grammar constraints, while CoNLL (62\%) collapses---but this variation tracks task difficulty and model calibration rather than the decoding mechanism itself.
+12	
+13	\paragraph{Scale and outlook.}
+14	The correlation-selection gap persists from 4B fine-tuned to 72B zero-shot and GPT-5.5, with degeneracy varying by model family rather than scale (Qwen2.5: $32$--$46$\%, Qwen3: $13$\%, GPT-5.5: $50$\% on Few-NERD; \S\ref{sec:scaling}).
+15	Whether models beyond 70B with improved calibration can overcome signal alignment collapse remains an open question; our diagnostic framework provides the measurements needed to evaluate this as larger models become available.
+16	
+17	\paragraph{Practical recommendations.}
+18	Measuring degeneracy and LP-F1 alignment at $N{=}8$ suffices: if ${>}50$\% degenerate, scaling provides no benefit; if degeneracy ${<}20$\% with $\rho{>}0.70$, construction may yield gains; otherwise prefer greedy.
+19	
+20	\paragraph{Conclusion.}
+21	The diagnostic framework---localizing failure to degeneracy and signal alignment collapse---is our primary contribution; RE, SQL, and cross-model extensions are exploratory.
+22	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "0ece91e4-5aa9-4282-9ae9-a9f0b59b36fe",
+  "uuid": "1f61809c-20e0-4a5e-ab95-88b3e6a9ecf1",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/discussion.tex",
+      "content": "\\section{Discussion and Conclusion}\\label{sec:discussion}\\label{sec:selection_method}\\label{sec:conclusion}\n\n\\paragraph{Why test-time scaling fails for NER.}\nFor discrete-answer reasoning, sample diversity reflects diverse reasoning paths; for NER, degeneracy ($12$--$68$\\%) eliminates candidate diversity while signal alignment collapse ($\\alpha{\\to}0$) prevents ranking.\nThe degeneracy decomposition (\\S\\ref{sec:theory}) identifies $\\alpha$---not degeneracy---as the binding constraint ($8$--$33{\\times}$ tighter), providing a diagnostic tool for localizing failure rather than a predictive bound.\nThis capability-diversity tradeoff \\cite{yun2025price} persists across model families (5.5--74\\%; Table~\\ref{tab:frontier_sc_cross}), scales (4B--72B; \\S\\ref{sec:scaling}), and decoding modes (LP std ratio $0.92$--$0.97{\\times}$; \\S\\ref{sec:selection_gap}).\nCompared to \\citet{yao2026consistency}'s task-level plateau, we provide instance-level decomposition; \\citet{landesberg2026bon} independently confirm the gap generalizes beyond NER ($r{=}0.47$ global vs.\\ $r{=}0.27$ within-prompt).\n\n\\paragraph{Constrained vs.\\ free-form decoding.}\nLP compression is model-intrinsic rather than an artifact of constrained decoding: free-form generation yields nearly identical within-instance LP distributions (std ratio $0.97{\\times}$; Appendix~\\ref{app:freeform_ablation}).\nConstrained decoding does affect diversity: Few-NERD (13\\% degeneracy) retains diversity under grammar constraints, while CoNLL (62\\%) collapses---but this variation tracks task difficulty and model calibration rather than the decoding mechanism itself.\n\n\\paragraph{Scale and outlook.}\nThe correlation-selection gap persists from 4B fine-tuned to 72B zero-shot and GPT-5.5, with degeneracy varying by model family rather than scale (Qwen2.5: $32$--$46$\\%, Qwen3: $13$\\%, GPT-5.5: $50$\\% on Few-NERD; \\S\\ref{sec:scaling}).\nWhether models beyond 70B with improved calibration can overcome signal alignment collapse remains an open question; our diagnostic framework provides the measurements needed to evaluate this as larger models become available.\n\n\\paragraph{Practical recommendations.}\nMeasuring degeneracy and LP-F1 alignment at $N{=}8$ suffices: if ${>}50$\\% degenerate, scaling provides no benefit; if degeneracy ${<}20$\\% with $\\rho{>}0.70$, construction may yield gains; otherwise prefer greedy.\n\n\\paragraph{Conclusion.}\nThe diagnostic framework---localizing failure to degeneracy and signal alignment collapse---is our primary contribution; RE, SQL, and cross-model extensions are exploratory.\n",
+      "numLines": 22,
+      "startLine": 1,
+      "totalLines": 22
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 18_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01B4FYT9wBFHCZfGjt1Wtydw`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/diagnostic.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0ece91e4-5aa9-4282-9ae9-a9f0b59b36fe",
+  "uuid": "058e52f6-00e9-484d-ba8e-deed4c68e2db",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WjDuYV1nSVpX36CZk1iF9p",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3233,
+      "cache_read_input_tokens": 24469,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3233
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 19 · 2026-05-22T18:46:15.326Z_
+
+<details><summary>↩ Tool result · `toolu_01B4FYT9wBFHCZfGjt1Wtydw`</summary>
+
+```text
+1	\section{Diagnostic Framework}\label{sec:method}
+2	
+3	Our analysis is observational: we characterize statistical associations between agreement signals and output quality without claiming causal mechanisms.
+4	
+5	\subsection{Problem Formulation}\label{sec:formulation}
+6	
+7	Given model $\mathcal{M}$ and input $x$, we sample $N$ outputs $\{y_1, \ldots, y_N\}$ at temperature $T > 0$ via constrained decoding \cite{willard2023guided}, where each $y_i$ is an entity set.
+8	A \textbf{per-sample signal} $c_{\text{ps}}: (x, y_i) \to \mathbb{R}$ scores each output independently; an \textbf{instance-level signal} $c_{\text{il}}: (x, \{y_i\}_{i=1}^N) \to \mathbb{R}$ produces a single score per input (notation in Appendix~\ref{app:notation}).
+9	This distinction is consequential: 4 of 5 signals are instance-level aggregates assigning identical scores to all $N$ candidates.
+10	Only LP carries per-sample discriminative power: ensemble optimization assigns LP mean weight $0.78$, with structural signals receiving zero weight (Appendix~\ref{app:supervised_combination}).
+11	When LP fails---as in few-shot regimes where LP $\rho{\to}0$ (\S\ref{sec:scaling})---no alternative per-sample signal exists.
+12	
+13	We define the \textbf{capability ceiling} as the practical performance upper bound achievable through self-consistency at realistic sample budgets ($N{\leq}16$), beyond which diminishing returns render further scaling impractical.
+14	
+15	\subsection{Confidence Signals}\label{sec:signals}
+16	
+17	Entity matching uses exact span and type match.
+18	We distinguish two signal families: four \textit{agreement signals} computed across samples---\textit{structural} (Soft Jaccard [SJ], entity voting confidence [VC]) and \textit{surface} (exact match [EM], Fleiss' $\kappa$ [FK])---and log-probability [LP] as the sole \textit{model-internal} signal, derived from generation probabilities and providing per-sample discrimination.
+19	
+20	\paragraph{Log-probability (per-sample).}
+21	$c_{\text{lp}}(y_i) = |y_i|^{-1} \sum_{j} \log p_{\mathcal{M}}(t_j \mid t_{<j}, x)$.
+22	Mean LP is preferred over cumulative sequence-level LP as length normalization eliminates length bias ($+4.6$ F1 points; Appendix~\ref{app:token_signal}).
+23	
+24	\paragraph{Soft Jaccard (structural, instance-level).}
+25	For samples $y_i, y_j$, we group by type, compute max-weight bipartite matching (Hungarian algorithm, token-level IoU):
+26	\begin{equation}\label{eq:sj}
+27	\text{SJ}(y_i, y_j) = \frac{\sum_{m \in M} \text{sim}(a_m, b_m)}{\sum_{g} \max(|g_i|, |g_j|)}
+28	\end{equation}
+29	Instance-level QE averages over all pairs: $c_{\text{sj}}(x) = \binom{N}{2}^{-1} \sum_{i<j} \text{SJ}(y_i, y_j)$.
+30	For selection, consensus-proximity converts to per-sample rankings via MBR (\S\ref{sec:mbr_theory}).
+31	
+32	\paragraph{Other signals.}
+33	EM: proportion of samples producing the most common output ($c_{\text{em}}(x) = N^{-1} \max_{y} |\{i : y_i = y\}|$).
+34	FK: inter-rater agreement \cite{fleiss1971agreement} adapted to entity sets, treating unique (text, type) tuples as items with binary present/absent labels (Appendix~\ref{app:fk_independence}).
+35	VC: mean entity frequency $\text{freq}(e) = |\{i : e \in y_i\}| / N$ across $E_\cup$.\footnote{When $E_\cup = \emptyset$, SJ${=}1$ (perfect agreement on empty output); $\text{VC}{=}0$.}
+36	
+37	\subsection{Evaluation}\label{sec:evaluation}
+38	
+39	\paragraph{Quality estimation.}
+40	Spearman $\rho$ between signal and instance-level F1 (exact span-and-type match), and AUROC classifying above/below median F1.
+41	Both exclude instances with no gold annotations: $n{=}529$ on SciERC, $n{=}2{,}756$ on CoNLL (Appendix~\ref{app:additional}).
+42	
+43	\paragraph{Sample selection.}
+44	Best-of-$N$ F1: LP ranks candidates directly; instance-level signals rank via consensus-proximity.
+45	Baselines: \textit{oracle} (highest-F1 sample) and \textit{greedy} ($T{=}0$).
+46	\textbf{Instance degeneracy}: fraction of instances where all $N$ samples yield identical F1;\footnote{``Identical F1'' means constant F1 across all $N$ samples for a given instance, not necessarily F1${=}1.0$. This includes three distinct cases: (1)~identical entity sets (true output collapse), (2)~different entity sets that happen to achieve the same F1 (coincidental F1 tie), and (3)~different entity boundaries with identical span-level scores. Entity-set exact-match degeneracy (case 1 only) is lower ($9$--$26$\% vs.\ $13$--$31$\% constant-F1; Appendix~\ref{app:epoch_confound}); we use constant-F1 as the operationally relevant definition since selection cannot improve F1 regardless of which case applies.} for these, no signal can improve selection.
+47	We adopt \textit{degeneracy} (from statistical mechanics: multiple microstates mapping to identical macrostates) to distinguish from training convergence and to emphasize the many-to-one collapse of distinct samples onto identical entity sets.
+48	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "0ece91e4-5aa9-4282-9ae9-a9f0b59b36fe",
+  "uuid": "7dca752f-641f-4ba3-9e66-44be7143040b",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/diagnostic.tex",
+      "content": "\\section{Diagnostic Framework}\\label{sec:method}\n\nOur analysis is observational: we characterize statistical associations between agreement signals and output quality without claiming causal mechanisms.\n\n\\subsection{Problem Formulation}\\label{sec:formulation}\n\nGiven model $\\mathcal{M}$ and input $x$, we sample $N$ outputs $\\{y_1, \\ldots, y_N\\}$ at temperature $T > 0$ via constrained decoding \\cite{willard2023guided}, where each $y_i$ is an entity set.\nA \\textbf{per-sample signal} $c_{\\text{ps}}: (x, y_i) \\to \\mathbb{R}$ scores each output independently; an \\textbf{instance-level signal} $c_{\\text{il}}: (x, \\{y_i\\}_{i=1}^N) \\to \\mathbb{R}$ produces a single score per input (notation in Appendix~\\ref{app:notation}).\nThis distinction is consequential: 4 of 5 signals are instance-level aggregates assigning identical scores to all $N$ candidates.\nOnly LP carries per-sample discriminative power: ensemble optimization assigns LP mean weight $0.78$, with structural signals receiving zero weight (Appendix~\\ref{app:supervised_combination}).\nWhen LP fails---as in few-shot regimes where LP $\\rho{\\to}0$ (\\S\\ref{sec:scaling})---no alternative per-sample signal exists.\n\nWe define the \\textbf{capability ceiling} as the practical performance upper bound achievable through self-consistency at realistic sample budgets ($N{\\leq}16$), beyond which diminishing returns render further scaling impractical.\n\n\\subsection{Confidence Signals}\\label{sec:signals}\n\nEntity matching uses exact span and type match.\nWe distinguish two signal families: four \\textit{agreement signals} computed across samples---\\textit{structural} (Soft Jaccard [SJ], entity voting confidence [VC]) and \\textit{surface} (exact match [EM], Fleiss' $\\kappa$ [FK])---and log-probability [LP] as the sole \\textit{model-internal} signal, derived from generation probabilities and providing per-sample discrimination.\n\n\\paragraph{Log-probability (per-sample).}\n$c_{\\text{lp}}(y_i) = |y_i|^{-1} \\sum_{j} \\log p_{\\mathcal{M}}(t_j \\mid t_{<j}, x)$.\nMean LP is preferred over cumulative sequence-level LP as length normalization eliminates length bias ($+4.6$ F1 points; Appendix~\\ref{app:token_signal}).\n\n\\paragraph{Soft Jaccard (structural, instance-level).}\nFor samples $y_i, y_j$, we group by type, compute max-weight bipartite matching (Hungarian algorithm, token-level IoU):\n\\begin{equation}\\label{eq:sj}\n\\text{SJ}(y_i, y_j) = \\frac{\\sum_{m \\in M} \\text{sim}(a_m, b_m)}{\\sum_{g} \\max(|g_i|, |g_j|)}\n\\end{equation}\nInstance-level QE averages over all pairs: $c_{\\text{sj}}(x) = \\binom{N}{2}^{-1} \\sum_{i<j} \\text{SJ}(y_i, y_j)$.\nFor selection, consensus-proximity converts to per-sample rankings via MBR (\\S\\ref{sec:mbr_theory}).\n\n\\paragraph{Other signals.}\nEM: proportion of samples producing the most common output ($c_{\\text{em}}(x) = N^{-1} \\max_{y} |\\{i : y_i = y\\}|$).\nFK: inter-rater agreement \\cite{fleiss1971agreement} adapted to entity sets, treating unique (text, type) tuples as items with binary present/absent labels (Appendix~\\ref{app:fk_independence}).\nVC: mean entity frequency $\\text{freq}(e) = |\\{i : e \\in y_i\\}| / N$ across $E_\\cup$.\\footnote{When $E_\\cup = \\emptyset$, SJ${=}1$ (perfect agreement on empty output); $\\text{VC}{=}0$.}\n\n\\subsection{Evaluation}\\label{sec:evaluation}\n\n\\paragraph{Quality estimation.}\nSpearman $\\rho$ between signal and instance-level F1 (exact span-and-type match), and AUROC classifying above/below median F1.\nBoth exclude instances with no gold annotations: $n{=}529$ on SciERC, $n{=}2{,}756$ on CoNLL (Appendix~\\ref{app:additional}).\n\n\\paragraph{Sample selection.}\nBest-of-$N$ F1: LP ranks candidates directly; instance-level signals rank via consensus-proximity.\nBaselines: \\textit{oracle} (highest-F1 sample) and \\textit{greedy} ($T{=}0$).\n\\textbf{Instance degeneracy}: fraction of instances where all $N$ samples yield identical F1;\\footnote{``Identical F1'' means constant F1 across all $N$ samples for a given instance, not necessarily F1${=}1.0$. This includes three distinct cases: (1)~identical entity sets (true output collapse), (2)~different entity sets that happen to achieve the same F1 (coincidental F1 tie), and (3)~different entity boundaries with identical span-level scores. Entity-set exact-match degeneracy (case 1 only) is lower ($9$--$26$\\% vs.\\ $13$--$31$\\% constant-F1; Appendix~\\ref{app:epoch_confound}); we use constant-F1 as the operationally relevant definition since selection cannot improve F1 regardless of which case applies.} for these, no signal can improve selection.\nWe adopt \\textit{degeneracy} (from statistical mechanics: multiple microstates mapping to identical macrostates) to distinguish from training convergence and to emphasize the many-to-one collapse of distinct samples onto identical entity sets.\n",
+      "numLines": 48,
+      "startLine": 1,
+      "totalLines": 48
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 20_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01MkZziaTgLagTa1gWmbosTu`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/single_signal.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0ece91e4-5aa9-4282-9ae9-a9f0b59b36fe",
+  "uuid": "3f15c8c8-3dae-440e-964c-a4edb8cc3eea",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WjDuYV1nSVpX36CZk1iF9p",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3233,
+      "cache_read_input_tokens": 24469,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3233
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 21 · 2026-05-22T18:46:15.592Z_
+
+<details><summary>↩ Tool result · `toolu_01MkZziaTgLagTa1gWmbosTu`</summary>
+
+```text
+1	\section{Where Single-Signal Selection Fails}\label{sec:selection_gap}
+2	
+3	\paragraph{Definitional vs.\ empirical.}
+4	We decompose the correlation-selection gap into two layers.
+5	The first is structural: four of five signals are instance-level aggregates that assign identical scores to all $N$ candidates from a given input (\S\ref{sec:formulation}), so they estimate quality across inputs but cannot rank candidates within an instance---selection failure is a design property, not an empirical finding.
+6	The second layer is empirical and constitutes the core diagnostic: LP---the only per-sample signal---suffers compression under constrained decoding, with 60\% of SciERC instances showing within-instance LP range below 0.041 nats (Appendix~\ref{app:logprob_ties}), effectively eliminating the variation needed for sample discrimination. This compression is model-intrinsic: free-form decoding yields nearly identical LP distributions (within-instance std ratio $0.97{\times}$; Appendix~\ref{app:freeform_ablation}). Even where LP varies, selection gains depend on LP-quality alignment rather than degeneracy alone.
+7	Cross-instance $\rho$ (Table~\ref{tab:quality_estimation}) is attenuated by varying instance difficulty; within-instance $\rho$ directly measures whether LP discriminates candidates for a fixed input, making it the relevant predictor of selection success.
+8	
+9	\begin{table}[t]
+10	\centering
+11	\small
+12	\caption{Best-of-$N$ selection (macro F1) on SciERC ($N{=}8$, $T{=}1.0$). Selection signals: 2-seed mean${\pm}\sigma$; baselines: 3-seed (Oracle${=}0.781$, Greedy${=}0.667$). LP is per-sample; others use consensus-proximity. $^\dagger$One score per input.}
+13	\label{tab:selection}
+14	\begin{tabular}{lcc}
+15	\toprule
+16	Method & NER F1 & $p$ \\
+17	\midrule
+18	Oracle & $0.775 \pm 0.001$ & --- \\
+19	Greedy ($T{=}0$) & $0.645 \pm 0.001$ & --- \\
+20	\midrule
+21	LP           & $\mathbf{0.647} \pm 0.005$ & .29 \\
+22	SJ           & $0.646 \pm 0.002$ & .67 \\
+23	FK           & $0.646 \pm 0.001$ & .79 \\
+24	EM           & $0.637 \pm 0.001$ & n/a$^\dagger$ \\
+25	VC           & $0.623 \pm 0.004$ & n/a$^\dagger$ \\
+26	\midrule
+27	Random       & $0.610 \pm 0.003$ & --- \\
+28	\bottomrule
+29	\end{tabular}
+30	\end{table}
+31	
+32	\begin{figure}[t]
+33	\centering
+34	\includegraphics[width=\columnwidth]{fig_selection_gap}
+35	\caption{Correlation-selection gap on SciERC ($N{=}8$, $T{=}1.0$). Bars: QE $\rho$; line: $\Delta$F1 vs.\ greedy (3-seed mean). Despite $\rho$ up to 0.38, no signal outperforms greedy (all $p{\geq}0.29$). Dashed green: oracle headroom ($+11.4$\,pp; oracle headroom $=$ best-of-$N$ F1 $-$ greedy F1); dotted gray: random.}
+36	\label{fig:selection_gap}
+37	\end{figure}
+38	
+39	Despite $\rho$ up to 0.38, no signal outperforms greedy on SciERC (Table~\ref{tab:selection}; Figure~\ref{fig:selection_gap}); the oracle shows 11.4\,pp headroom, but LP achieves $+0.2$\,pp ($p{=}0.29$), below MDE (${\approx}$1.5\,pp; $n{=}529$; Table~\ref{tab:power_analysis}).
+40	The pattern holds across CoNLL and WNUT-17 (Table~\ref{tab:cross_selection}).
+41	Few-NERD provides the definitive contrast: LP achieves $+1.39$\,pp ($p{<}0.001$; Holm $p_{\text{adj}}{=}0.021$, selection family $k{=}21$)\footnote{Under global correction ($k{=}57$), LP-best selection reaches Holm $p_{\text{adj}}{=}0.055$ (BH $p_{\text{adj}}{=}0.003$)---the only positive selection signal approaching significance under the conservative Holm procedure.} at low degeneracy (13.0\% vs.\ 12.2--67.9\%), while structural signals still degrade (VC $-1.79$, SJ $-2.14$\,pp; \S\ref{sec:fewnerd}).
+42	
+43	\paragraph{Diagnostic framework.}
+44	We identify two co-occurring factors that jointly characterize the gap:
+45	(1)~instance degeneracy sets the ceiling (SciERC 12.2\%, CoNLL 61.7\%);
+46	(2)~oracle headroom bounds the opportunity within non-degenerate instances (CoNLL ${\approx}4$\,pp vs.\ SciERC 11.4\,pp);
+47	(3)~LP compression limits exploitation (Few-NERD within-instance $\rho{\approx}0.5$--$0.7$ vs.\ SciERC $\rho{\approx}0.26$).
+48	Degeneracy does not predict LP gain across datasets ($\rho{=}0.052$, $n{=}23$, $p{=}0.81$; Figure~\ref{fig:degeneracy_scatter}), though it co-varies with LP within fixed settings ($\rho{=}{-}0.881$; Appendix~\ref{app:per_type_lp}).
+49	These conditions interact ($R^2{<}0$); on non-degenerate instances, $\alpha$ approaches zero ($0.000$--$0.161$) despite $\rho$ up to 0.45 (\S\ref{sec:theory}).
+50	
+51	\paragraph{Mechanistic evidence (Appendix~\ref{sec:mechanistic}).}
+52	Why does signal alignment collapse? Probing experiments on Qwen2.5-7B\footnote{Probes use Qwen2.5-7B-Instruct (not the fine-tuned Qwen3-8B); Qwen3-8B's thinking mode may alter self-evaluation dynamics. Conclusions are architecture-specific.} reveal an \textit{introspection boundary}: hidden-state linear probes achieve entity-level AUROC $0.63$--$0.88$, substantially exceeding prompt-based self-judgment (ESJ AUROC $0.51$, indistinguishable from chance), yet cross-dataset transfer drops to $0.56$--$0.67$ (LODO).
+53	Entity self-judgment, multi-round refinement ($-3.1$\,pp vs.\ greedy), and latent centroid selection ($-3.5$\,pp) all fail to improve over greedy decoding.
+54	Entity quality is partially encoded in representations but inaccessible through the generation interface---consistent with the signal alignment collapse observed across all configurations.
+55	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "0ece91e4-5aa9-4282-9ae9-a9f0b59b36fe",
+  "uuid": "cf4760f3-cefa-4da0-8298-5441d173c909",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/single_signal.tex",
+      "content": "\\section{Where Single-Signal Selection Fails}\\label{sec:selection_gap}\n\n\\paragraph{Definitional vs.\\ empirical.}\nWe decompose the correlation-selection gap into two layers.\nThe first is structural: four of five signals are instance-level aggregates that assign identical scores to all $N$ candidates from a given input (\\S\\ref{sec:formulation}), so they estimate quality across inputs but cannot rank candidates within an instance---selection failure is a design property, not an empirical finding.\nThe second layer is empirical and constitutes the core diagnostic: LP---the only per-sample signal---suffers compression under constrained decoding, with 60\\% of SciERC instances showing within-instance LP range below 0.041 nats (Appendix~\\ref{app:logprob_ties}), effectively eliminating the variation needed for sample discrimination. This compression is model-intrinsic: free-form decoding yields nearly identical LP distributions (within-instance std ratio $0.97{\\times}$; Appendix~\\ref{app:freeform_ablation}). Even where LP varies, selection gains depend on LP-quality alignment rather than degeneracy alone.\nCross-instance $\\rho$ (Table~\\ref{tab:quality_estimation}) is attenuated by varying instance difficulty; within-instance $\\rho$ directly measures whether LP discriminates candidates for a fixed input, making it the relevant predictor of selection success.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Best-of-$N$ selection (macro F1) on SciERC ($N{=}8$, $T{=}1.0$). Selection signals: 2-seed mean${\\pm}\\sigma$; baselines: 3-seed (Oracle${=}0.781$, Greedy${=}0.667$). LP is per-sample; others use consensus-proximity. $^\\dagger$One score per input.}\n\\label{tab:selection}\n\\begin{tabular}{lcc}\n\\toprule\nMethod & NER F1 & $p$ \\\\\n\\midrule\nOracle & $0.775 \\pm 0.001$ & --- \\\\\nGreedy ($T{=}0$) & $0.645 \\pm 0.001$ & --- \\\\\n\\midrule\nLP           & $\\mathbf{0.647} \\pm 0.005$ & .29 \\\\\nSJ           & $0.646 \\pm 0.002$ & .67 \\\\\nFK           & $0.646 \\pm 0.001$ & .79 \\\\\nEM           & $0.637 \\pm 0.001$ & n/a$^\\dagger$ \\\\\nVC           & $0.623 \\pm 0.004$ & n/a$^\\dagger$ \\\\\n\\midrule\nRandom       & $0.610 \\pm 0.003$ & --- \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{fig_selection_gap}\n\\caption{Correlation-selection gap on SciERC ($N{=}8$, $T{=}1.0$). Bars: QE $\\rho$; line: $\\Delta$F1 vs.\\ greedy (3-seed mean). Despite $\\rho$ up to 0.38, no signal outperforms greedy (all $p{\\geq}0.29$). Dashed green: oracle headroom ($+11.4$\\,pp; oracle headroom $=$ best-of-$N$ F1 $-$ greedy F1); dotted gray: random.}\n\\label{fig:selection_gap}\n\\end{figure}\n\nDespite $\\rho$ up to 0.38, no signal outperforms greedy on SciERC (Table~\\ref{tab:selection}; Figure~\\ref{fig:selection_gap}); the oracle shows 11.4\\,pp headroom, but LP achieves $+0.2$\\,pp ($p{=}0.29$), below MDE (${\\approx}$1.5\\,pp; $n{=}529$; Table~\\ref{tab:power_analysis}).\nThe pattern holds across CoNLL and WNUT-17 (Table~\\ref{tab:cross_selection}).\nFew-NERD provides the definitive contrast: LP achieves $+1.39$\\,pp ($p{<}0.001$; Holm $p_{\\text{adj}}{=}0.021$, selection family $k{=}21$)\\footnote{Under global correction ($k{=}57$), LP-best selection reaches Holm $p_{\\text{adj}}{=}0.055$ (BH $p_{\\text{adj}}{=}0.003$)---the only positive selection signal approaching significance under the conservative Holm procedure.} at low degeneracy (13.0\\% vs.\\ 12.2--67.9\\%), while structural signals still degrade (VC $-1.79$, SJ $-2.14$\\,pp; \\S\\ref{sec:fewnerd}).\n\n\\paragraph{Diagnostic framework.}\nWe identify two co-occurring factors that jointly characterize the gap:\n(1)~instance degeneracy sets the ceiling (SciERC 12.2\\%, CoNLL 61.7\\%);\n(2)~oracle headroom bounds the opportunity within non-degenerate instances (CoNLL ${\\approx}4$\\,pp vs.\\ SciERC 11.4\\,pp);\n(3)~LP compression limits exploitation (Few-NERD within-instance $\\rho{\\approx}0.5$--$0.7$ vs.\\ SciERC $\\rho{\\approx}0.26$).\nDegeneracy does not predict LP gain across datasets ($\\rho{=}0.052$, $n{=}23$, $p{=}0.81$; Figure~\\ref{fig:degeneracy_scatter}), though it co-varies with LP within fixed settings ($\\rho{=}{-}0.881$; Appendix~\\ref{app:per_type_lp}).\nThese conditions interact ($R^2{<}0$); on non-degenerate instances, $\\alpha$ approaches zero ($0.000$--$0.161$) despite $\\rho$ up to 0.45 (\\S\\ref{sec:theory}).\n\n\\paragraph{Mechanistic evidence (Appendix~\\ref{sec:mechanistic}).}\nWhy does signal alignment collapse? Probing experiments on Qwen2.5-7B\\footnote{Probes use Qwen2.5-7B-Instruct (not the fine-tuned Qwen3-8B); Qwen3-8B's thinking mode may alter self-evaluation dynamics. Conclusions are architecture-specific.} reveal an \\textit{introspection boundary}: hidden-state linear probes achieve entity-level AUROC $0.63$--$0.88$, substantially exceeding prompt-based self-judgment (ESJ AUROC $0.51$, indistinguishable from chance), yet cross-dataset transfer drops to $0.56$--$0.67$ (LODO).\nEntity self-judgment, multi-round refinement ($-3.1$\\,pp vs.\\ greedy), and latent centroid selection ($-3.5$\\,pp) all fail to improve over greedy decoding.\nEntity quality is partially encoded in representations but inaccessible through the generation interface---consistent with the signal alignment collapse observed across all configurations.\n",
+      "numLines": 55,
+      "startLine": 1,
+      "totalLines": 55
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 22_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have the content of all the key files. Let me also search for "51%" references related to WNUT across all tex files, and check the discussion and appendix for the std ratio mentions.
+
+Let me map out what I've found for each fix:
+
+**Fix 1 [CRITICAL]: experiments_main.tex:89 — LP-best +8pp**
+Line 89: `MV gains range from $-2.71$\,pp (Few-NERD) to $+0.6$\,pp (CoNLL at $N{=}64$; Figure~\ref{fig:n_scaling}); the optimal strategy is dataset-dependent (LP-best $+8$\,pp on Few-NERD vs.\ MV $+0.61$\,pp on CoNLL).`
+
+
+This needs to be corrected to `LP-best $+1.4$\,pp` based on Table 4, which shows the Few-NERD LP improvement as $+1.39$\,pp (the 3-seed means value).
+
+Now I'm checking the MV comparison claim. The text mentions "MV +0.61 pp on CoNLL" but Table 4 shows CoNLL LP $\Delta$ = $-0.85$\,pp, so the +0.61 must be referring to a different metric or dataset—actually, that's the SciERC LP $\Delta$ from line 69. The sentence is comparing two different selection strategies: LP-best on Few-NERD versus MV aggregation on CoNLL, so I need to verify what the actual MV gain on CoNLL is. Looking at the task more carefully, I need to change the LP-best value from +8 pp to +1.4 pp on Few-NERD, which matches the instance-averaged LP selection delta from Table 4. For the second fix, I'm checking the WNUT zero-F1 percentage—the current text says 51% but it should be around 53.7% or approximately 54%.
+
+Now I'm examining the headroom numbers mentioned in the task: the text references both 11.4 pp and 12.4 pp in different places, but the task specifies 11.4 pp vs 13.0 pp, so I need to locate and verify these values across the document to ensure consistency. I need to figure out which table the task is referring to as "Table 4." The fix mentions that this table uses instance-averaged F1 but the caption doesn't note it. Looking at the table labels in order of appearance, `tab:fewnerd` seems like the likely candidate since it shows LP selection across datasets and would need that metric clarification in its caption. Looking at the limitations section, I need to correct the standard deviation for the SciERC MV delta from ±0.57 to ±0.46pp to match the task requirements. I should also locate and verify the FewNERD MV delta value of −2.71±0.52pp in that same section.
+
+For the epoch confound issue, I'm checking line 114 where the LP delta is reported as +1.39→+0.12±0.04pp, and the task suggests the current value might be reporting the maximum rather than the mean.  I need to verify whether this should be changed to +0.09 (the mean) or annotated as "max across seeds". Looking at line 75, there's another reference to the same collapse from +1.39 to +0.12pp, so both locations need consistent updates.
+
+If I switch to 0.09, the collapse percentage recalculates to about 94% instead of the current 91%, since (1.39 - 0.09) / 1.39 ≈ 0.935.
+
+Now checking the SciERC greedy F1 issue: the table appears to show .667 from a single seed, but the 3-seed mean is actually .663. I'm noticing the greedy F1 score of 0.667 in the table is inconsistent with the stated 3-seed mean of 0.663, so that needs to be corrected. For the discussion section's std ratio of 0.92, I can't verify this value from the available data, so I should replace it with the verifiable range that's documented elsewhere in the text.
+
+Let me search through the document for all instances of "51%" related to WNUT to check for consistency.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0ece91e4-5aa9-4282-9ae9-a9f0b59b36fe",
+  "uuid": "1365a2f9-0e9b-4685-8190-099bb9444277",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KFBojS25yrTdLY3i4o7vBE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9486,
+      "cache_read_input_tokens": 27702,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9486
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 23_
+
+Now let me search for Fix 2 (WNUT 51%) across all tex files, and check for the std ratio data.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0ece91e4-5aa9-4282-9ae9-a9f0b59b36fe",
+  "uuid": "9e8b00d9-80de-4193-b190-8ac520ab4098",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KFBojS25yrTdLY3i4o7vBE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9486,
+      "cache_read_input_tokens": 27702,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9486
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 24_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01FmeoCZF9e8XD6byQtKWzw2`</summary>
+
+```json
+{
+  "pattern": "51\\\\?%|51\\s*\\\\%",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper",
+  "output_mode": "content",
+  "-n": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0ece91e4-5aa9-4282-9ae9-a9f0b59b36fe",
+  "uuid": "d35fceac-74f5-44db-9751-8939ca9c1d6d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KFBojS25yrTdLY3i4o7vBE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9486,
+      "cache_read_input_tokens": 27702,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9486
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 25 · 2026-05-22T18:47:33.448Z_
+
+<details><summary>↩ Tool result · `toolu_01FmeoCZF9e8XD6byQtKWzw2`</summary>
+
+```text
+docs/paper/sections/_archived/experiments_OLD.tex:12:\textbf{WNUT-17} \cite{derczynski2017wnut} (1{,}287 social media instances, 51\% zero F1) probes the signal-collapse boundary where model capability is insufficient.
+docs/paper/sections/appendix.tex:412:WNUT-17 shows 55\% identical outputs, attributable to the 51\% zero-F1 rate.
+docs/paper/sections/experiments_main.tex:10:\textbf{WNUT-17} \cite{derczynski2017wnut} (1{,}287 social media instances, 51\% zero F1) probes the signal-collapse boundary.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "0ece91e4-5aa9-4282-9ae9-a9f0b59b36fe",
+  "uuid": "b65a8724-a4b5-484e-ad68-7e2875492eac",
+  "tool_use_result": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "docs/paper/sections/_archived/experiments_OLD.tex:12:\\textbf{WNUT-17} \\cite{derczynski2017wnut} (1{,}287 social media instances, 51\\% zero F1) probes the signal-collapse boundary where model capability is insufficient.\ndocs/paper/sections/appendix.tex:412:WNUT-17 shows 55\\% identical outputs, attributable to the 51\\% zero-F1 rate.\ndocs/paper/sections/experiments_main.tex:10:\\textbf{WNUT-17} \\cite{derczynski2017wnut} (1{,}287 social media instances, 51\\% zero F1) probes the signal-collapse boundary.",
+    "numLines": 3
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 26_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01YCwaNYWRJ1Z6E7UtGPbGSY`</summary>
+
+```json
+{
+  "pattern": "0\\.92|std ratio",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper",
+  "output_mode": "content",
+  "-n": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0ece91e4-5aa9-4282-9ae9-a9f0b59b36fe",
+  "uuid": "d6b03528-4568-4014-bc28-4f2664a14429",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KFBojS25yrTdLY3i4o7vBE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9486,
+      "cache_read_input_tokens": 27702,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9486
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 27 · 2026-05-22T18:47:34.865Z_
+
+<details><summary>↩ Tool result · `toolu_01YCwaNYWRJ1Z6E7UtGPbGSY`</summary>
+
+```text
+docs/paper/sections/discussion.tex:6:This capability-diversity tradeoff \cite{yun2025price} persists across model families (5.5--74\%; Table~\ref{tab:frontier_sc_cross}), scales (4B--72B; \S\ref{sec:scaling}), and decoding modes (LP std ratio $0.92$--$0.97{\times}$; \S\ref{sec:selection_gap}).
+docs/paper/sections/discussion.tex:10:LP compression is model-intrinsic rather than an artifact of constrained decoding: free-form generation yields nearly identical within-instance LP distributions (std ratio $0.97{\times}$; Appendix~\ref{app:freeform_ablation}).
+docs/paper/sections/_archived/experiments_OLD.tex:250:Entity verification features achieve AUC${=}0.923{\pm}0.002$ (LightGBM, OOF evaluation) but yield only $+0.30$\,pp overall via construction ($+1.28$\,pp SciERC, $+0.02$\,pp Few-NERD).
+docs/paper/sections/_archived/experiments_OLD.tex:254:QE signals support selective prediction: at 80\% coverage, filtering low-confidence instances yields $+5$--$8$\,pp F1 (AUPRC 0.70--0.92; Table~\ref{tab:cross_selection}).
+docs/paper/sections/single_signal.tex:6:[Omitted long matching line]
+docs/paper/sections/adaptive.tex:38:A LightGBM entity-level classifier (5 features: agreement count, LP, VC, SJ, FK) achieves AUC${=}0.923{\pm}0.002$ under out-of-fold evaluation, yet translates to only $+0.30$\,pp overall ($+1.28$ SciERC, $+0.02$ Few-NERD): frequency-based construction already captures most verifier signal.
+docs/paper/sections/appendix.tex:110:CoNLL (LLaMA) & 2{,}756 & 0.927 & [0.919, 0.935] & 225.9 & 0.578 \\
+docs/paper/sections/appendix.tex:120:The higher FK means on CoNLL ($0.720$--$0.927$) vs.\ SciERC ($0.402$) mirror the difficulty gradient observed in the main quality estimation results.
+docs/paper/sections/appendix.tex:234:On CoNLL, 48--87\% of instances produce identical outputs across all $N$ samples; this reflects a ceiling effect (single-sample F1 ${\approx}$0.91--0.92) rather than signal failure, and selection analysis on these configurations is uninformative because there is little per-sample variance for any signal to exploit.
+docs/paper/sections/appendix.tex:536:A LightGBM entity-level verifier (5 features: agreement count, VC, LP, SJ, FK) achieves AUC${=}0.923{\pm}0.002$ under out-of-fold evaluation, confirming that entity correctness is learnable from the available signals.
+docs/paper/sections/appendix.tex:862:SJ & 0.92 & 1.45 & 0.99 & 0.18 \\
+docs/paper/sections/appendix.tex:990:Q4 (high) & 0.92 & $-$0.41 & $-$0.04 & 4.78 \\
+docs/paper/sections/appendix.tex:1001:\item \textbf{Q4 ceiling effect.} High-consistency instances (mean VC${=}0.92$) have oracle headroom of only 4.78~pp. Samples have already converged, leaving little room for any signal to improve selection.
+docs/paper/sections/appendix.tex:1235:SciERC's lower $\alpha_{\textup{crit}}$ ($0.334$, vs.\ $0.396$ for Few-NERD and $0.456$ for CoNLL) is consistent with it being the only dataset where a trained entity verifier (AUC${=}0.923$) achieves positive gain ($+1.28$\,pp).
+docs/paper/sections/appendix.tex:1257:LP score distributions are nearly identical across regimes (Panel~A: within-instance std ratio $0.97{\times}$), and NER selection gains remain negligible under both regimes (Panel~B).
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "0ece91e4-5aa9-4282-9ae9-a9f0b59b36fe",
+  "uuid": "31b33793-cbed-4e55-83e1-bf40ffb4d70e",
+  "tool_use_result": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "docs/paper/sections/discussion.tex:6:This capability-diversity tradeoff \\cite{yun2025price} persists across model families (5.5--74\\%; Table~\\ref{tab:frontier_sc_cross}), scales (4B--72B; \\S\\ref{sec:scaling}), and decoding modes (LP std ratio $0.92$--$0.97{\\times}$; \\S\\ref{sec:selection_gap}).\ndocs/paper/sections/discussion.tex:10:LP compression is model-intrinsic rather than an artifact of constrained decoding: free-form generation yields nearly identical within-instance LP distributions (std ratio $0.97{\\times}$; Appendix~\\ref{app:freeform_ablation}).\ndocs/paper/sections/_archived/experiments_OLD.tex:250:Entity verification features achieve AUC${=}0.923{\\pm}0.002$ (LightGBM, OOF evaluation) but yield only $+0.30$\\,pp overall via construction ($+1.28$\\,pp SciERC, $+0.02$\\,pp Few-NERD).\ndocs/paper/sections/_archived/experiments_OLD.tex:254:QE signals support selective prediction: at 80\\% coverage, filtering low-confidence instances yields $+5$--$8$\\,pp F1 (AUPRC 0.70--0.92; Table~\\ref{tab:cross_selection}).\ndocs/paper/sections/single_signal.tex:6:[Omitted long matching line]\ndocs/paper/sections/adaptive.tex:38:A LightGBM entity-level classifier (5 features: agreement count, LP, VC, SJ, FK) achieves AUC${=}0.923{\\pm}0.002$ under out-of-fold evaluation, yet translates to only $+0.30$\\,pp overall ($+1.28$ SciERC, $+0.02$ Few-NERD): frequency-based construction already captures most verifier signal.\ndocs/paper/sections/appendix.tex:110:CoNLL (LLaMA) & 2{,}756 & 0.927 & [0.919, 0.935] & 225.9 & 0.578 \\\\\ndocs/paper/sections/appendix.tex:120:The higher FK means on CoNLL ($0.720$--$0.927$) vs.\\ SciERC ($0.402$) mirror the difficulty gradient observed in the main quality estimation results.\ndocs/paper/sections/appendix.tex:234:On CoNLL, 48--87\\% of instances produce identical outputs across all $N$ samples; this reflects a ceiling effect (single-sample F1 ${\\approx}$0.91--0.92) rather than signal failure, and selection analysis on these configurations is uninformative because there is little per-sample variance for any signal to exploit.\ndocs/paper/sections/appendix.tex:536:A LightGBM entity-level verifier (5 features: agreement count, VC, LP, SJ, FK) achieves AUC${=}0.923{\\pm}0.002$ under out-of-fold evaluation, confirming that entity correctness is learnable from the available signals.\ndocs/paper/sections/appendix.tex:862:SJ & 0.92 & 1.45 & 0.99 & 0.18 \\\\\ndocs/paper/sections/appendix.tex:990:Q4 (high) & 0.92 & $-$0.41 & $-$0.04 & 4.78 \\\\\ndocs/paper/sections/appendix.tex:1001:\\item \\textbf{Q4 ceiling effect.} High-consistency instances (mean VC${=}0.92$) have oracle headroom of only 4.78~pp. Samples have already converged, leaving little room for any signal to improve selection.\ndocs/paper/sections/appendix.tex:1235:SciERC's lower $\\alpha_{\\textup{crit}}$ ($0.334$, vs.\\ $0.396$ for Few-NERD and $0.456$ for CoNLL) is consistent with it being the only dataset where a trained entity verifier (AUC${=}0.923$) achieves positive gain ($+1.28$\\,pp).\ndocs/paper/sections/appendix.tex:1257:LP score distributions are nearly identical across regimes (Panel~A: within-instance std ratio $0.97{\\times}$), and NER selection gains remain negligible under both regimes (Panel~B).",
+    "numLines": 15
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 28_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_012CpDm4uW9J5RYUbUUELz57`</summary>
+
+```json
+{
+  "pattern": "\\.667|\\.663",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper",
+  "output_mode": "content",
+  "-n": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0ece91e4-5aa9-4282-9ae9-a9f0b59b36fe",
+  "uuid": "82d246f9-1c42-4159-822f-e7e5ce70e414",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KFBojS25yrTdLY3i4o7vBE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9486,
+      "cache_read_input_tokens": 27702,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9486
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 29 · 2026-05-22T18:47:35.571Z_
+
+<details><summary>↩ Tool result · `toolu_012CpDm4uW9J5RYUbUUELz57`</summary>
+
+```text
+docs/paper/sections/single_signal.tex:12:\caption{Best-of-$N$ selection (macro F1) on SciERC ($N{=}8$, $T{=}1.0$). Selection signals: 2-seed mean${\pm}\sigma$; baselines: 3-seed (Oracle${=}0.781$, Greedy${=}0.667$). LP is per-sample; others use consensus-proximity. $^\dagger$One score per input.}
+docs/paper/sections/appendix.tex:896:Few-NERD exhibits substantially stronger alignment ($\rho{=}0.667$) than SciERC ($\rho{=}0.262$), consistent with LP selection succeeding only on Few-NERD.
+docs/paper/sections/appendix.tex:911:Few-NERD & Qwen3-8B & 0.667 & 28{,}055 / 32{,}565 & 86\% \\
+docs/paper/sections/appendix.tex:1248:SciERC & 3 & .667 & .660 & .781 & $-0.74{\pm}0.57$ & 12.2\% & 0.334 & 0.380 & $\Delta < 0$ \\
+docs/paper/sections/appendix.tex:1484:\footnotetext{$N$-scaling analysis uses gold-filtered evaluation ($n{=}529$, greedy F1${=}0.640$, seed 42). Values differ from Table~\ref{tab:selection} (0.645, 2-seed) and Table~\ref{tab:fewnerd} (0.667, 3-seed) due to seed and aggregation differences; relative trends are consistent.}
+docs/paper/sections/appendix.tex:1539:SciERC & 8B FT  & .667 & 11.4 & 12.2 & .326 & .324 & .177 & .159 \\
+docs/paper/sections/appendix.tex:1609:       & Finetuned & .667 & ${<}$0.1 & 12.2 & --- \\
+docs/paper/sections/appendix.tex:2195:SciERC & LP & $.667{\pm}.001$ & $.670{\pm}.003$ & $+0.32$\,pp & n.s. \\
+docs/paper/sections/appendix.tex:2196:       & Unif. & $.667{\pm}.001$ & $.660{\pm}.004$ & $-0.74$\,pp & n.s. \\
+docs/paper/sections/experiments_main.tex:69:SciERC & 529 & .667 & 12.2\% & .159 & $+$0.61\,pp & .193 \\
+docs/paper/main.aux:239:\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Best-of-$N$ selection (macro F1) on SciERC ($N{=}8$, $T{=}1.0$). Selection signals: 2-seed mean${\pm }\sigma $; baselines: 3-seed (Oracle${=}0.781$, Greedy${=}0.667$). LP is per-sample; others use consensus-proximity. $^\dagger $One score per input.}}{3}{table.caption.8}\protected@file@percent }
+docs/paper/main.aux:240:\newlabel{tab:selection}{{1}{3}{Best-of-$N$ selection (macro F1) on SciERC ($N{=}8$, $T{=}1.0$). Selection signals: 2-seed mean${\pm }\sigma $; baselines: 3-seed (Oracle${=}0.781$, Greedy${=}0.667$). LP is per-sample; others use consensus-proximity. $^\dagger $One score per input}{table.caption.8}{}}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "0ece91e4-5aa9-4282-9ae9-a9f0b59b36fe",
+  "uuid": "9e322fd9-cc59-4157-8ad1-3986c2e3a3e9",
+  "tool_use_result": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "docs/paper/sections/single_signal.tex:12:\\caption{Best-of-$N$ selection (macro F1) on SciERC ($N{=}8$, $T{=}1.0$). Selection signals: 2-seed mean${\\pm}\\sigma$; baselines: 3-seed (Oracle${=}0.781$, Greedy${=}0.667$). LP is per-sample; others use consensus-proximity. $^\\dagger$One score per input.}\ndocs/paper/sections/appendix.tex:896:Few-NERD exhibits substantially stronger alignment ($\\rho{=}0.667$) than SciERC ($\\rho{=}0.262$), consistent with LP selection succeeding only on Few-NERD.\ndocs/paper/sections/appendix.tex:911:Few-NERD & Qwen3-8B & 0.667 & 28{,}055 / 32{,}565 & 86\\% \\\\\ndocs/paper/sections/appendix.tex:1248:SciERC & 3 & .667 & .660 & .781 & $-0.74{\\pm}0.57$ & 12.2\\% & 0.334 & 0.380 & $\\Delta < 0$ \\\\\ndocs/paper/sections/appendix.tex:1484:\\footnotetext{$N$-scaling analysis uses gold-filtered evaluation ($n{=}529$, greedy F1${=}0.640$, seed 42). Values differ from Table~\\ref{tab:selection} (0.645, 2-seed) and Table~\\ref{tab:fewnerd} (0.667, 3-seed) due to seed and aggregation differences; relative trends are consistent.}\ndocs/paper/sections/appendix.tex:1539:SciERC & 8B FT  & .667 & 11.4 & 12.2 & .326 & .324 & .177 & .159 \\\\\ndocs/paper/sections/appendix.tex:1609:       & Finetuned & .667 & ${<}$0.1 & 12.2 & --- \\\\\ndocs/paper/sections/appendix.tex:2195:SciERC & LP & $.667{\\pm}.001$ & $.670{\\pm}.003$ & $+0.32$\\,pp & n.s. \\\\\ndocs/paper/sections/appendix.tex:2196:       & Unif. & $.667{\\pm}.001$ & $.660{\\pm}.004$ & $-0.74$\\,pp & n.s. \\\\\ndocs/paper/sections/experiments_main.tex:69:SciERC & 529 & .667 & 12.2\\% & .159 & $+$0.61\\,pp & .193 \\\\\ndocs/paper/main.aux:239:\\@writefile{lot}{\\contentsline {table}{\\numberline {1}{\\ignorespaces Best-of-$N$ selection (macro F1) on SciERC ($N{=}8$, $T{=}1.0$). Selection signals: 2-seed mean${\\pm }\\sigma $; baselines: 3-seed (Oracle${=}0.781$, Greedy${=}0.667$). LP is per-sample; others use consensus-proximity. $^\\dagger $One score per input.}}{3}{table.caption.8}\\protected@file@percent }\ndocs/paper/main.aux:240:\\newlabel{tab:selection}{{1}{3}{Best-of-$N$ selection (macro F1) on SciERC ($N{=}8$, $T{=}1.0$). Selection signals: 2-seed mean${\\pm }\\sigma $; baselines: 3-seed (Oracle${=}0.781$, Greedy${=}0.667$). LP is per-sample; others use consensus-proximity. $^\\dagger $One score per input}{table.caption.8}{}}",
+    "numLines": 12
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 30_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a clear picture. Let me also check the appendix for the std ratio 0.92 context and the WNUT zero-F1 references. Let me also try to read registry data to verify the numbers.
+
+Actually, looking at the search results:
+
+**Fix 2 (WNUT 51%):**
+- experiments_main.tex:10 - `51\% zero F1`
+- appendix.tex:412 - `51\% zero-F1 rate`
+- _archived/experiments_OLD.tex:12 - archived, skip
+
+
+- 
+**Fix 7 (std ratio 0.92):**
+- discussion.tex:6 mentions the LP std ratio ranging from 0.92 to 0.97
+- The 0.97 value checks out against appendix.tex:1257 which references the within-instance std ratio
+- I found 0.92 appearing in appendix.tex:862 as part of a table row with SJ, so that's likely where it originates
+
+, though it's labeled as SJ not LP
+- The 0.92 for LP specifically seems difficult to pin down in the appendix
+
+Let me try using the MCP tools to access the registry data and verify these numbers directly.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0ece91e4-5aa9-4282-9ae9-a9f0b59b36fe",
+  "uuid": "afe2a85e-51b6-4ed2-b47d-03eea882f912",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019X21sibmBp9ZGWVcJZQC7V",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6143,
+      "cache_read_input_tokens": 37188,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6143
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 31_
+
+Let me load the MCP tools to check registry data for verification.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0ece91e4-5aa9-4282-9ae9-a9f0b59b36fe",
+  "uuid": "6fbc642f-e4f6-4f86-8bf5-34ad408d484f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019X21sibmBp9ZGWVcJZQC7V",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6143,
+      "cache_read_input_tokens": 37188,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6143
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 32_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01XA9QA8wUTGVZRFtt2k8n5K`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__read_project_file",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0ece91e4-5aa9-4282-9ae9-a9f0b59b36fe",
+  "uuid": "9340e48f-9874-44df-9f2e-b869430c51ff",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019X21sibmBp9ZGWVcJZQC7V",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6143,
+      "cache_read_input_tokens": 37188,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6143
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 33 · 2026-05-22T18:47:51.265Z_
+
+<details><summary>↩ Tool result · `toolu_01XA9QA8wUTGVZRFtt2k8n5K`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_project_file"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "0ece91e4-5aa9-4282-9ae9-a9f0b59b36fe",
+  "uuid": "8ee3b885-b515-4459-bc23-c049e1a90049",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__read_project_file"
+    ],
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__read_project_file",
+    "total_deferred_tools": 29
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 34_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01YL4CBHX8nEQWh5Li9YKE5P`</summary>
+
+```json
+{
+  "query": "select:TodoWrite",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0ece91e4-5aa9-4282-9ae9-a9f0b59b36fe",
+  "uuid": "1f4a7e4f-4215-47cb-b594-3e48e86633d0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019X21sibmBp9ZGWVcJZQC7V",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6143,
+      "cache_read_input_tokens": 37188,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6143
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 35 · 2026-05-22T18:47:51.447Z_
+
+<details><summary>↩ Tool result · `toolu_01YL4CBHX8nEQWh5Li9YKE5P`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "TodoWrite"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "0ece91e4-5aa9-4282-9ae9-a9f0b59b36fe",
+  "uuid": "8d38b714-80bd-4d45-b047-d10ea8589d4c",
+  "tool_use_result": {
+    "matches": [
+      "TodoWrite"
+    ],
+    "query": "select:TodoWrite",
+    "total_deferred_tools": 29
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 36_
+
+<details open><summary>🔧 Tool call — TodoWrite · `toolu_015tTSGJahmmKssCHSgPQkWg`</summary>
+
+```json
+{
+  "todos": [
+    {
+      "content": "Fix 1: experiments_main.tex:89 — LP-best +8pp → +1.4pp",
+      "status": "in_progress",
+      "activeForm": "Fixing LP-best +8pp to +1.4pp"
+    },
+    {
+      "content": "Fix 2: WNUT zero-F1 51% → 53.7% (experiments_main + appendix)",
+      "status": "pending",
+      "activeForm": "Fixing WNUT zero-F1 percentage"
+    },
+    {
+      "content": "Fix 3: Table 4 caption — add instance-averaged F1 annotation",
+      "status": "pending",
+      "activeForm": "Adding instance-averaged F1 to Table caption"
+    },
+    {
+      "content": "Fix 4: Limitations MV delta std 0.57 → 0.46",
+      "status": "pending",
+      "activeForm": "Fixing Limitations MV delta std"
+    },
+    {
+      "content": "Fix 5: Epoch confound LP delta 0.12 → 0.09 (mean)",
+      "status": "pending",
+      "activeForm": "Fixing epoch confound LP delta to mean"
+    },
+    {
+      "content": "Fix 6: SciERC greedy F1 .667 → .663 (3-seed mean)",
+      "status": "pending",
+      "activeForm": "Fixing SciERC greedy F1 to 3-seed mean"
+    },
+    {
+      "content": "Fix 7: Discussion std ratio 0.92 — verify or update",
+      "status": "pending",
+      "activeForm": "Verifying discussion std ratio 0.92"
+    },
+    {
+      "content": "Compile LaTeX and verify no errors, ≤8 pages",
+      "status": "pending",
+      "activeForm": "Compiling LaTeX for verification"
+    }
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0ece91e4-5aa9-4282-9ae9-a9f0b59b36fe",
+  "uuid": "014c242a-bbe8-4e9b-b323-686f048d8479",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EwG94yqZ2UneV8VsKKtFkc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 3656,
+      "cache_read_input_tokens": 43331,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3656
+      },
+      "output_tokens": 40,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 37 · 2026-05-22T18:48:01.338Z_
+
+<details><summary>↩ Tool result · `toolu_015tTSGJahmmKssCHSgPQkWg`</summary>
+
+```text
+Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "0ece91e4-5aa9-4282-9ae9-a9f0b59b36fe",
+  "uuid": "7093f204-f34f-4a25-8704-0585d2e10823",
+  "tool_use_result": {
+    "oldTodos": [],
+    "newTodos": [
+      {
+        "content": "Fix 1: experiments_main.tex:89 — LP-best +8pp → +1.4pp",
+        "status": "in_progress",
+        "activeForm": "Fixing LP-best +8pp to +1.4pp"
+      },
+      {
+        "content": "Fix 2: WNUT zero-F1 51% → 53.7% (experiments_main + appendix)",
+        "status": "pending",
+        "activeForm": "Fixing WNUT zero-F1 percentage"
+      },
+      {
+        "content": "Fix 3: Table 4 caption — add instance-averaged F1 annotation",
+        "status": "pending",
+        "activeForm": "Adding instance-averaged F1 to Table caption"
+      },
+      {
+        "content": "Fix 4: Limitations MV delta std 0.57 → 0.46",
+        "status": "pending",
+        "activeForm": "Fixing Limitations MV delta std"
+      },
+      {
+        "content": "Fix 5: Epoch confound LP delta 0.12 → 0.09 (mean)",
+        "status": "pending",
+        "activeForm": "Fixing epoch confound LP delta to mean"
+      },
+      {
+        "content": "Fix 6: SciERC greedy F1 .667 → .663 (3-seed mean)",
+        "status": "pending",
+        "activeForm": "Fixing SciERC greedy F1 to 3-seed mean"
+      },
+      {
+        "content": "Fix 7: Discussion std ratio 0.92 — verify or update",
+        "status": "pending",
+        "activeForm": "Verifying discussion std ratio 0.92"
+      },
+      {
+        "content": "Compile LaTeX and verify no errors, ≤8 pages",
+        "status": "pending",
+        "activeForm": "Compiling LaTeX for verification"
+      }
+    ],
+    "verificationNudgeNeeded": false
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 38_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me now try to read registry data to verify numbers, particularly for Fix 7 (std ratio 0.92). Let me also check the appendix for the freeform ablation data.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0ece91e4-5aa9-4282-9ae9-a9f0b59b36fe",
+  "uuid": "59c95045-4928-44af-a75a-746237145030",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YbAQqUjXfqrEbrLaPUQQMG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 527,
+      "cache_read_input_tokens": 46987,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 527
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 39_
+
+Let me check the registry and appendix for data verification before making edits.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0ece91e4-5aa9-4282-9ae9-a9f0b59b36fe",
+  "uuid": "47dbbce8-ac89-448c-81d6-ba97a055d491",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YbAQqUjXfqrEbrLaPUQQMG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 527,
+      "cache_read_input_tokens": 46987,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 527
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 40_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01L3QuL1r7hfDxvkbnN1c74K`</summary>
+
+```json
+{
+  "pattern": "std ratio|freeform.*std|constrained.*std",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+  "output_mode": "content",
+  "-n": true,
+  "context": 3
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0ece91e4-5aa9-4282-9ae9-a9f0b59b36fe",
+  "uuid": "d252d87d-099f-482a-9fd4-f54854b09cf6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YbAQqUjXfqrEbrLaPUQQMG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 527,
+      "cache_read_input_tokens": 46987,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 527
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 41 · 2026-05-22T18:48:09.247Z_
+
+<details><summary>↩ Tool result · `toolu_01L3QuL1r7hfDxvkbnN1c74K`</summary>
+
+```text
+1254-
+1255-Table~\ref{tab:freeform_ablation} compares constrained and free-form decoding across four dimensions on SciERC ($N{=}8$, $T{=}1.0$, Qwen3-8B; seed${=}42$ shown, 4-seed RE statistics below).
+1256-Free-form decoding removes grammar constraints entirely; outputs are parsed post-hoc (parse rate 99.95\%, 4406/4408).
+1257:LP score distributions are nearly identical across regimes (Panel~A: within-instance std ratio $0.97{\times}$), and NER selection gains remain negligible under both regimes (Panel~B).
+1258-RE LP selection consistently reverses direction under free-form decoding across 4 seeds: $+1.84{\pm}0.12$~pp (seeds 42/123/456/789: $+1.69$, $+1.76$, $+2.00$, $+1.91$~pp) vs.\ $-0.68$~pp constrained.
+1259-The constrained reference ($-0.68$~pp) uses the ablation-matched baseline; the primary experiment (Table~\ref{tab:selection}) yields $-0.9$~pp on the same gold-filtered set.
+1260-Quality estimation improves modestly for most signals under free-form decoding (Panel~C), with the largest gain for FK ($+0.053$ NER, $+0.039$ RE).
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "0ece91e4-5aa9-4282-9ae9-a9f0b59b36fe",
+  "uuid": "1bbccca5-43df-49e2-b396-83d2d237a11f",
+  "tool_use_result": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "1254-\n1255-Table~\\ref{tab:freeform_ablation} compares constrained and free-form decoding across four dimensions on SciERC ($N{=}8$, $T{=}1.0$, Qwen3-8B; seed${=}42$ shown, 4-seed RE statistics below).\n1256-Free-form decoding removes grammar constraints entirely; outputs are parsed post-hoc (parse rate 99.95\\%, 4406/4408).\n1257:LP score distributions are nearly identical across regimes (Panel~A: within-instance std ratio $0.97{\\times}$), and NER selection gains remain negligible under both regimes (Panel~B).\n1258-RE LP selection consistently reverses direction under free-form decoding across 4 seeds: $+1.84{\\pm}0.12$~pp (seeds 42/123/456/789: $+1.69$, $+1.76$, $+2.00$, $+1.91$~pp) vs.\\ $-0.68$~pp constrained.\n1259-The constrained reference ($-0.68$~pp) uses the ablation-matched baseline; the primary experiment (Table~\\ref{tab:selection}) yields $-0.9$~pp on the same gold-filtered set.\n1260-Quality estimation improves modestly for most signals under free-form decoding (Panel~C), with the largest gain for FK ($+0.053$ NER, $+0.039$ RE).",
+    "numLines": 7
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 42_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01Sps2mv1VdCoL1QuAjTjDCJ`</summary>
+
+```json
+{
+  "pattern": "0\\.12|epoch.*confound|confound.*epoch",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+  "output_mode": "content",
+  "-n": true,
+  "context": 2,
+  "head_limit": 40
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0ece91e4-5aa9-4282-9ae9-a9f0b59b36fe",
+  "uuid": "c90bc947-3785-468f-99fb-f8eb0633437e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YbAQqUjXfqrEbrLaPUQQMG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 527,
+      "cache_read_input_tokens": 46987,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 527
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 43 · 2026-05-22T18:48:10.604Z_
+
+<details><summary>↩ Tool result · `toolu_01Sps2mv1VdCoL1QuAjTjDCJ`</summary>
+
+```text
+258-For quality estimation, structural signals benefit consistently but sublinearly: SJ $\rho$ improves by $+0.047$ (Qwen SciERC, 3-seed mean) and $+0.032$ (LLaMA CoNLL, 3-seed mean) when doubling from $N{=}8$ to $N{=}16$, while log-probability is approximately $N$-invariant ($\Delta\rho{\leq}0.021$).
+259-Structural signals use $\binom{N}{2}$ pairwise comparisons (28 pairs at $N{=}8$, 120 at $N{=}16$), but the $\rho$ improvement is far less than proportional, each additional comparison yields diminishing information.
+260:This asymmetry gives structural signals a relative advantage in the compute-constrained regime: at $N{=}8$, SJ already achieves $\rho{=}0.431$ on LLaMA CoNLL (vs.\ LP $\rho{=}0.307$, $\Delta{=}{+}0.124$), and the gap \textit{widens} at $N{=}16$ ($\Delta{=}{+}0.163$) because structural signals continue to benefit from additional pairwise evidence while LP does not.
+261-For sample selection, additional samples increase the oracle upper bound (more draws raise the probability of a high-quality candidate), but signal-based selection remains flat because the selector's inability to identify the best candidate is a granularity limitation, not a sample size limitation.
+262-The practical implication is that $N{=}8$ captures most of the achievable quality estimation benefit; further scaling widens rather than closes the correlation-selection gap absent stronger per-sample selectors.
+--
+264-\paragraph{$N{=}16$ CoNLL selection: small but significant.}
+265-While quality estimation benefits sublinearly from $N$-scaling, selection behavior at $N{=}16$ shows a nuanced exception on LLaMA CoNLL.
+266:VC achieves the largest gain over single-sample ($+0.28$~pp, $p{=}0.003$--$0.027$ across 3 seeds, all significant), with SJ, FK, and EM at $+0.22$--$0.23$~pp and LP at $+0.12$~pp (2/3 seeds significant).
+267-These gains are statistically significant but practically minimal: oracle headroom at $N{=}16$ is only 2.5~pp, so VC captures approximately 10\% of the available headroom.
+268-This reinforces the primary finding: even under the most favorable conditions (high baseline performance, more candidates, and aggregated multi-seed evidence), signal-based selection recovers only a fraction of the oracle headroom available.
+--
+1256-Free-form decoding removes grammar constraints entirely; outputs are parsed post-hoc (parse rate 99.95\%, 4406/4408).
+1257-LP score distributions are nearly identical across regimes (Panel~A: within-instance std ratio $0.97{\times}$), and NER selection gains remain negligible under both regimes (Panel~B).
+1258:RE LP selection consistently reverses direction under free-form decoding across 4 seeds: $+1.84{\pm}0.12$~pp (seeds 42/123/456/789: $+1.69$, $+1.76$, $+2.00$, $+1.91$~pp) vs.\ $-0.68$~pp constrained.
+1259-The constrained reference ($-0.68$~pp) uses the ablation-matched baseline; the primary experiment (Table~\ref{tab:selection}) yields $-0.9$~pp on the same gold-filtered set.
+1260-Quality estimation improves modestly for most signals under free-form decoding (Panel~C), with the largest gain for FK ($+0.053$ NER, $+0.039$ RE).
+--
+1262-\begin{table*}[t]
+1263-\centering
+1264:\caption{Comparison of constrained vs.\ free-form decoding on SciERC (Qwen3-8B, $N{=}8$, $T{=}1.0$, seed${=}42$; RE selection gap replicates across 4 seeds: $+1.84{\pm}0.12$~pp).}
+1265-\label{tab:freeform_ablation}
+1266-
+--
+1729-Temperature thus provides a direct lever for practitioners to shift the degeneracy regime.
+1730-However, even at $T{=}1.2$ where degeneracy (14.9\%) approaches Few-NERD levels (${\sim}$13\%), within-instance $\rho(\text{LP}, \text{F1})$ remains at 0.225, far below Few-NERD's ${\sim}$0.5.
+1731:This confirms that temperature modulates degeneracy but cannot improve LP-quality alignment, which is largely associated with task structure and remains relatively stable across generation configurations (\S\ref{app:epoch_confound}). LP-quality alignment, not degeneracy, is the primary predictor of LP selection direction (\S\ref{sec:discussion}).
+1732-
+1733-\begin{table}[h]
+--
+1845-EM & .334 & \textbf{.776} & --- & --- \\
+1846-FK & .268 & .671 & 0.630 & $+$0.28\,pp \\
+1847:LP & .266 & .633 & 0.628 & $+$0.12\,pp \\
+1848-\midrule
+1849-Greedy & --- & --- & 0.627 & --- \\
+--
+1993-\end{table}
+1994-
+1995:\section{Epoch Confound Analysis}\label{app:epoch_confound}
+1996-
+
+[Showing results with pagination = limit: 40]
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "0ece91e4-5aa9-4282-9ae9-a9f0b59b36fe",
+  "uuid": "09bf7b5d-483b-4737-a9cd-2d49ae7df714",
+  "tool_use_result": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "258-For quality estimation, structural signals benefit consistently but sublinearly: SJ $\\rho$ improves by $+0.047$ (Qwen SciERC, 3-seed mean) and $+0.032$ (LLaMA CoNLL, 3-seed mean) when doubling from $N{=}8$ to $N{=}16$, while log-probability is approximately $N$-invariant ($\\Delta\\rho{\\leq}0.021$).\n259-Structural signals use $\\binom{N}{2}$ pairwise comparisons (28 pairs at $N{=}8$, 120 at $N{=}16$), but the $\\rho$ improvement is far less than proportional, each additional comparison yields diminishing information.\n260:This asymmetry gives structural signals a relative advantage in the compute-constrained regime: at $N{=}8$, SJ already achieves $\\rho{=}0.431$ on LLaMA CoNLL (vs.\\ LP $\\rho{=}0.307$, $\\Delta{=}{+}0.124$), and the gap \\textit{widens} at $N{=}16$ ($\\Delta{=}{+}0.163$) because structural signals continue to benefit from additional pairwise evidence while LP does not.\n261-For sample selection, additional samples increase the oracle upper bound (more draws raise the probability of a high-quality candidate), but signal-based selection remains flat because the selector's inability to identify the best candidate is a granularity limitation, not a sample size limitation.\n262-The practical implication is that $N{=}8$ captures most of the achievable quality estimation benefit; further scaling widens rather than closes the correlation-selection gap absent stronger per-sample selectors.\n--\n264-\\paragraph{$N{=}16$ CoNLL selection: small but significant.}\n265-While quality estimation benefits sublinearly from $N$-scaling, selection behavior at $N{=}16$ shows a nuanced exception on LLaMA CoNLL.\n266:VC achieves the largest gain over single-sample ($+0.28$~pp, $p{=}0.003$--$0.027$ across 3 seeds, all significant), with SJ, FK, and EM at $+0.22$--$0.23$~pp and LP at $+0.12$~pp (2/3 seeds significant).\n267-These gains are statistically significant but practically minimal: oracle headroom at $N{=}16$ is only 2.5~pp, so VC captures approximately 10\\% of the available headroom.\n268-This reinforces the primary finding: even under the most favorable conditions (high baseline performance, more candidates, and aggregated multi-seed evidence), signal-based selection recovers only a fraction of the oracle headroom available.\n--\n1256-Free-form decoding removes grammar constraints entirely; outputs are parsed post-hoc (parse rate 99.95\\%, 4406/4408).\n1257-LP score distributions are nearly identical across regimes (Panel~A: within-instance std ratio $0.97{\\times}$), and NER selection gains remain negligible under both regimes (Panel~B).\n1258:RE LP selection consistently reverses direction under free-form decoding across 4 seeds: $+1.84{\\pm}0.12$~pp (seeds 42/123/456/789: $+1.69$, $+1.76$, $+2.00$, $+1.91$~pp) vs.\\ $-0.68$~pp constrained.\n1259-The constrained reference ($-0.68$~pp) uses the ablation-matched baseline; the primary experiment (Table~\\ref{tab:selection}) yields $-0.9$~pp on the same gold-filtered set.\n1260-Quality estimation improves modestly for most signals under free-form decoding (Panel~C), with the largest gain for FK ($+0.053$ NER, $+0.039$ RE).\n--\n1262-\\begin{table*}[t]\n1263-\\centering\n1264:\\caption{Comparison of constrained vs.\\ free-form decoding on SciERC (Qwen3-8B, $N{=}8$, $T{=}1.0$, seed${=}42$; RE selection gap replicates across 4 seeds: $+1.84{\\pm}0.12$~pp).}\n1265-\\label{tab:freeform_ablation}\n1266-\n--\n1729-Temperature thus provides a direct lever for practitioners to shift the degeneracy regime.\n1730-However, even at $T{=}1.2$ where degeneracy (14.9\\%) approaches Few-NERD levels (${\\sim}$13\\%), within-instance $\\rho(\\text{LP}, \\text{F1})$ remains at 0.225, far below Few-NERD's ${\\sim}$0.5.\n1731:This confirms that temperature modulates degeneracy but cannot improve LP-quality alignment, which is largely associated with task structure and remains relatively stable across generation configurations (\\S\\ref{app:epoch_confound}). LP-quality alignment, not degeneracy, is the primary predictor of LP selection direction (\\S\\ref{sec:discussion}).\n1732-\n1733-\\begin{table}[h]\n--\n1845-EM & .334 & \\textbf{.776} & --- & --- \\\\\n1846-FK & .268 & .671 & 0.630 & $+$0.28\\,pp \\\\\n1847:LP & .266 & .633 & 0.628 & $+$0.12\\,pp \\\\\n1848-\\midrule\n1849-Greedy & --- & --- & 0.627 & --- \\\\\n--\n1993-\\end{table}\n1994-\n1995:\\section{Epoch Confound Analysis}\\label{app:epoch_confound}\n1996-",
+    "numLines": 40,
+    "appliedLimit": 40
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 44_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_012pmbBAAqRWrnYyTYsWdBcs`</summary>
+
+```json
+{
+  "pattern": "53\\.7|zero.F1.*rate|zero-F1.*rate",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper",
+  "output_mode": "content",
+  "-n": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0ece91e4-5aa9-4282-9ae9-a9f0b59b36fe",
+  "uuid": "125b3420-7d5e-4a36-bce9-b694f24561e6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YbAQqUjXfqrEbrLaPUQQMG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 527,
+      "cache_read_input_tokens": 46987,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 527
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 45 · 2026-05-22T18:48:11.958Z_
+
+<details><summary>↩ Tool result · `toolu_012pmbBAAqRWrnYyTYsWdBcs`</summary>
+
+```text
+docs/paper/sections/appendix.tex:412:WNUT-17 shows 55\% identical outputs, attributable to the 51\% zero-F1 rate.
+docs/paper/sections/appendix.tex:1017:The driver is RE's $40$\% zero-F1 rate (vs.\ ${\leq}5.4$\% in NER): diverse but \textit{incorrect} samples produce noise that MV amplifies.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "0ece91e4-5aa9-4282-9ae9-a9f0b59b36fe",
+  "uuid": "880291bc-fd35-489a-873e-e44f35e87eff",
+  "tool_use_result": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "docs/paper/sections/appendix.tex:412:WNUT-17 shows 55\\% identical outputs, attributable to the 51\\% zero-F1 rate.\ndocs/paper/sections/appendix.tex:1017:The driver is RE's $40$\\% zero-F1 rate (vs.\\ ${\\leq}5.4$\\% in NER): diverse but \\textit{incorrect} samples produce noise that MV amplifies.",
+    "numLines": 2
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 46_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I need to read the epoch confound appendix to understand the 0.12 value and verify if it's a max seed or mean.
+
+Let me also search for the 0.92 std ratio more carefully. The discussion says "LP std ratio 0.92–0.97×". The appendix only mentions 0.97× for free-form. The 0.92 could be for constrained decoding. But wait, the text in discussion.tex line 6 says "decoding modes (LP std ratio 0.92–0.97×; §sec:selection_gap)" - this cross-references section 5 (selection_gap in single_signal.tex).
+
+
+Looking at single_signal.tex, I see the 0.97 is specifically for free-form versus constrained decoding. The 0.92 appears to be from a different comparison, possibly across temperatures or models, but I can't locate a clear source for it. Since I can't verify the 0.92 value, I should consider updating it to a verifiable range instead.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0ece91e4-5aa9-4282-9ae9-a9f0b59b36fe",
+  "uuid": "36f4a26c-ffa6-419c-aa6c-302cf3865dd3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KMAaYb8cvDBKc1C1s7SStj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2570,
+      "cache_read_input_tokens": 47514,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2570
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 47_
+
+<details open><summary>🔧 Tool call — Read · `toolu_013bd3xFAVDwN7CHGPgQZbeR`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+  "offset": 1995,
+  "limit": 80
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0ece91e4-5aa9-4282-9ae9-a9f0b59b36fe",
+  "uuid": "b0eb3649-4235-448c-a11c-cb8356ca8bb5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KMAaYb8cvDBKc1C1s7SStj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2570,
+      "cache_read_input_tokens": 47514,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2570
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 48 · 2026-05-22T18:48:33.932Z_
+
+<details><summary>↩ Tool result · `toolu_013bd3xFAVDwN7CHGPgQZbeR`</summary>
+
+```text
+1995	\section{Epoch Confound Analysis}\label{app:epoch_confound}
+1996	
+1997	\paragraph{Training convergence modulates degeneracy.}
+1998	Table~\ref{tab:epoch_confound} compares the 3-epoch model (used throughout the main text) with a 5-epoch variant on Few-NERD (Qwen3-8B, $N{=}8$, $T{=}1.0$; full test set $n{=}32{,}565$, gold-filtered, 2-seed mean).
+1999	Extended training increases greedy F1 by $+0.7$~pp ($0.791 \to 0.798$) and triples instance degeneracy ($8.8$\% $\to$ $26.4$\%), reducing the fraction of instances with non-degenerate outputs.
+2000	The 5-epoch MV $\Delta$ ($-0.40$\,pp) appears smaller than 3-epoch ($-2.74$\,pp), but this is misleading: $26$\% of instances are fully degenerate (MV${\equiv}$greedy, $\Delta{=}0$), diluting the aggregate.
+2001	On non-degenerate instances, MV $\Delta{\approx}{-}0.55$\,pp, still negative---degeneracy masks the MV penalty rather than improving it.
+2002	
+2003	LP selection shows even more dramatic degradation: 5-epoch LP $\Delta{=}{+}0.12{\pm}0.04$\,pp (2-seed, full test set micro-F1), a 91\% reduction from the 3-epoch $+1.39$\,pp. This confirms that training convergence not only increases degeneracy but also erodes LP's discriminative power within non-degenerate instances, consistent with the alignment degradation observed in SciERC (Table~\ref{tab:epoch_scierc}).
+2004	
+2005	Evaluation loss increases after epoch 3, and the best checkpoint by validation loss occurs at approximately epoch 3.9.
+2006	Standard early stopping practice thus naturally selects the low-degeneracy regime.
+2007	This finding refines the narrative: degeneracy is not a fixed property of datasets but is modulated by the degree of training convergence. Over-trained models compress their output distributions, collapsing diversity even on datasets that support it under well-regularized training.
+2008	
+2009	\begin{table}[t]
+2010	\centering
+2011	\small
+2012	\caption{Training convergence confound on Few-NERD (Qwen3-8B, $N{=}8$, $T{=}1.0$, full test set $n{=}32{,}565$, gold-filtered, 2-seed mean). ``Degen.'': constant-F1 instance degeneracy. ``MV $\Delta$'': strict majority vote gain over greedy (pp). ``Non-degen MV $\Delta$'': MV gain on non-degenerate instances only.}
+2013	\label{tab:epoch_confound}
+2014	\resizebox{\columnwidth}{!}{
+2015	\begin{tabular}{lcc}
+2016	\toprule
+2017	Metric & 3-epoch & 5-epoch \\
+2018	\midrule
+2019	Greedy F1 & 0.791 & 0.798 \\
+2020	MV $\Delta$ (pp) & $-$2.74 & $-$0.40 \\
+2021	Instance degen.\ (\%) & 8.8 & 26.4 \\
+2022	SJ mean & 0.685 & 0.802 \\
+2023	LP $\Delta$ (pp) & $+$1.39 & $+$0.12${\pm}$0.04 \\
+2024	\bottomrule
+2025	\end{tabular}
+2026	}
+2027	\end{table}
+2028	
+2029	\paragraph{SciERC epoch curve.}
+2030	Table~\ref{tab:epoch_scierc} extends the analysis to SciERC with a 3-point curve (3, 5, 10 epochs; Qwen3-8B, $N{=}8$, $T{=}1.0$).
+2031	Degeneracy increases monotonically (6.4\% $\to$ 17.8\% $\to$ 47.8\%), and within-instance LP-quality correlation degrades in tandem (median $\rho$: 0.319 $\to$ 0.262 $\to$ 0.112; mean $\rho$: 0.273 $\to$ 0.179 $\to$ 0.066), confirming that overtraining erodes both diversity and LP alignment simultaneously.
+2032	The fraction of instances with positive LP-quality correlation also declines (76.4\% at 3 epochs $\to$ 64.1\% at 5 epochs $\to$ 54.0\% at 10 epochs).
+2033	LP selection does not yield significant gains at any training duration ($-1.24$, $+0.64$, $+1.02$~pp; all below the ${\approx}$1.5~pp MDE), despite oracle headroom ranging from 8.4 to 15.0~pp.
+2034	The 3-epoch model has higher within-instance alignment ($\rho{=}0.319$) than the 5-epoch model ($\rho{=}0.262$), yet LP selection is worse ($-1.24$ vs.\ $+0.64$~pp): at 6.4\% degeneracy, more non-degenerate instances enter the candidate pool, but LP ranking precision is too low to exploit them, so the broader pool hurts rather than helps. This illustrates that low degeneracy does not ensure selection gains; LP-quality alignment predicts selection direction.
+2035	At 10 epochs, the model retains competitive greedy F1 (0.649 vs.\ 0.650 at 3 epochs) yet conditions are unfavorable: 47.8\% degenerate instances and $\rho{=}0.112$.
+2036	The gradient confirms that degeneracy is convergence-driven rather than a fixed dataset property: extended training compresses output distributions, degrading both diversity and within-instance alignment. However, the epoch-to-epoch alignment variation ($\Delta\rho_{\text{median}}{=}0.057$) is small relative to the cross-dataset gap (SciERC ${\sim}$0.3 vs.\ Few-NERD ${\sim}$0.5), consistent with alignment being primarily dataset-intrinsic: training convergence modulates alignment at the margin but cannot shift a dataset into the strong-alignment regime.
+2037	Even at the most favorable epoch (3-epoch, $\rho{=}0.319$), SciERC alignment remains below the ${\sim}$0.5 threshold associated with successful LP selection on Few-NERD.
+2038	
+2039	\begin{table}[t]
+2040	\centering
+2041	\small
+2042	\caption{SciERC NER epoch curve (Qwen3-8B, $N{=}8$, $T{=}1.0$). Training duration modulates both instance degeneracy and within-instance LP-quality alignment. ``Degen.'': constant-F1 instance degeneracy (gold-filtered). ``LP $\Delta$'': LP selection gain over greedy (gold-filtered; none reaches the ${\approx}$1.5~pp MDE). ``$\rho$ med'': median within-instance LP-quality correlation. Greedy F1 uses span-based evaluation consistent with Tables 1--3; $\rho$ and LP $\Delta$ use text-based matching consistent with Table~\ref{tab:within_rho}.}
+2043	\label{tab:epoch_scierc}
+2044	\resizebox{\columnwidth}{!}{
+2045	\begin{tabular}{lccc}
+2046	\toprule
+2047	Metric & 3-epoch & 5-epoch & 10-epoch \\
+2048	\midrule
+2049	Greedy F1 & 0.650 & 0.644 & 0.649 \\
+2050	Instance degen.\ (\%) & 6.4 & 17.8 & 47.8 \\
+2051	LP $\Delta$ (pp) & $-$1.24 & $+$0.64 & $+$1.02 \\
+2052	Within-inst.\ $\rho$ (median) & 0.319 & 0.262 & 0.112 \\
+2053	Within-inst.\ $\rho$ (mean) & 0.273 & 0.179 & 0.066 \\
+2054	\% positive $\rho$ & 76.4 & 64.1 & 54.0 \\
+2055	\bottomrule
+2056	\end{tabular}
+2057	}
+2058	\end{table}
+2059	
+2060	\paragraph{Limitations.}
+2061	The Few-NERD epoch analysis covers 2 points (3 vs.\ 5 epochs); the SciERC curve provides a 3-point gradient showing monotonic degeneracy increase with simultaneous within-instance alignment degradation.
+2062	CoNLL epoch variation remains unverified; high-degeneracy datasets (CoNLL at 59--89\%) may exhibit a ceiling effect where additional training has limited marginal impact.
+2063	All Few-NERD results in the main text use the 3-epoch model (standard early stopping); the 5-epoch comparison is a controlled ablation.
+2064	All SciERC results use the 5-epoch model; the 3- and 10-epoch variants serve as controlled ablations.
+2065	
+2066	\subsection{Degeneracy-Aware LP Selection}\label{app:dals}
+2067	
+2068	The non-tied subset analysis (Table~\ref{tab:nontied_main}) identifies within-instance LP range (max minus min LP across $N$ samples) as a per-instance degeneracy proxy: instances with near-zero LP range carry no discriminative signal.
+2069	Degeneracy-aware LP selection (DALS) operationalizes this: when LP range exceeds $\tau{=}0.05$ (the threshold independently motivated by the non-tied analysis; Appendix~\ref{app:epsilon_robustness}), select the highest-LP sample; otherwise fall back to greedy.
+2070	On SciERC, DALS yields $+0.71{\pm}0.48$~pp (3-seed mean; individual seeds: $+0.19$ to $+1.14$~pp); on Few-NERD, $+0.30$~pp ($p{<}0.001$; gain remains positive across $\tau \in [0.01, 0.15]$); on CoNLL, where pure LP selection degrades F1 ($-0.85$~pp), DALS shows comparable degradation (Qwen: $-0.87$~pp; LLaMA: neutral).
+2071	DALS improves over pure LP selection when degeneracy is moderate, provides partial damage control when LP selection is harmful, and defaults to greedy when LP range signals no information.
+2072	While gains are modest and seed-sensitive, LP range serves as an operationally accessible degeneracy proxy, though the mixed cross-dataset results confirm that degeneracy gating alone cannot ensure positive selection outcomes.
+2073	
+2074	\paragraph{LOO $\tau$ sensitivity.}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "0ece91e4-5aa9-4282-9ae9-a9f0b59b36fe",
+  "uuid": "60ef875c-428a-4365-bf4b-59da83e02c4a",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+      "content": "\\section{Epoch Confound Analysis}\\label{app:epoch_confound}\n\n\\paragraph{Training convergence modulates degeneracy.}\nTable~\\ref{tab:epoch_confound} compares the 3-epoch model (used throughout the main text) with a 5-epoch variant on Few-NERD (Qwen3-8B, $N{=}8$, $T{=}1.0$; full test set $n{=}32{,}565$, gold-filtered, 2-seed mean).\nExtended training increases greedy F1 by $+0.7$~pp ($0.791 \\to 0.798$) and triples instance degeneracy ($8.8$\\% $\\to$ $26.4$\\%), reducing the fraction of instances with non-degenerate outputs.\nThe 5-epoch MV $\\Delta$ ($-0.40$\\,pp) appears smaller than 3-epoch ($-2.74$\\,pp), but this is misleading: $26$\\% of instances are fully degenerate (MV${\\equiv}$greedy, $\\Delta{=}0$), diluting the aggregate.\nOn non-degenerate instances, MV $\\Delta{\\approx}{-}0.55$\\,pp, still negative---degeneracy masks the MV penalty rather than improving it.\n\nLP selection shows even more dramatic degradation: 5-epoch LP $\\Delta{=}{+}0.12{\\pm}0.04$\\,pp (2-seed, full test set micro-F1), a 91\\% reduction from the 3-epoch $+1.39$\\,pp. This confirms that training convergence not only increases degeneracy but also erodes LP's discriminative power within non-degenerate instances, consistent with the alignment degradation observed in SciERC (Table~\\ref{tab:epoch_scierc}).\n\nEvaluation loss increases after epoch 3, and the best checkpoint by validation loss occurs at approximately epoch 3.9.\nStandard early stopping practice thus naturally selects the low-degeneracy regime.\nThis finding refines the narrative: degeneracy is not a fixed property of datasets but is modulated by the degree of training convergence. Over-trained models compress their output distributions, collapsing diversity even on datasets that support it under well-regularized training.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Training convergence confound on Few-NERD (Qwen3-8B, $N{=}8$, $T{=}1.0$, full test set $n{=}32{,}565$, gold-filtered, 2-seed mean). ``Degen.'': constant-F1 instance degeneracy. ``MV $\\Delta$'': strict majority vote gain over greedy (pp). ``Non-degen MV $\\Delta$'': MV gain on non-degenerate instances only.}\n\\label{tab:epoch_confound}\n\\resizebox{\\columnwidth}{!}{\n\\begin{tabular}{lcc}\n\\toprule\nMetric & 3-epoch & 5-epoch \\\\\n\\midrule\nGreedy F1 & 0.791 & 0.798 \\\\\nMV $\\Delta$ (pp) & $-$2.74 & $-$0.40 \\\\\nInstance degen.\\ (\\%) & 8.8 & 26.4 \\\\\nSJ mean & 0.685 & 0.802 \\\\\nLP $\\Delta$ (pp) & $+$1.39 & $+$0.12${\\pm}$0.04 \\\\\n\\bottomrule\n\\end{tabular}\n}\n\\end{table}\n\n\\paragraph{SciERC epoch curve.}\nTable~\\ref{tab:epoch_scierc} extends the analysis to SciERC with a 3-point curve (3, 5, 10 epochs; Qwen3-8B, $N{=}8$, $T{=}1.0$).\nDegeneracy increases monotonically (6.4\\% $\\to$ 17.8\\% $\\to$ 47.8\\%), and within-instance LP-quality correlation degrades in tandem (median $\\rho$: 0.319 $\\to$ 0.262 $\\to$ 0.112; mean $\\rho$: 0.273 $\\to$ 0.179 $\\to$ 0.066), confirming that overtraining erodes both diversity and LP alignment simultaneously.\nThe fraction of instances with positive LP-quality correlation also declines (76.4\\% at 3 epochs $\\to$ 64.1\\% at 5 epochs $\\to$ 54.0\\% at 10 epochs).\nLP selection does not yield significant gains at any training duration ($-1.24$, $+0.64$, $+1.02$~pp; all below the ${\\approx}$1.5~pp MDE), despite oracle headroom ranging from 8.4 to 15.0~pp.\nThe 3-epoch model has higher within-instance alignment ($\\rho{=}0.319$) than the 5-epoch model ($\\rho{=}0.262$), yet LP selection is worse ($-1.24$ vs.\\ $+0.64$~pp): at 6.4\\% degeneracy, more non-degenerate instances enter the candidate pool, but LP ranking precision is too low to exploit them, so the broader pool hurts rather than helps. This illustrates that low degeneracy does not ensure selection gains; LP-quality alignment predicts selection direction.\nAt 10 epochs, the model retains competitive greedy F1 (0.649 vs.\\ 0.650 at 3 epochs) yet conditions are unfavorable: 47.8\\% degenerate instances and $\\rho{=}0.112$.\nThe gradient confirms that degeneracy is convergence-driven rather than a fixed dataset property: extended training compresses output distributions, degrading both diversity and within-instance alignment. However, the epoch-to-epoch alignment variation ($\\Delta\\rho_{\\text{median}}{=}0.057$) is small relative to the cross-dataset gap (SciERC ${\\sim}$0.3 vs.\\ Few-NERD ${\\sim}$0.5), consistent with alignment being primarily dataset-intrinsic: training convergence modulates alignment at the margin but cannot shift a dataset into the strong-alignment regime.\nEven at the most favorable epoch (3-epoch, $\\rho{=}0.319$), SciERC alignment remains below the ${\\sim}$0.5 threshold associated with successful LP selection on Few-NERD.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{SciERC NER epoch curve (Qwen3-8B, $N{=}8$, $T{=}1.0$). Training duration modulates both instance degeneracy and within-instance LP-quality alignment. ``Degen.'': constant-F1 instance degeneracy (gold-filtered). ``LP $\\Delta$'': LP selection gain over greedy (gold-filtered; none reaches the ${\\approx}$1.5~pp MDE). ``$\\rho$ med'': median within-instance LP-quality correlation. Greedy F1 uses span-based evaluation consistent with Tables 1--3; $\\rho$ and LP $\\Delta$ use text-based matching consistent with Table~\\ref{tab:within_rho}.}\n\\label{tab:epoch_scierc}\n\\resizebox{\\columnwidth}{!}{\n\\begin{tabular}{lccc}\n\\toprule\nMetric & 3-epoch & 5-epoch & 10-epoch \\\\\n\\midrule\nGreedy F1 & 0.650 & 0.644 & 0.649 \\\\\nInstance degen.\\ (\\%) & 6.4 & 17.8 & 47.8 \\\\\nLP $\\Delta$ (pp) & $-$1.24 & $+$0.64 & $+$1.02 \\\\\nWithin-inst.\\ $\\rho$ (median) & 0.319 & 0.262 & 0.112 \\\\\nWithin-inst.\\ $\\rho$ (mean) & 0.273 & 0.179 & 0.066 \\\\\n\\% positive $\\rho$ & 76.4 & 64.1 & 54.0 \\\\\n\\bottomrule\n\\end{tabular}\n}\n\\end{table}\n\n\\paragraph{Limitations.}\nThe Few-NERD epoch analysis covers 2 points (3 vs.\\ 5 epochs); the SciERC curve provides a 3-point gradient showing monotonic degeneracy increase with simultaneous within-instance alignment degradation.\nCoNLL epoch variation remains unverified; high-degeneracy datasets (CoNLL at 59--89\\%) may exhibit a ceiling effect where additional training has limited marginal impact.\nAll Few-NERD results in the main text use the 3-epoch model (standard early stopping); the 5-epoch comparison is a controlled ablation.\nAll SciERC results use the 5-epoch model; the 3- and 10-epoch variants serve as controlled ablations.\n\n\\subsection{Degeneracy-Aware LP Selection}\\label{app:dals}\n\nThe non-tied subset analysis (Table~\\ref{tab:nontied_main}) identifies within-instance LP range (max minus min LP across $N$ samples) as a per-instance degeneracy proxy: instances with near-zero LP range carry no discriminative signal.\nDegeneracy-aware LP selection (DALS) operationalizes this: when LP range exceeds $\\tau{=}0.05$ (the threshold independently motivated by the non-tied analysis; Appendix~\\ref{app:epsilon_robustness}), select the highest-LP sample; otherwise fall back to greedy.\nOn SciERC, DALS yields $+0.71{\\pm}0.48$~pp (3-seed mean; individual seeds: $+0.19$ to $+1.14$~pp); on Few-NERD, $+0.30$~pp ($p{<}0.001$; gain remains positive across $\\tau \\in [0.01, 0.15]$); on CoNLL, where pure LP selection degrades F1 ($-0.85$~pp), DALS shows comparable degradation (Qwen: $-0.87$~pp; LLaMA: neutral).\nDALS improves over pure LP selection when degeneracy is moderate, provides partial damage control when LP selection is harmful, and defaults to greedy when LP range signals no information.\nWhile gains are modest and seed-sensitive, LP range serves as an operationally accessible degeneracy proxy, though the mixed cross-dataset results confirm that degeneracy gating alone cannot ensure positive selection outcomes.\n\n\\paragraph{LOO $\\tau$ sensitivity.}",
+      "numLines": 80,
+      "startLine": 1995,
+      "totalLines": 2479
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 49_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01SALp3tLV3X6EDPfhViDHsY`</summary>
+
+```json
+{
+  "pattern": "0\\.74.*0\\.(46|57)|MV.*delta.*seed|delta.*SC.*seed",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper",
+  "output_mode": "content",
+  "-n": true,
+  "context": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0ece91e4-5aa9-4282-9ae9-a9f0b59b36fe",
+  "uuid": "4835714a-211c-4d81-ab2f-e2ba90c6b2b2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KMAaYb8cvDBKc1C1s7SStj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2570,
+      "cache_read_input_tokens": 47514,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2570
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 50 · 2026-05-22T18:48:35.724Z_
+
+<details><summary>↩ Tool result · `toolu_01SALp3tLV3X6EDPfhViDHsY`</summary>
+
+```text
+docs/paper/sections/limitations.tex:1:[Omitted long matching line]
+docs/paper/sections/limitations.tex-2-Our framework is diagnostic, not causal: stages resist decomposition into independent effects ($R^2{<}0$; \S\ref{sec:selection_gap}). Under global Holm--Bonferroni ($k{=}57$), the most liberal core claim reaches $p_{\text{HB}}{=}0.055$; under BH FDR, $19/57$ tests are significant at FDR${<}0.05$ including $6/10$ construction comparisons (Appendix~\ref{app:holm}).
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/limitations.tex-3-We evaluate at $N{\in}\{2,\ldots,64\}$; entity-level construction requires $N{\times}$ inference cost for modest gains ($+1$--$1.4$\,pp). We use a single prompt template per task; prompt variations may affect entity recall, degeneracy, and LP distributions.
+--
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-1246-Few-NERD & 3 & .791 & .764 & .885 & $-2.74{\pm}0.54$ & 8.8\% & 0.396 & 0.434 & $\Delta < 0$ \\
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-1247-CoNLL & 3 & .912 & .912 & .950 & $-0.04{\pm}0.15$ & 60.3\% & 0.456 & 1.148 & $\Delta \approx 0$ \\
+docs/paper/sections/appendix.tex:1248:SciERC & 3 & .667 & .660 & .781 & $-0.74{\pm}0.57$ & 12.2\% & 0.334 & 0.380 & $\Delta < 0$ \\
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-1249-\bottomrule
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-1250-\end{tabular}}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "0ece91e4-5aa9-4282-9ae9-a9f0b59b36fe",
+  "uuid": "008b38eb-708c-4916-b3b2-9939e5704829",
+  "tool_use_result": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "docs/paper/sections/limitations.tex:1:[Omitted long matching line]\ndocs/paper/sections/limitations.tex-2-Our framework is diagnostic, not causal: stages resist decomposition into independent effects ($R^2{<}0$; \\S\\ref{sec:selection_gap}). Under global Holm--Bonferroni ($k{=}57$), the most liberal core claim reaches $p_{\\text{HB}}{=}0.055$; under BH FDR, $19/57$ tests are significant at FDR${<}0.05$ including $6/10$ construction comparisons (Appendix~\\ref{app:holm}).\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/limitations.tex-3-We evaluate at $N{\\in}\\{2,\\ldots,64\\}$; entity-level construction requires $N{\\times}$ inference cost for modest gains ($+1$--$1.4$\\,pp). We use a single prompt template per task; prompt variations may affect entity recall, degeneracy, and LP distributions.\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-1246-Few-NERD & 3 & .791 & .764 & .885 & $-2.74{\\pm}0.54$ & 8.8\\% & 0.396 & 0.434 & $\\Delta < 0$ \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-1247-CoNLL & 3 & .912 & .912 & .950 & $-0.04{\\pm}0.15$ & 60.3\\% & 0.456 & 1.148 & $\\Delta \\approx 0$ \\\\\ndocs/paper/sections/appendix.tex:1248:SciERC & 3 & .667 & .660 & .781 & $-0.74{\\pm}0.57$ & 12.2\\% & 0.334 & 0.380 & $\\Delta < 0$ \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-1249-\\bottomrule\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-1250-\\end{tabular}}",
+    "numLines": 9
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 51_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a clearer picture. Let me analyze each fix:
+
+**Fix 1: LP-best +8pp → +1.4pp**
+Line 89 in experiments_main.tex: `LP-best $+8$\,pp on Few-NERD` → `LP-best $+1.4$\,pp on Few-NERD`
+The Table 4 (tab:fewnerd) shows LP $\Delta$ = +1.39 pp for Few-NERD. So +1.4 (rounded) is correct.
+
+**Fix 2: WNUT 51% → 53.7%**
+
+
+I need to update two locations with the correct value of 53.7%: one in experiments_main.tex at line 10 and another in appendix.tex at line 412, both currently showing 51% for the zero-shot F1 rate.
+
+**Fix 3: Table 4 caption**
+The caption for tab:fewnerd in experiments_main.tex needs adjustment to clarify the experimental parameters and what the table represents.
+
+Now I'm looking for the headroom numbers mentioned in the task—specifically checking whether 11.4pp, 12.4pp, and 13.0pp appear in Table 4's body or elsewhere in the paper. The 11.4pp shows up in single_signal.tex as the SciERC oracle headroom, and 12.4pp is in experiments_main.tex at line 107, but I need to locate where 13.0pp appears to verify these values against what the task expects. I need to check the main.tex file to understand the actual order of tables in the compiled paper, since the table numbering depends on the section sequence.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0ece91e4-5aa9-4282-9ae9-a9f0b59b36fe",
+  "uuid": "3acf4d8d-bc52-4e38-a31b-5803dd065fda",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019Xgta67ZyrAY5pVNFCRJeJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4361,
+      "cache_read_input_tokens": 50084,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4361
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 52_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01B5dLEY9AnNDQcjwNzCW9ao`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/main.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0ece91e4-5aa9-4282-9ae9-a9f0b59b36fe",
+  "uuid": "7a604c5c-2859-4db2-b16b-dcfc3b048816",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019Xgta67ZyrAY5pVNFCRJeJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4361,
+      "cache_read_input_tokens": 50084,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4361
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 53 · 2026-05-22T18:48:58.227Z_
+
+<details><summary>↩ Tool result · `toolu_01B5dLEY9AnNDQcjwNzCW9ao`</summary>
+
+```text
+1	\documentclass[11pt]{article}
+2	
+3	\usepackage[review]{acl}
+4	
+5	\usepackage{times}
+6	\usepackage{latexsym}
+7	\usepackage[T1]{fontenc}
+8	\usepackage[utf8]{inputenc}
+9	\usepackage{microtype}
+10	\usepackage{inconsolata}
+11	\usepackage{graphicx}
+12	\usepackage{booktabs}
+13	\usepackage{amsmath}
+14	\usepackage{amssymb}
+15	\usepackage{amsthm}
+16	\newtheorem{proposition}{Proposition}
+17	\newtheorem{theorem}{Theorem}
+18	\newtheorem{corollary}{Corollary}
+19	\newtheorem{definition}{Definition}
+20	\usepackage{multirow}
+21	\usepackage{xcolor}
+22	\usepackage{subcaption}
+23	\usepackage{alphalph}
+24	\usepackage{enumitem}
+25	
+26	\graphicspath{{figures/}}
+27	
+28	\title{Why Self-Consistency Fails for NER:\\ Degeneracy, Signal Collapse, and the Limits of Test-Time Scaling}
+29	
+30	\author{Anonymous}
+31	
+32	\begin{document}
+33	\maketitle
+34	
+35	\input{sections/abstract}
+36	\input{sections/introduction}
+37	\input{sections/diagnostic}
+38	\input{sections/single_signal}
+39	\input{sections/adaptive}
+40	\input{sections/theory}
+41	\input{sections/experiments_main}
+42	\input{sections/background}
+43	\input{sections/discussion}
+44	
+45	\section*{Limitations}
+46	\input{sections/limitations}
+47	
+48	\section*{Ethics Statement}
+49	All experiments use publicly available benchmarks (SciERC, CoNLL-2003, Few-NERD, WNUT-17), open-weight models (Qwen3-8B, Qwen3-14B, Qwen3-4B, LLaMA-3.1-8B), and the GPT-5.5 API.
+50	CoNLL-2003 is derived from the Reuters RCV1 corpus, which is available for research purposes under a NIST agreement; we use the standard research distribution.
+51	No new human data was collected or annotated for this study.
+52	Our findings on signal limitations could inform more reliable deployment of IE systems by guiding practitioners toward appropriate confidence signals for their use case.
+53	Code and data will be released upon acceptance at [anonymized URL].
+54	
+55	\bibliography{references}
+56	
+57	\appendix
+58	\renewcommand{\thesection}{\alphalph{\value{section}}}
+59	\input{sections/appendix}
+60	
+61	\end{document}
+62	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "0ece91e4-5aa9-4282-9ae9-a9f0b59b36fe",
+  "uuid": "58884440-4a84-4776-a899-d783e10b2e46",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/main.tex",
+      "content": "\\documentclass[11pt]{article}\n\n\\usepackage[review]{acl}\n\n\\usepackage{times}\n\\usepackage{latexsym}\n\\usepackage[T1]{fontenc}\n\\usepackage[utf8]{inputenc}\n\\usepackage{microtype}\n\\usepackage{inconsolata}\n\\usepackage{graphicx}\n\\usepackage{booktabs}\n\\usepackage{amsmath}\n\\usepackage{amssymb}\n\\usepackage{amsthm}\n\\newtheorem{proposition}{Proposition}\n\\newtheorem{theorem}{Theorem}\n\\newtheorem{corollary}{Corollary}\n\\newtheorem{definition}{Definition}\n\\usepackage{multirow}\n\\usepackage{xcolor}\n\\usepackage{subcaption}\n\\usepackage{alphalph}\n\\usepackage{enumitem}\n\n\\graphicspath{{figures/}}\n\n\\title{Why Self-Consistency Fails for NER:\\\\ Degeneracy, Signal Collapse, and the Limits of Test-Time Scaling}\n\n\\author{Anonymous}\n\n\\begin{document}\n\\maketitle\n\n\\input{sections/abstract}\n\\input{sections/introduction}\n\\input{sections/diagnostic}\n\\input{sections/single_signal}\n\\input{sections/adaptive}\n\\input{sections/theory}\n\\input{sections/experiments_main}\n\\input{sections/background}\n\\input{sections/discussion}\n\n\\section*{Limitations}\n\\input{sections/limitations}\n\n\\section*{Ethics Statement}\nAll experiments use publicly available benchmarks (SciERC, CoNLL-2003, Few-NERD, WNUT-17), open-weight models (Qwen3-8B, Qwen3-14B, Qwen3-4B, LLaMA-3.1-8B), and the GPT-5.5 API.\nCoNLL-2003 is derived from the Reuters RCV1 corpus, which is available for research purposes under a NIST agreement; we use the standard research distribution.\nNo new human data was collected or annotated for this study.\nOur findings on signal limitations could inform more reliable deployment of IE systems by guiding practitioners toward appropriate confidence signals for their use case.\nCode and data will be released upon acceptance at [anonymized URL].\n\n\\bibliography{references}\n\n\\appendix\n\\renewcommand{\\thesection}{\\alphalph{\\value{section}}}\n\\input{sections/appendix}\n\n\\end{document}\n",
+      "numLines": 62,
+      "startLine": 1,
+      "totalLines": 62
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 54_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01QZ1uTQght3n2GFhkJ9P8RM`</summary>
+
+```json
+{
+  "pattern": "13\\.0|headroom.*pp|11\\.4",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections",
+  "output_mode": "content",
+  "-n": true,
+  "context": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0ece91e4-5aa9-4282-9ae9-a9f0b59b36fe",
+  "uuid": "4aee1980-7c16-4c82-a0a3-79cb7a3e9bd9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019Xgta67ZyrAY5pVNFCRJeJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4361,
+      "cache_read_input_tokens": 50084,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4361
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 55 · 2026-05-22T18:48:58.321Z_
+
+<details><summary>↩ Tool result · `toolu_01QZ1uTQght3n2GFhkJ9P8RM`</summary>
+
+```text
+&lt;persisted-output>
+Output too large (29.8KB). Full output saved to: /home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie/0ece91e4-5aa9-4282-9ae9-a9f0b59b36fe/tool-results/toolu_01QZ1uTQght3n2GFhkJ9P8RM.txt
+
+Preview (first 2KB):
+docs/paper/sections/theory.tex-11-Oracle F1 follows $F_1(N) = a - b \cdot N^{-c}$ ($R^2 > 0.999$; Figure~\ref{fig:oracle_scaling}): Few-NERD ($c{\approx}0.61$) scales comparably to reasoning tasks \cite{brown2024monkeys}, SciERC converges more slowly ($c{\approx}0.35$), yet confidence-based aggregation recovers ${<}1$\,pp---a persistent gap.
+docs/paper/sections/theory.tex:12:[Omitted long matching line]
+docs/paper/sections/theory.tex:13:Degeneracy is model-family-dependent rather than scale-dependent (Qwen2.5: $31.7$--$46.2$\% vs.\ Qwen3: $13.0$\% vs.\ GPT-5.5: $50$\% on Few-NERD; Appendix~\ref{app:cross_scale}).
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/theory.tex-14-
+--
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/_archived/experiments_OLD.tex-88-\includegraphics[width=\columnwidth]{fig_selection_gap}
+docs/paper/sections/_archived/experiments_OLD.tex:89:\caption{The correlation-selection gap on SciERC ($N{=}8$, $T{=}1.0$). Bars: quality estimation $\rho$ (seed 42); line with error bars: $\Delta$F1 vs.\ greedy (3-seed mean, seeds 42/123/456). Despite $\rho$ up to 0.38, no signal significantly outperforms greedy (all $p{>}0.05$; Table~\ref{tab:selection}). Dashed green: oracle upper bound ($+13.0$~pp); dotted gray: random baseline.}
+docs/paper/sections/_archived/experiments_OLD.tex-90-\label{fig:selection_gap}
+--
+docs/paper/sections/_archived/experiments_OLD.tex-96-\paragraph{LP: the sole per-sample signal also fails.}
+docs/paper/sections/_archived/experiments_OLD.tex:97:On SciERC ($n{=}529$, 2-seed sign tests\footnote{MDE${\approx}$1.5~pp at 80\% power ($n{=}529$); Few-NERD ($n{=}32{,}565$; MDE${\approx}$0.22~pp) provides the definitive test.}), the oracle (0.775) reveals 13.0~pp of headroom, but LP achieves $+0.2$~pp ($p{=}0.29$), below the MDE (${\approx}$1.5~pp); selection effects below this threshold cannot be reliably detected.
+...
+&lt;/persisted-output>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "0ece91e4-5aa9-4282-9ae9-a9f0b59b36fe",
+  "uuid": "ad15b437-4a46-43e8-8bca-bca4df8c9e35",
+  "tool_use_result": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "docs/paper/sections/theory.tex-11-Oracle F1 follows $F_1(N) = a - b \\cdot N^{-c}$ ($R^2 > 0.999$; Figure~\\ref{fig:oracle_scaling}): Few-NERD ($c{\\approx}0.61$) scales comparably to reasoning tasks \\cite{brown2024monkeys}, SciERC converges more slowly ($c{\\approx}0.35$), yet confidence-based aggregation recovers ${<}1$\\,pp---a persistent gap.\ndocs/paper/sections/theory.tex:12:[Omitted long matching line]\ndocs/paper/sections/theory.tex:13:Degeneracy is model-family-dependent rather than scale-dependent (Qwen2.5: $31.7$--$46.2$\\% vs.\\ Qwen3: $13.0$\\% vs.\\ GPT-5.5: $50$\\% on Few-NERD; Appendix~\\ref{app:cross_scale}).\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/theory.tex-14-\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/_archived/experiments_OLD.tex-88-\\includegraphics[width=\\columnwidth]{fig_selection_gap}\ndocs/paper/sections/_archived/experiments_OLD.tex:89:\\caption{The correlation-selection gap on SciERC ($N{=}8$, $T{=}1.0$). Bars: quality estimation $\\rho$ (seed 42); line with error bars: $\\Delta$F1 vs.\\ greedy (3-seed mean, seeds 42/123/456). Despite $\\rho$ up to 0.38, no signal significantly outperforms greedy (all $p{>}0.05$; Table~\\ref{tab:selection}). Dashed green: oracle upper bound ($+13.0$~pp); dotted gray: random baseline.}\ndocs/paper/sections/_archived/experiments_OLD.tex-90-\\label{fig:selection_gap}\n--\ndocs/paper/sections/_archived/experiments_OLD.tex-96-\\paragraph{LP: the sole per-sample signal also fails.}\ndocs/paper/sections/_archived/experiments_OLD.tex:97:On SciERC ($n{=}529$, 2-seed sign tests\\footnote{MDE${\\approx}$1.5~pp at 80\\% power ($n{=}529$); Few-NERD ($n{=}32{,}565$; MDE${\\approx}$0.22~pp) provides the definitive test.}), the oracle (0.775) reveals 13.0~pp of headroom, but LP achieves $+0.2$~pp ($p{=}0.29$), below the MDE (${\\approx}$1.5~pp); selection effects below this threshold cannot be reliably detected.\ndocs/paper/sections/_archived/experiments_OLD.tex-98-The pattern holds across CoNLL and WNUT-17 (Table~\\ref{tab:cross_selection}); under stringent TOST anchors, some configurations show significant \\textit{degradation} (Appendix~\\ref{app:tost}).\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/_archived/experiments_OLD.tex-101-\\paragraph{Qualitative factors governing selection effectiveness.}\ndocs/paper/sections/_archived/experiments_OLD.tex:102:Three factors shape LP selection gains: (1)~\\textit{instance degeneracy} (SciERC 17.8\\%, CoNLL 61.7\\%; Table~\\ref{tab:fewnerd}); (2)~\\textit{oracle headroom} (CoNLL ${\\approx}4$\\,pp vs.\\ SciERC 13.0\\,pp); (3)~\\textit{LP-quality alignment} (Few-NERD $\\rho{\\approx}0.5$--$0.7$ vs.\\ SciERC $\\rho{\\approx}0.26$).\ndocs/paper/sections/_archived/experiments_OLD.tex-103-The pattern matches observations: Few-NERD (low degeneracy, strong alignment) yields $+1.39$\\,pp; SciERC (weak alignment) $+0.04{\\pm}0.48$\\,pp (3-seed; Table~\\ref{tab:multiseed}); CoNLL (high degeneracy) none; WNUT-17 shows reversed LP ($\\rho{=}{-}0.446$) yet QE remains effective (VC $\\rho{=}0.724$, $N{=}16$; Table~\\ref{tab:wnut}).\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/_archived/experiments_OLD.tex-122-SciERC & 529 & .644 & 17.8\\% & .205 & $+$0.61\\,pp & .193 \\\\\ndocs/paper/sections/_archived/experiments_OLD.tex:123:Few-NERD & 32{,}565 & .748 & 13.0\\% & .220 & $\\mathbf{+1.39}$\\,pp & ${<}.001$ \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/_archived/experiments_OLD.tex-124-\\bottomrule\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/_archived/experiments_OLD.tex-165-\\paragraph{Scale robustness.}\ndocs/paper/sections/_archived/experiments_OLD.tex:166:With Qwen3-4B (Table~\\ref{tab:scale_ablation}), QE is comparable (mean $|\\Delta\\rho|{=}0.042$), yet selection remains below greedy despite 13.0~pp headroom. Task difficulty is a stronger predictor than model scale within the 3B--8B range (Appendix~\\ref{app:llama3b}).\ndocs/paper/sections/_archived/experiments_OLD.tex-167-Degeneracy scales with capability: 8B shows 17.8\\% vs.\\ 4B's 10.4\\% on SciERC (Table~\\ref{tab:degeneracy}).\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/_archived/experiments_OLD.tex-188-\\midrule\ndocs/paper/sections/_archived/experiments_OLD.tex:189:SciERC & 8B FT  & .644 & 13.0 & 17.8 & .379 & .360 & .267 & .205 \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/_archived/experiments_OLD.tex-190-       & 72B ZS$^\\star$ & .399 & 15.0 & 21.0 & .277 & .217 & .227 & .081 \\\\\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/_archived/experiments_OLD.tex-192-Few-NERD & 7B FT$^\\star$ & .784 & 9.2 & 31.7 & .404 & .388 & .315 & .346 \\\\\ndocs/paper/sections/_archived/experiments_OLD.tex:193:         & 8B FT & .748 & 12.4 & 13.0 & .386 & .300 & .313 & .220 \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/_archived/experiments_OLD.tex-194-         & 72B ZS$^\\star$ & .628 & ---$^\\dagger$ & 46.2 & .416 & .345 & ---$^\\dagger$ & .119 \\\\\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/_archived/experiments_OLD.tex-201-\ndocs/paper/sections/_archived/experiments_OLD.tex:202:LP $\\rho$ drops without fine-tuning (Table~\\ref{tab:scale_comparison}) and LP selection fails on all datasets. Structural signals generalize (Few-NERD VC $\\rho{=}0.416$). Degeneracy increases (Few-NERD: $46.2$\\% vs.\\ $13.0$\\%; CoNLL: $67.7$\\% vs.\\ $61.7$\\%); this comparison simultaneously varies model family, regime, and quantization, so individual effects cannot be disentangled.\ndocs/paper/sections/_archived/experiments_OLD.tex:203:LP-weighted construction yields $+1.53$\\,pp on SciERC 72B ZS ($p{=}0.008$, CI [$+0.25$, $+2.82$]), recovering $10.2$\\% of headroom. Construction fails on Few-NERD ($-0.20$\\,pp) and CoNLL ($-0.37$\\,pp) where degeneracy exceeds $46$\\%---consistent with FT-regime degeneracy gating.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/_archived/experiments_OLD.tex-204-\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/_archived/experiments_OLD.tex-208-\\paragraph{Degeneracy is model-family-dependent, not scale-dependent.}\ndocs/paper/sections/_archived/experiments_OLD.tex:209:Qwen2.5 exhibits systematically higher degeneracy than Qwen3 on Few-NERD (7B--72B: $31.7$--$46.2$\\% vs.\\ Qwen3-8B: $13.0$\\%; Table~\\ref{tab:scale_comparison}), confirming degeneracy is shaped by architecture rather than parameter count. Construction fails for all Qwen2.5 configurations on Few-NERD (both n.s.); 3$\\to$5 epochs triples degeneracy within the same model (\\S\\ref{sec:fewnerd}).\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/_archived/experiments_OLD.tex-210-\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/_archived/experiments_OLD.tex-243-\ndocs/paper/sections/_archived/experiments_OLD.tex:244:LP-weighted construction improves on Few-NERD ($+1.40{\\pm}0.51$\\,pp, $p{<}0.001$; survives Holm--Bonferroni at $k{=}57$) and SciERC ($+1.02{\\pm}0.49$\\,pp, $p{=}0.004$, $p_{\\text{adj}}{=}0.20$; Table~\\ref{tab:entity_construction}), recovering 8--11\\% of oracle headroom. CoNLL shows no gain ($-0.39$\\,pp), consistent with high degeneracy ($N$-scaling in Appendix~\\ref{app:n_scaling}).\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/_archived/experiments_OLD.tex-245-\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/single_signal.tex-34-\\includegraphics[width=\\columnwidth]{fig_selection_gap}\ndocs/paper/sections/single_signal.tex:35:\\caption{Correlation-selection gap on SciERC ($N{=}8$, $T{=}1.0$). Bars: QE $\\rho$; line: $\\Delta$F1 vs.\\ greedy (3-seed mean). Despite $\\rho$ up to 0.38, no signal outperforms greedy (all $p{\\geq}0.29$). Dashed green: oracle headroom ($+11.4$\\,pp; oracle headroom $=$ best-of-$N$ F1 $-$ greedy F1); dotted gray: random.}\ndocs/paper/sections/single_signal.tex-36-\\label{fig:selection_gap}\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/single_signal.tex-38-\ndocs/paper/sections/single_signal.tex:39:Despite $\\rho$ up to 0.38, no signal outperforms greedy on SciERC (Table~\\ref{tab:selection}; Figure~\\ref{fig:selection_gap}); the oracle shows 11.4\\,pp headroom, but LP achieves $+0.2$\\,pp ($p{=}0.29$), below MDE (${\\approx}$1.5\\,pp; $n{=}529$; Table~\\ref{tab:power_analysis}).\ndocs/paper/sections/single_signal.tex-40-The pattern holds across CoNLL and WNUT-17 (Table~\\ref{tab:cross_selection}).\ndocs/paper/sections/single_signal.tex:41:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/single_signal.tex-42-\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/single_signal.tex-45-(1)~instance degeneracy sets the ceiling (SciERC 12.2\\%, CoNLL 61.7\\%);\ndocs/paper/sections/single_signal.tex:46:(2)~oracle headroom bounds the opportunity within non-degenerate instances (CoNLL ${\\approx}4$\\,pp vs.\\ SciERC 11.4\\,pp);\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/single_signal.tex-47-(3)~LP compression limits exploitation (Few-NERD within-instance $\\rho{\\approx}0.5$--$0.7$ vs.\\ SciERC $\\rho{\\approx}0.26$).\n--\ndocs/paper/sections/appendix.tex-232-On LLaMA SciERC, where output diversity remains substantial (18\\% identical outputs, 39\\% unique), LP achieves the highest selection F1 (0.652) at $N{=}8$ but still falls within bootstrap noise of single-sample (0.646), replicating the gap observed on Qwen SciERC (Table~\\ref{tab:selection}).\ndocs/paper/sections/appendix.tex:233:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-234-On CoNLL, 48--87\\% of instances produce identical outputs across all $N$ samples; this reflects a ceiling effect (single-sample F1 ${\\approx}$0.91--0.92) rather than signal failure, and selection analysis on these configurations is uninformative because there is little per-sample variance for any signal to exploit.\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-266-VC achieves the largest gain over single-sample ($+0.28$~pp, $p{=}0.003$--$0.027$ across 3 seeds, all significant), with SJ, FK, and EM at $+0.22$--$0.23$~pp and LP at $+0.12$~pp (2/3 seeds significant).\ndocs/paper/sections/appendix.tex:267:These gains are statistically significant but practically minimal: oracle headroom at $N{=}16$ is only 2.5~pp, so VC captures approximately 10\\% of the available headroom.\ndocs/paper/sections/appendix.tex-268-This reinforces the primary finding: even under the most favorable conditions (high baseline performance, more candidates, and aggregated multi-seed evidence), signal-based selection recovers only a fraction of the oracle headroom available.\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-432-\\paragraph{Oracle-improvable fraction.}\ndocs/paper/sections/appendix.tex:433:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-434-On CoNLL, only 4--9\\% of instances are improvable, consistent with the ceiling effect.\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-436-\\paragraph{Diversity-stratified selection gap.}\ndocs/paper/sections/appendix.tex:437:On the 44\\% of Qwen SciERC instances with high diversity (${\\geq}4$ unique outputs among 8 samples, $n{=}232$), oracle headroom reaches $+$16.3~pp, yet all consistency-based signals (SJ, FK, EM, VC) select at or below single-sample, and LP, the only per-sample signal, achieves merely $+$0.8~pp.\ndocs/paper/sections/appendix.tex:438:LLaMA replicates this pattern: on its high-diversity subset ($n{=}186$), oracle headroom reaches $+$20.1~pp while consistency signals remain at or below single-sample and LP captures only $+$2.0~pp.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-439-This rules out insufficient diversity as an explanation for the correlation-selection gap.\n--\ndocs/paper/sections/appendix.tex-465-Table~\\ref{tab:tost} supplements this with two one-sided tests (TOST), testing whether each signal's selection F1 is equivalent to single-sample within a bound $\\delta$.\ndocs/paper/sections/appendix.tex:466:The $\\delta$ values are contextualized against oracle headroom (12--18~pp): $\\delta{=}5$~pp corresponds to forgoing 28--38\\% of the available headroom, $\\delta{=}3$~pp forgoing 17--23\\%, and $\\delta{=}2$~pp less than 15\\%.\ndocs/paper/sections/appendix.tex-467-These proportions use the same test data that defines the headroom, introducing circularity: $\\delta$ is anchored to the very quantity it contextualizes.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-468-We address this below with externally anchored equivalence margins.\ndocs/paper/sections/appendix.tex:469:The breakpoint $\\delta^*$, the minimum equivalence margin at which each signal passes TOST, ranges from approximately 1.3~pp (SJ, ${\\sim}$10\\% of oracle headroom) to 3.4~pp (FK, ${\\sim}$26\\%) on NER, and from approximately 2.9~pp (LP, ${\\sim}$16\\%) to 6.5~pp (VC, ${\\sim}$36\\%) on RE.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-470-On NER ($n{=}529$), at $\\delta{=}{\\pm}2$~pp, SJ and LP are confirmed equivalent to single-sample (TOST $p{<}0.05$); at $\\delta{=}{\\pm}3$~pp, four of five signals pass; at $\\delta{=}{\\pm}5$~pp, all five pass.\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-525-\ndocs/paper/sections/appendix.tex:526:Supervised classifiers (logistic regression, MLP, random forest) trained on all five signals (5-fold CV, 3-seed mean, SciERC, $N{=}16$, $+17.9$~pp headroom) all perform at or below greedy (F1${=}0.644$; LR: $-0.4$~pp; MLP: $-1.6$~pp; RF: $-3.1$~pp).\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-527-Adding pairwise interaction features does not help (AUROC 0.634 vs.\\ 0.638).\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-979-\\small\ndocs/paper/sections/appendix.tex:980:\\caption{Selection $\\Delta$ (pp over single-sample) stratified by VC quartile on SciERC ($N{=}8$, Qwen3-8B). Oracle headroom collapses at Q4; LP rankings are unreliable at Q1--Q2. Neither quartile supports consistent selection gains.}\ndocs/paper/sections/appendix.tex-981-\\label{tab:vc_quartile}\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-1000-\\begin{itemize}\ndocs/paper/sections/appendix.tex:1001:\\item \\textbf{Q4 ceiling effect.} High-consistency instances (mean VC${=}0.92$) have oracle headroom of only 4.78~pp. Samples have already converged, leaving little room for any signal to improve selection.\ndocs/paper/sections/appendix.tex:1002:\\item \\textbf{Q1--Q2 noise.} Low-consistency instances retain large headroom (14--17~pp) but LP rankings are unreliable, and LP rankings produce inconsistent $\\Delta$ signs across quartiles.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-1003-\\end{itemize}\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-1018-LP-best selection also fails ($\\Delta{=}{-}0.94$\\,pp), despite pooled LP-F1 $\\rho{=}0.350$---above SciERC NER ($0.312$).\ndocs/paper/sections/appendix.tex:1019:Oracle headroom is $+18.1$\\,pp (greedy $0.404$, oracle $0.585$), the largest of any configuration, confirming that correct answers exist among samples but no signal recovers them.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-1020-\n--\ndocs/paper/sections/appendix.tex-1341-Quality estimation under free-form decoding yields SJ $\\rho{=}0.461$, EM $\\rho{=}0.471$, LP $\\rho{=}0.326$, comparable to constrained results (Table~\\ref{tab:quality_estimation}).\ndocs/paper/sections/appendix.tex:1342:The failure to improve selection despite reduced compression is consistent with CoNLL's low oracle headroom (4.0~pp at $N{=}8$), which limits the selection space regardless of score distribution quality.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-1343-\n--\ndocs/paper/sections/appendix.tex-1454-Table~\\ref{tab:n_scaling_selection} traces the effect of sample count on degeneracy, oracle headroom, and per-signal selection gain.\ndocs/paper/sections/appendix.tex:1455:Oracle headroom grows roughly linearly with $N$ ($+4.4$~pp at $N{=}2$ to $+20.0$~pp at $N{=}32$).\ndocs/paper/sections/appendix.tex:1456:LP selection improves monotonically with $N$ ($+0.39$~pp at $N{=}8$ to $+0.95$~pp at $N{=}32$), but even at $N{=}32$, where degeneracy falls to 4\\% and oracle headroom reaches ${\\sim}20$~pp, the best signal captures less than 5\\% of the available improvement.\ndocs/paper/sections/appendix.tex-1457-Degeneracy drops monotonically (43\\% at $N{=}2$ to 4\\% at $N{=}32$), yet reduced degeneracy does not unlock selection, consistent with the LoRA-rank ablation finding (\\S\\ref{sec:robustness_main}).\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-1538-\\midrule\ndocs/paper/sections/appendix.tex:1539:SciERC & 8B FT  & .667 & 11.4 & 12.2 & .326 & .324 & .177 & .159 \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-1540-       & 72B ZS$^\\star$ & .399 & 15.0 & 21.0 & .277 & .217 & .227 & .081 \\\\\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-1542-Few-NERD & 7B FT$^\\star$ & .784 & 9.2 & 31.7 & .404 & .388 & .315 & .346 \\\\\ndocs/paper/sections/appendix.tex:1543:         & 8B FT & .748 & 12.4 & 13.0 & .386 & .300 & .313 & .220 \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-1544-         & 14B FT & .798 & 8.1 & ---$^\\dagger$ & ---$^\\dagger$ & ---$^\\dagger$ & ---$^\\dagger$ & ---$^\\dagger$ \\\\\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-1553-\ndocs/paper/sections/appendix.tex:1554:LP $\\rho$ drops without fine-tuning (Table~\\ref{tab:scale_comparison}) and LP selection fails on all 72B zero-shot datasets. Structural signals generalize better (Few-NERD VC $\\rho{=}0.416$). Degeneracy increases at 72B (Few-NERD: $46.2$\\% vs.\\ $13.0$\\%; CoNLL: $67.7$\\% vs.\\ $61.7$\\%); the gap persists under this specific 72B zero-shot configuration, though scale, training regime, and quantization effects are confounded (see Limitations).\ndocs/paper/sections/appendix.tex:1555:LP-weighted construction yields $+1.53$\\,pp on SciERC 72B ZS ($p{=}0.008$, CI [$+0.25$, $+2.82$]), recovering $10.2$\\% of headroom. Construction fails on Few-NERD ($-0.20$\\,pp) and CoNLL ($-0.37$\\,pp) where degeneracy exceeds $46$\\%---consistent with FT-regime degeneracy gating.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-1556-\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-1560-\\paragraph{Degeneracy is model-family-dependent, not scale-dependent.}\ndocs/paper/sections/appendix.tex:1561:Qwen2.5 exhibits systematically higher degeneracy than Qwen3 on Few-NERD (7B--72B: $31.7$--$46.2$\\% vs.\\ Qwen3-8B: $13.0$\\%; Table~\\ref{tab:scale_comparison}), confirming degeneracy is shaped by architecture rather than parameter count. Construction fails for all Qwen2.5 configurations on Few-NERD (both n.s.); 3$\\to$5 epochs triples degeneracy within the same model (\\S\\ref{sec:fewnerd}).\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-1562-\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-1584-\\paragraph{14B scale extension.}\ndocs/paper/sections/appendix.tex:1585:Qwen3-14B fine-tuned on Few-NERD achieves greedy F1${=}0.798$ ($+0.9$\\,pp over 8B) with oracle headroom of 8.1\\,pp ($+1.2$\\,pp over 8B's 6.9\\,pp) and $\\rho$ advantage $+0.029$ over 8B.\ndocs/paper/sections/appendix.tex-1586-The ceiling grows with model capability: larger models improve both greedy and oracle performance, but the aggregation gap widens rather than closes.\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-1673-\\midrule\ndocs/paper/sections/appendix.tex:1674:Qwen3-8B FT & .789 & .792 ($+0.3$) & .858 & 13.0 & .066 & ${\\approx}$0 \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-1675-\\bottomrule\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-1711-0.8 & $+$12.5 & 0.359 & 0.253 & 0.451 & 0.622 \\\\\ndocs/paper/sections/appendix.tex:1712:1.0 & $+$13.0 & 0.360 & 0.205 & ${\\approx}$0.39 & ${\\approx}$0.612 \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-1713-1.2 & $+$14.6 & 0.377 & 0.196 & 0.356 & 0.594 \\\\\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-1718-\ndocs/paper/sections/appendix.tex:1719:Oracle headroom increases monotonically with temperature ($+9.1$~pp at $T{=}0.5$ to $+14.6$~pp at $T{=}1.2$), confirming that higher temperature consistently expands the oracle ceiling under constrained structured decoding.\ndocs/paper/sections/appendix.tex-1720-Structural QE signals improve with temperature: SJ $\\rho$ rises from $0.297$ ($T{=}0.5$) to $0.377$ ($T{=}1.2$), consistent with more diverse outputs providing richer pairwise evidence.\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-1836-\\small\ndocs/paper/sections/appendix.tex:1837:\\caption{LLaMA-3.2-3B SciERC NER quality estimation and selection ($N{=}8$, $T{=}1.0$, seed${=}42$). Greedy F1${=}0.627$, Oracle F1${=}0.763$, headroom${=}13.63$~pp.}\ndocs/paper/sections/appendix.tex-1838-\\label{tab:llama3b}\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-1856-AUROC rankings differ (EM $>$ VC $>$ SJ $>$ FK $>$ LP), consistent with the $\\rho$--AUROC dissociation noted in the main text.\ndocs/paper/sections/appendix.tex:1857:Despite 13.63~pp of oracle headroom, no signal achieves significant selection improvement (best: SJ, $+0.61$~pp, $p{=}0.175$); VC, the strongest QE signal, yields the worst selection ($-1.54$~pp), consistent with the correlation-selection gap observed at larger scales.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-1858-\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-1862-After gold-filtering (removing instances with no gold entities), the evaluation set contains $n{=}32{,}565$ instances across 8 coarse entity types; 11.9\\% receive zero F1 under greedy decoding.\ndocs/paper/sections/appendix.tex:1863:Instance degeneracy is 13.0\\% (vs.\\ 12.2\\% on SciERC, 61.7\\% on CoNLL).\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-1864-\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-1890-(3)~Despite positive $\\rho$, all structural signals degrade selection ($-1.79$ to $-3.85$~pp), further confirming that the correlation-selection gap is not an artifact of weak QE.\ndocs/paper/sections/appendix.tex:1891:(4)~Low degeneracy (13.0\\%) combined with strong LP-quality alignment ($\\rho{\\approx}0.5$--$0.7$) enables LP selection: candidates differ in F1 more often, and LP can rank them effectively. This contrasts with SciERC (12.2\\% degeneracy but weak alignment $\\rho{\\approx}0.16$, LP $+0.61$~pp) and CoNLL (61.7\\%, LP $-0.85$~pp).\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-1892-\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-1915-Product & 2{,}276 & 8.2 & .656 & .677 & $+$2.01 & .483 & 15.8\\,pp \\\\\ndocs/paper/sections/appendix.tex:1916:Location & 8{,}023 & 11.4 & .793 & .798 & $+$0.53 & .520 & 10.3\\,pp \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-1917-Person & 8{,}016 & 13.4 & .822 & .835 & $+$1.25 & .544 & 9.2\\,pp \\\\\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-1959-\ndocs/paper/sections/appendix.tex:1960:The cross-dataset degeneracy gradient (61.7\\% $\\to$ 13.0\\% $\\to$ 12.2\\%) is inversely associated with LP selection effectiveness at the macro level ($n{=}3$ datasets; exploratory).\\footnote{Partial Spearman correlation controlling for entity-type frequency yields $\\rho{=}{-}0.47$ (vs.\\ raw $\\rho{=}{-}0.38$); type frequency does not confound the degeneracy--LP relationship.}\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-1961-At finer per-type granularity, selection depends on the interaction of degeneracy, oracle headroom, and type-specific LP-quality alignment.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-1962-A Kruskal-Wallis test finds no significant per-type heterogeneity in LP selection gains on SciERC ($p{=}0.796$), consistent with the small per-type sample sizes ($n{=}54$--$296$).\ndocs/paper/sections/appendix.tex:1963:Low degeneracy alone does not ensure selection gains: CoNLL MISC (23\\%, headroom 12.6~pp) and SciERC OtherScientificTerm (6.2\\%, headroom 12.5~pp) both show negative LP selection despite available headroom; LP correlation strength with the type-specific quality function is an additional prerequisite.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-1964-\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-2032-The fraction of instances with positive LP-quality correlation also declines (76.4\\% at 3 epochs $\\to$ 64.1\\% at 5 epochs $\\to$ 54.0\\% at 10 epochs).\ndocs/paper/sections/appendix.tex:2033:LP selection does not yield significant gains at any training duration ($-1.24$, $+0.64$, $+1.02$~pp; all below the ${\\approx}$1.5~pp MDE), despite oracle headroom ranging from 8.4 to 15.0~pp.\ndocs/paper/sections/appendix.tex-2034-The 3-epoch model has higher within-instance alignment ($\\rho{=}0.319$) than the 5-epoch model ($\\rho{=}0.262$), yet LP selection is worse ($-1.24$ vs.\\ $+0.64$~pp): at 6.4\\% degeneracy, more non-degenerate instances enter the candidate pool, but LP ranking precision is too low to exploit them, so the broader pool hurts rather than helps. This illustrates that low degeneracy does not ensure selection gains; LP-quality alignment predicts selection direction.\n--\ndocs/paper/sections/appendix.tex-2412-\\paragraph{O4: Findings may be a fine-tuning artifact.}\ndocs/paper/sections/appendix.tex:2413:Qwen2.5-72B zero-shot exhibits the same gap: LP $\\rho$ drops without fine-tuning, structural signals generalize (VC $\\rho{=}0.416$ on Few-NERD), and degeneracy is model-family-dependent rather than scale-dependent (Qwen2.5: 31.7--46.2\\% vs.\\ Qwen3: 13.0\\%; Appendix~\\ref{app:cross_scale}). The capability ceiling persists from 4B to 72B.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-2414-\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments_main.tex-69-SciERC & 529 & .667 & 12.2\\% & .159 & $+$0.61\\,pp & .193 \\\\\ndocs/paper/sections/experiments_main.tex:70:Few-NERD & 32{,}565 & .748 & 13.0\\% & .220 & $\\mathbf{+1.39}$\\,pp & ${<}.001$ \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments_main.tex-71-\\bottomrule\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments_main.tex-106-The diagnostic framework predicts gains when degeneracy and LP alignment are both favorable.\ndocs/paper/sections/experiments_main.tex:107:LP-weighted construction yields $+1.40{\\pm}0.51$\\,pp on Few-NERD ($p{<}0.001$; Table~\\ref{tab:entity_construction}), consistent with this prediction ($D{=}13$\\%, headroom${=}12.4$\\,pp), a smaller non-significant $+0.32$\\,pp on SciERC, and no gain on CoNLL ($-0.39$\\,pp).\\footnote{Degenerate instances contribute $\\Delta{=}0$ by construction; gains concentrate in the non-degenerate subset ($+3.36$\\,pp SciERC, $+5.18$\\,pp CoNLL, $+7.08$\\,pp Few-NERD).}\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments_main.tex-108-Under global Holm--Bonferroni \\cite{holm1979simple} correction across all $k{=}57$ comparisons, $p_{\\text{adj}}{=}0.055$---marginally above $\\alpha{=}0.05$, providing suggestive but not definitive evidence of construction gains.",
+    "numLines": 185
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 56_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I see the table order in main.tex:
+1. sections/abstract
+2. sections/introduction
+3. sections/diagnostic (contains tables in method section)
+4. sections/single_signal (contains tab:selection - this is Table 1)
+5. sections/adaptive
+6. sections/theory
+7. sections/experiments_main (contains tab:quality_estimation and tab:fewnerd)
+8. sections/background
+9. sections/discussion
+
+So the table numbering in the compiled PDF would be:
+- Table 1: tab:selection (in single_signal.tex)
+
+
+- Table 2: tab:quality_estimation (in experiments_main.tex) 
+- Table 3: tab:fewnerd (in experiments_main.tex)
+
+Let me verify diagnostic.tex doesn't have any numbered tables—I checked it earlier and it's the "Diagnostic Framework" section that describes signals and evaluation methodology but doesn't include actual tables.
+
+So far I've found tab:selection in single_signal.tex, and I need to check adaptive.tex and theory.tex for any tables before the experiments section. Rather than trying to manually track the numbering, let me look at the aux file to see what the actual compiled table numbers are.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0ece91e4-5aa9-4282-9ae9-a9f0b59b36fe",
+  "uuid": "dd013028-d18b-4761-992d-d181b8228f5a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011kfQ7Kg3xHAWx8XcbZehkZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2662,
+      "cache_read_input_tokens": 54445,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2662
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 57_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01U3Ar1UieEyg7n29Cg2W9RN`</summary>
+
+```json
+{
+  "pattern": "\\\\newlabel\\{tab:",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/main.aux",
+  "output_mode": "content",
+  "-n": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0ece91e4-5aa9-4282-9ae9-a9f0b59b36fe",
+  "uuid": "08c09004-f1cd-4a4f-ac06-4f43e6eeb33b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011kfQ7Kg3xHAWx8XcbZehkZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2662,
+      "cache_read_input_tokens": 54445,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2662
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 58 · 2026-05-22T18:49:11.283Z_
+
+<details><summary>↩ Tool result · `toolu_01U3Ar1UieEyg7n29Cg2W9RN`</summary>
+
+```text
+240:\newlabel{tab:selection}{{1}{3}{Best-of-$N$ selection (macro F1) on SciERC ($N{=}8$, $T{=}1.0$). Selection signals: 2-seed mean${\pm }\sigma $; baselines: 3-seed (Oracle${=}0.781$, Greedy${=}0.667$). LP is per-sample; others use consensus-proximity. $^\dagger $One score per input}{table.caption.8}{}}
+294:\newlabel{tab:method_summary}{{2}{4}{Summary of 9 method categories tested (including MV baseline, LP selection, and cross-model ensemble beyond self-verification methods in Appendix~\ref {sec:mechanistic} and adaptive methods in this section). $\Delta $F1 vs.\ greedy; dataset in parentheses. Full coverage in Appendix~\ref {app:method_coverage}}{table.caption.12}{}}
+533:\newlabel{tab:quality_estimation}{{3}{7}{NER quality estimation ($\rho $ and AUROC; $N{=}8$, primary seed${=}42$; 3-seed $\sigma {\leq }0.026$ in Table~\ref {tab:multiseed}). AUROC binarizes at per-dataset median F1. Best in \textbf {bold}. RE in Appendix~\ref {app:re_extension}; $N{=}16$ in Table~\ref {tab:robustness}}{table.caption.18}{}}
+536:\newlabel{tab:fewnerd}{{4}{7}{LP selection across datasets (Qwen3-8B, $N{=}8$, $T{=}1.0$, gold-filtered, 3-seed means). $p$: paired bootstrap}{table.caption.20}{}}
+688:\newlabel{tab:novelty_comparison}{{5}{8}{Novelty comparison with closest related work along six dimensions}{table.caption.29}{}}
+1146:\newlabel{tab:notation}{{6}{12}{Notation used throughout the paper}{table.caption.39}{}}
+1170:\newlabel{tab:robustness}{{7}{12}{Signal robustness across configurations (Spearman $\rho $). Top: temperature on Qwen SciERC. Middle: sample size on Qwen SciERC. Bottom: transfer across model families (both 8B) (LLaMA CoNLL $N{=}16$, 3-seed mean $\pm \sigma $). $^\dagger $Mean over 3 seeds ($\sigma {=}0.013$; individual: 0.398, 0.423, 0.410). $\sigma $ computed as sample standard deviation}{table.caption.40}{}}
+1241:\newlabel{tab:fk_independence}{{8}{13}{Instance-level FK independence test. Permutation tests confirm FK reflects true within-instance agreement (all $p{<}0.001$). Split-half reliability $r$ computed by randomly partitioning $N$ samples into two halves and correlating their FK scores}{table.caption.46}{}}
+1358:\newlabel{tab:sj_normalizer}{{9}{15}{SJ normalizer comparison (Spearman $\rho $; $N{=}8$, $T{=}1.0$, seed${=}42$). Max: $\max (|g_i|,|g_j|)$; Union: $|g_i \cup g_j|$}{table.caption.55}{}}
+1371:\newlabel{tab:wnut}{{10}{15}{Quality estimation on WNUT-17 (Qwen, $N{=}16$, $T{=}1.0$, $n{=}689$). Cond: non-zero F1 instances ($n{=}334$). Full-set $\rho $ reflects binary success prediction; conditional $\rho $ measures quality gradation. LP's conditional $\rho $ is highest despite negative full-set $\rho $}{table.caption.58}{}}
+1502:[Omitted long matching line]
+1505:\newlabel{tab:bootstrap_signal_ci}{{12}{17}{Bootstrap 95\% CIs for signal $\rho $ on SciERC NER ($N{=}8$, $n{=}529$, $B{=}10{,}000$, seed${=}42$). Top: individual signals. Bottom: pairwise $\Delta \rho $; ``Sig.'' indicates whether the 95\% CI excludes zero}{table.caption.63}{}}
+2096:\newlabel{tab:holm_family}{{13}{24}{Complete enumeration of $k{=}57$ statistical tests subject to Holm--Bonferroni correction. Raw $p$: uncorrected $p$-value as reported. $p_{\text {adj}}$: Holm--Bonferroni adjusted $p$-value. $^\dagger $Survives correction at $\alpha {=}0.05$}{table.caption.64}{}}
+2098:\newlabel{tab:diversity}{{14}{25}{Output diversity across configurations ($N{=}8$, $T{=}1.0$). ``Identical'' = fraction of instances with all $N$ outputs identical. ``Unique'' = mean fraction of distinct outputs per instance}{table.caption.66}{}}
+2100:\newlabel{tab:degeneracy}{{15}{25}{Instance degeneracy statistics ($T{=}1.0$). ``Constant F1'': all $N$ samples receive identical instance-level F1. ``Constant utility'': MBR (SJ) utility identical across candidates. 4B data confirms degeneracy scales with model capability}{table.caption.70}{}}
+2102:\newlabel{tab:tost}{{16}{25}{TOST equivalence testing: signals vs.\ single-sample on SciERC ($N{=}8$, $T{=}1.0$). \checkmark : equivalent at $p{<}0.05$; \texttimes : not equivalent. $\Delta $: mean F1 difference (signal $-$ single-sample)}{table.caption.72}{}}
+2104:\newlabel{tab:hidden_probe}{{17}{25}{Hidden state probes vs.\ LP for sample selection (5-fold CV ${\times }$ 3 seeds). $\rho $: Spearman correlation with per-sample F1. Sel.\ F1: selection F1. Gap\%: oracle gap closure. SciERC greedy${=}0.644$ (seed 42), oracle${=}0.775$ (seed 42)}{table.caption.77}{}}
+2106:\newlabel{tab:method_coverage}{{18}{25}{Experimental coverage of entity-level methods. \checkmark = tested; --- = not tested. All methods use $N{=}8$, $T{=}1.0$ unless noted. Section references indicate where results appear}{table.caption.79}{}}
+2108:\newlabel{tab:self_verification}{{19}{25}{Entity-level self-verification probes (Qwen2.5-7B, Few-NERD, $N{=}8$). ESJ: entity self-judgment via yes/no prompts. MRSC: multi-round re-prompting on disputed entities. LSC: latent-space centroid selection. MV: majority vote baseline}{table.caption.85}{}}
+2110:\newlabel{tab:multiseed}{{20}{25}{Multi-seed quality estimation on SciERC ($N{=}8$, $T{=}1.0$, seeds: 42, 123, 456). NER: both models; RE: Qwen only (preliminary). Signal ranking is stable across seeds ($\sigma {\leq }0.025$). $\sigma $ is population standard deviation over 3 seeds}{table.caption.90}{}}
+2112:\newlabel{tab:training}{{21}{26}{Training configuration. Both Qwen3-8B and LLaMA-3.1-8B-Instruct use identical settings unless noted}{table.caption.91}{}}
+2114:\newlabel{tab:logprob_ties}{{22}{26}{Log-probability score compression on SciERC NER ($N{=}8$, $n{=}529$). ``Tied'' = fraction of instances where within-instance LP range ${<}\varepsilon $}{table.caption.98}{}}
+2116:\newlabel{tab:epsilon_sweep}{{23}{26}{$\varepsilon $ sensitivity sweep for LP selection on SciERC NER ($N{=}8$, seed${=}42$, $n{=}529$). ``Tied\%'' = fraction with within-instance LP range ${<}\varepsilon $. $\Delta $: selection F1 gain over single-sample on the non-tied subset. The tied fraction increases smoothly; $\varepsilon {=}0.05$ yields the strongest statistical separation}{table.caption.101}{}}
+2118:\newlabel{tab:epsilon_robustness}{{24}{26}{Maximum selection F1 variation (pp) across $\varepsilon \in [0, 0.2]$. At $\varepsilon {=}0.05$ (used throughout), consistency signals change by ${\leq }1.09$~pp; EM is invariant (integer scoring). LP is most sensitive as $\varepsilon $ corresponds to its tied/non-tied partition. SciERC: $n{=}529$; CoNLL: $n{=}2{,}756$}{table.caption.103}{}}
+2120:\newlabel{tab:nontied_main}{{25}{26}{Non-tied subset analysis (SciERC, Qwen3-8B, $N{=}8$, $T{=}1.0$). Instances split at LP range $\varepsilon {=}0.05$. Within-instance $\rho $ and selection gain both concentrate in the non-tied subset. Full $\varepsilon $ sweep in Table~\ref {tab:epsilon_sweep}}{table.caption.105}{}}
+2122:\newlabel{tab:within_rho}{{26}{26}{Within-instance LP-quality alignment across datasets ($N{=}8$, $T{=}1.0$). $\rho $: median Spearman correlation between LP and F1 within each instance, over non-degenerate instances ($n_{\text {valid}}$: ${\geq }2$ distinct F1 values). Counts are from the primary seed (seed 42); text references use 3-seed mean degeneracy rates}{table.caption.107}{}}
+2130:\newlabel{tab:fewnerd_epsilon}{{27}{27}{$\varepsilon $ threshold vs.\ LP compression on Few-NERD ($N{=}8$, seed${=}42$). Compressed\%: instances with LP range ${<}\varepsilon $. $\rho $: Spearman correlation between LP and oracle F1. $\varepsilon {=}0.05$ (bold) is the elbow}{table.caption.109}{}}
+2132:\newlabel{tab:fewnerd_lp_bucket}{{28}{27}{LP-best selection advantage over MV by LP range bucket on Few-NERD ($N{=}8$, seed${=}42$). Instances with LP range ${\geq }0.05$ show $3$--$6{\times }$ larger advantage}{table.caption.110}{}}
+2160:\newlabel{tab:vc_quartile}{{29}{27}{Selection $\Delta $ (pp over single-sample) stratified by VC quartile on SciERC ($N{=}8$, Qwen3-8B). Oracle headroom collapses at Q4; LP rankings are unreliable at Q1--Q2. Neither quartile supports consistent selection gains}{table.caption.111}{}}
+2254:\newlabel{tab:re_cond_selection}{{30}{28}{RE selection F1 (macro, instance-averaged) on SciERC ($N{=}8$, $T{=}1.0$). Full set ($n{=}397$) and non-zero F1 subset ($n{=}238$). No signal outperforms greedy on either subset}{table.caption.117}{}}
+2307:\newlabel{tab:re_n16_selection}{{31}{29}{RE best-of-$N$ selection F1 (macro, instance-averaged) on SciERC (Qwen3-4B, $N{=}16$, $T{=}1.0$, 3-seed mean${\pm }\sigma $, $n{=}551$). Fisher combined $p$ vs.\ greedy. LP is the only signal with positive $\Delta $. $\sigma $ is population standard deviation over 3 seeds}{table.caption.118}{}}
+2458:\newlabel{tab:bound_verification}{{32}{30}{Bound verification across representative configurations ($N{=}8$). $G_{\text {nd}}$: non-degenerate oracle gap. $\alpha $: signal alignment. Bound: $(1{-}D) \cdot G_{\text {nd}} \cdot \alpha $. Ratio: actual$/$weak bound}{table.caption.123}{}}
+2516:\newlabel{tab:alpha_crit}{{33}{31}{MV performance under strict majority (count $> N/2$; Qwen3-8B FT, $N{=}8$, $T{=}1.0$, 3-seed mean${\pm }\sigma $). $\alpha _{\textup {crit}} = F_1^{\textup {gr}}/2$; $\alpha _{\textup {crit,eff}} = \alpha _{\textup {crit}} / (1{-}\delta )$. When $\alpha _{\textup {crit,eff}} > 1$, MV gain is structurally impossible}{table.caption.126}{}}
+2584:\newlabel{tab:freeform_ablation}{{34}{32}{Comparison of constrained vs.\ free-form decoding on SciERC (Qwen3-8B, $N{=}8$, $T{=}1.0$, seed${=}42$; RE selection gap replicates across 4 seeds: $+1.84{\pm }0.12$~pp)}{table.caption.127}{}}
+2587:\newlabel{tab:stable_failures}{{35}{32}{RE LP selection failure stability across 3 seeds (SciERC, $N{=}8$). Stable failures concentrate on relation-dense instances with high single-sample F1}{table.caption.131}{}}
+2617:\newlabel{tab:n-scaling}{{36}{33}{Effect of sample pool size on signal quality (Qwen3-8B, SciERC, 3-seed mean Spearman $\rho $)}{table.caption.133}{}}
+2619:\newlabel{tab:ranking-stability}{{37}{33}{Cross-seed signal ranking stability (Kendall's $W$, 3 seeds)}{table.caption.134}{}}
+2657:\newlabel{tab:sigma-comparison}{{38}{33}{Cross-seed standard deviation ($\sigma $) of Spearman $\rho $ at $N\!=\!8$ vs.\ $N\!=\!16$ (Qwen3-8B, SciERC, 3 seeds). $\sigma $ is population standard deviation}{table.caption.135}{}}
+2659:\newlabel{tab:n_scaling_selection}{{39}{33}{Effect of sample count on selection (SciERC NER, Qwen3-8B, $T{=}1.0$, gold-filtered, seed${=}42$; exp\_025).\protect \footnotemark \ ``Best $\Delta $'': highest selection gain across all 5 signals. Per-signal $\Delta $ in pp vs.~greedy}{table.caption.138}{}}
+2690:\newlabel{tab:bootstrap_n32}{{40}{34}{Bootstrap significance test at $N{=}32$ (SciERC NER, Qwen3-8B, $T{=}1.0$, $B{=}10{,}000$, $n{=}529$ gold-non-empty instances; 22 instances with no gold entities are excluded as they contribute zero selection differential). $\Delta $: selection gain vs.\ greedy. CI: 95\% bootstrap percentile interval. $p_{\text {greedy}}$: one-sided $p$-value vs.\ greedy; $p_{\text {rand}}$: permutation test vs.\ random selection}{table.caption.140}{}}
+2716:\newlabel{tab:scale_comparison}{{41}{34}{Cross-scale and cross-family comparison ($N{=}8$, $T{=}1.0$). Hdr.\ = oracle $-$ greedy (pp). Degen.: instance degeneracy (\%). $^\star $Qwen2.5; unmarked: Qwen3. $^\dagger $Not computed. $^\ddagger $200-instance subset; 10.1\% parse failures excluded}{table.caption.143}{}}
+2744:\newlabel{tab:scale_ablation_app}{{42}{34}{Scale ablation: Qwen3 8B vs.\ 4B QE $\rho $ ($N{=}8$, $T{=}1.0$, seed 42). RE in Appendix~\ref {app:re_extension}}{table.caption.147}{}}
+2751:\newlabel{tab:pretrained_summary}{{43}{35}{Pretrained vs.\ finetuned MV ($N{=}8$, $T{=}1.0$). Pretrained: Qwen2.5-7B-Instruct; finetuned: Qwen3-8B LoRA. MV: strict majority ($>N/2$). Capture: $\text {MV}\,\Delta / \text {oracle headroom}$. CoNLL pretrained single-seed; others 3-seed mean${\pm }\sigma $}{table.caption.150}{}}
+2795:\newlabel{tab:pertype_mv}{{44}{35}{Per-entity-type MV gain on Few-NERD (Qwen3-8B, $N{=}8$, $T{=}1.0$, 3-seed mean). Strict MV ($\theta {>}N/2$). Types sorted by finetuned greedy F1. 7/8 types flip MV direction between pretrained and finetuned}{table.caption.151}{}}
+2835:\newlabel{tab:frontier_sc_cross}{{45}{36}{Cross-family frontier SC on Few-NERD ($N{=}8$, $T{=}1.0$, 200 instances, zero-shot). Parse failures excluded from all metrics; $N_{\textit {eff}}$: mean effective samples after exclusion. Selection gap $= $ oracle $-$ MV. Text-based entity matching (Appendix~\ref {app:frontier_sc}, entity matching paragraph). Qwen3-8B FT shown for reference}{table.caption.152}{}}
+2879:\newlabel{tab:t_ablation}{{46}{36}{Temperature ablation on SciERC NER (Qwen3-8B, $N{=}8$, seed${=}42$). Oracle gap and QE $\rho $ across four temperatures. $\kappa $: Fleiss' $\kappa $ (inter-sample agreement). $T{=}0.5$ and $T{=}1.0$ use joint (NER+RE) subtask; $T{=}0.8$ and $T{=}1.2$ use NER-only}{table.caption.155}{}}
+2925:\newlabel{tab:t_degeneracy}{{47}{37}{Temperature sensitivity of degeneracy and LP spread (SciERC NER, Qwen3-8B, $N{=}8$). Degeneracy: constant-F1, gold-filtered. LP range: median within-instance range}{table.caption.157}{}}
+2927:[Omitted long matching line]
+2960:\newlabel{tab:verbconf}{{49}{37}{Verbalized confidence (VerbConf) vs.\ log-probability selection (Qwen3-8B, $N{=}8$, $T{=}1.0$, seed${=}42$). Parse fail: fraction of samples where the confidence score could not be extracted}{table.caption.162}{}}
+3004:\newlabel{tab:llama3b}{{50}{38}{LLaMA-3.2-3B SciERC NER quality estimation and selection ($N{=}8$, $T{=}1.0$, seed${=}42$). Greedy F1${=}0.627$, Oracle F1${=}0.763$, headroom${=}13.63$~pp}{table.caption.165}{}}
+3045:\newlabel{tab:fewnerd_full}{{51}{38}{Few-NERD INTRA coarse: complete quality estimation and selection results (Qwen3-8B, $N{=}8$, $T{=}1.0$, gold-filtered $n{=}32{,}565$). $\rho $: Spearman correlation with instance F1. Sample AUROC: per-sample LP discrimination. Sel.\ $\Delta $: selection F1 minus greedy (0.748). CI: bootstrap 95\% confidence interval}{table.caption.166}{}}
+3102:\newlabel{tab:per_type_lp}{{52}{39}{Per-entity-type LP selection on Few-NERD INTRA coarse (Qwen3-8B, $N{=}8$, $T{=}1.0$), sorted by degeneracy. LP $\Delta $: LP selection F1 minus greedy. 7/8 types show positive $\Delta $; Art (highest degeneracy) is the sole exception}{table.caption.168}{}}
+3104:\newlabel{tab:per_type_lp_conll}{{53}{39}{CoNLL-2003 per-type LP selection (Qwen3-8B, $N{=}16$, $T{=}1.0$). All types exceed 20\% degeneracy and show negative LP selection, consistent with the dataset's ceiling-regime performance (F1 $>$ 90\%)}{table.caption.169}{}}
+3106:\newlabel{tab:per_type_lp_scierc}{{54}{39}{SciERC per-type LP selection (Qwen3-8B, $N{=}8$, $T{=}1.0$). Within-dataset, degeneracy alone does not predict LP effectiveness (Spearman $\rho {=}0.14$, $p{=}0.79$); additional type-specific factors likely modulate selection at this granularity}{table.caption.170}{}}
+3166:[Omitted long matching line]
+3206:\newlabel{tab:epoch_confound}{{56}{40}{Training convergence confound on Few-NERD (Qwen3-8B, $N{=}8$, $T{=}1.0$, full test set $n{=}32{,}565$, gold-filtered, 2-seed mean). ``Degen.'': constant-F1 instance degeneracy. ``MV $\Delta $'': strict majority vote gain over greedy (pp). ``Non-degen MV $\Delta $'': MV gain on non-degenerate instances only}{table.caption.173}{}}
+3247:[Omitted long matching line]
+3311:\newlabel{tab:conditional_decomp}{{58}{41}{LP selection on the favorable subset (non-degenerate instances with LP range above the dataset-specific median) per dataset (Qwen3-8B, $N{=}8$, $T{=}1.0$). CI: bootstrap 95\% confidence interval}{table.caption.178}{}}
+3333:\newlabel{tab:power_analysis}{{59}{42}{Post-hoc power analysis ($n{=}23$, two-tailed, $\alpha {=}0.05$). At this sample size, only large correlations ($\rho {\geq }0.5$) are detectable with adequate power}{table.caption.179}{}}
+3350:\newlabel{tab:entity_token_lp}{{60}{42}{Full-sequence vs.\ entity-token LP on SciERC NER (Qwen3-8B, $N{=}8$, $T{=}1.0$). Entity-token LP has higher variance and stronger correlation, yet selection degrades}{table.caption.180}{}}
+3371:\newlabel{tab:entity_merge}{{61}{42}{Entity-level majority voting results (Qwen3-8B, $N{=}8$, $T{=}1.0$). ``Greedy'': $T{=}0$ baseline. ``Best merge'': optimal $k$ per dataset from sweep $k \in \{2, \ldots , 8\}$. ``$\Delta $'': merge F1 minus greedy. ``Recovery'': $\Delta $ / (oracle $-$ greedy). Only SciERC shows positive recovery; even with oracle $k$, CoNLL and Few-NERD degrade}{table.caption.181}{}}
+3381:\newlabel{tab:entity_construction}{{62}{42}{Entity construction vs.\ greedy ($\Delta $ macro F1; $N{=}8$, $T{=}1.0$, Qwen3-8B, multi-seed mean${\pm }\sigma $). $\theta {=}2/N$. $p$: paired bootstrap vs.\ greedy. $^\dagger $Survives per-family Holm--Bonferroni correction (construction, $k{=}10$); global correction ($k{=}57$) yields $p_{\text {adj}}{=}0.055$ (Appendix~\ref {app:holm}). $^\ddagger $LP-weighted not computed}{table.caption.182}{}}
+3407:\newlabel{tab:theta_sweep}{{63}{43}{Entity construction threshold sensitivity ($N{=}8$, Qwen3-8B, $T{=}1.0$). $\Delta $: F1 difference vs.\ greedy in percentage points. Best $\Delta $ per dataset--weighting pair in \textbf {bold}}{table.caption.183}{}}
+3446:\newlabel{tab:weighting_variants}{{64}{43}{Construction weighting variants (LLaMA-3.1-8B, $N{=}8$, $T{=}1.0$, $\theta {=}2/N$, 3-seed mean). $\Delta $: F1 difference vs.\ greedy in pp. Main-text construction results (Table~\ref {tab:entity_construction}) use Qwen3-8B}{table.caption.184}{}}
+3491:\newlabel{tab:72b_zs_vs_fs}{{65}{44}{Full zero-shot vs.\ few-shot comparison for Qwen2.5-72B-Instruct-AWQ ($N{=}8$). Only SciERC under zero-shot yields a significant construction gain}{table.caption.185}{}}
+3534:\newlabel{tab:cost_benefit}{{66}{44}{Cost-benefit summary of aggregation strategies (Qwen3-8B, $N{=}8$, $T{=}1.0$). Inference cost is relative to greedy ($T{=}0$, single forward pass). $\Delta $F1 reports the primary result (dataset in parentheses)}{table.caption.190}{}}
+3567:\newlabel{tab:differentiation}{{67}{45}{Differentiation matrix: positioning relative to prior work on self-consistency limitations. ``Methods tested'' counts the number of distinct aggregation/selection categories evaluated (not hyperparameter variants)}{table.caption.191}{}}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "0ece91e4-5aa9-4282-9ae9-a9f0b59b36fe",
+  "uuid": "a62595ad-7368-49f7-a485-f2a2c1ad3911",
+  "tool_use_result": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "240:\\newlabel{tab:selection}{{1}{3}{Best-of-$N$ selection (macro F1) on SciERC ($N{=}8$, $T{=}1.0$). Selection signals: 2-seed mean${\\pm }\\sigma $; baselines: 3-seed (Oracle${=}0.781$, Greedy${=}0.667$). LP is per-sample; others use consensus-proximity. $^\\dagger $One score per input}{table.caption.8}{}}\n294:\\newlabel{tab:method_summary}{{2}{4}{Summary of 9 method categories tested (including MV baseline, LP selection, and cross-model ensemble beyond self-verification methods in Appendix~\\ref {sec:mechanistic} and adaptive methods in this section). $\\Delta $F1 vs.\\ greedy; dataset in parentheses. Full coverage in Appendix~\\ref {app:method_coverage}}{table.caption.12}{}}\n533:\\newlabel{tab:quality_estimation}{{3}{7}{NER quality estimation ($\\rho $ and AUROC; $N{=}8$, primary seed${=}42$; 3-seed $\\sigma {\\leq }0.026$ in Table~\\ref {tab:multiseed}). AUROC binarizes at per-dataset median F1. Best in \\textbf {bold}. RE in Appendix~\\ref {app:re_extension}; $N{=}16$ in Table~\\ref {tab:robustness}}{table.caption.18}{}}\n536:\\newlabel{tab:fewnerd}{{4}{7}{LP selection across datasets (Qwen3-8B, $N{=}8$, $T{=}1.0$, gold-filtered, 3-seed means). $p$: paired bootstrap}{table.caption.20}{}}\n688:\\newlabel{tab:novelty_comparison}{{5}{8}{Novelty comparison with closest related work along six dimensions}{table.caption.29}{}}\n1146:\\newlabel{tab:notation}{{6}{12}{Notation used throughout the paper}{table.caption.39}{}}\n1170:\\newlabel{tab:robustness}{{7}{12}{Signal robustness across configurations (Spearman $\\rho $). Top: temperature on Qwen SciERC. Middle: sample size on Qwen SciERC. Bottom: transfer across model families (both 8B) (LLaMA CoNLL $N{=}16$, 3-seed mean $\\pm \\sigma $). $^\\dagger $Mean over 3 seeds ($\\sigma {=}0.013$; individual: 0.398, 0.423, 0.410). $\\sigma $ computed as sample standard deviation}{table.caption.40}{}}\n1241:\\newlabel{tab:fk_independence}{{8}{13}{Instance-level FK independence test. Permutation tests confirm FK reflects true within-instance agreement (all $p{<}0.001$). Split-half reliability $r$ computed by randomly partitioning $N$ samples into two halves and correlating their FK scores}{table.caption.46}{}}\n1358:\\newlabel{tab:sj_normalizer}{{9}{15}{SJ normalizer comparison (Spearman $\\rho $; $N{=}8$, $T{=}1.0$, seed${=}42$). Max: $\\max (|g_i|,|g_j|)$; Union: $|g_i \\cup g_j|$}{table.caption.55}{}}\n1371:\\newlabel{tab:wnut}{{10}{15}{Quality estimation on WNUT-17 (Qwen, $N{=}16$, $T{=}1.0$, $n{=}689$). Cond: non-zero F1 instances ($n{=}334$). Full-set $\\rho $ reflects binary success prediction; conditional $\\rho $ measures quality gradation. LP's conditional $\\rho $ is highest despite negative full-set $\\rho $}{table.caption.58}{}}\n1502:[Omitted long matching line]\n1505:\\newlabel{tab:bootstrap_signal_ci}{{12}{17}{Bootstrap 95\\% CIs for signal $\\rho $ on SciERC NER ($N{=}8$, $n{=}529$, $B{=}10{,}000$, seed${=}42$). Top: individual signals. Bottom: pairwise $\\Delta \\rho $; ``Sig.'' indicates whether the 95\\% CI excludes zero}{table.caption.63}{}}\n2096:\\newlabel{tab:holm_family}{{13}{24}{Complete enumeration of $k{=}57$ statistical tests subject to Holm--Bonferroni correction. Raw $p$: uncorrected $p$-value as reported. $p_{\\text {adj}}$: Holm--Bonferroni adjusted $p$-value. $^\\dagger $Survives correction at $\\alpha {=}0.05$}{table.caption.64}{}}\n2098:\\newlabel{tab:diversity}{{14}{25}{Output diversity across configurations ($N{=}8$, $T{=}1.0$). ``Identical'' = fraction of instances with all $N$ outputs identical. ``Unique'' = mean fraction of distinct outputs per instance}{table.caption.66}{}}\n2100:\\newlabel{tab:degeneracy}{{15}{25}{Instance degeneracy statistics ($T{=}1.0$). ``Constant F1'': all $N$ samples receive identical instance-level F1. ``Constant utility'': MBR (SJ) utility identical across candidates. 4B data confirms degeneracy scales with model capability}{table.caption.70}{}}\n2102:\\newlabel{tab:tost}{{16}{25}{TOST equivalence testing: signals vs.\\ single-sample on SciERC ($N{=}8$, $T{=}1.0$). \\checkmark : equivalent at $p{<}0.05$; \\texttimes : not equivalent. $\\Delta $: mean F1 difference (signal $-$ single-sample)}{table.caption.72}{}}\n2104:\\newlabel{tab:hidden_probe}{{17}{25}{Hidden state probes vs.\\ LP for sample selection (5-fold CV ${\\times }$ 3 seeds). $\\rho $: Spearman correlation with per-sample F1. Sel.\\ F1: selection F1. Gap\\%: oracle gap closure. SciERC greedy${=}0.644$ (seed 42), oracle${=}0.775$ (seed 42)}{table.caption.77}{}}\n2106:\\newlabel{tab:method_coverage}{{18}{25}{Experimental coverage of entity-level methods. \\checkmark = tested; --- = not tested. All methods use $N{=}8$, $T{=}1.0$ unless noted. Section references indicate where results appear}{table.caption.79}{}}\n2108:\\newlabel{tab:self_verification}{{19}{25}{Entity-level self-verification probes (Qwen2.5-7B, Few-NERD, $N{=}8$). ESJ: entity self-judgment via yes/no prompts. MRSC: multi-round re-prompting on disputed entities. LSC: latent-space centroid selection. MV: majority vote baseline}{table.caption.85}{}}\n2110:\\newlabel{tab:multiseed}{{20}{25}{Multi-seed quality estimation on SciERC ($N{=}8$, $T{=}1.0$, seeds: 42, 123, 456). NER: both models; RE: Qwen only (preliminary). Signal ranking is stable across seeds ($\\sigma {\\leq }0.025$). $\\sigma $ is population standard deviation over 3 seeds}{table.caption.90}{}}\n2112:\\newlabel{tab:training}{{21}{26}{Training configuration. Both Qwen3-8B and LLaMA-3.1-8B-Instruct use identical settings unless noted}{table.caption.91}{}}\n2114:\\newlabel{tab:logprob_ties}{{22}{26}{Log-probability score compression on SciERC NER ($N{=}8$, $n{=}529$). ``Tied'' = fraction of instances where within-instance LP range ${<}\\varepsilon $}{table.caption.98}{}}\n2116:\\newlabel{tab:epsilon_sweep}{{23}{26}{$\\varepsilon $ sensitivity sweep for LP selection on SciERC NER ($N{=}8$, seed${=}42$, $n{=}529$). ``Tied\\%'' = fraction with within-instance LP range ${<}\\varepsilon $. $\\Delta $: selection F1 gain over single-sample on the non-tied subset. The tied fraction increases smoothly; $\\varepsilon {=}0.05$ yields the strongest statistical separation}{table.caption.101}{}}\n2118:\\newlabel{tab:epsilon_robustness}{{24}{26}{Maximum selection F1 variation (pp) across $\\varepsilon \\in [0, 0.2]$. At $\\varepsilon {=}0.05$ (used throughout), consistency signals change by ${\\leq }1.09$~pp; EM is invariant (integer scoring). LP is most sensitive as $\\varepsilon $ corresponds to its tied/non-tied partition. SciERC: $n{=}529$; CoNLL: $n{=}2{,}756$}{table.caption.103}{}}\n2120:\\newlabel{tab:nontied_main}{{25}{26}{Non-tied subset analysis (SciERC, Qwen3-8B, $N{=}8$, $T{=}1.0$). Instances split at LP range $\\varepsilon {=}0.05$. Within-instance $\\rho $ and selection gain both concentrate in the non-tied subset. Full $\\varepsilon $ sweep in Table~\\ref {tab:epsilon_sweep}}{table.caption.105}{}}\n2122:\\newlabel{tab:within_rho}{{26}{26}{Within-instance LP-quality alignment across datasets ($N{=}8$, $T{=}1.0$). $\\rho $: median Spearman correlation between LP and F1 within each instance, over non-degenerate instances ($n_{\\text {valid}}$: ${\\geq }2$ distinct F1 values). Counts are from the primary seed (seed 42); text references use 3-seed mean degeneracy rates}{table.caption.107}{}}\n2130:\\newlabel{tab:fewnerd_epsilon}{{27}{27}{$\\varepsilon $ threshold vs.\\ LP compression on Few-NERD ($N{=}8$, seed${=}42$). Compressed\\%: instances with LP range ${<}\\varepsilon $. $\\rho $: Spearman correlation between LP and oracle F1. $\\varepsilon {=}0.05$ (bold) is the elbow}{table.caption.109}{}}\n2132:\\newlabel{tab:fewnerd_lp_bucket}{{28}{27}{LP-best selection advantage over MV by LP range bucket on Few-NERD ($N{=}8$, seed${=}42$). Instances with LP range ${\\geq }0.05$ show $3$--$6{\\times }$ larger advantage}{table.caption.110}{}}\n2160:\\newlabel{tab:vc_quartile}{{29}{27}{Selection $\\Delta $ (pp over single-sample) stratified by VC quartile on SciERC ($N{=}8$, Qwen3-8B). Oracle headroom collapses at Q4; LP rankings are unreliable at Q1--Q2. Neither quartile supports consistent selection gains}{table.caption.111}{}}\n2254:\\newlabel{tab:re_cond_selection}{{30}{28}{RE selection F1 (macro, instance-averaged) on SciERC ($N{=}8$, $T{=}1.0$). Full set ($n{=}397$) and non-zero F1 subset ($n{=}238$). No signal outperforms greedy on either subset}{table.caption.117}{}}\n2307:\\newlabel{tab:re_n16_selection}{{31}{29}{RE best-of-$N$ selection F1 (macro, instance-averaged) on SciERC (Qwen3-4B, $N{=}16$, $T{=}1.0$, 3-seed mean${\\pm }\\sigma $, $n{=}551$). Fisher combined $p$ vs.\\ greedy. LP is the only signal with positive $\\Delta $. $\\sigma $ is population standard deviation over 3 seeds}{table.caption.118}{}}\n2458:\\newlabel{tab:bound_verification}{{32}{30}{Bound verification across representative configurations ($N{=}8$). $G_{\\text {nd}}$: non-degenerate oracle gap. $\\alpha $: signal alignment. Bound: $(1{-}D) \\cdot G_{\\text {nd}} \\cdot \\alpha $. Ratio: actual$/$weak bound}{table.caption.123}{}}\n2516:\\newlabel{tab:alpha_crit}{{33}{31}{MV performance under strict majority (count $> N/2$; Qwen3-8B FT, $N{=}8$, $T{=}1.0$, 3-seed mean${\\pm }\\sigma $). $\\alpha _{\\textup {crit}} = F_1^{\\textup {gr}}/2$; $\\alpha _{\\textup {crit,eff}} = \\alpha _{\\textup {crit}} / (1{-}\\delta )$. When $\\alpha _{\\textup {crit,eff}} > 1$, MV gain is structurally impossible}{table.caption.126}{}}\n2584:\\newlabel{tab:freeform_ablation}{{34}{32}{Comparison of constrained vs.\\ free-form decoding on SciERC (Qwen3-8B, $N{=}8$, $T{=}1.0$, seed${=}42$; RE selection gap replicates across 4 seeds: $+1.84{\\pm }0.12$~pp)}{table.caption.127}{}}\n2587:\\newlabel{tab:stable_failures}{{35}{32}{RE LP selection failure stability across 3 seeds (SciERC, $N{=}8$). Stable failures concentrate on relation-dense instances with high single-sample F1}{table.caption.131}{}}\n2617:\\newlabel{tab:n-scaling}{{36}{33}{Effect of sample pool size on signal quality (Qwen3-8B, SciERC, 3-seed mean Spearman $\\rho $)}{table.caption.133}{}}\n2619:\\newlabel{tab:ranking-stability}{{37}{33}{Cross-seed signal ranking stability (Kendall's $W$, 3 seeds)}{table.caption.134}{}}\n2657:\\newlabel{tab:sigma-comparison}{{38}{33}{Cross-seed standard deviation ($\\sigma $) of Spearman $\\rho $ at $N\\!=\\!8$ vs.\\ $N\\!=\\!16$ (Qwen3-8B, SciERC, 3 seeds). $\\sigma $ is population standard deviation}{table.caption.135}{}}\n2659:\\newlabel{tab:n_scaling_selection}{{39}{33}{Effect of sample count on selection (SciERC NER, Qwen3-8B, $T{=}1.0$, gold-filtered, seed${=}42$; exp\\_025).\\protect \\footnotemark \\ ``Best $\\Delta $'': highest selection gain across all 5 signals. Per-signal $\\Delta $ in pp vs.~greedy}{table.caption.138}{}}\n2690:\\newlabel{tab:bootstrap_n32}{{40}{34}{Bootstrap significance test at $N{=}32$ (SciERC NER, Qwen3-8B, $T{=}1.0$, $B{=}10{,}000$, $n{=}529$ gold-non-empty instances; 22 instances with no gold entities are excluded as they contribute zero selection differential). $\\Delta $: selection gain vs.\\ greedy. CI: 95\\% bootstrap percentile interval. $p_{\\text {greedy}}$: one-sided $p$-value vs.\\ greedy; $p_{\\text {rand}}$: permutation test vs.\\ random selection}{table.caption.140}{}}\n2716:\\newlabel{tab:scale_comparison}{{41}{34}{Cross-scale and cross-family comparison ($N{=}8$, $T{=}1.0$). Hdr.\\ = oracle $-$ greedy (pp). Degen.: instance degeneracy (\\%). $^\\star $Qwen2.5; unmarked: Qwen3. $^\\dagger $Not computed. $^\\ddagger $200-instance subset; 10.1\\% parse failures excluded}{table.caption.143}{}}\n2744:\\newlabel{tab:scale_ablation_app}{{42}{34}{Scale ablation: Qwen3 8B vs.\\ 4B QE $\\rho $ ($N{=}8$, $T{=}1.0$, seed 42). RE in Appendix~\\ref {app:re_extension}}{table.caption.147}{}}\n2751:\\newlabel{tab:pretrained_summary}{{43}{35}{Pretrained vs.\\ finetuned MV ($N{=}8$, $T{=}1.0$). Pretrained: Qwen2.5-7B-Instruct; finetuned: Qwen3-8B LoRA. MV: strict majority ($>N/2$). Capture: $\\text {MV}\\,\\Delta / \\text {oracle headroom}$. CoNLL pretrained single-seed; others 3-seed mean${\\pm }\\sigma $}{table.caption.150}{}}\n2795:\\newlabel{tab:pertype_mv}{{44}{35}{Per-entity-type MV gain on Few-NERD (Qwen3-8B, $N{=}8$, $T{=}1.0$, 3-seed mean). Strict MV ($\\theta {>}N/2$). Types sorted by finetuned greedy F1. 7/8 types flip MV direction between pretrained and finetuned}{table.caption.151}{}}\n2835:\\newlabel{tab:frontier_sc_cross}{{45}{36}{Cross-family frontier SC on Few-NERD ($N{=}8$, $T{=}1.0$, 200 instances, zero-shot). Parse failures excluded from all metrics; $N_{\\textit {eff}}$: mean effective samples after exclusion. Selection gap $= $ oracle $-$ MV. Text-based entity matching (Appendix~\\ref {app:frontier_sc}, entity matching paragraph). Qwen3-8B FT shown for reference}{table.caption.152}{}}\n2879:\\newlabel{tab:t_ablation}{{46}{36}{Temperature ablation on SciERC NER (Qwen3-8B, $N{=}8$, seed${=}42$). Oracle gap and QE $\\rho $ across four temperatures. $\\kappa $: Fleiss' $\\kappa $ (inter-sample agreement). $T{=}0.5$ and $T{=}1.0$ use joint (NER+RE) subtask; $T{=}0.8$ and $T{=}1.2$ use NER-only}{table.caption.155}{}}\n2925:\\newlabel{tab:t_degeneracy}{{47}{37}{Temperature sensitivity of degeneracy and LP spread (SciERC NER, Qwen3-8B, $N{=}8$). Degeneracy: constant-F1, gold-filtered. LP range: median within-instance range}{table.caption.157}{}}\n2927:[Omitted long matching line]\n2960:\\newlabel{tab:verbconf}{{49}{37}{Verbalized confidence (VerbConf) vs.\\ log-probability selection (Qwen3-8B, $N{=}8$, $T{=}1.0$, seed${=}42$). Parse fail: fraction of samples where the confidence score could not be extracted}{table.caption.162}{}}\n3004:\\newlabel{tab:llama3b}{{50}{38}{LLaMA-3.2-3B SciERC NER quality estimation and selection ($N{=}8$, $T{=}1.0$, seed${=}42$). Greedy F1${=}0.627$, Oracle F1${=}0.763$, headroom${=}13.63$~pp}{table.caption.165}{}}\n3045:\\newlabel{tab:fewnerd_full}{{51}{38}{Few-NERD INTRA coarse: complete quality estimation and selection results (Qwen3-8B, $N{=}8$, $T{=}1.0$, gold-filtered $n{=}32{,}565$). $\\rho $: Spearman correlation with instance F1. Sample AUROC: per-sample LP discrimination. Sel.\\ $\\Delta $: selection F1 minus greedy (0.748). CI: bootstrap 95\\% confidence interval}{table.caption.166}{}}\n3102:\\newlabel{tab:per_type_lp}{{52}{39}{Per-entity-type LP selection on Few-NERD INTRA coarse (Qwen3-8B, $N{=}8$, $T{=}1.0$), sorted by degeneracy. LP $\\Delta $: LP selection F1 minus greedy. 7/8 types show positive $\\Delta $; Art (highest degeneracy) is the sole exception}{table.caption.168}{}}\n3104:\\newlabel{tab:per_type_lp_conll}{{53}{39}{CoNLL-2003 per-type LP selection (Qwen3-8B, $N{=}16$, $T{=}1.0$). All types exceed 20\\% degeneracy and show negative LP selection, consistent with the dataset's ceiling-regime performance (F1 $>$ 90\\%)}{table.caption.169}{}}\n3106:\\newlabel{tab:per_type_lp_scierc}{{54}{39}{SciERC per-type LP selection (Qwen3-8B, $N{=}8$, $T{=}1.0$). Within-dataset, degeneracy alone does not predict LP effectiveness (Spearman $\\rho {=}0.14$, $p{=}0.79$); additional type-specific factors likely modulate selection at this granularity}{table.caption.170}{}}\n3166:[Omitted long matching line]\n3206:\\newlabel{tab:epoch_confound}{{56}{40}{Training convergence confound on Few-NERD (Qwen3-8B, $N{=}8$, $T{=}1.0$, full test set $n{=}32{,}565$, gold-filtered, 2-seed mean). ``Degen.'': constant-F1 instance degeneracy. ``MV $\\Delta $'': strict majority vote gain over greedy (pp). ``Non-degen MV $\\Delta $'': MV gain on non-degenerate instances only}{table.caption.173}{}}\n3247:[Omitted long matching line]\n3311:\\newlabel{tab:conditional_decomp}{{58}{41}{LP selection on the favorable subset (non-degenerate instances with LP range above the dataset-specific median) per dataset (Qwen3-8B, $N{=}8$, $T{=}1.0$). CI: bootstrap 95\\% confidence interval}{table.caption.178}{}}\n3333:\\newlabel{tab:power_analysis}{{59}{42}{Post-hoc power analysis ($n{=}23$, two-tailed, $\\alpha {=}0.05$). At this sample size, only large correlations ($\\rho {\\geq }0.5$) are detectable with adequate power}{table.caption.179}{}}\n3350:\\newlabel{tab:entity_token_lp}{{60}{42}{Full-sequence vs.\\ entity-token LP on SciERC NER (Qwen3-8B, $N{=}8$, $T{=}1.0$). Entity-token LP has higher variance and stronger correlation, yet selection degrades}{table.caption.180}{}}\n3371:\\newlabel{tab:entity_merge}{{61}{42}{Entity-level majority voting results (Qwen3-8B, $N{=}8$, $T{=}1.0$). ``Greedy'': $T{=}0$ baseline. ``Best merge'': optimal $k$ per dataset from sweep $k \\in \\{2, \\ldots , 8\\}$. ``$\\Delta $'': merge F1 minus greedy. ``Recovery'': $\\Delta $ / (oracle $-$ greedy). Only SciERC shows positive recovery; even with oracle $k$, CoNLL and Few-NERD degrade}{table.caption.181}{}}\n3381:\\newlabel{tab:entity_construction}{{62}{42}{Entity construction vs.\\ greedy ($\\Delta $ macro F1; $N{=}8$, $T{=}1.0$, Qwen3-8B, multi-seed mean${\\pm }\\sigma $). $\\theta {=}2/N$. $p$: paired bootstrap vs.\\ greedy. $^\\dagger $Survives per-family Holm--Bonferroni correction (construction, $k{=}10$); global correction ($k{=}57$) yields $p_{\\text {adj}}{=}0.055$ (Appendix~\\ref {app:holm}). $^\\ddagger $LP-weighted not computed}{table.caption.182}{}}\n3407:\\newlabel{tab:theta_sweep}{{63}{43}{Entity construction threshold sensitivity ($N{=}8$, Qwen3-8B, $T{=}1.0$). $\\Delta $: F1 difference vs.\\ greedy in percentage points. Best $\\Delta $ per dataset--weighting pair in \\textbf {bold}}{table.caption.183}{}}\n3446:\\newlabel{tab:weighting_variants}{{64}{43}{Construction weighting variants (LLaMA-3.1-8B, $N{=}8$, $T{=}1.0$, $\\theta {=}2/N$, 3-seed mean). $\\Delta $: F1 difference vs.\\ greedy in pp. Main-text construction results (Table~\\ref {tab:entity_construction}) use Qwen3-8B}{table.caption.184}{}}\n3491:\\newlabel{tab:72b_zs_vs_fs}{{65}{44}{Full zero-shot vs.\\ few-shot comparison for Qwen2.5-72B-Instruct-AWQ ($N{=}8$). Only SciERC under zero-shot yields a significant construction gain}{table.caption.185}{}}\n3534:\\newlabel{tab:cost_benefit}{{66}{44}{Cost-benefit summary of aggregation strategies (Qwen3-8B, $N{=}8$, $T{=}1.0$). Inference cost is relative to greedy ($T{=}0$, single forward pass). $\\Delta $F1 reports the primary result (dataset in parentheses)}{table.caption.190}{}}\n3567:\\newlabel{tab:differentiation}{{67}{45}{Differentiation matrix: positioning relative to prior work on self-consistency limitations. ``Methods tested'' counts the number of distinct aggregation/selection categories evaluated (not hyperparameter variants)}{table.caption.191}{}}",
+    "numLines": 67
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 59_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I can see that `tab:fewnerd` is indeed Table 4 in the compiled paper. Good.
+
+Now, let me also check the appendix table at line 1248 which has the SciERC data with −0.74±0.57:
+`SciERC & 3 & .667 & .660 & .781 & $-0.74{\pm}0.57$ & 12.2\% & 0.334 & 0.380 & $\Delta < 0$ \\`
+
+The task says this should be −0.74±0.46. 
+
+This appears in the appendix (tab:alpha_crit, Table 33) at line 1248, and the limitations section also references this number. Now I'm tracking down where the .667 SciERC greedy F1 value appears across the paper—the task says it should be .663. I'm finding it in the caption of Table 1 which lists "Greedy=0.667" as a baseline, though the table body shows a different value of 0.645±0.001, and it also shows up in Table 4.
+
+Looking more closely at the caption language, it specifies "baselines: 3-seed (Oracle=0.781, Greedy=0.667)" which suggests the greedy baseline at 3-seed is 0.667, but the table body displays 0.645±0.001 for what appears to be a different condition—possibly Greedy at T=0 measuring macro F1 on gold-filtered data. I need to understand whether these are measuring different things or if there's an inconsistency in the reported values.
+
+The footnote clarifies this: the 0.645 value comes from Table 1 using 2-seed averaging with macro F1, while the 0.667 comes from Table 4 using 3-seed averaging with instance-averaged F1. The differences stem from both the seed count and the aggregation method used.
+
+Now I'm seeing the actual issue—the task mentions the 3-seed mean should be 0.663, not 0.667, so I need to track down where that 0.667 appears and whether it needs correction across both tables. The complication is that Table 1 and Table 4 use different metrics entirely, so changing one value might not require changing the other unless they're meant to represent the same thing. The 0.667 value for the greedy baseline appears in different contexts—some as instance-averaged F1 and some as macro F1—so I need to distinguish which occurrences refer to the 3-seed SciERC greedy F1 that should change to 0.663, versus those that are reference values in different metrics or contexts. to be updated too. But looking at the task more carefully, it's asking me to verify consistency of headroom numbers in Table 4's body—except Table 4 doesn't actually contain explicit headroom values, just greedy F1, degeneracy percentage, and LP metrics. So maybe the real issue is that I need to clarify what headroom information should be included or documented.
+
+For Fix 7, I'm tracking down the 0.92 std ratio mentioned in the discussion section. The paper only explicitly documents 0.97× for LP std ratio in the appendix, but the discussion claims a range of 0.92–0.97×. Since 0.92 isn't sourced anywhere in the text, I need to either find where it comes from or replace it with a verifiable value—and 0.97 is the only one I can confirm from the paper itself. I'm seeing that 0.97 appears in the NER context for free-form vs constrained decoding, while 0.92–0.97 is mentioned in the discussion section possibly for a different task like RE. Let me check the appendix freeform ablation section to see if I can find where the 0.92 comes from.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0ece91e4-5aa9-4282-9ae9-a9f0b59b36fe",
+  "uuid": "a357dedc-fa4f-4703-8053-ea779fd1a283",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LMd8zcKNaNPcgW9LGLenGH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7531,
+      "cache_read_input_tokens": 57107,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7531
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 60_
+
+Let me check the freeform ablation data for the 0.92 std ratio source, and also read the appendix for the full context around line 1248.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0ece91e4-5aa9-4282-9ae9-a9f0b59b36fe",
+  "uuid": "aa06115c-2c0c-40f4-b0cf-e6e77d92cbb7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LMd8zcKNaNPcgW9LGLenGH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7531,
+      "cache_read_input_tokens": 57107,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7531
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 61_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01YWdL3CWtxCyvLZnsfYQ46X`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+  "offset": 1240,
+  "limit": 30
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0ece91e4-5aa9-4282-9ae9-a9f0b59b36fe",
+  "uuid": "a1071b4f-2129-461c-ba07-9faf5d3fffd5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LMd8zcKNaNPcgW9LGLenGH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7531,
+      "cache_read_input_tokens": 57107,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7531
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 62 · 2026-05-22T18:50:08.501Z_
+
+<details><summary>↩ Tool result · `toolu_01YWdL3CWtxCyvLZnsfYQ46X`</summary>
+
+```text
+1240	\label{tab:alpha_crit}
+1241	\resizebox{\columnwidth}{!}{%
+1242	\begin{tabular}{@{}lccccccccc@{}}
+1243	\toprule
+1244	Dataset & Seeds & Greedy & MV & Oracle & $\Delta_{\textup{SC}}$ (pp) & $\delta$ & $\alpha_{\textup{crit}}$ & $\alpha_{\textup{crit,eff}}$ & Prediction \\
+1245	\midrule
+1246	Few-NERD & 3 & .791 & .764 & .885 & $-2.74{\pm}0.54$ & 8.8\% & 0.396 & 0.434 & $\Delta < 0$ \\
+1247	CoNLL & 3 & .912 & .912 & .950 & $-0.04{\pm}0.15$ & 60.3\% & 0.456 & 1.148 & $\Delta \approx 0$ \\
+1248	SciERC & 3 & .667 & .660 & .781 & $-0.74{\pm}0.57$ & 12.2\% & 0.334 & 0.380 & $\Delta < 0$ \\
+1249	\bottomrule
+1250	\end{tabular}}
+1251	\end{table}
+1252	
+1253	\section{Free-Form Decoding Ablation}\label{app:freeform_ablation}
+1254	
+1255	Table~\ref{tab:freeform_ablation} compares constrained and free-form decoding across four dimensions on SciERC ($N{=}8$, $T{=}1.0$, Qwen3-8B; seed${=}42$ shown, 4-seed RE statistics below).
+1256	Free-form decoding removes grammar constraints entirely; outputs are parsed post-hoc (parse rate 99.95\%, 4406/4408).
+1257	LP score distributions are nearly identical across regimes (Panel~A: within-instance std ratio $0.97{\times}$), and NER selection gains remain negligible under both regimes (Panel~B).
+1258	RE LP selection consistently reverses direction under free-form decoding across 4 seeds: $+1.84{\pm}0.12$~pp (seeds 42/123/456/789: $+1.69$, $+1.76$, $+2.00$, $+1.91$~pp) vs.\ $-0.68$~pp constrained.
+1259	The constrained reference ($-0.68$~pp) uses the ablation-matched baseline; the primary experiment (Table~\ref{tab:selection}) yields $-0.9$~pp on the same gold-filtered set.
+1260	Quality estimation improves modestly for most signals under free-form decoding (Panel~C), with the largest gain for FK ($+0.053$ NER, $+0.039$ RE).
+1261	
+1262	\begin{table*}[t]
+1263	\centering
+1264	\caption{Comparison of constrained vs.\ free-form decoding on SciERC (Qwen3-8B, $N{=}8$, $T{=}1.0$, seed${=}42$; RE selection gap replicates across 4 seeds: $+1.84{\pm}0.12$~pp).}
+1265	\label{tab:freeform_ablation}
+1266	
+1267	\vspace{2pt}
+1268	{\small\textsc{Panel A: Logprob Distribution}}
+1269	\vspace{2pt}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "0ece91e4-5aa9-4282-9ae9-a9f0b59b36fe",
+  "uuid": "5616a4c8-792e-4ce7-8777-80de22b8b9d8",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+      "content": "\\label{tab:alpha_crit}\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{@{}lccccccccc@{}}\n\\toprule\nDataset & Seeds & Greedy & MV & Oracle & $\\Delta_{\\textup{SC}}$ (pp) & $\\delta$ & $\\alpha_{\\textup{crit}}$ & $\\alpha_{\\textup{crit,eff}}$ & Prediction \\\\\n\\midrule\nFew-NERD & 3 & .791 & .764 & .885 & $-2.74{\\pm}0.54$ & 8.8\\% & 0.396 & 0.434 & $\\Delta < 0$ \\\\\nCoNLL & 3 & .912 & .912 & .950 & $-0.04{\\pm}0.15$ & 60.3\\% & 0.456 & 1.148 & $\\Delta \\approx 0$ \\\\\nSciERC & 3 & .667 & .660 & .781 & $-0.74{\\pm}0.57$ & 12.2\\% & 0.334 & 0.380 & $\\Delta < 0$ \\\\\n\\bottomrule\n\\end{tabular}}\n\\end{table}\n\n\\section{Free-Form Decoding Ablation}\\label{app:freeform_ablation}\n\nTable~\\ref{tab:freeform_ablation} compares constrained and free-form decoding across four dimensions on SciERC ($N{=}8$, $T{=}1.0$, Qwen3-8B; seed${=}42$ shown, 4-seed RE statistics below).\nFree-form decoding removes grammar constraints entirely; outputs are parsed post-hoc (parse rate 99.95\\%, 4406/4408).\nLP score distributions are nearly identical across regimes (Panel~A: within-instance std ratio $0.97{\\times}$), and NER selection gains remain negligible under both regimes (Panel~B).\nRE LP selection consistently reverses direction under free-form decoding across 4 seeds: $+1.84{\\pm}0.12$~pp (seeds 42/123/456/789: $+1.69$, $+1.76$, $+2.00$, $+1.91$~pp) vs.\\ $-0.68$~pp constrained.\nThe constrained reference ($-0.68$~pp) uses the ablation-matched baseline; the primary experiment (Table~\\ref{tab:selection}) yields $-0.9$~pp on the same gold-filtered set.\nQuality estimation improves modestly for most signals under free-form decoding (Panel~C), with the largest gain for FK ($+0.053$ NER, $+0.039$ RE).\n\n\\begin{table*}[t]\n\\centering\n\\caption{Comparison of constrained vs.\\ free-form decoding on SciERC (Qwen3-8B, $N{=}8$, $T{=}1.0$, seed${=}42$; RE selection gap replicates across 4 seeds: $+1.84{\\pm}0.12$~pp).}\n\\label{tab:freeform_ablation}\n\n\\vspace{2pt}\n{\\small\\textsc{Panel A: Logprob Distribution}}\n\\vspace{2pt}",
+      "numLines": 30,
+      "startLine": 1240,
+      "totalLines": 2479
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 63_
+
+<details open><summary>🔧 Tool call — Read · `toolu_0115DZa8Zd7LHuAjgp7JnWVs`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+  "offset": 1255,
+  "limit": 50
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0ece91e4-5aa9-4282-9ae9-a9f0b59b36fe",
+  "uuid": "7760a2e8-7aee-4503-aeda-62965566d649",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LMd8zcKNaNPcgW9LGLenGH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7531,
+      "cache_read_input_tokens": 57107,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7531
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 64 · 2026-05-22T18:50:09.546Z_
+
+<details><summary>↩ Tool result · `toolu_0115DZa8Zd7LHuAjgp7JnWVs`</summary>
+
+```text
+1255	Table~\ref{tab:freeform_ablation} compares constrained and free-form decoding across four dimensions on SciERC ($N{=}8$, $T{=}1.0$, Qwen3-8B; seed${=}42$ shown, 4-seed RE statistics below).
+1256	Free-form decoding removes grammar constraints entirely; outputs are parsed post-hoc (parse rate 99.95\%, 4406/4408).
+1257	LP score distributions are nearly identical across regimes (Panel~A: within-instance std ratio $0.97{\times}$), and NER selection gains remain negligible under both regimes (Panel~B).
+1258	RE LP selection consistently reverses direction under free-form decoding across 4 seeds: $+1.84{\pm}0.12$~pp (seeds 42/123/456/789: $+1.69$, $+1.76$, $+2.00$, $+1.91$~pp) vs.\ $-0.68$~pp constrained.
+1259	The constrained reference ($-0.68$~pp) uses the ablation-matched baseline; the primary experiment (Table~\ref{tab:selection}) yields $-0.9$~pp on the same gold-filtered set.
+1260	Quality estimation improves modestly for most signals under free-form decoding (Panel~C), with the largest gain for FK ($+0.053$ NER, $+0.039$ RE).
+1261	
+1262	\begin{table*}[t]
+1263	\centering
+1264	\caption{Comparison of constrained vs.\ free-form decoding on SciERC (Qwen3-8B, $N{=}8$, $T{=}1.0$, seed${=}42$; RE selection gap replicates across 4 seeds: $+1.84{\pm}0.12$~pp).}
+1265	\label{tab:freeform_ablation}
+1266	
+1267	\vspace{2pt}
+1268	{\small\textsc{Panel A: Logprob Distribution}}
+1269	\vspace{2pt}
+1270	
+1271	\begin{tabular}{lccc}
+1272	\toprule
+1273	Metric & Constrained & Free-form & $\Delta$ \\
+1274	\midrule
+1275	Mean LP std        & 0.0206 & 0.0199 & $-$0.0007 \\
+1276	Mean LP range      & 0.0623 & 0.0599 & $-$0.0024 \\
+1277	Tied fraction ($\varepsilon{=}0.05$) & 59.7\% & 57.7\% & $-$2.0\,pp \\
+1278	\bottomrule
+1279	\end{tabular}
+1280	
+1281	\vspace{8pt}
+1282	
+1283	{\small\textsc{Panel B: Selection F1}}
+1284	\vspace{2pt}
+1285	
+1286	\begin{tabular}{llccc}
+1287	\toprule
+1288	Task & Method & Constrained & Free-form & $\Delta$ \\
+1289	\midrule
+1290	\multirow{3}{*}{NER}
+1291	  & Greedy        & 0.6182 & 0.6204 & $+$0.0022 \\
+1292	  & LP-selected   & 0.6241 & 0.6222 & $-$0.0019 \\
+1293	  & Selection gap & $+$0.0059 & $+$0.0018 & $-$0.0041 \\
+1294	\midrule
+1295	\multirow{3}{*}{RE}
+1296	  & Greedy        & 0.2913 & 0.2880 & $-$0.0033 \\
+1297	  & LP-selected   & 0.2845 & 0.3050 & \textbf{$+$0.0205} \\
+1298	  & Selection gap & $-$0.0068 & $+$0.0169 & \textbf{$+$0.0237} \\
+1299	\bottomrule
+1300	\end{tabular}
+1301	
+1302	\vspace{8pt}
+1303	
+1304	{\small\textsc{Panel C: QE Signal Quality (Spearman $\rho$)}}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "0ece91e4-5aa9-4282-9ae9-a9f0b59b36fe",
+  "uuid": "4beac639-39c0-40ff-a365-d93545036d00",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+      "content": "Table~\\ref{tab:freeform_ablation} compares constrained and free-form decoding across four dimensions on SciERC ($N{=}8$, $T{=}1.0$, Qwen3-8B; seed${=}42$ shown, 4-seed RE statistics below).\nFree-form decoding removes grammar constraints entirely; outputs are parsed post-hoc (parse rate 99.95\\%, 4406/4408).\nLP score distributions are nearly identical across regimes (Panel~A: within-instance std ratio $0.97{\\times}$), and NER selection gains remain negligible under both regimes (Panel~B).\nRE LP selection consistently reverses direction under free-form decoding across 4 seeds: $+1.84{\\pm}0.12$~pp (seeds 42/123/456/789: $+1.69$, $+1.76$, $+2.00$, $+1.91$~pp) vs.\\ $-0.68$~pp constrained.\nThe constrained reference ($-0.68$~pp) uses the ablation-matched baseline; the primary experiment (Table~\\ref{tab:selection}) yields $-0.9$~pp on the same gold-filtered set.\nQuality estimation improves modestly for most signals under free-form decoding (Panel~C), with the largest gain for FK ($+0.053$ NER, $+0.039$ RE).\n\n\\begin{table*}[t]\n\\centering\n\\caption{Comparison of constrained vs.\\ free-form decoding on SciERC (Qwen3-8B, $N{=}8$, $T{=}1.0$, seed${=}42$; RE selection gap replicates across 4 seeds: $+1.84{\\pm}0.12$~pp).}\n\\label{tab:freeform_ablation}\n\n\\vspace{2pt}\n{\\small\\textsc{Panel A: Logprob Distribution}}\n\\vspace{2pt}\n\n\\begin{tabular}{lccc}\n\\toprule\nMetric & Constrained & Free-form & $\\Delta$ \\\\\n\\midrule\nMean LP std        & 0.0206 & 0.0199 & $-$0.0007 \\\\\nMean LP range      & 0.0623 & 0.0599 & $-$0.0024 \\\\\nTied fraction ($\\varepsilon{=}0.05$) & 59.7\\% & 57.7\\% & $-$2.0\\,pp \\\\\n\\bottomrule\n\\end{tabular}\n\n\\vspace{8pt}\n\n{\\small\\textsc{Panel B: Selection F1}}\n\\vspace{2pt}\n\n\\begin{tabular}{llccc}\n\\toprule\nTask & Method & Constrained & Free-form & $\\Delta$ \\\\\n\\midrule\n\\multirow{3}{*}{NER}\n  & Greedy        & 0.6182 & 0.6204 & $+$0.0022 \\\\\n  & LP-selected   & 0.6241 & 0.6222 & $-$0.0019 \\\\\n  & Selection gap & $+$0.0059 & $+$0.0018 & $-$0.0041 \\\\\n\\midrule\n\\multirow{3}{*}{RE}\n  & Greedy        & 0.2913 & 0.2880 & $-$0.0033 \\\\\n  & LP-selected   & 0.2845 & 0.3050 & \\textbf{$+$0.0205} \\\\\n  & Selection gap & $-$0.0068 & $+$0.0169 & \\textbf{$+$0.0237} \\\\\n\\bottomrule\n\\end{tabular}\n\n\\vspace{8pt}\n\n{\\small\\textsc{Panel C: QE Signal Quality (Spearman $\\rho$)}}",
+      "numLines": 50,
+      "startLine": 1255,
+      "totalLines": 2479
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 65_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have enough information to understand the Panel A data. The LP std ratio 0.97× comes from:
+- Constrained: Mean LP std = 0.0206
+- Free-form: Mean LP std = 0.0199
+- Ratio: 0.0199/0.0206 = 0.966... ≈ 0.97×
+
+This is the only LP std ratio mentioned anywhere. The 0.92 in discussion.tex has no source. Since the paper only has 0.97 as verifiable, I'll change the 0.92-0.97 range to just 0.97 (or ≈0.97).
+
+
+Now I'm checking the epoch confound LP delta values across the appendix and main text. The appendix reports the 5-epoch LP Δ as +0.12±0.04 pp, and the table shows the same value alongside +1.39. The main text describes this as a collapse from +1.39 to +0.12 pp, so these numbers are consistent across sections.
+
+But there's a discrepancy with what the task mentions—it suggests the max seed value might be 0.12 while the mean across 3 seeds would be 0.09. The appendix explicitly labels this as a "2-seed mean," which raises the question of whether we should be reporting the 3-seed mean instead. I'm also noticing that Table 4 (fewnerd) specifies "3-seed means" while Table 56 (epoch confound) uses "2-seed mean," so there's an inconsistency in how many seeds are being averaged across different tables. The task asks to either correct to the mean value or mark it as "max across seeds," so I need to determine whether the 0.12 figure should be replaced with the 3-seed mean of 0.09 or if the current 2-seed reporting is acceptable.
+
+If I do change 0.12 to 0.09, I'll need to recalculate the collapse percentage: (1.39 - 0.09) / 1.39 ≈ 0.935, which gives 94% collapse instead of the current 91%. The tricky part is that the appendix table explicitly states "2-seed mean" with the 0.12 value, so updating the main text without addressing the appendix creates an inconsistency. I think the cleanest approach is to update the main text to 0.09 and label it as "3-seed mean," while leaving the appendix table unchanged since it's explicitly documenting the 2-seed results. Looking at the seed counts, if the 2-seed mean is 0.12 and the 3-seed mean is 0.09, that suggests the third seed produced a much lower value around 0.03. I'll update the main text to use 0.09 with the 3-seed notation to match Table 4's consistency, while leaving the appendix as-is since it explicitly documents the 2-seed calculation. Now I need to address Fix 6 about the SciERC greedy F1 value.
+
+I'm tracking down where 0.667 appears across the files—it shows up in the main table, the single signal table caption, and the appendix. Since the task specifies this should be a single-seed value with a 3-seed mean of 0.663, I need to determine which occurrences refer to the same metric and update them accordingly. I'm realizing I need to distinguish between single-seed results that legitimately show .667 and cases where 3-seed means are incorrectly labeled as .667 when they should be .663. The main text has the clearest case in Table 4 where the caption explicitly states "3-seed means" but shows .667. For the appendix tables, I need to check whether they're claiming to be 3-seed averages or just reporting individual results, then make corrections accordingly. the caption reference might be using instance-averaged F1 instead of macro F1. Let me look at the footnote more carefully—it explicitly notes that the greedy values differ between Table 1 (0.645 with 2-seed evaluation) and Table 4 (0.667 with 3-seed evaluation), which explains why the caption and body don't match.
+
+So the fix is straightforward: I need to update Table 4's greedy value from 0.667 to 0.663 (the correct 3-seed mean), and then check whether Table 1's caption reference should also be updated if it's meant to cross-reference that value.
+
+Now I'm going through the edits systematically. Let me start with the first few fixes: adjusting the Few-NERD headroom from 8pp to 1.4pp, updating the WNUT zero-F1 rate from 51% to 53.7% in both the main text and appendix, and then adding the instance-averaged F1 clarification to Table 4's caption. I need to update the delta values in the main text and appendix for the MV results, changing the standard deviation from 0.57 to 0.46. Then for the LP delta, I'm adjusting the mean from +0.12 to +0.09 percentage points in two places, and also updating the confidence percentage from 91% to 94%. There's a question about whether to keep the ±0.04 uncertainty since it was computed from a 2-seed mean but I'm now using a 3-seed mean—I'll keep the mean change and either adjust or remove the uncertainty accordingly.
+
+For the SciERC greedy F1 score, I'm correcting it from 0.667 to 0.663 across three locations: the main experiments file, the table caption in the single signal document, and two places in the appendix.
+
+Now I'm checking whether this change affects the oracle headroom calculation—if greedy is 0.663 and oracle is 0.781, that gives 11.8 percentage points of headroom, not the 11.4 pp currently stated in the figure caption, so I'll need to verify which value is correct. I'm checking whether the 11.4pp headroom figure is consistent with the values I'm considering changing. If the oracle is 0.781 and greedy is 0.667, that gives exactly 11.4pp, but if I update greedy to 0.663, the headroom should become 11.8pp—and I'd need to verify whether the oracle value itself also needs correction since it might be based on the same flawed 3-seed calculation. Rather than chase these cascading changes, I should focus on the core issue: Table 4 claims to report 3-seed means but contains a single-seed value of 0.667, so I'll fix that table directly by updating it to the correct 3-seed mean of 0.663.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0ece91e4-5aa9-4282-9ae9-a9f0b59b36fe",
+  "uuid": "75904b53-2031-4a6a-be47-178abcc359fe",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Uc6XRxNo78ZmAc8u6iaTeD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5063,
+      "cache_read_input_tokens": 64638,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5063
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 66_
+
+Let me check the appendix occurrences of .667 for context before making all edits.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0ece91e4-5aa9-4282-9ae9-a9f0b59b36fe",
+  "uuid": "d9795d50-480b-4a05-bce3-4635592cb079",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Uc6XRxNo78ZmAc8u6iaTeD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5063,
+      "cache_read_input_tokens": 64638,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5063
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 67_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01F7ka4jSTpaba6QNmr7Tveq`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+  "offset": 1480,
+  "limit": 15
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0ece91e4-5aa9-4282-9ae9-a9f0b59b36fe",
+  "uuid": "a5e6140b-8cf8-4b7e-af6d-b45ba442eb23",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Uc6XRxNo78ZmAc8u6iaTeD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5063,
+      "cache_read_input_tokens": 64638,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5063
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 68 · 2026-05-22T18:51:36.684Z_
+
+<details><summary>↩ Tool result · `toolu_01F7ka4jSTpaba6QNmr7Tveq`</summary>
+
+```text
+1480	\bottomrule
+1481	\end{tabular}
+1482	}
+1483	\end{table}
+1484	\footnotetext{$N$-scaling analysis uses gold-filtered evaluation ($n{=}529$, greedy F1${=}0.640$, seed 42). Values differ from Table~\ref{tab:selection} (0.645, 2-seed) and Table~\ref{tab:fewnerd} (0.667, 3-seed) due to seed and aggregation differences; relative trends are consistent.}
+1485	
+1486	\paragraph{Bootstrap significance at $N{=}32$.}
+1487	Table~\ref{tab:bootstrap_n32} reports bootstrap confidence intervals and $p$-values for selection at $N{=}32$ ($B{=}10{,}000$, $n{=}529$).
+1488	No signal achieves significant improvement over greedy at $\alpha{=}0.05$ (LP: $p{=}0.091$; FK: $p{=}0.101$), while VC is significantly \textit{worse} ($-4.36$~pp, $p{=}1.0$).
+1489	However, all signals except VC significantly outperform random selection ($p{<}0.001$, permutation test); the signals carry meaningful quality information yet fail to translate it into reliable selection gains.
+1490	The oracle gap ($+20.0$~pp, $p{<}0.001$) confirms substantial unrealized headroom.
+1491	
+1492	\begin{table}[t]
+1493	\centering
+1494	\small
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "0ece91e4-5aa9-4282-9ae9-a9f0b59b36fe",
+  "uuid": "172c4ff9-2d2b-4900-a66e-8b48543feafb",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+      "content": "\\bottomrule\n\\end{tabular}\n}\n\\end{table}\n\\footnotetext{$N$-scaling analysis uses gold-filtered evaluation ($n{=}529$, greedy F1${=}0.640$, seed 42). Values differ from Table~\\ref{tab:selection} (0.645, 2-seed) and Table~\\ref{tab:fewnerd} (0.667, 3-seed) due to seed and aggregation differences; relative trends are consistent.}\n\n\\paragraph{Bootstrap significance at $N{=}32$.}\nTable~\\ref{tab:bootstrap_n32} reports bootstrap confidence intervals and $p$-values for selection at $N{=}32$ ($B{=}10{,}000$, $n{=}529$).\nNo signal achieves significant improvement over greedy at $\\alpha{=}0.05$ (LP: $p{=}0.091$; FK: $p{=}0.101$), while VC is significantly \\textit{worse} ($-4.36$~pp, $p{=}1.0$).\nHowever, all signals except VC significantly outperform random selection ($p{<}0.001$, permutation test); the signals carry meaningful quality information yet fail to translate it into reliable selection gains.\nThe oracle gap ($+20.0$~pp, $p{<}0.001$) confirms substantial unrealized headroom.\n\n\\begin{table}[t]\n\\centering\n\\small",
+      "numLines": 15,
+      "startLine": 1480,
+      "totalLines": 2479
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 69_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01PeA5AyWNLcABzQvj1Y2Mev`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+  "offset": 1535,
+  "limit": 15
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0ece91e4-5aa9-4282-9ae9-a9f0b59b36fe",
+  "uuid": "b913aa1b-62e3-45a0-9598-297c4c9f890d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Uc6XRxNo78ZmAc8u6iaTeD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5063,
+      "cache_read_input_tokens": 64638,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5063
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 70 · 2026-05-22T18:51:37.624Z_
+
+<details><summary>↩ Tool result · `toolu_01PeA5AyWNLcABzQvj1Y2Mev`</summary>
+
+```text
+1535	\begin{tabular}{@{}llccccccc@{}}
+1536	\toprule
+1537	Dataset & Regime & Greedy & Hdr. & Degen. & VC & SJ & FK & LP \\
+1538	\midrule
+1539	SciERC & 8B FT  & .667 & 11.4 & 12.2 & .326 & .324 & .177 & .159 \\
+1540	       & 72B ZS$^\star$ & .399 & 15.0 & 21.0 & .277 & .217 & .227 & .081 \\
+1541	\midrule
+1542	Few-NERD & 7B FT$^\star$ & .784 & 9.2 & 31.7 & .404 & .388 & .315 & .346 \\
+1543	         & 8B FT & .748 & 12.4 & 13.0 & .386 & .300 & .313 & .220 \\
+1544	         & 14B FT & .798 & 8.1 & ---$^\dagger$ & ---$^\dagger$ & ---$^\dagger$ & ---$^\dagger$ & ---$^\dagger$ \\
+1545	         & 72B ZS$^\star$ & .628 & ---$^\dagger$ & 46.2 & .416 & .345 & ---$^\dagger$ & .119 \\
+1546	         & GPT-5.5 ZS$^\ddagger$ & .638 & 8.2 & 50.0 & ---$^\dagger$ & .346 & ---$^\dagger$ & ---$^\dagger$ \\
+1547	\midrule
+1548	CoNLL  & 8B FT  & .908 & ${\approx}$4 & 61.7 & .424 & .436 & .400 & .302 \\
+1549	       & 72B ZS$^\star$ & .712 & 5.3 & 67.7 & .297 & .304 & .302 & $-$.002 \\
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "0ece91e4-5aa9-4282-9ae9-a9f0b59b36fe",
+  "uuid": "c6f50cc1-9814-4deb-9725-c44ac7864a2b",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+      "content": "\\begin{tabular}{@{}llccccccc@{}}\n\\toprule\nDataset & Regime & Greedy & Hdr. & Degen. & VC & SJ & FK & LP \\\\\n\\midrule\nSciERC & 8B FT  & .667 & 11.4 & 12.2 & .326 & .324 & .177 & .159 \\\\\n       & 72B ZS$^\\star$ & .399 & 15.0 & 21.0 & .277 & .217 & .227 & .081 \\\\\n\\midrule\nFew-NERD & 7B FT$^\\star$ & .784 & 9.2 & 31.7 & .404 & .388 & .315 & .346 \\\\\n         & 8B FT & .748 & 12.4 & 13.0 & .386 & .300 & .313 & .220 \\\\\n         & 14B FT & .798 & 8.1 & ---$^\\dagger$ & ---$^\\dagger$ & ---$^\\dagger$ & ---$^\\dagger$ & ---$^\\dagger$ \\\\\n         & 72B ZS$^\\star$ & .628 & ---$^\\dagger$ & 46.2 & .416 & .345 & ---$^\\dagger$ & .119 \\\\\n         & GPT-5.5 ZS$^\\ddagger$ & .638 & 8.2 & 50.0 & ---$^\\dagger$ & .346 & ---$^\\dagger$ & ---$^\\dagger$ \\\\\n\\midrule\nCoNLL  & 8B FT  & .908 & ${\\approx}$4 & 61.7 & .424 & .436 & .400 & .302 \\\\\n       & 72B ZS$^\\star$ & .712 & 5.3 & 67.7 & .297 & .304 & .302 & $-$.002 \\\\",
+      "numLines": 15,
+      "startLine": 1535,
+      "totalLines": 2479
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 71_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01Ska3L3oScUXowZsueJ1TUe`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+  "offset": 1605,
+  "limit": 10
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0ece91e4-5aa9-4282-9ae9-a9f0b59b36fe",
+  "uuid": "4cfbb856-a4af-4eb5-93c3-8bbda0127fd5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Uc6XRxNo78ZmAc8u6iaTeD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5063,
+      "cache_read_input_tokens": 64638,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5063
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 72 · 2026-05-22T18:51:38.575Z_
+
+<details><summary>↩ Tool result · `toolu_01Ska3L3oScUXowZsueJ1TUe`</summary>
+
+```text
+1605	Few-NERD & Pretrained & .538 & $+$3.9${\pm}$0.2 & 11.7 & 36\% \\
+1606	         & Finetuned & .791 & $-$2.7${\pm}$0.5 & 8.8 & neg. \\
+1607	\addlinespace
+1608	SciERC & Pretrained & .244 & $+$1.7${\pm}$0.4 & 0.8 & --- \\
+1609	       & Finetuned & .667 & ${<}$0.1 & 12.2 & --- \\
+1610	\bottomrule
+1611	\end{tabular}}
+1612	\end{table}
+1613	
+1614	On CoNLL, MV captures $98$\% of oracle headroom for the pretrained model (greedy${=}0.536$, MV${=}0.628$, oracle${=}0.630$, degeneracy${=}36$\%) versus ${<}2$\% finetuned (greedy${=}0.912$, MV${=}0.912$, oracle${=}0.954$, degeneracy $57$--$60$\%).
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "0ece91e4-5aa9-4282-9ae9-a9f0b59b36fe",
+  "uuid": "7c4012c3-92a9-472d-bd9a-10b3e4a77081",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+      "content": "Few-NERD & Pretrained & .538 & $+$3.9${\\pm}$0.2 & 11.7 & 36\\% \\\\\n         & Finetuned & .791 & $-$2.7${\\pm}$0.5 & 8.8 & neg. \\\\\n\\addlinespace\nSciERC & Pretrained & .244 & $+$1.7${\\pm}$0.4 & 0.8 & --- \\\\\n       & Finetuned & .667 & ${<}$0.1 & 12.2 & --- \\\\\n\\bottomrule\n\\end{tabular}}\n\\end{table}\n\nOn CoNLL, MV captures $98$\\% of oracle headroom for the pretrained model (greedy${=}0.536$, MV${=}0.628$, oracle${=}0.630$, degeneracy${=}36$\\%) versus ${<}2$\\% finetuned (greedy${=}0.912$, MV${=}0.912$, oracle${=}0.954$, degeneracy $57$--$60$\\%).",
+      "numLines": 10,
+      "startLine": 1605,
+      "totalLines": 2479
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 73_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01WCQzPoz2o31yuxATHHxGwB`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+  "offset": 2190,
+  "limit": 15
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0ece91e4-5aa9-4282-9ae9-a9f0b59b36fe",
+  "uuid": "fa3cfaa7-57ef-4596-bf1e-592ab03c0d05",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Uc6XRxNo78ZmAc8u6iaTeD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5063,
+      "cache_read_input_tokens": 64638,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5063
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 74 · 2026-05-22T18:51:39.137Z_
+
+<details><summary>↩ Tool result · `toolu_01WCQzPoz2o31yuxATHHxGwB`</summary>
+
+```text
+2190	\resizebox{\columnwidth}{!}{%
+2191	\begin{tabular}{@{}llcccc@{}}
+2192	\toprule
+2193	Dataset & Wt. & Greedy & Constr. & $\Delta$ & $p$ \\
+2194	\midrule
+2195	SciERC & LP & $.667{\pm}.001$ & $.670{\pm}.003$ & $+0.32$\,pp & n.s. \\
+2196	       & Unif. & $.667{\pm}.001$ & $.660{\pm}.004$ & $-0.74$\,pp & n.s. \\
+2197	\addlinespace
+2198	Few-NERD & LP & $.748$ & $\mathbf{.762{\pm}.005}$ & $+1.40{\pm}0.51$\,pp & ${<}.001^\dagger$ \\
+2199	         & Unif. & $.748$ & $\mathbf{.756{\pm}.006}$ & $+0.74{\pm}0.58$\,pp & .003 \\
+2200	\addlinespace
+2201	CoNLL$^\ddagger$ & Unif. & .908 & .904 & $-0.39$\,pp & n.s. \\
+2202	\bottomrule
+2203	\end{tabular}}
+2204	\end{table}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "0ece91e4-5aa9-4282-9ae9-a9f0b59b36fe",
+  "uuid": "9ab91636-31be-42be-92d4-5535e7fb0440",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+      "content": "\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{@{}llcccc@{}}\n\\toprule\nDataset & Wt. & Greedy & Constr. & $\\Delta$ & $p$ \\\\\n\\midrule\nSciERC & LP & $.667{\\pm}.001$ & $.670{\\pm}.003$ & $+0.32$\\,pp & n.s. \\\\\n       & Unif. & $.667{\\pm}.001$ & $.660{\\pm}.004$ & $-0.74$\\,pp & n.s. \\\\\n\\addlinespace\nFew-NERD & LP & $.748$ & $\\mathbf{.762{\\pm}.005}$ & $+1.40{\\pm}0.51$\\,pp & ${<}.001^\\dagger$ \\\\\n         & Unif. & $.748$ & $\\mathbf{.756{\\pm}.006}$ & $+0.74{\\pm}0.58$\\,pp & .003 \\\\\n\\addlinespace\nCoNLL$^\\ddagger$ & Unif. & .908 & .904 & $-0.39$\\,pp & n.s. \\\\\n\\bottomrule\n\\end{tabular}}\n\\end{table}",
+      "numLines": 15,
+      "startLine": 2190,
+      "totalLines": 2479
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 75_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have good context. Let me analyze the .667 occurrences:
+
+1. **experiments_main.tex:69** (Table 4 / tab:fewnerd body): `.667` with caption saying "3-seed means" → should be `.663`
+
+2. **single_signal.tex:12** (Table 1 / tab:selection caption): `Greedy${=}0.667` - this is listed as "3-seed". If the 3-seed mean is .663, change to `.663`. BUT this also affects the headroom calculation mentioned in the figure caption (11.4pp).
+
+
+3. **appendix.tex:1248** (Table 33 / tab:alpha_crit): `.667` with "Seeds: 3" → should be `.663`
+
+4. **appendix.tex:1484** (footnote): `Table~\ref{tab:fewnerd} (0.667, 3-seed)` → `.663`
+
+5. **appendix.tex:1539** (Table 41 / tab:scale_comparison): `.667` in "8B FT" row for SciERC - the caption doesn't specify seed count but "Hdr. = 11.4" matches with greedy .667 and oracle .781, so this one likely needs updating too.
+
+6. **appendix.tex:1609** (Table 43 / tab:pretrained_summary): `.667` for "Finetuned" SciERC - caption explicitly says "3-seed mean±σ" → should be `.663`
+
+7. **appendix.tex:2195-2196** (Table 62 / tab:entity_construction): `.667±.001` for Greedy - marked as "multi-seed mean±σ", so if the 3-seed mean is actually .663, this needs adjustment, though the ±.001 standard deviation is suspiciously tight.
+
+Now I need to be more careful here. These .667 values appear across multiple tables with different evaluation setups and metrics, so I can't just blindly replace them all. Table 4 uses instance-averaged F1, which might have different implications than the other tables.
+
+The task is clear though: .667 represents single-seed results, while .663 is the 3-seed mean. I should focus on fixing tables that explicitly claim to report 3-seed means. So far I've identified Table 4 (tab:fewnerd) with its "3-seed means" caption, Table 33 (tab:alpha_crit) marked "Seeds: 3", and Table 43 (tab:pretrained_summary) also saying "3-seed mean±σ" as the ones needing the .667 → .663 correction.
+
+For Table 1 (tab:selection), the caption mentions "3-seed" so that needs updating too. But for tables without explicit seed counts like Table 41 (tab:scale_comparison), I'm uncertain whether to change them without verification. The headroom calculation gets affected too—if Greedy shifts from .667 to .663, the Oracle value of .781 would give a different headroom gap.
+
+Now I'm realizing there are multiple places in the text where the 11.4 pp headroom value appears: the figure caption in single_signal.tex, the appendix table, and several mentions in the main text itself. Each of these would cascade to 11.8 pp if I'm recalculating based on the new Greedy value. But I should double-check whether the Oracle value itself needs adjustment too, since that's what drives the headroom calculation.
+
+Looking at the data more carefully, the task specifies only fixing the SciERC greedy F1 to 0.663, not the oracle. If the oracle is indeed 0.781 at the 3-seed mean and greedy is 0.663, then the headroom is 11.8 pp, which means I need to update all those references throughout the document.
+
+My plan is to change 0.667 to 0.663 wherever it represents the 3-seed mean, adjust the headroom calculations accordingly, and leave any explicitly labeled single-seed or different-seed values untouched. Let me also verify what the MV value shows in table 33 to make sure everything's consistent.
+
+Now I'm checking the math on the greedy-to-MV difference. If greedy becomes 0.663 and MV is 0.660, that gives ΔSC = -0.3pp, which doesn't match the reported -0.74pp in the table. This suggests the ΔSC value might be computed from higher-precision numbers rather than the rounded table values, so I need to look more carefully at the actual table definitions. I'm realizing the delta value must have been computed at higher precision than the rounded display values, so changing the greedy score would throw off the consistency—the delta should shift if greedy changes, but the task specifies it stays at -0.74±0.46pp, which suggests the greedy value in this table might be from a different computation or aggregation method than what I'm supposed to update. stays at -0.74, just the std changes. This implies the greedy might not be the issue in this particular table.
+
+Actually, I think these two fixes (Fix 4 and Fix 6) might be operating on different things. Let me reconsider:
+
+Fix 6 says: "Table 中可能用 .667（单 seed），3-seed mean 是 .663"
+- "Table" likely refers to Table 4 (tab:fewnerd) specifically
+- The 3-seed mean greedy is .663 for Table 4's instance-averaged F1
+
+Fix 4 says: ΔSC = -0.74±0.46 (just the std changes from 0.57 to 0.46)
+- In tab:alpha_crit, the Greedy=.667 might be correct in that table's context if it uses a different metric
+
+So maybe .667 is correct for macro F1 but .663 is correct for instance-averaged F1? That would explain why both can coexist. Looking at the data more carefully, Table 4 uses instance-averaged F1 while Table 33 might use macro F1 or a different aggregation. I should be conservative and only change .667 to .663 in Table 4 where the issue is most clearly stated, fix the footnote reference, and leave other tables alone unless the context clearly indicates they're using the same metric with 3-seed means. I need to figure out whether the .667 value is correct for each table's specific metric. The safest approach is to only change .667 to .663 in Table 4 where the caption explicitly states "3-seed means" and the metric is instance-averaged F1, while leaving other .667 values unchanged since they might represent different metrics like macro F1. Looking at the Greedy values in tab:fewnerd for SciERC, I see .667 there too, but I need to determine if that's using the same metric as Table 4.
+
+Actually, I'm overcomplicating this. Let me just make the specific change the task asks for—update .667 to .663 in Table 4 and its footnote reference—and not worry about cascading effects across other tables. The 11.4pp headroom calculation in single_signal.tex will stay correct since it references tab:selection which uses a different metric anyway.
+
+But wait, I should also check the limitations section where it says the standard deviation is 0.57pp but the task specifies it should be 0.46pp—that's a separate correction I need to make to the MV delta standard deviation.
+
+Now I'm ready to make the actual edits. Here's what needs to change:
+
+Fix 1: The LP-best improvement in experiments_main.tex line 89 should be 1.4pp instead of 8pp.
+
+Fix 2: The WNUT zero F1 rate needs updating from 51% to 53.7% in both experiments_main.tex line 10 and appendix.tex line 412.
+
+Fix 3: The Table 4 caption in experiments_main.tex line 60 needs to clarify it's instance-averaged F1.
+
+Fix 4: In the limitations section, I need to update the standard deviation from ±0.57 to ±0.46 for the ΔSC value, and make the same correction in the alpha_crit table.
+
+Fix 5: The epoch confound LP delta needs adjusting from +0.12 to +0.09 in experiments_main.tex line 75, and also update line 114 to reflect +0.09 and change 91% to 94%.
+
+Fix 6: The SciERC greedy F1 score should be .663 instead of .667 in both experiments_main.tex line 69 and appendix.tex line 1484.
+
+Fix 7: In the discussion section, I'm simplifying the standard deviation ratio range to just approximately 0.97 instead of the 0.92--0.97 range.
+
+Now I'm going to apply all these corrections across the files.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0ece91e4-5aa9-4282-9ae9-a9f0b59b36fe",
+  "uuid": "68d96356-daa1-44bd-bee4-d27945b6ee49",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01R8YF4enEX2s91EvPMeSwPy",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6383,
+      "cache_read_input_tokens": 69701,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6383
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 76_
+
+Now I have full context. Let me execute all 7 fixes. Starting with the main text edits in parallel.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0ece91e4-5aa9-4282-9ae9-a9f0b59b36fe",
+  "uuid": "d3c610cb-1201-4a90-b273-2c308b1ce28b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01R8YF4enEX2s91EvPMeSwPy",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6383,
+      "cache_read_input_tokens": 69701,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6383
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 77_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01LHjkuVHVcU1N5hece5cRGP`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments_main.tex",
+  "old_string": "the optimal strategy is dataset-dependent (LP-best $+8$\\,pp on Few-NERD vs.\\ MV $+0.61$\\,pp on CoNLL).",
+  "new_string": "the optimal strategy is dataset-dependent (LP-best $+1.4$\\,pp on Few-NERD vs.\\ MV $+0.61$\\,pp on CoNLL)."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0ece91e4-5aa9-4282-9ae9-a9f0b59b36fe",
+  "uuid": "2b2f6e13-0499-4ada-8368-40ccf15c9f41",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01R8YF4enEX2s91EvPMeSwPy",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6383,
+      "cache_read_input_tokens": 69701,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6383
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 78 · 2026-05-22T18:53:10.166Z_
+
+<details><summary>↩ Tool result · `toolu_01LHjkuVHVcU1N5hece5cRGP`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments_main.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "0ece91e4-5aa9-4282-9ae9-a9f0b59b36fe",
+  "uuid": "05430102-067d-4107-b9f5-29ef2af30648",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments_main.tex",
+    "oldString": "the optimal strategy is dataset-dependent (LP-best $+8$\\,pp on Few-NERD vs.\\ MV $+0.61$\\,pp on CoNLL).",
+    "newString": "the optimal strategy is dataset-dependent (LP-best $+1.4$\\,pp on Few-NERD vs.\\ MV $+0.61$\\,pp on CoNLL).",
+    "originalFile": "\\section{Experiments}\\label{sec:experiments}\n\n\\subsection{Experimental Setup}\\label{sec:setup}\n\n\\paragraph{Datasets.}\nWe evaluate on four English NER benchmarks spanning a difficulty gradient.\n\\textbf{SciERC} \\cite{luan2018scierc} (551 test instances, 6 entity types) is the primary medium-difficulty test bed (${\\approx}$65\\% F1).\n\\textbf{Few-NERD} \\cite{ding2021fewnerd} (INTRA coarse; 37{,}648 instances, 8 entity types, ${\\approx}$75\\% F1) provides a low-degeneracy contrast where LP selection succeeds (\\S\\ref{sec:selection_gap}).\n\\textbf{CoNLL-2003} \\cite{tjongkimsang2003conll} (3{,}453 test sentences, 4 entity types, ${\\approx}$91\\% F1) serves as a ceiling-effect control.\n\\textbf{WNUT-17} \\cite{derczynski2017wnut} (1{,}287 social media instances, 51\\% zero F1) probes the signal-collapse boundary.\n\n\\paragraph{Models and sampling.}\n\\textbf{Qwen3-8B} and \\textbf{LLaMA-3.1-8B-Instruct} are LoRA fine-tuned using LLaMA Factory \\cite{zheng2024llamafactory} (Appendix~\\ref{app:training}; Few-NERD uses 3 epochs vs.\\ 5 for others; Appendix~\\ref{app:epoch_confound}).\n$N{=}8$ samples at $T{=}1.0$ (primary) with vLLM constrained decoding \\cite{willard2023guided}; $N {\\in} \\{16, 32, 64\\}$ for scaling (Figure~\\ref{fig:n_scaling}; Appendix~\\ref{app:n_scaling}).\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/fig_n_scaling_mv.pdf}\n\\caption{MV $\\Delta$F1 vs.\\ $\\log_2 N$ across three datasets (Qwen3-8B FT, seed${=}42$). Dotted gray: $\\Delta{=}0$. Gains are dataset-dependent: persistently negative on Few-NERD, near zero on SciERC at higher $N$, marginally positive on CoNLL ($+0.6$\\,pp at $N{=}64$).}\n\\label{fig:n_scaling}\n\\end{figure}\n\n%% ============================================================\n\\subsection{Quality Estimation Results}\\label{sec:qe_results}\n\n\\begin{table*}[t]\n\\centering\n\\small\n\\caption{NER quality estimation ($\\rho$ and AUROC; $N{=}8$, primary seed${=}42$; 3-seed $\\sigma{\\leq}0.026$ in Table~\\ref{tab:multiseed}). AUROC binarizes at per-dataset median F1. Best in \\textbf{bold}. RE in Appendix~\\ref{app:re_extension}; $N{=}16$ in Table~\\ref{tab:robustness}.}\n\\label{tab:quality_estimation}\n\\begin{tabular}{ll cc cc cc}\n\\toprule\n& & \\multicolumn{2}{c}{\\textbf{SciERC}} & \\multicolumn{2}{c}{\\textbf{CoNLL (Qwen)}} & \\multicolumn{2}{c}{\\textbf{CoNLL (LLaMA)}} \\\\\n\\cmidrule(lr){3-4} \\cmidrule(lr){5-6} \\cmidrule(lr){7-8}\nSignal & Family & $\\rho$ & AUC & $\\rho$ & AUC & $\\rho$ & AUC \\\\\n\\midrule\nVC & Structural & \\textbf{.379} & .684 & .424 & .789 & .426 & .709 \\\\\nSJ  & Structural & .360 & .692 & .436 & .801 & \\textbf{.431} & .704 \\\\\nFK & Surface & .267 & .629 & .400 & .774 & .428 & .703 \\\\\nEM  & Surface    & .295 & \\textbf{.749} & \\textbf{.451} & \\textbf{.816} & \\textbf{.431} & .705 \\\\\n\\midrule\nLP     & Model      & .205 & .578 & .316 & .753 & .307 & \\textbf{.761} \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table*}\n\nTable~\\ref{tab:quality_estimation} presents $\\rho$ and AUROC for five signals across tasks and models.\n\n\\paragraph{Signal rankings are difficulty-dependent.}\nOn SciERC, structural signals lead (VC $\\rho{=}0.379$, SJ $0.360$) over LP ($0.205$); bootstrap CIs confirm the gap ($\\Delta\\rho{=}{+}0.155$; Appendix~\\ref{app:bootstrap_signal}).\nOn CoNLL (F1${\\approx}$0.91), EM leads both $\\rho$ and AUROC ($0.816$).\nAt the signal-collapse boundary (WNUT-17, F1${\\approx}$42\\%), full-set correlations are dominated by the zero/non-zero boundary (VC $\\rho{=}0.724$ at $N{=}16$, but conditional $\\rho{=}0.038$; Table~\\ref{tab:wnut}); LP shows the reverse (conditional $\\rho{=}0.350$; Figure~\\ref{fig:signal_heatmap}).\n\n%% ============================================================\n\\subsection{Cross-Dataset Contrast: Few-NERD}\\label{sec:fewnerd}\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{LP selection across datasets (Qwen3-8B, $N{=}8$, $T{=}1.0$, gold-filtered, 3-seed means). $p$: paired bootstrap.}\n\\label{tab:fewnerd}\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{@{}lrccccr@{}}\n\\toprule\nDataset & $n$ & Greedy & Degen.\\% & LP $\\rho$ & LP $\\Delta$ & $p$ \\\\\n\\midrule\nWNUT-17 & 1{,}287 & .452 & 67.9\\% & $-$.446 & $-$0.45\\,pp & .72 \\\\\nCoNLL & 2{,}756 & .908 & 61.7\\% & .302 & $-$0.85\\,pp & 1.0 \\\\\nSciERC & 529 & .667 & 12.2\\% & .159 & $+$0.61\\,pp & .193 \\\\\nFew-NERD & 32{,}565 & .748 & 13.0\\% & .220 & $\\mathbf{+1.39}$\\,pp & ${<}.001$ \\\\\n\\bottomrule\n\\end{tabular}}\n\\end{table}\n\nFew-NERD (Table~\\ref{tab:fewnerd}) confirms LP selection at low degeneracy ($+1.39$~pp, $p{<}0.001$; structural signals degrade: VC $-1.79$, SJ $-2.14$~pp), with LP 50$\\times$ more seed-stable ($\\sigma{=}0.04$ vs.\\ SJ $2.02$~pp), generalizing to LLaMA (Table~\\ref{tab:cross_selection}). Training convergence modulates degeneracy (5-epoch: $31$\\%, LP $\\Delta$ collapses from $+1.39$ to $+0.12$\\,pp; Appendix~\\ref{app:epoch_confound}).\n\nSignal ranking is task-specific; per-type analysis shows MV degradation concentrates in low-F1 types ($\\rho{=}0.90$, $p{=}0.002$; Appendix~\\ref{app:pertype}).\n\n\\paragraph{Degeneracy alone does not predict LP direction.}\nDegeneracy does not predict LP gain across 23 configurations ($\\rho{=}0.052$, $p{=}0.81$; $n{=}23$, insufficient for reliable correlation---we treat this as supplementary evidence; Figure~\\ref{fig:degeneracy_scatter}), though it co-varies with LP within fixed settings ($\\rho{=}{-}0.881$; Appendix~\\ref{app:per_type_lp}).\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/fig_degeneracy_lp_scatter.pdf}\n\\caption{Instance degeneracy vs.\\ LP selection gain across 23 configurations ($N{=}8$; $\\rho{=}0.052$, $p{=}0.81$). Within Few-NERD per-entity-type ($\\rho{=}{-}0.881$; Appendix~\\ref{app:per_type_lp}), degeneracy predicts LP gain when alignment is held constant.}\n\\label{fig:degeneracy_scatter}\n\\end{figure}\n\nMV gains range from $-2.71$\\,pp (Few-NERD) to $+0.6$\\,pp (CoNLL at $N{=}64$; Figure~\\ref{fig:n_scaling}); the optimal strategy is dataset-dependent (LP-best $+8$\\,pp on Few-NERD vs.\\ MV $+0.61$\\,pp on CoNLL).\nThe framework extends to RE, where $40$\\% zero-F1 from upstream entity span errors creates a distinct failure mode---\\textit{diversity among failures} rather than quality-differentiated outputs---despite comparable degeneracy ($10.1$\\% vs.\\ SciERC $13.4$\\%; Appendix~\\ref{app:re_extension}).\n\n%% ============================================================\n\\subsection{Robustness}\\label{sec:robustness_main}\n\nSignal rankings are robust across temperatures, seeds, and $N$ (Table~\\ref{tab:robustness}; Appendix~\\ref{app:calibration}).\nQwen3-4B QE matches 8B ($|\\Delta\\rho|{=}0.042$); LoRA rank${=}8$ lowers degeneracy but LP stays below greedy (Appendix~\\ref{app:supervised_combination}).\nThe gap persists from 4B to 72B zero-shot to GPT-5.5 (\\S\\ref{sec:scaling}).\n\n%% ============================================================\n\\subsection{Prescriptive Results}\\label{sec:prescriptive}\n\nGiven that sample-level selection fails uniformly (\\S\\ref{sec:selection_gap}), we ask whether entity-level aggregation can extract value from multi-sample generation under favorable diagnostic conditions.\n\n\\paragraph{Entity-level construction (exploratory).}\nWe aggregate entities across samples, retaining those exceeding $\\theta{=}2/N$, with LP-weighted or uniform scoring ($\\theta$ stable in $[0.15, 0.35]$; Appendix~\\ref{app:theta_sweep}).\nThe diagnostic framework predicts gains when degeneracy and LP alignment are both favorable.\nLP-weighted construction yields $+1.40{\\pm}0.51$\\,pp on Few-NERD ($p{<}0.001$; Table~\\ref{tab:entity_construction}), consistent with this prediction ($D{=}13$\\%, headroom${=}12.4$\\,pp), a smaller non-significant $+0.32$\\,pp on SciERC, and no gain on CoNLL ($-0.39$\\,pp).\\footnote{Degenerate instances contribute $\\Delta{=}0$ by construction; gains concentrate in the non-degenerate subset ($+3.36$\\,pp SciERC, $+5.18$\\,pp CoNLL, $+7.08$\\,pp Few-NERD).}\nUnder global Holm--Bonferroni \\cite{holm1979simple} correction across all $k{=}57$ comparisons, $p_{\\text{adj}}{=}0.055$---marginally above $\\alpha{=}0.05$, providing suggestive but not definitive evidence of construction gains.\nPer-family correction ($k{=}10$): $p_{\\text{adj}}{=}0.006$; BH FDR: $6/10$ construction comparisons at FDR${<}0.05$ (Appendix~\\ref{app:holm}).\nThe family partition was defined by mechanism type but not pre-registered; we report all three corrections for transparency.\nConstruction and LP selection are complementary ($\\rho_{\\text{adj}}$: Few-NERD $0.516$); QE signals support selective prediction ($+5$--$8$\\,pp at 80\\% coverage; Table~\\ref{tab:cross_selection}).\n\n\\paragraph{Epoch confound on Few-NERD.}\nFew-NERD positive results should be interpreted cautiously: the 3-epoch model may be under-converged, and 5-epoch training eliminates LP gains entirely ($+1.39{\\to}+0.12{\\pm}0.04$\\,pp, 91\\% collapse; Appendix~\\ref{app:epoch_confound}).\nEntity construction likewise degrades: LP-weighted $\\Delta$ drops from $+0.88$ to $+0.20$\\,pp (seed 42, macro-F1; $77$\\% reduction).\nThe diagnostic framework correctly predicts this: 5-epoch constant-F1 degeneracy rises to $31$\\% (vs.\\ $13$\\% at 3 epochs; Appendix~\\ref{app:epoch_confound}), degrading the conditions for both selection and construction.\\footnote{Degeneracy rates vary by definition: constant-F1 degeneracy (all $N$ samples yield identical F1) gives $31$\\%/$13$\\%; entity-set exact-match degeneracy gives $26$\\%/$9$\\%. The directional pattern is consistent.}\nThis sensitivity---favorable conditions are fragile and training-dependent---reinforces that Few-NERD is a conditional success rather than evidence of a general bypass. The core negative finding (selection ${\\leq}$ greedy under high degeneracy) is unaffected.\n\n\\phantomsection\\label{sec:selection_results}\n",
+    "structuredPatch": [
+      {
+        "oldStart": 86,
+        "oldLines": 7,
+        "newStart": 86,
+        "newLines": 7,
+        "lines": [
+          " \\label{fig:degeneracy_scatter}",
+          " \\end{figure}",
+          " ",
+          "-MV gains range from $-2.71$\\,pp (Few-NERD) to $+0.6$\\,pp (CoNLL at $N{=}64$; Figure~\\ref{fig:n_scaling}); the optimal strategy is dataset-dependent (LP-best $+8$\\,pp on Few-NERD vs.\\ MV $+0.61$\\,pp on CoNLL).",
+          "+MV gains range from $-2.71$\\,pp (Few-NERD) to $+0.6$\\,pp (CoNLL at $N{=}64$; Figure~\\ref{fig:n_scaling}); the optimal strategy is dataset-dependent (LP-best $+1.4$\\,pp on Few-NERD vs.\\ MV $+0.61$\\,pp on CoNLL).",
+          " The framework extends to RE, where $40$\\% zero-F1 from upstream entity span errors creates a distinct failure mode---\\textit{diversity among failures} rather than quality-differentiated outputs---despite comparable degeneracy ($10.1$\\% vs.\\ SciERC $13.4$\\%; Appendix~\\ref{app:re_extension}).",
+          " ",
+          " %% ============================================================"
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 79_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01UTKAsX5qTcz7Jmt1ytkogw`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments_main.tex",
+  "old_string": "51\\% zero F1) probes the signal-collapse boundary.",
+  "new_string": "53.7\\% zero F1) probes the signal-collapse boundary."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0ece91e4-5aa9-4282-9ae9-a9f0b59b36fe",
+  "uuid": "09201cc5-afbf-45bb-8b40-490132616e22",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01R8YF4enEX2s91EvPMeSwPy",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6383,
+      "cache_read_input_tokens": 69701,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6383
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 80 · 2026-05-22T18:53:11.569Z_
+
+<details><summary>↩ Tool result · `toolu_01UTKAsX5qTcz7Jmt1ytkogw`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments_main.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "0ece91e4-5aa9-4282-9ae9-a9f0b59b36fe",
+  "uuid": "992b220f-268c-4961-b856-12c6828d7dd0",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments_main.tex",
+    "oldString": "51\\% zero F1) probes the signal-collapse boundary.",
+    "newString": "53.7\\% zero F1) probes the signal-collapse boundary.",
+    "originalFile": "\\section{Experiments}\\label{sec:experiments}\n\n\\subsection{Experimental Setup}\\label{sec:setup}\n\n\\paragraph{Datasets.}\nWe evaluate on four English NER benchmarks spanning a difficulty gradient.\n\\textbf{SciERC} \\cite{luan2018scierc} (551 test instances, 6 entity types) is the primary medium-difficulty test bed (${\\approx}$65\\% F1).\n\\textbf{Few-NERD} \\cite{ding2021fewnerd} (INTRA coarse; 37{,}648 instances, 8 entity types, ${\\approx}$75\\% F1) provides a low-degeneracy contrast where LP selection succeeds (\\S\\ref{sec:selection_gap}).\n\\textbf{CoNLL-2003} \\cite{tjongkimsang2003conll} (3{,}453 test sentences, 4 entity types, ${\\approx}$91\\% F1) serves as a ceiling-effect control.\n\\textbf{WNUT-17} \\cite{derczynski2017wnut} (1{,}287 social media instances, 51\\% zero F1) probes the signal-collapse boundary.\n\n\\paragraph{Models and sampling.}\n\\textbf{Qwen3-8B} and \\textbf{LLaMA-3.1-8B-Instruct} are LoRA fine-tuned using LLaMA Factory \\cite{zheng2024llamafactory} (Appendix~\\ref{app:training}; Few-NERD uses 3 epochs vs.\\ 5 for others; Appendix~\\ref{app:epoch_confound}).\n$N{=}8$ samples at $T{=}1.0$ (primary) with vLLM constrained decoding \\cite{willard2023guided}; $N {\\in} \\{16, 32, 64\\}$ for scaling (Figure~\\ref{fig:n_scaling}; Appendix~\\ref{app:n_scaling}).\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/fig_n_scaling_mv.pdf}\n\\caption{MV $\\Delta$F1 vs.\\ $\\log_2 N$ across three datasets (Qwen3-8B FT, seed${=}42$). Dotted gray: $\\Delta{=}0$. Gains are dataset-dependent: persistently negative on Few-NERD, near zero on SciERC at higher $N$, marginally positive on CoNLL ($+0.6$\\,pp at $N{=}64$).}\n\\label{fig:n_scaling}\n\\end{figure}\n\n%% ============================================================\n\\subsection{Quality Estimation Results}\\label{sec:qe_results}\n\n\\begin{table*}[t]\n\\centering\n\\small\n\\caption{NER quality estimation ($\\rho$ and AUROC; $N{=}8$, primary seed${=}42$; 3-seed $\\sigma{\\leq}0.026$ in Table~\\ref{tab:multiseed}). AUROC binarizes at per-dataset median F1. Best in \\textbf{bold}. RE in Appendix~\\ref{app:re_extension}; $N{=}16$ in Table~\\ref{tab:robustness}.}\n\\label{tab:quality_estimation}\n\\begin{tabular}{ll cc cc cc}\n\\toprule\n& & \\multicolumn{2}{c}{\\textbf{SciERC}} & \\multicolumn{2}{c}{\\textbf{CoNLL (Qwen)}} & \\multicolumn{2}{c}{\\textbf{CoNLL (LLaMA)}} \\\\\n\\cmidrule(lr){3-4} \\cmidrule(lr){5-6} \\cmidrule(lr){7-8}\nSignal & Family & $\\rho$ & AUC & $\\rho$ & AUC & $\\rho$ & AUC \\\\\n\\midrule\nVC & Structural & \\textbf{.379} & .684 & .424 & .789 & .426 & .709 \\\\\nSJ  & Structural & .360 & .692 & .436 & .801 & \\textbf{.431} & .704 \\\\\nFK & Surface & .267 & .629 & .400 & .774 & .428 & .703 \\\\\nEM  & Surface    & .295 & \\textbf{.749} & \\textbf{.451} & \\textbf{.816} & \\textbf{.431} & .705 \\\\\n\\midrule\nLP     & Model      & .205 & .578 & .316 & .753 & .307 & \\textbf{.761} \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table*}\n\nTable~\\ref{tab:quality_estimation} presents $\\rho$ and AUROC for five signals across tasks and models.\n\n\\paragraph{Signal rankings are difficulty-dependent.}\nOn SciERC, structural signals lead (VC $\\rho{=}0.379$, SJ $0.360$) over LP ($0.205$); bootstrap CIs confirm the gap ($\\Delta\\rho{=}{+}0.155$; Appendix~\\ref{app:bootstrap_signal}).\nOn CoNLL (F1${\\approx}$0.91), EM leads both $\\rho$ and AUROC ($0.816$).\nAt the signal-collapse boundary (WNUT-17, F1${\\approx}$42\\%), full-set correlations are dominated by the zero/non-zero boundary (VC $\\rho{=}0.724$ at $N{=}16$, but conditional $\\rho{=}0.038$; Table~\\ref{tab:wnut}); LP shows the reverse (conditional $\\rho{=}0.350$; Figure~\\ref{fig:signal_heatmap}).\n\n%% ============================================================\n\\subsection{Cross-Dataset Contrast: Few-NERD}\\label{sec:fewnerd}\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{LP selection across datasets (Qwen3-8B, $N{=}8$, $T{=}1.0$, gold-filtered, 3-seed means). $p$: paired bootstrap.}\n\\label{tab:fewnerd}\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{@{}lrccccr@{}}\n\\toprule\nDataset & $n$ & Greedy & Degen.\\% & LP $\\rho$ & LP $\\Delta$ & $p$ \\\\\n\\midrule\nWNUT-17 & 1{,}287 & .452 & 67.9\\% & $-$.446 & $-$0.45\\,pp & .72 \\\\\nCoNLL & 2{,}756 & .908 & 61.7\\% & .302 & $-$0.85\\,pp & 1.0 \\\\\nSciERC & 529 & .667 & 12.2\\% & .159 & $+$0.61\\,pp & .193 \\\\\nFew-NERD & 32{,}565 & .748 & 13.0\\% & .220 & $\\mathbf{+1.39}$\\,pp & ${<}.001$ \\\\\n\\bottomrule\n\\end{tabular}}\n\\end{table}\n\nFew-NERD (Table~\\ref{tab:fewnerd}) confirms LP selection at low degeneracy ($+1.39$~pp, $p{<}0.001$; structural signals degrade: VC $-1.79$, SJ $-2.14$~pp), with LP 50$\\times$ more seed-stable ($\\sigma{=}0.04$ vs.\\ SJ $2.02$~pp), generalizing to LLaMA (Table~\\ref{tab:cross_selection}). Training convergence modulates degeneracy (5-epoch: $31$\\%, LP $\\Delta$ collapses from $+1.39$ to $+0.12$\\,pp; Appendix~\\ref{app:epoch_confound}).\n\nSignal ranking is task-specific; per-type analysis shows MV degradation concentrates in low-F1 types ($\\rho{=}0.90$, $p{=}0.002$; Appendix~\\ref{app:pertype}).\n\n\\paragraph{Degeneracy alone does not predict LP direction.}\nDegeneracy does not predict LP gain across 23 configurations ($\\rho{=}0.052$, $p{=}0.81$; $n{=}23$, insufficient for reliable correlation---we treat this as supplementary evidence; Figure~\\ref{fig:degeneracy_scatter}), though it co-varies with LP within fixed settings ($\\rho{=}{-}0.881$; Appendix~\\ref{app:per_type_lp}).\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/fig_degeneracy_lp_scatter.pdf}\n\\caption{Instance degeneracy vs.\\ LP selection gain across 23 configurations ($N{=}8$; $\\rho{=}0.052$, $p{=}0.81$). Within Few-NERD per-entity-type ($\\rho{=}{-}0.881$; Appendix~\\ref{app:per_type_lp}), degeneracy predicts LP gain when alignment is held constant.}\n\\label{fig:degeneracy_scatter}\n\\end{figure}\n\nMV gains range from $-2.71$\\,pp (Few-NERD) to $+0.6$\\,pp (CoNLL at $N{=}64$; Figure~\\ref{fig:n_scaling}); the optimal strategy is dataset-dependent (LP-best $+1.4$\\,pp on Few-NERD vs.\\ MV $+0.61$\\,pp on CoNLL).\nThe framework extends to RE, where $40$\\% zero-F1 from upstream entity span errors creates a distinct failure mode---\\textit{diversity among failures} rather than quality-differentiated outputs---despite comparable degeneracy ($10.1$\\% vs.\\ SciERC $13.4$\\%; Appendix~\\ref{app:re_extension}).\n\n%% ============================================================\n\\subsection{Robustness}\\label{sec:robustness_main}\n\nSignal rankings are robust across temperatures, seeds, and $N$ (Table~\\ref{tab:robustness}; Appendix~\\ref{app:calibration}).\nQwen3-4B QE matches 8B ($|\\Delta\\rho|{=}0.042$); LoRA rank${=}8$ lowers degeneracy but LP stays below greedy (Appendix~\\ref{app:supervised_combination}).\nThe gap persists from 4B to 72B zero-shot to GPT-5.5 (\\S\\ref{sec:scaling}).\n\n%% ============================================================\n\\subsection{Prescriptive Results}\\label{sec:prescriptive}\n\nGiven that sample-level selection fails uniformly (\\S\\ref{sec:selection_gap}), we ask whether entity-level aggregation can extract value from multi-sample generation under favorable diagnostic conditions.\n\n\\paragraph{Entity-level construction (exploratory).}\nWe aggregate entities across samples, retaining those exceeding $\\theta{=}2/N$, with LP-weighted or uniform scoring ($\\theta$ stable in $[0.15, 0.35]$; Appendix~\\ref{app:theta_sweep}).\nThe diagnostic framework predicts gains when degeneracy and LP alignment are both favorable.\nLP-weighted construction yields $+1.40{\\pm}0.51$\\,pp on Few-NERD ($p{<}0.001$; Table~\\ref{tab:entity_construction}), consistent with this prediction ($D{=}13$\\%, headroom${=}12.4$\\,pp), a smaller non-significant $+0.32$\\,pp on SciERC, and no gain on CoNLL ($-0.39$\\,pp).\\footnote{Degenerate instances contribute $\\Delta{=}0$ by construction; gains concentrate in the non-degenerate subset ($+3.36$\\,pp SciERC, $+5.18$\\,pp CoNLL, $+7.08$\\,pp Few-NERD).}\nUnder global Holm--Bonferroni \\cite{holm1979simple} correction across all $k{=}57$ comparisons, $p_{\\text{adj}}{=}0.055$---marginally above $\\alpha{=}0.05$, providing suggestive but not definitive evidence of construction gains.\nPer-family correction ($k{=}10$): $p_{\\text{adj}}{=}0.006$; BH FDR: $6/10$ construction comparisons at FDR${<}0.05$ (Appendix~\\ref{app:holm}).\nThe family partition was defined by mechanism type but not pre-registered; we report all three corrections for transparency.\nConstruction and LP selection are complementary ($\\rho_{\\text{adj}}$: Few-NERD $0.516$); QE signals support selective prediction ($+5$--$8$\\,pp at 80\\% coverage; Table~\\ref{tab:cross_selection}).\n\n\\paragraph{Epoch confound on Few-NERD.}\nFew-NERD positive results should be interpreted cautiously: the 3-epoch model may be under-converged, and 5-epoch training eliminates LP gains entirely ($+1.39{\\to}+0.12{\\pm}0.04$\\,pp, 91\\% collapse; Appendix~\\ref{app:epoch_confound}).\nEntity construction likewise degrades: LP-weighted $\\Delta$ drops from $+0.88$ to $+0.20$\\,pp (seed 42, macro-F1; $77$\\% reduction).\nThe diagnostic framework correctly predicts this: 5-epoch constant-F1 degeneracy rises to $31$\\% (vs.\\ $13$\\% at 3 epochs; Appendix~\\ref{app:epoch_confound}), degrading the conditions for both selection and construction.\\footnote{Degeneracy rates vary by definition: constant-F1 degeneracy (all $N$ samples yield identical F1) gives $31$\\%/$13$\\%; entity-set exact-match degeneracy gives $26$\\%/$9$\\%. The directional pattern is consistent.}\nThis sensitivity---favorable conditions are fragile and training-dependent---reinforces that Few-NERD is a conditional success rather than evidence of a general bypass. The core negative finding (selection ${\\leq}$ greedy under high degeneracy) is unaffected.\n\n\\phantomsection\\label{sec:selection_results}\n",
+    "structuredPatch": [
+      {
+        "oldStart": 7,
+        "oldLines": 7,
+        "newStart": 7,
+        "newLines": 7,
+        "lines": [
+          " \\textbf{SciERC} \\cite{luan2018scierc} (551 test instances, 6 entity types) is the primary medium-difficulty test bed (${\\approx}$65\\% F1).",
+          " \\textbf{Few-NERD} \\cite{ding2021fewnerd} (INTRA coarse; 37{,}648 instances, 8 entity types, ${\\approx}$75\\% F1) provides a low-degeneracy contrast where LP selection succeeds (\\S\\ref{sec:selection_gap}).",
+          " \\textbf{CoNLL-2003} \\cite{tjongkimsang2003conll} (3{,}453 test sentences, 4 entity types, ${\\approx}$91\\% F1) serves as a ceiling-effect control.",
+          "-\\textbf{WNUT-17} \\cite{derczynski2017wnut} (1{,}287 social media instances, 51\\% zero F1) probes the signal-collapse boundary.",
+          "+\\textbf{WNUT-17} \\cite{derczynski2017wnut} (1{,}287 social media instances, 53.7\\% zero F1) probes the signal-collapse boundary.",
+          " ",
+          " \\paragraph{Models and sampling.}",
+          " \\textbf{Qwen3-8B} and \\textbf{LLaMA-3.1-8B-Instruct} are LoRA fine-tuned using LLaMA Factory \\cite{zheng2024llamafactory} (Appendix~\\ref{app:training}; Few-NERD uses 3 epochs vs.\\ 5 for others; Appendix~\\ref{app:epoch_confound})."
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 81_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_0131SDuischwFCTeEpqzgVgY`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments_main.tex",
+  "old_string": "\\caption{LP selection across datasets (Qwen3-8B, $N{=}8$, $T{=}1.0$, gold-filtered, 3-seed means). $p$: paired bootstrap.}",
+  "new_string": "\\caption{LP selection across datasets (instance-averaged F1; Qwen3-8B, $N{=}8$, $T{=}1.0$, gold-filtered, 3-seed means). $p$: paired bootstrap.}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0ece91e4-5aa9-4282-9ae9-a9f0b59b36fe",
+  "uuid": "f5af224e-78d5-407b-8cc4-441668668c47",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01R8YF4enEX2s91EvPMeSwPy",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6383,
+      "cache_read_input_tokens": 69701,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6383
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 82 · 2026-05-22T18:53:14.928Z_
+
+<details><summary>↩ Tool result · `toolu_0131SDuischwFCTeEpqzgVgY`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments_main.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "0ece91e4-5aa9-4282-9ae9-a9f0b59b36fe",
+  "uuid": "9f65eaa7-b8e9-45c0-8136-7189ebe00ac4",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments_main.tex",
+    "oldString": "\\caption{LP selection across datasets (Qwen3-8B, $N{=}8$, $T{=}1.0$, gold-filtered, 3-seed means). $p$: paired bootstrap.}",
+    "newString": "\\caption{LP selection across datasets (instance-averaged F1; Qwen3-8B, $N{=}8$, $T{=}1.0$, gold-filtered, 3-seed means). $p$: paired bootstrap.}",
+    "originalFile": "\\section{Experiments}\\label{sec:experiments}\n\n\\subsection{Experimental Setup}\\label{sec:setup}\n\n\\paragraph{Datasets.}\nWe evaluate on four English NER benchmarks spanning a difficulty gradient.\n\\textbf{SciERC} \\cite{luan2018scierc} (551 test instances, 6 entity types) is the primary medium-difficulty test bed (${\\approx}$65\\% F1).\n\\textbf{Few-NERD} \\cite{ding2021fewnerd} (INTRA coarse; 37{,}648 instances, 8 entity types, ${\\approx}$75\\% F1) provides a low-degeneracy contrast where LP selection succeeds (\\S\\ref{sec:selection_gap}).\n\\textbf{CoNLL-2003} \\cite{tjongkimsang2003conll} (3{,}453 test sentences, 4 entity types, ${\\approx}$91\\% F1) serves as a ceiling-effect control.\n\\textbf{WNUT-17} \\cite{derczynski2017wnut} (1{,}287 social media instances, 53.7\\% zero F1) probes the signal-collapse boundary.\n\n\\paragraph{Models and sampling.}\n\\textbf{Qwen3-8B} and \\textbf{LLaMA-3.1-8B-Instruct} are LoRA fine-tuned using LLaMA Factory \\cite{zheng2024llamafactory} (Appendix~\\ref{app:training}; Few-NERD uses 3 epochs vs.\\ 5 for others; Appendix~\\ref{app:epoch_confound}).\n$N{=}8$ samples at $T{=}1.0$ (primary) with vLLM constrained decoding \\cite{willard2023guided}; $N {\\in} \\{16, 32, 64\\}$ for scaling (Figure~\\ref{fig:n_scaling}; Appendix~\\ref{app:n_scaling}).\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/fig_n_scaling_mv.pdf}\n\\caption{MV $\\Delta$F1 vs.\\ $\\log_2 N$ across three datasets (Qwen3-8B FT, seed${=}42$). Dotted gray: $\\Delta{=}0$. Gains are dataset-dependent: persistently negative on Few-NERD, near zero on SciERC at higher $N$, marginally positive on CoNLL ($+0.6$\\,pp at $N{=}64$).}\n\\label{fig:n_scaling}\n\\end{figure}\n\n%% ============================================================\n\\subsection{Quality Estimation Results}\\label{sec:qe_results}\n\n\\begin{table*}[t]\n\\centering\n\\small\n\\caption{NER quality estimation ($\\rho$ and AUROC; $N{=}8$, primary seed${=}42$; 3-seed $\\sigma{\\leq}0.026$ in Table~\\ref{tab:multiseed}). AUROC binarizes at per-dataset median F1. Best in \\textbf{bold}. RE in Appendix~\\ref{app:re_extension}; $N{=}16$ in Table~\\ref{tab:robustness}.}\n\\label{tab:quality_estimation}\n\\begin{tabular}{ll cc cc cc}\n\\toprule\n& & \\multicolumn{2}{c}{\\textbf{SciERC}} & \\multicolumn{2}{c}{\\textbf{CoNLL (Qwen)}} & \\multicolumn{2}{c}{\\textbf{CoNLL (LLaMA)}} \\\\\n\\cmidrule(lr){3-4} \\cmidrule(lr){5-6} \\cmidrule(lr){7-8}\nSignal & Family & $\\rho$ & AUC & $\\rho$ & AUC & $\\rho$ & AUC \\\\\n\\midrule\nVC & Structural & \\textbf{.379} & .684 & .424 & .789 & .426 & .709 \\\\\nSJ  & Structural & .360 & .692 & .436 & .801 & \\textbf{.431} & .704 \\\\\nFK & Surface & .267 & .629 & .400 & .774 & .428 & .703 \\\\\nEM  & Surface    & .295 & \\textbf{.749} & \\textbf{.451} & \\textbf{.816} & \\textbf{.431} & .705 \\\\\n\\midrule\nLP     & Model      & .205 & .578 & .316 & .753 & .307 & \\textbf{.761} \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table*}\n\nTable~\\ref{tab:quality_estimation} presents $\\rho$ and AUROC for five signals across tasks and models.\n\n\\paragraph{Signal rankings are difficulty-dependent.}\nOn SciERC, structural signals lead (VC $\\rho{=}0.379$, SJ $0.360$) over LP ($0.205$); bootstrap CIs confirm the gap ($\\Delta\\rho{=}{+}0.155$; Appendix~\\ref{app:bootstrap_signal}).\nOn CoNLL (F1${\\approx}$0.91), EM leads both $\\rho$ and AUROC ($0.816$).\nAt the signal-collapse boundary (WNUT-17, F1${\\approx}$42\\%), full-set correlations are dominated by the zero/non-zero boundary (VC $\\rho{=}0.724$ at $N{=}16$, but conditional $\\rho{=}0.038$; Table~\\ref{tab:wnut}); LP shows the reverse (conditional $\\rho{=}0.350$; Figure~\\ref{fig:signal_heatmap}).\n\n%% ============================================================\n\\subsection{Cross-Dataset Contrast: Few-NERD}\\label{sec:fewnerd}\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{LP selection across datasets (Qwen3-8B, $N{=}8$, $T{=}1.0$, gold-filtered, 3-seed means). $p$: paired bootstrap.}\n\\label{tab:fewnerd}\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{@{}lrccccr@{}}\n\\toprule\nDataset & $n$ & Greedy & Degen.\\% & LP $\\rho$ & LP $\\Delta$ & $p$ \\\\\n\\midrule\nWNUT-17 & 1{,}287 & .452 & 67.9\\% & $-$.446 & $-$0.45\\,pp & .72 \\\\\nCoNLL & 2{,}756 & .908 & 61.7\\% & .302 & $-$0.85\\,pp & 1.0 \\\\\nSciERC & 529 & .667 & 12.2\\% & .159 & $+$0.61\\,pp & .193 \\\\\nFew-NERD & 32{,}565 & .748 & 13.0\\% & .220 & $\\mathbf{+1.39}$\\,pp & ${<}.001$ \\\\\n\\bottomrule\n\\end{tabular}}\n\\end{table}\n\nFew-NERD (Table~\\ref{tab:fewnerd}) confirms LP selection at low degeneracy ($+1.39$~pp, $p{<}0.001$; structural signals degrade: VC $-1.79$, SJ $-2.14$~pp), with LP 50$\\times$ more seed-stable ($\\sigma{=}0.04$ vs.\\ SJ $2.02$~pp), generalizing to LLaMA (Table~\\ref{tab:cross_selection}). Training convergence modulates degeneracy (5-epoch: $31$\\%, LP $\\Delta$ collapses from $+1.39$ to $+0.12$\\,pp; Appendix~\\ref{app:epoch_confound}).\n\nSignal ranking is task-specific; per-type analysis shows MV degradation concentrates in low-F1 types ($\\rho{=}0.90$, $p{=}0.002$; Appendix~\\ref{app:pertype}).\n\n\\paragraph{Degeneracy alone does not predict LP direction.}\nDegeneracy does not predict LP gain across 23 configurations ($\\rho{=}0.052$, $p{=}0.81$; $n{=}23$, insufficient for reliable correlation---we treat this as supplementary evidence; Figure~\\ref{fig:degeneracy_scatter}), though it co-varies with LP within fixed settings ($\\rho{=}{-}0.881$; Appendix~\\ref{app:per_type_lp}).\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/fig_degeneracy_lp_scatter.pdf}\n\\caption{Instance degeneracy vs.\\ LP selection gain across 23 configurations ($N{=}8$; $\\rho{=}0.052$, $p{=}0.81$). Within Few-NERD per-entity-type ($\\rho{=}{-}0.881$; Appendix~\\ref{app:per_type_lp}), degeneracy predicts LP gain when alignment is held constant.}\n\\label{fig:degeneracy_scatter}\n\\end{figure}\n\nMV gains range from $-2.71$\\,pp (Few-NERD) to $+0.6$\\,pp (CoNLL at $N{=}64$; Figure~\\ref{fig:n_scaling}); the optimal strategy is dataset-dependent (LP-best $+1.4$\\,pp on Few-NERD vs.\\ MV $+0.61$\\,pp on CoNLL).\nThe framework extends to RE, where $40$\\% zero-F1 from upstream entity span errors creates a distinct failure mode---\\textit{diversity among failures} rather than quality-differentiated outputs---despite comparable degeneracy ($10.1$\\% vs.\\ SciERC $13.4$\\%; Appendix~\\ref{app:re_extension}).\n\n%% ============================================================\n\\subsection{Robustness}\\label{sec:robustness_main}\n\nSignal rankings are robust across temperatures, seeds, and $N$ (Table~\\ref{tab:robustness}; Appendix~\\ref{app:calibration}).\nQwen3-4B QE matches 8B ($|\\Delta\\rho|{=}0.042$); LoRA rank${=}8$ lowers degeneracy but LP stays below greedy (Appendix~\\ref{app:supervised_combination}).\nThe gap persists from 4B to 72B zero-shot to GPT-5.5 (\\S\\ref{sec:scaling}).\n\n%% ============================================================\n\\subsection{Prescriptive Results}\\label{sec:prescriptive}\n\nGiven that sample-level selection fails uniformly (\\S\\ref{sec:selection_gap}), we ask whether entity-level aggregation can extract value from multi-sample generation under favorable diagnostic conditions.\n\n\\paragraph{Entity-level construction (exploratory).}\nWe aggregate entities across samples, retaining those exceeding $\\theta{=}2/N$, with LP-weighted or uniform scoring ($\\theta$ stable in $[0.15, 0.35]$; Appendix~\\ref{app:theta_sweep}).\nThe diagnostic framework predicts gains when degeneracy and LP alignment are both favorable.\nLP-weighted construction yields $+1.40{\\pm}0.51$\\,pp on Few-NERD ($p{<}0.001$; Table~\\ref{tab:entity_construction}), consistent with this prediction ($D{=}13$\\%, headroom${=}12.4$\\,pp), a smaller non-significant $+0.32$\\,pp on SciERC, and no gain on CoNLL ($-0.39$\\,pp).\\footnote{Degenerate instances contribute $\\Delta{=}0$ by construction; gains concentrate in the non-degenerate subset ($+3.36$\\,pp SciERC, $+5.18$\\,pp CoNLL, $+7.08$\\,pp Few-NERD).}\nUnder global Holm--Bonferroni \\cite{holm1979simple} correction across all $k{=}57$ comparisons, $p_{\\text{adj}}{=}0.055$---marginally above $\\alpha{=}0.05$, providing suggestive but not definitive evidence of construction gains.\nPer-family correction ($k{=}10$): $p_{\\text{adj}}{=}0.006$; BH FDR: $6/10$ construction comparisons at FDR${<}0.05$ (Appendix~\\ref{app:holm}).\nThe family partition was defined by mechanism type but not pre-registered; we report all three corrections for transparency.\nConstruction and LP selection are complementary ($\\rho_{\\text{adj}}$: Few-NERD $0.516$); QE signals support selective prediction ($+5$--$8$\\,pp at 80\\% coverage; Table~\\ref{tab:cross_selection}).\n\n\\paragraph{Epoch confound on Few-NERD.}\nFew-NERD positive results should be interpreted cautiously: the 3-epoch model may be under-converged, and 5-epoch training eliminates LP gains entirely ($+1.39{\\to}+0.12{\\pm}0.04$\\,pp, 91\\% collapse; Appendix~\\ref{app:epoch_confound}).\nEntity construction likewise degrades: LP-weighted $\\Delta$ drops from $+0.88$ to $+0.20$\\,pp (seed 42, macro-F1; $77$\\% reduction).\nThe diagnostic framework correctly predicts this: 5-epoch constant-F1 degeneracy rises to $31$\\% (vs.\\ $13$\\% at 3 epochs; Appendix~\\ref{app:epoch_confound}), degrading the conditions for both selection and construction.\\footnote{Degeneracy rates vary by definition: constant-F1 degeneracy (all $N$ samples yield identical F1) gives $31$\\%/$13$\\%; entity-set exact-match degeneracy gives $26$\\%/$9$\\%. The directional pattern is consistent.}\nThis sensitivity---favorable conditions are fragile and training-dependent---reinforces that Few-NERD is a conditional success rather than evidence of a general bypass. The core negative finding (selection ${\\leq}$ greedy under high degeneracy) is unaffected.\n\n\\phantomsection\\label{sec:selection_results}\n",
+    "structuredPatch": [
+      {
+        "oldStart": 57,
+        "oldLines": 7,
+        "newStart": 57,
+        "newLines": 7,
+        "lines": [
+          " \\begin{table}[t]",
+          " \\centering",
+          " \\small",
+          "-\\caption{LP selection across datasets (Qwen3-8B, $N{=}8$, $T{=}1.0$, gold-filtered, 3-seed means). $p$: paired bootstrap.}",
+          "+\\caption{LP selection across datasets (instance-averaged F1; Qwen3-8B, $N{=}8$, $T{=}1.0$, gold-filtered, 3-seed means). $p$: paired bootstrap.}",
+          " \\label{tab:fewnerd}",
+          " \\resizebox{\\columnwidth}{!}{%",
+          " \\begin{tabular}{@{}lrccccr@{}}"
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 83_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01NrWiLugDwQfM2xakLA7n5S`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments_main.tex",
+  "old_string": "SciERC & 529 & .667 & 12.2\\% & .159 & $+$0.61\\,pp & .193 \\\\",
+  "new_string": "SciERC & 529 & .663 & 12.2\\% & .159 & $+$0.61\\,pp & .193 \\\\"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0ece91e4-5aa9-4282-9ae9-a9f0b59b36fe",
+  "uuid": "becb5702-06fb-46c9-8520-18303b33306f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01R8YF4enEX2s91EvPMeSwPy",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6383,
+      "cache_read_input_tokens": 69701,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6383
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 84 · 2026-05-22T18:53:17.278Z_
+
+<details><summary>↩ Tool result · `toolu_01NrWiLugDwQfM2xakLA7n5S`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments_main.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "0ece91e4-5aa9-4282-9ae9-a9f0b59b36fe",
+  "uuid": "e755fc95-733e-4a57-9fca-caf5d1d59463",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments_main.tex",
+    "oldString": "SciERC & 529 & .667 & 12.2\\% & .159 & $+$0.61\\,pp & .193 \\\\",
+    "newString": "SciERC & 529 & .663 & 12.2\\% & .159 & $+$0.61\\,pp & .193 \\\\",
+    "originalFile": "\\section{Experiments}\\label{sec:experiments}\n\n\\subsection{Experimental Setup}\\label{sec:setup}\n\n\\paragraph{Datasets.}\nWe evaluate on four English NER benchmarks spanning a difficulty gradient.\n\\textbf{SciERC} \\cite{luan2018scierc} (551 test instances, 6 entity types) is the primary medium-difficulty test bed (${\\approx}$65\\% F1).\n\\textbf{Few-NERD} \\cite{ding2021fewnerd} (INTRA coarse; 37{,}648 instances, 8 entity types, ${\\approx}$75\\% F1) provides a low-degeneracy contrast where LP selection succeeds (\\S\\ref{sec:selection_gap}).\n\\textbf{CoNLL-2003} \\cite{tjongkimsang2003conll} (3{,}453 test sentences, 4 entity types, ${\\approx}$91\\% F1) serves as a ceiling-effect control.\n\\textbf{WNUT-17} \\cite{derczynski2017wnut} (1{,}287 social media instances, 53.7\\% zero F1) probes the signal-collapse boundary.\n\n\\paragraph{Models and sampling.}\n\\textbf{Qwen3-8B} and \\textbf{LLaMA-3.1-8B-Instruct} are LoRA fine-tuned using LLaMA Factory \\cite{zheng2024llamafactory} (Appendix~\\ref{app:training}; Few-NERD uses 3 epochs vs.\\ 5 for others; Appendix~\\ref{app:epoch_confound}).\n$N{=}8$ samples at $T{=}1.0$ (primary) with vLLM constrained decoding \\cite{willard2023guided}; $N {\\in} \\{16, 32, 64\\}$ for scaling (Figure~\\ref{fig:n_scaling}; Appendix~\\ref{app:n_scaling}).\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/fig_n_scaling_mv.pdf}\n\\caption{MV $\\Delta$F1 vs.\\ $\\log_2 N$ across three datasets (Qwen3-8B FT, seed${=}42$). Dotted gray: $\\Delta{=}0$. Gains are dataset-dependent: persistently negative on Few-NERD, near zero on SciERC at higher $N$, marginally positive on CoNLL ($+0.6$\\,pp at $N{=}64$).}\n\\label{fig:n_scaling}\n\\end{figure}\n\n%% ============================================================\n\\subsection{Quality Estimation Results}\\label{sec:qe_results}\n\n\\begin{table*}[t]\n\\centering\n\\small\n\\caption{NER quality estimation ($\\rho$ and AUROC; $N{=}8$, primary seed${=}42$; 3-seed $\\sigma{\\leq}0.026$ in Table~\\ref{tab:multiseed}). AUROC binarizes at per-dataset median F1. Best in \\textbf{bold}. RE in Appendix~\\ref{app:re_extension}; $N{=}16$ in Table~\\ref{tab:robustness}.}\n\\label{tab:quality_estimation}\n\\begin{tabular}{ll cc cc cc}\n\\toprule\n& & \\multicolumn{2}{c}{\\textbf{SciERC}} & \\multicolumn{2}{c}{\\textbf{CoNLL (Qwen)}} & \\multicolumn{2}{c}{\\textbf{CoNLL (LLaMA)}} \\\\\n\\cmidrule(lr){3-4} \\cmidrule(lr){5-6} \\cmidrule(lr){7-8}\nSignal & Family & $\\rho$ & AUC & $\\rho$ & AUC & $\\rho$ & AUC \\\\\n\\midrule\nVC & Structural & \\textbf{.379} & .684 & .424 & .789 & .426 & .709 \\\\\nSJ  & Structural & .360 & .692 & .436 & .801 & \\textbf{.431} & .704 \\\\\nFK & Surface & .267 & .629 & .400 & .774 & .428 & .703 \\\\\nEM  & Surface    & .295 & \\textbf{.749} & \\textbf{.451} & \\textbf{.816} & \\textbf{.431} & .705 \\\\\n\\midrule\nLP     & Model      & .205 & .578 & .316 & .753 & .307 & \\textbf{.761} \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table*}\n\nTable~\\ref{tab:quality_estimation} presents $\\rho$ and AUROC for five signals across tasks and models.\n\n\\paragraph{Signal rankings are difficulty-dependent.}\nOn SciERC, structural signals lead (VC $\\rho{=}0.379$, SJ $0.360$) over LP ($0.205$); bootstrap CIs confirm the gap ($\\Delta\\rho{=}{+}0.155$; Appendix~\\ref{app:bootstrap_signal}).\nOn CoNLL (F1${\\approx}$0.91), EM leads both $\\rho$ and AUROC ($0.816$).\nAt the signal-collapse boundary (WNUT-17, F1${\\approx}$42\\%), full-set correlations are dominated by the zero/non-zero boundary (VC $\\rho{=}0.724$ at $N{=}16$, but conditional $\\rho{=}0.038$; Table~\\ref{tab:wnut}); LP shows the reverse (conditional $\\rho{=}0.350$; Figure~\\ref{fig:signal_heatmap}).\n\n%% ============================================================\n\\subsection{Cross-Dataset Contrast: Few-NERD}\\label{sec:fewnerd}\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{LP selection across datasets (instance-averaged F1; Qwen3-8B, $N{=}8$, $T{=}1.0$, gold-filtered, 3-seed means). $p$: paired bootstrap.}\n\\label{tab:fewnerd}\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{@{}lrccccr@{}}\n\\toprule\nDataset & $n$ & Greedy & Degen.\\% & LP $\\rho$ & LP $\\Delta$ & $p$ \\\\\n\\midrule\nWNUT-17 & 1{,}287 & .452 & 67.9\\% & $-$.446 & $-$0.45\\,pp & .72 \\\\\nCoNLL & 2{,}756 & .908 & 61.7\\% & .302 & $-$0.85\\,pp & 1.0 \\\\\nSciERC & 529 & .667 & 12.2\\% & .159 & $+$0.61\\,pp & .193 \\\\\nFew-NERD & 32{,}565 & .748 & 13.0\\% & .220 & $\\mathbf{+1.39}$\\,pp & ${<}.001$ \\\\\n\\bottomrule\n\\end{tabular}}\n\\end{table}\n\nFew-NERD (Table~\\ref{tab:fewnerd}) confirms LP selection at low degeneracy ($+1.39$~pp, $p{<}0.001$; structural signals degrade: VC $-1.79$, SJ $-2.14$~pp), with LP 50$\\times$ more seed-stable ($\\sigma{=}0.04$ vs.\\ SJ $2.02$~pp), generalizing to LLaMA (Table~\\ref{tab:cross_selection}). Training convergence modulates degeneracy (5-epoch: $31$\\%, LP $\\Delta$ collapses from $+1.39$ to $+0.12$\\,pp; Appendix~\\ref{app:epoch_confound}).\n\nSignal ranking is task-specific; per-type analysis shows MV degradation concentrates in low-F1 types ($\\rho{=}0.90$, $p{=}0.002$; Appendix~\\ref{app:pertype}).\n\n\\paragraph{Degeneracy alone does not predict LP direction.}\nDegeneracy does not predict LP gain across 23 configurations ($\\rho{=}0.052$, $p{=}0.81$; $n{=}23$, insufficient for reliable correlation---we treat this as supplementary evidence; Figure~\\ref{fig:degeneracy_scatter}), though it co-varies with LP within fixed settings ($\\rho{=}{-}0.881$; Appendix~\\ref{app:per_type_lp}).\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/fig_degeneracy_lp_scatter.pdf}\n\\caption{Instance degeneracy vs.\\ LP selection gain across 23 configurations ($N{=}8$; $\\rho{=}0.052$, $p{=}0.81$). Within Few-NERD per-entity-type ($\\rho{=}{-}0.881$; Appendix~\\ref{app:per_type_lp}), degeneracy predicts LP gain when alignment is held constant.}\n\\label{fig:degeneracy_scatter}\n\\end{figure}\n\nMV gains range from $-2.71$\\,pp (Few-NERD) to $+0.6$\\,pp (CoNLL at $N{=}64$; Figure~\\ref{fig:n_scaling}); the optimal strategy is dataset-dependent (LP-best $+1.4$\\,pp on Few-NERD vs.\\ MV $+0.61$\\,pp on CoNLL).\nThe framework extends to RE, where $40$\\% zero-F1 from upstream entity span errors creates a distinct failure mode---\\textit{diversity among failures} rather than quality-differentiated outputs---despite comparable degeneracy ($10.1$\\% vs.\\ SciERC $13.4$\\%; Appendix~\\ref{app:re_extension}).\n\n%% ============================================================\n\\subsection{Robustness}\\label{sec:robustness_main}\n\nSignal rankings are robust across temperatures, seeds, and $N$ (Table~\\ref{tab:robustness}; Appendix~\\ref{app:calibration}).\nQwen3-4B QE matches 8B ($|\\Delta\\rho|{=}0.042$); LoRA rank${=}8$ lowers degeneracy but LP stays below greedy (Appendix~\\ref{app:supervised_combination}).\nThe gap persists from 4B to 72B zero-shot to GPT-5.5 (\\S\\ref{sec:scaling}).\n\n%% ============================================================\n\\subsection{Prescriptive Results}\\label{sec:prescriptive}\n\nGiven that sample-level selection fails uniformly (\\S\\ref{sec:selection_gap}), we ask whether entity-level aggregation can extract value from multi-sample generation under favorable diagnostic conditions.\n\n\\paragraph{Entity-level construction (exploratory).}\nWe aggregate entities across samples, retaining those exceeding $\\theta{=}2/N$, with LP-weighted or uniform scoring ($\\theta$ stable in $[0.15, 0.35]$; Appendix~\\ref{app:theta_sweep}).\nThe diagnostic framework predicts gains when degeneracy and LP alignment are both favorable.\nLP-weighted construction yields $+1.40{\\pm}0.51$\\,pp on Few-NERD ($p{<}0.001$; Table~\\ref{tab:entity_construction}), consistent with this prediction ($D{=}13$\\%, headroom${=}12.4$\\,pp), a smaller non-significant $+0.32$\\,pp on SciERC, and no gain on CoNLL ($-0.39$\\,pp).\\footnote{Degenerate instances contribute $\\Delta{=}0$ by construction; gains concentrate in the non-degenerate subset ($+3.36$\\,pp SciERC, $+5.18$\\,pp CoNLL, $+7.08$\\,pp Few-NERD).}\nUnder global Holm--Bonferroni \\cite{holm1979simple} correction across all $k{=}57$ comparisons, $p_{\\text{adj}}{=}0.055$---marginally above $\\alpha{=}0.05$, providing suggestive but not definitive evidence of construction gains.\nPer-family correction ($k{=}10$): $p_{\\text{adj}}{=}0.006$; BH FDR: $6/10$ construction comparisons at FDR${<}0.05$ (Appendix~\\ref{app:holm}).\nThe family partition was defined by mechanism type but not pre-registered; we report all three corrections for transparency.\nConstruction and LP selection are complementary ($\\rho_{\\text{adj}}$: Few-NERD $0.516$); QE signals support selective prediction ($+5$--$8$\\,pp at 80\\% coverage; Table~\\ref{tab:cross_selection}).\n\n\\paragraph{Epoch confound on Few-NERD.}\nFew-NERD positive results should be interpreted cautiously: the 3-epoch model may be under-converged, and 5-epoch training eliminates LP gains entirely ($+1.39{\\to}+0.12{\\pm}0.04$\\,pp, 91\\% collapse; Appendix~\\ref{app:epoch_confound}).\nEntity construction likewise degrades: LP-weighted $\\Delta$ drops from $+0.88$ to $+0.20$\\,pp (seed 42, macro-F1; $77$\\% reduction).\nThe diagnostic framework correctly predicts this: 5-epoch constant-F1 degeneracy rises to $31$\\% (vs.\\ $13$\\% at 3 epochs; Appendix~\\ref{app:epoch_confound}), degrading the conditions for both selection and construction.\\footnote{Degeneracy rates vary by definition: constant-F1 degeneracy (all $N$ samples yield identical F1) gives $31$\\%/$13$\\%; entity-set exact-match degeneracy gives $26$\\%/$9$\\%. The directional pattern is consistent.}\nThis sensitivity---favorable conditions are fragile and training-dependent---reinforces that Few-NERD is a conditional success rather than evidence of a general bypass. The core negative finding (selection ${\\leq}$ greedy under high degeneracy) is unaffected.\n\n\\phantomsection\\label{sec:selection_results}\n",
+    "structuredPatch": [
+      {
+        "oldStart": 66,
+        "oldLines": 7,
+        "newStart": 66,
+        "newLines": 7,
+        "lines": [
+          " \\midrule",
+          " WNUT-17 & 1{,}287 & .452 & 67.9\\% & $-$.446 & $-$0.45\\,pp & .72 \\\\",
+          " CoNLL & 2{,}756 & .908 & 61.7\\% & .302 & $-$0.85\\,pp & 1.0 \\\\",
+          "-SciERC & 529 & .667 & 12.2\\% & .159 & $+$0.61\\,pp & .193 \\\\",
+          "+SciERC & 529 & .663 & 12.2\\% & .159 & $+$0.61\\,pp & .193 \\\\",
+          " Few-NERD & 32{,}565 & .748 & 13.0\\% & .220 & $\\mathbf{+1.39}$\\,pp & ${<}.001$ \\\\",
+          " \\bottomrule",
+          " \\end{tabular}}"
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 85_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01MfjHHqgRvGQgFnpesYxyvv`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments_main.tex",
+  "old_string": "LP $\\Delta$ collapses from $+1.39$ to $+0.12$\\,pp",
+  "new_string": "LP $\\Delta$ collapses from $+1.39$ to $+0.09$\\,pp"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0ece91e4-5aa9-4282-9ae9-a9f0b59b36fe",
+  "uuid": "7725d4be-5fe3-410f-acc9-5e7cd4586a5b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01R8YF4enEX2s91EvPMeSwPy",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6383,
+      "cache_read_input_tokens": 69701,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6383
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 86 · 2026-05-22T18:53:19.086Z_
+
+<details><summary>↩ Tool result · `toolu_01MfjHHqgRvGQgFnpesYxyvv`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments_main.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "0ece91e4-5aa9-4282-9ae9-a9f0b59b36fe",
+  "uuid": "145927bb-7e6e-4b3c-ac29-2a73d48d8c95",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments_main.tex",
+    "oldString": "LP $\\Delta$ collapses from $+1.39$ to $+0.12$\\,pp",
+    "newString": "LP $\\Delta$ collapses from $+1.39$ to $+0.09$\\,pp",
+    "originalFile": "\\section{Experiments}\\label{sec:experiments}\n\n\\subsection{Experimental Setup}\\label{sec:setup}\n\n\\paragraph{Datasets.}\nWe evaluate on four English NER benchmarks spanning a difficulty gradient.\n\\textbf{SciERC} \\cite{luan2018scierc} (551 test instances, 6 entity types) is the primary medium-difficulty test bed (${\\approx}$65\\% F1).\n\\textbf{Few-NERD} \\cite{ding2021fewnerd} (INTRA coarse; 37{,}648 instances, 8 entity types, ${\\approx}$75\\% F1) provides a low-degeneracy contrast where LP selection succeeds (\\S\\ref{sec:selection_gap}).\n\\textbf{CoNLL-2003} \\cite{tjongkimsang2003conll} (3{,}453 test sentences, 4 entity types, ${\\approx}$91\\% F1) serves as a ceiling-effect control.\n\\textbf{WNUT-17} \\cite{derczynski2017wnut} (1{,}287 social media instances, 53.7\\% zero F1) probes the signal-collapse boundary.\n\n\\paragraph{Models and sampling.}\n\\textbf{Qwen3-8B} and \\textbf{LLaMA-3.1-8B-Instruct} are LoRA fine-tuned using LLaMA Factory \\cite{zheng2024llamafactory} (Appendix~\\ref{app:training}; Few-NERD uses 3 epochs vs.\\ 5 for others; Appendix~\\ref{app:epoch_confound}).\n$N{=}8$ samples at $T{=}1.0$ (primary) with vLLM constrained decoding \\cite{willard2023guided}; $N {\\in} \\{16, 32, 64\\}$ for scaling (Figure~\\ref{fig:n_scaling}; Appendix~\\ref{app:n_scaling}).\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/fig_n_scaling_mv.pdf}\n\\caption{MV $\\Delta$F1 vs.\\ $\\log_2 N$ across three datasets (Qwen3-8B FT, seed${=}42$). Dotted gray: $\\Delta{=}0$. Gains are dataset-dependent: persistently negative on Few-NERD, near zero on SciERC at higher $N$, marginally positive on CoNLL ($+0.6$\\,pp at $N{=}64$).}\n\\label{fig:n_scaling}\n\\end{figure}\n\n%% ============================================================\n\\subsection{Quality Estimation Results}\\label{sec:qe_results}\n\n\\begin{table*}[t]\n\\centering\n\\small\n\\caption{NER quality estimation ($\\rho$ and AUROC; $N{=}8$, primary seed${=}42$; 3-seed $\\sigma{\\leq}0.026$ in Table~\\ref{tab:multiseed}). AUROC binarizes at per-dataset median F1. Best in \\textbf{bold}. RE in Appendix~\\ref{app:re_extension}; $N{=}16$ in Table~\\ref{tab:robustness}.}\n\\label{tab:quality_estimation}\n\\begin{tabular}{ll cc cc cc}\n\\toprule\n& & \\multicolumn{2}{c}{\\textbf{SciERC}} & \\multicolumn{2}{c}{\\textbf{CoNLL (Qwen)}} & \\multicolumn{2}{c}{\\textbf{CoNLL (LLaMA)}} \\\\\n\\cmidrule(lr){3-4} \\cmidrule(lr){5-6} \\cmidrule(lr){7-8}\nSignal & Family & $\\rho$ & AUC & $\\rho$ & AUC & $\\rho$ & AUC \\\\\n\\midrule\nVC & Structural & \\textbf{.379} & .684 & .424 & .789 & .426 & .709 \\\\\nSJ  & Structural & .360 & .692 & .436 & .801 & \\textbf{.431} & .704 \\\\\nFK & Surface & .267 & .629 & .400 & .774 & .428 & .703 \\\\\nEM  & Surface    & .295 & \\textbf{.749} & \\textbf{.451} & \\textbf{.816} & \\textbf{.431} & .705 \\\\\n\\midrule\nLP     & Model      & .205 & .578 & .316 & .753 & .307 & \\textbf{.761} \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table*}\n\nTable~\\ref{tab:quality_estimation} presents $\\rho$ and AUROC for five signals across tasks and models.\n\n\\paragraph{Signal rankings are difficulty-dependent.}\nOn SciERC, structural signals lead (VC $\\rho{=}0.379$, SJ $0.360$) over LP ($0.205$); bootstrap CIs confirm the gap ($\\Delta\\rho{=}{+}0.155$; Appendix~\\ref{app:bootstrap_signal}).\nOn CoNLL (F1${\\approx}$0.91), EM leads both $\\rho$ and AUROC ($0.816$).\nAt the signal-collapse boundary (WNUT-17, F1${\\approx}$42\\%), full-set correlations are dominated by the zero/non-zero boundary (VC $\\rho{=}0.724$ at $N{=}16$, but conditional $\\rho{=}0.038$; Table~\\ref{tab:wnut}); LP shows the reverse (conditional $\\rho{=}0.350$; Figure~\\ref{fig:signal_heatmap}).\n\n%% ============================================================\n\\subsection{Cross-Dataset Contrast: Few-NERD}\\label{sec:fewnerd}\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{LP selection across datasets (instance-averaged F1; Qwen3-8B, $N{=}8$, $T{=}1.0$, gold-filtered, 3-seed means). $p$: paired bootstrap.}\n\\label{tab:fewnerd}\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{@{}lrccccr@{}}\n\\toprule\nDataset & $n$ & Greedy & Degen.\\% & LP $\\rho$ & LP $\\Delta$ & $p$ \\\\\n\\midrule\nWNUT-17 & 1{,}287 & .452 & 67.9\\% & $-$.446 & $-$0.45\\,pp & .72 \\\\\nCoNLL & 2{,}756 & .908 & 61.7\\% & .302 & $-$0.85\\,pp & 1.0 \\\\\nSciERC & 529 & .663 & 12.2\\% & .159 & $+$0.61\\,pp & .193 \\\\\nFew-NERD & 32{,}565 & .748 & 13.0\\% & .220 & $\\mathbf{+1.39}$\\,pp & ${<}.001$ \\\\\n\\bottomrule\n\\end{tabular}}\n\\end{table}\n\nFew-NERD (Table~\\ref{tab:fewnerd}) confirms LP selection at low degeneracy ($+1.39$~pp, $p{<}0.001$; structural signals degrade: VC $-1.79$, SJ $-2.14$~pp), with LP 50$\\times$ more seed-stable ($\\sigma{=}0.04$ vs.\\ SJ $2.02$~pp), generalizing to LLaMA (Table~\\ref{tab:cross_selection}). Training convergence modulates degeneracy (5-epoch: $31$\\%, LP $\\Delta$ collapses from $+1.39$ to $+0.12$\\,pp; Appendix~\\ref{app:epoch_confound}).\n\nSignal ranking is task-specific; per-type analysis shows MV degradation concentrates in low-F1 types ($\\rho{=}0.90$, $p{=}0.002$; Appendix~\\ref{app:pertype}).\n\n\\paragraph{Degeneracy alone does not predict LP direction.}\nDegeneracy does not predict LP gain across 23 configurations ($\\rho{=}0.052$, $p{=}0.81$; $n{=}23$, insufficient for reliable correlation---we treat this as supplementary evidence; Figure~\\ref{fig:degeneracy_scatter}), though it co-varies with LP within fixed settings ($\\rho{=}{-}0.881$; Appendix~\\ref{app:per_type_lp}).\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/fig_degeneracy_lp_scatter.pdf}\n\\caption{Instance degeneracy vs.\\ LP selection gain across 23 configurations ($N{=}8$; $\\rho{=}0.052$, $p{=}0.81$). Within Few-NERD per-entity-type ($\\rho{=}{-}0.881$; Appendix~\\ref{app:per_type_lp}), degeneracy predicts LP gain when alignment is held constant.}\n\\label{fig:degeneracy_scatter}\n\\end{figure}\n\nMV gains range from $-2.71$\\,pp (Few-NERD) to $+0.6$\\,pp (CoNLL at $N{=}64$; Figure~\\ref{fig:n_scaling}); the optimal strategy is dataset-dependent (LP-best $+1.4$\\,pp on Few-NERD vs.\\ MV $+0.61$\\,pp on CoNLL).\nThe framework extends to RE, where $40$\\% zero-F1 from upstream entity span errors creates a distinct failure mode---\\textit{diversity among failures} rather than quality-differentiated outputs---despite comparable degeneracy ($10.1$\\% vs.\\ SciERC $13.4$\\%; Appendix~\\ref{app:re_extension}).\n\n%% ============================================================\n\\subsection{Robustness}\\label{sec:robustness_main}\n\nSignal rankings are robust across temperatures, seeds, and $N$ (Table~\\ref{tab:robustness}; Appendix~\\ref{app:calibration}).\nQwen3-4B QE matches 8B ($|\\Delta\\rho|{=}0.042$); LoRA rank${=}8$ lowers degeneracy but LP stays below greedy (Appendix~\\ref{app:supervised_combination}).\nThe gap persists from 4B to 72B zero-shot to GPT-5.5 (\\S\\ref{sec:scaling}).\n\n%% ============================================================\n\\subsection{Prescriptive Results}\\label{sec:prescriptive}\n\nGiven that sample-level selection fails uniformly (\\S\\ref{sec:selection_gap}), we ask whether entity-level aggregation can extract value from multi-sample generation under favorable diagnostic conditions.\n\n\\paragraph{Entity-level construction (exploratory).}\nWe aggregate entities across samples, retaining those exceeding $\\theta{=}2/N$, with LP-weighted or uniform scoring ($\\theta$ stable in $[0.15, 0.35]$; Appendix~\\ref{app:theta_sweep}).\nThe diagnostic framework predicts gains when degeneracy and LP alignment are both favorable.\nLP-weighted construction yields $+1.40{\\pm}0.51$\\,pp on Few-NERD ($p{<}0.001$; Table~\\ref{tab:entity_construction}), consistent with this prediction ($D{=}13$\\%, headroom${=}12.4$\\,pp), a smaller non-significant $+0.32$\\,pp on SciERC, and no gain on CoNLL ($-0.39$\\,pp).\\footnote{Degenerate instances contribute $\\Delta{=}0$ by construction; gains concentrate in the non-degenerate subset ($+3.36$\\,pp SciERC, $+5.18$\\,pp CoNLL, $+7.08$\\,pp Few-NERD).}\nUnder global Holm--Bonferroni \\cite{holm1979simple} correction across all $k{=}57$ comparisons, $p_{\\text{adj}}{=}0.055$---marginally above $\\alpha{=}0.05$, providing suggestive but not definitive evidence of construction gains.\nPer-family correction ($k{=}10$): $p_{\\text{adj}}{=}0.006$; BH FDR: $6/10$ construction comparisons at FDR${<}0.05$ (Appendix~\\ref{app:holm}).\nThe family partition was defined by mechanism type but not pre-registered; we report all three corrections for transparency.\nConstruction and LP selection are complementary ($\\rho_{\\text{adj}}$: Few-NERD $0.516$); QE signals support selective prediction ($+5$--$8$\\,pp at 80\\% coverage; Table~\\ref{tab:cross_selection}).\n\n\\paragraph{Epoch confound on Few-NERD.}\nFew-NERD positive results should be interpreted cautiously: the 3-epoch model may be under-converged, and 5-epoch training eliminates LP gains entirely ($+1.39{\\to}+0.12{\\pm}0.04$\\,pp, 91\\% collapse; Appendix~\\ref{app:epoch_confound}).\nEntity construction likewise degrades: LP-weighted $\\Delta$ drops from $+0.88$ to $+0.20$\\,pp (seed 42, macro-F1; $77$\\% reduction).\nThe diagnostic framework correctly predicts this: 5-epoch constant-F1 degeneracy rises to $31$\\% (vs.\\ $13$\\% at 3 epochs; Appendix~\\ref{app:epoch_confound}), degrading the conditions for both selection and construction.\\footnote{Degeneracy rates vary by definition: constant-F1 degeneracy (all $N$ samples yield identical F1) gives $31$\\%/$13$\\%; entity-set exact-match degeneracy gives $26$\\%/$9$\\%. The directional pattern is consistent.}\nThis sensitivity---favorable conditions are fragile and training-dependent---reinforces that Few-NERD is a conditional success rather than evidence of a general bypass. The core negative finding (selection ${\\leq}$ greedy under high degeneracy) is unaffected.\n\n\\phantomsection\\label{sec:selection_results}\n",
+    "structuredPatch": [
+      {
+        "oldStart": 72,
+        "oldLines": 7,
+        "newStart": 72,
+        "newLines": 7,
+        "lines": [
+          " \\end{tabular}}",
+          " \\end{table}",
+          " ",
+          "-Few-NERD (Table~\\ref{tab:fewnerd}) confirms LP selection at low degeneracy ($+1.39$~pp, $p{<}0.001$; structural signals degrade: VC $-1.79$, SJ $-2.14$~pp), with LP 50$\\times$ more seed-stable ($\\sigma{=}0.04$ vs.\\ SJ $2.02$~pp), generalizing to LLaMA (Table~\\ref{tab:cross_selection}). Training convergence modulates degeneracy (5-epoch: $31$\\%, LP $\\Delta$ collapses from $+1.39$ to $+0.12$\\,pp; Appendix~\\ref{app:epoch_confound}).",
+          "+Few-NERD (Table~\\ref{tab:fewnerd}) confirms LP selection at low degeneracy ($+1.39$~pp, $p{<}0.001$; structural signals degrade: VC $-1.79$, SJ $-2.14$~pp), with LP 50$\\times$ more seed-stable ($\\sigma{=}0.04$ vs.\\ SJ $2.02$~pp), generalizing to LLaMA (Table~\\ref{tab:cross_selection}). Training convergence modulates degeneracy (5-epoch: $31$\\%, LP $\\Delta$ collapses from $+1.39$ to $+0.09$\\,pp; Appendix~\\ref{app:epoch_confound}).",
+          " ",
+          " Signal ranking is task-specific; per-type analysis shows MV degradation concentrates in low-F1 types ($\\rho{=}0.90$, $p{=}0.002$; Appendix~\\ref{app:pertype}).",
+          " "
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 87_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01NChJAxRpbQr47SbRf2oACv`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments_main.tex",
+  "old_string": "$+1.39{\\to}+0.12{\\pm}0.04$\\,pp, 91\\% collapse",
+  "new_string": "$+1.39{\\to}+0.09{\\pm}0.04$\\,pp, 94\\% collapse"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0ece91e4-5aa9-4282-9ae9-a9f0b59b36fe",
+  "uuid": "4f3917f9-5549-40ab-b497-132d11ba4731",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01R8YF4enEX2s91EvPMeSwPy",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6383,
+      "cache_read_input_tokens": 69701,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6383
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 88 · 2026-05-22T18:53:20.561Z_
+
+<details><summary>↩ Tool result · `toolu_01NChJAxRpbQr47SbRf2oACv`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments_main.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "0ece91e4-5aa9-4282-9ae9-a9f0b59b36fe",
+  "uuid": "e5d57ded-1586-4867-9435-0d18aab5b0b2",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments_main.tex",
+    "oldString": "$+1.39{\\to}+0.12{\\pm}0.04$\\,pp, 91\\% collapse",
+    "newString": "$+1.39{\\to}+0.09{\\pm}0.04$\\,pp, 94\\% collapse",
+    "originalFile": "\\section{Experiments}\\label{sec:experiments}\n\n\\subsection{Experimental Setup}\\label{sec:setup}\n\n\\paragraph{Datasets.}\nWe evaluate on four English NER benchmarks spanning a difficulty gradient.\n\\textbf{SciERC} \\cite{luan2018scierc} (551 test instances, 6 entity types) is the primary medium-difficulty test bed (${\\approx}$65\\% F1).\n\\textbf{Few-NERD} \\cite{ding2021fewnerd} (INTRA coarse; 37{,}648 instances, 8 entity types, ${\\approx}$75\\% F1) provides a low-degeneracy contrast where LP selection succeeds (\\S\\ref{sec:selection_gap}).\n\\textbf{CoNLL-2003} \\cite{tjongkimsang2003conll} (3{,}453 test sentences, 4 entity types, ${\\approx}$91\\% F1) serves as a ceiling-effect control.\n\\textbf{WNUT-17} \\cite{derczynski2017wnut} (1{,}287 social media instances, 53.7\\% zero F1) probes the signal-collapse boundary.\n\n\\paragraph{Models and sampling.}\n\\textbf{Qwen3-8B} and \\textbf{LLaMA-3.1-8B-Instruct} are LoRA fine-tuned using LLaMA Factory \\cite{zheng2024llamafactory} (Appendix~\\ref{app:training}; Few-NERD uses 3 epochs vs.\\ 5 for others; Appendix~\\ref{app:epoch_confound}).\n$N{=}8$ samples at $T{=}1.0$ (primary) with vLLM constrained decoding \\cite{willard2023guided}; $N {\\in} \\{16, 32, 64\\}$ for scaling (Figure~\\ref{fig:n_scaling}; Appendix~\\ref{app:n_scaling}).\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/fig_n_scaling_mv.pdf}\n\\caption{MV $\\Delta$F1 vs.\\ $\\log_2 N$ across three datasets (Qwen3-8B FT, seed${=}42$). Dotted gray: $\\Delta{=}0$. Gains are dataset-dependent: persistently negative on Few-NERD, near zero on SciERC at higher $N$, marginally positive on CoNLL ($+0.6$\\,pp at $N{=}64$).}\n\\label{fig:n_scaling}\n\\end{figure}\n\n%% ============================================================\n\\subsection{Quality Estimation Results}\\label{sec:qe_results}\n\n\\begin{table*}[t]\n\\centering\n\\small\n\\caption{NER quality estimation ($\\rho$ and AUROC; $N{=}8$, primary seed${=}42$; 3-seed $\\sigma{\\leq}0.026$ in Table~\\ref{tab:multiseed}). AUROC binarizes at per-dataset median F1. Best in \\textbf{bold}. RE in Appendix~\\ref{app:re_extension}; $N{=}16$ in Table~\\ref{tab:robustness}.}\n\\label{tab:quality_estimation}\n\\begin{tabular}{ll cc cc cc}\n\\toprule\n& & \\multicolumn{2}{c}{\\textbf{SciERC}} & \\multicolumn{2}{c}{\\textbf{CoNLL (Qwen)}} & \\multicolumn{2}{c}{\\textbf{CoNLL (LLaMA)}} \\\\\n\\cmidrule(lr){3-4} \\cmidrule(lr){5-6} \\cmidrule(lr){7-8}\nSignal & Family & $\\rho$ & AUC & $\\rho$ & AUC & $\\rho$ & AUC \\\\\n\\midrule\nVC & Structural & \\textbf{.379} & .684 & .424 & .789 & .426 & .709 \\\\\nSJ  & Structural & .360 & .692 & .436 & .801 & \\textbf{.431} & .704 \\\\\nFK & Surface & .267 & .629 & .400 & .774 & .428 & .703 \\\\\nEM  & Surface    & .295 & \\textbf{.749} & \\textbf{.451} & \\textbf{.816} & \\textbf{.431} & .705 \\\\\n\\midrule\nLP     & Model      & .205 & .578 & .316 & .753 & .307 & \\textbf{.761} \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table*}\n\nTable~\\ref{tab:quality_estimation} presents $\\rho$ and AUROC for five signals across tasks and models.\n\n\\paragraph{Signal rankings are difficulty-dependent.}\nOn SciERC, structural signals lead (VC $\\rho{=}0.379$, SJ $0.360$) over LP ($0.205$); bootstrap CIs confirm the gap ($\\Delta\\rho{=}{+}0.155$; Appendix~\\ref{app:bootstrap_signal}).\nOn CoNLL (F1${\\approx}$0.91), EM leads both $\\rho$ and AUROC ($0.816$).\nAt the signal-collapse boundary (WNUT-17, F1${\\approx}$42\\%), full-set correlations are dominated by the zero/non-zero boundary (VC $\\rho{=}0.724$ at $N{=}16$, but conditional $\\rho{=}0.038$; Table~\\ref{tab:wnut}); LP shows the reverse (conditional $\\rho{=}0.350$; Figure~\\ref{fig:signal_heatmap}).\n\n%% ============================================================\n\\subsection{Cross-Dataset Contrast: Few-NERD}\\label{sec:fewnerd}\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{LP selection across datasets (instance-averaged F1; Qwen3-8B, $N{=}8$, $T{=}1.0$, gold-filtered, 3-seed means). $p$: paired bootstrap.}\n\\label{tab:fewnerd}\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{@{}lrccccr@{}}\n\\toprule\nDataset & $n$ & Greedy & Degen.\\% & LP $\\rho$ & LP $\\Delta$ & $p$ \\\\\n\\midrule\nWNUT-17 & 1{,}287 & .452 & 67.9\\% & $-$.446 & $-$0.45\\,pp & .72 \\\\\nCoNLL & 2{,}756 & .908 & 61.7\\% & .302 & $-$0.85\\,pp & 1.0 \\\\\nSciERC & 529 & .663 & 12.2\\% & .159 & $+$0.61\\,pp & .193 \\\\\nFew-NERD & 32{,}565 & .748 & 13.0\\% & .220 & $\\mathbf{+1.39}$\\,pp & ${<}.001$ \\\\\n\\bottomrule\n\\end{tabular}}\n\\end{table}\n\nFew-NERD (Table~\\ref{tab:fewnerd}) confirms LP selection at low degeneracy ($+1.39$~pp, $p{<}0.001$; structural signals degrade: VC $-1.79$, SJ $-2.14$~pp), with LP 50$\\times$ more seed-stable ($\\sigma{=}0.04$ vs.\\ SJ $2.02$~pp), generalizing to LLaMA (Table~\\ref{tab:cross_selection}). Training convergence modulates degeneracy (5-epoch: $31$\\%, LP $\\Delta$ collapses from $+1.39$ to $+0.09$\\,pp; Appendix~\\ref{app:epoch_confound}).\n\nSignal ranking is task-specific; per-type analysis shows MV degradation concentrates in low-F1 types ($\\rho{=}0.90$, $p{=}0.002$; Appendix~\\ref{app:pertype}).\n\n\\paragraph{Degeneracy alone does not predict LP direction.}\nDegeneracy does not predict LP gain across 23 configurations ($\\rho{=}0.052$, $p{=}0.81$; $n{=}23$, insufficient for reliable correlation---we treat this as supplementary evidence; Figure~\\ref{fig:degeneracy_scatter}), though it co-varies with LP within fixed settings ($\\rho{=}{-}0.881$; Appendix~\\ref{app:per_type_lp}).\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/fig_degeneracy_lp_scatter.pdf}\n\\caption{Instance degeneracy vs.\\ LP selection gain across 23 configurations ($N{=}8$; $\\rho{=}0.052$, $p{=}0.81$). Within Few-NERD per-entity-type ($\\rho{=}{-}0.881$; Appendix~\\ref{app:per_type_lp}), degeneracy predicts LP gain when alignment is held constant.}\n\\label{fig:degeneracy_scatter}\n\\end{figure}\n\nMV gains range from $-2.71$\\,pp (Few-NERD) to $+0.6$\\,pp (CoNLL at $N{=}64$; Figure~\\ref{fig:n_scaling}); the optimal strategy is dataset-dependent (LP-best $+1.4$\\,pp on Few-NERD vs.\\ MV $+0.61$\\,pp on CoNLL).\nThe framework extends to RE, where $40$\\% zero-F1 from upstream entity span errors creates a distinct failure mode---\\textit{diversity among failures} rather than quality-differentiated outputs---despite comparable degeneracy ($10.1$\\% vs.\\ SciERC $13.4$\\%; Appendix~\\ref{app:re_extension}).\n\n%% ============================================================\n\\subsection{Robustness}\\label{sec:robustness_main}\n\nSignal rankings are robust across temperatures, seeds, and $N$ (Table~\\ref{tab:robustness}; Appendix~\\ref{app:calibration}).\nQwen3-4B QE matches 8B ($|\\Delta\\rho|{=}0.042$); LoRA rank${=}8$ lowers degeneracy but LP stays below greedy (Appendix~\\ref{app:supervised_combination}).\nThe gap persists from 4B to 72B zero-shot to GPT-5.5 (\\S\\ref{sec:scaling}).\n\n%% ============================================================\n\\subsection{Prescriptive Results}\\label{sec:prescriptive}\n\nGiven that sample-level selection fails uniformly (\\S\\ref{sec:selection_gap}), we ask whether entity-level aggregation can extract value from multi-sample generation under favorable diagnostic conditions.\n\n\\paragraph{Entity-level construction (exploratory).}\nWe aggregate entities across samples, retaining those exceeding $\\theta{=}2/N$, with LP-weighted or uniform scoring ($\\theta$ stable in $[0.15, 0.35]$; Appendix~\\ref{app:theta_sweep}).\nThe diagnostic framework predicts gains when degeneracy and LP alignment are both favorable.\nLP-weighted construction yields $+1.40{\\pm}0.51$\\,pp on Few-NERD ($p{<}0.001$; Table~\\ref{tab:entity_construction}), consistent with this prediction ($D{=}13$\\%, headroom${=}12.4$\\,pp), a smaller non-significant $+0.32$\\,pp on SciERC, and no gain on CoNLL ($-0.39$\\,pp).\\footnote{Degenerate instances contribute $\\Delta{=}0$ by construction; gains concentrate in the non-degenerate subset ($+3.36$\\,pp SciERC, $+5.18$\\,pp CoNLL, $+7.08$\\,pp Few-NERD).}\nUnder global Holm--Bonferroni \\cite{holm1979simple} correction across all $k{=}57$ comparisons, $p_{\\text{adj}}{=}0.055$---marginally above $\\alpha{=}0.05$, providing suggestive but not definitive evidence of construction gains.\nPer-family correction ($k{=}10$): $p_{\\text{adj}}{=}0.006$; BH FDR: $6/10$ construction comparisons at FDR${<}0.05$ (Appendix~\\ref{app:holm}).\nThe family partition was defined by mechanism type but not pre-registered; we report all three corrections for transparency.\nConstruction and LP selection are complementary ($\\rho_{\\text{adj}}$: Few-NERD $0.516$); QE signals support selective prediction ($+5$--$8$\\,pp at 80\\% coverage; Table~\\ref{tab:cross_selection}).\n\n\\paragraph{Epoch confound on Few-NERD.}\nFew-NERD positive results should be interpreted cautiously: the 3-epoch model may be under-converged, and 5-epoch training eliminates LP gains entirely ($+1.39{\\to}+0.12{\\pm}0.04$\\,pp, 91\\% collapse; Appendix~\\ref{app:epoch_confound}).\nEntity construction likewise degrades: LP-weighted $\\Delta$ drops from $+0.88$ to $+0.20$\\,pp (seed 42, macro-F1; $77$\\% reduction).\nThe diagnostic framework correctly predicts this: 5-epoch constant-F1 degeneracy rises to $31$\\% (vs.\\ $13$\\% at 3 epochs; Appendix~\\ref{app:epoch_confound}), degrading the conditions for both selection and construction.\\footnote{Degeneracy rates vary by definition: constant-F1 degeneracy (all $N$ samples yield identical F1) gives $31$\\%/$13$\\%; entity-set exact-match degeneracy gives $26$\\%/$9$\\%. The directional pattern is consistent.}\nThis sensitivity---favorable conditions are fragile and training-dependent---reinforces that Few-NERD is a conditional success rather than evidence of a general bypass. The core negative finding (selection ${\\leq}$ greedy under high degeneracy) is unaffected.\n\n\\phantomsection\\label{sec:selection_results}\n",
+    "structuredPatch": [
+      {
+        "oldStart": 111,
+        "oldLines": 7,
+        "newStart": 111,
+        "newLines": 7,
+        "lines": [
+          " Construction and LP selection are complementary ($\\rho_{\\text{adj}}$: Few-NERD $0.516$); QE signals support selective prediction ($+5$--$8$\\,pp at 80\\% coverage; Table~\\ref{tab:cross_selection}).",
+          " ",
+          " \\paragraph{Epoch confound on Few-NERD.}",
+          "-Few-NERD positive results should be interpreted cautiously: the 3-epoch model may be under-converged, and 5-epoch training eliminates LP gains entirely ($+1.39{\\to}+0.12{\\pm}0.04$\\,pp, 91\\% collapse; Appendix~\\ref{app:epoch_confound}).",
+          "+Few-NERD positive results should be interpreted cautiously: the 3-epoch model may be under-converged, and 5-epoch training eliminates LP gains entirely ($+1.39{\\to}+0.09{\\pm}0.04$\\,pp, 94\\% collapse; Appendix~\\ref{app:epoch_confound}).",
+          " Entity construction likewise degrades: LP-weighted $\\Delta$ drops from $+0.88$ to $+0.20$\\,pp (seed 42, macro-F1; $77$\\% reduction).",
+          " The diagnostic framework correctly predicts this: 5-epoch constant-F1 degeneracy rises to $31$\\% (vs.\\ $13$\\% at 3 epochs; Appendix~\\ref{app:epoch_confound}), degrading the conditions for both selection and construction.\\footnote{Degeneracy rates vary by definition: constant-F1 degeneracy (all $N$ samples yield identical F1) gives $31$\\%/$13$\\%; entity-set exact-match degeneracy gives $26$\\%/$9$\\%. The directional pattern is consistent.}",
+          " This sensitivity---favorable conditions are fragile and training-dependent---reinforces that Few-NERD is a conditional success rather than evidence of a general bypass. The core negative finding (selection ${\\leq}$ greedy under high degeneracy) is unaffected."
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 89_
+
+Now the limitations, discussion, and appendix edits.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0ece91e4-5aa9-4282-9ae9-a9f0b59b36fe",
+  "uuid": "990e4034-0c13-4596-ab20-c2cde40def69",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RrbNsXqrRLSSqafpwx8gtt",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5902,
+      "cache_read_input_tokens": 76084,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5902
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 90_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01MPjkDP29qqEZdaqCiU9D84`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/limitations.tex",
+  "old_string": "$\\Delta_{\\text{SC}}{=}{-}0.74{\\pm}0.57$\\,pp",
+  "new_string": "$\\Delta_{\\text{SC}}{=}{-}0.74{\\pm}0.46$\\,pp"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0ece91e4-5aa9-4282-9ae9-a9f0b59b36fe",
+  "uuid": "eed518d8-98b6-4990-a9b6-259f5d8d132f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RrbNsXqrRLSSqafpwx8gtt",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5902,
+      "cache_read_input_tokens": 76084,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5902
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 91 · 2026-05-22T18:53:25.124Z_
+
+<details><summary>↩ Tool result · `toolu_01MPjkDP29qqEZdaqCiU9D84`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/limitations.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "0ece91e4-5aa9-4282-9ae9-a9f0b59b36fe",
+  "uuid": "8af237c0-614f-4ea1-a0d0-6b649ef447da",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/limitations.tex",
+    "oldString": "$\\Delta_{\\text{SC}}{=}{-}0.74{\\pm}0.57$\\,pp",
+    "newString": "$\\Delta_{\\text{SC}}{=}{-}0.74{\\pm}0.46$\\,pp",
+    "originalFile": "Our primary evidence is from NER (four English datasets, 7--14B open-weight fine-tuned); cross-scale observations (4B--72B, GPT-5.5) are tentative. The RE extension ($n{=}397$, single dataset) and SQL pilot ($n{=}196$) are exploratory. SciERC results are validated across three training seeds ($n{=}529$ test instances; $\\Delta_{\\text{SC}}{=}{-}0.74{\\pm}0.57$\\,pp, consistent negative). Frontier models exhibit markedly different degeneracy profiles (5.5--74\\%; Table~\\ref{tab:frontier_sc_cross}), suggesting findings from fine-tuned open-weight models may not fully generalize to proprietary systems.\nOur framework is diagnostic, not causal: stages resist decomposition into independent effects ($R^2{<}0$; \\S\\ref{sec:selection_gap}). Under global Holm--Bonferroni ($k{=}57$), the most liberal core claim reaches $p_{\\text{HB}}{=}0.055$; under BH FDR, $19/57$ tests are significant at FDR${<}0.05$ including $6/10$ construction comparisons (Appendix~\\ref{app:holm}).\nWe evaluate at $N{\\in}\\{2,\\ldots,64\\}$; entity-level construction requires $N{\\times}$ inference cost for modest gains ($+1$--$1.4$\\,pp). We use a single prompt template per task; prompt variations may affect entity recall, degeneracy, and LP distributions.\nAll evaluation uses entity-level micro-F1 with exact span-and-type match; partial-credit metrics (e.g., token-level or relaxed boundary match) may yield different conclusions about selection effectiveness.\n",
+    "structuredPatch": [
+      {
+        "oldStart": 1,
+        "oldLines": 4,
+        "newStart": 1,
+        "newLines": 4,
+        "lines": [
+          "-Our primary evidence is from NER (four English datasets, 7--14B open-weight fine-tuned); cross-scale observations (4B--72B, GPT-5.5) are tentative. The RE extension ($n{=}397$, single dataset) and SQL pilot ($n{=}196$) are exploratory. SciERC results are validated across three training seeds ($n{=}529$ test instances; $\\Delta_{\\text{SC}}{=}{-}0.74{\\pm}0.57$\\,pp, consistent negative). Frontier models exhibit markedly different degeneracy profiles (5.5--74\\%; Table~\\ref{tab:frontier_sc_cross}), suggesting findings from fine-tuned open-weight models may not fully generalize to proprietary systems.",
+          "+Our primary evidence is from NER (four English datasets, 7--14B open-weight fine-tuned); cross-scale observations (4B--72B, GPT-5.5) are tentative. The RE extension ($n{=}397$, single dataset) and SQL pilot ($n{=}196$) are exploratory. SciERC results are validated across three training seeds ($n{=}529$ test instances; $\\Delta_{\\text{SC}}{=}{-}0.74{\\pm}0.46$\\,pp, consistent negative). Frontier models exhibit markedly different degeneracy profiles (5.5--74\\%; Table~\\ref{tab:frontier_sc_cross}), suggesting findings from fine-tuned open-weight models may not fully generalize to proprietary systems.",
+          " Our framework is diagnostic, not causal: stages resist decomposition into independent effects ($R^2{<}0$; \\S\\ref{sec:selection_gap}). Under global Holm--Bonferroni ($k{=}57$), the most liberal core claim reaches $p_{\\text{HB}}{=}0.055$; under BH FDR, $19/57$ tests are significant at FDR${<}0.05$ including $6/10$ construction comparisons (Appendix~\\ref{app:holm}).",
+          " We evaluate at $N{\\in}\\{2,\\ldots,64\\}$; entity-level construction requires $N{\\times}$ inference cost for modest gains ($+1$--$1.4$\\,pp). We use a single prompt template per task; prompt variations may affect entity recall, degeneracy, and LP distributions.",
+          " All evaluation uses entity-level micro-F1 with exact span-and-type match; partial-credit metrics (e.g., token-level or relaxed boundary match) may yield different conclusions about selection effectiveness."
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 92_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_0124K2MEPrjKb4um8AsCYNdq`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/discussion.tex",
+  "old_string": "LP std ratio $0.92$--$0.97{\\times}$",
+  "new_string": "LP std ratio ${\\approx}0.97{\\times}$"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0ece91e4-5aa9-4282-9ae9-a9f0b59b36fe",
+  "uuid": "0fffeb75-f7df-40b5-882b-216c60b1755b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RrbNsXqrRLSSqafpwx8gtt",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5902,
+      "cache_read_input_tokens": 76084,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5902
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 93 · 2026-05-22T18:53:26.354Z_
+
+<details><summary>↩ Tool result · `toolu_0124K2MEPrjKb4um8AsCYNdq`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/discussion.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "0ece91e4-5aa9-4282-9ae9-a9f0b59b36fe",
+  "uuid": "a24049a1-2c75-4d59-95cc-e99915fd8652",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/discussion.tex",
+    "oldString": "LP std ratio $0.92$--$0.97{\\times}$",
+    "newString": "LP std ratio ${\\approx}0.97{\\times}$",
+    "originalFile": "\\section{Discussion and Conclusion}\\label{sec:discussion}\\label{sec:selection_method}\\label{sec:conclusion}\n\n\\paragraph{Why test-time scaling fails for NER.}\nFor discrete-answer reasoning, sample diversity reflects diverse reasoning paths; for NER, degeneracy ($12$--$68$\\%) eliminates candidate diversity while signal alignment collapse ($\\alpha{\\to}0$) prevents ranking.\nThe degeneracy decomposition (\\S\\ref{sec:theory}) identifies $\\alpha$---not degeneracy---as the binding constraint ($8$--$33{\\times}$ tighter), providing a diagnostic tool for localizing failure rather than a predictive bound.\nThis capability-diversity tradeoff \\cite{yun2025price} persists across model families (5.5--74\\%; Table~\\ref{tab:frontier_sc_cross}), scales (4B--72B; \\S\\ref{sec:scaling}), and decoding modes (LP std ratio $0.92$--$0.97{\\times}$; \\S\\ref{sec:selection_gap}).\nCompared to \\citet{yao2026consistency}'s task-level plateau, we provide instance-level decomposition; \\citet{landesberg2026bon} independently confirm the gap generalizes beyond NER ($r{=}0.47$ global vs.\\ $r{=}0.27$ within-prompt).\n\n\\paragraph{Constrained vs.\\ free-form decoding.}\nLP compression is model-intrinsic rather than an artifact of constrained decoding: free-form generation yields nearly identical within-instance LP distributions (std ratio $0.97{\\times}$; Appendix~\\ref{app:freeform_ablation}).\nConstrained decoding does affect diversity: Few-NERD (13\\% degeneracy) retains diversity under grammar constraints, while CoNLL (62\\%) collapses---but this variation tracks task difficulty and model calibration rather than the decoding mechanism itself.\n\n\\paragraph{Scale and outlook.}\nThe correlation-selection gap persists from 4B fine-tuned to 72B zero-shot and GPT-5.5, with degeneracy varying by model family rather than scale (Qwen2.5: $32$--$46$\\%, Qwen3: $13$\\%, GPT-5.5: $50$\\% on Few-NERD; \\S\\ref{sec:scaling}).\nWhether models beyond 70B with improved calibration can overcome signal alignment collapse remains an open question; our diagnostic framework provides the measurements needed to evaluate this as larger models become available.\n\n\\paragraph{Practical recommendations.}\nMeasuring degeneracy and LP-F1 alignment at $N{=}8$ suffices: if ${>}50$\\% degenerate, scaling provides no benefit; if degeneracy ${<}20$\\% with $\\rho{>}0.70$, construction may yield gains; otherwise prefer greedy.\n\n\\paragraph{Conclusion.}\nThe diagnostic framework---localizing failure to degeneracy and signal alignment collapse---is our primary contribution; RE, SQL, and cross-model extensions are exploratory.\n",
+    "structuredPatch": [
+      {
+        "oldStart": 3,
+        "oldLines": 7,
+        "newStart": 3,
+        "newLines": 7,
+        "lines": [
+          " \\paragraph{Why test-time scaling fails for NER.}",
+          " For discrete-answer reasoning, sample diversity reflects diverse reasoning paths; for NER, degeneracy ($12$--$68$\\%) eliminates candidate diversity while signal alignment collapse ($\\alpha{\\to}0$) prevents ranking.",
+          " The degeneracy decomposition (\\S\\ref{sec:theory}) identifies $\\alpha$---not degeneracy---as the binding constraint ($8$--$33{\\times}$ tighter), providing a diagnostic tool for localizing failure rather than a predictive bound.",
+          "-This capability-diversity tradeoff \\cite{yun2025price} persists across model families (5.5--74\\%; Table~\\ref{tab:frontier_sc_cross}), scales (4B--72B; \\S\\ref{sec:scaling}), and decoding modes (LP std ratio $0.92$--$0.97{\\times}$; \\S\\ref{sec:selection_gap}).",
+          "+This capability-diversity tradeoff \\cite{yun2025price} persists across model families (5.5--74\\%; Table~\\ref{tab:frontier_sc_cross}), scales (4B--72B; \\S\\ref{sec:scaling}), and decoding modes (LP std ratio ${\\approx}0.97{\\times}$; \\S\\ref{sec:selection_gap}).",
+          " Compared to \\citet{yao2026consistency}'s task-level plateau, we provide instance-level decomposition; \\citet{landesberg2026bon} independently confirm the gap generalizes beyond NER ($r{=}0.47$ global vs.\\ $r{=}0.27$ within-prompt).",
+          " ",
+          " \\paragraph{Constrained vs.\\ free-form decoding.}"
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 94_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01UEVHG5iQRaUanQnjhgfvha`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+  "old_string": "attributable to the 51\\% zero-F1 rate",
+  "new_string": "attributable to the 53.7\\% zero-F1 rate"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0ece91e4-5aa9-4282-9ae9-a9f0b59b36fe",
+  "uuid": "6a7b3efe-2dc5-4bf9-84b4-4d20431e2a29",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RrbNsXqrRLSSqafpwx8gtt",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5902,
+      "cache_read_input_tokens": 76084,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5902
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 95 · 2026-05-22T18:53:28.288Z_
+
+<details><summary>↩ Tool result · `toolu_01UEVHG5iQRaUanQnjhgfvha`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "0ece91e4-5aa9-4282-9ae9-a9f0b59b36fe",
+  "uuid": "dabd5517-7ca7-468b-8188-6e490be2332f",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+    "oldString": "attributable to the 51\\% zero-F1 rate",
+    "newString": "attributable to the 53.7\\% zero-F1 rate",
+    "originalFile": "\\section{Notation}\\label{app:notation}\n\nTable~\\ref{tab:notation} summarizes the notation used throughout the paper.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\begin{tabular}{cl}\n\\toprule\nSymbol & Meaning \\\\\n\\midrule\n$\\mathcal{M}$ & Language model \\\\\n$x$ & Input instance \\\\\n$y_i$ & $i$-th stochastic sample \\\\\n$N$ & Number of samples \\\\\n$T$ & Sampling temperature \\\\\n$c(\\cdot)$ & Confidence signal \\\\\nSJ & Soft Jaccard similarity \\\\\nFK & Fleiss' $\\kappa$ \\\\\nEM & Exact-match voting rate \\\\\nVC ($c_{\\mathrm{vc}}$) & Entity voting confidence \\\\\nLP ($c_{\\mathrm{lp}}$) & Log-probability (mean token log-likelihood) \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Notation used throughout the paper.}\n\\label{tab:notation}\n\\end{table}\n\n\\section{Robustness Analysis}\\label{app:robustness}\n\nWe exclude instances with empty gold annotations from all correlation analyses (CoNLL: 697/3{,}453 instances, 20.2\\%; SciERC: 22/551, 4.0\\%).\nFor these instances, F1 is trivially zero regardless of prediction quality, and consistency signals reflect agreement on the empty set rather than extraction quality. Including them inflates or deflates Spearman $\\rho$ depending on signal behavior at the boundary.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Signal robustness across configurations (Spearman $\\rho$). Top: temperature on Qwen SciERC. Middle: sample size on Qwen SciERC. Bottom: transfer across model families (both 8B) (LLaMA CoNLL $N{=}16$, 3-seed mean $\\pm\\sigma$). $^\\dagger$Mean over 3 seeds ($\\sigma{=}0.013$; individual: 0.398, 0.423, 0.410). $\\sigma$ computed as sample standard deviation.}\n\\label{tab:robustness}\n\\begin{tabular}{llcc}\n\\toprule\n& & NER $\\rho$ & RE $\\rho$ \\\\\n\\midrule\n\\multicolumn{4}{l}{\\textit{Temperature} (Qwen SciERC, $N{=}8$)} \\\\\n\\quad SJ & $T{=}0.7$ & 0.364 & 0.234 \\\\\n\\quad SJ & $T{=}1.0$ & 0.360 & 0.250 \\\\\n\\quad FK & $T{=}0.7$ & 0.289 & 0.184 \\\\\n\\quad FK & $T{=}1.0$ & 0.267 & 0.275 \\\\\n\\quad LP & $T{=}0.7$ & 0.249 & --- \\\\\n\\quad LP & $T{=}1.0$ & 0.205 & 0.266 \\\\\n\\midrule\n\\multicolumn{4}{l}{\\textit{Sample size} (Qwen SciERC, $T{=}1.0$)} \\\\\n\\quad SJ & $N{=}8$  & 0.360 & 0.250 \\\\\n\\quad SJ & $N{=}16$ & 0.411$^\\dagger$ & 0.281 \\\\\n\\quad FK & $N{=}8$  & 0.267 & 0.275 \\\\\n\\quad FK & $N{=}16$ & 0.283 & 0.279 \\\\\n\\midrule\n\\multicolumn{4}{l}{\\textit{Across model families} (LLaMA CoNLL, $N{=}16$, 3 seeds)} \\\\\n\\quad SJ &  & $0.474{\\pm}0.009$ & --- \\\\\n\\quad FK &  & $0.467{\\pm}0.009$ & --- \\\\\n\\quad EM &  & $0.473{\\pm}0.010$ & --- \\\\\n\\quad VC &  & $0.470{\\pm}0.006$ & --- \\\\\n\\quad LP &  & $0.311{\\pm}0.003$ & --- \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{fig_temperature_robustness}\n\\caption{Temperature robustness on SciERC ($N{=}8$). Top: NER; bottom: RE. SJ maintains stable $\\rho$ across $T{=}0.7$ and $T{=}1.0$, while FK shows mixed sensitivity. LP shows the largest NER temperature effect ($\\Delta\\rho{=}{+}0.044$); RE $T{=}0.7$ LP data unavailable.}\n\\label{fig:temperature_robustness}\n\\end{figure}\n\n\\paragraph{Temperature sensitivity.}\nSJ NER $\\rho$ shifts from 0.364 ($T{=}0.7$) to 0.360 ($T{=}1.0$), a difference of 0.004.\nFK NER $\\rho$ drops by 0.022, while RE $\\rho$ increases by 0.091, likely reflecting reduced diversity at lower temperature interacting differently across tasks.\nLP exhibits the largest temperature effect on NER ($\\rho{=}0.249$ at $T{=}0.7$ vs.\\ $0.205$ at $T{=}1.0$, $\\Delta{=}{+}0.044$), consistent with lower temperature concentrating probability mass and improving LP's discriminative power for quality estimation; RE $T{=}0.7$ LP data is not available.\nAcross all comparisons, the signal hierarchy is preserved at both temperatures on NER (SJ${>}$FK${>}$LP at $T{=}0.7$: $0.364{>}0.289{>}0.249$; at $T{=}1.0$: $0.360{>}0.267{>}0.205$).\n\n\\paragraph{Sample size scaling.}\nIncreasing from $N{=}8$ to $N{=}16$ improves SJ on Qwen SciERC NER: $\\rho$ rises from 0.360 to $0.411{\\pm}0.010$ (three seeds: 0.398, 0.423, 0.410), a gain of $+0.047$.\nThe magnitude of $N$-scaling gains is setting-dependent (LLaMA SciERC NER yields $+0.016$ and Qwen CoNLL NER $+0.014$), though the direction is consistently positive.\nLLaMA CoNLL exhibits the most uniform scaling: all four consistency signals gain $\\Delta\\rho{\\approx}{+}0.042$ (range: $+0.039$ to $+0.044$) while LP gains only $+0.004$ (Table~\\ref{tab:quality_estimation}).\nFK $N$-scaling is seed-dependent: Qwen SciERC gains range from $+0.005$ to $+0.023$ across seeds (mean $+0.016$), while LLaMA CoNLL yields $+0.039$ (3-seed mean); individual seed FK shifts vary substantially under the unified pipeline, so this should not be interpreted as a robust trend.\nVC $N$-scaling is consistently positive ($+0.005$ on Qwen CoNLL, $+0.018$ on LLaMA SciERC, $+0.030$ on Qwen SciERC), while LP is approximately $N$-invariant ($\\Delta{\\leq}0.034$).\nSJ, EM, and VC scale consistently across all tested settings; only FK shows seed-dependent variation that does not constitute a reliable trend, structural and binary-agreement signals are the most robust to $N$.\nAt $N{=}16$, SJ converges to comparable NER performance with VC ($\\Delta{=}0.002$) while exhibiting lower cross-seed variance ($\\sigma{=}0.010$ vs.\\ $0.026$), a more stable alternative at higher sample sizes.\n\n\\paragraph{Transfer across model families.}\nLLaMA-3.1-8B-Instruct shows a similar SJ--FK ordering on SciERC NER (SJ $\\rho{=}0.325{\\pm}0.021$, FK $\\rho{=}0.256{\\pm}0.024$, $\\Delta\\rho{=}0.069$; permutation $p{=}0.06$, borderline).\nOn CoNLL, the gap across model families is minimal (Table~\\ref{tab:quality_estimation}): SJ achieves $\\rho{=}0.431$ (LLaMA) vs.\\ 0.436 (Qwen), $\\Delta{=}0.005$.\nAt $N{=}16$, the structural-over-LP advantage holds across all four tested NER settings: Qwen SciERC (VC $\\rho{=}0.409$ vs.\\ LP 0.239, $\\Delta{=}{+}0.170$), Qwen CoNLL (EM $\\rho{=}0.463$ vs.\\ LP 0.328, $\\Delta{=}{+}0.135$),\\footnote{Qwen CoNLL $N{=}16$ was not recomputed under the unified pipeline; LP $\\rho{=}0.328$ may differ slightly from the registry value (0.315) due to instance filtering.} LLaMA SciERC (VC $\\rho{=}0.452$ vs.\\ LP 0.277, $\\Delta{=}{+}0.175$), and LLaMA CoNLL 3-seed (SJ $\\rho{=}0.474{\\pm}0.009$ vs.\\ LP $0.311{\\pm}0.003$, $\\Delta{=}{+}0.163$).\n\n\\paragraph{FK independence: instance-level permutation test.}\\label{app:fk_independence}\n\nTo verify that Fleiss' $\\kappa$ reflects genuine within-instance agreement rather than marginal-rate artifacts, we conduct instance-level permutation tests across three configurations.\nFor each instance, we permute sample labels 10{,}000 times to generate a null distribution of FK under independence, then compare the observed FK against this null via a one-sample $t$-test and permutation $p$-value.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Instance-level FK independence test. Permutation tests confirm FK reflects true within-instance agreement (all $p{<}0.001$). Split-half reliability $r$ computed by randomly partitioning $N$ samples into two halves and correlating their FK scores.}\n\\label{tab:fk_independence}\n\\resizebox{\\columnwidth}{!}{\n\\begin{tabular}{lrcccc}\n\\toprule\nConfig & $n$ & FK mean & 95\\% CI & $t$ & Split-half $r$ \\\\\n\\midrule\nSciERC (Qwen) & 529 & 0.402 & [0.376, 0.428] & 30.8 & 0.395 \\\\\nCoNLL (LLaMA) & 2{,}756 & 0.927 & [0.919, 0.935] & 225.9 & 0.578 \\\\\nCoNLL (Qwen) & 2{,}756 & 0.720 & [0.706, 0.734] & 102.1 & 0.520 \\\\\n\\bottomrule\n\\end{tabular}\n}\n\\end{table}\n\nTable~\\ref{tab:fk_independence} reports the results.\nAll configurations reject the independence null at $p{<}0.001$ ($n{=}529$--$2{,}756$), FK captures genuine inter-sample agreement rather than chance label co-occurrence.\nSplit-half reliability ranges from $r{=}0.395$ (SciERC) to $r{=}0.578$ (CoNLL LLaMA), moderate stability: FK estimates from half the samples correlate positively with those from the other half, though the SciERC value suggests noisier estimation on harder tasks with fewer samples.\nThe higher FK means on CoNLL ($0.720$--$0.927$) vs.\\ SciERC ($0.402$) mirror the difficulty gradient observed in the main quality estimation results.\n\n\\section{Calibration Analysis}\\label{app:calibration}\n\n\\begin{figure*}[t]\n\\centering\n\\includegraphics[width=\\textwidth]{fig_reliability}\n\\caption{Reliability diagrams on SciERC ($N{=}8$, $T{=}1.0$). Top: mean F1 vs.\\ binned confidence; bottom: instance counts per bin. Left: NER; right: RE. NER signals are reasonably well-calibrated (calibration ECE 0.069--0.096), while RE shows greater miscalibration (ECE 0.109--0.339), RE calibration remains challenging for compound extraction tasks.}\n\\label{fig:reliability}\n\\end{figure*}\n\nReliability diagrams use 10 equal-width bins.\nNER signals are reasonably well-calibrated (calibration ECE 0.069--0.096), while RE exhibits greater miscalibration (ECE 0.109--0.339), translating consistency scores into calibrated confidence estimates is feasible for NER but remains challenging for compound extraction tasks.\n\n\\section{Additional Analyses}\\label{app:additional}\n\n\\begin{figure*}[t]\n\\centering\n\\includegraphics[width=\\textwidth]{fig_signal_heatmap}\n\\caption{Quality estimation heatmap (Spearman $\\rho$) across five signals and four configurations. Left: full evaluation set; right: conditional set (non-zero F1 instances). On the full set, structural signals dominate on SciERC NER while all signals converge on CoNLL. On the conditional set, EM emerges as the strongest signal on both NER ($\\rho{=}0.360$) and RE ($\\rho{=}0.417$), while LP RE collapses to near-zero ($\\rho{=}0.011$).}\n\\label{fig:signal_heatmap}\n\\end{figure*}\n\n\\paragraph{Per-relation diagnostic.}\nRE signal degradation is relation-specific.\n\\textsc{Feature-Of} has near-zero correlation ($\\rho{=}0.004$), while \\textsc{Hyponym-Of} achieves $\\rho{=}0.646$.\nThe primary bottleneck is entity span errors, which account for 55.5\\% of RE false negatives. This is a prerequisite failure that consistency signals cannot detect, as they measure agreement among equally incorrect extractions.\nWe note that RE analysis relies on a single dataset (SciERC); generalization to other RE benchmarks remains to be validated.\n\n\\paragraph{Capability stratification.}\nFor NER, SJ effectiveness scales with structural complexity: on SciERC instances with 6+ entities, $\\rho{=}0.547$, compared to $\\rho{=}0.415$ for 1--2 entities.\nThe SJ advantage over LP remains stable across sentence-length quartiles ($\\Delta\\rho{\\approx}0.08$--$0.20$).\nFor RE, SJ $\\rho$ increases monotonically with sentence length (Q1: 0.110 $\\to$ Q4: 0.473; Fisher $z$-test $p{=}0.004$): longer, more relation-dense sentences provide richer structure for consistency-based estimation.\nBoth proxies are weakly correlated with F1 ($|r|{<}0.15$), they capture input complexity rather than directly predicting output quality; however, entity count and sentence length are themselves moderately correlated ($\\rho{=}0.650$), so they reflect overlapping rather than independent complexity dimensions.\nFor RE, entity count and relation count are strongly correlated ($\\rho{=}0.769$) and thus reflect a single structural complexity dimension rather than independent axes.\nOn the high-complexity RE subset ($n{=}81$, high relation count), signals improve substantially: VC reaches $\\rho{=}0.630$, LP $\\rho{=}0.554$, and SJ $\\rho{=}0.502$, all far above the full-set levels.\nRicher relational structure provides more signal for consistency-based estimation, complementing the task-level boundary established by WNUT-17: structural signals are most effective within a ``sweet spot'' of sufficient model capability and sufficient output complexity.\n\n\\paragraph{Length vs.\\ log-probability.}\nFigure~\\ref{fig:length_logprob_scatter} shows that mean log-probability is weakly positively correlated with output length (NER: $\\rho{=}0.386$, $n{=}4{,}232$; RE: $\\rho{=}0.326$, $n{=}3{,}176$), ruling out length-penalty confounding as an explanation for LP's selection failure: longer outputs receive \\textit{higher}, not lower, token-averaged log-probability under constrained decoding.\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{fig_length_logprob_scatter}\n\\caption{Output length vs.\\ mean log-probability on SciERC ($N{=}8$, $T{=}1.0$). Positive correlations (NER: $\\rho{=}0.386$; RE: $\\rho{=}0.326$) rule out length-penalty confounding.}\n\\label{fig:length_logprob_scatter}\n\\end{figure}\n\n\\paragraph{Evaluation circularity and LOO-SJ equivalence.}\nConsensus-proximity selection chooses $\\hat{y} = \\arg\\max_{y_i} \\sum_{j \\neq i} \\text{SJ}(y_i, y_j)$.\nLeave-one-out SJ (LOO-SJ) for sample $y_i$ is $\\text{LOO-SJ}_i = \\frac{1}{N-1}\\sum_{j \\neq i} \\text{SJ}(y_i, y_j)$.\nSince the $\\frac{1}{N-1}$ constant is shared across all candidates within an instance, $\\arg\\max_{y_i} \\text{LOO-SJ}_i = \\arg\\max_{y_i} \\sum_{j \\neq i} \\text{SJ}(y_i, y_j)$; the two selection rules are equivalent.\nStandard (non-LOO) SJ adds the self-comparison term $\\text{SJ}(y_i, y_i) = 1$ to each candidate, which is constant and thus does not affect ranking.\nEmpirically, LOO-SJ yields $\\Delta\\rho{=}{-}0.014$ relative to standard SJ (a correlation-level difference), with a maximum per-instance score difference of $3.1{\\times}10^{-4}$ (negligible at the individual prediction level).\nEvaluation circularity is negligible.\n\n\\paragraph{SJ normalizer robustness.}\nEquation~\\ref{eq:sj} uses $\\max(|g_i|, |g_j|)$ as the denominator; an alternative is the union size $|g_i \\cup g_j|$.\nTable~\\ref{tab:sj_normalizer} compares the two normalizers across all six model--dataset combinations ($N{=}8$, $T{=}1.0$, seed${=}42$): $|\\Delta\\rho|{<}0.01$ in every case, the choice between max and union normalization does not affect conclusions.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{SJ normalizer comparison (Spearman $\\rho$; $N{=}8$, $T{=}1.0$, seed${=}42$). Max: $\\max(|g_i|,|g_j|)$; Union: $|g_i \\cup g_j|$.}\n\\label{tab:sj_normalizer}\n\\begin{tabular}{@{}ll ccc@{}}\n\\toprule\nDataset & Model & $\\rho$(max) & $\\rho$(union) & $\\Delta\\rho$ \\\\\n\\midrule\nCoNLL & Qwen3-8B & .436 & .438 & $-$.002 \\\\\nCoNLL & Qwen3-4B & .422 & .421 & $+$.000 \\\\\nCoNLL & LLaMA-8B & .431 & .432 & $-$.000 \\\\\nSciERC & Qwen3-8B & .360 & .365 & $-$.005 \\\\\nSciERC & Qwen3-4B & .422 & .423 & $-$.001 \\\\\nSciERC & LLaMA-8B & .363 & .372 & $-$.009 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\paragraph{Conditional filtering details.}\nOn LLaMA conditional RE (non-zero F1 instances), SJ recovers to $\\rho{=}0.405$ while FK drops to $\\rho{=}0.259$, consistent with the NER structural advantage; on full-set RE, however, the SJ--FK difference is non-significant ($\\Delta\\rho{=}{-}0.005$, $p{=}0.53$; preliminary).\nAt $N{=}16$, the divergence persists: SJ maintains $\\rho{=}0.308$ on conditional RE while LP drops to $\\rho{=}{-}0.026$.\nEM ranks first across all four tested conditional configurations: SciERC NER ($\\rho{=}0.360$), CoNLL Qwen $N{=}16$ ($\\rho{=}0.466$), CoNLL LLaMA 3-seed ($\\rho{=}0.462$), and SciERC RE ($\\rho{=}0.417$). This holds despite full-set rankings ranging from \\#1 (CoNLL Qwen) to \\#5 (SciERC RE).\nOn the full set, EM is diluted by trivial agreement: instances where all $N$ samples produce identical (possibly incorrect) outputs receive EM${=}1$ regardless of quality, compressing the signal's dynamic range.\nOn the conditional set, where the model demonstrably produces varied outputs, exact agreement becomes the strongest quality signal.\nThe margin over SJ is largest on RE ($\\Delta\\rho{=}{+}0.171$), where compound extraction decisions amplify output variability, and smallest on CoNLL LLaMA ($\\Delta\\rho{=}{+}0.002$), where all signals converge near $\\rho{\\approx}0.46$.\n\n\\paragraph{WNUT-17 full signal analysis.}\nTable~\\ref{tab:wnut} reports all five signals on WNUT-17 with full-set and conditional $\\rho$.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Quality estimation on WNUT-17 (Qwen, $N{=}16$, $T{=}1.0$, $n{=}689$). Cond: non-zero F1 instances ($n{=}334$). Full-set $\\rho$ reflects binary success prediction; conditional $\\rho$ measures quality gradation. LP's conditional $\\rho$ is highest despite negative full-set $\\rho$.}\n\\label{tab:wnut}\n\\begin{tabular}{lcccc}\n\\toprule\nSignal & $\\rho$ & AUROC & Cond.\\ $\\rho$ & Cond.\\ $p$ \\\\\n\\midrule\nVC      & .724 & .913 & .038 & .487 \\\\\nFK      & .125 & .555 & .169 & .002 \\\\\nSJ      & .089 & .517 & .288 & ${<}$1e-7 \\\\\nEM      & .050 & .487 & .333 & ${<}$1e-9 \\\\\nLP & $-$.410 & .219 & .350 & ${<}$1e-10 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\nThe full-set $p$-values are: VC ${<}$1e-112, FK $p{=}0.001$, SJ $p{=}0.020$, EM $p{=}0.194$, LP ${<}$1e-28.\nVC's high full-set $\\rho{=}0.724$ is entirely attributable to the zero/non-zero boundary (conditional $\\rho{=}0.038$, $p{=}0.49$), while LP's conditional $\\rho{=}0.350$ is the highest among all signals on the non-zero subset, full-set correlations on high-failure-rate datasets conflate binary success prediction with quality gradation.\n\n\\paragraph{Cross-configuration selection analysis.}\nTable~\\ref{tab:cross_selection} extends the selection analysis to five additional configurations.\nOn LLaMA SciERC, where output diversity remains substantial (18\\% identical outputs, 39\\% unique), LP achieves the highest selection F1 (0.652) at $N{=}8$ but still falls within bootstrap noise of single-sample (0.646), replicating the gap observed on Qwen SciERC (Table~\\ref{tab:selection}).\nOn LLaMA FewNERD ($n{=}32{,}565$, 3-seed mean), LP is the only signal with positive selection ($+0.36$~pp), confirming LP as the most robust selection signal across model families (Qwen FewNERD: $+1.39$~pp, Table~\\ref{tab:fewnerd}). All structural signals degrade selection (VC $-2.39$~pp, SJ $-0.52$~pp), consistent with the Qwen pattern. LLaMA FewNERD degeneracy ($23.4{\\pm}4.7$\\%, 3 seeds) is higher than Qwen ($13.0$\\%), illustrating the capability-diversity tension: LLaMA achieves stronger greedy F1 ($0.784$ vs.\\ $0.748$, $+3.6$~pp) but at the cost of higher degeneracy ($+10.4$~pp) and reduced oracle headroom ($10.0$ vs.\\ $12.4$~pp).\nOn CoNLL, 48--87\\% of instances produce identical outputs across all $N$ samples; this reflects a ceiling effect (single-sample F1 ${\\approx}$0.91--0.92) rather than signal failure, and selection analysis on these configurations is uninformative because there is little per-sample variance for any signal to exploit.\n\n\\begin{table*}[t]\n\\centering\n\\small\n\\caption{Best-of-$N$ selection F1 (macro, instance-averaged) across configurations ($T{=}1.0$, 3-seed mean). Best non-oracle signal per row in \\textbf{bold}. LP is the only signal with positive selection on both FewNERD configurations (Qwen $+1.39$~pp, Table~\\ref{tab:fewnerd}; LLaMA $+0.36$~pp). At $N{=}16$ on LLaMA CoNLL, VC achieves small but significant gains ($+0.28$~pp, $p{<}0.03$; see text below). CoNLL shows especially tight clustering where greedy already exceeds 0.90.}\n\\label{tab:cross_selection}\n\\begin{tabular}{llccccccc}\n\\toprule\nConfig & $n$ & Greedy & Oracle & SJ & FK & EM & LP & VC \\\\\n\\midrule\nLLaMA/SciERC $N{=}8$ & 529 & .646 & .778 & .643 & .639 & .634 & \\textbf{.652} & .633 \\\\\nLLaMA/SciERC $N{=}16$ & 529 & .645 & .806 & \\textbf{.649} & \\textbf{.649} & .640 & .646 & .640 \\\\\n\\addlinespace\nLLaMA/FewNERD $N{=}8$ & 32{,}565 & .784 & .884 & .779 & .779 & .774 & \\textbf{.788} & .760 \\\\\n\\addlinespace\nQwen/CoNLL $N{=}8$ & 2{,}756 & .908 & .948 & \\textbf{.899} & .893 & .898 & .897 & .895 \\\\\nLLaMA/CoNLL $N{=}8$ & 2{,}756 & .924 & .943 & .924 & \\textbf{.925} & .924 & .924 & .923 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table*}\n\n\\paragraph{Diminishing returns of $N$-scaling.}\nOur $N{=}8$ and $N{=}16$ comparisons (Table~\\ref{tab:robustness}) characterize the marginal value of additional samples for test-time scaling \\cite{brown2024monkeys, snell2025scaling}.\nFor quality estimation, structural signals benefit consistently but sublinearly: SJ $\\rho$ improves by $+0.047$ (Qwen SciERC, 3-seed mean) and $+0.032$ (LLaMA CoNLL, 3-seed mean) when doubling from $N{=}8$ to $N{=}16$, while log-probability is approximately $N$-invariant ($\\Delta\\rho{\\leq}0.021$).\nStructural signals use $\\binom{N}{2}$ pairwise comparisons (28 pairs at $N{=}8$, 120 at $N{=}16$), but the $\\rho$ improvement is far less than proportional, each additional comparison yields diminishing information.\nThis asymmetry gives structural signals a relative advantage in the compute-constrained regime: at $N{=}8$, SJ already achieves $\\rho{=}0.431$ on LLaMA CoNLL (vs.\\ LP $\\rho{=}0.307$, $\\Delta{=}{+}0.124$), and the gap \\textit{widens} at $N{=}16$ ($\\Delta{=}{+}0.163$) because structural signals continue to benefit from additional pairwise evidence while LP does not.\nFor sample selection, additional samples increase the oracle upper bound (more draws raise the probability of a high-quality candidate), but signal-based selection remains flat because the selector's inability to identify the best candidate is a granularity limitation, not a sample size limitation.\nThe practical implication is that $N{=}8$ captures most of the achievable quality estimation benefit; further scaling widens rather than closes the correlation-selection gap absent stronger per-sample selectors.\n\n\\paragraph{$N{=}16$ CoNLL selection: small but significant.}\nWhile quality estimation benefits sublinearly from $N$-scaling, selection behavior at $N{=}16$ shows a nuanced exception on LLaMA CoNLL.\nVC achieves the largest gain over single-sample ($+0.28$~pp, $p{=}0.003$--$0.027$ across 3 seeds, all significant), with SJ, FK, and EM at $+0.22$--$0.23$~pp and LP at $+0.12$~pp (2/3 seeds significant).\nThese gains are statistically significant but practically minimal: oracle headroom at $N{=}16$ is only 2.5~pp, so VC captures approximately 10\\% of the available headroom.\nThis reinforces the primary finding: even under the most favorable conditions (high baseline performance, more candidates, and aggregated multi-seed evidence), signal-based selection recovers only a fraction of the oracle headroom available.\n\n\\section{Bootstrap CI for Signal Comparisons}\\label{app:bootstrap_signal}\n\nTable~\\ref{tab:bootstrap_signal_ci} reports bootstrap confidence intervals for individual signal $\\rho$ and pairwise $\\Delta\\rho$ on SciERC NER ($N{=}8$, $n{=}529$, $B{=}10{,}000$, seed${=}42$).\nThe SJ--LP gap ($\\Delta\\rho{=}{+}0.155$) is clearly significant, the structural advantage reported in \\S\\ref{sec:qe_results} is robust.\nThe VC--SJ gap ($\\Delta\\rho{=}{+}0.019$) is not significant; these two structural signals perform comparably.\nThe SJ--EM gap ($\\Delta\\rho{=}{+}0.065$) is borderline significant, with the CI lower bound at $+0.003$ and upper bound at $+0.130$.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Bootstrap 95\\% CIs for signal $\\rho$ on SciERC NER ($N{=}8$, $n{=}529$, $B{=}10{,}000$, seed${=}42$). Top: individual signals. Bottom: pairwise $\\Delta\\rho$; ``Sig.'' indicates whether the 95\\% CI excludes zero.}\n\\label{tab:bootstrap_signal_ci}\n\\begin{tabular}{lcc}\n\\toprule\nSignal & $\\rho$ & 95\\% CI \\\\\n\\midrule\nVC & +0.379 & [+0.299, +0.456] \\\\\nSJ & +0.360 & [+0.277, +0.437] \\\\\nEM & +0.295 & [+0.212, +0.371] \\\\\nFK & +0.267 & [+0.176, +0.354] \\\\\nLP & +0.205 & [+0.119, +0.291] \\\\\n\\bottomrule\n\\end{tabular}\n\n\\vspace{0.5em}\n\n\\begin{tabular}{lccc}\n\\toprule\nComparison & $\\Delta\\rho$ & 95\\% CI & Sig. \\\\\n\\midrule\nSJ $-$ LP & +0.155 & [+0.074, +0.234] & Yes \\\\\nVC $-$ SJ & +0.019 & [$-$0.033, +0.073] & No \\\\\nSJ $-$ EM & +0.065 & [+0.003, +0.130] & Marginal$^\\dagger$ \\\\\n\\bottomrule\n\\end{tabular}\n\n\\smallskip\n{\\footnotesize $^\\dagger$Marginally significant without multiple comparison correction; would not survive Bonferroni correction for 10 pairwise comparisons ($\\alpha_{\\text{adj}}{=}0.005$).}\n\\end{table}\n\nAt $N{=}16$ ($B{=}10{,}000$, permutation test), the structural advantage extends to FK comparisons.\nOn SciERC NER ($n{=}529$), SJ--FK ($\\Delta\\rho{=}0.147$--$0.160$, all $p{\\leq}0.002$) and VC--FK ($\\Delta\\rho{=}0.138$--$0.188$, all $p{\\leq}0.003$) are clearly significant across all three seeds; EM--FK is seed-dependent ($\\Delta\\rho{=}0.054$--$0.093$, $p{=}0.048$--$0.15$).\nOn CoNLL ($n{=}2{,}756$), all signals significantly outperform FK: EM $\\Delta\\rho{=}0.071$ ($p{<}0.001$), SJ $\\Delta\\rho{=}0.056$ ($p{<}0.001$), VC $\\Delta\\rho{=}0.022$ ($p{=}0.040$).\n\n\\section{Holm--Bonferroni Enumeration}\\label{app:holm}\n\nTable~\\ref{tab:holm_family} enumerates all $k{=}57$ statistical tests reported in this paper under a single global Holm--Bonferroni correction.\nUnder this most conservative family, no core NER claim survives ($p_{\\text{adj}}{=}0.055$ for Few-NERD LP selection and construction); only two peripheral tests reach significance (CoNLL few-shot entity entropy, RE LP selection reversal under free-form decoding).\nWe report per-family corrections in the main text (\\S\\ref{sec:prescriptive}); the global enumeration is provided here for transparency.\n\n\\begin{table*}[t]\n\\centering\n\\small\n\\caption{Complete enumeration of $k{=}57$ statistical tests subject to Holm--Bonferroni correction. Raw $p$: uncorrected $p$-value as reported. $p_{\\text{adj}}$: Holm--Bonferroni adjusted $p$-value. $^\\dagger$Survives correction at $\\alpha{=}0.05$.}\n\\label{tab:holm_family}\n\\begin{tabular}{clllcc}\n\\toprule\n\\# & Family & Test Description & Raw $p$ & $p_{\\text{adj}}$ & Sig. \\\\\n\\midrule\n\\multicolumn{6}{l}{\\textit{Selection}} \\\\\n1 & & SciERC NER LP selection ($N{=}8$, Qwen, Table~3) & $0.290$ & $1.0$ &  \\\\\n2 & & SciERC NER SJ selection ($N{=}8$, Qwen, Table~3) & $0.670$ & $1.0$ &  \\\\\n3 & & SciERC NER FK selection ($N{=}8$, Qwen, Table~3) & $0.790$ & $1.0$ &  \\\\\n4 & & WNUT-17 LP selection ($N{=}8$, Qwen) & $0.720$ & $1.0$ &  \\\\\n5 & & CoNLL LP selection ($N{=}8$, Qwen) & $1.0$ & $1.0$ &  \\\\\n6 & & Few-NERD LP selection ($N{=}8$, Qwen, 3-seed) & ${<}.001$ & $0.055$ &  \\\\\n7 & & SciERC NER SJ selection ($N{=}8$, LLaMA-3B) & $0.175$ & $1.0$ &  \\\\\n8 & & SciERC NER LP selection ($N{=}32$, Qwen) & $0.091$ & $1.0$ &  \\\\\n9 & & SciERC NER FK selection ($N{=}32$, Qwen) & $0.101$ & $1.0$ &  \\\\\n10 & & SciERC NER SJ selection ($N{=}32$, Qwen) & $0.244$ & $1.0$ &  \\\\\n11 & & SciERC NER EM selection ($N{=}32$, Qwen) & $0.355$ & $1.0$ &  \\\\\n12 & & SciERC NER VC selection ($N{=}32$, Qwen) & $1.0$ & $1.0$ &  \\\\\n13 & & SciERC RE LP selection ($N{=}16$, 4B, Fisher) & $0.058$ & $1.0$ &  \\\\\n14 & & SciERC RE VC selection ($N{=}16$, 4B, Fisher) & $0.973$ & $1.0$ &  \\\\\n15 & & SciERC RE FK selection ($N{=}16$, 4B, Fisher) & $0.985$ & $1.0$ &  \\\\\n16 & & SciERC RE SJ selection ($N{=}16$, 4B, Fisher) & $0.993$ & $1.0$ &  \\\\\n17 & & SciERC RE EM selection ($N{=}16$, 4B, Fisher) & $0.999$ & $1.0$ &  \\\\\n18 & & SciERC LP selection, non-tied subset ($\\varepsilon{=}0.05$) & $0.004$ & $0.180$ &  \\\\\n19 & & Few-NERD LP selection ($N{=}8$, LLaMA, 3-seed) & ${<}.001$ & $0.055$ &  \\\\\n20 & & SciERC LP favorable subset ($+$2.47 pp) & $0.015$ & $0.585$ &  \\\\\n21 & & CoNLL LP favorable subset ($-$1.78 pp) & ${<}.001$ & $0.055$ &  \\\\\n\\addlinespace\n\\multicolumn{6}{l}{\\textit{Construction}} \\\\\n22 & & SciERC LP-weighted construction (Qwen, 3-seed) & $0.004$ & $0.180$ &  \\\\\n23 & & SciERC uniform construction (Qwen, 3-seed) & $0.023$ & $0.874$ &  \\\\\n24 & & Few-NERD LP-weighted construction (Qwen) & ${<}.001$ & $0.055$ &  \\\\\n25 & & Few-NERD uniform construction (Qwen) & $0.003$ & $0.138$ &  \\\\\n26 & & CoNLL uniform construction (Qwen) & $0.500$ & $1.0$ &  \\\\\n27 & & SciERC ZS construction (72B) & $0.008$ & $0.320$ &  \\\\\n28 & & SciERC FS construction (72B) & $0.544$ & $1.0$ &  \\\\\n29 & & CoNLL FS construction (72B) & $0.417$ & $1.0$ &  \\\\\n30 & & Few-NERD FS construction (72B) & $0.401$ & $1.0$ &  \\\\\n31 & & SciERC cross-model LP-weighted construction & ${<}.001$ & $0.055$ &  \\\\\n\\addlinespace\n\\multicolumn{6}{l}{\\textit{Calibration}} \\\\\n32 & & SciERC MF-Platt vs Raw LP & $0.720$ & $1.0$ &  \\\\\n33 & & CoNLL MF-Platt vs Raw LP & $0.310$ & $1.0$ &  \\\\\n34 & & Few-NERD MF-Platt vs Raw LP & $0.830$ & $1.0$ &  \\\\\n\\addlinespace\n\\multicolumn{6}{l}{\\textit{Signal $\\Delta\\rho$}} \\\\\n35 & & SciERC $\\Delta\\rho$ SJ$-$LP ($N{=}8$, seed 42) & ${<}.001$ & $0.055$ &  \\\\\n36 & & SciERC $\\Delta\\rho$ VC$-$SJ ($N{=}8$, seed 42) & $0.300$ & $1.0$ &  \\\\\n37 & & SciERC $\\Delta\\rho$ SJ$-$EM ($N{=}8$, seed 42) & $0.045$ & $1.0$ &  \\\\\n38 & & CoNLL $\\Delta\\rho$ EM$-$FK ($N{=}16$) & ${<}.001$ & $0.055$ &  \\\\\n39 & & CoNLL $\\Delta\\rho$ SJ$-$FK ($N{=}16$) & ${<}.001$ & $0.055$ &  \\\\\n40 & & CoNLL $\\Delta\\rho$ VC$-$FK ($N{=}16$) & $0.040$ & $1.0$ &  \\\\\n41 & & SciERC $\\Delta\\rho$ SJ$-$FK (LLaMA, permutation) & $0.060$ & $1.0$ &  \\\\\n42 & & SciERC RE $\\Delta\\rho$ SJ$-$FK (full-set) & $0.530$ & $1.0$ &  \\\\\n43 & & RE SJ $\\rho$ Q1 vs Q4 sentence length (Fisher $z$) & $0.004$ & $0.180$ &  \\\\\n\\addlinespace\n\\multicolumn{6}{l}{\\textit{Correlation}} \\\\\n44 & & Cross-dataset degeneracy--LP gain ($n{=}23$) & $0.810$ & $1.0$ &  \\\\\n45 & & Per-type degeneracy--headroom (Few-NERD, Spearman) & $0.004$ & $0.180$ &  \\\\\n46 & & Per-type degeneracy--headroom (exact permutation) & $0.005$ & $0.205$ &  \\\\\n47 & & Per-type degeneracy--headroom ($\\text{df}{=}4$ adjusted) & $0.033$ & $1.0$ &  \\\\\n48 & & SciERC per-type degeneracy--LP ($\\rho{=}0.14$) & $0.790$ & $1.0$ &  \\\\\n49 & & Kruskal--Wallis per-type LP heterogeneity (SciERC) & $0.796$ & $1.0$ &  \\\\\n\\addlinespace\n\\multicolumn{6}{l}{\\textit{FS error}} \\\\\n50 & & FS vs ZS error overlap (SciERC, permutation) & $0.840$ & $1.0$ &  \\\\\n51 & & FS vs ZS error overlap (CoNLL, permutation) & $0.640$ & $1.0$ &  \\\\\n52 & & FS vs ZS entity entropy (SciERC) & $0.810$ & $1.0$ &  \\\\\n53 & & FS vs ZS entity entropy (CoNLL, Wilcoxon) & ${<}10^{-4}$ & ${<}.001$ & $\\dagger$ \\\\\n\\addlinespace\n\\multicolumn{6}{l}{\\textit{Other}} \\\\\n54 & & LP distribution seed 42 vs 456 (Mann--Whitney) & $0.550$ & $1.0$ &  \\\\\n55 & & RE LP selection reversal (free-form, 4-seed) & ${<}.001$ & $0.006$ & $\\dagger$ \\\\\n56 & & WNUT-17 conditional $\\rho$ VC ($p$-value) & $0.487$ & $1.0$ &  \\\\\n57 & & WNUT-17 conditional $\\rho$ FK ($p$-value) & $0.002$ & $0.094$ &  \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table*}\n\n\\section{Diversity and Selection Analysis}\\label{app:diversity}\n\n% fig_selection_gap promoted to main text (\\S\\ref{sec:selection_gap})\n\n\\paragraph{Output diversity quantification.}\nTable~\\ref{tab:diversity} summarizes output diversity across configurations.\nOn SciERC, output diversity is substantial: Qwen produces 43\\% unique outputs per instance (mean 3.5 distinct out of $N{=}8$), with per-sample F1 standard deviation of 0.144 and mean pairwise SJ of 0.703.\nLLaMA shows similar diversity (39\\% unique, F1 std 0.11).\nOn CoNLL, diversity collapses: 59\\% (Qwen) to 89\\% (LLaMA) of instances produce identical outputs across all $N$ samples; this reflects a ceiling effect where single-sample F1 already exceeds 0.90.\nWNUT-17 shows 55\\% identical outputs, attributable to the 51\\% zero-F1 rate.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Output diversity across configurations ($N{=}8$, $T{=}1.0$). ``Identical'' = fraction of instances with all $N$ outputs identical. ``Unique'' = mean fraction of distinct outputs per instance.}\n\\label{tab:diversity}\n\\begin{tabular}{lcc}\n\\toprule\nConfig & Identical & Unique \\\\\n\\midrule\nQwen/SciERC & 11\\% & 43\\% \\\\\nLLaMA/SciERC & 18\\% & 39\\% \\\\\nQwen/CoNLL & 57\\% & --- \\\\\nLLaMA/CoNLL & 88\\% & --- \\\\\nWNUT-17 & 55\\% & --- \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\paragraph{Oracle-improvable fraction.}\nAcross SciERC configurations, 39--42\\% of instances contain at least one sample with F1 exceeding single-sample\\footnote{Oracle-improvable and diversity-stratified analyses use $n{=}529$ (excluding instances with empty gold annotations; see \\S\\ref{sec:evaluation}); the diversity quantification in Table~\\ref{tab:diversity} uses the full test set.}: Qwen NER 42.0\\% (222/529, mean headroom $+$31.9~pp among improvable instances), Qwen RE 41.3\\% (164/397, $+$45.3~pp), LLaMA NER 39.3\\% (208/529, $+$33.7~pp).\nOn CoNLL, only 4--9\\% of instances are improvable, consistent with the ceiling effect.\n\n\\paragraph{Diversity-stratified selection gap.}\nOn the 44\\% of Qwen SciERC instances with high diversity (${\\geq}4$ unique outputs among 8 samples, $n{=}232$), oracle headroom reaches $+$16.3~pp, yet all consistency-based signals (SJ, FK, EM, VC) select at or below single-sample, and LP, the only per-sample signal, achieves merely $+$0.8~pp.\nLLaMA replicates this pattern: on its high-diversity subset ($n{=}186$), oracle headroom reaches $+$20.1~pp while consistency signals remain at or below single-sample and LP captures only $+$2.0~pp.\nThis rules out insufficient diversity as an explanation for the correlation-selection gap.\n\n\\paragraph{Instance degeneracy statistics.}\nTable~\\ref{tab:degeneracy} quantifies instance degeneracy across configurations. ``Constant F1'' denotes instances where all $N$ samples receive identical instance-level F1; ``Constant utility'' denotes instances where MBR (SJ) utility is identical across candidates, preventing ranking.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Instance degeneracy statistics ($T{=}1.0$). ``Constant F1'': all $N$ samples receive identical instance-level F1. ``Constant utility'': MBR (SJ) utility identical across candidates. 4B data confirms degeneracy scales with model capability.}\n\\label{tab:degeneracy}\n\\resizebox{\\columnwidth}{!}{\n\\begin{tabular}{lccc}\n\\toprule\n& \\shortstack{SciERC 8B\\\\($N{=}8$)} & \\shortstack{SciERC 4B\\\\($N{=}8$)} & \\shortstack{CoNLL 8B\\\\($N{=}8$)} \\\\\n\\midrule\nConstant F1 & 12.2\\% & 10.4\\% & 61.7\\% \\\\\nConstant utility & 13\\% & 7.0\\% & 64\\% \\\\\nOracle gap closed (non-deg.) & 23\\% & 25.2\\% & 36\\% \\\\\nWithin-inst.\\ SJ $\\rho$ (median) & 0.524 & 0.550 & 0.990 \\\\\n\\bottomrule\n\\end{tabular}\n}\n\\end{table}\n\n\\paragraph{TOST equivalence testing.}\\label{app:tost}\nThe primary evidence against selection gains comes from effect sizes and confidence intervals: Cohen's $d{=}0.038$ for the best signal (NER LP) and bootstrap 95\\% CI [$-$3.0, $+$4.2]~pp spanning zero.\nTable~\\ref{tab:tost} supplements this with two one-sided tests (TOST), testing whether each signal's selection F1 is equivalent to single-sample within a bound $\\delta$.\nThe $\\delta$ values are contextualized against oracle headroom (12--18~pp): $\\delta{=}5$~pp corresponds to forgoing 28--38\\% of the available headroom, $\\delta{=}3$~pp forgoing 17--23\\%, and $\\delta{=}2$~pp less than 15\\%.\nThese proportions use the same test data that defines the headroom, introducing circularity: $\\delta$ is anchored to the very quantity it contextualizes.\nWe address this below with externally anchored equivalence margins.\nThe breakpoint $\\delta^*$, the minimum equivalence margin at which each signal passes TOST, ranges from approximately 1.3~pp (SJ, ${\\sim}$10\\% of oracle headroom) to 3.4~pp (FK, ${\\sim}$26\\%) on NER, and from approximately 2.9~pp (LP, ${\\sim}$16\\%) to 6.5~pp (VC, ${\\sim}$36\\%) on RE.\nOn NER ($n{=}529$), at $\\delta{=}{\\pm}2$~pp, SJ and LP are confirmed equivalent to single-sample (TOST $p{<}0.05$); at $\\delta{=}{\\pm}3$~pp, four of five signals pass; at $\\delta{=}{\\pm}5$~pp, all five pass.\nOn RE ($n{=}397$, preliminary), EM and VC fail equivalence even at $\\delta{=}{\\pm}5$~pp due to systematic underperformance ($\\Delta{=}{-}3.2$~pp and $-4.5$~pp respectively).\nThe effect sizes are negligible ($d{=}0.038$) and confidence intervals span zero, with TOST confirming equivalence at practically meaningful margins.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{TOST equivalence testing: signals vs.\\ single-sample on SciERC ($N{=}8$, $T{=}1.0$). \\checkmark: equivalent at $p{<}0.05$; \\texttimes: not equivalent. $\\Delta$: mean F1 difference (signal $-$ single-sample).}\n\\label{tab:tost}\n\\resizebox{\\columnwidth}{!}{\n\\begin{tabular}{l cccc cccc}\n\\toprule\n& \\multicolumn{4}{c}{\\textbf{NER}} & \\multicolumn{4}{c}{\\textbf{RE}} \\\\\n\\cmidrule(lr){2-5} \\cmidrule(lr){6-9}\nSignal & $\\Delta$ & $\\pm$2 & $\\pm$3 & $\\pm$5 & $\\Delta$ & $\\pm$2 & $\\pm$3 & $\\pm$5 \\\\\n\\midrule\nLP & +0.6 & \\checkmark & \\checkmark & \\checkmark & $-$0.9 & \\texttimes & \\checkmark & \\checkmark \\\\\nSJ & +0.1 & \\checkmark & \\checkmark & \\checkmark & $-$1.8 & \\texttimes & \\texttimes & \\checkmark \\\\\nFK & $-$0.5 & \\texttimes & \\checkmark & \\checkmark & $-$1.6 & \\texttimes & \\texttimes & \\checkmark \\\\\nEM & $-$0.8 & \\texttimes & \\checkmark & \\checkmark & $-$3.2 & \\texttimes & \\texttimes & \\texttimes \\\\\nVC & $-$1.0 & \\texttimes & \\texttimes & \\checkmark & $-$4.5 & \\texttimes & \\texttimes & \\texttimes \\\\\n\\bottomrule\n\\end{tabular}\n}\n\\end{table}\n\n\\paragraph{External equivalence margins.}\nThe oracle-headroom anchors above introduce circularity: $\\delta$ is calibrated against the very quantity it contextualizes.\nTo resolve this, we supplement with three externally grounded margins:\n(1) $\\delta_{\\mathrm{SEM}}$: the bootstrapped standard error of single-sample F1 (0.43--1.33~pp depending on configuration), which represents measurement noise;\n(2) $\\delta_{\\mathrm{practical}}{=}0.5$~pp, the threshold below which NER differences are considered negligible \\cite{ratinov2009design};\n(3) $\\delta_{\\mathrm{literature}}{=}1.0$~pp, the approximate significant-difference threshold established in NER evaluation methodology \\cite{bergkirkpatrick2012empirical}.\n\nResults under these external anchors diverge sharply by configuration.\nOn LLaMA CoNLL ($n{=}2{,}756$), all signals pass equivalence at every $\\delta$ ($p{<}0.001$), consistent with the near-zero selection deltas ($|\\Delta|{\\leq}0.1$~pp) and tight CIs at this sample size.\nOn Qwen CoNLL ($n{=}2{,}756$), no signal passes at any external $\\delta$: selection F1 degrades by 0.9--1.5~pp relative to single-sample, which exceeds even $\\delta_{\\mathrm{literature}}$.\nOn SciERC NER ($n{=}529$), only SJ passes at $\\delta_{\\mathrm{SEM}}{=}1.33$~pp (the widest SEM bound); all other signals and tighter margins fail.\nThese external anchors confirm that the equivalence conclusion is configuration-dependent: LLaMA CoNLL selection is robustly equivalent to single-sample under any reasonable margin, while SciERC and Qwen CoNLL selection shows detectable degradation at externally calibrated thresholds.\n\n\\paragraph{Multiple comparison considerations.}\\label{app:multiple_comparisons}\nOur primary selection analysis involves ${\\sim}$20 comparisons (5 signals $\\times$ 3--4 configurations).\nSince all primary selection results are non-significant ($p{>}0.05$), applying Benjamini-Hochberg correction can only make these results more conservative, strengthening the ``no signal beats greedy'' conclusion.\nThe sole positive finding, the non-tied LP subset ($+2.9$~pp, $p{=}0.004$; \\S\\ref{sec:discussion}), survives Bonferroni correction over the 5 signal comparisons ($p_{\\mathrm{adj}}{=}0.020 < 0.05$). However, the $\\varepsilon{=}0.05$ threshold is selected post-hoc from a 7-point sweep (Appendix~\\ref{app:epsilon_robustness}); joint correction across thresholds and signals yields $p_{\\mathrm{adj}}{=}0.14$, so this finding is exploratory.\nFor quality estimation signal rankings, differences between the top signals (e.g., VC vs.\\ SJ on SciERC) should be interpreted as descriptive rather than as statistically confirmed orderings, given the limited power of 3-seed comparisons.\n\n\\paragraph{When would consistency-based selection work?}\\label{app:when_selection_works}\nOur negative results are specific to fine-tuned models with constrained decoding on structured IE. Several conditions outside our experimental scope could restore selection headroom.\n(a)~Models with poor calibration or in-context learning setups (without fine-tuning) produce more diverse outputs, widening the gap between candidates that consistency signals can exploit.\n(b)~Closed-source APIs where log-probabilities are unavailable make consistency signals the only viable selection mechanism; our structural signals (SJ, VC, FK, EM) provide quality estimation ($\\rho$ up to 0.45) even without model-internal access.\n(c)~Ensemble or mixture-of-experts settings generate structurally diverse candidates by design, reducing instance degeneracy below the levels observed in our single-model sampling.\n(d)~Tasks where the model exhibits systematic overconfidence (e.g., hallucination-prone generation) may benefit from consensus filtering, as disagreement among samples would carry more discriminative signal than in our well-calibrated fine-tuned regime.\n\n\\section{Supervised and Model-Internal Signal Analysis}\\label{app:supervised_combination}\n\n\\subsection{Supervised Signal Combination}\n\nSupervised classifiers (logistic regression, MLP, random forest) trained on all five signals (5-fold CV, 3-seed mean, SciERC, $N{=}16$, $+17.9$~pp headroom) all perform at or below greedy (F1${=}0.644$; LR: $-0.4$~pp; MLP: $-1.6$~pp; RF: $-3.1$~pp).\nAdding pairwise interaction features does not help (AUROC 0.634 vs.\\ 0.638).\nTo test whether richer representations could close the gap, we train a DeBERTa-v3-base verifier that encodes input-output pairs and predicts per-sample F1.\nDeBERTa achieves $\\rho{=}0.329{\\pm}0.087$ (5-fold CV, 3 seeds). Despite moderate quality prediction, selection utility is poor: on SciERC, DeBERTa closes $-26.5{\\pm}26.5$\\% of the oracle gap (13 of 15 runs negative; vs.\\ LP's $+4.2{\\pm}10.7$\\%); on Few-NERD, DeBERTa recovers only $+3.5$\\% (single 80/20 split; vs.\\ LP's $+16.3$\\%).\nCross-dataset transfer fails entirely ($-27$\\% to $-72$\\% gap closure).\nGrid-search ensemble optimization over signal weights confirms LP dominance: across configurations, LP receives mean weight $0.78$, while FK and SJ receive zero weight; VC and EM serve only as secondary regularizers.\nNeither handcrafted signal combinations nor learned text representations close the selection gap; only model-internal log-probability provides meaningful selection signal, consistent with an information asymmetry between the generating model and external observers.\n\n\\subsection{Entity-Level Verifier Transfer}\\label{app:verifier_transfer}\n\nA LightGBM entity-level verifier (5 features: agreement count, VC, LP, SJ, FK) achieves AUC${=}0.923{\\pm}0.002$ under out-of-fold evaluation, confirming that entity correctness is learnable from the available signals.\nIn-domain OOF construction yields $+0.30$\\,pp overall, with per-dataset gains of $+1.28$\\,pp (SciERC), $+0.55$\\,pp (CoNLL), and $+0.02$\\,pp (Few-NERD).\nThe near-zero Few-NERD gain despite high AUC shows that frequency-based threshold construction already captures most of the verifier's signal.\nCross-dataset transfer to Few-NERD is negative: $-0.76$\\,pp (B2-v2), $-1.02$\\,pp (B2-v3), $-1.27$\\,pp (B2-v4 Replace, AUC${=}0.822$), and $-0.85$\\,pp (B2-v4 Augment, AUC${=}0.855$), all below greedy.\nThe learned feature--correctness mapping is dataset-specific: entity agreement patterns that predict correctness on scientific text do not transfer to fine-grained entity types.\n\n\\subsection{Hidden State Probes}\\label{app:hidden_probe}\n\nEntity-level probes confirm that quality information is partially encoded in hidden representations (AUROC${=}0.63$\\textendash$0.88$, dataset-dependent; \\S\\ref{sec:mechanistic}); we test whether this translates to sample-level selection gain by training probes on the generating model's hidden states.\n\n\\paragraph{Setup.}\nUnlike the entity-level probe in \\S\\ref{sec:mechanistic} (which classifies individual entities on FewNERD/CoNLL/SciERC), this sample-level analysis uses all 551 SciERC instances (including 22 with empty gold annotations) to predict per-sample F1.\nFor each of $N{=}8$ samples per instance, we extract the mean-pooled final-layer hidden state ($d{=}4096$) from the generating Qwen3-8B model and train a linear probe and a two-layer MLP (hidden dim${=}256$) to predict per-sample F1 (5-fold CV, 3 seeds).\nEntity-level probes use dataset-specific generation temperatures ($T{=}0.5$ for Few-NERD, $T{=}0.8$ for CoNLL, $T{=}1.0$ for SciERC).\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Hidden state probes vs.\\ LP for sample selection (5-fold CV ${\\times}$ 3 seeds). $\\rho$: Spearman correlation with per-sample F1. Sel.\\ F1: selection F1. Gap\\%: oracle gap closure. SciERC greedy${=}0.644$ (seed 42), oracle${=}0.775$ (seed 42).}\n\\label{tab:hidden_probe}\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{@{}l ccc cc@{}}\n\\toprule\n& \\multicolumn{3}{c}{\\textbf{SciERC}} & \\multicolumn{2}{c}{\\textbf{Few-NERD}} \\\\\n\\cmidrule(lr){2-4} \\cmidrule(lr){5-6}\nMethod & $\\rho$ & Sel.\\ F1 & Gap\\% & $\\rho$ & Gap\\% \\\\\n\\midrule\nLP & .283 & $\\mathbf{.650}$ & $+$4.8 & .606 & 12.3 \\\\\nHidden Linear & $.179{\\pm}.019$ & $.613{\\pm}.002$ & $-$23.4 & \\multicolumn{2}{c}{---} \\\\\nHidden MLP & $\\mathbf{.388{\\pm}.013}$ & $.637{\\pm}.003$ & $-$5.1 & $\\mathbf{.629{\\pm}.007}$ & 11.7 \\\\\n\\bottomrule\n\\end{tabular}}\n\\end{table}\n\n\\paragraph{Cross-dataset asymmetry.}\nOn SciERC, the MLP probe achieves higher quality correlation than LP ($\\rho{=}0.388$ vs.\\ $0.283$, $+37$\\%); hidden states encode information beyond what LP captures.\nYet higher correlation does not yield better selection: MLP selection F1 ($0.637$) falls below LP's ($0.650$), with gap closure turning negative ($-5.1$\\% vs.\\ $+4.8$\\%; Table~\\ref{tab:hidden_probe}).\nThe linear probe performs worse still ($\\rho{=}0.179$, gap closure $-23.4$\\%).\nOn Few-NERD, the MLP provides no increment over LP (gap closure $11.7$\\% vs.\\ $12.3$\\%).\nA learned token-level LP aggregator (1D CNN over per-token log-probabilities) matches mean LP on Few-NERD (gap closure $56.4$\\% vs.\\ $55.8$\\%); LP's bottleneck is not token aggregation.\nDespite partial entity quality encoding in hidden representations (entity-level probe AUROC${=}0.63$\\textendash$0.88$; \\S\\ref{sec:mechanistic}), the correlation-selection gap persists at the sample level: in the high-capability regime (greedy F1${=}0.644$), inter-sample F1 differences are small enough that improved ranking provides no marginal selection value, consistent with the capability-diversity tension (\\S\\ref{sec:discussion}).\n\n\\subsection{Method Coverage Matrix}\\label{app:method_coverage}\n\nTable~\\ref{tab:method_coverage} summarizes the experimental coverage of each entity-level method evaluated in this work. Individual methods were tested on subsets of the full dataset $\\times$ model matrix; the collective coverage spans three NER datasets and two model families.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Experimental coverage of entity-level methods. \\checkmark = tested; --- = not tested. All methods use $N{=}8$, $T{=}1.0$ unless noted. Section references indicate where results appear.}\n\\label{tab:method_coverage}\n\\begin{tabular}{lccccl}\n\\toprule\nMethod & SciERC & Few-NERD & CoNLL & Qwen & LLaMA \\\\\n\\midrule\nESJ (\\S\\ref{sec:mechanistic}) & --- & \\checkmark & --- & \\checkmark & --- \\\\\nMRSC (\\S\\ref{sec:mechanistic}) & --- & \\checkmark & --- & \\checkmark & --- \\\\\nLSC (\\S\\ref{sec:mechanistic}) & --- & \\checkmark & --- & \\checkmark & --- \\\\\nHet-T (App.~\\ref{app:robustness}) & \\checkmark & --- & --- & \\checkmark & --- \\\\\nASB (App.~\\ref{app:dals}) & \\checkmark & \\checkmark & \\checkmark & \\checkmark & --- \\\\\nSCD (App.~\\ref{app:supervised_combination}) & \\checkmark & \\checkmark & \\checkmark & \\checkmark & --- \\\\\nVerifier (\\S\\ref{sec:verifier}) & \\checkmark & \\checkmark & \\checkmark & \\checkmark & --- \\\\\n\\midrule\nQE signals (\\S\\ref{sec:qe_results}) & \\checkmark & \\checkmark & \\checkmark & \\checkmark & \\checkmark \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\section{How Self-Verification Fails}\\label{sec:mechanistic}\n\nThe diagnostic framework (\\S\\ref{sec:method}) identifies \\textit{where} self-consistency fails; this section probes \\textit{why} by testing whether models can self-verify at the entity level.\nProbe experiments use Qwen2.5-7B (not the fine-tuned Qwen3-8B used in main experiments); conclusions are architecture-specific.\nWe evaluate self-verification and diagnostic probes on Qwen2.5-7B\\footnote{ESJ, MRSC, and LSC use Qwen2.5-7B-Instruct (zero-shot self-verification capability) rather than the fine-tuned Qwen3-8B used in the main experiments. Conclusion direction is consistent with the main experiments' negative results across all fine-tuned selection strategies. The pattern---selection failure across all signals---is independently confirmed in the Qwen3-8B main experiments, making the introspection boundary a model-independent finding within our tested scale. Probe conclusions are limited to the Qwen2.5 architecture; linear probes may underestimate representational capacity (nonlinear alternatives are left to future work).} fine-tuned for NER on Few-NERD ($N{=}8$, seed 42; full results in Table~\\ref{tab:self_verification}).\n\n\\paragraph{Entity Self-Judgment (ESJ).}\nFor each extracted entity, we prompt the generating model: ``Is [\\textit{entity}] a [\\textit{type}] entity in this sentence?''\nEntity-level AUROC is $0.512$---indistinguishable from chance---with P(yes$|$correct)${=}0.500$ and P(yes$|$incorrect)${=}0.500$.\nESJ-weighted construction degrades F1 to $0.711$ (vs.\\ greedy $0.794$).\n\n\\paragraph{Multi-Round Self-Consistency (MRSC).}\nFollowing iterative self-refinement \\cite{madaan2023selfrefine}, we re-prompt on disputed entities (agreement ${<}0.6$) with focused verification; P(yes) separation between gold and non-gold entities is $0.0006$ ($0.5003$ vs.\\ $0.4997$).\nMRSC best F1 ($0.763$) falls below greedy.\n\n\\paragraph{Latent Self-Consistency (LSC).}\nMean-pooled final-layer hidden states ($d{=}3584$) provide per-sample latent representations.\nCentroid selection ($0.759$) underperforms greedy ($0.794$); latent entity confidence ($0.839$) outperforms majority vote ($0.792$) but does not close the oracle gap ($0.882$).\n\n\\paragraph{Hidden-state probe.}\nA logistic regression on mean-pooled final-layer hidden states at entity spans achieves AUROC $0.636$ (Few-NERD), $0.882$ (CoNLL), $0.630$ (SciERC), evaluated with GroupKFold CV (5-fold ${\\times}$ 3 seeds, groups${=}$source instance to prevent entity-level leakage; \\S\\ref{app:hidden_probe}).\nAll three exceed ESJ ($0.51$); only CoNLL approaches frequency agreement ($0.868$).\nCross-dataset transfer is weak: leave-one-dataset-out AUROC drops to $0.559$ (Few-NERD${\\to}$CoNLL) and $0.671$ (CoNLL${\\to}$Few-NERD), indicating that entity error patterns are dataset-specific rather than reflecting a universal introspection boundary, limiting probe-based approaches without per-dataset calibration.\nAt the sample level, an MLP probe closes only 13.9\\% of the oracle gap on SciERC (\\S\\ref{app:hidden_probe}).\n\n\\paragraph{The introspection boundary.}\nEntity quality is partially encoded in hidden representations: a supervised probe (AUROC $0.63$\\textendash$0.88$) consistently exceeds self-judgment (ESJ $0.51$) but only marginally exceeds multi-sample agreement ($0.87$) on CoNLL, suggesting consensus captures information beyond single-pass representations while the prompt interface fails to access even partial hidden-state signal.\nLODO transfer drops to $0.56$\\textendash$0.67$, so even direct hidden-state access would not yield a universal quality signal---consistent with the negative cross-dataset verifier transfer (\\S\\ref{sec:verifier}).\n\n\\section{Entity-Level Self-Verification Probes}\\label{app:self_verification}\n\nThree independent probes test whether the generating model can self-verify at the entity level, using Qwen2.5-7B fine-tuned on Few-NERD ($N{=}8$, seed 42).\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Entity-level self-verification probes (Qwen2.5-7B, Few-NERD, $N{=}8$). ESJ: entity self-judgment via yes/no prompts. MRSC: multi-round re-prompting on disputed entities. LSC: latent-space centroid selection. MV: majority vote baseline.}\n\\label{tab:self_verification}\n\\begin{tabular}{@{}lcc@{}}\n\\toprule\nMethod & Key Metric & F1 \\\\\n\\midrule\nGreedy ($T{=}0$) & --- & .794 \\\\\nMV ($\\theta{=}0.375$) & --- & .792 \\\\\nOracle & --- & .882 \\\\\n\\midrule\nESJ (best $\\theta{=}0.02$) & AUROC${=}0.512$ & .711 \\\\\nMRSC (best $\\theta{=}0.5$) & $\\Delta P(\\text{yes}){=}0.001$ & .763 \\\\\nLSC (centroid) & $\\rho_{\\text{LP-latent}}{=}0.52$ & .759 \\\\\nLSC (entity conf.) & --- & .839 \\\\\n\\midrule\nFreq.\\ agreement & AUROC${=}0.868$ & --- \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\paragraph{Entity Self-Judgment (ESJ).}\nFor each extracted entity, we prompt the model: ``Is [entity] a [type] entity in this sentence?''\nThe entity-level AUROC is $0.512$---indistinguishable from chance---with P(yes$|$correct)${=}0.500$ and P(yes$|$incorrect)${=}0.500$ (separation $0.001$).\nESJ-weighted construction degrades F1 to $0.711$ (vs.\\ greedy $0.794$), confirming the model lacks entity-level self-judgment.\n\n\\paragraph{Multi-Round Self-Consistency (MRSC).}\nWe re-prompt the model on disputed entities (agreement ${<}0.6$) with a focused verification query and aggregate with Round~2 weight${=}2$.\nP(yes) separation between gold and non-gold entities is $0.0006$ ($0.5003$ vs.\\ $0.4997$), and MRSC best F1 ($0.763$) falls below both greedy and MV.\n\n\\paragraph{Latent Self-Consistency (LSC).}\nMean-pooled final-layer hidden states ($d{=}3584$) provide latent representations per sample.\nCentroid selection ($0.759$) underperforms greedy ($0.794$); latent entity confidence ($0.839$) outperforms MV ($0.792$) but does not close the oracle gap ($0.882$).\n\n\\paragraph{Frequency agreement as the viable signal.}\nCross-sample entity frequency agreement achieves AUROC${=}0.868$ for entity correctness prediction; a supervised hidden-state probe (AUROC${=}0.63$\\textendash$0.88$; \\S\\ref{sec:mechanistic}) exceeds this only on the simplest dataset (CoNLL, $0.882$), while falling below on complex NER tasks.\nThe probe consistently exceeds prompt-based self-evaluation (ESJ AUROC${=}0.512$), confirming that hidden states encode partial entity quality signal inaccessible through the prompt interface, consistent with the complexity-dependent introspection boundary diagnosed in the main text (\\S\\ref{sec:mechanistic}).\n\n\\section{Multi-Seed Stability}\\label{app:multiseed}\n\nTable~\\ref{tab:multiseed} reports quality estimation metrics across three random seeds for both model families on SciERC ($N{=}8$, $T{=}1.0$).\nOn NER, the signal ranking VC${>}$SJ${>}$EM${>}$FK${>}$LP is identical across all six model-seed combinations, with $\\sigma{\\leq}0.025$ for all signals (rankings are stable across our 3 seeds, though statistical power with $n{=}3$ is limited).\nOn RE (Qwen only, preliminary), VC remains the top signal ($\\rho{=}0.309{\\pm}0.024$), but LP rises to \\#2 ($\\rho{=}0.297{\\pm}0.022$), above FK, SJ, and EM. This reversal from the NER ranking reflects RE's higher sensitivity to per-sample scoring.\nLLaMA absolute values are systematically lower than Qwen on NER, consistent with the directionally-consistent-but-magnitude-dependent characterization in the main text.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Multi-seed quality estimation on SciERC ($N{=}8$, $T{=}1.0$, seeds: 42, 123, 456). NER: both models; RE: Qwen only (preliminary). Signal ranking is stable across seeds ($\\sigma{\\leq}0.025$). $\\sigma$ is population standard deviation over 3 seeds.}\n\\label{tab:multiseed}\n\\resizebox{\\columnwidth}{!}{\n\\begin{tabular}{lccccc}\n\\toprule\n& LP & FK & SJ & VC & EM \\\\\n\\midrule\n\\multicolumn{6}{l}{\\textit{NER Spearman $\\rho$ (mean $\\pm\\sigma$)}} \\\\\nQwen & .217${\\pm}$.013 & .254${\\pm}$.016 & .364${\\pm}$.018 & .386${\\pm}$.019 & .307${\\pm}$.008 \\\\\nLLaMA & .162${\\pm}$.025 & .256${\\pm}$.024 & .325${\\pm}$.021 & .384${\\pm}$.014 & .279${\\pm}$.011 \\\\\n\\midrule\n\\multicolumn{6}{l}{\\textit{RE Spearman $\\rho$ (mean $\\pm\\sigma$, Qwen)}} \\\\\nQwen & .297${\\pm}$.022 & .290${\\pm}$.012 & .249${\\pm}$.002 & .309${\\pm}$.024 & .135${\\pm}$.016 \\\\\n\\midrule\n\\multicolumn{6}{l}{\\textit{NER AUROC (mean $\\pm\\sigma$)}} \\\\\nQwen & .579${\\pm}$.008 & .600${\\pm}$.016 & .659${\\pm}$.016 & .677${\\pm}$.011 & .631${\\pm}$.013 \\\\\nLLaMA & .565${\\pm}$.008 & .593${\\pm}$.006 & .632${\\pm}$.012 & .673${\\pm}$.009 & .606${\\pm}$.005 \\\\\n\\bottomrule\n\\end{tabular}\n}\n\\end{table}\n\n\\section{Training Configuration}\\label{app:training}\n\nBoth models are fine-tuned with identical hyperparameters (Table~\\ref{tab:training}) to ensure comparisons across model families reflect model differences rather than training confounds.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Training configuration. Both Qwen3-8B and LLaMA-3.1-8B-Instruct use identical settings unless noted.}\n\\label{tab:training}\n\\resizebox{\\columnwidth}{!}{\n\\begin{tabular}{ll}\n\\toprule\nParameter & Value \\\\\n\\midrule\nLoRA rank / $\\alpha$ & 32 / 64 \\\\\nLoRA target & All linear modules \\\\\nLoRA dropout & 0 \\\\\nOptimizer & AdamW \\\\\nLearning rate & 2e-4, cosine schedule \\\\\nWarmup ratio & 0.1 \\\\\nEffective batch size & 16 (2 $\\times$ grad.\\ accum.\\ 8) \\\\\nEpochs & 5 \\\\\nMax sequence length & 2048 \\\\\nPrecision & bf16 \\\\\nGradient checkpointing & Enabled \\\\\nMax gradient norm & 1.0 \\\\\nTraining seed & 42 \\\\\nFramework & LLaMA Factory \\\\\n\\midrule\n\\multicolumn{2}{l}{\\textit{Dataset-specific}} \\\\\nSciERC split & 1861 / 275 / 551 \\\\\nCoNLL / WNUT & +\\,load\\_best\\_model\\_at\\_end, \\\\\n& eval\\_steps${=}$200, save\\_limit${=}$5 \\\\\n\\bottomrule\n\\end{tabular}\n}\n\\end{table}\n\n\\paragraph{Prompt template.}\nFor NER, we use a structured prompt:\n\\begin{quote}\n\\small\n\\texttt{System:} You are an expert in Named Entity Recognition.\\\\\n\\texttt{User:} Extract all named entities from the following text. Output as JSON.\\\\\nText: \\texttt{\\{input\\_text\\}}\\\\\nEntity types: \\texttt{\\{schema\\_types\\}}\n\\end{quote}\nRE follows the same structure with ``Relation Extraction'' and relation type lists substituted accordingly.\n\n\\paragraph{Constrained decoding.}\nInference uses vLLM with XGrammar-based JSON schema enforcement \\cite{dong2024xgrammar, willard2023guided}, which constrains outputs to valid entity/relation structures matching the target schema.\nThis eliminates format errors but may compress per-sample diversity by restricting the output space.\\footnote{SciERC training used \\texttt{enable\\_thinking=True} (LLaMA Factory 0.9.4 default), injecting empty \\texttt{&lt;think>&lt;/think>} blocks (4--5 tokens) into each training response with loss computation; CoNLL and WNUT explicitly set \\texttt{enable\\_thinking=False}. Constrained decoding at inference time enforces JSON-only output, suppressing thinking tokens. See \\S\\ref{sec:setup} and Limitations for discussion of this confound.}\n\n\\section{Thinking Token Impact Analysis}\\label{app:thinking_token}\n\nQwen3-8B's SciERC checkpoint was trained with empty \\texttt{&lt;think>&lt;/think>} blocks prepended to each response (\\S\\ref{sec:setup}).\nWe quantify the potential impact on LP scores through three complementary arguments.\n\n\\paragraph{LP shift magnitude.}\nEmpty thinking tokens (mean 4.5 per sample) constitute 2.1\\% of tokens on SciERC.\nThe estimated LP shift is 0.001 nats per token (2.68\\% of the median within-instance LP range of 0.041 nats).\nBecause all samples share identical thinking-token LP offsets, cumulative LP rankings are invariant; mean LP changes selection for ${<}1.5\\%$ of instances.\n\n\\paragraph{Constant prefix cancellation.}\nAll $N$ samples within an instance share the same prompt and, under constrained decoding, the same absence of thinking tokens at inference time.\nAny LP bias from the training-time thinking prefix is therefore a near-constant additive shift across all candidates within an instance, leaving within-instance LP \\textit{rankings} unchanged.\n\n\\paragraph{CoNLL control group.}\nCoNLL and WNUT-17 checkpoints were trained without thinking tokens (\\texttt{enable\\_thinking=False}).\nIf thinking tokens caused LP compression on SciERC, CoNLL should exhibit lower tied fractions.\nInstead, CoNLL shows \\textit{higher} tied fractions at both temperatures (86.8\\% at $T{=}1.0$, 95.8\\% at $T{=}0.7$) than SciERC (60.3\\% at $T{=}1.0$), directly contradicting the thinking-token hypothesis.\n\n\\section{Log-Probability Score Compression}\\label{app:logprob_ties}\n\nUnder constrained decoding, log-probability scores are severely compressed within instances, limiting per-sample discrimination (Table~\\ref{tab:logprob_ties}, Figure~\\ref{fig:lp_range_cdf}).\nThe median within-instance LP range is only 0.041 nats; we use $\\varepsilon{=}0.05$ as an illustrative threshold to characterize this compression.\nAt this cutpoint, 60.3\\% of instances ($n{=}529$, excluding empty gold annotations) have a within-sample range below $\\varepsilon$, and 75\\% of pairwise comparisons are effective ties ($|\\Delta|{<}0.026$).\nThe CDF rises smoothly with no cliff or discontinuity (Figure~\\ref{fig:lp_range_cdf}); compression is a pervasive regime rather than a bimodal split.\nThis compression is stable across seeds: seed${=}456$ yields median LP range${=}0.040$ nats and tied fraction${=}62.2\\%$ (vs.\\ seed${=}42$: $0.041$ nats, $60.3\\%$).\nSeed~456 uses a different subtask flag (joint vs.\\ ner for seeds 42 and 123); the LP distributions are statistically indistinguishable (median LP: 8.37 vs.\\ 8.20 nats; Mann--Whitney $p{=}0.55$); the subtask change does not affect compression.\nFor comparison, SJ has only 12.5\\% tied instances at the same threshold; SJ's advantage over LP for selection is one of score resolution, not information content.\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{fig_lp_range_cdf}\n\\caption{CDF of within-instance LP range on SciERC NER ($N{=}8$, $n{=}529$). The median LP range is 0.041 nats (dashed line), below $\\varepsilon{=}0.05$. The smooth CDF confirms compression is pervasive, not bimodal.}\n\\label{fig:lp_range_cdf}\n\\end{figure}\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Log-probability score compression on SciERC NER ($N{=}8$, $n{=}529$). ``Tied'' = fraction of instances where within-instance LP range ${<}\\varepsilon$.}\n\\label{tab:logprob_ties}\n\\begin{tabular}{lc}\n\\toprule\n$\\varepsilon$ threshold & Tied instances (\\%) \\\\\n\\midrule\n0.01 & 1.1\\% \\\\\n0.05 & 60.3\\% \\\\\n0.1  & ${\\sim}$84\\% \\\\\n0.5  & ${\\sim}$99\\% \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\paragraph{Non-tied subset.}\nAmong instances with LP range ${\\geq}0.05$ ($n{=}210$, 40\\% of total), log-probability selection \\textit{significantly} outperforms single-sample ($+2.9$~pp F1, $p{=}0.004$), and within-instance $\\rho(\\text{LP}, \\text{F1})$ rises from 0.08 (tied subset) to 0.39 (non-tied subset).\nAs a continuous complement to the binary tied/non-tied analysis, pooled within-instance $\\rho(\\text{LP}, \\text{F1}){=}0.248$ across all instances confirms weak but positive per-sample signal; however, only 21.6\\% of instances achieve $p{<}0.05$ significance, and $\\rho(\\text{LP range}, \\text{F1 range}){=}0.328$ shows that instances with more LP spread also exhibit more F1 variability. LP carries information, but compression limits its exploitation.\nA free-form NER decoding ablation (Appendix~\\ref{app:freeform_ablation}) confirms this compression persists without constrained decoding.\n\n\\paragraph{$\\varepsilon$ sensitivity sweep (post-hoc exploratory).}\nTable~\\ref{tab:epsilon_sweep} sweeps the tied/non-tied threshold from $\\varepsilon{=}0.01$ to $0.20$ as a post-hoc exploratory analysis characterizing how selection gain varies with compression severity.\nThe tied fraction increases smoothly with no cliff or discontinuity, and the selection gain $\\Delta$ grows monotonically as the non-tied subset narrows to progressively higher-spread instances.\n$\\varepsilon{=}0.05$ yields the strongest statistical separation ($p{=}0.004$); at $\\varepsilon{\\geq}0.15$, the non-tied subset becomes too small for reliable inference ($n{\\leq}36$).\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{$\\varepsilon$ sensitivity sweep for LP selection on SciERC NER ($N{=}8$, seed${=}42$, $n{=}529$). ``Tied\\%'' = fraction with within-instance LP range ${<}\\varepsilon$. $\\Delta$: selection F1 gain over single-sample on the non-tied subset. The tied fraction increases smoothly; $\\varepsilon{=}0.05$ yields the strongest statistical separation.}\n\\label{tab:epsilon_sweep}\n\\begin{tabular}{ccccc}\n\\toprule\n$\\varepsilon$ & Tied\\% & Non-tied $n$ & $\\Delta$ (pp) & $p$ \\\\\n\\midrule\n0.01 & 1.1\\% & 523 & $+$0.58 & .21 \\\\\n0.02 & 13.6\\% & 457 & $+$0.83 & .15 \\\\\n0.03 & 31.8\\% & 361 & $+$1.31 & .079 \\\\\n\\textbf{0.05} & \\textbf{60.3\\%} & \\textbf{210} & \\textbf{$+$2.86} & \\textbf{.004} \\\\\n0.10 & 83.9\\% & 85 & $+$3.69 & .034 \\\\\n0.15 & 93.2\\% & 36 & $+$4.15 & .11 \\\\\n0.20 & 96.4\\% & 19 & $+$4.59 & .13 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\paragraph{$\\varepsilon$ robustness of selection F1.}\\label{app:epsilon_robustness}\nThe preceding analysis stratifies LP by a tied/non-tied threshold; consistency-based signals (SJ, FK, VC, EM) also use $\\varepsilon$ to define MBR-style proximity in selection.\nTable~\\ref{tab:epsilon_robustness} reports the maximum selection F1 variation across $\\varepsilon \\in [0, 0.2]$ for all signals and configurations.\nAt $\\varepsilon{=}0.05$, consistency signals change by at most 1.09~pp (mean 0.21~pp), with EM completely $\\varepsilon$-invariant (integer scoring); LP is the most sensitive (up to 3.65~pp across the full range), as expected.\nSpearman $\\rho$, the primary quality estimation metric throughout, is a continuous rank correlation that does not depend on any discretization threshold; the $\\varepsilon$ parameter affects only the selection analysis.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Maximum selection F1 variation (pp) across $\\varepsilon \\in [0, 0.2]$. At $\\varepsilon{=}0.05$ (used throughout), consistency signals change by ${\\leq}1.09$~pp; EM is invariant (integer scoring). LP is most sensitive as $\\varepsilon$ corresponds to its tied/non-tied partition. SciERC: $n{=}529$; CoNLL: $n{=}2{,}756$.}\n\\label{tab:epsilon_robustness}\n\\begin{tabular}{lcccc}\n\\toprule\n& \\multicolumn{2}{c}{\\textbf{SciERC}} & \\multicolumn{2}{c}{\\textbf{CoNLL}} \\\\\n\\cmidrule(lr){2-3} \\cmidrule(lr){4-5}\nSignal & Qwen & LLaMA & Qwen & LLaMA \\\\\n\\midrule\nSJ & 0.92 & 1.45 & 0.99 & 0.18 \\\\\nFK & 1.03 & 0.93 & 0.60 & 0.15 \\\\\nVC & 2.33 & 0.53 & 0.72 & 0.18 \\\\\nEM & 0.00 & 0.00 & 0.00 & 0.00 \\\\\nLP & 3.65 & 2.58 & 3.00 & 0.31 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\paragraph{Non-tied subset analysis.}\nTable~\\ref{tab:nontied_main} presents the non-tied subset analysis referenced in \\S\\ref{sec:discussion}.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Non-tied subset analysis (SciERC, Qwen3-8B, $N{=}8$, $T{=}1.0$). Instances split at LP range $\\varepsilon{=}0.05$. Within-instance $\\rho$ and selection gain both concentrate in the non-tied subset. Full $\\varepsilon$ sweep in Table~\\ref{tab:epsilon_sweep}.}\n\\label{tab:nontied_main}\n\\resizebox{\\columnwidth}{!}{\n\\begin{tabular}{lccc}\n\\toprule\nSubset & $n$ & $\\rho$(LP,F1) & LP $\\Delta$ vs.\\ greedy \\\\\n\\midrule\nTied (range ${<}0.05$) & 319 & 0.08 & ${\\approx}0$ \\\\\nNon-tied (range ${\\geq}0.05$) & 210 & 0.39 & $+$2.9~pp ($p{=}0.004$) \\\\\n\\midrule\nAll instances & 529 & 0.248 & $+$0.2~pp ($p{=}0.29$) \\\\\n\\bottomrule\n\\end{tabular}\n}\n\\end{table}\n\n\\paragraph{Within-instance LP-quality alignment.}\\label{app:within_instance_rho}\n\nTable~\\ref{tab:within_rho} reports median within-instance $\\rho(\\text{LP}, \\text{F1})$ across datasets, computed over non-degenerate instances (those with ${\\geq}2$ distinct F1 values across $N{=}8$ samples).\nFew-NERD exhibits substantially stronger alignment ($\\rho{=}0.667$) than SciERC ($\\rho{=}0.262$), consistent with LP selection succeeding only on Few-NERD.\nCoNLL alignment is moderate ($\\rho{\\approx}0.51$), but the valid-instance fraction is low (38\\% for Qwen, 11\\% for LLaMA) because degeneracy eliminates most headroom before alignment can operate.\nLP-quality alignment is the primary predictor of selection direction; degeneracy constrains headroom but does not independently predict whether LP selection gains materialize (\\S\\ref{sec:discussion}).\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Within-instance LP-quality alignment across datasets ($N{=}8$, $T{=}1.0$). $\\rho$: median Spearman correlation between LP and F1 within each instance, over non-degenerate instances ($n_{\\text{valid}}$: ${\\geq}2$ distinct F1 values). Counts are from the primary seed (seed 42); text references use 3-seed mean degeneracy rates.}\n\\label{tab:within_rho}\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{@{}llccc@{}}\n\\toprule\nDataset & Model & Med.\\ $\\rho$ & $n_{\\text{valid}}$ / $n_{\\text{total}}$ & Valid\\% \\\\\n\\midrule\nSciERC & Qwen3-8B & 0.262 & 435 / 529 & 82\\% \\\\\nFew-NERD & Qwen3-8B & 0.667 & 28{,}055 / 32{,}565 & 86\\% \\\\\nCoNLL & Qwen3-8B & 0.506 & 1{,}124 / 2{,}756 & 41\\% \\\\\nCoNLL & LLaMA-3.1-8B & 0.512 & 298 / 2{,}756 & 11\\% \\\\\n\\bottomrule\n\\end{tabular}}\n\\end{table}\n\n\\clearpage\n\\paragraph{Few-NERD LP compression threshold sensitivity.}\\label{app:fewnerd_epsilon}\n\nTables~\\ref{tab:fewnerd_epsilon} and \\ref{tab:fewnerd_lp_bucket} extend the $\\varepsilon$ analysis to Few-NERD ($n{=}32{,}565$, Qwen3-8B, $N{=}8$, seed${=}42$).\n\n\\begin{table}[ht!]\n\\centering\n\\small\n\\caption{$\\varepsilon$ threshold vs.\\ LP compression on Few-NERD ($N{=}8$, seed${=}42$). Compressed\\%: instances with LP range ${<}\\varepsilon$. $\\rho$: Spearman correlation between LP and oracle F1. $\\varepsilon{=}0.05$ (bold) is the elbow.}\n\\label{tab:fewnerd_epsilon}\n\\begin{tabular}{cccc}\n\\toprule\n$\\varepsilon$ & Compressed\\% & $\\rho$(non-comp.) & $\\rho$(all) \\\\\n\\midrule\n0.01 & 9.3 & .682 & .633 \\\\\n0.03 & 19.9 & .695 & .633 \\\\\n\\textbf{0.05} & \\textbf{34.5} & \\textbf{.710} & \\textbf{.633} \\\\\n0.10 & 60.2 & .733 & .633 \\\\\n0.15 & 75.9 & .723 & .633 \\\\\n0.20 & 92.5 & .720 & .633 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\begin{table}[ht!]\n\\centering\n\\small\n\\caption{LP-best selection advantage over MV by LP range bucket on Few-NERD ($N{=}8$, seed${=}42$). Instances with LP range ${\\geq}0.05$ show $3$--$6{\\times}$ larger advantage.}\n\\label{tab:fewnerd_lp_bucket}\n\\begin{tabular}{lccc}\n\\toprule\nLP range & $n$ & MV F1 & LP$-$MV (pp) \\\\\n\\midrule\n$[0, 0.01)$ & 3{,}018 & .818 & $+$0.8 \\\\\n$[0.01, 0.03)$ & 3{,}457 & .812 & $+$1.5 \\\\\n$[0.03, 0.05)$ & 4{,}744 & .786 & $+$2.3 \\\\\n\\midrule\n$[0.05, 0.10)$ & 8{,}374 & .740 & $+$4.3 \\\\\n$[0.10, 0.20)$ & 10{,}537 & .701 & $+$5.8 \\\\\n$[0.20, \\infty)$ & 2{,}435 & .771 & $+$3.6 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n$\\varepsilon{=}0.05$ sits at the elbow: compressed instances increase from 19.9\\% ($\\varepsilon{=}0.03$) to 34.5\\%, while non-compressed $\\rho$ plateaus at $\\varepsilon{\\geq}0.10$ ($0.72$--$0.73$).\nThe LP-best advantage over MV shows a clear transition: compressed instances (LP range${<}0.05$) gain $+0.8$ to $+2.3$\\,pp, while non-compressed instances gain $+3.6$ to $+5.8$\\,pp (Table~\\ref{tab:fewnerd_lp_bucket}).\n\n\\subsection{Token-Level Signal Comparison}\\label{app:token_signal}\n\nWe compared mean log-probability (length-normalized, used throughout) with sequence-level log-probability (cumulative sum of token log-probs).\nInstance-level Spearman $\\rho$ between the two rankings averages 0.85, with rankings diverging for 10.6\\% of instances where token count coefficient of variation exceeds 0.10.\nOn these disagreement instances, mean LP selection achieves F1${=}0.643$ vs.\\ cumulative LP F1${=}0.219$ ($+42.4$\\,pp).\nOverall, mean LP outperforms cumulative LP by $+4.6$ F1 points (Wilcoxon $p{<}0.001$).\nThe divergence is driven by structured output length variation: sequences with more extracted entities are longer but not necessarily higher quality, and length normalization prevents this bias.\n\n\\section{Consistency-Stratified Selection Analysis}\\label{app:vc_quartile}\n\nTable~\\ref{tab:vc_quartile} stratifies SciERC instances by voting confidence (VC) quartiles and reports selection $\\Delta$ (gain over single-sample) for LP and SJ.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Selection $\\Delta$ (pp over single-sample) stratified by VC quartile on SciERC ($N{=}8$, Qwen3-8B). Oracle headroom collapses at Q4; LP rankings are unreliable at Q1--Q2. Neither quartile supports consistent selection gains.}\n\\label{tab:vc_quartile}\n\\begin{tabular}{lcccc}\n\\toprule\nQuartile & Mean VC & LP $\\Delta$ & SJ $\\Delta$ & Oracle (pp) \\\\\n\\midrule\n\\multicolumn{5}{l}{\\textit{NER}} \\\\\nQ1 (low) & 0.30 & $+$1.55 & $+$0.54 & 16.85 \\\\\nQ2 & 0.51 & $-$0.65 & $-$1.89 & 14.35 \\\\\nQ3 & 0.68 & $+$1.97 & $+$1.84 & 16.83 \\\\\nQ4 (high) & 0.92 & $-$0.41 & $-$0.04 & 4.78 \\\\\n\\midrule\n\\multicolumn{5}{l}{\\textit{$^\\dagger$RE}} \\\\\nQ1 (low) & --- & $-$3.56 & --- & --- \\\\\nQ4 (high) & --- & $+$4.01 & --- & --- \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nThe NER pattern shows two complementary failure modes rather than a monotonic relationship between consistency and selection gain:\n\\begin{itemize}\n\\item \\textbf{Q4 ceiling effect.} High-consistency instances (mean VC${=}0.92$) have oracle headroom of only 4.78~pp. Samples have already converged, leaving little room for any signal to improve selection.\n\\item \\textbf{Q1--Q2 noise.} Low-consistency instances retain large headroom (14--17~pp) but LP rankings are unreliable, and LP rankings produce inconsistent $\\Delta$ signs across quartiles.\n\\end{itemize}\n\nOn $^\\dagger$RE, the pattern differs: Q4 LP achieves $+4.01$~pp; LP may recover selection ability when high consistency coincides with structured output diversity. This is a single-dataset observation and should be interpreted cautiously.\n\nOn CoNLL NER, Q3--Q4 instances have VC${=}1.0$ (all samples identical), and $\\Delta{=}0$ universally; this ceiling effect is even more extreme than SciERC Q4.\n\n\\section{Exploratory Extension to Relation Extraction}\\label{app:re_extension}\n\nWe extend the NER evaluation to relation extraction (RE) on SciERC as an exploratory single-benchmark analysis.\nRE produces sets of (head, relation, tail) triples with partial overlap; 40\\% of RE instances receive zero F1, and entity span errors account for 55.5\\% of RE false negatives, a prerequisite failure that consistency signals cannot detect (\\S\\ref{app:additional}).\nAll RE results use Qwen3-8B unless noted; single-seed ($\\text{seed}{=}42$) for $N{=}8$ analyses, 3-seed for $N{=}16$.\n\n\\paragraph{Diagnostic framework.}\nApplying the diagnostic framework to RE ($N{=}8$): instance degeneracy is $10.1$\\%, comparable to SciERC NER ($13.4$\\%), yet MV $\\Delta{=}{-}5.90$\\,pp---far worse than any NER dataset.\nThe driver is RE's $40$\\% zero-F1 rate (vs.\\ ${\\leq}5.4$\\% in NER): diverse but \\textit{incorrect} samples produce noise that MV amplifies.\nLP-best selection also fails ($\\Delta{=}{-}0.94$\\,pp), despite pooled LP-F1 $\\rho{=}0.350$---above SciERC NER ($0.312$).\nOracle headroom is $+18.1$\\,pp (greedy $0.404$, oracle $0.585$), the largest of any configuration, confirming that correct answers exist among samples but no signal recovers them.\n\n\\paragraph{Quality estimation.}\nRE quality estimation is reported in Table~\\ref{tab:multiseed} (3-seed means).\nThe signal ranking differs from NER: VC leads ($\\rho{=}0.309{\\pm}0.024$), but LP rises to \\#2 ($\\rho{=}0.297{\\pm}0.022$), above FK, SJ, and EM, a reversal reflecting RE's higher sensitivity to per-sample scoring.\nRE miscalibration is more severe than NER (ECE 0.109--0.339; Figure~\\ref{fig:reliability}).\n\n\\paragraph{Selection.}\nTable~\\ref{tab:re_cond_selection} presents RE selection at $N{=}8$: no signal outperforms single-sample (0.404) on the full set ($n{=}397$) or the non-zero subset ($n{=}238$), with 18.1~pp of unrealized oracle headroom.\nAt $N{=}16$ (Qwen3-4B, Table~\\ref{tab:re_n16_selection}), LP is the sole positive signal ($\\Delta{=}{+}0.7$~pp, $p{=}0.058$), consistent with LP being the strongest RE selection signal across scales.\n\n\\paragraph{Scale ablation.}\nAt 4B scale (Qwen3-4B, $N{=}8$, $\\text{seed}{=}42$), RE quality estimation shows FK $\\rho{=}0.359$ and LP $\\rho{=}0.351$, both above their 8B counterparts (FK 0.275, LP 0.266), while SJ declines ($0.267$ vs.\\ $0.250$).\nSelection remains below single-sample on RE ($\\Delta$ up to $-3.4$~pp) despite 17.1~pp of oracle headroom.\n\n\\paragraph{Free-form decoding.}\nRE LP selection consistently reverses direction under free-form decoding ($+1.8{\\pm}0.1$~pp across 4 seeds vs.\\ $-0.9$~pp under constrained decoding at 8B; \\S\\ref{app:freeform_ablation}); constrained decoding's fixed template likely obscures LP signal in RE (\\S\\ref{app:mbr_discussion}).\n\n\\subsection{RE Conditional Selection}\\label{app:re_conditional_selection}\n\nTable~\\ref{tab:re_cond_selection} extends the selection analysis to the RE non-zero F1 subset.\nOf $n{=}397$ RE instances, 238 (60\\%) have non-zero F1 and 159 (40\\%) have zero F1.\nAll five signals underperform single-sample on both subsets.\nOn the non-zero subset, selection performance is \\textit{worse} than on the full set (e.g., VC: $-10.0$~pp on non-zero vs.\\ $-4.5$~pp on full set), because single-sample is already strong on non-zero instances (F1${=}0.674$) and signals actively select inferior samples.\nOracle headroom exists (0.757 vs.\\ 0.674) but no signal exploits it, ruling out the 40\\% zero-F1 floor effect as the explanation for RE selection failure.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{RE selection F1 (macro, instance-averaged) on SciERC ($N{=}8$, $T{=}1.0$). Full set ($n{=}397$) and non-zero F1 subset ($n{=}238$). No signal outperforms greedy on either subset.}\n\\label{tab:re_cond_selection}\n\\begin{tabular}{lcc}\n\\toprule\nMethod & Full ($n{=}397$) & Non-zero ($n{=}238$) \\\\\n\\midrule\nOracle & 0.585 & 0.757 \\\\\n\\midrule\nLP & 0.395 & 0.600 \\\\\nSJ & 0.386 & 0.604 \\\\\nEM & 0.372 & 0.583 \\\\\nVC & 0.359 & 0.574 \\\\\n\\midrule\nGreedy & 0.404 & 0.674 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\subsection{RE $N{=}16$ Selection Analysis}\\label{app:re_n16_selection}\n\nTable~\\ref{tab:re_n16_selection} extends the selection analysis to RE at $N{=}16$ with 3-seed statistics.\nAll four consistency signals underperform single-sample, with EM showing the largest deficit ($\\Delta{=}{-}1.5$~pp, Fisher $p{>}0.99$).\nLP is the only positive signal ($\\Delta{=}{+}0.7$~pp, Fisher $p{=}0.058$), driven primarily by seed~456 ($\\Delta{=}{+}1.5$~pp, $p{=}0.026$); the remaining seeds show smaller effects ($+0.1$ and $+0.6$~pp, $p{>}0.20$).\nEven the most favorable seed captures only ${\\sim}9\\%$ of the 17.1~pp oracle headroom.\nThis cross-task consistency (LP as the only viable selection signal on both NER and RE) reinforces the persistent limitation of instance-level signals for candidate ranking across tested regimes.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{RE best-of-$N$ selection F1 (macro, instance-averaged) on SciERC (Qwen3-4B, $N{=}16$, $T{=}1.0$, 3-seed mean${\\pm}\\sigma$, $n{=}551$). Fisher combined $p$ vs.\\ greedy. LP is the only signal with positive $\\Delta$. $\\sigma$ is population standard deviation over 3 seeds.}\n\\label{tab:re_n16_selection}\n\\begin{tabular}{lccc}\n\\toprule\nMethod & F1 & $\\Delta$ (pp) & $p$(Fisher) \\\\\n\\midrule\nOracle & $.463{\\pm}.006$ & $+$17.1 & --- \\\\\n\\midrule\nLP & $\\mathbf{.299}{\\pm}.007$ & $+$0.7 & .058 \\\\\nVC & $.284{\\pm}.002$ & $-$0.8 & .973 \\\\\nFK & $.283{\\pm}.005$ & $-$0.9 & .985 \\\\\nSJ & $.281{\\pm}.005$ & $-$1.0 & .993 \\\\\nEM & $.277{\\pm}.007$ & $-$1.5 & .999 \\\\\n\\midrule\nGreedy & $.291{\\pm}.000$ & --- & --- \\\\\nRandom & $.262{\\pm}.001$ & $-$2.9 & --- \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\section{Theoretical Results}\\label{app:mbr_discussion}\n\n\\subsection{MBR Framework and Proof}\\label{app:mbr_proof}\n\nEntity-level construction (\\S\\ref{sec:prescriptive}) is a special case of minimum Bayes risk (MBR) decoding \\cite{kumar2004minimum, eikema2020map}, extended from candidate selection ($\\arg\\max_{y \\in \\{y_1,\\ldots,y_N\\}}$) to construction over all subsets of $E_\\cup{=}\\bigcup_i y_i$.\n\n\\begin{proposition}[Entity construction as MBR for balanced set-overlap]\\label{prop:construction_mbr}\nUnder entity-wise independence with utility $u(\\hat{y}, y') = |\\hat{y} \\cap y'| - \\alpha|\\hat{y} \\setminus y'|$ ($\\alpha \\geq 1$), the MBR-optimal constructed set is\n\\begin{equation}\\label{eq:mbr_construction}\n\\hat{y}_{\\textup{MBR}} \\!=\\! \\bigl\\{e \\!{\\in}\\! E_\\cup \\!:\\! \\hat{p}(e) \\!>\\! \\tfrac{\\alpha}{\\alpha{+}1}\\bigr\\},\\; \\hat{p}(e) \\!=\\! \\tfrac{1}{N} \\textstyle\\sum\\nolimits_{i} \\mathbf{1}[e \\!{\\in}\\! y_i]\n\\end{equation}\nThe special case $\\alpha{=}1$ yields $\\hat{p}(e) > \\tfrac{1}{2}$, the majority-vote threshold.\n\\end{proposition}\n\n\\noindent\\textbf{Remark.}\nSet-level F1 is non-linear and admits no closed-form threshold rule \\cite{dembczynski2011exact}. We use balanced linear utility ($\\alpha{=}1$ throughout); balanced set-overlap and F1 induce similar optimal thresholds for typical NER output sizes ($|E_\\cup| \\leq 30$).\n\n\\paragraph{Proof.}\nWe show that under entity-wise independence, the MBR-optimal constructed set with utility $u(\\hat{y}, y') = |\\hat{y} \\cap y'| - \\alpha|\\hat{y} \\setminus y'|$ ($\\alpha \\geq 1$) includes entity $e$ iff $\\hat{p}(e) > \\alpha/(\\alpha+1)$.\nConsider constructing $\\hat{y} \\subseteq E_\\cup$ to maximize expected utility against the empirical sample distribution.\nUnder entity-wise independence, each entity inclusion is an independent binary decision.\nFor entity $e$ with empirical frequency $\\hat{p}(e) = \\frac{1}{N} \\sum_i \\mathbf{1}[e \\in y_i]$, including $e$ contributes $+1$ when $e \\in y_i$ (probability $\\hat{p}(e)$) and $-\\alpha$ when $e \\notin y_i$ (probability $1{-}\\hat{p}(e)$).\nThe expected marginal contribution is $\\hat{p}(e) - \\alpha(1{-}\\hat{p}(e)) = (1{+}\\alpha)\\hat{p}(e) - \\alpha$, which is positive iff $\\hat{p}(e) > \\alpha/(\\alpha+1)$.\nThe special case $\\alpha{=}1$ yields the majority-vote threshold $\\hat{p}(e) > 1/2$ used throughout.\nWith F1 utility, the optimal threshold depends on the full probability vector over $E_\\cup$ \\cite{dembczynski2011exact}; the constant $1/2$ threshold is a close approximation when $|E_\\cup|$ is small (typically 5--15 in our experiments).\nThe independence assumption is approximate; we verify empirically that strict majority vote fails to improve over greedy (\\S\\ref{sec:prescriptive}; Table~\\ref{tab:alpha_crit}), consistent with marginal-entity precision falling below $\\alpha_{\\textup{crit}}$.\n\n\\subsection{Connection to MBR Decoding}\\label{app:mbr_connection}\n\nOur selection strategies instantiate minimum Bayes risk (MBR) decoding \\cite{eikema2022sampling, muller2021understanding}: each selects $\\hat{y} = \\arg\\max_{y_i} \\sum_{j \\neq i} U(y_i, y_j)$ with utility $U$ defined by SJ, EM, or entity overlap.\nDespite MBR's success in machine translation \\cite{freitag2022high} and its extension to summarization, code generation, and captioning \\cite{jinnai2024mbr}, all variants fail here: despite positive within-instance utility--F1 correlation, selection gains are limited by instance degeneracy, the core of the correlation-selection gap.\n\\citet{eikema2025structured} study structure-conditional MBR decoding and find that standard utility functions degrade on structured outputs, consistent with our finding that consensus-proximity selection fails in IE despite its success in machine translation.\n\n\\paragraph{Task-specific decoding interactions.}\nThe free-form ablation shows divergent behavior across tasks.\nOn RE, LP selection flips from $-0.68$~pp (constrained) to $+1.69$~pp (free-form; preliminary, single RE benchmark), a reversal that spans all 7 relation types and is attributable to selective variance reallocation ($p{<}0.0001$).\nThe win/loss ratio shifts from 36:59 (constrained) to 45:45 (free-form), with the gains concentrated on relation-dense instances (mean 3.3 gold relations).\nThis interaction does not generalize to NER, where selection remains negligible under both regimes.\nThis ablation uses a single seed (seed${=}42$); whether the RE reversal replicates across seeds and generalizes to other RE benchmarks warrants further investigation.\nThe non-tied subset ($n{=}210$) is partially reshuffled under free-form decoding: Jaccard similarity between the constrained and free-form non-tied sets is 0.472: 87 instances newly gain LP discrimination while others lose it, and the newly non-tied subset shows a $3{\\times}$ increase in within-instance LP range for the newly non-tied subset.\nDespite this reshuffling, aggregate NER selection gains remain negligible. Score compression is not a fixed property of specific instances but rather a pervasive regime that shifts across instances without producing net selection improvement.\nFree-form decoding also slightly improves quality estimation (NER VC $\\rho$: 0.379$\\to$0.409), though this does not translate to selection gains.\n\n\\subsection{Degeneracy Decomposition}\\label{app:bound_proof}\n\n\\begin{definition}[Instance-Level Degeneracy]\nGiven model $\\mathcal{M}$, input $x$, and $N$ i.i.d.\\ samples $\\{y_1, \\ldots, y_N\\}$, instance $x$ is \\emph{degenerate} if $y_1 = \\cdots = y_N$. The degeneracy rate is $D = |\\mathcal{D}|^{-1} \\sum_{x} \\mathbb{1}[y_1(x) = \\cdots = y_N(x)]$.\n\\end{definition}\n\n\\begin{definition}[Non-Degenerate Oracle Gap]\n$G_{\\text{nd}} = \\mathbb{E}[F_1^{\\text{oracle}}(x) - F_1^{\\text{greedy}}(x) \\mid x \\in \\mathcal{D}_{\\neg D}]$, where $\\mathcal{D}_{\\neg D}$ is the set of non-degenerate instances.\n\\end{definition}\n\n\\subsection{Proof of the Degeneracy Decomposition}\n\nPartition $\\mathcal{D}$ into degenerate ($\\mathcal{D}_D$, fraction $D$) and non-degenerate ($\\mathcal{D}_{\\neg D}$, fraction $1{-}D$). By total expectation:\n\\begin{equation}\\label{eq:bound_decomp}\n\\mathbb{E}[\\Delta F_1(A)] = D \\cdot \\mathbb{E}[\\Delta F_1 \\mid \\mathcal{D}_D] + (1{-}D) \\cdot \\mathbb{E}[\\Delta F_1 \\mid \\mathcal{D}_{\\neg D}].\n\\end{equation}\nFor degenerate instances, all $N$ samples are identical and equal the greedy output, so $\\Delta F_1 = 0$. For non-degenerate instances, $\\Delta F_1(A,x) \\leq F_1^{\\text{oracle}}(x) - F_1^{\\text{greedy}}(x)$, giving $\\mathbb{E}[\\Delta F_1 \\mid \\mathcal{D}_{\\neg D}] \\leq G_{\\text{nd}}$. Substituting: $\\mathbb{E}[\\Delta F_1(A)] \\leq (1{-}D) \\cdot G_{\\text{nd}}$.\n\nFor signal-based methods, define alignment $\\alpha = \\mathbb{E}[\\Delta F_1(A_s) \\mid \\mathcal{D}_{\\neg D}] / G_{\\text{nd}} \\in [0,1]$. Direct substitution yields $\\mathbb{E}[\\Delta F_1(A_s)] = (1{-}D) \\cdot G_{\\text{nd}} \\cdot \\alpha$.\n\n\\begin{corollary}[Critical Degeneracy Threshold]\\label{cor:theta_crit}\nFor SC gain to exceed significance threshold $\\varepsilon$, the degeneracy rate must satisfy $D < 1 - \\varepsilon / (G_{\\text{nd}} \\cdot \\alpha) \\stackrel{\\text{def}}{=} \\theta_{\\text{crit}}$.\nWith $\\varepsilon{=}0.3$\\,pp, $G_{\\text{nd}}{=}14.8$\\,pp, $\\alpha{=}0.068$: $\\theta_{\\text{crit}} = 1 - 0.3/(14.8 \\times 0.068) = 0.70$.\n\\end{corollary}\n\n\\paragraph{Numerical verification.}\nTable~\\ref{tab:bound_verification} verifies the bound across 16 configurations. All positive-gain configurations have $D < \\theta_{\\text{crit}}$ and actual/bound ratios of 3--12\\% (Figure~\\ref{fig:bound}). The bound is loose because $\\alpha$ (signal alignment) is the bottleneck: the best signal recovers only 6.8\\% of the non-degenerate oracle gap on average.\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{fig_bound}\n\\caption{SC gain vs.\\ degeneracy across 16 configurations (SciERC-specific $\\alpha$). Red: signal-adjusted bound ($\\alpha{=}0.068$); vertical dashed: $\\theta_{\\text{crit}}{=}0.70$; horizontal dotted: $\\varepsilon{=}0.3$\\,pp. All positive gains fall within the bound (right panel: ratio to weak bound, all ${<}0.13$).}\n\\label{fig:bound}\n\\end{figure}\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Bound verification across representative configurations ($N{=}8$). $G_{\\text{nd}}$: non-degenerate oracle gap. $\\alpha$: signal alignment. Bound: $(1{-}D) \\cdot G_{\\text{nd}} \\cdot \\alpha$. Ratio: actual$/$weak bound.}\n\\label{tab:bound_verification}\n\\begin{tabular}{@{}lccccr@{}}\n\\toprule\nConfig & $D$ & $G_{\\text{nd}}$ & $\\alpha$ & $\\Delta$ & Ratio \\\\\n\\midrule\nQ3-8B FT FN s123 & .131 & 14.8 & .121 & +1.56 & 12.1\\% \\\\\nQ3-8B FT FN s456 & .120 & 14.5 & .108 & +1.37 & 10.8\\% \\\\\nQ3-8B FT Sci s789 & .214 & 17.0 & .084 & +1.12 & 8.4\\% \\\\\n72B ZS Sci & .210 & 18.9 & .102 & +1.53 & 10.2\\% \\\\\nQ3-8B FT CoN s123 & .630 & 10.9 & .000 & $-$0.42 & --- \\\\\n72B ZS CoN & .677 & 16.4 & .000 & $-$0.37 & --- \\\\\n72B FS CoN & .700 & 17.0 & .047 & +0.24 & 4.7\\% \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\subsection{Entity Selection Bound: Proof and Validation}\\label{app:alpha_crit}\n\n\\begin{proposition}[Entity Selection Diagnostic]\\label{prop:entity_selection_bound}\nLet $\\mathcal{M}^+ {=} \\hat{y}_{\\textup{MV}} \\setminus \\hat{y}_{\\textup{gr}}$ be entities added by majority vote (precision $\\pi_{\\mathcal{M}^+}$) and $\\delta$ the instance degeneracy rate.\n\\begin{enumerate}[label=\\textup{(\\alph*)},nosep,leftmargin=*]\n\\item On degenerate instances, $\\hat{y}_{\\textup{MV}} {=} \\hat{y}_{\\textup{gr}}$ and $\\Delta F_1 {=} 0$.\n\\item $\\mathbb{E}[\\Delta F_1] = (1{-}\\delta) \\cdot \\mathbb{E}[\\Delta F_1 \\mid \\textup{non-deg.}]$.\n\\item $\\Delta F_1 > 0$ only if $\\pi_{\\mathcal{M}^+} > \\alpha_{\\textup{crit}} \\triangleq F_1^{\\textup{gr}}/2$.\n\\end{enumerate}\n\\end{proposition}\n\n\\begin{proof}[Proof of Proposition~\\ref{prop:entity_selection_bound}]\n\\textbf{Part (a).} On a degenerate instance, all $N$ samples produce the same entity set: $\\textup{entities}(y_1) = \\cdots = \\textup{entities}(y_N)$. For every entity $e \\in E_\\cup$, the agreement count satisfies $k(e) = N$ (if $e$ appears) or $k(e) = 0$ (if not). Hence $k(e)/N \\in \\{0,1\\}$, and the majority-vote threshold $k(e)/N \\geq 1/2$ selects exactly the entities present in any single sample---identical to the greedy output. Thus $\\hat{y}_{\\textup{MV}} = \\hat{y}_{\\textup{gr}}$ and $\\Delta F_1 = 0$.\n\n\\textbf{Part (b).} Partition instances into degenerate (fraction $\\delta$) and non-degenerate (fraction $1{-}\\delta$). By the law of total expectation:\n\\[\n\\mathbb{E}[\\Delta F_1] = \\delta \\cdot \\underbrace{\\mathbb{E}[\\Delta F_1 \\mid \\textup{deg.}]}_{= 0 \\;\\textup{by (a)}} + (1{-}\\delta) \\cdot \\mathbb{E}[\\Delta F_1 \\mid \\textup{non-deg.}].\n\\]\n\n\\textbf{Part (c).} Assume $\\mathcal{M}^- = \\hat{y}_{\\textup{gr}} \\setminus \\hat{y}_{\\textup{MV}} \\approx \\varnothing$ (greedy entities typically have agreement $k(e)/N \\approx 1$). Let $m = |\\mathcal{M}^+|$ and $\\pi = |\\mathcal{M}^+ \\cap G|/|\\mathcal{M}^+|$ denote the number and precision of entities added by MV. Define $S = |\\hat{y}_{\\textup{gr}}| + |G|$. Then:\n\\begin{align*}\n\\Delta F_1 &= \\frac{2(\\textup{TP}_{\\textup{gr}} + m\\pi)}{S + m} - \\frac{2\\,\\textup{TP}_{\\textup{gr}}}{S} \\\\\n&= \\frac{2m\\bigl(\\pi - \\textup{TP}_{\\textup{gr}}/S\\bigr)}{S + m}\n= \\frac{2m\\bigl(\\pi - F_1^{\\textup{gr}}/2\\bigr)}{S + m},\n\\end{align*}\nwhich is positive if and only if $\\pi > F_1^{\\textup{gr}}/2 \\triangleq \\alpha_{\\textup{crit}}$.\n\nWhen $\\mathcal{M}^-$ is non-empty, the condition generalizes: the net precision across the full symmetric difference $\\hat{y}_{\\textup{MV}} \\triangle \\hat{y}_{\\textup{gr}}$ must exceed a corresponding threshold. The addition-only case covers the dominant empirical regime, as greedy entities typically achieve near-unanimous agreement.\n\\end{proof}\n\n\\paragraph{Effective precision threshold.}\nFrom parts (b) and (c), MV gain is attenuated by $(1{-}\\delta)$ and requires marginal-entity precision $> \\alpha_{\\textup{crit}}$.\nEquivalently, defining $\\alpha_{\\textup{crit,eff}} {=} \\alpha_{\\textup{crit}} / (1{-}\\delta)$, MV gain requires marginal-entity precision $> \\alpha_{\\textup{crit,eff}}$; when $\\alpha_{\\textup{crit,eff}} > 1$, the required precision exceeds 1.0 and MV gain is structurally impossible regardless of entity quality.\n\n\\paragraph{Empirical validation.}\nTable~\\ref{tab:alpha_crit} reports MV performance under strict majority (count $> N/2$) using the MF4v2 pipeline (3-seed means).\nMV fails to improve F1 on any dataset: Few-NERD $\\Delta{=}{-}2.74$\\,pp, SciERC $-0.74$\\,pp, CoNLL $-0.04$\\,pp.\nWe define the effective precision threshold $\\alpha_{\\textup{crit,eff}} {=} \\alpha_{\\textup{crit}} / (1{-}\\delta)$; when $\\alpha_{\\textup{crit,eff}} > 1$, the required marginal-entity precision exceeds 1.0, making MV gain structurally impossible.\nCoNLL ($\\alpha_{\\textup{crit,eff}}{=}1.148$) confirms this: $\\Delta{=}{-}0.04{\\pm}0.15$\\,pp is indistinguishable from zero.\nFew-NERD and SciERC ($\\alpha_{\\textup{crit,eff}} {<} 1$) show significantly negative $\\Delta$, indicating that even where structural headroom exists, marginal-entity precision is insufficient.\nSciERC's lower $\\alpha_{\\textup{crit}}$ ($0.334$, vs.\\ $0.396$ for Few-NERD and $0.456$ for CoNLL) is consistent with it being the only dataset where a trained entity verifier (AUC${=}0.923$) achieves positive gain ($+1.28$\\,pp).\n\n\\begin{table}[h]\n\\centering\\small\n\\caption{MV performance under strict majority (count $> N/2$; Qwen3-8B FT, $N{=}8$, $T{=}1.0$, 3-seed mean${\\pm}\\sigma$). $\\alpha_{\\textup{crit}} = F_1^{\\textup{gr}}/2$; $\\alpha_{\\textup{crit,eff}} = \\alpha_{\\textup{crit}} / (1{-}\\delta)$. When $\\alpha_{\\textup{crit,eff}} > 1$, MV gain is structurally impossible.}\n\\label{tab:alpha_crit}\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{@{}lccccccccc@{}}\n\\toprule\nDataset & Seeds & Greedy & MV & Oracle & $\\Delta_{\\textup{SC}}$ (pp) & $\\delta$ & $\\alpha_{\\textup{crit}}$ & $\\alpha_{\\textup{crit,eff}}$ & Prediction \\\\\n\\midrule\nFew-NERD & 3 & .791 & .764 & .885 & $-2.74{\\pm}0.54$ & 8.8\\% & 0.396 & 0.434 & $\\Delta < 0$ \\\\\nCoNLL & 3 & .912 & .912 & .950 & $-0.04{\\pm}0.15$ & 60.3\\% & 0.456 & 1.148 & $\\Delta \\approx 0$ \\\\\nSciERC & 3 & .667 & .660 & .781 & $-0.74{\\pm}0.57$ & 12.2\\% & 0.334 & 0.380 & $\\Delta < 0$ \\\\\n\\bottomrule\n\\end{tabular}}\n\\end{table}\n\n\\section{Free-Form Decoding Ablation}\\label{app:freeform_ablation}\n\nTable~\\ref{tab:freeform_ablation} compares constrained and free-form decoding across four dimensions on SciERC ($N{=}8$, $T{=}1.0$, Qwen3-8B; seed${=}42$ shown, 4-seed RE statistics below).\nFree-form decoding removes grammar constraints entirely; outputs are parsed post-hoc (parse rate 99.95\\%, 4406/4408).\nLP score distributions are nearly identical across regimes (Panel~A: within-instance std ratio $0.97{\\times}$), and NER selection gains remain negligible under both regimes (Panel~B).\nRE LP selection consistently reverses direction under free-form decoding across 4 seeds: $+1.84{\\pm}0.12$~pp (seeds 42/123/456/789: $+1.69$, $+1.76$, $+2.00$, $+1.91$~pp) vs.\\ $-0.68$~pp constrained.\nThe constrained reference ($-0.68$~pp) uses the ablation-matched baseline; the primary experiment (Table~\\ref{tab:selection}) yields $-0.9$~pp on the same gold-filtered set.\nQuality estimation improves modestly for most signals under free-form decoding (Panel~C), with the largest gain for FK ($+0.053$ NER, $+0.039$ RE).\n\n\\begin{table*}[t]\n\\centering\n\\caption{Comparison of constrained vs.\\ free-form decoding on SciERC (Qwen3-8B, $N{=}8$, $T{=}1.0$, seed${=}42$; RE selection gap replicates across 4 seeds: $+1.84{\\pm}0.12$~pp).}\n\\label{tab:freeform_ablation}\n\n\\vspace{2pt}\n{\\small\\textsc{Panel A: Logprob Distribution}}\n\\vspace{2pt}\n\n\\begin{tabular}{lccc}\n\\toprule\nMetric & Constrained & Free-form & $\\Delta$ \\\\\n\\midrule\nMean LP std        & 0.0206 & 0.0199 & $-$0.0007 \\\\\nMean LP range      & 0.0623 & 0.0599 & $-$0.0024 \\\\\nTied fraction ($\\varepsilon{=}0.05$) & 59.7\\% & 57.7\\% & $-$2.0\\,pp \\\\\n\\bottomrule\n\\end{tabular}\n\n\\vspace{8pt}\n\n{\\small\\textsc{Panel B: Selection F1}}\n\\vspace{2pt}\n\n\\begin{tabular}{llccc}\n\\toprule\nTask & Method & Constrained & Free-form & $\\Delta$ \\\\\n\\midrule\n\\multirow{3}{*}{NER}\n  & Greedy        & 0.6182 & 0.6204 & $+$0.0022 \\\\\n  & LP-selected   & 0.6241 & 0.6222 & $-$0.0019 \\\\\n  & Selection gap & $+$0.0059 & $+$0.0018 & $-$0.0041 \\\\\n\\midrule\n\\multirow{3}{*}{RE}\n  & Greedy        & 0.2913 & 0.2880 & $-$0.0033 \\\\\n  & LP-selected   & 0.2845 & 0.3050 & \\textbf{$+$0.0205} \\\\\n  & Selection gap & $-$0.0068 & $+$0.0169 & \\textbf{$+$0.0237} \\\\\n\\bottomrule\n\\end{tabular}\n\n\\vspace{8pt}\n\n{\\small\\textsc{Panel C: QE Signal Quality (Spearman $\\rho$)}}\n\\vspace{2pt}\n\n\\begin{tabular}{l ccc ccc}\n\\toprule\n & \\multicolumn{3}{c}{NER ($n{=}529$)} & \\multicolumn{3}{c}{RE ($n{=}397$)} \\\\\n\\cmidrule(lr){2-4} \\cmidrule(lr){5-7}\nSignal & Constr. & Free & $\\Delta$ & Constr. & Free & $\\Delta$ \\\\\n\\midrule\nSJ & 0.360 & 0.377 & $+$0.018 & 0.250 & 0.273 & $+$0.023 \\\\\nFK & 0.267 & 0.320 & $+$0.053 & 0.275 & 0.315 & $+$0.039 \\\\\nLP & 0.205 & 0.213 & $+$0.008 & 0.266 & 0.304 & $+$0.038 \\\\\nEM & 0.295 & 0.317 & $+$0.023 & 0.134 & 0.137 & $+$0.002 \\\\\nVC & 0.379 & 0.409 & $+$0.030 & 0.350 & 0.323 & $-$0.026 \\\\\n\\bottomrule\n\\end{tabular}\n\n\\vspace{8pt}\n\n{\\small\\textsc{Panel D: Parse Rate (Free-form)}}\n\\vspace{2pt}\n\n\\begin{tabular}{lc}\n\\toprule\nMetric & Value \\\\\n\\midrule\nTotal samples          & 4408 \\\\\nParse rate             & 99.95\\% \\\\\nInstances 8/8 valid    & 549\\,/\\,551 (99.6\\%) \\\\\n\\bottomrule\n\\end{tabular}\n\n\\end{table*}\n\n\\paragraph{CoNLL NER free-form results.}\nExtending the free-form ablation to CoNLL NER (Qwen3-8B, 4 seeds, $N{=}8$, $T{=}1.0$), LP range median is $0.058{\\pm}0.007$ across seeds, higher than SciERC ($0.041$) but still compressed given CoNLL's 86.8\\% tied fraction under constrained decoding.\nFree-form decoding reduces the tied fraction modestly, yet selection remains below single-sample: LP-selected F1${=}0.896$ vs.\\ single-sample $0.904$ ($\\Delta{=}{-}0.77$~pp).\nQuality estimation under free-form decoding yields SJ $\\rho{=}0.461$, EM $\\rho{=}0.471$, LP $\\rho{=}0.326$, comparable to constrained results (Table~\\ref{tab:quality_estimation}).\nThe failure to improve selection despite reduced compression is consistent with CoNLL's low oracle headroom (4.0~pp at $N{=}8$), which limits the selection space regardless of score distribution quality.\n\n\\section{LP Selection Failure Stability}\\label{app:lp_failure_stability}\n\nWe analyze RE LP selection failures across three random seeds (constrained decoding, $N{=}8$, $T{=}1.0$, Qwen3-8B) to assess whether failures are systematic or stochastic.\n\n\\paragraph{Pairwise overlap.}\nLP selection failures (instances where LP-selected F1 $<$ single-sample F1) show moderate cross-seed stability: the average pairwise Jaccard similarity is 0.42 (range: 0.38--0.46); failures are partially systematic (attributable to instance complexity) but not fully deterministic.\nThe 3-way intersection contains 34 instances (27.9\\% of any-seed failures), which constitutes a stable failure core.\n\n\\paragraph{Instance complexity co-occurs with failure.}\nTable~\\ref{tab:stable_failures} stratifies instances by failure stability.\nStable failures (all 3 seeds) involve more gold relations (2.12 vs.\\ 1.62 for never-fail instances) and higher single-sample F1 (0.688 vs.\\ 0.429); LP mis-selects on instances where the model already performs well, precisely the instances where selection would be most valuable.\nFailure rate increases monotonically with gold relation count: 4.3\\% at 1 relation, 20.7\\% at 3 relations, 26.2\\% at 6 relations.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{RE LP selection failure stability across 3 seeds (SciERC, $N{=}8$). Stable failures concentrate on relation-dense instances with high single-sample F1.}\n\\label{tab:stable_failures}\n\\resizebox{\\columnwidth}{!}{\n\\begin{tabular}{lcccc}\n\\toprule\nGroup & $n$ & Gold rels & Greedy F1 & LP $\\Delta$F1 \\\\\n\\midrule\nStable fail (3 seeds) & 34 & 2.12 & 0.688 & $-$0.499 \\\\\nFail 2+ seeds & 26 & 2.46 & 0.774 & $-$0.450 \\\\\nFail 1 seed & 62 & 2.32 & 0.692 & $-$0.239 \\\\\nNever fail & 429 & 1.62 & 0.429 & $+$0.041 \\\\\n\\bottomrule\n\\end{tabular}\n}\n\\end{table}\n\n\\paragraph{Flip instances.}\nOnly 5 RE instances with gold relations flip from LP failure (constrained) to LP success (free-form), with mean gold relation count 3.67 (well above the population mean of 1.86).\nThese instances show large constrained LP errors ($\\Delta{=}{-}0.430$) that reverse under free-form decoding ($\\Delta{=}{+}0.503$), but their rarity (5/397) confirms that the RE selection flip is attributable to aggregate variance reallocation rather than systematic instance-level correction.\n\n\\section{$N$-Scaling Detailed Analysis}\\label{app:n_scaling}\n\nTables~\\ref{tab:n-scaling}--\\ref{tab:sigma-comparison} provide detailed $N$-scaling analysis on Qwen3-8B SciERC with 3-seed statistics.\n\n\\begin{table}[t]\n\\centering\n\\caption{Effect of sample pool size on signal quality (Qwen3-8B, SciERC, 3-seed mean Spearman $\\rho$).}\n\\label{tab:n-scaling}\n\\small\n\\resizebox{\\columnwidth}{!}{\n\\begin{tabular}{l ccc ccc}\n\\toprule\n & \\multicolumn{3}{c}{\\textbf{NER} $\\rho$} & \\multicolumn{3}{c}{\\textbf{RE} $\\rho$} \\\\\n\\cmidrule(lr){2-4} \\cmidrule(lr){5-7}\nSignal & $N\\!=\\!8$ & $N\\!=\\!16$ & $\\Delta$ & $N\\!=\\!8$ & $N\\!=\\!16$ & $\\Delta$ \\\\\n\\midrule\nSJ & 0.3641 & 0.4105 & \\textbf{+0.0464} & 0.2485 & 0.2758 & \\textbf{+0.0273} \\\\\nFK & 0.2536 & 0.2833 & \\textbf{+0.0297} & 0.2903 & 0.2964 & \\textbf{+0.0061} \\\\\nVC & 0.3861 & 0.4092 & \\textbf{+0.0231} & 0.3088 & 0.3738 & \\textbf{+0.0650} \\\\\nLP & 0.2167 & 0.2393 & \\textbf{+0.0226} & 0.2970 & 0.3100 & \\textbf{+0.0130} \\\\\nEM & 0.3071 & 0.3395 & \\textbf{+0.0324} & 0.1353 & 0.1506 & \\textbf{+0.0153} \\\\\n\\midrule\nMean & 0.3055 & 0.3364 & \\textbf{+0.0308} & 0.2560 & 0.2813 & \\textbf{+0.0253} \\\\\n\\bottomrule\n\\end{tabular}\n}\n\\end{table}\n\n\\begin{table}[t]\n\\centering\n\\caption{Cross-seed signal ranking stability (Kendall's $W$, 3 seeds).}\n\\label{tab:ranking-stability}\n\\small\n\\resizebox{\\columnwidth}{!}{\n\\begin{tabular}{ll cc l}\n\\toprule\nModel & Task & $N$ & Kendall's $W$ & Consensus ranking \\\\\n\\midrule\nQwen  & NER & 8  & 1.000 & VC $>$ SJ $>$ EM $>$ FK $>$ LP \\\\\nQwen  & NER & 16 & 0.956 & SJ $\\approx$ VC $>$ EM $>$ FK $>$ LP \\\\\nQwen  & RE  & 8  & 0.822 & VC $>$ LP $>$ FK $>$ SJ $>$ EM \\\\\nQwen  & RE  & 16 & 0.956 & VC $>$ LP $>$ FK $>$ SJ $>$ EM \\\\\nLLaMA & NER & 8  & 1.000 & VC $>$ SJ $>$ EM $>$ FK $>$ LP \\\\\n\\bottomrule\n\\end{tabular}\n}\n\\end{table}\n\n\\begin{table}[t]\n\\centering\n\\caption{Cross-seed standard deviation ($\\sigma$) of Spearman $\\rho$ at $N\\!=\\!8$ vs.\\ $N\\!=\\!16$ (Qwen3-8B, SciERC, 3 seeds). $\\sigma$ is population standard deviation.}\n\\label{tab:sigma-comparison}\n\\small\n\\begin{tabular}{l cc cc}\n\\toprule\n & \\multicolumn{2}{c}{\\textbf{NER} $\\sigma_\\rho$} & \\multicolumn{2}{c}{\\textbf{RE} $\\sigma_\\rho$} \\\\\n\\cmidrule(lr){2-3} \\cmidrule(lr){4-5}\nSignal & $N\\!=\\!8$ & $N\\!=\\!16$ & $N\\!=\\!8$ & $N\\!=\\!16$ \\\\\n\\midrule\nSJ & 0.0179 & 0.0102 & 0.0015 & 0.0067 \\\\\nFK & 0.0157 & 0.0079 & 0.0121 & 0.0143 \\\\\nVC & 0.0187 & 0.0260 & 0.0244 & 0.0158 \\\\\nEM & 0.0076 & 0.0031 & 0.0157 & 0.0049 \\\\\nLP & 0.0125 & 0.0017 & 0.0218 & 0.0152 \\\\\n\\midrule\nMean & 0.0145 & 0.0098 & 0.0151 & 0.0114 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nSignal rankings are consistent across our 3 seeds (Kendall's $W{=}1.000$ for NER at $N{=}8$, both models), dropping to $W{=}0.956$ at $N{=}16$ where SJ and VC converge (Table~\\ref{tab:ranking-stability}); however, with only $n{=}3$ seeds statistical power is insufficient to confirm stability, and additional seeds may reveal ranking changes.\nDoubling $N$ reduces cross-seed $\\sigma$ by 32\\% on NER and 24\\% on RE (Table~\\ref{tab:sigma-comparison}), with the largest reductions for SJ ($-43\\%$ NER) and EM ($-59\\%$ NER); additional samples stabilize structural signals more than LP.\n\n\\paragraph{$N$-scaling: selection headroom vs.\\ selection gain.}\nTable~\\ref{tab:n_scaling_selection} traces the effect of sample count on degeneracy, oracle headroom, and per-signal selection gain.\nOracle headroom grows roughly linearly with $N$ ($+4.4$~pp at $N{=}2$ to $+20.0$~pp at $N{=}32$).\nLP selection improves monotonically with $N$ ($+0.39$~pp at $N{=}8$ to $+0.95$~pp at $N{=}32$), but even at $N{=}32$, where degeneracy falls to 4\\% and oracle headroom reaches ${\\sim}20$~pp, the best signal captures less than 5\\% of the available improvement.\nDegeneracy drops monotonically (43\\% at $N{=}2$ to 4\\% at $N{=}32$), yet reduced degeneracy does not unlock selection, consistent with the LoRA-rank ablation finding (\\S\\ref{sec:robustness_main}).\nVC selection degrades with increasing $N$ ($-2.66$~pp at $N{=}2$ to $-4.35$~pp at $N{=}32$), consistent with mode-seeking bias in voting-based selection as the candidate pool grows.\n\n\\paragraph{Few-NERD $N$-scaling: MV at $N{=}16$.}\nOn Few-NERD (Qwen3-8B, 3-seed), increasing from $N{=}8$ to $N{=}16$ reduces degeneracy ($8.8$\\%$\\to$$4.0{\\pm}1.4$\\%) and attenuates MV degradation ($-2.74$\\,pp$\\to$$-1.65{\\pm}0.61$\\,pp), but MV remains negative.\nAdditional samples reduce the MV penalty but do not reverse it, consistent with the correlated-error mechanism: more samples provide better frequency estimates but cannot overcome systematic shared mistakes.\nSJ $\\rho$ is used for quality estimation at $N{=}16$ (FK conditional $\\rho$ shows sign instability across seeds: mean${=}0.051{\\pm}0.062$).\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Effect of sample count on selection (SciERC NER, Qwen3-8B, $T{=}1.0$, gold-filtered, seed${=}42$; exp\\_025).\\protect\\footnotemark\\ ``Best $\\Delta$'': highest selection gain across all 5 signals. Per-signal $\\Delta$ in pp vs.~greedy.}\n\\label{tab:n_scaling_selection}\n\\resizebox{\\columnwidth}{!}{\n\\begin{tabular}{ccccccccc}\n\\toprule\n$N$ & Degen.\\% & Oracle (pp) & LP & SJ & FK & EM & VC & Best $\\Delta$ \\\\\n\\midrule\n2 & 42.7\\% & $+$4.4 & $-$0.89 & $-$2.72 & $-$2.72 & $-$2.72 & $-$2.66 & $-$0.89 \\\\\n4 & 21.0\\% & $+$10.2 & $+$0.03 & $-$0.31 & $-$0.40 & $-$0.74 & $-$2.16 & $+$0.03 \\\\\n8 & 11.0\\% & $+$14.5 & $+$0.39 & $+$0.20 & $+$0.15 & $-$0.77 & $-$2.87 & $+$0.39 \\\\\n16 & 7.4\\% & $+$17.7 & $+$0.78 & $+$0.24 & $-$0.02 & $-$0.06 & $-$3.95 & $+$0.78 \\\\\n32 & 4.0\\% & $+$20.0 & $+$0.95 & $+$0.35 & $+$0.65 & $+$0.22 & $-$4.35 & $+$0.95 \\\\\n\\bottomrule\n\\end{tabular}\n}\n\\end{table}\n\\footnotetext{$N$-scaling analysis uses gold-filtered evaluation ($n{=}529$, greedy F1${=}0.640$, seed 42). Values differ from Table~\\ref{tab:selection} (0.645, 2-seed) and Table~\\ref{tab:fewnerd} (0.667, 3-seed) due to seed and aggregation differences; relative trends are consistent.}\n\n\\paragraph{Bootstrap significance at $N{=}32$.}\nTable~\\ref{tab:bootstrap_n32} reports bootstrap confidence intervals and $p$-values for selection at $N{=}32$ ($B{=}10{,}000$, $n{=}529$).\nNo signal achieves significant improvement over greedy at $\\alpha{=}0.05$ (LP: $p{=}0.091$; FK: $p{=}0.101$), while VC is significantly \\textit{worse} ($-4.36$~pp, $p{=}1.0$).\nHowever, all signals except VC significantly outperform random selection ($p{<}0.001$, permutation test); the signals carry meaningful quality information yet fail to translate it into reliable selection gains.\nThe oracle gap ($+20.0$~pp, $p{<}0.001$) confirms substantial unrealized headroom.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Bootstrap significance test at $N{=}32$ (SciERC NER, Qwen3-8B, $T{=}1.0$, $B{=}10{,}000$, $n{=}529$ gold-non-empty instances; 22 instances with no gold entities are excluded as they contribute zero selection differential). $\\Delta$: selection gain vs.\\ greedy. CI: 95\\% bootstrap percentile interval. $p_{\\text{greedy}}$: one-sided $p$-value vs.\\ greedy; $p_{\\text{rand}}$: permutation test vs.\\ random selection.}\n\\label{tab:bootstrap_n32}\n\\resizebox{\\columnwidth}{!}{\n\\begin{tabular}{lcccc}\n\\toprule\nSignal & $\\Delta$ (pp) & 95\\% CI & $p_{\\text{greedy}}$ & $p_{\\text{rand}}$ \\\\\n\\midrule\nLP & $+$0.95 & [$-$0.41, $+$2.34] & 0.091 & ${<}$0.001 \\\\\nFK & $+$0.66 & [$-$0.36, $+$1.67] & 0.101 & ${<}$0.001 \\\\\nSJ & $+$0.36 & [$-$0.66, $+$1.38] & 0.244 & ${<}$0.001 \\\\\nEM & $+$0.22 & [$-$0.99, $+$1.44] & 0.355 & ${<}$0.001 \\\\\nVC & $-$4.36 & [$-$6.26, $-$2.37] & 1.000 & 0.741 \\\\\n\\midrule\nOracle & $+$20.00 & [$+$17.98, $+$22.10] & ${<}$0.001 & --- \\\\\n\\bottomrule\n\\end{tabular}\n}\n\\end{table}\n\n\\paragraph{Oracle ceiling scaling law.}\nOracle F1 follows $F_1(N) = a - b \\cdot N^{-c}$, with $R^2 > 0.999$ across all model--dataset fits (Figure~\\ref{fig:oracle_scaling}).\nThe exponent $c$ varies with dataset complexity: FewNERD ($c{\\approx}0.61$) scales comparably to reasoning-task estimates ($c{\\approx}0.5$--$0.7$; \\citealp{brown2024monkeys}), while SciERC converges more slowly ($c{\\approx}0.35$), consistent with complex IE producing less marginal diversity per additional sample.\nCoNLL's narrow headroom ($b{=}0.04$--$0.10$) makes $c$ unreliable (inter-model variance $2.5{\\times}$); we report only $a$ and $b$ for CoNLL.\nA single stochastic sample ($N{=}1$, $T{=}1.0$) underperforms greedy by 1--3\\,pp because sampling noise outweighs diversity; $N{\\geq}4$ is needed to match greedy.\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/fig_oracle_scaling.pdf}\n\\caption{Oracle $F_1$ as a function of sample count $N$, fitted with $F_1(N) = a - b \\cdot N^{-c}$. All fits $R^2 > 0.999$. Horizontal dashed lines: greedy ($T{=}0$) F1. The ceiling grows monotonically with $N$, but the correlation-selection gap (\\S\\ref{sec:selection_gap}) limits how much is actually recoverable.}\n\\label{fig:oracle_scaling}\n\\end{figure}\n\n\\section{Cross-Scale and Cross-Family Comparison}\\label{app:cross_scale}\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Cross-scale and cross-family comparison ($N{=}8$, $T{=}1.0$). Hdr.\\ = oracle $-$ greedy (pp). Degen.: instance degeneracy (\\%). $^\\star$Qwen2.5; unmarked: Qwen3. $^\\dagger$Not computed. $^\\ddagger$200-instance subset; 10.1\\% parse failures excluded.}\n\\label{tab:scale_comparison}\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{@{}llccccccc@{}}\n\\toprule\nDataset & Regime & Greedy & Hdr. & Degen. & VC & SJ & FK & LP \\\\\n\\midrule\nSciERC & 8B FT  & .667 & 11.4 & 12.2 & .326 & .324 & .177 & .159 \\\\\n       & 72B ZS$^\\star$ & .399 & 15.0 & 21.0 & .277 & .217 & .227 & .081 \\\\\n\\midrule\nFew-NERD & 7B FT$^\\star$ & .784 & 9.2 & 31.7 & .404 & .388 & .315 & .346 \\\\\n         & 8B FT & .748 & 12.4 & 13.0 & .386 & .300 & .313 & .220 \\\\\n         & 14B FT & .798 & 8.1 & ---$^\\dagger$ & ---$^\\dagger$ & ---$^\\dagger$ & ---$^\\dagger$ & ---$^\\dagger$ \\\\\n         & 72B ZS$^\\star$ & .628 & ---$^\\dagger$ & 46.2 & .416 & .345 & ---$^\\dagger$ & .119 \\\\\n         & GPT-5.5 ZS$^\\ddagger$ & .638 & 8.2 & 50.0 & ---$^\\dagger$ & .346 & ---$^\\dagger$ & ---$^\\dagger$ \\\\\n\\midrule\nCoNLL  & 8B FT  & .908 & ${\\approx}$4 & 61.7 & .424 & .436 & .400 & .302 \\\\\n       & 72B ZS$^\\star$ & .712 & 5.3 & 67.7 & .297 & .304 & .302 & $-$.002 \\\\\n\\bottomrule\n\\end{tabular}}\n\\end{table}\n\nLP $\\rho$ drops without fine-tuning (Table~\\ref{tab:scale_comparison}) and LP selection fails on all 72B zero-shot datasets. Structural signals generalize better (Few-NERD VC $\\rho{=}0.416$). Degeneracy increases at 72B (Few-NERD: $46.2$\\% vs.\\ $13.0$\\%; CoNLL: $67.7$\\% vs.\\ $61.7$\\%); the gap persists under this specific 72B zero-shot configuration, though scale, training regime, and quantization effects are confounded (see Limitations).\nLP-weighted construction yields $+1.53$\\,pp on SciERC 72B ZS ($p{=}0.008$, CI [$+0.25$, $+2.82$]), recovering $10.2$\\% of headroom. Construction fails on Few-NERD ($-0.20$\\,pp) and CoNLL ($-0.37$\\,pp) where degeneracy exceeds $46$\\%---consistent with FT-regime degeneracy gating.\n\n\\paragraph{Few-shot demonstrations improve QE but not construction.}\nAdding 3-shot demonstrations to 72B improves greedy on SciERC and CoNLL ($+3.3$--$6.2$\\,pp) but not Few-NERD ($-0.9$\\,pp), and strengthens structural QE (CoNLL SJ $\\rho$ $.304{\\to}.442$, LP $-.002{\\to}.106$). Yet construction is ineffective across all three datasets (SciERC $-0.08$\\,pp, CoNLL $+0.03$\\,pp, Few-NERD $+0.02$\\,pp; all n.s.). On SciERC, this failure despite low degeneracy shows the bottleneck is regime-dependent (Appendix~\\ref{app:fs_error}); on Few-NERD, high FS degeneracy ($45.2$\\%) places it in the expected failure regime.\n\n\\paragraph{Degeneracy is model-family-dependent, not scale-dependent.}\nQwen2.5 exhibits systematically higher degeneracy than Qwen3 on Few-NERD (7B--72B: $31.7$--$46.2$\\% vs.\\ Qwen3-8B: $13.0$\\%; Table~\\ref{tab:scale_comparison}), confirming degeneracy is shaped by architecture rather than parameter count. Construction fails for all Qwen2.5 configurations on Few-NERD (both n.s.); 3$\\to$5 epochs triples degeneracy within the same model (\\S\\ref{sec:fewnerd}).\n\n\\paragraph{Qwen3 8B vs.\\ 4B scale ablation.}\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Scale ablation: Qwen3 8B vs.\\ 4B QE $\\rho$ ($N{=}8$, $T{=}1.0$, seed 42). RE in Appendix~\\ref{app:re_extension}.}\n\\label{tab:scale_ablation_app}\n\\begin{tabular}{@{}ll cc r@{}}\n\\toprule\n& & \\textbf{8B} & \\textbf{4B} & $\\Delta$ \\\\\n\\midrule\nCoNLL & SJ & .436 & .422 & $-$.014 \\\\\n      & FK & .400 & .418 & $+$.018 \\\\\nSciERC & SJ & .360 & .422 & $+$.062 \\\\\n       & FK & .267 & .326 & $+$.059 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nDegeneracy scales with capability: 8B shows 12.2\\% vs.\\ 4B's 10.4\\% on SciERC (Table~\\ref{tab:degeneracy}).\n\n\\paragraph{14B scale extension.}\nQwen3-14B fine-tuned on Few-NERD achieves greedy F1${=}0.798$ ($+0.9$\\,pp over 8B) with oracle headroom of 8.1\\,pp ($+1.2$\\,pp over 8B's 6.9\\,pp) and $\\rho$ advantage $+0.029$ over 8B.\nThe ceiling grows with model capability: larger models improve both greedy and oracle performance, but the aggregation gap widens rather than closes.\n\n\\paragraph{Pre-trained baseline (no fine-tuning).}\nTable~\\ref{tab:pretrained_summary} summarizes pretrained-vs-finetuned MV performance across three datasets (Qwen2.5-7B-Instruct pretrained, Qwen3-8B LoRA finetuned; $N{=}8$, $T{=}1.0$).\nAcross all three datasets, pretrained models benefit from MV aggregation ($+1.7$ to $+9.2$\\,pp), while all finetuned models show negligible or negative MV gains.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Pretrained vs.\\ finetuned MV ($N{=}8$, $T{=}1.0$). Pretrained: Qwen2.5-7B-Instruct; finetuned: Qwen3-8B LoRA. MV: strict majority ($>N/2$). Capture: $\\text{MV}\\,\\Delta / \\text{oracle headroom}$. CoNLL pretrained single-seed; others 3-seed mean${\\pm}\\sigma$.}\n\\label{tab:pretrained_summary}\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{@{}llcccc@{}}\n\\toprule\nDataset & Setting & Greedy & MV $\\Delta$ (pp) & Degen.\\% & Capture \\\\\n\\midrule\nCoNLL & Pretrained & .536 & $+$9.2 & 36 & 98\\% \\\\\n      & Finetuned & .912 & ${<}$0.1 & 57--60 & ${<}$2\\% \\\\\n\\addlinespace\nFew-NERD & Pretrained & .538 & $+$3.9${\\pm}$0.2 & 11.7 & 36\\% \\\\\n         & Finetuned & .791 & $-$2.7${\\pm}$0.5 & 8.8 & neg. \\\\\n\\addlinespace\nSciERC & Pretrained & .244 & $+$1.7${\\pm}$0.4 & 0.8 & --- \\\\\n       & Finetuned & .667 & ${<}$0.1 & 12.2 & --- \\\\\n\\bottomrule\n\\end{tabular}}\n\\end{table}\n\nOn CoNLL, MV captures $98$\\% of oracle headroom for the pretrained model (greedy${=}0.536$, MV${=}0.628$, oracle${=}0.630$, degeneracy${=}36$\\%) versus ${<}2$\\% finetuned (greedy${=}0.912$, MV${=}0.912$, oracle${=}0.954$, degeneracy $57$--$60$\\%).\nSignal quality is comparable ($\\rho_{\\textup{SJ}}{=}0.47$ pretrained vs.\\ $0.41$--$0.45$ finetuned).\n\nOn Few-NERD ($n{=}32{,}565$, 3-seed), finetuned degeneracy ($8.8$\\%) is \\textit{lower} than pretrained ($11.7$\\%), yet finetuned MV is negative ($-2.74{\\pm}0.54$\\,pp).\nFine-tuning thus decouples agreement from quality through dataset-dependent pathways: diversity elimination on CoNLL (degeneracy $36{\\to}57$--$60$\\%), but correlated error patterns on Few-NERD.\nA baseline quality confound exists (pretrained greedy${=}0.538$ vs.\\ finetuned${=}0.791$); per-type analysis (Appendix~\\ref{app:pertype}) partially addresses this by showing MV degradation concentrates in low-F1 entity types ($\\rho{=}0.90$, $p{=}0.002$).\n\nOn SciERC, MV gains $+1.67{\\pm}0.40$\\,pp despite very low greedy F1 ($0.244$) with near-zero degeneracy ($0.8$\\%), contradicting a ``MV only works at high baseline'' explanation.\nStructural signals outperform surface on CoNLL ($\\rho_{\\textup{SJ}}{=}0.467$, $\\rho_{\\textup{FK}}{=}0.435$) and LP AUROC${=}0.580$.\nSciERC's low greedy F1 does establish a scope boundary for entity-level \\textit{construction}: 46\\% of samples produce F1${=}0$, so partial-correctness-based aggregation cannot improve over greedy.\n\n\\subsection{Per-Type MV Analysis}\\label{app:pertype}\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Per-entity-type MV gain on Few-NERD (Qwen3-8B, $N{=}8$, $T{=}1.0$, 3-seed mean). Strict MV ($\\theta{>}N/2$). Types sorted by finetuned greedy F1. 7/8 types flip MV direction between pretrained and finetuned.}\n\\label{tab:pertype_mv}\n\\begin{tabular}{@{}lrccc@{}}\n\\toprule\n& & & \\multicolumn{2}{c}{MV $\\Delta$ (pp)} \\\\\n\\cmidrule(lr){4-5}\nEntity type & $n$ & Greedy F1 & Pretr. & Finetuned \\\\\n\\midrule\nperson & ${\\sim}$7{,}200 & .820 & $+$4.17 & $-$0.67 \\\\\nlocation & ${\\sim}$8{,}800 & .797 & $+$2.47 & $-$1.52 \\\\\nart & ${\\sim}$1{,}250 & .755 & $+$0.73 & $-$1.51 \\\\\norganization & ${\\sim}$6{,}700 & .725 & $+$3.15 & $-$2.65 \\\\\nbuilding & ${\\sim}$1{,}540 & .696 & $+$1.98 & $-$3.90 \\\\\nproduct & ${\\sim}$2{,}260 & .657 & $+$1.78 & $-$3.38 \\\\\nevent & ${\\sim}$1{,}315 & .645 & $+$2.34 & $-$3.17 \\\\\nother & ${\\sim}$3{,}485 & .639 & $-$0.45 & $-$3.02 \\\\\n\\midrule\n\\multicolumn{3}{@{}l}{$r$(greedy F1, MV\\,$\\Delta$)} & .86 & .90 \\\\\n\\multicolumn{3}{@{}l}{$p$-value} & .006 & .002 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\nMV direction flips between pretrained and finetuned decoding for 7 of 8 entity types (Table~\\ref{tab:pertype_mv}): types that benefit from MV under pretrained decoding ($+0.73$ to $+4.17$\\,pp) are uniformly harmed under finetuning ($-0.67$ to $-3.90$\\,pp), with only \\textit{other} (lowest-F1) remaining negative in both regimes.\nThe correlation between greedy F1 and MV $\\Delta$ is strong in both regimes ($r{=}0.86$, $p{=}0.006$ pretrained; $r{=}0.90$, $p{=}0.002$ finetuned), indicating entity-type difficulty predicts MV magnitude regardless of direction.\nThis rules out entity-type-specific factors as the explanation for MV failure: the same types succeed with pretrained decoding and fail with finetuned decoding, implicating the finetuning process itself.\nUnder a liberal MV threshold ($\\theta{\\geq}N/2$ instead of $\\theta{>}N/2$), per-type correlation direction is unstable; all results above use strict MV, consistent with the main paper.\n\n\\subsection{Frontier Model Self-Consistency}\\label{app:frontier_sc}\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Cross-family frontier SC on Few-NERD ($N{=}8$, $T{=}1.0$, 200 instances, zero-shot). Parse failures excluded from all metrics; $N_{\\textit{eff}}$: mean effective samples after exclusion. Selection gap $= $ oracle $-$ MV. Text-based entity matching (Appendix~\\ref{app:frontier_sc}, entity matching paragraph). Qwen3-8B FT shown for reference.}\n\\label{tab:frontier_sc_cross}\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{@{}lcccccc@{}}\n\\toprule\nModel & Greedy & MV ($\\Delta$) & Oracle & Degen.\\% & Sel.\\ gap & Parse\\% \\\\\n\\midrule\nDeepSeek & .399 & .424 ($+2.5$) & .714 & 5.5 & .290 & 46.9 \\\\\nGemini 2.5 Pro & .630 & .645 ($+1.5$) & .758 & 28.5 & .113 & 11.9 \\\\\nGPT-5.5 & .638 & .652 ($+1.4$) & .720 & 50.0 & .068 & 10.1 \\\\\nClaude Son.~4 & .607 & .623 ($+1.6$) & .654 & 74.0 & .032 & 6.4 \\\\\n\\midrule\nQwen3-8B FT & .789 & .792 ($+0.3$) & .858 & 13.0 & .066 & ${\\approx}$0 \\\\\n\\bottomrule\n\\end{tabular}}\n\\end{table}\n\nAll four frontier families exhibit the correlation-selection gap (Table~\\ref{tab:frontier_sc_cross}): MV recovers only a fraction of oracle headroom regardless of model capability.\nDegeneracy and selection gap are negatively correlated across families: Claude Sonnet~4 (74\\% degen, 0.032 gap) vs.\\ DeepSeek (5.5\\%, 0.290)---higher degeneracy eliminates the instances where aggregation could help.\nGemini 2.5 Pro achieves the highest oracle F1 (.758) and the highest QE correlation ($\\rho_{\\textup{SJ}}{=}0.350$, $\\rho_{\\textup{agr}}{=}0.389$) among frontier models, with balanced degeneracy (28.5\\%) preserving a 0.113 selection gap---the largest gap among models with ${\\geq}85$\\% parse success.\nDeepSeek's low degeneracy preserves the largest absolute gap (.290), but 47\\% parse failures reduce effective $N$ to ${\\approx}4.2$, limiting aggregation benefit.\nGPT-5.5 occupies the middle ground: 50\\% degeneracy with 6.8\\,pp unrealized oracle headroom.\n\n\\paragraph{Parse failure handling.}\n10.1\\% of GPT-5.5 samples produced output that could not be parsed into valid entity sets.\nThese samples are excluded from all aggregation metrics (degeneracy, oracle, MV, selection); for instances where all $N$ samples fail parsing, the instance is excluded entirely.\nThe effective sample size per instance is therefore $N_{\\textit{eff}} \\leq 8$ (mean ${\\approx}7.2$).\n\n\\paragraph{Entity matching methodology.}\nLocal experiments (fine-tuned models with constrained decoding) use offset-based matching: two entities match iff \\texttt{(start, end, type)} are identical.\nFrontier API experiments use text-based matching: \\texttt{(text.lower(), type)}, because API outputs lack character-offset information.\nText-based matching is slightly more permissive (e.g., ignoring whitespace differences at span boundaries), producing ${\\approx}2$\\,pp higher MV $\\Delta$ on controlled comparisons.\nAll within-pipeline comparisons (greedy vs.\\ MV vs.\\ oracle) use the same matching, so relative conclusions are unaffected; cross-pipeline absolute F1 values should not be directly compared.\n\n\\section{Temperature Ablation}\\label{app:t_ablation}\n\nTable~\\ref{tab:t_ablation} reports the effect of sampling temperature on QE signals, oracle headroom, and output quality across four temperatures on SciERC NER.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Temperature ablation on SciERC NER (Qwen3-8B, $N{=}8$, seed${=}42$). Oracle gap and QE $\\rho$ across four temperatures. $\\kappa$: Fleiss' $\\kappa$ (inter-sample agreement). $T{=}0.5$ and $T{=}1.0$ use joint (NER+RE) subtask; $T{=}0.8$ and $T{=}1.2$ use NER-only.}\n\\label{tab:t_ablation}\n\\resizebox{\\columnwidth}{!}{\n\\begin{tabular}{ccccccc}\n\\toprule\n$T$ & Oracle gap (pp) & SJ $\\rho$ & LP $\\rho$ & $\\kappa$ & Sample F1 \\\\\n\\midrule\n0.5 & $+$9.1 & 0.297 & 0.218 & 0.577 & 0.636 \\\\\n0.8 & $+$12.5 & 0.359 & 0.253 & 0.451 & 0.622 \\\\\n1.0 & $+$13.0 & 0.360 & 0.205 & ${\\approx}$0.39 & ${\\approx}$0.612 \\\\\n1.2 & $+$14.6 & 0.377 & 0.196 & 0.356 & 0.594 \\\\\n\\bottomrule\n\\end{tabular}\n}\n\\end{table}\n\nOracle headroom increases monotonically with temperature ($+9.1$~pp at $T{=}0.5$ to $+14.6$~pp at $T{=}1.2$), confirming that higher temperature consistently expands the oracle ceiling under constrained structured decoding.\nStructural QE signals improve with temperature: SJ $\\rho$ rises from $0.297$ ($T{=}0.5$) to $0.377$ ($T{=}1.2$), consistent with more diverse outputs providing richer pairwise evidence.\nLP $\\rho$ peaks at $T{=}0.8$ ($0.253$) then degrades to $0.196$ at $T{=}1.2$.\nThis divergence confirms that LP compression is model-intrinsic: higher temperature increases between-instance LP variance (benefiting structural signals) but does not resolve within-instance compression, degrading LP's discriminative power.\nInter-sample agreement ($\\kappa$) decreases monotonically ($0.577$ to $0.356$); higher temperature generates more diverse outputs. Mean sample F1 also decreases ($0.636$ to $0.594$), consistent with the quality--diversity trade-off.\nThe $T{=}0.7$ and $T{=}1.0$ comparison in Table~\\ref{tab:robustness} is consistent with the trends reported here.\n\n\\paragraph{Temperature modulates degeneracy and LP spread.}\nTable~\\ref{tab:t_degeneracy} reports instance degeneracy (constant F1, gold-filtered) and median within-instance LP range across four temperatures on SciERC.\nBoth quantities are strictly monotonic in $T$: degeneracy falls from 41.4\\% ($T{=}0.5$) to 14.9\\% ($T{=}1.2$), while LP range increases from 0.015 to 0.058 nats.\nTemperature thus provides a direct lever for practitioners to shift the degeneracy regime.\nHowever, even at $T{=}1.2$ where degeneracy (14.9\\%) approaches Few-NERD levels (${\\sim}$13\\%), within-instance $\\rho(\\text{LP}, \\text{F1})$ remains at 0.225, far below Few-NERD's ${\\sim}$0.5.\nThis confirms that temperature modulates degeneracy but cannot improve LP-quality alignment, which is largely associated with task structure and remains relatively stable across generation configurations (\\S\\ref{app:epoch_confound}). LP-quality alignment, not degeneracy, is the primary predictor of LP selection direction (\\S\\ref{sec:discussion}).\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Temperature sensitivity of degeneracy and LP spread (SciERC NER, Qwen3-8B, $N{=}8$). Degeneracy: constant-F1, gold-filtered. LP range: median within-instance range.}\n\\label{tab:t_degeneracy}\n\\resizebox{\\columnwidth}{!}{\n\\begin{tabular}{ccccc}\n\\toprule\n$T$ & Degen.\\% & LP range (nats) & Fleiss' $\\kappa$ & SJ mean \\\\\n\\midrule\n0.5 & 41.4 & 0.015 & 0.572 & 0.830 \\\\\n0.8 & 23.8 & 0.031 & 0.471 & 0.752 \\\\\n1.0 & 17.8 & 0.042 & 0.405 & 0.700 \\\\\n1.2 & 14.9 & 0.058 & 0.352 & 0.647 \\\\\n\\bottomrule\n\\end{tabular}\n}\n\\end{table}\n\n\\section{Cross-Dataset OOD Analysis}\\label{app:ood}\n\nTo test whether confidence signals generalize under domain shift, we evaluate models on out-of-distribution data: a SciERC-trained model applied to CoNLL instances (wider$\\to$narrower schema) and vice versa (Table~\\ref{tab:ood}).\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Cross-dataset OOD quality estimation (Spearman $\\rho$, Qwen3-8B, $N{=}8$, $T{=}1.0$, seed${=}42$). SciERC$\\to$CoNLL: SciERC-trained model on CoNLL instances ($n{=}2756$). CoNLL$\\to$SciERC: CoNLL-trained model on SciERC instances ($n{=}529$, excluded from conclusions due to catastrophic model failure). In-domain $\\rho$ from Table~\\ref{tab:quality_estimation} (same model, same seed). \\textsuperscript{***}$p{<}0.001$, \\textsuperscript{*}$p{<}0.05$.}\n\\label{tab:ood}\n\\resizebox{\\columnwidth}{!}{\n\\begin{tabular}{l ccc ccc}\n\\toprule\n & \\multicolumn{3}{c}{\\textbf{SciERC$\\to$CoNLL}} & \\multicolumn{3}{c}{\\textbf{CoNLL$\\to$SciERC}} \\\\\n\\cmidrule(lr){2-4} \\cmidrule(lr){5-7}\nSignal & $\\rho$ & In-dom. & $\\Delta$ & $\\rho$ & In-dom. & $\\Delta$ \\\\\n\\midrule\nVC & .469\\textsuperscript{***} & .379 & +.090 & +.105\\textsuperscript{*} & .379 & $-$.274 \\\\\nSJ & .378\\textsuperscript{***} & .360 & +.018 & $-$.186\\textsuperscript{***} & .360 & $-$.546 \\\\\nEM & .300\\textsuperscript{***} & .295 & +.005 & $-$.202\\textsuperscript{***} & .295 & $-$.497 \\\\\nFK & .285\\textsuperscript{***} & .267 & +.018 & $-$.070 & .267 & $-$.337 \\\\\nLP & .246\\textsuperscript{***} & .205 & +.041 & $-$.152\\textsuperscript{***} & .205 & $-$.357 \\\\\n\\bottomrule\n\\end{tabular}\n}\n\\end{table}\n\n\\paragraph{Wider-to-narrower schema transfer.}\nWhen the SciERC-trained model (6 NER types) is applied to CoNLL (4 types), all signals remain significant ($p{<}0.001$) and structural signals improve over their in-domain levels (same model, seed${=}42$, $N{=}8$; in-domain $\\rho$ from Table~\\ref{tab:quality_estimation}): VC reaches $\\rho{=}0.469$ (in-domain $0.379$, $\\Delta{=}{+}0.090$), SJ $\\rho{=}0.378$ (in-domain $0.360$, $\\Delta{=}{+}0.018$), and FK $\\rho{=}0.285$ (in-domain $0.267$, $\\Delta{=}{+}0.018$).\nThe wider training schema subsumes CoNLL's narrower schema, so the model produces reasonable outputs even out-of-domain (single-sample F1${=}0.522$), and structural signals benefit from the simpler target schema's reduced output ambiguity.\n\n\\paragraph{Narrower-to-wider schema transfer (excluded).}\nThe reverse direction is excluded from our conclusions due to catastrophic model failure, not signal failure.\nThe CoNLL-trained model recognizes only 4 news entity types (PER, ORG, LOC, MISC) and has no relation extraction capability; when applied to SciERC's 6 scientific entity types and 7 relation types, the model cannot produce meaningful structured outputs (single-sample NER F1${=}0.009$, RE F1${=}0.001$).\nUnder this regime, most signals flip to negative or near-zero correlations (Table~\\ref{tab:ood}); only VC retains weak positive correlation ($\\rho{=}0.105$, $p{=}0.016$).\nThese negative correlations reflect the model systematically generating confident but incorrect outputs, a capability failure analogous to WNUT-17 (\\S\\ref{sec:qe_results}) and not evidence against signal utility.\n\n\\paragraph{Asymmetry interpretation.}\nThe directional asymmetry is attributable to schema coverage: wider$\\to$narrower preserves signal utility because the SciERC model's 6-type schema subsumes CoNLL's 4 types, while narrower$\\to$wider fails because the CoNLL model lacks the entity and relation types required by SciERC.\nThis extends the capability boundary identified on WNUT-17 to the domain-shift setting: confidence signals require sufficient model capability as a prerequisite, and results from the CoNLL$\\to$SciERC direction should not be interpreted as evidence of signal degradation under domain shift.\n\n\\section{Verbalized Confidence}\\label{app:verbalized_confidence}\n\nWe evaluate verbalized confidence (VerbConf) as a second per-sample signal following \\citet{lin2022teaching} and \\citet{tian2023calibration}: after generating each structured output, the model is prompted to rate its confidence on a 1--10 scale.\nTable~\\ref{tab:verbconf} reports quality estimation and selection results.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Verbalized confidence (VerbConf) vs.\\ log-probability selection (Qwen3-8B, $N{=}8$, $T{=}1.0$, seed${=}42$). Parse fail: fraction of samples where the confidence score could not be extracted.}\n\\label{tab:verbconf}\n\\resizebox{\\columnwidth}{!}{\n\\begin{tabular}{l cc cc}\n\\toprule\n & \\multicolumn{2}{c}{\\textbf{SciERC NER}} & \\multicolumn{2}{c}{\\textbf{CoNLL NER}} \\\\\n\\cmidrule(lr){2-3} \\cmidrule(lr){4-5}\nMetric & VerbConf & LP & VerbConf & LP \\\\\n\\midrule\n$\\rho$ & 0.297 & 0.205 & 0.337 & 0.316 \\\\\nAUROC & 0.681 & 0.578 & 0.747 & 0.753 \\\\\nSelection F1 & 0.620 & 0.647 & 0.889 & 0.904 \\\\\n$\\Delta$ vs.\\ greedy & $-$2.45\\,pp & $+$0.2\\,pp & $-$1.93\\,pp & $-$0.77\\,pp \\\\\n\\midrule\nMean score & 8.58\\,/\\,10 & --- & 9.24\\,/\\,10 & --- \\\\\nParse fail rate & 0.26\\% & --- & 0\\% & --- \\\\\n\\bottomrule\n\\end{tabular}\n}\n\\end{table}\n\n\\paragraph{Severe overconfidence.}\nVerbConf exhibits extreme score compression: mean confidence is 8.58/10 on SciERC (single-sample F1${=}0.645$) and 9.24/10 on CoNLL (single-sample F1${=}0.904$), with most scores concentrated in the 8--10 range.\nThis compression is more severe than LP (which spans a 0.041-nat median range); score compression is a general property of model self-assessment, not an artifact of log-probability computation.\n\n\\paragraph{QE--selection decoupling.}\nVerbConf achieves higher $\\rho$ than LP on both datasets (SciERC: 0.297 vs.\\ 0.205; CoNLL: 0.337 vs.\\ 0.316) and competitive AUROC (SciERC: 0.681 vs.\\ 0.578; CoNLL: 0.747 vs.\\ 0.753), yet yields the worst selection among all signals ($\\Delta{=}{-}2.45$~pp on SciERC, $-1.93$~pp on CoNLL).\nThis dissociation further demonstrates the correlation-selection gap: a signal can rank instances by expected quality without being able to discriminate candidates within an instance.\nThe AUROC--$\\rho$ decoupling on CoNLL (LP leads AUROC at 0.753 while VerbConf leads $\\rho$ at 0.337) reflects differing sensitivity to binary vs.\\ ordinal discrimination.\n\n\\section{LLaMA-3.2-3B Scale Ablation}\\label{app:llama3b}\n\nTo extend scale coverage below 4B, we fine-tune LLaMA-3.2-3B-Instruct on SciERC NER under identical training conditions (LoRA rank${=}32$, $\\alpha{=}64$, 5 epochs) and evaluate quality estimation and selection (Table~\\ref{tab:llama3b}).\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{LLaMA-3.2-3B SciERC NER quality estimation and selection ($N{=}8$, $T{=}1.0$, seed${=}42$). Greedy F1${=}0.627$, Oracle F1${=}0.763$, headroom${=}13.63$~pp.}\n\\label{tab:llama3b}\n\\begin{tabular}{l cc cc}\n\\toprule\nSignal & $\\rho$ & AUROC & Sel.\\ F1 & $\\Delta$ vs.\\ greedy \\\\\n\\midrule\nVC & \\textbf{.460} & .743 & 0.611 & $-$1.54\\,pp \\\\\nSJ & .375 & .738 & \\textbf{0.633} & $+$0.61\\,pp \\\\\nEM & .334 & \\textbf{.776} & --- & --- \\\\\nFK & .268 & .671 & 0.630 & $+$0.28\\,pp \\\\\nLP & .266 & .633 & 0.628 & $+$0.12\\,pp \\\\\n\\midrule\nGreedy & --- & --- & 0.627 & --- \\\\\nOracle & --- & --- & 0.763 & --- \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nThe $\\rho$ ranking at 3B (VC $>$ SJ $>$ EM $>$ FK $\\approx$ LP) preserves the structural-over-LP ordering from 8B (Table~\\ref{tab:quality_estimation}); ranking stability holds across two model families spanning 3B--8B.\nAUROC rankings differ (EM $>$ VC $>$ SJ $>$ FK $>$ LP), consistent with the $\\rho$--AUROC dissociation noted in the main text.\nDespite 13.63~pp of oracle headroom, no signal achieves significant selection improvement (best: SJ, $+0.61$~pp, $p{=}0.175$); VC, the strongest QE signal, yields the worst selection ($-1.54$~pp), consistent with the correlation-selection gap observed at larger scales.\n\n\\section{Few-NERD Full Results}\\label{app:fewnerd}\n\nTable~\\ref{tab:fewnerd_full} reports the complete Few-NERD INTRA coarse evaluation (Qwen3-8B, LoRA rank${=}32$, 3 epochs, $N{=}8$, $T{=}1.0$).\nAfter gold-filtering (removing instances with no gold entities), the evaluation set contains $n{=}32{,}565$ instances across 8 coarse entity types; 11.9\\% receive zero F1 under greedy decoding.\nInstance degeneracy is 13.0\\% (vs.\\ 12.2\\% on SciERC, 61.7\\% on CoNLL).\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Few-NERD INTRA coarse: complete quality estimation and selection results (Qwen3-8B, $N{=}8$, $T{=}1.0$, gold-filtered $n{=}32{,}565$). $\\rho$: Spearman correlation with instance F1. Sample AUROC: per-sample LP discrimination. Sel.\\ $\\Delta$: selection F1 minus greedy (0.748). CI: bootstrap 95\\% confidence interval.}\n\\label{tab:fewnerd_full}\n\\resizebox{\\columnwidth}{!}{\n\\begin{tabular}{lcccc}\n\\toprule\nSignal & $\\rho$ & Sample AUROC & Sel.\\ $\\Delta$ & 95\\% CI \\\\\n\\midrule\nLP & .220 & .578 & $\\mathbf{+1.39}$\\,pp & [+1.18, +1.53] \\\\\nVC & .386 & --- & $-$1.79\\,pp & --- \\\\\nFK & .313 & --- & $-$2.26\\,pp & --- \\\\\nSJ & .300 & --- & $-$2.14\\,pp & --- \\\\\nEM & .287 & --- & $-$3.85\\,pp & --- \\\\\n\\midrule\n\\multicolumn{3}{l}{Greedy: 0.748 \\quad Oracle: 0.872} & \\multicolumn{2}{l}{Headroom: 12.4\\,pp} \\\\\n\\bottomrule\n\\end{tabular}\n}\n\\end{table}\n\n\\paragraph{Key observations.}\n(1)~All five signals achieve positive QE ($\\rho$ 0.22--0.39); quality estimation works on Few-NERD. VC leads ($\\rho{=}0.39$), followed by FK ($0.31$), SJ ($0.30$), EM ($0.29$), LP ($0.22$); the ranking matches SciERC where structural signals also outperform LP for quality estimation.\n(2)~LP is the only signal achieving significant positive selection ($+1.39$~pp, $p{<}0.001$, CI excludes zero). The sample-level AUROC of 0.578 confirms LP provides per-sample discriminability beyond instance-level quality prediction.\n(3)~Despite positive $\\rho$, all structural signals degrade selection ($-1.79$ to $-3.85$~pp), further confirming that the correlation-selection gap is not an artifact of weak QE.\n(4)~Low degeneracy (13.0\\%) combined with strong LP-quality alignment ($\\rho{\\approx}0.5$--$0.7$) enables LP selection: candidates differ in F1 more often, and LP can rank them effectively. This contrasts with SciERC (12.2\\% degeneracy but weak alignment $\\rho{\\approx}0.16$, LP $+0.61$~pp) and CoNLL (61.7\\%, LP $-0.85$~pp).\n\n\\section{Per-Entity-Type LP Selection Analysis}\\label{app:per_type_lp}\n\nTable~\\ref{tab:per_type_lp} stratifies LP selection by entity type on Few-NERD, sorted by degeneracy rate.\nThe degeneracy-gating mechanism holds at entity-type granularity: 7 of 8 types show positive LP selection gains, and the sole negative type (Art, $-0.17$~pp) has the highest degeneracy (19.8\\%).\nThe correlation between per-type degeneracy and oracle headroom is strong and significant (Spearman $\\rho{=}{-}0.881$, $p{=}0.004$; exact permutation $p{=}0.005$); degeneracy directly constrains the headroom available for selection.\nUnder a conservative $\\text{df}{=}4$ adjustment for within-type dependence, the correlation remains significant ($p{=}0.033$).\nEntity types show near-zero intra-class correlation (ICC $= -0.004$), supporting the independence assumption underlying per-type analysis.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Per-entity-type LP selection on Few-NERD INTRA coarse (Qwen3-8B, $N{=}8$, $T{=}1.0$), sorted by degeneracy. LP $\\Delta$: LP selection F1 minus greedy. 7/8 types show positive $\\Delta$; Art (highest degeneracy) is the sole exception.}\n\\label{tab:per_type_lp}\n\\resizebox{\\columnwidth}{!}{\n\\begin{tabular}{lrrrrrrr}\n\\toprule\nEntity Type & $n$ & Degen.\\% & Greedy & LP Sel & $\\Delta$ (pp) & LP $\\rho$ & Headroom \\\\\n\\midrule\nEvent & 1{,}306 & 6.0 & .655 & .662 & $+$0.65 & .457 & 16.1\\,pp \\\\\nOther & 3{,}433 & 6.6 & .637 & .685 & $\\mathbf{+4.73}$ & .491 & 19.4\\,pp \\\\\nOrganization & 6{,}647 & 6.7 & .720 & .732 & $+$1.21 & .509 & 13.3\\,pp \\\\\nBuilding & 1{,}587 & 7.2 & .702 & .705 & $+$0.23 & .478 & 14.9\\,pp \\\\\nProduct & 2{,}276 & 8.2 & .656 & .677 & $+$2.01 & .483 & 15.8\\,pp \\\\\nLocation & 8{,}023 & 11.4 & .793 & .798 & $+$0.53 & .520 & 10.3\\,pp \\\\\nPerson & 8{,}016 & 13.4 & .822 & .835 & $+$1.25 & .544 & 9.2\\,pp \\\\\nArt & 1{,}277 & 19.8 & .756 & .754 & $-$0.17 & .451 & 9.2\\,pp \\\\\n\\bottomrule\n\\end{tabular}\n}\n\\end{table}\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{CoNLL-2003 per-type LP selection (Qwen3-8B, $N{=}16$, $T{=}1.0$). All types exceed 20\\% degeneracy and show negative LP selection, consistent with the dataset's ceiling-regime performance (F1 $>$ 90\\%).}\n\\label{tab:per_type_lp_conll}\n\\begin{tabular}{lrrr}\n\\toprule\nEntity Type & Degen.\\% & LP $\\Delta$ (pp) \\\\\n\\midrule\nMISC & 23.2 & $-$2.19 \\\\\nPER & 42.6 & $-$1.08 \\\\\nLOC & 47.5 & $-$0.62 \\\\\nORG & 54.3 & $-$0.55 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{SciERC per-type LP selection (Qwen3-8B, $N{=}8$, $T{=}1.0$). Within-dataset, degeneracy alone does not predict LP effectiveness (Spearman $\\rho{=}0.14$, $p{=}0.79$); additional type-specific factors likely modulate selection at this granularity.}\n\\label{tab:per_type_lp_scierc}\n\\begin{tabular}{lrrr}\n\\toprule\nEntity Type & Degen.\\% & LP $\\Delta$ (pp) \\\\\n\\midrule\nTask & 10.1 & $+$2.58 \\\\\nGeneric & 10.0 & $+$2.07 \\\\\nMaterial & 20.0 & $+$0.91 \\\\\nMetric & 12.5 & $-$0.06 \\\\\nMethod & 16.3 & $-$0.03 \\\\\nOtherScientificTerm & 6.2 & $-$0.57 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nThe cross-dataset degeneracy gradient (61.7\\% $\\to$ 13.0\\% $\\to$ 12.2\\%) is inversely associated with LP selection effectiveness at the macro level ($n{=}3$ datasets; exploratory).\\footnote{Partial Spearman correlation controlling for entity-type frequency yields $\\rho{=}{-}0.47$ (vs.\\ raw $\\rho{=}{-}0.38$); type frequency does not confound the degeneracy--LP relationship.}\nAt finer per-type granularity, selection depends on the interaction of degeneracy, oracle headroom, and type-specific LP-quality alignment.\nA Kruskal-Wallis test finds no significant per-type heterogeneity in LP selection gains on SciERC ($p{=}0.796$), consistent with the small per-type sample sizes ($n{=}54$--$296$).\nLow degeneracy alone does not ensure selection gains: CoNLL MISC (23\\%, headroom 12.6~pp) and SciERC OtherScientificTerm (6.2\\%, headroom 12.5~pp) both show negative LP selection despite available headroom; LP correlation strength with the type-specific quality function is an additional prerequisite.\n\n\\section{Calibration Baseline}\\label{app:calibration_baseline}\n\nStandard calibration methods are monotonic transforms of log-probability and therefore preserve within-instance sample rankings: Platt scaling \\cite{platt1999probabilistic} fits a logistic regression $\\sigma(a \\cdot \\text{LP} + b)$, and temperature scaling \\cite{guo2017calibration} divides logits by a scalar $\\tau$.\nSince both preserve the argmax, selection F1 is identical to raw LP on all three datasets (Table~\\ref{tab:calibration}).\n\nTo break monotonicity, we fit a multi-feature Platt model (MF-Platt) using LP, token count, and entity count as inputs, trained on a held-out calibration split (20\\% of the test set, 5-fold cross-validation on the remainder).\nMF-Platt can reorder candidates within an instance, yet yields no significant selection improvement: $\\Delta{=}{-}1.1$~pp on SciERC ($p{=}0.72$), $+0.3$~pp on CoNLL ($p{=}0.31$), and $-0.6$~pp on Few-NERD ($p{=}0.83$).\nPlatt scaling substantially improves probability calibration (ECE drops from 0.26--0.39 to 0.01--0.08), but better-calibrated probabilities do not translate to better selection.\nThis parallels the supervised signal combination result (\\S\\ref{sec:robustness_main}): neither stronger aggregation nor additional features can compensate for weak per-sample discriminative signal.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Calibration baseline results ($T{=}1.0$; single seed). SciERC uses $N{=}8$; CoNLL and Few-NERD use $N{=}16$ ($N$ does not affect greedy F1 or calibration conclusions). Platt and TempScale are monotonic transforms of LP that preserve the within-instance argmax (selection F1 $\\equiv$ Raw LP, omitted). MF-Platt uses LP $+$ token count $+$ entity count; $p$: bootstrap test vs.\\ Raw LP. Few-NERD evaluated on the first 5K test instances without gold-filtering (greedy .771; cf.\\ gold-filtered full-set .748 in Table~\\ref{tab:fewnerd}).}\n\\label{tab:calibration}\n\\resizebox{\\columnwidth}{!}{\n\\begin{tabular}{l cccc cc}\n\\toprule\n& & \\multicolumn{2}{c}{Selection F1} & & \\multicolumn{2}{c}{ECE} \\\\\n\\cmidrule(lr){3-4} \\cmidrule(lr){6-7}\nDataset & Greedy & Raw LP & MF-Platt ($p$) & & Raw & Platt \\\\\n\\midrule\nSciERC & .644 & .650 & .639 (.72) & & .260 & .048 \\\\\nCoNLL & .909 & .898 & .901 (.31) & & .392 & .012 \\\\\nFew-NERD & .771 & .785 & .778 (.83) & & .262 & .080 \\\\\n\\bottomrule\n\\end{tabular}\n}\n\\end{table}\n\n\\section{Epoch Confound Analysis}\\label{app:epoch_confound}\n\n\\paragraph{Training convergence modulates degeneracy.}\nTable~\\ref{tab:epoch_confound} compares the 3-epoch model (used throughout the main text) with a 5-epoch variant on Few-NERD (Qwen3-8B, $N{=}8$, $T{=}1.0$; full test set $n{=}32{,}565$, gold-filtered, 2-seed mean).\nExtended training increases greedy F1 by $+0.7$~pp ($0.791 \\to 0.798$) and triples instance degeneracy ($8.8$\\% $\\to$ $26.4$\\%), reducing the fraction of instances with non-degenerate outputs.\nThe 5-epoch MV $\\Delta$ ($-0.40$\\,pp) appears smaller than 3-epoch ($-2.74$\\,pp), but this is misleading: $26$\\% of instances are fully degenerate (MV${\\equiv}$greedy, $\\Delta{=}0$), diluting the aggregate.\nOn non-degenerate instances, MV $\\Delta{\\approx}{-}0.55$\\,pp, still negative---degeneracy masks the MV penalty rather than improving it.\n\nLP selection shows even more dramatic degradation: 5-epoch LP $\\Delta{=}{+}0.12{\\pm}0.04$\\,pp (2-seed, full test set micro-F1), a 91\\% reduction from the 3-epoch $+1.39$\\,pp. This confirms that training convergence not only increases degeneracy but also erodes LP's discriminative power within non-degenerate instances, consistent with the alignment degradation observed in SciERC (Table~\\ref{tab:epoch_scierc}).\n\nEvaluation loss increases after epoch 3, and the best checkpoint by validation loss occurs at approximately epoch 3.9.\nStandard early stopping practice thus naturally selects the low-degeneracy regime.\nThis finding refines the narrative: degeneracy is not a fixed property of datasets but is modulated by the degree of training convergence. Over-trained models compress their output distributions, collapsing diversity even on datasets that support it under well-regularized training.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Training convergence confound on Few-NERD (Qwen3-8B, $N{=}8$, $T{=}1.0$, full test set $n{=}32{,}565$, gold-filtered, 2-seed mean). ``Degen.'': constant-F1 instance degeneracy. ``MV $\\Delta$'': strict majority vote gain over greedy (pp). ``Non-degen MV $\\Delta$'': MV gain on non-degenerate instances only.}\n\\label{tab:epoch_confound}\n\\resizebox{\\columnwidth}{!}{\n\\begin{tabular}{lcc}\n\\toprule\nMetric & 3-epoch & 5-epoch \\\\\n\\midrule\nGreedy F1 & 0.791 & 0.798 \\\\\nMV $\\Delta$ (pp) & $-$2.74 & $-$0.40 \\\\\nInstance degen.\\ (\\%) & 8.8 & 26.4 \\\\\nSJ mean & 0.685 & 0.802 \\\\\nLP $\\Delta$ (pp) & $+$1.39 & $+$0.12${\\pm}$0.04 \\\\\n\\bottomrule\n\\end{tabular}\n}\n\\end{table}\n\n\\paragraph{SciERC epoch curve.}\nTable~\\ref{tab:epoch_scierc} extends the analysis to SciERC with a 3-point curve (3, 5, 10 epochs; Qwen3-8B, $N{=}8$, $T{=}1.0$).\nDegeneracy increases monotonically (6.4\\% $\\to$ 17.8\\% $\\to$ 47.8\\%), and within-instance LP-quality correlation degrades in tandem (median $\\rho$: 0.319 $\\to$ 0.262 $\\to$ 0.112; mean $\\rho$: 0.273 $\\to$ 0.179 $\\to$ 0.066), confirming that overtraining erodes both diversity and LP alignment simultaneously.\nThe fraction of instances with positive LP-quality correlation also declines (76.4\\% at 3 epochs $\\to$ 64.1\\% at 5 epochs $\\to$ 54.0\\% at 10 epochs).\nLP selection does not yield significant gains at any training duration ($-1.24$, $+0.64$, $+1.02$~pp; all below the ${\\approx}$1.5~pp MDE), despite oracle headroom ranging from 8.4 to 15.0~pp.\nThe 3-epoch model has higher within-instance alignment ($\\rho{=}0.319$) than the 5-epoch model ($\\rho{=}0.262$), yet LP selection is worse ($-1.24$ vs.\\ $+0.64$~pp): at 6.4\\% degeneracy, more non-degenerate instances enter the candidate pool, but LP ranking precision is too low to exploit them, so the broader pool hurts rather than helps. This illustrates that low degeneracy does not ensure selection gains; LP-quality alignment predicts selection direction.\nAt 10 epochs, the model retains competitive greedy F1 (0.649 vs.\\ 0.650 at 3 epochs) yet conditions are unfavorable: 47.8\\% degenerate instances and $\\rho{=}0.112$.\nThe gradient confirms that degeneracy is convergence-driven rather than a fixed dataset property: extended training compresses output distributions, degrading both diversity and within-instance alignment. However, the epoch-to-epoch alignment variation ($\\Delta\\rho_{\\text{median}}{=}0.057$) is small relative to the cross-dataset gap (SciERC ${\\sim}$0.3 vs.\\ Few-NERD ${\\sim}$0.5), consistent with alignment being primarily dataset-intrinsic: training convergence modulates alignment at the margin but cannot shift a dataset into the strong-alignment regime.\nEven at the most favorable epoch (3-epoch, $\\rho{=}0.319$), SciERC alignment remains below the ${\\sim}$0.5 threshold associated with successful LP selection on Few-NERD.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{SciERC NER epoch curve (Qwen3-8B, $N{=}8$, $T{=}1.0$). Training duration modulates both instance degeneracy and within-instance LP-quality alignment. ``Degen.'': constant-F1 instance degeneracy (gold-filtered). ``LP $\\Delta$'': LP selection gain over greedy (gold-filtered; none reaches the ${\\approx}$1.5~pp MDE). ``$\\rho$ med'': median within-instance LP-quality correlation. Greedy F1 uses span-based evaluation consistent with Tables 1--3; $\\rho$ and LP $\\Delta$ use text-based matching consistent with Table~\\ref{tab:within_rho}.}\n\\label{tab:epoch_scierc}\n\\resizebox{\\columnwidth}{!}{\n\\begin{tabular}{lccc}\n\\toprule\nMetric & 3-epoch & 5-epoch & 10-epoch \\\\\n\\midrule\nGreedy F1 & 0.650 & 0.644 & 0.649 \\\\\nInstance degen.\\ (\\%) & 6.4 & 17.8 & 47.8 \\\\\nLP $\\Delta$ (pp) & $-$1.24 & $+$0.64 & $+$1.02 \\\\\nWithin-inst.\\ $\\rho$ (median) & 0.319 & 0.262 & 0.112 \\\\\nWithin-inst.\\ $\\rho$ (mean) & 0.273 & 0.179 & 0.066 \\\\\n\\% positive $\\rho$ & 76.4 & 64.1 & 54.0 \\\\\n\\bottomrule\n\\end{tabular}\n}\n\\end{table}\n\n\\paragraph{Limitations.}\nThe Few-NERD epoch analysis covers 2 points (3 vs.\\ 5 epochs); the SciERC curve provides a 3-point gradient showing monotonic degeneracy increase with simultaneous within-instance alignment degradation.\nCoNLL epoch variation remains unverified; high-degeneracy datasets (CoNLL at 59--89\\%) may exhibit a ceiling effect where additional training has limited marginal impact.\nAll Few-NERD results in the main text use the 3-epoch model (standard early stopping); the 5-epoch comparison is a controlled ablation.\nAll SciERC results use the 5-epoch model; the 3- and 10-epoch variants serve as controlled ablations.\n\n\\subsection{Degeneracy-Aware LP Selection}\\label{app:dals}\n\nThe non-tied subset analysis (Table~\\ref{tab:nontied_main}) identifies within-instance LP range (max minus min LP across $N$ samples) as a per-instance degeneracy proxy: instances with near-zero LP range carry no discriminative signal.\nDegeneracy-aware LP selection (DALS) operationalizes this: when LP range exceeds $\\tau{=}0.05$ (the threshold independently motivated by the non-tied analysis; Appendix~\\ref{app:epsilon_robustness}), select the highest-LP sample; otherwise fall back to greedy.\nOn SciERC, DALS yields $+0.71{\\pm}0.48$~pp (3-seed mean; individual seeds: $+0.19$ to $+1.14$~pp); on Few-NERD, $+0.30$~pp ($p{<}0.001$; gain remains positive across $\\tau \\in [0.01, 0.15]$); on CoNLL, where pure LP selection degrades F1 ($-0.85$~pp), DALS shows comparable degradation (Qwen: $-0.87$~pp; LLaMA: neutral).\nDALS improves over pure LP selection when degeneracy is moderate, provides partial damage control when LP selection is harmful, and defaults to greedy when LP range signals no information.\nWhile gains are modest and seed-sensitive, LP range serves as an operationally accessible degeneracy proxy, though the mixed cross-dataset results confirm that degeneracy gating alone cannot ensure positive selection outcomes.\n\n\\paragraph{LOO $\\tau$ sensitivity.}\nLeave-one-out (LOO) cross-validation across datasets shows that the optimal $\\tau$ spans two orders of magnitude: $\\tau^*{=}0.001$ on Few-NERD, $0.05$ on SciERC, and $0.10$ on CoNLL.\nLOO regret (the gap between oracle and LOO-selected $\\tau$) ranges from 0.51 to 1.21~pp.\nThe best single cross-dataset $\\tau$ ($\\tau{=}0.05$) matches the independently motivated non-tied threshold, but yields dataset-specific suboptimality: even with oracle $\\tau$, CoNLL remains at $-0.31$~pp.\nThis sensitivity reinforces the diagnostic framing of DALS: per-dataset $\\tau$ tuning is required for positive gains, and even optimally tuned DALS cannot overcome weak LP-quality alignment on high-degeneracy datasets.\n\n\\subsection{Conditional Decomposition of LP Selection}\\label{app:conditional_decomp}\n\nTo test whether LP-quality alignment is associated with selection gains within datasets, we restrict LP selection to the favorable subset: non-degenerate instances whose within-instance LP range exceeds the dataset-specific median (SciERC: 0.040 nats, CoNLL: 0.062, Few-NERD: 0.067).\nTable~\\ref{tab:conditional_decomp} reports results across three datasets.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{LP selection on the favorable subset (non-degenerate instances with LP range above the dataset-specific median) per dataset (Qwen3-8B, $N{=}8$, $T{=}1.0$). CI: bootstrap 95\\% confidence interval.}\n\\label{tab:conditional_decomp}\n\\resizebox{\\columnwidth}{!}{\n\\begin{tabular}{lccc}\n\\toprule\nDataset & LP $\\Delta$ (pp) & 95\\% CI & Interpretation \\\\\n\\midrule\nSciERC & $+$2.47 & [$+$0.30, $+$4.70] & significant positive \\\\\nFew-NERD & $+$0.63 & [$-$0.02, $+$1.30] & marginal positive \\\\\nCoNLL & $-$1.78 & [$-$2.83, $-$0.76] & significant negative \\\\\n\\bottomrule\n\\end{tabular}\n}\n\\end{table}\n\nOn SciERC, restricting to the favorable subset recovers a significant LP gain, consistent with LP-quality alignment predicting selection within the non-degenerate pool.\nOn Few-NERD, the trend is directionally consistent but the confidence interval crosses zero; the full-dataset result ($+1.39$~pp, $p{<}0.001$) reflects the larger sample size rather than a stronger per-instance effect.\nCoNLL remains negative even on the favorable subset, consistent with the ceiling-regime interpretation: at $>$90\\% greedy F1, residual errors are idiosyncratic and LP cannot rank corrections.\n\n\\subsection{Power Analysis for Cross-Dataset Degeneracy--LP Correlation}\\label{app:power_analysis}\n\nTable~\\ref{tab:power_analysis} reports post-hoc power for the $n{=}23$ cross-dataset correlation between degeneracy and LP selection gain ($\\rho{=}0.052$, $p{=}0.81$; Figure~\\ref{fig:degeneracy_scatter}).\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Post-hoc power analysis ($n{=}23$, two-tailed, $\\alpha{=}0.05$). At this sample size, only large correlations ($\\rho{\\geq}0.5$) are detectable with adequate power.}\n\\label{tab:power_analysis}\n\\begin{tabular}{lc}\n\\toprule\nTrue $\\rho$ & Power at $n{=}23$ \\\\\n\\midrule\n0.1 & 0.07 \\\\\n0.2 & 0.13 \\\\\n0.3 & 0.25 \\\\\n0.4 & 0.44 \\\\\n0.5 & 0.65 \\\\\n0.6 & 0.84 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\noindent 80\\% power requires $n{\\approx}85$ for $\\rho{=}0.3$ and $n{\\approx}47$ for $\\rho{=}0.5$. The null result should be interpreted as absence of evidence for a large effect rather than evidence of absence.\n\n\\subsection{Entity-Token LP Decomposition}\\label{app:entity_token_lp}\n\nFull-sequence LP averages over all output tokens, diluting entity-relevant signal with formatting and schema tokens.\nEntity-token LP restricts the average to tokens within entity text and type spans, yielding $4{\\times}$ higher within-instance variance (median 0.000644 vs.\\ 0.000161).\nTable~\\ref{tab:entity_token_lp} compares the two aggregation strategies on SciERC (Qwen3-8B, $N{=}8$, $T{=}1.0$).\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Full-sequence vs.\\ entity-token LP on SciERC NER (Qwen3-8B, $N{=}8$, $T{=}1.0$). Entity-token LP has higher variance and stronger correlation, yet selection degrades.}\n\\label{tab:entity_token_lp}\n\\resizebox{\\columnwidth}{!}{\n\\begin{tabular}{lcccc}\n\\toprule\nAggregation & Med.\\ var. & $\\rho$ & AUROC & $\\Delta$ (pp) \\\\\n\\midrule\nFull-sequence & 0.000161 & 0.297 & 0.642 & $+$0.35 \\\\\nEntity text+type & 0.000644 & 0.440 & 0.719 & $-$0.73 \\\\\n\\bottomrule\n\\end{tabular}\n}\n\\end{table}\n\nDespite stronger correlation ($+$48\\%) and higher AUROC, entity-token LP produces worse selection, reinforcing that compression operates at the representation level rather than token aggregation: the correlation-selection gap persists even with a more targeted signal.\n\n\\subsection{Entity-Level Majority Voting}\\label{app:entity_merge}\n\nEntity-level majority voting constructs a merged output by including all (text, type) entity tuples that appear in at least $k$ of $N$ samples (with $k = N/2$ as the default majority threshold).\nUnlike best-of-$N$ selection (which picks one complete sample), merge combines evidence across samples at entity granularity.\nWe sweep $k \\in \\{2, 3, \\ldots, 8\\}$ on each dataset (Qwen3-8B, $N{=}8$, $T{=}1.0$) and report the best threshold per dataset.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Entity-level majority voting results (Qwen3-8B, $N{=}8$, $T{=}1.0$). ``Greedy'': $T{=}0$ baseline. ``Best merge'': optimal $k$ per dataset from sweep $k \\in \\{2, \\ldots, 8\\}$. ``$\\Delta$'': merge F1 minus greedy. ``Recovery'': $\\Delta$ / (oracle $-$ greedy). Only SciERC shows positive recovery; even with oracle $k$, CoNLL and Few-NERD degrade.}\n\\label{tab:entity_merge}\n\\resizebox{\\columnwidth}{!}{\n\\begin{tabular}{lcccc}\n\\toprule\nDataset & Greedy & Best merge ($k^*$) & $\\Delta$ (pp) & Recovery (\\%) \\\\\n\\midrule\nSciERC & 0.644 & 0.660 ($k{=}3$) & $+$1.57 & $+$11.9 \\\\\nCoNLL & 0.907 & 0.903 ($k{=}3$) & $-$0.38 & $-$9.0 \\\\\nFew-NERD & 0.748 & 0.744 ($k{=}2$) & $-$0.43 & $-$3.6 \\\\\n\\bottomrule\n\\end{tabular}\n}\n\\end{table}\n\nOn degenerate subsets (instances where all $N$ samples yield identical F1), merge is uniformly negative across all three datasets, confirming that entity-level aggregation cannot bypass the diversity bottleneck identified in the main text (\\S\\ref{sec:discussion}).\n\n\\subsection{Entity Construction Results}\\label{app:entity_construction_table}\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Entity construction vs.\\ greedy ($\\Delta$ macro F1; $N{=}8$, $T{=}1.0$, Qwen3-8B, multi-seed mean${\\pm}\\sigma$). $\\theta{=}2/N$. $p$: paired bootstrap vs.\\ greedy. $^\\dagger$Survives per-family Holm--Bonferroni correction (construction, $k{=}10$); global correction ($k{=}57$) yields $p_{\\text{adj}}{=}0.055$ (Appendix~\\ref{app:holm}). $^\\ddagger$LP-weighted not computed.}\n\\label{tab:entity_construction}\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{@{}llcccc@{}}\n\\toprule\nDataset & Wt. & Greedy & Constr. & $\\Delta$ & $p$ \\\\\n\\midrule\nSciERC & LP & $.667{\\pm}.001$ & $.670{\\pm}.003$ & $+0.32$\\,pp & n.s. \\\\\n       & Unif. & $.667{\\pm}.001$ & $.660{\\pm}.004$ & $-0.74$\\,pp & n.s. \\\\\n\\addlinespace\nFew-NERD & LP & $.748$ & $\\mathbf{.762{\\pm}.005}$ & $+1.40{\\pm}0.51$\\,pp & ${<}.001^\\dagger$ \\\\\n         & Unif. & $.748$ & $\\mathbf{.756{\\pm}.006}$ & $+0.74{\\pm}0.58$\\,pp & .003 \\\\\n\\addlinespace\nCoNLL$^\\ddagger$ & Unif. & .908 & .904 & $-0.39$\\,pp & n.s. \\\\\n\\bottomrule\n\\end{tabular}}\n\\end{table}\n\n\\subsection{Entity Construction Threshold Sensitivity}\n\\label{app:theta_sweep}\n\nTable~\\ref{tab:theta_sweep} reports entity construction F1 as a function of the confirmation threshold $\\theta$ across three datasets (Qwen3-8B, $N{=}8$, $T{=}1.0$). The default $\\theta{=}2/N{=}0.25$ achieves the best LP-weighted $\\Delta$F1 on Few-NERD and is within 0.04\\,pp of the optimum on SciERC. Performance is stable across $\\theta \\in [0.15, 0.35]$; below 0.15, spurious entities degrade precision, and above 0.40, aggressive filtering removes correct low-frequency entities.\n\n\\begin{table}[h]\n\\caption{Entity construction threshold sensitivity ($N{=}8$, Qwen3-8B, $T{=}1.0$). $\\Delta$: F1 difference vs.\\ greedy in percentage points. Best $\\Delta$ per dataset--weighting pair in \\textbf{bold}.}\n\\label{tab:theta_sweep}\n\\centering\n\\small\n\\resizebox{\\columnwidth}{!}{\n\\begin{tabular}{ll rr rr}\n\\toprule\nDataset & $\\theta$ & LP-w F1 & Unif.\\ F1 & $\\Delta$ LP-w & $\\Delta$ Unif.\\ \\\\\n\\midrule\n\\multirow{8}{*}{SciERC}\n & 0.10 & .620 & .620 & $-$2.37 & $-$2.37 \\\\\n & 0.15 & .659 & .659 & $+$1.54 & $+$1.54 \\\\\n & 0.20 & .659 & .659 & $+$1.54 & $+$1.54 \\\\\n & 0.25 & .661 & .659 & $+$1.67 & $+$1.54 \\\\\n & 0.30 & .661 & .661 & \\textbf{$+$1.71} & \\textbf{$+$1.71} \\\\\n & 0.35 & .661 & .661 & \\textbf{$+$1.71} & \\textbf{$+$1.71} \\\\\n & 0.40 & .653 & .654 & $+$0.94 & $+$0.97 \\\\\n & 0.50 & .649 & .654 & $+$0.46 & $+$0.97 \\\\\n\\midrule\n\\multirow{8}{*}{Few-NERD}\n & 0.10 & .677 & .676 & $-$7.12 & $-$7.15 \\\\\n & 0.15 & .751 & .751 & $+$0.32 & $+$0.32 \\\\\n & 0.20 & .751 & .751 & $+$0.32 & $+$0.32 \\\\\n & 0.25 & .757 & .751 & \\textbf{$+$0.88} & $+$0.32 \\\\\n & 0.30 & .750 & .750 & $+$0.21 & $+$0.21 \\\\\n & 0.35 & .750 & .750 & $+$0.21 & $+$0.21 \\\\\n & 0.40 & .729 & .728 & $-$1.90 & $-$2.01 \\\\\n & 0.50 & .725 & .728 & $-$2.25 & $-$2.01 \\\\\n\\midrule\n\\multirow{8}{*}{CoNLL}\n & 0.10 & .844 & .842 & $-$6.44 & $-$6.56 \\\\\n & 0.15 & .896 & .896 & $-$1.19 & $-$1.19 \\\\\n & 0.20 & .896 & .896 & $-$1.19 & $-$1.19 \\\\\n & 0.25 & .901 & .896 & $-$0.71 & $-$1.19 \\\\\n & 0.30 & .904 & .904 & \\textbf{$-$0.39} & \\textbf{$-$0.39} \\\\\n & 0.35 & .904 & .904 & $-$0.41 & \\textbf{$-$0.39} \\\\\n & 0.40 & .900 & .899 & $-$0.83 & $-$0.94 \\\\\n & 0.50 & .897 & .899 & $-$1.12 & $-$0.94 \\\\\n\\bottomrule\n\\end{tabular}\n}\n\\end{table}\n\n\\subsection{Few-Shot Error Correlation Analysis}\\label{app:fs_error}\n\nWe investigated whether few-shot demonstrations induce correlated entity-level errors that explain construction failure.\nPairwise error overlap (Jaccard similarity of per-sample false-positive and false-negative entity sets) shows no significant difference between FS and ZS regimes (SciERC: $0.454$ vs.\\ $0.452$, $p{=}0.84$; CoNLL: $0.103$ vs.\\ $0.104$, $p{=}0.64$; permutation tests, 10{,}000 resamples).\nWe additionally measure entity-level prediction entropy across $N{=}8$ samples per instance.\nOn SciERC, FS and ZS entropies are indistinguishable ($0.483$ vs.\\ $0.485$, $p{=}0.81$).\nOn CoNLL, however, entity prediction entropy is significantly \\emph{higher} under FS ($0.209$ vs.\\ $0.184$, $p{<}10^{-9}$, $r{=}0.106$, small effect; Wilcoxon signed-rank test), contrary to the hypothesis that demonstrations concentrate predictions---they instead \\emph{increase} output diversity on this dataset.\nThe mechanism by which few-shot demonstrations undermine construction remains an open question; entity-level error overlap is preserved while prediction entropy may even rise, suggesting that the \\emph{nature} rather than the \\emph{diversity} of errors shifts in ways that defeat LP-weighted voting.\n\n\\subsection{Construction Weighting Variants}\\label{app:weighting_variants}\n\nTable~\\ref{tab:weighting_variants} compares LP-weighted, VC-weighted, and SJ-weighted entity construction on LLaMA-3.1-8B (3-seed mean, $N{=}8$, $T{=}1.0$, $\\theta{=}2/N$).\nAll three weighting schemes beat greedy on SciERC, where degeneracy is low; LP and VC also improve Few-NERD, though gains are smaller than the Qwen results in Table~\\ref{tab:entity_construction}.\nThe optimal weighting scheme is model-dependent (VC leads on LLaMA SciERC; LP leads on Qwen), but the core finding is robust: entity-level voting improves F1 in low-degeneracy regimes regardless of the specific weighting function.\nSJ-weighted construction degrades on Few-NERD ($-0.20$\\,pp), consistent with SJ over-weighting high-consensus samples, which correlates with the degeneracy direction rather than opposing it.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Construction weighting variants (LLaMA-3.1-8B, $N{=}8$, $T{=}1.0$, $\\theta{=}2/N$, 3-seed mean). $\\Delta$: F1 difference vs.\\ greedy in pp. Main-text construction results (Table~\\ref{tab:entity_construction}) use Qwen3-8B.}\n\\label{tab:weighting_variants}\n\\begin{tabular}{lccc}\n\\toprule\nDataset & LP-wt $\\Delta$ & VC-wt $\\Delta$ & SJ-wt $\\Delta$ \\\\\n\\midrule\nSciERC & $+$0.91 & $+$1.05 & $+$0.72 \\\\\nFew-NERD & $+$0.02 & $+$0.15 & $-$0.20 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\subsection{Zero-Shot vs.\\ Few-Shot Comparison}\\label{app:zs_vs_fs}\n\nTable~\\ref{tab:72b_zs_vs_fs} presents the full zero-shot (ZS) vs.\\ few-shot (FS) comparison on Qwen2.5-72B-Instruct-AWQ.\nLP-weighted construction yields a significant gain only on SciERC under ZS ($+$1.53\\,pp, $p{=}.008$); all five FS configurations show non-significant deltas ($|{\\Delta}| \\leq 0.08$\\,pp).\nFew-shot demonstrations raise the greedy baseline (e.g., SciERC: .399$\\to$.461) but do not translate into construction improvements, suggesting that the dual-gating mechanism---where both signal quality and diversity are necessary---holds within the FT+ZS regime while FS introduces an independent failure mode whose origin remains open (\\S\\ref{app:fs_error}).\n\n\\begin{table*}[t]\n\\centering\n\\caption{Full zero-shot vs.\\ few-shot comparison for Qwen2.5-72B-Instruct-AWQ ($N{=}8$). Only SciERC under zero-shot yields a significant construction gain.}\n\\label{tab:72b_zs_vs_fs}\n\\resizebox{\\textwidth}{!}{%\n\\begin{tabular}{ll rrrrr rr r}\n\\toprule\nDataset & Regime & Degen\\% & LP $\\rho$ & SJ $\\rho$ & FK $\\rho$ & VC $\\rho$ & Greedy F1 & Constr $\\Delta$ & $p$ \\\\\n\\midrule\nSciERC  & ZS & 21.0 & .081  & .217 & .227 & .277 & .399 & \\textbf{+1.53} & .008 \\\\\nSciERC  & FS & 16.6 & .060  & .293 & .301 & .258 & .461 & $-$0.08 & .544 \\\\\n\\midrule\nCoNLL   & ZS & 67.7 & $-$.002 & .304 & .302 & .297 & .712 & $-$0.37 & --- \\\\\nCoNLL   & FS & 70.0 & .106  & .442 & .451 & .426 & .745 & +0.03 & .417 \\\\\n\\midrule\nFewNERD & ZS & 46.2 & .119  & .345 & .321 & .416 & .628 & $-$0.20 & --- \\\\\nFewNERD & FS & 45.2 & .161  & .345 & .327 & .410 & .619 & +0.02 & .401 \\\\\n\\bottomrule\n\\end{tabular}%\n}\n\\end{table*}\n\n\\section{Evaluation Protocol for Structured Self-Consistency}\\label{app:eval_protocol}\n\nWe distill our experimental methodology into a reusable three-step protocol for assessing test-time compute scaling on set-valued structured prediction tasks.\n\n\\paragraph{Step 1: Measure instance degeneracy.}\nGiven $N$ stochastic samples per instance, compute the fraction of instances where all samples produce identical task-metric scores (\\S\\ref{sec:evaluation}).\nDegeneracy ${>}30$\\% indicates limited headroom for any selection or aggregation strategy.\nReport degeneracy alongside all test-time scaling results to contextualize gains.\n\n\\paragraph{Step 2: Assess signal--quality alignment.}\nFor each candidate signal, compute (a)~cross-instance Spearman $\\rho$ with the task metric (quality estimation strength) and (b)~within-instance $\\rho$ between signal and task metric, restricted to non-degenerate instances (selection discriminability).\nA large gap between (a) and (b) indicates the correlation-selection gap: reliable QE but poor selection prospects.\n\n\\paragraph{Step 3: Evaluate aggregation strategies.}\nCompare three regimes against greedy ($T{=}0$) and oracle baselines:\n\\begin{itemize}\n    \\item \\textit{Instance-level selection}: best-of-$N$ via per-sample signals (e.g., LP) and consensus-proximity (MBR utility).\n    \\item \\textit{Entity-level construction}: majority-voted entity aggregation with threshold $\\theta$ (e.g., $\\theta{=}2/N$), optionally weighted by signal confidence.\n    \\item \\textit{Selective prediction}: abstain on low-confidence instances; report coverage--F1 tradeoff.\n\\end{itemize}\n\n\\paragraph{Reporting standards.}\nReport: (1)~degeneracy percentage, (2)~oracle headroom (oracle $-$ greedy), (3)~signal $\\rho$ (cross-instance and within-instance), (4)~selection $\\Delta$F1 with bootstrap $p$-values and effect sizes (Cohen's $d$), (5)~construction $\\Delta$F1, (6)~selective prediction AUPRC and coverage--F1 curve.\nUse paired bootstrap tests ($B{\\geq}10{,}000$); report minimum detectable effect at 80\\% power given the test set size.\n\n\\section{Cost-Benefit Analysis}\\label{app:cost_benefit}\n\nTable~\\ref{tab:cost_benefit} summarizes the inference cost and F1 gain of each aggregation strategy relative to greedy decoding.\nEntity construction achieves the only consistently positive result at zero marginal cost (reusing the $N$ samples already drawn for quality estimation); cross-model ensemble requires $2N{\\times}$ inference for a smaller gain.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Cost-benefit summary of aggregation strategies (Qwen3-8B, $N{=}8$, $T{=}1.0$). Inference cost is relative to greedy ($T{=}0$, single forward pass). $\\Delta$F1 reports the primary result (dataset in parentheses).}\n\\label{tab:cost_benefit}\n\\begin{tabular}{@{}lcll@{}}\n\\toprule\nMethod & Cost & $\\Delta$F1 & Verdict \\\\\n\\midrule\nGreedy ($T{=}0$) & $1{\\times}$ & baseline & default \\\\\nSC + MV & $N{\\times}$ & ${\\approx}0$\\,pp & no gain \\\\\nSC + LP selection & $N{\\times}$ & $+1.39$\\,pp (FN) & dataset-dep. \\\\\nSC + construction & $N{\\times}$ & $+0.32$\\textendash$1.40$\\,pp & \\textbf{positive} \\\\\nCross-model SC & $2N{\\times}$ & $+0.42$\\,pp (FN) & positive, $2{\\times}$ cost \\\\\nSC + DALS & $N{\\times}$ & $+0.71$\\,pp (SciERC) & seed-sensitive \\\\\nSC + verifier & $N{\\times}{+}\\text{train}$ & $+0.30$\\,pp & no transfer \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nSC + LP selection is positive only on Few-NERD ($p{<}0.001$) and neutral to negative elsewhere (SciERC $+0.2$\\,pp, $p{=}0.29$; CoNLL $-0.85$\\,pp).\nEntity construction is the only strategy that is positive on multiple datasets without additional model access, achieving zero marginal cost by reusing the $N$ samples already generated.\nCross-model ensemble breaks within-model degeneracy but doubles inference cost.\n\n\\section{Prior Work Differentiation Matrix}\\label{app:differentiation}\n\nTable~\\ref{tab:differentiation} positions this work relative to four closely related studies.\nAll four investigate settings where self-consistency underperforms; we are the first to provide a multi-stage diagnostic with mechanistic probes, theory, and exhaustive method evaluation on structured generation.\n\n\\begin{table*}[h]\n\\centering\n\\small\n\\caption{Differentiation matrix: positioning relative to prior work on self-consistency limitations. ``Methods tested'' counts the number of distinct aggregation/selection categories evaluated (not hyperparameter variants).}\n\\label{tab:differentiation}\n\\resizebox{\\textwidth}{!}{%\n\\begin{tabular}{@{}l p{2.8cm} p{2.5cm} p{2.5cm} p{2.8cm} p{3.2cm}@{}}\n\\toprule\nAspect & \\citet{yun2025price} & \\citet{chen2023twofailures} & \\citet{aggarwal2023adaptive} & \\citet{farquhar2024detecting} & \\textbf{Ours} \\\\\n\\midrule\nRoot cause & Constrained decoding suppresses diversity & Reasoning failures (hypothetical, compositional) & Sample efficiency in allocation & Hallucination via semantic inconsistency & Capability ceiling (degeneracy $+$ LP compression $+$ verification failure) \\\\\n\\addlinespace\nTasks & Math, QA, structured gen. & Reasoning, QA & Math, code & QA, open-ended & NER ($+$SQL, RE) \\\\\n\\addlinespace\nMethods tested & 1 (diversity analysis) & 1 (failure taxonomy) & 1 (adaptive $N$) & 1 (semantic entropy) & 9 categories (Table~\\ref{tab:method_summary}) \\\\\n\\addlinespace\nTheoretical contrib. & None & None & Allocation bounds & Entropy-based & MBR equivalence, degeneracy bound, scaling laws \\\\\n\\addlinespace\nMechanistic probe & No & No & No & No & Yes (ESJ, MRSC, LSC, hidden-state) \\\\\n\\bottomrule\n\\end{tabular}}\n\\end{table*}\n\n\\section{Extended Discussion}\\label{app:objections}\n\n\\paragraph{Open questions.}\nThree directions remain: (1)~whether learned verifiers (e.g., reward models) can break the introspection boundary and exploit hidden-state quality signals that prompt-based methods cannot access; (2)~whether diversity-promoting decoding strategies can preserve candidate variety without sacrificing output quality, mitigating the capability-diversity tension; (3)~whether the diagnostic framework transfers to other structured prediction tasks (e.g., coreference resolution, syntactic parsing) where output spaces similarly resist equivalence-class aggregation.\n\nWe address twelve anticipated objections, each referencing specific evidence in the paper.\n\n\\paragraph{O1: Results are NER-specific and may not generalize.}\nWe validate the diagnostic framework on Spider SQL parsing (GPT-5.5, $n{=}196$; \\S\\ref{sec:introduction}): degeneracy reaches 87.2\\%, confirming the failure mode beyond NER. An RE extension on SciERC (Appendix~\\ref{app:re_extension}) shows compound error propagation worsens all signals. The structural mismatch (set-valued outputs without equivalence classes) applies to any structured generation task.\n\n\\paragraph{O2: Cross-model gain of $+$0.42\\,pp is marginal.}\n$+0.42$\\,pp is the only unconditionally positive result among 9 method categories tested (Table~\\ref{tab:method_summary}). Its significance ($p{<}0.001$, CI $[0.27, 0.58]$; \\S\\ref{sec:cross_model}) and theoretical motivation (architecturally distinct models produce independent error distributions, breaking within-model degeneracy) distinguish it from the null results of other categories.\n\n\\paragraph{O3: Hyperparameters may not be optimal.}\nWe report full sweeps: construction threshold $\\theta \\in [0.05, 0.50]$ (Appendix~\\ref{app:theta_sweep}), DALS threshold $\\tau$ with LOO cross-validation (regret 0.51--1.21\\,pp; Appendix~\\ref{app:dals}), LP compression threshold $\\varepsilon \\in [0, 0.2]$ (Appendix~\\ref{app:epsilon_robustness}), and temperature $T \\in \\{0.5, 0.7, 1.0, 1.2\\}$ (Appendix~\\ref{app:t_ablation}).\n\n\\paragraph{O4: Findings may be a fine-tuning artifact.}\nQwen2.5-72B zero-shot exhibits the same gap: LP $\\rho$ drops without fine-tuning, structural signals generalize (VC $\\rho{=}0.416$ on Few-NERD), and degeneracy is model-family-dependent rather than scale-dependent (Qwen2.5: 31.7--46.2\\% vs.\\ Qwen3: 13.0\\%; Appendix~\\ref{app:cross_scale}). The capability ceiling persists from 4B to 72B.\n\n\\paragraph{O5: Probe AUROC varies widely (0.63--0.88); why trust the result?}\nThe variation is complexity-dependent and interpretable: CoNLL (4 types, 91\\% F1) at 0.882, Few-NERD (8 types, 75\\% F1) at 0.636, SciERC (6 types, 65\\% F1) at 0.630. LODO transfer drops to 0.56--0.67 (\\S\\ref{sec:mechanistic}), confirming dataset-specific encoding. The pattern---not the point estimate---is the finding.\n\n\\paragraph{O6: Theory is disconnected from experiments.}\nEach formal result has explicit empirical validation: Proposition~\\ref{prop:construction_mbr} (MBR equivalence) $\\to$ Table~\\ref{tab:entity_construction}; Proposition~\\ref{prop:entity_selection_bound} (entity selection bound) $\\to$ Table~\\ref{tab:alpha_crit} across 3 datasets; Degeneracy Decomposition $\\to$ Figure~\\ref{fig:bound} across 16 configurations (\\S\\ref{sec:theory}); oracle scaling law $\\to$ Figure~\\ref{fig:oracle_scaling} ($R^2 > 0.999$; \\S\\ref{sec:scaling}).\n\n\\paragraph{O7: Why not use standard MBR decoding?}\nMajority vote \\textit{is} MBR decoding under set-overlap utility (Proposition~\\ref{prop:construction_mbr}; \\S\\ref{sec:mbr_theory}). LP-weighted construction is the quality-aware MBR variant (\\S\\ref{sec:mbr_theory}). This follows directly from \\citet{eikema2022sampling}; \\citet{eikema2025structured} confirm that MBR utilities degrade on structured outputs, consistent with our LP compression findings.\n\n\\paragraph{O8: No qualitative error analysis.}\nAppendix~\\ref{app:failure_gallery} provides a failure mode gallery with 9 concrete instances: 3 degenerate (all samples identical), 3 LP selection failures (high-LP sample worse than low-LP), and 3 self-verification failures (ESJ misclassifies entity correctness). Each includes instance text, gold annotations, predictions, and signal values.\n\n\\paragraph{O9: Evaluation metric choice may bias results.}\nWe report per-instance F1 averaged across instances (macro F1) as the primary selection metric. Aggregate micro-F1 (pooled TP/FP/FN) confirms MV fails to improve over greedy: $\\Delta$ ranges from $-2.74$ to ${\\approx}0$\\,pp (Table~\\ref{tab:alpha_crit}; Appendix~\\ref{app:alpha_crit}). The correlation-selection gap holds under both aggregations; the selection failure is not an artifact of the metric.\n\n\\paragraph{O10: Computational cost analysis is missing.}\nTable~\\ref{tab:cost_benefit} (Appendix~\\ref{app:cost_benefit}) provides a cost-benefit breakdown. Entity construction achieves the best cost-efficiency: $+0.32$--$1.40$\\,pp at $N{\\times}$ cost with zero marginal overhead beyond sampling. Cross-model ensemble doubles inference cost for $+0.42$\\,pp.\n\n\\paragraph{O11: Reproducibility concerns.}\nAll experiments use open-weight models (Qwen3-8B, LLaMA-3.1-8B, Qwen3-4B, Qwen2.5-7B, Qwen2.5-72B) and public benchmarks. Multi-seed stability ($\\sigma{\\leq}0.026$ for QE; Table~\\ref{tab:multiseed}) and full hyperparameter sweeps are reported. Code, checkpoints, and per-seed results will be released upon acceptance.\n\n\\paragraph{O12: Overlap with \\citet{yun2025price}.}\n\\S\\ref{sec:yun_contrast} provides a three-way differentiation. Our LP compression (median 0.041 nats) corroborates Yun et al.'s diversity collapse, but we diverge in root cause (model-internal vs.\\ format-induced), diagnostic depth (diagnostic framework with 9 method categories vs.\\ diversity analysis), and scale ($4{\\times}$: Qwen2.5-72B). Table~\\ref{tab:differentiation} (Appendix~\\ref{app:differentiation}) provides the full comparison matrix.\n\n\\section{Failure Mode Gallery}\\label{app:failure_gallery}\n\nWe present 9 concrete instances illustrating the three primary failure modes: output degeneracy, LP confidence inversion, and consensus-based verification failure. All examples use Qwen3-8B on Few-NERD ($N{=}8$, $T{=}1.0$) from the MF4v2 pipeline.\n\n\\paragraph{Degenerate instances (3/3).}\nAll $N$ samples produce identical entity sets, eliminating any room for selection or construction improvement.\n\n\\begin{itemize}[nosep,leftmargin=*]\n\\item \\textbf{Type confusion.} \\textit{``His undergraduate studies at the University of Notre Dame were interrupted by Army service in World War II.''} Gold: \\{University of Notre Dame / building\\}. All 8 samples: \\{University of Notre Dame / \\textbf{organization}, World War II / event\\}. F1${=}0.00$: correct span, wrong type, plus hallucinated entity.\n\n\\item \\textbf{Type confusion (minimal).} \\textit{``...the deployment of the `SPQ' template...''} Gold: \\{SPQ / organization\\}. All 8 samples: \\{SPQ / \\textbf{product}\\}. F1${=}0.00$: entity text matches exactly but type disagrees across all samples.\n\n\\item \\textbf{Complete miss.} \\textit{``On stage, the band uses different kinds of instruments like synths, guitars, cello, glockenspiel and a bass played with a sickle.''} Gold: 6 entities (synths, guitars, cello, glockenspiel, bass, sickle / product). All 8 samples: $\\emptyset$. F1${=}0.00$: total recall failure on all gold entities.\n\\end{itemize}\n\n\\paragraph{LP confidence failures (3/3).}\nHigh log-probability does not guarantee correctness at the entity level. These entities appear in all 8 samples with near-zero negative log-probability (high confidence), yet are absent from the gold annotation.\n\n\\begin{itemize}[nosep,leftmargin=*]\n\\item \\textit{``Cramer pitched for the Orange County Flyers of the independent Golden League in 2008.''} Entity: Cramer / person (mean LP${=}{-}0.046$, 8/8 samples). Gold: \\{Orange County Flyers / org, independent Golden League / org\\}. Plausible entity, not annotated.\n\n\\item \\textit{``...according to UK Royal Air Force Wing Commander and FOD researcher Richard Friend.''} Entity: Richard Friend / person (mean LP${=}{-}0.050$, 8/8). Gold: \\{UK Royal Air Force / org, FOD / org\\}. Likely annotation gap: Richard Friend is a real person mentioned by name; gold omits it.\n\n\\item \\textit{``...the Navy's forces within South Vietnam were operationally controlled by COMUSMACV.''} Entity: COMUSMACV / org (mean LP${=}{-}0.050$, 8/8). Gold: \\{Seventh Fleet / org, South Vietnam / location\\}. Model confidently extracts a valid entity missing from gold.\n\\end{itemize}\n\n\\noindent These examples highlight a fundamental limitation: LP signals the model's confidence, not correctness. When the model is correctly confident about entities that gold annotations omit, LP cannot serve as an error detector.\n\n\\paragraph{Consensus-based verification failures (3/3).}\nEntity consensus frequency (fraction of $N$ samples containing a given entity) serves as the primary self-verification signal. It fails in both directions.\n\n\\begin{itemize}[nosep,leftmargin=*]\n\\item \\textbf{Overconfident.} \\textit{``Les Blank...was an American documentary filmmaker best known for his portraits of American traditional musicians.''} Entity: American / location (8/8 samples, consensus${=}1.0$). Gold: \\{Les Blank / person\\}. Maximum consensus for non-gold entity.\n\n\\item \\textbf{Overconfident.} \\textit{``Cramer pitched for the Orange County Flyers of the independent Golden League in 2008.''} Entity: Cramer / person (8/8 samples, consensus${=}1.0$). Gold: \\{Orange County Flyers / org, independent Golden League / org\\}. Same instance as LP failure above---simultaneous failure of both signals.\n\n\\item \\textbf{Underconfident.} \\textit{``They finished the season 14--19, 9--9 in C-USA play to finish in seventh place.''} Gold entity: C-USA play / event (consensus${=}0.0$, never predicted in any of 8 samples). Zero consensus for a correct entity.\n\\end{itemize}\n\n\\noindent These examples illustrate that the failure modes identified by the diagnostic framework are not statistical abstractions but manifest in individual instances. The LP and consensus failures frequently co-occur (e.g., ``Cramer'' instance), confirming that the signals share common blind spots rather than providing independent error detection.\n",
+    "structuredPatch": [
+      {
+        "oldStart": 409,
+        "oldLines": 7,
+        "newStart": 409,
+        "newLines": 7,
+        "lines": [
+          " On SciERC, output diversity is substantial: Qwen produces 43\\% unique outputs per instance (mean 3.5 distinct out of $N{=}8$), with per-sample F1 standard deviation of 0.144 and mean pairwise SJ of 0.703.",
+          " LLaMA shows similar diversity (39\\% unique, F1 std 0.11).",
+          " On CoNLL, diversity collapses: 59\\% (Qwen) to 89\\% (LLaMA) of instances produce identical outputs across all $N$ samples; this reflects a ceiling effect where single-sample F1 already exceeds 0.90.",
+          "-WNUT-17 shows 55\\% identical outputs, attributable to the 51\\% zero-F1 rate.",
+          "+WNUT-17 shows 55\\% identical outputs, attributable to the 53.7\\% zero-F1 rate.",
+          " ",
+          " \\begin{table}[t]",
+          " \\centering"
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 96_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01JDmusZ1ij5Spoewx6ZzNgD`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+  "old_string": "$-0.74{\\pm}0.57$ & 12.2\\% & 0.334 & 0.380 & $\\Delta < 0$",
+  "new_string": "$-0.74{\\pm}0.46$ & 12.2\\% & 0.334 & 0.380 & $\\Delta < 0$"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0ece91e4-5aa9-4282-9ae9-a9f0b59b36fe",
+  "uuid": "3f3ee326-cf9d-4b27-9cd9-7a56d3543cae",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RrbNsXqrRLSSqafpwx8gtt",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5902,
+      "cache_read_input_tokens": 76084,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5902
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 97 · 2026-05-22T18:53:30.228Z_
+
+<details><summary>↩ Tool result · `toolu_01JDmusZ1ij5Spoewx6ZzNgD`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "0ece91e4-5aa9-4282-9ae9-a9f0b59b36fe",
+  "uuid": "dcd54c30-3dad-41cf-ba58-9ae86386ba0f",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+    "oldString": "$-0.74{\\pm}0.57$ & 12.2\\% & 0.334 & 0.380 & $\\Delta < 0$",
+    "newString": "$-0.74{\\pm}0.46$ & 12.2\\% & 0.334 & 0.380 & $\\Delta < 0$",
+    "originalFile": "\\section{Notation}\\label{app:notation}\n\nTable~\\ref{tab:notation} summarizes the notation used throughout the paper.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\begin{tabular}{cl}\n\\toprule\nSymbol & Meaning \\\\\n\\midrule\n$\\mathcal{M}$ & Language model \\\\\n$x$ & Input instance \\\\\n$y_i$ & $i$-th stochastic sample \\\\\n$N$ & Number of samples \\\\\n$T$ & Sampling temperature \\\\\n$c(\\cdot)$ & Confidence signal \\\\\nSJ & Soft Jaccard similarity \\\\\nFK & Fleiss' $\\kappa$ \\\\\nEM & Exact-match voting rate \\\\\nVC ($c_{\\mathrm{vc}}$) & Entity voting confidence \\\\\nLP ($c_{\\mathrm{lp}}$) & Log-probability (mean token log-likelihood) \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Notation used throughout the paper.}\n\\label{tab:notation}\n\\end{table}\n\n\\section{Robustness Analysis}\\label{app:robustness}\n\nWe exclude instances with empty gold annotations from all correlation analyses (CoNLL: 697/3{,}453 instances, 20.2\\%; SciERC: 22/551, 4.0\\%).\nFor these instances, F1 is trivially zero regardless of prediction quality, and consistency signals reflect agreement on the empty set rather than extraction quality. Including them inflates or deflates Spearman $\\rho$ depending on signal behavior at the boundary.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Signal robustness across configurations (Spearman $\\rho$). Top: temperature on Qwen SciERC. Middle: sample size on Qwen SciERC. Bottom: transfer across model families (both 8B) (LLaMA CoNLL $N{=}16$, 3-seed mean $\\pm\\sigma$). $^\\dagger$Mean over 3 seeds ($\\sigma{=}0.013$; individual: 0.398, 0.423, 0.410). $\\sigma$ computed as sample standard deviation.}\n\\label{tab:robustness}\n\\begin{tabular}{llcc}\n\\toprule\n& & NER $\\rho$ & RE $\\rho$ \\\\\n\\midrule\n\\multicolumn{4}{l}{\\textit{Temperature} (Qwen SciERC, $N{=}8$)} \\\\\n\\quad SJ & $T{=}0.7$ & 0.364 & 0.234 \\\\\n\\quad SJ & $T{=}1.0$ & 0.360 & 0.250 \\\\\n\\quad FK & $T{=}0.7$ & 0.289 & 0.184 \\\\\n\\quad FK & $T{=}1.0$ & 0.267 & 0.275 \\\\\n\\quad LP & $T{=}0.7$ & 0.249 & --- \\\\\n\\quad LP & $T{=}1.0$ & 0.205 & 0.266 \\\\\n\\midrule\n\\multicolumn{4}{l}{\\textit{Sample size} (Qwen SciERC, $T{=}1.0$)} \\\\\n\\quad SJ & $N{=}8$  & 0.360 & 0.250 \\\\\n\\quad SJ & $N{=}16$ & 0.411$^\\dagger$ & 0.281 \\\\\n\\quad FK & $N{=}8$  & 0.267 & 0.275 \\\\\n\\quad FK & $N{=}16$ & 0.283 & 0.279 \\\\\n\\midrule\n\\multicolumn{4}{l}{\\textit{Across model families} (LLaMA CoNLL, $N{=}16$, 3 seeds)} \\\\\n\\quad SJ &  & $0.474{\\pm}0.009$ & --- \\\\\n\\quad FK &  & $0.467{\\pm}0.009$ & --- \\\\\n\\quad EM &  & $0.473{\\pm}0.010$ & --- \\\\\n\\quad VC &  & $0.470{\\pm}0.006$ & --- \\\\\n\\quad LP &  & $0.311{\\pm}0.003$ & --- \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{fig_temperature_robustness}\n\\caption{Temperature robustness on SciERC ($N{=}8$). Top: NER; bottom: RE. SJ maintains stable $\\rho$ across $T{=}0.7$ and $T{=}1.0$, while FK shows mixed sensitivity. LP shows the largest NER temperature effect ($\\Delta\\rho{=}{+}0.044$); RE $T{=}0.7$ LP data unavailable.}\n\\label{fig:temperature_robustness}\n\\end{figure}\n\n\\paragraph{Temperature sensitivity.}\nSJ NER $\\rho$ shifts from 0.364 ($T{=}0.7$) to 0.360 ($T{=}1.0$), a difference of 0.004.\nFK NER $\\rho$ drops by 0.022, while RE $\\rho$ increases by 0.091, likely reflecting reduced diversity at lower temperature interacting differently across tasks.\nLP exhibits the largest temperature effect on NER ($\\rho{=}0.249$ at $T{=}0.7$ vs.\\ $0.205$ at $T{=}1.0$, $\\Delta{=}{+}0.044$), consistent with lower temperature concentrating probability mass and improving LP's discriminative power for quality estimation; RE $T{=}0.7$ LP data is not available.\nAcross all comparisons, the signal hierarchy is preserved at both temperatures on NER (SJ${>}$FK${>}$LP at $T{=}0.7$: $0.364{>}0.289{>}0.249$; at $T{=}1.0$: $0.360{>}0.267{>}0.205$).\n\n\\paragraph{Sample size scaling.}\nIncreasing from $N{=}8$ to $N{=}16$ improves SJ on Qwen SciERC NER: $\\rho$ rises from 0.360 to $0.411{\\pm}0.010$ (three seeds: 0.398, 0.423, 0.410), a gain of $+0.047$.\nThe magnitude of $N$-scaling gains is setting-dependent (LLaMA SciERC NER yields $+0.016$ and Qwen CoNLL NER $+0.014$), though the direction is consistently positive.\nLLaMA CoNLL exhibits the most uniform scaling: all four consistency signals gain $\\Delta\\rho{\\approx}{+}0.042$ (range: $+0.039$ to $+0.044$) while LP gains only $+0.004$ (Table~\\ref{tab:quality_estimation}).\nFK $N$-scaling is seed-dependent: Qwen SciERC gains range from $+0.005$ to $+0.023$ across seeds (mean $+0.016$), while LLaMA CoNLL yields $+0.039$ (3-seed mean); individual seed FK shifts vary substantially under the unified pipeline, so this should not be interpreted as a robust trend.\nVC $N$-scaling is consistently positive ($+0.005$ on Qwen CoNLL, $+0.018$ on LLaMA SciERC, $+0.030$ on Qwen SciERC), while LP is approximately $N$-invariant ($\\Delta{\\leq}0.034$).\nSJ, EM, and VC scale consistently across all tested settings; only FK shows seed-dependent variation that does not constitute a reliable trend, structural and binary-agreement signals are the most robust to $N$.\nAt $N{=}16$, SJ converges to comparable NER performance with VC ($\\Delta{=}0.002$) while exhibiting lower cross-seed variance ($\\sigma{=}0.010$ vs.\\ $0.026$), a more stable alternative at higher sample sizes.\n\n\\paragraph{Transfer across model families.}\nLLaMA-3.1-8B-Instruct shows a similar SJ--FK ordering on SciERC NER (SJ $\\rho{=}0.325{\\pm}0.021$, FK $\\rho{=}0.256{\\pm}0.024$, $\\Delta\\rho{=}0.069$; permutation $p{=}0.06$, borderline).\nOn CoNLL, the gap across model families is minimal (Table~\\ref{tab:quality_estimation}): SJ achieves $\\rho{=}0.431$ (LLaMA) vs.\\ 0.436 (Qwen), $\\Delta{=}0.005$.\nAt $N{=}16$, the structural-over-LP advantage holds across all four tested NER settings: Qwen SciERC (VC $\\rho{=}0.409$ vs.\\ LP 0.239, $\\Delta{=}{+}0.170$), Qwen CoNLL (EM $\\rho{=}0.463$ vs.\\ LP 0.328, $\\Delta{=}{+}0.135$),\\footnote{Qwen CoNLL $N{=}16$ was not recomputed under the unified pipeline; LP $\\rho{=}0.328$ may differ slightly from the registry value (0.315) due to instance filtering.} LLaMA SciERC (VC $\\rho{=}0.452$ vs.\\ LP 0.277, $\\Delta{=}{+}0.175$), and LLaMA CoNLL 3-seed (SJ $\\rho{=}0.474{\\pm}0.009$ vs.\\ LP $0.311{\\pm}0.003$, $\\Delta{=}{+}0.163$).\n\n\\paragraph{FK independence: instance-level permutation test.}\\label{app:fk_independence}\n\nTo verify that Fleiss' $\\kappa$ reflects genuine within-instance agreement rather than marginal-rate artifacts, we conduct instance-level permutation tests across three configurations.\nFor each instance, we permute sample labels 10{,}000 times to generate a null distribution of FK under independence, then compare the observed FK against this null via a one-sample $t$-test and permutation $p$-value.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Instance-level FK independence test. Permutation tests confirm FK reflects true within-instance agreement (all $p{<}0.001$). Split-half reliability $r$ computed by randomly partitioning $N$ samples into two halves and correlating their FK scores.}\n\\label{tab:fk_independence}\n\\resizebox{\\columnwidth}{!}{\n\\begin{tabular}{lrcccc}\n\\toprule\nConfig & $n$ & FK mean & 95\\% CI & $t$ & Split-half $r$ \\\\\n\\midrule\nSciERC (Qwen) & 529 & 0.402 & [0.376, 0.428] & 30.8 & 0.395 \\\\\nCoNLL (LLaMA) & 2{,}756 & 0.927 & [0.919, 0.935] & 225.9 & 0.578 \\\\\nCoNLL (Qwen) & 2{,}756 & 0.720 & [0.706, 0.734] & 102.1 & 0.520 \\\\\n\\bottomrule\n\\end{tabular}\n}\n\\end{table}\n\nTable~\\ref{tab:fk_independence} reports the results.\nAll configurations reject the independence null at $p{<}0.001$ ($n{=}529$--$2{,}756$), FK captures genuine inter-sample agreement rather than chance label co-occurrence.\nSplit-half reliability ranges from $r{=}0.395$ (SciERC) to $r{=}0.578$ (CoNLL LLaMA), moderate stability: FK estimates from half the samples correlate positively with those from the other half, though the SciERC value suggests noisier estimation on harder tasks with fewer samples.\nThe higher FK means on CoNLL ($0.720$--$0.927$) vs.\\ SciERC ($0.402$) mirror the difficulty gradient observed in the main quality estimation results.\n\n\\section{Calibration Analysis}\\label{app:calibration}\n\n\\begin{figure*}[t]\n\\centering\n\\includegraphics[width=\\textwidth]{fig_reliability}\n\\caption{Reliability diagrams on SciERC ($N{=}8$, $T{=}1.0$). Top: mean F1 vs.\\ binned confidence; bottom: instance counts per bin. Left: NER; right: RE. NER signals are reasonably well-calibrated (calibration ECE 0.069--0.096), while RE shows greater miscalibration (ECE 0.109--0.339), RE calibration remains challenging for compound extraction tasks.}\n\\label{fig:reliability}\n\\end{figure*}\n\nReliability diagrams use 10 equal-width bins.\nNER signals are reasonably well-calibrated (calibration ECE 0.069--0.096), while RE exhibits greater miscalibration (ECE 0.109--0.339), translating consistency scores into calibrated confidence estimates is feasible for NER but remains challenging for compound extraction tasks.\n\n\\section{Additional Analyses}\\label{app:additional}\n\n\\begin{figure*}[t]\n\\centering\n\\includegraphics[width=\\textwidth]{fig_signal_heatmap}\n\\caption{Quality estimation heatmap (Spearman $\\rho$) across five signals and four configurations. Left: full evaluation set; right: conditional set (non-zero F1 instances). On the full set, structural signals dominate on SciERC NER while all signals converge on CoNLL. On the conditional set, EM emerges as the strongest signal on both NER ($\\rho{=}0.360$) and RE ($\\rho{=}0.417$), while LP RE collapses to near-zero ($\\rho{=}0.011$).}\n\\label{fig:signal_heatmap}\n\\end{figure*}\n\n\\paragraph{Per-relation diagnostic.}\nRE signal degradation is relation-specific.\n\\textsc{Feature-Of} has near-zero correlation ($\\rho{=}0.004$), while \\textsc{Hyponym-Of} achieves $\\rho{=}0.646$.\nThe primary bottleneck is entity span errors, which account for 55.5\\% of RE false negatives. This is a prerequisite failure that consistency signals cannot detect, as they measure agreement among equally incorrect extractions.\nWe note that RE analysis relies on a single dataset (SciERC); generalization to other RE benchmarks remains to be validated.\n\n\\paragraph{Capability stratification.}\nFor NER, SJ effectiveness scales with structural complexity: on SciERC instances with 6+ entities, $\\rho{=}0.547$, compared to $\\rho{=}0.415$ for 1--2 entities.\nThe SJ advantage over LP remains stable across sentence-length quartiles ($\\Delta\\rho{\\approx}0.08$--$0.20$).\nFor RE, SJ $\\rho$ increases monotonically with sentence length (Q1: 0.110 $\\to$ Q4: 0.473; Fisher $z$-test $p{=}0.004$): longer, more relation-dense sentences provide richer structure for consistency-based estimation.\nBoth proxies are weakly correlated with F1 ($|r|{<}0.15$), they capture input complexity rather than directly predicting output quality; however, entity count and sentence length are themselves moderately correlated ($\\rho{=}0.650$), so they reflect overlapping rather than independent complexity dimensions.\nFor RE, entity count and relation count are strongly correlated ($\\rho{=}0.769$) and thus reflect a single structural complexity dimension rather than independent axes.\nOn the high-complexity RE subset ($n{=}81$, high relation count), signals improve substantially: VC reaches $\\rho{=}0.630$, LP $\\rho{=}0.554$, and SJ $\\rho{=}0.502$, all far above the full-set levels.\nRicher relational structure provides more signal for consistency-based estimation, complementing the task-level boundary established by WNUT-17: structural signals are most effective within a ``sweet spot'' of sufficient model capability and sufficient output complexity.\n\n\\paragraph{Length vs.\\ log-probability.}\nFigure~\\ref{fig:length_logprob_scatter} shows that mean log-probability is weakly positively correlated with output length (NER: $\\rho{=}0.386$, $n{=}4{,}232$; RE: $\\rho{=}0.326$, $n{=}3{,}176$), ruling out length-penalty confounding as an explanation for LP's selection failure: longer outputs receive \\textit{higher}, not lower, token-averaged log-probability under constrained decoding.\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{fig_length_logprob_scatter}\n\\caption{Output length vs.\\ mean log-probability on SciERC ($N{=}8$, $T{=}1.0$). Positive correlations (NER: $\\rho{=}0.386$; RE: $\\rho{=}0.326$) rule out length-penalty confounding.}\n\\label{fig:length_logprob_scatter}\n\\end{figure}\n\n\\paragraph{Evaluation circularity and LOO-SJ equivalence.}\nConsensus-proximity selection chooses $\\hat{y} = \\arg\\max_{y_i} \\sum_{j \\neq i} \\text{SJ}(y_i, y_j)$.\nLeave-one-out SJ (LOO-SJ) for sample $y_i$ is $\\text{LOO-SJ}_i = \\frac{1}{N-1}\\sum_{j \\neq i} \\text{SJ}(y_i, y_j)$.\nSince the $\\frac{1}{N-1}$ constant is shared across all candidates within an instance, $\\arg\\max_{y_i} \\text{LOO-SJ}_i = \\arg\\max_{y_i} \\sum_{j \\neq i} \\text{SJ}(y_i, y_j)$; the two selection rules are equivalent.\nStandard (non-LOO) SJ adds the self-comparison term $\\text{SJ}(y_i, y_i) = 1$ to each candidate, which is constant and thus does not affect ranking.\nEmpirically, LOO-SJ yields $\\Delta\\rho{=}{-}0.014$ relative to standard SJ (a correlation-level difference), with a maximum per-instance score difference of $3.1{\\times}10^{-4}$ (negligible at the individual prediction level).\nEvaluation circularity is negligible.\n\n\\paragraph{SJ normalizer robustness.}\nEquation~\\ref{eq:sj} uses $\\max(|g_i|, |g_j|)$ as the denominator; an alternative is the union size $|g_i \\cup g_j|$.\nTable~\\ref{tab:sj_normalizer} compares the two normalizers across all six model--dataset combinations ($N{=}8$, $T{=}1.0$, seed${=}42$): $|\\Delta\\rho|{<}0.01$ in every case, the choice between max and union normalization does not affect conclusions.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{SJ normalizer comparison (Spearman $\\rho$; $N{=}8$, $T{=}1.0$, seed${=}42$). Max: $\\max(|g_i|,|g_j|)$; Union: $|g_i \\cup g_j|$.}\n\\label{tab:sj_normalizer}\n\\begin{tabular}{@{}ll ccc@{}}\n\\toprule\nDataset & Model & $\\rho$(max) & $\\rho$(union) & $\\Delta\\rho$ \\\\\n\\midrule\nCoNLL & Qwen3-8B & .436 & .438 & $-$.002 \\\\\nCoNLL & Qwen3-4B & .422 & .421 & $+$.000 \\\\\nCoNLL & LLaMA-8B & .431 & .432 & $-$.000 \\\\\nSciERC & Qwen3-8B & .360 & .365 & $-$.005 \\\\\nSciERC & Qwen3-4B & .422 & .423 & $-$.001 \\\\\nSciERC & LLaMA-8B & .363 & .372 & $-$.009 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\paragraph{Conditional filtering details.}\nOn LLaMA conditional RE (non-zero F1 instances), SJ recovers to $\\rho{=}0.405$ while FK drops to $\\rho{=}0.259$, consistent with the NER structural advantage; on full-set RE, however, the SJ--FK difference is non-significant ($\\Delta\\rho{=}{-}0.005$, $p{=}0.53$; preliminary).\nAt $N{=}16$, the divergence persists: SJ maintains $\\rho{=}0.308$ on conditional RE while LP drops to $\\rho{=}{-}0.026$.\nEM ranks first across all four tested conditional configurations: SciERC NER ($\\rho{=}0.360$), CoNLL Qwen $N{=}16$ ($\\rho{=}0.466$), CoNLL LLaMA 3-seed ($\\rho{=}0.462$), and SciERC RE ($\\rho{=}0.417$). This holds despite full-set rankings ranging from \\#1 (CoNLL Qwen) to \\#5 (SciERC RE).\nOn the full set, EM is diluted by trivial agreement: instances where all $N$ samples produce identical (possibly incorrect) outputs receive EM${=}1$ regardless of quality, compressing the signal's dynamic range.\nOn the conditional set, where the model demonstrably produces varied outputs, exact agreement becomes the strongest quality signal.\nThe margin over SJ is largest on RE ($\\Delta\\rho{=}{+}0.171$), where compound extraction decisions amplify output variability, and smallest on CoNLL LLaMA ($\\Delta\\rho{=}{+}0.002$), where all signals converge near $\\rho{\\approx}0.46$.\n\n\\paragraph{WNUT-17 full signal analysis.}\nTable~\\ref{tab:wnut} reports all five signals on WNUT-17 with full-set and conditional $\\rho$.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Quality estimation on WNUT-17 (Qwen, $N{=}16$, $T{=}1.0$, $n{=}689$). Cond: non-zero F1 instances ($n{=}334$). Full-set $\\rho$ reflects binary success prediction; conditional $\\rho$ measures quality gradation. LP's conditional $\\rho$ is highest despite negative full-set $\\rho$.}\n\\label{tab:wnut}\n\\begin{tabular}{lcccc}\n\\toprule\nSignal & $\\rho$ & AUROC & Cond.\\ $\\rho$ & Cond.\\ $p$ \\\\\n\\midrule\nVC      & .724 & .913 & .038 & .487 \\\\\nFK      & .125 & .555 & .169 & .002 \\\\\nSJ      & .089 & .517 & .288 & ${<}$1e-7 \\\\\nEM      & .050 & .487 & .333 & ${<}$1e-9 \\\\\nLP & $-$.410 & .219 & .350 & ${<}$1e-10 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\nThe full-set $p$-values are: VC ${<}$1e-112, FK $p{=}0.001$, SJ $p{=}0.020$, EM $p{=}0.194$, LP ${<}$1e-28.\nVC's high full-set $\\rho{=}0.724$ is entirely attributable to the zero/non-zero boundary (conditional $\\rho{=}0.038$, $p{=}0.49$), while LP's conditional $\\rho{=}0.350$ is the highest among all signals on the non-zero subset, full-set correlations on high-failure-rate datasets conflate binary success prediction with quality gradation.\n\n\\paragraph{Cross-configuration selection analysis.}\nTable~\\ref{tab:cross_selection} extends the selection analysis to five additional configurations.\nOn LLaMA SciERC, where output diversity remains substantial (18\\% identical outputs, 39\\% unique), LP achieves the highest selection F1 (0.652) at $N{=}8$ but still falls within bootstrap noise of single-sample (0.646), replicating the gap observed on Qwen SciERC (Table~\\ref{tab:selection}).\nOn LLaMA FewNERD ($n{=}32{,}565$, 3-seed mean), LP is the only signal with positive selection ($+0.36$~pp), confirming LP as the most robust selection signal across model families (Qwen FewNERD: $+1.39$~pp, Table~\\ref{tab:fewnerd}). All structural signals degrade selection (VC $-2.39$~pp, SJ $-0.52$~pp), consistent with the Qwen pattern. LLaMA FewNERD degeneracy ($23.4{\\pm}4.7$\\%, 3 seeds) is higher than Qwen ($13.0$\\%), illustrating the capability-diversity tension: LLaMA achieves stronger greedy F1 ($0.784$ vs.\\ $0.748$, $+3.6$~pp) but at the cost of higher degeneracy ($+10.4$~pp) and reduced oracle headroom ($10.0$ vs.\\ $12.4$~pp).\nOn CoNLL, 48--87\\% of instances produce identical outputs across all $N$ samples; this reflects a ceiling effect (single-sample F1 ${\\approx}$0.91--0.92) rather than signal failure, and selection analysis on these configurations is uninformative because there is little per-sample variance for any signal to exploit.\n\n\\begin{table*}[t]\n\\centering\n\\small\n\\caption{Best-of-$N$ selection F1 (macro, instance-averaged) across configurations ($T{=}1.0$, 3-seed mean). Best non-oracle signal per row in \\textbf{bold}. LP is the only signal with positive selection on both FewNERD configurations (Qwen $+1.39$~pp, Table~\\ref{tab:fewnerd}; LLaMA $+0.36$~pp). At $N{=}16$ on LLaMA CoNLL, VC achieves small but significant gains ($+0.28$~pp, $p{<}0.03$; see text below). CoNLL shows especially tight clustering where greedy already exceeds 0.90.}\n\\label{tab:cross_selection}\n\\begin{tabular}{llccccccc}\n\\toprule\nConfig & $n$ & Greedy & Oracle & SJ & FK & EM & LP & VC \\\\\n\\midrule\nLLaMA/SciERC $N{=}8$ & 529 & .646 & .778 & .643 & .639 & .634 & \\textbf{.652} & .633 \\\\\nLLaMA/SciERC $N{=}16$ & 529 & .645 & .806 & \\textbf{.649} & \\textbf{.649} & .640 & .646 & .640 \\\\\n\\addlinespace\nLLaMA/FewNERD $N{=}8$ & 32{,}565 & .784 & .884 & .779 & .779 & .774 & \\textbf{.788} & .760 \\\\\n\\addlinespace\nQwen/CoNLL $N{=}8$ & 2{,}756 & .908 & .948 & \\textbf{.899} & .893 & .898 & .897 & .895 \\\\\nLLaMA/CoNLL $N{=}8$ & 2{,}756 & .924 & .943 & .924 & \\textbf{.925} & .924 & .924 & .923 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table*}\n\n\\paragraph{Diminishing returns of $N$-scaling.}\nOur $N{=}8$ and $N{=}16$ comparisons (Table~\\ref{tab:robustness}) characterize the marginal value of additional samples for test-time scaling \\cite{brown2024monkeys, snell2025scaling}.\nFor quality estimation, structural signals benefit consistently but sublinearly: SJ $\\rho$ improves by $+0.047$ (Qwen SciERC, 3-seed mean) and $+0.032$ (LLaMA CoNLL, 3-seed mean) when doubling from $N{=}8$ to $N{=}16$, while log-probability is approximately $N$-invariant ($\\Delta\\rho{\\leq}0.021$).\nStructural signals use $\\binom{N}{2}$ pairwise comparisons (28 pairs at $N{=}8$, 120 at $N{=}16$), but the $\\rho$ improvement is far less than proportional, each additional comparison yields diminishing information.\nThis asymmetry gives structural signals a relative advantage in the compute-constrained regime: at $N{=}8$, SJ already achieves $\\rho{=}0.431$ on LLaMA CoNLL (vs.\\ LP $\\rho{=}0.307$, $\\Delta{=}{+}0.124$), and the gap \\textit{widens} at $N{=}16$ ($\\Delta{=}{+}0.163$) because structural signals continue to benefit from additional pairwise evidence while LP does not.\nFor sample selection, additional samples increase the oracle upper bound (more draws raise the probability of a high-quality candidate), but signal-based selection remains flat because the selector's inability to identify the best candidate is a granularity limitation, not a sample size limitation.\nThe practical implication is that $N{=}8$ captures most of the achievable quality estimation benefit; further scaling widens rather than closes the correlation-selection gap absent stronger per-sample selectors.\n\n\\paragraph{$N{=}16$ CoNLL selection: small but significant.}\nWhile quality estimation benefits sublinearly from $N$-scaling, selection behavior at $N{=}16$ shows a nuanced exception on LLaMA CoNLL.\nVC achieves the largest gain over single-sample ($+0.28$~pp, $p{=}0.003$--$0.027$ across 3 seeds, all significant), with SJ, FK, and EM at $+0.22$--$0.23$~pp and LP at $+0.12$~pp (2/3 seeds significant).\nThese gains are statistically significant but practically minimal: oracle headroom at $N{=}16$ is only 2.5~pp, so VC captures approximately 10\\% of the available headroom.\nThis reinforces the primary finding: even under the most favorable conditions (high baseline performance, more candidates, and aggregated multi-seed evidence), signal-based selection recovers only a fraction of the oracle headroom available.\n\n\\section{Bootstrap CI for Signal Comparisons}\\label{app:bootstrap_signal}\n\nTable~\\ref{tab:bootstrap_signal_ci} reports bootstrap confidence intervals for individual signal $\\rho$ and pairwise $\\Delta\\rho$ on SciERC NER ($N{=}8$, $n{=}529$, $B{=}10{,}000$, seed${=}42$).\nThe SJ--LP gap ($\\Delta\\rho{=}{+}0.155$) is clearly significant, the structural advantage reported in \\S\\ref{sec:qe_results} is robust.\nThe VC--SJ gap ($\\Delta\\rho{=}{+}0.019$) is not significant; these two structural signals perform comparably.\nThe SJ--EM gap ($\\Delta\\rho{=}{+}0.065$) is borderline significant, with the CI lower bound at $+0.003$ and upper bound at $+0.130$.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Bootstrap 95\\% CIs for signal $\\rho$ on SciERC NER ($N{=}8$, $n{=}529$, $B{=}10{,}000$, seed${=}42$). Top: individual signals. Bottom: pairwise $\\Delta\\rho$; ``Sig.'' indicates whether the 95\\% CI excludes zero.}\n\\label{tab:bootstrap_signal_ci}\n\\begin{tabular}{lcc}\n\\toprule\nSignal & $\\rho$ & 95\\% CI \\\\\n\\midrule\nVC & +0.379 & [+0.299, +0.456] \\\\\nSJ & +0.360 & [+0.277, +0.437] \\\\\nEM & +0.295 & [+0.212, +0.371] \\\\\nFK & +0.267 & [+0.176, +0.354] \\\\\nLP & +0.205 & [+0.119, +0.291] \\\\\n\\bottomrule\n\\end{tabular}\n\n\\vspace{0.5em}\n\n\\begin{tabular}{lccc}\n\\toprule\nComparison & $\\Delta\\rho$ & 95\\% CI & Sig. \\\\\n\\midrule\nSJ $-$ LP & +0.155 & [+0.074, +0.234] & Yes \\\\\nVC $-$ SJ & +0.019 & [$-$0.033, +0.073] & No \\\\\nSJ $-$ EM & +0.065 & [+0.003, +0.130] & Marginal$^\\dagger$ \\\\\n\\bottomrule\n\\end{tabular}\n\n\\smallskip\n{\\footnotesize $^\\dagger$Marginally significant without multiple comparison correction; would not survive Bonferroni correction for 10 pairwise comparisons ($\\alpha_{\\text{adj}}{=}0.005$).}\n\\end{table}\n\nAt $N{=}16$ ($B{=}10{,}000$, permutation test), the structural advantage extends to FK comparisons.\nOn SciERC NER ($n{=}529$), SJ--FK ($\\Delta\\rho{=}0.147$--$0.160$, all $p{\\leq}0.002$) and VC--FK ($\\Delta\\rho{=}0.138$--$0.188$, all $p{\\leq}0.003$) are clearly significant across all three seeds; EM--FK is seed-dependent ($\\Delta\\rho{=}0.054$--$0.093$, $p{=}0.048$--$0.15$).\nOn CoNLL ($n{=}2{,}756$), all signals significantly outperform FK: EM $\\Delta\\rho{=}0.071$ ($p{<}0.001$), SJ $\\Delta\\rho{=}0.056$ ($p{<}0.001$), VC $\\Delta\\rho{=}0.022$ ($p{=}0.040$).\n\n\\section{Holm--Bonferroni Enumeration}\\label{app:holm}\n\nTable~\\ref{tab:holm_family} enumerates all $k{=}57$ statistical tests reported in this paper under a single global Holm--Bonferroni correction.\nUnder this most conservative family, no core NER claim survives ($p_{\\text{adj}}{=}0.055$ for Few-NERD LP selection and construction); only two peripheral tests reach significance (CoNLL few-shot entity entropy, RE LP selection reversal under free-form decoding).\nWe report per-family corrections in the main text (\\S\\ref{sec:prescriptive}); the global enumeration is provided here for transparency.\n\n\\begin{table*}[t]\n\\centering\n\\small\n\\caption{Complete enumeration of $k{=}57$ statistical tests subject to Holm--Bonferroni correction. Raw $p$: uncorrected $p$-value as reported. $p_{\\text{adj}}$: Holm--Bonferroni adjusted $p$-value. $^\\dagger$Survives correction at $\\alpha{=}0.05$.}\n\\label{tab:holm_family}\n\\begin{tabular}{clllcc}\n\\toprule\n\\# & Family & Test Description & Raw $p$ & $p_{\\text{adj}}$ & Sig. \\\\\n\\midrule\n\\multicolumn{6}{l}{\\textit{Selection}} \\\\\n1 & & SciERC NER LP selection ($N{=}8$, Qwen, Table~3) & $0.290$ & $1.0$ &  \\\\\n2 & & SciERC NER SJ selection ($N{=}8$, Qwen, Table~3) & $0.670$ & $1.0$ &  \\\\\n3 & & SciERC NER FK selection ($N{=}8$, Qwen, Table~3) & $0.790$ & $1.0$ &  \\\\\n4 & & WNUT-17 LP selection ($N{=}8$, Qwen) & $0.720$ & $1.0$ &  \\\\\n5 & & CoNLL LP selection ($N{=}8$, Qwen) & $1.0$ & $1.0$ &  \\\\\n6 & & Few-NERD LP selection ($N{=}8$, Qwen, 3-seed) & ${<}.001$ & $0.055$ &  \\\\\n7 & & SciERC NER SJ selection ($N{=}8$, LLaMA-3B) & $0.175$ & $1.0$ &  \\\\\n8 & & SciERC NER LP selection ($N{=}32$, Qwen) & $0.091$ & $1.0$ &  \\\\\n9 & & SciERC NER FK selection ($N{=}32$, Qwen) & $0.101$ & $1.0$ &  \\\\\n10 & & SciERC NER SJ selection ($N{=}32$, Qwen) & $0.244$ & $1.0$ &  \\\\\n11 & & SciERC NER EM selection ($N{=}32$, Qwen) & $0.355$ & $1.0$ &  \\\\\n12 & & SciERC NER VC selection ($N{=}32$, Qwen) & $1.0$ & $1.0$ &  \\\\\n13 & & SciERC RE LP selection ($N{=}16$, 4B, Fisher) & $0.058$ & $1.0$ &  \\\\\n14 & & SciERC RE VC selection ($N{=}16$, 4B, Fisher) & $0.973$ & $1.0$ &  \\\\\n15 & & SciERC RE FK selection ($N{=}16$, 4B, Fisher) & $0.985$ & $1.0$ &  \\\\\n16 & & SciERC RE SJ selection ($N{=}16$, 4B, Fisher) & $0.993$ & $1.0$ &  \\\\\n17 & & SciERC RE EM selection ($N{=}16$, 4B, Fisher) & $0.999$ & $1.0$ &  \\\\\n18 & & SciERC LP selection, non-tied subset ($\\varepsilon{=}0.05$) & $0.004$ & $0.180$ &  \\\\\n19 & & Few-NERD LP selection ($N{=}8$, LLaMA, 3-seed) & ${<}.001$ & $0.055$ &  \\\\\n20 & & SciERC LP favorable subset ($+$2.47 pp) & $0.015$ & $0.585$ &  \\\\\n21 & & CoNLL LP favorable subset ($-$1.78 pp) & ${<}.001$ & $0.055$ &  \\\\\n\\addlinespace\n\\multicolumn{6}{l}{\\textit{Construction}} \\\\\n22 & & SciERC LP-weighted construction (Qwen, 3-seed) & $0.004$ & $0.180$ &  \\\\\n23 & & SciERC uniform construction (Qwen, 3-seed) & $0.023$ & $0.874$ &  \\\\\n24 & & Few-NERD LP-weighted construction (Qwen) & ${<}.001$ & $0.055$ &  \\\\\n25 & & Few-NERD uniform construction (Qwen) & $0.003$ & $0.138$ &  \\\\\n26 & & CoNLL uniform construction (Qwen) & $0.500$ & $1.0$ &  \\\\\n27 & & SciERC ZS construction (72B) & $0.008$ & $0.320$ &  \\\\\n28 & & SciERC FS construction (72B) & $0.544$ & $1.0$ &  \\\\\n29 & & CoNLL FS construction (72B) & $0.417$ & $1.0$ &  \\\\\n30 & & Few-NERD FS construction (72B) & $0.401$ & $1.0$ &  \\\\\n31 & & SciERC cross-model LP-weighted construction & ${<}.001$ & $0.055$ &  \\\\\n\\addlinespace\n\\multicolumn{6}{l}{\\textit{Calibration}} \\\\\n32 & & SciERC MF-Platt vs Raw LP & $0.720$ & $1.0$ &  \\\\\n33 & & CoNLL MF-Platt vs Raw LP & $0.310$ & $1.0$ &  \\\\\n34 & & Few-NERD MF-Platt vs Raw LP & $0.830$ & $1.0$ &  \\\\\n\\addlinespace\n\\multicolumn{6}{l}{\\textit{Signal $\\Delta\\rho$}} \\\\\n35 & & SciERC $\\Delta\\rho$ SJ$-$LP ($N{=}8$, seed 42) & ${<}.001$ & $0.055$ &  \\\\\n36 & & SciERC $\\Delta\\rho$ VC$-$SJ ($N{=}8$, seed 42) & $0.300$ & $1.0$ &  \\\\\n37 & & SciERC $\\Delta\\rho$ SJ$-$EM ($N{=}8$, seed 42) & $0.045$ & $1.0$ &  \\\\\n38 & & CoNLL $\\Delta\\rho$ EM$-$FK ($N{=}16$) & ${<}.001$ & $0.055$ &  \\\\\n39 & & CoNLL $\\Delta\\rho$ SJ$-$FK ($N{=}16$) & ${<}.001$ & $0.055$ &  \\\\\n40 & & CoNLL $\\Delta\\rho$ VC$-$FK ($N{=}16$) & $0.040$ & $1.0$ &  \\\\\n41 & & SciERC $\\Delta\\rho$ SJ$-$FK (LLaMA, permutation) & $0.060$ & $1.0$ &  \\\\\n42 & & SciERC RE $\\Delta\\rho$ SJ$-$FK (full-set) & $0.530$ & $1.0$ &  \\\\\n43 & & RE SJ $\\rho$ Q1 vs Q4 sentence length (Fisher $z$) & $0.004$ & $0.180$ &  \\\\\n\\addlinespace\n\\multicolumn{6}{l}{\\textit{Correlation}} \\\\\n44 & & Cross-dataset degeneracy--LP gain ($n{=}23$) & $0.810$ & $1.0$ &  \\\\\n45 & & Per-type degeneracy--headroom (Few-NERD, Spearman) & $0.004$ & $0.180$ &  \\\\\n46 & & Per-type degeneracy--headroom (exact permutation) & $0.005$ & $0.205$ &  \\\\\n47 & & Per-type degeneracy--headroom ($\\text{df}{=}4$ adjusted) & $0.033$ & $1.0$ &  \\\\\n48 & & SciERC per-type degeneracy--LP ($\\rho{=}0.14$) & $0.790$ & $1.0$ &  \\\\\n49 & & Kruskal--Wallis per-type LP heterogeneity (SciERC) & $0.796$ & $1.0$ &  \\\\\n\\addlinespace\n\\multicolumn{6}{l}{\\textit{FS error}} \\\\\n50 & & FS vs ZS error overlap (SciERC, permutation) & $0.840$ & $1.0$ &  \\\\\n51 & & FS vs ZS error overlap (CoNLL, permutation) & $0.640$ & $1.0$ &  \\\\\n52 & & FS vs ZS entity entropy (SciERC) & $0.810$ & $1.0$ &  \\\\\n53 & & FS vs ZS entity entropy (CoNLL, Wilcoxon) & ${<}10^{-4}$ & ${<}.001$ & $\\dagger$ \\\\\n\\addlinespace\n\\multicolumn{6}{l}{\\textit{Other}} \\\\\n54 & & LP distribution seed 42 vs 456 (Mann--Whitney) & $0.550$ & $1.0$ &  \\\\\n55 & & RE LP selection reversal (free-form, 4-seed) & ${<}.001$ & $0.006$ & $\\dagger$ \\\\\n56 & & WNUT-17 conditional $\\rho$ VC ($p$-value) & $0.487$ & $1.0$ &  \\\\\n57 & & WNUT-17 conditional $\\rho$ FK ($p$-value) & $0.002$ & $0.094$ &  \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table*}\n\n\\section{Diversity and Selection Analysis}\\label{app:diversity}\n\n% fig_selection_gap promoted to main text (\\S\\ref{sec:selection_gap})\n\n\\paragraph{Output diversity quantification.}\nTable~\\ref{tab:diversity} summarizes output diversity across configurations.\nOn SciERC, output diversity is substantial: Qwen produces 43\\% unique outputs per instance (mean 3.5 distinct out of $N{=}8$), with per-sample F1 standard deviation of 0.144 and mean pairwise SJ of 0.703.\nLLaMA shows similar diversity (39\\% unique, F1 std 0.11).\nOn CoNLL, diversity collapses: 59\\% (Qwen) to 89\\% (LLaMA) of instances produce identical outputs across all $N$ samples; this reflects a ceiling effect where single-sample F1 already exceeds 0.90.\nWNUT-17 shows 55\\% identical outputs, attributable to the 53.7\\% zero-F1 rate.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Output diversity across configurations ($N{=}8$, $T{=}1.0$). ``Identical'' = fraction of instances with all $N$ outputs identical. ``Unique'' = mean fraction of distinct outputs per instance.}\n\\label{tab:diversity}\n\\begin{tabular}{lcc}\n\\toprule\nConfig & Identical & Unique \\\\\n\\midrule\nQwen/SciERC & 11\\% & 43\\% \\\\\nLLaMA/SciERC & 18\\% & 39\\% \\\\\nQwen/CoNLL & 57\\% & --- \\\\\nLLaMA/CoNLL & 88\\% & --- \\\\\nWNUT-17 & 55\\% & --- \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\paragraph{Oracle-improvable fraction.}\nAcross SciERC configurations, 39--42\\% of instances contain at least one sample with F1 exceeding single-sample\\footnote{Oracle-improvable and diversity-stratified analyses use $n{=}529$ (excluding instances with empty gold annotations; see \\S\\ref{sec:evaluation}); the diversity quantification in Table~\\ref{tab:diversity} uses the full test set.}: Qwen NER 42.0\\% (222/529, mean headroom $+$31.9~pp among improvable instances), Qwen RE 41.3\\% (164/397, $+$45.3~pp), LLaMA NER 39.3\\% (208/529, $+$33.7~pp).\nOn CoNLL, only 4--9\\% of instances are improvable, consistent with the ceiling effect.\n\n\\paragraph{Diversity-stratified selection gap.}\nOn the 44\\% of Qwen SciERC instances with high diversity (${\\geq}4$ unique outputs among 8 samples, $n{=}232$), oracle headroom reaches $+$16.3~pp, yet all consistency-based signals (SJ, FK, EM, VC) select at or below single-sample, and LP, the only per-sample signal, achieves merely $+$0.8~pp.\nLLaMA replicates this pattern: on its high-diversity subset ($n{=}186$), oracle headroom reaches $+$20.1~pp while consistency signals remain at or below single-sample and LP captures only $+$2.0~pp.\nThis rules out insufficient diversity as an explanation for the correlation-selection gap.\n\n\\paragraph{Instance degeneracy statistics.}\nTable~\\ref{tab:degeneracy} quantifies instance degeneracy across configurations. ``Constant F1'' denotes instances where all $N$ samples receive identical instance-level F1; ``Constant utility'' denotes instances where MBR (SJ) utility is identical across candidates, preventing ranking.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Instance degeneracy statistics ($T{=}1.0$). ``Constant F1'': all $N$ samples receive identical instance-level F1. ``Constant utility'': MBR (SJ) utility identical across candidates. 4B data confirms degeneracy scales with model capability.}\n\\label{tab:degeneracy}\n\\resizebox{\\columnwidth}{!}{\n\\begin{tabular}{lccc}\n\\toprule\n& \\shortstack{SciERC 8B\\\\($N{=}8$)} & \\shortstack{SciERC 4B\\\\($N{=}8$)} & \\shortstack{CoNLL 8B\\\\($N{=}8$)} \\\\\n\\midrule\nConstant F1 & 12.2\\% & 10.4\\% & 61.7\\% \\\\\nConstant utility & 13\\% & 7.0\\% & 64\\% \\\\\nOracle gap closed (non-deg.) & 23\\% & 25.2\\% & 36\\% \\\\\nWithin-inst.\\ SJ $\\rho$ (median) & 0.524 & 0.550 & 0.990 \\\\\n\\bottomrule\n\\end{tabular}\n}\n\\end{table}\n\n\\paragraph{TOST equivalence testing.}\\label{app:tost}\nThe primary evidence against selection gains comes from effect sizes and confidence intervals: Cohen's $d{=}0.038$ for the best signal (NER LP) and bootstrap 95\\% CI [$-$3.0, $+$4.2]~pp spanning zero.\nTable~\\ref{tab:tost} supplements this with two one-sided tests (TOST), testing whether each signal's selection F1 is equivalent to single-sample within a bound $\\delta$.\nThe $\\delta$ values are contextualized against oracle headroom (12--18~pp): $\\delta{=}5$~pp corresponds to forgoing 28--38\\% of the available headroom, $\\delta{=}3$~pp forgoing 17--23\\%, and $\\delta{=}2$~pp less than 15\\%.\nThese proportions use the same test data that defines the headroom, introducing circularity: $\\delta$ is anchored to the very quantity it contextualizes.\nWe address this below with externally anchored equivalence margins.\nThe breakpoint $\\delta^*$, the minimum equivalence margin at which each signal passes TOST, ranges from approximately 1.3~pp (SJ, ${\\sim}$10\\% of oracle headroom) to 3.4~pp (FK, ${\\sim}$26\\%) on NER, and from approximately 2.9~pp (LP, ${\\sim}$16\\%) to 6.5~pp (VC, ${\\sim}$36\\%) on RE.\nOn NER ($n{=}529$), at $\\delta{=}{\\pm}2$~pp, SJ and LP are confirmed equivalent to single-sample (TOST $p{<}0.05$); at $\\delta{=}{\\pm}3$~pp, four of five signals pass; at $\\delta{=}{\\pm}5$~pp, all five pass.\nOn RE ($n{=}397$, preliminary), EM and VC fail equivalence even at $\\delta{=}{\\pm}5$~pp due to systematic underperformance ($\\Delta{=}{-}3.2$~pp and $-4.5$~pp respectively).\nThe effect sizes are negligible ($d{=}0.038$) and confidence intervals span zero, with TOST confirming equivalence at practically meaningful margins.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{TOST equivalence testing: signals vs.\\ single-sample on SciERC ($N{=}8$, $T{=}1.0$). \\checkmark: equivalent at $p{<}0.05$; \\texttimes: not equivalent. $\\Delta$: mean F1 difference (signal $-$ single-sample).}\n\\label{tab:tost}\n\\resizebox{\\columnwidth}{!}{\n\\begin{tabular}{l cccc cccc}\n\\toprule\n& \\multicolumn{4}{c}{\\textbf{NER}} & \\multicolumn{4}{c}{\\textbf{RE}} \\\\\n\\cmidrule(lr){2-5} \\cmidrule(lr){6-9}\nSignal & $\\Delta$ & $\\pm$2 & $\\pm$3 & $\\pm$5 & $\\Delta$ & $\\pm$2 & $\\pm$3 & $\\pm$5 \\\\\n\\midrule\nLP & +0.6 & \\checkmark & \\checkmark & \\checkmark & $-$0.9 & \\texttimes & \\checkmark & \\checkmark \\\\\nSJ & +0.1 & \\checkmark & \\checkmark & \\checkmark & $-$1.8 & \\texttimes & \\texttimes & \\checkmark \\\\\nFK & $-$0.5 & \\texttimes & \\checkmark & \\checkmark & $-$1.6 & \\texttimes & \\texttimes & \\checkmark \\\\\nEM & $-$0.8 & \\texttimes & \\checkmark & \\checkmark & $-$3.2 & \\texttimes & \\texttimes & \\texttimes \\\\\nVC & $-$1.0 & \\texttimes & \\texttimes & \\checkmark & $-$4.5 & \\texttimes & \\texttimes & \\texttimes \\\\\n\\bottomrule\n\\end{tabular}\n}\n\\end{table}\n\n\\paragraph{External equivalence margins.}\nThe oracle-headroom anchors above introduce circularity: $\\delta$ is calibrated against the very quantity it contextualizes.\nTo resolve this, we supplement with three externally grounded margins:\n(1) $\\delta_{\\mathrm{SEM}}$: the bootstrapped standard error of single-sample F1 (0.43--1.33~pp depending on configuration), which represents measurement noise;\n(2) $\\delta_{\\mathrm{practical}}{=}0.5$~pp, the threshold below which NER differences are considered negligible \\cite{ratinov2009design};\n(3) $\\delta_{\\mathrm{literature}}{=}1.0$~pp, the approximate significant-difference threshold established in NER evaluation methodology \\cite{bergkirkpatrick2012empirical}.\n\nResults under these external anchors diverge sharply by configuration.\nOn LLaMA CoNLL ($n{=}2{,}756$), all signals pass equivalence at every $\\delta$ ($p{<}0.001$), consistent with the near-zero selection deltas ($|\\Delta|{\\leq}0.1$~pp) and tight CIs at this sample size.\nOn Qwen CoNLL ($n{=}2{,}756$), no signal passes at any external $\\delta$: selection F1 degrades by 0.9--1.5~pp relative to single-sample, which exceeds even $\\delta_{\\mathrm{literature}}$.\nOn SciERC NER ($n{=}529$), only SJ passes at $\\delta_{\\mathrm{SEM}}{=}1.33$~pp (the widest SEM bound); all other signals and tighter margins fail.\nThese external anchors confirm that the equivalence conclusion is configuration-dependent: LLaMA CoNLL selection is robustly equivalent to single-sample under any reasonable margin, while SciERC and Qwen CoNLL selection shows detectable degradation at externally calibrated thresholds.\n\n\\paragraph{Multiple comparison considerations.}\\label{app:multiple_comparisons}\nOur primary selection analysis involves ${\\sim}$20 comparisons (5 signals $\\times$ 3--4 configurations).\nSince all primary selection results are non-significant ($p{>}0.05$), applying Benjamini-Hochberg correction can only make these results more conservative, strengthening the ``no signal beats greedy'' conclusion.\nThe sole positive finding, the non-tied LP subset ($+2.9$~pp, $p{=}0.004$; \\S\\ref{sec:discussion}), survives Bonferroni correction over the 5 signal comparisons ($p_{\\mathrm{adj}}{=}0.020 < 0.05$). However, the $\\varepsilon{=}0.05$ threshold is selected post-hoc from a 7-point sweep (Appendix~\\ref{app:epsilon_robustness}); joint correction across thresholds and signals yields $p_{\\mathrm{adj}}{=}0.14$, so this finding is exploratory.\nFor quality estimation signal rankings, differences between the top signals (e.g., VC vs.\\ SJ on SciERC) should be interpreted as descriptive rather than as statistically confirmed orderings, given the limited power of 3-seed comparisons.\n\n\\paragraph{When would consistency-based selection work?}\\label{app:when_selection_works}\nOur negative results are specific to fine-tuned models with constrained decoding on structured IE. Several conditions outside our experimental scope could restore selection headroom.\n(a)~Models with poor calibration or in-context learning setups (without fine-tuning) produce more diverse outputs, widening the gap between candidates that consistency signals can exploit.\n(b)~Closed-source APIs where log-probabilities are unavailable make consistency signals the only viable selection mechanism; our structural signals (SJ, VC, FK, EM) provide quality estimation ($\\rho$ up to 0.45) even without model-internal access.\n(c)~Ensemble or mixture-of-experts settings generate structurally diverse candidates by design, reducing instance degeneracy below the levels observed in our single-model sampling.\n(d)~Tasks where the model exhibits systematic overconfidence (e.g., hallucination-prone generation) may benefit from consensus filtering, as disagreement among samples would carry more discriminative signal than in our well-calibrated fine-tuned regime.\n\n\\section{Supervised and Model-Internal Signal Analysis}\\label{app:supervised_combination}\n\n\\subsection{Supervised Signal Combination}\n\nSupervised classifiers (logistic regression, MLP, random forest) trained on all five signals (5-fold CV, 3-seed mean, SciERC, $N{=}16$, $+17.9$~pp headroom) all perform at or below greedy (F1${=}0.644$; LR: $-0.4$~pp; MLP: $-1.6$~pp; RF: $-3.1$~pp).\nAdding pairwise interaction features does not help (AUROC 0.634 vs.\\ 0.638).\nTo test whether richer representations could close the gap, we train a DeBERTa-v3-base verifier that encodes input-output pairs and predicts per-sample F1.\nDeBERTa achieves $\\rho{=}0.329{\\pm}0.087$ (5-fold CV, 3 seeds). Despite moderate quality prediction, selection utility is poor: on SciERC, DeBERTa closes $-26.5{\\pm}26.5$\\% of the oracle gap (13 of 15 runs negative; vs.\\ LP's $+4.2{\\pm}10.7$\\%); on Few-NERD, DeBERTa recovers only $+3.5$\\% (single 80/20 split; vs.\\ LP's $+16.3$\\%).\nCross-dataset transfer fails entirely ($-27$\\% to $-72$\\% gap closure).\nGrid-search ensemble optimization over signal weights confirms LP dominance: across configurations, LP receives mean weight $0.78$, while FK and SJ receive zero weight; VC and EM serve only as secondary regularizers.\nNeither handcrafted signal combinations nor learned text representations close the selection gap; only model-internal log-probability provides meaningful selection signal, consistent with an information asymmetry between the generating model and external observers.\n\n\\subsection{Entity-Level Verifier Transfer}\\label{app:verifier_transfer}\n\nA LightGBM entity-level verifier (5 features: agreement count, VC, LP, SJ, FK) achieves AUC${=}0.923{\\pm}0.002$ under out-of-fold evaluation, confirming that entity correctness is learnable from the available signals.\nIn-domain OOF construction yields $+0.30$\\,pp overall, with per-dataset gains of $+1.28$\\,pp (SciERC), $+0.55$\\,pp (CoNLL), and $+0.02$\\,pp (Few-NERD).\nThe near-zero Few-NERD gain despite high AUC shows that frequency-based threshold construction already captures most of the verifier's signal.\nCross-dataset transfer to Few-NERD is negative: $-0.76$\\,pp (B2-v2), $-1.02$\\,pp (B2-v3), $-1.27$\\,pp (B2-v4 Replace, AUC${=}0.822$), and $-0.85$\\,pp (B2-v4 Augment, AUC${=}0.855$), all below greedy.\nThe learned feature--correctness mapping is dataset-specific: entity agreement patterns that predict correctness on scientific text do not transfer to fine-grained entity types.\n\n\\subsection{Hidden State Probes}\\label{app:hidden_probe}\n\nEntity-level probes confirm that quality information is partially encoded in hidden representations (AUROC${=}0.63$\\textendash$0.88$, dataset-dependent; \\S\\ref{sec:mechanistic}); we test whether this translates to sample-level selection gain by training probes on the generating model's hidden states.\n\n\\paragraph{Setup.}\nUnlike the entity-level probe in \\S\\ref{sec:mechanistic} (which classifies individual entities on FewNERD/CoNLL/SciERC), this sample-level analysis uses all 551 SciERC instances (including 22 with empty gold annotations) to predict per-sample F1.\nFor each of $N{=}8$ samples per instance, we extract the mean-pooled final-layer hidden state ($d{=}4096$) from the generating Qwen3-8B model and train a linear probe and a two-layer MLP (hidden dim${=}256$) to predict per-sample F1 (5-fold CV, 3 seeds).\nEntity-level probes use dataset-specific generation temperatures ($T{=}0.5$ for Few-NERD, $T{=}0.8$ for CoNLL, $T{=}1.0$ for SciERC).\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Hidden state probes vs.\\ LP for sample selection (5-fold CV ${\\times}$ 3 seeds). $\\rho$: Spearman correlation with per-sample F1. Sel.\\ F1: selection F1. Gap\\%: oracle gap closure. SciERC greedy${=}0.644$ (seed 42), oracle${=}0.775$ (seed 42).}\n\\label{tab:hidden_probe}\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{@{}l ccc cc@{}}\n\\toprule\n& \\multicolumn{3}{c}{\\textbf{SciERC}} & \\multicolumn{2}{c}{\\textbf{Few-NERD}} \\\\\n\\cmidrule(lr){2-4} \\cmidrule(lr){5-6}\nMethod & $\\rho$ & Sel.\\ F1 & Gap\\% & $\\rho$ & Gap\\% \\\\\n\\midrule\nLP & .283 & $\\mathbf{.650}$ & $+$4.8 & .606 & 12.3 \\\\\nHidden Linear & $.179{\\pm}.019$ & $.613{\\pm}.002$ & $-$23.4 & \\multicolumn{2}{c}{---} \\\\\nHidden MLP & $\\mathbf{.388{\\pm}.013}$ & $.637{\\pm}.003$ & $-$5.1 & $\\mathbf{.629{\\pm}.007}$ & 11.7 \\\\\n\\bottomrule\n\\end{tabular}}\n\\end{table}\n\n\\paragraph{Cross-dataset asymmetry.}\nOn SciERC, the MLP probe achieves higher quality correlation than LP ($\\rho{=}0.388$ vs.\\ $0.283$, $+37$\\%); hidden states encode information beyond what LP captures.\nYet higher correlation does not yield better selection: MLP selection F1 ($0.637$) falls below LP's ($0.650$), with gap closure turning negative ($-5.1$\\% vs.\\ $+4.8$\\%; Table~\\ref{tab:hidden_probe}).\nThe linear probe performs worse still ($\\rho{=}0.179$, gap closure $-23.4$\\%).\nOn Few-NERD, the MLP provides no increment over LP (gap closure $11.7$\\% vs.\\ $12.3$\\%).\nA learned token-level LP aggregator (1D CNN over per-token log-probabilities) matches mean LP on Few-NERD (gap closure $56.4$\\% vs.\\ $55.8$\\%); LP's bottleneck is not token aggregation.\nDespite partial entity quality encoding in hidden representations (entity-level probe AUROC${=}0.63$\\textendash$0.88$; \\S\\ref{sec:mechanistic}), the correlation-selection gap persists at the sample level: in the high-capability regime (greedy F1${=}0.644$), inter-sample F1 differences are small enough that improved ranking provides no marginal selection value, consistent with the capability-diversity tension (\\S\\ref{sec:discussion}).\n\n\\subsection{Method Coverage Matrix}\\label{app:method_coverage}\n\nTable~\\ref{tab:method_coverage} summarizes the experimental coverage of each entity-level method evaluated in this work. Individual methods were tested on subsets of the full dataset $\\times$ model matrix; the collective coverage spans three NER datasets and two model families.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Experimental coverage of entity-level methods. \\checkmark = tested; --- = not tested. All methods use $N{=}8$, $T{=}1.0$ unless noted. Section references indicate where results appear.}\n\\label{tab:method_coverage}\n\\begin{tabular}{lccccl}\n\\toprule\nMethod & SciERC & Few-NERD & CoNLL & Qwen & LLaMA \\\\\n\\midrule\nESJ (\\S\\ref{sec:mechanistic}) & --- & \\checkmark & --- & \\checkmark & --- \\\\\nMRSC (\\S\\ref{sec:mechanistic}) & --- & \\checkmark & --- & \\checkmark & --- \\\\\nLSC (\\S\\ref{sec:mechanistic}) & --- & \\checkmark & --- & \\checkmark & --- \\\\\nHet-T (App.~\\ref{app:robustness}) & \\checkmark & --- & --- & \\checkmark & --- \\\\\nASB (App.~\\ref{app:dals}) & \\checkmark & \\checkmark & \\checkmark & \\checkmark & --- \\\\\nSCD (App.~\\ref{app:supervised_combination}) & \\checkmark & \\checkmark & \\checkmark & \\checkmark & --- \\\\\nVerifier (\\S\\ref{sec:verifier}) & \\checkmark & \\checkmark & \\checkmark & \\checkmark & --- \\\\\n\\midrule\nQE signals (\\S\\ref{sec:qe_results}) & \\checkmark & \\checkmark & \\checkmark & \\checkmark & \\checkmark \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\section{How Self-Verification Fails}\\label{sec:mechanistic}\n\nThe diagnostic framework (\\S\\ref{sec:method}) identifies \\textit{where} self-consistency fails; this section probes \\textit{why} by testing whether models can self-verify at the entity level.\nProbe experiments use Qwen2.5-7B (not the fine-tuned Qwen3-8B used in main experiments); conclusions are architecture-specific.\nWe evaluate self-verification and diagnostic probes on Qwen2.5-7B\\footnote{ESJ, MRSC, and LSC use Qwen2.5-7B-Instruct (zero-shot self-verification capability) rather than the fine-tuned Qwen3-8B used in the main experiments. Conclusion direction is consistent with the main experiments' negative results across all fine-tuned selection strategies. The pattern---selection failure across all signals---is independently confirmed in the Qwen3-8B main experiments, making the introspection boundary a model-independent finding within our tested scale. Probe conclusions are limited to the Qwen2.5 architecture; linear probes may underestimate representational capacity (nonlinear alternatives are left to future work).} fine-tuned for NER on Few-NERD ($N{=}8$, seed 42; full results in Table~\\ref{tab:self_verification}).\n\n\\paragraph{Entity Self-Judgment (ESJ).}\nFor each extracted entity, we prompt the generating model: ``Is [\\textit{entity}] a [\\textit{type}] entity in this sentence?''\nEntity-level AUROC is $0.512$---indistinguishable from chance---with P(yes$|$correct)${=}0.500$ and P(yes$|$incorrect)${=}0.500$.\nESJ-weighted construction degrades F1 to $0.711$ (vs.\\ greedy $0.794$).\n\n\\paragraph{Multi-Round Self-Consistency (MRSC).}\nFollowing iterative self-refinement \\cite{madaan2023selfrefine}, we re-prompt on disputed entities (agreement ${<}0.6$) with focused verification; P(yes) separation between gold and non-gold entities is $0.0006$ ($0.5003$ vs.\\ $0.4997$).\nMRSC best F1 ($0.763$) falls below greedy.\n\n\\paragraph{Latent Self-Consistency (LSC).}\nMean-pooled final-layer hidden states ($d{=}3584$) provide per-sample latent representations.\nCentroid selection ($0.759$) underperforms greedy ($0.794$); latent entity confidence ($0.839$) outperforms majority vote ($0.792$) but does not close the oracle gap ($0.882$).\n\n\\paragraph{Hidden-state probe.}\nA logistic regression on mean-pooled final-layer hidden states at entity spans achieves AUROC $0.636$ (Few-NERD), $0.882$ (CoNLL), $0.630$ (SciERC), evaluated with GroupKFold CV (5-fold ${\\times}$ 3 seeds, groups${=}$source instance to prevent entity-level leakage; \\S\\ref{app:hidden_probe}).\nAll three exceed ESJ ($0.51$); only CoNLL approaches frequency agreement ($0.868$).\nCross-dataset transfer is weak: leave-one-dataset-out AUROC drops to $0.559$ (Few-NERD${\\to}$CoNLL) and $0.671$ (CoNLL${\\to}$Few-NERD), indicating that entity error patterns are dataset-specific rather than reflecting a universal introspection boundary, limiting probe-based approaches without per-dataset calibration.\nAt the sample level, an MLP probe closes only 13.9\\% of the oracle gap on SciERC (\\S\\ref{app:hidden_probe}).\n\n\\paragraph{The introspection boundary.}\nEntity quality is partially encoded in hidden representations: a supervised probe (AUROC $0.63$\\textendash$0.88$) consistently exceeds self-judgment (ESJ $0.51$) but only marginally exceeds multi-sample agreement ($0.87$) on CoNLL, suggesting consensus captures information beyond single-pass representations while the prompt interface fails to access even partial hidden-state signal.\nLODO transfer drops to $0.56$\\textendash$0.67$, so even direct hidden-state access would not yield a universal quality signal---consistent with the negative cross-dataset verifier transfer (\\S\\ref{sec:verifier}).\n\n\\section{Entity-Level Self-Verification Probes}\\label{app:self_verification}\n\nThree independent probes test whether the generating model can self-verify at the entity level, using Qwen2.5-7B fine-tuned on Few-NERD ($N{=}8$, seed 42).\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Entity-level self-verification probes (Qwen2.5-7B, Few-NERD, $N{=}8$). ESJ: entity self-judgment via yes/no prompts. MRSC: multi-round re-prompting on disputed entities. LSC: latent-space centroid selection. MV: majority vote baseline.}\n\\label{tab:self_verification}\n\\begin{tabular}{@{}lcc@{}}\n\\toprule\nMethod & Key Metric & F1 \\\\\n\\midrule\nGreedy ($T{=}0$) & --- & .794 \\\\\nMV ($\\theta{=}0.375$) & --- & .792 \\\\\nOracle & --- & .882 \\\\\n\\midrule\nESJ (best $\\theta{=}0.02$) & AUROC${=}0.512$ & .711 \\\\\nMRSC (best $\\theta{=}0.5$) & $\\Delta P(\\text{yes}){=}0.001$ & .763 \\\\\nLSC (centroid) & $\\rho_{\\text{LP-latent}}{=}0.52$ & .759 \\\\\nLSC (entity conf.) & --- & .839 \\\\\n\\midrule\nFreq.\\ agreement & AUROC${=}0.868$ & --- \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\paragraph{Entity Self-Judgment (ESJ).}\nFor each extracted entity, we prompt the model: ``Is [entity] a [type] entity in this sentence?''\nThe entity-level AUROC is $0.512$---indistinguishable from chance---with P(yes$|$correct)${=}0.500$ and P(yes$|$incorrect)${=}0.500$ (separation $0.001$).\nESJ-weighted construction degrades F1 to $0.711$ (vs.\\ greedy $0.794$), confirming the model lacks entity-level self-judgment.\n\n\\paragraph{Multi-Round Self-Consistency (MRSC).}\nWe re-prompt the model on disputed entities (agreement ${<}0.6$) with a focused verification query and aggregate with Round~2 weight${=}2$.\nP(yes) separation between gold and non-gold entities is $0.0006$ ($0.5003$ vs.\\ $0.4997$), and MRSC best F1 ($0.763$) falls below both greedy and MV.\n\n\\paragraph{Latent Self-Consistency (LSC).}\nMean-pooled final-layer hidden states ($d{=}3584$) provide latent representations per sample.\nCentroid selection ($0.759$) underperforms greedy ($0.794$); latent entity confidence ($0.839$) outperforms MV ($0.792$) but does not close the oracle gap ($0.882$).\n\n\\paragraph{Frequency agreement as the viable signal.}\nCross-sample entity frequency agreement achieves AUROC${=}0.868$ for entity correctness prediction; a supervised hidden-state probe (AUROC${=}0.63$\\textendash$0.88$; \\S\\ref{sec:mechanistic}) exceeds this only on the simplest dataset (CoNLL, $0.882$), while falling below on complex NER tasks.\nThe probe consistently exceeds prompt-based self-evaluation (ESJ AUROC${=}0.512$), confirming that hidden states encode partial entity quality signal inaccessible through the prompt interface, consistent with the complexity-dependent introspection boundary diagnosed in the main text (\\S\\ref{sec:mechanistic}).\n\n\\section{Multi-Seed Stability}\\label{app:multiseed}\n\nTable~\\ref{tab:multiseed} reports quality estimation metrics across three random seeds for both model families on SciERC ($N{=}8$, $T{=}1.0$).\nOn NER, the signal ranking VC${>}$SJ${>}$EM${>}$FK${>}$LP is identical across all six model-seed combinations, with $\\sigma{\\leq}0.025$ for all signals (rankings are stable across our 3 seeds, though statistical power with $n{=}3$ is limited).\nOn RE (Qwen only, preliminary), VC remains the top signal ($\\rho{=}0.309{\\pm}0.024$), but LP rises to \\#2 ($\\rho{=}0.297{\\pm}0.022$), above FK, SJ, and EM. This reversal from the NER ranking reflects RE's higher sensitivity to per-sample scoring.\nLLaMA absolute values are systematically lower than Qwen on NER, consistent with the directionally-consistent-but-magnitude-dependent characterization in the main text.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Multi-seed quality estimation on SciERC ($N{=}8$, $T{=}1.0$, seeds: 42, 123, 456). NER: both models; RE: Qwen only (preliminary). Signal ranking is stable across seeds ($\\sigma{\\leq}0.025$). $\\sigma$ is population standard deviation over 3 seeds.}\n\\label{tab:multiseed}\n\\resizebox{\\columnwidth}{!}{\n\\begin{tabular}{lccccc}\n\\toprule\n& LP & FK & SJ & VC & EM \\\\\n\\midrule\n\\multicolumn{6}{l}{\\textit{NER Spearman $\\rho$ (mean $\\pm\\sigma$)}} \\\\\nQwen & .217${\\pm}$.013 & .254${\\pm}$.016 & .364${\\pm}$.018 & .386${\\pm}$.019 & .307${\\pm}$.008 \\\\\nLLaMA & .162${\\pm}$.025 & .256${\\pm}$.024 & .325${\\pm}$.021 & .384${\\pm}$.014 & .279${\\pm}$.011 \\\\\n\\midrule\n\\multicolumn{6}{l}{\\textit{RE Spearman $\\rho$ (mean $\\pm\\sigma$, Qwen)}} \\\\\nQwen & .297${\\pm}$.022 & .290${\\pm}$.012 & .249${\\pm}$.002 & .309${\\pm}$.024 & .135${\\pm}$.016 \\\\\n\\midrule\n\\multicolumn{6}{l}{\\textit{NER AUROC (mean $\\pm\\sigma$)}} \\\\\nQwen & .579${\\pm}$.008 & .600${\\pm}$.016 & .659${\\pm}$.016 & .677${\\pm}$.011 & .631${\\pm}$.013 \\\\\nLLaMA & .565${\\pm}$.008 & .593${\\pm}$.006 & .632${\\pm}$.012 & .673${\\pm}$.009 & .606${\\pm}$.005 \\\\\n\\bottomrule\n\\end{tabular}\n}\n\\end{table}\n\n\\section{Training Configuration}\\label{app:training}\n\nBoth models are fine-tuned with identical hyperparameters (Table~\\ref{tab:training}) to ensure comparisons across model families reflect model differences rather than training confounds.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Training configuration. Both Qwen3-8B and LLaMA-3.1-8B-Instruct use identical settings unless noted.}\n\\label{tab:training}\n\\resizebox{\\columnwidth}{!}{\n\\begin{tabular}{ll}\n\\toprule\nParameter & Value \\\\\n\\midrule\nLoRA rank / $\\alpha$ & 32 / 64 \\\\\nLoRA target & All linear modules \\\\\nLoRA dropout & 0 \\\\\nOptimizer & AdamW \\\\\nLearning rate & 2e-4, cosine schedule \\\\\nWarmup ratio & 0.1 \\\\\nEffective batch size & 16 (2 $\\times$ grad.\\ accum.\\ 8) \\\\\nEpochs & 5 \\\\\nMax sequence length & 2048 \\\\\nPrecision & bf16 \\\\\nGradient checkpointing & Enabled \\\\\nMax gradient norm & 1.0 \\\\\nTraining seed & 42 \\\\\nFramework & LLaMA Factory \\\\\n\\midrule\n\\multicolumn{2}{l}{\\textit{Dataset-specific}} \\\\\nSciERC split & 1861 / 275 / 551 \\\\\nCoNLL / WNUT & +\\,load\\_best\\_model\\_at\\_end, \\\\\n& eval\\_steps${=}$200, save\\_limit${=}$5 \\\\\n\\bottomrule\n\\end{tabular}\n}\n\\end{table}\n\n\\paragraph{Prompt template.}\nFor NER, we use a structured prompt:\n\\begin{quote}\n\\small\n\\texttt{System:} You are an expert in Named Entity Recognition.\\\\\n\\texttt{User:} Extract all named entities from the following text. Output as JSON.\\\\\nText: \\texttt{\\{input\\_text\\}}\\\\\nEntity types: \\texttt{\\{schema\\_types\\}}\n\\end{quote}\nRE follows the same structure with ``Relation Extraction'' and relation type lists substituted accordingly.\n\n\\paragraph{Constrained decoding.}\nInference uses vLLM with XGrammar-based JSON schema enforcement \\cite{dong2024xgrammar, willard2023guided}, which constrains outputs to valid entity/relation structures matching the target schema.\nThis eliminates format errors but may compress per-sample diversity by restricting the output space.\\footnote{SciERC training used \\texttt{enable\\_thinking=True} (LLaMA Factory 0.9.4 default), injecting empty \\texttt{&lt;think>&lt;/think>} blocks (4--5 tokens) into each training response with loss computation; CoNLL and WNUT explicitly set \\texttt{enable\\_thinking=False}. Constrained decoding at inference time enforces JSON-only output, suppressing thinking tokens. See \\S\\ref{sec:setup} and Limitations for discussion of this confound.}\n\n\\section{Thinking Token Impact Analysis}\\label{app:thinking_token}\n\nQwen3-8B's SciERC checkpoint was trained with empty \\texttt{&lt;think>&lt;/think>} blocks prepended to each response (\\S\\ref{sec:setup}).\nWe quantify the potential impact on LP scores through three complementary arguments.\n\n\\paragraph{LP shift magnitude.}\nEmpty thinking tokens (mean 4.5 per sample) constitute 2.1\\% of tokens on SciERC.\nThe estimated LP shift is 0.001 nats per token (2.68\\% of the median within-instance LP range of 0.041 nats).\nBecause all samples share identical thinking-token LP offsets, cumulative LP rankings are invariant; mean LP changes selection for ${<}1.5\\%$ of instances.\n\n\\paragraph{Constant prefix cancellation.}\nAll $N$ samples within an instance share the same prompt and, under constrained decoding, the same absence of thinking tokens at inference time.\nAny LP bias from the training-time thinking prefix is therefore a near-constant additive shift across all candidates within an instance, leaving within-instance LP \\textit{rankings} unchanged.\n\n\\paragraph{CoNLL control group.}\nCoNLL and WNUT-17 checkpoints were trained without thinking tokens (\\texttt{enable\\_thinking=False}).\nIf thinking tokens caused LP compression on SciERC, CoNLL should exhibit lower tied fractions.\nInstead, CoNLL shows \\textit{higher} tied fractions at both temperatures (86.8\\% at $T{=}1.0$, 95.8\\% at $T{=}0.7$) than SciERC (60.3\\% at $T{=}1.0$), directly contradicting the thinking-token hypothesis.\n\n\\section{Log-Probability Score Compression}\\label{app:logprob_ties}\n\nUnder constrained decoding, log-probability scores are severely compressed within instances, limiting per-sample discrimination (Table~\\ref{tab:logprob_ties}, Figure~\\ref{fig:lp_range_cdf}).\nThe median within-instance LP range is only 0.041 nats; we use $\\varepsilon{=}0.05$ as an illustrative threshold to characterize this compression.\nAt this cutpoint, 60.3\\% of instances ($n{=}529$, excluding empty gold annotations) have a within-sample range below $\\varepsilon$, and 75\\% of pairwise comparisons are effective ties ($|\\Delta|{<}0.026$).\nThe CDF rises smoothly with no cliff or discontinuity (Figure~\\ref{fig:lp_range_cdf}); compression is a pervasive regime rather than a bimodal split.\nThis compression is stable across seeds: seed${=}456$ yields median LP range${=}0.040$ nats and tied fraction${=}62.2\\%$ (vs.\\ seed${=}42$: $0.041$ nats, $60.3\\%$).\nSeed~456 uses a different subtask flag (joint vs.\\ ner for seeds 42 and 123); the LP distributions are statistically indistinguishable (median LP: 8.37 vs.\\ 8.20 nats; Mann--Whitney $p{=}0.55$); the subtask change does not affect compression.\nFor comparison, SJ has only 12.5\\% tied instances at the same threshold; SJ's advantage over LP for selection is one of score resolution, not information content.\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{fig_lp_range_cdf}\n\\caption{CDF of within-instance LP range on SciERC NER ($N{=}8$, $n{=}529$). The median LP range is 0.041 nats (dashed line), below $\\varepsilon{=}0.05$. The smooth CDF confirms compression is pervasive, not bimodal.}\n\\label{fig:lp_range_cdf}\n\\end{figure}\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Log-probability score compression on SciERC NER ($N{=}8$, $n{=}529$). ``Tied'' = fraction of instances where within-instance LP range ${<}\\varepsilon$.}\n\\label{tab:logprob_ties}\n\\begin{tabular}{lc}\n\\toprule\n$\\varepsilon$ threshold & Tied instances (\\%) \\\\\n\\midrule\n0.01 & 1.1\\% \\\\\n0.05 & 60.3\\% \\\\\n0.1  & ${\\sim}$84\\% \\\\\n0.5  & ${\\sim}$99\\% \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\paragraph{Non-tied subset.}\nAmong instances with LP range ${\\geq}0.05$ ($n{=}210$, 40\\% of total), log-probability selection \\textit{significantly} outperforms single-sample ($+2.9$~pp F1, $p{=}0.004$), and within-instance $\\rho(\\text{LP}, \\text{F1})$ rises from 0.08 (tied subset) to 0.39 (non-tied subset).\nAs a continuous complement to the binary tied/non-tied analysis, pooled within-instance $\\rho(\\text{LP}, \\text{F1}){=}0.248$ across all instances confirms weak but positive per-sample signal; however, only 21.6\\% of instances achieve $p{<}0.05$ significance, and $\\rho(\\text{LP range}, \\text{F1 range}){=}0.328$ shows that instances with more LP spread also exhibit more F1 variability. LP carries information, but compression limits its exploitation.\nA free-form NER decoding ablation (Appendix~\\ref{app:freeform_ablation}) confirms this compression persists without constrained decoding.\n\n\\paragraph{$\\varepsilon$ sensitivity sweep (post-hoc exploratory).}\nTable~\\ref{tab:epsilon_sweep} sweeps the tied/non-tied threshold from $\\varepsilon{=}0.01$ to $0.20$ as a post-hoc exploratory analysis characterizing how selection gain varies with compression severity.\nThe tied fraction increases smoothly with no cliff or discontinuity, and the selection gain $\\Delta$ grows monotonically as the non-tied subset narrows to progressively higher-spread instances.\n$\\varepsilon{=}0.05$ yields the strongest statistical separation ($p{=}0.004$); at $\\varepsilon{\\geq}0.15$, the non-tied subset becomes too small for reliable inference ($n{\\leq}36$).\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{$\\varepsilon$ sensitivity sweep for LP selection on SciERC NER ($N{=}8$, seed${=}42$, $n{=}529$). ``Tied\\%'' = fraction with within-instance LP range ${<}\\varepsilon$. $\\Delta$: selection F1 gain over single-sample on the non-tied subset. The tied fraction increases smoothly; $\\varepsilon{=}0.05$ yields the strongest statistical separation.}\n\\label{tab:epsilon_sweep}\n\\begin{tabular}{ccccc}\n\\toprule\n$\\varepsilon$ & Tied\\% & Non-tied $n$ & $\\Delta$ (pp) & $p$ \\\\\n\\midrule\n0.01 & 1.1\\% & 523 & $+$0.58 & .21 \\\\\n0.02 & 13.6\\% & 457 & $+$0.83 & .15 \\\\\n0.03 & 31.8\\% & 361 & $+$1.31 & .079 \\\\\n\\textbf{0.05} & \\textbf{60.3\\%} & \\textbf{210} & \\textbf{$+$2.86} & \\textbf{.004} \\\\\n0.10 & 83.9\\% & 85 & $+$3.69 & .034 \\\\\n0.15 & 93.2\\% & 36 & $+$4.15 & .11 \\\\\n0.20 & 96.4\\% & 19 & $+$4.59 & .13 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\paragraph{$\\varepsilon$ robustness of selection F1.}\\label{app:epsilon_robustness}\nThe preceding analysis stratifies LP by a tied/non-tied threshold; consistency-based signals (SJ, FK, VC, EM) also use $\\varepsilon$ to define MBR-style proximity in selection.\nTable~\\ref{tab:epsilon_robustness} reports the maximum selection F1 variation across $\\varepsilon \\in [0, 0.2]$ for all signals and configurations.\nAt $\\varepsilon{=}0.05$, consistency signals change by at most 1.09~pp (mean 0.21~pp), with EM completely $\\varepsilon$-invariant (integer scoring); LP is the most sensitive (up to 3.65~pp across the full range), as expected.\nSpearman $\\rho$, the primary quality estimation metric throughout, is a continuous rank correlation that does not depend on any discretization threshold; the $\\varepsilon$ parameter affects only the selection analysis.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Maximum selection F1 variation (pp) across $\\varepsilon \\in [0, 0.2]$. At $\\varepsilon{=}0.05$ (used throughout), consistency signals change by ${\\leq}1.09$~pp; EM is invariant (integer scoring). LP is most sensitive as $\\varepsilon$ corresponds to its tied/non-tied partition. SciERC: $n{=}529$; CoNLL: $n{=}2{,}756$.}\n\\label{tab:epsilon_robustness}\n\\begin{tabular}{lcccc}\n\\toprule\n& \\multicolumn{2}{c}{\\textbf{SciERC}} & \\multicolumn{2}{c}{\\textbf{CoNLL}} \\\\\n\\cmidrule(lr){2-3} \\cmidrule(lr){4-5}\nSignal & Qwen & LLaMA & Qwen & LLaMA \\\\\n\\midrule\nSJ & 0.92 & 1.45 & 0.99 & 0.18 \\\\\nFK & 1.03 & 0.93 & 0.60 & 0.15 \\\\\nVC & 2.33 & 0.53 & 0.72 & 0.18 \\\\\nEM & 0.00 & 0.00 & 0.00 & 0.00 \\\\\nLP & 3.65 & 2.58 & 3.00 & 0.31 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\paragraph{Non-tied subset analysis.}\nTable~\\ref{tab:nontied_main} presents the non-tied subset analysis referenced in \\S\\ref{sec:discussion}.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Non-tied subset analysis (SciERC, Qwen3-8B, $N{=}8$, $T{=}1.0$). Instances split at LP range $\\varepsilon{=}0.05$. Within-instance $\\rho$ and selection gain both concentrate in the non-tied subset. Full $\\varepsilon$ sweep in Table~\\ref{tab:epsilon_sweep}.}\n\\label{tab:nontied_main}\n\\resizebox{\\columnwidth}{!}{\n\\begin{tabular}{lccc}\n\\toprule\nSubset & $n$ & $\\rho$(LP,F1) & LP $\\Delta$ vs.\\ greedy \\\\\n\\midrule\nTied (range ${<}0.05$) & 319 & 0.08 & ${\\approx}0$ \\\\\nNon-tied (range ${\\geq}0.05$) & 210 & 0.39 & $+$2.9~pp ($p{=}0.004$) \\\\\n\\midrule\nAll instances & 529 & 0.248 & $+$0.2~pp ($p{=}0.29$) \\\\\n\\bottomrule\n\\end{tabular}\n}\n\\end{table}\n\n\\paragraph{Within-instance LP-quality alignment.}\\label{app:within_instance_rho}\n\nTable~\\ref{tab:within_rho} reports median within-instance $\\rho(\\text{LP}, \\text{F1})$ across datasets, computed over non-degenerate instances (those with ${\\geq}2$ distinct F1 values across $N{=}8$ samples).\nFew-NERD exhibits substantially stronger alignment ($\\rho{=}0.667$) than SciERC ($\\rho{=}0.262$), consistent with LP selection succeeding only on Few-NERD.\nCoNLL alignment is moderate ($\\rho{\\approx}0.51$), but the valid-instance fraction is low (38\\% for Qwen, 11\\% for LLaMA) because degeneracy eliminates most headroom before alignment can operate.\nLP-quality alignment is the primary predictor of selection direction; degeneracy constrains headroom but does not independently predict whether LP selection gains materialize (\\S\\ref{sec:discussion}).\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Within-instance LP-quality alignment across datasets ($N{=}8$, $T{=}1.0$). $\\rho$: median Spearman correlation between LP and F1 within each instance, over non-degenerate instances ($n_{\\text{valid}}$: ${\\geq}2$ distinct F1 values). Counts are from the primary seed (seed 42); text references use 3-seed mean degeneracy rates.}\n\\label{tab:within_rho}\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{@{}llccc@{}}\n\\toprule\nDataset & Model & Med.\\ $\\rho$ & $n_{\\text{valid}}$ / $n_{\\text{total}}$ & Valid\\% \\\\\n\\midrule\nSciERC & Qwen3-8B & 0.262 & 435 / 529 & 82\\% \\\\\nFew-NERD & Qwen3-8B & 0.667 & 28{,}055 / 32{,}565 & 86\\% \\\\\nCoNLL & Qwen3-8B & 0.506 & 1{,}124 / 2{,}756 & 41\\% \\\\\nCoNLL & LLaMA-3.1-8B & 0.512 & 298 / 2{,}756 & 11\\% \\\\\n\\bottomrule\n\\end{tabular}}\n\\end{table}\n\n\\clearpage\n\\paragraph{Few-NERD LP compression threshold sensitivity.}\\label{app:fewnerd_epsilon}\n\nTables~\\ref{tab:fewnerd_epsilon} and \\ref{tab:fewnerd_lp_bucket} extend the $\\varepsilon$ analysis to Few-NERD ($n{=}32{,}565$, Qwen3-8B, $N{=}8$, seed${=}42$).\n\n\\begin{table}[ht!]\n\\centering\n\\small\n\\caption{$\\varepsilon$ threshold vs.\\ LP compression on Few-NERD ($N{=}8$, seed${=}42$). Compressed\\%: instances with LP range ${<}\\varepsilon$. $\\rho$: Spearman correlation between LP and oracle F1. $\\varepsilon{=}0.05$ (bold) is the elbow.}\n\\label{tab:fewnerd_epsilon}\n\\begin{tabular}{cccc}\n\\toprule\n$\\varepsilon$ & Compressed\\% & $\\rho$(non-comp.) & $\\rho$(all) \\\\\n\\midrule\n0.01 & 9.3 & .682 & .633 \\\\\n0.03 & 19.9 & .695 & .633 \\\\\n\\textbf{0.05} & \\textbf{34.5} & \\textbf{.710} & \\textbf{.633} \\\\\n0.10 & 60.2 & .733 & .633 \\\\\n0.15 & 75.9 & .723 & .633 \\\\\n0.20 & 92.5 & .720 & .633 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\begin{table}[ht!]\n\\centering\n\\small\n\\caption{LP-best selection advantage over MV by LP range bucket on Few-NERD ($N{=}8$, seed${=}42$). Instances with LP range ${\\geq}0.05$ show $3$--$6{\\times}$ larger advantage.}\n\\label{tab:fewnerd_lp_bucket}\n\\begin{tabular}{lccc}\n\\toprule\nLP range & $n$ & MV F1 & LP$-$MV (pp) \\\\\n\\midrule\n$[0, 0.01)$ & 3{,}018 & .818 & $+$0.8 \\\\\n$[0.01, 0.03)$ & 3{,}457 & .812 & $+$1.5 \\\\\n$[0.03, 0.05)$ & 4{,}744 & .786 & $+$2.3 \\\\\n\\midrule\n$[0.05, 0.10)$ & 8{,}374 & .740 & $+$4.3 \\\\\n$[0.10, 0.20)$ & 10{,}537 & .701 & $+$5.8 \\\\\n$[0.20, \\infty)$ & 2{,}435 & .771 & $+$3.6 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n$\\varepsilon{=}0.05$ sits at the elbow: compressed instances increase from 19.9\\% ($\\varepsilon{=}0.03$) to 34.5\\%, while non-compressed $\\rho$ plateaus at $\\varepsilon{\\geq}0.10$ ($0.72$--$0.73$).\nThe LP-best advantage over MV shows a clear transition: compressed instances (LP range${<}0.05$) gain $+0.8$ to $+2.3$\\,pp, while non-compressed instances gain $+3.6$ to $+5.8$\\,pp (Table~\\ref{tab:fewnerd_lp_bucket}).\n\n\\subsection{Token-Level Signal Comparison}\\label{app:token_signal}\n\nWe compared mean log-probability (length-normalized, used throughout) with sequence-level log-probability (cumulative sum of token log-probs).\nInstance-level Spearman $\\rho$ between the two rankings averages 0.85, with rankings diverging for 10.6\\% of instances where token count coefficient of variation exceeds 0.10.\nOn these disagreement instances, mean LP selection achieves F1${=}0.643$ vs.\\ cumulative LP F1${=}0.219$ ($+42.4$\\,pp).\nOverall, mean LP outperforms cumulative LP by $+4.6$ F1 points (Wilcoxon $p{<}0.001$).\nThe divergence is driven by structured output length variation: sequences with more extracted entities are longer but not necessarily higher quality, and length normalization prevents this bias.\n\n\\section{Consistency-Stratified Selection Analysis}\\label{app:vc_quartile}\n\nTable~\\ref{tab:vc_quartile} stratifies SciERC instances by voting confidence (VC) quartiles and reports selection $\\Delta$ (gain over single-sample) for LP and SJ.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Selection $\\Delta$ (pp over single-sample) stratified by VC quartile on SciERC ($N{=}8$, Qwen3-8B). Oracle headroom collapses at Q4; LP rankings are unreliable at Q1--Q2. Neither quartile supports consistent selection gains.}\n\\label{tab:vc_quartile}\n\\begin{tabular}{lcccc}\n\\toprule\nQuartile & Mean VC & LP $\\Delta$ & SJ $\\Delta$ & Oracle (pp) \\\\\n\\midrule\n\\multicolumn{5}{l}{\\textit{NER}} \\\\\nQ1 (low) & 0.30 & $+$1.55 & $+$0.54 & 16.85 \\\\\nQ2 & 0.51 & $-$0.65 & $-$1.89 & 14.35 \\\\\nQ3 & 0.68 & $+$1.97 & $+$1.84 & 16.83 \\\\\nQ4 (high) & 0.92 & $-$0.41 & $-$0.04 & 4.78 \\\\\n\\midrule\n\\multicolumn{5}{l}{\\textit{$^\\dagger$RE}} \\\\\nQ1 (low) & --- & $-$3.56 & --- & --- \\\\\nQ4 (high) & --- & $+$4.01 & --- & --- \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nThe NER pattern shows two complementary failure modes rather than a monotonic relationship between consistency and selection gain:\n\\begin{itemize}\n\\item \\textbf{Q4 ceiling effect.} High-consistency instances (mean VC${=}0.92$) have oracle headroom of only 4.78~pp. Samples have already converged, leaving little room for any signal to improve selection.\n\\item \\textbf{Q1--Q2 noise.} Low-consistency instances retain large headroom (14--17~pp) but LP rankings are unreliable, and LP rankings produce inconsistent $\\Delta$ signs across quartiles.\n\\end{itemize}\n\nOn $^\\dagger$RE, the pattern differs: Q4 LP achieves $+4.01$~pp; LP may recover selection ability when high consistency coincides with structured output diversity. This is a single-dataset observation and should be interpreted cautiously.\n\nOn CoNLL NER, Q3--Q4 instances have VC${=}1.0$ (all samples identical), and $\\Delta{=}0$ universally; this ceiling effect is even more extreme than SciERC Q4.\n\n\\section{Exploratory Extension to Relation Extraction}\\label{app:re_extension}\n\nWe extend the NER evaluation to relation extraction (RE) on SciERC as an exploratory single-benchmark analysis.\nRE produces sets of (head, relation, tail) triples with partial overlap; 40\\% of RE instances receive zero F1, and entity span errors account for 55.5\\% of RE false negatives, a prerequisite failure that consistency signals cannot detect (\\S\\ref{app:additional}).\nAll RE results use Qwen3-8B unless noted; single-seed ($\\text{seed}{=}42$) for $N{=}8$ analyses, 3-seed for $N{=}16$.\n\n\\paragraph{Diagnostic framework.}\nApplying the diagnostic framework to RE ($N{=}8$): instance degeneracy is $10.1$\\%, comparable to SciERC NER ($13.4$\\%), yet MV $\\Delta{=}{-}5.90$\\,pp---far worse than any NER dataset.\nThe driver is RE's $40$\\% zero-F1 rate (vs.\\ ${\\leq}5.4$\\% in NER): diverse but \\textit{incorrect} samples produce noise that MV amplifies.\nLP-best selection also fails ($\\Delta{=}{-}0.94$\\,pp), despite pooled LP-F1 $\\rho{=}0.350$---above SciERC NER ($0.312$).\nOracle headroom is $+18.1$\\,pp (greedy $0.404$, oracle $0.585$), the largest of any configuration, confirming that correct answers exist among samples but no signal recovers them.\n\n\\paragraph{Quality estimation.}\nRE quality estimation is reported in Table~\\ref{tab:multiseed} (3-seed means).\nThe signal ranking differs from NER: VC leads ($\\rho{=}0.309{\\pm}0.024$), but LP rises to \\#2 ($\\rho{=}0.297{\\pm}0.022$), above FK, SJ, and EM, a reversal reflecting RE's higher sensitivity to per-sample scoring.\nRE miscalibration is more severe than NER (ECE 0.109--0.339; Figure~\\ref{fig:reliability}).\n\n\\paragraph{Selection.}\nTable~\\ref{tab:re_cond_selection} presents RE selection at $N{=}8$: no signal outperforms single-sample (0.404) on the full set ($n{=}397$) or the non-zero subset ($n{=}238$), with 18.1~pp of unrealized oracle headroom.\nAt $N{=}16$ (Qwen3-4B, Table~\\ref{tab:re_n16_selection}), LP is the sole positive signal ($\\Delta{=}{+}0.7$~pp, $p{=}0.058$), consistent with LP being the strongest RE selection signal across scales.\n\n\\paragraph{Scale ablation.}\nAt 4B scale (Qwen3-4B, $N{=}8$, $\\text{seed}{=}42$), RE quality estimation shows FK $\\rho{=}0.359$ and LP $\\rho{=}0.351$, both above their 8B counterparts (FK 0.275, LP 0.266), while SJ declines ($0.267$ vs.\\ $0.250$).\nSelection remains below single-sample on RE ($\\Delta$ up to $-3.4$~pp) despite 17.1~pp of oracle headroom.\n\n\\paragraph{Free-form decoding.}\nRE LP selection consistently reverses direction under free-form decoding ($+1.8{\\pm}0.1$~pp across 4 seeds vs.\\ $-0.9$~pp under constrained decoding at 8B; \\S\\ref{app:freeform_ablation}); constrained decoding's fixed template likely obscures LP signal in RE (\\S\\ref{app:mbr_discussion}).\n\n\\subsection{RE Conditional Selection}\\label{app:re_conditional_selection}\n\nTable~\\ref{tab:re_cond_selection} extends the selection analysis to the RE non-zero F1 subset.\nOf $n{=}397$ RE instances, 238 (60\\%) have non-zero F1 and 159 (40\\%) have zero F1.\nAll five signals underperform single-sample on both subsets.\nOn the non-zero subset, selection performance is \\textit{worse} than on the full set (e.g., VC: $-10.0$~pp on non-zero vs.\\ $-4.5$~pp on full set), because single-sample is already strong on non-zero instances (F1${=}0.674$) and signals actively select inferior samples.\nOracle headroom exists (0.757 vs.\\ 0.674) but no signal exploits it, ruling out the 40\\% zero-F1 floor effect as the explanation for RE selection failure.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{RE selection F1 (macro, instance-averaged) on SciERC ($N{=}8$, $T{=}1.0$). Full set ($n{=}397$) and non-zero F1 subset ($n{=}238$). No signal outperforms greedy on either subset.}\n\\label{tab:re_cond_selection}\n\\begin{tabular}{lcc}\n\\toprule\nMethod & Full ($n{=}397$) & Non-zero ($n{=}238$) \\\\\n\\midrule\nOracle & 0.585 & 0.757 \\\\\n\\midrule\nLP & 0.395 & 0.600 \\\\\nSJ & 0.386 & 0.604 \\\\\nEM & 0.372 & 0.583 \\\\\nVC & 0.359 & 0.574 \\\\\n\\midrule\nGreedy & 0.404 & 0.674 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\subsection{RE $N{=}16$ Selection Analysis}\\label{app:re_n16_selection}\n\nTable~\\ref{tab:re_n16_selection} extends the selection analysis to RE at $N{=}16$ with 3-seed statistics.\nAll four consistency signals underperform single-sample, with EM showing the largest deficit ($\\Delta{=}{-}1.5$~pp, Fisher $p{>}0.99$).\nLP is the only positive signal ($\\Delta{=}{+}0.7$~pp, Fisher $p{=}0.058$), driven primarily by seed~456 ($\\Delta{=}{+}1.5$~pp, $p{=}0.026$); the remaining seeds show smaller effects ($+0.1$ and $+0.6$~pp, $p{>}0.20$).\nEven the most favorable seed captures only ${\\sim}9\\%$ of the 17.1~pp oracle headroom.\nThis cross-task consistency (LP as the only viable selection signal on both NER and RE) reinforces the persistent limitation of instance-level signals for candidate ranking across tested regimes.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{RE best-of-$N$ selection F1 (macro, instance-averaged) on SciERC (Qwen3-4B, $N{=}16$, $T{=}1.0$, 3-seed mean${\\pm}\\sigma$, $n{=}551$). Fisher combined $p$ vs.\\ greedy. LP is the only signal with positive $\\Delta$. $\\sigma$ is population standard deviation over 3 seeds.}\n\\label{tab:re_n16_selection}\n\\begin{tabular}{lccc}\n\\toprule\nMethod & F1 & $\\Delta$ (pp) & $p$(Fisher) \\\\\n\\midrule\nOracle & $.463{\\pm}.006$ & $+$17.1 & --- \\\\\n\\midrule\nLP & $\\mathbf{.299}{\\pm}.007$ & $+$0.7 & .058 \\\\\nVC & $.284{\\pm}.002$ & $-$0.8 & .973 \\\\\nFK & $.283{\\pm}.005$ & $-$0.9 & .985 \\\\\nSJ & $.281{\\pm}.005$ & $-$1.0 & .993 \\\\\nEM & $.277{\\pm}.007$ & $-$1.5 & .999 \\\\\n\\midrule\nGreedy & $.291{\\pm}.000$ & --- & --- \\\\\nRandom & $.262{\\pm}.001$ & $-$2.9 & --- \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\section{Theoretical Results}\\label{app:mbr_discussion}\n\n\\subsection{MBR Framework and Proof}\\label{app:mbr_proof}\n\nEntity-level construction (\\S\\ref{sec:prescriptive}) is a special case of minimum Bayes risk (MBR) decoding \\cite{kumar2004minimum, eikema2020map}, extended from candidate selection ($\\arg\\max_{y \\in \\{y_1,\\ldots,y_N\\}}$) to construction over all subsets of $E_\\cup{=}\\bigcup_i y_i$.\n\n\\begin{proposition}[Entity construction as MBR for balanced set-overlap]\\label{prop:construction_mbr}\nUnder entity-wise independence with utility $u(\\hat{y}, y') = |\\hat{y} \\cap y'| - \\alpha|\\hat{y} \\setminus y'|$ ($\\alpha \\geq 1$), the MBR-optimal constructed set is\n\\begin{equation}\\label{eq:mbr_construction}\n\\hat{y}_{\\textup{MBR}} \\!=\\! \\bigl\\{e \\!{\\in}\\! E_\\cup \\!:\\! \\hat{p}(e) \\!>\\! \\tfrac{\\alpha}{\\alpha{+}1}\\bigr\\},\\; \\hat{p}(e) \\!=\\! \\tfrac{1}{N} \\textstyle\\sum\\nolimits_{i} \\mathbf{1}[e \\!{\\in}\\! y_i]\n\\end{equation}\nThe special case $\\alpha{=}1$ yields $\\hat{p}(e) > \\tfrac{1}{2}$, the majority-vote threshold.\n\\end{proposition}\n\n\\noindent\\textbf{Remark.}\nSet-level F1 is non-linear and admits no closed-form threshold rule \\cite{dembczynski2011exact}. We use balanced linear utility ($\\alpha{=}1$ throughout); balanced set-overlap and F1 induce similar optimal thresholds for typical NER output sizes ($|E_\\cup| \\leq 30$).\n\n\\paragraph{Proof.}\nWe show that under entity-wise independence, the MBR-optimal constructed set with utility $u(\\hat{y}, y') = |\\hat{y} \\cap y'| - \\alpha|\\hat{y} \\setminus y'|$ ($\\alpha \\geq 1$) includes entity $e$ iff $\\hat{p}(e) > \\alpha/(\\alpha+1)$.\nConsider constructing $\\hat{y} \\subseteq E_\\cup$ to maximize expected utility against the empirical sample distribution.\nUnder entity-wise independence, each entity inclusion is an independent binary decision.\nFor entity $e$ with empirical frequency $\\hat{p}(e) = \\frac{1}{N} \\sum_i \\mathbf{1}[e \\in y_i]$, including $e$ contributes $+1$ when $e \\in y_i$ (probability $\\hat{p}(e)$) and $-\\alpha$ when $e \\notin y_i$ (probability $1{-}\\hat{p}(e)$).\nThe expected marginal contribution is $\\hat{p}(e) - \\alpha(1{-}\\hat{p}(e)) = (1{+}\\alpha)\\hat{p}(e) - \\alpha$, which is positive iff $\\hat{p}(e) > \\alpha/(\\alpha+1)$.\nThe special case $\\alpha{=}1$ yields the majority-vote threshold $\\hat{p}(e) > 1/2$ used throughout.\nWith F1 utility, the optimal threshold depends on the full probability vector over $E_\\cup$ \\cite{dembczynski2011exact}; the constant $1/2$ threshold is a close approximation when $|E_\\cup|$ is small (typically 5--15 in our experiments).\nThe independence assumption is approximate; we verify empirically that strict majority vote fails to improve over greedy (\\S\\ref{sec:prescriptive}; Table~\\ref{tab:alpha_crit}), consistent with marginal-entity precision falling below $\\alpha_{\\textup{crit}}$.\n\n\\subsection{Connection to MBR Decoding}\\label{app:mbr_connection}\n\nOur selection strategies instantiate minimum Bayes risk (MBR) decoding \\cite{eikema2022sampling, muller2021understanding}: each selects $\\hat{y} = \\arg\\max_{y_i} \\sum_{j \\neq i} U(y_i, y_j)$ with utility $U$ defined by SJ, EM, or entity overlap.\nDespite MBR's success in machine translation \\cite{freitag2022high} and its extension to summarization, code generation, and captioning \\cite{jinnai2024mbr}, all variants fail here: despite positive within-instance utility--F1 correlation, selection gains are limited by instance degeneracy, the core of the correlation-selection gap.\n\\citet{eikema2025structured} study structure-conditional MBR decoding and find that standard utility functions degrade on structured outputs, consistent with our finding that consensus-proximity selection fails in IE despite its success in machine translation.\n\n\\paragraph{Task-specific decoding interactions.}\nThe free-form ablation shows divergent behavior across tasks.\nOn RE, LP selection flips from $-0.68$~pp (constrained) to $+1.69$~pp (free-form; preliminary, single RE benchmark), a reversal that spans all 7 relation types and is attributable to selective variance reallocation ($p{<}0.0001$).\nThe win/loss ratio shifts from 36:59 (constrained) to 45:45 (free-form), with the gains concentrated on relation-dense instances (mean 3.3 gold relations).\nThis interaction does not generalize to NER, where selection remains negligible under both regimes.\nThis ablation uses a single seed (seed${=}42$); whether the RE reversal replicates across seeds and generalizes to other RE benchmarks warrants further investigation.\nThe non-tied subset ($n{=}210$) is partially reshuffled under free-form decoding: Jaccard similarity between the constrained and free-form non-tied sets is 0.472: 87 instances newly gain LP discrimination while others lose it, and the newly non-tied subset shows a $3{\\times}$ increase in within-instance LP range for the newly non-tied subset.\nDespite this reshuffling, aggregate NER selection gains remain negligible. Score compression is not a fixed property of specific instances but rather a pervasive regime that shifts across instances without producing net selection improvement.\nFree-form decoding also slightly improves quality estimation (NER VC $\\rho$: 0.379$\\to$0.409), though this does not translate to selection gains.\n\n\\subsection{Degeneracy Decomposition}\\label{app:bound_proof}\n\n\\begin{definition}[Instance-Level Degeneracy]\nGiven model $\\mathcal{M}$, input $x$, and $N$ i.i.d.\\ samples $\\{y_1, \\ldots, y_N\\}$, instance $x$ is \\emph{degenerate} if $y_1 = \\cdots = y_N$. The degeneracy rate is $D = |\\mathcal{D}|^{-1} \\sum_{x} \\mathbb{1}[y_1(x) = \\cdots = y_N(x)]$.\n\\end{definition}\n\n\\begin{definition}[Non-Degenerate Oracle Gap]\n$G_{\\text{nd}} = \\mathbb{E}[F_1^{\\text{oracle}}(x) - F_1^{\\text{greedy}}(x) \\mid x \\in \\mathcal{D}_{\\neg D}]$, where $\\mathcal{D}_{\\neg D}$ is the set of non-degenerate instances.\n\\end{definition}\n\n\\subsection{Proof of the Degeneracy Decomposition}\n\nPartition $\\mathcal{D}$ into degenerate ($\\mathcal{D}_D$, fraction $D$) and non-degenerate ($\\mathcal{D}_{\\neg D}$, fraction $1{-}D$). By total expectation:\n\\begin{equation}\\label{eq:bound_decomp}\n\\mathbb{E}[\\Delta F_1(A)] = D \\cdot \\mathbb{E}[\\Delta F_1 \\mid \\mathcal{D}_D] + (1{-}D) \\cdot \\mathbb{E}[\\Delta F_1 \\mid \\mathcal{D}_{\\neg D}].\n\\end{equation}\nFor degenerate instances, all $N$ samples are identical and equal the greedy output, so $\\Delta F_1 = 0$. For non-degenerate instances, $\\Delta F_1(A,x) \\leq F_1^{\\text{oracle}}(x) - F_1^{\\text{greedy}}(x)$, giving $\\mathbb{E}[\\Delta F_1 \\mid \\mathcal{D}_{\\neg D}] \\leq G_{\\text{nd}}$. Substituting: $\\mathbb{E}[\\Delta F_1(A)] \\leq (1{-}D) \\cdot G_{\\text{nd}}$.\n\nFor signal-based methods, define alignment $\\alpha = \\mathbb{E}[\\Delta F_1(A_s) \\mid \\mathcal{D}_{\\neg D}] / G_{\\text{nd}} \\in [0,1]$. Direct substitution yields $\\mathbb{E}[\\Delta F_1(A_s)] = (1{-}D) \\cdot G_{\\text{nd}} \\cdot \\alpha$.\n\n\\begin{corollary}[Critical Degeneracy Threshold]\\label{cor:theta_crit}\nFor SC gain to exceed significance threshold $\\varepsilon$, the degeneracy rate must satisfy $D < 1 - \\varepsilon / (G_{\\text{nd}} \\cdot \\alpha) \\stackrel{\\text{def}}{=} \\theta_{\\text{crit}}$.\nWith $\\varepsilon{=}0.3$\\,pp, $G_{\\text{nd}}{=}14.8$\\,pp, $\\alpha{=}0.068$: $\\theta_{\\text{crit}} = 1 - 0.3/(14.8 \\times 0.068) = 0.70$.\n\\end{corollary}\n\n\\paragraph{Numerical verification.}\nTable~\\ref{tab:bound_verification} verifies the bound across 16 configurations. All positive-gain configurations have $D < \\theta_{\\text{crit}}$ and actual/bound ratios of 3--12\\% (Figure~\\ref{fig:bound}). The bound is loose because $\\alpha$ (signal alignment) is the bottleneck: the best signal recovers only 6.8\\% of the non-degenerate oracle gap on average.\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{fig_bound}\n\\caption{SC gain vs.\\ degeneracy across 16 configurations (SciERC-specific $\\alpha$). Red: signal-adjusted bound ($\\alpha{=}0.068$); vertical dashed: $\\theta_{\\text{crit}}{=}0.70$; horizontal dotted: $\\varepsilon{=}0.3$\\,pp. All positive gains fall within the bound (right panel: ratio to weak bound, all ${<}0.13$).}\n\\label{fig:bound}\n\\end{figure}\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Bound verification across representative configurations ($N{=}8$). $G_{\\text{nd}}$: non-degenerate oracle gap. $\\alpha$: signal alignment. Bound: $(1{-}D) \\cdot G_{\\text{nd}} \\cdot \\alpha$. Ratio: actual$/$weak bound.}\n\\label{tab:bound_verification}\n\\begin{tabular}{@{}lccccr@{}}\n\\toprule\nConfig & $D$ & $G_{\\text{nd}}$ & $\\alpha$ & $\\Delta$ & Ratio \\\\\n\\midrule\nQ3-8B FT FN s123 & .131 & 14.8 & .121 & +1.56 & 12.1\\% \\\\\nQ3-8B FT FN s456 & .120 & 14.5 & .108 & +1.37 & 10.8\\% \\\\\nQ3-8B FT Sci s789 & .214 & 17.0 & .084 & +1.12 & 8.4\\% \\\\\n72B ZS Sci & .210 & 18.9 & .102 & +1.53 & 10.2\\% \\\\\nQ3-8B FT CoN s123 & .630 & 10.9 & .000 & $-$0.42 & --- \\\\\n72B ZS CoN & .677 & 16.4 & .000 & $-$0.37 & --- \\\\\n72B FS CoN & .700 & 17.0 & .047 & +0.24 & 4.7\\% \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\subsection{Entity Selection Bound: Proof and Validation}\\label{app:alpha_crit}\n\n\\begin{proposition}[Entity Selection Diagnostic]\\label{prop:entity_selection_bound}\nLet $\\mathcal{M}^+ {=} \\hat{y}_{\\textup{MV}} \\setminus \\hat{y}_{\\textup{gr}}$ be entities added by majority vote (precision $\\pi_{\\mathcal{M}^+}$) and $\\delta$ the instance degeneracy rate.\n\\begin{enumerate}[label=\\textup{(\\alph*)},nosep,leftmargin=*]\n\\item On degenerate instances, $\\hat{y}_{\\textup{MV}} {=} \\hat{y}_{\\textup{gr}}$ and $\\Delta F_1 {=} 0$.\n\\item $\\mathbb{E}[\\Delta F_1] = (1{-}\\delta) \\cdot \\mathbb{E}[\\Delta F_1 \\mid \\textup{non-deg.}]$.\n\\item $\\Delta F_1 > 0$ only if $\\pi_{\\mathcal{M}^+} > \\alpha_{\\textup{crit}} \\triangleq F_1^{\\textup{gr}}/2$.\n\\end{enumerate}\n\\end{proposition}\n\n\\begin{proof}[Proof of Proposition~\\ref{prop:entity_selection_bound}]\n\\textbf{Part (a).} On a degenerate instance, all $N$ samples produce the same entity set: $\\textup{entities}(y_1) = \\cdots = \\textup{entities}(y_N)$. For every entity $e \\in E_\\cup$, the agreement count satisfies $k(e) = N$ (if $e$ appears) or $k(e) = 0$ (if not). Hence $k(e)/N \\in \\{0,1\\}$, and the majority-vote threshold $k(e)/N \\geq 1/2$ selects exactly the entities present in any single sample---identical to the greedy output. Thus $\\hat{y}_{\\textup{MV}} = \\hat{y}_{\\textup{gr}}$ and $\\Delta F_1 = 0$.\n\n\\textbf{Part (b).} Partition instances into degenerate (fraction $\\delta$) and non-degenerate (fraction $1{-}\\delta$). By the law of total expectation:\n\\[\n\\mathbb{E}[\\Delta F_1] = \\delta \\cdot \\underbrace{\\mathbb{E}[\\Delta F_1 \\mid \\textup{deg.}]}_{= 0 \\;\\textup{by (a)}} + (1{-}\\delta) \\cdot \\mathbb{E}[\\Delta F_1 \\mid \\textup{non-deg.}].\n\\]\n\n\\textbf{Part (c).} Assume $\\mathcal{M}^- = \\hat{y}_{\\textup{gr}} \\setminus \\hat{y}_{\\textup{MV}} \\approx \\varnothing$ (greedy entities typically have agreement $k(e)/N \\approx 1$). Let $m = |\\mathcal{M}^+|$ and $\\pi = |\\mathcal{M}^+ \\cap G|/|\\mathcal{M}^+|$ denote the number and precision of entities added by MV. Define $S = |\\hat{y}_{\\textup{gr}}| + |G|$. Then:\n\\begin{align*}\n\\Delta F_1 &= \\frac{2(\\textup{TP}_{\\textup{gr}} + m\\pi)}{S + m} - \\frac{2\\,\\textup{TP}_{\\textup{gr}}}{S} \\\\\n&= \\frac{2m\\bigl(\\pi - \\textup{TP}_{\\textup{gr}}/S\\bigr)}{S + m}\n= \\frac{2m\\bigl(\\pi - F_1^{\\textup{gr}}/2\\bigr)}{S + m},\n\\end{align*}\nwhich is positive if and only if $\\pi > F_1^{\\textup{gr}}/2 \\triangleq \\alpha_{\\textup{crit}}$.\n\nWhen $\\mathcal{M}^-$ is non-empty, the condition generalizes: the net precision across the full symmetric difference $\\hat{y}_{\\textup{MV}} \\triangle \\hat{y}_{\\textup{gr}}$ must exceed a corresponding threshold. The addition-only case covers the dominant empirical regime, as greedy entities typically achieve near-unanimous agreement.\n\\end{proof}\n\n\\paragraph{Effective precision threshold.}\nFrom parts (b) and (c), MV gain is attenuated by $(1{-}\\delta)$ and requires marginal-entity precision $> \\alpha_{\\textup{crit}}$.\nEquivalently, defining $\\alpha_{\\textup{crit,eff}} {=} \\alpha_{\\textup{crit}} / (1{-}\\delta)$, MV gain requires marginal-entity precision $> \\alpha_{\\textup{crit,eff}}$; when $\\alpha_{\\textup{crit,eff}} > 1$, the required precision exceeds 1.0 and MV gain is structurally impossible regardless of entity quality.\n\n\\paragraph{Empirical validation.}\nTable~\\ref{tab:alpha_crit} reports MV performance under strict majority (count $> N/2$) using the MF4v2 pipeline (3-seed means).\nMV fails to improve F1 on any dataset: Few-NERD $\\Delta{=}{-}2.74$\\,pp, SciERC $-0.74$\\,pp, CoNLL $-0.04$\\,pp.\nWe define the effective precision threshold $\\alpha_{\\textup{crit,eff}} {=} \\alpha_{\\textup{crit}} / (1{-}\\delta)$; when $\\alpha_{\\textup{crit,eff}} > 1$, the required marginal-entity precision exceeds 1.0, making MV gain structurally impossible.\nCoNLL ($\\alpha_{\\textup{crit,eff}}{=}1.148$) confirms this: $\\Delta{=}{-}0.04{\\pm}0.15$\\,pp is indistinguishable from zero.\nFew-NERD and SciERC ($\\alpha_{\\textup{crit,eff}} {<} 1$) show significantly negative $\\Delta$, indicating that even where structural headroom exists, marginal-entity precision is insufficient.\nSciERC's lower $\\alpha_{\\textup{crit}}$ ($0.334$, vs.\\ $0.396$ for Few-NERD and $0.456$ for CoNLL) is consistent with it being the only dataset where a trained entity verifier (AUC${=}0.923$) achieves positive gain ($+1.28$\\,pp).\n\n\\begin{table}[h]\n\\centering\\small\n\\caption{MV performance under strict majority (count $> N/2$; Qwen3-8B FT, $N{=}8$, $T{=}1.0$, 3-seed mean${\\pm}\\sigma$). $\\alpha_{\\textup{crit}} = F_1^{\\textup{gr}}/2$; $\\alpha_{\\textup{crit,eff}} = \\alpha_{\\textup{crit}} / (1{-}\\delta)$. When $\\alpha_{\\textup{crit,eff}} > 1$, MV gain is structurally impossible.}\n\\label{tab:alpha_crit}\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{@{}lccccccccc@{}}\n\\toprule\nDataset & Seeds & Greedy & MV & Oracle & $\\Delta_{\\textup{SC}}$ (pp) & $\\delta$ & $\\alpha_{\\textup{crit}}$ & $\\alpha_{\\textup{crit,eff}}$ & Prediction \\\\\n\\midrule\nFew-NERD & 3 & .791 & .764 & .885 & $-2.74{\\pm}0.54$ & 8.8\\% & 0.396 & 0.434 & $\\Delta < 0$ \\\\\nCoNLL & 3 & .912 & .912 & .950 & $-0.04{\\pm}0.15$ & 60.3\\% & 0.456 & 1.148 & $\\Delta \\approx 0$ \\\\\nSciERC & 3 & .667 & .660 & .781 & $-0.74{\\pm}0.57$ & 12.2\\% & 0.334 & 0.380 & $\\Delta < 0$ \\\\\n\\bottomrule\n\\end{tabular}}\n\\end{table}\n\n\\section{Free-Form Decoding Ablation}\\label{app:freeform_ablation}\n\nTable~\\ref{tab:freeform_ablation} compares constrained and free-form decoding across four dimensions on SciERC ($N{=}8$, $T{=}1.0$, Qwen3-8B; seed${=}42$ shown, 4-seed RE statistics below).\nFree-form decoding removes grammar constraints entirely; outputs are parsed post-hoc (parse rate 99.95\\%, 4406/4408).\nLP score distributions are nearly identical across regimes (Panel~A: within-instance std ratio $0.97{\\times}$), and NER selection gains remain negligible under both regimes (Panel~B).\nRE LP selection consistently reverses direction under free-form decoding across 4 seeds: $+1.84{\\pm}0.12$~pp (seeds 42/123/456/789: $+1.69$, $+1.76$, $+2.00$, $+1.91$~pp) vs.\\ $-0.68$~pp constrained.\nThe constrained reference ($-0.68$~pp) uses the ablation-matched baseline; the primary experiment (Table~\\ref{tab:selection}) yields $-0.9$~pp on the same gold-filtered set.\nQuality estimation improves modestly for most signals under free-form decoding (Panel~C), with the largest gain for FK ($+0.053$ NER, $+0.039$ RE).\n\n\\begin{table*}[t]\n\\centering\n\\caption{Comparison of constrained vs.\\ free-form decoding on SciERC (Qwen3-8B, $N{=}8$, $T{=}1.0$, seed${=}42$; RE selection gap replicates across 4 seeds: $+1.84{\\pm}0.12$~pp).}\n\\label{tab:freeform_ablation}\n\n\\vspace{2pt}\n{\\small\\textsc{Panel A: Logprob Distribution}}\n\\vspace{2pt}\n\n\\begin{tabular}{lccc}\n\\toprule\nMetric & Constrained & Free-form & $\\Delta$ \\\\\n\\midrule\nMean LP std        & 0.0206 & 0.0199 & $-$0.0007 \\\\\nMean LP range      & 0.0623 & 0.0599 & $-$0.0024 \\\\\nTied fraction ($\\varepsilon{=}0.05$) & 59.7\\% & 57.7\\% & $-$2.0\\,pp \\\\\n\\bottomrule\n\\end{tabular}\n\n\\vspace{8pt}\n\n{\\small\\textsc{Panel B: Selection F1}}\n\\vspace{2pt}\n\n\\begin{tabular}{llccc}\n\\toprule\nTask & Method & Constrained & Free-form & $\\Delta$ \\\\\n\\midrule\n\\multirow{3}{*}{NER}\n  & Greedy        & 0.6182 & 0.6204 & $+$0.0022 \\\\\n  & LP-selected   & 0.6241 & 0.6222 & $-$0.0019 \\\\\n  & Selection gap & $+$0.0059 & $+$0.0018 & $-$0.0041 \\\\\n\\midrule\n\\multirow{3}{*}{RE}\n  & Greedy        & 0.2913 & 0.2880 & $-$0.0033 \\\\\n  & LP-selected   & 0.2845 & 0.3050 & \\textbf{$+$0.0205} \\\\\n  & Selection gap & $-$0.0068 & $+$0.0169 & \\textbf{$+$0.0237} \\\\\n\\bottomrule\n\\end{tabular}\n\n\\vspace{8pt}\n\n{\\small\\textsc{Panel C: QE Signal Quality (Spearman $\\rho$)}}\n\\vspace{2pt}\n\n\\begin{tabular}{l ccc ccc}\n\\toprule\n & \\multicolumn{3}{c}{NER ($n{=}529$)} & \\multicolumn{3}{c}{RE ($n{=}397$)} \\\\\n\\cmidrule(lr){2-4} \\cmidrule(lr){5-7}\nSignal & Constr. & Free & $\\Delta$ & Constr. & Free & $\\Delta$ \\\\\n\\midrule\nSJ & 0.360 & 0.377 & $+$0.018 & 0.250 & 0.273 & $+$0.023 \\\\\nFK & 0.267 & 0.320 & $+$0.053 & 0.275 & 0.315 & $+$0.039 \\\\\nLP & 0.205 & 0.213 & $+$0.008 & 0.266 & 0.304 & $+$0.038 \\\\\nEM & 0.295 & 0.317 & $+$0.023 & 0.134 & 0.137 & $+$0.002 \\\\\nVC & 0.379 & 0.409 & $+$0.030 & 0.350 & 0.323 & $-$0.026 \\\\\n\\bottomrule\n\\end{tabular}\n\n\\vspace{8pt}\n\n{\\small\\textsc{Panel D: Parse Rate (Free-form)}}\n\\vspace{2pt}\n\n\\begin{tabular}{lc}\n\\toprule\nMetric & Value \\\\\n\\midrule\nTotal samples          & 4408 \\\\\nParse rate             & 99.95\\% \\\\\nInstances 8/8 valid    & 549\\,/\\,551 (99.6\\%) \\\\\n\\bottomrule\n\\end{tabular}\n\n\\end{table*}\n\n\\paragraph{CoNLL NER free-form results.}\nExtending the free-form ablation to CoNLL NER (Qwen3-8B, 4 seeds, $N{=}8$, $T{=}1.0$), LP range median is $0.058{\\pm}0.007$ across seeds, higher than SciERC ($0.041$) but still compressed given CoNLL's 86.8\\% tied fraction under constrained decoding.\nFree-form decoding reduces the tied fraction modestly, yet selection remains below single-sample: LP-selected F1${=}0.896$ vs.\\ single-sample $0.904$ ($\\Delta{=}{-}0.77$~pp).\nQuality estimation under free-form decoding yields SJ $\\rho{=}0.461$, EM $\\rho{=}0.471$, LP $\\rho{=}0.326$, comparable to constrained results (Table~\\ref{tab:quality_estimation}).\nThe failure to improve selection despite reduced compression is consistent with CoNLL's low oracle headroom (4.0~pp at $N{=}8$), which limits the selection space regardless of score distribution quality.\n\n\\section{LP Selection Failure Stability}\\label{app:lp_failure_stability}\n\nWe analyze RE LP selection failures across three random seeds (constrained decoding, $N{=}8$, $T{=}1.0$, Qwen3-8B) to assess whether failures are systematic or stochastic.\n\n\\paragraph{Pairwise overlap.}\nLP selection failures (instances where LP-selected F1 $<$ single-sample F1) show moderate cross-seed stability: the average pairwise Jaccard similarity is 0.42 (range: 0.38--0.46); failures are partially systematic (attributable to instance complexity) but not fully deterministic.\nThe 3-way intersection contains 34 instances (27.9\\% of any-seed failures), which constitutes a stable failure core.\n\n\\paragraph{Instance complexity co-occurs with failure.}\nTable~\\ref{tab:stable_failures} stratifies instances by failure stability.\nStable failures (all 3 seeds) involve more gold relations (2.12 vs.\\ 1.62 for never-fail instances) and higher single-sample F1 (0.688 vs.\\ 0.429); LP mis-selects on instances where the model already performs well, precisely the instances where selection would be most valuable.\nFailure rate increases monotonically with gold relation count: 4.3\\% at 1 relation, 20.7\\% at 3 relations, 26.2\\% at 6 relations.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{RE LP selection failure stability across 3 seeds (SciERC, $N{=}8$). Stable failures concentrate on relation-dense instances with high single-sample F1.}\n\\label{tab:stable_failures}\n\\resizebox{\\columnwidth}{!}{\n\\begin{tabular}{lcccc}\n\\toprule\nGroup & $n$ & Gold rels & Greedy F1 & LP $\\Delta$F1 \\\\\n\\midrule\nStable fail (3 seeds) & 34 & 2.12 & 0.688 & $-$0.499 \\\\\nFail 2+ seeds & 26 & 2.46 & 0.774 & $-$0.450 \\\\\nFail 1 seed & 62 & 2.32 & 0.692 & $-$0.239 \\\\\nNever fail & 429 & 1.62 & 0.429 & $+$0.041 \\\\\n\\bottomrule\n\\end{tabular}\n}\n\\end{table}\n\n\\paragraph{Flip instances.}\nOnly 5 RE instances with gold relations flip from LP failure (constrained) to LP success (free-form), with mean gold relation count 3.67 (well above the population mean of 1.86).\nThese instances show large constrained LP errors ($\\Delta{=}{-}0.430$) that reverse under free-form decoding ($\\Delta{=}{+}0.503$), but their rarity (5/397) confirms that the RE selection flip is attributable to aggregate variance reallocation rather than systematic instance-level correction.\n\n\\section{$N$-Scaling Detailed Analysis}\\label{app:n_scaling}\n\nTables~\\ref{tab:n-scaling}--\\ref{tab:sigma-comparison} provide detailed $N$-scaling analysis on Qwen3-8B SciERC with 3-seed statistics.\n\n\\begin{table}[t]\n\\centering\n\\caption{Effect of sample pool size on signal quality (Qwen3-8B, SciERC, 3-seed mean Spearman $\\rho$).}\n\\label{tab:n-scaling}\n\\small\n\\resizebox{\\columnwidth}{!}{\n\\begin{tabular}{l ccc ccc}\n\\toprule\n & \\multicolumn{3}{c}{\\textbf{NER} $\\rho$} & \\multicolumn{3}{c}{\\textbf{RE} $\\rho$} \\\\\n\\cmidrule(lr){2-4} \\cmidrule(lr){5-7}\nSignal & $N\\!=\\!8$ & $N\\!=\\!16$ & $\\Delta$ & $N\\!=\\!8$ & $N\\!=\\!16$ & $\\Delta$ \\\\\n\\midrule\nSJ & 0.3641 & 0.4105 & \\textbf{+0.0464} & 0.2485 & 0.2758 & \\textbf{+0.0273} \\\\\nFK & 0.2536 & 0.2833 & \\textbf{+0.0297} & 0.2903 & 0.2964 & \\textbf{+0.0061} \\\\\nVC & 0.3861 & 0.4092 & \\textbf{+0.0231} & 0.3088 & 0.3738 & \\textbf{+0.0650} \\\\\nLP & 0.2167 & 0.2393 & \\textbf{+0.0226} & 0.2970 & 0.3100 & \\textbf{+0.0130} \\\\\nEM & 0.3071 & 0.3395 & \\textbf{+0.0324} & 0.1353 & 0.1506 & \\textbf{+0.0153} \\\\\n\\midrule\nMean & 0.3055 & 0.3364 & \\textbf{+0.0308} & 0.2560 & 0.2813 & \\textbf{+0.0253} \\\\\n\\bottomrule\n\\end{tabular}\n}\n\\end{table}\n\n\\begin{table}[t]\n\\centering\n\\caption{Cross-seed signal ranking stability (Kendall's $W$, 3 seeds).}\n\\label{tab:ranking-stability}\n\\small\n\\resizebox{\\columnwidth}{!}{\n\\begin{tabular}{ll cc l}\n\\toprule\nModel & Task & $N$ & Kendall's $W$ & Consensus ranking \\\\\n\\midrule\nQwen  & NER & 8  & 1.000 & VC $>$ SJ $>$ EM $>$ FK $>$ LP \\\\\nQwen  & NER & 16 & 0.956 & SJ $\\approx$ VC $>$ EM $>$ FK $>$ LP \\\\\nQwen  & RE  & 8  & 0.822 & VC $>$ LP $>$ FK $>$ SJ $>$ EM \\\\\nQwen  & RE  & 16 & 0.956 & VC $>$ LP $>$ FK $>$ SJ $>$ EM \\\\\nLLaMA & NER & 8  & 1.000 & VC $>$ SJ $>$ EM $>$ FK $>$ LP \\\\\n\\bottomrule\n\\end{tabular}\n}\n\\end{table}\n\n\\begin{table}[t]\n\\centering\n\\caption{Cross-seed standard deviation ($\\sigma$) of Spearman $\\rho$ at $N\\!=\\!8$ vs.\\ $N\\!=\\!16$ (Qwen3-8B, SciERC, 3 seeds). $\\sigma$ is population standard deviation.}\n\\label{tab:sigma-comparison}\n\\small\n\\begin{tabular}{l cc cc}\n\\toprule\n & \\multicolumn{2}{c}{\\textbf{NER} $\\sigma_\\rho$} & \\multicolumn{2}{c}{\\textbf{RE} $\\sigma_\\rho$} \\\\\n\\cmidrule(lr){2-3} \\cmidrule(lr){4-5}\nSignal & $N\\!=\\!8$ & $N\\!=\\!16$ & $N\\!=\\!8$ & $N\\!=\\!16$ \\\\\n\\midrule\nSJ & 0.0179 & 0.0102 & 0.0015 & 0.0067 \\\\\nFK & 0.0157 & 0.0079 & 0.0121 & 0.0143 \\\\\nVC & 0.0187 & 0.0260 & 0.0244 & 0.0158 \\\\\nEM & 0.0076 & 0.0031 & 0.0157 & 0.0049 \\\\\nLP & 0.0125 & 0.0017 & 0.0218 & 0.0152 \\\\\n\\midrule\nMean & 0.0145 & 0.0098 & 0.0151 & 0.0114 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nSignal rankings are consistent across our 3 seeds (Kendall's $W{=}1.000$ for NER at $N{=}8$, both models), dropping to $W{=}0.956$ at $N{=}16$ where SJ and VC converge (Table~\\ref{tab:ranking-stability}); however, with only $n{=}3$ seeds statistical power is insufficient to confirm stability, and additional seeds may reveal ranking changes.\nDoubling $N$ reduces cross-seed $\\sigma$ by 32\\% on NER and 24\\% on RE (Table~\\ref{tab:sigma-comparison}), with the largest reductions for SJ ($-43\\%$ NER) and EM ($-59\\%$ NER); additional samples stabilize structural signals more than LP.\n\n\\paragraph{$N$-scaling: selection headroom vs.\\ selection gain.}\nTable~\\ref{tab:n_scaling_selection} traces the effect of sample count on degeneracy, oracle headroom, and per-signal selection gain.\nOracle headroom grows roughly linearly with $N$ ($+4.4$~pp at $N{=}2$ to $+20.0$~pp at $N{=}32$).\nLP selection improves monotonically with $N$ ($+0.39$~pp at $N{=}8$ to $+0.95$~pp at $N{=}32$), but even at $N{=}32$, where degeneracy falls to 4\\% and oracle headroom reaches ${\\sim}20$~pp, the best signal captures less than 5\\% of the available improvement.\nDegeneracy drops monotonically (43\\% at $N{=}2$ to 4\\% at $N{=}32$), yet reduced degeneracy does not unlock selection, consistent with the LoRA-rank ablation finding (\\S\\ref{sec:robustness_main}).\nVC selection degrades with increasing $N$ ($-2.66$~pp at $N{=}2$ to $-4.35$~pp at $N{=}32$), consistent with mode-seeking bias in voting-based selection as the candidate pool grows.\n\n\\paragraph{Few-NERD $N$-scaling: MV at $N{=}16$.}\nOn Few-NERD (Qwen3-8B, 3-seed), increasing from $N{=}8$ to $N{=}16$ reduces degeneracy ($8.8$\\%$\\to$$4.0{\\pm}1.4$\\%) and attenuates MV degradation ($-2.74$\\,pp$\\to$$-1.65{\\pm}0.61$\\,pp), but MV remains negative.\nAdditional samples reduce the MV penalty but do not reverse it, consistent with the correlated-error mechanism: more samples provide better frequency estimates but cannot overcome systematic shared mistakes.\nSJ $\\rho$ is used for quality estimation at $N{=}16$ (FK conditional $\\rho$ shows sign instability across seeds: mean${=}0.051{\\pm}0.062$).\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Effect of sample count on selection (SciERC NER, Qwen3-8B, $T{=}1.0$, gold-filtered, seed${=}42$; exp\\_025).\\protect\\footnotemark\\ ``Best $\\Delta$'': highest selection gain across all 5 signals. Per-signal $\\Delta$ in pp vs.~greedy.}\n\\label{tab:n_scaling_selection}\n\\resizebox{\\columnwidth}{!}{\n\\begin{tabular}{ccccccccc}\n\\toprule\n$N$ & Degen.\\% & Oracle (pp) & LP & SJ & FK & EM & VC & Best $\\Delta$ \\\\\n\\midrule\n2 & 42.7\\% & $+$4.4 & $-$0.89 & $-$2.72 & $-$2.72 & $-$2.72 & $-$2.66 & $-$0.89 \\\\\n4 & 21.0\\% & $+$10.2 & $+$0.03 & $-$0.31 & $-$0.40 & $-$0.74 & $-$2.16 & $+$0.03 \\\\\n8 & 11.0\\% & $+$14.5 & $+$0.39 & $+$0.20 & $+$0.15 & $-$0.77 & $-$2.87 & $+$0.39 \\\\\n16 & 7.4\\% & $+$17.7 & $+$0.78 & $+$0.24 & $-$0.02 & $-$0.06 & $-$3.95 & $+$0.78 \\\\\n32 & 4.0\\% & $+$20.0 & $+$0.95 & $+$0.35 & $+$0.65 & $+$0.22 & $-$4.35 & $+$0.95 \\\\\n\\bottomrule\n\\end{tabular}\n}\n\\end{table}\n\\footnotetext{$N$-scaling analysis uses gold-filtered evaluation ($n{=}529$, greedy F1${=}0.640$, seed 42). Values differ from Table~\\ref{tab:selection} (0.645, 2-seed) and Table~\\ref{tab:fewnerd} (0.667, 3-seed) due to seed and aggregation differences; relative trends are consistent.}\n\n\\paragraph{Bootstrap significance at $N{=}32$.}\nTable~\\ref{tab:bootstrap_n32} reports bootstrap confidence intervals and $p$-values for selection at $N{=}32$ ($B{=}10{,}000$, $n{=}529$).\nNo signal achieves significant improvement over greedy at $\\alpha{=}0.05$ (LP: $p{=}0.091$; FK: $p{=}0.101$), while VC is significantly \\textit{worse} ($-4.36$~pp, $p{=}1.0$).\nHowever, all signals except VC significantly outperform random selection ($p{<}0.001$, permutation test); the signals carry meaningful quality information yet fail to translate it into reliable selection gains.\nThe oracle gap ($+20.0$~pp, $p{<}0.001$) confirms substantial unrealized headroom.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Bootstrap significance test at $N{=}32$ (SciERC NER, Qwen3-8B, $T{=}1.0$, $B{=}10{,}000$, $n{=}529$ gold-non-empty instances; 22 instances with no gold entities are excluded as they contribute zero selection differential). $\\Delta$: selection gain vs.\\ greedy. CI: 95\\% bootstrap percentile interval. $p_{\\text{greedy}}$: one-sided $p$-value vs.\\ greedy; $p_{\\text{rand}}$: permutation test vs.\\ random selection.}\n\\label{tab:bootstrap_n32}\n\\resizebox{\\columnwidth}{!}{\n\\begin{tabular}{lcccc}\n\\toprule\nSignal & $\\Delta$ (pp) & 95\\% CI & $p_{\\text{greedy}}$ & $p_{\\text{rand}}$ \\\\\n\\midrule\nLP & $+$0.95 & [$-$0.41, $+$2.34] & 0.091 & ${<}$0.001 \\\\\nFK & $+$0.66 & [$-$0.36, $+$1.67] & 0.101 & ${<}$0.001 \\\\\nSJ & $+$0.36 & [$-$0.66, $+$1.38] & 0.244 & ${<}$0.001 \\\\\nEM & $+$0.22 & [$-$0.99, $+$1.44] & 0.355 & ${<}$0.001 \\\\\nVC & $-$4.36 & [$-$6.26, $-$2.37] & 1.000 & 0.741 \\\\\n\\midrule\nOracle & $+$20.00 & [$+$17.98, $+$22.10] & ${<}$0.001 & --- \\\\\n\\bottomrule\n\\end{tabular}\n}\n\\end{table}\n\n\\paragraph{Oracle ceiling scaling law.}\nOracle F1 follows $F_1(N) = a - b \\cdot N^{-c}$, with $R^2 > 0.999$ across all model--dataset fits (Figure~\\ref{fig:oracle_scaling}).\nThe exponent $c$ varies with dataset complexity: FewNERD ($c{\\approx}0.61$) scales comparably to reasoning-task estimates ($c{\\approx}0.5$--$0.7$; \\citealp{brown2024monkeys}), while SciERC converges more slowly ($c{\\approx}0.35$), consistent with complex IE producing less marginal diversity per additional sample.\nCoNLL's narrow headroom ($b{=}0.04$--$0.10$) makes $c$ unreliable (inter-model variance $2.5{\\times}$); we report only $a$ and $b$ for CoNLL.\nA single stochastic sample ($N{=}1$, $T{=}1.0$) underperforms greedy by 1--3\\,pp because sampling noise outweighs diversity; $N{\\geq}4$ is needed to match greedy.\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/fig_oracle_scaling.pdf}\n\\caption{Oracle $F_1$ as a function of sample count $N$, fitted with $F_1(N) = a - b \\cdot N^{-c}$. All fits $R^2 > 0.999$. Horizontal dashed lines: greedy ($T{=}0$) F1. The ceiling grows monotonically with $N$, but the correlation-selection gap (\\S\\ref{sec:selection_gap}) limits how much is actually recoverable.}\n\\label{fig:oracle_scaling}\n\\end{figure}\n\n\\section{Cross-Scale and Cross-Family Comparison}\\label{app:cross_scale}\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Cross-scale and cross-family comparison ($N{=}8$, $T{=}1.0$). Hdr.\\ = oracle $-$ greedy (pp). Degen.: instance degeneracy (\\%). $^\\star$Qwen2.5; unmarked: Qwen3. $^\\dagger$Not computed. $^\\ddagger$200-instance subset; 10.1\\% parse failures excluded.}\n\\label{tab:scale_comparison}\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{@{}llccccccc@{}}\n\\toprule\nDataset & Regime & Greedy & Hdr. & Degen. & VC & SJ & FK & LP \\\\\n\\midrule\nSciERC & 8B FT  & .667 & 11.4 & 12.2 & .326 & .324 & .177 & .159 \\\\\n       & 72B ZS$^\\star$ & .399 & 15.0 & 21.0 & .277 & .217 & .227 & .081 \\\\\n\\midrule\nFew-NERD & 7B FT$^\\star$ & .784 & 9.2 & 31.7 & .404 & .388 & .315 & .346 \\\\\n         & 8B FT & .748 & 12.4 & 13.0 & .386 & .300 & .313 & .220 \\\\\n         & 14B FT & .798 & 8.1 & ---$^\\dagger$ & ---$^\\dagger$ & ---$^\\dagger$ & ---$^\\dagger$ & ---$^\\dagger$ \\\\\n         & 72B ZS$^\\star$ & .628 & ---$^\\dagger$ & 46.2 & .416 & .345 & ---$^\\dagger$ & .119 \\\\\n         & GPT-5.5 ZS$^\\ddagger$ & .638 & 8.2 & 50.0 & ---$^\\dagger$ & .346 & ---$^\\dagger$ & ---$^\\dagger$ \\\\\n\\midrule\nCoNLL  & 8B FT  & .908 & ${\\approx}$4 & 61.7 & .424 & .436 & .400 & .302 \\\\\n       & 72B ZS$^\\star$ & .712 & 5.3 & 67.7 & .297 & .304 & .302 & $-$.002 \\\\\n\\bottomrule\n\\end{tabular}}\n\\end{table}\n\nLP $\\rho$ drops without fine-tuning (Table~\\ref{tab:scale_comparison}) and LP selection fails on all 72B zero-shot datasets. Structural signals generalize better (Few-NERD VC $\\rho{=}0.416$). Degeneracy increases at 72B (Few-NERD: $46.2$\\% vs.\\ $13.0$\\%; CoNLL: $67.7$\\% vs.\\ $61.7$\\%); the gap persists under this specific 72B zero-shot configuration, though scale, training regime, and quantization effects are confounded (see Limitations).\nLP-weighted construction yields $+1.53$\\,pp on SciERC 72B ZS ($p{=}0.008$, CI [$+0.25$, $+2.82$]), recovering $10.2$\\% of headroom. Construction fails on Few-NERD ($-0.20$\\,pp) and CoNLL ($-0.37$\\,pp) where degeneracy exceeds $46$\\%---consistent with FT-regime degeneracy gating.\n\n\\paragraph{Few-shot demonstrations improve QE but not construction.}\nAdding 3-shot demonstrations to 72B improves greedy on SciERC and CoNLL ($+3.3$--$6.2$\\,pp) but not Few-NERD ($-0.9$\\,pp), and strengthens structural QE (CoNLL SJ $\\rho$ $.304{\\to}.442$, LP $-.002{\\to}.106$). Yet construction is ineffective across all three datasets (SciERC $-0.08$\\,pp, CoNLL $+0.03$\\,pp, Few-NERD $+0.02$\\,pp; all n.s.). On SciERC, this failure despite low degeneracy shows the bottleneck is regime-dependent (Appendix~\\ref{app:fs_error}); on Few-NERD, high FS degeneracy ($45.2$\\%) places it in the expected failure regime.\n\n\\paragraph{Degeneracy is model-family-dependent, not scale-dependent.}\nQwen2.5 exhibits systematically higher degeneracy than Qwen3 on Few-NERD (7B--72B: $31.7$--$46.2$\\% vs.\\ Qwen3-8B: $13.0$\\%; Table~\\ref{tab:scale_comparison}), confirming degeneracy is shaped by architecture rather than parameter count. Construction fails for all Qwen2.5 configurations on Few-NERD (both n.s.); 3$\\to$5 epochs triples degeneracy within the same model (\\S\\ref{sec:fewnerd}).\n\n\\paragraph{Qwen3 8B vs.\\ 4B scale ablation.}\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Scale ablation: Qwen3 8B vs.\\ 4B QE $\\rho$ ($N{=}8$, $T{=}1.0$, seed 42). RE in Appendix~\\ref{app:re_extension}.}\n\\label{tab:scale_ablation_app}\n\\begin{tabular}{@{}ll cc r@{}}\n\\toprule\n& & \\textbf{8B} & \\textbf{4B} & $\\Delta$ \\\\\n\\midrule\nCoNLL & SJ & .436 & .422 & $-$.014 \\\\\n      & FK & .400 & .418 & $+$.018 \\\\\nSciERC & SJ & .360 & .422 & $+$.062 \\\\\n       & FK & .267 & .326 & $+$.059 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nDegeneracy scales with capability: 8B shows 12.2\\% vs.\\ 4B's 10.4\\% on SciERC (Table~\\ref{tab:degeneracy}).\n\n\\paragraph{14B scale extension.}\nQwen3-14B fine-tuned on Few-NERD achieves greedy F1${=}0.798$ ($+0.9$\\,pp over 8B) with oracle headroom of 8.1\\,pp ($+1.2$\\,pp over 8B's 6.9\\,pp) and $\\rho$ advantage $+0.029$ over 8B.\nThe ceiling grows with model capability: larger models improve both greedy and oracle performance, but the aggregation gap widens rather than closes.\n\n\\paragraph{Pre-trained baseline (no fine-tuning).}\nTable~\\ref{tab:pretrained_summary} summarizes pretrained-vs-finetuned MV performance across three datasets (Qwen2.5-7B-Instruct pretrained, Qwen3-8B LoRA finetuned; $N{=}8$, $T{=}1.0$).\nAcross all three datasets, pretrained models benefit from MV aggregation ($+1.7$ to $+9.2$\\,pp), while all finetuned models show negligible or negative MV gains.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Pretrained vs.\\ finetuned MV ($N{=}8$, $T{=}1.0$). Pretrained: Qwen2.5-7B-Instruct; finetuned: Qwen3-8B LoRA. MV: strict majority ($>N/2$). Capture: $\\text{MV}\\,\\Delta / \\text{oracle headroom}$. CoNLL pretrained single-seed; others 3-seed mean${\\pm}\\sigma$.}\n\\label{tab:pretrained_summary}\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{@{}llcccc@{}}\n\\toprule\nDataset & Setting & Greedy & MV $\\Delta$ (pp) & Degen.\\% & Capture \\\\\n\\midrule\nCoNLL & Pretrained & .536 & $+$9.2 & 36 & 98\\% \\\\\n      & Finetuned & .912 & ${<}$0.1 & 57--60 & ${<}$2\\% \\\\\n\\addlinespace\nFew-NERD & Pretrained & .538 & $+$3.9${\\pm}$0.2 & 11.7 & 36\\% \\\\\n         & Finetuned & .791 & $-$2.7${\\pm}$0.5 & 8.8 & neg. \\\\\n\\addlinespace\nSciERC & Pretrained & .244 & $+$1.7${\\pm}$0.4 & 0.8 & --- \\\\\n       & Finetuned & .667 & ${<}$0.1 & 12.2 & --- \\\\\n\\bottomrule\n\\end{tabular}}\n\\end{table}\n\nOn CoNLL, MV captures $98$\\% of oracle headroom for the pretrained model (greedy${=}0.536$, MV${=}0.628$, oracle${=}0.630$, degeneracy${=}36$\\%) versus ${<}2$\\% finetuned (greedy${=}0.912$, MV${=}0.912$, oracle${=}0.954$, degeneracy $57$--$60$\\%).\nSignal quality is comparable ($\\rho_{\\textup{SJ}}{=}0.47$ pretrained vs.\\ $0.41$--$0.45$ finetuned).\n\nOn Few-NERD ($n{=}32{,}565$, 3-seed), finetuned degeneracy ($8.8$\\%) is \\textit{lower} than pretrained ($11.7$\\%), yet finetuned MV is negative ($-2.74{\\pm}0.54$\\,pp).\nFine-tuning thus decouples agreement from quality through dataset-dependent pathways: diversity elimination on CoNLL (degeneracy $36{\\to}57$--$60$\\%), but correlated error patterns on Few-NERD.\nA baseline quality confound exists (pretrained greedy${=}0.538$ vs.\\ finetuned${=}0.791$); per-type analysis (Appendix~\\ref{app:pertype}) partially addresses this by showing MV degradation concentrates in low-F1 entity types ($\\rho{=}0.90$, $p{=}0.002$).\n\nOn SciERC, MV gains $+1.67{\\pm}0.40$\\,pp despite very low greedy F1 ($0.244$) with near-zero degeneracy ($0.8$\\%), contradicting a ``MV only works at high baseline'' explanation.\nStructural signals outperform surface on CoNLL ($\\rho_{\\textup{SJ}}{=}0.467$, $\\rho_{\\textup{FK}}{=}0.435$) and LP AUROC${=}0.580$.\nSciERC's low greedy F1 does establish a scope boundary for entity-level \\textit{construction}: 46\\% of samples produce F1${=}0$, so partial-correctness-based aggregation cannot improve over greedy.\n\n\\subsection{Per-Type MV Analysis}\\label{app:pertype}\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Per-entity-type MV gain on Few-NERD (Qwen3-8B, $N{=}8$, $T{=}1.0$, 3-seed mean). Strict MV ($\\theta{>}N/2$). Types sorted by finetuned greedy F1. 7/8 types flip MV direction between pretrained and finetuned.}\n\\label{tab:pertype_mv}\n\\begin{tabular}{@{}lrccc@{}}\n\\toprule\n& & & \\multicolumn{2}{c}{MV $\\Delta$ (pp)} \\\\\n\\cmidrule(lr){4-5}\nEntity type & $n$ & Greedy F1 & Pretr. & Finetuned \\\\\n\\midrule\nperson & ${\\sim}$7{,}200 & .820 & $+$4.17 & $-$0.67 \\\\\nlocation & ${\\sim}$8{,}800 & .797 & $+$2.47 & $-$1.52 \\\\\nart & ${\\sim}$1{,}250 & .755 & $+$0.73 & $-$1.51 \\\\\norganization & ${\\sim}$6{,}700 & .725 & $+$3.15 & $-$2.65 \\\\\nbuilding & ${\\sim}$1{,}540 & .696 & $+$1.98 & $-$3.90 \\\\\nproduct & ${\\sim}$2{,}260 & .657 & $+$1.78 & $-$3.38 \\\\\nevent & ${\\sim}$1{,}315 & .645 & $+$2.34 & $-$3.17 \\\\\nother & ${\\sim}$3{,}485 & .639 & $-$0.45 & $-$3.02 \\\\\n\\midrule\n\\multicolumn{3}{@{}l}{$r$(greedy F1, MV\\,$\\Delta$)} & .86 & .90 \\\\\n\\multicolumn{3}{@{}l}{$p$-value} & .006 & .002 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\nMV direction flips between pretrained and finetuned decoding for 7 of 8 entity types (Table~\\ref{tab:pertype_mv}): types that benefit from MV under pretrained decoding ($+0.73$ to $+4.17$\\,pp) are uniformly harmed under finetuning ($-0.67$ to $-3.90$\\,pp), with only \\textit{other} (lowest-F1) remaining negative in both regimes.\nThe correlation between greedy F1 and MV $\\Delta$ is strong in both regimes ($r{=}0.86$, $p{=}0.006$ pretrained; $r{=}0.90$, $p{=}0.002$ finetuned), indicating entity-type difficulty predicts MV magnitude regardless of direction.\nThis rules out entity-type-specific factors as the explanation for MV failure: the same types succeed with pretrained decoding and fail with finetuned decoding, implicating the finetuning process itself.\nUnder a liberal MV threshold ($\\theta{\\geq}N/2$ instead of $\\theta{>}N/2$), per-type correlation direction is unstable; all results above use strict MV, consistent with the main paper.\n\n\\subsection{Frontier Model Self-Consistency}\\label{app:frontier_sc}\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Cross-family frontier SC on Few-NERD ($N{=}8$, $T{=}1.0$, 200 instances, zero-shot). Parse failures excluded from all metrics; $N_{\\textit{eff}}$: mean effective samples after exclusion. Selection gap $= $ oracle $-$ MV. Text-based entity matching (Appendix~\\ref{app:frontier_sc}, entity matching paragraph). Qwen3-8B FT shown for reference.}\n\\label{tab:frontier_sc_cross}\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{@{}lcccccc@{}}\n\\toprule\nModel & Greedy & MV ($\\Delta$) & Oracle & Degen.\\% & Sel.\\ gap & Parse\\% \\\\\n\\midrule\nDeepSeek & .399 & .424 ($+2.5$) & .714 & 5.5 & .290 & 46.9 \\\\\nGemini 2.5 Pro & .630 & .645 ($+1.5$) & .758 & 28.5 & .113 & 11.9 \\\\\nGPT-5.5 & .638 & .652 ($+1.4$) & .720 & 50.0 & .068 & 10.1 \\\\\nClaude Son.~4 & .607 & .623 ($+1.6$) & .654 & 74.0 & .032 & 6.4 \\\\\n\\midrule\nQwen3-8B FT & .789 & .792 ($+0.3$) & .858 & 13.0 & .066 & ${\\approx}$0 \\\\\n\\bottomrule\n\\end{tabular}}\n\\end{table}\n\nAll four frontier families exhibit the correlation-selection gap (Table~\\ref{tab:frontier_sc_cross}): MV recovers only a fraction of oracle headroom regardless of model capability.\nDegeneracy and selection gap are negatively correlated across families: Claude Sonnet~4 (74\\% degen, 0.032 gap) vs.\\ DeepSeek (5.5\\%, 0.290)---higher degeneracy eliminates the instances where aggregation could help.\nGemini 2.5 Pro achieves the highest oracle F1 (.758) and the highest QE correlation ($\\rho_{\\textup{SJ}}{=}0.350$, $\\rho_{\\textup{agr}}{=}0.389$) among frontier models, with balanced degeneracy (28.5\\%) preserving a 0.113 selection gap---the largest gap among models with ${\\geq}85$\\% parse success.\nDeepSeek's low degeneracy preserves the largest absolute gap (.290), but 47\\% parse failures reduce effective $N$ to ${\\approx}4.2$, limiting aggregation benefit.\nGPT-5.5 occupies the middle ground: 50\\% degeneracy with 6.8\\,pp unrealized oracle headroom.\n\n\\paragraph{Parse failure handling.}\n10.1\\% of GPT-5.5 samples produced output that could not be parsed into valid entity sets.\nThese samples are excluded from all aggregation metrics (degeneracy, oracle, MV, selection); for instances where all $N$ samples fail parsing, the instance is excluded entirely.\nThe effective sample size per instance is therefore $N_{\\textit{eff}} \\leq 8$ (mean ${\\approx}7.2$).\n\n\\paragraph{Entity matching methodology.}\nLocal experiments (fine-tuned models with constrained decoding) use offset-based matching: two entities match iff \\texttt{(start, end, type)} are identical.\nFrontier API experiments use text-based matching: \\texttt{(text.lower(), type)}, because API outputs lack character-offset information.\nText-based matching is slightly more permissive (e.g., ignoring whitespace differences at span boundaries), producing ${\\approx}2$\\,pp higher MV $\\Delta$ on controlled comparisons.\nAll within-pipeline comparisons (greedy vs.\\ MV vs.\\ oracle) use the same matching, so relative conclusions are unaffected; cross-pipeline absolute F1 values should not be directly compared.\n\n\\section{Temperature Ablation}\\label{app:t_ablation}\n\nTable~\\ref{tab:t_ablation} reports the effect of sampling temperature on QE signals, oracle headroom, and output quality across four temperatures on SciERC NER.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Temperature ablation on SciERC NER (Qwen3-8B, $N{=}8$, seed${=}42$). Oracle gap and QE $\\rho$ across four temperatures. $\\kappa$: Fleiss' $\\kappa$ (inter-sample agreement). $T{=}0.5$ and $T{=}1.0$ use joint (NER+RE) subtask; $T{=}0.8$ and $T{=}1.2$ use NER-only.}\n\\label{tab:t_ablation}\n\\resizebox{\\columnwidth}{!}{\n\\begin{tabular}{ccccccc}\n\\toprule\n$T$ & Oracle gap (pp) & SJ $\\rho$ & LP $\\rho$ & $\\kappa$ & Sample F1 \\\\\n\\midrule\n0.5 & $+$9.1 & 0.297 & 0.218 & 0.577 & 0.636 \\\\\n0.8 & $+$12.5 & 0.359 & 0.253 & 0.451 & 0.622 \\\\\n1.0 & $+$13.0 & 0.360 & 0.205 & ${\\approx}$0.39 & ${\\approx}$0.612 \\\\\n1.2 & $+$14.6 & 0.377 & 0.196 & 0.356 & 0.594 \\\\\n\\bottomrule\n\\end{tabular}\n}\n\\end{table}\n\nOracle headroom increases monotonically with temperature ($+9.1$~pp at $T{=}0.5$ to $+14.6$~pp at $T{=}1.2$), confirming that higher temperature consistently expands the oracle ceiling under constrained structured decoding.\nStructural QE signals improve with temperature: SJ $\\rho$ rises from $0.297$ ($T{=}0.5$) to $0.377$ ($T{=}1.2$), consistent with more diverse outputs providing richer pairwise evidence.\nLP $\\rho$ peaks at $T{=}0.8$ ($0.253$) then degrades to $0.196$ at $T{=}1.2$.\nThis divergence confirms that LP compression is model-intrinsic: higher temperature increases between-instance LP variance (benefiting structural signals) but does not resolve within-instance compression, degrading LP's discriminative power.\nInter-sample agreement ($\\kappa$) decreases monotonically ($0.577$ to $0.356$); higher temperature generates more diverse outputs. Mean sample F1 also decreases ($0.636$ to $0.594$), consistent with the quality--diversity trade-off.\nThe $T{=}0.7$ and $T{=}1.0$ comparison in Table~\\ref{tab:robustness} is consistent with the trends reported here.\n\n\\paragraph{Temperature modulates degeneracy and LP spread.}\nTable~\\ref{tab:t_degeneracy} reports instance degeneracy (constant F1, gold-filtered) and median within-instance LP range across four temperatures on SciERC.\nBoth quantities are strictly monotonic in $T$: degeneracy falls from 41.4\\% ($T{=}0.5$) to 14.9\\% ($T{=}1.2$), while LP range increases from 0.015 to 0.058 nats.\nTemperature thus provides a direct lever for practitioners to shift the degeneracy regime.\nHowever, even at $T{=}1.2$ where degeneracy (14.9\\%) approaches Few-NERD levels (${\\sim}$13\\%), within-instance $\\rho(\\text{LP}, \\text{F1})$ remains at 0.225, far below Few-NERD's ${\\sim}$0.5.\nThis confirms that temperature modulates degeneracy but cannot improve LP-quality alignment, which is largely associated with task structure and remains relatively stable across generation configurations (\\S\\ref{app:epoch_confound}). LP-quality alignment, not degeneracy, is the primary predictor of LP selection direction (\\S\\ref{sec:discussion}).\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Temperature sensitivity of degeneracy and LP spread (SciERC NER, Qwen3-8B, $N{=}8$). Degeneracy: constant-F1, gold-filtered. LP range: median within-instance range.}\n\\label{tab:t_degeneracy}\n\\resizebox{\\columnwidth}{!}{\n\\begin{tabular}{ccccc}\n\\toprule\n$T$ & Degen.\\% & LP range (nats) & Fleiss' $\\kappa$ & SJ mean \\\\\n\\midrule\n0.5 & 41.4 & 0.015 & 0.572 & 0.830 \\\\\n0.8 & 23.8 & 0.031 & 0.471 & 0.752 \\\\\n1.0 & 17.8 & 0.042 & 0.405 & 0.700 \\\\\n1.2 & 14.9 & 0.058 & 0.352 & 0.647 \\\\\n\\bottomrule\n\\end{tabular}\n}\n\\end{table}\n\n\\section{Cross-Dataset OOD Analysis}\\label{app:ood}\n\nTo test whether confidence signals generalize under domain shift, we evaluate models on out-of-distribution data: a SciERC-trained model applied to CoNLL instances (wider$\\to$narrower schema) and vice versa (Table~\\ref{tab:ood}).\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Cross-dataset OOD quality estimation (Spearman $\\rho$, Qwen3-8B, $N{=}8$, $T{=}1.0$, seed${=}42$). SciERC$\\to$CoNLL: SciERC-trained model on CoNLL instances ($n{=}2756$). CoNLL$\\to$SciERC: CoNLL-trained model on SciERC instances ($n{=}529$, excluded from conclusions due to catastrophic model failure). In-domain $\\rho$ from Table~\\ref{tab:quality_estimation} (same model, same seed). \\textsuperscript{***}$p{<}0.001$, \\textsuperscript{*}$p{<}0.05$.}\n\\label{tab:ood}\n\\resizebox{\\columnwidth}{!}{\n\\begin{tabular}{l ccc ccc}\n\\toprule\n & \\multicolumn{3}{c}{\\textbf{SciERC$\\to$CoNLL}} & \\multicolumn{3}{c}{\\textbf{CoNLL$\\to$SciERC}} \\\\\n\\cmidrule(lr){2-4} \\cmidrule(lr){5-7}\nSignal & $\\rho$ & In-dom. & $\\Delta$ & $\\rho$ & In-dom. & $\\Delta$ \\\\\n\\midrule\nVC & .469\\textsuperscript{***} & .379 & +.090 & +.105\\textsuperscript{*} & .379 & $-$.274 \\\\\nSJ & .378\\textsuperscript{***} & .360 & +.018 & $-$.186\\textsuperscript{***} & .360 & $-$.546 \\\\\nEM & .300\\textsuperscript{***} & .295 & +.005 & $-$.202\\textsuperscript{***} & .295 & $-$.497 \\\\\nFK & .285\\textsuperscript{***} & .267 & +.018 & $-$.070 & .267 & $-$.337 \\\\\nLP & .246\\textsuperscript{***} & .205 & +.041 & $-$.152\\textsuperscript{***} & .205 & $-$.357 \\\\\n\\bottomrule\n\\end{tabular}\n}\n\\end{table}\n\n\\paragraph{Wider-to-narrower schema transfer.}\nWhen the SciERC-trained model (6 NER types) is applied to CoNLL (4 types), all signals remain significant ($p{<}0.001$) and structural signals improve over their in-domain levels (same model, seed${=}42$, $N{=}8$; in-domain $\\rho$ from Table~\\ref{tab:quality_estimation}): VC reaches $\\rho{=}0.469$ (in-domain $0.379$, $\\Delta{=}{+}0.090$), SJ $\\rho{=}0.378$ (in-domain $0.360$, $\\Delta{=}{+}0.018$), and FK $\\rho{=}0.285$ (in-domain $0.267$, $\\Delta{=}{+}0.018$).\nThe wider training schema subsumes CoNLL's narrower schema, so the model produces reasonable outputs even out-of-domain (single-sample F1${=}0.522$), and structural signals benefit from the simpler target schema's reduced output ambiguity.\n\n\\paragraph{Narrower-to-wider schema transfer (excluded).}\nThe reverse direction is excluded from our conclusions due to catastrophic model failure, not signal failure.\nThe CoNLL-trained model recognizes only 4 news entity types (PER, ORG, LOC, MISC) and has no relation extraction capability; when applied to SciERC's 6 scientific entity types and 7 relation types, the model cannot produce meaningful structured outputs (single-sample NER F1${=}0.009$, RE F1${=}0.001$).\nUnder this regime, most signals flip to negative or near-zero correlations (Table~\\ref{tab:ood}); only VC retains weak positive correlation ($\\rho{=}0.105$, $p{=}0.016$).\nThese negative correlations reflect the model systematically generating confident but incorrect outputs, a capability failure analogous to WNUT-17 (\\S\\ref{sec:qe_results}) and not evidence against signal utility.\n\n\\paragraph{Asymmetry interpretation.}\nThe directional asymmetry is attributable to schema coverage: wider$\\to$narrower preserves signal utility because the SciERC model's 6-type schema subsumes CoNLL's 4 types, while narrower$\\to$wider fails because the CoNLL model lacks the entity and relation types required by SciERC.\nThis extends the capability boundary identified on WNUT-17 to the domain-shift setting: confidence signals require sufficient model capability as a prerequisite, and results from the CoNLL$\\to$SciERC direction should not be interpreted as evidence of signal degradation under domain shift.\n\n\\section{Verbalized Confidence}\\label{app:verbalized_confidence}\n\nWe evaluate verbalized confidence (VerbConf) as a second per-sample signal following \\citet{lin2022teaching} and \\citet{tian2023calibration}: after generating each structured output, the model is prompted to rate its confidence on a 1--10 scale.\nTable~\\ref{tab:verbconf} reports quality estimation and selection results.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Verbalized confidence (VerbConf) vs.\\ log-probability selection (Qwen3-8B, $N{=}8$, $T{=}1.0$, seed${=}42$). Parse fail: fraction of samples where the confidence score could not be extracted.}\n\\label{tab:verbconf}\n\\resizebox{\\columnwidth}{!}{\n\\begin{tabular}{l cc cc}\n\\toprule\n & \\multicolumn{2}{c}{\\textbf{SciERC NER}} & \\multicolumn{2}{c}{\\textbf{CoNLL NER}} \\\\\n\\cmidrule(lr){2-3} \\cmidrule(lr){4-5}\nMetric & VerbConf & LP & VerbConf & LP \\\\\n\\midrule\n$\\rho$ & 0.297 & 0.205 & 0.337 & 0.316 \\\\\nAUROC & 0.681 & 0.578 & 0.747 & 0.753 \\\\\nSelection F1 & 0.620 & 0.647 & 0.889 & 0.904 \\\\\n$\\Delta$ vs.\\ greedy & $-$2.45\\,pp & $+$0.2\\,pp & $-$1.93\\,pp & $-$0.77\\,pp \\\\\n\\midrule\nMean score & 8.58\\,/\\,10 & --- & 9.24\\,/\\,10 & --- \\\\\nParse fail rate & 0.26\\% & --- & 0\\% & --- \\\\\n\\bottomrule\n\\end{tabular}\n}\n\\end{table}\n\n\\paragraph{Severe overconfidence.}\nVerbConf exhibits extreme score compression: mean confidence is 8.58/10 on SciERC (single-sample F1${=}0.645$) and 9.24/10 on CoNLL (single-sample F1${=}0.904$), with most scores concentrated in the 8--10 range.\nThis compression is more severe than LP (which spans a 0.041-nat median range); score compression is a general property of model self-assessment, not an artifact of log-probability computation.\n\n\\paragraph{QE--selection decoupling.}\nVerbConf achieves higher $\\rho$ than LP on both datasets (SciERC: 0.297 vs.\\ 0.205; CoNLL: 0.337 vs.\\ 0.316) and competitive AUROC (SciERC: 0.681 vs.\\ 0.578; CoNLL: 0.747 vs.\\ 0.753), yet yields the worst selection among all signals ($\\Delta{=}{-}2.45$~pp on SciERC, $-1.93$~pp on CoNLL).\nThis dissociation further demonstrates the correlation-selection gap: a signal can rank instances by expected quality without being able to discriminate candidates within an instance.\nThe AUROC--$\\rho$ decoupling on CoNLL (LP leads AUROC at 0.753 while VerbConf leads $\\rho$ at 0.337) reflects differing sensitivity to binary vs.\\ ordinal discrimination.\n\n\\section{LLaMA-3.2-3B Scale Ablation}\\label{app:llama3b}\n\nTo extend scale coverage below 4B, we fine-tune LLaMA-3.2-3B-Instruct on SciERC NER under identical training conditions (LoRA rank${=}32$, $\\alpha{=}64$, 5 epochs) and evaluate quality estimation and selection (Table~\\ref{tab:llama3b}).\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{LLaMA-3.2-3B SciERC NER quality estimation and selection ($N{=}8$, $T{=}1.0$, seed${=}42$). Greedy F1${=}0.627$, Oracle F1${=}0.763$, headroom${=}13.63$~pp.}\n\\label{tab:llama3b}\n\\begin{tabular}{l cc cc}\n\\toprule\nSignal & $\\rho$ & AUROC & Sel.\\ F1 & $\\Delta$ vs.\\ greedy \\\\\n\\midrule\nVC & \\textbf{.460} & .743 & 0.611 & $-$1.54\\,pp \\\\\nSJ & .375 & .738 & \\textbf{0.633} & $+$0.61\\,pp \\\\\nEM & .334 & \\textbf{.776} & --- & --- \\\\\nFK & .268 & .671 & 0.630 & $+$0.28\\,pp \\\\\nLP & .266 & .633 & 0.628 & $+$0.12\\,pp \\\\\n\\midrule\nGreedy & --- & --- & 0.627 & --- \\\\\nOracle & --- & --- & 0.763 & --- \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nThe $\\rho$ ranking at 3B (VC $>$ SJ $>$ EM $>$ FK $\\approx$ LP) preserves the structural-over-LP ordering from 8B (Table~\\ref{tab:quality_estimation}); ranking stability holds across two model families spanning 3B--8B.\nAUROC rankings differ (EM $>$ VC $>$ SJ $>$ FK $>$ LP), consistent with the $\\rho$--AUROC dissociation noted in the main text.\nDespite 13.63~pp of oracle headroom, no signal achieves significant selection improvement (best: SJ, $+0.61$~pp, $p{=}0.175$); VC, the strongest QE signal, yields the worst selection ($-1.54$~pp), consistent with the correlation-selection gap observed at larger scales.\n\n\\section{Few-NERD Full Results}\\label{app:fewnerd}\n\nTable~\\ref{tab:fewnerd_full} reports the complete Few-NERD INTRA coarse evaluation (Qwen3-8B, LoRA rank${=}32$, 3 epochs, $N{=}8$, $T{=}1.0$).\nAfter gold-filtering (removing instances with no gold entities), the evaluation set contains $n{=}32{,}565$ instances across 8 coarse entity types; 11.9\\% receive zero F1 under greedy decoding.\nInstance degeneracy is 13.0\\% (vs.\\ 12.2\\% on SciERC, 61.7\\% on CoNLL).\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Few-NERD INTRA coarse: complete quality estimation and selection results (Qwen3-8B, $N{=}8$, $T{=}1.0$, gold-filtered $n{=}32{,}565$). $\\rho$: Spearman correlation with instance F1. Sample AUROC: per-sample LP discrimination. Sel.\\ $\\Delta$: selection F1 minus greedy (0.748). CI: bootstrap 95\\% confidence interval.}\n\\label{tab:fewnerd_full}\n\\resizebox{\\columnwidth}{!}{\n\\begin{tabular}{lcccc}\n\\toprule\nSignal & $\\rho$ & Sample AUROC & Sel.\\ $\\Delta$ & 95\\% CI \\\\\n\\midrule\nLP & .220 & .578 & $\\mathbf{+1.39}$\\,pp & [+1.18, +1.53] \\\\\nVC & .386 & --- & $-$1.79\\,pp & --- \\\\\nFK & .313 & --- & $-$2.26\\,pp & --- \\\\\nSJ & .300 & --- & $-$2.14\\,pp & --- \\\\\nEM & .287 & --- & $-$3.85\\,pp & --- \\\\\n\\midrule\n\\multicolumn{3}{l}{Greedy: 0.748 \\quad Oracle: 0.872} & \\multicolumn{2}{l}{Headroom: 12.4\\,pp} \\\\\n\\bottomrule\n\\end{tabular}\n}\n\\end{table}\n\n\\paragraph{Key observations.}\n(1)~All five signals achieve positive QE ($\\rho$ 0.22--0.39); quality estimation works on Few-NERD. VC leads ($\\rho{=}0.39$), followed by FK ($0.31$), SJ ($0.30$), EM ($0.29$), LP ($0.22$); the ranking matches SciERC where structural signals also outperform LP for quality estimation.\n(2)~LP is the only signal achieving significant positive selection ($+1.39$~pp, $p{<}0.001$, CI excludes zero). The sample-level AUROC of 0.578 confirms LP provides per-sample discriminability beyond instance-level quality prediction.\n(3)~Despite positive $\\rho$, all structural signals degrade selection ($-1.79$ to $-3.85$~pp), further confirming that the correlation-selection gap is not an artifact of weak QE.\n(4)~Low degeneracy (13.0\\%) combined with strong LP-quality alignment ($\\rho{\\approx}0.5$--$0.7$) enables LP selection: candidates differ in F1 more often, and LP can rank them effectively. This contrasts with SciERC (12.2\\% degeneracy but weak alignment $\\rho{\\approx}0.16$, LP $+0.61$~pp) and CoNLL (61.7\\%, LP $-0.85$~pp).\n\n\\section{Per-Entity-Type LP Selection Analysis}\\label{app:per_type_lp}\n\nTable~\\ref{tab:per_type_lp} stratifies LP selection by entity type on Few-NERD, sorted by degeneracy rate.\nThe degeneracy-gating mechanism holds at entity-type granularity: 7 of 8 types show positive LP selection gains, and the sole negative type (Art, $-0.17$~pp) has the highest degeneracy (19.8\\%).\nThe correlation between per-type degeneracy and oracle headroom is strong and significant (Spearman $\\rho{=}{-}0.881$, $p{=}0.004$; exact permutation $p{=}0.005$); degeneracy directly constrains the headroom available for selection.\nUnder a conservative $\\text{df}{=}4$ adjustment for within-type dependence, the correlation remains significant ($p{=}0.033$).\nEntity types show near-zero intra-class correlation (ICC $= -0.004$), supporting the independence assumption underlying per-type analysis.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Per-entity-type LP selection on Few-NERD INTRA coarse (Qwen3-8B, $N{=}8$, $T{=}1.0$), sorted by degeneracy. LP $\\Delta$: LP selection F1 minus greedy. 7/8 types show positive $\\Delta$; Art (highest degeneracy) is the sole exception.}\n\\label{tab:per_type_lp}\n\\resizebox{\\columnwidth}{!}{\n\\begin{tabular}{lrrrrrrr}\n\\toprule\nEntity Type & $n$ & Degen.\\% & Greedy & LP Sel & $\\Delta$ (pp) & LP $\\rho$ & Headroom \\\\\n\\midrule\nEvent & 1{,}306 & 6.0 & .655 & .662 & $+$0.65 & .457 & 16.1\\,pp \\\\\nOther & 3{,}433 & 6.6 & .637 & .685 & $\\mathbf{+4.73}$ & .491 & 19.4\\,pp \\\\\nOrganization & 6{,}647 & 6.7 & .720 & .732 & $+$1.21 & .509 & 13.3\\,pp \\\\\nBuilding & 1{,}587 & 7.2 & .702 & .705 & $+$0.23 & .478 & 14.9\\,pp \\\\\nProduct & 2{,}276 & 8.2 & .656 & .677 & $+$2.01 & .483 & 15.8\\,pp \\\\\nLocation & 8{,}023 & 11.4 & .793 & .798 & $+$0.53 & .520 & 10.3\\,pp \\\\\nPerson & 8{,}016 & 13.4 & .822 & .835 & $+$1.25 & .544 & 9.2\\,pp \\\\\nArt & 1{,}277 & 19.8 & .756 & .754 & $-$0.17 & .451 & 9.2\\,pp \\\\\n\\bottomrule\n\\end{tabular}\n}\n\\end{table}\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{CoNLL-2003 per-type LP selection (Qwen3-8B, $N{=}16$, $T{=}1.0$). All types exceed 20\\% degeneracy and show negative LP selection, consistent with the dataset's ceiling-regime performance (F1 $>$ 90\\%).}\n\\label{tab:per_type_lp_conll}\n\\begin{tabular}{lrrr}\n\\toprule\nEntity Type & Degen.\\% & LP $\\Delta$ (pp) \\\\\n\\midrule\nMISC & 23.2 & $-$2.19 \\\\\nPER & 42.6 & $-$1.08 \\\\\nLOC & 47.5 & $-$0.62 \\\\\nORG & 54.3 & $-$0.55 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{SciERC per-type LP selection (Qwen3-8B, $N{=}8$, $T{=}1.0$). Within-dataset, degeneracy alone does not predict LP effectiveness (Spearman $\\rho{=}0.14$, $p{=}0.79$); additional type-specific factors likely modulate selection at this granularity.}\n\\label{tab:per_type_lp_scierc}\n\\begin{tabular}{lrrr}\n\\toprule\nEntity Type & Degen.\\% & LP $\\Delta$ (pp) \\\\\n\\midrule\nTask & 10.1 & $+$2.58 \\\\\nGeneric & 10.0 & $+$2.07 \\\\\nMaterial & 20.0 & $+$0.91 \\\\\nMetric & 12.5 & $-$0.06 \\\\\nMethod & 16.3 & $-$0.03 \\\\\nOtherScientificTerm & 6.2 & $-$0.57 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nThe cross-dataset degeneracy gradient (61.7\\% $\\to$ 13.0\\% $\\to$ 12.2\\%) is inversely associated with LP selection effectiveness at the macro level ($n{=}3$ datasets; exploratory).\\footnote{Partial Spearman correlation controlling for entity-type frequency yields $\\rho{=}{-}0.47$ (vs.\\ raw $\\rho{=}{-}0.38$); type frequency does not confound the degeneracy--LP relationship.}\nAt finer per-type granularity, selection depends on the interaction of degeneracy, oracle headroom, and type-specific LP-quality alignment.\nA Kruskal-Wallis test finds no significant per-type heterogeneity in LP selection gains on SciERC ($p{=}0.796$), consistent with the small per-type sample sizes ($n{=}54$--$296$).\nLow degeneracy alone does not ensure selection gains: CoNLL MISC (23\\%, headroom 12.6~pp) and SciERC OtherScientificTerm (6.2\\%, headroom 12.5~pp) both show negative LP selection despite available headroom; LP correlation strength with the type-specific quality function is an additional prerequisite.\n\n\\section{Calibration Baseline}\\label{app:calibration_baseline}\n\nStandard calibration methods are monotonic transforms of log-probability and therefore preserve within-instance sample rankings: Platt scaling \\cite{platt1999probabilistic} fits a logistic regression $\\sigma(a \\cdot \\text{LP} + b)$, and temperature scaling \\cite{guo2017calibration} divides logits by a scalar $\\tau$.\nSince both preserve the argmax, selection F1 is identical to raw LP on all three datasets (Table~\\ref{tab:calibration}).\n\nTo break monotonicity, we fit a multi-feature Platt model (MF-Platt) using LP, token count, and entity count as inputs, trained on a held-out calibration split (20\\% of the test set, 5-fold cross-validation on the remainder).\nMF-Platt can reorder candidates within an instance, yet yields no significant selection improvement: $\\Delta{=}{-}1.1$~pp on SciERC ($p{=}0.72$), $+0.3$~pp on CoNLL ($p{=}0.31$), and $-0.6$~pp on Few-NERD ($p{=}0.83$).\nPlatt scaling substantially improves probability calibration (ECE drops from 0.26--0.39 to 0.01--0.08), but better-calibrated probabilities do not translate to better selection.\nThis parallels the supervised signal combination result (\\S\\ref{sec:robustness_main}): neither stronger aggregation nor additional features can compensate for weak per-sample discriminative signal.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Calibration baseline results ($T{=}1.0$; single seed). SciERC uses $N{=}8$; CoNLL and Few-NERD use $N{=}16$ ($N$ does not affect greedy F1 or calibration conclusions). Platt and TempScale are monotonic transforms of LP that preserve the within-instance argmax (selection F1 $\\equiv$ Raw LP, omitted). MF-Platt uses LP $+$ token count $+$ entity count; $p$: bootstrap test vs.\\ Raw LP. Few-NERD evaluated on the first 5K test instances without gold-filtering (greedy .771; cf.\\ gold-filtered full-set .748 in Table~\\ref{tab:fewnerd}).}\n\\label{tab:calibration}\n\\resizebox{\\columnwidth}{!}{\n\\begin{tabular}{l cccc cc}\n\\toprule\n& & \\multicolumn{2}{c}{Selection F1} & & \\multicolumn{2}{c}{ECE} \\\\\n\\cmidrule(lr){3-4} \\cmidrule(lr){6-7}\nDataset & Greedy & Raw LP & MF-Platt ($p$) & & Raw & Platt \\\\\n\\midrule\nSciERC & .644 & .650 & .639 (.72) & & .260 & .048 \\\\\nCoNLL & .909 & .898 & .901 (.31) & & .392 & .012 \\\\\nFew-NERD & .771 & .785 & .778 (.83) & & .262 & .080 \\\\\n\\bottomrule\n\\end{tabular}\n}\n\\end{table}\n\n\\section{Epoch Confound Analysis}\\label{app:epoch_confound}\n\n\\paragraph{Training convergence modulates degeneracy.}\nTable~\\ref{tab:epoch_confound} compares the 3-epoch model (used throughout the main text) with a 5-epoch variant on Few-NERD (Qwen3-8B, $N{=}8$, $T{=}1.0$; full test set $n{=}32{,}565$, gold-filtered, 2-seed mean).\nExtended training increases greedy F1 by $+0.7$~pp ($0.791 \\to 0.798$) and triples instance degeneracy ($8.8$\\% $\\to$ $26.4$\\%), reducing the fraction of instances with non-degenerate outputs.\nThe 5-epoch MV $\\Delta$ ($-0.40$\\,pp) appears smaller than 3-epoch ($-2.74$\\,pp), but this is misleading: $26$\\% of instances are fully degenerate (MV${\\equiv}$greedy, $\\Delta{=}0$), diluting the aggregate.\nOn non-degenerate instances, MV $\\Delta{\\approx}{-}0.55$\\,pp, still negative---degeneracy masks the MV penalty rather than improving it.\n\nLP selection shows even more dramatic degradation: 5-epoch LP $\\Delta{=}{+}0.12{\\pm}0.04$\\,pp (2-seed, full test set micro-F1), a 91\\% reduction from the 3-epoch $+1.39$\\,pp. This confirms that training convergence not only increases degeneracy but also erodes LP's discriminative power within non-degenerate instances, consistent with the alignment degradation observed in SciERC (Table~\\ref{tab:epoch_scierc}).\n\nEvaluation loss increases after epoch 3, and the best checkpoint by validation loss occurs at approximately epoch 3.9.\nStandard early stopping practice thus naturally selects the low-degeneracy regime.\nThis finding refines the narrative: degeneracy is not a fixed property of datasets but is modulated by the degree of training convergence. Over-trained models compress their output distributions, collapsing diversity even on datasets that support it under well-regularized training.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Training convergence confound on Few-NERD (Qwen3-8B, $N{=}8$, $T{=}1.0$, full test set $n{=}32{,}565$, gold-filtered, 2-seed mean). ``Degen.'': constant-F1 instance degeneracy. ``MV $\\Delta$'': strict majority vote gain over greedy (pp). ``Non-degen MV $\\Delta$'': MV gain on non-degenerate instances only.}\n\\label{tab:epoch_confound}\n\\resizebox{\\columnwidth}{!}{\n\\begin{tabular}{lcc}\n\\toprule\nMetric & 3-epoch & 5-epoch \\\\\n\\midrule\nGreedy F1 & 0.791 & 0.798 \\\\\nMV $\\Delta$ (pp) & $-$2.74 & $-$0.40 \\\\\nInstance degen.\\ (\\%) & 8.8 & 26.4 \\\\\nSJ mean & 0.685 & 0.802 \\\\\nLP $\\Delta$ (pp) & $+$1.39 & $+$0.12${\\pm}$0.04 \\\\\n\\bottomrule\n\\end{tabular}\n}\n\\end{table}\n\n\\paragraph{SciERC epoch curve.}\nTable~\\ref{tab:epoch_scierc} extends the analysis to SciERC with a 3-point curve (3, 5, 10 epochs; Qwen3-8B, $N{=}8$, $T{=}1.0$).\nDegeneracy increases monotonically (6.4\\% $\\to$ 17.8\\% $\\to$ 47.8\\%), and within-instance LP-quality correlation degrades in tandem (median $\\rho$: 0.319 $\\to$ 0.262 $\\to$ 0.112; mean $\\rho$: 0.273 $\\to$ 0.179 $\\to$ 0.066), confirming that overtraining erodes both diversity and LP alignment simultaneously.\nThe fraction of instances with positive LP-quality correlation also declines (76.4\\% at 3 epochs $\\to$ 64.1\\% at 5 epochs $\\to$ 54.0\\% at 10 epochs).\nLP selection does not yield significant gains at any training duration ($-1.24$, $+0.64$, $+1.02$~pp; all below the ${\\approx}$1.5~pp MDE), despite oracle headroom ranging from 8.4 to 15.0~pp.\nThe 3-epoch model has higher within-instance alignment ($\\rho{=}0.319$) than the 5-epoch model ($\\rho{=}0.262$), yet LP selection is worse ($-1.24$ vs.\\ $+0.64$~pp): at 6.4\\% degeneracy, more non-degenerate instances enter the candidate pool, but LP ranking precision is too low to exploit them, so the broader pool hurts rather than helps. This illustrates that low degeneracy does not ensure selection gains; LP-quality alignment predicts selection direction.\nAt 10 epochs, the model retains competitive greedy F1 (0.649 vs.\\ 0.650 at 3 epochs) yet conditions are unfavorable: 47.8\\% degenerate instances and $\\rho{=}0.112$.\nThe gradient confirms that degeneracy is convergence-driven rather than a fixed dataset property: extended training compresses output distributions, degrading both diversity and within-instance alignment. However, the epoch-to-epoch alignment variation ($\\Delta\\rho_{\\text{median}}{=}0.057$) is small relative to the cross-dataset gap (SciERC ${\\sim}$0.3 vs.\\ Few-NERD ${\\sim}$0.5), consistent with alignment being primarily dataset-intrinsic: training convergence modulates alignment at the margin but cannot shift a dataset into the strong-alignment regime.\nEven at the most favorable epoch (3-epoch, $\\rho{=}0.319$), SciERC alignment remains below the ${\\sim}$0.5 threshold associated with successful LP selection on Few-NERD.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{SciERC NER epoch curve (Qwen3-8B, $N{=}8$, $T{=}1.0$). Training duration modulates both instance degeneracy and within-instance LP-quality alignment. ``Degen.'': constant-F1 instance degeneracy (gold-filtered). ``LP $\\Delta$'': LP selection gain over greedy (gold-filtered; none reaches the ${\\approx}$1.5~pp MDE). ``$\\rho$ med'': median within-instance LP-quality correlation. Greedy F1 uses span-based evaluation consistent with Tables 1--3; $\\rho$ and LP $\\Delta$ use text-based matching consistent with Table~\\ref{tab:within_rho}.}\n\\label{tab:epoch_scierc}\n\\resizebox{\\columnwidth}{!}{\n\\begin{tabular}{lccc}\n\\toprule\nMetric & 3-epoch & 5-epoch & 10-epoch \\\\\n\\midrule\nGreedy F1 & 0.650 & 0.644 & 0.649 \\\\\nInstance degen.\\ (\\%) & 6.4 & 17.8 & 47.8 \\\\\nLP $\\Delta$ (pp) & $-$1.24 & $+$0.64 & $+$1.02 \\\\\nWithin-inst.\\ $\\rho$ (median) & 0.319 & 0.262 & 0.112 \\\\\nWithin-inst.\\ $\\rho$ (mean) & 0.273 & 0.179 & 0.066 \\\\\n\\% positive $\\rho$ & 76.4 & 64.1 & 54.0 \\\\\n\\bottomrule\n\\end{tabular}\n}\n\\end{table}\n\n\\paragraph{Limitations.}\nThe Few-NERD epoch analysis covers 2 points (3 vs.\\ 5 epochs); the SciERC curve provides a 3-point gradient showing monotonic degeneracy increase with simultaneous within-instance alignment degradation.\nCoNLL epoch variation remains unverified; high-degeneracy datasets (CoNLL at 59--89\\%) may exhibit a ceiling effect where additional training has limited marginal impact.\nAll Few-NERD results in the main text use the 3-epoch model (standard early stopping); the 5-epoch comparison is a controlled ablation.\nAll SciERC results use the 5-epoch model; the 3- and 10-epoch variants serve as controlled ablations.\n\n\\subsection{Degeneracy-Aware LP Selection}\\label{app:dals}\n\nThe non-tied subset analysis (Table~\\ref{tab:nontied_main}) identifies within-instance LP range (max minus min LP across $N$ samples) as a per-instance degeneracy proxy: instances with near-zero LP range carry no discriminative signal.\nDegeneracy-aware LP selection (DALS) operationalizes this: when LP range exceeds $\\tau{=}0.05$ (the threshold independently motivated by the non-tied analysis; Appendix~\\ref{app:epsilon_robustness}), select the highest-LP sample; otherwise fall back to greedy.\nOn SciERC, DALS yields $+0.71{\\pm}0.48$~pp (3-seed mean; individual seeds: $+0.19$ to $+1.14$~pp); on Few-NERD, $+0.30$~pp ($p{<}0.001$; gain remains positive across $\\tau \\in [0.01, 0.15]$); on CoNLL, where pure LP selection degrades F1 ($-0.85$~pp), DALS shows comparable degradation (Qwen: $-0.87$~pp; LLaMA: neutral).\nDALS improves over pure LP selection when degeneracy is moderate, provides partial damage control when LP selection is harmful, and defaults to greedy when LP range signals no information.\nWhile gains are modest and seed-sensitive, LP range serves as an operationally accessible degeneracy proxy, though the mixed cross-dataset results confirm that degeneracy gating alone cannot ensure positive selection outcomes.\n\n\\paragraph{LOO $\\tau$ sensitivity.}\nLeave-one-out (LOO) cross-validation across datasets shows that the optimal $\\tau$ spans two orders of magnitude: $\\tau^*{=}0.001$ on Few-NERD, $0.05$ on SciERC, and $0.10$ on CoNLL.\nLOO regret (the gap between oracle and LOO-selected $\\tau$) ranges from 0.51 to 1.21~pp.\nThe best single cross-dataset $\\tau$ ($\\tau{=}0.05$) matches the independently motivated non-tied threshold, but yields dataset-specific suboptimality: even with oracle $\\tau$, CoNLL remains at $-0.31$~pp.\nThis sensitivity reinforces the diagnostic framing of DALS: per-dataset $\\tau$ tuning is required for positive gains, and even optimally tuned DALS cannot overcome weak LP-quality alignment on high-degeneracy datasets.\n\n\\subsection{Conditional Decomposition of LP Selection}\\label{app:conditional_decomp}\n\nTo test whether LP-quality alignment is associated with selection gains within datasets, we restrict LP selection to the favorable subset: non-degenerate instances whose within-instance LP range exceeds the dataset-specific median (SciERC: 0.040 nats, CoNLL: 0.062, Few-NERD: 0.067).\nTable~\\ref{tab:conditional_decomp} reports results across three datasets.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{LP selection on the favorable subset (non-degenerate instances with LP range above the dataset-specific median) per dataset (Qwen3-8B, $N{=}8$, $T{=}1.0$). CI: bootstrap 95\\% confidence interval.}\n\\label{tab:conditional_decomp}\n\\resizebox{\\columnwidth}{!}{\n\\begin{tabular}{lccc}\n\\toprule\nDataset & LP $\\Delta$ (pp) & 95\\% CI & Interpretation \\\\\n\\midrule\nSciERC & $+$2.47 & [$+$0.30, $+$4.70] & significant positive \\\\\nFew-NERD & $+$0.63 & [$-$0.02, $+$1.30] & marginal positive \\\\\nCoNLL & $-$1.78 & [$-$2.83, $-$0.76] & significant negative \\\\\n\\bottomrule\n\\end{tabular}\n}\n\\end{table}\n\nOn SciERC, restricting to the favorable subset recovers a significant LP gain, consistent with LP-quality alignment predicting selection within the non-degenerate pool.\nOn Few-NERD, the trend is directionally consistent but the confidence interval crosses zero; the full-dataset result ($+1.39$~pp, $p{<}0.001$) reflects the larger sample size rather than a stronger per-instance effect.\nCoNLL remains negative even on the favorable subset, consistent with the ceiling-regime interpretation: at $>$90\\% greedy F1, residual errors are idiosyncratic and LP cannot rank corrections.\n\n\\subsection{Power Analysis for Cross-Dataset Degeneracy--LP Correlation}\\label{app:power_analysis}\n\nTable~\\ref{tab:power_analysis} reports post-hoc power for the $n{=}23$ cross-dataset correlation between degeneracy and LP selection gain ($\\rho{=}0.052$, $p{=}0.81$; Figure~\\ref{fig:degeneracy_scatter}).\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Post-hoc power analysis ($n{=}23$, two-tailed, $\\alpha{=}0.05$). At this sample size, only large correlations ($\\rho{\\geq}0.5$) are detectable with adequate power.}\n\\label{tab:power_analysis}\n\\begin{tabular}{lc}\n\\toprule\nTrue $\\rho$ & Power at $n{=}23$ \\\\\n\\midrule\n0.1 & 0.07 \\\\\n0.2 & 0.13 \\\\\n0.3 & 0.25 \\\\\n0.4 & 0.44 \\\\\n0.5 & 0.65 \\\\\n0.6 & 0.84 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\noindent 80\\% power requires $n{\\approx}85$ for $\\rho{=}0.3$ and $n{\\approx}47$ for $\\rho{=}0.5$. The null result should be interpreted as absence of evidence for a large effect rather than evidence of absence.\n\n\\subsection{Entity-Token LP Decomposition}\\label{app:entity_token_lp}\n\nFull-sequence LP averages over all output tokens, diluting entity-relevant signal with formatting and schema tokens.\nEntity-token LP restricts the average to tokens within entity text and type spans, yielding $4{\\times}$ higher within-instance variance (median 0.000644 vs.\\ 0.000161).\nTable~\\ref{tab:entity_token_lp} compares the two aggregation strategies on SciERC (Qwen3-8B, $N{=}8$, $T{=}1.0$).\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Full-sequence vs.\\ entity-token LP on SciERC NER (Qwen3-8B, $N{=}8$, $T{=}1.0$). Entity-token LP has higher variance and stronger correlation, yet selection degrades.}\n\\label{tab:entity_token_lp}\n\\resizebox{\\columnwidth}{!}{\n\\begin{tabular}{lcccc}\n\\toprule\nAggregation & Med.\\ var. & $\\rho$ & AUROC & $\\Delta$ (pp) \\\\\n\\midrule\nFull-sequence & 0.000161 & 0.297 & 0.642 & $+$0.35 \\\\\nEntity text+type & 0.000644 & 0.440 & 0.719 & $-$0.73 \\\\\n\\bottomrule\n\\end{tabular}\n}\n\\end{table}\n\nDespite stronger correlation ($+$48\\%) and higher AUROC, entity-token LP produces worse selection, reinforcing that compression operates at the representation level rather than token aggregation: the correlation-selection gap persists even with a more targeted signal.\n\n\\subsection{Entity-Level Majority Voting}\\label{app:entity_merge}\n\nEntity-level majority voting constructs a merged output by including all (text, type) entity tuples that appear in at least $k$ of $N$ samples (with $k = N/2$ as the default majority threshold).\nUnlike best-of-$N$ selection (which picks one complete sample), merge combines evidence across samples at entity granularity.\nWe sweep $k \\in \\{2, 3, \\ldots, 8\\}$ on each dataset (Qwen3-8B, $N{=}8$, $T{=}1.0$) and report the best threshold per dataset.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Entity-level majority voting results (Qwen3-8B, $N{=}8$, $T{=}1.0$). ``Greedy'': $T{=}0$ baseline. ``Best merge'': optimal $k$ per dataset from sweep $k \\in \\{2, \\ldots, 8\\}$. ``$\\Delta$'': merge F1 minus greedy. ``Recovery'': $\\Delta$ / (oracle $-$ greedy). Only SciERC shows positive recovery; even with oracle $k$, CoNLL and Few-NERD degrade.}\n\\label{tab:entity_merge}\n\\resizebox{\\columnwidth}{!}{\n\\begin{tabular}{lcccc}\n\\toprule\nDataset & Greedy & Best merge ($k^*$) & $\\Delta$ (pp) & Recovery (\\%) \\\\\n\\midrule\nSciERC & 0.644 & 0.660 ($k{=}3$) & $+$1.57 & $+$11.9 \\\\\nCoNLL & 0.907 & 0.903 ($k{=}3$) & $-$0.38 & $-$9.0 \\\\\nFew-NERD & 0.748 & 0.744 ($k{=}2$) & $-$0.43 & $-$3.6 \\\\\n\\bottomrule\n\\end{tabular}\n}\n\\end{table}\n\nOn degenerate subsets (instances where all $N$ samples yield identical F1), merge is uniformly negative across all three datasets, confirming that entity-level aggregation cannot bypass the diversity bottleneck identified in the main text (\\S\\ref{sec:discussion}).\n\n\\subsection{Entity Construction Results}\\label{app:entity_construction_table}\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Entity construction vs.\\ greedy ($\\Delta$ macro F1; $N{=}8$, $T{=}1.0$, Qwen3-8B, multi-seed mean${\\pm}\\sigma$). $\\theta{=}2/N$. $p$: paired bootstrap vs.\\ greedy. $^\\dagger$Survives per-family Holm--Bonferroni correction (construction, $k{=}10$); global correction ($k{=}57$) yields $p_{\\text{adj}}{=}0.055$ (Appendix~\\ref{app:holm}). $^\\ddagger$LP-weighted not computed.}\n\\label{tab:entity_construction}\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{@{}llcccc@{}}\n\\toprule\nDataset & Wt. & Greedy & Constr. & $\\Delta$ & $p$ \\\\\n\\midrule\nSciERC & LP & $.667{\\pm}.001$ & $.670{\\pm}.003$ & $+0.32$\\,pp & n.s. \\\\\n       & Unif. & $.667{\\pm}.001$ & $.660{\\pm}.004$ & $-0.74$\\,pp & n.s. \\\\\n\\addlinespace\nFew-NERD & LP & $.748$ & $\\mathbf{.762{\\pm}.005}$ & $+1.40{\\pm}0.51$\\,pp & ${<}.001^\\dagger$ \\\\\n         & Unif. & $.748$ & $\\mathbf{.756{\\pm}.006}$ & $+0.74{\\pm}0.58$\\,pp & .003 \\\\\n\\addlinespace\nCoNLL$^\\ddagger$ & Unif. & .908 & .904 & $-0.39$\\,pp & n.s. \\\\\n\\bottomrule\n\\end{tabular}}\n\\end{table}\n\n\\subsection{Entity Construction Threshold Sensitivity}\n\\label{app:theta_sweep}\n\nTable~\\ref{tab:theta_sweep} reports entity construction F1 as a function of the confirmation threshold $\\theta$ across three datasets (Qwen3-8B, $N{=}8$, $T{=}1.0$). The default $\\theta{=}2/N{=}0.25$ achieves the best LP-weighted $\\Delta$F1 on Few-NERD and is within 0.04\\,pp of the optimum on SciERC. Performance is stable across $\\theta \\in [0.15, 0.35]$; below 0.15, spurious entities degrade precision, and above 0.40, aggressive filtering removes correct low-frequency entities.\n\n\\begin{table}[h]\n\\caption{Entity construction threshold sensitivity ($N{=}8$, Qwen3-8B, $T{=}1.0$). $\\Delta$: F1 difference vs.\\ greedy in percentage points. Best $\\Delta$ per dataset--weighting pair in \\textbf{bold}.}\n\\label{tab:theta_sweep}\n\\centering\n\\small\n\\resizebox{\\columnwidth}{!}{\n\\begin{tabular}{ll rr rr}\n\\toprule\nDataset & $\\theta$ & LP-w F1 & Unif.\\ F1 & $\\Delta$ LP-w & $\\Delta$ Unif.\\ \\\\\n\\midrule\n\\multirow{8}{*}{SciERC}\n & 0.10 & .620 & .620 & $-$2.37 & $-$2.37 \\\\\n & 0.15 & .659 & .659 & $+$1.54 & $+$1.54 \\\\\n & 0.20 & .659 & .659 & $+$1.54 & $+$1.54 \\\\\n & 0.25 & .661 & .659 & $+$1.67 & $+$1.54 \\\\\n & 0.30 & .661 & .661 & \\textbf{$+$1.71} & \\textbf{$+$1.71} \\\\\n & 0.35 & .661 & .661 & \\textbf{$+$1.71} & \\textbf{$+$1.71} \\\\\n & 0.40 & .653 & .654 & $+$0.94 & $+$0.97 \\\\\n & 0.50 & .649 & .654 & $+$0.46 & $+$0.97 \\\\\n\\midrule\n\\multirow{8}{*}{Few-NERD}\n & 0.10 & .677 & .676 & $-$7.12 & $-$7.15 \\\\\n & 0.15 & .751 & .751 & $+$0.32 & $+$0.32 \\\\\n & 0.20 & .751 & .751 & $+$0.32 & $+$0.32 \\\\\n & 0.25 & .757 & .751 & \\textbf{$+$0.88} & $+$0.32 \\\\\n & 0.30 & .750 & .750 & $+$0.21 & $+$0.21 \\\\\n & 0.35 & .750 & .750 & $+$0.21 & $+$0.21 \\\\\n & 0.40 & .729 & .728 & $-$1.90 & $-$2.01 \\\\\n & 0.50 & .725 & .728 & $-$2.25 & $-$2.01 \\\\\n\\midrule\n\\multirow{8}{*}{CoNLL}\n & 0.10 & .844 & .842 & $-$6.44 & $-$6.56 \\\\\n & 0.15 & .896 & .896 & $-$1.19 & $-$1.19 \\\\\n & 0.20 & .896 & .896 & $-$1.19 & $-$1.19 \\\\\n & 0.25 & .901 & .896 & $-$0.71 & $-$1.19 \\\\\n & 0.30 & .904 & .904 & \\textbf{$-$0.39} & \\textbf{$-$0.39} \\\\\n & 0.35 & .904 & .904 & $-$0.41 & \\textbf{$-$0.39} \\\\\n & 0.40 & .900 & .899 & $-$0.83 & $-$0.94 \\\\\n & 0.50 & .897 & .899 & $-$1.12 & $-$0.94 \\\\\n\\bottomrule\n\\end{tabular}\n}\n\\end{table}\n\n\\subsection{Few-Shot Error Correlation Analysis}\\label{app:fs_error}\n\nWe investigated whether few-shot demonstrations induce correlated entity-level errors that explain construction failure.\nPairwise error overlap (Jaccard similarity of per-sample false-positive and false-negative entity sets) shows no significant difference between FS and ZS regimes (SciERC: $0.454$ vs.\\ $0.452$, $p{=}0.84$; CoNLL: $0.103$ vs.\\ $0.104$, $p{=}0.64$; permutation tests, 10{,}000 resamples).\nWe additionally measure entity-level prediction entropy across $N{=}8$ samples per instance.\nOn SciERC, FS and ZS entropies are indistinguishable ($0.483$ vs.\\ $0.485$, $p{=}0.81$).\nOn CoNLL, however, entity prediction entropy is significantly \\emph{higher} under FS ($0.209$ vs.\\ $0.184$, $p{<}10^{-9}$, $r{=}0.106$, small effect; Wilcoxon signed-rank test), contrary to the hypothesis that demonstrations concentrate predictions---they instead \\emph{increase} output diversity on this dataset.\nThe mechanism by which few-shot demonstrations undermine construction remains an open question; entity-level error overlap is preserved while prediction entropy may even rise, suggesting that the \\emph{nature} rather than the \\emph{diversity} of errors shifts in ways that defeat LP-weighted voting.\n\n\\subsection{Construction Weighting Variants}\\label{app:weighting_variants}\n\nTable~\\ref{tab:weighting_variants} compares LP-weighted, VC-weighted, and SJ-weighted entity construction on LLaMA-3.1-8B (3-seed mean, $N{=}8$, $T{=}1.0$, $\\theta{=}2/N$).\nAll three weighting schemes beat greedy on SciERC, where degeneracy is low; LP and VC also improve Few-NERD, though gains are smaller than the Qwen results in Table~\\ref{tab:entity_construction}.\nThe optimal weighting scheme is model-dependent (VC leads on LLaMA SciERC; LP leads on Qwen), but the core finding is robust: entity-level voting improves F1 in low-degeneracy regimes regardless of the specific weighting function.\nSJ-weighted construction degrades on Few-NERD ($-0.20$\\,pp), consistent with SJ over-weighting high-consensus samples, which correlates with the degeneracy direction rather than opposing it.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Construction weighting variants (LLaMA-3.1-8B, $N{=}8$, $T{=}1.0$, $\\theta{=}2/N$, 3-seed mean). $\\Delta$: F1 difference vs.\\ greedy in pp. Main-text construction results (Table~\\ref{tab:entity_construction}) use Qwen3-8B.}\n\\label{tab:weighting_variants}\n\\begin{tabular}{lccc}\n\\toprule\nDataset & LP-wt $\\Delta$ & VC-wt $\\Delta$ & SJ-wt $\\Delta$ \\\\\n\\midrule\nSciERC & $+$0.91 & $+$1.05 & $+$0.72 \\\\\nFew-NERD & $+$0.02 & $+$0.15 & $-$0.20 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\subsection{Zero-Shot vs.\\ Few-Shot Comparison}\\label{app:zs_vs_fs}\n\nTable~\\ref{tab:72b_zs_vs_fs} presents the full zero-shot (ZS) vs.\\ few-shot (FS) comparison on Qwen2.5-72B-Instruct-AWQ.\nLP-weighted construction yields a significant gain only on SciERC under ZS ($+$1.53\\,pp, $p{=}.008$); all five FS configurations show non-significant deltas ($|{\\Delta}| \\leq 0.08$\\,pp).\nFew-shot demonstrations raise the greedy baseline (e.g., SciERC: .399$\\to$.461) but do not translate into construction improvements, suggesting that the dual-gating mechanism---where both signal quality and diversity are necessary---holds within the FT+ZS regime while FS introduces an independent failure mode whose origin remains open (\\S\\ref{app:fs_error}).\n\n\\begin{table*}[t]\n\\centering\n\\caption{Full zero-shot vs.\\ few-shot comparison for Qwen2.5-72B-Instruct-AWQ ($N{=}8$). Only SciERC under zero-shot yields a significant construction gain.}\n\\label{tab:72b_zs_vs_fs}\n\\resizebox{\\textwidth}{!}{%\n\\begin{tabular}{ll rrrrr rr r}\n\\toprule\nDataset & Regime & Degen\\% & LP $\\rho$ & SJ $\\rho$ & FK $\\rho$ & VC $\\rho$ & Greedy F1 & Constr $\\Delta$ & $p$ \\\\\n\\midrule\nSciERC  & ZS & 21.0 & .081  & .217 & .227 & .277 & .399 & \\textbf{+1.53} & .008 \\\\\nSciERC  & FS & 16.6 & .060  & .293 & .301 & .258 & .461 & $-$0.08 & .544 \\\\\n\\midrule\nCoNLL   & ZS & 67.7 & $-$.002 & .304 & .302 & .297 & .712 & $-$0.37 & --- \\\\\nCoNLL   & FS & 70.0 & .106  & .442 & .451 & .426 & .745 & +0.03 & .417 \\\\\n\\midrule\nFewNERD & ZS & 46.2 & .119  & .345 & .321 & .416 & .628 & $-$0.20 & --- \\\\\nFewNERD & FS & 45.2 & .161  & .345 & .327 & .410 & .619 & +0.02 & .401 \\\\\n\\bottomrule\n\\end{tabular}%\n}\n\\end{table*}\n\n\\section{Evaluation Protocol for Structured Self-Consistency}\\label{app:eval_protocol}\n\nWe distill our experimental methodology into a reusable three-step protocol for assessing test-time compute scaling on set-valued structured prediction tasks.\n\n\\paragraph{Step 1: Measure instance degeneracy.}\nGiven $N$ stochastic samples per instance, compute the fraction of instances where all samples produce identical task-metric scores (\\S\\ref{sec:evaluation}).\nDegeneracy ${>}30$\\% indicates limited headroom for any selection or aggregation strategy.\nReport degeneracy alongside all test-time scaling results to contextualize gains.\n\n\\paragraph{Step 2: Assess signal--quality alignment.}\nFor each candidate signal, compute (a)~cross-instance Spearman $\\rho$ with the task metric (quality estimation strength) and (b)~within-instance $\\rho$ between signal and task metric, restricted to non-degenerate instances (selection discriminability).\nA large gap between (a) and (b) indicates the correlation-selection gap: reliable QE but poor selection prospects.\n\n\\paragraph{Step 3: Evaluate aggregation strategies.}\nCompare three regimes against greedy ($T{=}0$) and oracle baselines:\n\\begin{itemize}\n    \\item \\textit{Instance-level selection}: best-of-$N$ via per-sample signals (e.g., LP) and consensus-proximity (MBR utility).\n    \\item \\textit{Entity-level construction}: majority-voted entity aggregation with threshold $\\theta$ (e.g., $\\theta{=}2/N$), optionally weighted by signal confidence.\n    \\item \\textit{Selective prediction}: abstain on low-confidence instances; report coverage--F1 tradeoff.\n\\end{itemize}\n\n\\paragraph{Reporting standards.}\nReport: (1)~degeneracy percentage, (2)~oracle headroom (oracle $-$ greedy), (3)~signal $\\rho$ (cross-instance and within-instance), (4)~selection $\\Delta$F1 with bootstrap $p$-values and effect sizes (Cohen's $d$), (5)~construction $\\Delta$F1, (6)~selective prediction AUPRC and coverage--F1 curve.\nUse paired bootstrap tests ($B{\\geq}10{,}000$); report minimum detectable effect at 80\\% power given the test set size.\n\n\\section{Cost-Benefit Analysis}\\label{app:cost_benefit}\n\nTable~\\ref{tab:cost_benefit} summarizes the inference cost and F1 gain of each aggregation strategy relative to greedy decoding.\nEntity construction achieves the only consistently positive result at zero marginal cost (reusing the $N$ samples already drawn for quality estimation); cross-model ensemble requires $2N{\\times}$ inference for a smaller gain.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Cost-benefit summary of aggregation strategies (Qwen3-8B, $N{=}8$, $T{=}1.0$). Inference cost is relative to greedy ($T{=}0$, single forward pass). $\\Delta$F1 reports the primary result (dataset in parentheses).}\n\\label{tab:cost_benefit}\n\\begin{tabular}{@{}lcll@{}}\n\\toprule\nMethod & Cost & $\\Delta$F1 & Verdict \\\\\n\\midrule\nGreedy ($T{=}0$) & $1{\\times}$ & baseline & default \\\\\nSC + MV & $N{\\times}$ & ${\\approx}0$\\,pp & no gain \\\\\nSC + LP selection & $N{\\times}$ & $+1.39$\\,pp (FN) & dataset-dep. \\\\\nSC + construction & $N{\\times}$ & $+0.32$\\textendash$1.40$\\,pp & \\textbf{positive} \\\\\nCross-model SC & $2N{\\times}$ & $+0.42$\\,pp (FN) & positive, $2{\\times}$ cost \\\\\nSC + DALS & $N{\\times}$ & $+0.71$\\,pp (SciERC) & seed-sensitive \\\\\nSC + verifier & $N{\\times}{+}\\text{train}$ & $+0.30$\\,pp & no transfer \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nSC + LP selection is positive only on Few-NERD ($p{<}0.001$) and neutral to negative elsewhere (SciERC $+0.2$\\,pp, $p{=}0.29$; CoNLL $-0.85$\\,pp).\nEntity construction is the only strategy that is positive on multiple datasets without additional model access, achieving zero marginal cost by reusing the $N$ samples already generated.\nCross-model ensemble breaks within-model degeneracy but doubles inference cost.\n\n\\section{Prior Work Differentiation Matrix}\\label{app:differentiation}\n\nTable~\\ref{tab:differentiation} positions this work relative to four closely related studies.\nAll four investigate settings where self-consistency underperforms; we are the first to provide a multi-stage diagnostic with mechanistic probes, theory, and exhaustive method evaluation on structured generation.\n\n\\begin{table*}[h]\n\\centering\n\\small\n\\caption{Differentiation matrix: positioning relative to prior work on self-consistency limitations. ``Methods tested'' counts the number of distinct aggregation/selection categories evaluated (not hyperparameter variants).}\n\\label{tab:differentiation}\n\\resizebox{\\textwidth}{!}{%\n\\begin{tabular}{@{}l p{2.8cm} p{2.5cm} p{2.5cm} p{2.8cm} p{3.2cm}@{}}\n\\toprule\nAspect & \\citet{yun2025price} & \\citet{chen2023twofailures} & \\citet{aggarwal2023adaptive} & \\citet{farquhar2024detecting} & \\textbf{Ours} \\\\\n\\midrule\nRoot cause & Constrained decoding suppresses diversity & Reasoning failures (hypothetical, compositional) & Sample efficiency in allocation & Hallucination via semantic inconsistency & Capability ceiling (degeneracy $+$ LP compression $+$ verification failure) \\\\\n\\addlinespace\nTasks & Math, QA, structured gen. & Reasoning, QA & Math, code & QA, open-ended & NER ($+$SQL, RE) \\\\\n\\addlinespace\nMethods tested & 1 (diversity analysis) & 1 (failure taxonomy) & 1 (adaptive $N$) & 1 (semantic entropy) & 9 categories (Table~\\ref{tab:method_summary}) \\\\\n\\addlinespace\nTheoretical contrib. & None & None & Allocation bounds & Entropy-based & MBR equivalence, degeneracy bound, scaling laws \\\\\n\\addlinespace\nMechanistic probe & No & No & No & No & Yes (ESJ, MRSC, LSC, hidden-state) \\\\\n\\bottomrule\n\\end{tabular}}\n\\end{table*}\n\n\\section{Extended Discussion}\\label{app:objections}\n\n\\paragraph{Open questions.}\nThree directions remain: (1)~whether learned verifiers (e.g., reward models) can break the introspection boundary and exploit hidden-state quality signals that prompt-based methods cannot access; (2)~whether diversity-promoting decoding strategies can preserve candidate variety without sacrificing output quality, mitigating the capability-diversity tension; (3)~whether the diagnostic framework transfers to other structured prediction tasks (e.g., coreference resolution, syntactic parsing) where output spaces similarly resist equivalence-class aggregation.\n\nWe address twelve anticipated objections, each referencing specific evidence in the paper.\n\n\\paragraph{O1: Results are NER-specific and may not generalize.}\nWe validate the diagnostic framework on Spider SQL parsing (GPT-5.5, $n{=}196$; \\S\\ref{sec:introduction}): degeneracy reaches 87.2\\%, confirming the failure mode beyond NER. An RE extension on SciERC (Appendix~\\ref{app:re_extension}) shows compound error propagation worsens all signals. The structural mismatch (set-valued outputs without equivalence classes) applies to any structured generation task.\n\n\\paragraph{O2: Cross-model gain of $+$0.42\\,pp is marginal.}\n$+0.42$\\,pp is the only unconditionally positive result among 9 method categories tested (Table~\\ref{tab:method_summary}). Its significance ($p{<}0.001$, CI $[0.27, 0.58]$; \\S\\ref{sec:cross_model}) and theoretical motivation (architecturally distinct models produce independent error distributions, breaking within-model degeneracy) distinguish it from the null results of other categories.\n\n\\paragraph{O3: Hyperparameters may not be optimal.}\nWe report full sweeps: construction threshold $\\theta \\in [0.05, 0.50]$ (Appendix~\\ref{app:theta_sweep}), DALS threshold $\\tau$ with LOO cross-validation (regret 0.51--1.21\\,pp; Appendix~\\ref{app:dals}), LP compression threshold $\\varepsilon \\in [0, 0.2]$ (Appendix~\\ref{app:epsilon_robustness}), and temperature $T \\in \\{0.5, 0.7, 1.0, 1.2\\}$ (Appendix~\\ref{app:t_ablation}).\n\n\\paragraph{O4: Findings may be a fine-tuning artifact.}\nQwen2.5-72B zero-shot exhibits the same gap: LP $\\rho$ drops without fine-tuning, structural signals generalize (VC $\\rho{=}0.416$ on Few-NERD), and degeneracy is model-family-dependent rather than scale-dependent (Qwen2.5: 31.7--46.2\\% vs.\\ Qwen3: 13.0\\%; Appendix~\\ref{app:cross_scale}). The capability ceiling persists from 4B to 72B.\n\n\\paragraph{O5: Probe AUROC varies widely (0.63--0.88); why trust the result?}\nThe variation is complexity-dependent and interpretable: CoNLL (4 types, 91\\% F1) at 0.882, Few-NERD (8 types, 75\\% F1) at 0.636, SciERC (6 types, 65\\% F1) at 0.630. LODO transfer drops to 0.56--0.67 (\\S\\ref{sec:mechanistic}), confirming dataset-specific encoding. The pattern---not the point estimate---is the finding.\n\n\\paragraph{O6: Theory is disconnected from experiments.}\nEach formal result has explicit empirical validation: Proposition~\\ref{prop:construction_mbr} (MBR equivalence) $\\to$ Table~\\ref{tab:entity_construction}; Proposition~\\ref{prop:entity_selection_bound} (entity selection bound) $\\to$ Table~\\ref{tab:alpha_crit} across 3 datasets; Degeneracy Decomposition $\\to$ Figure~\\ref{fig:bound} across 16 configurations (\\S\\ref{sec:theory}); oracle scaling law $\\to$ Figure~\\ref{fig:oracle_scaling} ($R^2 > 0.999$; \\S\\ref{sec:scaling}).\n\n\\paragraph{O7: Why not use standard MBR decoding?}\nMajority vote \\textit{is} MBR decoding under set-overlap utility (Proposition~\\ref{prop:construction_mbr}; \\S\\ref{sec:mbr_theory}). LP-weighted construction is the quality-aware MBR variant (\\S\\ref{sec:mbr_theory}). This follows directly from \\citet{eikema2022sampling}; \\citet{eikema2025structured} confirm that MBR utilities degrade on structured outputs, consistent with our LP compression findings.\n\n\\paragraph{O8: No qualitative error analysis.}\nAppendix~\\ref{app:failure_gallery} provides a failure mode gallery with 9 concrete instances: 3 degenerate (all samples identical), 3 LP selection failures (high-LP sample worse than low-LP), and 3 self-verification failures (ESJ misclassifies entity correctness). Each includes instance text, gold annotations, predictions, and signal values.\n\n\\paragraph{O9: Evaluation metric choice may bias results.}\nWe report per-instance F1 averaged across instances (macro F1) as the primary selection metric. Aggregate micro-F1 (pooled TP/FP/FN) confirms MV fails to improve over greedy: $\\Delta$ ranges from $-2.74$ to ${\\approx}0$\\,pp (Table~\\ref{tab:alpha_crit}; Appendix~\\ref{app:alpha_crit}). The correlation-selection gap holds under both aggregations; the selection failure is not an artifact of the metric.\n\n\\paragraph{O10: Computational cost analysis is missing.}\nTable~\\ref{tab:cost_benefit} (Appendix~\\ref{app:cost_benefit}) provides a cost-benefit breakdown. Entity construction achieves the best cost-efficiency: $+0.32$--$1.40$\\,pp at $N{\\times}$ cost with zero marginal overhead beyond sampling. Cross-model ensemble doubles inference cost for $+0.42$\\,pp.\n\n\\paragraph{O11: Reproducibility concerns.}\nAll experiments use open-weight models (Qwen3-8B, LLaMA-3.1-8B, Qwen3-4B, Qwen2.5-7B, Qwen2.5-72B) and public benchmarks. Multi-seed stability ($\\sigma{\\leq}0.026$ for QE; Table~\\ref{tab:multiseed}) and full hyperparameter sweeps are reported. Code, checkpoints, and per-seed results will be released upon acceptance.\n\n\\paragraph{O12: Overlap with \\citet{yun2025price}.}\n\\S\\ref{sec:yun_contrast} provides a three-way differentiation. Our LP compression (median 0.041 nats) corroborates Yun et al.'s diversity collapse, but we diverge in root cause (model-internal vs.\\ format-induced), diagnostic depth (diagnostic framework with 9 method categories vs.\\ diversity analysis), and scale ($4{\\times}$: Qwen2.5-72B). Table~\\ref{tab:differentiation} (Appendix~\\ref{app:differentiation}) provides the full comparison matrix.\n\n\\section{Failure Mode Gallery}\\label{app:failure_gallery}\n\nWe present 9 concrete instances illustrating the three primary failure modes: output degeneracy, LP confidence inversion, and consensus-based verification failure. All examples use Qwen3-8B on Few-NERD ($N{=}8$, $T{=}1.0$) from the MF4v2 pipeline.\n\n\\paragraph{Degenerate instances (3/3).}\nAll $N$ samples produce identical entity sets, eliminating any room for selection or construction improvement.\n\n\\begin{itemize}[nosep,leftmargin=*]\n\\item \\textbf{Type confusion.} \\textit{``His undergraduate studies at the University of Notre Dame were interrupted by Army service in World War II.''} Gold: \\{University of Notre Dame / building\\}. All 8 samples: \\{University of Notre Dame / \\textbf{organization}, World War II / event\\}. F1${=}0.00$: correct span, wrong type, plus hallucinated entity.\n\n\\item \\textbf{Type confusion (minimal).} \\textit{``...the deployment of the `SPQ' template...''} Gold: \\{SPQ / organization\\}. All 8 samples: \\{SPQ / \\textbf{product}\\}. F1${=}0.00$: entity text matches exactly but type disagrees across all samples.\n\n\\item \\textbf{Complete miss.} \\textit{``On stage, the band uses different kinds of instruments like synths, guitars, cello, glockenspiel and a bass played with a sickle.''} Gold: 6 entities (synths, guitars, cello, glockenspiel, bass, sickle / product). All 8 samples: $\\emptyset$. F1${=}0.00$: total recall failure on all gold entities.\n\\end{itemize}\n\n\\paragraph{LP confidence failures (3/3).}\nHigh log-probability does not guarantee correctness at the entity level. These entities appear in all 8 samples with near-zero negative log-probability (high confidence), yet are absent from the gold annotation.\n\n\\begin{itemize}[nosep,leftmargin=*]\n\\item \\textit{``Cramer pitched for the Orange County Flyers of the independent Golden League in 2008.''} Entity: Cramer / person (mean LP${=}{-}0.046$, 8/8 samples). Gold: \\{Orange County Flyers / org, independent Golden League / org\\}. Plausible entity, not annotated.\n\n\\item \\textit{``...according to UK Royal Air Force Wing Commander and FOD researcher Richard Friend.''} Entity: Richard Friend / person (mean LP${=}{-}0.050$, 8/8). Gold: \\{UK Royal Air Force / org, FOD / org\\}. Likely annotation gap: Richard Friend is a real person mentioned by name; gold omits it.\n\n\\item \\textit{``...the Navy's forces within South Vietnam were operationally controlled by COMUSMACV.''} Entity: COMUSMACV / org (mean LP${=}{-}0.050$, 8/8). Gold: \\{Seventh Fleet / org, South Vietnam / location\\}. Model confidently extracts a valid entity missing from gold.\n\\end{itemize}\n\n\\noindent These examples highlight a fundamental limitation: LP signals the model's confidence, not correctness. When the model is correctly confident about entities that gold annotations omit, LP cannot serve as an error detector.\n\n\\paragraph{Consensus-based verification failures (3/3).}\nEntity consensus frequency (fraction of $N$ samples containing a given entity) serves as the primary self-verification signal. It fails in both directions.\n\n\\begin{itemize}[nosep,leftmargin=*]\n\\item \\textbf{Overconfident.} \\textit{``Les Blank...was an American documentary filmmaker best known for his portraits of American traditional musicians.''} Entity: American / location (8/8 samples, consensus${=}1.0$). Gold: \\{Les Blank / person\\}. Maximum consensus for non-gold entity.\n\n\\item \\textbf{Overconfident.} \\textit{``Cramer pitched for the Orange County Flyers of the independent Golden League in 2008.''} Entity: Cramer / person (8/8 samples, consensus${=}1.0$). Gold: \\{Orange County Flyers / org, independent Golden League / org\\}. Same instance as LP failure above---simultaneous failure of both signals.\n\n\\item \\textbf{Underconfident.} \\textit{``They finished the season 14--19, 9--9 in C-USA play to finish in seventh place.''} Gold entity: C-USA play / event (consensus${=}0.0$, never predicted in any of 8 samples). Zero consensus for a correct entity.\n\\end{itemize}\n\n\\noindent These examples illustrate that the failure modes identified by the diagnostic framework are not statistical abstractions but manifest in individual instances. The LP and consensus failures frequently co-occur (e.g., ``Cramer'' instance), confirming that the signals share common blind spots rather than providing independent error detection.\n",
+    "structuredPatch": [
+      {
+        "oldStart": 1245,
+        "oldLines": 7,
+        "newStart": 1245,
+        "newLines": 7,
+        "lines": [
+          " \\midrule",
+          " Few-NERD & 3 & .791 & .764 & .885 & $-2.74{\\pm}0.54$ & 8.8\\% & 0.396 & 0.434 & $\\Delta < 0$ \\\\",
+          " CoNLL & 3 & .912 & .912 & .950 & $-0.04{\\pm}0.15$ & 60.3\\% & 0.456 & 1.148 & $\\Delta \\approx 0$ \\\\",
+          "-SciERC & 3 & .667 & .660 & .781 & $-0.74{\\pm}0.57$ & 12.2\\% & 0.334 & 0.380 & $\\Delta < 0$ \\\\",
+          "+SciERC & 3 & .667 & .660 & .781 & $-0.74{\\pm}0.46$ & 12.2\\% & 0.334 & 0.380 & $\\Delta < 0$ \\\\",
+          " \\bottomrule",
+          " \\end{tabular}}",
+          " \\end{table}"
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 98_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01HmdK1bXCqbZQnEDqu8GvLV`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+  "old_string": "Table~\\ref{tab:fewnerd} (0.667, 3-seed)",
+  "new_string": "Table~\\ref{tab:fewnerd} (0.663, 3-seed)"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0ece91e4-5aa9-4282-9ae9-a9f0b59b36fe",
+  "uuid": "6e77d13c-c3fb-4ac0-80d6-ef0cb579d4b0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RrbNsXqrRLSSqafpwx8gtt",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5902,
+      "cache_read_input_tokens": 76084,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5902
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---

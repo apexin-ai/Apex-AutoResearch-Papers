@@ -1,0 +1,83 @@
+{
+  "schema_version": "1.0",
+  "id": "04890698a88d6dcf46e6",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "code exp a3 ace05 re",
+  "task_key": "worker_code_exp_a3_ace05_re_20260520T181651",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_exp_a3_ace05_re_20260520T181651.log",
+    "occurrence": 1,
+    "bytes": 742053,
+    "sha256": "ab032a3a0758f4a62a5111ac72d336e7a3ce35c56021190c2f38872d06713848"
+  },
+  "statistics": {
+    "messages": 265,
+    "user_turns": 3,
+    "tool_calls": 88,
+    "roles": {
+      "log": 1,
+      "system": 69,
+      "record": 1,
+      "assistant": 14,
+      "tool_call": 88,
+      "user": 3,
+      "tool_result": 88,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 7,
+      "chunks": [
+        {
+          "path": "04890698a88d6dcf46e6-part-0001.json",
+          "message_count": 7
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 103,
+      "chunks": [
+        {
+          "path": "04890698a88d6dcf46e6-part-0001.json",
+          "message_count": 103
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 71,
+      "chunks": [
+        {
+          "path": "04890698a88d6dcf46e6-part-0001.json",
+          "message_count": 70
+        },
+        {
+          "path": "04890698a88d6dcf46e6-part-0002.json",
+          "message_count": 1
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 84,
+      "chunks": [
+        {
+          "path": "04890698a88d6dcf46e6-part-0002.json",
+          "message_count": 84
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-exp-a3-ace05-re.md"
+}

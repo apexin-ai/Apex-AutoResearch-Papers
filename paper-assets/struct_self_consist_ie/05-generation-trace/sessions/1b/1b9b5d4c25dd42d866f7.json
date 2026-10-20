@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "1b9b5d4c25dd42d866f7",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "analysis claim audit",
+  "task_key": "worker_analysis_claim_audit_20260519T133313",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_claim_audit_20260519T133313.log",
+    "occurrence": 1,
+    "bytes": 818746,
+    "sha256": "d3bc4ff783e09d0998aa69e99c0054bf4eedc87e658b48b6ef98b1273654ad91"
+  },
+  "statistics": {
+    "messages": 120,
+    "user_turns": 0,
+    "tool_calls": 42,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 32,
+      "tool_call": 42,
+      "tool_result": 42,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 120,
+      "chunks": [
+        {
+          "path": "1b9b5d4c25dd42d866f7-part-0001.json",
+          "message_count": 76
+        },
+        {
+          "path": "1b9b5d4c25dd42d866f7-part-0002.json",
+          "message_count": 44
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-claim-audit.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1f7989f5efefe1aab34d",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "code exp 017 llama conll infer",
+  "task_key": "worker_code_exp_017_llama_conll_infer_20260514T173127",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_exp_017_llama_conll_infer_20260514T173127_result.json",
+    "occurrence": 1,
+    "bytes": 622,
+    "sha256": "cdba0e337fabce3c519cde484f91f1ecbe544863a72605ce4fd84d70a8cf3c65"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "推理正在运行。vLLM 已成功加载模型（14.99 GiB），正在渲染 3453 个 prompts（已到 79%）。\n\n汇总：\n\n| 步骤 | 状态 |\n|------|------|\n| LoRA merge | 完成（15GB，4 shards） |\n| Registry `exp_017_llama_conll_infer` | RUNNING |\n| 推理任务 PID | 98661 |\n| 日志路径 | `output/exp_017_llama_conll_infer.log` |\n| 输出目录 | `output/exp_017_llama_conll_infer/` |\n| 数据 | CoNLL-2003 NER, 3453 test, N=8, T=1.0 |\n\n模型加载正常，prompt 渲染速度 ~550 it/s，接下来进入 vLLM 批量推理阶段。可稍后用 `tail` 查看日志跟踪进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-017-llama-conll-infer.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "06d14344925152365ad1",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ssh dgec vc construction",
+  "task_key": "worker_ssh_dgec-vc-construction_20260520T083908",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_dgec-vc-construction_20260520T083908_result.json",
+    "occurrence": 1,
+    "bytes": 1322,
+    "sha256": "a6e8d90ed9c1b5e6ab5f7df30ae69fa48edafcc8f3fe38e84608525a2ad3c2f6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验完成。结果已注册为 `art_20260520_fea42e`。\n\n## 汇总（19 unique configs，去重后）\n\n| 维度 | Sig+ (p<0.05) | Sig- (p>0.95) | NS |\n|------|:---:|:---:|:---:|\n| **总计** | **6** | **7** | **6** |\n\n### 按数据集\n\n| Dataset | configs | Sig+ | Sig- | NS | mean Δ (pp) |\n|---------|:---:|:---:|:---:|:---:|---:|\n| fewnerd | 8 | 3 | 4 | 1 | -0.15 |\n| wnut17 | 3 | 2 | 0 | 1 | +0.92 |\n| scierc | 4 | 1 | 0 | 3 | +0.80 |\n| conll | 4 | 0 | 3 | 1 | -0.30 |\n\n### 按模型/模式\n\n| Model/Mode | configs | Sig+ | Sig- | NS | mean Δ (pp) |\n|------------|:---:|:---:|:---:|:---:|---:|\n| qwen25_7b/ft | 6 | 3 | 1 | 2 | +0.44 |\n| qwen25_7b/ft_exp | 7 | 2 | 2 | 3 | +0.15 |\n| qwen25_72b/zs | 3 | 1 | 2 | 0 | +0.04 |\n| qwen25_72b/fs | 3 | 0 | 2 | 1 | -0.09 |\n\n### 关键观察\n\n- VC-weighted construction 效果**不一致**：6 个 config 显著正，7 个显著负，胜负基本持平\n- **wnut17 和 scierc** 偏向正面（小数据集、低 degeneracy），**conll** 全面负面（高 degeneracy + 高 baseline）\n- **72b zero-shot/few-shot** 模型几乎全负——高 degeneracy（33-61%）时 VC weighting 退化为 majority vote，反而丢信息\n- fewnerd/ft_exp/seed789 在两台服务器上有重复数据，结果一致（均为 sig-），已标注"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-dgec-vc-construction.md"
+}

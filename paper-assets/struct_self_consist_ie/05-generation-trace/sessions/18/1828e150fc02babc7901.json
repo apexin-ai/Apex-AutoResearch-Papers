@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1828e150fc02babc7901",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "bugfix e theta v2 bugs",
+  "task_key": "worker_bugfix_e_theta_v2_bugs_20260520T171400",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_bugfix_e_theta_v2_bugs_20260520T171400_result.json",
+    "occurrence": 1,
+    "bytes": 60,
+    "sha256": "511fd1a4c6f9643195ae9fdf51aa36ec4f918b6a6706b01a416ad4b6e857fec2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成，所有后台任务均已结束。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/bugfix-e-theta-v2-bugs.md"
+}

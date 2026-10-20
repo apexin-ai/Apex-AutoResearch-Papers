@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2597d2ffe3fecad59666",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "infra model download",
+  "task_key": "worker_infra_model_download_20260514T054921",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_infra_model_download_20260514T054921_result.json",
+    "occurrence": 1,
+    "bytes": 303,
+    "sha256": "bf50cb00c080e74aa4fe44e53eddcd80d5f3eebd79de93bda52393976dcd5a6d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Qwen3-8B 下载并验证完成。\n\n| 项目 | 值 |\n|------|-----|\n| 模型路径 | `/root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B` |\n| 参数量 | 8.2B |\n| Vocab size | 151,643 |\n| 模型占用磁盘 | 16GB |\n| 数据盘剩余空间 | 235GB (250GB 总量) |\n| 生成测试 | 通过 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-model-download.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0e6699ba8975f3ebb1fe",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "check exp028 and gpu status",
+  "task_key": "worker_check_exp028_and_gpu_status_20260517T083227",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_check_exp028_and_gpu_status_20260517T083227_result.json",
+    "occurrence": 1,
+    "bytes": 574,
+    "sha256": "50a830a447d81e9d62140b25a47ef08208f6b2755dfae0e62d17a8065b662c97"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Log 最新到 step 1450，但进度条显示已到 1477。综合报告：\n\n```\nexp_028 Status:\n- PID: alive (371545)\n- Current step: ~1477 / 41180\n- Current epoch: 0.18 / 5\n- Loss: 0.0765 (step 1450)\n- ETA: ~26 hours\n- GPU: cuda:0\n\nGPU Status:\n- cuda:0: 87% util, 28494 MiB / 32607 MiB\n- cuda:1:  0% util,     2 MiB / 32607 MiB\n- cuda:2:  0% util,     2 MiB / 32607 MiB\n- cuda:3:  0% util,     2 MiB / 32607 MiB\n```\n\n训练速度稳定在 ~1.9s/it，loss 从 0.0845 (step 1250) 下降到 0.0765 (step 1450)，趋势正常。3 张卡空闲。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-exp028-and-gpu-status.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "04321af85cd162ac363b",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis exp fewnerd mf4 v2 s123",
+  "task_key": "worker_analysis_exp_fewnerd_mf4_v2_s123_20260521T073956",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_exp_fewnerd_mf4_v2_s123_20260521T073956_result.json",
+    "occurrence": 1,
+    "bytes": 1839,
+    "sha256": "47f07921c9306994aac353bee9ea15fdb294d170ed6253bac908f00502df16e1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE/success。\n\n## 实验结果汇总：exp_fewnerd_mf4_v2_s123\n\n### 核心指标\n\n| 指标 | 值 |\n|------|-----|\n| greedy_f1 (micro-F1) | **0.7883** |\n| oracle_f1 | **0.8891** |\n| oracle_headroom | **+0.1009** |\n| fleiss_kappa_mean | 0.3483 |\n| soft_jaccard_mean | 0.6689 |\n| sample_f1_mean | 0.6364 |\n| sample_f1_std | 0.3819 |\n| sample_f1_pct_zero | 20.49% |\n\n### 相关性指标\n\n| 指标 | Full | Conditional |\n|------|------|-------------|\n| ρ(SJ, F1) | **+0.3070** | +0.1966 |\n| ρ(κ, F1) | +0.1588 | +0.0031 (n.s.) |\n| rho_advantage | **+0.1482** | +0.1935 |\n| n | 32565 | 28685 |\n\n### Logprob baseline\n\n| 指标 | Full | Conditional |\n|------|------|-------------|\n| ρ | +0.2193 | +0.1818 |\n| τ | +0.1641 | +0.1369 |\n| AUROC | 0.6056 | 0.5892 |\n\n### Verdict: **MARGINAL** → Conclusion: **success**\n\n### 与已有 FewNERD 数据对比\n\n| 指标 | 本实验 (MF4v2 s123) | 14B N=8 (exp_14b) | T=0.8 s456 |\n|------|---------------------|-------------------|------------|\n| greedy_f1 | 0.7883 | 0.7984 | 0.788 |\n| oracle_f1 | 0.8891 | 0.8791 | 0.877 |\n| oracle_headroom | +0.1009 | +0.081 | +0.088 |\n| rho_SJ_full | 0.307 | 0.324 | 0.328 |\n| rho_advantage | 0.148 | 0.083 | 0.126 |\n\n### 判定理由\n\n1. greedy_f1=0.7883 在 FewNERD 正常范围内（0.70-0.80）\n2. structural_beats_surface=true，rho_advantage=+0.148 是所有 FewNERD 实验中最高之一\n3. 所有指标完整，无 NaN/异常\n4. pct_zero=20.5% 偏高但未超 50% 阈值\n\n### 注意事项\n\n- **rho_kappa_cond=0.0031 (p=0.60)**：conditional 条件下 Fleiss kappa 完全失效，soft Jaccard 优势极大\n- **seed=42 仍在 RUNNING**，完成后可做 2-seed 对比\n- verdict=MARGINAL 而非 PASS，因 rho_SJ_full=0.307 未达 PASS 阈值（通常 ≥0.35）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-fewnerd-mf4-v2-s123.md"
+}

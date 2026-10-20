@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "168f1a4e5f23639a1a05",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ssh check 7b fk signal",
+  "task_key": "worker_ssh_check-7b-fk-signal_20260520T075556",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_check-7b-fk-signal_20260520T075556_result.json",
+    "occurrence": 1,
+    "bytes": 887,
+    "sha256": "c24e56e23cdf07daa742e1c5a302f00a1aa2f7df38ee3b68d21f1f0eae9f277d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## FK Signal 结果\n\n数据已存在于 `llama_fewnerd_s{42,123,456}/report.json` 中，无需补算。\n\n### FK ρ (full, correlation_fleiss_vs_f1_full)\n\n| Seed | FK ρ |\n|------|------|\n| seed42 | 0.357 |\n| seed123 | 0.319 |\n| seed456 | 0.173 |\n| **3-seed mean** | **0.283 ± 0.097** |\n\n### FK ρ (conditional, correlation_fleiss_vs_f1_conditional)\n\n| Seed | FK ρ |\n|------|------|\n| seed42 | 0.299 |\n| seed123 | 0.259 |\n| seed456 | 0.070 |\n| **3-seed mean** | **0.209 ± 0.121** |\n\n### FK mean (fleiss_kappa_mean)\n\n| Seed | FK κ |\n|------|------|\n| seed42 | 0.520 |\n| seed123 | 0.512 |\n| seed456 | 0.388 |\n\n来源: **已有**（`output/llama_fewnerd_s{42,123,456}/report.json`）\n\n注意：seed456 的 FK ρ 明显低于另两个 seed（full 0.173 vs 0.357/0.319），导致方差较大。Table 5 填值时可能需要注意这一点。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-7b-fk-signal.md"
+}

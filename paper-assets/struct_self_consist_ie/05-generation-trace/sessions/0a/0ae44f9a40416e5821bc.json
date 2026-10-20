@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0ae44f9a40416e5821bc",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "knowledge 7b post pipeline prep",
+  "task_key": "worker_knowledge_7b-post-pipeline-prep_20260520T003320",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_knowledge_7b-post-pipeline-prep_20260520T003320_result.json",
+    "occurrence": 1,
+    "bytes": 2726,
+    "sha256": "6ba252e4e14178ed9ac4e311d498bce51be7772fe6efc000135a7bfb49cc4841"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I have the full picture. Here's the summary.\n\n---\n\n## format_for_scaling.py 命令准备\n\n### 前置步骤：compute_signals.py\n\nPipeline 的 Phase 4 用的是 `analyze_fewnerd_results.py`（产出 per-seed `report.json`），**不是** `compute_signals.py`。而 `format_for_scaling.py` 需要 `full_signal_report.json`（`compute_signals.py` 的产物）。所以 pipeline 完成后需先跑 compute_signals。\n\n`compute_signals.py` 和 `format_for_scaling.py` 都已在服务器 `/root/autodl-tmp/struct_self_consist_ie/` 根目录下（72B pipeline prep 时上传的）。\n\n### 7B 推理输出路径（3 seeds）\n\n```\noutput/qwen25_7b_fewnerd_seed42/fewnerd/samples.jsonl\noutput/qwen25_7b_fewnerd_seed123/fewnerd/samples.jsonl\noutput/qwen25_7b_fewnerd_seed456/fewnerd/samples.jsonl\n```\n\n### 7B 完整命令\n\n```bash\ncd /root/autodl-tmp/struct_self_consist_ie\n\n# Step 1: 每个 seed 跑 compute_signals（产出 full_signal_report.json）\nfor SEED in 42 123 456; do\n  python compute_signals.py \\\n    --input-dir output/qwen25_7b_fewnerd_seed${SEED} \\\n    --model-size 7 --regime ft\ndone\n\n# Step 2: format_for_scaling（取 seed42 作为代表值）\npython format_for_scaling.py \\\n  --report output/qwen25_7b_fewnerd_seed42/full_signal_report.json \\\n  --model-size 7 --regime ft\n```\n\n**预期输出路径**：`output/qwen25_7b_fewnerd_seed{42,123,456}/full_signal_report.json`\n\n### 14B 模板\n\n```bash\ncd /root/autodl-tmp/struct_self_consist_ie\n\nfor SEED in 42 123 456; do\n  python compute_signals.py \\\n    --input-dir output/qwen25_14b_fewnerd_seed${SEED} \\\n    --model-size 14 --regime ft\ndone\n\npython format_for_scaling.py \\\n  --report output/qwen25_14b_fewnerd_seed42/full_signal_report.json \\\n  --model-size 14 --regime ft\n```\n\n### 32B 模板\n\n```bash\ncd /root/autodl-tmp/struct_self_consist_ie\n\nfor SEED in 42 123 456; do\n  python compute_signals.py \\\n    --input-dir output/qwen25_32b_fewnerd_seed${SEED} \\\n    --model-size 32 --regime ft\ndone\n\npython format_for_scaling.py \\\n  --report output/qwen25_32b_fewnerd_seed42/full_signal_report.json \\\n  --model-size 32 --regime ft\n```\n\n### 注意事项\n\n1. **output 目录命名**：以上路径基于日志推断（`qwen25_{size}b_fewnerd_seed{SEED}`），pipeline 完成后需用 `ls output/` 确认实际目录名\n2. **seed 选择**：上面取 seed42 做 format_for_scaling 代表值。如需跨 seed 平均 rho/F1，需额外汇总脚本\n3. **compute_signals.py 已在服务器**：72B pipeline 准备时已上传到项目根目录（May 20 02:27, 17KB），无需再次上传\n4. **format_for_scaling.py 同理**：也在项目根目录（May 20 02:25, 5KB）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/knowledge-7b-post-pipeline-prep.md"
+}

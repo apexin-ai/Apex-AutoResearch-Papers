@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "05a530ee7b33b09cdfae",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "code exp 007 llama n16",
+  "task_key": "worker_code_exp_007_llama_n16_20260514T185118",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_exp_007_llama_n16_20260514T185118_result.json",
+    "occurrence": 1,
+    "bytes": 435,
+    "sha256": "867d685182f59367367c5164089c6e736bd2b79bda2385aded834e21b232e8a4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "推理已在运行，进度正常。\n\n- **Registry**: `exp_007_llama_n16` 已创建，status=RUNNING\n- **PID**: 104273（cuda:1）\n- **进度**: 96/8816 prompts processed，模型已加载并开始推理\n- **日志**: `/root/autodl-tmp/struct_self_consist_ie/output/exp_007_llama_n16.log`\n- **预估**: 按当前速率 ~11.6 it/s，约 12-15 分钟可完成（比预估 2h 快很多，vLLM batch 推理效率高）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-007-llama-n16.md"
+}

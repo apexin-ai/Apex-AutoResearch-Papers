@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2011fc58c435e7c2c616",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis freeform deep analysis",
+  "task_key": "worker_analysis_freeform_deep_analysis_20260515T102907",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_freeform_deep_analysis_20260515T102907_result.json",
+    "occurrence": 1,
+    "bytes": 951,
+    "sha256": "2f5af1927e56b11a897caaa9ef84d3887e2825432b83e32ff2e6a21f42d44e7b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。核心发现：\n\n**RE LP Selection Flip**:\n- 全部 7 种 relation type 都呈现 flip，不是单一类型驱动。PART-OF (+6.52pp) 和 HYPONYM-OF (+4.45pp) 翻转最大\n- Free-form 选择性地在 RE-difficult instances 上放大 LP variance（ratio 1.06），在 easy instances 上压缩（0.86），Mann-Whitney p < 0.0001\n- Constrained 模式 LP selection 的 win/loss 不对称（36:59），free-form 修正为 45:45，直接解释 gap 翻转\n- 31 个 flip instances 是 relation-dense（3.3 gold rels，2× baseline），constrained 下 LP variance 被压缩\n\n**Non-Tied 重叠度**:\n- Jaccard = 0.472，虽然 tied fraction 只差 2pp，但 non-tied 集合成员大洗牌\n- 87 个 instances 在 free-form 下新获得 LP 区分度（range 从 0.032→0.098），76 个失去（0.111→0.031）\n- 两种 decoding 模式仅共享 ~24% 的 LP range variance\n\n报告已注册为 `art_20260515_833ab1`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-freeform-deep-analysis.md"
+}

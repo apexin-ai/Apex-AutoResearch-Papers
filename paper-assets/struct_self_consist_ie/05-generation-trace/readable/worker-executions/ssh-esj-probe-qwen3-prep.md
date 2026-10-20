@@ -1,0 +1,3517 @@
+# ssh esj probe qwen3 prep
+
+**When Self-Consistency Fails for NER: Degeneracy, Signal Collapse, and the Correlation-Selection Gap** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 72
+- **Recorded user turns:** 0
+- **Tool calls:** 26
+- **Original source:** `logs/workers/worker_ssh_esj_probe_qwen3_prep_20260522T152951.log`
+- **Structured JSON:** [`96c7a41a35df2fc4fde4.json`](../../sessions/96/96c7a41a35df2fc4fde4.json)
+
+## Before a recorded user message
+
+72 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "session_id": "c9503f0c-fafb-4830-833b-3b869dd2e070",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "aca6a6e4-10a5-4014-8633-b3643e058932",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed_warning",
+    "resetsAt": 1779858000,
+    "rateLimitType": "seven_day",
+    "utilization": 0.68,
+    "isUsingOverage": false
+  },
+  "uuid": "fa075d37-4a8c-44f2-9370-3dab8c6571d9",
+  "session_id": "c9503f0c-fafb-4830-833b-3b869dd2e070"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+我来探查 ESJ probe 的代码、模型和数据情况。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c9503f0c-fafb-4830-833b-3b869dd2e070",
+  "uuid": "fd5738b8-37c9-4dd4-8471-a08c35882e70",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01McsSdTGtxgZ8tSmxTKQ6Lr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12234,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12234
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01GL3LAwnbV5DModLJg4Bo56`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__detect_image",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c9503f0c-fafb-4830-833b-3b869dd2e070",
+  "uuid": "62f55434-479b-487c-877f-9aeac2e829ac",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01McsSdTGtxgZ8tSmxTKQ6Lr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12234,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12234
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-22T15:30:01.632Z_
+
+<details><summary>↩ Tool result · `toolu_01GL3LAwnbV5DModLJg4Bo56`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__detect_image"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c9503f0c-fafb-4830-833b-3b869dd2e070",
+  "uuid": "bbee7700-53e7-4f57-bb93-d02aae9fe66d",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__detect_image"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__detect_image",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by running multiple read-only commands in parallel to gather information about the ESJ code, models, and data.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c9503f0c-fafb-4830-833b-3b869dd2e070",
+  "uuid": "a8282e9e-d7fc-42ee-82c5-e1e1bbc2894a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CN6th8c5eA92aGQXT17wMH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 650,
+      "cache_read_input_tokens": 24075,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 650
+      },
+      "output_tokens": 30,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01WU8awMAHMf77LTZhx1EDuL`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "find /root/autodl-tmp/struct_self_consist_ie/code/ -type f -name \"*.py\" -path \"*probe*\" -o -name \"*.py\" -path \"*esj*\" -o -name \"*.py\" -path \"*self_judge*\" -o -name \"*.py\" -path \"*self_eval*\" -o -name \"*.py\" -path \"*calibr*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c9503f0c-fafb-4830-833b-3b869dd2e070",
+  "uuid": "85da97f7-ab64-4a19-ab7a-b99092d935df",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CN6th8c5eA92aGQXT17wMH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 650,
+      "cache_read_input_tokens": 24075,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 650
+      },
+      "output_tokens": 30,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-22T15:30:07.525Z_
+
+<details><summary>↩ Tool result · `toolu_01WU8awMAHMf77LTZhx1EDuL`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/code/probe/extract_hidden_states.py\\n/root/autodl-tmp/struct_self_consist_ie/code/probe/hidden_state_probe.py\\n/root/autodl-tmp/struct_self_consist_ie/code/probe/hidden_state_probe_v2.py\\n/root/autodl-tmp/struct_self_consist_ie/code/probe/extract_hidden_states_fewnerd.py\\n/root/autodl-tmp/struct_self_consist_ie/code/probe/hidden_state_probe_fewnerd.py\\n/root/autodl-tmp/struct_self_consist_ie/code/probe/fix_and_run.py\\n/root/autodl-tmp/struct_self_consist_ie/code/probe/extract_hidden_states_exp016.py\\n/root/autodl-tmp/struct_self_consist_ie/code/probe/hidden_state_probe_exp016.py\\n/root/autodl-tmp/struct_self_consist_ie/code/diagnostic_calibration.py\\n/root/autodl-tmp/struct_self_consist_ie/code/dev_lp_probe.py\\n/root/autodl-tmp/struct_self_consist_ie/code/run_esj.py\\n/root/autodl-tmp/struct_self_consist_ie/code/groupkfold_probe_fulldata.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.84}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c9503f0c-fafb-4830-833b-3b869dd2e070",
+  "uuid": "2006dfc2-3219-4d5c-bcee-8d1cafd647ca",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/code/probe/extract_hidden_states.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/probe/hidden_state_probe.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/probe/hidden_state_probe_v2.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/probe/extract_hidden_states_fewnerd.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/probe/hidden_state_probe_fewnerd.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/probe/fix_and_run.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/probe/extract_hidden_states_exp016.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/probe/hidden_state_probe_exp016.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/diagnostic_calibration.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/dev_lp_probe.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/run_esj.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/groupkfold_probe_fulldata.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.84}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/code/probe/extract_hidden_states.py\\n/root/autodl-tmp/struct_self_consist_ie/code/probe/hidden_state_probe.py\\n/root/autodl-tmp/struct_self_consist_ie/code/probe/hidden_state_probe_v2.py\\n/root/autodl-tmp/struct_self_consist_ie/code/probe/extract_hidden_states_fewnerd.py\\n/root/autodl-tmp/struct_self_consist_ie/code/probe/hidden_state_probe_fewnerd.py\\n/root/autodl-tmp/struct_self_consist_ie/code/probe/fix_and_run.py\\n/root/autodl-tmp/struct_self_consist_ie/code/probe/extract_hidden_states_exp016.py\\n/root/autodl-tmp/struct_self_consist_ie/code/probe/hidden_state_probe_exp016.py\\n/root/autodl-tmp/struct_self_consist_ie/code/diagnostic_calibration.py\\n/root/autodl-tmp/struct_self_consist_ie/code/dev_lp_probe.py\\n/root/autodl-tmp/struct_self_consist_ie/code/run_esj.py\\n/root/autodl-tmp/struct_self_consist_ie/code/groupkfold_probe_fulldata.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.84}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01XAte8ghjYSBSfM9ZJL7rMb`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "ls -la /root/autodl-tmp/struct_self_consist_ie/code/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c9503f0c-fafb-4830-833b-3b869dd2e070",
+  "uuid": "a33b0b1d-6039-4b5c-b74c-129d5f36744a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CN6th8c5eA92aGQXT17wMH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 650,
+      "cache_read_input_tokens": 24075,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 650
+      },
+      "output_tokens": 30,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-22T15:30:08.057Z_
+
+<details><summary>↩ Tool result · `toolu_01XAte8ghjYSBSfM9ZJL7rMb`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 2216\\ndrwxr-xr-x  6 root root  8192 May 22 22:07 .\\ndrwxr-xr-x 18 root root  8192 May 22 19:04 ..\\ndrwxr-xr-x  2 root root  4096 May 19 10:36 __pycache__\\ndrwxr-xr-x  2 root root  4096 May 14 20:48 _backup_cond_fix\\n-rw-r--r--  1 root root 11640 May 19 02:41 adaptive_temperature_analysis.py\\n-rw-r--r--  1 root root 14702 May 18 21:25 analysis_d140_oracle_gated.py\\n-rw-r--r--  1 root root  8205 May 19 00:45 analysis_degen_gated_selection.py\\n-rw-r--r--  1 root root  6837 May 19 01:29 analysis_dgs_ablation.py\\n-rw-r--r--  1 root root  9708 May 19 01:29 analysis_dgs_cross_model.py\\n-rw-r--r--  1 root root  4980 May 19 03:17 analysis_dgs_epoch_rank.py\\n-rw-r--r--  1 root root 10637 May 19 01:28 analysis_dgs_full_validation.py\\n-rw-r--r--  1 root root  9411 May 19 02:41 analysis_dgs_gold_filter.py\\n-rw-r--r--  1 root root 20828 May 19 03:08 analysis_dgs_llama_conll.py\\n-rw-r--r--  1 root root  9419 May 19 03:09 analysis_dgs_llama_conll_report.py\\n-rw-r--r--  1 root root  6383 May 19 01:30 analysis_dgs_multiseed.py\\n-rw-r--r--  1 root root  7020 May 19 00:30 analysis_mbr_selection.py\\n-rw-r--r--  1 root root  6553 May 19 00:45 analysis_mbr_span_fix.py\\n-rw-r--r--  1 root root 10441 May 15 20:46 analysis_multiseed_selection_f1.py\\n-rw-r--r--  1 root root 11880 May 15 21:13 analysis_scierc_n16_selection.py\\n-rw-r--r--  1 root root 10298 May 15 21:25 analysis_scierc_re_n16_selection.py\\n-rw-r--r--  1 root root  4052 May 15 02:53 analyze_3seed_5signal.py\\n-rw-r--r--  1 root root  8175 May 14 20:48 analyze_component_wise_re.py\\n-rw-r--r--  1 root root 10399 May 14 22:29 analyze_entity_voting.py\\n-rw-r--r--  1 root root  5419 May 14 22:29 analyze_exact_match_voting.py\\n-rw-r--r--  1 root root 10428 May 14 20:48 analyze_exp002_conll2003.py\\n-rw-r--r--  1 root root 25610 May 14 20:49 analyze_exp004_re_diagnostic.py\\n-rw-r--r--  1 root root 15238 May 14 23:29 analyze_exp004_v2_re_diagnostic.py\\n-rw-r--r--  1 root root 14280 May 14 23:24 analyze_exp005_v2_temperature.py\\n-rw-r--r--  1 root root  8378 May 15 07:09 analyze_exp012_rerun_5signal.py\\n-rw-r--r--  1 root root 13349 May 14 20:48 analyze_exp015_unified.py\\n-rw-r--r--  1 root root 14955 May 14 23:31 analyze_exp015_v2_metrics.py\\n-rw-r--r--  1 root root 31742 May 14 20:14 analyze_exp016_ensemble.py\\n-rw-r--r--  1 root root  8166 May 15 01:54 analyze_exp017_5signal.py\\n-rw-r--r--  1 root root 12352 May 15 03:23 analyze_exp017_llama_conll_n16.py\\n-rw-r--r--  1 root root 12362 May 15 03:30 analyze_exp017_llama_conll_n16_s123.py\\n-rw-r--r--  1 root root 10533 May 15 23:45 analyze_exp017_t07.py\\n-rw-r--r--  1 root root  9170 May 16 18:32 analyze_exp023_rank8.py\\n-rw-r--r--  1 root root 14201 May 16 19:19 analyze_exp023_rank8_full.py\\n-rw-r--r--  1 root root  9958 May 18 23:28 analyze_exp026_temp_5signal.py\\n-rw-r--r--  1 root root 14662 May 19 05:34 analyze_fewnerd_results.py\\n-rw-r--r--  1 root root 16612 May 19 07:40 analyze_fewnerd_s789.py\\n-rw-r--r--  1 root root  7005 May 16 11:13 analyze_llama3b_vs_8b.py\\n-rw-r--r--  1 root root 14131 May 18 16:35 analyze_llama_fewnerd.py\\n-rw-r--r--  1 root root 11159 May 19 06:33 analyze_llama_fewnerd_3seed.py\\n-rw-r--r--  1 root root  9045 May 19 03:09 analyze_llama_scierc_seed123_5signal.py\\n-rw-r--r--  1 root root  9245 May 19 03:14 analyze_llama_scierc_seed456_5signal.py\\n-rw-r--r--  1 root root  8877 May 14 22:29 analyze_logprob_baseline.py\\n-rw-r--r--  1 root root 10115 May 15 20:44 analyze_lp_range_cdf.py\\n-rw-r--r--  1 root root  9091 May 15 19:41 analyze_ood_signals.py\\n-rw-r--r--  1 root root  7491 May 17 06:59 analyze_per_type_lp.py\\n-rw-r--r--  1 root root  8126 May 17 12:52 analyze_per_type_lp_scierc.py\\n-rw-r--r--  1 root root  7215 May 22 05:42 analyze_per_type_mv_fewnerd.py\\n-rw-r--r--  1 root root  4448 May 22 05:44 analyze_per_type_mv_v2.py\\n-rw-r--r--  1 root root  3421 May 22 05:53 analyze_pretrained_per_type_mv.py\\n-rw-r--r--  1 root root  8741 May 16 03:49 analyze_scale_ablation_4b.py\\n-rw-r--r--  1 root root 12103 May 16 00:50 analyze_thinking_token_lp_dilution.py\\n-rw-r--r--  \\n\\n... [截断: 输出过长，省略 5626 字符] ...\\n\\n-r--r--  1 root root  2617 May 22 13:13 lp_best_n_scaling.py\\n-rw-r--r--  1 root root  4454 May 22 14:47 lp_best_unified.py\\n-rw-r--r--  1 root root  5233 May 22 09:33 lp_best_vs_cumlp_best.py\\n-rw-r--r--  1 root root  1507 May 19 06:32 merge_llama_fewnerd.py\\n-rw-r--r--  1 root root 17290 May 21 10:03 multi_model_error_correlation.py\\n-rw-r--r--  1 root root  7822 May 19 13:43 multiseed_construction.py\\n-rw-r--r--  1 root root 11096 May 14 15:46 mvp_pilot.py\\n-rw-r--r--  1 root root  6350 May 15 11:10 n8_bootstrap_ci.py\\n-rw-r--r--  1 root root  3838 May 22 15:32 ner_lp_f1_correlation.py\\n-rw-r--r--  1 root root  2419 May 19 05:30 oracle_audit.py\\n-rw-r--r--  1 root root  3262 May 15 13:04 oracle_improvable.py\\n-rw-r--r--  1 root root  9859 May 15 13:06 oracle_improvable_tost.py\\ndrwxr-xr-x  2 root root    53 May 20 16:47 pipeline\\n-rw-r--r--  1 root root 11981 May 19 13:59 plot_fig_overview_v3.py\\n-rw-r--r--  1 root root  7397 May 15 07:38 plot_reliability_1024.py\\n-rw-r--r--  1 root root  3250 May 19 05:43 plot_scatter_v2.py\\n-rw-r--r--  1 root root  4273 May 15 07:37 plot_selection_gap_1024.py\\n-rw-r--r--  1 root root  5337 May 15 21:45 plot_selection_gap_3seed.py\\n-rw-r--r--  1 root root  3511 May 15 22:46 plot_selection_gap_n8.py\\n-rw-r--r--  1 root root  5061 May 19 16:14 plot_selection_gap_single.py\\ndrwxr-xr-x  2 root root  4096 May 18 19:39 probe\\n-rw-r--r--  1 root root  7263 May 16 04:23 r8w3_sj_normalizer_comparison.py\\n-rw-r--r--  1 root root  8492 May 16 06:01 r8w3_sj_union_v2.py\\n-rw-r--r--  1 root root  9401 May 15 12:29 re_conditional_analysis.py\\n-rw-r--r--  1 root root  5274 May 22 16:03 re_diagnostic_cascade.py\\n-rw-r--r--  1 root root  7541 May 15 15:15 re_nonzero_selection.py\\n-rw-r--r--  1 root root  9145 May 15 11:50 re_selection_recompute.py\\n-rw-r--r--  1 root root  5341 May 21 22:18 recompute_alpha_crit_unified.py\\n-rw-r--r--  1 root root  3336 May 18 12:24 recompute_lp_variants.py\\n-rw-r--r--  1 root root  6235 May 18 12:20 recompute_table_fewnerd.py\\n-rw-r--r--  1 root root  3250 May 18 12:31 recompute_table_metrics.py\\n-rw-r--r--  1 root root  6607 May 19 02:43 regression_test_unified_metrics.py\\n-rw-r--r--  1 root root  1010 May 19 10:36 run_construction_fair_n8.py\\n-rwxr-xr-x  1 root root  1231 May 21 01:47 run_cross_model.sh\\n-rw-r--r--  1 root root 19932 May 21 00:07 run_esj.py\\n-rw-r--r--  1 root root 14857 May 21 14:27 run_frontier_sc.py\\n-rwxr-xr-x  1 root root  1597 May 19 06:32 run_llama_fewnerd_inference.sh\\n-rwxr-xr-x  1 root root   472 May 18 17:31 run_llama_fewnerd_train_single_gpu.sh\\n-rw-r--r--  1 root root 17111 May 22 21:02 run_mvp_pilot.py\\n-rw-r--r--  1 root root 16551 May 17 05:11 run_mvp_pilot.py.bak\\n-rw-r--r--  1 root root 19380 May 16 11:07 run_verbalized_confidence.py\\n-rw-r--r--  1 root root 24347 May 18 16:34 sampling.py\\n-rw-r--r--  1 root root  6848 May 19 05:42 scatter_v2_data.py\\n-rw-r--r--  1 root root 18004 May 22 01:32 scierc_3seed_full_recompute.py\\n-rw-r--r--  1 root root  7355 May 16 11:58 selection_f1_3b.py\\n-rw-r--r--  1 root root  8386 May 16 04:03 selection_f1_4b.py\\n-rw-r--r--  1 root root 12313 May 19 09:24 selective_prediction.py\\n-rw-r--r--  1 root root  4188 May 22 09:28 sequence_entropy_vs_lp.py\\n-rw-r--r--  1 root root 15596 May 18 14:51 statistical_hardening.py\\n-rw-r--r--  1 root root 15370 May 19 15:13 supervised_verifier_upgrade.py\\n-rw-r--r--  1 root root  1245 May 19 06:54 supplement_degen.py\\n-rw-r--r--  1 root root  9603 May 15 23:32 table2_selection_f1.py\\n-rw-r--r--  1 root root 17820 May 18 18:38 token_lp_aggregator.py\\n-rw-r--r--  1 root root  7903 May 22 13:38 unified_instance_recompute.py\\n-rw-r--r--  1 root root  4740 May 19 02:39 unified_metrics.py\\n-rw-r--r--  1 root root  5028 May 18 12:42 unified_tab_fewnerd_metrics.py\\n-rw-r--r--  1 root root  5814 May 21 10:27 unify_degeneracy.py\\n-rw-r--r--  1 root root  8733 May 15 12:48 vc_impl_diff_verify.py\\n-rw-r--r--  1 root root  9221 May 16 12:56 vc_quartile_analysis.py\\n-rw-r--r--  1 root root  7449 May 15 11:09 wnut17_full_signal_analysis.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c9503f0c-fafb-4830-833b-3b869dd2e070",
+  "uuid": "146c9692-f545-49aa-8d85-b00f4eb33be8",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 2216\\\\ndrwxr-xr-x  6 root root  8192 May 22 22:07 .\\\\ndrwxr-xr-x 18 root root  8192 May 22 19:04 ..\\\\ndrwxr-xr-x  2 root root  4096 May 19 10:36 __pycache__\\\\ndrwxr-xr-x  2 root root  4096 May 14 20:48 _backup_cond_fix\\\\n-rw-r--r--  1 root root 11640 May 19 02:41 adaptive_temperature_analysis.py\\\\n-rw-r--r--  1 root root 14702 May 18 21:25 analysis_d140_oracle_gated.py\\\\n-rw-r--r--  1 root root  8205 May 19 00:45 analysis_degen_gated_selection.py\\\\n-rw-r--r--  1 root root  6837 May 19 01:29 analysis_dgs_ablation.py\\\\n-rw-r--r--  1 root root  9708 May 19 01:29 analysis_dgs_cross_model.py\\\\n-rw-r--r--  1 root root  4980 May 19 03:17 analysis_dgs_epoch_rank.py\\\\n-rw-r--r--  1 root root 10637 May 19 01:28 analysis_dgs_full_validation.py\\\\n-rw-r--r--  1 root root  9411 May 19 02:41 analysis_dgs_gold_filter.py\\\\n-rw-r--r--  1 root root 20828 May 19 03:08 analysis_dgs_llama_conll.py\\\\n-rw-r--r--  1 root root  9419 May 19 03:09 analysis_dgs_llama_conll_report.py\\\\n-rw-r--r--  1 root root  6383 May 19 01:30 analysis_dgs_multiseed.py\\\\n-rw-r--r--  1 root root  7020 May 19 00:30 analysis_mbr_selection.py\\\\n-rw-r--r--  1 root root  6553 May 19 00:45 analysis_mbr_span_fix.py\\\\n-rw-r--r--  1 root root 10441 May 15 20:46 analysis_multiseed_selection_f1.py\\\\n-rw-r--r--  1 root root 11880 May 15 21:13 analysis_scierc_n16_selection.py\\\\n-rw-r--r--  1 root root 10298 May 15 21:25 analysis_scierc_re_n16_selection.py\\\\n-rw-r--r--  1 root root  4052 May 15 02:53 analyze_3seed_5signal.py\\\\n-rw-r--r--  1 root root  8175 May 14 20:48 analyze_component_wise_re.py\\\\n-rw-r--r--  1 root root 10399 May 14 22:29 analyze_entity_voting.py\\\\n-rw-r--r--  1 root root  5419 May 14 22:29 analyze_exact_match_voting.py\\\\n-rw-r--r--  1 root root 10428 May 14 20:48 analyze_exp002_conll2003.py\\\\n-rw-r--r--  1 root root 25610 May 14 20:49 analyze_exp004_re_diagnostic.py\\\\n-rw-r--r--  1 root root 15238 May 14 23:29 analyze_exp004_v2_re_diagnostic.py\\\\n-rw-r--r--  1 root root 14280 May 14 23:24 analyze_exp005_v2_temperature.py\\\\n-rw-r--r--  1 root root  8378 May 15 07:09 analyze_exp012_rerun_5signal.py\\\\n-rw-r--r--  1 root root 13349 May 14 20:48 analyze_exp015_unified.py\\\\n-rw-r--r--  1 root root 14955 May 14 23:31 analyze_exp015_v2_metrics.py\\\\n-rw-r--r--  1 root root 31742 May 14 20:14 analyze_exp016_ensemble.py\\\\n-rw-r--r--  1 root root  8166 May 15 01:54 analyze_exp017_5signal.py\\\\n-rw-r--r--  1 root root 12352 May 15 03:23 analyze_exp017_llama_conll_n16.py\\\\n-rw-r--r--  1 root root 12362 May 15 03:30 analyze_exp017_llama_conll_n16_s123.py\\\\n-rw-r--r--  1 root root 10533 May 15 23:45 analyze_exp017_t07.py\\\\n-rw-r--r--  1 root root  9170 May 16 18:32 analyze_exp023_rank8.py\\\\n-rw-r--r--  1 root root 14201 May 16 19:19 analyze_exp023_rank8_full.py\\\\n-rw-r--r--  1 root root  9958 May 18 23:28 analyze_exp026_temp_5signal.py\\\\n-rw-r--r--  1 root root 14662 May 19 05:34 analyze_fewnerd_results.py\\\\n-rw-r--r--  1 root root 16612 May 19 07:40 analyze_fewnerd_s789.py\\\\n-rw-r--r--  1 root root  7005 May 16 11:13 analyze_llama3b_vs_8b.py\\\\n-rw-r--r--  1 root root 14131 May 18 16:35 analyze_llama_fewnerd.py\\\\n-rw-r--r--  1 root root 11159 May 19 06:33 analyze_llama_fewnerd_3seed.py\\\\n-rw-r--r--  1 root root  9045 May 19 03:09 analyze_llama_scierc_seed123_5signal.py\\\\n-rw-r--r--  1 root root  9245 May 19 03:14 analyze_llama_scierc_seed456_5signal.py\\\\n-rw-r--r--  1 root root  8877 May 14 22:29 analyze_logprob_baseline.py\\\\n-rw-r--r--  1 root root 10115 May 15 20:44 analyze_lp_range_cdf.py\\\\n-rw-r--r--  1 root root  9091 May 15 19:41 analyze_ood_signals.py\\\\n-rw-r--r--  1 root root  7491 May 17 06:59 analyze_per_type_lp.py\\\\n-rw-r--r--  1 root root  8126 May 17 12:52 analyze_per_type_lp_scierc.py\\\\n-rw-r--r--  1 root root  7215 May 22 05:42 analyze_per_type_mv_fewnerd.py\\\\n-rw-r--r--  1 root root  4448 May 22 05:44 analyze_per_type_mv_v2.py\\\\n-rw-r--r--  1 root root  3421 May 22 05:53 analyze_pretrained_per_type_mv.py\\\\n-rw-r--r--  1 root root  8741 May 16 03:49 analyze_scale_ablation_4b.py\\\\n-rw-r--r--  1 root root 12103 May 16 00:50 analyze_thinking_token_lp_dilution.py\\\\n-rw-r--r--  \\\\n\\\\n... [截断: 输出过长，省略 5626 字符] ...\\\\n\\\\n-r--r--  1 root root  2617 May 22 13:13 lp_best_n_scaling.py\\\\n-rw-r--r--  1 root root  4454 May 22 14:47 lp_best_unified.py\\\\n-rw-r--r--  1 root root  5233 May 22 09:33 lp_best_vs_cumlp_best.py\\\\n-rw-r--r--  1 root root  1507 May 19 06:32 merge_llama_fewnerd.py\\\\n-rw-r--r--  1 root root 17290 May 21 10:03 multi_model_error_correlation.py\\\\n-rw-r--r--  1 root root  7822 May 19 13:43 multiseed_construction.py\\\\n-rw-r--r--  1 root root 11096 May 14 15:46 mvp_pilot.py\\\\n-rw-r--r--  1 root root  6350 May 15 11:10 n8_bootstrap_ci.py\\\\n-rw-r--r--  1 root root  3838 May 22 15:32 ner_lp_f1_correlation.py\\\\n-rw-r--r--  1 root root  2419 May 19 05:30 oracle_audit.py\\\\n-rw-r--r--  1 root root  3262 May 15 13:04 oracle_improvable.py\\\\n-rw-r--r--  1 root root  9859 May 15 13:06 oracle_improvable_tost.py\\\\ndrwxr-xr-x  2 root root    53 May 20 16:47 pipeline\\\\n-rw-r--r--  1 root root 11981 May 19 13:59 plot_fig_overview_v3.py\\\\n-rw-r--r--  1 root root  7397 May 15 07:38 plot_reliability_1024.py\\\\n-rw-r--r--  1 root root  3250 May 19 05:43 plot_scatter_v2.py\\\\n-rw-r--r--  1 root root  4273 May 15 07:37 plot_selection_gap_1024.py\\\\n-rw-r--r--  1 root root  5337 May 15 21:45 plot_selection_gap_3seed.py\\\\n-rw-r--r--  1 root root  3511 May 15 22:46 plot_selection_gap_n8.py\\\\n-rw-r--r--  1 root root  5061 May 19 16:14 plot_selection_gap_single.py\\\\ndrwxr-xr-x  2 root root  4096 May 18 19:39 probe\\\\n-rw-r--r--  1 root root  7263 May 16 04:23 r8w3_sj_normalizer_comparison.py\\\\n-rw-r--r--  1 root root  8492 May 16 06:01 r8w3_sj_union_v2.py\\\\n-rw-r--r--  1 root root  9401 May 15 12:29 re_conditional_analysis.py\\\\n-rw-r--r--  1 root root  5274 May 22 16:03 re_diagnostic_cascade.py\\\\n-rw-r--r--  1 root root  7541 May 15 15:15 re_nonzero_selection.py\\\\n-rw-r--r--  1 root root  9145 May 15 11:50 re_selection_recompute.py\\\\n-rw-r--r--  1 root root  5341 May 21 22:18 recompute_alpha_crit_unified.py\\\\n-rw-r--r--  1 root root  3336 May 18 12:24 recompute_lp_variants.py\\\\n-rw-r--r--  1 root root  6235 May 18 12:20 recompute_table_fewnerd.py\\\\n-rw-r--r--  1 root root  3250 May 18 12:31 recompute_table_metrics.py\\\\n-rw-r--r--  1 root root  6607 May 19 02:43 regression_test_unified_metrics.py\\\\n-rw-r--r--  1 root root  1010 May 19 10:36 run_construction_fair_n8.py\\\\n-rwxr-xr-x  1 root root  1231 May 21 01:47 run_cross_model.sh\\\\n-rw-r--r--  1 root root 19932 May 21 00:07 run_esj.py\\\\n-rw-r--r--  1 root root 14857 May 21 14:27 run_frontier_sc.py\\\\n-rwxr-xr-x  1 root root  1597 May 19 06:32 run_llama_fewnerd_inference.sh\\\\n-rwxr-xr-x  1 root root   472 May 18 17:31 run_llama_fewnerd_train_single_gpu.sh\\\\n-rw-r--r--  1 root root 17111 May 22 21:02 run_mvp_pilot.py\\\\n-rw-r--r--  1 root root 16551 May 17 05:11 run_mvp_pilot.py.bak\\\\n-rw-r--r--  1 root root 19380 May 16 11:07 run_verbalized_confidence.py\\\\n-rw-r--r--  1 root root 24347 May 18 16:34 sampling.py\\\\n-rw-r--r--  1 root root  6848 May 19 05:42 scatter_v2_data.py\\\\n-rw-r--r--  1 root root 18004 May 22 01:32 scierc_3seed_full_recompute.py\\\\n-rw-r--r--  1 root root  7355 May 16 11:58 selection_f1_3b.py\\\\n-rw-r--r--  1 root root  8386 May 16 04:03 selection_f1_4b.py\\\\n-rw-r--r--  1 root root 12313 May 19 09:24 selective_prediction.py\\\\n-rw-r--r--  1 root root  4188 May 22 09:28 sequence_entropy_vs_lp.py\\\\n-rw-r--r--  1 root root 15596 May 18 14:51 statistical_hardening.py\\\\n-rw-r--r--  1 root root 15370 May 19 15:13 supervised_verifier_upgrade.py\\\\n-rw-r--r--  1 root root  1245 May 19 06:54 supplement_degen.py\\\\n-rw-r--r--  1 root root  9603 May 15 23:32 table2_selection_f1.py\\\\n-rw-r--r--  1 root root 17820 May 18 18:38 token_lp_aggregator.py\\\\n-rw-r--r--  1 root root  7903 May 22 13:38 unified_instance_recompute.py\\\\n-rw-r--r--  1 root root  4740 May 19 02:39 unified_metrics.py\\\\n-rw-r--r--  1 root root  5028 May 18 12:42 unified_tab_fewnerd_metrics.py\\\\n-rw-r--r--  1 root root  5814 May 21 10:27 unify_degeneracy.py\\\\n-rw-r--r--  1 root root  8733 May 15 12:48 vc_impl_diff_verify.py\\\\n-rw-r--r--  1 root root  9221 May 16 12:56 vc_quartile_analysis.py\\\\n-rw-r--r--  1 root root  7449 May 15 11:09 wnut17_full_signal_analysis.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 2216\\ndrwxr-xr-x  6 root root  8192 May 22 22:07 .\\ndrwxr-xr-x 18 root root  8192 May 22 19:04 ..\\ndrwxr-xr-x  2 root root  4096 May 19 10:36 __pycache__\\ndrwxr-xr-x  2 root root  4096 May 14 20:48 _backup_cond_fix\\n-rw-r--r--  1 root root 11640 May 19 02:41 adaptive_temperature_analysis.py\\n-rw-r--r--  1 root root 14702 May 18 21:25 analysis_d140_oracle_gated.py\\n-rw-r--r--  1 root root  8205 May 19 00:45 analysis_degen_gated_selection.py\\n-rw-r--r--  1 root root  6837 May 19 01:29 analysis_dgs_ablation.py\\n-rw-r--r--  1 root root  9708 May 19 01:29 analysis_dgs_cross_model.py\\n-rw-r--r--  1 root root  4980 May 19 03:17 analysis_dgs_epoch_rank.py\\n-rw-r--r--  1 root root 10637 May 19 01:28 analysis_dgs_full_validation.py\\n-rw-r--r--  1 root root  9411 May 19 02:41 analysis_dgs_gold_filter.py\\n-rw-r--r--  1 root root 20828 May 19 03:08 analysis_dgs_llama_conll.py\\n-rw-r--r--  1 root root  9419 May 19 03:09 analysis_dgs_llama_conll_report.py\\n-rw-r--r--  1 root root  6383 May 19 01:30 analysis_dgs_multiseed.py\\n-rw-r--r--  1 root root  7020 May 19 00:30 analysis_mbr_selection.py\\n-rw-r--r--  1 root root  6553 May 19 00:45 analysis_mbr_span_fix.py\\n-rw-r--r--  1 root root 10441 May 15 20:46 analysis_multiseed_selection_f1.py\\n-rw-r--r--  1 root root 11880 May 15 21:13 analysis_scierc_n16_selection.py\\n-rw-r--r--  1 root root 10298 May 15 21:25 analysis_scierc_re_n16_selection.py\\n-rw-r--r--  1 root root  4052 May 15 02:53 analyze_3seed_5signal.py\\n-rw-r--r--  1 root root  8175 May 14 20:48 analyze_component_wise_re.py\\n-rw-r--r--  1 root root 10399 May 14 22:29 analyze_entity_voting.py\\n-rw-r--r--  1 root root  5419 May 14 22:29 analyze_exact_match_voting.py\\n-rw-r--r--  1 root root 10428 May 14 20:48 analyze_exp002_conll2003.py\\n-rw-r--r--  1 root root 25610 May 14 20:49 analyze_exp004_re_diagnostic.py\\n-rw-r--r--  1 root root 15238 May 14 23:29 analyze_exp004_v2_re_diagnostic.py\\n-rw-r--r--  1 root root 14280 May 14 23:24 analyze_exp005_v2_temperature.py\\n-rw-r--r--  1 root root  8378 May 15 07:09 analyze_exp012_rerun_5signal.py\\n-rw-r--r--  1 root root 13349 May 14 20:48 analyze_exp015_unified.py\\n-rw-r--r--  1 root root 14955 May 14 23:31 analyze_exp015_v2_metrics.py\\n-rw-r--r--  1 root root 31742 May 14 20:14 analyze_exp016_ensemble.py\\n-rw-r--r--  1 root root  8166 May 15 01:54 analyze_exp017_5signal.py\\n-rw-r--r--  1 root root 12352 May 15 03:23 analyze_exp017_llama_conll_n16.py\\n-rw-r--r--  1 root root 12362 May 15 03:30 analyze_exp017_llama_conll_n16_s123.py\\n-rw-r--r--  1 root root 10533 May 15 23:45 analyze_exp017_t07.py\\n-rw-r--r--  1 root root  9170 May 16 18:32 analyze_exp023_rank8.py\\n-rw-r--r--  1 root root 14201 May 16 19:19 analyze_exp023_rank8_full.py\\n-rw-r--r--  1 root root  9958 May 18 23:28 analyze_exp026_temp_5signal.py\\n-rw-r--r--  1 root root 14662 May 19 05:34 analyze_fewnerd_results.py\\n-rw-r--r--  1 root root 16612 May 19 07:40 analyze_fewnerd_s789.py\\n-rw-r--r--  1 root root  7005 May 16 11:13 analyze_llama3b_vs_8b.py\\n-rw-r--r--  1 root root 14131 May 18 16:35 analyze_llama_fewnerd.py\\n-rw-r--r--  1 root root 11159 May 19 06:33 analyze_llama_fewnerd_3seed.py\\n-rw-r--r--  1 root root  9045 May 19 03:09 analyze_llama_scierc_seed123_5signal.py\\n-rw-r--r--  1 root root  9245 May 19 03:14 analyze_llama_scierc_seed456_5signal.py\\n-rw-r--r--  1 root root  8877 May 14 22:29 analyze_logprob_baseline.py\\n-rw-r--r--  1 root root 10115 May 15 20:44 analyze_lp_range_cdf.py\\n-rw-r--r--  1 root root  9091 May 15 19:41 analyze_ood_signals.py\\n-rw-r--r--  1 root root  7491 May 17 06:59 analyze_per_type_lp.py\\n-rw-r--r--  1 root root  8126 May 17 12:52 analyze_per_type_lp_scierc.py\\n-rw-r--r--  1 root root  7215 May 22 05:42 analyze_per_type_mv_fewnerd.py\\n-rw-r--r--  1 root root  4448 May 22 05:44 analyze_per_type_mv_v2.py\\n-rw-r--r--  1 root root  3421 May 22 05:53 analyze_pretrained_per_type_mv.py\\n-rw-r--r--  1 root root  8741 May 16 03:49 analyze_scale_ablation_4b.py\\n-rw-r--r--  1 root root 12103 May 16 00:50 analyze_thinking_token_lp_dilution.py\\n-rw-r--r--  \\n\\n... [截断: 输出过长，省略 5626 字符] ...\\n\\n-r--r--  1 root root  2617 May 22 13:13 lp_best_n_scaling.py\\n-rw-r--r--  1 root root  4454 May 22 14:47 lp_best_unified.py\\n-rw-r--r--  1 root root  5233 May 22 09:33 lp_best_vs_cumlp_best.py\\n-rw-r--r--  1 root root  1507 May 19 06:32 merge_llama_fewnerd.py\\n-rw-r--r--  1 root root 17290 May 21 10:03 multi_model_error_correlation.py\\n-rw-r--r--  1 root root  7822 May 19 13:43 multiseed_construction.py\\n-rw-r--r--  1 root root 11096 May 14 15:46 mvp_pilot.py\\n-rw-r--r--  1 root root  6350 May 15 11:10 n8_bootstrap_ci.py\\n-rw-r--r--  1 root root  3838 May 22 15:32 ner_lp_f1_correlation.py\\n-rw-r--r--  1 root root  2419 May 19 05:30 oracle_audit.py\\n-rw-r--r--  1 root root  3262 May 15 13:04 oracle_improvable.py\\n-rw-r--r--  1 root root  9859 May 15 13:06 oracle_improvable_tost.py\\ndrwxr-xr-x  2 root root    53 May 20 16:47 pipeline\\n-rw-r--r--  1 root root 11981 May 19 13:59 plot_fig_overview_v3.py\\n-rw-r--r--  1 root root  7397 May 15 07:38 plot_reliability_1024.py\\n-rw-r--r--  1 root root  3250 May 19 05:43 plot_scatter_v2.py\\n-rw-r--r--  1 root root  4273 May 15 07:37 plot_selection_gap_1024.py\\n-rw-r--r--  1 root root  5337 May 15 21:45 plot_selection_gap_3seed.py\\n-rw-r--r--  1 root root  3511 May 15 22:46 plot_selection_gap_n8.py\\n-rw-r--r--  1 root root  5061 May 19 16:14 plot_selection_gap_single.py\\ndrwxr-xr-x  2 root root  4096 May 18 19:39 probe\\n-rw-r--r--  1 root root  7263 May 16 04:23 r8w3_sj_normalizer_comparison.py\\n-rw-r--r--  1 root root  8492 May 16 06:01 r8w3_sj_union_v2.py\\n-rw-r--r--  1 root root  9401 May 15 12:29 re_conditional_analysis.py\\n-rw-r--r--  1 root root  5274 May 22 16:03 re_diagnostic_cascade.py\\n-rw-r--r--  1 root root  7541 May 15 15:15 re_nonzero_selection.py\\n-rw-r--r--  1 root root  9145 May 15 11:50 re_selection_recompute.py\\n-rw-r--r--  1 root root  5341 May 21 22:18 recompute_alpha_crit_unified.py\\n-rw-r--r--  1 root root  3336 May 18 12:24 recompute_lp_variants.py\\n-rw-r--r--  1 root root  6235 May 18 12:20 recompute_table_fewnerd.py\\n-rw-r--r--  1 root root  3250 May 18 12:31 recompute_table_metrics.py\\n-rw-r--r--  1 root root  6607 May 19 02:43 regression_test_unified_metrics.py\\n-rw-r--r--  1 root root  1010 May 19 10:36 run_construction_fair_n8.py\\n-rwxr-xr-x  1 root root  1231 May 21 01:47 run_cross_model.sh\\n-rw-r--r--  1 root root 19932 May 21 00:07 run_esj.py\\n-rw-r--r--  1 root root 14857 May 21 14:27 run_frontier_sc.py\\n-rwxr-xr-x  1 root root  1597 May 19 06:32 run_llama_fewnerd_inference.sh\\n-rwxr-xr-x  1 root root   472 May 18 17:31 run_llama_fewnerd_train_single_gpu.sh\\n-rw-r--r--  1 root root 17111 May 22 21:02 run_mvp_pilot.py\\n-rw-r--r--  1 root root 16551 May 17 05:11 run_mvp_pilot.py.bak\\n-rw-r--r--  1 root root 19380 May 16 11:07 run_verbalized_confidence.py\\n-rw-r--r--  1 root root 24347 May 18 16:34 sampling.py\\n-rw-r--r--  1 root root  6848 May 19 05:42 scatter_v2_data.py\\n-rw-r--r--  1 root root 18004 May 22 01:32 scierc_3seed_full_recompute.py\\n-rw-r--r--  1 root root  7355 May 16 11:58 selection_f1_3b.py\\n-rw-r--r--  1 root root  8386 May 16 04:03 selection_f1_4b.py\\n-rw-r--r--  1 root root 12313 May 19 09:24 selective_prediction.py\\n-rw-r--r--  1 root root  4188 May 22 09:28 sequence_entropy_vs_lp.py\\n-rw-r--r--  1 root root 15596 May 18 14:51 statistical_hardening.py\\n-rw-r--r--  1 root root 15370 May 19 15:13 supervised_verifier_upgrade.py\\n-rw-r--r--  1 root root  1245 May 19 06:54 supplement_degen.py\\n-rw-r--r--  1 root root  9603 May 15 23:32 table2_selection_f1.py\\n-rw-r--r--  1 root root 17820 May 18 18:38 token_lp_aggregator.py\\n-rw-r--r--  1 root root  7903 May 22 13:38 unified_instance_recompute.py\\n-rw-r--r--  1 root root  4740 May 19 02:39 unified_metrics.py\\n-rw-r--r--  1 root root  5028 May 18 12:42 unified_tab_fewnerd_metrics.py\\n-rw-r--r--  1 root root  5814 May 21 10:27 unify_degeneracy.py\\n-rw-r--r--  1 root root  8733 May 15 12:48 vc_impl_diff_verify.py\\n-rw-r--r--  1 root root  9221 May 16 12:56 vc_quartile_analysis.py\\n-rw-r--r--  1 root root  7449 May 15 11:09 wnut17_full_signal_analysis.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_019hqPnmdHDrB4Xx8g9zpRAx`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "ls -la /root/autodl-tmp/struct_self_consist_ie/checkpoints/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c9503f0c-fafb-4830-833b-3b869dd2e070",
+  "uuid": "108b46f0-67b8-45be-a81a-5d06cf1b5ffc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CN6th8c5eA92aGQXT17wMH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 650,
+      "cache_read_input_tokens": 24075,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 650
+      },
+      "output_tokens": 30,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-22T15:30:09.004Z_
+
+<details><summary>↩ Tool result · `toolu_019hqPnmdHDrB4Xx8g9zpRAx`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 4132\\ndrwxr-xr-x 14 root root    4096 May 22 01:55 .\\ndrwxr-xr-x 18 root root    8192 May 22 19:04 ..\\n-rw-r--r--  1 root root 1102123 May 15 01:03 exp017_train.log\\n-rw-r--r--  1 root root 2848354 May 17 00:30 fewnerd_train.log\\n-rw-r--r--  1 root root   84498 May 14 14:27 ft_001_train.log\\n-rw-r--r--  1 root root   32426 May 18 16:36 llama_fewnerd_train.log\\n-rw-r--r--  1 root root   64907 May 18 16:38 llama_fewnerd_train_4gpu.log\\ndrwxr-xr-x  2 root root    4096 May 21 08:19 qwen25-32b-fewnerd-merged\\ndrwxr-xr-x  5 root root    4096 May 16 03:47 qwen3-4b-scierc-lora\\ndrwxr-xr-x  4 root root      91 May 14 20:04 qwen3-8b-conll2003-lora\\ndrwxr-xr-x  2 root root    4096 May 21 20:52 qwen3-8b-conll2003-merged\\ndrwxr-xr-x  5 root root    4096 May 18 04:04 qwen3-8b-fewnerd-5epoch-lora\\ndrwxr-xr-x  2 root root    4096 May 22 01:55 qwen3-8b-fewnerd-5epoch-merged\\ndrwx------  3 root root    4096 May 22 05:04 qwen3-8b-fewnerd-exp021-merged\\ndrwxr-xr-x  3 root root    4096 May 18 10:35 qwen3-8b-scierc-10epoch-lora\\ndrwxr-xr-x  3 root root    4096 May 18 09:54 qwen3-8b-scierc-3epoch-lora\\ndrwxr-xr-x  5 root root    4096 May 16 18:58 qwen3-8b-scierc-lora-rank8\\ndrwxr-xr-x  5 root root    4096 May 14 16:39 qwen3-8b-scierc-lora-v2\\ndrwx------  2 root root    4096 May 19 03:02 qwen3-8b-scierc-merged-v2\\n-rw-r--r--  1 root root   26855 May 14 20:11 wnut17_train.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c9503f0c-fafb-4830-833b-3b869dd2e070",
+  "uuid": "2f3417b5-5459-4dde-8336-dc781f3161ee",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 4132\\\\ndrwxr-xr-x 14 root root    4096 May 22 01:55 .\\\\ndrwxr-xr-x 18 root root    8192 May 22 19:04 ..\\\\n-rw-r--r--  1 root root 1102123 May 15 01:03 exp017_train.log\\\\n-rw-r--r--  1 root root 2848354 May 17 00:30 fewnerd_train.log\\\\n-rw-r--r--  1 root root   84498 May 14 14:27 ft_001_train.log\\\\n-rw-r--r--  1 root root   32426 May 18 16:36 llama_fewnerd_train.log\\\\n-rw-r--r--  1 root root   64907 May 18 16:38 llama_fewnerd_train_4gpu.log\\\\ndrwxr-xr-x  2 root root    4096 May 21 08:19 qwen25-32b-fewnerd-merged\\\\ndrwxr-xr-x  5 root root    4096 May 16 03:47 qwen3-4b-scierc-lora\\\\ndrwxr-xr-x  4 root root      91 May 14 20:04 qwen3-8b-conll2003-lora\\\\ndrwxr-xr-x  2 root root    4096 May 21 20:52 qwen3-8b-conll2003-merged\\\\ndrwxr-xr-x  5 root root    4096 May 18 04:04 qwen3-8b-fewnerd-5epoch-lora\\\\ndrwxr-xr-x  2 root root    4096 May 22 01:55 qwen3-8b-fewnerd-5epoch-merged\\\\ndrwx------  3 root root    4096 May 22 05:04 qwen3-8b-fewnerd-exp021-merged\\\\ndrwxr-xr-x  3 root root    4096 May 18 10:35 qwen3-8b-scierc-10epoch-lora\\\\ndrwxr-xr-x  3 root root    4096 May 18 09:54 qwen3-8b-scierc-3epoch-lora\\\\ndrwxr-xr-x  5 root root    4096 May 16 18:58 qwen3-8b-scierc-lora-rank8\\\\ndrwxr-xr-x  5 root root    4096 May 14 16:39 qwen3-8b-scierc-lora-v2\\\\ndrwx------  2 root root    4096 May 19 03:02 qwen3-8b-scierc-merged-v2\\\\n-rw-r--r--  1 root root   26855 May 14 20:11 wnut17_train.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 4132\\ndrwxr-xr-x 14 root root    4096 May 22 01:55 .\\ndrwxr-xr-x 18 root root    8192 May 22 19:04 ..\\n-rw-r--r--  1 root root 1102123 May 15 01:03 exp017_train.log\\n-rw-r--r--  1 root root 2848354 May 17 00:30 fewnerd_train.log\\n-rw-r--r--  1 root root   84498 May 14 14:27 ft_001_train.log\\n-rw-r--r--  1 root root   32426 May 18 16:36 llama_fewnerd_train.log\\n-rw-r--r--  1 root root   64907 May 18 16:38 llama_fewnerd_train_4gpu.log\\ndrwxr-xr-x  2 root root    4096 May 21 08:19 qwen25-32b-fewnerd-merged\\ndrwxr-xr-x  5 root root    4096 May 16 03:47 qwen3-4b-scierc-lora\\ndrwxr-xr-x  4 root root      91 May 14 20:04 qwen3-8b-conll2003-lora\\ndrwxr-xr-x  2 root root    4096 May 21 20:52 qwen3-8b-conll2003-merged\\ndrwxr-xr-x  5 root root    4096 May 18 04:04 qwen3-8b-fewnerd-5epoch-lora\\ndrwxr-xr-x  2 root root    4096 May 22 01:55 qwen3-8b-fewnerd-5epoch-merged\\ndrwx------  3 root root    4096 May 22 05:04 qwen3-8b-fewnerd-exp021-merged\\ndrwxr-xr-x  3 root root    4096 May 18 10:35 qwen3-8b-scierc-10epoch-lora\\ndrwxr-xr-x  3 root root    4096 May 18 09:54 qwen3-8b-scierc-3epoch-lora\\ndrwxr-xr-x  5 root root    4096 May 16 18:58 qwen3-8b-scierc-lora-rank8\\ndrwxr-xr-x  5 root root    4096 May 14 16:39 qwen3-8b-scierc-lora-v2\\ndrwx------  2 root root    4096 May 19 03:02 qwen3-8b-scierc-merged-v2\\n-rw-r--r--  1 root root   26855 May 14 20:11 wnut17_train.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01MiNXZDPoQCvYZzUooAW9E3`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "find /root/autodl-tmp/struct_self_consist_ie/ -maxdepth 3 -name \"*.jsonl\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c9503f0c-fafb-4830-833b-3b869dd2e070",
+  "uuid": "0b039f89-25a9-4d94-8522-a5ef75b3af28",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CN6th8c5eA92aGQXT17wMH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 650,
+      "cache_read_input_tokens": 24075,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 650
+      },
+      "output_tokens": 30,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-22T15:30:09.659Z_
+
+<details><summary>↩ Tool result · `toolu_01MiNXZDPoQCvYZzUooAW9E3`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-lora-v2/trainer_log.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-conll2003-lora/trainer_log.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-4b-scierc-lora/trainer_log.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-lora-rank8/trainer_log.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-fewnerd-5epoch-lora/trainer_log.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-10epoch-lora/trainer_log.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-3epoch-lora/trainer_log.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/data/train.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/data/dev.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/data/test.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/data/fewrel_re_test_instances.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/gate0_all_predictions.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/gate0_realigned_predictions.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_001/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_003/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/gate0_ft002v2/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/gate0_ft002v2_ckpt400/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_004/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_005/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_012_logprob/samples_with_logprobs.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed42_v2_r1024/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed42_200only_backup/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed42/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp002_conll2003/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed123_200only/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed456_200only/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp008_re_n16_200only/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed456/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp008_re_n16/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed123/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_seed456_t10_full/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_seed123_t10_full/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp008_re_n16_t10_full/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp003_wnut17_pilot/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp003_wnut17_dryrun/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp003_wnut17_eval/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp007_llama_dryrun/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp007_llama_inference/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed42_v2/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed123_v2/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_008_re_n16_v2/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_007_llama_seed123/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_007_llama_seed456/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_008_re_seed123/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed456_v2/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed456_v2_ner/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_003_wnut17_v2_infer/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_infer/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n16/sa\\n\\n... [截断: 输出过长，省略 6691 字符] ...\\n\\n_v2/instance_details_SciERC.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_asb_adaptive_budget_v2/instance_details_CoNLL.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_32b_fewnerd_n8_s42/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/conll_n16_s456/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/fewnerd_mf4v2_seed456/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/e2_pretrained_fewnerd/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/e2_pretrained_conll/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/frontier_sc_claude_sonnet4/checkpoint.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/frontier_sc_claude_sonnet4/results.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/scierc_mf4v2_seed123/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/scierc_mf4v2_seed456/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/scierc_mf4v2_seed42/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/fewnerd_mf4v2_seed42/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/fewnerd_mf4v2_seed123/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/fewnerd_n16_s42/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/scierc_n16_s456/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/conll_mf4v2_seed123/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/conll_mf4v2_seed456/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/e2_pretrained_fewnerd_s456/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/fewnerd_n16_s456/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/fewnerd_5epoch_s42/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/fewnerd_5epoch_s123/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/fewnerd_mf4v2_seed42_v3/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/scierc_n32_s42/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/conll_n32_s42/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/scierc_n64_seed42/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/conll_n64_seed42/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/scierc_n32_seed123/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/conll_n32_seed123/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/conll_pretrained_n16_seed42/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/scierc_pretrained_n64_seed42/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/conll_pretrained_n64_seed42/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/conll_n32_seed456/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/scierc_n8_seed123/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/scierc_n8_seed456/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/fewnerd_mf4_seed123_v2/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/fewnerd_5epoch_lp_seed42/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/fewnerd_freeform_n8_seed42/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/conll_freeform_n8_seed42/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/results/exp_freeform_ablation/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/results/exp_freeform_ablation_seed123/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/results/exp_freeform_ablation_seed456/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/results/exp_freeform_ablation_seed789/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output_from_5090b/conll_mf4v2_seed123/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output_from_5090b/conll_mf4v2_seed456/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output_from_5090b/fewnerd_mf4v2_seed123/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output_from_5090b/fewnerd_mf4v2_seed42/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output_from_5090b/scierc_mf4v2_seed42/samples.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.47}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c9503f0c-fafb-4830-833b-3b869dd2e070",
+  "uuid": "f7df3c5c-5e1e-4bce-a663-b4fdf00e13df",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-lora-v2/trainer_log.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-conll2003-lora/trainer_log.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-4b-scierc-lora/trainer_log.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-lora-rank8/trainer_log.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-fewnerd-5epoch-lora/trainer_log.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-10epoch-lora/trainer_log.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-3epoch-lora/trainer_log.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/data/train.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/data/dev.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/data/test.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/data/fewrel_re_test_instances.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/gate0_all_predictions.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/gate0_realigned_predictions.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_001/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_003/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/gate0_ft002v2/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/gate0_ft002v2_ckpt400/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_004/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_005/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_012_logprob/samples_with_logprobs.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed42_v2_r1024/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed42_200only_backup/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed42/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp002_conll2003/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed123_200only/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed456_200only/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp008_re_n16_200only/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed456/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp008_re_n16/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed123/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_seed456_t10_full/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_seed123_t10_full/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp008_re_n16_t10_full/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp003_wnut17_pilot/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp003_wnut17_dryrun/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp003_wnut17_eval/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp007_llama_dryrun/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp007_llama_inference/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed42_v2/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed123_v2/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_008_re_n16_v2/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_007_llama_seed123/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_007_llama_seed456/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_008_re_seed123/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed456_v2/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed456_v2_ner/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_003_wnut17_v2_infer/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_infer/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n16/sa\\\\n\\\\n... [截断: 输出过长，省略 6691 字符] ...\\\\n\\\\n_v2/instance_details_SciERC.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_asb_adaptive_budget_v2/instance_details_CoNLL.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_32b_fewnerd_n8_s42/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/conll_n16_s456/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/fewnerd_mf4v2_seed456/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/e2_pretrained_fewnerd/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/e2_pretrained_conll/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/frontier_sc_claude_sonnet4/checkpoint.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/frontier_sc_claude_sonnet4/results.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/scierc_mf4v2_seed123/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/scierc_mf4v2_seed456/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/scierc_mf4v2_seed42/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/fewnerd_mf4v2_seed42/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/fewnerd_mf4v2_seed123/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/fewnerd_n16_s42/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/scierc_n16_s456/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/conll_mf4v2_seed123/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/conll_mf4v2_seed456/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/e2_pretrained_fewnerd_s456/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/fewnerd_n16_s456/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/fewnerd_5epoch_s42/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/fewnerd_5epoch_s123/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/fewnerd_mf4v2_seed42_v3/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/scierc_n32_s42/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/conll_n32_s42/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/scierc_n64_seed42/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/conll_n64_seed42/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/scierc_n32_seed123/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/conll_n32_seed123/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/conll_pretrained_n16_seed42/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/scierc_pretrained_n64_seed42/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/conll_pretrained_n64_seed42/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/conll_n32_seed456/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/scierc_n8_seed123/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/scierc_n8_seed456/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/fewnerd_mf4_seed123_v2/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/fewnerd_5epoch_lp_seed42/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/fewnerd_freeform_n8_seed42/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/conll_freeform_n8_seed42/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/results/exp_freeform_ablation/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/results/exp_freeform_ablation_seed123/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/results/exp_freeform_ablation_seed456/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/results/exp_freeform_ablation_seed789/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output_from_5090b/conll_mf4v2_seed123/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output_from_5090b/conll_mf4v2_seed456/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output_from_5090b/fewnerd_mf4v2_seed123/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output_from_5090b/fewnerd_mf4v2_seed42/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output_from_5090b/scierc_mf4v2_seed42/samples.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.47}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-lora-v2/trainer_log.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-conll2003-lora/trainer_log.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-4b-scierc-lora/trainer_log.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-lora-rank8/trainer_log.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-fewnerd-5epoch-lora/trainer_log.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-10epoch-lora/trainer_log.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-3epoch-lora/trainer_log.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/data/train.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/data/dev.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/data/test.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/data/fewrel_re_test_instances.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/gate0_all_predictions.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/gate0_realigned_predictions.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_001/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_003/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/gate0_ft002v2/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/gate0_ft002v2_ckpt400/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_004/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_005/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_012_logprob/samples_with_logprobs.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed42_v2_r1024/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed42_200only_backup/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed42/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp002_conll2003/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed123_200only/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed456_200only/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp008_re_n16_200only/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed456/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp008_re_n16/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed123/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_seed456_t10_full/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_seed123_t10_full/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp008_re_n16_t10_full/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp003_wnut17_pilot/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp003_wnut17_dryrun/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp003_wnut17_eval/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp007_llama_dryrun/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp007_llama_inference/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed42_v2/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed123_v2/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_008_re_n16_v2/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_007_llama_seed123/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_007_llama_seed456/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_008_re_seed123/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed456_v2/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed456_v2_ner/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_003_wnut17_v2_infer/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_infer/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n16/sa\\n\\n... [截断: 输出过长，省略 6691 字符] ...\\n\\n_v2/instance_details_SciERC.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_asb_adaptive_budget_v2/instance_details_CoNLL.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_32b_fewnerd_n8_s42/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/conll_n16_s456/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/fewnerd_mf4v2_seed456/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/e2_pretrained_fewnerd/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/e2_pretrained_conll/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/frontier_sc_claude_sonnet4/checkpoint.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/frontier_sc_claude_sonnet4/results.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/scierc_mf4v2_seed123/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/scierc_mf4v2_seed456/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/scierc_mf4v2_seed42/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/fewnerd_mf4v2_seed42/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/fewnerd_mf4v2_seed123/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/fewnerd_n16_s42/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/scierc_n16_s456/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/conll_mf4v2_seed123/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/conll_mf4v2_seed456/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/e2_pretrained_fewnerd_s456/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/fewnerd_n16_s456/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/fewnerd_5epoch_s42/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/fewnerd_5epoch_s123/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/fewnerd_mf4v2_seed42_v3/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/scierc_n32_s42/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/conll_n32_s42/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/scierc_n64_seed42/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/conll_n64_seed42/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/scierc_n32_seed123/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/conll_n32_seed123/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/conll_pretrained_n16_seed42/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/scierc_pretrained_n64_seed42/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/conll_pretrained_n64_seed42/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/conll_n32_seed456/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/scierc_n8_seed123/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/scierc_n8_seed456/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/fewnerd_mf4_seed123_v2/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/fewnerd_5epoch_lp_seed42/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/fewnerd_freeform_n8_seed42/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/conll_freeform_n8_seed42/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/results/exp_freeform_ablation/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/results/exp_freeform_ablation_seed123/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/results/exp_freeform_ablation_seed456/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/results/exp_freeform_ablation_seed789/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output_from_5090b/conll_mf4v2_seed123/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output_from_5090b/conll_mf4v2_seed456/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output_from_5090b/fewnerd_mf4v2_seed123/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output_from_5090b/fewnerd_mf4v2_seed42/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output_from_5090b/scierc_mf4v2_seed42/samples.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.47}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 16_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Found `run_esj.py` in the code directory and various checkpoints. Let me now read the ESJ script and check existing ESJ output, plus GPU status.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c9503f0c-fafb-4830-833b-3b869dd2e070",
+  "uuid": "3f796dfc-5120-4519-a96d-b2e7542f368c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PnL2vgQLFrLd5r1h1V3T25",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9850,
+      "cache_read_input_tokens": 24725,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9850
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 17_
+
+找到 `run_esj.py` 和多个 Qwen3-8B 检查点。继续读取 ESJ 代码和 GPU 状态。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c9503f0c-fafb-4830-833b-3b869dd2e070",
+  "uuid": "ddb6ec30-b9e0-4f81-8372-5cde18993604",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PnL2vgQLFrLd5r1h1V3T25",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9850,
+      "cache_read_input_tokens": 24725,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9850
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01QPtkX7kSdroKQWGEQpDqgb`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/code/run_esj.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c9503f0c-fafb-4830-833b-3b869dd2e070",
+  "uuid": "c465f921-72ae-4a14-a7db-0df1fd4c31ba",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PnL2vgQLFrLd5r1h1V3T25",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9850,
+      "cache_read_input_tokens": 24725,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9850
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-22T15:30:16.358Z_
+
+<details><summary>↩ Tool result · `toolu_01QPtkX7kSdroKQWGEQpDqgb`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Entity-Level Self-Judgment (ESJ) for structured self-consistency IE.\\n\\nFor each unique entity across N=8 samples, uses the FT model to do a\\nyes/no verification forward pass. P(yes) serves as entity-level confidence\\nfor weighted construction.\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport os\\nimport sys\\nimport time\\nfrom collections import defaultdict\\n\\nimport numpy as np\\nimport torch\\nfrom transformers import AutoTokenizer, AutoModelForCausalLM\\nfrom peft import PeftModel\\nfrom scipy.stats import spearmanr\\nfrom sklearn.metrics import roc_auc_score\\n\\n\\n# ---------------------------------------------------------------------------\\n# Data\\n# ---------------------------------------------------------------------------\\n\\ndef load_samples(path, max_instances=0):\\n    data = []\\n    with open(path) as f:\\n        for line in f:\\n            if line.strip():\\n                data.append(json.loads(line))\\n                if 0 < max_instances <= len(data):\\n                    break\\n    return data\\n\\n\\ndef extract_unique_entities(instance):\\n    \\\"\\\"\\\"Return {(start, end, type, text): count_across_samples}.\\\"\\\"\\\"\\n    emap = defaultdict(int)\\n    for sample in instance[\\\"samples\\\"]:\\n        for e in sample.get(\\\"entities\\\", []):\\n            emap[(e[\\\"start\\\"], e[\\\"end\\\"], e[\\\"type\\\"], e[\\\"text\\\"])] += 1\\n    return emap\\n\\n\\n# ---------------------------------------------------------------------------\\n# Prompt\\n# ---------------------------------------------------------------------------\\n\\ndef build_verification_prompt(sentence, entity_text, entity_type):\\n    return (\\n        f'In the following sentence, is \\\"{entity_text}\\\" a {entity_type} entity? '\\n        f'Answer only yes or no.\\\\n\\\\n'\\n        f'Sentence: {sentence}\\\\n'\\n        f'Answer:'\\n    )\\n\\n\\n# ---------------------------------------------------------------------------\\n# Model\\n# ---------------------------------------------------------------------------\\n\\ndef load_model(base_path, adapter_path, device=\\\"cuda\\\"):\\n    tok_path = adapter_path if adapter_path else base_path\\n    print(f\\\"Loading tokenizer from {tok_path} ...\\\")\\n    tokenizer = AutoTokenizer.from_pretrained(\\n        tok_path, trust_remote_code=True, padding_side=\\\"left\\\",\\n    )\\n    if tokenizer.pad_token is None:\\n        tokenizer.pad_token = tokenizer.eos_token\\n\\n    print(f\\\"Loading base model from {base_path} ...\\\")\\n    model = AutoModelForCausalLM.from_pretrained(\\n        base_path,\\n        torch_dtype=torch.bfloat16,\\n        device_map=device,\\n        trust_remote_code=True,\\n    )\\n\\n    if adapter_path:\\n        print(f\\\"Loading LoRA adapter from {adapter_path} ...\\\")\\n        model = PeftModel.from_pretrained(model, adapter_path)\\n        model = model.merge_and_unload()\\n        print(\\\"LoRA merged.\\\")\\n\\n    model.eval()\\n    return model, tokenizer\\n\\n\\ndef get_yes_no_ids(tokenizer):\\n    yes_ids, no_ids = [], []\\n    for w in [\\\"yes\\\", \\\"Yes\\\", \\\"YES\\\"]:\\n        ids = tokenizer.encode(w, add_special_tokens=False)\\n        if len(ids) == 1:\\n            yes_ids.append(ids[0])\\n    for w in [\\\"no\\\", \\\"No\\\", \\\"NO\\\"]:\\n        ids = tokenizer.encode(w, add_special_tokens=False)\\n        if len(ids) == 1:\\n            no_ids.append(ids[0])\\n    yes_ids = list(set(yes_ids))\\n    no_ids = list(set(no_ids))\\n    print(f\\\"yes token IDs: {yes_ids}  no token IDs: {no_ids}\\\")\\n    assert yes_ids and no_ids, \\\"Could not find yes/no token IDs\\\"\\n    return yes_ids, no_ids\\n\\n\\n# ---------------------------------------------------------------------------\\n# Batch verification\\n# ---------------------------------------------------------------------------\\n\\n@torch.no_grad()\\ndef batch_verify(model, tokenizer, prompts, yes_ids, no_ids,\\n                 batch_size=16, device=\\\"cuda\\\"):\\n    yes_t = torch.tensor(yes_ids, device=device)\\n    no_t = torch.tensor(no_ids, device=device)\\n    all_p_yes = []\\n\\n    n_batches = (len(prompts) + batch_size - 1) // batch_size\\n    for bi in range(n_batches):\\n        start = bi * batch_size\\n        batch = prompts[start:start + batch_size]\\n\\n        formatted = []\\n        for p in batch:\\n  \\n\\n... [截断: 输出过长，省略 11922 字符] ...\\n\\nal_uniq / len(data), 2),\\n        \\\"verification_seconds\\\": round(elapsed, 1),\\n        \\\"prompts_per_second\\\": round(len(all_prompts) / elapsed, 1),\\n        \\\"p_yes_distribution\\\": p_yes_dist,\\n        \\\"construction_f1\\\": {\\n            \\\"greedy\\\": round(greedy_f1, 4),\\n            \\\"oracle\\\": round(oracle_f1, 4),\\n            \\\"majority_vote\\\": {k: round(v, 4) for k, v in mv_res.items()},\\n            \\\"best_mv\\\": {\\\"threshold\\\": best_mv_th, \\\"f1\\\": round(best_mv_f1, 4)},\\n            \\\"esj_weighted\\\": {k: round(v, 4) for k, v in esj_res.items()},\\n            \\\"best_esj\\\": {\\\"threshold\\\": best_esj_th, \\\"f1\\\": round(best_esj_f1, 4)},\\n        },\\n        \\\"deltas\\\": {\\n            \\\"esj_vs_greedy\\\": round(best_esj_f1 - greedy_f1, 4),\\n            \\\"esj_vs_mv\\\": round(best_esj_f1 - best_mv_f1, 4),\\n            \\\"mv_vs_greedy\\\": round(best_mv_f1 - greedy_f1, 4),\\n        },\\n        \\\"entity_signal_quality\\\": {\\n            \\\"n_entities\\\": len(ent_correct),\\n            \\\"overall_correct_rate\\\": round(float(ent_correct.mean()), 4),\\n            \\\"esj\\\": {\\\"rho\\\": round(float(rho_esj), 4), \\\"auroc\\\": round(float(auroc_esj), 4)},\\n            \\\"agreement\\\": {\\\"rho\\\": round(float(rho_agree), 4), \\\"auroc\\\": round(float(auroc_agree), 4)},\\n            \\\"esj_x_agreement\\\": {\\\"rho\\\": round(float(rho_comb), 4), \\\"auroc\\\": round(float(auroc_comb), 4)},\\n        },\\n        \\\"agreement_breakdown\\\": {\\n            \\\"disputed_lt0.5\\\": group_stats(disputed, \\\"disputed\\\"),\\n            \\\"mid_0.5_0.75\\\": group_stats(mid, \\\"mid\\\"),\\n            \\\"consensus_gte0.75\\\": group_stats(consensus, \\\"consensus\\\"),\\n        },\\n        \\\"within_instance_ranking\\\": {\\n            \\\"esj_mean_rho\\\": round(float(np.mean(esj_rank_corrs)), 4) if esj_rank_corrs else None,\\n            \\\"lp_mean_rho\\\": round(float(np.mean(lp_rank_corrs)), 4) if lp_rank_corrs else None,\\n            \\\"n_rankable_instances\\\": len(esj_rank_corrs),\\n            \\\"esj_selection_f1\\\": round(float(np.mean(esj_sel_f1s)), 4),\\n            \\\"lp_selection_f1\\\": round(float(np.mean(lp_sel_f1s)), 4),\\n        },\\n    }\\n\\n    out_path = os.path.join(args.output_dir, \\\"esj_results.json\\\")\\n    with open(out_path, \\\"w\\\") as f:\\n        json.dump(result, f, indent=2)\\n    print(f\\\"\\\\nSaved: {out_path}\\\")\\n\\n    # ---- Print summary ----\\n    print(f\\\"\\\\n{'='*60}\\\")\\n    print(\\\"ESJ Entity-Level Self-Judgment Results\\\")\\n    print(f\\\"{'='*60}\\\")\\n    print(f\\\"Instances: {len(data)}  Unique entities verified: {total_uniq}\\\")\\n    print(f\\\"P(yes): mean={p_yes_dist['mean']}, std={p_yes_dist['std']}, median={p_yes_dist['median']}\\\")\\n    print(f\\\"\\\\nConstruction F1 (macro):\\\")\\n    print(f\\\"  Greedy:              {greedy_f1:.4f}\\\")\\n    print(f\\\"  Best MV (θ={best_mv_th}):  {best_mv_f1:.4f}  (Δ={best_mv_f1-greedy_f1:+.4f})\\\")\\n    print(f\\\"  Best ESJ (θ={best_esj_th}): {best_esj_f1:.4f}  (Δ={best_esj_f1-greedy_f1:+.4f})\\\")\\n    print(f\\\"  Oracle:              {oracle_f1:.4f}\\\")\\n    print(f\\\"  ESJ vs MV: {best_esj_f1-best_mv_f1:+.4f}\\\")\\n    print(f\\\"\\\\nEntity-level signal:\\\")\\n    print(f\\\"  ESJ         ρ={rho_esj:+.4f}  AUROC={auroc_esj:.4f}\\\")\\n    print(f\\\"  Agreement   ρ={rho_agree:+.4f}  AUROC={auroc_agree:.4f}\\\")\\n    print(f\\\"  ESJ×Agree   ρ={rho_comb:+.4f}  AUROC={auroc_comb:.4f}\\\")\\n    print(f\\\"\\\\nWithin-instance ranking (rho with sample F1):\\\")\\n    if esj_rank_corrs:\\n        print(f\\\"  ESJ: {np.mean(esj_rank_corrs):+.4f} ({len(esj_rank_corrs)} instances)\\\")\\n    if lp_rank_corrs:\\n        print(f\\\"  LP:  {np.mean(lp_rank_corrs):+.4f} ({len(lp_rank_corrs)} instances)\\\")\\n    print(f\\\"\\\\nSelection F1 (pick best sample):\\\")\\n    print(f\\\"  ESJ: {np.mean(esj_sel_f1s):.4f}  LP: {np.mean(lp_sel_f1s):.4f}  Greedy: {greedy_f1:.4f}\\\")\\n    print(f\\\"\\\\nBreakdown by agreement:\\\")\\n    for label, mask in [(\\\"Disputed (<0.5)\\\", disputed), (\\\"Mid [0.5,0.75)\\\", mid), (\\\"Consensus (≥0.75)\\\", consensus)]:\\n        n = mask.sum()\\n        if n >= 3:\\n            print(f\\\"  {label}: n={n}, correct={ent_correct[mask].mean():.3f}, \\\"\\n                  f\\\"ESJ_mean={ent_esj_arr[mask].mean():.3f}, \\\"\\n                  f\\\"AUROC={safe_auroc(ent_esj_arr[mask], ent_correct[mask]):.4f}\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c9503f0c-fafb-4830-833b-3b869dd2e070",
+  "uuid": "4ea1d767-0384-449e-bbbf-d72c4238a025",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"Entity-Level Self-Judgment (ESJ) for structured self-consistency IE.\\\\n\\\\nFor each unique entity across N=8 samples, uses the FT model to do a\\\\nyes/no verification forward pass. P(yes) serves as entity-level confidence\\\\nfor weighted construction.\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport os\\\\nimport sys\\\\nimport time\\\\nfrom collections import defaultdict\\\\n\\\\nimport numpy as np\\\\nimport torch\\\\nfrom transformers import AutoTokenizer, AutoModelForCausalLM\\\\nfrom peft import PeftModel\\\\nfrom scipy.stats import spearmanr\\\\nfrom sklearn.metrics import roc_auc_score\\\\n\\\\n\\\\n# ---------------------------------------------------------------------------\\\\n# Data\\\\n# ---------------------------------------------------------------------------\\\\n\\\\ndef load_samples(path, max_instances=0):\\\\n    data = []\\\\n    with open(path) as f:\\\\n        for line in f:\\\\n            if line.strip():\\\\n                data.append(json.loads(line))\\\\n                if 0 < max_instances <= len(data):\\\\n                    break\\\\n    return data\\\\n\\\\n\\\\ndef extract_unique_entities(instance):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Return {(start, end, type, text): count_across_samples}.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    emap = defaultdict(int)\\\\n    for sample in instance[\\\\\\\"samples\\\\\\\"]:\\\\n        for e in sample.get(\\\\\\\"entities\\\\\\\", []):\\\\n            emap[(e[\\\\\\\"start\\\\\\\"], e[\\\\\\\"end\\\\\\\"], e[\\\\\\\"type\\\\\\\"], e[\\\\\\\"text\\\\\\\"])] += 1\\\\n    return emap\\\\n\\\\n\\\\n# ---------------------------------------------------------------------------\\\\n# Prompt\\\\n# ---------------------------------------------------------------------------\\\\n\\\\ndef build_verification_prompt(sentence, entity_text, entity_type):\\\\n    return (\\\\n        f'In the following sentence, is \\\\\\\"{entity_text}\\\\\\\" a {entity_type} entity? '\\\\n        f'Answer only yes or no.\\\\\\\\n\\\\\\\\n'\\\\n        f'Sentence: {sentence}\\\\\\\\n'\\\\n        f'Answer:'\\\\n    )\\\\n\\\\n\\\\n# ---------------------------------------------------------------------------\\\\n# Model\\\\n# ---------------------------------------------------------------------------\\\\n\\\\ndef load_model(base_path, adapter_path, device=\\\\\\\"cuda\\\\\\\"):\\\\n    tok_path = adapter_path if adapter_path else base_path\\\\n    print(f\\\\\\\"Loading tokenizer from {tok_path} ...\\\\\\\")\\\\n    tokenizer = AutoTokenizer.from_pretrained(\\\\n        tok_path, trust_remote_code=True, padding_side=\\\\\\\"left\\\\\\\",\\\\n    )\\\\n    if tokenizer.pad_token is None:\\\\n        tokenizer.pad_token = tokenizer.eos_token\\\\n\\\\n    print(f\\\\\\\"Loading base model from {base_path} ...\\\\\\\")\\\\n    model = AutoModelForCausalLM.from_pretrained(\\\\n        base_path,\\\\n        torch_dtype=torch.bfloat16,\\\\n        device_map=device,\\\\n        trust_remote_code=True,\\\\n    )\\\\n\\\\n    if adapter_path:\\\\n        print(f\\\\\\\"Loading LoRA adapter from {adapter_path} ...\\\\\\\")\\\\n        model = PeftModel.from_pretrained(model, adapter_path)\\\\n        model = model.merge_and_unload()\\\\n        print(\\\\\\\"LoRA merged.\\\\\\\")\\\\n\\\\n    model.eval()\\\\n    return model, tokenizer\\\\n\\\\n\\\\ndef get_yes_no_ids(tokenizer):\\\\n    yes_ids, no_ids = [], []\\\\n    for w in [\\\\\\\"yes\\\\\\\", \\\\\\\"Yes\\\\\\\", \\\\\\\"YES\\\\\\\"]:\\\\n        ids = tokenizer.encode(w, add_special_tokens=False)\\\\n        if len(ids) == 1:\\\\n            yes_ids.append(ids[0])\\\\n    for w in [\\\\\\\"no\\\\\\\", \\\\\\\"No\\\\\\\", \\\\\\\"NO\\\\\\\"]:\\\\n        ids = tokenizer.encode(w, add_special_tokens=False)\\\\n        if len(ids) == 1:\\\\n            no_ids.append(ids[0])\\\\n    yes_ids = list(set(yes_ids))\\\\n    no_ids = list(set(no_ids))\\\\n    print(f\\\\\\\"yes token IDs: {yes_ids}  no token IDs: {no_ids}\\\\\\\")\\\\n    assert yes_ids and no_ids, \\\\\\\"Could not find yes/no token IDs\\\\\\\"\\\\n    return yes_ids, no_ids\\\\n\\\\n\\\\n# ---------------------------------------------------------------------------\\\\n# Batch verification\\\\n# ---------------------------------------------------------------------------\\\\n\\\\n@torch.no_grad()\\\\ndef batch_verify(model, tokenizer, prompts, yes_ids, no_ids,\\\\n                 batch_size=16, device=\\\\\\\"cuda\\\\\\\"):\\\\n    yes_t = torch.tensor(yes_ids, device=device)\\\\n    no_t = torch.tensor(no_ids, device=device)\\\\n    all_p_yes = []\\\\n\\\\n    n_batches = (len(prompts) + batch_size - 1) // batch_size\\\\n    for bi in range(n_batches):\\\\n        start = bi * batch_size\\\\n        batch = prompts[start:start + batch_size]\\\\n\\\\n        formatted = []\\\\n        for p in batch:\\\\n  \\\\n\\\\n... [截断: 输出过长，省略 11922 字符] ...\\\\n\\\\nal_uniq / len(data), 2),\\\\n        \\\\\\\"verification_seconds\\\\\\\": round(elapsed, 1),\\\\n        \\\\\\\"prompts_per_second\\\\\\\": round(len(all_prompts) / elapsed, 1),\\\\n        \\\\\\\"p_yes_distribution\\\\\\\": p_yes_dist,\\\\n        \\\\\\\"construction_f1\\\\\\\": {\\\\n            \\\\\\\"greedy\\\\\\\": round(greedy_f1, 4),\\\\n            \\\\\\\"oracle\\\\\\\": round(oracle_f1, 4),\\\\n            \\\\\\\"majority_vote\\\\\\\": {k: round(v, 4) for k, v in mv_res.items()},\\\\n            \\\\\\\"best_mv\\\\\\\": {\\\\\\\"threshold\\\\\\\": best_mv_th, \\\\\\\"f1\\\\\\\": round(best_mv_f1, 4)},\\\\n            \\\\\\\"esj_weighted\\\\\\\": {k: round(v, 4) for k, v in esj_res.items()},\\\\n            \\\\\\\"best_esj\\\\\\\": {\\\\\\\"threshold\\\\\\\": best_esj_th, \\\\\\\"f1\\\\\\\": round(best_esj_f1, 4)},\\\\n        },\\\\n        \\\\\\\"deltas\\\\\\\": {\\\\n            \\\\\\\"esj_vs_greedy\\\\\\\": round(best_esj_f1 - greedy_f1, 4),\\\\n            \\\\\\\"esj_vs_mv\\\\\\\": round(best_esj_f1 - best_mv_f1, 4),\\\\n            \\\\\\\"mv_vs_greedy\\\\\\\": round(best_mv_f1 - greedy_f1, 4),\\\\n        },\\\\n        \\\\\\\"entity_signal_quality\\\\\\\": {\\\\n            \\\\\\\"n_entities\\\\\\\": len(ent_correct),\\\\n            \\\\\\\"overall_correct_rate\\\\\\\": round(float(ent_correct.mean()), 4),\\\\n            \\\\\\\"esj\\\\\\\": {\\\\\\\"rho\\\\\\\": round(float(rho_esj), 4), \\\\\\\"auroc\\\\\\\": round(float(auroc_esj), 4)},\\\\n            \\\\\\\"agreement\\\\\\\": {\\\\\\\"rho\\\\\\\": round(float(rho_agree), 4), \\\\\\\"auroc\\\\\\\": round(float(auroc_agree), 4)},\\\\n            \\\\\\\"esj_x_agreement\\\\\\\": {\\\\\\\"rho\\\\\\\": round(float(rho_comb), 4), \\\\\\\"auroc\\\\\\\": round(float(auroc_comb), 4)},\\\\n        },\\\\n        \\\\\\\"agreement_breakdown\\\\\\\": {\\\\n            \\\\\\\"disputed_lt0.5\\\\\\\": group_stats(disputed, \\\\\\\"disputed\\\\\\\"),\\\\n            \\\\\\\"mid_0.5_0.75\\\\\\\": group_stats(mid, \\\\\\\"mid\\\\\\\"),\\\\n            \\\\\\\"consensus_gte0.75\\\\\\\": group_stats(consensus, \\\\\\\"consensus\\\\\\\"),\\\\n        },\\\\n        \\\\\\\"within_instance_ranking\\\\\\\": {\\\\n            \\\\\\\"esj_mean_rho\\\\\\\": round(float(np.mean(esj_rank_corrs)), 4) if esj_rank_corrs else None,\\\\n            \\\\\\\"lp_mean_rho\\\\\\\": round(float(np.mean(lp_rank_corrs)), 4) if lp_rank_corrs else None,\\\\n            \\\\\\\"n_rankable_instances\\\\\\\": len(esj_rank_corrs),\\\\n            \\\\\\\"esj_selection_f1\\\\\\\": round(float(np.mean(esj_sel_f1s)), 4),\\\\n            \\\\\\\"lp_selection_f1\\\\\\\": round(float(np.mean(lp_sel_f1s)), 4),\\\\n        },\\\\n    }\\\\n\\\\n    out_path = os.path.join(args.output_dir, \\\\\\\"esj_results.json\\\\\\\")\\\\n    with open(out_path, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(result, f, indent=2)\\\\n    print(f\\\\\\\"\\\\\\\\nSaved: {out_path}\\\\\\\")\\\\n\\\\n    # ---- Print summary ----\\\\n    print(f\\\\\\\"\\\\\\\\n{'='*60}\\\\\\\")\\\\n    print(\\\\\\\"ESJ Entity-Level Self-Judgment Results\\\\\\\")\\\\n    print(f\\\\\\\"{'='*60}\\\\\\\")\\\\n    print(f\\\\\\\"Instances: {len(data)}  Unique entities verified: {total_uniq}\\\\\\\")\\\\n    print(f\\\\\\\"P(yes): mean={p_yes_dist['mean']}, std={p_yes_dist['std']}, median={p_yes_dist['median']}\\\\\\\")\\\\n    print(f\\\\\\\"\\\\\\\\nConstruction F1 (macro):\\\\\\\")\\\\n    print(f\\\\\\\"  Greedy:              {greedy_f1:.4f}\\\\\\\")\\\\n    print(f\\\\\\\"  Best MV (θ={best_mv_th}):  {best_mv_f1:.4f}  (Δ={best_mv_f1-greedy_f1:+.4f})\\\\\\\")\\\\n    print(f\\\\\\\"  Best ESJ (θ={best_esj_th}): {best_esj_f1:.4f}  (Δ={best_esj_f1-greedy_f1:+.4f})\\\\\\\")\\\\n    print(f\\\\\\\"  Oracle:              {oracle_f1:.4f}\\\\\\\")\\\\n    print(f\\\\\\\"  ESJ vs MV: {best_esj_f1-best_mv_f1:+.4f}\\\\\\\")\\\\n    print(f\\\\\\\"\\\\\\\\nEntity-level signal:\\\\\\\")\\\\n    print(f\\\\\\\"  ESJ         ρ={rho_esj:+.4f}  AUROC={auroc_esj:.4f}\\\\\\\")\\\\n    print(f\\\\\\\"  Agreement   ρ={rho_agree:+.4f}  AUROC={auroc_agree:.4f}\\\\\\\")\\\\n    print(f\\\\\\\"  ESJ×Agree   ρ={rho_comb:+.4f}  AUROC={auroc_comb:.4f}\\\\\\\")\\\\n    print(f\\\\\\\"\\\\\\\\nWithin-instance ranking (rho with sample F1):\\\\\\\")\\\\n    if esj_rank_corrs:\\\\n        print(f\\\\\\\"  ESJ: {np.mean(esj_rank_corrs):+.4f} ({len(esj_rank_corrs)} instances)\\\\\\\")\\\\n    if lp_rank_corrs:\\\\n        print(f\\\\\\\"  LP:  {np.mean(lp_rank_corrs):+.4f} ({len(lp_rank_corrs)} instances)\\\\\\\")\\\\n    print(f\\\\\\\"\\\\\\\\nSelection F1 (pick best sample):\\\\\\\")\\\\n    print(f\\\\\\\"  ESJ: {np.mean(esj_sel_f1s):.4f}  LP: {np.mean(lp_sel_f1s):.4f}  Greedy: {greedy_f1:.4f}\\\\\\\")\\\\n    print(f\\\\\\\"\\\\\\\\nBreakdown by agreement:\\\\\\\")\\\\n    for label, mask in [(\\\\\\\"Disputed (<0.5)\\\\\\\", disputed), (\\\\\\\"Mid [0.5,0.75)\\\\\\\", mid), (\\\\\\\"Consensus (≥0.75)\\\\\\\", consensus)]:\\\\n        n = mask.sum()\\\\n        if n >= 3:\\\\n            print(f\\\\\\\"  {label}: n={n}, correct={ent_correct[mask].mean():.3f}, \\\\\\\"\\\\n                  f\\\\\\\"ESJ_mean={ent_esj_arr[mask].mean():.3f}, \\\\\\\"\\\\n                  f\\\\\\\"AUROC={safe_auroc(ent_esj_arr[mask], ent_correct[mask]):.4f}\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Entity-Level Self-Judgment (ESJ) for structured self-consistency IE.\\n\\nFor each unique entity across N=8 samples, uses the FT model to do a\\nyes/no verification forward pass. P(yes) serves as entity-level confidence\\nfor weighted construction.\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport os\\nimport sys\\nimport time\\nfrom collections import defaultdict\\n\\nimport numpy as np\\nimport torch\\nfrom transformers import AutoTokenizer, AutoModelForCausalLM\\nfrom peft import PeftModel\\nfrom scipy.stats import spearmanr\\nfrom sklearn.metrics import roc_auc_score\\n\\n\\n# ---------------------------------------------------------------------------\\n# Data\\n# ---------------------------------------------------------------------------\\n\\ndef load_samples(path, max_instances=0):\\n    data = []\\n    with open(path) as f:\\n        for line in f:\\n            if line.strip():\\n                data.append(json.loads(line))\\n                if 0 < max_instances <= len(data):\\n                    break\\n    return data\\n\\n\\ndef extract_unique_entities(instance):\\n    \\\"\\\"\\\"Return {(start, end, type, text): count_across_samples}.\\\"\\\"\\\"\\n    emap = defaultdict(int)\\n    for sample in instance[\\\"samples\\\"]:\\n        for e in sample.get(\\\"entities\\\", []):\\n            emap[(e[\\\"start\\\"], e[\\\"end\\\"], e[\\\"type\\\"], e[\\\"text\\\"])] += 1\\n    return emap\\n\\n\\n# ---------------------------------------------------------------------------\\n# Prompt\\n# ---------------------------------------------------------------------------\\n\\ndef build_verification_prompt(sentence, entity_text, entity_type):\\n    return (\\n        f'In the following sentence, is \\\"{entity_text}\\\" a {entity_type} entity? '\\n        f'Answer only yes or no.\\\\n\\\\n'\\n        f'Sentence: {sentence}\\\\n'\\n        f'Answer:'\\n    )\\n\\n\\n# ---------------------------------------------------------------------------\\n# Model\\n# ---------------------------------------------------------------------------\\n\\ndef load_model(base_path, adapter_path, device=\\\"cuda\\\"):\\n    tok_path = adapter_path if adapter_path else base_path\\n    print(f\\\"Loading tokenizer from {tok_path} ...\\\")\\n    tokenizer = AutoTokenizer.from_pretrained(\\n        tok_path, trust_remote_code=True, padding_side=\\\"left\\\",\\n    )\\n    if tokenizer.pad_token is None:\\n        tokenizer.pad_token = tokenizer.eos_token\\n\\n    print(f\\\"Loading base model from {base_path} ...\\\")\\n    model = AutoModelForCausalLM.from_pretrained(\\n        base_path,\\n        torch_dtype=torch.bfloat16,\\n        device_map=device,\\n        trust_remote_code=True,\\n    )\\n\\n    if adapter_path:\\n        print(f\\\"Loading LoRA adapter from {adapter_path} ...\\\")\\n        model = PeftModel.from_pretrained(model, adapter_path)\\n        model = model.merge_and_unload()\\n        print(\\\"LoRA merged.\\\")\\n\\n    model.eval()\\n    return model, tokenizer\\n\\n\\ndef get_yes_no_ids(tokenizer):\\n    yes_ids, no_ids = [], []\\n    for w in [\\\"yes\\\", \\\"Yes\\\", \\\"YES\\\"]:\\n        ids = tokenizer.encode(w, add_special_tokens=False)\\n        if len(ids) == 1:\\n            yes_ids.append(ids[0])\\n    for w in [\\\"no\\\", \\\"No\\\", \\\"NO\\\"]:\\n        ids = tokenizer.encode(w, add_special_tokens=False)\\n        if len(ids) == 1:\\n            no_ids.append(ids[0])\\n    yes_ids = list(set(yes_ids))\\n    no_ids = list(set(no_ids))\\n    print(f\\\"yes token IDs: {yes_ids}  no token IDs: {no_ids}\\\")\\n    assert yes_ids and no_ids, \\\"Could not find yes/no token IDs\\\"\\n    return yes_ids, no_ids\\n\\n\\n# ---------------------------------------------------------------------------\\n# Batch verification\\n# ---------------------------------------------------------------------------\\n\\n@torch.no_grad()\\ndef batch_verify(model, tokenizer, prompts, yes_ids, no_ids,\\n                 batch_size=16, device=\\\"cuda\\\"):\\n    yes_t = torch.tensor(yes_ids, device=device)\\n    no_t = torch.tensor(no_ids, device=device)\\n    all_p_yes = []\\n\\n    n_batches = (len(prompts) + batch_size - 1) // batch_size\\n    for bi in range(n_batches):\\n        start = bi * batch_size\\n        batch = prompts[start:start + batch_size]\\n\\n        formatted = []\\n        for p in batch:\\n  \\n\\n... [截断: 输出过长，省略 11922 字符] ...\\n\\nal_uniq / len(data), 2),\\n        \\\"verification_seconds\\\": round(elapsed, 1),\\n        \\\"prompts_per_second\\\": round(len(all_prompts) / elapsed, 1),\\n        \\\"p_yes_distribution\\\": p_yes_dist,\\n        \\\"construction_f1\\\": {\\n            \\\"greedy\\\": round(greedy_f1, 4),\\n            \\\"oracle\\\": round(oracle_f1, 4),\\n            \\\"majority_vote\\\": {k: round(v, 4) for k, v in mv_res.items()},\\n            \\\"best_mv\\\": {\\\"threshold\\\": best_mv_th, \\\"f1\\\": round(best_mv_f1, 4)},\\n            \\\"esj_weighted\\\": {k: round(v, 4) for k, v in esj_res.items()},\\n            \\\"best_esj\\\": {\\\"threshold\\\": best_esj_th, \\\"f1\\\": round(best_esj_f1, 4)},\\n        },\\n        \\\"deltas\\\": {\\n            \\\"esj_vs_greedy\\\": round(best_esj_f1 - greedy_f1, 4),\\n            \\\"esj_vs_mv\\\": round(best_esj_f1 - best_mv_f1, 4),\\n            \\\"mv_vs_greedy\\\": round(best_mv_f1 - greedy_f1, 4),\\n        },\\n        \\\"entity_signal_quality\\\": {\\n            \\\"n_entities\\\": len(ent_correct),\\n            \\\"overall_correct_rate\\\": round(float(ent_correct.mean()), 4),\\n            \\\"esj\\\": {\\\"rho\\\": round(float(rho_esj), 4), \\\"auroc\\\": round(float(auroc_esj), 4)},\\n            \\\"agreement\\\": {\\\"rho\\\": round(float(rho_agree), 4), \\\"auroc\\\": round(float(auroc_agree), 4)},\\n            \\\"esj_x_agreement\\\": {\\\"rho\\\": round(float(rho_comb), 4), \\\"auroc\\\": round(float(auroc_comb), 4)},\\n        },\\n        \\\"agreement_breakdown\\\": {\\n            \\\"disputed_lt0.5\\\": group_stats(disputed, \\\"disputed\\\"),\\n            \\\"mid_0.5_0.75\\\": group_stats(mid, \\\"mid\\\"),\\n            \\\"consensus_gte0.75\\\": group_stats(consensus, \\\"consensus\\\"),\\n        },\\n        \\\"within_instance_ranking\\\": {\\n            \\\"esj_mean_rho\\\": round(float(np.mean(esj_rank_corrs)), 4) if esj_rank_corrs else None,\\n            \\\"lp_mean_rho\\\": round(float(np.mean(lp_rank_corrs)), 4) if lp_rank_corrs else None,\\n            \\\"n_rankable_instances\\\": len(esj_rank_corrs),\\n            \\\"esj_selection_f1\\\": round(float(np.mean(esj_sel_f1s)), 4),\\n            \\\"lp_selection_f1\\\": round(float(np.mean(lp_sel_f1s)), 4),\\n        },\\n    }\\n\\n    out_path = os.path.join(args.output_dir, \\\"esj_results.json\\\")\\n    with open(out_path, \\\"w\\\") as f:\\n        json.dump(result, f, indent=2)\\n    print(f\\\"\\\\nSaved: {out_path}\\\")\\n\\n    # ---- Print summary ----\\n    print(f\\\"\\\\n{'='*60}\\\")\\n    print(\\\"ESJ Entity-Level Self-Judgment Results\\\")\\n    print(f\\\"{'='*60}\\\")\\n    print(f\\\"Instances: {len(data)}  Unique entities verified: {total_uniq}\\\")\\n    print(f\\\"P(yes): mean={p_yes_dist['mean']}, std={p_yes_dist['std']}, median={p_yes_dist['median']}\\\")\\n    print(f\\\"\\\\nConstruction F1 (macro):\\\")\\n    print(f\\\"  Greedy:              {greedy_f1:.4f}\\\")\\n    print(f\\\"  Best MV (θ={best_mv_th}):  {best_mv_f1:.4f}  (Δ={best_mv_f1-greedy_f1:+.4f})\\\")\\n    print(f\\\"  Best ESJ (θ={best_esj_th}): {best_esj_f1:.4f}  (Δ={best_esj_f1-greedy_f1:+.4f})\\\")\\n    print(f\\\"  Oracle:              {oracle_f1:.4f}\\\")\\n    print(f\\\"  ESJ vs MV: {best_esj_f1-best_mv_f1:+.4f}\\\")\\n    print(f\\\"\\\\nEntity-level signal:\\\")\\n    print(f\\\"  ESJ         ρ={rho_esj:+.4f}  AUROC={auroc_esj:.4f}\\\")\\n    print(f\\\"  Agreement   ρ={rho_agree:+.4f}  AUROC={auroc_agree:.4f}\\\")\\n    print(f\\\"  ESJ×Agree   ρ={rho_comb:+.4f}  AUROC={auroc_comb:.4f}\\\")\\n    print(f\\\"\\\\nWithin-instance ranking (rho with sample F1):\\\")\\n    if esj_rank_corrs:\\n        print(f\\\"  ESJ: {np.mean(esj_rank_corrs):+.4f} ({len(esj_rank_corrs)} instances)\\\")\\n    if lp_rank_corrs:\\n        print(f\\\"  LP:  {np.mean(lp_rank_corrs):+.4f} ({len(lp_rank_corrs)} instances)\\\")\\n    print(f\\\"\\\\nSelection F1 (pick best sample):\\\")\\n    print(f\\\"  ESJ: {np.mean(esj_sel_f1s):.4f}  LP: {np.mean(lp_sel_f1s):.4f}  Greedy: {greedy_f1:.4f}\\\")\\n    print(f\\\"\\\\nBreakdown by agreement:\\\")\\n    for label, mask in [(\\\"Disputed (<0.5)\\\", disputed), (\\\"Mid [0.5,0.75)\\\", mid), (\\\"Consensus (≥0.75)\\\", consensus)]:\\n        n = mask.sum()\\n        if n >= 3:\\n            print(f\\\"  {label}: n={n}, correct={ent_correct[mask].mean():.3f}, \\\"\\n                  f\\\"ESJ_mean={ent_esj_arr[mask].mean():.3f}, \\\"\\n                  f\\\"AUROC={safe_auroc(ent_esj_arr[mask], ent_correct[mask]):.4f}\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01DpoKAhgRBJJAm8uNY1EpvL`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "nvidia-smi --query-gpu=index,name,memory.used,memory.total,utilization.gpu --format=csv,noheader",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c9503f0c-fafb-4830-833b-3b869dd2e070",
+  "uuid": "dbb29115-122a-4927-9875-d7e65c938938",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PnL2vgQLFrLd5r1h1V3T25",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9850,
+      "cache_read_input_tokens": 24725,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9850
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-22T15:30:17.514Z_
+
+<details><summary>↩ Tool result · `toolu_01DpoKAhgRBJJAm8uNY1EpvL`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"0, NVIDIA GeForce RTX 5090, 2 MiB, 32607 MiB, 0 %\\n1, NVIDIA GeForce RTX 5090, 2 MiB, 32607 MiB, 0 %\\n2, NVIDIA GeForce RTX 5090, 2 MiB, 32607 MiB, 0 %\\n3, NVIDIA GeForce RTX 5090, 2 MiB, 32607 MiB, 0 %\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.68}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c9503f0c-fafb-4830-833b-3b869dd2e070",
+  "uuid": "6ff579bf-a7bc-40a8-a56d-902df88072d5",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, NVIDIA GeForce RTX 5090, 2 MiB, 32607 MiB, 0 %\\\\n1, NVIDIA GeForce RTX 5090, 2 MiB, 32607 MiB, 0 %\\\\n2, NVIDIA GeForce RTX 5090, 2 MiB, 32607 MiB, 0 %\\\\n3, NVIDIA GeForce RTX 5090, 2 MiB, 32607 MiB, 0 %\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.68}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"0, NVIDIA GeForce RTX 5090, 2 MiB, 32607 MiB, 0 %\\n1, NVIDIA GeForce RTX 5090, 2 MiB, 32607 MiB, 0 %\\n2, NVIDIA GeForce RTX 5090, 2 MiB, 32607 MiB, 0 %\\n3, NVIDIA GeForce RTX 5090, 2 MiB, 32607 MiB, 0 %\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.68}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01GDApB2yNNKRmgzKcLF4v4a`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "find /root/autodl-tmp/struct_self_consist_ie/output/ -maxdepth 2 -name \"*esj*\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c9503f0c-fafb-4830-833b-3b869dd2e070",
+  "uuid": "b585b7ed-c83d-4e4c-ac9a-b615a811ed43",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PnL2vgQLFrLd5r1h1V3T25",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9850,
+      "cache_read_input_tokens": 24725,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9850
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-22T15:30:18.299Z_
+
+<details><summary>↩ Tool result · `toolu_01GDApB2yNNKRmgzKcLF4v4a`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c9503f0c-fafb-4830-833b-3b869dd2e070",
+  "uuid": "babb6bd2-14a3-4432-914e-41d7c2d7f153",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01NVQ1VrtbcAhXesX4Gn1Nwo`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "find /root/autodl-tmp/struct_self_consist_ie/output/ -maxdepth 1 -name \"*esj*\" -type d",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c9503f0c-fafb-4830-833b-3b869dd2e070",
+  "uuid": "ba887643-1330-4295-b7d5-cf45202fb9ab",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PnL2vgQLFrLd5r1h1V3T25",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9850,
+      "cache_read_input_tokens": 24725,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9850
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-22T15:30:18.878Z_
+
+<details><summary>↩ Tool result · `toolu_01NVQ1VrtbcAhXesX4Gn1Nwo`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c9503f0c-fafb-4830-833b-3b869dd2e070",
+  "uuid": "262343c7-8102-41ec-99ad-bb0939c0b4c1",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 26_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good, I have the ESJ code. Let me now read the argparse section to understand the CLI arguments, and check existing ESJ output and what data was used previously. Let me also check the merged model sizes for Qwen3-8B.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c9503f0c-fafb-4830-833b-3b869dd2e070",
+  "uuid": "9e65d4c2-dca9-49d2-8b79-2f3358166bc0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Sr39DSsjyiSfdyipo8LkWR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4658,
+      "cache_read_input_tokens": 34575,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4658
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 27_
+
+现在读取 `run_esj.py` 的 argparse 部分（代码被截断了）和已有的 ESJ 运行结果。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c9503f0c-fafb-4830-833b-3b869dd2e070",
+  "uuid": "5981802e-c7af-4d8a-a3fd-0e24e6c231dd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Sr39DSsjyiSfdyipo8LkWR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4658,
+      "cache_read_input_tokens": 34575,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4658
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01KVWuMwDANSyfzk1WeDi149`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "grep -n \"argparse\\|add_argument\\|--base\\|--adapter\\|--samples\\|--output\\|--device\\|--batch\\|--max_inst\\|def main\" /root/autodl-tmp/struct_self_consist_ie/code/run_esj.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c9503f0c-fafb-4830-833b-3b869dd2e070",
+  "uuid": "241d8432-929f-459e-9c84-58cde734175c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Sr39DSsjyiSfdyipo8LkWR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4658,
+      "cache_read_input_tokens": 34575,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4658
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-22T15:30:26.052Z_
+
+<details><summary>↩ Tool result · `toolu_01KVWuMwDANSyfzk1WeDi149`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c9503f0c-fafb-4830-833b-3b869dd2e070",
+  "uuid": "f916076f-cd02-4565-8bbc-fa724e5c13e0",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0188KX1L8jQie1WvFbbfyDUQ`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "find /root/autodl-tmp/struct_self_consist_ie/ -name \"esj_results.json\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c9503f0c-fafb-4830-833b-3b869dd2e070",
+  "uuid": "ad2bdb58-e3da-4ba1-8cb0-d752f0b23643",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Sr39DSsjyiSfdyipo8LkWR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4658,
+      "cache_read_input_tokens": 34575,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4658
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-22T15:30:27.369Z_
+
+<details><summary>↩ Tool result · `toolu_0188KX1L8jQie1WvFbbfyDUQ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c9503f0c-fafb-4830-833b-3b869dd2e070",
+  "uuid": "4cb93515-9336-4374-92c5-855c88393a7b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01RWQ6Xyy54m1HUWtZ6cFbtc`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "ls -la /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-conll2003-merged/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c9503f0c-fafb-4830-833b-3b869dd2e070",
+  "uuid": "52ab2e12-5c25-4030-a12d-f18d2bdb41af",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Sr39DSsjyiSfdyipo8LkWR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4658,
+      "cache_read_input_tokens": 34575,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4658
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-22T15:30:28.384Z_
+
+<details><summary>↩ Tool result · `toolu_01RWQ6Xyy54m1HUWtZ6cFbtc`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 16013164\\ndrwxr-xr-x  2 root root       4096 May 21 20:52 .\\ndrwxr-xr-x 14 root root       4096 May 22 01:55 ..\\n-rw-r--r--  1 root root        707 May 21 20:52 added_tokens.json\\n-rw-r--r--  1 root root       4168 May 21 20:52 chat_template.jinja\\n-rw-r--r--  1 root root       1538 May 21 20:51 config.json\\n-rw-r--r--  1 root root        214 May 21 20:51 generation_config.json\\n-rw-r--r--  1 root root    1671853 May 21 20:52 merges.txt\\n-rw-r--r--  1 root root 4902257696 May 21 20:51 model-00001-of-00004.safetensors\\n-rw-r--r--  1 root root 4915960368 May 21 20:52 model-00002-of-00004.safetensors\\n-rw-r--r--  1 root root 4983068496 May 21 20:52 model-00003-of-00004.safetensors\\n-rw-r--r--  1 root root 1580230264 May 21 20:52 model-00004-of-00004.safetensors\\n-rw-r--r--  1 root root      32914 May 21 20:52 model.safetensors.index.json\\n-rw-r--r--  1 root root        613 May 21 20:52 special_tokens_map.json\\n-rw-r--r--  1 root root   11422654 May 21 20:52 tokenizer.json\\n-rw-r--r--  1 root root       5431 May 21 20:52 tokenizer_config.json\\n-rw-r--r--  1 root root    2776833 May 21 20:52 vocab.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c9503f0c-fafb-4830-833b-3b869dd2e070",
+  "uuid": "a8591fe0-b89d-471b-8513-99070a38807b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 16013164\\\\ndrwxr-xr-x  2 root root       4096 May 21 20:52 .\\\\ndrwxr-xr-x 14 root root       4096 May 22 01:55 ..\\\\n-rw-r--r--  1 root root        707 May 21 20:52 added_tokens.json\\\\n-rw-r--r--  1 root root       4168 May 21 20:52 chat_template.jinja\\\\n-rw-r--r--  1 root root       1538 May 21 20:51 config.json\\\\n-rw-r--r--  1 root root        214 May 21 20:51 generation_config.json\\\\n-rw-r--r--  1 root root    1671853 May 21 20:52 merges.txt\\\\n-rw-r--r--  1 root root 4902257696 May 21 20:51 model-00001-of-00004.safetensors\\\\n-rw-r--r--  1 root root 4915960368 May 21 20:52 model-00002-of-00004.safetensors\\\\n-rw-r--r--  1 root root 4983068496 May 21 20:52 model-00003-of-00004.safetensors\\\\n-rw-r--r--  1 root root 1580230264 May 21 20:52 model-00004-of-00004.safetensors\\\\n-rw-r--r--  1 root root      32914 May 21 20:52 model.safetensors.index.json\\\\n-rw-r--r--  1 root root        613 May 21 20:52 special_tokens_map.json\\\\n-rw-r--r--  1 root root   11422654 May 21 20:52 tokenizer.json\\\\n-rw-r--r--  1 root root       5431 May 21 20:52 tokenizer_config.json\\\\n-rw-r--r--  1 root root    2776833 May 21 20:52 vocab.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 16013164\\ndrwxr-xr-x  2 root root       4096 May 21 20:52 .\\ndrwxr-xr-x 14 root root       4096 May 22 01:55 ..\\n-rw-r--r--  1 root root        707 May 21 20:52 added_tokens.json\\n-rw-r--r--  1 root root       4168 May 21 20:52 chat_template.jinja\\n-rw-r--r--  1 root root       1538 May 21 20:51 config.json\\n-rw-r--r--  1 root root        214 May 21 20:51 generation_config.json\\n-rw-r--r--  1 root root    1671853 May 21 20:52 merges.txt\\n-rw-r--r--  1 root root 4902257696 May 21 20:51 model-00001-of-00004.safetensors\\n-rw-r--r--  1 root root 4915960368 May 21 20:52 model-00002-of-00004.safetensors\\n-rw-r--r--  1 root root 4983068496 May 21 20:52 model-00003-of-00004.safetensors\\n-rw-r--r--  1 root root 1580230264 May 21 20:52 model-00004-of-00004.safetensors\\n-rw-r--r--  1 root root      32914 May 21 20:52 model.safetensors.index.json\\n-rw-r--r--  1 root root        613 May 21 20:52 special_tokens_map.json\\n-rw-r--r--  1 root root   11422654 May 21 20:52 tokenizer.json\\n-rw-r--r--  1 root root       5431 May 21 20:52 tokenizer_config.json\\n-rw-r--r--  1 root root    2776833 May 21 20:52 vocab.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01QnSXriDm5uyWpLoSCMJhS7`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "ls -la /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-merged-v2/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c9503f0c-fafb-4830-833b-3b869dd2e070",
+  "uuid": "cf8fcf54-ee4f-46f0-8ce5-e462c5c1efee",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Sr39DSsjyiSfdyipo8LkWR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4658,
+      "cache_read_input_tokens": 34575,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4658
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-22T15:30:29.371Z_
+
+<details><summary>↩ Tool result · `toolu_01QnSXriDm5uyWpLoSCMJhS7`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 16013164\\ndrwx------  2 root root       4096 May 19 03:02 .\\ndrwxr-xr-x 14 root root       4096 May 22 01:55 ..\\n-rw-r--r--  1 root root        707 May 19 03:02 added_tokens.json\\n-rw-r--r--  1 root root       4168 May 19 03:02 chat_template.jinja\\n-rw-r--r--  1 root root       1538 May 19 03:02 config.json\\n-rw-r--r--  1 root root        214 May 19 03:02 generation_config.json\\n-rw-r--r--  1 root root    1671853 May 19 03:02 merges.txt\\n-rw-r--r--  1 root root 4902257696 May 19 03:02 model-00001-of-00004.safetensors\\n-rw-r--r--  1 root root 4915960368 May 19 03:02 model-00002-of-00004.safetensors\\n-rw-r--r--  1 root root 4983068496 May 19 03:02 model-00003-of-00004.safetensors\\n-rw-r--r--  1 root root 1580230264 May 19 03:02 model-00004-of-00004.safetensors\\n-rw-r--r--  1 root root      32914 May 19 03:02 model.safetensors.index.json\\n-rw-r--r--  1 root root        613 May 19 03:02 special_tokens_map.json\\n-rw-r--r--  1 root root   11422654 May 19 03:02 tokenizer.json\\n-rw-r--r--  1 root root       5404 May 19 03:02 tokenizer_config.json\\n-rw-r--r--  1 root root    2776833 May 19 03:02 vocab.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c9503f0c-fafb-4830-833b-3b869dd2e070",
+  "uuid": "b8ee6070-c892-436f-9f99-f3ad3b2fc649",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 16013164\\\\ndrwx------  2 root root       4096 May 19 03:02 .\\\\ndrwxr-xr-x 14 root root       4096 May 22 01:55 ..\\\\n-rw-r--r--  1 root root        707 May 19 03:02 added_tokens.json\\\\n-rw-r--r--  1 root root       4168 May 19 03:02 chat_template.jinja\\\\n-rw-r--r--  1 root root       1538 May 19 03:02 config.json\\\\n-rw-r--r--  1 root root        214 May 19 03:02 generation_config.json\\\\n-rw-r--r--  1 root root    1671853 May 19 03:02 merges.txt\\\\n-rw-r--r--  1 root root 4902257696 May 19 03:02 model-00001-of-00004.safetensors\\\\n-rw-r--r--  1 root root 4915960368 May 19 03:02 model-00002-of-00004.safetensors\\\\n-rw-r--r--  1 root root 4983068496 May 19 03:02 model-00003-of-00004.safetensors\\\\n-rw-r--r--  1 root root 1580230264 May 19 03:02 model-00004-of-00004.safetensors\\\\n-rw-r--r--  1 root root      32914 May 19 03:02 model.safetensors.index.json\\\\n-rw-r--r--  1 root root        613 May 19 03:02 special_tokens_map.json\\\\n-rw-r--r--  1 root root   11422654 May 19 03:02 tokenizer.json\\\\n-rw-r--r--  1 root root       5404 May 19 03:02 tokenizer_config.json\\\\n-rw-r--r--  1 root root    2776833 May 19 03:02 vocab.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 16013164\\ndrwx------  2 root root       4096 May 19 03:02 .\\ndrwxr-xr-x 14 root root       4096 May 22 01:55 ..\\n-rw-r--r--  1 root root        707 May 19 03:02 added_tokens.json\\n-rw-r--r--  1 root root       4168 May 19 03:02 chat_template.jinja\\n-rw-r--r--  1 root root       1538 May 19 03:02 config.json\\n-rw-r--r--  1 root root        214 May 19 03:02 generation_config.json\\n-rw-r--r--  1 root root    1671853 May 19 03:02 merges.txt\\n-rw-r--r--  1 root root 4902257696 May 19 03:02 model-00001-of-00004.safetensors\\n-rw-r--r--  1 root root 4915960368 May 19 03:02 model-00002-of-00004.safetensors\\n-rw-r--r--  1 root root 4983068496 May 19 03:02 model-00003-of-00004.safetensors\\n-rw-r--r--  1 root root 1580230264 May 19 03:02 model-00004-of-00004.safetensors\\n-rw-r--r--  1 root root      32914 May 19 03:02 model.safetensors.index.json\\n-rw-r--r--  1 root root        613 May 19 03:02 special_tokens_map.json\\n-rw-r--r--  1 root root   11422654 May 19 03:02 tokenizer.json\\n-rw-r--r--  1 root root       5404 May 19 03:02 tokenizer_config.json\\n-rw-r--r--  1 root root    2776833 May 19 03:02 vocab.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01FWRPodXxFAnNaJbfr2U9qN`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "ls -la /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-fewnerd-5epoch-merged/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c9503f0c-fafb-4830-833b-3b869dd2e070",
+  "uuid": "2cd8758c-992f-4915-8dc7-8ed080d2bfb9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Sr39DSsjyiSfdyipo8LkWR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4658,
+      "cache_read_input_tokens": 34575,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4658
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-22T15:30:30.375Z_
+
+<details><summary>↩ Tool result · `toolu_01FWRPodXxFAnNaJbfr2U9qN`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 16013168\\ndrwxr-xr-x  2 root root       4096 May 22 01:55 .\\ndrwxr-xr-x 14 root root       4096 May 22 01:55 ..\\n-rw-r--r--  1 root root        381 May 22 01:55 Modelfile\\n-rw-r--r--  1 root root        707 May 22 01:55 added_tokens.json\\n-rw-r--r--  1 root root       4168 May 22 01:55 chat_template.jinja\\n-rw-r--r--  1 root root       1538 May 22 01:55 config.json\\n-rw-r--r--  1 root root        214 May 22 01:55 generation_config.json\\n-rw-r--r--  1 root root    1671853 May 22 01:55 merges.txt\\n-rw-r--r--  1 root root 4902257696 May 22 01:55 model-00001-of-00004.safetensors\\n-rw-r--r--  1 root root 4915960368 May 22 01:55 model-00002-of-00004.safetensors\\n-rw-r--r--  1 root root 4983068496 May 22 01:55 model-00003-of-00004.safetensors\\n-rw-r--r--  1 root root 1580230264 May 22 01:55 model-00004-of-00004.safetensors\\n-rw-r--r--  1 root root      32914 May 22 01:55 model.safetensors.index.json\\n-rw-r--r--  1 root root        613 May 22 01:55 special_tokens_map.json\\n-rw-r--r--  1 root root   11422654 May 22 01:55 tokenizer.json\\n-rw-r--r--  1 root root       5430 May 22 01:55 tokenizer_config.json\\n-rw-r--r--  1 root root    2776833 May 22 01:55 vocab.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.34}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c9503f0c-fafb-4830-833b-3b869dd2e070",
+  "uuid": "72a7378e-b633-44df-8675-5c77de30ff4b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 16013168\\\\ndrwxr-xr-x  2 root root       4096 May 22 01:55 .\\\\ndrwxr-xr-x 14 root root       4096 May 22 01:55 ..\\\\n-rw-r--r--  1 root root        381 May 22 01:55 Modelfile\\\\n-rw-r--r--  1 root root        707 May 22 01:55 added_tokens.json\\\\n-rw-r--r--  1 root root       4168 May 22 01:55 chat_template.jinja\\\\n-rw-r--r--  1 root root       1538 May 22 01:55 config.json\\\\n-rw-r--r--  1 root root        214 May 22 01:55 generation_config.json\\\\n-rw-r--r--  1 root root    1671853 May 22 01:55 merges.txt\\\\n-rw-r--r--  1 root root 4902257696 May 22 01:55 model-00001-of-00004.safetensors\\\\n-rw-r--r--  1 root root 4915960368 May 22 01:55 model-00002-of-00004.safetensors\\\\n-rw-r--r--  1 root root 4983068496 May 22 01:55 model-00003-of-00004.safetensors\\\\n-rw-r--r--  1 root root 1580230264 May 22 01:55 model-00004-of-00004.safetensors\\\\n-rw-r--r--  1 root root      32914 May 22 01:55 model.safetensors.index.json\\\\n-rw-r--r--  1 root root        613 May 22 01:55 special_tokens_map.json\\\\n-rw-r--r--  1 root root   11422654 May 22 01:55 tokenizer.json\\\\n-rw-r--r--  1 root root       5430 May 22 01:55 tokenizer_config.json\\\\n-rw-r--r--  1 root root    2776833 May 22 01:55 vocab.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.34}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 16013168\\ndrwxr-xr-x  2 root root       4096 May 22 01:55 .\\ndrwxr-xr-x 14 root root       4096 May 22 01:55 ..\\n-rw-r--r--  1 root root        381 May 22 01:55 Modelfile\\n-rw-r--r--  1 root root        707 May 22 01:55 added_tokens.json\\n-rw-r--r--  1 root root       4168 May 22 01:55 chat_template.jinja\\n-rw-r--r--  1 root root       1538 May 22 01:55 config.json\\n-rw-r--r--  1 root root        214 May 22 01:55 generation_config.json\\n-rw-r--r--  1 root root    1671853 May 22 01:55 merges.txt\\n-rw-r--r--  1 root root 4902257696 May 22 01:55 model-00001-of-00004.safetensors\\n-rw-r--r--  1 root root 4915960368 May 22 01:55 model-00002-of-00004.safetensors\\n-rw-r--r--  1 root root 4983068496 May 22 01:55 model-00003-of-00004.safetensors\\n-rw-r--r--  1 root root 1580230264 May 22 01:55 model-00004-of-00004.safetensors\\n-rw-r--r--  1 root root      32914 May 22 01:55 model.safetensors.index.json\\n-rw-r--r--  1 root root        613 May 22 01:55 special_tokens_map.json\\n-rw-r--r--  1 root root   11422654 May 22 01:55 tokenizer.json\\n-rw-r--r--  1 root root       5430 May 22 01:55 tokenizer_config.json\\n-rw-r--r--  1 root root    2776833 May 22 01:55 vocab.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.34}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 38_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me read the argparse section of run_esj.py more carefully, and check what samples.jsonl files exist for the primary experiments.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c9503f0c-fafb-4830-833b-3b869dd2e070",
+  "uuid": "daaf1d47-b4fc-44cd-8697-43eabeddd064",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QQGzgn97TF7oo8HSsqmoXF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2982,
+      "cache_read_input_tokens": 39233,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2982
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 39_
+
+读取 argparse 参数定义和已有样本信息。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c9503f0c-fafb-4830-833b-3b869dd2e070",
+  "uuid": "af332c0c-638b-4549-8a56-ea98016fec6c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QQGzgn97TF7oo8HSsqmoXF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2982,
+      "cache_read_input_tokens": 39233,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2982
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01WnHgCErcyuivn4chpCGPXp`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "grep -n \"add_argument\" /root/autodl-tmp/struct_self_consist_ie/code/run_esj.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c9503f0c-fafb-4830-833b-3b869dd2e070",
+  "uuid": "89e5c4ea-7d08-4922-9efd-c7ca283ed8cc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QQGzgn97TF7oo8HSsqmoXF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2982,
+      "cache_read_input_tokens": 39233,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2982
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-22T15:30:35.062Z_
+
+<details><summary>↩ Tool result · `toolu_01WnHgCErcyuivn4chpCGPXp`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"260:    ap.add_argument(\\\"--base_model_path\\\", type=str, required=True)\\n261:    ap.add_argument(\\\"--adapter_path\\\", type=str, default=None)\\n262:    ap.add_argument(\\\"--data_path\\\", type=str, required=True)\\n263:    ap.add_argument(\\\"--output_dir\\\", type=str, required=True)\\n264:    ap.add_argument(\\\"--max_instances\\\", type=int, default=0)\\n265:    ap.add_argument(\\\"--batch_size\\\", type=int, default=16)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c9503f0c-fafb-4830-833b-3b869dd2e070",
+  "uuid": "009f3389-06c7-4169-b505-d94e02f9306a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"260:    ap.add_argument(\\\\\\\"--base_model_path\\\\\\\", type=str, required=True)\\\\n261:    ap.add_argument(\\\\\\\"--adapter_path\\\\\\\", type=str, default=None)\\\\n262:    ap.add_argument(\\\\\\\"--data_path\\\\\\\", type=str, required=True)\\\\n263:    ap.add_argument(\\\\\\\"--output_dir\\\\\\\", type=str, required=True)\\\\n264:    ap.add_argument(\\\\\\\"--max_instances\\\\\\\", type=int, default=0)\\\\n265:    ap.add_argument(\\\\\\\"--batch_size\\\\\\\", type=int, default=16)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"260:    ap.add_argument(\\\"--base_model_path\\\", type=str, required=True)\\n261:    ap.add_argument(\\\"--adapter_path\\\", type=str, default=None)\\n262:    ap.add_argument(\\\"--data_path\\\", type=str, required=True)\\n263:    ap.add_argument(\\\"--output_dir\\\", type=str, required=True)\\n264:    ap.add_argument(\\\"--max_instances\\\", type=int, default=0)\\n265:    ap.add_argument(\\\"--batch_size\\\", type=int, default=16)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01DvSRB9oDvPcF1PJgK4RcZP`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "head -20 /root/autodl-tmp/struct_self_consist_ie/output/scierc_mf4v2_seed42/samples.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c9503f0c-fafb-4830-833b-3b869dd2e070",
+  "uuid": "f58748d3-21ce-44a3-b03d-86b1863bbfae",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QQGzgn97TF7oo8HSsqmoXF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2982,
+      "cache_read_input_tokens": 39233,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2982
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01MaNeyJSqimrdtY4hmpsVJy`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "wc -l /root/autodl-tmp/struct_self_consist_ie/output/scierc_mf4v2_seed42/samples.jsonl /root/autodl-tmp/struct_self_consist_ie/output/conll_mf4v2_seed123/samples.jsonl /root/autodl-tmp/struct_self_consist_ie/output/fewnerd_5epoch_s42/samples.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c9503f0c-fafb-4830-833b-3b869dd2e070",
+  "uuid": "3ff9ec51-6739-46e0-a4c6-49cee5f7c28a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QQGzgn97TF7oo8HSsqmoXF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2982,
+      "cache_read_input_tokens": 39233,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2982
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-22T15:30:42.887Z_
+
+<details><summary>↩ Tool result · `toolu_01DvSRB9oDvPcF1PJgK4RcZP`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"id\\\": \\\"X96-1059_sent000\\\", \\\"text\\\": \\\"Recognition of proper nouns in Japanese text has been studied as a part of the more general problem of morphological analysis in Japanese text processing -LRB- -LSB- 1 -RSB- -LSB- 2 -RSB- -RRB- .\\\", \\\"gold\\\": {\\\"entities\\\": [{\\\"text\\\": \\\"Recognition of proper nouns\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 0, \\\"end\\\": 27}, {\\\"text\\\": \\\"proper nouns\\\", \\\"type\\\": \\\"OtherScientificTerm\\\", \\\"start\\\": 15, \\\"end\\\": 27}, {\\\"text\\\": \\\"Japanese text\\\", \\\"type\\\": \\\"Material\\\", \\\"start\\\": 31, \\\"end\\\": 44}, {\\\"text\\\": \\\"morphological analysis\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 103, \\\"end\\\": 125}, {\\\"text\\\": \\\"Japanese text processing\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 129, \\\"end\\\": 153}], \\\"relations\\\": [{\\\"head\\\": \\\"Recognition of proper nouns\\\", \\\"tail\\\": \\\"morphological analysis\\\", \\\"type\\\": \\\"PART-OF\\\", \\\"head_start\\\": 0, \\\"head_end\\\": 27, \\\"tail_start\\\": 103, \\\"tail_end\\\": 125}, {\\\"head\\\": \\\"proper nouns\\\", \\\"tail\\\": \\\"Japanese text\\\", \\\"type\\\": \\\"PART-OF\\\", \\\"head_start\\\": 15, \\\"head_end\\\": 27, \\\"tail_start\\\": 31, \\\"tail_end\\\": 44}, {\\\"head\\\": \\\"morphological analysis\\\", \\\"tail\\\": \\\"Japanese text processing\\\", \\\"type\\\": \\\"USED-FOR\\\", \\\"head_start\\\": 103, \\\"head_end\\\": 125, \\\"tail_start\\\": 129, \\\"tail_end\\\": 153}], \\\"events\\\": []}, \\\"samples\\\": [{\\\"entities\\\": [{\\\"text\\\": \\\"proper nouns\\\", \\\"type\\\": \\\"OtherScientificTerm\\\", \\\"start\\\": 15, \\\"end\\\": 27}, {\\\"text\\\": \\\"Japanese text\\\", \\\"type\\\": \\\"Material\\\", \\\"start\\\": 31, \\\"end\\\": 44}, {\\\"text\\\": \\\"morphological analysis in Japanese text processing\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 103, \\\"end\\\": 153}], \\\"relations\\\": [{\\\"head\\\": \\\"proper nouns\\\", \\\"tail\\\": \\\"Japanese text\\\", \\\"type\\\": \\\"PART-OF\\\", \\\"head_start\\\": 15, \\\"head_end\\\": 27, \\\"tail_start\\\": 31, \\\"tail_end\\\": 44}, {\\\"head\\\": \\\"morphological analysis in Japanese text processing\\\", \\\"tail\\\": \\\"Japanese text\\\", \\\"type\\\": \\\"USED-FOR\\\", \\\"head_start\\\": 103, \\\"head_end\\\": 153, \\\"tail_start\\\": 31, \\\"tail_end\\\": 44}], \\\"events\\\": [], \\\"cumulative_logprob\\\": -9.37825492437198, \\\"n_tokens\\\": 218, \\\"mean_logprob\\\": -0.04301951800170633, \\\"token_logprobs\\\": [0.0, 0.0, 0.0, -0.00015925093612167984, 0.0, 0.0, 0.0, -2.6073734760284424, -8.344646857949556e-07, -0.00020346954988781363, 0.0, 0.0, 0.0, 0.0, -0.0019306369358673692, -1.1920928244535389e-07, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -1.1444026313256472e-05, -0.7048437595367432, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.0003060825983993709, -7.152555099310121e-07, 0.0, 0.0, 0.0, 0.0, -9.131014667218551e-05, -5.829164365422912e-05, -3.540453326422721e-05, 0.0, 0.0, 0.0, 0.0, -0.006734649650752544, 0.0, 0.0, 0.0, 0.0, 0.0, -7.867782187531702e-06, -0.8260087966918945, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.0009192770230583847, -5.149708886165172e-05, 0.0, 0.0, 0.0, 0.0, -0.0002836778585333377, 0.0, -1.1920928244535389e-07, -0.8259395360946655, -1.0728830375228426e-06, -6.198863957251888e-06, -1.2993727978027891e-05, -5.960462772236497e-07, 0.0, 0.0, 0.0, 0.0, -0.012650716118514538, 0.0, 0.0, 0.0, 0.0, 0.0, -0.023275263607501984, -0.8410270810127258, -1.7616076469421387, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.004105829633772373, -0.8278979659080505, -0.023248707875609398, 0.0, 0.0, 0.0, -0.01604408398270607, 0.0, 0.0, 0.0, -0.055015113204717636, -1.1920928244535389e-07, 0.0, 0.0, 0.0, 0.0, 0.0, -0.008614876307547092, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.04005387797951698, -1.7881377516459906e-06, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.7576205134391785, 0.0, 0.0, 0.0, 0.0, -0.0018390186596661806, 0.0, 0.0, -4.565611743601039e-05, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -1.0132738680113107e-05, -0.01107780635356903, 0.0, -0.0015023384476080537, 0.0, 0.0, 0.0, 0.0, -0.014365820214152336, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -1.0728830375228426e-06, -1.5497195136049413e-06, -1.1920928244535389e-07, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -1.1920928244535389e-07, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -8.463501580990851e-05, -7.152555099310121e-07, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.003181279404088855, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], \\\"token_texts\\\": [\\\"{\\\\\\\"\\\", \\\"entities\\\", \\\"\\\\\\\":\\\", \\\" [{\\\\\\\"\\\", \\\"text\\\",\\n\\n... [截断: 输出过长，省略 761492 字符] ...\\n\\n.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -1.0728830375228426e-06, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], \\\"token_texts\\\": [\\\"{\\\\\\\"\\\", \\\"entities\\\", \\\"\\\\\\\":\\\", \\\" [{\\\\\\\"\\\", \\\"text\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"post\\\", \\\"erior\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"type\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"Other\\\", \\\"Scient\\\", \\\"ific\\\", \\\"Term\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"start\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"5\\\", \\\",\\\", \\\" \\\\\\\"\\\", \\\"end\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"1\\\", \\\"4\\\", \\\"},\\\", \\\" {\\\\\\\"\\\", \\\"text\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"sparse\\\", \\\" se\\\", \\\"-\\\", \\\"lection\\\", \\\"al\\\", \\\" preferences\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"type\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"Other\\\", \\\"Scient\\\", \\\"ific\\\", \\\"Term\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"start\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"2\\\", \\\"3\\\", \\\",\\\", \\\" \\\\\\\"\\\", \\\"end\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"5\\\", \\\"4\\\", \\\"}],\\\", \\\" \\\\\\\"\\\", \\\"relations\\\", \\\"\\\\\\\":\\\", \\\" [{\\\\\\\"\\\", \\\"head\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"sparse\\\", \\\" se\\\", \\\"-\\\", \\\"lection\\\", \\\"al\\\", \\\" preferences\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"tail\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"post\\\", \\\"erior\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"type\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"FEATURE\\\", \\\"-\\\", \\\"OF\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"head\\\", \\\"_start\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"2\\\", \\\"3\\\", \\\",\\\", \\\" \\\\\\\"\\\", \\\"head\\\", \\\"_end\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"5\\\", \\\"4\\\", \\\",\\\", \\\" \\\\\\\"\\\", \\\"tail\\\", \\\"_start\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"5\\\", \\\",\\\", \\\" \\\\\\\"\\\", \\\"tail\\\", \\\"_end\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"1\\\", \\\"4\\\", \\\"}],\\\", \\\" \\\\\\\"\\\", \\\"events\\\", \\\"\\\\\\\":\\\", \\\" []\\\", \\\"}\\\", \\\"<|im_end|>\\\"]}], \\\"greedy\\\": {\\\"entities\\\": [{\\\"text\\\": \\\"posterior\\\", \\\"type\\\": \\\"OtherScientificTerm\\\", \\\"start\\\": 5, \\\"end\\\": 14}, {\\\"text\\\": \\\"sparse se-lectional preferences\\\", \\\"type\\\": \\\"OtherScientificTerm\\\", \\\"start\\\": 23, \\\"end\\\": 54}], \\\"relations\\\": [{\\\"head\\\": \\\"sparse se-lectional preferences\\\", \\\"tail\\\": \\\"posterior\\\", \\\"type\\\": \\\"FEATURE-OF\\\", \\\"head_start\\\": 23, \\\"head_end\\\": 54, \\\"tail_start\\\": 5, \\\"tail_end\\\": 14}], \\\"events\\\": [], \\\"cumulative_logprob\\\": -1.511356851829774, \\\"n_tokens\\\": 132, \\\"mean_logprob\\\": -0.01144967311992253, \\\"token_logprobs\\\": [0.0, 0.0, 0.0, -0.03365141898393631, 0.0, 0.0, 0.0, -0.0077765812166035175, 0.0, -2.50339189733495e-06, 0.0, 0.0, 0.0, -2.3841855067985307e-07, -0.07580883055925369, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -5.364403477869928e-06, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.00026127262390218675, -0.01603599078953266, 0.0, 0.0, 0.0, -1.1920928244535389e-07, -0.17059926688671112, -5.602820692729438e-06, -8.344646857949556e-07, -0.001495434669777751, 0.0, -1.0728830375228426e-06, -0.00015853578224778175, 0.0, 0.0, 0.0, -1.1920928244535389e-07, -1.0967194612021558e-05, 0.0, -7.152555099310121e-07, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -3.099436753473128e-06, -0.25798988342285156, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.08183873444795609, -0.3484479486942291, 0.0, 0.0, 0.0, -0.3869420886039734, 0.0, 0.0, 0.0, -0.12693235278129578, 0.0, 0.0, -0.00013600854435935616, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -3.576278118089249e-07, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.0032504366245120764, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -1.0728830375228426e-06, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], \\\"token_texts\\\": [\\\"{\\\\\\\"\\\", \\\"entities\\\", \\\"\\\\\\\":\\\", \\\" [{\\\\\\\"\\\", \\\"text\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"post\\\", \\\"erior\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"type\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"Other\\\", \\\"Scient\\\", \\\"ific\\\", \\\"Term\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"start\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"5\\\", \\\",\\\", \\\" \\\\\\\"\\\", \\\"end\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"1\\\", \\\"4\\\", \\\"},\\\", \\\" {\\\\\\\"\\\", \\\"text\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"sparse\\\", \\\" se\\\", \\\"-\\\", \\\"lection\\\", \\\"al\\\", \\\" preferences\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"type\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"Other\\\", \\\"Scient\\\", \\\"ific\\\", \\\"Term\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"start\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"2\\\", \\\"3\\\", \\\",\\\", \\\" \\\\\\\"\\\", \\\"end\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"5\\\", \\\"4\\\", \\\"}],\\\", \\\" \\\\\\\"\\\", \\\"relations\\\", \\\"\\\\\\\":\\\", \\\" [{\\\\\\\"\\\", \\\"head\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"sparse\\\", \\\" se\\\", \\\"-\\\", \\\"lection\\\", \\\"al\\\", \\\" preferences\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"tail\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"post\\\", \\\"erior\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"type\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"FEATURE\\\", \\\"-\\\", \\\"OF\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"head\\\", \\\"_start\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"2\\\", \\\"3\\\", \\\",\\\", \\\" \\\\\\\"\\\", \\\"head\\\", \\\"_end\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"5\\\", \\\"4\\\", \\\",\\\", \\\" \\\\\\\"\\\", \\\"tail\\\", \\\"_start\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"5\\\", \\\",\\\", \\\" \\\\\\\"\\\", \\\"tail\\\", \\\"_end\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"1\\\", \\\"4\\\", \\\"}],\\\", \\\" \\\\\\\"\\\", \\\"events\\\", \\\"\\\\\\\":\\\", \\\" []\\\", \\\"}\\\", \\\"<|im_end|>\\\"]}, \\\"logprobs\\\": [-0.07607325570077558, -0.026759874066430208, -0.021540401223146773, -0.06343370180308838, -0.04392112967339021, -0.027523187423678014, -0.012099216624072002, -0.012099216624072002]}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 6.78}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c9503f0c-fafb-4830-833b-3b869dd2e070",
+  "uuid": "c7071290-3972-4c88-8441-1c99e0ad3daa",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"id\\\\\\\": \\\\\\\"X96-1059_sent000\\\\\\\", \\\\\\\"text\\\\\\\": \\\\\\\"Recognition of proper nouns in Japanese text has been studied as a part of the more general problem of morphological analysis in Japanese text processing -LRB- -LSB- 1 -RSB- -LSB- 2 -RSB- -RRB- .\\\\\\\", \\\\\\\"gold\\\\\\\": {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"Recognition of proper nouns\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 0, \\\\\\\"end\\\\\\\": 27}, {\\\\\\\"text\\\\\\\": \\\\\\\"proper nouns\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"OtherScientificTerm\\\\\\\", \\\\\\\"start\\\\\\\": 15, \\\\\\\"end\\\\\\\": 27}, {\\\\\\\"text\\\\\\\": \\\\\\\"Japanese text\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Material\\\\\\\", \\\\\\\"start\\\\\\\": 31, \\\\\\\"end\\\\\\\": 44}, {\\\\\\\"text\\\\\\\": \\\\\\\"morphological analysis\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 103, \\\\\\\"end\\\\\\\": 125}, {\\\\\\\"text\\\\\\\": \\\\\\\"Japanese text processing\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 129, \\\\\\\"end\\\\\\\": 153}], \\\\\\\"relations\\\\\\\": [{\\\\\\\"head\\\\\\\": \\\\\\\"Recognition of proper nouns\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"morphological analysis\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"PART-OF\\\\\\\", \\\\\\\"head_start\\\\\\\": 0, \\\\\\\"head_end\\\\\\\": 27, \\\\\\\"tail_start\\\\\\\": 103, \\\\\\\"tail_end\\\\\\\": 125}, {\\\\\\\"head\\\\\\\": \\\\\\\"proper nouns\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"Japanese text\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"PART-OF\\\\\\\", \\\\\\\"head_start\\\\\\\": 15, \\\\\\\"head_end\\\\\\\": 27, \\\\\\\"tail_start\\\\\\\": 31, \\\\\\\"tail_end\\\\\\\": 44}, {\\\\\\\"head\\\\\\\": \\\\\\\"morphological analysis\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"Japanese text processing\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"USED-FOR\\\\\\\", \\\\\\\"head_start\\\\\\\": 103, \\\\\\\"head_end\\\\\\\": 125, \\\\\\\"tail_start\\\\\\\": 129, \\\\\\\"tail_end\\\\\\\": 153}], \\\\\\\"events\\\\\\\": []}, \\\\\\\"samples\\\\\\\": [{\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"proper nouns\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"OtherScientificTerm\\\\\\\", \\\\\\\"start\\\\\\\": 15, \\\\\\\"end\\\\\\\": 27}, {\\\\\\\"text\\\\\\\": \\\\\\\"Japanese text\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Material\\\\\\\", \\\\\\\"start\\\\\\\": 31, \\\\\\\"end\\\\\\\": 44}, {\\\\\\\"text\\\\\\\": \\\\\\\"morphological analysis in Japanese text processing\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 103, \\\\\\\"end\\\\\\\": 153}], \\\\\\\"relations\\\\\\\": [{\\\\\\\"head\\\\\\\": \\\\\\\"proper nouns\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"Japanese text\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"PART-OF\\\\\\\", \\\\\\\"head_start\\\\\\\": 15, \\\\\\\"head_end\\\\\\\": 27, \\\\\\\"tail_start\\\\\\\": 31, \\\\\\\"tail_end\\\\\\\": 44}, {\\\\\\\"head\\\\\\\": \\\\\\\"morphological analysis in Japanese text processing\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"Japanese text\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"USED-FOR\\\\\\\", \\\\\\\"head_start\\\\\\\": 103, \\\\\\\"head_end\\\\\\\": 153, \\\\\\\"tail_start\\\\\\\": 31, \\\\\\\"tail_end\\\\\\\": 44}], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -9.37825492437198, \\\\\\\"n_tokens\\\\\\\": 218, \\\\\\\"mean_logprob\\\\\\\": -0.04301951800170633, \\\\\\\"token_logprobs\\\\\\\": [0.0, 0.0, 0.0, -0.00015925093612167984, 0.0, 0.0, 0.0, -2.6073734760284424, -8.344646857949556e-07, -0.00020346954988781363, 0.0, 0.0, 0.0, 0.0, -0.0019306369358673692, -1.1920928244535389e-07, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -1.1444026313256472e-05, -0.7048437595367432, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.0003060825983993709, -7.152555099310121e-07, 0.0, 0.0, 0.0, 0.0, -9.131014667218551e-05, -5.829164365422912e-05, -3.540453326422721e-05, 0.0, 0.0, 0.0, 0.0, -0.006734649650752544, 0.0, 0.0, 0.0, 0.0, 0.0, -7.867782187531702e-06, -0.8260087966918945, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.0009192770230583847, -5.149708886165172e-05, 0.0, 0.0, 0.0, 0.0, -0.0002836778585333377, 0.0, -1.1920928244535389e-07, -0.8259395360946655, -1.0728830375228426e-06, -6.198863957251888e-06, -1.2993727978027891e-05, -5.960462772236497e-07, 0.0, 0.0, 0.0, 0.0, -0.012650716118514538, 0.0, 0.0, 0.0, 0.0, 0.0, -0.023275263607501984, -0.8410270810127258, -1.7616076469421387, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.004105829633772373, -0.8278979659080505, -0.023248707875609398, 0.0, 0.0, 0.0, -0.01604408398270607, 0.0, 0.0, 0.0, -0.055015113204717636, -1.1920928244535389e-07, 0.0, 0.0, 0.0, 0.0, 0.0, -0.008614876307547092, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.04005387797951698, -1.7881377516459906e-06, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.7576205134391785, 0.0, 0.0, 0.0, 0.0, -0.0018390186596661806, 0.0, 0.0, -4.565611743601039e-05, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -1.0132738680113107e-05, -0.01107780635356903, 0.0, -0.0015023384476080537, 0.0, 0.0, 0.0, 0.0, -0.014365820214152336, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -1.0728830375228426e-06, -1.5497195136049413e-06, -1.1920928244535389e-07, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -1.1920928244535389e-07, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -8.463501580990851e-05, -7.152555099310121e-07, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.003181279404088855, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], \\\\\\\"token_texts\\\\\\\": [\\\\\\\"{\\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"entities\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" [{\\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"text\\\\\\\",\\\\n\\\\n... [截断: 输出过长，省略 761492 字符] ...\\\\n\\\\n.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -1.0728830375228426e-06, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], \\\\\\\"token_texts\\\\\\\": [\\\\\\\"{\\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"entities\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" [{\\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"text\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"post\\\\\\\", \\\\\\\"erior\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"type\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"Other\\\\\\\", \\\\\\\"Scient\\\\\\\", \\\\\\\"ific\\\\\\\", \\\\\\\"Term\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"start\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\", \\\\\\\"5\\\\\\\", \\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"end\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\", \\\\\\\"1\\\\\\\", \\\\\\\"4\\\\\\\", \\\\\\\"},\\\\\\\", \\\\\\\" {\\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"text\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"sparse\\\\\\\", \\\\\\\" se\\\\\\\", \\\\\\\"-\\\\\\\", \\\\\\\"lection\\\\\\\", \\\\\\\"al\\\\\\\", \\\\\\\" preferences\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"type\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"Other\\\\\\\", \\\\\\\"Scient\\\\\\\", \\\\\\\"ific\\\\\\\", \\\\\\\"Term\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"start\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\", \\\\\\\"2\\\\\\\", \\\\\\\"3\\\\\\\", \\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"end\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\", \\\\\\\"5\\\\\\\", \\\\\\\"4\\\\\\\", \\\\\\\"}],\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"relations\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" [{\\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"head\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"sparse\\\\\\\", \\\\\\\" se\\\\\\\", \\\\\\\"-\\\\\\\", \\\\\\\"lection\\\\\\\", \\\\\\\"al\\\\\\\", \\\\\\\" preferences\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"tail\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"post\\\\\\\", \\\\\\\"erior\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"type\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"FEATURE\\\\\\\", \\\\\\\"-\\\\\\\", \\\\\\\"OF\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"head\\\\\\\", \\\\\\\"_start\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\", \\\\\\\"2\\\\\\\", \\\\\\\"3\\\\\\\", \\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"head\\\\\\\", \\\\\\\"_end\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\", \\\\\\\"5\\\\\\\", \\\\\\\"4\\\\\\\", \\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"tail\\\\\\\", \\\\\\\"_start\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\", \\\\\\\"5\\\\\\\", \\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"tail\\\\\\\", \\\\\\\"_end\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\", \\\\\\\"1\\\\\\\", \\\\\\\"4\\\\\\\", \\\\\\\"}],\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"events\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" []\\\\\\\", \\\\\\\"}\\\\\\\", \\\\\\\"<|im_end|>\\\\\\\"]}], \\\\\\\"greedy\\\\\\\": {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"posterior\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"OtherScientificTerm\\\\\\\", \\\\\\\"start\\\\\\\": 5, \\\\\\\"end\\\\\\\": 14}, {\\\\\\\"text\\\\\\\": \\\\\\\"sparse se-lectional preferences\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"OtherScientificTerm\\\\\\\", \\\\\\\"start\\\\\\\": 23, \\\\\\\"end\\\\\\\": 54}], \\\\\\\"relations\\\\\\\": [{\\\\\\\"head\\\\\\\": \\\\\\\"sparse se-lectional preferences\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"posterior\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"FEATURE-OF\\\\\\\", \\\\\\\"head_start\\\\\\\": 23, \\\\\\\"head_end\\\\\\\": 54, \\\\\\\"tail_start\\\\\\\": 5, \\\\\\\"tail_end\\\\\\\": 14}], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -1.511356851829774, \\\\\\\"n_tokens\\\\\\\": 132, \\\\\\\"mean_logprob\\\\\\\": -0.01144967311992253, \\\\\\\"token_logprobs\\\\\\\": [0.0, 0.0, 0.0, -0.03365141898393631, 0.0, 0.0, 0.0, -0.0077765812166035175, 0.0, -2.50339189733495e-06, 0.0, 0.0, 0.0, -2.3841855067985307e-07, -0.07580883055925369, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -5.364403477869928e-06, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.00026127262390218675, -0.01603599078953266, 0.0, 0.0, 0.0, -1.1920928244535389e-07, -0.17059926688671112, -5.602820692729438e-06, -8.344646857949556e-07, -0.001495434669777751, 0.0, -1.0728830375228426e-06, -0.00015853578224778175, 0.0, 0.0, 0.0, -1.1920928244535389e-07, -1.0967194612021558e-05, 0.0, -7.152555099310121e-07, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -3.099436753473128e-06, -0.25798988342285156, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.08183873444795609, -0.3484479486942291, 0.0, 0.0, 0.0, -0.3869420886039734, 0.0, 0.0, 0.0, -0.12693235278129578, 0.0, 0.0, -0.00013600854435935616, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -3.576278118089249e-07, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.0032504366245120764, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -1.0728830375228426e-06, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], \\\\\\\"token_texts\\\\\\\": [\\\\\\\"{\\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"entities\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" [{\\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"text\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"post\\\\\\\", \\\\\\\"erior\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"type\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"Other\\\\\\\", \\\\\\\"Scient\\\\\\\", \\\\\\\"ific\\\\\\\", \\\\\\\"Term\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"start\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\", \\\\\\\"5\\\\\\\", \\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"end\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\", \\\\\\\"1\\\\\\\", \\\\\\\"4\\\\\\\", \\\\\\\"},\\\\\\\", \\\\\\\" {\\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"text\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"sparse\\\\\\\", \\\\\\\" se\\\\\\\", \\\\\\\"-\\\\\\\", \\\\\\\"lection\\\\\\\", \\\\\\\"al\\\\\\\", \\\\\\\" preferences\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"type\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"Other\\\\\\\", \\\\\\\"Scient\\\\\\\", \\\\\\\"ific\\\\\\\", \\\\\\\"Term\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"start\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\", \\\\\\\"2\\\\\\\", \\\\\\\"3\\\\\\\", \\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"end\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\", \\\\\\\"5\\\\\\\", \\\\\\\"4\\\\\\\", \\\\\\\"}],\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"relations\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" [{\\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"head\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"sparse\\\\\\\", \\\\\\\" se\\\\\\\", \\\\\\\"-\\\\\\\", \\\\\\\"lection\\\\\\\", \\\\\\\"al\\\\\\\", \\\\\\\" preferences\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"tail\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"post\\\\\\\", \\\\\\\"erior\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"type\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"FEATURE\\\\\\\", \\\\\\\"-\\\\\\\", \\\\\\\"OF\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"head\\\\\\\", \\\\\\\"_start\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\", \\\\\\\"2\\\\\\\", \\\\\\\"3\\\\\\\", \\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"head\\\\\\\", \\\\\\\"_end\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\", \\\\\\\"5\\\\\\\", \\\\\\\"4\\\\\\\", \\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"tail\\\\\\\", \\\\\\\"_start\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\", \\\\\\\"5\\\\\\\", \\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"tail\\\\\\\", \\\\\\\"_end\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\", \\\\\\\"1\\\\\\\", \\\\\\\"4\\\\\\\", \\\\\\\"}],\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"events\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" []\\\\\\\", \\\\\\\"}\\\\\\\", \\\\\\\"<|im_end|>\\\\\\\"]}, \\\\\\\"logprobs\\\\\\\": [-0.07607325570077558, -0.026759874066430208, -0.021540401223146773, -0.06343370180308838, -0.04392112967339021, -0.027523187423678014, -0.012099216624072002, -0.012099216624072002]}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 6.78}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\\"id\\\": \\\"X96-1059_sent000\\\", \\\"text\\\": \\\"Recognition of proper nouns in Japanese text has been studied as a part of the more general problem of morphological analysis in Japanese text processing -LRB- -LSB- 1 -RSB- -LSB- 2 -RSB- -RRB- .\\\", \\\"gold\\\": {\\\"entities\\\": [{\\\"text\\\": \\\"Recognition of proper nouns\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 0, \\\"end\\\": 27}, {\\\"text\\\": \\\"proper nouns\\\", \\\"type\\\": \\\"OtherScientificTerm\\\", \\\"start\\\": 15, \\\"end\\\": 27}, {\\\"text\\\": \\\"Japanese text\\\", \\\"type\\\": \\\"Material\\\", \\\"start\\\": 31, \\\"end\\\": 44}, {\\\"text\\\": \\\"morphological analysis\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 103, \\\"end\\\": 125}, {\\\"text\\\": \\\"Japanese text processing\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 129, \\\"end\\\": 153}], \\\"relations\\\": [{\\\"head\\\": \\\"Recognition of proper nouns\\\", \\\"tail\\\": \\\"morphological analysis\\\", \\\"type\\\": \\\"PART-OF\\\", \\\"head_start\\\": 0, \\\"head_end\\\": 27, \\\"tail_start\\\": 103, \\\"tail_end\\\": 125}, {\\\"head\\\": \\\"proper nouns\\\", \\\"tail\\\": \\\"Japanese text\\\", \\\"type\\\": \\\"PART-OF\\\", \\\"head_start\\\": 15, \\\"head_end\\\": 27, \\\"tail_start\\\": 31, \\\"tail_end\\\": 44}, {\\\"head\\\": \\\"morphological analysis\\\", \\\"tail\\\": \\\"Japanese text processing\\\", \\\"type\\\": \\\"USED-FOR\\\", \\\"head_start\\\": 103, \\\"head_end\\\": 125, \\\"tail_start\\\": 129, \\\"tail_end\\\": 153}], \\\"events\\\": []}, \\\"samples\\\": [{\\\"entities\\\": [{\\\"text\\\": \\\"proper nouns\\\", \\\"type\\\": \\\"OtherScientificTerm\\\", \\\"start\\\": 15, \\\"end\\\": 27}, {\\\"text\\\": \\\"Japanese text\\\", \\\"type\\\": \\\"Material\\\", \\\"start\\\": 31, \\\"end\\\": 44}, {\\\"text\\\": \\\"morphological analysis in Japanese text processing\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 103, \\\"end\\\": 153}], \\\"relations\\\": [{\\\"head\\\": \\\"proper nouns\\\", \\\"tail\\\": \\\"Japanese text\\\", \\\"type\\\": \\\"PART-OF\\\", \\\"head_start\\\": 15, \\\"head_end\\\": 27, \\\"tail_start\\\": 31, \\\"tail_end\\\": 44}, {\\\"head\\\": \\\"morphological analysis in Japanese text processing\\\", \\\"tail\\\": \\\"Japanese text\\\", \\\"type\\\": \\\"USED-FOR\\\", \\\"head_start\\\": 103, \\\"head_end\\\": 153, \\\"tail_start\\\": 31, \\\"tail_end\\\": 44}], \\\"events\\\": [], \\\"cumulative_logprob\\\": -9.37825492437198, \\\"n_tokens\\\": 218, \\\"mean_logprob\\\": -0.04301951800170633, \\\"token_logprobs\\\": [0.0, 0.0, 0.0, -0.00015925093612167984, 0.0, 0.0, 0.0, -2.6073734760284424, -8.344646857949556e-07, -0.00020346954988781363, 0.0, 0.0, 0.0, 0.0, -0.0019306369358673692, -1.1920928244535389e-07, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -1.1444026313256472e-05, -0.7048437595367432, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.0003060825983993709, -7.152555099310121e-07, 0.0, 0.0, 0.0, 0.0, -9.131014667218551e-05, -5.829164365422912e-05, -3.540453326422721e-05, 0.0, 0.0, 0.0, 0.0, -0.006734649650752544, 0.0, 0.0, 0.0, 0.0, 0.0, -7.867782187531702e-06, -0.8260087966918945, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.0009192770230583847, -5.149708886165172e-05, 0.0, 0.0, 0.0, 0.0, -0.0002836778585333377, 0.0, -1.1920928244535389e-07, -0.8259395360946655, -1.0728830375228426e-06, -6.198863957251888e-06, -1.2993727978027891e-05, -5.960462772236497e-07, 0.0, 0.0, 0.0, 0.0, -0.012650716118514538, 0.0, 0.0, 0.0, 0.0, 0.0, -0.023275263607501984, -0.8410270810127258, -1.7616076469421387, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.004105829633772373, -0.8278979659080505, -0.023248707875609398, 0.0, 0.0, 0.0, -0.01604408398270607, 0.0, 0.0, 0.0, -0.055015113204717636, -1.1920928244535389e-07, 0.0, 0.0, 0.0, 0.0, 0.0, -0.008614876307547092, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.04005387797951698, -1.7881377516459906e-06, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.7576205134391785, 0.0, 0.0, 0.0, 0.0, -0.0018390186596661806, 0.0, 0.0, -4.565611743601039e-05, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -1.0132738680113107e-05, -0.01107780635356903, 0.0, -0.0015023384476080537, 0.0, 0.0, 0.0, 0.0, -0.014365820214152336, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -1.0728830375228426e-06, -1.5497195136049413e-06, -1.1920928244535389e-07, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -1.1920928244535389e-07, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -8.463501580990851e-05, -7.152555099310121e-07, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.003181279404088855, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], \\\"token_texts\\\": [\\\"{\\\\\\\"\\\", \\\"entities\\\", \\\"\\\\\\\":\\\", \\\" [{\\\\\\\"\\\", \\\"text\\\",\\n\\n... [截断: 输出过长，省略 761492 字符] ...\\n\\n.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -1.0728830375228426e-06, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], \\\"token_texts\\\": [\\\"{\\\\\\\"\\\", \\\"entities\\\", \\\"\\\\\\\":\\\", \\\" [{\\\\\\\"\\\", \\\"text\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"post\\\", \\\"erior\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"type\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"Other\\\", \\\"Scient\\\", \\\"ific\\\", \\\"Term\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"start\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"5\\\", \\\",\\\", \\\" \\\\\\\"\\\", \\\"end\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"1\\\", \\\"4\\\", \\\"},\\\", \\\" {\\\\\\\"\\\", \\\"text\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"sparse\\\", \\\" se\\\", \\\"-\\\", \\\"lection\\\", \\\"al\\\", \\\" preferences\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"type\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"Other\\\", \\\"Scient\\\", \\\"ific\\\", \\\"Term\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"start\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"2\\\", \\\"3\\\", \\\",\\\", \\\" \\\\\\\"\\\", \\\"end\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"5\\\", \\\"4\\\", \\\"}],\\\", \\\" \\\\\\\"\\\", \\\"relations\\\", \\\"\\\\\\\":\\\", \\\" [{\\\\\\\"\\\", \\\"head\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"sparse\\\", \\\" se\\\", \\\"-\\\", \\\"lection\\\", \\\"al\\\", \\\" preferences\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"tail\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"post\\\", \\\"erior\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"type\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"FEATURE\\\", \\\"-\\\", \\\"OF\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"head\\\", \\\"_start\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"2\\\", \\\"3\\\", \\\",\\\", \\\" \\\\\\\"\\\", \\\"head\\\", \\\"_end\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"5\\\", \\\"4\\\", \\\",\\\", \\\" \\\\\\\"\\\", \\\"tail\\\", \\\"_start\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"5\\\", \\\",\\\", \\\" \\\\\\\"\\\", \\\"tail\\\", \\\"_end\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"1\\\", \\\"4\\\", \\\"}],\\\", \\\" \\\\\\\"\\\", \\\"events\\\", \\\"\\\\\\\":\\\", \\\" []\\\", \\\"}\\\", \\\"<|im_end|>\\\"]}], \\\"greedy\\\": {\\\"entities\\\": [{\\\"text\\\": \\\"posterior\\\", \\\"type\\\": \\\"OtherScientificTerm\\\", \\\"start\\\": 5, \\\"end\\\": 14}, {\\\"text\\\": \\\"sparse se-lectional preferences\\\", \\\"type\\\": \\\"OtherScientificTerm\\\", \\\"start\\\": 23, \\\"end\\\": 54}], \\\"relations\\\": [{\\\"head\\\": \\\"sparse se-lectional preferences\\\", \\\"tail\\\": \\\"posterior\\\", \\\"type\\\": \\\"FEATURE-OF\\\", \\\"head_start\\\": 23, \\\"head_end\\\": 54, \\\"tail_start\\\": 5, \\\"tail_end\\\": 14}], \\\"events\\\": [], \\\"cumulative_logprob\\\": -1.511356851829774, \\\"n_tokens\\\": 132, \\\"mean_logprob\\\": -0.01144967311992253, \\\"token_logprobs\\\": [0.0, 0.0, 0.0, -0.03365141898393631, 0.0, 0.0, 0.0, -0.0077765812166035175, 0.0, -2.50339189733495e-06, 0.0, 0.0, 0.0, -2.3841855067985307e-07, -0.07580883055925369, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -5.364403477869928e-06, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.00026127262390218675, -0.01603599078953266, 0.0, 0.0, 0.0, -1.1920928244535389e-07, -0.17059926688671112, -5.602820692729438e-06, -8.344646857949556e-07, -0.001495434669777751, 0.0, -1.0728830375228426e-06, -0.00015853578224778175, 0.0, 0.0, 0.0, -1.1920928244535389e-07, -1.0967194612021558e-05, 0.0, -7.152555099310121e-07, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -3.099436753473128e-06, -0.25798988342285156, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.08183873444795609, -0.3484479486942291, 0.0, 0.0, 0.0, -0.3869420886039734, 0.0, 0.0, 0.0, -0.12693235278129578, 0.0, 0.0, -0.00013600854435935616, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -3.576278118089249e-07, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.0032504366245120764, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -1.0728830375228426e-06, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], \\\"token_texts\\\": [\\\"{\\\\\\\"\\\", \\\"entities\\\", \\\"\\\\\\\":\\\", \\\" [{\\\\\\\"\\\", \\\"text\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"post\\\", \\\"erior\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"type\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"Other\\\", \\\"Scient\\\", \\\"ific\\\", \\\"Term\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"start\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"5\\\", \\\",\\\", \\\" \\\\\\\"\\\", \\\"end\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"1\\\", \\\"4\\\", \\\"},\\\", \\\" {\\\\\\\"\\\", \\\"text\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"sparse\\\", \\\" se\\\", \\\"-\\\", \\\"lection\\\", \\\"al\\\", \\\" preferences\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"type\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"Other\\\", \\\"Scient\\\", \\\"ific\\\", \\\"Term\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"start\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"2\\\", \\\"3\\\", \\\",\\\", \\\" \\\\\\\"\\\", \\\"end\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"5\\\", \\\"4\\\", \\\"}],\\\", \\\" \\\\\\\"\\\", \\\"relations\\\", \\\"\\\\\\\":\\\", \\\" [{\\\\\\\"\\\", \\\"head\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"sparse\\\", \\\" se\\\", \\\"-\\\", \\\"lection\\\", \\\"al\\\", \\\" preferences\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"tail\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"post\\\", \\\"erior\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"type\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"FEATURE\\\", \\\"-\\\", \\\"OF\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"head\\\", \\\"_start\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"2\\\", \\\"3\\\", \\\",\\\", \\\" \\\\\\\"\\\", \\\"head\\\", \\\"_end\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"5\\\", \\\"4\\\", \\\",\\\", \\\" \\\\\\\"\\\", \\\"tail\\\", \\\"_start\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"5\\\", \\\",\\\", \\\" \\\\\\\"\\\", \\\"tail\\\", \\\"_end\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"1\\\", \\\"4\\\", \\\"}],\\\", \\\" \\\\\\\"\\\", \\\"events\\\", \\\"\\\\\\\":\\\", \\\" []\\\", \\\"}\\\", \\\"<|im_end|>\\\"]}, \\\"logprobs\\\": [-0.07607325570077558, -0.026759874066430208, -0.021540401223146773, -0.06343370180308838, -0.04392112967339021, -0.027523187423678014, -0.012099216624072002, -0.012099216624072002]}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 6.78}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-22T15:30:43.470Z_
+
+<details><summary>↩ Tool result · `toolu_01MaNeyJSqimrdtY4hmpsVJy`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"      551 /root/autodl-tmp/struct_self_consist_ie/output/scierc_mf4v2_seed42/samples.jsonl\\n     3453 /root/autodl-tmp/struct_self_consist_ie/output/conll_mf4v2_seed123/samples.jsonl\\n    37648 /root/autodl-tmp/struct_self_consist_ie/output/fewnerd_5epoch_s42/samples.jsonl\\n    41652 total\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.57}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c9503f0c-fafb-4830-833b-3b869dd2e070",
+  "uuid": "b0a30536-ab4c-449f-8a98-8020429b5d03",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"      551 /root/autodl-tmp/struct_self_consist_ie/output/scierc_mf4v2_seed42/samples.jsonl\\\\n     3453 /root/autodl-tmp/struct_self_consist_ie/output/conll_mf4v2_seed123/samples.jsonl\\\\n    37648 /root/autodl-tmp/struct_self_consist_ie/output/fewnerd_5epoch_s42/samples.jsonl\\\\n    41652 total\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.57}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"      551 /root/autodl-tmp/struct_self_consist_ie/output/scierc_mf4v2_seed42/samples.jsonl\\n     3453 /root/autodl-tmp/struct_self_consist_ie/output/conll_mf4v2_seed123/samples.jsonl\\n    37648 /root/autodl-tmp/struct_self_consist_ie/output/fewnerd_5epoch_s42/samples.jsonl\\n    41652 total\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.57}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 46_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a good picture. Let me check the `formatted` section of the batch_verify function to see how prompts are formatted (chat template vs raw), and check what datasets the main experiments use.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c9503f0c-fafb-4830-833b-3b869dd2e070",
+  "uuid": "855596a3-2920-4350-a112-e0bd02b077ac",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QKmXA37FRsPpUPKE8kZB1t",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7404,
+      "cache_read_input_tokens": 42215,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7404
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 47_
+
+需要看 `batch_verify` 中 prompt 格式化方式，以及确认论文中 probe 实验用的数据集。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c9503f0c-fafb-4830-833b-3b869dd2e070",
+  "uuid": "0bb19a73-7c1b-4ebd-8d55-fff5cbdcdb94",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QKmXA37FRsPpUPKE8kZB1t",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7404,
+      "cache_read_input_tokens": 42215,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7404
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01YY6hQ4txZbFs2hePej5Sbz`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "tail -n 200 /root/autodl-tmp/struct_self_consist_ie/code/run_esj.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c9503f0c-fafb-4830-833b-3b869dd2e070",
+  "uuid": "b58bba60-cc31-4246-8915-75b62bbca78f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QKmXA37FRsPpUPKE8kZB1t",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7404,
+      "cache_read_input_tokens": 42215,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7404
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-22T15:30:50.578Z_
+
+<details><summary>↩ Tool result · `toolu_01YY6hQ4txZbFs2hePej5Sbz`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"            compute_prf(entity_set(s.get(\\\"entities\\\", [])), gold)[2]\\n            for s in inst[\\\"samples\\\"]\\n        ))\\n    greedy_f1 = float(np.mean(greedy_f1s))\\n    oracle_f1 = float(np.mean(oracle_f1s))\\n\\n    mv_ths = [0.125, 0.25, 0.375, 0.5, 0.625, 0.75]\\n    mv_res = {}\\n    for th in mv_ths:\\n        fs = []\\n        for i, inst in enumerate(data):\\n            gold = entity_set(inst[\\\"gold\\\"][\\\"entities\\\"])\\n            fs.append(compute_prf(majority_vote(inst, th), gold)[2])\\n        mv_res[str(th)] = float(np.mean(fs))\\n    best_mv_th = max(mv_res, key=mv_res.get)\\n    best_mv_f1 = mv_res[best_mv_th]\\n\\n    # ---- 8. ESJ construction ----\\n    print(\\\"Evaluating ESJ construction ...\\\")\\n    esj_ths = [0.02, 0.05, 0.08, 0.1, 0.12, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5]\\n    esj_res = {}\\n    for th in esj_ths:\\n        fs = []\\n        for i, inst in enumerate(data):\\n            gold = entity_set(inst[\\\"gold\\\"][\\\"entities\\\"])\\n            fs.append(compute_prf(esj_construction(inst, inst_esj[i], th), gold)[2])\\n        esj_res[str(th)] = float(np.mean(fs))\\n    best_esj_th = max(esj_res, key=esj_res.get)\\n    best_esj_f1 = esj_res[best_esj_th]\\n\\n    # ---- 9. Entity-level signal quality ----\\n    print(\\\"Entity-level analysis ...\\\")\\n    ent_correct, ent_esj, ent_agree = [], [], []\\n    for i, inst in enumerate(data):\\n        gold = entity_set(inst[\\\"gold\\\"][\\\"entities\\\"])\\n        N = len(inst[\\\"samples\\\"])\\n        counts = defaultdict(int)\\n        for s in inst[\\\"samples\\\"]:\\n            for e in s.get(\\\"entities\\\", []):\\n                counts[(e[\\\"start\\\"], e[\\\"end\\\"], e[\\\"type\\\"])] += 1\\n        for key, c in counts.items():\\n            ent_correct.append(1 if key in gold else 0)\\n            ent_esj.append(inst_esj[i].get(key, 0.0))\\n            ent_agree.append(c / N)\\n\\n    ent_correct = np.array(ent_correct)\\n    ent_esj_arr = np.array(ent_esj)\\n    ent_agree_arr = np.array(ent_agree)\\n    ent_combined = ent_esj_arr * ent_agree_arr\\n\\n    rho_esj, p_rho_esj = safe_spearman(ent_esj_arr, ent_correct.astype(float))\\n    rho_agree, _ = safe_spearman(ent_agree_arr, ent_correct.astype(float))\\n    rho_comb, _ = safe_spearman(ent_combined, ent_correct.astype(float))\\n    auroc_esj = safe_auroc(ent_esj_arr, ent_correct)\\n    auroc_agree = safe_auroc(ent_agree_arr, ent_correct)\\n    auroc_comb = safe_auroc(ent_combined, ent_correct)\\n\\n    # ---- 10. Breakdown by agreement ----\\n    disputed = ent_agree_arr < 0.5\\n    consensus = ent_agree_arr >= 0.75\\n    mid = (~disputed) & (~consensus)\\n\\n    def group_stats(mask, label):\\n        n = int(mask.sum())\\n        if n < 3:\\n            return {\\\"n\\\": n}\\n        return {\\n            \\\"n\\\": n,\\n            \\\"correct_rate\\\": round(float(ent_correct[mask].mean()), 4),\\n            \\\"esj_mean\\\": round(float(ent_esj_arr[mask].mean()), 4),\\n            \\\"esj_std\\\": round(float(ent_esj_arr[mask].std()), 4),\\n            \\\"rho_esj_correct\\\": round(float(safe_spearman(ent_esj_arr[mask], ent_correct[mask].astype(float))[0]), 4),\\n            \\\"auroc_esj\\\": round(safe_auroc(ent_esj_arr[mask], ent_correct[mask]), 4),\\n        }\\n\\n    # ---- 11. Within-instance sample ranking ----\\n    print(\\\"Within-instance sample ranking ...\\\")\\n    esj_rank_corrs, lp_rank_corrs = [], []\\n    for i, inst in enumerate(data):\\n        gold = entity_set(inst[\\\"gold\\\"][\\\"entities\\\"])\\n        sample_f1s = [compute_prf(entity_set(s.get(\\\"entities\\\", [])), gold)[2]\\n                      for s in inst[\\\"samples\\\"]]\\n        if len(set(sample_f1s)) < 2:\\n            continue\\n        esj_sample = compute_sample_esj_scores(inst, inst_esj[i])\\n        lp_sample = compute_sample_lp_scores(inst)\\n        r_esj, _ = spearmanr(esj_sample, sample_f1s)\\n        r_lp, _ = spearmanr(lp_sample, sample_f1s)\\n        if np.isfinite(r_esj):\\n            esj_rank_corrs.append(r_esj)\\n        if np.isfinite(r_lp):\\n            lp_rank_corrs.append(r_lp)\\n\\n    # ESJ-based selection F1 (pick best sample by ESJ score)\\n    esj_sel_f1s, lp_sel_f1s = [], []\\n    for i, inst in enumerate(data):\\n        gold = entity_set(inst[\\\"gold\\\"][\\\"entities\\\"])\\n       \\n\\n... [截断: 输出过长，省略 1086 字符] ...\\n\\nal_uniq / len(data), 2),\\n        \\\"verification_seconds\\\": round(elapsed, 1),\\n        \\\"prompts_per_second\\\": round(len(all_prompts) / elapsed, 1),\\n        \\\"p_yes_distribution\\\": p_yes_dist,\\n        \\\"construction_f1\\\": {\\n            \\\"greedy\\\": round(greedy_f1, 4),\\n            \\\"oracle\\\": round(oracle_f1, 4),\\n            \\\"majority_vote\\\": {k: round(v, 4) for k, v in mv_res.items()},\\n            \\\"best_mv\\\": {\\\"threshold\\\": best_mv_th, \\\"f1\\\": round(best_mv_f1, 4)},\\n            \\\"esj_weighted\\\": {k: round(v, 4) for k, v in esj_res.items()},\\n            \\\"best_esj\\\": {\\\"threshold\\\": best_esj_th, \\\"f1\\\": round(best_esj_f1, 4)},\\n        },\\n        \\\"deltas\\\": {\\n            \\\"esj_vs_greedy\\\": round(best_esj_f1 - greedy_f1, 4),\\n            \\\"esj_vs_mv\\\": round(best_esj_f1 - best_mv_f1, 4),\\n            \\\"mv_vs_greedy\\\": round(best_mv_f1 - greedy_f1, 4),\\n        },\\n        \\\"entity_signal_quality\\\": {\\n            \\\"n_entities\\\": len(ent_correct),\\n            \\\"overall_correct_rate\\\": round(float(ent_correct.mean()), 4),\\n            \\\"esj\\\": {\\\"rho\\\": round(float(rho_esj), 4), \\\"auroc\\\": round(float(auroc_esj), 4)},\\n            \\\"agreement\\\": {\\\"rho\\\": round(float(rho_agree), 4), \\\"auroc\\\": round(float(auroc_agree), 4)},\\n            \\\"esj_x_agreement\\\": {\\\"rho\\\": round(float(rho_comb), 4), \\\"auroc\\\": round(float(auroc_comb), 4)},\\n        },\\n        \\\"agreement_breakdown\\\": {\\n            \\\"disputed_lt0.5\\\": group_stats(disputed, \\\"disputed\\\"),\\n            \\\"mid_0.5_0.75\\\": group_stats(mid, \\\"mid\\\"),\\n            \\\"consensus_gte0.75\\\": group_stats(consensus, \\\"consensus\\\"),\\n        },\\n        \\\"within_instance_ranking\\\": {\\n            \\\"esj_mean_rho\\\": round(float(np.mean(esj_rank_corrs)), 4) if esj_rank_corrs else None,\\n            \\\"lp_mean_rho\\\": round(float(np.mean(lp_rank_corrs)), 4) if lp_rank_corrs else None,\\n            \\\"n_rankable_instances\\\": len(esj_rank_corrs),\\n            \\\"esj_selection_f1\\\": round(float(np.mean(esj_sel_f1s)), 4),\\n            \\\"lp_selection_f1\\\": round(float(np.mean(lp_sel_f1s)), 4),\\n        },\\n    }\\n\\n    out_path = os.path.join(args.output_dir, \\\"esj_results.json\\\")\\n    with open(out_path, \\\"w\\\") as f:\\n        json.dump(result, f, indent=2)\\n    print(f\\\"\\\\nSaved: {out_path}\\\")\\n\\n    # ---- Print summary ----\\n    print(f\\\"\\\\n{'='*60}\\\")\\n    print(\\\"ESJ Entity-Level Self-Judgment Results\\\")\\n    print(f\\\"{'='*60}\\\")\\n    print(f\\\"Instances: {len(data)}  Unique entities verified: {total_uniq}\\\")\\n    print(f\\\"P(yes): mean={p_yes_dist['mean']}, std={p_yes_dist['std']}, median={p_yes_dist['median']}\\\")\\n    print(f\\\"\\\\nConstruction F1 (macro):\\\")\\n    print(f\\\"  Greedy:              {greedy_f1:.4f}\\\")\\n    print(f\\\"  Best MV (θ={best_mv_th}):  {best_mv_f1:.4f}  (Δ={best_mv_f1-greedy_f1:+.4f})\\\")\\n    print(f\\\"  Best ESJ (θ={best_esj_th}): {best_esj_f1:.4f}  (Δ={best_esj_f1-greedy_f1:+.4f})\\\")\\n    print(f\\\"  Oracle:              {oracle_f1:.4f}\\\")\\n    print(f\\\"  ESJ vs MV: {best_esj_f1-best_mv_f1:+.4f}\\\")\\n    print(f\\\"\\\\nEntity-level signal:\\\")\\n    print(f\\\"  ESJ         ρ={rho_esj:+.4f}  AUROC={auroc_esj:.4f}\\\")\\n    print(f\\\"  Agreement   ρ={rho_agree:+.4f}  AUROC={auroc_agree:.4f}\\\")\\n    print(f\\\"  ESJ×Agree   ρ={rho_comb:+.4f}  AUROC={auroc_comb:.4f}\\\")\\n    print(f\\\"\\\\nWithin-instance ranking (rho with sample F1):\\\")\\n    if esj_rank_corrs:\\n        print(f\\\"  ESJ: {np.mean(esj_rank_corrs):+.4f} ({len(esj_rank_corrs)} instances)\\\")\\n    if lp_rank_corrs:\\n        print(f\\\"  LP:  {np.mean(lp_rank_corrs):+.4f} ({len(lp_rank_corrs)} instances)\\\")\\n    print(f\\\"\\\\nSelection F1 (pick best sample):\\\")\\n    print(f\\\"  ESJ: {np.mean(esj_sel_f1s):.4f}  LP: {np.mean(lp_sel_f1s):.4f}  Greedy: {greedy_f1:.4f}\\\")\\n    print(f\\\"\\\\nBreakdown by agreement:\\\")\\n    for label, mask in [(\\\"Disputed (<0.5)\\\", disputed), (\\\"Mid [0.5,0.75)\\\", mid), (\\\"Consensus (≥0.75)\\\", consensus)]:\\n        n = mask.sum()\\n        if n >= 3:\\n            print(f\\\"  {label}: n={n}, correct={ent_correct[mask].mean():.3f}, \\\"\\n                  f\\\"ESJ_mean={ent_esj_arr[mask].mean():.3f}, \\\"\\n                  f\\\"AUROC={safe_auroc(ent_esj_arr[mask], ent_correct[mask]):.4f}\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c9503f0c-fafb-4830-833b-3b869dd2e070",
+  "uuid": "81d86a19-83c3-46d3-b5bd-33fee0829812",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"            compute_prf(entity_set(s.get(\\\\\\\"entities\\\\\\\", [])), gold)[2]\\\\n            for s in inst[\\\\\\\"samples\\\\\\\"]\\\\n        ))\\\\n    greedy_f1 = float(np.mean(greedy_f1s))\\\\n    oracle_f1 = float(np.mean(oracle_f1s))\\\\n\\\\n    mv_ths = [0.125, 0.25, 0.375, 0.5, 0.625, 0.75]\\\\n    mv_res = {}\\\\n    for th in mv_ths:\\\\n        fs = []\\\\n        for i, inst in enumerate(data):\\\\n            gold = entity_set(inst[\\\\\\\"gold\\\\\\\"][\\\\\\\"entities\\\\\\\"])\\\\n            fs.append(compute_prf(majority_vote(inst, th), gold)[2])\\\\n        mv_res[str(th)] = float(np.mean(fs))\\\\n    best_mv_th = max(mv_res, key=mv_res.get)\\\\n    best_mv_f1 = mv_res[best_mv_th]\\\\n\\\\n    # ---- 8. ESJ construction ----\\\\n    print(\\\\\\\"Evaluating ESJ construction ...\\\\\\\")\\\\n    esj_ths = [0.02, 0.05, 0.08, 0.1, 0.12, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5]\\\\n    esj_res = {}\\\\n    for th in esj_ths:\\\\n        fs = []\\\\n        for i, inst in enumerate(data):\\\\n            gold = entity_set(inst[\\\\\\\"gold\\\\\\\"][\\\\\\\"entities\\\\\\\"])\\\\n            fs.append(compute_prf(esj_construction(inst, inst_esj[i], th), gold)[2])\\\\n        esj_res[str(th)] = float(np.mean(fs))\\\\n    best_esj_th = max(esj_res, key=esj_res.get)\\\\n    best_esj_f1 = esj_res[best_esj_th]\\\\n\\\\n    # ---- 9. Entity-level signal quality ----\\\\n    print(\\\\\\\"Entity-level analysis ...\\\\\\\")\\\\n    ent_correct, ent_esj, ent_agree = [], [], []\\\\n    for i, inst in enumerate(data):\\\\n        gold = entity_set(inst[\\\\\\\"gold\\\\\\\"][\\\\\\\"entities\\\\\\\"])\\\\n        N = len(inst[\\\\\\\"samples\\\\\\\"])\\\\n        counts = defaultdict(int)\\\\n        for s in inst[\\\\\\\"samples\\\\\\\"]:\\\\n            for e in s.get(\\\\\\\"entities\\\\\\\", []):\\\\n                counts[(e[\\\\\\\"start\\\\\\\"], e[\\\\\\\"end\\\\\\\"], e[\\\\\\\"type\\\\\\\"])] += 1\\\\n        for key, c in counts.items():\\\\n            ent_correct.append(1 if key in gold else 0)\\\\n            ent_esj.append(inst_esj[i].get(key, 0.0))\\\\n            ent_agree.append(c / N)\\\\n\\\\n    ent_correct = np.array(ent_correct)\\\\n    ent_esj_arr = np.array(ent_esj)\\\\n    ent_agree_arr = np.array(ent_agree)\\\\n    ent_combined = ent_esj_arr * ent_agree_arr\\\\n\\\\n    rho_esj, p_rho_esj = safe_spearman(ent_esj_arr, ent_correct.astype(float))\\\\n    rho_agree, _ = safe_spearman(ent_agree_arr, ent_correct.astype(float))\\\\n    rho_comb, _ = safe_spearman(ent_combined, ent_correct.astype(float))\\\\n    auroc_esj = safe_auroc(ent_esj_arr, ent_correct)\\\\n    auroc_agree = safe_auroc(ent_agree_arr, ent_correct)\\\\n    auroc_comb = safe_auroc(ent_combined, ent_correct)\\\\n\\\\n    # ---- 10. Breakdown by agreement ----\\\\n    disputed = ent_agree_arr < 0.5\\\\n    consensus = ent_agree_arr >= 0.75\\\\n    mid = (~disputed) & (~consensus)\\\\n\\\\n    def group_stats(mask, label):\\\\n        n = int(mask.sum())\\\\n        if n < 3:\\\\n            return {\\\\\\\"n\\\\\\\": n}\\\\n        return {\\\\n            \\\\\\\"n\\\\\\\": n,\\\\n            \\\\\\\"correct_rate\\\\\\\": round(float(ent_correct[mask].mean()), 4),\\\\n            \\\\\\\"esj_mean\\\\\\\": round(float(ent_esj_arr[mask].mean()), 4),\\\\n            \\\\\\\"esj_std\\\\\\\": round(float(ent_esj_arr[mask].std()), 4),\\\\n            \\\\\\\"rho_esj_correct\\\\\\\": round(float(safe_spearman(ent_esj_arr[mask], ent_correct[mask].astype(float))[0]), 4),\\\\n            \\\\\\\"auroc_esj\\\\\\\": round(safe_auroc(ent_esj_arr[mask], ent_correct[mask]), 4),\\\\n        }\\\\n\\\\n    # ---- 11. Within-instance sample ranking ----\\\\n    print(\\\\\\\"Within-instance sample ranking ...\\\\\\\")\\\\n    esj_rank_corrs, lp_rank_corrs = [], []\\\\n    for i, inst in enumerate(data):\\\\n        gold = entity_set(inst[\\\\\\\"gold\\\\\\\"][\\\\\\\"entities\\\\\\\"])\\\\n        sample_f1s = [compute_prf(entity_set(s.get(\\\\\\\"entities\\\\\\\", [])), gold)[2]\\\\n                      for s in inst[\\\\\\\"samples\\\\\\\"]]\\\\n        if len(set(sample_f1s)) < 2:\\\\n            continue\\\\n        esj_sample = compute_sample_esj_scores(inst, inst_esj[i])\\\\n        lp_sample = compute_sample_lp_scores(inst)\\\\n        r_esj, _ = spearmanr(esj_sample, sample_f1s)\\\\n        r_lp, _ = spearmanr(lp_sample, sample_f1s)\\\\n        if np.isfinite(r_esj):\\\\n            esj_rank_corrs.append(r_esj)\\\\n        if np.isfinite(r_lp):\\\\n            lp_rank_corrs.append(r_lp)\\\\n\\\\n    # ESJ-based selection F1 (pick best sample by ESJ score)\\\\n    esj_sel_f1s, lp_sel_f1s = [], []\\\\n    for i, inst in enumerate(data):\\\\n        gold = entity_set(inst[\\\\\\\"gold\\\\\\\"][\\\\\\\"entities\\\\\\\"])\\\\n       \\\\n\\\\n... [截断: 输出过长，省略 1086 字符] ...\\\\n\\\\nal_uniq / len(data), 2),\\\\n        \\\\\\\"verification_seconds\\\\\\\": round(elapsed, 1),\\\\n        \\\\\\\"prompts_per_second\\\\\\\": round(len(all_prompts) / elapsed, 1),\\\\n        \\\\\\\"p_yes_distribution\\\\\\\": p_yes_dist,\\\\n        \\\\\\\"construction_f1\\\\\\\": {\\\\n            \\\\\\\"greedy\\\\\\\": round(greedy_f1, 4),\\\\n            \\\\\\\"oracle\\\\\\\": round(oracle_f1, 4),\\\\n            \\\\\\\"majority_vote\\\\\\\": {k: round(v, 4) for k, v in mv_res.items()},\\\\n            \\\\\\\"best_mv\\\\\\\": {\\\\\\\"threshold\\\\\\\": best_mv_th, \\\\\\\"f1\\\\\\\": round(best_mv_f1, 4)},\\\\n            \\\\\\\"esj_weighted\\\\\\\": {k: round(v, 4) for k, v in esj_res.items()},\\\\n            \\\\\\\"best_esj\\\\\\\": {\\\\\\\"threshold\\\\\\\": best_esj_th, \\\\\\\"f1\\\\\\\": round(best_esj_f1, 4)},\\\\n        },\\\\n        \\\\\\\"deltas\\\\\\\": {\\\\n            \\\\\\\"esj_vs_greedy\\\\\\\": round(best_esj_f1 - greedy_f1, 4),\\\\n            \\\\\\\"esj_vs_mv\\\\\\\": round(best_esj_f1 - best_mv_f1, 4),\\\\n            \\\\\\\"mv_vs_greedy\\\\\\\": round(best_mv_f1 - greedy_f1, 4),\\\\n        },\\\\n        \\\\\\\"entity_signal_quality\\\\\\\": {\\\\n            \\\\\\\"n_entities\\\\\\\": len(ent_correct),\\\\n            \\\\\\\"overall_correct_rate\\\\\\\": round(float(ent_correct.mean()), 4),\\\\n            \\\\\\\"esj\\\\\\\": {\\\\\\\"rho\\\\\\\": round(float(rho_esj), 4), \\\\\\\"auroc\\\\\\\": round(float(auroc_esj), 4)},\\\\n            \\\\\\\"agreement\\\\\\\": {\\\\\\\"rho\\\\\\\": round(float(rho_agree), 4), \\\\\\\"auroc\\\\\\\": round(float(auroc_agree), 4)},\\\\n            \\\\\\\"esj_x_agreement\\\\\\\": {\\\\\\\"rho\\\\\\\": round(float(rho_comb), 4), \\\\\\\"auroc\\\\\\\": round(float(auroc_comb), 4)},\\\\n        },\\\\n        \\\\\\\"agreement_breakdown\\\\\\\": {\\\\n            \\\\\\\"disputed_lt0.5\\\\\\\": group_stats(disputed, \\\\\\\"disputed\\\\\\\"),\\\\n            \\\\\\\"mid_0.5_0.75\\\\\\\": group_stats(mid, \\\\\\\"mid\\\\\\\"),\\\\n            \\\\\\\"consensus_gte0.75\\\\\\\": group_stats(consensus, \\\\\\\"consensus\\\\\\\"),\\\\n        },\\\\n        \\\\\\\"within_instance_ranking\\\\\\\": {\\\\n            \\\\\\\"esj_mean_rho\\\\\\\": round(float(np.mean(esj_rank_corrs)), 4) if esj_rank_corrs else None,\\\\n            \\\\\\\"lp_mean_rho\\\\\\\": round(float(np.mean(lp_rank_corrs)), 4) if lp_rank_corrs else None,\\\\n            \\\\\\\"n_rankable_instances\\\\\\\": len(esj_rank_corrs),\\\\n            \\\\\\\"esj_selection_f1\\\\\\\": round(float(np.mean(esj_sel_f1s)), 4),\\\\n            \\\\\\\"lp_selection_f1\\\\\\\": round(float(np.mean(lp_sel_f1s)), 4),\\\\n        },\\\\n    }\\\\n\\\\n    out_path = os.path.join(args.output_dir, \\\\\\\"esj_results.json\\\\\\\")\\\\n    with open(out_path, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(result, f, indent=2)\\\\n    print(f\\\\\\\"\\\\\\\\nSaved: {out_path}\\\\\\\")\\\\n\\\\n    # ---- Print summary ----\\\\n    print(f\\\\\\\"\\\\\\\\n{'='*60}\\\\\\\")\\\\n    print(\\\\\\\"ESJ Entity-Level Self-Judgment Results\\\\\\\")\\\\n    print(f\\\\\\\"{'='*60}\\\\\\\")\\\\n    print(f\\\\\\\"Instances: {len(data)}  Unique entities verified: {total_uniq}\\\\\\\")\\\\n    print(f\\\\\\\"P(yes): mean={p_yes_dist['mean']}, std={p_yes_dist['std']}, median={p_yes_dist['median']}\\\\\\\")\\\\n    print(f\\\\\\\"\\\\\\\\nConstruction F1 (macro):\\\\\\\")\\\\n    print(f\\\\\\\"  Greedy:              {greedy_f1:.4f}\\\\\\\")\\\\n    print(f\\\\\\\"  Best MV (θ={best_mv_th}):  {best_mv_f1:.4f}  (Δ={best_mv_f1-greedy_f1:+.4f})\\\\\\\")\\\\n    print(f\\\\\\\"  Best ESJ (θ={best_esj_th}): {best_esj_f1:.4f}  (Δ={best_esj_f1-greedy_f1:+.4f})\\\\\\\")\\\\n    print(f\\\\\\\"  Oracle:              {oracle_f1:.4f}\\\\\\\")\\\\n    print(f\\\\\\\"  ESJ vs MV: {best_esj_f1-best_mv_f1:+.4f}\\\\\\\")\\\\n    print(f\\\\\\\"\\\\\\\\nEntity-level signal:\\\\\\\")\\\\n    print(f\\\\\\\"  ESJ         ρ={rho_esj:+.4f}  AUROC={auroc_esj:.4f}\\\\\\\")\\\\n    print(f\\\\\\\"  Agreement   ρ={rho_agree:+.4f}  AUROC={auroc_agree:.4f}\\\\\\\")\\\\n    print(f\\\\\\\"  ESJ×Agree   ρ={rho_comb:+.4f}  AUROC={auroc_comb:.4f}\\\\\\\")\\\\n    print(f\\\\\\\"\\\\\\\\nWithin-instance ranking (rho with sample F1):\\\\\\\")\\\\n    if esj_rank_corrs:\\\\n        print(f\\\\\\\"  ESJ: {np.mean(esj_rank_corrs):+.4f} ({len(esj_rank_corrs)} instances)\\\\\\\")\\\\n    if lp_rank_corrs:\\\\n        print(f\\\\\\\"  LP:  {np.mean(lp_rank_corrs):+.4f} ({len(lp_rank_corrs)} instances)\\\\\\\")\\\\n    print(f\\\\\\\"\\\\\\\\nSelection F1 (pick best sample):\\\\\\\")\\\\n    print(f\\\\\\\"  ESJ: {np.mean(esj_sel_f1s):.4f}  LP: {np.mean(lp_sel_f1s):.4f}  Greedy: {greedy_f1:.4f}\\\\\\\")\\\\n    print(f\\\\\\\"\\\\\\\\nBreakdown by agreement:\\\\\\\")\\\\n    for label, mask in [(\\\\\\\"Disputed (<0.5)\\\\\\\", disputed), (\\\\\\\"Mid [0.5,0.75)\\\\\\\", mid), (\\\\\\\"Consensus (≥0.75)\\\\\\\", consensus)]:\\\\n        n = mask.sum()\\\\n        if n >= 3:\\\\n            print(f\\\\\\\"  {label}: n={n}, correct={ent_correct[mask].mean():.3f}, \\\\\\\"\\\\n                  f\\\\\\\"ESJ_mean={ent_esj_arr[mask].mean():.3f}, \\\\\\\"\\\\n                  f\\\\\\\"AUROC={safe_auroc(ent_esj_arr[mask], ent_correct[mask]):.4f}\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"            compute_prf(entity_set(s.get(\\\"entities\\\", [])), gold)[2]\\n            for s in inst[\\\"samples\\\"]\\n        ))\\n    greedy_f1 = float(np.mean(greedy_f1s))\\n    oracle_f1 = float(np.mean(oracle_f1s))\\n\\n    mv_ths = [0.125, 0.25, 0.375, 0.5, 0.625, 0.75]\\n    mv_res = {}\\n    for th in mv_ths:\\n        fs = []\\n        for i, inst in enumerate(data):\\n            gold = entity_set(inst[\\\"gold\\\"][\\\"entities\\\"])\\n            fs.append(compute_prf(majority_vote(inst, th), gold)[2])\\n        mv_res[str(th)] = float(np.mean(fs))\\n    best_mv_th = max(mv_res, key=mv_res.get)\\n    best_mv_f1 = mv_res[best_mv_th]\\n\\n    # ---- 8. ESJ construction ----\\n    print(\\\"Evaluating ESJ construction ...\\\")\\n    esj_ths = [0.02, 0.05, 0.08, 0.1, 0.12, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5]\\n    esj_res = {}\\n    for th in esj_ths:\\n        fs = []\\n        for i, inst in enumerate(data):\\n            gold = entity_set(inst[\\\"gold\\\"][\\\"entities\\\"])\\n            fs.append(compute_prf(esj_construction(inst, inst_esj[i], th), gold)[2])\\n        esj_res[str(th)] = float(np.mean(fs))\\n    best_esj_th = max(esj_res, key=esj_res.get)\\n    best_esj_f1 = esj_res[best_esj_th]\\n\\n    # ---- 9. Entity-level signal quality ----\\n    print(\\\"Entity-level analysis ...\\\")\\n    ent_correct, ent_esj, ent_agree = [], [], []\\n    for i, inst in enumerate(data):\\n        gold = entity_set(inst[\\\"gold\\\"][\\\"entities\\\"])\\n        N = len(inst[\\\"samples\\\"])\\n        counts = defaultdict(int)\\n        for s in inst[\\\"samples\\\"]:\\n            for e in s.get(\\\"entities\\\", []):\\n                counts[(e[\\\"start\\\"], e[\\\"end\\\"], e[\\\"type\\\"])] += 1\\n        for key, c in counts.items():\\n            ent_correct.append(1 if key in gold else 0)\\n            ent_esj.append(inst_esj[i].get(key, 0.0))\\n            ent_agree.append(c / N)\\n\\n    ent_correct = np.array(ent_correct)\\n    ent_esj_arr = np.array(ent_esj)\\n    ent_agree_arr = np.array(ent_agree)\\n    ent_combined = ent_esj_arr * ent_agree_arr\\n\\n    rho_esj, p_rho_esj = safe_spearman(ent_esj_arr, ent_correct.astype(float))\\n    rho_agree, _ = safe_spearman(ent_agree_arr, ent_correct.astype(float))\\n    rho_comb, _ = safe_spearman(ent_combined, ent_correct.astype(float))\\n    auroc_esj = safe_auroc(ent_esj_arr, ent_correct)\\n    auroc_agree = safe_auroc(ent_agree_arr, ent_correct)\\n    auroc_comb = safe_auroc(ent_combined, ent_correct)\\n\\n    # ---- 10. Breakdown by agreement ----\\n    disputed = ent_agree_arr < 0.5\\n    consensus = ent_agree_arr >= 0.75\\n    mid = (~disputed) & (~consensus)\\n\\n    def group_stats(mask, label):\\n        n = int(mask.sum())\\n        if n < 3:\\n            return {\\\"n\\\": n}\\n        return {\\n            \\\"n\\\": n,\\n            \\\"correct_rate\\\": round(float(ent_correct[mask].mean()), 4),\\n            \\\"esj_mean\\\": round(float(ent_esj_arr[mask].mean()), 4),\\n            \\\"esj_std\\\": round(float(ent_esj_arr[mask].std()), 4),\\n            \\\"rho_esj_correct\\\": round(float(safe_spearman(ent_esj_arr[mask], ent_correct[mask].astype(float))[0]), 4),\\n            \\\"auroc_esj\\\": round(safe_auroc(ent_esj_arr[mask], ent_correct[mask]), 4),\\n        }\\n\\n    # ---- 11. Within-instance sample ranking ----\\n    print(\\\"Within-instance sample ranking ...\\\")\\n    esj_rank_corrs, lp_rank_corrs = [], []\\n    for i, inst in enumerate(data):\\n        gold = entity_set(inst[\\\"gold\\\"][\\\"entities\\\"])\\n        sample_f1s = [compute_prf(entity_set(s.get(\\\"entities\\\", [])), gold)[2]\\n                      for s in inst[\\\"samples\\\"]]\\n        if len(set(sample_f1s)) < 2:\\n            continue\\n        esj_sample = compute_sample_esj_scores(inst, inst_esj[i])\\n        lp_sample = compute_sample_lp_scores(inst)\\n        r_esj, _ = spearmanr(esj_sample, sample_f1s)\\n        r_lp, _ = spearmanr(lp_sample, sample_f1s)\\n        if np.isfinite(r_esj):\\n            esj_rank_corrs.append(r_esj)\\n        if np.isfinite(r_lp):\\n            lp_rank_corrs.append(r_lp)\\n\\n    # ESJ-based selection F1 (pick best sample by ESJ score)\\n    esj_sel_f1s, lp_sel_f1s = [], []\\n    for i, inst in enumerate(data):\\n        gold = entity_set(inst[\\\"gold\\\"][\\\"entities\\\"])\\n       \\n\\n... [截断: 输出过长，省略 1086 字符] ...\\n\\nal_uniq / len(data), 2),\\n        \\\"verification_seconds\\\": round(elapsed, 1),\\n        \\\"prompts_per_second\\\": round(len(all_prompts) / elapsed, 1),\\n        \\\"p_yes_distribution\\\": p_yes_dist,\\n        \\\"construction_f1\\\": {\\n            \\\"greedy\\\": round(greedy_f1, 4),\\n            \\\"oracle\\\": round(oracle_f1, 4),\\n            \\\"majority_vote\\\": {k: round(v, 4) for k, v in mv_res.items()},\\n            \\\"best_mv\\\": {\\\"threshold\\\": best_mv_th, \\\"f1\\\": round(best_mv_f1, 4)},\\n            \\\"esj_weighted\\\": {k: round(v, 4) for k, v in esj_res.items()},\\n            \\\"best_esj\\\": {\\\"threshold\\\": best_esj_th, \\\"f1\\\": round(best_esj_f1, 4)},\\n        },\\n        \\\"deltas\\\": {\\n            \\\"esj_vs_greedy\\\": round(best_esj_f1 - greedy_f1, 4),\\n            \\\"esj_vs_mv\\\": round(best_esj_f1 - best_mv_f1, 4),\\n            \\\"mv_vs_greedy\\\": round(best_mv_f1 - greedy_f1, 4),\\n        },\\n        \\\"entity_signal_quality\\\": {\\n            \\\"n_entities\\\": len(ent_correct),\\n            \\\"overall_correct_rate\\\": round(float(ent_correct.mean()), 4),\\n            \\\"esj\\\": {\\\"rho\\\": round(float(rho_esj), 4), \\\"auroc\\\": round(float(auroc_esj), 4)},\\n            \\\"agreement\\\": {\\\"rho\\\": round(float(rho_agree), 4), \\\"auroc\\\": round(float(auroc_agree), 4)},\\n            \\\"esj_x_agreement\\\": {\\\"rho\\\": round(float(rho_comb), 4), \\\"auroc\\\": round(float(auroc_comb), 4)},\\n        },\\n        \\\"agreement_breakdown\\\": {\\n            \\\"disputed_lt0.5\\\": group_stats(disputed, \\\"disputed\\\"),\\n            \\\"mid_0.5_0.75\\\": group_stats(mid, \\\"mid\\\"),\\n            \\\"consensus_gte0.75\\\": group_stats(consensus, \\\"consensus\\\"),\\n        },\\n        \\\"within_instance_ranking\\\": {\\n            \\\"esj_mean_rho\\\": round(float(np.mean(esj_rank_corrs)), 4) if esj_rank_corrs else None,\\n            \\\"lp_mean_rho\\\": round(float(np.mean(lp_rank_corrs)), 4) if lp_rank_corrs else None,\\n            \\\"n_rankable_instances\\\": len(esj_rank_corrs),\\n            \\\"esj_selection_f1\\\": round(float(np.mean(esj_sel_f1s)), 4),\\n            \\\"lp_selection_f1\\\": round(float(np.mean(lp_sel_f1s)), 4),\\n        },\\n    }\\n\\n    out_path = os.path.join(args.output_dir, \\\"esj_results.json\\\")\\n    with open(out_path, \\\"w\\\") as f:\\n        json.dump(result, f, indent=2)\\n    print(f\\\"\\\\nSaved: {out_path}\\\")\\n\\n    # ---- Print summary ----\\n    print(f\\\"\\\\n{'='*60}\\\")\\n    print(\\\"ESJ Entity-Level Self-Judgment Results\\\")\\n    print(f\\\"{'='*60}\\\")\\n    print(f\\\"Instances: {len(data)}  Unique entities verified: {total_uniq}\\\")\\n    print(f\\\"P(yes): mean={p_yes_dist['mean']}, std={p_yes_dist['std']}, median={p_yes_dist['median']}\\\")\\n    print(f\\\"\\\\nConstruction F1 (macro):\\\")\\n    print(f\\\"  Greedy:              {greedy_f1:.4f}\\\")\\n    print(f\\\"  Best MV (θ={best_mv_th}):  {best_mv_f1:.4f}  (Δ={best_mv_f1-greedy_f1:+.4f})\\\")\\n    print(f\\\"  Best ESJ (θ={best_esj_th}): {best_esj_f1:.4f}  (Δ={best_esj_f1-greedy_f1:+.4f})\\\")\\n    print(f\\\"  Oracle:              {oracle_f1:.4f}\\\")\\n    print(f\\\"  ESJ vs MV: {best_esj_f1-best_mv_f1:+.4f}\\\")\\n    print(f\\\"\\\\nEntity-level signal:\\\")\\n    print(f\\\"  ESJ         ρ={rho_esj:+.4f}  AUROC={auroc_esj:.4f}\\\")\\n    print(f\\\"  Agreement   ρ={rho_agree:+.4f}  AUROC={auroc_agree:.4f}\\\")\\n    print(f\\\"  ESJ×Agree   ρ={rho_comb:+.4f}  AUROC={auroc_comb:.4f}\\\")\\n    print(f\\\"\\\\nWithin-instance ranking (rho with sample F1):\\\")\\n    if esj_rank_corrs:\\n        print(f\\\"  ESJ: {np.mean(esj_rank_corrs):+.4f} ({len(esj_rank_corrs)} instances)\\\")\\n    if lp_rank_corrs:\\n        print(f\\\"  LP:  {np.mean(lp_rank_corrs):+.4f} ({len(lp_rank_corrs)} instances)\\\")\\n    print(f\\\"\\\\nSelection F1 (pick best sample):\\\")\\n    print(f\\\"  ESJ: {np.mean(esj_sel_f1s):.4f}  LP: {np.mean(lp_sel_f1s):.4f}  Greedy: {greedy_f1:.4f}\\\")\\n    print(f\\\"\\\\nBreakdown by agreement:\\\")\\n    for label, mask in [(\\\"Disputed (<0.5)\\\", disputed), (\\\"Mid [0.5,0.75)\\\", mid), (\\\"Consensus (≥0.75)\\\", consensus)]:\\n        n = mask.sum()\\n        if n >= 3:\\n            print(f\\\"  {label}: n={n}, correct={ent_correct[mask].mean():.3f}, \\\"\\n                  f\\\"ESJ_mean={ent_esj_arr[mask].mean():.3f}, \\\"\\n                  f\\\"AUROC={safe_auroc(ent_esj_arr[mask], ent_correct[mask]):.4f}\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 50_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_011S4TmcLd3E5VmePoxf5Cd2`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "head -n 180 /root/autodl-tmp/struct_self_consist_ie/code/run_esj.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c9503f0c-fafb-4830-833b-3b869dd2e070",
+  "uuid": "444f0ab1-6e1d-40ef-8510-1557abf0e52d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QKmXA37FRsPpUPKE8kZB1t",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7404,
+      "cache_read_input_tokens": 42215,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7404
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-22T15:30:52.028Z_
+
+<details><summary>↩ Tool result · `toolu_011S4TmcLd3E5VmePoxf5Cd2`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Entity-Level Self-Judgment (ESJ) for structured self-consistency IE.\\n\\nFor each unique entity across N=8 samples, uses the FT model to do a\\nyes/no verification forward pass. P(yes) serves as entity-level confidence\\nfor weighted construction.\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport os\\nimport sys\\nimport time\\nfrom collections import defaultdict\\n\\nimport numpy as np\\nimport torch\\nfrom transformers import AutoTokenizer, AutoModelForCausalLM\\nfrom peft import PeftModel\\nfrom scipy.stats import spearmanr\\nfrom sklearn.metrics import roc_auc_score\\n\\n\\n# ---------------------------------------------------------------------------\\n# Data\\n# ---------------------------------------------------------------------------\\n\\ndef load_samples(path, max_instances=0):\\n    data = []\\n    with open(path) as f:\\n        for line in f:\\n            if line.strip():\\n                data.append(json.loads(line))\\n                if 0 < max_instances <= len(data):\\n                    break\\n    return data\\n\\n\\ndef extract_unique_entities(instance):\\n    \\\"\\\"\\\"Return {(start, end, type, text): count_across_samples}.\\\"\\\"\\\"\\n    emap = defaultdict(int)\\n    for sample in instance[\\\"samples\\\"]:\\n        for e in sample.get(\\\"entities\\\", []):\\n            emap[(e[\\\"start\\\"], e[\\\"end\\\"], e[\\\"type\\\"], e[\\\"text\\\"])] += 1\\n    return emap\\n\\n\\n# ---------------------------------------------------------------------------\\n# Prompt\\n# ---------------------------------------------------------------------------\\n\\ndef build_verification_prompt(sentence, entity_text, entity_type):\\n    return (\\n        f'In the following sentence, is \\\"{entity_text}\\\" a {entity_type} entity? '\\n        f'Answer only yes or no.\\\\n\\\\n'\\n        f'Sentence: {sentence}\\\\n'\\n        f'Answer:'\\n    )\\n\\n\\n# ---------------------------------------------------------------------------\\n# Model\\n# ---------------------------------------------------------------------------\\n\\ndef load_model(base_path, adapter_path, device=\\\"cuda\\\"):\\n    tok_path = adapter_path if adapter_path else base_path\\n    print(f\\\"Loading tokenizer from {tok_path} ...\\\")\\n    tokenizer = AutoTokenizer.from_pretrained(\\n        tok_path, trust_remote_code=True, padding_side=\\\"left\\\",\\n    )\\n    if tokenizer.pad_token is None:\\n        tokenizer.pad_token = tokenizer.eos_token\\n\\n    print(f\\\"Loading base model from {base_path} ...\\\")\\n    model = AutoModelForCausalLM.from_pretrained(\\n        base_path,\\n        torch_dtype=torch.bfloat16,\\n        device_map=device,\\n        trust_remote_code=True,\\n    )\\n\\n    if adapter_path:\\n        print(f\\\"Loading LoRA adapter from {adapter_path} ...\\\")\\n        model = PeftModel.from_pretrained(model, adapter_path)\\n        model = model.merge_and_unload()\\n        print(\\\"LoRA merged.\\\")\\n\\n    model.eval()\\n    return model, tokenizer\\n\\n\\ndef get_yes_no_ids(tokenizer):\\n    yes_ids, no_ids = [], []\\n    for w in [\\\"yes\\\", \\\"Yes\\\", \\\"YES\\\"]:\\n        ids = tokenizer.encode(w, add_special_tokens=False)\\n        if len(ids) == 1:\\n            yes_ids.append(ids[0])\\n    for w in [\\\"no\\\", \\\"No\\\", \\\"NO\\\"]:\\n        ids = tokenizer.encode(w, add_special_tokens=False)\\n        if len(ids) == 1:\\n            no_ids.append(ids[0])\\n    yes_ids = list(set(yes_ids))\\n    no_ids = list(set(no_ids))\\n    print(f\\\"yes token IDs: {yes_ids}  no token IDs: {no_ids}\\\")\\n    assert yes_ids and no_ids, \\\"Could not find yes/no token IDs\\\"\\n    return yes_ids, no_ids\\n\\n\\n# ---------------------------------------------------------------------------\\n# Batch verification\\n# ---------------------------------------------------------------------------\\n\\n@torch.no_grad()\\ndef batch_verify(model, tokenizer, prompts, yes_ids, no_ids,\\n                 batch_size=16, device=\\\"cuda\\\"):\\n    yes_t = torch.tensor(yes_ids, device=device)\\n    no_t = torch.tensor(no_ids, device=device)\\n    all_p_yes = []\\n\\n    n_batches = (len(prompts) + batch_size - 1) // batch_size\\n    for bi in range(n_batches):\\n        start = bi * batch_size\\n        batch = prompts[start:start + batch_size]\\n\\n        formatted = []\\n        for p in batch:\\n            msgs = [{\\\"role\\\": \\\"user\\\", \\\"content\\\": p}]\\n            try:\\n                fp = tokenizer.apply_chat_template(\\n                    msgs, tokenize=False, add_generation_prompt=True,\\n                    enable_thinking=False,\\n                )\\n            except TypeError:\\n                fp = tokenizer.apply_chat_template(\\n                    msgs, tokenize=False, add_generation_prompt=True,\\n                )\\n            formatted.append(fp)\\n\\n        inputs = tokenizer(\\n            formatted, return_tensors=\\\"pt\\\", padding=True,\\n            truncation=True, max_length=512,\\n        ).to(device)\\n\\n        logits = model(**inputs).logits  # (B, L, V)\\n\\n        for i in range(len(batch)):\\n            last_pos = inputs.attention_mask[i].sum() - 1\\n            next_logits = logits[i, last_pos]\\n            y_logits = next_logits[yes_t]\\n            n_logits = next_logits[no_t]\\n            combined = torch.cat([y_logits, n_logits])\\n            probs = torch.softmax(combined, dim=0)\\n            p_yes = probs[:len(yes_ids)].sum().item()\\n            all_p_yes.append(p_yes)\\n\\n        if bi % 100 == 0:\\n            print(f\\\"  batch {bi}/{n_batches}  avg_p_yes={np.mean(all_p_yes[-len(batch):]):.3f}\\\")\\n\\n    return all_p_yes\\n\\n\\n# ---------------------------------------------------------------------------\\n# Eval helpers\\n# ---------------------------------------------------------------------------\\n\\ndef entity_set(entities):\\n    return {(e[\\\"start\\\"], e[\\\"end\\\"], e[\\\"type\\\"]) for e in entities}\\n\\n\\ndef compute_prf(pred, gold):\\n    if not gold and not pred:\\n        return 1.0, 1.0, 1.0\\n    if not pred or not gold:\\n        return 0.0, 0.0, 0.0\\n    tp = len(pred & gold)\\n    if tp == 0:\\n        return 0.0, 0.0, 0.0\\n    p = tp / len(pred)\\n    r = tp / len(gold)\\n    return p, r, 2 * p * r / (p + r)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c9503f0c-fafb-4830-833b-3b869dd2e070",
+  "uuid": "ad64339c-b950-42de-bd76-1a367f429423",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"Entity-Level Self-Judgment (ESJ) for structured self-consistency IE.\\\\n\\\\nFor each unique entity across N=8 samples, uses the FT model to do a\\\\nyes/no verification forward pass. P(yes) serves as entity-level confidence\\\\nfor weighted construction.\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport os\\\\nimport sys\\\\nimport time\\\\nfrom collections import defaultdict\\\\n\\\\nimport numpy as np\\\\nimport torch\\\\nfrom transformers import AutoTokenizer, AutoModelForCausalLM\\\\nfrom peft import PeftModel\\\\nfrom scipy.stats import spearmanr\\\\nfrom sklearn.metrics import roc_auc_score\\\\n\\\\n\\\\n# ---------------------------------------------------------------------------\\\\n# Data\\\\n# ---------------------------------------------------------------------------\\\\n\\\\ndef load_samples(path, max_instances=0):\\\\n    data = []\\\\n    with open(path) as f:\\\\n        for line in f:\\\\n            if line.strip():\\\\n                data.append(json.loads(line))\\\\n                if 0 < max_instances <= len(data):\\\\n                    break\\\\n    return data\\\\n\\\\n\\\\ndef extract_unique_entities(instance):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Return {(start, end, type, text): count_across_samples}.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    emap = defaultdict(int)\\\\n    for sample in instance[\\\\\\\"samples\\\\\\\"]:\\\\n        for e in sample.get(\\\\\\\"entities\\\\\\\", []):\\\\n            emap[(e[\\\\\\\"start\\\\\\\"], e[\\\\\\\"end\\\\\\\"], e[\\\\\\\"type\\\\\\\"], e[\\\\\\\"text\\\\\\\"])] += 1\\\\n    return emap\\\\n\\\\n\\\\n# ---------------------------------------------------------------------------\\\\n# Prompt\\\\n# ---------------------------------------------------------------------------\\\\n\\\\ndef build_verification_prompt(sentence, entity_text, entity_type):\\\\n    return (\\\\n        f'In the following sentence, is \\\\\\\"{entity_text}\\\\\\\" a {entity_type} entity? '\\\\n        f'Answer only yes or no.\\\\\\\\n\\\\\\\\n'\\\\n        f'Sentence: {sentence}\\\\\\\\n'\\\\n        f'Answer:'\\\\n    )\\\\n\\\\n\\\\n# ---------------------------------------------------------------------------\\\\n# Model\\\\n# ---------------------------------------------------------------------------\\\\n\\\\ndef load_model(base_path, adapter_path, device=\\\\\\\"cuda\\\\\\\"):\\\\n    tok_path = adapter_path if adapter_path else base_path\\\\n    print(f\\\\\\\"Loading tokenizer from {tok_path} ...\\\\\\\")\\\\n    tokenizer = AutoTokenizer.from_pretrained(\\\\n        tok_path, trust_remote_code=True, padding_side=\\\\\\\"left\\\\\\\",\\\\n    )\\\\n    if tokenizer.pad_token is None:\\\\n        tokenizer.pad_token = tokenizer.eos_token\\\\n\\\\n    print(f\\\\\\\"Loading base model from {base_path} ...\\\\\\\")\\\\n    model = AutoModelForCausalLM.from_pretrained(\\\\n        base_path,\\\\n        torch_dtype=torch.bfloat16,\\\\n        device_map=device,\\\\n        trust_remote_code=True,\\\\n    )\\\\n\\\\n    if adapter_path:\\\\n        print(f\\\\\\\"Loading LoRA adapter from {adapter_path} ...\\\\\\\")\\\\n        model = PeftModel.from_pretrained(model, adapter_path)\\\\n        model = model.merge_and_unload()\\\\n        print(\\\\\\\"LoRA merged.\\\\\\\")\\\\n\\\\n    model.eval()\\\\n    return model, tokenizer\\\\n\\\\n\\\\ndef get_yes_no_ids(tokenizer):\\\\n    yes_ids, no_ids = [], []\\\\n    for w in [\\\\\\\"yes\\\\\\\", \\\\\\\"Yes\\\\\\\", \\\\\\\"YES\\\\\\\"]:\\\\n        ids = tokenizer.encode(w, add_special_tokens=False)\\\\n        if len(ids) == 1:\\\\n            yes_ids.append(ids[0])\\\\n    for w in [\\\\\\\"no\\\\\\\", \\\\\\\"No\\\\\\\", \\\\\\\"NO\\\\\\\"]:\\\\n        ids = tokenizer.encode(w, add_special_tokens=False)\\\\n        if len(ids) == 1:\\\\n            no_ids.append(ids[0])\\\\n    yes_ids = list(set(yes_ids))\\\\n    no_ids = list(set(no_ids))\\\\n    print(f\\\\\\\"yes token IDs: {yes_ids}  no token IDs: {no_ids}\\\\\\\")\\\\n    assert yes_ids and no_ids, \\\\\\\"Could not find yes/no token IDs\\\\\\\"\\\\n    return yes_ids, no_ids\\\\n\\\\n\\\\n# ---------------------------------------------------------------------------\\\\n# Batch verification\\\\n# ---------------------------------------------------------------------------\\\\n\\\\n@torch.no_grad()\\\\ndef batch_verify(model, tokenizer, prompts, yes_ids, no_ids,\\\\n                 batch_size=16, device=\\\\\\\"cuda\\\\\\\"):\\\\n    yes_t = torch.tensor(yes_ids, device=device)\\\\n    no_t = torch.tensor(no_ids, device=device)\\\\n    all_p_yes = []\\\\n\\\\n    n_batches = (len(prompts) + batch_size - 1) // batch_size\\\\n    for bi in range(n_batches):\\\\n        start = bi * batch_size\\\\n        batch = prompts[start:start + batch_size]\\\\n\\\\n        formatted = []\\\\n        for p in batch:\\\\n            msgs = [{\\\\\\\"role\\\\\\\": \\\\\\\"user\\\\\\\", \\\\\\\"content\\\\\\\": p}]\\\\n            try:\\\\n                fp = tokenizer.apply_chat_template(\\\\n                    msgs, tokenize=False, add_generation_prompt=True,\\\\n                    enable_thinking=False,\\\\n                )\\\\n            except TypeError:\\\\n                fp = tokenizer.apply_chat_template(\\\\n                    msgs, tokenize=False, add_generation_prompt=True,\\\\n                )\\\\n            formatted.append(fp)\\\\n\\\\n        inputs = tokenizer(\\\\n            formatted, return_tensors=\\\\\\\"pt\\\\\\\", padding=True,\\\\n            truncation=True, max_length=512,\\\\n        ).to(device)\\\\n\\\\n        logits = model(**inputs).logits  # (B, L, V)\\\\n\\\\n        for i in range(len(batch)):\\\\n            last_pos = inputs.attention_mask[i].sum() - 1\\\\n            next_logits = logits[i, last_pos]\\\\n            y_logits = next_logits[yes_t]\\\\n            n_logits = next_logits[no_t]\\\\n            combined = torch.cat([y_logits, n_logits])\\\\n            probs = torch.softmax(combined, dim=0)\\\\n            p_yes = probs[:len(yes_ids)].sum().item()\\\\n            all_p_yes.append(p_yes)\\\\n\\\\n        if bi % 100 == 0:\\\\n            print(f\\\\\\\"  batch {bi}/{n_batches}  avg_p_yes={np.mean(all_p_yes[-len(batch):]):.3f}\\\\\\\")\\\\n\\\\n    return all_p_yes\\\\n\\\\n\\\\n# ---------------------------------------------------------------------------\\\\n# Eval helpers\\\\n# ---------------------------------------------------------------------------\\\\n\\\\ndef entity_set(entities):\\\\n    return {(e[\\\\\\\"start\\\\\\\"], e[\\\\\\\"end\\\\\\\"], e[\\\\\\\"type\\\\\\\"]) for e in entities}\\\\n\\\\n\\\\ndef compute_prf(pred, gold):\\\\n    if not gold and not pred:\\\\n        return 1.0, 1.0, 1.0\\\\n    if not pred or not gold:\\\\n        return 0.0, 0.0, 0.0\\\\n    tp = len(pred & gold)\\\\n    if tp == 0:\\\\n        return 0.0, 0.0, 0.0\\\\n    p = tp / len(pred)\\\\n    r = tp / len(gold)\\\\n    return p, r, 2 * p * r / (p + r)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Entity-Level Self-Judgment (ESJ) for structured self-consistency IE.\\n\\nFor each unique entity across N=8 samples, uses the FT model to do a\\nyes/no verification forward pass. P(yes) serves as entity-level confidence\\nfor weighted construction.\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport os\\nimport sys\\nimport time\\nfrom collections import defaultdict\\n\\nimport numpy as np\\nimport torch\\nfrom transformers import AutoTokenizer, AutoModelForCausalLM\\nfrom peft import PeftModel\\nfrom scipy.stats import spearmanr\\nfrom sklearn.metrics import roc_auc_score\\n\\n\\n# ---------------------------------------------------------------------------\\n# Data\\n# ---------------------------------------------------------------------------\\n\\ndef load_samples(path, max_instances=0):\\n    data = []\\n    with open(path) as f:\\n        for line in f:\\n            if line.strip():\\n                data.append(json.loads(line))\\n                if 0 < max_instances <= len(data):\\n                    break\\n    return data\\n\\n\\ndef extract_unique_entities(instance):\\n    \\\"\\\"\\\"Return {(start, end, type, text): count_across_samples}.\\\"\\\"\\\"\\n    emap = defaultdict(int)\\n    for sample in instance[\\\"samples\\\"]:\\n        for e in sample.get(\\\"entities\\\", []):\\n            emap[(e[\\\"start\\\"], e[\\\"end\\\"], e[\\\"type\\\"], e[\\\"text\\\"])] += 1\\n    return emap\\n\\n\\n# ---------------------------------------------------------------------------\\n# Prompt\\n# ---------------------------------------------------------------------------\\n\\ndef build_verification_prompt(sentence, entity_text, entity_type):\\n    return (\\n        f'In the following sentence, is \\\"{entity_text}\\\" a {entity_type} entity? '\\n        f'Answer only yes or no.\\\\n\\\\n'\\n        f'Sentence: {sentence}\\\\n'\\n        f'Answer:'\\n    )\\n\\n\\n# ---------------------------------------------------------------------------\\n# Model\\n# ---------------------------------------------------------------------------\\n\\ndef load_model(base_path, adapter_path, device=\\\"cuda\\\"):\\n    tok_path = adapter_path if adapter_path else base_path\\n    print(f\\\"Loading tokenizer from {tok_path} ...\\\")\\n    tokenizer = AutoTokenizer.from_pretrained(\\n        tok_path, trust_remote_code=True, padding_side=\\\"left\\\",\\n    )\\n    if tokenizer.pad_token is None:\\n        tokenizer.pad_token = tokenizer.eos_token\\n\\n    print(f\\\"Loading base model from {base_path} ...\\\")\\n    model = AutoModelForCausalLM.from_pretrained(\\n        base_path,\\n        torch_dtype=torch.bfloat16,\\n        device_map=device,\\n        trust_remote_code=True,\\n    )\\n\\n    if adapter_path:\\n        print(f\\\"Loading LoRA adapter from {adapter_path} ...\\\")\\n        model = PeftModel.from_pretrained(model, adapter_path)\\n        model = model.merge_and_unload()\\n        print(\\\"LoRA merged.\\\")\\n\\n    model.eval()\\n    return model, tokenizer\\n\\n\\ndef get_yes_no_ids(tokenizer):\\n    yes_ids, no_ids = [], []\\n    for w in [\\\"yes\\\", \\\"Yes\\\", \\\"YES\\\"]:\\n        ids = tokenizer.encode(w, add_special_tokens=False)\\n        if len(ids) == 1:\\n            yes_ids.append(ids[0])\\n    for w in [\\\"no\\\", \\\"No\\\", \\\"NO\\\"]:\\n        ids = tokenizer.encode(w, add_special_tokens=False)\\n        if len(ids) == 1:\\n            no_ids.append(ids[0])\\n    yes_ids = list(set(yes_ids))\\n    no_ids = list(set(no_ids))\\n    print(f\\\"yes token IDs: {yes_ids}  no token IDs: {no_ids}\\\")\\n    assert yes_ids and no_ids, \\\"Could not find yes/no token IDs\\\"\\n    return yes_ids, no_ids\\n\\n\\n# ---------------------------------------------------------------------------\\n# Batch verification\\n# ---------------------------------------------------------------------------\\n\\n@torch.no_grad()\\ndef batch_verify(model, tokenizer, prompts, yes_ids, no_ids,\\n                 batch_size=16, device=\\\"cuda\\\"):\\n    yes_t = torch.tensor(yes_ids, device=device)\\n    no_t = torch.tensor(no_ids, device=device)\\n    all_p_yes = []\\n\\n    n_batches = (len(prompts) + batch_size - 1) // batch_size\\n    for bi in range(n_batches):\\n        start = bi * batch_size\\n        batch = prompts[start:start + batch_size]\\n\\n        formatted = []\\n        for p in batch:\\n            msgs = [{\\\"role\\\": \\\"user\\\", \\\"content\\\": p}]\\n            try:\\n                fp = tokenizer.apply_chat_template(\\n                    msgs, tokenize=False, add_generation_prompt=True,\\n                    enable_thinking=False,\\n                )\\n            except TypeError:\\n                fp = tokenizer.apply_chat_template(\\n                    msgs, tokenize=False, add_generation_prompt=True,\\n                )\\n            formatted.append(fp)\\n\\n        inputs = tokenizer(\\n            formatted, return_tensors=\\\"pt\\\", padding=True,\\n            truncation=True, max_length=512,\\n        ).to(device)\\n\\n        logits = model(**inputs).logits  # (B, L, V)\\n\\n        for i in range(len(batch)):\\n            last_pos = inputs.attention_mask[i].sum() - 1\\n            next_logits = logits[i, last_pos]\\n            y_logits = next_logits[yes_t]\\n            n_logits = next_logits[no_t]\\n            combined = torch.cat([y_logits, n_logits])\\n            probs = torch.softmax(combined, dim=0)\\n            p_yes = probs[:len(yes_ids)].sum().item()\\n            all_p_yes.append(p_yes)\\n\\n        if bi % 100 == 0:\\n            print(f\\\"  batch {bi}/{n_batches}  avg_p_yes={np.mean(all_p_yes[-len(batch):]):.3f}\\\")\\n\\n    return all_p_yes\\n\\n\\n# ---------------------------------------------------------------------------\\n# Eval helpers\\n# ---------------------------------------------------------------------------\\n\\ndef entity_set(entities):\\n    return {(e[\\\"start\\\"], e[\\\"end\\\"], e[\\\"type\\\"]) for e in entities}\\n\\n\\ndef compute_prf(pred, gold):\\n    if not gold and not pred:\\n        return 1.0, 1.0, 1.0\\n    if not pred or not gold:\\n        return 0.0, 0.0, 0.0\\n    tp = len(pred & gold)\\n    if tp == 0:\\n        return 0.0, 0.0, 0.0\\n    p = tp / len(pred)\\n    r = tp / len(gold)\\n    return p, r, 2 * p * r / (p + r)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 52_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a complete picture. Let me also check how many unique entities per dataset to estimate run time, and check if there's `--device` argument.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c9503f0c-fafb-4830-833b-3b869dd2e070",
+  "uuid": "355145f3-f17b-4098-a8e1-b1f457dbd4cd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Xa2Le1q6zDbezXqhGN3yK8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6423,
+      "cache_read_input_tokens": 49619,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6423
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 53_
+
+最后确认一下 device 参数处理和数据量估算。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c9503f0c-fafb-4830-833b-3b869dd2e070",
+  "uuid": "1b1959b1-d47c-479e-b009-e8bff1ca399d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Xa2Le1q6zDbezXqhGN3yK8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6423,
+      "cache_read_input_tokens": 49619,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6423
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 54_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0135inhBrPaFkndpoDtWdd39`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "grep -n \"device\\|cuda\\|CUDA\" /root/autodl-tmp/struct_self_consist_ie/code/run_esj.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c9503f0c-fafb-4830-833b-3b869dd2e070",
+  "uuid": "262f9bcc-700d-4a4b-ba96-a345a7b3d592",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Xa2Le1q6zDbezXqhGN3yK8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6423,
+      "cache_read_input_tokens": 49619,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6423
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 55 · 2026-05-22T15:30:58.083Z_
+
+<details><summary>↩ Tool result · `toolu_0135inhBrPaFkndpoDtWdd39`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c9503f0c-fafb-4830-833b-3b869dd2e070",
+  "uuid": "8a9e0db7-21fc-4d03-a1cc-7de5ea84e6bc",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 56_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_015rmx7ixckKr7eqpX8QtDga`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "wc -l /root/autodl-tmp/struct_self_consist_ie/output/conll_mf4v2_seed42/samples.jsonl /root/autodl-tmp/struct_self_consist_ie/output/fewnerd_mf4v2_seed42/samples.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c9503f0c-fafb-4830-833b-3b869dd2e070",
+  "uuid": "fc3eae1b-0d1a-4244-85ca-78f54dc94167",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Xa2Le1q6zDbezXqhGN3yK8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6423,
+      "cache_read_input_tokens": 49619,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6423
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 57 · 2026-05-22T15:31:00.478Z_
+
+<details><summary>↩ Tool result · `toolu_015rmx7ixckKr7eqpX8QtDga`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"    37648 /root/autodl-tmp/struct_self_consist_ie/output/fewnerd_mf4v2_seed42/samples.jsonl\\n    37648 total\\n\", \"stderr\": \"wc: /root/autodl-tmp/struct_self_consist_ie/output/conll_mf4v2_seed42/samples.jsonl: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.49}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c9503f0c-fafb-4830-833b-3b869dd2e070",
+  "uuid": "5babc904-aeb5-4daa-ba18-222a477fd719",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"    37648 /root/autodl-tmp/struct_self_consist_ie/output/fewnerd_mf4v2_seed42/samples.jsonl\\\\n    37648 total\\\\n\\\", \\\"stderr\\\": \\\"wc: /root/autodl-tmp/struct_self_consist_ie/output/conll_mf4v2_seed42/samples.jsonl: No such file or directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.49}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"    37648 /root/autodl-tmp/struct_self_consist_ie/output/fewnerd_mf4v2_seed42/samples.jsonl\\n    37648 total\\n\", \"stderr\": \"wc: /root/autodl-tmp/struct_self_consist_ie/output/conll_mf4v2_seed42/samples.jsonl: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.49}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 58_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01YCnXJwHrADcEk58cR3tUUd`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "find /root/autodl-tmp/struct_self_consist_ie/output/ -maxdepth 1 -name \"conll_mf4*\" -type d",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c9503f0c-fafb-4830-833b-3b869dd2e070",
+  "uuid": "9cbcf88f-1103-4457-a58b-7029d4760c12",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XLd6SYoDJS7b5ZpyLX4fHi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 689,
+      "cache_read_input_tokens": 56042,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 689
+      },
+      "output_tokens": 63,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 59 · 2026-05-22T15:31:04.229Z_
+
+<details><summary>↩ Tool result · `toolu_01YCnXJwHrADcEk58cR3tUUd`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/output/conll_mf4_seed123\\n/root/autodl-tmp/struct_self_consist_ie/output/conll_mf4_seed456\\n/root/autodl-tmp/struct_self_consist_ie/output/conll_mf4v2_seed123\\n/root/autodl-tmp/struct_self_consist_ie/output/conll_mf4v2_seed456\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c9503f0c-fafb-4830-833b-3b869dd2e070",
+  "uuid": "92cd486a-93d7-4b3d-a9f2-285703adc54a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/conll_mf4_seed123\\\\n/root/autodl-tmp/struct_self_consist_ie/output/conll_mf4_seed456\\\\n/root/autodl-tmp/struct_self_consist_ie/output/conll_mf4v2_seed123\\\\n/root/autodl-tmp/struct_self_consist_ie/output/conll_mf4v2_seed456\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/output/conll_mf4_seed123\\n/root/autodl-tmp/struct_self_consist_ie/output/conll_mf4_seed456\\n/root/autodl-tmp/struct_self_consist_ie/output/conll_mf4v2_seed123\\n/root/autodl-tmp/struct_self_consist_ie/output/conll_mf4v2_seed456\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 60_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_015xTvyx5wzRoZK4ckoKt2gk`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "grep -rn \"device\" /root/autodl-tmp/struct_self_consist_ie/code/run_esj.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c9503f0c-fafb-4830-833b-3b869dd2e070",
+  "uuid": "5243e8ca-0137-4af7-9b4e-103e558269c0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XLd6SYoDJS7b5ZpyLX4fHi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 689,
+      "cache_read_input_tokens": 56042,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 689
+      },
+      "output_tokens": 63,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 61 · 2026-05-22T15:31:05.031Z_
+
+<details><summary>↩ Tool result · `toolu_015xTvyx5wzRoZK4ckoKt2gk`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"65:def load_model(base_path, adapter_path, device=\\\"cuda\\\"):\\n78:        device_map=device,\\n115:                 batch_size=16, device=\\\"cuda\\\"):\\n116:    yes_t = torch.tensor(yes_ids, device=device)\\n117:    no_t = torch.tensor(no_ids, device=device)\\n142:        ).to(device)\\n269:    device = \\\"cuda\\\"\\n298:    model, tokenizer = load_model(args.base_model_path, args.adapter_path, device)\\n305:                             args.batch_size, device)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c9503f0c-fafb-4830-833b-3b869dd2e070",
+  "uuid": "3b504ded-8d86-430a-85bd-35ada66f8ec2",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"65:def load_model(base_path, adapter_path, device=\\\\\\\"cuda\\\\\\\"):\\\\n78:        device_map=device,\\\\n115:                 batch_size=16, device=\\\\\\\"cuda\\\\\\\"):\\\\n116:    yes_t = torch.tensor(yes_ids, device=device)\\\\n117:    no_t = torch.tensor(no_ids, device=device)\\\\n142:        ).to(device)\\\\n269:    device = \\\\\\\"cuda\\\\\\\"\\\\n298:    model, tokenizer = load_model(args.base_model_path, args.adapter_path, device)\\\\n305:                             args.batch_size, device)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"65:def load_model(base_path, adapter_path, device=\\\"cuda\\\"):\\n78:        device_map=device,\\n115:                 batch_size=16, device=\\\"cuda\\\"):\\n116:    yes_t = torch.tensor(yes_ids, device=device)\\n117:    no_t = torch.tensor(no_ids, device=device)\\n142:        ).to(device)\\n269:    device = \\\"cuda\\\"\\n298:    model, tokenizer = load_model(args.base_model_path, args.adapter_path, device)\\n305:                             args.batch_size, device)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 62_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01XsKhFo5Eby4Q88NLSBH46D`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "wc -l /root/autodl-tmp/struct_self_consist_ie/output/conll_mf4v2_seed123/samples.jsonl /root/autodl-tmp/struct_self_consist_ie/output/scierc_mf4v2_seed42/samples.jsonl /root/autodl-tmp/struct_self_consist_ie/output/fewnerd_mf4v2_seed42/samples.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c9503f0c-fafb-4830-833b-3b869dd2e070",
+  "uuid": "d978f09b-1a39-4682-b9df-7e1ebc9ead9b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BBZoiyULqT3kxdwNMDu36C",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 749,
+      "cache_read_input_tokens": 56731,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 749
+      },
+      "output_tokens": 63,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 63 · 2026-05-22T15:31:09.637Z_
+
+<details><summary>↩ Tool result · `toolu_01XsKhFo5Eby4Q88NLSBH46D`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"     3453 /root/autodl-tmp/struct_self_consist_ie/output/conll_mf4v2_seed123/samples.jsonl\\n      551 /root/autodl-tmp/struct_self_consist_ie/output/scierc_mf4v2_seed42/samples.jsonl\\n    37648 /root/autodl-tmp/struct_self_consist_ie/output/fewnerd_mf4v2_seed42/samples.jsonl\\n    41652 total\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.49}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c9503f0c-fafb-4830-833b-3b869dd2e070",
+  "uuid": "a53899cd-9a6d-478c-848d-009307eac1bc",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"     3453 /root/autodl-tmp/struct_self_consist_ie/output/conll_mf4v2_seed123/samples.jsonl\\\\n      551 /root/autodl-tmp/struct_self_consist_ie/output/scierc_mf4v2_seed42/samples.jsonl\\\\n    37648 /root/autodl-tmp/struct_self_consist_ie/output/fewnerd_mf4v2_seed42/samples.jsonl\\\\n    41652 total\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.49}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"     3453 /root/autodl-tmp/struct_self_consist_ie/output/conll_mf4v2_seed123/samples.jsonl\\n      551 /root/autodl-tmp/struct_self_consist_ie/output/scierc_mf4v2_seed42/samples.jsonl\\n    37648 /root/autodl-tmp/struct_self_consist_ie/output/fewnerd_mf4v2_seed42/samples.jsonl\\n    41652 total\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.49}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 64_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01KYf6W4BoRdU33q6XMy6zeW`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "tail -5 /root/autodl-tmp/struct_self_consist_ie/code/run_esj.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c9503f0c-fafb-4830-833b-3b869dd2e070",
+  "uuid": "cecd3648-1389-4c31-90a3-c52f7c77f5f9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BBZoiyULqT3kxdwNMDu36C",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 749,
+      "cache_read_input_tokens": 56731,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 749
+      },
+      "output_tokens": 63,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 65 · 2026-05-22T15:31:10.235Z_
+
+<details><summary>↩ Tool result · `toolu_01KYf6W4BoRdU33q6XMy6zeW`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"                  f\\\"AUROC={safe_auroc(ent_esj_arr[mask], ent_correct[mask]):.4f}\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c9503f0c-fafb-4830-833b-3b869dd2e070",
+  "uuid": "e0b18ee9-d163-4cd5-ad87-6c78e58cd5b9",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"                  f\\\\\\\"AUROC={safe_auroc(ent_esj_arr[mask], ent_correct[mask]):.4f}\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"                  f\\\"AUROC={safe_auroc(ent_esj_arr[mask], ent_correct[mask]):.4f}\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 66_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me check the device line in main() to see if there's CUDA_VISIBLE_DEVICES support.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c9503f0c-fafb-4830-833b-3b869dd2e070",
+  "uuid": "b351e0d0-73f0-441c-9a64-26c20c0908e5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Cv1BTqawiqCS7YwUaQSQyx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 822,
+      "cache_read_input_tokens": 57480,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 822
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 67_
+
+查看 main() 中 device 设置逻辑。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c9503f0c-fafb-4830-833b-3b869dd2e070",
+  "uuid": "8ce4dc64-e9cd-4aac-8689-41c22814cd34",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Cv1BTqawiqCS7YwUaQSQyx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 822,
+      "cache_read_input_tokens": 57480,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 822
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 68_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01K8XpH8HwmMLzahYYxSx79P`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "head -n 310 /root/autodl-tmp/struct_self_consist_ie/code/run_esj.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c9503f0c-fafb-4830-833b-3b869dd2e070",
+  "uuid": "7310abac-a409-4574-8034-3505f5e60736",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Cv1BTqawiqCS7YwUaQSQyx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 822,
+      "cache_read_input_tokens": 57480,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 822
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 69 · 2026-05-22T15:31:14.768Z_
+
+<details><summary>↩ Tool result · `toolu_01K8XpH8HwmMLzahYYxSx79P`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Entity-Level Self-Judgment (ESJ) for structured self-consistency IE.\\n\\nFor each unique entity across N=8 samples, uses the FT model to do a\\nyes/no verification forward pass. P(yes) serves as entity-level confidence\\nfor weighted construction.\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport os\\nimport sys\\nimport time\\nfrom collections import defaultdict\\n\\nimport numpy as np\\nimport torch\\nfrom transformers import AutoTokenizer, AutoModelForCausalLM\\nfrom peft import PeftModel\\nfrom scipy.stats import spearmanr\\nfrom sklearn.metrics import roc_auc_score\\n\\n\\n# ---------------------------------------------------------------------------\\n# Data\\n# ---------------------------------------------------------------------------\\n\\ndef load_samples(path, max_instances=0):\\n    data = []\\n    with open(path) as f:\\n        for line in f:\\n            if line.strip():\\n                data.append(json.loads(line))\\n                if 0 < max_instances <= len(data):\\n                    break\\n    return data\\n\\n\\ndef extract_unique_entities(instance):\\n    \\\"\\\"\\\"Return {(start, end, type, text): count_across_samples}.\\\"\\\"\\\"\\n    emap = defaultdict(int)\\n    for sample in instance[\\\"samples\\\"]:\\n        for e in sample.get(\\\"entities\\\", []):\\n            emap[(e[\\\"start\\\"], e[\\\"end\\\"], e[\\\"type\\\"], e[\\\"text\\\"])] += 1\\n    return emap\\n\\n\\n# ---------------------------------------------------------------------------\\n# Prompt\\n# ---------------------------------------------------------------------------\\n\\ndef build_verification_prompt(sentence, entity_text, entity_type):\\n    return (\\n        f'In the following sentence, is \\\"{entity_text}\\\" a {entity_type} entity? '\\n        f'Answer only yes or no.\\\\n\\\\n'\\n        f'Sentence: {sentence}\\\\n'\\n        f'Answer:'\\n    )\\n\\n\\n# ---------------------------------------------------------------------------\\n# Model\\n# ---------------------------------------------------------------------------\\n\\ndef load_model(base_path, adapter_path, device=\\\"cuda\\\"):\\n    tok_path = adapter_path if adapter_path else base_path\\n    print(f\\\"Loading tokenizer from {tok_path} ...\\\")\\n    tokenizer = AutoTokenizer.from_pretrained(\\n        tok_path, trust_remote_code=True, padding_side=\\\"left\\\",\\n    )\\n    if tokenizer.pad_token is None:\\n        tokenizer.pad_token = tokenizer.eos_token\\n\\n    print(f\\\"Loading base model from {base_path} ...\\\")\\n    model = AutoModelForCausalLM.from_pretrained(\\n        base_path,\\n        torch_dtype=torch.bfloat16,\\n        device_map=device,\\n        trust_remote_code=True,\\n    )\\n\\n    if adapter_path:\\n        print(f\\\"Loading LoRA adapter from {adapter_path} ...\\\")\\n        model = PeftModel.from_pretrained(model, adapter_path)\\n        model = model.merge_and_unload()\\n        print(\\\"LoRA merged.\\\")\\n\\n    model.eval()\\n    return model, tokenizer\\n\\n\\ndef get_yes_no_ids(tokenizer):\\n    yes_ids, no_ids = [], []\\n    for w in [\\\"yes\\\", \\\"Yes\\\", \\\"YES\\\"]:\\n        ids = tokenizer.encode(w, add_special_tokens=False)\\n        if len(ids) == 1:\\n            yes_ids.append(ids[0])\\n    for w in [\\\"no\\\", \\\"No\\\", \\\"NO\\\"]:\\n        ids = tokenizer.encode(w, add_special_tokens=False)\\n        if len(ids) == 1:\\n            no_ids.append(ids[0])\\n    yes_ids = list(set(yes_ids))\\n    no_ids = list(set(no_ids))\\n    print(f\\\"yes token IDs: {yes_ids}  no token IDs: {no_ids}\\\")\\n    assert yes_ids and no_ids, \\\"Could not find yes/no token IDs\\\"\\n    return yes_ids, no_ids\\n\\n\\n# ---------------------------------------------------------------------------\\n# Batch verification\\n# ---------------------------------------------------------------------------\\n\\n@torch.no_grad()\\ndef batch_verify(model, tokenizer, prompts, yes_ids, no_ids,\\n                 batch_size=16, device=\\\"cuda\\\"):\\n    yes_t = torch.tensor(yes_ids, device=device)\\n    no_t = torch.tensor(no_ids, device=device)\\n    all_p_yes = []\\n\\n    n_batches = (len(prompts) + batch_size - 1) // batch_size\\n    for bi in range(n_batches):\\n        start = bi * batch_size\\n        batch = prompts[start:start + batch_size]\\n\\n        formatted = []\\n        for p in batch:\\n  \\n\\n... [截断: 输出过长，省略 2316 字符] ...\\n\\nstart\\\"], e[\\\"end\\\"], e[\\\"type\\\"])] += 1\\n    out = set()\\n    for key, c in counts.items():\\n        p_yes = esj_scores.get(key, 0.0)\\n        if p_yes * (c / N) >= threshold:\\n            out.add(key)\\n    return out\\n\\n\\ndef safe_spearman(a, b):\\n    mask = np.isfinite(a) & np.isfinite(b)\\n    if mask.sum() < 3:\\n        return float(\\\"nan\\\"), float(\\\"nan\\\")\\n    return spearmanr(a[mask], b[mask])\\n\\n\\ndef safe_auroc(scores, labels):\\n    mask = np.isfinite(scores)\\n    s, l = scores[mask], labels[mask]\\n    if len(set(l)) < 2:\\n        return float(\\\"nan\\\")\\n    try:\\n        return roc_auc_score(l, s)\\n    except Exception:\\n        return float(\\\"nan\\\")\\n\\n\\n# ---------------------------------------------------------------------------\\n# Within-instance sample ranking (ESJ can rank samples, LP cannot for entity-level)\\n# ---------------------------------------------------------------------------\\n\\ndef compute_sample_esj_scores(instance, esj_scores):\\n    \\\"\\\"\\\"Mean P(yes) across entities in each sample.\\\"\\\"\\\"\\n    per_sample = []\\n    for s in instance[\\\"samples\\\"]:\\n        ents = s.get(\\\"entities\\\", [])\\n        if not ents:\\n            per_sample.append(0.0)\\n            continue\\n        pyes_vals = []\\n        for e in ents:\\n            key = (e[\\\"start\\\"], e[\\\"end\\\"], e[\\\"type\\\"])\\n            pyes_vals.append(esj_scores.get(key, 0.0))\\n        per_sample.append(float(np.mean(pyes_vals)))\\n    return per_sample\\n\\n\\ndef compute_sample_lp_scores(instance):\\n    out = []\\n    for s in instance[\\\"samples\\\"]:\\n        lp = s.get(\\\"mean_logprob\\\")\\n        if lp is None:\\n            lp = s.get(\\\"cumulative_logprob\\\", -999) / max(s.get(\\\"n_tokens\\\", 1), 1)\\n        out.append(lp)\\n    return out\\n\\n\\n# ---------------------------------------------------------------------------\\n# Main\\n# ---------------------------------------------------------------------------\\n\\ndef main():\\n    ap = argparse.ArgumentParser()\\n    ap.add_argument(\\\"--base_model_path\\\", type=str, required=True)\\n    ap.add_argument(\\\"--adapter_path\\\", type=str, default=None)\\n    ap.add_argument(\\\"--data_path\\\", type=str, required=True)\\n    ap.add_argument(\\\"--output_dir\\\", type=str, required=True)\\n    ap.add_argument(\\\"--max_instances\\\", type=int, default=0)\\n    ap.add_argument(\\\"--batch_size\\\", type=int, default=16)\\n    args = ap.parse_args()\\n\\n    os.makedirs(args.output_dir, exist_ok=True)\\n    device = \\\"cuda\\\"\\n\\n    # ---- 1. Load data ----\\n    print(f\\\"Loading data from {args.data_path} ...\\\")\\n    data = load_samples(args.data_path, args.max_instances)\\n    print(f\\\"  {len(data)} instances loaded\\\")\\n\\n    # ---- 2. Collect unique entities ----\\n    print(\\\"Extracting unique entities ...\\\")\\n    inst_emaps = []\\n    total_occ, total_uniq = 0, 0\\n    for inst in data:\\n        em = extract_unique_entities(inst)\\n        inst_emaps.append(em)\\n        total_occ += sum(em.values())\\n        total_uniq += len(em)\\n    print(f\\\"  {total_uniq} unique entities to verify ({total_occ} total occurrences)\\\")\\n    print(f\\\"  avg {total_uniq/len(data):.1f} unique / {total_occ/len(data):.1f} total per instance\\\")\\n\\n    # ---- 3. Build prompts ----\\n    all_prompts = []\\n    prompt_idx = []  # (instance_i, (start, end, type))\\n    for i, inst in enumerate(data):\\n        for (s, e, t, txt), _ in inst_emaps[i].items():\\n            all_prompts.append(build_verification_prompt(inst[\\\"text\\\"], txt, t))\\n            prompt_idx.append((i, (s, e, t)))\\n    print(f\\\"  {len(all_prompts)} verification prompts built\\\")\\n\\n    # ---- 4. Load model ----\\n    model, tokenizer = load_model(args.base_model_path, args.adapter_path, device)\\n    yes_ids, no_ids = get_yes_no_ids(tokenizer)\\n\\n    # ---- 5. Run verification ----\\n    print(f\\\"Running batch verification (batch_size={args.batch_size}) ...\\\")\\n    t0 = time.time()\\n    p_yes_all = batch_verify(model, tokenizer, all_prompts, yes_ids, no_ids,\\n                             args.batch_size, device)\\n    elapsed = time.time() - t0\\n    print(f\\\"  Done in {elapsed:.1f}s ({len(all_prompts)/elapsed:.0f} prompts/s)\\\")\\n\\n    del model\\n    import gc; gc.collect(); torch.cuda.empty_cache()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c9503f0c-fafb-4830-833b-3b869dd2e070",
+  "uuid": "37ff62a9-088b-4015-9f5b-d483ac959bd9",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"Entity-Level Self-Judgment (ESJ) for structured self-consistency IE.\\\\n\\\\nFor each unique entity across N=8 samples, uses the FT model to do a\\\\nyes/no verification forward pass. P(yes) serves as entity-level confidence\\\\nfor weighted construction.\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport os\\\\nimport sys\\\\nimport time\\\\nfrom collections import defaultdict\\\\n\\\\nimport numpy as np\\\\nimport torch\\\\nfrom transformers import AutoTokenizer, AutoModelForCausalLM\\\\nfrom peft import PeftModel\\\\nfrom scipy.stats import spearmanr\\\\nfrom sklearn.metrics import roc_auc_score\\\\n\\\\n\\\\n# ---------------------------------------------------------------------------\\\\n# Data\\\\n# ---------------------------------------------------------------------------\\\\n\\\\ndef load_samples(path, max_instances=0):\\\\n    data = []\\\\n    with open(path) as f:\\\\n        for line in f:\\\\n            if line.strip():\\\\n                data.append(json.loads(line))\\\\n                if 0 < max_instances <= len(data):\\\\n                    break\\\\n    return data\\\\n\\\\n\\\\ndef extract_unique_entities(instance):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Return {(start, end, type, text): count_across_samples}.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    emap = defaultdict(int)\\\\n    for sample in instance[\\\\\\\"samples\\\\\\\"]:\\\\n        for e in sample.get(\\\\\\\"entities\\\\\\\", []):\\\\n            emap[(e[\\\\\\\"start\\\\\\\"], e[\\\\\\\"end\\\\\\\"], e[\\\\\\\"type\\\\\\\"], e[\\\\\\\"text\\\\\\\"])] += 1\\\\n    return emap\\\\n\\\\n\\\\n# ---------------------------------------------------------------------------\\\\n# Prompt\\\\n# ---------------------------------------------------------------------------\\\\n\\\\ndef build_verification_prompt(sentence, entity_text, entity_type):\\\\n    return (\\\\n        f'In the following sentence, is \\\\\\\"{entity_text}\\\\\\\" a {entity_type} entity? '\\\\n        f'Answer only yes or no.\\\\\\\\n\\\\\\\\n'\\\\n        f'Sentence: {sentence}\\\\\\\\n'\\\\n        f'Answer:'\\\\n    )\\\\n\\\\n\\\\n# ---------------------------------------------------------------------------\\\\n# Model\\\\n# ---------------------------------------------------------------------------\\\\n\\\\ndef load_model(base_path, adapter_path, device=\\\\\\\"cuda\\\\\\\"):\\\\n    tok_path = adapter_path if adapter_path else base_path\\\\n    print(f\\\\\\\"Loading tokenizer from {tok_path} ...\\\\\\\")\\\\n    tokenizer = AutoTokenizer.from_pretrained(\\\\n        tok_path, trust_remote_code=True, padding_side=\\\\\\\"left\\\\\\\",\\\\n    )\\\\n    if tokenizer.pad_token is None:\\\\n        tokenizer.pad_token = tokenizer.eos_token\\\\n\\\\n    print(f\\\\\\\"Loading base model from {base_path} ...\\\\\\\")\\\\n    model = AutoModelForCausalLM.from_pretrained(\\\\n        base_path,\\\\n        torch_dtype=torch.bfloat16,\\\\n        device_map=device,\\\\n        trust_remote_code=True,\\\\n    )\\\\n\\\\n    if adapter_path:\\\\n        print(f\\\\\\\"Loading LoRA adapter from {adapter_path} ...\\\\\\\")\\\\n        model = PeftModel.from_pretrained(model, adapter_path)\\\\n        model = model.merge_and_unload()\\\\n        print(\\\\\\\"LoRA merged.\\\\\\\")\\\\n\\\\n    model.eval()\\\\n    return model, tokenizer\\\\n\\\\n\\\\ndef get_yes_no_ids(tokenizer):\\\\n    yes_ids, no_ids = [], []\\\\n    for w in [\\\\\\\"yes\\\\\\\", \\\\\\\"Yes\\\\\\\", \\\\\\\"YES\\\\\\\"]:\\\\n        ids = tokenizer.encode(w, add_special_tokens=False)\\\\n        if len(ids) == 1:\\\\n            yes_ids.append(ids[0])\\\\n    for w in [\\\\\\\"no\\\\\\\", \\\\\\\"No\\\\\\\", \\\\\\\"NO\\\\\\\"]:\\\\n        ids = tokenizer.encode(w, add_special_tokens=False)\\\\n        if len(ids) == 1:\\\\n            no_ids.append(ids[0])\\\\n    yes_ids = list(set(yes_ids))\\\\n    no_ids = list(set(no_ids))\\\\n    print(f\\\\\\\"yes token IDs: {yes_ids}  no token IDs: {no_ids}\\\\\\\")\\\\n    assert yes_ids and no_ids, \\\\\\\"Could not find yes/no token IDs\\\\\\\"\\\\n    return yes_ids, no_ids\\\\n\\\\n\\\\n# ---------------------------------------------------------------------------\\\\n# Batch verification\\\\n# ---------------------------------------------------------------------------\\\\n\\\\n@torch.no_grad()\\\\ndef batch_verify(model, tokenizer, prompts, yes_ids, no_ids,\\\\n                 batch_size=16, device=\\\\\\\"cuda\\\\\\\"):\\\\n    yes_t = torch.tensor(yes_ids, device=device)\\\\n    no_t = torch.tensor(no_ids, device=device)\\\\n    all_p_yes = []\\\\n\\\\n    n_batches = (len(prompts) + batch_size - 1) // batch_size\\\\n    for bi in range(n_batches):\\\\n        start = bi * batch_size\\\\n        batch = prompts[start:start + batch_size]\\\\n\\\\n        formatted = []\\\\n        for p in batch:\\\\n  \\\\n\\\\n... [截断: 输出过长，省略 2316 字符] ...\\\\n\\\\nstart\\\\\\\"], e[\\\\\\\"end\\\\\\\"], e[\\\\\\\"type\\\\\\\"])] += 1\\\\n    out = set()\\\\n    for key, c in counts.items():\\\\n        p_yes = esj_scores.get(key, 0.0)\\\\n        if p_yes * (c / N) >= threshold:\\\\n            out.add(key)\\\\n    return out\\\\n\\\\n\\\\ndef safe_spearman(a, b):\\\\n    mask = np.isfinite(a) & np.isfinite(b)\\\\n    if mask.sum() < 3:\\\\n        return float(\\\\\\\"nan\\\\\\\"), float(\\\\\\\"nan\\\\\\\")\\\\n    return spearmanr(a[mask], b[mask])\\\\n\\\\n\\\\ndef safe_auroc(scores, labels):\\\\n    mask = np.isfinite(scores)\\\\n    s, l = scores[mask], labels[mask]\\\\n    if len(set(l)) < 2:\\\\n        return float(\\\\\\\"nan\\\\\\\")\\\\n    try:\\\\n        return roc_auc_score(l, s)\\\\n    except Exception:\\\\n        return float(\\\\\\\"nan\\\\\\\")\\\\n\\\\n\\\\n# ---------------------------------------------------------------------------\\\\n# Within-instance sample ranking (ESJ can rank samples, LP cannot for entity-level)\\\\n# ---------------------------------------------------------------------------\\\\n\\\\ndef compute_sample_esj_scores(instance, esj_scores):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Mean P(yes) across entities in each sample.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    per_sample = []\\\\n    for s in instance[\\\\\\\"samples\\\\\\\"]:\\\\n        ents = s.get(\\\\\\\"entities\\\\\\\", [])\\\\n        if not ents:\\\\n            per_sample.append(0.0)\\\\n            continue\\\\n        pyes_vals = []\\\\n        for e in ents:\\\\n            key = (e[\\\\\\\"start\\\\\\\"], e[\\\\\\\"end\\\\\\\"], e[\\\\\\\"type\\\\\\\"])\\\\n            pyes_vals.append(esj_scores.get(key, 0.0))\\\\n        per_sample.append(float(np.mean(pyes_vals)))\\\\n    return per_sample\\\\n\\\\n\\\\ndef compute_sample_lp_scores(instance):\\\\n    out = []\\\\n    for s in instance[\\\\\\\"samples\\\\\\\"]:\\\\n        lp = s.get(\\\\\\\"mean_logprob\\\\\\\")\\\\n        if lp is None:\\\\n            lp = s.get(\\\\\\\"cumulative_logprob\\\\\\\", -999) / max(s.get(\\\\\\\"n_tokens\\\\\\\", 1), 1)\\\\n        out.append(lp)\\\\n    return out\\\\n\\\\n\\\\n# ---------------------------------------------------------------------------\\\\n# Main\\\\n# ---------------------------------------------------------------------------\\\\n\\\\ndef main():\\\\n    ap = argparse.ArgumentParser()\\\\n    ap.add_argument(\\\\\\\"--base_model_path\\\\\\\", type=str, required=True)\\\\n    ap.add_argument(\\\\\\\"--adapter_path\\\\\\\", type=str, default=None)\\\\n    ap.add_argument(\\\\\\\"--data_path\\\\\\\", type=str, required=True)\\\\n    ap.add_argument(\\\\\\\"--output_dir\\\\\\\", type=str, required=True)\\\\n    ap.add_argument(\\\\\\\"--max_instances\\\\\\\", type=int, default=0)\\\\n    ap.add_argument(\\\\\\\"--batch_size\\\\\\\", type=int, default=16)\\\\n    args = ap.parse_args()\\\\n\\\\n    os.makedirs(args.output_dir, exist_ok=True)\\\\n    device = \\\\\\\"cuda\\\\\\\"\\\\n\\\\n    # ---- 1. Load data ----\\\\n    print(f\\\\\\\"Loading data from {args.data_path} ...\\\\\\\")\\\\n    data = load_samples(args.data_path, args.max_instances)\\\\n    print(f\\\\\\\"  {len(data)} instances loaded\\\\\\\")\\\\n\\\\n    # ---- 2. Collect unique entities ----\\\\n    print(\\\\\\\"Extracting unique entities ...\\\\\\\")\\\\n    inst_emaps = []\\\\n    total_occ, total_uniq = 0, 0\\\\n    for inst in data:\\\\n        em = extract_unique_entities(inst)\\\\n        inst_emaps.append(em)\\\\n        total_occ += sum(em.values())\\\\n        total_uniq += len(em)\\\\n    print(f\\\\\\\"  {total_uniq} unique entities to verify ({total_occ} total occurrences)\\\\\\\")\\\\n    print(f\\\\\\\"  avg {total_uniq/len(data):.1f} unique / {total_occ/len(data):.1f} total per instance\\\\\\\")\\\\n\\\\n    # ---- 3. Build prompts ----\\\\n    all_prompts = []\\\\n    prompt_idx = []  # (instance_i, (start, end, type))\\\\n    for i, inst in enumerate(data):\\\\n        for (s, e, t, txt), _ in inst_emaps[i].items():\\\\n            all_prompts.append(build_verification_prompt(inst[\\\\\\\"text\\\\\\\"], txt, t))\\\\n            prompt_idx.append((i, (s, e, t)))\\\\n    print(f\\\\\\\"  {len(all_prompts)} verification prompts built\\\\\\\")\\\\n\\\\n    # ---- 4. Load model ----\\\\n    model, tokenizer = load_model(args.base_model_path, args.adapter_path, device)\\\\n    yes_ids, no_ids = get_yes_no_ids(tokenizer)\\\\n\\\\n    # ---- 5. Run verification ----\\\\n    print(f\\\\\\\"Running batch verification (batch_size={args.batch_size}) ...\\\\\\\")\\\\n    t0 = time.time()\\\\n    p_yes_all = batch_verify(model, tokenizer, all_prompts, yes_ids, no_ids,\\\\n                             args.batch_size, device)\\\\n    elapsed = time.time() - t0\\\\n    print(f\\\\\\\"  Done in {elapsed:.1f}s ({len(all_prompts)/elapsed:.0f} prompts/s)\\\\\\\")\\\\n\\\\n    del model\\\\n    import gc; gc.collect(); torch.cuda.empty_cache()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Entity-Level Self-Judgment (ESJ) for structured self-consistency IE.\\n\\nFor each unique entity across N=8 samples, uses the FT model to do a\\nyes/no verification forward pass. P(yes) serves as entity-level confidence\\nfor weighted construction.\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport os\\nimport sys\\nimport time\\nfrom collections import defaultdict\\n\\nimport numpy as np\\nimport torch\\nfrom transformers import AutoTokenizer, AutoModelForCausalLM\\nfrom peft import PeftModel\\nfrom scipy.stats import spearmanr\\nfrom sklearn.metrics import roc_auc_score\\n\\n\\n# ---------------------------------------------------------------------------\\n# Data\\n# ---------------------------------------------------------------------------\\n\\ndef load_samples(path, max_instances=0):\\n    data = []\\n    with open(path) as f:\\n        for line in f:\\n            if line.strip():\\n                data.append(json.loads(line))\\n                if 0 < max_instances <= len(data):\\n                    break\\n    return data\\n\\n\\ndef extract_unique_entities(instance):\\n    \\\"\\\"\\\"Return {(start, end, type, text): count_across_samples}.\\\"\\\"\\\"\\n    emap = defaultdict(int)\\n    for sample in instance[\\\"samples\\\"]:\\n        for e in sample.get(\\\"entities\\\", []):\\n            emap[(e[\\\"start\\\"], e[\\\"end\\\"], e[\\\"type\\\"], e[\\\"text\\\"])] += 1\\n    return emap\\n\\n\\n# ---------------------------------------------------------------------------\\n# Prompt\\n# ---------------------------------------------------------------------------\\n\\ndef build_verification_prompt(sentence, entity_text, entity_type):\\n    return (\\n        f'In the following sentence, is \\\"{entity_text}\\\" a {entity_type} entity? '\\n        f'Answer only yes or no.\\\\n\\\\n'\\n        f'Sentence: {sentence}\\\\n'\\n        f'Answer:'\\n    )\\n\\n\\n# ---------------------------------------------------------------------------\\n# Model\\n# ---------------------------------------------------------------------------\\n\\ndef load_model(base_path, adapter_path, device=\\\"cuda\\\"):\\n    tok_path = adapter_path if adapter_path else base_path\\n    print(f\\\"Loading tokenizer from {tok_path} ...\\\")\\n    tokenizer = AutoTokenizer.from_pretrained(\\n        tok_path, trust_remote_code=True, padding_side=\\\"left\\\",\\n    )\\n    if tokenizer.pad_token is None:\\n        tokenizer.pad_token = tokenizer.eos_token\\n\\n    print(f\\\"Loading base model from {base_path} ...\\\")\\n    model = AutoModelForCausalLM.from_pretrained(\\n        base_path,\\n        torch_dtype=torch.bfloat16,\\n        device_map=device,\\n        trust_remote_code=True,\\n    )\\n\\n    if adapter_path:\\n        print(f\\\"Loading LoRA adapter from {adapter_path} ...\\\")\\n        model = PeftModel.from_pretrained(model, adapter_path)\\n        model = model.merge_and_unload()\\n        print(\\\"LoRA merged.\\\")\\n\\n    model.eval()\\n    return model, tokenizer\\n\\n\\ndef get_yes_no_ids(tokenizer):\\n    yes_ids, no_ids = [], []\\n    for w in [\\\"yes\\\", \\\"Yes\\\", \\\"YES\\\"]:\\n        ids = tokenizer.encode(w, add_special_tokens=False)\\n        if len(ids) == 1:\\n            yes_ids.append(ids[0])\\n    for w in [\\\"no\\\", \\\"No\\\", \\\"NO\\\"]:\\n        ids = tokenizer.encode(w, add_special_tokens=False)\\n        if len(ids) == 1:\\n            no_ids.append(ids[0])\\n    yes_ids = list(set(yes_ids))\\n    no_ids = list(set(no_ids))\\n    print(f\\\"yes token IDs: {yes_ids}  no token IDs: {no_ids}\\\")\\n    assert yes_ids and no_ids, \\\"Could not find yes/no token IDs\\\"\\n    return yes_ids, no_ids\\n\\n\\n# ---------------------------------------------------------------------------\\n# Batch verification\\n# ---------------------------------------------------------------------------\\n\\n@torch.no_grad()\\ndef batch_verify(model, tokenizer, prompts, yes_ids, no_ids,\\n                 batch_size=16, device=\\\"cuda\\\"):\\n    yes_t = torch.tensor(yes_ids, device=device)\\n    no_t = torch.tensor(no_ids, device=device)\\n    all_p_yes = []\\n\\n    n_batches = (len(prompts) + batch_size - 1) // batch_size\\n    for bi in range(n_batches):\\n        start = bi * batch_size\\n        batch = prompts[start:start + batch_size]\\n\\n        formatted = []\\n        for p in batch:\\n  \\n\\n... [截断: 输出过长，省略 2316 字符] ...\\n\\nstart\\\"], e[\\\"end\\\"], e[\\\"type\\\"])] += 1\\n    out = set()\\n    for key, c in counts.items():\\n        p_yes = esj_scores.get(key, 0.0)\\n        if p_yes * (c / N) >= threshold:\\n            out.add(key)\\n    return out\\n\\n\\ndef safe_spearman(a, b):\\n    mask = np.isfinite(a) & np.isfinite(b)\\n    if mask.sum() < 3:\\n        return float(\\\"nan\\\"), float(\\\"nan\\\")\\n    return spearmanr(a[mask], b[mask])\\n\\n\\ndef safe_auroc(scores, labels):\\n    mask = np.isfinite(scores)\\n    s, l = scores[mask], labels[mask]\\n    if len(set(l)) < 2:\\n        return float(\\\"nan\\\")\\n    try:\\n        return roc_auc_score(l, s)\\n    except Exception:\\n        return float(\\\"nan\\\")\\n\\n\\n# ---------------------------------------------------------------------------\\n# Within-instance sample ranking (ESJ can rank samples, LP cannot for entity-level)\\n# ---------------------------------------------------------------------------\\n\\ndef compute_sample_esj_scores(instance, esj_scores):\\n    \\\"\\\"\\\"Mean P(yes) across entities in each sample.\\\"\\\"\\\"\\n    per_sample = []\\n    for s in instance[\\\"samples\\\"]:\\n        ents = s.get(\\\"entities\\\", [])\\n        if not ents:\\n            per_sample.append(0.0)\\n            continue\\n        pyes_vals = []\\n        for e in ents:\\n            key = (e[\\\"start\\\"], e[\\\"end\\\"], e[\\\"type\\\"])\\n            pyes_vals.append(esj_scores.get(key, 0.0))\\n        per_sample.append(float(np.mean(pyes_vals)))\\n    return per_sample\\n\\n\\ndef compute_sample_lp_scores(instance):\\n    out = []\\n    for s in instance[\\\"samples\\\"]:\\n        lp = s.get(\\\"mean_logprob\\\")\\n        if lp is None:\\n            lp = s.get(\\\"cumulative_logprob\\\", -999) / max(s.get(\\\"n_tokens\\\", 1), 1)\\n        out.append(lp)\\n    return out\\n\\n\\n# ---------------------------------------------------------------------------\\n# Main\\n# ---------------------------------------------------------------------------\\n\\ndef main():\\n    ap = argparse.ArgumentParser()\\n    ap.add_argument(\\\"--base_model_path\\\", type=str, required=True)\\n    ap.add_argument(\\\"--adapter_path\\\", type=str, default=None)\\n    ap.add_argument(\\\"--data_path\\\", type=str, required=True)\\n    ap.add_argument(\\\"--output_dir\\\", type=str, required=True)\\n    ap.add_argument(\\\"--max_instances\\\", type=int, default=0)\\n    ap.add_argument(\\\"--batch_size\\\", type=int, default=16)\\n    args = ap.parse_args()\\n\\n    os.makedirs(args.output_dir, exist_ok=True)\\n    device = \\\"cuda\\\"\\n\\n    # ---- 1. Load data ----\\n    print(f\\\"Loading data from {args.data_path} ...\\\")\\n    data = load_samples(args.data_path, args.max_instances)\\n    print(f\\\"  {len(data)} instances loaded\\\")\\n\\n    # ---- 2. Collect unique entities ----\\n    print(\\\"Extracting unique entities ...\\\")\\n    inst_emaps = []\\n    total_occ, total_uniq = 0, 0\\n    for inst in data:\\n        em = extract_unique_entities(inst)\\n        inst_emaps.append(em)\\n        total_occ += sum(em.values())\\n        total_uniq += len(em)\\n    print(f\\\"  {total_uniq} unique entities to verify ({total_occ} total occurrences)\\\")\\n    print(f\\\"  avg {total_uniq/len(data):.1f} unique / {total_occ/len(data):.1f} total per instance\\\")\\n\\n    # ---- 3. Build prompts ----\\n    all_prompts = []\\n    prompt_idx = []  # (instance_i, (start, end, type))\\n    for i, inst in enumerate(data):\\n        for (s, e, t, txt), _ in inst_emaps[i].items():\\n            all_prompts.append(build_verification_prompt(inst[\\\"text\\\"], txt, t))\\n            prompt_idx.append((i, (s, e, t)))\\n    print(f\\\"  {len(all_prompts)} verification prompts built\\\")\\n\\n    # ---- 4. Load model ----\\n    model, tokenizer = load_model(args.base_model_path, args.adapter_path, device)\\n    yes_ids, no_ids = get_yes_no_ids(tokenizer)\\n\\n    # ---- 5. Run verification ----\\n    print(f\\\"Running batch verification (batch_size={args.batch_size}) ...\\\")\\n    t0 = time.time()\\n    p_yes_all = batch_verify(model, tokenizer, all_prompts, yes_ids, no_ids,\\n                             args.batch_size, device)\\n    elapsed = time.time() - t0\\n    print(f\\\"  Done in {elapsed:.1f}s ({len(all_prompts)/elapsed:.0f} prompts/s)\\\")\\n\\n    del model\\n    import gc; gc.collect(); torch.cuda.empty_cache()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 70_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have the complete picture. Let me compile the report.
+
+Key findings:
+1. **ESJ code**: `/root/autodl-tmp/struct_self_consist_ie/code/run_esj.py` (19.9KB, ~530 lines)
+2. **Input**: `samples.jsonl` — the same N=8 sampling output files from inference
+3. **Model loading**: Supports both base_model_path + adapter_path (LoRA), or just merged model
+4. **Prompt**: Simple yes/no verification: "In the following sentence, is {entity} a {type} entity? Answer yes or no." — uses `apply_chat_template` with `enable_thinking=False` for Qwen3
+
+
+5. **Device**: hardcoded to CUDA with no CLI argument, so I'd need to use `CUDA_VISIBLE_DEVICES` to select a specific GPU
+6. **No existing ESJ results** — the esj_results.json file is empty
+
+Looking at the available models, I have three merged options around 16GB each: qwen3-8b-conll2003-merged for CoNLL2003, qwen3-8b-scierc-merged-v2 for SciERC, and qwen3-8b-fewnerd-5epoch-merged for FewNERD. The data sizes show SciERC has 551 instances in samples.jsonl, though the CoNLL2003 count appears to be cut off.
+
+Now I'm calculating the verification prompt volume across datasets. With roughly 5-15 unique entities per instance and 8 samples per dataset, I'm looking at around 5,500 prompts for SciERC, 27,000 for CoNLL, and 300,000 for FewNERD. Each prompt is a short forward pass of about 100 tokens with batch size 16, so on an RTX 5090 in bf16 precision with Qwen3-8B, I'm estimating throughput around 200-400 prompts per second, which means SciERC should complete in roughly 15-30 seconds.
+
+For the larger datasets, CoNLL would take 1-2 minutes and FewNERD around 12-25 minutes, putting the total runtime at 15-30 minutes per model across all three datasets. I have 4 RTX 5090s available, so I can run the three dataset-specific models in parallel on separate GPUs, but I need to make sure each job gets its own CUDA_VISIBLE_DEVICES setting since the code uses device mapping. I also need to figure out which seed's samples to use for the probe—the N3 review mentions the original used Qwen2.5-7B, so I need to confirm which samples.jsonl file to run ESJ on with Qwen3-8B.
+
+Looking at the existing sample files like `scierc_mf4v2_seed42` and `conll_mf4v2_seed42`, these appear to be from Qwen3-8B based on the mf4v2 naming convention and their location in the main output directory, which suggests they're the right data to use for evaluating the model's self-judgment ability.
+
+For the probe, I need one seed per dataset — seed42 is the standard choice. However, I notice there's no `conll_mf4v2_seed42` directory available, only `conll_mf4v2_seed123` and `conll_mf4v2_seed456`, so I'll use seed123 instead. For FewNERD, `fewnerd_5epoch_s42` looks like the right match for the fewnerd-5epoch-merged checkpoint, though I should verify whether the mf4v2 runs use a different checkpoint than expected.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c9503f0c-fafb-4830-833b-3b869dd2e070",
+  "uuid": "3784b764-831b-4977-a9b3-e5aed5244833",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QVjPeVt1UfJhraoYqfruQg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3217,
+      "cache_read_input_tokens": 58302,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3217
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 71_
+
+汇报如下。
+
+---
+
+## ESJ Probe on Qwen3-8B 准备工作汇总
+
+### 1. ESJ 代码
+
+**文件**: `/root/autodl-tmp/struct_self_consist_ie/code/run_esj.py` (~530 行)
+
+**机制**: 对 N=8 samples 中每个 unique entity，用 finetuned 模型做 yes/no verification forward pass，取 P(yes) 作为 entity-level confidence。Prompt 模板：
+
+```
+In the following sentence, is "{entity_text}" a {entity_type} entity? Answer only yes or no.
+Sentence: {sentence}
+Answer:
+```
+
+通过 `apply_chat_template(enable_thinking=False)` 格式化，已适配 Qwen3。
+
+**CLI 参数**:
+```
+--base_model_path  (required, 模型路径)
+--adapter_path     (optional, LoRA adapter；merged 模型不需要)
+--data_path        (required, samples.jsonl)
+--output_dir       (required, 输出目录)
+--max_instances    (default=0, 即全量)
+--batch_size       (default=16)
+```
+
+Device 硬编码为 `"cuda"`，通过 `CUDA_VISIBLE_DEVICES` 选 GPU。
+
+**无已有 ESJ 结果**（`esj_results.json` 搜索为空）。
+
+### 2. Qwen3-8B Finetuned 模型（已 merged，可直接加载）
+
+| 数据集 | Merged 模型路径 | 大小 |
+|--------|----------------|------|
+| CoNLL2003 | `checkpoints/qwen3-8b-conll2003-merged/` | ~16GB |
+| SciERC | `checkpoints/qwen3-8b-scierc-merged-v2/` | ~16GB |
+| FewNERD | `checkpoints/qwen3-8b-fewnerd-5epoch-merged/` | ~16GB |
+
+都是 merged 模型，不需要 `--adapter_path`。
+
+### 3. 可用数据（samples.jsonl）
+
+| 数据集 | 路径 | 实例数 |
+|--------|------|--------|
+| SciERC | `output/scierc_mf4v2_seed42/samples.jsonl` | 551 |
+| CoNLL | `output/conll_mf4v2_seed123/samples.jsonl` | 3,453 |
+| FewNERD | `output/fewnerd_mf4v2_seed42/samples.jsonl` | 37,648 |
+
+每个实例含 N=8 samples + gold + greedy + logprobs，格式完全匹配 `run_esj.py` 的输入要求。
+
+### 4. 预估运行时长
+
+每个实例平均 ~8-12 个 unique entities → 对应 verification prompts：
+- SciERC: ~5K prompts → **~15-30s**
+- CoNLL: ~25K prompts → **~1-2 min**
+- FewNERD: ~300K prompts → **~12-25 min**
+
+单 GPU 总计 **~15-30 分钟**（3 个 job 串行）。如果并行跑 3 张 GPU，**~25 分钟**搞定（由 FewNERD 瓶颈决定）。
+
+### 5. GPU 可用性
+
+autodl-5090: **cuda:0-3 全部空闲**（4× RTX 5090 32GB，0% utilization）。
+
+**推荐**: 3 张 GPU 并行跑 3 个数据集（cuda:0=SciERC, cuda:1=CoNLL, cuda:2=FewNERD）。
+
+### 6. 运行命令草案
+
+```bash
+cd /root/autodl-tmp/struct_self_consist_ie
+
+# SciERC (cuda:0)
+CUDA_VISIBLE_DEVICES=0 python code/run_esj.py \
+  --base_model_path checkpoints/qwen3-8b-scierc-merged-v2 \
+  --data_path output/scierc_mf4v2_seed42/samples.jsonl \
+  --output_dir output/esj_qwen3_scierc_seed42 \
+  --batch_size 32 &
+
+# CoNLL (cuda:1)
+CUDA_VISIBLE_DEVICES=1 python code/run_esj.py \
+  --base_model_path checkpoints/qwen3-8b-conll2003-merged \
+  --data_path output/conll_mf4v2_seed123/samples.jsonl \
+  --output_dir output/esj_qwen3_conll_seed123 \
+  --batch_size 32 &
+
+# FewNERD (cuda:2)
+CUDA_VISIBLE_DEVICES=2 python code/run_esj.py \
+  --base_model_path checkpoints/qwen3-8b-fewnerd-5epoch-merged \
+  --data_path output/fewnerd_mf4v2_seed42/samples.jsonl \
+  --output_dir output/esj_qwen3_fewnerd_seed42 \
+  --batch_size 32 &
+
+wait
+```
+
+`batch_size=32` 可以用（5090 32GB 跑 8B bf16 forward-only 绰绰有余，prompt 很短）。
+
+### 注意事项
+
+- **CoNLL 没有 seed42 的 mf4v2 数据**，最近的是 seed123。如需 seed42 需先跑 inference。
+- 3 个 job 同时加载 3 份 ~16GB 模型到 3 张 GPU，不存在显存冲突。
+- 输出为 `esj_results.json`，包含 construction F1、entity-level AUROC/ρ、sample ranking 等完整指标。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c9503f0c-fafb-4830-833b-3b869dd2e070",
+  "uuid": "f15bf4b7-4399-4746-9d1a-cfb7504d5ee3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QVjPeVt1UfJhraoYqfruQg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3217,
+      "cache_read_input_tokens": 58302,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3217
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 72_
+
+汇报如下。
+
+---
+
+## ESJ Probe on Qwen3-8B 准备工作汇总
+
+### 1. ESJ 代码
+
+**文件**: `/root/autodl-tmp/struct_self_consist_ie/code/run_esj.py` (~530 行)
+
+**机制**: 对 N=8 samples 中每个 unique entity，用 finetuned 模型做 yes/no verification forward pass，取 P(yes) 作为 entity-level confidence。Prompt 模板：
+
+```
+In the following sentence, is "{entity_text}" a {entity_type} entity? Answer only yes or no.
+Sentence: {sentence}
+Answer:
+```
+
+通过 `apply_chat_template(enable_thinking=False)` 格式化，已适配 Qwen3。
+
+**CLI 参数**:
+```
+--base_model_path  (required, 模型路径)
+--adapter_path     (optional, LoRA adapter；merged 模型不需要)
+--data_path        (required, samples.jsonl)
+--output_dir       (required, 输出目录)
+--max_instances    (default=0, 即全量)
+--batch_size       (default=16)
+```
+
+Device 硬编码为 `"cuda"`，通过 `CUDA_VISIBLE_DEVICES` 选 GPU。
+
+**无已有 ESJ 结果**（`esj_results.json` 搜索为空）。
+
+### 2. Qwen3-8B Finetuned 模型（已 merged，可直接加载）
+
+| 数据集 | Merged 模型路径 | 大小 |
+|--------|----------------|------|
+| CoNLL2003 | `checkpoints/qwen3-8b-conll2003-merged/` | ~16GB |
+| SciERC | `checkpoints/qwen3-8b-scierc-merged-v2/` | ~16GB |
+| FewNERD | `checkpoints/qwen3-8b-fewnerd-5epoch-merged/` | ~16GB |
+
+都是 merged 模型，不需要 `--adapter_path`。
+
+### 3. 可用数据（samples.jsonl）
+
+| 数据集 | 路径 | 实例数 |
+|--------|------|--------|
+| SciERC | `output/scierc_mf4v2_seed42/samples.jsonl` | 551 |
+| CoNLL | `output/conll_mf4v2_seed123/samples.jsonl` | 3,453 |
+| FewNERD | `output/fewnerd_mf4v2_seed42/samples.jsonl` | 37,648 |
+
+每个实例含 N=8 samples + gold + greedy + logprobs，格式完全匹配 `run_esj.py` 的输入要求。
+
+### 4. 预估运行时长
+
+每个实例平均 ~8-12 个 unique entities → 对应 verification prompts：
+- SciERC: ~5K prompts → **~15-30s**
+- CoNLL: ~25K prompts → **~1-2 min**
+- FewNERD: ~300K prompts → **~12-25 min**
+
+单 GPU 总计 **~15-30 分钟**（3 个 job 串行）。如果并行跑 3 张 GPU，**~25 分钟**搞定（由 FewNERD 瓶颈决定）。
+
+### 5. GPU 可用性
+
+autodl-5090: **cuda:0-3 全部空闲**（4× RTX 5090 32GB，0% utilization）。
+
+**推荐**: 3 张 GPU 并行跑 3 个数据集（cuda:0=SciERC, cuda:1=CoNLL, cuda:2=FewNERD）。
+
+### 6. 运行命令草案
+
+```bash
+cd /root/autodl-tmp/struct_self_consist_ie
+
+# SciERC (cuda:0)
+CUDA_VISIBLE_DEVICES=0 python code/run_esj.py \
+  --base_model_path checkpoints/qwen3-8b-scierc-merged-v2 \
+  --data_path output/scierc_mf4v2_seed42/samples.jsonl \
+  --output_dir output/esj_qwen3_scierc_seed42 \
+  --batch_size 32 &
+
+# CoNLL (cuda:1)
+CUDA_VISIBLE_DEVICES=1 python code/run_esj.py \
+  --base_model_path checkpoints/qwen3-8b-conll2003-merged \
+  --data_path output/conll_mf4v2_seed123/samples.jsonl \
+  --output_dir output/esj_qwen3_conll_seed123 \
+  --batch_size 32 &
+
+# FewNERD (cuda:2)
+CUDA_VISIBLE_DEVICES=2 python code/run_esj.py \
+  --base_model_path checkpoints/qwen3-8b-fewnerd-5epoch-merged \
+  --data_path output/fewnerd_mf4v2_seed42/samples.jsonl \
+  --output_dir output/esj_qwen3_fewnerd_seed42 \
+  --batch_size 32 &
+
+wait
+```
+
+`batch_size=32` 可以用（5090 32GB 跑 8B bf16 forward-only 绰绰有余，prompt 很短）。
+
+### 注意事项
+
+- **CoNLL 没有 seed42 的 mf4v2 数据**，最近的是 seed123。如需 seed42 需先跑 inference。
+- 3 个 job 同时加载 3 份 ~16GB 模型到 3 张 GPU，不存在显存冲突。
+- 输出为 `esj_results.json`，包含 construction F1、entity-level AUROC/ρ、sample ranking 等完整指标。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 130417,
+  "duration_api_ms": 123473,
+  "num_turns": 27,
+  "stop_reason": "end_turn",
+  "session_id": "c9503f0c-fafb-4830-833b-3b869dd2e070",
+  "total_cost_usd": 0.7140694999999999,
+  "usage": {
+    "input_tokens": 15,
+    "cache_creation_input_tokens": 49678,
+    "cache_read_input_tokens": 454838,
+    "output_tokens": 6979,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 49678,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 2962,
+        "cache_read_input_tokens": 58302,
+        "cache_creation_input_tokens": 3217,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 3217
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1513,
+      "outputTokens": 20,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001613,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 15,
+      "outputTokens": 6979,
+      "cacheReadInputTokens": 454838,
+      "cacheCreationInputTokens": 49678,
+      "webSearchRequests": 0,
+      "costUSD": 0.7124564999999999,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "516dd7f0-5bda-41c9-a4ff-7c1bbab11180"
+}
+```
+
+</details>
+
+---

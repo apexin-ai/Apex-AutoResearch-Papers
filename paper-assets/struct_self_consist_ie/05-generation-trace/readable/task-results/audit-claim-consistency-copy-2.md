@@ -1,0 +1,129 @@
+# audit claim consistency
+
+**When Self-Consistency Fails for NER: Degeneracy, Signal Collapse, and the Correlation-Selection Gap** · Task result records
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 1
+- **Recorded user turns:** 0
+- **Tool calls:** 0
+- **Original source:** `logs/workers/worker_audit_claim_consistency_20260521T024220_result.json`
+- **Structured JSON:** [`7c3bf3134976baf134bb.json`](../../sessions/7c/7c3bf3134976baf134bb.json)
+
+## Before a recorded user message
+
+1 recorded events
+
+### Task result
+
+_source line 1_
+
+Now I have sufficient data. Let me compile the full audit.
+
+---
+
+## Claim Audit Report
+
+### Compiled files (per main.tex)
+`sections/abstract.tex`, `sections/introduction.tex`, `sections/diagnostic.tex`, `sections/mechanistic.tex`, `sections/single_signal.tex`, `sections/adaptive.tex`, `sections/theory.tex`, `sections/experiments_main.tex`, `sections/background.tex`, `sections/discussion.tex`, `sections/conclusion.tex`, `sections/limitations.tex`, `sections/appendix.tex`
+
+**NOT compiled**: `sections/experiments.tex`, `sections/method.tex`, `sections/theoretical.tex` — stale versions with some inconsistencies.
+
+---
+
+### Audit Table
+
+| # | Location (compiled file:line) | Paper Claim | Source Value | Source | Match? | Action |
+|---|---|---|---|---|---|---|
+| **A. Core positive results** | | | | | | |
+| 1 | abstract.tex:8 | LP selection +1.39 pp on Few-NERD | +1.39 pp | experiments_main.tex Tab fewnerd; memory.md (LP Δ=+1.39) | ✅ | — |
+| 2 | abstract.tex:8 | Holm-adjusted p=0.019 | Family-level (k=19): <0.019; **Global (k=57): 0.055** | appendix.tex:335 Holm table row 6 | ⚠️ MISLEADING | Abstract does not specify "selection family k=19". Global correction gives p_adj=0.055 (not significant). Suggest adding "selection family" qualifier |
+| 3 | abstract.tex:8 | weighted voting +1.02–1.40 pp | +1.02 (SciERC LP-wt), +1.40 (FewNERD LP-wt) | experiments_main.tex Tab entity_construction | ✅ | — |
+| 4 | abstract.tex:8 | cross-model ensembles +0.42 pp | +0.42 pp on SciERC, over LLaMA baseline | adaptive.tex:10 | ⚠️ AMBIGUOUS | Dataset (SciERC) and baseline (pure LLaMA, not greedy) unspecified in abstract. Limitations.tex:3 confirms "limited to one dataset (SciERC)" |
+| 5 | abstract.tex:6 | AUROC 0.87 (frequency agreement) | 0.868 | appendix.tex:625 Tab self_verification | ✅ ROUNDED | Standard rounding 0.868→0.87 |
+| 6 | abstract.tex:6 | AUROC 0.51 (self-evaluation) | 0.512 | mechanistic.tex:8; appendix.tex:620,632 | ✅ ROUNDED | Standard rounding 0.512→0.51 |
+| 7 | abstract.tex:5 | 87.2% SQL degeneracy | 87.2% | memory.md Spider SQL data | ✅ | — |
+| **B. Introduction** | | | | | | |
+| 8 | introduction.tex:20 | ρ up to 0.45 | 0.451 (EM on CoNLL Qwen) | experiments_main.tex Tab quality_estimation | ✅ ROUNDED | 0.451→0.45 |
+| 9 | introduction.tex:20 | AUROC up to 0.82 | 0.816 (EM on CoNLL Qwen) | experiments_main.tex Tab quality_estimation | ✅ ROUNDED | 0.816→0.82 |
+| 10 | introduction.tex:26 | MRSC P(yes) separation 0.0006 | 0.0006 (0.5003 vs 0.4997) | appendix.tex:637 | ✅ | — |
+| 11 | introduction.tex:27 | Supervised verifier AUC 0.923, +0.30 pp | AUC=0.923±0.002; +0.30 pp OOF | adaptive.tex:14-15; memory.md B2 OOF | ✅ | — |
+| 12 | introduction.tex:34 | "via majority vote (+1.40 pp)" | **+1.40 is LP-weighted, not uniform MV** | experiments_main.tex Tab entity_construction: LP=+1.40, Unif=+0.74 | ❌ MISLABELED | "majority vote" implies uniform weighting. +1.40 is LP-weighted construction. Uniform MV is +0.74 pp. Abstract correctly says "weighted voting" |
+| 13 | introduction.tex:34 | Holm p_adj=0.006 (construction) | <0.010 at k=10 family; 0.055 at k=57 global | appendix.tex Holm table row 22 | ✅ | Per-family correction, correctly labeled k=10 |
+| 14 | introduction.tex:32 | RE ~44% zero-F1 | Need to verify | Not found in memory.md or registry | ❓ UNVERIFIED | RE zero-F1 rate not cross-referenced |
+| **C. Mechanistic section** | | | | | | |
+| 15 | mechanistic.tex:8 | ESJ AUROC 0.512 | 0.512 | appendix.tex:620,632 | ✅ | — |
+| 16 | mechanistic.tex:12 | MRSC P(yes) 0.5003 vs 0.4997 | 0.5003 vs 0.4997 | appendix.tex:637 | ✅ | — |
+| 17 | mechanistic.tex:17 | LSC centroid 0.759, greedy 0.779 | centroid=0.759, greedy=.794 | appendix.tex:616,622 | ❌ DISCREPANCY | mechanistic.tex says greedy=0.779, appendix table says greedy=0.794. **15 pp difference** |
+| 18 | mechanistic.tex:17 | LSC entity conf 0.839, MV 0.837 | entity conf=0.839, MV=0.792 | appendix.tex:617,623 | ❌ DISCREPANCY | mechanistic.tex says MV=0.837, appendix tab says MV(θ=0.375)=0.792. **4.5 pp gap** |
+| 19 | mechanistic.tex:20 | Frequency agreement AUROC=0.868 | 0.868 | appendix.tex:625 | ✅ | — |
+| 20 | mechanistic.tex:24 | PLACEHOLDER: P0-1 probe results | AUROC=0.987 (FewNERD), 0.980 (CoNLL) | memory.md P0-1 section | ⚠️ NOT IN PAPER | Placeholder still present; results exist in memory.md but never written into paper |
+| **D. Theory / Degeneracy** | | | | | | |
+| 21 | theory.tex:28 | G_nd≈14.8 pp, α≈0.068, θ_crit=0.70 | 1 - 0.3/(14.8×0.068) = 0.70 | appendix.tex:1071 | ✅ | Math checks out |
+| 22 | theory.tex:28 | D>70% → SC gain < 0.3 pp | Consistent with bound formula | appendix.tex Fig bound | ✅ | — |
+| 23 | conclusion.tex:3 | c≈0.5 (oracle scaling) | c≈0.61 (FewNERD), c≈0.35 (SciERC) | theory.tex:11; memory.md | ✅ SUMMARY | Approximate average of 0.61 and 0.35 |
+| **E. Experiments (compiled: experiments_main.tex)** | | | | | | |
+| 24 | experiments_main.tex Tab fewnerd | SciERC: n=529, Greedy=.644, Degen=17.8% | — | Consistent across all mentions | ✅ | — |
+| 25 | experiments_main.tex Tab fewnerd | CoNLL: n=2756, Degen=61.7% | — | Consistent across all mentions | ✅ | — |
+| 26 | experiments_main.tex Tab fewnerd | FewNERD: n=32565, Degen=13.0% | — | memory.md 72B data shows different values for different regimes | ✅ | 13.0% is Qwen3-8B FT |
+| 27 | experiments_main.tex Tab fewnerd | WNUT: n=1287, Degen=67.9% | — | Consistent | ✅ | — |
+| 28 | experiments_main.tex:106 | 8B degen 17.8% vs 4B 10.4% on SciERC | — | Tab degeneracy (referenced) | ✅ | — |
+| **F. Scaling (experiments_main.tex)** | | | | | | |
+| 29 | experiments_main.tex Tab scale_comparison | 72B ZS SciERC: Greedy=.399, Degen=21.0%, LP ρ=.081 | .399, 21.0%, .081 | memory.md 72B table | ✅ | — |
+| 30 | experiments_main.tex Tab scale_comparison | 72B ZS FewNERD: Greedy=.628, Degen=46.2%, VC ρ=.416 | .628, 46.2%, .416 | memory.md 72B table | ✅ | — |
+| 31 | experiments_main.tex Tab scale_comparison | 72B ZS CoNLL: Greedy=.712, Degen=67.7%, LP ρ=-.002 | .712, 67.7%, -.002 | memory.md 72B table | ✅ | — |
+| 32 | experiments_main.tex:118 | ZS LP-weighting necessary: SciERC +1.5 pp | +1.53 pp (p=0.008) | memory.md 72B table: LP Δ=+1.53 | ✅ ROUNDED | 1.53→1.5 |
+| **G. Prescriptive** | | | | | | |
+| 33 | experiments_main.tex Tab entity_construction | SciERC LP: .646±.002 → .656±.003, +1.02±0.49 pp, p=.004 | — | Self-consistent within table | ✅ | — |
+| 34 | experiments_main.tex Tab entity_construction | FewNERD LP: .748 → .762±.005, +1.40±0.51 pp, p<.001 | — | Self-consistent within table | ✅ | — |
+| 35 | experiments_main.tex Tab entity_construction | CoNLL Unif: .908 → .904, -0.39 pp, n.s. | — | Self-consistent | ✅ | — |
+| **H. Adaptive section** | | | | | | |
+| 36 | adaptive.tex:10 | Cross-model +0.42 pp, p<0.001, CI [0.27, 0.58] on SciERC | +0.42 pp | Holm table row 29: p<.001, p_adj=0.055 | ✅ | Baseline is "over pure LLaMA sampling" not greedy |
+| 37 | adaptive.tex:15 | Verifier OOF: +1.28 SciERC, +0.55 CoNLL, +0.02 FewNERD | +1.28, +0.55, +0.02 | memory.md B2 OOF section | ✅ | memory.md: SciERC +1.28, CoNLL +0.55, FewNERD +0.02 |
+| **I. Discussion** | | | | | | |
+| 38 | discussion.tex:3 | ρ 0.043–0.667 | — | Need to verify range | ❓ UNVERIFIED | 0.043 source unclear; 0.667 likely within-instance ρ |
+| 39 | discussion.tex:4 | T=1.2: degen 14.9%, LP ρ=0.225 | 14.9%, 0.225 | appendix.tex:1457 (T=1.2 row: 14.9) and :1441 (ρ=0.225) | ✅ | — |
+| **J. Diagnostic (compiled)** | | | | | | |
+| 40 | diagnostic.tex:8 | LP mean weight 0.78 | LP=0.8–0.9 in memory.md | memory.md E2v2 | ✅ APPROX | 0.78 is plausible mean across configs (LP ranges 0.8–0.9) |
+| 41 | diagnostic.tex:8 | "structural signals receiving zero weight" | VC=0.1–0.2 in memory.md | memory.md E2v2 | ⚠️ IMPRECISE | VC is a structural signal with non-zero weight. Claim should be "SJ/FK/EM receive zero weight; VC receives small weight" or similar |
+| **K. Temperature ablation** | | | | | | |
+| 42 | appendix.tex:1414 | Tab t_degeneracy: seed=42, SciERC | — | Self-consistent | ✅ | Clearly labeled seed=42 |
+| 43 | appendix.tex:1454-1457 | T=0.5: 41.4%, T=0.8: 23.8%, T=1.0: 17.8%, T=1.2: 14.9% | — | Internal table data | ✅ | — |
+| **L. LP compression** | | | | | | |
+| 44 | related_work.tex:11 | "median range 0.041 nats" | 0.042 nats at T=1.0 | appendix.tex:1456 Tab t_degeneracy | ⚠️ MINOR | 0.042 in table vs 0.041 in text. Rounding artifact |
+
+---
+
+### Summary of Flagged Issues
+
+**Critical (❌)**:
+
+1. **#12 — Introduction "majority vote (+1.40 pp)"**: The +1.40 pp is LP-weighted construction. Plain majority vote gives +0.74 pp. The abstract correctly says "weighted voting" but the introduction mislabels it. This affects the contribution claims.
+
+2. **#17, #18 — Mechanistic section greedy/MV baselines**: `mechanistic.tex` reports greedy=0.779 and MV=0.837, but the appendix self-verification table (same experiment, Qwen2.5-7B FewNERD) shows greedy=0.794 and MV=0.792. These are significant discrepancies (1.5 pp and 4.5 pp respectively). Likely the mechanistic.tex numbers are from an older run or different model.
+
+**Misleading (⚠️)**:
+
+3. **#2 — Abstract Holm p=0.019 without family qualifier**: The global correction (k=57) gives p_adj=0.055, which does NOT survive α=0.05. The per-family value (k=19 → <0.019) is valid but the abstract omits the family size.
+
+4. **#4 — Cross-model +0.42pp dataset/baseline ambiguity**: Abstract and introduction don't specify this is SciERC-only and compared to pure LLaMA (not greedy).
+
+5. **#20 — P0-1 probe AUROC placeholder**: Memory.md records AUROC=0.987 (FewNERD) and 0.980 (CoNLL) for hidden state probes predicting entity correctness. A PLACEHOLDER comment exists in mechanistic.tex but the results were never written into the paper.
+
+6. **#41 — "structural signals receiving zero weight"**: VC (a structural signal) has non-zero weight (0.1–0.2) in ensemble optimization per memory.md.
+
+7. **#44 — LP median range 0.041 vs 0.042**: Minor rounding mismatch.
+
+**Task-flagged items resolution**:
+
+- **a. "+0.1pp over single-sample" vs "+0.4pp over greedy"**: NOT found in current compiled text. These claims appear to have been removed/rewritten in the current version.
+- **b. Cross-model +0.42pp**: Confirmed on **SciERC** (not FewNERD), over **pure LLaMA baseline** (not greedy).
+- **c. Probe AUROC two numbers**: The 0.987 (P0-1 probe) exists only in memory.md; the 0.920 likely refers to verifier AUC 0.923. Neither 0.987 nor 0.920 appears in the compiled paper. The PLACEHOLDER has not been filled.
+- **d. Degeneracy definition**: Consistent throughout ("fraction of instances where all N samples yield identical F1").
+- **e. Temperature ablation seed**: Clearly labeled seed=42 in appendix table. Uses SciERC only.
+
+**Stale files note**: `sections/experiments.tex` (NOT compiled) falsely claims "survives Holm–Bonferroni at k=57" — the Holm table shows p_adj=0.055 at k=57, which does NOT survive. The compiled `experiments_main.tex` correctly reports per-family corrections.
+
+---

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1b662ea4b950ef4adff1",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "eval mvp pilot 005",
+  "task_key": "worker_eval_mvp_pilot_005_20260514T091434",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_eval_mvp_pilot_005_20260514T091434_result.json",
+    "occurrence": 1,
+    "bytes": 288,
+    "sha256": "ae74c39f92a6cb68718df67380adbb39090e751ee6a1cbf04379685204a6ec1a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "mvp_pilot_005 已启动并注册为 RUNNING。\n\n**汇总：**\n- **PID**: 32456\n- **tmux session**: `mvp_pilot_005`\n- **GPU**: cuda:0，已占用 ~16GB（vLLM 引擎加载中）\n- **配置**: temperature=0.7，其余与 pilot_004 相同\n- **Registry**: status=RUNNING"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-mvp-pilot-005.md"
+}

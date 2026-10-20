@@ -1,0 +1,1784 @@
+# analysis sj threshold check
+
+**When Self-Consistency Fails for NER: Degeneracy, Signal Collapse, and the Correlation-Selection Gap** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 37
+- **Recorded user turns:** 0
+- **Tool calls:** 12
+- **Original source:** `logs/workers/worker_analysis_sj_threshold_check_20260515T032543.log`
+- **Structured JSON:** [`9da3fa8e4eff2cb533c7.json`](../../sessions/9d/9da3fa8e4eff2cb533c7.json)
+
+## Before a recorded user message
+
+37 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "session_id": "9f8979b6-eac1-4bda-9573-d114ffc3d36e",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "d83cc523-aa2b-431c-8ed1-27bcf9b2f181",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1778832600,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "9d64f10e-4682-45c2-bbef-a13fadeea448",
+  "session_id": "9f8979b6-eac1-4bda-9573-d114ffc3d36e"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by reading the consistency.py code on the server, then write and run the analysis script.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9f8979b6-eac1-4bda-9573-d114ffc3d36e",
+  "uuid": "b6b59102-d552-4c52-86ee-a38b2e2e1b4f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CM5JWsreteCKC2djzEEA3N",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11720,
+      "cache_read_input_tokens": 11701,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11720
+      },
+      "output_tokens": 25,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01Wbs9JLa73Rq1SifTsEh5sq`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+  "max_results": 3
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9f8979b6-eac1-4bda-9573-d114ffc3d36e",
+  "uuid": "f8bcc735-1339-4d63-bbd9-34e4d15929fc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CM5JWsreteCKC2djzEEA3N",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11720,
+      "cache_read_input_tokens": 11701,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11720
+      },
+      "output_tokens": 25,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-15T03:25:56.772Z_
+
+<details><summary>↩ Tool result · `toolu_01Wbs9JLa73Rq1SifTsEh5sq`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__detect_image"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9f8979b6-eac1-4bda-9573-d114ffc3d36e",
+  "uuid": "9d0cfdd3-48fd-48a9-b93c-f4c9551679dd",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__detect_image"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7_
+
+先读取 consistency.py 代码。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9f8979b6-eac1-4bda-9573-d114ffc3d36e",
+  "uuid": "eefd9e95-70a7-4559-8a4f-2bc095c10348",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HyEUcSarwizzKaSXQe1aqG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 909,
+      "cache_read_input_tokens": 23421,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 909
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01YaqoUBS7iAywWryX3hCTdW`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/code/consistency.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9f8979b6-eac1-4bda-9573-d114ffc3d36e",
+  "uuid": "16c94054-4925-4965-ac34-56067963f562",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HyEUcSarwizzKaSXQe1aqG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 909,
+      "cache_read_input_tokens": 23421,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 909
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-15T03:26:00.775Z_
+
+<details><summary>↩ Tool result · `toolu_01YaqoUBS7iAywWryX3hCTdW`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Consistency metrics for structured information extraction with self-consistency.\\n\\nImplements three complementary consistency measures over N sampled extractions:\\n1. Fleiss' Kappa (surface matching) — treats N samples as N raters on entity presence\\n2. Structural soft Jaccard — span-level soft overlap with Hungarian matching\\n3. Oracle best-of-N — upper-bound F1 by selecting the best sample per instance\\n\\nKey dependencies: numpy, scipy (linear_sum_assignment).\\n\\\"\\\"\\\"\\n\\nfrom __future__ import annotations\\n\\nfrom itertools import combinations\\nfrom typing import TYPE_CHECKING\\n\\nimport numpy as np\\nfrom scipy.optimize import linear_sum_assignment\\n\\nif TYPE_CHECKING:\\n    pass\\n\\n# ---------------------------------------------------------------------------\\n# Type aliases (mirrors shared data format)\\n# ---------------------------------------------------------------------------\\nEntity = dict       # {\\\"text\\\", \\\"type\\\", \\\"start\\\", \\\"end\\\"}\\nRelation = dict     # {\\\"head\\\", \\\"tail\\\", \\\"type\\\", ...}\\nEvent = dict        # {\\\"trigger\\\": {...}, \\\"arguments\\\": [...]}\\nExtraction = dict   # {\\\"entities\\\", \\\"relations\\\", \\\"events\\\"}\\n\\n\\n# ===================================================================\\n# 1. Fleiss' Kappa — surface-level entity agreement\\n# ===================================================================\\n\\ndef _extract_surface_keys(sample: Extraction, subtask: str) -> set[tuple]:\\n    \\\"\\\"\\\"Extract surface-level keys from a sample for Fleiss' Kappa computation.\\\"\\\"\\\"\\n    if subtask == \\\"ner\\\":\\n        return {(e[\\\"text\\\"], e[\\\"type\\\"]) for e in sample.get(\\\"entities\\\", [])}\\n    elif subtask == \\\"re\\\":\\n        return {(r[\\\"head\\\"], r[\\\"tail\\\"], r[\\\"type\\\"]) for r in sample.get(\\\"relations\\\", [])}\\n    elif subtask == \\\"eae\\\":\\n        keys: set[tuple] = set()\\n        for ev in sample.get(\\\"events\\\", []):\\n            t = ev.get(\\\"trigger\\\", {})\\n            for arg in ev.get(\\\"arguments\\\", []):\\n                keys.add((t.get(\\\"text\\\", \\\"\\\"), t.get(\\\"type\\\", \\\"\\\"), arg[\\\"role\\\"], arg[\\\"text\\\"]))\\n        return keys\\n    else:\\n        raise ValueError(f\\\"Unknown subtask: {subtask}\\\")\\n\\n\\ndef fleiss_kappa_surface(samples: list[Extraction], subtask: str = \\\"ner\\\") -> float:\\n    \\\"\\\"\\\"Compute Fleiss' kappa treating N LLM samples as N raters on item presence.\\n\\n    Items are subtask-dependent surface keys:\\n    - ner: (entity_text, entity_type)\\n    - re: (head_text, tail_text, relation_type)\\n    - eae: (trigger_text, trigger_type, role, argument_text)\\n\\n    Args:\\n        samples: List of N extraction dicts.\\n        subtask: \\\"ner\\\", \\\"re\\\", or \\\"eae\\\".\\n\\n    Returns:\\n        Fleiss' kappa in [-1, 1].  Returns 1.0 for degenerate cases (<=1 unique\\n        item, perfect agreement, or undefined P_e).\\n    \\\"\\\"\\\"\\n    n_raters = len(samples)\\n    if n_raters <= 1:\\n        return 1.0\\n\\n    # Collect unique keys and per-sample presence sets\\n    entity_sets: list[set[tuple]] = []\\n    all_keys: set[tuple] = set()\\n    for sample in samples:\\n        keys = _extract_surface_keys(sample, subtask)\\n        entity_sets.append(keys)\\n        all_keys |= keys\\n\\n    n_subjects = len(all_keys)\\n    if n_subjects <= 0:\\n        # All samples extracted nothing — perfect agreement on empty set\\n        return 1.0\\n\\n    key_list = sorted(all_keys)\\n\\n    # Build rating matrix: n_subjects x 2 (categories: absent=0, present=1)\\n    # n_ij = number of raters assigning subject i to category j\\n    rating = np.zeros((n_subjects, 2), dtype=np.int64)\\n    for es in entity_sets:\\n        for idx, key in enumerate(key_list):\\n            if key in es:\\n                rating[idx, 1] += 1\\n            else:\\n                rating[idx, 0] += 1\\n\\n    n = n_raters\\n    k = 2  # number of categories\\n\\n    # Check perfect agreement: every subject has all votes in one category\\n    if np.all(np.max(rating, axis=1) == n):\\n        return 1.0\\n\\n    # P_i for each subject\\n    P_i = (np.sum(rating ** 2, axis=1) - n) / (n * (n - 1))\\n    P_bar = np.mean(P_i)\\n\\n    # P_e — expected agreement by chance\\n    p_j = np.sum(rating, axis=0) / (n_subjects * n)\\n    P_e = np.sum(p_j ** 2)\\n\\n    if abs(1.0 - P_e) < 1e-12:\\n\\n... [截断: 输出过长，省略 5252 字符] ...\\n\\nn enumerate(ga):\\n            for j, ab in enumerate(gb):\\n                cost[i, j] = _span_soft_jaccard(aa[\\\"start\\\"], aa[\\\"end\\\"],\\n                                                 ab[\\\"start\\\"], ab[\\\"end\\\"])\\n\\n        row_ind, col_ind = linear_sum_assignment(-cost)\\n        matched_sim = cost[row_ind, col_ind].sum()\\n        total_score += matched_sim\\n\\n    if total_weight == 0:\\n        return 1.0\\n    return total_score / total_weight\\n\\n\\ndef structural_consistency_soft_jaccard(\\n    samples: list[Extraction],\\n    subtask: str = \\\"ner\\\",\\n) -> float:\\n    \\\"\\\"\\\"Span-level soft Jaccard consistency averaged over all sample pairs.\\n\\n    For each pair (i, j) with i < j, computes a type-aware soft Jaccard using\\n    Hungarian matching on span overlaps, then returns the mean.\\n\\n    Args:\\n        samples: N extraction dicts.\\n        subtask: \\\"ner\\\" for entity consistency, \\\"eae\\\" for event-argument consistency.\\n\\n    Returns:\\n        Mean pairwise soft Jaccard in [0, 1].\\n    \\\"\\\"\\\"\\n    n = len(samples)\\n    if n <= 1:\\n        return 1.0\\n\\n    if subtask == \\\"ner\\\":\\n        pair_fn = _ner_soft_jaccard_pair\\n    elif subtask == \\\"re\\\":\\n        pair_fn = _re_soft_jaccard_pair\\n    else:\\n        pair_fn = _eae_soft_jaccard_pair\\n\\n    field = {\\\"ner\\\": \\\"entities\\\", \\\"re\\\": \\\"relations\\\", \\\"eae\\\": \\\"events\\\"}[subtask]\\n\\n    scores: list[float] = []\\n    for i, j in combinations(range(n), 2):\\n        score = pair_fn(\\n            samples[i].get(field, []),\\n            samples[j].get(field, []),\\n        )\\n        scores.append(score)\\n\\n    return float(np.mean(scores))\\n\\n\\n# ===================================================================\\n# 3. Oracle best-of-N\\n# ===================================================================\\n\\ndef oracle_best_of_n(\\n    samples: list[Extraction],\\n    gold: Extraction,\\n    subtask: str = \\\"ner\\\",\\n) -> tuple[int, float]:\\n    \\\"\\\"\\\"Select the sample with the highest F1 against the gold extraction.\\n\\n    Args:\\n        samples: N extraction dicts.\\n        gold: Gold-standard extraction.\\n        subtask: Passed through to per_instance_f1.\\n\\n    Returns:\\n        (best_index, best_f1). Returns (-1, 0.0) if samples is empty.\\n    \\\"\\\"\\\"\\n    if not samples:\\n        return (-1, 0.0)\\n\\n    # Lazy import to avoid circular dependency with evaluation.py\\n    from evaluation import per_instance_f1\\n\\n    best_idx = -1\\n    best_f1 = -1.0\\n\\n    for idx, sample in enumerate(samples):\\n        f1 = per_instance_f1(sample, gold, subtask=subtask)\\n        if f1 > best_f1:\\n            best_f1 = f1\\n            best_idx = idx\\n\\n    return (best_idx, best_f1)\\n\\n\\n# ===================================================================\\n# Aggregate helper\\n# ===================================================================\\n\\ndef compute_all_consistency_scores(\\n    sampled_instances: list[dict],\\n    subtask: str = \\\"ner\\\",\\n) -> dict:\\n    \\\"\\\"\\\"Compute all consistency metrics for a list of sampled instances.\\n\\n    Args:\\n        sampled_instances: List of SampledInstance dicts, each with keys\\n            \\\"id\\\", \\\"text\\\", \\\"gold\\\" (Extraction), \\\"samples\\\" (list[Extraction]).\\n        subtask: \\\"ner\\\", \\\"re\\\", or \\\"eae\\\".\\n\\n    Returns:\\n        Dict with per-instance score lists::\\n\\n            {\\n                \\\"fleiss_kappa\\\": [float, ...],\\n                \\\"soft_jaccard\\\": [float, ...],\\n                \\\"oracle_f1\\\":    [float, ...],\\n                \\\"oracle_indices\\\": [int, ...],\\n            }\\n    \\\"\\\"\\\"\\n    result: dict[str, list] = {\\n        \\\"fleiss_kappa\\\": [],\\n        \\\"soft_jaccard\\\": [],\\n        \\\"oracle_f1\\\": [],\\n        \\\"oracle_indices\\\": [],\\n    }\\n\\n    for inst in sampled_instances:\\n        samples = inst[\\\"samples\\\"]\\n        gold = inst[\\\"gold\\\"]\\n\\n        result[\\\"fleiss_kappa\\\"].append(fleiss_kappa_surface(samples, subtask=subtask))\\n        result[\\\"soft_jaccard\\\"].append(\\n            structural_consistency_soft_jaccard(samples, subtask=subtask)\\n        )\\n\\n        best_idx, best_f1 = oracle_best_of_n(samples, gold, subtask=subtask)\\n        result[\\\"oracle_f1\\\"].append(best_f1)\\n        result[\\\"oracle_indices\\\"].append(best_idx)\\n\\n    return result\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.07}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9f8979b6-eac1-4bda-9573-d114ffc3d36e",
+  "uuid": "211c42f0-c0eb-43f7-90a0-5d8a7ad16c8d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Consistency metrics for structured information extraction with self-consistency.\\\\n\\\\nImplements three complementary consistency measures over N sampled extractions:\\\\n1. Fleiss' Kappa (surface matching) — treats N samples as N raters on entity presence\\\\n2. Structural soft Jaccard — span-level soft overlap with Hungarian matching\\\\n3. Oracle best-of-N — upper-bound F1 by selecting the best sample per instance\\\\n\\\\nKey dependencies: numpy, scipy (linear_sum_assignment).\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nfrom __future__ import annotations\\\\n\\\\nfrom itertools import combinations\\\\nfrom typing import TYPE_CHECKING\\\\n\\\\nimport numpy as np\\\\nfrom scipy.optimize import linear_sum_assignment\\\\n\\\\nif TYPE_CHECKING:\\\\n    pass\\\\n\\\\n# ---------------------------------------------------------------------------\\\\n# Type aliases (mirrors shared data format)\\\\n# ---------------------------------------------------------------------------\\\\nEntity = dict       # {\\\\\\\"text\\\\\\\", \\\\\\\"type\\\\\\\", \\\\\\\"start\\\\\\\", \\\\\\\"end\\\\\\\"}\\\\nRelation = dict     # {\\\\\\\"head\\\\\\\", \\\\\\\"tail\\\\\\\", \\\\\\\"type\\\\\\\", ...}\\\\nEvent = dict        # {\\\\\\\"trigger\\\\\\\": {...}, \\\\\\\"arguments\\\\\\\": [...]}\\\\nExtraction = dict   # {\\\\\\\"entities\\\\\\\", \\\\\\\"relations\\\\\\\", \\\\\\\"events\\\\\\\"}\\\\n\\\\n\\\\n# ===================================================================\\\\n# 1. Fleiss' Kappa — surface-level entity agreement\\\\n# ===================================================================\\\\n\\\\ndef _extract_surface_keys(sample: Extraction, subtask: str) -> set[tuple]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Extract surface-level keys from a sample for Fleiss' Kappa computation.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    if subtask == \\\\\\\"ner\\\\\\\":\\\\n        return {(e[\\\\\\\"text\\\\\\\"], e[\\\\\\\"type\\\\\\\"]) for e in sample.get(\\\\\\\"entities\\\\\\\", [])}\\\\n    elif subtask == \\\\\\\"re\\\\\\\":\\\\n        return {(r[\\\\\\\"head\\\\\\\"], r[\\\\\\\"tail\\\\\\\"], r[\\\\\\\"type\\\\\\\"]) for r in sample.get(\\\\\\\"relations\\\\\\\", [])}\\\\n    elif subtask == \\\\\\\"eae\\\\\\\":\\\\n        keys: set[tuple] = set()\\\\n        for ev in sample.get(\\\\\\\"events\\\\\\\", []):\\\\n            t = ev.get(\\\\\\\"trigger\\\\\\\", {})\\\\n            for arg in ev.get(\\\\\\\"arguments\\\\\\\", []):\\\\n                keys.add((t.get(\\\\\\\"text\\\\\\\", \\\\\\\"\\\\\\\"), t.get(\\\\\\\"type\\\\\\\", \\\\\\\"\\\\\\\"), arg[\\\\\\\"role\\\\\\\"], arg[\\\\\\\"text\\\\\\\"]))\\\\n        return keys\\\\n    else:\\\\n        raise ValueError(f\\\\\\\"Unknown subtask: {subtask}\\\\\\\")\\\\n\\\\n\\\\ndef fleiss_kappa_surface(samples: list[Extraction], subtask: str = \\\\\\\"ner\\\\\\\") -> float:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Compute Fleiss' kappa treating N LLM samples as N raters on item presence.\\\\n\\\\n    Items are subtask-dependent surface keys:\\\\n    - ner: (entity_text, entity_type)\\\\n    - re: (head_text, tail_text, relation_type)\\\\n    - eae: (trigger_text, trigger_type, role, argument_text)\\\\n\\\\n    Args:\\\\n        samples: List of N extraction dicts.\\\\n        subtask: \\\\\\\"ner\\\\\\\", \\\\\\\"re\\\\\\\", or \\\\\\\"eae\\\\\\\".\\\\n\\\\n    Returns:\\\\n        Fleiss' kappa in [-1, 1].  Returns 1.0 for degenerate cases (<=1 unique\\\\n        item, perfect agreement, or undefined P_e).\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    n_raters = len(samples)\\\\n    if n_raters <= 1:\\\\n        return 1.0\\\\n\\\\n    # Collect unique keys and per-sample presence sets\\\\n    entity_sets: list[set[tuple]] = []\\\\n    all_keys: set[tuple] = set()\\\\n    for sample in samples:\\\\n        keys = _extract_surface_keys(sample, subtask)\\\\n        entity_sets.append(keys)\\\\n        all_keys |= keys\\\\n\\\\n    n_subjects = len(all_keys)\\\\n    if n_subjects <= 0:\\\\n        # All samples extracted nothing — perfect agreement on empty set\\\\n        return 1.0\\\\n\\\\n    key_list = sorted(all_keys)\\\\n\\\\n    # Build rating matrix: n_subjects x 2 (categories: absent=0, present=1)\\\\n    # n_ij = number of raters assigning subject i to category j\\\\n    rating = np.zeros((n_subjects, 2), dtype=np.int64)\\\\n    for es in entity_sets:\\\\n        for idx, key in enumerate(key_list):\\\\n            if key in es:\\\\n                rating[idx, 1] += 1\\\\n            else:\\\\n                rating[idx, 0] += 1\\\\n\\\\n    n = n_raters\\\\n    k = 2  # number of categories\\\\n\\\\n    # Check perfect agreement: every subject has all votes in one category\\\\n    if np.all(np.max(rating, axis=1) == n):\\\\n        return 1.0\\\\n\\\\n    # P_i for each subject\\\\n    P_i = (np.sum(rating ** 2, axis=1) - n) / (n * (n - 1))\\\\n    P_bar = np.mean(P_i)\\\\n\\\\n    # P_e — expected agreement by chance\\\\n    p_j = np.sum(rating, axis=0) / (n_subjects * n)\\\\n    P_e = np.sum(p_j ** 2)\\\\n\\\\n    if abs(1.0 - P_e) < 1e-12:\\\\n\\\\n... [截断: 输出过长，省略 5252 字符] ...\\\\n\\\\nn enumerate(ga):\\\\n            for j, ab in enumerate(gb):\\\\n                cost[i, j] = _span_soft_jaccard(aa[\\\\\\\"start\\\\\\\"], aa[\\\\\\\"end\\\\\\\"],\\\\n                                                 ab[\\\\\\\"start\\\\\\\"], ab[\\\\\\\"end\\\\\\\"])\\\\n\\\\n        row_ind, col_ind = linear_sum_assignment(-cost)\\\\n        matched_sim = cost[row_ind, col_ind].sum()\\\\n        total_score += matched_sim\\\\n\\\\n    if total_weight == 0:\\\\n        return 1.0\\\\n    return total_score / total_weight\\\\n\\\\n\\\\ndef structural_consistency_soft_jaccard(\\\\n    samples: list[Extraction],\\\\n    subtask: str = \\\\\\\"ner\\\\\\\",\\\\n) -> float:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Span-level soft Jaccard consistency averaged over all sample pairs.\\\\n\\\\n    For each pair (i, j) with i < j, computes a type-aware soft Jaccard using\\\\n    Hungarian matching on span overlaps, then returns the mean.\\\\n\\\\n    Args:\\\\n        samples: N extraction dicts.\\\\n        subtask: \\\\\\\"ner\\\\\\\" for entity consistency, \\\\\\\"eae\\\\\\\" for event-argument consistency.\\\\n\\\\n    Returns:\\\\n        Mean pairwise soft Jaccard in [0, 1].\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    n = len(samples)\\\\n    if n <= 1:\\\\n        return 1.0\\\\n\\\\n    if subtask == \\\\\\\"ner\\\\\\\":\\\\n        pair_fn = _ner_soft_jaccard_pair\\\\n    elif subtask == \\\\\\\"re\\\\\\\":\\\\n        pair_fn = _re_soft_jaccard_pair\\\\n    else:\\\\n        pair_fn = _eae_soft_jaccard_pair\\\\n\\\\n    field = {\\\\\\\"ner\\\\\\\": \\\\\\\"entities\\\\\\\", \\\\\\\"re\\\\\\\": \\\\\\\"relations\\\\\\\", \\\\\\\"eae\\\\\\\": \\\\\\\"events\\\\\\\"}[subtask]\\\\n\\\\n    scores: list[float] = []\\\\n    for i, j in combinations(range(n), 2):\\\\n        score = pair_fn(\\\\n            samples[i].get(field, []),\\\\n            samples[j].get(field, []),\\\\n        )\\\\n        scores.append(score)\\\\n\\\\n    return float(np.mean(scores))\\\\n\\\\n\\\\n# ===================================================================\\\\n# 3. Oracle best-of-N\\\\n# ===================================================================\\\\n\\\\ndef oracle_best_of_n(\\\\n    samples: list[Extraction],\\\\n    gold: Extraction,\\\\n    subtask: str = \\\\\\\"ner\\\\\\\",\\\\n) -> tuple[int, float]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Select the sample with the highest F1 against the gold extraction.\\\\n\\\\n    Args:\\\\n        samples: N extraction dicts.\\\\n        gold: Gold-standard extraction.\\\\n        subtask: Passed through to per_instance_f1.\\\\n\\\\n    Returns:\\\\n        (best_index, best_f1). Returns (-1, 0.0) if samples is empty.\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    if not samples:\\\\n        return (-1, 0.0)\\\\n\\\\n    # Lazy import to avoid circular dependency with evaluation.py\\\\n    from evaluation import per_instance_f1\\\\n\\\\n    best_idx = -1\\\\n    best_f1 = -1.0\\\\n\\\\n    for idx, sample in enumerate(samples):\\\\n        f1 = per_instance_f1(sample, gold, subtask=subtask)\\\\n        if f1 > best_f1:\\\\n            best_f1 = f1\\\\n            best_idx = idx\\\\n\\\\n    return (best_idx, best_f1)\\\\n\\\\n\\\\n# ===================================================================\\\\n# Aggregate helper\\\\n# ===================================================================\\\\n\\\\ndef compute_all_consistency_scores(\\\\n    sampled_instances: list[dict],\\\\n    subtask: str = \\\\\\\"ner\\\\\\\",\\\\n) -> dict:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Compute all consistency metrics for a list of sampled instances.\\\\n\\\\n    Args:\\\\n        sampled_instances: List of SampledInstance dicts, each with keys\\\\n            \\\\\\\"id\\\\\\\", \\\\\\\"text\\\\\\\", \\\\\\\"gold\\\\\\\" (Extraction), \\\\\\\"samples\\\\\\\" (list[Extraction]).\\\\n        subtask: \\\\\\\"ner\\\\\\\", \\\\\\\"re\\\\\\\", or \\\\\\\"eae\\\\\\\".\\\\n\\\\n    Returns:\\\\n        Dict with per-instance score lists::\\\\n\\\\n            {\\\\n                \\\\\\\"fleiss_kappa\\\\\\\": [float, ...],\\\\n                \\\\\\\"soft_jaccard\\\\\\\": [float, ...],\\\\n                \\\\\\\"oracle_f1\\\\\\\":    [float, ...],\\\\n                \\\\\\\"oracle_indices\\\\\\\": [int, ...],\\\\n            }\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    result: dict[str, list] = {\\\\n        \\\\\\\"fleiss_kappa\\\\\\\": [],\\\\n        \\\\\\\"soft_jaccard\\\\\\\": [],\\\\n        \\\\\\\"oracle_f1\\\\\\\": [],\\\\n        \\\\\\\"oracle_indices\\\\\\\": [],\\\\n    }\\\\n\\\\n    for inst in sampled_instances:\\\\n        samples = inst[\\\\\\\"samples\\\\\\\"]\\\\n        gold = inst[\\\\\\\"gold\\\\\\\"]\\\\n\\\\n        result[\\\\\\\"fleiss_kappa\\\\\\\"].append(fleiss_kappa_surface(samples, subtask=subtask))\\\\n        result[\\\\\\\"soft_jaccard\\\\\\\"].append(\\\\n            structural_consistency_soft_jaccard(samples, subtask=subtask)\\\\n        )\\\\n\\\\n        best_idx, best_f1 = oracle_best_of_n(samples, gold, subtask=subtask)\\\\n        result[\\\\\\\"oracle_f1\\\\\\\"].append(best_f1)\\\\n        result[\\\\\\\"oracle_indices\\\\\\\"].append(best_idx)\\\\n\\\\n    return result\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.07}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Consistency metrics for structured information extraction with self-consistency.\\n\\nImplements three complementary consistency measures over N sampled extractions:\\n1. Fleiss' Kappa (surface matching) — treats N samples as N raters on entity presence\\n2. Structural soft Jaccard — span-level soft overlap with Hungarian matching\\n3. Oracle best-of-N — upper-bound F1 by selecting the best sample per instance\\n\\nKey dependencies: numpy, scipy (linear_sum_assignment).\\n\\\"\\\"\\\"\\n\\nfrom __future__ import annotations\\n\\nfrom itertools import combinations\\nfrom typing import TYPE_CHECKING\\n\\nimport numpy as np\\nfrom scipy.optimize import linear_sum_assignment\\n\\nif TYPE_CHECKING:\\n    pass\\n\\n# ---------------------------------------------------------------------------\\n# Type aliases (mirrors shared data format)\\n# ---------------------------------------------------------------------------\\nEntity = dict       # {\\\"text\\\", \\\"type\\\", \\\"start\\\", \\\"end\\\"}\\nRelation = dict     # {\\\"head\\\", \\\"tail\\\", \\\"type\\\", ...}\\nEvent = dict        # {\\\"trigger\\\": {...}, \\\"arguments\\\": [...]}\\nExtraction = dict   # {\\\"entities\\\", \\\"relations\\\", \\\"events\\\"}\\n\\n\\n# ===================================================================\\n# 1. Fleiss' Kappa — surface-level entity agreement\\n# ===================================================================\\n\\ndef _extract_surface_keys(sample: Extraction, subtask: str) -> set[tuple]:\\n    \\\"\\\"\\\"Extract surface-level keys from a sample for Fleiss' Kappa computation.\\\"\\\"\\\"\\n    if subtask == \\\"ner\\\":\\n        return {(e[\\\"text\\\"], e[\\\"type\\\"]) for e in sample.get(\\\"entities\\\", [])}\\n    elif subtask == \\\"re\\\":\\n        return {(r[\\\"head\\\"], r[\\\"tail\\\"], r[\\\"type\\\"]) for r in sample.get(\\\"relations\\\", [])}\\n    elif subtask == \\\"eae\\\":\\n        keys: set[tuple] = set()\\n        for ev in sample.get(\\\"events\\\", []):\\n            t = ev.get(\\\"trigger\\\", {})\\n            for arg in ev.get(\\\"arguments\\\", []):\\n                keys.add((t.get(\\\"text\\\", \\\"\\\"), t.get(\\\"type\\\", \\\"\\\"), arg[\\\"role\\\"], arg[\\\"text\\\"]))\\n        return keys\\n    else:\\n        raise ValueError(f\\\"Unknown subtask: {subtask}\\\")\\n\\n\\ndef fleiss_kappa_surface(samples: list[Extraction], subtask: str = \\\"ner\\\") -> float:\\n    \\\"\\\"\\\"Compute Fleiss' kappa treating N LLM samples as N raters on item presence.\\n\\n    Items are subtask-dependent surface keys:\\n    - ner: (entity_text, entity_type)\\n    - re: (head_text, tail_text, relation_type)\\n    - eae: (trigger_text, trigger_type, role, argument_text)\\n\\n    Args:\\n        samples: List of N extraction dicts.\\n        subtask: \\\"ner\\\", \\\"re\\\", or \\\"eae\\\".\\n\\n    Returns:\\n        Fleiss' kappa in [-1, 1].  Returns 1.0 for degenerate cases (<=1 unique\\n        item, perfect agreement, or undefined P_e).\\n    \\\"\\\"\\\"\\n    n_raters = len(samples)\\n    if n_raters <= 1:\\n        return 1.0\\n\\n    # Collect unique keys and per-sample presence sets\\n    entity_sets: list[set[tuple]] = []\\n    all_keys: set[tuple] = set()\\n    for sample in samples:\\n        keys = _extract_surface_keys(sample, subtask)\\n        entity_sets.append(keys)\\n        all_keys |= keys\\n\\n    n_subjects = len(all_keys)\\n    if n_subjects <= 0:\\n        # All samples extracted nothing — perfect agreement on empty set\\n        return 1.0\\n\\n    key_list = sorted(all_keys)\\n\\n    # Build rating matrix: n_subjects x 2 (categories: absent=0, present=1)\\n    # n_ij = number of raters assigning subject i to category j\\n    rating = np.zeros((n_subjects, 2), dtype=np.int64)\\n    for es in entity_sets:\\n        for idx, key in enumerate(key_list):\\n            if key in es:\\n                rating[idx, 1] += 1\\n            else:\\n                rating[idx, 0] += 1\\n\\n    n = n_raters\\n    k = 2  # number of categories\\n\\n    # Check perfect agreement: every subject has all votes in one category\\n    if np.all(np.max(rating, axis=1) == n):\\n        return 1.0\\n\\n    # P_i for each subject\\n    P_i = (np.sum(rating ** 2, axis=1) - n) / (n * (n - 1))\\n    P_bar = np.mean(P_i)\\n\\n    # P_e — expected agreement by chance\\n    p_j = np.sum(rating, axis=0) / (n_subjects * n)\\n    P_e = np.sum(p_j ** 2)\\n\\n    if abs(1.0 - P_e) < 1e-12:\\n\\n... [截断: 输出过长，省略 5252 字符] ...\\n\\nn enumerate(ga):\\n            for j, ab in enumerate(gb):\\n                cost[i, j] = _span_soft_jaccard(aa[\\\"start\\\"], aa[\\\"end\\\"],\\n                                                 ab[\\\"start\\\"], ab[\\\"end\\\"])\\n\\n        row_ind, col_ind = linear_sum_assignment(-cost)\\n        matched_sim = cost[row_ind, col_ind].sum()\\n        total_score += matched_sim\\n\\n    if total_weight == 0:\\n        return 1.0\\n    return total_score / total_weight\\n\\n\\ndef structural_consistency_soft_jaccard(\\n    samples: list[Extraction],\\n    subtask: str = \\\"ner\\\",\\n) -> float:\\n    \\\"\\\"\\\"Span-level soft Jaccard consistency averaged over all sample pairs.\\n\\n    For each pair (i, j) with i < j, computes a type-aware soft Jaccard using\\n    Hungarian matching on span overlaps, then returns the mean.\\n\\n    Args:\\n        samples: N extraction dicts.\\n        subtask: \\\"ner\\\" for entity consistency, \\\"eae\\\" for event-argument consistency.\\n\\n    Returns:\\n        Mean pairwise soft Jaccard in [0, 1].\\n    \\\"\\\"\\\"\\n    n = len(samples)\\n    if n <= 1:\\n        return 1.0\\n\\n    if subtask == \\\"ner\\\":\\n        pair_fn = _ner_soft_jaccard_pair\\n    elif subtask == \\\"re\\\":\\n        pair_fn = _re_soft_jaccard_pair\\n    else:\\n        pair_fn = _eae_soft_jaccard_pair\\n\\n    field = {\\\"ner\\\": \\\"entities\\\", \\\"re\\\": \\\"relations\\\", \\\"eae\\\": \\\"events\\\"}[subtask]\\n\\n    scores: list[float] = []\\n    for i, j in combinations(range(n), 2):\\n        score = pair_fn(\\n            samples[i].get(field, []),\\n            samples[j].get(field, []),\\n        )\\n        scores.append(score)\\n\\n    return float(np.mean(scores))\\n\\n\\n# ===================================================================\\n# 3. Oracle best-of-N\\n# ===================================================================\\n\\ndef oracle_best_of_n(\\n    samples: list[Extraction],\\n    gold: Extraction,\\n    subtask: str = \\\"ner\\\",\\n) -> tuple[int, float]:\\n    \\\"\\\"\\\"Select the sample with the highest F1 against the gold extraction.\\n\\n    Args:\\n        samples: N extraction dicts.\\n        gold: Gold-standard extraction.\\n        subtask: Passed through to per_instance_f1.\\n\\n    Returns:\\n        (best_index, best_f1). Returns (-1, 0.0) if samples is empty.\\n    \\\"\\\"\\\"\\n    if not samples:\\n        return (-1, 0.0)\\n\\n    # Lazy import to avoid circular dependency with evaluation.py\\n    from evaluation import per_instance_f1\\n\\n    best_idx = -1\\n    best_f1 = -1.0\\n\\n    for idx, sample in enumerate(samples):\\n        f1 = per_instance_f1(sample, gold, subtask=subtask)\\n        if f1 > best_f1:\\n            best_f1 = f1\\n            best_idx = idx\\n\\n    return (best_idx, best_f1)\\n\\n\\n# ===================================================================\\n# Aggregate helper\\n# ===================================================================\\n\\ndef compute_all_consistency_scores(\\n    sampled_instances: list[dict],\\n    subtask: str = \\\"ner\\\",\\n) -> dict:\\n    \\\"\\\"\\\"Compute all consistency metrics for a list of sampled instances.\\n\\n    Args:\\n        sampled_instances: List of SampledInstance dicts, each with keys\\n            \\\"id\\\", \\\"text\\\", \\\"gold\\\" (Extraction), \\\"samples\\\" (list[Extraction]).\\n        subtask: \\\"ner\\\", \\\"re\\\", or \\\"eae\\\".\\n\\n    Returns:\\n        Dict with per-instance score lists::\\n\\n            {\\n                \\\"fleiss_kappa\\\": [float, ...],\\n                \\\"soft_jaccard\\\": [float, ...],\\n                \\\"oracle_f1\\\":    [float, ...],\\n                \\\"oracle_indices\\\": [int, ...],\\n            }\\n    \\\"\\\"\\\"\\n    result: dict[str, list] = {\\n        \\\"fleiss_kappa\\\": [],\\n        \\\"soft_jaccard\\\": [],\\n        \\\"oracle_f1\\\": [],\\n        \\\"oracle_indices\\\": [],\\n    }\\n\\n    for inst in sampled_instances:\\n        samples = inst[\\\"samples\\\"]\\n        gold = inst[\\\"gold\\\"]\\n\\n        result[\\\"fleiss_kappa\\\"].append(fleiss_kappa_surface(samples, subtask=subtask))\\n        result[\\\"soft_jaccard\\\"].append(\\n            structural_consistency_soft_jaccard(samples, subtask=subtask)\\n        )\\n\\n        best_idx, best_f1 = oracle_best_of_n(samples, gold, subtask=subtask)\\n        result[\\\"oracle_f1\\\"].append(best_f1)\\n        result[\\\"oracle_indices\\\"].append(best_idx)\\n\\n    return result\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.07}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 10_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me analyze the code. The output was truncated in the middle. Let me get the key functions - `_span_soft_jaccard`, `_ner_soft_jaccard_pair`, and `_re_soft_jaccard_pair`. I can see parts of the code but need to see the complete functions. Let me read the specific sections.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9f8979b6-eac1-4bda-9573-d114ffc3d36e",
+  "uuid": "e4fc4b56-f892-48d2-8983-e136bc712149",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GQNy7iYcvX2HHuUn9TU8T3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3234,
+      "cache_read_input_tokens": 24330,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3234
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 11_
+
+输出被截断了，让我读取关键函数部分。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9f8979b6-eac1-4bda-9573-d114ffc3d36e",
+  "uuid": "484b5361-0984-41c4-ac6e-5c003a845471",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GQNy7iYcvX2HHuUn9TU8T3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3234,
+      "cache_read_input_tokens": 24330,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3234
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Ej8PUQT2eqSMkfiD18hzZn`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "grep -n \"def _span_soft_jaccard\\|def _ner_soft_jaccard_pair\\|def _re_soft_jaccard_pair\\|def _eae_soft_jaccard_pair\\|threshold\\|cutoff\\|minimum\\|filter\" /root/autodl-tmp/struct_self_consist_ie/code/consistency.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9f8979b6-eac1-4bda-9573-d114ffc3d36e",
+  "uuid": "e3637dad-0e25-4aee-a276-dd992f07a5b5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GQNy7iYcvX2HHuUn9TU8T3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3234,
+      "cache_read_input_tokens": 24330,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3234
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-15T03:26:06.346Z_
+
+<details><summary>↩ Tool result · `toolu_01Ej8PUQT2eqSMkfiD18hzZn`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9f8979b6-eac1-4bda-9573-d114ffc3d36e",
+  "uuid": "776d89d8-d64d-482b-9f0f-d52de0f87851",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01XUzJTKUPJkK74hefMrrudw`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "grep -n -E \"def _span_soft_jaccard|def _ner_soft_jaccard_pair|def _re_soft_jaccard_pair|threshold|cutoff|minimum\" /root/autodl-tmp/struct_self_consist_ie/code/consistency.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9f8979b6-eac1-4bda-9573-d114ffc3d36e",
+  "uuid": "a2d94821-6c69-44ee-b0ff-b9bff698ef26",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01T4ag45JS6R9HWVpcCNYaqU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 390,
+      "cache_read_input_tokens": 27564,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 390
+      },
+      "output_tokens": 66,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-15T03:26:09.979Z_
+
+<details><summary>↩ Tool result · `toolu_01XUzJTKUPJkK74hefMrrudw`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9f8979b6-eac1-4bda-9573-d114ffc3d36e",
+  "uuid": "a3569801-4774-48ac-8a3c-94a1a93c4878",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_013GmiwVpV2uUph4UakcBtYR`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "grep -n -E \"def _span|def _ner|def _re_soft|threshold|cutoff|minimum\" /root/autodl-tmp/struct_self_consist_ie/code/consistency.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9f8979b6-eac1-4bda-9573-d114ffc3d36e",
+  "uuid": "bebae811-4eac-4a30-8dde-9f79787c93c7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SrtvrtsUnh4EKQyuukh65M",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 260,
+      "cache_read_input_tokens": 27954,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 260
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-15T03:26:12.927Z_
+
+<details><summary>↩ Tool result · `toolu_013GmiwVpV2uUph4UakcBtYR`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9f8979b6-eac1-4bda-9573-d114ffc3d36e",
+  "uuid": "6eec5bbb-7edf-4ceb-9384-0e0b2172a1c1",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01TSVe3WmBbxSfbCM21P9T3V`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "grep -n \"def _span\" /root/autodl-tmp/struct_self_consist_ie/code/consistency.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9f8979b6-eac1-4bda-9573-d114ffc3d36e",
+  "uuid": "5d27f99d-fdde-4e50-a3f3-f296e5e8e1bb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Q3LDEftznWYAtDqzXqYk3S",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 243,
+      "cache_read_input_tokens": 28214,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 243
+      },
+      "output_tokens": 66,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-15T03:26:16.536Z_
+
+<details><summary>↩ Tool result · `toolu_01TSVe3WmBbxSfbCM21P9T3V`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"123:def _span_soft_jaccard(s1_start: int, s1_end: int, s2_start: int, s2_end: int) -> float:\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9f8979b6-eac1-4bda-9573-d114ffc3d36e",
+  "uuid": "f819b64b-82fc-49bd-a88c-cdebb451fb95",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"123:def _span_soft_jaccard(s1_start: int, s1_end: int, s2_start: int, s2_end: int) -> float:\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"123:def _span_soft_jaccard(s1_start: int, s1_end: int, s2_start: int, s2_end: int) -> float:\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_012krrTWdS3ssj8UobQ5TT2W`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "grep -n \"def _ner\" /root/autodl-tmp/struct_self_consist_ie/code/consistency.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9f8979b6-eac1-4bda-9573-d114ffc3d36e",
+  "uuid": "a7c41402-38f6-481e-9b95-d2e75a6472af",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Q3LDEftznWYAtDqzXqYk3S",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 243,
+      "cache_read_input_tokens": 28214,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 243
+      },
+      "output_tokens": 66,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-15T03:26:17.493Z_
+
+<details><summary>↩ Tool result · `toolu_012krrTWdS3ssj8UobQ5TT2W`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"134:def _ner_soft_jaccard_pair(entities_a: list[Entity], entities_b: list[Entity]) -> float:\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9f8979b6-eac1-4bda-9573-d114ffc3d36e",
+  "uuid": "ebe8af93-2de8-4267-8d2a-cc4554c539ad",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"134:def _ner_soft_jaccard_pair(entities_a: list[Entity], entities_b: list[Entity]) -> float:\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"134:def _ner_soft_jaccard_pair(entities_a: list[Entity], entities_b: list[Entity]) -> float:\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_013L7JkWWLEv2dHCW5jm77oW`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "grep -n \"threshold\" /root/autodl-tmp/struct_self_consist_ie/code/consistency.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9f8979b6-eac1-4bda-9573-d114ffc3d36e",
+  "uuid": "026d18a8-aae0-4cb0-b8b2-685cab26ab4a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Q3LDEftznWYAtDqzXqYk3S",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 243,
+      "cache_read_input_tokens": 28214,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 243
+      },
+      "output_tokens": 66,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-15T03:26:17.911Z_
+
+<details><summary>↩ Tool result · `toolu_013L7JkWWLEv2dHCW5jm77oW`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9f8979b6-eac1-4bda-9573-d114ffc3d36e",
+  "uuid": "8b339e0c-7b11-4e17-a6f9-3d830a5c2333",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.36}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 24_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+No "threshold" found in the code. Let me read the key functions (lines 123-200 or so) to see the full implementation.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9f8979b6-eac1-4bda-9573-d114ffc3d36e",
+  "uuid": "c401d134-2574-4cf9-b43d-a0e7b8943a2c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PyESHRqdjJHZqBR3DaJA55",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 844,
+      "cache_read_input_tokens": 28457,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 844
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 25_
+
+没有 threshold 关键词。让我读取关键函数的完整实现。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9f8979b6-eac1-4bda-9573-d114ffc3d36e",
+  "uuid": "e9e0a383-2d7e-49f7-b19d-c0fead75d045",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PyESHRqdjJHZqBR3DaJA55",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 844,
+      "cache_read_input_tokens": 28457,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 844
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01RxvtXaqty4s6HVXqPK2VF8`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "head -220 /root/autodl-tmp/struct_self_consist_ie/code/consistency.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9f8979b6-eac1-4bda-9573-d114ffc3d36e",
+  "uuid": "fee90327-2a73-4d63-81b6-7e0da05f78ad",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PyESHRqdjJHZqBR3DaJA55",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 844,
+      "cache_read_input_tokens": 28457,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 844
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-15T03:26:22.150Z_
+
+<details><summary>↩ Tool result · `toolu_01RxvtXaqty4s6HVXqPK2VF8`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Consistency metrics for structured information extraction with self-consistency.\\n\\nImplements three complementary consistency measures over N sampled extractions:\\n1. Fleiss' Kappa (surface matching) — treats N samples as N raters on entity presence\\n2. Structural soft Jaccard — span-level soft overlap with Hungarian matching\\n3. Oracle best-of-N — upper-bound F1 by selecting the best sample per instance\\n\\nKey dependencies: numpy, scipy (linear_sum_assignment).\\n\\\"\\\"\\\"\\n\\nfrom __future__ import annotations\\n\\nfrom itertools import combinations\\nfrom typing import TYPE_CHECKING\\n\\nimport numpy as np\\nfrom scipy.optimize import linear_sum_assignment\\n\\nif TYPE_CHECKING:\\n    pass\\n\\n# ---------------------------------------------------------------------------\\n# Type aliases (mirrors shared data format)\\n# ---------------------------------------------------------------------------\\nEntity = dict       # {\\\"text\\\", \\\"type\\\", \\\"start\\\", \\\"end\\\"}\\nRelation = dict     # {\\\"head\\\", \\\"tail\\\", \\\"type\\\", ...}\\nEvent = dict        # {\\\"trigger\\\": {...}, \\\"arguments\\\": [...]}\\nExtraction = dict   # {\\\"entities\\\", \\\"relations\\\", \\\"events\\\"}\\n\\n\\n# ===================================================================\\n# 1. Fleiss' Kappa — surface-level entity agreement\\n# ===================================================================\\n\\ndef _extract_surface_keys(sample: Extraction, subtask: str) -> set[tuple]:\\n    \\\"\\\"\\\"Extract surface-level keys from a sample for Fleiss' Kappa computation.\\\"\\\"\\\"\\n    if subtask == \\\"ner\\\":\\n        return {(e[\\\"text\\\"], e[\\\"type\\\"]) for e in sample.get(\\\"entities\\\", [])}\\n    elif subtask == \\\"re\\\":\\n        return {(r[\\\"head\\\"], r[\\\"tail\\\"], r[\\\"type\\\"]) for r in sample.get(\\\"relations\\\", [])}\\n    elif subtask == \\\"eae\\\":\\n        keys: set[tuple] = set()\\n        for ev in sample.get(\\\"events\\\", []):\\n            t = ev.get(\\\"trigger\\\", {})\\n            for arg in ev.get(\\\"arguments\\\", []):\\n                keys.add((t.get(\\\"text\\\", \\\"\\\"), t.get(\\\"type\\\", \\\"\\\"), arg[\\\"role\\\"], arg[\\\"text\\\"]))\\n        return keys\\n    else:\\n        raise ValueError(f\\\"Unknown subtask: {subtask}\\\")\\n\\n\\ndef fleiss_kappa_surface(samples: list[Extraction], subtask: str = \\\"ner\\\") -> float:\\n    \\\"\\\"\\\"Compute Fleiss' kappa treating N LLM samples as N raters on item presence.\\n\\n    Items are subtask-dependent surface keys:\\n    - ner: (entity_text, entity_type)\\n    - re: (head_text, tail_text, relation_type)\\n    - eae: (trigger_text, trigger_type, role, argument_text)\\n\\n    Args:\\n        samples: List of N extraction dicts.\\n        subtask: \\\"ner\\\", \\\"re\\\", or \\\"eae\\\".\\n\\n    Returns:\\n        Fleiss' kappa in [-1, 1].  Returns 1.0 for degenerate cases (<=1 unique\\n        item, perfect agreement, or undefined P_e).\\n    \\\"\\\"\\\"\\n    n_raters = len(samples)\\n    if n_raters <= 1:\\n        return 1.0\\n\\n    # Collect unique keys and per-sample presence sets\\n    entity_sets: list[set[tuple]] = []\\n    all_keys: set[tuple] = set()\\n    for sample in samples:\\n        keys = _extract_surface_keys(sample, subtask)\\n        entity_sets.append(keys)\\n        all_keys |= keys\\n\\n    n_subjects = len(all_keys)\\n    if n_subjects <= 0:\\n        # All samples extracted nothing — perfect agreement on empty set\\n        return 1.0\\n\\n    key_list = sorted(all_keys)\\n\\n    # Build rating matrix: n_subjects x 2 (categories: absent=0, present=1)\\n    # n_ij = number of raters assigning subject i to category j\\n    rating = np.zeros((n_subjects, 2), dtype=np.int64)\\n    for es in entity_sets:\\n        for idx, key in enumerate(key_list):\\n            if key in es:\\n                rating[idx, 1] += 1\\n            else:\\n                rating[idx, 0] += 1\\n\\n    n = n_raters\\n    k = 2  # number of categories\\n\\n    # Check perfect agreement: every subject has all votes in one category\\n    if np.all(np.max(rating, axis=1) == n):\\n        return 1.0\\n\\n    # P_i for each subject\\n    P_i = (np.sum(rating ** 2, axis=1) - n) / (n * (n - 1))\\n    P_bar = np.mean(P_i)\\n\\n    # P_e — expected agreement by chance\\n    p_j = np.sum(rating, axis=0) / (n_subjects * n)\\n    P_e = np.sum(p_j ** 2)\\n\\n    if abs(1.0 - P_e) < 1e-12:\\n        return 1.0\\n\\n    kappa = (P_bar - P_e) / (1.0 - P_e)\\n    return float(kappa)\\n\\n\\n# ===================================================================\\n# 2. Structural soft Jaccard consistency\\n# ===================================================================\\n\\ndef _span_soft_jaccard(s1_start: int, s1_end: int, s2_start: int, s2_end: int) -> float:\\n    \\\"\\\"\\\"Soft Jaccard between two character spans.\\\"\\\"\\\"\\n    overlap = max(0, min(s1_end, s2_end) - max(s1_start, s2_start))\\n    len1 = s1_end - s1_start\\n    len2 = s2_end - s2_start\\n    union = len1 + len2 - overlap\\n    if union <= 0:\\n        return 0.0\\n    return overlap / union\\n\\n\\ndef _ner_soft_jaccard_pair(entities_a: list[Entity], entities_b: list[Entity]) -> float:\\n    \\\"\\\"\\\"Compute type-aware soft Jaccard between two entity lists via Hungarian matching.\\n\\n    Groups entities by type, finds optimal alignment within each group using\\n    span-level soft Jaccard as the similarity, then computes a weighted average.\\n\\n    Args:\\n        entities_a: Entities from sample i.\\n        entities_b: Entities from sample j.\\n\\n    Returns:\\n        Weighted-average soft Jaccard across all type groups.\\n    \\\"\\\"\\\"\\n    if not entities_a and not entities_b:\\n        return 1.0\\n    if not entities_a or not entities_b:\\n        return 0.0\\n\\n    # Group by entity type\\n    types: set[str] = set()\\n    groups_a: dict[str, list[Entity]] = {}\\n    groups_b: dict[str, list[Entity]] = {}\\n\\n    for e in entities_a:\\n        t = e[\\\"type\\\"]\\n        types.add(t)\\n        groups_a.setdefault(t, []).append(e)\\n    for e in entities_b:\\n        t = e[\\\"type\\\"]\\n        types.add(t)\\n        groups_b.setdefault(t, []).append(e)\\n\\n    total_score = 0.0\\n    total_weight = 0\\n\\n    for t in types:\\n        ga = groups_a.get(t, [])\\n        gb = groups_b.get(t, [])\\n        denom = max(len(ga), len(gb))\\n        if denom == 0:\\n            continue\\n\\n        total_weight += denom\\n\\n        if not ga or not gb:\\n            # One side empty — all unmatched, contributes 0\\n            continue\\n\\n        # Cost matrix for Hungarian (we maximize similarity, so negate for min-cost)\\n        cost = np.zeros((len(ga), len(gb)), dtype=np.float64)\\n        for i, ea in enumerate(ga):\\n            for j, eb in enumerate(gb):\\n                cost[i, j] = _span_soft_jaccard(ea[\\\"start\\\"], ea[\\\"end\\\"],\\n                                                 eb[\\\"start\\\"], eb[\\\"end\\\"])\\n\\n        row_ind, col_ind = linear_sum_assignment(-cost)  # negate to maximize\\n        matched_sim = cost[row_ind, col_ind].sum()\\n        # Normalize by the larger set size to penalize unmatched spans\\n        total_score += matched_sim\\n\\n    if total_weight == 0:\\n        return 1.0\\n    return total_score / total_weight\\n\\n\\ndef _re_soft_jaccard_pair(relations_a: list[dict], relations_b: list[dict]) -> float:\\n    \\\"\\\"\\\"Soft Jaccard for relation extraction via Hungarian matching.\\n\\n    Relation similarity = head_span_sj * tail_span_sj * type_match.\\n    \\\"\\\"\\\"\\n    if not relations_a and not relations_b:\\n        return 1.0\\n    if not relations_a or not relations_b:\\n        return 0.0\\n\\n    cost = np.zeros((len(relations_a), len(relations_b)), dtype=np.float64)\\n    for i, a in enumerate(relations_a):\\n        for j, b in enumerate(relations_b):\\n            if a[\\\"type\\\"] != b[\\\"type\\\"]:\\n                continue\\n            head_sj = _span_soft_jaccard(a[\\\"head_start\\\"], a[\\\"head_end\\\"],\\n                                         b[\\\"head_start\\\"], b[\\\"head_end\\\"])\\n            tail_sj = _span_soft_jaccard(a[\\\"tail_start\\\"], a[\\\"tail_end\\\"],\\n                                         b[\\\"tail_start\\\"], b[\\\"tail_end\\\"])\\n            cost[i, j] = head_sj * tail_sj\\n\\n    row_ind, col_ind = linear_sum_assignment(-cost)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.34}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9f8979b6-eac1-4bda-9573-d114ffc3d36e",
+  "uuid": "9683a525-e10a-4fe4-be05-436bf5cd7079",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Consistency metrics for structured information extraction with self-consistency.\\\\n\\\\nImplements three complementary consistency measures over N sampled extractions:\\\\n1. Fleiss' Kappa (surface matching) — treats N samples as N raters on entity presence\\\\n2. Structural soft Jaccard — span-level soft overlap with Hungarian matching\\\\n3. Oracle best-of-N — upper-bound F1 by selecting the best sample per instance\\\\n\\\\nKey dependencies: numpy, scipy (linear_sum_assignment).\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nfrom __future__ import annotations\\\\n\\\\nfrom itertools import combinations\\\\nfrom typing import TYPE_CHECKING\\\\n\\\\nimport numpy as np\\\\nfrom scipy.optimize import linear_sum_assignment\\\\n\\\\nif TYPE_CHECKING:\\\\n    pass\\\\n\\\\n# ---------------------------------------------------------------------------\\\\n# Type aliases (mirrors shared data format)\\\\n# ---------------------------------------------------------------------------\\\\nEntity = dict       # {\\\\\\\"text\\\\\\\", \\\\\\\"type\\\\\\\", \\\\\\\"start\\\\\\\", \\\\\\\"end\\\\\\\"}\\\\nRelation = dict     # {\\\\\\\"head\\\\\\\", \\\\\\\"tail\\\\\\\", \\\\\\\"type\\\\\\\", ...}\\\\nEvent = dict        # {\\\\\\\"trigger\\\\\\\": {...}, \\\\\\\"arguments\\\\\\\": [...]}\\\\nExtraction = dict   # {\\\\\\\"entities\\\\\\\", \\\\\\\"relations\\\\\\\", \\\\\\\"events\\\\\\\"}\\\\n\\\\n\\\\n# ===================================================================\\\\n# 1. Fleiss' Kappa — surface-level entity agreement\\\\n# ===================================================================\\\\n\\\\ndef _extract_surface_keys(sample: Extraction, subtask: str) -> set[tuple]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Extract surface-level keys from a sample for Fleiss' Kappa computation.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    if subtask == \\\\\\\"ner\\\\\\\":\\\\n        return {(e[\\\\\\\"text\\\\\\\"], e[\\\\\\\"type\\\\\\\"]) for e in sample.get(\\\\\\\"entities\\\\\\\", [])}\\\\n    elif subtask == \\\\\\\"re\\\\\\\":\\\\n        return {(r[\\\\\\\"head\\\\\\\"], r[\\\\\\\"tail\\\\\\\"], r[\\\\\\\"type\\\\\\\"]) for r in sample.get(\\\\\\\"relations\\\\\\\", [])}\\\\n    elif subtask == \\\\\\\"eae\\\\\\\":\\\\n        keys: set[tuple] = set()\\\\n        for ev in sample.get(\\\\\\\"events\\\\\\\", []):\\\\n            t = ev.get(\\\\\\\"trigger\\\\\\\", {})\\\\n            for arg in ev.get(\\\\\\\"arguments\\\\\\\", []):\\\\n                keys.add((t.get(\\\\\\\"text\\\\\\\", \\\\\\\"\\\\\\\"), t.get(\\\\\\\"type\\\\\\\", \\\\\\\"\\\\\\\"), arg[\\\\\\\"role\\\\\\\"], arg[\\\\\\\"text\\\\\\\"]))\\\\n        return keys\\\\n    else:\\\\n        raise ValueError(f\\\\\\\"Unknown subtask: {subtask}\\\\\\\")\\\\n\\\\n\\\\ndef fleiss_kappa_surface(samples: list[Extraction], subtask: str = \\\\\\\"ner\\\\\\\") -> float:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Compute Fleiss' kappa treating N LLM samples as N raters on item presence.\\\\n\\\\n    Items are subtask-dependent surface keys:\\\\n    - ner: (entity_text, entity_type)\\\\n    - re: (head_text, tail_text, relation_type)\\\\n    - eae: (trigger_text, trigger_type, role, argument_text)\\\\n\\\\n    Args:\\\\n        samples: List of N extraction dicts.\\\\n        subtask: \\\\\\\"ner\\\\\\\", \\\\\\\"re\\\\\\\", or \\\\\\\"eae\\\\\\\".\\\\n\\\\n    Returns:\\\\n        Fleiss' kappa in [-1, 1].  Returns 1.0 for degenerate cases (<=1 unique\\\\n        item, perfect agreement, or undefined P_e).\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    n_raters = len(samples)\\\\n    if n_raters <= 1:\\\\n        return 1.0\\\\n\\\\n    # Collect unique keys and per-sample presence sets\\\\n    entity_sets: list[set[tuple]] = []\\\\n    all_keys: set[tuple] = set()\\\\n    for sample in samples:\\\\n        keys = _extract_surface_keys(sample, subtask)\\\\n        entity_sets.append(keys)\\\\n        all_keys |= keys\\\\n\\\\n    n_subjects = len(all_keys)\\\\n    if n_subjects <= 0:\\\\n        # All samples extracted nothing — perfect agreement on empty set\\\\n        return 1.0\\\\n\\\\n    key_list = sorted(all_keys)\\\\n\\\\n    # Build rating matrix: n_subjects x 2 (categories: absent=0, present=1)\\\\n    # n_ij = number of raters assigning subject i to category j\\\\n    rating = np.zeros((n_subjects, 2), dtype=np.int64)\\\\n    for es in entity_sets:\\\\n        for idx, key in enumerate(key_list):\\\\n            if key in es:\\\\n                rating[idx, 1] += 1\\\\n            else:\\\\n                rating[idx, 0] += 1\\\\n\\\\n    n = n_raters\\\\n    k = 2  # number of categories\\\\n\\\\n    # Check perfect agreement: every subject has all votes in one category\\\\n    if np.all(np.max(rating, axis=1) == n):\\\\n        return 1.0\\\\n\\\\n    # P_i for each subject\\\\n    P_i = (np.sum(rating ** 2, axis=1) - n) / (n * (n - 1))\\\\n    P_bar = np.mean(P_i)\\\\n\\\\n    # P_e — expected agreement by chance\\\\n    p_j = np.sum(rating, axis=0) / (n_subjects * n)\\\\n    P_e = np.sum(p_j ** 2)\\\\n\\\\n    if abs(1.0 - P_e) < 1e-12:\\\\n        return 1.0\\\\n\\\\n    kappa = (P_bar - P_e) / (1.0 - P_e)\\\\n    return float(kappa)\\\\n\\\\n\\\\n# ===================================================================\\\\n# 2. Structural soft Jaccard consistency\\\\n# ===================================================================\\\\n\\\\ndef _span_soft_jaccard(s1_start: int, s1_end: int, s2_start: int, s2_end: int) -> float:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Soft Jaccard between two character spans.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    overlap = max(0, min(s1_end, s2_end) - max(s1_start, s2_start))\\\\n    len1 = s1_end - s1_start\\\\n    len2 = s2_end - s2_start\\\\n    union = len1 + len2 - overlap\\\\n    if union <= 0:\\\\n        return 0.0\\\\n    return overlap / union\\\\n\\\\n\\\\ndef _ner_soft_jaccard_pair(entities_a: list[Entity], entities_b: list[Entity]) -> float:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Compute type-aware soft Jaccard between two entity lists via Hungarian matching.\\\\n\\\\n    Groups entities by type, finds optimal alignment within each group using\\\\n    span-level soft Jaccard as the similarity, then computes a weighted average.\\\\n\\\\n    Args:\\\\n        entities_a: Entities from sample i.\\\\n        entities_b: Entities from sample j.\\\\n\\\\n    Returns:\\\\n        Weighted-average soft Jaccard across all type groups.\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    if not entities_a and not entities_b:\\\\n        return 1.0\\\\n    if not entities_a or not entities_b:\\\\n        return 0.0\\\\n\\\\n    # Group by entity type\\\\n    types: set[str] = set()\\\\n    groups_a: dict[str, list[Entity]] = {}\\\\n    groups_b: dict[str, list[Entity]] = {}\\\\n\\\\n    for e in entities_a:\\\\n        t = e[\\\\\\\"type\\\\\\\"]\\\\n        types.add(t)\\\\n        groups_a.setdefault(t, []).append(e)\\\\n    for e in entities_b:\\\\n        t = e[\\\\\\\"type\\\\\\\"]\\\\n        types.add(t)\\\\n        groups_b.setdefault(t, []).append(e)\\\\n\\\\n    total_score = 0.0\\\\n    total_weight = 0\\\\n\\\\n    for t in types:\\\\n        ga = groups_a.get(t, [])\\\\n        gb = groups_b.get(t, [])\\\\n        denom = max(len(ga), len(gb))\\\\n        if denom == 0:\\\\n            continue\\\\n\\\\n        total_weight += denom\\\\n\\\\n        if not ga or not gb:\\\\n            # One side empty — all unmatched, contributes 0\\\\n            continue\\\\n\\\\n        # Cost matrix for Hungarian (we maximize similarity, so negate for min-cost)\\\\n        cost = np.zeros((len(ga), len(gb)), dtype=np.float64)\\\\n        for i, ea in enumerate(ga):\\\\n            for j, eb in enumerate(gb):\\\\n                cost[i, j] = _span_soft_jaccard(ea[\\\\\\\"start\\\\\\\"], ea[\\\\\\\"end\\\\\\\"],\\\\n                                                 eb[\\\\\\\"start\\\\\\\"], eb[\\\\\\\"end\\\\\\\"])\\\\n\\\\n        row_ind, col_ind = linear_sum_assignment(-cost)  # negate to maximize\\\\n        matched_sim = cost[row_ind, col_ind].sum()\\\\n        # Normalize by the larger set size to penalize unmatched spans\\\\n        total_score += matched_sim\\\\n\\\\n    if total_weight == 0:\\\\n        return 1.0\\\\n    return total_score / total_weight\\\\n\\\\n\\\\ndef _re_soft_jaccard_pair(relations_a: list[dict], relations_b: list[dict]) -> float:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Soft Jaccard for relation extraction via Hungarian matching.\\\\n\\\\n    Relation similarity = head_span_sj * tail_span_sj * type_match.\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    if not relations_a and not relations_b:\\\\n        return 1.0\\\\n    if not relations_a or not relations_b:\\\\n        return 0.0\\\\n\\\\n    cost = np.zeros((len(relations_a), len(relations_b)), dtype=np.float64)\\\\n    for i, a in enumerate(relations_a):\\\\n        for j, b in enumerate(relations_b):\\\\n            if a[\\\\\\\"type\\\\\\\"] != b[\\\\\\\"type\\\\\\\"]:\\\\n                continue\\\\n            head_sj = _span_soft_jaccard(a[\\\\\\\"head_start\\\\\\\"], a[\\\\\\\"head_end\\\\\\\"],\\\\n                                         b[\\\\\\\"head_start\\\\\\\"], b[\\\\\\\"head_end\\\\\\\"])\\\\n            tail_sj = _span_soft_jaccard(a[\\\\\\\"tail_start\\\\\\\"], a[\\\\\\\"tail_end\\\\\\\"],\\\\n                                         b[\\\\\\\"tail_start\\\\\\\"], b[\\\\\\\"tail_end\\\\\\\"])\\\\n            cost[i, j] = head_sj * tail_sj\\\\n\\\\n    row_ind, col_ind = linear_sum_assignment(-cost)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.34}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Consistency metrics for structured information extraction with self-consistency.\\n\\nImplements three complementary consistency measures over N sampled extractions:\\n1. Fleiss' Kappa (surface matching) — treats N samples as N raters on entity presence\\n2. Structural soft Jaccard — span-level soft overlap with Hungarian matching\\n3. Oracle best-of-N — upper-bound F1 by selecting the best sample per instance\\n\\nKey dependencies: numpy, scipy (linear_sum_assignment).\\n\\\"\\\"\\\"\\n\\nfrom __future__ import annotations\\n\\nfrom itertools import combinations\\nfrom typing import TYPE_CHECKING\\n\\nimport numpy as np\\nfrom scipy.optimize import linear_sum_assignment\\n\\nif TYPE_CHECKING:\\n    pass\\n\\n# ---------------------------------------------------------------------------\\n# Type aliases (mirrors shared data format)\\n# ---------------------------------------------------------------------------\\nEntity = dict       # {\\\"text\\\", \\\"type\\\", \\\"start\\\", \\\"end\\\"}\\nRelation = dict     # {\\\"head\\\", \\\"tail\\\", \\\"type\\\", ...}\\nEvent = dict        # {\\\"trigger\\\": {...}, \\\"arguments\\\": [...]}\\nExtraction = dict   # {\\\"entities\\\", \\\"relations\\\", \\\"events\\\"}\\n\\n\\n# ===================================================================\\n# 1. Fleiss' Kappa — surface-level entity agreement\\n# ===================================================================\\n\\ndef _extract_surface_keys(sample: Extraction, subtask: str) -> set[tuple]:\\n    \\\"\\\"\\\"Extract surface-level keys from a sample for Fleiss' Kappa computation.\\\"\\\"\\\"\\n    if subtask == \\\"ner\\\":\\n        return {(e[\\\"text\\\"], e[\\\"type\\\"]) for e in sample.get(\\\"entities\\\", [])}\\n    elif subtask == \\\"re\\\":\\n        return {(r[\\\"head\\\"], r[\\\"tail\\\"], r[\\\"type\\\"]) for r in sample.get(\\\"relations\\\", [])}\\n    elif subtask == \\\"eae\\\":\\n        keys: set[tuple] = set()\\n        for ev in sample.get(\\\"events\\\", []):\\n            t = ev.get(\\\"trigger\\\", {})\\n            for arg in ev.get(\\\"arguments\\\", []):\\n                keys.add((t.get(\\\"text\\\", \\\"\\\"), t.get(\\\"type\\\", \\\"\\\"), arg[\\\"role\\\"], arg[\\\"text\\\"]))\\n        return keys\\n    else:\\n        raise ValueError(f\\\"Unknown subtask: {subtask}\\\")\\n\\n\\ndef fleiss_kappa_surface(samples: list[Extraction], subtask: str = \\\"ner\\\") -> float:\\n    \\\"\\\"\\\"Compute Fleiss' kappa treating N LLM samples as N raters on item presence.\\n\\n    Items are subtask-dependent surface keys:\\n    - ner: (entity_text, entity_type)\\n    - re: (head_text, tail_text, relation_type)\\n    - eae: (trigger_text, trigger_type, role, argument_text)\\n\\n    Args:\\n        samples: List of N extraction dicts.\\n        subtask: \\\"ner\\\", \\\"re\\\", or \\\"eae\\\".\\n\\n    Returns:\\n        Fleiss' kappa in [-1, 1].  Returns 1.0 for degenerate cases (<=1 unique\\n        item, perfect agreement, or undefined P_e).\\n    \\\"\\\"\\\"\\n    n_raters = len(samples)\\n    if n_raters <= 1:\\n        return 1.0\\n\\n    # Collect unique keys and per-sample presence sets\\n    entity_sets: list[set[tuple]] = []\\n    all_keys: set[tuple] = set()\\n    for sample in samples:\\n        keys = _extract_surface_keys(sample, subtask)\\n        entity_sets.append(keys)\\n        all_keys |= keys\\n\\n    n_subjects = len(all_keys)\\n    if n_subjects <= 0:\\n        # All samples extracted nothing — perfect agreement on empty set\\n        return 1.0\\n\\n    key_list = sorted(all_keys)\\n\\n    # Build rating matrix: n_subjects x 2 (categories: absent=0, present=1)\\n    # n_ij = number of raters assigning subject i to category j\\n    rating = np.zeros((n_subjects, 2), dtype=np.int64)\\n    for es in entity_sets:\\n        for idx, key in enumerate(key_list):\\n            if key in es:\\n                rating[idx, 1] += 1\\n            else:\\n                rating[idx, 0] += 1\\n\\n    n = n_raters\\n    k = 2  # number of categories\\n\\n    # Check perfect agreement: every subject has all votes in one category\\n    if np.all(np.max(rating, axis=1) == n):\\n        return 1.0\\n\\n    # P_i for each subject\\n    P_i = (np.sum(rating ** 2, axis=1) - n) / (n * (n - 1))\\n    P_bar = np.mean(P_i)\\n\\n    # P_e — expected agreement by chance\\n    p_j = np.sum(rating, axis=0) / (n_subjects * n)\\n    P_e = np.sum(p_j ** 2)\\n\\n    if abs(1.0 - P_e) < 1e-12:\\n        return 1.0\\n\\n    kappa = (P_bar - P_e) / (1.0 - P_e)\\n    return float(kappa)\\n\\n\\n# ===================================================================\\n# 2. Structural soft Jaccard consistency\\n# ===================================================================\\n\\ndef _span_soft_jaccard(s1_start: int, s1_end: int, s2_start: int, s2_end: int) -> float:\\n    \\\"\\\"\\\"Soft Jaccard between two character spans.\\\"\\\"\\\"\\n    overlap = max(0, min(s1_end, s2_end) - max(s1_start, s2_start))\\n    len1 = s1_end - s1_start\\n    len2 = s2_end - s2_start\\n    union = len1 + len2 - overlap\\n    if union <= 0:\\n        return 0.0\\n    return overlap / union\\n\\n\\ndef _ner_soft_jaccard_pair(entities_a: list[Entity], entities_b: list[Entity]) -> float:\\n    \\\"\\\"\\\"Compute type-aware soft Jaccard between two entity lists via Hungarian matching.\\n\\n    Groups entities by type, finds optimal alignment within each group using\\n    span-level soft Jaccard as the similarity, then computes a weighted average.\\n\\n    Args:\\n        entities_a: Entities from sample i.\\n        entities_b: Entities from sample j.\\n\\n    Returns:\\n        Weighted-average soft Jaccard across all type groups.\\n    \\\"\\\"\\\"\\n    if not entities_a and not entities_b:\\n        return 1.0\\n    if not entities_a or not entities_b:\\n        return 0.0\\n\\n    # Group by entity type\\n    types: set[str] = set()\\n    groups_a: dict[str, list[Entity]] = {}\\n    groups_b: dict[str, list[Entity]] = {}\\n\\n    for e in entities_a:\\n        t = e[\\\"type\\\"]\\n        types.add(t)\\n        groups_a.setdefault(t, []).append(e)\\n    for e in entities_b:\\n        t = e[\\\"type\\\"]\\n        types.add(t)\\n        groups_b.setdefault(t, []).append(e)\\n\\n    total_score = 0.0\\n    total_weight = 0\\n\\n    for t in types:\\n        ga = groups_a.get(t, [])\\n        gb = groups_b.get(t, [])\\n        denom = max(len(ga), len(gb))\\n        if denom == 0:\\n            continue\\n\\n        total_weight += denom\\n\\n        if not ga or not gb:\\n            # One side empty — all unmatched, contributes 0\\n            continue\\n\\n        # Cost matrix for Hungarian (we maximize similarity, so negate for min-cost)\\n        cost = np.zeros((len(ga), len(gb)), dtype=np.float64)\\n        for i, ea in enumerate(ga):\\n            for j, eb in enumerate(gb):\\n                cost[i, j] = _span_soft_jaccard(ea[\\\"start\\\"], ea[\\\"end\\\"],\\n                                                 eb[\\\"start\\\"], eb[\\\"end\\\"])\\n\\n        row_ind, col_ind = linear_sum_assignment(-cost)  # negate to maximize\\n        matched_sim = cost[row_ind, col_ind].sum()\\n        # Normalize by the larger set size to penalize unmatched spans\\n        total_score += matched_sim\\n\\n    if total_weight == 0:\\n        return 1.0\\n    return total_score / total_weight\\n\\n\\ndef _re_soft_jaccard_pair(relations_a: list[dict], relations_b: list[dict]) -> float:\\n    \\\"\\\"\\\"Soft Jaccard for relation extraction via Hungarian matching.\\n\\n    Relation similarity = head_span_sj * tail_span_sj * type_match.\\n    \\\"\\\"\\\"\\n    if not relations_a and not relations_b:\\n        return 1.0\\n    if not relations_a or not relations_b:\\n        return 0.0\\n\\n    cost = np.zeros((len(relations_a), len(relations_b)), dtype=np.float64)\\n    for i, a in enumerate(relations_a):\\n        for j, b in enumerate(relations_b):\\n            if a[\\\"type\\\"] != b[\\\"type\\\"]:\\n                continue\\n            head_sj = _span_soft_jaccard(a[\\\"head_start\\\"], a[\\\"head_end\\\"],\\n                                         b[\\\"head_start\\\"], b[\\\"head_end\\\"])\\n            tail_sj = _span_soft_jaccard(a[\\\"tail_start\\\"], a[\\\"tail_end\\\"],\\n                                         b[\\\"tail_start\\\"], b[\\\"tail_end\\\"])\\n            cost[i, j] = head_sj * tail_sj\\n\\n    row_ind, col_ind = linear_sum_assignment(-cost)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.34}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 28_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have the full picture of the key functions. Let me analyze:
+
+1. `_span_soft_jaccard` - Pure overlap / union calculation, no threshold
+2. `_ner_soft_jaccard_pair` - Groups by type, Hungarian matching on cost matrix, no threshold filtering
+3. `_re_soft_jaccard_pair` - Similar, no threshold
+
+The Hungarian matching (`linear_sum_assignment(-cost)`) maximizes similarity but doesn't filter out low-similarity matches. A pair with sim=0 can absolutely be matched if there's no better option.
+
+Now I need to write the analysis script. 
+
+Writing the analysis script...
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9f8979b6-eac1-4bda-9573-d114ffc3d36e",
+  "uuid": "76f4ecd2-d10f-4d7a-9181-9855c639e2ed",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ApopXzx9LtdbrzDzKkfMqG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3104,
+      "cache_read_input_tokens": 29301,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3104
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 29_
+
+代码确认完毕：**没有任何 threshold/cutoff**。Hungarian matching 会把 sim=0 的 pair 也 match 上。现在写分析脚本并执行。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9f8979b6-eac1-4bda-9573-d114ffc3d36e",
+  "uuid": "9aa2bfb0-eb94-41d5-a5e6-fee163f1522c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ApopXzx9LtdbrzDzKkfMqG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3104,
+      "cache_read_input_tokens": 29301,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3104
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01R4k6MU4wLKwY8CqY9EbNs9`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat > /root/autodl-tmp/struct_self_consist_ie/scripts/sj_threshold_analysis.py << 'PYEOF'\n\"\"\"Analyze SJ Hungarian matching: quantify sim≈0 matched pairs.\"\"\"\nimport sys\nimport json\nimport os\nimport numpy as np\nfrom itertools import combinations\nfrom collections import defaultdict\n\nsys.path.insert(0, '/root/autodl-tmp/struct_self_consist_ie/code')\nfrom consistency import _span_soft_jaccard\n\ndef analyze_ner_matched_pairs(entities_a, entities_b):\n    \"\"\"Like _ner_soft_jaccard_pair but returns individual matched similarities.\"\"\"\n    matched_sims = []\n    \n    if not entities_a and not entities_b:\n        return matched_sims\n    if not entities_a or not entities_b:\n        return matched_sims\n    \n    from scipy.optimize import linear_sum_assignment\n    \n    types = set()\n    groups_a = defaultdict(list)\n    groups_b = defaultdict(list)\n    \n    for e in entities_a:\n        t = e[\"type\"]\n        types.add(t)\n        groups_a[t].append(e)\n    for e in entities_b:\n        t = e[\"type\"]\n        types.add(t)\n        groups_b[t].append(e)\n    \n    for t in types:\n        ga = groups_a.get(t, [])\n        gb = groups_b.get(t, [])\n        \n        if not ga or not gb:\n            continue\n        \n        cost = np.zeros((len(ga), len(gb)), dtype=np.float64)\n        for i, ea in enumerate(ga):\n            for j, eb in enumerate(gb):\n                cost[i, j] = _span_soft_jaccard(ea[\"start\"], ea[\"end\"],\n                                                 eb[\"start\"], eb[\"end\"])\n        \n        row_ind, col_ind = linear_sum_assignment(-cost)\n        for r, c in zip(row_ind, col_ind):\n            matched_sims.append({\n                \"sim\": float(cost[r, c]),\n                \"type\": t,\n                \"a_text\": ga[r].get(\"text\", \"\"),\n                \"b_text\": gb[c].get(\"text\", \"\"),\n                \"a_span\": (ga[r][\"start\"], ga[r][\"end\"]),\n                \"b_span\": (gb[c][\"start\"], gb[c][\"end\"]),\n            })\n    \n    return matched_sims\n\n\n# Load data\ndata_path = \"/root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/samples.jsonl\"\ninstances = []\nwith open(data_path) as f:\n    for line in f:\n        instances.append(json.loads(line))\n\nprint(f\"Loaded {len(instances)} instances\")\n\nall_matched = []\nn_pairs = 0\n\nfor inst_idx, inst in enumerate(instances):\n    samples = inst[\"samples\"]\n    n = len(samples)\n    \n    for i, j in combinations(range(n), 2):\n        ents_a = samples[i].get(\"entities\", [])\n        ents_b = samples[j].get(\"entities\", [])\n        \n        pairs = analyze_ner_matched_pairs(ents_a, ents_b)\n        all_matched.extend(pairs)\n        n_pairs += 1\n\nsims = np.array([m[\"sim\"] for m in all_matched])\ntotal = len(sims)\n\nsim_eq_0 = int(np.sum(sims == 0))\nsim_lt_01 = int(np.sum(sims < 0.1))\nsim_lt_05 = int(np.sum(sims < 0.5))\nsim_ge_05 = int(np.sum(sims >= 0.5))\n\nprint(f\"\\n=== SJ Threshold Analysis ===\")\nprint(f\"Code has explicit threshold: NO\")\nprint(f\"Hungarian matching matches ANY pair including sim=0\")\nprint(f\"\")\nprint(f\"Total sample pairs analyzed: {n_pairs}\")\nprint(f\"Total matched entity pairs: {total}\")\nprint(f\"  sim = 0 (no overlap): {sim_eq_0} ({100*sim_eq_0/total:.1f}%)\")\nprint(f\"  sim < 0.1: {sim_lt_01} ({100*sim_lt_01/total:.1f}%)\")\nprint(f\"  sim < 0.5: {sim_lt_05} ({100*sim_lt_05/total:.1f}%)\")\nprint(f\"  sim >= 0.5: {sim_ge_05} ({100*sim_ge_05/total:.1f}%)\")\n\nprint(f\"\\nDistribution (10 bins):\")\nbins = np.arange(0, 1.1, 0.1)\nhist, _ = np.histogram(sims, bins=bins)\nfor k in range(len(hist)):\n    lo = bins[k]\n    hi = bins[k+1]\n    bracket = \"[\" if k == 0 else \"[\"\n    end_bracket = \"]\" if k == len(hist)-1 else \")\"\n    print(f\"  [{lo:.1f}, {hi:.1f}{end_bracket}: {hist[k]} ({100*hist[k]/total:.1f}%)\")\n\n# Examples of sim=0 matches\nzero_matches = [m for m in all_matched if m[\"sim\"] == 0]\nprint(f\"\\n--- Examples of sim=0 matches (first 10) ---\")\nfor m in zero_matches[:10]:\n    print(f\"  type={m['type']}, a='{m['a_text']}' {m['a_span']}, b='{m['b_text']}' {m['b_span']}\")\n\n# Stats by type\nprint(f\"\\n--- Breakdown by entity type ---\")\ntype_sims = defaultdict(list)\nfor m in all_matched:\n    type_sims[m[\"type\"]].append(m[\"sim\"])\n\nfor t in sorted(type_sims.keys()):\n    s = np.array(type_sims[t])\n    n_zero = int(np.sum(s == 0))\n    print(f\"  {t}: total={len(s)}, sim=0: {n_zero} ({100*n_zero/len(s):.1f}%), mean={s.mean():.3f}, median={np.median(s):.3f}\")\n\n# Save results\nout_dir = \"/root/autodl-tmp/struct_self_consist_ie/output/review_round2\"\nos.makedirs(out_dir, exist_ok=True)\n\nresult = {\n    \"code_has_threshold\": False,\n    \"total_sample_pairs\": n_pairs,\n    \"total_matched_entity_pairs\": total,\n    \"sim_eq_0\": {\"count\": sim_eq_0, \"pct\": round(100*sim_eq_0/total, 2)},\n    \"sim_lt_0.1\": {\"count\": sim_lt_01, \"pct\": round(100*sim_lt_01/total, 2)},\n    \"sim_lt_0.5\": {\"count\": sim_lt_05, \"pct\": round(100*sim_lt_05/total, 2)},\n    \"sim_ge_0.5\": {\"count\": sim_ge_05, \"pct\": round(100*sim_ge_05/total, 2)},\n    \"histogram\": {f\"[{bins[k]:.1f},{bins[k+1]:.1f})\": int(hist[k]) for k in range(len(hist))},\n    \"by_type\": {\n        t: {\n            \"total\": len(type_sims[t]),\n            \"sim_eq_0\": int(np.sum(np.array(type_sims[t]) == 0)),\n            \"mean\": round(float(np.mean(type_sims[t])), 4),\n            \"median\": round(float(np.median(type_sims[t])), 4),\n        }\n        for t in sorted(type_sims.keys())\n    },\n    \"mean_sim\": round(float(sims.mean()), 4),\n    \"median_sim\": round(float(np.median(sims)), 4),\n    \"std_sim\": round(float(sims.std()), 4),\n}\n\nwith open(os.path.join(out_dir, \"sj_threshold_analysis.json\"), \"w\") as f:\n    json.dump(result, f, indent=2)\n\nprint(f\"\\nResults saved to {out_dir}/sj_threshold_analysis.json\")\nprint(f\"\\nOverall: mean_sim={sims.mean():.4f}, median={np.median(sims):.4f}, std={sims.std():.4f}\")\nPYEOF\necho \"Script written.\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9f8979b6-eac1-4bda-9573-d114ffc3d36e",
+  "uuid": "7fc996ae-bbd2-44bd-87cb-1600c08f768b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ApopXzx9LtdbrzDzKkfMqG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3104,
+      "cache_read_input_tokens": 29301,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3104
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-15T03:26:56.295Z_
+
+<details><summary>↩ Tool result · `toolu_01R4k6MU4wLKwY8CqY9EbNs9`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Script written.\\n\", \"stderr\": \"bash: line 1: /root/autodl-tmp/struct_self_consist_ie/scripts/sj_threshold_analysis.py: No such file or directory\\n\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9f8979b6-eac1-4bda-9573-d114ffc3d36e",
+  "uuid": "3ff3ad92-4cf4-42a2-89b5-8cfcd071bfd1",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Script written.\\\\n\\\", \\\"stderr\\\": \\\"bash: line 1: /root/autodl-tmp/struct_self_consist_ie/scripts/sj_threshold_analysis.py: No such file or directory\\\\n\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Script written.\\n\", \"stderr\": \"bash: line 1: /root/autodl-tmp/struct_self_consist_ie/scripts/sj_threshold_analysis.py: No such file or directory\\n\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01Uw552fxUGiM3PFTceHhqLr`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "mkdir -p /root/autodl-tmp/struct_self_consist_ie/scripts && ls /root/autodl-tmp/struct_self_consist_ie/scripts/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9f8979b6-eac1-4bda-9573-d114ffc3d36e",
+  "uuid": "7e975f72-462d-4f9e-9731-e03d8e349290",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018KdMUAZrmhQW19G9Uvhch8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2653,
+      "cache_read_input_tokens": 32405,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2653
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-15T03:27:00.597Z_
+
+<details><summary>↩ Tool result · `toolu_01Uw552fxUGiM3PFTceHhqLr`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9f8979b6-eac1-4bda-9573-d114ffc3d36e",
+  "uuid": "4fbba245-c9e7-462a-8350-3c2f52782eab",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01Cok2b9B1TLUASTZALXegcd`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport sys, json, os, numpy as np\nfrom itertools import combinations\nfrom collections import defaultdict\n\nsys.path.insert(0, '/root/autodl-tmp/struct_self_consist_ie/code')\nfrom consistency import _span_soft_jaccard\nfrom scipy.optimize import linear_sum_assignment\n\ndef analyze_ner_matched_pairs(entities_a, entities_b):\n    matched_sims = []\n    if not entities_a and not entities_b:\n        return matched_sims\n    if not entities_a or not entities_b:\n        return matched_sims\n    types = set()\n    groups_a = defaultdict(list)\n    groups_b = defaultdict(list)\n    for e in entities_a:\n        t = e['type']; types.add(t); groups_a[t].append(e)\n    for e in entities_b:\n        t = e['type']; types.add(t); groups_b[t].append(e)\n    for t in types:\n        ga = groups_a.get(t, [])\n        gb = groups_b.get(t, [])\n        if not ga or not gb:\n            continue\n        cost = np.zeros((len(ga), len(gb)), dtype=np.float64)\n        for i, ea in enumerate(ga):\n            for j, eb in enumerate(gb):\n                cost[i, j] = _span_soft_jaccard(ea['start'], ea['end'], eb['start'], eb['end'])\n        row_ind, col_ind = linear_sum_assignment(-cost)\n        for r, c in zip(row_ind, col_ind):\n            matched_sims.append({'sim': float(cost[r, c]), 'type': t,\n                'a_text': ga[r].get('text',''), 'b_text': gb[c].get('text',''),\n                'a_span': (ga[r]['start'], ga[r]['end']), 'b_span': (gb[c]['start'], gb[c]['end'])})\n    return matched_sims\n\ndata_path = '/root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/samples.jsonl'\ninstances = []\nwith open(data_path) as f:\n    for line in f:\n        instances.append(json.loads(line))\nprint(f'Loaded {len(instances)} instances')\n\nall_matched = []\nn_pairs = 0\nfor inst in instances:\n    samples = inst['samples']\n    for i, j in combinations(range(len(samples)), 2):\n        ents_a = samples[i].get('entities', [])\n        ents_b = samples[j].get('entities', [])\n        pairs = analyze_ner_matched_pairs(ents_a, ents_b)\n        all_matched.extend(pairs)\n        n_pairs += 1\n\nsims = np.array([m['sim'] for m in all_matched])\ntotal = len(sims)\nsim_eq_0 = int(np.sum(sims == 0))\nsim_lt_01 = int(np.sum(sims < 0.1))\nsim_lt_05 = int(np.sum(sims < 0.5))\nsim_ge_05 = int(np.sum(sims >= 0.5))\n\nprint(f'')\nprint(f'=== SJ Threshold Analysis ===')\nprint(f'Code has explicit threshold: NO')\nprint(f'Hungarian matching matches ANY pair including sim=0')\nprint(f'')\nprint(f'Total sample pairs analyzed: {n_pairs}')\nprint(f'Total matched entity pairs: {total}')\nprint(f'  sim = 0 (no overlap): {sim_eq_0} ({100*sim_eq_0/total:.1f}%)')\nprint(f'  sim < 0.1: {sim_lt_01} ({100*sim_lt_01/total:.1f}%)')\nprint(f'  sim < 0.5: {sim_lt_05} ({100*sim_lt_05/total:.1f}%)')\nprint(f'  sim >= 0.5: {sim_ge_05} ({100*sim_ge_05/total:.1f}%)')\n\nprint(f'')\nprint(f'Distribution (10 bins):')\nbins = np.arange(0, 1.1, 0.1)\nhist, _ = np.histogram(sims, bins=bins)\nfor k in range(len(hist)):\n    lo = bins[k]; hi = bins[k+1]\n    end_bracket = ']' if k == len(hist)-1 else ')'\n    print(f'  [{lo:.1f}, {hi:.1f}{end_bracket}: {hist[k]} ({100*hist[k]/total:.1f}%)')\n\nzero_matches = [m for m in all_matched if m['sim'] == 0]\nprint(f'')\nprint(f'--- Examples of sim=0 matches (first 10) ---')\nfor m in zero_matches[:10]:\n    print(f\\\"  type={m['type']}, a='{m['a_text']}' {m['a_span']}, b='{m['b_text']}' {m['b_span']}\\\")\n\nprint(f'')\nprint(f'--- Breakdown by entity type ---')\ntype_sims = defaultdict(list)\nfor m in all_matched:\n    type_sims[m['type']].append(m['sim'])\nfor t in sorted(type_sims.keys()):\n    s = np.array(type_sims[t])\n    n_zero = int(np.sum(s == 0))\n    print(f'  {t}: total={len(s)}, sim=0: {n_zero} ({100*n_zero/len(s):.1f}%), mean={s.mean():.3f}, median={np.median(s):.3f}')\n\nout_dir = '/root/autodl-tmp/struct_self_consist_ie/output/review_round2'\nos.makedirs(out_dir, exist_ok=True)\nresult = {\n    'code_has_threshold': False,\n    'total_sample_pairs': n_pairs,\n    'total_matched_entity_pairs': total,\n    'sim_eq_0': {'count': sim_eq_0, 'pct': round(100*sim_eq_0/total, 2)},\n    'sim_lt_0.1': {'count': sim_lt_01, 'pct': round(100*sim_lt_01/total, 2)},\n    'sim_lt_0.5': {'count': sim_lt_05, 'pct': round(100*sim_lt_05/total, 2)},\n    'sim_ge_0.5': {'count': sim_ge_05, 'pct': round(100*sim_ge_05/total, 2)},\n    'histogram': {f'[{bins[k]:.1f},{bins[k+1]:.1f})': int(hist[k]) for k in range(len(hist))},\n    'by_type': {t: {'total': len(type_sims[t]), 'sim_eq_0': int(np.sum(np.array(type_sims[t]) == 0)),\n        'mean': round(float(np.mean(type_sims[t])), 4), 'median': round(float(np.median(type_sims[t])), 4)}\n        for t in sorted(type_sims.keys())},\n    'mean_sim': round(float(sims.mean()), 4),\n    'median_sim': round(float(np.median(sims)), 4),\n    'std_sim': round(float(sims.std()), 4),\n}\nwith open(os.path.join(out_dir, 'sj_threshold_analysis.json'), 'w') as f:\n    json.dump(result, f, indent=2)\nprint(f'')\nprint(f'Overall: mean_sim={sims.mean():.4f}, median={np.median(sims):.4f}, std={sims.std():.4f}')\nprint(f'Results saved to {out_dir}/sj_threshold_analysis.json')\n\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9f8979b6-eac1-4bda-9573-d114ffc3d36e",
+  "uuid": "6dd26b9d-45f5-417e-9e9b-12accc19da1e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LmfApM5zPXSBStSAXYg6ka",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 212,
+      "cache_read_input_tokens": 35058,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 212
+      },
+      "output_tokens": 65,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-15T03:27:21.827Z_
+
+<details><summary>↩ Tool result · `toolu_01Cok2b9B1TLUASTZALXegcd`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Loaded 551 instances\\n\\n=== SJ Threshold Analysis ===\\nCode has explicit threshold: NO\\nHungarian matching matches ANY pair including sim=0\\n\\nTotal sample pairs analyzed: 15428\\nTotal matched entity pairs: 37661\\n  sim = 0 (no overlap): 644 (1.7%)\\n  sim < 0.1: 653 (1.7%)\\n  sim < 0.5: 1280 (3.4%)\\n  sim >= 0.5: 36381 (96.6%)\\n\\nDistribution (10 bins):\\n  [0.0, 0.1): 653 (1.7%)\\n  [0.1, 0.2): 41 (0.1%)\\n  [0.2, 0.3): 67 (0.2%)\\n  [0.3, 0.4): 215 (0.6%)\\n  [0.4, 0.5): 304 (0.8%)\\n  [0.5, 0.6): 407 (1.1%)\\n  [0.6, 0.7): 597 (1.6%)\\n  [0.7, 0.8): 241 (0.6%)\\n  [0.8, 0.9): 124 (0.3%)\\n  [0.9, 1.0]: 35012 (93.0%)\\n\\n--- Examples of sim=0 matches (first 10) ---\\n  type=Method, a='Amorph' (26, 32), b='analyzer' (4, 12)\\n  type=Method, a='Amorph' (26, 32), b='analyzer' (4, 12)\\n  type=Method, a='Amorph' (26, 32), b='analyzer' (4, 12)\\n  type=Material, a='Japanese character strings' (65, 91), b='dictionaries' (33, 45)\\n  type=Material, a='Japanese character strings' (65, 91), b='dictionaries' (33, 45)\\n  type=Material, a='Japanese character strings' (65, 91), b='dictionaries' (33, 45)\\n  type=Material, a='dictionaries' (33, 45), b='Japanese character strings' (65, 91)\\n  type=Material, a='dictionaries' (33, 45), b='Japanese character strings' (65, 91)\\n  type=OtherScientificTerm, a='NE items' (151, 159), b='dictionary lookup stage' (53, 76)\\n  type=OtherScientificTerm, a='dictionary lookup stage' (53, 76), b='rules' (88, 93)\\n\\n--- Breakdown by entity type ---\\n  Generic: total=5173, sim=0: 89 (1.7%), mean=0.972, median=1.000\\n  Material: total=3382, sim=0: 33 (1.0%), mean=0.969, median=1.000\\n  Method: total=10130, sim=0: 102 (1.0%), mean=0.975, median=1.000\\n  Metric: total=1603, sim=0: 27 (1.7%), mean=0.946, median=1.000\\n  OtherScientificTerm: total=11569, sim=0: 355 (3.1%), mean=0.940, median=1.000\\n  Task: total=5804, sim=0: 38 (0.7%), mean=0.957, median=1.000\\n\\nOverall: mean_sim=0.9595, median=1.0000, std=0.1645\\nResults saved to /root/autodl-tmp/struct_self_consist_ie/output/review_round2/sj_threshold_analysis.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.13}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9f8979b6-eac1-4bda-9573-d114ffc3d36e",
+  "uuid": "333a6d10-d95d-485b-acce-362a6ffcbf68",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Loaded 551 instances\\\\n\\\\n=== SJ Threshold Analysis ===\\\\nCode has explicit threshold: NO\\\\nHungarian matching matches ANY pair including sim=0\\\\n\\\\nTotal sample pairs analyzed: 15428\\\\nTotal matched entity pairs: 37661\\\\n  sim = 0 (no overlap): 644 (1.7%)\\\\n  sim < 0.1: 653 (1.7%)\\\\n  sim < 0.5: 1280 (3.4%)\\\\n  sim >= 0.5: 36381 (96.6%)\\\\n\\\\nDistribution (10 bins):\\\\n  [0.0, 0.1): 653 (1.7%)\\\\n  [0.1, 0.2): 41 (0.1%)\\\\n  [0.2, 0.3): 67 (0.2%)\\\\n  [0.3, 0.4): 215 (0.6%)\\\\n  [0.4, 0.5): 304 (0.8%)\\\\n  [0.5, 0.6): 407 (1.1%)\\\\n  [0.6, 0.7): 597 (1.6%)\\\\n  [0.7, 0.8): 241 (0.6%)\\\\n  [0.8, 0.9): 124 (0.3%)\\\\n  [0.9, 1.0]: 35012 (93.0%)\\\\n\\\\n--- Examples of sim=0 matches (first 10) ---\\\\n  type=Method, a='Amorph' (26, 32), b='analyzer' (4, 12)\\\\n  type=Method, a='Amorph' (26, 32), b='analyzer' (4, 12)\\\\n  type=Method, a='Amorph' (26, 32), b='analyzer' (4, 12)\\\\n  type=Material, a='Japanese character strings' (65, 91), b='dictionaries' (33, 45)\\\\n  type=Material, a='Japanese character strings' (65, 91), b='dictionaries' (33, 45)\\\\n  type=Material, a='Japanese character strings' (65, 91), b='dictionaries' (33, 45)\\\\n  type=Material, a='dictionaries' (33, 45), b='Japanese character strings' (65, 91)\\\\n  type=Material, a='dictionaries' (33, 45), b='Japanese character strings' (65, 91)\\\\n  type=OtherScientificTerm, a='NE items' (151, 159), b='dictionary lookup stage' (53, 76)\\\\n  type=OtherScientificTerm, a='dictionary lookup stage' (53, 76), b='rules' (88, 93)\\\\n\\\\n--- Breakdown by entity type ---\\\\n  Generic: total=5173, sim=0: 89 (1.7%), mean=0.972, median=1.000\\\\n  Material: total=3382, sim=0: 33 (1.0%), mean=0.969, median=1.000\\\\n  Method: total=10130, sim=0: 102 (1.0%), mean=0.975, median=1.000\\\\n  Metric: total=1603, sim=0: 27 (1.7%), mean=0.946, median=1.000\\\\n  OtherScientificTerm: total=11569, sim=0: 355 (3.1%), mean=0.940, median=1.000\\\\n  Task: total=5804, sim=0: 38 (0.7%), mean=0.957, median=1.000\\\\n\\\\nOverall: mean_sim=0.9595, median=1.0000, std=0.1645\\\\nResults saved to /root/autodl-tmp/struct_self_consist_ie/output/review_round2/sj_threshold_analysis.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.13}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Loaded 551 instances\\n\\n=== SJ Threshold Analysis ===\\nCode has explicit threshold: NO\\nHungarian matching matches ANY pair including sim=0\\n\\nTotal sample pairs analyzed: 15428\\nTotal matched entity pairs: 37661\\n  sim = 0 (no overlap): 644 (1.7%)\\n  sim < 0.1: 653 (1.7%)\\n  sim < 0.5: 1280 (3.4%)\\n  sim >= 0.5: 36381 (96.6%)\\n\\nDistribution (10 bins):\\n  [0.0, 0.1): 653 (1.7%)\\n  [0.1, 0.2): 41 (0.1%)\\n  [0.2, 0.3): 67 (0.2%)\\n  [0.3, 0.4): 215 (0.6%)\\n  [0.4, 0.5): 304 (0.8%)\\n  [0.5, 0.6): 407 (1.1%)\\n  [0.6, 0.7): 597 (1.6%)\\n  [0.7, 0.8): 241 (0.6%)\\n  [0.8, 0.9): 124 (0.3%)\\n  [0.9, 1.0]: 35012 (93.0%)\\n\\n--- Examples of sim=0 matches (first 10) ---\\n  type=Method, a='Amorph' (26, 32), b='analyzer' (4, 12)\\n  type=Method, a='Amorph' (26, 32), b='analyzer' (4, 12)\\n  type=Method, a='Amorph' (26, 32), b='analyzer' (4, 12)\\n  type=Material, a='Japanese character strings' (65, 91), b='dictionaries' (33, 45)\\n  type=Material, a='Japanese character strings' (65, 91), b='dictionaries' (33, 45)\\n  type=Material, a='Japanese character strings' (65, 91), b='dictionaries' (33, 45)\\n  type=Material, a='dictionaries' (33, 45), b='Japanese character strings' (65, 91)\\n  type=Material, a='dictionaries' (33, 45), b='Japanese character strings' (65, 91)\\n  type=OtherScientificTerm, a='NE items' (151, 159), b='dictionary lookup stage' (53, 76)\\n  type=OtherScientificTerm, a='dictionary lookup stage' (53, 76), b='rules' (88, 93)\\n\\n--- Breakdown by entity type ---\\n  Generic: total=5173, sim=0: 89 (1.7%), mean=0.972, median=1.000\\n  Material: total=3382, sim=0: 33 (1.0%), mean=0.969, median=1.000\\n  Method: total=10130, sim=0: 102 (1.0%), mean=0.975, median=1.000\\n  Metric: total=1603, sim=0: 27 (1.7%), mean=0.946, median=1.000\\n  OtherScientificTerm: total=11569, sim=0: 355 (3.1%), mean=0.940, median=1.000\\n  Task: total=5804, sim=0: 38 (0.7%), mean=0.957, median=1.000\\n\\nOverall: mean_sim=0.9595, median=1.0000, std=0.1645\\nResults saved to /root/autodl-tmp/struct_self_consist_ie/output/review_round2/sj_threshold_analysis.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.13}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 36_
+
+结果：
+
+### 代码确认
+- **没有任何 minimum similarity threshold**。`linear_sum_assignment(-cost)` 直接做最大化匹配，sim=0 的 pair 也会被 match。
+
+### 数据统计（Qwen SciERC N=8, 551 instances）
+
+| 区间 | 数量 | 占比 |
+|------|------|------|
+| sim = 0（完全不重叠） | 644 | 1.7% |
+| sim < 0.1 | 653 | 1.7% |
+| sim < 0.5 | 1,280 | 3.4% |
+| **sim >= 0.5** | **36,381** | **96.6%** |
+
+分布高度集中在 [0.9, 1.0]（93.0%），说明绝大多数 matched pair 是近乎完全重叠的。sim=0 的 644 个 pair 占比很小（1.7%），影响有限。
+
+按 entity type 看，**OtherScientificTerm** 的 sim=0 比例最高（3.1%, 355/11569），可能因为该类型边界模糊、提取变异大。
+
+总体 mean_sim=0.9595, median=1.0, std=0.1645。
+
+结果已保存到 `/root/autodl-tmp/struct_self_consist_ie/output/review_round2/sj_threshold_analysis.json`。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9f8979b6-eac1-4bda-9573-d114ffc3d36e",
+  "uuid": "07b97325-0542-4579-beed-2e0e2dcc9d5a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JTaJrMLnDGL6uKtwfSSyLd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3235,
+      "cache_read_input_tokens": 35270,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3235
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 37_
+
+结果：
+
+### 代码确认
+- **没有任何 minimum similarity threshold**。`linear_sum_assignment(-cost)` 直接做最大化匹配，sim=0 的 pair 也会被 match。
+
+### 数据统计（Qwen SciERC N=8, 551 instances）
+
+| 区间 | 数量 | 占比 |
+|------|------|------|
+| sim = 0（完全不重叠） | 644 | 1.7% |
+| sim < 0.1 | 653 | 1.7% |
+| sim < 0.5 | 1,280 | 3.4% |
+| **sim >= 0.5** | **36,381** | **96.6%** |
+
+分布高度集中在 [0.9, 1.0]（93.0%），说明绝大多数 matched pair 是近乎完全重叠的。sim=0 的 644 个 pair 占比很小（1.7%），影响有限。
+
+按 entity type 看，**OtherScientificTerm** 的 sim=0 比例最高（3.1%, 355/11569），可能因为该类型边界模糊、提取变异大。
+
+总体 mean_sim=0.9595, median=1.0, std=0.1645。
+
+结果已保存到 `/root/autodl-tmp/struct_self_consist_ie/output/review_round2/sj_threshold_analysis.json`。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 97861,
+  "duration_api_ms": 95448,
+  "num_turns": 13,
+  "stop_reason": "end_turn",
+  "session_id": "9f8979b6-eac1-4bda-9573-d114ffc3d36e",
+  "total_cost_usd": 0.4889454999999999,
+  "usage": {
+    "input_tokens": 15,
+    "cache_creation_input_tokens": 26804,
+    "cache_read_input_tokens": 303675,
+    "output_tokens": 6713,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 26804,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 401,
+        "cache_read_input_tokens": 35270,
+        "cache_creation_input_tokens": 3235,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 3235
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1573,
+      "outputTokens": 22,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001683,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 15,
+      "outputTokens": 6713,
+      "cacheReadInputTokens": 303675,
+      "cacheCreationInputTokens": 26804,
+      "webSearchRequests": 0,
+      "costUSD": 0.48726249999999993,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "dffcee26-7cf1-4dc2-901f-f1eb2bfcf62b"
+}
+```
+
+</details>
+
+---

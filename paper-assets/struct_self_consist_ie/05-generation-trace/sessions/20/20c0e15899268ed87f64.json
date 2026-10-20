@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "20c0e15899268ed87f64",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "run 5090b 6gpu fill",
+  "task_key": "worker_run_5090b_6gpu_fill_20260521T030850",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_run_5090b_6gpu_fill_20260521T030850_result.json",
+    "occurrence": 1,
+    "bytes": 1197,
+    "sha256": "b76e20d5f37b7ec0814d9ea30eb4dfc39ebbf19612176485593b9b51b8038569"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 6 个实验已启动并产出推理日志，registry 已更新。\n\n**5090-b**（4 卡，tmux）:\n\n| GPU | Exp ID | Dataset | T | Seed | 进度 |\n|-----|--------|---------|---|------|------|\n| cuda:0 | exp_fewnerd_t05_s456 | FewNERD | 0.5 | 456 | rendering prompts |\n| cuda:1 | exp_fewnerd_t12_s456 | FewNERD | 1.2 | 456 | rendering prompts |\n| cuda:2 | exp_scierc_t05_s123 | SciERC | 0.5 | 123 | 80% processed (3680/4408) |\n| cuda:3 | exp_scierc_t12_s123 | SciERC | 1.2 | 123 | 78% processed (3456/4408) |\n\n**5090-c**（2 卡，nohup）:\n\n| GPU | Exp ID | Dataset | T | Seed | N | 进度 |\n|-----|--------|---------|---|------|---|------|\n| cuda:1 | exp_scierc_t08_s123 | SciERC | 0.8 | 123 | 8 | 5% processed |\n| cuda:3 | exp_conll_n16_s42 | CoNLL | 1.0 | 42 | 16 | 8% processed (4416/55248) |\n\n注意：\n- FewNERD 模型实际名是 `qwen3-8b-fewnerd-exp021-merged`（非任务描述中的 `qwen3-8b-fewnerd-merged`）\n- SciERC 模型是 `qwen3-8b-scierc-merged-v2`\n- SciERC 只有 551 实例（×8 samples = 4408 prompts），所以 5090-b 上的两个 SciERC 实验即将完成\n- CoNLL N=16 有 3453 实例 × 16 = 55248 prompts，预计耗时较长"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/run-5090b-6gpu-fill.md"
+}

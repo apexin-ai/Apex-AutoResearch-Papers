@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "21095d1c63105ca8fb15",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "research alpha crit derivation",
+  "task_key": "worker_research_alpha_crit_derivation_20260521T113132",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_research_alpha_crit_derivation_20260521T113132.log",
+    "occurrence": 1,
+    "bytes": 1130180,
+    "sha256": "7b70d997114c18fd4b973bfe2d3ef5852a29f0741bc2b0f505bff1c58fd25e9b"
+  },
+  "statistics": {
+    "messages": 164,
+    "user_turns": 0,
+    "tool_calls": 56,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 3,
+      "assistant": 46,
+      "tool_call": 56,
+      "tool_result": 56,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 164,
+      "chunks": [
+        {
+          "path": "21095d1c63105ca8fb15-part-0001.json",
+          "message_count": 84
+        },
+        {
+          "path": "21095d1c63105ca8fb15-part-0002.json",
+          "message_count": 80
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/research-alpha-crit-derivation.md"
+}

@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "115937de8ce396cece69",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "paper holm esj update",
+  "task_key": "worker_paper_holm-esj-update_20260522T185603",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_paper_holm-esj-update_20260522T185603_result.json",
+    "occurrence": 1,
+    "bytes": 2224118,
+    "sha256": "cf16d55d362457606fa66240ed5a0a6f1589868b29826e48de6dc020b1399660"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Large source content is retained in the sanitized trace archive."
+            }
+          ],
+          "metadata": {
+            "large_content_blocks": [
+              {
+                "index": 0,
+                "storage": "sanitized-trace-archive",
+                "source_line": 1,
+                "serialized_bytes": 2224138,
+                "serialized_sha256": "09d98b0b8aafaf886610318fdb63db32ba5ffa8a532725e9d88c4aa0c1f256c6",
+                "note": "Complete sanitized source is retained in trace-files.tar.gz."
+              }
+            ]
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-holm-esj-update.md"
+}

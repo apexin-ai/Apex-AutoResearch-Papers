@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "142e378b2d34307585dc",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "diagnose exp e2 pretrained fewnerd s42 v2",
+  "task_key": "worker_diagnose_exp_e2_pretrained_fewnerd_s42_v2_20260521T232627",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_exp_e2_pretrained_fewnerd_s42_v2_20260521T232627_result.json",
+    "occurrence": 1,
+    "bytes": 593,
+    "sha256": "2cabd9e1f7fe93283c8bbc263b0bdbab5f0e787c85df6ebff4293821f182f3f5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**实验实际已成功完成，cron 误判为失败。**\n\n日志显示完整执行流程：37648/37648 instances 全部处理完毕，生成了 report.json，verdict 为 **PASS**，vLLM engine 正常 shutdown。关键指标：Greedy F1=0.5116, Oracle F1=0.6169, Structural > Surface=YES。\n\n失败标记是 cron 监控的误报——进程正常退出后 cron 检测到 \"process dead\" 但未找到预期的 sentinel/W&B 标记，累计 5 次检测后自动标记为 failed。\n\n**结论：无需重跑。** 实验结果完整，且原始 3-seed set 也已全部成功。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-exp-e2-pretrained-fewnerd-s42-v2.md"
+}

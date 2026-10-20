@@ -1,0 +1,40 @@
+# code scaling curve script
+
+**When Self-Consistency Fails for NER: Degeneracy, Signal Collapse, and the Correlation-Selection Gap** · Task result records
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 1
+- **Recorded user turns:** 0
+- **Tool calls:** 0
+- **Original source:** `logs/workers/worker_code_scaling_curve_script_20260519T103039_result.json`
+- **Structured JSON:** [`acc290ead0bc4a02dedd.json`](../../sessions/ac/acc290ead0bc4a02dedd.json)
+
+## Before a recorded user message
+
+1 recorded events
+
+### Task result
+
+_source line 1_
+
+图表正常渲染，数据点正确。三个脚本全部通过测试：
+
+**已创建的文件：**
+
+| 脚本 | 路径 |
+|------|------|
+| `aggregate_scaling_results.py` | 从 `KNOWN_RESULTS` dict 或 JSON 文件汇总，输出 CSV + JSON |
+| `plot_scaling_curve.py` | 4 panel 子图 (degen / headroom / LP delta / constr delta)，log X 轴，区分 family 和 regime |
+| `generate_scale_table.py` | LaTeX tabular，最优加粗，自包含 caption |
+
+**已生成的输出：**
+- `scaling_results.csv` / `scaling_results.json` (汇总数据)
+- `scaling_curve.pdf` / `scaling_curve.png` (图)
+- `scale_table.tex` (LaTeX 表)
+
+**使用方式：** 新实验数据到了后，在各脚本的 `KNOWN_RESULTS` / `DATA` dict 中添加新行，或用 `aggregate_scaling_results.py --extra path:model:family:size:dataset:regime` 从 JSON 文件自动导入。`plot_scaling_curve.py` 和 `generate_scale_table.py` 会自动读取 `scaling_results.json`（如果存在）。
+
+---

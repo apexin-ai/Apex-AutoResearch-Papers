@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0d591d653a1b5dc20b68",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "bugfix bootstrap loo gold empty",
+  "task_key": "worker_bugfix_bootstrap_loo_gold_empty_20260514T194330",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_bugfix_bootstrap_loo_gold_empty_20260514T194330_result.json",
+    "occurrence": 1,
+    "bytes": 1108,
+    "sha256": "bec460bd1878aa72c04202bb8f20263c74ab6d2d8338030ed685b3225dd3eb33"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修复完成。汇总：\n\n## 修复内容\n\n**Bug**: `run_bootstrap_loo.py` 和 `run_loo_v2.py` 未过滤 gold_empty 实例，导致 CoNLL 的 697 个 gold 标签为空的实例（20%）稀释了相关性。\n\n**修复**: 在两个脚本中添加 `filter_gold_nonempty()` 函数，加载数据后过滤 `gold.entities` 为空的实例。\n\n**过滤效果**: CoNLL 3453→2756, SciERC 551→529\n\n## 修复后结果\n\n### Bootstrap CI (B=10000, N=8 vs N=16)\n\n| Dataset | Signal | ρ_N8 | ρ_N16 | Δρ mean | 95% CI | \n|---------|--------|------|-------|---------|--------|\n| Qwen_CoNLL | SJ | 0.439 | **0.450** | +0.011 | [-0.014, 0.035] |\n| Qwen_CoNLL | EM | 0.452 | **0.461** | +0.009 | [-0.015, 0.032] |\n| Qwen_SciERC | SJ | 0.362 | **0.428** | +0.065 | **[0.004, 0.128]*** |\n| LLaMA_SciERC | SJ | 0.367 | 0.379 | +0.011 | [-0.042, 0.065] |\n\n*唯一 95% CI 排除 0 的信号\n\n### LOO-SJ Circularity Check\n\n所有数据集 |Δρ(full - LOO)| < 0.01，无循环性问题。CoNLL SJ ρ 从修复前的 0.125 升至 0.436-0.450（修复前低 3-4 倍正是 bug 所致）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/bugfix-bootstrap-loo-gold-empty.md"
+}

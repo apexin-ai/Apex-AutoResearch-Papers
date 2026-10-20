@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "0ae49582e56d48aa6d58",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "ssh kill vllm conll eval",
+  "task_key": "worker_ssh_kill-vllm-conll-eval_20260520T124853",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_kill-vllm-conll-eval_20260520T124853.log",
+    "occurrence": 1,
+    "bytes": 662261,
+    "sha256": "b2ec766fab524169238cc12f2d0eb5f10462e96dd3f447f7d774209e30e5db19"
+  },
+  "statistics": {
+    "messages": 149,
+    "user_turns": 0,
+    "tool_calls": 47,
+    "roles": {
+      "log": 1,
+      "system": 3,
+      "record": 1,
+      "assistant": 49,
+      "tool_call": 47,
+      "tool_result": 47,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 149,
+      "chunks": [
+        {
+          "path": "0ae49582e56d48aa6d58-part-0001.json",
+          "message_count": 133
+        },
+        {
+          "path": "0ae49582e56d48aa6d58-part-0002.json",
+          "message_count": 16
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ssh-kill-vllm-conll-eval.md"
+}

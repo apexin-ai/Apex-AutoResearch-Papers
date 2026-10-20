@@ -1,0 +1,1788 @@
+{
+  "schema_version": "1.0",
+  "id": "2b4d4d4342d7189a3fda",
+  "project": "struct_self_consist_ie",
+  "kind": "conversation",
+  "title": "review appendix cross ref",
+  "task_key": "worker_review_appendix-cross-ref_20260524T023114",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/worker_review_appendix-cross-ref_20260524T023114.jsonl",
+    "occurrence": 1,
+    "bytes": 111653,
+    "sha256": "b04d622683e9a2967040f0ef61633a12483003d10a2f3238fa1040bd8f62c9ed"
+  },
+  "statistics": {
+    "messages": 89,
+    "user_turns": 0,
+    "tool_calls": 44,
+    "roles": {
+      "tool_call": 44,
+      "tool_result": 44,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-24T02:36:20.519742+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_appendix-cross-ref_20260524T023114",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "*.tex",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-24T02:36:20.520109+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "docs/paper/sections/theoretical.tex\ndocs/paper/sections/_archived/experiments_OLD.tex\ndocs/paper/sections/mechanistic.tex\ndocs/paper/sections/conclusion.tex\ndocs/paper/sections/diagnostic.tex\ndocs/paper/sections/related_work.tex\ndocs/paper/sections/background.tex\ndocs/paper/sections/abstract.tex\ndocs/paper/sections/adaptive.tex\ndocs/paper/sections/method.tex\ndocs/paper/sections/discussion.tex\ndocs/paper/sections/limitations.tex\ndocs/paper/sections/theory.tex\ndocs/paper/sections/checklist.tex\ndocs/paper/sections/experiments_main.tex\ndocs/paper/sections/single_signal.tex\ndocs/paper/sections/appendix.tex\ndocs/paper/sections/introduction.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_appendix-cross-ref_20260524T023114",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-24T02:36:20.520326+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_appendix-cross-ref_20260524T023114",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/introduction.tex"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-24T02:36:20.520505+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Introduction}\\label{sec:introduction}\n2\t\n3\tTest-time compute scaling---self-consistency \\cite{wang2023selfconsistency}, best-of-$N$ \\cite{snell2025scaling, brown2024monkeys}, extended reasoning \\cite{muennighoff2025s1}---yields large gains on discrete-answer tasks where outputs admit equivalence classes or execution-based verification.\n4\tFor NER, where outputs are entity sets with partial overlap, the boundary conditions for effective scaling are unknown; prior work reports task-level correlations \\cite{yao2026consistency} and qualitative diversity collapse \\cite{yun2025price} but no instance-level diagnostic framework.\n5\t\n6\tUsing NER (four datasets, primarily 7--14B fine-tuned; tentative cross-scale observations to 72B) and RE as case studies, we identify a \\textbf{correlation-selection gap}: quality estimation signals predict output quality ($\\rho$ up to $0.45$, AUROC $0.82$; Table~\\ref{tab:quality_estimation}), yet selection yields no detectable gains---MV ${<}1$ percentage point (pp) even at $N{=}64$ (Figure~\\ref{fig:n_scaling}; Table~\\ref{tab:selection}).\n7\tThis gap decomposes into a definitional layer---four instance-level signals assign identical scores to all candidates---and an empirical one: LP, the only per-sample signal, also yields no gains, through within-instance compression (\\S\\ref{sec:selection_gap}).\n8\tA hidden-state probe confirms models encode entity quality internally (AUROC $0.63$\\textendash$0.88$; Appendix~\\ref{sec:mechanistic}), exposing an \\textit{introspection boundary} \\cite{huang2024large}.\n9\tA \\textit{diagnostic framework} localizes the failure to two co-occurring conditions---degeneracy ($12$--$68$\\%) and signal alignment collapse ($\\alpha{\\to}0$; $\\alpha$ here denotes LP-F1 alignment)---which co-occur with selection failure (Table~\\ref{tab:method_summary}).\n10\tThe framework decomposes observed failures post-hoc rather than predicting which instances will fail a priori; our analysis is observational and all reported associati\n…[truncated 3561 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_appendix-cross-ref_20260524T023114",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-24T02:36:20.520658+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_appendix-cross-ref_20260524T023114",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/method.tex"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-24T02:36:20.520860+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Method}\\label{sec:method}\n2\t\n3\t\\subsection{Problem Formulation}\\label{sec:formulation}\n4\t\n5\tGiven model $\\mathcal{M}$ and input $x$, we sample $N$ outputs $\\{y_1, \\ldots, y_N\\}$ at temperature $T > 0$ via constrained decoding \\cite{willard2023guided}, where each $y_i$ is an entity set.\n6\tA \\textbf{per-sample signal} $c_{\\text{ps}}: (x, y_i) \\to \\mathbb{R}$ scores each output independently; an \\textbf{instance-level signal} $c_{\\text{il}}: (x, \\{y_i\\}_{i=1}^N) \\to \\mathbb{R}$ produces a single score per input (notation in Appendix~\\ref{app:notation}).\n7\tOf five signals, only LP scores each sample independently; the other four are instance-level aggregates assigning identical scores to all $N$ candidates.\n8\tEnsemble optimization assigns dominant weight to LP (mean $0.78$; Appendix~\\ref{app:supervised_combination}); when LP fails (few-shot: $\\rho{\\to}0$; \\S\\ref{sec:scaling}), no alternative per-sample signal exists.\n9\t\n10\t\\subsection{Confidence Signals}\\label{sec:signals}\n11\t\n12\tThroughout, entity matching uses exact span and type match (a predicted entity is correct iff its character offsets and type label both match a gold entity).\n13\tFour are \\textit{consistency signals}: \\textit{structural} (Soft Jaccard [SJ], entity voting confidence [VC]) and \\textit{surface} (exact match [EM], Fleiss' $\\kappa$ [FK]); log-probability [LP] is the sole \\textit{model-internal}, per-sample signal.\n14\t\n15\t\\paragraph{Log-probability (model-internal, per-sample).}\n16\tFor sample $y_i$ with tokens $t_1, \\ldots, t_{|y_i|}$:\n17\t\\begin{equation}\\label{eq:logprob}\n18\tc_{\\text{lp}}(y_i) = \\frac{1}{|y_i|} \\sum_{j=1}^{|y_i|} \\log p_{\\mathcal{M}}(t_j \\mid t_{<j}, x)\n19\t\\end{equation}\n20\t\n21\t\\paragraph{Exact match voting (surface, instance-level).}\n22\tThe proportion of samples producing the most common output:\n23\t\\begin{equation}\\label{eq:em}\n24\tc_{\\text{em}}(x) = \\frac{1}{N} \\max_{y} \\big|\\{i : y_i = y\\}\\big|\n25\t\\end{equation}\n26\t\n27\t\\paragraph{Fleiss' $\\kappa$ (surface, instance-level\n…[truncated 5404 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_appendix-cross-ref_20260524T023114",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-24T02:36:20.521024+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_appendix-cross-ref_20260524T023114",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments_main.tex"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-24T02:36:20.521249+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Experiments}\\label{sec:experiments}\n2\t\n3\t\\subsection{Experimental Setup}\\label{sec:setup}\n4\t\n5\t\\paragraph{Datasets.}\n6\tWe evaluate on four English NER benchmarks spanning a difficulty gradient.\n7\t\\textbf{SciERC} \\cite{luan2018scierc} (551 test instances, 6 entity types) is the primary medium-difficulty test bed (${\\approx}$65\\% F1).\n8\t\\textbf{Few-NERD} \\cite{ding2021fewnerd} (INTRA coarse; 37{,}648 instances, 8 entity types, ${\\approx}$75\\% F1) provides a low-degeneracy contrast where LP selection succeeds (\\S\\ref{sec:selection_gap}).\n9\t\\textbf{CoNLL-2003} \\cite{tjongkimsang2003conll} (3{,}453 test sentences, 4 entity types, ${\\approx}$91\\% F1) serves as a ceiling-effect control.\n10\t\\textbf{WNUT-17} \\cite{derczynski2017wnut} (1{,}287 social media instances, 53.7\\% zero F1) probes the signal-collapse boundary.\n11\t\n12\t\\paragraph{Models and sampling.}\n13\t\\textbf{Qwen3-8B} and \\textbf{LLaMA-3.1-8B-Instruct} are LoRA fine-tuned using LLaMA Factory \\cite{zheng2024llamafactory} (Appendix~\\ref{app:training}; Few-NERD uses 3 epochs vs.\\ 5 for others; Appendix~\\ref{app:epoch_confound}).\n14\t$N{=}8$ samples at $T{=}1.0$ (primary) with vLLM constrained decoding \\cite{willard2023guided}; $N {\\in} \\{16, 32, 64\\}$ for scaling (Figure~\\ref{fig:n_scaling}; Appendix~\\ref{app:n_scaling}).\n15\t\n16\t\\begin{figure}[t]\n17\t\\centering\n18\t\\includegraphics[width=\\columnwidth]{figures/fig_n_scaling_mv.pdf}\n19\t\\caption{MV $\\Delta$F1 vs.\\ $\\log_2 N$ across three datasets (Qwen3-8B FT, seed${=}42$). Dotted gray: $\\Delta{=}0$. Gains are dataset-dependent: persistently negative on Few-NERD, near zero on SciERC at higher $N$, marginally positive on CoNLL ($+0.6$\\,pp at $N{=}64$).}\n20\t\\label{fig:n_scaling}\n21\t\\end{figure}\n22\t\n23\t%% ============================================================\n24\t\\subsection{Quality Estimation Results}\\label{sec:qe_results}\n25\t\n26\t\\begin{table*}[t]\n27\t\\centering\n28\t\\small\n29\t\\caption{NER quality estimation ($\\rho$ and AUROC; $N{=}8$, primary seed${=}42$; 5-seed\n…[truncated 7783 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_appendix-cross-ref_20260524T023114",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-24T02:36:20.521466+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_appendix-cross-ref_20260524T023114",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/single_signal.tex"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-24T02:36:20.521646+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Single-Signal Selection Results}\\label{sec:selection_gap}\n2\t\n3\t\\paragraph{Definitional vs.\\ empirical.}\n4\tWe decompose the correlation-selection gap into two layers.\n5\tThe first is structural: four of five signals are instance-level aggregates that assign identical scores to all $N$ candidates from a given input (\\S\\ref{sec:formulation}), so they estimate quality across inputs but cannot rank candidates within an instance---selection failure is a design property, not an empirical finding.\n6\tThe second layer is empirical and constitutes the core diagnostic: LP---the only per-sample signal---suffers compression under constrained decoding, with 60\\% of SciERC instances showing within-instance LP range below 0.041 nats (Appendix~\\ref{app:logprob_ties}), leaving insufficient variation for sample discrimination. This compression is model-intrinsic: free-form decoding yields nearly identical LP distributions (within-instance std ratio $0.97{\\times}$; Appendix~\\ref{app:freeform_ablation}). Even where LP varies, selection gains depend on LP-quality alignment rather than degeneracy alone.\n7\tCross-instance $\\rho$ (Table~\\ref{tab:quality_estimation}) is attenuated by varying instance difficulty; within-instance $\\rho$ directly measures whether LP discriminates candidates for a fixed input, making it the relevant predictor of selection success.\n8\t\n9\t\\begin{table}[t]\n10\t\\centering\n11\t\\small\n12\t\\caption{Best-of-$N$ selection (macro F1) on SciERC ($N{=}8$, $T{=}1.0$). Selection signals: 2-seed mean${\\pm}\\sigma$; baselines: 3-seed (Oracle${=}0.775$, Greedy${=}0.645$). LP is per-sample; others use consensus-proximity. $^\\dagger$One score per input.}\n13\t\\label{tab:selection}\n14\t\\begin{tabular}{lcc}\n15\t\\toprule\n16\tMethod & NER F1 & $p$ \\\\\n17\t\\midrule\n18\tOracle & $0.775 \\pm 0.001$ & --- \\\\\n19\tGreedy ($T{=}0$) & $0.645 \\pm 0.001$ & --- \\\\\n20\t\\midrule\n21\tLP           & $\\mathbf{0.647} \\pm 0.005$ & .29 \\\\\n22\tSJ           & $0.646 \\pm 0.002$ & .67 \\\\\n23\tFK           & $0.646 \\pm \n…[truncated 3482 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_appendix-cross-ref_20260524T023114",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-24T02:36:20.521794+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_appendix-cross-ref_20260524T023114",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/diagnostic.tex"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-24T02:36:20.521951+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Diagnostic Framework}\\label{sec:method}\n2\t\n3\tOur analysis is observational: we characterize statistical associations between agreement signals and output quality without claiming causal mechanisms.\n4\t\n5\t\\subsection{Problem Formulation}\\label{sec:formulation}\n6\t\n7\tGiven model $\\mathcal{M}$ and input $x$, we sample $N$ outputs $\\{y_1, \\ldots, y_N\\}$ at temperature $T > 0$ via constrained decoding \\cite{willard2023guided}, where each $y_i$ is an entity set.\n8\tA \\textbf{per-sample signal} $c_{\\text{ps}}: (x, y_i) \\to \\mathbb{R}$ scores each output independently; an \\textbf{instance-level signal} $c_{\\text{il}}: (x, \\{y_i\\}_{i=1}^N) \\to \\mathbb{R}$ produces a single score per input (notation in Appendix~\\ref{app:notation}).\n9\tThis distinction is consequential: 4 of 5 signals are instance-level aggregates assigning identical scores to all $N$ candidates.\n10\tOnly LP carries per-sample discriminative power: ensemble optimization assigns LP mean weight $0.78$, with structural signals receiving zero weight (Appendix~\\ref{app:supervised_combination}).\n11\tWhen LP fails---as in few-shot regimes where LP $\\rho{\\to}0$ (\\S\\ref{sec:scaling})---no alternative per-sample signal exists.\n12\t\n13\tWe define the \\textbf{capability ceiling} as the practical performance upper bound achievable through self-consistency at realistic sample budgets ($N{\\leq}16$), beyond which diminishing returns render further scaling impractical.\n14\t\n15\t\\subsection{Confidence Signals}\\label{sec:signals}\n16\t\n17\tEntity matching uses exact span and type match.\n18\tWe distinguish two signal families: four \\textit{agreement signals} computed across samples---\\textit{structural} (Soft Jaccard [SJ], entity voting confidence [VC]) and \\textit{surface} (exact match [EM], Fleiss' $\\kappa$ [FK])---and log-probability [LP] as the sole \\textit{model-internal} signal, derived from generation probabilities and providing per-sample discrimination.\n19\t\n20\t\\paragraph{Log-probability (per-sample).}\n21\t$c_{\\text{lp}}(y_i)\n…[truncated 2903 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_appendix-cross-ref_20260524T023114",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-24T02:36:20.522158+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_appendix-cross-ref_20260524T023114",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/adaptive.tex"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-24T02:36:20.522339+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Adaptive Methods}\\label{sec:adaptive}\n2\t\n3\tSince instance-level selection yields no detectable gains (\\S\\ref{sec:selection_gap}), we present exploratory attempts informed by diagnostic findings to extract value from multi-sample generation beyond single-signal sample ranking.\n4\tTable~\\ref{tab:method_summary} summarizes all 9 method categories evaluated; only cross-model ensembles yield a positive result, though on a single dataset.\n5\t\n6\t\\begin{table}[t]\n7\t\\centering\n8\t\\small\n9\t\\caption{Summary of 9 method categories tested (including MV baseline, LP selection, and cross-model ensemble beyond self-verification methods in Appendix~\\ref{sec:mechanistic} and adaptive methods in this section). $\\Delta$F1 vs.\\ greedy; dataset in parentheses. Full coverage in Appendix~\\ref{app:method_coverage}.}\n10\t\\label{tab:method_summary}\n11\t\\resizebox{\\columnwidth}{!}{%\n12\t\\begin{tabular}{@{}llrl@{}}\n13\t\\toprule\n14\tCategory & Method & $\\Delta$F1 / metric & § \\\\\n15\t\\midrule\n16\tFreq.\\ voting & MV & baseline & \\ref{sec:prescriptive} \\\\\n17\tLP selection & Best-of-$N$ (LP) & $+1.39$\\,pp (FN)$^\\dagger$ & \\ref{sec:selection_gap} \\\\\n18\tSelf-verif.\\ (prompt) & ESJ & AUROC $0.51$ & App.~\\ref{sec:mechanistic} \\\\\n19\tMulti-round refine. & MRSC & $-3.1$\\,pp (FN) & App.~\\ref{sec:mechanistic} \\\\\n20\tLatent aggregation & LSC & $-3.5$\\,pp (FN) & App.~\\ref{sec:mechanistic} \\\\\n21\tAdaptive gating & DALS & $+0.71$\\,pp (SciERC)$^\\ddagger$ & App.~\\ref{app:dals} \\\\\n22\tSupervised verifier & LGB & $+0.30$\\,pp (OOF) & \\ref{sec:verifier} \\\\\n23\tSup.\\ combination & LR/MLP/RF & $-0.4$ to $-3.1$\\,pp & App.~\\ref{app:supervised_combination} \\\\\n24\tCross-model & Qwen$+$LLaMA & $\\mathbf{+0.42}$\\,pp (FN) & \\ref{sec:cross_model} \\\\\n25\t\\bottomrule\n26\t\\end{tabular}}\n27\t{\\footnotesize $^\\dagger$Few-NERD only; SciERC $+0.2$\\,pp ($p{=}0.29$). $^\\ddagger$Seed-sensitive ($\\sigma{=}0.48$\\,pp).}\n28\t\\end{table}\n29\t\n30\t\\subsection{Cross-Model Self-Consistency}\\label{sec:cross_model}\n31\t\n32\tMixing samples from architecturally d\n…[truncated 926 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_appendix-cross-ref_20260524T023114",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-24T02:36:20.522491+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_appendix-cross-ref_20260524T023114",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/discussion.tex"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-24T02:36:20.522624+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Discussion and Conclusion}\\label{sec:discussion}\\label{sec:selection_method}\\label{sec:conclusion}\n2\t\n3\t\\paragraph{When test-time scaling fails for NER.}\n4\tFor discrete-answer reasoning, sample diversity reflects diverse reasoning paths; for NER, degeneracy ($12$--$68$\\%) reduces candidate diversity while signal alignment collapse ($\\alpha{\\to}0$) limits ranking.\n5\tThe degeneracy decomposition (\\S\\ref{sec:theory}) identifies $\\alpha$---not degeneracy---as the binding constraint ($8$--$33{\\times}$ tighter); this persists across families \\cite{yun2025price}, scales (4B--72B), and decoding modes (Appendix~\\ref{app:freeform_ablation}).\n6\tThe diagnostic framework---identifying these co-occurring conditions---is our primary contribution.\n7\tAt $N{=}8$, high degeneracy ($>50$\\%) suggests scaling will not help; low degeneracy with strong LP-F1 alignment may warrant exploratory entity construction; otherwise, greedy decoding remains the default.\n8\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_appendix-cross-ref_20260524T023114",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-24T02:36:20.522749+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_appendix-cross-ref_20260524T023114",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/conclusion.tex"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-24T02:36:20.522870+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Conclusion}\\label{sec:conclusion}\n2\t\n3\tNER exhibits oracle scaling ($c{\\approx}0.5$) but on most datasets aggregation gains are ${<}1$\\,pp; the diagnostic framework predicts the dataset-dependent optimal strategy, and entity construction yields conditional gains ($+0.32$--$1.40$\\,pp) where the framework predicts favorable conditions.\n4\tThe binding constraint is $\\alpha{\\to}0$ even when $\\rho$ is substantial.\n5\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_appendix-cross-ref_20260524T023114",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-24T02:36:20.522985+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_appendix-cross-ref_20260524T023114",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/limitations.tex"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-24T02:36:20.523104+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\tOur primary evidence is from English NER with fine-tuned 7--14B open-weight models; frontier models exhibit markedly different degeneracy profiles (5.5--74\\%; Table~\\ref{tab:frontier_sc_cross}), and cross-task extensions (RE $n{=}397$, SQL $n{=}196$) are exploratory.\n2\tThe framework is diagnostic, not causal: under global Holm--Bonferroni ($k{=}57$), the strongest construction claim reaches $p_{\\text{adj}}{=}0.055$; our negative selection claims are bounded by statistical power (2--3 seeds, MDE ${\\approx}1.5$\\,pp).\n3\tEntity-level construction requires $N{\\times}$ inference cost for modest gains ($+1$--$1.4$\\,pp), and we use a single prompt template per task.\n4\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_appendix-cross-ref_20260524T023114",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-24T02:36:20.523265+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_appendix-cross-ref_20260524T023114",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/theoretical.tex"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-24T02:36:20.523403+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Theoretical Analysis}\\label{sec:theory}\n2\t\n3\t\\begin{theorem}[Degeneracy Upper Bound]\\label{thm:degeneracy_bound}\n4\tFor any aggregation method $A$: $\\mathbb{E}[\\Delta F_1(A)] \\leq (1 - D) \\cdot G_{\\textup{nd}}$,\n5\twhere $D$ is the degeneracy rate and $G_{\\textup{nd}}$ the oracle gap on non-degenerate instances.\n6\tFor signal-based methods with alignment $\\alpha \\in [0,1]$, this tightens to $(1{-}D) \\cdot G_{\\textup{nd}} \\cdot \\alpha$ (proof in Appendix~\\ref{app:bound_proof}).\n7\t\\end{theorem}\n8\t\n9\t\\noindent With $G_{\\textup{nd}}{\\approx}14.8$\\,pp and $\\alpha{\\approx}0.068$, the critical threshold is $\\theta_{\\textup{crit}}{=}0.70$: when $D{>}70$\\%, SC gain falls below $0.3$\\,pp.\n10\tAcross 16 configurations, all gains respect the bound (ratio 3--12\\%; Figure~\\ref{fig:bound}); the bound is loose because $\\alpha$---not $D$---is the bottleneck.\n11\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_appendix-cross-ref_20260524T023114",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-24T02:36:20.523527+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_appendix-cross-ref_20260524T023114",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/theory.tex"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-24T02:36:20.523681+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Threshold Regime Analysis}\\label{sec:theory_scaling}\n2\t\n3\t\\subsection{Entity Construction as MBR Decoding}\\label{sec:mbr_theory}\n4\t\n5\tEntity-level construction selects $\\hat{y}_{\\textup{MBR}} = \\{e \\in E_\\cup : \\hat{p}(e) > \\alpha/(\\alpha{+}1)\\}$ under balanced set-overlap utility; $\\alpha{=}1$ recovers majority vote (Proposition~\\ref{prop:construction_mbr}; Table~\\ref{tab:entity_construction}; Appendix~\\ref{app:mbr_proof}).\n6\tSignal-derived weights $w_i$ yield quality-weighted MBR: $\\hat{p}_w(e) = \\sum_{i} w_i \\, \\mathbf{1}[e {\\in} y_i] / \\sum_{i} w_i$; weighting improves when $w_i$ correlates with instance quality but degrades otherwise (LP on SciERC: $\\rho{\\approx}0.2$; \\S\\ref{sec:prescriptive}), consistent with utility degradation on structured outputs \\cite{eikema2025structured}.\n7\tWe select $\\varepsilon{=}0.05$ at the elbow of the compression curve, where LP-best selection advantage transitions from $+1.5$\\,pp (compressed) to $+4.6$\\,pp (non-compressed; Appendix~\\ref{app:fewnerd_epsilon}).\n8\t\n9\t\\subsection{Scaling and Inverse Scaling}\\label{sec:scaling}\n10\t\n11\tOracle F1 follows $F_1(N) = a - b \\cdot N^{-c}$ ($R^2 > 0.999$; Figure~\\ref{fig:oracle_scaling}): Few-NERD ($c{\\approx}0.61$) scales comparably to reasoning tasks \\cite{brown2024monkeys}, SciERC converges more slowly ($c{\\approx}0.35$), yet confidence-based aggregation recovers ${<}1$\\,pp---a persistent gap.\n12\tThe gap persists across scales and families: scaling from 8B to 14B FT increases oracle headroom ($+1.2$\\,pp) with minimal greedy gain ($+0.9$\\,pp), and GPT-5.5 (200 Few-NERD instances, zero-shot) exhibits the same pattern---50\\% degeneracy, SJ $\\rho{=}0.346$, MV $+1.4$\\,pp yet 6.8\\,pp oracle headroom unrealized.\\footnote{Of the 10.1\\% of GPT-5.5 samples producing empty entity sets, 88\\% correspond to gold-empty instances; true parse failures affect only 1.2\\% of samples (19/1{,}600) and shift all reported metrics by ${<}0.5$\\,pp. See Appendix~\\ref{app:frontier_sc}.}\n13\tDegeneracy is mo\n…[truncated 4308 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_appendix-cross-ref_20260524T023114",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-24T02:36:20.523819+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_appendix-cross-ref_20260524T023114",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-24T02:36:20.523938+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File content (69967 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file."
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_appendix-cross-ref_20260524T023114",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-24T02:36:20.524051+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_appendix-cross-ref_20260524T023114",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/background.tex"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-24T02:36:20.524234+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Related Work}\\label{sec:related}\n2\t\n3\t\\paragraph{Test-time scaling and self-consistency.}\\label{sec:yun_contrast}\n4\tSelf-consistency \\cite{wang2023selfconsistency} and best-of-$N$ with scaling laws \\cite{snell2025scaling, brown2024monkeys, gao2023scaling} yield large gains on reasoning; recent extensions include reward-tail-guided search \\cite{li2026rewardtail}. Reward-free selectors \\cite{taubenfeld2025cisc, kang2025selfcertainty} and trained verifiers \\cite{cobbe2021verifiers, lightman2024verify, li2023stepaware} target discrete-answer settings.\n5\tSC can fail when consistent outputs are wrong \\cite{chen2023twofailures}; free-form \\cite{chen2024usc} and atomic \\cite{thirukovalluru2024atomic} variants face limits where sub-output agreement does not yield selection gain. Iterative self-verification \\cite{shinn2023reflexion} offers an alternative, but our ESJ and MRSC results (\\S\\ref{sec:selection_gap}) show such approaches also fail for NER.\n6\t\\citet{yun2025price} identify diversity collapse under constrained decoding; we extend their qualitative account with quantitative diagnostics (\\S\\ref{sec:selection_gap}).\n7\t\n8\t\\paragraph{Consistency for structured IE.}\n9\t\\citet{yao2026consistency} show consistency correlates with accuracy for LLM-based NER/RE ($\\rho$ up to 0.47); we extend to instance-level analysis: (1)~task-level $\\rho$ masks instance-level degeneracy; (2)~we decompose failure into degeneracy and LP compression; (3)~pre-deployment diagnostics that task-level correlation cannot provide.\n10\tCritically, their task-level granularity cannot distinguish instances where scaling helps from those where it harms---our entity-level decomposition addresses this gap (Table~\\ref{tab:novelty_comparison}).\n11\t\\citet{xie2023zeroshot} propose entity voting for zero-shot NER; \\citet{xie2024selfimproving} report positive SC where zero-shot diversity is high.\n12\t\n13\t\\paragraph{Uncertainty estimation and MBR.}\n14\tOur selection instantiates MBR decoding \\cite{eikema2022\n…[truncated 2593 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_appendix-cross-ref_20260524T023114",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-24T02:36:20.524389+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_appendix-cross-ref_20260524T023114",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/related_work.tex"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-24T02:36:20.524521+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Related Work}\\label{sec:related}\n2\t\n3\t\\paragraph{Test-time compute scaling and best-of-$N$.}\n4\tSelf-consistency \\cite{wang2023selfconsistency} and best-of-$N$ with compute-optimal allocation \\cite{snell2025scaling, brown2024monkeys} drive large gains on reasoning and code tasks.\n5\tReward-free selectors \\cite{taubenfeld2025cisc, kang2025selfcertainty} and BoN scaling laws \\cite{gao2023scaling} reduce or characterize inference cost, while trained verifiers \\cite{cobbe2021verifiers, lightman2024verify} learn per-sample scoring.\n6\tAll target discrete-answer settings; structured prediction requires different aggregation because degeneracy operates at the entity-set level.\n7\t\n8\t\\paragraph{Consistency for structured IE.}\n9\t\\citet{yao2026consistency} show consistency correlates with accuracy for LLM-based NER/RE; we diagnose degeneracy and LP compression as conditions associated with the failure of this correlation to yield selection gains.\n10\t\\citet{xie2023zeroshot} propose entity voting for zero-shot NER, the closest prior work to our entity-level construction; our approach aggregates stochastic samples from a single fine-tuned model without prompt engineering.\n11\t\\citet{yun2025price} show structured formats induce diversity collapse; our LP compression (median range 0.041 nats) corroborates this for NER.\n12\tOur evaluation builds on generative IE \\cite{zhou2024uniner, sainz2024gollie} and constrained decoding \\cite{willard2023guided, dong2024xgrammar}.\n13\t\n14\t\\paragraph{Uncertainty estimation and MBR decoding.}\n15\tOur selection strategies instantiate MBR decoding \\cite{eikema2022sampling}; \\citet{eikema2025structured} find MBR utilities degrade on structured outputs, while our diagnosis identifies degeneracy as the primary bottleneck.\n16\tSemantic uncertainty \\cite{kuhn2023semantic} and confidence estimation \\cite{geng2024confidence, xia2025survey} provide complementary model-internal alternatives; our QE signals with AUROC up to 0.82 connect to selective predic\n…[truncated 92 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_appendix-cross-ref_20260524T023114",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-24T02:36:20.524660+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_appendix-cross-ref_20260524T023114",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/mechanistic.tex"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-24T02:36:20.524798+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{How Self-Verification Fails}\\label{sec:mechanistic}\n2\t\n3\tThe diagnostic framework (\\S\\ref{sec:method}) identifies \\textit{where} self-consistency fails; this section probes \\textit{why} by testing whether models can self-verify at the entity level.\n4\tProbe experiments use Qwen2.5-7B (not the fine-tuned Qwen3-8B used in main experiments); conclusions are architecture-specific.\n5\tWe evaluate self-verification and diagnostic probes on Qwen2.5-7B\\footnote{ESJ, MRSC, and LSC use Qwen2.5-7B-Instruct (zero-shot self-verification capability) rather than the fine-tuned Qwen3-8B used in the main experiments. Conclusion direction is consistent with the main experiments' negative results across all fine-tuned selection strategies. The pattern---selection failure across all signals---is independently confirmed in the Qwen3-8B main experiments, making the introspection boundary a model-independent finding within our tested scale. Probe conclusions are limited to the Qwen2.5 architecture; linear probes may underestimate representational capacity (nonlinear alternatives are left to future work).} fine-tuned for NER on Few-NERD ($N{=}8$, seed 42; full results in Appendix~\\ref{app:self_verification}).\n6\t\n7\t\\paragraph{Entity Self-Judgment (ESJ).}\n8\tFor each extracted entity, we prompt the generating model: ``Is [\\textit{entity}] a [\\textit{type}] entity in this sentence?''\n9\tEntity-level AUROC is $0.512$---indistinguishable from chance---with P(yes$|$correct)${=}0.500$ and P(yes$|$incorrect)${=}0.500$.\n10\tESJ-weighted construction degrades F1 to $0.711$ (vs.\\ greedy $0.794$).\n11\t\n12\t\\paragraph{Multi-Round Self-Consistency (MRSC).}\n13\tFollowing iterative self-refinement \\cite{madaan2023selfrefine}, we re-prompt on disputed entities (agreement ${<}0.6$) with focused verification; P(yes) separation between gold and non-gold entities is $0.0006$ ($0.5003$ vs.\\ $0.4997$).\n14\tMRSC best F1 ($0.763$) falls below greedy.\n15\t\n16\t\\paragraph{Latent Self-Consistency (LSC).}\n17\tMean-pool\n…[truncated 1794 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_appendix-cross-ref_20260524T023114",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-24T02:36:20.524981+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_appendix-cross-ref_20260524T023114",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+              "limit": "500"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-24T02:36:20.525365+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Notation}\\label{app:notation}\n2\t\n3\tTable~\\ref{tab:notation} summarizes the notation used throughout the paper.\n4\t\n5\t\\begin{table}[h]\n6\t\\centering\n7\t\\small\n8\t\\begin{tabular}{cl}\n9\t\\toprule\n10\tSymbol & Meaning \\\\\n11\t\\midrule\n12\t$\\mathcal{M}$ & Language model \\\\\n13\t$x$ & Input instance \\\\\n14\t$y_i$ & $i$-th stochastic sample \\\\\n15\t$N$ & Number of samples \\\\\n16\t$T$ & Sampling temperature \\\\\n17\t$c(\\cdot)$ & Confidence signal \\\\\n18\tSJ & Soft Jaccard similarity \\\\\n19\tFK & Fleiss' $\\kappa$ \\\\\n20\tEM & Exact-match voting rate \\\\\n21\tVC ($c_{\\mathrm{vc}}$) & Entity voting confidence \\\\\n22\tLP ($c_{\\mathrm{lp}}$) & Log-probability (mean token log-likelihood) \\\\\n23\t\\bottomrule\n24\t\\end{tabular}\n25\t\\caption{Notation used throughout the paper.}\n26\t\\label{tab:notation}\n27\t\\end{table}\n28\t\n29\t\\section{Robustness Analysis}\\label{app:robustness}\n30\t\n31\tWe exclude instances with empty gold annotations from all correlation analyses (CoNLL: 697/3{,}453 instances, 20.2\\%; SciERC: 22/551, 4.0\\%).\n32\tFor these instances, F1 is trivially zero regardless of prediction quality, and consistency signals reflect agreement on the empty set rather than extraction quality. Including them inflates or deflates Spearman $\\rho$ depending on signal behavior at the boundary.\n33\t\n34\t\\begin{table}[t]\n35\t\\centering\n36\t\\small\n37\t\\caption{Signal robustness across configurations (Spearman $\\rho$). Top: temperature on Qwen SciERC. Middle: sample size on Qwen SciERC. Bottom: transfer across model families (both 8B) (LLaMA CoNLL $N{=}16$, 3-seed mean $\\pm\\sigma$). $^\\dagger$Mean over 3 seeds ($\\sigma{=}0.013$; individual: 0.398, 0.423, 0.410). $\\sigma$ computed as sample standard deviation.}\n38\t\\label{tab:robustness}\n39\t\\begin{tabular}{llcc}\n40\t\\toprule\n41\t& & NER $\\rho$ & RE $\\rho$ \\\\\n42\t\\midrule\n43\t\\multicolumn{4}{l}{\\textit{Temperature} (Qwen SciERC, $N{=}8$)} \\\\\n44\t\\quad SJ & $T{=}0.7$ & 0.364 & 0.234 \\\\\n45\t\\quad SJ & $T{=}1.0$ & 0.360 & 0.250 \\\\\n46\t\\quad FK & $T{=}0.7$ & 0.289 & 0.184 \\\\\n47\t\\quad FK & $\n…[truncated 36589 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_appendix-cross-ref_20260524T023114",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-24T02:36:20.525566+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_appendix-cross-ref_20260524T023114",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "\\\\label\\{(app:|sec:)",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+              "output_mode": "content",
+              "-n": "True",
+              "head_limit": "100"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-24T02:36:20.525732+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1:\\section{Notation}\\label{app:notation}\n29:\\section{Robustness Analysis}\\label{app:robustness}\n94:\\paragraph{FK independence: instance-level permutation test.}\\label{app:fk_independence}\n122:\\section{Calibration Analysis}\\label{app:calibration}\n134:\\section{Additional Analyses}\\label{app:additional}\n270:\\section{Bootstrap CI for Signal Comparisons}\\label{app:bootstrap_signal}\n317:\\section{Holm--Bonferroni Enumeration}\\label{app:holm}\n406:\\section{Diversity and Selection Analysis}\\label{app:diversity}\n466:\\paragraph{TOST equivalence testing.}\\label{app:tost}\n512:\\paragraph{Multiple comparison considerations.}\\label{app:multiple_comparisons}\n518:\\paragraph{When would consistency-based selection work?}\\label{app:when_selection_works}\n525:\\section{Supervised and Model-Internal Signal Analysis}\\label{app:supervised_combination}\n537:\\subsection{Entity-Level Verifier Transfer}\\label{app:verifier_transfer}\n545:\\subsection{Hidden State Probes}\\label{app:hidden_probe}\n581:\\subsection{Method Coverage Matrix}\\label{app:method_coverage}\n607:\\section{How Self-Verification Fails}\\label{sec:mechanistic}\n636:\\section{Entity-Level Self-Verification Probes}\\label{app:self_verification}\n680:\\section{Cross-Dataset Entailment Self-Judgment}\\label{app:esj}\n701:\\section{Multi-Seed Stability}\\label{app:multiseed}\n733:\\section{Training Configuration}\\label{app:training}\n786:\\section{Thinking Token Impact Analysis}\\label{app:thinking_token}\n805:\\section{Log-Probability Score Compression}\\label{app:logprob_ties}\n869:\\paragraph{$\\varepsilon$ robustness of selection F1.}\\label{app:epsilon_robustness}\n917:\\paragraph{Within-instance LP-quality alignment.}\\label{app:within_instance_rho}\n943:\\paragraph{Few-NERD LP compression threshold sensitivity.}\\label{app:fewnerd_epsilon}\n989:\\subsection{Token-Level Signal Comparison}\\label{app:token_signal}\n997:\\section{Consistency-Stratified Selection Analysis}\\label{app:vc_quartile}\n1033:\\section{Exploratory Extension to Relation Extraction}\\label{app:re_ext\n…[truncated 2711 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_appendix-cross-ref_20260524T023114",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-24T02:36:20.525903+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_appendix-cross-ref_20260524T023114",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "\\\\ref\\{app:",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections",
+              "output_mode": "content",
+              "-n": "True",
+              "head_limit": "200",
+              "glob": "*.tex"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-24T02:36:20.526142+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<persisted-output>\nOutput too large (26.9KB). Full output saved to: /home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie/c9e55e26-2080-47d1-ae01-1314299ec49a/tool-results/toolu_014UocoUjRR2LeJSZvPXm3hA.txt\n\nPreview (first 2KB):\ndocs/paper/sections/theoretical.tex:6:For signal-based methods with alignment $\\alpha \\in [0,1]$, this tightens to $(1{-}D) \\cdot G_{\\textup{nd}} \\cdot \\alpha$ (proof in Appendix~\\ref{app:bound_proof}).\ndocs/paper/sections/experiments_main.tex:13:\\textbf{Qwen3-8B} and \\textbf{LLaMA-3.1-8B-Instruct} are LoRA fine-tuned using LLaMA Factory \\cite{zheng2024llamafactory} (Appendix~\\ref{app:training}; Few-NERD uses 3 epochs vs.\\ 5 for others; Appendix~\\ref{app:epoch_confound}).\ndocs/paper/sections/experiments_main.tex:14:$N{=}8$ samples at $T{=}1.0$ (primary) with vLLM constrained decoding \\cite{willard2023guided}; $N {\\in} \\{16, 32, 64\\}$ for scaling (Figure~\\ref{fig:n_scaling}; Appendix~\\ref{app:n_scaling}).\ndocs/paper/sections/experiments_main.tex:29:\\caption{NER quality estimation ($\\rho$ and AUROC; $N{=}8$, primary seed${=}42$; 5-seed $\\sigma{\\leq}0.026$ in Table~\\ref{tab:multiseed}). AUROC binarizes at per-dataset median F1. Best in \\textbf{bold}. RE in Appendix~\\ref{app:re_extension}; $N{=}16$ in Table~\\ref{tab:robustness}.}\ndocs/paper/sections/experiments_main.tex:50:On SciERC, structural signals lead (VC $\\rho{=}0.379$, SJ $0.360$) over LP ($0.205$); bootstrap CIs confirm the gap ($\\Delta\\rho{=}{+}0.151{\\pm}0.006$, 5 seeds; Appendix~\\ref{app:bootstrap_signal}).\ndocs/paper/sections/experiments_main.tex:51:Under seed-replication Holm--Bonferroni correction ($k{=}5$ seeds), the SJ~${>}$~LP advantage reaches $p_{\\text{adj}}{=}0.013$ (Appendix~\\ref{app:bootstrap_signal}).\ndocs/paper/sections/experiments_main.tex:76:[Omitted long matching line]\ndocs/paper/sections/experiments_main.tex:78:Signal ranking is task-specific; per-type analysis shows MV degradation concentrates in low-F\n…[truncated 89 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_appendix-cross-ref_20260524T023114",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-24T02:36:20.526321+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_appendix-cross-ref_20260524T023114",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "Appendix~\\\\ref\\{sec:",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections",
+              "output_mode": "content",
+              "-n": "True",
+              "head_limit": "50",
+              "glob": "*.tex"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-24T02:36:20.526463+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "docs/paper/sections/single_signal.tex:52:\\paragraph{Mechanistic evidence (Appendix~\\ref{sec:mechanistic}).}\ndocs/paper/sections/adaptive.tex:9:\\caption{Summary of 9 method categories tested (including MV baseline, LP selection, and cross-model ensemble beyond self-verification methods in Appendix~\\ref{sec:mechanistic} and adaptive methods in this section). $\\Delta$F1 vs.\\ greedy; dataset in parentheses. Full coverage in Appendix~\\ref{app:method_coverage}.}\ndocs/paper/sections/introduction.tex:8:A hidden-state probe confirms models encode entity quality internally (AUROC $0.63$\\textendash$0.88$; Appendix~\\ref{sec:mechanistic}), exposing an \\textit{introspection boundary} \\cite{huang2024large}.\ndocs/paper/sections/introduction.tex:28:A diagnostic cascade---degeneracy, LP compression, signal alignment---quantifies failure mechanisms at entity level; \\citet{yun2025price} describe diversity collapse qualitatively, we provide quantitative decomposition ($D$, $\\alpha$, LP range). A necessary condition bound (\\S\\ref{sec:theory}) confirms $\\alpha$ as the binding constraint (3--12\\% recovery ratio). Hidden-state probes reveal an introspection boundary (AUROC $0.63$--$0.88$ vs.\\ ESJ $\\approx 0.50$; Appendix~\\ref{sec:mechanistic})."
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_appendix-cross-ref_20260524T023114",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-24T02:36:20.526593+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_appendix-cross-ref_20260524T023114",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie/c9e55e26-2080-47d1-ae01-1314299ec49a/tool-results/toolu_014UocoUjRR2LeJSZvPXm3hA.txt"
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-24T02:36:20.526841+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\tdocs/paper/sections/theoretical.tex:6:For signal-based methods with alignment $\\alpha \\in [0,1]$, this tightens to $(1{-}D) \\cdot G_{\\textup{nd}} \\cdot \\alpha$ (proof in Appendix~\\ref{app:bound_proof}).\n2\tdocs/paper/sections/experiments_main.tex:13:\\textbf{Qwen3-8B} and \\textbf{LLaMA-3.1-8B-Instruct} are LoRA fine-tuned using LLaMA Factory \\cite{zheng2024llamafactory} (Appendix~\\ref{app:training}; Few-NERD uses 3 epochs vs.\\ 5 for others; Appendix~\\ref{app:epoch_confound}).\n3\tdocs/paper/sections/experiments_main.tex:14:$N{=}8$ samples at $T{=}1.0$ (primary) with vLLM constrained decoding \\cite{willard2023guided}; $N {\\in} \\{16, 32, 64\\}$ for scaling (Figure~\\ref{fig:n_scaling}; Appendix~\\ref{app:n_scaling}).\n4\tdocs/paper/sections/experiments_main.tex:29:\\caption{NER quality estimation ($\\rho$ and AUROC; $N{=}8$, primary seed${=}42$; 5-seed $\\sigma{\\leq}0.026$ in Table~\\ref{tab:multiseed}). AUROC binarizes at per-dataset median F1. Best in \\textbf{bold}. RE in Appendix~\\ref{app:re_extension}; $N{=}16$ in Table~\\ref{tab:robustness}.}\n5\tdocs/paper/sections/experiments_main.tex:50:On SciERC, structural signals lead (VC $\\rho{=}0.379$, SJ $0.360$) over LP ($0.205$); bootstrap CIs confirm the gap ($\\Delta\\rho{=}{+}0.151{\\pm}0.006$, 5 seeds; Appendix~\\ref{app:bootstrap_signal}).\n6\tdocs/paper/sections/experiments_main.tex:51:Under seed-replication Holm--Bonferroni correction ($k{=}5$ seeds), the SJ~${>}$~LP advantage reaches $p_{\\text{adj}}{=}0.013$ (Appendix~\\ref{app:bootstrap_signal}).\n7\tdocs/paper/sections/experiments_main.tex:76:[Omitted long matching line]\n8\tdocs/paper/sections/experiments_main.tex:78:Signal ranking is task-specific; per-type analysis shows MV degradation concentrates in low-F1 types ($\\rho{=}0.90$, $p{=}0.002$; Appendix~\\ref{app:pertype}).\n9\tdocs/paper/sections/experiments_main.tex:81:Degeneracy does not predict LP gain across 23 configurations ($\\rho{=}0.052$, $p{=}0.81$; $n{=}23$, insufficient for reliable correlation---we treat this as supplement\n…[truncated 25838 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_appendix-cross-ref_20260524T023114",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-24T02:36:20.527056+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_appendix-cross-ref_20260524T023114",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+              "offset": "525",
+              "limit": "120"
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-24T02:36:20.527276+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "525\t\\section{Supervised and Model-Internal Signal Analysis}\\label{app:supervised_combination}\n526\t\n527\t\\subsection{Supervised Signal Combination}\n528\t\n529\tSupervised classifiers (logistic regression, MLP, random forest) trained on all five signals (5-fold CV, 3-seed mean, SciERC, $N{=}16$, $+17.9$~pp headroom) all perform at or below greedy (F1${=}0.644$; LR: $-0.4$~pp; MLP: $-1.6$~pp; RF: $-3.1$~pp).\n530\tAdding pairwise interaction features does not help (AUROC 0.634 vs.\\ 0.638).\n531\tTo test whether richer representations could close the gap, we train a DeBERTa-v3-base verifier that encodes input-output pairs and predicts per-sample F1.\n532\tDeBERTa achieves $\\rho{=}0.329{\\pm}0.087$ (5-fold CV, 3 seeds). Despite moderate quality prediction, selection utility is poor: on SciERC, DeBERTa closes $-26.5{\\pm}26.5$\\% of the oracle gap (13 of 15 runs negative; vs.\\ LP's $+4.2{\\pm}10.7$\\%); on Few-NERD, DeBERTa recovers only $+3.5$\\% (single 80/20 split; vs.\\ LP's $+16.3$\\%).\n533\tCross-dataset transfer fails entirely ($-27$\\% to $-72$\\% gap closure).\n534\tGrid-search ensemble optimization over signal weights confirms LP dominance: across configurations, LP receives mean weight $0.78$, while FK and SJ receive zero weight; VC and EM serve only as secondary regularizers.\n535\tNeither handcrafted signal combinations nor learned text representations close the selection gap; only model-internal log-probability provides meaningful selection signal, consistent with an information asymmetry between the generating model and external observers.\n536\t\n537\t\\subsection{Entity-Level Verifier Transfer}\\label{app:verifier_transfer}\n538\t\n539\tA LightGBM entity-level verifier (5 features: agreement count, VC, LP, SJ, FK) achieves AUC${=}0.923{\\pm}0.002$ under out-of-fold evaluation, confirming that entity correctness is learnable from the available signals.\n540\tIn-domain OOF construction yields $+0.30$\\,pp overall, with per-dataset gains of $+1.28$\\,pp (SciERC), $+0.55$\\,pp (CoNLL), and $+0.02$\\,\n…[truncated 9710 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_appendix-cross-ref_20260524T023114",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-24T02:36:20.527426+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_appendix-cross-ref_20260524T023114",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+              "offset": "607",
+              "limit": "80"
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-24T02:36:20.527589+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "607\t\\section{How Self-Verification Fails}\\label{sec:mechanistic}\n608\t\n609\tThe diagnostic framework (\\S\\ref{sec:method}) identifies \\textit{where} self-consistency fails; this section probes \\textit{why} by testing whether models can self-verify at the entity level.\n610\tProbe experiments use Qwen2.5-7B (not the fine-tuned Qwen3-8B used in main experiments); conclusions are architecture-specific.\n611\tWe evaluate self-verification and diagnostic probes on Qwen2.5-7B\\footnote{ESJ, MRSC, and LSC use Qwen2.5-7B-Instruct (zero-shot self-verification capability) rather than the fine-tuned Qwen3-8B used in the main experiments. Conclusion direction is consistent with the main experiments' negative results across all fine-tuned selection strategies. The pattern---selection failure across all signals---is independently confirmed in the Qwen3-8B main experiments, making the introspection boundary a model-independent finding within our tested scale. Probe conclusions are limited to the Qwen2.5 architecture; linear probes may underestimate representational capacity (nonlinear alternatives are left to future work).} fine-tuned for NER on Few-NERD ($N{=}8$, seed 42; full results in Table~\\ref{tab:self_verification}).\n612\t\n613\t\\paragraph{Entity Self-Judgment (ESJ).}\n614\tFor each extracted entity, we prompt the generating model: ``Is [\\textit{entity}] a [\\textit{type}] entity in this sentence?''\n615\tEntity-level AUROC is $0.512$---indistinguishable from chance---with P(yes$|$correct)${=}0.500$ and P(yes$|$incorrect)${=}0.500$.\n616\tESJ-weighted construction degrades F1 to $0.711$ (vs.\\ greedy $0.794$).\n617\t\n618\t\\paragraph{Multi-Round Self-Consistency (MRSC).}\n619\tFollowing iterative self-refinement \\cite{madaan2023selfrefine}, we re-prompt on disputed entities (agreement ${<}0.6$) with focused verification; P(yes) separation between gold and non-gold entities is $0.0006$ ($0.5003$ vs.\\ $0.4997$).\n620\tMRSC best F1 ($0.763$) falls below greedy.\n621\t\n622\t\\paragraph{Latent Self-Consistenc\n…[truncated 5141 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_appendix-cross-ref_20260524T023114",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-24T02:36:20.527736+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_appendix-cross-ref_20260524T023114",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+              "offset": "680",
+              "limit": "60"
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-24T02:36:20.527885+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "680\t\\section{Cross-Dataset Entailment Self-Judgment}\\label{app:esj}\n681\t\n682\tTable~\\ref{tab:esj_cross} compares entailment-based self-judgment (ESJ) with agreement-based signals across three datasets.\n683\tESJ achieves near-random AUROC on all datasets, confirming that the self-verification failure observed on Few-NERD (\\S\\ref{sec:mechanistic}) generalizes.\n684\t\n685\t\\begin{table}[h]\n686\t\\small\n687\t\\centering\n688\t\\caption{Entity-level self-verification: ESJ vs.\\ agreement-based signals across datasets (Qwen3-8B, $N{=}8$). ESJ AUROC is indistinguishable from chance on all datasets.}\n689\t\\label{tab:esj_cross}\n690\t\\begin{tabular}{lcccc}\n691\t\\toprule\n692\tDataset & ESJ AUROC & ESJ $\\rho$ & Agree.\\ AUROC & Agree.\\ $\\rho$ \\\\\n693\t\\midrule\n694\tSciERC  & 0.512 & 0.020 & 0.792 & 0.515 \\\\\n695\tCoNLL   & 0.553 & 0.087 & 0.941 & 0.777 \\\\\n696\tFew-NERD & 0.495 & $-$0.008 & 0.881 & 0.673 \\\\\n697\t\\bottomrule\n698\t\\end{tabular}\n699\t\\end{table}\n700\t\n701\t\\section{Multi-Seed Stability}\\label{app:multiseed}\n702\t\n703\tTable~\\ref{tab:multiseed} reports quality estimation metrics across multiple seeds (Qwen: 5; LLaMA: 3) for both model families on SciERC ($N{=}8$, $T{=}1.0$).\n704\tOn NER, the signal ranking VC${>}$SJ${>}$EM${>}$FK${>}$LP is identical across all model-seed combinations, with $\\sigma{\\leq}0.025$ for all signals (rankings are stable across all seeds).\n705\tOn RE (Qwen only, preliminary), VC remains the top signal ($\\rho{=}0.309{\\pm}0.024$), but LP rises to \\#2 ($\\rho{=}0.297{\\pm}0.022$), above FK, SJ, and EM. This reversal from the NER ranking reflects RE's higher sensitivity to per-sample scoring.\n706\tLLaMA absolute values are systematically lower than Qwen on NER, consistent with the directionally-consistent-but-magnitude-dependent characterization in the main text.\n707\t\n708\t\\begin{table}[t]\n709\t\\centering\n710\t\\small\n711\t\\caption{Multi-seed quality estimation on SciERC ($N{=}8$, $T{=}1.0$; Qwen: 5 seeds (42, 123, 456, 2024, 3141); LLaMA: 3 seeds (42, 123, 456)). NER: both models; RE:\n…[truncated 1410 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_appendix-cross-ref_20260524T023114",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-24T02:36:20.528024+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_appendix-cross-ref_20260524T023114",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+              "offset": "733",
+              "limit": "80"
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-24T02:36:20.528201+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "733\t\\section{Training Configuration}\\label{app:training}\n734\t\n735\tBoth models are fine-tuned with identical hyperparameters (Table~\\ref{tab:training}) to ensure comparisons across model families reflect model differences rather than training confounds.\n736\t\n737\t\\begin{table}[t]\n738\t\\centering\n739\t\\small\n740\t\\caption{Training configuration. Both Qwen3-8B and LLaMA-3.1-8B-Instruct use identical settings unless noted.}\n741\t\\label{tab:training}\n742\t\\resizebox{\\columnwidth}{!}{\n743\t\\begin{tabular}{ll}\n744\t\\toprule\n745\tParameter & Value \\\\\n746\t\\midrule\n747\tLoRA rank / $\\alpha$ & 32 / 64 \\\\\n748\tLoRA target & All linear modules \\\\\n749\tLoRA dropout & 0 \\\\\n750\tOptimizer & AdamW \\\\\n751\tLearning rate & 2e-4, cosine schedule \\\\\n752\tWarmup ratio & 0.1 \\\\\n753\tEffective batch size & 16 (2 $\\times$ grad.\\ accum.\\ 8) \\\\\n754\tEpochs & 5 \\\\\n755\tMax sequence length & 2048 \\\\\n756\tPrecision & bf16 \\\\\n757\tGradient checkpointing & Enabled \\\\\n758\tMax gradient norm & 1.0 \\\\\n759\tTraining seed & 42 \\\\\n760\tFramework & LLaMA Factory \\\\\n761\t\\midrule\n762\t\\multicolumn{2}{l}{\\textit{Dataset-specific}} \\\\\n763\tSciERC split & 1861 / 275 / 551 \\\\\n764\tCoNLL / WNUT-17 & +\\,load\\_best\\_model\\_at\\_end, \\\\\n765\t& eval\\_steps${=}$200, save\\_limit${=}$5 \\\\\n766\t\\bottomrule\n767\t\\end{tabular}\n768\t}\n769\t\\end{table}\n770\t\n771\t\\paragraph{Prompt template.}\n772\tFor NER, we use a structured prompt:\n773\t\\begin{quote}\n774\t\\small\n775\t\\texttt{System:} You are an expert in Named Entity Recognition.\\\\\n776\t\\texttt{User:} Extract all named entities from the following text. Output as JSON.\\\\\n777\tText: \\texttt{\\{input\\_text\\}}\\\\\n778\tEntity types: \\texttt{\\{schema\\_types\\}}\n779\t\\end{quote}\n780\tRE follows the same structure with ``Relation Extraction'' and relation type lists substituted accordingly.\n781\t\n782\t\\paragraph{Constrained decoding.}\n783\tInference uses vLLM with XGrammar-based JSON schema enforcement \\cite{dong2024xgrammar, willard2023guided}, which constrains outputs to valid entity/relation structures matching the target sc\n…[truncated 3313 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_appendix-cross-ref_20260524T023114",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-24T02:36:20.528353+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_appendix-cross-ref_20260524T023114",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+              "offset": "805",
+              "limit": "100"
+            }
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-24T02:36:20.528521+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "805\t\\section{Log-Probability Score Compression}\\label{app:logprob_ties}\n806\t\n807\tUnder constrained decoding, log-probability scores are severely compressed within instances, limiting per-sample discrimination (Table~\\ref{tab:logprob_ties}, Figure~\\ref{fig:lp_range_cdf}).\n808\tThe median within-instance LP range is only 0.041 nats; we use $\\varepsilon{=}0.05$ as an illustrative threshold to characterize this compression.\n809\tAt this cutpoint, 60.3\\% of instances ($n{=}529$, excluding empty gold annotations) have a within-sample range below $\\varepsilon$, and 75\\% of pairwise comparisons are effective ties ($|\\Delta|{<}0.026$).\n810\tThe CDF rises smoothly with no cliff or discontinuity (Figure~\\ref{fig:lp_range_cdf}); compression is a pervasive regime rather than a bimodal split.\n811\tThis compression is stable across seeds: seed${=}456$ yields median LP range${=}0.040$ nats and tied fraction${=}62.2\\%$ (vs.\\ seed${=}42$: $0.041$ nats, $60.3\\%$).\n812\tSeed~456 uses a different subtask flag (joint vs.\\ ner for seeds 42 and 123); the LP distributions are statistically indistinguishable (median LP: 8.37 vs.\\ 8.20 nats; Mann--Whitney $p{=}0.55$); the subtask change does not affect compression.\n813\tFor comparison, SJ has only 12.5\\% tied instances at the same threshold; SJ's advantage over LP for selection is one of score resolution, not information content.\n814\t\n815\t\\begin{figure}[t]\n816\t\\centering\n817\t\\includegraphics[width=\\columnwidth]{fig_lp_range_cdf}\n818\t\\caption{CDF of within-instance LP range on SciERC NER ($N{=}8$, $n{=}529$). The median LP range is 0.041 nats (dashed line), below $\\varepsilon{=}0.05$. The smooth CDF confirms compression is pervasive, not bimodal.}\n819\t\\label{fig:lp_range_cdf}\n820\t\\end{figure}\n821\t\n822\t\\begin{table}[t]\n823\t\\centering\n824\t\\small\n825\t\\caption{Log-probability score compression on SciERC NER ($N{=}8$, $n{=}529$). ``Tied'' = fraction of instances where within-instance LP range ${<}\\varepsilon$.}\n826\t\\label{tab:logprob_ties}\n827\t\\begin{tab\n…[truncated 5106 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_appendix-cross-ref_20260524T023114",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-24T02:36:20.528667+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_appendix-cross-ref_20260524T023114",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+              "offset": "989",
+              "limit": "50"
+            }
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-24T02:36:20.528813+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "989\t\\subsection{Token-Level Signal Comparison}\\label{app:token_signal}\n990\t\n991\tWe compared mean log-probability (length-normalized, used throughout) with sequence-level log-probability (cumulative sum of token log-probs).\n992\tInstance-level Spearman $\\rho$ between the two rankings averages 0.85, with rankings diverging for 10.6\\% of instances where token count coefficient of variation exceeds 0.10.\n993\tOn these disagreement instances, mean LP selection achieves F1${=}0.643$ vs.\\ cumulative LP F1${=}0.219$ ($+42.4$\\,pp).\n994\tOverall, mean LP outperforms cumulative LP by $+4.6$ F1 points (Wilcoxon $p{<}0.001$).\n995\tThe divergence is driven by structured output length variation: sequences with more extracted entities are longer but not necessarily higher quality, and length normalization prevents this bias.\n996\t\n997\t\\section{Consistency-Stratified Selection Analysis}\\label{app:vc_quartile}\n998\t\n999\tTable~\\ref{tab:vc_quartile} stratifies SciERC instances by voting confidence (VC) quartiles and reports selection $\\Delta$ (gain over single-sample) for LP and SJ.\n1000\t\n1001\t\\begin{table}[t]\n1002\t\\centering\n1003\t\\small\n1004\t\\caption{Selection $\\Delta$ (pp over single-sample) stratified by VC quartile on SciERC ($N{=}8$, Qwen3-8B). Oracle headroom collapses at Q4; LP rankings are unreliable at Q1--Q2. Neither quartile supports consistent selection gains.}\n1005\t\\label{tab:vc_quartile}\n1006\t\\begin{tabular}{lcccc}\n1007\t\\toprule\n1008\tQuartile & Mean VC & LP $\\Delta$ & SJ $\\Delta$ & Oracle (pp) \\\\\n1009\t\\midrule\n1010\t\\multicolumn{5}{l}{\\textit{NER}} \\\\\n1011\tQ1 (low) & 0.30 & $+$1.55 & $+$0.54 & 16.85 \\\\\n1012\tQ2 & 0.51 & $-$0.65 & $-$1.89 & 14.35 \\\\\n1013\tQ3 & 0.68 & $+$1.97 & $+$1.84 & 16.83 \\\\\n1014\tQ4 (high) & 0.92 & $-$0.41 & $-$0.04 & 4.78 \\\\\n1015\t\\midrule\n1016\t\\multicolumn{5}{l}{\\textit{$^\\dagger$RE}} \\\\\n1017\tQ1 (low) & --- & $-$3.56 & --- & --- \\\\\n1018\tQ4 (high) & --- & $+$4.01 & --- & --- \\\\\n1019\t\\bottomrule\n1020\t\\end{tabular}\n1021\t\\end{table}\n1022\t\n1023\tThe NER pattern show\n…[truncated 1589 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_appendix-cross-ref_20260524T023114",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-24T02:36:20.528978+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_appendix-cross-ref_20260524T023114",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+              "offset": "1033",
+              "limit": "40"
+            }
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-24T02:36:20.529139+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1033\t\\section{Exploratory Extension to Relation Extraction}\\label{app:re_extension}\n1034\t\n1035\tWe extend the NER evaluation to relation extraction (RE) on SciERC as an exploratory single-benchmark analysis.\n1036\tRE produces sets of (head, relation, tail) triples with partial overlap; 40\\% of RE instances receive zero F1, and entity span errors account for 55.5\\% of RE false negatives, a prerequisite failure that consistency signals cannot detect (\\S\\ref{app:additional}).\n1037\tAll RE results use Qwen3-8B unless noted; single-seed ($\\text{seed}{=}42$) for $N{=}8$ analyses, 3-seed for $N{=}16$.\n1038\t\n1039\t\\paragraph{Diagnostic framework.}\n1040\tApplying the diagnostic framework to RE ($N{=}8$): instance degeneracy is $10.1$\\%, comparable to SciERC NER ($13.4$\\%), yet MV $\\Delta{=}{-}5.90$\\,pp---far worse than any NER dataset.\n1041\tThe driver is RE's $40$\\% zero-F1 rate (vs.\\ ${\\leq}5.4$\\% in NER): diverse but \\textit{incorrect} samples produce noise that MV amplifies.\n1042\tLP-best selection also fails ($\\Delta{=}{-}0.94$\\,pp), despite pooled LP-F1 $\\rho{=}0.350$---above SciERC NER ($0.312$).\n1043\tOracle headroom is $+18.1$\\,pp (greedy $0.404$, oracle $0.585$), the largest of any configuration, confirming that correct answers exist among samples but no signal recovers them.\n1044\t\n1045\t\\paragraph{Quality estimation.}\n1046\tRE quality estimation is reported in Table~\\ref{tab:multiseed} (3-seed means).\n1047\tThe signal ranking differs from NER: VC leads ($\\rho{=}0.309{\\pm}0.024$), but LP rises to \\#2 ($\\rho{=}0.297{\\pm}0.022$), above FK, SJ, and EM, a reversal reflecting RE's higher sensitivity to per-sample scoring.\n1048\tRE miscalibration is more severe than NER (ECE 0.109--0.339; Figure~\\ref{fig:reliability}).\n1049\t\n1050\t\\paragraph{Selection.}\n1051\tTable~\\ref{tab:re_cond_selection} presents RE selection at $N{=}8$: no signal outperforms single-sample (0.404) on the full set ($n{=}397$) or the non-zero subset ($n{=}238$), with 18.1~pp of unrealized oracle headroom.\n1052\tAt $\n…[truncated 1938 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_appendix-cross-ref_20260524T023114",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-24T02:36:20.529300+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_appendix-cross-ref_20260524T023114",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+              "offset": "1164",
+              "limit": "55"
+            }
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": "2026-05-24T02:36:20.529458+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1164\t\\subsection{Degeneracy Decomposition}\\label{app:bound_proof}\n1165\t\n1166\t\\begin{definition}[Instance-Level Degeneracy]\n1167\tGiven model $\\mathcal{M}$, input $x$, and $N$ i.i.d.\\ samples $\\{y_1, \\ldots, y_N\\}$, instance $x$ is \\emph{degenerate} if $y_1 = \\cdots = y_N$. The degeneracy rate is $D = |\\mathcal{D}|^{-1} \\sum_{x} \\mathbb{1}[y_1(x) = \\cdots = y_N(x)]$.\n1168\t\\end{definition}\n1169\t\n1170\t\\begin{definition}[Non-Degenerate Oracle Gap]\n1171\t$G_{\\text{nd}} = \\mathbb{E}[F_1^{\\text{oracle}}(x) - F_1^{\\text{greedy}}(x) \\mid x \\in \\mathcal{D}_{\\neg D}]$, where $\\mathcal{D}_{\\neg D}$ is the set of non-degenerate instances.\n1172\t\\end{definition}\n1173\t\n1174\t\\subsection{Proof of the Degeneracy Decomposition}\n1175\t\n1176\tPartition $\\mathcal{D}$ into degenerate ($\\mathcal{D}_D$, fraction $D$) and non-degenerate ($\\mathcal{D}_{\\neg D}$, fraction $1{-}D$). By total expectation:\n1177\t\\begin{equation}\\label{eq:bound_decomp}\n1178\t\\mathbb{E}[\\Delta F_1(A)] = D \\cdot \\mathbb{E}[\\Delta F_1 \\mid \\mathcal{D}_D] + (1{-}D) \\cdot \\mathbb{E}[\\Delta F_1 \\mid \\mathcal{D}_{\\neg D}].\n1179\t\\end{equation}\n1180\tFor degenerate instances, all $N$ samples are identical and equal the greedy output, so $\\Delta F_1 = 0$. For non-degenerate instances, $\\Delta F_1(A,x) \\leq F_1^{\\text{oracle}}(x) - F_1^{\\text{greedy}}(x)$, giving $\\mathbb{E}[\\Delta F_1 \\mid \\mathcal{D}_{\\neg D}] \\leq G_{\\text{nd}}$. Substituting: $\\mathbb{E}[\\Delta F_1(A)] \\leq (1{-}D) \\cdot G_{\\text{nd}}$.\n1181\t\n1182\tFor signal-based methods, define alignment $\\alpha = \\mathbb{E}[\\Delta F_1(A_s) \\mid \\mathcal{D}_{\\neg D}] / G_{\\text{nd}} \\in [0,1]$. Direct substitution yields $\\mathbb{E}[\\Delta F_1(A_s)] = (1{-}D) \\cdot G_{\\text{nd}} \\cdot \\alpha$.\n1183\t\n1184\t\\begin{corollary}[Critical Degeneracy Threshold]\\label{cor:theta_crit}\n1185\tFor SC gain to exceed significance threshold $\\varepsilon$, the degeneracy rate must satisfy $D < 1 - \\varepsilon / (G_{\\text{nd}} \\cdot \\alpha) \\stackrel{\\text{def}}{=} \\theta_{\\text{crit}}$.\n1186\tWit\n…[truncated 2062 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_appendix-cross-ref_20260524T023114",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-24T02:36:20.529603+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_appendix-cross-ref_20260524T023114",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+              "offset": "1273",
+              "limit": "50"
+            }
+          },
+          "id": "event-000059"
+        },
+        {
+          "source_line": 60,
+          "timestamp": "2026-05-24T02:36:20.529745+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1273\t\\section{Free-Form Decoding Ablation}\\label{app:freeform_ablation}\n1274\t\n1275\tTable~\\ref{tab:freeform_ablation} compares constrained and free-form decoding across four dimensions on SciERC ($N{=}8$, $T{=}1.0$, Qwen3-8B; seed${=}42$ shown, 4-seed RE statistics below).\n1276\tFree-form decoding removes grammar constraints entirely; outputs are parsed post-hoc (parse rate 99.95\\%, 4406/4408).\n1277\tLP score distributions are nearly identical across regimes (Panel~A: within-instance std ratio $0.97{\\times}$), and NER selection gains remain negligible under both regimes (Panel~B).\n1278\tRE LP selection consistently reverses direction under free-form decoding across 4 seeds: $+1.84{\\pm}0.12$~pp (seeds 42/123/456/789: $+1.69$, $+1.76$, $+2.00$, $+1.91$~pp) vs.\\ $-0.68$~pp constrained.\n1279\tThe constrained reference ($-0.68$~pp) uses the ablation-matched baseline; the primary experiment (Table~\\ref{tab:selection}) yields $-0.9$~pp on the same gold-filtered set.\n1280\tQuality estimation improves modestly for most signals under free-form decoding (Panel~C), with the largest gain for FK ($+0.053$ NER, $+0.039$ RE).\n1281\t\n1282\t\\begin{table*}[t]\n1283\t\\centering\n1284\t\\caption{Comparison of constrained vs.\\ free-form decoding on SciERC (Qwen3-8B, $N{=}8$, $T{=}1.0$, seed${=}42$; RE selection gap replicates across 4 seeds: $+1.84{\\pm}0.12$~pp).}\n1285\t\\label{tab:freeform_ablation}\n1286\t\n1287\t\\vspace{2pt}\n1288\t{\\small\\textsc{Panel A: Logprob Distribution}}\n1289\t\\vspace{2pt}\n1290\t\n1291\t\\begin{tabular}{lccc}\n1292\t\\toprule\n1293\tMetric & Constrained & Free-form & $\\Delta$ \\\\\n1294\t\\midrule\n1295\tMean LP std        & 0.0206 & 0.0199 & $-$0.0007 \\\\\n1296\tMean LP range      & 0.0623 & 0.0599 & $-$0.0024 \\\\\n1297\tTied fraction ($\\varepsilon{=}0.05$) & 59.7\\% & 57.7\\% & $-$2.0\\,pp \\\\\n1298\t\\bottomrule\n1299\t\\end{tabular}\n1300\t\n1301\t\\vspace{8pt}\n1302\t\n1303\t{\\small\\textsc{Panel B: Selection F1}}\n1304\t\\vspace{2pt}\n1305\t\n1306\t\\begin{tabular}{llccc}\n1307\t\\toprule\n1308\tTask & Method & Constrained & Free-\n…[truncated 523 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_appendix-cross-ref_20260524T023114",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000060"
+        },
+        {
+          "source_line": 61,
+          "timestamp": "2026-05-24T02:36:20.529884+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_appendix-cross-ref_20260524T023114",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+              "offset": "1422",
+              "limit": "40"
+            }
+          },
+          "id": "event-000061"
+        },
+        {
+          "source_line": 62,
+          "timestamp": "2026-05-24T02:36:20.530040+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1422\t\\section{$N$-Scaling Detailed Analysis}\\label{app:n_scaling}\n1423\t\n1424\tTables~\\ref{tab:n-scaling}--\\ref{tab:sigma-comparison} provide detailed $N$-scaling analysis on Qwen3-8B SciERC with 3-seed statistics.\n1425\t\n1426\t\\begin{table}[t]\n1427\t\\centering\n1428\t\\caption{Effect of sample pool size on signal quality (Qwen3-8B, SciERC, 3-seed mean Spearman $\\rho$).}\n1429\t\\label{tab:n-scaling}\n1430\t\\small\n1431\t\\resizebox{\\columnwidth}{!}{\n1432\t\\begin{tabular}{l ccc ccc}\n1433\t\\toprule\n1434\t & \\multicolumn{3}{c}{\\textbf{NER} $\\rho$} & \\multicolumn{3}{c}{\\textbf{RE} $\\rho$} \\\\\n1435\t\\cmidrule(lr){2-4} \\cmidrule(lr){5-7}\n1436\tSignal & $N\\!=\\!8$ & $N\\!=\\!16$ & $\\Delta$ & $N\\!=\\!8$ & $N\\!=\\!16$ & $\\Delta$ \\\\\n1437\t\\midrule\n1438\tSJ & 0.3641 & 0.4105 & \\textbf{+0.0464} & 0.2485 & 0.2758 & \\textbf{+0.0273} \\\\\n1439\tFK & 0.2536 & 0.2833 & \\textbf{+0.0297} & 0.2903 & 0.2964 & \\textbf{+0.0061} \\\\\n1440\tVC & 0.3861 & 0.4092 & \\textbf{+0.0231} & 0.3088 & 0.3738 & \\textbf{+0.0650} \\\\\n1441\tLP & 0.2167 & 0.2393 & \\textbf{+0.0226} & 0.2970 & 0.3100 & \\textbf{+0.0130} \\\\\n1442\tEM & 0.3071 & 0.3395 & \\textbf{+0.0324} & 0.1353 & 0.1506 & \\textbf{+0.0153} \\\\\n1443\t\\midrule\n1444\tMean & 0.3055 & 0.3364 & \\textbf{+0.0308} & 0.2560 & 0.2813 & \\textbf{+0.0253} \\\\\n1445\t\\bottomrule\n1446\t\\end{tabular}\n1447\t}\n1448\t\\end{table}\n1449\t\n1450\t\\begin{table}[t]\n1451\t\\centering\n1452\t\\caption{Cross-seed signal ranking stability (Kendall's $W$, 3 seeds).}\n1453\t\\label{tab:ranking-stability}\n1454\t\\small\n1455\t\\resizebox{\\columnwidth}{!}{\n1456\t\\begin{tabular}{ll cc l}\n1457\t\\toprule\n1458\tModel & Task & $N$ & Kendall's $W$ & Consensus ranking \\\\\n1459\t\\midrule\n1460\tQwen  & NER & 8  & 1.000 & VC $>$ SJ $>$ EM $>$ FK $>$ LP \\\\\n1461\tQwen  & NER & 16 & 0.956 & SJ $\\approx$ VC $>$ EM $>$ FK $>$ LP \\\\"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_appendix-cross-ref_20260524T023114",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000062"
+        },
+        {
+          "source_line": 63,
+          "timestamp": "2026-05-24T02:36:20.530211+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_appendix-cross-ref_20260524T023114",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+              "offset": "1563",
+              "limit": "35"
+            }
+          },
+          "id": "event-000063"
+        },
+        {
+          "source_line": 64,
+          "timestamp": "2026-05-24T02:36:20.530356+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1563\t\\paragraph{Degeneracy and inverse scaling.}\\label{app:degen_inverse}\n1564\tTable~\\ref{tab:degen_inverse} stratifies $N$-transitions by instance degeneracy status across all dataset--regime combinations.\n1565\tDegenerate instances exhibit near-zero inverse scaling ($1.3$\\% vs.\\ $11.1$\\% for non-degenerate; OR${=}0.109$, $p{<}10^{-300}$, Fisher's exact test over $195{,}675$ transitions).\n1566\tThis is expected: degenerate instances produce identical entity sets across all $N$ samples, so MV F1 is constant by construction---they cannot exhibit inverse scaling.\n1567\tThe effect holds across all settings (Table~\\ref{tab:degen_inverse}), with the sole exception of SciERC pretrained ($p{=}0.083$), where low degeneracy (${\\leq}10$\\%) yields too few degenerate transitions for adequate power.\n1568\tPretrained models show a stronger protective effect (OR${=}0.066$ vs.\\ $0.166$ for finetuned), consistent with higher overall inverse scaling rates creating more room for the degeneracy--stability association.\n1569\t\n1570\t\\begin{table}[t]\n1571\t\\centering\n1572\t\\small\n1573\t\\caption{Inverse scaling rate by degeneracy status. An $N{\\to}N'$ transition is ``inverse'' if MV F1 at $N'$ is strictly lower than at $N$. OR: odds ratio (Fisher's exact test).}\n1574\t\\label{tab:degen_inverse}\n1575\t\\resizebox{\\columnwidth}{!}{%\n1576\t\\begin{tabular}{@{}lrrrrrc@{}}\n1577\t\\toprule\n1578\tSetting & \\multicolumn{2}{c}{Degenerate} & \\multicolumn{2}{c}{Non-degenerate} & OR & $p$ \\\\\n1579\t\\cmidrule(lr){2-3} \\cmidrule(lr){4-5}\n1580\t & Trans. & Inv.\\% & Trans. & Inv.\\% & & \\\\\n1581\t\\midrule\n1582\tSciERC FT & 485 & 0.8 & 2{,}160 & 9.6 & 0.078 & ${<}10^{-6}$ \\\\\n1583\tCoNLL FT & 8{,}256 & 0.3 & 5{,}524 & 4.1 & 0.060 & ${<}10^{-6}$ \\\\\n1584\tFew-NERD FT & 22{,}298 & 1.9 & 75{,}397 & 8.4 & 0.213 & ${<}10^{-6}$ \\\\\n1585\tSciERC PT & 81 & 3.7 & 2{,}564 & 9.9 & 0.350 & 0.083 \\\\\n1586\tCoNLL PT & 5{,}284 & 0.3 & 8{,}496 & 7.9 & 0.033 & ${<}10^{-6}$ \\\\\n1587\tFew-NERD PT & 18{,}007 & 1.4 & 47{,}123 & 16.8 & 0.071 & ${<}10^{-6}$ \\\\\n15\n…[truncated 329 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_appendix-cross-ref_20260524T023114",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000064"
+        },
+        {
+          "source_line": 65,
+          "timestamp": "2026-05-24T02:36:20.530500+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_appendix-cross-ref_20260524T023114",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+              "offset": "1594",
+              "limit": "50"
+            }
+          },
+          "id": "event-000065"
+        },
+        {
+          "source_line": 66,
+          "timestamp": "2026-05-24T02:36:20.530648+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1594\t\\section{Cross-Scale and Cross-Family Comparison}\\label{app:cross_scale}\n1595\t\n1596\t\\begin{table}[t]\n1597\t\\centering\n1598\t\\small\n1599\t\\caption{Cross-scale and cross-family comparison ($N{=}8$, $T{=}1.0$). Hdr.\\ = oracle $-$ greedy (pp). Degen.: instance degeneracy (\\%). F1 values are entity-type-averaged macro-F1, which differs from the instance-averaged F1 in Table~\\ref{tab:fewnerd}. $^\\star$Qwen2.5; unmarked: Qwen3. $^\\dagger$Not computed. $^\\ddagger$200-instance subset; 10.1\\% parse failures excluded.}\n1600\t\\label{tab:scale_comparison}\n1601\t\\resizebox{\\columnwidth}{!}{%\n1602\t\\begin{tabular}{@{}llccccccc@{}}\n1603\t\\toprule\n1604\tDataset & Regime & Greedy & Hdr. & Degen. & VC & SJ & FK & LP \\\\\n1605\t\\midrule\n1606\tSciERC & 8B FT  & .667 & 11.4 & 12.2 & .326 & .324 & .177 & .159 \\\\\n1607\t       & 72B ZS$^\\star$ & .399 & 15.0 & 21.0 & .277 & .217 & .227 & .081 \\\\\n1608\t\\midrule\n1609\tFew-NERD & 7B FT$^\\star$ & .784 & 9.2 & 31.7 & .404 & .388 & .315 & .346 \\\\\n1610\t         & 8B FT & .748 & 12.4 & 13.0 & .386 & .300 & .313 & .220 \\\\\n1611\t         & 14B FT & .798 & 8.1 & ---$^\\dagger$ & ---$^\\dagger$ & ---$^\\dagger$ & ---$^\\dagger$ & ---$^\\dagger$ \\\\\n1612\t         & 72B ZS$^\\star$ & .628 & ---$^\\dagger$ & 46.2 & .416 & .345 & ---$^\\dagger$ & .119 \\\\\n1613\t         & GPT-5.5 ZS$^\\ddagger$ & .638 & 8.2 & 50.0 & ---$^\\dagger$ & .346 & ---$^\\dagger$ & ---$^\\dagger$ \\\\\n1614\t\\midrule\n1615\tCoNLL  & 8B FT  & .908 & ${\\approx}$4 & 61.7 & .424 & .436 & .400 & .302 \\\\\n1616\t       & 72B ZS$^\\star$ & .712 & 5.3 & 67.7 & .297 & .304 & .302 & $-$.002 \\\\\n1617\t\\bottomrule\n1618\t\\end{tabular}}\n1619\t\\end{table}\n1620\t\n1621\tLP $\\rho$ drops without fine-tuning (Table~\\ref{tab:scale_comparison}) and LP selection fails on all 72B zero-shot datasets. Structural signals generalize better (Few-NERD VC $\\rho{=}0.416$). Degeneracy increases at 72B (Few-NERD: $46.2$\\% vs.\\ $13.0$\\%; CoNLL: $67.7$\\% vs.\\ $61.7$\\%); the gap persists under this specific 72B zero-shot configuration, though scale, training r\n…[truncated 1976 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_appendix-cross-ref_20260524T023114",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000066"
+        },
+        {
+          "source_line": 67,
+          "timestamp": "2026-05-24T02:36:20.530787+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_appendix-cross-ref_20260524T023114",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+              "offset": "1696",
+              "limit": "40"
+            }
+          },
+          "id": "event-000067"
+        },
+        {
+          "source_line": 68,
+          "timestamp": "2026-05-24T02:36:20.530926+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1696\t\\subsection{Per-Type MV Analysis}\\label{app:pertype}\n1697\t\n1698\t\\begin{table}[t]\n1699\t\\centering\n1700\t\\small\n1701\t\\caption{Per-entity-type MV gain on Few-NERD (Qwen3-8B, $N{=}8$, $T{=}1.0$, 3-seed mean). Strict MV ($\\theta{>}N/2$). Types sorted by finetuned greedy F1. 7/8 types flip MV direction between pretrained and finetuned.}\n1702\t\\label{tab:pertype_mv}\n1703\t\\begin{tabular}{@{}lrccc@{}}\n1704\t\\toprule\n1705\t& & & \\multicolumn{2}{c}{MV $\\Delta$ (pp)} \\\\\n1706\t\\cmidrule(lr){4-5}\n1707\tEntity type & $n$ & Greedy F1 & Pretr. & Finetuned \\\\\n1708\t\\midrule\n1709\tperson & ${\\sim}$7{,}200 & .820 & $+$4.17 & $-$0.67 \\\\\n1710\tlocation & ${\\sim}$8{,}800 & .797 & $+$2.47 & $-$1.52 \\\\\n1711\tart & ${\\sim}$1{,}250 & .755 & $+$0.73 & $-$1.51 \\\\\n1712\torganization & ${\\sim}$6{,}700 & .725 & $+$3.15 & $-$2.65 \\\\\n1713\tbuilding & ${\\sim}$1{,}540 & .696 & $+$1.98 & $-$3.90 \\\\\n1714\tproduct & ${\\sim}$2{,}260 & .657 & $+$1.78 & $-$3.38 \\\\\n1715\tevent & ${\\sim}$1{,}315 & .645 & $+$2.34 & $-$3.17 \\\\\n1716\tother & ${\\sim}$3{,}485 & .639 & $-$0.45 & $-$3.02 \\\\\n1717\t\\midrule\n1718\t\\multicolumn{3}{@{}l}{$r$(greedy F1, MV\\,$\\Delta$)} & .86 & .90 \\\\\n1719\t\\multicolumn{3}{@{}l}{$p$-value} & .006 & .002 \\\\\n1720\t\\bottomrule\n1721\t\\end{tabular}\n1722\t\\end{table}\n1723\tMV direction flips between pretrained and finetuned decoding for 7 of 8 entity types (Table~\\ref{tab:pertype_mv}): types that benefit from MV under pretrained decoding ($+0.73$ to $+4.17$\\,pp) are uniformly harmed under finetuning ($-0.67$ to $-3.90$\\,pp), with only \\textit{other} (lowest-F1) remaining negative in both regimes.\n1724\tThe correlation between greedy F1 and MV $\\Delta$ is strong in both regimes ($r{=}0.86$, $p{=}0.006$ pretrained; $r{=}0.90$, $p{=}0.002$ finetuned), indicating entity-type difficulty predicts MV magnitude regardless of direction.\n1725\tThis rules out entity-type-specific factors as the explanation for MV failure: the same types succeed with pretrained decoding and fail with finetuned decoding, implicating the finetun\n…[truncated 771 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_appendix-cross-ref_20260524T023114",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000068"
+        },
+        {
+          "source_line": 69,
+          "timestamp": "2026-05-24T02:36:20.531069+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_appendix-cross-ref_20260524T023114",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+              "offset": "1728",
+              "limit": "45"
+            }
+          },
+          "id": "event-000069"
+        },
+        {
+          "source_line": 70,
+          "timestamp": "2026-05-24T02:36:20.531237+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1728\t\\subsection{Frontier Model Self-Consistency}\\label{app:frontier_sc}\n1729\t\n1730\t\\begin{table}[h]\n1731\t\\centering\n1732\t\\small\n1733\t\\caption{Cross-family frontier SC on Few-NERD ($N{=}8$, $T{=}1.0$, 200 instances, zero-shot). Parse failures excluded from all metrics; $N_{\\textit{eff}}$: mean effective samples after exclusion. Selection gap $= $ oracle $-$ MV. Text-based entity matching (Appendix~\\ref{app:frontier_sc}, entity matching paragraph). Qwen3-8B FT shown for reference.}\n1734\t\\label{tab:frontier_sc_cross}\n1735\t\\resizebox{\\columnwidth}{!}{%\n1736\t\\begin{tabular}{@{}lcccccc@{}}\n1737\t\\toprule\n1738\tModel & Greedy & MV ($\\Delta$) & Oracle & Degen.\\% & Sel.\\ gap & Parse\\% \\\\\n1739\t\\midrule\n1740\tDeepSeek & .399 & .424 ($+2.5$) & .714 & 5.5 & .290 & 46.9 \\\\\n1741\tGemini 2.5 Pro & .630 & .645 ($+1.5$) & .758 & 28.5 & .113 & 11.9 \\\\\n1742\tGPT-5.5 & .638 & .652 ($+1.4$) & .720 & 50.0 & .068 & 10.1 \\\\\n1743\tClaude Son.~4 & .607 & .623 ($+1.6$) & .654 & 74.0 & .032 & 6.4 \\\\\n1744\t\\midrule\n1745\tQwen3-8B FT & .789 & .792 ($+0.3$) & .858 & 13.0 & .066 & ${\\approx}$0 \\\\\n1746\t\\bottomrule\n1747\t\\end{tabular}}\n1748\t\\end{table}\n1749\t\n1750\tAll four frontier families exhibit the correlation-selection gap (Table~\\ref{tab:frontier_sc_cross}): MV recovers only a fraction of oracle headroom regardless of model capability.\n1751\tDegeneracy and selection gap are negatively correlated across families: Claude Sonnet~4 (74\\% degen, 0.032 gap) vs.\\ DeepSeek (5.5\\%, 0.290)---higher degeneracy eliminates the instances where aggregation could help.\n1752\tGemini 2.5 Pro achieves the highest oracle F1 (.758) and the highest QE correlation ($\\rho_{\\textup{SJ}}{=}0.350$, $\\rho_{\\textup{agr}}{=}0.389$) among frontier models, with balanced degeneracy (28.5\\%) preserving a 0.113 selection gap---the largest gap among models with ${\\geq}85$\\% parse success.\n1753\tDeepSeek's low degeneracy preserves the largest absolute gap (.290), but 47\\% parse failures reduce effective $N$ to ${\\approx}4.2$, limiting aggrega\n…[truncated 1560 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_appendix-cross-ref_20260524T023114",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000070"
+        },
+        {
+          "source_line": 71,
+          "timestamp": "2026-05-24T02:36:20.531410+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_appendix-cross-ref_20260524T023114",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+              "offset": "1964",
+              "limit": "80"
+            }
+          },
+          "id": "event-000071"
+        },
+        {
+          "source_line": 72,
+          "timestamp": "2026-05-24T02:36:20.531570+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1964\t\\section{Per-Entity-Type LP Selection Analysis}\\label{app:per_type_lp}\n1965\t\n1966\tTable~\\ref{tab:per_type_lp} stratifies LP selection by entity type on Few-NERD, sorted by degeneracy rate.\n1967\tThe degeneracy-gating mechanism holds at entity-type granularity: 7 of 8 types show positive LP selection gains, and the sole negative type (Art, $-0.17$~pp) has the highest degeneracy (19.8\\%).\n1968\tThe correlation between per-type degeneracy and oracle headroom is strong and significant (Spearman $\\rho{=}{-}0.881$, $p{=}0.004$; exact permutation $p{=}0.005$); degeneracy directly constrains the headroom available for selection.\n1969\tUnder a conservative $\\text{df}{=}4$ adjustment for within-type dependence, the correlation remains significant ($p{=}0.033$).\n1970\tEntity types show near-zero intra-class correlation (ICC $= -0.004$), supporting the independence assumption underlying per-type analysis.\n1971\t\n1972\t\\begin{table}[h]\n1973\t\\centering\n1974\t\\small\n1975\t\\caption{Per-entity-type LP selection on Few-NERD INTRA coarse (Qwen3-8B, $N{=}8$, $T{=}1.0$), sorted by degeneracy. LP $\\Delta$: LP selection F1 minus greedy. 7/8 types show positive $\\Delta$; Art (highest degeneracy) is the sole exception.}\n1976\t\\label{tab:per_type_lp}\n1977\t\\resizebox{\\columnwidth}{!}{\n1978\t\\begin{tabular}{lrrrrrrr}\n1979\t\\toprule\n1980\tEntity Type & $n$ & Degen.\\% & Greedy & LP Sel & $\\Delta$ (pp) & LP $\\rho$ & Headroom \\\\\n1981\t\\midrule\n1982\tEvent & 1{,}306 & 6.0 & .655 & .662 & $+$0.65 & .457 & 16.1\\,pp \\\\\n1983\tOther & 3{,}433 & 6.6 & .637 & .685 & $\\mathbf{+4.73}$ & .491 & 19.4\\,pp \\\\\n1984\tOrganization & 6{,}647 & 6.7 & .720 & .732 & $+$1.21 & .509 & 13.3\\,pp \\\\\n1985\tBuilding & 1{,}587 & 7.2 & .702 & .705 & $+$0.23 & .478 & 14.9\\,pp \\\\\n1986\tProduct & 2{,}276 & 8.2 & .656 & .677 & $+$2.01 & .483 & 15.8\\,pp \\\\\n1987\tLocation & 8{,}023 & 11.4 & .793 & .798 & $+$0.53 & .520 & 10.3\\,pp \\\\\n1988\tPerson & 8{,}016 & 13.4 & .822 & .835 & $+$1.25 & .544 & 9.2\\,pp \\\\\n1989\tArt & 1{,}277 & 19.8 & .756 & .754 & \n…[truncated 3585 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_appendix-cross-ref_20260524T023114",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000072"
+        },
+        {
+          "source_line": 73,
+          "timestamp": "2026-05-24T02:36:20.531710+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_appendix-cross-ref_20260524T023114",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+              "offset": "2066",
+              "limit": "80"
+            }
+          },
+          "id": "event-000073"
+        },
+        {
+          "source_line": 74,
+          "timestamp": "2026-05-24T02:36:20.531876+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "2066\t\\section{Epoch Confound Analysis}\\label{app:epoch_confound}\n2067\t\n2068\t\\paragraph{Training convergence modulates degeneracy.}\n2069\tTable~\\ref{tab:epoch_confound} compares the 3-epoch model (used throughout the main text) with a 5-epoch variant on Few-NERD (Qwen3-8B, $N{=}8$, $T{=}1.0$; gold-filtered $n{=}32{,}565$, 2-seed mean).\n2070\tExtended training increases greedy F1 by $+0.7$~pp ($0.791 \\to 0.798$) and triples instance degeneracy ($8.8$\\% $\\to$ $26.4$\\%), reducing the fraction of instances with non-degenerate outputs.\n2071\tThe 5-epoch MV $\\Delta$ ($-0.40$\\,pp) appears smaller than 3-epoch ($-2.74$\\,pp), but this is misleading: $26$\\% of instances are fully degenerate (MV${\\equiv}$greedy, $\\Delta{=}0$), diluting the aggregate.\n2072\tOn non-degenerate instances, MV $\\Delta{\\approx}{-}0.55$\\,pp, still negative---degeneracy masks the MV penalty rather than improving it.\n2073\t\n2074\tLP selection shows even more dramatic degradation: 5-epoch LP $\\Delta{=}{+}0.12{\\pm}0.04$\\,pp (2-seed mean), a 91\\% reduction from the 3-epoch $+1.39$\\,pp (both evaluated on the full test set under identical conditions; Table~\\ref{tab:epoch_confound}). This confirms that training convergence not only increases degeneracy but also erodes LP's discriminative power within non-degenerate instances, consistent with the alignment degradation observed in SciERC (Table~\\ref{tab:epoch_scierc}).\n2075\t\n2076\tEvaluation loss increases after epoch 3, and the best checkpoint by validation loss occurs at approximately epoch 3.9.\n2077\tStandard early stopping practice thus naturally selects the low-degeneracy regime.\n2078\tThis finding refines the narrative: degeneracy is not a fixed property of datasets but is modulated by the degree of training convergence. Over-trained models compress their output distributions, collapsing diversity even on datasets that support it under well-regularized training.\n2079\t\n2080\t\\begin{table}[t]\n2081\t\\centering\n2082\t\\small\n2083\t\\caption{Training convergence confound on F\n…[truncated 6320 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_appendix-cross-ref_20260524T023114",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000074"
+        },
+        {
+          "source_line": 75,
+          "timestamp": "2026-05-24T02:36:20.532021+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_appendix-cross-ref_20260524T023114",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+              "offset": "2138",
+              "limit": "50"
+            }
+          },
+          "id": "event-000075"
+        },
+        {
+          "source_line": 76,
+          "timestamp": "2026-05-24T02:36:20.532204+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "2138\t\\subsection{Degeneracy-Aware LP Selection}\\label{app:dals}\n2139\t\n2140\tThe non-tied subset analysis (Table~\\ref{tab:nontied_main}) identifies within-instance LP range (max minus min LP across $N$ samples) as a per-instance degeneracy proxy: instances with near-zero LP range carry no discriminative signal.\n2141\tDegeneracy-aware LP selection (DALS) operationalizes this: when LP range exceeds $\\tau{=}0.05$ (the threshold independently motivated by the non-tied analysis; Appendix~\\ref{app:epsilon_robustness}), select the highest-LP sample; otherwise fall back to greedy.\n2142\tOn SciERC, DALS yields $+0.71{\\pm}0.48$~pp (3-seed mean; individual seeds: $+0.19$ to $+1.14$~pp); on Few-NERD, $+0.30$~pp ($p{<}0.001$; gain remains positive across $\\tau \\in [0.01, 0.15]$); on CoNLL, where pure LP selection degrades F1 ($-0.85$~pp), DALS shows comparable degradation (Qwen: $-0.87$~pp; LLaMA: neutral).\n2143\tDALS improves over pure LP selection when degeneracy is moderate, provides partial damage control when LP selection is harmful, and defaults to greedy when LP range signals no information.\n2144\tWhile gains are modest and seed-sensitive, LP range serves as an operationally accessible degeneracy proxy, though the mixed cross-dataset results confirm that degeneracy gating alone cannot ensure positive selection outcomes.\n2145\t\n2146\t\\paragraph{LOO $\\tau$ sensitivity.}\n2147\tLeave-one-out (LOO) cross-validation across datasets shows that the optimal $\\tau$ spans two orders of magnitude: $\\tau^*{=}0.001$ on Few-NERD, $0.05$ on SciERC, and $0.10$ on CoNLL.\n2148\tLOO regret (the gap between oracle and LOO-selected $\\tau$) ranges from 0.51 to 1.21~pp.\n2149\tThe best single cross-dataset $\\tau$ ($\\tau{=}0.05$) matches the independently motivated non-tied threshold, but yields dataset-specific suboptimality: even with oracle $\\tau$, CoNLL remains at $-0.31$~pp.\n2150\tThis sensitivity reinforces the diagnostic framing of DALS: per-dataset $\\tau$ tuning is required for positive gains, and eve\n…[truncated 2476 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_appendix-cross-ref_20260524T023114",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000076"
+        },
+        {
+          "source_line": 77,
+          "timestamp": "2026-05-24T02:36:20.532370+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_appendix-cross-ref_20260524T023114",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+              "offset": "2255",
+              "limit": "80"
+            }
+          },
+          "id": "event-000077"
+        },
+        {
+          "source_line": 78,
+          "timestamp": "2026-05-24T02:36:20.532531+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "2255\t\\subsection{Entity Construction Results}\\label{app:entity_construction_table}\n2256\t\n2257\t\\begin{table}[h]\n2258\t\\centering\n2259\t\\small\n2260\t\\caption{Entity construction vs.\\ greedy ($\\Delta$ macro F1; $N{=}8$, $T{=}1.0$, Qwen3-8B, multi-seed mean${\\pm}\\sigma$). $\\theta{=}2/N$. $p$: paired bootstrap vs.\\ greedy. $^\\dagger$Survives per-family Holm--Bonferroni correction (construction, $k{=}10$); global correction ($k{=}57$) yields $p_{\\text{adj}}{=}0.055$ (Appendix~\\ref{app:holm}). $^\\ddagger$LP-weighted not computed.}\n2261\t\\label{tab:entity_construction}\n2262\t\\resizebox{\\columnwidth}{!}{%\n2263\t\\begin{tabular}{@{}llcccc@{}}\n2264\t\\toprule\n2265\tDataset & Wt. & Greedy & Constr. & $\\Delta$ & $p$ \\\\\n2266\t\\midrule\n2267\tSciERC & LP & $.667{\\pm}.001$ & $.670{\\pm}.003$ & $+0.32$\\,pp & n.s. \\\\\n2268\t       & Unif. & $.667{\\pm}.001$ & $.660{\\pm}.004$ & $-0.74$\\,pp & n.s. \\\\\n2269\t\\addlinespace\n2270\tFew-NERD & LP & $.748$ & $\\mathbf{.762{\\pm}.005}$ & $+1.40{\\pm}0.51$\\,pp & ${<}.001^\\dagger$ \\\\\n2271\t         & Unif. & $.748$ & $\\mathbf{.756{\\pm}.006}$ & $+0.74{\\pm}0.58$\\,pp & .003 \\\\\n2272\t\\addlinespace\n2273\tCoNLL$^\\ddagger$ & Unif. & .908 & .904 & $-0.39$\\,pp & n.s. \\\\\n2274\t\\bottomrule\n2275\t\\end{tabular}}\n2276\t\\end{table}\n2277\t\n2278\t\\subsection{Entity Construction Threshold Sensitivity}\n2279\t\\label{app:theta_sweep}\n2280\t\n2281\tTable~\\ref{tab:theta_sweep} reports entity construction F1 as a function of the confirmation threshold $\\theta$ across three datasets (Qwen3-8B, $N{=}8$, $T{=}1.0$). The default $\\theta{=}2/N{=}0.25$ achieves the best LP-weighted $\\Delta$F1 on Few-NERD and is within 0.04\\,pp of the optimum on SciERC. Performance is stable across $\\theta \\in [0.15, 0.35]$; below 0.15, spurious entities degrade precision, and above 0.40, aggressive filtering removes correct low-frequency entities.\n2282\t\n2283\t\\begin{table}[h]\n2284\t\\caption{Entity construction threshold sensitivity ($N{=}8$, Qwen3-8B, $T{=}1.0$). $\\Delta$: F1 difference vs.\\ greedy in percentage points. Best $\\\n…[truncated 3053 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_appendix-cross-ref_20260524T023114",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000078"
+        },
+        {
+          "source_line": 79,
+          "timestamp": "2026-05-24T02:36:20.532678+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_appendix-cross-ref_20260524T023114",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+              "offset": "2327",
+              "limit": "35"
+            }
+          },
+          "id": "event-000079"
+        },
+        {
+          "source_line": 80,
+          "timestamp": "2026-05-24T02:36:20.532821+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "2327\t\\subsection{Few-Shot Error Correlation Analysis}\\label{app:fs_error}\n2328\t\n2329\tWe investigated whether few-shot demonstrations induce correlated entity-level errors that explain construction failure.\n2330\tPairwise error overlap (Jaccard similarity of per-sample false-positive and false-negative entity sets) shows no significant difference between FS and ZS regimes (SciERC: $0.454$ vs.\\ $0.452$, $p{=}0.84$; CoNLL: $0.103$ vs.\\ $0.104$, $p{=}0.64$; permutation tests, 10{,}000 resamples).\n2331\tWe additionally measure entity-level prediction entropy across $N{=}8$ samples per instance.\n2332\tOn SciERC, FS and ZS entropies are indistinguishable ($0.483$ vs.\\ $0.485$, $p{=}0.81$).\n2333\tOn CoNLL, however, entity prediction entropy is significantly \\emph{higher} under FS ($0.209$ vs.\\ $0.184$, $p{<}10^{-9}$, $r{=}0.106$, small effect; Wilcoxon signed-rank test), contrary to the hypothesis that demonstrations concentrate predictions---they instead \\emph{increase} output diversity on this dataset.\n2334\tThe mechanism by which few-shot demonstrations undermine construction remains an open question; entity-level error overlap is preserved while prediction entropy may even rise, suggesting that the \\emph{nature} rather than the \\emph{diversity} of errors shifts in ways that defeat LP-weighted voting.\n2335\t\n2336\t\\subsection{Construction Weighting Variants}\\label{app:weighting_variants}\n2337\t\n2338\tTable~\\ref{tab:weighting_variants} compares LP-weighted, VC-weighted, and SJ-weighted entity construction on LLaMA-3.1-8B (3-seed mean, $N{=}8$, $T{=}1.0$, $\\theta{=}2/N$).\n2339\tAll three weighting schemes beat greedy on SciERC, where degeneracy is low; LP and VC also improve Few-NERD, though gains are smaller than the Qwen results in Table~\\ref{tab:entity_construction}.\n2340\tThe optimal weighting scheme is model-dependent (VC leads on LLaMA SciERC; LP leads on Qwen), but the core finding is robust: entity-level voting improves F1 in low-degeneracy regimes regardless of the specific \n…[truncated 1215 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_appendix-cross-ref_20260524T023114",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000080"
+        },
+        {
+          "source_line": 81,
+          "timestamp": "2026-05-24T02:36:20.532966+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_appendix-cross-ref_20260524T023114",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+              "offset": "2550",
+              "limit": "30"
+            }
+          },
+          "id": "event-000081"
+        },
+        {
+          "source_line": 82,
+          "timestamp": "2026-05-24T02:36:20.533096+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "2550\t\\noindent These examples illustrate that the failure modes identified by the diagnostic framework are not statistical abstractions but manifest in individual instances. The LP and consensus failures frequently co-occur (e.g., ``Cramer'' instance), confirming that the signals share common blind spots rather than providing independent error detection.\n2551\t\n2552\t\\section{Practical Recommendations}\\label{app:recommendations}\n2553\t\n2554\tMeasuring degeneracy and LP-F1 alignment at $N{=}8$ suffices: if ${>}50$\\% degenerate, scaling provides no benefit; if degeneracy ${<}20$\\% with $\\rho{>}0.70$, construction may yield gains; otherwise prefer greedy.\n2555\t\n2556\t\\section{Use of AI Assistants}\n2557\t\\label{app:ai-assistants}\n2558\t\n2559\tWe used Claude (Anthropic) as an AI coding and writing assistant\n2560\tthroughout this work. Specifically:\n2561\t\\begin{itemize}\n2562\t    \\item \\textbf{Code:} drafting experiment scripts, data-processing\n2563\t    pipelines, and analysis utilities; debugging and refactoring.\n2564\t    \\item \\textbf{Writing:} drafting and revising paper sections,\n2565\t    polishing prose, and reformatting LaTeX.\n2566\t    \\item \\textbf{Literature:} summarizing related papers to inform\n2567\t    related-work section.\n2568\t\\end{itemize}\n2569\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_appendix-cross-ref_20260524T023114",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000082"
+        },
+        {
+          "source_line": 83,
+          "timestamp": "2026-05-24T02:36:20.533297+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_appendix-cross-ref_20260524T023114",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__save_project_file",
+              "max_results": "2"
+            }
+          },
+          "id": "event-000083"
+        },
+        {
+          "source_line": 84,
+          "timestamp": "2026-05-24T02:36:20.533421+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_appendix-cross-ref_20260524T023114",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000084"
+        },
+        {
+          "source_line": 85,
+          "timestamp": "2026-05-24T02:36:20.533569+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_appendix-cross-ref_20260524T023114",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/appendix_crossref_review.md",
+              "content": "# Appendix 交叉引用审查\n\n## 统计\n- 主文引用 appendix 次数：64\n- 唯一 label 数：33\n- 所有 label 均存在：**是**\n\n## 逐条审查\n\n| # | 主文位置 | 引用 label | 主文语境 | Appendix 内容摘要 | 评估 |\n|---|---------|-----------|---------|-----------------|------|\n| 1 | introduction.tex:L8 | `sec:mechanistic` | \"hidden-state probe...AUROC 0.63–0.88; Appendix\" | §How Self-Verification Fails: ESJ/MRSC/LSC probes, hidden-state probe, introspection boundary（~30行正文 + Table） | ✅ 充分 |\n| 2 | introduction.tex:L11 | `app:re_extension` | \"RE reveals a distinct bottleneck (40% zero-F1)\" | §Exploratory Extension to RE: diagnostic framework, QE, selection, scale ablation, free-form decoding（~90行，多表） | ✅ 充分 |\n| 3 | introduction.tex:L14 | `app:re_extension` | \"RE F1 confounded by entity span errors\" | 同上 | ✅ 充分 |\n| 4 | introduction.tex:L28 | `sec:mechanistic` | \"Hidden-state probes reveal introspection boundary\" | 同#1 | ✅ 充分 |\n| 5 | method.tex:L6 | `app:notation` | \"notation in Appendix\" | §Notation: Table with all symbols（27行，完整符号表） | ✅ 充分 |\n| 6 | method.tex:L8 | `app:supervised_combination` | \"LP mean weight 0.78\" | §Supervised and Model-Internal Signal Analysis: LR/MLP/RF classifiers, DeBERTa verifier, grid-search（~12行详细分析） | ✅ 充分 |\n| 7 | method.tex:L33 | `app:fk_independence` | \"FK independence analysis\" | ¶FK independence permutation test: 3 configs, Table with t-stats, split-half r（~25行） | ✅ 充分 |\n| 8 | method.tex:L56 | `app:additional` | \"exclude instances with no gold annotations\" | §Additional Analyses: signal heatmap, per-relation diagnostic, capability stratification, length analysis, WNUT（~130行，多表多图） | ✅ 充分 |\n| 9 | method.tex:L80 | `app:mbr_proof` | \"proof in Appendix\" | §MBR Framework and Proof: formal proof of Proposition 1（~25行，完整证明） | ✅ 充分 |\n| 10 | diagnostic.tex:L8 | `app:notation` | \"notation in Appendix\" | 同#5 | ✅ 充分 |\n| 11 | diagnostic.tex:L10 | `app:supervised_combination` | \"LP mean weight 0.78, structural zero weight\" | 同#6 | ✅ 充分 |\n| 12 | diagnostic.tex:L22 | `app:token_signal` | \"length normalization +4.6 F1 points\" | §Token-Level Signal Comparison: mean vs cumulative LP, +4.6pp, Wilcoxon test（~8行） | ✅ 充分 |\n| 13 | diagnostic.tex:L34 | `app:fk_independence` | \"FK independence\" | 同#7 | ✅ 充分 |\n| 14 | diagnostic.tex:L41 | `app:additional` | \"instance exclusion\" | 同#8 | ✅ 充分 |\n| 15 | experiments_main.tex:L13 | `app:training` | \"LoRA fine-tuned...training details\" | §Training Configuration: Table with all hyperparameters, prompt template, constrained decoding details（~50行） | ✅ 充分 |\n| 16 | experiments_main.tex:L13 | `app:epoch_confound` | \"Few-NERD uses 3 epochs vs 5\" | §Epoch Confound Analysis: Few-NERD 3v5, SciERC 3/5/10 epoch curve, 2 tables（~70行） | ✅ 充分 |\n| 17 | experiments_main.tex:L14 | `app:n_scaling` | \"N∈{16,32,64} for scaling\" | §N-Scaling Detailed Analysis: signal quality vs N, ranking stability, inverse scaling, theta sweep tables（~140行，多表） | ✅ 充分 |\n| 18 | experiments_main.tex:L29 | `app:re_extension` | \"RE in Appendix\" | 同#2 | ✅ 充分 |\n| 19 | experiments_main.tex:L50 | `app:bootstrap_signal` | \"bootstrap CIs confirm the gap\" | §Bootstrap CI for Signal Comparisons: individual CIs, pairwise Δρ, seed-replication analysis（~45行，2 tables） | ✅ 充分 |\n| 20 | experiments_main.tex:L51 | `app:bootstrap_signal` | \"Holm-Bonferroni p_adj=0.013\" | 同#19 | ✅ 充分 |\n| 21 | experiments_main.tex:L76 | `app:epoch_confound` | \"5-epoch degeneracy 26%\" | 同#16 | ✅ 充分 |\n| 22 | experiments_main.tex:L78 | `app:pertype` | \"per-type MV degradation ρ=0.90\" | §Per-Type MV Analysis: 8 entity types, pretrained vs finetuned comparison, Table（~30行） | ✅ 充分 |\n| 23 | experiments_main.tex:L81 | `app:per_type_lp` | \"per-type LP ρ=-0.881\" | §Per-Entity-Type LP Selection: Few-NERD/CoNLL/SciERC per-type tables, degeneracy-headroom correlation（~70行，3 tables） | ✅ 充分 |\n| 24 | experiments_main.tex:L86 | `app:per_type_lp` | \"per-type LP (figure caption)\" | 同#23 | ✅ 充分 |\n| 25 | experiments_main.tex:L91 | `app:re_extension` | \"RE framework extends, 40% zero-F1\" | 同#2 | ✅ 充分 |\n| 26 | experiments_main.tex:L96 | `app:calibration` | \"signal rankings robust; calibration\" | §Calibration Analysis: reliability diagrams, ECE values（~12行 + figure） | ✅ 充分 |\n| 27 | experiments_main.tex:L103 | `app:theta_sweep` | \"θ stable in [0.15, 0.35]\" | §Entity Construction Threshold Sensitivity: 8-point sweep × 3 datasets, Table（~45行） | ✅ 充分 |\n| 28 | experiments_main.tex:L105 | `app:holm` | \"global k=57 Holm-Bonferroni\" | §Holm-Bonferroni Enumeration: complete 57-test table with raw p and p_adj（~90行） | ✅ 充分 |\n| 29 | experiments_main.tex:L107 | `app:epoch_confound` | \"5-epoch LP gains collapse\" | 同#16 | ✅ 充分 |\n| 30 | experiments_main.tex:L113 | `app:freeform_ablation` | \"decoding modes\" | §Free-Form Decoding Ablation: 3-panel table, LP distribution, selection F1, QE comparison（~110行） | ✅ 充分 |\n| 31 | experiments_main.tex:L114 | `app:n_scaling` | \"Qwen2.5-7B N=32 +3.85pp\" | 同#17 | ✅ 充分 |\n| 32 | single_signal.tex:L6 | `app:logprob_ties` | \"60% LP range below 0.041 nats\" | §Log-Probability Score Compression: CDF figure, tied fraction table, ε sweep, non-tied subset（~90行，多表多图） | ✅ 充分 |\n| 33 | single_signal.tex:L6 | `app:freeform_ablation` | \"free-form decoding yields identical LP\" | 同#30 | ✅ 充分 |\n| 34 | single_signal.tex:L39 | `app:bootstrap_signal` | \"MDE ≈1.5pp\" | 同#19 | ✅ 充分 |\n| 35 | single_signal.tex:L40 | `app:bootstrap_signal` | \"bootstrap CIs reported\" | 同#19 | ✅ 充分 |\n| 36 | single_signal.tex:L49 | `app:per_type_lp` | \"per-type ρ=-0.881\" | 同#23 | ✅ 充分 |\n| 37 | single_signal.tex:L52 | `sec:mechanistic` | \"Mechanistic evidence paragraph header\" | 同#1 | ✅ 充分 |\n| 38 | single_signal.tex:L53 | `app:esj` | \"ESJ AUROC 0.50–0.55 on Qwen3-8B\" | §Cross-Dataset Entailment Self-Judgment: 3-dataset ESJ vs agreement Table（~20行） | ✅ 充分 |\n| 39 | single_signal.tex:L56 | `app:esj` | \"cross-model ESJ validation\" | 同#38 | ✅ 充分 |\n| 40 | adaptive.tex:L9 | `sec:mechanistic` | \"self-verification methods in Appendix\" | 同#1 | ✅ 充分 |\n| 41 | adaptive.tex:L9 | `app:method_coverage` | \"Full coverage in Appendix\" | §Method Coverage Matrix: 7-method × 5-dataset/model table（~25行） | ✅ 充分 |\n| 42 | adaptive.tex:L21 | `app:dals` | \"DALS +0.71pp\" | §Degeneracy-Aware LP Selection: DALS algorithm, 3-dataset results, LOO τ sensitivity（~15行） | ✅ 充分 |\n| 43 | adaptive.tex:L23 | `app:supervised_combination` | \"LR/MLP/RF -0.4 to -3.1pp\" | 同#6 | ✅ 充分 |\n| 44 | adaptive.tex:L39 | `app:verifier_transfer` | \"cross-dataset transfer -0.76 to -1.02pp\" | §Entity-Level Verifier Transfer: LightGBM AUC, OOF gains, cross-dataset negative transfer（~8行） | ✅ 充分 |\n| 45 | discussion.tex:L5 | `app:freeform_ablation` | \"decoding modes\" | 同#30 | ✅ 充分 |\n| 46 | mechanistic.tex:L5 | `app:self_verification` | \"full results in Appendix\" | §Entity-Level Self-Verification Probes: ESJ/MRSC/LSC details, Table with metrics（~45行） | ✅ 充分 |\n| 47 | mechanistic.tex:L21 | `app:hidden_probe` | \"GroupKFold CV details\" | §Hidden State Probes: linear/MLP probe, cross-dataset, token-level aggregator（~35行 + Table） | ✅ 充分 |\n| 48 | mechanistic.tex:L24 | `app:hidden_probe` | \"MLP probe 13.9% oracle gap\" | 同#47 | ✅ 充分 |\n| 49 | theory.tex:L5 | `app:mbr_proof` | \"MBR proof\" | 同#9 | ✅ 充分 |\n| 50 | theory.tex:L7 | `app:fewnerd_epsilon` | \"LP compression threshold ε=0.05\" | ¶Few-NERD LP compression threshold sensitivity: elbow analysis（~45行） | ✅ 充分 |\n| 51 | theory.tex:L12 | `app:frontier_sc` | \"GPT-5.5 parse failures\" | §Frontier Model Self-Consistency: 4-model comparison table, parse failure handling, entity matching methodology（~40行） | ✅ 充分 |\n| 52 | theory.tex:L13 | `app:cross_scale` | \"degeneracy model-family-dependent\" | §Cross-Scale and Cross-Family Comparison: 10-row cross-scale table, few-shot analysis, degeneracy comparison, 4B ablation（~100行，多表） | ✅ 充分 |\n| 53 | theory.tex:L23 | `app:n_scaling` | \"40 of 58 inverse transitions\" | 同#17 | ✅ 充分 |\n| 54 | theory.tex:L25 | `app:degen_inverse` | \"degeneracy vs inverse scaling OR=0.109\" | ¶Degeneracy and inverse scaling: stratified table, 6 settings, Fisher exact test（~30行 + Table） | ✅ 充分 |\n| 55 | theory.tex:L26 | `app:fs_error` | \"few-shot QE improves but not construction\" | §Few-Shot Error Correlation Analysis: error overlap Jaccard, entity entropy comparison（~10行） | ✅ 充分 |\n| 56 | theory.tex:L33 | `app:bound_proof` | \"proof of degeneracy decomposition\" | §Degeneracy Decomposition: definitions, full proof, numerical verification table（~50行） | ✅ 充分 |\n| 57 | theory.tex:L50 | `app:alpha_crit` | \"Proposition entity selection bound\" | §Entity Selection Bound: Proof and Validation: proposition, proof, α_crit table（~60行） | ✅ 充分 |\n| 58 | theoretical.tex:L6 | `app:bound_proof` | \"proof in Appendix\" | 同#56 | ✅ 充分 |\n| 59 | checklist.tex:L24 | `app:training` | \"datasets cited, training framework\" | 同#15 | ✅ 充分 |\n| 60 | checklist.tex:L36 | `app:training` | \"dataset characteristics\" | 同#15 | ✅ 充分 |\n| 61 | checklist.tex:L48 | `app:training` | \"computing infrastructure\" | 同#15 | ✅ 充分 |\n| 62 | checklist.tex:L51 | `app:training` | \"hyperparameters\" | 同#15 | ✅ 充分 |\n| 63 | checklist.tex:L57 | `app:training` | \"LLaMA Factory, XGrammar\" | 同#15 | ✅ 充分 |\n| 64 | checklist.tex:L68 | `app:ai-assistants` | \"AI assistants disclosure\" | §Use of AI Assistants: Claude usage for code/writing/literature（~12行） | ✅ 充分 |\n\n## 问题列表（按严重程度排序）\n\n### 缺失的引用目标\n无。所有 33 个唯一 label 均在 appendix.tex 中定义。\n\n### 内容不足的 appendix 章节\n无。所有被引用的章节均包含实质性内容（表格、图表、证明或详细分析）。\n\n### 潜在注意事项\n\n1. **`sec:mechanistic` 使用 `sec:` 前缀而非 `app:` 前缀** — 该 section 位于 appendix.tex 内（L607），但 label 使用 `\\label{sec:mechanistic}` 而非 `\\label{app:mechanistic}`。这不会导致编译错误（LaTeX 不区分前缀），但与 appendix 其他 section 的命名惯例不一致。同时，mechanistic.tex 主文文件中也存在完全相同的内容（标题、段落、数据完全一致），说明该 section 既在主文中有独立文件，也在 appendix 中有副本。如果两者都被 `\\input` 编译，会产生 **duplicate label 警告**。需确认 main.tex 的 `\\input` 顺序中是否只引用了其中一个。\n\n2. **diagnostic.tex 与 method.tex 内容重叠** — diagnostic.tex 和 method.tex 均定义了 `\\section{...}\\label{sec:method}` 和 `\\label{sec:formulation}` 等 label，内容高度重叠但不完全相同。如果两个文件同时被编译，会产生 duplicate label。需确认只有一个被 `\\input`。\n\n3. **theoretical.tex 与 theory.tex 内容重叠** — theoretical.tex（9行，精简版 degeneracy bound）和 theory.tex（51行，完整 scaling analysis）均存在，且 theoretical.tex 定义了 `\\label{thm:degeneracy_bound}`，theory.tex L30 也定义了同名 label。需确认编译时只使用其中一个。\n\n### 建议\n- 确认 main.tex 的 `\\input` 列表中没有同时引用重叠文件（method/diagnostic、theoretical/theory、mechanistic 主文版/appendix 版）\n- 考虑将 `sec:mechanistic` 重命名为 `app:mechanistic` 以保持命名一致性（可选，不影响编译正确性）\n"
+            }
+          },
+          "id": "event-000085"
+        },
+        {
+          "source_line": 86,
+          "timestamp": "2026-05-24T02:36:20.533838+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/appendix_crossref_review.md"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_appendix-cross-ref_20260524T023114",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000086"
+        },
+        {
+          "source_line": 87,
+          "timestamp": "2026-05-24T02:36:20.533973+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_artifact"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_appendix-cross-ref_20260524T023114",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "tool_args": {
+              "name": "appendix_crossref_review",
+              "type": "report",
+              "description": "Appendix 交叉引用完整性审查：33个唯一label全部存在，64处引用均有对应内容，无缺失或内容不足。附3个潜在duplicate label注意事项。",
+              "project": "struct_self_consist_ie",
+              "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/appendix_crossref_review.md",
+              "tags": "['paper', 'appendix', 'crossref', 'review']"
+            }
+          },
+          "id": "event-000087"
+        },
+        {
+          "source_line": 88,
+          "timestamp": "2026-05-24T02:36:20.534221+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260524_ca812f\\\", \\\"name\\\": \\\"appendix_crossref_review\\\", \\\"type\\\": \\\"report\\\", \\\"description\\\": \\\"Appendix 交叉引用完整性审查：33个唯一label全部存在，64处引用均有对应内容，无缺失或内容不足。附3个潜在duplicate label注意事项。\\\", \\\"path\\\": \\\"projects/struct_self_consist_ie/artifacts/_project/report/appendix_crossref_review.md\\\", \\\"url\\\": null, \\\"project\\\": \\\"struct_self_consist_ie\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-24T02:36:12.518213+00:00\\\", \\\"tags\\\": [\\\"paper\\\", \\\"appendix\\\", \\\"crossref\\\", \\\"review\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_appendix-cross-ref_20260524T023114",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "elapsed_ms": 0
+          },
+          "id": "event-000088"
+        },
+        {
+          "source_line": 89,
+          "timestamp": "2026-05-24T02:36:20.534398+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "审查完成。\n\n**结果：所有 33 个唯一 appendix label 均存在，64 处主文引用全部有对应内容，无缺失或内容不足。**\n\n3 个需注意的潜在问题：\n1. `sec:mechanistic` 用了 `sec:` 前缀但实际位于 appendix 中，且 mechanistic.tex 主文文件与 appendix 内容重复——需确认编译时无 duplicate label\n2. diagnostic.tex 与 method.tex 内容重叠（均定义 `sec:method`），需确认只编译其中一个\n3. theoretical.tex 与 theory.tex 均定义 `thm:degeneracy_bound`，同理\n\n报告已写入 `artifacts/appendix_crossref_review.md` 并注册。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_appendix-cross-ref_20260524T023114"
+          },
+          "id": "event-000089"
+        }
+      ],
+      "message_count": 89
+    }
+  ],
+  "readable_path": "readable/conversations/review-appendix-cross-ref.md"
+}

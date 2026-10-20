@@ -1,0 +1,3552 @@
+{
+  "schema_version": "1.0",
+  "session_id": "244498a69e2f6d713847",
+  "rounds": [
+    {
+      "number": 642,
+      "messages": [
+        {
+          "source_line": 13321,
+          "timestamp": "2026-05-18T21:33:42.235232+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+              "old_string": "yielding slightly different degeneracy (9.2\\% vs.\\ 11.1\\% here)",
+              "new_string": "yielding slightly different degeneracy (13.8\\% vs.\\ 11.1\\% here)"
+            }
+          },
+          "id": "event-013321"
+        },
+        {
+          "source_line": 13322,
+          "timestamp": "2026-05-18T21:33:42.286577+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 51
+          },
+          "id": "event-013322"
+        },
+        {
+          "source_line": 13323,
+          "timestamp": "2026-05-18T21:33:50.170281+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/abstract.tex",
+              "old_string": "(7\\textendash 87\\% of instances yield identical F1 scores across all samples)",
+              "new_string": "(14\\textendash 87\\% of instances yield identical F1 scores across all samples)"
+            }
+          },
+          "id": "event-013323"
+        },
+        {
+          "source_line": 13324,
+          "timestamp": "2026-05-18T21:33:50.621811+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/abstract.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 451
+          },
+          "id": "event-013324"
+        },
+        {
+          "source_line": 13325,
+          "timestamp": "2026-05-18T21:33:51.474446+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/introduction.tex",
+              "old_string": "(7\\textendash 87\\% across our benchmarks, eliminating headroom)",
+              "new_string": "(14\\textendash 87\\% across our benchmarks, eliminating headroom)"
+            }
+          },
+          "id": "event-013325"
+        },
+        {
+          "source_line": 13326,
+          "timestamp": "2026-05-18T21:33:51.525237+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/introduction.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-013326"
+        },
+        {
+          "source_line": 13327,
+          "timestamp": "2026-05-18T21:34:00.883863+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "9\\.2[^0-9]|9\\.25|10\\.1[^0-9]",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-013327"
+        },
+        {
+          "source_line": 13328,
+          "timestamp": "2026-05-18T21:34:00.893440+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex:1247:Person & 8{,}016 & 13.4 & .822 & .835 & $+$1.25 & .544 & 9.2\\,pp \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex:1248:Art & 1{,}277 & 19.8 & .756 & .754 & $-$0.17 & .451 & 9.2\\,pp \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex:1279:Task & 10.1 & $+$2.58 \\\\"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Grep",
+            "elapsed_ms": 9
+          },
+          "id": "event-013328"
+        },
+        {
+          "source_line": 13329,
+          "timestamp": "2026-05-18T21:34:06.958061+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__paper_compile_and_check"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "mcp__agent-ml-research__paper_compile_and_check",
+            "tool_args": {
+              "project": "struct_self_consist_ie"
+            }
+          },
+          "id": "event-013329"
+        },
+        {
+          "source_line": 13330,
+          "timestamp": "2026-05-18T21:34:12.536209+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"passed\\\": true, \\\"compiled\\\": {\\\"success\\\": true, \\\"pdf_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/main.pdf\\\", \\\"paper_dir\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper\\\", \\\"main_tex\\\": \\\"main.tex\\\", \\\"log_tail\\\": \\\" []\\\\n\\\\n[30]\\\\nOverfull \\\\\\\\hbox (59.54747pt too wide) in paragraph at lines 1339--1351\\\\n [][] \\\\n []\\\\n\\\\n\\\\nOverfull \\\\\\\\hbox (5.02843pt too wide) in paragraph at lines 1368--1380\\\\n [][] \\\\n []\\\\n\\\\n\\\\nUnderfull \\\\\\\\hbox (badness 1715) in paragraph at lines 1383--1387\\\\n\\\\\\\\T1/ptm/m/n/10.95 (+20) vari-a-tion re-mains un-ver-i-fied; high-degeneracy\\\\n []\\\\n\\\\n[31]\\\\nOverfull \\\\\\\\hbox (35.47371pt too wide) in paragraph at lines 1412--1421\\\\n [][] \\\\n []\\\\n\\\\n[32]\\\\nOverfull \\\\\\\\hbox (8.97415pt too wide) in paragraph at lines 1438--1446\\\\n [][] \\\\n []\\\\n\\\\n\\\\nOverfull \\\\\\\\hbox (43.31696pt too wide) in paragraph at lines 1461--1470\\\\n [][] \\\\n []\\\\n\\\\n) [33\\\\n\\\\n] (./main.aux)\\\\n ***********\\\\nLaTeX2e <2025-11-01>\\\\nL3 programming layer <2026-01-19>\\\\n ***********\\\\nPackage rerunfilecheck Info: File `main.out' has not changed.\\\\n(rerunfilecheck)             Checksum: 637D612B9110B254F8F7CCE23B2C6635;7824.\\\\n ) \\\\nHere is how much of TeX's memory you used:\\\\n 17165 strings out of 469438\\\\n 271150 string characters out of 5468411\\\\n 772994 words of memory out of 5000000\\\\n 44663 multiletter control sequences out of 15000+600000\\\\n 725573 words of font info for 503 fonts, out of 8000000 for 9000\\\\n 59 hyphenation exceptions out of 8191\\\\n 84i,14n,93p,1001b,734s stack positions out of 10000i,1000n,20000p,200000b,200000s\\\\n</usr/share/texlive/texmf-dist/fonts/type1/public/inconsolata/Inconsolata-zi4\\\\nr.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb><\\\\n/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/s\\\\nhare/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmm\n…[truncated 9140 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "mcp__agent-ml-research__paper_compile_and_check",
+            "elapsed_ms": 5578
+          },
+          "id": "event-013330"
+        },
+        {
+          "source_line": 13331,
+          "timestamp": "2026-05-18T21:34:33.799163+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__paper_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "mcp__agent-ml-research__paper_agent_post_to_director",
+            "tool_args": {
+              "text": "[写作进展] FewNERD 退化率已回滚\n\n全部 10 处 FewNERD 相关修改已恢复原值。编译 PASS（33 页）。\n\n**当前论文状态**：\n- ✅ SciERC/CoNLL/T消融 退化率：已更新为 unified 值（本轮第一次 Patch）\n- ✅ Abstract/Intro 范围：14–87%（上界用 LLaMA CoNLL 86.5%，下界保持旧 FewNERD 14%）\n- ⏳ FewNERD 退化率：保持旧值 13.8%，等修复后数据\n- ⏳ fig_degeneracy_lp_scatter：保持旧图，等修复后数据 + 新散点图\n- ⏳ D152 DGS 跨模型 Patch：待命",
+              "project": "struct_self_consist_ie"
+            }
+          },
+          "id": "event-013331"
+        },
+        {
+          "source_line": 13332,
+          "timestamp": "2026-05-18T21:34:34.918780+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "mcp__agent-ml-research__paper_agent_post_to_director",
+            "elapsed_ms": 1119
+          },
+          "id": "event-013332"
+        },
+        {
+          "source_line": 13333,
+          "timestamp": "2026-05-18T21:34:36.420527+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "编译 PASS。FewNERD 回滚完成，汇报 Director。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent"
+          },
+          "id": "event-013333"
+        }
+      ]
+    },
+    {
+      "number": 643,
+      "messages": [
+        {
+          "source_line": 13334,
+          "timestamp": "2026-05-18T21:34:36.916064+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统提醒] 你刚才完成了 [Director 指令] 但没有调用 main_agent_post_to_director 汇报结果。Director 看不到你的文字回复。请立即调用 main_agent_post_to_director 将结果发给 Director。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "source": "system"
+          },
+          "id": "event-013334"
+        },
+        {
+          "source_line": 13335,
+          "timestamp": "2026-05-18T21:34:43.396182+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "已在回滚完成后立即通过 `paper_agent_post_to_director` 汇报了 FewNERD 回滚结果。当前待命等待 Director 的修复后数据。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent"
+          },
+          "id": "event-013335"
+        }
+      ]
+    },
+    {
+      "number": 644,
+      "messages": [
+        {
+          "source_line": 13336,
+          "timestamp": "2026-05-18T21:34:43.855817+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Director 指令] [ACK] FewNERD Patch 收到。注意：\n\n**⚠️ 9.2% 可能需要微调**：这批数字来自尚未迁移 unified_metrics 的 analyze_fewnerd_results.py（M015）。Agent 正在修复并重跑，修复后数字可能偏移几个 pp。等修复数字到了再做最终确认——如果变化小（<1pp）就不改了，变化大再 patch。\n\n**决策：**\n1. per-entity-type 退化率：附录低优先级，DDL 前不处理\n2. tab:epoch_confound 5K subsample：暂保留，不影响核心 claim\n3. D152 DGS 跨模型 Patch：可以开始做，数据已确认（LLaMA CoNLL DGS +0.14pp, Qwen CoNLL -0.81pp，这些数字来自已验证的 unified pipeline）"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "source": "director"
+          },
+          "id": "event-013336"
+        },
+        {
+          "source_line": 13337,
+          "timestamp": "2026-05-18T21:34:53.183340+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__paper_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "mcp__agent-ml-research__paper_agent_post_to_director",
+            "tool_args": {
+              "text": "[写作进展] ACK 收到\n\n确认三项决策：\n1. per-entity-type 退化率：DDL 前不处理\n2. tab:epoch_confound：暂保留\n3. D152 DGS 跨模型 Patch：现在开始\n\n请确认 D152 的具体修改内容——当前 Discussion §selection_method 中 DGS 段落已有 CoNLL 跨模型对比（Qwen DGS -0.81pp, LLaMA DGS +0.14pp）。需要更新哪些具体数字或叙事？或者 D152 指的是其他位置的 DGS 内容？",
+              "project": "struct_self_consist_ie"
+            }
+          },
+          "id": "event-013337"
+        },
+        {
+          "source_line": 13338,
+          "timestamp": "2026-05-18T21:34:57.162408+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "mcp__agent-ml-research__paper_agent_post_to_director",
+            "elapsed_ms": 3979
+          },
+          "id": "event-013338"
+        }
+      ]
+    },
+    {
+      "number": 645,
+      "messages": [
+        {
+          "source_line": 13339,
+          "timestamp": "2026-05-18T21:35:25.757628+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统提醒] 你刚才完成了 [Director 指令] 但没有调用 main_agent_post_to_director 汇报结果。Director 看不到你的文字回复。请立即调用 main_agent_post_to_director 将结果发给 Director。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "source": "system"
+          },
+          "id": "event-013339"
+        },
+        {
+          "source_line": 13340,
+          "timestamp": "2026-05-18T21:35:45.657332+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "已在上一轮调用 `paper_agent_post_to_director` 汇报并提问 D152 详情。等待 Director 回复。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent"
+          },
+          "id": "event-013340"
+        }
+      ]
+    },
+    {
+      "number": 646,
+      "messages": [
+        {
+          "source_line": 13341,
+          "timestamp": "2026-05-18T21:35:46.114654+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Director 指令] [Patch] **D153: 全文 F1 聚合方式统一为 per-instance mean**\n\nReviewer 发现 micro-averaged (corpus-level) 与 per-instance mean F1 差异达 1.6pp。决策：**论文所有 F1 数字（greedy、oracle、selection）统一使用 per-instance mean（unified_metrics）。**\n\n影响范围检查：\n- Greedy F1：如果论文中任何位置引用了 ~0.662 (SciERC)，那是 micro 值；per-instance 值是 ~0.645。需要核实所有表格中的 greedy F1 是否来自 unified_metrics。\n- Oracle F1：micro ~0.780 vs per-instance ~0.775，差异较小但也需统一。\n- Selection F1：已经用 per-instance，无需改。\n\n**操作**：全文搜索所有 F1 数字，对照 `oracle_f1_recalc_results.json` 核实。如果发现任何来自旧 report.json (micro) 的数字，替换为 unified 数字。\n\n这是最后一轮数字统一，做完后 F1/退化率/Oracle 三类指标全部 unified。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "source": "director"
+          },
+          "id": "event-013341"
+        },
+        {
+          "source_line": 13342,
+          "timestamp": "2026-05-18T21:35:57.877291+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Agent"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Agent",
+            "tool_args": {
+              "description": "Find oracle F1 recalc data",
+              "subagent_type": "Explore",
+              "prompt": "Find the file `oracle_f1_recalc_results.json` in the project directory tree under `/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/`. Check `logs/workers/` for worker result files that contain \"oracle_f1\" or \"recalc\" in their names, as well as `output/` and `artifacts/` directories. Report the full path(s) and contents."
+            }
+          },
+          "id": "event-013342"
+        },
+        {
+          "source_line": 13343,
+          "timestamp": "2026-05-18T21:35:59.884592+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/oracle_f1_recalc_results.json",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie"
+            }
+          },
+          "id": "event-013343"
+        },
+        {
+          "source_line": 13344,
+          "timestamp": "2026-05-18T21:35:59.884890+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-013344"
+        },
+        {
+          "source_line": 13345,
+          "timestamp": "2026-05-18T21:35:59.885037+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "logs/workers/**/*oracle_f1*.json",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie"
+            }
+          },
+          "id": "event-013345"
+        },
+        {
+          "source_line": 13346,
+          "timestamp": "2026-05-18T21:35:59.885266+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "\\.[0-9]{3}|0\\.\\d{2,3}",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex",
+              "output_mode": "content",
+              "-n": "True",
+              "head_limit": "60"
+            }
+          },
+          "id": "event-013346"
+        },
+        {
+          "source_line": 13347,
+          "timestamp": "2026-05-18T21:35:59.935660+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "17:We draw $N{=}8$ samples at $T{=}1.0$ (primary), with $N{=}16$ for scaling experiments (ranking stability $\\sigma{\\leq}0.026$, Table~\\ref{tab:multiseed}; sublinear gains beyond $N{=}8$, Appendix~\\ref{app:n_scaling}).\n27:\\caption{NER quality estimation ($\\rho$ and AUROC; $N{=}8$, primary seed${=}42$; 3-seed stability $\\sigma{\\leq}0.026$ in Table~\\ref{tab:multiseed}). Best in \\textbf{bold}. RE results in Appendix~\\ref{app:re_extension}. $N{=}16$ in Table~\\ref{tab:robustness}.}\n35:VC & Structural & \\textbf{.379} & \\textbf{.663} & .424 & .789 & .426 & .709 \\\\\n36:SJ  & Structural & .360 & .650 & .436 & .801 & \\textbf{.431} & .704 \\\\\n37:FK & Surface & .267 & .602 & .400 & .774 & .428 & .703 \\\\\n38:EM  & Surface    & .295 & .614 & \\textbf{.451} & \\textbf{.816} & \\textbf{.431} & .705 \\\\\n40:LP     & Model      & .205 & .578 & .316 & .753 & .307 & \\textbf{.761} \\\\\n45:Table~\\ref{tab:quality_estimation} presents $\\rho$ and AUROC for five signals across tasks and models ($\\varepsilon$-free; $\\varepsilon{=}0.05$ applies to selection only, stable across $[0, 0.2]$, Appendix~\\ref{app:epsilon_robustness}).\n48:On SciERC (medium difficulty), structural signals lead (VC $\\rho{=}0.379$, SJ $0.360$) over LP ($0.205$); bootstrap CIs confirm the gap ($\\Delta\\rho{=}{+}0.155$; Appendix~\\ref{app:bootstrap_signal}).\n49:On CoNLL (single-sample F1${\\approx}$0.91), EM leads both $\\rho$ and AUROC ($0.816$).\n50:At the signal-collapse boundary (WNUT-17, macro F1${\\approx}$42\\%), full-set correlations are dominated by the zero/non-zero boundary (VC $\\rho{=}0.724$ but conditional $\\rho{=}0.038$; Table~\\ref{tab:wnut}); LP shows the reverse (conditional $\\rho{=}0.350$; Figure~\\ref{fig:signal_heatmap}).\n68:Oracle & $0.778 \\pm 0.003$ & --- \\\\\n69:Greedy ($T{=}0$) & $0.645 \\pm 0.001$ & --- \\\\\n72:LP           & $\\mathbf{0.647} \\pm 0.005$ & .29 \\\\\n75:SJ           & $0.646 \\pm 0.002$ & .67 \\\\\n76:FK           & $0.646 \\pm 0.001$ & .79 \\\\\n77:EM           & $0.637 \\pm 0.001$ & --- \\\\\n78:VC           & $0.623 \\pm\n…[truncated 6685 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Grep",
+            "elapsed_ms": 50
+          },
+          "id": "event-013347"
+        },
+        {
+          "source_line": 13348,
+          "timestamp": "2026-05-18T21:36:00.036301+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Glob",
+            "elapsed_ms": 151
+          },
+          "id": "event-013348"
+        },
+        {
+          "source_line": 13349,
+          "timestamp": "2026-05-18T21:36:00.237210+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "logs/workers/**/*recalc*.json",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie"
+            }
+          },
+          "id": "event-013349"
+        },
+        {
+          "source_line": 13350,
+          "timestamp": "2026-05-18T21:36:00.438148+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Glob",
+            "elapsed_ms": 200
+          },
+          "id": "event-013350"
+        },
+        {
+          "source_line": 13351,
+          "timestamp": "2026-05-18T21:36:00.438620+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "output/**/*oracle_f1*.json",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie"
+            }
+          },
+          "id": "event-013351"
+        },
+        {
+          "source_line": 13352,
+          "timestamp": "2026-05-18T21:36:00.689490+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Glob",
+            "elapsed_ms": 250
+          },
+          "id": "event-013352"
+        },
+        {
+          "source_line": 13353,
+          "timestamp": "2026-05-18T21:36:01.642316+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "artifacts/**/*oracle_f1*.json",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie"
+            }
+          },
+          "id": "event-013353"
+        },
+        {
+          "source_line": 13354,
+          "timestamp": "2026-05-18T21:36:01.692941+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Glob",
+            "elapsed_ms": 50
+          },
+          "id": "event-013354"
+        },
+        {
+          "source_line": 13355,
+          "timestamp": "2026-05-18T21:36:01.693463+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie -type f -name \"*oracle_f1*\" 2>/dev/null"
+            }
+          },
+          "id": "event-013355"
+        },
+        {
+          "source_line": 13356,
+          "timestamp": "2026-05-18T21:36:01.844228+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/logs/workers/worker_analysis_oracle_f1_audit_20260518T212645.log\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/logs/workers/worker_analysis_oracle_f1_audit_20260518T212645_result.json"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Bash",
+            "elapsed_ms": 150
+          },
+          "id": "event-013356"
+        },
+        {
+          "source_line": 13357,
+          "timestamp": "2026-05-18T21:36:04.068342+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie -type f \\( -name \"*recalc*\" -o -name \"*oracle*f1*\" \\) 2>/dev/null | head -20"
+            }
+          },
+          "id": "event-013357"
+        },
+        {
+          "source_line": 13358,
+          "timestamp": "2026-05-18T21:36:04.270851+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/logs/workers/worker_analysis_oracle_f1_audit_20260518T212645.log\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/logs/workers/worker_analysis_oracle_f1_audit_20260518T212645_result.json\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/logs/workers/worker_analysis_degeneracy_recalc_unified_20260518T203519_result.json\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/logs/workers/worker_analysis_degeneracy_recalc_unified_20260518T203519.log"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Bash",
+            "elapsed_ms": 202
+          },
+          "id": "event-013358"
+        },
+        {
+          "source_line": 13359,
+          "timestamp": "2026-05-18T21:36:04.322360+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/logs/workers/ 2>/dev/null | grep -E \"oracle_f1|recalc\""
+            }
+          },
+          "id": "event-013359"
+        },
+        {
+          "source_line": 13360,
+          "timestamp": "2026-05-18T21:36:04.718046+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "-rw-r--r-- 1 ubuntu ubuntu  326626 May 18 20:40 worker_analysis_degeneracy_recalc_unified_20260518T203519.log\n-rw-r--r-- 1 ubuntu ubuntu    3553 May 18 20:40 worker_analysis_degeneracy_recalc_unified_20260518T203519_result.json\n-rw-r--r-- 1 ubuntu ubuntu  311571 May 18 21:32 worker_analysis_oracle_f1_audit_20260518T212645.log\n-rw-r--r-- 1 ubuntu ubuntu    1889 May 18 21:33 worker_analysis_oracle_f1_audit_20260518T212645_result.json"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Bash",
+            "elapsed_ms": 395
+          },
+          "id": "event-013360"
+        },
+        {
+          "source_line": 13361,
+          "timestamp": "2026-05-18T21:36:04.770312+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/output/ 2>/dev/null | head -20"
+            }
+          },
+          "id": "event-013361"
+        },
+        {
+          "source_line": 13362,
+          "timestamp": "2026-05-18T21:36:04.871255+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "(Bash completed with no output)"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Bash",
+            "elapsed_ms": 100
+          },
+          "id": "event-013362"
+        },
+        {
+          "source_line": 13363,
+          "timestamp": "2026-05-18T21:36:04.922304+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/ 2>/dev/null | head -20"
+            }
+          },
+          "id": "event-013363"
+        },
+        {
+          "source_line": 13364,
+          "timestamp": "2026-05-18T21:36:05.073168+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "total 2224\ndrwxr-xr-x 100 ubuntu ubuntu  12288 May 18 21:28 .\ndrwxr-xr-x  12 ubuntu ubuntu   4096 May 18 21:34 ..\n-rw-r--r--   1 ubuntu ubuntu   4393 May 14 18:55 3seed_ner_summary.md\ndrwxr-xr-x   2 ubuntu ubuntu   4096 May 14 18:34 3seed_summary\ndrwxr-xr-x   2 ubuntu ubuntu   4096 May 14 05:09 __pycache__\ndrwxr-xr-x   7 ubuntu ubuntu   4096 May 14 19:29 _project\n-rw-r--r--   1 ubuntu ubuntu   4980 May 18 19:16 analysis_dgs_epoch_rank.py\n-rw-r--r--   1 ubuntu ubuntu   1443 May 15 13:16 analysis_fk_bootstrap_ci_full.json\n-rw-r--r--   1 ubuntu ubuntu 150381 May 15 13:16 analysis_lp_range_cdf.json\n-rw-r--r--   1 ubuntu ubuntu   3197 May 15 13:16 analysis_lp_range_cdf_n16_3seed.json\n-rw-r--r--   1 ubuntu ubuntu  20864 May 15 13:14 analysis_scierc_n16_3seed_selection_f1.json\n-rw-r--r--   1 ubuntu ubuntu   8624 May 15 13:27 analysis_scierc_re_n16_3seed_selection_f1.json\n-rw-r--r--   1 ubuntu ubuntu   2806 May 15 13:24 analysis_unified_rho.json\n-rw-r--r--   1 ubuntu ubuntu   6213 May 15 16:20 analysis_unified_rho_full.json\n-rw-r--r--   1 ubuntu ubuntu  25806 May 14 11:49 analyze_exp004_re_diagnostic.py\n-rw-r--r--   1 ubuntu ubuntu  21379 May 14 15:24 analyze_exp004_v2_re_diagnostic.py\n-rw-r--r--   1 ubuntu ubuntu  15051 May 14 15:24 analyze_exp005_v2_temperature.py\n-rw-r--r--   1 ubuntu ubuntu  21562 May 14 11:47 analyze_exp015_metrics_expansion.py\n-rw-r--r--   1 ubuntu ubuntu  31742 May 14 12:14 analyze_exp016_ensemble.py"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Bash",
+            "elapsed_ms": 150
+          },
+          "id": "event-013364"
+        },
+        {
+          "source_line": 13365,
+          "timestamp": "2026-05-18T21:36:07.431352+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/logs/workers/worker_analysis_oracle_f1_audit_20260518T212645_result.json"
+            }
+          },
+          "id": "event-013365"
+        },
+        {
+          "source_line": 13366,
+          "timestamp": "2026-05-18T21:36:07.482061+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t{\n2\t  \"raw\": \"All three parts complete. Here's the summary:\\n\\n---\\n\\n## Part 1: 0.8150 来源追溯\\n\\n**来源**: `output/exp_001_seed42_v2/run.log` (SciERC, T=1.0, seed=42, 16 samples)\\n\\n**产出脚本**: `code/run_mvp_pilot.py` line 228-237\\n\\n**根因**: 旧流程使用 `compute_ner_f1`（`evaluation.py:42`）进行 **micro-averaged corpus-level** F1 聚合——先把所有实例的 TP/FP/FN 相加，再算 F1。而 `unified_metrics.compute_entity_f1` 是 **per-instance** F1（逐实例算 F1 后取均值）。两者使用相同的 `(start, end, type)` 匹配逻辑，差异纯粹来自聚合方式。\\n\\n## Part 2: 全量 Oracle F1 对比\\n\\n74 个实验已重算，保存至 `output/unified_oracle_audit/oracle_f1_recalc_results.json`。\\n\\n关键发现：\\n- **exp_001_seed42_v2**: old=0.8150, unified=0.8194, delta=**+0.44pp**（unified 反而更高）\\n- 多数 SciERC 实验偏差在 **±0.5pp** 以内\\n- **异常值**: `exp_003_wnut17`(-9.74pp), `exp_008_re`(+18pp, RE/NER subtask 混淆), `exp_011_ood`(-2~-4pp), `exp_entity_token_lp_pilot`(-4.33pp)\\n\\n## Part 3: exp_026 温度消融 12 实验一致性\\n\\n| Temp | Seed  | Greedy | Oracle | Degen% |\\n|------|-------|--------|--------|--------|\\n| 0.5  | 42    | 0.6490 | 0.7395 | 41.4%  |\\n| 0.5  | 123   | 0.6449 | 0.7352 | 45.6%  |\\n| 0.5  | 456   | 0.6463 | 0.7393 | 44.2%  |\\n| 0.8  | 42    | 0.6439 | 0.7690 | 23.8%  |\\n| 0.8  | 123   | 0.6433 | 0.7677 | 26.3%  |\\n| 0.8  | 456   | 0.6471 | 0.7710 | 25.5%  |\\n| 1.0  | 123   | 0.6440 | 0.7748 | 18.7%  |\\n| 1.0  | 42    | 0.6453 | 0.7753 | 20.0%  |\\n| 1.0  | 456   | 0.6456 | 0.7756 | 19.3%  |\\n| 1.2  | 42    | 0.6425 | 0.7888 | 14.9%  |\\n| 1.2  | 123   | 0.6419 | 0.7887 | 14.0%  |\\n| 1.2  | 456   | 0.6466 | 0.7853 | 13.2%  |\\n\\n**内部一致性良好**：同温度 3 个 seed 的 oracle 偏差 < 0.5pp，趋势单调（T↑ → Oracle↑, Degen%↓）。\"\n3\t}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-013366"
+        },
+        {
+          "source_line": 13367,
+          "timestamp": "2026-05-18T21:36:07.532839+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/logs/workers/worker_analysis_degeneracy_recalc_unified_20260518T203519_result.json"
+            }
+          },
+          "id": "event-013367"
+        },
+        {
+          "source_line": 13368,
+          "timestamp": "2026-05-18T21:36:07.533328+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t{\n2\t  \"raw\": \"完成。结果已保存到 JSON 文件。以下是完整的退化率重算对比表：\\n\\n```\\nLabel                                                       N  Degen%(unified)  OldPctZero   Delta\\n─────────────────────────────────────────────────────────────────────────────────────────────────────\\nQwen3-8B / SciERC / T=1.0 / seed=42                       529            17.8%       12.6%    +5.2\\nQwen3-8B / SciERC / T=1.0 / seed=123                      529            17.2%       11.7%    +5.5\\nQwen3-8B / SciERC / T=1.0 / seed=456                      529            20.4%       13.3%    +7.2\\nQwen3-8B / CoNLL / T=1.0 N=16 / seed=42                  2756            48.4%        7.6%   +40.9\\nQwen3-8B / CoNLL / T=1.0 N=16 / seed=123                 2756            47.1%        7.5%   +39.5\\nQwen3-8B / CoNLL / T=1.0 N=16 / seed=456                 2756            55.4%        7.0%   +48.4\\nQwen3-8B / FewNERD / T=1.0 / seed=42                     4351             7.1%         N/A     N/A\\nQwen3-8B / FewNERD / T=1.0 / seed=123                   32565            13.1%       20.4%    -7.3\\nQwen3-8B / FewNERD / T=1.0 / seed=456                   32565            12.1%       19.3%    -7.2\\nLLaMA3.1-8B / SciERC / T=1.0 / seed=42                    529            24.9%       11.4%   +13.5\\nLLaMA3.1-8B / SciERC / T=1.0 / seed=123                   529            26.6%       11.1%   +15.6\\nLLaMA3.1-8B / SciERC / T=1.0 / seed=456                   529            27.4%       11.7%   +15.8\\nLLaMA3.1-8B / CoNLL / T=1.0 N=16 / seed=42               2756            86.5%        4.3%   +82.2\\nLLaMA3.1-8B / CoNLL / T=1.0 N=16 / seed=123              2756            86.4%        4.3%   +82.1\\nLLaMA3.1-8B / CoNLL / T=1.0 N=16 / seed=456              2756            86.7%        4.3%   +82.4\\nQwen3-8B / SciERC / T=0.5 / seed=42 (ablation)            529            41.4%       10.3%   +31.1\\nQwen3-8B / SciERC / T=0.8 / seed=42 (ablation)            529            23.8%       11.2%   +12.7\\nQwen3-8B / SciERC / T=1.2 / seed=42 (ab\n…[truncated 965 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-013368"
+        },
+        {
+          "source_line": 13369,
+          "timestamp": "2026-05-18T21:36:09.703314+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie -type f -name \"oracle_f1_recalc_results.json\" 2>/dev/null"
+            }
+          },
+          "id": "event-013369"
+        },
+        {
+          "source_line": 13370,
+          "timestamp": "2026-05-18T21:36:09.905015+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "(Bash completed with no output)"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Bash",
+            "elapsed_ms": 201
+          },
+          "id": "event-013370"
+        },
+        {
+          "source_line": 13371,
+          "timestamp": "2026-05-18T21:36:10.057162+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie -type f -name \"*oracle*audit*\" 2>/dev/null"
+            }
+          },
+          "id": "event-013371"
+        },
+        {
+          "source_line": 13372,
+          "timestamp": "2026-05-18T21:36:10.111323+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie -type d -name \"*oracle*\" 2>/dev/null"
+            }
+          },
+          "id": "event-013372"
+        },
+        {
+          "source_line": 13373,
+          "timestamp": "2026-05-18T21:36:10.161900+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/logs/workers/worker_analysis_oracle_f1_audit_20260518T212645.log\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/logs/workers/worker_analysis_oracle_f1_audit_20260518T212645_result.json"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Bash",
+            "elapsed_ms": 104
+          },
+          "id": "event-013373"
+        },
+        {
+          "source_line": 13374,
+          "timestamp": "2026-05-18T21:36:10.265375+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "(Bash completed with no output)"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Bash",
+            "elapsed_ms": 154
+          },
+          "id": "event-013374"
+        },
+        {
+          "source_line": 13375,
+          "timestamp": "2026-05-18T21:36:11.971753+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/output -type d -name \"*oracle*\" -o -name \"*degeneracy*\" 2>/dev/null"
+            }
+          },
+          "id": "event-013375"
+        },
+        {
+          "source_line": 13376,
+          "timestamp": "2026-05-18T21:36:12.072676+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "(Bash completed with no output)"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Bash",
+            "elapsed_ms": 100
+          },
+          "id": "event-013376"
+        },
+        {
+          "source_line": 13377,
+          "timestamp": "2026-05-18T21:36:12.073120+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/output -type f -name \"*oracle*\" 2>/dev/null"
+            }
+          },
+          "id": "event-013377"
+        },
+        {
+          "source_line": 13378,
+          "timestamp": "2026-05-18T21:36:12.324362+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "(Bash completed with no output)"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Bash",
+            "elapsed_ms": 251
+          },
+          "id": "event-013378"
+        },
+        {
+          "source_line": 13379,
+          "timestamp": "2026-05-18T21:36:12.375329+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/output/ 2>/dev/null | grep -E \"oracle|degeneracy\""
+            }
+          },
+          "id": "event-013379"
+        },
+        {
+          "source_line": 13380,
+          "timestamp": "2026-05-18T21:36:12.425978+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "(Bash completed with no output)"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Bash",
+            "elapsed_ms": 50
+          },
+          "id": "event-013380"
+        },
+        {
+          "source_line": 13381,
+          "timestamp": "2026-05-18T21:36:13.880984+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls -1 /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/output/ | head -30"
+            }
+          },
+          "id": "event-013381"
+        },
+        {
+          "source_line": 13382,
+          "timestamp": "2026-05-18T21:36:13.981979+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "ls: cannot access '/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/output/': No such file or directory"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Bash",
+            "elapsed_ms": 100
+          },
+          "id": "event-013382"
+        },
+        {
+          "source_line": 13383,
+          "timestamp": "2026-05-18T21:36:13.982441+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie -type f -name \"*recalc_results*\" 2>/dev/null"
+            }
+          },
+          "id": "event-013383"
+        },
+        {
+          "source_line": 13384,
+          "timestamp": "2026-05-18T21:36:14.336501+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "(Bash completed with no output)"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Bash",
+            "elapsed_ms": 354
+          },
+          "id": "event-013384"
+        },
+        {
+          "source_line": 13385,
+          "timestamp": "2026-05-18T21:36:14.387196+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/output/unified_oracle_audit/ 2>/dev/null"
+            }
+          },
+          "id": "event-013385"
+        },
+        {
+          "source_line": 13386,
+          "timestamp": "2026-05-18T21:36:14.438857+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Exit code 2"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Bash",
+            "elapsed_ms": 51
+          },
+          "id": "event-013386"
+        },
+        {
+          "source_line": 13387,
+          "timestamp": "2026-05-18T21:36:15.995343+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/ 2>/dev/null"
+            }
+          },
+          "id": "event-013387"
+        },
+        {
+          "source_line": 13388,
+          "timestamp": "2026-05-18T21:36:15.995768+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie -maxdepth 2 -type d 2>/dev/null | sort"
+            }
+          },
+          "id": "event-013388"
+        },
+        {
+          "source_line": 13389,
+          "timestamp": "2026-05-18T21:36:16.046376+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.venv\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.venv/bin\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.venv/include\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.venv/lib\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.venv/share\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/3seed_summary\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/__pycache__\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/bertoldi_citation_check\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/bootstrap_ci_nscaling\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/d108\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/d108_lp_vc_combination\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/d112\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/d112_claim_audit\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/d113_table2_fix\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/d113_table2_narrative_fix\n/home/ubuntu/.agent-ml-researc\n…[truncated 10414 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Bash",
+            "elapsed_ms": 50
+          },
+          "id": "event-013389"
+        },
+        {
+          "source_line": 13390,
+          "timestamp": "2026-05-18T21:36:16.046907+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "total 772\ndrwxr-xr-x  12 ubuntu ubuntu   4096 May 18 21:34 .\ndrwxrwxr-x   4 ubuntu ubuntu   4096 May 14 04:20 ..\ndrwxr-xr-x   3 ubuntu ubuntu   4096 May 14 04:20 .claude\ndrwxr-xr-x   6 ubuntu ubuntu   4096 May 15 02:23 .venv\n-rw-r--r--   1 ubuntu ubuntu  16418 May 18 21:36 AGENTS.md\n-rw-r--r--   1 ubuntu ubuntu      0 May 14 04:23 ROADMAP.lock\n-rw-------   1 ubuntu ubuntu   4245 May 18 21:34 ROADMAP.md\n-rw-r--r--   1 ubuntu ubuntu   7234 May 18 13:38 analysis_r21_q1_alignment.py\ndrwxr-xr-x 100 ubuntu ubuntu  12288 May 18 21:28 artifacts\ndrwxr-xr-x   2 ubuntu ubuntu  73728 May 18 20:24 checkpoints\ndrwxr-xr-x   2 ubuntu ubuntu   4096 May 18 16:27 code\n-rw-r--r--   1 ubuntu ubuntu      0 May 16 03:03 constraints.lock\n-rw-------   1 ubuntu ubuntu    457 May 16 03:03 constraints.yaml\n-rw-r--r--   1 ubuntu ubuntu      0 May 14 04:23 decisions.lock\n-rw-------   1 ubuntu ubuntu 147400 May 18 21:34 decisions.yaml\ndrwxr-xr-x   4 ubuntu ubuntu   4096 May 15 05:25 docs\n-rwxr-xr-x   1 ubuntu ubuntu      0 May 14 09:33 dream_registry.lock\n-rw-------   1 ubuntu ubuntu   8728 May 16 22:54 dream_registry.yaml\n-rw-r--r--   1 ubuntu ubuntu   8656 May 16 22:54 dream_registry.yaml.bak\n-rw-r--r--   1 ubuntu ubuntu      0 May 14 11:49 experiment_plan.lock\n-rw-------   1 ubuntu ubuntu  16031 May 16 14:01 experiment_plan.yaml\ndrwxr-xr-x   3 ubuntu ubuntu   4096 May 14 13:35 figures\n-rw-r--r--   1 ubuntu ubuntu      0 May 14 15:47 literature_map.lock\n-rw-------   1 ubuntu ubuntu  43680 May 14 19:51 literature_map.yaml\ndrwxr-xr-x   4 ubuntu ubuntu   4096 May 14 04:25 logs\n-rw-r--r--   1 ubuntu ubuntu   2908 May 18 20:41 memory.md\n-rw-r--r--   1 ubuntu ubuntu      0 May 17 07:38 mistakes.lock\n-rw-------   1 ubuntu ubuntu  16447 May 18 21:31 mistakes.yaml\n-rw-r--r--   1 ubuntu ubuntu  34345 May 18 19:17 paper_framing.md\n-rw-r--r--   1 ubuntu ubuntu      0 May 14 19:32 paper_provenance.lock\n-rw-------   1 ubuntu ubuntu  32835 May 18 15:39 paper_provenance.yaml\n-rw-r--r--   1 ubuntu ubuntu      0\n…[truncated 402 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Bash",
+            "elapsed_ms": 51
+          },
+          "id": "event-013390"
+        },
+        {
+          "source_line": 13391,
+          "timestamp": "2026-05-18T21:36:17.853400+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts -type f -name \"*oracle*\" 2>/dev/null"
+            }
+          },
+          "id": "event-013391"
+        },
+        {
+          "source_line": 13392,
+          "timestamp": "2026-05-18T21:36:18.155388+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/d140/data/d140_oracle_gated_results.txt\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/d140_oracle_gated_analysis.py"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Bash",
+            "elapsed_ms": 301
+          },
+          "id": "event-013392"
+        },
+        {
+          "source_line": 13393,
+          "timestamp": "2026-05-18T21:36:18.155829+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/ | grep -i oracle"
+            }
+          },
+          "id": "event-013393"
+        },
+        {
+          "source_line": 13394,
+          "timestamp": "2026-05-18T21:36:18.406877+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "-rw-r--r--   1 ubuntu ubuntu   8089 May 18 13:05 d140_oracle_gated_analysis.py"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Bash",
+            "elapsed_ms": 251
+          },
+          "id": "event-013394"
+        },
+        {
+          "source_line": 13395,
+          "timestamp": "2026-05-18T21:36:18.457470+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie -type f -name \"degeneracy_recalc_results.json\" 2>/dev/null"
+            }
+          },
+          "id": "event-013395"
+        },
+        {
+          "source_line": 13396,
+          "timestamp": "2026-05-18T21:36:18.508054+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "(Bash completed with no output)"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Bash",
+            "elapsed_ms": 50
+          },
+          "id": "event-013396"
+        },
+        {
+          "source_line": 13397,
+          "timestamp": "2026-05-18T21:36:20.515014+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "tail -100 /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/logs/workers/worker_analysis_oracle_f1_audit_20260518T212645.log"
+            }
+          },
+          "id": "event-013397"
+        },
+        {
+          "source_line": 13398,
+          "timestamp": "2026-05-18T21:36:20.615909+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<persisted-output>\nOutput too large (249.9KB). Full output saved to: /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie--claude-sessions-paper-agent-4f1165b4/c7ddc740-cffe-49a2-afe7-879cf8dde3ec/tool-results/b0c0pyi0n.txt\n\nPreview (first 2KB):\n{\"type\":\"assistant\",\"message\":{\"model\":\"claude-opus-4-6\",\"id\":\"msg_01QketHEnLyD6Z4eiAeVfGNe\",\"type\":\"message\",\"role\":\"assistant\",\"content\":[{\"type\":\"tool_use\",\"id\":\"toolu_018NouJYuEJNpbNx5WMDWEQ2\",\"name\":\"mcp__agent-ml-research__ssh_execute\",\"input\":{\"server\":\"autodl-5090\",\"command\":\"cd /root/autodl-tmp/struct_self_consist_ie && sed -n '220,280p' code/run_mvp_pilot.py\",\"account\":\"root\"},\"caller\":{\"type\":\"direct\"}}],\"stop_reason\":null,\"stop_sequence\":null,\"stop_details\":null,\"usage\":{\"input_tokens\":1,\"cache_creation_input_tokens\":2639,\"cache_read_input_tokens\":26140,\"cache_creation\":{\"ephemeral_5m_input_tokens\":0,\"ephemeral_1h_input_tokens\":2639},\"output_tokens\":8,\"service_tier\":\"standard\",\"inference_geo\":\"not_available\"},\"diagnostics\":null,\"context_management\":null},\"parent_tool_use_id\":null,\"session_id\":\"386b9747-e79e-4b12-8f0b-25aa2280f4e8\",\"uuid\":\"53b87751-423a-4969-b75a-984360a7ec04\"}\n{\"type\":\"user\",\"message\":{\"role\":\"user\",\"content\":[{\"tool_use_id\":\"toolu_018NouJYuEJNpbNx5WMDWEQ2\",\"type\":\"tool_result\",\"content\":\"{\\\"result\\\":\\\"{\\\\\\\"success\\\\\\\": true, \\\\\\\"data\\\\\\\": {\\\\\\\"stdout\\\\\\\": \\\\\\\"        if st == \\\\\\\\\\\\\\\"ner\\\\\\\\\\\\\\\":\\\\\\\\n            _nonempty = [inst for inst in sampled if len(inst[\\\\\\\\\\\\\\\"gold\\\\\\\\\\\\\\\"].get(\\\\\\\\\\\\\\\"entities\\\\\\\\\\\\\\\", [])) > 0]\\\\\\\\n        elif st == \\\\\\\\\\\\\\\"re\\\\\\\\\\\\\\\":\\\\\\\\n            _nonempty = [inst for inst in sampled if len(inst[\\\\\\\\\\\\\\\"gold\\\\\\\\\\\\\\\"].get(\\\\\\\\\\\\\\\"relations\\\\\\\\\\\\\\\", [])) > 0]\\\\\\\\n        else:\\\\\\\\n            _nonempty = sampled\\\\\\\\n        sample_f1_dist = compute_sample_f1_distribution(_nonempty, subtask=st)\\\\\\\\n\\\\\\\\n        f1_fn = {\\\\\\\\\\\\\\\"ner\\\\\\\\\\\\\\\": compute_ner_f1, \\\\\\\\\\\\\\\"re\\\\\\\\\\\\\\\": compute_re_f1, \\\\\\\\\\\\\\\"\n…[truncated 337 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Bash",
+            "elapsed_ms": 100
+          },
+          "id": "event-013398"
+        },
+        {
+          "source_line": 13399,
+          "timestamp": "2026-05-18T21:36:20.617409+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "tail -100 /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/logs/workers/worker_analysis_degeneracy_recalc_unified_20260518T203519.log"
+            }
+          },
+          "id": "event-013399"
+        },
+        {
+          "source_line": 13400,
+          "timestamp": "2026-05-18T21:36:20.668013+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<persisted-output>\nOutput too large (319KB). Full output saved to: /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie--claude-sessions-paper-agent-4f1165b4/c7ddc740-cffe-49a2-afe7-879cf8dde3ec/tool-results/bs6uvw5n0.txt\n\nPreview (first 2KB):\nWarning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.\n{\"type\":\"system\",\"subtype\":\"init\",\"cwd\":\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie\",\"session_id\":\"b0896c74-7229-4731-813b-1d8a9b16e78b\",\"tools\":[\"Task\",\"AskUserQuestion\",\"Bash\",\"CronCreate\",\"CronDelete\",\"CronList\",\"Edit\",\"EnterPlanMode\",\"EnterWorktree\",\"ExitPlanMode\",\"ExitWorktree\",\"Glob\",\"Grep\",\"ListMcpResourcesTool\",\"Monitor\",\"NotebookEdit\",\"PushNotification\",\"Read\",\"ReadMcpResourceTool\",\"RemoteTrigger\",\"ScheduleWakeup\",\"Skill\",\"TaskOutput\",\"TaskStop\",\"TodoWrite\",\"ToolSearch\",\"WebFetch\",\"WebSearch\",\"Write\",\"mcp__agent-ml-research__detect_image\",\"mcp__agent-ml-research__kill_job\",\"mcp__agent-ml-research__ssh_execute\",\"mcp__agent-ml-research__ssh_read_only\"],\"mcp_servers\":[{\"name\":\"agent-ml-research\",\"status\":\"connected\"}],\"model\":\"claude-opus-4-6\",\"permissionMode\":\"bypassPermissions\",\"slash_commands\":[\"update-config\",\"debug\",\"simplify\",\"batch\",\"fewer-permission-prompts\",\"loop\",\"schedule\",\"claude-api\",\"clear\",\"compact\",\"context\",\"heapdump\",\"init\",\"review\",\"security-review\",\"extra-usage\",\"usage\",\"insights\",\"team-onboarding\"],\"apiKeySource\":\"none\",\"claude_code_version\":\"2.1.126\",\"output_style\":\"default\",\"agents\":[\"claude\",\"Explore\",\"general-purpose\",\"Plan\",\"statusline-setup\"],\"skills\":[\"update-config\",\"debug\",\"simplify\",\"batch\",\"fewer-permission-prompts\",\"loop\",\"schedule\",\"claude-api\"],\"plugins\":[],\"analytics_disabled\":false,\"uuid\":\"ce449a46-f3b1-460f-a8bf-887a83e968de\",\"memory_paths\":{\"auto\":\"/home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-ge\n…[truncated 99 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Bash",
+            "elapsed_ms": 50
+          },
+          "id": "event-013400"
+        },
+        {
+          "source_line": 13401,
+          "timestamp": "2026-05-18T21:36:22.524350+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -r \"oracle_f1_recalc_results\" /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/logs/workers/ 2>/dev/null"
+            }
+          },
+          "id": "event-013401"
+        },
+        {
+          "source_line": 13402,
+          "timestamp": "2026-05-18T21:36:22.926073+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<persisted-output>\nOutput too large (51.6KB). Full output saved to: /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie--claude-sessions-paper-agent-4f1165b4/c7ddc740-cffe-49a2-afe7-879cf8dde3ec/tool-results/by5spnb0z.txt\n\nPreview (first 2KB):\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/logs/workers/worker_analysis_oracle_f1_audit_20260518T212645.log:{\"type\":\"assistant\",\"message\":{\"model\":\"claude-opus-4-6\",\"id\":\"msg_01PSE7nARqA3Rd4rSSTJccK9\",\"type\":\"message\",\"role\":\"assistant\",\"content\":[{\"type\":\"tool_use\",\"id\":\"toolu_01Rq5ukBksKqTJpCetiAMejs\",\"name\":\"mcp__agent-ml-research__ssh_execute\",\"input\":{\"server\":\"autodl-5090\",\"command\":\"cd /root/autodl-tmp/struct_self_consist_ie && source /root/miniconda3/bin/activate && python3 << 'PYEOF'\\nimport sys, json, os, glob\\nimport numpy as np\\nsys.path.insert(0, 'code')\\nfrom unified_metrics import compute_entity_f1, compute_sample_f1s, compute_greedy_f1, load_and_filter\\n\\nresults = []\\nprint(f\\\"{'Experiment':<50} {'N':>5} {'Greedy(U)':>10} {'Oracle(U)':>10} {'Oracle(old)':>11} {'Delta':>8}\\\")\\nprint(\\\"-\\\" * 100)\\n\\nfor samples_path in sorted(glob.glob('output/exp_*/samples.jsonl')):\\n    exp_dir = os.path.dirname(samples_path)\\n    exp_name = os.path.basename(exp_dir)\\n    try:\\n        instances = load_and_filter(samples_path, gold_filter=True)\\n        if len(instances) == 0:\\n            continue\\n\\n        # Unified per-instance F1\\n        greedy_f1s = [compute_greedy_f1(inst) for inst in instances]\\n        oracle_f1s = [max(compute_sample_f1s(inst)) for inst in instances]\\n        greedy_unified = float(np.mean(greedy_f1s))\\n        oracle_unified = float(np.mean(oracle_f1s))\\n\\n        # Read old report.json oracle_f1\\n        old_oracle = None\\n        rpt_path = os.path.join(exp_dir, 'report.json')\\n        if os.path.exists(rpt_path):\\n            with open(rpt_path) as f:\\n                rpt = json.load(f)\\n    \n…[truncated 336 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Bash",
+            "elapsed_ms": 401
+          },
+          "id": "event-013402"
+        },
+        {
+          "source_line": 13403,
+          "timestamp": "2026-05-18T21:36:22.926625+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -r \"degeneracy_recalc_results\" /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/logs/workers/ 2>/dev/null"
+            }
+          },
+          "id": "event-013403"
+        },
+        {
+          "source_line": 13404,
+          "timestamp": "2026-05-18T21:36:23.127573+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<persisted-output>\nOutput too large (46.5KB). Full output saved to: /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie--claude-sessions-paper-agent-4f1165b4/c7ddc740-cffe-49a2-afe7-879cf8dde3ec/tool-results/b3ku38zoa.txt\n\nPreview (first 2KB):\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/logs/workers/worker_code_fig_degen_scatter_redraw_20260518T212740_result.json:  \"raw\": \"Figure verified visually. The plot looks clean with CoNLL now correctly at 48.4% (was 59.1%).\\n\\n## 产出总结\\n\\n### 1. 数据源\\n- 退化率: `output/unified_degeneracy_audit/degeneracy_recalc_results.json` (unified constant-F1 gold-filtered)\\n- LP Delta: `output/dgs_selection_results.json` (gated_minus_greedy_pp)\\n- Per-type: `output/exp_021_inference/per_type_lp_analysis.csv`\\n\\n### 2. PDF 路径\\n- `output/figures/fig_degeneracy_lp_scatter.pdf`\\n- `docs/paper/figures/fig_degeneracy_lp_scatter.pdf` (已复制)\\n\\n### 3. 所有数据点坐标\\n\\n**Cross-dataset (Qwen3-8B):**\\n\\n| 数据集 | 退化率(unified) | LP Delta (pp) |\\n|--------|----------------|---------------|\\n| CoNLL | 48.4% | -0.81 |\\n| SciERC | 17.8% | +0.74 |\\n| Few-NERD | 7.1% | +1.37 |\\n\\n**Per-type (Few-NERD entity types, unchanged):**\\n\\n| Type | 退化率 | LP Delta (pp) |\\n|------|--------|---------------|\\n| event | 5.97% | +0.65 |\\n| other | 6.61% | +4.73 |\\n| organization | 6.74% | +1.21 |\\n| building | 7.18% | +0.23 |\\n| product | 8.17% | +2.01 |\\n| location | 11.42% | +0.53 |\\n| person | 13.42% | +1.25 |\\n| art | 19.81% | -0.17 |\\n\\n**Spearman correlations (updated):**\\n- 11-point: rho = -0.5455, p = 0.0827\\n- Dataset-level (n=3): rho = -1.0000 (perfect negative)\\n- Per-type (n=8): rho = -0.3810, p = 0.3518\"\n...\n</persisted-output>"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Bash",
+            "elapsed_ms": 200
+          },
+          "id": "event-013404"
+        },
+        {
+          "source_line": 13405,
+          "timestamp": "2026-05-18T21:36:23.180106+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "find /root -type f -name \"*oracle_f1_recalc_results*\" 2>/dev/null | head -5"
+            }
+          },
+          "id": "event-013405"
+        },
+        {
+          "source_line": 13406,
+          "timestamp": "2026-05-18T21:36:23.180536+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "(Bash completed with no output)"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-013406"
+        },
+        {
+          "source_line": 13407,
+          "timestamp": "2026-05-18T21:36:25.745103+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep \"oracle_f1_recalc_results.json\" /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie--claude-sessions-paper-agent-4f1165b4/c7ddc740-cffe-49a2-afe7-879cf8dde3ec/tool-results/by5spnb0z.txt | head -5"
+            }
+          },
+          "id": "event-013407"
+        },
+        {
+          "source_line": 13408,
+          "timestamp": "2026-05-18T21:36:26.147150+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<persisted-output>\nOutput too large (43.7KB). Full output saved to: /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie--claude-sessions-paper-agent-4f1165b4/c7ddc740-cffe-49a2-afe7-879cf8dde3ec/tool-results/ba05p18h0.txt\n\nPreview (first 2KB):\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/logs/workers/worker_analysis_oracle_f1_audit_20260518T212645.log:{\"type\":\"assistant\",\"message\":{\"model\":\"claude-opus-4-6\",\"id\":\"msg_01PSE7nARqA3Rd4rSSTJccK9\",\"type\":\"message\",\"role\":\"assistant\",\"content\":[{\"type\":\"tool_use\",\"id\":\"toolu_01Rq5ukBksKqTJpCetiAMejs\",\"name\":\"mcp__agent-ml-research__ssh_execute\",\"input\":{\"server\":\"autodl-5090\",\"command\":\"cd /root/autodl-tmp/struct_self_consist_ie && source /root/miniconda3/bin/activate && python3 << 'PYEOF'\\nimport sys, json, os, glob\\nimport numpy as np\\nsys.path.insert(0, 'code')\\nfrom unified_metrics import compute_entity_f1, compute_sample_f1s, compute_greedy_f1, load_and_filter\\n\\nresults = []\\nprint(f\\\"{'Experiment':<50} {'N':>5} {'Greedy(U)':>10} {'Oracle(U)':>10} {'Oracle(old)':>11} {'Delta':>8}\\\")\\nprint(\\\"-\\\" * 100)\\n\\nfor samples_path in sorted(glob.glob('output/exp_*/samples.jsonl')):\\n    exp_dir = os.path.dirname(samples_path)\\n    exp_name = os.path.basename(exp_dir)\\n    try:\\n        instances = load_and_filter(samples_path, gold_filter=True)\\n        if len(instances) == 0:\\n            continue\\n\\n        # Unified per-instance F1\\n        greedy_f1s = [compute_greedy_f1(inst) for inst in instances]\\n        oracle_f1s = [max(compute_sample_f1s(inst)) for inst in instances]\\n        greedy_unified = float(np.mean(greedy_f1s))\\n        oracle_unified = float(np.mean(oracle_f1s))\\n\\n        # Read old report.json oracle_f1\\n        old_oracle = None\\n        rpt_path = os.path.join(exp_dir, 'report.json')\\n        if os.path.exists(rpt_path):\\n            with open(rpt_path) as f:\\n                rpt = json.load(f)\\n    \n…[truncated 336 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Bash",
+            "elapsed_ms": 402
+          },
+          "id": "event-013408"
+        },
+        {
+          "source_line": 13409,
+          "timestamp": "2026-05-18T21:36:26.197722+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -o \"output/unified_oracle_audit/oracle_f1_recalc_results.json\" /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie--claude-sessions-paper-agent-4f1165b4/c7ddc740-cffe-49a2-afe7-879cf8dde3ec/tool-results/by5spnb0z.txt | head -3"
+            }
+          },
+          "id": "event-013409"
+        },
+        {
+          "source_line": 13410,
+          "timestamp": "2026-05-18T21:36:26.248326+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "output/unified_oracle_audit/oracle_f1_recalc_results.json\noutput/unified_oracle_audit/oracle_f1_recalc_results.json\noutput/unified_oracle_audit/oracle_f1_recalc_results.json"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Bash",
+            "elapsed_ms": 50
+          },
+          "id": "event-013410"
+        },
+        {
+          "source_line": 13411,
+          "timestamp": "2026-05-18T21:36:28.207036+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie -type f -path \"*unified_oracle_audit*\" 2>/dev/null"
+            }
+          },
+          "id": "event-013411"
+        },
+        {
+          "source_line": 13412,
+          "timestamp": "2026-05-18T21:36:28.410307+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "(Bash completed with no output)"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Bash",
+            "elapsed_ms": 203
+          },
+          "id": "event-013412"
+        },
+        {
+          "source_line": 13413,
+          "timestamp": "2026-05-18T21:36:28.410716+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/ | grep audit"
+            }
+          },
+          "id": "event-013413"
+        },
+        {
+          "source_line": 13414,
+          "timestamp": "2026-05-18T21:36:28.713298+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "-rw-r--r--   1 ubuntu ubuntu   4165 May 14 17:43 audit_autodl5090_loop3.md\n-rw-r--r--   1 ubuntu ubuntu   1323 May 14 17:42 audit_gpu5090_4x2_loop3.md\ndrwxr-xr-x   2 ubuntu ubuntu   4096 May 16 09:52 d112_claim_audit\ndrwxr-xr-x   2 ubuntu ubuntu   4096 May 17 10:53 exp_024_claim_audit\n-rw-r--r--   1 ubuntu ubuntu   6042 May 15 13:27 greedy_f1_discrepancy_audit.md\n-rw-r--r--   1 ubuntu ubuntu   7874 May 14 15:01 heatmap_data_audit.md\n-rw-r--r--   1 ubuntu ubuntu   6557 May 16 04:57 provenance_audit_c032_c023_c021.md\ndrwxr-xr-x   2 ubuntu ubuntu   4096 May 16 05:00 provenance_audit_d105\n-rw-r--r--   1 ubuntu ubuntu   4708 May 15 13:24 rho_consistency_audit.md"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Bash",
+            "elapsed_ms": 302
+          },
+          "id": "event-013414"
+        },
+        {
+          "source_line": 13415,
+          "timestamp": "2026-05-18T21:36:28.713726+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts -type d | grep -i audit"
+            }
+          },
+          "id": "event-013415"
+        },
+        {
+          "source_line": 13416,
+          "timestamp": "2026-05-18T21:36:28.966238+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/exp_024_claim_audit\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/provenance_audit_d105\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/d112_claim_audit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Bash",
+            "elapsed_ms": 252
+          },
+          "id": "event-013416"
+        },
+        {
+          "source_line": 13417,
+          "timestamp": "2026-05-18T21:36:31.381529+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/logs/workers/worker_analysis_oracle_f1_audit_20260518T212645_result.json"
+            }
+          },
+          "id": "event-013417"
+        },
+        {
+          "source_line": 13418,
+          "timestamp": "2026-05-18T21:36:31.432276+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t{\n2\t  \"raw\": \"All three parts complete. Here's the summary:\\n\\n---\\n\\n## Part 1: 0.8150 来源追溯\\n\\n**来源**: `output/exp_001_seed42_v2/run.log` (SciERC, T=1.0, seed=42, 16 samples)\\n\\n**产出脚本**: `code/run_mvp_pilot.py` line 228-237\\n\\n**根因**: 旧流程使用 `compute_ner_f1`（`evaluation.py:42`）进行 **micro-averaged corpus-level** F1 聚合——先把所有实例的 TP/FP/FN 相加，再算 F1。而 `unified_metrics.compute_entity_f1` 是 **per-instance** F1（逐实例算 F1 后取均值）。两者使用相同的 `(start, end, type)` 匹配逻辑，差异纯粹来自聚合方式。\\n\\n## Part 2: 全量 Oracle F1 对比\\n\\n74 个实验已重算，保存至 `output/unified_oracle_audit/oracle_f1_recalc_results.json`。\\n\\n关键发现：\\n- **exp_001_seed42_v2**: old=0.8150, unified=0.8194, delta=**+0.44pp**（unified 反而更高）\\n- 多数 SciERC 实验偏差在 **±0.5pp** 以内\\n- **异常值**: `exp_003_wnut17`(-9.74pp), `exp_008_re`(+18pp, RE/NER subtask 混淆), `exp_011_ood`(-2~-4pp), `exp_entity_token_lp_pilot`(-4.33pp)\\n\\n## Part 3: exp_026 温度消融 12 实验一致性\\n\\n| Temp | Seed  | Greedy | Oracle | Degen% |\\n|------|-------|--------|--------|--------|\\n| 0.5  | 42    | 0.6490 | 0.7395 | 41.4%  |\\n| 0.5  | 123   | 0.6449 | 0.7352 | 45.6%  |\\n| 0.5  | 456   | 0.6463 | 0.7393 | 44.2%  |\\n| 0.8  | 42    | 0.6439 | 0.7690 | 23.8%  |\\n| 0.8  | 123   | 0.6433 | 0.7677 | 26.3%  |\\n| 0.8  | 456   | 0.6471 | 0.7710 | 25.5%  |\\n| 1.0  | 123   | 0.6440 | 0.7748 | 18.7%  |\\n| 1.0  | 42    | 0.6453 | 0.7753 | 20.0%  |\\n| 1.0  | 456   | 0.6456 | 0.7756 | 19.3%  |\\n| 1.2  | 42    | 0.6425 | 0.7888 | 14.9%  |\\n| 1.2  | 123   | 0.6419 | 0.7887 | 14.0%  |\\n| 1.2  | 456   | 0.6466 | 0.7853 | 13.2%  |\\n\\n**内部一致性良好**：同温度 3 个 seed 的 oracle 偏差 < 0.5pp，趋势单调（T↑ → Oracle↑, Degen%↓）。\"\n3\t}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-013418"
+        },
+        {
+          "source_line": 13419,
+          "timestamp": "2026-05-18T21:36:33.898360+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts -type f -name \"*.json\" | grep -i oracle | head -10"
+            }
+          },
+          "id": "event-013419"
+        },
+        {
+          "source_line": 13420,
+          "timestamp": "2026-05-18T21:36:34.400485+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "(Bash completed with no output)"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Bash",
+            "elapsed_ms": 502
+          },
+          "id": "event-013420"
+        },
+        {
+          "source_line": 13421,
+          "timestamp": "2026-05-18T21:36:34.400964+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts -type f -name \"*.json\" | grep -i recalc | head -10"
+            }
+          },
+          "id": "event-013421"
+        },
+        {
+          "source_line": 13422,
+          "timestamp": "2026-05-18T21:36:34.451566+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "(Bash completed with no output)"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Bash",
+            "elapsed_ms": 50
+          },
+          "id": "event-013422"
+        },
+        {
+          "source_line": 13423,
+          "timestamp": "2026-05-18T21:36:34.451974+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/exp_026* 2>/dev/null | head -20"
+            }
+          },
+          "id": "event-013423"
+        },
+        {
+          "source_line": 13424,
+          "timestamp": "2026-05-18T21:36:34.552535+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/exp_026:\ntotal 20\ndrwxr-xr-x   3 ubuntu ubuntu  4096 May 17 09:58 .\ndrwxr-xr-x 100 ubuntu ubuntu 12288 May 18 21:28 ..\ndrwxr-xr-x   2 ubuntu ubuntu  4096 May 17 09:58 data\n\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/exp_026_T_ablation:\ntotal 36\ndrwxr-xr-x   2 ubuntu ubuntu  4096 May 17 10:05 .\ndrwxr-xr-x 100 ubuntu ubuntu 12288 May 18 21:28 ..\n-rw-r--r--   1 ubuntu ubuntu  8661 May 17 09:53 analysis_summary.md\n-rw-r--r--   1 ubuntu ubuntu  2593 May 17 09:58 summary.json\n-rw-r--r--   1 ubuntu ubuntu  2044 May 17 10:05 within_instance_rho.json\n\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/exp_026_t05:\ntotal 20\ndrwxr-xr-x   3 ubuntu ubuntu  4096 May 18 17:27 .\ndrwxr-xr-x 100 ubuntu ubuntu 12288 May 18 21:28 ..\ndrwxr-xr-x   2 ubuntu ubuntu  4096 May 18 17:27 report"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Bash",
+            "elapsed_ms": 100
+          },
+          "id": "event-013424"
+        },
+        {
+          "source_line": 13425,
+          "timestamp": "2026-05-18T21:36:42.913814+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Based on my comprehensive search, here's my final report:\n\n## Summary\n\nThe `oracle_f1_recalc_results.json` file **does not exist as a standalone file** in the local project directory tree at `/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/`. However, I found the relevant worker result files that document the oracle F1 recalculation work:\n\n### Found Files\n\n**Worker Result Files (logs/workers/):**\n1. **`/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/logs/workers/worker_analysis_oracle_f1_audit_20260518T212645_result.json`**\n   - Size: 1,889 bytes\n   - Contents: Final audit summary of oracle F1 recalculations comparing old vs. unified metrics across 74 experiments\n   - Key findings documented in the result (see below)\n\n2. **`/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/logs/workers/worker_analysis_degeneracy_recalc_unified_20260518T203519_result.json`**\n   - Size: 3,553 bytes\n   - Contents: Degeneracy rate recalculation results comparing unified vs. old metrics\n   - Comprehensive comparison table with delta calculations\n\n### File Location References\n\nThe worker result mentions that the actual data files were saved **on the remote AutoDL server** at:\n- `/root/autodl-tmp/struct_self_consist_ie/output/unified_oracle_audit/oracle_f1_recalc_results.json`\n- `/root/autodl-tmp/struct_self_consist_ie/output/unified_degeneracy_audit/degeneracy_recalc_results.json`\n\nThese are not present locally in the project directory, suggesting the worker execution happened on a remote server and results were reported back via the JSON summary.\n\n### Relevant Local Artifacts\n- `/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/exp_026_T_ablation/` - Contains temperature ablation analysis data\n- `/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/d140/data/d140_oracle_gated_results.txt` - Oracle gating analysis result\n…[truncated 423 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Agent",
+            "elapsed_ms": 45036
+          },
+          "id": "event-013425"
+        },
+        {
+          "source_line": 13426,
+          "timestamp": "2026-05-18T21:36:51.096533+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called TodoWrite"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "TodoWrite",
+            "tool_args": {
+              "todos": "[{'content': 'D153 Phase A: 读取 oracle_f1 审计数据 + 全文定位所有 F1 数字', 'status': 'in_progress', 'activeForm': '读取 unified F1 数据并定位论文中所有 F1 数字'}, {'content': 'D153 Phase C+D: 替换来自旧 micro 的 F1 数字', 'status': 'pending', 'activeForm': '替换旧 micro F1 数字'}, {'content': 'D153 Phase E: 编译验证 + 汇报 Director', 'status': 'pending', 'activeForm': '编译验证并汇报'}]"
+            }
+          },
+          "id": "event-013426"
+        },
+        {
+          "source_line": 13427,
+          "timestamp": "2026-05-18T21:36:51.147239+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "TodoWrite",
+            "elapsed_ms": 50
+          },
+          "id": "event-013427"
+        },
+        {
+          "source_line": 13428,
+          "timestamp": "2026-05-18T21:36:53.454071+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/logs/workers/worker_analysis_oracle_f1_audit_20260518T212645_result.json"
+            }
+          },
+          "id": "event-013428"
+        },
+        {
+          "source_line": 13429,
+          "timestamp": "2026-05-18T21:36:53.504988+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t{\n2\t  \"raw\": \"All three parts complete. Here's the summary:\\n\\n---\\n\\n## Part 1: 0.8150 来源追溯\\n\\n**来源**: `output/exp_001_seed42_v2/run.log` (SciERC, T=1.0, seed=42, 16 samples)\\n\\n**产出脚本**: `code/run_mvp_pilot.py` line 228-237\\n\\n**根因**: 旧流程使用 `compute_ner_f1`（`evaluation.py:42`）进行 **micro-averaged corpus-level** F1 聚合——先把所有实例的 TP/FP/FN 相加，再算 F1。而 `unified_metrics.compute_entity_f1` 是 **per-instance** F1（逐实例算 F1 后取均值）。两者使用相同的 `(start, end, type)` 匹配逻辑，差异纯粹来自聚合方式。\\n\\n## Part 2: 全量 Oracle F1 对比\\n\\n74 个实验已重算，保存至 `output/unified_oracle_audit/oracle_f1_recalc_results.json`。\\n\\n关键发现：\\n- **exp_001_seed42_v2**: old=0.8150, unified=0.8194, delta=**+0.44pp**（unified 反而更高）\\n- 多数 SciERC 实验偏差在 **±0.5pp** 以内\\n- **异常值**: `exp_003_wnut17`(-9.74pp), `exp_008_re`(+18pp, RE/NER subtask 混淆), `exp_011_ood`(-2~-4pp), `exp_entity_token_lp_pilot`(-4.33pp)\\n\\n## Part 3: exp_026 温度消融 12 实验一致性\\n\\n| Temp | Seed  | Greedy | Oracle | Degen% |\\n|------|-------|--------|--------|--------|\\n| 0.5  | 42    | 0.6490 | 0.7395 | 41.4%  |\\n| 0.5  | 123   | 0.6449 | 0.7352 | 45.6%  |\\n| 0.5  | 456   | 0.6463 | 0.7393 | 44.2%  |\\n| 0.8  | 42    | 0.6439 | 0.7690 | 23.8%  |\\n| 0.8  | 123   | 0.6433 | 0.7677 | 26.3%  |\\n| 0.8  | 456   | 0.6471 | 0.7710 | 25.5%  |\\n| 1.0  | 123   | 0.6440 | 0.7748 | 18.7%  |\\n| 1.0  | 42    | 0.6453 | 0.7753 | 20.0%  |\\n| 1.0  | 456   | 0.6456 | 0.7756 | 19.3%  |\\n| 1.2  | 42    | 0.6425 | 0.7888 | 14.9%  |\\n| 1.2  | 123   | 0.6419 | 0.7887 | 14.0%  |\\n| 1.2  | 456   | 0.6466 | 0.7853 | 13.2%  |\\n\\n**内部一致性良好**：同温度 3 个 seed 的 oracle 偏差 < 0.5pp，趋势单调（T↑ → Oracle↑, Degen%↓）。\"\n3\t}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-013429"
+        },
+        {
+          "source_line": 13430,
+          "timestamp": "2026-05-18T21:38:02.784160+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "0\\.662|0\\.66[0-9]|\\.662|\\.780|0\\.780",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-013430"
+        },
+        {
+          "source_line": 13431,
+          "timestamp": "2026-05-18T21:38:03.286023+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/discussion.tex:11:LP is severely compressed (median range 0.041 nats; Table~\\ref{tab:logprob_ties}), with within-instance $\\rho(\\text{LP}, \\text{F1})$ ranging from 0.262 (SciERC) to 0.667 (Few-NERD; Table~\\ref{tab:within_rho}).\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex:634:Few-NERD exhibits substantially stronger alignment ($\\rho{=}0.667$) than SciERC ($\\rho{=}0.262$), directly explaining why LP selection succeeds only on Few-NERD.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex:649:Few-NERD & Qwen3-8B & 0.667 & 28{,}055 / 32{,}565 & 86\\% \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex:1241:Event & 1{,}306 & 6.0 & .655 & .662 & $+$0.65 & .457 & 16.1\\,pp \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex:1328:Within-instance LP-quality alignment is relatively stable under this convergence shift (mean $\\rho$: $0.524 \\to 0.407$; median $\\rho$: $0.667 \\to 0.615$), consistent with alignment being determined primarily by task structure rather than training duration.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex:1348:Within-inst.\\ $\\rho$ (median) & 0.667 & 0.615 \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex:1465:SciERC & 0.644 & 0.660 ($k{=}3$) & $+$1.57 & $+$11.9 \\\\"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Grep",
+            "elapsed_ms": 501
+          },
+          "id": "event-013431"
+        },
+        {
+          "source_line": 13432,
+          "timestamp": "2026-05-18T21:38:03.888288+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "0\\.778|0\\.776|\\.778|\\.776|13\\.3.pp|13\\.2.pp|headroom",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-013432"
+        },
+        {
+          "source_line": 13433,
+          "timestamp": "2026-05-18T21:38:03.938954+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/related_work.tex:20:Our selection strategies instantiate MBR decoding \\cite{eikema2022sampling, deguchi2024centroid}; unlike MT where MBR yields consistent gains \\cite{freitag2022high} and code generation where execution-based MBR improves selection \\cite{shi2022mbr}, instance degeneracy eliminates the headroom MBR needs even when utility is well-aligned ($\\rho{=}0.52$; \\S\\ref{sec:discussion}).\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex:11:\\textbf{CoNLL-2003} \\cite{tjongkimsang2003conll} (3{,}453 test sentences, 4 entity types, ${\\approx}$91\\% F1) serves as a ceiling-effect control where limited oracle headroom constrains selection gains.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex:56:Two mechanisms block selection: instance degeneracy collapses the candidate pool for consensus-based approaches, and weak LP-quality alignment prevents exploiting the remaining headroom.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex:68:Oracle & $0.778 \\pm 0.003$ & --- \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex:89:On SciERC ($n{=}529$, 2-seed sign tests\\footnote{MDE${\\approx}$1.5~pp at 80\\% power ($n{=}529$); Few-NERD ($n{=}32{,}565$; MDE${\\approx}$0.22~pp) provides the definitive test.}), the oracle (0.778) reveals 13.3~pp of headroom, but LP achieves $+0.2$~pp ($p{=}0.29$), below the MDE (${\\approx}$1.5~pp).\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex:101:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex:136:Doubling $N$ from 8 to 16 on \n…[truncated 14688 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Grep",
+            "elapsed_ms": 50
+          },
+          "id": "event-013433"
+        },
+        {
+          "source_line": 13434,
+          "timestamp": "2026-05-18T21:40:12.681279+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "struct_self_consist_ie",
+              "filters": "{'status': 'DONE'}",
+              "fields": "['exp_id', 'config', 'metrics', 'conclusion']",
+              "limit": "5"
+            }
+          },
+          "id": "event-013434"
+        },
+        {
+          "source_line": 13435,
+          "timestamp": "2026-05-18T21:40:13.136837+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp_017_llama_conll_n16_s456_r1024\\\": {\\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"degen_rate\\\": 0.8672, \\\"degen_rate_source\\\": \\\"unified_metrics_constant_f1_gold_filtered\\\", \\\"instance_count\\\": 3453, \\\"n_valid\\\": 2756, \\\"n_gold_empty\\\": 697, \\\"parse_rate\\\": 1, \\\"ner_greedy_f1\\\": 0.9265, \\\"ner_oracle_f1\\\": 0.9499, \\\"rho_fk_ner\\\": 0.469, \\\"rho_sj_ner\\\": 0.4734, \\\"rho_vc_ner\\\": 0.4722, \\\"rho_em_ner\\\": 0.4752, \\\"rho_lp_ner\\\": 0.3099, \\\"auroc_fk_ner\\\": 0.7408, \\\"auroc_sj_ner\\\": 0.7428, \\\"auroc_vc_ner\\\": 0.7495, \\\"auroc_em_ner\\\": 0.7444, \\\"auroc_lp_ner\\\": 0.7628, \\\"auroc_note\\\": \\\"median F1=1.0, AUROC uses >=median threshold\\\", \\\"rho_note\\\": \\\"CORRECTED 2026-05-15: old values (rho_fk=0.8085,rho_sj=0.1895) were inflated/deflated by 697 gold-empty instances. Now uses gold-filtered pipeline (n=2756).\\\"}}, \\\"exp_017_llama_conll_n16_r1024\\\": {\\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"degen_rate\\\": 0.8647, \\\"degen_rate_source\\\": \\\"unified_metrics_constant_f1_gold_filtered\\\", \\\"instance_count\\\": 3453, \\\"n_valid\\\": 2756, \\\"n_gold_empty\\\": 697, \\\"parse_rate\\\": 1, \\\"ner_greedy_f1\\\": 0.9265, \\\"ner_oracle_f1\\\": 0.9499, \\\"rho_fk_ner\\\": 0.4752, \\\"rho_sj_ner\\\": 0.4836, \\\"rho_vc_ner\\\": 0.4746, \\\"rho_em_ner\\\": 0.4818, \\\"rho_lp_ner\\\": 0.3136, \\\"auroc_fk_ner\\\": 0.7467, \\\"auroc_sj_ner\\\": 0.7496, \\\"auroc_vc_ner\\\": 0.7529, \\\"auroc_em_ner\\\": 0.7508, \\\"auroc_lp_ner\\\": 0.7661, \\\"auroc_note\\\": \\\"median F1=1.0, AUROC uses >=median threshold\\\", \\\"rho_note\\\": \\\"CORRECTED 2026-05-15: old values (rho_fk=0.8095,rho_sj=0.1815) were inflated/deflated by 697 gold-empty instances. Now uses gold-filtered pipeline (n=2756).\\\"}}, \\\"exp_018_llama_scierc_seed456_r1024\\\": {\\\"metrics\\\": {\\\"degen_rate\\\": 0.2741, \\\"degen_rate_source\\\": \\\"unified_metrics_constant_f1_gold_filtered\\\", \\\"ner_greedy_f1\\\": 0.6597, \\\"ner_oracle_f1\\\": 0.7683, \\\"ner_oracle_headroom\\\": 0.1086, \\\"ner_cond_rho_fk\\\": 0.1472, \\\"ner_cond_rho_sj\\\": 0.2718, \\\"ner_cond_rho_logprob\\\": \n…[truncated 3362 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 455
+          },
+          "id": "event-013435"
+        },
+        {
+          "source_line": 13436,
+          "timestamp": "2026-05-18T21:40:53.382536+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "per-instance|macro|micro|instance-averaged|aggregat",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-013436"
+        },
+        {
+          "source_line": 13437,
+          "timestamp": "2026-05-18T21:40:53.834556+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/related_work.tex:8:\\citet{li2025llms} propose generative self-aggregation for IE but focus on fusion rather than selection.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex:50:At the signal-collapse boundary (WNUT-17, macro F1${\\approx}$42\\%), full-set correlations are dominated by the zero/non-zero boundary (VC $\\rho{=}0.724$ but conditional $\\rho{=}0.038$; Table~\\ref{tab:wnut}); LP shows the reverse (conditional $\\rho{=}0.350$; Figure~\\ref{fig:signal_heatmap}).\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex:62:\\caption{Best-of-$N$ NER selection (macro F1) on SciERC ($N{=}8$, $T{=}1.0$, 2-seed mean${\\pm}\\sigma$). LP is per-sample; others use consensus-proximity. Best non-oracle in \\textbf{bold}. Non-tied subset in \\S\\ref{sec:discussion}; RE in Appendix~\\ref{app:re_extension}.}\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex:215:A learned token-level LP aggregator (1D CNN over per-token log-probabilities) matches mean LP on Few-NERD (gap closure $56.4$\\% vs.\\ $55.8$\\%), confirming that LP's bottleneck is not token aggregation.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/discussion.tex:17:Four non-mutually-exclusive mechanisms contribute (Appendix~\\ref{app:freeform_ablation}); entity-token LP shows $4{\\times}$ higher variance yet performs worse; compression operates at the representation level, not token aggregation (Appendix~\\ref{app:entity_token_lp}).\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/method.tex:7:This distinction is consequential for selection: in our study, 4 of 5 signals are instance-level aggregates that assign identical QE scores to all $N$ c\n…[truncated 6165 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Grep",
+            "elapsed_ms": 452
+          },
+          "id": "event-013437"
+        },
+        {
+          "source_line": 13438,
+          "timestamp": "2026-05-18T21:40:54.687713+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "struct_self_consist_ie",
+              "filters": "{'exp_id': 'exp_001'}",
+              "fields": "['exp_id', 'config', 'metrics']",
+              "limit": "5"
+            }
+          },
+          "id": "event-013438"
+        },
+        {
+          "source_line": 13439,
+          "timestamp": "2026-05-18T21:40:55.140276+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4056}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 452
+          },
+          "id": "event-013439"
+        },
+        {
+          "source_line": 13440,
+          "timestamp": "2026-05-18T21:41:44.533644+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+              "offset": "1037",
+              "limit": "30"
+            }
+          },
+          "id": "event-013440"
+        },
+        {
+          "source_line": 13441,
+          "timestamp": "2026-05-18T21:41:45.436814+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1037\t\\section{Temperature Ablation}\\label{app:t_ablation}\n1038\t\n1039\tTable~\\ref{tab:t_ablation} reports the effect of sampling temperature on QE signals, oracle headroom, and output quality across four temperatures on SciERC NER.\n1040\t\n1041\t\\begin{table}[t]\n1042\t\\centering\n1043\t\\small\n1044\t\\caption{Temperature ablation on SciERC NER (Qwen3-8B, $N{=}8$, seed${=}42$). Oracle gap and QE $\\rho$ across four temperatures. $\\kappa$: Fleiss' $\\kappa$ (inter-sample agreement). $T{=}0.5$ and $T{=}1.0$ use joint (NER+RE) subtask; $T{=}0.8$ and $T{=}1.2$ use NER-only.}\n1045\t\\label{tab:t_ablation}\n1046\t\\begin{tabular}{ccccccc}\n1047\t\\toprule\n1048\t$T$ & Oracle gap (pp) & SJ $\\rho$ & LP $\\rho$ & $\\kappa$ & Sample F1 \\\\\n1049\t\\midrule\n1050\t0.5 & $+$7.8 & 0.297 & 0.218 & 0.577 & 0.636 \\\\\n1051\t0.8 & $+$10.5 & 0.359 & 0.253 & 0.451 & 0.622 \\\\\n1052\t1.0 & $+$13.3 & 0.360 & 0.205 & ${\\approx}$0.39 & ${\\approx}$0.612 \\\\\n1053\t1.2 & $+$13.0 & 0.377 & 0.196 & 0.356 & 0.594 \\\\\n1054\t\\bottomrule\n1055\t\\end{tabular}\n1056\t\\end{table}\n1057\t\n1058\tOracle headroom increases monotonically with temperature ($+7.8$~pp at $T{=}0.5$ to $+13.3$~pp at $T{=}1.0$), plateauing at $T{=}1.2$ ($+13.0$~pp); the plateau suggests $T{=}1.0$ already approaches the diversity ceiling for constrained structured decoding.\n1059\tStructural QE signals improve with temperature: SJ $\\rho$ rises from $0.297$ ($T{=}0.5$) to $0.377$ ($T{=}1.2$), consistent with more diverse outputs providing richer pairwise evidence.\n1060\tLP $\\rho$ peaks at $T{=}0.8$ ($0.253$) then degrades to $0.196$ at $T{=}1.2$.\n1061\tThis divergence confirms that LP compression is model-intrinsic: higher temperature increases between-instance LP variance (benefiting structural signals) but does not resolve within-instance compression, degrading LP's discriminative power.\n1062\tInter-sample agreement ($\\kappa$) decreases monotonically ($0.577$ to $0.356$); higher temperature generates more diverse outputs. Mean sample F1 also decreases ($0.636$ to $0.594$), consist\n…[truncated 394 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 903
+          },
+          "id": "event-013441"
+        },
+        {
+          "source_line": 13442,
+          "timestamp": "2026-05-18T21:41:45.588050+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+              "offset": "980",
+              "limit": "40"
+            }
+          },
+          "id": "event-013442"
+        },
+        {
+          "source_line": 13443,
+          "timestamp": "2026-05-18T21:41:45.588473+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "980\t\\end{table}\n981\t\n982\tSignal rankings are consistent across our 3 seeds (Kendall's $W{=}1.000$ for NER at $N{=}8$, both models), dropping to $W{=}0.956$ at $N{=}16$ where SJ and VC converge (Table~\\ref{tab:ranking-stability}); however, with only $n{=}3$ seeds statistical power is insufficient to confirm stability, and additional seeds may reveal ranking changes.\n983\tDoubling $N$ reduces cross-seed $\\sigma$ by 32\\% on NER and 24\\% on RE (Table~\\ref{tab:sigma-comparison}), with the largest reductions for SJ ($-43\\%$ NER) and EM ($-59\\%$ NER); additional samples stabilize structural signals more than LP.\n984\t\n985\t\\paragraph{$N$-scaling: selection headroom vs.\\ selection gain.}\n986\tTable~\\ref{tab:n_scaling_selection} traces the effect of sample count on degeneracy, oracle headroom, and per-signal selection gain.\n987\tOracle headroom grows roughly linearly with $N$ ($+4.4$~pp at $N{=}2$ to $+20.0$~pp at $N{=}32$).\n988\tLP selection improves monotonically with $N$ ($+0.39$~pp at $N{=}8$ to $+0.95$~pp at $N{=}32$), but even at $N{=}32$, where degeneracy falls to 4\\% and oracle headroom reaches ${\\sim}20$~pp, the best signal captures less than 5\\% of the available improvement.\n989\tDegeneracy drops monotonically (43\\% at $N{=}2$ to 4\\% at $N{=}32$), yet reduced degeneracy does not unlock selection, consistent with the LoRA-rank ablation finding (\\S\\ref{sec:robustness_main}).\n990\tVC selection degrades with increasing $N$ ($-2.66$~pp at $N{=}2$ to $-4.35$~pp at $N{=}32$), consistent with mode-seeking bias in voting-based selection as the candidate pool grows.\n991\t\n992\t\\begin{table}[t]\n993\t\\centering\n994\t\\small\n995\t\\caption{Effect of sample count on selection (SciERC NER, Qwen3-8B, $T{=}1.0$, gold-filtered, seed${=}42$; exp\\_025).\\protect\\footnotemark\\ ``Best $\\Delta$'': highest selection gain across all 5 signals. Per-signal $\\Delta$ in pp vs.~greedy.}\n996\t\\label{tab:n_scaling_selection}\n997\t\\begin{tabular}{ccccccccc}\n998\t\\toprule\n999\t$N$ & Degen.\\% & Oracle (pp) & LP & SJ & \n…[truncated 1562 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-013443"
+        },
+        {
+          "source_line": 13444,
+          "timestamp": "2026-05-18T21:44:28.901621+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/logs/workers/worker_analysis_oracle_f1_audit_20260518T212645_result.json",
+              "limit": "200"
+            }
+          },
+          "id": "event-013444"
+        },
+        {
+          "source_line": 13445,
+          "timestamp": "2026-05-18T21:44:29.503936+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t{\n2\t  \"raw\": \"All three parts complete. Here's the summary:\\n\\n---\\n\\n## Part 1: 0.8150 来源追溯\\n\\n**来源**: `output/exp_001_seed42_v2/run.log` (SciERC, T=1.0, seed=42, 16 samples)\\n\\n**产出脚本**: `code/run_mvp_pilot.py` line 228-237\\n\\n**根因**: 旧流程使用 `compute_ner_f1`（`evaluation.py:42`）进行 **micro-averaged corpus-level** F1 聚合——先把所有实例的 TP/FP/FN 相加，再算 F1。而 `unified_metrics.compute_entity_f1` 是 **per-instance** F1（逐实例算 F1 后取均值）。两者使用相同的 `(start, end, type)` 匹配逻辑，差异纯粹来自聚合方式。\\n\\n## Part 2: 全量 Oracle F1 对比\\n\\n74 个实验已重算，保存至 `output/unified_oracle_audit/oracle_f1_recalc_results.json`。\\n\\n关键发现：\\n- **exp_001_seed42_v2**: old=0.8150, unified=0.8194, delta=**+0.44pp**（unified 反而更高）\\n- 多数 SciERC 实验偏差在 **±0.5pp** 以内\\n- **异常值**: `exp_003_wnut17`(-9.74pp), `exp_008_re`(+18pp, RE/NER subtask 混淆), `exp_011_ood`(-2~-4pp), `exp_entity_token_lp_pilot`(-4.33pp)\\n\\n## Part 3: exp_026 温度消融 12 实验一致性\\n\\n| Temp | Seed  | Greedy | Oracle | Degen% |\\n|------|-------|--------|--------|--------|\\n| 0.5  | 42    | 0.6490 | 0.7395 | 41.4%  |\\n| 0.5  | 123   | 0.6449 | 0.7352 | 45.6%  |\\n| 0.5  | 456   | 0.6463 | 0.7393 | 44.2%  |\\n| 0.8  | 42    | 0.6439 | 0.7690 | 23.8%  |\\n| 0.8  | 123   | 0.6433 | 0.7677 | 26.3%  |\\n| 0.8  | 456   | 0.6471 | 0.7710 | 25.5%  |\\n| 1.0  | 123   | 0.6440 | 0.7748 | 18.7%  |\\n| 1.0  | 42    | 0.6453 | 0.7753 | 20.0%  |\\n| 1.0  | 456   | 0.6456 | 0.7756 | 19.3%  |\\n| 1.2  | 42    | 0.6425 | 0.7888 | 14.9%  |\\n| 1.2  | 123   | 0.6419 | 0.7887 | 14.0%  |\\n| 1.2  | 456   | 0.6466 | 0.7853 | 13.2%  |\\n\\n**内部一致性良好**：同温度 3 个 seed 的 oracle 偏差 < 0.5pp，趋势单调（T↑ → Oracle↑, Degen%↓）。\"\n3\t}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 602
+          },
+          "id": "event-013445"
+        },
+        {
+          "source_line": 13446,
+          "timestamp": "2026-05-18T21:44:29.555786+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex"
+            }
+          },
+          "id": "event-013446"
+        },
+        {
+          "source_line": 13447,
+          "timestamp": "2026-05-18T21:44:29.557346+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Experiments}\n2\t\\label{sec:experiments}\n3\t\n4\t\\subsection{Experimental Setup}\n5\t\\label{sec:setup}\n6\t\n7\t\\paragraph{Datasets.}\n8\tWe evaluate on four English NER benchmarks spanning a difficulty gradient, each serving a distinct role.\n9\t\\textbf{SciERC} \\cite{luan2018scierc} (551 test instances, 6 entity types) is the primary medium-difficulty test bed where models achieve ${\\approx}$65\\% F1.\n10\t\\textbf{Few-NERD} \\cite{ding2021fewnerd} (INTRA coarse; 37{,}648 instances, 8 entity types, ${\\approx}$75\\% F1) provides a low-degeneracy contrast where LP selection succeeds (\\S\\ref{sec:fewnerd}).\n11\t\\textbf{CoNLL-2003} \\cite{tjongkimsang2003conll} (3{,}453 test sentences, 4 entity types, ${\\approx}$91\\% F1) serves as a ceiling-effect control where limited oracle headroom constrains selection gains.\n12\t\\textbf{WNUT-17} \\cite{derczynski2017wnut} (1{,}287 social media instances, 52\\% zero F1) probes the signal-collapse boundary where model capability is insufficient.\n13\t\n14\t\\paragraph{Models and sampling.}\n15\tBoth \\textbf{Qwen3-8B} and \\textbf{LLaMA-3.1-8B-Instruct} are fine-tuned with LoRA (rank$=$32, $\\alpha{=}64$) for 5 epochs using LLaMA Factory \\cite{zheng2024llamafactory} under identical training procedures, except Few-NERD models which use 3 epochs (early stopping at the best validation checkpoint; a 5-epoch control confirms LP selection remains positive though gains are halved; Appendix~\\ref{app:epoch_confound}).\n16\tQwen3-8B's SciERC checkpoint has a minor train--test mismatch (empty thinking tokens); a quantitative analysis rules out this confound (Appendix~\\ref{app:thinking_token}).\n17\tWe draw $N{=}8$ samples at $T{=}1.0$ (primary), with $N{=}16$ for scaling experiments (ranking stability $\\sigma{\\leq}0.026$, Table~\\ref{tab:multiseed}; sublinear gains beyond $N{=}8$, Appendix~\\ref{app:n_scaling}).\n18\tInference uses vLLM with constrained decoding \\cite{willard2023guided} (seed protocol: Appendix~\\ref{app:multiseed}).\n19\t\n20\t%% ===================================\n…[truncated 15936 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 1
+          },
+          "id": "event-013447"
+        },
+        {
+          "source_line": 13448,
+          "timestamp": "2026-05-18T21:44:51.571284+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+              "offset": "1040",
+              "limit": "60"
+            }
+          },
+          "id": "event-013448"
+        },
+        {
+          "source_line": 13449,
+          "timestamp": "2026-05-18T21:44:52.023062+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1040\t\n1041\t\\begin{table}[t]\n1042\t\\centering\n1043\t\\small\n1044\t\\caption{Temperature ablation on SciERC NER (Qwen3-8B, $N{=}8$, seed${=}42$). Oracle gap and QE $\\rho$ across four temperatures. $\\kappa$: Fleiss' $\\kappa$ (inter-sample agreement). $T{=}0.5$ and $T{=}1.0$ use joint (NER+RE) subtask; $T{=}0.8$ and $T{=}1.2$ use NER-only.}\n1045\t\\label{tab:t_ablation}\n1046\t\\begin{tabular}{ccccccc}\n1047\t\\toprule\n1048\t$T$ & Oracle gap (pp) & SJ $\\rho$ & LP $\\rho$ & $\\kappa$ & Sample F1 \\\\\n1049\t\\midrule\n1050\t0.5 & $+$7.8 & 0.297 & 0.218 & 0.577 & 0.636 \\\\\n1051\t0.8 & $+$10.5 & 0.359 & 0.253 & 0.451 & 0.622 \\\\\n1052\t1.0 & $+$13.3 & 0.360 & 0.205 & ${\\approx}$0.39 & ${\\approx}$0.612 \\\\\n1053\t1.2 & $+$13.0 & 0.377 & 0.196 & 0.356 & 0.594 \\\\\n1054\t\\bottomrule\n1055\t\\end{tabular}\n1056\t\\end{table}\n1057\t\n1058\tOracle headroom increases monotonically with temperature ($+7.8$~pp at $T{=}0.5$ to $+13.3$~pp at $T{=}1.0$), plateauing at $T{=}1.2$ ($+13.0$~pp); the plateau suggests $T{=}1.0$ already approaches the diversity ceiling for constrained structured decoding.\n1059\tStructural QE signals improve with temperature: SJ $\\rho$ rises from $0.297$ ($T{=}0.5$) to $0.377$ ($T{=}1.2$), consistent with more diverse outputs providing richer pairwise evidence.\n1060\tLP $\\rho$ peaks at $T{=}0.8$ ($0.253$) then degrades to $0.196$ at $T{=}1.2$.\n1061\tThis divergence confirms that LP compression is model-intrinsic: higher temperature increases between-instance LP variance (benefiting structural signals) but does not resolve within-instance compression, degrading LP's discriminative power.\n1062\tInter-sample agreement ($\\kappa$) decreases monotonically ($0.577$ to $0.356$); higher temperature generates more diverse outputs. Mean sample F1 also decreases ($0.636$ to $0.594$), consistent with the quality--diversity trade-off.\n1063\tThe $T{=}0.7$ and $T{=}1.0$ comparison in Table~\\ref{tab:robustness} is consistent with the trends reported here.\n1064\t\n1065\t\\paragraph{Temperature controls degeneracy and LP spread.\n…[truncated 2512 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 451
+          },
+          "id": "event-013449"
+        },
+        {
+          "source_line": 13450,
+          "timestamp": "2026-05-18T21:44:52.525267+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+              "offset": "990",
+              "limit": "30"
+            }
+          },
+          "id": "event-013450"
+        },
+        {
+          "source_line": 13451,
+          "timestamp": "2026-05-18T21:44:52.977284+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "990\tVC selection degrades with increasing $N$ ($-2.66$~pp at $N{=}2$ to $-4.35$~pp at $N{=}32$), consistent with mode-seeking bias in voting-based selection as the candidate pool grows.\n991\t\n992\t\\begin{table}[t]\n993\t\\centering\n994\t\\small\n995\t\\caption{Effect of sample count on selection (SciERC NER, Qwen3-8B, $T{=}1.0$, gold-filtered, seed${=}42$; exp\\_025).\\protect\\footnotemark\\ ``Best $\\Delta$'': highest selection gain across all 5 signals. Per-signal $\\Delta$ in pp vs.~greedy.}\n996\t\\label{tab:n_scaling_selection}\n997\t\\begin{tabular}{ccccccccc}\n998\t\\toprule\n999\t$N$ & Degen.\\% & Oracle (pp) & LP & SJ & FK & EM & VC & Best $\\Delta$ \\\\\n1000\t\\midrule\n1001\t2 & 42.7\\% & $+$4.4 & $-$0.89 & $-$2.72 & $-$2.72 & $-$2.72 & $-$2.66 & $-$0.89 \\\\\n1002\t4 & 21.0\\% & $+$10.2 & $+$0.03 & $-$0.31 & $-$0.40 & $-$0.74 & $-$2.16 & $+$0.03 \\\\\n1003\t8 & 11.0\\% & $+$14.5 & $+$0.39 & $+$0.20 & $+$0.15 & $-$0.77 & $-$2.87 & $+$0.39 \\\\\n1004\t16 & 7.4\\% & $+$17.7 & $+$0.78 & $+$0.24 & $-$0.02 & $-$0.06 & $-$3.95 & $+$0.78 \\\\\n1005\t32 & 4.0\\% & $+$20.0 & $+$0.95 & $+$0.35 & $+$0.65 & $+$0.22 & $-$4.35 & $+$0.95 \\\\\n1006\t\\bottomrule\n1007\t\\end{tabular}\n1008\t\\end{table}\n1009\t\\footnotetext{$N$-scaling analysis uses gold-filtered evaluation ($n{=}529$, greedy F1${=}0.640$). Values differ slightly from Table~\\ref{tab:selection} (0.645) and Table~\\ref{tab:fewnerd} (0.644) due to seed and aggregation differences; relative trends are consistent.}\n1010\t\n1011\t\\paragraph{Bootstrap significance at $N{=}32$.}\n1012\tTable~\\ref{tab:bootstrap_n32} reports bootstrap confidence intervals and $p$-values for selection at $N{=}32$ ($B{=}10{,}000$, $n{=}529$).\n1013\tNo signal achieves significant improvement over greedy at $\\alpha{=}0.05$ (LP: $p{=}0.091$; FK: $p{=}0.101$), while VC is significantly \\textit{worse} ($-4.36$~pp, $p{=}1.0$).\n1014\tHowever, all signals except VC significantly outperform random selection ($p{<}0.001$, permutation test); the signals carry meaningful quality information yet fail to translate it in\n…[truncated 172 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 452
+          },
+          "id": "event-013451"
+        },
+        {
+          "source_line": 13452,
+          "timestamp": "2026-05-18T21:44:53.128272+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+              "offset": "225",
+              "limit": "30"
+            }
+          },
+          "id": "event-013452"
+        },
+        {
+          "source_line": 13453,
+          "timestamp": "2026-05-18T21:44:53.379551+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "225\tThe full-set $p$-values are: VC ${<}$1e-112, FK $p{=}0.001$, SJ $p{=}0.020$, EM $p{=}0.194$, LP ${<}$1e-28.\n226\tVC's high full-set $\\rho{=}0.724$ is entirely driven by the zero/non-zero boundary (conditional $\\rho{=}0.038$, $p{=}0.49$), while LP's conditional $\\rho{=}0.350$ is the highest among all signals on the non-zero subset, full-set correlations on high-failure-rate datasets conflate binary success prediction with quality gradation.\n227\t\n228\t\\paragraph{Cross-configuration selection analysis.}\n229\tTable~\\ref{tab:cross_selection} extends the selection analysis to four additional configurations.\n230\tOn LLaMA SciERC, where output diversity remains substantial (18\\% identical outputs, 39\\% unique), LP achieves the highest selection F1 (0.652) at $N{=}8$ but still falls within bootstrap noise of single-sample (0.646), replicating the gap observed on Qwen SciERC (Table~\\ref{tab:selection}).\n231\tOn CoNLL, 48--87\\% of instances produce identical outputs across all $N$ samples; this reflects a ceiling effect (single-sample F1 ${\\approx}$0.91--0.92) rather than signal failure, and selection analysis on these configurations is uninformative because there is little per-sample variance for any signal to exploit.\n232\t\n233\t\\begin{table*}[t]\n234\t\\centering\n235\t\\small\n236\t\\caption{Best-of-$N$ selection F1 (macro, instance-averaged) across configurations ($T{=}1.0$). Best non-oracle signal per row in \\textbf{bold}. At $N{=}8$, no signal significantly outperforms greedy in any configuration. At $N{=}16$ on LLaMA CoNLL, VC achieves small but significant gains ($+0.28$~pp, $p{<}0.03$; see text below). CoNLL shows especially tight clustering where greedy already exceeds 0.90.}\n237\t\\label{tab:cross_selection}\n238\t\\begin{tabular}{llccccccc}\n239\t\\toprule\n240\tConfig & $n$ & Greedy & Oracle & SJ & FK & EM & LP & VC \\\\\n241\t\\midrule\n242\tLLaMA/SciERC $N{=}8$ & 529 & .646 & .778 & .643 & .639 & .634 & \\textbf{.652} & .633 \\\\\n243\tLLaMA/SciERC $N{=}16$ & 529 & .645 & .806 & \\textbf{.649} &\n…[truncated 1418 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 251
+          },
+          "id": "event-013453"
+        },
+        {
+          "source_line": 13454,
+          "timestamp": "2026-05-18T21:46:52.555193+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "0\\.778|13\\.3|13\\.2",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper",
+              "output_mode": "content",
+              "-n": "True",
+              "glob": "*.tex"
+            }
+          },
+          "id": "event-013454"
+        },
+        {
+          "source_line": 13455,
+          "timestamp": "2026-05-18T21:46:53.057001+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex:68:Oracle & $0.778 \\pm 0.003$ & --- \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex:89:On SciERC ($n{=}529$, 2-seed sign tests\\footnote{MDE${\\approx}$1.5~pp at 80\\% power ($n{=}529$); Few-NERD ($n{=}32{,}565$; MDE${\\approx}$0.22~pp) provides the definitive test.}), the oracle (0.778) reveals 13.3~pp of headroom, but LP achieves $+0.2$~pp ($p{=}0.29$), below the MDE (${\\approx}$1.5~pp).\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex:101:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex:1052:1.0 & $+$13.3 & 0.360 & 0.205 & ${\\approx}$0.39 & ${\\approx}$0.612 \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex:1058:Oracle headroom increases monotonically with temperature ($+7.8$~pp at $T{=}0.5$ to $+13.3$~pp at $T{=}1.0$), plateauing at $T{=}1.2$ ($+13.0$~pp); the plateau suggests $T{=}1.0$ already approaches the diversity ceiling for constrained structured decoding.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex:1243:Organization & 6{,}647 & 6.7 & .720 & .732 & $+$1.21 & .509 & 13.3\\,pp \\\\"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Grep",
+            "elapsed_ms": 501
+          },
+          "id": "event-013455"
+        },
+        {
+          "source_line": 13456,
+          "timestamp": "2026-05-18T21:46:53.508815+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "0\\.776",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper",
+              "output_mode": "content",
+              "-n": "True",
+              "glob": "*.tex"
+            }
+          },
+          "id": "event-013456"
+        },
+        {
+          "source_line": 13457,
+          "timestamp": "2026-05-18T21:46:53.960225+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex:194:\\caption{Hidden state probes vs.\\ LP for sample selection (5-fold CV ${\\times}$ 3 seeds). $\\rho$: Spearman correlation with per-sample F1. Sel.\\ F1: selection F1. Gap\\%: oracle gap closure. SciERC greedy${=}0.644$, oracle${=}0.776$.}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Grep",
+            "elapsed_ms": 451
+          },
+          "id": "event-013457"
+        },
+        {
+          "source_line": 13458,
+          "timestamp": "2026-05-18T21:46:54.662702+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "7\\.8.*pp|10\\.5.*pp",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper",
+              "output_mode": "content",
+              "-n": "True",
+              "glob": "*.tex"
+            }
+          },
+          "id": "event-013458"
+        },
+        {
+          "source_line": 13459,
+          "timestamp": "2026-05-18T21:46:54.714357+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex:109:SciERC & 529 & .644 & 17.8\\% & .205 & $+$0.61\\,pp & .193 \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex:120:The cross-dataset gradient is consistent with an inverse relationship (48.4\\% $\\to$ $-0.85$~pp, 17.8\\% $\\to$ $+0.61$~pp, 13.8\\% $\\to$ $+1.39$~pp; $n{=}3$ datasets, exploratory given 5+ confounds; Figure~\\ref{fig:degeneracy_scatter}), with supporting evidence from per-entity-type analysis within Few-NERD ($n{=}8$, $\\rho{=}{-}0.881$, $p{=}0.004$; entity types share model, tokenizer, and temperature, so effective degrees of freedom may be lower than 6).\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex:169:Training with LoRA rank${=}8$ (vs.\\ 32) lowers degeneracy from 17.8\\% to 7.2\\% and increases headroom to 16.0~pp, but LP does not improve selection (0.635 vs.\\ greedy 0.640).\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex:1058:Oracle headroom increases monotonically with temperature ($+7.8$~pp at $T{=}0.5$ to $+13.3$~pp at $T{=}1.0$), plateauing at $T{=}1.2$ ($+13.0$~pp); the plateau suggests $T{=}1.0$ already approaches the diversity ceiling for constrained structured decoding.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex:1222:(4)~Low degeneracy (13.8\\%) combined with strong LP-quality alignment ($\\rho{\\approx}0.5$) enables LP selection: candidates differ in F1 more often, and LP can rank them effectively. This contrasts with SciERC (17.8\\% degeneracy but weak alignment $\\rho{\\approx}0.24$, LP $+0.61$~pp) and CoNLL (48.4\\%, LP $-0.85$~pp)."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Grep",
+            "elapsed_ms": 51
+          },
+          "id": "event-013459"
+        },
+        {
+          "source_line": 13460,
+          "timestamp": "2026-05-18T21:47:00.383684+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "headroom|oracle.*pp",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/conclusion.tex",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-013460"
+        },
+        {
+          "source_line": 13461,
+          "timestamp": "2026-05-18T21:47:00.886014+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Grep",
+            "elapsed_ms": 502
+          },
+          "id": "event-013461"
+        },
+        {
+          "source_line": 13462,
+          "timestamp": "2026-05-18T21:47:01.036820+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+              "offset": "1237",
+              "limit": "15"
+            }
+          },
+          "id": "event-013462"
+        },
+        {
+          "source_line": 13463,
+          "timestamp": "2026-05-18T21:47:01.037209+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1237\t\\begin{tabular}{lrrrrrrr}\n1238\t\\toprule\n1239\tEntity Type & $n$ & Degen.\\% & Greedy & LP Sel & $\\Delta$ (pp) & LP $\\rho$ & Headroom \\\\\n1240\t\\midrule\n1241\tEvent & 1{,}306 & 6.0 & .655 & .662 & $+$0.65 & .457 & 16.1\\,pp \\\\\n1242\tOther & 3{,}433 & 6.6 & .637 & .685 & $\\mathbf{+4.73}$ & .491 & 19.4\\,pp \\\\\n1243\tOrganization & 6{,}647 & 6.7 & .720 & .732 & $+$1.21 & .509 & 13.3\\,pp \\\\\n1244\tBuilding & 1{,}587 & 7.2 & .702 & .705 & $+$0.23 & .478 & 14.9\\,pp \\\\\n1245\tProduct & 2{,}276 & 8.2 & .656 & .677 & $+$2.01 & .483 & 15.8\\,pp \\\\\n1246\tLocation & 8{,}023 & 11.4 & .793 & .798 & $+$0.53 & .520 & 10.3\\,pp \\\\\n1247\tPerson & 8{,}016 & 13.4 & .822 & .835 & $+$1.25 & .544 & 9.2\\,pp \\\\\n1248\tArt & 1{,}277 & 19.8 & .756 & .754 & $-$0.17 & .451 & 9.2\\,pp \\\\\n1249\t\\bottomrule\n1250\t\\end{tabular}\n1251\t\\end{table}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-013463"
+        },
+        {
+          "source_line": 13464,
+          "timestamp": "2026-05-18T21:47:25.204003+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex",
+              "old_string": "Oracle & $0.778 \\pm 0.003$ & --- \\\\",
+              "new_string": "Oracle & $0.775 \\pm 0.001$ & --- \\\\"
+            }
+          },
+          "id": "event-013464"
+        },
+        {
+          "source_line": 13465,
+          "timestamp": "2026-05-18T21:47:25.405269+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 201
+          },
+          "id": "event-013465"
+        },
+        {
+          "source_line": 13466,
+          "timestamp": "2026-05-18T21:47:25.857310+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex",
+              "old_string": "the oracle (0.778) reveals 13.3~pp of headroom",
+              "new_string": "the oracle (0.775) reveals 13.0~pp of headroom"
+            }
+          },
+          "id": "event-013466"
+        },
+        {
+          "source_line": 13467,
+          "timestamp": "2026-05-18T21:47:26.811151+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 953
+          },
+          "id": "event-013467"
+        },
+        {
+          "source_line": 13468,
+          "timestamp": "2026-05-18T21:47:26.962048+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex",
+              "old_string": "13.2~pp (SciERC)",
+              "new_string": "13.0~pp (SciERC)"
+            }
+          },
+          "id": "event-013468"
+        },
+        {
+          "source_line": 13469,
+          "timestamp": "2026-05-18T21:47:27.815454+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 853
+          },
+          "id": "event-013469"
+        },
+        {
+          "source_line": 13470,
+          "timestamp": "2026-05-18T21:47:27.966872+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex",
+              "old_string": "oracle${=}0.776$",
+              "new_string": "oracle${=}0.775$"
+            }
+          },
+          "id": "event-013470"
+        },
+        {
+          "source_line": 13471,
+          "timestamp": "2026-05-18T21:47:27.967507+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-013471"
+        },
+        {
+          "source_line": 13472,
+          "timestamp": "2026-05-18T21:47:33.085305+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+              "old_string": "0.5 & $+$7.8 & 0.297 & 0.218 & 0.577 & 0.636 \\\\",
+              "new_string": "0.5 & $+$9.1 & 0.297 & 0.218 & 0.577 & 0.636 \\\\"
+            }
+          },
+          "id": "event-013472"
+        },
+        {
+          "source_line": 13473,
+          "timestamp": "2026-05-18T21:47:33.537861+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 452
+          },
+          "id": "event-013473"
+        },
+        {
+          "source_line": 13474,
+          "timestamp": "2026-05-18T21:47:34.993246+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+              "old_string": "0.8 & $+$10.5 & 0.359 & 0.253 & 0.451 & 0.622 \\\\",
+              "new_string": "0.8 & $+$12.5 & 0.359 & 0.253 & 0.451 & 0.622 \\\\"
+            }
+          },
+          "id": "event-013474"
+        },
+        {
+          "source_line": 13475,
+          "timestamp": "2026-05-18T21:47:34.994016+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-013475"
+        },
+        {
+          "source_line": 13476,
+          "timestamp": "2026-05-18T21:47:36.850154+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+              "old_string": "1.0 & $+$13.3 & 0.360 & 0.205 & ${\\approx}$0.39 & ${\\approx}$0.612 \\\\",
+              "new_string": "1.0 & $+$13.0 & 0.360 & 0.205 & ${\\approx}$0.39 & ${\\approx}$0.612 \\\\"
+            }
+          },
+          "id": "event-013476"
+        },
+        {
+          "source_line": 13477,
+          "timestamp": "2026-05-18T21:47:37.319888+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 469
+          },
+          "id": "event-013477"
+        },
+        {
+          "source_line": 13478,
+          "timestamp": "2026-05-18T21:47:38.776227+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+              "old_string": "1.2 & $+$13.0 & 0.377 & 0.196 & 0.356 & 0.594 \\\\",
+              "new_string": "1.2 & $+$14.6 & 0.377 & 0.196 & 0.356 & 0.594 \\\\"
+            }
+          },
+          "id": "event-013478"
+        },
+        {
+          "source_line": 13479,
+          "timestamp": "2026-05-18T21:47:38.777120+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-013479"
+        },
+        {
+          "source_line": 13480,
+          "timestamp": "2026-05-18T21:47:42.387544+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+              "old_string": "Oracle headroom increases monotonically with temperature ($+7.8$~pp at $T{=}0.5$ to $+13.3$~pp at $T{=}1.0$), plateauing at $T{=}1.2$ ($+13.0$~pp); the plateau suggests $T{=}1.0$ already approaches the diversity ceiling for constrained structured decoding.",
+              "new_string": "Oracle headroom increases monotonically with temperature ($+9.1$~pp at $T{=}0.5$ to $+14.6$~pp at $T{=}1.2$), confirming that higher temperature consistently expands the oracle ceiling under constrained structured decoding."
+            }
+          },
+          "id": "event-013480"
+        },
+        {
+          "source_line": 13481,
+          "timestamp": "2026-05-18T21:47:42.438839+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 51
+          },
+          "id": "event-013481"
+        },
+        {
+          "source_line": 13482,
+          "timestamp": "2026-05-18T21:47:52.774850+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "13\\.3|7\\.8|10\\.5|plateau",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper",
+              "output_mode": "content",
+              "-n": "True",
+              "glob": "*.tex"
+            }
+          },
+          "id": "event-013482"
+        },
+        {
+          "source_line": 13483,
+          "timestamp": "2026-05-18T21:47:52.825450+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex:109:SciERC & 529 & .644 & 17.8\\% & .205 & $+$0.61\\,pp & .193 \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex:120:The cross-dataset gradient is consistent with an inverse relationship (48.4\\% $\\to$ $-0.85$~pp, 17.8\\% $\\to$ $+0.61$~pp, 13.8\\% $\\to$ $+1.39$~pp; $n{=}3$ datasets, exploratory given 5+ confounds; Figure~\\ref{fig:degeneracy_scatter}), with supporting evidence from per-entity-type analysis within Few-NERD ($n{=}8$, $\\rho{=}{-}0.881$, $p{=}0.004$; entity types share model, tokenizer, and temperature, so effective degrees of freedom may be lower than 6).\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex:166:Degeneracy scales with capability: 8B shows 17.8\\% vs.\\ 4B's 10.4\\% on SciERC (Table~\\ref{tab:degeneracy}).\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex:169:Training with LoRA rank${=}8$ (vs.\\ 32) lowers degeneracy from 17.8\\% to 7.2\\% and increases headroom to 16.0~pp, but LP does not improve selection (0.635 vs.\\ greedy 0.640).\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/discussion.tex:10:Within non-degenerate instances, MBR utility \\cite{eikema2022sampling} correlates positively with F1 (SJ median $\\rho{=}0.524$), but 17.8\\% (SciERC) to 48.4\\% (CoNLL) of instances produce identical F1 across all samples, eliminating headroom entirely (Table~\\ref{tab:degeneracy}).\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/discussion.tex:25:Degeneracy rises with model scale (4B: 10.4\\% vs.\\ 8B: 17.8\\%; Table~\\ref{tab:scale_ablation}), training convergence (Few-NERD: 14\\% at 3 epochs to 31\\% at 5; Tables~\\ref{tab:fewnerd}, \\ref{tab:epoch_confo\n…[truncated 2606 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Grep",
+            "elapsed_ms": 50
+          },
+          "id": "event-013483"
+        },
+        {
+          "source_line": 13484,
+          "timestamp": "2026-05-18T21:47:53.277233+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "0\\.778",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper",
+              "output_mode": "content",
+              "-n": "True",
+              "glob": "*.tex"
+            }
+          },
+          "id": "event-013484"
+        },
+        {
+          "source_line": 13485,
+          "timestamp": "2026-05-18T21:47:53.377964+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Grep",
+            "elapsed_ms": 100
+          },
+          "id": "event-013485"
+        },
+        {
+          "source_line": 13486,
+          "timestamp": "2026-05-18T21:48:05.083566+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex",
+              "offset": "66",
+              "limit": "5"
+            }
+          },
+          "id": "event-013486"
+        },
+        {
+          "source_line": 13487,
+          "timestamp": "2026-05-18T21:48:05.435017+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "66\tMethod & NER F1 & $p$ \\\\\n67\t\\midrule\n68\tOracle & $0.775 \\pm 0.001$ & --- \\\\\n69\tGreedy ($T{=}0$) & $0.645 \\pm 0.001$ & --- \\\\\n70\t\\midrule"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 351
+          },
+          "id": "event-013487"
+        },
+        {
+          "source_line": 13488,
+          "timestamp": "2026-05-18T21:48:05.886788+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex",
+              "offset": "87",
+              "limit": "5"
+            }
+          },
+          "id": "event-013488"
+        },
+        {
+          "source_line": 13489,
+          "timestamp": "2026-05-18T21:48:06.388741+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "87\t\n88\t\\paragraph{No significant improvement over greedy.}\n89\tOn SciERC ($n{=}529$, 2-seed sign tests\\footnote{MDE${\\approx}$1.5~pp at 80\\% power ($n{=}529$); Few-NERD ($n{=}32{,}565$; MDE${\\approx}$0.22~pp) provides the definitive test.}), the oracle (0.775) reveals 13.0~pp of headroom, but LP achieves $+0.2$~pp ($p{=}0.29$), below the MDE (${\\approx}$1.5~pp).\n90\tThe pattern holds across CoNLL and WNUT-17 (Table~\\ref{tab:cross_selection}); under stringent TOST anchors, some configurations show significant \\textit{degradation} (Appendix~\\ref{app:tost}).\n91\tFew-NERD provides the definitive contrast: LP achieves $+1.39$~pp ($p{<}0.001$) at low degeneracy (\\S\\ref{sec:fewnerd}), while structural signals still degrade selection."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 501
+          },
+          "id": "event-013489"
+        },
+        {
+          "source_line": 13490,
+          "timestamp": "2026-05-18T21:48:06.640024+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+              "offset": "1046",
+              "limit": "16"
+            }
+          },
+          "id": "event-013490"
+        },
+        {
+          "source_line": 13491,
+          "timestamp": "2026-05-18T21:48:06.690664+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1046\t\\begin{tabular}{ccccccc}\n1047\t\\toprule\n1048\t$T$ & Oracle gap (pp) & SJ $\\rho$ & LP $\\rho$ & $\\kappa$ & Sample F1 \\\\\n1049\t\\midrule\n1050\t0.5 & $+$9.1 & 0.297 & 0.218 & 0.577 & 0.636 \\\\\n1051\t0.8 & $+$12.5 & 0.359 & 0.253 & 0.451 & 0.622 \\\\\n1052\t1.0 & $+$13.0 & 0.360 & 0.205 & ${\\approx}$0.39 & ${\\approx}$0.612 \\\\\n1053\t1.2 & $+$14.6 & 0.377 & 0.196 & 0.356 & 0.594 \\\\\n1054\t\\bottomrule\n1055\t\\end{tabular}\n1056\t\\end{table}\n1057\t\n1058\tOracle headroom increases monotonically with temperature ($+9.1$~pp at $T{=}0.5$ to $+14.6$~pp at $T{=}1.2$), confirming that higher temperature consistently expands the oracle ceiling under constrained structured decoding.\n1059\tStructural QE signals improve with temperature: SJ $\\rho$ rises from $0.297$ ($T{=}0.5$) to $0.377$ ($T{=}1.2$), consistent with more diverse outputs providing richer pairwise evidence.\n1060\tLP $\\rho$ peaks at $T{=}0.8$ ($0.253$) then degrades to $0.196$ at $T{=}1.2$.\n1061\tThis divergence confirms that LP compression is model-intrinsic: higher temperature increases between-instance LP variance (benefiting structural signals) but does not resolve within-instance compression, degrading LP's discriminative power."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-013491"
+        },
+        {
+          "source_line": 13492,
+          "timestamp": "2026-05-18T21:48:27.617209+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "13.*pp.*headroom|headroom.*13|oracle.*headroom",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections",
+              "output_mode": "content",
+              "-n": "True",
+              "glob": "*.tex"
+            }
+          },
+          "id": "event-013492"
+        },
+        {
+          "source_line": 13493,
+          "timestamp": "2026-05-18T21:48:27.768250+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex:11:\\textbf{CoNLL-2003} \\cite{tjongkimsang2003conll} (3{,}453 test sentences, 4 entity types, ${\\approx}$91\\% F1) serves as a ceiling-effect control where limited oracle headroom constrains selection gains.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex:89:On SciERC ($n{=}529$, 2-seed sign tests\\footnote{MDE${\\approx}$1.5~pp at 80\\% power ($n{=}529$); Few-NERD ($n{=}32{,}565$; MDE${\\approx}$0.22~pp) provides the definitive test.}), the oracle (0.775) reveals 13.0~pp of headroom, but LP achieves $+0.2$~pp ($p{=}0.29$), below the MDE (${\\approx}$1.5~pp).\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex:101:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex:165:With Qwen3-4B (Table~\\ref{tab:scale_ablation}), QE is comparable (mean $|\\Delta\\rho|{=}0.042$), yet selection remains below greedy despite 13.0~pp headroom. Task difficulty is a stronger predictor than model scale within the 3B--8B range (Appendix~\\ref{app:llama3b}).\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/method.tex:7:This distinction is consequential for selection: in our study, 4 of 5 signals are instance-level aggregates that assign identical QE scores to all $N$ candidates. Consensus-proximity (MBR) converts these to per-sample rankings (\\S\\ref{sec:selection_gap}), but these rankings do not improve selection; only natively per-sample signals can, in principle, exploit oracle headroom.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/abstract.tex:6:When either factor is absent, LP gains fall below detectable thresholds despite ${\\sim}$13~pp oracle headroom, a d\n…[truncated 7494 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Grep",
+            "elapsed_ms": 151
+          },
+          "id": "event-013493"
+        },
+        {
+          "source_line": 13494,
+          "timestamp": "2026-05-18T21:48:48.557275+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/discussion.tex",
+              "offset": "19",
+              "limit": "5"
+            }
+          },
+          "id": "event-013494"
+        },
+        {
+          "source_line": 13495,
+          "timestamp": "2026-05-18T21:48:48.607832+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "19\t\\paragraph{Regime boundaries.}\n20\tQE signals collapse at the low-resource boundary (WNUT-17, conditional $\\rho{=}0.038$; Table~\\ref{tab:wnut}) and LP degrades selection at the ceiling (CoNLL, degeneracy 48--87\\%, $-0.85$~pp).\n21\tTemperature manipulation provides the primary evidence that both factors appear independently associated with selection success: at $T{=}1.2$, degeneracy drops to 14.9\\% yet LP does not improve because alignment remains weak ($\\rho{=}0.225$ vs.\\ Few-NERD ${\\sim}$0.5; Table~\\ref{tab:t_degeneracy}); the SciERC epoch curve corroborates this (Table~\\ref{tab:epoch_scierc}).\n22\tApproximate boundaries from our data: degeneracy ${<}$15\\% and $\\rho(\\text{LP}, \\text{F1}) \\gtrsim 0.3$; temperature and training convergence are controllable levers (Tables~\\ref{tab:t_degeneracy}, \\ref{tab:epoch_confound}), while calibration cannot improve selection (Appendix~\\ref{app:calibration_baseline}).\n23\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-013495"
+        },
+        {
+          "source_line": 13496,
+          "timestamp": "2026-05-18T21:48:57.139256+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:paper_compile_and_check",
+              "max_results": "1"
+            }
+          },
+          "id": "event-013496"
+        },
+        {
+          "source_line": 13497,
+          "timestamp": "2026-05-18T21:48:57.192589+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matching deferred tools found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "ToolSearch",
+            "elapsed_ms": 53
+          },
+          "id": "event-013497"
+        },
+        {
+          "source_line": 13498,
+          "timestamp": "2026-05-18T21:48:59.412965+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__paper_compile_and_check",
+              "max_results": "1"
+            }
+          },
+          "id": "event-013498"
+        },
+        {
+          "source_line": 13499,
+          "timestamp": "2026-05-18T21:48:59.413440+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-013499"
+        },
+        {
+          "source_line": 13500,
+          "timestamp": "2026-05-18T21:49:01.319435+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__paper_compile_and_check"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent",
+            "tool": "mcp__agent-ml-research__paper_compile_and_check",
+            "tool_args": {
+              "project": "struct_self_consist_ie"
+            }
+          },
+          "id": "event-013500"
+        }
+      ]
+    }
+  ]
+}

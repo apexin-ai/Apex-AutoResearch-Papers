@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "12e8f91b52e56fab3b3e",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis d141 entity merge",
+  "task_key": "worker_analysis_d141_entity_merge_20260518T132334",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_d141_entity_merge_20260518T132334_result.json",
+    "occurrence": 1,
+    "bytes": 1200,
+    "sha256": "c29504200c6a918c958c190e08094b53b6b070d2651391fea846cac5ddd530f2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "D141 分析完成。总结:\n\n**Entity-level majority voting merge 无法突破 instance-level selection ceiling。**\n\n| Dataset | Greedy | Best Merge | Oracle | Gap Recovered |\n|---------|--------|------------|--------|---------------|\n| SciERC | 0.6182 | 0.6333 (k=3) | 0.7448 | 11.9% |\n| CoNLL | 0.7239 | 0.7223 (k=5) | 0.7639 | -4.0% |\n| FewNERD | 0.6507 | 0.6571 (k=4) | 0.7850 | 4.8% |\n\n关键发现:\n1. 所有 3 个数据集上 merge vs oracle 差异均统计显著 (bootstrap CI 不含 0)\n2. LP-weighted merge 与简单频率投票无明显差异\n3. 在 degenerate instances 上 merge 反而略损 (Δ 均为负)\n4. 最优阈值低 (k=3-5/N=8-16)，说明 inclusive merge 优于 conservative，但仍不够\n\n**对论文的意义**: 论文应定位为 diagnostic + selection (而非 diagnostic + method)。Oracle gap 很大 (4-13 points)，但简单 voting merge 无法弥补，进一步验证了 instance-level quality estimation 的必要性。\n\n产出文件:\n- 脚本: `analysis_d141_entity_merge.py`\n- 结果: `output/d141_entity_merge/results.json`\n- 报告: `output/d141_entity_merge/report.md`\n- 图表: `output/d141_entity_merge/threshold_curve.png`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-d141-entity-merge.md"
+}

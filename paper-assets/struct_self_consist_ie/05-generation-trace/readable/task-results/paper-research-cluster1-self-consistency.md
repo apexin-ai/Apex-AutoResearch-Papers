@@ -1,0 +1,54 @@
+# paper research cluster1 self consistency
+
+**When Self-Consistency Fails for NER: Degeneracy, Signal Collapse, and the Correlation-Selection Gap** · Task result records
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 1
+- **Recorded user turns:** 0
+- **Tool calls:** 0
+- **Original source:** `logs/workers/worker_paper_research_cluster1_self_consistency_20260514T154153_result.json`
+- **Structured JSON:** [`fd0da28105912e85f9dd.json`](../../sessions/fd/fd0da28105912e85f9dd.json)
+
+## Before a recorded user message
+
+1 recorded events
+
+### Task result
+
+_source line 1_
+
+## 验证报告
+
+**Cluster: self_consistency_reasoning — 8/8 papers verified and written to literature_map.yaml**
+
+### Director 优先验证（4 篇）
+
+| # | bibtex_key | 标题 | Venue | 验证状态 |
+|---|-----------|------|-------|---------|
+| 1 | `taubenfeld2025cisc` | Confidence Improves Self-Consistency in LLMs | ACL Findings 2025 | **[VERIFIED]** title ✓, arXiv=2502.06233 ✓, DOI=10.18653/v1/2025.findings-acl.1030 ✓ |
+| 2 | `kang2025selfcertainty` | Scalable Best-of-N Selection for Large Language Models via Self-Certainty | **NeurIPS 2025** | **[VERIFIED]** title ✓, arXiv=2502.18581 ✓, OpenReview+neurips.cc confirmed ✓ |
+| 3 | `kim2026reasc` | Reliability-Aware Adaptive Self-Consistency for Efficient Sampling in LLM Reasoning | ACL 2026 | **[VERIFIED]** title ✓, arXiv=2601.02970 ✓, arXiv Comments 标注 ACL 2026 ✓ |
+| 4 | `thirukovalluru2024atomic` | Atomic Self-Consistency for Better Long Form Generations | EMNLP 2024 | **[VERIFIED]** title ✓, DOI=10.18653/v1/2024.emnlp-main.706 ✓, ACL Anthology confirmed ✓ |
+
+> **⚠️ Venue 修正**: Self-Certainty BoN 的实际 venue 是 **NeurIPS 2025**（neurips.cc/virtual/2025/poster/120166 确认），非任务描述中的 ICLR 2026。已按实际情况写入。
+
+### 其他必引（3 篇）
+
+| # | bibtex_key | 标题 | Venue | 验证状态 |
+|---|-----------|------|-------|---------|
+| 5 | `wang2023selfconsistency` | Self-Consistency Improves Chain of Thought Reasoning in Language Models | ICLR 2023 | **[VERIFIED]** title ✓, arXiv=2203.11171 ✓, OpenReview poster confirmed ✓ |
+| 6 | `chen2024usc` | Universal Self-Consistency for Large Language Model Generation | arXiv preprint (ICML 2024 Workshop ICL) | **[VERIFIED]** title ✓, arXiv=2311.17311 ✓. 未被主会接收，仅 workshop paper ✓ |
+| 7 | `manakul2023selfcheckgpt` | SelfCheckGPT: Zero-Resource Black-Box Hallucination Detection for Generative Large Language Models | EMNLP 2023 | **[VERIFIED]** title ✓, DOI=10.18653/v1/2023.emnlp-main.557 ✓, ACL Anthology confirmed ✓ |
+
+### 补充搜索（1 篇）
+
+| # | bibtex_key | 标题 | Venue | 验证状态 |
+|---|-----------|------|-------|---------|
+| 8 | `wan2025rasc` | Reasoning Aware Self-Consistency: Leveraging Reasoning Paths for Efficient LLM Sampling | NAACL 2025 | **[VERIFIED]** title ✓, DOI=10.18653/v1/2025.naacl-long.184 ✓, ACL Anthology confirmed ✓ |
+
+选择 RASC 作为补充论文的理由：质量感知的自适应采样 + 一致性驱动停止策略，与我们 "strong predictors, weak selectors" 主题高度相关，NAACL 2025 主会长文。
+
+---

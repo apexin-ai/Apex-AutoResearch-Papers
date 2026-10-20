@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "27696ce2b0e124f74b87",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis conll 4b inference v2 check",
+  "task_key": "worker_analysis_conll_4b_inference_v2_check_20260515T194957",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_conll_4b_inference_v2_check_20260515T194957_result.json",
+    "occurrence": 1,
+    "bytes": 974,
+    "sha256": "d3c722db44dada2b94d912addd4d5348a431eac7836636f7e8e4bf59add94796"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry updated, cron deleted. Summary:\n\n## exp_qwen3_4b_conll_scs_inference_v2 — SUCCESS\n\n**状态**: 原始 PID 229738 被中止（57%处 shutdown），tmux 重新启动了 PID 232198 并成功完成。\n\n### v2 (ckpt-4200) vs v1 (ckpt-3800) 对比\n\n| 指标 | v1 | v2 | Delta |\n|------|-----|-----|-------|\n| greedy_f1 | 0.9251 | 0.9234 | **-0.17pp** |\n| oracle_headroom | 1.57pp | 1.70pp | +0.13pp |\n| SJ_rho_full | 0.4045 | 0.4217 | **+0.0172** |\n| SJ_rho_cond | 0.4306 | 0.4590 | **+0.0284** |\n| FK_rho_full | 0.3961 | 0.4181 | **+0.0220** |\n| FK_rho_cond | 0.4200 | 0.4538 | **+0.0338** |\n| LP_rho_full | 0.3186 | 0.3313 | +0.0127 |\n| LP_auroc_full | 0.7689 | 0.7761 | +0.0072 |\n\n**结论**: ckpt-4200 的 greedy_f1 略降 0.17pp，但所有 correlation 指标全面提升。结构化一致性指标（SJ/FK）提升幅度大于 logprob baseline（LP），尤其 conditional 场景下 FK_rho 提升 +0.034。Verdict 为 MARGINAL。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-conll-4b-inference-v2-check.md"
+}

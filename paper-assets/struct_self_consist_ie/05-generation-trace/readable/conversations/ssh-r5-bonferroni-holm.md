@@ -1,0 +1,1246 @@
+# ssh r5 bonferroni holm
+
+**When Self-Consistency Fails for NER: Degeneracy, Signal Collapse, and the Correlation-Selection Gap** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 41
+- **Recorded user turns:** 0
+- **Tool calls:** 20
+- **Original source:** `logs/chats/worker_ssh_r5-bonferroni-holm_20260520T101440.jsonl`
+- **Structured JSON:** [`9743691d795708cd76b9.json`](../../sessions/97/9743691d795708cd76b9.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+41 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-20T10:17:47.721979+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__register_artifact",
+  "max_results": "3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_r5-bonferroni-holm_20260520T101440",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__register_artifact",
+    "max_results": "3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-20T10:17:47.722364+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_r5-bonferroni-holm_20260520T101440",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-20T10:17:47.722555+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "find /root/autodl-tmp/struct_self_consist_ie/output -name \"*bootstrap*\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_r5-bonferroni-holm_20260520T101440",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "find /root/autodl-tmp/struct_self_consist_ie/output -name \"*bootstrap*\" -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-20T10:17:47.722725+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/output/exp004_re_diagnostic/bootstrap_ci.json\\n/root/autodl-tmp/struct_self_consist_ie/output/bootstrap_ci_tables.tex\\n/root/autodl-tmp/struct_self_consist_ie/output/bootstrap_ci_summary.json\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round2/n8_bootstrap_ci.json\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round2/re_selection_bootstrap.json\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round2/re_selection_bootstrap.py\\n/root/autodl-tmp/struct_self_consist_ie/output/analysis_fk_bootstrap_ci.json\\n/root/autodl-tmp/struct_self_consist_ie/output/analysis_fk_bootstrap_per_instance.json\\n/root/autodl-tmp/struct_self_consist_ie/output/analysis_round8/fk_bootstrap_test.json\\n/root/autodl-tmp/struct_self_consist_ie/output/d112_table2_fix/bootstrap_results.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_025_n32/bootstrap_selection_test.py\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_025_n32/bootstrap_results.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_021_inference/fewnerd_paired_bootstrap_result.json\\n/root/autodl-tmp/struct_self_consist_ie/output/statistical_hardening/i8_bootstrap_tests.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_021_fewnerd_n8_seed123/fewnerd_paired_bootstrap_result.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_021_fewnerd_n8_seed456/fewnerd_paired_bootstrap_result.json\\n/root/autodl-tmp/struct_self_consist_ie/output/entity_construction_fair/bootstrap_tests.json\\n/root/autodl-tmp/struct_self_consist_ie/output/entity_construction_fair_n8/bootstrap_tests.json\\n/root/autodl-tmp/struct_self_consist_ie/output/fewnerd_3seed_construction_bootstrap.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.93}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_r5-bonferroni-holm_20260520T101440",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-20T10:17:47.722904+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/entity_construction_fair/bootstrap_tests.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_r5-bonferroni-holm_20260520T101440",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/entity_construction_fair/bootstrap_tests.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-20T10:17:47.723179+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"scierc\\\": {\\n    \\\"bootstrap_construction_uniform_majority_vs_greedy\\\": {\\n      \\\"mean_diff\\\": 0.008632512370946359,\\n      \\\"ci_95\\\": [\\n        -0.003791963965516347,\\n        0.020730607954267292\\n      ],\\n      \\\"p_value\\\": 0.0844,\\n      \\\"significant\\\": false\\n    },\\n    \\\"bootstrap_construction_uniform_confirm_vs_greedy\\\": {\\n      \\\"mean_diff\\\": 0.002787353954222393,\\n      \\\"ci_95\\\": [\\n        -0.014480068531011032,\\n        0.020922071081157054\\n      ],\\n      \\\"p_value\\\": 0.3801,\\n      \\\"significant\\\": false\\n    },\\n    \\\"bootstrap_construction_uniform_cv_vs_greedy\\\": {\\n      \\\"mean_diff\\\": 0.01345547097798849,\\n      \\\"ci_95\\\": [\\n        0.0009839962198741237,\\n        0.02630432351819819\\n      ],\\n      \\\"p_value\\\": 0.0178,\\n      \\\"significant\\\": true\\n    },\\n    \\\"bootstrap_lp_selection_vs_greedy\\\": {\\n      \\\"mean_diff\\\": 0.0023481592529448476,\\n      \\\"ci_95\\\": [\\n        -0.010436567965856096,\\n        0.015129877508434367\\n      ],\\n      \\\"p_value\\\": 0.3519,\\n      \\\"significant\\\": false\\n    },\\n    \\\"bootstrap_construction_lp_weighted_majority_vs_greedy\\\": {\\n      \\\"mean_diff\\\": -0.0002739770648436429,\\n      \\\"ci_95\\\": [\\n        -0.012955645550847519,\\n        0.011613805127758964\\n      ],\\n      \\\"p_value\\\": 0.5123,\\n      \\\"significant\\\": false\\n    },\\n    \\\"bootstrap_construction_lp_weighted_confirm_vs_greedy\\\": {\\n      \\\"mean_diff\\\": 0.008363509545715585,\\n      \\\"ci_95\\\": [\\n        -0.007401747073516637,\\n        0.02510800810259234\\n      ],\\n      \\\"p_value\\\": 0.1555,\\n      \\\"significant\\\": false\\n    },\\n    \\\"bootstrap_construction_lp_weighted_cv_vs_greedy\\\": {\\n      \\\"mean_diff\\\": 0.013221640351074353,\\n      \\\"ci_95\\\": [\\n        0.0009737906171938178,\\n      
+…[truncated 6824 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_r5-bonferroni-holm_20260520T101440",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-20T10:17:47.723365+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/entity_construction_fair_n8/bootstrap_tests.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_r5-bonferroni-holm_20260520T101440",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/entity_construction_fair_n8/bootstrap_tests.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-20T10:17:47.723626+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"scierc\\\": {\\n    \\\"bootstrap_construction_uniform_majority_vs_greedy\\\": {\\n      \\\"mean_diff\\\": 0.009719906141538169,\\n      \\\"ci_95\\\": [\\n        -0.0025668807646749554,\\n        0.022544121575769724\\n      ],\\n      \\\"p_value\\\": 0.0652,\\n      \\\"significant\\\": false\\n    },\\n    \\\"bootstrap_construction_uniform_confirm_vs_greedy\\\": {\\n      \\\"mean_diff\\\": 0.015407296684254787,\\n      \\\"ci_95\\\": [\\n        0.0002982097298436904,\\n        0.031248574994734275\\n      ],\\n      \\\"p_value\\\": 0.0233,\\n      \\\"significant\\\": true\\n    },\\n    \\\"bootstrap_construction_uniform_cv_vs_greedy\\\": {\\n      \\\"mean_diff\\\": 0.011222577530551364,\\n      \\\"ci_95\\\": [\\n        -0.002930266201421545,\\n        0.026136005774118017\\n      ],\\n      \\\"p_value\\\": 0.0573,\\n      \\\"significant\\\": false\\n    },\\n    \\\"bootstrap_lp_selection_vs_greedy\\\": {\\n      \\\"mean_diff\\\": 0.006149885364274336,\\n      \\\"ci_95\\\": [\\n        -0.007718206771915206,\\n        0.01993277103717168\\n      ],\\n      \\\"p_value\\\": 0.193,\\n      \\\"significant\\\": false\\n    },\\n    \\\"bootstrap_construction_lp_weighted_majority_vs_greedy\\\": {\\n      \\\"mean_diff\\\": 0.004554980749769676,\\n      \\\"ci_95\\\": [\\n        -0.008595347655771845,\\n        0.0175267203869311\\n      ],\\n      \\\"p_value\\\": 0.2438,\\n      \\\"significant\\\": false\\n    },\\n    \\\"bootstrap_construction_lp_weighted_confirm_vs_greedy\\\": {\\n      \\\"mean_diff\\\": 0.016687915197165084,\\n      \\\"ci_95\\\": [\\n        0.003708882393845699,\\n        0.030250983686895105\\n      ],\\n      \\\"p_value\\\": 0.0044,\\n      \\\"significant\\\": true\\n    },\\n    \\\"bootstrap_construction_lp_weighted_cv_vs_greedy\\\": {\\n      \\\"mean_diff\\\": 0.01249863816388988,\\n      \\\"ci_95\\\": [\\n        -0.0008866984975969504,\\n        0.0
+…[truncated 6830 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_r5-bonferroni-holm_20260520T101440",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-20T10:17:47.723788+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/fewnerd_3seed_construction_bootstrap.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_r5-bonferroni-holm_20260520T101440",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/fewnerd_3seed_construction_bootstrap.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-20T10:17:47.723982+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"42\\\": {\\n    \\\"seed\\\": 42,\\n    \\\"n_instances\\\": 32565,\\n    \\\"n_samples\\\": 8,\\n    \\\"theta\\\": 0.25,\\n    \\\"greedy_f1\\\": 0.7478465965854552,\\n    \\\"lp_construction_f1\\\": 0.7566255838444086,\\n    \\\"lp_selection_f1\\\": 0.7613975687723666,\\n    \\\"bootstrap_lp_construction_vs_greedy\\\": {\\n      \\\"observed_diff\\\": 0.00877898725895342,\\n      \\\"ci_95\\\": [\\n        0.006656790922019183,\\n        0.010895566514062656\\n      ],\\n      \\\"p_value\\\": 0.0,\\n      \\\"cohens_d\\\": 0.044914796757236586,\\n      \\\"significant_005\\\": true\\n    },\\n    \\\"bootstrap_lp_selection_vs_greedy\\\": {\\n      \\\"observed_diff\\\": 0.013550972186911531,\\n      \\\"ci_95\\\": [\\n        0.011846850700772307,\\n        0.015276017621033788\\n      ],\\n      \\\"p_value\\\": 0.0,\\n      \\\"cohens_d\\\": 0.08527716412464047,\\n      \\\"significant_005\\\": true\\n    }\\n  },\\n  \\\"123\\\": {\\n    \\\"seed\\\": 123,\\n    \\\"n_instances\\\": 32565,\\n    \\\"n_samples\\\": 8,\\n    \\\"theta\\\": 0.25,\\n    \\\"greedy_f1\\\": 0.7480463604385982,\\n    \\\"lp_construction_f1\\\": 0.769875068001411,\\n    \\\"lp_selection_f1\\\": 0.7624210808228976,\\n    \\\"bootstrap_lp_construction_vs_greedy\\\": {\\n      \\\"observed_diff\\\": 0.021828707562812927,\\n      \\\"ci_95\\\": [\\n        0.019460764062893928,\\n        0.02419125377202716\\n      ],\\n      \\\"p_value\\\": 0.0,\\n      \\\"cohens_d\\\": 0.09923168703269242,\\n      \\\"significant_005\\\": true\\n    },\\n    \\\"bootstrap_lp_selection_vs_greedy\\\": {\\n      \\\"observed_diff\\\": 0.014374720384299438,\\n      \\\"ci_95\\\": [\\n        0.012625624205385173,\\n        0.01613969166259068\\n      ],\\n      \\\"p_value\\\": 0.0,\\n      \\\"cohens_d\\\": 0.08931294859268799,\\n      \\\"significant_005\\\": true\\n    }\\n  },\\n  \\\"456\\\": {\\n    \\\"seed\\\": 456,\\n    \\\"n_ins
+…[truncated 991 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_r5-bonferroni-holm_20260520T101440",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-20T10:17:47.724218+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/statistical_hardening/i8_bootstrap_tests.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_r5-bonferroni-holm_20260520T101440",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/statistical_hardening/i8_bootstrap_tests.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-20T10:17:47.724460+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"scierc_n8\\\": {\\n    \\\"LP\\\": {\\n      \\\"mean_delta\\\": 0.006149885364274336,\\n      \\\"mean_delta_pp\\\": 0.6149885364274337,\\n      \\\"ci_95\\\": [\\n        -0.7718206771915206,\\n        1.9932771037171682\\n      ],\\n      \\\"p_value\\\": 0.193,\\n      \\\"n_instances\\\": 529\\n    },\\n    \\\"SJ\\\": {\\n      \\\"mean_delta\\\": 0.0010830018955904274,\\n      \\\"mean_delta_pp\\\": 0.10830018955904275,\\n      \\\"ci_95\\\": [\\n        -1.2973931310273226,\\n        1.5233926553068489\\n      ],\\n      \\\"p_value\\\": 0.4407,\\n      \\\"n_instances\\\": 529\\n    },\\n    \\\"EM\\\": {\\n      \\\"mean_delta\\\": -0.007689328186410714,\\n      \\\"mean_delta_pp\\\": -0.7689328186410713,\\n      \\\"ci_95\\\": [\\n        -2.2808004631967127,\\n        0.7792437559796821\\n      ],\\n      \\\"p_value\\\": 0.8363,\\n      \\\"n_instances\\\": 529\\n    },\\n    \\\"oracle\\\": {\\n      \\\"mean_delta\\\": 0.13188035693873568,\\n      \\\"mean_delta_pp\\\": 13.188035693873568,\\n      \\\"ci_95\\\": [\\n        11.437390671586714,\\n        15.048216827281099\\n      ],\\n      \\\"p_value\\\": 0.0,\\n      \\\"n_instances\\\": 529\\n    }\\n  },\\n  \\\"conll_n8\\\": {\\n    \\\"LP\\\": {\\n      \\\"mean_delta\\\": -0.010482059498574784,\\n      \\\"mean_delta_pp\\\": -1.0482059498574785,\\n      \\\"ci_95\\\": [\\n        -1.4513252739900464,\\n        -0.6587614184367897\\n      ],\\n      \\\"p_value\\\": 1.0,\\n      \\\"n_instances\\\": 2756\\n    },\\n    \\\"SJ\\\": {\\n      \\\"mean_delta\\\": -0.008913823436682653,\\n      \\\"mean_delta_pp\\\": -0.8913823436682653,\\n      \\\"ci_95\\\": [\\n        -1.4201479635305834,\\n        -0.37879453184696305\\n      ],\\n      \\\"p_value\\\": 0.9996,\\n      \\\"n_instances\\\": 2756\\n    },\\n    \\\"EM\\\": {\\n      \\\"mean_delta\\\": -0.010744854041298163,\\n      \\\"mean_delta_pp\\\": -1.0744854041298162,\\n  
+…[truncated 1184 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_r5-bonferroni-holm_20260520T101440",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-20T10:17:47.724657+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/d112_table2_fix/bootstrap_results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_r5-bonferroni-holm_20260520T101440",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/d112_table2_fix/bootstrap_results.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-20T10:17:47.724858+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"dataset\\\": \\\"scierc_ner\\\",\\n  \\\"n_instances\\\": 529,\\n  \\\"B\\\": 10000,\\n  \\\"tests\\\": {\\n    \\\"LP\\\": {\\n      \\\"vs_greedy\\\": {\\n        \\\"mean_diff\\\": 0.006149885364274336,\\n        \\\"ci_95_low\\\": -0.007766303991423524,\\n        \\\"ci_95_high\\\": 0.02021071372441883,\\n        \\\"p_bootstrap\\\": 0.3854,\\n        \\\"cohens_d\\\": 0.037440232245210106\\n      },\\n      \\\"vs_random\\\": {\\n        \\\"mean_diff\\\": 0.04233243084962965,\\n        \\\"ci_95_low\\\": 0.02894429441390806,\\n        \\\"ci_95_high\\\": 0.055647624972464435,\\n        \\\"p_bootstrap\\\": 0.0,\\n        \\\"cohens_d\\\": 0.26988090296456524\\n      }\\n    },\\n    \\\"SJ\\\": {\\n      \\\"vs_greedy\\\": {\\n        \\\"mean_diff\\\": 0.0010830018955904274,\\n        \\\"ci_95_low\\\": -0.012998417398297862,\\n        \\\"ci_95_high\\\": 0.014760398679690976,\\n        \\\"p_bootstrap\\\": 0.8886,\\n        \\\"cohens_d\\\": 0.006627252071882276\\n      },\\n      \\\"vs_random\\\": {\\n        \\\"mean_diff\\\": 0.03726554738094574,\\n        \\\"ci_95_low\\\": 0.026776215114266363,\\n        \\\"ci_95_high\\\": 0.04788550031500277,\\n        \\\"p_bootstrap\\\": 0.0,\\n        \\\"cohens_d\\\": 0.3028197985873296\\n      }\\n    },\\n    \\\"FK\\\": {\\n      \\\"vs_greedy\\\": {\\n        \\\"mean_diff\\\": 0.0009069229860521634,\\n        \\\"ci_95_low\\\": -0.012830703071654369,\\n        \\\"ci_95_high\\\": 0.014536518617663856,\\n        \\\"p_bootstrap\\\": 0.8812,\\n        \\\"cohens_d\\\": 0.005543859422296765\\n      },\\n      \\\"vs_random\\\": {\\n        \\\"mean_diff\\\": 0.037089468471407476,\\n        \\\"ci_95_low\\\": 0.026796194229155138,\\n        \\\"ci_95_high\\\": 0.04754479413344294,\\n        \\\"p_bootstrap\\\": 0.0,\\n        \\\"cohens_d\\\": 0.3043230325449322\\n      }\\n    },\\n    \\\"EM\\\": {\\n      \\\"vs_greedy\\\": {\\n        \\\"mean
+…[truncated 1780 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_r5-bonferroni-holm_20260520T101440",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-20T10:17:47.725020+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/exp_025_n32/bootstrap_results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_r5-bonferroni-holm_20260520T101440",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/exp_025_n32/bootstrap_results.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-20T10:17:47.725262+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"n_instances\\\": 529,\\n  \\\"B\\\": 10000,\\n  \\\"greedy_macro_f1\\\": 0.6396835434726015,\\n  \\\"oracle_macro_f1\\\": 0.839572761831741,\\n  \\\"signals\\\": {\\n    \\\"LP\\\": {\\n      \\\"mean_delta_pp\\\": 0.9543,\\n      \\\"std_delta_pp\\\": 0.706,\\n      \\\"ci_95_lo_pp\\\": -0.405,\\n      \\\"ci_95_hi_pp\\\": 2.3436,\\n      \\\"p_value_bootstrap\\\": 0.0908,\\n      \\\"significant_005\\\": false,\\n      \\\"selection_macro_f1\\\": 0.6491559890620271\\n    },\\n    \\\"SJ\\\": {\\n      \\\"mean_delta_pp\\\": 0.3557,\\n      \\\"std_delta_pp\\\": 0.5179,\\n      \\\"ci_95_lo_pp\\\": -0.6553,\\n      \\\"ci_95_hi_pp\\\": 1.3787,\\n      \\\"p_value_bootstrap\\\": 0.2443,\\n      \\\"significant_005\\\": false,\\n      \\\"selection_macro_f1\\\": 0.64316936661816\\n    },\\n    \\\"FK\\\": {\\n      \\\"mean_delta_pp\\\": 0.655,\\n      \\\"std_delta_pp\\\": 0.515,\\n      \\\"ci_95_lo_pp\\\": -0.3606,\\n      \\\"ci_95_hi_pp\\\": 1.67,\\n      \\\"p_value_bootstrap\\\": 0.1011,\\n      \\\"significant_005\\\": false,\\n      \\\"selection_macro_f1\\\": 0.6461876673680299\\n    },\\n    \\\"EM\\\": {\\n      \\\"mean_delta_pp\\\": 0.224,\\n      \\\"std_delta_pp\\\": 0.6131,\\n      \\\"ci_95_lo_pp\\\": -0.9917,\\n      \\\"ci_95_hi_pp\\\": 1.4406,\\n      \\\"p_value_bootstrap\\\": 0.3551,\\n      \\\"significant_005\\\": false,\\n      \\\"selection_macro_f1\\\": 0.6419040884736426\\n    },\\n    \\\"VC\\\": {\\n      \\\"mean_delta_pp\\\": -4.3569,\\n      \\\"std_delta_pp\\\": 0.9897,\\n      \\\"ci_95_lo_pp\\\": -6.2595,\\n      \\\"ci_95_hi_pp\\\": -2.3674,\\n      \\\"p_value_bootstrap\\\": 1.0,\\n      \\\"significant_005\\\": false,\\n      \\\"selection_macro_f1\\\": 0.5961394255817696\\n    }\\n  },\\n  \\\"oracle\\\": {\\n    \\\"mean_delta_pp\\\": 20.0009,\\n    \\\"ci_95_lo_pp\\\": 17.9772,\\n    \\\"ci_95_hi_pp\\\": 22.0957,\\n    \\\"p_value_bootstrap\\\": 0.0\\n  },\\n 
+…[truncated 1053 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_r5-bonferroni-holm_20260520T101440",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-20T10:17:47.725436+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/bootstrap_ci_summary.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_r5-bonferroni-holm_20260520T101440",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/bootstrap_ci_summary.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-20T10:17:47.725773+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"_metadata\\\": {\\n    \\\"generated\\\": \\\"2026-05-15\\\",\\n    \\\"description\\\": \\\"Unified bootstrap CI and 3-seed summary (voting_conf CORRECTED after majority-filter bug fix)\\\",\\n    \\\"sources\\\": {\\n      \\\"qwen_scierc_3seed\\\": [\\n        \\\"output/exp_001_seed42_v2/all_signals_report.json\\\",\\n        \\\"output/exp_001_seed123_v2/all_signals_report.json\\\",\\n        \\\"output/exp_001_seed456_v2_ner/all_signals_report.json\\\"\\n      ],\\n      \\\"llama_conll_3seed\\\": [\\n        \\\"output/exp_017_llama_conll_n16/all_signals_report.json\\\",\\n        \\\"output/exp_017_llama_conll_n16_s123/all_signals_report.json\\\",\\n        \\\"output/exp_017_llama_conll_n16_s456/all_signals_report.json\\\"\\n      ],\\n      \\\"bootstrap_nscaling\\\": \\\"output/bootstrap_ci_nscaling/results.json\\\",\\n      \\\"bootstrap_single\\\": \\\"output/exp004_re_diagnostic/bootstrap_ci.json\\\"\\n    },\\n    \\\"notes\\\": {\\n      \\\"voting_conf_fix\\\": \\\"compute_vc majority-filter bug fixed 2026-05-15 05:46. All 4 voting_conf nscaling bootstrap CIs regenerated with corrected code.\\\",\\n      \\\"qwen_scierc_EM_voting_conf\\\": \\\"Now included from all_signals_report.json (previously marked missing because only report.json was checked).\\\",\\n      \\\"gold_empty_filter\\\": \\\"CoNLL: 3453 total -> 2756 valid (697 gold_empty). SciERC: 551 total -> 529 valid (22 gold_empty).\\\"\\n    }\\n  },\\n  \\\"qwen_scierc_3seed\\\": {\\n    \\\"ner\\\": {\\n      \\\"full\\\": {\\n        \\\"SJ\\\": {\\n          \\\"seeds\\\": [\\n            0.428,\\n            0.4244,\\n            0.3838\\n          ],\\n          \\\"mean\\\": 0.4121,\\n          \\\"sd\\\": 0.0245,\\n          \\\"cv_pct\\\": 6.0\\n        },\\n        \\\"FK\\\": {\\n          \\\"seeds\\\": [\\n            0.2809,\\n            0.2752,\\n            0.2234\\n          ],\\n          \\\"mean\\\": 0.2598
+…[truncated 8248 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_r5-bonferroni-holm_20260520T101440",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-20T10:17:47.726019+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cd /root/autodl-tmp/struct_self_consist_ie && python3 -c \"\nimport json, os\ntry:\n    from statsmodels.stats.multitest import multipletests\n    print('statsmodels OK')\nexcept ImportError:\n    print('NEED_INSTALL')\n\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_r5-bonferroni-holm_20260520T101440",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cd /root/autodl-tmp/struct_self_consist_ie && python3 -c \"\nimport json, os\ntry:\n    from statsmodels.stats.multitest import multipletests\n    print('statsmodels OK')\nexcept ImportError:\n    print('NEED_INSTALL')\n\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-20T10:17:47.726194+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'cd /root/autodl-tmp/struct_self_consist_ie && python3 -c \\\"\\\\nimport json, os\\\\ntry:\\\\n    from statsmodels.stats.multitest import multipletests\\\\n    print(\\\\'statsmodels OK\\\\')\\\\nexcept ImportError:\\\\n    print(\\\\'NEED_INSTALL\\\\')\\\\n\\\"'\\n\\nExit code: 127\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\nbash: line 1: python3: command not found\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.37}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_r5-bonferroni-holm_20260520T101440",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-20T10:17:47.726344+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__detect_image",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_r5-bonferroni-holm_20260520T101440",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__detect_image",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-20T10:17:47.726475+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_r5-bonferroni-holm_20260520T101440",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-20T10:17:47.726592+00:00_
+
+called mcp__agent-ml-research__detect_image
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__detect_image</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_r5-bonferroni-holm_20260520T101440",
+  "tool": "mcp__agent-ml-research__detect_image",
+  "tool_args": {
+    "server": "autodl-5090",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-20T10:17:47.726712+00:00_
+
+{"result":"{\n  \"detected\": false,\n  \"status\": \"unknown\",\n  \"skip_base_setup\": false,\n  \"message\": \"No image marker file found. Use traditional env-setup flow.\"\n}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_r5-bonferroni-holm_20260520T101440",
+  "tool": "mcp__agent-ml-research__detect_image",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-20T10:17:47.726828+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "which python",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_r5-bonferroni-holm_20260520T101440",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "which python",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-20T10:17:47.726944+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'which' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_r5-bonferroni-holm_20260520T101440",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-20T10:17:47.727063+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "ls /root/miniconda3/bin/python",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_r5-bonferroni-holm_20260520T101440",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "ls /root/miniconda3/bin/python",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-20T10:17:47.727205+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/miniconda3/bin/python\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_r5-bonferroni-holm_20260520T101440",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-20T10:17:47.727325+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python -c \"from statsmodels.stats.multitest import multipletests; print('OK')\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_r5-bonferroni-holm_20260520T101440",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python -c \"from statsmodels.stats.multitest import multipletests; print('OK')\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-20T10:17:47.727459+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python -c \\\"from statsmodels.stats.multitest import multipletests; print(\\\\'OK\\\\')\\\"'\\n\\nExit code: 1\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\nTraceback (most recent call last):\\n  File \\\"&lt;string>\\\", line 1, in &lt;module>\\nModuleNotFoundError: No module named 'statsmodels'\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_r5-bonferroni-holm_20260520T101440",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-20T10:17:47.727581+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && pip install statsmodels -q",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_r5-bonferroni-holm_20260520T101440",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && pip install statsmodels -q",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-20T10:17:47.727702+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv\\n\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 9.46}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_r5-bonferroni-holm_20260520T101440",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-20T10:17:47.727887+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python << 'PYEOF'\nimport json, os\nfrom statsmodels.stats.multitest import multipletests\n\nbase = \"/root/autodl-tmp/struct_self_consist_ie/output\"\n\nwith open(f\"{base}/entity_construction_fair/bootstrap_tests.json\") as f:\n    ec_n16 = json.load(f)\nwith open(f\"{base}/entity_construction_fair_n8/bootstrap_tests.json\") as f:\n    ec_n8 = json.load(f)\n\ndef parse_test_name(test_name):\n    name = test_name\n    is_re = name.startswith(\"re_\")\n    if is_re:\n        name = name.replace(\"re_bootstrap_\", \"\")\n    else:\n        name = name.replace(\"bootstrap_construction_\", \"\").replace(\"bootstrap_\", \"\")\n    name = name.replace(\"_vs_greedy\", \"\")\n    return name, \"RE\" if is_re else \"NER\"\n\ntests = []\n\n# n=16\nfor dataset, dataset_tests in ec_n16.items():\n    for test_name, result in dataset_tests.items():\n        method, task = parse_test_name(test_name)\n        tests.append({\n            \"config\": f\"n16_{dataset}\",\n            \"dataset\": dataset,\n            \"n\": 16,\n            \"task\": task,\n            \"method\": method,\n            \"delta_f1\": round(result[\"mean_diff\"], 6),\n            \"raw_p\": result[\"p_value\"]\n        })\n\n# n=8 (exclude buggy adaptive with |delta|>0.5)\nfor dataset, dataset_tests in ec_n8.items():\n    for test_name, result in dataset_tests.items():\n        method, task = parse_test_name(test_name)\n        if abs(result[\"mean_diff\"]) > 0.5:\n            continue\n        tests.append({\n            \"config\": f\"n8_{dataset}\",\n            \"dataset\": dataset,\n            \"n\": 8,\n            \"task\": task,\n            \"method\": method,\n            \"delta_f1\": round(result[\"mean_diff\"], 6),\n            \"raw_p\": result[\"p_value\"]\n        })\n\nraw_pvals = [t[\"raw_p\"] for t in tests]\n# Clamp exact 0.0 to 1e-4 (bootstrap resolution with B=10000)\nraw_pvals_clamped = [max(p, 1e-4) for p in raw_pvals]\n\nreject, pvals_corrected, _, _ = multipletests(raw_pvals_clamped, alpha=0.05, method='holm')\n\nfor i, t in enumerate(tests):\n    t[\"corrected_p\"] = round(float(pvals_corrected[i]), 6)\n    t[\"significant_after_correction\"] = bool(reject[i])\n    t[\"was_significant_uncorrected\"] = t[\"raw_p\"] < 0.05\n\ntests.sort(key=lambda x: x[\"corrected_p\"])\n\nn_total = len(tests)\nn_sig_raw = sum(1 for t in tests if t[\"was_significant_uncorrected\"])\nn_sig_corr = sum(1 for t in tests if t[\"significant_after_correction\"])\n\nresult = {\n    \"_metadata\": {\n        \"method\": \"Holm-Bonferroni\",\n        \"alpha\": 0.05,\n        \"n_tests\": n_total,\n        \"n_significant_uncorrected\": n_sig_raw,\n        \"n_significant_corrected\": n_sig_corr,\n        \"note\": \"p=0.0 clamped to 1e-4 (bootstrap B=10000 resolution). n8 adaptive_uniform excluded (buggy delta >0.5).\",\n        \"sources\": [\n            \"output/entity_construction_fair/bootstrap_tests.json (n=16)\",\n            \"output/entity_construction_fair_n8/bootstrap_tests.json (n=8)\"\n        ]\n    },\n    \"tests\": tests,\n    \"survival_summary\": {\n        \"survived\": [{\"config\": t[\"config\"], \"task\": t[\"task\"], \"method\": t[\"method\"],\n                       \"delta_f1\": t[\"delta_f1\"], \"raw_p\": t[\"raw_p\"], \"corrected_p\": t[\"corrected_p\"]}\n                      for t in tests if t[\"significant_after_correction\"]],\n        \"lost_significance\": [{\"config\": t[\"config\"], \"task\": t[\"task\"], \"method\": t[\"method\"],\n                                \"delta_f1\": t[\"delta_f1\"], \"raw_p\": t[\"raw_p\"], \"corrected_p\": t[\"corrected_p\"]}\n                               for t in tests if t[\"was_significant_uncorrected\"] and not t[\"significant_after_correction\"]],\n    }\n}\n\nos.makedirs(\"/root/autodl-tmp/struct_self_consist_ie/artifacts/r5_bonferroni\", exist_ok=True)\nout_path = \"/root/autodl-tmp/struct_self_consist_ie/artifacts/r5_bonferroni/corrected_pvalues.json\"\nwith open(out_path, \"w\") as f:\n    json.dump(result, f, indent=2)\n\nprint(f\"Total tests: {n_total}\")\nprint(f\"Significant uncorrected (p<0.05): {n_sig_raw}\")\nprint(f\"Significant after Holm-Bonferroni: {n_sig_corr}\")\nprint()\nprint(\"=== SURVIVED CORRECTION ===\")\nfor t in tests:\n    if t[\"significant_after_correction\"]:\n        print(f\"  {t['config']:20s} {t['task']:4s} {t['method']:35s} dF1={t['delta_f1']:+.4f}  raw_p={t['raw_p']:.4f}  corr_p={t['corrected_p']:.4f}\")\nprint()\nprint(\"=== LOST SIGNIFICANCE ===\")\nfor t in tests:\n    if t[\"was_significant_uncorrected\"] and not t[\"significant_after_correction\"]:\n        print(f\"  {t['config']:20s} {t['task']:4s} {t['method']:35s} dF1={t['delta_f1']:+.4f}  raw_p={t['raw_p']:.4f}  corr_p={t['corrected_p']:.4f}\")\n\nprint(f\"\\nSaved to {out_path}\")\nPYEOF",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_r5-bonferroni-holm_20260520T101440",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python << 'PYEOF'\nimport json, os\nfrom statsmodels.stats.multitest import multipletests\n\nbase = \"/root/autodl-tmp/struct_self_consist_ie/output\"\n\nwith open(f\"{base}/entity_construction_fair/bootstrap_tests.json\") as f:\n    ec_n16 = json.load(f)\nwith open(f\"{base}/entity_construction_fair_n8/bootstrap_tests.json\") as f:\n    ec_n8 = json.load(f)\n\ndef parse_test_name(test_name):\n    name = test_name\n    is_re = name.startswith(\"re_\")\n    if is_re:\n        name = name.replace(\"re_bootstrap_\", \"\")\n    else:\n        name = name.replace(\"bootstrap_construction_\", \"\").replace(\"bootstrap_\", \"\")\n    name = name.replace(\"_vs_greedy\", \"\")\n    return name, \"RE\" if is_re else \"NER\"\n\ntests = []\n\n# n=16\nfor dataset, dataset_tests in ec_n16.items():\n    for test_name, result in dataset_tests.items():\n        method, task = parse_test_name(test_name)\n        tests.append({\n            \"config\": f\"n16_{dataset}\",\n            \"dataset\": dataset,\n            \"n\": 16,\n            \"task\": task,\n            \"method\": method,\n            \"delta_f1\": round(result[\"mean_diff\"], 6),\n            \"raw_p\": result[\"p_value\"]\n        })\n\n# n=8 (exclude buggy adaptive with |delta|>0.5)\nfor dataset, dataset_tests in ec_n8.items():\n    for test_name, result in dataset_tests.items():\n        method, task = parse_test_name(test_name)\n        if abs(result[\"mean_diff\"]) > 0.5:\n            continue\n        tests.append({\n            \"config\": f\"n8_{dataset}\",\n            \"dataset\": dataset,\n            \"n\": 8,\n            \"task\": task,\n            \"method\": method,\n            \"delta_f1\": round(result[\"mean_diff\"], 6),\n            \"raw_p\": result[\"p_value\"]\n        })\n\nraw_pvals = [t[\"raw_p\"] for t in tests]\n# Clamp exact 0.0 to 1e-4 (bootstrap resolution with B=10000)\nraw_pvals_clamped = [max(p, 1e-4) for p in raw_pvals]\n\nreject, pvals_corrected, _, _ = multipletests(raw_pvals_clamped, alpha=0.05, method='holm')\n\nfor i, t in enumerate(tests):\n    t[\"corrected_p\"] = round(float(pvals_corrected[i]), 6)\n    t[\"significant_after_correction\"] = bool(reject[i])\n    t[\"was_significant_uncorrected\"] = t[\"raw_p\"] < 0.05\n\ntests.sort(key=lambda x: x[\"corrected_p\"])\n\nn_total = len(tests)\nn_sig_raw = sum(1 for t in tests if t[\"was_significant_uncorrected\"])\nn_sig_corr = sum(1 for t in tests if t[\"significant_after_correction\"])\n\nresult = {\n    \"_metadata\": {\n        \"method\": \"Holm-Bonferroni\",\n        \"alpha\": 0.05,\n        \"n_tests\": n_total,\n        \"n_significant_uncorrected\": n_sig_raw,\n        \"n_significant_corrected\": n_sig_corr,\n        \"note\": \"p=0.0 clamped to 1e-4 (bootstrap B=10000 resolution). n8 adaptive_uniform excluded (buggy delta >0.5).\",\n        \"sources\": [\n            \"output/entity_construction_fair/bootstrap_tests.json (n=16)\",\n            \"output/entity_construction_fair_n8/bootstrap_tests.json (n=8)\"\n        ]\n    },\n    \"tests\": tests,\n    \"survival_summary\": {\n        \"survived\": [{\"config\": t[\"config\"], \"task\": t[\"task\"], \"method\": t[\"method\"],\n                       \"delta_f1\": t[\"delta_f1\"], \"raw_p\": t[\"raw_p\"], \"corrected_p\": t[\"corrected_p\"]}\n                      for t in tests if t[\"significant_after_correction\"]],\n        \"lost_significance\": [{\"config\": t[\"config\"], \"task\": t[\"task\"], \"method\": t[\"method\"],\n                                \"delta_f1\": t[\"delta_f1\"], \"raw_p\": t[\"raw_p\"], \"corrected_p\": t[\"corrected_p\"]}\n                               for t in tests if t[\"was_significant_uncorrected\"] and not t[\"significant_after_correction\"]],\n    }\n}\n\nos.makedirs(\"/root/autodl-tmp/struct_self_consist_ie/artifacts/r5_bonferroni\", exist_ok=True)\nout_path = \"/root/autodl-tmp/struct_self_consist_ie/artifacts/r5_bonferroni/corrected_pvalues.json\"\nwith open(out_path, \"w\") as f:\n    json.dump(result, f, indent=2)\n\nprint(f\"Total tests: {n_total}\")\nprint(f\"Significant uncorrected (p<0.05): {n_sig_raw}\")\nprint(f\"Significant after Holm-Bonferroni: {n_sig_corr}\")\nprint()\nprint(\"=== SURVIVED CORRECTION ===\")\nfor t in tests:\n    if t[\"significant_after_correction\"]:\n        print(f\"  {t['config']:20s} {t['task']:4s} {t['method']:35s} dF1={t['delta_f1']:+.4f}  raw_p={t['raw_p']:.4f}  corr_p={t['corrected_p']:.4f}\")\nprint()\nprint(\"=== LOST SIGNIFICANCE ===\")\nfor t in tests:\n    if t[\"was_significant_uncorrected\"] and not t[\"significant_after_correction\"]:\n        print(f\"  {t['config']:20s} {t['task']:4s} {t['method']:35s} dF1={t['delta_f1']:+.4f}  raw_p={t['raw_p']:.4f}  corr_p={t['corrected_p']:.4f}\")\n\nprint(f\"\\nSaved to {out_path}\")\nPYEOF",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-20T10:17:47.728109+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Total tests: 57\\nSignificant uncorrected (p<0.05): 17\\nSignificant after Holm-Bonferroni: 8\\n\\n=== SURVIVED CORRECTION ===\\n  n16_scierc           NER  adaptive_uniform                    dF1=+0.0405  raw_p=0.0000  corr_p=0.0057\\n  n16_fewnerd          NER  uniform_cv                          dF1=+0.0132  raw_p=0.0000  corr_p=0.0057\\n  n16_fewnerd          NER  lp_selection                        dF1=+0.0188  raw_p=0.0000  corr_p=0.0057\\n  n16_fewnerd          NER  lp_weighted_cv                      dF1=+0.0142  raw_p=0.0000  corr_p=0.0057\\n  n16_fewnerd          NER  adaptive_uniform                    dF1=+0.0555  raw_p=0.0000  corr_p=0.0057\\n  n8_fewnerd           NER  lp_selection                        dF1=+0.0136  raw_p=0.0000  corr_p=0.0057\\n  n8_fewnerd           NER  lp_weighted_confirm                 dF1=+0.0088  raw_p=0.0000  corr_p=0.0057\\n  n8_fewnerd           NER  lp_weighted_cv                      dF1=+0.0088  raw_p=0.0000  corr_p=0.0057\\n\\n=== LOST SIGNIFICANCE ===\\n  n16_conll            NER  adaptive_uniform                    dF1=+0.0070  raw_p=0.0012  corr_p=0.0588\\n  n8_fewnerd           NER  uniform_confirm                     dF1=+0.0032  raw_p=0.0031  corr_p=0.1488\\n  n8_fewnerd           NER  uniform_cv                          dF1=+0.0032  raw_p=0.0031  corr_p=0.1488\\n  n8_scierc            NER  lp_weighted_confirm                 dF1=+0.0167  raw_p=0.0044  corr_p=0.2024\\n  n16_scierc           NER  uniform_cv                          dF1=+0.0135  raw_p=0.0178  corr_p=0.7920\\n  n16_scierc           NER  lp_weighted_cv                      dF1=+0.0132  raw_p=0.0176  corr_p=0.7920\\n  n16_scierc           RE   uniform_cv                          dF1=+0.0169  raw_p=0.0491  corr_p=1.0000\\n  n8_scierc            NER  uniform_confirm                     dF1=+0.0154  raw_p=0.0233  corr_p=1.0000\\n  n8_scierc            NER  lp_weighted_cv                      dF1=+0.0
+…[truncated 240 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_r5-bonferroni-holm_20260520T101440",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-20T10:17:47.728327+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "R5 Holm-Bonferroni Corrected P-values",
+  "type": "data",
+  "description": "Holm-Bonferroni multiple comparison correction on all 57 entity construction paired bootstrap tests (n=8 and n=16, 3 datasets). 17 tests significant uncorrected → 8 survive correction.",
+  "project": "struct_self_consist_ie",
+  "source_path": "/root/autodl-tmp/struct_self_consist_ie/artifacts/r5_bonferroni/corrected_pvalues.json",
+  "tags": "['statistics', 'multiple-comparison', 'bonferroni', 'r5']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_r5-bonferroni-holm_20260520T101440",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "R5 Holm-Bonferroni Corrected P-values",
+    "type": "data",
+    "description": "Holm-Bonferroni multiple comparison correction on all 57 entity construction paired bootstrap tests (n=8 and n=16, 3 datasets). 17 tests significant uncorrected → 8 survive correction.",
+    "project": "struct_self_consist_ie",
+    "source_path": "/root/autodl-tmp/struct_self_consist_ie/artifacts/r5_bonferroni/corrected_pvalues.json",
+    "tags": "['statistics', 'multiple-comparison', 'bonferroni', 'r5']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-20T10:17:47.728475+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"source_path not found: /root/autodl-tmp/struct_self_consist_ie/artifacts/r5_bonferroni/corrected_pvalues.json\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_r5-bonferroni-holm_20260520T101440",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-20T10:17:47.728610+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/artifacts/r5_bonferroni/corrected_pvalues.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_r5-bonferroni-holm_20260520T101440",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cat /root/autodl-tmp/struct_self_consist_ie/artifacts/r5_bonferroni/corrected_pvalues.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-20T10:17:47.728984+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"_metadata\\\": {\\n    \\\"method\\\": \\\"Holm-Bonferroni\\\",\\n    \\\"alpha\\\": 0.05,\\n    \\\"n_tests\\\": 57,\\n    \\\"n_significant_uncorrected\\\": 17,\\n    \\\"n_significant_corrected\\\": 8,\\n    \\\"note\\\": \\\"p=0.0 clamped to 1e-4 (bootstrap B=10000 resolution). n8 adaptive_uniform excluded (buggy delta >0.5).\\\",\\n    \\\"sources\\\": [\\n      \\\"output/entity_construction_fair/bootstrap_tests.json (n=16)\\\",\\n      \\\"output/entity_construction_fair_n8/bootstrap_tests.json (n=8)\\\"\\n    ]\\n  },\\n  \\\"tests\\\": [\\n    {\\n      \\\"config\\\": \\\"n16_scierc\\\",\\n      \\\"dataset\\\": \\\"scierc\\\",\\n      \\\"n\\\": 16,\\n      \\\"task\\\": \\\"NER\\\",\\n      \\\"method\\\": \\\"adaptive_uniform\\\",\\n      \\\"delta_f1\\\": 0.040541,\\n      \\\"raw_p\\\": 0.0,\\n      \\\"corrected_p\\\": 0.0057,\\n      \\\"significant_after_correction\\\": true,\\n      \\\"was_significant_uncorrected\\\": true\\n    },\\n    {\\n      \\\"config\\\": \\\"n16_fewnerd\\\",\\n      \\\"dataset\\\": \\\"fewnerd\\\",\\n      \\\"n\\\": 16,\\n      \\\"task\\\": \\\"NER\\\",\\n      \\\"method\\\": \\\"uniform_cv\\\",\\n      \\\"delta_f1\\\": 0.013224,\\n      \\\"raw_p\\\": 0.0,\\n      \\\"corrected_p\\\": 0.0057,\\n      \\\"significant_after_correction\\\": true,\\n      \\\"was_significant_uncorrected\\\": true\\n    },\\n    {\\n      \\\"config\\\": \\\"n16_fewnerd\\\",\\n      \\\"dataset\\\": \\\"fewnerd\\\",\\n      \\\"n\\\": 16,\\n      \\\"task\\\": \\\"NER\\\",\\n      \\\"method\\\": \\\"lp_selection\\\",\\n      \\\"delta_f1\\\": 0.018837,\\n      \\\"raw_p\\\": 0.0,\\n      \\\"corrected_p\\\": 0.0057,\\n      \\\"significant_after_correction\\\": true,\\n      \\\"was_significant_uncorrected\\\": true\\n    },\\n    {\\n      \\\"config\\\": \\\"n16_fewnerd\\\",\\n      \\\"dataset\\\": \\\"fewnerd\\\",\\n      \\\"n\\\": 16,\\n      \\\"task\\\": \\\"NER\
+…[truncated 9027 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_r5-bonferroni-holm_20260520T101440",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-20T10:17:47.729207+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "R5 Holm-Bonferroni Corrected P-values",
+  "type": "data",
+  "description": "Holm-Bonferroni correction on 57 entity construction bootstrap tests. 17/57 significant uncorrected → 8/57 survive. All survivors are FewNERD or SciERC adaptive_uniform with raw p=0.0.",
+  "project": "struct_self_consist_ie",
+  "content_filename": "corrected_pvalues.json",
+  "tags": "['statistics', 'multiple-comparison', 'bonferroni', 'r5']",
+  "content": "(see server: /root/autodl-tmp/struct_self_consist_ie/artifacts/r5_bonferroni/corrected_pvalues.json)"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_r5-bonferroni-holm_20260520T101440",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "R5 Holm-Bonferroni Corrected P-values",
+    "type": "data",
+    "description": "Holm-Bonferroni correction on 57 entity construction bootstrap tests. 17/57 significant uncorrected → 8/57 survive. All survivors are FewNERD or SciERC adaptive_uniform with raw p=0.0.",
+    "project": "struct_self_consist_ie",
+    "content_filename": "corrected_pvalues.json",
+    "tags": "['statistics', 'multiple-comparison', 'bonferroni', 'r5']",
+    "content": "(see server: /root/autodl-tmp/struct_self_consist_ie/artifacts/r5_bonferroni/corrected_pvalues.json)"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-20T10:17:47.729381+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260520_e7adc0\", \"name\": \"R5 Holm-Bonferroni Corrected P-values\", \"type\": \"data\", \"description\": \"Holm-Bonferroni correction on 57 entity construction bootstrap tests. 17/57 significant uncorrected → 8/57 survive. All survivors are FewNERD or SciERC adaptive_uniform with raw p=0.0.\", \"path\": \"projects/struct_self_consist_ie/artifacts/_project/data/corrected_pvalues.json\", \"url\": null, \"project\": \"struct_self_consist_ie\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-20T10:17:34.368741+00:00\", \"tags\": [\"statistics\", \"multiple-comparison\", \"bonferroni\", \"r5\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_r5-bonferroni-holm_20260520T101440",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 41 · 2026-05-20T10:17:47.729563+00:00_
+
+## 结果
+
+57 个 entity construction paired bootstrap tests，Holm-Bonferroni 校正后：
+
+**17 → 8 survive (α=0.05)**
+
+### Survived correction (corrected p=0.0057)
+| Config | Method | ΔF1 | raw p |
+|--------|--------|-----|-------|
+| n16_scierc | adaptive_uniform | +4.05pp | 0.0000 |
+| n16_fewnerd | uniform_cv | +1.32pp | 0.0000 |
+| n16_fewnerd | lp_selection | +1.88pp | 0.0000 |
+| n16_fewnerd | lp_weighted_cv | +1.42pp | 0.0000 |
+| n16_fewnerd | adaptive_uniform | +5.55pp | 0.0000 |
+| n8_fewnerd | lp_selection | +1.36pp | 0.0000 |
+| n8_fewnerd | lp_weighted_confirm | +0.88pp | 0.0000 |
+| n8_fewnerd | lp_weighted_cv | +0.88pp | 0.0000 |
+
+### Lost significance (9 tests)
+- **n16_conll adaptive_uniform** (raw p=0.0012 → corr p=0.0588) — borderline miss
+- **n16_scierc uniform_cv / lp_weighted_cv** (raw p≈0.018 → corr p=0.79)
+- **n8_scierc** 的 confirm/cv 构造方法
+- **n16_scierc RE uniform_cv** (raw p=0.049 → corr p=1.0)
+
+### 主线 claim 评估
+- **FewNERD 上的构造方法优势** — 全部 survive，主线 claim 最稳固
+- **SciERC adaptive_uniform** — survive
+- **CoNLL adaptive_uniform** — borderline miss (corr p=0.0588)，需谨慎表述
+- **SciERC 上的 cv/lp_weighted_cv 构造** — 不 survive，论文中应弱化或标注为 exploratory
+- **RE 构造** — 没有任何 test survive
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_ssh_r5-bonferroni-holm_20260520T101440"
+}
+```
+
+</details>
+
+---

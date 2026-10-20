@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0ab0540a7a9865b75a4c",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "paper full data audit",
+  "task_key": "worker_paper_full-data-audit_20260523T191904",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_paper_full-data-audit_20260523T191904_result.json",
+    "occurrence": 1,
+    "bytes": 1003,
+    "sha256": "50b4e38ee3d0930b61adfd1af8d81a943cf4b6c763e1c86c5186d84d18bdd7d1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计完成。报告已写入 `artifacts/full_data_audit_report.md` 并注册。\n\n核心发现：\n\n**85+ 个数字已验证一致**，覆盖所有主表 ρ 值、Abstract、Introduction、experiments_main 全文、theory、limitations、figure 硬编码。\n\n**3 个不一致需要你确认：**\n\n1. **CRITICAL — SciERC EM AUROC**：tab:quality_estimation 写 .749，但 tab:multiseed 5-seed 均值 .631±.013，数学上不可能（9.1σ 偏差）。其中一个表有数据错误。\n\n2. **SIGNIFICANT — tab:selection 表头/表体**：caption 写 Oracle=0.781/Greedy=0.667（→headroom 11.4pp，与正文一致），但表体写 Oracle=0.775/Greedy=0.645（→headroom 13.0pp）。疑似使用了不同的 F1 计算方式。\n\n3. **MINOR — MV +0.61 pp on CoNLL**（intro & experiments_main）：registry 最近值为 N=64 s42 的 +0.64pp，figure caption 写 +0.6pp，但正文 +0.61 无法精确追溯。\n\n无 \"31%\" 残留。4 项无法完全追溯但风险低。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-full-data-audit.md"
+}
